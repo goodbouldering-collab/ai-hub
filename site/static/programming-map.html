@@ -269,29 +269,6 @@
 
   .full-width { grid-column: 1 / -1; }
 
-  /* ===== 9社グリッド ===== */
-  .nine-flow {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0;
-    background: #f1f5f9;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-top: 8px;
-    border: 1px solid #e2e8f0;
-  }
-  .nine-step {
-    padding: 14px;
-    background: #fff;
-    border-right: 1px solid #e2e8f0;
-    border-bottom: 1px solid #e2e8f0;
-  }
-  .nine-step:nth-child(3n) { border-right: none; }
-  .nine-step:nth-last-child(-n+3) { border-bottom: none; }
-  .nine-num { font-size: 1rem; font-weight: 800; color: var(--nc); margin-bottom: 3px; display: block; }
-  .nine-title { font-size: 0.76rem; font-weight: 700; color: #1e293b; margin-bottom: 4px; }
-  .nine-desc { font-size: 0.68rem; color: #64748b; line-height: 1.5; }
-
   /* ===== 凡例 ===== */
   .legend {
     max-width: 1200px; margin: 32px auto 0;
@@ -1319,46 +1296,165 @@
     </div>
   </div>
 
-  <!-- 今回の9社フロー -->
+  <!-- マルチクライアント統括運用 -->
   <div class="card red full-width">
     <div class="card-header">
       <div class="card-icon">🏢</div>
       <div class="card-title-wrap">
-        <div class="step-badge">今回のプロジェクト</div>
-        <h2>9社プロジェクト 全工程</h2>
+        <div class="step-badge">本プロジェクト固有の構成</div>
+        <h2>マルチクライアント統括運用 — 3層アーキテクチャ</h2>
       </div>
     </div>
-    <div class="nine-flow">
-      <div class="nine-step">
-        <span class="nine-num" style="--nc:#2563eb">①</span>
-        <div class="nine-title">🛠️ 環境構築</div>
-        <div class="nine-desc">各社フォルダに package.json を用意。Node.js で Next.js / Vite を初期化</div>
-      </div>
-      <div class="nine-step">
-        <span class="nine-num" style="--nc:#16a34a">②</span>
-        <div class="nine-title">💻 開発</div>
-        <div class="nine-desc">clients.code-workspace で9社同時表示。localhost:3001〜3009 でプレビュー</div>
-      </div>
-      <div class="nine-step">
-        <span class="nine-num" style="--nc:#d97706">③</span>
-        <div class="nine-title">⚙️ ポート管理</div>
-        <div class="nine-desc">set-ports.js がフレームワークを自動判別して各社にポートを割り振り</div>
-      </div>
-      <div class="nine-step">
-        <span class="nine-num" style="--nc:#7c3aed">④</span>
-        <div class="nine-title">🌿 Git管理</div>
-        <div class="nine-desc">各社リポジトリで branch → commit → push → PR → merge</div>
-      </div>
-      <div class="nine-step">
-        <span class="nine-num" style="--nc:#0891b2">⑤</span>
-        <div class="nine-title">🧪 テスト</div>
-        <div class="nine-desc">staging 環境で最終確認。本番データには影響なし</div>
-      </div>
-      <div class="nine-step">
-        <span class="nine-num" style="--nc:#db2777">⑥</span>
-        <div class="nine-title">🚀 自動デプロイ</div>
-        <div class="nine-desc">GitHub push → Vercel/Netlify が自動で本番公開。問題があればロールバック</div>
-      </div>
+
+    <!-- 3層俯瞰図 -->
+    <div class="ai-stack">
+      <svg width="100%" height="240" viewBox="0 0 820 240" style="min-width:640px;">
+        <defs>
+          <linearGradient id="mg1" x1="0" x2="1"><stop offset="0" stop-color="#dbeafe"/><stop offset="1" stop-color="#bfdbfe"/></linearGradient>
+          <linearGradient id="mg2" x1="0" x2="1"><stop offset="0" stop-color="#fef3c7"/><stop offset="1" stop-color="#fde68a"/></linearGradient>
+          <linearGradient id="mg3" x1="0" x2="1"><stop offset="0" stop-color="#dcfce7"/><stop offset="1" stop-color="#bbf7d0"/></linearGradient>
+        </defs>
+
+        <!-- Layer 1: 本番クライアント -->
+        <rect x="10" y="18" width="260" height="204" rx="12" fill="url(#mg1)" stroke="#60a5fa" stroke-width="1.5"/>
+        <text x="140" y="38" text-anchor="middle" fill="#1d4ed8" font-size="12" font-weight="800">① 本番クライアント層</text>
+        <text x="140" y="52" text-anchor="middle" fill="#2563eb" font-size="9">Claude/&lt;クライアント名&gt;/ — 既存9社</text>
+        <!-- 9社グリッド 3x3 -->
+        <g font-family="monospace" font-size="8" fill="#1e40af">
+          <rect x="22" y="62" width="76" height="22" rx="4" fill="#fff" stroke="#93c5fd"/>
+          <text x="60" y="77" text-anchor="middle">:3001</text>
+          <rect x="102" y="62" width="76" height="22" rx="4" fill="#fff" stroke="#93c5fd"/>
+          <text x="140" y="77" text-anchor="middle">:3002</text>
+          <rect x="182" y="62" width="76" height="22" rx="4" fill="#fff" stroke="#93c5fd"/>
+          <text x="220" y="77" text-anchor="middle">:3003</text>
+
+          <rect x="22" y="88" width="76" height="22" rx="4" fill="#fff" stroke="#93c5fd"/>
+          <text x="60" y="103" text-anchor="middle">:3004</text>
+          <rect x="102" y="88" width="76" height="22" rx="4" fill="#fff" stroke="#93c5fd"/>
+          <text x="140" y="103" text-anchor="middle">:3005</text>
+          <rect x="182" y="88" width="76" height="22" rx="4" fill="#fff" stroke="#93c5fd"/>
+          <text x="220" y="103" text-anchor="middle">:3006</text>
+
+          <rect x="22" y="114" width="76" height="22" rx="4" fill="#fff" stroke="#93c5fd"/>
+          <text x="60" y="129" text-anchor="middle">:3007</text>
+          <rect x="102" y="114" width="76" height="22" rx="4" fill="#fff" stroke="#93c5fd"/>
+          <text x="140" y="129" text-anchor="middle">:3008</text>
+          <rect x="182" y="114" width="76" height="22" rx="4" fill="#fff" stroke="#93c5fd"/>
+          <text x="220" y="129" text-anchor="middle">:3009</text>
+        </g>
+        <rect x="22" y="148" width="236" height="24" rx="5" fill="#1e40af"/>
+        <text x="140" y="163" text-anchor="middle" fill="#dbeafe" font-size="9" font-weight="700">clients.code-workspace で一括管理</text>
+        <rect x="22" y="178" width="236" height="22" rx="5" fill="#fff" stroke="#93c5fd"/>
+        <text x="140" y="193" text-anchor="middle" fill="#1e40af" font-size="9">set-ports.js が framework 別にポート配布</text>
+        <text x="140" y="214" text-anchor="middle" fill="#1d4ed8" font-size="9" font-style="italic">本番コード · 手動メンテ</text>
+
+        <!-- 矢印1 -->
+        <line x1="274" y1="120" x2="300" y2="120" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4 3"/>
+        <polygon points="300,115 310,120 300,125" fill="#94a3b8"/>
+        <text x="292" y="110" text-anchor="middle" fill="#64748b" font-size="8">採用</text>
+
+        <!-- Layer 2: CMA (中央: 一時環境 + ローカルログ) -->
+        <rect x="312" y="18" width="200" height="204" rx="12" fill="url(#mg2)" stroke="#f59e0b" stroke-width="1.5"/>
+        <text x="412" y="38" text-anchor="middle" fill="#b45309" font-size="12" font-weight="800">② CMA 実行層</text>
+        <text x="412" y="52" text-anchor="middle" fill="#d97706" font-size="9">Anthropic Managed Agents</text>
+
+        <!-- クラウド環境 -->
+        <rect x="322" y="60" width="180" height="46" rx="8" fill="#fef3c7" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="3 2"/>
+        <text x="412" y="76" text-anchor="middle" fill="#92400e" font-size="9" font-weight="700">☁️ クラウド一時Env</text>
+        <text x="412" y="92" text-anchor="middle" fill="#b45309" font-size="8">:4001〜 (manager.py)</text>
+
+        <!-- 矢印↓ -->
+        <line x1="412" y1="110" x2="412" y2="128" stroke="#d97706" stroke-width="2"/>
+        <polygon points="407,128 417,128 412,138" fill="#d97706"/>
+        <text x="440" y="123" fill="#92400e" font-size="8">ログ</text>
+
+        <!-- ローカルログ -->
+        <rect x="322" y="142" width="180" height="60" rx="8" fill="#fff" stroke="#fbbf24"/>
+        <text x="412" y="158" text-anchor="middle" fill="#92400e" font-size="9" font-weight="700">📁 workspace_&lt;app&gt;/</text>
+        <text x="412" y="172" text-anchor="middle" fill="#b45309" font-size="8">agent_output.md のみ</text>
+        <text x="412" y="186" text-anchor="middle" fill="#b45309" font-size="8">⚠️ソース置場ではない</text>
+        <text x="412" y="197" text-anchor="middle" fill="#d97706" font-size="7" font-style="italic">files.exclude で非表示</text>
+
+        <text x="412" y="218" text-anchor="middle" fill="#b45309" font-size="9" font-style="italic">自律エージェント · ログ専用</text>
+
+        <!-- 矢印2 -->
+        <line x1="516" y1="120" x2="542" y2="120" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4 3"/>
+        <polygon points="542,115 552,120 542,125" fill="#94a3b8"/>
+        <text x="532" y="110" text-anchor="middle" fill="#64748b" font-size="8">手動コピー</text>
+
+        <!-- Layer 3: 完成品置き場 -->
+        <rect x="554" y="18" width="256" height="204" rx="12" fill="url(#mg3)" stroke="#4ade80" stroke-width="1.5"/>
+        <text x="682" y="38" text-anchor="middle" fill="#15803d" font-size="12" font-weight="800">③ 完成品プール</text>
+        <text x="682" y="52" text-anchor="middle" fill="#16a34a" font-size="9">Claude/_generated/&lt;app&gt;/</text>
+
+        <rect x="566" y="62" width="232" height="26" rx="5" fill="#fff" stroke="#86efac"/>
+        <text x="682" y="78" text-anchor="middle" fill="#14532d" font-size="9" font-weight="700">採用した生成物をここへ切出</text>
+
+        <rect x="566" y="94" width="232" height="26" rx="5" fill="#fff" stroke="#86efac"/>
+        <text x="682" y="110" text-anchor="middle" fill="#14532d" font-size="9">cma コマンドで生成 → 手動採用</text>
+
+        <rect x="566" y="126" width="232" height="26" rx="5" fill="#fff" stroke="#86efac"/>
+        <text x="682" y="142" text-anchor="middle" fill="#14532d" font-size="9">気に入れば ① 本番層へ昇格</text>
+
+        <!-- 昇格矢印 -->
+        <path d="M 566 168 Q 380 200 140 160" fill="none" stroke="#16a34a" stroke-width="2" stroke-dasharray="5 3"/>
+        <polygon points="140,160 152,154 148,166" fill="#16a34a"/>
+        <text x="400" y="196" text-anchor="middle" fill="#15803d" font-size="9" font-weight="700">⬅ 昇格（プロダクト化）</text>
+
+        <text x="682" y="218" text-anchor="middle" fill="#15803d" font-size="9" font-style="italic">実際に起動するコードの置場</text>
+      </svg>
+    </div>
+
+    <!-- タブ切替（AIセクションと同じUI） -->
+    <div class="ai-tabs">
+      <button class="ai-tab active" data-ai="layer1">🏢 ①本番層</button>
+      <button class="ai-tab" data-ai="layer2">🤖 ②CMA層</button>
+      <button class="ai-tab" data-ai="layer3">📦 ③完成品層</button>
+      <button class="ai-tab" data-ai="ports">🔌 ポート体系</button>
+      <button class="ai-tab" data-ai="deploy">🚀 デプロイ統一</button>
+      <button class="ai-tab" data-ai="rules">📏 共通規約</button>
+    </div>
+
+    <div class="ai-pane active" data-ai="layer1">
+      <div class="ai-chip"><b>構成</b> <span>★</span> 既存9社を <code>Claude/&lt;クライアント名&gt;/</code> 直下に配置<div class="origin"><em>なぜ</em>1つのVSCodeワークスペースで全社同時編集するため、フラットな横並びが最短。<i>ポイント: 親CLAUDE.mdは共通ルール、各社CLAUDE.mdはそのクライアント固有</i></div></div>
+      <div class="ai-chip"><b>一括起動</b> <span>★</span> <code>clients.code-workspace</code> の folderOpen で全社 dev 起動<div class="origin"><em>仕組み</em><code>.vscode/tasks.json</code> の <code>全社同時起動</code> タスクが <code>dependsOn</code> で各社を子プロセスとして立ち上げる。<i>新規追加時は dependsOn リストへの追記が必須</i></div></div>
+      <div class="ai-chip"><b>CLAUDE.md階層</b> <span>★</span> 親=共通ルール / 各社=固有詳細<div class="origin"><em>運用</em>親は「定数一元化」「Supabase優先」「HTTPS強制」など横断ルール、各社は技術スタックやデプロイ先を記述。未作成なら <code>/init</code> で生成。</div></div>
+      <div class="ai-chip"><b>新規追加手順</b> <span>△</span> フォルダ作成→workspace登録→tasks追記→set-ports.js実行<div class="origin"><em>忘れがちな5ステップ</em>①フォルダ作成 ②<code>clients.code-workspace</code>のfolders追記 ③tasks.json起動定義 ④全社同時起動のdependsOn ⑤<code>/init</code>でCLAUDE.md生成</div></div>
+    </div>
+
+    <div class="ai-pane" data-ai="layer2">
+      <div class="ai-chip"><b>CMA</b> <span>★</span> Claude Managed Agents = クラウド自律実行基盤<div class="origin"><em>語源</em>Managed = 伊語 <b>maneggiare</b>(馬を手綱で扱う)。Anthropic公式の"フルマネージド"エージェント。<i>覚え方: 「手綱付きの自動運転AI」</i></div></div>
+      <div class="ai-chip"><b>workspace_&lt;app&gt;/</b> <span>★</span> ログ専用フォルダ・ソースは置かない<div class="origin"><em>注意</em>CMAは<b>クラウド上の一時Environment</b>で動くため、ローカルのこのフォルダは成果物倉庫ではなく<b>agent_output.md の置き場</b>。<i>files.exclude で非表示化済み</i></div></div>
+      <div class="ai-chip"><b>cma コマンド</b> <span>★</span> 対話/ワンショット/アプリ指定<div class="origin"><em>使い方</em><code>cma</code>(対話) / <code>cma "TODO APIを作って"</code>(ワンショット) / <code>cma App5_Blog "ブログAPIを作って"</code>(アプリ名指定)。詳細は agents_system/ 内ドキュメント。</div></div>
+      <div class="ai-chip"><b>manager.py</b> <span>△</span> エージェント生成アプリにポート4001〜を自動割当<div class="origin"><em>棲み分け</em>クライアント=3001〜3009 / エージェント生成=4001〜。<i>衝突を根本から避ける設計</i></div></div>
+    </div>
+
+    <div class="ai-pane" data-ai="layer3">
+      <div class="ai-chip"><b>_generated/</b> <span>★</span> CMA採用物の実稼働用コピー<div class="origin"><em>役割</em>ログ(workspace_&lt;app&gt;/)から<b>採用して手元で動かす分</b>を切り出す場所。実際に起動するコードはここ。<i>workspace と _generated の違いを混同しない</i></div></div>
+      <div class="ai-chip"><b>昇格フロー</b> <span>★</span> 気に入ったら本番クライアント層へ手動移動<div class="origin"><em>運用</em>_generated/ で育てた後、品質が十分なら Claude/ 直下に昇格させ本番クライアント化。段階的プロモーション方式。</div></div>
+      <div class="ai-chip"><b>設計思想</b> <span>△</span> ログ置場 / 実行コード / 本番 を物理分離<div class="origin"><em>3層の意味</em>「ログ(②)」「実稼働(③)」「本番(①)」の混在を防ぐため物理的にフォルダを分ける。ワークスペースの語が重なるので要注意。</div></div>
+    </div>
+
+    <div class="ai-pane" data-ai="ports">
+      <div class="ai-chip"><b>3001〜3009</b> <span>★</span> クライアントサイト（既存9社）<div class="origin"><em>割当</em><code>set-ports.js</code> が <code>detectFramework()</code> で Next/Vite/Angular/Nuxt を判別し <code>package.json</code> の <code>scripts.dev</code> を自動書換。<i>手動で変えても上書きされる</i></div></div>
+      <div class="ai-chip"><b>4001〜</b> <span>★</span> エージェント生成アプリ（<code>manager.py</code> 管轄）<div class="origin"><em>理由</em>クライアント帯と物理分離することで、CMAが何台立ち上がっても本番サイトと絶対衝突しない。</div></div>
+      <div class="ai-chip"><b>set-ports.js</b> <span>△</span> VSCode起動時に自動実行<div class="origin"><em>フロー</em><code>.vscode/tasks.json</code> の <code>folderOpen</code> トリガー → <code>ポート番号自動設定</code> タスクで実行 → 各社の起動タスクがそれに dependsOn。<i>port重複時は手動で node set-ports.js</i></div></div>
+    </div>
+
+    <div class="ai-pane" data-ai="deploy">
+      <div class="ai-chip"><b>GitHub</b> <span>★</span> main push → Render自動デプロイ<div class="origin"><em>統一方針</em>全プロジェクト共通で GitHub をソース管理の起点にする。ブランチ戦略は各社CLAUDE.md参照。</div></div>
+      <div class="ai-chip"><b>Supabase</b> <span>★</span> DB+Auth+RLS / Firebase より優先<div class="origin"><em>方針</em>既存プロジェクトで Firebase が残っていても<b>新規機能は Supabase</b>に寄せる。二重管理を避けるため Firebase は拡張しない。</div></div>
+      <div class="ai-chip"><b>Render</b> <span>★</span> <code>render.yaml</code> + Singaporeリージョン<div class="origin"><em>選定理由</em>静的/Node/Python を同一プラットフォームで扱え、日本からの近さで Singapore リージョン固定。無料枠あり。</div></div>
+      <div class="ai-chip"><b>GitHub Actions</b> <span>★</span> CI: ビルド/型/Lint<div class="origin"><em>役割分担</em>CI(検証)= Actions / CD(配信)= Render のpush連携。responsibility split で問題切り分けが楽。</div></div>
+    </div>
+
+    <div class="ai-pane" data-ai="rules">
+      <div class="ai-chip"><b>定数一元化</b> <span>★</span> URL/電話/LINEは <code>config/constants.ts</code> に集約<div class="origin"><em>なぜ</em>ドメイン変更・LINE ID変更時に1ファイルだけ触れば全箇所反映。コンポーネント内ハードコード禁止。</div></div>
+      <div class="ai-chip"><b>HTTPS強制</b> <span>★</span> <code>src/**</code> に <code>http://</code> 直書き禁止<div class="origin"><em>事故防止</em>Render等のHTTPS サイトから<code>http://</code>画像を読むとブラウザが<b>サイレントブロック</b>。ローカルでは気付かず本番で画像全滅する典型事故を防ぐ。<i>proxyImage() / upgrade-insecure-requests / check-no-http.mjs の三重ガード</i></div></div>
+      <div class="ai-chip"><b>Supabase mapper層</b> <span>★</span> snake↔camel変換を必ず挟む<div class="origin"><em>ルール</em><code>lib/supabase-mappers.ts</code> で変換。生データを直接画面で使うと型不整合と保守性低下を招く。</div></div>
+      <div class="ai-chip"><b>JSON-LD</b> <span>★</span> ブログ個別ページは BlogPosting+FAQPage+Speakable<div class="origin"><em>LLMO</em>FAQPage と Speakable は<b>AI検索最適化</b>に効く。コンテンツサイトでは標準装備。</div></div>
+      <div class="ai-chip"><b>環境変数フォールバック</b> <span>△</span> <code>NEXT_PUBLIC_SITE_URL ?? SITE_URL_CONST</code><div class="origin"><em>使い方</em>Render側で本番URLを切替しつつ、ローカル開発では定数のデフォルトが効く。両環境で壊れない書き方。</div></div>
+      <div class="ai-chip"><b>Unsplash確認</b> <span>△</span> コミット前に curl -I で 200 を確認<div class="origin"><em>理由</em>Unsplashの画像IDは削除されることがあり、404画像が本番で見えると見栄えが壊れる。使う前の確認が必須。</div></div>
     </div>
   </div>
 

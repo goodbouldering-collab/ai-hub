@@ -1,0 +1,125 @@
+# AI情報収集 — 収集対象
+# 「最新AI情報」と「SNSアルゴリズム最新動向」に特化
+# 追加するときは下にブロックを足すだけ。enabled: false で一時停止できる。
+sources:
+  # ========== AI 公式・業界 ==========
+  - name: OpenAI Blog
+    type: rss
+    url: https://openai.com/blog/rss.xml
+    category: AI公式
+    limit: 15
+    enabled: true
+
+  - name: Google DeepMind
+    type: rss
+    url: https://deepmind.google/blog/rss.xml
+    category: AI公式
+    limit: 15
+    enabled: true
+
+  - name: Hugging Face Blog
+    type: rss
+    url: https://huggingface.co/blog/feed.xml
+    category: AI業界
+    limit: 15
+    enabled: true
+
+  - name: The Verge AI
+    type: rss
+    url: https://www.theverge.com/rss/ai-artificial-intelligence/index.xml
+    category: AIニュース
+    limit: 15
+    enabled: true
+
+  - name: MIT Technology Review AI
+    type: rss
+    url: https://www.technologyreview.com/topic/artificial-intelligence/feed
+    category: AIニュース
+    limit: 15
+    enabled: true
+
+  - name: ITmedia AI+
+    type: rss
+    url: https://rss.itmedia.co.jp/rss/2.0/aiplus.xml
+    category: AI国内
+    limit: 20
+    enabled: true
+
+  # ========== SNS アルゴリズム・運用 ==========
+  - name: Social Media Today
+    type: rss
+    url: https://www.socialmediatoday.com/feeds/news/
+    category: SNS動向
+    limit: 20
+    enabled: true
+
+  - name: Search Engine Journal - Social
+    type: rss
+    url: https://www.searchenginejournal.com/category/news/social-media-news/feed/
+    category: SNS動向
+    limit: 15
+    enabled: true
+
+  - name: Meta Newsroom
+    type: rss
+    url: https://about.fb.com/news/feed/
+    category: SNS公式
+    limit: 10
+    enabled: true
+
+  - name: YouTube Creator Blog
+    type: rss
+    url: https://blog.youtube/rss/
+    category: SNS公式
+    limit: 10
+    enabled: true
+
+  - name: Buffer Blog
+    type: rss
+    url: https://buffer.com/resources/rss/
+    category: SNS運用
+    limit: 10
+    enabled: true
+
+  # ========== 日本語 AI YouTube ==========
+  - name: ウェブ職TV
+    type: rss
+    url: https://www.youtube.com/feeds/videos.xml?channel_id=UClNZUVnSFRKKUfJYarEUqdA
+    category: AI動画(日本語)
+    limit: 5
+    enabled: true
+
+  - name: KEITO AI&WEB
+    type: rss
+    url: https://www.youtube.com/feeds/videos.xml?channel_id=UCfapRkagDtoQEkGeyD3uERQ
+    category: AI動画(日本語)
+    limit: 5
+    enabled: true
+
+  - name: Akiyama Yuta
+    type: rss
+    url: https://www.youtube.com/feeds/videos.xml?channel_id=UCx3CHuiy-14g2y4hqkpnebQ
+    category: AI動画(日本語)
+    limit: 5
+    enabled: true
+
+  - name: AI部
+    type: rss
+    url: https://www.youtube.com/feeds/videos.xml?channel_id=UCM3UoIq-HtYzTaSUOZuPJxQ
+    category: AI動画(日本語)
+    limit: 5
+    enabled: true
+
+  - name: AI収益化ラボ
+    type: rss
+    url: https://www.youtube.com/feeds/videos.xml?channel_id=UCvwle25gm0dAecqQJjdBOng
+    category: AI動画(日本語)
+    limit: 5
+    enabled: true
+
+  - name: にゃんたのAI実践
+    type: rss
+    url: https://www.youtube.com/feeds/videos.xml?channel_id=UCZQVTC3uLCyuJUOcRlguazA
+    category: AI動画(日本語)
+    limit: 5
+    enabled: true

@@ -1,0 +1,86 @@
+name: AI情報収集 daily digest
+
+on:
+  schedule:
+    # JST 07:00 = UTC 22:00
+    - cron: "0 22 * * *"
+    # 週次フル版: JST Mon 09:00 = UTC Mon 00:00
+    - cron: "0 0 * * 1"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "diff (通常) or full (統合版)"
+        required: false
+        default: "diff"
+        type: choice
+        options: [diff, full]
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Determine mode
+        id: mode
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "value=${{ inputs.mode }}" >> "$GITHUB_OUTPUT"
+          elif [ "${{ github.event.schedule }}" = "0 0 * * 1" ]; then
+            echo "value=full" >> "$GITHUB_OUTPUT"
+          else
+            echo "value=diff" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Run collector
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ "${{ steps.mode.outputs.value }}" = "full" ]; then
+            python run.py --full
+          else
+            python run.py
+          fi
+
+      - name: Commit outputs back
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add outputs/ data/history.db || true
+          if git diff --staged --quiet; then
+            echo "変更なし"
+          else
+            git commit -m "chore(ai-info): daily digest $(date -u +%Y-%m-%d)"
+            git push
+          fi
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site/dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

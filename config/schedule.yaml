@@ -1,0 +1,12 @@
+# GitHub Actions の cron と揃える想定のメタ情報
+# (実際のスケジュール制御は .github/workflows/daily.yml の cron が担う)
+jobs:
+  - name: 朝のダイジェスト
+    cron: "0 22 * * *"           # UTC 22:00 = JST 07:00
+    mode: diff
+    description: 前回取得以降の新着のみをまとめる
+
+  - name: 週次フルレポート
+    cron: "0 0 * * 1"            # UTC Mon 00:00 = JST Mon 09:00
+    mode: full
+    description: 全ソースを再取得して統合版を生成

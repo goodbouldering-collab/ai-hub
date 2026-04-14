@@ -1,0 +1,148 @@
+support_sns:
+  youtube:
+  - name: karatto_plus
+    handle: '@karatto_plus'
+    url: https://www.youtube.com/@karatto_plus
+    note: ''
+  - name: '%E3%81%BF%E3%82%93%E3%81%AA%E3%81%AEWA'
+    handle: '@%E3%81%BF%E3%82%93%E3%81%AA%E3%81%AEWA'
+    url: https://www.youtube.com/@%E3%81%BF%E3%82%93%E3%81%AA%E3%81%AEWA
+    note: ''
+  - name: cafe1132
+    handle: '@cafe1132'
+    url: https://www.youtube.com/@cafe1132
+    note: ''
+  - name: '%E3%83%97%E3%83%AD%E3%82%AE%E3%83%B3%E3%82%B0%E3%82%B8%E3%83%A3%E3%83%91%E3%83%B3-g3p'
+    handle: '@%E3%83%97%E3%83%AD%E3%82%AE%E3%83%B3%E3%82%B0%E3%82%B8%E3%83%A3%E3%83%91%E3%83%B3-g3p'
+    url: https://www.youtube.com/@%E3%83%97%E3%83%AD%E3%82%AE%E3%83%B3%E3%82%B0%E3%82%B8%E3%83%A3%E3%83%91%E3%83%B3-g3p
+    note: ''
+  - name: furdi4577
+    handle: '@furdi4577'
+    url: https://www.youtube.com/@furdi4577
+    note: ''
+  x:
+  - name: goodbouldering
+    handle: '@goodbouldering'
+    url: https://x.com/goodbouldering
+    note: ''
+  - name: notesthe_
+    handle: '@notesthe_'
+    url: https://x.com/notesthe_
+    note: ''
+  - name: karatto_plus
+    handle: '@karatto_plus'
+    url: https://x.com/karatto_plus
+    note: ''
+  - name: ploggingjapan
+    handle: '@ploggingjapan'
+    url: https://x.com/ploggingjapan
+    note: ''
+  instagram_feed:
+  - name: goodbouldering
+    handle: '@goodbouldering'
+    url: https://www.instagram.com/goodbouldering
+    note: ''
+  - name: notesthe_
+    handle: '@notesthe_'
+    url: https://www.instagram.com/notesthe_
+    note: ''
+  - name: karatto_plus
+    handle: '@karatto_plus'
+    url: https://www.instagram.com/karatto_plus
+    note: ''
+  - name: ploggingjapan
+    handle: '@ploggingjapan'
+    url: https://www.instagram.com/ploggingjapan
+    note: ''
+  - name: furdi_hikone
+    handle: '@furdi_hikone'
+    url: https://www.instagram.com/furdi_hikone
+    note: ''
+  instagram_reel:
+  - name: notesthe_
+    handle: '@notesthe_'
+    url: https://www.instagram.com/notesthe_
+    note: ''
+  - name: goodbouldering
+    handle: '@goodbouldering'
+    url: https://www.instagram.com/goodbouldering
+    note: ''
+  - name: karatto_plus
+    handle: '@karatto_plus'
+    url: https://www.instagram.com/karatto_plus
+    note: ''
+  - name: ploggingjapan
+    handle: '@ploggingjapan'
+    url: https://www.instagram.com/ploggingjapan
+    note: ''
+  - name: furdi_hikone
+    handle: '@furdi_hikone'
+    url: https://www.instagram.com/furdi_hikone
+    note: ''
+  instagram_story:
+  - name: goodbouldering
+    handle: '@goodbouldering'
+    url: https://www.instagram.com/goodbouldering
+    note: ''
+  - name: notesthe_
+    handle: '@notesthe_'
+    url: https://www.instagram.com/notesthe_
+    note: ''
+  - name: karatto_plus
+    handle: '@karatto_plus'
+    url: https://www.instagram.com/karatto_plus
+    note: ''
+  - name: minnano_wa.shiga
+    handle: '@minnano_wa.shiga'
+    url: https://www.instagram.com/minnano_wa.shiga
+    note: ''
+  - name: ploggingjapan
+    handle: '@ploggingjapan'
+    url: https://www.instagram.com/ploggingjapan
+    note: ''
+  - name: furdi_hikone
+    handle: '@furdi_hikone'
+    url: https://www.instagram.com/furdi_hikone
+    note: ''
+  threads:
+  - name: notesthe_
+    handle: '@notesthe_'
+    url: https://www.threads.net/@notesthe_
+    note: ''
+  - name: goodbouldering
+    handle: '@goodbouldering'
+    url: https://www.threads.net/@goodbouldering
+    note: ''
+  - name: karatto_plus
+    handle: '@karatto_plus'
+    url: https://www.threads.net/@karatto_plus
+    note: ''
+  - name: ploggingjapan
+    handle: '@ploggingjapan'
+    url: https://www.threads.net/@ploggingjapan
+    note: ''
+  - name: furdi_hikone
+    handle: '@furdi_hikone'
+    url: https://www.threads.net/@furdi_hikone
+    note: ''
+  facebook:
+  - name: goodbouldering
+    handle: '@goodbouldering'
+    url: https://www.facebook.com/goodbouldering
+    note: ''
+  - name: karatto_plus
+    handle: '@karatto_plus'
+    url: https://www.facebook.com/karatto_plus
+    note: ''
+  - name: notesthe_
+    handle: '@notesthe_'
+    url: https://www.facebook.com/notesthe_
+    note: ''
+  - name: ploggingjapan
+    handle: '@ploggingjapan'
+    url: https://www.facebook.com/ploggingjapan
+    note: ''
+  - name: furdi_hikone
+    handle: '@furdi_hikone'
+    url: https://www.facebook.com/furdi_hikone
+    note: ''

@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>プログラミングマップ</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', 'Hiragino Sans', sans-serif;
+    background: #f0f4f8;
+    color: #1e293b;
+    padding: 40px 20px;
+  }
+
+  /* ===== タイトル ===== */
+  h1 {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 4px;
+    color: #0f172a;
+  }
+  .subtitle {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-bottom: 36px;
+  }
+
+  /* ===== ステップ進捗バー ===== */
+  .progress-bar {
+    max-width: 900px;
+    margin: 0 auto 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    position: relative;
+  }
+  .progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    z-index: 1;
+  }
+  .ps-circle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--pc);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  }
+  .ps-icon { font-size: 1.1rem; }
+  .ps-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #475569;
+    text-align: center;
+    max-width: 60px;
+  }
+  .progress-line {
+    flex: 1;
+    height: 3px;
+    background: linear-gradient(to right, var(--lc1), var(--lc2));
+    min-width: 20px;
+    max-width: 60px;
+    margin-bottom: 28px;
+    opacity: 0.5;
+  }
+
+  /* ===== グリッド ===== */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* ===== カード ===== */
+  .card {
+    background: #fff;
+    border-radius: 18px;
+    padding: 22px;
+    border: 1px solid #e2e8f0;
+    border-top: 4px solid var(--accent);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    transition: box-shadow 0.15s, transform 0.15s;
+  }
+  .card:hover {
+    box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+    transform: translateY(-2px);
+  }
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  .card-icon {
+    font-size: 1.3rem;
+    width: 38px;
+    height: 38px;
+    background: color-mix(in srgb, var(--accent) 12%, #fff);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .card-title-wrap { flex: 1; }
+  .card h2 {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  .card .step-badge {
+    font-size: 0.6rem;
+    color: #94a3b8;
+    font-weight: 600;
+  }
+
+  /* ===== アイテム行 ===== */
+  .item {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+    align-items: flex-start;
+  }
+  .item-left {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    flex-shrink: 0;
+  }
+  .tag {
+    background: color-mix(in srgb, var(--accent) 10%, #fff);
+    color: var(--accent);
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+    white-space: nowrap;
+    border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+    display: inline-block;
+  }
+  /* 重要度バッジ */
+  .freq {
+    font-size: 0.55rem;
+    font-weight: 700;
+    padding: 1px 5px;
+    border-radius: 4px;
+    display: inline-block;
+    text-align: center;
+  }
+  .freq-high  { background: #fef3c7; color: #b45309; border: 1px solid #fcd34d; }
+  .freq-med   { background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; }
+  .freq-low   { background: #f1f5f9; color: #94a3b8; border: 1px solid #e2e8f0; }
+
+  .desc {
+    font-size: 0.77rem;
+    color: #64748b;
+    line-height: 1.55;
+    padding-top: 3px;
+  }
+  .card h3 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin: 14px 0 8px;
+    color: #334155;
+  }
+
+  /* ===== Git SVG図 ===== */
+  .git-visual {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 14px;
+    overflow-x: auto;
+  }
+
+  /* ===== デプロイパイプライン ===== */
+  .pipeline {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 14px 12px;
+    margin-bottom: 14px;
+    overflow-x: auto;
+  }
+  .pipe-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    min-width: 68px;
+    flex-shrink: 0;
+  }
+  .pipe-icon-wrap {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    border: 1px solid #e2e8f0;
+    background: #fff;
+  }
+  .pipe-name {
+    font-size: 0.62rem;
+    color: #64748b;
+    text-align: center;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .pipe-arrow {
+    padding: 0 4px;
+    color: #94a3b8;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    margin-bottom: 18px;
+  }
+
+  /* ===== 環境バー ===== */
+  .env-bars { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+  .env-bar-row { display: flex; flex-direction: column; gap: 3px; }
+  .env-bar-label { display: flex; justify-content: space-between; font-size: 0.73rem; }
+  .env-bar-name { font-weight: 700; color: #1e293b; }
+  .env-bar-desc { color: #94a3b8; font-size: 0.65rem; }
+  .env-bar-track { height: 7px; background: #e2e8f0; border-radius: 99px; overflow: hidden; }
+  .env-bar-fill { height: 100%; border-radius: 99px; background: var(--accent); opacity: 0.75; }
+
+  /* ===== 完成イメージ図 ===== */
+  .finish-diagram {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 14px;
+    overflow-x: auto;
+  }
+
+  /* ===== カラーテーマ ===== */
+  .blue   { --accent: #2563eb; }
+  .green  { --accent: #16a34a; }
+  .orange { --accent: #d97706; }
+  .purple { --accent: #7c3aed; }
+  .pink   { --accent: #db2777; }
+  .cyan   { --accent: #0891b2; }
+  .red    { --accent: #dc2626; }
+  .teal   { --accent: #0d9488; }
+
+  .full-width { grid-column: 1 / -1; }
+
+  /* ===== 9社グリッド ===== */
+  .nine-flow {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    background: #f1f5f9;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 8px;
+    border: 1px solid #e2e8f0;
+  }
+  .nine-step {
+    padding: 14px;
+    background: #fff;
+    border-right: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .nine-step:nth-child(3n) { border-right: none; }
+  .nine-step:nth-last-child(-n+3) { border-bottom: none; }
+  .nine-num { font-size: 1rem; font-weight: 800; color: var(--nc); margin-bottom: 3px; display: block; }
+  .nine-title { font-size: 0.76rem; font-weight: 700; color: #1e293b; margin-bottom: 4px; }
+  .nine-desc { font-size: 0.68rem; color: #64748b; line-height: 1.5; }
+
+  /* ===== 凡例 ===== */
+  .legend {
+    max-width: 1200px; margin: 32px auto 0;
+    display: flex; gap: 12px; flex-wrap: wrap;
+    justify-content: center; font-size: 0.7rem; color: #64748b;
+  }
+  .legend span {
+    display: flex; align-items: center; gap: 5px;
+    padding: 4px 10px; background: #fff;
+    border-radius: 99px; border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+  /* ===== 頻度の凡例 ===== */
+  .freq-legend {
+    max-width: 1200px; margin: 16px auto 0;
+    display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
+  }
+  .freq-legend-item {
+    display: flex; align-items: center; gap: 5px;
+    font-size: 0.68rem; color: #64748b;
+  }
+</style>
+</head>
+<body>
+
+<h1>プログラミングマップ</h1>
+<p class="subtitle">環境構築 → 開発 → Git管理 → テスト → デプロイ → 運用監視</p>
+
+<!-- ステップ進捗バー -->
+<div class="progress-bar">
+  <div class="progress-step">
+    <div class="ps-circle" style="--pc:#2563eb">1</div>
+    <div class="ps-icon">🛠️</div>
+    <div class="ps-label">環境構築</div>
+  </div>
+  <div class="progress-line" style="--lc1:#2563eb;--lc2:#16a34a"></div>
+  <div class="progress-step">
+    <div class="ps-circle" style="--pc:#16a34a">2</div>
+    <div class="ps-icon">💻</div>
+    <div class="ps-label">開発</div>
+  </div>
+  <div class="progress-line" style="--lc1:#16a34a;--lc2:#d97706"></div>
+  <div class="progress-step">
+    <div class="ps-circle" style="--pc:#d97706">3</div>
+    <div class="ps-icon">🔧</div>
+    <div class="ps-label">整理</div>
+  </div>
+  <div class="progress-line" style="--lc1:#d97706;--lc2:#7c3aed"></div>
+  <div class="progress-step">
+    <div class="ps-circle" style="--pc:#7c3aed">4</div>
+    <div class="ps-icon">🌿</div>
+    <div class="ps-label">Git管理</div>
+  </div>
+  <div class="progress-line" style="--lc1:#7c3aed;--lc2:#0891b2"></div>
+  <div class="progress-step">
+    <div class="ps-circle" style="--pc:#0891b2">5</div>
+    <div class="ps-icon">🧪</div>
+    <div class="ps-label">テスト</div>
+  </div>
+  <div class="progress-line" style="--lc1:#0891b2;--lc2:#db2777"></div>
+  <div class="progress-step">
+    <div class="ps-circle" style="--pc:#db2777">6</div>
+    <div class="ps-icon">🚀</div>
+    <div class="ps-label">デプロイ</div>
+  </div>
+  <div class="progress-line" style="--lc1:#db2777;--lc2:#0d9488"></div>
+  <div class="progress-step">
+    <div class="ps-circle" style="--pc:#0d9488">7</div>
+    <div class="ps-icon">📊</div>
+    <div class="ps-label">運用</div>
+  </div>
+</div>
+
+<!-- 頻度バッジの凡例 -->
+<div class="freq-legend" style="margin-bottom:32px;">
+  <div class="freq-legend-item"><span class="freq freq-high">★ よく使う</span> 日常的に使うコマンド・概念</div>
+  <div class="freq-legend-item"><span class="freq freq-med">△ 時々使う</span> 状況によって使う</div>
+  <div class="freq-legend-item"><span class="freq freq-low">○ 知識として</span> 知っておけばOK</div>
+</div>
+
+<div class="grid">
+
+  <!-- 環境構築 -->
+  <div class="card blue">
+    <div class="card-header">
+      <div class="card-icon">🛠️</div>
+      <div class="card-title-wrap">
+        <div class="step-badge">STEP 1</div>
+        <h2>環境構築</h2>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">Node.js</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">JavaScriptをPC上で動かすエンジン。まず最初にインストール</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">npm</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">ライブラリを管理するツール。<code>npm install</code> で必要なものを一括取得</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">package.json</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">「何を使うか」の設計書。プロジェクト設定が全部ここに書かれる</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">.env</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">APIキー・パスワードなど秘密の設定。Gitには絶対含めない</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">node_modules</span><span class="freq freq-low">○ 知識</span></div>
+      <span class="desc">ダウンロードされたライブラリの置き場。直接触らない</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">.gitignore</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">Gitに含めないファイルを指定。node_modulesや.envを除外する</span>
+    </div>
+  </div>
+
+  <!-- フレームワーク -->
+  <div class="card green">
+    <div class="card-header">
+      <div class="card-icon">⚡</div>
+      <div class="card-title-wrap">
+        <div class="step-badge">STEP 1-2</div>
+        <h2>フレームワーク・ライブラリ</h2>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">Next.js</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">ページ・ルーティング・サーバーまで込み。SEOが必要な公開サイト向き</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">Vite</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">超高速な開発ビルドツール。管理画面・SPAに最適</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">React</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">UIパーツを作るライブラリ。Next.js/Viteと組み合わせて使う</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">TypeScript</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">型チェックで間違いを事前に検出できるJSの拡張。大規模開発で効果大</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">Tailwind</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">クラス名を書くだけでデザインできるCSSフレームワーク</span>
+    </div>
+  </div>
+
+  <!-- 開発作業 -->
+  <div class="card orange">
+    <div class="card-header">
+      <div class="card-icon">🔧</div>
+      <div class="card-title-wrap">
+        <div class="step-badge">STEP 2-3</div>
+        <h2>開発中の作業</h2>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">npm run dev</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">開発サーバーを起動。毎日使うコマンド</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">ホットリロード</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">保存するとブラウザが自動更新。開発中は常に有効</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">デバッグ</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">バグの原因を見つけて直す。console.log や DevTools を使う</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">リファクタリング</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">動作を変えずにコードをきれいに整理する</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">ビルド</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">本番公開用にコードをまとめ・圧縮。デプロイ前に実行</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">ポート番号</span><span class="freq freq-low">○ 知識</span></div>
+      <span class="desc">複数サーバーを動かすための入口番号（:3001〜）</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">VSCode</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">定番エディタ。拡張機能で言語補完・Git・AI補助まで網羅</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">Linter/Formatter</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">ESLint/Prettierでコードの書き方を統一。保存時に自動整形</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">DevTools</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">ブラウザ内蔵の開発者ツール。HTML/CSS/JSを直接確認できる</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">定数一元管理</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">URL・電話番号・LINE IDは<code>config/constants.ts</code>に集約。ハードコード禁止</span>
+    </div>
+  </div>
+
+  <!-- Git -->
+  <div class="card purple">
+    <div class="card-header">
+      <div class="card-icon">🌿</div>
+      <div class="card-title-wrap">
+        <div class="step-badge">STEP 4</div>
+        <h2>Git / バージョン管理</h2>
+      </div>
+    </div>
+
+    <!-- Gitブランチ視覚図 -->
+    <div class="git-visual">
+      <svg width="100%" height="175" viewBox="0 0 480 175" style="min-width:340px;">
+        <!-- 背景帯 -->
+        <rect x="0" y="10" width="480" height="40" rx="6" fill="#eff6ff" opacity="0.7"/>
+        <rect x="0" y="60" width="480" height="40" rx="6" fill="#f0fdf4" opacity="0.7"/>
+
+        <!-- main ライン -->
+        <line x1="40" y1="30" x2="440" y2="30" stroke="#2563eb" stroke-width="2.5"/>
+        <!-- branch ライン -->
+        <line x1="120" y1="30" x2="155" y2="80" stroke="#16a34a" stroke-width="2" stroke-dasharray="5 3"/>
+        <line x1="155" y1="80" x2="325" y2="80" stroke="#16a34a" stroke-width="2.5"/>
+        <line x1="325" y1="80" x2="360" y2="30" stroke="#7c3aed" stroke-width="2" stroke-dasharray="5 3"/>
+
+        <!-- main dots -->
+        <circle cx="40"  cy="30" r="7" fill="#2563eb"/>
+        <circle cx="120" cy="30" r="7" fill="#2563eb"/>
+        <circle cx="360" cy="30" r="7" fill="#7c3aed"/>
+        <circle cx="440" cy="30" r="7" fill="#2563eb"/>
+
+        <!-- branch dots -->
+        <circle cx="155" cy="80" r="7" fill="#16a34a"/>
+        <circle cx="225" cy="80" r="7" fill="#d97706"/>
+        <circle cx="285" cy="80" r="7" fill="#d97706"/>
+        <circle cx="325" cy="80" r="7" fill="#7c3aed"/>
+
+        <!-- labels main -->
+        <text x="14"  y="22" fill="#2563eb" font-size="10" font-weight="800" font-family="monospace">main</text>
+        <text x="410" y="22" fill="#2563eb" font-size="10" font-weight="800" font-family="monospace">main</text>
+        <text x="340" y="22" fill="#7c3aed" font-size="9" font-family="monospace">✓ merge</text>
+
+        <!-- labels branch -->
+        <text x="130" y="97" fill="#16a34a" font-size="10" font-weight="700" font-family="monospace">feature/xxx</text>
+        <text x="205" y="97" fill="#d97706" font-size="9" font-family="monospace">commit</text>
+        <text x="265" y="97" fill="#d97706" font-size="9" font-family="monospace">push</text>
+
+        <!-- 区切り注釈 -->
+        <text x="62" y="26" fill="#93c5fd" font-size="9" font-family="sans-serif">① branch切る</text>
+        <text x="293" y="68" fill="#a78bfa" font-size="9" font-family="sans-serif">PR → merge</text>
+
+        <!-- legend row -->
+        <circle cx="16"  cy="148" r="5" fill="#2563eb"/>
+        <text x="25"  y="152" fill="#2563eb" font-size="10" font-family="sans-serif">main（本流）</text>
+        <circle cx="120" cy="148" r="5" fill="#16a34a"/>
+        <text x="130" y="152" fill="#16a34a" font-size="10" font-family="sans-serif">branch（枝）</text>
+        <circle cx="230" cy="148" r="5" fill="#d97706"/>
+        <text x="240" y="152" fill="#d97706" font-size="10" font-family="sans-serif">commit/push</text>
+        <circle cx="340" cy="148" r="5" fill="#7c3aed"/>
+        <text x="350" y="152" fill="#7c3aed" font-size="10" font-family="sans-serif">merge</text>
+      </svg>
+    </div>
+
+    <div class="item">
+      <div class="item-left"><span class="tag">git add / commit</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">変更をステージして保存（セーブポイント作成）</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">git push / pull</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">GitHubへ送信 / GitHubから受信</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">ブランチ</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">本流を壊さずに作業するための「枝」。機能ごとに切るのが基本</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">PR（プルリク）</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">「このブランチをmergeしていいですか？」というレビュー依頼</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">git clone</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">GitHubのリポジトリをPCにダウンロードしてコピー</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">コンフリクト</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">同じ箇所を別々に変更したときの衝突。手動で解決が必要</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">git init</span><span class="freq freq-low">○ 知識</span></div>
+      <span class="desc">フォルダをGitリポジトリとして新規作成。最初の1回だけ</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">フォーク</span><span class="freq freq-low">○ 知識</span></div>
+      <span class="desc">他人のリポジトリを自分アカウントにコピー（改変・提案に使う）</span>
+    </div>
+  </div>
+
+  <!-- テスト・環境 -->
+  <div class="card cyan">
+    <div class="card-header">
+      <div class="card-icon">🧪</div>
+      <div class="card-title-wrap">
+        <div class="step-badge">STEP 5</div>
+        <h2>テスト・環境</h2>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">サンドボックス</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">本番に影響しない安全なテスト専用の隔離環境</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">ユニットテスト</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">関数1つ単位の動作確認（Jest / Vitest を使う）</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">統合テスト</span><span class="freq freq-low">○ 知識</span></div>
+      <span class="desc">複数機能を組み合わせた動作確認</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">E2Eテスト</span><span class="freq freq-low">○ 知識</span></div>
+      <span class="desc">ブラウザを実際に操作してユーザー操作を再現（Playwright等）</span>
+    </div>
+
+    <div class="env-bars">
+      <h3>環境の3段階</h3>
+      <div class="env-bar-row">
+        <div class="env-bar-label">
+          <span class="env-bar-name">💻 Development（開発）</span>
+          <span class="env-bar-desc">手元PC / localhost</span>
+        </div>
+        <div class="env-bar-track"><div class="env-bar-fill" style="width:33%"></div></div>
+      </div>
+      <div class="env-bar-row">
+        <div class="env-bar-label">
+          <span class="env-bar-name">🔬 Staging（確認）</span>
+          <span class="env-bar-desc">本番と同じ設定で最終チェック</span>
+        </div>
+        <div class="env-bar-track"><div class="env-bar-fill" style="width:66%"></div></div>
+      </div>
+      <div class="env-bar-row">
+        <div class="env-bar-label">
+          <span class="env-bar-name">🌐 Production（本番）</span>
+          <span class="env-bar-desc">実際のユーザーが使う環境</span>
+        </div>
+        <div class="env-bar-track"><div class="env-bar-fill" style="width:100%"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- デプロイ -->
+  <div class="card pink">
+    <div class="card-header">
+      <div class="card-icon">🚀</div>
+      <div class="card-title-wrap">
+        <div class="step-badge">STEP 6</div>
+        <h2>デプロイ・公開</h2>
+      </div>
+    </div>
+
+    <!-- パイプライン図 -->
+    <div class="pipeline">
+      <div class="pipe-step">
+        <div class="pipe-icon-wrap">💻</div>
+        <div class="pipe-name">ローカル</div>
+      </div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step">
+        <div class="pipe-icon-wrap">🐙</div>
+        <div class="pipe-name">GitHub</div>
+      </div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step">
+        <div class="pipe-icon-wrap">⚙️</div>
+        <div class="pipe-name">CI/CD</div>
+      </div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step">
+        <div class="pipe-icon-wrap">✅</div>
+        <div class="pipe-name">自動テスト</div>
+      </div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step">
+        <div class="pipe-icon-wrap">🚀</div>
+        <div class="pipe-name">本番公開</div>
+      </div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step">
+        <div class="pipe-icon-wrap">👤</div>
+        <div class="pipe-name">ユーザー</div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-left"><span class="tag">CI/CD</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">pushすると自動でテスト→ビルド→デプロイまで実行する仕組み</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">Render</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">推奨ホスティング。<code>render.yaml</code>で構成定義、Singaporeリージョン、<code>main</code>push で自動デプロイ</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">Vercel</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">Next.jsと相性最高の自動デプロイサービス。無料枠あり</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">Netlify</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">Vite・静的サイト向けのデプロイサービス</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">GitHub Actions</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">CI担当。push時にビルド検証・型チェック・Lintを自動実行</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">環境変数</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">Renderの env var で本番URLやAPIキーを切替。<code>NEXT_PUBLIC_SITE_URL</code>など</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">プレビューデプロイ</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">PRごとに専用URLを自動生成。merge前に見た目を確認できる</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">ロールバック</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">問題が起きたとき前のバージョンに即座に戻す</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">独自ドメイン</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">DNSのA/CNAMEレコードでサーバーと紐付け。SSL証明書は自動発行</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">CDN</span><span class="freq freq-low">○ 知識</span></div>
+      <span class="desc">世界中にファイルを分散配置して表示を速くする仕組み</span>
+    </div>
+  </div>
+
+  <!-- データベース・バックエンド -->
+  <div class="card green">
+    <div class="card-header">
+      <div class="card-icon">🗄️</div>
+      <div class="card-title-wrap">
+        <div class="step-badge">STEP 2-3</div>
+        <h2>データベース・バックエンド</h2>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">Supabase</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">推奨バックエンド。Postgres DB + 認証 + ストレージ + RLS が一式揃う</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">Postgres</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">Supabaseが使う本格派リレーショナルDB。SQLでデータ操作する</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">RLS（行レベル）</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">「誰がどの行を見られるか」をDB側で制御するセキュリティ機構</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">認証（Auth）</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">ログイン・ユーザー管理。Supabase Authでメール/OAuthを一括対応</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">マイグレーション</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">DBのテーブル構造の変更履歴を管理。本番への反映を安全にする</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">mapper層</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">snake_case（DB）↔ camelCase（TS）の変換層。生データを直接画面で使わない</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">REST / GraphQL</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">サーバーとデータをやり取りする形式。URLで指定 or 問い合わせ言語</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">ORM</span><span class="freq freq-low">○ 知識</span></div>
+      <span class="desc">SQLの代わりにコードでDB操作する道具（Prisma / Drizzle など）</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">Firebase</span><span class="freq freq-low">○ 知識</span></div>
+      <span class="desc">Google製のBaaS。本プロジェクトでは<strong>新規拡張しない</strong>方針</span>
+    </div>
+  </div>
+
+  <!-- SEO・構造化データ -->
+  <div class="card orange">
+    <div class="card-header">
+      <div class="card-icon">🔍</div>
+      <div class="card-title-wrap">
+        <div class="step-badge">STEP 3</div>
+        <h2>SEO・LLMO（AI検索最適化）</h2>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">メタタグ</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc"><code>title</code>/<code>description</code>/OGP。検索結果とSNSシェア時の見た目を決める</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">sitemap.xml</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">サイト内URLの一覧。検索エンジンに「ここに何があるか」を伝える</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">robots.txt</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">クローラーに巡回可否を指示するファイル</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">JSON-LD</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">構造化データの書式。Googleに記事の意味を正確に伝える</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">BlogPosting</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">記事ページ用のJSON-LDスキーマ。著者・公開日などを構造化</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">FAQPage</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">FAQをQ&A形式で構造化。AI検索（LLMO）に効く</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">Speakable</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">音声検索・AI検索で読み上げ対象にする部分を指定</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">canonical</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">重複URLの正本を指定。SEO評価の分散を防ぐ</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">Core Web Vitals</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">Googleが重視する体感速度指標（LCP/INP/CLS）</span>
+    </div>
+  </div>
+
+  <!-- セキュリティ -->
+  <div class="card red">
+    <div class="card-header">
+      <div class="card-icon">🔐</div>
+      <div class="card-title-wrap">
+        <div class="step-badge">STEP 2-6</div>
+        <h2>セキュリティ</h2>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">HTTPS</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">通信の暗号化。Render/Vercelでは自動で有効化される</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">APIキー管理</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">公開キー（<code>NEXT_PUBLIC_*</code>）とサーバー専用キーを厳密に分ける</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">CORS</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">ブラウザが別ドメインへのアクセスを許可するかの仕組み</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">XSS対策</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">悪意のあるスクリプト埋め込み対策。React/Next.jsは基本自動でエスケープ</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">SQLインジェクション</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">DBに不正なSQLを混ぜる攻撃。プレースホルダ/ORMで防ぐ</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">CSRF</span><span class="freq freq-low">○ 知識</span></div>
+      <span class="desc">なりすましリクエスト攻撃。トークン検証で防ぐ</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">JWT</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">認証トークンの標準形式。Supabase Authも内部で使用</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">Dependabot</span><span class="freq freq-low">○ 知識</span></div>
+      <span class="desc">GitHubがライブラリの脆弱性を検知して自動PR化する</span>
+    </div>
+  </div>
+
+  <!-- パフォーマンス・監視 -->
+  <div class="card teal">
+    <div class="card-header">
+      <div class="card-icon">📊</div>
+      <div class="card-title-wrap">
+        <div class="step-badge">STEP 7</div>
+        <h2>パフォーマンス・運用監視</h2>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">ログ</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">サーバーの動作記録。エラー発生時の原因調査に必須</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">エラー監視</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">Sentryなどで本番エラーを自動収集・通知</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">アナリティクス</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">GA4/Plausibleなどでユーザー行動を計測</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">Lighthouse</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">Chromeに内蔵。ページ速度・SEO・アクセシビリティを採点</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">キャッシュ</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">一度取得したデータを保持して高速化。ブラウザ/CDN/アプリ各層で働く</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">画像最適化</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">WebP化・遅延読込・<code>next/image</code>で転送量を削減</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">アクセシビリティ</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">スクリーンリーダー対応。<code>alt</code>属性・ARIAラベル・キーボード操作</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">アラート</span><span class="freq freq-low">○ 知識</span></div>
+      <span class="desc">閾値を超えたらSlack/メールで通知。障害の早期発見に使う</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">SLA/SLO</span><span class="freq freq-low">○ 知識</span></div>
+      <span class="desc">サービス稼働率の目標値。99.9%など</span>
+    </div>
+  </div>
+
+  <!-- チーム開発 -->
+  <div class="card teal">
+    <div class="card-header">
+      <div class="card-icon">👥</div>
+      <div class="card-title-wrap">
+        <div class="step-badge">STEP 7</div>
+        <h2>チーム開発・プロジェクト管理</h2>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">コードレビュー</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">PRに対して他の人がコードをチェックして品質を保つ</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">イシュー</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">バグ報告・機能追加の依頼をGitHubで管理する単位</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">マイルストーン</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">「いつまでに何を完成させるか」の期限管理</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">アジャイル</span><span class="freq freq-low">○ 知識</span></div>
+      <span class="desc">小さく作って頻繁にリリースする開発スタイル</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">スプリント</span><span class="freq freq-low">○ 知識</span></div>
+      <span class="desc">アジャイルにおける1〜2週間の作業単位</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">Turborepo</span><span class="freq freq-low">○ 知識</span></div>
+      <span class="desc">複数プロジェクトを1コマンドで管理する一元化ツール</span>
+    </div>
+  </div>
+
+  <!-- 完成イメージ図 -->
+  <div class="card blue full-width" style="--accent:#2563eb">
+    <div class="card-header">
+      <div class="card-icon">🏗️</div>
+      <div class="card-title-wrap">
+        <div class="step-badge">完成イメージ</div>
+        <h2>デプロイ後の全体構成図</h2>
+      </div>
+    </div>
+    <div class="finish-diagram">
+      <svg width="100%" height="200" viewBox="0 0 760 200" style="min-width:600px;">
+        <!-- 開発者側 -->
+        <rect x="10" y="20" width="110" height="160" rx="10" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+        <text x="65" y="38" text-anchor="middle" fill="#1d4ed8" font-size="10" font-weight="800">開発者のPC</text>
+        <rect x="20" y="44" width="90" height="24" rx="6" fill="#dbeafe"/>
+        <text x="65" y="60" text-anchor="middle" fill="#1d4ed8" font-size="9" font-weight="600">💻 VSCode</text>
+        <rect x="20" y="74" width="90" height="24" rx="6" fill="#dbeafe"/>
+        <text x="65" y="90" text-anchor="middle" fill="#1d4ed8" font-size="9">localhost:3001</text>
+        <rect x="20" y="104" width="90" height="24" rx="6" fill="#dbeafe"/>
+        <text x="65" y="120" text-anchor="middle" fill="#1d4ed8" font-size="9">git push</text>
+        <rect x="20" y="134" width="90" height="24" rx="6" fill="#dbeafe"/>
+        <text x="65" y="150" text-anchor="middle" fill="#1d4ed8" font-size="9">.env（秘密）</text>
+
+        <!-- 矢印 → GitHub -->
+        <line x1="122" y1="100" x2="168" y2="100" stroke="#94a3b8" stroke-width="2"/>
+        <polygon points="168,95 178,100 168,105" fill="#94a3b8"/>
+        <text x="150" y="93" text-anchor="middle" fill="#94a3b8" font-size="8">push</text>
+
+        <!-- GitHub -->
+        <rect x="180" y="60" width="100" height="80" rx="10" fill="#f5f3ff" stroke="#c4b5fd" stroke-width="1.5"/>
+        <text x="230" y="78" text-anchor="middle" fill="#6d28d9" font-size="10" font-weight="800">🐙 GitHub</text>
+        <rect x="190" y="84" width="80" height="20" rx="5" fill="#ede9fe"/>
+        <text x="230" y="98" text-anchor="middle" fill="#6d28d9" font-size="9">main branch</text>
+        <rect x="190" y="108" width="80" height="20" rx="5" fill="#ede9fe"/>
+        <text x="230" y="122" text-anchor="middle" fill="#6d28d9" font-size="9">PR / Issue</text>
+
+        <!-- 矢印 → CI/CD -->
+        <line x1="282" y1="100" x2="328" y2="100" stroke="#94a3b8" stroke-width="2"/>
+        <polygon points="328,95 338,100 328,105" fill="#94a3b8"/>
+        <text x="305" y="93" text-anchor="middle" fill="#94a3b8" font-size="8">自動</text>
+
+        <!-- CI/CD -->
+        <rect x="340" y="60" width="100" height="80" rx="10" fill="#fff7ed" stroke="#fed7aa" stroke-width="1.5"/>
+        <text x="390" y="78" text-anchor="middle" fill="#c2410c" font-size="10" font-weight="800">⚙️ CI/CD</text>
+        <rect x="350" y="84" width="80" height="20" rx="5" fill="#ffedd5"/>
+        <text x="390" y="98" text-anchor="middle" fill="#c2410c" font-size="9">テスト実行</text>
+        <rect x="350" y="108" width="80" height="20" rx="5" fill="#ffedd5"/>
+        <text x="390" y="122" text-anchor="middle" fill="#c2410c" font-size="9">ビルド</text>
+
+        <!-- 矢印 → サーバー -->
+        <line x1="442" y1="100" x2="488" y2="100" stroke="#94a3b8" stroke-width="2"/>
+        <polygon points="488,95 498,100 488,105" fill="#94a3b8"/>
+        <text x="465" y="93" text-anchor="middle" fill="#94a3b8" font-size="8">deploy</text>
+
+        <!-- 本番サーバー -->
+        <rect x="500" y="20" width="110" height="160" rx="10" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+        <text x="555" y="38" text-anchor="middle" fill="#15803d" font-size="10" font-weight="800">本番サーバー</text>
+        <rect x="510" y="44" width="90" height="24" rx="6" fill="#dcfce7"/>
+        <text x="555" y="60" text-anchor="middle" fill="#15803d" font-size="9" font-weight="600">🚀 Vercel</text>
+        <rect x="510" y="74" width="90" height="24" rx="6" fill="#dcfce7"/>
+        <text x="555" y="90" text-anchor="middle" fill="#15803d" font-size="9">CDN（世界配信）</text>
+        <rect x="510" y="104" width="90" height="24" rx="6" fill="#dcfce7"/>
+        <text x="555" y="120" text-anchor="middle" fill="#15803d" font-size="9">HTTPS</text>
+        <rect x="510" y="134" width="90" height="24" rx="6" fill="#dcfce7"/>
+        <text x="555" y="150" text-anchor="middle" fill="#15803d" font-size="9">ロールバック可</text>
+
+        <!-- 矢印 → ユーザー -->
+        <line x1="612" y1="100" x2="648" y2="100" stroke="#94a3b8" stroke-width="2"/>
+        <polygon points="648,95 658,100 648,105" fill="#94a3b8"/>
+        <text x="630" y="93" text-anchor="middle" fill="#94a3b8" font-size="8">表示</text>
+
+        <!-- ユーザー -->
+        <rect x="660" y="60" width="90" height="80" rx="10" fill="#fdf4ff" stroke="#e9d5ff" stroke-width="1.5"/>
+        <text x="705" y="78" text-anchor="middle" fill="#7e22ce" font-size="10" font-weight="800">👤 ユーザー</text>
+        <rect x="670" y="84" width="70" height="20" rx="5" fill="#f3e8ff"/>
+        <text x="705" y="98" text-anchor="middle" fill="#7e22ce" font-size="9">ブラウザ</text>
+        <rect x="670" y="108" width="70" height="20" rx="5" fill="#f3e8ff"/>
+        <text x="705" y="122" text-anchor="middle" fill="#7e22ce" font-size="9">スマホ</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- 今回の9社フロー -->
+  <div class="card red full-width">
+    <div class="card-header">
+      <div class="card-icon">🏢</div>
+      <div class="card-title-wrap">
+        <div class="step-badge">今回のプロジェクト</div>
+        <h2>9社プロジェクト 全工程</h2>
+      </div>
+    </div>
+    <div class="nine-flow">
+      <div class="nine-step">
+        <span class="nine-num" style="--nc:#2563eb">①</span>
+        <div class="nine-title">🛠️ 環境構築</div>
+        <div class="nine-desc">各社フォルダに package.json を用意。Node.js で Next.js / Vite を初期化</div>
+      </div>
+      <div class="nine-step">
+        <span class="nine-num" style="--nc:#16a34a">②</span>
+        <div class="nine-title">💻 開発</div>
+        <div class="nine-desc">clients.code-workspace で9社同時表示。localhost:3001〜3009 でプレビュー</div>
+      </div>
+      <div class="nine-step">
+        <span class="nine-num" style="--nc:#d97706">③</span>
+        <div class="nine-title">⚙️ ポート管理</div>
+        <div class="nine-desc">set-ports.js がフレームワークを自動判別して各社にポートを割り振り</div>
+      </div>
+      <div class="nine-step">
+        <span class="nine-num" style="--nc:#7c3aed">④</span>
+        <div class="nine-title">🌿 Git管理</div>
+        <div class="nine-desc">各社リポジトリで branch → commit → push → PR → merge</div>
+      </div>
+      <div class="nine-step">
+        <span class="nine-num" style="--nc:#0891b2">⑤</span>
+        <div class="nine-title">🧪 テスト</div>
+        <div class="nine-desc">staging 環境で最終確認。本番データには影響なし</div>
+      </div>
+      <div class="nine-step">
+        <span class="nine-num" style="--nc:#db2777">⑥</span>
+        <div class="nine-title">🚀 自動デプロイ</div>
+        <div class="nine-desc">GitHub push → Vercel/Netlify が自動で本番公開。問題があればロールバック</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- 凡例 -->
+<div class="legend" style="margin-top:32px;">
+  <span><div class="legend-dot" style="background:#2563eb"></div> 環境構築</span>
+  <span><div class="legend-dot" style="background:#16a34a"></div> フレームワーク</span>
+  <span><div class="legend-dot" style="background:#d97706"></div> 開発作業</span>
+  <span><div class="legend-dot" style="background:#7c3aed"></div> Git管理</span>
+  <span><div class="legend-dot" style="background:#0891b2"></div> テスト・環境</span>
+  <span><div class="legend-dot" style="background:#db2777"></div> デプロイ</span>
+  <span><div class="legend-dot" style="background:#0d9488"></div> チーム開発 / 運用監視</span>
+  <span><div class="legend-dot" style="background:#dc2626"></div> セキュリティ / 9社</span>
+</div>
+
+</body>
+</html>

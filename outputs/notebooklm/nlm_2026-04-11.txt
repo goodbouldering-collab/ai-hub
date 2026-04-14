@@ -1,0 +1,67 @@
+# AI情報収集 2026-04-11 (過去24時間・AI+SNSアルゴリズム動向)
+
+## AIニュース
+
+### イランがホワイトハウスを上回るSNS戦略で勝利
+原題: How Iran out-shitposted the White House
+イラン情勢で、ホワイトハウスのミーム投稿を上回り、イラン政府が地上映像を大量投稿してSNS戦を制した。
+出典: https://www.theverge.com/policy/910401/iran-war-propaganda-blackout-lego-ai-slop
+
+### OpenAI CEOサム・アルトマン宅にカクテル爆弾投げ込み
+原題: 20-year-old man arrested for allegedly throwing a Molotov cocktail at Sam Altman’s house
+サンフランシスコ警察がOpenAI CEO宅への火炎瓶投げ込み事件で20歳男性を逮捕。
+出典: https://www.theverge.com/ai-artificial-intelligence/910393/openai-sam-altman-house-molotov-cocktail
+
+### イランのレゴAI動画クリエイターが人気の秘訣を語る
+原題: The Iranian Lego AI video creators credit their virality to &#8216;heart&#8217;
+Explosive Mediaが制作したイランのAI生成レゴ動画が国際的に拡散し、制作者が成功の理由を説明。
+出典: https://www.theverge.com/ai-artificial-intelligence/909948/explosive-media-lego-iran-war-trump-netanyahu
+
+
+## AI動画(日本語)
+
+### 初心者向けAI用語解説動画
+原題: もはや常識！？初心者が覚えておくべきAI用語をまるっと解説！
+初心者が覚えるべきAI用語を解説した動画コンテンツ。
+出典: https://www.youtube.com/shorts/cTqEQShCmpI
+
+### 配信動画アーカイブ
+原題: 久しぶりの配信。
+配信者による不定期配信動画。
+出典: https://www.youtube.com/watch?v=ll9zjynCElU
+
+### ブックマーク整理のAI活用術
+原題: 無惨なブクマを整理するAI活用術
+AIを使ってブックマークを効率的に整理する方法について紹介している。
+出典: https://www.youtube.com/shorts/TjRR3xaQZgg
+
+### 中国AIサービス終了の事例と教訓
+原題: 【サービス終了】中国AIが大炎上した末路について解説します。
+中国のAIサービスが大炎上して終了に至った経緯と原因について解説している。
+出典: https://www.youtube.com/watch?v=U66YCZBJkl4
+
+### Claude Codeで個人向けナレッジベース構築
+原題: Claude Codeで知識を整理する！調べごとや勉強をする際に使えるナレッジ構築の仕組みについて解説してみた
+Claude Codeを使ってObsidianと連携させながら個人専用のWikiを構築する方法を解説している。
+出典: https://www.youtube.com/watch?v=INLlUqYJ4vA
+
+
+## AI国内
+
+### 経産省がDX銘柄2026に30社認定、SMBC500億超投資
+原題: 経産省、30社を「DX銘柄2026」に認定　3年連続選出のSMBCは500億円超投資、成果は？
+経済産業省がAI活用で優れた30社をDX銘柄に認定、SMBCは3年連続選出で500億円超を投資。
+出典: https://www.itmedia.co.jp/business/articles/2604/11/news018.html
+
+### AI代替で新卒枠が消滅、採用市場に暗雲
+原題: AI代替で消える新卒枠……中途も影響半数で「売り手市場」に暗雲
+AIの進展により新卒採用枠が減少傾向で、中途採用市場も半数が影響を受け売り手市場は不確定に。
+出典: https://monoist.itmedia.co.jp/mn/articles/2604/11/news019.html
+
+
+## SNS公式
+
+### Coachella 2026 ウィークエンド1ライブストリーム配信スケジュール
+原題: Coachella 2026 weekend 1 livestream schedule
+YouTubeがCoachella 2026のライブストリーム配信スケジュールを公開。
+出典: https://blog.youtube/news-and-events/coachella-livestream-schedule-weekend-one-2026/

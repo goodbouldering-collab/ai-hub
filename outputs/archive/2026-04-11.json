@@ -1,0 +1,215 @@
+{
+  "date": "2026-04-11",
+  "items": [
+    {
+      "hash": "ece7c4f64423b779",
+      "title": "イランがホワイトハウスを上回るSNS戦略で勝利",
+      "orig_title": "How Iran out-shitposted the White House",
+      "summary": "イラン情勢で、ホワイトハウスのミーム投稿を上回り、イラン政府が地上映像を大量投稿してSNS戦を制した。",
+      "url": "https://www.theverge.com/policy/910401/iran-war-propaganda-blackout-lego-ai-slop",
+      "source": "The Verge AI",
+      "category": "AIニュース",
+      "genre": "sns_algo",
+      "score": 75.0,
+      "breakdown": {
+        "base": 65.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 10.0
+      },
+      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/Vrg_illo_k_radtke_shitpost_iran_white_house.jpg?quality=90&amp;strip=all&amp;crop=0%2C6.369982547993%2C100%2C87.260034904014&amp;w=1200",
+      "published": "2026-04-11T09:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": "イラン情勢で、ホワイトハウスのミーム投稿を上回り、イラン政府が地上映像を大量投稿してSNS戦を制した"
+    },
+    {
+      "hash": "289ca22dc9542d30",
+      "title": "経産省がDX銘柄2026に30社認定、SMBC500億超投資",
+      "orig_title": "経産省、30社を「DX銘柄2026」に認定　3年連続選出のSMBCは500億円超投資、成果は？",
+      "summary": "経済産業省がAI活用で優れた30社をDX銘柄に認定、SMBCは3年連続選出で500億円超を投資。",
+      "url": "https://www.itmedia.co.jp/business/articles/2604/11/news018.html",
+      "source": "ITmedia AI+",
+      "category": "AI国内",
+      "genre": "ai_business",
+      "score": 72.0,
+      "breakdown": {
+        "base": 72.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 0.0
+      },
+      "thumbnail": "https://image.itmedia.co.jp/business/articles/2604/11/cover_news018.jpg",
+      "published": "Sat, 11 Apr 2026 08:00:00 +0900",
+      "_is_video": false,
+      "_summary_clean": "経済産業省がAI活用で優れた30社をDX銘柄に認定、SMBCは3年連続選出で500億円超を投資"
+    },
+    {
+      "hash": "415f7ef489f8c6aa",
+      "title": "AI代替で新卒枠が消滅、採用市場に暗雲",
+      "orig_title": "AI代替で消える新卒枠……中途も影響半数で「売り手市場」に暗雲",
+      "summary": "AIの進展により新卒採用枠が減少傾向で、中途採用市場も半数が影響を受け売り手市場は不確定に。",
+      "url": "https://monoist.itmedia.co.jp/mn/articles/2604/11/news019.html",
+      "source": "ITmedia AI+",
+      "category": "AI国内",
+      "genre": "industry",
+      "score": 68.0,
+      "breakdown": {
+        "base": 68.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 0.0
+      },
+      "thumbnail": "https://image.itmedia.co.jp/mn/articles/2604/11/cover_news019.jpg",
+      "published": "Sat, 11 Apr 2026 07:00:00 +0900",
+      "_is_video": false,
+      "_summary_clean": "AIの進展により新卒採用枠が減少傾向で、中途採用市場も半数が影響を受け売り手市場は不確定に"
+    },
+    {
+      "hash": "1ba0bdfdfc3cfdb5",
+      "title": "Claude Codeで個人向けナレッジベース構築",
+      "orig_title": "Claude Codeで知識を整理する！調べごとや勉強をする際に使えるナレッジ構築の仕組みについて解説してみた",
+      "summary": "Claude Codeを使ってObsidianと連携させながら個人専用のWikiを構築する方法を解説している。",
+      "url": "https://www.youtube.com/watch?v=INLlUqYJ4vA",
+      "source": "にゃんたのAI実践",
+      "category": "AI動画(日本語)",
+      "genre": "ai_business",
+      "score": 64.0,
+      "breakdown": {
+        "base": 58.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 6.0
+      },
+      "thumbnail": "https://img.youtube.com/vi/INLlUqYJ4vA/hqdefault.jpg",
+      "published": "2026-04-11T09:00:24+00:00",
+      "_is_video": true,
+      "_summary_clean": "Claude Codeを使ってObsidianと連携させながら個人専用のWikiを構築する方法を解説している"
+    },
+    {
+      "hash": "66cf98626977e4ed",
+      "title": "イランのレゴAI動画クリエイターが人気の秘訣を語る",
+      "orig_title": "The Iranian Lego AI video creators credit their virality to &#8216;heart&#8217;",
+      "summary": "Explosive Mediaが制作したイランのAI生成レゴ動画が国際的に拡散し、制作者が成功の理由を説明。",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/909948/explosive-media-lego-iran-war-trump-netanyahu",
+      "source": "The Verge AI",
+      "category": "AIニュース",
+      "genre": "marketing",
+      "score": 61.0,
+      "breakdown": {
+        "base": 58.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 3.0
+      },
+      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/LEGO_IRAN.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
+      "published": "2026-04-10T13:30:00-04:00",
+      "_is_video": false,
+      "_summary_clean": "Explosive Mediaが制作したイランのAI生成レゴ動画が国際的に拡散し、制作者が成功の理由を説明"
+    },
+    {
+      "hash": "8c3405ad24d972b2",
+      "title": "OpenAI CEOサム・アルトマン宅にカクテル爆弾投げ込み",
+      "orig_title": "20-year-old man arrested for allegedly throwing a Molotov cocktail at Sam Altman’s house",
+      "summary": "サンフランシスコ警察がOpenAI CEO宅への火炎瓶投げ込み事件で20歳男性を逮捕。",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/910393/openai-sam-altman-house-molotov-cocktail",
+      "source": "The Verge AI",
+      "category": "AIニュース",
+      "genre": "industry",
+      "score": 58.0,
+      "breakdown": {
+        "base": 55.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 3.0
+      },
+      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/gettyimages-1778705436.jpg?quality=90&amp;strip=all&amp;crop=0%2C12.629941573716%2C100%2C74.740116852568&amp;w=1200",
+      "published": "2026-04-10T16:16:57-04:00",
+      "_is_video": false,
+      "_summary_clean": "サンフランシスコ警察がOpenAI CEO宅への火炎瓶投げ込み事件で20歳男性を逮捕"
+    },
+    {
+      "hash": "c6e0930f5009465c",
+      "title": "中国AIサービス終了の事例と教訓",
+      "orig_title": "【サービス終了】中国AIが大炎上した末路について解説します。",
+      "summary": "中国のAIサービスが大炎上して終了に至った経緯と原因について解説している。",
+      "url": "https://www.youtube.com/watch?v=U66YCZBJkl4",
+      "source": "AI収益化ラボ",
+      "category": "AI動画(日本語)",
+      "genre": "industry",
+      "score": 52.0,
+      "breakdown": {
+        "base": 42.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 10.0
+      },
+      "thumbnail": "https://img.youtube.com/vi/U66YCZBJkl4/hqdefault.jpg",
+      "published": "2026-04-11T11:07:25+00:00",
+      "_is_video": true,
+      "_summary_clean": "中国のAIサービスが大炎上して終了に至った経緯と原因について解説している"
+    },
+    {
+      "hash": "3f2f32a4c2a059b0",
+      "title": "ブックマーク整理のAI活用術",
+      "orig_title": "無惨なブクマを整理するAI活用術",
+      "summary": "AIを使ってブックマークを効率的に整理する方法について紹介している。",
+      "url": "https://www.youtube.com/shorts/TjRR3xaQZgg",
+      "source": "KEITO AI&WEB",
+      "category": "AI動画(日本語)",
+      "genre": "ai_business",
+      "score": 45.0,
+      "breakdown": {
+        "base": 35.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 10.0
+      },
+      "thumbnail": "https://img.youtube.com/vi/TjRR3xaQZgg/hqdefault.jpg",
+      "published": "2026-04-11T11:00:45+00:00",
+      "_is_video": false,
+      "_summary_clean": "AIを使ってブックマークを効率的に整理する方法について紹介している"
+    },
+    {
+      "hash": "8e2049a8253ba5d5",
+      "title": "初心者向けAI用語解説動画",
+      "orig_title": "もはや常識！？初心者が覚えておくべきAI用語をまるっと解説！",
+      "summary": "初心者が覚えるべきAI用語を解説した動画コンテンツ。",
+      "url": "https://www.youtube.com/shorts/cTqEQShCmpI",
+      "source": "ウェブ職TV",
+      "category": "AI動画(日本語)",
+      "genre": "ai_business",
+      "score": 26.0,
+      "breakdown": {
+        "base": 20.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 6.0
+      },
+      "thumbnail": "https://img.youtube.com/vi/cTqEQShCmpI/hqdefault.jpg",
+      "published": "2026-04-11T10:00:57+00:00",
+      "_is_video": false,
+      "_summary_clean": "初心者が覚えるべきAI用語を解説した動画コンテンツ"
+    },
+    {
+      "hash": "d10f06a889837e68",
+      "title": "Coachella 2026 ウィークエンド1ライブストリーム配信スケジュール",
+      "orig_title": "Coachella 2026 weekend 1 livestream schedule",
+      "summary": "YouTubeがCoachella 2026のライブストリーム配信スケジュールを公開。",
+      "url": "https://blog.youtube/news-and-events/coachella-livestream-schedule-weekend-one-2026/",
+      "source": "YouTube Creator Blog",
+      "category": "SNS公式",
+      "genre": "marketing",
+      "score": 25.0,
+      "breakdown": {
+        "base": 25.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 0.0
+      },
+      "thumbnail": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Coachella_2026.max-1440x810.png",
+      "published": "Fri, 10 Apr 2026 15:00:00 +0000",
+      "_is_video": false,
+      "_summary_clean": "YouTubeがCoachella 2026のライブストリーム配信スケジュールを公開"
+    }
+  ]
+}

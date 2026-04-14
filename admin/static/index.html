@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>サポートSNS 管理</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "Segoe UI", "Hiragino Sans", sans-serif;
+    background: #f5f7fb;
+    color: #1e293b;
+    line-height: 1.6;
+    padding: 32px 20px 80px;
+  }
+  .wrap { max-width: 900px; margin: 0 auto; }
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+  }
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    color: #334155;
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 600;
+    transition: all 0.15s;
+  }
+  .back-btn:hover {
+    background: #f1f5f9;
+    border-color: #94a3b8;
+  }
+  h1 { font-size: 1.6rem; margin-bottom: 6px; color: #0f172a; }
+  .sub { color: #64748b; font-size: 0.85rem; margin-bottom: 28px; }
+  .card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 18px;
+    box-shadow: 0 1px 3px rgba(15,23,42,0.04), 0 1px 2px rgba(15,23,42,0.03);
+  }
+  .card h2 {
+    font-size: 1rem;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #0f172a;
+  }
+  .badge {
+    font-size: 0.65rem;
+    background: #eff6ff;
+    color: #2563eb;
+    padding: 2px 8px;
+    border-radius: 99px;
+    font-weight: 700;
+    border: 1px solid #bfdbfe;
+  }
+  .row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  input {
+    background: #ffffff;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 10px 12px;
+    color: #0f172a;
+    font-size: 0.88rem;
+    font-family: inherit;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  input::placeholder { color: #94a3b8; }
+  input:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+  }
+  button {
+    background: #2563eb;
+    color: #ffffff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background 0.15s;
+  }
+  button:hover { background: #1d4ed8; }
+  button.del {
+    background: #fef2f2;
+    color: #dc2626;
+    padding: 5px 12px;
+    border: 1px solid #fecaca;
+    font-size: 0.75rem;
+  }
+  button.del:hover { background: #fee2e2; }
+  .list { margin-top: 10px; }
+  .item {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr auto;
+    gap: 10px;
+    padding: 10px 0;
+    border-top: 1px solid #e2e8f0;
+    align-items: center;
+    font-size: 0.82rem;
+    color: #334155;
+  }
+  .item:first-child { border-top: none; }
+  .item .muted { color: #94a3b8; }
+  .item a { color: #2563eb; text-decoration: none; word-break: break-all; }
+  .item a:hover { text-decoration: underline; }
+  .empty { color: #94a3b8; font-size: 0.8rem; padding: 8px 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <a href="/site/" class="back-btn">← メインページに戻る</a>
+  </div>
+  <h1>サポートSNS 管理画面</h1>
+  <p class="sub">運用対象のSNSアカウントを登録・削除できる。保存先: <code>config/support_sns.yaml</code></p>
+  <div id="app"></div>
+</div>
+
+<script>
+const PLATFORMS = [
+  { key: "youtube",          label: "YouTube",          icon: "🎥" },
+  { key: "x",                label: "X (Twitter)",      icon: "🐦" },
+  { key: "instagram_feed",   label: "Instagram Feed",   icon: "📷" },
+  { key: "instagram_reel",   label: "Instagram Reel",   icon: "🎬" },
+  { key: "instagram_story",  label: "Instagram Story",  icon: "⭕" },
+  { key: "threads",          label: "Threads",          icon: "🧵" },
+  { key: "facebook",         label: "Facebook",         icon: "📘" },
+];
+
+async function fetchAll() {
+  const r = await fetch("/api/support-sns");
+  return await r.json();
+}
+
+async function addAccount(platform, input) {
+  const r = await fetch(`/api/support-sns/${platform}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ input }),
+  });
+  if (!r.ok) alert("追加に失敗: " + (await r.text()));
+}
+
+async function deleteAccount(platform, index) {
+  const r = await fetch(`/api/support-sns/${platform}/${index}`, { method: "DELETE" });
+  if (!r.ok) alert("削除に失敗: " + (await r.text()));
+}
+
+function render(data) {
+  const app = document.getElementById("app");
+  app.innerHTML = "";
+  for (const { key, label, icon } of PLATFORMS) {
+    const items = data[key] || [];
+    const card = document.createElement("section");
+    card.className = "card";
+    card.innerHTML = `
+      <h2>${icon} ${label} <span class="badge">${items.length}</span></h2>
+      <div class="row">
+        <input placeholder="アカウント名 または URL を貼り付け（例: @openai）" data-input>
+        <button data-add="${key}">追加</button>
+      </div>
+      <div class="list">
+        ${items.length === 0 ? '<div class="empty">まだ登録がありません</div>' :
+          items.map((it, i) => `
+            <div class="item">
+              <div><strong>${escapeHtml(it.handle || it.name || "")}</strong></div>
+              <div>${it.url ? `<a href="${escapeAttr(it.url)}" target="_blank" rel="noopener">${escapeHtml(it.url)}</a>` : '<span class="muted">—</span>'}</div>
+              <div><button class="del" data-del="${key}" data-i="${i}">削除</button></div>
+            </div>
+          `).join("")
+        }
+      </div>
+    `;
+    app.appendChild(card);
+  }
+
+  app.querySelectorAll("[data-add]").forEach((btn) => {
+    const doAdd = async () => {
+      const input = btn.parentElement.querySelector("[data-input]");
+      const val = input.value.trim();
+      if (!val) { alert("アカウント名またはURLを入力してください"); return; }
+      await addAccount(btn.dataset.add, val);
+      reload();
+    };
+    btn.addEventListener("click", doAdd);
+    btn.parentElement.querySelector("[data-input]").addEventListener("keydown", (e) => {
+      if (e.key === "Enter") doAdd();
+    });
+  });
+  app.querySelectorAll("[data-del]").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      if (!confirm("削除しますか？")) return;
+      await deleteAccount(btn.dataset.del, Number(btn.dataset.i));
+      reload();
+    });
+  });
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, (c) => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  }[c]));
+}
+function escapeAttr(s) { return escapeHtml(s); }
+
+async function reload() {
+  const data = await fetchAll();
+  render(data);
+}
+
+reload();
+</script>
+</body>
+</html>

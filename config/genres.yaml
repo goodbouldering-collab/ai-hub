@@ -1,0 +1,32 @@
+# ジャンル定義。Claude はこの key のいずれかを返すよう指示される。
+# 新しいジャンルを追加するときは key と label, icon, keywords を書き足すだけ。
+genres:
+  - key: generative_ai
+    label: 生成AIモデル
+    icon: 🧠
+    keywords: [OpenAI, GPT, Claude, Gemini, Llama, 生成AI, LLM, モデル, リリース, 公開]
+
+  - key: ai_business
+    label: AI業務活用
+    icon: 💼
+    keywords: [業務, 活用, 導入, エージェント, ワークフロー, 効率化, Copilot, 社内]
+
+  - key: ai_research
+    label: AI研究
+    icon: 🔬
+    keywords: [論文, 研究, arXiv, ベンチマーク, 実験, 理論, 学術]
+
+  - key: sns_algo
+    label: SNSアルゴリズム
+    icon: 📊
+    keywords: [アルゴリズム, ランキング, リコメンド, エンゲージメント, Meta, TikTok, X, Instagram, YouTube]
+
+  - key: marketing
+    label: マーケ運用
+    icon: 📣
+    keywords: [マーケティング, 運用, 集客, 広告, クリエイター, 収益化, CVR, CPA]
+
+  - key: industry
+    label: 業界ニュース
+    icon: 📰
+    keywords: [発表, 買収, 投資, 規制, 訴訟, 動向, 事件]

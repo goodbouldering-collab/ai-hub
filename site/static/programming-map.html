@@ -315,6 +315,69 @@
     display: flex; align-items: center; gap: 5px;
     font-size: 0.68rem; color: #64748b;
   }
+
+  /* ===== AIエンジニアリング ===== */
+  .ai-stack {
+    background: #faf9ff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 14px;
+    overflow-x: auto;
+  }
+  .ai-tabs {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin: 4px 0 12px;
+  }
+  .ai-tab {
+    font: inherit;
+    padding: 5px 11px;
+    border-radius: 99px;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    color: #64748b;
+    font-size: 0.72rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all .15s;
+  }
+  .ai-tab:hover { color: #7c3aed; border-color: #c4b5fd; }
+  .ai-tab.active {
+    background: #7c3aed;
+    color: #fff;
+    border-color: #7c3aed;
+  }
+  .ai-pane {
+    display: none;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 6px;
+  }
+  .ai-pane.active { display: grid; }
+  .ai-chip {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-left: 3px solid #7c3aed;
+    border-radius: 7px;
+    padding: 7px 10px;
+    font-size: 0.72rem;
+    color: #475569;
+    line-height: 1.45;
+  }
+  .ai-chip b {
+    color: #1e293b;
+    font-weight: 800;
+    margin-right: 4px;
+  }
+  .ai-chip span {
+    display: inline-block;
+    font-size: 0.6rem;
+    color: #b45309;
+    background: #fef3c7;
+    padding: 1px 5px;
+    border-radius: 4px;
+    margin: 0 4px 0 0;
+    font-weight: 700;
+  }
 </style>
 </head>
 <body>
@@ -1033,174 +1096,167 @@
       <div class="card-icon">🤖</div>
       <div class="card-title-wrap">
         <div class="step-badge">AI時代の新潮流</div>
-        <h2>AIエンジニアリング手法</h2>
+        <h2>AIエンジニアリング手法 — 全体像</h2>
       </div>
     </div>
 
-    <h3>🧠 プロンプトエンジニアリング</h3>
-    <div class="item">
-      <div class="item-left"><span class="tag">役割指定</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">「あなたは〜の専門家」と最初に宣言。出力の質と語彙が一気に安定する</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">Few-shot</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">入出力の具体例を数個見せてから本題を頼む。説明より例示の方が早い</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">Chain of Thought</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">「段階的に考えて」と指示して推論過程を出させる。複雑な計算・論理問題で効果大</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">出力形式指定</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">JSON/Markdown/表など構造を明示。後段でパースしやすくなる</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">制約列挙</span><span class="freq freq-med">△ 時々</span></div>
-      <span class="desc">「〜しない」「〜禁止」を具体的に並べる。禁則を明文化すると暴走しない</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">ReAct</span><span class="freq freq-low">○ 知識</span></div>
-      <span class="desc">「思考→行動→観察」を繰り返すループ形式。エージェント系の基本パターン</span>
+    <!-- 層構造の俯瞰図 -->
+    <div class="ai-stack">
+      <svg width="100%" height="260" viewBox="0 0 820 260" style="min-width:640px;">
+        <defs>
+          <linearGradient id="lg1" x1="0" x2="1"><stop offset="0" stop-color="#ede9fe"/><stop offset="1" stop-color="#ddd6fe"/></linearGradient>
+          <linearGradient id="lg2" x1="0" x2="1"><stop offset="0" stop-color="#dbeafe"/><stop offset="1" stop-color="#bfdbfe"/></linearGradient>
+          <linearGradient id="lg3" x1="0" x2="1"><stop offset="0" stop-color="#dcfce7"/><stop offset="1" stop-color="#bbf7d0"/></linearGradient>
+          <linearGradient id="lg4" x1="0" x2="1"><stop offset="0" stop-color="#fef3c7"/><stop offset="1" stop-color="#fde68a"/></linearGradient>
+          <linearGradient id="lg5" x1="0" x2="1"><stop offset="0" stop-color="#fee2e2"/><stop offset="1" stop-color="#fecaca"/></linearGradient>
+        </defs>
+        <!-- 入力 -->
+        <rect x="6" y="18" width="110" height="224" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <text x="61" y="38" text-anchor="middle" fill="#475569" font-size="11" font-weight="800">👤 ユーザー要求</text>
+        <text x="61" y="58" text-anchor="middle" fill="#64748b" font-size="9">「〜を作って」</text>
+        <text x="61" y="76" text-anchor="middle" fill="#64748b" font-size="9">「〜を調べて」</text>
+
+        <!-- 4層 -->
+        <!-- 1. プロンプト -->
+        <rect x="130" y="18" width="160" height="224" rx="12" fill="url(#lg1)" stroke="#a78bfa" stroke-width="1.5"/>
+        <text x="210" y="38" text-anchor="middle" fill="#6d28d9" font-size="12" font-weight="800">🧠 プロンプト</text>
+        <text x="210" y="52" text-anchor="middle" fill="#7c3aed" font-size="9">「どう頼むか」</text>
+        <rect x="140" y="64" width="140" height="22" rx="5" fill="#fff" stroke="#c4b5fd"/>
+        <text x="210" y="79" text-anchor="middle" fill="#5b21b6" font-size="9">役割指定 / 出力形式</text>
+        <rect x="140" y="92" width="140" height="22" rx="5" fill="#fff" stroke="#c4b5fd"/>
+        <text x="210" y="107" text-anchor="middle" fill="#5b21b6" font-size="9">Few-shot 例示</text>
+        <rect x="140" y="120" width="140" height="22" rx="5" fill="#fff" stroke="#c4b5fd"/>
+        <text x="210" y="135" text-anchor="middle" fill="#5b21b6" font-size="9">Chain of Thought</text>
+        <rect x="140" y="148" width="140" height="22" rx="5" fill="#fff" stroke="#c4b5fd"/>
+        <text x="210" y="163" text-anchor="middle" fill="#5b21b6" font-size="9">制約 / 禁則</text>
+        <rect x="140" y="176" width="140" height="22" rx="5" fill="#fff" stroke="#c4b5fd"/>
+        <text x="210" y="191" text-anchor="middle" fill="#5b21b6" font-size="9">ReAct パターン</text>
+
+        <!-- 2. コンテキスト -->
+        <rect x="300" y="18" width="160" height="224" rx="12" fill="url(#lg2)" stroke="#60a5fa" stroke-width="1.5"/>
+        <text x="380" y="38" text-anchor="middle" fill="#1d4ed8" font-size="12" font-weight="800">📚 コンテキスト</text>
+        <text x="380" y="52" text-anchor="middle" fill="#2563eb" font-size="9">「何を渡すか」</text>
+        <rect x="310" y="64" width="140" height="22" rx="5" fill="#fff" stroke="#93c5fd"/>
+        <text x="380" y="79" text-anchor="middle" fill="#1e40af" font-size="9">CLAUDE.md / System</text>
+        <rect x="310" y="92" width="140" height="22" rx="5" fill="#fff" stroke="#93c5fd"/>
+        <text x="380" y="107" text-anchor="middle" fill="#1e40af" font-size="9">RAG / 埋め込み検索</text>
+        <rect x="310" y="120" width="140" height="22" rx="5" fill="#fff" stroke="#93c5fd"/>
+        <text x="380" y="135" text-anchor="middle" fill="#1e40af" font-size="9">圧縮 / メモリ階層</text>
+        <rect x="310" y="148" width="140" height="22" rx="5" fill="#fff" stroke="#93c5fd"/>
+        <text x="380" y="163" text-anchor="middle" fill="#1e40af" font-size="9">Prompt Caching</text>
+        <rect x="310" y="176" width="140" height="22" rx="5" fill="#fff" stroke="#93c5fd"/>
+        <text x="380" y="191" text-anchor="middle" fill="#1e40af" font-size="9">会話履歴</text>
+
+        <!-- 3. ハーネス -->
+        <rect x="470" y="18" width="160" height="224" rx="12" fill="url(#lg3)" stroke="#4ade80" stroke-width="1.5"/>
+        <text x="550" y="38" text-anchor="middle" fill="#15803d" font-size="12" font-weight="800">🛠️ ハーネス</text>
+        <text x="550" y="52" text-anchor="middle" fill="#16a34a" font-size="9">「どう動かすか」</text>
+        <rect x="480" y="64" width="140" height="22" rx="5" fill="#fff" stroke="#86efac"/>
+        <text x="550" y="79" text-anchor="middle" fill="#14532d" font-size="9">Tool Use / MCP</text>
+        <rect x="480" y="92" width="140" height="22" rx="5" fill="#fff" stroke="#86efac"/>
+        <text x="550" y="107" text-anchor="middle" fill="#14532d" font-size="9">Agentic Loop</text>
+        <rect x="480" y="120" width="140" height="22" rx="5" fill="#fff" stroke="#86efac"/>
+        <text x="550" y="135" text-anchor="middle" fill="#14532d" font-size="9">Sandbox / Permission</text>
+        <rect x="480" y="148" width="140" height="22" rx="5" fill="#fff" stroke="#86efac"/>
+        <text x="550" y="163" text-anchor="middle" fill="#14532d" font-size="9">Hook / Sub Agent</text>
+        <rect x="480" y="176" width="140" height="22" rx="5" fill="#fff" stroke="#86efac"/>
+        <text x="550" y="191" text-anchor="middle" fill="#14532d" font-size="9">Plan → Execute</text>
+
+        <!-- 4. 評価/安全 -->
+        <rect x="640" y="18" width="160" height="224" rx="12" fill="url(#lg5)" stroke="#f87171" stroke-width="1.5"/>
+        <text x="720" y="38" text-anchor="middle" fill="#b91c1c" font-size="12" font-weight="800">🛡️ 評価 / 安全</text>
+        <text x="720" y="52" text-anchor="middle" fill="#dc2626" font-size="9">「どう守るか」</text>
+        <rect x="650" y="64" width="140" height="22" rx="5" fill="#fff" stroke="#fca5a5"/>
+        <text x="720" y="79" text-anchor="middle" fill="#7f1d1d" font-size="9">Eval / LLM-as-Judge</text>
+        <rect x="650" y="92" width="140" height="22" rx="5" fill="#fff" stroke="#fca5a5"/>
+        <text x="720" y="107" text-anchor="middle" fill="#7f1d1d" font-size="9">ハルシネーション対策</text>
+        <rect x="650" y="120" width="140" height="22" rx="5" fill="#fff" stroke="#fca5a5"/>
+        <text x="720" y="135" text-anchor="middle" fill="#7f1d1d" font-size="9">インジェクション防御</text>
+        <rect x="650" y="148" width="140" height="22" rx="5" fill="#fff" stroke="#fca5a5"/>
+        <text x="720" y="163" text-anchor="middle" fill="#7f1d1d" font-size="9">出力フィルタ / 監査</text>
+        <rect x="650" y="176" width="140" height="22" rx="5" fill="#fff" stroke="#fca5a5"/>
+        <text x="720" y="191" text-anchor="middle" fill="#7f1d1d" font-size="9">Human-in-the-Loop</text>
+
+        <!-- 矢印 -->
+        <polygon points="118,130 128,125 128,135" fill="#94a3b8"/>
+        <polygon points="292,130 298,125 298,135" fill="#a78bfa"/>
+        <polygon points="462,130 468,125 468,135" fill="#60a5fa"/>
+        <polygon points="632,130 638,125 638,135" fill="#4ade80"/>
+
+        <!-- 下部ラベル -->
+        <text x="210" y="220" text-anchor="middle" fill="#6d28d9" font-size="9" font-style="italic">指示の書き方</text>
+        <text x="380" y="220" text-anchor="middle" fill="#1d4ed8" font-size="9" font-style="italic">周辺情報の供給</text>
+        <text x="550" y="220" text-anchor="middle" fill="#15803d" font-size="9" font-style="italic">実行環境の設計</text>
+        <text x="720" y="220" text-anchor="middle" fill="#b91c1c" font-size="9" font-style="italic">品質と安全の担保</text>
+
+        <!-- 底部: LLM本体 -->
+        <rect x="130" y="236" width="670" height="18" rx="9" fill="#1e293b"/>
+        <text x="465" y="249" text-anchor="middle" fill="#e2e8f0" font-size="10" font-weight="700">🤖 LLM (Claude / GPT / Gemini) — 全層が最終的にここへ合流</text>
+      </svg>
     </div>
 
-    <h3>📚 コンテキストエンジニアリング</h3>
-    <div class="item">
-      <div class="item-left"><span class="tag">CLAUDE.md</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">プロジェクト直下に置くとClaude Codeが毎回自動読込。規約・構成・禁則を常駐化</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">RAG</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">検索で関連ドキュメントを取り出してプロンプトに差し込む。知識の外部化で学習不要</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">コンテキスト圧縮</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">要約・切り詰めで長い履歴をトークン制限内に収める。古い会話ほど圧縮率を上げる</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">メモリ階層</span><span class="freq freq-med">△ 時々</span></div>
-      <span class="desc">短期（今の会話）/ 長期（ファイル・DB）を分離。役割別に保存先を切り分け</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">埋め込み検索</span><span class="freq freq-med">△ 時々</span></div>
-      <span class="desc">文章をベクトル化して類似度で検索。意味ベースの検索が可能になる</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">Prompt Caching</span><span class="freq freq-med">△ 時々</span></div>
-      <span class="desc">固定部分をキャッシュして再利用。Anthropic APIでコスト・速度が劇的に改善</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">コンテキスト汚染</span><span class="freq freq-low">○ 知識</span></div>
-      <span class="desc">無関係な情報が紛れ込むと精度が落ちる。「詰め込むほど良い」は誤り</span>
+    <!-- タブ切替（最初の1つだけ表示、他はJSで切替） -->
+    <div class="ai-tabs">
+      <button class="ai-tab active" data-ai="prompt">🧠 プロンプト</button>
+      <button class="ai-tab" data-ai="context">📚 コンテキスト</button>
+      <button class="ai-tab" data-ai="harness">🛠️ ハーネス</button>
+      <button class="ai-tab" data-ai="eval">🔄 評価</button>
+      <button class="ai-tab" data-ai="orch">⚙️ 統括</button>
+      <button class="ai-tab" data-ai="tune">🎯 調整</button>
+      <button class="ai-tab" data-ai="safe">🛡️ 安全</button>
     </div>
 
-    <h3>🛠️ ハーネスエンジニアリング</h3>
-    <div class="item">
-      <div class="item-left"><span class="tag">Tool Use</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">AIに関数を呼ばせる仕組み。Read/Write/Bash等をツール化してAIから使わせる</span>
+    <div class="ai-pane active" data-ai="prompt">
+      <div class="ai-chip"><b>役割指定</b> <span>★</span> 先に「〜の専門家」と宣言 → 語彙が安定</div>
+      <div class="ai-chip"><b>Few-shot</b> <span>★</span> 入出力例を数個提示 → 説明より早い</div>
+      <div class="ai-chip"><b>CoT</b> <span>★</span> 「段階的に考えて」で推論過程を誘導</div>
+      <div class="ai-chip"><b>出力形式</b> <span>★</span> JSON/表を指定 → 後段でパース可</div>
+      <div class="ai-chip"><b>制約列挙</b> <span>△</span> 禁則を明文化 → 暴走抑止</div>
+      <div class="ai-chip"><b>ReAct</b> <span>○</span> 思考→行動→観察ループ</div>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">Agentic Loop</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">AIがツールを連続呼び出して自律的にタスクを完了するループ構造</span>
+    <div class="ai-pane" data-ai="context">
+      <div class="ai-chip"><b>CLAUDE.md</b> <span>★</span> プロジェクト規約を自動常駐化</div>
+      <div class="ai-chip"><b>RAG</b> <span>★</span> 関連文書を検索して差し込み</div>
+      <div class="ai-chip"><b>コンテキスト圧縮</b> <span>★</span> 履歴を要約してトークン節約</div>
+      <div class="ai-chip"><b>メモリ階層</b> <span>△</span> 短期/長期を分離保管</div>
+      <div class="ai-chip"><b>埋め込み検索</b> <span>△</span> 意味ベースのベクトル類似検索</div>
+      <div class="ai-chip"><b>Prompt Caching</b> <span>△</span> 固定部分を再利用して高速化</div>
+      <div class="ai-chip"><b>コンテキスト汚染</b> <span>○</span> 詰め込むほど精度が落ちる罠</div>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">Sandbox実行</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">生成コードを隔離環境で実行。暴走・破壊を防ぐ最後の砦</span>
+    <div class="ai-pane" data-ai="harness">
+      <div class="ai-chip"><b>Tool Use</b> <span>★</span> Read/Write/Bash等を関数化</div>
+      <div class="ai-chip"><b>Agentic Loop</b> <span>★</span> 連続ツール呼び出しで自律実行</div>
+      <div class="ai-chip"><b>Sandbox</b> <span>★</span> 隔離環境で安全にコード実行</div>
+      <div class="ai-chip"><b>Permission制御</b> <span>★</span> 危険操作は人間承認</div>
+      <div class="ai-chip"><b>Hook</b> <span>△</span> 呼出前後に監査・整形を差込</div>
+      <div class="ai-chip"><b>Sub Agent</b> <span>△</span> 専門役を並列分離実行</div>
+      <div class="ai-chip"><b>MCP</b> <span>△</span> 外部ツール連携の標準規格</div>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">Permission制御</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">危険操作（rm/push/DB削除）は人間承認を挟む。Claude Codeの<code>ask</code>モード</span>
+    <div class="ai-pane" data-ai="eval">
+      <div class="ai-chip"><b>Evalセット</b> <span>★</span> プロンプト改良時の回帰テスト</div>
+      <div class="ai-chip"><b>LLM-as-Judge</b> <span>△</span> 別LLMに採点させる自動評価</div>
+      <div class="ai-chip"><b>A/Bテスト</b> <span>△</span> 2案並行稼働で勝率計測</div>
+      <div class="ai-chip"><b>ゴールデンデータ</b> <span>△</span> 人手作成の正解例・基準の根幹</div>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">Hook</span><span class="freq freq-med">△ 時々</span></div>
-      <span class="desc">ツール呼出前後にフックを差し込み、監査・整形・ブロックを自動化</span>
+    <div class="ai-pane" data-ai="orch">
+      <div class="ai-chip"><b>Managed Agents</b> <span>★</span> CMA等の自律エージェント基盤</div>
+      <div class="ai-chip"><b>計画→実行分離</b> <span>★</span> Plan Modeで先に設計→承認→実行</div>
+      <div class="ai-chip"><b>Multi-Agent</b> <span>△</span> 設計/実装/レビュー役の協調</div>
+      <div class="ai-chip"><b>セルフリフレクション</b> <span>△</span> 自作物を自己レビューで改善</div>
+      <div class="ai-chip"><b>Human-in-the-Loop</b> <span>△</span> 要所で人間承認を挟む</div>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">Sub Agent</span><span class="freq freq-med">△ 時々</span></div>
-      <span class="desc">専門役を別セッションで並列実行。親のコンテキスト圧迫を防ぐ</span>
+    <div class="ai-pane" data-ai="tune">
+      <div class="ai-chip"><b>ファインチューニング</b> <span>△</span> 独自データで追加学習</div>
+      <div class="ai-chip"><b>LoRA</b> <span>○</span> 少パラメータだけ差分学習</div>
+      <div class="ai-chip"><b>Distillation</b> <span>○</span> 大モデル→小モデルへ知識転写</div>
+      <div class="ai-chip"><b>RLHF</b> <span>○</span> 人間フィードバックで強化学習</div>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">MCP</span><span class="freq freq-med">△ 時々</span></div>
-      <span class="desc">Model Context Protocol。外部ツール/データ源を標準インターフェースで繋ぐ規格</span>
-    </div>
-
-    <h3>🔄 エバル・評価エンジニアリング</h3>
-    <div class="item">
-      <div class="item-left"><span class="tag">Eval セット</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">プロンプト改良時の回帰テスト。期待出力と一致するか自動判定</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">LLM-as-Judge</span><span class="freq freq-med">△ 時々</span></div>
-      <span class="desc">別のLLMに採点させる自動評価手法。主観品質を数値化できる</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">A/Bテスト</span><span class="freq freq-med">△ 時々</span></div>
-      <span class="desc">2つのプロンプトを並行稼働させて勝率を測る</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">ゴールデンデータ</span><span class="freq freq-med">△ 時々</span></div>
-      <span class="desc">人間が作った正解例。Eval基準の根幹なので鮮度管理が重要</span>
-    </div>
-
-    <h3>⚙️ ワークフロー・オーケストレーション</h3>
-    <div class="item">
-      <div class="item-left"><span class="tag">Managed Agents</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">Anthropic CMA等のフルマネージドな自律エージェント実行基盤</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">計画→実行分離</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">Plan Modeで先に設計→承認後に実行。無駄打ちと暴走を減らす</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">Multi-Agent</span><span class="freq freq-med">△ 時々</span></div>
-      <span class="desc">複数役（設計/実装/レビュー）を分担させる協調型構成</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">セルフリフレクション</span><span class="freq freq-med">△ 時々</span></div>
-      <span class="desc">AI自身に自作物を再レビューさせて改善。反復品質が上がる</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">Human-in-the-Loop</span><span class="freq freq-med">△ 時々</span></div>
-      <span class="desc">要所で人間の承認を挟む半自動方式。信頼境界の設計がキモ</span>
-    </div>
-
-    <h3>🎯 ファインチューニング・モデル適応</h3>
-    <div class="item">
-      <div class="item-left"><span class="tag">ファインチューニング</span><span class="freq freq-med">△ 時々</span></div>
-      <span class="desc">独自データでモデル本体を追加学習。ブランド文体や業界用語に適合させる</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">LoRA</span><span class="freq freq-low">○ 知識</span></div>
-      <span class="desc">Low-Rank Adaptation。少パラメータだけ差分学習して軽量・低コスト化</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">Distillation</span><span class="freq freq-low">○ 知識</span></div>
-      <span class="desc">大モデルの知識を小モデルへ転写。推論コストを大幅削減</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">RLHF</span><span class="freq freq-low">○ 知識</span></div>
-      <span class="desc">人間フィードバックによる強化学習。好ましさを学習させる仕組み</span>
-    </div>
-
-    <h3>🛡️ 安全性・ガードレール</h3>
-    <div class="item">
-      <div class="item-left"><span class="tag">プロンプトインジェクション</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">外部入力に仕込まれた命令をAIが実行してしまう攻撃。入力源の信頼度で重み付け</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">出力フィルタ</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">個人情報・有害表現を後段で除去。生成前後の二重チェック</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">ハルシネーション対策</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">出典必須化・RAG併用・「わからないとき答えない」指示で誤答を減らす</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">レート制限</span><span class="freq freq-med">△ 時々</span></div>
-      <span class="desc">API乱用・コスト爆発対策。ユーザー単位のトークン上限を設ける</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">監査ログ</span><span class="freq freq-med">△ 時々</span></div>
-      <span class="desc">全プロンプト/出力を保存。問題発生時の追跡と改善の元データになる</span>
+    <div class="ai-pane" data-ai="safe">
+      <div class="ai-chip"><b>インジェクション</b> <span>★</span> 外部入力に潜む命令を信頼度評価</div>
+      <div class="ai-chip"><b>出力フィルタ</b> <span>★</span> 個人情報・有害表現を後段除去</div>
+      <div class="ai-chip"><b>ハルシネーション対策</b> <span>★</span> 出典必須・RAG併用・不明時沈黙</div>
+      <div class="ai-chip"><b>レート制限</b> <span>△</span> トークン上限でコスト爆発防止</div>
+      <div class="ai-chip"><b>監査ログ</b> <span>△</span> 全入出力を保存して追跡可能に</div>
     </div>
   </div>
 
@@ -1262,5 +1318,16 @@
   <span><div class="legend-dot" style="background:#7c3aed"></div> 🤖 AIエンジニアリング</span>
 </div>
 
+<script>
+  (function(){
+    const tabs = document.querySelectorAll('.ai-tab');
+    const panes = document.querySelectorAll('.ai-pane');
+    tabs.forEach(t => t.addEventListener('click', () => {
+      const k = t.dataset.ai;
+      tabs.forEach(x => x.classList.toggle('active', x === t));
+      panes.forEach(p => p.classList.toggle('active', p.dataset.ai === k));
+    }));
+  })();
+</script>
 </body>
 </html>

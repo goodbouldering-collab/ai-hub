@@ -1027,6 +1027,183 @@
     </div>
   </div>
 
+  <!-- AI時代のエンジニアリング手法 -->
+  <div class="card purple full-width">
+    <div class="card-header">
+      <div class="card-icon">🤖</div>
+      <div class="card-title-wrap">
+        <div class="step-badge">AI時代の新潮流</div>
+        <h2>AIエンジニアリング手法</h2>
+      </div>
+    </div>
+
+    <h3>🧠 プロンプトエンジニアリング</h3>
+    <div class="item">
+      <div class="item-left"><span class="tag">役割指定</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">「あなたは〜の専門家」と最初に宣言。出力の質と語彙が一気に安定する</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">Few-shot</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">入出力の具体例を数個見せてから本題を頼む。説明より例示の方が早い</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">Chain of Thought</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">「段階的に考えて」と指示して推論過程を出させる。複雑な計算・論理問題で効果大</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">出力形式指定</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">JSON/Markdown/表など構造を明示。後段でパースしやすくなる</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">制約列挙</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">「〜しない」「〜禁止」を具体的に並べる。禁則を明文化すると暴走しない</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">ReAct</span><span class="freq freq-low">○ 知識</span></div>
+      <span class="desc">「思考→行動→観察」を繰り返すループ形式。エージェント系の基本パターン</span>
+    </div>
+
+    <h3>📚 コンテキストエンジニアリング</h3>
+    <div class="item">
+      <div class="item-left"><span class="tag">CLAUDE.md</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">プロジェクト直下に置くとClaude Codeが毎回自動読込。規約・構成・禁則を常駐化</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">RAG</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">検索で関連ドキュメントを取り出してプロンプトに差し込む。知識の外部化で学習不要</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">コンテキスト圧縮</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">要約・切り詰めで長い履歴をトークン制限内に収める。古い会話ほど圧縮率を上げる</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">メモリ階層</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">短期（今の会話）/ 長期（ファイル・DB）を分離。役割別に保存先を切り分け</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">埋め込み検索</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">文章をベクトル化して類似度で検索。意味ベースの検索が可能になる</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">Prompt Caching</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">固定部分をキャッシュして再利用。Anthropic APIでコスト・速度が劇的に改善</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">コンテキスト汚染</span><span class="freq freq-low">○ 知識</span></div>
+      <span class="desc">無関係な情報が紛れ込むと精度が落ちる。「詰め込むほど良い」は誤り</span>
+    </div>
+
+    <h3>🛠️ ハーネスエンジニアリング</h3>
+    <div class="item">
+      <div class="item-left"><span class="tag">Tool Use</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">AIに関数を呼ばせる仕組み。Read/Write/Bash等をツール化してAIから使わせる</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">Agentic Loop</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">AIがツールを連続呼び出して自律的にタスクを完了するループ構造</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">Sandbox実行</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">生成コードを隔離環境で実行。暴走・破壊を防ぐ最後の砦</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">Permission制御</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">危険操作（rm/push/DB削除）は人間承認を挟む。Claude Codeの<code>ask</code>モード</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">Hook</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">ツール呼出前後にフックを差し込み、監査・整形・ブロックを自動化</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">Sub Agent</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">専門役を別セッションで並列実行。親のコンテキスト圧迫を防ぐ</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">MCP</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">Model Context Protocol。外部ツール/データ源を標準インターフェースで繋ぐ規格</span>
+    </div>
+
+    <h3>🔄 エバル・評価エンジニアリング</h3>
+    <div class="item">
+      <div class="item-left"><span class="tag">Eval セット</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">プロンプト改良時の回帰テスト。期待出力と一致するか自動判定</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">LLM-as-Judge</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">別のLLMに採点させる自動評価手法。主観品質を数値化できる</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">A/Bテスト</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">2つのプロンプトを並行稼働させて勝率を測る</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">ゴールデンデータ</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">人間が作った正解例。Eval基準の根幹なので鮮度管理が重要</span>
+    </div>
+
+    <h3>⚙️ ワークフロー・オーケストレーション</h3>
+    <div class="item">
+      <div class="item-left"><span class="tag">Managed Agents</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">Anthropic CMA等のフルマネージドな自律エージェント実行基盤</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">計画→実行分離</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">Plan Modeで先に設計→承認後に実行。無駄打ちと暴走を減らす</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">Multi-Agent</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">複数役（設計/実装/レビュー）を分担させる協調型構成</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">セルフリフレクション</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">AI自身に自作物を再レビューさせて改善。反復品質が上がる</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">Human-in-the-Loop</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">要所で人間の承認を挟む半自動方式。信頼境界の設計がキモ</span>
+    </div>
+
+    <h3>🎯 ファインチューニング・モデル適応</h3>
+    <div class="item">
+      <div class="item-left"><span class="tag">ファインチューニング</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">独自データでモデル本体を追加学習。ブランド文体や業界用語に適合させる</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">LoRA</span><span class="freq freq-low">○ 知識</span></div>
+      <span class="desc">Low-Rank Adaptation。少パラメータだけ差分学習して軽量・低コスト化</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">Distillation</span><span class="freq freq-low">○ 知識</span></div>
+      <span class="desc">大モデルの知識を小モデルへ転写。推論コストを大幅削減</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">RLHF</span><span class="freq freq-low">○ 知識</span></div>
+      <span class="desc">人間フィードバックによる強化学習。好ましさを学習させる仕組み</span>
+    </div>
+
+    <h3>🛡️ 安全性・ガードレール</h3>
+    <div class="item">
+      <div class="item-left"><span class="tag">プロンプトインジェクション</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">外部入力に仕込まれた命令をAIが実行してしまう攻撃。入力源の信頼度で重み付け</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">出力フィルタ</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">個人情報・有害表現を後段で除去。生成前後の二重チェック</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">ハルシネーション対策</span><span class="freq freq-high">★ よく使う</span></div>
+      <span class="desc">出典必須化・RAG併用・「わからないとき答えない」指示で誤答を減らす</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">レート制限</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">API乱用・コスト爆発対策。ユーザー単位のトークン上限を設ける</span>
+    </div>
+    <div class="item">
+      <div class="item-left"><span class="tag">監査ログ</span><span class="freq freq-med">△ 時々</span></div>
+      <span class="desc">全プロンプト/出力を保存。問題発生時の追跡と改善の元データになる</span>
+    </div>
+  </div>
+
   <!-- 今回の9社フロー -->
   <div class="card red full-width">
     <div class="card-header">
@@ -1082,6 +1259,7 @@
   <span><div class="legend-dot" style="background:#db2777"></div> デプロイ</span>
   <span><div class="legend-dot" style="background:#0d9488"></div> チーム開発 / 運用監視</span>
   <span><div class="legend-dot" style="background:#dc2626"></div> セキュリティ / 9社</span>
+  <span><div class="legend-dot" style="background:#7c3aed"></div> 🤖 AIエンジニアリング</span>
 </div>
 
 </body>

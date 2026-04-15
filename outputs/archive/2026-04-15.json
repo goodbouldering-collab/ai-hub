@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/trump-jesus-altered.png?quality=90&amp;strip=all&amp;crop=0,31.744282171397,100,36.511435657206",
-      "published": "2026-04-15T15:50:31-04:00"
+      "published": "2026-04-15T15:50:31-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "844727ef0b8cd72c",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/Gemini-for-MacOS_03_Capsule-Image_16x9.png?quality=90&amp;strip=all&amp;crop=0%2C3.4613147178592%2C100%2C93.077370564282&amp;w=1200",
-      "published": "2026-04-15T14:10:15-04:00"
+      "published": "2026-04-15T14:10:15-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "541aa459a5f5c5b7",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/gettyimages-1253153052.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.752607989199%2C100%2C78.494784021602&amp;w=1200",
-      "published": "2026-04-15T12:13:30-04:00"
+      "published": "2026-04-15T12:13:30-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "c5993864dd713c30",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/Adobe-Firefly-Innovations-Visual-Asset.png?quality=90&amp;strip=all&amp;crop=0%2C3.4613147178592%2C100%2C93.077370564282&amp;w=1200",
-      "published": "2026-04-15T09:00:00-04:00"
+      "published": "2026-04-15T09:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "75cc57a8c7d839e1",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/STK468_APPLE_ANTITRUST_CVIRGINIA_G.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-04-15T06:55:22-04:00"
+      "published": "2026-04-15T06:55:22-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "c54edbd66146e38e",
@@ -113,7 +123,9 @@
         "freshness": 0.0
       },
       "thumbnail": "",
-      "published": "Wed, 15 Apr 2026 10:00:00 GMT"
+      "published": "Wed, 15 Apr 2026 10:00:00 GMT",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "b3d0387e0f0ffc23",
@@ -132,7 +144,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini-3.1-flash-tts_metacard_dark_1920x1080.width-1300.png",
-      "published": "Wed, 15 Apr 2026 16:03:19 +0000"
+      "published": "Wed, 15 Apr 2026 16:03:19 +0000",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "967f9e6efabacdd5",
@@ -151,7 +165,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://cdn-uploads.huggingface.co/production/uploads/677629b4931b3b2eb8d5820a/aheSsLHG7bQqr_2b8A6cS.png",
-      "published": "Wed, 15 Apr 2026 12:07:25 GMT"
+      "published": "Wed, 15 Apr 2026 12:07:25 GMT",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "dc0b273296aa1664",
@@ -170,7 +186,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://cdn-thumbnails.huggingface.co/social-thumbnails/blog/Hcompany/holotab.png",
-      "published": "Wed, 15 Apr 2026 09:25:20 GMT"
+      "published": "Wed, 15 Apr 2026 09:25:20 GMT",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "7a1f30c17736b484",
@@ -189,7 +207,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://wp.technologyreview.com/wp-content/uploads/2026/04/MITTR-Usercentrics-SM-card1-1200.png?resize=1200,600",
-      "published": "Wed, 15 Apr 2026 06:00:00 +0000"
+      "published": "Wed, 15 Apr 2026 06:00:00 +0000",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

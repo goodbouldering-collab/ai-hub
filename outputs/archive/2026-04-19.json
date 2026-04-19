@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/Screenshot-2026-04-19-at-3.53.46PM.png?quality=90&amp;strip=all&amp;crop=0%2C10.355779531361%2C100%2C79.288440937278&amp;w=1200",
-      "published": "2026-04-19T15:54:52-04:00"
+      "published": "2026-04-19T15:54:52-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

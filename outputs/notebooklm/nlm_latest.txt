@@ -2,12 +2,82 @@
 
 ## AIニュース
 
-### Cloud development platform Vercel was hacked
-Vercel, a major development platform that hosts and deploys web apps, was compromised, and the hackers are attempting to sell stolen data. A person claiming to be a member of ShinyHunters, which was b...
-出典: https://www.theverge.com/tech/914723/vercel-hacked
+### Silicon Valley has forgotten what normal people want
+One of the most mortifying things about knowing a lot of techies is listening to them tell me excitedly about some very important discovery that they believe they have made. Recently, I ran into an ac...
+出典: https://www.theverge.com/tldr/915176/nft-metaverse-ai-weirdos
+
+### Fortnite developers can make AI characters now — just don&#8217;t try to date them
+Following last year's AI-powered Darth Vader in Fortnite that swore in a re-creation of James Earl Jones' voice, Epic Games is now letting Fortnite creators experiment with a new "conversations" tool ...
+出典: https://www.theverge.com/games/914963/fortnite-ai-characters-developers-conversations
+
+### Chinese tech workers are starting to train their AI doubles–and pushing back
+Tech workers in China are being instructed by their bosses to train AI agents to replace them—and it’s prompting a wave of soul-searching among otherwise enthusiastic early adopters.&#160; Earlier thi...
+出典: https://www.technologyreview.com/2026/04/20/1136149/chinese-tech-workers-ai-colleagues/
+
+
+## AI公式
+
+### OpenAI helps Hyatt advance AI among colleagues
+Hyatt deploys ChatGPT Enterprise across its global workforce, using GPT-5.4 and Codex to improve productivity, operations, and guest experiences.
+出典: https://openai.com/index/hyatt-advances-ai-with-chatgpt-enterprise
+
+
+## AI動画(日本語)
+
+### Claude Codeに社運を賭けます / AI人材を本気で育て上げる / Claude Codeを安易に導入する危険性 / 他のAIエージェントでダメな理由は？
+※概要欄でプレゼント無料配布中 ▼Claude Codeを安全に使う方法を2日間で習得できる企業研修 https://api.touchai.jp/r/youtube_webshokutv ※助成金適用で最大75%還元  経営者層でClaude Codeの使い方など相談したい方はXでDMください。 https://x.com/ds_nakajima ※ランチをおごってくれれば無料で教えます。  ▼...
+出典: https://www.youtube.com/watch?v=GS5wKJsqURU
+
+### 【ガチ検証】AIだけで本気で映画を作ってみた結果...
+▼動画内で紹介したプレゼントの受け取りは以下の公式LINEから https://liff.line.me/2006805073-rn36NG8b/landing?follow=%40933hyolt&amp;lp=hgc5uF&amp;liff_id=2006805073-rn36NG8b  ▼現在開催中のセミナーを確認する https://n1seminar-vsuoymjh.manus.spa...
+出典: https://www.youtube.com/watch?v=vdVKnbV_lFA
+
+### 月1億稼ぐAI事業【AI×アダルトで稼げるジャンル5選】 #shorts
+月1億も可能なAIインフルエンサー事業の仕組みを専門家が解説。演者キャスティングから収益化まで詳しく紹介します。  #AI収益化ラボ #AIインフルエンサー #AI副業 #フリーランス #副業収入 #shorts   ▼本編はこちら https://www.youtube.com/watch?v=FIaoK4gQTdA
+出典: https://www.youtube.com/shorts/anSWvvYSxJg
 
 
 ## AI国内
+
+### LINEヤフー、新AIエージェントを発表　Gemini、ChatGPTに「負けない強み」とは？
+LINEヤフーは4月20日、AIエージェント「Agent i」の提供を始めた。ChatGPTやGeminiに負けない強みとは何なのか。
+出典: https://www.itmedia.co.jp/business/articles/2604/21/news048.html
+
+### 生成AI導入　「どれがいい？」は機能より“条件”で考える
+生成AIを試したい。だが、「ChatGPT」「Claude」「Microsoft 365 Copilot」「Gemini」「NotebookLM」と選択肢が増えた現在、自社に最適なものを選ぶには時間も労力もかかるようになった。今回は連休中に気軽に確認できる“見取り図”として、誤解を恐れず大まかに整理する。
+出典: https://kn.itmedia.co.jp/kn/articles/2604/21/news026.html
+
+### Pythonの仮想環境パスが.venvに統一される？　PEP 832が提案される
+Pythonで仮想環境を作るときってどこに作っていますか？　ディレクトリ名をどうするか悩んでいませんか？　これを解決してくれるかもしれないPEPが提出されました。どんなものか、ちょっと見てみましょう。
+出典: https://atmarkit.itmedia.co.jp/ait/articles/2604/21/news007.html
+
+### LINEやYahoo!検索に謎のロボットアイコン登場、いったい何者？　正体は……
+4月20日、Yahoo!検索やLINEなどのUI上に、謎のロボットアイコンが登場した。その正体は……。
+出典: https://www.itmedia.co.jp/news/articles/2604/20/news094.html
+
+### スクエニ、マンガの「写植指定」をAIで効率化　試用編集者の100％が「継続利用したい」
+最適なフォントやサイズ、スタイル、配置の候補を編集者に提案。ストーリーの流れやセリフの感情を踏まえ、編集者が最終的な指定を判断する。
+出典: https://www.itmedia.co.jp/aiplus/articles/2604/20/news079.html
+
+### Anthropicとホワイトハウス、Mythosへの懸念高まりを受けて“仲直り”を模索か
+米政府とAnthropicのCEOが、最新モデルのサイバーセキュリティリスクを巡り会談した。国防総省との対立を経て、両者は信頼回復と安全確保に向けた協力を模索している可能性がある。
+出典: https://www.itmedia.co.jp/aiplus/articles/2604/20/news077.html
+
+### 無料の教材で「使えるAIスキル」を学べる　さくらインターネットがAI検定を開始
+さくらインターネットは認定資格の「さくらのAI検定」を開始し、実務でAIを使いこなす人材の育成を支援する。無償のオンライン教材を用意し、AIの基礎から実務的なスキルまで体系的に学べるようにした。
+出典: https://atmarkit.itmedia.co.jp/ait/articles/2604/20/news035.html
+
+### ExcelとPowerPointを行き来する手間解消　Claudeの「コンテキスト共有」と「スキル」で業務自動化
+Anthropicは「Claude for Excel」と「Claude for PowerPoint」を強化し、複数ファイル間でコンテキストを共有できる機能を導入した。定型ワークフローをワンクリックで実行する「スキル」機能も追加された。
+出典: https://atmarkit.itmedia.co.jp/ait/articles/2604/20/news024.html
+
+### Anthropicの新指標　AIの影響を受けにくい「3割の人々」の共通点は？
+Anthropicが公表した新指標によると、AIの影響を受けにくい人々が約3割存在する。この3割の人々の共通点と、具体的な職種とは。
+出典: https://www.itmedia.co.jp/enterprise/articles/2604/20/news037.html
+
+### Google検索「AIモード」に個人情報を入力しないで――立教大など、学内に注意喚起
+AIモードに入力した情報はGoogleのデータベースに蓄積され、AI学習に利用されるため、入力自体が情報漏えいになるとし、注意を呼び掛けている。
+出典: https://www.itmedia.co.jp/news/articles/2604/20/news069.html
 
 ### 中国人型ロボがハーフマラソンで50分台、人間の世界記録超え　昨年から1時間50分短縮
 中国・北京で19日、人型ロボットが走るハーフマラソン大会が開かれた。優勝タイムは50分26秒で、人間の男子世界記録である57分20秒を大幅に上回った。中国は、2026年を人型ロボットの「商業化元年」と位置付けており、新興産業で先頭集団を走っていると国内外に誇示した。
@@ -17,29 +87,20 @@ Vercel, a major development platform that hosts and deploys web apps, was compro
 中国で、PC上などでさまざまな作業を自律的にこなすAIを活用したソフトウェア「AIエージェント」の利用が今年に入り急拡大している。人間が関わらずに電子メールの自動返信といった作業を行うことができ、「24時間無休の個人秘書」などともてはやされている。中国IT大手のみならず地方政府も活用を後押しするが、個人情報漏洩（ろうえい）などの問題も浮かぶ。
 出典: https://www.itmedia.co.jp/news/articles/2604/20/news056.html
 
-### 1300ページを読んでExcelに整理――地道な開示作業、AIで工数93％削減　NEC流の業務改革方法とは
-有価証券報告書における「サステナビリティー情報」の開示業務が義務化されるのを前に、NECはAI活用によって開示業務の工数を93％削減したと発表した。その仕組みとは。
-出典: https://www.itmedia.co.jp/business/articles/2604/20/news021.html
+
+## SNS公式
+
+### Meta and CBRE Invest in American Jobs Through New Fiber Technician Training Program
+<div><img alt="" class="attachment-large size-large wp-post-image" height="501" src="https://about.fb.com/wp-content/uploads/2026/04/LevelUp-Fiber_Thumbnail-1.gif?fit=890%2C501" style="margin-bottom: ...
+出典: https://about.fb.com/news/2026/04/meta-cbre-invest-in-american-jobs-new-fiber-technician-training-program/
+
+### Helping families across Europe build healthy digital habits
+<img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/youtube-kids-account-login.max-600x600.format-webp.webp" />YouTube’s Global Head of Health shares five tips for navigating the...
+出典: https://blog.youtube/news-and-events/new-youtube-shorts-parental-controls-europe/
 
 
-## SNS動向
+## SNS運用
 
-### Judge sides with plaintiffs in case against online ICE trackers
-<p>A Facebook group and an app that used publicly available information to highlight immigration agent activity have been granted a preliminary injunction, per Engadget.</p>
-出典: https://www.socialmediatoday.com/news/judge-sides-with-plaintiffs-in-case-against-online-ice-trackers/817905/
-
-### Threads will add Broadcast Channels-style feature called live chats
-<p>Threads Chief Connor Hayes announced the update at Coachella and said it would be available in the app over the next few weeks.</p>
-出典: https://www.socialmediatoday.com/news/threads-will-add-broadcast-channels-style-feature-called-live-chats/817904/
-
-### TikTok’s US joint venture gains security infrastructure certification
-<p>The latest milestone, from the International Organization for Standardization, verifies that the app&rsquo;s data management structures meet global benchmarks.</p>
-出典: https://www.socialmediatoday.com/news/tiktoks-us-joint-venture-gains-security-infrastructure-certification/817903/
-
-### YouTube adds custom timestamp sharing for mobile
-<p>The change means the video sharing platform is also moving away from Clips, leaving users to seek out third-party advanced clipping tools.</p>
-出典: https://www.socialmediatoday.com/news/youtube-adds-custom-timestamp-sharing-for-mobile/817902/
-
-### The latest xAI updates highlight major development push
-<p>New API enhancements are designed to make the company more profitable, but it&rsquo;s hard to keep pace with the massive cost of artificial intelligence development.&nbsp;</p>
-出典: https://www.socialmediatoday.com/news/the-latest-xai-updates-highlight-major-development-push/817901/
+### How to Reset Your Instagram Algorithm When Your Feed Needs a Fresh Start
+Instagram has introduced a way to reset your recommendations — giving your home, reels, and explore feeds a fresh start. Here's how to do it.
+出典: https://buffer.com/resources/reset-instagram-algorithm/

@@ -1,0 +1,766 @@
+# AI情報収集 全ソース統合版 2026-04-20
+# 生成日時: 2026-04-20 02:46:48
+# 記事数: 125件
+
+このファイルは NotebookLM などに丸ごと投入して使うことを想定しています。
+
+======================================================================
+
+## カテゴリ: AIニュース (20件)
+
+### [The Verge AI] Cloud development platform Vercel was hacked
+- URL: https://www.theverge.com/tech/914723/vercel-hacked
+- 取得: 2026-04-20 02:46:45
+- 公開: 2026-04-19T15:54:52-04:00
+- 原文抜粋: Vercel, a major development platform that hosts and deploys web apps, was compromised, and the hackers are attempting to sell stolen data. A person claiming to be a member of ShinyHunters, which was behind the recent hack of Rockstar Games, posted some data online, including employee names, email ad...
+
+### [The Verge AI] The RAM shortage could last years
+- URL: https://www.theverge.com/ai-artificial-intelligence/914672/the-ram-shortage-could-last-years
+- 取得: 2026-04-20 02:46:45
+- 公開: 2026-04-18T17:08:45-04:00
+- 原文抜粋: According to Nikkei Asia, even as suppliers ramp up DRAM production, manufacturers are only expected to meet 60 percent of demand by the end of 2027. SK Group chairman has even said that shortages could last until 2030. The world's largest memory makers - Samsung, SK Hynix, and Micron - are all work...
+
+### [The Verge AI] OpenAI’s former Sora boss is leaving
+- URL: https://www.theverge.com/ai-artificial-intelligence/914463/openai-sora-bill-peebles-kevin-weil-leaving-departing
+- 取得: 2026-04-20 02:46:45
+- 公開: 2026-04-17T17:13:25-04:00
+- 原文抜粋: Last month, OpenAI gave up on its Sora video generation tool, and on Friday, the Sora team's leader, Bill Peebles, announced that he is leaving the company. OpenAI has been shifting its priorities as part of an effort to avoid "side quests," and Peebles' departure is just one of many recent changes ...
+
+### [The Verge AI] Should you stare into Sam Altman&#8217;s orb before your next date?
+- URL: https://www.theverge.com/ai-artificial-intelligence/914385/world-id-tinder-identity-verifying-orb
+- 取得: 2026-04-20 02:46:45
+- 公開: 2026-04-17T16:42:47-04:00
+- 原文抜粋: Tinder users who prove they're a real person by visiting an identity-verifying orb will soon be able to get five free boosts in the app - and it's just the latest service to embrace the orb. World, which was co-founded by OpenAI CEO Sam Altman, initially tested Tinder verification using its facial s...
+
+### [The Verge AI] Anthropic’s new cybersecurity model could get it back in the government’s good graces
+- URL: https://www.theverge.com/ai-artificial-intelligence/914229/tides-turning-anthropic-trump-administration-cybersecurity-mythos-preview
+- 取得: 2026-04-20 02:46:45
+- 公開: 2026-04-17T16:14:21-04:00
+- 原文抜粋: The Trump administration has spent nearly two months fighting with AI company Anthropic. It's dubbed the company a "RADICAL LEFT, WOKE COMPANY" full of "Leftwing nut jobs" and a menace to national security. But some of the ice may reportedly be melting between the two, thanks to Anthropic's buzzy ne...
+
+### [The Verge AI] This charming gadget writes bad AI poetry
+- URL: https://www.theverge.com/gadgets/913981/poetry-camera-ai-hands-on
+- 取得: 2026-04-20 02:46:45
+- 公開: 2026-04-17T13:30:00-04:00
+- 原文抜粋: I've never been as charmed and frustrated by one gadget as I have with the Poetry Camera. It's a delightful object. White and cherry red with a color-matched woven strap, it looks playful and adorably lo-fi. If I saw it on a store shelf, I'd absolutely pick it up. But aside from obviously appealing,...
+
+### [The Verge AI] Dairy Queen is putting an AI chatbot in its drive-thrus
+- URL: https://www.theverge.com/ai-artificial-intelligence/913928/dairy-queen-ai-drive-thru-presto
+- 取得: 2026-04-20 02:46:45
+- 公開: 2026-04-17T11:46:37-04:00
+- 原文抜粋: Dairy Queen is becoming the latest fast food chain to get in on AI, as it's bringing a chatbot to dozens of its drive-thrus across the US and Canada. It aims to help speed up drive-thru service and "encourage customers to add more food to their orders," according to The Wall Street Journal. Followin...
+
+### [The Verge AI] The ‘AI is inevitable’ trap
+- URL: https://www.theverge.com/podcast/913792/ai-divide-sam-altman-vergecast
+- 取得: 2026-04-20 02:46:45
+- 公開: 2026-04-17T09:24:34-04:00
+- 原文抜粋: In the latest sign of AI silly season, Allbirds, the shoe company, told the world it was now an AI company and briefly managed to septuple its stock price. The Newbird AI story is really just one of a bunch of things this week that made us wonder: have we reached the peak of AI, [&#8230;]
+
+### [The Verge AI] OpenAI’s big Codex update is a direct shot at Claude Code
+- URL: https://www.theverge.com/ai-artificial-intelligence/913034/openai-codex-updates-use-macos
+- 取得: 2026-04-20 02:46:45
+- 公開: 2026-04-16T13:00:00-04:00
+- 原文抜粋: OpenAI is beefing up its agentic coding and development system, Codex, with a suite of updates that let it use your computer, generate images, and remember from past experiences. The package of updates comes as OpenAI's rivalry with Anthropic intensifies, following the stellar successes of Claude Co...
+
+### [The Verge AI] Google’s AI Mode update lets you open links without leaving the page
+- URL: https://www.theverge.com/tech/913109/google-ai-mode-tabs-sources
+- 取得: 2026-04-20 02:46:45
+- 公開: 2026-04-16T13:00:00-04:00
+- 原文抜粋: Google is upgrading AI Mode in Chrome with a new feature that will allow you to open links to sources alongside your chat. Now, instead of automatically opening a new tab, clicking a source will open the website side by side with AI Mode, allowing you to ask follow-up questions about what's on the p...
+
+### [MIT Technology Review AI] How robots learn: A brief, contemporary history
+- URL: https://www.technologyreview.com/2026/04/17/1135416/how-robots-learn-brief-contemporary-history/
+- 取得: 2026-04-20 02:46:45
+- 公開: Fri, 17 Apr 2026 10:00:00 +0000
+- 原文抜粋: Roboticists used to dream big but build small. They’d hope to match or exceed the extraordinary complexity of the human body, and then they’d spend their career refining robotic arms for auto plants. Aim for C-3P0; end up with the Roomba.&#160; The real ambition for many of these researchers was the...
+
+### [MIT Technology Review AI] Making AI operational in constrained public sector environments
+- URL: https://www.technologyreview.com/2026/04/16/1135216/making-ai-operational-in-constrained-public-sector-environments/
+- 取得: 2026-04-20 02:46:45
+- 公開: Thu, 16 Apr 2026 13:00:00 +0000
+- 原文抜粋: The AI boom has hit across industries, and public sector organizations are facing pressure to accelerate adoption. At the same time, government institutions face distinct constraints around security, governance, and operations that set them apart from their business counterparts. For this reason, pu...
+
+### [MIT Technology Review AI] Treating enterprise AI as an operating layer
+- URL: https://www.technologyreview.com/2026/04/16/1135554/treating-enterprise-ai-as-an-operating-layer/
+- 取得: 2026-04-20 02:46:45
+- 公開: Thu, 16 Apr 2026 13:00:00 +0000
+- 原文抜粋: There’s a fault line running through enterprise AI, and it’s not the one getting the most attention. The public conversation still tracks foundation models and benchmarks—GPT versus Gemini, reasoning scores, and marginal capability gains. But in practice, the more durable advantage is structural: wh...
+
+### [MIT Technology Review AI] Why having “humans in the loop” in an AI war is an illusion
+- URL: https://www.technologyreview.com/2026/04/16/1136029/humans-in-the-loop-ai-war-illusion/
+- 取得: 2026-04-20 02:46:45
+- 公開: Thu, 16 Apr 2026 12:00:00 +0000
+- 原文抜粋: The availability of artificial intelligence for use in warfare is at the center of a legal battle between Anthropic and the Pentagon. This debate has become urgent, with AI playing a bigger role than ever before in the current conflict with Iran. AI is no longer just helping humans analyze intellige...
+
+### [MIT Technology Review AI] Building trust in the AI era with privacy-led UX
+- URL: https://www.technologyreview.com/2026/04/15/1135530/building-trust-in-the-ai-era-with-privacy-led-ux/
+- 取得: 2026-04-20 02:46:45
+- 公開: Wed, 15 Apr 2026 06:00:00 +0000
+- 原文抜粋: The practice of privacy-led user experience (UX) is a design philosophy that treats transparency around data collection and usage as an integral part of the customer relationship. An undertapped opportunity in digital marketing, privacy-led UX treats user consent not as a tick-box compliance exercis...
+
+### [MIT Technology Review AI] Redefining the future of software engineering
+- URL: https://www.technologyreview.com/2026/04/14/1134397/redefining-the-future-of-software-engineering/
+- 取得: 2026-04-20 02:46:45
+- 公開: Tue, 14 Apr 2026 18:00:00 +0000
+- 原文抜粋: Software engineering has experienced two seismic shifts this century. First was the rise of the open source movement, which gradually made code accessible to developers and engineers everywhere. Second, the adoption of development operations (DevOps) and agile methodologies took software from siloed...
+
+### [MIT Technology Review AI] Coming soon: 10 Things That Matter in AI Right Now
+- URL: https://www.technologyreview.com/2026/04/14/1135298/coming-soon-10-things-that-matter-in-ai-right-now/
+- 取得: 2026-04-20 02:46:45
+- 公開: Tue, 14 Apr 2026 11:00:00 +0000
+- 原文抜粋: Each year we compile our 10 Breakthrough Technologies list, featuring our educated predictions for which technologies will have the biggest impact on how we live and work. This year, however, we had a dilemma. While our final picks encompass all our core coverage areas (energy, AI, and biotech, plus...
+
+### [MIT Technology Review AI] Why opinion on AI is so divided
+- URL: https://www.technologyreview.com/2026/04/13/1135720/why-opinion-on-ai-is-so-divided/
+- 取得: 2026-04-20 02:46:45
+- 公開: Mon, 13 Apr 2026 15:48:28 +0000
+- 原文抜粋: This story originally appeared in The Algorithm, our weekly newsletter on AI. To get stories like this in your inbox first, sign up here. In an industry that doesn’t stand still, Stanford’s AI Index, an annual roundup of key results and trends, is a chance to take a breath. (It’s a marathon, not a s...
+
+### [MIT Technology Review AI] Want to understand the current state of AI? Check out these charts.
+- URL: https://www.technologyreview.com/2026/04/13/1135675/want-to-understand-the-current-state-of-ai-check-out-these-charts/
+- 取得: 2026-04-20 02:46:45
+- 公開: Mon, 13 Apr 2026 13:00:00 +0000
+- 原文抜粋: If you’re following AI news, you’re probably getting whiplash. AI is a gold rush. AI is a bubble. AI is taking your job. AI can’t even read a clock. The 2026 AI Index from Stanford University’s Institute for Human-Centered Artificial Intelligence, AI’s annual report card, comes out today and cuts th...
+
+### [MIT Technology Review AI] Mustafa Suleyman: AI development won’t hit a wall anytime soon—here’s why
+- URL: https://www.technologyreview.com/2026/04/08/1135398/mustafa-suleyman-ai-future/
+- 取得: 2026-04-20 02:46:45
+- 公開: Wed, 08 Apr 2026 14:00:00 +0000
+- 原文抜粋: We evolved for a linear world. If you walk for an hour, you cover a certain distance. Walk for two hours and you cover double that distance. This intuition served us well on the savannah. But it catastrophically fails when confronting AI and the core exponential trends at its heart. From the time I ...
+
+======================================================================
+
+## カテゴリ: AI公式 (30件)
+
+### [OpenAI Blog] Codex for (almost) everything
+- URL: https://openai.com/index/codex-for-almost-everything
+- 取得: 2026-04-20 02:46:44
+- 公開: Thu, 16 Apr 2026 10:00:00 GMT
+- 原文抜粋: The updated Codex app for macOS and Windows adds computer use, in-app browsing, image generation, memory, and plugins to accelerate developer workflows.
+
+### [OpenAI Blog] Introducing GPT-Rosalind for life sciences research
+- URL: https://openai.com/index/introducing-gpt-rosalind
+- 取得: 2026-04-20 02:46:44
+- 公開: Thu, 16 Apr 2026 01:00:00 GMT
+- 原文抜粋: OpenAI introduces GPT-Rosalind, a frontier reasoning model built to accelerate drug discovery, genomics analysis, protein reasoning, and scientific research workflows.
+
+### [OpenAI Blog] Accelerating the cyber defense ecosystem that protects us all
+- URL: https://openai.com/index/accelerating-cyber-defense-ecosystem
+- 取得: 2026-04-20 02:46:44
+- 公開: Thu, 16 Apr 2026 00:00:00 GMT
+- 原文抜粋: Leading security firms and enterprises join OpenAI’s Trusted Access for Cyber, using GPT-5.4-Cyber and $10M in API grants to strengthen global cyber defense.
+
+### [OpenAI Blog] The next evolution of the Agents SDK
+- URL: https://openai.com/index/the-next-evolution-of-the-agents-sdk
+- 取得: 2026-04-20 02:46:44
+- 公開: Wed, 15 Apr 2026 10:00:00 GMT
+- 原文抜粋: OpenAI updates the Agents SDK with native sandbox execution and a model-native harness, helping developers build secure, long-running agents across files and tools.
+
+### [OpenAI Blog] Trusted access for the next era of cyber defense
+- URL: https://openai.com/index/scaling-trusted-access-for-cyber-defense
+- 取得: 2026-04-20 02:46:44
+- 公開: Tue, 14 Apr 2026 00:00:00 GMT
+- 原文抜粋: OpenAI expands its Trusted Access for Cyber program, introducing GPT-5.4-Cyber to vetted defenders and strengthening safeguards as AI cybersecurity capabilities advance.
+
+### [OpenAI Blog] Enterprises power agentic workflows in Cloudflare Agent Cloud with OpenAI
+- URL: https://openai.com/index/cloudflare-openai-agent-cloud
+- 取得: 2026-04-20 02:46:44
+- 公開: Mon, 13 Apr 2026 06:00:00 GMT
+- 原文抜粋: Cloudflare brings OpenAI’s GPT-5.4 and Codex to Agent Cloud, enabling enterprises to build, deploy, and scale AI agents for real-world tasks with speed and security.
+
+### [OpenAI Blog] Creating images with ChatGPT
+- URL: https://openai.com/academy/image-generation
+- 取得: 2026-04-20 02:46:44
+- 公開: Fri, 10 Apr 2026 00:00:00 GMT
+- 原文抜粋: Learn how to create and refine images with ChatGPT using clear prompts, iterate on designs, and generate high-quality visuals in minutes.
+
+### [OpenAI Blog] ChatGPT for research
+- URL: https://openai.com/academy/research
+- 取得: 2026-04-20 02:46:44
+- 公開: Fri, 10 Apr 2026 00:00:00 GMT
+- 原文抜粋: Learn how to use ChatGPT for research to gather sources, analyze information, and create structured, citation-backed insights.
+
+### [OpenAI Blog] Healthcare
+- URL: https://openai.com/academy/healthcare
+- 取得: 2026-04-20 02:46:44
+- 公開: Fri, 10 Apr 2026 00:00:00 GMT
+- 原文抜粋: Explore how clinicians use ChatGPT to support diagnosis, documentation, and patient care with secure, HIPAA-compliant AI tools.
+
+### [OpenAI Blog] Our response to the Axios developer tool compromise
+- URL: https://openai.com/index/axios-developer-tool-compromise
+- 取得: 2026-04-20 02:46:44
+- 公開: Fri, 10 Apr 2026 00:00:00 GMT
+- 原文抜粋: OpenAI responds to the Axios supply chain attack by rotating macOS code signing certificates, updating apps, and confirming no user data was compromised.
+
+### [OpenAI Blog] Using projects in ChatGPT
+- URL: https://openai.com/academy/projects
+- 取得: 2026-04-20 02:46:44
+- 公開: Fri, 10 Apr 2026 00:00:00 GMT
+- 原文抜粋: Learn how to use projects in ChatGPT to organize chats, files, and instructions, manage ongoing work, and collaborate more effectively.
+
+### [OpenAI Blog] Analyzing data with ChatGPT
+- URL: https://openai.com/academy/data-analysis
+- 取得: 2026-04-20 02:46:44
+- 公開: Fri, 10 Apr 2026 00:00:00 GMT
+- 原文抜粋: Learn how to analyze data with ChatGPT by exploring datasets, generating insights, creating visualizations, and turning findings into actionable decisions.
+
+### [OpenAI Blog] AI fundamentals
+- URL: https://openai.com/academy/what-is-ai
+- 取得: 2026-04-20 02:46:44
+- 公開: Fri, 10 Apr 2026 00:00:00 GMT
+- 原文抜粋: Learn what AI is, how it works, and how tools like ChatGPT use large language models. A clear, beginner-friendly guide to understanding artificial intelligence.
+
+### [OpenAI Blog] ChatGPT for operations teams
+- URL: https://openai.com/academy/operations
+- 取得: 2026-04-20 02:46:44
+- 公開: Fri, 10 Apr 2026 00:00:00 GMT
+- 原文抜粋: Learn how operations teams use ChatGPT to streamline workflows, improve coordination, standardize processes, and drive faster execution.
+
+### [OpenAI Blog] Brainstorming with ChatGPT
+- URL: https://openai.com/academy/brainstorming
+- 取得: 2026-04-20 02:46:44
+- 公開: Fri, 10 Apr 2026 00:00:00 GMT
+- 原文抜粋: Learn how to use ChatGPT to brainstorm ideas, organize thinking, and turn rough concepts into structured, actionable plans.
+
+### [Google DeepMind] Gemini 3.1 Flash TTS: the next generation of expressive AI speech
+- URL: https://deepmind.google/blog/gemini-3-1-flash-tts-the-next-generation-of-expressive-ai-speech/
+- 取得: 2026-04-20 02:46:45
+- 公開: Wed, 15 Apr 2026 16:03:19 +0000
+- 原文抜粋: Our newest audio model introduces granular audio tags that give you precise control to direct AI speech for expressive audio generation.
+
+### [Google DeepMind] Gemini Robotics-ER 1.6: Powering real-world robotics tasks through enhanced embodied reasoning
+- URL: https://deepmind.google/blog/gemini-robotics-er-1-6/
+- 取得: 2026-04-20 02:46:45
+- 公開: Mon, 13 Apr 2026 15:52:13 +0000
+- 原文抜粋: Gemini Robotics ER 1.6: Enhancing spatial reasoning and multi-view understanding for autonomous robotics.
+
+### [Google DeepMind] Gemma 4: Byte for byte, the most capable open models
+- URL: https://deepmind.google/blog/gemma-4-byte-for-byte-the-most-capable-open-models/
+- 取得: 2026-04-20 02:46:45
+- 公開: Thu, 02 Apr 2026 16:00:49 +0000
+- 原文抜粋: Gemma 4: Our most intelligent open models to date, purpose-built for advanced reasoning and agentic workflows.
+
+### [Google DeepMind] Gemini 3.1 Flash Live: Making audio AI more natural and reliable
+- URL: https://deepmind.google/blog/gemini-3-1-flash-live-making-audio-ai-more-natural-and-reliable/
+- 取得: 2026-04-20 02:46:45
+- 公開: Thu, 26 Mar 2026 15:23:35 +0000
+- 原文抜粋: Our latest voice model has improved precision and lower latency to make voice interactions more fluid, natural and precise.
+
+### [Google DeepMind] Protecting people from harmful manipulation
+- URL: https://deepmind.google/blog/protecting-people-from-harmful-manipulation/
+- 取得: 2026-04-20 02:46:45
+- 公開: Wed, 25 Mar 2026 16:46:20 +0000
+- 原文抜粋: Google DeepMind researches AI's harmful manipulation risks across areas like finance and health, leading to new safety measures.
+
+### [Google DeepMind] Lyria 3 Pro: Create longer tracks in more
+- URL: https://deepmind.google/blog/lyria-3-pro-create-longer-tracks-in-more/
+- 取得: 2026-04-20 02:46:45
+- 公開: Wed, 25 Mar 2026 16:01:39 +0000
+- 原文抜粋: Introducing Lyria 3 Pro, which unlocks longer tracks with structural awareness. We’re also bringing Lyria to more Google products and surfaces.
+
+### [Google DeepMind] Measuring progress toward AGI: A cognitive framework
+- URL: https://deepmind.google/blog/measuring-progress-toward-agi-a-cognitive-framework/
+- 取得: 2026-04-20 02:46:45
+- 公開: Tue, 17 Mar 2026 16:03:47 +0000
+- 原文抜粋: We’re introducing a framework to measure progress toward AGI, and launching a Kaggle hackathon to build the relevant evaluations.
+
+### [Google DeepMind] From games to biology and beyond: 10 years of AlphaGo’s impact
+- URL: https://deepmind.google/blog/10-years-of-alphago/
+- 取得: 2026-04-20 02:46:45
+- 公開: Mon, 09 Mar 2026 13:52:36 +0000
+- 原文抜粋: Ten years since AlphaGo, we explore how it is catalyzing scientific discovery and paving a path to AGI.
+
+### [Google DeepMind] Gemini 3.1 Flash-Lite: Built for intelligence at scale
+- URL: https://deepmind.google/blog/gemini-3-1-flash-lite-built-for-intelligence-at-scale/
+- 取得: 2026-04-20 02:46:45
+- 公開: Tue, 03 Mar 2026 16:35:55 +0000
+- 原文抜粋: Gemini 3.1 Flash-Lite is our fastest and most cost-efficient Gemini 3 series model yet.
+
+### [Google DeepMind] Nano Banana 2: Combining Pro capabilities with lightning-fast speed
+- URL: https://deepmind.google/blog/nano-banana-2-combining-pro-capabilities-with-lightning-fast-speed/
+- 取得: 2026-04-20 02:46:45
+- 公開: Thu, 26 Feb 2026 16:01:50 +0000
+- 原文抜粋: Our latest image generation model offers advanced world knowledge, production ready specs, subject consistency and more, all at Flash speed.
+
+### [Google DeepMind] Gemini 3.1 Pro: A smarter model for your most complex tasks
+- URL: https://deepmind.google/blog/gemini-3-1-pro-a-smarter-model-for-your-most-complex-tasks/
+- 取得: 2026-04-20 02:46:45
+- 公開: Thu, 19 Feb 2026 16:06:14 +0000
+- 原文抜粋: 3.1 Pro is designed for tasks where a simple answer isn’t enough.
+
+### [Google DeepMind] A new way to express yourself: Gemini can now create music
+- URL: https://deepmind.google/blog/a-new-way-to-express-yourself-gemini-can-now-create-music/
+- 取得: 2026-04-20 02:46:45
+- 公開: Wed, 18 Feb 2026 16:01:38 +0000
+- 原文抜粋: The Gemini app now features our most advanced music generation model Lyria 3, empowering anyone to make 30-second tracks using text or images.
+
+### [Google DeepMind] Accelerating discovery in India through AI-powered science and education
+- URL: https://deepmind.google/blog/accelerating-discovery-in-india-through-ai-powered-science-and-education/
+- 取得: 2026-04-20 02:46:45
+- 公開: Tue, 17 Feb 2026 13:42:20 +0000
+- 原文抜粋: Google DeepMind brings National Partnerships for AI initiative to India, scaling AI for science and education
+
+### [Google DeepMind] Gemini 3 Deep Think: Advancing science, research and engineering
+- URL: https://deepmind.google/blog/gemini-3-deep-think-advancing-science-research-and-engineering/
+- 取得: 2026-04-20 02:46:45
+- 公開: Thu, 12 Feb 2026 16:15:09 +0000
+- 原文抜粋: Our most specialized reasoning mode is now updated to solve modern science, research and engineering challenges.
+
+### [Google DeepMind] Accelerating Mathematical and Scientific Discovery with Gemini Deep Think
+- URL: https://deepmind.google/blog/accelerating-mathematical-and-scientific-discovery-with-gemini-deep-think/
+- 取得: 2026-04-20 02:46:45
+- 公開: Mon, 09 Feb 2026 16:12:06 +0000
+- 原文抜粋: Research papers point to the growing impact of Deep Think across fields
+
+======================================================================
+
+## カテゴリ: AI国内 (20件)
+
+### [ITmedia AI+] 中国人型ロボがハーフマラソンで50分台、人間の世界記録超え　昨年から1時間50分短縮
+- URL: https://www.itmedia.co.jp/news/articles/2604/20/news057.html
+- 取得: 2026-04-20 02:46:46
+- 公開: Mon, 20 Apr 2026 10:12:00 +0900
+- 原文抜粋: 中国・北京で19日、人型ロボットが走るハーフマラソン大会が開かれた。優勝タイムは50分26秒で、人間の男子世界記録である57分20秒を大幅に上回った。中国は、2026年を人型ロボットの「商業化元年」と位置付けており、新興産業で先頭集団を走っていると国内外に誇示した。
+
+### [ITmedia AI+] 中国でAIエージェント急拡大　「24時間無休の秘書」活用　政府は情報漏えいリスク警戒
+- URL: https://www.itmedia.co.jp/news/articles/2604/20/news056.html
+- 取得: 2026-04-20 02:46:46
+- 公開: Mon, 20 Apr 2026 10:10:00 +0900
+- 原文抜粋: 中国で、PC上などでさまざまな作業を自律的にこなすAIを活用したソフトウェア「AIエージェント」の利用が今年に入り急拡大している。人間が関わらずに電子メールの自動返信といった作業を行うことができ、「24時間無休の個人秘書」などともてはやされている。中国IT大手のみならず地方政府も活用を後押しするが、個人情報漏洩（ろうえい）などの問題も浮かぶ。
+
+### [ITmedia AI+] 1300ページを読んでExcelに整理――地道な開示作業、AIで工数93％削減　NEC流の業務改革方法とは
+- URL: https://www.itmedia.co.jp/business/articles/2604/20/news021.html
+- 取得: 2026-04-20 02:46:46
+- 公開: Mon, 20 Apr 2026 07:00:00 +0900
+- 原文抜粋: 有価証券報告書における「サステナビリティー情報」の開示業務が義務化されるのを前に、NECはAI活用によって開示業務の工数を93％削減したと発表した。その仕組みとは。
+
+### [ITmedia AI+] 岸田元首相、公式YouTubeで自身のディープフェイク映像をセルフパロディー　「この画像は公式です」
+- URL: https://www.itmedia.co.jp/news/articles/2604/17/news137.html
+- 取得: 2026-04-20 02:46:46
+- 公開: Sat, 18 Apr 2026 08:00:00 +0900
+- 原文抜粋: 岸田文雄元首相の公式YouTubeチャンネルが4月17日に公開した動画が話題だ。フェイク動画やSNS工作に関する内容だが、そのサムネイルは2023年に話題になった、岸田元首相のディープフェイク動画を模したもの。Xでは岸田元首相に対し「鋼の心過ぎる」と注目を浴びている。
+
+### [ITmedia AI+] Anthropic、AIデザインツール「Claude Design」プレビュー公開──「Opus 4.7」搭載でコーディングツールとの連携も
+- URL: https://www.itmedia.co.jp/aiplus/articles/2604/18/news022.html
+- 取得: 2026-04-20 02:46:46
+- 公開: Sat, 18 Apr 2026 07:13:00 +0900
+- 原文抜粋: Anthropicは、AIデザインツール「Claude Designer」を発表した。最新モデル「Claude Opus 4.7」をベースに、テキストや既存コードからプロトタイプを生成できる。デザインシステムとの一貫性保持や共同編集、直感的な微調整機能を備え、コーディングツール「Claude Code」との連携により実装までをシームレスに完結させる。
+
+### [ITmedia AI+] 21％がAIを仕事で「毎日利用」　ナレッジワーカー対象、Notion調査
+- URL: https://www.itmedia.co.jp/aiplus/articles/2604/17/news130.html
+- 取得: 2026-04-20 02:46:46
+- 公開: Fri, 17 Apr 2026 19:13:00 +0900
+- 原文抜粋: Notionがナレッジワーカーを対象に実施した調査によると、21％が業務でAIを「ほぼ毎日」使うと回答した。一方、「出力が独自性に欠ける」などの課題も見えてきた。
+
+### [ITmedia AI+] 「なぜSalesforceにログインする必要があるのか」　“エージェント向けSalesforce”「Headless 360」発表
+- URL: https://www.itmedia.co.jp/aiplus/articles/2604/17/news118.html
+- 取得: 2026-04-20 02:46:46
+- 公開: Fri, 17 Apr 2026 16:00:00 +0900
+- 原文抜粋: Salesforceは同社サービスをAIエージェントを介して操作できるようにした「Salesforce Headless 360」を発表した。発表同日から複数機能を利用できる。
+
+### [ITmedia AI+] ソフトバンク、米新興のAIスマホを1年間の国内独占販売　“ユーザーの行動先読み”うたう「Natural AI Phone」
+- URL: https://www.itmedia.co.jp/news/articles/2604/17/news109.html
+- 取得: 2026-04-20 02:46:46
+- 公開: Fri, 17 Apr 2026 14:20:00 +0900
+- 原文抜粋: ソフトバンクは4月17日、AI機能搭載スマートフォン「Natural AI Phone」を国内で販売すると発表した。同日に予約受付を始め、24日から国内で1年間独占販売する。
+
+### [ITmedia AI+] 「Claude Opus 4.7」レート制限リセット　長文リクエスト時のバグ修正
+- URL: https://www.itmedia.co.jp/aiplus/articles/2604/17/news108.html
+- 取得: 2026-04-20 02:46:46
+- 公開: Fri, 17 Apr 2026 14:01:00 +0900
+- 原文抜粋: 有料ユーザー向けレート制限の調整機能にバグ。5時間／週間の使用制限をリセットした。
+
+### [ITmedia AI+] Cloudflare、全サービスに対応するCLI開発へ　AIエージェントへの最適化目指す
+- URL: https://www.itmedia.co.jp/news/articles/2604/17/news105.html
+- 取得: 2026-04-20 02:46:46
+- 公開: Fri, 17 Apr 2026 13:50:00 +0900
+- 原文抜粋: 米Cloudflareは、AIエージェントによる利用を最適化するため、同社が提供するすべてのサービスに対応したコマンドラインインターフェイス（CLI）を開発することを明らかにしました。
+
+### [ITmedia AI+] 「その言葉、カスハラかも？」をAIで検知　会話のテキスト化で証跡を残す
+- URL: https://atmarkit.itmedia.co.jp/ait/articles/2604/17/news045.html
+- 取得: 2026-04-20 02:46:46
+- 公開: Fri, 17 Apr 2026 13:00:00 +0900
+- 原文抜粋: プラスアルファ・コンサルティングは、対面接客におけるカスハラをAIで検知する「AIカスハラガード」の提供を開始した。会話を音声認識でテキスト化し、接客状況の可視化と証跡の確保を支援する。
+
+### [ITmedia AI+] スマホOS事業者の他社AI排除を警戒　公取委が実態調査報告書　米大手に懸念表明
+- URL: https://www.itmedia.co.jp/news/articles/2604/17/news100.html
+- 取得: 2026-04-20 02:46:46
+- 公開: Fri, 17 Apr 2026 12:53:00 +0900
+- 原文抜粋: 公正取引委員会は4月16日、生成AI市場の実態調査に関する報告書を公表した。スマートフォン端末の生成AIを使うアプリを開発しようとする企業に対し、基本ソフト（OS）を提供する企業がソフトウェアへのアクセスを制限すれば独禁法に抵触しかねないと示した。生成AIを利用した自動運転を巡っては、米中の大手企業などが国内企業との公正競争を阻害する懸念があると指摘した。
+
+### [ITmedia AI+] ChatGPTに「私に似たキャラ教えて」聞く遊び流行　ブラジル発、X翻訳で世界に拡散
+- URL: https://www.itmedia.co.jp/aiplus/articles/2604/17/news099.html
+- 取得: 2026-04-20 02:46:46
+- 公開: Fri, 17 Apr 2026 12:36:00 +0900
+- 原文抜粋: 「私に似たキャラクターを1人教えてください。名前だけ」とAIに聞く、ブラジル発の遊びが流行中。
+
+### [ITmedia AI+] 生成AIの動画・音声　深刻化する無断利用の権利侵害を整理　法務省が検討会設置
+- URL: https://www.itmedia.co.jp/news/articles/2604/17/news096.html
+- 取得: 2026-04-20 02:46:46
+- 公開: Fri, 17 Apr 2026 12:33:00 +0900
+- 原文抜粋: 有名人の顔や声に酷似する音声や動画が生成A）で無断作成される問題が深刻化していることを受け、法務省は4月17日、肖像や声などの利用を巡る民事責任を整理する検討会を設置することを明らかにした。現行法と判例を踏まえて具体例を検討し、権利侵害の有無や損害賠償請求の範囲などをガイドラインとして示す。
+
+### [ITmedia AI+] ソフトバンク、国産LLM「Sarashina」の業務支援サービスを6月開始　Oracleサービス使い自社DCで構築、“ソブリン性確保”うたう
+- URL: https://www.itmedia.co.jp/aiplus/articles/2604/17/news093.html
+- 取得: 2026-04-20 02:46:46
+- 公開: Fri, 17 Apr 2026 12:20:00 +0900
+- 原文抜粋: ソフトバンクはLLM「Sarashina」を活用した企業向けサービスを6月に提供開始する。国内データセンターで運用することで、データ主権を確保した環境でAIを機密情報と連携させられるという。
+
+### [ITmedia AI+] Claude Opus最新版「4.7」公開　「難しいコーディングも任せられる」「指示を無視せずちゃんと守る」　プロンプト再調整推奨
+- URL: https://www.itmedia.co.jp/news/articles/2604/17/news072.html
+- 取得: 2026-04-20 02:46:46
+- 公開: Fri, 17 Apr 2026 10:23:00 +0900
+- 原文抜粋: 「ユーザーからは、これまで綿密な監視が必要だった最も困難なコーディング作業を安心して任せられるとの声が寄せられている」「指示の順守能力が大幅に向上している」
+
+### [ITmedia AI+] OpenAI、「Codex」刷新　PCの直接操作に対応し汎用作業エージェントへ
+- URL: https://www.itmedia.co.jp/aiplus/articles/2604/17/news071.html
+- 取得: 2026-04-20 02:46:46
+- 公開: Fri, 17 Apr 2026 09:38:00 +0900
+- 原文抜粋: OpenAIは、コーディングエージェント「Codex」の大幅アップデートを発表した。画面認識によるPCの直接操作や、90以上の外部ツール連携に対応し、「汎用作業エージェント」へと進化。画像生成モデルとの統合やメモリ機能も追加され、UI設計から開発ワークフローの自動化まで、広範なタスク実行を支援する。
+
+### [ITmedia AI+] AI見積もりシステムの類似図面検索機能が3D CAD図面に対応
+- URL: https://monoist.itmedia.co.jp/mn/articles/2604/17/news017.html
+- 取得: 2026-04-20 02:46:46
+- 公開: Fri, 17 Apr 2026 09:00:00 +0900
+- 原文抜粋: 匠技研工業が提供するAI見積もりシステム「匠フォース」の類似図面検索機能が、3D CAD図面への対応を開始した。2Dと3D図面の混在環境で、閲覧から検索まで一元サポートできる。
+
+### [ITmedia AI+] AIとデータを企業の壁越えて共有する「AIスペース」構想　実現に向けてソフトバンク、富士通など団体設立
+- URL: https://www.itmedia.co.jp/aiplus/articles/2604/17/news060.html
+- 取得: 2026-04-20 02:46:46
+- 公開: Fri, 17 Apr 2026 08:30:00 +0900
+- 原文抜粋: ソフトバンクなど産学8団体は、分散したAIとデータを安全に連携させる社会基盤「AIスペース」の実現を目指す「xIPFコンソーシアム」を設立した。AIとデータを社会で広く活用する基盤の整備を図る。
+
+### [ITmedia AI+] 「190万行の表計算ファイル」と格闘していたカインズ、AI搭載のデータ基盤で発注・在庫管理を自動化
+- URL: https://www.itmedia.co.jp/aiplus/articles/2604/17/news059.html
+- 取得: 2026-04-20 02:46:46
+- 公開: Fri, 17 Apr 2026 08:00:00 +0900
+- 原文抜粋: カインズはGoogle CloudのAIエージェントを活用したデータ基盤を導入した。需要予測データの処理を効率化し、自然言語による分析や在庫管理の最適化を内製化。現場のニーズに即した迅速な運用を可能にしたという。
+
+======================================================================
+
+## カテゴリ: AI業界 (15件)
+
+### [Hugging Face Blog] Building a Fast Multilingual OCR Model with Synthetic Data
+- URL: https://huggingface.co/blog/nvidia/nemotron-ocr-v2
+- 取得: 2026-04-20 02:46:45
+- 公開: Fri, 17 Apr 2026 16:17:55 GMT
+
+### [Hugging Face Blog] Ecom-RLVE: Adaptive Verifiable Environments for E-Commerce Conversational Agents
+- URL: https://huggingface.co/blog/ecom-rlve
+- 取得: 2026-04-20 02:46:45
+- 公開: Thu, 16 Apr 2026 00:00:00 GMT
+
+### [Hugging Face Blog] The PR you would have opened yourself
+- URL: https://huggingface.co/blog/transformers-to-mlx
+- 取得: 2026-04-20 02:46:45
+- 公開: Thu, 16 Apr 2026 00:00:00 GMT
+
+### [Hugging Face Blog] Training and Finetuning Multimodal Embedding & Reranker Models with Sentence Transformers
+- URL: https://huggingface.co/blog/train-multimodal-sentence-transformers
+- 取得: 2026-04-20 02:46:45
+- 公開: Thu, 16 Apr 2026 00:00:00 GMT
+
+### [Hugging Face Blog] Inside VAKRA: Reasoning, Tool Use, and Failure Modes of Agents
+- URL: https://huggingface.co/blog/ibm-research/vakra-benchmark-analysis
+- 取得: 2026-04-20 02:46:45
+- 公開: Wed, 15 Apr 2026 12:07:25 GMT
+
+### [Hugging Face Blog] Meet HoloTab by HCompany. Your AI browser companion.
+- URL: https://huggingface.co/blog/Hcompany/holotab
+- 取得: 2026-04-20 02:46:45
+- 公開: Wed, 15 Apr 2026 09:25:20 GMT
+
+### [Hugging Face Blog] Waypoint-1.5: Higher-Fidelity Interactive Worlds for Everyday GPUs
+- URL: https://huggingface.co/blog/waypoint-1-5
+- 取得: 2026-04-20 02:46:45
+- 公開: Thu, 09 Apr 2026 00:00:00 GMT
+
+### [Hugging Face Blog] Multimodal Embedding & Reranker Models with Sentence Transformers
+- URL: https://huggingface.co/blog/multimodal-sentence-transformers
+- 取得: 2026-04-20 02:46:45
+- 公開: Thu, 09 Apr 2026 00:00:00 GMT
+
+### [Hugging Face Blog] Safetensors is Joining the PyTorch Foundation
+- URL: https://huggingface.co/blog/safetensors-joins-pytorch-foundation
+- 取得: 2026-04-20 02:46:45
+- 公開: Wed, 08 Apr 2026 00:00:00 GMT
+
+### [Hugging Face Blog] Welcome Gemma 4: Frontier multimodal intelligence on device
+- URL: https://huggingface.co/blog/gemma4
+- 取得: 2026-04-20 02:46:45
+- 公開: Thu, 02 Apr 2026 00:00:00 GMT
+
+### [Hugging Face Blog] Falcon Perception
+- URL: https://huggingface.co/blog/tiiuae/falcon-perception
+- 取得: 2026-04-20 02:46:45
+- 公開: Wed, 01 Apr 2026 07:13:20 GMT
+
+### [Hugging Face Blog] Any Custom Frontend with Gradio's Backend
+- URL: https://huggingface.co/blog/introducing-gradio-server
+- 取得: 2026-04-20 02:46:45
+- 公開: Wed, 01 Apr 2026 00:00:00 GMT
+
+### [Hugging Face Blog] Granite 4.0 3B Vision: Compact Multimodal Intelligence for Enterprise Documents
+- URL: https://huggingface.co/blog/ibm-granite/granite-4-vision
+- 取得: 2026-04-20 02:46:45
+- 公開: Tue, 31 Mar 2026 15:10:41 GMT
+
+### [Hugging Face Blog] Training mRNA Language Models Across 25 Species for $165
+- URL: https://huggingface.co/blog/OpenMed/training-mrna-models-25-species
+- 取得: 2026-04-20 02:46:45
+- 公開: Tue, 31 Mar 2026 08:23:44 GMT
+
+### [Hugging Face Blog] TRL v1.0: Post-Training Library Built to Move with the Field
+- URL: https://huggingface.co/blog/trl-v1
+- 取得: 2026-04-20 02:46:45
+- 公開: Tue, 31 Mar 2026 00:00:00 GMT
+
+======================================================================
+
+## カテゴリ: SNS公式 (20件)
+
+### [Meta Newsroom] Now Rolling Out: Facebook’s Opt‑In Camera Roll Suggestions in the EU and UK
+- URL: https://about.fb.com/news/2026/04/now-rolling-out-facebooks-opt-in-camera-roll-suggestions-in-the-eu-and-uk/
+- 取得: 2026-04-20 02:46:46
+- 公開: Thu, 16 Apr 2026 10:00:45 +0000
+- 原文抜粋: <div><img alt="" class="attachment-large size-large wp-post-image" height="540" src="https://about.fb.com/wp-content/uploads/2026/04/GTM-Banner@3x.png?fit=960%2C540" style="margin-bottom: 15px;" width="960" /></div> <p>People in the EU and UK can now opt in to a new Facebook feature that surfaces ph...
+
+### [Meta Newsroom] Meta Partners With Broadcom to Co-Develop Custom AI Silicon
+- URL: https://about.fb.com/news/2026/04/meta-partners-with-broadcom-to-co-develop-custom-ai-silicon/
+- 取得: 2026-04-20 02:46:46
+- 公開: Tue, 14 Apr 2026 21:05:14 +0000
+- 原文抜粋: <div><img alt="" class="attachment-large size-large wp-post-image" height="501" src="https://about.fb.com/wp-content/uploads/2026/04/Meta_Broadcom_Thumbnail.jpg?fit=890%2C501" style="margin-bottom: 15px;" width="890" /></div> <p>We’re partnering with Broadcom to co-develop multiple generations of cu...
+
+### [Meta Newsroom] Instagram Expands Teen Accounts Inspired by 13+ Content Ratings
+- URL: https://about.fb.com/news/2026/04/instagram-expands-teen-accounts-inspired-by-13-content-ratings-2/
+- 取得: 2026-04-20 02:46:46
+- 公開: Thu, 09 Apr 2026 08:10:42 +0000
+- 原文抜粋: <div><img alt="" class="attachment-large size-large wp-post-image" height="501" src="https://about.fb.com/wp-content/uploads/2026/04/18Account_Highlight.png?fit=890%2C501" style="margin-bottom: 15px;" width="890" /></div> <p>Today, we’re announcing the expansion of Instagram’s age-appropriate 13+ co...
+
+### [Meta Newsroom] Instagram Expands Teen Accounts Inspired by 13+ Content Ratings
+- URL: https://about.fb.com/news/2026/04/instagram-expands-teen-accounts-inspired-by-13-content-ratings/
+- 取得: 2026-04-20 02:46:46
+- 公開: Thu, 09 Apr 2026 07:30:24 +0000
+- 原文抜粋: <div><img alt="" class="attachment-large size-large wp-post-image" height="540" src="https://about.fb.com/wp-content/uploads/2026/04/PG13Ratings_Header-1.jpg?fit=960%2C540" style="margin-bottom: 15px;" width="960" /></div> <p>Today, we’re announcing the international expansion of Instagram’s age-app...
+
+### [Meta Newsroom] Introducing Muse Spark: MSL’s First Model, Purpose-Built to Prioritize People
+- URL: https://about.fb.com/news/2026/04/introducing-muse-spark-meta-superintelligence-labs/
+- 取得: 2026-04-20 02:46:46
+- 公開: Wed, 08 Apr 2026 15:59:56 +0000
+- 原文抜粋: <div><img alt="" class="attachment-large size-large wp-post-image" height="501" src="https://about.fb.com/wp-content/uploads/2026/04/Introducing-Muse-Spark_Thumbnail.gif?fit=890%2C501" style="margin-bottom: 15px;" width="890" /></div> <p>Muse Spark is Meta's most powerful model yet — it currently po...
+
+### [Meta Newsroom] Can Europe Seize the AI Moment?
+- URL: https://about.fb.com/news/2026/04/can-europe-seize-the-ai-moment/
+- 取得: 2026-04-20 02:46:46
+- 公開: Tue, 07 Apr 2026 20:00:57 +0000
+- 原文抜粋: <div><img alt="" class="attachment-large size-large wp-post-image" height="768" src="https://about.fb.com/wp-content/uploads/2026/04/Joppe_2026-03-24_META-1.jpg?fit=960%2C768" style="margin-bottom: 15px;" width="960" /></div> <p>On March 24, Meta hosted ‘Build to Lead: The Brussels AI Symposium’ — b...
+
+### [Meta Newsroom] Introducing Our First AI Glasses Built For Prescriptions
+- URL: https://about.fb.com/news/2026/03/meta-ai-glasses-built-for-prescriptions/
+- 取得: 2026-04-20 02:46:46
+- 公開: Tue, 31 Mar 2026 13:00:01 +0000
+- 原文抜粋: <div><img alt="" class="attachment-large size-large wp-post-image" height="501" src="https://about.fb.com/wp-content/uploads/2026/03/Introducing-Our-First-AI-Glasses-Built-For-Prescriptions_Thumbnail.gif?fit=890%2C501" style="margin-bottom: 15px;" width="890" /></div> <p>Our newest Ray-Ban Meta glas...
+
+### [Meta Newsroom] How AI Is Ushering in the Next Era of Risk Review at Meta
+- URL: https://about.fb.com/news/2026/03/how-ai-is-ushering-in-the-next-era-of-risk-review-at-meta/
+- 取得: 2026-04-20 02:46:46
+- 公開: Tue, 31 Mar 2026 12:00:07 +0000
+- 原文抜粋: <div><img alt="" class="attachment-large size-large wp-post-image" height="501" src="https://about.fb.com/wp-content/uploads/2026/03/How-AI-is-Ushering-in-the-Next-Era-of-Risk-Review-at-Meta_Thumbnail.jpg?fit=890%2C501" style="margin-bottom: 15px;" width="890" /></div> <p>We've developed an AI-power...
+
+### [Meta Newsroom] WhatsApp Adds New Features to Simplify Storage, Switch Accounts, and More
+- URL: https://about.fb.com/news/2026/03/whatsapp-new-features-simplify-storage-switch-accounts/
+- 取得: 2026-04-20 02:46:46
+- 公開: Thu, 26 Mar 2026 13:30:53 +0000
+- 原文抜粋: <div><img alt="" class="attachment-large size-large wp-post-image" height="501" src="https://about.fb.com/wp-content/uploads/2026/03/WhatsApp-Feature-Roundup_Thumbnail.jpg?fit=890%2C501" style="margin-bottom: 15px;" width="890" /></div> <p>We’re introducing new WhatsApp features that make it even ea...
+
+### [Meta Newsroom] Meta Partners With Arm to Develop New Class of Data Center Silicon
+- URL: https://about.fb.com/news/2026/03/meta-partners-with-arm-to-develop-new-class-of-data-center-silicon/
+- 取得: 2026-04-20 02:46:46
+- 公開: Tue, 24 Mar 2026 17:15:11 +0000
+- 原文抜粋: <div><img alt="" class="attachment-large size-large wp-post-image" height="501" src="https://about.fb.com/wp-content/uploads/2026/03/arm-Partnership_Thumbnail.jpg?fit=890%2C501" style="margin-bottom: 15px;" width="890" /></div> <p>We’re partnering with Arm to develop a new class of CPUs purpose-buil...
+
+### [YouTube Creator Blog] Coachella 2026 weekend two YouTube preview
+- URL: https://blog.youtube/news-and-events/coachella-2026-weekend-two-preview/
+- 取得: 2026-04-20 02:46:46
+- 公開: Fri, 17 Apr 2026 16:00:00 +0000
+
+### [YouTube Creator Blog] Coachella 2026 weekend two YouTube livestream schedule
+- URL: https://blog.youtube/news-and-events/coachella-livestream-schedule-weekend-two-2026/
+- 取得: 2026-04-20 02:46:46
+- 公開: Thu, 16 Apr 2026 16:00:00 +0000
+
+### [YouTube Creator Blog] Top Coachella moments from the weekend one livestream
+- URL: https://blog.youtube/inside-youtube/coachella-weekend-one-highlights-youtube/
+- 取得: 2026-04-20 02:46:46
+- 公開: Wed, 15 Apr 2026 16:00:00 +0000
+
+### [YouTube Creator Blog] WHATMORE at Coachella 2026: From YouTube Foundry to the Gobi Stage
+- URL: https://blog.youtube/creator-and-artist-stories/youtube-whatmore-coachella/
+- 取得: 2026-04-20 02:46:46
+- 公開: Tue, 14 Apr 2026 16:00:00 +0000
+- 原文抜粋: <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/unnamed_1_vlyehPF.max-600x600.format-webp.webp" />This weekend WHATMORE made their Coachella debut after years of friendship and a vision for their music that is driving their breakout success.
+
+### [YouTube Creator Blog] How YouTube is helping Americans learn about U.S. history, science and innovation
+- URL: https://blog.youtube/news-and-events/americans-learn-us-history-science-innovation/
+- 取得: 2026-04-20 02:46:46
+- 公開: Tue, 14 Apr 2026 13:00:00 +0000
+- 原文抜粋: <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/America_250_-_Space.max-600x600.format-webp.webp" />YouTube provides a front-row seat to America's 250th anniversary of history, science, and innovation in the making, anchored by a deepened partnership with C-SPAN.
+
+### [YouTube Creator Blog] Four ways to level up your YouTube Live engagement
+- URL: https://blog.youtube/news-and-events/live-streaming-updates-monetization-tools/
+- 取得: 2026-04-20 02:46:46
+- 公開: Mon, 13 Apr 2026 15:00:00 +0000
+- 原文抜粋: Learn how to use new YouTube Live features to connect with viewers and increase your revenue. These updates include expanded gifting options, ad-free windows for support…
+
+### [YouTube Creator Blog] Coachella 2026 weekend 1 livestream schedule
+- URL: https://blog.youtube/news-and-events/coachella-livestream-schedule-weekend-one-2026/
+- 取得: 2026-04-20 02:46:46
+- 公開: Fri, 10 Apr 2026 15:00:00 +0000
+
+### [YouTube Creator Blog] Go behind the scenes with Germán Garmendia in YouTube’s new Channeling series
+- URL: https://blog.youtube/creator-and-artist-stories/german-garmendia-youtube-channeling/
+- 取得: 2026-04-20 02:46:46
+- 公開: Wed, 08 Apr 2026 16:00:00 +0000
+- 原文抜粋: <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/ChannelingJG_LaunchCarousel-Sli.max-600x600.format-webp.webp" />Learn how Germán Garmendia became a Guinness World Record holder and reached over 50 million subscribers on JuegaGerman. In the premiere of the new YouTube series...
+
+### [YouTube Creator Blog] Alan Chikin Chow celebrates 100 million subscribers with unique fan event
+- URL: https://blog.youtube/creator-and-artist-stories/alan-chikin-chow-100-million-subscribers-event/
+- 取得: 2026-04-20 02:46:46
+- 公開: Thu, 02 Apr 2026 19:00:00 +0000
+- 原文抜粋: <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/IMG_8985.max-600x600.format-webp.webp" />Alan Chikin Chow invited families to AU Studios for a creative school day to mark 100 million subscribers. People who follow the series joined the cast for acting and vi…
+
+### [YouTube Creator Blog] The ultimate guide to watching Coachella 2026 live on YouTube
+- URL: https://blog.youtube/news-and-events/watch-coachella-live-on-youtube/
+- 取得: 2026-04-20 02:46:46
+- 公開: Thu, 02 Apr 2026 15:00:00 +0000
+- 原文抜粋: Starting next Friday, April 10, we’re back with the most immersive Coachella livestream festival experience to date. Catch both weekends of Coachella, your choice of sev…
+
+======================================================================
+
+## カテゴリ: SNS動向 (10件)
+
+### [Social Media Today] Judge sides with plaintiffs in case against online ICE trackers
+- URL: https://www.socialmediatoday.com/news/judge-sides-with-plaintiffs-in-case-against-online-ice-trackers/817905/
+- 取得: 2026-04-20 02:46:46
+- 公開: Sun, 19 Apr 2026 17:10:45 -0400
+- 原文抜粋: <p>A Facebook group and an app that used publicly available information to highlight immigration agent activity have been granted a preliminary injunction, per Engadget.</p>
+
+### [Social Media Today] Threads will add Broadcast Channels-style feature called live chats
+- URL: https://www.socialmediatoday.com/news/threads-will-add-broadcast-channels-style-feature-called-live-chats/817904/
+- 取得: 2026-04-20 02:46:46
+- 公開: Sun, 19 Apr 2026 16:50:47 -0400
+- 原文抜粋: <p>Threads Chief Connor Hayes announced the update at Coachella and said it would be available in the app over the next few weeks.</p>
+
+### [Social Media Today] TikTok’s US joint venture gains security infrastructure certification
+- URL: https://www.socialmediatoday.com/news/tiktoks-us-joint-venture-gains-security-infrastructure-certification/817903/
+- 取得: 2026-04-20 02:46:46
+- 公開: Sun, 19 Apr 2026 16:41:02 -0400
+- 原文抜粋: <p>The latest milestone, from the International Organization for Standardization, verifies that the app&rsquo;s data management structures meet global benchmarks.</p>
+
+### [Social Media Today] YouTube adds custom timestamp sharing for mobile
+- URL: https://www.socialmediatoday.com/news/youtube-adds-custom-timestamp-sharing-for-mobile/817902/
+- 取得: 2026-04-20 02:46:46
+- 公開: Sun, 19 Apr 2026 16:34:44 -0400
+- 原文抜粋: <p>The change means the video sharing platform is also moving away from Clips, leaving users to seek out third-party advanced clipping tools.</p>
+
+### [Social Media Today] The latest xAI updates highlight major development push
+- URL: https://www.socialmediatoday.com/news/the-latest-xai-updates-highlight-major-development-push/817901/
+- 取得: 2026-04-20 02:46:46
+- 公開: Sun, 19 Apr 2026 16:30:43 -0400
+- 原文抜粋: <p>New API enhancements are designed to make the company more profitable, but it&rsquo;s hard to keep pace with the massive cost of artificial intelligence development.&nbsp;</p>
+
+### [Social Media Today] Facebook wants to scan users’ camera rolls for content
+- URL: https://www.socialmediatoday.com/news/facebook-wants-to-scan-users-camera-rolls-for-content/817777/
+- 取得: 2026-04-20 02:46:46
+- 公開: Thu, 16 Apr 2026 16:53:08 -0400
+- 原文抜粋: <p>A new opt-in feature is designed to mine devices for images that can be turned into postable collages and recaps.</p>
+
+### [Social Media Today] Threads updates reply format and web UI
+- URL: https://www.socialmediatoday.com/news/threads-updates-reply-format-and-web-ui/817775/
+- 取得: 2026-04-20 02:46:46
+- 公開: Thu, 16 Apr 2026 16:42:18 -0400
+- 原文抜粋: <p>The platform will now feature indented responses below posts, as well as a web version that more closely aligns with the app experience.</p>
+
+### [Social Media Today] Instagram expands Your Algorithm tool to Explore
+- URL: https://www.socialmediatoday.com/news/instagram-expands-your-algorithm-tool-to-explore/817772/
+- 取得: 2026-04-20 02:46:46
+- 公開: Thu, 16 Apr 2026 16:33:00 -0400
+- 原文抜粋: <p>The feature will now be available to all English-language users and will allow them greater capacity to control what the algorithm shows them.</p>
+
+### [Social Media Today] Meta raises the price of its Quest VR headsets
+- URL: https://www.socialmediatoday.com/news/meta-raises-the-price-of-its-quest-vr-headsets/817769/
+- 取得: 2026-04-20 02:46:46
+- 公開: Thu, 16 Apr 2026 16:19:12 -0400
+- 原文抜粋: <p>The company attributed the increases to rising hardware costs, but the move may also point to a larger strategy to step back from its metaverse plans.</p>
+
+### [Social Media Today] X launches new Cashtags format on iOS in the US and Canada
+- URL: https://www.socialmediatoday.com/news/x-formerly-twitter-adds-new-cashtag-format-market-analysis/817766/
+- 取得: 2026-04-20 02:46:46
+- 公開: Thu, 16 Apr 2026 16:10:30 -0400
+- 原文抜粋: <p>The feature gives users embedded market information with real-time prices and is another step toward creating a fully functional banking experience in the app.</p>
+
+======================================================================
+
+## カテゴリ: SNS運用 (10件)
+
+### [Buffer Blog] 13 Ways to Get More Views on YouTube in 2026 — Tried + Tested
+- URL: https://buffer.com/resources/how-to-get-more-views-on-youtube/
+- 取得: 2026-04-20 02:46:47
+- 公開: Thu, 16 Apr 2026 11:00:00 GMT
+- 原文抜粋: Struggling to get your YouTube videos noticed? A few small shifts can make a big difference. Learn 13 practical ways to boost your YouTube views.
+
+### [Buffer Blog] The 9 Best AI Image Generators of 2026 (+ Examples)
+- URL: https://buffer.com/resources/ai-image-generator/
+- 取得: 2026-04-20 02:46:47
+- 公開: Wed, 15 Apr 2026 05:00:00 GMT
+- 原文抜粋: Tried and tested: These AI image generators consistently delivered the best results. Here's a look at how they work.
+
+### [Buffer Blog] 13 Trending Sounds on Instagram in April 2026 (+ How to Use Them)
+- URL: https://buffer.com/resources/trending-audio-instagram/
+- 取得: 2026-04-20 02:46:47
+- 公開: Tue, 14 Apr 2026 08:00:00 GMT
+- 原文抜粋: Stop chasing the tail-end of Instagram audio trends — here are the latest trending songs on Instagram in April 2026.
+
+### [Buffer Blog] 13 Trending Songs on TikTok in April 2026 (+ How to Use Them)
+- URL: https://buffer.com/resources/trending-songs-tiktok/
+- 取得: 2026-04-20 02:46:47
+- 公開: Mon, 13 Apr 2026 09:00:00 GMT
+- 原文抜粋: An up-to-date list of the most viral songs and sounds on TikTok in April 2026 — and how to use them to boost your content.
+
+### [Buffer Blog] How to Make Money on Facebook in 2026
+- URL: https://buffer.com/resources/how-to-make-money-on-facebook/
+- 取得: 2026-04-20 02:46:47
+- 公開: Fri, 10 Apr 2026 12:14:31 GMT
+- 原文抜粋: Facebook paid creators nearly $3 billion in 2025, and new programs like Creator Fast Track are opening more doors. Here's how to make money on Facebook — from content monetization to brand deals.
+
+### [Buffer Blog] Yes, You Can Create Content: A Neurodivergent’s Guide to Getting Started
+- URL: https://buffer.com/resources/a-neurodivergents-guide-to-content-creation/
+- 取得: 2026-04-20 02:46:47
+- 公開: Thu, 09 Apr 2026 15:35:26 GMT
+- 原文抜粋: In this article, Jillian dives into the system that powers her content as a neurodivergent creator.
+
+### [Buffer Blog] Replying to Your Comments on Facebook Boosts Engagement
+- URL: https://buffer.com/resources/replying-to-your-comments-on-facebook-boosts-engagement/
+- 取得: 2026-04-20 02:46:47
+- 公開: Wed, 08 Apr 2026 11:00:27 GMT
+- 原文抜粋: Our analysis of 1 million+ Facebook posts found that replying to comments is linked to 9.5% more reactions. Here's the data and how to make it work for you.
+
+### [Buffer Blog] The 11 Best Social Media Analytics + Reporting Tools in 2026
+- URL: https://buffer.com/resources/best-social-media-analytics-tools/
+- 取得: 2026-04-20 02:46:47
+- 公開: Tue, 07 Apr 2026 10:00:00 GMT
+- 原文抜粋: Here are 11 tools that pull all your metrics together, across all your platforms — and help you make sense of all the numbers.
+
+### [Buffer Blog] 13 Ways to Get More Followers on Instagram in 2026 (Tried & Tested)
+- URL: https://buffer.com/resources/grow-on-instagram/
+- 取得: 2026-04-20 02:46:47
+- 公開: Thu, 02 Apr 2026 07:40:00 GMT
+- 原文抜粋: I have over 15,000 followers on Instagram, and I've helped grow Buffer's Instagram account to over 100K. Here are tried-and-tested tactics that genuinely work.
+
+### [Buffer Blog] Social Media Engagement: 11 Ways to Boost Yours + Why it Matters
+- URL: https://buffer.com/resources/social-media-engagement-guide/
+- 取得: 2026-04-20 02:46:47
+- 公開: Wed, 01 Apr 2026 06:00:00 GMT
+- 原文抜粋: Without engagement, social media is just media. In this article, you’ll learn nine actionable and authentic ways to boost your content’s engagement.
+
+======================================================================

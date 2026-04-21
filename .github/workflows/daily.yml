@@ -1,4 +1,4 @@
-name: AI情報収集 daily digest
+name: AI-watch daily digest
 
 on:
   schedule:
@@ -64,7 +64,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "変更なし"
           else
-            git commit -m "chore(ai-info): daily digest $(date -u +%Y-%m-%d)"
+            git commit -m "chore(ai-watch): daily digest $(date -u +%Y-%m-%d)"
             git push
           fi
 

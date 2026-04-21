@@ -1,5 +1,5 @@
 """
-AI情報収集 エントリーポイント。
+AI-watch エントリーポイント。
 
 使い方:
     python run.py                  # 過去24h の新着を収集・要約・NLM直貼り版を出力
@@ -50,7 +50,7 @@ def main():
     load_dotenv(ROOT.parent.parent / "agents_system" / ".env", override=False)
 
     print("=" * 60)
-    print(f" AI情報収集 開始 (直近 {args.hours}h)")
+    print(f" AI-watch 開始 (直近 {args.hours}h)")
     print("=" * 60)
 
     print("\n[1/4] ソース取得")

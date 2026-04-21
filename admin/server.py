@@ -127,7 +127,7 @@ def save_config(data: dict) -> None:
     )
 
 
-app = FastAPI(title="cclimb-intel")
+app = FastAPI(title="ai-watch")
 
 
 @app.get("/")

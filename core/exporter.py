@@ -83,7 +83,7 @@ def export_diff_report(
 
     total = len(new_items) + len(existing_items)
     lines = [
-        f"# AI情報収集 {date_str}",
+        f"# AI-watch {date_str}",
         "",
         f"> 生成日時: {time_str}",
         f"> 新着: {len(new_items)}件 / 継続: {len(existing_items)}件 / 合計: {total}件",
@@ -142,7 +142,7 @@ def export_nlm_paste(
     output_dir.mkdir(parents=True, exist_ok=True)
 
     lines: list[str] = []
-    lines.append(f"# AI情報収集 {date_str} (過去24時間・AI+SNSアルゴリズム動向)")
+    lines.append(f"# AI-watch {date_str} (過去24時間・AI+SNSアルゴリズム動向)")
     lines.append("")
 
     grouped = group_by_category(articles)
@@ -185,7 +185,7 @@ def export_full_source(
     output_dir.mkdir(parents=True, exist_ok=True)
 
     lines = [
-        f"# AI情報収集 全ソース統合版 {date_str}",
+        f"# AI-watch 全ソース統合版 {date_str}",
         f"# 生成日時: {time_str}",
         f"# 記事数: {len(all_items)}件",
         "",

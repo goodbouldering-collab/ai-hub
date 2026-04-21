@@ -1,4 +1,4 @@
-# AI情報収集
+# AI-watch
 
 AI情報とSNSアルゴリズム動向を自動収集・整理するパイプライン。
 RSS を中心に複数ソースから記事を集め、差分検出 → Claude API で要約 → NotebookLM 用 Markdown/TXT を出力する。
@@ -14,7 +14,7 @@ RSS を中心に複数ソースから記事を集め、差分検出 → Claude A
 ## セットアップ
 
 ```bash
-cd _generated/cclimb-intel
+cd AI-watch
 python -m venv .venv
 .venv\Scripts\activate            # Windows
 pip install -r requirements.txt

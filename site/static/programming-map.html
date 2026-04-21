@@ -457,6 +457,189 @@
   .ai-chip:hover .origin,
   .ai-chip.open .origin { display: block; }
   .ai-chip.open { border-left-color: #f59e0b; background: #fffbeb; }
+
+  /* ===== 用語タグをクリッカブルに ===== */
+  .tag[data-term] {
+    cursor: pointer;
+    position: relative;
+    transition: all .2s ease;
+  }
+  .tag[data-term]:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,.15);
+    filter: brightness(1.08);
+  }
+  .tag[data-term]::after {
+    content: "ⓘ";
+    margin-left: 5px;
+    font-size: 0.75em;
+    opacity: .6;
+  }
+  .tag[data-term]:hover::after { opacity: 1; }
+
+  /* ===== 用語モーダル ===== */
+  .term-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(5, 8, 20, 0.78);
+    backdrop-filter: blur(8px);
+    z-index: 9999;
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 16px;
+    overflow-y: auto;
+    opacity: 0;
+    transition: opacity .25s ease;
+  }
+  .term-modal-overlay.open {
+    display: flex;
+    opacity: 1;
+  }
+  .term-modal {
+    position: relative;
+    width: 100%;
+    max-width: 760px;
+    margin: auto;
+    background:
+      linear-gradient(180deg, rgba(20,24,48,0.96) 0%, rgba(14,18,38,0.98) 100%);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 22px;
+    padding: 36px 36px 32px;
+    color: #e8ebf5;
+    box-shadow:
+      0 30px 80px rgba(0,0,0,.6),
+      0 0 0 1px rgba(122,162,255,.08) inset;
+    transform: translateY(12px);
+    transition: transform .3s cubic-bezier(.2,.9,.3,1);
+  }
+  .term-modal-overlay.open .term-modal { transform: translateY(0); }
+  .term-modal .close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.14);
+    color: #cbd0e5;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .2s ease;
+  }
+  .term-modal .close:hover {
+    background: rgba(255,255,255,0.14);
+    color: #fff;
+    transform: rotate(90deg);
+  }
+  .term-modal .category {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: linear-gradient(100deg, rgba(122,162,255,.18), rgba(199,125,255,.18));
+    border: 1px solid rgba(199,125,255,.35);
+    color: #c9b7ff;
+    margin-bottom: 14px;
+  }
+  .term-modal h2 {
+    font-size: clamp(24px, 3.6vw, 34px);
+    font-weight: 800;
+    margin: 0 0 12px;
+    background: linear-gradient(100deg, var(--accent1), var(--accent2) 55%, var(--accent3));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    line-height: 1.2;
+  }
+  .term-modal .short {
+    font-size: 16px;
+    line-height: 1.75;
+    color: #d4d9ee;
+    padding: 14px 16px;
+    background: rgba(122,162,255,.08);
+    border-left: 3px solid var(--accent1);
+    border-radius: 8px;
+    margin-bottom: 22px;
+  }
+  .term-modal h3 {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    color: #8ea0d6;
+    margin: 22px 0 8px;
+    text-transform: uppercase;
+  }
+  .term-modal p {
+    font-size: 14.5px;
+    line-height: 1.85;
+    color: #cfd4e8;
+    margin: 0;
+  }
+  .term-modal .detail { font-size: 15px; }
+  .term-modal .related {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 6px;
+  }
+  .term-modal .related button {
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.14);
+    color: #c4cae0;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .term-modal .related button:hover {
+    background: rgba(122,162,255,.18);
+    border-color: var(--accent1);
+    color: #fff;
+  }
+  .term-modal .url-link {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--accent1);
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(122,162,255,.4);
+    padding-bottom: 1px;
+  }
+  .term-modal .url-link:hover { color: var(--accent3); border-color: var(--accent3); }
+  .term-modal .no-entry {
+    padding: 20px;
+    color: var(--ai-muted);
+    text-align: center;
+    font-size: 14px;
+  }
+  @media (max-width: 640px) {
+    .term-modal { padding: 28px 22px 24px; border-radius: 16px; }
+    .term-modal h2 { font-size: 22px; }
+    .term-modal .short { font-size: 14.5px; }
+  }
+
+  /* ヒント(最初の1回だけ表示) */
+  .term-hint {
+    max-width: 1200px;
+    margin: -10px auto 28px;
+    padding: 10px 18px;
+    font-size: 12.5px;
+    color: #c5cce5;
+    background: rgba(122,162,255,.10);
+    border: 1px solid rgba(122,162,255,.28);
+    border-radius: 12px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+  }
+  .term-hint .ic { margin-right: 6px; }
 </style>
 </head>
 <body>
@@ -469,6 +652,10 @@
 
 <h1>プログラミングマップ</h1>
 <p class="subtitle">環境構築 → 開発 → Git管理 → テスト → デプロイ → 運用監視</p>
+
+<div class="term-hint">
+  <span class="ic">💡</span>各カードの<strong>用語タグ</strong>をタップ／クリックすると、詳しい解説・使いどころ・関連用語が開きます
+</div>
 
 <!-- ステップ進捗バー -->
 <div class="progress-bar">
@@ -1549,6 +1736,132 @@
       }
     });
   })();
+</script>
+
+<!-- ===== 用語クリックポップアップ ===== -->
+<div class="term-modal-overlay" id="termModal" aria-hidden="true">
+  <div class="term-modal" role="dialog" aria-modal="true" aria-labelledby="termModalTitle">
+    <button class="close" type="button" aria-label="閉じる" id="termModalClose">×</button>
+    <div id="termModalBody">
+      <div class="no-entry">読み込み中…</div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const overlay = document.getElementById('termModal');
+  const body = document.getElementById('termModalBody');
+  const closeBtn = document.getElementById('termModalClose');
+  let dictionary = null;
+  let loadingPromise = null;
+
+  // 辞書を 1 回だけ非同期で取得
+  function ensureDict() {
+    if (dictionary) return Promise.resolve(dictionary);
+    if (loadingPromise) return loadingPromise;
+    loadingPromise = fetch('./term-dictionary.json', { cache: 'force-cache' })
+      .then(r => r.ok ? r.json() : {})
+      .then(j => { dictionary = j; return j; })
+      .catch(() => { dictionary = {}; return {}; });
+    return loadingPromise;
+  }
+
+  // 全タグに data-term と click handler を付与
+  function initTags() {
+    const tags = document.querySelectorAll('.tag');
+    tags.forEach(tag => {
+      const term = tag.textContent.trim();
+      tag.setAttribute('data-term', term);
+      tag.setAttribute('tabindex', '0');
+      tag.setAttribute('role', 'button');
+      tag.setAttribute('aria-label', term + ' の詳細を表示');
+      tag.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openModal(term);
+      });
+      tag.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openModal(term);
+        }
+      });
+    });
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({
+      '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'
+    }[c]));
+  }
+
+  function render(term, entry) {
+    if (!entry) {
+      return '<div class="no-entry">「' + escapeHtml(term) + '」の詳細は準備中です。</div>';
+    }
+    let html = '';
+    if (entry.category) html += '<div class="category">' + escapeHtml(entry.category) + '</div>';
+    html += '<h2 id="termModalTitle">' + escapeHtml(term) + '</h2>';
+    if (entry.short) html += '<div class="short">' + escapeHtml(entry.short) + '</div>';
+    if (entry.detail) {
+      html += '<h3>📖 詳しく</h3><p class="detail">' + escapeHtml(entry.detail) + '</p>';
+    }
+    if (entry.when) {
+      html += '<h3>🎯 使いどころ</h3><p>' + escapeHtml(entry.when) + '</p>';
+    }
+    if (entry.tip) {
+      html += '<h3>💡 ポイント / 落とし穴</h3><p>' + escapeHtml(entry.tip) + '</p>';
+    }
+    if (entry.related && entry.related.length) {
+      html += '<h3>🔗 関連用語</h3><div class="related">';
+      entry.related.forEach(r => {
+        html += '<button type="button" data-jump="' + escapeHtml(r) + '">' + escapeHtml(r) + '</button>';
+      });
+      html += '</div>';
+    }
+    if (entry.url) {
+      html += '<h3>🌐 参考リンク</h3><a class="url-link" href="' + escapeHtml(entry.url) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(entry.url) + ' ↗</a>';
+    }
+    return html;
+  }
+
+  function openModal(term) {
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    body.innerHTML = '<div class="no-entry">読み込み中…</div>';
+    ensureDict().then(dict => {
+      body.innerHTML = render(term, dict[term]);
+      // 関連用語へジャンプ
+      body.querySelectorAll('[data-jump]').forEach(btn => {
+        btn.addEventListener('click', () => openModal(btn.getAttribute('data-jump')));
+      });
+      // 最上段にスクロール
+      overlay.scrollTop = 0;
+    });
+  }
+
+  function closeModal() {
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal();
+  });
+
+  // 初期化
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTags);
+  } else {
+    initTags();
+  }
+})();
 </script>
 </body>
 </html>

@@ -476,6 +476,136 @@
     opacity: .6;
   }
   .tag[data-term]:hover::after { opacity: 1; }
+  .tag.starred { box-shadow: 0 0 0 2px #fbbf24 inset; }
+  .tag.starred::before {
+    content: "★";
+    color: #fbbf24;
+    margin-right: 4px;
+    font-size: 0.85em;
+  }
+  /* 検索絞り込みで非マッチ時 */
+  .item.dim { opacity: .22; transition: opacity .25s ease; }
+  .item { transition: opacity .25s ease; }
+
+  /* ===== 検索ツールバー ===== */
+  .term-toolbar {
+    max-width: 1200px;
+    margin: 0 auto 24px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    background: var(--ai-glass-bg);
+    border: 1px solid var(--ai-glass-border);
+    backdrop-filter: blur(14px) saturate(160%);
+    border-radius: 14px;
+  }
+  .term-search {
+    flex: 1 1 260px;
+    position: relative;
+  }
+  .term-search input {
+    width: 100%;
+    padding: 10px 36px 10px 38px;
+    background: rgba(10,13,26,0.55);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 10px;
+    color: #e8ebf5;
+    font-size: 14px;
+    outline: none;
+    transition: border-color .2s ease, box-shadow .2s ease;
+  }
+  .term-search input:focus {
+    border-color: var(--accent1);
+    box-shadow: 0 0 0 3px rgba(122,162,255,.2);
+  }
+  .term-search .ic {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #8ea0d6;
+    font-size: 14px;
+    pointer-events: none;
+  }
+  .term-search .clear {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: #cbd0e5;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1;
+    display: none;
+  }
+  .term-search.has-value .clear { display: block; }
+  .term-filters { display: flex; gap: 6px; flex-wrap: wrap; }
+  .term-filters button {
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.14);
+    color: #c4cae0;
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .term-filters button:hover { background: rgba(122,162,255,.15); color:#fff; }
+  .term-filters button.active {
+    background: linear-gradient(100deg, rgba(122,162,255,.3), rgba(199,125,255,.3));
+    border-color: rgba(199,125,255,.55);
+    color: #fff;
+  }
+  .term-count {
+    font-size: 12px;
+    color: var(--ai-muted);
+    white-space: nowrap;
+  }
+
+  /* ===== モーダルナビ(前後・お気に入り) ===== */
+  .term-modal-nav {
+    display: flex;
+    gap: 8px;
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255,255,255,.1);
+  }
+  .term-modal-nav button {
+    flex: 1;
+    padding: 10px 14px;
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.14);
+    color: #d4d9ee;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all .2s;
+  }
+  .term-modal-nav button:hover:not(:disabled) {
+    background: rgba(122,162,255,.18);
+    border-color: var(--accent1);
+    color: #fff;
+  }
+  .term-modal-nav button:disabled {
+    opacity: .4;
+    cursor: not-allowed;
+  }
+  .term-modal-nav button.fav {
+    flex: 0 0 auto;
+    min-width: 50px;
+  }
+  .term-modal-nav button.fav.on {
+    background: linear-gradient(100deg, rgba(251,191,36,.25), rgba(251,191,36,.1));
+    border-color: #fbbf24;
+    color: #fbbf24;
+  }
 
   /* ===== 用語モーダル ===== */
   .term-modal-overlay {
@@ -487,8 +617,9 @@
     display: none;
     align-items: flex-start;
     justify-content: center;
-    padding: 40px 16px;
+    padding: max(24px, env(safe-area-inset-top)) 16px max(24px, env(safe-area-inset-bottom));
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     opacity: 0;
     transition: opacity .25s ease;
   }
@@ -621,9 +752,15 @@
     font-size: 14px;
   }
   @media (max-width: 640px) {
-    .term-modal { padding: 28px 22px 24px; border-radius: 16px; }
+    .term-modal { padding: 28px 20px 22px; border-radius: 16px; }
     .term-modal h2 { font-size: 22px; }
     .term-modal .short { font-size: 14.5px; }
+    .term-modal .close { top: 10px; right: 10px; }
+    .term-modal-nav { flex-wrap: wrap; }
+    .term-modal-nav button { font-size: 12.5px; padding: 9px 10px; }
+    .term-toolbar { padding: 10px; }
+    .term-filters { gap: 4px; }
+    .term-filters button { padding: 5px 10px; font-size: 11.5px; }
   }
 
   /* ヒント(最初の1回だけ表示) */
@@ -655,6 +792,20 @@
 
 <div class="term-hint">
   <span class="ic">💡</span>各カードの<strong>用語タグ</strong>をタップ／クリックすると、詳しい解説・使いどころ・関連用語が開きます
+</div>
+
+<!-- ===== 用語検索 & 絞り込み ===== -->
+<div class="term-toolbar">
+  <div class="term-search" id="termSearchWrap">
+    <span class="ic">🔍</span>
+    <input type="search" id="termSearch" placeholder="用語を検索 (例: Next.js, CORS, ログ…)" autocomplete="off">
+    <button type="button" class="clear" id="termSearchClear" aria-label="クリア">×</button>
+  </div>
+  <div class="term-filters" id="termFilters">
+    <button type="button" data-filter="all" class="active">すべて</button>
+    <button type="button" data-filter="fav">★ お気に入り</button>
+  </div>
+  <div class="term-count" id="termCount"></div>
 </div>
 
 <!-- ステップ進捗バー -->
@@ -1753,10 +1904,44 @@
   const overlay = document.getElementById('termModal');
   const body = document.getElementById('termModalBody');
   const closeBtn = document.getElementById('termModalClose');
+  const searchWrap = document.getElementById('termSearchWrap');
+  const searchInput = document.getElementById('termSearch');
+  const searchClear = document.getElementById('termSearchClear');
+  const filters = document.getElementById('termFilters');
+  const countLabel = document.getElementById('termCount');
+
+  const FAV_KEY = 'aiwatch.pmap.favs';
   let dictionary = null;
   let loadingPromise = null;
+  let allTerms = [];        // ページ上の全タグ要素(表示順)
+  let termEls = new Map();  // term -> element
+  let currentTerm = null;
+  let currentFilter = 'all';
 
-  // 辞書を 1 回だけ非同期で取得
+  // ---- お気に入り ----
+  function loadFavs() {
+    try { return new Set(JSON.parse(localStorage.getItem(FAV_KEY) || '[]')); }
+    catch { return new Set(); }
+  }
+  function saveFavs(s) {
+    try { localStorage.setItem(FAV_KEY, JSON.stringify([...s])); } catch {}
+  }
+  function isFav(term) { return loadFavs().has(term); }
+  function toggleFav(term) {
+    const s = loadFavs();
+    if (s.has(term)) s.delete(term); else s.add(term);
+    saveFavs(s);
+    refreshStarMarks();
+    if (currentFilter === 'fav') applyFilter();
+  }
+  function refreshStarMarks() {
+    const favs = loadFavs();
+    termEls.forEach((el, term) => {
+      el.classList.toggle('starred', favs.has(term));
+    });
+  }
+
+  // ---- 辞書 ----
   function ensureDict() {
     if (dictionary) return Promise.resolve(dictionary);
     if (loadingPromise) return loadingPromise;
@@ -1767,11 +1952,13 @@
     return loadingPromise;
   }
 
-  // 全タグに data-term と click handler を付与
+  // ---- 初期化: タグ収集 ----
   function initTags() {
     const tags = document.querySelectorAll('.tag');
+    const seenFirst = new Map();
     tags.forEach(tag => {
       const term = tag.textContent.trim();
+      if (!term) return;
       tag.setAttribute('data-term', term);
       tag.setAttribute('tabindex', '0');
       tag.setAttribute('role', 'button');
@@ -1786,9 +1973,84 @@
           openModal(term);
         }
       });
+      // 同じ term が複数あっても最初のものを代表にする
+      if (!seenFirst.has(term)) {
+        seenFirst.set(term, tag);
+        allTerms.push(term);
+      }
+      termEls.set(term + '@@' + Array.from(document.querySelectorAll('[data-term="'+CSS.escape(term)+'"]')).length, tag);
     });
+    // 再構築(key を term そのものに戻す: Map に同名2つあると上書きされるので、複数要素管理)
+    termEls = new Map();
+    tags.forEach(tag => {
+      const term = tag.getAttribute('data-term');
+      if (!term) return;
+      if (!termEls.has(term)) termEls.set(term, []);
+      termEls.get(term).push(tag);
+    });
+    // termEls を「term -> 先頭要素」に簡略化(検索表示用の配列と星マーク更新が楽)
+    const flat = new Map();
+    termEls.forEach((els, term) => { flat.set(term, els[0]); });
+    termEls = flat;
+    refreshStarMarks();
+    updateCount();
   }
 
+  // ---- 検索 / フィルター ----
+  function updateCount(visible) {
+    const total = allTerms.length;
+    const v = typeof visible === 'number' ? visible : total;
+    countLabel.textContent = (v === total) ? (total + ' 用語') : (v + ' / ' + total + ' 用語');
+  }
+  function applyFilter() {
+    const q = searchInput.value.trim().toLowerCase();
+    const favs = loadFavs();
+    let visible = 0;
+    // 全 .item を舐めて、その中の .tag に合うかで表示制御
+    document.querySelectorAll('.item').forEach(item => {
+      const tag = item.querySelector('.tag[data-term]');
+      if (!tag) return;
+      const term = tag.getAttribute('data-term');
+      const desc = (item.querySelector('.desc')?.textContent || '').toLowerCase();
+      let show = true;
+      if (currentFilter === 'fav' && !favs.has(term)) show = false;
+      if (show && q) {
+        const hay = (term + ' ' + desc).toLowerCase();
+        if (!hay.includes(q)) show = false;
+      }
+      item.classList.toggle('dim', !show);
+      if (show) visible++;
+    });
+    updateCount(visible);
+  }
+
+  searchInput.addEventListener('input', () => {
+    searchWrap.classList.toggle('has-value', !!searchInput.value);
+    applyFilter();
+  });
+  searchClear.addEventListener('click', () => {
+    searchInput.value = '';
+    searchWrap.classList.remove('has-value');
+    applyFilter();
+    searchInput.focus();
+  });
+  filters.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      filters.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentFilter = btn.getAttribute('data-filter');
+      applyFilter();
+    });
+  });
+  // / キーで検索フォーカス
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '/' && !overlay.classList.contains('open') && document.activeElement !== searchInput) {
+      e.preventDefault();
+      searchInput.focus();
+    }
+  });
+
+  // ---- モーダル描画 ----
   function escapeHtml(s) {
     return String(s).replace(/[&<>"']/g, c => ({
       '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'
@@ -1797,21 +2059,15 @@
 
   function render(term, entry) {
     if (!entry) {
-      return '<div class="no-entry">「' + escapeHtml(term) + '」の詳細は準備中です。</div>';
+      return '<div class="no-entry">「' + escapeHtml(term) + '」の詳細は準備中です。</div>' + navHtml(term);
     }
     let html = '';
     if (entry.category) html += '<div class="category">' + escapeHtml(entry.category) + '</div>';
     html += '<h2 id="termModalTitle">' + escapeHtml(term) + '</h2>';
     if (entry.short) html += '<div class="short">' + escapeHtml(entry.short) + '</div>';
-    if (entry.detail) {
-      html += '<h3>📖 詳しく</h3><p class="detail">' + escapeHtml(entry.detail) + '</p>';
-    }
-    if (entry.when) {
-      html += '<h3>🎯 使いどころ</h3><p>' + escapeHtml(entry.when) + '</p>';
-    }
-    if (entry.tip) {
-      html += '<h3>💡 ポイント / 落とし穴</h3><p>' + escapeHtml(entry.tip) + '</p>';
-    }
+    if (entry.detail) html += '<h3>📖 詳しく</h3><p class="detail">' + escapeHtml(entry.detail) + '</p>';
+    if (entry.when) html += '<h3>🎯 使いどころ</h3><p>' + escapeHtml(entry.when) + '</p>';
+    if (entry.tip) html += '<h3>💡 ポイント / 落とし穴</h3><p>' + escapeHtml(entry.tip) + '</p>';
     if (entry.related && entry.related.length) {
       html += '<h3>🔗 関連用語</h3><div class="related">';
       entry.related.forEach(r => {
@@ -1822,21 +2078,52 @@
     if (entry.url) {
       html += '<h3>🌐 参考リンク</h3><a class="url-link" href="' + escapeHtml(entry.url) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(entry.url) + ' ↗</a>';
     }
+    html += navHtml(term);
     return html;
   }
 
+  function navHtml(term) {
+    const idx = allTerms.indexOf(term);
+    const prev = idx > 0 ? allTerms[idx - 1] : null;
+    const next = idx >= 0 && idx < allTerms.length - 1 ? allTerms[idx + 1] : null;
+    const fav = isFav(term);
+    return '<div class="term-modal-nav">'
+      + '<button type="button" data-prev="' + (prev ? escapeHtml(prev) : '') + '"' + (prev ? '' : ' disabled') + '>← ' + (prev ? escapeHtml(prev) : '先頭') + '</button>'
+      + '<button type="button" class="fav' + (fav ? ' on' : '') + '" data-fav="' + escapeHtml(term) + '" aria-label="お気に入り">' + (fav ? '★' : '☆') + '</button>'
+      + '<button type="button" data-next="' + (next ? escapeHtml(next) : '') + '"' + (next ? '' : ' disabled') + '>' + (next ? escapeHtml(next) : '末尾') + ' →</button>'
+      + '</div>';
+  }
+
   function openModal(term) {
+    currentTerm = term;
     overlay.classList.add('open');
     overlay.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
     body.innerHTML = '<div class="no-entry">読み込み中…</div>';
     ensureDict().then(dict => {
       body.innerHTML = render(term, dict[term]);
-      // 関連用語へジャンプ
       body.querySelectorAll('[data-jump]').forEach(btn => {
         btn.addEventListener('click', () => openModal(btn.getAttribute('data-jump')));
       });
-      // 最上段にスクロール
+      body.querySelectorAll('[data-prev]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const p = btn.getAttribute('data-prev');
+          if (p) openModal(p);
+        });
+      });
+      body.querySelectorAll('[data-next]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const n = btn.getAttribute('data-next');
+          if (n) openModal(n);
+        });
+      });
+      body.querySelectorAll('[data-fav]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          toggleFav(btn.getAttribute('data-fav'));
+          // 再描画してトグル反映
+          openModal(currentTerm);
+        });
+      });
       overlay.scrollTop = 0;
     });
   }
@@ -1852,10 +2139,19 @@
     if (e.target === overlay) closeModal();
   });
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal();
+    if (!overlay.classList.contains('open')) return;
+    if (e.key === 'Escape') closeModal();
+    else if (e.key === 'ArrowLeft') {
+      const i = allTerms.indexOf(currentTerm);
+      if (i > 0) openModal(allTerms[i - 1]);
+    } else if (e.key === 'ArrowRight') {
+      const i = allTerms.indexOf(currentTerm);
+      if (i >= 0 && i < allTerms.length - 1) openModal(allTerms[i + 1]);
+    } else if (e.key.toLowerCase() === 'f') {
+      if (currentTerm) { toggleFav(currentTerm); openModal(currentTerm); }
+    }
   });
 
-  // 初期化
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initTags);
   } else {

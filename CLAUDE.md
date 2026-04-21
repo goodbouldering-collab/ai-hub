@@ -29,6 +29,9 @@ RSS を中心に複数ソースから記事を集め、差分検出 → Claude A
 | `data/history.db` | SQLite の既取得ログ（差分検出の土台） |
 | `admin/server.py` | FastAPI 管理画面（ローカル 4001） |
 | `scripts/migrate_sqlite_to_supabase.py` | SQLite → Supabase へのマイグレーション |
+| `content/speaker.md` | 講師紹介（由井辰美）の編集ソース。ビルドで `speaker.html` になる |
+| `content/lectures/*.md` | 講習資料の編集ソース。ビルドで `lectures/<slug>.html` になる |
+| `content/assets/` | 画像・PDF。`./assets/xxx` で参照 |
 
 ## デプロイ構成
 
@@ -54,3 +57,10 @@ uvicorn admin.server:app --port 4001 --reload   # 管理画面
 - 日付入りの出力ファイルは上書きしない（NotebookLM 側がソースとして保持しているため）
 - `data/history.db` は commit back される前提。`.gitignore` で除外しない
 - 文字化け防止: グッぼる本店など EUC-JP ソースを HTML で取り込む場合は親 `CLAUDE.md` のルールに従って `iconv` 変換層を挟む
+
+## 管理画面について
+
+`admin/server.py` は FastAPI ベースの**ローカル専用**管理 UI。
+GitHub Pages / Render (static) は静的ホスティングなので、公開ナビから `/admin` リンクは外してある。
+ローカルで触るときは `uvicorn admin.server:app --port 4001 --reload` を起動して `http://localhost:4001/admin` にアクセスする。
+運用（記事収集の実行）は基本 GitHub Actions 任せで、管理画面は手元確認用。

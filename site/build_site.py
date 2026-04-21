@@ -446,9 +446,9 @@ def render_index(payload: dict, genres: list[dict]) -> str:
     parts.append(f"<p class='sub'>{date} ・ 今日の注目Top{total} ・ クリックで好みを学習</p>")
     parts.append(
         "<nav>"
+        "<a href='./speaker.html'>🎤 講師紹介</a> "
         "<a href='./archive.html'>📚 過去ログ</a> "
         "<a href='./programming-map.html'>📘 プログラミングマップ</a> "
-        "<a href='/admin'>⚙️ 管理画面</a> "
         "<button type='button' id='run-btn' class='run-btn'>🔄 巡回実行</button>"
         "<span id='run-status' class='run-status'></span>"
         "</nav>"
@@ -660,7 +660,7 @@ def render_archive(dates: list[str]) -> str:
     parts.append("<header>")
     parts.append("<h1>過去ログ</h1>")
     parts.append(f"<p class='sub'>アーカイブ {len(dates)}件</p>")
-    parts.append("<nav><a href='./index.html'>📰 最新に戻る</a> <a href='./programming-map.html'>📘 プログラミングマップ</a> <a href='/admin'>⚙️ 管理画面</a></nav>")
+    parts.append("<nav><a href='./index.html'>📰 最新に戻る</a> <a href='./speaker.html'>🎤 講師紹介</a> <a href='./programming-map.html'>📘 プログラミングマップ</a></nav>")
     parts.append("</header>")
     if dates:
         parts.append("<ul style='list-style:none;padding:0;margin:0'>")
@@ -677,6 +677,203 @@ def render_archive(dates: list[str]) -> str:
         parts.append("<p class='empty'>アーカイブはまだありません。</p>")
     parts.append("<footer>AI-watch</footer></div></body></html>")
     return "".join(parts)
+
+
+CONTENT_DIR = ROOT / "content"
+SPEAKER_MD = CONTENT_DIR / "speaker.md"
+LECTURES_DIR = CONTENT_DIR / "lectures"
+
+CONTENT_CSS = """
+.content-wrap {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 28px clamp(18px, 4vw, 40px);
+  backdrop-filter: blur(18px) saturate(160%);
+  box-shadow: 0 8px 32px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.08);
+  color: var(--text);
+  line-height: 1.85;
+}
+.content-wrap h1,
+.content-wrap h2,
+.content-wrap h3 {
+  color: var(--text);
+  font-weight: 800;
+  line-height: 1.35;
+  margin: 1.6em 0 .5em;
+}
+.content-wrap h1 {
+  font-size: clamp(24px, 4vw, 34px);
+  background: linear-gradient(100deg, var(--accent1), var(--accent2), var(--accent3));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 2px 18px rgba(122,162,255,.22));
+}
+.content-wrap h2 {
+  font-size: 20px;
+  padding: 10px 16px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(122,162,255,.12), rgba(199,125,255,.08));
+  border: 1px solid var(--glass-border);
+  background-clip: padding-box;
+}
+.content-wrap h3 { font-size: 15px; color: var(--accent1); letter-spacing: .02em; }
+.content-wrap p { margin: .6em 0; color: #d3d8ea; font-size: 14.5px; }
+.content-wrap ul,
+.content-wrap ol { margin: .4em 0 1em 1.3em; padding: 0; color: #d3d8ea; font-size: 14.5px; }
+.content-wrap li { margin: .2em 0; }
+.content-wrap a { color: var(--accent1); text-decoration: none; border-bottom: 1px dashed rgba(122,162,255,.35); transition: color .2s; }
+.content-wrap a:hover { color: var(--accent3); border-bottom-color: rgba(255,122,182,.55); }
+.content-wrap blockquote {
+  margin: 1em 0;
+  padding: 10px 16px;
+  border-left: 3px solid var(--accent2);
+  background: rgba(255,255,255,.04);
+  border-radius: 0 12px 12px 0;
+  color: var(--muted);
+  font-size: 13.5px;
+}
+.content-wrap code {
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  background: rgba(255,255,255,.08);
+  padding: 1px 6px;
+  border-radius: 6px;
+  font-size: .9em;
+  color: #ffd4ea;
+}
+.content-wrap strong { color: var(--text); }
+.speaker-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  align-items: center;
+  margin-bottom: 4px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.speaker-meta .role {
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(122,162,255,.3), rgba(199,125,255,.3));
+  color: var(--text);
+  font-weight: 700;
+}
+"""
+
+
+def _load_markdown():
+    import importlib
+    return importlib.import_module("markdown")
+
+
+def _parse_frontmatter(text: str) -> tuple[dict, str]:
+    if not text.startswith("---"):
+        return {}, text
+    try:
+        end = text.index("\n---", 3)
+    except ValueError:
+        return {}, text
+    fm_raw = text[3:end].strip()
+    body = text[end + 4:].lstrip("\n")
+    try:
+        meta = yaml.safe_load(fm_raw) or {}
+    except Exception:
+        meta = {}
+    return (meta if isinstance(meta, dict) else {}), body
+
+
+def render_content_page(title: str, meta: dict, body_html: str, nav_html: str) -> str:
+    parts: list[str] = []
+    parts.append("<!doctype html><html lang='ja'><head><meta charset='utf-8'>")
+    parts.append("<meta name='viewport' content='width=device-width,initial-scale=1'>")
+    parts.append(f"<title>{html.escape(title)} | AI-watch</title>")
+    parts.append(f"<style>{CSS}{CONTENT_CSS}</style></head><body><div class='container'>")
+    parts.append("<header>")
+    parts.append(f"<h1>{html.escape(title)}</h1>")
+    sub_bits: list[str] = []
+    if meta.get("role"):
+        sub_bits.append(f"<span class='role'>{html.escape(str(meta['role']))}</span>")
+    if meta.get("gen_by"):
+        sub_bits.append(f"<span>{html.escape(str(meta['gen_by']))}</span>")
+    if meta.get("profile_url"):
+        url = html.escape(str(meta["profile_url"]), quote=True)
+        sub_bits.append(f"<a href='{url}' target='_blank' rel='noopener'>プロフィール</a>")
+    if sub_bits:
+        parts.append("<div class='speaker-meta'>" + "".join(sub_bits) + "</div>")
+    parts.append(nav_html)
+    parts.append("</header>")
+    parts.append("<div class='content-wrap'>")
+    parts.append(body_html)
+    parts.append("</div>")
+    parts.append("<footer>AI-watch / Generated by Claude</footer>")
+    parts.append("</div></body></html>")
+    return "".join(parts)
+
+
+def build_speaker_page() -> bool:
+    if not SPEAKER_MD.exists():
+        return False
+    md = _load_markdown()
+    raw = SPEAKER_MD.read_text(encoding="utf-8")
+    meta, body = _parse_frontmatter(raw)
+    body_html = md.markdown(body, extensions=["extra", "sane_lists"])
+    title = meta.get("name") or "講師紹介"
+    nav = (
+        "<nav>"
+        "<a href='./index.html'>🏠 トップ</a> "
+        "<a href='./programming-map.html'>📘 プログラミングマップ</a> "
+        "<a href='./archive.html'>📚 過去ログ</a>"
+        "</nav>"
+    )
+    html_text = render_content_page(title, meta, body_html, nav)
+    (DIST / "speaker.html").write_text(html_text, encoding="utf-8")
+    return True
+
+
+def build_lectures() -> int:
+    if not LECTURES_DIR.exists():
+        return 0
+    md = _load_markdown()
+    out_dir = DIST / "lectures"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    count = 0
+    index_items: list[tuple[str, str, dict]] = []
+    for f in sorted(LECTURES_DIR.glob("*.md")):
+        raw = f.read_text(encoding="utf-8")
+        meta, body = _parse_frontmatter(raw)
+        body_html = md.markdown(body, extensions=["extra", "sane_lists"])
+        title = meta.get("title") or f.stem
+        nav = (
+            "<nav>"
+            "<a href='../index.html'>🏠 トップ</a> "
+            "<a href='../speaker.html'>🎤 講師紹介</a> "
+            "<a href='./index.html'>📝 資料一覧</a>"
+            "</nav>"
+        )
+        (out_dir / f"{f.stem}.html").write_text(
+            render_content_page(title, meta, body_html, nav),
+            encoding="utf-8",
+        )
+        index_items.append((f.stem, title, meta))
+        count += 1
+    if index_items:
+        lines = ["## 講習資料一覧", ""]
+        for slug, title, meta in index_items:
+            date = meta.get("date", "")
+            lines.append(f"- [{title}](./{slug}.html){f' — {date}' if date else ''}")
+        body_html = md.markdown("\n".join(lines), extensions=["extra", "sane_lists"])
+        nav = (
+            "<nav>"
+            "<a href='../index.html'>🏠 トップ</a> "
+            "<a href='../speaker.html'>🎤 講師紹介</a>"
+            "</nav>"
+        )
+        (out_dir / "index.html").write_text(
+            render_content_page("講習資料", {}, body_html, nav),
+            encoding="utf-8",
+        )
+    return count
 
 
 def copy_static() -> None:
@@ -707,6 +904,8 @@ def main() -> int:
         )
         (DIST / "archive.html").write_text(render_archive([]), encoding="utf-8")
         (DIST / ".nojekyll").write_text("", encoding="utf-8")
+        build_speaker_page()
+        build_lectures()
         return 0
 
     payload = json.loads(TOP10_JSON.read_text(encoding="utf-8"))
@@ -730,7 +929,15 @@ def main() -> int:
     (DIST / "archive.html").write_text(render_archive(dates), encoding="utf-8")
     (DIST / ".nojekyll").write_text("", encoding="utf-8")
 
-    print(f"[+] site built: {DIST} ({len(dates)} pages)")
+    speaker_built = build_speaker_page()
+    lectures_built = build_lectures()
+
+    print(
+        f"[+] site built: {DIST} ({len(dates)} archive pages"
+        + (", speaker.html" if speaker_built else "")
+        + (f", {lectures_built} lectures" if lectures_built else "")
+        + ")"
+    )
     return 0
 
 

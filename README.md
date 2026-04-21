@@ -29,7 +29,25 @@ pip install -r requirements.txt
 python run.py                 # 日次ダイジェスト (diff モード)
 python run.py --full          # 統合版 (NotebookLM 丸ごと投入用) も生成
 python run.py --no-summary    # Claude API を使わずタイトル＋原文抜粋だけ
+python site/build_site.py     # 静的サイトだけ再ビルド (speaker.html / lectures/ 含む)
 ```
+
+## 管理画面（ローカル専用）
+
+GitHub Pages は静的ホスティングなので、`/admin` はローカル起動時のみ利用できる。
+
+```bash
+uvicorn admin.server:app --host 127.0.0.1 --port 4001 --reload
+# → http://localhost:4001/admin
+```
+
+管理画面から巡回を走らせた場合は `site/dist/` も再ビルドされるが、Pages への反映は `git push` が必要。
+
+## 講師紹介・講習資料の編集
+
+- 講師紹介ページ: [content/speaker.md](content/speaker.md) を編集して `python site/build_site.py`
+- 講習資料を追加: `content/lectures/YYYY-MM-slug.md` を作成
+- 公開URL: `https://goodbouldering-collab.github.io/ai-watch/speaker.html`
 
 ## 出力ファイル
 

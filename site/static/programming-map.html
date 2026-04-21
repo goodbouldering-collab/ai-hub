@@ -3,28 +3,75 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>プログラミングマップ</title>
+<title>プログラミングマップ | AI-watch</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: 'Segoe UI', 'Hiragino Sans', sans-serif;
-    background: #f0f4f8;
-    color: #1e293b;
-    padding: 40px 20px;
+  :root {
+    --accent1:#7aa2ff;
+    --accent2:#c77dff;
+    --accent3:#ff7ab6;
+    --ai-muted:#aab1c5;
+    --ai-glass-bg:rgba(255,255,255,0.06);
+    --ai-glass-border:rgba(255,255,255,0.14);
   }
+  html, body { min-height: 100%; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+    background:
+      radial-gradient(1200px 800px at 15% -10%, rgba(122,162,255,.35), transparent 60%),
+      radial-gradient(900px 700px at 85% 10%, rgba(199,125,255,.28), transparent 60%),
+      radial-gradient(1000px 800px at 50% 110%, rgba(255,122,182,.22), transparent 60%),
+      linear-gradient(180deg, #0a0d1a 0%, #0d1126 50%, #0a0d1a 100%);
+    background-attachment: fixed;
+    color: #1e293b;
+    padding: 48px 20px 80px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== ページナビ (トップに戻る) ===== */
+  .page-nav {
+    max-width: 1200px;
+    margin: 0 auto 22px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .page-nav a {
+    padding: 8px 16px;
+    border-radius: 999px;
+    background: var(--ai-glass-bg);
+    border: 1px solid var(--ai-glass-border);
+    backdrop-filter: blur(14px) saturate(160%);
+    color: #f2f4fb;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .25s ease;
+  }
+  .page-nav a:hover { background: rgba(255,255,255,0.10); transform: translateY(-1px); }
 
   /* ===== タイトル ===== */
   h1 {
     text-align: center;
-    font-size: 2rem;
+    font-size: clamp(28px, 5vw, 42px);
     font-weight: 800;
-    margin-bottom: 4px;
-    color: #0f172a;
+    margin-bottom: 6px;
+    background: linear-gradient(100deg, var(--accent1) 0%, var(--accent2) 45%, var(--accent3) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 2px 20px rgba(122,162,255,.25));
+    background-size: 200% 100%;
+    animation: ai-shimmer 6s ease-in-out infinite;
+  }
+  @keyframes ai-shimmer {
+    0%,100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
   }
   .subtitle {
     text-align: center;
     font-size: 0.85rem;
-    color: #64748b;
+    color: var(--ai-muted);
+    letter-spacing: .04em;
     margin-bottom: 36px;
   }
 
@@ -413,6 +460,12 @@
 </style>
 </head>
 <body>
+
+<nav class="page-nav">
+  <a href="./index.html">🏠 トップ</a>
+  <a href="./speaker.html">🎤 講師紹介</a>
+  <a href="./archive.html">📚 過去ログ</a>
+</nav>
 
 <h1>プログラミングマップ</h1>
 <p class="subtitle">環境構築 → 開発 → Git管理 → テスト → デプロイ → 運用監視</p>

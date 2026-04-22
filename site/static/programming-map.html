@@ -383,22 +383,26 @@
     border: 1px solid #e2e8f0;
     border-left: 3px solid #7c3aed;
     border-radius: 7px;
-    padding: 7px 22px 7px 10px;
+    padding: 7px 26px 7px 10px;
     font-size: 0.72rem;
     color: #475569;
     line-height: 1.45;
-    cursor: help;
+    cursor: pointer;
+    transition: transform .15s, box-shadow .15s, border-color .15s;
   }
+  .ai-chip:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(124,58,237,.18); border-color: #c4b5fd; }
+  .ai-chip:focus-visible { outline: 2px solid #7c3aed; outline-offset: 2px; }
   .ai-chip::after {
-    content: "💡";
+    content: "ⓘ";
     position: absolute;
     top: 6px;
-    right: 7px;
-    font-size: 0.65rem;
-    opacity: 0.4;
-    transition: opacity .15s;
+    right: 8px;
+    font-size: 0.72rem;
+    color: #7c3aed;
+    opacity: 0.5;
+    transition: opacity .15s, transform .15s;
   }
-  .ai-chip:hover::after { opacity: 1; }
+  .ai-chip:hover::after { opacity: 1; transform: scale(1.15); }
   .ai-chip b {
     color: #1e293b;
     font-weight: 800;
@@ -2036,9 +2040,18 @@
       bindPopup(wrap, term);
     });
 
-    // 4. allTerms / termEls を構築(タグ→先頭要素、検索対象)
+    // 4. AIエンジニアリングの .ai-chip(<b>タイトル部分を用語として扱う)
+    document.querySelectorAll('.ai-chip').forEach(chip => {
+      const b = chip.querySelector('b');
+      if (!b) return;
+      const term = b.textContent.trim();
+      if (!term) return;
+      bindPopup(chip, term);
+    });
+
+    // 5. allTerms / termEls を構築(タグ＋チップ→先頭要素、検索対象)
     const seen = new Set();
-    document.querySelectorAll('.tag[data-term]').forEach(el => {
+    document.querySelectorAll('.tag[data-term], .ai-chip[data-term]').forEach(el => {
       const term = el.getAttribute('data-term');
       if (!seen.has(term)) {
         seen.add(term);
@@ -2046,7 +2059,7 @@
       }
     });
     termEls = new Map();
-    document.querySelectorAll('.tag[data-term]').forEach(el => {
+    document.querySelectorAll('.tag[data-term], .ai-chip[data-term]').forEach(el => {
       const term = el.getAttribute('data-term');
       if (!termEls.has(term)) termEls.set(term, el);
     });
@@ -2115,7 +2128,50 @@
     }[c]));
   }
 
+  // .ai-chip からフォールバックエントリを生成(辞書未整備の用語でもページ内の情報を拾って表示)
+  function fallbackFromChip(term) {
+    const chip = document.querySelector('.ai-chip[data-term="' + term.replace(/"/g, '\\"') + '"]');
+    if (!chip) return null;
+    // チップ直下の span(記号★/○/△) 直後のテキストノードが短文説明
+    let shortText = '';
+    let node = chip.firstChild;
+    let passedSpan = false;
+    while (node) {
+      if (node.nodeType === 1 && node.tagName === 'SPAN') passedSpan = true;
+      else if (passedSpan && node.nodeType === 3) {
+        shortText += node.textContent;
+      } else if (node.nodeType === 1 && node.classList && node.classList.contains('origin')) {
+        break;
+      }
+      node = node.nextSibling;
+    }
+    shortText = shortText.trim();
+    const origin = chip.querySelector('.origin');
+    let detail = '';
+    if (origin) {
+      // <em>語源</em> ...<i>覚え方: ...</i> の構造を整形
+      const em = origin.querySelector('em');
+      const i = origin.querySelector('i');
+      // origin の .textContent から「語源」「覚え方」表記を整える
+      detail = origin.textContent.replace(/^\s*語源/, '【語源】').replace(/覚え方:/, '\n【覚え方】').trim();
+    }
+    return {
+      category: 'AIエンジニアリング',
+      short: shortText || term,
+      detail: detail || null,
+      when: null,
+      tip: null,
+      related: [],
+      url: null
+    };
+  }
+
   function render(term, entry) {
+    if (!entry) {
+      // 辞書になければチップからフォールバック
+      const fb = fallbackFromChip(term);
+      if (fb) entry = fb;
+    }
     if (!entry) {
       return '<div class="no-entry">「' + escapeHtml(term) + '」の詳細は準備中です。</div>' + navHtml(term);
     }

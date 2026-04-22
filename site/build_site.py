@@ -8,6 +8,7 @@ outputs/top10.json を読み取り、静的 HTML サイトを生成する。
 from __future__ import annotations
 import html
 import json
+import os
 import re
 import shutil
 import sys
@@ -15,6 +16,8 @@ from datetime import datetime
 from pathlib import Path
 
 import yaml
+
+SITE_URL = os.environ.get("AIWATCH_SITE_URL", "https://goodbouldering-collab.github.io/ai-watch").rstrip("/")
 
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -440,6 +443,13 @@ def render_index(payload: dict, genres: list[dict]) -> str:
     parts.append("<!doctype html><html lang='ja'><head><meta charset='utf-8'>")
     parts.append("<meta name='viewport' content='width=device-width,initial-scale=1'>")
     parts.append(f"<title>AI-watch Top{total} / {date}</title>")
+    desc = f"AI情報とSNSアルゴリズム動向を毎朝要約・ランキング。{date} のTop{total}を掲載。"
+    parts.append(f"<meta name='description' content='{html.escape(desc, quote=True)}'>")
+    parts.append(f"<link rel='canonical' href='{html.escape(SITE_URL + '/index.html', quote=True)}'>")
+    parts.append(_build_ogp("AI-watch", desc, SITE_URL + "/index.html", kind="website"))
+    ld = _build_jsonld("website", {}, "AI-watch", SITE_URL + "/index.html")
+    if ld:
+        parts.append(f"<script type='application/ld+json'>{ld}</script>")
     parts.append(f"<style>{CSS}</style></head><body><div class='container'>")
     parts.append("<header>")
     parts.append("<h1>AI-watch</h1>")
@@ -842,6 +852,62 @@ _HEADING_ID_RE = re.compile(r"<h2>([^<]+)</h2>")
 _SLUG_NON_ALNUM = re.compile(r"[^0-9A-Za-z぀-ヿ一-鿿\-]+")
 
 
+def _build_jsonld(kind: str, meta: dict, title: str, page_url: str) -> str:
+    """BlogPosting / Person / WebSite の JSON-LD を生成。"""
+    if kind == "lecture":
+        doc = {
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": title,
+            "datePublished": str(meta.get("date") or datetime.now().strftime("%Y-%m-%d")),
+            "mainEntityOfPage": { "@type": "WebPage", "@id": page_url },
+            "author": { "@type": "Person", "name": "由井 辰美" },
+            "publisher": {
+                "@type": "Organization",
+                "name": "AI-watch",
+                "url": SITE_URL,
+            },
+            "description": str(meta.get("summary") or title),
+            "speakable": {
+                "@type": "SpeakableSpecification",
+                "cssSelector": ["h1", ".content-wrap p:first-of-type"],
+            },
+        }
+        return json.dumps(doc, ensure_ascii=False)
+    if kind == "speaker":
+        doc = {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": title,
+            "jobTitle": str(meta.get("role") or "AI講師"),
+            "url": page_url,
+            "sameAs": [str(meta.get("profile_url"))] if meta.get("profile_url") else [],
+        }
+        return json.dumps(doc, ensure_ascii=False)
+    if kind == "website":
+        doc = {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "AI-watch",
+            "url": SITE_URL,
+            "description": "AI情報とSNSアルゴリズム動向を毎朝要約して届ける静的サイト",
+        }
+        return json.dumps(doc, ensure_ascii=False)
+    return ""
+
+
+def _build_ogp(title: str, description: str, page_url: str, kind: str = "article") -> str:
+    desc = description or title
+    return "".join([
+        f"<meta property='og:title' content='{html.escape(title, quote=True)}'>",
+        f"<meta property='og:description' content='{html.escape(desc, quote=True)}'>",
+        f"<meta property='og:url' content='{html.escape(page_url, quote=True)}'>",
+        f"<meta property='og:type' content='{html.escape(kind, quote=True)}'>",
+        "<meta property='og:site_name' content='AI-watch'>",
+        "<meta name='twitter:card' content='summary'>",
+    ])
+
+
 def _inject_heading_ids(body_html: str) -> tuple[str, list[tuple[str, str]]]:
     """h2 に id を付与し、(id, text) のリストを返す。"""
     toc: list[tuple[str, str]] = []
@@ -866,14 +932,22 @@ def _inject_heading_ids(body_html: str) -> tuple[str, list[tuple[str, str]]]:
     return new_html, toc
 
 
-def render_content_page(title: str, meta: dict, body_html: str, nav_html: str) -> str:
+def render_content_page(title: str, meta: dict, body_html: str, nav_html: str, page_path: str = "", kind: str = "") -> str:
     body_html, toc = _inject_heading_ids(body_html)
+    page_url = f"{SITE_URL}/{page_path.lstrip('/')}" if page_path else SITE_URL
     parts: list[str] = []
     parts.append("<!doctype html><html lang='ja'><head><meta charset='utf-8'>")
     parts.append("<meta name='viewport' content='width=device-width,initial-scale=1'>")
     parts.append(f"<title>{html.escape(title)} | AI-watch</title>")
-    if meta.get("summary"):
-        parts.append(f"<meta name='description' content='{html.escape(str(meta['summary']), quote=True)}'>")
+    desc = str(meta.get("summary") or "")
+    if desc:
+        parts.append(f"<meta name='description' content='{html.escape(desc, quote=True)}'>")
+    parts.append(f"<link rel='canonical' href='{html.escape(page_url, quote=True)}'>")
+    parts.append(_build_ogp(title, desc, page_url, "article" if kind in ("lecture", "speaker") else "website"))
+    if kind:
+        ld = _build_jsonld(kind, meta, title, page_url)
+        if ld:
+            parts.append(f"<script type='application/ld+json'>{ld}</script>")
     parts.append(f"<style>{CSS}{CONTENT_CSS}</style></head><body><div class='container'>")
     parts.append("<header>")
     parts.append(f"<h1>{html.escape(title)}</h1>")
@@ -923,7 +997,7 @@ def build_speaker_page() -> bool:
         "<a href='./archive.html'>📚 過去ログ</a>"
         "</nav>"
     )
-    html_text = render_content_page(title, meta, body_html, nav)
+    html_text = render_content_page(title, meta, body_html, nav, page_path="speaker.html", kind="speaker")
     (DIST / "speaker.html").write_text(html_text, encoding="utf-8")
     return True
 
@@ -949,7 +1023,7 @@ def build_lectures() -> int:
             "</nav>"
         )
         (out_dir / f"{f.stem}.html").write_text(
-            render_content_page(title, meta, body_html, nav),
+            render_content_page(title, meta, body_html, nav, page_path=f"lectures/{f.stem}.html", kind="lecture"),
             encoding="utf-8",
         )
         index_items.append((f.stem, title, meta))
@@ -967,7 +1041,7 @@ def build_lectures() -> int:
             "</nav>"
         )
         (out_dir / "index.html").write_text(
-            render_content_page("講習資料", {}, body_html, nav),
+            render_content_page("講習資料", {}, body_html, nav, page_path="lectures/index.html"),
             encoding="utf-8",
         )
     return count
@@ -982,6 +1056,63 @@ def copy_static() -> None:
         dst = DIST / src.relative_to(STATIC)
         dst.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(src, dst)
+
+
+def build_sitemap_and_robots() -> None:
+    """DIST 内の index.html / speaker.html / programming-map.html / lectures/*.html / archive/*.html を
+    集めて sitemap.xml と robots.txt を生成。"""
+    urls: list[tuple[str, str, float]] = []  # (loc, lastmod, priority)
+    today = datetime.now().strftime("%Y-%m-%d")
+
+    def add(path_rel: str, priority: float) -> None:
+        f = DIST / path_rel
+        if not f.exists():
+            return
+        ts = datetime.fromtimestamp(f.stat().st_mtime).strftime("%Y-%m-%d")
+        urls.append((f"{SITE_URL}/{path_rel.replace(chr(92), '/')}", ts, priority))
+
+    add("index.html", 1.0)
+    add("speaker.html", 0.9)
+    add("programming-map.html", 0.9)
+    add("archive.html", 0.6)
+    # lectures
+    lec_idx = DIST / "lectures" / "index.html"
+    if lec_idx.exists():
+        add("lectures/index.html", 0.7)
+    lec_dir = DIST / "lectures"
+    if lec_dir.exists():
+        for lp in sorted(lec_dir.glob("*.html")):
+            if lp.name == "index.html":
+                continue
+            add(f"lectures/{lp.name}", 0.8)
+    # archive: date pages(YYYY-MM-DD.html)
+    for arc in sorted(DIST.glob("*.html")):
+        m = re.match(r"^(\d{4}-\d{2}-\d{2})\.html$", arc.name)
+        if m:
+            add(arc.name, 0.4)
+
+    if not urls:
+        return
+
+    xml_lines = ["<?xml version='1.0' encoding='UTF-8'?>",
+                 "<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>"]
+    for loc, lastmod, prio in urls:
+        xml_lines.append(
+            "  <url>"
+            f"<loc>{html.escape(loc)}</loc>"
+            f"<lastmod>{lastmod}</lastmod>"
+            f"<priority>{prio:.1f}</priority>"
+            "</url>"
+        )
+    xml_lines.append("</urlset>")
+    (DIST / "sitemap.xml").write_text("\n".join(xml_lines), encoding="utf-8")
+
+    (DIST / "robots.txt").write_text(
+        "User-agent: *\n"
+        "Allow: /\n"
+        f"Sitemap: {SITE_URL}/sitemap.xml\n",
+        encoding="utf-8",
+    )
 
 
 def main() -> int:
@@ -1003,6 +1134,7 @@ def main() -> int:
         (DIST / ".nojekyll").write_text("", encoding="utf-8")
         build_speaker_page()
         build_lectures()
+        build_sitemap_and_robots()
         return 0
 
     payload = json.loads(TOP10_JSON.read_text(encoding="utf-8"))
@@ -1028,12 +1160,13 @@ def main() -> int:
 
     speaker_built = build_speaker_page()
     lectures_built = build_lectures()
+    build_sitemap_and_robots()
 
     print(
         f"[+] site built: {DIST} ({len(dates)} archive pages"
         + (", speaker.html" if speaker_built else "")
         + (f", {lectures_built} lectures" if lectures_built else "")
-        + ")"
+        + ", sitemap.xml, robots.txt)"
     )
     return 0
 

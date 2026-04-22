@@ -17,6 +17,13 @@ sources:
     limit: 15
     enabled: true
 
+  - name: Anthropic News
+    type: rss
+    url: https://www.anthropic.com/news/rss.xml
+    category: AI公式
+    limit: 15
+    enabled: true
+
   - name: Hugging Face Blog
     type: rss
     url: https://huggingface.co/blog/feed.xml
@@ -36,6 +43,20 @@ sources:
     url: https://www.technologyreview.com/topic/artificial-intelligence/feed
     category: AIニュース
     limit: 15
+    enabled: true
+
+  - name: Ars Technica AI
+    type: rss
+    url: https://arstechnica.com/ai/feed/
+    category: AIニュース
+    limit: 15
+    enabled: true
+
+  - name: Simon Willison's Weblog
+    type: rss
+    url: https://simonwillison.net/atom/everything/
+    category: AI研究者ブログ
+    limit: 20
     enabled: true
 
   - name: ITmedia AI+

@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25563184/2160975539.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-04-22T16:29:05-04:00"
+      "published": "2026-04-22T16:29:05-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "01913735584f4e90",
@@ -37,7 +39,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/08/STK155_OPEN_AI_4_CVirginia_B.png?quality=90&amp;strip=all&amp;crop=0%2C10.742221417566%2C100%2C78.515557164868&amp;w=1200",
-      "published": "2026-04-22T16:09:02-04:00"
+      "published": "2026-04-22T16:09:02-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "17b34a2ddf3e1ed2",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/sony_ace_robot.jpg?quality=90&amp;strip=all&amp;crop=0,10.798320425817,100,78.403359148365",
-      "published": "2026-04-22T13:43:38-04:00"
+      "published": "2026-04-22T13:43:38-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "4c0a6c835730faa3",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/STK269_ANTHROPIC_2_D.webp?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-04-22T12:57:36-04:00"
+      "published": "2026-04-22T12:57:36-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "8f488c01fb96232f",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/05/STKB354_GOOGLE_MEET_B.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-04-22T12:38:19-04:00"
+      "published": "2026-04-22T12:38:19-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "b740474556ae94f2",
@@ -113,7 +123,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/10/STK043_VRG_Illo_N_Barclay_1_Meta-1.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-04-22T10:22:35-04:00"
+      "published": "2026-04-22T10:22:35-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "bc2735f6dad02f44",
@@ -132,7 +144,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://static.simonwillison.net/static/2026/Qwen3.6-27B-GGUF-Q4_K_M.png",
-      "published": "2026-04-22T16:45:23+00:00"
+      "published": "2026-04-22T16:45:23+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "fbcf4ff565123526",
@@ -151,7 +165,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/oe9KmiTT8Og/hqdefault.jpg",
-      "published": "2026-04-22T11:26:01+00:00"
+      "published": "2026-04-22T11:26:01+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "18d5c871238ee8ff",
@@ -170,7 +186,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/kzAyhNzdagk/hqdefault.jpg",
-      "published": "2026-04-22T11:14:42+00:00"
+      "published": "2026-04-22T11:14:42+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "88032125dee32e82",
@@ -189,7 +207,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25469782/STK269_ANTHROPIC_D.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-04-22T05:18:40-04:00"
+      "published": "2026-04-22T05:18:40-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

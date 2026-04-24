@@ -18,7 +18,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/268484_How_the_US_embraced_AI_warfare_CVirginia.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-04-24T13:00:00-04:00"
+      "published": "2026-04-24T13:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "544fcad437b09d0c",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/VRG_VST_0424_Site.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-04-24T10:43:07-04:00"
+      "published": "2026-04-24T10:43:07-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "bee3f8597eb7f707",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/268474_musk_vs_altman_CVirginia2.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-04-24T08:00:00-04:00"
+      "published": "2026-04-24T08:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "abef34f35686c047",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/4JIhdwmcGIM/hqdefault.jpg",
-      "published": "2026-04-24T17:05:59+00:00"
+      "published": "2026-04-24T17:05:59+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "f9895c6e608ffffa",
@@ -94,7 +102,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/STKB320_DEEPSEEK_AI_CVIRGINIA_C.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-04-24T05:45:30-04:00"
+      "published": "2026-04-24T05:45:30-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "bbd10c07df55edad",
@@ -113,7 +123,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/WPP-2026_POY_Finalists.jpg?quality=90&amp;strip=all&amp;crop=0,10.732984293194,100,78.534031413613",
-      "published": "2026-04-24T05:40:07-04:00"
+      "published": "2026-04-24T05:40:07-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "cbcaece21a12e861",
@@ -132,7 +144,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://static.simonwillison.net/static/2026/deepseek-v4-card.jpg",
-      "published": "2026-04-24T06:01:04+00:00"
+      "published": "2026-04-24T06:01:04+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "c146600a2e74ef9e",
@@ -151,7 +165,9 @@
         "freshness": 3.0
       },
       "thumbnail": "",
-      "published": "2026-04-24T04:23:11+00:00"
+      "published": "2026-04-24T04:23:11+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "dd02a278053a5d8c",
@@ -170,7 +186,9 @@
         "freshness": 3.0
       },
       "thumbnail": "",
-      "published": "2026-04-24T04:09:54+00:00"
+      "published": "2026-04-24T04:09:54+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "bd9d08cf73324d5a",
@@ -189,7 +207,9 @@
         "freshness": 3.0
       },
       "thumbnail": "",
-      "published": "2026-04-24T01:50:07+00:00"
+      "published": "2026-04-24T01:50:07+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

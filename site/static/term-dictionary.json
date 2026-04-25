@@ -599,7 +599,7 @@
     "category": "CI/CD",
     "short": "GitHub に統合された自動化ワークフロー。push/PR/スケジュールで動く。",
     "detail": "`.github/workflows/*.yml` に YAML でワークフローを定義すると、push・PR・cron・手動トリガーで自動実行される。テスト・ビルド・デプロイ・定期バッチ・Issue 自動トリアージ等に使う。Marketplace に再利用可能なアクションが多数あり(`actions/checkout` / `actions/setup-node` / `actions/upload-artifact` など)。パブリックリポジトリは無料、プライベートは月単位の利用枠あり。",
-    "when": "テストの自動実行・ビルド検証・定期スクレイピング・Pages 配信・Render 以外へのデプロイトリガー。AI-watch では毎朝 07:00 JST に `run.py` を実行して記事収集する。",
+    "when": "テストの自動実行・ビルド検証・定期スクレイピング・Pages 配信・Render 以外へのデプロイトリガー。AIハブ では毎朝 07:00 JST に `run.py` を実行して記事収集する。",
     "tip": "秘密情報は Settings → Secrets に登録して `${{ secrets.NAME }}` で参照。ログに echo しない(secrets は自動マスクされるが PATH 名などは残る)。失敗時に Slack 通知を入れると運用が楽。",
     "related": ["CI/CD", "Dependabot"],
     "url": "https://docs.github.com/ja/actions"

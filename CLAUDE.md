@@ -1,17 +1,17 @@
-# CLAUDE.md — AI-watch
+# CLAUDE.md — AIハブ
 
-AI 情報と SNS アルゴリズム動向を自動収集・要約・可視化するパイプライン。
-RSS を中心に複数ソースから記事を集め、差分検出 → Claude API で要約 → NotebookLM 用 Markdown/TXT + 静的サイトを出力する。
+**AIハブ** は「自分のAIをひとつに集める場所」をテーマにした個人ポートフォリオ兼マイページ。
+作品（アプリ集）・講師紹介・講習資料を見せる**フロント面**と、AI/SNS関連情報をRSSから自動収集・要約してNotebookLMに流し込む**バックエンドのパイプライン**を1つのサイトに同居させている。
 
 ## リポジトリ名の正規化
 
-- プロジェクト名: **AI-watch**（かつての「AI情報収集」「cclimb-intel」「ai-info」から統一）
-- GitHub: `goodbouldering-collab/ai-watch`
-- Render service: `ai-watch`（静的サイト、Singapore、`main` push で自動デプロイ）
-- GitHub Pages: `https://goodbouldering-collab.github.io/ai-watch/`
-- Supabase: 既存の共有プロジェクト `zrawhzwtppmlxyhngnju` の `public.ai_watch_*` 相乗り
+- プロジェクト名: **AIハブ / AI Hub**（旧称: AI-watch、AI情報収集、cclimb-intel、ai-info）
+- GitHub: `goodbouldering-collab/ai-hub`
+- Render service: `ai-hub`（静的サイト、Singapore、`main` push で自動デプロイ）
+- GitHub Pages: `https://goodbouldering-collab.github.io/ai-hub/`
+- Supabase: 既存の共有プロジェクト `zrawhzwtppmlxyhngnju` の `public.ai_watch_*` 相乗り（テーブル名は履歴互換のため `ai_watch_` プレフィックスを維持）
 
-新規で文言を書くときは「AI-watch」に揃える。過去ログ（`outputs/notebooklm/*`）は改名しない（NotebookLM 側で参照中のため）。
+新規で文言を書くときは「AIハブ」に揃える。過去ログ（`outputs/notebooklm/*`）と Supabase テーブル名は改名しない（NotebookLM 側のソース参照と既存データ互換のため）。
 
 ## ディレクトリ
 
@@ -22,12 +22,14 @@ RSS を中心に複数ソースから記事を集め、差分検出 → Claude A
 | `config/sources.yaml` | 収集対象 RSS。追加するだけで増やせる |
 | `config/genres.yaml` | ジャンル（AI業務活用 / SNSアルゴリズム 等）の定義 |
 | `config/support_sns.yaml` | サポートSNSアカウントリスト |
+| `config/portfolio.yaml` | トップに並べる作品カードの定義 |
+| `config/top_buttons.yaml` | トップ上部のクイックリンクボタン |
 | `site/build_site.py` | `outputs/top10.json` から静的 HTML を生成 |
 | `site/dist/` | 生成物（GitHub Pages / Render が公開） |
 | `outputs/notebooklm/` | NotebookLM 用 Markdown/TXT（日次） |
 | `outputs/full/` | 週次フル版 TXT |
 | `data/history.db` | SQLite の既取得ログ（差分検出の土台） |
-| `admin/server.py` | FastAPI 管理画面（ローカル 4001） |
+| `admin/server.py` | FastAPI 管理画面（ローカル 3010） |
 | `scripts/migrate_sqlite_to_supabase.py` | SQLite → Supabase へのマイグレーション |
 | `content/speaker.md` | 講師紹介（由井辰美）の編集ソース。ビルドで `speaker.html` になる |
 | `content/lectures/*.md` | 講習資料の編集ソース。ビルドで `lectures/<slug>.html` になる |
@@ -47,20 +49,24 @@ python run.py                 # 日次ダイジェスト (直近24h の diff モ
 python run.py --full          # 週次フル版も生成
 python run.py --no-summary    # Claude API をスキップ
 python site/build_site.py     # サイトだけ再ビルド
-uvicorn admin.server:app --port 4001 --reload   # 管理画面
+uvicorn admin.server:app --port 3010 --reload   # 管理画面
 ```
+
+VSCode で `clients.code-workspace` を開けば「AIハブ起動」タスクで `http://localhost:3010/admin` が立ち上がる。
 
 ## 守るべきルール
 
 - ソース追加は `config/sources.yaml` に 1 ブロック足すだけ。コードは触らない
+- 作品カードを増やすときは `config/portfolio.yaml` に1ブロック追加。コードは触らない
 - RSS 以外（X API・スクレイピング等）を増やすときは `core/collector.py` の `DISPATCH` に関数を追加する
 - 日付入りの出力ファイルは上書きしない（NotebookLM 側がソースとして保持しているため）
 - `data/history.db` は commit back される前提。`.gitignore` で除外しない
 - 文字化け防止: グッぼる本店など EUC-JP ソースを HTML で取り込む場合は親 `CLAUDE.md` のルールに従って `iconv` 変換層を挟む
+- Supabase テーブル名 `ai_watch_*` は**改名しない**（旧名のまま運用継続）
 
 ## 管理画面について
 
 `admin/server.py` は FastAPI ベースの**ローカル専用**管理 UI。
 GitHub Pages / Render (static) は静的ホスティングなので、公開ナビから `/admin` リンクは外してある。
-ローカルで触るときは `uvicorn admin.server:app --port 4001 --reload` を起動して `http://localhost:4001/admin` にアクセスする。
+ローカルで触るときは `uvicorn admin.server:app --port 3010 --reload` を起動して `http://localhost:3010/admin` にアクセスする。
 運用（記事収集の実行）は基本 GitHub Actions 任せで、管理画面は手元確認用。

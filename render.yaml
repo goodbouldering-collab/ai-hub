@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: ai-watch
+    name: ai-hub
     runtime: static
     region: singapore
     branch: main

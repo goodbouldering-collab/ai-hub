@@ -129,7 +129,7 @@ def save_config(data: dict) -> None:
     )
 
 
-app = FastAPI(title="ai-watch")
+app = FastAPI(title="ai-hub")
 
 
 @app.get("/")

@@ -1,6 +1,6 @@
 # content/ — 編集ソース
 
-AI-watch のサイトに出す「静的コンテンツ」の一次ソース。Markdown を編集して `python site/build_site.py` を実行すると、`site/dist/` に HTML が書き出される。
+AIハブ のサイトに出す「静的コンテンツ」の一次ソース。Markdown を編集して `python site/build_site.py` を実行すると、`site/dist/` に HTML が書き出される。
 
 ## ファイル
 

@@ -1,11 +1,12 @@
-# AI-watch
+# AIハブ — AI Hub
 
-AI情報とSNSアルゴリズム動向を自動収集・整理するパイプライン。
-RSS を中心に複数ソースから記事を集め、差分検出 → Claude API で要約 → NotebookLM 用 Markdown/TXT を出力する。
+「自分のAIをひとつに集める場所」をテーマにした個人ポートフォリオ兼マイページ。
+作品（アプリ集）・講師紹介・講習資料を見せる**フロント面**と、AI/SNS関連情報をRSSから自動収集・要約してNotebookLMに流し込む**バックエンドのパイプライン**を1つのサイトに同居させている。
 
 ## 特徴
 
-- **ソース追加は設定ファイル1つ**: `config/sources.yaml` に URL を書き足すだけ
+- **ポートフォリオ統合**: 作品カードは [config/portfolio.yaml](config/portfolio.yaml) に1ブロック追加するだけ
+- **ソース追加は設定1つ**: `config/sources.yaml` に URL を書き足すだけで RSS 収集対象が増える
 - **差分検出**: SQLite(`data/history.db`) で過去取得を全保存し、前回以降の新着を自動でハイライト
 - **NotebookLM 対応**: `outputs/notebooklm/latest.md` と `outputs/full/*.txt` をそのまま NotebookLM に放り込める
 - **定期実行**: GitHub Actions (`.github/workflows/daily.yml`) で毎朝 JST 07:00 自動実行
@@ -14,7 +15,7 @@ RSS を中心に複数ソースから記事を集め、差分検出 → Claude A
 ## セットアップ
 
 ```bash
-cd AI-watch
+cd ai-hub
 python -m venv .venv
 .venv\Scripts\activate            # Windows
 pip install -r requirements.txt
@@ -37,8 +38,8 @@ python site/build_site.py     # 静的サイトだけ再ビルド (speaker.html 
 GitHub Pages は静的ホスティングなので、`/admin` はローカル起動時のみ利用できる。
 
 ```bash
-uvicorn admin.server:app --host 127.0.0.1 --port 4001 --reload
-# → http://localhost:4001/admin
+uvicorn admin.server:app --host 127.0.0.1 --port 3010 --reload
+# → http://localhost:3010/admin
 ```
 
 管理画面から巡回を走らせた場合は `site/dist/` も再ビルドされるが、Pages への反映は `git push` が必要。
@@ -47,7 +48,7 @@ uvicorn admin.server:app --host 127.0.0.1 --port 4001 --reload
 
 - 講師紹介ページ: [content/speaker.md](content/speaker.md) を編集して `python site/build_site.py`
 - 講習資料を追加: `content/lectures/YYYY-MM-slug.md` を作成
-- 公開URL: `https://goodbouldering-collab.github.io/ai-watch/speaker.html`
+- 公開URL: `https://goodbouldering-collab.github.io/ai-hub/speaker.html`
 
 ## 出力ファイル
 

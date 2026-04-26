@@ -4,16 +4,16 @@ support_sns:
     handle: '@karatto_plus'
     url: https://www.youtube.com/@karatto_plus
     note: ''
-  - name: '%E3%81%BF%E3%82%93%E3%81%AA%E3%81%AEWA'
-    handle: '@%E3%81%BF%E3%82%93%E3%81%AA%E3%81%AEWA'
+  - name: みんなのWA
+    handle: '@みんなのWA'
     url: https://www.youtube.com/@%E3%81%BF%E3%82%93%E3%81%AA%E3%81%AEWA
     note: ''
   - name: cafe1132
     handle: '@cafe1132'
     url: https://www.youtube.com/@cafe1132
     note: ''
-  - name: '%E3%83%97%E3%83%AD%E3%82%AE%E3%83%B3%E3%82%B0%E3%82%B8%E3%83%A3%E3%83%91%E3%83%B3-g3p'
-    handle: '@%E3%83%97%E3%83%AD%E3%82%AE%E3%83%B3%E3%82%B0%E3%82%B8%E3%83%A3%E3%83%91%E3%83%B3-g3p'
+  - name: プロギングジャパン-g3p
+    handle: '@プロギングジャパン-g3p'
     url: https://www.youtube.com/@%E3%83%97%E3%83%AD%E3%82%AE%E3%83%B3%E3%82%B0%E3%82%B8%E3%83%A3%E3%83%91%E3%83%B3-g3p
     note: ''
   - name: furdi4577

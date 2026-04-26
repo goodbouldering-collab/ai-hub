@@ -77,13 +77,18 @@ URL_PREFIX = {
 
 
 def normalize_account(platform: Platform, raw: str) -> Account:
+    from urllib.parse import unquote
+
     s = raw.strip()
     if not s:
         raise HTTPException(400, "input is empty")
 
     if s.startswith("http://") or s.startswith("https://"):
         url = s.rstrip("/")
-        tail = url.rsplit("/", 1)[-1]
+        # 末尾セグメントは % エンコードされてくることがあるのでデコードする
+        # 例: https://www.youtube.com/@%E3%81%BF%E3%82%93%E3%81%AA%E3%81%AEWA → @みんなのWA
+        tail_raw = url.rsplit("/", 1)[-1]
+        tail = unquote(tail_raw)
         if platform in ("instagram_feed", "instagram_reel", "instagram_story", "facebook"):
             handle = "@" + tail.lstrip("@") if tail else ""
         elif platform == "threads":

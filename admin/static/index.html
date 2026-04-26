@@ -241,6 +241,7 @@
     <button class="tab active" data-tab="sns">🔗 サポートSNS</button>
     <button class="tab" data-tab="speaker">🎤 講師紹介</button>
     <button class="tab" data-tab="buttons">🧭 トップボタン</button>
+    <button class="tab" data-tab="shopify">🛒 Shopify</button>
   </div>
 
   <section class="panel active" data-panel="sns">
@@ -256,6 +257,61 @@
         <button class="save" id="speaker-save">💾 保存</button>
         <button class="ghost" id="speaker-reload">↻ 再読込</button>
         <button class="ghost" id="speaker-save-rebuild">💾 保存して再ビルド</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" data-panel="shopify">
+    <div class="card">
+      <h2>🛒 Shopify Admin <span class="badge" id="shopify-status-badge">確認中…</span></h2>
+      <p class="helper">
+        <code>.env</code> の <code>SHOPIFY_ACCESS_TOKEN</code> と <code>SHOPIFY_STORE_DOMAIN</code> を読んで実ストアを操作する。
+        <strong>本番ストアに直接書き込むので注意</strong>。
+      </p>
+      <div id="shopify-shop-info" class="helper" style="margin:8px 0 16px;">—</div>
+
+      <div style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:12px;">
+        <button class="ghost" id="shop-tab-products">📦 商品</button>
+        <button class="ghost" id="shop-tab-orders">🧾 注文</button>
+        <button class="ghost" id="shop-tab-customers">👤 顧客</button>
+        <button class="ghost" id="shop-tab-locations">📍 在庫拠点</button>
+      </div>
+
+      <div id="shop-section-products" class="shop-section">
+        <div style="display:flex; gap:8px; margin-bottom:10px;">
+          <input id="shop-products-q" type="text" placeholder="商品名で絞り込み (任意)" style="flex:1; padding:6px 10px;">
+          <input id="shop-products-limit" type="number" value="20" min="1" max="250" style="width:80px; padding:6px;">
+          <button class="save" id="shop-products-load">取得</button>
+        </div>
+        <div id="shop-products-result" class="shop-result">—</div>
+      </div>
+
+      <div id="shop-section-orders" class="shop-section" hidden>
+        <div style="display:flex; gap:8px; margin-bottom:10px;">
+          <select id="shop-orders-status" style="padding:6px;">
+            <option value="any">any (全て)</option>
+            <option value="open">open</option>
+            <option value="closed">closed</option>
+            <option value="cancelled">cancelled</option>
+          </select>
+          <input id="shop-orders-limit" type="number" value="20" min="1" max="250" style="width:80px; padding:6px;">
+          <button class="save" id="shop-orders-load">取得</button>
+        </div>
+        <div id="shop-orders-result" class="shop-result">—</div>
+      </div>
+
+      <div id="shop-section-customers" class="shop-section" hidden>
+        <div style="display:flex; gap:8px; margin-bottom:10px;">
+          <input id="shop-customers-q" type="text" placeholder="メール・名前・電話で検索" style="flex:1; padding:6px 10px;">
+          <input id="shop-customers-limit" type="number" value="20" min="1" max="250" style="width:80px; padding:6px;">
+          <button class="save" id="shop-customers-load">検索</button>
+        </div>
+        <div id="shop-customers-result" class="shop-result">—</div>
+      </div>
+
+      <div id="shop-section-locations" class="shop-section" hidden>
+        <div style="margin-bottom:10px;"><button class="save" id="shop-locations-load">取得</button></div>
+        <div id="shop-locations-result" class="shop-result">—</div>
       </div>
     </div>
   </section>
@@ -521,6 +577,153 @@ document.getElementById("btn-save-rebuild").addEventListener("click", async () =
   if (await btnsSave()) document.getElementById("rebuild-btn").click();
 });
 btnsLoad();
+
+/* ---------------- Shopify ---------------- */
+const SHOP_SECTIONS = ["products", "orders", "customers", "locations"];
+function shopShow(name) {
+  SHOP_SECTIONS.forEach((s) => {
+    const el = document.getElementById(`shop-section-${s}`);
+    if (el) el.hidden = s !== name;
+  });
+}
+SHOP_SECTIONS.forEach((s) => {
+  const btn = document.getElementById(`shop-tab-${s}`);
+  if (btn) btn.addEventListener("click", () => shopShow(s));
+});
+shopShow("products");
+
+async function shopFetch(path) {
+  const r = await fetch(path);
+  const txt = await r.text();
+  let body;
+  try { body = JSON.parse(txt); } catch { body = { raw: txt }; }
+  return { ok: r.ok, status: r.status, body };
+}
+
+function shopFmt(rows, columns) {
+  if (!rows || !rows.length) return "<em>結果なし</em>";
+  const head = columns.map((c) => `<th style="text-align:left; padding:6px 10px; border-bottom:1px solid #e2e8f0;">${escapeHtml(c.label)}</th>`).join("");
+  const body = rows.map((r) => {
+    const cells = columns.map((c) => {
+      let v = r[c.key];
+      if (c.key === "image" && v) return `<td style="padding:4px;"><img src="${escapeHtml(v)}" style="width:48px; height:48px; object-fit:cover; border-radius:4px;"></td>`;
+      return `<td style="padding:6px 10px; border-bottom:1px solid #f1f5f9; vertical-align:top;">${escapeHtml(v ?? "")}</td>`;
+    }).join("");
+    return `<tr>${cells}</tr>`;
+  }).join("");
+  return `<table style="width:100%; border-collapse:collapse; font-size:13px;"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`;
+}
+
+async function shopInitStatus() {
+  const badge = document.getElementById("shopify-status-badge");
+  const info = document.getElementById("shopify-shop-info");
+  const s = await shopFetch("/api/shopify/status");
+  if (!s.ok || !s.body.configured) {
+    badge.textContent = "未設定";
+    badge.style.background = "#fee2e2";
+    badge.style.color = "#b91c1c";
+    info.innerHTML = `<strong style="color:#b91c1c;">${escapeHtml(s.body.reason || ".env を確認してください")}</strong>`;
+    return;
+  }
+  const shop = await shopFetch("/api/shopify/shop");
+  if (!shop.ok) {
+    badge.textContent = "接続失敗";
+    badge.style.background = "#fee2e2";
+    badge.style.color = "#b91c1c";
+    info.innerHTML = `<strong style="color:#b91c1c;">${escapeHtml(shop.body.detail || JSON.stringify(shop.body))}</strong>`;
+    return;
+  }
+  const d = shop.body.data || {};
+  badge.textContent = "接続OK";
+  badge.style.background = "#dcfce7";
+  badge.style.color = "#166534";
+  info.innerHTML = `
+    <strong>${escapeHtml(d.name || "")}</strong>
+    (<code>${escapeHtml(d.myshopify_domain || "")}</code>)
+    / ${escapeHtml(d.country || "")} / ${escapeHtml(d.currency || "")} / ${escapeHtml(d.plan_name || "")}
+  `;
+}
+
+async function shopLoadProducts() {
+  const q = document.getElementById("shop-products-q").value.trim();
+  const limit = document.getElementById("shop-products-limit").value || 20;
+  const out = document.getElementById("shop-products-result");
+  out.innerHTML = "読み込み中…";
+  const r = await shopFetch(`/api/shopify/products?limit=${limit}&q=${encodeURIComponent(q)}`);
+  if (!r.ok) { out.innerHTML = `<strong style="color:#b91c1c;">エラー: ${escapeHtml(r.body.detail || JSON.stringify(r.body))}</strong>`; return; }
+  const data = r.body.data || {};
+  out.innerHTML = `<p class="helper">${data.count}件</p>` + shopFmt(data.products, [
+    {key:"image", label:"画像"},
+    {key:"title", label:"商品名"},
+    {key:"status", label:"状態"},
+    {key:"price", label:"価格"},
+    {key:"inventory_quantity", label:"在庫"},
+    {key:"vendor", label:"ベンダー"},
+    {key:"product_type", label:"タイプ"},
+  ]);
+}
+document.getElementById("shop-products-load").addEventListener("click", shopLoadProducts);
+
+async function shopLoadOrders() {
+  const status = document.getElementById("shop-orders-status").value;
+  const limit = document.getElementById("shop-orders-limit").value || 20;
+  const out = document.getElementById("shop-orders-result");
+  out.innerHTML = "読み込み中…";
+  const r = await shopFetch(`/api/shopify/orders?limit=${limit}&status=${status}`);
+  if (!r.ok) { out.innerHTML = `<strong style="color:#b91c1c;">エラー: ${escapeHtml(r.body.detail || JSON.stringify(r.body))}</strong>`; return; }
+  const data = r.body.data || {};
+  out.innerHTML = `<p class="helper">${data.count}件</p>` + shopFmt(data.orders, [
+    {key:"name", label:"注文"},
+    {key:"created_at", label:"日時"},
+    {key:"customer", label:"顧客"},
+    {key:"total_price", label:"合計"},
+    {key:"currency", label:"通貨"},
+    {key:"financial_status", label:"支払"},
+    {key:"fulfillment_status", label:"発送"},
+    {key:"items_count", label:"点数"},
+  ]);
+}
+document.getElementById("shop-orders-load").addEventListener("click", shopLoadOrders);
+
+async function shopLoadCustomers() {
+  const q = document.getElementById("shop-customers-q").value.trim();
+  const limit = document.getElementById("shop-customers-limit").value || 20;
+  const out = document.getElementById("shop-customers-result");
+  if (!q) { out.innerHTML = "<em>検索キーワードを入力してください</em>"; return; }
+  out.innerHTML = "読み込み中…";
+  const r = await shopFetch(`/api/shopify/customers?q=${encodeURIComponent(q)}&limit=${limit}`);
+  if (!r.ok) { out.innerHTML = `<strong style="color:#b91c1c;">エラー: ${escapeHtml(r.body.detail || JSON.stringify(r.body))}</strong>`; return; }
+  const data = r.body.data || {};
+  out.innerHTML = `<p class="helper">${data.count}件</p>` + shopFmt(data.customers, [
+    {key:"name", label:"氏名"},
+    {key:"email", label:"メール"},
+    {key:"phone", label:"電話"},
+    {key:"orders_count", label:"注文数"},
+    {key:"total_spent", label:"購入合計"},
+    {key:"currency", label:"通貨"},
+    {key:"created_at", label:"登録日"},
+  ]);
+}
+document.getElementById("shop-customers-load").addEventListener("click", shopLoadCustomers);
+
+async function shopLoadLocations() {
+  const out = document.getElementById("shop-locations-result");
+  out.innerHTML = "読み込み中…";
+  const r = await shopFetch("/api/shopify/locations");
+  if (!r.ok) { out.innerHTML = `<strong style="color:#b91c1c;">エラー: ${escapeHtml(r.body.detail || JSON.stringify(r.body))}</strong>`; return; }
+  const locs = (r.body.data || {}).locations || [];
+  out.innerHTML = `<p class="helper">${locs.length}件</p>` + shopFmt(locs, [
+    {key:"id", label:"ID"},
+    {key:"name", label:"名称"},
+    {key:"address1", label:"住所"},
+    {key:"city", label:"市区町村"},
+    {key:"country", label:"国"},
+    {key:"active", label:"有効"},
+  ]);
+}
+document.getElementById("shop-locations-load").addEventListener("click", shopLoadLocations);
+
+shopInitStatus();
 </script>
 </body>
 </html>

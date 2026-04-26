@@ -351,6 +351,68 @@ def run_status() -> dict:
     return _run_state
 
 
+# ---------- Shopify Admin ----------
+
+from core import shopify_admin
+
+
+def _shopify_call(fn, *args, **kwargs) -> dict:
+    try:
+        return {"ok": True, "data": fn(*args, **kwargs)}
+    except shopify_admin.ShopifyConfigError as e:
+        raise HTTPException(400, f"設定エラー: {e}")
+    except shopify_admin.ShopifyAPIError as e:
+        raise HTTPException(e.status if 400 <= e.status < 600 else 502, str(e))
+    except Exception as e:
+        raise HTTPException(500, f"内部エラー: {e}")
+
+
+class InventorySetPayload(BaseModel):
+    inventory_item_id: int
+    location_id: int
+    available: int
+
+
+@app.get("/api/shopify/status")
+def shopify_status() -> dict:
+    return shopify_admin.is_configured()
+
+
+@app.get("/api/shopify/shop")
+def shopify_shop() -> dict:
+    return _shopify_call(shopify_admin.shop_info)
+
+
+@app.get("/api/shopify/products")
+def shopify_products(limit: int = 20, q: str = "") -> dict:
+    return _shopify_call(shopify_admin.list_products, limit=limit, query=q)
+
+
+@app.get("/api/shopify/orders")
+def shopify_orders(limit: int = 20, status: str = "any") -> dict:
+    return _shopify_call(shopify_admin.list_orders, limit=limit, status=status)
+
+
+@app.get("/api/shopify/customers")
+def shopify_customers(q: str, limit: int = 20) -> dict:
+    return _shopify_call(shopify_admin.search_customers, query=q, limit=limit)
+
+
+@app.get("/api/shopify/locations")
+def shopify_locations() -> dict:
+    return _shopify_call(shopify_admin.list_locations)
+
+
+@app.post("/api/shopify/inventory/set")
+def shopify_set_inventory(payload: InventorySetPayload) -> dict:
+    return _shopify_call(
+        shopify_admin.set_inventory,
+        inventory_item_id=payload.inventory_item_id,
+        location_id=payload.location_id,
+        available=payload.available,
+    )
+
+
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
 if SITE_DIST.exists():

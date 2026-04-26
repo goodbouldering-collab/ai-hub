@@ -25,6 +25,7 @@ ROOT = Path(__file__).resolve().parent.parent
 CONFIG_FILE = ROOT / "config" / "support_sns.yaml"
 TOP_BUTTONS_FILE = ROOT / "config" / "top_buttons.yaml"
 SPEAKER_FILE = ROOT / "content" / "speaker.md"
+LECTURES_DIR = ROOT / "content" / "lectures"
 STATIC_DIR = Path(__file__).resolve().parent / "static"
 SITE_DIST = ROOT / "site" / "dist"
 
@@ -349,6 +350,128 @@ def trigger_run() -> dict:
 @app.get("/api/run/status")
 def run_status() -> dict:
     return _run_state
+
+
+# ---------- 講習資料 (content/lectures/*.md) ----------
+
+import re
+
+SLUG_RE = re.compile(r"^[a-z0-9][a-z0-9\-]*$")
+
+
+class LecturePayload(BaseModel):
+    slug: str           # ファイル名 (拡張子なし)。例: "2026-04-ai-kihon"
+    title: str = ""
+    date: str = ""      # "2026-04-22" 形式
+    role: str = "講習ノート"
+    gen_by: str = "由井 辰美 / AIハブ"
+    summary: str = ""
+    body: str = ""      # Markdown 本文（frontmatterは含めない）
+
+
+def _validate_slug(slug: str) -> str:
+    s = (slug or "").strip().lower()
+    if not s:
+        raise HTTPException(400, "slug is required")
+    if not SLUG_RE.match(s):
+        raise HTTPException(400, "slug は小文字英数とハイフンのみ (例: 2026-04-ai-kihon)")
+    return s
+
+
+def _parse_lecture(raw: str) -> tuple[dict, str]:
+    """ frontmatter + body に分割。frontmatter が無ければ {} と raw を返す。"""
+    if not raw.startswith("---"):
+        return {}, raw
+    parts = raw.split("---", 2)
+    if len(parts) < 3:
+        return {}, raw
+    try:
+        meta = yaml.safe_load(parts[1]) or {}
+    except Exception:
+        meta = {}
+    body = parts[2].lstrip("\n")
+    return meta, body
+
+
+def _serialize_lecture(payload: LecturePayload) -> str:
+    meta = {
+        "title": payload.title,
+        "date": payload.date,
+        "role": payload.role,
+        "gen_by": payload.gen_by,
+        "summary": payload.summary,
+    }
+    fm = yaml.safe_dump(meta, allow_unicode=True, sort_keys=False).strip()
+    return f"---\n{fm}\n---\n\n{payload.body.lstrip()}\n"
+
+
+@app.get("/api/lectures")
+def list_lectures() -> dict:
+    LECTURES_DIR.mkdir(parents=True, exist_ok=True)
+    items = []
+    for f in sorted(LECTURES_DIR.glob("*.md")):
+        meta, _ = _parse_lecture(f.read_text(encoding="utf-8"))
+        items.append({
+            "slug": f.stem,
+            "title": meta.get("title", f.stem),
+            "date": meta.get("date", ""),
+            "summary": meta.get("summary", ""),
+            "bytes": f.stat().st_size,
+        })
+    items.sort(key=lambda x: x.get("date") or x["slug"], reverse=True)
+    return {"lectures": items, "count": len(items)}
+
+
+@app.get("/api/lectures/{slug}")
+def get_lecture(slug: str) -> dict:
+    s = _validate_slug(slug)
+    f = LECTURES_DIR / f"{s}.md"
+    if not f.exists():
+        raise HTTPException(404, f"lecture not found: {s}")
+    meta, body = _parse_lecture(f.read_text(encoding="utf-8"))
+    return {
+        "slug": s,
+        "title": meta.get("title", ""),
+        "date": meta.get("date", ""),
+        "role": meta.get("role", "講習ノート"),
+        "gen_by": meta.get("gen_by", "由井 辰美 / AIハブ"),
+        "summary": meta.get("summary", ""),
+        "body": body,
+        "path": str(f.relative_to(ROOT)),
+    }
+
+
+@app.post("/api/lectures")
+def create_lecture(payload: LecturePayload) -> dict:
+    s = _validate_slug(payload.slug)
+    LECTURES_DIR.mkdir(parents=True, exist_ok=True)
+    f = LECTURES_DIR / f"{s}.md"
+    if f.exists():
+        raise HTTPException(409, f"既に存在します: {s}")
+    payload.slug = s
+    f.write_text(_serialize_lecture(payload), encoding="utf-8")
+    return {"ok": True, "slug": s, "path": str(f.relative_to(ROOT))}
+
+
+@app.put("/api/lectures/{slug}")
+def update_lecture(slug: str, payload: LecturePayload) -> dict:
+    s = _validate_slug(slug)
+    f = LECTURES_DIR / f"{s}.md"
+    if not f.exists():
+        raise HTTPException(404, f"lecture not found: {s}")
+    payload.slug = s
+    f.write_text(_serialize_lecture(payload), encoding="utf-8")
+    return {"ok": True, "slug": s, "bytes": f.stat().st_size}
+
+
+@app.delete("/api/lectures/{slug}")
+def delete_lecture(slug: str) -> dict:
+    s = _validate_slug(slug)
+    f = LECTURES_DIR / f"{s}.md"
+    if not f.exists():
+        raise HTTPException(404, f"lecture not found: {s}")
+    f.unlink()
+    return {"ok": True, "slug": s}
 
 
 # ---------- Shopify Admin ----------

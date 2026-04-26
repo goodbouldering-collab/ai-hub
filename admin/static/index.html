@@ -241,6 +241,7 @@
     <button class="tab active" data-tab="sns">🔗 サポートSNS</button>
     <button class="tab" data-tab="speaker">🎤 講師紹介</button>
     <button class="tab" data-tab="buttons">🧭 トップボタン</button>
+    <button class="tab" data-tab="lectures">📝 講習資料</button>
     <button class="tab" data-tab="shopify">🛒 Shopify</button>
   </div>
 
@@ -257,6 +258,56 @@
         <button class="save" id="speaker-save">💾 保存</button>
         <button class="ghost" id="speaker-reload">↻ 再読込</button>
         <button class="ghost" id="speaker-save-rebuild">💾 保存して再ビルド</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" data-panel="lectures">
+    <div class="card">
+      <h2>📝 講習資料 <span class="badge" id="lec-count-badge">—</span></h2>
+      <p class="helper">
+        <code>content/lectures/*.md</code> を直接編集する。保存後「💾 保存して再ビルド」を押すと
+        <code>/lectures/&lt;slug&gt;.html</code> に反映される。
+      </p>
+
+      <div style="display:grid; grid-template-columns:280px 1fr; gap:16px; margin-top:12px;">
+        <div>
+          <div style="display:flex; gap:8px; margin-bottom:8px;">
+            <button class="save" id="lec-new" style="flex:1;">＋ 新規作成</button>
+            <button class="ghost" id="lec-reload">↻</button>
+          </div>
+          <div id="lec-list" style="border:1px solid #e2e8f0; border-radius:6px; max-height:560px; overflow-y:auto;"></div>
+        </div>
+
+        <div id="lec-editor" hidden>
+          <div style="display:grid; grid-template-columns:140px 1fr; gap:8px 12px; align-items:center; margin-bottom:12px;">
+            <label>slug</label>
+            <input id="lec-slug" type="text" placeholder="2026-04-ai-kihon" style="padding:6px 10px;">
+            <label>title</label>
+            <input id="lec-title" type="text" placeholder="講習のタイトル" style="padding:6px 10px;">
+            <label>date</label>
+            <input id="lec-date" type="date" style="padding:6px 10px;">
+            <label>role</label>
+            <input id="lec-role" type="text" value="講習ノート" style="padding:6px 10px;">
+            <label>gen_by</label>
+            <input id="lec-genby" type="text" value="由井 辰美 / AIハブ" style="padding:6px 10px;">
+            <label>summary</label>
+            <textarea id="lec-summary" rows="2" style="padding:6px 10px;" placeholder="一覧やOGPに使う要約 (1〜2文)"></textarea>
+          </div>
+          <label style="font-weight:700;">本文 (Markdown)</label>
+          <textarea id="lec-body" rows="22" style="width:100%; padding:8px; font-family:Consolas,monospace; font-size:13px; margin-top:6px;"
+            placeholder="## セクション&#10;&#10;本文..."></textarea>
+          <div class="actions-bar">
+            <button class="save" id="lec-save">💾 保存</button>
+            <button class="ghost" id="lec-save-rebuild">💾 保存して再ビルド</button>
+            <button class="ghost" id="lec-cancel">キャンセル</button>
+            <button class="ghost" id="lec-delete" style="margin-left:auto; color:#b91c1c;">🗑 削除</button>
+          </div>
+        </div>
+
+        <div id="lec-empty" class="helper" style="grid-column:2; text-align:center; padding:80px 20px;">
+          ← 左から資料を選択するか「＋ 新規作成」で開始
+        </div>
       </div>
     </div>
   </section>
@@ -577,6 +628,132 @@ document.getElementById("btn-save-rebuild").addEventListener("click", async () =
   if (await btnsSave()) document.getElementById("rebuild-btn").click();
 });
 btnsLoad();
+
+/* ---------------- 講習資料 ---------------- */
+let LEC_CURRENT = null;   // 現在編集中の slug。null は未選択
+
+function lecShowEditor(show) {
+  document.getElementById("lec-editor").hidden = !show;
+  document.getElementById("lec-empty").hidden = show;
+}
+
+async function lecLoadList() {
+  const r = await fetch("/api/lectures");
+  if (!r.ok) { toast("一覧取得失敗"); return; }
+  const data = await r.json();
+  document.getElementById("lec-count-badge").textContent = `${data.count}件`;
+  const ul = document.getElementById("lec-list");
+  if (!data.lectures.length) {
+    ul.innerHTML = `<div style="padding:16px; color:#94a3b8;">資料がありません</div>`;
+    return;
+  }
+  ul.innerHTML = data.lectures.map((l) => `
+    <div class="lec-item" data-slug="${escapeHtml(l.slug)}"
+         style="padding:10px 12px; border-bottom:1px solid #f1f5f9; cursor:pointer;">
+      <div style="font-weight:600; font-size:13px;">${escapeHtml(l.title || l.slug)}</div>
+      <div style="font-size:11px; color:#64748b;">${escapeHtml(l.date || "")} · ${escapeHtml(l.slug)}</div>
+    </div>
+  `).join("");
+  ul.querySelectorAll(".lec-item").forEach((el) => {
+    el.addEventListener("click", () => lecOpen(el.dataset.slug));
+  });
+}
+
+async function lecOpen(slug) {
+  const r = await fetch(`/api/lectures/${encodeURIComponent(slug)}`);
+  if (!r.ok) { toast("読み込み失敗: " + (await r.text())); return; }
+  const d = await r.json();
+  LEC_CURRENT = d.slug;
+  document.getElementById("lec-slug").value = d.slug;
+  document.getElementById("lec-slug").disabled = true;   // 既存はslug変更不可
+  document.getElementById("lec-title").value = d.title || "";
+  document.getElementById("lec-date").value = d.date || "";
+  document.getElementById("lec-role").value = d.role || "講習ノート";
+  document.getElementById("lec-genby").value = d.gen_by || "由井 辰美 / AIハブ";
+  document.getElementById("lec-summary").value = d.summary || "";
+  document.getElementById("lec-body").value = d.body || "";
+  document.getElementById("lec-delete").hidden = false;
+  lecShowEditor(true);
+  document.querySelectorAll(".lec-item").forEach((el) => {
+    el.style.background = el.dataset.slug === slug ? "#eff6ff" : "";
+  });
+}
+
+function lecNew() {
+  LEC_CURRENT = null;
+  const today = new Date().toISOString().slice(0, 10);
+  document.getElementById("lec-slug").value = "";
+  document.getElementById("lec-slug").disabled = false;
+  document.getElementById("lec-title").value = "";
+  document.getElementById("lec-date").value = today;
+  document.getElementById("lec-role").value = "講習ノート";
+  document.getElementById("lec-genby").value = "由井 辰美 / AIハブ";
+  document.getElementById("lec-summary").value = "";
+  document.getElementById("lec-body").value = "## セクション\n\n本文...\n";
+  document.getElementById("lec-delete").hidden = true;
+  lecShowEditor(true);
+  document.querySelectorAll(".lec-item").forEach((el) => { el.style.background = ""; });
+  document.getElementById("lec-slug").focus();
+}
+
+function lecPayload() {
+  return {
+    slug: document.getElementById("lec-slug").value.trim(),
+    title: document.getElementById("lec-title").value.trim(),
+    date: document.getElementById("lec-date").value.trim(),
+    role: document.getElementById("lec-role").value.trim(),
+    gen_by: document.getElementById("lec-genby").value.trim(),
+    summary: document.getElementById("lec-summary").value.trim(),
+    body: document.getElementById("lec-body").value,
+  };
+}
+
+async function lecSave() {
+  const p = lecPayload();
+  if (!p.slug) { toast("slug を入力してください"); return false; }
+  const isNew = LEC_CURRENT === null;
+  const url = isNew ? "/api/lectures" : `/api/lectures/${encodeURIComponent(LEC_CURRENT)}`;
+  const method = isNew ? "POST" : "PUT";
+  const r = await fetch(url, {
+    method,
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(p),
+  });
+  if (!r.ok) { toast("保存失敗: " + (await r.text())); return false; }
+  toast("保存しました");
+  await lecLoadList();
+  if (isNew) {
+    LEC_CURRENT = p.slug;
+    document.getElementById("lec-slug").disabled = true;
+    document.getElementById("lec-delete").hidden = false;
+  }
+  return true;
+}
+
+async function lecDelete() {
+  if (!LEC_CURRENT) return;
+  if (!confirm(`本当に削除しますか？\n\n${LEC_CURRENT}`)) return;
+  const r = await fetch(`/api/lectures/${encodeURIComponent(LEC_CURRENT)}`, { method: "DELETE" });
+  if (!r.ok) { toast("削除失敗: " + (await r.text())); return; }
+  toast("削除しました");
+  LEC_CURRENT = null;
+  lecShowEditor(false);
+  await lecLoadList();
+}
+
+document.getElementById("lec-new").addEventListener("click", lecNew);
+document.getElementById("lec-reload").addEventListener("click", lecLoadList);
+document.getElementById("lec-save").addEventListener("click", lecSave);
+document.getElementById("lec-save-rebuild").addEventListener("click", async () => {
+  if (await lecSave()) document.getElementById("rebuild-btn").click();
+});
+document.getElementById("lec-cancel").addEventListener("click", () => {
+  LEC_CURRENT = null;
+  lecShowEditor(false);
+  document.querySelectorAll(".lec-item").forEach((el) => { el.style.background = ""; });
+});
+document.getElementById("lec-delete").addEventListener("click", lecDelete);
+lecLoadList();
 
 /* ---------------- Shopify ---------------- */
 const SHOP_SECTIONS = ["products", "orders", "customers", "locations"];

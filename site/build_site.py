@@ -211,6 +211,40 @@ def is_video(item: dict) -> bool:
     return "youtube.com/watch" in url or "youtu.be/" in url
 
 
+# localhost / 127.0.0.1 でアクセスしたときだけ右上に ⚙️ ボタンを表示する。
+# 本番 (GitHub Pages 等) ではスクリプトが何もせず、訪問者には完全に不可視。
+ADMIN_BUTTON_HTML = """
+<style>
+  #aihub-admin-fab {
+    position: fixed; top: 14px; right: 14px; z-index: 9999;
+    display: none;
+    width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(15, 23, 42, 0.85); color: #f8fafc;
+    border: 1px solid rgba(248, 250, 252, 0.25);
+    font-size: 18px; cursor: pointer; line-height: 1;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+  #aihub-admin-fab:hover { transform: scale(1.08); background: rgba(37, 99, 235, 0.95); }
+</style>
+<button id="aihub-admin-fab" type="button" title="管理画面 (/admin)" aria-label="管理画面を開く">⚙️</button>
+<script>
+(function(){
+  var h = location.hostname;
+  if (h === "localhost" || h === "127.0.0.1" || h === "0.0.0.0" || h.endsWith(".localhost")) {
+    var btn = document.getElementById("aihub-admin-fab");
+    if (btn) {
+      btn.style.display = "block";
+      btn.addEventListener("click", function(){
+        window.location.href = "/admin";
+      });
+    }
+  }
+})();
+</script>
+"""
+
+
 CSS = """
 :root {
   --text:#f2f4fb;
@@ -505,6 +539,7 @@ def render_index(payload: dict, genres: list[dict]) -> str:
     if ld:
         parts.append(f"<script type='application/ld+json'>{ld}</script>")
     parts.append(f"<style>{CSS}</style></head><body><div class='container'>")
+    parts.append(ADMIN_BUTTON_HTML)
     parts.append("<header>")
     parts.append("<h1>AIハブ</h1>")
     parts.append(f"<p class='sub'>{date} ・ 今日の注目Top{total} ・ クリックで好みを学習</p>")
@@ -713,6 +748,7 @@ def render_archive(dates: list[str]) -> str:
     parts.append("<meta name='viewport' content='width=device-width,initial-scale=1'>")
     parts.append("<title>AIハブ — 過去ログ</title>")
     parts.append(f"<style>{CSS}</style></head><body><div class='container'>")
+    parts.append(ADMIN_BUTTON_HTML)
     parts.append("<header>")
     parts.append("<h1>過去ログ</h1>")
     parts.append(f"<p class='sub'>アーカイブ {len(dates)}件</p>")
@@ -1080,6 +1116,7 @@ def render_content_page(title: str, meta: dict, body_html: str, nav_html: str, p
         if ld:
             parts.append(f"<script type='application/ld+json'>{ld}</script>")
     parts.append(f"<style>{CSS}{CONTENT_CSS}</style></head><body><div class='container'>")
+    parts.append(ADMIN_BUTTON_HTML)
     parts.append("<header>")
     parts.append(f"<h1>{html.escape(title)}</h1>")
     sub_bits: list[str] = []

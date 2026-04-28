@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/STK022_ELON_MUSK_CVIRGINIA4_J.jpg?quality=90&amp;strip=all&amp;crop=0%2C9.9676601489831%2C100%2C80.064679702034&amp;w=1200",
-      "published": "2026-04-28T16:46:54-04:00"
+      "published": "2026-04-28T16:46:54-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "eb641155df5ccf1c",
@@ -37,7 +39,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/gettyimages-2268536362.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.737892056687%2C100%2C78.524215886627&amp;w=1200",
-      "published": "2026-04-28T16:30:00-04:00"
+      "published": "2026-04-28T16:30:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "b3102d9f5f86b71f",
@@ -56,7 +60,9 @@
         "freshness": 10.0
       },
       "thumbnail": "",
-      "published": "2026-04-28T22:02:53+00:00"
+      "published": "2026-04-28T22:02:53+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "302ed31d035e2099",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-04-28T15:27:50-04:00"
+      "published": "2026-04-28T15:27:50-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "c6249eea34710c8a",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/01/VRG_Illo_STK022_K_Radtke_Musk_Bolts.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-04-28T15:00:13-04:00"
+      "published": "2026-04-28T15:00:13-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "b7017a89404e8a0e",
@@ -113,7 +123,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/Claude-creative-connectors-Blender-.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-04-28T12:49:08-04:00"
+      "published": "2026-04-28T12:49:08-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "2927f10265951b71",
@@ -132,7 +144,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/VRG_VST_0428_Site.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-04-28T10:47:21-04:00"
+      "published": "2026-04-28T10:47:21-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "b72b9e6f10319124",
@@ -151,7 +165,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/24925007/236780_Google_AntiTrust_Trial_Custom_Art_CVirginia__0001_5.png?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-04-28T07:09:32-04:00"
+      "published": "2026-04-28T07:09:32-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "fe0cea23fcb7e034",
@@ -170,7 +186,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/rogers-script-kiddies-Lede-STATIC.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-04-28T07:00:00-04:00"
+      "published": "2026-04-28T07:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "55367d27a99ef9f2",
@@ -189,7 +207,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-04-28T13:25:29+00:00"
+      "published": "2026-04-28T13:25:29+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

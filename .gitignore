@@ -5,3 +5,4 @@ __pycache__/
 data/history.db-journal
 data/_migrate_*
 site/dist/
+.wrangler/

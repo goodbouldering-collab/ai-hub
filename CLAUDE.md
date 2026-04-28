@@ -49,6 +49,25 @@
 
 将来 Web Service（FastAPI 管理画面の本番公開など）に切り替える場合は、親 CLAUDE.md「Render プラン運用ルール」に従い Free + keepalive で開始する。
 
+### Cloudflare Workers 並行デプロイ稼働中（2026-04-28）
+
+GitHub Pages / Render Static Site に加え、**Cloudflare Workers Static Assets** にも並行デプロイ済み。
+
+- 現行公開: https://goodbouldering-collab.github.io/ai-hub/ （GitHub Pages）
+- 並行: https://ai-hub.goodbouldering.workers.dev （Cloudflare Workers）
+
+サイトは静的 HTML のみなので OpenNext は使わず、`site/dist/` を Workers Static Assets でそのまま配信する最小構成。
+
+- [wrangler.toml](wrangler.toml) — Worker 名 `ai-hub`、`assets.directory = site/dist`
+- GitHub Actions [.github/workflows/cloudflare-pages.yml](.github/workflows/cloudflare-pages.yml) は `vars.ENABLE_CLOUDFLARE_DEPLOY=true` のとき main push で自動デプロイ
+- 手動デプロイ:
+  ```bash
+  source ~/.claude/.env  # CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID 読込
+  python site/build_site.py
+  npx wrangler deploy
+  ```
+- env / secret は静的サイト側に注入する必要なし（ビルド済み出力のみ配信）
+
 ## コマンド
 
 ```bash

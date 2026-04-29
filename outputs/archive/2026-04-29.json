@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/23951561/VRG_Illo_STK179_L_Normand_SundarPichai_Neutral.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-04-29T16:28:11-04:00"
+      "published": "2026-04-29T16:28:11-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "5a30178ac08d3a33",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/268474_musk_vs_altman_CVirginia6.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-04-29T14:03:05-04:00"
+      "published": "2026-04-29T14:03:05-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "8e3f14c11b7b82cc",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/03/STK414_AI_CHATBOT_E.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-04-29T13:32:02-04:00"
+      "published": "2026-04-29T13:32:02-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "24d0b2950f53dfd5",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/wardrobe-try-on.png?quality=90&amp;strip=all&amp;crop=0,16.342557965595,100,67.314884068811",
-      "published": "2026-04-29T12:00:00-04:00"
+      "published": "2026-04-29T12:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "302ed31d035e2099",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-04-29T11:35:32-04:00"
+      "published": "2026-04-29T11:35:32-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "a35ba55aebe4d72f",
@@ -113,7 +123,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/gettyimages-2260765297.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.740836125969%2C100%2C78.518327748063&amp;w=1200",
-      "published": "2026-04-29T10:47:57-04:00"
+      "published": "2026-04-29T10:47:57-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "eaf4b02983eada09",
@@ -132,7 +144,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25844039/STK155_OPEN_AI_CVirginia__A.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-04-29T10:43:41-04:00"
+      "published": "2026-04-29T10:43:41-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "1720683232c5c910",
@@ -151,7 +165,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/68456_ORACLE_BELLWEATHER7.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-04-29T09:57:16-04:00"
+      "published": "2026-04-29T09:57:16-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "711e43b0ee75521f",
@@ -170,7 +186,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/gettyimages-2267995710.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.729716127092%2C100%2C78.540567745815&amp;w=1200",
-      "published": "2026-04-29T09:00:00-04:00"
+      "published": "2026-04-29T09:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "e1caea43b2b2fde5",
@@ -189,7 +207,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://static.simonwillison.net/static/2026/llm-032a0-card.jpg",
-      "published": "2026-04-29T19:01:47+00:00"
+      "published": "2026-04-29T19:01:47+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

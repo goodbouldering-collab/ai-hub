@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "",
-      "published": "2026-04-30T21:24:55+00:00"
+      "published": "2026-04-30T21:24:55+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "5a30178ac08d3a33",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/268474_musk_vs_altman_CVirginia6.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-04-30T15:00:00-04:00"
+      "published": "2026-04-30T15:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "a2e987f11ccc4bd7",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/STK022_ELON_MUSK_CVIRGINIA4_G.jpg?quality=90&amp;strip=all&amp;crop=0%2C9.9676601489831%2C100%2C80.064679702034&amp;w=1200",
-      "published": "2026-04-30T14:16:57-04:00"
+      "published": "2026-04-30T14:16:57-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "302ed31d035e2099",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-04-30T12:57:14-04:00"
+      "published": "2026-04-30T12:57:14-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "dfff21083ada05c0",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/get-rich-quick_70fa93.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.876819515563%2C100%2C78.246360968874&amp;w=1200",
-      "published": "2026-04-30T12:48:13-04:00"
+      "published": "2026-04-30T12:48:13-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "e27b898db2cd9643",
@@ -113,7 +123,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/Google-Gemini-car-AI-assistant-upgrade.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-04-30T12:00:00-04:00"
+      "published": "2026-04-30T12:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "e5ad746ca8a30109",
@@ -132,7 +144,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25098341/1778707567.jpg?quality=90&amp;strip=all&amp;crop=0%2C12.399233250067%2C100%2C75.201533499866&amp;w=1200",
-      "published": "2026-04-30T12:00:00-04:00"
+      "published": "2026-04-30T12:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "3a9a0c98a530a266",
@@ -151,7 +165,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/268494_smart_glasses_overview_AKrales_0381.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-04-30T11:00:00-04:00"
+      "published": "2026-04-30T11:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "7821476ed600f9ce",
@@ -170,7 +186,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25461999/STK155_OPEN_AI_CVirginia_A.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-04-30T09:42:29-04:00"
+      "published": "2026-04-30T09:42:29-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "b21410903b7a9a82",
@@ -189,7 +207,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/S4A_Verified_Header_Ravyn.jpg?quality=90&amp;strip=all&amp;crop=0%2C4.0288596603244%2C100%2C91.942280679351&amp;w=1200",
-      "published": "2026-04-30T09:08:23-04:00"
+      "published": "2026-04-30T09:08:23-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

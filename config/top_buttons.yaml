@@ -48,13 +48,8 @@ top_buttons:
   href: lectures/index.html
   kind: link
   enabled: true
-- id: programming_map
-  group: 教材資料
-  label: プログラミングマップ
-  icon: 📘
-  href: programming-map.html
-  kind: link
-  enabled: true
+# プログラミングマップは講習資料一覧の中にリンクとして掲載するため
+# トップナビからは外している（build_lectures() が一覧に追加）
 
 - id: archive
   group: アーカイブ

@@ -1,0 +1,42 @@
+# 講習資料ディレクトリの一覧定義
+#
+# 編集ガイド:
+#   - sections は表示順
+#   - 各 section の items に 1 ブロック追加すれば一覧に増える
+#   - href の扱い:
+#       - https:// で始まる → 外部リンク（自動で別タブ + 「外部」バッジ）
+#       - "./xxx.html" / "../xxx.html" → そのまま使われる
+#       - "xxx.html"（ルート相対）→ 自動的に "../xxx.html" として解決される
+#   - source: lectures-md は特別キーワード
+#       content/lectures/*.md を自動取り込む（admin の /lectures 編集タブと連携）
+#   - icon / summary / date は省略可
+#
+# 例: 補助資料を増やす
+#   items:
+#     - title: 新しい資料名
+#       icon: 📒
+#       href: 新しい資料.html  # site/static または content から生成された html
+#       summary: 1〜2行の説明
+#       date: 2026-05-01
+
+sections:
+
+- name: 講習資料
+  icon: 📝
+  description: 講習で実際に使った資料・スライド（content/lectures/*.md から自動取り込み）
+  source: lectures-md
+
+- name: 補助資料
+  icon: 📚
+  description: 講習を補完する独立コンテンツ
+  items:
+  - title: プログラミングマップ
+    icon: 📘
+    href: programming-map.html
+    summary: プログラミング言語と用途の俯瞰図。何から学ぶか迷ったときに参照
+    date: 2026-04-25
+
+- name: 外部リソース
+  icon: 🌐
+  description: 公式ドキュメント・参考リンク（追加する場合はここへ）
+  items: []

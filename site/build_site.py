@@ -65,7 +65,7 @@ DEFAULT_TOP_BUTTONS = [
     {"id": "profile",         "group": "講師",         "label": "経歴",               "icon": "📜", "href": "profile.html",          "kind": "link",   "enabled": True},
     {"id": "portfolio",       "group": "作品",         "label": "実績",               "icon": "🏆", "href": "portfolio.html",        "kind": "link",   "enabled": True},
     {"id": "lectures",        "group": "教材資料",     "label": "講習資料",           "icon": "📝", "href": "lectures/index.html",   "kind": "link",   "enabled": True},
-    {"id": "programming_map", "group": "教材資料",     "label": "プログラミングマップ", "icon": "📘", "href": "programming-map.html",  "kind": "link",   "enabled": True},
+    # プログラミングマップは lectures index の中にリンクとして掲載するためトップナビからは外す
     {"id": "archive",         "group": "アーカイブ",   "label": "過去ログ",           "icon": "📚", "href": "archive.html",          "kind": "link",   "enabled": True},
     {"id": "run",             "group": "操作",         "label": "巡回実行",           "icon": "🔄", "href": "",                      "kind": "action", "action_id": "run", "enabled": True},
 ]
@@ -858,6 +858,7 @@ SPEAKER_MD = CONTENT_DIR / "speaker.md"
 LECTURES_DIR = CONTENT_DIR / "lectures"
 PORTFOLIO_YAML = ROOT / "config" / "portfolio.yaml"
 PROFILE_YAML = ROOT / "config" / "profile.yaml"
+TEACHING_YAML = ROOT / "config" / "teaching_resources.yaml"
 
 CONTENT_CSS = """
 .content-wrap {
@@ -1072,6 +1073,94 @@ CONTENT_CSS = """
   border-left: 3px solid var(--accent2);
   background: rgba(255,255,255,.03);
   border-radius: 0 10px 10px 0;
+}
+
+/* ---- Teaching resources directory (config/teaching_resources.yaml) ---- */
+.tr-intro {
+  font-size: 13.5px;
+  color: var(--muted);
+  margin: 4px 0 22px;
+  padding: 10px 14px;
+  border-left: 3px solid var(--accent2);
+  background: rgba(255,255,255,.03);
+  border-radius: 0 10px 10px 0;
+}
+.tr-section { margin: 22px 0 18px; }
+.tr-section-head {
+  display: flex; align-items: center; gap: 10px;
+  margin: 0 0 4px;
+  padding: 10px 16px !important;
+}
+.tr-section-icon { font-size: 20px; }
+.tr-section-name { flex: 1; }
+.tr-section-count {
+  font-size: 11px; font-weight: 600;
+  color: var(--muted);
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid var(--glass-border);
+}
+.tr-section-desc {
+  margin: 6px 4px 12px !important;
+  color: var(--muted);
+  font-size: 12.5px !important;
+}
+.tr-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+}
+.tr-card {
+  display: flex; flex-direction: column; gap: 6px;
+  padding: 16px 18px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  text-decoration: none !important;
+  color: inherit !important;
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+  border-bottom: 1px solid var(--glass-border) !important;
+  min-height: 112px;
+}
+.tr-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(122,162,255,.45) !important;
+  box-shadow: 0 10px 26px rgba(8,12,30,.45);
+}
+.tr-card .tr-title {
+  font-size: 15px;
+  font-weight: 800;
+  background: linear-gradient(100deg, var(--accent1), var(--accent3));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.4;
+}
+.tr-card .tr-date {
+  font-size: 11.5px;
+  color: var(--muted);
+  letter-spacing: .03em;
+}
+.tr-card .tr-sum {
+  font-size: 13px;
+  color: #d3d8ea;
+  line-height: 1.6;
+  flex: 1;
+}
+.tr-card .tr-meta {
+  display: flex; gap: 6px; flex-wrap: wrap;
+  margin-top: 4px;
+}
+.tr-chip {
+  font-size: 10.5px; font-weight: 700;
+  padding: 2px 9px; border-radius: 999px;
+  letter-spacing: .04em;
+}
+.tr-chip.ext {
+  background: rgba(255,122,182,.16);
+  color: #ffd4ea;
+  border: 1px solid rgba(255,122,182,.32);
 }
 
 /* ---- Profile page (config/profile.yaml) ---- */
@@ -1528,14 +1617,114 @@ def build_speaker_page() -> bool:
     return True
 
 
+def _is_external_url(href: str) -> bool:
+    return href.startswith(("http://", "https://", "//"))
+
+
+def _resolve_lecture_href(href: str) -> str:
+    """teaching_resources.yaml の href を lectures/index.html から見たパスに解決。
+
+    - 絶対URL → そのまま
+    - "./..." / "../..." → そのまま
+    - "xxx.html"（ルート相対表記）→ "../xxx.html" として dist ルートへ戻す
+    """
+    if not href:
+        return ""
+    if _is_external_url(href) or href.startswith(("./", "../", "/")):
+        return href
+    return f"../{href}"
+
+
+def _load_teaching_sections(lecture_md_items: list[dict]) -> list[dict]:
+    """config/teaching_resources.yaml を読み、source: lectures-md は自動展開して返す。
+
+    YAML が無ければ「講習資料」セクションだけを返す簡易フォールバック。
+    """
+    if TEACHING_YAML.exists():
+        try:
+            data = yaml.safe_load(TEACHING_YAML.read_text(encoding="utf-8")) or {}
+            sections = data.get("sections") or []
+            resolved: list[dict] = []
+            for sec in sections:
+                if sec.get("source") == "lectures-md":
+                    sec_copy = {k: v for k, v in sec.items() if k != "source"}
+                    sec_copy["items"] = lecture_md_items
+                    resolved.append(sec_copy)
+                else:
+                    resolved.append(sec)
+            return resolved
+        except Exception as e:
+            print(f"[!] teaching_resources.yaml parse error: {e}")
+    if lecture_md_items:
+        return [{"name": "講習資料", "icon": "📝", "items": lecture_md_items}]
+    return []
+
+
+def _render_teaching_index(sections: list[dict]) -> str:
+    """セクション付きのカード式ディレクトリを描画。"""
+    parts: list[str] = []
+    parts.append(
+        "<p class='tr-intro'>講習で使った資料・補助教材・外部リソースをひとまとめにしたディレクトリ。"
+        "新しい資料は <code>config/teaching_resources.yaml</code> に追記すれば自動で並ぶ。"
+        "講習スライド本体（Markdown）は <code>content/lectures/</code> に置くか、ローカル <code>/admin</code> の「📝 講習資料」タブから追加できる。</p>"
+    )
+    rendered_any = False
+    for sec in sections:
+        items = sec.get("items") or []
+        if not items:
+            continue
+        rendered_any = True
+        name = html.escape(str(sec.get("name", "")))
+        icon = html.escape(str(sec.get("icon", "")))
+        desc = html.escape(str(sec.get("description", "")))
+        sec_id = re.sub(r"[^a-zA-Z0-9一-鿿぀-ヿ]+", "-", str(sec.get("name", ""))).strip("-").lower()
+        parts.append(f"<section class='tr-section' id='sec-{sec_id}'>")
+        parts.append(
+            f"<h2 class='tr-section-head'><span class='tr-section-icon'>{icon}</span>"
+            f"<span class='tr-section-name'>{name}</span>"
+            f"<span class='tr-section-count'>{len(items)} 件</span></h2>"
+        )
+        if desc:
+            parts.append(f"<p class='tr-section-desc'>{desc}</p>")
+        parts.append("<div class='tr-grid'>")
+        for it in items:
+            title = html.escape(str(it.get("title", "")))
+            iicon = html.escape(str(it.get("icon", "")))
+            href_raw = str(it.get("href", ""))
+            summary = html.escape(str(it.get("summary", "")))
+            date = html.escape(str(it.get("date", "")))
+            ext = _is_external_url(href_raw)
+            href = _resolve_lecture_href(href_raw)
+            attrs = f" target='_blank' rel='noopener'" if ext else ""
+            safe_href = html.escape(href, quote=True)
+            chip = "<span class='tr-chip ext'>外部</span>" if ext else ""
+            parts.append(f"<a class='tr-card' href='{safe_href}'{attrs}>")
+            parts.append(
+                f"<div class='tr-title'>{(iicon + ' ') if iicon else ''}{title}</div>"
+            )
+            if date:
+                parts.append(f"<div class='tr-date'>📅 {date}</div>")
+            if summary:
+                parts.append(f"<div class='tr-sum'>{summary}</div>")
+            if chip:
+                parts.append(f"<div class='tr-meta'>{chip}</div>")
+            parts.append("</a>")
+        parts.append("</div></section>")
+    if not rendered_any:
+        parts.append("<p class='empty'>まだ資料が登録されていません。</p>")
+    return "".join(parts)
+
+
 def build_lectures() -> int:
+    """content/lectures/*.md を個別ページに変換しつつ、
+    config/teaching_resources.yaml を元にセクション付きインデックスを生成する。"""
     if not LECTURES_DIR.exists():
         return 0
     md = _load_markdown()
     out_dir = DIST / "lectures"
     out_dir.mkdir(parents=True, exist_ok=True)
     count = 0
-    index_items: list[tuple[str, str, dict]] = []
+    lecture_md_items: list[dict] = []
     for f in sorted(LECTURES_DIR.glob("*.md")):
         raw = f.read_text(encoding="utf-8")
         meta, body = _parse_frontmatter(raw)
@@ -1546,17 +1735,21 @@ def build_lectures() -> int:
             render_content_page(title, meta, body_html, nav, page_path=f"lectures/{f.stem}.html", kind="lecture"),
             encoding="utf-8",
         )
-        index_items.append((f.stem, title, meta))
+        lecture_md_items.append({
+            "title": title,
+            "icon": "📝",
+            "href": f"./{f.stem}.html",
+            "summary": str(meta.get("summary", "")),
+            "date": str(meta.get("date", "")),
+        })
         count += 1
-    if index_items:
-        lines = ["## 講習資料一覧", ""]
-        for slug, title, meta in index_items:
-            date = meta.get("date", "")
-            lines.append(f"- [{title}](./{slug}.html){f' — {date}' if date else ''}")
-        body_html = md.markdown("\n".join(lines), extensions=["extra", "sane_lists"])
+
+    sections = _load_teaching_sections(lecture_md_items)
+    if sections:
+        body_html = _render_teaching_index(sections)
         nav = render_top_nav(path_prefix="../", current_id="lectures", include_run=False)
         (out_dir / "index.html").write_text(
-            render_content_page("講習資料", {}, body_html, nav, page_path="lectures/index.html"),
+            render_content_page("講習資料 ディレクトリ", {"summary": "AIハブの講習資料・補助教材・外部リソースのディレクトリ"}, body_html, nav, page_path="lectures/index.html"),
             encoding="utf-8",
         )
     return count

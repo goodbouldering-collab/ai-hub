@@ -1,0 +1,336 @@
+# 由井辰美 — 包括的経歴ページ
+#
+# 編集ガイド:
+#   - 各セクション (stats / timeline / tech_evolution / apps / business / footer_links)
+#     は配列なので、ブロックごと増減・並び替え可能
+#   - 文字列の改行は `|` (preserve) か `>` (fold) を使う
+#   - 編集後は `python site/build_site.py` でビルドし `site/dist/profile.html` に反映される
+#
+# 出典: https://www.genspark.ai/api/code_sandbox_light/preview/598e1ca9-55a0-42ef-94b1-2c2072dee9f3
+
+meta:
+  title: 由井 辰美
+  subtitle: 製造業DXの先駆者から登る投資家へ
+  tagline: 1990年代からデジタル革命を牽引し続けるエンジニア・経営者
+  description: 1990年代に製造業DXを牽引し、クライミング業界にIT革命をもたらした由井辰美氏の包括的経歴。製造コスト75%削減、40ジムへのシステム提供、AI/アプリ開発の実績を網羅。
+  source_url: https://www.genspark.ai/api/code_sandbox_light/preview/598e1ca9-55a0-42ef-94b1-2c2072dee9f3
+  gen_by: GenSpark DeepResearch 生成
+
+stats:
+  - number: 75%
+    label: 製造コスト削減達成
+  - number: 40+
+    label: ジムシステム提供
+  - number: '120'
+    label: シューズモデル在庫
+  - number: 90%
+    label: 機器稼働率達成
+  - number: '14'
+    label: エンジェル投資実績
+  - number: 30+
+    label: 年クライミング経験
+
+intro: |
+  1964年生まれ。10歳から登山を始め、製造業エンジニアとして1990年代に国内でいち早く
+  MRPシステム・LANベース製造管理を導入。製造コスト75%削減の実績を持つDXの先駆者。
+  50歳で独立後、クライミング業界にITイノベーションをもたらし、現在はAI活用による
+  企業コンサル、アプリ開発、マーチャンダイジングまで手掛ける "登る投資家"。
+
+timeline:
+  - year: 1974年〜（10歳）
+    role: 登山人生のスタート
+    description: |
+      ボーイスカウト入隊をきっかけに登山を始める。以来50年以上、山とクライミングを
+      愛し続ける。30歳を過ぎてから岩登りに本格的に挑戦し、国内外のボルダリング
+      エリア開拓に没頭。フクベ渓谷、豊田をはじめ、滋賀県内10箇所、東海地方4箇所の
+      岩場を整備・開拓。
+    metrics: []
+
+  - year: 1990年代後半
+    role: 日昇テクニカ — 製造業DX革命
+    description: |
+      金属機械加工エンジニアとして、日本の製造業で先駆的にMRPシステムと
+      社内ポータルサイトを自社開発。受注から設計・加工・納品までの全工程を
+      一元管理する統合システムを構築し、製造コストを従来比 **25%（75%削減）** に
+      圧縮する驚異的な成果を達成。
+    metrics:
+      - MRPシステム導入
+      - 社内ポータル自社開発
+      - 75%コスト削減
+      - 社内ベンチャー創設
+
+  - year: 1995年〜2000年代
+    role: エンテック代表取締役 — インハウス自立型システム確立
+    description: |
+      内部ベンチャーとしてエンテックを率い、LANを活用した製造管理ソフトウェアを
+      開発・販売。製造業では画期的だった **「一人一台PC」体制** を実現し、
+      データベースからNCコード生成、通信、経営戦略まで統合したインハウス
+      自立型システムを1990年代に構築。プログラム言語から切削技術、マテリアル
+      工学まで幅広いエンジニアリング知識を駆使。
+    metrics:
+      - LAN製造管理ソフト開発
+      - 一人一台PC実現
+      - NCコード自動生成
+      - DB統合システム
+
+  - year: 2000年代後半〜2014年
+    role: 日昇テクニカ常務取締役 — 経営DX推進
+    description: |
+      経営幹部として全社のIT戦略を指揮。製造プロセスへのさらなるデジタル化を
+      推進し、社内のデジタルトランスフォーメーションを牽引。新規事業・子会社
+      統括も担当し、50歳で独立するまで製造業のイノベーションをリード。
+    metrics:
+      - 全社IT戦略統括
+      - DX先駆者
+      - 新規事業創出
+
+  - year: 2013年8月
+    role: グッぼる ボルダリングCafe創業
+    description: |
+      滋賀県彦根市に、ジム・ショップ・カフェが融合した国内初の複合型クライミング
+      施設をオープン。自社開発の顧客管理ソフトと課題管理システム **「Climb」** を
+      導入し、全課題データを蓄積・分析。このシステムを全国40ジムに提供し、
+      クライミング業界のIT化を推進。
+    metrics:
+      - 年間2.5万人利用
+      - システム40ジム提供
+      - シューズ120モデル
+      - マット60枚常時在庫
+
+  - year: 2013年〜現在
+    role: クライミング通販国内No.1 & V17クライマーサポート
+    description: |
+      クライミングシューズ約120モデル、クラッシュパッド60枚超を常時在庫し、
+      LINE接客からEC、店頭試履き、ジム試登まで一気通貫でサポート。世界最難V17を
+      登るトップクライマー（亀山凌平らが「No Kapote Only」を第2登）をスタッフとして
+      擁し、プロフェッショナルな助言体制を確立。
+    metrics:
+      - 通販国内No.1規模
+      - V17クライマー常駐
+      - 一気通貫サポート
+
+  - year: 2014年〜
+    role: Notエステ — ビューティーテックDX
+    description: |
+      南彦根・木屋町にセルフ美容サロンを展開。IPL・SHR複合機、EMSナノペン、
+      ハイドラフェイシャル7in1等10台を導入し、月額9,900円サブスクで利用し放題を
+      実現。利用ログをアプリ連携し、**機器稼働率90%** まで向上させる独自の
+      オペレーション構築。
+    metrics:
+      - 月額9,900円サブスク
+      - 稼働率90%
+      - アプリ連携
+      - IoT最適化
+
+  - year: 2019年〜
+    role: プロギングジャパン副会長 & rasiku COO
+    description: |
+      一般社団法人プロギングジャパン副会長として、年間30回超の清掃ランイベントを
+      プロデュース。スターバックス等と協業し、参加者延べ4,000人規模に成長。
+      また、株式会社rasikuでCOOとして、看護師×AIチャットによる生活習慣・メンタル
+      伴走支援サービスを展開。アプリ月間アクティブ1.2万人を達成。
+    metrics:
+      - 年間30回イベント
+      - 延べ4,000人参加
+      - 月間1.2万人アクティブ
+
+  - year: 2020年〜現在
+    role: クライミングコンサル & エンジェル投資家
+    description: |
+      クライミング施設14件の立ち上げを支援。事業再構築補助金・地方創生交付金の
+      採択率85%を誇る。アウトドア／ウェルビーイング系スタートアップへ累計1.8億円
+      出資し、業界の成長を牽引。
+    metrics:
+      - 開業支援14件
+      - 補助金採択率85%
+      - 累計1.8億円投資
+
+  - year: 2024年〜現在
+    role: AI時代のアプリケーション開発
+    description: |
+      AIを駆使した企業コンサル、ソフトウェア開発、製品開発、マーチャンダイジングを
+      展開。GenSpark、Claude等の最新AIツールを活用し、実用的なビジネス
+      アプリケーションを次々とリリース。製造業DXで培った知見を、現代のAI時代に
+      応用している。
+    metrics:
+      - AI活用コンサル
+      - 実用アプリ開発
+      - マーチャンダイジング
+
+tech_evolution:
+  - icon: 🏭
+    title: 製造業DX時代
+    period: 1990年代〜2014年
+    items:
+      - MRP（資材所要量計画）システム
+      - 社内ポータルサイト自社開発
+      - LANベース製造管理ソフト
+      - 一人一台PC環境構築
+      - データベース統合管理
+      - NCコード自動生成
+      - 経営戦略システム
+      - 切削技術・マテリアル工学
+
+  - icon: 🧗
+    title: クライミングIT革新
+    period: 2013年〜現在
+    items:
+      - 顧客管理ソフト「Climb」開発
+      - 課題管理システム（40ジム導入）
+      - 登攀データ蓄積・分析
+      - LINE接客→EC統合
+      - 在庫管理システム
+      - IoTセンサー（カフェ空輸豆管理）
+      - 利用ログアプリ連携
+
+  - icon: 🤖
+    title: AI時代の実装
+    period: 2024年〜現在
+    items:
+      - GenSpark Agents開発
+      - Claude Artifacts活用
+      - Novita AI Sandbox展開
+      - 企業AIコンサルティング
+      - マーケティング自動化
+      - LLMO診断システム
+      - 損益計算アプリケーション
+      - 製品開発・MD統合
+
+apps:
+  - title: みんなのWA
+    category: 地域交流プラットフォーム
+    description: |
+      彦根地域の異業種交流を促進するためのコミュニティプラットフォーム。
+      イベント管理、メンバー交流、情報共有機能を統合。
+    url: https://3000-i26mzzri6plazftdqznnd-b32ec7bb.sandbox.novita.ai/
+
+  - title: 企業アンバサダープランニング
+    category: マーケティング戦略
+    description: |
+      企業のブランドアンバサダープログラムを設計・運用するための戦略立案
+      AIエージェント。インフルエンサー選定から効果測定まで支援。
+    url: https://www.genspark.ai/agents?id=53db61cb-f365-44fa-b9fa-f705968bea84
+
+  - title: 0から1億マーケティング
+    category: 事業成長戦略
+    description: |
+      スタートアップや中小企業が売上0円から1億円に到達するための具体的
+      マーケティング戦略を提示する包括的ガイド。
+    url: https://khktfxqf.gensparkspace.com/
+
+  - title: LLMO診断
+    category: SEO最適化診断
+    description: |
+      大規模言語モデル最適化（LLMO）の観点から、Webサイトのコンテンツ
+      最適度を診断し、改善提案を行うツール。
+    url: https://claude.ai/public/artifacts/b468aa0c-3157-476f-aff2-bf049569ba42
+
+  - title: 損益計算アプリ
+    category: 財務管理ツール
+    description: |
+      リアルタイムで損益分岐点を計算し、事業の収益性を視覚化。
+      製造業での経験を活かした実践的な財務分析ツール。
+    url: https://claude.ai/public/artifacts/53bac4a1-54f1-4bc4-8ba9-892d7e58c3c8
+
+  - title: もぐログファディー
+    category: 食事記録AIエージェント
+    description: |
+      日々の食事を記録・分析し、栄養バランスやカロリー管理をサポート。
+      rasikuでのウェルビーイング事業で培った健康管理ノウハウを活用。
+    url: https://www.genspark.ai/agents?id=7d2b5d1f-e26f-415f-9827-ee23b1992eff
+
+business:
+  - icon: 🧗‍♂️
+    title: グッぼる ボルダリングCafe
+    description: |
+      ジム・カフェ・ショップの唯一無二の複合施設。ナポリ空輸豆のエスプレッソと、
+      世界最難V17を登るプロクライマーが常駐する本格環境を提供。
+    metrics:
+      - label: 年間利用
+        value: 2.5万人
+      - label: シューズ在庫
+        value: 120モデル
+      - label: マット在庫
+        value: 60枚超
+      - label: システム提供
+        value: 40ジム
+
+  - icon: 💆‍♀️
+    title: Notエステ
+    description: |
+      セルフ美容の新時代。IPL・HIFU等10台の最新機器を月額9,900円で使い放題。
+      IoT計測による稼働率90%の最適運用を実現。
+    metrics:
+      - label: 月額
+        value: 9,900円サブスク
+      - label: 稼働率
+        value: 90%
+      - label: 導入機器
+        value: 10台
+      - label: 展開
+        value: 南彦根・木屋町
+
+  - icon: ❤️‍🩹
+    title: rasiku (COO)
+    description: |
+      看護師×AIチャットで生活習慣・メンタルを伴走支援。クライミング・美容
+      顧客データを活かし、月間アクティブ1.2万人のウェルビーイング
+      プラットフォームを運営。
+    metrics:
+      - label: 月間アクティブ
+        value: 1.2万人
+      - label: 役職
+        value: COO・PM
+      - label: 特徴
+        value: 看護師AI伴走
+
+  - icon: 🌱
+    title: プロギングジャパン
+    description: |
+      ジョギング×ごみ拾い×交流のSDGsスポーツ。年間30回超のイベントを
+      プロデュースし、スターバックス等大手企業と協業。延べ4,000人が参加。
+    metrics:
+      - label: 役職
+        value: 副会長
+      - label: 年間イベント
+        value: 30回超
+      - label: 累計参加
+        value: 4,000人
+
+  - icon: 📈
+    title: クライミングコンサル
+    description: |
+      クライミング施設の開業から運営まで支援。事業再構築補助金・地方創生交付金の
+      採択率85%を誇り、14件の実績。エンジェル投資家として累計1.8億円投資。
+    metrics:
+      - label: 開業支援
+        value: 14件
+      - label: 補助金採択率
+        value: 85%
+      - label: 投資総額
+        value: 1.8億円
+
+  - icon: 🛒
+    title: クライミング通販
+    description: |
+      国内No.1規模のクライミング専門ECサイト。LINE接客→EC→店頭試履き→
+      ジム試登の一気通貫サポート体制で、業界最高レベルの顧客体験を提供。
+    metrics:
+      - label: 規模
+        value: 国内No.1
+      - label: シューズ
+        value: 120モデル
+      - label: サポート
+        value: 一気通貫
+
+footer_links:
+  - label: グッぼる公式サイト
+    url: https://goodbouldering.com/
+  - label: X (Twitter)
+    url: https://twitter.com/ClimbingConsul
+  - label: Instagram
+    url: https://www.instagram.com/climbingconsul/
+  - label: Clubhouse
+    url: https://www.clubhouseapi.com/@yui_tatsumi
+  - label: 滋賀の岩場
+    url: https://shiganoiwaba.info/5362

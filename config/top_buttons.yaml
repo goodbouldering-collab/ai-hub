@@ -1,40 +1,70 @@
+# 全ページ共通のトップナビ定義
+#
+# 編集ガイド:
+#   - group: 同じグループのボタンが視覚的に隣接して表示される
+#   - href: ルート相対 (例: speaker.html / lectures/index.html)
+#         → 各ページから呼ばれた時に build_site.py 側で ./ または ../ を付与する
+#   - localhost_only: true の項目は本番では非表示、localhost でのみ表示
+#   - kind: link | action（action は run ボタンのみ対応）
+#
+# グループ表示順は最初に現れた順。
+
 top_buttons:
+- id: home
+  group: メイン
+  label: トップ
+  icon: 🏠
+  href: index.html
+  kind: link
+  enabled: true
+
 - id: speaker
+  group: 講師
   label: 講師紹介
   icon: 🎤
-  href: ./speaker.html
+  href: speaker.html
   kind: link
-  action_id: ''
   enabled: true
+- id: profile
+  group: 講師
+  label: 経歴
+  icon: 📜
+  href: profile.html
+  kind: link
+  enabled: true
+
 - id: portfolio
+  group: 作品・資料
   label: 実績
   icon: 🏆
-  href: ./portfolio.html
+  href: portfolio.html
   kind: link
-  action_id: ''
   enabled: true
 - id: lectures
+  group: 作品・資料
   label: 講習資料
   icon: 📝
-  href: ./lectures/index.html
+  href: lectures/index.html
   kind: link
-  action_id: ''
-  enabled: true
-- id: archive
-  label: 過去ログ
-  icon: 📚
-  href: ./archive.html
-  kind: link
-  action_id: ''
   enabled: true
 - id: programming_map
+  group: 作品・資料
   label: プログラミングマップ
   icon: 📘
-  href: ./programming-map.html
+  href: programming-map.html
   kind: link
-  action_id: ''
   enabled: true
+
+- id: archive
+  group: アーカイブ
+  label: 過去ログ
+  icon: 📚
+  href: archive.html
+  kind: link
+  enabled: true
+
 - id: run
+  group: 操作
   label: 巡回実行
   icon: 🔄
   href: ''
@@ -42,10 +72,10 @@ top_buttons:
   action_id: run
   enabled: true
 - id: admin
+  group: 操作
   label: 管理
   icon: ⚙️
   href: /admin
   kind: link
-  action_id: ''
   enabled: true
   localhost_only: true

@@ -60,12 +60,14 @@ def load_genres() -> list[dict]:
 
 
 DEFAULT_TOP_BUTTONS = [
-    {"id": "speaker",         "label": "講師紹介",           "icon": "🎤", "href": "./speaker.html",            "kind": "link",   "enabled": True},
-    {"id": "portfolio",       "label": "実績",               "icon": "🏆", "href": "./portfolio.html",          "kind": "link",   "enabled": True},
-    {"id": "lectures",        "label": "講習資料",           "icon": "📝", "href": "./lectures/index.html",     "kind": "link",   "enabled": True},
-    {"id": "archive",         "label": "過去ログ",           "icon": "📚", "href": "./archive.html",            "kind": "link",   "enabled": True},
-    {"id": "programming_map", "label": "プログラミングマップ", "icon": "📘", "href": "./programming-map.html",    "kind": "link",   "enabled": True},
-    {"id": "run",             "label": "巡回実行",           "icon": "🔄", "href": "",                          "kind": "action", "action_id": "run", "enabled": True},
+    {"id": "home",            "group": "メイン",       "label": "トップ",             "icon": "🏠", "href": "index.html",            "kind": "link",   "enabled": True},
+    {"id": "speaker",         "group": "講師",         "label": "講師紹介",           "icon": "🎤", "href": "speaker.html",          "kind": "link",   "enabled": True},
+    {"id": "profile",         "group": "講師",         "label": "経歴",               "icon": "📜", "href": "profile.html",          "kind": "link",   "enabled": True},
+    {"id": "portfolio",       "group": "作品・資料",   "label": "実績",               "icon": "🏆", "href": "portfolio.html",        "kind": "link",   "enabled": True},
+    {"id": "lectures",        "group": "作品・資料",   "label": "講習資料",           "icon": "📝", "href": "lectures/index.html",   "kind": "link",   "enabled": True},
+    {"id": "programming_map", "group": "作品・資料",   "label": "プログラミングマップ", "icon": "📘", "href": "programming-map.html",  "kind": "link",   "enabled": True},
+    {"id": "archive",         "group": "アーカイブ",   "label": "過去ログ",           "icon": "📚", "href": "archive.html",          "kind": "link",   "enabled": True},
+    {"id": "run",             "group": "操作",         "label": "巡回実行",           "icon": "🔄", "href": "",                      "kind": "action", "action_id": "run", "enabled": True},
 ]
 
 
@@ -82,31 +84,80 @@ def load_top_buttons() -> list[dict]:
         return DEFAULT_TOP_BUTTONS
 
 
-def render_top_nav(include_run: bool = True) -> str:
-    """トップページのナビを config/top_buttons.yaml から生成。"""
+def _resolve_nav_href(href: str, path_prefix: str) -> str:
+    """ルート相対 href にページから見たプレフィックスを当てる。
+
+    - 絶対パス (/admin) や URL (http...) はそのまま
+    - 空 href は空のまま
+    - その他は path_prefix を前置（path_prefix は "./" / "../" 想定）
+    """
+    if not href:
+        return ""
+    if href.startswith(("http://", "https://", "/", "#", "mailto:")):
+        return href
+    return f"{path_prefix.rstrip('/')}/{href}"
+
+
+def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
+                   include_run: bool = True) -> str:
+    """全ページ共通のトップナビを config/top_buttons.yaml から生成。
+
+    path_prefix: 呼び出しページから見た dist ルートへのプレフィックス。
+                 dist/ 直下のページは "./"、dist/lectures/* のような子ページは "../"。
+    current_id:  現在ページの id。一致するボタンはハイライト表示し、リンクではなく強調表示にする。
+    include_run: 巡回実行ボタンを出すかどうか（index トップだけ True、サブページは False）。
+    """
     buttons = load_top_buttons()
-    parts: list[str] = ["<nav>"]
-    has_run = False
+
+    # group ごとに分配（出現順を保つ）
+    grouped: list[tuple[str, list[dict]]] = []
+    by_group: dict[str, list[dict]] = {}
     for b in buttons:
         if not b.get("enabled", True):
             continue
-        label = html.escape(str(b.get("label", "")))
-        icon = html.escape(str(b.get("icon", "")))
-        kind = b.get("kind", "link")
-        text = f"{icon} {label}".strip()
-        if kind == "action":
-            action_id = b.get("action_id") or b.get("id") or "run"
-            if action_id == "run":
-                if not include_run:
-                    continue
-                has_run = True
-                parts.append(f"<button type='button' id='run-btn' class='run-btn'>{text}</button>")
-        else:
-            href = html.escape(str(b.get("href", "")), quote=True)
-            if not href:
-                continue
-            extra = " data-localhost-only='1' style='display:none'" if b.get("localhost_only") else ""
-            parts.append(f"<a href='{href}'{extra}>{text}</a> ")
+        if b.get("kind") == "action" and (b.get("action_id") or b.get("id")) == "run" and not include_run:
+            continue
+        g = str(b.get("group") or "その他")
+        if g not in by_group:
+            by_group[g] = []
+            grouped.append((g, by_group[g]))
+        by_group[g].append(b)
+
+    parts: list[str] = ["<nav class='top-nav' aria-label='サイトナビ'>"]
+    has_run = False
+    for gname, items in grouped:
+        # グループごとに「ラベル + ボタン群」をひとまとまりにする
+        parts.append(f"<div class='nav-group' data-group='{html.escape(gname, quote=True)}'>")
+        parts.append(f"<span class='nav-group-label'>{html.escape(gname)}</span>")
+        parts.append("<div class='nav-group-items'>")
+        for b in items:
+            label = html.escape(str(b.get("label", "")))
+            icon = html.escape(str(b.get("icon", "")))
+            text = f"{icon} {label}".strip()
+            kind = b.get("kind", "link")
+            bid = str(b.get("id", ""))
+            extra_attrs = ""
+            if b.get("localhost_only"):
+                extra_attrs += " data-localhost-only='1' style='display:none'"
+            if kind == "action":
+                action_id = b.get("action_id") or bid or "run"
+                if action_id == "run":
+                    has_run = True
+                    parts.append(
+                        f"<button type='button' id='run-btn' class='nav-btn run-btn'{extra_attrs}>{text}</button>"
+                    )
+            else:
+                href = _resolve_nav_href(str(b.get("href", "")), path_prefix)
+                if current_id and bid == current_id:
+                    parts.append(
+                        f"<span class='nav-btn nav-current' aria-current='page'{extra_attrs}>{text}</span>"
+                    )
+                else:
+                    if not href:
+                        continue
+                    safe_href = html.escape(href, quote=True)
+                    parts.append(f"<a class='nav-btn' href='{safe_href}'{extra_attrs}>{text}</a>")
+        parts.append("</div></div>")
     if has_run:
         parts.append("<span id='run-status' class='run-status'></span>")
     parts.append("</nav>")
@@ -282,30 +333,71 @@ header h1 {
 }
 header .sub { margin:0; color:var(--muted); font-size:13px; letter-spacing:.04em; }
 
-nav { margin-top:16px; display:flex; gap:10px; flex-wrap:wrap; }
-nav a {
-  padding:8px 16px; border-radius:999px;
-  background:var(--glass-bg); border:1px solid var(--glass-border);
+/* ---- 共通トップナビ（全ページで使う） ---- */
+/* 階層化: 各グループにラベルを上に出し、ボタンを下に並べる。
+           グループ同士は横に並ぶ（折返し可）。区切り線は使わずラベルでグルーピングを示す */
+nav.top-nav {
+  margin-top:16px;
+  display:flex; flex-wrap:wrap; align-items:flex-start;
+  gap:6px 18px;
+  padding:12px 14px;
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--glass-border);
+  border-radius:18px;
   backdrop-filter: blur(14px) saturate(160%);
-  color:var(--text); text-decoration:none; font-size:13px;
-  transition: all .25s ease;
 }
-nav a:hover { background:var(--glass-hover); transform: translateY(-1px); }
-.run-btn {
-  font: inherit;
-  padding:8px 16px; border-radius:999px;
+nav.top-nav .nav-group {
+  display:flex; flex-direction:column; gap:5px;
+  min-width:0;
+}
+nav.top-nav .nav-group-label {
+  font-size:9.5px; font-weight:800;
+  letter-spacing:.16em;
+  color: var(--accent1);
+  text-transform: uppercase;
+  opacity:.7;
+  padding-left:10px;
+  user-select:none;
+}
+nav.top-nav .nav-group-items {
+  display:flex; flex-wrap:wrap; gap:5px;
+}
+nav.top-nav .nav-btn {
+  display:inline-flex; align-items:center; gap:4px;
+  padding:7px 14px; border-radius:999px;
+  background:var(--glass-bg); border:1px solid var(--glass-border);
+  color:var(--text); text-decoration:none;
+  font:inherit; font-size:12.5px; font-weight:600; line-height:1;
+  cursor:pointer; white-space:nowrap;
+  transition: background .2s ease, transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+nav.top-nav .nav-btn:hover:not(:disabled) {
+  background:var(--glass-hover);
+  border-color: rgba(122,162,255,.35);
+  transform: translateY(-1px);
+}
+nav.top-nav .nav-current {
+  background: linear-gradient(135deg, rgba(122,162,255,.45), rgba(199,125,255,.35));
+  border-color: rgba(255,255,255,.30);
+  color:#fff; font-weight:800;
+  box-shadow: 0 4px 14px rgba(122,162,255,.25), inset 0 1px 0 rgba(255,255,255,.1);
+  cursor:default;
+}
+nav.top-nav .run-btn {
   background: linear-gradient(135deg, rgba(122,162,255,.35), rgba(199,125,255,.35));
   border:1px solid rgba(255,255,255,.22);
-  color:var(--text); cursor:pointer; font-size:13px; font-weight:700;
-  backdrop-filter: blur(14px) saturate(160%);
-  transition: all .25s ease;
+  font-weight:800;
 }
-.run-btn:hover:not(:disabled) {
+nav.top-nav .run-btn:hover:not(:disabled) {
   background: linear-gradient(135deg, rgba(122,162,255,.55), rgba(199,125,255,.55));
-  transform: translateY(-1px);
   box-shadow: 0 6px 20px rgba(122,162,255,.25);
 }
-.run-btn:disabled { opacity:.6; cursor:not-allowed; }
+nav.top-nav .run-btn:disabled { opacity:.6; cursor:not-allowed; }
+@media (max-width: 640px) {
+  nav.top-nav { padding:10px; gap:8px 12px; }
+  nav.top-nav .nav-group-label { font-size:9px; padding-left:8px; }
+  nav.top-nav .nav-btn { padding:6px 11px; font-size:11.5px; }
+}
 .run-status { margin-left:10px; font-size:12px; color:var(--muted); }
 .run-status.ok { color:#7eeba3; }
 .run-status.err { color:#ff7a90; }
@@ -533,7 +625,7 @@ def render_index(payload: dict, genres: list[dict]) -> str:
     parts.append("<header>")
     parts.append("<h1>AIハブ</h1>")
     parts.append(f"<p class='sub'>{date} ・ 今日の注目Top{total} ・ クリックで好みを学習</p>")
-    parts.append(render_top_nav(include_run=True))
+    parts.append(render_top_nav(path_prefix="./", current_id="home", include_run=True))
     parts.append("</header>")
 
     if not items:
@@ -742,7 +834,7 @@ def render_archive(dates: list[str]) -> str:
     parts.append("<header>")
     parts.append("<h1>過去ログ</h1>")
     parts.append(f"<p class='sub'>アーカイブ {len(dates)}件</p>")
-    parts.append("<nav><a href='./index.html'>📰 最新に戻る</a> <a href='./speaker.html'>🎤 講師紹介</a> <a href='./portfolio.html'>🏆 実績</a> <a href='./lectures/index.html'>📝 講習資料</a> <a href='./programming-map.html'>📘 プログラミングマップ</a> <a href='/admin' data-localhost-only='1' style='display:none'>⚙️ 管理</a></nav>")
+    parts.append(render_top_nav(path_prefix="./", current_id="archive", include_run=False))
     parts.append("</header>")
     if dates:
         parts.append("<ul style='list-style:none;padding:0;margin:0'>")
@@ -765,6 +857,7 @@ CONTENT_DIR = ROOT / "content"
 SPEAKER_MD = CONTENT_DIR / "speaker.md"
 LECTURES_DIR = CONTENT_DIR / "lectures"
 PORTFOLIO_YAML = ROOT / "config" / "portfolio.yaml"
+PROFILE_YAML = ROOT / "config" / "profile.yaml"
 
 CONTENT_CSS = """
 .content-wrap {
@@ -980,6 +1073,288 @@ CONTENT_CSS = """
   background: rgba(255,255,255,.03);
   border-radius: 0 10px 10px 0;
 }
+
+/* ---- Profile page (config/profile.yaml) ---- */
+.profile-tagline {
+  font-size: 15px;
+  color: var(--muted);
+  margin: -4px 0 22px;
+  line-height: 1.6;
+}
+.profile-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin: 18px 0 28px;
+}
+.profile-stat {
+  text-align: center;
+  padding: 18px 12px;
+  background: linear-gradient(135deg, rgba(122,162,255,.10), rgba(199,125,255,.06));
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  transition: transform .2s ease, border-color .2s ease;
+}
+.profile-stat:hover {
+  transform: translateY(-2px);
+  border-color: rgba(122,162,255,.35);
+}
+.profile-stat .num {
+  display: block;
+  font-size: 28px;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent1), var(--accent3));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 4px;
+}
+.profile-stat .lbl {
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: .03em;
+}
+
+.profile-intro {
+  font-size: 15px;
+  line-height: 1.85;
+  color: #d3d8ea;
+  margin-bottom: 8px;
+}
+
+.profile-timeline {
+  position: relative;
+  margin: 16px 0 8px;
+  padding-left: 28px;
+  border-left: 2px solid rgba(255,255,255,.12);
+}
+.profile-tl-item {
+  position: relative;
+  margin-bottom: 28px;
+  padding: 16px 18px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  transition: border-color .2s ease, transform .2s ease;
+}
+.profile-tl-item:hover {
+  border-color: rgba(122,162,255,.35);
+  transform: translateX(2px);
+}
+.profile-tl-item::before {
+  content: '';
+  position: absolute;
+  left: -36px;
+  top: 22px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent1), var(--accent2));
+  border: 3px solid #0d1126;
+  box-shadow: 0 0 0 2px rgba(122,162,255,.4);
+}
+.profile-tl-year {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent1);
+  letter-spacing: .03em;
+  margin-bottom: 4px;
+}
+.profile-tl-role {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.profile-tl-desc {
+  font-size: 14px;
+  color: #d3d8ea;
+  line-height: 1.75;
+  margin-bottom: 10px;
+}
+.profile-tl-desc strong { color: var(--accent3); }
+.profile-tl-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+.profile-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(122,162,255,.18);
+  border: 1px solid rgba(122,162,255,.32);
+  color: #c7d2ff;
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+.profile-tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin: 16px 0 8px;
+}
+.profile-tech-card {
+  padding: 18px 20px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+}
+.profile-tech-head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--glass-border);
+}
+.profile-tech-head .icon { font-size: 22px; }
+.profile-tech-head .ttl {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--text);
+}
+.profile-tech-head .period {
+  font-size: 11px;
+  color: var(--muted);
+  margin-left: auto;
+}
+.profile-tech-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.profile-tech-list li {
+  position: relative;
+  padding: 6px 0 6px 16px;
+  font-size: 13.5px;
+  color: #d3d8ea;
+  border-bottom: 1px dashed rgba(255,255,255,.06);
+}
+.profile-tech-list li:last-child { border-bottom: none; }
+.profile-tech-list li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--accent1);
+  font-weight: 700;
+}
+
+.profile-apps-grid,
+.profile-biz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin: 16px 0 8px;
+}
+.profile-app-card,
+.profile-biz-card {
+  display: flex;
+  flex-direction: column;
+  padding: 18px 20px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+  text-decoration: none;
+  color: inherit;
+}
+.profile-app-card:hover,
+.profile-biz-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(122,162,255,.45);
+  box-shadow: 0 10px 26px rgba(8,12,30,.45);
+}
+.profile-app-cat {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--accent2);
+  margin-bottom: 4px;
+}
+.profile-app-title,
+.profile-biz-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.profile-biz-title { display: flex; align-items: center; gap: 8px; }
+.profile-biz-title .ic { font-size: 22px; }
+.profile-app-desc,
+.profile-biz-desc {
+  font-size: 13.5px;
+  color: #d3d8ea;
+  line-height: 1.65;
+  margin-bottom: 12px;
+  flex: 1;
+}
+.profile-app-go {
+  align-self: flex-start;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--accent1);
+  border-bottom: 1px dashed rgba(122,162,255,.45);
+}
+.profile-app-card:hover .profile-app-go { color: var(--accent3); border-bottom-color: rgba(255,122,182,.6); }
+.profile-biz-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12.5px;
+  border-top: 1px solid var(--glass-border);
+  padding-top: 10px;
+}
+.profile-biz-metrics .row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+.profile-biz-metrics .lbl { color: var(--muted); }
+.profile-biz-metrics .val { color: var(--text); font-weight: 700; }
+
+.profile-source {
+  margin-top: 24px;
+  padding: 12px 16px;
+  font-size: 12px;
+  color: var(--muted);
+  background: rgba(255,255,255,.03);
+  border: 1px dashed var(--glass-border);
+  border-radius: 12px;
+}
+.profile-source code { font-size: 11.5px; }
+
+.profile-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 16px 0 4px;
+}
+.profile-footer-links a {
+  font-size: 13px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--glass-border);
+  color: var(--text);
+  text-decoration: none;
+  transition: background .2s ease, border-color .2s ease;
+}
+.profile-footer-links a:hover {
+  background: rgba(122,162,255,.18);
+  border-color: rgba(122,162,255,.4);
+}
+
+@media (max-width: 640px) {
+  .profile-stats { grid-template-columns: repeat(2, 1fr); }
+  .profile-stat .num { font-size: 22px; }
+  .profile-timeline { padding-left: 22px; }
+  .profile-tl-item::before { left: -30px; }
+}
 """
 
 
@@ -1147,16 +1522,7 @@ def build_speaker_page() -> bool:
     meta, body = _parse_frontmatter(raw)
     body_html = md.markdown(body, extensions=["extra", "sane_lists"])
     title = meta.get("name") or "講師紹介"
-    nav = (
-        "<nav>"
-        "<a href='./index.html'>🏠 トップ</a> "
-        "<a href='./portfolio.html'>🏆 実績</a> "
-        "<a href='./lectures/index.html'>📝 講習資料</a> "
-        "<a href='./programming-map.html'>📘 プログラミングマップ</a> "
-        "<a href='./archive.html'>📚 過去ログ</a> "
-        "<a href='/admin' data-localhost-only='1' style='display:none'>⚙️ 管理</a>"
-        "</nav>"
-    )
+    nav = render_top_nav(path_prefix="./", current_id="speaker", include_run=False)
     html_text = render_content_page(title, meta, body_html, nav, page_path="speaker.html", kind="speaker")
     (DIST / "speaker.html").write_text(html_text, encoding="utf-8")
     return True
@@ -1175,15 +1541,7 @@ def build_lectures() -> int:
         meta, body = _parse_frontmatter(raw)
         body_html = md.markdown(body, extensions=["extra", "sane_lists"])
         title = meta.get("title") or f.stem
-        nav = (
-            "<nav>"
-            "<a href='../index.html'>🏠 トップ</a> "
-            "<a href='../speaker.html'>🎤 講師紹介</a> "
-            "<a href='../portfolio.html'>🏆 実績</a> "
-            "<a href='./index.html'>📝 資料一覧</a> "
-            "<a href='/admin' data-localhost-only='1' style='display:none'>⚙️ 管理</a>"
-            "</nav>"
-        )
+        nav = render_top_nav(path_prefix="../", current_id="lectures", include_run=False)
         (out_dir / f"{f.stem}.html").write_text(
             render_content_page(title, meta, body_html, nav, page_path=f"lectures/{f.stem}.html", kind="lecture"),
             encoding="utf-8",
@@ -1196,14 +1554,7 @@ def build_lectures() -> int:
             date = meta.get("date", "")
             lines.append(f"- [{title}](./{slug}.html){f' — {date}' if date else ''}")
         body_html = md.markdown("\n".join(lines), extensions=["extra", "sane_lists"])
-        nav = (
-            "<nav>"
-            "<a href='../index.html'>🏠 トップ</a> "
-            "<a href='../speaker.html'>🎤 講師紹介</a> "
-            "<a href='../portfolio.html'>🏆 実績</a> "
-            "<a href='/admin' data-localhost-only='1' style='display:none'>⚙️ 管理</a>"
-            "</nav>"
-        )
+        nav = render_top_nav(path_prefix="../", current_id="lectures", include_run=False)
         (out_dir / "index.html").write_text(
             render_content_page("講習資料", {}, body_html, nav, page_path="lectures/index.html"),
             encoding="utf-8",
@@ -1339,17 +1690,210 @@ def build_portfolio_page() -> bool:
     meta = {
         "summary": "AIハブ 講師の由井辰美が制作・運営している実績サイト一覧。カテゴリ・技術スタック・公開年で絞って俯瞰できる。",
     }
-    nav = (
-        "<nav>"
-        "<a href='./index.html'>🏠 トップ</a> "
-        "<a href='./speaker.html'>🎤 講師紹介</a> "
-        "<a href='./lectures/index.html'>📝 講習資料</a> "
-        "<a href='./programming-map.html'>📘 プログラミングマップ</a> "
-        "<a href='/admin' data-localhost-only='1' style='display:none'>⚙️ 管理</a>"
-        "</nav>"
-    )
+    nav = render_top_nav(path_prefix="./", current_id="portfolio", include_run=False)
     html_text = render_content_page("実績サイト", meta, body_html, nav, page_path="portfolio.html", kind="portfolio")
     (DIST / "portfolio.html").write_text(html_text, encoding="utf-8")
+    return True
+
+
+_INLINE_BOLD_RE = re.compile(r"\*\*([^*]+)\*\*")
+
+
+def _inline_md(text: str) -> str:
+    """** で囲まれた強調だけを <strong> に変換（HTML エスケープ後）。改行は <br> に。"""
+    escaped = html.escape(text.strip())
+    escaped = _INLINE_BOLD_RE.sub(r"<strong>\1</strong>", escaped)
+    return escaped.replace("\n", "<br>")
+
+
+def build_profile_page() -> bool:
+    """config/profile.yaml から包括的経歴ページを生成。"""
+    if not PROFILE_YAML.exists():
+        return False
+    try:
+        data = yaml.safe_load(PROFILE_YAML.read_text(encoding="utf-8")) or {}
+    except Exception as e:
+        print(f"[!] profile.yaml load error: {e}")
+        return False
+
+    meta = data.get("meta") or {}
+    title = str(meta.get("title") or "由井 辰美")
+    subtitle = str(meta.get("subtitle") or "")
+    tagline = str(meta.get("tagline") or "")
+    description = str(meta.get("description") or "")
+    source_url = str(meta.get("source_url") or "")
+    gen_by = str(meta.get("gen_by") or "")
+
+    parts: list[str] = []
+
+    # サブタイトル＋タグライン（h1 直下）
+    if subtitle or tagline:
+        parts.append("<p class='profile-tagline'>")
+        if subtitle:
+            parts.append(html.escape(subtitle))
+        if subtitle and tagline:
+            parts.append("<br>")
+        if tagline:
+            parts.append(f"<span style='color:var(--muted);font-size:13px'>{html.escape(tagline)}</span>")
+        parts.append("</p>")
+
+    # 主要数値
+    stats = data.get("stats") or []
+    if stats:
+        parts.append("<h2 id='stats'>📊 主要数値</h2>")
+        parts.append("<div class='profile-stats'>")
+        for st in stats:
+            num = html.escape(str(st.get("number", "")))
+            lbl = html.escape(str(st.get("label", "")))
+            parts.append(
+                f"<div class='profile-stat'><span class='num'>{num}</span><span class='lbl'>{lbl}</span></div>"
+            )
+        parts.append("</div>")
+
+    # プロフィール概要
+    intro = data.get("intro")
+    if intro:
+        parts.append("<h2 id='profile'>👤 プロフィール</h2>")
+        parts.append(f"<p class='profile-intro'>{_inline_md(str(intro))}</p>")
+
+    # キャリアタイムライン
+    timeline = data.get("timeline") or []
+    if timeline:
+        parts.append("<h2 id='timeline'>🗓 キャリアタイムライン</h2>")
+        parts.append("<div class='profile-timeline'>")
+        for item in timeline:
+            year = html.escape(str(item.get("year", "")))
+            role = html.escape(str(item.get("role", "")))
+            desc = _inline_md(str(item.get("description", "")))
+            metrics = item.get("metrics") or []
+            parts.append("<div class='profile-tl-item'>")
+            if year:
+                parts.append(f"<div class='profile-tl-year'>{year}</div>")
+            if role:
+                parts.append(f"<div class='profile-tl-role'>{role}</div>")
+            if desc:
+                parts.append(f"<div class='profile-tl-desc'>{desc}</div>")
+            if metrics:
+                parts.append("<div class='profile-tl-metrics'>")
+                for m in metrics:
+                    parts.append(f"<span class='profile-badge'>{html.escape(str(m))}</span>")
+                parts.append("</div>")
+            parts.append("</div>")
+        parts.append("</div>")
+
+    # 技術スタックの進化
+    tech = data.get("tech_evolution") or []
+    if tech:
+        parts.append("<h2 id='tech'>⚙️ 技術スタックの進化</h2>")
+        parts.append("<div class='profile-tech-grid'>")
+        for t in tech:
+            icon = html.escape(str(t.get("icon", "")))
+            ttl = html.escape(str(t.get("title", "")))
+            period = html.escape(str(t.get("period", "")))
+            items = t.get("items") or []
+            parts.append("<div class='profile-tech-card'>")
+            parts.append(
+                f"<div class='profile-tech-head'><span class='icon'>{icon}</span>"
+                f"<span class='ttl'>{ttl}</span><span class='period'>{period}</span></div>"
+            )
+            parts.append("<ul class='profile-tech-list'>")
+            for it in items:
+                parts.append(f"<li>{html.escape(str(it))}</li>")
+            parts.append("</ul></div>")
+        parts.append("</div>")
+
+    # 実用アプリケーション
+    apps = data.get("apps") or []
+    if apps:
+        parts.append("<h2 id='apps'>🚀 実用アプリケーション</h2>")
+        parts.append("<div class='profile-apps-grid'>")
+        for a in apps:
+            url = html.escape(str(a.get("url", "")), quote=True)
+            ttl = html.escape(str(a.get("title", "")))
+            cat = html.escape(str(a.get("category", "")))
+            desc = _inline_md(str(a.get("description", "")))
+            href_open = (
+                f"<a class='profile-app-card' href='{url}' target='_blank' rel='noopener'>"
+                if url else "<div class='profile-app-card'>"
+            )
+            href_close = "</a>" if url else "</div>"
+            parts.append(href_open)
+            if cat:
+                parts.append(f"<div class='profile-app-cat'>{cat}</div>")
+            parts.append(f"<div class='profile-app-title'>{ttl}</div>")
+            if desc:
+                parts.append(f"<div class='profile-app-desc'>{desc}</div>")
+            if url:
+                parts.append("<span class='profile-app-go'>アプリを見る →</span>")
+            parts.append(href_close)
+        parts.append("</div>")
+
+    # 多角的事業展開
+    business = data.get("business") or []
+    if business:
+        parts.append("<h2 id='business'>🏢 多角的事業展開</h2>")
+        parts.append("<div class='profile-biz-grid'>")
+        for b in business:
+            icon = html.escape(str(b.get("icon", "")))
+            ttl = html.escape(str(b.get("title", "")))
+            desc = _inline_md(str(b.get("description", "")))
+            metrics = b.get("metrics") or []
+            parts.append("<div class='profile-biz-card'>")
+            parts.append(
+                f"<div class='profile-biz-title'><span class='ic'>{icon}</span>{ttl}</div>"
+            )
+            if desc:
+                parts.append(f"<div class='profile-biz-desc'>{desc}</div>")
+            if metrics:
+                parts.append("<div class='profile-biz-metrics'>")
+                for m in metrics:
+                    lbl = html.escape(str(m.get("label", "")))
+                    val = html.escape(str(m.get("value", "")))
+                    parts.append(
+                        f"<div class='row'><span class='lbl'>{lbl}</span><span class='val'>{val}</span></div>"
+                    )
+                parts.append("</div>")
+            parts.append("</div>")
+        parts.append("</div>")
+
+    # フッターリンク
+    footer_links = data.get("footer_links") or []
+    if footer_links:
+        parts.append("<h2 id='links'>🔗 関連リンク</h2>")
+        parts.append("<div class='profile-footer-links'>")
+        for fl in footer_links:
+            url = html.escape(str(fl.get("url", "")), quote=True)
+            lbl = html.escape(str(fl.get("label", "")))
+            if url and lbl:
+                parts.append(f"<a href='{url}' target='_blank' rel='noopener'>{lbl}</a>")
+        parts.append("</div>")
+
+    # 出典
+    src_bits: list[str] = []
+    if gen_by:
+        src_bits.append(html.escape(gen_by))
+    if source_url:
+        src_bits.append(
+            f"<a href='{html.escape(source_url, quote=True)}' target='_blank' rel='noopener'>"
+            "オリジナルプロフィール（GenSpark）→</a>"
+        )
+    if src_bits:
+        parts.append(
+            "<div class='profile-source'>📎 出典: " + " ／ ".join(src_bits)
+            + "<br><span style='font-size:11px'>編集は <code>config/profile.yaml</code> を直接修正して "
+            "<code>python site/build_site.py</code> で再ビルド。</span></div>"
+        )
+
+    body_html = "".join(parts)
+    page_meta = {
+        "summary": description,
+        "role": subtitle,
+        "gen_by": gen_by,
+        "profile_url": source_url,
+    }
+    nav = render_top_nav(path_prefix="./", current_id="profile", include_run=False)
+    html_text = render_content_page(title, page_meta, body_html, nav, page_path="profile.html", kind="speaker")
+    (DIST / "profile.html").write_text(html_text, encoding="utf-8")
     return True
 
 
@@ -1379,6 +1923,7 @@ def build_sitemap_and_robots() -> None:
 
     add("index.html", 1.0)
     add("speaker.html", 0.9)
+    add("profile.html", 0.9)
     add("portfolio.html", 0.9)
     add("programming-map.html", 0.9)
     add("archive.html", 0.6)
@@ -1442,6 +1987,7 @@ def main() -> int:
         build_speaker_page()
         build_lectures()
         build_portfolio_page()
+        build_profile_page()
         build_sitemap_and_robots()
         return 0
 
@@ -1469,6 +2015,7 @@ def main() -> int:
     speaker_built = build_speaker_page()
     lectures_built = build_lectures()
     portfolio_built = build_portfolio_page()
+    profile_built = build_profile_page()
     build_sitemap_and_robots()
 
     print(
@@ -1476,6 +2023,7 @@ def main() -> int:
         + (", speaker.html" if speaker_built else "")
         + (f", {lectures_built} lectures" if lectures_built else "")
         + (", portfolio.html" if portfolio_built else "")
+        + (", profile.html" if profile_built else "")
         + ", sitemap.xml, robots.txt)"
     )
     return 0

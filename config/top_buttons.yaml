@@ -34,21 +34,22 @@ top_buttons:
   enabled: true
 
 - id: portfolio
-  group: 作品・資料
+  group: 作品
   label: 実績
   icon: 🏆
   href: portfolio.html
   kind: link
   enabled: true
+
 - id: lectures
-  group: 作品・資料
+  group: 教材資料
   label: 講習資料
   icon: 📝
   href: lectures/index.html
   kind: link
   enabled: true
 - id: programming_map
-  group: 作品・資料
+  group: 教材資料
   label: プログラミングマップ
   icon: 📘
   href: programming-map.html

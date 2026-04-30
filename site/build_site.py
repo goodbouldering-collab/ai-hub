@@ -63,9 +63,9 @@ DEFAULT_TOP_BUTTONS = [
     {"id": "home",            "group": "メイン",       "label": "トップ",             "icon": "🏠", "href": "index.html",            "kind": "link",   "enabled": True},
     {"id": "speaker",         "group": "講師",         "label": "講師紹介",           "icon": "🎤", "href": "speaker.html",          "kind": "link",   "enabled": True},
     {"id": "profile",         "group": "講師",         "label": "経歴",               "icon": "📜", "href": "profile.html",          "kind": "link",   "enabled": True},
-    {"id": "portfolio",       "group": "作品・資料",   "label": "実績",               "icon": "🏆", "href": "portfolio.html",        "kind": "link",   "enabled": True},
-    {"id": "lectures",        "group": "作品・資料",   "label": "講習資料",           "icon": "📝", "href": "lectures/index.html",   "kind": "link",   "enabled": True},
-    {"id": "programming_map", "group": "作品・資料",   "label": "プログラミングマップ", "icon": "📘", "href": "programming-map.html",  "kind": "link",   "enabled": True},
+    {"id": "portfolio",       "group": "作品",         "label": "実績",               "icon": "🏆", "href": "portfolio.html",        "kind": "link",   "enabled": True},
+    {"id": "lectures",        "group": "教材資料",     "label": "講習資料",           "icon": "📝", "href": "lectures/index.html",   "kind": "link",   "enabled": True},
+    {"id": "programming_map", "group": "教材資料",     "label": "プログラミングマップ", "icon": "📘", "href": "programming-map.html",  "kind": "link",   "enabled": True},
     {"id": "archive",         "group": "アーカイブ",   "label": "過去ログ",           "icon": "📚", "href": "archive.html",          "kind": "link",   "enabled": True},
     {"id": "run",             "group": "操作",         "label": "巡回実行",           "icon": "🔄", "href": "",                      "kind": "action", "action_id": "run", "enabled": True},
 ]

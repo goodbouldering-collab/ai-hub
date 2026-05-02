@@ -18,7 +18,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://static.simonwillison.net/static/2026/sightings-beats-card.jpg.jpg",
-      "published": "2026-05-02T17:26:40+00:00"
+      "published": "2026-05-02T17:26:40+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "6681f92c11d286a6",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/k90cb-FjvZU/hqdefault.jpg",
-      "published": "2026-05-02T11:33:25+00:00"
+      "published": "2026-05-02T11:33:25+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "496832f158e873a6",
@@ -56,7 +60,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/C6dv4_O4jmY/hqdefault.jpg",
-      "published": "2026-05-02T09:00:15+00:00"
+      "published": "2026-05-02T09:00:15+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     }
   ]
 }

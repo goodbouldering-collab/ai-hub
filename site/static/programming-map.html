@@ -1402,6 +1402,120 @@
     backdrop-filter: blur(10px);
   }
   .term-hint .ic { margin-right: 6px; }
+
+  /* ===== タスク 1: 全体メタファ（家を建てる）セクション ===== */
+  .big-metaphor {
+    max-width: 920px;
+    margin: 0 auto 32px;
+    padding: 18px 22px 16px;
+    background: linear-gradient(120deg, rgba(251,191,36,.12), rgba(251,146,60,.10) 50%, rgba(244,114,182,.08));
+    border: 1px solid rgba(251,191,36,.28);
+    border-radius: 18px;
+    backdrop-filter: blur(12px) saturate(160%);
+    box-shadow: 0 6px 22px rgba(0,0,0,.20), inset 0 1px 0 rgba(255,255,255,.06);
+  }
+  .big-metaphor h3 {
+    font-size: 15px; font-weight: 800; margin: 0 0 4px;
+    color: #fde68a; letter-spacing: .02em;
+  }
+  .big-metaphor h3 .em { color: #fbbf24; }
+  .big-metaphor .lead {
+    font-size: 12.5px; line-height: 1.7; color: #e2e8f0;
+    margin: 0 0 12px;
+  }
+  .big-metaphor .lead b { color: #fde68a; }
+  .big-metaphor .bm-figure {
+    background: #fffaf0;
+    border-radius: 12px;
+    padding: 8px 6px 4px;
+    overflow-x: auto;
+  }
+  .big-metaphor svg { display: block; min-width: 760px; }
+  .big-metaphor .bm-caption {
+    margin-top: 8px;
+    padding: 7px 12px;
+    background: rgba(251,191,36,.10);
+    border-left: 3px solid #fbbf24;
+    border-radius: 8px;
+    font-size: 11.5px; color: #fde68a; line-height: 1.6;
+  }
+  .big-metaphor .bm-caption b { color: #fff; }
+  @media (max-width: 640px) {
+    .big-metaphor { padding: 14px 14px 12px; }
+    .big-metaphor h3 { font-size: 13.5px; }
+    .big-metaphor .lead { font-size: 12px; }
+  }
+
+  /* ===== タスク 2: 各カードヘッダ直下 例えライン ===== */
+  .metaphor-line {
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 14px; margin: -4px 0 14px;
+    background: linear-gradient(100deg, rgba(251,191,36,.08), rgba(251,146,60,.06));
+    border-left: 3px solid #fbbf24;
+    border-radius: 8px;
+    font-size: 13px; color: #1e293b; line-height: 1.55;
+  }
+  .metaphor-icon { font-size: 16px; }
+  .metaphor-label {
+    font-weight: 800; font-size: 10.5px; letter-spacing: .08em;
+    background: #fbbf24; color: #78350f;
+    padding: 2px 7px; border-radius: 99px;
+    white-space: nowrap;
+  }
+  .metaphor-text { flex: 1; }
+  .metaphor-text b { color: #b45309; }
+  @media (max-width: 640px) {
+    .metaphor-line { font-size: 12px; padding: 7px 10px; }
+    .metaphor-label { font-size: 9.5px; padding: 2px 6px; }
+  }
+
+  /* ===== タスク 3: 難易度ストライプ + 「易→難」並び ===== */
+  .ai-chip[data-level="easy"] { border-left-color: #16a34a; }
+  .ai-chip[data-level="mid"]  { border-left-color: #d97706; }
+  .ai-chip[data-level="hard"] { border-left-color: #dc2626; }
+
+  .level-bar {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 10px;
+    margin: 0 0 8px;
+    padding: 5px 10px;
+    font-size: 10.5px; font-weight: 700;
+    color: #475569;
+    background: linear-gradient(90deg, rgba(22,163,74,.08), rgba(217,119,6,.08), rgba(220,38,38,.08));
+    border-radius: 7px;
+    border: 1px dashed rgba(148,163,184,.4);
+  }
+  .level-bar span:nth-child(1) { color: #16a34a; }
+  .level-bar span:nth-child(2) { color: #d97706; }
+  .level-bar span:nth-child(3) { color: #dc2626; }
+  @media (max-width: 640px) {
+    .level-bar { font-size: 9.5px; padding: 4px 8px; gap: 4px; }
+  }
+
+  /* ===== タスク 4: 「AI に詳しく聞ける」ヒント ===== */
+  .ai-hint {
+    display: flex; gap: 8px; align-items: center;
+    background: rgba(122,162,255,.08); border: 1px solid rgba(122,162,255,.24);
+    border-radius: 10px; padding: 8px 12px; margin: 0 0 10px;
+    font-size: 12.5px; color: #cfd4e8;
+  }
+  .ai-hint span:first-child { font-size: 16px; }
+  @media (max-width: 640px) {
+    .ai-hint { font-size: 11.5px; padding: 7px 10px; }
+  }
+
+  /* ===== タスク 5: 各部章扉用「用語クリックヒント」 ===== */
+  .term-hint-mini {
+    max-width: 920px;
+    margin: -8px auto 18px;
+    padding: 7px 14px;
+    font-size: 11.5px; color: #cfd4e8;
+    background: rgba(122,162,255,.06);
+    border: 1px dashed rgba(122,162,255,.28);
+    border-radius: 10px;
+    text-align: center;
+  }
+  .term-hint-mini .ic { margin-right: 5px; }
 </style>
 </head>
 <body>
@@ -1518,12 +1632,113 @@
   </ol>
 </aside>
 
+<!-- ===== タスク1: 全体メタファ（プログラミング = 家を建てる） ===== -->
+<section id="big-metaphor" class="big-metaphor" aria-label="全体の例え：家を建てる">
+  <h3><span class="em">🏗</span> プログラミング全体の例え — <span class="em">「家を建てる」</span>と同じ</h3>
+  <p class="lead">
+    今日学ぶ 7 部は、ぜんぶ <b>家を 1 軒建てる工程</b>に置き換えられます。<br>
+    <b>土地ならし → 骨組み → 内装 → 設計図保管 → 検査 → 引き渡し → 点検</b>。
+    あとから <b>壁紙の貼り替え (CMS)</b>、<b>賢い大工 (Claude Code)</b>、<b>24h コンシェルジュ (LINE)</b> が乗ってきます。
+  </p>
+  <div class="bm-figure">
+    <svg width="100%" height="240" viewBox="0 0 820 240" role="img" aria-label="家を建てる比喩図">
+      <defs>
+        <linearGradient id="bm-ground" x1="0" x2="1"><stop offset="0" stop-color="#fef3c7"/><stop offset="1" stop-color="#fde68a"/></linearGradient>
+        <linearGradient id="bm-frame"  x1="0" x2="1"><stop offset="0" stop-color="#bbf7d0"/><stop offset="1" stop-color="#86efac"/></linearGradient>
+        <linearGradient id="bm-inner"  x1="0" x2="1"><stop offset="0" stop-color="#fed7aa"/><stop offset="1" stop-color="#fdba74"/></linearGradient>
+        <linearGradient id="bm-blue"   x1="0" x2="1"><stop offset="0" stop-color="#bfdbfe"/><stop offset="1" stop-color="#93c5fd"/></linearGradient>
+        <linearGradient id="bm-pink"   x1="0" x2="1"><stop offset="0" stop-color="#fbcfe8"/><stop offset="1" stop-color="#f9a8d4"/></linearGradient>
+      </defs>
+
+      <!-- 地面 -->
+      <rect x="20" y="200" width="780" height="20" rx="4" fill="url(#bm-ground)" stroke="#d97706" stroke-width="1"/>
+      <text x="410" y="214" text-anchor="middle" fill="#78350f" font-size="11" font-weight="700">🏞 土地（PC・OS・Node）</text>
+
+      <!-- 7 工程の家 -->
+      <!-- 第1部: 土地ならし -->
+      <rect x="30" y="150" width="100" height="50" rx="6" fill="url(#bm-ground)" stroke="#d97706" stroke-width="1.5"/>
+      <text x="80" y="172" text-anchor="middle" fill="#78350f" font-size="11" font-weight="800">第1部 環境</text>
+      <text x="80" y="188" text-anchor="middle" fill="#92400e" font-size="9.5">🏞 土地ならし</text>
+
+      <!-- 第2部: 骨組み + 内装 (開発) -->
+      <polygon points="140,150 200,110 260,150" fill="#fca5a5" stroke="#dc2626" stroke-width="1.5"/>
+      <rect x="140" y="150" width="120" height="50" rx="0" fill="url(#bm-frame)" stroke="#16a34a" stroke-width="1.5"/>
+      <text x="200" y="172" text-anchor="middle" fill="#14532d" font-size="11" font-weight="800">第2部 開発</text>
+      <text x="200" y="188" text-anchor="middle" fill="#15803d" font-size="9.5">🏗 骨組み+内装</text>
+
+      <!-- 第3部: 引き渡し（公開・運用） -->
+      <rect x="270" y="150" width="100" height="50" rx="6" fill="url(#bm-blue)" stroke="#2563eb" stroke-width="1.5"/>
+      <text x="320" y="172" text-anchor="middle" fill="#1e3a8a" font-size="11" font-weight="800">第3部 公開</text>
+      <text x="320" y="188" text-anchor="middle" fill="#1e40af" font-size="9.5">🔑 引き渡し</text>
+
+      <!-- 第4部: AI時代 = 賢い大工 -->
+      <rect x="380" y="150" width="100" height="50" rx="6" fill="url(#bm-inner)" stroke="#ea580c" stroke-width="1.5"/>
+      <text x="430" y="172" text-anchor="middle" fill="#7c2d12" font-size="11" font-weight="800">第4部 AI</text>
+      <text x="430" y="188" text-anchor="middle" fill="#9a3412" font-size="9.5">🤖 賢い大工</text>
+
+      <!-- 第5部: CMS = 壁紙貼り替え -->
+      <rect x="490" y="150" width="100" height="50" rx="6" fill="url(#bm-pink)" stroke="#c026d3" stroke-width="1.5"/>
+      <text x="540" y="172" text-anchor="middle" fill="#86198f" font-size="11" font-weight="800">第5部 CMS</text>
+      <text x="540" y="188" text-anchor="middle" fill="#a21caf" font-size="9.5">🖌 壁紙の貼替</text>
+
+      <!-- 第6部: Claude Code = ハーネス -->
+      <rect x="600" y="150" width="100" height="50" rx="6" fill="#a5b4fc" stroke="#4f46e5" stroke-width="1.5"/>
+      <text x="650" y="172" text-anchor="middle" fill="#312e81" font-size="11" font-weight="800">第6部 Claude</text>
+      <text x="650" y="188" text-anchor="middle" fill="#3730a3" font-size="9.5">🐎 大工に手綱</text>
+
+      <!-- 第7部: LINE = 24h コンシェルジュ -->
+      <rect x="710" y="150" width="90" height="50" rx="6" fill="#99f6e4" stroke="#0d9488" stroke-width="1.5"/>
+      <text x="755" y="172" text-anchor="middle" fill="#134e4a" font-size="11" font-weight="800">第7部 LINE</text>
+      <text x="755" y="188" text-anchor="middle" fill="#115e59" font-size="9.5">📞 24h窓口</text>
+
+      <!-- 上部: 各工程の説明（対応） -->
+      <text x="20" y="35" fill="#78350f" font-size="12" font-weight="800">🏗 家を建てる工程</text>
+      <line x1="20" y1="42" x2="800" y2="42" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="4 3"/>
+
+      <text x="80"  y="60" text-anchor="middle" fill="#78350f" font-size="10" font-weight="700">① 整地</text>
+      <text x="80"  y="74" text-anchor="middle" fill="#92400e" font-size="9">基礎を打つ</text>
+
+      <text x="200" y="60" text-anchor="middle" fill="#14532d" font-size="10" font-weight="700">② 骨組み+内装</text>
+      <text x="200" y="74" text-anchor="middle" fill="#15803d" font-size="9">壁・床・配線を作る</text>
+
+      <text x="320" y="60" text-anchor="middle" fill="#1e3a8a" font-size="10" font-weight="700">③ 引き渡し+点検</text>
+      <text x="320" y="74" text-anchor="middle" fill="#1e40af" font-size="9">看板・鍵・巡回</text>
+
+      <text x="430" y="60" text-anchor="middle" fill="#7c2d12" font-size="10" font-weight="700">④ 大工に AI 助手</text>
+      <text x="430" y="74" text-anchor="middle" fill="#9a3412" font-size="9">設計補助・自動化</text>
+
+      <text x="540" y="60" text-anchor="middle" fill="#86198f" font-size="10" font-weight="700">⑤ 壁紙更新装置</text>
+      <text x="540" y="74" text-anchor="middle" fill="#a21caf" font-size="9">中身を後から差替</text>
+
+      <text x="650" y="60" text-anchor="middle" fill="#312e81" font-size="10" font-weight="700">⑥ 大工の手綱</text>
+      <text x="650" y="74" text-anchor="middle" fill="#3730a3" font-size="9">暴れさせない仕掛け</text>
+
+      <text x="755" y="60" text-anchor="middle" fill="#134e4a" font-size="10" font-weight="700">⑦ 24h 窓口係</text>
+      <text x="755" y="74" text-anchor="middle" fill="#115e59" font-size="9">客対応を AI に</text>
+
+      <!-- 上下を繋ぐ細線 -->
+      <line x1="80"  y1="90" x2="80"  y2="148" stroke="#fbbf24" stroke-width="1" stroke-dasharray="2 3"/>
+      <line x1="200" y1="90" x2="200" y2="108" stroke="#fbbf24" stroke-width="1" stroke-dasharray="2 3"/>
+      <line x1="320" y1="90" x2="320" y2="148" stroke="#fbbf24" stroke-width="1" stroke-dasharray="2 3"/>
+      <line x1="430" y1="90" x2="430" y2="148" stroke="#fbbf24" stroke-width="1" stroke-dasharray="2 3"/>
+      <line x1="540" y1="90" x2="540" y2="148" stroke="#fbbf24" stroke-width="1" stroke-dasharray="2 3"/>
+      <line x1="650" y1="90" x2="650" y2="148" stroke="#fbbf24" stroke-width="1" stroke-dasharray="2 3"/>
+      <line x1="755" y1="90" x2="755" y2="148" stroke="#fbbf24" stroke-width="1" stroke-dasharray="2 3"/>
+
+      <!-- タイトル右上 -->
+      <text x="780" y="35" text-anchor="end" fill="#b45309" font-size="11" font-style="italic">＝ プログラミング全部</text>
+    </svg>
+  </div>
+  <div class="bm-caption"><b>📌 押さえる</b>: 用語が増えても <b>家のどの工程か</b>を思い出せば迷子になりません。各カードの先頭にも「💭 例え」を入れてあります。</div>
+</section>
+
 <!-- ===== 第1部: 環境 ===== -->
 <div id="part-1" class="part-banner">
   <span class="pb-num">第 1 部</span>
   <span class="pb-title">環境 — 何の上で、何を使って作るか</span>
   <span class="pb-sub">📘 用語 + 💡 概念中心</span>
 </div>
+<div class="term-hint-mini"><span class="ic">💡</span>難しい用語は<strong>クリック</strong>で詳細解説が開きます</div>
 
 <div class="grid">
 
@@ -1536,6 +1751,7 @@
         <h2>環境構築 — プロジェクトの土台を組む<span class="card-type-badges"><span class="ctb idea">💡概念</span><span class="ctb term">📘用語</span></span></h2>
       </div>
     </div>
+    <div class="metaphor-line"><span class="metaphor-icon">💭</span><span class="metaphor-label">例え</span><span class="metaphor-text"><b>料理を始める前のキッチン用意</b> — 火・包丁・調味料を揃え、レシピを置く場所を決める。下の 4 層が崩れたら何も作れない</span></div>
 
     <div class="ai-stack">
       <svg width="100%" height="200" viewBox="0 0 820 200" style="min-width:640px;">
@@ -1605,6 +1821,7 @@
         <h2>フレームワーク・ライブラリ — 何で作るか<span class="card-type-badges"><span class="ctb idea">💡概念</span><span class="ctb term">📘用語</span></span></h2>
       </div>
     </div>
+    <div class="metaphor-line"><span class="metaphor-icon">💭</span><span class="metaphor-label">例え</span><span class="metaphor-text"><b>家の骨組みキット</b>を選ぶ — <b>平屋(Vite)</b>か <b>3階建て(Next.js)</b>か。中身は同じ React、外側だけ違う</span></div>
 
     <div class="ai-stack" style="background:#f0fdf4;">
       <svg width="100%" height="240" viewBox="0 0 820 240" style="min-width:640px;">
@@ -1683,6 +1900,7 @@
   <span class="pb-title">開発 — 毎日のコーディング・Git・テスト</span>
   <span class="pb-sub">⚡ 作業 + 📘 用語</span>
 </div>
+<div class="term-hint-mini"><span class="ic">💡</span>難しい用語は<strong>クリック</strong>で詳細解説が開きます</div>
 
 <div class="grid">
 
@@ -1695,6 +1913,7 @@
         <h2>開発中の作業 — 1日の作業ループ<span class="card-type-badges"><span class="ctb idea">💡概念</span><span class="ctb term">📘用語</span></span></h2>
       </div>
     </div>
+    <div class="metaphor-line"><span class="metaphor-icon">💭</span><span class="metaphor-label">例え</span><span class="metaphor-text"><b>料理しながら味見・調整を繰り返す</b>。コンロを点けっぱなし(<code>npm run dev</code>)で、塩を足しては一口</span></div>
 
     <div class="ai-stack" style="background:#fff7ed;">
       <svg width="100%" height="200" viewBox="0 0 820 200" style="min-width:640px;">
@@ -1790,6 +2009,7 @@
         <h2>Git / バージョン管理<span class="card-type-badges"><span class="ctb idea">💡概念</span><span class="ctb term">📘用語</span></span></h2>
       </div>
     </div>
+    <div class="metaphor-line"><span class="metaphor-icon">💭</span><span class="metaphor-label">例え</span><span class="metaphor-text"><b>ゲームのセーブポイント</b>。失敗しても直前に戻せる。チームで戦うときは「セーブをどう共有するか」</span></div>
 
     <!-- Gitブランチ視覚図 -->
     <div class="git-visual">
@@ -1886,6 +2106,7 @@
         <h2>テスト・環境<span class="card-type-badges"><span class="ctb term">📘用語</span><span class="ctb idea">💡概念</span></span></h2>
       </div>
     </div>
+    <div class="metaphor-line"><span class="metaphor-icon">💭</span><span class="metaphor-label">例え</span><span class="metaphor-text"><b>料理の毒味</b>。お客に出す前に必ず一口。本番に出す前に通すべき関門</span></div>
     <div class="item">
       <div class="item-left"><span class="tag">サンドボックス</span><span class="freq freq-high">★ よく使う</span></div>
       <span class="desc">本番に影響しない安全なテスト専用の隔離環境</span>
@@ -1936,6 +2157,7 @@
   <span class="pb-title">公開・運用 — Deploy / DB / SEO / 監視 / チーム</span>
   <span class="pb-sub">⚡ 作業 + 💡 概念</span>
 </div>
+<div class="term-hint-mini"><span class="ic">💡</span>難しい用語は<strong>クリック</strong>で詳細解説が開きます</div>
 
 <div class="grid">
 
@@ -1948,6 +2170,7 @@
         <h2>デプロイ・公開<span class="card-type-badges"><span class="ctb idea">💡概念</span><span class="ctb term">📘用語</span></span></h2>
       </div>
     </div>
+    <div class="metaphor-line"><span class="metaphor-icon">💭</span><span class="metaphor-label">例え</span><span class="metaphor-text"><b>お店の開店日</b>。準備が整ったら看板を出す。Vercel/Cloudflare/Render は「店を構える街」の違い</span></div>
 
     <!-- パイプライン図 -->
     <div class="pipeline">
@@ -2033,6 +2256,7 @@
         <h2>データベース・バックエンド — Supabase 一式で揃える<span class="card-type-badges"><span class="ctb term">📘用語</span></span></h2>
       </div>
     </div>
+    <div class="metaphor-line"><span class="metaphor-icon">💭</span><span class="metaphor-label">例え</span><span class="metaphor-text"><b>図書館の書庫</b> — 検索しやすく整理された本棚。Supabase 1 つで本棚 + 司書 + 受付がセット</span></div>
 
     <div class="ai-stack" style="background:#f0fdf4;">
       <svg width="100%" height="220" viewBox="0 0 820 220" style="min-width:640px;">
@@ -2121,6 +2345,7 @@
         <h2>SEO・LLMO — Google にも AI 検索にも拾われる<span class="card-type-badges"><span class="ctb term">📘用語</span></span></h2>
       </div>
     </div>
+    <div class="metaphor-line"><span class="metaphor-icon">💭</span><span class="metaphor-label">例え</span><span class="metaphor-text"><b>お店の看板と Google マップ登録</b>。Google だけでなく AI 検索 (LLMO) からも見つかる店にする</span></div>
 
     <div class="ai-stack" style="background:#fff7ed;">
       <svg width="100%" height="240" viewBox="0 0 820 240" style="min-width:640px;">
@@ -2220,6 +2445,7 @@
         <h2>セキュリティ — 4 つの攻撃面を塞ぐ<span class="card-type-badges"><span class="ctb idea">💡概念</span><span class="ctb term">📘用語</span></span></h2>
       </div>
     </div>
+    <div class="metaphor-line"><span class="metaphor-icon">💭</span><span class="metaphor-label">例え</span><span class="metaphor-text"><b>鍵・防犯カメラ・身元確認</b>の三層。1 つでも甘いと泥棒が入る。4 つの攻撃面を全部塞ぐ</span></div>
 
     <div class="ai-stack" style="background:#fef2f2;">
       <svg width="100%" height="220" viewBox="0 0 820 220" style="min-width:640px;">
@@ -2314,6 +2540,7 @@
         <h2>パフォーマンス・運用監視 — 公開後の生存確認<span class="card-type-badges"><span class="ctb term">📘用語</span></span></h2>
       </div>
     </div>
+    <div class="metaphor-line"><span class="metaphor-icon">💭</span><span class="metaphor-label">例え</span><span class="metaphor-text"><b>巡回警備員</b>。異常があれば即連絡。事故った時に「何が起きたか」を後で追えるよう常に記録を残す</span></div>
 
     <div class="ai-stack" style="background:#f0fdfa;">
       <svg width="100%" height="220" viewBox="0 0 820 220" style="min-width:640px;">
@@ -2385,6 +2612,7 @@
         <h2>チーム開発・プロジェクト管理 — 1人開発との違い<span class="card-type-badges"><span class="ctb term">📘用語</span></span></h2>
       </div>
     </div>
+    <div class="metaphor-line"><span class="metaphor-icon">💭</span><span class="metaphor-label">例え</span><span class="metaphor-text"><b>料理人チーム</b>。役割と段取りを揃えないと、同じ鍋に塩を 2 回入れる事故が起こる</span></div>
 
     <div class="ai-stack" style="background:#f0fdfa;">
       <svg width="100%" height="200" viewBox="0 0 820 200" style="min-width:640px;">
@@ -2482,6 +2710,7 @@
         <h2>デプロイ後の全体構成図<span class="card-type-badges"><span class="ctb idea">💡概念</span></span></h2>
       </div>
     </div>
+    <div class="metaphor-line"><span class="metaphor-icon">💭</span><span class="metaphor-label">例え</span><span class="metaphor-text"><b>家の完成模型</b>。これまで学んだ部品が、本番でどう繋がっているかを 1 枚で見る</span></div>
     <div class="finish-diagram">
       <svg width="100%" height="200" viewBox="0 0 760 200" style="min-width:600px;">
         <!-- 開発者側 -->
@@ -2563,6 +2792,7 @@
   <span class="pb-title">AI時代 — エンジニアリング手法とマルチクライアント運用</span>
   <span class="pb-sub">💡 概念中心</span>
 </div>
+<div class="term-hint-mini"><span class="ic">💡</span>難しい用語は<strong>クリック</strong>で詳細解説が開きます</div>
 
 <div class="grid">
 
@@ -2575,6 +2805,7 @@
         <h2>AIエンジニアリング手法 — 全体像<span class="card-type-badges"><span class="ctb idea">💡概念</span><span class="ctb term">📘用語</span></span></h2>
       </div>
     </div>
+    <div class="metaphor-line"><span class="metaphor-icon">💭</span><span class="metaphor-label">例え</span><span class="metaphor-text"><b>AI を使いこなす 4 種の道具一式</b>。プロンプト・コンテキスト・ハーネス・評価。料理人の「腕」と「道具」両方</span></div>
 
     <!-- 層構造の俯瞰図 -->
     <div class="ai-stack">
@@ -2750,6 +2981,7 @@
         <h2>マルチクライアント統括運用 — 3層アーキテクチャ<span class="card-type-badges"><span class="ctb idea">💡概念</span><span class="ctb term">📘用語</span></span></h2>
       </div>
     </div>
+    <div class="metaphor-line"><span class="metaphor-icon">💭</span><span class="metaphor-label">例え</span><span class="metaphor-text"><b>複数の客の家を同時並行で建てる工務店</b>。9 軒の現場をワークスペース 1 つで切り替える仕組み</span></div>
 
     <!-- 3層俯瞰図 -->
     <div class="ai-stack">
@@ -2920,6 +3152,7 @@
   <a href="#cms-flow">移行フロー</a>
   <a href="#cms-prompts">実プロンプト集</a>
 </div>
+<div class="term-hint-mini"><span class="ic">💡</span>難しい用語は<strong>クリック</strong>で詳細解説が開きます</div>
 
 <div class="grid">
   <!-- A-1 なぜ移行するか -->
@@ -2931,6 +3164,7 @@
         <h2>なぜ WordPress から離れるのか<span class="card-type-badges"><span class="ctb idea">💡概念</span></span></h2>
       </div>
     </div>
+    <div class="metaphor-line"><span class="metaphor-icon">💭</span><span class="metaphor-label">例え</span><span class="metaphor-text"><b>店舗の看板を毎月貼り替える仕組み</b>。家の骨組みは触らず、内装だけ後から差し替えられる装置</span></div>
     <div class="pm-compare">
       <div class="old">
         <h4>🐘 WordPress（旧モデル）</h4>
@@ -2969,6 +3203,7 @@
         <h2>/studio（自前管理画面）vs Payload CMS v3<span class="card-type-badges"><span class="ctb idea">💡概念</span></span></h2>
       </div>
     </div>
+    <div class="metaphor-line"><span class="metaphor-icon">💭</span><span class="metaphor-label">例え</span><span class="metaphor-text"><b>市販の本棚 (Payload)</b>か <b>大工に造作させた棚 (/studio)</b>か。安く早いか、ピッタリ作るか</span></div>
     <div class="pm-compare">
       <div class="new" style="border-top-color:#0891b2">
         <h4 style="color:#0891b2">🎨 自前 /studio（Supabase 直結）</h4>
@@ -3004,6 +3239,7 @@
         <h2>WordPress から新CMS への移行フロー<span class="card-type-badges"><span class="ctb idea">💡概念</span><span class="ctb task">⚡作業</span></span></h2>
       </div>
     </div>
+    <div class="metaphor-line"><span class="metaphor-icon">💭</span><span class="metaphor-label">例え</span><span class="metaphor-text"><b>引っ越し作業の段取り表</b>。古い家から新しい家に「何を・どの順で・どうやって運ぶか」</span></div>
 
     <div class="pm-flow" style="--accent:#db2777">
       <div class="step"><b>STEP 1</b><span>WP記事JSONエクスポート</span></div>
@@ -3075,6 +3311,7 @@
         <h2>WordPress → 新CMS — 層ごとの「変わるポイント」図表<span class="card-type-badges"><span class="ctb idea">💡概念</span></span></h2>
       </div>
     </div>
+    <div class="metaphor-line"><span class="metaphor-icon">💭</span><span class="metaphor-label">例え</span><span class="metaphor-text"><b>旧家から新家へ持ち込む荷物の対応表</b>。各部屋(8 レイヤー)で「変わるもの・変わらないもの」を一覧化</span></div>
     <p class="desc" style="margin-bottom:8px;">移行は「全部入れ替える」のではなく、<b>層ごとに役割が置き換わる</b>のが本質。下の表で「旧 → 新」の対応を1分で把握できます。</p>
 
     <div class="layer-compare">
@@ -3156,6 +3393,7 @@
   <a href="#cc-features">機能別プロンプト集</a>
   <a href="#cc-mcp">MCP拡張</a>
 </div>
+<div class="term-hint-mini"><span class="ic">💡</span>難しい用語は<strong>クリック</strong>で詳細解説が開きます</div>
 
 <div class="grid">
   <!-- B-1 IDE関係 -->
@@ -3167,6 +3405,7 @@
         <h2>IDE・VSCode・Claude Code・CLI の関係を整理する<span class="card-type-badges"><span class="ctb idea">💡概念</span></span></h2>
       </div>
     </div>
+    <div class="metaphor-line"><span class="metaphor-icon">💭</span><span class="metaphor-label">例え</span><span class="metaphor-text"><b>VSCode は家、Claude は同居する大工</b>。家を変えても大工は同じ。本質は中央の「配線(ハーネス)」</span></div>
 
     <div class="ide-stack">
       <div class="layer l1">
@@ -3210,6 +3449,7 @@
         <h2>ハーネスエンジニアリング — 「AI を御す配線」を設計する技術<span class="card-type-badges"><span class="ctb idea">💡概念</span></span></h2>
       </div>
     </div>
+    <div class="metaphor-line"><span class="metaphor-icon">💭</span><span class="metaphor-label">例え</span><span class="metaphor-text"><b>賢い暴れ馬に手綱と鞍を付ける</b>。馬は速いが暴走するので、5 つの装具で安全に走らせる</span></div>
 
     <div class="ai-stack" style="background:#f0fdf4;">
       <p style="font-size:13px; line-height:1.8; color:#14532d; margin:0 0 12px;">
@@ -3269,6 +3509,7 @@
         <h2>マルチエージェント・ルーティーンズ・Hooks・Design — 実プロンプト集<span class="card-type-badges"><span class="ctb task">⚡作業</span></span></h2>
       </div>
     </div>
+    <div class="metaphor-line"><span class="metaphor-icon">💭</span><span class="metaphor-label">例え</span><span class="metaphor-text"><b>呼び出すと駆けつける専門家チーム</b>。マルチエージェント・ルーティーン・Hooks。1 行で召喚できる</span></div>
 
     <div class="ai-tabs">
       <button class="ai-tab active" data-ai="multi">🧑‍🤝‍🧑 マルチエージェント</button>
@@ -3280,7 +3521,8 @@
 
     <!-- マルチエージェント -->
     <div class="ai-pane pane-prompts active" data-ai="multi">
-      <p class="desc" style="margin-bottom:10px;"><b>Agent ツール</b>でサブエージェントを並列起動。コピーして Claude Code に投げるだけ。</p>
+      <p class="desc" style="margin-bottom:8px;"><b>Agent ツール</b>でサブエージェントを並列起動。コピーして Claude Code に投げるだけ。</p>
+      <div class="ai-hint"><span>💡</span>これらは「呼び水」のワンライナーです。詳細はそのまま貼って AI に聞けばいくらでも展開してくれます。</div>
       <div class="prompt-mini-grid">
         <div class="prompt-mini">
           <b>🔍 9社を並列で監査</b>
@@ -3288,24 +3530,13 @@
           <span class="what">→ <b>Agent</b> ツール × 9 並列 / メイン会話を汚さず一気に集計</span>
           <button class="mini-copy" type="button">📋</button>
         </div>
-        <div class="prompt-mini">
-          <b>🛠 設計と実装を分業</b>
-          <code class="line">予約カレンダーの実装計画をPlanエージェントで作ってから実装して</code>
-          <span class="what">→ <b>Plan</b> サブで設計 → メインで実装。役割物理分離</span>
-          <button class="mini-copy" type="button">📋</button>
-        </div>
-        <div class="prompt-mini">
-          <b>🧪 同じ修正を別案で2本</b>
-          <code class="line">Aパターン(Server Action)とBパターン(Route Handler)を別エージェントで作って比較</code>
-          <span class="what">→ サブ 2 本で同じ仕様の別実装を生成して比較レビュー</span>
-          <button class="mini-copy" type="button">📋</button>
-        </div>
       </div>
     </div>
 
     <!-- ルーティーンズ -->
     <div class="ai-pane pane-prompts" data-ai="routine">
-      <p class="desc" style="margin-bottom:10px;"><b>/schedule</b>=クラウド cron / <b>/loop</b>=ローカル会話で繰り返し。発話 1 行で発火。</p>
+      <p class="desc" style="margin-bottom:8px;"><b>/schedule</b>=クラウド cron / <b>/loop</b>=ローカル会話で繰り返し。発話 1 行で発火。</p>
+      <div class="ai-hint"><span>💡</span>これらは「呼び水」のワンライナーです。詳細はそのまま貼って AI に聞けばいくらでも展開してくれます。</div>
       <div class="prompt-mini-grid">
         <div class="prompt-mini">
           <b>⏰ 毎朝デプロイ監視</b>
@@ -3319,18 +3550,13 @@
           <span class="what">→ 5 分ごとに自動再投入。リファクタ中の型崩れ検知</span>
           <button class="mini-copy" type="button">📋</button>
         </div>
-        <div class="prompt-mini">
-          <b>📅 1 度きりの予約実行</b>
-          <code class="line">/schedule 明日10時に「在庫CSVをShopifyに同期」を1回だけ実行</code>
-          <span class="what">→ ワンショット予約。リマインダ代わりにも</span>
-          <button class="mini-copy" type="button">📋</button>
-        </div>
       </div>
     </div>
 
     <!-- Hooks -->
     <div class="ai-pane pane-prompts" data-ai="hooks">
-      <p class="desc" style="margin-bottom:10px;"><b>Hooks</b>=AI 判断と独立に発火する強制処理。<code>/update-config</code> 1 行で設定。</p>
+      <p class="desc" style="margin-bottom:8px;"><b>Hooks</b>=AI 判断と独立に発火する強制処理。<code>/update-config</code> 1 行で設定。</p>
+      <div class="ai-hint"><span>💡</span>これらは「呼び水」のワンライナーです。詳細はそのまま貼って AI に聞けばいくらでも展開してくれます。</div>
       <div class="prompt-mini-grid">
         <div class="prompt-mini">
           <b>🪝 commit 前に lint 強制</b>
@@ -3338,24 +3564,13 @@
           <span class="what">→ <b>PreToolUse</b> イベントで自動。失敗ならコミット中止</span>
           <button class="mini-copy" type="button">📋</button>
         </div>
-        <div class="prompt-mini">
-          <b>🔔 完了で音を鳴らす</b>
-          <code class="line">/update-config Claude停止時に通知音を鳴らすhookを追加</code>
-          <span class="what">→ <b>Stop</b> イベントで OS の効果音再生</span>
-          <button class="mini-copy" type="button">📋</button>
-        </div>
-        <div class="prompt-mini">
-          <b>📜 全 Bash を監査ログ</b>
-          <code class="line">/update-config Bash実行を全部 ~/.claude/audit.log に追記するhook追加</code>
-          <span class="what">→ <b>PreToolUse:Bash</b> で監査証跡を残す</span>
-          <button class="mini-copy" type="button">📋</button>
-        </div>
       </div>
     </div>
 
     <!-- Design -->
     <div class="ai-pane pane-prompts" data-ai="design">
-      <p class="desc" style="margin-bottom:10px;"><b>Design</b>=Chrome DevTools MCP で「画面を見ながら直す」。発話 1 行でループが回る。</p>
+      <p class="desc" style="margin-bottom:8px;"><b>Design</b>=Chrome DevTools MCP で「画面を見ながら直す」。発話 1 行でループが回る。</p>
+      <div class="ai-hint"><span>💡</span>これらは「呼び水」のワンライナーです。詳細はそのまま貼って AI に聞けばいくらでも展開してくれます。</div>
       <div class="prompt-mini-grid">
         <div class="prompt-mini">
           <b>🎨 スマホ表示を直す</b>
@@ -3369,29 +3584,18 @@
           <span class="what">→ MCP で測定 → 修正 → 再測定の自律ループ</span>
           <button class="mini-copy" type="button">📋</button>
         </div>
-        <div class="prompt-mini">
-          <b>🖼 スクショから直接修正</b>
-          <code class="line">添付したスクショの赤丸部分のレイアウトを直して</code>
-          <span class="what">→ 画像入力 → DOM 解析 → 該当 className 修正</span>
-          <button class="mini-copy" type="button">📋</button>
-        </div>
       </div>
     </div>
 
     <!-- Plan モード -->
     <div class="ai-pane pane-prompts" data-ai="plan">
-      <p class="desc" style="margin-bottom:10px;"><b>Plan モード</b>=「設計だけ」に強制。大きな変更前に必ず通す。</p>
+      <p class="desc" style="margin-bottom:8px;"><b>Plan モード</b>=「設計だけ」に強制。大きな変更前に必ず通す。</p>
+      <div class="ai-hint"><span>💡</span>これらは「呼び水」のワンライナーです。詳細はそのまま貼って AI に聞けばいくらでも展開してくれます。</div>
       <div class="prompt-mini-grid">
         <div class="prompt-mini">
           <b>📋 計画だけ作らせる</b>
           <code class="line">Planモードに入って予約機能の実装計画書を作って</code>
           <span class="what">→ ファイル編集系ツールが封印され、計画書だけが返る</span>
-          <button class="mini-copy" type="button">📋</button>
-        </div>
-        <div class="prompt-mini">
-          <b>✅ 承認して実装へ</b>
-          <code class="line">この計画でOK、ExitPlanModeして実装して</code>
-          <span class="what">→ 承認 → 通常モードへ復帰 → そのまま実装開始</span>
           <button class="mini-copy" type="button">📋</button>
         </div>
       </div>
@@ -3407,7 +3611,9 @@
         <h2>MCP — Claude Code に "外部接続端子" を生やす<span class="card-type-badges"><span class="ctb task">⚡作業</span><span class="ctb idea">💡概念</span></span></h2>
       </div>
     </div>
-    <p class="desc" style="margin-bottom:12px;"><b>Model Context Protocol (MCP)</b> = AI と外部サービスを繋ぐ共通端子（USB-C のような存在）。本リポは Render / Supabase / Cloudflare / Shopify / Chrome DevTools の MCP 導入済み。<b>1 文の発話で MCP ツール直叩き</b>。</p>
+    <div class="metaphor-line"><span class="metaphor-icon">💭</span><span class="metaphor-label">例え</span><span class="metaphor-text"><b>USB-C のように外部機器を繋ぐコネクタ</b>。Supabase / Cloudflare / Render などに直接手が届く</span></div>
+    <p class="desc" style="margin-bottom:8px;"><b>Model Context Protocol (MCP)</b> = AI と外部サービスを繋ぐ共通端子（USB-C のような存在）。本リポは Render / Supabase / Cloudflare / Shopify / Chrome DevTools の MCP 導入済み。<b>1 文の発話で MCP ツール直叩き</b>。</p>
+    <div class="ai-hint"><span>💡</span>これらは「呼び水」のワンライナーです。詳細はそのまま貼って AI に聞けばいくらでも展開してくれます。</div>
 
     <div class="prompt-mini-grid">
       <div class="prompt-mini">
@@ -3417,33 +3623,15 @@
         <button class="mini-copy" type="button">📋</button>
       </div>
       <div class="prompt-mini">
-        <b>🛠 マイグレーション適用</b>
-        <code class="line">Supabase MCPで reservations テーブル(id,email,slot)を追加して</code>
-        <span class="what">→ <code>apply_migration</code>。psql 不要・SUPABASE_DB_URL不要</span>
-        <button class="mini-copy" type="button">📋</button>
-      </div>
-      <div class="prompt-mini">
         <b>☁️ Cloudflare Worker 棚卸し</b>
         <code class="line">Cloudflare MCPで全Workerを最終更新順で並べて削除候補を出して</code>
         <span class="what">→ wrangler 不要。アカウント横断で API 経由</span>
         <button class="mini-copy" type="button">📋</button>
       </div>
       <div class="prompt-mini">
-        <b>🚀 Render デプロイ確認</b>
-        <code class="line">Render MCPで全サービスの直近デプロイを表示して</code>
-        <span class="what">→ <code>mcp__render__list_deploys</code>。手元に CLI 無しで運用</span>
-        <button class="mini-copy" type="button">📋</button>
-      </div>
-      <div class="prompt-mini">
         <b>🌐 Vercel 環境変数追加</b>
         <code class="line">Vercel APIで NEXT_PUBLIC_SITE_URL を本番に追加して</code>
         <span class="what">→ <code>VERCEL_TOKEN</code> 経由で curl/SDK 自動操作</span>
-        <button class="mini-copy" type="button">📋</button>
-      </div>
-      <div class="prompt-mini">
-        <b>🛒 Shopify 商品検索</b>
-        <code class="line">Shopify MCPで在庫切れ商品だけ表示して</code>
-        <span class="what">→ Shopify Admin API 経由（プロジェクトスコープ MCP）</span>
         <button class="mini-copy" type="button">📋</button>
       </div>
     </div>
@@ -3465,6 +3653,7 @@
   <a href="#line-build">作成プロンプト</a>
   <a href="#line-ops">運用プロンプト</a>
 </div>
+<div class="term-hint-mini"><span class="ic">💡</span>難しい用語は<strong>クリック</strong>で詳細解説が開きます</div>
 
 <div class="grid">
   <!-- C-1 構成 -->
@@ -3476,6 +3665,7 @@
         <h2>LINEハーネスの構成 — 5レイヤーで考える<span class="card-type-badges"><span class="ctb idea">💡概念</span></span></h2>
       </div>
     </div>
+    <div class="metaphor-line"><span class="metaphor-icon">💭</span><span class="metaphor-label">例え</span><span class="metaphor-text"><b>24h 対応のコンビニ店員</b>。客は LINE で話しかけ、AI が即返事、過去の会話も覚えている</span></div>
 
     <div class="pm-flow" style="--accent:#0d9488">
       <div class="step"><b>① ユーザー</b><span>LINE トーク画面</span></div>
@@ -3527,7 +3717,9 @@
         <h2>LINE ハーネスを 1 行で立ち上げる<span class="card-type-badges"><span class="ctb task">⚡作業</span></span></h2>
       </div>
     </div>
-    <p class="desc" style="margin-bottom:10px;">構成は <b>Worker + D1 + Anthropic</b> 固定。発話 1 文で順に積み上げる。</p>
+    <div class="metaphor-line"><span class="metaphor-icon">💭</span><span class="metaphor-label">例え</span><span class="metaphor-text"><b>コンビニを 1 日で開店させるテンプレ</b>。店舗・レジ・店員 AI を順に積み上げる</span></div>
+    <p class="desc" style="margin-bottom:8px;">構成は <b>Worker + D1 + Anthropic</b> 固定。発話 1 文で順に積み上げる。</p>
+    <div class="ai-hint"><span>💡</span>これらは「呼び水」のワンライナーです。詳細はそのまま貼って AI に聞けばいくらでも展開してくれます。</div>
 
     <div class="prompt-mini-grid">
       <div class="prompt-mini">
@@ -3537,27 +3729,9 @@
         <button class="mini-copy" type="button">📋</button>
       </div>
       <div class="prompt-mini">
-        <b>🤖 AI 応答を足す</b>
-        <code class="line">Anthropic API(sonnet-4-6)で応答を生成してLINEに返す処理を追加</code>
-        <span class="what">→ Claude API 呼び出し + Reply API 連携</span>
-        <button class="mini-copy" type="button">📋</button>
-      </div>
-      <div class="prompt-mini">
         <b>💾 会話履歴を D1 に保存</b>
         <code class="line">D1にconversations(user_id,role,content)を作って直近10件を文脈に渡して</code>
         <span class="what">→ D1 binding 追加 + マイグレ + 文脈合成</span>
-        <button class="mini-copy" type="button">📋</button>
-      </div>
-      <div class="prompt-mini">
-        <b>📚 RAG（マニュアル参照）</b>
-        <code class="line">Supabase pgvectorに店舗マニュアル入れて、質問時に上位3件を文脈に差し込んで</code>
-        <span class="what">→ embedding 投入 + 検索 + 引用回答</span>
-        <button class="mini-copy" type="button">📋</button>
-      </div>
-      <div class="prompt-mini">
-        <b>🆘 人間エスカレ Hook</b>
-        <code class="line">「クレーム」「返金」検知でSlack #line-escalation に通知して自動応答停止</code>
-        <span class="what">→ NG ワード検知 + Slack Webhook + フラグ立て</span>
         <button class="mini-copy" type="button">📋</button>
       </div>
       <div class="prompt-mini">
@@ -3578,6 +3752,8 @@
         <h2>運用フェーズの 1 行プロンプト<span class="card-type-badges"><span class="ctb task">⚡作業</span></span></h2>
       </div>
     </div>
+    <div class="metaphor-line"><span class="metaphor-icon">💭</span><span class="metaphor-label">例え</span><span class="metaphor-text"><b>店長が朝チェックする日報</b>。昨夜の客・売上・トラブルを 1 行で取り出して点検</span></div>
+    <div class="ai-hint"><span>💡</span>これらは「呼び水」のワンライナーです。詳細はそのまま貼って AI に聞けばいくらでも展開してくれます。</div>
 
     <div class="prompt-mini-grid">
       <div class="prompt-mini">
@@ -3590,18 +3766,6 @@
         <b>🚀 デプロイ</b>
         <code class="line">my-shop-line をデプロイ</code>
         <span class="what">→ commit → push → wrangler deploy → 動作確認まで一気通貫</span>
-        <button class="mini-copy" type="button">📋</button>
-      </div>
-      <div class="prompt-mini">
-        <b>📜 直近ログを見る</b>
-        <code class="line">my-shop-lineの直近30分のWorkerログを取って異常があれば指摘</code>
-        <span class="what">→ Cloudflare MCP の Logs API 経由</span>
-        <button class="mini-copy" type="button">📋</button>
-      </div>
-      <div class="prompt-mini">
-        <b>⏰ 監視を毎朝に</b>
-        <code class="line">/schedule 毎朝9時にmy-shop-lineの統計を取ってSlackに投稿</code>
-        <span class="what">→ クラウド cron で常時運用化</span>
         <button class="mini-copy" type="button">📋</button>
       </div>
     </div>
@@ -3728,6 +3892,45 @@
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         history.replaceState(null, '', '#' + id);
       });
+    });
+  })();
+
+  // ===== タスク3: ai-chip 難易度タグ + 「易→難」並び替え + level-bar 自動挿入 =====
+  (function(){
+    // pane-prompts は prompt-mini を持つので除外（chips ではない）
+    const panes = document.querySelectorAll('.ai-pane:not(.pane-prompts)');
+    panes.forEach(pane => {
+      const chips = Array.from(pane.querySelectorAll(':scope > .ai-chip'));
+      if (chips.length === 0) return;
+
+      // 1) 各 chip に data-level を付与（最初の <span> の中身で判定）
+      chips.forEach(c => {
+        const m = c.querySelector(':scope > span')?.textContent || '';
+        if (m.includes('★')) c.dataset.level = 'easy';
+        else if (m.includes('△')) c.dataset.level = 'mid';
+        else if (m.includes('○')) c.dataset.level = 'hard';
+        else c.dataset.level = 'mid'; // 不明は中扱い
+      });
+
+      // 2) 易→難 で物理的に並び替え
+      const order = { easy: 0, mid: 1, hard: 2 };
+      chips.sort((a, b) => (order[a.dataset.level] ?? 3) - (order[b.dataset.level] ?? 3));
+      chips.forEach(c => pane.appendChild(c));
+    });
+
+    // 3) chips を持つカードに、ai-tabs の直前に level-bar を 1 個だけ挿入
+    document.querySelectorAll('.card').forEach(card => {
+      // chips が 1 つ以上あるカードのみ
+      const hasChips = card.querySelector('.ai-pane:not(.pane-prompts) .ai-chip');
+      if (!hasChips) return;
+      const tabs = card.querySelector(':scope > .ai-tabs');
+      if (!tabs) return;
+      // 既に挿入済みならスキップ
+      if (tabs.previousElementSibling && tabs.previousElementSibling.classList.contains('level-bar')) return;
+      const bar = document.createElement('div');
+      bar.className = 'level-bar';
+      bar.innerHTML = '<span>← 簡単（毎日使う）★</span><span>中級（時々）△</span><span>上級（知識として）○ →</span>';
+      tabs.parentNode.insertBefore(bar, tabs);
     });
   })();
 </script>

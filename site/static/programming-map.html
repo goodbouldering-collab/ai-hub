@@ -28,26 +28,109 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* ===== ページナビ (トップに戻る) ===== */
-  .page-nav {
-    max-width: 1200px;
+  /* ===== トップページ準拠の共通ナビ ===== */
+  .pm-shell { max-width: 920px; margin: 0 auto; }
+  /* sticky スクロール用に padding を相殺 */
+  body { padding-top: 0; }
+  .pm-spacer-top { height: 24px; }
+  nav.top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 200;
     margin: 0 auto 22px;
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
+    max-width: 920px;
+    display:flex; flex-wrap:wrap; align-items:flex-start;
+    gap:6px 18px;
+    padding:12px 14px;
+    background:rgba(10,13,26,0.72);
+    border:1px solid var(--ai-glass-border);
+    border-radius:18px;
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.28), 0 1px 0 rgba(255,255,255,0.04) inset;
   }
-  .page-nav a {
-    padding: 8px 16px;
-    border-radius: 999px;
-    background: var(--ai-glass-bg);
-    border: 1px solid var(--ai-glass-border);
+  /* sticky 時に scroll-margin が効くよう、anchor target に余白を確保 */
+  [id] { scroll-margin-top: 96px; }
+  nav.top-nav .nav-group { display:flex; flex-direction:column; gap:5px; min-width:0; }
+  nav.top-nav .nav-group-label {
+    font-size:9.5px; font-weight:800; letter-spacing:.16em;
+    color: var(--accent1); text-transform: uppercase; opacity:.7;
+    padding-left:10px; user-select:none;
+  }
+  nav.top-nav .nav-group-items { display:flex; flex-wrap:wrap; gap:5px; }
+  nav.top-nav .nav-btn {
+    display:inline-flex; align-items:center; gap:4px;
+    padding:7px 14px; border-radius:999px;
+    background:var(--ai-glass-bg); border:1px solid var(--ai-glass-border);
+    color:#f2f4fb; text-decoration:none;
+    font:inherit; font-size:12.5px; font-weight:600; line-height:1;
+    cursor:pointer; white-space:nowrap;
+    transition: background .2s ease, transform .2s ease, border-color .2s ease;
+  }
+  nav.top-nav .nav-btn:hover {
+    background:rgba(255,255,255,0.10);
+    border-color: rgba(122,162,255,.35);
+    transform: translateY(-1px);
+  }
+  nav.top-nav .nav-current {
+    background: linear-gradient(135deg, rgba(122,162,255,.45), rgba(199,125,255,.35));
+    border-color: rgba(255,255,255,.30);
+    color:#fff; font-weight:800;
+    box-shadow: 0 4px 14px rgba(122,162,255,.25), inset 0 1px 0 rgba(255,255,255,.1);
+  }
+  @media (max-width: 640px) {
+    nav.top-nav { padding:10px; gap:8px 12px; }
+    nav.top-nav .nav-group-label { font-size:9px; padding-left:8px; }
+    nav.top-nav .nav-btn { padding:6px 11px; font-size:11.5px; }
+  }
+
+  /* ===== セクション見出し（章扉） ===== */
+  .pm-section-head {
+    max-width: 920px;
+    margin: 64px auto 24px;
+    padding: 22px 26px;
+    background: linear-gradient(120deg, rgba(122,162,255,.16), rgba(199,125,255,.14) 50%, rgba(255,122,182,.12));
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 20px;
     backdrop-filter: blur(14px) saturate(160%);
-    color: #f2f4fb;
-    text-decoration: none;
-    font-size: 13px;
-    transition: all .25s ease;
+    position: relative;
+    overflow: hidden;
   }
-  .page-nav a:hover { background: rgba(255,255,255,0.10); transform: translateY(-1px); }
+  .pm-section-head::before {
+    content: ""; position: absolute; inset: 0;
+    background: radial-gradient(800px 200px at 0% 0%, rgba(122,162,255,.18), transparent 60%);
+    pointer-events: none;
+  }
+  .pm-section-head .eyebrow {
+    font-size: 10.5px; font-weight: 800; letter-spacing: .2em;
+    color: var(--accent1); text-transform: uppercase; opacity: .9;
+  }
+  .pm-section-head h2 {
+    font-size: clamp(20px, 3.4vw, 28px); font-weight: 800; margin: 6px 0 8px;
+    background: linear-gradient(100deg, var(--accent1) 0%, var(--accent2) 50%, var(--accent3) 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    line-height: 1.25;
+  }
+  .pm-section-head p { color: #cfd4e8; font-size: 13.5px; line-height: 1.7; margin: 0; }
+
+  /* ===== セクション内 目次バブル ===== */
+  .pm-section-toc {
+    max-width: 920px;
+    margin: 0 auto 18px;
+    display: flex; flex-wrap: wrap; gap: 6px;
+    padding: 0 4px;
+  }
+  .pm-section-toc a {
+    font-size: 11.5px; font-weight: 700;
+    padding: 5px 11px; border-radius: 999px;
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.14);
+    color: #c4cae0; text-decoration: none;
+    transition: all .2s;
+  }
+  .pm-section-toc a:hover {
+    background: rgba(122,162,255,.18); color: #fff; border-color: var(--accent1);
+  }
 
   /* ===== タイトル ===== */
   h1 {
@@ -128,7 +211,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
-    max-width: 1200px;
+    max-width: 920px;
     margin: 0 auto;
   }
 
@@ -318,7 +401,7 @@
 
   /* ===== 凡例 ===== */
   .legend {
-    max-width: 1200px; margin: 32px auto 0;
+    max-width: 920px; margin: 32px auto 0;
     display: flex; gap: 12px; flex-wrap: wrap;
     justify-content: center; font-size: 0.7rem; color: #64748b;
   }
@@ -332,7 +415,7 @@
 
   /* ===== 頻度の凡例 ===== */
   .freq-legend {
-    max-width: 1200px; margin: 16px auto 0;
+    max-width: 920px; margin: 16px auto 0;
     display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
   }
   .freq-legend-item {
@@ -377,6 +460,9 @@
     gap: 6px;
   }
   .ai-pane.active { display: grid; }
+  /* 新セクション B-3 のように、プロンプトカードを縦並べる場合は block レイアウトに */
+  .ai-pane.pane-prompts { display: none; }
+  .ai-pane.pane-prompts.active { display: block; }
   .ai-chip {
     position: relative;
     background: #f8fafc;
@@ -529,7 +615,7 @@
 
   /* ===== 検索ツールバー ===== */
   .term-toolbar {
-    max-width: 1200px;
+    max-width: 920px;
     margin: 0 auto 24px;
     display: flex;
     flex-wrap: wrap;
@@ -803,9 +889,508 @@
     .term-filters button { padding: 5px 10px; font-size: 11.5px; }
   }
 
+  /* ===== 新規UI: コピー可能なプロンプトブロック ===== */
+  .prompt-card {
+    position: relative;
+    background: linear-gradient(180deg, #0f1530 0%, #0b1024 100%);
+    border: 1px solid rgba(122,162,255,.28);
+    border-radius: 14px;
+    margin: 14px 0;
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(0,0,0,.18);
+  }
+  .prompt-card .prompt-head {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 10px; padding: 10px 14px;
+    background: linear-gradient(100deg, rgba(122,162,255,.18), rgba(199,125,255,.18));
+    border-bottom: 1px solid rgba(255,255,255,.08);
+  }
+  .prompt-card .prompt-title {
+    font-size: 12px; font-weight: 800; letter-spacing: .04em;
+    color: #f2f4fb; display: flex; align-items: center; gap: 8px;
+  }
+  .prompt-card .prompt-title .pill {
+    font-size: 9.5px; padding: 2px 7px; border-radius: 999px;
+    background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.18);
+    letter-spacing: .08em;
+  }
+  .prompt-card .prompt-copy {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: rgba(255,255,255,.10);
+    border: 1px solid rgba(255,255,255,.18);
+    color: #fff; cursor: pointer;
+    padding: 5px 11px; border-radius: 8px;
+    font: inherit; font-size: 11.5px; font-weight: 700;
+    transition: all .15s;
+  }
+  .prompt-card .prompt-copy:hover {
+    background: rgba(122,162,255,.28); border-color: rgba(255,255,255,.32);
+  }
+  .prompt-card .prompt-copy.ok {
+    background: rgba(74,222,128,.25); border-color: rgba(74,222,128,.55); color: #d1fae5;
+  }
+  .prompt-card pre {
+    margin: 0; padding: 14px 16px;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+    font-size: 12.5px; line-height: 1.65;
+    color: #d4d9ee;
+    white-space: pre-wrap; word-break: break-word;
+    max-height: 320px; overflow-y: auto;
+  }
+  .prompt-card pre b { color: #ffd36b; font-weight: 700; }
+  .prompt-card .prompt-foot {
+    padding: 10px 14px;
+    border-top: 1px solid rgba(255,255,255,.06);
+    background: rgba(255,255,255,.02);
+    font-size: 11.5px; color: #8ea0d6;
+    line-height: 1.6;
+  }
+  .prompt-card .prompt-foot b { color: #c4cae0; }
+
+  /* ===== 新規UI: ワンライナー・プロンプト ===== */
+  .prompt-mini {
+    position: relative;
+    background: linear-gradient(180deg, #0f1530 0%, #0b1024 100%);
+    border: 1px solid rgba(122,162,255,.28);
+    border-radius: 10px;
+    padding: 10px 44px 10px 12px;
+    margin: 6px 0;
+    color: #d4d9ee;
+    line-height: 1.55;
+  }
+  .prompt-mini b {
+    display: block;
+    color: #ffd36b;
+    font-weight: 800;
+    font-size: 11px;
+    margin-bottom: 4px;
+    letter-spacing: .03em;
+  }
+  .prompt-mini code.line {
+    display: block;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 6px;
+    padding: 6px 8px;
+    font-family: 'SFMono-Regular', Consolas, monospace;
+    font-size: 12px;
+    color: #c4cae0;
+    word-break: break-word;
+    white-space: pre-wrap;
+  }
+  .prompt-mini .what {
+    display: block;
+    margin-top: 5px;
+    font-size: 11px;
+    color: #8ea0d6;
+    line-height: 1.5;
+  }
+  .prompt-mini .what b { display: inline; color: #c4cae0; font-size: inherit; margin: 0; letter-spacing: 0; }
+  .prompt-mini .mini-copy {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(255,255,255,.10);
+    border: 1px solid rgba(255,255,255,.18);
+    color: #fff; cursor: pointer;
+    padding: 4px 8px; border-radius: 6px;
+    font: inherit; font-size: 11px; font-weight: 700;
+    transition: all .15s;
+  }
+  .prompt-mini .mini-copy:hover { background: rgba(122,162,255,.28); }
+  .prompt-mini .mini-copy.ok { background: rgba(74,222,128,.25); border-color: rgba(74,222,128,.55); }
+
+  /* ワンライナーをタブの中で 2 列に並べるグリッド */
+  .prompt-mini-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 10px;
+    margin: 4px 0;
+  }
+
+  /* ===== 新規UI: 比較スタック (層ごとの旧vs新) ===== */
+  .layer-compare {
+    display: grid;
+    grid-template-columns: 110px 1fr 28px 1fr;
+    gap: 8px 10px;
+    align-items: center;
+    background: #faf9ff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px;
+    margin: 12px 0;
+  }
+  .layer-compare .lc-row { display: contents; }
+  .layer-compare .lc-label {
+    font-size: 11px; font-weight: 800;
+    text-align: right;
+    color: #475569;
+    padding-right: 8px;
+    border-right: 2px solid #cbd5e1;
+  }
+  .layer-compare .lc-old, .layer-compare .lc-new {
+    background: #fff; border: 1px solid #e2e8f0; border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 12px; color: #475569; line-height: 1.55;
+  }
+  .layer-compare .lc-old { border-left: 3px solid #94a3b8; }
+  .layer-compare .lc-new { border-left: 3px solid #7c3aed; background: linear-gradient(180deg, #faf9ff, #fff); }
+  .layer-compare .lc-old b, .layer-compare .lc-new b { color: #1e293b; }
+  .layer-compare .lc-arrow {
+    text-align: center; color: #7c3aed; font-size: 18px; font-weight: 800;
+  }
+  .layer-compare .lc-head {
+    font-weight: 800; font-size: 11px; letter-spacing: .04em;
+    text-transform: uppercase;
+    background: transparent; border: none;
+    padding: 4px 0;
+  }
+  .layer-compare .lc-head.old { color: #64748b; text-align: center; }
+  .layer-compare .lc-head.new { color: #7c3aed; text-align: center; }
+  @media (max-width: 640px) {
+    .layer-compare { grid-template-columns: 1fr; }
+    .layer-compare .lc-label { text-align: left; border-right: none; border-bottom: 2px solid #cbd5e1; padding: 6px 0; }
+    .layer-compare .lc-arrow { display: none; }
+  }
+
+  /* ===== 新規UI: アコーディオン ===== */
+  details.pm-acc {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-left: 3px solid var(--accent, #7c3aed);
+    border-radius: 10px;
+    margin: 10px 0;
+    transition: box-shadow .2s, border-color .2s;
+  }
+  details.pm-acc[open] {
+    box-shadow: 0 6px 18px rgba(124,58,237,.12);
+    border-left-width: 4px;
+  }
+  details.pm-acc summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 12px 16px;
+    font-size: 13.5px; font-weight: 700;
+    color: #1e293b;
+    display: flex; align-items: center; gap: 10px;
+    user-select: none;
+  }
+  details.pm-acc summary::-webkit-details-marker { display: none; }
+  details.pm-acc summary::before {
+    content: "▶";
+    font-size: 9px; color: #94a3b8;
+    transition: transform .2s;
+    flex-shrink: 0;
+  }
+  details.pm-acc[open] summary::before { transform: rotate(90deg); color: var(--accent, #7c3aed); }
+  details.pm-acc summary .step-num {
+    background: var(--accent, #7c3aed);
+    color: #fff;
+    font-size: 10px; font-weight: 800;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  details.pm-acc summary .step-meta {
+    margin-left: auto;
+    font-size: 10.5px; font-weight: 600;
+    color: #94a3b8;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    padding: 2px 8px; border-radius: 99px;
+  }
+  details.pm-acc .acc-body {
+    padding: 4px 16px 16px;
+    font-size: 13px; line-height: 1.75; color: #475569;
+  }
+  details.pm-acc .acc-body p { margin: 6px 0 8px; }
+  details.pm-acc .acc-body code {
+    background: #1e293b; color: #fbbf24; padding: 1.5px 6px; border-radius: 4px;
+    font-size: 0.88em; font-family: 'SFMono-Regular', Consolas, monospace;
+  }
+  details.pm-acc .acc-body strong { color: #1e293b; }
+
+  /* ===== 新規UI: 比較表 (旧 vs 新) ===== */
+  .pm-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 14px 0 18px;
+  }
+  @media (max-width: 640px) { .pm-compare { grid-template-columns: 1fr; } }
+  .pm-compare > div {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 14px 16px;
+  }
+  .pm-compare .old { border-top: 3px solid #94a3b8; }
+  .pm-compare .new { border-top: 3px solid #7c3aed; background: linear-gradient(180deg, #faf9ff 0%, #fff 100%); }
+  .pm-compare h4 {
+    font-size: 12px; font-weight: 800; letter-spacing: .04em;
+    margin: 0 0 8px; color: #475569;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .pm-compare .new h4 { color: #7c3aed; }
+  .pm-compare ul { margin: 0; padding-left: 18px; font-size: 12.5px; line-height: 1.75; color: #475569; }
+  .pm-compare li { margin-bottom: 3px; }
+  .pm-compare li b { color: #1e293b; }
+
+  /* ===== 新規UI: 横スクロールフロー ===== */
+  .pm-flow {
+    display: flex; align-items: stretch; gap: 0;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 14px;
+    margin: 14px 0;
+    overflow-x: auto;
+  }
+  .pm-flow .step {
+    flex: 1 0 130px;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 10px 12px;
+    text-align: center;
+  }
+  .pm-flow .step b {
+    display: block; font-size: 11px; font-weight: 800; color: var(--accent, #7c3aed);
+    letter-spacing: .04em; margin-bottom: 4px;
+  }
+  .pm-flow .step span { font-size: 11.5px; color: #475569; line-height: 1.45; }
+  .pm-flow .arrow {
+    align-self: center;
+    color: #cbd5e1; font-size: 18px;
+    padding: 0 6px; flex-shrink: 0;
+  }
+
+  /* ===== 新規UI: IDE関係図ピル ===== */
+  .ide-stack {
+    background: #faf9ff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px;
+    margin: 14px 0;
+  }
+  .ide-stack .layer {
+    display: grid; grid-template-columns: 110px 1fr; align-items: center;
+    gap: 12px; padding: 10px 12px;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    margin-bottom: 6px;
+    transition: all .2s;
+  }
+  .ide-stack .layer:hover { transform: translateX(2px); border-color: #c4b5fd; box-shadow: 0 4px 12px rgba(124,58,237,.1); }
+  .ide-stack .layer .badge {
+    font-size: 10px; font-weight: 800; letter-spacing: .04em;
+    text-align: center; padding: 4px 8px; border-radius: 6px;
+    color: #fff;
+  }
+  .ide-stack .layer.l1 .badge { background: #2563eb; }
+  .ide-stack .layer.l2 .badge { background: #16a34a; }
+  .ide-stack .layer.l3 .badge { background: #d97706; }
+  .ide-stack .layer.l4 .badge { background: #7c3aed; }
+  .ide-stack .layer.l5 .badge { background: #db2777; }
+  .ide-stack .layer .body { font-size: 12.5px; color: #475569; line-height: 1.55; }
+  .ide-stack .layer .body b { color: #1e293b; }
+  .ide-stack .arrow-row {
+    text-align: center; color: #94a3b8; font-size: 14px; padding: 2px 0;
+  }
+
+  /* ===== 新規UI: ハイライト囲い ===== */
+  .pm-highlight {
+    background: linear-gradient(120deg, rgba(122,162,255,.12), rgba(199,125,255,.10));
+    border: 1px solid rgba(199,125,255,.35);
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin: 12px 0;
+    font-size: 13px; line-height: 1.7; color: #334155;
+  }
+  .pm-highlight b { color: #6d28d9; }
+
+  /* ===== 講習会章立て: 軽量バナー & 目次 ===== */
+  .part-banner {
+    max-width: 920px;
+    margin: 38px auto 18px;
+    padding: 12px 18px;
+    background: linear-gradient(120deg, rgba(122,162,255,.18), rgba(199,125,255,.16));
+    border: 1px solid rgba(255,255,255,.16);
+    border-left: 4px solid var(--accent1);
+    border-radius: 12px;
+    backdrop-filter: blur(12px) saturate(160%);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #f2f4fb;
+  }
+  .part-banner .pb-num {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .14em;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.10);
+    border: 1px solid rgba(255,255,255,.18);
+    color: #e8ecff;
+    flex-shrink: 0;
+  }
+  .part-banner .pb-title {
+    font-size: 15px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: .02em;
+  }
+  .part-banner .pb-sub {
+    margin-left: auto;
+    font-size: 11.5px;
+    color: #cfd4e8;
+    opacity: .8;
+  }
+  @media (max-width: 640px) {
+    .part-banner { padding: 10px 12px; gap: 8px; flex-wrap: wrap; }
+    .part-banner .pb-title { font-size: 13.5px; }
+    .part-banner .pb-sub { display: none; }
+  }
+
+  /* 「📚 本日の流れ」ミニ目次 */
+  .pm-agenda {
+    max-width: 920px;
+    margin: 8px auto 32px;
+    padding: 14px 18px;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 14px;
+    backdrop-filter: blur(10px);
+  }
+  .pm-agenda h3 {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .1em;
+    color: var(--accent1);
+    text-transform: uppercase;
+    margin: 0 0 8px;
+  }
+  .pm-agenda ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 4px 16px;
+  }
+  .pm-agenda li {
+    font-size: 12.5px;
+    line-height: 1.7;
+    color: #cfd4e8;
+  }
+  .pm-agenda li a {
+    color: #cfd4e8;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .pm-agenda li a:hover { color: #fff; }
+  .pm-agenda li .num {
+    display: inline-block;
+    min-width: 22px;
+    height: 22px;
+    line-height: 22px;
+    text-align: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent1), var(--accent2));
+    color: #fff;
+    font-size: 10.5px;
+    font-weight: 800;
+  }
+
+  /* ===== カードヘッダ・タイプバッジ（語句/作業/概念） ===== */
+  .card-type-badges {
+    display: inline-flex;
+    gap: 4px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .ctb {
+    font-size: 9.5px;
+    font-weight: 800;
+    letter-spacing: .04em;
+    padding: 2px 6px;
+    border-radius: 5px;
+    line-height: 1.3;
+    border: 1px solid;
+    white-space: nowrap;
+  }
+  .ctb.term  { background: #fff7ed; color: #b45309; border-color: #fed7aa; }
+  .ctb.task  { background: #0f1530; color: #ffd36b; border-color: rgba(255,211,107,.4); }
+  .ctb.idea  { background: #ecfeff; color: #0e7490; border-color: #a5f3fc; }
+
+  /* タイプ見出し（pane / 図表の上に置く小ラベル） */
+  .type-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: .06em;
+    padding: 3px 9px;
+    border-radius: 999px;
+    margin: 4px 0 8px;
+    text-transform: uppercase;
+    border: 1px solid;
+  }
+  .type-label.term  { background: #fff7ed; color: #b45309; border-color: #fed7aa; }
+  .type-label.task  { background: #0f1530; color: #ffd36b; border-color: rgba(255,211,107,.45); }
+  .type-label.idea  { background: #ecfeff; color: #0e7490; border-color: #a5f3fc; }
+
+  /* 概念SVG下のキャプション */
+  .ai-stack-caption,
+  .figure-caption {
+    margin: 8px 2px 4px;
+    padding: 7px 12px;
+    background: linear-gradient(100deg, rgba(14,116,144,.10), rgba(34,197,94,.06));
+    border: 1px solid rgba(14,116,144,.28);
+    border-left: 3px solid #0e7490;
+    border-radius: 8px;
+    font-size: 11.5px;
+    color: #334155;
+    line-height: 1.6;
+  }
+  .ai-stack-caption b,
+  .figure-caption b { color: #0e7490; }
+
+  /* ai-chip 内部に矢印アイコン（既存の <b>...</b> の前に span.chip-arrow を入れる方式） */
+  .chip-arrow {
+    display: inline-block;
+    margin-right: 5px;
+    font-size: 0.78rem;
+    color: #7c3aed;
+    opacity: .85;
+    vertical-align: middle;
+  }
+  .ai-chip.open .chip-arrow { color: #f59e0b; }
+
+  /* prompt-mini タイトル左に三角矢印 */
+  .prompt-mini b::before {
+    content: "▶ ";
+    color: #7aa2ff;
+    font-size: 0.78em;
+    margin-right: 2px;
+  }
+  /* prompt-mini code 内に → を補強 */
+  .prompt-mini code.line::before {
+    content: "$ ";
+    color: #4ade80;
+    opacity: .65;
+    font-weight: 700;
+  }
+
   /* ヒント(最初の1回だけ表示) */
   .term-hint {
-    max-width: 1200px;
+    max-width: 920px;
     margin: -10px auto 28px;
     padding: 10px 18px;
     font-size: 12.5px;
@@ -821,14 +1406,32 @@
 </head>
 <body>
 
-<nav class="page-nav">
-  <a href="./index.html">🏠 トップ</a>
-  <a href="./speaker.html">🎤 講師紹介</a>
-  <a href="./archive.html">📚 過去ログ</a>
+<nav class="top-nav" aria-label="サイトナビゲーション">
+  <div class="nav-group">
+    <span class="nav-group-label">メイン</span>
+    <div class="nav-group-items">
+      <a class="nav-btn" href="./index.html">🏠 トップ</a>
+      <a class="nav-btn" href="./speaker.html">🎤 講師紹介</a>
+      <a class="nav-btn" href="./archive.html">📚 過去ログ</a>
+    </div>
+  </div>
+  <div class="nav-group">
+    <span class="nav-group-label">プログラミングマップ — 講習章立て</span>
+    <div class="nav-group-items">
+      <a class="nav-btn nav-current" href="#top">🗺 全体</a>
+      <a class="nav-btn" href="#part-1">① 環境</a>
+      <a class="nav-btn" href="#part-2">② 開発</a>
+      <a class="nav-btn" href="#part-3">③ 公開・運用</a>
+      <a class="nav-btn" href="#part-4">④ AI時代</a>
+      <a class="nav-btn" href="#sec-cms">📝 CMS</a>
+      <a class="nav-btn" href="#sec-ccode">🤖 Claude</a>
+      <a class="nav-btn" href="#sec-line">💬 LINE</a>
+    </div>
+  </div>
 </nav>
 
-<h1>プログラミングマップ</h1>
-<p class="subtitle">環境構築 → 開発 → Git管理 → テスト → デプロイ → 運用監視</p>
+<h1 id="top">プログラミングマップ</h1>
+<p class="subtitle">環境構築 → 開発 → Git管理 → テスト → デプロイ → 運用監視 → AI時代の手法</p>
 
 <div class="term-hint">
   <span class="ic">💡</span>各カードの<strong>用語タグ</strong>をタップ／クリックすると、詳しい解説・使いどころ・関連用語が開きます
@@ -894,128 +1497,287 @@
 </div>
 
 <!-- 頻度バッジの凡例 -->
-<div class="freq-legend" style="margin-bottom:32px;">
+<div class="freq-legend" style="margin-bottom:18px;">
   <div class="freq-legend-item"><span class="freq freq-high">★ よく使う</span> 日常的に使うコマンド・概念</div>
   <div class="freq-legend-item"><span class="freq freq-med">△ 時々使う</span> 状況によって使う</div>
   <div class="freq-legend-item"><span class="freq freq-low">○ 知識として</span> 知っておけばOK</div>
 </div>
 
+<!-- ===== 📚 本日の流れ ===== -->
+<aside class="pm-agenda" aria-label="本日の流れ">
+  <h3>📚 本日の流れ</h3>
+  <ol>
+    <li><a href="#part-1"><span class="num">1</span>環境（OS / ランタイム / フレームワーク）</a></li>
+    <li><a href="#part-2"><span class="num">2</span>開発（コーディング / Git / テスト）</a></li>
+    <li><a href="#part-3"><span class="num">3</span>公開・運用（Deploy / DB / SEO / 監視）</a></li>
+    <li><a href="#part-4"><span class="num">4</span>AI時代のエンジニアリング</a></li>
+    <li><a href="#sec-cms"><span class="num">5</span>📝 CMS進化（WP→Studio/Payload）</a></li>
+    <li><a href="#sec-ccode"><span class="num">6</span>🤖 Claude Code 完全ガイド</a></li>
+    <li><a href="#sec-line"><span class="num">7</span>💬 LINE ハーネス実例</a></li>
+    <li><a href="#legend-bottom"><span class="num">✓</span>まとめ・凡例</a></li>
+  </ol>
+</aside>
+
+<!-- ===== 第1部: 環境 ===== -->
+<div id="part-1" class="part-banner">
+  <span class="pb-num">第 1 部</span>
+  <span class="pb-title">環境 — 何の上で、何を使って作るか</span>
+  <span class="pb-sub">📘 用語 + 💡 概念中心</span>
+</div>
+
 <div class="grid">
 
   <!-- 環境構築 -->
-  <div class="card blue">
+  <div class="card blue full-width">
     <div class="card-header">
       <div class="card-icon">🛠️</div>
       <div class="card-title-wrap">
         <div class="step-badge">STEP 1</div>
-        <h2>環境構築</h2>
+        <h2>環境構築 — プロジェクトの土台を組む<span class="card-type-badges"><span class="ctb idea">💡概念</span><span class="ctb term">📘用語</span></span></h2>
       </div>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">Node.js</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">JavaScriptをPC上で動かすエンジン。まず最初にインストール</span>
+
+    <div class="ai-stack">
+      <svg width="100%" height="200" viewBox="0 0 820 200" style="min-width:640px;">
+        <defs>
+          <linearGradient id="env-l1" x1="0" x2="1"><stop offset="0" stop-color="#dbeafe"/><stop offset="1" stop-color="#bfdbfe"/></linearGradient>
+          <linearGradient id="env-l2" x1="0" x2="1"><stop offset="0" stop-color="#dbeafe"/><stop offset="1" stop-color="#93c5fd"/></linearGradient>
+          <linearGradient id="env-l3" x1="0" x2="1"><stop offset="0" stop-color="#bfdbfe"/><stop offset="1" stop-color="#60a5fa"/></linearGradient>
+          <linearGradient id="env-l4" x1="0" x2="1"><stop offset="0" stop-color="#fef3c7"/><stop offset="1" stop-color="#fde68a"/></linearGradient>
+        </defs>
+        <!-- 4層スタック -->
+        <rect x="20" y="20" width="780" height="36" rx="8" fill="url(#env-l1)" stroke="#60a5fa" stroke-width="1.5"/>
+        <text x="40" y="43" fill="#1e3a8a" font-size="13" font-weight="800">① OS / シェル</text>
+        <text x="200" y="43" fill="#1e40af" font-size="11">macOS zsh / Windows PowerShell — ファイルとプロセスの最終層</text>
+
+        <rect x="20" y="64" width="780" height="36" rx="8" fill="url(#env-l2)" stroke="#3b82f6" stroke-width="1.5"/>
+        <text x="40" y="87" fill="#1e3a8a" font-size="13" font-weight="800">② Node.js ランタイム</text>
+        <text x="220" y="87" fill="#1e40af" font-size="11">JavaScript を PC 上で動かすエンジン（v20+ 推奨）</text>
+
+        <rect x="20" y="108" width="500" height="36" rx="8" fill="url(#env-l3)" stroke="#2563eb" stroke-width="1.5"/>
+        <text x="40" y="131" fill="#1e3a8a" font-size="13" font-weight="800">③ npm + node_modules</text>
+        <text x="220" y="131" fill="#1e40af" font-size="11">ライブラリ取得・依存解決</text>
+
+        <rect x="528" y="108" width="272" height="36" rx="8" fill="url(#env-l4)" stroke="#f59e0b" stroke-width="1.5"/>
+        <text x="548" y="131" fill="#92400e" font-size="13" font-weight="800">🔐 .env</text>
+        <text x="615" y="131" fill="#b45309" font-size="11">APIキー / 秘密値（Git 除外）</text>
+
+        <rect x="20" y="152" width="780" height="36" rx="8" fill="#fff" stroke="#94a3b8" stroke-width="1.5"/>
+        <text x="40" y="175" fill="#1e293b" font-size="13" font-weight="800">④ アプリコード（src/）</text>
+        <text x="240" y="175" fill="#475569" font-size="11">あなたが書く部分。下の3層が全部支えている</text>
+      </svg>
+      <div class="ai-stack-caption"><b>📌 ポイント:</b> 上の <code>src/</code> を支えるのは <b>OS → Node → npm → .env</b> の 4 層。下の層が崩れると上は動かない。</div>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">npm</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">ライブラリを管理するツール。<code>npm install</code> で必要なものを一括取得</span>
+
+    <div class="ai-tabs">
+      <button class="ai-tab active" data-ai="env-runtime">🟢 ランタイム</button>
+      <button class="ai-tab" data-ai="env-pkg">📦 パッケージ管理</button>
+      <button class="ai-tab" data-ai="env-conf">⚙️ 設定ファイル</button>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">package.json</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">「何を使うか」の設計書。プロジェクト設定が全部ここに書かれる</span>
+
+    <div class="ai-pane active" data-ai="env-runtime">
+      <div class="ai-chip"><b>Node.js</b> <span>★</span> JavaScript を PC 上で動かすエンジン<div class="origin"><em>使う場面</em>npm/Vite/Next.js すべての前提。最初の1回 <code>nvm install 20</code>。<i>覚え方: 「ブラウザの外で JS を動かす VM」</i></div></div>
+      <div class="ai-chip"><b>VSCode</b> <span>★</span> 定番の統合開発環境（IDE）<div class="origin"><em>使う場面</em>本リポは VSCode 前提。<code>clients.code-workspace</code> を開けば全社が同時起動する。<i>覚え方: 「家＝IDE」</i></div></div>
+      <div class="ai-chip"><b>ターミナル</b> <span>★</span> npm を打つ画面<div class="origin"><em>使う場面</em>Mac は Terminal、Windows は PowerShell。VSCode 内蔵ターミナル(Ctrl+`)が便利。</div></div>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">.env</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">APIキー・パスワードなど秘密の設定。Gitには絶対含めない</span>
+
+    <div class="ai-pane" data-ai="env-pkg">
+      <div class="ai-chip"><b>npm</b> <span>★</span> ライブラリを取ってくるコマンド<div class="origin"><em>使う場面</em><code>npm install</code> で <code>package.json</code> 通りに一括取得。<i>同等品: pnpm / yarn — 速度や省スペース重視で乗り換え可</i></div></div>
+      <div class="ai-chip"><b>package.json</b> <span>★</span> プロジェクトの設計書<div class="origin"><em>中身</em>名前 / 依存ライブラリ / scripts(npm run dev など)。<b>触ったらコミット必須</b>。本リポでは <code>set-ports.js</code> が <code>scripts.dev</code> を自動書換するので注意。</div></div>
+      <div class="ai-chip"><b>node_modules</b> <span>○</span> 取得したライブラリの置き場<div class="origin"><em>注意</em>巨大なので <code>.gitignore</code> に必ず入れる。<b>直接触らない</b>。バグ調査でいじっても再 install で消える。</div></div>
+      <div class="ai-chip"><b>package-lock.json</b> <span>△</span> 依存バージョン固定<div class="origin"><em>使う場面</em>「自分の PC では動くのに本番で動かない」を防ぐ。<b>commit する</b>。</div></div>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">node_modules</span><span class="freq freq-low">○ 知識</span></div>
-      <span class="desc">ダウンロードされたライブラリの置き場。直接触らない</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">.gitignore</span><span class="freq freq-med">△ 時々</span></div>
-      <span class="desc">Gitに含めないファイルを指定。node_modulesや.envを除外する</span>
+
+    <div class="ai-pane" data-ai="env-conf">
+      <div class="ai-chip"><b>.env</b> <span>★</span> 秘密の設定ファイル<div class="origin"><em>絶対ルール</em>API キー / パスワード / Supabase キー等を入れる。<b>絶対 git に含めない</b>。<code>.env.example</code> で書式だけ共有する。</div></div>
+      <div class="ai-chip"><b>.gitignore</b> <span>★</span> Git に含めないファイルを宣言<div class="origin"><em>必須項目</em><code>node_modules/</code> <code>.env*</code> <code>dist/</code> <code>.next/</code>。<i>事故を1回でも起こすと信用ゼロになる箇所</i></div></div>
+      <div class="ai-chip"><b>.env.example</b> <span>△</span> 値を空にしたサンプル<div class="origin"><em>運用</em>新メンバーがクローンしてすぐ動かせるように、必要キーの一覧だけ git に入れる。</div></div>
+      <div class="ai-chip"><b>NEXT_PUBLIC_*</b> <span>★</span> ブラウザに公開してOKな env<div class="origin"><em>厳格な区別</em>サーバー専用キー(SERVICE_ROLE 等)を <code>NEXT_PUBLIC_</code> に絶対しない。漏洩事故の典型。</div></div>
     </div>
   </div>
 
   <!-- フレームワーク -->
-  <div class="card green">
+  <div class="card green full-width">
     <div class="card-header">
       <div class="card-icon">⚡</div>
       <div class="card-title-wrap">
         <div class="step-badge">STEP 1-2</div>
-        <h2>フレームワーク・ライブラリ</h2>
+        <h2>フレームワーク・ライブラリ — 何で作るか<span class="card-type-badges"><span class="ctb idea">💡概念</span><span class="ctb term">📘用語</span></span></h2>
       </div>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">Next.js</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">ページ・ルーティング・サーバーまで込み。SEOが必要な公開サイト向き</span>
+
+    <div class="ai-stack" style="background:#f0fdf4;">
+      <svg width="100%" height="240" viewBox="0 0 820 240" style="min-width:640px;">
+        <defs>
+          <linearGradient id="fw-meta" x1="0" x2="1"><stop offset="0" stop-color="#dcfce7"/><stop offset="1" stop-color="#bbf7d0"/></linearGradient>
+          <linearGradient id="fw-react" x1="0" x2="1"><stop offset="0" stop-color="#dbeafe"/><stop offset="1" stop-color="#93c5fd"/></linearGradient>
+          <linearGradient id="fw-ts" x1="0" x2="1"><stop offset="0" stop-color="#ede9fe"/><stop offset="1" stop-color="#ddd6fe"/></linearGradient>
+          <linearGradient id="fw-tw" x1="0" x2="1"><stop offset="0" stop-color="#cffafe"/><stop offset="1" stop-color="#a5f3fc"/></linearGradient>
+        </defs>
+
+        <!-- 中央: React -->
+        <circle cx="410" cy="120" r="55" fill="url(#fw-react)" stroke="#3b82f6" stroke-width="2"/>
+        <text x="410" y="115" text-anchor="middle" fill="#1e3a8a" font-size="16" font-weight="800">React</text>
+        <text x="410" y="135" text-anchor="middle" fill="#1e40af" font-size="10">UI部品を作るライブラリ</text>
+
+        <!-- 周囲4つのメタフレームワーク -->
+        <rect x="70" y="30" width="160" height="60" rx="10" fill="url(#fw-meta)" stroke="#16a34a" stroke-width="1.5"/>
+        <text x="150" y="55" text-anchor="middle" fill="#14532d" font-size="13" font-weight="800">Next.js</text>
+        <text x="150" y="75" text-anchor="middle" fill="#15803d" font-size="10">本サイト向け（SEO・SSR）</text>
+
+        <rect x="590" y="30" width="160" height="60" rx="10" fill="url(#fw-meta)" stroke="#16a34a" stroke-width="1.5"/>
+        <text x="670" y="55" text-anchor="middle" fill="#14532d" font-size="13" font-weight="800">Vite + React</text>
+        <text x="670" y="75" text-anchor="middle" fill="#15803d" font-size="10">SPA / 管理画面向け</text>
+
+        <rect x="70" y="150" width="160" height="60" rx="10" fill="url(#fw-meta)" stroke="#16a34a" stroke-width="1.5" opacity="0.6"/>
+        <text x="150" y="175" text-anchor="middle" fill="#14532d" font-size="13" font-weight="800">Nuxt</text>
+        <text x="150" y="195" text-anchor="middle" fill="#15803d" font-size="10">Vue ベース（参考）</text>
+
+        <rect x="590" y="150" width="160" height="60" rx="10" fill="url(#fw-meta)" stroke="#16a34a" stroke-width="1.5" opacity="0.6"/>
+        <text x="670" y="175" text-anchor="middle" fill="#14532d" font-size="13" font-weight="800">Angular</text>
+        <text x="670" y="195" text-anchor="middle" fill="#15803d" font-size="10">大規模業務（参考）</text>
+
+        <!-- React → メタフレーム への矢印 -->
+        <line x1="355" y1="100" x2="240" y2="60" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <line x1="465" y1="100" x2="580" y2="60" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <line x1="355" y1="140" x2="240" y2="180" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.5"/>
+        <line x1="465" y1="140" x2="580" y2="180" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.5"/>
+
+        <!-- TS / Tailwind 帯 -->
+        <rect x="80" y="222" width="660" height="14" rx="7" fill="url(#fw-ts)" stroke="#7c3aed" stroke-width="1"/>
+        <text x="410" y="232" text-anchor="middle" fill="#5b21b6" font-size="10" font-weight="700">TypeScript（型）+ Tailwind（CSS）— 全フレームワーク共通の足回り</text>
+      </svg>
+      <div class="ai-stack-caption"><b>📌 ポイント:</b> <b>React</b> が中心。それを SSR/SEO 込みで包んだのが <b>Next.js</b>、軽量 SPA 用が <b>Vite</b>。下に <b>TS + Tailwind</b> の共通足回り。</div>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">Vite</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">超高速な開発ビルドツール。管理画面・SPAに最適</span>
+
+    <div class="ai-tabs">
+      <button class="ai-tab active" data-ai="fw-meta">📐 メタフレームワーク</button>
+      <button class="ai-tab" data-ai="fw-ui">🎨 UIライブラリ</button>
+      <button class="ai-tab" data-ai="fw-base">🧱 型・スタイル</button>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">React</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">UIパーツを作るライブラリ。Next.js/Viteと組み合わせて使う</span>
+
+    <div class="ai-pane active" data-ai="fw-meta">
+      <div class="ai-chip"><b>Next.js</b> <span>★</span> 本サイト・業務システムの第一選択<div class="origin"><em>強み</em>ページ・ルーティング・サーバー処理まで込み。SEO・SSR・Image最適化が標準。<i>本リポの全社で採用率トップ</i></div></div>
+      <div class="ai-chip"><b>Vite</b> <span>★</span> 開発が爆速なビルドツール<div class="origin"><em>強み</em>起動0.3秒・HMR(差分更新)が一瞬。SPA・管理画面・社内ツールに最適。<i>SEOが要らない領域はこちら</i></div></div>
+      <div class="ai-chip"><b>Nuxt</b> <span>○</span> Vue ベースの Next.js 相当<div class="origin"><em>使い分け</em>Vue を採用しているプロジェクトでのみ。本リポでは原則 React 寄せ。</div></div>
+      <div class="ai-chip"><b>Angular</b> <span>○</span> Google 製の大規模向け<div class="origin"><em>位置づけ</em>業務系大規模で TypeScript 強制。本リポは特定 1 社のみ。</div></div>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">TypeScript</span><span class="freq freq-med">△ 時々</span></div>
-      <span class="desc">型チェックで間違いを事前に検出できるJSの拡張。大規模開発で効果大</span>
+
+    <div class="ai-pane" data-ai="fw-ui">
+      <div class="ai-chip"><b>React</b> <span>★</span> UI を「部品」で作る発明<div class="origin"><em>核心</em>「画面を関数で書く」発想。Next.js も Vite も中身は React。<i>「コンポーネント = 1つの部品 = 1つの関数」</i></div></div>
+      <div class="ai-chip"><b>shadcn/ui</b> <span>△</span> コピペで導入する UI 部品集<div class="origin"><em>強み</em>npm install でなく <b>コードを直接コピー</b>するので所有権が手元に残る。Tailwind 前提。</div></div>
+      <div class="ai-chip"><b>Radix UI</b> <span>○</span> 中身はあるがスタイル無しの土台<div class="origin"><em>位置づけ</em>shadcn/ui の中身。アクセシビリティ完備のヘッドレス UI。</div></div>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">Tailwind</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">クラス名を書くだけでデザインできるCSSフレームワーク</span>
+
+    <div class="ai-pane" data-ai="fw-base">
+      <div class="ai-chip"><b>TypeScript</b> <span>★</span> 型チェックで事故を事前に潰す<div class="origin"><em>効果</em>「undefined のメソッドを呼んだ」を保存時に発見。大規模ほど効く。<i>本リポは新規プロジェクト原則 TS</i></div></div>
+      <div class="ai-chip"><b>Tailwind CSS</b> <span>★</span> クラス名で書く CSS<div class="origin"><em>強み</em>命名地獄から解放、デザインの一貫性。<code>bg-blue-500 px-4</code> のように属性で組む。</div></div>
+      <div class="ai-chip"><b>CSS Modules</b> <span>△</span> クラス名衝突を自動回避<div class="origin"><em>使い分け</em>Tailwind が合わないチーム/旧コードベースで採用される伝統的選択肢。</div></div>
     </div>
   </div>
+</div>
+
+<!-- ===== 第2部: 開発 ===== -->
+<div id="part-2" class="part-banner">
+  <span class="pb-num">第 2 部</span>
+  <span class="pb-title">開発 — 毎日のコーディング・Git・テスト</span>
+  <span class="pb-sub">⚡ 作業 + 📘 用語</span>
+</div>
+
+<div class="grid">
 
   <!-- 開発作業 -->
-  <div class="card orange">
+  <div class="card orange full-width">
     <div class="card-header">
       <div class="card-icon">🔧</div>
       <div class="card-title-wrap">
         <div class="step-badge">STEP 2-3</div>
-        <h2>開発中の作業</h2>
+        <h2>開発中の作業 — 1日の作業ループ<span class="card-type-badges"><span class="ctb idea">💡概念</span><span class="ctb term">📘用語</span></span></h2>
       </div>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">npm run dev</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">開発サーバーを起動。毎日使うコマンド</span>
+
+    <div class="ai-stack" style="background:#fff7ed;">
+      <svg width="100%" height="200" viewBox="0 0 820 200" style="min-width:640px;">
+        <defs>
+          <linearGradient id="dev-card" x1="0" x2="1"><stop offset="0" stop-color="#ffedd5"/><stop offset="1" stop-color="#fed7aa"/></linearGradient>
+        </defs>
+        <!-- 円環フロー (6ステップ) -->
+        <g font-family="sans-serif">
+          <!-- Step boxes -->
+          <rect x="20" y="80" width="120" height="60" rx="10" fill="url(#dev-card)" stroke="#f97316" stroke-width="1.5"/>
+          <text x="80" y="105" text-anchor="middle" fill="#9a3412" font-size="13" font-weight="800">① エディタで編集</text>
+          <text x="80" y="125" text-anchor="middle" fill="#c2410c" font-size="10">VSCode で .tsx 触る</text>
+
+          <rect x="160" y="80" width="120" height="60" rx="10" fill="url(#dev-card)" stroke="#f97316" stroke-width="1.5"/>
+          <text x="220" y="105" text-anchor="middle" fill="#9a3412" font-size="13" font-weight="800">② 保存(Cmd+S)</text>
+          <text x="220" y="125" text-anchor="middle" fill="#c2410c" font-size="10">Prettier 自動整形</text>
+
+          <rect x="300" y="80" width="120" height="60" rx="10" fill="url(#dev-card)" stroke="#f97316" stroke-width="1.5"/>
+          <text x="360" y="105" text-anchor="middle" fill="#9a3412" font-size="13" font-weight="800">③ HMR で反映</text>
+          <text x="360" y="125" text-anchor="middle" fill="#c2410c" font-size="10">ブラウザが自動更新</text>
+
+          <rect x="440" y="80" width="120" height="60" rx="10" fill="url(#dev-card)" stroke="#f97316" stroke-width="1.5"/>
+          <text x="500" y="105" text-anchor="middle" fill="#9a3412" font-size="13" font-weight="800">④ DevTools で確認</text>
+          <text x="500" y="125" text-anchor="middle" fill="#c2410c" font-size="10">HTML/CSS/JS チェック</text>
+
+          <rect x="580" y="80" width="120" height="60" rx="10" fill="url(#dev-card)" stroke="#f97316" stroke-width="1.5"/>
+          <text x="640" y="105" text-anchor="middle" fill="#9a3412" font-size="13" font-weight="800">⑤ console で調査</text>
+          <text x="640" y="125" text-anchor="middle" fill="#c2410c" font-size="10">バグ箇所を絞る</text>
+
+          <!-- 矢印 → -->
+          <line x1="142" y1="110" x2="158" y2="110" stroke="#f97316" stroke-width="2"/>
+          <polygon points="158,106 168,110 158,114" fill="#f97316"/>
+          <line x1="282" y1="110" x2="298" y2="110" stroke="#f97316" stroke-width="2"/>
+          <polygon points="298,106 308,110 298,114" fill="#f97316"/>
+          <line x1="422" y1="110" x2="438" y2="110" stroke="#f97316" stroke-width="2"/>
+          <polygon points="438,106 448,110 438,114" fill="#f97316"/>
+          <line x1="562" y1="110" x2="578" y2="110" stroke="#f97316" stroke-width="2"/>
+          <polygon points="578,106 588,110 578,114" fill="#f97316"/>
+
+          <!-- 戻り矢印 (ループ) -->
+          <path d="M 640 80 Q 640 30 80 30 L 80 78" fill="none" stroke="#dc2626" stroke-width="2" stroke-dasharray="5 3"/>
+          <polygon points="76,72 80,82 84,72" fill="#dc2626"/>
+          <text x="360" y="22" text-anchor="middle" fill="#dc2626" font-size="11" font-weight="700">問題が見つかったら ① に戻る（毎日繰り返し）</text>
+
+          <!-- 起動コマンド帯 -->
+          <rect x="20" y="160" width="680" height="22" rx="6" fill="#1e293b"/>
+          <text x="360" y="175" text-anchor="middle" fill="#fbbf24" font-family="monospace" font-size="11">$ npm run dev   # サーバー起動 → http://localhost:3001 が立ち上がる</text>
+        </g>
+      </svg>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">ホットリロード</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">保存するとブラウザが自動更新。開発中は常に有効</span>
+
+    <div class="ai-tabs">
+      <button class="ai-tab active" data-ai="dev-server">🚦 起動・サーバー</button>
+      <button class="ai-tab" data-ai="dev-debug">🐛 デバッグ</button>
+      <button class="ai-tab" data-ai="dev-quality">✨ 整形・規約</button>
+      <button class="ai-tab" data-ai="dev-editor">💻 エディタ周り</button>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">デバッグ</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">バグの原因を見つけて直す。console.log や DevTools を使う</span>
+
+    <div class="ai-pane active" data-ai="dev-server">
+      <div class="ai-chip"><b>npm run dev</b> <span>★</span> 開発サーバー起動<div class="origin"><em>使う場面</em>毎日最初に叩くコマンド。<code>package.json</code> の <code>scripts.dev</code> が呼ばれる。<i>本リポは <code>set-ports.js</code> がポートを自動割当</i></div></div>
+      <div class="ai-chip"><b>ホットリロード(HMR)</b> <span>★</span> 保存で即反映<div class="origin"><em>仕組み</em>差分だけ再ロード。状態を保ったまま見た目だけ変えられる。<i>Vite が特に速い</i></div></div>
+      <div class="ai-chip"><b>ポート番号</b> <span>○</span> 複数サーバー同時起動の入口<div class="origin"><em>本リポの規則</em>クライアント = 3001〜3009 / エージェント生成 = 4001〜。物理分離で衝突回避。</div></div>
+      <div class="ai-chip"><b>ビルド</b> <span>△</span> 本番用にまとめ・圧縮<div class="origin"><em>使う場面</em><code>npm run build</code>。デプロイ前にローカルで通る確認。Vercel は push で自動実行。</div></div>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">リファクタリング</span><span class="freq freq-med">△ 時々</span></div>
-      <span class="desc">動作を変えずにコードをきれいに整理する</span>
+
+    <div class="ai-pane" data-ai="dev-debug">
+      <div class="ai-chip"><b>DevTools</b> <span>★</span> ブラウザ内蔵の開発者ツール<div class="origin"><em>主要タブ</em>Elements(DOM) / Console(JS) / Network(通信) / Application(localStorage)。F12 で開く。</div></div>
+      <div class="ai-chip"><b>console.log</b> <span>★</span> 値を覗く最速デバッグ<div class="origin"><em>コツ</em><code>console.log({user, posts})</code> のようにラベル付きで複数値を一度に出す。<i>commit前に消す</i></div></div>
+      <div class="ai-chip"><b>デバッガー</b> <span>△</span> ブレークポイントで停止<div class="origin"><em>使い分け</em>console で追えない複雑な状態は VSCode の Run and Debug を使う。Next.js は <code>next dev --inspect</code>。</div></div>
+      <div class="ai-chip"><b>Network タブ</b> <span>★</span> API 通信を可視化<div class="origin"><em>使う場面</em>「データが画面に出ない」のとき真っ先に見る。Status / Response / Headers を確認。</div></div>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">ビルド</span><span class="freq freq-med">△ 時々</span></div>
-      <span class="desc">本番公開用にコードをまとめ・圧縮。デプロイ前に実行</span>
+
+    <div class="ai-pane" data-ai="dev-quality">
+      <div class="ai-chip"><b>ESLint</b> <span>★</span> コードのバグ検出<div class="origin"><em>役割</em>「未使用変数」「any 型」「危険な書き方」を保存時に警告。<code>npm run lint</code>。</div></div>
+      <div class="ai-chip"><b>Prettier</b> <span>★</span> コードの自動整形<div class="origin"><em>役割</em>インデント・改行・カンマを統一。<b>保存時自動</b>に設定するのが標準。</div></div>
+      <div class="ai-chip"><b>リファクタリング</b> <span>△</span> 動きを変えず整理<div class="origin"><em>原則</em>テストが通ったまま構造を改善。3回似たコードを書いたら共通化を検討。</div></div>
+      <div class="ai-chip"><b>定数一元管理</b> <span>★</span> URL/電話/LINEID は1ファイルに<div class="origin"><em>本リポルール</em><code>config/constants.ts</code> に集約。<b>コンポーネント直書き禁止</b>。ドメイン変更時に1箇所触れば済む。</div></div>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">ポート番号</span><span class="freq freq-low">○ 知識</span></div>
-      <span class="desc">複数サーバーを動かすための入口番号（:3001〜）</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">VSCode</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">定番エディタ。拡張機能で言語補完・Git・AI補助まで網羅</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">Linter/Formatter</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">ESLint/Prettierでコードの書き方を統一。保存時に自動整形</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">DevTools</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">ブラウザ内蔵の開発者ツール。HTML/CSS/JSを直接確認できる</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">定数一元管理</span><span class="freq freq-med">△ 時々</span></div>
-      <span class="desc">URL・電話番号・LINE IDは<code>config/constants.ts</code>に集約。ハードコード禁止</span>
+
+    <div class="ai-pane" data-ai="dev-editor">
+      <div class="ai-chip"><b>VSCode</b> <span>★</span> 定番のエディタ<div class="origin"><em>必須拡張</em>ESLint / Prettier / GitLens / Tailwind IntelliSense / Claude Code。<i>本リポは <code>clients.code-workspace</code> 起動が前提</i></div></div>
+      <div class="ai-chip"><b>Claude Code 拡張</b> <span>★</span> エディタ内 AI 補助<div class="origin"><em>位置づけ</em>VSCode 上の UI ラッパー。実体は CLI/SDK。詳しくは Section B の「IDE関係」参照。</div></div>
+      <div class="ai-chip"><b>GitLens</b> <span>△</span> 行ごとの blame を表示<div class="origin"><em>使い場面</em>「この行誰が書いた？なんで？」が即わかる。コードレビュー時に強力。</div></div>
     </div>
   </div>
 
@@ -1025,7 +1787,7 @@
       <div class="card-icon">🌿</div>
       <div class="card-title-wrap">
         <div class="step-badge">STEP 4</div>
-        <h2>Git / バージョン管理</h2>
+        <h2>Git / バージョン管理<span class="card-type-badges"><span class="ctb idea">💡概念</span><span class="ctb term">📘用語</span></span></h2>
       </div>
     </div>
 
@@ -1121,7 +1883,7 @@
       <div class="card-icon">🧪</div>
       <div class="card-title-wrap">
         <div class="step-badge">STEP 5</div>
-        <h2>テスト・環境</h2>
+        <h2>テスト・環境<span class="card-type-badges"><span class="ctb term">📘用語</span><span class="ctb idea">💡概念</span></span></h2>
       </div>
     </div>
     <div class="item">
@@ -1166,6 +1928,16 @@
       </div>
     </div>
   </div>
+</div>
+
+<!-- ===== 第3部: 公開・運用 ===== -->
+<div id="part-3" class="part-banner">
+  <span class="pb-num">第 3 部</span>
+  <span class="pb-title">公開・運用 — Deploy / DB / SEO / 監視 / チーム</span>
+  <span class="pb-sub">⚡ 作業 + 💡 概念</span>
+</div>
+
+<div class="grid">
 
   <!-- デプロイ -->
   <div class="card pink">
@@ -1173,7 +1945,7 @@
       <div class="card-icon">🚀</div>
       <div class="card-title-wrap">
         <div class="step-badge">STEP 6</div>
-        <h2>デプロイ・公開</h2>
+        <h2>デプロイ・公開<span class="card-type-badges"><span class="ctb idea">💡概念</span><span class="ctb term">📘用語</span></span></h2>
       </div>
     </div>
 
@@ -1253,221 +2025,451 @@
   </div>
 
   <!-- データベース・バックエンド -->
-  <div class="card green">
+  <div class="card green full-width">
     <div class="card-header">
       <div class="card-icon">🗄️</div>
       <div class="card-title-wrap">
         <div class="step-badge">STEP 2-3</div>
-        <h2>データベース・バックエンド</h2>
+        <h2>データベース・バックエンド — Supabase 一式で揃える<span class="card-type-badges"><span class="ctb term">📘用語</span></span></h2>
       </div>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">Supabase</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">推奨バックエンド。Postgres DB + 認証 + ストレージ + RLS が一式揃う</span>
+
+    <div class="ai-stack" style="background:#f0fdf4;">
+      <svg width="100%" height="220" viewBox="0 0 820 220" style="min-width:640px;">
+        <defs>
+          <linearGradient id="db-app" x1="0" x2="1"><stop offset="0" stop-color="#dcfce7"/><stop offset="1" stop-color="#bbf7d0"/></linearGradient>
+          <linearGradient id="db-mapper" x1="0" x2="1"><stop offset="0" stop-color="#fef3c7"/><stop offset="1" stop-color="#fde68a"/></linearGradient>
+          <linearGradient id="db-pg" x1="0" x2="1"><stop offset="0" stop-color="#dbeafe"/><stop offset="1" stop-color="#bfdbfe"/></linearGradient>
+        </defs>
+        <!-- Layer 1: Next.js アプリ -->
+        <rect x="20" y="20" width="780" height="36" rx="8" fill="url(#db-app)" stroke="#16a34a" stroke-width="1.5"/>
+        <text x="40" y="43" fill="#14532d" font-size="13" font-weight="800">① Next.js アプリ</text>
+        <text x="200" y="43" fill="#15803d" font-size="11">Server Component / Server Action から DB を呼ぶ</text>
+
+        <!-- 矢印 -->
+        <line x1="410" y1="56" x2="410" y2="68" stroke="#16a34a" stroke-width="2"/>
+        <polygon points="406,68 414,68 410,76" fill="#16a34a"/>
+
+        <!-- Layer 2: mapper層 -->
+        <rect x="20" y="80" width="780" height="36" rx="8" fill="url(#db-mapper)" stroke="#f59e0b" stroke-width="1.5"/>
+        <text x="40" y="103" fill="#92400e" font-size="13" font-weight="800">② mapper 層</text>
+        <text x="180" y="103" fill="#b45309" font-size="11">snake_case ↔ camelCase 変換（lib/supabase-mappers.ts）</text>
+
+        <!-- 矢印 -->
+        <line x1="410" y1="116" x2="410" y2="128" stroke="#f59e0b" stroke-width="2"/>
+        <polygon points="406,128 414,128 410,136" fill="#f59e0b"/>
+
+        <!-- Layer 3: Supabase 三本柱 -->
+        <rect x="20" y="140" width="252" height="60" rx="10" fill="url(#db-pg)" stroke="#3b82f6" stroke-width="1.5"/>
+        <text x="146" y="160" text-anchor="middle" fill="#1e3a8a" font-size="13" font-weight="800">🗄 Postgres</text>
+        <text x="146" y="178" text-anchor="middle" fill="#1e40af" font-size="10">テーブル / RLS / SQL</text>
+        <text x="146" y="192" text-anchor="middle" fill="#1e40af" font-size="10">本番のデータ本体</text>
+
+        <rect x="284" y="140" width="252" height="60" rx="10" fill="url(#db-pg)" stroke="#3b82f6" stroke-width="1.5"/>
+        <text x="410" y="160" text-anchor="middle" fill="#1e3a8a" font-size="13" font-weight="800">🔐 Auth</text>
+        <text x="410" y="178" text-anchor="middle" fill="#1e40af" font-size="10">メール / OAuth ログイン</text>
+        <text x="410" y="192" text-anchor="middle" fill="#1e40af" font-size="10">ユーザー = JWT を発行</text>
+
+        <rect x="548" y="140" width="252" height="60" rx="10" fill="url(#db-pg)" stroke="#3b82f6" stroke-width="1.5"/>
+        <text x="674" y="160" text-anchor="middle" fill="#1e3a8a" font-size="13" font-weight="800">📁 Storage</text>
+        <text x="674" y="178" text-anchor="middle" fill="#1e40af" font-size="10">画像 / PDF / 動画</text>
+        <text x="674" y="192" text-anchor="middle" fill="#1e40af" font-size="10">public バケット推奨</text>
+      </svg>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">Postgres</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">Supabaseが使う本格派リレーショナルDB。SQLでデータ操作する</span>
+
+    <div class="ai-tabs">
+      <button class="ai-tab active" data-ai="db-baas">☁️ BaaS</button>
+      <button class="ai-tab" data-ai="db-core">🗄 DB本体</button>
+      <button class="ai-tab" data-ai="db-auth">🔐 認証・権限</button>
+      <button class="ai-tab" data-ai="db-api">🔌 API形式</button>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">RLS（行レベル）</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">「誰がどの行を見られるか」をDB側で制御するセキュリティ機構</span>
+
+    <div class="ai-pane active" data-ai="db-baas">
+      <div class="ai-chip"><b>Supabase</b> <span>★</span> 本リポの推奨バックエンド<div class="origin"><em>強み</em>Postgres + Auth + Storage + RLS + Realtime が一式。<i>本リポは1プロジェクトに複数アプリをスキーマ分離で相乗り運用</i></div></div>
+      <div class="ai-chip"><b>Firebase</b> <span>○</span> Google 製の旧来 BaaS<div class="origin"><em>方針</em>本リポでは<b>新規拡張しない</b>。残存機能のみ維持し、新規は Supabase へ寄せる。</div></div>
+      <div class="ai-chip"><b>D1</b> <span>△</span> Cloudflare の SQLite 互換<div class="origin"><em>使い場面</em>LINE Webhook の会話履歴など、<b>軽量・Edge 完結</b>な用途に限定。本リポでは LINE-CRM 系で利用。</div></div>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">認証（Auth）</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">ログイン・ユーザー管理。Supabase Authでメール/OAuthを一括対応</span>
+
+    <div class="ai-pane" data-ai="db-core">
+      <div class="ai-chip"><b>Postgres</b> <span>★</span> 業界標準の RDB<div class="origin"><em>強み</em>SQL 標準対応・拡張機能が豊富(pgvector で AI 検索も可)・どこでも動く可搬性。</div></div>
+      <div class="ai-chip"><b>マイグレーション</b> <span>★</span> スキーマ変更を履歴管理<div class="origin"><em>使う場面</em>本番テーブル変更は必ず migration ファイル経由。Supabase MCP の <code>apply_migration</code> で打てる。</div></div>
+      <div class="ai-chip"><b>mapper 層</b> <span>★</span> DB↔TS の名前変換<div class="origin"><em>本リポ規則</em><code>lib/supabase-mappers.ts</code>。<b>生データを画面で直接使わない</b>。型崩れ防止と保守性。</div></div>
+      <div class="ai-chip"><b>ORM</b> <span>○</span> SQL の代わりにコードで DB 操作<div class="origin"><em>選択肢</em>Prisma / Drizzle / Kysely。本リポでは Supabase の TypeScript SDK で直接書く方が多い。</div></div>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">マイグレーション</span><span class="freq freq-med">△ 時々</span></div>
-      <span class="desc">DBのテーブル構造の変更履歴を管理。本番への反映を安全にする</span>
+
+    <div class="ai-pane" data-ai="db-auth">
+      <div class="ai-chip"><b>RLS（行レベル制御）</b> <span>★</span> DB 側で「誰が見られるか」<div class="origin"><em>使い方</em><code>auth.uid() = user_id</code> のような policy を SQL で書く。<b>アプリ側のチェックを忘れても DB が止める</b>最後の砦。</div></div>
+      <div class="ai-chip"><b>Supabase Auth</b> <span>★</span> ログイン基盤<div class="origin"><em>機能</em>メール / OAuth(Google/GitHub) / Magic Link を SDK 1 行で。<i>JWT を返してくれるので RLS と直結</i></div></div>
+      <div class="ai-chip"><b>JWT</b> <span>△</span> 認証トークンの標準形式<div class="origin"><em>仕組み</em>「ユーザーID + 期限 + 署名」を Base64 エンコード。Supabase Auth が裏で発行・検証している。</div></div>
+      <div class="ai-chip"><b>service_role</b> <span>★</span> RLS を無視できる強権限キー<div class="origin"><em>絶対ルール</em>サーバー側だけで使う。<b>ブラウザに漏らしたら詰む</b>。<code>NEXT_PUBLIC_</code> 接頭辞絶対禁止。</div></div>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">mapper層</span><span class="freq freq-med">△ 時々</span></div>
-      <span class="desc">snake_case（DB）↔ camelCase（TS）の変換層。生データを直接画面で使わない</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">REST / GraphQL</span><span class="freq freq-med">△ 時々</span></div>
-      <span class="desc">サーバーとデータをやり取りする形式。URLで指定 or 問い合わせ言語</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">ORM</span><span class="freq freq-low">○ 知識</span></div>
-      <span class="desc">SQLの代わりにコードでDB操作する道具（Prisma / Drizzle など）</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">Firebase</span><span class="freq freq-low">○ 知識</span></div>
-      <span class="desc">Google製のBaaS。本プロジェクトでは<strong>新規拡張しない</strong>方針</span>
+
+    <div class="ai-pane" data-ai="db-api">
+      <div class="ai-chip"><b>REST</b> <span>★</span> URL で操作する標準形式<div class="origin"><em>仕組み</em><code>GET /api/posts</code> <code>POST /api/posts</code>。Supabase は PostgREST で自動生成してくれる。</div></div>
+      <div class="ai-chip"><b>GraphQL</b> <span>△</span> 1 エンドポイントで欲しい列だけ取る<div class="origin"><em>強み</em>過剰取得を防げる。<b>弱み</b>キャッシュ設計が REST より難しい。本リポでは Payload v3 で標準同梱。</div></div>
+      <div class="ai-chip"><b>Server Action</b> <span>★</span> Next.js 13+ の API レス書き方<div class="origin"><em>強み</em><code>'use server'</code> 関数を直接呼ぶ。型が貫通し API ルート定義不要。<i>Vercel での標準</i></div></div>
+      <div class="ai-chip"><b>Realtime</b> <span>△</span> Supabase の WebSocket 配信<div class="origin"><em>使い場面</em>チャット / 通知 / 共同編集。テーブル変更を購読すると勝手に push される。</div></div>
     </div>
   </div>
 
   <!-- SEO・構造化データ -->
-  <div class="card orange">
+  <div class="card orange full-width">
     <div class="card-header">
       <div class="card-icon">🔍</div>
       <div class="card-title-wrap">
         <div class="step-badge">STEP 3</div>
-        <h2>SEO・LLMO（AI検索最適化）</h2>
+        <h2>SEO・LLMO — Google にも AI 検索にも拾われる<span class="card-type-badges"><span class="ctb term">📘用語</span></span></h2>
       </div>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">メタタグ</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc"><code>title</code>/<code>description</code>/OGP。検索結果とSNSシェア時の見た目を決める</span>
+
+    <div class="ai-stack" style="background:#fff7ed;">
+      <svg width="100%" height="240" viewBox="0 0 820 240" style="min-width:640px;">
+        <defs>
+          <linearGradient id="seo-page" x1="0" x2="1"><stop offset="0" stop-color="#ffedd5"/><stop offset="1" stop-color="#fed7aa"/></linearGradient>
+          <linearGradient id="seo-google" x1="0" x2="1"><stop offset="0" stop-color="#dbeafe"/><stop offset="1" stop-color="#93c5fd"/></linearGradient>
+          <linearGradient id="seo-ai" x1="0" x2="1"><stop offset="0" stop-color="#ede9fe"/><stop offset="1" stop-color="#c4b5fd"/></linearGradient>
+        </defs>
+
+        <!-- 中央: あなたのページ -->
+        <rect x="280" y="20" width="260" height="200" rx="14" fill="url(#seo-page)" stroke="#f97316" stroke-width="2"/>
+        <text x="410" y="42" text-anchor="middle" fill="#9a3412" font-size="13" font-weight="800">📄 あなたのページ</text>
+
+        <rect x="296" y="56" width="228" height="22" rx="5" fill="#fff" stroke="#fed7aa"/>
+        <text x="410" y="71" text-anchor="middle" fill="#c2410c" font-size="10" font-weight="700">&lt;title&gt; / &lt;meta description&gt;</text>
+
+        <rect x="296" y="84" width="228" height="22" rx="5" fill="#fff" stroke="#fed7aa"/>
+        <text x="410" y="99" text-anchor="middle" fill="#c2410c" font-size="10" font-weight="700">OGP / Twitter Card</text>
+
+        <rect x="296" y="112" width="228" height="22" rx="5" fill="#fff" stroke="#fed7aa"/>
+        <text x="410" y="127" text-anchor="middle" fill="#c2410c" font-size="10" font-weight="700">JSON-LD（BlogPosting / FAQ）</text>
+
+        <rect x="296" y="140" width="228" height="22" rx="5" fill="#fff" stroke="#fed7aa"/>
+        <text x="410" y="155" text-anchor="middle" fill="#c2410c" font-size="10" font-weight="700">Speakable（読み上げ対象）</text>
+
+        <rect x="296" y="168" width="228" height="22" rx="5" fill="#fff" stroke="#fed7aa"/>
+        <text x="410" y="183" text-anchor="middle" fill="#c2410c" font-size="10" font-weight="700">sitemap.xml / robots.txt</text>
+
+        <rect x="296" y="196" width="228" height="20" rx="5" fill="#fef3c7" stroke="#f59e0b"/>
+        <text x="410" y="210" text-anchor="middle" fill="#b45309" font-size="9" font-weight="700">⚡ Core Web Vitals (LCP/INP/CLS)</text>
+
+        <!-- 左: Google -->
+        <rect x="20" y="40" width="220" height="160" rx="14" fill="url(#seo-google)" stroke="#3b82f6" stroke-width="2"/>
+        <text x="130" y="68" text-anchor="middle" fill="#1e3a8a" font-size="14" font-weight="800">🔍 Google 検索</text>
+        <text x="130" y="92" text-anchor="middle" fill="#1e40af" font-size="10">クローラー(Googlebot)が</text>
+        <text x="130" y="108" text-anchor="middle" fill="#1e40af" font-size="10">sitemap → robots → ページ</text>
+        <text x="130" y="124" text-anchor="middle" fill="#1e40af" font-size="10">の順で取り込み</text>
+        <rect x="40" y="138" width="180" height="22" rx="5" fill="#fff"/>
+        <text x="130" y="153" text-anchor="middle" fill="#1e3a8a" font-size="10" font-weight="700">記事プレビュー / リッチ結果</text>
+        <rect x="40" y="166" width="180" height="22" rx="5" fill="#fff"/>
+        <text x="130" y="181" text-anchor="middle" fill="#1e3a8a" font-size="10" font-weight="700">FAQ アコーディオン表示</text>
+
+        <!-- 右: AI検索 -->
+        <rect x="580" y="40" width="220" height="160" rx="14" fill="url(#seo-ai)" stroke="#8b5cf6" stroke-width="2"/>
+        <text x="690" y="68" text-anchor="middle" fill="#5b21b6" font-size="14" font-weight="800">🤖 AI 検索 (LLMO)</text>
+        <text x="690" y="92" text-anchor="middle" fill="#6d28d9" font-size="10">ChatGPT / Perplexity /</text>
+        <text x="690" y="108" text-anchor="middle" fill="#6d28d9" font-size="10">Claude が引用元として参照</text>
+        <text x="690" y="124" text-anchor="middle" fill="#6d28d9" font-size="10">構造化データを優先解釈</text>
+        <rect x="600" y="138" width="180" height="22" rx="5" fill="#fff"/>
+        <text x="690" y="153" text-anchor="middle" fill="#5b21b6" font-size="10" font-weight="700">回答内に引用リンク</text>
+        <rect x="600" y="166" width="180" height="22" rx="5" fill="#fff"/>
+        <text x="690" y="181" text-anchor="middle" fill="#5b21b6" font-size="10" font-weight="700">Speakable で音声応答に採用</text>
+
+        <!-- 矢印 ← page → -->
+        <line x1="280" y1="120" x2="244" y2="120" stroke="#3b82f6" stroke-width="2"/>
+        <polygon points="244,116 240,120 244,124" fill="#3b82f6"/>
+        <line x1="540" y1="120" x2="576" y2="120" stroke="#8b5cf6" stroke-width="2"/>
+        <polygon points="576,116 580,120 576,124" fill="#8b5cf6"/>
+      </svg>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">sitemap.xml</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">サイト内URLの一覧。検索エンジンに「ここに何があるか」を伝える</span>
+
+    <div class="ai-tabs">
+      <button class="ai-tab active" data-ai="seo-meta">🏷 メタ系</button>
+      <button class="ai-tab" data-ai="seo-struct">🧬 構造化データ</button>
+      <button class="ai-tab" data-ai="seo-perf">⚡ 体感速度</button>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">robots.txt</span><span class="freq freq-med">△ 時々</span></div>
-      <span class="desc">クローラーに巡回可否を指示するファイル</span>
+
+    <div class="ai-pane active" data-ai="seo-meta">
+      <div class="ai-chip"><b>メタタグ</b> <span>★</span> 検索結果と SNS シェアの見た目<div class="origin"><em>必須</em><code>&lt;title&gt;</code> <code>&lt;meta description&gt;</code> <code>og:image</code>。Next.js なら <code>generateMetadata()</code> で。</div></div>
+      <div class="ai-chip"><b>sitemap.xml</b> <span>★</span> 全URLの一覧<div class="origin"><em>役割</em>「ここに何があるか」を Google に通告。次の Web サービスでも標準。</div></div>
+      <div class="ai-chip"><b>robots.txt</b> <span>△</span> クローラーへの指示<div class="origin"><em>使い方</em><code>Disallow: /admin</code> 等で巡回禁止区域を指定。<b>機密の隠し場所ではない</b>（公開ファイルなので）。</div></div>
+      <div class="ai-chip"><b>canonical</b> <span>△</span> 重複URLの正本宣言<div class="origin"><em>使う場面</em>同じ記事に複数 URL がある時(<code>?utm=...</code> 付き等) 正本だけ評価させる。</div></div>
+      <div class="ai-chip"><b>OGP</b> <span>★</span> SNS シェア時のカード<div class="origin"><em>効果</em>X / LINE / Slack で URL を貼った時の見栄え。<code>og:title</code> <code>og:image</code> <code>og:description</code> の3つは必ず。</div></div>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">JSON-LD</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">構造化データの書式。Googleに記事の意味を正確に伝える</span>
+
+    <div class="ai-pane" data-ai="seo-struct">
+      <div class="ai-chip"><b>JSON-LD</b> <span>★</span> 構造化データの記法<div class="origin"><em>位置</em><code>&lt;script type="application/ld+json"&gt;</code> で <code>&lt;head&gt;</code> に埋め込む。</div></div>
+      <div class="ai-chip"><b>BlogPosting</b> <span>★</span> 記事ページ用スキーマ<div class="origin"><em>必須項目</em><code>headline</code> <code>author</code> <code>publisher</code> <code>datePublished</code>。本リポはブログ記事に必ず付ける。</div></div>
+      <div class="ai-chip"><b>FAQPage</b> <span>★</span> Q&amp;A を構造化<div class="origin"><em>LLMO効果</em>AI 検索の引用元になりやすい。Google 検索ではアコーディオン表示。</div></div>
+      <div class="ai-chip"><b>Speakable</b> <span>△</span> 音声検索の読み上げ対象<div class="origin"><em>効果</em>AI 検索や音声アシスタントが「ここを読み上げて」を判断する目印。<code>cssSelector</code> で h1/サマリーを指定。</div></div>
+      <div class="ai-chip"><b>HowTo</b> <span>○</span> 手順記事用スキーマ<div class="origin"><em>使い場面</em>「Aの作り方」「Bの直し方」記事に付けると Google でステップ表示される。</div></div>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">BlogPosting</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">記事ページ用のJSON-LDスキーマ。著者・公開日などを構造化</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">FAQPage</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">FAQをQ&A形式で構造化。AI検索（LLMO）に効く</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">Speakable</span><span class="freq freq-med">△ 時々</span></div>
-      <span class="desc">音声検索・AI検索で読み上げ対象にする部分を指定</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">canonical</span><span class="freq freq-med">△ 時々</span></div>
-      <span class="desc">重複URLの正本を指定。SEO評価の分散を防ぐ</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">Core Web Vitals</span><span class="freq freq-med">△ 時々</span></div>
-      <span class="desc">Googleが重視する体感速度指標（LCP/INP/CLS）</span>
+
+    <div class="ai-pane" data-ai="seo-perf">
+      <div class="ai-chip"><b>Core Web Vitals</b> <span>★</span> Google 重視の体感速度指標<div class="origin"><em>3指標</em>LCP(最大要素表示) / INP(操作応答) / CLS(レイアウトずれ)。<b>悪いと検索順位が下がる</b>。</div></div>
+      <div class="ai-chip"><b>Lighthouse</b> <span>★</span> 速度・SEO 採点<div class="origin"><em>使い方</em>Chrome DevTools 内蔵。本リポは Chrome DevTools MCP 経由でも回せる。</div></div>
+      <div class="ai-chip"><b>Image Optimization</b> <span>★</span> 画像を WebP/AVIF へ自動変換<div class="origin"><em>Vercel</em><code>next/image</code> が画面サイズ別に配信。LCP 改善の最大の武器。</div></div>
     </div>
   </div>
 
   <!-- セキュリティ -->
-  <div class="card red">
+  <div class="card red full-width">
     <div class="card-header">
       <div class="card-icon">🔐</div>
       <div class="card-title-wrap">
         <div class="step-badge">STEP 2-6</div>
-        <h2>セキュリティ</h2>
+        <h2>セキュリティ — 4 つの攻撃面を塞ぐ<span class="card-type-badges"><span class="ctb idea">💡概念</span><span class="ctb term">📘用語</span></span></h2>
       </div>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">HTTPS</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">通信の暗号化。Render/Vercelでは自動で有効化される</span>
+
+    <div class="ai-stack" style="background:#fef2f2;">
+      <svg width="100%" height="220" viewBox="0 0 820 220" style="min-width:640px;">
+        <defs>
+          <linearGradient id="sec-net" x1="0" x2="1"><stop offset="0" stop-color="#fee2e2"/><stop offset="1" stop-color="#fecaca"/></linearGradient>
+        </defs>
+
+        <!-- 中央: アプリ -->
+        <rect x="320" y="80" width="180" height="60" rx="12" fill="#fff" stroke="#dc2626" stroke-width="2"/>
+        <text x="410" y="105" text-anchor="middle" fill="#7f1d1d" font-size="14" font-weight="800">🛡️ あなたのアプリ</text>
+        <text x="410" y="125" text-anchor="middle" fill="#991b1b" font-size="10">守るべき本体</text>
+
+        <!-- 4方向の攻撃面 -->
+        <!-- 上: 通信 -->
+        <rect x="320" y="10" width="180" height="50" rx="10" fill="url(#sec-net)" stroke="#dc2626" stroke-width="1.5"/>
+        <text x="410" y="32" text-anchor="middle" fill="#7f1d1d" font-size="12" font-weight="800">🌐 通信レイヤー</text>
+        <text x="410" y="50" text-anchor="middle" fill="#991b1b" font-size="10">HTTPS / CORS / WAF</text>
+
+        <!-- 下: 入力 -->
+        <rect x="320" y="160" width="180" height="50" rx="10" fill="url(#sec-net)" stroke="#dc2626" stroke-width="1.5"/>
+        <text x="410" y="182" text-anchor="middle" fill="#7f1d1d" font-size="12" font-weight="800">⌨️ 入力レイヤー</text>
+        <text x="410" y="200" text-anchor="middle" fill="#991b1b" font-size="10">XSS / SQLi / CSRF</text>
+
+        <!-- 左: 認証 -->
+        <rect x="20" y="80" width="180" height="60" rx="10" fill="url(#sec-net)" stroke="#dc2626" stroke-width="1.5"/>
+        <text x="110" y="105" text-anchor="middle" fill="#7f1d1d" font-size="12" font-weight="800">🔐 認証/権限</text>
+        <text x="110" y="123" text-anchor="middle" fill="#991b1b" font-size="10">JWT / Auth / RLS</text>
+
+        <!-- 右: 依存 -->
+        <rect x="620" y="80" width="180" height="60" rx="10" fill="url(#sec-net)" stroke="#dc2626" stroke-width="1.5"/>
+        <text x="710" y="105" text-anchor="middle" fill="#7f1d1d" font-size="12" font-weight="800">📦 依存ライブラリ</text>
+        <text x="710" y="123" text-anchor="middle" fill="#991b1b" font-size="10">Dependabot / 脆弱性監視</text>
+
+        <!-- 矢印 (中央へ) -->
+        <line x1="410" y1="60" x2="410" y2="76" stroke="#dc2626" stroke-width="2"/>
+        <polygon points="406,76 414,76 410,84" fill="#dc2626"/>
+        <line x1="410" y1="160" x2="410" y2="144" stroke="#dc2626" stroke-width="2"/>
+        <polygon points="406,144 414,144 410,136" fill="#dc2626"/>
+        <line x1="200" y1="110" x2="316" y2="110" stroke="#dc2626" stroke-width="2"/>
+        <polygon points="316,106 320,110 316,114" fill="#dc2626"/>
+        <line x1="620" y1="110" x2="504" y2="110" stroke="#dc2626" stroke-width="2"/>
+        <polygon points="504,106 500,110 504,114" fill="#dc2626"/>
+
+        <!-- 注釈 -->
+        <text x="218" y="76" fill="#991b1b" font-size="9">ログイン突破</text>
+        <text x="538" y="76" fill="#991b1b" font-size="9">脆弱な依存</text>
+      </svg>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">APIキー管理</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">公開キー（<code>NEXT_PUBLIC_*</code>）とサーバー専用キーを厳密に分ける</span>
+
+    <div class="ai-tabs">
+      <button class="ai-tab active" data-ai="sec-net">🌐 通信</button>
+      <button class="ai-tab" data-ai="sec-auth">🔐 認証</button>
+      <button class="ai-tab" data-ai="sec-input">⌨️ 入力検証</button>
+      <button class="ai-tab" data-ai="sec-deps">📦 依存管理</button>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">CORS</span><span class="freq freq-med">△ 時々</span></div>
-      <span class="desc">ブラウザが別ドメインへのアクセスを許可するかの仕組み</span>
+
+    <div class="ai-pane active" data-ai="sec-net">
+      <div class="ai-chip"><b>HTTPS</b> <span>★</span> 通信の暗号化<div class="origin"><em>本リポ</em>Vercel/Render は自動で有効化。<b>src/** に <code>http://</code> 直書き禁止</b>(ミックスコンテンツ事故防止のため <code>check-no-http.mjs</code> でビルドガード)。</div></div>
+      <div class="ai-chip"><b>CORS</b> <span>△</span> 別ドメイン通信の許可制御<div class="origin"><em>仕組み</em>ブラウザが <code>Origin</code> ヘッダで判断。サーバー側で <code>Access-Control-Allow-Origin</code> を返して許可する。</div></div>
+      <div class="ai-chip"><b>WAF</b> <span>△</span> Webアプリ用ファイアウォール<div class="origin"><em>本リポ</em>Cloudflare DNS 経由で WAF 二段防御を被せる方針。Vercel Pro 以上は Vercel Firewall も。</div></div>
+      <div class="ai-chip"><b>レート制限</b> <span>△</span> 同一 IP からの連投を絞る<div class="origin"><em>使い場面</em>ログイン試行・LINE Webhook の連投・AI API。Cloudflare の Rate Limiting Rule で実装が手軽。</div></div>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">XSS対策</span><span class="freq freq-med">△ 時々</span></div>
-      <span class="desc">悪意のあるスクリプト埋め込み対策。React/Next.jsは基本自動でエスケープ</span>
+
+    <div class="ai-pane" data-ai="sec-auth">
+      <div class="ai-chip"><b>API キー管理</b> <span>★</span> 公開鍵 / 秘密鍵を厳密に分離<div class="origin"><em>絶対ルール</em>Supabase の <code>service_role</code> は<b>絶対に <code>NEXT_PUBLIC_</code> に置かない</b>。漏洩は即詰みなので環境変数の命名規則で物理的に分ける。</div></div>
+      <div class="ai-chip"><b>JWT</b> <span>★</span> 認証トークンの標準形式<div class="origin"><em>仕組み</em>「ユーザーID + 期限 + 署名」を Base64 エンコード。Supabase Auth が内部で使う。</div></div>
+      <div class="ai-chip"><b>RLS（行レベル制御）</b> <span>★</span> DB 側で誰が見られるか制御<div class="origin"><em>本リポ</em>アプリ側のチェックを忘れても DB が止める最後の砦。本リポはほぼ全テーブルに RLS 入り。</div></div>
+      <div class="ai-chip"><b>セッション管理</b> <span>△</span> Cookie / localStorage の使い分け<div class="origin"><em>原則</em>機密トークンは httpOnly Cookie へ。localStorage は XSS で抜かれる可能性あり。</div></div>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">SQLインジェクション</span><span class="freq freq-med">△ 時々</span></div>
-      <span class="desc">DBに不正なSQLを混ぜる攻撃。プレースホルダ/ORMで防ぐ</span>
+
+    <div class="ai-pane" data-ai="sec-input">
+      <div class="ai-chip"><b>XSS 対策</b> <span>★</span> スクリプト埋込攻撃を防ぐ<div class="origin"><em>仕組み</em>React/Next.js は <code>{value}</code> で自動エスケープ。<b>危険</b>: <code>dangerouslySetInnerHTML</code> を信頼できない入力に使うと突破される。</div></div>
+      <div class="ai-chip"><b>SQL インジェクション</b> <span>★</span> DB に不正な SQL を混ぜる攻撃<div class="origin"><em>防御</em>プレースホルダ/ORM/Supabase SDK を使えば自動回避。<b>文字列連結で SQL を作らない</b>。</div></div>
+      <div class="ai-chip"><b>CSRF</b> <span>○</span> なりすましリクエスト攻撃<div class="origin"><em>防御</em>Cookie + トークン検証 / SameSite 属性。Server Action 利用時は Next.js が自動で対策。</div></div>
+      <div class="ai-chip"><b>入力バリデーション</b> <span>★</span> 受信値を必ず検証<div class="origin"><em>標準</em>Zod / Valibot で型と中身をスキーマ検証。<b>クライアント側だけの検証は信用しない</b>。</div></div>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">CSRF</span><span class="freq freq-low">○ 知識</span></div>
-      <span class="desc">なりすましリクエスト攻撃。トークン検証で防ぐ</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">JWT</span><span class="freq freq-med">△ 時々</span></div>
-      <span class="desc">認証トークンの標準形式。Supabase Authも内部で使用</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">Dependabot</span><span class="freq freq-low">○ 知識</span></div>
-      <span class="desc">GitHubがライブラリの脆弱性を検知して自動PR化する</span>
+
+    <div class="ai-pane" data-ai="sec-deps">
+      <div class="ai-chip"><b>Dependabot</b> <span>★</span> 脆弱性検知して自動 PR<div class="origin"><em>使う場面</em>GitHub Settings → Security でON。npm の CVE が出たら自動で更新 PR を作る。</div></div>
+      <div class="ai-chip"><b>npm audit</b> <span>△</span> CLI で脆弱性チェック<div class="origin"><em>使い方</em><code>npm audit fix</code> で自動修正可能なものは即対処。CI の最後に必ず通すと安心。</div></div>
+      <div class="ai-chip"><b>lockfile 維持</b> <span>★</span> バージョン固定で再現性確保<div class="origin"><em>原則</em><code>package-lock.json</code> を必ずコミット。CI/本番と手元の挙動を一致させる。</div></div>
+      <div class="ai-chip"><b>Secret Scanning</b> <span>△</span> 漏洩キーを自動検知<div class="origin"><em>仕組み</em>GitHub が push 時に AWS/Stripe 等のキー形式を検知して通知。<b>誤って .env を commit した時の最後の砦</b>。</div></div>
     </div>
   </div>
 
   <!-- パフォーマンス・監視 -->
-  <div class="card teal">
+  <div class="card teal full-width">
     <div class="card-header">
       <div class="card-icon">📊</div>
       <div class="card-title-wrap">
         <div class="step-badge">STEP 7</div>
-        <h2>パフォーマンス・運用監視</h2>
+        <h2>パフォーマンス・運用監視 — 公開後の生存確認<span class="card-type-badges"><span class="ctb term">📘用語</span></span></h2>
       </div>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">ログ</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">サーバーの動作記録。エラー発生時の原因調査に必須</span>
+
+    <div class="ai-stack" style="background:#f0fdfa;">
+      <svg width="100%" height="220" viewBox="0 0 820 220" style="min-width:640px;">
+        <defs>
+          <linearGradient id="ops-l" x1="0" x2="1"><stop offset="0" stop-color="#ccfbf1"/><stop offset="1" stop-color="#99f6e4"/></linearGradient>
+        </defs>
+        <!-- 5層スタック -->
+        <rect x="20" y="20" width="780" height="32" rx="8" fill="url(#ops-l)" stroke="#0d9488" stroke-width="1.5"/>
+        <text x="40" y="41" fill="#134e4a" font-size="12" font-weight="800">👤 ユーザー</text>
+        <text x="160" y="41" fill="#115e59" font-size="11">→ ブラウザで操作している</text>
+
+        <rect x="20" y="58" width="780" height="32" rx="8" fill="url(#ops-l)" stroke="#0d9488" stroke-width="1.5"/>
+        <text x="40" y="79" fill="#134e4a" font-size="12" font-weight="800">📈 アナリティクス</text>
+        <text x="200" y="79" fill="#115e59" font-size="11">GA4 / Plausible — 何人が何をどこで触ったか</text>
+
+        <rect x="20" y="96" width="780" height="32" rx="8" fill="url(#ops-l)" stroke="#0d9488" stroke-width="1.5"/>
+        <text x="40" y="117" fill="#134e4a" font-size="12" font-weight="800">🐛 エラー監視</text>
+        <text x="180" y="117" fill="#115e59" font-size="11">Sentry / Vercel Logs — 例外が起きた瞬間スタックトレースを収集</text>
+
+        <rect x="20" y="134" width="780" height="32" rx="8" fill="url(#ops-l)" stroke="#0d9488" stroke-width="1.5"/>
+        <text x="40" y="155" fill="#134e4a" font-size="12" font-weight="800">📜 サーバーログ</text>
+        <text x="200" y="155" fill="#115e59" font-size="11">Vercel/Cloudflare/Render の Logs — 誰が何を叩いたかの一次資料</text>
+
+        <rect x="20" y="172" width="780" height="32" rx="8" fill="#1e293b" stroke="#0f766e" stroke-width="1.5"/>
+        <text x="40" y="193" fill="#fbbf24" font-size="12" font-weight="800">🚨 アラート</text>
+        <text x="180" y="193" fill="#fef3c7" font-size="11">閾値超過 → Slack / メール / PagerDuty へ通知（障害の早期発見）</text>
+      </svg>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">エラー監視</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">Sentryなどで本番エラーを自動収集・通知</span>
+
+    <div class="ai-tabs">
+      <button class="ai-tab active" data-ai="ops-log">📜 ログ・エラー</button>
+      <button class="ai-tab" data-ai="ops-metric">📈 計測</button>
+      <button class="ai-tab" data-ai="ops-perf">⚡ 体感速度・最適化</button>
+      <button class="ai-tab" data-ai="ops-alert">🚨 障害対応</button>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">アナリティクス</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">GA4/Plausibleなどでユーザー行動を計測</span>
+
+    <div class="ai-pane active" data-ai="ops-log">
+      <div class="ai-chip"><b>ログ</b> <span>★</span> サーバーの動作記録<div class="origin"><em>使う場面</em>「なぜか動かない」の最初に見る場所。Vercel/Cloudflare のダッシュボードか CLI/MCP で取得。</div></div>
+      <div class="ai-chip"><b>エラー監視</b> <span>★</span> 本番エラーを自動収集<div class="origin"><em>定番</em>Sentry。スタックトレース・発生頻度・どのユーザーかをまとめてくれる。</div></div>
+      <div class="ai-chip"><b>構造化ログ</b> <span>△</span> JSON 形式で出す<div class="origin"><em>強み</em>後で集計しやすい。<code>console.log({event:"login", userId, ms})</code> のように key:value で。</div></div>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">Lighthouse</span><span class="freq freq-med">△ 時々</span></div>
-      <span class="desc">Chromeに内蔵。ページ速度・SEO・アクセシビリティを採点</span>
+
+    <div class="ai-pane" data-ai="ops-metric">
+      <div class="ai-chip"><b>アナリティクス</b> <span>★</span> ユーザー行動の計測<div class="origin"><em>選択肢</em>GA4(無料・複雑) / Plausible(有料・シンプル・Cookie 不要)。本リポはケースバイケース。</div></div>
+      <div class="ai-chip"><b>イベント計測</b> <span>△</span> ボタンクリック等を個別記録<div class="origin"><em>使い方</em><code>track('signup_completed', {plan})</code> で重要 KPI を取る。漠然と「PV 取る」だけでは分析できない。</div></div>
+      <div class="ai-chip"><b>SLA / SLO</b> <span>○</span> 稼働率の目標値<div class="origin"><em>定義</em>SLA = 顧客への約束(99.9%等) / SLO = 内部目標。99.9% は月44分のダウンが許容範囲。</div></div>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">キャッシュ</span><span class="freq freq-med">△ 時々</span></div>
-      <span class="desc">一度取得したデータを保持して高速化。ブラウザ/CDN/アプリ各層で働く</span>
+
+    <div class="ai-pane" data-ai="ops-perf">
+      <div class="ai-chip"><b>Lighthouse</b> <span>★</span> 速度 / SEO / a11y を 100 点満点で<div class="origin"><em>使い方</em>Chrome DevTools 内蔵、または Chrome DevTools MCP で自動化。本リポは MCP 経由で改善ループも組める。</div></div>
+      <div class="ai-chip"><b>キャッシュ</b> <span>★</span> 取得済みデータを保持<div class="origin"><em>3層</em>ブラウザ / CDN / アプリ。<code>Cache-Control</code> ヘッダで制御。次/15+ なら fetch 単位で <code>{ next: { revalidate: 60 } }</code>。</div></div>
+      <div class="ai-chip"><b>画像最適化</b> <span>★</span> WebP/AVIF へ自動変換<div class="origin"><em>Vercel</em><code>next/image</code> + Remote Patterns。LCP 改善の最大の武器。</div></div>
+      <div class="ai-chip"><b>アクセシビリティ</b> <span>△</span> スクリーンリーダー対応<div class="origin"><em>必須</em><code>alt</code> 属性 / ARIA ラベル / キーボード操作。Lighthouse の Accessibility スコアで網羅的にチェック。</div></div>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">画像最適化</span><span class="freq freq-med">△ 時々</span></div>
-      <span class="desc">WebP化・遅延読込・<code>next/image</code>で転送量を削減</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">アクセシビリティ</span><span class="freq freq-med">△ 時々</span></div>
-      <span class="desc">スクリーンリーダー対応。<code>alt</code>属性・ARIAラベル・キーボード操作</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">アラート</span><span class="freq freq-low">○ 知識</span></div>
-      <span class="desc">閾値を超えたらSlack/メールで通知。障害の早期発見に使う</span>
-    </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">SLA/SLO</span><span class="freq freq-low">○ 知識</span></div>
-      <span class="desc">サービス稼働率の目標値。99.9%など</span>
+
+    <div class="ai-pane" data-ai="ops-alert">
+      <div class="ai-chip"><b>アラート</b> <span>★</span> 閾値超過で通知<div class="origin"><em>使い方</em>Sentry の Issue Alert / Cloudflare の Notification / Vercel Logs の Drain → Slack。</div></div>
+      <div class="ai-chip"><b>ロールバック</b> <span>★</span> 過去デプロイへ即復帰<div class="origin"><em>使う場面</em>本番障害時。Vercel は Dashboard から 1 クリック。<i>「先に戻してから原因調査」が鉄則</i></div></div>
+      <div class="ai-chip"><b>ステータスページ</b> <span>○</span> 顧客向け稼働状況公開<div class="origin"><em>用途</em>BetterStack / Statuspage 等。「障害中なのか自分の問題か」を顧客が判断できるように。</div></div>
     </div>
   </div>
 
   <!-- チーム開発 -->
-  <div class="card teal">
+  <div class="card teal full-width">
     <div class="card-header">
       <div class="card-icon">👥</div>
       <div class="card-title-wrap">
         <div class="step-badge">STEP 7</div>
-        <h2>チーム開発・プロジェクト管理</h2>
+        <h2>チーム開発・プロジェクト管理 — 1人開発との違い<span class="card-type-badges"><span class="ctb term">📘用語</span></span></h2>
       </div>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">コードレビュー</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">PRに対して他の人がコードをチェックして品質を保つ</span>
+
+    <div class="ai-stack" style="background:#f0fdfa;">
+      <svg width="100%" height="200" viewBox="0 0 820 200" style="min-width:640px;">
+        <defs>
+          <linearGradient id="team-issue" x1="0" x2="1"><stop offset="0" stop-color="#fef3c7"/><stop offset="1" stop-color="#fde68a"/></linearGradient>
+          <linearGradient id="team-pr" x1="0" x2="1"><stop offset="0" stop-color="#ddd6fe"/><stop offset="1" stop-color="#c4b5fd"/></linearGradient>
+          <linearGradient id="team-rev" x1="0" x2="1"><stop offset="0" stop-color="#bbf7d0"/><stop offset="1" stop-color="#86efac"/></linearGradient>
+        </defs>
+
+        <!-- Step1: イシュー -->
+        <rect x="20" y="60" width="160" height="80" rx="12" fill="url(#team-issue)" stroke="#f59e0b" stroke-width="1.5"/>
+        <text x="100" y="88" text-anchor="middle" fill="#92400e" font-size="13" font-weight="800">① Issue</text>
+        <text x="100" y="108" text-anchor="middle" fill="#b45309" font-size="10">「これを直したい」</text>
+        <text x="100" y="124" text-anchor="middle" fill="#b45309" font-size="10">バグ報告 / 機能追加</text>
+
+        <!-- 矢印 -->
+        <line x1="182" y1="100" x2="218" y2="100" stroke="#94a3b8" stroke-width="2"/>
+        <polygon points="218,96 228,100 218,104" fill="#94a3b8"/>
+        <text x="200" y="92" text-anchor="middle" fill="#64748b" font-size="9">担当決定</text>
+
+        <!-- Step2: ブランチ + PR -->
+        <rect x="230" y="60" width="160" height="80" rx="12" fill="url(#team-pr)" stroke="#7c3aed" stroke-width="1.5"/>
+        <text x="310" y="88" text-anchor="middle" fill="#5b21b6" font-size="13" font-weight="800">② Branch + PR</text>
+        <text x="310" y="108" text-anchor="middle" fill="#6d28d9" font-size="10">feature/xxx で実装</text>
+        <text x="310" y="124" text-anchor="middle" fill="#6d28d9" font-size="10">PR で「見てほしい」</text>
+
+        <line x1="392" y1="100" x2="428" y2="100" stroke="#94a3b8" stroke-width="2"/>
+        <polygon points="428,96 438,100 428,104" fill="#94a3b8"/>
+
+        <!-- Step3: レビュー -->
+        <rect x="440" y="60" width="160" height="80" rx="12" fill="url(#team-rev)" stroke="#16a34a" stroke-width="1.5"/>
+        <text x="520" y="88" text-anchor="middle" fill="#14532d" font-size="13" font-weight="800">③ Code Review</text>
+        <text x="520" y="108" text-anchor="middle" fill="#15803d" font-size="10">他メンバーが指摘</text>
+        <text x="520" y="124" text-anchor="middle" fill="#15803d" font-size="10">ApproveでOK</text>
+
+        <line x1="602" y1="100" x2="638" y2="100" stroke="#94a3b8" stroke-width="2"/>
+        <polygon points="638,96 648,100 638,104" fill="#94a3b8"/>
+
+        <!-- Step4: マージ -->
+        <rect x="650" y="60" width="160" height="80" rx="12" fill="#fff" stroke="#0d9488" stroke-width="1.5"/>
+        <text x="730" y="88" text-anchor="middle" fill="#134e4a" font-size="13" font-weight="800">④ Merge → 自動デプロイ</text>
+        <text x="730" y="108" text-anchor="middle" fill="#115e59" font-size="10">main に取り込み</text>
+        <text x="730" y="124" text-anchor="middle" fill="#115e59" font-size="10">本番に即反映</text>
+
+        <!-- 戻り (Issue Close) -->
+        <path d="M 730 60 Q 730 20 100 20 L 100 58" fill="none" stroke="#0d9488" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <polygon points="96,52 100,62 104,52" fill="#0d9488"/>
+        <text x="415" y="14" text-anchor="middle" fill="#0d9488" font-size="10" font-weight="700">Issue Close（自動 or 手動）</text>
+
+        <!-- 下部: スプリント -->
+        <rect x="20" y="160" width="790" height="28" rx="6" fill="#1e293b"/>
+        <text x="415" y="178" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="700">🏃 1〜2 週間 = 1 スプリント。スプリントの集合 = マイルストーン</text>
+      </svg>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">イシュー</span><span class="freq freq-high">★ よく使う</span></div>
-      <span class="desc">バグ報告・機能追加の依頼をGitHubで管理する単位</span>
+
+    <div class="ai-tabs">
+      <button class="ai-tab active" data-ai="team-rev">👀 レビュー</button>
+      <button class="ai-tab" data-ai="team-track">📋 課題管理</button>
+      <button class="ai-tab" data-ai="team-method">🏃 開発手法</button>
+      <button class="ai-tab" data-ai="team-mono">🗂 モノレポ</button>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">マイルストーン</span><span class="freq freq-med">△ 時々</span></div>
-      <span class="desc">「いつまでに何を完成させるか」の期限管理</span>
+
+    <div class="ai-pane active" data-ai="team-rev">
+      <div class="ai-chip"><b>コードレビュー</b> <span>★</span> PR を他人がチェック<div class="origin"><em>役割</em>「バグ・設計・命名」を客観視。<i>本リポの /ultrareview はマルチエージェント自動レビュー</i></div></div>
+      <div class="ai-chip"><b>Approve</b> <span>★</span> レビュー OK の意思表示<div class="origin"><em>運用</em>「LGTM」=Looks Good To Me。Approve があるまで merge できないルールが標準。</div></div>
+      <div class="ai-chip"><b>Suggested change</b> <span>△</span> レビュー内で修正案を直接書く<div class="origin"><em>使い方</em>GitHub のレビューUIから 1 クリックで採用できる。typo 指摘に最適。</div></div>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">アジャイル</span><span class="freq freq-low">○ 知識</span></div>
-      <span class="desc">小さく作って頻繁にリリースする開発スタイル</span>
+
+    <div class="ai-pane" data-ai="team-track">
+      <div class="ai-chip"><b>Issue</b> <span>★</span> 作業の最小単位<div class="origin"><em>使い方</em>1 Issue = 1 PR が理想。バグ報告も機能追加もまずここから始める。</div></div>
+      <div class="ai-chip"><b>マイルストーン</b> <span>△</span> 期限とゴール<div class="origin"><em>使い方</em>「v2.0 リリース」のような節目に Issue を束ねる。進捗バーで残量が見える。</div></div>
+      <div class="ai-chip"><b>Project ボード</b> <span>△</span> カンバン形式の可視化<div class="origin"><em>使い方</em>To do / In Progress / Done の 3 列で Issue を移動。GitHub Projects v2 が標準。</div></div>
+      <div class="ai-chip"><b>Linear</b> <span>○</span> GitHub Issue の代替・洗練版<div class="origin"><em>位置づけ</em>UX が圧倒的に良いタスク管理 SaaS。本リポの memory にも「INGEST プロジェクト」等で言及あり。</div></div>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">スプリント</span><span class="freq freq-low">○ 知識</span></div>
-      <span class="desc">アジャイルにおける1〜2週間の作業単位</span>
+
+    <div class="ai-pane" data-ai="team-method">
+      <div class="ai-chip"><b>アジャイル</b> <span>○</span> 小さく作って頻繁にリリース<div class="origin"><em>対比</em>「全部仕様凍結→半年後に大公開」のウォーターフォールの逆。今のWeb 開発の標準。</div></div>
+      <div class="ai-chip"><b>スプリント</b> <span>○</span> 1〜2週間の作業単位<div class="origin"><em>使い方</em>スプリント開始時にやることを決め、終了時にレビュー＆振り返り(retrospective)。</div></div>
+      <div class="ai-chip"><b>朝会(Standup)</b> <span>△</span> 5〜15 分の進捗共有<div class="origin"><em>3項目</em>「昨日やったこと / 今日やること / 困りごと」だけ。Slack の huddle で時短する例も多い。</div></div>
     </div>
-    <div class="item">
-      <div class="item-left"><span class="tag">Turborepo</span><span class="freq freq-low">○ 知識</span></div>
-      <span class="desc">複数プロジェクトを1コマンドで管理する一元化ツール</span>
+
+    <div class="ai-pane" data-ai="team-mono">
+      <div class="ai-chip"><b>モノレポ</b> <span>△</span> 1 リポジトリで複数アプリを管理<div class="origin"><em>本リポ</em>このリポ自体がモノレポ的。<code>clients.code-workspace</code> で 9 社を 1 ワークスペース化。</div></div>
+      <div class="ai-chip"><b>Turborepo</b> <span>○</span> モノレポ用ビルド高速化<div class="origin"><em>役割</em>変更があった部分だけビルド/テスト。Vercel 公式。npm workspaces と組み合わせて使う。</div></div>
+      <div class="ai-chip"><b>npm workspaces</b> <span>○</span> モノレポの依存共有<div class="origin"><em>使い方</em>ルートの <code>package.json</code> に <code>workspaces: ["packages/*"]</code>。共通ライブラリを 1 か所で管理。</div></div>
     </div>
   </div>
 
@@ -1477,7 +2479,7 @@
       <div class="card-icon">🏗️</div>
       <div class="card-title-wrap">
         <div class="step-badge">完成イメージ</div>
-        <h2>デプロイ後の全体構成図</h2>
+        <h2>デプロイ後の全体構成図<span class="card-type-badges"><span class="ctb idea">💡概念</span></span></h2>
       </div>
     </div>
     <div class="finish-diagram">
@@ -1550,8 +2552,19 @@
         <rect x="670" y="108" width="70" height="20" rx="5" fill="#f3e8ff"/>
         <text x="705" y="122" text-anchor="middle" fill="#7e22ce" font-size="9">スマホ</text>
       </svg>
+      <div class="figure-caption"><b>📌 ポイント:</b> 開発者の PC → <b>git push</b> → GitHub → CI/CD → Vercel → ユーザー。<b>このパイプラインを 1 本通す</b>のが講習のゴール。</div>
     </div>
   </div>
+</div>
+
+<!-- ===== 第4部: AI時代 ===== -->
+<div id="part-4" class="part-banner">
+  <span class="pb-num">第 4 部</span>
+  <span class="pb-title">AI時代 — エンジニアリング手法とマルチクライアント運用</span>
+  <span class="pb-sub">💡 概念中心</span>
+</div>
+
+<div class="grid">
 
   <!-- AI時代のエンジニアリング手法 -->
   <div class="card purple full-width">
@@ -1559,7 +2572,7 @@
       <div class="card-icon">🤖</div>
       <div class="card-title-wrap">
         <div class="step-badge">AI時代の新潮流</div>
-        <h2>AIエンジニアリング手法 — 全体像</h2>
+        <h2>AIエンジニアリング手法 — 全体像<span class="card-type-badges"><span class="ctb idea">💡概念</span><span class="ctb term">📘用語</span></span></h2>
       </div>
     </div>
 
@@ -1656,6 +2669,7 @@
         <rect x="130" y="236" width="670" height="18" rx="9" fill="#1e293b"/>
         <text x="465" y="249" text-anchor="middle" fill="#e2e8f0" font-size="10" font-weight="700">🤖 LLM (Claude / GPT / Gemini) — 全層が最終的にここへ合流</text>
       </svg>
+      <div class="ai-stack-caption"><b>📌 ポイント:</b> AI は <b>プロンプト → コンテキスト → ハーネス → 評価/安全</b> の 4 層で支える。下のタブで各層の用語を確認。</div>
     </div>
 
     <!-- タブ切替（最初の1つだけ表示、他はJSで切替） -->
@@ -1733,7 +2747,7 @@
       <div class="card-icon">🏢</div>
       <div class="card-title-wrap">
         <div class="step-badge">本プロジェクト固有の構成</div>
-        <h2>マルチクライアント統括運用 — 3層アーキテクチャ</h2>
+        <h2>マルチクライアント統括運用 — 3層アーキテクチャ<span class="card-type-badges"><span class="ctb idea">💡概念</span><span class="ctb term">📘用語</span></span></h2>
       </div>
     </div>
 
@@ -1891,8 +2905,712 @@
 
 </div>
 
+<!-- ==================================================================== -->
+<!-- ===== セクション A: CMS進化 (WordPress → /studio・Payload) ==== -->
+<!-- ==================================================================== -->
+<section id="sec-cms" class="pm-section-head">
+  <div class="eyebrow">📝 第 5 部 · SECTION A · CMS EVOLUTION</div>
+  <h2>WordPress時代から /studio・Payload 時代へ — AI対応CMS移行ガイド</h2>
+  <p>「WordPressで記事を書く」時代は終わりつつあります。次の標準は <b>Next.js + Supabase + 自前 /studio</b>（または <b>Payload CMS v3</b>）。AI で生成した文章をそのまま流し込み、型安全に管理し、Vercel で世界配信する構成です。WordPress からの移行手順と、実際に Claude Code に投げるプロンプトを掲載します。</p>
+</section>
+
+<div class="pm-section-toc">
+  <a href="#cms-why">なぜ移行するのか</a>
+  <a href="#cms-compare">/studio vs Payload</a>
+  <a href="#cms-flow">移行フロー</a>
+  <a href="#cms-prompts">実プロンプト集</a>
+</div>
+
+<div class="grid">
+  <!-- A-1 なぜ移行するか -->
+  <div class="card purple full-width" id="cms-why">
+    <div class="card-header">
+      <div class="card-icon">🆚</div>
+      <div class="card-title-wrap">
+        <div class="step-badge">A-1 · 旧 vs 新</div>
+        <h2>なぜ WordPress から離れるのか<span class="card-type-badges"><span class="ctb idea">💡概念</span></span></h2>
+      </div>
+    </div>
+    <div class="pm-compare">
+      <div class="old">
+        <h4>🐘 WordPress（旧モデル）</h4>
+        <ul>
+          <li><b>レンタルサーバー前提</b> — PHP/MySQL を動かし続けるコスト</li>
+          <li><b>プラグイン地獄</b> — セキュリティ更新を全部追跡</li>
+          <li><b>テーマ依存</b> — デザイン変更にFTP/PHP知識が必要</li>
+          <li><b>JSON出力が後付け</b> — REST API を有効化しないとAI連携不可</li>
+          <li><b>SEO拡張は別プラグイン</b>（Yoast 等）で二重管理</li>
+          <li><b>編集体験</b>: ブロックエディタは進化したが、AI生成テキストとの統合は弱い</li>
+        </ul>
+      </div>
+      <div class="new">
+        <h4>✨ /studio + Supabase / Payload v3（新モデル）</h4>
+        <ul>
+          <li><b>サーバーレス</b> — Vercel + Supabase でスリープ無し・従量課金</li>
+          <li><b>型安全</b> — TypeScript で記事スキーマがコンパイル時に守られる</li>
+          <li><b>AI ネイティブ</b> — Claude API で生成 → そのままDB INSERT</li>
+          <li><b>JSON-LD/OGP 自動付与</b> — Next.js Metadata API + 構造化データ</li>
+          <li><b>RLS で投稿権限制御</b> — Supabase Auth と統合された安全機構</li>
+          <li><b>編集UI は自前 /studio</b> または Payload — どちらも Server Component で軽量</li>
+        </ul>
+      </div>
+    </div>
+    <div class="pm-highlight">
+      <b>💡 本プロジェクトでの実例</b>: <code>Notエステ</code> は 2026-05-03 に Payload /admin を完全廃止し <b>/studio (Supabase直結)</b> に一元化。記事142本+ページ14+サービス18 を移行済み。<code>みんなのWA</code> は WordPress 的 PHP 実装から <b>Vercel Serverless Functions + Supabase</b> へ移行（2026-04-30）。
+    </div>
+  </div>
+
+  <!-- A-2 /studio vs Payload 比較表 -->
+  <div class="card cyan full-width" id="cms-compare">
+    <div class="card-header">
+      <div class="card-icon">⚖️</div>
+      <div class="card-title-wrap">
+        <div class="step-badge">A-2 · 選定基準</div>
+        <h2>/studio（自前管理画面）vs Payload CMS v3<span class="card-type-badges"><span class="ctb idea">💡概念</span></span></h2>
+      </div>
+    </div>
+    <div class="pm-compare">
+      <div class="new" style="border-top-color:#0891b2">
+        <h4 style="color:#0891b2">🎨 自前 /studio（Supabase 直結）</h4>
+        <ul>
+          <li><b>軽量</b> — Server Component で 200行程度から始められる</li>
+          <li><b>Supabase スキーマと完全密着</b> — RLS をそのまま編集権限に</li>
+          <li><b>UI を自由設計</b> — クライアント業務にぴったり合わせやすい</li>
+          <li><b>新機能追加が早い</b> — 「画像生成タブ追加して」で1日</li>
+          <li>⚠ <b>機能を全部自前で実装</b> — メディア管理・下書き・履歴も</li>
+          <li><b>向き</b>: 業務システム・小規模 CMS・AIで追加生成する案件</li>
+        </ul>
+      </div>
+      <div class="new">
+        <h4>🛠 Payload CMS v3（フル機能）</h4>
+        <ul>
+          <li><b>管理UIが標準同梱</b> — メディア・下書き・バージョン履歴</li>
+          <li><b>Collection 定義 = 即 admin UI</b> — TypeScript で1箇所定義</li>
+          <li><b>Postgres adapter で Supabase 接続可</b>（Session pooler 5432 推奨）</li>
+          <li><b>Hooks / Access Control が強力</b> — 編集前後の処理を差し込める</li>
+          <li>⚠ <b>API route 3つ必須</b>（[...payload], graphql, graphql-playground）</li>
+          <li><b>向き</b>: 中〜大規模ブログ・多数のコレクション・複数編集者</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- A-3 移行フロー -->
+  <div class="card pink full-width" id="cms-flow">
+    <div class="card-header">
+      <div class="card-icon">🚚</div>
+      <div class="card-title-wrap">
+        <div class="step-badge">A-3 · 移行ステップ</div>
+        <h2>WordPress から新CMS への移行フロー<span class="card-type-badges"><span class="ctb idea">💡概念</span><span class="ctb task">⚡作業</span></span></h2>
+      </div>
+    </div>
+
+    <div class="pm-flow" style="--accent:#db2777">
+      <div class="step"><b>STEP 1</b><span>WP記事JSONエクスポート</span></div>
+      <div class="arrow">→</div>
+      <div class="step"><b>STEP 2</b><span>Supabase スキーマ設計</span></div>
+      <div class="arrow">→</div>
+      <div class="step"><b>STEP 3</b><span>HTML→Markdown 変換</span></div>
+      <div class="arrow">→</div>
+      <div class="step"><b>STEP 4</b><span>画像を Storage へ移行</span></div>
+      <div class="arrow">→</div>
+      <div class="step"><b>STEP 5</b><span>/studio または Payload 構築</span></div>
+      <div class="arrow">→</div>
+      <div class="step"><b>STEP 6</b><span>Vercel デプロイ</span></div>
+    </div>
+
+    <details class="pm-acc" style="--accent:#db2777" open>
+      <summary><span class="step-num">1</span>WordPress から記事を全件 JSON エクスポート<span class="step-meta">所要 5 分</span></summary>
+      <div class="acc-body">
+        <p>WordPress の <code>wp-json/wp/v2/posts?per_page=100</code> エンドポイントが標準で有効。プラグインなしで全記事を JSON で吸い上げられます（無効化されている場合は管理画面 → 設定 → パーマリンクの再保存で復活）。</p>
+        <p><strong>ハマりどころ</strong>: ページネーションを忘れると最初の 100 件しか取れない。<code>?page=N</code> を回す。</p>
+      </div>
+    </details>
+
+    <details class="pm-acc" style="--accent:#db2777">
+      <summary><span class="step-num">2</span>Supabase に <code>blog_posts</code> テーブルを作る<span class="step-meta">所要 10 分</span></summary>
+      <div class="acc-body">
+        <p>最低限の列: <code>id (uuid)</code> / <code>slug (text unique)</code> / <code>title</code> / <code>content_md</code> / <code>excerpt</code> / <code>cover_image_url</code> / <code>published_at</code> / <code>tags (text[])</code>。<br>RLS は「<code>published_at IS NOT NULL なら anon でも SELECT 可</code>」「INSERT/UPDATE は authenticated のみ」を最初に入れます。</p>
+        <p><strong>本プロジェクトの慣習</strong>: <code>snake_case ↔ camelCase</code> の差は必ず <code>lib/supabase-mappers.ts</code> で吸収。生データを画面で直接使わない。</p>
+      </div>
+    </details>
+
+    <details class="pm-acc" style="--accent:#db2777">
+      <summary><span class="step-num">3</span>HTML → Markdown 変換 + 画像URL置換<span class="step-meta">所要 30 分</span></summary>
+      <div class="acc-body">
+        <p>WP の <code>content.rendered</code> は HTML。Markdown へは <code>turndown</code> ライブラリが最短。同時に <code>&lt;img src&gt;</code> を Supabase Storage の URL に置換するスクリプトを書きます。</p>
+        <p><strong>注意</strong>: ショートコード (<code>[gallery]</code> 等) は Turndown が無視するので、事前に正規表現で外しておく。</p>
+      </div>
+    </details>
+
+    <details class="pm-acc" style="--accent:#db2777">
+      <summary><span class="step-num">4</span>画像を Supabase Storage に一括移行<span class="step-meta">所要 1〜2 時間（記事数による）</span></summary>
+      <div class="acc-body">
+        <p>WP の画像は <code>wp-content/uploads/YYYY/MM/...</code>。fetch → Buffer → <code>supabase.storage.from('images').upload()</code> で順番に上げる。Supabase Storage の <b>public</b> バケットなら policy 不要（メモリ済み: <code>create policy on storage.objects は所有権エラーになるので、public で運用</code>）。</p>
+      </div>
+    </details>
+
+    <details class="pm-acc" style="--accent:#db2777">
+      <summary><span class="step-num">5</span>/studio (自前) か Payload を選んで構築<span class="step-meta">所要 1 日〜</span></summary>
+      <div class="acc-body">
+        <p><b>/studio</b> なら <code>app/studio/page.tsx</code> + <code>app/studio/[slug]/page.tsx</code> + Server Action で完結。<br><b>Payload</b> なら <code>npx create-payload-app</code> → Postgres adapter (Supabase Session pooler 5432) → Collection 定義 → <code>/admin</code> 自動生成。</p>
+        <p><strong>Payload の罠</strong>: API route が <b>3ファイル必須</b>（<code>app/api/[...payload]/route.ts</code> / <code>app/api/graphql/route.ts</code> / <code>app/api/graphql-playground/route.ts</code>）。<code>push: true</code> は <b>dev 環境のみ</b>、本番では migration ファイルを必ず作る。</p>
+      </div>
+    </details>
+
+    <details class="pm-acc" style="--accent:#db2777">
+      <summary><span class="step-num">6</span>Vercel にデプロイ・WPサーバー停止<span class="step-meta">所要 15 分</span></summary>
+      <div class="acc-body">
+        <p>main ブランチに push → Vercel が自動 build & deploy。<br>環境変数: <code>SUPABASE_URL</code> / <code>SUPABASE_SERVICE_ROLE_KEY</code> / <code>NEXT_PUBLIC_SITE_URL</code>。<br>動作確認後、旧 WP の DNS を Vercel に向け替え（Cloudflare DNS 経由が安全）し、レンタルサーバーは <b>1ヶ月並行→停止</b>。</p>
+      </div>
+    </details>
+  </div>
+
+  <!-- A-4 移行ポイント図表（旧プロンプト版を廃止） -->
+  <div class="card purple full-width" id="cms-prompts">
+    <div class="card-header">
+      <div class="card-icon">🔀</div>
+      <div class="card-title-wrap">
+        <div class="step-badge">A-4 · 移行で何が変わるか</div>
+        <h2>WordPress → 新CMS — 層ごとの「変わるポイント」図表<span class="card-type-badges"><span class="ctb idea">💡概念</span></span></h2>
+      </div>
+    </div>
+    <p class="desc" style="margin-bottom:8px;">移行は「全部入れ替える」のではなく、<b>層ごとに役割が置き換わる</b>のが本質。下の表で「旧 → 新」の対応を1分で把握できます。</p>
+
+    <div class="layer-compare">
+      <div class="lc-row">
+        <span class="lc-label">レイヤー</span>
+        <span class="lc-head old">🐘 WordPress（旧）</span>
+        <span></span>
+        <span class="lc-head new">✨ /studio + Supabase（新）</span>
+      </div>
+      <div class="lc-row">
+        <span class="lc-label">①<br>サーバー</span>
+        <span class="lc-old"><b>レンタルサーバー</b><br>PHP/MySQL を 24h 動かし続ける。月額固定。</span>
+        <span class="lc-arrow">→</span>
+        <span class="lc-new"><b>Vercel（サーバーレス）</b><br>リクエスト時だけ起動。スリープ不要・スケール自動。</span>
+      </div>
+      <div class="lc-row">
+        <span class="lc-label">②<br>DB</span>
+        <span class="lc-old"><b>MySQL</b><br>サーバー内同居。バックアップは手動 or プラグイン。</span>
+        <span class="lc-arrow">→</span>
+        <span class="lc-new"><b>Supabase Postgres</b><br>本格 RDB + RLS + 自動バックアップ + Realtime。</span>
+      </div>
+      <div class="lc-row">
+        <span class="lc-label">③<br>編集UI</span>
+        <span class="lc-old"><b>wp-admin（PHPテンプレ）</b><br>プラグインで増殖。テーマと密結合。</span>
+        <span class="lc-arrow">→</span>
+        <span class="lc-new"><b>/studio (Server Component)</b><br>必要なフォームだけ自前。型安全 + クライアント業務に最適化。</span>
+      </div>
+      <div class="lc-row">
+        <span class="lc-label">④<br>表示</span>
+        <span class="lc-old"><b>テーマ PHP（テンプレ）</b><br>HTML/CSS/PHP 混在。SEO 拡張は別プラグイン。</span>
+        <span class="lc-arrow">→</span>
+        <span class="lc-new"><b>Next.js App Router</b><br>JSX/TSX で型付き。Metadata API で OGP/JSON-LD 自動。</span>
+      </div>
+      <div class="lc-row">
+        <span class="lc-label">⑤<br>画像</span>
+        <span class="lc-old"><b>wp-content/uploads/</b><br>サーバー内 FS。CDN 別途契約。</span>
+        <span class="lc-arrow">→</span>
+        <span class="lc-new"><b>Supabase Storage</b><br>public バケットで CDN 配信込み。<code>next/image</code> で WebP 自動化。</span>
+      </div>
+      <div class="lc-row">
+        <span class="lc-label">⑥<br>権限</span>
+        <span class="lc-old"><b>WP ユーザーロール</b><br>編集者/著者/購読者。プラグイン依存。</span>
+        <span class="lc-arrow">→</span>
+        <span class="lc-new"><b>Supabase Auth + RLS</b><br>DB 側で「誰がどの行を編集可」をSQLで宣言。</span>
+      </div>
+      <div class="lc-row">
+        <span class="lc-label">⑦<br>SEO</span>
+        <span class="lc-old"><b>Yoast 等プラグイン</b><br>有料機能多。重い。</span>
+        <span class="lc-arrow">→</span>
+        <span class="lc-new"><b>Next.js Metadata + JSON-LD</b><br>FAQPage / BlogPosting / Speakable で AI 検索にも乗る。</span>
+      </div>
+      <div class="lc-row">
+        <span class="lc-label">⑧<br>AI連携</span>
+        <span class="lc-old"><b>外付けプラグイン</b><br>記事生成は別ツールで作って手で貼る。</span>
+        <span class="lc-arrow">→</span>
+        <span class="lc-new"><b>Server Action + Anthropic SDK</b><br>「AI 記事生成」ボタン1つで Claude が下書きを直接 INSERT。</span>
+      </div>
+    </div>
+
+    <div class="pm-highlight">
+      <b>📌 本プロジェクトでの実例</b>: <code>Notエステ</code> は 2026-05-03 に <b>Payload /admin 廃止 → /studio (Supabase 直結) 単独</b>に再編。記事 142 + ページ 14 + サービス 18 を移行済み。<code>みんなのWA</code> は 2026-04-30 に Vercel + Supabase Storage へ集約完了（旧 Render Starter は同日 suspend）。
+    </div>
+  </div>
+</div>
+
+
+<!-- ==================================================================== -->
+<!-- ===== セクション B: Claude Code 完全ガイド ============== -->
+<!-- ==================================================================== -->
+<section id="sec-ccode" class="pm-section-head">
+  <div class="eyebrow">🤖 第 6 部 · SECTION B · CLAUDE CODE MASTERY</div>
+  <h2>Claude Code を「ハーネス」として使い倒す — マルチエージェント・ルーティーンズ・Hooks・Design</h2>
+  <p>Claude Code は「AI に質問するチャット」ではなく、<b>あなたのターミナル/エディタ/CI を実行環境として手綱で繋いだエージェントランタイム</b>です。 IDE と Claude の関係を整理し、<b>ハーネスエンジニアリング</b>の概念を押さえた上で、各機能を <b>そのまま動くプロンプトと共に</b>解説します。</p>
+</section>
+
+<div class="pm-section-toc">
+  <a href="#cc-ide">IDE・VSCode・Claude Codeの関係</a>
+  <a href="#cc-harness">ハーネスエンジニアリング</a>
+  <a href="#cc-features">機能別プロンプト集</a>
+  <a href="#cc-mcp">MCP拡張</a>
+</div>
+
+<div class="grid">
+  <!-- B-1 IDE関係 -->
+  <div class="card blue full-width" id="cc-ide">
+    <div class="card-header">
+      <div class="card-icon">🪜</div>
+      <div class="card-title-wrap">
+        <div class="step-badge">B-1 · 前提</div>
+        <h2>IDE・VSCode・Claude Code・CLI の関係を整理する<span class="card-type-badges"><span class="ctb idea">💡概念</span></span></h2>
+      </div>
+    </div>
+
+    <div class="ide-stack">
+      <div class="layer l1">
+        <div class="badge">L1 OS</div>
+        <div class="body"><b>OS / シェル</b>（macOS の zsh、Windows の PowerShell）— ファイルシステム・プロセス・権限の最終層。Claude Code が <code>Bash</code> ツールで触るのはここ。</div>
+      </div>
+      <div class="arrow-row">▲</div>
+      <div class="layer l2">
+        <div class="badge">L2 IDE</div>
+        <div class="body"><b>VSCode（IDE 本体）</b>— 統合開発環境。エディタ・拡張機能・ターミナル・デバッガを一箇所に統合する「土台」。Cursor / Windsurf / Zed も同じ層に位置する別実装。</div>
+      </div>
+      <div class="arrow-row">▲</div>
+      <div class="layer l3">
+        <div class="badge">L3 拡張</div>
+        <div class="body"><b>Claude Code 拡張</b>（VSCode/JetBrainsプラグイン）— エディタ内でファイル選択・差分プレビュー・チャット UI を提供。実体は下の CLI/Agent SDK を呼んでいるラッパー。</div>
+      </div>
+      <div class="arrow-row">▲</div>
+      <div class="layer l4">
+        <div class="badge">L4 ハーネス</div>
+        <div class="body"><b>Claude Code CLI / Agent SDK</b>— モデル呼び出し・ツール実行・権限管理・コンテキスト圧縮を司る<b>ハーネス本体</b>。設定は <code>~/.claude/settings.json</code> と <code>CLAUDE.md</code>。</div>
+      </div>
+      <div class="arrow-row">▲</div>
+      <div class="layer l5">
+        <div class="badge">L5 LLM</div>
+        <div class="body"><b>Claude モデル</b>（Opus 4.7 / Sonnet 4.6 / Haiku 4.5）— 推論本体。Anthropic API 経由で呼ばれる。モデル単体は何もできず、上の L1〜L4 を通して初めて「コードを書く」「コマンドを叩く」が成立する。</div>
+      </div>
+    </div>
+    <div class="figure-caption"><b>📌 ポイント:</b> 5 層ある。<b>OS → IDE → 拡張 → ハーネス → LLM</b>。家を変えてもハーネスと頭脳は同じ。本質は中央の <b>L4 ハーネス</b>。</div>
+
+    <div class="pm-highlight">
+      <b>💡 重要な区別</b>: <b>VSCode</b> は IDE という「家」、<b>Claude Code 拡張</b>はその家に住む「便利家電」、<b>Claude Code CLI/SDK</b>は家電を動かす「電源と配線」、<b>Claude モデル</b>は配線の先で考えている「頭脳」。<br>家を変えても（Cursor へ移っても）配線と頭脳は同じ。<b>本質はハーネス層</b>です。
+    </div>
+  </div>
+
+  <!-- B-2 ハーネス概念 -->
+  <div class="card green full-width" id="cc-harness">
+    <div class="card-header">
+      <div class="card-icon">🐎</div>
+      <div class="card-title-wrap">
+        <div class="step-badge">B-2 · 設計概念</div>
+        <h2>ハーネスエンジニアリング — 「AI を御す配線」を設計する技術<span class="card-type-badges"><span class="ctb idea">💡概念</span></span></h2>
+      </div>
+    </div>
+
+    <div class="ai-stack" style="background:#f0fdf4;">
+      <p style="font-size:13px; line-height:1.8; color:#14532d; margin:0 0 12px;">
+        <b>Harness（ハーネス）</b>とは古ノルド語 <b>hernest</b>（馬具一式）が語源。<b>AI を「賢い暴れ馬」と見立て、安全に走らせる装具一式</b>を指します。Anthropic 社内ではこの設計を <b>Harness Engineering</b> と呼び、Claude Code 自体がそのリファレンス実装です。
+      </p>
+      <div class="pm-flow" style="--accent:#16a34a; background:#fff;">
+        <div class="step"><b>① 入力制御</b><span>System / CLAUDE.md / 権限</span></div>
+        <div class="arrow">→</div>
+        <div class="step"><b>② ツール群</b><span>Read/Write/Bash/MCP</span></div>
+        <div class="arrow">→</div>
+        <div class="step"><b>③ 実行ループ</b><span>Plan→Act→Observe</span></div>
+        <div class="arrow">→</div>
+        <div class="step"><b>④ Hook検査</b><span>事前/事後/エラー</span></div>
+        <div class="arrow">→</div>
+        <div class="step"><b>⑤ 出力監査</b><span>差分プレビュー・承認</span></div>
+      </div>
+    </div>
+
+    <details class="pm-acc" style="--accent:#16a34a" open>
+      <summary>① 入力制御層 — モデルに何を渡し、何を禁じるか</summary>
+      <div class="acc-body">
+        <p>System プロンプト・<code>CLAUDE.md</code>・<code>.claude/settings.json</code> の <code>permissions</code> でツール許可を絞る。「<code>npm run *</code> は自動許可、<code>rm -rf</code> は禁止」のような <b>ホワイトリスト/ブラックリスト</b>を設計するのがここ。</p>
+      </div>
+    </details>
+    <details class="pm-acc" style="--accent:#16a34a">
+      <summary>② ツール層 — モデルに与える「手」</summary>
+      <div class="acc-body">
+        <p>Read / Edit / Write / Bash / Grep / Glob などの<b>関数定義</b>。Anthropic API の <code>tool_use</code> で渡される。MCP サーバーを足せば Cloudflare/Supabase/Render を直接操作できる「拡張義手」が生える。</p>
+      </div>
+    </details>
+    <details class="pm-acc" style="--accent:#16a34a">
+      <summary>③ 実行ループ — 自律で回す</summary>
+      <div class="acc-body">
+        <p>「考える → ツールを呼ぶ → 結果を見る → 再度考える」を <b>停止条件まで繰り返す</b>。Claude Code はこれを内蔵している（agentic loop）。SubAgent はこのループを <b>並列で複数走らせる</b>仕組み。</p>
+      </div>
+    </details>
+    <details class="pm-acc" style="--accent:#16a34a">
+      <summary>④ Hook 層 — 安全装置の差し込み</summary>
+      <div class="acc-body">
+        <p><code>~/.claude/settings.json</code> の <code>hooks</code> に <b>シェルコマンドを登録</b>。「commit 前に lint」「Stop イベントで音を鳴らす」「Bash 実行前にログ取る」など、<b>モデルの判断とは独立に</b>実行される強制処理。</p>
+      </div>
+    </details>
+    <details class="pm-acc" style="--accent:#16a34a">
+      <summary>⑤ 出力監査 — 人間が最終判断する関門</summary>
+      <div class="acc-body">
+        <p>差分プレビュー / 承認モーダル / Plan モード。ハーネスが完璧でも <b>Human-in-the-Loop</b> を最後に挟むのが鉄則。本プロジェクトでは「全操作を自動承認」設定もあるが、これは <b>ハーネス層が十分硬い</b>からこそ可能。</p>
+      </div>
+    </details>
+  </div>
+
+  <!-- B-3 機能別プロンプト集 -->
+  <div class="card orange full-width" id="cc-features">
+    <div class="card-header">
+      <div class="card-icon">🎛</div>
+      <div class="card-title-wrap">
+        <div class="step-badge">B-3 · 起動プロンプト</div>
+        <h2>マルチエージェント・ルーティーンズ・Hooks・Design — 実プロンプト集<span class="card-type-badges"><span class="ctb task">⚡作業</span></span></h2>
+      </div>
+    </div>
+
+    <div class="ai-tabs">
+      <button class="ai-tab active" data-ai="multi">🧑‍🤝‍🧑 マルチエージェント</button>
+      <button class="ai-tab" data-ai="routine">⏰ ルーティーンズ</button>
+      <button class="ai-tab" data-ai="hooks">🪝 Hooks</button>
+      <button class="ai-tab" data-ai="design">🎨 Design / UI</button>
+      <button class="ai-tab" data-ai="plan">📋 Plan モード</button>
+    </div>
+
+    <!-- マルチエージェント -->
+    <div class="ai-pane pane-prompts active" data-ai="multi">
+      <p class="desc" style="margin-bottom:10px;"><b>Agent ツール</b>でサブエージェントを並列起動。コピーして Claude Code に投げるだけ。</p>
+      <div class="prompt-mini-grid">
+        <div class="prompt-mini">
+          <b>🔍 9社を並列で監査</b>
+          <code class="line">9社のCLAUDE.mdをExploreエージェントで並列で読んで一覧化して</code>
+          <span class="what">→ <b>Agent</b> ツール × 9 並列 / メイン会話を汚さず一気に集計</span>
+          <button class="mini-copy" type="button">📋</button>
+        </div>
+        <div class="prompt-mini">
+          <b>🛠 設計と実装を分業</b>
+          <code class="line">予約カレンダーの実装計画をPlanエージェントで作ってから実装して</code>
+          <span class="what">→ <b>Plan</b> サブで設計 → メインで実装。役割物理分離</span>
+          <button class="mini-copy" type="button">📋</button>
+        </div>
+        <div class="prompt-mini">
+          <b>🧪 同じ修正を別案で2本</b>
+          <code class="line">Aパターン(Server Action)とBパターン(Route Handler)を別エージェントで作って比較</code>
+          <span class="what">→ サブ 2 本で同じ仕様の別実装を生成して比較レビュー</span>
+          <button class="mini-copy" type="button">📋</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ルーティーンズ -->
+    <div class="ai-pane pane-prompts" data-ai="routine">
+      <p class="desc" style="margin-bottom:10px;"><b>/schedule</b>=クラウド cron / <b>/loop</b>=ローカル会話で繰り返し。発話 1 行で発火。</p>
+      <div class="prompt-mini-grid">
+        <div class="prompt-mini">
+          <b>⏰ 毎朝デプロイ監視</b>
+          <code class="line">/schedule 毎朝8時にVercel全プロジェクトのデプロイ確認、ERRORがあればSlack通知</code>
+          <span class="what">→ Anthropic クラウドで cron 起動。PC を消していても動く</span>
+          <button class="mini-copy" type="button">📋</button>
+        </div>
+        <div class="prompt-mini">
+          <b>🔁 typecheck 連続監視</b>
+          <code class="line">/loop 5m npm run typecheck エラーが増えたら止めて</code>
+          <span class="what">→ 5 分ごとに自動再投入。リファクタ中の型崩れ検知</span>
+          <button class="mini-copy" type="button">📋</button>
+        </div>
+        <div class="prompt-mini">
+          <b>📅 1 度きりの予約実行</b>
+          <code class="line">/schedule 明日10時に「在庫CSVをShopifyに同期」を1回だけ実行</code>
+          <span class="what">→ ワンショット予約。リマインダ代わりにも</span>
+          <button class="mini-copy" type="button">📋</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hooks -->
+    <div class="ai-pane pane-prompts" data-ai="hooks">
+      <p class="desc" style="margin-bottom:10px;"><b>Hooks</b>=AI 判断と独立に発火する強制処理。<code>/update-config</code> 1 行で設定。</p>
+      <div class="prompt-mini-grid">
+        <div class="prompt-mini">
+          <b>🪝 commit 前に lint 強制</b>
+          <code class="line">/update-config commit前にpnpm lintを自動実行するhookを追加</code>
+          <span class="what">→ <b>PreToolUse</b> イベントで自動。失敗ならコミット中止</span>
+          <button class="mini-copy" type="button">📋</button>
+        </div>
+        <div class="prompt-mini">
+          <b>🔔 完了で音を鳴らす</b>
+          <code class="line">/update-config Claude停止時に通知音を鳴らすhookを追加</code>
+          <span class="what">→ <b>Stop</b> イベントで OS の効果音再生</span>
+          <button class="mini-copy" type="button">📋</button>
+        </div>
+        <div class="prompt-mini">
+          <b>📜 全 Bash を監査ログ</b>
+          <code class="line">/update-config Bash実行を全部 ~/.claude/audit.log に追記するhook追加</code>
+          <span class="what">→ <b>PreToolUse:Bash</b> で監査証跡を残す</span>
+          <button class="mini-copy" type="button">📋</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Design -->
+    <div class="ai-pane pane-prompts" data-ai="design">
+      <p class="desc" style="margin-bottom:10px;"><b>Design</b>=Chrome DevTools MCP で「画面を見ながら直す」。発話 1 行でループが回る。</p>
+      <div class="prompt-mini-grid">
+        <div class="prompt-mini">
+          <b>🎨 スマホ表示を直す</b>
+          <code class="line">375pxにエミュレートしてヘッダー余白を整えてBefore/After見せて</code>
+          <span class="what">→ Chrome DevTools MCP でエミュ → スクショ比較</span>
+          <button class="mini-copy" type="button">📋</button>
+        </div>
+        <div class="prompt-mini">
+          <b>📊 Lighthouse 改善ループ</b>
+          <code class="line">本番URLのLighthouse取って90点未満なら直してまた測って90+まで繰り返し</code>
+          <span class="what">→ MCP で測定 → 修正 → 再測定の自律ループ</span>
+          <button class="mini-copy" type="button">📋</button>
+        </div>
+        <div class="prompt-mini">
+          <b>🖼 スクショから直接修正</b>
+          <code class="line">添付したスクショの赤丸部分のレイアウトを直して</code>
+          <span class="what">→ 画像入力 → DOM 解析 → 該当 className 修正</span>
+          <button class="mini-copy" type="button">📋</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Plan モード -->
+    <div class="ai-pane pane-prompts" data-ai="plan">
+      <p class="desc" style="margin-bottom:10px;"><b>Plan モード</b>=「設計だけ」に強制。大きな変更前に必ず通す。</p>
+      <div class="prompt-mini-grid">
+        <div class="prompt-mini">
+          <b>📋 計画だけ作らせる</b>
+          <code class="line">Planモードに入って予約機能の実装計画書を作って</code>
+          <span class="what">→ ファイル編集系ツールが封印され、計画書だけが返る</span>
+          <button class="mini-copy" type="button">📋</button>
+        </div>
+        <div class="prompt-mini">
+          <b>✅ 承認して実装へ</b>
+          <code class="line">この計画でOK、ExitPlanModeして実装して</code>
+          <span class="what">→ 承認 → 通常モードへ復帰 → そのまま実装開始</span>
+          <button class="mini-copy" type="button">📋</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- B-4 MCP拡張 -->
+  <div class="card cyan full-width" id="cc-mcp">
+    <div class="card-header">
+      <div class="card-icon">🔌</div>
+      <div class="card-title-wrap">
+        <div class="step-badge">B-4 · 外部接続</div>
+        <h2>MCP — Claude Code に "外部接続端子" を生やす<span class="card-type-badges"><span class="ctb task">⚡作業</span><span class="ctb idea">💡概念</span></span></h2>
+      </div>
+    </div>
+    <p class="desc" style="margin-bottom:12px;"><b>Model Context Protocol (MCP)</b> = AI と外部サービスを繋ぐ共通端子（USB-C のような存在）。本リポは Render / Supabase / Cloudflare / Shopify / Chrome DevTools の MCP 導入済み。<b>1 文の発話で MCP ツール直叩き</b>。</p>
+
+    <div class="prompt-mini-grid">
+      <div class="prompt-mini">
+        <b>🟢 Supabase スキーマ確認</b>
+        <code class="line">Supabase MCPで ai-hub の全テーブルを一覧して</code>
+        <span class="what">→ <code>mcp__supabase__list_tables</code> 直叩き</span>
+        <button class="mini-copy" type="button">📋</button>
+      </div>
+      <div class="prompt-mini">
+        <b>🛠 マイグレーション適用</b>
+        <code class="line">Supabase MCPで reservations テーブル(id,email,slot)を追加して</code>
+        <span class="what">→ <code>apply_migration</code>。psql 不要・SUPABASE_DB_URL不要</span>
+        <button class="mini-copy" type="button">📋</button>
+      </div>
+      <div class="prompt-mini">
+        <b>☁️ Cloudflare Worker 棚卸し</b>
+        <code class="line">Cloudflare MCPで全Workerを最終更新順で並べて削除候補を出して</code>
+        <span class="what">→ wrangler 不要。アカウント横断で API 経由</span>
+        <button class="mini-copy" type="button">📋</button>
+      </div>
+      <div class="prompt-mini">
+        <b>🚀 Render デプロイ確認</b>
+        <code class="line">Render MCPで全サービスの直近デプロイを表示して</code>
+        <span class="what">→ <code>mcp__render__list_deploys</code>。手元に CLI 無しで運用</span>
+        <button class="mini-copy" type="button">📋</button>
+      </div>
+      <div class="prompt-mini">
+        <b>🌐 Vercel 環境変数追加</b>
+        <code class="line">Vercel APIで NEXT_PUBLIC_SITE_URL を本番に追加して</code>
+        <span class="what">→ <code>VERCEL_TOKEN</code> 経由で curl/SDK 自動操作</span>
+        <button class="mini-copy" type="button">📋</button>
+      </div>
+      <div class="prompt-mini">
+        <b>🛒 Shopify 商品検索</b>
+        <code class="line">Shopify MCPで在庫切れ商品だけ表示して</code>
+        <span class="what">→ Shopify Admin API 経由（プロジェクトスコープ MCP）</span>
+        <button class="mini-copy" type="button">📋</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ==================================================================== -->
+<!-- ===== セクション C: LINE ハーネス ===================== -->
+<!-- ==================================================================== -->
+<section id="sec-line" class="pm-section-head">
+  <div class="eyebrow">💬 第 7 部 · SECTION C · LINE HARNESS</div>
+  <h2>LINE × Claude Code = LINEハーネス — Webhook を「賢い窓口」に変える</h2>
+  <p>LINE 公式アカウントを <b>AI が自動応答する窓口</b>に育てる構成も、本質は同じハーネス設計。Cloudflare Worker (LINE Webhook) → Anthropic API → LINE Reply の流れに、<b>会話履歴 D1</b> と <b>権限ガード</b>を被せる。本セクションは Claude Code に「実際に投げる」プロンプトと、その内部で何が起きるかをセットで掲載します。</p>
+</section>
+
+<div class="pm-section-toc">
+  <a href="#line-arch">構成図</a>
+  <a href="#line-build">作成プロンプト</a>
+  <a href="#line-ops">運用プロンプト</a>
+</div>
+
+<div class="grid">
+  <!-- C-1 構成 -->
+  <div class="card teal full-width" id="line-arch">
+    <div class="card-header">
+      <div class="card-icon">🏗️</div>
+      <div class="card-title-wrap">
+        <div class="step-badge">C-1 · 全体像</div>
+        <h2>LINEハーネスの構成 — 5レイヤーで考える<span class="card-type-badges"><span class="ctb idea">💡概念</span></span></h2>
+      </div>
+    </div>
+
+    <div class="pm-flow" style="--accent:#0d9488">
+      <div class="step"><b>① ユーザー</b><span>LINE トーク画面</span></div>
+      <div class="arrow">→</div>
+      <div class="step"><b>② LINE Platform</b><span>Messaging API</span></div>
+      <div class="arrow">→</div>
+      <div class="step"><b>③ CF Worker</b><span>Webhook 受信</span></div>
+      <div class="arrow">→</div>
+      <div class="step"><b>④ Anthropic API</b><span>Claude が応答生成</span></div>
+      <div class="arrow">→</div>
+      <div class="step"><b>⑤ D1 / Reply</b><span>履歴保存 + 返信</span></div>
+    </div>
+
+    <div class="ide-stack">
+      <div class="layer l1">
+        <div class="badge">L1 LINE</div>
+        <div class="body"><b>LINE Platform</b> — 友だち登録・トーク UI・既読管理など全部やってくれる。Webhook URL を1本登録すれば、メッセージを HTTP POST で渡してくれる。</div>
+      </div>
+      <div class="layer l2">
+        <div class="badge">L2 Worker</div>
+        <div class="body"><b>Cloudflare Worker</b> — グローバルEdgeで常時稼働・コールドスタート無し。LINE Webhook の窓口に最適。<code>wrangler.toml</code> でデプロイ。</div>
+      </div>
+      <div class="layer l3">
+        <div class="badge">L3 Claude</div>
+        <div class="body"><b>Anthropic API</b>（claude-sonnet-4-6）— 過去履歴 + システムプロンプト + 今回メッセージで応答生成。プロンプトキャッシュでコスト 1/10。</div>
+      </div>
+      <div class="layer l4">
+        <div class="badge">L4 D1</div>
+        <div class="body"><b>Cloudflare D1</b>（SQLite互換）— ユーザーごとの会話履歴を <code>(user_id, role, content, created_at)</code> で保持。次回応答時に過去 N 件だけ取り出して context へ。</div>
+      </div>
+      <div class="layer l5">
+        <div class="badge">L5 Hook</div>
+        <div class="body"><b>権限ガード/通知 Hook</b> — 営業時間外は定型応答に切替、NG ワード検出で人間オペレータに自動エスカレ。Worker 内で if 文として実装。</div>
+      </div>
+    </div>
+    <div class="figure-caption"><b>📌 ポイント:</b> LINE → Worker → Claude → D1 → 返信 という <b>5 レイヤーの一方通行</b>。各層がそれぞれ「単機能」を持つから差し替えしやすい。</div>
+
+    <div class="pm-highlight">
+      <b>💡 本プロジェクトでの実例</b>: <code>karatto-line-crm</code> 等の LINE Webhook 4本が Cloudflare で稼働中（メモリ参照: LINE-CRM Workers は補完レイヤとして据え置き）。Vercel 集約後も LINE まわりは Cloudflare に残す方針。
+    </div>
+  </div>
+
+  <!-- C-2 作成プロンプト -->
+  <div class="card pink full-width" id="line-build">
+    <div class="card-header">
+      <div class="card-icon">⚡</div>
+      <div class="card-title-wrap">
+        <div class="step-badge">C-2 · 0→1 構築</div>
+        <h2>LINE ハーネスを 1 行で立ち上げる<span class="card-type-badges"><span class="ctb task">⚡作業</span></span></h2>
+      </div>
+    </div>
+    <p class="desc" style="margin-bottom:10px;">構成は <b>Worker + D1 + Anthropic</b> 固定。発話 1 文で順に積み上げる。</p>
+
+    <div class="prompt-mini-grid">
+      <div class="prompt-mini">
+        <b>🚀 雛形を作る</b>
+        <code class="line">Cloudflare WorkerでLINE Webhook雛形を作って、署名検証だけ実装</code>
+        <span class="what">→ wrangler.toml + src/index.ts + 署名検証コード</span>
+        <button class="mini-copy" type="button">📋</button>
+      </div>
+      <div class="prompt-mini">
+        <b>🤖 AI 応答を足す</b>
+        <code class="line">Anthropic API(sonnet-4-6)で応答を生成してLINEに返す処理を追加</code>
+        <span class="what">→ Claude API 呼び出し + Reply API 連携</span>
+        <button class="mini-copy" type="button">📋</button>
+      </div>
+      <div class="prompt-mini">
+        <b>💾 会話履歴を D1 に保存</b>
+        <code class="line">D1にconversations(user_id,role,content)を作って直近10件を文脈に渡して</code>
+        <span class="what">→ D1 binding 追加 + マイグレ + 文脈合成</span>
+        <button class="mini-copy" type="button">📋</button>
+      </div>
+      <div class="prompt-mini">
+        <b>📚 RAG（マニュアル参照）</b>
+        <code class="line">Supabase pgvectorに店舗マニュアル入れて、質問時に上位3件を文脈に差し込んで</code>
+        <span class="what">→ embedding 投入 + 検索 + 引用回答</span>
+        <button class="mini-copy" type="button">📋</button>
+      </div>
+      <div class="prompt-mini">
+        <b>🆘 人間エスカレ Hook</b>
+        <code class="line">「クレーム」「返金」検知でSlack #line-escalation に通知して自動応答停止</code>
+        <span class="what">→ NG ワード検知 + Slack Webhook + フラグ立て</span>
+        <button class="mini-copy" type="button">📋</button>
+      </div>
+      <div class="prompt-mini">
+        <b>🚀 デプロイ + URL 発行</b>
+        <code class="line">my-shop-lineをデプロイしてLINE開発者コンソールに登録するURLを教えて</code>
+        <span class="what">→ wrangler deploy → Webhook URL を表示</span>
+        <button class="mini-copy" type="button">📋</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- C-3 運用プロンプト -->
+  <div class="card teal full-width" id="line-ops">
+    <div class="card-header">
+      <div class="card-icon">📊</div>
+      <div class="card-title-wrap">
+        <div class="step-badge">C-3 · 運用</div>
+        <h2>運用フェーズの 1 行プロンプト<span class="card-type-badges"><span class="ctb task">⚡作業</span></span></h2>
+      </div>
+    </div>
+
+    <div class="prompt-mini-grid">
+      <div class="prompt-mini">
+        <b>📈 24h 利用統計</b>
+        <code class="line">my-shop-lineのD1から直近24h統計をMCP経由で表で出して</code>
+        <span class="what">→ <code>d1_database_query</code> 直叩き → Markdown 表</span>
+        <button class="mini-copy" type="button">📋</button>
+      </div>
+      <div class="prompt-mini">
+        <b>🚀 デプロイ</b>
+        <code class="line">my-shop-line をデプロイ</code>
+        <span class="what">→ commit → push → wrangler deploy → 動作確認まで一気通貫</span>
+        <button class="mini-copy" type="button">📋</button>
+      </div>
+      <div class="prompt-mini">
+        <b>📜 直近ログを見る</b>
+        <code class="line">my-shop-lineの直近30分のWorkerログを取って異常があれば指摘</code>
+        <span class="what">→ Cloudflare MCP の Logs API 経由</span>
+        <button class="mini-copy" type="button">📋</button>
+      </div>
+      <div class="prompt-mini">
+        <b>⏰ 監視を毎朝に</b>
+        <code class="line">/schedule 毎朝9時にmy-shop-lineの統計を取ってSlackに投稿</code>
+        <span class="what">→ クラウド cron で常時運用化</span>
+        <button class="mini-copy" type="button">📋</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <!-- 凡例 -->
-<div class="legend" style="margin-top:32px;">
+<div id="legend-bottom" class="legend" style="margin-top:32px;">
   <span><div class="legend-dot" style="background:#2563eb"></div> 環境構築</span>
   <span><div class="legend-dot" style="background:#16a34a"></div> フレームワーク</span>
   <span><div class="legend-dot" style="background:#d97706"></div> 開発作業</span>
@@ -1905,16 +3623,45 @@
 </div>
 
 <script>
+  // ===== タブ切替: カード単位にスコープ（複数のタブグループが共存できるように） =====
   (function(){
-    const tabs = document.querySelectorAll('.ai-tab');
-    const panes = document.querySelectorAll('.ai-pane');
+    document.querySelectorAll('.card').forEach(card => {
+      const tabs = card.querySelectorAll(':scope > .ai-tabs > .ai-tab');
+      const panes = card.querySelectorAll(':scope > .ai-pane');
+      if (!tabs.length || !panes.length) return;
+      tabs.forEach(t => t.addEventListener('click', () => {
+        const k = t.dataset.ai;
+        tabs.forEach(x => x.classList.toggle('active', x === t));
+        panes.forEach(p => p.classList.toggle('active', p.dataset.ai === k));
+      }));
+    });
+
+    // ===== ai-chip 開閉（既存のAI/マルチクライアントセクション用）=====
     const chips = document.querySelectorAll('.ai-chip');
-    tabs.forEach(t => t.addEventListener('click', () => {
-      const k = t.dataset.ai;
-      tabs.forEach(x => x.classList.toggle('active', x === t));
-      panes.forEach(p => p.classList.toggle('active', p.dataset.ai === k));
-      chips.forEach(c => c.classList.remove('open'));
-    }));
+
+    // 各 chip の <b> の直前に「関係性アイコン」を1個だけ挿入（高さ控えめ）
+    // 内容に応じて軽くアイコンを切替: 「→」既定 / コードを含むなら「⚡」/ 「Cache/履歴」系は「↻」/ 「禁止/危険」系は「⚠」
+    const ARROW_RULES = [
+      { test: /(キャッシュ|cache|履歴|memory|メモリ|圧縮)/i, icon: '↻' },
+      { test: /(禁止|事故|危険|攻撃|injection|XSS|CSRF|脆弱|秘密|.env|秘密値)/i, icon: '⚠' },
+      { test: /(送る|push|デプロイ|deploy|公開|出力|output|生成)/i, icon: '↗' },
+      { test: /(取得|読む|読込|fetch|read|入力|input|受信|webhook)/i, icon: '↘' },
+      { test: /(変換|map|transform|mapper|エンコード|decode|変える)/i, icon: '⇄' },
+    ];
+    chips.forEach(c => {
+      if (c.querySelector('.chip-arrow')) return;
+      const text = c.textContent || '';
+      let icon = '→';
+      for (const r of ARROW_RULES) { if (r.test.test(text)) { icon = r.icon; break; } }
+      const b = c.querySelector(':scope > b');
+      if (!b) return;
+      const span = document.createElement('span');
+      span.className = 'chip-arrow';
+      span.setAttribute('aria-hidden', 'true');
+      span.textContent = icon;
+      b.parentNode.insertBefore(span, b);
+    });
+
     chips.forEach(c => c.addEventListener('click', (e) => {
       if (e.target.closest('.origin')) return;
       const wasOpen = c.classList.contains('open');
@@ -1925,6 +3672,62 @@
       if (!e.target.closest('.ai-chip')) {
         chips.forEach(c => c.classList.remove('open'));
       }
+    });
+  })();
+
+  // ===== プロンプトコピー（prompt-card / prompt-mini 共通） =====
+  (function(){
+    async function copyText(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        document.execCommand('copy'); document.body.removeChild(ta);
+      }
+    }
+    function flash(btn, originalHtml, okHtml = '✅') {
+      const orig = originalHtml ?? btn.innerHTML;
+      btn.innerHTML = okHtml;
+      btn.classList.add('ok');
+      setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('ok'); }, 1500);
+    }
+    // 大きい prompt-card (B-3 や C-2/C-3)
+    document.querySelectorAll('.prompt-card').forEach(card => {
+      const btn = card.querySelector('.prompt-copy');
+      const pre = card.querySelector('pre');
+      if (!btn || !pre) return;
+      btn.addEventListener('click', async () => {
+        try { await copyText(pre.innerText); flash(btn, '📋 コピー', '✅ コピー済み'); }
+        catch { flash(btn, '📋 コピー', '❌ 失敗'); }
+      });
+    });
+    // ワンライナー prompt-mini
+    document.querySelectorAll('.prompt-mini').forEach(mini => {
+      const btn = mini.querySelector('.mini-copy');
+      const code = mini.querySelector('code.line');
+      if (!btn || !code) return;
+      btn.addEventListener('click', async (e) => {
+        e.stopPropagation();
+        try { await copyText(code.innerText); flash(btn, '📋', '✅'); }
+        catch { flash(btn, '📋', '❌'); }
+      });
+    });
+  })();
+
+  // ===== ナビ・TOC のスムーズスクロール =====
+  (function(){
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const id = a.getAttribute('href').slice(1);
+        if (!id) return;
+        const target = document.getElementById(id);
+        if (!target) return;
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.replaceState(null, '', '#' + id);
+      });
     });
   })();
 </script>

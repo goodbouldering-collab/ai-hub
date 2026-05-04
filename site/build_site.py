@@ -263,6 +263,16 @@ def is_video(item: dict) -> bool:
     return "youtube.com/watch" in url or "youtu.be/" in url
 
 
+# 全ページ共通の favicon (HEAD に注入)
+# モダンブラウザは SVG favicon を優先、Apple は SVG/PNG どちらも apple-touch-icon を読む
+FAVICON_HEAD_HTML = (
+    "<link rel='icon' type='image/svg+xml' href='/favicon.svg'>"
+    "<link rel='alternate icon' type='image/svg+xml' href='/favicon.svg'>"
+    "<link rel='apple-touch-icon' href='/apple-touch-icon.svg'>"
+    "<link rel='mask-icon' href='/favicon.svg' color='#7aa2ff'>"
+    "<meta name='theme-color' content='#0d1126'>"
+)
+
 # top_buttons の中で `localhost_only: true` のリンクは
 # サーバ生成HTMLでは display:none で出力 → 本スクリプトが localhost 系ホストのときだけ
 # display を inline に戻す。本番 (GitHub Pages) では訪問者に一切見えない。
@@ -620,7 +630,7 @@ def render_index(payload: dict, genres: list[dict]) -> str:
         genre_counts[it["genre"]] = genre_counts.get(it["genre"], 0) + 1
 
     parts: list[str] = []
-    parts.append("<!doctype html><html lang='ja'><head><meta charset='utf-8'>")
+    parts.append("<!doctype html><html lang='ja'><head><meta charset='utf-8'>" + FAVICON_HEAD_HTML)
     parts.append("<meta name='viewport' content='width=device-width,initial-scale=1'>")
     parts.append(f"<title>AIハブ Top{total} / {date}</title>")
     desc = f"AI情報とSNSアルゴリズム動向を毎朝要約・ランキング。{date} のTop{total}を掲載。"
@@ -836,7 +846,7 @@ function trackClick(el, url) {
 
 def render_archive(dates: list[str]) -> str:
     parts: list[str] = []
-    parts.append("<!doctype html><html lang='ja'><head><meta charset='utf-8'>")
+    parts.append("<!doctype html><html lang='ja'><head><meta charset='utf-8'>" + FAVICON_HEAD_HTML)
     parts.append("<meta name='viewport' content='width=device-width,initial-scale=1'>")
     parts.append("<title>AIハブ — 過去ログ</title>")
     parts.append(f"<style>{CSS}</style></head><body><div class='container'>")
@@ -1566,7 +1576,7 @@ def render_content_page(title: str, meta: dict, body_html: str, nav_html: str, p
     body_html, toc = _inject_heading_ids(body_html)
     page_url = f"{SITE_URL}/{page_path.lstrip('/')}" if page_path else SITE_URL
     parts: list[str] = []
-    parts.append("<!doctype html><html lang='ja'><head><meta charset='utf-8'>")
+    parts.append("<!doctype html><html lang='ja'><head><meta charset='utf-8'>" + FAVICON_HEAD_HTML)
     parts.append("<meta name='viewport' content='width=device-width,initial-scale=1'>")
     parts.append(f"<title>{html.escape(title)} | AIハブ</title>")
     desc = str(meta.get("summary") or "")

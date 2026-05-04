@@ -2,51 +2,73 @@
 
 ## AIニュース
 
-### How the internet’s favorite squirrel dad made the hottest camera app of 2026
-It's not hyperbole to call DualShot Recorder an overnight sensation. It took only 12 hours from the time it was released to hit number one on the App Store's list of top paid apps. It was a surprise s...
-出典: https://www.theverge.com/tech/921690/dualshot-recorder-iphone-camera-app-derrick-downey-jr
+### The creator of Roomba is back with a furry robot companion
+Colin Angle, the maker of the Roomba and the man who helped put 50 million household robots into people's homes, is back with a new robot. But this one is designed as a companion, not a cleaner. The f...
+出典: https://www.theverge.com/ai-artificial-intelligence/922947/roomba-creator-new-robot-familiar-machines-magic-ai-launch
 
-### AI music is flooding streaming services — but who wants it?
-This is The Stepback, a weekly newsletter breaking down one essential story from the tech world. For more on how AI is changing music and the music industry, follow Terrence O'Brien. The Stepback arri...
-出典: https://www.theverge.com/column/921599/ai-music-is-flooding-streaming-services-but-who-wants-it
+### Live updates from Elon Musk and Sam Altman’s court battle over the future of OpenAI
+Sam Altman and Elon Musk are facing off in a high-stakes trial that could alter the future of OpenAI and its most well-known product, ChatGPT. In 2024, Musk filed a lawsuit accusing OpenAI of abandoni...
+出典: https://www.theverge.com/tech/917225/sam-altman-elon-musk-openai-lawsuit
+
+### Week one of the Musk v. Altman trial: What it was like in the room
+This story originally appeared in The Algorithm, our weekly newsletter on AI. To get stories like this in your inbox first,&#160;sign up here. Two of the most powerful people in AI—Sam Altman and Elon...
+出典: https://www.technologyreview.com/2026/05/04/1136826/week-one-of-the-musk-v-altman-trial-what-it-was-like-in-the-room/
+
+### "Notepad++ for Mac" release is disavowed by the creator of the original
+"To be clear: Notepad++ has never released a macOS version."
+出典: https://arstechnica.com/gadgets/2026/05/unofficial-vibe-coded-notepad-for-mac-draws-objections-from-original-author/
+
+### Canadian election databases use "canary traps"—and they work
+Intentional errors can be useful.
+出典: https://arstechnica.com/tech-policy/2026/05/in-canada-a-canary-trap-springs-shut-and-ids-election-database-leak/
+
+### Influential study touting ChatGPT in education retracted over red flags
+The retracted study on ChatGPT in education was already cited hundreds of times.
+出典: https://arstechnica.com/ai/2026/05/influential-study-touting-chatgpt-in-education-retracted-over-red-flags/
+
+### Musk’s “World War III” threat in Twitter lawsuit haunts him at OpenAI trial
+OpenAI accuses Musk of trying to "coerce" a settlement days before trial started.
+出典: https://arstechnica.com/tech-policy/2026/05/musks-world-war-iii-threat-in-twitter-lawsuit-haunts-him-at-openai-trial/
+
+
+## AI公式
+
+### How OpenAI delivers low-latency voice AI at scale
+How OpenAI rebuilt its WebRTC stack to power real-time Voice AI with low latency, global scale, and seamless conversational turn-taking.
+出典: https://openai.com/index/delivering-low-latency-voice-ai-at-scale
 
 
 ## AI動画(日本語)
 
-### PC上でAIキャラを飼える『Codexペット』が神機能すぎる！カスタムペットの作り方
-PC上でAIキャラを飼えるCodexペットが神機能すぎたんで、カスタムペットの作り方を解説します。  ★Substack（メルマガ）は下記から購読 https://kt-life.net/sns-links/newsletter.html  ★プロセボ｜AIコミュニティ AI活用を実際に操作しながら学ぶワークショップ型AIスクール。 参加申し込みはこちら → https://procevo.biz...
-出典: https://www.youtube.com/watch?v=uO2-G4lrbFc
+### 【超有料級】誰も知らない穴場をみなさんに教えます
+▼動画内で紹介したプレゼントの受け取りは以下の公式LINEから https://liff.line.me/2006805073-rn36NG8b/landing?follow=%40933hyolt&amp;lp=pe2npU&amp;liff_id=2006805073-rn36NG8b  ▼現在開催中のセミナーを確認する https://n1seminar-vsuoymjh.manus.spa...
+出典: https://www.youtube.com/watch?v=NpeIB0o7tTE
 
-### 【初心者必見】Canvaより稼げるAIを見つけました
-▼動画内で紹介したプレゼントの受け取りは以下の公式LINEから https://liff.line.me/2006805073-rn36NG8b/landing?follow=%40933hyolt&amp;lp=uXxG1n&amp;liff_id=2006805073-rn36NG8b  ▼現在開催中のセミナーを確認する https://n1seminar-vsuoymjh.manus.spa...
-出典: https://www.youtube.com/watch?v=JSIcdBFlMgs
+
+## AI国内
+
+### Anthropic、Blackstoneらと新会社設立へ 中小企業へのClaude導入を加速
+Anthropicは、Blackstoneなどの資産運用大手と共同でエンタープライズ向けAIサービス企業を設立した。新会社は主に中小企業のClaude導入を支援し、既存のパートナー網を補完する役割を担う。同様にOpenAIも投資会社と組み、AI実装を担う新会社の設立に向けて動いていると報じられた。
+出典: https://www.itmedia.co.jp/news/articles/2605/05/news023.html
 
 
 ## AI研究者ブログ
 
-### Quoting Anthropic
-<blockquote cite="https://www.anthropic.com/research/claude-personal-guidance"><p>We used an automatic classifier which judged sycophancy by looking at whether Claude showed a willingness to push back...
-出典: https://simonwillison.net/2026/May/3/anthropic/#atom-everything
+### April 2026 newsletter
+<p>I just sent out the April edition of my <a href="https://github.com/sponsors/simonw/">sponsors-only monthly newsletter</a>. If you are a sponsor (or if you start a sponsorship now) you can <a href=...
+出典: https://simonwillison.net/2026/May/4/april-newsletter/#atom-everything
+
+### TRE Python binding — ReDoS robustness demo
+<p><strong>Research:</strong> <a href="https://github.com/simonw/research/tree/main/tre-python-binding#readme">TRE Python binding — ReDoS robustness demo</a></p>         <p>If it's <a href="https://si...
+出典: https://simonwillison.net/2026/May/4/tre-python-binding/#atom-everything
+
+### Redis Array Playground
+<p><strong>Tool:</strong> <a href="https://tools.simonwillison.net/redis-array">Redis Array Playground</a></p>         <p>Salvatore Sanfilippo submitted <a href="https://github.com/redis/redis/pull/15...
+出典: https://simonwillison.net/2026/May/4/redis-array/#atom-everything
 
 
-## SNS動向
+## SNS公式
 
-### Meta acquires humanoid robot developer Assured Robot Intelligence
-<p>It&rsquo;s the latest move in a race to add artificial intelligence to consumer-facing home technology, with xAI and Amazon also competing for future category dominance.</p>
-出典: https://www.socialmediatoday.com/news/meta-acquires-humanoid-robot-developer-assured-robot-intelligence/819156/
-
-### YouTube tests new music generation and moderation tools
-<p>The platform will allow creators to replace copyrighted songs with royalty-free instrumental clips, while also using conversation context to filter video comments.</p>
-出典: https://www.socialmediatoday.com/news/youtube-tests-new-music-generation-and-moderation-tools/819154/
-
-### Instagram tests option to swap out text in someone else’s Reels
-<p>An explainer article appeared and then disappeared in the app&rsquo;s Help Center, suggesting this feature is still a work in progress.</p>
-出典: https://www.socialmediatoday.com/news/instagram-tests-option-to-swap-out-text-in-someone-elses-reels/819153/
-
-### TikTok highlights emerging creators for Asian and Pacific Islander Heritage Month
-<p>The platform has made this event a cornerstone of its diversity engagement each year, with themed promotions and other activations.</p>
-出典: https://www.socialmediatoday.com/news/tiktok-highlights-emerging-creators-for-asian-and-pacific-islander-heritage/819152/
-
-### Reddit posts strong Q1 results
-<p>The platform&rsquo;s ad business drove a 69% year-over-year revenue increase to $663 million for the first quarter of 2026.</p>  <p>&nbsp;</p>
-出典: https://www.socialmediatoday.com/news/reddit-posts-strong-q1-results/819150/
+### How to watch the 2026 Met Gala red carpet live stream
+<img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/GettyImages-2213593853.max-600x600.format-webp.webp" />Watch the 2026 Met Gala red carpet live on Monday, May 4, starting at 6...
+出典: https://blog.youtube/culture-and-trends/watch-met-gala-2026-live-stream/

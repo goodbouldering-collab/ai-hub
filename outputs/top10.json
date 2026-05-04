@@ -2,11 +2,68 @@
   "date": "2026-05-04",
   "items": [
     {
-      "hash": "07f87b633f4b69f3",
-      "title": "Quoting Anthropic",
-      "orig_title": "Quoting Anthropic",
+      "hash": "6b4263f51fed0cf9",
+      "title": "April 2026 newsletter",
+      "orig_title": "April 2026 newsletter",
       "summary": "",
-      "url": "https://simonwillison.net/2026/May/3/anthropic/#atom-everything",
+      "url": "https://simonwillison.net/2026/May/4/april-newsletter/#atom-everything",
+      "source": "Simon Willison's Weblog",
+      "category": "AI研究者ブログ",
+      "genre": "industry",
+      "score": 60.0,
+      "breakdown": {
+        "base": 50.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 10.0
+      },
+      "thumbnail": "",
+      "published": "2026-05-04T22:38:36+00:00"
+    },
+    {
+      "hash": "043ef3e357cab642",
+      "title": "The creator of Roomba is back with a furry robot companion",
+      "orig_title": "The creator of Roomba is back with a furry robot companion",
+      "summary": "",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/922947/roomba-creator-new-robot-familiar-machines-magic-ai-launch",
+      "source": "The Verge AI",
+      "category": "AIニュース",
+      "genre": "industry",
+      "score": 56.0,
+      "breakdown": {
+        "base": 50.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 6.0
+      },
+      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/Golden.png?quality=90&amp;strip=all&amp;crop=0%2C1.8117057886209%2C100%2C96.376588422758&amp;w=1200",
+      "published": "2026-05-04T12:51:38-04:00"
+    },
+    {
+      "hash": "302ed31d035e2099",
+      "title": "Live updates from Elon Musk and Sam Altman’s court battle over the future of OpenAI",
+      "orig_title": "Live updates from Elon Musk and Sam Altman’s court battle over the future of OpenAI",
+      "summary": "",
+      "url": "https://www.theverge.com/tech/917225/sam-altman-elon-musk-openai-lawsuit",
+      "source": "The Verge AI",
+      "category": "AIニュース",
+      "genre": "industry",
+      "score": 56.0,
+      "breakdown": {
+        "base": 50.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 6.0
+      },
+      "thumbnail": "",
+      "published": "2026-05-04T11:43:49-04:00"
+    },
+    {
+      "hash": "4b68157c93a63eaf",
+      "title": "TRE Python binding — ReDoS robustness demo",
+      "orig_title": "TRE Python binding — ReDoS robustness demo",
+      "summary": "",
+      "url": "https://simonwillison.net/2026/May/4/tre-python-binding/#atom-everything",
       "source": "Simon Willison's Weblog",
       "category": "AI研究者ブログ",
       "genre": "industry",
@@ -18,71 +75,33 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-05-03T15:13:23+00:00"
+      "published": "2026-05-04T17:52:00+00:00"
     },
     {
-      "hash": "c6ca7103a28f41b6",
-      "title": "How the internet’s favorite squirrel dad made the hottest camera app of 2026",
-      "orig_title": "How the internet’s favorite squirrel dad made the hottest camera app of 2026",
+      "hash": "5e4f5714691ed368",
+      "title": "Redis Array Playground",
+      "orig_title": "Redis Array Playground",
       "summary": "",
-      "url": "https://www.theverge.com/tech/921690/dualshot-recorder-iphone-camera-app-derrick-downey-jr",
-      "source": "The Verge AI",
-      "category": "AIニュース",
+      "url": "https://simonwillison.net/2026/May/4/redis-array/#atom-everything",
+      "source": "Simon Willison's Weblog",
+      "category": "AI研究者ブログ",
       "genre": "industry",
-      "score": 53.0,
+      "score": 56.0,
       "breakdown": {
         "base": 50.0,
         "genre_bonus": 0.0,
         "source_bonus": 0.0,
-        "freshness": 3.0
+        "freshness": 6.0
       },
-      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/Vrg_illo_squirrel_influencer.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-05-03T09:00:00-04:00"
+      "thumbnail": "https://static.simonwillison.net/static/2026/redis-array-explorer-card.jpg",
+      "published": "2026-05-04T15:53:57+00:00"
     },
     {
-      "hash": "d7aa0bf2e393fb40",
-      "title": "AI music is flooding streaming services — but who wants it?",
-      "orig_title": "AI music is flooding streaming services — but who wants it?",
+      "hash": "a69a5571dea474e3",
+      "title": "【超有料級】誰も知らない穴場をみなさんに教えます",
+      "orig_title": "【超有料級】誰も知らない穴場をみなさんに教えます",
       "summary": "",
-      "url": "https://www.theverge.com/column/921599/ai-music-is-flooding-streaming-services-but-who-wants-it",
-      "source": "The Verge AI",
-      "category": "AIニュース",
-      "genre": "industry",
-      "score": 53.0,
-      "breakdown": {
-        "base": 50.0,
-        "genre_bonus": 0.0,
-        "source_bonus": 0.0,
-        "freshness": 3.0
-      },
-      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/GettyImages-1468752442.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-05-03T08:00:00-04:00"
-    },
-    {
-      "hash": "9a16f6b6083958d0",
-      "title": "PC上でAIキャラを飼える『Codexペット』が神機能すぎる！カスタムペットの作り方",
-      "orig_title": "PC上でAIキャラを飼える『Codexペット』が神機能すぎる！カスタムペットの作り方",
-      "summary": "",
-      "url": "https://www.youtube.com/watch?v=uO2-G4lrbFc",
-      "source": "KEITO AI&WEB",
-      "category": "AI動画(日本語)",
-      "genre": "industry",
-      "score": 53.0,
-      "breakdown": {
-        "base": 50.0,
-        "genre_bonus": 0.0,
-        "source_bonus": 0.0,
-        "freshness": 3.0
-      },
-      "thumbnail": "https://img.youtube.com/vi/uO2-G4lrbFc/hqdefault.jpg",
-      "published": "2026-05-03T04:00:17+00:00"
-    },
-    {
-      "hash": "c1d1c07671655529",
-      "title": "【初心者必見】Canvaより稼げるAIを見つけました",
-      "orig_title": "【初心者必見】Canvaより稼げるAIを見つけました",
-      "summary": "",
-      "url": "https://www.youtube.com/watch?v=JSIcdBFlMgs",
+      "url": "https://www.youtube.com/watch?v=NpeIB0o7tTE",
       "source": "AI収益化ラボ",
       "category": "AI動画(日本語)",
       "genre": "industry",
@@ -93,17 +112,17 @@
         "source_bonus": 0.0,
         "freshness": 3.0
       },
-      "thumbnail": "https://img.youtube.com/vi/JSIcdBFlMgs/hqdefault.jpg",
-      "published": "2026-05-03T12:37:17+00:00"
+      "thumbnail": "https://img.youtube.com/vi/NpeIB0o7tTE/hqdefault.jpg",
+      "published": "2026-05-04T10:00:40+00:00"
     },
     {
-      "hash": "576f568c69eb4f94",
-      "title": "Meta acquires humanoid robot developer Assured Robot Intelligence",
-      "orig_title": "Meta acquires humanoid robot developer Assured Robot Intelligence",
+      "hash": "ff71e2752a06b0cf",
+      "title": "How OpenAI delivers low-latency voice AI at scale",
+      "orig_title": "How OpenAI delivers low-latency voice AI at scale",
       "summary": "",
-      "url": "https://www.socialmediatoday.com/news/meta-acquires-humanoid-robot-developer-assured-robot-intelligence/819156/",
-      "source": "Social Media Today",
-      "category": "SNS動向",
+      "url": "https://openai.com/index/delivering-low-latency-voice-ai-at-scale",
+      "source": "OpenAI Blog",
+      "category": "AI公式",
       "genre": "industry",
       "score": 50.0,
       "breakdown": {
@@ -112,17 +131,17 @@
         "source_bonus": 0.0,
         "freshness": 0.0
       },
-      "thumbnail": "",
-      "published": "Sun, 03 May 2026 15:37:54 -0400"
+      "thumbnail": "https://images.ctfassets.net/kftzwdyauwt9/5LQivcsFcndtRl4EsbtnOC/c548a54b9bbe11c0b4d9de714f800b30/Voice_AI___SEO_card.png?w=1600&amp;h=900&amp;fit=fill",
+      "published": "Mon, 04 May 2026 00:00:00 GMT"
     },
     {
-      "hash": "549c787afcfe7c8c",
-      "title": "YouTube tests new music generation and moderation tools",
-      "orig_title": "YouTube tests new music generation and moderation tools",
+      "hash": "f3f23e3b5753a860",
+      "title": "Week one of the Musk v. Altman trial: What it was like in the room",
+      "orig_title": "Week one of the Musk v. Altman trial: What it was like in the room",
       "summary": "",
-      "url": "https://www.socialmediatoday.com/news/youtube-tests-new-music-generation-and-moderation-tools/819154/",
-      "source": "Social Media Today",
-      "category": "SNS動向",
+      "url": "https://www.technologyreview.com/2026/05/04/1136826/week-one-of-the-musk-v-altman-trial-what-it-was-like-in-the-room/",
+      "source": "MIT Technology Review AI",
+      "category": "AIニュース",
       "genre": "industry",
       "score": 50.0,
       "breakdown": {
@@ -131,17 +150,17 @@
         "source_bonus": 0.0,
         "freshness": 0.0
       },
-      "thumbnail": "",
-      "published": "Sun, 03 May 2026 15:12:42 -0400"
+      "thumbnail": "https://wp.technologyreview.com/wp-content/uploads/2026/05/260504_algo2.jpg?resize=1200,600",
+      "published": "Mon, 04 May 2026 15:51:27 +0000"
     },
     {
-      "hash": "728b5e4e5336a399",
-      "title": "Instagram tests option to swap out text in someone else’s Reels",
-      "orig_title": "Instagram tests option to swap out text in someone else’s Reels",
+      "hash": "2fb1fa10114e28d8",
+      "title": "\"Notepad++ for Mac\" release is disavowed by the creator of the original",
+      "orig_title": "\"Notepad++ for Mac\" release is disavowed by the creator of the original",
       "summary": "",
-      "url": "https://www.socialmediatoday.com/news/instagram-tests-option-to-swap-out-text-in-someone-elses-reels/819153/",
-      "source": "Social Media Today",
-      "category": "SNS動向",
+      "url": "https://arstechnica.com/gadgets/2026/05/unofficial-vibe-coded-notepad-for-mac-draws-objections-from-original-author/",
+      "source": "Ars Technica AI",
+      "category": "AIニュース",
       "genre": "industry",
       "score": 50.0,
       "breakdown": {
@@ -150,17 +169,17 @@
         "source_bonus": 0.0,
         "freshness": 0.0
       },
-      "thumbnail": "",
-      "published": "Sun, 03 May 2026 15:01:26 -0400"
+      "thumbnail": "https://cdn.arstechnica.net/wp-content/uploads/2026/05/Screenshot-2026-05-04-at-4.50.42-PM-1152x648-1777928517.png",
+      "published": "Mon, 04 May 2026 21:38:37 +0000"
     },
     {
-      "hash": "ca4727b681fa1b76",
-      "title": "TikTok highlights emerging creators for Asian and Pacific Islander Heritage Month",
-      "orig_title": "TikTok highlights emerging creators for Asian and Pacific Islander Heritage Month",
+      "hash": "61fd9ebae685eeb1",
+      "title": "Canadian election databases use \"canary traps\"—and they work",
+      "orig_title": "Canadian election databases use \"canary traps\"—and they work",
       "summary": "",
-      "url": "https://www.socialmediatoday.com/news/tiktok-highlights-emerging-creators-for-asian-and-pacific-islander-heritage/819152/",
-      "source": "Social Media Today",
-      "category": "SNS動向",
+      "url": "https://arstechnica.com/tech-policy/2026/05/in-canada-a-canary-trap-springs-shut-and-ids-election-database-leak/",
+      "source": "Ars Technica AI",
+      "category": "AIニュース",
       "genre": "industry",
       "score": 50.0,
       "breakdown": {
@@ -169,27 +188,8 @@
         "source_bonus": 0.0,
         "freshness": 0.0
       },
-      "thumbnail": "",
-      "published": "Sun, 03 May 2026 14:46:30 -0400"
-    },
-    {
-      "hash": "ab164f819fe1f39c",
-      "title": "Reddit posts strong Q1 results",
-      "orig_title": "Reddit posts strong Q1 results",
-      "summary": "",
-      "url": "https://www.socialmediatoday.com/news/reddit-posts-strong-q1-results/819150/",
-      "source": "Social Media Today",
-      "category": "SNS動向",
-      "genre": "industry",
-      "score": 50.0,
-      "breakdown": {
-        "base": 50.0,
-        "genre_bonus": 0.0,
-        "source_bonus": 0.0,
-        "freshness": 0.0
-      },
-      "thumbnail": "",
-      "published": "Sun, 03 May 2026 06:27:31 -0400"
+      "thumbnail": "https://cdn.arstechnica.net/wp-content/uploads/2026/05/GettyImages-626440930-1152x648-1777922464.jpg",
+      "published": "Mon, 04 May 2026 19:45:57 +0000"
     }
   ]
 }

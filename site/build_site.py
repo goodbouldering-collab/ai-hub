@@ -609,7 +609,7 @@ footer {
 """
 
 
-def render_index(payload: dict, genres: list[dict]) -> str:
+def render_index(payload: dict, genres: list[dict], is_live: bool = True) -> str:
     date = payload.get("date", "")
     items = list(payload.get("items", []))
 
@@ -645,7 +645,7 @@ def render_index(payload: dict, genres: list[dict]) -> str:
     parts.append("<header>")
     parts.append("<h1>AIハブ</h1>")
     parts.append(f"<p class='sub'>{date} ・ 今日の注目Top{total} ・ クリックで好みを学習</p>")
-    parts.append(render_top_nav(path_prefix="./", current_id="home", include_run=True))
+    parts.append(render_top_nav(path_prefix="./", current_id="home" if is_live else "archive", include_run=is_live))
     parts.append("</header>")
 
     if not items:
@@ -2282,7 +2282,7 @@ def main() -> int:
         d = f.stem
         dates.append(d)
         arc_payload = json.loads(f.read_text(encoding="utf-8"))
-        (DIST / f"{d}.html").write_text(render_index(arc_payload, genres), encoding="utf-8")
+        (DIST / f"{d}.html").write_text(render_index(arc_payload, genres, is_live=False), encoding="utf-8")
 
     (DIST / "archive.html").write_text(render_archive(dates), encoding="utf-8")
     (DIST / ".nojekyll").write_text("", encoding="utf-8")

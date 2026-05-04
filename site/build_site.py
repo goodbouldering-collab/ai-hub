@@ -642,10 +642,10 @@ def render_index(payload: dict, genres: list[dict], is_live: bool = True) -> str
         parts.append(f"<script type='application/ld+json'>{ld}</script>")
     parts.append(f"<style>{CSS}</style></head><body><div class='container'>")
     parts.append(ADMIN_BUTTON_HTML)
+    parts.append(render_top_nav(path_prefix="./", current_id="home" if is_live else "archive", include_run=is_live))
     parts.append("<header>")
     parts.append("<h1>AIハブ</h1>")
     parts.append(f"<p class='sub'>{date} ・ 今日の注目Top{total} ・ クリックで好みを学習</p>")
-    parts.append(render_top_nav(path_prefix="./", current_id="home" if is_live else "archive", include_run=is_live))
     parts.append("</header>")
 
     if not items:
@@ -851,10 +851,10 @@ def render_archive(dates: list[str]) -> str:
     parts.append("<title>AIハブ — 過去ログ</title>")
     parts.append(f"<style>{CSS}</style></head><body><div class='container'>")
     parts.append(ADMIN_BUTTON_HTML)
+    parts.append(render_top_nav(path_prefix="./", current_id="archive", include_run=False))
     parts.append("<header>")
     parts.append("<h1>過去ログ</h1>")
     parts.append(f"<p class='sub'>アーカイブ {len(dates)}件</p>")
-    parts.append(render_top_nav(path_prefix="./", current_id="archive", include_run=False))
     parts.append("</header>")
     if dates:
         parts.append("<ul style='list-style:none;padding:0;margin:0'>")
@@ -1591,6 +1591,7 @@ def render_content_page(title: str, meta: dict, body_html: str, nav_html: str, p
             parts.append(f"<script type='application/ld+json'>{ld}</script>")
     parts.append(f"<style>{CSS}{CONTENT_CSS}</style></head><body><div class='container'>")
     parts.append(ADMIN_BUTTON_HTML)
+    parts.append(nav_html)
     parts.append("<header>")
     parts.append(f"<h1>{html.escape(title)}</h1>")
     sub_bits: list[str] = []
@@ -1605,7 +1606,6 @@ def render_content_page(title: str, meta: dict, body_html: str, nav_html: str, p
         sub_bits.append(f"<a href='{url}' target='_blank' rel='noopener'>プロフィール</a>")
     if sub_bits:
         parts.append("<div class='speaker-meta'>" + "".join(sub_bits) + "</div>")
-    parts.append(nav_html)
     parts.append("</header>")
     parts.append("<div class='content-wrap'>")
     # TOC: h2 が 3 個以上あれば出す

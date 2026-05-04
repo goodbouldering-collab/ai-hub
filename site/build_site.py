@@ -2119,6 +2119,68 @@ def copy_static() -> None:
         dst = DIST / src.relative_to(STATIC)
         dst.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(src, dst)
+    # static の programming-map.html だけ後処理: 独自ナビを共通ナビへ置換し、
+    # 章立てはページ内目次バーに分離する
+    pmap = DIST / "programming-map.html"
+    if pmap.exists():
+        _patch_programming_map_nav(pmap)
+
+
+def _patch_programming_map_nav(pmap_file: Path) -> None:
+    """programming-map.html の <nav class="top-nav">...</nav> ブロックを
+    全ページ共通の render_top_nav() 出力で置換し、
+    章立て (#part-1〜#sec-line) はページ内目次バーに分離する。"""
+    import re as _re
+    text = pmap_file.read_text(encoding="utf-8")
+    # 共通ナビ HTML（pmap を current として）
+    common_nav = render_top_nav(path_prefix="./", current_id="pmap", include_run=False)
+    # ページ内目次バー（programming-map 専用 — sticky とは別）
+    chapter_toc = (
+        "<nav class='pm-chapter-toc' aria-label='ページ内目次'>"
+        "<span class='pm-toc-label'>📖 章立て</span>"
+        "<a href='#top'>🗺 全体</a>"
+        "<a href='#part-1'>① 環境</a>"
+        "<a href='#part-2'>② 開発</a>"
+        "<a href='#part-3'>③ 公開・運用</a>"
+        "<a href='#part-4'>④ AI時代</a>"
+        "<a href='#sec-cms'>📝 CMS</a>"
+        "<a href='#sec-ccode'>🤖 Claude</a>"
+        "<a href='#sec-line'>💬 LINE</a>"
+        "</nav>"
+    )
+    # ページ内目次バーの最低限の CSS（既存ファイルに style ブロックを追加）
+    chapter_css = (
+        "<style id='pm-chapter-toc-css'>"
+        ".pm-chapter-toc{display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;"
+        "max-width:920px;margin:14px auto 18px;padding:8px 12px;"
+        "background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);"
+        "border-radius:14px;backdrop-filter:blur(10px);}"
+        ".pm-chapter-toc .pm-toc-label{font-size:10px;font-weight:800;letter-spacing:.14em;"
+        "color:#7aa2ff;text-transform:uppercase;opacity:.8;padding-right:4px;white-space:nowrap;}"
+        ".pm-chapter-toc a{display:inline-flex;align-items:center;gap:3px;padding:4px 10px;"
+        "border-radius:999px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);"
+        "color:#e8ebf5;text-decoration:none;font-size:11.5px;font-weight:700;line-height:1.3;"
+        "white-space:nowrap;transition:all .2s;}"
+        ".pm-chapter-toc a:hover{background:rgba(122,162,255,.18);"
+        "border-color:rgba(122,162,255,.5);transform:translateY(-1px);}"
+        "@media (max-width:640px){.pm-chapter-toc{padding:6px 10px;gap:3px 5px;}"
+        ".pm-chapter-toc a{padding:4px 9px;font-size:11px;}}"
+        "</style>"
+    )
+    # 既存の <nav class="top-nav" aria-label="サイトナビゲーション">...</nav> を置換
+    new_text, n = _re.subn(
+        r'<nav class="top-nav" aria-label="サイトナビゲーション">.*?</nav>',
+        common_nav + "\n" + chapter_toc,
+        text,
+        count=1,
+        flags=_re.DOTALL,
+    )
+    if n == 0:
+        return
+    # CSS を </head> 直前に注入（既に注入済みなら何もしない）
+    if "id='pm-chapter-toc-css'" not in new_text and "id=\"pm-chapter-toc-css\"" not in new_text:
+        new_text = new_text.replace("</head>", chapter_css + "</head>", 1)
+    pmap_file.write_text(new_text, encoding="utf-8")
 
 
 def build_sitemap_and_robots() -> None:

@@ -7,9 +7,11 @@
 
 - プロジェクト名: **AIハブ / AI Hub**（旧称: AI-watch、AI情報収集、cclimb-intel、ai-info）
 - GitHub: `goodbouldering-collab/ai-hub`
-- Render service: `ai-hub`（静的サイト、Singapore、`main` push で自動デプロイ）
-- GitHub Pages: `https://goodbouldering-collab.github.io/ai-hub/`
-- Supabase: 既存の共有プロジェクト `zrawhzwtppmlxyhngnju` の `public.ai_watch_*` 相乗り（テーブル名は履歴互換のため `ai_watch_` プレフィックスを維持）
+- **本番ホスティング**: **Vercel**（2026-04-29 集約済）
+- **本番URL**: https://ai-hub-jp.vercel.app
+- Vercel Project ID: `prj_e7vh73eF0KZpm8C49esnILvHO98o`
+- GitHub Pages: `https://goodbouldering-collab.github.io/ai-hub/`（参考・残置）
+- Supabase: 既存の共有プロジェクト `zrawhzwtppmlxyhngnju` の `ai_watch.*` スキーマ（旧 `public.ai_watch_*` から移管。テーブル名は履歴互換のため維持。なお `zrawhzwtppmlxyhngnju.ai_watch` は Vercel 移行後ほぼ未使用、次回掃除候補）
 
 新規で文言を書くときは「AIハブ」に揃える。過去ログ（`outputs/notebooklm/*`）と Supabase テーブル名は改名しない（NotebookLM 側のソース参照と既存データ互換のため）。
 
@@ -36,37 +38,30 @@
 | `content/lectures/*.md` | 講習資料の編集ソース。ビルドで `lectures/<slug>.html` になる |
 | `content/assets/` | 画像・PDF。`./assets/xxx` で参照 |
 
-## デプロイ構成
+## デプロイ構成（**Vercel 集約・2026-04-29 移行済**）
 
 - **GitHub Actions `daily.yml`**: JST 07:00 に `run.py` を実行し、`outputs/` と `data/history.db` を main に commit back
-- **GitHub Actions `pages.yml`**: `main` への push で `site/build_site.py` を叩いて GitHub Pages に配布
-- **Render (`render.yaml`)**: `main` push で `pip install` → `build_site.py` → `site/dist/` を静的配信
+- **GitHub Actions `pages.yml`**: `main` への push で `site/build_site.py` を叩いて GitHub Pages に配布（参考・残置）
+- **Vercel**（**本番**）: `main` push で自動デプロイ、`site/dist/` を静的配信、PR ごとに Preview URL 自動発行
+  - 本番 URL: https://ai-hub-jp.vercel.app
+  - Project ID: `prj_e7vh73eF0KZpm8C49esnILvHO98o`
 - **Supabase**: `ai_watch_articles` テーブルに差分保存（`SUPABASE_URL` / `SUPABASE_SERVICE_ROLE_KEY` が env にあれば書き込む）
 
-### Render プラン運用（Static Site = keepalive 不要）
+### 撤収済み・残骸
 
-このサービスは **Render Static Site** として配信している。Static Site は Web Service と異なり**スリープしないため keepalive は不要**。Free プランのまま帯域・ビルド枚数の制約内で運用可能。
+| プラットフォーム | 状態 | 備考 |
+|---|---|---|
+| ~~Render Static Site (`ai-hub`)~~ | 撤収済 | Vercel 集約に伴い廃止 |
+| ⚠️ Cloudflare Worker `ai-hub` | **残存（subdomain 有効・最終更新 2026-04-30）** | 次回掃除候補。`https://ai-hub.goodbouldering.workers.dev` が応答中 |
+| GitHub Pages (`goodbouldering-collab.github.io/ai-hub/`) | 残置 | 参考用・本番は Vercel |
 
-将来 Web Service（FastAPI 管理画面の本番公開など）に切り替える場合は、親 CLAUDE.md「Render プラン運用ルール」に従い Free + keepalive で開始する。
+**Cloudflare Worker `ai-hub` の削除手順**（実行は次回棚卸し時）:
+```bash
+source ~/.claude/.env
+npx wrangler delete --name ai-hub
+```
 
-### Cloudflare Workers 並行デプロイ稼働中（2026-04-28）
-
-GitHub Pages / Render Static Site に加え、**Cloudflare Workers Static Assets** にも並行デプロイ済み。
-
-- 現行公開: https://goodbouldering-collab.github.io/ai-hub/ （GitHub Pages）
-- 並行: https://ai-hub.goodbouldering.workers.dev （Cloudflare Workers）
-
-サイトは静的 HTML のみなので OpenNext は使わず、`site/dist/` を Workers Static Assets でそのまま配信する最小構成。
-
-- [wrangler.toml](wrangler.toml) — Worker 名 `ai-hub`、`assets.directory = site/dist`
-- GitHub Actions [.github/workflows/cloudflare-pages.yml](.github/workflows/cloudflare-pages.yml) は `vars.ENABLE_CLOUDFLARE_DEPLOY=true` のとき main push で自動デプロイ
-- 手動デプロイ:
-  ```bash
-  source ~/.claude/.env  # CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID 読込
-  python site/build_site.py
-  npx wrangler deploy
-  ```
-- env / secret は静的サイト側に注入する必要なし（ビルド済み出力のみ配信）
+旧並行デプロイ用ファイル（[wrangler.toml](wrangler.toml) / `.github/workflows/cloudflare-pages.yml`）はリポに残存。次回大型整理時に削除予定。
 
 ## コマンド
 
@@ -93,7 +88,7 @@ VSCode で `clients.code-workspace` を開けば「AIハブ起動」タスクで
 ## 管理画面について
 
 `admin/server.py` は FastAPI ベースの**ローカル専用**管理 UI。
-GitHub Pages / Render (static) は静的ホスティングなので、公開ナビから `/admin` リンクは外してある。
+Vercel / GitHub Pages は静的ホスティングなので、公開ナビから `/admin` リンクは外してある。
 ローカルで触るときは `uvicorn admin.server:app --port 3010 --reload` を起動して `http://localhost:3010/admin` にアクセスする。
 運用（記事収集の実行）は基本 GitHub Actions 任せで、管理画面は手元確認用。
 

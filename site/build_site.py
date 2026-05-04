@@ -333,70 +333,80 @@ header h1 {
 }
 header .sub { margin:0; color:var(--muted); font-size:13px; letter-spacing:.04em; }
 
-/* ---- 共通トップナビ（全ページで使う） ---- */
-/* 階層化: 各グループにラベルを上に出し、ボタンを下に並べる。
-           グループ同士は横に並ぶ（折返し可）。区切り線は使わずラベルでグルーピングを示す */
+/* ---- 共通トップナビ（全ページ共通・sticky 固定 + コンパクト） ---- */
+/* グループ毎に「ラベル（インライン）+ ボタン群」を 1 行に並べて高さを最小化。
+   ページ最上部に sticky 固定し、スクロール中も常に到達可能。 */
+html { scroll-padding-top: 72px; }   /* sticky 高さ分のアンカーオフセット */
+[id] { scroll-margin-top: 72px; }
 nav.top-nav {
-  margin-top:16px;
-  display:flex; flex-wrap:wrap; align-items:flex-start;
-  gap:6px 18px;
-  padding:12px 14px;
-  background:rgba(255,255,255,.03);
+  position: sticky;
+  top: 8px;
+  z-index: 100;
+  margin: 0 0 18px;
+  display:flex; flex-wrap:wrap; align-items:center;
+  gap:4px 14px;
+  padding:6px 10px;
+  background:rgba(13,17,38,0.72);
   border:1px solid var(--glass-border);
-  border-radius:18px;
-  backdrop-filter: blur(14px) saturate(160%);
+  border-radius:14px;
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  box-shadow: 0 6px 20px rgba(0,0,0,.25);
 }
 nav.top-nav .nav-group {
-  display:flex; flex-direction:column; gap:5px;
+  display:flex; flex-wrap:nowrap; align-items:center; gap:4px 6px;
   min-width:0;
 }
 nav.top-nav .nav-group-label {
-  font-size:9.5px; font-weight:800;
-  letter-spacing:.16em;
+  font-size:9px; font-weight:800;
+  letter-spacing:.14em;
   color: var(--accent1);
   text-transform: uppercase;
-  opacity:.7;
-  padding-left:10px;
+  opacity:.65;
+  padding-right:2px;
   user-select:none;
+  white-space:nowrap;
 }
 nav.top-nav .nav-group-items {
-  display:flex; flex-wrap:wrap; gap:5px;
+  display:flex; flex-wrap:wrap; gap:3px;
 }
 nav.top-nav .nav-btn {
-  display:inline-flex; align-items:center; gap:4px;
-  padding:7px 14px; border-radius:999px;
+  display:inline-flex; align-items:center; gap:3px;
+  padding:4px 10px; border-radius:999px;
   background:var(--glass-bg); border:1px solid var(--glass-border);
   color:var(--text); text-decoration:none;
-  font:inherit; font-size:12.5px; font-weight:600; line-height:1;
+  font:inherit; font-size:11.5px; font-weight:600; line-height:1.3;
   cursor:pointer; white-space:nowrap;
   transition: background .2s ease, transform .2s ease, border-color .2s ease, box-shadow .2s ease;
 }
 nav.top-nav .nav-btn:hover:not(:disabled) {
   background:var(--glass-hover);
-  border-color: rgba(122,162,255,.35);
+  border-color: rgba(122,162,255,.4);
   transform: translateY(-1px);
 }
 nav.top-nav .nav-current {
-  background: linear-gradient(135deg, rgba(122,162,255,.45), rgba(199,125,255,.35));
-  border-color: rgba(255,255,255,.30);
+  background: linear-gradient(135deg, rgba(122,162,255,.55), rgba(199,125,255,.4));
+  border-color: rgba(255,255,255,.32);
   color:#fff; font-weight:800;
-  box-shadow: 0 4px 14px rgba(122,162,255,.25), inset 0 1px 0 rgba(255,255,255,.1);
+  box-shadow: 0 3px 10px rgba(122,162,255,.25), inset 0 1px 0 rgba(255,255,255,.12);
   cursor:default;
 }
 nav.top-nav .run-btn {
-  background: linear-gradient(135deg, rgba(122,162,255,.35), rgba(199,125,255,.35));
-  border:1px solid rgba(255,255,255,.22);
+  background: linear-gradient(135deg, rgba(122,162,255,.4), rgba(199,125,255,.4));
+  border:1px solid rgba(255,255,255,.24);
   font-weight:800;
 }
 nav.top-nav .run-btn:hover:not(:disabled) {
-  background: linear-gradient(135deg, rgba(122,162,255,.55), rgba(199,125,255,.55));
-  box-shadow: 0 6px 20px rgba(122,162,255,.25);
+  background: linear-gradient(135deg, rgba(122,162,255,.6), rgba(199,125,255,.6));
+  box-shadow: 0 5px 16px rgba(122,162,255,.28);
 }
 nav.top-nav .run-btn:disabled { opacity:.6; cursor:not-allowed; }
 @media (max-width: 640px) {
-  nav.top-nav { padding:10px; gap:8px 12px; }
-  nav.top-nav .nav-group-label { font-size:9px; padding-left:8px; }
-  nav.top-nav .nav-btn { padding:6px 11px; font-size:11.5px; }
+  html { scroll-padding-top: 64px; }
+  [id] { scroll-margin-top: 64px; }
+  nav.top-nav { padding:5px 8px; gap:3px 10px; top:6px; }
+  nav.top-nav .nav-group-label { font-size:8.5px; padding-right:1px; }
+  nav.top-nav .nav-btn { padding:4px 9px; font-size:11px; }
 }
 .run-status { margin-left:10px; font-size:12px; color:var(--muted); }
 .run-status.ok { color:#7eeba3; }

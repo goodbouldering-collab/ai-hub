@@ -47,21 +47,13 @@
   - Project ID: `prj_e7vh73eF0KZpm8C49esnILvHO98o`
 - **Supabase**: `ai_watch_articles` テーブルに差分保存（`SUPABASE_URL` / `SUPABASE_SERVICE_ROLE_KEY` が env にあれば書き込む）
 
-### 撤収済み・残骸
+### 撤収済み
 
 | プラットフォーム | 状態 | 備考 |
 |---|---|---|
 | ~~Render Static Site (`ai-hub`)~~ | 撤収済 | Vercel 集約に伴い廃止 |
-| ⚠️ Cloudflare Worker `ai-hub` | **残存（subdomain 有効・最終更新 2026-04-30）** | 次回掃除候補。`https://ai-hub.goodbouldering.workers.dev` が応答中 |
+| ~~Cloudflare Worker `ai-hub`~~ | 撤収済（2026-05-05） | `wrangler delete --name ai-hub` 実行済。`wrangler.toml` / `cloudflare-pages.yml` も削除済 |
 | GitHub Pages (`goodbouldering-collab.github.io/ai-hub/`) | 残置 | 参考用・本番は Vercel |
-
-**Cloudflare Worker `ai-hub` の削除手順**（実行は次回棚卸し時）:
-```bash
-source ~/.claude/.env
-npx wrangler delete --name ai-hub
-```
-
-旧並行デプロイ用ファイル（[wrangler.toml](wrangler.toml) / `.github/workflows/cloudflare-pages.yml`）はリポに残存。次回大型整理時に削除予定。
 
 ## コマンド
 

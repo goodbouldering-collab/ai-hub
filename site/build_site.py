@@ -2125,9 +2125,40 @@ def _patch_programming_map_nav(pmap_file: Path) -> None:
         "<a href='#sec-line'>💬 LINE</a>"
         "</nav>"
     )
-    # ページ内目次バーの最低限の CSS（既存ファイルに style ブロックを追加）
+    # 共通トップナビの CSS（他ページと完全一致させるためここで注入）と
+    # ページ内目次バーの CSS をまとめる
     chapter_css = (
         "<style id='pm-chapter-toc-css'>"
+        # ---- 共通トップナビ（index.html 等と同一スタイル） ----
+        "html{scroll-padding-top:72px;}"
+        "[id]{scroll-margin-top:72px;}"
+        "nav.top-nav{position:sticky;top:8px;z-index:100;margin:0 0 18px;"
+        "display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:6px 10px;"
+        "background:rgba(13,17,38,0.72);border:1px solid rgba(255,255,255,0.14);"
+        "border-radius:14px;backdrop-filter:blur(18px) saturate(160%);"
+        "-webkit-backdrop-filter:blur(18px) saturate(160%);"
+        "box-shadow:0 6px 20px rgba(0,0,0,.25);}"
+        "nav.top-nav .nav-btn{display:inline-flex;align-items:center;gap:3px;"
+        "padding:4px 10px;border-radius:999px;"
+        "background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);"
+        "color:#e8ebf5;text-decoration:none;font:inherit;font-size:11.5px;"
+        "font-weight:600;line-height:1.3;cursor:pointer;white-space:nowrap;"
+        "transition:background .2s ease,transform .2s ease,border-color .2s ease,box-shadow .2s ease;}"
+        "nav.top-nav .nav-btn:hover:not(:disabled){background:rgba(255,255,255,0.10);"
+        "border-color:rgba(122,162,255,.4);transform:translateY(-1px);}"
+        "nav.top-nav .nav-current{background:linear-gradient(135deg,rgba(122,162,255,.55),rgba(199,125,255,.4));"
+        "border-color:rgba(255,255,255,.32);color:#fff;font-weight:800;"
+        "box-shadow:0 3px 10px rgba(122,162,255,.25),inset 0 1px 0 rgba(255,255,255,.12);"
+        "cursor:default;}"
+        "nav.top-nav .run-btn{background:linear-gradient(135deg,rgba(122,162,255,.4),rgba(199,125,255,.4));"
+        "border:1px solid rgba(255,255,255,.24);font-weight:800;}"
+        "nav.top-nav .run-btn:hover:not(:disabled){background:linear-gradient(135deg,rgba(122,162,255,.6),rgba(199,125,255,.6));"
+        "box-shadow:0 5px 16px rgba(122,162,255,.28);}"
+        "nav.top-nav .run-btn:disabled{opacity:.6;cursor:not-allowed;}"
+        "@media (max-width:640px){html{scroll-padding-top:64px;}[id]{scroll-margin-top:64px;}"
+        "nav.top-nav{padding:5px 8px;gap:5px;top:6px;}"
+        "nav.top-nav .nav-btn{padding:4px 9px;font-size:11px;}}"
+        # ---- ページ内目次バー（programming-map 専用） ----
         ".pm-chapter-toc{display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;"
         "max-width:920px;margin:14px auto 18px;padding:8px 12px;"
         "background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);"

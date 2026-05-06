@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/project-mariner-logo.png?quality=90&amp;strip=all&amp;crop=0%2C12.533882885894%2C100%2C74.932234228213&amp;w=1200",
-      "published": "2026-05-06T17:21:45-04:00"
+      "published": "2026-05-06T17:21:45-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "2c6d341161a8cf05",
@@ -37,7 +39,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/gettyimages-2268643920.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-05-06T16:18:00-04:00"
+      "published": "2026-05-06T16:18:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "9e5176410120d5b9",
@@ -56,7 +60,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://img.youtube.com/vi/E304dGXqTmE/hqdefault.jpg",
-      "published": "2026-05-06T20:05:25+00:00"
+      "published": "2026-05-06T20:05:25+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "73dfe3ede275b40e",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/gettyimages-2266727283.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.723165084465%2C100%2C78.55366983107&amp;w=1200",
-      "published": "2026-05-06T13:55:53-04:00"
+      "published": "2026-05-06T13:55:53-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "302ed31d035e2099",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-05-06T11:37:32-04:00"
+      "published": "2026-05-06T11:37:32-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "b426996ab39f4052",
@@ -113,7 +123,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/Google-AI-Search-updates-Reddit-linking.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-05-06T09:00:30-04:00"
+      "published": "2026-05-06T09:00:30-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "6d77ae811ad89c5f",
@@ -132,7 +144,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25832915/STK095_MICROSOFT_2_CVirginia_D.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-05-06T07:45:41-04:00"
+      "published": "2026-05-06T07:45:41-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "3bc23fa9dd2852d9",
@@ -151,7 +165,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-05-06T15:58:27+00:00"
+      "published": "2026-05-06T15:58:27+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "acc7d50b99326c86",
@@ -170,7 +186,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-05-06T14:24:08+00:00"
+      "published": "2026-05-06T14:24:08+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "2958751abe9ee97c",
@@ -189,7 +207,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/jJ-1OB7AUGE/hqdefault.jpg",
-      "published": "2026-05-06T16:50:12+00:00"
+      "published": "2026-05-06T16:50:12+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     }
   ]
 }

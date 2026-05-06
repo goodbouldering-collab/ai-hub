@@ -2093,7 +2093,11 @@ def copy_static() -> None:
     for src in STATIC.rglob("*"):
         if src.is_dir():
             continue
-        dst = DIST / src.relative_to(STATIC)
+        rel = src.relative_to(STATIC)
+        # admin/ は静的配信せず Basic 認証付きの api/admin/index.ts から返す
+        if rel.parts and rel.parts[0] == "admin":
+            continue
+        dst = DIST / rel
         dst.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(src, dst)
     # static の programming-map.html だけ後処理: 独自ナビを共通ナビへ置換し、

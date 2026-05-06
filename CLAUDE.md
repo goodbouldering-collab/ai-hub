@@ -79,10 +79,64 @@ VSCode で `clients.code-workspace` を開けば「AIハブ起動」タスクで
 
 ## 管理画面について
 
-`admin/server.py` は FastAPI ベースの**ローカル専用**管理 UI。
-Vercel / GitHub Pages は静的ホスティングなので、公開ナビから `/admin` リンクは外してある。
-ローカルで触るときは `uvicorn admin.server:app --port 3010 --reload` を起動して `http://localhost:3010/admin` にアクセスする。
-運用（記事収集の実行）は基本 GitHub Actions 任せで、管理画面は手元確認用。
+AIハブには**2系統の管理画面**がある:
+
+### 1. ローカル管理画面 (`admin/server.py`)
+
+FastAPI ベースの**ローカル専用** UI。記事収集ジョブの状態確認・講習資料の編集・Shopify Admin 操作などに使う。
+ローカルで `uvicorn admin.server:app --port 3010 --reload` で起動 → `http://localhost:3010/admin`。
+運用（記事収集）は GitHub Actions 任せで、ここは手元確認用。
+
+### 2. クラウド管理画面 (`/admin` on Vercel)
+
+**Basic 認証付きの Web 管理画面** (Vercel Serverless Functions + 静的 HTML)。
+グッぼる（カラーミー）のグループ追加・AI記事生成・トップページ最上部への記事公開を担う。
+
+- URL: https://ai-hub-jp.vercel.app/admin
+- 認証: Basic 認証 (`ADMIN_USER` / `ADMIN_PASS` を Vercel env)
+- API:
+  - `/api/admin/ping` 接続/環境変数チェック
+  - `/api/admin/generate-articles` Claude で複数案生成
+  - `/api/admin/revise-article` 既存案を AI で修正
+  - `/api/admin/generate-image` DALL-E 3 で画像生成 → Supabase Storage アップロード
+  - `/api/admin/groups` カラーミー `/v1/groups` の GET / POST / PUT
+  - `/api/admin/publish-article` テンプレ `index.html` のマーカーに記事差し込み
+  - `/api/admin/unpublish-article` ブロック削除 + display_state=hidden
+
+#### テンプレ書き換え方式（PC用フリースペース 1/2 の代替）
+
+カラーミー API は「PC用フリースペース 1/2」を直接編集できない。代わりに
+カラーミーテンプレ `index.html` (page_type=index) を `PUT /v1/templates/{id}/pages/index` で
+書き換え、そのなかに以下のマーカーで AI 制御範囲を明示する:
+
+```html
+<!-- BEGIN:AI_GROUP_ARTICLES -->
+<!-- BEGIN:AI_GROUP_ARTICLE_<group_id> -->
+<section class="ai-group-article" data-published="2026-05-06">
+  <h2>...グループ名...</h2>
+  <p class="ai-group-article__date"><small>2026-05-06 公開</small></p>
+  ...本文HTML...
+</section>
+<!-- END:AI_GROUP_ARTICLE_<group_id> -->
+<!-- END:AI_GROUP_ARTICLES -->
+```
+
+- マーカー範囲外は絶対に触らない（手動編集との衝突防止）
+- 公開フローは **コピーテンプレ 1086 にプレビュー反映 → 確認後 本番テンプレ 1064 へ反映** の二段階
+- グループ作成時 display_state は `hidden`、本番反映時に `showing` に切り替える
+
+#### 必要な Vercel 環境変数
+
+| Env | 役割 |
+|---|---|
+| `ADMIN_USER` / `ADMIN_PASS` | Basic 認証 |
+| `COLORME_ACCESS_TOKEN` | グッぼる本店操作用 OAuth トークン |
+| `COLORME_PREVIEW_TEMPLATE_ID` | 既定 1086 |
+| `COLORME_LIVE_TEMPLATE_ID` | 既定 1064 |
+| `ANTHROPIC_API_KEY` | 記事案生成 |
+| `OPENAI_API_KEY` | DALL-E 3 画像生成 |
+| `SUPABASE_URL` / `SUPABASE_SERVICE_ROLE_KEY` | 画像アップロード先 |
+| `SUPABASE_BUCKET` | 既定 `ai-hub-public` (public=true で作成済) |
 
 ### 講習資料タブ
 

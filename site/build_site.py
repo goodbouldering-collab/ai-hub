@@ -126,10 +126,6 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
     parts: list[str] = ["<nav class='top-nav' aria-label='サイトナビ'>"]
     has_run = False
     for gname, items in grouped:
-        # グループごとに「ラベル + ボタン群」をひとまとまりにする
-        parts.append(f"<div class='nav-group' data-group='{html.escape(gname, quote=True)}'>")
-        parts.append(f"<span class='nav-group-label'>{html.escape(gname)}</span>")
-        parts.append("<div class='nav-group-items'>")
         for b in items:
             label = html.escape(str(b.get("label", "")))
             icon = html.escape(str(b.get("icon", "")))
@@ -157,7 +153,6 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
                         continue
                     safe_href = html.escape(href, quote=True)
                     parts.append(f"<a class='nav-btn' href='{safe_href}'{extra_attrs}>{text}</a>")
-        parts.append("</div></div>")
     if has_run:
         parts.append("<span id='run-status' class='run-status'></span>")
     parts.append("</nav>")
@@ -354,7 +349,7 @@ nav.top-nav {
   z-index: 100;
   margin: 0 0 18px;
   display:flex; flex-wrap:wrap; align-items:center;
-  gap:4px 14px;
+  gap:6px;
   padding:6px 10px;
   background:rgba(13,17,38,0.72);
   border:1px solid var(--glass-border);
@@ -362,23 +357,6 @@ nav.top-nav {
   backdrop-filter: blur(18px) saturate(160%);
   -webkit-backdrop-filter: blur(18px) saturate(160%);
   box-shadow: 0 6px 20px rgba(0,0,0,.25);
-}
-nav.top-nav .nav-group {
-  display:flex; flex-wrap:nowrap; align-items:center; gap:4px 6px;
-  min-width:0;
-}
-nav.top-nav .nav-group-label {
-  font-size:9px; font-weight:800;
-  letter-spacing:.14em;
-  color: var(--accent1);
-  text-transform: uppercase;
-  opacity:.65;
-  padding-right:2px;
-  user-select:none;
-  white-space:nowrap;
-}
-nav.top-nav .nav-group-items {
-  display:flex; flex-wrap:wrap; gap:3px;
 }
 nav.top-nav .nav-btn {
   display:inline-flex; align-items:center; gap:3px;
@@ -414,8 +392,7 @@ nav.top-nav .run-btn:disabled { opacity:.6; cursor:not-allowed; }
 @media (max-width: 640px) {
   html { scroll-padding-top: 64px; }
   [id] { scroll-margin-top: 64px; }
-  nav.top-nav { padding:5px 8px; gap:3px 10px; top:6px; }
-  nav.top-nav .nav-group-label { font-size:8.5px; padding-right:1px; }
+  nav.top-nav { padding:5px 8px; gap:5px; top:6px; }
   nav.top-nav .nav-btn { padding:4px 9px; font-size:11px; }
 }
 .run-status { margin-left:10px; font-size:12px; color:var(--muted); }

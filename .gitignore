@@ -6,3 +6,5 @@ data/history.db-journal
 data/_migrate_*
 site/dist/
 .wrangler/
+node_modules/
+.vercel/

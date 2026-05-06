@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIハブ管理画面 — グッぼる グループ記事</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0d1126; --bg2:#141938; --panel:rgba(255,255,255,.05);
+    --border:rgba(255,255,255,.14); --text:#e8ebf5; --muted:#aab1c5;
+    --accent:#7aa2ff; --accent2:#c77dff; --ok:#7eeba3; --err:#ff7a90;
+  }
+  body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Hiragino Sans','Noto Sans JP',sans-serif;
+    background:linear-gradient(180deg,#0a0d1a,#0d1126 50%,#0a0d1a);
+    color:var(--text); min-height:100vh; padding:20px; line-height:1.55; }
+  .container { max-width:1100px; margin:0 auto; }
+  h1 { font-size:22px; font-weight:800;
+    background:linear-gradient(100deg,var(--accent),var(--accent2));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    margin-bottom:6px; }
+  .sub { color:var(--muted); font-size:13px; margin-bottom:24px; }
+  .panel { background:var(--panel); border:1px solid var(--border);
+    border-radius:14px; padding:18px; margin-bottom:18px;
+    backdrop-filter: blur(12px); }
+  .panel h2 { font-size:14px; font-weight:800; letter-spacing:.04em;
+    color:var(--accent); margin-bottom:12px; text-transform:uppercase; }
+  label { display:block; font-size:12px; color:var(--muted); margin:10px 0 4px; }
+  input[type=text], input[type=date], input[type=number], textarea, select {
+    width:100%; padding:10px 12px; border-radius:10px;
+    background:rgba(255,255,255,.05); border:1px solid var(--border);
+    color:var(--text); font:inherit; font-size:13px; }
+  textarea { min-height:140px; font-family:'SFMono-Regular',Consolas,monospace; font-size:12px; }
+  button {
+    padding:9px 16px; border-radius:999px; border:1px solid var(--border);
+    background:rgba(255,255,255,.06); color:var(--text); font:inherit;
+    font-size:12.5px; font-weight:700; cursor:pointer; transition:all .2s;
+  }
+  button:hover:not(:disabled) { background:rgba(122,162,255,.18); border-color:rgba(122,162,255,.5); }
+  button.primary { background:linear-gradient(135deg,rgba(122,162,255,.5),rgba(199,125,255,.4));
+    border-color:rgba(255,255,255,.3); }
+  button.danger { background:rgba(255,122,144,.18); border-color:rgba(255,122,144,.5); }
+  button:disabled { opacity:.5; cursor:not-allowed; }
+  .row { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+  .row > * { flex:0 0 auto; }
+  .row .grow { flex:1 1 auto; min-width:200px; }
+  .draft { background:rgba(255,255,255,.04); border:1px solid var(--border);
+    border-radius:12px; padding:14px; margin:10px 0; }
+  .draft h3 { font-size:14px; margin-bottom:8px; }
+  .draft .preview { background:#fff; color:#1e293b; padding:14px;
+    border-radius:8px; max-height:280px; overflow:auto; margin:8px 0; font-size:13px; }
+  .draft .preview h2 { font-size:16px; color:#0d1126; margin:10px 0 6px; }
+  .badge { display:inline-block; padding:3px 9px; border-radius:999px;
+    font-size:10.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; }
+  .badge.ok { background:rgba(126,235,163,.18); color:var(--ok); }
+  .badge.err { background:rgba(255,122,144,.18); color:var(--err); }
+  .badge.muted { background:rgba(255,255,255,.08); color:var(--muted); }
+  pre.log { background:#000; color:#7eeba3; font-size:11px; padding:10px;
+    border-radius:8px; max-height:220px; overflow:auto;
+    font-family:'SFMono-Regular',Consolas,monospace; white-space:pre-wrap; }
+  .img-preview { max-width:200px; max-height:200px; border-radius:12px;
+    border:1px solid var(--border); margin-top:8px; }
+  hr { border:none; border-top:1px solid var(--border); margin:14px 0; }
+  small { color:var(--muted); font-size:11px; }
+  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  @media (max-width:720px) { .grid2 { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>🛠 AIハブ 管理画面 — グッぼる グループ記事</h1>
+  <p class="sub">テーマからAI記事案を生成 → グループを作成 → トップページの最上部に公開（プレビュー1086 → 本番1064）</p>
+
+  <div class="panel" id="panel-status">
+    <h2>① 接続状態</h2>
+    <div id="status-area">確認中…</div>
+  </div>
+
+  <div class="panel">
+    <h2>② テーマからAI記事案を生成</h2>
+    <label>テーマ</label>
+    <input type="text" id="theme" placeholder="例: 春の岩場シーズン到来 / La Sportiva 新作シューズ徹底比較">
+    <div class="row" style="margin-top:8px;">
+      <label style="margin:0;">案数</label>
+      <input type="number" id="count" value="3" min="1" max="5" style="width:80px;">
+      <button class="primary" id="btn-generate">🤖 案を生成</button>
+      <span id="gen-status" class="badge muted">待機中</span>
+    </div>
+    <div id="drafts"></div>
+  </div>
+
+  <div class="panel" id="panel-edit" style="display:none;">
+    <h2>③ 採用案の編集 + 画像生成 + 公開</h2>
+    <label>グループ名（=タイトル）</label>
+    <input type="text" id="edit-title">
+
+    <label>本文 HTML（&lt;h2&gt; から始まる CSS なしのシンプル HTML）</label>
+    <textarea id="edit-html"></textarea>
+
+    <div class="row" style="margin-top:6px;">
+      <input type="text" id="revise-instruction" class="grow" placeholder="例: 初心者向けに語りかける口調にして">
+      <button id="btn-revise">✏️ AI に修正させる</button>
+    </div>
+
+    <hr>
+    <label>公開日 (PC用フリースペース2 相当)</label>
+    <input type="date" id="edit-date">
+
+    <hr>
+    <label>グループ画像 — DALL-E プロンプト</label>
+    <div class="row">
+      <input type="text" id="img-prompt" class="grow" placeholder="例: クライミングシューズが棚に並ぶショップの写真風イメージ">
+      <button id="btn-image">🎨 画像を生成</button>
+      <span id="img-status" class="badge muted">未生成</span>
+    </div>
+    <div>
+      <img id="img-preview" class="img-preview" style="display:none;" alt="">
+      <div><small id="img-url-text"></small></div>
+      <input type="text" id="image-url" placeholder="または画像 URL を直接入力" style="margin-top:6px;">
+    </div>
+
+    <hr>
+    <label>表示設定（カラーミーグループの display_state）</label>
+    <select id="edit-display-state">
+      <option value="hidden">しない (hidden) ※公開後に「表示する」へ</option>
+      <option value="showing">する (showing)</option>
+    </select>
+
+    <hr>
+    <h2 style="margin-top:14px;">④ 公開ボタン</h2>
+    <div class="row">
+      <button id="btn-create-group" class="primary">📁 グループ作成 (display_state=hidden)</button>
+      <span id="group-status" class="badge muted">未作成</span>
+      <input type="text" id="group-id" placeholder="既存グループID 上書きする場合" style="width:160px;">
+    </div>
+    <div class="row" style="margin-top:8px;">
+      <button id="btn-publish-preview">🧪 プレビュー1086 に反映</button>
+      <button id="btn-publish-live" class="primary">🚀 本番1064 に反映 + display_state=showing</button>
+      <button id="btn-unpublish-live" class="danger">🗑 本番から削除 + display_state=hidden</button>
+    </div>
+    <pre class="log" id="publish-log">操作ログ…</pre>
+  </div>
+
+  <div class="panel">
+    <h2>📋 既存グループ一覧（参照のみ）</h2>
+    <div class="row">
+      <button id="btn-load-groups">読み込み</button>
+      <span id="groups-status" class="badge muted">未取得</span>
+    </div>
+    <div id="groups-area" style="margin-top:10px;font-size:12px;"></div>
+  </div>
+</div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const log = (msg) => {
+  const el = $("publish-log");
+  el.textContent += "\n" + new Date().toISOString().slice(11,19) + " " + msg;
+  el.scrollTop = el.scrollHeight;
+};
+
+async function api(path, opts = {}) {
+  const res = await fetch(path, {
+    ...opts,
+    headers: { "Content-Type": "application/json", ...(opts.headers || {}) },
+  });
+  const text = await res.text();
+  let json = null;
+  try { json = text ? JSON.parse(text) : null; } catch {}
+  if (!res.ok) {
+    throw new Error(json?.error || text || `HTTP ${res.status}`);
+  }
+  return json;
+}
+
+(async () => {
+  try {
+    const ping = await api("/api/admin/ping");
+    const env = ping.env;
+    const flag = (k, ok) => `<span class="badge ${ok?'ok':'err'}">${k}: ${ok?'OK':'未設定'}</span>`;
+    $("status-area").innerHTML = [
+      flag("Colorme", env.hasColorme),
+      flag("Anthropic", env.hasAnthropic),
+      flag("OpenAI", env.hasOpenAI),
+      flag("Supabase", env.hasSupabase),
+    ].join(" ");
+  } catch (e) {
+    $("status-area").innerHTML = `<span class="badge err">認証/設定エラー: ${e.message}</span>`;
+  }
+})();
+
+let drafts = [];
+let createdGroupId = null;
+
+$("btn-generate").addEventListener("click", async () => {
+  const theme = $("theme").value.trim();
+  const count = Number($("count").value) || 3;
+  if (!theme) { alert("テーマを入力してください"); return; }
+  $("gen-status").className = "badge muted"; $("gen-status").textContent = "生成中…";
+  $("btn-generate").disabled = true;
+  try {
+    const out = await api("/api/admin/generate-articles", {
+      method: "POST", body: JSON.stringify({ theme, count }),
+    });
+    drafts = out.drafts || [];
+    renderDrafts();
+    $("gen-status").className = "badge ok";
+    $("gen-status").textContent = `${drafts.length}案 生成完了`;
+  } catch (e) {
+    $("gen-status").className = "badge err";
+    $("gen-status").textContent = "失敗: " + e.message;
+  } finally {
+    $("btn-generate").disabled = false;
+  }
+});
+
+function renderDrafts() {
+  const area = $("drafts");
+  area.innerHTML = "";
+  drafts.forEach((d, i) => {
+    const div = document.createElement("div");
+    div.className = "draft";
+    div.innerHTML = `
+      <h3>案 ${i+1}: ${escapeHtml(d.title)}</h3>
+      <small>${escapeHtml(d.summary)}</small>
+      <div class="preview"><h2>${escapeHtml(d.title)}</h2>${d.html}</div>
+      <button data-pick="${i}" class="primary">この案を採用</button>
+    `;
+    area.appendChild(div);
+  });
+  area.querySelectorAll("button[data-pick]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const i = Number(btn.dataset.pick);
+      const d = drafts[i];
+      $("edit-title").value = d.title;
+      $("edit-html").value = d.html;
+      $("edit-date").valueAsDate = new Date();
+      $("img-prompt").value = `${d.title} のイメージ写真。商品やシーンを連想させる写真風画像。`;
+      $("panel-edit").style.display = "block";
+      $("panel-edit").scrollIntoView({ behavior: "smooth" });
+    });
+  });
+}
+
+$("btn-revise").addEventListener("click", async () => {
+  const title = $("edit-title").value.trim();
+  const html = $("edit-html").value.trim();
+  const instruction = $("revise-instruction").value.trim();
+  if (!instruction) { alert("修正指示を入力してください"); return; }
+  $("btn-revise").disabled = true;
+  try {
+    const out = await api("/api/admin/revise-article", {
+      method: "POST", body: JSON.stringify({ title, html, instruction }),
+    });
+    $("edit-title").value = out.title;
+    $("edit-html").value = out.html;
+    log("修正完了");
+  } catch (e) {
+    log("修正失敗: " + e.message);
+  } finally {
+    $("btn-revise").disabled = false;
+  }
+});
+
+$("btn-image").addEventListener("click", async () => {
+  const prompt = $("img-prompt").value.trim();
+  if (!prompt) { alert("画像プロンプトを入力"); return; }
+  $("img-status").className = "badge muted"; $("img-status").textContent = "生成中…(20秒前後)";
+  $("btn-image").disabled = true;
+  try {
+    const out = await api("/api/admin/generate-image", {
+      method: "POST", body: JSON.stringify({
+        prompt, filenameHint: $("edit-title").value.replace(/\s+/g,"_") || "group",
+      }),
+    });
+    $("image-url").value = out.url;
+    $("img-preview").src = out.url; $("img-preview").style.display = "block";
+    $("img-url-text").textContent = out.url;
+    $("img-status").className = "badge ok"; $("img-status").textContent = "生成完了";
+  } catch (e) {
+    $("img-status").className = "badge err"; $("img-status").textContent = "失敗: " + e.message;
+  } finally {
+    $("btn-image").disabled = false;
+  }
+});
+
+$("btn-create-group").addEventListener("click", async () => {
+  const name = $("edit-title").value.trim();
+  const image_url = $("image-url").value.trim() || undefined;
+  const display_state = $("edit-display-state").value;
+  if (!name) { alert("グループ名(=タイトル)を入力"); return; }
+  $("group-status").className = "badge muted"; $("group-status").textContent = "作成中…";
+  try {
+    const out = await api("/api/admin/groups", {
+      method: "POST", body: JSON.stringify({ name, image_url, display_state }),
+    });
+    createdGroupId = out?.group?.id || out?.id;
+    $("group-id").value = String(createdGroupId || "");
+    $("group-status").className = "badge ok";
+    $("group-status").textContent = "作成完了 ID=" + createdGroupId;
+    log("グループ作成 OK id=" + createdGroupId);
+  } catch (e) {
+    $("group-status").className = "badge err"; $("group-status").textContent = "失敗: " + e.message;
+    log("グループ作成失敗: " + e.message);
+  }
+});
+
+async function publish(target) {
+  const groupId = ($("group-id").value || createdGroupId || "").toString().trim();
+  const title = $("edit-title").value.trim();
+  const html = $("edit-html").value.trim();
+  const publishedAt = $("edit-date").value;
+  if (!groupId) { alert("先にグループ作成 or グループID入力"); return; }
+  if (!title || !html || !publishedAt) { alert("タイトル/本文/公開日 必須"); return; }
+  log(`[${target}] 公開開始 id=${groupId}`);
+  try {
+    const out = await api("/api/admin/publish-article", {
+      method: "POST",
+      body: JSON.stringify({ groupId, title, html, publishedAt, target }),
+    });
+    log(`[${target}] 公開OK pageSize=${out.pageSize} blockSize=${out.blockSize}`);
+    if (target === "live") {
+      // 本番反映時は display_state を showing に上げる
+      try {
+        await api("/api/admin/groups", {
+          method: "PUT",
+          body: JSON.stringify({ id: groupId, display_state: "showing" }),
+        });
+        log("[live] display_state=showing に更新");
+      } catch (e) {
+        log("[live] display_state 更新失敗: " + e.message);
+      }
+    }
+  } catch (e) {
+    log(`[${target}] 公開失敗: ${e.message}`);
+  }
+}
+
+$("btn-publish-preview").addEventListener("click", () => publish("preview"));
+$("btn-publish-live").addEventListener("click", () => {
+  if (!confirm("本番テンプレ1064に反映します。よろしいですか？")) return;
+  publish("live");
+});
+
+$("btn-unpublish-live").addEventListener("click", async () => {
+  const groupId = ($("group-id").value || createdGroupId || "").toString().trim();
+  if (!groupId) { alert("グループID必須"); return; }
+  if (!confirm("本番から該当ブロックを削除し display_state=hidden に戻します。よろしいですか？")) return;
+  try {
+    await api("/api/admin/unpublish-article", {
+      method: "POST",
+      body: JSON.stringify({ groupId, target: "live", hideGroup: true }),
+    });
+    log("[live] 削除完了 + display_state=hidden");
+  } catch (e) {
+    log("[live] 削除失敗: " + e.message);
+  }
+});
+
+$("btn-load-groups").addEventListener("click", async () => {
+  $("groups-status").className = "badge muted"; $("groups-status").textContent = "取得中…";
+  try {
+    const data = await api("/api/admin/groups?limit=30");
+    const list = data?.groups || [];
+    $("groups-area").innerHTML = list.map(g => `
+      <div style="padding:6px 0;border-bottom:1px solid var(--border);">
+        <strong>#${g.id}</strong> ${escapeHtml(g.name)}
+        <span class="badge ${g.display_state==='showing'?'ok':'muted'}">${g.display_state}</span>
+        ${g.image_url ? `<a href="${g.image_url}" target="_blank">画像</a>` : ''}
+      </div>
+    `).join("");
+    $("groups-status").className = "badge ok";
+    $("groups-status").textContent = `${list.length}件`;
+  } catch (e) {
+    $("groups-status").className = "badge err"; $("groups-status").textContent = "失敗: " + e.message;
+  }
+});
+
+function escapeHtml(s) {
+  return String(s||"").replace(/[&<>"']/g, m => (
+    {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m]
+  ));
+}
+</script>
+</body>
+</html>

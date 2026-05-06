@@ -74,9 +74,8 @@ top_buttons:
   enabled: true
 - id: admin
   group: 操作
-  label: 管理
-  icon: ⚙️
+  label: 管理ログイン
+  icon: 🔐
   href: /admin
   kind: link
   enabled: true
-  localhost_only: true

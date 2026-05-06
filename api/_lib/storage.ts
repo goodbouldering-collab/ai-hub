@@ -1,12 +1,17 @@
-import { createClient } from "@supabase/supabase-js";
+import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+import { requireEnv } from "./config.js";
 
-const BUCKET = process.env.SUPABASE_BUCKET || "ai-hub-public";
+function bucket(): string {
+  return process.env.SUPABASE_BUCKET || "ai-hub-public";
+}
 
-function client() {
-  const url = process.env.SUPABASE_URL;
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  if (!url || !key) throw new Error("SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY not set");
-  return createClient(url, key, { auth: { persistSession: false } });
+let _supa: SupabaseClient | null = null;
+function client(): SupabaseClient {
+  if (_supa) return _supa;
+  const url = requireEnv("SUPABASE_URL");
+  const key = requireEnv("SUPABASE_SERVICE_ROLE_KEY");
+  _supa = createClient(url, key, { auth: { persistSession: false } });
+  return _supa;
 }
 
 export async function uploadPublicImage(
@@ -15,12 +20,13 @@ export async function uploadPublicImage(
   contentType: string,
 ): Promise<string> {
   const supa = client();
+  const b = bucket();
   const path = `colorme-groups/${Date.now()}_${filename.replace(/[^\w.-]/g, "_")}`;
-  const { error } = await supa.storage.from(BUCKET).upload(path, bytes, {
+  const { error } = await supa.storage.from(b).upload(path, bytes, {
     contentType,
     upsert: false,
   });
   if (error) throw new Error(`Supabase upload failed: ${error.message}`);
-  const { data } = supa.storage.from(BUCKET).getPublicUrl(path);
+  const { data } = supa.storage.from(b).getPublicUrl(path);
   return data.publicUrl;
 }

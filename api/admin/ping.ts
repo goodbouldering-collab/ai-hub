@@ -1,7 +1,6 @@
-import { requireBasicAuth, type VercelReq, type VercelRes } from "../_lib/auth.js";
+import { withAdmin } from "../_lib/http.js";
 
-export default async function handler(req: VercelReq, res: VercelRes) {
-  if (!requireBasicAuth(req, res)) return;
+export default withAdmin({ method: "GET" }, async ({ res }) => {
   res.status(200).json({
     ok: true,
     now: new Date().toISOString(),
@@ -12,4 +11,4 @@ export default async function handler(req: VercelReq, res: VercelRes) {
       hasSupabase: Boolean(process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY),
     },
   });
-}
+});

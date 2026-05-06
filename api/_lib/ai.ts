@@ -1,9 +1,12 @@
 import Anthropic from "@anthropic-ai/sdk";
+import { ConfigError, ValidationError } from "./http.js";
+import { claudeModel, requireEnv } from "./config.js";
+import { sanitizeArticleHtml } from "./sanitize.js";
 
 export type ArticleDraft = {
-  title: string;        // = グループ名候補
-  html: string;         // <h2> から始まる CSS なしのシンプルな HTML
-  summary: string;      // 一行要約
+  title: string;
+  html: string;
+  summary: string;
 };
 
 const SYSTEM_PROMPT = `あなたはクライミング/ボルダリング用品店「グッぼる」のEC店長コピーライターです。
@@ -16,13 +19,42 @@ const SYSTEM_PROMPT = `あなたはクライミング/ボルダリング用品�
 
 出力は JSON 配列のみ。前置き・コードフェンス禁止。`;
 
-export async function generateArticleDrafts(theme: string, count = 3): Promise<ArticleDraft[]> {
-  const apiKey = process.env.ANTHROPIC_API_KEY;
-  if (!apiKey) throw new Error("ANTHROPIC_API_KEY not set");
-  const client = new Anthropic({ apiKey });
+let _client: Anthropic | null = null;
+function client(): Anthropic {
+  if (_client) return _client;
+  const apiKey = requireEnv("ANTHROPIC_API_KEY");
+  _client = new Anthropic({ apiKey });
+  return _client;
+}
 
-  const message = await client.messages.create({
-    model: process.env.AI_HUB_CLAUDE_MODEL || "claude-sonnet-4-6",
+function extractText(message: any): string {
+  return (message.content || [])
+    .filter((b: any) => b.type === "text")
+    .map((b: any) => b.text)
+    .join("\n")
+    .trim();
+}
+
+function extractJson(text: string, kind: "array" | "object"): any {
+  const open = kind === "array" ? "[" : "{";
+  const close = kind === "array" ? "]" : "}";
+  const start = text.indexOf(open);
+  const end = text.lastIndexOf(close);
+  if (start === -1 || end === -1) {
+    throw new ValidationError(
+      `AI 出力を JSON(${kind}) として解釈できません: ${text.slice(0, 200)}`,
+    );
+  }
+  try {
+    return JSON.parse(text.slice(start, end + 1));
+  } catch (e: any) {
+    throw new ValidationError(`JSON parse failed: ${e.message}`);
+  }
+}
+
+export async function generateArticleDrafts(theme: string, count = 3): Promise<ArticleDraft[]> {
+  const message = await client().messages.create({
+    model: claudeModel(),
     max_tokens: 4096,
     system: SYSTEM_PROMPT,
     messages: [
@@ -32,30 +64,11 @@ export async function generateArticleDrafts(theme: string, count = 3): Promise<A
       },
     ],
   });
-
-  const text = message.content
-    .filter((b: any) => b.type === "text")
-    .map((b: any) => b.text)
-    .join("\n")
-    .trim();
-
-  // JSON 抽出（モデルが余計な装飾を付けた場合に備える）
-  const start = text.indexOf("[");
-  const end = text.lastIndexOf("]");
-  if (start === -1 || end === -1) {
-    throw new Error(`AI 出力を JSON として解釈できません: ${text.slice(0, 200)}`);
-  }
-  const jsonText = text.slice(start, end + 1);
-  let parsed: any;
-  try {
-    parsed = JSON.parse(jsonText);
-  } catch (e: any) {
-    throw new Error(`JSON parse failed: ${e.message} / raw: ${jsonText.slice(0, 200)}`);
-  }
-  if (!Array.isArray(parsed)) throw new Error("AI 出力が配列ではありません");
+  const parsed = extractJson(extractText(message), "array");
+  if (!Array.isArray(parsed)) throw new ValidationError("AI 出力が配列ではありません");
   return parsed.map((p: any) => ({
     title: String(p.title || "").trim(),
-    html: String(p.html || "").trim(),
+    html: sanitizeArticleHtml(String(p.html || "")),
     summary: String(p.summary || "").trim(),
   }));
 }
@@ -64,12 +77,8 @@ export async function reviseArticle(
   current: { title: string; html: string },
   instruction: string,
 ): Promise<{ title: string; html: string }> {
-  const apiKey = process.env.ANTHROPIC_API_KEY;
-  if (!apiKey) throw new Error("ANTHROPIC_API_KEY not set");
-  const client = new Anthropic({ apiKey });
-
-  const message = await client.messages.create({
-    model: process.env.AI_HUB_CLAUDE_MODEL || "claude-sonnet-4-6",
+  const message = await client().messages.create({
+    model: claudeModel(),
     max_tokens: 4096,
     system: SYSTEM_PROMPT,
     messages: [
@@ -79,30 +88,18 @@ export async function reviseArticle(
       },
     ],
   });
-
-  const text = message.content
-    .filter((b: any) => b.type === "text")
-    .map((b: any) => b.text)
-    .join("\n")
-    .trim();
-  const start = text.indexOf("{");
-  const end = text.lastIndexOf("}");
-  if (start === -1 || end === -1) throw new Error("AI 出力を JSON として解釈できません");
-  const obj = JSON.parse(text.slice(start, end + 1));
+  const obj = extractJson(extractText(message), "object");
   return {
     title: String(obj.title || current.title).trim(),
-    html: String(obj.html || current.html).trim(),
+    html: sanitizeArticleHtml(String(obj.html || current.html)),
   };
 }
 
-/** OpenAI DALL-E 3 で画像生成し、PNG バイト列を返す */
 export async function generateImageBytes(prompt: string): Promise<{
   bytes: Uint8Array;
   contentType: string;
 }> {
-  const apiKey = process.env.OPENAI_API_KEY;
-  if (!apiKey) throw new Error("OPENAI_API_KEY not set");
-
+  const apiKey = requireEnv("OPENAI_API_KEY");
   const res = await fetch("https://api.openai.com/v1/images/generations", {
     method: "POST",
     headers: {
@@ -119,10 +116,18 @@ export async function generateImageBytes(prompt: string): Promise<{
   });
   if (!res.ok) {
     const txt = await res.text();
-    throw new Error(`DALL-E error ${res.status}: ${txt.slice(0, 300)}`);
+    const err: any = new Error(`DALL-E error ${res.status}: ${txt.slice(0, 300)}`);
+    err.status = res.status;
+    throw err;
   }
   const data = await res.json();
   const b64 = data?.data?.[0]?.b64_json;
-  if (!b64) throw new Error("DALL-E 応答に b64_json が無い");
+  if (!b64) throw new ValidationError("DALL-E 応答に b64_json が無い");
   return { bytes: Buffer.from(b64, "base64"), contentType: "image/png" };
 }
+
+// re-export for tests / direct use
+export { sanitizeArticleHtml };
+
+// 互換: ConfigError を呼び出し元から見られるようにエクスポート
+export { ConfigError };

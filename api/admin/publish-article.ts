@@ -12,7 +12,8 @@
  *   }
  */
 
-import { requireBasicAuth, type VercelReq, type VercelRes } from "../_lib/auth.js";
+import { ValidationError, withAdmin } from "../_lib/http.js";
+import { templateIdFor } from "../_lib/config.js";
 import { getTemplatePage, updateTemplatePage } from "../_lib/colorme.js";
 import {
   ensureOuterBlock,
@@ -20,54 +21,39 @@ import {
   replaceOuterBlock,
   upsertArticle,
 } from "../_lib/template_block.js";
+import { sanitizeArticleHtml } from "../_lib/sanitize.js";
 
-const PREVIEW_TEMPLATE = Number(process.env.COLORME_PREVIEW_TEMPLATE_ID || 1086);
-const LIVE_TEMPLATE = Number(process.env.COLORME_LIVE_TEMPLATE_ID || 1064);
-
-export default async function handler(req: VercelReq, res: VercelRes) {
-  if (!requireBasicAuth(req, res)) return;
-  if (req.method !== "POST") {
-    res.status(405).json({ error: "POST only" });
-    return;
-  }
-  const body = await readJson(req);
+export default withAdmin({ method: "POST" }, async ({ res, body }) => {
   const groupId = body?.groupId;
   const title = String(body?.title || "").trim();
-  const html = String(body?.html || "").trim();
+  const html = sanitizeArticleHtml(String(body?.html || "").trim());
   const publishedAt = String(body?.publishedAt || "").trim();
-  const target = body?.target === "live" ? "live" : "preview";
+  const target: "preview" | "live" = body?.target === "live" ? "live" : "preview";
 
   if (!groupId || !title || !html || !publishedAt) {
-    res.status(400).json({ error: "groupId, title, html, publishedAt are required" });
-    return;
+    throw new ValidationError("groupId, title, html, publishedAt are required");
   }
 
-  const templateId = target === "live" ? LIVE_TEMPLATE : PREVIEW_TEMPLATE;
-
-  try {
-    const page = await getTemplatePage(templateId, "index");
-    const currentHtml: string = page?.page?.html || "";
-    if (!currentHtml) {
-      res.status(500).json({ error: "template index html が空です（取得失敗の可能性）" });
-      return;
-    }
-    const ensured = ensureOuterBlock(currentHtml);
-    const outer = extractOuterBlock(ensured);
-    const articleHtml = renderArticleBlock({ title, html, publishedAt });
-    const newOuter = upsertArticle(outer, String(groupId), articleHtml, "top");
-    const newPageHtml = replaceOuterBlock(ensured, newOuter);
-    await updateTemplatePage(templateId, "index", { html: newPageHtml });
-    res.status(200).json({
-      ok: true,
-      target,
-      templateId,
-      blockSize: articleHtml.length,
-      pageSize: newPageHtml.length,
-    });
-  } catch (e: any) {
-    res.status(e.status || 500).json({ error: e.message || String(e), body: e.body });
+  const templateId = templateIdFor(target);
+  const page = await getTemplatePage(templateId, "index");
+  const currentHtml: string = page?.page?.html || "";
+  if (!currentHtml) {
+    throw new Error("template index html が空です（取得失敗の可能性）");
   }
-}
+  const ensured = ensureOuterBlock(currentHtml);
+  const outer = extractOuterBlock(ensured);
+  const articleHtml = renderArticleBlock({ title, html, publishedAt });
+  const newOuter = upsertArticle(outer, String(groupId), articleHtml, "top");
+  const newPageHtml = replaceOuterBlock(ensured, newOuter);
+  await updateTemplatePage(templateId, "index", { html: newPageHtml });
+  res.status(200).json({
+    ok: true,
+    target,
+    templateId,
+    blockSize: articleHtml.length,
+    pageSize: newPageHtml.length,
+  });
+});
 
 function renderArticleBlock(input: { title: string; html: string; publishedAt: string }): string {
   const safeTitle = escapeHtml(input.title);
@@ -85,13 +71,4 @@ function escapeHtml(s: string): string {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
-}
-
-async function readJson(req: VercelReq): Promise<any> {
-  if (req.body && typeof req.body === "object") return req.body;
-  const chunks: Buffer[] = [];
-  for await (const c of req as any) chunks.push(c as Buffer);
-  const text = Buffer.concat(chunks).toString("utf-8");
-  if (!text) return {};
-  return JSON.parse(text);
 }

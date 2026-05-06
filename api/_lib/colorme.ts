@@ -1,9 +1,9 @@
+import { requireEnv } from "./config.js";
+
 const COLORME_API = "https://api.shop-pro.jp";
 
 function token(): string {
-  const t = process.env.COLORME_ACCESS_TOKEN;
-  if (!t) throw new Error("COLORME_ACCESS_TOKEN is not set");
-  return t;
+  return requireEnv("COLORME_ACCESS_TOKEN");
 }
 
 async function call(path: string, init: RequestInit = {}): Promise<any> {

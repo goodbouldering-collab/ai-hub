@@ -26,7 +26,8 @@ read -p "client_id: " CID
 read -p "client_secret: " CSEC
 
 REDIRECT="http://127.0.0.1:3000/callback"
-SCOPE="read_products%20read_templates%20write_templates"
+# スコープは認可URLで動的に要求する。write_products はグループ作成 (POST /v1/groups) に必須。
+SCOPE="read_products%20write_products%20read_templates%20write_templates"
 AUTH_URL="https://api.shop-pro.jp/oauth/authorize?client_id=${CID}&response_type=code&scope=${SCOPE}&redirect_uri=${REDIRECT}"
 
 echo

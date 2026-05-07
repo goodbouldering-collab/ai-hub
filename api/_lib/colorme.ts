@@ -79,7 +79,7 @@ export async function updateTemplatePage(
 ): Promise<any> {
   return call(`/v1/templates/${templateId}/pages/${pageType}`, {
     method: "PUT",
-    body: JSON.stringify({ page: payload }),
+    body: JSON.stringify({ template_page: payload }),
   });
 }
 

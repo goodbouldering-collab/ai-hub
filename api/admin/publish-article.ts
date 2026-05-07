@@ -36,7 +36,7 @@ export default withAdmin({ method: "POST" }, async ({ res, body }) => {
 
   const templateId = templateIdFor(target);
   const page = await getTemplatePage(templateId, "index");
-  const currentHtml: string = page?.page?.html || "";
+  const currentHtml: string = page?.template_page?.html || "";
   if (!currentHtml) {
     throw new Error("template index html が空です（取得失敗の可能性）");
   }

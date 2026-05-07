@@ -22,7 +22,7 @@ export default withAdmin({ method: "POST" }, async ({ res, body }) => {
 
   const templateId = templateIdFor(target);
   const page = await getTemplatePage(templateId, "index");
-  const currentHtml: string = page?.page?.html || "";
+  const currentHtml: string = page?.template_page?.html || "";
   const ensured = ensureOuterBlock(currentHtml);
   const outer = extractOuterBlock(ensured);
   const newOuter = removeArticle(outer, String(groupId));

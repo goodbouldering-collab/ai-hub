@@ -135,10 +135,10 @@
       <input type="text" id="group-id" placeholder="既存グループID 上書きする場合" style="width:160px;">
     </div>
     <div class="row" style="margin-top:8px;">
-      <button id="btn-publish-preview">🧪 プレビュー1086 に反映</button>
-      <button id="btn-publish-live" class="primary">🚀 本番1064 に反映 + display_state=showing</button>
+      <button id="btn-publish-live" class="primary">🚀 本番に反映 (1086) + display_state=showing</button>
       <button id="btn-unpublish-live" class="danger">🗑 本番から削除 + display_state=hidden</button>
     </div>
+    <small>※ OAuth アプリの権限制約により、本番テンプレは 1086 を使用しています</small>
     <pre class="log" id="publish-log">操作ログ…</pre>
   </div>
 
@@ -337,9 +337,8 @@ async function publish(target) {
   }
 }
 
-$("btn-publish-preview").addEventListener("click", () => publish("preview"));
 $("btn-publish-live").addEventListener("click", () => {
-  if (!confirm("本番テンプレ1064に反映します。よろしいですか？")) return;
+  if (!confirm("本番テンプレ(1086)に反映します。よろしいですか？")) return;
   publish("live");
 });
 

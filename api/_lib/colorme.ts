@@ -35,6 +35,42 @@ export async function listGroups(limit = 50, offset = 0): Promise<any> {
   return call(`/v1/groups?limit=${limit}&offset=${offset}`);
 }
 
+/**
+ * 全 group をページング走査して回収する。グッぼる本店は ~1400 件あるため
+ * limit=50 でも 28 リクエスト程度。サーバー側の rate limit と Vercel の
+ * 60 秒制約に注意。
+ */
+export async function listAllGroups(): Promise<any[]> {
+  const out: any[] = [];
+  const PAGE = 50;
+  for (let offset = 0; ; offset += PAGE) {
+    const res = await listGroups(PAGE, offset);
+    const arr = (res?.groups || []) as any[];
+    if (arr.length === 0) break;
+    out.push(...arr);
+    if (arr.length < PAGE) break;
+    if (out.length > 5000) break; // 暴走防止
+  }
+  return out;
+}
+
+/** 全件取得後にメモリ上で parent_group_id でフィルタ（API 側に直接フィルタが無いため） */
+export async function listChildGroups(parentId: number | string): Promise<any[]> {
+  const all = await listAllGroups();
+  const pid = Number(parentId);
+  return all
+    .filter((g) => Number(g.parent_group_id) === pid)
+    .sort((a, b) => (Number(a.sort ?? 0) - Number(b.sort ?? 0)));
+}
+
+/** 親候補（parent_group_id が null = トップレベル）のみ抽出 */
+export async function listTopLevelGroups(): Promise<any[]> {
+  const all = await listAllGroups();
+  return all
+    .filter((g) => g.parent_group_id == null)
+    .sort((a, b) => (Number(a.sort ?? 0) - Number(b.sort ?? 0)));
+}
+
 export async function getGroup(id: number | string): Promise<any> {
   return call(`/v1/groups/${id}`);
 }
@@ -45,6 +81,7 @@ export async function createGroup(payload: {
   expl?: string;
   display_state?: "showing" | "hidden";
   parent_group_id?: number | null;
+  sort?: number;
 }): Promise<any> {
   return call(`/v1/groups`, {
     method: "POST",
@@ -60,6 +97,7 @@ export async function updateGroup(
     expl: string;
     display_state: "showing" | "hidden";
     parent_group_id: number | null;
+    sort: number;
   }>,
 ): Promise<any> {
   return call(`/v1/groups/${id}`, {

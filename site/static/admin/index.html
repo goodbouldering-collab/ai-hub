@@ -65,12 +65,29 @@
   small { color:var(--muted); font-size:11px; }
   .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
   @media (max-width:720px) { .grid2 { grid-template-columns:1fr; } }
+
+  /* ドラッグ並び替えリスト */
+  ul.sortable { list-style:none; padding:0; margin:6px 0; }
+  ul.sortable li {
+    display:flex; align-items:center; gap:10px;
+    padding:10px 12px; margin:4px 0;
+    background:rgba(255,255,255,.04); border:1px solid var(--border);
+    border-radius:10px; cursor:grab; user-select:none;
+    transition: background .15s, transform .12s;
+  }
+  ul.sortable li:hover { background:rgba(122,162,255,.12); }
+  ul.sortable li.dragging { opacity:.4; cursor:grabbing; }
+  ul.sortable li.over     { border-color:rgba(122,162,255,.7); transform:translateY(-1px); }
+  .grip { color:var(--muted); cursor:grab; font-size:14px; }
+  .gid  { color:var(--muted); font-family:monospace; font-size:11px; }
+  .gname{ flex:1 1 auto; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .gstate { font-size:10px; }
 </style>
 </head>
 <body>
 <div class="container">
   <h1>🛠 AIハブ 管理画面 — グッぼる グループ記事</h1>
-  <p class="sub">テーマからAI記事案を生成 → グループを作成 → トップページの最上部に公開（プレビュー1086 → 本番1064）</p>
+  <p class="sub">対象親グループを選び、その配下に AI 記事グループを追加・並べ替え・公開（テンプレ product_list の Smarty 条件で対象親ページのみに表示）</p>
 
   <div class="panel" id="panel-status">
     <h2>① 接続状態</h2>
@@ -78,7 +95,28 @@
   </div>
 
   <div class="panel">
-    <h2>② テーマからAI記事案を生成</h2>
+    <h2>② 対象親グループ</h2>
+    <label>親グループ（記事を表示したいページ）</label>
+    <div class="row">
+      <select id="parent-select" class="grow"><option value="">（読み込み中…）</option></select>
+      <button id="btn-load-parents">親グループ再読込</button>
+    </div>
+    <small>※ 親グループは parent_group_id=null のトップレベルのみ表示</small>
+  </div>
+
+  <div class="panel">
+    <h2>③ 配下グループ一覧（並び替え・編集）</h2>
+    <div class="row">
+      <button id="btn-load-children">読み込み</button>
+      <button id="btn-save-order" class="primary" disabled>並び替えを保存</button>
+      <span id="children-status" class="badge muted">親未選択</span>
+    </div>
+    <ul class="sortable" id="children-list"></ul>
+    <small>※ ドラッグして順序変更 → 「並び替えを保存」で sort 値を一括更新</small>
+  </div>
+
+  <div class="panel">
+    <h2>④ テーマからAI記事案を生成</h2>
     <label>テーマ</label>
     <input type="text" id="theme" placeholder="例: 春の岩場シーズン到来 / La Sportiva 新作シューズ徹底比較">
     <div class="row" style="margin-top:8px;">
@@ -91,7 +129,7 @@
   </div>
 
   <div class="panel" id="panel-edit" style="display:none;">
-    <h2>③ 採用案の編集 + 画像生成 + 公開</h2>
+    <h2>⑤ 採用案の編集 + 画像生成 + 公開</h2>
     <label>グループ名（=タイトル）</label>
     <input type="text" id="edit-title">
 
@@ -128,27 +166,18 @@
     </select>
 
     <hr>
-    <h2 style="margin-top:14px;">④ 公開ボタン</h2>
+    <h2 style="margin-top:14px;">⑥ 公開ボタン</h2>
     <div class="row">
-      <button id="btn-create-group" class="primary">📁 グループ作成 (display_state=hidden)</button>
+      <button id="btn-create-group" class="primary">📁 グループ作成 (parent=対象親, sort=0)</button>
       <span id="group-status" class="badge muted">未作成</span>
       <input type="text" id="group-id" placeholder="既存グループID 上書きする場合" style="width:160px;">
     </div>
     <div class="row" style="margin-top:8px;">
-      <button id="btn-publish-live" class="primary">🚀 本番に反映 (1086) + display_state=showing</button>
-      <button id="btn-unpublish-live" class="danger">🗑 本番から削除 + display_state=hidden</button>
+      <button id="btn-publish-live" class="primary">🚀 公開（product_list に書込）</button>
+      <button id="btn-unpublish-live" class="danger">🗑 公開取り消し</button>
     </div>
-    <small>※ OAuth アプリの権限制約により、本番テンプレは 1086 を使用しています</small>
+    <small>※ 記事は対象親グループのページ表示時のみ Smarty 条件で出る</small>
     <pre class="log" id="publish-log">操作ログ…</pre>
-  </div>
-
-  <div class="panel">
-    <h2>📋 既存グループ一覧（参照のみ）</h2>
-    <div class="row">
-      <button id="btn-load-groups">読み込み</button>
-      <span id="groups-status" class="badge muted">未取得</span>
-    </div>
-    <div id="groups-area" style="margin-top:10px;font-size:12px;"></div>
   </div>
 </div>
 
@@ -174,6 +203,7 @@ async function api(path, opts = {}) {
   return json;
 }
 
+// === 接続確認
 (async () => {
   try {
     const ping = await api("/api/admin/ping");
@@ -190,9 +220,124 @@ async function api(path, opts = {}) {
   }
 })();
 
-let drafts = [];
-let createdGroupId = null;
+// === 親グループ ロード
+async function loadParents() {
+  $("parent-select").innerHTML = '<option value="">（読み込み中…）</option>';
+  try {
+    const out = await api("/api/admin/groups?top=1");
+    const list = out.groups || [];
+    const cur = localStorage.getItem("aih.parentId") || "";
+    $("parent-select").innerHTML =
+      '<option value="">— 選択してください —</option>' +
+      list.map(g => `<option value="${g.id}" ${String(g.id)===cur?'selected':''}>#${g.id} ${escapeHtml(g.name)} (${g.display_state})</option>`).join("");
+  } catch (e) {
+    $("parent-select").innerHTML = `<option value="">エラー: ${e.message}</option>`;
+  }
+}
+$("btn-load-parents").addEventListener("click", loadParents);
+loadParents();
 
+$("parent-select").addEventListener("change", () => {
+  const v = $("parent-select").value;
+  if (v) localStorage.setItem("aih.parentId", v);
+  $("children-list").innerHTML = "";
+  $("children-status").className = "badge muted";
+  $("children-status").textContent = v ? "未取得" : "親未選択";
+  $("btn-save-order").disabled = true;
+});
+
+// === 子グループロード + ドラッグ並び替え
+let originalOrder = [];
+function getParentId() { return $("parent-select").value; }
+
+async function loadChildren() {
+  const pid = getParentId();
+  if (!pid) { alert("先に親グループを選択してください"); return; }
+  $("children-status").className = "badge muted"; $("children-status").textContent = "取得中…";
+  try {
+    const out = await api(`/api/admin/groups?parent=${pid}`);
+    const list = out.groups || [];
+    originalOrder = list.map(g => String(g.id));
+    renderChildren(list);
+    $("children-status").className = "badge ok";
+    $("children-status").textContent = `${list.length}件`;
+    $("btn-save-order").disabled = true;
+  } catch (e) {
+    $("children-status").className = "badge err";
+    $("children-status").textContent = "失敗: " + e.message;
+  }
+}
+$("btn-load-children").addEventListener("click", loadChildren);
+
+function renderChildren(list) {
+  const ul = $("children-list");
+  ul.innerHTML = "";
+  list.forEach(g => {
+    const li = document.createElement("li");
+    li.draggable = true;
+    li.dataset.id = String(g.id);
+    li.innerHTML = `
+      <span class="grip">⋮⋮</span>
+      <span class="gid">#${g.id}</span>
+      <span class="gname">${escapeHtml(g.name)}</span>
+      <span class="badge ${g.display_state==='showing'?'ok':'muted'} gstate">${g.display_state}</span>
+      <button data-edit="${g.id}" data-name="${escapeAttr(g.name)}">編集</button>
+    `;
+    ul.appendChild(li);
+  });
+  attachDragHandlers(ul);
+  ul.querySelectorAll('button[data-edit]').forEach(b => b.addEventListener('click', () => {
+    $("group-id").value = b.dataset.edit;
+    $("edit-title").value = b.dataset.name;
+    $("panel-edit").style.display = "block";
+    $("panel-edit").scrollIntoView({behavior:"smooth"});
+  }));
+}
+
+function attachDragHandlers(ul) {
+  let dragEl = null;
+  ul.querySelectorAll("li").forEach(li => {
+    li.addEventListener("dragstart", () => { dragEl = li; li.classList.add("dragging"); });
+    li.addEventListener("dragend",   () => { dragEl = null; li.classList.remove("dragging"); ul.querySelectorAll("li").forEach(x=>x.classList.remove("over")); maybeMarkChanged(); });
+    li.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      if (!dragEl || dragEl === li) return;
+      ul.querySelectorAll("li").forEach(x=>x.classList.remove("over"));
+      li.classList.add("over");
+      const rect = li.getBoundingClientRect();
+      const after = (e.clientY - rect.top) / rect.height > 0.5;
+      ul.insertBefore(dragEl, after ? li.nextSibling : li);
+    });
+  });
+}
+function currentOrder() { return Array.from($("children-list").children).map(li => li.dataset.id); }
+function maybeMarkChanged() {
+  const cur = currentOrder();
+  const changed = cur.length !== originalOrder.length || cur.some((v,i)=>v!==originalOrder[i]);
+  $("btn-save-order").disabled = !changed;
+}
+
+$("btn-save-order").addEventListener("click", async () => {
+  const pid = getParentId();
+  const orderedIds = currentOrder().map(Number);
+  if (!pid || orderedIds.length === 0) return;
+  $("btn-save-order").disabled = true;
+  log(`並び替え保存: ${orderedIds.length}件`);
+  try {
+    const r = await api("/api/admin/reorder-groups", {
+      method:"POST",
+      body: JSON.stringify({ parentId: Number(pid), orderedIds })
+    });
+    log(`OK: ${r.results.filter(x=>x.ok).length}/${r.results.length} 成功`);
+    originalOrder = orderedIds.map(String);
+  } catch (e) {
+    log("失敗: " + e.message);
+    $("btn-save-order").disabled = false;
+  }
+});
+
+// === AI 記事生成
+let drafts = [];
 $("btn-generate").addEventListener("click", async () => {
   const theme = $("theme").value.trim();
   const count = Number($("count").value) || 3;
@@ -285,21 +430,26 @@ $("btn-image").addEventListener("click", async () => {
   }
 });
 
+let createdGroupId = null;
 $("btn-create-group").addEventListener("click", async () => {
   const name = $("edit-title").value.trim();
   const image_url = $("image-url").value.trim() || undefined;
   const display_state = $("edit-display-state").value;
+  const parent_group_id = getParentId();
+  if (!parent_group_id) { alert("先に対象親グループを選択してください"); return; }
   if (!name) { alert("グループ名(=タイトル)を入力"); return; }
   $("group-status").className = "badge muted"; $("group-status").textContent = "作成中…";
   try {
     const out = await api("/api/admin/groups", {
-      method: "POST", body: JSON.stringify({ name, image_url, display_state }),
+      method: "POST",
+      body: JSON.stringify({ name, image_url, display_state, parent_group_id: Number(parent_group_id) }),
     });
     createdGroupId = out?.group?.id || out?.id;
     $("group-id").value = String(createdGroupId || "");
     $("group-status").className = "badge ok";
     $("group-status").textContent = "作成完了 ID=" + createdGroupId;
-    log("グループ作成 OK id=" + createdGroupId);
+    log("グループ作成 OK id=" + createdGroupId + " (parent=" + parent_group_id + ", sort=0)");
+    loadChildren(); // 一覧も更新
   } catch (e) {
     $("group-status").className = "badge err"; $("group-status").textContent = "失敗: " + e.message;
     log("グループ作成失敗: " + e.message);
@@ -308,20 +458,21 @@ $("btn-create-group").addEventListener("click", async () => {
 
 async function publish(target) {
   const groupId = ($("group-id").value || createdGroupId || "").toString().trim();
+  const parentGroupId = getParentId();
   const title = $("edit-title").value.trim();
   const html = $("edit-html").value.trim();
   const publishedAt = $("edit-date").value;
+  if (!parentGroupId) { alert("対象親グループ未選択"); return; }
   if (!groupId) { alert("先にグループ作成 or グループID入力"); return; }
   if (!title || !html || !publishedAt) { alert("タイトル/本文/公開日 必須"); return; }
-  log(`[${target}] 公開開始 id=${groupId}`);
+  log(`[${target}] 公開開始 parent=${parentGroupId} group=${groupId}`);
   try {
     const out = await api("/api/admin/publish-article", {
       method: "POST",
-      body: JSON.stringify({ groupId, title, html, publishedAt, target }),
+      body: JSON.stringify({ parentGroupId: Number(parentGroupId), groupId, title, html, publishedAt, target }),
     });
-    log(`[${target}] 公開OK pageSize=${out.pageSize} blockSize=${out.blockSize}`);
+    log(`[${target}] 公開OK pageType=${out.pageType} pageSize=${out.pageSize}`);
     if (target === "live") {
-      // 本番反映時は display_state を showing に上げる
       try {
         await api("/api/admin/groups", {
           method: "PUT",
@@ -338,14 +489,14 @@ async function publish(target) {
 }
 
 $("btn-publish-live").addEventListener("click", () => {
-  if (!confirm("本番テンプレ(1086)に反映します。よろしいですか？")) return;
+  if (!confirm("対象親グループのページに記事を公開します。よろしいですか？")) return;
   publish("live");
 });
 
 $("btn-unpublish-live").addEventListener("click", async () => {
   const groupId = ($("group-id").value || createdGroupId || "").toString().trim();
   if (!groupId) { alert("グループID必須"); return; }
-  if (!confirm("本番から該当ブロックを削除し display_state=hidden に戻します。よろしいですか？")) return;
+  if (!confirm("公開取り消し＆ display_state=hidden にします。よろしいですか？")) return;
   try {
     await api("/api/admin/unpublish-article", {
       method: "POST",
@@ -357,30 +508,12 @@ $("btn-unpublish-live").addEventListener("click", async () => {
   }
 });
 
-$("btn-load-groups").addEventListener("click", async () => {
-  $("groups-status").className = "badge muted"; $("groups-status").textContent = "取得中…";
-  try {
-    const data = await api("/api/admin/groups?limit=30");
-    const list = data?.groups || [];
-    $("groups-area").innerHTML = list.map(g => `
-      <div style="padding:6px 0;border-bottom:1px solid var(--border);">
-        <strong>#${g.id}</strong> ${escapeHtml(g.name)}
-        <span class="badge ${g.display_state==='showing'?'ok':'muted'}">${g.display_state}</span>
-        ${g.image_url ? `<a href="${g.image_url}" target="_blank">画像</a>` : ''}
-      </div>
-    `).join("");
-    $("groups-status").className = "badge ok";
-    $("groups-status").textContent = `${list.length}件`;
-  } catch (e) {
-    $("groups-status").className = "badge err"; $("groups-status").textContent = "失敗: " + e.message;
-  }
-});
-
 function escapeHtml(s) {
   return String(s||"").replace(/[&<>"']/g, m => (
     {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m]
   ));
 }
+function escapeAttr(s) { return escapeHtml(s).replace(/"/g,"&quot;"); }
 </script>
 </body>
 </html>

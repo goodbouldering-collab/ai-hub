@@ -36,22 +36,14 @@ export async function listGroups(limit = 50, offset = 0): Promise<any> {
 }
 
 /**
- * 全 group をページング走査して回収する。グッぼる本店は ~1400 件あるため
- * limit=50 でも 28 リクエスト程度。サーバー側の rate limit と Vercel の
- * 60 秒制約に注意。
+ * 全 group を取得する。
+ * 注: カラーミー API の /v1/groups は limit/offset を尊重せず常に全件返す
+ * （2026-05-08 グッぼる本店で確認: 約1400件を1リクエストで返却）。
+ * そのため pagination ループは不要で 1 回だけ呼ぶ。
  */
 export async function listAllGroups(): Promise<any[]> {
-  const out: any[] = [];
-  const PAGE = 50;
-  for (let offset = 0; ; offset += PAGE) {
-    const res = await listGroups(PAGE, offset);
-    const arr = (res?.groups || []) as any[];
-    if (arr.length === 0) break;
-    out.push(...arr);
-    if (arr.length < PAGE) break;
-    if (out.length > 5000) break; // 暴走防止
-  }
-  return out;
+  const res = await listGroups(1000, 0);
+  return (res?.groups || []) as any[];
 }
 
 /** 全件取得後にメモリ上で parent_group_id でフィルタ（API 側に直接フィルタが無いため） */

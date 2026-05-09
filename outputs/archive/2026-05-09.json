@@ -18,7 +18,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/npschIlYnB8/hqdefault.jpg",
-      "published": "2026-05-09T14:45:41+00:00"
+      "published": "2026-05-09T14:45:41+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "507461dc1c407a9f",
@@ -37,7 +39,9 @@
         "freshness": 3.0
       },
       "thumbnail": "",
-      "published": "2026-05-09T01:03:58+00:00"
+      "published": "2026-05-09T01:03:58+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "66fbe98f01c90171",
@@ -56,7 +60,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/nFLWIrjpo8Y/hqdefault.jpg",
-      "published": "2026-05-09T10:01:12+00:00"
+      "published": "2026-05-09T10:01:12+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "87b19e23edcbd8d6",
@@ -75,7 +81,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/_XcgkyP7PGQ/hqdefault.jpg",
-      "published": "2026-05-09T03:00:39+00:00"
+      "published": "2026-05-09T03:00:39+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "f80e683b9cf70fdf",
@@ -94,7 +102,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/3g34nnMBa0U/hqdefault.jpg",
-      "published": "2026-05-09T09:00:10+00:00"
+      "published": "2026-05-09T09:00:10+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "99ea30756a01ffef",
@@ -113,7 +123,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://cdn-thumbnails.huggingface.co/social-thumbnails/blog/lablab-ai-amd-developer-hackathon/oncoagent-official-paper.png",
-      "published": "Sat, 09 May 2026 18:09:28 GMT"
+      "published": "Sat, 09 May 2026 18:09:28 GMT",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "0552f7fa153f8f20",
@@ -132,7 +144,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://wp.technologyreview.com/wp-content/uploads/2026/05/260508_OpenAIcase.jpg?resize=1200,600",
-      "published": "Fri, 08 May 2026 23:59:19 +0000"
+      "published": "Fri, 08 May 2026 23:59:19 +0000",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "abf6350eba551a29",
@@ -151,7 +165,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://cdn.arstechnica.net/wp-content/uploads/2026/05/GettyImages-2240670637-1152x648.jpg",
-      "published": "Sat, 09 May 2026 11:00:51 +0000"
+      "published": "Sat, 09 May 2026 11:00:51 +0000",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

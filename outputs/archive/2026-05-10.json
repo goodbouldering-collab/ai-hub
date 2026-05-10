@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://img.youtube.com/vi/-nJgbaOGLC8/hqdefault.jpg",
-      "published": "2026-05-10T21:00:00+00:00"
+      "published": "2026-05-10T21:00:00+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "d35da5998ea0a1a4",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-05-10T14:59:17+00:00"
+      "published": "2026-05-10T14:59:17+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "f70bfb7ff775126d",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/y8b3rFe7X6c/hqdefault.jpg",
-      "published": "2026-05-10T18:51:32+00:00"
+      "published": "2026-05-10T18:51:32+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "d14dd26ff66ef807",
@@ -75,7 +81,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/ax2qcYxai-U/hqdefault.jpg",
-      "published": "2026-05-10T10:00:09+00:00"
+      "published": "2026-05-10T10:00:09+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "2669ca9869e33b69",
@@ -94,7 +102,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/bLguHUIFZMU/hqdefault.jpg",
-      "published": "2026-05-10T03:00:40+00:00"
+      "published": "2026-05-10T03:00:40+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "bf112fdff69176fd",
@@ -113,7 +123,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://cdn-thumbnails.huggingface.co/social-thumbnails/blog/lablab-ai-amd-developer-hackathon/machinacheck.png",
-      "published": "Sun, 10 May 2026 18:44:11 GMT"
+      "published": "Sun, 10 May 2026 18:44:11 GMT",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "8b2fc9781807f6a9",
@@ -132,7 +144,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://image.itmedia.co.jp/business/articles/2605/11/cover_news014.jpg",
-      "published": "Mon, 11 May 2026 07:00:00 +0900"
+      "published": "Mon, 11 May 2026 07:00:00 +0900",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "2f13e3fd38cb7354",
@@ -151,7 +165,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://image.itmedia.co.jp/enterprise/articles/2605/09/cover_news020.jpg",
-      "published": "Sun, 10 May 2026 12:00:00 +0900"
+      "published": "Sun, 10 May 2026 12:00:00 +0900",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

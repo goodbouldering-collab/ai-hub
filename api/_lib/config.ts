@@ -18,6 +18,15 @@ export function templateIdFor(target: "preview" | "live"): number {
   return target === "live" ? COLORME_LIVE_TEMPLATE_ID() : COLORME_PREVIEW_TEMPLATE_ID();
 }
 
+// グッぼる本店のショップ URL。末尾スラッシュは無し。
+// 例: https://goodbouldering.com → グループページ URL は ${shopUrl}/?mode=grp&gid=NNN
+export const colormeShopUrl = (): string =>
+  (process.env.COLORME_SHOP_URL || "https://goodbouldering.com").replace(/\/+$/, "");
+
+export function groupPageUrl(parentGroupId: number | string): string {
+  return `${colormeShopUrl()}/?mode=grp&gid=${parentGroupId}`;
+}
+
 export function requireEnv(name: string): string {
   const v = process.env[name];
   if (!v) throw new ConfigError(`${name} is not set`);

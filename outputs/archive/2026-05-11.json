@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://img.youtube.com/vi/dCCY6JpMX04/hqdefault.jpg",
-      "published": "2026-05-11T03:00:45+00:00"
+      "published": "2026-05-11T03:00:45+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "4804c5864f93fefb",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-05-10T23:58:49+00:00"
+      "published": "2026-05-10T23:58:49+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "f70bfb7ff775126d",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/y8b3rFe7X6c/hqdefault.jpg",
-      "published": "2026-05-10T18:51:32+00:00"
+      "published": "2026-05-10T18:51:32+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "82bf5d9743592c3e",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/-nJgbaOGLC8/hqdefault.jpg",
-      "published": "2026-05-10T21:00:00+00:00"
+      "published": "2026-05-10T21:00:00+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "d35da5998ea0a1a4",
@@ -94,7 +102,9 @@
         "freshness": 3.0
       },
       "thumbnail": "",
-      "published": "2026-05-10T14:59:17+00:00"
+      "published": "2026-05-10T14:59:17+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "b459a0a0351d6b5b",
@@ -113,7 +123,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/ax2qcYxai-U/hqdefault.jpg",
-      "published": "2026-05-10T10:00:09+00:00"
+      "published": "2026-05-10T10:00:09+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "bf112fdff69176fd",
@@ -132,7 +144,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://cdn-thumbnails.huggingface.co/social-thumbnails/blog/lablab-ai-amd-developer-hackathon/machinacheck.png",
-      "published": "Sun, 10 May 2026 18:44:11 GMT"
+      "published": "Sun, 10 May 2026 18:44:11 GMT",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "5aaba918ef365c66",
@@ -151,7 +165,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://image.itmedia.co.jp/images/logo/1200x630_500x500_mn.gif",
-      "published": "Mon, 11 May 2026 09:00:00 +0900"
+      "published": "Mon, 11 May 2026 09:00:00 +0900",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "9ddbf6e2d5f5e68e",
@@ -170,7 +186,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://image.itmedia.co.jp/news/articles/2605/08/cover_news061.jpg",
-      "published": "Mon, 11 May 2026 09:00:00 +0900"
+      "published": "Mon, 11 May 2026 09:00:00 +0900",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "3bc0feacb898e768",
@@ -189,7 +207,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://image.itmedia.co.jp/news/articles/2605/11/cover_news021.jpg",
-      "published": "Mon, 11 May 2026 08:00:00 +0900"
+      "published": "Mon, 11 May 2026 08:00:00 +0900",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

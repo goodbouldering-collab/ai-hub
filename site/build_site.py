@@ -612,14 +612,14 @@ def render_index(payload: dict, genres: list[dict], is_live: bool = True) -> str
     parts.append(f"<title>AIハブ Top{total} / {date}</title>")
     desc = f"AI情報とSNSアルゴリズム動向を毎朝要約・ランキング。{date} のTop{total}を掲載。"
     parts.append(f"<meta name='description' content='{html.escape(desc, quote=True)}'>")
-    parts.append(f"<link rel='canonical' href='{html.escape(SITE_URL + '/index.html', quote=True)}'>")
-    parts.append(_build_ogp("AIハブ", desc, SITE_URL + "/index.html", kind="website"))
-    ld = _build_jsonld("website", {}, "AIハブ", SITE_URL + "/index.html")
+    parts.append(f"<link rel='canonical' href='{html.escape(SITE_URL + '/watch/index.html', quote=True)}'>")
+    parts.append(_build_ogp("AIハブ AI Watch", desc, SITE_URL + "/watch/index.html", kind="website"))
+    ld = _build_jsonld("website", {}, "AIハブ AI Watch", SITE_URL + "/watch/index.html")
     if ld:
         parts.append(f"<script type='application/ld+json'>{ld}</script>")
     parts.append(f"<style>{CSS}</style></head><body><div class='container'>")
     parts.append(ADMIN_BUTTON_HTML)
-    parts.append(render_top_nav(path_prefix="./", current_id="home" if is_live else "archive", include_run=is_live))
+    parts.append(render_top_nav(path_prefix="../", current_id="home" if is_live else "archive", include_run=is_live))
     parts.append("<header>")
     parts.append("<h1>AIハブ</h1>")
     parts.append(f"<p class='sub'>{date} ・ 今日の注目Top{total} ・ クリックで好みを学習</p>")
@@ -828,7 +828,7 @@ def render_archive(dates: list[str]) -> str:
     parts.append("<title>AIハブ — 過去ログ</title>")
     parts.append(f"<style>{CSS}</style></head><body><div class='container'>")
     parts.append(ADMIN_BUTTON_HTML)
-    parts.append(render_top_nav(path_prefix="./", current_id="archive", include_run=False))
+    parts.append(render_top_nav(path_prefix="../", current_id="archive", include_run=False))
     parts.append("<header>")
     parts.append("<h1>過去ログ</h1>")
     parts.append(f"<p class='sub'>アーカイブ {len(dates)}件</p>")
@@ -2205,7 +2205,7 @@ def _patch_programming_map_nav(pmap_file: Path) -> None:
 
 
 def build_sitemap_and_robots() -> None:
-    """DIST 内の index.html / speaker.html / programming-map.html / lectures/*.html / archive/*.html を
+    """DIST 内の index.html / speaker.html / programming-map.html / lectures/*.html / watch/*.html を
     集めて sitemap.xml と robots.txt を生成。"""
     urls: list[tuple[str, str, float]] = []  # (loc, lastmod, priority)
     today = datetime.now().strftime("%Y-%m-%d")
@@ -2221,8 +2221,7 @@ def build_sitemap_and_robots() -> None:
     add("speaker.html", 0.9)
     add("profile.html", 0.9)
     add("portfolio.html", 0.9)
-    add("programming-map.html", 0.9)
-    add("archive.html", 0.6)
+    add("programming-map.html", 0.8)
     # lectures
     lec_idx = DIST / "lectures" / "index.html"
     if lec_idx.exists():
@@ -2233,11 +2232,15 @@ def build_sitemap_and_robots() -> None:
             if lp.name == "index.html":
                 continue
             add(f"lectures/{lp.name}", 0.8)
-    # archive: date pages(YYYY-MM-DD.html)
-    for arc in sorted(DIST.glob("*.html")):
-        m = re.match(r"^(\d{4}-\d{2}-\d{2})\.html$", arc.name)
-        if m:
-            add(arc.name, 0.4)
+    # watch: AI Watch トップ + アーカイブ
+    add("watch/index.html", 0.7)
+    add("watch/archive.html", 0.5)
+    watch_dir = DIST / "watch"
+    if watch_dir.exists():
+        for arc in sorted(watch_dir.glob("*.html")):
+            m = re.match(r"^(\d{4}-\d{2}-\d{2})\.html$", arc.name)
+            if m:
+                add(f"watch/{arc.name}", 0.4)
 
     if not urls:
         return
@@ -2272,13 +2275,17 @@ def main() -> int:
 
     genres = load_genres()
 
+    # AI Watch コンテンツは /watch/ サブディレクトリに出力する (Phase 1 移設)
+    WATCH_DIR = DIST / "watch"
+    WATCH_DIR.mkdir(parents=True, exist_ok=True)
+
     if not TOP10_JSON.exists():
         print(f"[!] {TOP10_JSON} が見つかりません。run.py を先に実行してください。")
-        (DIST / "index.html").write_text(
+        (WATCH_DIR / "index.html").write_text(
             render_index({"date": datetime.now().strftime("%Y-%m-%d"), "items": []}, genres),
             encoding="utf-8",
         )
-        (DIST / "archive.html").write_text(render_archive([]), encoding="utf-8")
+        (WATCH_DIR / "archive.html").write_text(render_archive([]), encoding="utf-8")
         (DIST / ".nojekyll").write_text("", encoding="utf-8")
         build_speaker_page()
         build_lectures()
@@ -2288,7 +2295,7 @@ def main() -> int:
         return 0
 
     payload = json.loads(TOP10_JSON.read_text(encoding="utf-8"))
-    (DIST / "index.html").write_text(render_index(payload, genres), encoding="utf-8")
+    (WATCH_DIR / "index.html").write_text(render_index(payload, genres), encoding="utf-8")
 
     ARCHIVE_DIR.mkdir(parents=True, exist_ok=True)
     date = payload.get("date", datetime.now().strftime("%Y-%m-%d"))
@@ -2303,9 +2310,9 @@ def main() -> int:
         d = f.stem
         dates.append(d)
         arc_payload = json.loads(f.read_text(encoding="utf-8"))
-        (DIST / f"{d}.html").write_text(render_index(arc_payload, genres, is_live=False), encoding="utf-8")
+        (WATCH_DIR / f"{d}.html").write_text(render_index(arc_payload, genres, is_live=False), encoding="utf-8")
 
-    (DIST / "archive.html").write_text(render_archive(dates), encoding="utf-8")
+    (WATCH_DIR / "archive.html").write_text(render_archive(dates), encoding="utf-8")
     (DIST / ".nojekyll").write_text("", encoding="utf-8")
 
     speaker_built = build_speaker_page()
@@ -2315,7 +2322,7 @@ def main() -> int:
     build_sitemap_and_robots()
 
     print(
-        f"[+] site built: {DIST} ({len(dates)} archive pages"
+        f"[+] site built: {DIST} ({len(dates)} archive pages in watch/"
         + (", speaker.html" if speaker_built else "")
         + (f", {lectures_built} lectures" if lectures_built else "")
         + (", portfolio.html" if portfolio_built else "")

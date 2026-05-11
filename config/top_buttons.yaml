@@ -8,11 +8,16 @@
 #   - kind: link | action（action は run ボタンのみ対応）
 #
 # グループ表示順は最初に現れた順。
+#
+# Phase 1 変更点:
+#   - home (トップ) → CEO ポータル index.html へ
+#   - archive → watch/archive.html へ移設
+#   - watch (AI Watch) リンクを新規追加
 
 top_buttons:
 - id: home
   group: メイン
-  label: トップ
+  label: ポータル
   icon: 🏠
   href: index.html
   kind: link
@@ -56,11 +61,18 @@ top_buttons:
   kind: link
   enabled: true
 
+- id: watch
+  group: AI情報
+  label: AI Watch
+  icon: 📡
+  href: watch/index.html
+  kind: link
+  enabled: true
 - id: archive
-  group: アーカイブ
+  group: AI情報
   label: 過去ログ
   icon: 📚
-  href: archive.html
+  href: watch/archive.html
   kind: link
   enabled: true
 

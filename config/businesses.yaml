@@ -1,0 +1,100 @@
+# CEO ポータル — 事業カード定義
+#
+# 編集ガイド:
+#   - url が空または null の場合はカードをリンクなし（準備中バッジ）で表示
+#   - status: live / coming_soon / empty
+#   - icon: 絵文字（1文字）
+#   - color: グラデーション用カラーキー（blue/purple/green/orange/pink/teal/yellow/red/cyan/gray）
+#   - description: 1〜2行。事業の「何屋」を端的に
+#
+businesses:
+- id: gubble
+  name: グッぼる
+  tagline: クライミング × カフェ × ショップ
+  url: https://goodbouldering.com
+  icon: 🧗
+  color: blue
+  status: live
+  description: 彦根のボルダリングジム。カフェ・ショップ・クライミングスクールを併設。クライミング歴30年のオーナーが直営。
+
+- id: n-design
+  name: Nデザイン
+  tagline: 滋賀・彦根の工務店 Web マーケティング
+  url: https://n-design-lemon.vercel.app
+  icon: 🏠
+  color: orange
+  status: live
+  description: ネリデザイン（株）の Webマーケティング事業サイト。新築・リフォームの相談窓口。
+
+- id: climbhero
+  name: ClimbHero
+  tagline: クライミング動画共有・グローバル
+  url: https://project-02ceb497.pages.dev
+  icon: 🎬
+  color: purple
+  status: live
+  description: 登る動画をランキングで競うクライミング特化アプリ。Cloudflare Pages 上で稼働。
+
+- id: business21
+  name: ビジネス21
+  tagline: 外国人技能実習・監理団体
+  url: https://business21.vercel.app
+  icon: 🌏
+  color: teal
+  status: live
+  description: 協同組合ビジネス21の広報・コミュニティサイト。外国人技能実習生の受入れ支援。
+
+- id: minanowa
+  name: みんなのWA
+  tagline: 彦根 異業種交流コミュニティ
+  url: https://minanowa.com
+  icon: 🤝
+  color: green
+  status: live
+  description: 彦根市の異業種交流会。会員登録・イベント案内・会員紹介をワンサイトで。
+
+- id: notesthe
+  name: Notエステ
+  tagline: 美肌脱毛・ホワイトニング（彦根・長浜）
+  url: https://notesthe.vercel.app
+  icon: 💆
+  color: pink
+  status: live
+  description: メンズ・レディース対応のエステサロン。Payload CMS で柔軟なコンテンツ管理。
+
+- id: karatto
+  name: カラット
+  tagline: Shopify ストア
+  url: https://karatto.life
+  icon: 💎
+  color: yellow
+  status: live
+  description: カラッとヒーロー1億達成プロジェクト。Shopify ホスティング + Cloudflare Workers 連携。
+
+- id: fadie
+  name: ファディー
+  tagline: 彦根プロジェクト（準備中）
+  url:
+  icon: 🚀
+  color: red
+  status: coming_soon
+  description: Vercel + Supabase で新規再生成中。みんなのWA の構成をベースに立ち上げ予定。
+
+- id: ai-hub
+  name: AIハブ
+  tagline: CEO ポータル + AI 集約パイプライン
+  url: https://ai-hub-jp.vercel.app
+  icon: 🤖
+  color: cyan
+  status: live
+  self: true
+  description: あなたは今ここにいます。9事業の入口・講習資料・AI情報を1箇所に集約。
+
+- id: future
+  name: （空き枠）
+  tagline: まだ増える
+  url:
+  icon: ＋
+  color: gray
+  status: empty
+  description: 次の事業が始まったらここに並びます。

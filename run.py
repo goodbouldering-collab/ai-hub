@@ -98,7 +98,7 @@ def main():
         full_summary = summarize_all(all_articles) if not args.no_summary else {}
         export_full_source(all_articles, full_summary, OUT_FULL)
 
-    print("\n[6/6] 静的サイト生成")
+    print("\n[6/6] 静的サイト生成 (AI Watch)")
     try:
         import importlib.util
         spec = importlib.util.spec_from_file_location("build_site", ROOT / "site" / "build_site.py")
@@ -107,6 +107,16 @@ def main():
         mod.main()
     except Exception as e:
         print(f"  サイト生成スキップ: {e}")
+
+    print("\n[7/7] CEO ポータルトップ生成")
+    try:
+        import importlib.util as _ilu
+        _spec = _ilu.spec_from_file_location("build_portal", ROOT / "site" / "build_portal.py")
+        _mod = _ilu.module_from_spec(_spec)
+        _spec.loader.exec_module(_mod)
+        _mod.main()
+    except Exception as e:
+        print(f"  ポータル生成スキップ: {e}")
 
     print("\n完了。")
     print(f"NotebookLM直貼り用: {OUT_NLM / 'nlm_latest.txt'}")

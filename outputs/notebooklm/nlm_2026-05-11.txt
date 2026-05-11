@@ -1,25 +1,115 @@
 # AIハブ 2026-05-11 (過去24時間・AI+SNSアルゴリズム動向)
 
+## AIニュース
+
+### Here&#8217;s what Mira Murati&#8217;s AI company is up to
+Thinking Machines, the AI company founded by former OpenAI CTO Mira Murati, announced Monday that it's working on something called "interaction models." The idea behind interaction models, according t...
+出典: https://www.theverge.com/ai-artificial-intelligence/928309/mira-murati-thinking-machines-ai-interaction-model
+
+### Google stopped a zero-day hack that it says was developed with AI
+For the first time, Google says it has spotted and stopped a zero-day exploit developed with AI. According to a report from Google Threat Intelligence Group (GTIG), "prominent cyber crime threat actor...
+出典: https://www.theverge.com/tech/928007/google-ai-zero-day-exploit-stopped
+
+### Live updates from Elon Musk and Sam Altman’s court battle over the future of OpenAI
+Sam Altman and Elon Musk are facing off in a high-stakes trial that could alter the future of OpenAI and its most well-known product, ChatGPT. In 2024, Musk filed a lawsuit accusing OpenAI of abandoni...
+出典: https://www.theverge.com/tech/917225/sam-altman-elon-musk-openai-lawsuit
+
+### Joanna Stern is not a robot, but she lived with them
+My guest today is longtime friend of the show Joanna Stern. You all know Joanna: she is the former senior personal technology columnist for The Wall Street Journal, a former Decoder guest host, one of...
+出典: https://www.theverge.com/podcast/926752/joanna-stern-i-am-not-a-robot-new-things-media-youtube-ai-automation
+
+### Three things in AI to watch, according to a Nobel-winning economist
+This story originally appeared in The Algorithm, our weekly newsletter on AI. To get stories like this in your inbox first, sign up here. A few months before he was awarded the Nobel Prize in economic...
+出典: https://www.technologyreview.com/2026/05/11/1137090/three-things-in-ai-to-watch-according-to-a-nobel-winning-economist/
+
+### Fostering breakthrough AI innovation through customer-back engineering
+Despite years of digitization, organizations capture less than one-third of the value expected from digital investments, according to McKinsey research. That’s because most big companies begin with te...
+出典: https://www.technologyreview.com/2026/05/11/1136967/fostering-breakthrough-ai-innovation-through-customer-back-engineering/
+
+### Implementing advanced AI technologies in finance
+In finance departments that have long been defined by precision and control, AI has arrived less as a neatly managed upgrade than as a quiet insurgency. Employees are already using it while leadership...
+出典: https://www.technologyreview.com/2026/05/11/1136786/implementing-advanced-ai-technologies-in-finance/
+
+### Data center guzzled 30 million gallons of water and nobody noticed for months
+Can AI save us from the AI industry’s endless thirst for water? Outlook not so good.
+出典: https://arstechnica.com/tech-policy/2026/05/data-center-used-30-million-gallons-of-water-without-initially-paying/
+
+
+## AI公式
+
+### How ChatGPT adoption broadened in early 2026
+ChatGPT adoption surged in Q1 2026, with fastest growth among users over 35 and more balanced gender usage, signaling broader mainstream AI adoption.
+出典: https://openai.com/signals/research/2026q1-update
+
+### How enterprises are scaling AI
+How enterprises scale AI: from early experiments to compounding impact through trust, governance, workflow design, and quality at scale.
+出典: https://openai.com/business/guides-and-resources/how-enterprises-are-scaling-ai
+
+### OpenAI Campus Network: Student club interest form
+Join the OpenAI Campus Network—connect student clubs worldwide, access AI tools, host events, and build an AI-powered campus community.
+出典: https://openai.com/index/openai-campus-network-student-club-interest-form
+
+### OpenAI launches DeployCo to help businesses build around intelligence
+OpenAI launches DeployCo, a new enterprise deployment company built to help organizations bring frontier AI into production and turn it into measurable business impact.
+出典: https://openai.com/index/openai-launches-the-deployment-company
+
+
 ## AI動画(日本語)
+
+### Claude Codeセキュリティ対策の最終形 / Claude Code Safety Hub / 知識0でも使える / うっかりミスしても安心安全
+▼Claude Codeを安全に導入する仕組み「Claude Code Safety Hub」のお問い合わせはこちら https://touchai.jp/claude-code-safety-hub/contact  ▼Claude Codeを安全に使う方法を2日間で習得できる企業研修 https://api.touchai.jp/r/youtube_webshokutv ※助成金適用で最大75...
+出典: https://www.youtube.com/watch?v=jAKaOK-s428
 
 ### 本日の最新AIニュース！ / 遂にClaude Codeを安全に使う仕組みが完成間近！ / Codexに浮気そう
 AIやClaude Codeを学べる講座やワークショップを開催中！ https://api.touchai.jp/r/webshokutv_live?utmc=20260511  1on1でClaude Codeをなかじが直接指導！(法人向け) https://touchai.jp/claude-code-1on1-corp  Claude Codeを活用した記事執筆自動化とセキュリティ対策 ht...
 出典: https://www.youtube.com/watch?v=y8b3rFe7X6c
 
-### OpenAIの「Codex App Server」を使ってない人なんていないよね？ / こんなすごいものが無料なの意味不明 / Claude Code一強じゃない！
-※概要欄でプレゼント無料配布中 ▼Claude Codeを安全に使う方法を2日間で習得できる企業研修 https://api.touchai.jp/r/youtube_webshokutv ※助成金適用で最大75%還元  ▼AI関連の講座・ワークショップの開催案内はこちら https://note.com/merilinc/n/n6a2254a94b42  ▼ なかじマーケティング顧問のお問い合わ...
-出典: https://www.youtube.com/watch?v=-nJgbaOGLC8
+### 【９割が知らない】本気で月１００万円を稼ぎたい人だけ見てください。
+タマキさんのXや公式LINEはコチラから▼ X：https://x.com/yuzu_curiosity?s=21 LINE：https://lin.ee/14YxIC6  エヌイチ5daysブートキャンプの詳細はコチラから▼ https://utage-system.com/p/Uicj6Ter4Lgw 詳細の動画はコチラから▼ https://youtu.be/1qDf_6JQ_s0?si=J...
+出典: https://www.youtube.com/watch?v=LMLswYk_G04
 
 ### 合計200コンテンツの特典を全部無料で配ります
 本編動画： https://youtu.be/1qDf_6JQ_s0  オプチャ参加： https://utage-system.com/p/Uicj6Ter4Lgw
 出典: https://www.youtube.com/shorts/dCCY6JpMX04
 
-### 【初心者必見】社不→3億。弱者の戦略はコレです。
-カズマルさんのYouTubeやXや公式LINEはコチラから▼ YouTube：https://www.youtube.com/@vstkazumaru X：https://x.com/kazumarudrive?s=21 公式LINE：https://utage-system.com/line/open/cIFJe3kL1dRl  エヌイチ5daysブートキャンプの詳細はコチラから▼ https:...
-出典: https://www.youtube.com/watch?v=ax2qcYxai-U
-
 
 ## AI国内
+
+### 北陸銀行が音声AIを試験導入　パンク状態の窓口を自動化し「あふれ呼」を解消へ
+北陸銀行は、音声AIエージェント「AI Worker VoiceAgent」の試行導入を開始した。法人向けインターネットバンキングのFAQ対応を自動化することで、電話集中時に発生する「あふれ呼」や待機時間の増加といった課題の解消を目指す。
+出典: https://kn.itmedia.co.jp/kn/articles/2605/12/news027.html
+
+### OpenAI、企業向けAI導入支援を本格展開　「Deployment Company」設立
+OpenAIは、AI導入を支援する新会社「OpenAI Deployment Company」を設立した。AIコンサルティング企業のTomoro買収により体制を強化し、専門エンジニアを顧客に派遣して業務フローのAI転換を推進する。TPGやソフトバンクなどから40億ドル超の資金を確保。Anthropicとの企業向けAI導入支援競争が激化している。
+出典: https://www.itmedia.co.jp/news/articles/2605/12/news053.html
+
+### GPT-5.5は最高性能ではないのに、なぜエンジニアが熱狂？　カギは“最後まで自走する力”
+GPT-5.5は、ベンチマークだけを見れば絶対王者ではない。それでも開発者が熱狂する理由を、Codexとの組み合わせ、トークン効率、そして“最後まで自走する力”から整理する。
+出典: https://atmarkit.itmedia.co.jp/ait/articles/2605/12/news009.html
+
+### 日本のAI普及率上昇は"世界平均の3倍ペース"　モデルの日本語性能改善が要因か
+Microsoftのレポートによれば、日本におけるAIの普及率は世界平均の3倍ペースで上昇している。その要因はモデルの日本語性能向上にあるようだ。
+出典: https://www.itmedia.co.jp/aiplus/articles/2605/11/news122.html
+
+### バクラク、契約業務の自動化を支援する新サービスを今夏提供予定　27年度以降適用の「新リース会計基準」の判定にも対応
+バックオフィス向けの業務効率化ツール「バクラク」を提供するLayerX（東京都中央区）は5月11日、AIエージェントが契約業務を支援する新サービス「バクラク契約管理」を今夏に提供予定だと発表した。
+出典: https://www.itmedia.co.jp/news/articles/2605/11/news114.html
+
+### 十時CEOが明かす“ソニー流”AI活用術　ゲーム開発にも導入、クリエイティブを支える工夫
+ソニーグループの十時裕樹CEOは、5月8日に実施した経営方針説明会で、クリエイティブ領域におけるAI活用の進捗を明かした。
+出典: https://www.itmedia.co.jp/aiplus/articles/2605/11/news118.html
+
+### NTTグループはAIで「GAFAM級」の存在感を発揮できるか？
+NTTグループがAI関連サービスの取り組みを明らかにした。インフラからアプリケーションまでフルスタックで提供する事業体制で、GAFAM級の存在感を発揮できるか。
+出典: https://www.itmedia.co.jp/enterprise/articles/2605/11/news060.html
+
+### AIエージェントが「Figma」でデザインを作成・編集可能に　“意図しないUI生成”を防ぐ仕組みとは
+Figma社は、AIエージェントが「Figma」のキャンバスでデザインを直接作成・編集できる機能の提供を始めた。意図しないデザインの生成を防ぐ仕組みも備える。
+出典: https://atmarkit.itmedia.co.jp/ait/articles/2605/11/news041.html
+
+### “ChatGPT以後”に公開のWebサイト、35％がAI生成に？　米スタンフォード大などが調査　広まる「不自然に明るい文章」
+英インペリアル・カレッジ・ロンドンや米国の非営利団体Internet Archive、米スタンフォード大学に所属する研究者らが発表した論文「The Impact of AI-Generated Text on the Internet」は、インターネット上のAI生成テキストの割合と、それがもたらす真の影響を明らかにした研究報告だ。
+出典: https://www.itmedia.co.jp/news/articles/2605/11/news027.html
 
 ### TGR-DがAI-CAE技術を導入　RICOSとレーシングカー空力解析を検証
 RICOSは、トヨタガズーレーシングディベロップメント（TGR-D）と、機械学習技術を活用したレーシングカーの空力解析に関する委託契約を締結した。モータースポーツ開発における空力性能向上を目的に、機械学習による解析結果の高速予測を可能にするRICOS独自のAI-CAE技術を適用する。
@@ -33,47 +123,66 @@ RICOSは、トヨタガズーレーシングディベロップメント（TGR-D�
 オープンソースソフトウェア（OSS）の脆弱性に懸賞金をかけて発見を促し、対応を支援してきた米セキュリティ企業のHackerOneが、新規の報告受け付けを停止している。AIで生成された質の低い脆弱性報告の激増が原因といい、影響は主要OSSプロジェクトに及ぶ。同様の懸賞金プログラムを提供してきたGoogleも対応を強いられるなど、AIの影響が深刻化している現実が浮き彫りになった。
 出典: https://www.itmedia.co.jp/news/articles/2605/11/news021.html
 
-### NEC×Anthropic協業は「想像以上の反響」　社長対談で語られた“日の丸AI”の戦い方【一問一答】
-電撃的協業を発表したNECとAnthropicの社長が対談した。そこで語られた、日本のAI開発と戦い方を抜粋して紹介する。
-出典: https://www.itmedia.co.jp/business/articles/2605/11/news014.html
-
-
-## AI業界
-
-### MachinaCheck: Building a Multi-Agent CNC Manufacturability System on AMD MI300X
-
-出典: https://huggingface.co/blog/lablab-ai-amd-developer-hackathon/machinacheck
-
 
 ## AI研究者ブログ
+
+### Quoting James Shore
+<blockquote cite="https://www.jamesshore.com/v2/blog/2026/you-need-ai-that-reduces-your-maintenance-costs"><p>Your AI coding agent, the one you use to write code, needs to reduce your maintenance cost...
+出典: https://simonwillison.net/2026/May/11/james-shore/#atom-everything
+
+### Your AI Use Is Breaking My Brain
+<p><strong><a href="https://www.404media.co/your-ai-use-is-breaking-my-brain/">Your AI Use Is Breaking My Brain</a></strong></p> Excellent, angry piece by Jason Koebler on how AI writing online is bec...
+出典: https://simonwillison.net/2026/May/11/zombie-internet/#atom-everything
+
+### Using LLM in the shebang line of a script
+<p><strong>TIL:</strong> <a href="https://til.simonwillison.net/llms/llm-shebang">Using LLM in the shebang line of a script</a></p>         <p>Kim_Bruning <a href="https://news.ycombinator.com/item?id...
+出典: https://simonwillison.net/2026/May/11/llm-shebang/#atom-everything
+
+### Learning on the Shop floor
+<p><strong><a href="https://twitter.com/tobi/status/2053121182044451016">Learning on the Shop floor</a></strong></p> Tobias Lütke describes Shopify's internal coding agent tool, River, which operates ...
+出典: https://simonwillison.net/2026/May/11/learning-on-the-shop-floor/#atom-everything
 
 ### Quoting New York Times Editors’ Note
 <blockquote cite="https://www.nytimes.com/2026/04/14/world/canada/election-carney-liberal-party.html"><p><em>This article was updated after The Times learned that a remark attributed to Pierre Poiliev...
 出典: https://simonwillison.net/2026/May/10/new-york-times-editors-note/#atom-everything
 
-### Quoting Andrew Quinn
-<blockquote cite="https://til.andrew-quinn.me/posts/replacing-a-3-gb-sqlite-database-with-a-7-mb-fst-finite-state-trandsucer-binary/#fn:5"><p>One could say in the first quarter-century of my life, tha...
-出典: https://simonwillison.net/2026/May/10/andrew-quinn/#atom-everything
+
+## SNS公式
+
+### Meta at The Cannes Film Festival 2026
+<div><img alt="" class="attachment-large size-large wp-post-image" height="540" src="https://about.fb.com/wp-content/uploads/2026/05/2026_CANNES_SIGNATURES_WEB_COULEUR-1_2560x1440.jpg?fit=960%2C540" s...
+出典: https://about.fb.com/news/2026/05/meta-at-the-cannes-film-festival-2026/
 
 
 ## SNS動向
 
-### Is Meta really dying?
-<figure><div><img src="https://imgproxy.divecdn.com/mLE5emoxeoUshuQvbDUkbybxS_2MACEdPBJtGf88h28/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9HZXR0eUltYWdlcy0xMzQ5ODAwMTI3X1pISGFq...
-出典: https://www.socialmediatoday.com/news/is-meta-really-dying/819794/
+### YouTube is testing clear screen viewing for Shorts
+<p>The option would let users hide on-screen function buttons, and is already available on competitor platforms such as TikTok and Reels.</p>
+出典: https://www.socialmediatoday.com/news/youtube-is-testing-clear-screen-viewing-for-shorts/819921/
 
-### Instagram eyes long-form content on CTV
-<p>Tessa Lyons, Instagram&rsquo;s vice president of product, told audiences at Scalable Summit that short-form videos may not &ldquo;be enough to succeed on TV,&rdquo; per ICYMI.</p>
-出典: https://www.socialmediatoday.com/news/instagram-eyes-long-form-content-on-ctv/819793/
+### TikTok launches ad-free offering in U.K.
+<p>The subscription model lets users pay a monthly fee to disable data tracking for targeted promotions, in line with current regulations.</p>
+出典: https://www.socialmediatoday.com/news/tiktok-launches-ad-free-offering-in-uk/819920/
 
-### LinkedIn uses AI to improve feed relevance
-<p>The company is using artificial intelligence-powered generative recommendations to assess user actions across the platform.</p>
-出典: https://www.socialmediatoday.com/news/linkedin-uses-ai-to-improve-feed-relevance/819792/
+### Snapchat hosts AR developer bootcamp
+<p>The event last month was intended to help boost creative collaboration between the most active Spectacles developers ahead of the Specs device release.</p>
+出典: https://www.socialmediatoday.com/news/snapchat-hosts-ar-developer-bootcamp/819918/
 
-### Meta outlines the features of its AI glasses range
-<p>The company published an explainer on its various models as sales of the devices continue to rise.</p>
-出典: https://www.socialmediatoday.com/news/meta-outlines-the-features-of-its-ai-glasses-range/819791/
+### Instagram tests captions on each post within carousels
+<p>The option would give users more opportunity to add context, and potentially generate more engagement with their carousel updates.</p>
+出典: https://www.socialmediatoday.com/news/instagram-tests-captions-on-each-post-within-carousels/819917/
 
-### Pinterest updates ad relevance
-<p>The platform is using offline activity and additional integrated data points to predict potential user interest in Promoted Pins.</p>
-出典: https://www.socialmediatoday.com/news/pinterest-updates-ad-relevance/819790/
+### YouTube publishes brand growth playbook
+<p>The guide offers suggestions for building businesses on the platform and tapping into the evolving creator marketplace.</p>
+出典: https://www.socialmediatoday.com/news/youtube-publishes-brand-growth-playbook/819913/
+
+### Threads updates its branding
+<p>The platform rolled out a new logo and font as it continues to grow its user base and compete with larger apps such as X for market share.</p>  <p>&nbsp;</p>
+出典: https://www.socialmediatoday.com/news/threads-updates-its-branding/819910/
+
+
+## SNS運用
+
+### Your Complete Guide to Social Media Marketing: Platforms, Strategy, and Tips for Growth
+Not sure where to start with social media marketing? This guide walks you through everything from choosing platforms to building a strategy that sticks.
+出典: https://buffer.com/resources/social-media-marketing-guide/

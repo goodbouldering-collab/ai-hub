@@ -9,6 +9,8 @@
   },
   "rewrites": [
     { "source": "/admin", "destination": "/api/admin" },
-    { "source": "/admin/", "destination": "/api/admin" }
+    { "source": "/admin/", "destination": "/api/admin" },
+    { "source": "/watch", "destination": "/watch/index.html" },
+    { "source": "/watch/", "destination": "/watch/index.html" }
   ]
 }

@@ -4,11 +4,13 @@
     "api/**/*.ts": {
       "runtime": "@vercel/node@5.1.6",
       "maxDuration": 60,
-      "includeFiles": "site/static/admin/**"
+      "includeFiles": "site/static/admin/**,supabase/migrations/**"
     }
   },
   "rewrites": [
     { "source": "/admin", "destination": "/api/admin" },
-    { "source": "/admin/", "destination": "/api/admin" }
+    { "source": "/admin/", "destination": "/api/admin" },
+    { "source": "/admin/sns-post", "destination": "/api/admin/sns-post" },
+    { "source": "/admin/sns-post/", "destination": "/api/admin/sns-post" }
   ]
 }

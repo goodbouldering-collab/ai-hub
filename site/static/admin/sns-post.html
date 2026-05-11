@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIハブ管理画面 — SNS 一括投稿</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0d1126; --bg2:#141938; --panel:rgba(255,255,255,.05);
+    --border:rgba(255,255,255,.14); --text:#e8ebf5; --muted:#aab1c5;
+    --accent:#7aa2ff; --accent2:#c77dff; --ok:#7eeba3; --err:#ff7a90;
+    --warn:#ffd97a;
+  }
+  body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Hiragino Sans','Noto Sans JP',sans-serif;
+    background:linear-gradient(180deg,#0a0d1a,#0d1126 50%,#0a0d1a);
+    color:var(--text); min-height:100vh; padding:20px; line-height:1.55; }
+  .container { max-width:900px; margin:0 auto; }
+  h1 { font-size:22px; font-weight:800;
+    background:linear-gradient(100deg,var(--accent),var(--accent2));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    margin-bottom:6px; }
+  .sub { color:var(--muted); font-size:13px; margin-bottom:24px; }
+  .back-link { font-size:12px; color:var(--accent); text-decoration:none; display:inline-block; margin-bottom:12px; }
+  .back-link:hover { text-decoration:underline; }
+  .panel { background:var(--panel); border:1px solid var(--border);
+    border-radius:14px; padding:18px; margin-bottom:18px;
+    backdrop-filter: blur(12px); }
+  .panel h2 { font-size:14px; font-weight:800; letter-spacing:.04em;
+    color:var(--accent); margin-bottom:12px; text-transform:uppercase; }
+  label { display:block; font-size:12px; color:var(--muted); margin:10px 0 4px; }
+  input[type=text], textarea {
+    width:100%; padding:10px 12px; border-radius:10px;
+    background:rgba(255,255,255,.05); border:1px solid var(--border);
+    color:var(--text); font:inherit; font-size:13px; }
+  textarea { min-height:100px; resize:vertical; }
+  .char-count { font-size:11px; color:var(--muted); text-align:right; margin-top:4px; }
+  .char-count.over { color:var(--err); font-weight:700; }
+  button {
+    padding:9px 16px; border-radius:999px; border:1px solid var(--border);
+    background:rgba(255,255,255,.06); color:var(--text); font:inherit;
+    font-size:12.5px; font-weight:700; cursor:pointer; transition:all .2s;
+  }
+  button:hover:not(:disabled) { background:rgba(122,162,255,.18); border-color:rgba(122,162,255,.5); }
+  button.primary { background:linear-gradient(135deg,rgba(122,162,255,.5),rgba(199,125,255,.4));
+    border-color:rgba(255,255,255,.3); }
+  button:disabled { opacity:.5; cursor:not-allowed; }
+  .row { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+  .row > * { flex:0 0 auto; }
+  .row .grow { flex:1 1 auto; min-width:200px; }
+  .badge { display:inline-block; padding:3px 9px; border-radius:999px;
+    font-size:10.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; }
+  .badge.ok { background:rgba(126,235,163,.18); color:var(--ok); }
+  .badge.err { background:rgba(255,122,144,.18); color:var(--err); }
+  .badge.warn { background:rgba(255,217,122,.18); color:var(--warn); }
+  .badge.muted { background:rgba(255,255,255,.08); color:var(--muted); }
+  .badge.skip { background:rgba(255,255,255,.06); color:var(--muted); font-style:italic; }
+  pre.log { background:#000; color:#7eeba3; font-size:11px; padding:10px;
+    border-radius:8px; max-height:200px; overflow:auto;
+    font-family:'SFMono-Regular',Consolas,monospace; white-space:pre-wrap; }
+  hr { border:none; border-top:1px solid var(--border); margin:14px 0; }
+  small { color:var(--muted); font-size:11px; }
+
+  /* プラットフォーム選択 */
+  .platform-card {
+    display:flex; align-items:center; gap:12px;
+    padding:12px 14px; border-radius:10px;
+    border:1px solid var(--border); margin-bottom:8px;
+    background:rgba(255,255,255,.03);
+  }
+  .platform-card.disabled-card { opacity:.55; }
+  .platform-card input[type=checkbox] { width:18px; height:18px; accent-color:var(--accent); flex-shrink:0; }
+  .platform-info { flex:1 1 auto; }
+  .platform-name { font-size:14px; font-weight:700; }
+  .platform-reason { font-size:11px; color:var(--muted); margin-top:2px; }
+
+  /* 履歴テーブル */
+  table { width:100%; border-collapse:collapse; font-size:12px; }
+  th { text-align:left; color:var(--muted); font-weight:600; padding:6px 8px;
+    border-bottom:1px solid var(--border); }
+  td { padding:8px; border-bottom:1px solid rgba(255,255,255,.05);
+    vertical-align:top; word-break:break-word; }
+  .hist-text { max-width:300px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .hist-empty { text-align:center; color:var(--muted); padding:20px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <a href="/admin" class="back-link">← グループ記事管理に戻る</a>
+  <h1>📣 SNS 一括投稿</h1>
+  <p class="sub">X (Twitter) と Threads に同時投稿。設定済みの SNS だけに送信されます。</p>
+
+  <!-- 接続・設定確認 -->
+  <div class="panel" id="panel-status">
+    <h2>① 接続状態</h2>
+    <div id="status-area">確認中…</div>
+  </div>
+
+  <!-- 投稿テキスト -->
+  <div class="panel">
+    <h2>② 投稿テキスト</h2>
+    <div class="row" style="margin-bottom:8px;">
+      <input type="text" id="draft-theme" class="grow" placeholder="テーマ（例: 彦根でクライミング教室開催）">
+      <button id="btn-draft" class="primary">🤖 AI 下書き</button>
+      <span id="draft-status" class="badge muted">待機中</span>
+    </div>
+    <label>投稿テキスト（140文字以内）</label>
+    <textarea id="post-text" placeholder="投稿するテキストを入力、またはAI下書きを生成してください"></textarea>
+    <div class="char-count" id="char-count">0 / 140</div>
+  </div>
+
+  <!-- プラットフォーム選択 -->
+  <div class="panel">
+    <h2>③ 投稿先プラットフォーム</h2>
+    <div id="platform-x" class="platform-card">
+      <input type="checkbox" id="chk-x" checked>
+      <div class="platform-info">
+        <div class="platform-name">X (Twitter)</div>
+        <div class="platform-reason" id="x-reason">確認中…</div>
+      </div>
+      <span class="badge muted" id="x-badge">確認中</span>
+    </div>
+    <div id="platform-threads" class="platform-card">
+      <input type="checkbox" id="chk-threads" checked>
+      <div class="platform-info">
+        <div class="platform-name">Threads</div>
+        <div class="platform-reason" id="threads-reason">確認中…</div>
+      </div>
+      <span class="badge muted" id="threads-badge">確認中</span>
+    </div>
+    <small>未設定の SNS はチェックボックスが無効化されます。設定方法は Vercel 環境変数を参照してください。</small>
+  </div>
+
+  <!-- 投稿ボタン -->
+  <div class="panel">
+    <h2>④ 投稿実行</h2>
+    <div class="row">
+      <button id="btn-post" class="primary" disabled>🚀 投稿する</button>
+      <span id="post-status" class="badge muted">待機中</span>
+    </div>
+    <pre class="log" id="post-log">操作ログ…</pre>
+  </div>
+
+  <!-- 投稿履歴 -->
+  <div class="panel">
+    <h2>⑤ 投稿履歴（最新30件）</h2>
+    <div class="row" style="margin-bottom:12px;">
+      <button id="btn-reload-history">再読込</button>
+    </div>
+    <div id="history-area">読み込み中…</div>
+  </div>
+</div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const log = (msg) => {
+  const el = $("post-log");
+  el.textContent += "\n" + new Date().toISOString().slice(11,19) + " " + msg;
+  el.scrollTop = el.scrollHeight;
+};
+
+async function api(path, opts = {}) {
+  const res = await fetch(path, {
+    ...opts,
+    headers: { "Content-Type": "application/json", ...(opts.headers || {}) },
+  });
+  const text = await res.text();
+  let json = null;
+  try { json = text ? JSON.parse(text) : null; } catch {}
+  if (!res.ok) throw new Error(json?.error || text || `HTTP ${res.status}`);
+  return json;
+}
+
+function escapeHtml(s) {
+  return String(s||"").replace(/[&<>"']/g, m =>
+    ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m])
+  );
+}
+
+// ── 接続確認 + プラットフォーム状態設定
+async function checkStatus() {
+  try {
+    const ping = await api("/api/admin/ping");
+    const env = ping.env;
+    const snsCreds = ping.snsCreds || {};
+
+    const flag = (k, ok) => `<span class="badge ${ok?'ok':'err'}">${k}: ${ok?'OK':'未設定'}</span>`;
+    $("status-area").innerHTML = [
+      flag("Anthropic", env.hasAnthropic),
+      flag("Supabase", env.hasSupabase),
+      flag("X API", snsCreds.xConfigured || false),
+      flag("Threads API", snsCreds.threadsConfigured || false),
+    ].join(" ");
+
+    setupPlatformCard("x", snsCreds.xConfigured || false,
+      "X_API_KEY / X_API_SECRET / X_ACCESS_TOKEN / X_ACCESS_TOKEN_SECRET");
+    setupPlatformCard("threads", snsCreds.threadsConfigured || false,
+      "THREADS_USER_ID / THREADS_ACCESS_TOKEN");
+  } catch (e) {
+    $("status-area").innerHTML = `<span class="badge err">エラー: ${escapeHtml(e.message)}</span>`;
+  }
+}
+
+function setupPlatformCard(platform, configured, envKeys) {
+  const chk = $(`chk-${platform}`);
+  const badge = $(`${platform}-badge`);
+  const reason = $(`${platform}-reason`);
+  const card = $(`platform-${platform}`);
+
+  if (configured) {
+    chk.disabled = false;
+    chk.checked = true;
+    badge.className = "badge ok";
+    badge.textContent = "設定済み";
+    reason.textContent = "環境変数が設定されています";
+    card.classList.remove("disabled-card");
+  } else {
+    chk.disabled = true;
+    chk.checked = false;
+    badge.className = "badge err";
+    badge.textContent = "未設定";
+    reason.textContent = `環境変数未設定: ${envKeys}`;
+    card.classList.add("disabled-card");
+  }
+  updatePostButton();
+}
+
+// ── 文字数カウント
+$("post-text").addEventListener("input", () => {
+  const len = $("post-text").value.length;
+  const el = $("char-count");
+  el.textContent = `${len} / 140`;
+  el.className = "char-count" + (len > 140 ? " over" : "");
+  updatePostButton();
+});
+
+function updatePostButton() {
+  const text = $("post-text").value.trim();
+  const anySelected = $("chk-x").checked || $("chk-threads").checked;
+  const ok = text.length > 0 && text.length <= 140 && anySelected;
+  $("btn-post").disabled = !ok;
+}
+
+$("chk-x").addEventListener("change", updatePostButton);
+$("chk-threads").addEventListener("change", updatePostButton);
+
+// ── AI 下書き生成
+$("btn-draft").addEventListener("click", async () => {
+  const theme = $("draft-theme").value.trim();
+  if (!theme) { alert("テーマを入力してください"); return; }
+  $("draft-status").className = "badge muted";
+  $("draft-status").textContent = "生成中…";
+  $("btn-draft").disabled = true;
+  try {
+    const out = await api("/api/admin/sns-draft", {
+      method: "POST", body: JSON.stringify({ theme }),
+    });
+    $("post-text").value = out.text || "";
+    $("post-text").dispatchEvent(new Event("input"));
+    $("draft-status").className = "badge ok";
+    $("draft-status").textContent = "生成完了";
+  } catch (e) {
+    $("draft-status").className = "badge err";
+    $("draft-status").textContent = "失敗: " + e.message;
+  } finally {
+    $("btn-draft").disabled = false;
+  }
+});
+
+// ── 投稿実行
+$("btn-post").addEventListener("click", async () => {
+  const text = $("post-text").value.trim();
+  const postToX = $("chk-x").checked;
+  const postToThreads = $("chk-threads").checked;
+  if (!text || text.length > 140) return;
+  if (!postToX && !postToThreads) { alert("投稿先を1つ以上選択してください"); return; }
+
+  const targets = [postToX ? "X" : null, postToThreads ? "Threads" : null].filter(Boolean).join(" + ");
+  if (!confirm(`「${text.slice(0,30)}…」を ${targets} に投稿します。よろしいですか？`)) return;
+
+  $("btn-post").disabled = true;
+  $("post-status").className = "badge muted";
+  $("post-status").textContent = "投稿中…";
+  log(`投稿開始 → ${targets}`);
+
+  try {
+    const out = await api("/api/admin/sns-post", {
+      method: "POST",
+      body: JSON.stringify({ text, postToX, postToThreads }),
+    });
+    const x = out.x;
+    const th = out.threads;
+    const xMsg = x.status === "ok" ? `OK (id=${x.postId})` : x.status === "skipped" ? "スキップ" : `エラー: ${x.error}`;
+    const thMsg = th.status === "ok" ? `OK (id=${th.postId})` : th.status === "skipped" ? "スキップ" : `エラー: ${th.error}`;
+    log(`X: ${xMsg}`);
+    log(`Threads: ${thMsg}`);
+
+    const allOk = [x, th].filter(r => r.status !== "skipped").every(r => r.status === "ok");
+    $("post-status").className = `badge ${allOk ? "ok" : "err"}`;
+    $("post-status").textContent = allOk ? "投稿完了" : "一部エラー";
+
+    loadHistory();
+  } catch (e) {
+    log("投稿失敗: " + e.message);
+    $("post-status").className = "badge err";
+    $("post-status").textContent = "失敗";
+  } finally {
+    $("btn-post").disabled = false;
+    updatePostButton();
+  }
+});
+
+// ── 投稿履歴
+async function loadHistory() {
+  try {
+    const out = await api("/api/admin/sns-history");
+    const posts = out.posts || [];
+    if (posts.length === 0) {
+      $("history-area").innerHTML = '<div class="hist-empty">履歴がありません</div>';
+      return;
+    }
+    const rows = posts.map(p => {
+      const xBadge = statusBadge(p.xStatus);
+      const thBadge = statusBadge(p.threadsStatus);
+      const dt = new Date(p.createdAt).toLocaleString("ja-JP", { timeZone: "Asia/Tokyo" });
+      return `<tr>
+        <td style="white-space:nowrap;font-size:11px;">${escapeHtml(dt)}</td>
+        <td class="hist-text">${escapeHtml(p.text)}</td>
+        <td>${xBadge}</td>
+        <td>${thBadge}</td>
+      </tr>`;
+    }).join("");
+    $("history-area").innerHTML = `
+      <table>
+        <thead><tr><th>日時(JST)</th><th>テキスト</th><th>X</th><th>Threads</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>`;
+  } catch (e) {
+    $("history-area").innerHTML = `<div class="hist-empty">読み込みエラー: ${escapeHtml(e.message)}</div>`;
+  }
+}
+
+function statusBadge(status) {
+  const map = {
+    ok:      ["ok", "OK"],
+    error:   ["err", "エラー"],
+    skipped: ["skip", "スキップ"],
+    pending: ["muted", "pending"],
+  };
+  const [cls, label] = map[status] || ["muted", status];
+  return `<span class="badge ${cls}">${label}</span>`;
+}
+
+$("btn-reload-history").addEventListener("click", loadHistory);
+
+// ── 初期化
+checkStatus();
+loadHistory();
+</script>
+</body>
+</html>

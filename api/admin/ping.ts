@@ -1,4 +1,5 @@
 import { withAdmin } from "../_lib/http.js";
+import { snsCredentialStatus } from "../_lib/sns.js";
 
 export default withAdmin({ method: "GET" }, async ({ res }) => {
   res.status(200).json({
@@ -10,5 +11,6 @@ export default withAdmin({ method: "GET" }, async ({ res }) => {
       hasOpenAI: Boolean(process.env.OPENAI_API_KEY),
       hasSupabase: Boolean(process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY),
     },
+    snsCreds: snsCredentialStatus(),
   });
 });

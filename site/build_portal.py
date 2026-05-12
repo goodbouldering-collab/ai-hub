@@ -35,7 +35,8 @@ SITE_URL = os.environ.get("AIHUB_SITE_URL", os.environ.get("AIWATCH_SITE_URL", "
 
 OWNER_NAME = "由井 辰美"
 OWNER_EMAIL = "goodbouldering@gmail.com"
-OWNER_SUBTITLE = "クライミング歴30年 / 複数事業オーナー / AI講師"
+OWNER_SUBTITLE = "クライミング歴30年・9事業を回す滋賀の Web 経営コンサル"
+OWNER_TAGLINE = "異端OK、数字根拠で経営を変える"
 
 
 COLOR_MAP = {
@@ -270,6 +271,14 @@ nav.top-nav .nav-current {
   font-size: 14px;
   color: var(--muted);
   letter-spacing: .04em;
+  margin: 0 0 12px;
+}
+.hero .tagline {
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--accent, #4D7FFF);
+  letter-spacing: .02em;
   margin: 0 0 24px;
 }
 .hero-actions {
@@ -620,6 +629,7 @@ def _render_hero() -> str:
         "<div class='hero-avatar'>🧗</div>"
         f"<h1>{html.escape(OWNER_NAME)}</h1>"
         f"<p class='subtitle'>{html.escape(OWNER_SUBTITLE)}</p>"
+        f"<p class='tagline'>{html.escape(OWNER_TAGLINE)}</p>"
         "<div class='hero-actions'>"
         f"<a class='hero-btn primary' href='mailto:{html.escape(OWNER_EMAIL)}'>✉ お問い合わせ</a>"
         "<a class='hero-btn secondary' href='/speaker.html'>🎤 講師紹介を見る</a>"

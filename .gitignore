@@ -8,3 +8,4 @@ site/dist/
 .wrangler/
 node_modules/
 .vercel/
+_tmp/

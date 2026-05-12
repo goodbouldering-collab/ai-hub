@@ -1,0 +1,55 @@
+name: Sync consul docs
+
+# consul リポジトリの work/ 配下を ai-hub/content/consul-work/ に同期する。
+# 経営本部の Markdown を /admin/docs から閲覧できるようにするため、
+# 1日1回 GitHub Actions が consul を pull → ai-hub に commit back する。
+#
+# 必要な GitHub Secret:
+#   CONSUL_REPO_PAT  - consul リポ（プライベート）への read 権限を持つ PAT (classic, repo scope)
+#                       PAT は CEO が作成し ai-hub のリポ Secrets に登録する。
+
+on:
+  schedule:
+    # JST 06:00 = UTC 21:00
+    - cron: "0 21 * * *"
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout ai-hub
+        uses: actions/checkout@v4
+
+      - name: Clone consul repo (read-only)
+        env:
+          PAT: ${{ secrets.CONSUL_REPO_PAT }}
+        run: |
+          if [ -z "$PAT" ]; then
+            echo "::error::CONSUL_REPO_PAT secret is missing"
+            exit 1
+          fi
+          git clone --depth=1 "https://x-access-token:${PAT}@github.com/goodbouldering-collab/consul.git" /tmp/consul
+
+      - name: Sync work/ → content/consul-work/
+        run: |
+          mkdir -p content/consul-work
+          # 既存ファイルは一旦全削除して再配置（削除されたファイルも追従するため）
+          rm -f content/consul-work/*.md
+          cp /tmp/consul/work/*.md content/consul-work/ 2>/dev/null || echo "consul/work/ に .md がない（初回想定）"
+          echo "Sync 完了: $(ls content/consul-work/*.md 2>/dev/null | wc -l) ファイル"
+
+      - name: Commit changes if any
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/consul-work/ || true
+          if git diff --staged --quiet; then
+            echo "変更なし"
+          else
+            git commit -m "chore(consul-docs): daily sync $(date -u +%Y-%m-%d)"
+            git push
+          fi

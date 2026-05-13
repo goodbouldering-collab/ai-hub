@@ -1,0 +1,480 @@
+<!doctype html><html lang='ja'><head><meta charset='utf-8'><link rel='icon' type='image/svg+xml' href='/favicon.svg'><link rel='alternate icon' type='image/svg+xml' href='/favicon.svg'><link rel='apple-touch-icon' href='/apple-touch-icon.svg'><link rel='mask-icon' href='/favicon.svg' color='#7aa2ff'><meta name='theme-color' content='#0d1126'><meta name='viewport' content='width=device-width,initial-scale=1'><title>由井 辰美 — CEOポータル | AIハブ</title><meta name='description' content='由井 辰美（クライミング歴30年・9事業を回す滋賀の Web 経営コンサル）のCEOポータル。9事業への入口・講習資料・AI情報を集約。'><link rel='canonical' href='https://ai-hub-jp.vercel.app/'><meta property='og:title' content='由井 辰美 — CEOポータル'><meta property='og:description' content='由井 辰美（クライミング歴30年・9事業を回す滋賀の Web 経営コンサル）のCEOポータル。9事業への入口・講習資料・AI情報を集約。'><meta property='og:url' content='https://ai-hub-jp.vercel.app/'><meta property='og:type' content='website'><meta property='og:site_name' content='AIハブ'><meta name='twitter:card' content='summary'><script type='application/ld+json'>[{"@context": "https://schema.org", "@type": "WebSite", "name": "AIハブ", "url": "https://ai-hub-jp.vercel.app", "description": "由井 辰美のCEOポータル。9事業への入口・講習資料・AI情報を集約。"}, {"@context": "https://schema.org", "@type": "Person", "name": "由井 辰美", "jobTitle": "AI講師 / 複数事業オーナー", "email": "goodbouldering@gmail.com", "url": "https://ai-hub-jp.vercel.app"}]</script><style>
+:root {
+  --text: #f2f4fb;
+  --muted: #aab1c5;
+  --glass-bg: rgba(255,255,255,0.06);
+  --glass-border: rgba(255,255,255,0.14);
+  --glass-hover: rgba(255,255,255,0.10);
+  --accent1: #7aa2ff;
+  --accent2: #c77dff;
+  --accent3: #ff7ab6;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+  background:
+    radial-gradient(1200px 800px at 15% -10%, rgba(122,162,255,.35), transparent 60%),
+    radial-gradient(900px 700px at 85% 10%, rgba(199,125,255,.28), transparent 60%),
+    radial-gradient(1000px 800px at 50% 110%, rgba(255,122,182,.22), transparent 60%),
+    linear-gradient(180deg, #0a0d1a 0%, #0d1126 50%, #0a0d1a 100%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- layout ---- */
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 20px 80px;
+}
+
+/* ---- sticky nav (親 CLAUDE.md の position:sticky 教訓準拠) ---- */
+/* body 直下の .container 内の先頭に置く。親が height 制限されると消えるため注意 */
+html { scroll-padding-top: 72px; }
+[id] { scroll-margin-top: 72px; }
+nav.top-nav {
+  position: sticky;
+  top: 8px;
+  z-index: 100;
+  margin: 0 0 18px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: rgba(13,17,38,0.72);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  box-shadow: 0 6px 20px rgba(0,0,0,.25);
+}
+nav.top-nav .nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text);
+  text-decoration: none;
+  font: inherit;
+  font-size: 11.5px;
+  font-weight: 600;
+  line-height: 1.3;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background .2s ease, transform .2s ease, border-color .2s ease;
+}
+nav.top-nav .nav-btn:hover {
+  background: var(--glass-hover);
+  border-color: rgba(122,162,255,.4);
+  transform: translateY(-1px);
+}
+nav.top-nav .nav-current {
+  background: linear-gradient(135deg, rgba(122,162,255,.55), rgba(199,125,255,.4));
+  border-color: rgba(255,255,255,.32);
+  color: #fff;
+  font-weight: 800;
+  box-shadow: 0 3px 10px rgba(122,162,255,.25), inset 0 1px 0 rgba(255,255,255,.12);
+  cursor: default;
+}
+@media (max-width: 640px) {
+  html { scroll-padding-top: 64px; }
+  [id] { scroll-margin-top: 64px; }
+  nav.top-nav { padding: 5px 8px; gap: 5px; top: 6px; }
+  nav.top-nav .nav-btn { padding: 4px 9px; font-size: 11px; }
+}
+
+/* ---- hero ---- */
+.hero {
+  padding: 60px 0 48px;
+  text-align: center;
+}
+.hero-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 56px;
+  background: linear-gradient(135deg, rgba(122,162,255,.25), rgba(199,125,255,.25));
+  border: 2px solid var(--glass-border);
+  box-shadow: 0 8px 32px rgba(0,0,0,.4), 0 0 60px rgba(122,162,255,.15);
+}
+.hero h1 {
+  margin: 0 0 6px;
+  font-size: clamp(28px, 5vw, 44px);
+  font-weight: 800;
+  background: linear-gradient(100deg, var(--accent1) 0%, var(--accent2) 45%, var(--accent3) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 2px 20px rgba(122,162,255,.25));
+}
+.hero .subtitle {
+  font-size: 14px;
+  color: var(--muted);
+  letter-spacing: .04em;
+  margin: 0 0 12px;
+}
+.hero .tagline {
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--accent, #4D7FFF);
+  letter-spacing: .02em;
+  margin: 0 0 24px;
+}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 8px;
+}
+.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.hero-btn.primary {
+  background: linear-gradient(135deg, var(--accent1), var(--accent2));
+  color: #0b1020;
+  border: none;
+  box-shadow: 0 6px 20px rgba(122,162,255,.35);
+}
+.hero-btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(122,162,255,.45);
+}
+.hero-btn.secondary {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text);
+}
+.hero-btn.secondary:hover {
+  background: var(--glass-hover);
+  transform: translateY(-2px);
+}
+
+/* ---- section heading ---- */
+.section-heading {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent1);
+  margin: 48px 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-heading::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--glass-border);
+}
+
+/* ---- business card grid ---- */
+.biz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+}
+.biz-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px 20px 16px;
+  border-radius: 18px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  text-decoration: none;
+  color: inherit;
+  backdrop-filter: blur(18px) saturate(160%);
+  box-shadow: 0 6px 24px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.07);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  position: relative;
+  overflow: hidden;
+}
+.biz-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  opacity: 0;
+  transition: opacity .25s ease;
+}
+.biz-card:hover::before { opacity: 1; }
+.biz-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,0,0,.35);
+}
+.biz-card.no-link {
+  cursor: default;
+  opacity: .65;
+}
+.biz-card.no-link:hover {
+  transform: none;
+  box-shadow: 0 6px 24px rgba(0,0,0,.22);
+}
+.biz-card.self-card {
+  border-color: rgba(122,162,255,.45);
+  background: rgba(122,162,255,.08);
+}
+.biz-card-icon {
+  font-size: 28px;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+.biz-card-name {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.3;
+}
+.biz-card-tagline {
+  font-size: 11.5px;
+  color: var(--muted);
+  letter-spacing: .02em;
+}
+.biz-card-desc {
+  font-size: 12.5px;
+  color: #c5cbdd;
+  line-height: 1.6;
+  flex: 1;
+}
+.biz-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+.biz-badge {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+.biz-badge.live {
+  background: rgba(100,220,160,.18);
+  color: #7eeba3;
+  border: 1px solid rgba(100,220,160,.3);
+}
+.biz-badge.coming-soon {
+  background: rgba(255,210,80,.18);
+  color: #fde68a;
+  border: 1px solid rgba(255,210,80,.3);
+}
+.biz-badge.empty {
+  background: rgba(150,150,160,.12);
+  color: var(--muted);
+  border: 1px solid rgba(150,150,160,.2);
+}
+.biz-badge.self {
+  background: rgba(122,162,255,.25);
+  color: var(--accent1);
+  border: 1px solid rgba(122,162,255,.4);
+}
+.biz-arrow {
+  font-size: 14px;
+  color: var(--muted);
+  transition: color .2s ease, transform .2s ease;
+}
+.biz-card:not(.no-link):hover .biz-arrow {
+  color: var(--accent1);
+  transform: translateX(3px);
+}
+
+/* ---- lecture preview cards ---- */
+.lecture-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+}
+.lecture-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px 18px;
+  border-radius: 14px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  text-decoration: none;
+  color: inherit;
+  backdrop-filter: blur(14px);
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.lecture-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(122,162,255,.4);
+  box-shadow: 0 10px 26px rgba(8,12,30,.45);
+}
+.lecture-title {
+  font-size: 14px;
+  font-weight: 700;
+  background: linear-gradient(100deg, var(--accent1), var(--accent3));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.4;
+}
+.lecture-date {
+  font-size: 11px;
+  color: var(--muted);
+}
+.lecture-summary {
+  font-size: 12.5px;
+  color: #d3d8ea;
+  line-height: 1.55;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.see-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--accent1);
+  text-decoration: none;
+  margin-top: 12px;
+  transition: color .2s ease;
+}
+.see-all:hover { color: var(--accent3); }
+
+/* ---- contact ---- */
+.contact-block {
+  margin-top: 48px;
+  padding: 28px 32px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(122,162,255,.10), rgba(199,125,255,.08));
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(18px);
+  text-align: center;
+}
+.contact-block h2 {
+  font-size: 18px;
+  font-weight: 800;
+  margin: 0 0 8px;
+  background: linear-gradient(100deg, var(--accent1), var(--accent2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.contact-block p {
+  font-size: 13.5px;
+  color: var(--muted);
+  margin: 0 0 18px;
+}
+.contact-mail {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent1), var(--accent2));
+  color: #0b1020;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 6px 20px rgba(122,162,255,.35);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.contact-mail:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(122,162,255,.45);
+}
+
+/* ---- watch link ---- */
+.watch-link-bar {
+  margin-top: 32px;
+  padding: 14px 20px;
+  border-radius: 14px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.watch-link-bar p {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0;
+}
+.watch-link-bar a {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent1);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.watch-link-bar a:hover { color: var(--accent3); }
+
+/* ---- footer ---- */
+footer {
+  margin-top: 64px;
+  padding-top: 20px;
+  color: var(--muted);
+  font-size: 11px;
+  text-align: center;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  opacity: .6;
+}
+
+@media (max-width: 640px) {
+  .container { padding: 0 14px 60px; }
+  .hero { padding: 40px 0 32px; }
+  .biz-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .biz-card { padding: 14px 14px 12px; }
+  .biz-card-desc { display: none; }
+  .contact-block { padding: 22px 18px; }
+}
+@media (max-width: 400px) {
+  .biz-grid { grid-template-columns: 1fr; }
+}
+</style></head><body><div class='container'>
+<script>
+(function(){
+  function reveal(){
+    var h = location.hostname;
+    if (h !== "localhost" && h !== "127.0.0.1" && h !== "0.0.0.0" && !h.endsWith(".localhost")) return;
+    document.querySelectorAll("[data-localhost-only]").forEach(function(el){
+      el.style.display = "";
+    });
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", reveal);
+  } else {
+    reveal();
+  }
+})();
+</script>
+<nav class='top-nav' aria-label='サイトナビ'><span class='nav-btn nav-current'>🏠 ポータル</span><a class='nav-btn' href='/lectures/index.html'>📝 講習資料</a><a class='nav-btn' href='/speaker.html'>🎤 講師紹介</a><a class='nav-btn' href='/profile.html'>📜 経歴</a><a class='nav-btn' href='/portfolio.html'>🏆 実績</a><a class='nav-btn' href='/watch/index.html'>📡 AI Watch</a><a class='nav-btn' href='/admin'>🔐 管理</a></nav><section class='hero' id='top'><div class='hero-avatar'>🧗</div><h1>由井 辰美</h1><p class='subtitle'>クライミング歴30年・9事業を回す滋賀の Web 経営コンサル</p><p class='tagline'>異端OK、数字根拠で経営を変える</p><div class='hero-actions'><a class='hero-btn primary' href='mailto:goodbouldering@gmail.com'>✉ お問い合わせ</a><a class='hero-btn secondary' href='/speaker.html'>🎤 講師紹介を見る</a></div></section><p class='section-heading'>事業ポートフォリオ</p><div class='biz-grid'><a class='biz-card' href='https://goodbouldering.com' target='_blank' rel='noopener' style='--card-border:rgba(122,162,255,.45);--card-glow:rgba(100,140,255,.20);border-color:var(--card-border);' onmouseover="this.style.boxShadow='0 16px 40px rgba(0,0,0,.35),0 0 0 1px rgba(122,162,255,.45)'" onmouseout="this.style.boxShadow=''">  <div class='biz-card-icon'>🧗</div><div class='biz-card-name'>グッぼる</div><div class='biz-card-tagline'>クライミング × カフェ × ショップ</div><div class='biz-card-desc'>彦根のボルダリングジム。カフェ・ショップ・クライミングスクールを併設。クライミング歴30年のオーナーが直営。</div><div class='biz-card-footer'><span class='biz-badge live'>稼働中</span><span class='biz-arrow'>→</span></div></a><a class='biz-card' href='https://n-design-lemon.vercel.app' target='_blank' rel='noopener' style='--card-border:rgba(255,165,80,.45);--card-glow:rgba(240,145,60,.20);border-color:var(--card-border);' onmouseover="this.style.boxShadow='0 16px 40px rgba(0,0,0,.35),0 0 0 1px rgba(255,165,80,.45)'" onmouseout="this.style.boxShadow=''">  <div class='biz-card-icon'>🏠</div><div class='biz-card-name'>Nデザイン</div><div class='biz-card-tagline'>滋賀・彦根の工務店 Web マーケティング</div><div class='biz-card-desc'>ネリデザイン（株）の Webマーケティング事業サイト。新築・リフォームの相談窓口。</div><div class='biz-card-footer'><span class='biz-badge live'>稼働中</span><span class='biz-arrow'>→</span></div></a><a class='biz-card' href='https://project-02ceb497.pages.dev' target='_blank' rel='noopener' style='--card-border:rgba(199,125,255,.45);--card-glow:rgba(180,100,255,.20);border-color:var(--card-border);' onmouseover="this.style.boxShadow='0 16px 40px rgba(0,0,0,.35),0 0 0 1px rgba(199,125,255,.45)'" onmouseout="this.style.boxShadow=''">  <div class='biz-card-icon'>🎬</div><div class='biz-card-name'>ClimbHero</div><div class='biz-card-tagline'>クライミング動画共有・グローバル</div><div class='biz-card-desc'>登る動画をランキングで競うクライミング特化アプリ。Cloudflare Pages 上で稼働。</div><div class='biz-card-footer'><span class='biz-badge live'>稼働中</span><span class='biz-arrow'>→</span></div></a><a class='biz-card' href='https://business21.vercel.app' target='_blank' rel='noopener' style='--card-border:rgba(80,220,210,.45);--card-glow:rgba(60,200,190,.20);border-color:var(--card-border);' onmouseover="this.style.boxShadow='0 16px 40px rgba(0,0,0,.35),0 0 0 1px rgba(80,220,210,.45)'" onmouseout="this.style.boxShadow=''">  <div class='biz-card-icon'>🌏</div><div class='biz-card-name'>ビジネス21</div><div class='biz-card-tagline'>外国人技能実習・監理団体</div><div class='biz-card-desc'>協同組合ビジネス21の広報・コミュニティサイト。外国人技能実習生の受入れ支援。</div><div class='biz-card-footer'><span class='biz-badge live'>稼働中</span><span class='biz-arrow'>→</span></div></a><a class='biz-card' href='https://minanowa.com' target='_blank' rel='noopener' style='--card-border:rgba(100,220,160,.45);--card-glow:rgba(80,200,140,.20);border-color:var(--card-border);' onmouseover="this.style.boxShadow='0 16px 40px rgba(0,0,0,.35),0 0 0 1px rgba(100,220,160,.45)'" onmouseout="this.style.boxShadow=''">  <div class='biz-card-icon'>🤝</div><div class='biz-card-name'>みんなのWA</div><div class='biz-card-tagline'>彦根 異業種交流コミュニティ</div><div class='biz-card-desc'>彦根市の異業種交流会。会員登録・イベント案内・会員紹介をワンサイトで。</div><div class='biz-card-footer'><span class='biz-badge live'>稼働中</span><span class='biz-arrow'>→</span></div></a><a class='biz-card' href='https://notesthe.vercel.app' target='_blank' rel='noopener' style='--card-border:rgba(255,122,182,.45);--card-glow:rgba(240,100,160,.20);border-color:var(--card-border);' onmouseover="this.style.boxShadow='0 16px 40px rgba(0,0,0,.35),0 0 0 1px rgba(255,122,182,.45)'" onmouseout="this.style.boxShadow=''">  <div class='biz-card-icon'>💆</div><div class='biz-card-name'>Notエステ</div><div class='biz-card-tagline'>美肌脱毛・ホワイトニング（彦根・長浜）</div><div class='biz-card-desc'>メンズ・レディース対応のエステサロン。Payload CMS で柔軟なコンテンツ管理。</div><div class='biz-card-footer'><span class='biz-badge live'>稼働中</span><span class='biz-arrow'>→</span></div></a><a class='biz-card' href='https://karatto.life' target='_blank' rel='noopener' style='--card-border:rgba(255,210,80,.45);--card-glow:rgba(240,190,60,.20);border-color:var(--card-border);' onmouseover="this.style.boxShadow='0 16px 40px rgba(0,0,0,.35),0 0 0 1px rgba(255,210,80,.45)'" onmouseout="this.style.boxShadow=''">  <div class='biz-card-icon'>💎</div><div class='biz-card-name'>カラット</div><div class='biz-card-tagline'>Shopify ストア</div><div class='biz-card-desc'>カラッとヒーロー1億達成プロジェクト。Shopify ホスティング + Cloudflare Workers 連携。</div><div class='biz-card-footer'><span class='biz-badge live'>稼働中</span><span class='biz-arrow'>→</span></div></a><div class='biz-card no-link' style='--card-border:rgba(255,100,100,.45);--card-glow:rgba(240,80,80,.20);border-color:var(--card-border);'><div class='biz-card-icon'>🚀</div><div class='biz-card-name'>ファディー</div><div class='biz-card-tagline'>彦根プロジェクト（準備中）</div><div class='biz-card-desc'>Vercel + Supabase で新規再生成中。みんなのWA の構成をベースに立ち上げ予定。</div><div class='biz-card-footer'><span class='biz-badge coming-soon'>準備中</span></div></div><a class='biz-card self-card' href='https://ai-hub-jp.vercel.app' target='_blank' rel='noopener' style='--card-border:rgba(80,210,240,.45);--card-glow:rgba(60,190,220,.20);border-color:var(--card-border);' onmouseover="this.style.boxShadow='0 16px 40px rgba(0,0,0,.35),0 0 0 1px rgba(80,210,240,.45)'" onmouseout="this.style.boxShadow=''">  <div class='biz-card-icon'>🤖</div><div class='biz-card-name'>AIハブ</div><div class='biz-card-tagline'>CEO ポータル + AI 集約パイプライン</div><div class='biz-card-desc'>あなたは今ここにいます。9事業の入口・講習資料・AI情報を1箇所に集約。</div><div class='biz-card-footer'><span class='biz-badge self'>あなたはここ</span><span class='biz-arrow'>→</span></div></a><div class='biz-card no-link' style='--card-border:rgba(160,160,180,.30);--card-glow:rgba(140,140,160,.15);border-color:var(--card-border);'><div class='biz-card-icon'>＋</div><div class='biz-card-name'>（空き枠）</div><div class='biz-card-tagline'>まだ増える</div><div class='biz-card-desc'>次の事業が始まったらここに並びます。</div><div class='biz-card-footer'><span class='biz-badge empty'>空き枠</span></div></div></div><p class='section-heading'>最新の講習資料</p><div class='lecture-grid'><a class='lecture-card' href='/lectures/2026-04-ai-kihon.html'><div class='lecture-title'>AIの「こと」を吸収する — 入門講習</div><div class='lecture-date'>📅 2026-04-22</div><div class='lecture-summary'>AIを「使う」のではなく「のこと」を知る。最初の一歩として、言語化・共有・ショートカット化の3軸で日常に組み込む考え方を、実例つきで整理する。</div></a><a class='lecture-card' href='/lectures/2026-04-ai-kangaekata.html'><div class='lecture-title'>AI活用の「考え方」— 入門講習</div><div class='lecture-date'>📅 2026-04-22</div><div class='lecture-summary'>AIを日常になじませる「考え方」を15項目にまとめた原典。講習スライドの元資料として使える本編。</div></a></div><a class='see-all' href='/lectures/index.html'>すべての講習資料を見る →</a><div class='watch-link-bar'><p>AI情報・SNSアルゴリズム動向の毎朝ダイジェスト（旧トップ）</p><a href='/watch/index.html'>AI Watch を見る →</a></div><div class='contact-block'><h2>お問い合わせ</h2><p>講習・コンサル・事業連携のご相談はメールで</p><a class='contact-mail' href='mailto:goodbouldering@gmail.com'>✉ goodbouldering@gmail.com</a></div><footer>AIハブ / 2026-05-13</footer></div></body></html>

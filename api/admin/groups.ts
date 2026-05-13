@@ -1,6 +1,7 @@
 import { ValidationError, withAdmin } from "../_lib/http.js";
 import {
   createGroup,
+  getGroup,
   listChildGroups,
   listTopLevelGroups,
   updateGroup,
@@ -9,9 +10,10 @@ import {
 /**
  * GET /api/admin/groups?parent=ID  → parent の子グループ一覧 (sort 昇順)
  * GET /api/admin/groups?top=1      → トップレベル（親候補）一覧
+ * GET /api/admin/groups?id=ID      → 単一グループ取得（編集時の本文 expl ロード用）
  * POST /api/admin/groups           → 新規作成。parent_group_id 必須・sort=0 先頭配置
  *                                    （他の兄弟は sort+1 にシフト）
- * PUT  /api/admin/groups           → 単一更新 ({id, name?, image_url?, ...})
+ * PUT  /api/admin/groups           → 単一更新 ({id, name?, image_url?, expl?, ...})
  */
 export default withAdmin(
   { method: ["GET", "POST", "PUT"] },
@@ -22,9 +24,14 @@ export default withAdmin(
         res.status(200).json({ groups: await listTopLevelGroups() });
         return;
       }
+      if (q.id) {
+        const got = await getGroup(q.id);
+        res.status(200).json(got?.group ?? got);
+        return;
+      }
       const parent = q.parent;
       if (!parent) {
-        throw new ValidationError("?parent=ID または ?top=1 を指定してください");
+        throw new ValidationError("?parent=ID / ?top=1 / ?id=ID のいずれかを指定してください");
       }
       res.status(200).json({ groups: await listChildGroups(parent) });
       return;

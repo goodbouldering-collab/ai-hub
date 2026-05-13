@@ -32,6 +32,35 @@
     background:rgba(255,255,255,.05); border:1px solid var(--border);
     color:var(--text); font:inherit; font-size:13px; }
   textarea { min-height:140px; font-family:'SFMono-Regular',Consolas,monospace; font-size:12px; }
+
+  /* HTML エディター */
+  .editor-wrap { border:1px solid var(--border); border-radius:10px; overflow:hidden; background:rgba(255,255,255,.04); }
+  .editor-toolbar { display:flex; flex-wrap:wrap; gap:4px; padding:6px;
+    background:rgba(0,0,0,.2); border-bottom:1px solid var(--border); }
+  .editor-toolbar button {
+    padding:5px 10px; font-size:11.5px; font-weight:600;
+    border-radius:6px; min-height:0;
+  }
+  .editor-split { display:grid; grid-template-columns:1fr 1fr; gap:0; }
+  @media (max-width:820px) { .editor-split { grid-template-columns:1fr; } }
+  .editor-split textarea {
+    border:none; border-radius:0; background:rgba(0,0,0,.18);
+    min-height:240px; resize:vertical;
+  }
+  .editor-split .editor-preview {
+    background:#fff; color:#1e293b; padding:14px;
+    min-height:240px; max-height:480px; overflow:auto;
+    border-left:1px solid var(--border); font-size:13.5px;
+  }
+  @media (max-width:820px) {
+    .editor-split .editor-preview { border-left:none; border-top:1px solid var(--border); }
+  }
+  .editor-split .editor-preview h2 { font-size:18px; color:#0d1126; margin:8px 0 6px; font-weight:800; }
+  .editor-split .editor-preview h3 { font-size:15px; color:#1e293b; margin:8px 0 4px; font-weight:700; }
+  .editor-split .editor-preview p { margin:6px 0; line-height:1.7; }
+  .editor-split .editor-preview ul, .editor-split .editor-preview ol { margin:6px 0 6px 22px; }
+  .editor-split .editor-preview a { color:#2952c8; text-decoration:underline; }
+  .editor-split .editor-preview strong { color:#0d1126; }
   button {
     padding:9px 16px; border-radius:999px; border:1px solid var(--border);
     background:rgba(255,255,255,.06); color:var(--text); font:inherit;
@@ -137,8 +166,26 @@
     <label>グループ名（=タイトル）</label>
     <input type="text" id="edit-title">
 
-    <label>本文 HTML（&lt;h2&gt; から始まる CSS なしのシンプル HTML）</label>
-    <textarea id="edit-html"></textarea>
+    <label>本文 HTML（左：ソース / 右：ライブプレビュー）</label>
+    <div class="editor-wrap">
+      <div class="editor-toolbar" id="editor-toolbar">
+        <button type="button" data-ed="h2">H2 見出し</button>
+        <button type="button" data-ed="h3">H3 小見出し</button>
+        <button type="button" data-ed="p">段落 P</button>
+        <button type="button" data-ed="strong"><b>太字</b></button>
+        <button type="button" data-ed="em"><i>斜体</i></button>
+        <button type="button" data-ed="ul">UL リスト</button>
+        <button type="button" data-ed="ol">OL リスト</button>
+        <button type="button" data-ed="li">LI 項目</button>
+        <button type="button" data-ed="a">🔗 リンク</button>
+        <button type="button" data-ed="br">改行 &lt;br&gt;</button>
+        <button type="button" data-ed="hr">水平線 &lt;hr&gt;</button>
+      </div>
+      <div class="editor-split">
+        <textarea id="edit-html" placeholder="<h2>...</h2>"></textarea>
+        <div class="editor-preview" id="edit-preview"><em style="color:#64748b;">プレビュー</em></div>
+      </div>
+    </div>
 
     <div class="row" style="margin-top:6px;">
       <input type="text" id="revise-instruction" class="grow" placeholder="例: 初心者向けに語りかける口調にして">
@@ -170,11 +217,11 @@
     </select>
 
     <hr>
-    <h2 style="margin-top:14px;">⑥ 公開ボタン</h2>
+    <h2 style="margin-top:14px;">⑥ 投稿（グループ作成 or 更新）</h2>
     <div class="row">
-      <button id="btn-create-group" class="primary">📁 グループ作成 (parent=対象親, sort=0)</button>
+      <button id="btn-create-group" class="primary">📁 投稿（選択親グループ配下の最上部 sort=0 / ID 入力時は更新）</button>
       <span id="group-status" class="badge muted">未作成</span>
-      <input type="text" id="group-id" placeholder="既存グループID 上書きする場合" style="width:160px;">
+      <input type="text" id="group-id" placeholder="既存グループID（編集時に自動入力）" style="width:160px;">
     </div>
     <div class="row" style="margin-top:8px;">
       <button id="btn-publish-live" class="primary">🚀 公開（product_list に書込）</button>
@@ -224,16 +271,28 @@ async function api(path, opts = {}) {
   }
 })();
 
-// === 親グループ ロード
+// === 親グループ ロード（デフォルトは「ブログ」）
 async function loadParents() {
   $("parent-select").innerHTML = '<option value="">（読み込み中…）</option>';
   try {
     const out = await api("/api/admin/groups?top=1");
     const list = out.groups || [];
-    const cur = localStorage.getItem("aih.parentId") || "";
+    let cur = localStorage.getItem("aih.parentId") || "";
+    // localStorage に保存がなければ name に「ブログ」を含むグループをデフォルト選択
+    if (!cur) {
+      const blog = list.find(g => /ブログ|blog/i.test(g.name || ""));
+      if (blog) {
+        cur = String(blog.id);
+        localStorage.setItem("aih.parentId", cur);
+      }
+    }
     $("parent-select").innerHTML =
       '<option value="">— 選択してください —</option>' +
       list.map(g => `<option value="${g.id}" ${String(g.id)===cur?'selected':''}>#${g.id} ${escapeHtml(g.name)} (${g.display_state})</option>`).join("");
+    // ブログを既定にして即・子一覧を読み込む
+    if (cur && $("parent-select").value === cur) {
+      loadChildren().catch(() => {});
+    }
   } catch (e) {
     $("parent-select").innerHTML = `<option value="">エラー: ${e.message}</option>`;
   }
@@ -290,11 +349,23 @@ function renderChildren(list) {
     ul.appendChild(li);
   });
   attachDragHandlers(ul);
-  ul.querySelectorAll('button[data-edit]').forEach(b => b.addEventListener('click', () => {
-    $("group-id").value = b.dataset.edit;
+  ul.querySelectorAll('button[data-edit]').forEach(b => b.addEventListener('click', async () => {
+    const gid = b.dataset.edit;
+    $("group-id").value = gid;
     $("edit-title").value = b.dataset.name;
     $("panel-edit").style.display = "block";
     $("panel-edit").scrollIntoView({behavior:"smooth"});
+    // 既存グループの本文 (expl) をロード
+    try {
+      const got = await api(`/api/admin/groups?id=${encodeURIComponent(gid)}`);
+      $("edit-html").value = got?.expl || "";
+      if (got?.image_url) { $("image-url").value = got.image_url; }
+      if (got?.display_state) { $("edit-display-state").value = got.display_state; }
+      renderEditorPreview();
+      log(`グループ #${gid} の本文を読み込みました`);
+    } catch (e) {
+      log(`グループ #${gid} の読み込み失敗: ${e.message}`);
+    }
   }));
 }
 
@@ -382,12 +453,18 @@ function renderDrafts() {
     btn.addEventListener("click", () => {
       const i = Number(btn.dataset.pick);
       const d = drafts[i];
+      // AI 案採用時は「新規グループ作成モード」に切り替え（既存ID をクリア）
+      $("group-id").value = "";
+      createdGroupId = null;
+      $("group-status").className = "badge muted";
+      $("group-status").textContent = "未作成";
       $("edit-title").value = d.title;
       $("edit-html").value = d.html;
       $("edit-date").valueAsDate = new Date();
       $("img-prompt").value = `${d.title} のイメージ写真。商品やシーンを連想させる写真風画像。`;
       $("panel-edit").style.display = "block";
       $("panel-edit").scrollIntoView({ behavior: "smooth" });
+      renderEditorPreview();
     });
   });
 }
@@ -439,14 +516,37 @@ $("btn-create-group").addEventListener("click", async () => {
   const name = $("edit-title").value.trim();
   const image_url = $("image-url").value.trim() || undefined;
   const display_state = $("edit-display-state").value;
+  const expl = $("edit-html").value;
   const parent_group_id = getParentId();
+  const existingId = ($("group-id").value || "").trim();
   if (!parent_group_id) { alert("先に対象親グループを選択してください"); return; }
   if (!name) { alert("グループ名(=タイトル)を入力"); return; }
+
+  // 既存グループ ID が入っているなら PUT で更新、空なら POST で「選択親配下の最上部」に新規作成
+  if (existingId) {
+    $("group-status").className = "badge muted"; $("group-status").textContent = "更新中…";
+    try {
+      await api("/api/admin/groups", {
+        method: "PUT",
+        body: JSON.stringify({ id: existingId, name, image_url, expl, display_state }),
+      });
+      createdGroupId = existingId;
+      $("group-status").className = "badge ok";
+      $("group-status").textContent = "更新完了 ID=" + existingId;
+      log("グループ更新 OK id=" + existingId);
+      loadChildren();
+    } catch (e) {
+      $("group-status").className = "badge err"; $("group-status").textContent = "失敗: " + e.message;
+      log("グループ更新失敗: " + e.message);
+    }
+    return;
+  }
+
   $("group-status").className = "badge muted"; $("group-status").textContent = "作成中…";
   try {
     const out = await api("/api/admin/groups", {
       method: "POST",
-      body: JSON.stringify({ name, image_url, display_state, parent_group_id: Number(parent_group_id) }),
+      body: JSON.stringify({ name, image_url, expl, display_state, parent_group_id: Number(parent_group_id) }),
     });
     createdGroupId = out?.group?.id || out?.id;
     $("group-id").value = String(createdGroupId || "");
@@ -518,6 +618,58 @@ function escapeHtml(s) {
   ));
 }
 function escapeAttr(s) { return escapeHtml(s).replace(/"/g,"&quot;"); }
+
+// === HTML エディター: ツールバー & ライブプレビュー
+const editorSnippets = {
+  h2:     ["<h2>", "</h2>"],
+  h3:     ["<h3>", "</h3>"],
+  p:      ["<p>", "</p>"],
+  strong: ["<strong>", "</strong>"],
+  em:     ["<em>", "</em>"],
+  ul:     ["<ul>\n  <li>", "</li>\n</ul>"],
+  ol:     ["<ol>\n  <li>", "</li>\n</ol>"],
+  li:     ["<li>", "</li>"],
+  br:     ["<br>", ""],
+  hr:     ["<hr>", ""],
+};
+function wrapEditorSelection(tag) {
+  const ta = $("edit-html");
+  const start = ta.selectionStart, end = ta.selectionEnd;
+  const value = ta.value;
+  const selected = value.slice(start, end);
+  let inserted;
+  if (tag === "a") {
+    const url = prompt("リンク先 URL を入力してください", "https://");
+    if (!url) return;
+    const label = selected || prompt("リンクの表示テキスト", "ここをクリック") || url;
+    inserted = `<a href="${url.replace(/"/g,"&quot;")}">${label}</a>`;
+  } else {
+    const [open, close] = editorSnippets[tag] || ["", ""];
+    inserted = open + selected + close;
+  }
+  ta.value = value.slice(0, start) + inserted + value.slice(end);
+  // カーソルを挿入直後に
+  const newPos = start + inserted.length;
+  ta.focus();
+  ta.setSelectionRange(newPos, newPos);
+  renderEditorPreview();
+}
+document.querySelectorAll('#editor-toolbar button[data-ed]').forEach(b => {
+  b.addEventListener('click', () => wrapEditorSelection(b.dataset.ed));
+});
+function renderEditorPreview() {
+  const html = $("edit-html").value || "";
+  const title = $("edit-title").value || "";
+  const preview = $("edit-preview");
+  if (!preview) return;
+  if (!html.trim() && !title.trim()) {
+    preview.innerHTML = '<em style="color:#64748b;">プレビュー</em>';
+    return;
+  }
+  preview.innerHTML = (title ? `<h2>${escapeHtml(title)}</h2>` : "") + html;
+}
+$("edit-html").addEventListener("input", renderEditorPreview);
+$("edit-title").addEventListener("input", renderEditorPreview);
 </script>
 </body>
 </html>

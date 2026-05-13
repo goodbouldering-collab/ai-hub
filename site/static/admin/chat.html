@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIハブ 管理画面 — 社内エージェントに質問</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0d1126; --bg2:#141938; --panel:rgba(255,255,255,.05);
+    --border:rgba(255,255,255,.14); --text:#e8ebf5; --muted:#aab1c5;
+    --accent:#7aa2ff; --accent2:#c77dff; --ok:#7eeba3; --err:#ff7a90;
+  }
+  body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Hiragino Sans','Noto Sans JP',sans-serif;
+    background:linear-gradient(180deg,#0a0d1a,#0d1126 50%,#0a0d1a);
+    color:var(--text); min-height:100vh; padding:20px; line-height:1.55; }
+  .container { max-width:900px; margin:0 auto; }
+  h1 { font-size:22px; font-weight:800;
+    background:linear-gradient(100deg,var(--accent),var(--accent2));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    margin-bottom:6px; }
+  .sub { color:var(--muted); font-size:13px; margin-bottom:18px; }
+  .sub a { color:var(--accent); font-weight:700; }
+  .chat-log {
+    background:var(--panel); border:1px solid var(--border);
+    border-radius:14px; padding:14px;
+    min-height:360px; max-height:62vh; overflow-y:auto;
+    display:flex; flex-direction:column; gap:10px;
+    backdrop-filter: blur(10px);
+  }
+  .msg { max-width: 88%; padding:10px 14px; border-radius:14px; font-size:13.5px; line-height:1.7; }
+  .msg.user      { align-self:flex-end;   background: rgba(122,162,255,.22); border:1px solid rgba(122,162,255,.35); }
+  .msg.assistant { align-self:flex-start; background: rgba(255,255,255,.06); border:1px solid var(--border); }
+  .msg.system    { align-self:center; color:var(--muted); font-size:11.5px; padding:4px 10px; }
+  .msg pre { background: rgba(0,0,0,.35); padding:8px 10px; border-radius:8px;
+    overflow-x:auto; font-size:12px; margin:6px 0; }
+  .msg code { background: rgba(0,0,0,.35); padding:1px 5px; border-radius:4px; font-size:12px; }
+  .msg a { color:var(--accent); }
+  .typing { color: var(--muted); font-style: italic; }
+
+  .composer {
+    margin-top:12px;
+    background:var(--panel); border:1px solid var(--border);
+    border-radius:14px; padding:10px;
+    display:flex; gap:8px; align-items:flex-end;
+  }
+  .composer textarea {
+    flex:1 1 auto;
+    background: rgba(0,0,0,.18); border:none; color:var(--text);
+    font:inherit; font-size:13.5px;
+    padding:10px 12px; border-radius:10px;
+    min-height: 44px; max-height:200px; resize:vertical;
+  }
+  .composer button {
+    padding:10px 18px; border-radius:999px; border:1px solid rgba(122,162,255,.5);
+    background: linear-gradient(135deg, rgba(122,162,255,.45), rgba(199,125,255,.32));
+    color:var(--text); font:inherit; font-size:13px; font-weight:700; cursor:pointer;
+    white-space:nowrap;
+  }
+  .composer button:disabled { opacity:.5; cursor:not-allowed; }
+  .hint { color:var(--muted); font-size:11px; margin-top:6px; }
+  .examples { display:flex; flex-wrap:wrap; gap:6px; margin: 8px 0 14px 0; }
+  .examples button {
+    font-size:11.5px; padding:6px 12px; border-radius:999px;
+    background: rgba(255,255,255,.06); color: var(--text);
+    border:1px solid var(--border); cursor:pointer;
+  }
+  .examples button:hover { background: rgba(122,162,255,.18); }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>🤖 社内エージェントに質問</h1>
+  <p class="sub">
+    consul/work と各事業の CLAUDE.md を参照して回答します。
+    トップ: <a href="/">/</a> ・ 管理画面: <a href="/admin">/admin</a> ・ ドキュメント: <a href="/admin/docs">/admin/docs</a>
+  </p>
+
+  <div class="examples" id="examples">
+    <button data-example="グッぼるのブログ投稿はどの手順で出す？">グッぼるのブログ投稿の手順</button>
+    <button data-example="ビジネス21の SEO 戦略の要点をまとめて">ビジネス21 SEO 要点</button>
+    <button data-example="Notエステで今進んでいるタスクは何？">Notエステの進行タスク</button>
+    <button data-example="Vercel と Cloudflare の使い分けルールを教えて">Vercel/Cloudflare の使い分け</button>
+    <button data-example="cron ジョブの全体一覧を出して">cron 全体一覧</button>
+  </div>
+
+  <div class="chat-log" id="chat-log">
+    <div class="msg system">最近の consul/work（過去30日）と事業ドキュメントから根拠ベースで答えます。質問をどうぞ。</div>
+  </div>
+
+  <div class="composer">
+    <textarea id="input" placeholder="9 事業のこと・社内資料のことを質問…（Enter で送信 / Shift+Enter で改行）"></textarea>
+    <button id="send">送信</button>
+  </div>
+  <p class="hint">※ Claude 4.7 と consul/work の最新 grep ベース RAG。回答は根拠引用付き。長文質問は約 6000 文字まで。</p>
+</div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const log = $("chat-log");
+const inputEl = $("input");
+const sendBtn = $("send");
+
+let history = []; // {role, content}
+
+function escapeHtml(s) {
+  return String(s||"").replace(/[&<>"']/g, m => (
+    {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m]
+  ));
+}
+
+// 極めて簡素な Markdown レンダラ（コードブロック / インラインコード / 太字 / リンクのみ）
+function renderMarkdown(s) {
+  let h = escapeHtml(s);
+  // コードブロック
+  h = h.replace(/```([\s\S]*?)```/g, (_, code) => `<pre>${code}</pre>`);
+  // インラインコード
+  h = h.replace(/`([^`]+)`/g, "<code>$1</code>");
+  // 太字
+  h = h.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+  // リンク [text](url)
+  h = h.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, t, u) => `<a href="${u}" target="_blank" rel="noopener">${t}</a>`);
+  // 改行
+  h = h.replace(/\n/g, "<br>");
+  return h;
+}
+
+function addMsg(role, content) {
+  const div = document.createElement("div");
+  div.className = "msg " + role;
+  div.innerHTML = role === "assistant" ? renderMarkdown(content) : escapeHtml(content);
+  log.appendChild(div);
+  log.scrollTop = log.scrollHeight;
+  return div;
+}
+
+async function send() {
+  const text = inputEl.value.trim();
+  if (!text || sendBtn.disabled) return;
+  inputEl.value = "";
+  addMsg("user", text);
+  history.push({ role: "user", content: text });
+  sendBtn.disabled = true;
+  const typing = addMsg("assistant", "");
+  typing.classList.add("typing");
+  typing.textContent = "考え中…";
+  try {
+    const res = await fetch("/api/admin/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ history }),
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      typing.classList.remove("typing");
+      typing.innerHTML = `<span style="color:var(--err);">エラー: ${escapeHtml(data?.error || res.statusText)}</span>`;
+      return;
+    }
+    typing.classList.remove("typing");
+    typing.innerHTML = renderMarkdown(data.reply || "(空応答)");
+    history.push({ role: "assistant", content: data.reply || "" });
+  } catch (e) {
+    typing.classList.remove("typing");
+    typing.innerHTML = `<span style="color:var(--err);">通信失敗: ${escapeHtml(e.message)}</span>`;
+  } finally {
+    sendBtn.disabled = false;
+    inputEl.focus();
+  }
+}
+
+sendBtn.addEventListener("click", send);
+inputEl.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && !e.shiftKey) {
+    e.preventDefault();
+    send();
+  }
+});
+document.querySelectorAll("#examples button[data-example]").forEach(b => {
+  b.addEventListener("click", () => {
+    inputEl.value = b.dataset.example;
+    inputEl.focus();
+  });
+});
+inputEl.focus();
+</script>
+</body>
+</html>

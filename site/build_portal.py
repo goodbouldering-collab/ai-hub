@@ -121,6 +121,18 @@ def _load_businesses() -> list[dict]:
         return []
 
 
+AGENTS_STATUS_JSON = ROOT / "outputs" / "agents_status.json"
+
+
+def _load_agents_status() -> dict:
+    if not AGENTS_STATUS_JSON.exists():
+        return {}
+    try:
+        return json.loads(AGENTS_STATUS_JSON.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+
+
 def _load_recent_lectures(limit: int = 3) -> list[dict]:
     if not LECTURES_DIR.exists():
         return []
@@ -606,6 +618,82 @@ footer {
 @media (max-width: 400px) {
   .biz-grid { grid-template-columns: 1fr; }
 }
+
+/* === エージェントセクション === */
+.agents-block {
+  margin: 0 0 36px 0;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 14px;
+}
+@media (max-width: 820px) {
+  .agents-block { grid-template-columns: 1fr; }
+}
+.ai-chat-cta {
+  grid-column: 1 / -1;
+  display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  padding: 16px 20px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(122,162,255,.22), rgba(199,125,255,.18));
+  border: 1px solid rgba(255,255,255,.18);
+  backdrop-filter: blur(10px);
+}
+.ai-chat-cta__head { display:flex; align-items:center; gap:12px; }
+.ai-chat-cta__icon { font-size: 28px; }
+.ai-chat-cta__head strong { display:block; font-size: 14.5px; font-weight: 800; }
+.ai-chat-cta__head small { display:block; color: var(--muted); font-size: 11.5px; margin-top:2px; }
+.ai-chat-cta__btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 9px 18px; border-radius: 999px;
+  background: rgba(255,255,255,.16); color: var(--text);
+  font-size: 12.5px; font-weight: 700; text-decoration: none;
+  border: 1px solid rgba(255,255,255,.25);
+  white-space: nowrap;
+  transition: background .2s;
+}
+.ai-chat-cta__btn:hover { background: rgba(255,255,255,.28); }
+@media (max-width: 560px) {
+  .ai-chat-cta { flex-direction: column; align-items: stretch; }
+  .ai-chat-cta__btn { justify-content: center; }
+}
+
+.agents-works, .agents-cma {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 14px;
+  padding: 14px 16px;
+}
+.agents-works__title, .agents-cma__title {
+  font-size: 11.5px; font-weight: 800; letter-spacing: .08em;
+  color: var(--accent); margin-bottom: 8px; text-transform: uppercase;
+}
+.agents-works__list, .agents-cma__list {
+  list-style: none; padding: 0; margin: 0;
+}
+.agents-works__list li { margin: 2px 0; }
+.agents-works__list a {
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 8px; border-radius: 8px;
+  color: var(--text); text-decoration: none; font-size: 12.5px;
+}
+.agents-works__list a:hover { background: rgba(122,162,255,.10); }
+.aw-date { color: var(--muted); font-size: 11px; font-family: 'SFMono-Regular', monospace; flex: 0 0 auto; }
+.aw-cat  { color: var(--accent); font-size: 10.5px; font-weight: 700; padding: 2px 7px; background: rgba(122,162,255,.14); border-radius: 999px; flex: 0 0 auto; }
+.aw-title { flex: 1 1 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.agents-cma__list li {
+  display: flex; align-items: center; gap: 8px;
+  padding: 5px 0; font-size: 12px;
+}
+.ac-status { font-size: 12px; flex: 0 0 auto; }
+.ac-name   { flex: 1 1 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
+.ac-date   { color: var(--muted); font-size: 10.5px; font-family: 'SFMono-Regular', monospace; flex: 0 0 auto; }
+
+.agents-meta {
+  grid-column: 1 / -1;
+  color: var(--muted); font-size: 10.5px; text-align: right;
+  margin: -4px 4px 0 0;
+}
 """
 
 
@@ -722,7 +810,83 @@ def _render_lecture_card(lec: dict) -> str:
     )
 
 
-def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
+def _render_agents_section(status: dict) -> str:
+    """エージェント運用状況の集約セクション。
+
+    status が空または読めない場合は空文字を返してセクション自体を隠す（旧トップとの後方互換）。
+    """
+    if not status:
+        return ""
+
+    works = status.get("recent_works") or []
+    cma = status.get("cma_apps") or []
+    generated_at = status.get("generated_at") or ""
+
+    parts: list[str] = []
+    parts.append("<p class='section-heading'>エージェントの動き</p>")
+    parts.append("<div class='agents-block'>")
+
+    # AI チャット入口
+    parts.append(
+        "<div class='ai-chat-cta'>"
+        "<div class='ai-chat-cta__head'>"
+        "<span class='ai-chat-cta__icon'>🤖</span>"
+        "<div>"
+        "<strong>社内エージェントに質問する</strong>"
+        "<small>9事業のドキュメントと最近の成果物を参照して答える AI チャット</small>"
+        "</div>"
+        "</div>"
+        "<a class='ai-chat-cta__btn' href='/admin/chat'>チャットを開く →</a>"
+        "</div>"
+    )
+
+    # 最近の成果物
+    if works:
+        parts.append("<div class='agents-works'>")
+        parts.append("<div class='agents-works__title'>最近の成果物（consul/work）</div>")
+        parts.append("<ul class='agents-works__list'>")
+        for w in works[:8]:
+            date = html.escape(w.get("date", ""))
+            title = html.escape(w.get("title", "(untitled)"))
+            cat = html.escape(w.get("category", ""))
+            path = html.escape(w.get("path") or "/admin/docs", quote=True)
+            parts.append(
+                f"<li><a href='{path}'>"
+                f"<span class='aw-date'>{date}</span>"
+                f"<span class='aw-cat'>{cat}</span>"
+                f"<span class='aw-title'>{title}</span>"
+                f"</a></li>"
+            )
+        parts.append("</ul>")
+        parts.append("</div>")
+
+    # CMA 実行履歴
+    if cma:
+        parts.append("<div class='agents-cma'>")
+        parts.append("<div class='agents-cma__title'>CMA（Managed Agents）実行履歴</div>")
+        parts.append("<ul class='agents-cma__list'>")
+        for c in cma[:7]:
+            name = html.escape(c.get("name", ""))
+            status_txt = html.escape(c.get("status", ""))
+            last_run = html.escape(c.get("last_run", ""))
+            parts.append(
+                f"<li>"
+                f"<span class='ac-status'>{status_txt}</span>"
+                f"<span class='ac-name'>{name}</span>"
+                f"<span class='ac-date'>{last_run}</span>"
+                f"</li>"
+            )
+        parts.append("</ul>")
+        parts.append("</div>")
+
+    if generated_at:
+        parts.append(f"<p class='agents-meta'>更新: {html.escape(generated_at)}</p>")
+
+    parts.append("</div>")
+    return "".join(parts)
+
+
+def render_portal(businesses: list[dict], recent_lectures: list[dict], agents_status: dict | None = None) -> str:
     today = datetime.now().strftime("%Y-%m-%d")
     desc = f"{OWNER_NAME}（{OWNER_SUBTITLE}）のCEOポータル。9事業への入口・講習資料・AI情報を集約。"
 
@@ -741,6 +905,8 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
 
     parts.append(_render_nav())
     parts.append(_render_hero())
+
+    parts.append(_render_agents_section(agents_status or {}))
 
     parts.append("<p class='section-heading'>事業ポートフォリオ</p>")
     parts.append("<div class='biz-grid'>")
@@ -783,9 +949,22 @@ def main(dry_run: bool = False) -> int:
         print("[!] config/businesses.yaml が読み込めません。スキップ。")
         return 1
 
-    recent_lectures = _load_recent_lectures(limit=3)
+    # agents_status を最新に更新（読み取り元が無いときは既存ファイルを温存）
+    try:
+        import importlib.util as _ilu
+        _agents_script = ROOT / "scripts" / "build_agents_status.py"
+        if _agents_script.exists():
+            _spec = _ilu.spec_from_file_location("build_agents_status", _agents_script)
+            _mod = _ilu.module_from_spec(_spec)
+            _spec.loader.exec_module(_mod)
+            _mod.main()
+    except Exception as e:
+        print(f"  agents_status 生成スキップ: {e}")
 
-    html_text = render_portal(businesses, recent_lectures)
+    recent_lectures = _load_recent_lectures(limit=3)
+    agents_status = _load_agents_status()
+
+    html_text = render_portal(businesses, recent_lectures, agents_status)
 
     if dry_run:
         print(html_text)

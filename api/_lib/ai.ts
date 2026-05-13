@@ -182,6 +182,46 @@ export async function generateImageBytes(prompt: string): Promise<{
   }
 }
 
+/**
+ * 社内ドキュメント参照付きのチャット応答を生成する。
+ * context（事業 CLAUDE.md / consul/work 抜粋など）は呼び出し側で組み立てて system に積む。
+ */
+export async function chatWithContext(
+  history: { role: "user" | "assistant"; content: string }[],
+  context: string,
+): Promise<string> {
+  const t = timeoutSignal();
+  const systemPrompt =
+    "あなたは『AIハブ』の社内アシスタントです。CEO（由井辰美）の 9 事業（グッぼる / Notエステ / Nデザイン / ビジネス21 / カラッと / みんなのWA / ファディー / トラスト / AIハブ）の運用を補佐します。\n" +
+    "回答の方針:\n" +
+    "- 提示された <context> 内のドキュメントを最優先の根拠にする\n" +
+    "- 推測で答えず、根拠が無いときは「ドキュメントに記載なし」と明示する\n" +
+    "- 簡潔・箇条書き優先・日本語\n" +
+    "- ファイルや箇所を引用するときは consul-work/<filename> 形式で示す\n\n" +
+    "<context>\n" + context + "\n</context>";
+  try {
+    const message = await client().messages.create(
+      {
+        model: claudeModel(),
+        max_tokens: 1500,
+        system: systemPrompt,
+        messages: history.map((m) => ({ role: m.role, content: m.content })),
+      },
+      { signal: t.signal },
+    );
+    return extractText(message);
+  } catch (e: any) {
+    if (e?.name === "AbortError" || /aborted|timeout/i.test(String(e?.message || ""))) {
+      const err: any = new Error("Claude 応答が制限時間を超過しました（55秒）");
+      err.status = 504;
+      throw err;
+    }
+    throw e;
+  } finally {
+    t.cancel();
+  }
+}
+
 // re-export for tests / direct use
 export { sanitizeArticleHtml };
 

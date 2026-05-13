@@ -12,6 +12,8 @@
     { "source": "/admin/", "destination": "/api/admin" },
     { "source": "/admin/docs", "destination": "/api/admin/docs" },
     { "source": "/admin/docs/", "destination": "/api/admin/docs" },
+    { "source": "/admin/chat", "destination": "/api/admin/chat" },
+    { "source": "/admin/chat/", "destination": "/api/admin/chat" },
     { "source": "/watch", "destination": "/watch/index.html" },
     { "source": "/watch/", "destination": "/watch/index.html" }
   ]

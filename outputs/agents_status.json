@@ -1,0 +1,177 @@
+{
+  "generated_at": "2026-05-13T20:38:11Z",
+  "consul_agents": [
+    {
+      "name": "secretary",
+      "role_summary": "受付・振り分け（CEO 窓口）",
+      "last_work_date": null,
+      "last_work_title": null,
+      "last_work_path": null
+    },
+    {
+      "name": "advisor",
+      "role_summary": "助言・経営観点レビュー",
+      "last_work_date": null,
+      "last_work_title": null,
+      "last_work_path": null
+    },
+    {
+      "name": "cfo",
+      "role_summary": "数字・採算・キャッシュフロー",
+      "last_work_date": null,
+      "last_work_title": null,
+      "last_work_path": null
+    },
+    {
+      "name": "designer",
+      "role_summary": "UI / ビジュアル制作",
+      "last_work_date": null,
+      "last_work_title": null,
+      "last_work_path": null
+    },
+    {
+      "name": "developer",
+      "role_summary": "実装・コード作成",
+      "last_work_date": null,
+      "last_work_title": null,
+      "last_work_path": null
+    },
+    {
+      "name": "mailer",
+      "role_summary": "顧客メール・LINE 文面",
+      "last_work_date": null,
+      "last_work_title": null,
+      "last_work_path": null
+    },
+    {
+      "name": "marketer",
+      "role_summary": "集客・SNS 戦略",
+      "last_work_date": null,
+      "last_work_title": null,
+      "last_work_path": null
+    },
+    {
+      "name": "pm",
+      "role_summary": "進行管理・スケジュール調整",
+      "last_work_date": null,
+      "last_work_title": null,
+      "last_work_path": null
+    },
+    {
+      "name": "scheduler",
+      "role_summary": "予約・カレンダー調整",
+      "last_work_date": null,
+      "last_work_title": null,
+      "last_work_path": null
+    },
+    {
+      "name": "writer",
+      "role_summary": "記事・コピー執筆",
+      "last_work_date": null,
+      "last_work_title": null,
+      "last_work_path": null
+    }
+  ],
+  "recent_works": [
+    {
+      "date": "2026-05-12",
+      "title": "Task #22: エステ・美容業界向けポジショニング",
+      "path": "/admin/docs?file=2026-05-12-task22-este-positioning.md",
+      "category": "task22",
+      "filename": "2026-05-12-task22-este-positioning.md"
+    },
+    {
+      "date": "2026-05-12",
+      "title": "Task #18: 全国クライミングジム「Web が弱い」店舗 候補リスト",
+      "path": "/admin/docs?file=2026-05-12-task18-climbing-gym-target-list.md",
+      "category": "task18",
+      "filename": "2026-05-12-task18-climbing-gym-target-list.md"
+    },
+    {
+      "date": "2026-05-12",
+      "title": "Task #16: 彦根・滋賀ローカル中小企業ネットワーク マッピング",
+      "path": "/admin/docs?file=2026-05-12-task16-shiga-local-network-mapping.md",
+      "category": "task16",
+      "filename": "2026-05-12-task16-shiga-local-network-mapping.md"
+    },
+    {
+      "date": "2026-05-12",
+      "title": "サービスメニュー・価格表（仮確定版）",
+      "path": "/admin/docs?file=2026-05-12-service-menu-confirmed.md",
+      "category": "service",
+      "filename": "2026-05-12-service-menu-confirmed.md"
+    },
+    {
+      "date": "2026-05-12",
+      "title": "連絡導線・受信→返信ルール（仮確定版）",
+      "path": "/admin/docs?file=2026-05-12-contact-channel-confirmed.md",
+      "category": "contact",
+      "filename": "2026-05-12-contact-channel-confirmed.md"
+    },
+    {
+      "date": "2026-05-12",
+      "title": "コンサル LP（ランディングページ）ワイヤーフレーム + コピー",
+      "path": "/admin/docs?file=2026-05-12-consulting-lp-wireframe.md",
+      "category": "consulting",
+      "filename": "2026-05-12-consulting-lp-wireframe.md"
+    },
+    {
+      "date": "2026-05-12",
+      "title": "CEO アイデンティティ確定版（仮確定・後日変更可）",
+      "path": "/admin/docs?file=2026-05-12-ceo-identity-confirmed.md",
+      "category": "ceo",
+      "filename": "2026-05-12-ceo-identity-confirmed.md"
+    },
+    {
+      "date": "2026-05-12",
+      "title": "ビジネス21 SEO/LLMO 戦略書 v2（2026-05-12 敵対的レビュー反映版）",
+      "path": "/admin/docs?file=2026-05-12-business-21-seo-llmo-strategy-v2.md",
+      "category": "business",
+      "filename": "2026-05-12-business-21-seo-llmo-strategy-v2.md"
+    }
+  ],
+  "cma_apps": [
+    {
+      "name": "App1_CommunityBoard",
+      "last_run": "2026-04-11",
+      "kind": "FastAPI Hello World",
+      "status": "✅ 完了"
+    },
+    {
+      "name": "App2_TodoAPI",
+      "last_run": "2026-04-11",
+      "kind": "FastAPI ToDo CRUD",
+      "status": "✅ 完了"
+    },
+    {
+      "name": "App3_WeatherAPI",
+      "last_run": "2026-04-11",
+      "kind": "FastAPI モック天気",
+      "status": "✅ 完了"
+    },
+    {
+      "name": "App4_CounterAPI",
+      "last_run": "2026-04-11",
+      "kind": "FastAPI カウンタ",
+      "status": "✅ 動作確認のみ（ポート衝突あり）"
+    },
+    {
+      "name": "SiteCrawlChecker",
+      "last_run": "2026-04-11",
+      "kind": "ブラウザ QA 巡回",
+      "status": "⚠️ クリティカル所見あり"
+    },
+    {
+      "name": "App_MinanowaPolish",
+      "last_run": "2026-04-16",
+      "kind": "Next.js 16 + Supabase 改善 10 タスク",
+      "status": "✅ クラウド側完了・**納品物は Render 前提で陳腐化**"
+    },
+    {
+      "name": "gtn_ai_mvp",
+      "last_run": "2026-04-16 推定",
+      "kind": "AI パイプライン",
+      "status": "❌ 失敗（0 バイト出力）/ プロジェクト自体終了"
+    }
+  ]
+}

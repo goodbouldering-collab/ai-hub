@@ -2266,6 +2266,12 @@ def build_sitemap_and_robots() -> None:
     )
 
 
+def _build_portal() -> None:
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import build_portal  # noqa: WPS433
+    build_portal.main(dry_run=False)
+
+
 def main() -> int:
     if DIST.exists():
         shutil.rmtree(DIST)
@@ -2292,6 +2298,7 @@ def main() -> int:
         build_portfolio_page()
         build_profile_page()
         build_sitemap_and_robots()
+        _build_portal()
         return 0
 
     payload = json.loads(TOP10_JSON.read_text(encoding="utf-8"))
@@ -2320,6 +2327,7 @@ def main() -> int:
     portfolio_built = build_portfolio_page()
     profile_built = build_profile_page()
     build_sitemap_and_robots()
+    _build_portal()
 
     print(
         f"[+] site built: {DIST} ({len(dates)} archive pages in watch/"

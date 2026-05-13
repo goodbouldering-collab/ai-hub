@@ -4,11 +4,7 @@ __pycache__/
 .env
 data/history.db-journal
 data/_migrate_*
-# Hotfix 2026-05-13: portal index.html だけは tracked にする
-# （build_portal.py は GitHub Actions 上で generated されるが、PR マージ時点で
-#  daily.yml がまだ走らず /index.html が 404 になる事故を防止するため commit する）
-site/dist/*
-!site/dist/index.html
+site/dist/
 .wrangler/
 node_modules/
 .vercel/

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-13T20:38:11Z",
+  "generated_at": "2026-05-13T22:58:09Z",
   "consul_agents": [
     {
       "name": "secretary",
@@ -74,6 +74,13 @@
   ],
   "recent_works": [
     {
+      "date": "2026-05-13",
+      "title": "Cron ジョブ一覧（全プロジェクト横断・2026-05-13 時点）",
+      "path": "/admin/docs?file=2026-05-13-cron-jobs-overview.md",
+      "category": "cron",
+      "filename": "2026-05-13-cron-jobs-overview.md"
+    },
+    {
       "date": "2026-05-12",
       "title": "Task #22: エステ・美容業界向けポジショニング",
       "path": "/admin/docs?file=2026-05-12-task22-este-positioning.md",
@@ -121,57 +128,7 @@
       "path": "/admin/docs?file=2026-05-12-ceo-identity-confirmed.md",
       "category": "ceo",
       "filename": "2026-05-12-ceo-identity-confirmed.md"
-    },
-    {
-      "date": "2026-05-12",
-      "title": "ビジネス21 SEO/LLMO 戦略書 v2（2026-05-12 敵対的レビュー反映版）",
-      "path": "/admin/docs?file=2026-05-12-business-21-seo-llmo-strategy-v2.md",
-      "category": "business",
-      "filename": "2026-05-12-business-21-seo-llmo-strategy-v2.md"
     }
   ],
-  "cma_apps": [
-    {
-      "name": "App1_CommunityBoard",
-      "last_run": "2026-04-11",
-      "kind": "FastAPI Hello World",
-      "status": "✅ 完了"
-    },
-    {
-      "name": "App2_TodoAPI",
-      "last_run": "2026-04-11",
-      "kind": "FastAPI ToDo CRUD",
-      "status": "✅ 完了"
-    },
-    {
-      "name": "App3_WeatherAPI",
-      "last_run": "2026-04-11",
-      "kind": "FastAPI モック天気",
-      "status": "✅ 完了"
-    },
-    {
-      "name": "App4_CounterAPI",
-      "last_run": "2026-04-11",
-      "kind": "FastAPI カウンタ",
-      "status": "✅ 動作確認のみ（ポート衝突あり）"
-    },
-    {
-      "name": "SiteCrawlChecker",
-      "last_run": "2026-04-11",
-      "kind": "ブラウザ QA 巡回",
-      "status": "⚠️ クリティカル所見あり"
-    },
-    {
-      "name": "App_MinanowaPolish",
-      "last_run": "2026-04-16",
-      "kind": "Next.js 16 + Supabase 改善 10 タスク",
-      "status": "✅ クラウド側完了・**納品物は Render 前提で陳腐化**"
-    },
-    {
-      "name": "gtn_ai_mvp",
-      "last_run": "2026-04-16 推定",
-      "kind": "AI パイプライン",
-      "status": "❌ 失敗（0 バイト出力）/ プロジェクト自体終了"
-    }
-  ]
+  "cma_apps": []
 }

@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/24385267/STK148_Microsoft_Edge_2.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-05-13T18:04:28-04:00"
+      "published": "2026-05-13T18:04:28-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "3ea58f1de65a3fc3",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/meta-ai-incognito-chats.jpg?quality=90&amp;strip=all&amp;crop=0%2C3.4613147178592%2C100%2C93.077370564282&amp;w=1200",
-      "published": "2026-05-13T12:45:43-04:00"
+      "published": "2026-05-13T12:45:43-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "ad9ea512a099a89d",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/Vrg_illo_Satya-Nadella_stock_trial.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-05-13T11:30:37-04:00"
+      "published": "2026-05-13T11:30:37-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "302ed31d035e2099",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-05-13T11:28:21-04:00"
+      "published": "2026-05-13T11:28:21-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "c6191a7c03f2edc8",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/Screenshot-2026-05-13-at-7.44.36AM.png?quality=90&amp;strip=all&amp;crop=0%2C3.5710757680529%2C100%2C92.857848463894&amp;w=1200",
-      "published": "2026-05-13T09:00:00-04:00"
+      "published": "2026-05-13T09:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "c2cfc569a87342ea",
@@ -113,7 +123,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-05-13T16:15:50+00:00"
+      "published": "2026-05-13T16:15:50+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "c867c58315f7fc6b",
@@ -132,7 +144,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/KcTM9TCVA7Q/hqdefault.jpg",
-      "published": "2026-05-13T14:09:17+00:00"
+      "published": "2026-05-13T14:09:17+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "6101a5b68f40f7c4",
@@ -151,7 +165,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/STKS528_DATA_CENTERS_B.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-05-13T05:00:00-04:00"
+      "published": "2026-05-13T05:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "e54f373b794ceff2",
@@ -170,7 +186,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/Vrg_illo_Sam_Altman_stock_trial.jpg?quality=90&amp;strip=all&amp;crop=0%2C12.339110464558%2C100%2C75.321779070884&amp;w=1200",
-      "published": "2026-05-12T19:23:14-04:00"
+      "published": "2026-05-12T19:23:14-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "3d05deac431c686e",
@@ -189,7 +207,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://static.simonwillison.net/static/2026/csp-allow.jpg",
-      "published": "2026-05-13T04:50:45+00:00"
+      "published": "2026-05-13T04:50:45+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

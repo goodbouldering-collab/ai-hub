@@ -537,6 +537,37 @@ section.block + section.block { border-top: 1px dashed var(--line); }
 .gallery-caption .title { font-size: 14.5px; font-weight: 800; line-height: 1.4; text-shadow: 0 2px 12px rgba(0,0,0,.40); }
 .gallery-caption .meta { font-size: 11.5px; opacity: .85; margin-top: 4px; }
 
+/* ---- clients-grid (制作実績：外部納品) ---- */
+.clients-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+}
+@media (max-width: 900px) { .clients-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .clients-grid { grid-template-columns: 1fr; } }
+.client-card {
+  display: flex; flex-direction: column;
+  background: var(--bg-white); border: 1px solid var(--line);
+  border-radius: 20px; overflow: hidden;
+  box-shadow: var(--shadow-card);
+  text-decoration: none; color: inherit;
+  transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s, border-color .25s;
+}
+.client-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-card-hover); border-color: rgba(37,99,235,.30); }
+.client-image { aspect-ratio: 16/9; overflow: hidden; background: #f1f5f9; }
+.client-image img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .9s ease; }
+.client-card:hover .client-image img { transform: scale(1.06); }
+.client-body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 6px; }
+.client-tag {
+  align-self: flex-start; padding: 3px 10px; border-radius: 999px;
+  background: var(--primary-bg); color: var(--primary);
+  font-size: 10.5px; font-weight: 800; letter-spacing: .04em;
+  border: 1px solid rgba(37,99,235,.20);
+  margin-bottom: 4px;
+}
+.client-name { font-size: 16.5px; font-weight: 800; color: var(--text); line-height: 1.3; }
+.client-tagline { font-size: 13px; color: var(--text-soft); line-height: 1.6; }
+.client-meta { font-size: 11.5px; color: var(--muted); margin-top: 8px; word-break: break-all; }
+.client-meta .client-host { font-family: 'SFMono-Regular','Consolas',monospace; }
+
 /* ---- fade-up animation ---- */
 .fade-up {
   opacity: 0; transform: translateY(28px);
@@ -688,7 +719,8 @@ def _render_header() -> str:
         "<a class='site-logo' href='/'><span class='dot'></span>AIハブ <span style='color:var(--muted);font-weight:600;font-size:13px;margin-left:6px;'>by 由井辰美</span></a>"
         "<nav class='site-nav' aria-label='メインナビ'>"
         "<a class='nav-link' href='#services'>サービス</a>"
-        "<a class='nav-link' href='#works'>実績</a>"
+        "<a class='nav-link' href='#clients'>制作実績</a>"
+        "<a class='nav-link' href='#works'>事業</a>"
         "<a class='nav-link' href='#flow'>ご依頼の流れ</a>"
         "<a class='nav-link' href='#profile'>プロフィール</a>"
         "<a class='nav-link' href='#faq'>FAQ</a>"
@@ -712,7 +744,8 @@ def _render_header() -> str:
         "</div>"
         "<div class='mobile-nav' id='mobile-nav'>"
         "<a href='#services'>サービス</a>"
-        "<a href='#works'>実績</a>"
+        "<a href='#clients'>制作実績</a>"
+        "<a href='#works'>事業</a>"
         "<a href='#flow'>ご依頼の流れ</a>"
         "<a href='#profile'>プロフィール</a>"
         "<a href='#faq'>FAQ</a>"
@@ -870,6 +903,42 @@ def _render_stats() -> str:
         suf_html = f"<span style='font-size:.6em'>{html.escape(suffix)}</span>" if suffix else ""
         parts.append(
             f"<div class='{cls}'><div class='num' data-count='{html.escape(num)}'>0{suf_html}</div><div class='label'>{html.escape(label)}</div></div>"
+        )
+    parts.append("</div>")
+    return "".join(parts)
+
+
+def _render_clients() -> str:
+    """クライアント実績：外部に納品・運用しているサイトを、画像 + リンクで掲載。
+
+    9事業ポートフォリオは「自分が運営している事業」、ここは「他社からの依頼で
+    つくった/運用している」案件をまとめる。
+    """
+    clients = [
+        {
+            "name": "プロギング・ジャパン",
+            "tagline": "ジョギングしながらゴミ拾い。日本のプロギング本部",
+            "url": "https://plogging.jp/",
+            "image": "https://img07.shop-pro.jp/PA01434/387/css_eyecatch/eyecatch_banner_img_1.jpg",
+            "category": "LP / EC / コミュニティ",
+            "stack": "カラーミー + SNS連携",
+        },
+    ]
+    parts: list[str] = []
+    parts.append("<div class='clients-grid'>")
+    for i, c in enumerate(clients):
+        parts.append(
+            f"<a class='client-card fade-up d{(i % 3) + 1}' href='{html.escape(c['url'], quote=True)}' target='_blank' rel='noopener'>"
+            "<div class='client-image'>"
+            f"<img src='{html.escape(c['image'], quote=True)}' alt='{html.escape(c['name'])}' loading='lazy' decoding='async'>"
+            "</div>"
+            "<div class='client-body'>"
+            f"<span class='client-tag'>{html.escape(c['category'])}</span>"
+            f"<div class='client-name'>{html.escape(c['name'])}</div>"
+            f"<div class='client-tagline'>{html.escape(c['tagline'])}</div>"
+            f"<div class='client-meta'>{html.escape(c['stack'])} · <span class='client-host'>{html.escape(c['url'])}</span></div>"
+            "</div>"
+            "</a>"
         )
     parts.append("</div>")
     return "".join(parts)
@@ -1064,16 +1133,18 @@ def _render_biz_card(biz: dict, fade_class: str = "") -> str:
 
 
 def _render_lecture_card(lec: dict) -> str:
-    slug = lec["slug"]
-    title = html.escape(lec["title"])
-    date = html.escape(lec["date"])
-    summary = html.escape(lec["summary"])
-    href = html.escape(f"/lectures/{slug}.html", quote=True)
+    title = html.escape(lec.get("title") or lec.get("slug", ""))
+    date = html.escape(lec.get("date", ""))
+    summary = html.escape(lec.get("summary", ""))
+    href_raw = lec.get("href") or f"/lectures/{lec.get('slug', '')}.html"
+    href = html.escape(href_raw, quote=True)
+    icon = html.escape(lec.get("icon", ""))
+    icon_html = f"<span class='lecture-icon'>{icon}</span>" if icon else ""
     date_html = f"<div class='lecture-date'>📅 {date}</div>" if date else ""
     summary_html = f"<div class='lecture-summary'>{summary}</div>" if summary else ""
     return (
         f"<a class='lecture-card' href='{href}'>"
-        f"<div class='lecture-title'>{title}</div>"
+        f"<div class='lecture-title'>{icon_html}{title}</div>"
         f"{date_html}{summary_html}</a>"
     )
 
@@ -1108,6 +1179,14 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append("<h2 class='section-title fade-up d1'>つくれるもの・任せられること</h2>")
     parts.append("<p class='section-sub fade-up d2'>LP・EC・LINE Bot・社内 RAG。「企画 → 制作 → 運用」をぜんぶ自社で。</p>")
     parts.append(_render_gallery())
+    parts.append("</section>")
+
+    # 制作実績（クライアントワーク）
+    parts.append("<section class='block' id='clients'>")
+    parts.append("<p class='section-heading fade-up'>CLIENT WORKS</p>")
+    parts.append("<h2 class='section-title fade-up d1'>制作実績（外部納品）</h2>")
+    parts.append("<p class='section-sub fade-up d2'>9事業以外で、外部のクライアントから依頼を受けて制作・運用しているサイト。</p>")
+    parts.append(_render_clients())
     parts.append("</section>")
 
     # サービス
@@ -1209,6 +1288,15 @@ def main(dry_run: bool = False) -> int:
         print(f"  agents_status 生成スキップ: {e}")
 
     recent_lectures = _load_recent_lectures(limit=3)
+    # プログラミングマップを講習資料カードとして先頭に常設
+    pmap_card = {
+        "title": "プログラミングマップ",
+        "icon": "🗺️ ",
+        "date": "2026-04-25",
+        "summary": "プログラミング言語・用途・AI 活用までの俯瞰図。何から学ぶか迷ったときの全体地図。",
+        "href": "/programming-map.html",
+    }
+    recent_lectures = [pmap_card] + list(recent_lectures)
 
     html_text = render_portal(businesses, recent_lectures)
 

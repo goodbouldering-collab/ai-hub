@@ -11,24 +11,23 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
-    --accent1:#7aa2ff;
-    --accent2:#c77dff;
-    --accent3:#ff7ab6;
-    --ai-muted:#aab1c5;
-    --ai-glass-bg:rgba(255,255,255,0.06);
-    --ai-glass-border:rgba(255,255,255,0.14);
+    --accent1:#2563eb;
+    --accent2:#8b5cf6;
+    --accent3:#ec4899;
+    --ai-muted:#64748b;
+    --ai-glass-bg:rgba(255,255,255,.92);
+    --ai-glass-border:#e2e8f0;
   }
   html, body { min-height: 100%; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
     background:
-      radial-gradient(1200px 800px at 15% -10%, rgba(122,162,255,.35), transparent 60%),
-      radial-gradient(900px 700px at 85% 10%, rgba(199,125,255,.28), transparent 60%),
-      radial-gradient(1000px 800px at 50% 110%, rgba(255,122,182,.22), transparent 60%),
-      linear-gradient(180deg, #0a0d1a 0%, #0d1126 50%, #0a0d1a 100%);
+      radial-gradient(900px 500px at 12% -6%, rgba(37,99,235,.10), transparent 60%),
+      radial-gradient(700px 500px at 88% 8%, rgba(236,72,153,.06), transparent 60%),
+      linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
     background-attachment: fixed;
-    color: #1e293b;
-    padding: 48px 20px 80px;
+    color: #0f172a;
+    padding: 96px 20px 80px;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -41,8 +40,8 @@
     max-width: 920px;
     margin: 64px auto 24px;
     padding: 22px 26px;
-    background: linear-gradient(120deg, rgba(122,162,255,.16), rgba(199,125,255,.14) 50%, rgba(255,122,182,.12));
-    border: 1px solid rgba(255,255,255,.14);
+    background: linear-gradient(120deg, rgba(37,99,235,.10), rgba(139,92,246,.12) 50%, rgba(236,72,153,.12));
+    border: 1px solid #e2e8f0;
     border-radius: 20px;
     backdrop-filter: blur(14px) saturate(160%);
     position: relative;
@@ -50,7 +49,7 @@
   }
   .pm-section-head::before {
     content: ""; position: absolute; inset: 0;
-    background: radial-gradient(800px 200px at 0% 0%, rgba(122,162,255,.18), transparent 60%);
+    background: radial-gradient(800px 200px at 0% 0%, rgba(37,99,235,.12), transparent 60%);
     pointer-events: none;
   }
   .pm-section-head .eyebrow {
@@ -63,7 +62,7 @@
     -webkit-background-clip:text; background-clip:text; color:transparent;
     line-height: 1.25;
   }
-  .pm-section-head p { color: #cfd4e8; font-size: 13.5px; line-height: 1.7; margin: 0; }
+  .pm-section-head p { color: #475569; font-size: 13.5px; line-height: 1.7; margin: 0; }
 
   /* ===== セクション内 目次バブル ===== */
   .pm-section-toc {
@@ -75,13 +74,13 @@
   .pm-section-toc a {
     font-size: 11.5px; font-weight: 700;
     padding: 5px 11px; border-radius: 999px;
-    background: rgba(255,255,255,.05);
-    border: 1px solid rgba(255,255,255,.14);
-    color: #c4cae0; text-decoration: none;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: #334155; text-decoration: none;
     transition: all .2s;
   }
   .pm-section-toc a:hover {
-    background: rgba(122,162,255,.18); color: #fff; border-color: var(--accent1);
+    background: rgba(37,99,235,.12); color: #fff; border-color: var(--accent1);
   }
 
   /* ===== タイトル ===== */
@@ -94,7 +93,7 @@
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    filter: drop-shadow(0 2px 20px rgba(122,162,255,.25));
+    filter: drop-shadow(0 2px 20px rgba(37,99,235,.20));
     background-size: 200% 100%;
     animation: ai-shimmer 6s ease-in-out infinite;
   }
@@ -631,11 +630,11 @@
     border-radius: 999px;
     background: rgba(255,255,255,0.05);
     border: 1px solid rgba(255,255,255,0.14);
-    color: #c4cae0;
+    color: #334155;
     cursor: pointer;
     transition: all .2s;
   }
-  .term-filters button:hover { background: rgba(122,162,255,.15); color:#fff; }
+  .term-filters button:hover { background: rgba(37,99,235,.10); color:#fff; }
   .term-filters button.active {
     background: linear-gradient(100deg, rgba(122,162,255,.3), rgba(199,125,255,.3));
     border-color: rgba(199,125,255,.55);
@@ -658,8 +657,8 @@
   .term-modal-nav button {
     flex: 1;
     padding: 10px 14px;
-    background: rgba(255,255,255,.05);
-    border: 1px solid rgba(255,255,255,.14);
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
     color: #d4d9ee;
     border-radius: 10px;
     cursor: pointer;
@@ -667,7 +666,7 @@
     transition: all .2s;
   }
   .term-modal-nav button:hover:not(:disabled) {
-    background: rgba(122,162,255,.18);
+    background: rgba(37,99,235,.12);
     border-color: var(--accent1);
     color: #fff;
   }
@@ -752,7 +751,7 @@
     letter-spacing: .08em;
     padding: 4px 12px;
     border-radius: 999px;
-    background: linear-gradient(100deg, rgba(122,162,255,.18), rgba(199,125,255,.18));
+    background: linear-gradient(100deg, rgba(37,99,235,.12), rgba(199,125,255,.18));
     border: 1px solid rgba(199,125,255,.35);
     color: #c9b7ff;
     margin-bottom: 14px;
@@ -788,7 +787,7 @@
   .term-modal p {
     font-size: 14.5px;
     line-height: 1.85;
-    color: #cfd4e8;
+    color: #475569;
     margin: 0;
   }
   .term-modal .detail { font-size: 15px; }
@@ -799,9 +798,9 @@
     margin-top: 6px;
   }
   .term-modal .related button {
-    background: rgba(255,255,255,.05);
-    border: 1px solid rgba(255,255,255,.14);
-    color: #c4cae0;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: #334155;
     padding: 5px 12px;
     border-radius: 999px;
     font-size: 12px;
@@ -809,7 +808,7 @@
     transition: all .2s;
   }
   .term-modal .related button:hover {
-    background: rgba(122,162,255,.18);
+    background: rgba(37,99,235,.12);
     border-color: var(--accent1);
     color: #fff;
   }
@@ -854,8 +853,8 @@
   .prompt-card .prompt-head {
     display: flex; align-items: center; justify-content: space-between;
     gap: 10px; padding: 10px 14px;
-    background: linear-gradient(100deg, rgba(122,162,255,.18), rgba(199,125,255,.18));
-    border-bottom: 1px solid rgba(255,255,255,.08);
+    background: linear-gradient(100deg, rgba(37,99,235,.12), rgba(199,125,255,.18));
+    border-bottom: 1px solid #e2e8f0;
   }
   .prompt-card .prompt-title {
     font-size: 12px; font-weight: 800; letter-spacing: .04em;
@@ -863,13 +862,13 @@
   }
   .prompt-card .prompt-title .pill {
     font-size: 9.5px; padding: 2px 7px; border-radius: 999px;
-    background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.18);
+    background: #e2e8f0; color: #fff; border: 1px solid #cbd5e1;
     letter-spacing: .08em;
   }
   .prompt-card .prompt-copy {
     display: inline-flex; align-items: center; gap: 5px;
-    background: rgba(255,255,255,.10);
-    border: 1px solid rgba(255,255,255,.18);
+    background: #e2e8f0;
+    border: 1px solid #cbd5e1;
     color: #fff; cursor: pointer;
     padding: 5px 11px; border-radius: 8px;
     font: inherit; font-size: 11.5px; font-weight: 700;
@@ -892,12 +891,12 @@
   .prompt-card pre b { color: #ffd36b; font-weight: 700; }
   .prompt-card .prompt-foot {
     padding: 10px 14px;
-    border-top: 1px solid rgba(255,255,255,.06);
+    border-top: 1px solid #f1f5f9;
     background: rgba(255,255,255,.02);
     font-size: 11.5px; color: #8ea0d6;
     line-height: 1.6;
   }
-  .prompt-card .prompt-foot b { color: #c4cae0; }
+  .prompt-card .prompt-foot b { color: #334155; }
 
   /* ===== 新規UI: ワンライナー・プロンプト ===== */
   .prompt-mini {
@@ -921,12 +920,12 @@
   .prompt-mini code.line {
     display: block;
     background: rgba(255,255,255,.04);
-    border: 1px solid rgba(255,255,255,.08);
+    border: 1px solid #e2e8f0;
     border-radius: 6px;
     padding: 6px 8px;
     font-family: 'SFMono-Regular', Consolas, monospace;
     font-size: 12px;
-    color: #c4cae0;
+    color: #334155;
     word-break: break-word;
     white-space: pre-wrap;
   }
@@ -937,13 +936,13 @@
     color: #8ea0d6;
     line-height: 1.5;
   }
-  .prompt-mini .what b { display: inline; color: #c4cae0; font-size: inherit; margin: 0; letter-spacing: 0; }
+  .prompt-mini .what b { display: inline; color: #334155; font-size: inherit; margin: 0; letter-spacing: 0; }
   .prompt-mini .mini-copy {
     position: absolute;
     top: 8px;
     right: 8px;
-    background: rgba(255,255,255,.10);
-    border: 1px solid rgba(255,255,255,.18);
+    background: #e2e8f0;
+    border: 1px solid #cbd5e1;
     color: #fff; cursor: pointer;
     padding: 4px 8px; border-radius: 6px;
     font: inherit; font-size: 11px; font-weight: 700;
@@ -1168,7 +1167,7 @@
     max-width: 920px;
     margin: 38px auto 18px;
     padding: 12px 18px;
-    background: linear-gradient(120deg, rgba(122,162,255,.18), rgba(199,125,255,.16));
+    background: linear-gradient(120deg, rgba(37,99,235,.12), rgba(199,125,255,.16));
     border: 1px solid rgba(255,255,255,.16);
     border-left: 4px solid var(--accent1);
     border-radius: 12px;
@@ -1184,8 +1183,8 @@
     letter-spacing: .14em;
     padding: 4px 10px;
     border-radius: 999px;
-    background: rgba(255,255,255,.10);
-    border: 1px solid rgba(255,255,255,.18);
+    background: #e2e8f0;
+    border: 1px solid #cbd5e1;
     color: #e8ecff;
     flex-shrink: 0;
   }
@@ -1198,7 +1197,7 @@
   .part-banner .pb-sub {
     margin-left: auto;
     font-size: 11.5px;
-    color: #cfd4e8;
+    color: #475569;
     opacity: .8;
   }
   @media (max-width: 640px) {
@@ -1213,7 +1212,7 @@
     margin: 8px auto 32px;
     padding: 14px 18px;
     background: rgba(255,255,255,.04);
-    border: 1px solid rgba(255,255,255,.12);
+    border: 1px solid #e2e8f0;
     border-radius: 14px;
     backdrop-filter: blur(10px);
   }
@@ -1236,10 +1235,10 @@
   .pm-agenda li {
     font-size: 12.5px;
     line-height: 1.7;
-    color: #cfd4e8;
+    color: #475569;
   }
   .pm-agenda li a {
-    color: #cfd4e8;
+    color: #475569;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
@@ -1364,7 +1363,7 @@
     border: 1px solid rgba(251,191,36,.28);
     border-radius: 18px;
     backdrop-filter: blur(12px) saturate(160%);
-    box-shadow: 0 6px 22px rgba(0,0,0,.20), inset 0 1px 0 rgba(255,255,255,.06);
+    box-shadow: 0 6px 22px rgba(0,0,0,.20), inset 0 1px 0 #f1f5f9;
   }
   .big-metaphor h3 {
     font-size: 15px; font-weight: 800; margin: 0 0 4px;
@@ -1449,7 +1448,7 @@
     display: flex; gap: 8px; align-items: center;
     background: rgba(122,162,255,.08); border: 1px solid rgba(122,162,255,.24);
     border-radius: 10px; padding: 8px 12px; margin: 0 0 10px;
-    font-size: 12.5px; color: #cfd4e8;
+    font-size: 12.5px; color: #475569;
   }
   .ai-hint span:first-child { font-size: 16px; }
   @media (max-width: 640px) {
@@ -1461,7 +1460,7 @@
     max-width: 920px;
     margin: -8px auto 18px;
     padding: 7px 14px;
-    font-size: 11.5px; color: #cfd4e8;
+    font-size: 11.5px; color: #475569;
     background: rgba(122,162,255,.06);
     border: 1px dashed rgba(122,162,255,.28);
     border-radius: 10px;

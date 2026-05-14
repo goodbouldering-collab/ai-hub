@@ -8,74 +8,111 @@
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --bg: #0d1126; --bg2:#141938; --panel:rgba(255,255,255,.05);
-    --border:rgba(255,255,255,.14); --text:#e8ebf5; --muted:#aab1c5;
-    --accent:#7aa2ff; --accent2:#c77dff; --ok:#7eeba3; --err:#ff7a90;
+    --bg-base:#f8fafc; --bg-white:#ffffff;
+    --text:#0f172a; --text-soft:#334155; --muted:#64748b;
+    --line:#e2e8f0; --primary:#2563eb; --primary-bg:#eff6ff;
+    --err:#ef4444;
+    --shadow-card: 0 12px 40px rgba(15,23,42,0.08);
   }
   body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Hiragino Sans','Noto Sans JP',sans-serif;
-    background:linear-gradient(180deg,#0a0d1a,#0d1126 50%,#0a0d1a);
-    color:var(--text); min-height:100vh; padding:20px; line-height:1.55; }
-  .container { max-width:900px; margin:0 auto; }
-  h1 { font-size:22px; font-weight:800;
-    background:linear-gradient(100deg,var(--accent),var(--accent2));
-    -webkit-background-clip:text; background-clip:text; color:transparent;
-    margin-bottom:6px; }
-  .sub { color:var(--muted); font-size:13px; margin-bottom:18px; }
-  .sub a { color:var(--accent); font-weight:700; }
+    background:linear-gradient(180deg,#ffffff 0%,#f8fafc 100%);
+    color:var(--text); min-height:100vh; padding:24px; line-height:1.6; }
+  ::selection { background: var(--primary); color: #fff; }
+  .container { max-width:960px; margin:0 auto; }
+  .topbar {
+    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap;
+    gap:14px; margin-bottom:18px;
+  }
+  .topbar h1 {
+    font-size:22px; font-weight:800; letter-spacing:-.01em; color:var(--text);
+    display:inline-flex; align-items:center; gap:10px;
+  }
+  .topbar h1 .dot { width:10px; height:10px; border-radius:999px; background:var(--primary); }
+  .topbar-actions { display:flex; gap:8px; flex-wrap:wrap; }
+  .topbar-actions a {
+    display:inline-flex; align-items:center; gap:6px;
+    padding:8px 14px; border-radius:999px;
+    background:#fff; border:1px solid var(--line);
+    font-size:12.5px; font-weight:700; color:var(--text-soft);
+    text-decoration:none; box-shadow:0 4px 12px rgba(15,23,42,.05);
+    transition:transform .2s, background .2s, color .2s;
+  }
+  .topbar-actions a:hover { background:var(--primary-bg); color:var(--primary); transform:translateY(-1px); }
+  .sub { color:var(--muted); font-size:13px; margin-bottom:16px; }
+  .sub a { color:var(--primary); font-weight:700; text-decoration:none; }
+  .sub a:hover { text-decoration: underline; }
   .chat-log {
-    background:var(--panel); border:1px solid var(--border);
-    border-radius:14px; padding:14px;
+    background:#fff; border:1px solid var(--line);
+    border-radius:18px; padding:18px;
     min-height:360px; max-height:62vh; overflow-y:auto;
     display:flex; flex-direction:column; gap:10px;
-    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-card);
   }
-  .msg { max-width: 88%; padding:10px 14px; border-radius:14px; font-size:13.5px; line-height:1.7; }
-  .msg.user      { align-self:flex-end;   background: rgba(122,162,255,.22); border:1px solid rgba(122,162,255,.35); }
-  .msg.assistant { align-self:flex-start; background: rgba(255,255,255,.06); border:1px solid var(--border); }
-  .msg.system    { align-self:center; color:var(--muted); font-size:11.5px; padding:4px 10px; }
-  .msg pre { background: rgba(0,0,0,.35); padding:8px 10px; border-radius:8px;
-    overflow-x:auto; font-size:12px; margin:6px 0; }
-  .msg code { background: rgba(0,0,0,.35); padding:1px 5px; border-radius:4px; font-size:12px; }
-  .msg a { color:var(--accent); }
+  .msg { max-width: 88%; padding:12px 16px; border-radius:16px; font-size:13.5px; line-height:1.7; }
+  .msg.user      { align-self:flex-end;   background: var(--primary); color:#fff; }
+  .msg.user a    { color:#fff; text-decoration:underline; }
+  .msg.assistant { align-self:flex-start; background: var(--primary-bg); color:var(--text); border:1px solid rgba(37,99,235,.18); }
+  .msg.system    { align-self:center; color:var(--muted); font-size:11.5px; padding:4px 10px; background:transparent; }
+  .msg pre { background: rgba(15,23,42,.06); padding:8px 10px; border-radius:8px;
+    overflow-x:auto; font-size:12px; margin:6px 0; color:var(--text); }
+  .msg.user pre { background: rgba(255,255,255,.18); color: #fff; }
+  .msg code { background: rgba(15,23,42,.08); padding:1px 5px; border-radius:4px; font-size:12px; }
+  .msg.user code { background: rgba(255,255,255,.18); color: #fff; }
+  .msg a { color: var(--primary); }
   .typing { color: var(--muted); font-style: italic; }
 
   .composer {
-    margin-top:12px;
-    background:var(--panel); border:1px solid var(--border);
-    border-radius:14px; padding:10px;
-    display:flex; gap:8px; align-items:flex-end;
+    margin-top:14px;
+    background:#fff; border:1px solid var(--line);
+    border-radius:18px; padding:12px;
+    display:flex; gap:10px; align-items:flex-end;
+    box-shadow: var(--shadow-card);
   }
   .composer textarea {
     flex:1 1 auto;
-    background: rgba(0,0,0,.18); border:none; color:var(--text);
-    font:inherit; font-size:13.5px;
-    padding:10px 12px; border-radius:10px;
-    min-height: 44px; max-height:200px; resize:vertical;
+    background:#f8fafc; border:1px solid var(--line); color:var(--text);
+    font:inherit; font-size:14px;
+    padding:12px 14px; border-radius:12px;
+    min-height: 50px; max-height:200px; resize:vertical;
+    transition: border-color .2s, box-shadow .2s;
   }
+  .composer textarea:focus { outline:none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37,99,235,.15); }
   .composer button {
-    padding:10px 18px; border-radius:999px; border:1px solid rgba(122,162,255,.5);
-    background: linear-gradient(135deg, rgba(122,162,255,.45), rgba(199,125,255,.32));
-    color:var(--text); font:inherit; font-size:13px; font-weight:700; cursor:pointer;
+    padding:12px 24px; border-radius:999px; border:none;
+    background: var(--primary);
+    color:#fff; font:inherit; font-size:14px; font-weight:700; cursor:pointer;
     white-space:nowrap;
+    box-shadow: 0 8px 20px rgba(37,99,235,.30);
+    transition: transform .2s, box-shadow .2s, background .2s;
   }
-  .composer button:disabled { opacity:.5; cursor:not-allowed; }
-  .hint { color:var(--muted); font-size:11px; margin-top:6px; }
-  .examples { display:flex; flex-wrap:wrap; gap:6px; margin: 8px 0 14px 0; }
+  .composer button:hover:not(:disabled) { background:#1d4fd6; transform:translateY(-1px); box-shadow: 0 12px 26px rgba(37,99,235,.40); }
+  .composer button:disabled { opacity:.5; cursor:not-allowed; transform:none; box-shadow:none; }
+  .hint { color:var(--muted); font-size:11.5px; margin-top:8px; }
+  .examples { display:flex; flex-wrap:wrap; gap:6px; margin: 4px 0 16px 0; }
   .examples button {
-    font-size:11.5px; padding:6px 12px; border-radius:999px;
-    background: rgba(255,255,255,.06); color: var(--text);
-    border:1px solid var(--border); cursor:pointer;
+    font-size:11.5px; padding:7px 14px; border-radius:999px;
+    background: #fff; color: var(--text-soft);
+    border:1px solid var(--line); cursor:pointer; font-weight:600;
+    transition: all .2s;
   }
-  .examples button:hover { background: rgba(122,162,255,.18); }
+  .examples button:hover { background: var(--primary-bg); color: var(--primary); border-color: rgba(37,99,235,.30); }
 </style>
 </head>
 <body>
 <div class="container">
-  <h1>🤖 社内エージェントに質問</h1>
-  <p class="sub">
-    consul/work と各事業の CLAUDE.md を参照して回答します。
-    トップ: <a href="/">/</a> ・ 管理画面: <a href="/admin">/admin</a> ・ ドキュメント: <a href="/admin/docs">/admin/docs</a>
-  </p>
+  <div class="topbar">
+    <div>
+      <h1><span class="dot"></span>🤖 社内エージェントに質問</h1>
+      <p class="sub">
+        consul/work と各事業の CLAUDE.md を参照して回答します。
+      </p>
+    </div>
+    <div class="topbar-actions">
+      <a href="/">🌐 公開トップ</a>
+      <a href="/admin">🛠 管理画面</a>
+      <a href="/admin/docs">📚 ドキュメント</a>
+    </div>
+  </div>
 
   <div class="examples" id="examples">
     <button data-example="グッぼるのブログ投稿はどの手順で出す？">グッぼるのブログ投稿の手順</button>

@@ -175,7 +175,7 @@ body {
 .container {
   position: relative;
   z-index: 1;
-  max-width: 960px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 0 20px 80px;
 }
@@ -343,7 +343,7 @@ nav.top-nav .nav-current {
 /* ---- business card grid ---- */
 .biz-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 14px;
 }
 .biz-card {

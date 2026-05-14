@@ -1,134 +1,339 @@
 {
-  "generated_at": "2026-05-13T22:58:09Z",
-  "consul_agents": [
-    {
-      "name": "secretary",
-      "role_summary": "受付・振り分け（CEO 窓口）",
-      "last_work_date": null,
-      "last_work_title": null,
-      "last_work_path": null
-    },
-    {
-      "name": "advisor",
-      "role_summary": "助言・経営観点レビュー",
-      "last_work_date": null,
-      "last_work_title": null,
-      "last_work_path": null
-    },
-    {
-      "name": "cfo",
-      "role_summary": "数字・採算・キャッシュフロー",
-      "last_work_date": null,
-      "last_work_title": null,
-      "last_work_path": null
-    },
-    {
-      "name": "designer",
-      "role_summary": "UI / ビジュアル制作",
-      "last_work_date": null,
-      "last_work_title": null,
-      "last_work_path": null
-    },
-    {
-      "name": "developer",
-      "role_summary": "実装・コード作成",
-      "last_work_date": null,
-      "last_work_title": null,
-      "last_work_path": null
-    },
-    {
-      "name": "mailer",
-      "role_summary": "顧客メール・LINE 文面",
-      "last_work_date": null,
-      "last_work_title": null,
-      "last_work_path": null
-    },
-    {
-      "name": "marketer",
-      "role_summary": "集客・SNS 戦略",
-      "last_work_date": null,
-      "last_work_title": null,
-      "last_work_path": null
-    },
-    {
-      "name": "pm",
-      "role_summary": "進行管理・スケジュール調整",
-      "last_work_date": null,
-      "last_work_title": null,
-      "last_work_path": null
-    },
-    {
-      "name": "scheduler",
-      "role_summary": "予約・カレンダー調整",
-      "last_work_date": null,
-      "last_work_title": null,
-      "last_work_path": null
-    },
-    {
-      "name": "writer",
-      "role_summary": "記事・コピー執筆",
-      "last_work_date": null,
-      "last_work_title": null,
-      "last_work_path": null
-    }
-  ],
+  "generated_at": "2026-05-14T00:21:44Z",
   "recent_works": [
     {
       "date": "2026-05-13",
+      "filename": "2026-05-13-cron-jobs-overview.md",
       "title": "Cron ジョブ一覧（全プロジェクト横断・2026-05-13 時点）",
-      "path": "/admin/docs?file=2026-05-13-cron-jobs-overview.md",
-      "category": "cron",
-      "filename": "2026-05-13-cron-jobs-overview.md"
+      "business": "cron",
+      "path": "/admin/docs?file=2026-05-13-cron-jobs-overview.md"
     },
     {
       "date": "2026-05-12",
+      "filename": "2026-05-12-task22-este-positioning.md",
       "title": "Task #22: エステ・美容業界向けポジショニング",
-      "path": "/admin/docs?file=2026-05-12-task22-este-positioning.md",
-      "category": "task22",
-      "filename": "2026-05-12-task22-este-positioning.md"
+      "business": "task22",
+      "path": "/admin/docs?file=2026-05-12-task22-este-positioning.md"
     },
     {
       "date": "2026-05-12",
+      "filename": "2026-05-12-task18-climbing-gym-target-list.md",
       "title": "Task #18: 全国クライミングジム「Web が弱い」店舗 候補リスト",
-      "path": "/admin/docs?file=2026-05-12-task18-climbing-gym-target-list.md",
-      "category": "task18",
-      "filename": "2026-05-12-task18-climbing-gym-target-list.md"
+      "business": "task18",
+      "path": "/admin/docs?file=2026-05-12-task18-climbing-gym-target-list.md"
     },
     {
       "date": "2026-05-12",
+      "filename": "2026-05-12-task16-shiga-local-network-mapping.md",
       "title": "Task #16: 彦根・滋賀ローカル中小企業ネットワーク マッピング",
-      "path": "/admin/docs?file=2026-05-12-task16-shiga-local-network-mapping.md",
-      "category": "task16",
-      "filename": "2026-05-12-task16-shiga-local-network-mapping.md"
+      "business": "task16",
+      "path": "/admin/docs?file=2026-05-12-task16-shiga-local-network-mapping.md"
     },
     {
       "date": "2026-05-12",
+      "filename": "2026-05-12-service-menu-confirmed.md",
       "title": "サービスメニュー・価格表（仮確定版）",
-      "path": "/admin/docs?file=2026-05-12-service-menu-confirmed.md",
-      "category": "service",
-      "filename": "2026-05-12-service-menu-confirmed.md"
+      "business": "service",
+      "path": "/admin/docs?file=2026-05-12-service-menu-confirmed.md"
     },
     {
       "date": "2026-05-12",
+      "filename": "2026-05-12-contact-channel-confirmed.md",
       "title": "連絡導線・受信→返信ルール（仮確定版）",
-      "path": "/admin/docs?file=2026-05-12-contact-channel-confirmed.md",
-      "category": "contact",
-      "filename": "2026-05-12-contact-channel-confirmed.md"
+      "business": "contact",
+      "path": "/admin/docs?file=2026-05-12-contact-channel-confirmed.md"
     },
     {
       "date": "2026-05-12",
+      "filename": "2026-05-12-consulting-lp-wireframe.md",
       "title": "コンサル LP（ランディングページ）ワイヤーフレーム + コピー",
-      "path": "/admin/docs?file=2026-05-12-consulting-lp-wireframe.md",
-      "category": "consulting",
-      "filename": "2026-05-12-consulting-lp-wireframe.md"
+      "business": "consulting",
+      "path": "/admin/docs?file=2026-05-12-consulting-lp-wireframe.md"
     },
     {
       "date": "2026-05-12",
+      "filename": "2026-05-12-ceo-identity-confirmed.md",
       "title": "CEO アイデンティティ確定版（仮確定・後日変更可）",
-      "path": "/admin/docs?file=2026-05-12-ceo-identity-confirmed.md",
-      "category": "ceo",
-      "filename": "2026-05-12-ceo-identity-confirmed.md"
+      "business": "ceo",
+      "path": "/admin/docs?file=2026-05-12-ceo-identity-confirmed.md"
     }
   ],
-  "cma_apps": []
+  "tasks_open": [
+    {
+      "date": "2026-05-12",
+      "filename": "2026-05-12-business-21-seo-llmo-strategy-v2.md",
+      "business": "ビジネス21",
+      "snippet": "| 差別化軸 C「2027 移行 30項目チェックリスト」固定PDF | 育成就労の細則は未確定。半年後に半分書き直す可能性 | **「法令確定状況ダッシュボード」に設計変更**。確定/審議中/未着手 をバッジで動的表示 |",
+      "path": "/admin/docs?file=2026-05-12-business-21-seo-llmo-strategy-v2.md"
+    },
+    {
+      "date": "2026-05-12",
+      "filename": "2026-05-12-business-21-seo-llmo-strategy-v2.md",
+      "business": "ビジネス21",
+      "snippet": "| 業界別 LP の FAQ ブロック | 実装済 | `landing-data.ts:30-150` |",
+      "path": "/admin/docs?file=2026-05-12-business-21-seo-llmo-strategy-v2.md"
+    },
+    {
+      "date": "2026-05-12",
+      "filename": "2026-05-12-business-21-seo-llmo-strategy-v2.md",
+      "business": "ビジネス21",
+      "snippet": "| **C: 育成就労 2027 移行支援** | 固定 PDF「30項目チェックリスト」 | **動的「法令確定状況ダッシュボード」に変更**。確定/審議中/未着手 をバッジ表示。月次更新運用前提 | **★★★★★** |",
+      "path": "/admin/docs?file=2026-05-12-business-21-seo-llmo-strategy-v2.md"
+    },
+    {
+      "date": "2026-05-11",
+      "filename": "2026-05-11-ceo-roadmap-progress.md",
+      "business": "ceo",
+      "snippet": "| 6 | コンサル相談窓口設置の判断 | （Task #1〜5 確定後に Claude が LP 改修案を出す） | ⚪ 未着手 |",
+      "path": "/admin/docs?file=2026-05-11-ceo-roadmap-progress.md"
+    },
+    {
+      "date": "2026-05-11",
+      "filename": "2026-05-11-ceo-roadmap-progress.md",
+      "business": "ceo",
+      "snippet": "| 8 | 交流会で Web デモ枠交渉 | （次回交流会日程確認後） | ⚪ 未着手 |",
+      "path": "/admin/docs?file=2026-05-11-ceo-roadmap-progress.md"
+    },
+    {
+      "date": "2026-05-11",
+      "filename": "2026-05-11-ceo-roadmap-progress.md",
+      "business": "ceo",
+      "snippet": "| 11 | キーワード戦略確認 | ⚪ 未着手 |",
+      "path": "/admin/docs?file=2026-05-11-ceo-roadmap-progress.md"
+    },
+    {
+      "date": "2026-05-11",
+      "filename": "2026-05-11-business-21-slides-iphone-plan.md",
+      "business": "ビジネス21",
+      "snippet": "| Sending | 保留 (受注実績が出てから着手判断) |",
+      "path": "/admin/docs?file=2026-05-11-business-21-slides-iphone-plan.md"
+    },
+    {
+      "date": "2026-05-11",
+      "filename": "2026-05-11-business-21-slides-iphone-plan.md",
+      "business": "ビジネス21",
+      "snippet": "保留: Sending リニューアル (10〜15h)",
+      "path": "/admin/docs?file=2026-05-11-business-21-slides-iphone-plan.md"
+    },
+    {
+      "date": "2026-05-11",
+      "filename": "2026-05-11-business-21-slide-fullscreen.md",
+      "business": "ビジネス21",
+      "snippet": "未対応 (CEO の方針確認次第)",
+      "path": "/admin/docs?file=2026-05-11-business-21-slide-fullscreen.md"
+    },
+    {
+      "date": "2026-05-11",
+      "filename": "2026-05-11-business-21-slide-fullscreen-03-rollback.md",
+      "business": "ビジネス21",
+      "snippet": "| 判断 | CEO: 「このまま一旦保留 (v2.0 で運用)」 |",
+      "path": "/admin/docs?file=2026-05-11-business-21-slide-fullscreen-03-rollback.md"
+    },
+    {
+      "date": "2026-05-11",
+      "filename": "2026-05-11-business-21-seo-llmo-strategy.md",
+      "business": "ビジネス21",
+      "snippet": "| コンテンツ網羅性 | 20 | **11** | LP 22本の骨格は優秀。クロスLP（職種×国 等）と記事実体が未着手 |",
+      "path": "/admin/docs?file=2026-05-11-business-21-seo-llmo-strategy.md"
+    },
+    {
+      "date": "2026-05-11",
+      "filename": "2026-05-11-business-21-seo-llmo-strategy.md",
+      "business": "ビジネス21",
+      "snippet": "| 優先 | 施策 | 担当 | コスト | インパクト | 工数 | 期限 |",
+      "path": "/admin/docs?file=2026-05-11-business-21-seo-llmo-strategy.md"
+    },
+    {
+      "date": "2026-05-11",
+      "filename": "2026-05-11-ai-hub-portal-redesign.md",
+      "business": "AIハブ",
+      "snippet": "| **事業レポート・白書** | 未対応 | 各事業の知見をオープン化（工務店/エステ/クライミング業界の実践レポート） |",
+      "path": "/admin/docs?file=2026-05-11-ai-hub-portal-redesign.md"
+    },
+    {
+      "date": "2026-05-11",
+      "filename": "2026-05-11-ai-hub-portal-redesign.md",
+      "business": "AIハブ",
+      "snippet": "| **SNS 投稿（新規）** | 未対応 | **AIハブ管理画面から X/Instagram/Facebook 等に一括投稿**。下書き AI 生成 + 各SNS 文字数調整 + 同時公開 |",
+      "path": "/admin/docs?file=2026-05-11-ai-hub-portal-redesign.md"
+    },
+    {
+      "date": "2026-05-11",
+      "filename": "2026-05-11-ai-hub-portal-redesign.md",
+      "business": "AIハブ",
+      "snippet": "| **講演・イベント履歴・メディア掲載実績** | 未対応 | 信用構築・仕事依頼の決定打 |",
+      "path": "/admin/docs?file=2026-05-11-ai-hub-portal-redesign.md"
+    }
+  ],
+  "per_business_recent": [
+    {
+      "business": "ceo",
+      "count": 10
+    },
+    {
+      "business": "ビジネス21",
+      "count": 8
+    },
+    {
+      "business": "AIハブ",
+      "count": 3
+    },
+    {
+      "business": "cron",
+      "count": 1
+    },
+    {
+      "business": "task22",
+      "count": 1
+    },
+    {
+      "business": "task18",
+      "count": 1
+    },
+    {
+      "business": "task16",
+      "count": 1
+    },
+    {
+      "business": "service",
+      "count": 1
+    },
+    {
+      "business": "contact",
+      "count": 1
+    },
+    {
+      "business": "consulting",
+      "count": 1
+    },
+    {
+      "business": "achievements",
+      "count": 1
+    },
+    {
+      "business": "render",
+      "count": 1
+    },
+    {
+      "business": "carat",
+      "count": 1
+    },
+    {
+      "business": "all",
+      "count": 1
+    }
+  ],
+  "daily_histogram": [
+    {
+      "date": "2026-05-01",
+      "count": 0
+    },
+    {
+      "date": "2026-05-02",
+      "count": 0
+    },
+    {
+      "date": "2026-05-03",
+      "count": 0
+    },
+    {
+      "date": "2026-05-04",
+      "count": 0
+    },
+    {
+      "date": "2026-05-05",
+      "count": 0
+    },
+    {
+      "date": "2026-05-06",
+      "count": 0
+    },
+    {
+      "date": "2026-05-07",
+      "count": 0
+    },
+    {
+      "date": "2026-05-08",
+      "count": 0
+    },
+    {
+      "date": "2026-05-09",
+      "count": 0
+    },
+    {
+      "date": "2026-05-10",
+      "count": 0
+    },
+    {
+      "date": "2026-05-11",
+      "count": 22
+    },
+    {
+      "date": "2026-05-12",
+      "count": 9
+    },
+    {
+      "date": "2026-05-13",
+      "count": 1
+    },
+    {
+      "date": "2026-05-14",
+      "count": 0
+    }
+  ],
+  "cma_apps": [
+    {
+      "name": "App1_CommunityBoard",
+      "last_run": "2026-04-11",
+      "kind": "FastAPI Hello World",
+      "status": "✅ 完了"
+    },
+    {
+      "name": "App2_TodoAPI",
+      "last_run": "2026-04-11",
+      "kind": "FastAPI ToDo CRUD",
+      "status": "✅ 完了"
+    },
+    {
+      "name": "App3_WeatherAPI",
+      "last_run": "2026-04-11",
+      "kind": "FastAPI モック天気",
+      "status": "✅ 完了"
+    },
+    {
+      "name": "App4_CounterAPI",
+      "last_run": "2026-04-11",
+      "kind": "FastAPI カウンタ",
+      "status": "✅ 動作確認のみ（ポート衝突あり）"
+    },
+    {
+      "name": "SiteCrawlChecker",
+      "last_run": "2026-04-11",
+      "kind": "ブラウザ QA 巡回",
+      "status": "⚠️ クリティカル所見あり"
+    },
+    {
+      "name": "App_MinanowaPolish",
+      "last_run": "2026-04-16",
+      "kind": "Next.js 16 + Supabase 改善 10 タスク",
+      "status": "✅ クラウド側完了・**納品物は Render 前提で陳腐化**"
+    },
+    {
+      "name": "gtn_ai_mvp",
+      "last_run": "2026-04-16 推定",
+      "kind": "AI パイプライン",
+      "status": "❌ 失敗（0 バイト出力）/ プロジェクト自体終了"
+    },
+    {
+      "name": "vibe_0514_051921",
+      "last_run": "2026-05-14",
+      "kind": "Next.js 16 Hello World（Vercel 集約版検証）",
+      "status": "✅ 完了・本番デプロイ稼働中（[cma-vibe-0514-051921.vercel.app](https://cma-vibe-0514-051921.vercel.app)）"
+    }
+  ],
+  "totals": {
+    "consul_work_total": 32,
+    "recent_7d_total": 32,
+    "tasks_open_total": 15
+  }
 }

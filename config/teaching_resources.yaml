@@ -23,18 +23,20 @@ sections:
 
 - name: 講習資料
   icon: 📝
-  description: 講習で実際に使った資料・スライド（content/lectures/*.md から自動取り込み）
+  description: 講習で実際に使った資料・スライド（content/lectures/*.md から自動取り込み + 大型コンテンツの手動追加）
   source: lectures-md
+  items:
+  # 大型 HTML コンテンツ（Markdown 化が難しいので独立 HTML のまま講習資料として並べる）
+  - title: プログラミングマップ
+    icon: 🗺️
+    href: programming-map.html
+    summary: プログラミング言語と用途の俯瞰図。何から学ぶか迷ったときの全体地図。やり方が分からないときは「💬 やり方を聞く」から AI に質問できる
+    date: 2026-04-25
 
 - name: 補助資料
   icon: 📚
   description: 講習を補完する独立コンテンツ
-  items:
-  - title: プログラミングマップ
-    icon: 📘
-    href: programming-map.html
-    summary: プログラミング言語と用途の俯瞰図。何から学ぶか迷ったときに参照
-    date: 2026-04-25
+  items: []
 
 - name: 外部リソース
   icon: 🌐

@@ -1645,7 +1645,9 @@ def _load_teaching_sections(lecture_md_items: list[dict]) -> list[dict]:
             for sec in sections:
                 if sec.get("source") == "lectures-md":
                     sec_copy = {k: v for k, v in sec.items() if k != "source"}
-                    sec_copy["items"] = lecture_md_items
+                    # YAML 側に追加 items があれば結合（lectures-md + 手動アイテム）
+                    extra_items = sec.get("items") or []
+                    sec_copy["items"] = list(lecture_md_items) + list(extra_items)
                     resolved.append(sec_copy)
                 else:
                     resolved.append(sec)

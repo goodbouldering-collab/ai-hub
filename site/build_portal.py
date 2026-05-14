@@ -282,25 +282,93 @@ header.site-header.scrolled {
 }
 
 /* ---- hero ---- */
-.hero { padding: 40px 0 56px; text-align: center; }
+.hero {
+  padding: 32px 0 64px;
+  display: grid; grid-template-columns: 1.05fr 1fr; gap: 48px; align-items: center;
+  position: relative;
+}
+.hero-text { text-align: left; }
+@media (max-width: 900px) { .hero { grid-template-columns: 1fr; gap: 28px; }
+  .hero-text { text-align: center; }
+}
 .hero .eyebrow {
   display: inline-flex; align-items: center; gap: 8px;
-  padding: 6px 14px; border-radius: 999px;
+  padding: 7px 16px; border-radius: 999px;
   background: var(--primary-bg); color: var(--primary);
   font-size: 12px; font-weight: 700; letter-spacing: .04em;
+  border: 1px solid rgba(37,99,235,.18);
 }
 .hero h1 {
-  margin: 18px 0 14px; font-size: clamp(30px, 5vw, 52px);
-  font-weight: 800; letter-spacing: -.02em; color: var(--text); line-height: 1.2;
+  margin: 20px 0 16px; font-size: clamp(32px, 5.2vw, 60px);
+  font-weight: 800; letter-spacing: -.025em; color: var(--text); line-height: 1.15;
 }
-.hero h1 .accent { color: var(--primary); }
+.hero h1 .accent {
+  background: linear-gradient(110deg, #2563eb 0%, #8b5cf6 50%, #ec4899 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  white-space: nowrap;
+}
+.hero h1 .underline {
+  position: relative; white-space: nowrap;
+}
+.hero h1 .underline::after {
+  content:''; position: absolute; left: 0; right: 0; bottom: -2px; height: 6px;
+  background: linear-gradient(90deg, rgba(37,99,235,.18), rgba(236,72,153,.18));
+  border-radius: 999px; z-index: -1;
+}
 .hero .lead {
-  max-width: 720px; margin: 0 auto 28px;
-  font-size: clamp(15px, 2vw, 17px); color: var(--text-soft);
-  line-height: 1.8;
+  max-width: 520px; margin: 0 0 28px;
+  font-size: clamp(15px, 1.6vw, 17px); color: var(--text-soft); line-height: 1.85;
 }
+@media (max-width: 900px) { .hero .lead { margin: 0 auto 28px; } }
 .hero-actions {
-  display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;
+  display: flex; flex-wrap: wrap; gap: 12px;
+}
+@media (max-width: 900px) { .hero-actions { justify-content: center; } }
+
+/* hero visual (右側ビジュアル) */
+.hero-visual {
+  position: relative; aspect-ratio: 4/5; max-width: 460px; justify-self: end;
+  border-radius: 28px; overflow: hidden; isolation: isolate;
+  box-shadow: 0 30px 80px rgba(15,23,42,.18);
+  transform: rotate(.5deg);
+  transition: transform .6s cubic-bezier(.22,1,.36,1);
+}
+@media (max-width: 900px) { .hero-visual { justify-self: center; max-width: 380px; transform: rotate(0); } }
+.hero-visual:hover { transform: rotate(0); }
+.hero-visual img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s ease; }
+.hero-visual:hover img { transform: scale(1.04); }
+.hero-visual::after {
+  content:''; position: absolute; inset: 0;
+  background: linear-gradient(160deg, rgba(37,99,235,.05) 0%, rgba(236,72,153,.10) 100%);
+  pointer-events: none;
+}
+.hero-blob {
+  position: absolute; width: 260px; height: 260px; border-radius: 50%;
+  filter: blur(60px); opacity: .55; z-index: -1; pointer-events: none;
+}
+.hero-blob.b1 { background: #3b82f6; top: -40px; right: -40px; }
+.hero-blob.b2 { background: #ec4899; bottom: -40px; left: 30%; width: 200px; height: 200px; }
+
+/* floating badge over hero image */
+.hero-badge {
+  position: absolute; padding: 10px 16px; border-radius: 16px;
+  background: rgba(255,255,255,.96); backdrop-filter: blur(12px);
+  border: 1px solid var(--line);
+  box-shadow: 0 14px 36px rgba(15,23,42,.16);
+  font-size: 12.5px; font-weight: 700; color: var(--text);
+  display: inline-flex; align-items: center; gap: 8px;
+  animation: float 5s ease-in-out infinite;
+}
+.hero-badge.b-top { top: 24px; left: -28px; }
+.hero-badge.b-bot { bottom: 22px; right: -28px; animation-delay: -2.5s; }
+.hero-badge .b-icon { font-size: 18px; }
+@media (max-width: 900px) {
+  .hero-badge.b-top { left: 8px; }
+  .hero-badge.b-bot { right: 8px; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
 .btn {
   display: inline-flex; align-items: center; gap: 8px;
@@ -357,17 +425,38 @@ section.block + section.block { border-top: 1px dashed var(--line); }
 @media (max-width: 900px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px) { .services-grid { grid-template-columns: 1fr; } }
 .service-card {
-  padding: 28px 24px; border-radius: 20px;
+  position: relative; overflow: hidden;
+  border-radius: 22px;
   background: var(--bg-white); border: 1px solid var(--line);
   box-shadow: var(--shadow-card);
-  transition: transform .25s, box-shadow .25s;
+  transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s, border-color .25s;
+  display: flex; flex-direction: column;
 }
-.service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-card-hover); }
+.service-card:hover { transform: translateY(-6px) rotate(-.3deg); box-shadow: var(--shadow-card-hover); border-color: rgba(37,99,235,.30); }
+.service-image {
+  position: relative; aspect-ratio: 16/9; overflow: hidden;
+}
+.service-image img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .9s ease; }
+.service-card:hover .service-image img { transform: scale(1.08); }
+.service-image::after {
+  content:''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(15,23,42,0) 30%, rgba(15,23,42,.55) 100%);
+}
+.service-body { padding: 22px 22px 24px; }
 .service-icon {
-  width: 48px; height: 48px; border-radius: 14px;
+  width: 44px; height: 44px; border-radius: 12px;
   background: var(--primary-bg); color: var(--primary);
   display: inline-flex; align-items: center; justify-content: center;
-  font-size: 24px; margin-bottom: 14px;
+  font-size: 22px; margin-bottom: 12px;
+  position: relative; z-index: 2;
+}
+.service-card .service-icon-float {
+  position: absolute; top: -22px; right: 18px;
+  width: 56px; height: 56px; border-radius: 16px;
+  background: #fff; color: var(--primary);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 26px; box-shadow: 0 10px 24px rgba(15,23,42,.10);
+  border: 1px solid var(--line); z-index: 3;
 }
 .service-name { font-size: 17px; font-weight: 800; color: var(--text); margin-bottom: 8px; }
 .service-desc { font-size: 13.5px; color: var(--text-soft); line-height: 1.7; }
@@ -380,16 +469,22 @@ section.block + section.block { border-top: 1px dashed var(--line); }
 }
 .biz-card {
   display: flex; flex-direction: column; gap: 8px;
-  padding: 22px 22px 20px; border-radius: 18px;
+  padding: 22px 22px 20px; border-radius: 20px;
   background: var(--bg-white); border: 1px solid var(--line);
   text-decoration: none; color: inherit;
   box-shadow: var(--shadow-card);
-  transition: transform .25s, box-shadow .25s, border-color .25s;
-  position: relative;
+  transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s, border-color .25s;
+  position: relative; overflow: hidden;
 }
+.biz-card::before {
+  content:''; position: absolute; inset: 0;
+  background: radial-gradient(420px 160px at 0% 0%, var(--card-glow, rgba(37,99,235,.12)) 0%, transparent 60%);
+  opacity: 0; transition: opacity .35s; pointer-events: none;
+}
+.biz-card:hover::before { opacity: 1; }
 .biz-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(37,99,235,.45);
+  transform: translateY(-6px) rotate(.3deg);
+  border-color: var(--card-border, rgba(37,99,235,.45));
   box-shadow: var(--shadow-card-hover);
 }
 .biz-card.no-link { cursor: default; opacity: .65; }
@@ -410,6 +505,53 @@ section.block + section.block { border-top: 1px dashed var(--line); }
 .biz-badge.self { background: rgba(37,99,235,.15); color: var(--primary); border: 1px solid rgba(37,99,235,.35); }
 .biz-arrow { font-size: 14px; color: var(--muted); transition: color .2s, transform .2s; }
 .biz-card:not(.no-link):hover .biz-arrow { color: var(--primary); transform: translateX(3px); }
+
+/* ---- gallery (事例ギャラリー) ---- */
+.gallery-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+}
+@media (max-width: 900px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .gallery-grid { grid-template-columns: 1fr; } }
+.gallery-item {
+  position: relative; border-radius: 18px; overflow: hidden;
+  aspect-ratio: 4/5; isolation: isolate;
+  box-shadow: var(--shadow-card);
+  transition: transform .4s cubic-bezier(.22,1,.36,1), box-shadow .35s;
+  cursor: pointer;
+}
+.gallery-item:hover { transform: translateY(-5px) scale(1.01); box-shadow: var(--shadow-card-hover); }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .9s ease, filter .3s; filter: saturate(.95); }
+.gallery-item:hover img { transform: scale(1.08); filter: saturate(1.05); }
+.gallery-item::after {
+  content:''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(15,23,42,0) 30%, rgba(15,23,42,.78) 100%);
+}
+.gallery-caption {
+  position: absolute; left: 16px; right: 16px; bottom: 16px; z-index: 1; color: #fff;
+}
+.gallery-caption .tag {
+  display: inline-block; padding: 3px 10px; border-radius: 999px;
+  background: rgba(255,255,255,.20); backdrop-filter: blur(6px);
+  font-size: 10.5px; font-weight: 700; letter-spacing: .04em; margin-bottom: 6px;
+}
+.gallery-caption .title { font-size: 14.5px; font-weight: 800; line-height: 1.4; text-shadow: 0 2px 12px rgba(0,0,0,.40); }
+.gallery-caption .meta { font-size: 11.5px; opacity: .85; margin-top: 4px; }
+
+/* ---- fade-up animation ---- */
+.fade-up {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1);
+}
+.fade-up.is-visible { opacity: 1; transform: translateY(0); }
+.fade-up.d1 { transition-delay: .08s; }
+.fade-up.d2 { transition-delay: .16s; }
+.fade-up.d3 { transition-delay: .24s; }
+.fade-up.d4 { transition-delay: .32s; }
+.fade-up.d5 { transition-delay: .40s; }
+.fade-up.d6 { transition-delay: .48s; }
+@media (prefers-reduced-motion: reduce) {
+  .fade-up { opacity: 1; transform: none; transition: none; }
+}
 
 /* ---- flow steps ---- */
 .flow-list {
@@ -626,64 +768,177 @@ HEADER_JS = """
       a.addEventListener('click', function(){ mobileNav.classList.remove('open'); });
     });
   }
+
+  // ---- Scroll fade-up / counter via IntersectionObserver
+  var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if ('IntersectionObserver' in window && !prefersReduced) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        en.target.classList.add('is-visible');
+        if (en.target.classList.contains('num')) animateCounter(en.target);
+        // counter 要素が直接 fade-up に含まれる場合
+        en.target.querySelectorAll && en.target.querySelectorAll('.num[data-count]').forEach(animateCounter);
+        io.unobserve(en.target);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+    document.querySelectorAll('.fade-up').forEach(function(el){ io.observe(el); });
+    document.querySelectorAll('.num[data-count]').forEach(function(el){ io.observe(el); });
+  } else {
+    // IntersectionObserver 非対応 / reduced motion: 即可視化
+    document.querySelectorAll('.fade-up').forEach(function(el){ el.classList.add('is-visible'); });
+    document.querySelectorAll('.num[data-count]').forEach(function(el){
+      var target = parseInt(el.getAttribute('data-count'), 10);
+      var suffix = el.querySelector('span') ? el.querySelector('span').outerHTML : '';
+      el.innerHTML = String(target) + suffix;
+    });
+  }
+
+  function animateCounter(el){
+    if (el.dataset.counted === '1') return;
+    el.dataset.counted = '1';
+    var target = parseInt(el.getAttribute('data-count'), 10);
+    if (isNaN(target)) return;
+    var suffix = el.querySelector('span') ? el.querySelector('span').outerHTML : '';
+    var duration = 1400, start = performance.now();
+    function tick(now){
+      var t = Math.min((now - start) / duration, 1);
+      // easeOutCubic
+      var eased = 1 - Math.pow(1 - t, 3);
+      var val = Math.round(target * eased);
+      el.innerHTML = String(val) + suffix;
+      if (t < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  // ---- Hero parallax (subtle)
+  var hv = document.querySelector('.hero-visual');
+  if (hv && !prefersReduced) {
+    window.addEventListener('scroll', function(){
+      var y = window.scrollY;
+      if (y < 400) hv.style.transform = 'rotate(' + (0.5 - y / 1000) + 'deg) translateY(' + (y * 0.04) + 'px)';
+    }, { passive: true });
+  }
 })();
 </script>
 """
 
 
+HERO_IMG = "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=70"
+
+
 def _render_hero() -> str:
     return (
         "<section class='hero' id='top'>"
-        "<span class='eyebrow'>滋賀 × 9事業オーナー Web経営コンサル</span>"
-        "<h1>数字で語れる <span class='accent'>Webコンサル</span>を、<br>滋賀から。</h1>"
+        "<div class='hero-blob b1'></div>"
+        "<div class='hero-blob b2'></div>"
+        "<div class='hero-text fade-up'>"
+        "<span class='eyebrow'>🧗 滋賀 × 9事業オーナー Web経営コンサル</span>"
+        "<h1>数字で語れる<br><span class='accent'>Webコンサル</span>を、<span class='underline'>滋賀</span>から。</h1>"
         "<p class='lead'>"
         "現役オーナーとして9事業を回し、Next.js / Supabase / Cloudflare で自社サイトを構築。"
-        "<br>"
         "「集客が止まった」「人がいない」「補助金を活かしたい」中小企業の経営課題を、"
-        "Web と AI で具体的に動かします。異端OK、数字根拠で経営を変える。"
+        "Web と AI で具体的に動かします。"
         "</p>"
         "<div class='hero-actions'>"
         f"<a class='btn btn-primary' href='mailto:{html.escape(OWNER_EMAIL)}'>無料相談する →</a>"
         "<a class='btn btn-secondary' href='#works'>実績を見る</a>"
-        "<a class='btn btn-ghost' href='/admin'>管理ログイン</a>"
+        "<a class='btn btn-ghost' href='/admin'>🔐 管理ログイン</a>"
+        "</div>"
+        "</div>"
+        "<div class='hero-visual fade-up d2'>"
+        f"<img src='{HERO_IMG}' alt='オーナーとチームが数字を見ながら戦略を立てている様子' loading='eager' fetchpriority='high' decoding='async'>"
+        "<div class='hero-badge b-top'><span class='b-icon'>📈</span>毎月レビュー伴走</div>"
+        "<div class='hero-badge b-bot'><span class='b-icon'>🚀</span>最短 2 週間で公開</div>"
         "</div>"
         "</section>"
     )
 
 
 def _render_stats() -> str:
-    return (
-        "<div class='stats-strip'>"
-        "<div class='stat'><div class='num'>9</div><div class='label'>同時運営事業</div></div>"
-        "<div class='stat'><div class='num'>30<span style='font-size:.6em'>年</span></div><div class='label'>クライミング歴</div></div>"
-        "<div class='stat'><div class='num'>100<span style='font-size:.6em'>%</span></div><div class='label'>Web 自社構築</div></div>"
-        "<div class='stat'><div class='num'>2027</div><div class='label'>育成就労 移行支援</div></div>"
-        "</div>"
-    )
+    items = [
+        ("9", "", "同時運営事業"),
+        ("30", "年", "クライミング歴"),
+        ("100", "%", "Web 自社構築"),
+        ("2027", "", "育成就労 移行支援"),
+    ]
+    parts = ["<div class='stats-strip'>"]
+    for i, (num, suffix, label) in enumerate(items):
+        cls = f"stat fade-up d{i+1}"
+        suf_html = f"<span style='font-size:.6em'>{html.escape(suffix)}</span>" if suffix else ""
+        parts.append(
+            f"<div class='{cls}'><div class='num' data-count='{html.escape(num)}'>0{suf_html}</div><div class='label'>{html.escape(label)}</div></div>"
+        )
+    parts.append("</div>")
+    return "".join(parts)
+
+
+def _render_gallery() -> str:
+    """事例ギャラリー：4 枚の画像で異なるサービスを視覚的に提示。"""
+    items = [
+        ("LP / コーポレートサイト",
+         "Next.js + Supabase + Vercel",
+         "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=900&q=70"),
+        ("クライミングジム EC",
+         "カラーミー + Shopify",
+         "https://images.unsplash.com/photo-1522163182402-834f871fd851?auto=format&fit=crop&w=900&q=70"),
+        ("LINE Bot / SNS 自動化",
+         "Cloudflare Workers + D1",
+         "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=900&q=70"),
+        ("AI / 社内 RAG",
+         "Claude + Supabase Vector",
+         "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70"),
+    ]
+    parts = ["<div class='gallery-grid'>"]
+    for i, (title, meta, src) in enumerate(items):
+        cls = f"gallery-item fade-up d{i+1}"
+        parts.append(
+            f"<div class='{cls}'>"
+            f"<img src='{html.escape(src, quote=True)}' alt='{html.escape(title)}' loading='lazy' decoding='async'>"
+            "<div class='gallery-caption'>"
+            f"<span class='tag'>WORK</span>"
+            f"<div class='title'>{html.escape(title)}</div>"
+            f"<div class='meta'>{html.escape(meta)}</div>"
+            "</div>"
+            "</div>"
+        )
+    parts.append("</div>")
+    return "".join(parts)
 
 
 def _render_services() -> str:
     items = [
         ("📈", "Webマーケティング・LP制作",
-         "Next.js + Supabase でランディングと業務システムを一体運用。PR プレビュー付きでクライアントと一緒に磨ける開発体制。"),
+         "Next.js + Supabase でランディングと業務システムを一体運用。PR プレビュー付きでクライアントと一緒に磨ける開発体制。",
+         "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=70"),
         ("🤖", "AI 業務活用・社内RAG",
-         "Claude / GPT を使った業務自動化、社内ドキュメントを参照する RAG チャットの設計と構築。"),
+         "Claude / GPT を使った業務自動化、社内ドキュメントを参照する RAG チャットの設計と構築。",
+         "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=800&q=70"),
         ("📚", "経営勉強会・社内研修",
-         "現役オーナーの目線で、現場で使える Web / AI / SNS の使い方を社員研修・経営者勉強会として開催。"),
+         "現役オーナーの目線で、現場で使える Web / AI / SNS の使い方を社員研修・経営者勉強会として開催。",
+         "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=800&q=70"),
         ("🛡️", "補助金活用・2027 移行支援",
-         "ものづくり / IT導入 / 育成就労（特定技能 2027 移行）など、補助金と法令対応をセットで動かす伴走型支援。"),
+         "ものづくり / IT導入 / 育成就労（特定技能 2027 移行）など、補助金と法令対応をセットで動かす伴走型支援。",
+         "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=70&sat=-30"),
         ("🛒", "EC・予約・LINE 自動化",
-         "カラーミー・Shopify・Stripe・LINE Bot を組み合わせて、注文〜接客〜配信の業務を 1 つの動線にまとめる。"),
+         "カラーミー・Shopify・Stripe・LINE Bot を組み合わせて、注文〜接客〜配信の業務を 1 つの動線にまとめる。",
+         "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=800&q=70"),
         ("📊", "数字根拠の経営レビュー",
-         "現役オーナーとして月次決算 / KPI を回している立場から、コンサルではなく一緒に数字を見るパートナー型レビュー。"),
+         "現役オーナーとして月次決算 / KPI を回している立場から、コンサルではなく一緒に数字を見るパートナー型レビュー。",
+         "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=70"),
     ]
     parts = ["<div class='services-grid'>"]
-    for icon, name, desc in items:
+    for i, (icon, name, desc, img) in enumerate(items):
         parts.append(
-            "<div class='service-card'>"
-            f"<div class='service-icon'>{html.escape(icon)}</div>"
+            f"<div class='service-card fade-up d{(i % 3) + 1}'>"
+            f"<div class='service-image'><img src='{html.escape(img, quote=True)}' alt='{html.escape(name)}' loading='lazy' decoding='async'></div>"
+            "<div class='service-body'>"
+            f"<div class='service-icon-float'>{html.escape(icon)}</div>"
             f"<div class='service-name'>{html.escape(name)}</div>"
             f"<div class='service-desc'>{html.escape(desc)}</div>"
+            "</div>"
             "</div>"
         )
     parts.append("</div>")
@@ -744,7 +999,7 @@ def _render_profile() -> str:
     )
 
 
-def _render_biz_card(biz: dict) -> str:
+def _render_biz_card(biz: dict, fade_class: str = "") -> str:
     status = biz.get("status", "live")
     url = biz.get("url") or ""
     is_self = bool(biz.get("self"))
@@ -781,6 +1036,8 @@ def _render_biz_card(biz: dict) -> str:
         card_extra += " self-card"
     if not has_link:
         card_extra += " no-link"
+    if fade_class:
+        card_extra += " " + fade_class
 
     inner = (
         f"<div class='biz-card-icon'>{icon}</div>"
@@ -793,21 +1050,14 @@ def _render_biz_card(biz: dict) -> str:
         + "</div>"
     )
 
-    style = (
-        f"--card-border:{c_border};--card-glow:{c_glow};"
-        "border-color:var(--card-border);"
-    )
-    hover_css = (
-        f"border-color:{c_border};box-shadow:0 16px 40px rgba(0,0,0,.35),0 0 0 1px {c_border};"
-    )
+    # 白基調用に枠色を弱め、card-glow を hover ハイライト用に使う
+    style = f"--card-border:{c_border};--card-glow:{c_glow};"
 
     if has_link:
         safe_url = html.escape(url, quote=True)
         return (
             f"<a class='biz-card{card_extra}' href='{safe_url}' target='_blank' rel='noopener' "
-            f"style='{style}' "
-            f"onmouseover=\"this.style.boxShadow='0 16px 40px rgba(0,0,0,.35),0 0 0 1px {c_border}'\" "
-            f"onmouseout=\"this.style.boxShadow=''\">  "
+            f"style='{style}'>"
             f"{inner}</a>"
         )
     return f"<div class='biz-card{card_extra}' style='{style}'>{inner}</div>"
@@ -852,22 +1102,31 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append(_render_hero())
     parts.append(_render_stats())
 
+    # 事例ギャラリー（営業ヒット率を上げる視覚パンチ）
+    parts.append("<section class='block' id='gallery'>")
+    parts.append("<p class='section-heading fade-up'>WORK GALLERY</p>")
+    parts.append("<h2 class='section-title fade-up d1'>つくれるもの・任せられること</h2>")
+    parts.append("<p class='section-sub fade-up d2'>LP・EC・LINE Bot・社内 RAG。「企画 → 制作 → 運用」をぜんぶ自社で。</p>")
+    parts.append(_render_gallery())
+    parts.append("</section>")
+
     # サービス
     parts.append("<section class='block' id='services'>")
-    parts.append("<p class='section-heading'>SERVICES</p>")
-    parts.append("<h2 class='section-title'>提供できる 6 つのこと</h2>")
-    parts.append("<p class='section-sub'>「コンサルだけする人」ではなく、9事業のオーナーとして毎日サイトと業務を回している実装者だからこそ提案できる内容です。</p>")
+    parts.append("<p class='section-heading fade-up'>SERVICES</p>")
+    parts.append("<h2 class='section-title fade-up d1'>提供できる 6 つのこと</h2>")
+    parts.append("<p class='section-sub fade-up d2'>「コンサルだけする人」ではなく、9事業のオーナーとして毎日サイトと業務を回している実装者だからこそ提案できる内容です。</p>")
     parts.append(_render_services())
     parts.append("</section>")
 
     # 実績（事業ポートフォリオ）
     parts.append("<section class='block' id='works'>")
-    parts.append("<p class='section-heading'>WORKS</p>")
-    parts.append("<h2 class='section-title'>9事業ポートフォリオ</h2>")
-    parts.append("<p class='section-sub'>同時に運営している 9 つの事業。すべてのサイト・業務システムを自分で構築・運用しています。</p>")
+    parts.append("<p class='section-heading fade-up'>OWNED BUSINESSES</p>")
+    parts.append("<h2 class='section-title fade-up d1'>9事業ポートフォリオ</h2>")
+    parts.append("<p class='section-sub fade-up d2'>同時に運営している 9 つの事業。すべてのサイト・業務システムを自分で構築・運用しています。</p>")
     parts.append("<div class='biz-grid'>")
-    for biz in businesses:
-        parts.append(_render_biz_card(biz))
+    for i, biz in enumerate(businesses):
+        # 各カードを fade-up + ディレイで段階的に出す
+        parts.append(_render_biz_card(biz, fade_class=f"fade-up d{(i % 6) + 1}"))
     parts.append("</div>")
     parts.append("</section>")
 

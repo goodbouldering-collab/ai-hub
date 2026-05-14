@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/STKE010_MuskvAltman_AParkin06.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-05-14T18:21:46-04:00"
+      "published": "2026-05-14T18:21:46-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "32ffe3116d1396a2",
@@ -37,7 +39,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/slack-upload-1778789721036.jpeg?quality=90&amp;strip=all&amp;crop=0%2C30.366492146597%2C100%2C39.267015706806&amp;w=1200",
-      "published": "2026-05-14T16:59:23-04:00"
+      "published": "2026-05-14T16:59:23-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "97caf8db1e8d73e1",
@@ -56,7 +60,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/App-view.png?quality=90&amp;strip=all&amp;crop=0%2C3.4613147178592%2C100%2C93.077370564282&amp;w=1200",
-      "published": "2026-05-14T16:00:00-04:00"
+      "published": "2026-05-14T16:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "cf6d560d8ccad40a",
@@ -75,7 +81,9 @@
         "freshness": 10.0
       },
       "thumbnail": "",
-      "published": "2026-05-14T22:31:20+00:00"
+      "published": "2026-05-14T22:31:20+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "77ee643104e0a345",
@@ -94,7 +102,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://img.youtube.com/vi/hFbtixZueYE/hqdefault.jpg",
-      "published": "2026-05-14T22:00:56+00:00"
+      "published": "2026-05-14T22:00:56+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "f11ce47589f64ca4",
@@ -113,7 +123,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25832912/STK095_MICROSOFT_2_CVirginia_A.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-05-14T15:00:00-04:00"
+      "published": "2026-05-14T15:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "bb93829baa1962e3",
@@ -132,7 +144,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/Screenshot-2026-05-14-at-1.06.40PM.png?quality=90&amp;strip=all&amp;crop=8.9464411557435%2C0%2C82.107117688513%2C100&amp;w=1200",
-      "published": "2026-05-14T13:40:00-04:00"
+      "published": "2026-05-14T13:40:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "302ed31d035e2099",
@@ -151,7 +165,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-05-14T11:46:04-04:00"
+      "published": "2026-05-14T11:46:04-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "51afeeb66598a1a2",
@@ -170,7 +186,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/STKS528_DATA_CENTERS_A.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-05-14T11:24:53-04:00"
+      "published": "2026-05-14T11:24:53-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "853d39f39fc5592d",
@@ -189,7 +207,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/268478_era_of_personal_software_CVirginia18.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-05-14T07:00:00-04:00"
+      "published": "2026-05-14T07:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

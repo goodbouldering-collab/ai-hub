@@ -468,13 +468,39 @@ section.block + section.block { border-top: 1px dashed var(--line); }
   gap: 16px;
 }
 .biz-card {
-  display: flex; flex-direction: column; gap: 8px;
-  padding: 22px 22px 20px; border-radius: 20px;
+  display: flex; flex-direction: column; gap: 0;
+  border-radius: 20px;
   background: var(--bg-white); border: 1px solid var(--line);
   text-decoration: none; color: inherit;
   box-shadow: var(--shadow-card);
   transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s, border-color .25s;
   position: relative; overflow: hidden;
+}
+.biz-card-body {
+  display: flex; flex-direction: column; gap: 8px;
+  padding: 22px 22px 20px; flex: 1;
+}
+.biz-card-image {
+  position: relative; aspect-ratio: 16/9; overflow: hidden;
+  background: #f1f5f9;
+}
+.biz-card-image img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform .9s ease;
+}
+.biz-card:hover .biz-card-image img { transform: scale(1.06); }
+.biz-card-image::after {
+  content:''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(15,23,42,0) 50%, rgba(15,23,42,.45) 100%);
+}
+.biz-card-image-icon {
+  position: absolute; top: 12px; left: 12px;
+  width: 38px; height: 38px; border-radius: 12px;
+  background: rgba(255,255,255,.94); backdrop-filter: blur(8px);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 20px; line-height: 1;
+  box-shadow: 0 4px 12px rgba(15,23,42,.16);
+  z-index: 1;
 }
 .biz-card::before {
   content:''; position: absolute; inset: 0;
@@ -536,37 +562,6 @@ section.block + section.block { border-top: 1px dashed var(--line); }
 }
 .gallery-caption .title { font-size: 14.5px; font-weight: 800; line-height: 1.4; text-shadow: 0 2px 12px rgba(0,0,0,.40); }
 .gallery-caption .meta { font-size: 11.5px; opacity: .85; margin-top: 4px; }
-
-/* ---- clients-grid (制作実績：外部納品) ---- */
-.clients-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
-}
-@media (max-width: 900px) { .clients-grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 560px) { .clients-grid { grid-template-columns: 1fr; } }
-.client-card {
-  display: flex; flex-direction: column;
-  background: var(--bg-white); border: 1px solid var(--line);
-  border-radius: 20px; overflow: hidden;
-  box-shadow: var(--shadow-card);
-  text-decoration: none; color: inherit;
-  transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s, border-color .25s;
-}
-.client-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-card-hover); border-color: rgba(37,99,235,.30); }
-.client-image { aspect-ratio: 16/9; overflow: hidden; background: #f1f5f9; }
-.client-image img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .9s ease; }
-.client-card:hover .client-image img { transform: scale(1.06); }
-.client-body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 6px; }
-.client-tag {
-  align-self: flex-start; padding: 3px 10px; border-radius: 999px;
-  background: var(--primary-bg); color: var(--primary);
-  font-size: 10.5px; font-weight: 800; letter-spacing: .04em;
-  border: 1px solid rgba(37,99,235,.20);
-  margin-bottom: 4px;
-}
-.client-name { font-size: 16.5px; font-weight: 800; color: var(--text); line-height: 1.3; }
-.client-tagline { font-size: 13px; color: var(--text-soft); line-height: 1.6; }
-.client-meta { font-size: 11.5px; color: var(--muted); margin-top: 8px; word-break: break-all; }
-.client-meta .client-host { font-family: 'SFMono-Regular','Consolas',monospace; }
 
 /* ---- fade-up animation ---- */
 .fade-up {
@@ -719,8 +714,7 @@ def _render_header() -> str:
         "<a class='site-logo' href='/'><span class='dot'></span>AIハブ <span style='color:var(--muted);font-weight:600;font-size:13px;margin-left:6px;'>by 由井辰美</span></a>"
         "<nav class='site-nav' aria-label='メインナビ'>"
         "<a class='nav-link' href='#services'>サービス</a>"
-        "<a class='nav-link' href='#clients'>制作実績</a>"
-        "<a class='nav-link' href='#works'>事業</a>"
+        "<a class='nav-link' href='#works'>実績</a>"
         "<a class='nav-link' href='#flow'>ご依頼の流れ</a>"
         "<a class='nav-link' href='#profile'>プロフィール</a>"
         "<a class='nav-link' href='#faq'>FAQ</a>"
@@ -744,8 +738,7 @@ def _render_header() -> str:
         "</div>"
         "<div class='mobile-nav' id='mobile-nav'>"
         "<a href='#services'>サービス</a>"
-        "<a href='#clients'>制作実績</a>"
-        "<a href='#works'>事業</a>"
+        "<a href='#works'>実績</a>"
         "<a href='#flow'>ご依頼の流れ</a>"
         "<a href='#profile'>プロフィール</a>"
         "<a href='#faq'>FAQ</a>"
@@ -908,42 +901,6 @@ def _render_stats() -> str:
     return "".join(parts)
 
 
-def _render_clients() -> str:
-    """クライアント実績：外部に納品・運用しているサイトを、画像 + リンクで掲載。
-
-    9事業ポートフォリオは「自分が運営している事業」、ここは「他社からの依頼で
-    つくった/運用している」案件をまとめる。
-    """
-    clients = [
-        {
-            "name": "プロギング・ジャパン",
-            "tagline": "ジョギングしながらゴミ拾い。日本のプロギング本部",
-            "url": "https://plogging.jp/",
-            "image": "https://img07.shop-pro.jp/PA01434/387/css_eyecatch/eyecatch_banner_img_1.jpg",
-            "category": "LP / EC / コミュニティ",
-            "stack": "カラーミー + SNS連携",
-        },
-    ]
-    parts: list[str] = []
-    parts.append("<div class='clients-grid'>")
-    for i, c in enumerate(clients):
-        parts.append(
-            f"<a class='client-card fade-up d{(i % 3) + 1}' href='{html.escape(c['url'], quote=True)}' target='_blank' rel='noopener'>"
-            "<div class='client-image'>"
-            f"<img src='{html.escape(c['image'], quote=True)}' alt='{html.escape(c['name'])}' loading='lazy' decoding='async'>"
-            "</div>"
-            "<div class='client-body'>"
-            f"<span class='client-tag'>{html.escape(c['category'])}</span>"
-            f"<div class='client-name'>{html.escape(c['name'])}</div>"
-            f"<div class='client-tagline'>{html.escape(c['tagline'])}</div>"
-            f"<div class='client-meta'>{html.escape(c['stack'])} · <span class='client-host'>{html.escape(c['url'])}</span></div>"
-            "</div>"
-            "</a>"
-        )
-    parts.append("</div>")
-    return "".join(parts)
-
-
 def _render_gallery() -> str:
     """事例ギャラリー：4 枚の画像で異なるサービスを視覚的に提示。"""
     items = [
@@ -1081,6 +1038,7 @@ def _render_biz_card(biz: dict, fade_class: str = "") -> str:
     name = html.escape(str(biz.get("name", "")))
     tagline = html.escape(str(biz.get("tagline", "")))
     desc = html.escape(str(biz.get("description", "")))
+    image_url = biz.get("image") or ""
 
     status_label_map = {
         "live": "稼働中",
@@ -1108,8 +1066,24 @@ def _render_biz_card(biz: dict, fade_class: str = "") -> str:
     if fade_class:
         card_extra += " " + fade_class
 
+    image_html = ""
+    if image_url:
+        safe_img = html.escape(image_url, quote=True)
+        image_html = (
+            f"<div class='biz-card-image'>"
+            f"<img src='{safe_img}' alt='{name}' loading='lazy' decoding='async'>"
+            f"<span class='biz-card-image-icon'>{icon}</span>"
+            f"</div>"
+        )
+        # 画像がある場合はカード内のアイコンを抑制
+        icon_block = ""
+    else:
+        icon_block = f"<div class='biz-card-icon'>{icon}</div>"
+
     inner = (
-        f"<div class='biz-card-icon'>{icon}</div>"
+        f"{image_html}"
+        f"<div class='biz-card-body'>"
+        f"{icon_block}"
         f"<div class='biz-card-name'>{name}</div>"
         f"<div class='biz-card-tagline'>{tagline}</div>"
         f"<div class='biz-card-desc'>{desc}</div>"
@@ -1117,6 +1091,7 @@ def _render_biz_card(biz: dict, fade_class: str = "") -> str:
         f"{badge_html}"
         + (f"<span class='biz-arrow'>→</span>" if has_link else "")
         + "</div>"
+        f"</div>"
     )
 
     # 白基調用に枠色を弱め、card-glow を hover ハイライト用に使う
@@ -1181,13 +1156,6 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append(_render_gallery())
     parts.append("</section>")
 
-    # 制作実績（クライアントワーク）
-    parts.append("<section class='block' id='clients'>")
-    parts.append("<p class='section-heading fade-up'>CLIENT WORKS</p>")
-    parts.append("<h2 class='section-title fade-up d1'>制作実績（外部納品）</h2>")
-    parts.append("<p class='section-sub fade-up d2'>9事業以外で、外部のクライアントから依頼を受けて制作・運用しているサイト。</p>")
-    parts.append(_render_clients())
-    parts.append("</section>")
 
     # サービス
     parts.append("<section class='block' id='services'>")
@@ -1197,11 +1165,11 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append(_render_services())
     parts.append("</section>")
 
-    # 実績（事業ポートフォリオ）
+    # 実績（事業ポートフォリオ + クライアント案件をまとめて表示）
     parts.append("<section class='block' id='works'>")
-    parts.append("<p class='section-heading fade-up'>OWNED BUSINESSES</p>")
-    parts.append("<h2 class='section-title fade-up d1'>9事業ポートフォリオ</h2>")
-    parts.append("<p class='section-sub fade-up d2'>同時に運営している 9 つの事業。すべてのサイト・業務システムを自分で構築・運用しています。</p>")
+    parts.append("<p class='section-heading fade-up'>WORKS</p>")
+    parts.append("<h2 class='section-title fade-up d1'>事業ポートフォリオ</h2>")
+    parts.append("<p class='section-sub fade-up d2'>運営・制作・運用しているサイト。すべてを自分で構築・運用しています。</p>")
     parts.append("<div class='biz-grid'>")
     for i, biz in enumerate(businesses):
         # 各カードを fade-up + ディレイで段階的に出す

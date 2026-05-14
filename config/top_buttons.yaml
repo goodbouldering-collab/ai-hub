@@ -90,4 +90,6 @@ top_buttons:
   icon: 🔐
   href: /admin
   kind: link
-  enabled: true
+  # ヘッダー右端の独立 .login-btn と重複するので非表示。リンクは render_top_nav が
+  # ヘッダー右側に常時生成する。
+  enabled: false

@@ -123,7 +123,21 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
             grouped.append((g, by_group[g]))
         by_group[g].append(b)
 
-    parts: list[str] = ["<nav class='top-nav' aria-label='サイトナビ'>"]
+    # トップポータルの fixed ヘッダーと同じ構造にして全ページの UI を統一する。
+    # ロゴ + 真ん中ナビ + 右側「管理ログイン」CTA の 3 ブロック。
+    home_href = _resolve_nav_href("index.html", path_prefix)
+    admin_href = "/admin"  # 常にルート相対
+    safe_home = html.escape(home_href, quote=True) if home_href else "/"
+
+    parts: list[str] = [
+        "<header class='site-header scrolled' aria-label='サイトヘッダー'>"
+        "<div class='site-header-inner'>"
+        f"<a class='site-logo' href='{safe_home}'>"
+        "<span class='dot'></span>AIハブ"
+        " <span style='color:var(--muted);font-weight:600;font-size:13px;margin-left:6px;'>by 由井辰美</span>"
+        "</a>"
+        "<nav class='site-nav top-nav' aria-label='サイトナビ'>"
+    ]
     has_run = False
     for gname, items in grouped:
         for b in items:
@@ -156,6 +170,11 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
     if has_run:
         parts.append("<span id='run-status' class='run-status'></span>")
     parts.append("</nav>")
+    parts.append(
+        f"<a class='login-btn' href='{admin_href}'>🔐 管理ログイン</a>"
+        "</div>"
+        "</header>"
+    )
     return "".join(parts)
 
 
@@ -342,22 +361,53 @@ header h1 .grad {
 }
 header .sub { margin:0; color:var(--muted); font-size:13px; letter-spacing:.04em; }
 
-/* ---- 共通トップナビ（fixed・N デザイン風 white/blur） ---- */
+/* ---- 共通トップヘッダー（fixed・N デザイン風 white/blur）---- */
 html { scroll-padding-top: 96px; }
 [id] { scroll-margin-top: 96px; }
-nav.top-nav {
-  position: fixed; inset: 0 0 auto 0;
-  z-index: 50;
-  display:flex; flex-wrap:wrap; align-items:center;
-  gap:6px;
-  padding: 12px 24px;
-  margin: 0;
+header.site-header {
+  position: fixed; inset: 0 0 auto 0; z-index: 50;
   background: rgba(255,255,255,0.92);
-  border:none; border-bottom:1px solid var(--line);
-  border-radius:0;
+  border-bottom: 1px solid var(--line);
   backdrop-filter: blur(18px) saturate(160%);
   -webkit-backdrop-filter: blur(18px) saturate(160%);
   box-shadow: 0 1px 0 rgba(15,23,42,0.04), 0 10px 30px rgba(15,23,42,0.04);
+}
+.site-header-inner {
+  max-width: 1280px; margin: 0 auto;
+  padding: 12px 24px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+.site-logo {
+  font-size: 18px; font-weight: 800; letter-spacing: -.01em;
+  color: var(--text); text-decoration: none;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.site-logo .dot { width: 8px; height: 8px; border-radius: 999px; background: var(--primary); display: inline-block; }
+.site-header .login-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 9px 18px; border-radius: 999px;
+  background: var(--text); color: #fff;
+  font-size: 13px; font-weight: 700; text-decoration: none;
+  transition: background .2s, transform .2s;
+  white-space: nowrap;
+}
+.site-header .login-btn:hover { background: var(--primary); transform: translateY(-1px); }
+@media (max-width: 720px) {
+  .site-header-inner { padding: 10px 14px; gap: 8px; }
+  .site-logo { font-size: 16px; }
+  .site-header .login-btn { padding: 7px 14px; font-size: 12px; }
+}
+
+/* ---- 共通トップナビ（ヘッダー内のリンク群） ---- */
+nav.top-nav {
+  flex: 1 1 auto;
+  display:flex; flex-wrap:wrap; align-items:center;
+  gap:6px;
+  margin: 0;
+  background: transparent;
+  border:none;
+  border-radius:0;
+  box-shadow: none;
   justify-content:center;
 }
 nav.top-nav .nav-btn {

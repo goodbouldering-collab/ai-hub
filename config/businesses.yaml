@@ -90,6 +90,16 @@ businesses:
   self: true
   description: あなたは今ここにいます。9事業の入口・講習資料・AI情報を1箇所に集約。
 
+- id: plogging
+  name: プロギング・ジャパン
+  tagline: ジョギング × ゴミ拾い 全国コミュニティ
+  url: https://plogging.jp/
+  icon: 🏃
+  color: green
+  status: live
+  image: https://img07.shop-pro.jp/PA01434/387/css_eyecatch/eyecatch_banner_img_1.jpg
+  description: 日本のプロギング本部。全国のクリーン活動イベント告知・参加者募集・グッズ販売・SNS連携。カラーミー基盤。
+
 - id: future
   name: （空き枠）
   tagline: まだ増える

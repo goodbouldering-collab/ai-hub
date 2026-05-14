@@ -1,135 +1,210 @@
 """
 エージェント運用状況の集約スクリプト。
-outputs/agents_status.json を生成し、build_portal.py がトップに静的描画する。
+outputs/agents_status.json を生成し、/admin が fetch して表示する。
 
-入力:
-  - consul/.claude/agents/*.md  → 社内エージェント定義 (役割と最新更新)
-  - content/consul-work/*.md    → 各エージェントの最新成果物 (consul/work から日次同期)
-  - agents_system/INDEX.md      → CMA で動かしているアプリの一覧 (ローカル側のため CI では空配列扱い)
+「意味あるもの」を目指し、ファイル列挙ではなく実用シグナルを抽出する:
 
-出力:
-  outputs/agents_status.json {
-    "generated_at": "2026-05-14T10:00:00Z",
-    "consul_agents": [{ "name", "role_summary", "last_work_date", "last_work_title", "last_work_path" }, ...],
-    "recent_works":  [{ "date", "title", "path", "category" }, ...],   # 最新 8 件
-    "cma_apps":      [{ "name", "status", "last_run" }, ...]            # ベストエフォート
-  }
+  - recent_works         直近 8 件 (タイトル + 日付 + 事業ラベル)
+  - tasks_open           各 work ファイル内の TODO / FIXME / 「未対応」「ブロック」行 抜粋
+  - per_business_recent  事業ごとの直近 7 日件数 (グッぼる / Notエステ / Nデザイン / ビジネス21 ...)
+  - daily_histogram      日別件数（直近 14 日）
+  - cma_apps             agents_system/INDEX.md の実行履歴
+  - generated_at         UTC ISO
 
-引数なし。CI でも手元でも実行できる。読み取り元が見つからない場合は空配列で書き出す。
+ファイル命名: content/consul-work/YYYY-MM-DD-<事業>-<内容>.md
 """
 from __future__ import annotations
 import json
 import re
 import sys
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-CONSUL_AGENTS_DIR = ROOT / "content" / "consul-work" / ".." / ".." / "content" / "consul-work"
-# consul/.claude/agents/ は ai-hub リポには無いので、agent 名だけハードコードしておく
-AGENT_NAMES = [
-    ("secretary", "受付・振り分け（CEO 窓口）"),
-    ("advisor",   "助言・経営観点レビュー"),
-    ("cfo",       "数字・採算・キャッシュフロー"),
-    ("designer",  "UI / ビジュアル制作"),
-    ("developer", "実装・コード作成"),
-    ("mailer",    "顧客メール・LINE 文面"),
-    ("marketer",  "集客・SNS 戦略"),
-    ("pm",        "進行管理・スケジュール調整"),
-    ("scheduler", "予約・カレンダー調整"),
-    ("writer",    "記事・コピー執筆"),
-]
-
 WORK_DIR = ROOT / "content" / "consul-work"
 INDEX_MD = ROOT.parent / "agents_system" / "INDEX.md"
 OUT_FILE = ROOT / "outputs" / "agents_status.json"
 
-
 DATE_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})")
 
+# ファイル名の <事業> セグメントから日本語事業名に正規化
+BIZ_LABELS = {
+    "good": "グッぼる",
+    "goodbouldering": "グッぼる",
+    "karatto": "カラッと",
+    "este": "Notエステ",
+    "notesthe": "Notエステ",
+    "notesute": "Notエステ",
+    "n-design": "Nデザイン",
+    "ndesign": "Nデザイン",
+    "business-21": "ビジネス21",
+    "business21": "ビジネス21",
+    "minanowa": "みんなのWA",
+    "trust": "トラスト",
+    "fadie": "ファディー",
+    "fadi": "ファディー",
+    "ai-hub": "AIハブ",
+    "aihub": "AIハブ",
+}
 
-def _read_title(md_path: Path) -> str:
+TASK_KEYWORDS = re.compile(
+    r"(TODO|FIXME|未対応|未解決|未着手|ブロック|要確認|要対応|保留|締切|期限)[:：\s]",
+    re.IGNORECASE,
+)
+
+
+def _read_text(p: Path) -> str:
     try:
-        text = md_path.read_text(encoding="utf-8", errors="replace")
+        return p.read_text(encoding="utf-8", errors="replace")
     except Exception:
-        return md_path.stem
-    # frontmatter スキップ
+        return ""
+
+
+def _strip_frontmatter(text: str) -> str:
     if text.startswith("---"):
         m = re.search(r"\n---\s*\n", text)
         if m:
-            text = text[m.end():]
-    # 最初の # 見出し
-    for line in text.splitlines():
+            return text[m.end():]
+    return text
+
+
+def _title_of(text: str, fallback: str) -> str:
+    body = _strip_frontmatter(text)
+    for line in body.splitlines():
         line = line.strip()
         if line.startswith("#"):
             return line.lstrip("#").strip()
-    return md_path.stem
+    return fallback
 
 
-def _collect_recent_works(limit: int = 8) -> list[dict]:
-    if not WORK_DIR.exists():
-        return []
-    items: list[dict] = []
-    for md in WORK_DIR.glob("*.md"):
-        m = DATE_RE.match(md.stem)
-        if not m:
+def _business_label(filename: str) -> str:
+    # YYYY-MM-DD-<biz>-<...>.md
+    parts = filename.replace(".md", "").split("-")
+    if len(parts) < 4:
+        return ""
+    # 4 番目以降を結合して順に hit するキーを探す（複合キー対応: business-21 / n-design / ai-hub）
+    rest = "-".join(parts[3:]).lower()
+    # 長いキーから順に評価
+    for key in sorted(BIZ_LABELS.keys(), key=len, reverse=True):
+        if rest.startswith(key):
+            return BIZ_LABELS[key]
+    # ヒットしなければ最初のセグメント
+    return parts[3]
+
+
+def _extract_tasks(text: str, limit: int = 3) -> list[str]:
+    """TODO / FIXME / 未対応 などのキーワードを含む行を抜粋。
+    短すぎる行は捨て、長すぎる行は 140 字で切る。"""
+    out: list[str] = []
+    for raw in _strip_frontmatter(text).splitlines():
+        line = raw.strip()
+        if len(line) < 8:
             continue
-        date = m.group(1)
-        # YYYY-MM-DD-<biz>-<topic>.md → category=2つ目のセグメント
-        parts = md.stem.split("-")
-        category = parts[3] if len(parts) >= 4 else ""
-        items.append({
-            "date": date,
-            "title": _read_title(md),
-            "path": f"/admin/docs?file={md.name}",
-            "category": category,
-            "filename": md.name,
-        })
-    items.sort(key=lambda x: (x["date"], x["filename"]), reverse=True)
-    return items[:limit]
-
-
-def _collect_consul_agents() -> list[dict]:
-    """各エージェントが最後に何を書いたかを consul/work のファイル名から推定する。
-    ファイル命名は YYYY-MM-DD-<事業>-<内容>.md でエージェント名が直接入らないため、
-    現状は agent ごとの「役割サマリ」と「過去 30 日に同じカテゴリ語が含まれる成果物」の
-    軽い結びつけのみ。詳細な紐付けは将来 frontmatter で実装する。
-    """
-    works = _collect_recent_works(limit=200)
-    out: list[dict] = []
-    for name, role in AGENT_NAMES:
-        # name と category が一致する成果物（ヒューリスティック）
-        matched = next((w for w in works if name in w["filename"].lower()), None)
-        out.append({
-            "name": name,
-            "role_summary": role,
-            "last_work_date": matched["date"] if matched else None,
-            "last_work_title": matched["title"] if matched else None,
-            "last_work_path": matched["path"] if matched else None,
-        })
+        if not TASK_KEYWORDS.search(line):
+            continue
+        # 先頭の Markdown 装飾を剥がす
+        clean = re.sub(r"^[#*\->\s]+", "", line)
+        if len(clean) > 140:
+            clean = clean[:138] + "…"
+        out.append(clean)
+        if len(out) >= limit:
+            break
     return out
+
+
+def _today_utc() -> datetime:
+    return datetime.now(timezone.utc)
+
+
+def _collect() -> dict:
+    works_files: list[tuple[str, str, Path]] = []  # (date, filename, path)
+    if WORK_DIR.exists():
+        for md in WORK_DIR.glob("*.md"):
+            m = DATE_RE.match(md.stem)
+            if m:
+                works_files.append((m.group(1), md.name, md))
+    works_files.sort(key=lambda x: (x[0], x[1]), reverse=True)
+
+    # recent_works (8 件) + open task 抽出
+    recent_works: list[dict] = []
+    tasks_open: list[dict] = []
+    for date, name, path in works_files[:8]:
+        text = _read_text(path)
+        recent_works.append({
+            "date": date,
+            "filename": name,
+            "title": _title_of(text, name),
+            "business": _business_label(name),
+            "path": f"/admin/docs?file={name}",
+        })
+
+    for date, name, path in works_files[:40]:  # 直近 40 件まで task 抽出
+        text = _read_text(path)
+        tasks = _extract_tasks(text, limit=3)
+        for t in tasks:
+            tasks_open.append({
+                "date": date,
+                "filename": name,
+                "business": _business_label(name),
+                "snippet": t,
+                "path": f"/admin/docs?file={name}",
+            })
+    tasks_open = tasks_open[:20]  # トップ 20 件まで
+
+    # 事業別 直近 7 日件数
+    cutoff7 = (_today_utc() - timedelta(days=7)).date()
+    per_business: dict[str, int] = {}
+    for date, name, _ in works_files:
+        try:
+            d = datetime.strptime(date, "%Y-%m-%d").date()
+        except ValueError:
+            continue
+        if d < cutoff7:
+            break  # 既にソート済みなのでこれ以前は対象外
+        biz = _business_label(name) or "(未分類)"
+        per_business[biz] = per_business.get(biz, 0) + 1
+    per_business_recent = sorted(
+        ({"business": k, "count": v} for k, v in per_business.items()),
+        key=lambda x: x["count"],
+        reverse=True,
+    )
+
+    # 日別ヒストグラム（直近 14 日・件数 0 の日も埋める）
+    daily: dict[str, int] = {}
+    for date, _, _ in works_files:
+        daily[date] = daily.get(date, 0) + 1
+    histogram: list[dict] = []
+    today = _today_utc().date()
+    for i in range(13, -1, -1):
+        d = (today - timedelta(days=i)).strftime("%Y-%m-%d")
+        histogram.append({"date": d, "count": daily.get(d, 0)})
+
+    return {
+        "generated_at": _today_utc().strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "recent_works": recent_works,
+        "tasks_open": tasks_open,
+        "per_business_recent": per_business_recent,
+        "daily_histogram": histogram,
+        "cma_apps": _collect_cma_apps(),
+        "totals": {
+            "consul_work_total": len(works_files),
+            "recent_7d_total": sum(per_business.values()),
+            "tasks_open_total": len(tasks_open),
+        },
+    }
 
 
 def _collect_cma_apps() -> list[dict]:
     if not INDEX_MD.exists():
         return []
     out: list[dict] = []
-    try:
-        text = INDEX_MD.read_text(encoding="utf-8", errors="replace")
-    except Exception:
-        return []
-    # | # | アプリ名 | 実行日 | ポート | 種別 | 状態 | レポート |
+    text = _read_text(INDEX_MD)
     for line in text.splitlines():
         line = line.strip()
         if not line.startswith("|"):
             continue
         cols = [c.strip() for c in line.strip("|").split("|")]
-        # ヘッダ / 区切り / 空行をスキップ
-        if len(cols) < 6:
-            continue
-        if cols[0] in ("#", "") or cols[0].startswith("--") or cols[0].startswith(":-"):
-            continue
-        if not cols[0].isdigit():
+        if len(cols) < 6 or not cols[0].isdigit():
             continue
         out.append({
             "name": cols[1],
@@ -141,15 +216,14 @@ def _collect_cma_apps() -> list[dict]:
 
 
 def main() -> int:
-    payload = {
-        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "consul_agents": _collect_consul_agents(),
-        "recent_works": _collect_recent_works(limit=8),
-        "cma_apps": _collect_cma_apps(),
-    }
+    payload = _collect()
     OUT_FILE.parent.mkdir(parents=True, exist_ok=True)
     OUT_FILE.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"[+] agents_status → {OUT_FILE} ({len(payload['recent_works'])} works, {len(payload['cma_apps'])} cma apps)")
+    print(
+        f"[+] agents_status → {OUT_FILE} "
+        f"(works={len(payload['recent_works'])}, tasks={len(payload['tasks_open'])}, "
+        f"biz7d={len(payload['per_business_recent'])}, cma={len(payload['cma_apps'])})"
+    )
     return 0
 
 

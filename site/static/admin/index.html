@@ -111,16 +111,73 @@
   .gid  { color:var(--muted); font-family:monospace; font-size:11px; }
   .gname{ flex:1 1 auto; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
   .gstate { font-size:10px; }
+
+  /* === Dashboard panel === */
+  .dash-summary {
+    display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px;
+  }
+  .dash-summary .pill {
+    padding:6px 12px; border-radius:999px;
+    background: rgba(122,162,255,.14);
+    border:1px solid rgba(122,162,255,.30);
+    font-size:12px; font-weight:700;
+  }
+  .dash-summary .pill .c { color: var(--accent); margin-left:6px; font-weight:800; }
+  .dash-summary .pill.muted { background:rgba(255,255,255,.06); border-color: var(--border); }
+
+  .dash-cols { display:grid; grid-template-columns: 1fr 1fr; gap:14px; }
+  @media (max-width: 720px) { .dash-cols { grid-template-columns:1fr; } }
+
+  .dash-col h3 { font-size:12px; font-weight:800; letter-spacing:.04em; color:var(--muted); margin-bottom:8px; text-transform:uppercase; }
+  .dash-list { list-style:none; padding:0; margin:0; max-height: 280px; overflow-y:auto; }
+  .dash-list li {
+    padding:8px 10px; margin:4px 0;
+    background: rgba(255,255,255,.04);
+    border:1px solid var(--border);
+    border-radius:8px;
+    font-size:12.5px; line-height:1.5;
+  }
+  .dash-list li.muted { color: var(--muted); }
+  .dash-list li a { color: var(--text); text-decoration:none; }
+  .dash-list li a:hover { color: var(--accent); text-decoration:underline; }
+  .dash-list .row-meta { display:flex; gap:8px; align-items:center; margin-bottom:3px; font-size:10.5px; }
+  .dash-list .row-meta .biz { padding:2px 8px; border-radius:999px; background:rgba(199,125,255,.18); color:#e0b3ff; font-weight:700; }
+  .dash-list .row-meta .date { color: var(--muted); font-family:'SFMono-Regular',monospace; }
+  .dash-cma { margin-top:14px; }
+  .dash-cma summary { cursor:pointer; font-size:12px; color:var(--muted); padding:6px 0; }
+  .dash-meta { color:var(--muted); font-size:10.5px; text-align:right; margin-top:8px; }
 </style>
 </head>
 <body>
 <div class="container">
-  <h1>🛠 AIハブ 管理画面 — グッぼる グループ記事</h1>
-  <p class="sub">対象親グループを選び、その配下に AI 記事グループを追加・並べ替え・公開（テンプレ product_list の Smarty 条件で対象親ページのみに表示）</p>
+  <h1>🛠 AIハブ 管理画面</h1>
+  <p class="sub">9事業の運用ダッシュボード + グッぼル グループ記事の発行</p>
   <p class="sub" style="margin-top:-12px;margin-bottom:18px;">
-    📚 経営本部ドキュメント: <a href="/admin/docs" style="color:#7aa2ff;font-weight:700;">/admin/docs</a>
-    （consul/work/ の Markdown を閲覧 · 毎日 JST 06:00 同期）
+    📚 <a href="/admin/docs" style="color:#7aa2ff;font-weight:700;">経営本部ドキュメント</a>
+    （consul/work/ JST 06:00 同期）
+    &nbsp;·&nbsp;
+    🤖 <a href="/admin/chat" style="color:#7aa2ff;font-weight:700;">社内エージェントに質問</a>
   </p>
+
+  <div class="panel" id="panel-dashboard">
+    <h2>⭐ 今週の動き（事業別 / 直近 7 日）</h2>
+    <div id="dashboard-summary" class="dash-summary">読み込み中…</div>
+    <div class="dash-cols">
+      <div class="dash-col">
+        <h3>📌 未対応・要確認タスク</h3>
+        <ul id="dash-tasks" class="dash-list"><li class="muted">読み込み中…</li></ul>
+      </div>
+      <div class="dash-col">
+        <h3>📝 最近の成果物</h3>
+        <ul id="dash-works" class="dash-list"><li class="muted">読み込み中…</li></ul>
+      </div>
+    </div>
+    <details class="dash-cma">
+      <summary>📡 CMA（Managed Agents）実行履歴を見る</summary>
+      <ul id="dash-cma" class="dash-list"><li class="muted">読み込み中…</li></ul>
+    </details>
+    <p class="dash-meta" id="dash-meta"></p>
+  </div>
 
   <div class="panel" id="panel-status">
     <h2>① 接続状態</h2>
@@ -268,6 +325,81 @@ async function api(path, opts = {}) {
     ].join(" ");
   } catch (e) {
     $("status-area").innerHTML = `<span class="badge err">認証/設定エラー: ${e.message}</span>`;
+  }
+})();
+
+// === ダッシュボード読み込み
+(async () => {
+  try {
+    const d = await api("/api/admin/status");
+    // サマリ pill
+    const sum = $("dashboard-summary");
+    const totals = d.totals || {};
+    const pills = [];
+    pills.push(`<span class="pill">直近7日<span class="c">${totals.recent_7d_total ?? 0}</span>件</span>`);
+    pills.push(`<span class="pill">未対応<span class="c">${totals.tasks_open_total ?? 0}</span>件</span>`);
+    pills.push(`<span class="pill muted">consul/work 全体 ${totals.consul_work_total ?? 0}件</span>`);
+    (d.per_business_recent || []).slice(0, 6).forEach(b => {
+      pills.push(`<span class="pill">${escapeHtml(b.business || '')}<span class="c">${b.count}</span></span>`);
+    });
+    sum.innerHTML = pills.join(" ");
+
+    // タスク
+    const taskUl = $("dash-tasks");
+    if ((d.tasks_open || []).length === 0) {
+      taskUl.innerHTML = '<li class="muted">未対応タスクは見つかりませんでした</li>';
+    } else {
+      taskUl.innerHTML = d.tasks_open.map(t => `
+        <li>
+          <div class="row-meta">
+            ${t.business ? `<span class="biz">${escapeHtml(t.business)}</span>` : ''}
+            <span class="date">${escapeHtml(t.date || '')}</span>
+          </div>
+          <a href="${escapeAttr(t.path || '#')}">${escapeHtml(t.snippet || '')}</a>
+        </li>
+      `).join("");
+    }
+
+    // 最近の成果物
+    const workUl = $("dash-works");
+    if ((d.recent_works || []).length === 0) {
+      workUl.innerHTML = '<li class="muted">記録なし</li>';
+    } else {
+      workUl.innerHTML = d.recent_works.map(w => `
+        <li>
+          <div class="row-meta">
+            ${w.business ? `<span class="biz">${escapeHtml(w.business)}</span>` : ''}
+            <span class="date">${escapeHtml(w.date || '')}</span>
+          </div>
+          <a href="${escapeAttr(w.path || '#')}">${escapeHtml(w.title || '')}</a>
+        </li>
+      `).join("");
+    }
+
+    // CMA
+    const cmaUl = $("dash-cma");
+    if ((d.cma_apps || []).length === 0) {
+      cmaUl.innerHTML = '<li class="muted">CMA 実行履歴は読めませんでした（agents_system/INDEX.md）</li>';
+    } else {
+      cmaUl.innerHTML = d.cma_apps.map(c => `
+        <li>
+          <div class="row-meta">
+            <span class="date">${escapeHtml(c.last_run || '')}</span>
+            <span style="color:var(--muted);">${escapeHtml(c.kind || '')}</span>
+          </div>
+          <strong>${escapeHtml(c.name || '')}</strong> — ${escapeHtml(c.status || '')}
+        </li>
+      `).join("");
+    }
+
+    if (d.generated_at) {
+      $("dash-meta").textContent = `更新: ${d.generated_at}`;
+    }
+  } catch (e) {
+    $("dashboard-summary").innerHTML = `<span class="badge err">ダッシュボード読み込み失敗: ${e.message}</span>`;
+    $("dash-tasks").innerHTML = '';
+    $("dash-works").innerHTML = '';
+    $("dash-cma").innerHTML = '';
   }
 })();
 

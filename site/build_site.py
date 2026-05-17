@@ -2147,8 +2147,9 @@ def copy_static() -> None:
         if src.is_dir():
             continue
         rel = src.relative_to(STATIC)
-        # admin/ は静的配信せず Basic 認証付きの api/admin/index.ts から返す
-        if rel.parts and rel.parts[0] == "admin":
+        # admin/ ・ ops/ は静的配信せず Basic 認証付きの
+        # api/admin/index.ts ・ api/ops/index.ts から返す（認証素通り防止）
+        if rel.parts and rel.parts[0] in ("admin", "ops"):
             continue
         dst = DIST / rel
         dst.parent.mkdir(parents=True, exist_ok=True)

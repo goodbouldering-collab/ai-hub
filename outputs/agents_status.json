@@ -1,168 +1,168 @@
 {
-  "generated_at": "2026-05-16T22:37:21Z",
+  "generated_at": "2026-05-17T22:44:06Z",
   "recent_works": [
     {
-      "date": "2026-05-13",
-      "filename": "2026-05-13-cron-jobs-overview.md",
-      "title": "Cron ジョブ一覧（全プロジェクト横断・2026-05-13 時点）",
-      "business": "cron",
-      "path": "/admin/docs?file=2026-05-13-cron-jobs-overview.md"
+      "date": "2026-05-18",
+      "filename": "2026-05-18-ai-hub-design-unify-spec.md",
+      "title": "AIハブ サイト内デザイン統一 指示書（Codex 委任用）",
+      "business": "AIハブ",
+      "path": "/ops?file=2026-05-18-ai-hub-design-unify-spec.md#sec-docs"
     },
     {
-      "date": "2026-05-12",
-      "filename": "2026-05-12-task22-este-positioning.md",
-      "title": "Task #22: エステ・美容業界向けポジショニング",
-      "business": "task22",
-      "path": "/admin/docs?file=2026-05-12-task22-este-positioning.md"
+      "date": "2026-05-17",
+      "filename": "2026-05-17-secrets-inventory.md",
+      "title": "シークレット台帳（全プロジェクト横断・2026-05-17 時点）",
+      "business": "secrets",
+      "path": "/ops?file=2026-05-17-secrets-inventory.md#sec-docs"
     },
     {
-      "date": "2026-05-12",
-      "filename": "2026-05-12-task18-climbing-gym-target-list.md",
-      "title": "Task #18: 全国クライミングジム「Web が弱い」店舗 候補リスト",
-      "business": "task18",
-      "path": "/admin/docs?file=2026-05-12-task18-climbing-gym-target-list.md"
+      "date": "2026-05-17",
+      "filename": "2026-05-17-parent-repo-uncommitted-handoff.md",
+      "title": "親リポ claude-workspace 未コミット混在 — CEO 引き継ぎ資料",
+      "business": "parent",
+      "path": "/ops?file=2026-05-17-parent-repo-uncommitted-handoff.md#sec-docs"
     },
     {
-      "date": "2026-05-12",
-      "filename": "2026-05-12-task16-shiga-local-network-mapping.md",
-      "title": "Task #16: 彦根・滋賀ローカル中小企業ネットワーク マッピング",
-      "business": "task16",
-      "path": "/admin/docs?file=2026-05-12-task16-shiga-local-network-mapping.md"
+      "date": "2026-05-17",
+      "filename": "2026-05-17-n-design-section-content-cms.md",
+      "title": "N-デザイン トップページ「セクション本文」管理画面編集化 — 差分設計書",
+      "business": "Nデザイン",
+      "path": "/ops?file=2026-05-17-n-design-section-content-cms.md#sec-docs"
     },
     {
-      "date": "2026-05-12",
-      "filename": "2026-05-12-service-menu-confirmed.md",
-      "title": "サービスメニュー・価格表（仮確定版）",
-      "business": "service",
-      "path": "/admin/docs?file=2026-05-12-service-menu-confirmed.md"
+      "date": "2026-05-17",
+      "filename": "2026-05-17-n-design-hero-cms-fix.md",
+      "title": "N-デザイン トップ ヒーローセクション 管理ページ編集化 — 完了報告",
+      "business": "Nデザイン",
+      "path": "/ops?file=2026-05-17-n-design-hero-cms-fix.md#sec-docs"
     },
     {
-      "date": "2026-05-12",
-      "filename": "2026-05-12-contact-channel-confirmed.md",
-      "title": "連絡導線・受信→返信ルール（仮確定版）",
-      "business": "contact",
-      "path": "/admin/docs?file=2026-05-12-contact-channel-confirmed.md"
+      "date": "2026-05-17",
+      "filename": "2026-05-17-minanowa-render-deletion.md",
+      "title": "みんなのWA Render Starter 完全削除 — 実行手順書",
+      "business": "みんなのWA",
+      "path": "/ops?file=2026-05-17-minanowa-render-deletion.md#sec-docs"
     },
     {
-      "date": "2026-05-12",
-      "filename": "2026-05-12-consulting-lp-wireframe.md",
-      "title": "コンサル LP（ランディングページ）ワイヤーフレーム + コピー",
-      "business": "consulting",
-      "path": "/admin/docs?file=2026-05-12-consulting-lp-wireframe.md"
+      "date": "2026-05-17",
+      "filename": "2026-05-17-ai-hub-sync-rootcause-resolved.md",
+      "title": "ai-hub 経営本部ドキュメント同期不調 — 真因確定・解決済み",
+      "business": "AIハブ",
+      "path": "/ops?file=2026-05-17-ai-hub-sync-rootcause-resolved.md#sec-docs"
     },
     {
-      "date": "2026-05-12",
-      "filename": "2026-05-12-ceo-identity-confirmed.md",
-      "title": "CEO アイデンティティ確定版（仮確定・後日変更可）",
-      "business": "ceo",
-      "path": "/admin/docs?file=2026-05-12-ceo-identity-confirmed.md"
+      "date": "2026-05-17",
+      "filename": "2026-05-17-ai-hub-cleanup-inventory.md",
+      "title": "AIハブ整理仕分け — 削除するもの / 改造するもの / 残すもの",
+      "business": "AIハブ",
+      "path": "/ops?file=2026-05-17-ai-hub-cleanup-inventory.md#sec-docs"
     }
   ],
   "tasks_open": [
+    {
+      "date": "2026-05-17",
+      "filename": "2026-05-17-secrets-inventory.md",
+      "business": "secrets",
+      "snippet": "| 鍵名 | 保管場所 | 発行元 | 有効期限 | ローテ手順 |",
+      "path": "/ops?file=2026-05-17-secrets-inventory.md#sec-docs"
+    },
+    {
+      "date": "2026-05-17",
+      "filename": "2026-05-17-secrets-inventory.md",
+      "business": "secrets",
+      "snippet": "| `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` | **L** (`credentials.json`) | GCP OAuth クライアント | 無期限 | GCP コンソールで再発行 → credentials.json 差替 |",
+      "path": "/ops?file=2026-05-17-secrets-inventory.md#sec-docs"
+    },
+    {
+      "date": "2026-05-17",
+      "filename": "2026-05-17-secrets-inventory.md",
+      "business": "secrets",
+      "snippet": "| 鍵名 | 保管場所 | 発行元 | 有効期限 | ローテ手順 |",
+      "path": "/ops?file=2026-05-17-secrets-inventory.md#sec-docs"
+    },
+    {
+      "date": "2026-05-16",
+      "filename": "2026-05-16-ai-hub-ops-redesign.md",
+      "business": "AIハブ",
+      "snippet": "consul/work/*.md ──(同期: 経路要確認 G3)──▶ ai-hub/content/consul-work/*.md",
+      "path": "/ops?file=2026-05-16-ai-hub-ops-redesign.md#sec-docs"
+    },
+    {
+      "date": "2026-05-15",
+      "filename": "2026-05-15-n-design-contract-invoice.md",
+      "business": "Nデザイン",
+      "snippet": "| 支払期限 | 翌月末（締結 2026-05-20 → 期限 2026-06-30） |",
+      "path": "/ops?file=2026-05-15-n-design-contract-invoice.md#sec-docs"
+    },
+    {
+      "date": "2026-05-12",
+      "filename": "2026-05-12-render-cloudflare-deletion-feasibility.md",
+      "business": "render",
+      "snippet": "| `karatto.life` | カラット本番 | Cloudflare 経由か要確認 |",
+      "path": "/ops?file=2026-05-12-render-cloudflare-deletion-feasibility.md#sec-docs"
+    },
+    {
+      "date": "2026-05-12",
+      "filename": "2026-05-12-render-cloudflare-deletion-feasibility.md",
+      "business": "render",
+      "snippet": "| その他のカスタムドメイン | 各事業 | Cloudflare 経由か要確認 |",
+      "path": "/ops?file=2026-05-12-render-cloudflare-deletion-feasibility.md#sec-docs"
+    },
     {
       "date": "2026-05-12",
       "filename": "2026-05-12-business-21-seo-llmo-strategy-v2.md",
       "business": "ビジネス21",
       "snippet": "| 差別化軸 C「2027 移行 30項目チェックリスト」固定PDF | 育成就労の細則は未確定。半年後に半分書き直す可能性 | **「法令確定状況ダッシュボード」に設計変更**。確定/審議中/未着手 をバッジで動的表示 |",
-      "path": "/admin/docs?file=2026-05-12-business-21-seo-llmo-strategy-v2.md"
+      "path": "/ops?file=2026-05-12-business-21-seo-llmo-strategy-v2.md#sec-docs"
     },
     {
       "date": "2026-05-12",
       "filename": "2026-05-12-business-21-seo-llmo-strategy-v2.md",
       "business": "ビジネス21",
       "snippet": "| 業界別 LP の FAQ ブロック | 実装済 | `landing-data.ts:30-150` |",
-      "path": "/admin/docs?file=2026-05-12-business-21-seo-llmo-strategy-v2.md"
+      "path": "/ops?file=2026-05-12-business-21-seo-llmo-strategy-v2.md#sec-docs"
     },
     {
       "date": "2026-05-12",
       "filename": "2026-05-12-business-21-seo-llmo-strategy-v2.md",
       "business": "ビジネス21",
       "snippet": "| **C: 育成就労 2027 移行支援** | 固定 PDF「30項目チェックリスト」 | **動的「法令確定状況ダッシュボード」に変更**。確定/審議中/未着手 をバッジ表示。月次更新運用前提 | **★★★★★** |",
-      "path": "/admin/docs?file=2026-05-12-business-21-seo-llmo-strategy-v2.md"
+      "path": "/ops?file=2026-05-12-business-21-seo-llmo-strategy-v2.md#sec-docs"
     },
     {
       "date": "2026-05-11",
       "filename": "2026-05-11-ceo-roadmap-progress.md",
       "business": "ceo",
       "snippet": "| 6 | コンサル相談窓口設置の判断 | （Task #1〜5 確定後に Claude が LP 改修案を出す） | ⚪ 未着手 |",
-      "path": "/admin/docs?file=2026-05-11-ceo-roadmap-progress.md"
+      "path": "/ops?file=2026-05-11-ceo-roadmap-progress.md#sec-docs"
     },
     {
       "date": "2026-05-11",
       "filename": "2026-05-11-ceo-roadmap-progress.md",
       "business": "ceo",
       "snippet": "| 8 | 交流会で Web デモ枠交渉 | （次回交流会日程確認後） | ⚪ 未着手 |",
-      "path": "/admin/docs?file=2026-05-11-ceo-roadmap-progress.md"
+      "path": "/ops?file=2026-05-11-ceo-roadmap-progress.md#sec-docs"
     },
     {
       "date": "2026-05-11",
       "filename": "2026-05-11-ceo-roadmap-progress.md",
       "business": "ceo",
       "snippet": "| 11 | キーワード戦略確認 | ⚪ 未着手 |",
-      "path": "/admin/docs?file=2026-05-11-ceo-roadmap-progress.md"
+      "path": "/ops?file=2026-05-11-ceo-roadmap-progress.md#sec-docs"
     },
     {
       "date": "2026-05-11",
       "filename": "2026-05-11-business-21-slides-iphone-plan.md",
       "business": "ビジネス21",
       "snippet": "| Sending | 保留 (受注実績が出てから着手判断) |",
-      "path": "/admin/docs?file=2026-05-11-business-21-slides-iphone-plan.md"
+      "path": "/ops?file=2026-05-11-business-21-slides-iphone-plan.md#sec-docs"
     },
     {
       "date": "2026-05-11",
       "filename": "2026-05-11-business-21-slides-iphone-plan.md",
       "business": "ビジネス21",
       "snippet": "保留: Sending リニューアル (10〜15h)",
-      "path": "/admin/docs?file=2026-05-11-business-21-slides-iphone-plan.md"
-    },
-    {
-      "date": "2026-05-11",
-      "filename": "2026-05-11-business-21-slide-fullscreen.md",
-      "business": "ビジネス21",
-      "snippet": "未対応 (CEO の方針確認次第)",
-      "path": "/admin/docs?file=2026-05-11-business-21-slide-fullscreen.md"
-    },
-    {
-      "date": "2026-05-11",
-      "filename": "2026-05-11-business-21-slide-fullscreen-03-rollback.md",
-      "business": "ビジネス21",
-      "snippet": "| 判断 | CEO: 「このまま一旦保留 (v2.0 で運用)」 |",
-      "path": "/admin/docs?file=2026-05-11-business-21-slide-fullscreen-03-rollback.md"
-    },
-    {
-      "date": "2026-05-11",
-      "filename": "2026-05-11-business-21-seo-llmo-strategy.md",
-      "business": "ビジネス21",
-      "snippet": "| コンテンツ網羅性 | 20 | **11** | LP 22本の骨格は優秀。クロスLP（職種×国 等）と記事実体が未着手 |",
-      "path": "/admin/docs?file=2026-05-11-business-21-seo-llmo-strategy.md"
-    },
-    {
-      "date": "2026-05-11",
-      "filename": "2026-05-11-business-21-seo-llmo-strategy.md",
-      "business": "ビジネス21",
-      "snippet": "| 優先 | 施策 | 担当 | コスト | インパクト | 工数 | 期限 |",
-      "path": "/admin/docs?file=2026-05-11-business-21-seo-llmo-strategy.md"
-    },
-    {
-      "date": "2026-05-11",
-      "filename": "2026-05-11-ai-hub-portal-redesign.md",
-      "business": "AIハブ",
-      "snippet": "| **事業レポート・白書** | 未対応 | 各事業の知見をオープン化（工務店/エステ/クライミング業界の実践レポート） |",
-      "path": "/admin/docs?file=2026-05-11-ai-hub-portal-redesign.md"
-    },
-    {
-      "date": "2026-05-11",
-      "filename": "2026-05-11-ai-hub-portal-redesign.md",
-      "business": "AIハブ",
-      "snippet": "| **SNS 投稿（新規）** | 未対応 | **AIハブ管理画面から X/Instagram/Facebook 等に一括投稿**。下書き AI 生成 + 各SNS 文字数調整 + 同時公開 |",
-      "path": "/admin/docs?file=2026-05-11-ai-hub-portal-redesign.md"
-    },
-    {
-      "date": "2026-05-11",
-      "filename": "2026-05-11-ai-hub-portal-redesign.md",
-      "business": "AIハブ",
-      "snippet": "| **講演・イベント履歴・メディア掲載実績** | 未対応 | 信用構築・仕事依頼の決定打 |",
-      "path": "/admin/docs?file=2026-05-11-ai-hub-portal-redesign.md"
+      "path": "/ops?file=2026-05-11-business-21-slides-iphone-plan.md#sec-docs"
     }
   ],
   "per_business_recent": [
@@ -171,12 +171,40 @@
       "count": 10
     },
     {
+      "business": "AIハブ",
+      "count": 8
+    },
+    {
       "business": "ビジネス21",
       "count": 8
     },
     {
-      "business": "AIハブ",
+      "business": "Nデザイン",
       "count": 3
+    },
+    {
+      "business": "トラスト",
+      "count": 3
+    },
+    {
+      "business": "render",
+      "count": 3
+    },
+    {
+      "business": "secrets",
+      "count": 1
+    },
+    {
+      "business": "parent",
+      "count": 1
+    },
+    {
+      "business": "みんなのWA",
+      "count": 1
+    },
+    {
+      "business": "claude",
+      "count": 1
     },
     {
       "business": "cron",
@@ -211,10 +239,6 @@
       "count": 1
     },
     {
-      "business": "render",
-      "count": 1
-    },
-    {
       "business": "carat",
       "count": 1
     },
@@ -224,10 +248,6 @@
     }
   ],
   "daily_histogram": [
-    {
-      "date": "2026-05-03",
-      "count": 0
-    },
     {
       "date": "2026-05-04",
       "count": 0
@@ -262,11 +282,11 @@
     },
     {
       "date": "2026-05-12",
-      "count": 9
+      "count": 12
     },
     {
       "date": "2026-05-13",
-      "count": 1
+      "count": 4
     },
     {
       "date": "2026-05-14",
@@ -274,17 +294,21 @@
     },
     {
       "date": "2026-05-15",
-      "count": 0
+      "count": 1
     },
     {
       "date": "2026-05-16",
-      "count": 0
+      "count": 2
+    },
+    {
+      "date": "2026-05-17",
+      "count": 7
     }
   ],
   "cma_apps": [],
   "totals": {
-    "consul_work_total": 32,
-    "recent_7d_total": 32,
+    "consul_work_total": 49,
+    "recent_7d_total": 49,
     "tasks_open_total": 15
   }
 }

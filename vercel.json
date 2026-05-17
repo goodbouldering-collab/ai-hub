@@ -4,18 +4,26 @@
     "api/**/*.ts": {
       "runtime": "@vercel/node@5.1.6",
       "maxDuration": 60,
-      "includeFiles": "{site/static/admin/**,content/consul-work/**,outputs/agents_status.json}"
+      "includeFiles": "{site/static/admin/**,site/static/ops/**,content/consul-work/**,outputs/agents_status.json}"
     }
   },
+  "redirects": [
+    { "source": "/admin/docs", "destination": "/ops", "permanent": false },
+    { "source": "/admin/docs/", "destination": "/ops", "permanent": false }
+  ],
   "rewrites": [
     { "source": "/admin", "destination": "/api/admin" },
     { "source": "/admin/", "destination": "/api/admin" },
-    { "source": "/admin/docs", "destination": "/api/admin/docs" },
-    { "source": "/admin/docs/", "destination": "/api/admin/docs" },
     { "source": "/admin/chat", "destination": "/api/admin/chat" },
     { "source": "/admin/chat/", "destination": "/api/admin/chat" },
     { "source": "/admin/status", "destination": "/api/admin/status" },
     { "source": "/admin/status/", "destination": "/api/admin/status" },
+    { "source": "/ops", "destination": "/api/ops" },
+    { "source": "/ops/", "destination": "/api/ops" },
+    { "source": "/ops/prompts", "destination": "/api/ops/prompts" },
+    { "source": "/ops/prompts/", "destination": "/api/ops/prompts" },
+    { "source": "/ops/doc", "destination": "/api/ops/doc" },
+    { "source": "/ops/doc/", "destination": "/api/ops/doc" },
     { "source": "/watch", "destination": "/watch/index.html" },
     { "source": "/watch/", "destination": "/watch/index.html" }
   ]

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="color-scheme" content="dark">
+<title>OPS — AIハブ運用本部</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#0a0d1a;--bg2:#0d1126;--panel:rgba(255,255,255,.05);
+    --border:rgba(255,255,255,.13);--text:#e8ebf5;--muted:#9aa2bd;
+    --accent:#7aa2ff;--accent2:#c77dff;--ok:#7eeba3;--warn:#ffcf6b;--err:#ff7a90;
+    --chip:rgba(122,162,255,.16);
+  }
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Hiragino Sans','Noto Sans JP',sans-serif;
+    background:linear-gradient(180deg,#0a0d1a,#0d1126 45%,#0a0d1a);color:var(--text);
+    min-height:100vh;line-height:1.6;-webkit-text-size-adjust:100%;
+    padding:env(safe-area-inset-top) env(safe-area-inset-right) calc(env(safe-area-inset-bottom) + 70px) env(safe-area-inset-left)}
+  .wrap{max-width:880px;margin:0 auto;padding:18px 14px}
+  header.top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:6px}
+  header.top h1{font-size:17px;font-weight:800;letter-spacing:.06em;
+    background:linear-gradient(100deg,var(--accent),var(--accent2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .gen{font-size:11px;color:var(--muted)}
+  .pills{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 4px}
+  .pill{font-size:11.5px;padding:4px 10px;border-radius:999px;background:var(--chip);
+    border:1px solid var(--border);color:var(--text);white-space:nowrap}
+  .pill .c{font-weight:800;color:var(--accent);margin-left:5px}
+  .pill.muted{background:rgba(255,255,255,.04);color:var(--muted)}
+  section.card{background:var(--panel);border:1px solid var(--border);border-radius:16px;
+    padding:16px 15px;margin-top:14px;backdrop-filter:blur(8px)}
+  section.card>h2{font-size:14px;font-weight:800;letter-spacing:.04em;display:flex;
+    align-items:center;gap:8px;margin-bottom:12px}
+  section.card>h2 .badge{font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;
+    background:var(--chip);color:var(--accent)}
+  ul.list{list-style:none}
+  ul.list li{padding:11px 0;border-bottom:1px solid var(--border)}
+  ul.list li:last-child{border-bottom:none}
+  .rowmeta{display:flex;gap:7px;align-items:center;margin-bottom:4px;flex-wrap:wrap}
+  .biz{font-size:10px;font-weight:700;padding:1px 7px;border-radius:999px;
+    background:rgba(199,125,255,.18);color:var(--accent2)}
+  .date{font-size:10.5px;color:var(--muted)}
+  .task-txt{font-size:13.5px;color:var(--text);display:block}
+  .task-txt b{color:var(--warn)}
+  .muted-row{color:var(--muted);font-size:13px}
+  /* prompts */
+  .pcat{margin-bottom:14px}
+  .pcat>h3{font-size:12px;color:var(--accent);font-weight:700;margin:2px 0 8px;
+    text-transform:uppercase;letter-spacing:.05em}
+  .pcard{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:11px;
+    padding:11px 12px;margin-bottom:8px}
+  .pcard .pt{font-size:13.5px;font-weight:700;margin-bottom:4px}
+  .pcard .pb{font-size:12px;color:var(--muted);white-space:pre-wrap;word-break:break-word;
+    max-height:54px;overflow:hidden;position:relative;transition:max-height .2s}
+  .pcard .pb.open{max-height:1200px}
+  .pcard .pacts{display:flex;gap:6px;margin-top:9px;flex-wrap:wrap}
+  button,.btn{font:inherit;font-size:12px;font-weight:700;padding:6px 12px;border-radius:9px;
+    border:1px solid var(--border);background:rgba(255,255,255,.06);color:var(--text);
+    cursor:pointer;transition:.15s;-webkit-tap-highlight-color:transparent}
+  button:hover,.btn:hover{background:rgba(122,162,255,.16);border-color:rgba(122,162,255,.4)}
+  button.primary{background:linear-gradient(100deg,var(--accent),var(--accent2));
+    color:#0a0d1a;border:none}
+  button.danger{color:var(--err)}
+  button.mini{padding:4px 9px;font-size:11px}
+  .addbar{display:flex;gap:8px;margin-bottom:12px}
+  .addbar button{flex:1}
+  details.doc{border:1px solid var(--border);border-radius:11px;margin-bottom:7px;
+    background:rgba(255,255,255,.03)}
+  details.doc>summary{padding:11px 13px;cursor:pointer;font-size:13px;list-style:none;
+    display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  details.doc>summary::-webkit-details-marker{display:none}
+  details.doc>summary::before{content:'▸';color:var(--accent);font-size:11px}
+  details.doc[open]>summary::before{content:'▾'}
+  .docbody{padding:4px 16px 18px;font-size:13.5px;border-top:1px solid var(--border)}
+  .docbody h1,.docbody h2,.docbody h3{margin:16px 0 8px;line-height:1.35}
+  .docbody h1{font-size:18px;color:var(--accent)}
+  .docbody h2{font-size:15.5px;border-bottom:1px solid var(--border);padding-bottom:5px}
+  .docbody h3{font-size:14px;color:var(--accent2)}
+  .docbody p,.docbody li{margin:7px 0}
+  .docbody ul,.docbody ol{margin:8px 0 8px 20px}
+  .docbody code{background:rgba(0,0,0,.4);padding:2px 5px;border-radius:5px;font-size:12px}
+  .docbody pre{background:rgba(0,0,0,.4);padding:12px;border-radius:9px;overflow-x:auto;margin:10px 0}
+  .docbody table{border-collapse:collapse;width:100%;font-size:12px;margin:10px 0;display:block;overflow-x:auto}
+  .docbody th,.docbody td{border:1px solid var(--border);padding:6px 9px;text-align:left}
+  .docbody a{color:var(--accent)}
+  .filter{width:100%;padding:9px 12px;border-radius:10px;background:rgba(255,255,255,.06);
+    border:1px solid var(--border);color:var(--text);font:inherit;font-size:13px;margin-bottom:11px}
+  .navbar{position:fixed;left:0;right:0;bottom:0;display:flex;background:rgba(13,17,38,.92);
+    backdrop-filter:blur(14px);border-top:1px solid var(--border);
+    padding:8px 6px calc(8px + env(safe-area-inset-bottom));z-index:50}
+  .navbar a{flex:1;text-align:center;font-size:11px;color:var(--muted);text-decoration:none;
+    padding:6px 2px;border-radius:9px}
+  .navbar a.act{color:var(--accent);background:var(--chip)}
+  .navbar a .ic{display:block;font-size:17px;margin-bottom:2px}
+  .empty{color:var(--muted);font-size:13px;padding:8px 0}
+  .err-banner{background:rgba(255,122,144,.13);border:1px solid rgba(255,122,144,.4);
+    color:var(--err);padding:11px 13px;border-radius:11px;font-size:12.5px;margin-top:12px}
+  dialog{background:var(--bg2);color:var(--text);border:1px solid var(--border);
+    border-radius:16px;padding:0;width:92vw;max-width:560px}
+  dialog::backdrop{background:rgba(0,0,0,.6);backdrop-filter:blur(3px)}
+  .dlg-in{padding:20px 18px}
+  .dlg-in h3{font-size:15px;margin-bottom:14px}
+  .dlg-in label{display:block;font-size:11.5px;color:var(--muted);margin:10px 0 4px}
+  .dlg-in input,.dlg-in textarea{width:100%;padding:9px 11px;border-radius:9px;
+    background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--text);
+    font:inherit;font-size:13px}
+  .dlg-in textarea{min-height:160px;resize:vertical;line-height:1.55}
+  .dlg-acts{display:flex;gap:8px;justify-content:flex-end;margin-top:16px}
+  .toast{position:fixed;left:50%;bottom:84px;transform:translateX(-50%);
+    background:var(--bg2);border:1px solid var(--border);color:var(--text);
+    padding:10px 18px;border-radius:999px;font-size:12.5px;z-index:99;opacity:0;
+    transition:opacity .25s;pointer-events:none}
+  .toast.show{opacity:1}
+  @media(min-width:760px){
+    .wrap{padding:26px 20px}
+    section.card{padding:20px 22px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1>⚙️ OPS — AIハブ運用本部</h1>
+    <span class="gen" id="gen">読込中…</span>
+  </header>
+  <div class="pills" id="pills"></div>
+  <div id="errbox"></div>
+
+  <!-- ① これからやること -->
+  <section class="card" id="sec-tasks">
+    <h2>🎯 これからやること <span class="badge" id="task-n">0</span></h2>
+    <ul class="list" id="tasks"><li class="empty">読込中…</li></ul>
+  </section>
+
+  <!-- ② プロンプト集 -->
+  <section class="card" id="sec-prompts">
+    <h2>💬 プロンプト集 <span class="badge" id="prompt-n">0</span></h2>
+    <div class="addbar">
+      <button class="primary" id="btn-new">＋ 新規プロンプト</button>
+    </div>
+    <input class="filter" id="pfilter" placeholder="プロンプトを絞り込み（タイトル・本文・カテゴリ）">
+    <div id="prompts"><div class="empty">読込中…</div></div>
+  </section>
+
+  <!-- ③ これまでやったこと -->
+  <section class="card" id="sec-log">
+    <h2>📈 これまでやったこと</h2>
+    <h3 style="font-size:12px;color:var(--accent);margin:2px 0 8px;letter-spacing:.05em">最近の成果物</h3>
+    <ul class="list" id="works"><li class="empty">読込中…</li></ul>
+    <h3 style="font-size:12px;color:var(--accent);margin:16px 0 8px;letter-spacing:.05em">CMA 生成アプリ</h3>
+    <ul class="list" id="cma"><li class="empty">—</li></ul>
+  </section>
+
+  <!-- ④ 原文ビューア -->
+  <section class="card" id="sec-docs">
+    <h2>📚 原文ビューア <span class="badge" id="doc-n">0</span></h2>
+    <input class="filter" id="dfilter" placeholder="ドキュメントを絞り込み（日付・事業・タイトル）">
+    <div id="docs"><div class="empty">読込中…</div></div>
+  </section>
+</div>
+
+<nav class="navbar">
+  <a href="#sec-tasks" class="act"><span class="ic">🎯</span>タスク</a>
+  <a href="#sec-prompts"><span class="ic">💬</span>プロンプト</a>
+  <a href="#sec-log"><span class="ic">📈</span>ログ</a>
+  <a href="#sec-docs"><span class="ic">📚</span>原文</a>
+</nav>
+
+<dialog id="dlg">
+  <form method="dialog" class="dlg-in" id="dlg-form">
+    <h3 id="dlg-title">プロンプト編集</h3>
+    <input type="hidden" id="f-id">
+    <label>カテゴリ（投稿 / 動画台本 / ブログ など自由に）</label>
+    <input id="f-cat" list="cats" placeholder="general">
+    <datalist id="cats"></datalist>
+    <label>タイトル</label>
+    <input id="f-title" placeholder="例: Instagram 投稿（クライミングジム告知）" required>
+    <label>本文（プロンプト）</label>
+    <textarea id="f-body" placeholder="ここに繰り返し使うプロンプトを書く"></textarea>
+    <div class="dlg-acts">
+      <button type="button" id="dlg-cancel">キャンセル</button>
+      <button type="button" class="primary" id="dlg-save">保存</button>
+    </div>
+  </form>
+</dialog>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function toast(m){const t=$('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200);}
+async function api(path,opt){
+  const r=await fetch(path,Object.assign({headers:{'Content-Type':'application/json'}},opt||{}));
+  const txt=await r.text();let j;try{j=JSON.parse(txt);}catch{j={raw:txt};}
+  if(!r.ok)throw new Error(j&&j.error?j.error:('HTTP '+r.status));
+  return j;
+}
+
+/* ---- ①③ status.json（タスク / 活動ログ）---- */
+async function loadStatus(){
+  try{
+    const d=await api('/api/admin/status');
+    $('gen').textContent='更新 '+(d.generated_at||'').replace('T',' ').replace('Z','');
+    const t=d.totals||{};
+    const pills=[
+      `<span class="pill">直近7日<span class="c">${t.recent_7d_total??0}</span></span>`,
+      `<span class="pill">未対応<span class="c">${t.tasks_open_total??0}</span></span>`,
+      `<span class="pill muted">work全体 ${t.consul_work_total??0}件</span>`
+    ];
+    (d.per_business_recent||[]).slice(0,6).forEach(b=>
+      pills.push(`<span class="pill">${esc(b.business)}<span class="c">${b.count}</span></span>`));
+    $('pills').innerHTML=pills.join('');
+
+    const tasks=d.tasks_open||[];
+    $('task-n').textContent=tasks.length;
+    $('tasks').innerHTML=tasks.length?tasks.map(x=>`
+      <li><div class="rowmeta">${x.business?`<span class="biz">${esc(x.business)}</span>`:''}<span class="date">${esc(x.date)}</span></div>
+      <span class="task-txt">${esc(x.snippet)}</span></li>`).join(''):
+      '<li class="empty">未対応タスクなし</li>';
+
+    const w=d.recent_works||[];
+    $('works').innerHTML=w.length?w.map(x=>`
+      <li><div class="rowmeta">${x.business?`<span class="biz">${esc(x.business)}</span>`:''}<span class="date">${esc(x.date)}</span></div>
+      <span class="task-txt">${esc(x.title)}</span></li>`).join(''):
+      '<li class="empty">記録なし</li>';
+
+    const c=d.cma_apps||[];
+    $('cma').innerHTML=c.length?c.slice(0,8).map(x=>`
+      <li><span class="task-txt">${esc(x.name||x.app||JSON.stringify(x))}</span></li>`).join(''):
+      '<li class="empty">—</li>';
+  }catch(e){
+    $('errbox').innerHTML=`<div class="err-banner">運用データの取得に失敗: ${esc(e.message)}</div>`;
+  }
+}
+
+/* ---- ② プロンプト CRUD ---- */
+let PROMPTS=[];
+function renderPrompts(){
+  const q=$('pfilter').value.trim().toLowerCase();
+  let list=PROMPTS;
+  if(q)list=list.filter(p=>(p.title+p.body+p.category).toLowerCase().includes(q));
+  $('prompt-n').textContent=PROMPTS.length;
+  const cats=[...new Set(PROMPTS.map(p=>p.category||'general'))].sort();
+  $('cats').innerHTML=cats.map(c=>`<option value="${esc(c)}">`).join('');
+  if(!list.length){$('prompts').innerHTML='<div class="empty">プロンプトなし。「＋ 新規プロンプト」で追加。</div>';return;}
+  const byCat={};list.forEach(p=>{(byCat[p.category||'general']=byCat[p.category||'general']||[]).push(p);});
+  $('prompts').innerHTML=Object.keys(byCat).sort().map(cat=>`
+    <div class="pcat"><h3>${esc(cat)}</h3>${byCat[cat].map(p=>`
+      <div class="pcard">
+        <div class="pt">${esc(p.title)}</div>
+        <div class="pb" id="pb-${p.id}">${esc(p.body)||'<span style="opacity:.5">（本文なし）</span>'}</div>
+        <div class="pacts">
+          <button class="mini" onclick="togglePB('${p.id}')">展開</button>
+          <button class="mini" onclick="copyP('${p.id}')">📋 コピー</button>
+          <button class="mini" onclick="editP('${p.id}')">編集</button>
+          <button class="mini" onclick="cloneP('${p.id}')">複製</button>
+          <button class="mini danger" onclick="delP('${p.id}')">削除</button>
+        </div>
+      </div>`).join('')}</div>`).join('');
+}
+window.togglePB=id=>{const e=$('pb-'+id);e.classList.toggle('open');};
+window.copyP=async id=>{const p=PROMPTS.find(x=>x.id===id);try{await navigator.clipboard.writeText(p.body||'');toast('コピーしました');}catch{toast('コピー不可（手動選択を）');}};
+window.editP=id=>openDlg(PROMPTS.find(x=>x.id===id));
+window.cloneP=async id=>{try{await api('/api/ops/prompts',{method:'POST',body:JSON.stringify({cloneFrom:id})});toast('複製しました');await loadPrompts();}catch(e){toast('失敗: '+e.message);}};
+window.delP=async id=>{if(!confirm('このプロンプトを削除しますか？'))return;try{await api('/api/ops/prompts',{method:'DELETE',body:JSON.stringify({id})});toast('削除しました');await loadPrompts();}catch(e){toast('失敗: '+e.message);}};
+function openDlg(p){
+  $('dlg-title').textContent=p?'プロンプト編集':'新規プロンプト';
+  $('f-id').value=p?p.id:'';
+  $('f-cat').value=p?p.category:'';
+  $('f-title').value=p?p.title:'';
+  $('f-body').value=p?p.body:'';
+  $('dlg').showModal();
+}
+$('btn-new').onclick=()=>openDlg(null);
+$('dlg-cancel').onclick=()=>$('dlg').close();
+$('dlg-save').onclick=async()=>{
+  const id=$('f-id').value,title=$('f-title').value.trim();
+  if(!title){toast('タイトルは必須です');return;}
+  const payload={category:$('f-cat').value.trim()||'general',title,body:$('f-body').value};
+  try{
+    if(id)await api('/api/ops/prompts',{method:'PUT',body:JSON.stringify(Object.assign({id},payload))});
+    else await api('/api/ops/prompts',{method:'POST',body:JSON.stringify(payload)});
+    $('dlg').close();toast('保存しました');await loadPrompts();
+  }catch(e){toast('保存失敗: '+e.message);}
+};
+$('pfilter').oninput=renderPrompts;
+async function loadPrompts(){
+  try{const d=await api('/api/ops/prompts');PROMPTS=d.prompts||[];renderPrompts();}
+  catch(e){$('prompts').innerHTML=`<div class="err-banner">プロンプト取得失敗: ${esc(e.message)}（ops_prompts テーブル未作成の可能性）</div>`;}
+}
+
+/* ---- ④ 原文ビューア（遅延ロード）---- */
+let DOCS=[];
+function renderDocs(){
+  const q=$('dfilter').value.trim().toLowerCase();
+  let list=DOCS;
+  if(q)list=list.filter(d=>(d.date+d.category+d.title).toLowerCase().includes(q));
+  $('doc-n').textContent=DOCS.length;
+  if(!list.length){$('docs').innerHTML='<div class="empty">該当なし</div>';return;}
+  $('docs').innerHTML=list.map(d=>`
+    <details class="doc" data-slug="${esc(d.slug)}">
+      <summary><span class="biz">${esc(d.category)}</span><span class="date">${esc(d.date)}</span> ${esc(d.title)}</summary>
+      <div class="docbody"><div class="empty">開くと読み込みます…</div></div>
+    </details>`).join('');
+  document.querySelectorAll('details.doc').forEach(el=>{
+    el.addEventListener('toggle',async()=>{
+      if(!el.open||el.dataset.loaded)return;
+      const body=el.querySelector('.docbody');
+      try{const d=await api('/api/ops/doc?file='+encodeURIComponent(el.dataset.slug));
+        body.innerHTML=d.html||'<div class="empty">本文なし</div>';el.dataset.loaded='1';}
+      catch(e){body.innerHTML=`<div class="err-banner">読込失敗: ${esc(e.message)}</div>`;}
+    });
+  });
+}
+$('dfilter').oninput=renderDocs;
+async function loadDocs(){
+  try{
+    const d=await api('/api/ops/doc');DOCS=d.docs||[];renderDocs();
+    // タスク等から /ops?file=<name> で飛んできたら該当原文を自動展開
+    const want=new URLSearchParams(location.search).get('file');
+    if(want){
+      const slug=want.replace(/\.md$/,'');
+      const el=document.querySelector(`details.doc[data-slug="${CSS.escape(slug)}"]`);
+      if(el){el.open=true;el.scrollIntoView({behavior:'smooth',block:'start'});}
+    }
+  }catch(e){$('docs').innerHTML=`<div class="err-banner">原文一覧取得失敗: ${esc(e.message)}</div>`;}
+}
+
+/* ---- nav highlight ---- */
+const secs=['sec-tasks','sec-prompts','sec-log','sec-docs'];
+window.addEventListener('scroll',()=>{
+  let cur=secs[0];
+  for(const s of secs){if($(s).getBoundingClientRect().top<140)cur=s;}
+  document.querySelectorAll('.navbar a').forEach(a=>
+    a.classList.toggle('act',a.getAttribute('href')==='#'+cur));
+},{passive:true});
+
+/* ---- boot ---- */
+loadStatus();loadPrompts();loadDocs();
+</script>
+</body>
+</html>

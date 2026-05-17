@@ -135,7 +135,7 @@ def _collect() -> dict:
             "filename": name,
             "title": _title_of(text, name),
             "business": _business_label(name),
-            "path": f"/admin/docs?file={name}",
+            "path": f"/ops?file={name}#sec-docs",
         })
 
     for date, name, path in works_files[:40]:  # 直近 40 件まで task 抽出
@@ -147,7 +147,7 @@ def _collect() -> dict:
                 "filename": name,
                 "business": _business_label(name),
                 "snippet": t,
-                "path": f"/admin/docs?file={name}",
+                "path": f"/ops?file={name}#sec-docs",
             })
     tasks_open = tasks_open[:20]  # トップ 20 件まで
 

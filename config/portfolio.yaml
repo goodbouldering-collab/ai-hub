@@ -14,10 +14,10 @@ portfolio:
     slug: minanowa
     url: https://minanowa.com
     aliases:
-      - https://3000-i26mzzri6plazftdqznnd-b32ec7bb.sandbox.novita.ai/
+      - https://minanowa.vercel.app
     status: live
     category: コミュニティ
-    tech: [Express, JSON Store]
+    tech: [Vercel, Supabase]
     summary: 彦根市の異業種交流会。登録・イベント・紹介のプラットフォーム
     since: 2025-03
 
@@ -43,9 +43,9 @@ portfolio:
     slug: plogging-japan
     url: https://plogging.jp
     status: live
-    category: NPO
-    tech: [Angular]
-    summary: ゴミ拾いランニング(Plogging)の日本公式
+    category: 店舗EC
+    tech: [カラーミーショップ, EUC-JP]
+    summary: ゴミ拾いランニング(Plogging)の日本公式ショップ
     since: 2020-04
 
   - name: モクシャチャイ
@@ -59,11 +59,14 @@ portfolio:
 
   - name: N-デザイン
     slug: n-design
-    url: https://neri-design.co.jp
+    url: https://n-design.work
+    aliases:
+      - https://n-design-lemon.vercel.app
+      - https://neri-design.co.jp
     status: live
     category: 企業サイト
-    tech: [Vite, React]
-    summary: ネリデザイン(株)の Webマーケティング事業サイト
+    tech: [Next.js, Supabase]
+    summary: 滋賀県彦根市の工務店サイト
     since: 2019-04
 
   - name: ClimbHero
@@ -77,21 +80,41 @@ portfolio:
 
   - name: 協同組合ビジネス21
     slug: business21
-    url: https://business21.jp
+    url: https://business21.vercel.app
     status: live
     category: 協同組合
-    tech: [Next.js]
-    summary: 滋賀の中小企業向け組合のコミュニティ・広報サイト
+    tech: [Next.js, Supabase]
+    summary: 外国人技能実習・監理団体の業務統合 Web システム
     since: 2024-11
 
   - name: カラッと＋
     slug: karatto-plus
-    url: https://ajlmshqi.gensparkspace.com
+    url: https://karatto.life
+    aliases:
+      - https://ajlmshqi.gensparkspace.com
     status: live
-    category: プロジェクトLP
-    tech: [Genspark]
-    summary: カラッとヒーロー1億達成プロジェクトの拠点
+    category: 店舗EC
+    tech: [Shopify, Cloudflare Workers]
+    summary: カラッとヒーローの Shopify ストア
     since: 2025-01
+
+  - name: トラスト
+    slug: trust
+    url: https://trust-nine-tau.vercel.app
+    status: live
+    category: 業務システム
+    tech: [Next.js, Supabase, LINE Bot]
+    summary: 障害者グループホームのシフト管理・LINE Bot 連携
+    since: 2026-05
+
+  - name: AIハブ
+    slug: ai-hub
+    url: https://ai-hub-jp.vercel.app
+    status: live
+    category: ポートフォリオ
+    tech: [Vercel, Supabase, GitHub Actions]
+    summary: AIをひとつに集めるマイページ + AI集約パイプライン
+    since: 2025-04
 
   # ---- 生成・試作系 ----
   - name: 今心

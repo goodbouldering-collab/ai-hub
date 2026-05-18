@@ -18,26 +18,47 @@
     background:linear-gradient(180deg,#ffffff 0%,#f8fafc 100%);
     color:var(--text); min-height:100vh; padding:24px; line-height:1.6; }
   ::selection { background: var(--primary); color: #fff; }
-  .container { max-width:960px; margin:0 auto; }
-  .topbar {
-    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap;
-    gap:14px; margin-bottom:18px;
+  .container { max-width:960px; margin:0 auto; padding-top:24px; }
+  /* PORTAL(build_portal.py)と同一の site-header に統一。中身は管理用動線。 */
+  header.site-header {
+    position:fixed; inset:0 0 auto 0; z-index:50;
+    transition:background .3s, box-shadow .3s, backdrop-filter .3s;
   }
+  header.site-header.scrolled {
+    background:rgba(255,255,255,0.92);
+    box-shadow:0 1px 0 rgba(15,23,42,0.05), 0 10px 30px rgba(15,23,42,0.04);
+    backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px);
+  }
+  .site-header-inner {
+    max-width:1280px; margin:0 auto; padding:14px 24px;
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+  }
+  .site-logo {
+    font-size:18px; font-weight:800; letter-spacing:-.01em;
+    color:var(--text); text-decoration:none;
+    display:inline-flex; align-items:center; gap:8px;
+  }
+  .site-logo .dot { width:8px; height:8px; border-radius:999px; background:var(--primary); display:inline-block; }
+  .site-nav { display:flex; align-items:center; gap:22px; flex-wrap:wrap; }
+  .site-nav a.nav-link {
+    font-size:13.5px; font-weight:600; color:var(--text-soft);
+    text-decoration:none; transition:color .2s;
+  }
+  .site-nav a.nav-link:hover { color:var(--primary); }
+  .site-nav .login-btn {
+    display:inline-flex; align-items:center; gap:6px;
+    padding:9px 18px; border-radius:999px;
+    background:var(--text); color:#fff;
+    font-size:13px; font-weight:700;
+    text-decoration:none; transition:background .2s, transform .2s;
+  }
+  .site-nav .login-btn:hover { background:var(--primary); transform:translateY(-1px); }
+  .topbar { margin-bottom:18px; }
   .topbar h1 {
     font-size:22px; font-weight:800; letter-spacing:-.01em; color:var(--text);
     display:inline-flex; align-items:center; gap:10px;
   }
   .topbar h1 .dot { width:10px; height:10px; border-radius:999px; background:var(--primary); }
-  .topbar-actions { display:flex; gap:8px; flex-wrap:wrap; }
-  .topbar-actions a {
-    display:inline-flex; align-items:center; gap:6px;
-    padding:8px 14px; border-radius:999px;
-    background:#fff; border:1px solid var(--line);
-    font-size:12.5px; font-weight:700; color:var(--text-soft);
-    text-decoration:none; box-shadow:0 4px 12px rgba(15,23,42,.05);
-    transition:transform .2s, background .2s, color .2s;
-  }
-  .topbar-actions a:hover { background:var(--primary-bg); color:var(--primary); transform:translateY(-1px); }
   .sub { color:var(--muted); font-size:13px; margin-bottom:16px; }
   .sub a { color:var(--primary); font-weight:700; text-decoration:none; }
   .sub a:hover { text-decoration: underline; }
@@ -99,6 +120,17 @@
 </style>
 </head>
 <body>
+<header class="site-header scrolled" id="site-header">
+  <div class="site-header-inner">
+    <a class="site-logo" href="/"><span class="dot"></span>AIハブ <span style="color:var(--muted);font-weight:600;font-size:13px;margin-left:6px;">社内エージェント</span></a>
+    <nav class="site-nav" aria-label="管理ナビ">
+      <a class="nav-link" href="/">🌐 公開トップ</a>
+      <a class="nav-link" href="/admin">🛠 管理画面</a>
+      <a class="nav-link" href="/ops">⚙️ 運用本部（OPS）</a>
+      <a class="login-btn" href="/admin">↩ 管理へ戻る</a>
+    </nav>
+  </div>
+</header>
 <div class="container">
   <div class="topbar">
     <div>
@@ -106,11 +138,6 @@
       <p class="sub">
         consul/work と各事業の CLAUDE.md を参照して回答します。
       </p>
-    </div>
-    <div class="topbar-actions">
-      <a href="/">🌐 公開トップ</a>
-      <a href="/admin">🛠 管理画面</a>
-      <a href="/ops">⚙️ 運用本部（OPS）</a>
     </div>
   </div>
 

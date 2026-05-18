@@ -28,6 +28,9 @@ except Exception:
 
 ROOT = Path(__file__).resolve().parent.parent
 BUSINESSES_YAML = ROOT / "config" / "businesses.yaml"
+PROFILE_YAML = ROOT / "config" / "profile.yaml"
+PORTFOLIO_YAML = ROOT / "config" / "portfolio.yaml"
+SPEAKER_MD = ROOT / "content" / "speaker.md"
 DIST = ROOT / "site" / "dist"
 LECTURES_DIR = ROOT / "content" / "lectures"
 
@@ -133,6 +136,86 @@ def _load_recent_lectures(limit: int = 3) -> list[dict]:
                 end = raw.index("\n---", 3)
                 fm = raw[3:end].strip()
                 meta = yaml.safe_load(fm) or {}
+            except Exception:
+                pass
+        items.append({
+            "slug": f.stem,
+            "title": str(meta.get("title") or f.stem),
+            "date": str(meta.get("date") or ""),
+            "summary": str(meta.get("summary") or ""),
+        })
+    return items
+
+
+def _load_speaker() -> dict:
+    """speaker.md の frontmatter + 「プロフィール」段落だけ取り出す（LP要約用）。
+    本文の全文は詳細ページ speaker.html 側が担う。ソースは改変しない。"""
+    if not SPEAKER_MD.exists():
+        return {}
+    raw = SPEAKER_MD.read_text(encoding="utf-8")
+    meta: dict = {}
+    body = raw
+    if raw.startswith("---"):
+        try:
+            end = raw.index("\n---", 3)
+            meta = yaml.safe_load(raw[3:end].strip()) or {}
+            body = raw[end + 4:]
+        except Exception:
+            pass
+    # 「## プロフィール」直後〜次の「## 」までを要約段落として抽出
+    intro = ""
+    lines = body.splitlines()
+    capture = False
+    buf: list[str] = []
+    for ln in lines:
+        if ln.strip().startswith("## プロフィール"):
+            capture = True
+            continue
+        if capture and ln.strip().startswith("## "):
+            break
+        if capture and ln.strip() and not ln.strip().startswith(">"):
+            buf.append(ln.strip())
+    intro = " ".join(buf).strip()
+    return {
+        "name": str(meta.get("name") or OWNER_NAME),
+        "role": str(meta.get("role") or ""),
+        "intro": intro,
+    }
+
+
+def _load_profile() -> dict:
+    if not PROFILE_YAML.exists():
+        return {}
+    try:
+        return yaml.safe_load(PROFILE_YAML.read_text(encoding="utf-8")) or {}
+    except Exception as e:
+        print(f"[!] profile.yaml load error: {e}")
+        return {}
+
+
+def _load_portfolio() -> list[dict]:
+    if not PORTFOLIO_YAML.exists():
+        return []
+    try:
+        data = yaml.safe_load(PORTFOLIO_YAML.read_text(encoding="utf-8")) or {}
+        return data.get("portfolio") or []
+    except Exception as e:
+        print(f"[!] portfolio.yaml load error: {e}")
+        return []
+
+
+def _load_all_lectures() -> list[dict]:
+    """講習資料を全件（新しい順）。LP の講習資料セクション用。"""
+    if not LECTURES_DIR.exists():
+        return []
+    items: list[dict] = []
+    for f in sorted(LECTURES_DIR.glob("*.md"), reverse=True):
+        raw = f.read_text(encoding="utf-8")
+        meta: dict = {}
+        if raw.startswith("---"):
+            try:
+                end = raw.index("\n---", 3)
+                meta = yaml.safe_load(raw[3:end].strip()) or {}
             except Exception:
                 pass
         items.append({
@@ -713,21 +796,25 @@ def _render_header() -> str:
         "<div class='site-header-inner'>"
         "<a class='site-logo' href='/'><span class='dot'></span>AIハブ <span style='color:var(--muted);font-weight:600;font-size:13px;margin-left:6px;'>by 由井辰美</span></a>"
         "<nav class='site-nav' aria-label='メインナビ'>"
+        "<a class='nav-link' href='#speaker'>講師紹介</a>"
+        "<a class='nav-link' href='#profile'>経歴</a>"
         "<a class='nav-link' href='#services'>サービス</a>"
-        "<a class='nav-link' href='#works'>実績</a>"
-        "<a class='nav-link' href='#flow'>ご依頼の流れ</a>"
-        "<a class='nav-link' href='#profile'>プロフィール</a>"
-        "<a class='nav-link' href='#faq'>FAQ</a>"
+        "<a class='nav-link' href='#portfolio'>実績</a>"
+        "<a class='nav-link' href='#lectures'>講習資料</a>"
         "<div class='menu-wrap'>"
         "<button class='menu-toggle' id='menu-toggle' aria-haspopup='menu' aria-expanded='false'>メニュー"
         "<svg class='chev' width='14' height='14' viewBox='0 0 20 20' fill='none' aria-hidden='true'><path d='M5 8l5 5 5-5' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>"
         "</button>"
         "<div class='menu-drop' id='menu-drop' role='menu'>"
-        "<a href='/lectures/index.html'>📝 講習資料</a>"
+        "<a href='#works'>🏢 事業ポートフォリオ</a>"
+        "<a href='#flow'>🧭 ご依頼の流れ</a>"
+        "<a href='#faq'>❓ よくある質問</a>"
         "<a href='/watch/index.html'>📡 AI Watch（毎朝ダイジェスト）</a>"
-        "<a href='/portfolio.html'>🏆 実績ページ</a>"
-        "<a href='/speaker.html'>🎤 講師紹介</a>"
-        "<a href='/profile.html'>📜 経歴</a>"
+        "<a href='/programming-map.html'>🗺 プログラミングマップ</a>"
+        "<a href='/lectures/index.html'>📝 講習資料の詳細・PDF</a>"
+        "<a href='/portfolio.html'>🏆 実績ページ（詳細）</a>"
+        "<a href='/speaker.html'>🎤 講師紹介（詳細）</a>"
+        "<a href='/profile.html'>📜 経歴（詳細）</a>"
         "</div>"
         "</div>"
         "<a class='login-btn' href='/admin'>🔐 管理ログイン</a>"
@@ -737,13 +824,16 @@ def _render_header() -> str:
         "</button>"
         "</div>"
         "<div class='mobile-nav' id='mobile-nav'>"
+        "<a href='#speaker'>講師紹介</a>"
+        "<a href='#profile'>経歴</a>"
         "<a href='#services'>サービス</a>"
-        "<a href='#works'>実績</a>"
+        "<a href='#portfolio'>実績</a>"
+        "<a href='#works'>事業ポートフォリオ</a>"
+        "<a href='#lectures'>講習資料</a>"
         "<a href='#flow'>ご依頼の流れ</a>"
-        "<a href='#profile'>プロフィール</a>"
         "<a href='#faq'>FAQ</a>"
-        "<a href='/lectures/index.html'>講習資料</a>"
         "<a href='/watch/index.html'>AI Watch</a>"
+        "<a href='/programming-map.html'>プログラミングマップ</a>"
         "<a class='login-btn-mobile' href='/admin'>🔐 管理ログイン</a>"
         "</div>"
         "</header>"
@@ -1009,6 +1099,143 @@ def _render_faq() -> str:
     return "".join(parts)
 
 
+def _render_speaker_section() -> str:
+    """L1 講師紹介セクション。speaker.md（今の活動・AI講師の顔）を要約。
+    詳細全文は speaker.html へ誘導。"""
+    sp = _load_speaker()
+    name = html.escape(sp.get("name") or OWNER_NAME)
+    role = html.escape(sp.get("role") or "")
+    intro = html.escape(sp.get("intro") or "")
+    role_html = f"<p style='font-weight:700;color:var(--primary);margin:0 0 12px;'>{role}</p>" if role else ""
+    intro_html = f"<p>{intro}</p>" if intro else ""
+    return (
+        "<div class='profile-block'>"
+        "<div>"
+        f"<h3>{name}</h3>"
+        f"{role_html}"
+        f"{intro_html}"
+        "<p style='font-weight:700;color:var(--text);'>「異端OK、数字根拠で経営を変える」</p>"
+        "<a class='see-all' href='/speaker.html'>講師紹介を詳しく見る →</a>"
+        "</div>"
+        "<div class='profile-avatar'>🎤</div>"
+        "</div>"
+    )
+
+
+def _render_career_section() -> str:
+    """L2 経歴セクション。profile.yaml（生い立ちからの物語）の stats + timeline 主要分。
+    全 timeline は profile.html へ誘導。"""
+    prof = _load_profile()
+    if not prof:
+        return ""
+    parts: list[str] = []
+    meta = prof.get("meta") or {}
+    subtitle = html.escape(str(meta.get("subtitle") or ""))
+    if subtitle:
+        parts.append(f"<p class='section-sub'>{subtitle}</p>")
+
+    stats = prof.get("stats") or []
+    if stats:
+        parts.append("<div class='stats-strip' style='margin-bottom:40px;'>")
+        for s in stats[:6]:
+            num = html.escape(str(s.get("number") or ""))
+            lbl = html.escape(str(s.get("label") or ""))
+            parts.append(
+                f"<div class='stat'><div class='num'>{num}</div>"
+                f"<div class='label'>{lbl}</div></div>"
+            )
+        parts.append("</div>")
+
+    timeline = prof.get("timeline") or []
+    if timeline:
+        # 直近〜重要な節目を6件（新しい順を尊重しつつ末尾=最新が来る配列なので逆順）
+        picked = list(reversed(timeline))[:6]
+        parts.append("<div class='profile-timeline'>")
+        for t in picked:
+            year = html.escape(str(t.get("year") or ""))
+            role = html.escape(str(t.get("role") or ""))
+            desc = str(t.get("description") or "").strip()
+            # description は複数行 markdown。先頭1段落だけ・**強調**は除去して要約に
+            first = desc.split("\n\n")[0].replace("**", "").replace("\n", " ").strip()
+            desc_html = html.escape(first)
+            parts.append(
+                "<div class='profile-tl-item'>"
+                f"<div class='profile-tl-year'>{year}</div>"
+                f"<div class='profile-tl-role'>{role}</div>"
+                f"<div class='profile-tl-desc'>{desc_html}</div>"
+                "</div>"
+            )
+        parts.append("</div>")
+
+    parts.append("<a class='see-all' href='/profile.html'>全経歴・技術遍歴を見る →</a>")
+    return "".join(parts)
+
+
+def _render_portfolio_section() -> str:
+    """L3 制作実績セクション。portfolio.yaml の全件をカードグリッドで。
+    詳細は portfolio.html へ誘導。"""
+    items = _load_portfolio()
+    if not items:
+        return ""
+    parts: list[str] = ["<div class='pf-grid'>"]
+    for it in items:
+        name = html.escape(str(it.get("name") or ""))
+        url = html.escape(str(it.get("url") or ""), quote=True)
+        summary = html.escape(str(it.get("summary") or ""))
+        category = html.escape(str(it.get("category") or ""))
+        status = str(it.get("status") or "")
+        tech = it.get("tech") or []
+        since = html.escape(str(it.get("since") or ""))
+        status_label = {"live": "公開中", "dev": "開発中", "retired": "終了"}.get(status, "")
+        status_cls = {"live": "", "dev": " dev", "retired": " retired"}.get(status, "")
+        chips = ""
+        if category:
+            chips += f"<span class='pf-chip cat'>{category}</span>"
+        for tg in (tech if isinstance(tech, list) else [])[:3]:
+            chips += f"<span class='pf-chip'>{html.escape(str(tg))}</span>"
+        if status_label:
+            chips += f"<span class='pf-chip{status_cls}'>{status_label}</span>"
+        host = url.replace("https://", "").replace("http://", "").rstrip("/")
+        is_link = bool(it.get("url"))
+        tag = "a" if is_link else "div"
+        href = f" href='{url}' target='_blank' rel='noopener'" if is_link else ""
+        since_html = f"<span class='pf-host'>since {since}</span>" if since else ""
+        parts.append(
+            f"<{tag} class='pf-card'{href}>"
+            f"<div class='pf-title'>{name}</div>"
+            f"<div class='pf-host'>{html.escape(host)}</div>"
+            f"<div class='pf-sum'>{summary}</div>"
+            f"<div class='pf-meta'>{chips}</div>"
+            f"{since_html}"
+            f"</{tag}>"
+        )
+    parts.append("</div>")
+    parts.append("<a class='see-all' href='/portfolio.html'>実績ページを詳しく見る →</a>")
+    return "".join(parts)
+
+
+def _render_lectures_section() -> str:
+    """L4 講習資料セクション。全件カード + プログラミングマップ導線 + 一覧DL動線。"""
+    lecs = _load_all_lectures()
+    parts: list[str] = []
+    if lecs:
+        parts.append("<div class='lecture-grid'>")
+        for lec in lecs:
+            parts.append(_render_lecture_card(lec))
+        parts.append("</div>")
+    else:
+        parts.append("<p class='section-sub'>講習資料は準備中です。</p>")
+    # プログラミングマップ（lectures に内包する既存方針を踏襲）
+    parts.append(
+        "<div class='watch-link-bar' style='margin-top:24px;'>"
+        "<p>🗺 用語と全体像をビジュアルで把握できる <strong>プログラミングマップ</strong> も公開中</p>"
+        "<a href='/programming-map.html'>プログラミングマップを開く →</a>"
+        "</div>"
+    )
+    parts.append("<a class='see-all' href='/lectures/index.html'>講習資料の一覧・PDF DL →</a>")
+    return "".join(parts)
+
+
 def _render_profile() -> str:
     return (
         "<div class='profile-block'>"
@@ -1148,16 +1375,22 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append(_render_hero())
     parts.append(_render_stats())
 
-    # 事例ギャラリー（営業ヒット率を上げる視覚パンチ）
-    parts.append("<section class='block' id='gallery'>")
-    parts.append("<p class='section-heading fade-up'>WORK GALLERY</p>")
-    parts.append("<h2 class='section-title fade-up d1'>つくれるもの・任せられること</h2>")
-    parts.append("<p class='section-sub fade-up d2'>LP・EC・LINE Bot・社内 RAG。「企画 → 制作 → 運用」をぜんぶ自社で。</p>")
-    parts.append(_render_gallery())
+    # 講師紹介（誰が — speaker.md：今の活動・AI講師の顔）
+    parts.append("<section class='block' id='speaker'>")
+    parts.append("<p class='section-heading fade-up'>SPEAKER</p>")
+    parts.append("<h2 class='section-title fade-up d1'>講師紹介</h2>")
+    parts.append("<p class='section-sub fade-up d2'>AI 活用の啓発・講習・地域コミュニティ運営・複数事業のマーケ支援を行う実践者。</p>")
+    parts.append(_render_speaker_section())
     parts.append("</section>")
 
+    # 経歴（なぜ信頼できるか — profile.yaml：生い立ちからの物語）
+    parts.append("<section class='block' id='profile'>")
+    parts.append("<p class='section-heading fade-up'>CAREER</p>")
+    parts.append("<h2 class='section-title fade-up d1'>経歴</h2>")
+    parts.append(_render_career_section())
+    parts.append("</section>")
 
-    # サービス
+    # サービス（何を）
     parts.append("<section class='block' id='services'>")
     parts.append("<p class='section-heading fade-up'>SERVICES</p>")
     parts.append("<h2 class='section-title fade-up d1'>提供できる 6 つのこと</h2>")
@@ -1165,7 +1398,15 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append(_render_services())
     parts.append("</section>")
 
-    # 実績（事業ポートフォリオ + クライアント案件をまとめて表示）
+    # 制作実績（証拠① — portfolio.yaml の作品実績）
+    parts.append("<section class='block' id='portfolio'>")
+    parts.append("<p class='section-heading fade-up'>PORTFOLIO</p>")
+    parts.append("<h2 class='section-title fade-up d1'>制作実績</h2>")
+    parts.append("<p class='section-sub fade-up d2'>アプリ・LP・ブランドサイト・診断ツール。企画から実装まで自分で手を動かした成果物。</p>")
+    parts.append(_render_portfolio_section())
+    parts.append("</section>")
+
+    # 事業ポートフォリオ（証拠② — 運営事業）
     parts.append("<section class='block' id='works'>")
     parts.append("<p class='section-heading fade-up'>WORKS</p>")
     parts.append("<h2 class='section-title fade-up d1'>事業ポートフォリオ</h2>")
@@ -1177,6 +1418,22 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append("</div>")
     parts.append("</section>")
 
+    # 講習資料（学べる）
+    parts.append("<section class='block' id='lectures'>")
+    parts.append("<p class='section-heading fade-up'>LECTURES</p>")
+    parts.append("<h2 class='section-title fade-up d1'>講習資料</h2>")
+    parts.append("<p class='section-sub fade-up d2'>AI 業務活用・SNSアルゴリズム・LLMO（AI検索最適化）の講習で使う資料。</p>")
+    parts.append(_render_lectures_section())
+    parts.append("</section>")
+
+    # 事例ギャラリー（営業ヒット率を上げる視覚パンチ）
+    parts.append("<section class='block' id='gallery'>")
+    parts.append("<p class='section-heading fade-up'>WORK GALLERY</p>")
+    parts.append("<h2 class='section-title fade-up d1'>つくれるもの・任せられること</h2>")
+    parts.append("<p class='section-sub fade-up d2'>LP・EC・LINE Bot・社内 RAG。「企画 → 制作 → 運用」をぜんぶ自社で。</p>")
+    parts.append(_render_gallery())
+    parts.append("</section>")
+
     # ご依頼の流れ
     parts.append("<section class='block' id='flow'>")
     parts.append("<p class='section-heading'>FLOW</p>")
@@ -1184,25 +1441,6 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append("<p class='section-sub'>ご相談から公開・運用まで、最短 2 週間で動き始めます。</p>")
     parts.append(_render_flow())
     parts.append("</section>")
-
-    # プロフィール
-    parts.append("<section class='block' id='profile'>")
-    parts.append("<p class='section-heading'>PROFILE</p>")
-    parts.append("<h2 class='section-title'>プロフィール</h2>")
-    parts.append(_render_profile())
-    parts.append("</section>")
-
-    # 最新の講習資料（あれば）
-    if recent_lectures:
-        parts.append("<section class='block' id='news'>")
-        parts.append("<p class='section-heading'>NEWS</p>")
-        parts.append("<h2 class='section-title'>最新の講習資料</h2>")
-        parts.append("<div class='lecture-grid'>")
-        for lec in recent_lectures:
-            parts.append(_render_lecture_card(lec))
-        parts.append("</div>")
-        parts.append("<div style='text-align:center;'><a class='see-all' href='/lectures/index.html'>すべての講習資料を見る →</a></div>")
-        parts.append("</section>")
 
     # FAQ
     parts.append("<section class='block' id='faq'>")

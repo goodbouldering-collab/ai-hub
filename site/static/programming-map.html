@@ -11,14 +11,24 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
-    /* トップ(PORTAL_CSS)に合わせ accent を primary 系へ統一。
-       既存セレクタの var(--accent2/3) 参照を壊さず虹グラデを実質単色化。 */
-    --accent1:#2563eb;
-    --accent2:#2563eb;
-    --accent3:#2563eb;
-    --ai-muted:#64748b;
+    /* PORTAL_CSS と同一のトークン体系を正本に。
+       独自変数(--accent1/2/3 等)は PORTAL 名へのエイリアスとして残し、
+       既存セレクタの var(--accent*) 参照を壊さず変数体系だけ共通化。 */
+    --primary:#2563eb;
+    --text:#0f172a;
+    --text-soft:#334155;
+    --muted:#64748b;
+    --line:#e2e8f0;
+    --bg-base:#f8fafc;
+    --bg-white:#ffffff;
+    --primary-bg:#eff6ff;
+    /* --- 互換エイリアス（PORTAL トークンを参照） --- */
+    --accent1:var(--primary);
+    --accent2:var(--primary);
+    --accent3:var(--primary);
+    --ai-muted:var(--muted);
     --ai-glass-bg:rgba(255,255,255,.92);
-    --ai-glass-border:#e2e8f0;
+    --ai-glass-border:var(--line);
   }
   html, body { min-height: 100%; }
   body {

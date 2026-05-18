@@ -1,0 +1,1017 @@
+# AIハブ 全ソース統合版 2026-05-18
+# 生成日時: 2026-05-18 03:45:07
+# 記事数: 165件
+
+このファイルは NotebookLM などに丸ごと投入して使うことを想定しています。
+
+======================================================================
+
+## カテゴリ: AIニュース (35件)
+
+### [The Verge AI] Revamped Siri will reportedly offer auto-deleting chats
+- URL: https://www.theverge.com/tech/932207/siri-apple-intelligence-auto-deleting-chats
+- 取得: 2026-05-18 03:45:02
+- 公開: 2026-05-17T14:40:28-04:00
+- 原文抜粋: Apple is hoping that its record on privacy can be the differentiator on the AI front, and maybe even buy it a little slack as it continues to lag behind the competition. According to Bloomberg's Mark Gurman, the more chatbot-like Siri set to debut in iOS 27 will include the option to autodelete chat...
+
+### [The Verge AI] University of Arizona students boo Eric Schmidt’s AI cheerleading during commencement
+- URL: https://www.theverge.com/ai-artificial-intelligence/932203/university-of-arizona-students-boo-eric-schmidt-ai-commencement
+- 取得: 2026-05-18 03:45:02
+- 公開: 2026-05-17T13:22:23-04:00
+- 原文抜粋: Former Google CEO Eric Schmidt delivered the commencement address at the University of Arizona on Friday. And, as his speech veered into talk of AI, he was repeatedly drowned out by boos. AI is already a contentious topic, and it's not surprising that those about to enter a ravaged job market feel p...
+
+### [The Verge AI] Chatbots at the drive-thru are just the beginning
+- URL: https://www.theverge.com/column/928096/chatbots-ai-drive-thru-mcdonalds-wendys
+- 取得: 2026-05-18 03:45:02
+- 公開: 2026-05-17T08:00:00-04:00
+- 原文抜粋: This is The Stepback, a weekly newsletter breaking down one essential story from the tech world. For more news about how AI is seeping into our daily lives, follow Emma Roth. The Stepback arrives in our subscribers' inboxes at 8AM ET. Opt in for The Stepback here. How it started In 2021, McDonald's ...
+
+### [The Verge AI] Sony tries to explain that its AI Camera Assistant doesn’t suck
+- URL: https://www.theverge.com/tech/932133/sony-xperia-1-xiii-ai-camera-assistant
+- 取得: 2026-05-18 03:45:02
+- 公開: 2026-05-16T11:37:05-04:00
+- 原文抜粋: After Sony drew some unwanted attention for a post demonstrating its AI Camera Assistant on the Xperia 1 XIII, it's trying to clarify how the feature works. The company says it doesn't edit photos, but makes suggestions based on lighting, depth, and subject. Point the camera at something, and it wil...
+
+### [The Verge AI] YouTube is expanding its AI deepfake detection tool to all adult users
+- URL: https://www.theverge.com/news/931884/youtube-likeness-detection-ai-deepfake-expansion-all-adults
+- 取得: 2026-05-18 03:45:02
+- 公開: 2026-05-15T18:25:00-04:00
+- 原文抜粋: YouTube is expanding its AI likeness detection program to all users over the age of 18 - meaning just about anyone can have the platform hunt for potential deepfakes of themselves. The likeness detection feature uses a selfie-style scan of a person's face to monitor YouTube for lookalikes. If there ...
+
+### [The Verge AI] ArXiv will ban researchers who upload papers full of AI slop
+- URL: https://www.theverge.com/science/931766/arxiv-ai-slop-ban-researchers
+- 取得: 2026-05-18 03:45:02
+- 公開: 2026-05-15T16:38:19-04:00
+- 原文抜粋: ArXiv, a popular platform for preprint academic research, is taking a new step to attempt to reduce the volume of papers that include AI slop. If a paper has "incontrovertible evidence that the authors did not check the results of LLM generation," such as hallucinated references or "meta-comments" l...
+
+### [The Verge AI] OpenAI keeps shuffling its executives in bid to win AI agent battle
+- URL: https://www.theverge.com/ai-artificial-intelligence/931544/openai-keeps-shuffling-its-executives-in-bid-to-win-ai-agent-battle
+- 取得: 2026-05-18 03:45:02
+- 公開: 2026-05-15T14:21:35-04:00
+- 原文抜粋: OpenAI announced yet another reorganization Friday, consolidating certain areas and making company president Greg Brockman the official lead of all things product. In a memo viewed by The Verge, Brockman wrote that since OpenAI's product strategy for this year is to go all-in on AI agents, the compa...
+
+### [The Verge AI] AI radio hosts demonstrate why AI can’t be trusted alone
+- URL: https://www.theverge.com/ai-artificial-intelligence/931479/andon-labs-ai-radio-companies
+- 取得: 2026-05-18 03:45:02
+- 公開: 2026-05-15T13:09:16-04:00
+- 原文抜粋: Andon Labs has been running a series of experiments in which AI agents run businesses without human intervention. Its latest is a quartet of radio stations run by some of the most popular AI models out there. "Thinking Frequencies" is run by Claude, "OpenAIR" by ChatGPT, "Backlink Broadcast" by Goog...
+
+### [The Verge AI] Does Trump Mobile know how many stripes are on the American flag?
+- URL: https://www.theverge.com/gadgets/931347/trump-mobile-t1-phone-logo-flag-stars-stripes
+- 取得: 2026-05-18 03:45:02
+- 公開: 2026-05-15T12:47:16-04:00
+- 原文抜粋: Where's the Trump phone? We're going to keep talking about it every week. We've reached out, as usual, to ask about the Trump phone's whereabouts. This week, despite our best hopes, we still don't have our phone - but we do have some fresh doubts about the company's patriotic credentials. This has b...
+
+### [The Verge AI] Google updates its spam rules to include attempts to ‘manipulate’ AI
+- URL: https://www.theverge.com/tech/931416/google-ai-search-spam-policy
+- 取得: 2026-05-18 03:45:02
+- 公開: 2026-05-15T12:42:59-04:00
+- 原文抜粋: Google updated its spam policy to mark attempts to "manipulate" its AI model in search results as spam, including results in AI Overview or AI Mode in Search, as Search Engine Land reports: "In the context of Google Search, spam refers to techniques used to deceive users or manipulate our Search sys...
+
+### [MIT Technology Review AI] Musk v. Altman week 3: Elon Musk and Sam Altman traded blows over each other’s credibility. Now the jury will pick a side.
+- URL: https://www.technologyreview.com/2026/05/15/1137357/musk-v-altman-week-3/
+- 取得: 2026-05-18 03:45:02
+- 公開: Fri, 15 May 2026 23:39:35 +0000
+- 原文抜粋: In the final week of the Musk v. Altman trial, lawyers traded blows over Elon Musk’s and OpenAI CEO Sam Altman’s credibility. Altman was grilled on his alleged history of lying and self-dealing involving companies that do business with OpenAI. But he fired back, painting Musk as a power-seeker who w...
+
+### [MIT Technology Review AI] How Chinese short dramas became AI content machines
+- URL: https://www.technologyreview.com/2026/05/15/1137326/chinese-short-dramas-ai/
+- 取得: 2026-05-18 03:45:02
+- 公開: Fri, 15 May 2026 09:00:00 +0000
+- 原文抜粋: In a dimly lit bedroom, a frightened young woman is thrown onto a bed by a tall, muscular man. He grabs her hand, and flame-like vines crawl across her body, fusing with her flesh. She levitates, then drops. A dragon-shaped tattoo appears across her chest. “Two months,” the man says. “Give me an hei...
+
+### [MIT Technology Review AI] Data readiness for agentic AI in financial services
+- URL: https://www.technologyreview.com/2026/05/14/1137034/data-readiness-for-agentic-ai-in-financial-services/
+- 取得: 2026-05-18 03:45:02
+- 公開: Thu, 14 May 2026 13:00:00 +0000
+- 原文抜粋: Financial services companies have unique needs when it comes to business AI. They operate in one of the most highly regulated sectors while responding to external events that are updated by the second. As a result, the success of agentic AI in financial services depends less on the sophistication of...
+
+### [MIT Technology Review AI] Establishing AI and data sovereignty in the age of autonomous systems
+- URL: https://www.technologyreview.com/2026/05/14/1137168/establishing-ai-and-data-sovereignty-in-the-age-of-autonomous-systems/
+- 取得: 2026-05-18 03:45:02
+- 公開: Thu, 14 May 2026 13:00:00 +0000
+- 原文抜粋: When generative AI first moved from research labs into real-world business applications, enterprises made a tacit bargain: “Capability now, control later.” Feed your proprietary data into third-party AI models, and you will get powerful results. But your data passes through systems you do not own, u...
+
+### [MIT Technology Review AI] The shock of seeing your body used in deepfake porn
+- URL: https://www.technologyreview.com/2026/05/14/1137161/ai-porn-nonconsensual-deepfakes-takedown-piracy-copyright/
+- 取得: 2026-05-18 03:45:02
+- 公開: Thu, 14 May 2026 09:00:00 +0000
+- 原文抜粋: When Jennifer got a job doing research for a nonprofit in 2023, she ran her new professional headshot through a facial recognition program. She wanted to see if the tech would pull up the porn videos she’d made more than 10 years before, when she was in her early 20s. It did in fact return&#8230;
+
+### [MIT Technology Review AI] AI chatbots are giving out people’s real phone numbers
+- URL: https://www.technologyreview.com/2026/05/13/1137203/ai-chatbots-are-giving-out-peoples-real-phone-numbers/
+- 取得: 2026-05-18 03:45:02
+- 公開: Wed, 13 May 2026 18:09:03 +0000
+- 原文抜粋: A Redditor recently wrote that he was “desperate for help”: for about a month, he said, his phone had been inundated by calls from “strangers” who were “looking for a lawyer, a product designer, a locksmith.” Callers were apparently misdirected by Google’s generative AI.&#160; In March, a software d...
+
+### [MIT Technology Review AI] Three things in AI to watch, according to a Nobel-winning economist
+- URL: https://www.technologyreview.com/2026/05/11/1137090/three-things-in-ai-to-watch-according-to-a-nobel-winning-economist/
+- 取得: 2026-05-18 03:45:02
+- 公開: Mon, 11 May 2026 17:35:12 +0000
+- 原文抜粋: This story originally appeared in The Algorithm, our weekly newsletter on AI. To get stories like this in your inbox first, sign up here. A few months before he was awarded the Nobel Prize in economics in 2024, Daron Acemoglu published a paper that earned him few fans in Silicon Valley. Contrary to ...
+
+### [MIT Technology Review AI] Fostering breakthrough AI innovation through customer-back engineering
+- URL: https://www.technologyreview.com/2026/05/11/1136967/fostering-breakthrough-ai-innovation-through-customer-back-engineering/
+- 取得: 2026-05-18 03:45:02
+- 公開: Mon, 11 May 2026 13:33:06 +0000
+- 原文抜粋: Despite years of digitization, organizations capture less than one-third of the value expected from digital investments, according to McKinsey research. That’s because most big companies begin with technological capabilities and bolt applications onto them, rather than starting with customer needs a...
+
+### [MIT Technology Review AI] Implementing advanced AI technologies in finance
+- URL: https://www.technologyreview.com/2026/05/11/1136786/implementing-advanced-ai-technologies-in-finance/
+- 取得: 2026-05-18 03:45:02
+- 公開: Mon, 11 May 2026 13:00:00 +0000
+- 原文抜粋: In finance departments that have long been defined by precision and control, AI has arrived less as a neatly managed upgrade than as a quiet insurgency. Employees are already using it while leadership races to impose structure, governance, and strategy after the fact. The result is a paradox: one of...
+
+### [MIT Technology Review AI] Musk v. Altman week 2: OpenAI fires back, and Shivon Zilis reveals that Musk tried to poach Sam Altman
+- URL: https://www.technologyreview.com/2026/05/08/1137008/musk-v-altman-week-2-openai-fires-back-and-shivon-zilis-reveals-that-musk-tried-to-poach-sam-altman/
+- 取得: 2026-05-18 03:45:02
+- 公開: Fri, 08 May 2026 23:59:19 +0000
+- 原文抜粋: In the second week of the landmark trial between Elon Musk and OpenAI, Musk’s motivations for bringing the suit were under scrutiny. Last week, Musk took the stand, alleging that OpenAI CEO Sam Altman and president Greg Brockman had deceived him into donating $38 million to the company. He claimed t...
+
+### [Ars Technica AI] The US is betting on AI to catch insider trading in prediction markets
+- URL: https://arstechnica.com/tech-policy/2026/05/the-us-is-betting-on-ai-to-catch-insider-trading-in-prediction-markets/
+- 取得: 2026-05-18 03:45:02
+- 公開: Sat, 16 May 2026 11:00:01 +0000
+- 原文抜粋: The Commodity Futures Trading Commission wants us to know it's taking this very seriously.
+
+### [Ars Technica AI] Anthropic’s $1.5B copyright settlement is getting messy as judge delays approval
+- URL: https://arstechnica.com/tech-policy/2026/05/authors-fight-for-higher-payouts-from-anthropics-1-5b-copyright-settlement/
+- 取得: 2026-05-18 03:45:02
+- 公開: Fri, 15 May 2026 21:51:24 +0000
+- 原文抜粋: Lawyers accused of rushing historic settlement to seize $320 million in fees.
+
+### [Ars Technica AI] Send the arXiv AI-generated slop, get a yearlong vacation from submissions
+- URL: https://arstechnica.com/science/2026/05/preprint-server-arxiv-will-ban-submitters-of-ai-generated-hallucinations/
+- 取得: 2026-05-18 03:45:02
+- 公開: Fri, 15 May 2026 18:25:53 +0000
+- 原文抜粋: One of the site's moderators described the new policy on social media.
+
+### [Ars Technica AI] OpenAI feels “burned” by Apple’s crappy ChatGPT integration, insiders say
+- URL: https://arstechnica.com/tech-policy/2026/05/openai-feels-burned-by-apples-crappy-chatgpt-integration-insiders-say/
+- 取得: 2026-05-18 03:45:02
+- 公開: Fri, 15 May 2026 18:13:33 +0000
+- 原文抜粋: Judge orders Apple to give Musk internal messages discussing secretive ChatGPT deal.
+
+### [Ars Technica AI] Pennsylvanians use town hall meeting to rail against data center boom
+- URL: https://arstechnica.com/ai/2026/05/pennsylvanians-use-town-hall-meeting-to-rail-against-data-center-boom/
+- 取得: 2026-05-18 03:45:02
+- 公開: Fri, 15 May 2026 13:51:04 +0000
+- 原文抜粋: “This is a public trust and transparency issue.”
+
+### [Ars Technica AI] Claude Code's product lead talks usage limits, transparency, and the "lean harness"
+- URL: https://arstechnica.com/ai/2026/05/claude-codes-product-lead-talks-usage-limits-transparency-and-the-lean-harness/
+- 取得: 2026-05-18 03:45:02
+- 公開: Fri, 15 May 2026 10:30:01 +0000
+- 原文抜粋: "We have no grand plan," says Anthropic's Cat Wu—but that's by design.
+
+### [Ars Technica AI] Energy supplier abandons Lake Tahoe residents to serve data centers
+- URL: https://arstechnica.com/ai/2026/05/energy-supplier-abandons-lake-tahoe-residents-to-serve-data-centers/
+- 取得: 2026-05-18 03:45:02
+- 公開: Thu, 14 May 2026 19:17:28 +0000
+- 原文抜粋: Town’s 49,000 California residents compete with Nevada data centers for energy.
+
+### [Ars Technica AI] Your doctor’s AI notetaker may be making things up, Ontario audit finds
+- URL: https://arstechnica.com/health/2026/05/your-doctors-ai-notetaker-may-be-making-things-up-ontario-audit-finds/
+- 取得: 2026-05-18 03:45:02
+- 公開: Thu, 14 May 2026 17:28:43 +0000
+- 原文抜粋: Made-up therapy referrals, incorrect prescriptions among the common mistakes.
+
+### [Ars Technica AI] Desperate Trump taps "Tim Apple," Jensen Huang, Elon Musk to attend Xi summit
+- URL: https://arstechnica.com/tech-policy/2026/05/desperate-trump-taps-tim-apple-jensen-huang-elon-musk-to-attend-xi-summit/
+- 取得: 2026-05-18 03:45:02
+- 公開: Thu, 14 May 2026 11:00:58 +0000
+- 原文抜粋: Xi meeting may force Trump to pivot on chip restrictions and Taiwan.
+
+### [Ars Technica AI] AI invades Princeton, where 30% of students cheat—but peers won't snitch
+- URL: https://arstechnica.com/tech-policy/2026/05/ai-driven-cheating-widespread-even-at-elite-schools-like-princeton/
+- 取得: 2026-05-18 03:45:02
+- 公開: Wed, 13 May 2026 19:47:24 +0000
+- 原文抜粋: Old "honor code" systems are under strain.
+
+### [Ars Technica AI] Altman forced to confront claims at OpenAI trial that he's a prolific liar
+- URL: https://arstechnica.com/tech-policy/2026/05/altman-forced-to-confront-claims-at-openai-trial-that-hes-a-prolific-liar/
+- 取得: 2026-05-18 03:45:02
+- 公開: Wed, 13 May 2026 17:48:05 +0000
+- 原文抜粋: "Very painful": Altman relives his Muskian reaction to losing control over OpenAI.
+
+### [Ars Technica AI] Anthropic blames dystopian sci-fi for training AI models to act “evil”
+- URL: https://arstechnica.com/ai/2026/05/anthropic-blames-dystopian-sci-fi-for-training-ai-models-to-act-evil/
+- 取得: 2026-05-18 03:45:02
+- 公開: Wed, 13 May 2026 16:31:18 +0000
+- 原文抜粋: But training on "synthetic stories" that model good AI behavior can help.
+
+### [Ars Technica AI] Rivian adds a new onboard AI assistant to its latest software update
+- URL: https://arstechnica.com/cars/2026/05/rivian-adds-a-new-onboard-ai-assistant-to-its-latest-software-update/
+- 取得: 2026-05-18 03:45:02
+- 公開: Wed, 13 May 2026 12:45:30 +0000
+- 原文抜粋: The Rivian Assistant is available for both Gen1 and Gen2 hardware.
+
+### [Ars Technica AI] The newest AI boom pitch: Host a mini data center at your home
+- URL: https://arstechnica.com/ai/2026/05/the-newest-ai-boom-pitch-host-a-mini-data-center-at-your-home/
+- 取得: 2026-05-18 03:45:02
+- 公開: Tue, 12 May 2026 21:59:03 +0000
+- 原文抜粋: The plan aims to speed up AI compute deployment while compensating residents.
+
+### [Ars Technica AI] “Will I be OK?” Teen died after ChatGPT pushed deadly mix of drugs, lawsuit says
+- URL: https://arstechnica.com/tech-policy/2026/05/will-i-be-ok-teen-died-after-chatgpt-pushed-deadly-mix-of-drugs-lawsuit-says/
+- 取得: 2026-05-18 03:45:02
+- 公開: Tue, 12 May 2026 19:00:25 +0000
+- 原文抜粋: Teen trusted ChatGPT to help him “safely” experiment with drugs, logs show.
+
+======================================================================
+
+## カテゴリ: AI公式 (30件)
+
+### [OpenAI Blog] OpenAI and Malta partner to bring ChatGPT Plus to all citizens
+- URL: https://openai.com/index/malta-chatgpt-plus-partnership
+- 取得: 2026-05-18 03:44:57
+- 公開: Sat, 16 May 2026 00:00:00 GMT
+- 原文抜粋: OpenAI and Malta partner to expand AI access, offering ChatGPT Plus and training to help citizens build practical AI skills and use AI responsibly.
+
+### [OpenAI Blog] How business operations teams use Codex
+- URL: https://openai.com/academy/codex-for-work/how-business-operations-teams-use-codex
+- 取得: 2026-05-18 03:44:57
+- 公開: Fri, 15 May 2026 00:00:00 GMT
+- 原文抜粋: See how business operations teams can use Codex to create initiative briefs, strategy updates, leadership decision packets, progress updates, and more from real work inputs.
+
+### [OpenAI Blog] Databricks brings GPT-5.5 to enterprise agent workflows
+- URL: https://openai.com/index/databricks
+- 取得: 2026-05-18 03:44:57
+- 公開: Fri, 15 May 2026 00:00:00 GMT
+- 原文抜粋: Databricks uses GPT-5.5 for enterprise agent workflows after the model set a new state of the art on the OfficeQA Pro benchmark.
+
+### [OpenAI Blog] How data science teams use Codex
+- URL: https://openai.com/academy/codex-for-work/how-data-science-teams-use-codex
+- 取得: 2026-05-18 03:44:57
+- 公開: Fri, 15 May 2026 00:00:00 GMT
+- 原文抜粋: See how data science teams can use Codex to build root-cause briefs, impact readouts, KPI memos, scoped analyses, and dashboard specs from real work inputs.
+
+### [OpenAI Blog] A new personal finance experience in ChatGPT
+- URL: https://openai.com/index/personal-finance-chatgpt
+- 取得: 2026-05-18 03:44:57
+- 公開: Fri, 15 May 2026 00:00:00 GMT
+- 原文抜粋: Preview a new personal finance experience in ChatGPT for Pro users in the U.S. Securely connect your financial accounts and get AI-powered insights and guidance grounded in your financial context, goals, and priorities.
+
+### [OpenAI Blog] How sales teams use Codex
+- URL: https://openai.com/academy/codex-for-work/how-sales-teams-use-codex
+- 取得: 2026-05-18 03:44:57
+- 公開: Fri, 15 May 2026 00:00:00 GMT
+- 原文抜粋: See how sales teams can use Codex to create pipeline briefs, meeting prep packets, forecast reviews, account plans, and stalled-deal diagnoses from real work inputs.
+
+### [OpenAI Blog] Sea's View on the Future of Agentic Software Development with Codex
+- URL: https://openai.com/index/sea-david-chen
+- 取得: 2026-05-18 03:44:57
+- 公開: Thu, 14 May 2026 20:30:00 GMT
+- 原文抜粋: Sea Limited's CPO explains why the company is deploying Codex across engineering teams to accelerate AI-native software development in Asia.
+
+### [OpenAI Blog] Work with Codex from anywhere
+- URL: https://openai.com/index/work-with-codex-from-anywhere
+- 取得: 2026-05-18 03:44:57
+- 公開: Thu, 14 May 2026 13:00:00 GMT
+- 原文抜粋: Use Codex anywhere with the ChatGPT mobile app. Monitor, steer, and approve coding tasks in real time across devices and remote environments.
+
+### [OpenAI Blog] Helping ChatGPT better recognize context in sensitive conversations
+- URL: https://openai.com/index/chatgpt-recognize-context-in-sensitive-conversations
+- 取得: 2026-05-18 03:44:57
+- 公開: Thu, 14 May 2026 00:00:00 GMT
+- 原文抜粋: Learn how new ChatGPT safety updates improve context awareness in sensitive conversations, helping detect risk over time and respond more safely.
+
+### [OpenAI Blog] Building a safe, effective sandbox to enable Codex on Windows
+- URL: https://openai.com/index/building-codex-windows-sandbox
+- 取得: 2026-05-18 03:44:57
+- 公開: Wed, 13 May 2026 11:00:00 GMT
+- 原文抜粋: Learn how OpenAI built a secure sandbox for Codex on Windows, enabling safe, efficient coding agents with controlled file access and network restrictions.
+
+### [OpenAI Blog] Our response to the TanStack npm supply chain attack
+- URL: https://openai.com/index/our-response-to-the-tanstack-npm-supply-chain-attack
+- 取得: 2026-05-18 03:44:57
+- 公開: Wed, 13 May 2026 00:00:00 GMT
+- 原文抜粋: OpenAI details its response to the TanStack “Mini Shai-Hulud” supply chain attack, outlines protections taken to secure systems and signing certificates, and explains why macOS users must update OpenAI apps by June 12, 2026. Learn what happened, what was affected, and how OpenAI is strengthening def...
+
+### [OpenAI Blog] How finance teams use Codex
+- URL: https://openai.com/academy/how-finance-teams-use-codex
+- 取得: 2026-05-18 03:44:57
+- 公開: Tue, 12 May 2026 15:00:00 GMT
+- 原文抜粋: See how finance teams can use Codex to build MBRs, reporting packs, variance bridges, model checks, and planning scenarios from real work inputs.
+
+### [OpenAI Blog] AutoScout24 scales engineering with AI-powered workflows
+- URL: https://openai.com/index/autoscout24
+- 取得: 2026-05-18 03:44:57
+- 公開: Tue, 12 May 2026 00:00:00 GMT
+- 原文抜粋: Learn how AutoScout24 Group uses Codex and ChatGPT to speed development cycles, improve code quality, and expand AI adoption.
+
+### [OpenAI Blog] How NVIDIA engineers and researchers build with Codex
+- URL: https://openai.com/index/nvidia
+- 取得: 2026-05-18 03:44:57
+- 公開: Tue, 12 May 2026 00:00:00 GMT
+- 原文抜粋: Teams use Codex with GPT-5.5 to ship production systems and turn research ideas into runnable experiments.
+
+### [OpenAI Blog] What Parameter Golf taught us about AI-assisted research
+- URL: https://openai.com/index/what-parameter-golf-taught-us
+- 取得: 2026-05-18 03:44:57
+- 公開: Tue, 12 May 2026 00:00:00 GMT
+- 原文抜粋: Parameter Golf brought together 1,000+ participants and 2,000+ submissions to explore AI-assisted machine learning research, coding agents, quantization, and novel model design under strict constraints.
+
+### [Google DeepMind] AlphaEvolve: How our Gemini-powered coding agent is scaling impact across fields
+- URL: https://deepmind.google/blog/alphaevolve-impact/
+- 取得: 2026-05-18 03:44:58
+- 公開: Wed, 06 May 2026 10:43:49 +0000
+- 原文抜粋: Explore how AlphaEvolve's Gemini-powered algorithms are driving impact across business, infrastructure, and science.
+
+### [Google DeepMind] Enabling a new model for healthcare with AI co-clinician
+- URL: https://deepmind.google/blog/ai-co-clinician/
+- 取得: 2026-05-18 03:44:58
+- 公開: Thu, 30 Apr 2026 12:14:15 +0000
+- 原文抜粋: Researching the path to AI-augmented care and development of an AI co-clinician.
+
+### [Google DeepMind] Announcing our partnership with the Republic of Korea
+- URL: https://deepmind.google/blog/announcing-our-partnership-with-the-republic-of-korea/
+- 取得: 2026-05-18 03:44:58
+- 公開: Mon, 27 Apr 2026 07:00:06 +0000
+- 原文抜粋: Google DeepMind and Korea partner to accelerate scientific breakthroughs using frontier AI models
+
+### [Google DeepMind] Decoupled DiLoCo: A new frontier for resilient, distributed AI training
+- URL: https://deepmind.google/blog/decoupled-diloco/
+- 取得: 2026-05-18 03:44:58
+- 公開: Wed, 22 Apr 2026 10:20:03 +0000
+
+### [Google DeepMind] Partnering with industry leaders to accelerate AI transformation
+- URL: https://deepmind.google/blog/partnering-with-industry-leaders-to-accelerate-ai-transformation/
+- 取得: 2026-05-18 03:44:58
+- 公開: Tue, 21 Apr 2026 14:54:15 +0000
+- 原文抜粋: Google DeepMind partners with global consultancies to bring the power of frontier AI to organizations around the world.
+
+### [Google DeepMind] Gemini 3.1 Flash TTS: the next generation of expressive AI speech
+- URL: https://deepmind.google/blog/gemini-3-1-flash-tts-the-next-generation-of-expressive-ai-speech/
+- 取得: 2026-05-18 03:44:58
+- 公開: Wed, 15 Apr 2026 16:03:19 +0000
+- 原文抜粋: Our newest audio model introduces granular audio tags that give you precise control to direct AI speech for expressive audio generation.
+
+### [Google DeepMind] Gemini Robotics-ER 1.6: Powering real-world robotics tasks through enhanced embodied reasoning
+- URL: https://deepmind.google/blog/gemini-robotics-er-1-6/
+- 取得: 2026-05-18 03:44:58
+- 公開: Mon, 13 Apr 2026 15:52:13 +0000
+- 原文抜粋: Gemini Robotics ER 1.6: Enhancing spatial reasoning and multi-view understanding for autonomous robotics.
+
+### [Google DeepMind] Gemma 4: Byte for byte, the most capable open models
+- URL: https://deepmind.google/blog/gemma-4-byte-for-byte-the-most-capable-open-models/
+- 取得: 2026-05-18 03:44:58
+- 公開: Thu, 02 Apr 2026 16:00:49 +0000
+- 原文抜粋: Gemma 4: Our most intelligent open models to date, purpose-built for advanced reasoning and agentic workflows.
+
+### [Google DeepMind] Reimagining the mouse pointer for the AI era
+- URL: https://deepmind.google/blog/ai-pointer/
+- 取得: 2026-05-18 03:44:58
+- 公開: Sun, 29 Mar 2026 10:50:49 +0000
+- 原文抜粋: Google DeepMind is transforming the mouse pointer into a context-aware AI partner. Move beyond the friction of traditional prompting with intuitive AI collaboration in Chrome and beyond.
+
+### [Google DeepMind] Gemini 3.1 Flash Live: Making audio AI more natural and reliable
+- URL: https://deepmind.google/blog/gemini-3-1-flash-live-making-audio-ai-more-natural-and-reliable/
+- 取得: 2026-05-18 03:44:58
+- 公開: Thu, 26 Mar 2026 15:23:35 +0000
+- 原文抜粋: Our latest voice model has improved precision and lower latency to make voice interactions more fluid, natural and precise.
+
+### [Google DeepMind] Protecting people from harmful manipulation
+- URL: https://deepmind.google/blog/protecting-people-from-harmful-manipulation/
+- 取得: 2026-05-18 03:44:58
+- 公開: Wed, 25 Mar 2026 16:46:20 +0000
+- 原文抜粋: Google DeepMind researches AI's harmful manipulation risks across areas like finance and health, leading to new safety measures.
+
+### [Google DeepMind] Lyria 3 Pro: Create longer tracks in more
+- URL: https://deepmind.google/blog/lyria-3-pro-create-longer-tracks-in-more/
+- 取得: 2026-05-18 03:44:58
+- 公開: Wed, 25 Mar 2026 16:01:39 +0000
+- 原文抜粋: Introducing Lyria 3 Pro, which unlocks longer tracks with structural awareness. We’re also bringing Lyria to more Google products and surfaces.
+
+### [Google DeepMind] Measuring progress toward AGI: A cognitive framework
+- URL: https://deepmind.google/blog/measuring-progress-toward-agi-a-cognitive-framework/
+- 取得: 2026-05-18 03:44:58
+- 公開: Tue, 17 Mar 2026 16:03:47 +0000
+- 原文抜粋: We’re introducing a framework to measure progress toward AGI, and launching a Kaggle hackathon to build the relevant evaluations.
+
+### [Google DeepMind] From games to biology and beyond: 10 years of AlphaGo’s impact
+- URL: https://deepmind.google/blog/10-years-of-alphago/
+- 取得: 2026-05-18 03:44:58
+- 公開: Mon, 09 Mar 2026 13:52:36 +0000
+- 原文抜粋: Ten years since AlphaGo, we explore how it is catalyzing scientific discovery and paving a path to AGI.
+
+### [Google DeepMind] Gemini 3.1 Flash-Lite: Built for intelligence at scale
+- URL: https://deepmind.google/blog/gemini-3-1-flash-lite-built-for-intelligence-at-scale/
+- 取得: 2026-05-18 03:44:58
+- 公開: Tue, 03 Mar 2026 16:35:55 +0000
+- 原文抜粋: Gemini 3.1 Flash-Lite is our fastest and most cost-efficient Gemini 3 series model yet.
+
+======================================================================
+
+## カテゴリ: AI動画(日本語) (5件)
+
+### [AI収益化ラボ] 【OpenAI公式発表】CodexとHeygenの提携で月１００万稼ぐのが余裕になりました
+- URL: https://www.youtube.com/watch?v=umymawalFRA
+- 取得: 2026-05-18 03:45:05
+- 公開: 2026-05-17T10:01:15+00:00
+- 原文抜粋: ▼動画内で紹介したプレゼントの受け取りは以下の公式LINEから https://liff.line.me/2006805073-rn36NG8b/landing?follow=%40933hyolt&amp;lp=ez1JxT&amp;liff_id=2006805073-rn36NG8b  ▼現在開催中のセミナーを確認する https://n1seminar-vsuoymjh.manus.space/  ▼日向の右腕を募集中!▼ 日向のもとで働きたい熱意ある方をお待ちしてます！ https://liff.line.me/2006805073-rn36NG8b/landing?follow=%...
+
+### [AI収益化ラボ] 【9割が知らない】このAIツール１つで最も稼げる市場が駆逐されました【Elevenlabs】
+- URL: https://www.youtube.com/watch?v=mBMUjdq2X1M
+- 取得: 2026-05-18 03:45:05
+- 公開: 2026-05-16T10:01:15+00:00
+- 原文抜粋: ▼ 5Daysブートキャンプの参加はコチラから https://utage-system.com/p/Uicj6Ter4Lgw  ▼動画内で紹介したプレゼントの受け取りは以下の公式LINEから https://liff.line.me/2006805073-rn36NG8b/landing?follow=%40933hyolt&amp;lp=L3mV0T&amp;liff_id=2006805073-rn36NG8b  ▼現在開催中のセミナーを確認する https://n1seminar-vsuoymjh.manus.space/  ▼日向の右腕を募集中!▼ 日向のもとで働きたい熱意ある方をお...
+
+### [AI収益化ラボ] 【超簡単】OpenAIが発表した副業でも月100万を稼げる機能を解説します【Claude mobile】
+- URL: https://www.youtube.com/watch?v=mYYVUf3lMno
+- 取得: 2026-05-18 03:45:05
+- 公開: 2026-05-15T10:35:31+00:00
+- 原文抜粋: ▼ 5Daysブートキャンプの参加はコチラから https://utage-system.com/p/Uicj6Ter4Lgw  ▼ 動画内で紹介したプレゼントの受け取りは以下の公式LINEから https://liff.line.me/2006805073-rn36NG8b/landing?follow=%40933hyolt&amp;lp=uFi1gz&amp;liff_id=2006805073-rn36NG8b  ▼ 現在開催中のセミナーを確認する https://n1seminar-vsuoymjh.manus.space/  ▼ 日向の右腕を募集中！ 日向のもとで働きたい熱意ある方...
+
+### [AI収益化ラボ] 【大喧嘩】AIアンチに呼ばれたので、会社に凸ってみたw
+- URL: https://www.youtube.com/watch?v=OZDq6veR8nc
+- 取得: 2026-05-18 03:45:05
+- 公開: 2026-05-14T10:22:01+00:00
+- 原文抜粋: 西本さんのXやYouTubeはコチラから▼ X：https://x.com/lmlm1523 YouTube：https://www.youtube.com/@B_nishimoto_1223  エヌイチ5daysブートキャンプの詳細はコチラから▼ https://utage-system.com/p/Uicj6Ter4Lgw 詳細の動画はコチラから▼ https://youtu.be/1qDf_6JQ_s0  ※ 特典はオプチャに参加後、右上のタブから「ノート」を開いていただくと受け取れます。  ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ 【奥山のX】 最新のAIの使い方・AIで稼ぐ方法を...
+
+### [AI収益化ラボ] 人生変えたい人が今すぐやること3つ
+- URL: https://www.youtube.com/shorts/t7ZcdbBseQQ
+- 取得: 2026-05-18 03:45:05
+- 公開: 2026-05-14T03:00:49+00:00
+- 原文抜粋: 本編動画： https://youtu.be/1qDf_6JQ_s0  オプチャ参加： https://utage-system.com/p/Uicj6Ter4Lgw
+
+======================================================================
+
+## カテゴリ: AI国内 (20件)
+
+### [ITmedia AI+] 人間 vs. 人型ロボ、より多く作業をこなせるのは？　生配信で対決した結果……　米企業
+- URL: https://www.itmedia.co.jp/aiplus/articles/2605/18/news069.html
+- 取得: 2026-05-18 03:45:03
+- 公開: Mon, 18 May 2026 12:23:00 +0900
+- 原文抜粋: 人間と人型ロボット、どちらがより多く作業をこなせるのか――ロボット開発企業の米Figureは5月18日（日本時間）、このような勝負の様子を生配信した。
+
+### [ITmedia AI+] 「ポンコツ」と呼ばれたM365 Copilotの逆転劇、GPT-5が転換点　活用の秘訣は“脱・プロンプト職人”
+- URL: https://www.itmedia.co.jp/aiplus/articles/2605/15/news013.html
+- 取得: 2026-05-18 03:45:03
+- 公開: Mon, 18 May 2026 10:15:00 +0900
+- 原文抜粋: リリース当初は期待外れとの声もあった「Microsoft 365 Copilot」だが、近年は評価が変わってきているようだ。何が転換点だったのか。3人のMicrosoft MVPがその進化と活用の本質を語り合った座談会の模様をお届けする。
+
+### [ITmedia AI+] 伊藤忠商事や三菱ケミカルなど16社が参画　大手企業の「暗黙知」を活用する新プロジェクト
+- URL: https://www.itmedia.co.jp/business/articles/2605/18/news036.html
+- 取得: 2026-05-18 03:45:03
+- 公開: Mon, 18 May 2026 08:00:00 +0900
+- 原文抜粋: ストックマークは5月14日、企業の秘匿データや暗黙知をAIが学習・活用できる形式に変換する「AI-Ready化」の実証実験を開始すると発表した。伊藤忠商事や三菱ケミカルなど16社が協業するプロジェクトの狙いとは？
+
+### [ITmedia AI+] プロダクトファーストを貫くイーロン・マスク　中国の若手起業家たちに与え続ける「技術への執着」
+- URL: https://www.itmedia.co.jp/business/articles/2605/18/news038.html
+- 取得: 2026-05-18 03:45:03
+- 公開: Mon, 18 May 2026 07:00:00 +0900
+- 原文抜粋: イーロン・マスク氏は中国での立ち回りに神経を使ってきた。世界最大の自動車市場であり、巨大なサプライチェーンを持つ中国は、EV、太陽光発電、宇宙プログラムにまたがる彼の広大なビジネス帝国を支える上で不可欠な存在だからだ。
+
+### [ITmedia AI+] 1分で膨大なAI約款のリスクを「見える化」　天秤AI Bizが新機能を提供開始
+- URL: https://kn.itmedia.co.jp/kn/articles/2605/18/news034.html
+- 取得: 2026-05-18 03:45:03
+- 公開: Mon, 18 May 2026 07:00:00 +0900
+- 原文抜粋: GMO天秤AIは、法人向けサービス「天秤AI Biz byGMO」で、主要生成AIサービスの約款を比較できる機能「主要AI約款比較」の提供を開始した。AI導入時に負担となりやすい規約確認を効率化し、導入判断および約款変更の継続的な追跡を支援する。
+
+### [ITmedia AI+] 「AIデータセンターの電力需要が急増」はホント？　発電大手Jパワー社長が明かした“報道との温度差”
+- URL: https://www.itmedia.co.jp/business/articles/2605/18/news017.html
+- 取得: 2026-05-18 03:45:03
+- 公開: Mon, 18 May 2026 07:00:00 +0900
+- 原文抜粋: AIブームを受けて、データセンターの電力需要が急増しているといわれる。電力関連企業は対応に追われているかと思いきや、実態は異なるようだ。発電大手J-POWERの社長が実態を語った。
+
+### [ITmedia AI+] OpenAI、「ChatGPT」に個人向け資産管理機能　金融口座と連携
+- URL: https://www.itmedia.co.jp/news/articles/2605/16/news027.html
+- 取得: 2026-05-18 03:45:03
+- 公開: Sat, 16 May 2026 07:59:00 +0900
+- 原文抜粋: OpenAIは、ChatGPTの新機能として個人向け資産管理機能のプレビュー版を米国のProプランユーザー向けにリリースした。金融データネットワークPlaidを介して銀行や証券などの口座と連携し、ダッシュボードでの資産管理や、実際の財務状況に基づいたパーソナライズされた相談が可能。将来的に全ユーザーへの拡大を計画している。
+
+### [ITmedia AI+] 動画生成AIのRunwayが日本進出、60億円超を投資　「日本は世界で最も洗練されたクリエイティブ産業持つ」とCEO
+- URL: https://www.itmedia.co.jp/aiplus/articles/2605/15/news108.html
+- 取得: 2026-05-18 03:45:03
+- 公開: Fri, 15 May 2026 20:18:00 +0900
+- 原文抜粋: 動画生成AIなどを開発する米Runwayは5月14日（現地時間）、日本市場に本格進出すると発表した。
+
+### [ITmedia AI+] キオクシア社長「記録的な増収増益」　3カ月の売上収益1兆円、純利益は2990％増　好決算の背景は
+- URL: https://www.itmedia.co.jp/business/articles/2605/15/news112.html
+- 取得: 2026-05-18 03:45:03
+- 公開: Fri, 15 May 2026 20:15:00 +0900
+- 原文抜粋: キオクシアは、2026年1～3月の売上収益が1兆29億円だったと発表した。太田裕雄社長は「記録的な増収増益となった」と語る。好決算の背景は何か。
+
+### [ITmedia AI+] 「中小企業向けClaude」登場　各種SaaSと連携し業務を代行
+- URL: https://www.itmedia.co.jp/aiplus/articles/2605/15/news094.html
+- 取得: 2026-05-18 03:45:03
+- 公開: Fri, 15 May 2026 15:03:00 +0900
+- 原文抜粋: Anthropicは「Claude Cowork」で利用できるプラグイン「Claude for Small Business」を発表。さまざまなSaaSと連携し、それらの操作を代行する機能を提供する。
+
+### [ITmedia AI+] ファナックがGoogleと協業、AIエージェントでロボットを操作へ
+- URL: https://monoist.itmedia.co.jp/mn/articles/2605/15/news087.html
+- 取得: 2026-05-18 03:45:03
+- 公開: Fri, 15 May 2026 13:45:00 +0900
+- 原文抜粋: ファナックは、Googleとの協業により、産業用ロボットのフィジカルAIシステムを構築した。
+
+### [ITmedia AI+] 無料の「Apple Business」　Appleデバイス、独自ドメイン管理機能を統合
+- URL: https://atmarkit.itmedia.co.jp/ait/articles/2605/15/news059.html
+- 取得: 2026-05-18 03:45:03
+- 公開: Fri, 15 May 2026 13:00:00 +0900
+- 原文抜粋: Appleは、企業向けのオールインワンプラットフォーム「Apple Business」を発表した。モバイルデバイス管理、ビジネスメールなどを統合し、日本を含む200以上の国と地域で提供を開始した。
+
+### [ITmedia AI+] 「テキスト検索では限界」　リコーLMMは図表も扱える、“大型商用モデル並み”の実力
+- URL: https://atmarkit.itmedia.co.jp/ait/articles/2605/15/news038.html
+- 取得: 2026-05-18 03:45:03
+- 公開: Fri, 15 May 2026 13:00:00 +0900
+- 原文抜粋: リコーは、経済産業省とNEDOが実施するプロジェクト「GENIAC」第3期において、リーズニング性能を備えたマルチモーダル大規模言語モデルの開発を完了した。軽量モデルをHugging Faceで無償公開している。
+
+### [ITmedia AI+] 「邪魔すぎ」――LINE入力欄の“新AI機能”が不評　消し方は？
+- URL: https://www.itmedia.co.jp/aiplus/articles/2605/15/news084.html
+- 取得: 2026-05-18 03:45:03
+- 公開: Fri, 15 May 2026 12:47:00 +0900
+- 原文抜粋: 邪魔すぎ」「誤タップする」――「LINE」に新しく実装されたAI機能「トークルームのAgent i」に対し、Xでこのような意見が相次いでいる。同機能を非表示にする方法は？
+
+### [ITmedia AI+] OpenAI、サプライチェーン攻撃で従業員2人の端末が侵害　macOSユーザーは6月12日までにアプリ更新を
+- URL: https://www.itmedia.co.jp/news/articles/2605/15/news075.html
+- 取得: 2026-05-18 03:45:03
+- 公開: Fri, 15 May 2026 10:56:00 +0900
+- 原文抜粋: OpenAIは、サプライチェーン攻撃により従業員のデバイスが侵害されたと発表した。170以上のパッケージが影響を受け、コード署名証明書が漏洩した可能性がある。顧客データ等への影響は確認されていないが、予防措置として証明書の更新を実施。macOS版アプリのユーザーに対し、6月12日までのアプリのアップデートを求めている。
+
+### [ITmedia AI+] AI事業者が争う姿勢　朝日、日経の記事無断使用巡り
+- URL: https://www.itmedia.co.jp/news/articles/2605/15/news068.html
+- 取得: 2026-05-18 03:45:03
+- 公開: Fri, 15 May 2026 10:17:00 +0900
+- 原文抜粋: インターネットで生成AIの利用者に回答を作成する際、記事を無断使用して著作権を侵害したとして、朝日新聞社と日経新聞社が米国の事業者Perplexityに無断使用の差し止めと計44億円の損害賠償を求めた訴訟の第1回口頭弁論が東京地裁であった。Perplexity側は請求を退けるよう求めた。
+
+### [ITmedia AI+] AIデータセンター建設に米国民の7割が反対──Gallup調べ
+- URL: https://www.itmedia.co.jp/news/articles/2605/15/news066.html
+- 取得: 2026-05-18 03:45:03
+- 公開: Fri, 15 May 2026 09:44:00 +0900
+- 原文抜粋: 米世論調査企業のGallupは、居住地域でのAIデータセンター建設に対し、米国民の7割以上が反対しているとの調査結果を発表した。反対理由として資源の過剰消費や公共料金への影響が挙げられ、支持派を大きく上回っている。この強い反対姿勢は今後のインフラ拡大における大きな障壁となると分析している。
+
+### [ITmedia AI+] AIエージェントが2D図面を読図して3D化、renueが図面SaaSを機能強化
+- URL: https://monoist.itmedia.co.jp/mn/articles/2605/15/news019.html
+- 取得: 2026-05-18 03:45:03
+- 公開: Fri, 15 May 2026 09:00:00 +0900
+- 原文抜粋: renueは、図面SaaS「Drawing Agent」の機能アップデートを発表した。AIエージェントが図面ごとに適したツールを選択して読図し、2D図面から3Dモデルを生成する。さらに、最小限の設計情報から2D図面を自動生成する基盤も実装し、図面データが少ない領域への対応も進める。
+
+### [ITmedia AI+] Anthropicとゲイツ財団が提携　AIによる社会貢献に2億ドル拠出
+- URL: https://www.itmedia.co.jp/news/articles/2605/15/news064.html
+- 取得: 2026-05-18 03:45:03
+- 公開: Fri, 15 May 2026 08:42:00 +0900
+- 原文抜粋: AnthropicとGates Foundationは、AI関連のインフラやヘルスケア、教育分野を支援するため2億ドルを拠出すると発表した。市場原理ではAIが届きにくい低中所得国に対し、AIモデル「Claude」の利用クレジットや技術支援を提供する。ワクチン開発の加速や学習支援アプリの開発を通じ、AIを公平に活用できる環境を整える。
+
+### [ITmedia AI+] アクセンチュアとGoogleが新プログラム　AI全社展開で「つまづく」企業を支援へ
+- URL: https://www.itmedia.co.jp/enterprise/articles/2605/15/news050.html
+- 取得: 2026-05-18 03:45:03
+- 公開: Fri, 15 May 2026 08:00:00 +0900
+- 原文抜粋: AIの試験導入が容易になる一方で、全社での展開には依然として「壁」がある。アクセンチュアとGoogle Cloudはこの「壁」を突破するための新プログラムを発表した。
+
+======================================================================
+
+## カテゴリ: AI業界 (15件)
+
+### [Hugging Face Blog] Granite Embedding Multilingual R2: Open Apache 2.0 Multilingual Embeddings with 32K Context — Best Sub-100M Retrieval Quality
+- URL: https://huggingface.co/blog/ibm-granite/granite-embedding-multilingual-r2
+- 取得: 2026-05-18 03:45:02
+- 公開: Thu, 14 May 2026 18:55:01 GMT
+
+### [Hugging Face Blog] Unlocking asynchronicity in continuous batching
+- URL: https://huggingface.co/blog/continuous_async
+- 取得: 2026-05-18 03:45:02
+- 公開: Thu, 14 May 2026 00:00:00 GMT
+
+### [Hugging Face Blog] Building Blocks for Foundation Model Training and Inference on AWS
+- URL: https://huggingface.co/blog/amazon/foundation-model-building-blocks
+- 取得: 2026-05-18 03:45:02
+- 公開: Mon, 11 May 2026 23:18:26 GMT
+
+### [Hugging Face Blog] EMO: Pretraining mixture of experts for emergent modularity
+- URL: https://huggingface.co/blog/allenai/emo
+- 取得: 2026-05-18 03:45:02
+- 公開: Fri, 08 May 2026 16:03:50 GMT
+
+### [Hugging Face Blog] vLLM V0 to V1: Correctness Before Corrections in RL
+- URL: https://huggingface.co/blog/ServiceNow-AI/correctness-before-corrections
+- 取得: 2026-05-18 03:45:02
+- 公開: Wed, 06 May 2026 19:06:55 GMT
+
+### [Hugging Face Blog] Adding Benchmaxxer Repellant to the Open ASR Leaderboard
+- URL: https://huggingface.co/blog/open-asr-leaderboard-private-data
+- 取得: 2026-05-18 03:45:02
+- 公開: Wed, 06 May 2026 00:00:00 GMT
+
+### [Hugging Face Blog] Granite 4.1 LLMs: How They’re Built
+- URL: https://huggingface.co/blog/ibm-granite/granite-4-1
+- 取得: 2026-05-18 03:45:02
+- 公開: Wed, 29 Apr 2026 15:01:48 GMT
+
+### [Hugging Face Blog] DeepInfra on Hugging Face Inference Providers 🔥
+- URL: https://huggingface.co/blog/inference-providers-deepinfra
+- 取得: 2026-05-18 03:45:02
+- 公開: Wed, 29 Apr 2026 00:00:00 GMT
+
+### [Hugging Face Blog] Introducing NVIDIA Nemotron 3 Nano Omni: Long-Context Multimodal Intelligence for Documents, Audio and Video Agents
+- URL: https://huggingface.co/blog/nvidia/nemotron-3-nano-omni-multimodal-intelligence
+- 取得: 2026-05-18 03:45:02
+- 公開: Tue, 28 Apr 2026 15:58:57 GMT
+
+### [Hugging Face Blog] How to build scalable web apps with OpenAI's Privacy Filter
+- URL: https://huggingface.co/blog/openai-privacy-filter-web-apps
+- 取得: 2026-05-18 03:45:02
+- 公開: Mon, 27 Apr 2026 00:00:00 GMT
+
+### [Hugging Face Blog] DeepSeek-V4: a million-token context that agents can actually use
+- URL: https://huggingface.co/blog/deepseekv4
+- 取得: 2026-05-18 03:45:02
+- 公開: Fri, 24 Apr 2026 00:00:00 GMT
+
+### [Hugging Face Blog] How to Use Transformers.js in a Chrome Extension
+- URL: https://huggingface.co/blog/transformersjs-chrome-extension
+- 取得: 2026-05-18 03:45:02
+- 公開: Thu, 23 Apr 2026 00:00:00 GMT
+
+### [Hugging Face Blog] QIMMA قِمّة ⛰: A Quality-First Arabic LLM Leaderboard
+- URL: https://huggingface.co/blog/tiiuae/qimma-arabic-leaderboard
+- 取得: 2026-05-18 03:45:02
+- 公開: Tue, 21 Apr 2026 10:09:58 GMT
+
+### [Hugging Face Blog] AI and the Future of Cybersecurity: Why Openness Matters
+- URL: https://huggingface.co/blog/cybersecurity-openness
+- 取得: 2026-05-18 03:45:02
+- 公開: Tue, 21 Apr 2026 00:00:00 GMT
+
+### [Hugging Face Blog] Ecom-RLVE: Adaptive Verifiable Environments for E-Commerce Conversational Agents
+- URL: https://huggingface.co/blog/ecom-rlve
+- 取得: 2026-05-18 03:45:02
+- 公開: Thu, 16 Apr 2026 00:00:00 GMT
+
+======================================================================
+
+## カテゴリ: AI研究者ブログ (20件)
+
+### [Simon Willison's Weblog] GDS weighs in on the NHS's decision to retreat from Open Source
+- URL: https://simonwillison.net/2026/May/17/gds-weighs-in/#atom-everything
+- 取得: 2026-05-18 03:45:02
+- 公開: 2026-05-17T15:59:41+00:00
+- 原文抜粋: <p><strong><a href="https://shkspr.mobi/blog/2026/05/gds-weighs-in-on-the-nhss-decision-to-retreat-from-open-source/">GDS weighs in on the NHS&#x27;s decision to retreat from Open Source</a></strong></p> Terence Eden continues his coverage of the NHS' <a href="https://shkspr.mobi/blog/2026/05/nhs-go...
+
+### [Simon Willison's Weblog] Warelay -> OpenClaw
+- URL: https://simonwillison.net/2026/May/16/openclaw-names/#atom-everything
+- 取得: 2026-05-18 03:45:02
+- 公開: 2026-05-16T20:23:30+00:00
+- 原文抜粋: <p>In preparation for a lightning talk I'm giving at PyCon US <a href="https://us.pycon.org/2026/schedule/presentation/175/">this afternoon</a> I decided to figure out how many names OpenClaw has <em>actually</em> had since that <a href="https://github.com/openclaw/openclaw/commit/f6dd362d39b8e30bd7...
+
+### [Simon Willison's Weblog] Quoting Julia Evans
+- URL: https://simonwillison.net/2026/May/16/julia-evans/#atom-everything
+- 取得: 2026-05-18 03:45:02
+- 公開: 2026-05-16T16:45:37+00:00
+- 原文抜粋: <blockquote cite="https://jvns.ca/blog/2026/05/15/moving-away-from-tailwind--and-learning-to-structure-my-css-/"><p>[...] in the last 10 years I’ve learned to really love and respect CSS as a technology.</p> <p>So I decided years ago that I wanted to react to “CSS is hard” by getting better at CSS a...
+
+### [Simon Willison's Weblog] inaturalist-clumper 0.1
+- URL: https://simonwillison.net/2026/May/15/inaturalist-clumper/#atom-everything
+- 取得: 2026-05-18 03:45:02
+- 公開: 2026-05-15T23:53:11+00:00
+- 原文抜粋: <p><strong>Release:</strong> <a href="https://github.com/simonw/inaturalist-clumper/releases/tag/0.1">inaturalist-clumper 0.1</a></p>         <p>Part of the infrastructure I use for <a href="https://simonwillison.net/2026/May/1/inat-sightings/">publishing my iNaturalist sightings on my blog</a>. I'v...
+
+### [Simon Willison's Weblog] Western Gull, Rock Pigeon
+- URL: https://simonwillison.net/2026/May/15/sighting-361818285/#atom-everything
+- 取得: 2026-05-18 03:45:02
+- 公開: 2026-05-15T14:42:00+00:00
+- 原文抜粋: <p><img alt="Western Gull" src="https://static.inaturalist.org/photos/660343826/large.jpg" /></p><p><img alt="Rock Pigeon" src="https://static.inaturalist.org/photos/660344126/large.jpg" /></p><p>Western Gull, Rock Pigeon, in Los Angeles Area (custom), CA, US</p><p>I went for a bird walk in the morn...
+
+### [Simon Willison's Weblog] QR code generator
+- URL: https://simonwillison.net/2026/May/15/qr-code-generator/#atom-everything
+- 取得: 2026-05-18 03:45:02
+- 公開: 2026-05-15T04:00:49+00:00
+- 原文抜粋: <p><strong>Tool:</strong> <a href="https://tools.simonwillison.net/qr-code-generator">QR code generator</a></p>         <p>Claude helped me build this tool for creating QR codes, for both text/URLs and for connecting to WiFi networks.</p> <p><img alt="Screenshot of a QR code generator web form. Head...
+
+### [Simon Willison's Weblog] datasette-llm-limits 0.1a0
+- URL: https://simonwillison.net/2026/May/15/datasette-llm-limits/#atom-everything
+- 取得: 2026-05-18 03:45:02
+- 公開: 2026-05-15T00:42:09+00:00
+- 原文抜粋: <p><strong>Release:</strong> <a href="https://github.com/datasette/datasette-llm-limits/releases/tag/0.1a0">datasette-llm-limits 0.1a0</a></p>         <p>This plugin works in conjunction with <a href="https://github.com/datasette/datasette-llm">datasette-llm</a> and <a href="https://github.com/datas...
+
+### [Simon Willison's Weblog] Not so locked in any more
+- URL: https://simonwillison.net/2026/May/14/not-so-locked-in/#atom-everything
+- 取得: 2026-05-18 03:45:02
+- 公開: 2026-05-14T22:53:49+00:00
+- 原文抜粋: <p>This <a href="https://simonwillison.net/2026/May/14/mitchell-hashimoto/">Mitchell Hashimoto quote</a> about Bun migrating from Zig to Rust reminded me of a similar conversation I had at a conference last week.</p> <p>I was talking to someone who worked for a medium sized technology company with a...
+
+### [Simon Willison's Weblog] Quoting Mitchell Hashimoto
+- URL: https://simonwillison.net/2026/May/14/mitchell-hashimoto/#atom-everything
+- 取得: 2026-05-18 03:45:02
+- 公開: 2026-05-14T22:31:20+00:00
+- 原文抜粋: <blockquote cite="https://twitter.com/mitchellh/status/2055039647924007222"><p>[...] On the interesting side is how fungible programming languages are nowadays. Programming languages used to be LOCK IN, and they're increasingly not so. You think the Bun rewrite in Rust is good for Rust? Bun has show...
+
+### [Simon Willison's Weblog] datasette-ip-rate-limit 0.1a0
+- URL: https://simonwillison.net/2026/May/14/datasette-ip-rate-limit/#atom-everything
+- 取得: 2026-05-18 03:45:02
+- 公開: 2026-05-14T04:10:23+00:00
+- 原文抜粋: <p><strong>Release:</strong> <a href="https://github.com/datasette/datasette-ip-rate-limit/releases/tag/0.1a0">datasette-ip-rate-limit 0.1a0</a></p>         <p>The <a href="https://datasette.io/">datasette.io</a> site was being hammered by poorly-behaved crawlers, so I had Codex (GPT-5.5 xhigh) buil...
+
+### [Simon Willison's Weblog] Welcome to the Datasette blog
+- URL: https://simonwillison.net/2026/May/13/welcome-to-the-datasette-blog/#atom-everything
+- 取得: 2026-05-18 03:45:02
+- 公開: 2026-05-13T23:59:39+00:00
+- 原文抜粋: <p><strong><a href="https://datasette.io/blog/2026/new-blog/">Welcome to the Datasette blog</a></strong></p> We have a bunch of neat Datasette announcements in the pipeline so we decided it was time the project grew an official blog.</p> <p>I built this using OpenAI Codex desktop, which turns out to...
+
+### [Simon Willison's Weblog] Quoting Boris Mann
+- URL: https://simonwillison.net/2026/May/13/boris-mann/#atom-everything
+- 取得: 2026-05-18 03:45:02
+- 公開: 2026-05-13T16:15:50+00:00
+- 原文抜粋: <blockquote cite="https://bsky.app/profile/bmann.ca/post/3mlp2ipupv22z"><p>“11 AI agents” is meaningless as a phrase. </p> <p>If I said “I have 11 spreadsheets” or “I have 11 browser tabs” to do my work, it means about the same thing.</p></blockquote> <p class="cite">&mdash; <a href="https://bsky.ap...
+
+### [Simon Willison's Weblog] CSP Allow-list Experiment
+- URL: https://simonwillison.net/2026/May/13/csp-allow/#atom-everything
+- 取得: 2026-05-18 03:45:02
+- 公開: 2026-05-13T04:50:45+00:00
+- 原文抜粋: <p><strong>Tool:</strong> <a href="https://tools.simonwillison.net/csp-allow">CSP Allow-list Experiment</a></p>         <p>An experiment that shows that you can load an app in a CSP-protected sandboxed iframe (see <a href="https://simonwillison.net/2026/Apr/3/test-csp-iframe-escape/">previous note</...
+
+### [Simon Willison's Weblog] datasette 1.0a29
+- URL: https://simonwillison.net/2026/May/12/datasette/#atom-everything
+- 取得: 2026-05-18 03:45:02
+- 公開: 2026-05-12T23:41:06+00:00
+- 原文抜粋: <p><strong>Release:</strong> <a href="https://github.com/simonw/datasette/releases/tag/1.0a29">datasette 1.0a29</a></p>         <blockquote> <ul> <li>New <code>TokenRestrictions.abbreviated(datasette)</code> <a href="https://docs.datasette.io/en/latest/internals.html#tokenrestrictions">utility metho...
+
+### [Simon Willison's Weblog] Quoting Mo Bitar
+- URL: https://simonwillison.net/2026/May/12/mo-bitar/#atom-everything
+- 取得: 2026-05-18 03:45:02
+- 公開: 2026-05-12T22:59:58+00:00
+- 原文抜粋: <blockquote cite="https://www.tiktok.com/@atmoio/video/7638649825382190350"><p>Now, if your CEO has never heard the phrase Ralph Loop, oh man, you are less than 30 days away from your next promotion. I'm not even exaggerating. Walk into his office, close the door, and say, hey chief, been experiment...
+
+### [Simon Willison's Weblog] Quoting Mitchell Hashimoto
+- URL: https://simonwillison.net/2026/May/12/mitchell-hashimoto/#atom-everything
+- 取得: 2026-05-18 03:45:02
+- 公開: 2026-05-12T22:21:51+00:00
+- 原文抜粋: <blockquote cite="https://lobste.rs/s/oznirn/redis_cost_ambition#c_dzrja0"><p>The thing about 90% of TDMs [Technical Decision Makers] is that they're motivated primarily by NOT GETTING FIRED. These aren't people who browser Lobsters or push to GH on the weekend. These are people that work 9 to 5, ge...
+
+### [Simon Willison's Weblog] llm 0.32a2
+- URL: https://simonwillison.net/2026/May/12/llm/#atom-everything
+- 取得: 2026-05-18 03:45:02
+- 公開: 2026-05-12T17:45:07+00:00
+- 原文抜粋: <p><strong>Release:</strong> <a href="https://github.com/simonw/llm/releases/tag/0.32a2">llm 0.32a2</a></p>         <p>A bunch of useful stuff in this <a href="https://llm.datasette.io/">LLM</a> alpha, but the most important detail is this one:</p> <blockquote> <p>Most reasoning-capable OpenAI model...
+
+### [Simon Willison's Weblog] Thoughts on GitLab's workforce reduction" and "structural and strategic decisions"
+- URL: https://simonwillison.net/2026/May/11/gitlab-act-2/#atom-everything
+- 取得: 2026-05-18 03:45:02
+- 公開: 2026-05-11T23:58:55+00:00
+- 原文抜粋: <p><strong><a href="https://about.gitlab.com/blog/gitlab-act-2/">GitLab Act 2</a></strong></p> There's a lot going on in this announcement from GitLab about the "workforce reduction" and "structural and strategic decisions" they are making with respect to the agentic era.</p> <ul> <li>They're "plann...
+
+### [Simon Willison's Weblog] Quoting James Shore
+- URL: https://simonwillison.net/2026/May/11/james-shore/#atom-everything
+- 取得: 2026-05-18 03:45:02
+- 公開: 2026-05-11T19:48:32+00:00
+- 原文抜粋: <blockquote cite="https://www.jamesshore.com/v2/blog/2026/you-need-ai-that-reduces-your-maintenance-costs"><p>Your AI coding agent, the one you use to write code, needs to reduce your maintenance costs. Not by a little bit, either. You write code twice as quick now? Better hope you’ve halved your ma...
+
+### [Simon Willison's Weblog] Your AI Use Is Breaking My Brain
+- URL: https://simonwillison.net/2026/May/11/zombie-internet/#atom-everything
+- 取得: 2026-05-18 03:45:02
+- 公開: 2026-05-11T19:21:27+00:00
+- 原文抜粋: <p><strong><a href="https://www.404media.co/your-ai-use-is-breaking-my-brain/">Your AI Use Is Breaking My Brain</a></strong></p> Excellent, angry piece by Jason Koebler on how AI writing online is becoming impossible to avoid, filtering it is mentally exhausting and it's even starting to distort reg...
+
+======================================================================
+
+## カテゴリ: SNS公式 (20件)
+
+### [Meta Newsroom] Introducing Business AI on WhatsApp for Small Businesses in India
+- URL: https://about.fb.com/news/2026/05/introducing-business-ai-on-whatsapp-for-small-businesses-in-india/
+- 取得: 2026-05-18 03:45:03
+- 公開: Fri, 15 May 2026 04:59:51 +0000
+- 原文抜粋: <div><img alt="" class="attachment-large size-large wp-post-image" height="501" src="https://about.fb.com/wp-content/uploads/2026/05/English-US-WA-Biz-AI-Onboarding-key-steps.jpg?fit=890%2C501" style="margin-bottom: 15px;" width="890" /></div> <p>To enable small businesses with AI-powered customer s...
+
+### [Meta Newsroom] From Scroll to Chat to Cart: Trends Reshaping How India Shops
+- URL: https://about.fb.com/news/2026/05/from-scroll-to-chat-to-cart-trends-reshaping-how-india-shops/
+- 取得: 2026-05-18 03:45:03
+- 公開: Thu, 14 May 2026 06:27:46 +0000
+- 原文抜粋: <div><img alt="" class="attachment-large size-large wp-post-image" height="501" src="https://about.fb.com/wp-content/uploads/2026/05/NRP-2.png?fit=890%2C501" style="margin-bottom: 15px;" width="890" /></div> <p>On the sidelines of the 2026 Meta Marketing Summit E-Commerce edition, we are sharing key...
+
+### [Meta Newsroom] Introducing Instants: A New Way to Share in the Moment
+- URL: https://about.fb.com/news/2026/05/instants-share-in-the-moment/
+- 取得: 2026-05-18 03:45:03
+- 公開: Wed, 13 May 2026 16:00:19 +0000
+- 原文抜粋: <div><img alt="" class="attachment-large size-large wp-post-image" height="501" src="https://about.fb.com/wp-content/uploads/2026/05/IG_Instants_A-New-Way-to-Share-in-the-Moment_Thumbnail.gif?fit=890%2C501" style="margin-bottom: 15px;" width="890" /></div> <p>Share authentic moments as they’re happe...
+
+### [Meta Newsroom] Introducing a Completely Private Way to Chat With AI
+- URL: https://about.fb.com/news/2026/05/incognito-chat-whatsapp-meta-ai/
+- 取得: 2026-05-18 03:45:03
+- 公開: Wed, 13 May 2026 14:45:19 +0000
+- 原文抜粋: <div><img alt="" class="attachment-large size-large wp-post-image" height="501" src="https://about.fb.com/wp-content/uploads/2026/05/Incognito-Chat-with-Meta-AI_Thumbnail.jpg?fit=890%2C501" style="margin-bottom: 15px;" width="890" /></div> <p>Incognito Chat lets you talk to Meta AI in a way that is ...
+
+### [Meta Newsroom] Celebrating African Cinema With the ‘Made by Africa, Loved by the World’ 2026 Campaign
+- URL: https://about.fb.com/news/2026/05/celebrating-african-cinema-with-the-made-by-africa-loved-by-the-world-2026-campaign/
+- 取得: 2026-05-18 03:45:03
+- 公開: Wed, 13 May 2026 09:00:35 +0000
+- 原文抜粋: <div><img alt="" class="attachment-large size-large wp-post-image" height="366" src="https://about.fb.com/wp-content/uploads/2026/05/Nigeria-Banner.jpg?fit=960%2C366" style="margin-bottom: 15px;" width="960" /></div> <p>In celebration of Africa Day on May 25, Facebook has launched the sixth edition ...
+
+### [Meta Newsroom] New Supervision Tools Give Parents Insights Into Their Teen’s Algorithm and More
+- URL: https://about.fb.com/news/2026/05/new-supervision-tools-parents-insights-teens-algorithm/
+- 取得: 2026-05-18 03:45:03
+- 公開: Tue, 12 May 2026 16:00:17 +0000
+- 原文抜粋: <div><img alt="" class="attachment-large size-large wp-post-image" height="501" src="https://about.fb.com/wp-content/uploads/2026/05/Boosting-Parental-Supervision-Across-Our-Apps-With-Family-Center_Thumbnail.jpg?fit=890%2C501" style="margin-bottom: 15px;" width="890" /></div> <p>We’re making it easi...
+
+### [Meta Newsroom] Meta at The Cannes Film Festival 2026
+- URL: https://about.fb.com/news/2026/05/meta-at-the-cannes-film-festival-2026/
+- 取得: 2026-05-18 03:45:03
+- 公開: Mon, 11 May 2026 10:00:03 +0000
+- 原文抜粋: <div><img alt="" class="attachment-large size-large wp-post-image" height="540" src="https://about.fb.com/wp-content/uploads/2026/05/2026_CANNES_SIGNATURES_WEB_COULEUR-1_2560x1440.jpg?fit=960%2C540" style="margin-bottom: 15px;" width="960" /></div> <p>Meta is proud to be an Official Partner of the F...
+
+### [Meta Newsroom] Which AI Glasses Are Right For You?
+- URL: https://about.fb.com/news/2026/05/which-meta-ai-glasses-are-right-for-you/
+- 取得: 2026-05-18 03:45:03
+- 公開: Fri, 08 May 2026 19:00:21 +0000
+- 原文抜粋: <div><img alt="" class="attachment-large size-large wp-post-image" height="501" src="https://about.fb.com/wp-content/uploads/2026/05/Which-AI-Glasses-Are-Right-For-You_Thumbnail-1.gif?fit=890%2C501" style="margin-bottom: 15px;" width="890" /></div> <p>From capturing hands-free content to tracking wo...
+
+### [Meta Newsroom] Meta’s Position on Canada’s Bill C-22
+- URL: https://about.fb.com/news/2026/05/metas-position-on-canadas-bill-c-22/
+- 取得: 2026-05-18 03:45:03
+- 公開: Thu, 07 May 2026 22:46:00 +0000
+- 原文抜粋: <p>Today, Meta appeared in front of the Standing Committee on Public Safety and National Security, where a version of this post was delivered as speaking remarks. We are grateful to the Standing Committee for inviting us to share our perspective with committee members and Canadians. &#160; Delivered...
+
+### [Meta Newsroom] New AI-Powered Age Assurance Measures to Place Teens in Age-Appropriate Experiences
+- URL: https://about.fb.com/news/2026/05/ai-age-assurance-teens/
+- 取得: 2026-05-18 03:45:03
+- 公開: Tue, 05 May 2026 11:00:40 +0000
+- 原文抜粋: <div><img alt="" class="attachment-large size-large wp-post-image" height="501" src="https://about.fb.com/wp-content/uploads/2026/05/AI-Age-Assurance_Thumbnail-1.jpg?fit=890%2C501" style="margin-bottom: 15px;" width="890" /></div> <p>We’re strengthening our underage enforcement measures with AI to e...
+
+### [YouTube Creator Blog] YouTube auto dubbing, explained
+- URL: https://blog.youtube/creator-and-artist-stories/youtube-auto-dubbing-explained/
+- 取得: 2026-05-18 03:45:03
+- 公開: Fri, 15 May 2026 13:00:00 +0000
+- 原文抜粋: <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/creator-insider-auto-dubbing-fr.max-600x600.format-webp.webp" />Auto dubbing brings YouTube content to entirely new audiences, seamlessly translating videos into dozens of languages so people around the world can experience it...
+
+### [YouTube Creator Blog] Coming together to unlock creative potential for the UK
+- URL: https://blog.youtube/news-and-events/youtube-bbc-nfts-skills-program/
+- 取得: 2026-05-18 03:45:03
+- 公開: Fri, 15 May 2026 11:00:00 +0000
+- 原文抜粋: <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/CREATEXCONNECT-bbc-youtube-nfts.max-600x600.format-webp.webp" />A new partnership between YouTube, the BBC, and the NFTS provides professional training and skills development for digital creators and TV producers across the UK...
+
+### [YouTube Creator Blog] Behind the scenes: Alex Cooper's next era
+- URL: https://blog.youtube/creator-and-artist-stories/behind-the-scenes-alex-cooper/
+- 取得: 2026-05-18 03:45:03
+- 公開: Wed, 13 May 2026 23:30:00 +0000
+- 原文抜粋: <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/2276122370_1.max-600x600.format-webp.webp" />Discover how the Call Her Daddy creator is expanding her Unwell Network with four upcoming shows on YouTube.
+
+### [YouTube Creator Blog] Behind the scenes: Jesser’s sports media empire
+- URL: https://blog.youtube/creator-and-artist-stories/behind-the-scenes-jesser/
+- 取得: 2026-05-18 03:45:03
+- 公開: Wed, 13 May 2026 23:30:00 +0000
+- 原文抜粋: <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/2276119569.max-600x600.format-webp.webp" />From 2K skits to global series, how Jesse Riedel built a modern sports entertainment empire.
+
+### [YouTube Creator Blog] Everything we announced at YouTube Brandcast 2026
+- URL: https://blog.youtube/news-and-events/brandcast-2026-highlights/
+- 取得: 2026-05-18 03:45:03
+- 公開: Wed, 13 May 2026 23:30:00 +0000
+- 原文抜粋: <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/sean-downey-brandcast-2026-pres.max-600x600.format-webp.webp" />New Creator Shows, frictionless checkout on connected TVs, affiliate partnership ads, and more are here to help brands connect with viewers.
+
+### [YouTube Creator Blog] New creator shows coming exclusively to YouTube from Dude Perfect, Trevor Noah, Quen Blackwell and more
+- URL: https://blog.youtube/news-and-events/new-youtube-series-2026/
+- 取得: 2026-05-18 03:45:03
+- 公開: Wed, 13 May 2026 23:30:00 +0000
+- 原文抜粋: <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Image_20260513_200049_069_eZ6GS.max-600x600.format-webp.webp" />Discover the highly anticipated new YouTube series coming in 2026 and 2027, from creators Dude Perfect, Alex Cooper, Trevor Noah, Johnny Harris, Erling Haaland & ...
+
+### [YouTube Creator Blog] A double milestone: 70 years of Eurovision and 20 years of the Eurovision YouTube channel!
+- URL: https://blog.youtube/news-and-events/eurovision-2026-70th-anniversary-youtube-guide/
+- 取得: 2026-05-18 03:45:03
+- 公開: Tue, 12 May 2026 08:00:00 +0000
+- 原文抜粋: <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/ESC_2026_Stage_credit_Roman_Zac.max-600x600.format-webp.webp" />Watch the Eurovision Song Contest 2026 live on YouTube as the competition celebrates 70 years of music. Follow the journey of artists like Look Mum No Computer an...
+
+### [YouTube Creator Blog] How Tabitha Brown created a safe space for children with Tab Time
+- URL: https://blog.youtube/creator-and-artist-stories/tabitha-brown-tab-time-emmy-wins/
+- 取得: 2026-05-18 03:45:03
+- 公開: Fri, 08 May 2026 15:00:00 +0000
+- 原文抜粋: <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Generic_Series_TabTime_KeyArt_3.max-600x600.format-webp.webp" />Learn how Tabitha Brown transitioned from traditional acting to becoming a three-time Emmy winner. She shares the story of her career pivot, the inspiration behin...
+
+### [YouTube Creator Blog] Creators take the spotlight at White House Correspondents' Weekend
+- URL: https://blog.youtube/news-and-events/youtube-creators-white-house-correspondents-weekend/
+- 取得: 2026-05-18 03:45:03
+- 公開: Wed, 06 May 2026 16:00:00 +0000
+- 原文抜粋: <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/TK4L6677.max-600x600.format-webp.webp" />Independent news creators joined events in Washington D.C. to discuss the evolution of the free press. From advocating for artist rights on Capitol Hill to attending the…
+
+### [YouTube Creator Blog] How to watch the 2026 Met Gala red carpet live stream
+- URL: https://blog.youtube/culture-and-trends/watch-met-gala-2026-live-stream/
+- 取得: 2026-05-18 03:45:03
+- 公開: Mon, 04 May 2026 10:05:00 +0000
+- 原文抜粋: <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/GettyImages-2213593853.max-600x600.format-webp.webp" />Watch the 2026 Met Gala red carpet live on Monday, May 4, starting at 6 p.m. ET. Follow the Vogue YouTube channel to see hosts Ashley Graham, Cara Delevingne, and La La …
+
+======================================================================
+
+## カテゴリ: SNS動向 (10件)
+
+### [Social Media Today] YouTube adds Chapters and Title Cards to CTV
+- URL: https://www.socialmediatoday.com/news/youtube-adds-chapters-and-title-cards-to-ctv/820441/
+- 取得: 2026-05-18 03:45:03
+- 公開: Sun, 17 May 2026 16:45:07 -0400
+- 原文抜粋: <p>The updates, which also include Like Counts and Immersive Headers for CTV, are designed to improve the experience for living room viewers.</p>
+
+### [Social Media Today] YouTube expands likeness detection to all users over 18
+- URL: https://www.socialmediatoday.com/news/youtube-expands-likeness-detection-to-all-users-over-18/820440/
+- 取得: 2026-05-18 03:45:03
+- 公開: Sun, 17 May 2026 16:35:01 -0400
+- 原文抜粋: <p>The video platform has been gradually rolling out the feature to users since September as it takes proactive action against deepfakes.</p>  <p>&nbsp;</p>
+
+### [Social Media Today] YouTube launches digital training initiative in the UK
+- URL: https://www.socialmediatoday.com/news/youtube-launches-digital-training-initiative-in-the-uk/820439/
+- 取得: 2026-05-18 03:45:03
+- 公開: Sun, 17 May 2026 16:29:04 -0400
+- 原文抜粋: <p>A partnership between the video platform, the BBC and the National Film and Television School aims to create a modern digital skills training program.</p>
+
+### [Social Media Today] Creator content drives brands on Snapchat
+- URL: https://www.socialmediatoday.com/news/creator-content-drives-brands-on-snapchat/820438/
+- 取得: 2026-05-18 03:45:03
+- 公開: Sun, 17 May 2026 16:24:18 -0400
+- 原文抜粋: <p>Snapchat's latest report highlights the value of connections that users make with influencer-led promotions in the app.</p>
+
+### [Social Media Today] Social media drives consumer discover, per Meta
+- URL: https://www.socialmediatoday.com/news/social-media-drives-consumer-discover-per-meta/820437/
+- 取得: 2026-05-18 03:45:03
+- 公開: Sun, 17 May 2026 16:08:52 -0400
+- 原文抜粋: <p>The parent company of Facebook and Instagram published a three-part series examining how shopper behavior has shifted away from Google searches.</p>
+
+### [Social Media Today] Meta opens up Display AI glasses to third-party developers
+- URL: https://www.socialmediatoday.com/news/meta-opens-up-display-ai-glasses-to-third-party-developers/820325/
+- 取得: 2026-05-18 03:45:03
+- 公開: Thu, 14 May 2026 17:46:58 -0400
+- 原文抜粋: <p>The company said development partners will be able to create apps for the device that incorporate gesture-driven features.</p>
+
+### [Social Media Today] TikTok announces activations for International Museum Day
+- URL: https://www.socialmediatoday.com/news/tiktok-announces-activations-for-international-museum-day/820324/
+- 取得: 2026-05-18 03:45:03
+- 公開: Thu, 14 May 2026 17:40:39 -0400
+- 原文抜粋: <p>The May 18 event will feature creator partnerships and kick off the app&rsquo;s new &ldquo;Museums Come Alive&rdquo; series.</p>
+
+### [Social Media Today] Meta reveals latest round of Edits improvements
+- URL: https://www.socialmediatoday.com/news/meta-reveals-latest-round-of-edits-improvements/820322/
+- 取得: 2026-05-18 03:45:03
+- 公開: Thu, 14 May 2026 17:30:05 -0400
+- 原文抜粋: <p>Creators will get better transitions, as well as more text and sticker controls, while iOS users will have the opportunity to use live photos.</p>
+
+### [Social Media Today] Reddit highlights rising opportunities for CPG marketers
+- URL: https://www.socialmediatoday.com/news/reddit-highlights-rising-opportunities-for-cpg-marketers/820321/
+- 取得: 2026-05-18 03:45:03
+- 公開: Thu, 14 May 2026 17:23:07 -0400
+- 原文抜粋: <p>With more consumers using Reddit as a research tool, brands have expanded opportunities to link into the discovery process.</p>
+
+### [Social Media Today] LinkedIn plans to host gated, creator-led events
+- URL: https://www.socialmediatoday.com/news/linkedin-plans-to-host-gated-creator-led-events/820319/
+- 取得: 2026-05-18 03:45:03
+- 公開: Thu, 14 May 2026 17:10:25 -0400
+- 原文抜粋: <p>The platform is making a bigger push with original content and may host as many as 4,000 events a year, per Business Insider.</p>
+
+======================================================================
+
+## カテゴリ: SNS運用 (10件)
+
+### [Buffer Blog] The 21 Best Social Media Marketing Tools to Try in 2026
+- URL: https://buffer.com/resources/social-media-marketing-tools/
+- 取得: 2026-05-18 03:45:04
+- 公開: Fri, 15 May 2026 11:00:00 GMT
+- 原文抜粋: Find the right tools for every part of your social media workflow — content, engagement, analytics, and more.
+
+### [Buffer Blog] Best Time to Post on Instagram in 2026: New Data from 9.6 Million Posts
+- URL: https://buffer.com/resources/when-is-the-best-time-to-post-on-instagram/
+- 取得: 2026-05-18 03:45:04
+- 公開: Thu, 14 May 2026 08:00:00 GMT
+- 原文抜粋: We analyzed more than 2 million Instagram posts sent through Buffer to pinpoint the best time, day, and post format for maximum reach.
+
+### [Buffer Blog] How to Crosspost on Social Media: A Step-by-Step Guide for 2026
+- URL: https://buffer.com/resources/how-to-crosspost/
+- 取得: 2026-05-18 03:45:04
+- 公開: Wed, 13 May 2026 06:00:00 GMT
+- 原文抜粋: Learn how to crosspost between Instagram, Facebook, TikTok, and Threads in minutes — with step-by-step instructions and a free tool to schedule it all at once.
+
+### [Buffer Blog] The Best Time to Post on TikTok in 2026: New Data from 7M Posts
+- URL: https://buffer.com/resources/best-time-to-post-on-tiktok/
+- 取得: 2026-05-18 03:45:04
+- 公開: Tue, 12 May 2026 06:00:00 GMT
+- 原文抜粋: We analyzed 7.1 million TikTok posts to find the best time to post on TikTok in 2026. Here's what the data says — plus how to find your own best times.
+
+### [Buffer Blog] Social Media Image Sizes in 2026: Guide for 9 Major Networks
+- URL: https://buffer.com/resources/social-media-image-sizes/
+- 取得: 2026-05-18 03:45:04
+- 公開: Tue, 12 May 2026 05:01:00 GMT
+- 原文抜粋: The sizes of every single image you'll need on all the major social networks, including Facebook, Instagram, X, LinkedIn, TikTok, YouTube, Threads, Bluesky, and Pinterest.
+
+### [Buffer Blog] Your Complete Guide to Social Media Marketing: Platforms, Strategy, and Tips for Growth
+- URL: https://buffer.com/resources/social-media-marketing-guide/
+- 取得: 2026-05-18 03:45:04
+- 公開: Mon, 11 May 2026 11:00:11 GMT
+- 原文抜粋: Not sure where to start with social media marketing? This guide walks you through everything from choosing platforms to building a strategy that sticks.
+
+### [Buffer Blog] 13 Trending Songs on TikTok in May 2026 (+ How to Use Them)
+- URL: https://buffer.com/resources/trending-songs-tiktok/
+- 取得: 2026-05-18 03:45:04
+- 公開: Fri, 08 May 2026 09:00:00 GMT
+- 原文抜粋: An up-to-date list of the most viral songs and sounds on TikTok in May 2026 — and how to use them to boost your content.
+
+### [Buffer Blog] 13 Trending Sounds on Instagram in May 2026 (+ How to Use Them)
+- URL: https://buffer.com/resources/trending-audio-instagram/
+- 取得: 2026-05-18 03:45:04
+- 公開: Thu, 07 May 2026 08:00:00 GMT
+- 原文抜粋: Stop chasing the tail-end of Instagram audio trends — here are the latest trending songs on Instagram in May 2026.
+
+### [Buffer Blog] How to Schedule TikTok Posts (For Free): A Step-By-Step Guide
+- URL: https://buffer.com/resources/how-to-schedule-tiktok-posts/
+- 取得: 2026-05-18 03:45:04
+- 公開: Tue, 05 May 2026 08:00:00 GMT
+- 原文抜粋: Scheduling TikTok posts can save hours each week. Here’s how to plan, schedule, and publish your content on desktop and mobile.
+
+### [Buffer Blog] How to Use Pinterest in 2026: A Beginner's Guide for Creators + Businesses
+- URL: https://buffer.com/resources/how-to-use-pinterest/
+- 取得: 2026-05-18 03:45:04
+- 公開: Tue, 28 Apr 2026 11:00:00 GMT
+- 原文抜粋: Learn how to use Pinterest as a creator or business in 2026 — set up your account, create pins that get discovered, and reach the right audience.
+
+======================================================================

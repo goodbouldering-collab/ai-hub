@@ -2,20 +2,98 @@
 
 ## AIニュース
 
-### Revamped Siri will reportedly offer auto-deleting chats
-Apple is hoping that its record on privacy can be the differentiator on the AI front, and maybe even buy it a little slack as it continues to lag behind the competition. According to Bloomberg's Mark ...
-出典: https://www.theverge.com/tech/932207/siri-apple-intelligence-auto-deleting-chats
+### Musk v. Altman proved that AI is led by the wrong people
+The tech trial of the year, Musk v. Altman, was ultimately a fight for control. Elon Musk argued that Sam Altman, with whom he helped found the now-massive company OpenAI, shouldn't direct the future ...
+出典: https://www.theverge.com/ai-artificial-intelligence/932464/musk-v-altman-proved-that-ai-is-led-by-the-wrong-people
 
-### University of Arizona students boo Eric Schmidt’s AI cheerleading during commencement
-Former Google CEO Eric Schmidt delivered the commencement address at the University of Arizona on Friday. And, as his speech veered into talk of AI, he was repeatedly drowned out by boos. AI is alread...
-出典: https://www.theverge.com/ai-artificial-intelligence/932203/university-of-arizona-students-boo-eric-schmidt-ai-commencement
+### All of the updates from Elon Musk and Sam Altman’s battle over OpenAI
+Sam Altman and Elon Musk are facing off in a high-stakes trial that could alter the future of OpenAI and its most well-known product, ChatGPT. In 2024, Musk filed a lawsuit accusing OpenAI of abandoni...
+出典: https://www.theverge.com/tech/917225/sam-altman-elon-musk-openai-lawsuit
 
-### Chatbots at the drive-thru are just the beginning
-This is The Stepback, a weekly newsletter breaking down one essential story from the tech world. For more news about how AI is seeping into our daily lives, follow Emma Roth. The Stepback arrives in o...
-出典: https://www.theverge.com/column/928096/chatbots-ai-drive-thru-mcdonalds-wendys
+### Elon Musk loses his case against Sam Altman
+After around two hours of deliberation, the jury has reached a unanimous verdict in Musk v. Altman, the tech trial of the year. The group found that two claims were barred by the statute of limitation...
+出典: https://www.theverge.com/ai-artificial-intelligence/932383/jury-verdict-musk-v-altman-openai-trial
+
+### Amazon Alexa Plus can now create AI-generated podcasts
+Alexa Plus, Amazon's upgraded AI assistant, can now generate podcasts on "virtually any topic," according to an announcement on Monday. With the update, Amazon says you can give Alexa Plus a topic, an...
+出典: https://www.theverge.com/tech/932375/amazon-alexa-plus-ai-podcasts
+
+### What to expect from Google this week
+This story originally appeared in The Algorithm, our weekly newsletter on AI. To get stories like this in your inbox first, sign up here. When Google opens its doors tomorrow for its annual developer ...
+出典: https://www.technologyreview.com/2026/05/18/1137439/what-to-expect-from-google-this-week/
+
+### Inside Anduril and Meta’s quest to make smart glasses for warfare
+The defense-tech company Anduril has shared new details about the augmented-reality headset for the military it’s prototyping with Meta, including a vision for ordering drone strikes via eye-tracking ...
+出典: https://www.technologyreview.com/2026/05/18/1137412/inside-anduril-and-metas-quest-to-make-smart-glasses-for-warfare/
+
+### Legal fail: Don’t use AI to sue Facebook users for calling you a bad date
+Fake citations dashed a dude’s “Are We Dating the Same Guy” revenge lawsuit.
+出典: https://arstechnica.com/tech-policy/2026/05/legal-fail-dont-use-ai-to-sue-facebook-users-for-calling-you-a-bad-date/
+
+### Elon Musk took too long to sue OpenAI, jury unanimously agrees
+Musk plans to appeal after judge immediately affirmed the jury's decision.
+出典: https://arstechnica.com/tech-policy/2026/05/elon-musk-loses-trial-accusing-sam-altman-openai-of-stealing-a-charity/
+
+### Bug bounty businesses bombarded with AI slop
+"Never-ending" AI slop strains corporate hacking reward schemes.
+出典: https://arstechnica.com/ai/2026/05/bug-bounty-businesses-bombarded-with-ai-slop/
+
+
+## AI公式
+
+### OpenAI and Dell partner to bring Codex to hybrid and on-premise enterprise environments
+OpenAI and Dell partner to bring Codex to hybrid and on-premise environments, helping enterprises deploy AI coding agents securely across data and workflows.
+出典: https://openai.com/index/dell-codex-enterprise-partnership
+
+
+## AI動画(日本語)
+
+### Google公式発表「LLMO(AIO)はいらない」 / AI時代でもSEOは健在 / でもUCPは知っとけ
+▼Claude Codeを安全に全社導入する仕組み「Claude Code Safety Hub」のお問い合わせはこちら https://touchai.jp/claude-code-safety-hub/contact  ▼Claude Codeを安全に使う方法を2日間で習得できる企業研修 https://api.touchai.jp/r/youtube_webshokutv ※助成金適用で最大...
+出典: https://www.youtube.com/watch?v=3p-kHK1M0k8
+
+### Claude Codeの間違ったセキュリティ対策 / .claudeignoreは存在しません / CCSHの重要性
+AIやClaude Codeを学べる講座やワークショップを開催中！ https://api.touchai.jp/r/webshokutv_live?utmc=20260519  Claude Codeを安全に全社導入する仕組み「Claude Code Safety Hub」のお問い合わせはこちら https://touchai.jp/claude-code-safety-hub/contact ...
+出典: https://www.youtube.com/watch?v=c9a35k_8UQM
+
+### AIセキュリティを向上させる配信 / Claude、Codexアプリ版の欠点
+AIやClaude Codeを学べる講座やワークショップを開催中！ https://api.touchai.jp/r/webshokutv_live?utmc=20260518  Claude Codeを安全に全社導入する仕組み「Claude Code Safety Hub」のお問い合わせはこちら https://touchai.jp/claude-code-safety-hub/contact ...
+出典: https://www.youtube.com/watch?v=jOxKuf8-Zsc
+
+### 情報収集が超効率化！xAIとHERMES AgentとClaude Codeスキルの組み合わせが最高【セットアップ方法解説】
+HERMES AgentがXのサブスクリプションで利用できるようになったので、xAIとHERMESとClaude Codeを接続してX情報収集を超効率化しました。  ★Substack（メルマガ）は下記から購読 https://kt-life.net/sns-links/newsletter.html  ★プロセボ｜AIコミュニティ AI活用を実際に操作しながら学ぶワークショップ型AIスクール。 ...
+出典: https://www.youtube.com/watch?v=8rEC_ShLQ4M
+
+### 【速報】イーロン・マスクがまたとんでもない神アプデをしました。
+▼ 5Daysブートキャンプの参加はコチラから https://utage-system.com/p/Uicj6Ter4Lgw  ▼動画内で紹介したプレゼントの受け取りは以下の公式LINEから https://liff.line.me/2006805073-rn36NG8b/landing?follow=%40933hyolt&amp;lp=bZVYq1&amp;liff_id=200680507...
+出典: https://www.youtube.com/watch?v=IXf3xlhgQSQ
 
 
 ## AI国内
+
+### 福岡銀行、AI活用で年間7000時間の業務削減を目指す　契約書検索のムダを効率化
+福岡銀行は、LayerXのAIプラットフォーム「Ai Workforce」を導入した。ストラクチャードファイナンス業務において、過去案件の契約書検索や管理表作成を効率化し、契約書類管理業務全体で年間約7000時間の業務削減を見込んでいる。
+出典: https://kn.itmedia.co.jp/kn/articles/2605/19/news024.html
+
+### 中小企業の約65％が「情シス不在」　デジタル化でも残る課題との関連は？
+ファイル管理のデジタル化を進めても、「目的のファイルが見つからない」「データ復旧に不安が残る」という課題が残るのはなぜか。中小企業の約65％が情シス不在であることは、この課題にどのような影響を与えているのか。デジタル化だけでは解消しない非効率の原因に迫る。
+出典: https://www.itmedia.co.jp/enterprise/articles/2605/17/news013.html
+
+### 「最新のAI創薬ラボ」なのに会議室みたい!?　製薬大手がラブコール送る“異色のAI企業”による新拠点とは
+AI創薬サービスを手掛けるFRONTEO（東京都港区）が新たな拠点を公開した。新たなラボは試験管も実験器具も置いていない。一体どのような役割を担うのか。
+出典: https://www.itmedia.co.jp/business/articles/2605/19/news032.html
+
+### 生成AIで3Dモデルを自動作成　専門スキル不要でテキストや画像から3D化
+スリー・ディー・エスは、テキストや画像入力から3Dモデルを自動生成できる生成AI「Meshy.ai」の日本国内での提供を開始した。専門的な3Dモデリングスキルを必要とせず、試作検討やデザイン用途などに向けた3D活用を支援する。
+出典: https://monoist.itmedia.co.jp/mn/articles/2605/19/news029.html
+
+### Python 3.15に追加されるlazy importと内包表記でのアンパッキングについて調べてみた
+Python 3.15の新機能として追加された「モジュールの読み込みを必要な時点まで遅延するlazy import」と二重ループの構造を取る内包表記をより直感的に書けるようになる「内包表記でのアンパッキング」がどんなものかをちょっとコードを書いて調べてみました。
+出典: https://atmarkit.itmedia.co.jp/ait/articles/2605/19/news014.html
+
+### NEC社長が説く　AI時代と新たな安全保障環境の到来で「ITサービスはこう変わる」
+AI時代、そして新たな安全保障環境の到来で、ITサービスはどう変わるのか。NECの森田隆之社長が説く、「これからのITサービス産業における勝者の条件」に迫る。
+出典: https://www.itmedia.co.jp/enterprise/articles/2605/18/news062.html
 
 ### 人間 vs. 人型ロボ、より多く作業をこなせるのは？　生配信で対決した結果……　米企業
 人間と人型ロボット、どちらがより多く作業をこなせるのか――ロボット開発企業の米Figureは5月18日（日本時間）、このような勝負の様子を生配信した。
@@ -29,44 +107,42 @@ This is The Stepback, a weekly newsletter breaking down one essential story from
 ストックマークは5月14日、企業の秘匿データや暗黙知をAIが学習・活用できる形式に変換する「AI-Ready化」の実証実験を開始すると発表した。伊藤忠商事や三菱ケミカルなど16社が協業するプロジェクトの狙いとは？
 出典: https://www.itmedia.co.jp/business/articles/2605/18/news036.html
 
-### プロダクトファーストを貫くイーロン・マスク　中国の若手起業家たちに与え続ける「技術への執着」
-イーロン・マスク氏は中国での立ち回りに神経を使ってきた。世界最大の自動車市場であり、巨大なサプライチェーンを持つ中国は、EV、太陽光発電、宇宙プログラムにまたがる彼の広大なビジネス帝国を支える上で不可欠な存在だからだ。
-出典: https://www.itmedia.co.jp/business/articles/2605/18/news038.html
 
-### 1分で膨大なAI約款のリスクを「見える化」　天秤AI Bizが新機能を提供開始
-GMO天秤AIは、法人向けサービス「天秤AI Biz byGMO」で、主要生成AIサービスの約款を比較できる機能「主要AI約款比較」の提供を開始した。AI導入時に負担となりやすい規約確認を効率化し、導入判断および約款変更の継続的な追跡を支援する。
-出典: https://kn.itmedia.co.jp/kn/articles/2605/18/news034.html
+## AI業界
 
-### 「AIデータセンターの電力需要が急増」はホント？　発電大手Jパワー社長が明かした“報道との温度差”
-AIブームを受けて、データセンターの電力需要が急増しているといわれる。電力関連企業は対応に追われているかと思いきや、実態は異なるようだ。発電大手J-POWERの社長が実態を語った。
-出典: https://www.itmedia.co.jp/business/articles/2605/18/news017.html
+### Fine-Tuning NVIDIA Cosmos Predict 2.5 with LoRA/DoRA for Robot Video Generation
+
+出典: https://huggingface.co/blog/nvidia/cosmos-fine-tuning-for-robot-video-generation
+
+### PaddleOCR 3.5: Running OCR and Document Parsing Tasks with a Transformers Backend
+
+出典: https://huggingface.co/blog/PaddlePaddle/paddleocr-transformers
+
+### The Open Agent Leaderboard
+
+出典: https://huggingface.co/blog/ibm-research/open-agent-leaderboard
 
 
 ## AI研究者ブログ
 
-### GDS weighs in on the NHS's decision to retreat from Open Source
-<p><strong><a href="https://shkspr.mobi/blog/2026/05/gds-weighs-in-on-the-nhss-decision-to-retreat-from-open-source/">GDS weighs in on the NHS&#x27;s decision to retreat from Open Source</a></strong><...
-出典: https://simonwillison.net/2026/May/17/gds-weighs-in/#atom-everything
+### Glaucous-winged Gull, Brown Pelican, Snowy Egret, Canada Goose
+<p><img alt="Glaucous-winged Gull" src="https://static.inaturalist.org/photos/662161673/large.jpg" /></p><p><img alt="Glaucous-winged Gull" src="https://static.inaturalist.org/photos/662161721/large.j...
+出典: https://simonwillison.net/2026/May/18/sighting-362781627/#atom-everything
 
 
-## SNS動向
+## SNS公式
 
-### YouTube adds Chapters and Title Cards to CTV
-<p>The updates, which also include Like Counts and Immersive Headers for CTV, are designed to improve the experience for living room viewers.</p>
-出典: https://www.socialmediatoday.com/news/youtube-adds-chapters-and-title-cards-to-ctv/820441/
+### Our AI Wearables Are “Changing the Game” for Disabled People
+<div><img alt="" class="attachment-large size-large wp-post-image" height="501" src="https://about.fb.com/wp-content/uploads/2026/05/Our-AI-Wearables-are-Changing-the-Game-for-Disabled-People_Thumbnai...
+出典: https://about.fb.com/news/2026/05/meta-ai-wearables-changing-the-game-for-disabled-people/
 
-### YouTube expands likeness detection to all users over 18
-<p>The video platform has been gradually rolling out the feature to users since September as it takes proactive action against deepfakes.</p>  <p>&nbsp;</p>
-出典: https://www.socialmediatoday.com/news/youtube-expands-likeness-detection-to-all-users-over-18/820440/
+### How a 30-day NBA arena tour set a world record and met a major charity goal
+<img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/image15.max-600x600.format-webp.webp" />Read how a 23-year-old content creator traveled to every NBA arena in one month. Learn...
+出典: https://blog.youtube/creator-and-artist-stories/nba-arenas-30-days-make-a-wish/
 
-### YouTube launches digital training initiative in the UK
-<p>A partnership between the video platform, the BBC and the National Film and Television School aims to create a modern digital skills training program.</p>
-出典: https://www.socialmediatoday.com/news/youtube-launches-digital-training-initiative-in-the-uk/820439/
 
-### Creator content drives brands on Snapchat
-<p>Snapchat's latest report highlights the value of connections that users make with influencer-led promotions in the app.</p>
-出典: https://www.socialmediatoday.com/news/creator-content-drives-brands-on-snapchat/820438/
+## SNS運用
 
-### Social media drives consumer discover, per Meta
-<p>The parent company of Facebook and Instagram published a three-part series examining how shopper behavior has shifted away from Google searches.</p>
-出典: https://www.socialmediatoday.com/news/social-media-drives-consumer-discover-per-meta/820437/
+### The Top 10 AI Writing Tools I Recommend as a Professional Writer
+I’ve put dozens of AI writing tools to the test — here's a deep dive into my favorite AI writing generators and who I think they’ll be most useful for.
+出典: https://buffer.com/resources/ai-writing-tools/

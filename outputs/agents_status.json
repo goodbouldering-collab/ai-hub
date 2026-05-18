@@ -1,6 +1,20 @@
 {
-  "generated_at": "2026-05-18T03:45:21Z",
+  "generated_at": "2026-05-18T22:49:58Z",
   "recent_works": [
+    {
+      "date": "2026-05-18",
+      "filename": "2026-05-18-trust-site-migration-plan.md",
+      "title": "トラスト 公開サイト全機能移設＋管理ハブ全面構築 計画書",
+      "business": "トラスト",
+      "path": "/ops?file=2026-05-18-trust-site-migration-plan.md#sec-docs"
+    },
+    {
+      "date": "2026-05-18",
+      "filename": "2026-05-18-ai-hub-lp-restructure-design.md",
+      "title": "AIハブ TOP LP型再構成 + 管理画面UI統一 設計書",
+      "business": "AIハブ",
+      "path": "/ops?file=2026-05-18-ai-hub-lp-restructure-design.md#sec-docs"
+    },
     {
       "date": "2026-05-18",
       "filename": "2026-05-18-ai-hub-design-unify-spec.md",
@@ -38,24 +52,10 @@
     },
     {
       "date": "2026-05-17",
-      "filename": "2026-05-17-minanowa-render-deletion.md",
-      "title": "みんなのWA Render Starter 完全削除 — 実行手順書",
-      "business": "みんなのWA",
-      "path": "/ops?file=2026-05-17-minanowa-render-deletion.md#sec-docs"
-    },
-    {
-      "date": "2026-05-17",
-      "filename": "2026-05-17-ai-hub-sync-rootcause-resolved.md",
-      "title": "ai-hub 経営本部ドキュメント同期不調 — 真因確定・解決済み",
-      "business": "AIハブ",
-      "path": "/ops?file=2026-05-17-ai-hub-sync-rootcause-resolved.md#sec-docs"
-    },
-    {
-      "date": "2026-05-17",
-      "filename": "2026-05-17-ai-hub-cleanup-inventory.md",
-      "title": "AIハブ整理仕分け — 削除するもの / 改造するもの / 残すもの",
-      "business": "AIハブ",
-      "path": "/ops?file=2026-05-17-ai-hub-cleanup-inventory.md#sec-docs"
+      "filename": "2026-05-17-n-design-estimate.md",
+      "title": "N-デザイン 見積書（確定版）",
+      "business": "Nデザイン",
+      "path": "/ops?file=2026-05-17-n-design-estimate.md#sec-docs"
     }
   ],
   "tasks_open": [
@@ -79,6 +79,41 @@
       "business": "secrets",
       "snippet": "| 鍵名 | 保管場所 | 発行元 | 有効期限 | ローテ手順 |",
       "path": "/ops?file=2026-05-17-secrets-inventory.md#sec-docs"
+    },
+    {
+      "date": "2026-05-17",
+      "filename": "2026-05-17-n-design-estimate.md",
+      "business": "Nデザイン",
+      "snippet": "| 見積有効期限 | 発行日から30日（2026年6月16日まで） |",
+      "path": "/ops?file=2026-05-17-n-design-estimate.md#sec-docs"
+    },
+    {
+      "date": "2026-05-17",
+      "filename": "2026-05-17-n-design-estimate.md",
+      "business": "Nデザイン",
+      "snippet": "有効期限：2026年6月16日",
+      "path": "/ops?file=2026-05-17-n-design-estimate.md#sec-docs"
+    },
+    {
+      "date": "2026-05-17",
+      "filename": "2026-05-17-ai-hub-cleanup-inventory.md",
+      "business": "AIハブ",
+      "snippet": "| ブロック | 中身 | F 回答の反映 |",
+      "path": "/ops?file=2026-05-17-ai-hub-cleanup-inventory.md#sec-docs"
+    },
+    {
+      "date": "2026-05-17",
+      "filename": "2026-05-17-ai-hub-aiwatch-autopublish-design.md",
+      "business": "AIハブ",
+      "snippet": "既存 `migrate_sqlite_to_supabase.py` が `supabase` を使っているか要確認 → 同じ依存に揃える。",
+      "path": "/ops?file=2026-05-17-ai-hub-aiwatch-autopublish-design.md#sec-docs"
+    },
+    {
+      "date": "2026-05-17",
+      "filename": "2026-05-17-ai-hub-aiwatch-autopublish-design.md",
+      "business": "AIハブ",
+      "snippet": "| ブロック | 担当 | 理由 |",
+      "path": "/ops?file=2026-05-17-ai-hub-aiwatch-autopublish-design.md#sec-docs"
     },
     {
       "date": "2026-05-16",
@@ -149,42 +184,28 @@
       "business": "ceo",
       "snippet": "| 11 | キーワード戦略確認 | ⚪ 未着手 |",
       "path": "/ops?file=2026-05-11-ceo-roadmap-progress.md#sec-docs"
-    },
-    {
-      "date": "2026-05-11",
-      "filename": "2026-05-11-business-21-slides-iphone-plan.md",
-      "business": "ビジネス21",
-      "snippet": "| Sending | 保留 (受注実績が出てから着手判断) |",
-      "path": "/ops?file=2026-05-11-business-21-slides-iphone-plan.md#sec-docs"
-    },
-    {
-      "date": "2026-05-11",
-      "filename": "2026-05-11-business-21-slides-iphone-plan.md",
-      "business": "ビジネス21",
-      "snippet": "保留: Sending リニューアル (10〜15h)",
-      "path": "/ops?file=2026-05-11-business-21-slides-iphone-plan.md#sec-docs"
     }
   ],
   "per_business_recent": [
+    {
+      "business": "AIハブ",
+      "count": 10
+    },
     {
       "business": "ceo",
       "count": 10
     },
     {
-      "business": "AIハブ",
-      "count": 8
-    },
-    {
       "business": "ビジネス21",
       "count": 8
     },
     {
-      "business": "Nデザイン",
-      "count": 3
+      "business": "トラスト",
+      "count": 4
     },
     {
-      "business": "トラスト",
-      "count": 3
+      "business": "Nデザイン",
+      "count": 4
     },
     {
       "business": "render",
@@ -298,17 +319,17 @@
     },
     {
       "date": "2026-05-17",
-      "count": 7
+      "count": 9
     },
     {
       "date": "2026-05-18",
-      "count": 1
+      "count": 3
     }
   ],
   "cma_apps": [],
   "totals": {
-    "consul_work_total": 49,
-    "recent_7d_total": 49,
-    "tasks_open_total": 15
+    "consul_work_total": 53,
+    "recent_7d_total": 53,
+    "tasks_open_total": 18
   }
 }

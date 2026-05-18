@@ -8,9 +8,23 @@
 3. 管理ページを開いたら「これからやること／これまでやったこと／日々のプロンプト」が出先(スマホ)から分かる集大成にする
 4. 投稿・動画・ブログなど新規生成物を次々追加できるようタスクを整理（カレンダー・メール含む）
 
-**前提**: 5/16 調査（[2026-05-16-ai-hub-ops-redesign.md](2026-05-16-ai-hub-ops-redesign.md)）で
-「3パイプライン停止＋ai-hub.vercel.app が別 Next.js プロジェクトを配信」が確定済み。
-本書はその上に「情報の物理的な整理（断捨離）」を重ねたもの。**実行はすべて CEO 承認後**（事業リポ書き込み = consul 鉄則）。
+**CEO 確定回答（2026-05-17・本書 §F への回答）**:
+- **F1 → ゴミ削除は `_tmp` と `data/_migrate*` のみ**。`outputs/archive/*.json` は念のため残す（NotebookLM 参照可能性を保留）
+- **F2 → MD 全 HTML 化は廃止。ただし原文閲覧はページ内に残す**（外部リンク飛ばしではなく `/ops` 内で読める折衷。全文を“常時展開して並べる”のをやめ、必要時に開く方式へ）
+- **F3 → プロンプト集は画面（`/ops` UI）から追加・編集・複製**する（YAML 手書き運用は不採用。裏の保存形式は YAML/JSON でよいが編集は UI）
+- **F4 → Google Calendar 連携は後回し**。今回スコープは「重要タスク」「プロンプト」「活動ログ」の3本。予定は次フェーズ
+
+**前提の訂正（2026-05-17 Vercel API 実測 — 5/16 設計の前提が誤りだったと確定）**:
+
+> 🔴 **5/16 設計書（[2026-05-16-ai-hub-ops-redesign.md](2026-05-16-ai-hub-ops-redesign.md)）の核心結論「3パイプライン停止＋別 Next.js プロジェクト配信」は誤診断だった。**
+> Vercel API（`VERCEL_TOKEN`）で実測した事実:
+> - ai-hub プロジェクト（`prj_e7vh73eF0KZpm8C49esnILvHO98o`）は**正常稼働・毎日デプロイ継続**（直近 2026-05-17 07:37 READY、main から自動）
+> - 正しい本番ドメインは **`ai-hub-jp.vercel.app`**（verified）。`/`=200・`/admin`=**401（Basic 認証が正常動作）**・`/profile.html`=200・`/watch`=200 で**全機能生存**
+> - `ai-hub.vercel.app` は **ai-hub の所有でない別ドメイン**（API で no-access、配下 404）。5/13 にこの誤 URL を「本番」と取り違え、以降ずっと 404 を踏んで「壊れている」と誤診断していた
+> - **結論：R0（Vercel 是正）・R2・R3（パイプライン復旧）は全て不要だった。土台は健全。`/ops` は素直に実装できる**
+> - ai-hub.md の本番 URL 記載は 2026-05-17 に正本（`ai-hub-jp`）へ是正済
+
+**実行はすべて CEO 承認後**（事業リポ書き込み = consul 鉄則）。
 
 ---
 
@@ -105,27 +119,54 @@ work/*.md は“原文リンク”として持つだけ（全文 HTML 化＝廃�
 
 ---
 
-## E. 実行順序（依存関係つき・すべて CEO 承認後）
+## E. 実行順序（5/17 Vercel 実測でブロッカー消滅 → 全面短縮）
+
+> 5/16 設計の R0/R2/R3（Vercel 是正・パイプライン復旧）は **誤診断ゆえ全削除**。土台は健全なので「ゴミ掃除 → 表示改造 → /ops 新設」の3手だけで済む。
 
 | 順 | 作業 | 区分 | リポ書込 | 前提 |
 |---|---|---|---|---|
-| **0** | 本仕分けを CEO 承認（削除対象 §B の最終 OK/NG） | 判断 | なし | — |
-| **1** | §B-1 ゴミ削除（_tmp / _migrate* / archive） | 削除 | ai-hub（要 CEO） | 承認 |
-| **2** | R0: ai-hub.vercel.app の紐付け是正（5/16 R0） | 改造 | Vercel 設定（要 CEO） | 承認 |
-| **3** | `sync-consul-docs.yml` を「要点 JSON 同期」に改造／`daily.yml` 復旧 | 改造 | ai-hub Actions（要 CEO） | 2 |
-| **4** | build_portal.py の MD 全 HTML 化撤去 + §B-2 の content/consul-work 削除 | 削除+改造 | ai-hub（要 CEO） | 3 |
-| **5** | `config/prompts.yaml` 新設 + `/ops` ページ実装 | 新設 | ai-hub（要 CEO） | 4 |
-| **6** | scheduler の予定スナップショット連携（G1） | 新設 | consul（鉄則対象外）+ ai-hub 取込（要 CEO） | 5 |
+| **1** | ゴミ削除 — **`_tmp/`（48枚）と `data/_migrate_chunk_*.sql`・`_migrate_chunks.json`・`_migrate_dump.json`（8件）のみ**。`outputs/archive` は残す（F1） | 削除 | ai-hub（要 CEO 実行承認） | — |
+| **2** | 「MD 全展開」の実体特定 → **`api/admin/docs/index.ts` が `content/consul-work/*.md` を全部ブラウザ展開しているのが“ややこしい”の本体**。`build_portal.py`（公開トップ）には MD 全展開は無く触らない。`scripts/build_agents_status.py` は既に理想の「要点 JSON 化」（tasks_open / recent_works 等）をしており**そのまま活かす**。step2 は実コード変更を step3 に統合（docs の全展開を `/ops` の「折りたたみ原文ビューア」に置換） | 改造（実体は step3 に統合） | ai-hub（要 CEO） | 1 |
+| **3** | `/ops` ページ実装（§D 改訂版）。①重要タスク（トップ固定）②プロンプト集（画面で追加/編集/複製）③活動ログ ④原文ビューア（折りたたみ）。**正本 URL は `ai-hub-jp.vercel.app/ops`** | 新設 | ai-hub（要 CEO） | 2 |
+| ~~—~~ | ~~R0 Vercel 是正 / R2 sync 復旧 / R3 daily 復旧~~ | — | — | **不要（5/17 実測で健全と確定）** |
+| **4** | （次フェーズ）Google Calendar 連携 = scheduler スナップショット（F4 で後回し確定） | 新設 | 次回設計 | 3 完了後 |
+
+> ⚠️ 補足：`sync-consul-docs.yml` / `daily.yml` が「5/13 以降コミットが無い」のは事実だが、5/16 が疑った「停止」ではなく **(a) 出力に差分が無くコミット不要だった / (b) 別コミットに同梱された** 可能性が高い（デプロイ自体は毎日 READY）。step 2 着手時に Actions の run 履歴を1回だけ確認し、本当に schedule が回っているかを実測する（コード変更なしの確認）。
+
+### §D 改訂（CEO 回答反映後の `/ops` 構成）
+
+| ブロック | 中身 | F 回答の反映 |
+|---|---|---|
+| ① 重要タスク | `agents_status.json.tasks_open` を優先度順・**トップ固定**。これからやること | F3=画面で完結 |
+| ② プロンプト集 | 投稿/動画台本/ブログ等を **`/ops` UI 上で追加・編集・複製**。保存は裏で `config/prompts.json`（UI 編集前提なので YAML 手書き運用はしない） | **F3=画面から編集**を反映（当初の YAML 手書き案は撤回） |
+| ③ 活動ログ | `per_business_recent` + `cma_apps`。これまでやったこと | — |
+| ④ 原文ビューア | consul-work の MD を**折りたたみ**で必要時だけ展開（常時全 HTML 展開はやめる＝ややこしさ解消、でも読める＝ F2 折衷） | **F2=原文閲覧は残す**を反映 |
+| ～予定～ | **今回スコープ外**（F4） | **F4=後回し**を反映 |
+
+### プロンプト集の保存方式（F3 反映 → さらに技術制約で再々訂正）
+
+- 当初 §D は「`config/prompts.yaml` を手で編集」だったが、**CEO は画面編集を希望**（F3）。
+- 一旦「`config/prompts.json` に画面から書き込み」と設計したが、**Vercel Functions の FS は読み取り専用**（親 CLAUDE.md の cron 判定フロー Q3 にも明記）。本番で `config/prompts.json` への書き込みは**物理的に不可能**だった。
+- **最終解（実装採用）**: プロンプトは **Supabase テーブル `ops_prompts`** に永続化。
+  - AIハブは既に `@supabase/supabase-js` + `SUPABASE_SERVICE_ROLE_KEY` を**画像アップロードで実運用中**（[api/_lib/storage.ts](../../ai-hub/api/_lib/storage.ts)）。基盤は既存・追加コストなし
+  - `/api/ops/prompts`（GET/POST/PUT/DELETE）が Supabase を読み書き。認証は既存 `withAdmin` 流用
+  - テーブル: `ops_prompts(id uuid pk, category text, title text, body text, created_at, updated_at)`。RLS は service_role 専用（公開しない）
+  - 「投稿」「動画台本」「ブログ」等は `category` 列で画面から自由に増やせる（コードも YAML も不要＝F3 完全充足）
+- ⚠️ Supabase に `ops_prompts` テーブルを作る SQL（マイグレーション）が前提。実装に同梱し、CEO 承認時に Supabase で実行する手順を提示する。
 
 ---
 
-## F. CEO への確認ポイント（ここだけ決めれば走れる）
+## F. CEO 確認ポイント → ✅ 全 4 点回答済み（2026-05-17）
 
-1. **§B-1 のゴミ（_tmp 48枚 / _migrate* 8件 / archive の4月JSON）は削除してよいか？**（機能影響なしと判断）
-2. **§B-2：`content/consul-work/*.md` 32件の“全文 HTML 化”を廃止**してよいか？（＝MD は ai-hub に全文コピーせず、`/ops` は要点 JSON だけ表示。原文は consul/work/ にありリンクで飛ぶ）
-3. **プロンプト集を `config/prompts.yaml` で持つ方式**でよいか？（コード不要で投稿/動画/ブログのジャンルを足せる）
-4. 個人カレンダー（`lossismore`）を `/ops` に載せるか、事業（`goodbouldering`）だけにするか（5/16 Q4 から継続。プライバシー判断）
+| # | 確認事項 | CEO 回答 |
+|---|---|---|
+| F1 | ゴミ削除の範囲 | **`_tmp` と `_migrate*` のみ**。archive は残す |
+| F2 | MD 全 HTML 化の扱い | **廃止。ただし原文閲覧は `/ops` 内に残す**（折りたたみ方式） |
+| F3 | プロンプト集の持ち方 | **画面（`/ops` UI）から追加・編集・複製**（YAML 手書き不採用） |
+| F4 | Calendar 連携 | **後回し**（今回は タスク/プロンプト/活動ログ の3本） |
+
+→ 仕分け・方針は全確定。残るは **§E の各ステップの実行承認**（事業リポ書き込みのため step ごとに CEO GO が要る）。
 
 ---
 
-**最終更新**: 2026-05-17（v1・整理仕分け確定。実行は §F の CEO 回答待ち）
+**最終更新**: 2026-05-17（v2・CEO 4 回答反映。方針確定。§E 実行は step ごと CEO GO 待ち）

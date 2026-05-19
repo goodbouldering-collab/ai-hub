@@ -1474,6 +1474,19 @@ CONTENT_CSS = """
 """
 
 
+def _redirect_html(a, t):
+    d = "https://ai-hub-jp.vercel.app/#" + a
+    return ("<!doctype html><html lang='ja'><head><meta charset='utf-8'>"
+        "<title>" + t + " | AIハブ</title>"
+        "<link rel='canonical' href='" + d + "'>"
+        "<meta http-equiv='refresh' content='0; url=" + d + "'>"
+        "<meta name='robots' content='noindex,follow'>"
+        "<script>location.replace(" + repr(d) + ");</script>"
+        "</head><body><p>このページは "
+        "<a href='" + d + "'>トップの" + t + "</a> に統合されました。</p>"
+        "</body></html>")
+
+
 def _portal_css() -> str:
     """build_portal.py の PORTAL_CSS を唯一の正本として取り込む。
     取得失敗時は空文字（既存 CSS のみで従来動作にフォールバック）。"""
@@ -1660,7 +1673,7 @@ def build_speaker_page() -> bool:
     title = meta.get("name") or "講師紹介"
     nav = render_top_nav(path_prefix="./", current_id="speaker", include_run=False)
     html_text = render_content_page(title, meta, body_html, nav, page_path="speaker.html", kind="speaker")
-    (DIST / "speaker.html").write_text(html_text, encoding="utf-8")
+    (DIST / "speaker.html").write_text(_redirect_html("speaker","講師紹介"), encoding="utf-8")
     return True
 
 
@@ -1934,7 +1947,7 @@ def build_portfolio_page() -> bool:
     }
     nav = render_top_nav(path_prefix="./", current_id="portfolio", include_run=False)
     html_text = render_content_page("実績サイト", meta, body_html, nav, page_path="portfolio.html", kind="portfolio")
-    (DIST / "portfolio.html").write_text(html_text, encoding="utf-8")
+    (DIST / "portfolio.html").write_text(_redirect_html("portfolio","実績"), encoding="utf-8")
     return True
 
 
@@ -2135,7 +2148,7 @@ def build_profile_page() -> bool:
     }
     nav = render_top_nav(path_prefix="./", current_id="profile", include_run=False)
     html_text = render_content_page(title, page_meta, body_html, nav, page_path="profile.html", kind="speaker")
-    (DIST / "profile.html").write_text(html_text, encoding="utf-8")
+    (DIST / "profile.html").write_text(_redirect_html("profile","経歴"), encoding="utf-8")
     return True
 
 

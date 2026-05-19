@@ -690,7 +690,7 @@ def render_index(payload: dict, genres: list[dict], is_live: bool = True) -> str
     ld = _build_jsonld("website", {}, "AIハブ AI Watch", SITE_URL + "/watch/index.html")
     if ld:
         parts.append(f"<script type='application/ld+json'>{ld}</script>")
-    parts.append(f"<style>{CSS}</style></head><body><div class='container'>")
+    parts.append(f"<style>{MASTER_CSS}</style></head><body><div class='container'>")
     parts.append(ADMIN_BUTTON_HTML)
     parts.append(render_top_nav(path_prefix="../", current_id="home" if is_live else "archive", include_run=is_live))
     parts.append("<header>")
@@ -899,7 +899,7 @@ def render_archive(dates: list[str]) -> str:
     parts.append("<!doctype html><html lang='ja'><head><meta charset='utf-8'>" + FAVICON_HEAD_HTML)
     parts.append("<meta name='viewport' content='width=device-width,initial-scale=1'>")
     parts.append("<title>AIハブ — 過去ログ</title>")
-    parts.append(f"<style>{CSS}</style></head><body><div class='container'>")
+    parts.append(f"<style>{MASTER_CSS}</style></head><body><div class='container'>")
     parts.append(ADMIN_BUTTON_HTML)
     parts.append(render_top_nav(path_prefix="../", current_id="archive", include_run=False))
     parts.append("<header>")
@@ -1504,6 +1504,26 @@ CONTENT_CSS = """
 """
 
 
+def _portal_css() -> str:
+    """build_portal.py の PORTAL_CSS を唯一の正本として取り込む。
+    取得失敗時は空文字（既存 CSS のみで従来動作にフォールバック）。"""
+    try:
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        import build_portal  # noqa: WPS433
+        return build_portal.PORTAL_CSS
+    except Exception as e:
+        print(f"[!] PORTAL_CSS 取り込み失敗（既存CSSで継続）: {e}")
+        return ""
+
+
+# 全ページ共通のマスタCSS。build_site 固有 CSS を土台に、PORTAL_CSS を
+# 後置して後勝ちにすることで、共通セレクタ(body/.container/.site-header 等)を
+# トップ(LP)と完全一致させる。watch/lectures 固有の .thumb/.genre-tabs 等は
+# PORTAL に無いため前置の CSS 側で生き残る（破綻しない）。
+MASTER_CSS = CSS + _portal_css()
+MASTER_CONTENT_CSS = CSS + CONTENT_CSS + _portal_css()
+
+
 def _load_markdown():
     import importlib
     return importlib.import_module("markdown")
@@ -1626,7 +1646,7 @@ def render_content_page(title: str, meta: dict, body_html: str, nav_html: str, p
         ld = _build_jsonld(jsonld_kind, meta, title, page_url)
         if ld:
             parts.append(f"<script type='application/ld+json'>{ld}</script>")
-    parts.append(f"<style>{CSS}{CONTENT_CSS}</style></head><body><div class='container'>")
+    parts.append(f"<style>{MASTER_CONTENT_CSS}</style></head><body><div class='container'>")
     parts.append(ADMIN_BUTTON_HTML)
     parts.append(nav_html)
     parts.append("<header>")

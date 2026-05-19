@@ -138,37 +138,7 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
         "</a>"
         "<nav class='site-nav top-nav' aria-label='サイトナビ'>"
     ]
-    has_run = False
-    for gname, items in grouped:
-        for b in items:
-            label = html.escape(str(b.get("label", "")))
-            icon = html.escape(str(b.get("icon", "")))
-            text = f"{icon} {label}".strip()
-            kind = b.get("kind", "link")
-            bid = str(b.get("id", ""))
-            extra_attrs = ""
-            if b.get("localhost_only"):
-                extra_attrs += " data-localhost-only='1' style='display:none'"
-            if kind == "action":
-                action_id = b.get("action_id") or bid or "run"
-                if action_id == "run":
-                    has_run = True
-                    parts.append(
-                        f"<button type='button' id='run-btn' class='nav-btn run-btn'{extra_attrs}>{text}</button>"
-                    )
-            else:
-                href = _resolve_nav_href(str(b.get("href", "")), path_prefix)
-                if current_id and bid == current_id:
-                    parts.append(
-                        f"<span class='nav-btn nav-current' aria-current='page'{extra_attrs}>{text}</span>"
-                    )
-                else:
-                    if not href:
-                        continue
-                    safe_href = html.escape(href, quote=True)
-                    parts.append(f"<a class='nav-btn' href='{safe_href}'{extra_attrs}>{text}</a>")
-    if has_run:
-        parts.append("<span id='run-status' class='run-status'></span>")
+    parts.append(f"<a class='nav-btn' href='{safe_home}'>🏠 ホームへ戻る</a>")
     parts.append("</nav>")
     parts.append(
         f"<a class='login-btn' href='{admin_href}'>🔐 管理ログイン</a>"

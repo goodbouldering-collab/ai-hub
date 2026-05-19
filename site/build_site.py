@@ -2192,14 +2192,30 @@ def _patch_programming_map_nav(pmap_file: Path) -> None:
         "<a href='#sec-line'>💬 LINE</a>"
         "</nav>"
     )
-    # 共通トップナビの CSS（他ページと完全一致させるためここで注入）と
+    # 共通トップヘッダー/ナビの CSS を、正本 CSS 定数からマーカーで切り出して注入する。
+    # static の programming-map.html は <style> に header.site-header / nav.top-nav を
+    # 持たないため、これを入れないと共通ナビのマークアップだけ付いて無スタイルになる
+    # （= PORTAL_CSS 未定義クラス再発バグ。2026-05-19 修正）。
+    # 文字列スライスで CSS 定数を参照するので、正本が変われば自動追従し二重管理にならない。
+    _NAV_CSS_START = "/* ---- 共通トップヘッダー（fixed・N デザイン風 white/blur）---- */"
+    _NAV_CSS_END = ".run-status.running { color:#b45309; }"
+    _s = CSS.find(_NAV_CSS_START)
+    _e = CSS.find(_NAV_CSS_END)
+    if _s == -1 or _e == -1:
+        # 正本側のマーカーが変わったら気付けるよう明示的に失敗させる
+        raise RuntimeError(
+            "programming-map nav CSS マーカーが CSS 定数内に見つからない"
+            "（build_site.py の共通ヘッダー/ナビ CSS のコメントを変更した可能性）"
+        )
+    common_nav_css = CSS[_s : _e + len(_NAV_CSS_END)]
     # ページ内目次バーの CSS をまとめる
     chapter_css = (
         "<style id='pm-chapter-toc-css'>"
-        # ---- 共通トップナビ（index.html 等と同一スタイル） ----
+        # ---- 共通トップヘッダー/ナビ（index.html 等と同一・正本 CSS から抽出） ----
+        + common_nav_css
         # ページ内目次バー（programming-map 専用：fixed top-nav の真下に sticky で吸着）
         # 共通 top-nav は fixed (height ≒ 68px) なので、本文先頭は 96px から
-        "html{scroll-padding-top:144px;}"
+        + "html{scroll-padding-top:144px;}"
         "[id]{scroll-margin-top:144px;}"
         ".pm-chapter-toc{position:sticky;top:84px;z-index:40;"
         "max-width:1100px;"

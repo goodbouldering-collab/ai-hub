@@ -1,64 +1,120 @@
 {
-  "generated_at": "2026-05-18T22:49:58Z",
+  "generated_at": "2026-05-19T22:57:24Z",
   "recent_works": [
+    {
+      "date": "2026-05-20",
+      "filename": "2026-05-20-github-org-migration-runbook-v2.md",
+      "title": "GitHub Org 移管 実行手順書 v2（新Org作成＋全リポTransfer・現実版）",
+      "business": "github",
+      "path": "/ops?file=2026-05-20-github-org-migration-runbook-v2.md#sec-docs"
+    },
+    {
+      "date": "2026-05-20",
+      "filename": "2026-05-20-github-org-conversion-runbook.md",
+      "title": "【廃止】GitHub 個人→Organization 変換 実行手順書（v1）",
+      "business": "github",
+      "path": "/ops?file=2026-05-20-github-org-conversion-runbook.md#sec-docs"
+    },
+    {
+      "date": "2026-05-19",
+      "filename": "2026-05-19-supabase-tenancy-audit.md",
+      "title": "Supabase テナンシー監査 2026-05-19",
+      "business": "supabase",
+      "path": "/ops?file=2026-05-19-supabase-tenancy-audit.md#sec-docs"
+    },
+    {
+      "date": "2026-05-19",
+      "filename": "2026-05-19-handoff-master-plan.md",
+      "title": "事業承継・引き継ぎマスタープラン（バス係数=1 の解消）",
+      "business": "handoff",
+      "path": "/ops?file=2026-05-19-handoff-master-plan.md#sec-docs"
+    },
+    {
+      "date": "2026-05-19",
+      "filename": "2026-05-19-handoff-dashboard-checklist.md",
+      "title": "引き継ぎ承認チェックリスト（あなたがダッシュボードで埋める1枚）",
+      "business": "handoff",
+      "path": "/ops?file=2026-05-19-handoff-dashboard-checklist.md#sec-docs"
+    },
+    {
+      "date": "2026-05-19",
+      "filename": "2026-05-19-github-domain-mail-audit.md",
+      "title": "GitHub / ドメイン / メール転送 テナンシー監査レポート",
+      "business": "github",
+      "path": "/ops?file=2026-05-19-github-domain-mail-audit.md#sec-docs"
+    },
+    {
+      "date": "2026-05-19",
+      "filename": "2026-05-19-business-21-perf-isr.md",
+      "title": "ビジネス21 サイト表示の急激な遅延 — 原因と恒久対策",
+      "business": "ビジネス21",
+      "path": "/ops?file=2026-05-19-business-21-perf-isr.md#sec-docs"
+    },
     {
       "date": "2026-05-18",
       "filename": "2026-05-18-trust-site-migration-plan.md",
       "title": "トラスト 公開サイト全機能移設＋管理ハブ全面構築 計画書",
       "business": "トラスト",
       "path": "/ops?file=2026-05-18-trust-site-migration-plan.md#sec-docs"
-    },
-    {
-      "date": "2026-05-18",
-      "filename": "2026-05-18-ai-hub-lp-restructure-design.md",
-      "title": "AIハブ TOP LP型再構成 + 管理画面UI統一 設計書",
-      "business": "AIハブ",
-      "path": "/ops?file=2026-05-18-ai-hub-lp-restructure-design.md#sec-docs"
-    },
-    {
-      "date": "2026-05-18",
-      "filename": "2026-05-18-ai-hub-design-unify-spec.md",
-      "title": "AIハブ サイト内デザイン統一 指示書（Codex 委任用）",
-      "business": "AIハブ",
-      "path": "/ops?file=2026-05-18-ai-hub-design-unify-spec.md#sec-docs"
-    },
-    {
-      "date": "2026-05-17",
-      "filename": "2026-05-17-secrets-inventory.md",
-      "title": "シークレット台帳（全プロジェクト横断・2026-05-17 時点）",
-      "business": "secrets",
-      "path": "/ops?file=2026-05-17-secrets-inventory.md#sec-docs"
-    },
-    {
-      "date": "2026-05-17",
-      "filename": "2026-05-17-parent-repo-uncommitted-handoff.md",
-      "title": "親リポ claude-workspace 未コミット混在 — CEO 引き継ぎ資料",
-      "business": "parent",
-      "path": "/ops?file=2026-05-17-parent-repo-uncommitted-handoff.md#sec-docs"
-    },
-    {
-      "date": "2026-05-17",
-      "filename": "2026-05-17-n-design-section-content-cms.md",
-      "title": "N-デザイン トップページ「セクション本文」管理画面編集化 — 差分設計書",
-      "business": "Nデザイン",
-      "path": "/ops?file=2026-05-17-n-design-section-content-cms.md#sec-docs"
-    },
-    {
-      "date": "2026-05-17",
-      "filename": "2026-05-17-n-design-hero-cms-fix.md",
-      "title": "N-デザイン トップ ヒーローセクション 管理ページ編集化 — 完了報告",
-      "business": "Nデザイン",
-      "path": "/ops?file=2026-05-17-n-design-hero-cms-fix.md#sec-docs"
-    },
-    {
-      "date": "2026-05-17",
-      "filename": "2026-05-17-n-design-estimate.md",
-      "title": "N-デザイン 見積書（確定版）",
-      "business": "Nデザイン",
-      "path": "/ops?file=2026-05-17-n-design-estimate.md#sec-docs"
     }
   ],
   "tasks_open": [
+    {
+      "date": "2026-05-19",
+      "filename": "2026-05-19-handoff-master-plan.md",
+      "business": "handoff",
+      "snippet": "| 1 | **GitHub アカウント1つ（個人）** = 凍結で全社コード同時消失 | **GitHub Organization 化**。Org に全リポ移管、Owner を2名以上に | 未着手 |",
+      "path": "/ops?file=2026-05-19-handoff-master-plan.md#sec-docs"
+    },
+    {
+      "date": "2026-05-19",
+      "filename": "2026-05-19-handoff-master-plan.md",
+      "business": "handoff",
+      "snippet": "| 2 | **API キー・各サービスのログインが由井のローカル/頭にしかない** | **Bitwarden 無料 Organization**。Collection を事業別に。Emergency Access で死活時に継承 | 未着手 |",
+      "path": "/ops?file=2026-05-19-handoff-master-plan.md#sec-docs"
+    },
+    {
+      "date": "2026-05-19",
+      "filename": "2026-05-19-handoff-dashboard-checklist.md",
+      "business": "handoff",
+      "snippet": "🔴 最優先ブロック A：GitHub の正体（⏱5分・これで承認#1の前提が解ける）",
+      "path": "/ops?file=2026-05-19-handoff-dashboard-checklist.md#sec-docs"
+    },
+    {
+      "date": "2026-05-19",
+      "filename": "2026-05-19-handoff-dashboard-checklist.md",
+      "business": "handoff",
+      "snippet": "🔴 最優先ブロック B：ドメイン棚卸し（⏱30分・最大の時限爆弾・承認#3の前提）",
+      "path": "/ops?file=2026-05-19-handoff-dashboard-checklist.md#sec-docs"
+    },
+    {
+      "date": "2026-05-19",
+      "filename": "2026-05-19-handoff-dashboard-checklist.md",
+      "business": "handoff",
+      "snippet": "| ドメイン | 事業 | レジストラ名 | 管理者メール | 有効期限 | 自動更新 | 支払いカード名義 |",
+      "path": "/ops?file=2026-05-19-handoff-dashboard-checklist.md#sec-docs"
+    },
+    {
+      "date": "2026-05-19",
+      "filename": "2026-05-19-github-domain-mail-audit.md",
+      "business": "github",
+      "snippet": "| カラッと | 未確認 | — | Shopify テーマ管理の可能性あり・要確認 |",
+      "path": "/ops?file=2026-05-19-github-domain-mail-audit.md#sec-docs"
+    },
+    {
+      "date": "2026-05-19",
+      "filename": "2026-05-19-github-domain-mail-audit.md",
+      "business": "github",
+      "snippet": "| ファディー | 未確認 | — | 再生成中のため未確定・要確認 |",
+      "path": "/ops?file=2026-05-19-github-domain-mail-audit.md#sec-docs"
+    },
+    {
+      "date": "2026-05-19",
+      "filename": "2026-05-19-github-domain-mail-audit.md",
+      "business": "github",
+      "snippet": "| Notエステ | 不明（.env.example に変数あり・値は未確認） | Resend 使用の可能性（RESEND 系キーあり） | 要確認 |",
+      "path": "/ops?file=2026-05-19-github-domain-mail-audit.md#sec-docs"
+    },
     {
       "date": "2026-05-17",
       "filename": "2026-05-17-secrets-inventory.md",
@@ -142,62 +198,12 @@
       "business": "render",
       "snippet": "| その他のカスタムドメイン | 各事業 | Cloudflare 経由か要確認 |",
       "path": "/ops?file=2026-05-12-render-cloudflare-deletion-feasibility.md#sec-docs"
-    },
-    {
-      "date": "2026-05-12",
-      "filename": "2026-05-12-business-21-seo-llmo-strategy-v2.md",
-      "business": "ビジネス21",
-      "snippet": "| 差別化軸 C「2027 移行 30項目チェックリスト」固定PDF | 育成就労の細則は未確定。半年後に半分書き直す可能性 | **「法令確定状況ダッシュボード」に設計変更**。確定/審議中/未着手 をバッジで動的表示 |",
-      "path": "/ops?file=2026-05-12-business-21-seo-llmo-strategy-v2.md#sec-docs"
-    },
-    {
-      "date": "2026-05-12",
-      "filename": "2026-05-12-business-21-seo-llmo-strategy-v2.md",
-      "business": "ビジネス21",
-      "snippet": "| 業界別 LP の FAQ ブロック | 実装済 | `landing-data.ts:30-150` |",
-      "path": "/ops?file=2026-05-12-business-21-seo-llmo-strategy-v2.md#sec-docs"
-    },
-    {
-      "date": "2026-05-12",
-      "filename": "2026-05-12-business-21-seo-llmo-strategy-v2.md",
-      "business": "ビジネス21",
-      "snippet": "| **C: 育成就労 2027 移行支援** | 固定 PDF「30項目チェックリスト」 | **動的「法令確定状況ダッシュボード」に変更**。確定/審議中/未着手 をバッジ表示。月次更新運用前提 | **★★★★★** |",
-      "path": "/ops?file=2026-05-12-business-21-seo-llmo-strategy-v2.md#sec-docs"
-    },
-    {
-      "date": "2026-05-11",
-      "filename": "2026-05-11-ceo-roadmap-progress.md",
-      "business": "ceo",
-      "snippet": "| 6 | コンサル相談窓口設置の判断 | （Task #1〜5 確定後に Claude が LP 改修案を出す） | ⚪ 未着手 |",
-      "path": "/ops?file=2026-05-11-ceo-roadmap-progress.md#sec-docs"
-    },
-    {
-      "date": "2026-05-11",
-      "filename": "2026-05-11-ceo-roadmap-progress.md",
-      "business": "ceo",
-      "snippet": "| 8 | 交流会で Web デモ枠交渉 | （次回交流会日程確認後） | ⚪ 未着手 |",
-      "path": "/ops?file=2026-05-11-ceo-roadmap-progress.md#sec-docs"
-    },
-    {
-      "date": "2026-05-11",
-      "filename": "2026-05-11-ceo-roadmap-progress.md",
-      "business": "ceo",
-      "snippet": "| 11 | キーワード戦略確認 | ⚪ 未着手 |",
-      "path": "/ops?file=2026-05-11-ceo-roadmap-progress.md#sec-docs"
     }
   ],
   "per_business_recent": [
     {
       "business": "AIハブ",
-      "count": 10
-    },
-    {
-      "business": "ceo",
-      "count": 10
-    },
-    {
-      "business": "ビジネス21",
-      "count": 8
+      "count": 7
     },
     {
       "business": "トラスト",
@@ -208,8 +214,24 @@
       "count": 4
     },
     {
-      "business": "render",
+      "business": "github",
       "count": 3
+    },
+    {
+      "business": "handoff",
+      "count": 2
+    },
+    {
+      "business": "ビジネス21",
+      "count": 2
+    },
+    {
+      "business": "render",
+      "count": 2
+    },
+    {
+      "business": "supabase",
+      "count": 1
     },
     {
       "business": "secrets",
@@ -256,23 +278,15 @@
       "count": 1
     },
     {
+      "business": "ceo",
+      "count": 1
+    },
+    {
       "business": "achievements",
-      "count": 1
-    },
-    {
-      "business": "carat",
-      "count": 1
-    },
-    {
-      "business": "all",
       "count": 1
     }
   ],
   "daily_histogram": [
-    {
-      "date": "2026-05-05",
-      "count": 0
-    },
     {
       "date": "2026-05-06",
       "count": 0
@@ -324,12 +338,16 @@
     {
       "date": "2026-05-18",
       "count": 3
+    },
+    {
+      "date": "2026-05-19",
+      "count": 5
     }
   ],
   "cma_apps": [],
   "totals": {
-    "consul_work_total": 53,
-    "recent_7d_total": 53,
-    "tasks_open_total": 18
+    "consul_work_total": 60,
+    "recent_7d_total": 38,
+    "tasks_open_total": 20
   }
 }

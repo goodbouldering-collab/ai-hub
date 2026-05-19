@@ -1169,46 +1169,61 @@ def _render_faq() -> str:
 
 
 def _render_speaker_section() -> str:
-    """L1 講師紹介セクション。speaker.md（今の活動・AI講師の顔）を要約。
-    詳細全文は speaker.html へ誘導。"""
+    """講師紹介セクション。speaker.md の本文を全文 Markdown 展開して TOP に一体化。
+    個別ページ speaker.html は廃止し、ここが唯一の正本。"""
+    import markdown as _md
     sp = _load_speaker()
     name = html.escape(sp.get("name") or OWNER_NAME)
     role = html.escape(sp.get("role") or "")
-    intro = html.escape(sp.get("intro") or "")
-    role_html = f"<p style='font-weight:700;color:var(--primary);margin:0 0 12px;'>{role}</p>" if role else ""
-    intro_html = f"<p>{intro}</p>" if intro else ""
+    raw = SPEAKER_MD.read_text(encoding="utf-8") if SPEAKER_MD.exists() else ""
+    body = raw
+    if raw.startswith("---"):
+        try:
+            body = raw[raw.index("\n---", 3) + 4:]
+        except ValueError:
+            body = raw
+    # 先頭の H1（"# 由井 辰美 — ..."）と自動生成注記の引用ブロックは除去
+    lines = []
+    for ln in body.splitlines():
+        st = ln.strip()
+        if st.startswith("# "):
+            continue
+        if st.startswith(">"):
+            continue
+        lines.append(ln)
+    body_html = _md.markdown("\n".join(lines), extensions=["extra", "sane_lists"])
+    role_html = f"<p style='font-weight:700;color:var(--primary);margin:0 0 16px;'>{role}</p>" if role else ""
     return (
-        "<div class='profile-block'>"
+        "<div class='profile-block' style='display:block;'>"
         "<div>"
         f"<h3>{name}</h3>"
         f"{role_html}"
-        f"{intro_html}"
-        "<p style='font-weight:700;color:var(--text);'>「異端OK、数字根拠で経営を変える」</p>"
-        "<a class='see-all' href='/speaker.html'>講師紹介を詳しく見る →</a>"
+        f"<div class='content-wrap' style='padding:0;border:none;box-shadow:none;background:none;'>{body_html}</div>"
         "</div>"
-        "<div class='profile-avatar'>🎤</div>"
         "</div>"
     )
 
-
 def _render_career_section() -> str:
-    """L2 経歴セクション。profile.yaml（生い立ちからの物語）の stats + timeline 主要分。
-    全 timeline は profile.html へ誘導。"""
+    """経歴セクション。profile.yaml の stats + 全 timeline を TOP に全文展開。
+    個別ページ profile.html は廃止し、ここが唯一の正本。"""
     prof = _load_profile()
     if not prof:
         return ""
     parts: list[str] = []
     meta = prof.get("meta") or {}
     subtitle = html.escape(str(meta.get("subtitle") or ""))
+    intro = html.escape(str(prof.get("intro") or "")).replace("\n", "<br>")
     if subtitle:
         parts.append(f"<p class='section-sub'>{subtitle}</p>")
+    if intro:
+        parts.append(f"<p style='max-width:760px;margin:0 auto 28px;color:var(--text-soft);line-height:1.9;'>{intro}</p>")
 
     stats = prof.get("stats") or []
     if stats:
         parts.append("<div class='stats-strip' style='margin-bottom:40px;'>")
-        for s in stats[:6]:
-            num = html.escape(str(s.get("number") or ""))
-            lbl = html.escape(str(s.get("label") or ""))
+        for st in stats:
+            num = html.escape(str(st.get("number") or ""))
+            lbl = html.escape(str(st.get("label") or ""))
             parts.append(
                 f"<div class='stat'><div class='num'>{num}</div>"
                 f"<div class='label'>{lbl}</div></div>"
@@ -1217,28 +1232,29 @@ def _render_career_section() -> str:
 
     timeline = prof.get("timeline") or []
     if timeline:
-        # 直近〜重要な節目を6件（新しい順を尊重しつつ末尾=最新が来る配列なので逆順）
-        picked = list(reversed(timeline))[:6]
         parts.append("<div class='profile-timeline'>")
-        for t in picked:
+        for t in reversed(timeline):
             year = html.escape(str(t.get("year") or ""))
             role = html.escape(str(t.get("role") or ""))
             desc = str(t.get("description") or "").strip()
-            # description は複数行 markdown。先頭1段落だけ・**強調**は除去して要約に
-            first = desc.split("\n\n")[0].replace("**", "").replace("\n", " ").strip()
-            desc_html = html.escape(first)
+            desc = desc.replace("**", "").replace("\n\n", "<br><br>").replace("\n", " ")
+            desc_html = html.escape(desc).replace("&lt;br&gt;", "<br>")
+            mets = t.get("metrics") or []
+            mh = ""
+            if mets:
+                mh = "<div class='profile-tl-metrics'>" + "".join(
+                    f"<span class='pf-chip'>{html.escape(str(m))}</span>" for m in mets
+                ) + "</div>"
             parts.append(
                 "<div class='profile-tl-item'>"
                 f"<div class='profile-tl-year'>{year}</div>"
                 f"<div class='profile-tl-role'>{role}</div>"
                 f"<div class='profile-tl-desc'>{desc_html}</div>"
+                f"{mh}"
                 "</div>"
             )
         parts.append("</div>")
-
-    parts.append("<a class='see-all' href='/profile.html'>全経歴・技術遍歴を見る →</a>")
     return "".join(parts)
-
 
 def _render_portfolio_section() -> str:
     """L3 制作実績セクション。portfolio.yaml の全件をカードグリッドで。
@@ -1279,7 +1295,12 @@ def _render_portfolio_section() -> str:
             f"</{tag}>"
         )
     parts.append("</div>")
-    parts.append("<a class='see-all' href='/portfolio.html'>実績ページを詳しく見る →</a>")
+    parts.append(
+        "<div class='watch-link-bar' style='margin-top:24px;'>"
+        "<p>🗺 用語と全体像をビジュアルで把握できる <strong>プログラミングマップ</strong></p>"
+        "<a href='/programming-map.html'>プログラミングマップを開く →</a>"
+        "</div>"
+    )
     return "".join(parts)
 
 
@@ -1294,14 +1315,6 @@ def _render_lectures_section() -> str:
         parts.append("</div>")
     else:
         parts.append("<p class='section-sub'>講習資料は準備中です。</p>")
-    # プログラミングマップ（lectures に内包する既存方針を踏襲）
-    parts.append(
-        "<div class='watch-link-bar' style='margin-top:24px;'>"
-        "<p>🗺 用語と全体像をビジュアルで把握できる <strong>プログラミングマップ</strong> も公開中</p>"
-        "<a href='/programming-map.html'>プログラミングマップを開く →</a>"
-        "</div>"
-    )
-    parts.append("<a class='see-all' href='/lectures/index.html'>講習資料の一覧・PDF DL →</a>")
     return "".join(parts)
 
 

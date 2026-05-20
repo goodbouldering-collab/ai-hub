@@ -663,6 +663,57 @@ section.block + section.block { border-top: 1px dashed var(--line); }
   .fade-up { opacity: 1; transform: none; transition: none; }
 }
 
+/* ---- packages (AI講習・相談・伴走パック) ---- */
+.packages-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 12px;
+}
+@media (max-width: 900px) { .packages-grid { grid-template-columns: 1fr; } }
+.pkg-card {
+  background: linear-gradient(180deg, rgba(255,255,255,.7), rgba(255,255,255,.45));
+  border: 1px solid rgba(37,99,235,.12);
+  border-radius: 20px; padding: 26px 22px 22px;
+  display: flex; flex-direction: column; gap: 10px;
+  box-shadow: var(--shadow-card);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  position: relative; overflow: hidden;
+}
+.pkg-card:hover {
+  transform: translateY(-4px); box-shadow: var(--shadow-card-hover);
+  border-color: rgba(37,99,235,.28);
+}
+.pkg-head { display: flex; align-items: center; gap: 10px; }
+.pkg-icon { font-size: 28px; line-height: 1; }
+.pkg-cat {
+  font-size: 11px; font-weight: 700; letter-spacing: .08em;
+  color: #b45309; background: #fef3c7;
+  padding: 4px 10px; border-radius: 999px;
+}
+.pkg-title { font-size: 17px; font-weight: 800; color: var(--text); line-height: 1.4; margin: 4px 0 0; }
+.pkg-meta { font-size: 12px; color: var(--muted); }
+.pkg-price { font-size: 19px; font-weight: 900; color: #2563eb; }
+.pkg-subsidy {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 11px; font-weight: 700; color: #047857;
+  background: #d1fae5; padding: 4px 10px; border-radius: 8px;
+  width: fit-content;
+}
+.pkg-desc { font-size: 13px; line-height: 1.7; color: var(--text); flex: 1; margin: 4px 0; }
+.pkg-cta {
+  display: inline-flex; align-items: center; justify-content: center;
+  margin-top: auto; padding: 12px 16px;
+  background: linear-gradient(135deg, #2563eb, #4f46e5);
+  color: #fff; font-weight: 700; font-size: 14px;
+  text-decoration: none; border-radius: 12px;
+  transition: opacity .15s ease, transform .15s ease;
+}
+.pkg-cta:hover { opacity: .92; transform: translateY(-1px); }
+.packages-note {
+  margin-top: 22px; padding: 14px 18px;
+  background: rgba(37,99,235,.04); border-left: 3px solid #2563eb;
+  border-radius: 0 10px 10px 0;
+  font-size: 13px; line-height: 1.7; color: var(--text);
+}
+
 /* ---- flow steps ---- */
 .flow-list {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
@@ -1133,6 +1184,72 @@ def _render_services() -> str:
     return "".join(parts)
 
 
+def _render_courses_packages() -> str:
+    """AI個別相談 / AI講習会 / AI伴走パック の3カード（minanowaから移管）"""
+    items = [
+        {
+            "icon": "💬",
+            "cat": "個別相談",
+            "title": "AI個別相談 60分",
+            "price": "2,200円〜5,500円",
+            "duration": "60分",
+            "subsidy": False,
+            "desc": "経営者・専門職・初心者なんでも相談。LLMO / SEO / MEO / Claude Code 活用 / バックオフィス効率化 / 補助金申請まで、現役オーナーがその場で「困った」を解決。",
+            "url": "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/TO3XHZT6XP3OM4QBDYMW7TZP",
+            "cta": "予約する（Square）",
+        },
+        {
+            "icon": "📚",
+            "cat": "講習会",
+            "title": "AI講習会 120分（月1回 / 定員8名）",
+            "price": "5,500円",
+            "duration": "120分",
+            "subsidy": True,
+            "desc": "彦根でAIや経営を学べる実践型講習。一般の講師が教えない「考え方とコツ」を中心に、参加者のレベルに合わせて内容を最適化。Claude Code / オフィス自動化 / 通販サイト構築まで。",
+            "url": "https://minanowa.com/#events",
+            "cta": "次回開催を見る",
+        },
+        {
+            "icon": "🚀",
+            "cat": "伴走パック",
+            "title": "AI伴走パック 6回（補助金対象）",
+            "price": "月額 100,000円（税込）× 6ヶ月",
+            "duration": "6ヶ月（導入相談60分から開始）",
+            "subsidy": True,
+            "desc": "HP公開から事務自動化まで、技術的な難所は講師が代行・支援。AI導入・デザイン内製化・書類営業効率化・経理自動化・マーケティングを6ヶ月で一気に定着。滋賀・彦根の補助金で負担1/3以下に。",
+            "url": "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/V57YTNICA2KV2TN7ENARAVQE",
+            "cta": "導入相談（無料・60分）",
+        },
+    ]
+    parts = ["<div class='packages-grid'>"]
+    for i, it in enumerate(items):
+        subsidy_badge = (
+            "<span class='pkg-subsidy'>✓ 補助金対応</span>" if it["subsidy"] else ""
+        )
+        parts.append(
+            f"<div class='pkg-card fade-up d{(i % 3) + 1}'>"
+            f"<div class='pkg-head'>"
+            f"<span class='pkg-icon' aria-hidden='true'>{html.escape(it['icon'])}</span>"
+            f"<span class='pkg-cat'>{html.escape(it['cat'])}</span>"
+            f"</div>"
+            f"<h3 class='pkg-title'>{html.escape(it['title'])}</h3>"
+            f"<div class='pkg-meta'>⏱ {html.escape(it['duration'])}</div>"
+            f"<div class='pkg-price'>{html.escape(it['price'])}</div>"
+            f"{subsidy_badge}"
+            f"<p class='pkg-desc'>{html.escape(it['desc'])}</p>"
+            f"<a class='pkg-cta' href='{html.escape(it['url'], quote=True)}' target='_blank' rel='noopener'>{html.escape(it['cta'])} →</a>"
+            f"</div>"
+        )
+    parts.append("</div>")
+    parts.append(
+        "<p class='packages-note fade-up d4'>"
+        "🛡 <strong>滋賀県未来投資総合補助金</strong>（最大50万円・補助率2/3／一次：3/2〜3/31、二次：6/8〜7/17）と "
+        "<strong>彦根市小規模事業者デジタル化推進補助金</strong>（最大20万円）に対応。申請サポートも個別相談で受け付けます。"
+        "</p>"
+    )
+    return "".join(parts)
+
+
 def _render_flow() -> str:
     steps = [
         ("ご相談", "メール／LINEで現状をヒアリング。事業内容・課題・予算感を 30 分でつかみます。"),
@@ -1448,6 +1565,14 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append("<h2 class='section-title fade-up d1'>提供できる 6 つのこと</h2>")
     parts.append("<p class='section-sub fade-up d2'>「コンサルだけする人」ではなく、9事業のオーナーとして毎日サイトと業務を回している実装者だからこそ提案できる内容です。</p>")
     parts.append(_render_services())
+    parts.append("</section>")
+
+    # 3b. 受講プラン（AI相談 / 講習会 / 伴走パック）
+    parts.append("<section class='block' id='packages'>")
+    parts.append("<p class='section-heading fade-up'>PACKAGES</p>")
+    parts.append("<h2 class='section-title fade-up d1'>AI講習・相談・伴走パック</h2>")
+    parts.append("<p class='section-sub fade-up d2'>経営者プログラマー講師による実践型。サイト構築・SEO・LLMO・補助金対応まで、3つのコースから選べます。</p>")
+    parts.append(_render_courses_packages())
     parts.append("</section>")
 
     # 4. ご依頼の流れ（どう動くか）

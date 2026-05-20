@@ -180,6 +180,7 @@ def _load_speaker() -> dict:
         "name": str(meta.get("name") or OWNER_NAME),
         "role": str(meta.get("role") or ""),
         "intro": intro,
+        "avatar_url": str(meta.get("avatar_url") or "").strip(),
     }
 
 
@@ -1197,7 +1198,13 @@ def _render_speaker_section() -> str:
         f"{intro_html}"
         "<p style='font-weight:700;color:var(--text);margin-top:16px;'>「異端OK、数字根拠で経営を変える」</p>"
         "</div>"
-        "<div class='profile-avatar'>🎤</div>"
+        + (
+            f"<div class='profile-avatar' style='overflow:hidden;padding:0;font-size:0;'>"
+            f"<img src='{html.escape(sp.get('avatar_url') or '', quote=True)}' alt='{name} のアニメ肖像' "
+            f"style='width:100%;height:100%;object-fit:cover;display:block;'></div>"
+            if sp.get("avatar_url")
+            else "<div class='profile-avatar'>🧑‍🏫</div>"
+        ) +
         "</div>"
     ]
 

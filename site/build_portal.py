@@ -878,14 +878,13 @@ def _render_header() -> str:
         "<a class='nav-link' href='#speaker'>講師紹介</a>"
         "<a class='nav-link' href='#gallery'>つくれるもの</a>"
         "<a class='nav-link' href='#services'>サービス</a>"
-        "<a class='nav-link' href='#portfolio'>実績</a>"
+        "<a class='nav-link' href='#works'>実績</a>"
         "<a class='nav-link' href='#lectures'>講習資料</a>"
         "<div class='menu-wrap'>"
         "<button class='menu-toggle' id='menu-toggle' aria-haspopup='menu' aria-expanded='false'>メニュー"
         "<svg class='chev' width='14' height='14' viewBox='0 0 20 20' fill='none' aria-hidden='true'><path d='M5 8l5 5 5-5' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>"
         "</button>"
         "<div class='menu-drop' id='menu-drop' role='menu'>"
-        "<a href='#works'>🏢 事業ポートフォリオ</a>"
         "<a href='#flow'>🧭 ご依頼の流れ</a>"
         "<a href='#faq'>❓ よくある質問</a>"
         "<a href='/watch/index.html'>📡 自分ポータル</a>"
@@ -903,8 +902,7 @@ def _render_header() -> str:
         "<a href='#gallery'>つくれるもの</a>"
         "<a href='#services'>サービス</a>"
         "<a href='#flow'>ご依頼の流れ</a>"
-        "<a href='#portfolio'>実績</a>"
-        "<a href='#works'>事業ポートフォリオ</a>"
+        "<a href='#works'>実績</a>"
         "<a href='#lectures'>講習資料</a>"
         "<a href='#faq'>FAQ</a>"
         "<a href='/watch/index.html'>自分ポータル</a>"
@@ -1460,19 +1458,11 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append(_render_flow())
     parts.append("</section>")
 
-    # 5. 制作実績（証拠① — 作品）
-    parts.append("<section class='block' id='portfolio'>")
-    parts.append("<p class='section-heading fade-up'>PORTFOLIO</p>")
-    parts.append("<h2 class='section-title fade-up d1'>制作実績</h2>")
-    parts.append("<p class='section-sub fade-up d2'>アプリ・LP・ブランドサイト・診断ツール。企画から実装まで自分で手を動かした成果物。</p>")
-    parts.append(_render_portfolio_section())
-    parts.append("</section>")
-
-    # 6. 事業ポートフォリオ（証拠② — 運営事業）
+    # 5. 実績・事業ポートフォリオ（融合版 — businesses.yaml 一元管理）
     parts.append("<section class='block' id='works'>")
     parts.append("<p class='section-heading fade-up'>WORKS</p>")
-    parts.append("<h2 class='section-title fade-up d1'>事業ポートフォリオ</h2>")
-    parts.append("<p class='section-sub fade-up d2'>運営・制作・運用しているサイト。すべてを自分で構築・運用しています。</p>")
+    parts.append("<h2 class='section-title fade-up d1'>実績・事業ポートフォリオ</h2>")
+    parts.append("<p class='section-sub fade-up d2'>運営している事業・制作した実績・生成した提案LP。すべてを自分で構築・運用しています。</p>")
     parts.append("<div class='biz-grid'>")
     for i, biz in enumerate(businesses):
         parts.append(_render_biz_card(biz, fade_class=f"fade-up d{(i % 6) + 1}"))

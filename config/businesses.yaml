@@ -1,4 +1,4 @@
-# CEO ポータル — 事業カード定義
+# CEO ポータル — 事業 + 制作実績 統合カード定義（2026-05-20 portfolio.yaml と融合）
 #
 # 編集ガイド:
 #   - url が空または null の場合はカードをリンクなし（準備中バッジ）で表示
@@ -6,6 +6,7 @@
 #   - icon: 絵文字（1文字）
 #   - color: グラデーション用カラーキー（blue/purple/green/orange/pink/teal/yellow/red/cyan/gray）
 #   - description: 1〜2行。事業の「何屋」を端的に
+#   - kind: business（自社事業）/ work（制作実績）/ generated（生成LP）
 #
 businesses:
 - id: gubble
@@ -15,15 +16,17 @@ businesses:
   icon: 🧗
   color: blue
   status: live
+  kind: business
   description: 彦根のボルダリングジム。カフェ・ショップ・クライミングスクールを併設。クライミング歴30年のオーナーが直営。
 
 - id: n-design
   name: Nデザイン
   tagline: 滋賀・彦根の工務店 Web マーケティング
-  url: https://n-design-lemon.vercel.app
+  url: https://n-design.work
   icon: 🏠
   color: orange
   status: live
+  kind: business
   description: ネリデザイン（株）の Webマーケティング事業サイト。新築・リフォームの相談窓口。
 
 - id: climbhero
@@ -33,16 +36,18 @@ businesses:
   icon: 🎬
   color: purple
   status: live
+  kind: business
   description: 登る動画をランキングで競うクライミング特化アプリ。Cloudflare Pages 上で稼働。
 
-- id: business21
-  name: ビジネス21
-  tagline: 外国人技能実習・監理団体
-  url: https://business21.vercel.app
+- id: business21-match
+  name: 派遣マッチ
+  tagline: 派遣求人 × 求職者マッチング
+  url: https://business21.vercel.app/match
   icon: 🌏
   color: teal
   status: live
-  description: 協同組合ビジネス21の広報・コミュニティサイト。外国人技能実習生の受入れ支援。
+  kind: business
+  description: 派遣求人と求職者を結ぶマッチングプラットフォーム（協同組合ビジネス21）。Next.js + Supabase。
 
 - id: minanowa
   name: みんなのWA
@@ -51,6 +56,7 @@ businesses:
   icon: 🤝
   color: green
   status: live
+  kind: business
   description: 彦根市の異業種交流会。会員登録・イベント案内・会員紹介をワンサイトで。
 
 - id: notesthe
@@ -60,6 +66,7 @@ businesses:
   icon: 💆
   color: pink
   status: live
+  kind: business
   description: メンズ・レディース対応のエステサロン。Payload CMS で柔軟なコンテンツ管理。
 
 - id: karatto
@@ -69,7 +76,18 @@ businesses:
   icon: 💎
   color: yellow
   status: live
+  kind: business
   description: カラッとヒーロー1億達成プロジェクト。Shopify ホスティング + Cloudflare Workers 連携。
+
+- id: trust
+  name: トラスト
+  tagline: 障害者グループホーム シフト管理
+  url: https://trust-nine-tau.vercel.app
+  icon: 🏡
+  color: teal
+  status: live
+  kind: business
+  description: 障害者グループホームのシフト管理・LINE Bot 連携。Next.js + Supabase + Anthropic SDK。
 
 - id: fadie
   name: ファディー
@@ -78,6 +96,7 @@ businesses:
   icon: 🚀
   color: red
   status: coming_soon
+  kind: business
   description: Vercel + Supabase で新規再生成中。みんなのWA の構成をベースに立ち上げ予定。
 
 - id: ai-hub
@@ -88,6 +107,7 @@ businesses:
   color: cyan
   status: live
   self: true
+  kind: business
   description: あなたは今ここにいます。9事業の入口・講習資料・AI情報を1箇所に集約。
 
 - id: plogging
@@ -97,14 +117,46 @@ businesses:
   icon: 🏃
   color: green
   status: live
+  kind: business
   image: https://img07.shop-pro.jp/PA01434/387/css_eyecatch/eyecatch_banner_img_1.jpg
   description: 日本のプロギング本部。全国のクリーン活動イベント告知・参加者募集・グッズ販売・SNS連携。カラーミー基盤。
 
-- id: future
-  name: （空き枠）
-  tagline: まだ増える
-  url:
-  icon: ＋
-  color: gray
-  status: empty
-  description: 次の事業が始まったらここに並びます。
+- id: mokshajapan
+  name: モクシャチャイ
+  tagline: インド伝統チャイを日本へ
+  url: https://mokshajapan.jp
+  icon: 🍵
+  color: orange
+  status: live
+  kind: work
+  description: インド伝統の煮出しチャイをそのまま日本へ届ける商品LP。Nuxt 構成。
+
+- id: imashin
+  name: 今心
+  tagline: 心地いいスナックの雰囲気LP
+  url: https://readdy.link/share/042372463c05d7076e5a1b8d3ee28e0e
+  icon: 🌃
+  color: purple
+  status: live
+  kind: generated
+  description: 「心地いい」スナックの世界観を伝えるブランドLP。Readdy で生成・調整。
+
+- id: gpsole
+  name: GPsole
+  tagline: 新世代リソール
+  url: https://readdy.link/share/473607684647d6e150399fa3e68b7fd9
+  icon: 👟
+  color: blue
+  status: live
+  kind: generated
+  description: クライミングシューズのリソール新世代提案サイト。Readdy で生成。
+
+- id: marketing-1oku
+  name: まずは0から1億マーケ
+  tagline: マーケ基礎 → 1億到達まで
+  url: https://khktfxqf.gensparkspace.com
+  icon: 📈
+  color: pink
+  status: live
+  kind: generated
+  description: マーケ基礎から1億到達までの考え方を1枚にまとめた提案LP。Genspark で生成。

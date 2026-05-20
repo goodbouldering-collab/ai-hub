@@ -78,13 +78,13 @@ portfolio:
     summary: 登る動画をランキングで競うクライミング特化アプリ
     since: 2025-02
 
-  - name: 協同組合ビジネス21
-    slug: business21
-    url: https://business21.vercel.app
+  - name: 派遣マッチ
+    slug: business21-match
+    url: https://business21.vercel.app/match
     status: live
-    category: 協同組合
+    category: マッチング
     tech: [Next.js, Supabase]
-    summary: 外国人技能実習・監理団体の業務統合 Web システム
+    summary: 派遣求人と求職者を結ぶマッチングプラットフォーム（協同組合ビジネス21）
     since: 2024-11
 
   - name: カラッと＋

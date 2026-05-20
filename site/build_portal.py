@@ -866,7 +866,6 @@ def _render_header() -> str:
         "<a class='site-logo' href='/'><span class='dot'></span>AIハブ <span style='color:var(--muted);font-weight:600;font-size:13px;margin-left:6px;'>by 由井辰美</span></a>"
         "<nav class='site-nav' aria-label='メインナビ'>"
         "<a class='nav-link' href='#speaker'>講師紹介</a>"
-        "<a class='nav-link' href='#profile'>経歴</a>"
         "<a class='nav-link' href='#services'>サービス</a>"
         "<a class='nav-link' href='#portfolio'>実績</a>"
         "<a class='nav-link' href='#lectures'>講習資料</a>"
@@ -891,7 +890,6 @@ def _render_header() -> str:
         "</div>"
         "<div class='mobile-nav' id='mobile-nav'>"
         "<a href='#speaker'>講師紹介</a>"
-        "<a href='#profile'>経歴</a>"
         "<a href='#services'>サービス</a>"
         "<a href='#portfolio'>実績</a>"
         "<a href='#works'>事業ポートフォリオ</a>"
@@ -1166,59 +1164,34 @@ def _render_faq() -> str:
 
 
 def _render_speaker_section() -> str:
-    """講師紹介セクション。speaker.md の本文を全文 Markdown 展開して TOP に一体化。
-    個別ページ speaker.html は廃止し、ここが唯一の正本。"""
-    import markdown as _md
+    """講師紹介+経歴の統合要約セクション。
+    speaker.md の役職とプロフィール冒頭 + profile.yaml の stats を一体で表示し、
+    詳細は「もっと詳しく」ボタンで speaker.html / profile.html へ誘導する。"""
     sp = _load_speaker()
+    prof = _load_profile()
     name = html.escape(sp.get("name") or OWNER_NAME)
     role = html.escape(sp.get("role") or "")
-    raw = SPEAKER_MD.read_text(encoding="utf-8") if SPEAKER_MD.exists() else ""
-    body = raw
-    if raw.startswith("---"):
-        try:
-            body = raw[raw.index("\n---", 3) + 4:]
-        except ValueError:
-            body = raw
-    # 先頭の H1（"# 由井 辰美 — ..."）と自動生成注記の引用ブロックは除去
-    lines = []
-    for ln in body.splitlines():
-        st = ln.strip()
-        if st.startswith("# "):
-            continue
-        if st.startswith(">"):
-            continue
-        lines.append(ln)
-    body_html = _md.markdown("\n".join(lines), extensions=["extra", "sane_lists"])
+    intro = html.escape(sp.get("intro") or "")
     role_html = f"<p style='font-weight:700;color:var(--primary);margin:0 0 16px;'>{role}</p>" if role else ""
-    return (
+    intro_html = f"<p style='line-height:1.9;'>{intro}</p>" if intro else ""
+
+    parts = [
         "<div class='profile-block' style='display:block;'>"
+        "<div style='display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;'>"
         "<div>"
         f"<h3>{name}</h3>"
         f"{role_html}"
-        f"<div class='content-wrap' style='padding:0;border:none;box-shadow:none;background:none;'>{body_html}</div>"
+        f"{intro_html}"
+        "<p style='font-weight:700;color:var(--text);margin-top:16px;'>「異端OK、数字根拠で経営を変える」</p>"
         "</div>"
+        "<div class='profile-avatar'>🎤</div>"
         "</div>"
-    )
+    ]
 
-def _render_career_section() -> str:
-    """経歴セクション。profile.yaml の stats + 全 timeline を TOP に全文展開。
-    個別ページ profile.html は廃止し、ここが唯一の正本。"""
-    prof = _load_profile()
-    if not prof:
-        return ""
-    parts: list[str] = []
-    meta = prof.get("meta") or {}
-    subtitle = html.escape(str(meta.get("subtitle") or ""))
-    intro = html.escape(str(prof.get("intro") or "")).replace("\n", "<br>")
-    if subtitle:
-        parts.append(f"<p class='section-sub'>{subtitle}</p>")
-    if intro:
-        parts.append(f"<p style='max-width:760px;margin:0 auto 28px;color:var(--text-soft);line-height:1.9;'>{intro}</p>")
-
-    stats = prof.get("stats") or []
+    stats = (prof.get("stats") or []) if prof else []
     if stats:
-        parts.append("<div class='stats-strip' style='margin-bottom:40px;'>")
-        for st in stats:
+        parts.append("<div class='stats-strip' style='margin:32px 0 8px;'>")
+        for st in stats[:6]:
             num = html.escape(str(st.get("number") or ""))
             lbl = html.escape(str(st.get("label") or ""))
             parts.append(
@@ -1227,30 +1200,13 @@ def _render_career_section() -> str:
             )
         parts.append("</div>")
 
-    timeline = prof.get("timeline") or []
-    if timeline:
-        parts.append("<div class='profile-timeline'>")
-        for t in reversed(timeline):
-            year = html.escape(str(t.get("year") or ""))
-            role = html.escape(str(t.get("role") or ""))
-            desc = str(t.get("description") or "").strip()
-            desc = desc.replace("**", "").replace("\n\n", "<br><br>").replace("\n", " ")
-            desc_html = html.escape(desc).replace("&lt;br&gt;", "<br>")
-            mets = t.get("metrics") or []
-            mh = ""
-            if mets:
-                mh = "<div class='profile-tl-metrics'>" + "".join(
-                    f"<span class='pf-chip'>{html.escape(str(m))}</span>" for m in mets
-                ) + "</div>"
-            parts.append(
-                "<div class='profile-tl-item'>"
-                f"<div class='profile-tl-year'>{year}</div>"
-                f"<div class='profile-tl-role'>{role}</div>"
-                f"<div class='profile-tl-desc'>{desc_html}</div>"
-                f"{mh}"
-                "</div>"
-            )
-        parts.append("</div>")
+    parts.append(
+        "<div style='display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:24px;'>"
+        "<a class='btn btn-primary' href='/speaker.html'>🎤 講師紹介をもっと詳しく</a>"
+        "<a class='btn btn-secondary' href='/profile.html'>📜 経歴をもっと詳しく</a>"
+        "</div>"
+        "</div>"
+    )
     return "".join(parts)
 
 def _render_portfolio_section() -> str:
@@ -1292,26 +1248,24 @@ def _render_portfolio_section() -> str:
             f"</{tag}>"
         )
     parts.append("</div>")
-    parts.append(
-        "<div class='watch-link-bar' style='margin-top:24px;'>"
-        "<p>🗺 用語と全体像をビジュアルで把握できる <strong>プログラミングマップ</strong></p>"
-        "<a href='/programming-map.html'>プログラミングマップを開く →</a>"
-        "</div>"
-    )
     return "".join(parts)
 
 
 def _render_lectures_section() -> str:
-    """L4 講習資料セクション。全件カード + プログラミングマップ導線 + 一覧DL動線。"""
-    lecs = _load_all_lectures()
+    """講習資料セクション。プログラミングマップを資料の1つとして配下に含める。"""
+    pmap_card = {
+        "title": "プログラミングマップ",
+        "icon": "🗺️",
+        "date": "2026-04-25",
+        "summary": "プログラミング言語・用途・AI活用までの俯瞰図。何から学ぶか迷ったときの全体地図。",
+        "href": "/programming-map.html",
+    }
+    lecs = [pmap_card] + list(_load_all_lectures())
     parts: list[str] = []
-    if lecs:
-        parts.append("<div class='lecture-grid'>")
-        for lec in lecs:
-            parts.append(_render_lecture_card(lec))
-        parts.append("</div>")
-    else:
-        parts.append("<p class='section-sub'>講習資料は準備中です。</p>")
+    parts.append("<div class='lecture-grid'>")
+    for lec in lecs:
+        parts.append(_render_lecture_card(lec))
+    parts.append("</div>")
     return "".join(parts)
 
 
@@ -1460,13 +1414,6 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append("<h2 class='section-title fade-up d1'>講師紹介</h2>")
     parts.append("<p class='section-sub fade-up d2'>AI 活用の啓発・講習・地域コミュニティ運営・複数事業のマーケ支援を行う実践者。</p>")
     parts.append(_render_speaker_section())
-    parts.append("</section>")
-
-    # 経歴（なぜ信頼できるか — profile.yaml：生い立ちからの物語）
-    parts.append("<section class='block' id='profile'>")
-    parts.append("<p class='section-heading fade-up'>CAREER</p>")
-    parts.append("<h2 class='section-title fade-up d1'>経歴</h2>")
-    parts.append(_render_career_section())
     parts.append("</section>")
 
     # サービス（何を）

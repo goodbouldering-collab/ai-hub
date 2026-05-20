@@ -1673,7 +1673,7 @@ def build_speaker_page() -> bool:
     title = meta.get("name") or "講師紹介"
     nav = render_top_nav(path_prefix="./", current_id="speaker", include_run=False)
     html_text = render_content_page(title, meta, body_html, nav, page_path="speaker.html", kind="speaker")
-    (DIST / "speaker.html").write_text(_redirect_html("speaker","講師紹介"), encoding="utf-8")
+    (DIST / "speaker.html").write_text(html_text, encoding="utf-8")
     return True
 
 
@@ -1947,7 +1947,7 @@ def build_portfolio_page() -> bool:
     }
     nav = render_top_nav(path_prefix="./", current_id="portfolio", include_run=False)
     html_text = render_content_page("実績サイト", meta, body_html, nav, page_path="portfolio.html", kind="portfolio")
-    (DIST / "portfolio.html").write_text(_redirect_html("portfolio","実績"), encoding="utf-8")
+    (DIST / "portfolio.html").write_text(html_text, encoding="utf-8")
     return True
 
 
@@ -2148,7 +2148,7 @@ def build_profile_page() -> bool:
     }
     nav = render_top_nav(path_prefix="./", current_id="profile", include_run=False)
     html_text = render_content_page(title, page_meta, body_html, nav, page_path="profile.html", kind="speaker")
-    (DIST / "profile.html").write_text(_redirect_html("profile","経歴"), encoding="utf-8")
+    (DIST / "profile.html").write_text(html_text, encoding="utf-8")
     return True
 
 

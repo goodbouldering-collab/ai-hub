@@ -247,7 +247,7 @@ PORTAL_CSS = """
   --shadow-card-hover: 0 24px 60px rgba(15,23,42,0.14);
 }
 * { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; }
+html, body { margin: 0; padding: 0; overflow-x: hidden; }
 html { scroll-behavior: smooth; }
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
@@ -711,6 +711,15 @@ section.block + section.block { border-top: 1px dashed var(--line); }
 }
 .see-all:hover { text-decoration: underline; }
 
+/* ---- speaker section intro grid (PC: 2col, mobile: 1col) ---- */
+.speaker-intro-grid {
+  display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: center;
+}
+@media (max-width: 720px) {
+  .speaker-intro-grid { grid-template-columns: 1fr; gap: 20px; text-align: center; }
+  .speaker-intro-grid .profile-avatar { margin: 0 auto; }
+}
+
 /* ---- profile section ---- */
 .profile-block {
   display: grid; grid-template-columns: minmax(0, 1fr) 220px; gap: 32px;
@@ -1171,13 +1180,17 @@ def _render_speaker_section() -> str:
     prof = _load_profile()
     name = html.escape(sp.get("name") or OWNER_NAME)
     role = html.escape(sp.get("role") or "")
-    intro = html.escape(sp.get("intro") or "")
+    import re as _re
+    intro_raw = sp.get("intro") or ""
+    intro = html.escape(intro_raw)
+    # **強調** を <strong> に変換（Markdown は要約段階で残ってしまうため）
+    intro = _re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", intro)
     role_html = f"<p style='font-weight:700;color:var(--primary);margin:0 0 16px;'>{role}</p>" if role else ""
     intro_html = f"<p style='line-height:1.9;'>{intro}</p>" if intro else ""
 
     parts = [
         "<div class='profile-block' style='display:block;'>"
-        "<div style='display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;'>"
+        "<div class='speaker-intro-grid'>"
         "<div>"
         f"<h3>{name}</h3>"
         f"{role_html}"
@@ -1191,7 +1204,7 @@ def _render_speaker_section() -> str:
     stats = (prof.get("stats") or []) if prof else []
     if stats:
         parts.append("<div class='stats-strip' style='margin:32px 0 8px;'>")
-        for st in stats[:6]:
+        for st in stats[:4]:
             num = html.escape(str(st.get("number") or ""))
             lbl = html.escape(str(st.get("label") or ""))
             parts.append(

@@ -866,6 +866,7 @@ def _render_header() -> str:
         "<a class='site-logo' href='/'><span class='dot'></span>AIハブ <span style='color:var(--muted);font-weight:600;font-size:13px;margin-left:6px;'>by 由井辰美</span></a>"
         "<nav class='site-nav' aria-label='メインナビ'>"
         "<a class='nav-link' href='#speaker'>講師紹介</a>"
+        "<a class='nav-link' href='#gallery'>つくれるもの</a>"
         "<a class='nav-link' href='#services'>サービス</a>"
         "<a class='nav-link' href='#portfolio'>実績</a>"
         "<a class='nav-link' href='#lectures'>講習資料</a>"
@@ -877,8 +878,7 @@ def _render_header() -> str:
         "<a href='#works'>🏢 事業ポートフォリオ</a>"
         "<a href='#flow'>🧭 ご依頼の流れ</a>"
         "<a href='#faq'>❓ よくある質問</a>"
-        "<a href='/watch/index.html'>📡 AI Watch（毎朝ダイジェスト）</a>"
-        "<a href='/programming-map.html'>🗺 プログラミングマップ</a>"
+        "<a href='/watch/index.html'>📡 自分ポータル</a>"
         "<a href='#lectures'>📝 講習資料</a>"
         "</div>"
         "</div>"
@@ -890,14 +890,14 @@ def _render_header() -> str:
         "</div>"
         "<div class='mobile-nav' id='mobile-nav'>"
         "<a href='#speaker'>講師紹介</a>"
+        "<a href='#gallery'>つくれるもの</a>"
         "<a href='#services'>サービス</a>"
+        "<a href='#flow'>ご依頼の流れ</a>"
         "<a href='#portfolio'>実績</a>"
         "<a href='#works'>事業ポートフォリオ</a>"
         "<a href='#lectures'>講習資料</a>"
-        "<a href='#flow'>ご依頼の流れ</a>"
         "<a href='#faq'>FAQ</a>"
-        "<a href='/watch/index.html'>AI Watch</a>"
-        "<a href='/programming-map.html'>プログラミングマップ</a>"
+        "<a href='/watch/index.html'>自分ポータル</a>"
         "<a class='login-btn-mobile' href='/admin'>🔐 管理ログイン</a>"
         "</div>"
         "</header>"
@@ -1408,7 +1408,7 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append(_render_hero())
     parts.append(_render_stats())
 
-    # 講師紹介（誰が — speaker.md：今の活動・AI講師の顔）
+    # 1. 講師紹介+経歴（誰が・要約と詳細導線）
     parts.append("<section class='block' id='speaker'>")
     parts.append("<p class='section-heading fade-up'>SPEAKER</p>")
     parts.append("<h2 class='section-title fade-up d1'>講師紹介</h2>")
@@ -1416,43 +1416,7 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append(_render_speaker_section())
     parts.append("</section>")
 
-    # サービス（何を）
-    parts.append("<section class='block' id='services'>")
-    parts.append("<p class='section-heading fade-up'>SERVICES</p>")
-    parts.append("<h2 class='section-title fade-up d1'>提供できる 6 つのこと</h2>")
-    parts.append("<p class='section-sub fade-up d2'>「コンサルだけする人」ではなく、9事業のオーナーとして毎日サイトと業務を回している実装者だからこそ提案できる内容です。</p>")
-    parts.append(_render_services())
-    parts.append("</section>")
-
-    # 制作実績（証拠① — portfolio.yaml の作品実績）
-    parts.append("<section class='block' id='portfolio'>")
-    parts.append("<p class='section-heading fade-up'>PORTFOLIO</p>")
-    parts.append("<h2 class='section-title fade-up d1'>制作実績</h2>")
-    parts.append("<p class='section-sub fade-up d2'>アプリ・LP・ブランドサイト・診断ツール。企画から実装まで自分で手を動かした成果物。</p>")
-    parts.append(_render_portfolio_section())
-    parts.append("</section>")
-
-    # 事業ポートフォリオ（証拠② — 運営事業）
-    parts.append("<section class='block' id='works'>")
-    parts.append("<p class='section-heading fade-up'>WORKS</p>")
-    parts.append("<h2 class='section-title fade-up d1'>事業ポートフォリオ</h2>")
-    parts.append("<p class='section-sub fade-up d2'>運営・制作・運用しているサイト。すべてを自分で構築・運用しています。</p>")
-    parts.append("<div class='biz-grid'>")
-    for i, biz in enumerate(businesses):
-        # 各カードを fade-up + ディレイで段階的に出す
-        parts.append(_render_biz_card(biz, fade_class=f"fade-up d{(i % 6) + 1}"))
-    parts.append("</div>")
-    parts.append("</section>")
-
-    # 講習資料（学べる）
-    parts.append("<section class='block' id='lectures'>")
-    parts.append("<p class='section-heading fade-up'>LECTURES</p>")
-    parts.append("<h2 class='section-title fade-up d1'>講習資料</h2>")
-    parts.append("<p class='section-sub fade-up d2'>AI 業務活用・SNSアルゴリズム・LLMO（AI検索最適化）の講習で使う資料。</p>")
-    parts.append(_render_lectures_section())
-    parts.append("</section>")
-
-    # 事例ギャラリー（営業ヒット率を上げる視覚パンチ）
+    # 2. つくれるもの・事例ギャラリー（視覚パンチで興味を引く）
     parts.append("<section class='block' id='gallery'>")
     parts.append("<p class='section-heading fade-up'>WORK GALLERY</p>")
     parts.append("<h2 class='section-title fade-up d1'>つくれるもの・任せられること</h2>")
@@ -1460,7 +1424,15 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append(_render_gallery())
     parts.append("</section>")
 
-    # ご依頼の流れ
+    # 3. サービス（具体的に何を）
+    parts.append("<section class='block' id='services'>")
+    parts.append("<p class='section-heading fade-up'>SERVICES</p>")
+    parts.append("<h2 class='section-title fade-up d1'>提供できる 6 つのこと</h2>")
+    parts.append("<p class='section-sub fade-up d2'>「コンサルだけする人」ではなく、9事業のオーナーとして毎日サイトと業務を回している実装者だからこそ提案できる内容です。</p>")
+    parts.append(_render_services())
+    parts.append("</section>")
+
+    # 4. ご依頼の流れ（どう動くか）
     parts.append("<section class='block' id='flow'>")
     parts.append("<p class='section-heading'>FLOW</p>")
     parts.append("<h2 class='section-title'>ご依頼の流れ</h2>")
@@ -1468,18 +1440,45 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append(_render_flow())
     parts.append("</section>")
 
-    # FAQ
+    # 5. 制作実績（証拠① — 作品）
+    parts.append("<section class='block' id='portfolio'>")
+    parts.append("<p class='section-heading fade-up'>PORTFOLIO</p>")
+    parts.append("<h2 class='section-title fade-up d1'>制作実績</h2>")
+    parts.append("<p class='section-sub fade-up d2'>アプリ・LP・ブランドサイト・診断ツール。企画から実装まで自分で手を動かした成果物。</p>")
+    parts.append(_render_portfolio_section())
+    parts.append("</section>")
+
+    # 6. 事業ポートフォリオ（証拠② — 運営事業）
+    parts.append("<section class='block' id='works'>")
+    parts.append("<p class='section-heading fade-up'>WORKS</p>")
+    parts.append("<h2 class='section-title fade-up d1'>事業ポートフォリオ</h2>")
+    parts.append("<p class='section-sub fade-up d2'>運営・制作・運用しているサイト。すべてを自分で構築・運用しています。</p>")
+    parts.append("<div class='biz-grid'>")
+    for i, biz in enumerate(businesses):
+        parts.append(_render_biz_card(biz, fade_class=f"fade-up d{(i % 6) + 1}"))
+    parts.append("</div>")
+    parts.append("</section>")
+
+    # 7. 講習資料（学べる・知識資産）
+    parts.append("<section class='block' id='lectures'>")
+    parts.append("<p class='section-heading fade-up'>LECTURES</p>")
+    parts.append("<h2 class='section-title fade-up d1'>講習資料</h2>")
+    parts.append("<p class='section-sub fade-up d2'>AI 業務活用・SNSアルゴリズム・LLMO（AI検索最適化）の講習で使う資料。プログラミングマップもこちら。</p>")
+    parts.append(_render_lectures_section())
+    parts.append("</section>")
+
+    # 8. FAQ（疑問解消）
     parts.append("<section class='block' id='faq'>")
     parts.append("<p class='section-heading'>FAQ</p>")
     parts.append("<h2 class='section-title'>よくある質問</h2>")
     parts.append(_render_faq())
     parts.append("</section>")
 
-    # AI Watch ハイライト
+    # 9. 自分ポータル（毎朝の更新性アピール）
     parts.append(
         "<div class='watch-link-bar'>"
-        "<p>📡 AI / SNS の毎朝ダイジェストを Watch ページで配信中</p>"
-        "<a href='/watch/index.html'>AI Watch を見る →</a>"
+        "<p>📡 AI / SNS の毎朝ダイジェストを配信する <strong>自分ポータル</strong></p>"
+        "<a href='/watch/index.html'>自分ポータルを見る →</a>"
         "</div>"
     )
 

@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "",
-      "published": "2026-05-21T16:15:18-04:00"
+      "published": "2026-05-21T16:15:18-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "eabb34e287314d79",
@@ -37,7 +39,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/Screenshot-2026-05-21-at-3.44.22PM.png?quality=90&amp;strip=all&amp;crop=0%2C2.6098311610285%2C100%2C94.780337677943&amp;w=1200",
-      "published": "2026-05-21T16:00:06-04:00"
+      "published": "2026-05-21T16:00:06-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "1f6e93e5341bad00",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/268540_Polyend_Endles_TOBrien_0036.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-05-21T13:00:00-04:00"
+      "published": "2026-05-21T13:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "54c838ca9e267bed",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/01/KtzRDIOEJYs3A6mb9MaNfOeEAekXQwD5Omr7BQZWkzg.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-05-21T11:54:03-04:00"
+      "published": "2026-05-21T11:54:03-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "478d69b9865d1226",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/spotify-studio-ai.jpg?quality=90&amp;strip=all&amp;crop=0%2C3.4613147178592%2C100%2C93.077370564282&amp;w=1200",
-      "published": "2026-05-21T11:47:29-04:00"
+      "published": "2026-05-21T11:47:29-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "3b353764388b6979",
@@ -113,7 +123,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/Screenshot-2026-05-21-at-10.55.11AM.png?quality=90&amp;strip=all&amp;crop=10.308438155136%2C0%2C79.383123689727%2C100&amp;w=1200",
-      "published": "2026-05-21T11:30:00-04:00"
+      "published": "2026-05-21T11:30:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "960993e483f900c1",
@@ -132,7 +144,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/VRG_DCD_MuskvAltman.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-05-21T10:00:00-04:00"
+      "published": "2026-05-21T10:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "4f152b891ecf4475",
@@ -151,7 +165,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/STK269_ANTHROPIC_2_D.webp?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-05-21T09:35:52-04:00"
+      "published": "2026-05-21T09:35:52-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "231968d05edaf1c8",
@@ -170,7 +186,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/verge-mood-gemini-google-ai-studio.jpg?quality=90&amp;strip=all&amp;crop=0%2C15.095986038394%2C100%2C69.808027923211&amp;w=1200",
-      "published": "2026-05-21T09:00:00-04:00"
+      "published": "2026-05-21T09:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "a35eb1c3a533c5dd",
@@ -189,7 +207,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://static.simonwillison.net/static/2026/datasette-agent.jpg",
-      "published": "2026-05-21T19:52:19+00:00"
+      "published": "2026-05-21T19:52:19+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

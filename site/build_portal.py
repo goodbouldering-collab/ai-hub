@@ -1087,20 +1087,19 @@ def _render_header() -> str:
         "<div class='site-header-inner'>"
         "<a class='site-logo' href='/'><span class='dot'></span>AIハブ <span style='color:var(--muted);font-weight:600;font-size:13px;margin-left:6px;'>by 由井辰美</span></a>"
         "<nav class='site-nav' aria-label='メインナビ'>"
-        "<a class='nav-link' href='#speaker'>講師紹介</a>"
-        "<a class='nav-link' href='#services'>サービス</a>"
         "<a class='nav-link' href='#packages'>受講プラン</a>"
-        "<a class='nav-link' href='#works'>実績</a>"
-        "<a class='nav-link' href='#lectures'>講習資料</a>"
+        "<a class='nav-link' href='#flow'>ご依頼の流れ</a>"
+        "<a class='nav-link' href='#speaker'>講師紹介</a>"
+        "<a class='nav-link' href='#faq'>FAQ</a>"
         "<div class='menu-wrap'>"
-        "<button class='menu-toggle' id='menu-toggle' aria-haspopup='menu' aria-expanded='false'>メニュー"
+        "<button class='menu-toggle' id='menu-toggle' aria-haspopup='menu' aria-expanded='false'>その他"
         "<svg class='chev' width='14' height='14' viewBox='0 0 20 20' fill='none' aria-hidden='true'><path d='M5 8l5 5 5-5' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>"
         "</button>"
         "<div class='menu-drop' id='menu-drop' role='menu'>"
-        "<a href='#gallery'>🎨 つくれるもの</a>"
-        "<a href='#flow'>🧭 ご依頼の流れ</a>"
-        "<a href='#faq'>❓ よくある質問</a>"
+        "<a href='/portfolio.html'>📂 実績一覧</a>"
+        "<a href='/lectures/index.html'>📚 講習資料</a>"
         "<a href='/watch/index.html'>📡 自分ポータル</a>"
+        "<a href='#contact'>✉ お問い合わせ</a>"
         "</div>"
         "</div>"
         "<button type='button' class='theme-toggle' aria-label='ダークモードに切替'>🌙</button>"
@@ -1112,13 +1111,13 @@ def _render_header() -> str:
         "</button>"
         "</div>"
         "<div class='mobile-nav' id='mobile-nav'>"
-        "<a href='#speaker'>講師紹介</a>"
-        "<a href='#services'>サービス</a>"
         "<a href='#packages'>受講プラン</a>"
         "<a href='#flow'>ご依頼の流れ</a>"
-        "<a href='#works'>実績</a>"
-        "<a href='#lectures'>講習資料</a>"
+        "<a href='#speaker'>講師紹介</a>"
         "<a href='#faq'>FAQ</a>"
+        "<a href='#contact'>お問い合わせ</a>"
+        "<a href='/portfolio.html'>実績一覧</a>"
+        "<a href='/lectures/index.html'>講習資料</a>"
         "<a href='/watch/index.html'>自分ポータル</a>"
         "<a class='login-btn-mobile' href='/admin'>🔐 管理ログイン</a>"
         "</div>"
@@ -1617,8 +1616,6 @@ def _render_faq() -> str:
          "滋賀県を中心に、京都・大阪・名古屋まで対面 / 出張可。リモートだけでも全国対応します。"),
         ("自分は IT に弱いのですが、大丈夫ですか？",
          "9事業のオーナーをやっているので「経営者目線」で話します。LINE / メール / ZOOM どれでも、専門用語を避けて進めます。"),
-        ("育成就労（2027 移行）支援はどんな内容？",
-         "技能実習から育成就労への移行に必要な 30 項目チェックリストを動的ダッシュボード化し、法令確定状況を反映しながら社内体制を整える伴走型支援です。"),
         ("AI を会社で使いたいのですが、何から始めれば？",
          "まずは社内ドキュメントを 1 ヶ所にまとめ、RAG（社内 Q&A）から導入するのを推奨しています。AIハブ自体がそのリファレンス実装になっています。"),
     ]
@@ -1884,41 +1881,16 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append(ADMIN_BUTTON_HTML)
 
     parts.append(_render_hero())
-    parts.append(_render_stats())
 
-    # 1. 講師紹介+経歴（誰が・要約と詳細導線）
-    parts.append("<section class='block' id='speaker'>")
-    parts.append("<p class='section-heading fade-up'>SPEAKER</p>")
-    parts.append("<h2 class='section-title fade-up d1'>講師紹介</h2>")
-    parts.append("<p class='section-sub fade-up d2'>AI 活用の啓発・講習・地域コミュニティ運営・複数事業のマーケ支援を行う実践者。</p>")
-    parts.append(_render_speaker_section())
-    parts.append("</section>")
-
-    # 2. つくれるもの・事例ギャラリー（視覚パンチで興味を引く）
-    parts.append("<section class='block' id='gallery'>")
-    parts.append("<p class='section-heading fade-up'>WORK GALLERY</p>")
-    parts.append("<h2 class='section-title fade-up d1'>つくれるもの・任せられること</h2>")
-    parts.append("<p class='section-sub fade-up d2'>LP・EC・LINE Bot・社内 RAG。「企画 → 制作 → 運用」をぜんぶ自社で。</p>")
-    parts.append(_render_gallery())
-    parts.append("</section>")
-
-    # 3. サービス（具体的に何を）
-    parts.append("<section class='block' id='services'>")
-    parts.append("<p class='section-heading fade-up'>SERVICES</p>")
-    parts.append("<h2 class='section-title fade-up d1'>提供できる 6 つのこと</h2>")
-    parts.append("<p class='section-sub fade-up d2'>「コンサルだけする人」ではなく、9事業のオーナーとして毎日サイトと業務を回している実装者だからこそ提案できる内容です。</p>")
-    parts.append(_render_services())
-    parts.append("</section>")
-
-    # 3b. 受講プラン（AI相談 / 講習会 / 伴走パック）
+    # 1. 受講プラン（AI相談 / 講習会 / 伴走パック）— メインCTA
     parts.append("<section class='block' id='packages'>")
     parts.append("<p class='section-heading fade-up'>PACKAGES</p>")
     parts.append("<h2 class='section-title fade-up d1'>AI講習・相談・伴走パック</h2>")
-    parts.append("<p class='section-sub fade-up d2'>経営者プログラマー講師による実践型。サイト構築・SEO・LLMO・補助金対応まで、3つのコースから選べます。</p>")
+    parts.append("<p class='section-sub fade-up d2'>現役オーナー講師による実践型。サイト構築・SEO・LLMO・補助金対応まで、3つのコースから選べます。</p>")
     parts.append(_render_courses_packages())
     parts.append("</section>")
 
-    # 4. ご依頼の流れ（どう動くか）
+    # 2. ご依頼の流れ
     parts.append("<section class='block' id='flow'>")
     parts.append("<p class='section-heading'>FLOW</p>")
     parts.append("<h2 class='section-title'>ご依頼の流れ</h2>")
@@ -1926,44 +1898,34 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append(_render_flow())
     parts.append("</section>")
 
-    # 4b. パララックス画像バンド（世界観・地域共創）
-    parts.append(_render_parallax_band())
-
-    # 5. 実績・事業ポートフォリオ（融合版 — businesses.yaml 一元管理）
-    parts.append("<section class='block' id='works'>")
-    parts.append("<p class='section-heading fade-up'>WORKS</p>")
-    parts.append("<h2 class='section-title fade-up d1'>実績・事業ポートフォリオ</h2>")
-    parts.append("<p class='section-sub fade-up d2'>運営している事業・制作した実績・生成した提案LP。すべてを自分で構築・運用しています。</p>")
-    parts.append("<div class='biz-grid'>")
-    for i, biz in enumerate(businesses):
-        parts.append(_render_biz_card(biz, fade_class=f"fade-up d{(i % 6) + 1}"))
-    parts.append("</div>")
+    # 3. 講師紹介（誰が教えるか）
+    parts.append("<section class='block' id='speaker'>")
+    parts.append("<p class='section-heading fade-up'>SPEAKER</p>")
+    parts.append("<h2 class='section-title fade-up d1'>講師紹介</h2>")
+    parts.append("<p class='section-sub fade-up d2'>AI 活用の啓発・講習・地域コミュニティ運営・複数事業のマーケ支援を行う実践者。</p>")
+    parts.append(_render_speaker_section())
     parts.append("</section>")
 
-    # 7. 講習資料（学べる・知識資産）
-    parts.append("<section class='block' id='lectures'>")
-    parts.append("<p class='section-heading fade-up'>LECTURES</p>")
-    parts.append("<h2 class='section-title fade-up d1'>講習資料</h2>")
-    parts.append("<p class='section-sub fade-up d2'>AI 業務活用・SNSアルゴリズム・LLMO（AI検索最適化）の講習で使う資料。プログラミングマップもこちら。</p>")
-    parts.append(_render_lectures_section())
-    parts.append("</section>")
-
-    # 8. FAQ（疑問解消）
+    # 4. FAQ（疑問解消）
     parts.append("<section class='block' id='faq'>")
     parts.append("<p class='section-heading'>FAQ</p>")
     parts.append("<h2 class='section-title'>よくある質問</h2>")
     parts.append(_render_faq())
     parts.append("</section>")
 
-    # 9. 自分ポータル（毎朝の更新性アピール）
+    # 実績・講習資料へのリンクバー（常時展開なし）
     parts.append(
         "<div class='watch-link-bar'>"
-        "<p>📡 AI / SNS の毎朝ダイジェストを配信する <strong>自分ポータル</strong></p>"
-        "<a href='/watch/index.html'>自分ポータルを見る →</a>"
+        "<p>📂 <strong>実績・事業ポートフォリオ</strong>や <strong>講習資料</strong> はこちら</p>"
+        "<span style='display:flex;gap:16px;flex-wrap:wrap;'>"
+        "<a href='/portfolio.html'>実績一覧 →</a>"
+        "<a href='/lectures/index.html'>講習資料 →</a>"
+        "<a href='/watch/index.html'>自分ポータル →</a>"
+        "</span>"
         "</div>"
     )
 
-    # お問い合わせ
+    # 5. お問い合わせ
     parts.append("<section class='block' id='contact'>")
     parts.append(
         "<div class='contact-block'>"

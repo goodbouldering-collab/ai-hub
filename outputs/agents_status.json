@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-20T15:17:55Z",
+  "generated_at": "2026-05-21T12:46:48Z",
   "recent_works": [
     {
       "date": "2026-05-20",
@@ -203,7 +203,7 @@
   "per_business_recent": [
     {
       "business": "AIハブ",
-      "count": 7
+      "count": 6
     },
     {
       "business": "Nデザイン",
@@ -211,10 +211,6 @@
     },
     {
       "business": "github",
-      "count": 3
-    },
-    {
-      "business": "トラスト",
       "count": 3
     },
     {
@@ -227,6 +223,10 @@
     },
     {
       "business": "ビジネス21",
+      "count": 1
+    },
+    {
+      "business": "トラスト",
       "count": 1
     },
     {
@@ -244,17 +244,9 @@
     {
       "business": "claude",
       "count": 1
-    },
-    {
-      "business": "cron",
-      "count": 1
     }
   ],
   "daily_histogram": [
-    {
-      "date": "2026-05-07",
-      "count": 0
-    },
     {
       "date": "2026-05-08",
       "count": 0
@@ -306,6 +298,10 @@
     {
       "date": "2026-05-20",
       "count": 2
+    },
+    {
+      "date": "2026-05-21",
+      "count": 0
     }
   ],
   "cma_apps": [
@@ -360,7 +356,7 @@
   ],
   "totals": {
     "consul_work_total": 60,
-    "recent_7d_total": 26,
+    "recent_7d_total": 22,
     "tasks_open_total": 20
   }
 }

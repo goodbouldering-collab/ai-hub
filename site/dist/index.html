@@ -17,6 +17,27 @@
   --shadow-card: 0 12px 40px rgba(15,23,42,0.08);
   --shadow-card-hover: 0 24px 60px rgba(15,23,42,0.14);
 }
+:root[data-theme="dark"] {
+  --bg-base: #0b1020;
+  --bg-white: #151b2e;
+  --text: #e8edf7;
+  --text-soft: #b3bdd0;
+  --muted: #8593ab;
+  --line: #283149;
+  --primary: #6ea0ff;
+  --primary-soft: #5b8def;
+  --primary-bg: #1a2540;
+  --glass-bg: rgba(21,27,46,0.72);
+  --glass-border: rgba(120,140,180,0.18);
+  --shadow-card: 0 12px 40px rgba(0,0,0,0.40);
+  --shadow-card-hover: 0 24px 60px rgba(0,0,0,0.55);
+}
+:root { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }
+html, body, .hero, .biz-card, .service-card, .pkg-card, .faq-item, .stat,
+.site-header, .menu-drop, .mobile-nav, .diagnose-box {
+  transition: background-color .3s ease, color .3s ease, border-color .3s ease;
+}
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; overflow-x: hidden; }
 html { scroll-behavior: smooth; }
@@ -28,7 +49,7 @@ body {
   background:
     radial-gradient(900px 500px at 12% -6%, rgba(37,99,235,.10), transparent 60%),
     radial-gradient(700px 500px at 88% 8%, rgba(236,72,153,.07), transparent 60%),
-    linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    linear-gradient(180deg, var(--bg-white) 0%, var(--bg-base) 100%);
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
 }
@@ -141,7 +162,7 @@ header.site-header.scrolled {
   display: grid; grid-template-columns: 1.05fr 1fr; gap: 48px; align-items: center;
   position: relative;
 }
-.hero-text { text-align: left; }
+.hero-text { text-align: left; min-width: 0; max-width: 100%; }
 @media (max-width: 900px) { .hero { grid-template-columns: 1fr; gap: 28px; }
   .hero-text { text-align: center; }
 }
@@ -151,28 +172,42 @@ header.site-header.scrolled {
   background: var(--primary-bg); color: var(--primary);
   font-size: 12px; font-weight: 700; letter-spacing: .04em;
   border: 1px solid rgba(37,99,235,.18);
+  max-width: 100%;
+}
+@media (max-width: 560px) {
+  .hero .eyebrow {
+    display: flex; text-align: left; line-height: 1.5;
+    border-radius: 16px; padding: 8px 14px; font-size: 11.5px;
+  }
 }
 .hero h1 {
-  margin: 20px 0 16px; font-size: clamp(32px, 5.2vw, 60px);
-  font-weight: 800; letter-spacing: -.025em; color: var(--text); line-height: 1.15;
+  margin: 20px 0 16px; font-size: clamp(26px, 4.6vw, 52px);
+  font-weight: 800; letter-spacing: -.02em; color: var(--text); line-height: 1.25;
+  overflow-wrap: anywhere; word-break: normal;
 }
 .hero h1 .accent {
   background: linear-gradient(110deg, #2563eb 0%, #8b5cf6 50%, #ec4899 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent;
-  white-space: nowrap;
 }
 .hero h1 .underline {
-  position: relative; white-space: nowrap;
+  position: relative;
 }
 .hero h1 .underline::after {
   content:''; position: absolute; left: 0; right: 0; bottom: -2px; height: 6px;
   background: linear-gradient(90deg, rgba(37,99,235,.18), rgba(236,72,153,.18));
   border-radius: 999px; z-index: -1;
 }
-.hero .lead {
-  max-width: 520px; margin: 0 0 28px;
-  font-size: clamp(15px, 1.6vw, 17px); color: var(--text-soft); line-height: 1.85;
+.hero .sub-catch {
+  max-width: 560px; margin: 0 0 18px;
+  font-size: clamp(15px, 1.7vw, 18px); font-weight: 700; color: var(--text); line-height: 1.7;
 }
+.hero .sub-catch strong { color: var(--primary); }
+@media (max-width: 900px) { .hero .sub-catch { margin: 0 auto 18px; } }
+.hero .lead {
+  max-width: 560px; margin: 0 0 28px;
+  font-size: clamp(14px, 1.5vw, 16px); color: var(--text-soft); line-height: 1.85;
+}
+.hero .lead strong { color: var(--text); font-weight: 700; }
 @media (max-width: 900px) { .hero .lead { margin: 0 auto 28px; } }
 .hero-actions {
   display: flex; flex-wrap: wrap; gap: 12px;
@@ -202,6 +237,11 @@ header.site-header.scrolled {
 }
 .hero-blob.b1 { background: #3b82f6; top: -40px; right: -40px; }
 .hero-blob.b2 { background: #ec4899; bottom: -40px; left: 30%; width: 200px; height: 200px; }
+@media (max-width: 560px) {
+  .hero-blob { width: 180px; height: 180px; opacity: .4; }
+  .hero-blob.b1 { top: -20px; right: -20px; }
+  .hero-blob.b2 { width: 140px; height: 140px; bottom: -20px; left: 20%; }
+}
 
 /* floating badge over hero image */
 .hero-badge {
@@ -484,6 +524,85 @@ section.block + section.block { border-top: 1px dashed var(--line); }
   font-size: 13px; line-height: 1.7; color: var(--text);
 }
 
+/* ---- typewriter rotate ---- */
+.type-rotate { color: var(--primary); border-right: 2px solid var(--primary); padding-right: 2px; }
+.type-rotate.typing { animation: caret-blink 1s step-end infinite; }
+@keyframes caret-blink { 50% { border-color: transparent; } }
+@media (prefers-reduced-motion: reduce) { .type-rotate { border-right: none; animation: none; } }
+
+/* ---- theme toggle ---- */
+.theme-toggle {
+  width: 38px; height: 38px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--bg-white);
+  font-size: 16px; cursor: pointer; line-height: 1;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: transform .15s ease, border-color .15s ease, background .3s ease;
+}
+.theme-toggle:hover { transform: translateY(-1px) rotate(-12deg); border-color: var(--primary); }
+.theme-toggle-mobile { display: none; }
+@media (max-width: 900px) {
+  .theme-toggle-mobile { display: inline-flex; margin-right: 8px; }
+}
+
+/* ---- dark mode 個別上書き（リテラル白を使っている箇所） ---- */
+:root[data-theme="dark"] header.site-header.scrolled {
+  background: rgba(15,20,38,0.92);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.04), 0 10px 30px rgba(0,0,0,0.4);
+}
+:root[data-theme="dark"] .menu-drop,
+:root[data-theme="dark"] .mobile-nav { background: var(--bg-white); border-color: var(--line); }
+:root[data-theme="dark"] .hero-badge { background: rgba(21,27,46,0.96); }
+:root[data-theme="dark"] .pkg-card { background: linear-gradient(180deg, rgba(30,38,60,.7), rgba(21,27,46,.5)); }
+:root[data-theme="dark"] .service-card,
+:root[data-theme="dark"] .biz-card { background: var(--bg-white); }
+:root[data-theme="dark"] .pkg-cat { background: #3a2c0e; color: #fbbf24; }
+:root[data-theme="dark"] .pkg-subsidy { background: #0c3b2e; color: #34d399; }
+
+/* ---- diagnose modal ---- */
+.btn-diagnose {
+  background: linear-gradient(135deg, #8b5cf6, #ec4899); color: #fff;
+  border: none; cursor: pointer; font-weight: 800; font-size: 15px;
+  padding: 14px 26px; border-radius: 999px;
+  box-shadow: 0 10px 30px rgba(139,92,246,.32);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.btn-diagnose:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(139,92,246,.42); }
+.packages-cta-row { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 28px; text-align: center; }
+.packages-cta-hint { font-size: 12.5px; color: var(--muted); }
+.diagnose-modal {
+  position: fixed; inset: 0; z-index: 200; display: none;
+  align-items: center; justify-content: center; padding: 20px;
+  background: rgba(15,23,42,.55); backdrop-filter: blur(6px);
+}
+.diagnose-modal.open { display: flex; animation: diag-fade .2s ease; }
+@keyframes diag-fade { from { opacity: 0; } to { opacity: 1; } }
+.diagnose-box {
+  background: var(--bg-white); border-radius: 22px; max-width: 460px; width: 100%;
+  padding: 28px 26px 26px; position: relative; box-shadow: 0 30px 80px rgba(0,0,0,.4);
+  border: 1px solid var(--line);
+}
+.diagnose-close {
+  position: absolute; top: 14px; right: 16px; border: none; background: none;
+  font-size: 26px; line-height: 1; color: var(--muted); cursor: pointer;
+}
+.diagnose-head { font-size: 18px; font-weight: 800; color: var(--text); margin-bottom: 16px; }
+.diag-progress { font-size: 12px; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+.diag-q { font-size: 17px; font-weight: 800; color: var(--text); margin: 0 0 16px; line-height: 1.5; }
+.diag-opts { display: flex; flex-direction: column; gap: 10px; }
+.diag-opt {
+  text-align: left; padding: 14px 16px; border-radius: 12px;
+  border: 1.5px solid var(--line); background: var(--bg-base);
+  font-size: 14px; font-weight: 600; color: var(--text); cursor: pointer;
+  transition: border-color .15s ease, background .15s ease, transform .1s ease;
+}
+.diag-opt:hover { border-color: var(--primary); background: var(--primary-bg); transform: translateX(2px); }
+.diag-result { text-align: center; }
+.diag-result-badge { font-size: 12px; font-weight: 700; color: var(--primary); background: var(--primary-bg); display: inline-block; padding: 4px 12px; border-radius: 999px; margin-bottom: 10px; }
+.diag-result-name { font-size: 22px; font-weight: 900; color: var(--text); margin: 6px 0; }
+.diag-result-desc { font-size: 14px; line-height: 1.7; color: var(--text-soft); margin: 0 0 18px; }
+.diag-result .btn { display: inline-flex; }
+.diag-restart { display: block; margin: 14px auto 0; border: none; background: none; color: var(--muted); font-size: 12.5px; text-decoration: underline; cursor: pointer; }
+
 /* ---- flow steps ---- */
 .flow-list {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
@@ -686,7 +805,7 @@ footer.site-footer {
   .profile-timeline { padding-left: 22px; }
   .profile-tl-item::before { left: -30px; }
 }
-</style></head><body><header class='site-header' id='site-header'><div class='site-header-inner'><a class='site-logo' href='/'><span class='dot'></span>AIハブ <span style='color:var(--muted);font-weight:600;font-size:13px;margin-left:6px;'>by 由井辰美</span></a><nav class='site-nav' aria-label='メインナビ'><a class='nav-link' href='#speaker'>講師紹介</a><a class='nav-link' href='#gallery'>つくれるもの</a><a class='nav-link' href='#services'>サービス</a><a class='nav-link' href='#works'>実績</a><a class='nav-link' href='#lectures'>講習資料</a><div class='menu-wrap'><button class='menu-toggle' id='menu-toggle' aria-haspopup='menu' aria-expanded='false'>メニュー<svg class='chev' width='14' height='14' viewBox='0 0 20 20' fill='none' aria-hidden='true'><path d='M5 8l5 5 5-5' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg></button><div class='menu-drop' id='menu-drop' role='menu'><a href='#flow'>🧭 ご依頼の流れ</a><a href='#faq'>❓ よくある質問</a><a href='/watch/index.html'>📡 自分ポータル</a><a href='#lectures'>📝 講習資料</a></div></div><a class='login-btn' href='/admin'>🔐 管理ログイン</a></nav><button class='mobile-toggle' id='mobile-toggle' aria-label='メニュー'><svg width='20' height='20' viewBox='0 0 24 24' fill='none'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button></div><div class='mobile-nav' id='mobile-nav'><a href='#speaker'>講師紹介</a><a href='#gallery'>つくれるもの</a><a href='#services'>サービス</a><a href='#flow'>ご依頼の流れ</a><a href='#works'>実績</a><a href='#lectures'>講習資料</a><a href='#faq'>FAQ</a><a href='/watch/index.html'>自分ポータル</a><a class='login-btn-mobile' href='/admin'>🔐 管理ログイン</a></div></header><div class='container'>
+</style></head><body><header class='site-header' id='site-header'><div class='site-header-inner'><a class='site-logo' href='/'><span class='dot'></span>AIハブ <span style='color:var(--muted);font-weight:600;font-size:13px;margin-left:6px;'>by 由井辰美</span></a><nav class='site-nav' aria-label='メインナビ'><a class='nav-link' href='#speaker'>講師紹介</a><a class='nav-link' href='#services'>サービス</a><a class='nav-link' href='#packages'>受講プラン</a><a class='nav-link' href='#works'>実績</a><a class='nav-link' href='#lectures'>講習資料</a><div class='menu-wrap'><button class='menu-toggle' id='menu-toggle' aria-haspopup='menu' aria-expanded='false'>メニュー<svg class='chev' width='14' height='14' viewBox='0 0 20 20' fill='none' aria-hidden='true'><path d='M5 8l5 5 5-5' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg></button><div class='menu-drop' id='menu-drop' role='menu'><a href='#gallery'>🎨 つくれるもの</a><a href='#flow'>🧭 ご依頼の流れ</a><a href='#faq'>❓ よくある質問</a><a href='/watch/index.html'>📡 自分ポータル</a></div></div><button type='button' class='theme-toggle' aria-label='ダークモードに切替'>🌙</button><a class='login-btn' href='/admin'>🔐 管理ログイン</a></nav><button type='button' class='theme-toggle theme-toggle-mobile' aria-label='ダークモードに切替'>🌙</button><button class='mobile-toggle' id='mobile-toggle' aria-label='メニュー'><svg width='20' height='20' viewBox='0 0 24 24' fill='none'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button></div><div class='mobile-nav' id='mobile-nav'><a href='#speaker'>講師紹介</a><a href='#services'>サービス</a><a href='#packages'>受講プラン</a><a href='#flow'>ご依頼の流れ</a><a href='#works'>実績</a><a href='#lectures'>講習資料</a><a href='#faq'>FAQ</a><a href='/watch/index.html'>自分ポータル</a><a class='login-btn-mobile' href='/admin'>🔐 管理ログイン</a></div></header><div class='container'>
 <script>
 (function(){
   function reveal(){
@@ -703,7 +822,7 @@ footer.site-footer {
   }
 })();
 </script>
-<section class='hero' id='top'><div class='hero-blob b1'></div><div class='hero-blob b2'></div><div class='hero-text fade-up'><span class='eyebrow'>🧭 彦根対面ワークショップ｜社長の経営判断だけでAIを組織に注入する</span><h1>社長が司令塔になる<br><span class='accent'>「自社へのAI組織注入・設計図」</span><br><span class='underline'>対面完成ワークショップ</span></h1><p class='lead'>「AIで何ができるか」を学ぶ時間はもう終わりです。社長の仕事は <strong>「どの業務をAIに丸投げするか」</strong> を決めること。彦根の対面ワークショップで、あなたの会社専用の <strong>「AI組織設計図」</strong> をその場で作成し、現場の無駄な時間を <strong>週10時間カット</strong> する仕組みを作ります。</p><div class='hero-actions'><a class='btn btn-primary' href='#packages'>受講プランを見る →</a><a class='btn btn-secondary' href='mailto:goodbouldering@gmail.com'>無料相談する</a><a class='btn btn-ghost' href='/admin'>🔐 管理ログイン</a></div></div><div class='hero-visual fade-up d2'><img src='https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=70' alt='経営者とAI講師が対面で自社のAI設計図を作成している様子' loading='eager' fetchpriority='high' decoding='async'><div class='hero-badge b-top'><span class='b-icon'>🧠</span>技術の勉強は一切ナシ</div><div class='hero-badge b-bot'><span class='b-icon'>⏱</span>週10時間の無駄を削減</div></div></section><div class='stats-strip'><div class='stat fade-up d1'><div class='num' data-count='9'>0</div><div class='label'>同時運営事業</div></div><div class='stat fade-up d2'><div class='num' data-count='30'>0<span style='font-size:.6em'>年</span></div><div class='label'>クライミング歴</div></div><div class='stat fade-up d3'><div class='num' data-count='100'>0<span style='font-size:.6em'>%</span></div><div class='label'>Web 自社構築</div></div><div class='stat fade-up d4'><div class='num' data-count='2027'>0</div><div class='label'>育成就労 移行支援</div></div></div><section class='block' id='speaker'><p class='section-heading fade-up'>SPEAKER</p><h2 class='section-title fade-up d1'>講師紹介</h2><p class='section-sub fade-up d2'>AI 活用の啓発・講習・地域コミュニティ運営・複数事業のマーケ支援を行う実践者。</p><div class='profile-block' style='display:block;'><div class='speaker-intro-grid'><div><h3>由井 辰美</h3><p style='font-weight:700;color:var(--primary);margin:0 0 16px;'>AI講師 / マーケター / グッぼる代表</p><p style='line-height:1.9;'>滋賀県彦根市を拠点に、ボルダリングカフェ「グッぼる」を運営するかたわら、 AI 活用の啓発・講習・地域コミュニティ運営・複数事業者のマーケティング支援を行う。 「自分のAIをひとつに集める場所」をテーマにした <strong>AIハブ</strong> を運営し、 AI / SNS / LLMO の最新動向を一次情報ベースで発信している。</p><p style='font-weight:700;color:var(--text);margin-top:16px;'>「異端OK、数字根拠で経営を変える」</p></div><div class='profile-avatar'>🧑‍🏫</div></div><div class='stats-strip' style='margin:32px 0 8px;'><div class='stat'><div class='num'>75%</div><div class='label'>製造コスト削減達成</div></div><div class='stat'><div class='num'>40+</div><div class='label'>ジムシステム提供</div></div><div class='stat'><div class='num'>120</div><div class='label'>シューズモデル在庫</div></div><div class='stat'><div class='num'>90%</div><div class='label'>機器稼働率達成</div></div></div><div style='display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:24px;'><a class='btn btn-primary' href='/speaker.html'>🎤 講師紹介をもっと詳しく</a><a class='btn btn-secondary' href='/profile.html'>📜 経歴をもっと詳しく</a></div></div></section><section class='block' id='gallery'><p class='section-heading fade-up'>WORK GALLERY</p><h2 class='section-title fade-up d1'>つくれるもの・任せられること</h2><p class='section-sub fade-up d2'>LP・EC・LINE Bot・社内 RAG。「企画 → 制作 → 運用」をぜんぶ自社で。</p><div class='gallery-grid'><div class='gallery-item fade-up d1'><img src='https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&amp;fit=crop&amp;w=900&amp;q=70' alt='LP / コーポレートサイト' loading='lazy' decoding='async'><div class='gallery-caption'><span class='tag'>WORK</span><div class='title'>LP / コーポレートサイト</div><div class='meta'>Next.js + Supabase + Vercel</div></div></div><div class='gallery-item fade-up d2'><img src='https://images.unsplash.com/photo-1522163182402-834f871fd851?auto=format&amp;fit=crop&amp;w=900&amp;q=70' alt='クライミングジム EC' loading='lazy' decoding='async'><div class='gallery-caption'><span class='tag'>WORK</span><div class='title'>クライミングジム EC</div><div class='meta'>カラーミー + Shopify</div></div></div><div class='gallery-item fade-up d3'><img src='https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&amp;fit=crop&amp;w=900&amp;q=70' alt='LINE Bot / SNS 自動化' loading='lazy' decoding='async'><div class='gallery-caption'><span class='tag'>WORK</span><div class='title'>LINE Bot / SNS 自動化</div><div class='meta'>Cloudflare Workers + D1</div></div></div><div class='gallery-item fade-up d4'><img src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&amp;fit=crop&amp;w=900&amp;q=70' alt='AI / 社内 RAG' loading='lazy' decoding='async'><div class='gallery-caption'><span class='tag'>WORK</span><div class='title'>AI / 社内 RAG</div><div class='meta'>Claude + Supabase Vector</div></div></div></div></section><section class='block' id='services'><p class='section-heading fade-up'>SERVICES</p><h2 class='section-title fade-up d1'>提供できる 6 つのこと</h2><p class='section-sub fade-up d2'>「コンサルだけする人」ではなく、9事業のオーナーとして毎日サイトと業務を回している実装者だからこそ提案できる内容です。</p><div class='services-grid'><div class='service-card fade-up d1'><div class='service-image'><img src='https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&amp;fit=crop&amp;w=800&amp;q=70' alt='Webマーケティング・LP制作' loading='lazy' decoding='async'></div><div class='service-body'><div class='service-icon-float'>📈</div><div class='service-name'>Webマーケティング・LP制作</div><div class='service-desc'>Next.js + Supabase でランディングと業務システムを一体運用。PR プレビュー付きでクライアントと一緒に磨ける開発体制。</div></div></div><div class='service-card fade-up d2'><div class='service-image'><img src='https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&amp;fit=crop&amp;w=800&amp;q=70' alt='AI 業務活用・社内RAG' loading='lazy' decoding='async'></div><div class='service-body'><div class='service-icon-float'>🤖</div><div class='service-name'>AI 業務活用・社内RAG</div><div class='service-desc'>Claude / GPT を使った業務自動化、社内ドキュメントを参照する RAG チャットの設計と構築。</div></div></div><div class='service-card fade-up d3'><div class='service-image'><img src='https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&amp;fit=crop&amp;w=800&amp;q=70' alt='経営勉強会・社内研修' loading='lazy' decoding='async'></div><div class='service-body'><div class='service-icon-float'>📚</div><div class='service-name'>経営勉強会・社内研修</div><div class='service-desc'>現役オーナーの目線で、現場で使える Web / AI / SNS の使い方を社員研修・経営者勉強会として開催。</div></div></div><div class='service-card fade-up d1'><div class='service-image'><img src='https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&amp;fit=crop&amp;w=800&amp;q=70&amp;sat=-30' alt='補助金活用・2027 移行支援' loading='lazy' decoding='async'></div><div class='service-body'><div class='service-icon-float'>🛡️</div><div class='service-name'>補助金活用・2027 移行支援</div><div class='service-desc'>ものづくり / IT導入 / 育成就労（特定技能 2027 移行）など、補助金と法令対応をセットで動かす伴走型支援。</div></div></div><div class='service-card fade-up d2'><div class='service-image'><img src='https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&amp;fit=crop&amp;w=800&amp;q=70' alt='EC・予約・LINE 自動化' loading='lazy' decoding='async'></div><div class='service-body'><div class='service-icon-float'>🛒</div><div class='service-name'>EC・予約・LINE 自動化</div><div class='service-desc'>カラーミー・Shopify・Stripe・LINE Bot を組み合わせて、注文〜接客〜配信の業務を 1 つの動線にまとめる。</div></div></div><div class='service-card fade-up d3'><div class='service-image'><img src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&amp;fit=crop&amp;w=800&amp;q=70' alt='数字根拠の経営レビュー' loading='lazy' decoding='async'></div><div class='service-body'><div class='service-icon-float'>📊</div><div class='service-name'>数字根拠の経営レビュー</div><div class='service-desc'>現役オーナーとして月次決算 / KPI を回している立場から、コンサルではなく一緒に数字を見るパートナー型レビュー。</div></div></div></div></section><section class='block' id='packages'><p class='section-heading fade-up'>PACKAGES</p><h2 class='section-title fade-up d1'>AI講習・相談・伴走パック</h2><p class='section-sub fade-up d2'>経営者プログラマー講師による実践型。サイト構築・SEO・LLMO・補助金対応まで、3つのコースから選べます。</p><div class='packages-grid'><div class='pkg-card fade-up d1'><div class='pkg-head'><span class='pkg-icon' aria-hidden='true'>💬</span><span class='pkg-cat'>個別相談</span></div><h3 class='pkg-title'>AI個別相談 60分</h3><div class='pkg-meta'>⏱ 60分</div><div class='pkg-price'>2,200円〜5,500円</div><p class='pkg-desc'>経営者・専門職・初心者なんでも相談。LLMO / SEO / MEO / Claude Code 活用 / バックオフィス効率化 / 補助金申請まで、現役オーナーがその場で「困った」を解決。</p><a class='pkg-cta' href='https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/TO3XHZT6XP3OM4QBDYMW7TZP' target='_blank' rel='noopener'>予約する（Square） →</a></div><div class='pkg-card fade-up d2'><div class='pkg-head'><span class='pkg-icon' aria-hidden='true'>📚</span><span class='pkg-cat'>講習会</span></div><h3 class='pkg-title'>AI講習会 120分（月1回 / 定員8名）</h3><div class='pkg-meta'>⏱ 120分</div><div class='pkg-price'>5,500円</div><span class='pkg-subsidy'>✓ 補助金対応</span><p class='pkg-desc'>彦根でAIや経営を学べる実践型講習。一般の講師が教えない「考え方とコツ」を中心に、参加者のレベルに合わせて内容を最適化。Claude Code / オフィス自動化 / 通販サイト構築まで。</p><a class='pkg-cta' href='https://minanowa.com/#events' target='_blank' rel='noopener'>次回開催を見る →</a></div><div class='pkg-card fade-up d3'><div class='pkg-head'><span class='pkg-icon' aria-hidden='true'>🚀</span><span class='pkg-cat'>伴走パック</span></div><h3 class='pkg-title'>AI伴走パック 6回（補助金対象）</h3><div class='pkg-meta'>⏱ 6ヶ月（導入相談60分から開始）</div><div class='pkg-price'>月額 100,000円（税込）× 6ヶ月</div><span class='pkg-subsidy'>✓ 補助金対応</span><p class='pkg-desc'>HP公開から事務自動化まで、技術的な難所は講師が代行・支援。AI導入・デザイン内製化・書類営業効率化・経理自動化・マーケティングを6ヶ月で一気に定着。滋賀・彦根の補助金で負担1/3以下に。</p><a class='pkg-cta' href='https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/V57YTNICA2KV2TN7ENARAVQE' target='_blank' rel='noopener'>導入相談（無料・60分） →</a></div></div><p class='packages-note fade-up d4'>🛡 <strong>滋賀県未来投資総合補助金</strong>（最大50万円・補助率2/3／一次：3/2〜3/31、二次：6/8〜7/17）と <strong>彦根市小規模事業者デジタル化推進補助金</strong>（最大20万円）に対応。申請サポートも個別相談で受け付けます。</p></section><section class='block' id='flow'><p class='section-heading'>FLOW</p><h2 class='section-title'>ご依頼の流れ</h2><p class='section-sub'>ご相談から公開・運用まで、最短 2 週間で動き始めます。</p><div class='flow-list'><div class='flow-step'><h3>ご相談</h3><p>メール／LINEで現状をヒアリング。事業内容・課題・予算感を 30 分でつかみます。</p></div><div class='flow-step'><h3>提案・見積</h3><p>課題に対する具体的なアウトプット案（LP / 業務システム / 研修 等）と費用感を提示。</p></div><div class='flow-step'><h3>制作・実装</h3><p>Next.js + Supabase + Vercel で構築。PR プレビューで毎日確認できる開発フロー。</p></div><div class='flow-step'><h3>運用・伴走</h3><p>公開後も月次レビューで KPI を一緒に確認。必要な機能追加・運用代行も対応。</p></div></div></section><section class='block' id='works'><p class='section-heading fade-up'>WORKS</p><h2 class='section-title fade-up d1'>実績・事業ポートフォリオ</h2><p class='section-sub fade-up d2'>運営している事業・制作した実績・生成した提案LP。すべてを自分で構築・運用しています。</p><div class='biz-grid'><a class='biz-card fade-up d1' href='https://goodbouldering.com' target='_blank' rel='noopener' style='--card-border:rgba(122,162,255,.45);--card-glow:rgba(100,140,255,.20);'><div class='biz-card-body'><div class='biz-card-icon'>🧗</div><div class='biz-card-name'>グッぼる</div><div class='biz-card-tagline'>クライミング × カフェ × ショップ</div><div class='biz-card-desc'>彦根のボルダリングジム。カフェ・ショップ・クライミングスクールを併設。クライミング歴30年のオーナーが直営。</div><div class='biz-card-footer'><span class='biz-badge live'>稼働中</span><span class='biz-arrow'>→</span></div></div></a><a class='biz-card fade-up d2' href='https://n-design.work' target='_blank' rel='noopener' style='--card-border:rgba(255,165,80,.45);--card-glow:rgba(240,145,60,.20);'><div class='biz-card-body'><div class='biz-card-icon'>🏠</div><div class='biz-card-name'>Nデザイン</div><div class='biz-card-tagline'>滋賀・彦根の工務店 Web マーケティング</div><div class='biz-card-desc'>ネリデザイン（株）の Webマーケティング事業サイト。新築・リフォームの相談窓口。</div><div class='biz-card-footer'><span class='biz-badge live'>稼働中</span><span class='biz-arrow'>→</span></div></div></a><a class='biz-card fade-up d3' href='https://project-02ceb497.pages.dev' target='_blank' rel='noopener' style='--card-border:rgba(199,125,255,.45);--card-glow:rgba(180,100,255,.20);'><div class='biz-card-body'><div class='biz-card-icon'>🎬</div><div class='biz-card-name'>ClimbHero</div><div class='biz-card-tagline'>クライミング動画共有・グローバル</div><div class='biz-card-desc'>登る動画をランキングで競うクライミング特化アプリ。Cloudflare Pages 上で稼働。</div><div class='biz-card-footer'><span class='biz-badge live'>稼働中</span><span class='biz-arrow'>→</span></div></div></a><a class='biz-card fade-up d4' href='https://business21.vercel.app/match' target='_blank' rel='noopener' style='--card-border:rgba(80,220,210,.45);--card-glow:rgba(60,200,190,.20);'><div class='biz-card-body'><div class='biz-card-icon'>🌏</div><div class='biz-card-name'>派遣マッチ</div><div class='biz-card-tagline'>派遣求人 × 求職者マッチング</div><div class='biz-card-desc'>派遣求人と求職者を結ぶマッチングプラットフォーム（協同組合ビジネス21）。Next.js + Supabase。</div><div class='biz-card-footer'><span class='biz-badge live'>稼働中</span><span class='biz-arrow'>→</span></div></div></a><a class='biz-card fade-up d5' href='https://minanowa.com' target='_blank' rel='noopener' style='--card-border:rgba(100,220,160,.45);--card-glow:rgba(80,200,140,.20);'><div class='biz-card-body'><div class='biz-card-icon'>🤝</div><div class='biz-card-name'>みんなのWA</div><div class='biz-card-tagline'>彦根 異業種交流コミュニティ</div><div class='biz-card-desc'>彦根市の異業種交流会。会員登録・イベント案内・会員紹介をワンサイトで。</div><div class='biz-card-footer'><span class='biz-badge live'>稼働中</span><span class='biz-arrow'>→</span></div></div></a><a class='biz-card fade-up d6' href='https://notesthe.vercel.app' target='_blank' rel='noopener' style='--card-border:rgba(255,122,182,.45);--card-glow:rgba(240,100,160,.20);'><div class='biz-card-body'><div class='biz-card-icon'>💆</div><div class='biz-card-name'>Notエステ</div><div class='biz-card-tagline'>美肌脱毛・ホワイトニング（彦根・長浜）</div><div class='biz-card-desc'>メンズ・レディース対応のエステサロン。Payload CMS で柔軟なコンテンツ管理。</div><div class='biz-card-footer'><span class='biz-badge live'>稼働中</span><span class='biz-arrow'>→</span></div></div></a><a class='biz-card fade-up d1' href='https://karatto.life' target='_blank' rel='noopener' style='--card-border:rgba(255,210,80,.45);--card-glow:rgba(240,190,60,.20);'><div class='biz-card-body'><div class='biz-card-icon'>💎</div><div class='biz-card-name'>カラット</div><div class='biz-card-tagline'>Shopify ストア</div><div class='biz-card-desc'>カラッとヒーロー1億達成プロジェクト。Shopify ホスティング + Cloudflare Workers 連携。</div><div class='biz-card-footer'><span class='biz-badge live'>稼働中</span><span class='biz-arrow'>→</span></div></div></a><a class='biz-card fade-up d2' href='https://trust-nine-tau.vercel.app' target='_blank' rel='noopener' style='--card-border:rgba(80,220,210,.45);--card-glow:rgba(60,200,190,.20);'><div class='biz-card-body'><div class='biz-card-icon'>🏡</div><div class='biz-card-name'>トラスト</div><div class='biz-card-tagline'>障害者グループホーム シフト管理</div><div class='biz-card-desc'>障害者グループホームのシフト管理・LINE Bot 連携。Next.js + Supabase + Anthropic SDK。</div><div class='biz-card-footer'><span class='biz-badge live'>稼働中</span><span class='biz-arrow'>→</span></div></div></a><div class='biz-card no-link fade-up d3' style='--card-border:rgba(255,100,100,.45);--card-glow:rgba(240,80,80,.20);'><div class='biz-card-body'><div class='biz-card-icon'>🚀</div><div class='biz-card-name'>ファディー</div><div class='biz-card-tagline'>彦根プロジェクト（準備中）</div><div class='biz-card-desc'>Vercel + Supabase で新規再生成中。みんなのWA の構成をベースに立ち上げ予定。</div><div class='biz-card-footer'><span class='biz-badge coming-soon'>準備中</span></div></div></div><a class='biz-card self-card fade-up d4' href='https://ai-hub-jp.vercel.app' target='_blank' rel='noopener' style='--card-border:rgba(80,210,240,.45);--card-glow:rgba(60,190,220,.20);'><div class='biz-card-body'><div class='biz-card-icon'>🤖</div><div class='biz-card-name'>AIハブ</div><div class='biz-card-tagline'>CEO ポータル + AI 集約パイプライン</div><div class='biz-card-desc'>あなたは今ここにいます。9事業の入口・講習資料・AI情報を1箇所に集約。</div><div class='biz-card-footer'><span class='biz-badge self'>あなたはここ</span><span class='biz-arrow'>→</span></div></div></a><a class='biz-card fade-up d5' href='https://plogging.jp/' target='_blank' rel='noopener' style='--card-border:rgba(100,220,160,.45);--card-glow:rgba(80,200,140,.20);'><div class='biz-card-image'><img src='https://img07.shop-pro.jp/PA01434/387/css_eyecatch/eyecatch_banner_img_1.jpg' alt='プロギング・ジャパン' loading='lazy' decoding='async'><span class='biz-card-image-icon'>🏃</span></div><div class='biz-card-body'><div class='biz-card-name'>プロギング・ジャパン</div><div class='biz-card-tagline'>ジョギング × ゴミ拾い 全国コミュニティ</div><div class='biz-card-desc'>日本のプロギング本部。全国のクリーン活動イベント告知・参加者募集・グッズ販売・SNS連携。カラーミー基盤。</div><div class='biz-card-footer'><span class='biz-badge live'>稼働中</span><span class='biz-arrow'>→</span></div></div></a><a class='biz-card fade-up d6' href='https://mokshajapan.jp' target='_blank' rel='noopener' style='--card-border:rgba(255,165,80,.45);--card-glow:rgba(240,145,60,.20);'><div class='biz-card-body'><div class='biz-card-icon'>🍵</div><div class='biz-card-name'>モクシャチャイ</div><div class='biz-card-tagline'>インド伝統チャイを日本へ</div><div class='biz-card-desc'>インド伝統の煮出しチャイをそのまま日本へ届ける商品LP。Nuxt 構成。</div><div class='biz-card-footer'><span class='biz-badge live'>稼働中</span><span class='biz-arrow'>→</span></div></div></a><a class='biz-card fade-up d1' href='https://readdy.link/share/042372463c05d7076e5a1b8d3ee28e0e' target='_blank' rel='noopener' style='--card-border:rgba(199,125,255,.45);--card-glow:rgba(180,100,255,.20);'><div class='biz-card-body'><div class='biz-card-icon'>🌃</div><div class='biz-card-name'>今心</div><div class='biz-card-tagline'>心地いいスナックの雰囲気LP</div><div class='biz-card-desc'>「心地いい」スナックの世界観を伝えるブランドLP。Readdy で生成・調整。</div><div class='biz-card-footer'><span class='biz-badge live'>稼働中</span><span class='biz-arrow'>→</span></div></div></a><a class='biz-card fade-up d2' href='https://readdy.link/share/473607684647d6e150399fa3e68b7fd9' target='_blank' rel='noopener' style='--card-border:rgba(122,162,255,.45);--card-glow:rgba(100,140,255,.20);'><div class='biz-card-body'><div class='biz-card-icon'>👟</div><div class='biz-card-name'>GPsole</div><div class='biz-card-tagline'>新世代リソール</div><div class='biz-card-desc'>クライミングシューズのリソール新世代提案サイト。Readdy で生成。</div><div class='biz-card-footer'><span class='biz-badge live'>稼働中</span><span class='biz-arrow'>→</span></div></div></a><a class='biz-card fade-up d3' href='https://khktfxqf.gensparkspace.com' target='_blank' rel='noopener' style='--card-border:rgba(255,122,182,.45);--card-glow:rgba(240,100,160,.20);'><div class='biz-card-body'><div class='biz-card-icon'>📈</div><div class='biz-card-name'>まずは0から1億マーケ</div><div class='biz-card-tagline'>マーケ基礎 → 1億到達まで</div><div class='biz-card-desc'>マーケ基礎から1億到達までの考え方を1枚にまとめた提案LP。Genspark で生成。</div><div class='biz-card-footer'><span class='biz-badge live'>稼働中</span><span class='biz-arrow'>→</span></div></div></a></div></section><section class='block' id='lectures'><p class='section-heading fade-up'>LECTURES</p><h2 class='section-title fade-up d1'>講習資料</h2><p class='section-sub fade-up d2'>AI 業務活用・SNSアルゴリズム・LLMO（AI検索最適化）の講習で使う資料。プログラミングマップもこちら。</p><div class='lecture-grid'><a class='lecture-card' href='/programming-map.html'><div class='lecture-title'><span class='lecture-icon'>🗺️</span>プログラミングマップ</div><div class='lecture-date'>📅 2026-04-25</div><div class='lecture-summary'>プログラミング言語・用途・AI活用までの俯瞰図。何から学ぶか迷ったときの全体地図。</div></a><a class='lecture-card' href='/lectures/2026-04-ai-kihon.html'><div class='lecture-title'>AIの「こと」を吸収する — 入門講習</div><div class='lecture-date'>📅 2026-04-22</div><div class='lecture-summary'>AIを「使う」のではなく「のこと」を知る。最初の一歩として、言語化・共有・ショートカット化の3軸で日常に組み込む考え方を、実例つきで整理する。</div></a><a class='lecture-card' href='/lectures/2026-04-ai-kangaekata.html'><div class='lecture-title'>AI活用の「考え方」— 入門講習</div><div class='lecture-date'>📅 2026-04-22</div><div class='lecture-summary'>AIを日常になじませる「考え方」を15項目にまとめた原典。講習スライドの元資料として使える本編。</div></a></div></section><section class='block' id='faq'><p class='section-heading'>FAQ</p><h2 class='section-title'>よくある質問</h2><div class='faq-list'><details class='faq-item'><summary>料金はどれくらいですか？</summary><p>LP 1本（簡易ヒアリング込み）で 18〜30万円が目安です。業務システム・EC 統合・社内RAG は内容により別途お見積もり。補助金併用を前提に組むことが多いです。</p></details><details class='faq-item'><summary>対応エリアは？</summary><p>滋賀県を中心に、京都・大阪・名古屋まで対面 / 出張可。リモートだけでも全国対応します。</p></details><details class='faq-item'><summary>自分は IT に弱いのですが、大丈夫ですか？</summary><p>9事業のオーナーをやっているので「経営者目線」で話します。LINE / メール / ZOOM どれでも、専門用語を避けて進めます。</p></details><details class='faq-item'><summary>育成就労（2027 移行）支援はどんな内容？</summary><p>技能実習から育成就労への移行に必要な 30 項目チェックリストを動的ダッシュボード化し、法令確定状況を反映しながら社内体制を整える伴走型支援です。</p></details><details class='faq-item'><summary>AI を会社で使いたいのですが、何から始めれば？</summary><p>まずは社内ドキュメントを 1 ヶ所にまとめ、RAG（社内 Q&amp;A）から導入するのを推奨しています。AIハブ自体がそのリファレンス実装になっています。</p></details></div></section><div class='watch-link-bar'><p>📡 AI / SNS の毎朝ダイジェストを配信する <strong>自分ポータル</strong></p><a href='/watch/index.html'>自分ポータルを見る →</a></div><section class='block' id='contact'><div class='contact-block'><h2>まずは 30 分、無料でご相談</h2><p>事業の状況・課題・予算感をヒアリングして、最適なアウトプット案をご提案します。</p><a class='contact-mail' href='mailto:goodbouldering@gmail.com'>✉ goodbouldering@gmail.com に相談する</a></div></section><footer class='site-footer'>© 2026 由井辰美 / AIハブ — Web経営コンサル · 滋賀</footer></div>
+<section class='hero' id='top'><div class='hero-blob b1'></div><div class='hero-blob b2'></div><div class='hero-text fade-up'><span class='eyebrow'>📍 彦根・滋賀・湖東エリア｜現場リーダー限定の対面ワークショップ</span><h1>滋賀・彦根の<span class='accent'>現場を動かすリーダー</span>へ。<br>ツールを試す時間は終わり。その場で業務が変わる<br><span class='underline'>「AI仕組み化」対面完成ワークショップ</span></h1><p class='sub-catch'>店舗オーナー・部門責任者・現場のトップ限定。難しいITの勉強は一切不要。あなたの現場に最適な<strong>「<span class='type-rotate' data-words='新しい業務体制｜集客の仕組み｜人手不足の解決策｜業務効率化の着地点'>新しい業務体制</span>（着地点）」</strong>をその場で構築します。</p><p class='lead'>彦根周辺や湖東エリアで、店舗や組織のマネジメント・業務効率化に頭を悩ませていませんか？本講座は単なるAIツールの操作セミナーではありません。決定権を持つリーダーが集まり、自社・自店のボトルネックを解消する<strong>「仕組み」そのものをその場で完成</strong>させる完全実践型の対面講座です。地域の横のつながりを強めながら、明日から現場が劇的に楽になる具体的な着地点へと導きます。</p><div class='hero-actions'><a class='btn btn-primary' href='#packages'>受講プランを見る →</a><a class='btn btn-secondary' href='mailto:goodbouldering@gmail.com'>無料相談する</a><a class='btn btn-ghost' href='/admin'>🔐 管理ログイン</a></div></div><div class='hero-visual fade-up d2'><img src='https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=70' alt='彦根・滋賀の現場リーダーがAI講師と対面で自社の業務仕組み化を設計している様子' loading='eager' fetchpriority='high' decoding='async'><div class='hero-badge b-top'><span class='b-icon'>🛠</span>ITの勉強は一切不要</div><div class='hero-badge b-bot'><span class='b-icon'>📍</span>彦根・湖東で対面開催</div></div></section><div class='stats-strip'><div class='stat fade-up d1'><div class='num' data-count='9'>0</div><div class='label'>同時運営事業</div></div><div class='stat fade-up d2'><div class='num' data-count='30'>0<span style='font-size:.6em'>年</span></div><div class='label'>クライミング歴</div></div><div class='stat fade-up d3'><div class='num' data-count='100'>0<span style='font-size:.6em'>%</span></div><div class='label'>Web 自社構築</div></div><div class='stat fade-up d4'><div class='num' data-count='2027'>0</div><div class='label'>育成就労 移行支援</div></div></div><section class='block' id='speaker'><p class='section-heading fade-up'>SPEAKER</p><h2 class='section-title fade-up d1'>講師紹介</h2><p class='section-sub fade-up d2'>AI 活用の啓発・講習・地域コミュニティ運営・複数事業のマーケ支援を行う実践者。</p><div class='profile-block' style='display:block;'><div class='speaker-intro-grid'><div><h3>由井 辰美</h3><p style='font-weight:700;color:var(--primary);margin:0 0 16px;'>AI講師 / マーケター / グッぼる代表</p><p style='line-height:1.9;'>滋賀県彦根市を拠点に、ボルダリングカフェ「グッぼる」を運営するかたわら、 AI 活用の啓発・講習・地域コミュニティ運営・複数事業者のマーケティング支援を行う。 「自分のAIをひとつに集める場所」をテーマにした <strong>AIハブ</strong> を運営し、 AI / SNS / LLMO の最新動向を一次情報ベースで発信している。</p><p style='font-weight:700;color:var(--text);margin-top:16px;'>「異端OK、数字根拠で経営を変える」</p></div><div class='profile-avatar'>🧑‍🏫</div></div><div class='stats-strip' style='margin:32px 0 8px;'><div class='stat'><div class='num'>75%</div><div class='label'>製造コスト削減達成</div></div><div class='stat'><div class='num'>40+</div><div class='label'>ジムシステム提供</div></div><div class='stat'><div class='num'>120</div><div class='label'>シューズモデル在庫</div></div><div class='stat'><div class='num'>90%</div><div class='label'>機器稼働率達成</div></div></div><div style='display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:24px;'><a class='btn btn-primary' href='/speaker.html'>🎤 講師紹介をもっと詳しく</a><a class='btn btn-secondary' href='/profile.html'>📜 経歴をもっと詳しく</a></div></div></section><section class='block' id='gallery'><p class='section-heading fade-up'>WORK GALLERY</p><h2 class='section-title fade-up d1'>つくれるもの・任せられること</h2><p class='section-sub fade-up d2'>LP・EC・LINE Bot・社内 RAG。「企画 → 制作 → 運用」をぜんぶ自社で。</p><div class='gallery-grid'><div class='gallery-item fade-up d1'><img src='https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&amp;fit=crop&amp;w=900&amp;q=70' alt='LP / コーポレートサイト' loading='lazy' decoding='async'><div class='gallery-caption'><span class='tag'>WORK</span><div class='title'>LP / コーポレートサイト</div><div class='meta'>Next.js + Supabase + Vercel</div></div></div><div class='gallery-item fade-up d2'><img src='https://images.unsplash.com/photo-1522163182402-834f871fd851?auto=format&amp;fit=crop&amp;w=900&amp;q=70' alt='クライミングジム EC' loading='lazy' decoding='async'><div class='gallery-caption'><span class='tag'>WORK</span><div class='title'>クライミングジム EC</div><div class='meta'>カラーミー + Shopify</div></div></div><div class='gallery-item fade-up d3'><img src='https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&amp;fit=crop&amp;w=900&amp;q=70' alt='LINE Bot / SNS 自動化' loading='lazy' decoding='async'><div class='gallery-caption'><span class='tag'>WORK</span><div class='title'>LINE Bot / SNS 自動化</div><div class='meta'>Cloudflare Workers + D1</div></div></div><div class='gallery-item fade-up d4'><img src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&amp;fit=crop&amp;w=900&amp;q=70' alt='AI / 社内 RAG' loading='lazy' decoding='async'><div class='gallery-caption'><span class='tag'>WORK</span><div class='title'>AI / 社内 RAG</div><div class='meta'>Claude + Supabase Vector</div></div></div></div></section><section class='block' id='services'><p class='section-heading fade-up'>SERVICES</p><h2 class='section-title fade-up d1'>提供できる 6 つのこと</h2><p class='section-sub fade-up d2'>「コンサルだけする人」ではなく、9事業のオーナーとして毎日サイトと業務を回している実装者だからこそ提案できる内容です。</p><div class='services-grid'><div class='service-card fade-up d1'><div class='service-image'><img src='https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&amp;fit=crop&amp;w=800&amp;q=70' alt='Webマーケティング・LP制作' loading='lazy' decoding='async'></div><div class='service-body'><div class='service-icon-float'>📈</div><div class='service-name'>Webマーケティング・LP制作</div><div class='service-desc'>Next.js + Supabase でランディングと業務システムを一体運用。PR プレビュー付きでクライアントと一緒に磨ける開発体制。</div></div></div><div class='service-card fade-up d2'><div class='service-image'><img src='https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&amp;fit=crop&amp;w=800&amp;q=70' alt='AI 業務活用・社内RAG' loading='lazy' decoding='async'></div><div class='service-body'><div class='service-icon-float'>🤖</div><div class='service-name'>AI 業務活用・社内RAG</div><div class='service-desc'>Claude / GPT を使った業務自動化、社内ドキュメントを参照する RAG チャットの設計と構築。</div></div></div><div class='service-card fade-up d3'><div class='service-image'><img src='https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&amp;fit=crop&amp;w=800&amp;q=70' alt='経営勉強会・社内研修' loading='lazy' decoding='async'></div><div class='service-body'><div class='service-icon-float'>📚</div><div class='service-name'>経営勉強会・社内研修</div><div class='service-desc'>現役オーナーの目線で、現場で使える Web / AI / SNS の使い方を社員研修・経営者勉強会として開催。</div></div></div><div class='service-card fade-up d1'><div class='service-image'><img src='https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&amp;fit=crop&amp;w=800&amp;q=70&amp;sat=-30' alt='補助金活用・2027 移行支援' loading='lazy' decoding='async'></div><div class='service-body'><div class='service-icon-float'>🛡️</div><div class='service-name'>補助金活用・2027 移行支援</div><div class='service-desc'>ものづくり / IT導入 / 育成就労（特定技能 2027 移行）など、補助金と法令対応をセットで動かす伴走型支援。</div></div></div><div class='service-card fade-up d2'><div class='service-image'><img src='https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&amp;fit=crop&amp;w=800&amp;q=70' alt='EC・予約・LINE 自動化' loading='lazy' decoding='async'></div><div class='service-body'><div class='service-icon-float'>🛒</div><div class='service-name'>EC・予約・LINE 自動化</div><div class='service-desc'>カラーミー・Shopify・Stripe・LINE Bot を組み合わせて、注文〜接客〜配信の業務を 1 つの動線にまとめる。</div></div></div><div class='service-card fade-up d3'><div class='service-image'><img src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&amp;fit=crop&amp;w=800&amp;q=70' alt='数字根拠の経営レビュー' loading='lazy' decoding='async'></div><div class='service-body'><div class='service-icon-float'>📊</div><div class='service-name'>数字根拠の経営レビュー</div><div class='service-desc'>現役オーナーとして月次決算 / KPI を回している立場から、コンサルではなく一緒に数字を見るパートナー型レビュー。</div></div></div></div></section><section class='block' id='packages'><p class='section-heading fade-up'>PACKAGES</p><h2 class='section-title fade-up d1'>AI講習・相談・伴走パック</h2><p class='section-sub fade-up d2'>経営者プログラマー講師による実践型。サイト構築・SEO・LLMO・補助金対応まで、3つのコースから選べます。</p><div class='packages-grid'><div class='pkg-card fade-up d1'><div class='pkg-head'><span class='pkg-icon' aria-hidden='true'>💬</span><span class='pkg-cat'>個別相談</span></div><h3 class='pkg-title'>AI個別相談 60分</h3><div class='pkg-meta'>⏱ 60分</div><div class='pkg-price'>2,200円〜5,500円</div><p class='pkg-desc'>経営者・専門職・初心者なんでも相談。LLMO / SEO / MEO / Claude Code 活用 / バックオフィス効率化 / 補助金申請まで、現役オーナーがその場で「困った」を解決。</p><a class='pkg-cta' href='https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/TO3XHZT6XP3OM4QBDYMW7TZP' target='_blank' rel='noopener'>予約する（Square） →</a></div><div class='pkg-card fade-up d2'><div class='pkg-head'><span class='pkg-icon' aria-hidden='true'>📚</span><span class='pkg-cat'>講習会</span></div><h3 class='pkg-title'>AI講習会 120分（月1回 / 定員8名）</h3><div class='pkg-meta'>⏱ 120分</div><div class='pkg-price'>5,500円</div><span class='pkg-subsidy'>✓ 補助金対応</span><p class='pkg-desc'>彦根でAIや経営を学べる実践型講習。一般の講師が教えない「考え方とコツ」を中心に、参加者のレベルに合わせて内容を最適化。Claude Code / オフィス自動化 / 通販サイト構築まで。</p><a class='pkg-cta' href='https://minanowa.com/#events' target='_blank' rel='noopener'>次回開催を見る →</a></div><div class='pkg-card fade-up d3'><div class='pkg-head'><span class='pkg-icon' aria-hidden='true'>🚀</span><span class='pkg-cat'>伴走パック</span></div><h3 class='pkg-title'>AI伴走パック 6回（補助金対象）</h3><div class='pkg-meta'>⏱ 6ヶ月（導入相談60分から開始）</div><div class='pkg-price'>月額 100,000円（税込）× 6ヶ月</div><span class='pkg-subsidy'>✓ 補助金対応</span><p class='pkg-desc'>HP公開から事務自動化まで、技術的な難所は講師が代行・支援。AI導入・デザイン内製化・書類営業効率化・経理自動化・マーケティングを6ヶ月で一気に定着。滋賀・彦根の補助金で負担1/3以下に。</p><a class='pkg-cta' href='https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/V57YTNICA2KV2TN7ENARAVQE' target='_blank' rel='noopener'>導入相談（無料・60分） →</a></div></div><div class='packages-cta-row fade-up d4'><button type='button' class='btn btn-diagnose diagnose-open'>🔍 60秒診断｜あなたに合うプランは？</button><span class='packages-cta-hint'>3つの質問に答えるだけ。最適なコースをその場でご提案します。</span></div><p class='packages-note fade-up d4'>🛡 <strong>滋賀県未来投資総合補助金</strong>（最大50万円・補助率2/3／一次：3/2〜3/31、二次：6/8〜7/17）と <strong>彦根市小規模事業者デジタル化推進補助金</strong>（最大20万円）に対応。申請サポートも個別相談で受け付けます。</p></section><section class='block' id='flow'><p class='section-heading'>FLOW</p><h2 class='section-title'>ご依頼の流れ</h2><p class='section-sub'>ご相談から公開・運用まで、最短 2 週間で動き始めます。</p><div class='flow-list'><div class='flow-step'><h3>ご相談</h3><p>メール／LINEで現状をヒアリング。事業内容・課題・予算感を 30 分でつかみます。</p></div><div class='flow-step'><h3>提案・見積</h3><p>課題に対する具体的なアウトプット案（LP / 業務システム / 研修 等）と費用感を提示。</p></div><div class='flow-step'><h3>制作・実装</h3><p>Next.js + Supabase + Vercel で構築。PR プレビューで毎日確認できる開発フロー。</p></div><div class='flow-step'><h3>運用・伴走</h3><p>公開後も月次レビューで KPI を一緒に確認。必要な機能追加・運用代行も対応。</p></div></div></section><section class='block' id='works'><p class='section-heading fade-up'>WORKS</p><h2 class='section-title fade-up d1'>実績・事業ポートフォリオ</h2><p class='section-sub fade-up d2'>運営している事業・制作した実績・生成した提案LP。すべてを自分で構築・運用しています。</p><div class='biz-grid'><a class='biz-card fade-up d1' href='https://goodbouldering.com' target='_blank' rel='noopener' style='--card-border:rgba(122,162,255,.45);--card-glow:rgba(100,140,255,.20);'><div class='biz-card-body'><div class='biz-card-icon'>🧗</div><div class='biz-card-name'>グッぼる</div><div class='biz-card-tagline'>クライミング × カフェ × ショップ</div><div class='biz-card-desc'>彦根のボルダリングジム。カフェ・ショップ・クライミングスクールを併設。クライミング歴30年のオーナーが直営。</div><div class='biz-card-footer'><span class='biz-badge live'>稼働中</span><span class='biz-arrow'>→</span></div></div></a><a class='biz-card fade-up d2' href='https://n-design.work' target='_blank' rel='noopener' style='--card-border:rgba(255,165,80,.45);--card-glow:rgba(240,145,60,.20);'><div class='biz-card-body'><div class='biz-card-icon'>🏠</div><div class='biz-card-name'>Nデザイン</div><div class='biz-card-tagline'>滋賀・彦根の工務店 Web マーケティング</div><div class='biz-card-desc'>ネリデザイン（株）の Webマーケティング事業サイト。新築・リフォームの相談窓口。</div><div class='biz-card-footer'><span class='biz-badge live'>稼働中</span><span class='biz-arrow'>→</span></div></div></a><a class='biz-card fade-up d3' href='https://project-02ceb497.pages.dev' target='_blank' rel='noopener' style='--card-border:rgba(199,125,255,.45);--card-glow:rgba(180,100,255,.20);'><div class='biz-card-body'><div class='biz-card-icon'>🎬</div><div class='biz-card-name'>ClimbHero</div><div class='biz-card-tagline'>クライミング動画共有・グローバル</div><div class='biz-card-desc'>登る動画をランキングで競うクライミング特化アプリ。Cloudflare Pages 上で稼働。</div><div class='biz-card-footer'><span class='biz-badge live'>稼働中</span><span class='biz-arrow'>→</span></div></div></a><a class='biz-card fade-up d4' href='https://business21.vercel.app/match' target='_blank' rel='noopener' style='--card-border:rgba(80,220,210,.45);--card-glow:rgba(60,200,190,.20);'><div class='biz-card-body'><div class='biz-card-icon'>🌏</div><div class='biz-card-name'>派遣マッチ</div><div class='biz-card-tagline'>派遣求人 × 求職者マッチング</div><div class='biz-card-desc'>派遣求人と求職者を結ぶマッチングプラットフォーム（協同組合ビジネス21）。Next.js + Supabase。</div><div class='biz-card-footer'><span class='biz-badge live'>稼働中</span><span class='biz-arrow'>→</span></div></div></a><a class='biz-card fade-up d5' href='https://minanowa.com' target='_blank' rel='noopener' style='--card-border:rgba(100,220,160,.45);--card-glow:rgba(80,200,140,.20);'><div class='biz-card-body'><div class='biz-card-icon'>🤝</div><div class='biz-card-name'>みんなのWA</div><div class='biz-card-tagline'>彦根 異業種交流コミュニティ</div><div class='biz-card-desc'>彦根市の異業種交流会。会員登録・イベント案内・会員紹介をワンサイトで。</div><div class='biz-card-footer'><span class='biz-badge live'>稼働中</span><span class='biz-arrow'>→</span></div></div></a><a class='biz-card fade-up d6' href='https://notesthe.vercel.app' target='_blank' rel='noopener' style='--card-border:rgba(255,122,182,.45);--card-glow:rgba(240,100,160,.20);'><div class='biz-card-body'><div class='biz-card-icon'>💆</div><div class='biz-card-name'>Notエステ</div><div class='biz-card-tagline'>美肌脱毛・ホワイトニング（彦根・長浜）</div><div class='biz-card-desc'>メンズ・レディース対応のエステサロン。Payload CMS で柔軟なコンテンツ管理。</div><div class='biz-card-footer'><span class='biz-badge live'>稼働中</span><span class='biz-arrow'>→</span></div></div></a><a class='biz-card fade-up d1' href='https://karatto.life' target='_blank' rel='noopener' style='--card-border:rgba(255,210,80,.45);--card-glow:rgba(240,190,60,.20);'><div class='biz-card-body'><div class='biz-card-icon'>💎</div><div class='biz-card-name'>カラット</div><div class='biz-card-tagline'>Shopify ストア</div><div class='biz-card-desc'>カラッとヒーロー1億達成プロジェクト。Shopify ホスティング + Cloudflare Workers 連携。</div><div class='biz-card-footer'><span class='biz-badge live'>稼働中</span><span class='biz-arrow'>→</span></div></div></a><a class='biz-card fade-up d2' href='https://trust-nine-tau.vercel.app' target='_blank' rel='noopener' style='--card-border:rgba(80,220,210,.45);--card-glow:rgba(60,200,190,.20);'><div class='biz-card-body'><div class='biz-card-icon'>🏡</div><div class='biz-card-name'>トラスト</div><div class='biz-card-tagline'>障害者グループホーム シフト管理</div><div class='biz-card-desc'>障害者グループホームのシフト管理・LINE Bot 連携。Next.js + Supabase + Anthropic SDK。</div><div class='biz-card-footer'><span class='biz-badge live'>稼働中</span><span class='biz-arrow'>→</span></div></div></a><div class='biz-card no-link fade-up d3' style='--card-border:rgba(255,100,100,.45);--card-glow:rgba(240,80,80,.20);'><div class='biz-card-body'><div class='biz-card-icon'>🚀</div><div class='biz-card-name'>ファディー</div><div class='biz-card-tagline'>彦根プロジェクト（準備中）</div><div class='biz-card-desc'>Vercel + Supabase で新規再生成中。みんなのWA の構成をベースに立ち上げ予定。</div><div class='biz-card-footer'><span class='biz-badge coming-soon'>準備中</span></div></div></div><a class='biz-card self-card fade-up d4' href='https://ai-hub-jp.vercel.app' target='_blank' rel='noopener' style='--card-border:rgba(80,210,240,.45);--card-glow:rgba(60,190,220,.20);'><div class='biz-card-body'><div class='biz-card-icon'>🤖</div><div class='biz-card-name'>AIハブ</div><div class='biz-card-tagline'>CEO ポータル + AI 集約パイプライン</div><div class='biz-card-desc'>あなたは今ここにいます。9事業の入口・講習資料・AI情報を1箇所に集約。</div><div class='biz-card-footer'><span class='biz-badge self'>あなたはここ</span><span class='biz-arrow'>→</span></div></div></a><a class='biz-card fade-up d5' href='https://plogging.jp/' target='_blank' rel='noopener' style='--card-border:rgba(100,220,160,.45);--card-glow:rgba(80,200,140,.20);'><div class='biz-card-image'><img src='https://img07.shop-pro.jp/PA01434/387/css_eyecatch/eyecatch_banner_img_1.jpg' alt='プロギング・ジャパン' loading='lazy' decoding='async'><span class='biz-card-image-icon'>🏃</span></div><div class='biz-card-body'><div class='biz-card-name'>プロギング・ジャパン</div><div class='biz-card-tagline'>ジョギング × ゴミ拾い 全国コミュニティ</div><div class='biz-card-desc'>日本のプロギング本部。全国のクリーン活動イベント告知・参加者募集・グッズ販売・SNS連携。カラーミー基盤。</div><div class='biz-card-footer'><span class='biz-badge live'>稼働中</span><span class='biz-arrow'>→</span></div></div></a><a class='biz-card fade-up d6' href='https://mokshajapan.jp' target='_blank' rel='noopener' style='--card-border:rgba(255,165,80,.45);--card-glow:rgba(240,145,60,.20);'><div class='biz-card-body'><div class='biz-card-icon'>🍵</div><div class='biz-card-name'>モクシャチャイ</div><div class='biz-card-tagline'>インド伝統チャイを日本へ</div><div class='biz-card-desc'>インド伝統の煮出しチャイをそのまま日本へ届ける商品LP。Nuxt 構成。</div><div class='biz-card-footer'><span class='biz-badge live'>稼働中</span><span class='biz-arrow'>→</span></div></div></a><a class='biz-card fade-up d1' href='https://readdy.link/share/042372463c05d7076e5a1b8d3ee28e0e' target='_blank' rel='noopener' style='--card-border:rgba(199,125,255,.45);--card-glow:rgba(180,100,255,.20);'><div class='biz-card-body'><div class='biz-card-icon'>🌃</div><div class='biz-card-name'>今心</div><div class='biz-card-tagline'>心地いいスナックの雰囲気LP</div><div class='biz-card-desc'>「心地いい」スナックの世界観を伝えるブランドLP。Readdy で生成・調整。</div><div class='biz-card-footer'><span class='biz-badge live'>稼働中</span><span class='biz-arrow'>→</span></div></div></a><a class='biz-card fade-up d2' href='https://readdy.link/share/473607684647d6e150399fa3e68b7fd9' target='_blank' rel='noopener' style='--card-border:rgba(122,162,255,.45);--card-glow:rgba(100,140,255,.20);'><div class='biz-card-body'><div class='biz-card-icon'>👟</div><div class='biz-card-name'>GPsole</div><div class='biz-card-tagline'>新世代リソール</div><div class='biz-card-desc'>クライミングシューズのリソール新世代提案サイト。Readdy で生成。</div><div class='biz-card-footer'><span class='biz-badge live'>稼働中</span><span class='biz-arrow'>→</span></div></div></a><a class='biz-card fade-up d3' href='https://khktfxqf.gensparkspace.com' target='_blank' rel='noopener' style='--card-border:rgba(255,122,182,.45);--card-glow:rgba(240,100,160,.20);'><div class='biz-card-body'><div class='biz-card-icon'>📈</div><div class='biz-card-name'>まずは0から1億マーケ</div><div class='biz-card-tagline'>マーケ基礎 → 1億到達まで</div><div class='biz-card-desc'>マーケ基礎から1億到達までの考え方を1枚にまとめた提案LP。Genspark で生成。</div><div class='biz-card-footer'><span class='biz-badge live'>稼働中</span><span class='biz-arrow'>→</span></div></div></a></div></section><section class='block' id='lectures'><p class='section-heading fade-up'>LECTURES</p><h2 class='section-title fade-up d1'>講習資料</h2><p class='section-sub fade-up d2'>AI 業務活用・SNSアルゴリズム・LLMO（AI検索最適化）の講習で使う資料。プログラミングマップもこちら。</p><div class='lecture-grid'><a class='lecture-card' href='/programming-map.html'><div class='lecture-title'><span class='lecture-icon'>🗺️</span>プログラミングマップ</div><div class='lecture-date'>📅 2026-04-25</div><div class='lecture-summary'>プログラミング言語・用途・AI活用までの俯瞰図。何から学ぶか迷ったときの全体地図。</div></a><a class='lecture-card' href='/lectures/2026-04-ai-kihon.html'><div class='lecture-title'>AIの「こと」を吸収する — 入門講習</div><div class='lecture-date'>📅 2026-04-22</div><div class='lecture-summary'>AIを「使う」のではなく「のこと」を知る。最初の一歩として、言語化・共有・ショートカット化の3軸で日常に組み込む考え方を、実例つきで整理する。</div></a><a class='lecture-card' href='/lectures/2026-04-ai-kangaekata.html'><div class='lecture-title'>AI活用の「考え方」— 入門講習</div><div class='lecture-date'>📅 2026-04-22</div><div class='lecture-summary'>AIを日常になじませる「考え方」を15項目にまとめた原典。講習スライドの元資料として使える本編。</div></a></div></section><section class='block' id='faq'><p class='section-heading'>FAQ</p><h2 class='section-title'>よくある質問</h2><div class='faq-list'><details class='faq-item'><summary>料金はどれくらいですか？</summary><p>LP 1本（簡易ヒアリング込み）で 18〜30万円が目安です。業務システム・EC 統合・社内RAG は内容により別途お見積もり。補助金併用を前提に組むことが多いです。</p></details><details class='faq-item'><summary>対応エリアは？</summary><p>滋賀県を中心に、京都・大阪・名古屋まで対面 / 出張可。リモートだけでも全国対応します。</p></details><details class='faq-item'><summary>自分は IT に弱いのですが、大丈夫ですか？</summary><p>9事業のオーナーをやっているので「経営者目線」で話します。LINE / メール / ZOOM どれでも、専門用語を避けて進めます。</p></details><details class='faq-item'><summary>育成就労（2027 移行）支援はどんな内容？</summary><p>技能実習から育成就労への移行に必要な 30 項目チェックリストを動的ダッシュボード化し、法令確定状況を反映しながら社内体制を整える伴走型支援です。</p></details><details class='faq-item'><summary>AI を会社で使いたいのですが、何から始めれば？</summary><p>まずは社内ドキュメントを 1 ヶ所にまとめ、RAG（社内 Q&amp;A）から導入するのを推奨しています。AIハブ自体がそのリファレンス実装になっています。</p></details></div></section><div class='watch-link-bar'><p>📡 AI / SNS の毎朝ダイジェストを配信する <strong>自分ポータル</strong></p><a href='/watch/index.html'>自分ポータルを見る →</a></div><section class='block' id='contact'><div class='contact-block'><h2>まずは 30 分、無料でご相談</h2><p>事業の状況・課題・予算感をヒアリングして、最適なアウトプット案をご提案します。</p><a class='contact-mail' href='mailto:goodbouldering@gmail.com'>✉ goodbouldering@gmail.com に相談する</a></div></section><footer class='site-footer'>© 2026 由井辰美 / AIハブ — Web経営コンサル · 滋賀</footer></div><div class='diagnose-modal' id='diagnoseModal' role='dialog' aria-modal='true' aria-label='コース診断'><div class='diagnose-box'><button type='button' class='diagnose-close' aria-label='閉じる'>&times;</button><div class='diagnose-head'>🔍 60秒コース診断</div><div class='diagnose-body'></div></div></div>
 <script>
 (function(){
   var header = document.getElementById('site-header');
@@ -800,6 +919,113 @@ footer.site-footer {
       if (y < 400) hv.style.transform = 'rotate(' + (0.5 - y / 1000) + 'deg) translateY(' + (y * 0.04) + 'px)';
     }, { passive: true });
   }
+
+  // ---- Typewriter rotate (hero sub-catch のキーワードを打ち替える)
+  var typeEl = document.querySelector('.type-rotate');
+  if (typeEl && !prefersReduced) {
+    var words = (typeEl.getAttribute('data-words') || '').split('｜').filter(Boolean);
+    if (words.length > 1) {
+      var wi = 0, ci = 0, deleting = false;
+      typeEl.textContent = '';
+      typeEl.classList.add('typing');
+      var step = function(){
+        var word = words[wi];
+        if (!deleting) {
+          ci++;
+          typeEl.textContent = word.slice(0, ci);
+          if (ci >= word.length) { deleting = true; return setTimeout(step, 1600); }
+          return setTimeout(step, 110);
+        } else {
+          ci--;
+          typeEl.textContent = word.slice(0, ci);
+          if (ci <= 0) { deleting = false; wi = (wi + 1) % words.length; return setTimeout(step, 320); }
+          return setTimeout(step, 55);
+        }
+      };
+      setTimeout(step, 900);
+    }
+  }
+
+  // ---- Dark mode toggle (localStorage 永続 + システム設定追従)
+  (function(){
+    var KEY = 'aihub-theme';
+    var root = document.documentElement;
+    var saved = null;
+    try { saved = localStorage.getItem(KEY); } catch(e) {}
+    var sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var mode = saved || (sysDark ? 'dark' : 'light');
+    function apply(m){
+      root.setAttribute('data-theme', m);
+      var btns = document.querySelectorAll('.theme-toggle');
+      btns.forEach(function(b){ b.textContent = (m === 'dark') ? '☀️' : '🌙'; b.setAttribute('aria-label', m === 'dark' ? 'ライトモードに切替' : 'ダークモードに切替'); });
+    }
+    apply(mode);
+    document.addEventListener('click', function(e){
+      var t = e.target.closest && e.target.closest('.theme-toggle');
+      if (!t) return;
+      mode = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+      apply(mode);
+      try { localStorage.setItem(KEY, mode); } catch(e) {}
+    });
+  })();
+
+  // ---- 診断チャット (2-3問でおすすめコースを判定)
+  (function(){
+    var openBtn = document.querySelector('.diagnose-open');
+    var modal = document.getElementById('diagnoseModal');
+    if (!openBtn || !modal) return;
+    var QUESTIONS = [
+      { q: 'いま一番の課題はどれに近いですか？', a: [
+        { label: 'まず何ができるか相談したい', score: 'consultation' },
+        { label: '自分や社員のスキルを底上げしたい', score: 'workshop' },
+        { label: '会社全体の業務を自動化・仕組み化したい', score: 'package' },
+      ]},
+      { q: 'どれくらいのスパンで取り組みたいですか？', a: [
+        { label: 'まず1回・短時間で', score: 'consultation' },
+        { label: '月1回ペースで継続的に学びたい', score: 'workshop' },
+        { label: '数ヶ月かけて本格的に組織へ実装したい', score: 'package' },
+      ]},
+      { q: '補助金の活用に興味はありますか？', a: [
+        { label: '今は考えていない', score: 'consultation' },
+        { label: '使えるなら使いたい', score: 'workshop' },
+        { label: '補助金前提でしっかり投資したい', score: 'package' },
+      ]},
+    ];
+    var RESULT = {
+      consultation: { name: 'AI個別相談 60分', desc: 'まず気軽に相談から。あなたのビジネスに最適なAI活用を最短でアドバイスします。', anchor: '#packages' },
+      workshop:     { name: 'AI講習会 120分', desc: '月1回の実践型講習。考え方とコツを学びながら現場で使える力を養います。', anchor: '#packages' },
+      package:      { name: 'AI伴走パック 6回', desc: '6ヶ月で組織にAIを定着。補助金で負担1/3以下に。本格実装ならこれ。', anchor: '#packages' },
+    };
+    var step = 0, scores = { consultation:0, workshop:0, package:0 };
+    var body = modal.querySelector('.diagnose-body');
+    function render(){
+      if (step < QUESTIONS.length) {
+        var Q = QUESTIONS[step];
+        var html = '<div class="diag-progress">質問 ' + (step+1) + ' / ' + QUESTIONS.length + '</div>';
+        html += '<h3 class="diag-q">' + Q.q + '</h3><div class="diag-opts">';
+        Q.a.forEach(function(opt, i){ html += '<button class="diag-opt" data-score="' + opt.score + '">' + opt.label + '</button>'; });
+        html += '</div>';
+        body.innerHTML = html;
+      } else {
+        var best = Object.keys(scores).sort(function(a,b){ return scores[b]-scores[a]; })[0];
+        var r = RESULT[best];
+        body.innerHTML = '<div class="diag-result"><div class="diag-result-badge">あなたへのおすすめ</div>' +
+          '<h3 class="diag-result-name">' + r.name + '</h3>' +
+          '<p class="diag-result-desc">' + r.desc + '</p>' +
+          '<a class="btn btn-primary" href="' + r.anchor + '" data-close-diag>このプランを見る →</a>' +
+          '<button class="diag-restart" type="button">もう一度診断する</button></div>';
+      }
+    }
+    function open(){ step = 0; scores = { consultation:0, workshop:0, package:0 }; render(); modal.classList.add('open'); }
+    function close(){ modal.classList.remove('open'); }
+    openBtn.addEventListener('click', open);
+    modal.addEventListener('click', function(e){
+      if (e.target === modal || e.target.closest('.diagnose-close') || e.target.closest('[data-close-diag]')) { close(); return; }
+      var opt = e.target.closest('.diag-opt');
+      if (opt) { scores[opt.getAttribute('data-score')]++; step++; render(); return; }
+      if (e.target.closest('.diag-restart')) { open(); }
+    });
+  })();
 })();
 </script>
 </body></html>

@@ -247,6 +247,27 @@ PORTAL_CSS = """
   --shadow-card: 0 12px 40px rgba(15,23,42,0.08);
   --shadow-card-hover: 0 24px 60px rgba(15,23,42,0.14);
 }
+:root[data-theme="dark"] {
+  --bg-base: #0b1020;
+  --bg-white: #151b2e;
+  --text: #e8edf7;
+  --text-soft: #b3bdd0;
+  --muted: #8593ab;
+  --line: #283149;
+  --primary: #6ea0ff;
+  --primary-soft: #5b8def;
+  --primary-bg: #1a2540;
+  --glass-bg: rgba(21,27,46,0.72);
+  --glass-border: rgba(120,140,180,0.18);
+  --shadow-card: 0 12px 40px rgba(0,0,0,0.40);
+  --shadow-card-hover: 0 24px 60px rgba(0,0,0,0.55);
+}
+:root { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }
+html, body, .hero, .biz-card, .service-card, .pkg-card, .faq-item, .stat,
+.site-header, .menu-drop, .mobile-nav, .diagnose-box {
+  transition: background-color .3s ease, color .3s ease, border-color .3s ease;
+}
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; overflow-x: hidden; }
 html { scroll-behavior: smooth; }
@@ -258,7 +279,7 @@ body {
   background:
     radial-gradient(900px 500px at 12% -6%, rgba(37,99,235,.10), transparent 60%),
     radial-gradient(700px 500px at 88% 8%, rgba(236,72,153,.07), transparent 60%),
-    linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    linear-gradient(180deg, var(--bg-white) 0%, var(--bg-base) 100%);
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
 }
@@ -371,7 +392,7 @@ header.site-header.scrolled {
   display: grid; grid-template-columns: 1.05fr 1fr; gap: 48px; align-items: center;
   position: relative;
 }
-.hero-text { text-align: left; }
+.hero-text { text-align: left; min-width: 0; max-width: 100%; }
 @media (max-width: 900px) { .hero { grid-template-columns: 1fr; gap: 28px; }
   .hero-text { text-align: center; }
 }
@@ -381,28 +402,42 @@ header.site-header.scrolled {
   background: var(--primary-bg); color: var(--primary);
   font-size: 12px; font-weight: 700; letter-spacing: .04em;
   border: 1px solid rgba(37,99,235,.18);
+  max-width: 100%;
+}
+@media (max-width: 560px) {
+  .hero .eyebrow {
+    display: flex; text-align: left; line-height: 1.5;
+    border-radius: 16px; padding: 8px 14px; font-size: 11.5px;
+  }
 }
 .hero h1 {
-  margin: 20px 0 16px; font-size: clamp(32px, 5.2vw, 60px);
-  font-weight: 800; letter-spacing: -.025em; color: var(--text); line-height: 1.15;
+  margin: 20px 0 16px; font-size: clamp(26px, 4.6vw, 52px);
+  font-weight: 800; letter-spacing: -.02em; color: var(--text); line-height: 1.25;
+  overflow-wrap: anywhere; word-break: normal;
 }
 .hero h1 .accent {
   background: linear-gradient(110deg, #2563eb 0%, #8b5cf6 50%, #ec4899 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent;
-  white-space: nowrap;
 }
 .hero h1 .underline {
-  position: relative; white-space: nowrap;
+  position: relative;
 }
 .hero h1 .underline::after {
   content:''; position: absolute; left: 0; right: 0; bottom: -2px; height: 6px;
   background: linear-gradient(90deg, rgba(37,99,235,.18), rgba(236,72,153,.18));
   border-radius: 999px; z-index: -1;
 }
-.hero .lead {
-  max-width: 520px; margin: 0 0 28px;
-  font-size: clamp(15px, 1.6vw, 17px); color: var(--text-soft); line-height: 1.85;
+.hero .sub-catch {
+  max-width: 560px; margin: 0 0 18px;
+  font-size: clamp(15px, 1.7vw, 18px); font-weight: 700; color: var(--text); line-height: 1.7;
 }
+.hero .sub-catch strong { color: var(--primary); }
+@media (max-width: 900px) { .hero .sub-catch { margin: 0 auto 18px; } }
+.hero .lead {
+  max-width: 560px; margin: 0 0 28px;
+  font-size: clamp(14px, 1.5vw, 16px); color: var(--text-soft); line-height: 1.85;
+}
+.hero .lead strong { color: var(--text); font-weight: 700; }
 @media (max-width: 900px) { .hero .lead { margin: 0 auto 28px; } }
 .hero-actions {
   display: flex; flex-wrap: wrap; gap: 12px;
@@ -432,6 +467,11 @@ header.site-header.scrolled {
 }
 .hero-blob.b1 { background: #3b82f6; top: -40px; right: -40px; }
 .hero-blob.b2 { background: #ec4899; bottom: -40px; left: 30%; width: 200px; height: 200px; }
+@media (max-width: 560px) {
+  .hero-blob { width: 180px; height: 180px; opacity: .4; }
+  .hero-blob.b1 { top: -20px; right: -20px; }
+  .hero-blob.b2 { width: 140px; height: 140px; bottom: -20px; left: 20%; }
+}
 
 /* floating badge over hero image */
 .hero-badge {
@@ -714,6 +754,85 @@ section.block + section.block { border-top: 1px dashed var(--line); }
   font-size: 13px; line-height: 1.7; color: var(--text);
 }
 
+/* ---- typewriter rotate ---- */
+.type-rotate { color: var(--primary); border-right: 2px solid var(--primary); padding-right: 2px; }
+.type-rotate.typing { animation: caret-blink 1s step-end infinite; }
+@keyframes caret-blink { 50% { border-color: transparent; } }
+@media (prefers-reduced-motion: reduce) { .type-rotate { border-right: none; animation: none; } }
+
+/* ---- theme toggle ---- */
+.theme-toggle {
+  width: 38px; height: 38px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--bg-white);
+  font-size: 16px; cursor: pointer; line-height: 1;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: transform .15s ease, border-color .15s ease, background .3s ease;
+}
+.theme-toggle:hover { transform: translateY(-1px) rotate(-12deg); border-color: var(--primary); }
+.theme-toggle-mobile { display: none; }
+@media (max-width: 900px) {
+  .theme-toggle-mobile { display: inline-flex; margin-right: 8px; }
+}
+
+/* ---- dark mode 個別上書き（リテラル白を使っている箇所） ---- */
+:root[data-theme="dark"] header.site-header.scrolled {
+  background: rgba(15,20,38,0.92);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.04), 0 10px 30px rgba(0,0,0,0.4);
+}
+:root[data-theme="dark"] .menu-drop,
+:root[data-theme="dark"] .mobile-nav { background: var(--bg-white); border-color: var(--line); }
+:root[data-theme="dark"] .hero-badge { background: rgba(21,27,46,0.96); }
+:root[data-theme="dark"] .pkg-card { background: linear-gradient(180deg, rgba(30,38,60,.7), rgba(21,27,46,.5)); }
+:root[data-theme="dark"] .service-card,
+:root[data-theme="dark"] .biz-card { background: var(--bg-white); }
+:root[data-theme="dark"] .pkg-cat { background: #3a2c0e; color: #fbbf24; }
+:root[data-theme="dark"] .pkg-subsidy { background: #0c3b2e; color: #34d399; }
+
+/* ---- diagnose modal ---- */
+.btn-diagnose {
+  background: linear-gradient(135deg, #8b5cf6, #ec4899); color: #fff;
+  border: none; cursor: pointer; font-weight: 800; font-size: 15px;
+  padding: 14px 26px; border-radius: 999px;
+  box-shadow: 0 10px 30px rgba(139,92,246,.32);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.btn-diagnose:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(139,92,246,.42); }
+.packages-cta-row { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 28px; text-align: center; }
+.packages-cta-hint { font-size: 12.5px; color: var(--muted); }
+.diagnose-modal {
+  position: fixed; inset: 0; z-index: 200; display: none;
+  align-items: center; justify-content: center; padding: 20px;
+  background: rgba(15,23,42,.55); backdrop-filter: blur(6px);
+}
+.diagnose-modal.open { display: flex; animation: diag-fade .2s ease; }
+@keyframes diag-fade { from { opacity: 0; } to { opacity: 1; } }
+.diagnose-box {
+  background: var(--bg-white); border-radius: 22px; max-width: 460px; width: 100%;
+  padding: 28px 26px 26px; position: relative; box-shadow: 0 30px 80px rgba(0,0,0,.4);
+  border: 1px solid var(--line);
+}
+.diagnose-close {
+  position: absolute; top: 14px; right: 16px; border: none; background: none;
+  font-size: 26px; line-height: 1; color: var(--muted); cursor: pointer;
+}
+.diagnose-head { font-size: 18px; font-weight: 800; color: var(--text); margin-bottom: 16px; }
+.diag-progress { font-size: 12px; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+.diag-q { font-size: 17px; font-weight: 800; color: var(--text); margin: 0 0 16px; line-height: 1.5; }
+.diag-opts { display: flex; flex-direction: column; gap: 10px; }
+.diag-opt {
+  text-align: left; padding: 14px 16px; border-radius: 12px;
+  border: 1.5px solid var(--line); background: var(--bg-base);
+  font-size: 14px; font-weight: 600; color: var(--text); cursor: pointer;
+  transition: border-color .15s ease, background .15s ease, transform .1s ease;
+}
+.diag-opt:hover { border-color: var(--primary); background: var(--primary-bg); transform: translateX(2px); }
+.diag-result { text-align: center; }
+.diag-result-badge { font-size: 12px; font-weight: 700; color: var(--primary); background: var(--primary-bg); display: inline-block; padding: 4px 12px; border-radius: 999px; margin-bottom: 10px; }
+.diag-result-name { font-size: 22px; font-weight: 900; color: var(--text); margin: 6px 0; }
+.diag-result-desc { font-size: 14px; line-height: 1.7; color: var(--text-soft); margin: 0 0 18px; }
+.diag-result .btn { display: inline-flex; }
+.diag-restart { display: block; margin: 14px auto 0; border: none; background: none; color: var(--muted); font-size: 12.5px; text-decoration: underline; cursor: pointer; }
+
 /* ---- flow steps ---- */
 .flow-list {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
@@ -927,8 +1046,8 @@ def _render_header() -> str:
         "<a class='site-logo' href='/'><span class='dot'></span>AIハブ <span style='color:var(--muted);font-weight:600;font-size:13px;margin-left:6px;'>by 由井辰美</span></a>"
         "<nav class='site-nav' aria-label='メインナビ'>"
         "<a class='nav-link' href='#speaker'>講師紹介</a>"
-        "<a class='nav-link' href='#gallery'>つくれるもの</a>"
         "<a class='nav-link' href='#services'>サービス</a>"
+        "<a class='nav-link' href='#packages'>受講プラン</a>"
         "<a class='nav-link' href='#works'>実績</a>"
         "<a class='nav-link' href='#lectures'>講習資料</a>"
         "<div class='menu-wrap'>"
@@ -936,22 +1055,24 @@ def _render_header() -> str:
         "<svg class='chev' width='14' height='14' viewBox='0 0 20 20' fill='none' aria-hidden='true'><path d='M5 8l5 5 5-5' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>"
         "</button>"
         "<div class='menu-drop' id='menu-drop' role='menu'>"
+        "<a href='#gallery'>🎨 つくれるもの</a>"
         "<a href='#flow'>🧭 ご依頼の流れ</a>"
         "<a href='#faq'>❓ よくある質問</a>"
         "<a href='/watch/index.html'>📡 自分ポータル</a>"
-        "<a href='#lectures'>📝 講習資料</a>"
         "</div>"
         "</div>"
+        "<button type='button' class='theme-toggle' aria-label='ダークモードに切替'>🌙</button>"
         "<a class='login-btn' href='/admin'>🔐 管理ログイン</a>"
         "</nav>"
+        "<button type='button' class='theme-toggle theme-toggle-mobile' aria-label='ダークモードに切替'>🌙</button>"
         "<button class='mobile-toggle' id='mobile-toggle' aria-label='メニュー'>"
         "<svg width='20' height='20' viewBox='0 0 24 24' fill='none'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg>"
         "</button>"
         "</div>"
         "<div class='mobile-nav' id='mobile-nav'>"
         "<a href='#speaker'>講師紹介</a>"
-        "<a href='#gallery'>つくれるもの</a>"
         "<a href='#services'>サービス</a>"
+        "<a href='#packages'>受講プラン</a>"
         "<a href='#flow'>ご依頼の流れ</a>"
         "<a href='#works'>実績</a>"
         "<a href='#lectures'>講習資料</a>"
@@ -1060,6 +1181,113 @@ HEADER_JS = """
       if (y < 400) hv.style.transform = 'rotate(' + (0.5 - y / 1000) + 'deg) translateY(' + (y * 0.04) + 'px)';
     }, { passive: true });
   }
+
+  // ---- Typewriter rotate (hero sub-catch のキーワードを打ち替える)
+  var typeEl = document.querySelector('.type-rotate');
+  if (typeEl && !prefersReduced) {
+    var words = (typeEl.getAttribute('data-words') || '').split('｜').filter(Boolean);
+    if (words.length > 1) {
+      var wi = 0, ci = 0, deleting = false;
+      typeEl.textContent = '';
+      typeEl.classList.add('typing');
+      var step = function(){
+        var word = words[wi];
+        if (!deleting) {
+          ci++;
+          typeEl.textContent = word.slice(0, ci);
+          if (ci >= word.length) { deleting = true; return setTimeout(step, 1600); }
+          return setTimeout(step, 110);
+        } else {
+          ci--;
+          typeEl.textContent = word.slice(0, ci);
+          if (ci <= 0) { deleting = false; wi = (wi + 1) % words.length; return setTimeout(step, 320); }
+          return setTimeout(step, 55);
+        }
+      };
+      setTimeout(step, 900);
+    }
+  }
+
+  // ---- Dark mode toggle (localStorage 永続 + システム設定追従)
+  (function(){
+    var KEY = 'aihub-theme';
+    var root = document.documentElement;
+    var saved = null;
+    try { saved = localStorage.getItem(KEY); } catch(e) {}
+    var sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var mode = saved || (sysDark ? 'dark' : 'light');
+    function apply(m){
+      root.setAttribute('data-theme', m);
+      var btns = document.querySelectorAll('.theme-toggle');
+      btns.forEach(function(b){ b.textContent = (m === 'dark') ? '☀️' : '🌙'; b.setAttribute('aria-label', m === 'dark' ? 'ライトモードに切替' : 'ダークモードに切替'); });
+    }
+    apply(mode);
+    document.addEventListener('click', function(e){
+      var t = e.target.closest && e.target.closest('.theme-toggle');
+      if (!t) return;
+      mode = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+      apply(mode);
+      try { localStorage.setItem(KEY, mode); } catch(e) {}
+    });
+  })();
+
+  // ---- 診断チャット (2-3問でおすすめコースを判定)
+  (function(){
+    var openBtn = document.querySelector('.diagnose-open');
+    var modal = document.getElementById('diagnoseModal');
+    if (!openBtn || !modal) return;
+    var QUESTIONS = [
+      { q: 'いま一番の課題はどれに近いですか？', a: [
+        { label: 'まず何ができるか相談したい', score: 'consultation' },
+        { label: '自分や社員のスキルを底上げしたい', score: 'workshop' },
+        { label: '会社全体の業務を自動化・仕組み化したい', score: 'package' },
+      ]},
+      { q: 'どれくらいのスパンで取り組みたいですか？', a: [
+        { label: 'まず1回・短時間で', score: 'consultation' },
+        { label: '月1回ペースで継続的に学びたい', score: 'workshop' },
+        { label: '数ヶ月かけて本格的に組織へ実装したい', score: 'package' },
+      ]},
+      { q: '補助金の活用に興味はありますか？', a: [
+        { label: '今は考えていない', score: 'consultation' },
+        { label: '使えるなら使いたい', score: 'workshop' },
+        { label: '補助金前提でしっかり投資したい', score: 'package' },
+      ]},
+    ];
+    var RESULT = {
+      consultation: { name: 'AI個別相談 60分', desc: 'まず気軽に相談から。あなたのビジネスに最適なAI活用を最短でアドバイスします。', anchor: '#packages' },
+      workshop:     { name: 'AI講習会 120分', desc: '月1回の実践型講習。考え方とコツを学びながら現場で使える力を養います。', anchor: '#packages' },
+      package:      { name: 'AI伴走パック 6回', desc: '6ヶ月で組織にAIを定着。補助金で負担1/3以下に。本格実装ならこれ。', anchor: '#packages' },
+    };
+    var step = 0, scores = { consultation:0, workshop:0, package:0 };
+    var body = modal.querySelector('.diagnose-body');
+    function render(){
+      if (step < QUESTIONS.length) {
+        var Q = QUESTIONS[step];
+        var html = '<div class="diag-progress">質問 ' + (step+1) + ' / ' + QUESTIONS.length + '</div>';
+        html += '<h3 class="diag-q">' + Q.q + '</h3><div class="diag-opts">';
+        Q.a.forEach(function(opt, i){ html += '<button class="diag-opt" data-score="' + opt.score + '">' + opt.label + '</button>'; });
+        html += '</div>';
+        body.innerHTML = html;
+      } else {
+        var best = Object.keys(scores).sort(function(a,b){ return scores[b]-scores[a]; })[0];
+        var r = RESULT[best];
+        body.innerHTML = '<div class="diag-result"><div class="diag-result-badge">あなたへのおすすめ</div>' +
+          '<h3 class="diag-result-name">' + r.name + '</h3>' +
+          '<p class="diag-result-desc">' + r.desc + '</p>' +
+          '<a class="btn btn-primary" href="' + r.anchor + '" data-close-diag>このプランを見る →</a>' +
+          '<button class="diag-restart" type="button">もう一度診断する</button></div>';
+      }
+    }
+    function open(){ step = 0; scores = { consultation:0, workshop:0, package:0 }; render(); modal.classList.add('open'); }
+    function close(){ modal.classList.remove('open'); }
+    openBtn.addEventListener('click', open);
+    modal.addEventListener('click', function(e){
+      if (e.target === modal || e.target.closest('.diagnose-close') || e.target.closest('[data-close-diag]')) { close(); return; }
+      var opt = e.target.closest('.diag-opt');
+      if (opt) { scores[opt.getAttribute('data-score')]++; step++; render(); return; }
+      if (e.target.closest('.diag-restart')) { open(); }
+    });
+  })();
 })();
 </script>
 """
@@ -1074,14 +1302,23 @@ def _render_hero() -> str:
         "<div class='hero-blob b1'></div>"
         "<div class='hero-blob b2'></div>"
         "<div class='hero-text fade-up'>"
-        "<span class='eyebrow'>🧭 彦根対面ワークショップ｜社長の経営判断だけでAIを組織に注入する</span>"
-        "<h1>社長が司令塔になる<br><span class='accent'>「自社へのAI組織注入・設計図」</span><br><span class='underline'>対面完成ワークショップ</span></h1>"
+        "<span class='eyebrow'>📍 彦根・滋賀・湖東エリア｜現場リーダー限定の対面ワークショップ</span>"
+        "<h1>"
+        "滋賀・彦根の<span class='accent'>現場を動かすリーダー</span>へ。<br>"
+        "ツールを試す時間は終わり。その場で業務が変わる<br>"
+        "<span class='underline'>「AI仕組み化」対面完成ワークショップ</span>"
+        "</h1>"
+        "<p class='sub-catch'>"
+        "店舗オーナー・部門責任者・現場のトップ限定。"
+        "難しいITの勉強は一切不要。あなたの現場に最適な"
+        "<strong>「<span class='type-rotate' data-words='新しい業務体制｜集客の仕組み｜人手不足の解決策｜業務効率化の着地点'>新しい業務体制</span>（着地点）」</strong>をその場で構築します。"
+        "</p>"
         "<p class='lead'>"
-        "「AIで何ができるか」を学ぶ時間はもう終わりです。"
-        "社長の仕事は <strong>「どの業務をAIに丸投げするか」</strong> を決めること。"
-        "彦根の対面ワークショップで、あなたの会社専用の "
-        "<strong>「AI組織設計図」</strong> をその場で作成し、"
-        "現場の無駄な時間を <strong>週10時間カット</strong> する仕組みを作ります。"
+        "彦根周辺や湖東エリアで、店舗や組織のマネジメント・業務効率化に頭を悩ませていませんか？"
+        "本講座は単なるAIツールの操作セミナーではありません。"
+        "決定権を持つリーダーが集まり、自社・自店のボトルネックを解消する"
+        "<strong>「仕組み」そのものをその場で完成</strong>させる完全実践型の対面講座です。"
+        "地域の横のつながりを強めながら、明日から現場が劇的に楽になる具体的な着地点へと導きます。"
         "</p>"
         "<div class='hero-actions'>"
         "<a class='btn btn-primary' href='#packages'>受講プランを見る →</a>"
@@ -1090,9 +1327,9 @@ def _render_hero() -> str:
         "</div>"
         "</div>"
         "<div class='hero-visual fade-up d2'>"
-        f"<img src='{HERO_IMG}' alt='経営者とAI講師が対面で自社のAI設計図を作成している様子' loading='eager' fetchpriority='high' decoding='async'>"
-        "<div class='hero-badge b-top'><span class='b-icon'>🧠</span>技術の勉強は一切ナシ</div>"
-        "<div class='hero-badge b-bot'><span class='b-icon'>⏱</span>週10時間の無駄を削減</div>"
+        f"<img src='{HERO_IMG}' alt='彦根・滋賀の現場リーダーがAI講師と対面で自社の業務仕組み化を設計している様子' loading='eager' fetchpriority='high' decoding='async'>"
+        "<div class='hero-badge b-top'><span class='b-icon'>🛠</span>ITの勉強は一切不要</div>"
+        "<div class='hero-badge b-bot'><span class='b-icon'>📍</span>彦根・湖東で対面開催</div>"
         "</div>"
         "</section>"
     )
@@ -1244,12 +1481,32 @@ def _render_courses_packages() -> str:
         )
     parts.append("</div>")
     parts.append(
+        "<div class='packages-cta-row fade-up d4'>"
+        "<button type='button' class='btn btn-diagnose diagnose-open'>"
+        "🔍 60秒診断｜あなたに合うプランは？"
+        "</button>"
+        "<span class='packages-cta-hint'>3つの質問に答えるだけ。最適なコースをその場でご提案します。</span>"
+        "</div>"
+    )
+    parts.append(
         "<p class='packages-note fade-up d4'>"
         "🛡 <strong>滋賀県未来投資総合補助金</strong>（最大50万円・補助率2/3／一次：3/2〜3/31、二次：6/8〜7/17）と "
         "<strong>彦根市小規模事業者デジタル化推進補助金</strong>（最大20万円）に対応。申請サポートも個別相談で受け付けます。"
         "</p>"
     )
     return "".join(parts)
+
+
+def _render_diagnose_modal() -> str:
+    return (
+        "<div class='diagnose-modal' id='diagnoseModal' role='dialog' aria-modal='true' aria-label='コース診断'>"
+        "<div class='diagnose-box'>"
+        "<button type='button' class='diagnose-close' aria-label='閉じる'>&times;</button>"
+        "<div class='diagnose-head'>🔍 60秒コース診断</div>"
+        "<div class='diagnose-body'></div>"
+        "</div>"
+        "</div>"
+    )
 
 
 def _render_flow() -> str:
@@ -1632,6 +1889,7 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
 
     parts.append(f"<footer class='site-footer'>© {today[:4]} 由井辰美 / AIハブ — Web経営コンサル · 滋賀</footer>")
     parts.append("</div>")
+    parts.append(_render_diagnose_modal())
     parts.append(HEADER_JS)
     parts.append("</body></html>")
     return "".join(parts)

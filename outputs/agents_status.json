@@ -1,64 +1,106 @@
 {
-  "generated_at": "2026-05-21T12:46:48Z",
+  "generated_at": "2026-05-21T14:41:11Z",
   "recent_works": [
     {
-      "date": "2026-05-20",
-      "filename": "2026-05-20-github-org-migration-runbook-v2.md",
-      "title": "GitHub Org 移管 実行手順書 v2（新Org作成＋全リポTransfer・現実版）",
-      "business": "github",
-      "path": "/ops?file=2026-05-20-github-org-migration-runbook-v2.md#sec-docs"
+      "date": "2026-05-21",
+      "filename": "2026-05-21-minanowa-admin-save-and-hero-dedup.md",
+      "title": "みんなのWA: イベント保存401修正 + ヒーロー押出一元化",
+      "business": "みんなのWA",
+      "path": "/ops?file=2026-05-21-minanowa-admin-save-and-hero-dedup.md#sec-docs"
     },
     {
       "date": "2026-05-20",
-      "filename": "2026-05-20-github-org-conversion-runbook.md",
-      "title": "【廃止】GitHub 個人→Organization 変換 実行手順書（v1）",
-      "business": "github",
-      "path": "/ops?file=2026-05-20-github-org-conversion-runbook.md#sec-docs"
-    },
-    {
-      "date": "2026-05-19",
-      "filename": "2026-05-19-supabase-tenancy-audit.md",
-      "title": "Supabase テナンシー監査 2026-05-19",
-      "business": "supabase",
-      "path": "/ops?file=2026-05-19-supabase-tenancy-audit.md#sec-docs"
-    },
-    {
-      "date": "2026-05-19",
-      "filename": "2026-05-19-handoff-master-plan.md",
-      "title": "事業承継・引き継ぎマスタープラン（バス係数=1 の解消）",
-      "business": "handoff",
-      "path": "/ops?file=2026-05-19-handoff-master-plan.md#sec-docs"
-    },
-    {
-      "date": "2026-05-19",
-      "filename": "2026-05-19-handoff-dashboard-checklist.md",
-      "title": "引き継ぎ承認チェックリスト（あなたがダッシュボードで埋める1枚）",
-      "business": "handoff",
-      "path": "/ops?file=2026-05-19-handoff-dashboard-checklist.md#sec-docs"
-    },
-    {
-      "date": "2026-05-19",
-      "filename": "2026-05-19-github-domain-mail-audit.md",
-      "title": "GitHub / ドメイン / メール転送 テナンシー監査レポート",
-      "business": "github",
-      "path": "/ops?file=2026-05-19-github-domain-mail-audit.md#sec-docs"
-    },
-    {
-      "date": "2026-05-19",
-      "filename": "2026-05-19-business-21-perf-isr.md",
-      "title": "ビジネス21 サイト表示の急激な遅延 — 原因と恒久対策",
-      "business": "ビジネス21",
-      "path": "/ops?file=2026-05-19-business-21-perf-isr.md#sec-docs"
-    },
-    {
-      "date": "2026-05-18",
-      "filename": "2026-05-18-trust-site-migration-plan.md",
-      "title": "トラスト 公開サイト全機能移設＋管理ハブ全面構築 計画書",
+      "filename": "2026-05-20-trust-saas-migration-comparison.md",
+      "title": "トラスト 戦略C 候補SaaS 比較表（らくしふ／ほのぼの／ケアコラボ）",
       "business": "トラスト",
-      "path": "/ops?file=2026-05-18-trust-site-migration-plan.md#sec-docs"
+      "path": "/ops?file=2026-05-20-trust-saas-migration-comparison.md#sec-docs"
+    },
+    {
+      "date": "2026-05-20",
+      "filename": "2026-05-20-successor-outreach-email-draft.md",
+      "title": "後継エンジニア探索 — 知人ネットワーク向け声がけメール文面",
+      "business": "successor",
+      "path": "/ops?file=2026-05-20-successor-outreach-email-draft.md#sec-docs"
+    },
+    {
+      "date": "2026-05-20",
+      "filename": "2026-05-20-successor-engineer-strategy.md",
+      "title": "後継エンジニア戦略 — 戦略B 5事業の出口設計（advisor 提言）",
+      "business": "successor",
+      "path": "/ops?file=2026-05-20-successor-engineer-strategy.md#sec-docs"
+    },
+    {
+      "date": "2026-05-20",
+      "filename": "2026-05-20-minanowa-event28-banner-brief.md",
+      "title": "みんなのWA 第28回交流会 バナーデザイン指示書",
+      "business": "みんなのWA",
+      "path": "/ops?file=2026-05-20-minanowa-event28-banner-brief.md#sec-docs"
+    },
+    {
+      "date": "2026-05-20",
+      "filename": "2026-05-20-minanowa-event28-announce.md",
+      "title": "第28回みんなのＷＡ彦根交流会 広報用コピペ",
+      "business": "みんなのWA",
+      "path": "/ops?file=2026-05-20-minanowa-event28-announce.md#sec-docs"
+    },
+    {
+      "date": "2026-05-20",
+      "filename": "2026-05-20-minanowa-event28-add.md",
+      "title": "2026-05-20 みんなのWA 第28回交流会イベント追加",
+      "business": "みんなのWA",
+      "path": "/ops?file=2026-05-20-minanowa-event28-add.md#sec-docs"
+    },
+    {
+      "date": "2026-05-20",
+      "filename": "2026-05-20-minanowa-courses-and-prepayment.md",
+      "title": "2026-05-20 みんなのWA: コース機能 + 事前決済「準備中」化 + トークン漏洩対応",
+      "business": "みんなのWA",
+      "path": "/ops?file=2026-05-20-minanowa-courses-and-prepayment.md#sec-docs"
     }
   ],
   "tasks_open": [
+    {
+      "date": "2026-05-20",
+      "filename": "2026-05-20-successor-outreach-email-draft.md",
+      "business": "successor",
+      "snippet": "作成: 2026-05-20 / 担当: writer / 送信期限: 2026-05-23（金）**",
+      "path": "/ops?file=2026-05-20-successor-outreach-email-draft.md#sec-docs"
+    },
+    {
+      "date": "2026-05-20",
+      "filename": "2026-05-20-successor-engineer-strategy.md",
+      "business": "successor",
+      "snippet": "| 期限 | 撤退対象 | 累積撤退率 |",
+      "path": "/ops?file=2026-05-20-successor-engineer-strategy.md#sec-docs"
+    },
+    {
+      "date": "2026-05-20",
+      "filename": "2026-05-20-successor-engineer-strategy.md",
+      "business": "successor",
+      "snippet": "期限: **2026-05-23（今週金曜）まで送信完了**",
+      "path": "/ops?file=2026-05-20-successor-engineer-strategy.md#sec-docs"
+    },
+    {
+      "date": "2026-05-20",
+      "filename": "2026-05-20-minanowa-event28-banner-brief.md",
+      "business": "みんなのWA",
+      "snippet": "| 日付ブロック 年 | 2026 | 2026（変更なし） |",
+      "path": "/ops?file=2026-05-20-minanowa-event28-banner-brief.md#sec-docs"
+    },
+    {
+      "date": "2026-05-20",
+      "filename": "2026-05-20-minanowa-event28-banner-brief.md",
+      "business": "みんなのWA",
+      "snippet": "| 日付ブロック 月日・曜日 | （第27回実施日） | **6/3（水）** |",
+      "path": "/ops?file=2026-05-20-minanowa-event28-banner-brief.md#sec-docs"
+    },
+    {
+      "date": "2026-05-20",
+      "filename": "2026-05-20-minanowa-event28-banner-brief.md",
+      "business": "みんなのWA",
+      "snippet": "| 日付ブロック 時間 | 12:00〜15:00 | 12:00〜15:00（変更なし） |",
+      "path": "/ops?file=2026-05-20-minanowa-event28-banner-brief.md#sec-docs"
+    },
     {
       "date": "2026-05-19",
       "filename": "2026-05-19-handoff-master-plan.md",
@@ -156,53 +198,15 @@
       "business": "AIハブ",
       "snippet": "| ブロック | 中身 | F 回答の反映 |",
       "path": "/ops?file=2026-05-17-ai-hub-cleanup-inventory.md#sec-docs"
-    },
-    {
-      "date": "2026-05-17",
-      "filename": "2026-05-17-ai-hub-aiwatch-autopublish-design.md",
-      "business": "AIハブ",
-      "snippet": "既存 `migrate_sqlite_to_supabase.py` が `supabase` を使っているか要確認 → 同じ依存に揃える。",
-      "path": "/ops?file=2026-05-17-ai-hub-aiwatch-autopublish-design.md#sec-docs"
-    },
-    {
-      "date": "2026-05-17",
-      "filename": "2026-05-17-ai-hub-aiwatch-autopublish-design.md",
-      "business": "AIハブ",
-      "snippet": "| ブロック | 担当 | 理由 |",
-      "path": "/ops?file=2026-05-17-ai-hub-aiwatch-autopublish-design.md#sec-docs"
-    },
-    {
-      "date": "2026-05-16",
-      "filename": "2026-05-16-ai-hub-ops-redesign.md",
-      "business": "AIハブ",
-      "snippet": "consul/work/*.md ──(同期: 経路要確認 G3)──▶ ai-hub/content/consul-work/*.md",
-      "path": "/ops?file=2026-05-16-ai-hub-ops-redesign.md#sec-docs"
-    },
-    {
-      "date": "2026-05-15",
-      "filename": "2026-05-15-n-design-contract-invoice.md",
-      "business": "Nデザイン",
-      "snippet": "| 支払期限 | 翌月末（締結 2026-05-20 → 期限 2026-06-30） |",
-      "path": "/ops?file=2026-05-15-n-design-contract-invoice.md#sec-docs"
-    },
-    {
-      "date": "2026-05-12",
-      "filename": "2026-05-12-render-cloudflare-deletion-feasibility.md",
-      "business": "render",
-      "snippet": "| `karatto.life` | カラット本番 | Cloudflare 経由か要確認 |",
-      "path": "/ops?file=2026-05-12-render-cloudflare-deletion-feasibility.md#sec-docs"
-    },
-    {
-      "date": "2026-05-12",
-      "filename": "2026-05-12-render-cloudflare-deletion-feasibility.md",
-      "business": "render",
-      "snippet": "| その他のカスタムドメイン | 各事業 | Cloudflare 経由か要確認 |",
-      "path": "/ops?file=2026-05-12-render-cloudflare-deletion-feasibility.md#sec-docs"
     }
   ],
   "per_business_recent": [
     {
       "business": "AIハブ",
+      "count": 8
+    },
+    {
+      "business": "みんなのWA",
       "count": 6
     },
     {
@@ -214,8 +218,20 @@
       "count": 3
     },
     {
+      "business": "トラスト",
+      "count": 2
+    },
+    {
+      "business": "successor",
+      "count": 2
+    },
+    {
       "business": "handoff",
       "count": 2
+    },
+    {
+      "business": "client",
+      "count": 1
     },
     {
       "business": "supabase",
@@ -226,19 +242,11 @@
       "count": 1
     },
     {
-      "business": "トラスト",
-      "count": 1
-    },
-    {
       "business": "secrets",
       "count": 1
     },
     {
       "business": "parent",
-      "count": 1
-    },
-    {
-      "business": "みんなのWA",
       "count": 1
     },
     {
@@ -297,11 +305,11 @@
     },
     {
       "date": "2026-05-20",
-      "count": 2
+      "count": 12
     },
     {
       "date": "2026-05-21",
-      "count": 0
+      "count": 1
     }
   ],
   "cma_apps": [
@@ -355,8 +363,8 @@
     }
   ],
   "totals": {
-    "consul_work_total": 60,
-    "recent_7d_total": 22,
+    "consul_work_total": 71,
+    "recent_7d_total": 33,
     "tasks_open_total": 20
   }
 }

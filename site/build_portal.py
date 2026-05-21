@@ -711,24 +711,44 @@ section.block + section.block { border-top: 1px dashed var(--line); }
 .pkg-card {
   background: linear-gradient(180deg, rgba(255,255,255,.7), rgba(255,255,255,.45));
   border: 1px solid rgba(37,99,235,.12);
-  border-radius: 20px; padding: 26px 22px 22px;
-  display: flex; flex-direction: column; gap: 10px;
+  border-radius: 20px;
+  display: flex; flex-direction: column;
   box-shadow: var(--shadow-card);
   transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
   position: relative; overflow: hidden;
 }
 .pkg-card:hover {
-  transform: translateY(-4px); box-shadow: var(--shadow-card-hover);
+  transform: translateY(-6px); box-shadow: var(--shadow-card-hover);
   border-color: rgba(37,99,235,.28);
 }
-.pkg-head { display: flex; align-items: center; gap: 10px; }
-.pkg-icon { font-size: 28px; line-height: 1; }
+.pkg-image {
+  position: relative; aspect-ratio: 16/10; overflow: hidden;
+}
+.pkg-image img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform .6s cubic-bezier(.22,1,.36,1);
+}
+.pkg-card:hover .pkg-image img { transform: scale(1.07); }
+.pkg-image::after {
+  content:''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(15,23,42,0) 40%, rgba(15,23,42,.28) 100%);
+}
+.pkg-image .pkg-cat {
+  position: absolute; top: 12px; left: 12px; z-index: 1;
+  box-shadow: 0 4px 12px rgba(0,0,0,.18);
+}
+.pkg-body {
+  padding: 20px 22px 22px;
+  display: flex; flex-direction: column; gap: 10px; flex: 1;
+}
+.pkg-head { display: flex; align-items: flex-start; gap: 10px; }
+.pkg-icon { font-size: 26px; line-height: 1.1; }
 .pkg-cat {
   font-size: 11px; font-weight: 700; letter-spacing: .08em;
   color: #b45309; background: #fef3c7;
   padding: 4px 10px; border-radius: 999px;
 }
-.pkg-title { font-size: 17px; font-weight: 800; color: var(--text); line-height: 1.4; margin: 4px 0 0; }
+.pkg-title { font-size: 16px; font-weight: 800; color: var(--text); line-height: 1.4; margin: 2px 0 0; flex: 1; }
 .pkg-meta { font-size: 12px; color: var(--muted); }
 .pkg-price { font-size: 19px; font-weight: 900; color: #2563eb; }
 .pkg-subsidy {
@@ -832,6 +852,28 @@ section.block + section.block { border-top: 1px dashed var(--line); }
 .diag-result-desc { font-size: 14px; line-height: 1.7; color: var(--text-soft); margin: 0 0 18px; }
 .diag-result .btn { display: inline-flex; }
 .diag-restart { display: block; margin: 14px auto 0; border: none; background: none; color: var(--muted); font-size: 12.5px; text-decoration: underline; cursor: pointer; }
+
+/* ---- parallax band ---- */
+.parallax-band {
+  position: relative; margin: 64px calc(50% - 50vw); width: 100vw;
+  min-height: 420px; display: flex; align-items: center; justify-content: center;
+  overflow: hidden; isolation: isolate;
+}
+.parallax-bg {
+  position: absolute; inset: -10% 0; z-index: -2;
+  background-size: cover; background-position: center;
+  will-change: transform;
+}
+.parallax-overlay {
+  position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(120deg, rgba(15,23,42,.78) 0%, rgba(37,99,235,.55) 60%, rgba(139,92,246,.45) 100%);
+}
+.parallax-content { max-width: 720px; padding: 64px 24px; text-align: center; color: #fff; }
+.parallax-eyebrow { font-size: 13px; font-weight: 800; letter-spacing: .2em; color: #c7d6ff; margin: 0 0 12px; }
+.parallax-title { font-size: clamp(24px, 4vw, 40px); font-weight: 900; line-height: 1.3; margin: 0 0 16px; color: #fff; }
+.parallax-sub { font-size: clamp(14px, 1.6vw, 17px); line-height: 1.8; margin: 0 0 26px; color: rgba(255,255,255,.92); }
+.parallax-content .btn-primary { box-shadow: 0 14px 40px rgba(0,0,0,.3); }
+@media (max-width: 560px) { .parallax-band { min-height: 340px; } }
 
 /* ---- flow steps ---- */
 .flow-list {
@@ -1182,6 +1224,25 @@ HEADER_JS = """
     }, { passive: true });
   }
 
+  // ---- Parallax band 背景のスクロール連動（要素が画面内のときだけ動かす）
+  var pbg = document.querySelector('.parallax-bg');
+  if (pbg && !prefersReduced) {
+    var pband = pbg.closest('.parallax-band');
+    var ticking = false;
+    function updateParallax(){
+      var rect = pband.getBoundingClientRect();
+      if (rect.bottom > 0 && rect.top < window.innerHeight) {
+        var progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+        pbg.style.transform = 'translateY(' + ((progress - 0.5) * 60) + 'px)';
+      }
+      ticking = false;
+    }
+    window.addEventListener('scroll', function(){
+      if (!ticking) { window.requestAnimationFrame(updateParallax); ticking = true; }
+    }, { passive: true });
+    updateParallax();
+  }
+
   // ---- Typewriter rotate (hero sub-catch のキーワードを打ち替える)
   var typeEl = document.querySelector('.type-rotate');
   if (typeEl && !prefersReduced) {
@@ -1302,23 +1363,19 @@ def _render_hero() -> str:
         "<div class='hero-blob b1'></div>"
         "<div class='hero-blob b2'></div>"
         "<div class='hero-text fade-up'>"
-        "<span class='eyebrow'>📍 彦根・滋賀・湖東エリア｜現場リーダー限定の対面ワークショップ</span>"
+        "<span class='eyebrow'>📍 彦根・滋賀・湖東｜現場リーダー限定ワークショップ</span>"
         "<h1>"
-        "滋賀・彦根の<span class='accent'>現場を動かすリーダー</span>へ。<br>"
-        "ツールを試す時間は終わり。その場で業務が変わる<br>"
-        "<span class='underline'>「AI仕組み化」対面完成ワークショップ</span>"
+        "<span class='accent'>業務まるごと、</span><br>"
+        "AIに任せる。"
         "</h1>"
         "<p class='sub-catch'>"
-        "店舗オーナー・部門責任者・現場のトップ限定。"
-        "難しいITの勉強は一切不要。あなたの現場に最適な"
-        "<strong>「<span class='type-rotate' data-words='新しい業務体制｜集客の仕組み｜人手不足の解決策｜業務効率化の着地点'>新しい業務体制</span>（着地点）」</strong>をその場で構築します。"
+        "彦根の対面ワークショップで、"
+        "<strong>「<span class='type-rotate' data-words='集客の仕組み｜人手不足の解決策｜業務の自動化｜現場の時短'>集客の仕組み</span>」</strong>"
+        "をその場で完成。"
         "</p>"
         "<p class='lead'>"
-        "彦根周辺や湖東エリアで、店舗や組織のマネジメント・業務効率化に頭を悩ませていませんか？"
-        "本講座は単なるAIツールの操作セミナーではありません。"
-        "決定権を持つリーダーが集まり、自社・自店のボトルネックを解消する"
-        "<strong>「仕組み」そのものをその場で完成</strong>させる完全実践型の対面講座です。"
-        "地域の横のつながりを強めながら、明日から現場が劇的に楽になる具体的な着地点へと導きます。"
+        "ITの勉強はゼロ。社長の仕事は「どの業務を任せるか」を決めるだけ。"
+        "<strong>週10時間の無駄</strong>を削る仕組みを、その日のうちに持ち帰れます。"
         "</p>"
         "<div class='hero-actions'>"
         "<a class='btn btn-primary' href='#packages'>受講プランを見る →</a>"
@@ -1328,8 +1385,8 @@ def _render_hero() -> str:
         "</div>"
         "<div class='hero-visual fade-up d2'>"
         f"<img src='{HERO_IMG}' alt='彦根・滋賀の現場リーダーがAI講師と対面で自社の業務仕組み化を設計している様子' loading='eager' fetchpriority='high' decoding='async'>"
-        "<div class='hero-badge b-top'><span class='b-icon'>🛠</span>ITの勉強は一切不要</div>"
-        "<div class='hero-badge b-bot'><span class='b-icon'>📍</span>彦根・湖東で対面開催</div>"
+        "<div class='hero-badge b-top'><span class='b-icon'>🛠</span>ITの勉強はゼロ</div>"
+        "<div class='hero-badge b-bot'><span class='b-icon'>⏱</span>週10時間を削減</div>"
         "</div>"
         "</section>"
     )
@@ -1436,6 +1493,7 @@ def _render_courses_packages() -> str:
             "desc": "経営者・専門職・初心者なんでも相談。LLMO / SEO / MEO / Claude Code 活用 / バックオフィス効率化 / 補助金申請まで、現役オーナーがその場で「困った」を解決。",
             "url": "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/TO3XHZT6XP3OM4QBDYMW7TZP",
             "cta": "予約する（Square）",
+            "img": "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=800&q=70",
         },
         {
             "icon": "📚",
@@ -1447,6 +1505,7 @@ def _render_courses_packages() -> str:
             "desc": "彦根でAIや経営を学べる実践型講習。一般の講師が教えない「考え方とコツ」を中心に、参加者のレベルに合わせて内容を最適化。Claude Code / オフィス自動化 / 通販サイト構築まで。",
             "url": "https://minanowa.com/#events",
             "cta": "次回開催を見る",
+            "img": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=800&q=70",
         },
         {
             "icon": "🚀",
@@ -1458,6 +1517,7 @@ def _render_courses_packages() -> str:
             "desc": "HP公開から事務自動化まで、技術的な難所は講師が代行・支援。AI導入・デザイン内製化・書類営業効率化・経理自動化・マーケティングを6ヶ月で一気に定着。滋賀・彦根の補助金で負担1/3以下に。",
             "url": "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/V57YTNICA2KV2TN7ENARAVQE",
             "cta": "導入相談（無料・60分）",
+            "img": "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=70",
         },
     ]
     parts = ["<div class='packages-grid'>"]
@@ -1465,18 +1525,26 @@ def _render_courses_packages() -> str:
         subsidy_badge = (
             "<span class='pkg-subsidy'>✓ 補助金対応</span>" if it["subsidy"] else ""
         )
-        parts.append(
-            f"<div class='pkg-card fade-up d{(i % 3) + 1}'>"
-            f"<div class='pkg-head'>"
-            f"<span class='pkg-icon' aria-hidden='true'>{html.escape(it['icon'])}</span>"
+        img_html = (
+            f"<div class='pkg-image'>"
+            f"<img src='{html.escape(it['img'], quote=True)}' alt='{html.escape(it['title'])}' loading='lazy' decoding='async'>"
             f"<span class='pkg-cat'>{html.escape(it['cat'])}</span>"
             f"</div>"
+        ) if it.get("img") else ""
+        parts.append(
+            f"<div class='pkg-card fade-up d{(i % 3) + 1}'>"
+            f"{img_html}"
+            f"<div class='pkg-body'>"
+            f"<div class='pkg-head'>"
+            f"<span class='pkg-icon' aria-hidden='true'>{html.escape(it['icon'])}</span>"
             f"<h3 class='pkg-title'>{html.escape(it['title'])}</h3>"
+            f"</div>"
             f"<div class='pkg-meta'>⏱ {html.escape(it['duration'])}</div>"
             f"<div class='pkg-price'>{html.escape(it['price'])}</div>"
             f"{subsidy_badge}"
             f"<p class='pkg-desc'>{html.escape(it['desc'])}</p>"
             f"<a class='pkg-cta' href='{html.escape(it['url'], quote=True)}' target='_blank' rel='noopener'>{html.escape(it['cta'])} →</a>"
+            f"</div>"
             f"</div>"
         )
     parts.append("</div>")
@@ -1504,6 +1572,22 @@ def _render_diagnose_modal() -> str:
         "<button type='button' class='diagnose-close' aria-label='閉じる'>&times;</button>"
         "<div class='diagnose-head'>🔍 60秒コース診断</div>"
         "<div class='diagnose-body'></div>"
+        "</div>"
+        "</div>"
+    )
+
+
+def _render_parallax_band() -> str:
+    img = "https://images.unsplash.com/photo-1531973576160-7125cd663d86?auto=format&fit=crop&w=1600&q=70"
+    return (
+        "<div class='parallax-band'>"
+        f"<div class='parallax-bg' style=\"background-image:url('{img}')\"></div>"
+        "<div class='parallax-overlay'></div>"
+        "<div class='parallax-content fade-up'>"
+        "<p class='parallax-eyebrow'>LOCAL × AI</p>"
+        "<h2 class='parallax-title'>彦根から、地域のビジネスを<br>ひとつ先のステージへ。</h2>"
+        "<p class='parallax-sub'>ツールを売るのではなく、現場が回る「仕組み」を一緒に作る。地域の仲間とつながりながら。</p>"
+        "<a class='btn btn-primary' href='#packages'>受講プランを見る →</a>"
         "</div>"
         "</div>"
     )
@@ -1841,6 +1925,9 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append("<p class='section-sub'>ご相談から公開・運用まで、最短 2 週間で動き始めます。</p>")
     parts.append(_render_flow())
     parts.append("</section>")
+
+    # 4b. パララックス画像バンド（世界観・地域共創）
+    parts.append(_render_parallax_band())
 
     # 5. 実績・事業ポートフォリオ（融合版 — businesses.yaml 一元管理）
     parts.append("<section class='block' id='works'>")

@@ -458,7 +458,9 @@ header.site-header.scrolled {
 .hero-visual:hover img { transform: scale(1.04); }
 .hero-visual::after {
   content:''; position: absolute; inset: 0;
-  background: linear-gradient(160deg, rgba(37,99,235,.05) 0%, rgba(236,72,153,.10) 100%);
+  background:
+    linear-gradient(160deg, rgba(37,99,235,.05) 0%, rgba(236,72,153,.10) 40%),
+    linear-gradient(0deg, rgba(15,23,42,.28) 0%, rgba(15,23,42,0) 38%);
   pointer-events: none;
 }
 .hero-blob {
@@ -473,26 +475,46 @@ header.site-header.scrolled {
   .hero-blob.b2 { width: 140px; height: 140px; bottom: -20px; left: 20%; }
 }
 
-/* floating badge over hero image */
-.hero-badge {
-  position: absolute; padding: 10px 16px; border-radius: 16px;
-  background: rgba(255,255,255,.96); backdrop-filter: blur(12px);
-  border: 1px solid var(--line);
-  box-shadow: 0 14px 36px rgba(15,23,42,.16);
-  font-size: 12.5px; font-weight: 700; color: var(--text);
-  display: inline-flex; align-items: center; gap: 8px;
-  animation: float 5s ease-in-out infinite;
+/* 3-step flow overlay over hero image */
+.hero-flow {
+  position: absolute; left: 16px; right: 16px; bottom: 16px; z-index: 2;
+  display: flex; align-items: stretch; gap: 6px;
+  padding: 12px 12px; border-radius: 18px;
+  background: rgba(255,255,255,.86); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,.7);
+  box-shadow: 0 14px 40px rgba(15,23,42,.22);
 }
-.hero-badge.b-top { top: 24px; left: -28px; }
-.hero-badge.b-bot { bottom: 22px; right: -28px; animation-delay: -2.5s; }
-.hero-badge .b-icon { font-size: 18px; }
+.hflow-step {
+  flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px;
+  text-align: center; padding: 8px 4px; border-radius: 12px;
+  animation: hflow-pop .5s ease both;
+}
+.hflow-step.accent { background: var(--primary-bg); }
+.hflow-step.done { background: rgba(16,185,129,.12); }
+.hflow-step:nth-child(1) { animation-delay: .15s; }
+.hflow-step.accent { animation-delay: .45s; }
+.hflow-step.done { animation-delay: .75s; }
+.hflow-ico { font-size: 24px; line-height: 1; }
+.hflow-txt b { display: block; font-size: 12px; font-weight: 800; color: var(--text); line-height: 1.3; }
+.hflow-txt small { display: block; font-size: 10px; color: var(--muted); margin-top: 2px; line-height: 1.3; }
+.hflow-arrow {
+  align-self: center; font-size: 16px; font-weight: 800; color: var(--primary);
+  flex: 0 0 auto; animation: hflow-fade 1.6s ease-in-out infinite;
+}
+@keyframes hflow-pop {
+  from { opacity: 0; transform: translateY(10px) scale(.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes hflow-fade { 0%,100% { opacity: .4; } 50% { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .hflow-step, .hflow-arrow { animation: none; opacity: 1; }
+}
 @media (max-width: 900px) {
-  .hero-badge.b-top { left: 8px; }
-  .hero-badge.b-bot { right: 8px; }
-}
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  .hero-flow { left: 10px; right: 10px; bottom: 10px; gap: 4px; padding: 10px 8px; }
+  .hflow-txt b { font-size: 11px; }
+  .hflow-txt small { font-size: 9px; }
+  .hflow-ico { font-size: 20px; }
+  .hflow-arrow { font-size: 13px; }
 }
 .btn {
   display: inline-flex; align-items: center; gap: 8px;
@@ -774,11 +796,6 @@ section.block + section.block { border-top: 1px dashed var(--line); }
   font-size: 13px; line-height: 1.7; color: var(--text);
 }
 
-/* ---- typewriter rotate ---- */
-.type-rotate { color: var(--primary); border-right: 2px solid var(--primary); padding-right: 2px; }
-.type-rotate.typing { animation: caret-blink 1s step-end infinite; }
-@keyframes caret-blink { 50% { border-color: transparent; } }
-@media (prefers-reduced-motion: reduce) { .type-rotate { border-right: none; animation: none; } }
 
 /* ---- theme toggle ---- */
 .theme-toggle {
@@ -1242,32 +1259,6 @@ HEADER_JS = """
     updateParallax();
   }
 
-  // ---- Typewriter rotate (hero sub-catch のキーワードを打ち替える)
-  var typeEl = document.querySelector('.type-rotate');
-  if (typeEl && !prefersReduced) {
-    var words = (typeEl.getAttribute('data-words') || '').split('｜').filter(Boolean);
-    if (words.length > 1) {
-      var wi = 0, ci = 0, deleting = false;
-      typeEl.textContent = '';
-      typeEl.classList.add('typing');
-      var step = function(){
-        var word = words[wi];
-        if (!deleting) {
-          ci++;
-          typeEl.textContent = word.slice(0, ci);
-          if (ci >= word.length) { deleting = true; return setTimeout(step, 1600); }
-          return setTimeout(step, 110);
-        } else {
-          ci--;
-          typeEl.textContent = word.slice(0, ci);
-          if (ci <= 0) { deleting = false; wi = (wi + 1) % words.length; return setTimeout(step, 320); }
-          return setTimeout(step, 55);
-        }
-      };
-      setTimeout(step, 900);
-    }
-  }
-
   // ---- Dark mode toggle (localStorage 永続 + システム設定追従)
   (function(){
     var KEY = 'aihub-theme';
@@ -1369,8 +1360,7 @@ def _render_hero() -> str:
         "</h1>"
         "<p class='sub-catch'>"
         "彦根の対面ワークショップで、"
-        "<strong>「<span class='type-rotate' data-words='集客の仕組み｜人手不足の解決策｜業務の自動化｜現場の時短'>集客の仕組み</span>」</strong>"
-        "をその場で完成。"
+        "<strong>集客・人手不足・業務の自動化</strong>の仕組みを、その場で完成。"
         "</p>"
         "<p class='lead'>"
         "ITの勉強はゼロ。社長の仕事は「どの業務を任せるか」を決めるだけ。"
@@ -1384,8 +1374,22 @@ def _render_hero() -> str:
         "</div>"
         "<div class='hero-visual fade-up d2'>"
         f"<img src='{HERO_IMG}' alt='彦根・滋賀の現場リーダーがAI講師と対面で自社の業務仕組み化を設計している様子' loading='eager' fetchpriority='high' decoding='async'>"
-        "<div class='hero-badge b-top'><span class='b-icon'>🛠</span>ITの勉強はゼロ</div>"
-        "<div class='hero-badge b-bot'><span class='b-icon'>⏱</span>週10時間を削減</div>"
+        "<div class='hero-flow' aria-label='ワークショップの3ステップ'>"
+        "<div class='hflow-step'>"
+        "<span class='hflow-ico'>😵</span>"
+        "<div class='hflow-txt'><b>現場の課題</b><small>人手不足・残業・属人化</small></div>"
+        "</div>"
+        "<div class='hflow-arrow'>→</div>"
+        "<div class='hflow-step accent'>"
+        "<span class='hflow-ico'>🧑‍🏫</span>"
+        "<div class='hflow-txt'><b>対面ワークショップ</b><small>その場で一緒に設計</small></div>"
+        "</div>"
+        "<div class='hflow-arrow'>→</div>"
+        "<div class='hflow-step done'>"
+        "<span class='hflow-ico'>⚙️</span>"
+        "<div class='hflow-txt'><b>仕組みが完成</b><small>週10時間を削減</small></div>"
+        "</div>"
+        "</div>"
         "</div>"
         "</section>"
     )

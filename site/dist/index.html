@@ -228,7 +228,9 @@ header.site-header.scrolled {
 .hero-visual:hover img { transform: scale(1.04); }
 .hero-visual::after {
   content:''; position: absolute; inset: 0;
-  background: linear-gradient(160deg, rgba(37,99,235,.05) 0%, rgba(236,72,153,.10) 100%);
+  background:
+    linear-gradient(160deg, rgba(37,99,235,.05) 0%, rgba(236,72,153,.10) 40%),
+    linear-gradient(0deg, rgba(15,23,42,.28) 0%, rgba(15,23,42,0) 38%);
   pointer-events: none;
 }
 .hero-blob {
@@ -243,26 +245,46 @@ header.site-header.scrolled {
   .hero-blob.b2 { width: 140px; height: 140px; bottom: -20px; left: 20%; }
 }
 
-/* floating badge over hero image */
-.hero-badge {
-  position: absolute; padding: 10px 16px; border-radius: 16px;
-  background: rgba(255,255,255,.96); backdrop-filter: blur(12px);
-  border: 1px solid var(--line);
-  box-shadow: 0 14px 36px rgba(15,23,42,.16);
-  font-size: 12.5px; font-weight: 700; color: var(--text);
-  display: inline-flex; align-items: center; gap: 8px;
-  animation: float 5s ease-in-out infinite;
+/* 3-step flow overlay over hero image */
+.hero-flow {
+  position: absolute; left: 16px; right: 16px; bottom: 16px; z-index: 2;
+  display: flex; align-items: stretch; gap: 6px;
+  padding: 12px 12px; border-radius: 18px;
+  background: rgba(255,255,255,.86); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,.7);
+  box-shadow: 0 14px 40px rgba(15,23,42,.22);
 }
-.hero-badge.b-top { top: 24px; left: -28px; }
-.hero-badge.b-bot { bottom: 22px; right: -28px; animation-delay: -2.5s; }
-.hero-badge .b-icon { font-size: 18px; }
+.hflow-step {
+  flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px;
+  text-align: center; padding: 8px 4px; border-radius: 12px;
+  animation: hflow-pop .5s ease both;
+}
+.hflow-step.accent { background: var(--primary-bg); }
+.hflow-step.done { background: rgba(16,185,129,.12); }
+.hflow-step:nth-child(1) { animation-delay: .15s; }
+.hflow-step.accent { animation-delay: .45s; }
+.hflow-step.done { animation-delay: .75s; }
+.hflow-ico { font-size: 24px; line-height: 1; }
+.hflow-txt b { display: block; font-size: 12px; font-weight: 800; color: var(--text); line-height: 1.3; }
+.hflow-txt small { display: block; font-size: 10px; color: var(--muted); margin-top: 2px; line-height: 1.3; }
+.hflow-arrow {
+  align-self: center; font-size: 16px; font-weight: 800; color: var(--primary);
+  flex: 0 0 auto; animation: hflow-fade 1.6s ease-in-out infinite;
+}
+@keyframes hflow-pop {
+  from { opacity: 0; transform: translateY(10px) scale(.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes hflow-fade { 0%,100% { opacity: .4; } 50% { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .hflow-step, .hflow-arrow { animation: none; opacity: 1; }
+}
 @media (max-width: 900px) {
-  .hero-badge.b-top { left: 8px; }
-  .hero-badge.b-bot { right: 8px; }
-}
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  .hero-flow { left: 10px; right: 10px; bottom: 10px; gap: 4px; padding: 10px 8px; }
+  .hflow-txt b { font-size: 11px; }
+  .hflow-txt small { font-size: 9px; }
+  .hflow-ico { font-size: 20px; }
+  .hflow-arrow { font-size: 13px; }
 }
 .btn {
   display: inline-flex; align-items: center; gap: 8px;
@@ -544,11 +566,6 @@ section.block + section.block { border-top: 1px dashed var(--line); }
   font-size: 13px; line-height: 1.7; color: var(--text);
 }
 
-/* ---- typewriter rotate ---- */
-.type-rotate { color: var(--primary); border-right: 2px solid var(--primary); padding-right: 2px; }
-.type-rotate.typing { animation: caret-blink 1s step-end infinite; }
-@keyframes caret-blink { 50% { border-color: transparent; } }
-@media (prefers-reduced-motion: reduce) { .type-rotate { border-right: none; animation: none; } }
 
 /* ---- theme toggle ---- */
 .theme-toggle {
@@ -864,7 +881,7 @@ footer.site-footer {
   }
 })();
 </script>
-<section class='hero' id='top'><div class='hero-blob b1'></div><div class='hero-blob b2'></div><div class='hero-text fade-up'><span class='eyebrow'>📍 彦根・滋賀・湖東｜現場リーダー限定ワークショップ</span><h1><span class='accent'>業務まるごと、</span><br>AIに任せる。</h1><p class='sub-catch'>彦根の対面ワークショップで、<strong>「<span class='type-rotate' data-words='集客の仕組み｜人手不足の解決策｜業務の自動化｜現場の時短'>集客の仕組み</span>」</strong>をその場で完成。</p><p class='lead'>ITの勉強はゼロ。社長の仕事は「どの業務を任せるか」を決めるだけ。<strong>週10時間の無駄</strong>を削る仕組みを、その日のうちに持ち帰れます。</p><div class='hero-actions'><a class='btn btn-primary' href='#packages'>受講プランを見る →</a><a class='btn btn-secondary' href='mailto:goodbouldering@gmail.com'>無料相談する</a><a class='btn btn-ghost' href='/admin'>🔐 管理ログイン</a></div></div><div class='hero-visual fade-up d2'><img src='https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=70' alt='彦根・滋賀の現場リーダーがAI講師と対面で自社の業務仕組み化を設計している様子' loading='eager' fetchpriority='high' decoding='async'><div class='hero-badge b-top'><span class='b-icon'>🛠</span>ITの勉強はゼロ</div><div class='hero-badge b-bot'><span class='b-icon'>⏱</span>週10時間を削減</div></div></section><section class='block' id='packages'><p class='section-heading fade-up'>PACKAGES</p><h2 class='section-title fade-up d1'>AI講習・相談・伴走パック</h2><p class='section-sub fade-up d2'>現役オーナー講師による実践型。サイト構築・SEO・LLMO・補助金対応まで、3つのコースから選べます。</p><div class='packages-grid'><div class='pkg-card fade-up d1'><div class='pkg-image'><img src='https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&amp;fit=crop&amp;w=800&amp;q=70' alt='AI個別相談 60分' loading='lazy' decoding='async'><span class='pkg-cat'>個別相談</span></div><div class='pkg-body'><div class='pkg-head'><span class='pkg-icon' aria-hidden='true'>💬</span><h3 class='pkg-title'>AI個別相談 60分</h3></div><div class='pkg-meta'>⏱ 60分</div><div class='pkg-price'>2,200円〜5,500円</div><p class='pkg-desc'>経営者・専門職・初心者なんでも相談。LLMO / SEO / MEO / Claude Code 活用 / バックオフィス効率化 / 補助金申請まで、現役オーナーがその場で「困った」を解決。</p><a class='pkg-cta' href='https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/TO3XHZT6XP3OM4QBDYMW7TZP' target='_blank' rel='noopener'>予約する（Square） →</a></div></div><div class='pkg-card fade-up d2'><div class='pkg-image'><img src='https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&amp;fit=crop&amp;w=800&amp;q=70' alt='AI講習会 120分（月1回 / 定員8名）' loading='lazy' decoding='async'><span class='pkg-cat'>講習会</span></div><div class='pkg-body'><div class='pkg-head'><span class='pkg-icon' aria-hidden='true'>📚</span><h3 class='pkg-title'>AI講習会 120分（月1回 / 定員8名）</h3></div><div class='pkg-meta'>⏱ 120分</div><div class='pkg-price'>5,500円</div><span class='pkg-subsidy'>✓ 補助金対応</span><p class='pkg-desc'>彦根でAIや経営を学べる実践型講習。一般の講師が教えない「考え方とコツ」を中心に、参加者のレベルに合わせて内容を最適化。Claude Code / オフィス自動化 / 通販サイト構築まで。</p><a class='pkg-cta' href='https://minanowa.com/#events' target='_blank' rel='noopener'>次回開催を見る →</a></div></div><div class='pkg-card fade-up d3'><div class='pkg-image'><img src='https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&amp;fit=crop&amp;w=800&amp;q=70' alt='AI伴走パック 6回（補助金対象）' loading='lazy' decoding='async'><span class='pkg-cat'>伴走パック</span></div><div class='pkg-body'><div class='pkg-head'><span class='pkg-icon' aria-hidden='true'>🚀</span><h3 class='pkg-title'>AI伴走パック 6回（補助金対象）</h3></div><div class='pkg-meta'>⏱ 6ヶ月（導入相談60分から開始）</div><div class='pkg-price'>月額 100,000円（税込）× 6ヶ月</div><span class='pkg-subsidy'>✓ 補助金対応</span><p class='pkg-desc'>HP公開から事務自動化まで、技術的な難所は講師が代行・支援。AI導入・デザイン内製化・書類営業効率化・経理自動化・マーケティングを6ヶ月で一気に定着。滋賀・彦根の補助金で負担1/3以下に。</p><a class='pkg-cta' href='https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/V57YTNICA2KV2TN7ENARAVQE' target='_blank' rel='noopener'>導入相談（無料・60分） →</a></div></div></div><div class='packages-cta-row fade-up d4'><button type='button' class='btn btn-diagnose diagnose-open'>🔍 60秒診断｜あなたに合うプランは？</button><span class='packages-cta-hint'>3つの質問に答えるだけ。最適なコースをその場でご提案します。</span></div><p class='packages-note fade-up d4'>🛡 <strong>滋賀県未来投資総合補助金</strong>（最大50万円・補助率2/3／一次：3/2〜3/31、二次：6/8〜7/17）と <strong>彦根市小規模事業者デジタル化推進補助金</strong>（最大20万円）に対応。申請サポートも個別相談で受け付けます。</p></section><section class='block' id='flow'><p class='section-heading'>FLOW</p><h2 class='section-title'>ご依頼の流れ</h2><p class='section-sub'>ご相談から公開・運用まで、最短 2 週間で動き始めます。</p><div class='flow-list'><div class='flow-step'><h3>ご相談</h3><p>メール／LINEで現状をヒアリング。事業内容・課題・予算感を 30 分でつかみます。</p></div><div class='flow-step'><h3>提案・見積</h3><p>課題に対する具体的なアウトプット案（LP / 業務システム / 研修 等）と費用感を提示。</p></div><div class='flow-step'><h3>制作・実装</h3><p>Next.js + Supabase + Vercel で構築。PR プレビューで毎日確認できる開発フロー。</p></div><div class='flow-step'><h3>運用・伴走</h3><p>公開後も月次レビューで KPI を一緒に確認。必要な機能追加・運用代行も対応。</p></div></div></section><section class='block' id='speaker'><p class='section-heading fade-up'>SPEAKER</p><h2 class='section-title fade-up d1'>講師紹介</h2><p class='section-sub fade-up d2'>AI 活用の啓発・講習・地域コミュニティ運営・複数事業のマーケ支援を行う実践者。</p><div class='profile-block' style='display:block;'><div class='speaker-intro-grid'><div><h3>由井 辰美</h3><p style='font-weight:700;color:var(--primary);margin:0 0 16px;'>AI講師 / マーケター / グッぼる代表</p><p style='line-height:1.9;'>滋賀県彦根市を拠点に、ボルダリングカフェ「グッぼる」を運営するかたわら、 AI 活用の啓発・講習・地域コミュニティ運営・複数事業者のマーケティング支援を行う。 「自分のAIをひとつに集める場所」をテーマにした <strong>AIハブ</strong> を運営し、 AI / SNS / LLMO の最新動向を一次情報ベースで発信している。</p><p style='font-weight:700;color:var(--text);margin-top:16px;'>「異端OK、数字根拠で経営を変える」</p></div><div class='profile-avatar'>🧑‍🏫</div></div><div class='stats-strip' style='margin:32px 0 8px;'><div class='stat'><div class='num'>75%</div><div class='label'>製造コスト削減達成</div></div><div class='stat'><div class='num'>40+</div><div class='label'>ジムシステム提供</div></div><div class='stat'><div class='num'>120</div><div class='label'>シューズモデル在庫</div></div><div class='stat'><div class='num'>90%</div><div class='label'>機器稼働率達成</div></div></div><div style='display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:24px;'><a class='btn btn-primary' href='/speaker.html'>🎤 講師紹介をもっと詳しく</a><a class='btn btn-secondary' href='/profile.html'>📜 経歴をもっと詳しく</a></div></div></section><section class='block' id='faq'><p class='section-heading'>FAQ</p><h2 class='section-title'>よくある質問</h2><div class='faq-list'><details class='faq-item'><summary>料金はどれくらいですか？</summary><p>LP 1本（簡易ヒアリング込み）で 18〜30万円が目安です。業務システム・EC 統合・社内RAG は内容により別途お見積もり。補助金併用を前提に組むことが多いです。</p></details><details class='faq-item'><summary>対応エリアは？</summary><p>滋賀県を中心に、京都・大阪・名古屋まで対面 / 出張可。リモートだけでも全国対応します。</p></details><details class='faq-item'><summary>自分は IT に弱いのですが、大丈夫ですか？</summary><p>9事業のオーナーをやっているので「経営者目線」で話します。LINE / メール / ZOOM どれでも、専門用語を避けて進めます。</p></details><details class='faq-item'><summary>AI を会社で使いたいのですが、何から始めれば？</summary><p>まずは社内ドキュメントを 1 ヶ所にまとめ、RAG（社内 Q&amp;A）から導入するのを推奨しています。AIハブ自体がそのリファレンス実装になっています。</p></details></div></section><div class='watch-link-bar'><p>📂 <strong>実績・事業ポートフォリオ</strong>や <strong>講習資料</strong> はこちら</p><span style='display:flex;gap:16px;flex-wrap:wrap;'><a href='/portfolio.html'>実績一覧 →</a><a href='/lectures/index.html'>講習資料 →</a><a href='/watch/index.html'>自分ポータル →</a></span></div><section class='block' id='contact'><div class='contact-block'><h2>まずは 30 分、無料でご相談</h2><p>事業の状況・課題・予算感をヒアリングして、最適なアウトプット案をご提案します。</p><a class='contact-mail' href='mailto:goodbouldering@gmail.com'>✉ goodbouldering@gmail.com に相談する</a></div></section><footer class='site-footer'>© 2026 由井辰美 / AIハブ — Web経営コンサル · 滋賀</footer></div><div class='diagnose-modal' id='diagnoseModal' role='dialog' aria-modal='true' aria-label='コース診断'><div class='diagnose-box'><button type='button' class='diagnose-close' aria-label='閉じる'>&times;</button><div class='diagnose-head'>🔍 60秒コース診断</div><div class='diagnose-body'></div></div></div>
+<section class='hero' id='top'><div class='hero-blob b1'></div><div class='hero-blob b2'></div><div class='hero-text fade-up'><span class='eyebrow'>📍 彦根・滋賀・湖東｜現場リーダー限定ワークショップ</span><h1><span class='accent'>業務まるごと、</span><br>AIに任せる。</h1><p class='sub-catch'>彦根の対面ワークショップで、<strong>集客・人手不足・業務の自動化</strong>の仕組みを、その場で完成。</p><p class='lead'>ITの勉強はゼロ。社長の仕事は「どの業務を任せるか」を決めるだけ。<strong>週10時間の無駄</strong>を削る仕組みを、その日のうちに持ち帰れます。</p><div class='hero-actions'><a class='btn btn-primary' href='#packages'>受講プランを見る →</a><a class='btn btn-secondary' href='mailto:goodbouldering@gmail.com'>無料相談する</a><a class='btn btn-ghost' href='/admin'>🔐 管理ログイン</a></div></div><div class='hero-visual fade-up d2'><img src='https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=70' alt='彦根・滋賀の現場リーダーがAI講師と対面で自社の業務仕組み化を設計している様子' loading='eager' fetchpriority='high' decoding='async'><div class='hero-flow' aria-label='ワークショップの3ステップ'><div class='hflow-step'><span class='hflow-ico'>😵</span><div class='hflow-txt'><b>現場の課題</b><small>人手不足・残業・属人化</small></div></div><div class='hflow-arrow'>→</div><div class='hflow-step accent'><span class='hflow-ico'>🧑‍🏫</span><div class='hflow-txt'><b>対面ワークショップ</b><small>その場で一緒に設計</small></div></div><div class='hflow-arrow'>→</div><div class='hflow-step done'><span class='hflow-ico'>⚙️</span><div class='hflow-txt'><b>仕組みが完成</b><small>週10時間を削減</small></div></div></div></div></section><section class='block' id='packages'><p class='section-heading fade-up'>PACKAGES</p><h2 class='section-title fade-up d1'>AI講習・相談・伴走パック</h2><p class='section-sub fade-up d2'>現役オーナー講師による実践型。サイト構築・SEO・LLMO・補助金対応まで、3つのコースから選べます。</p><div class='packages-grid'><div class='pkg-card fade-up d1'><div class='pkg-image'><img src='https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&amp;fit=crop&amp;w=800&amp;q=70' alt='AI個別相談 60分' loading='lazy' decoding='async'><span class='pkg-cat'>個別相談</span></div><div class='pkg-body'><div class='pkg-head'><span class='pkg-icon' aria-hidden='true'>💬</span><h3 class='pkg-title'>AI個別相談 60分</h3></div><div class='pkg-meta'>⏱ 60分</div><div class='pkg-price'>2,200円〜5,500円</div><p class='pkg-desc'>経営者・専門職・初心者なんでも相談。LLMO / SEO / MEO / Claude Code 活用 / バックオフィス効率化 / 補助金申請まで、現役オーナーがその場で「困った」を解決。</p><a class='pkg-cta' href='https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/TO3XHZT6XP3OM4QBDYMW7TZP' target='_blank' rel='noopener'>予約する（Square） →</a></div></div><div class='pkg-card fade-up d2'><div class='pkg-image'><img src='https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&amp;fit=crop&amp;w=800&amp;q=70' alt='AI講習会 120分（月1回 / 定員8名）' loading='lazy' decoding='async'><span class='pkg-cat'>講習会</span></div><div class='pkg-body'><div class='pkg-head'><span class='pkg-icon' aria-hidden='true'>📚</span><h3 class='pkg-title'>AI講習会 120分（月1回 / 定員8名）</h3></div><div class='pkg-meta'>⏱ 120分</div><div class='pkg-price'>5,500円</div><span class='pkg-subsidy'>✓ 補助金対応</span><p class='pkg-desc'>彦根でAIや経営を学べる実践型講習。一般の講師が教えない「考え方とコツ」を中心に、参加者のレベルに合わせて内容を最適化。Claude Code / オフィス自動化 / 通販サイト構築まで。</p><a class='pkg-cta' href='https://minanowa.com/#events' target='_blank' rel='noopener'>次回開催を見る →</a></div></div><div class='pkg-card fade-up d3'><div class='pkg-image'><img src='https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&amp;fit=crop&amp;w=800&amp;q=70' alt='AI伴走パック 6回（補助金対象）' loading='lazy' decoding='async'><span class='pkg-cat'>伴走パック</span></div><div class='pkg-body'><div class='pkg-head'><span class='pkg-icon' aria-hidden='true'>🚀</span><h3 class='pkg-title'>AI伴走パック 6回（補助金対象）</h3></div><div class='pkg-meta'>⏱ 6ヶ月（導入相談60分から開始）</div><div class='pkg-price'>月額 100,000円（税込）× 6ヶ月</div><span class='pkg-subsidy'>✓ 補助金対応</span><p class='pkg-desc'>HP公開から事務自動化まで、技術的な難所は講師が代行・支援。AI導入・デザイン内製化・書類営業効率化・経理自動化・マーケティングを6ヶ月で一気に定着。滋賀・彦根の補助金で負担1/3以下に。</p><a class='pkg-cta' href='https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/V57YTNICA2KV2TN7ENARAVQE' target='_blank' rel='noopener'>導入相談（無料・60分） →</a></div></div></div><div class='packages-cta-row fade-up d4'><button type='button' class='btn btn-diagnose diagnose-open'>🔍 60秒診断｜あなたに合うプランは？</button><span class='packages-cta-hint'>3つの質問に答えるだけ。最適なコースをその場でご提案します。</span></div><p class='packages-note fade-up d4'>🛡 <strong>滋賀県未来投資総合補助金</strong>（最大50万円・補助率2/3／一次：3/2〜3/31、二次：6/8〜7/17）と <strong>彦根市小規模事業者デジタル化推進補助金</strong>（最大20万円）に対応。申請サポートも個別相談で受け付けます。</p></section><section class='block' id='flow'><p class='section-heading'>FLOW</p><h2 class='section-title'>ご依頼の流れ</h2><p class='section-sub'>ご相談から公開・運用まで、最短 2 週間で動き始めます。</p><div class='flow-list'><div class='flow-step'><h3>ご相談</h3><p>メール／LINEで現状をヒアリング。事業内容・課題・予算感を 30 分でつかみます。</p></div><div class='flow-step'><h3>提案・見積</h3><p>課題に対する具体的なアウトプット案（LP / 業務システム / 研修 等）と費用感を提示。</p></div><div class='flow-step'><h3>制作・実装</h3><p>Next.js + Supabase + Vercel で構築。PR プレビューで毎日確認できる開発フロー。</p></div><div class='flow-step'><h3>運用・伴走</h3><p>公開後も月次レビューで KPI を一緒に確認。必要な機能追加・運用代行も対応。</p></div></div></section><section class='block' id='speaker'><p class='section-heading fade-up'>SPEAKER</p><h2 class='section-title fade-up d1'>講師紹介</h2><p class='section-sub fade-up d2'>AI 活用の啓発・講習・地域コミュニティ運営・複数事業のマーケ支援を行う実践者。</p><div class='profile-block' style='display:block;'><div class='speaker-intro-grid'><div><h3>由井 辰美</h3><p style='font-weight:700;color:var(--primary);margin:0 0 16px;'>AI講師 / マーケター / グッぼる代表</p><p style='line-height:1.9;'>滋賀県彦根市を拠点に、ボルダリングカフェ「グッぼる」を運営するかたわら、 AI 活用の啓発・講習・地域コミュニティ運営・複数事業者のマーケティング支援を行う。 「自分のAIをひとつに集める場所」をテーマにした <strong>AIハブ</strong> を運営し、 AI / SNS / LLMO の最新動向を一次情報ベースで発信している。</p><p style='font-weight:700;color:var(--text);margin-top:16px;'>「異端OK、数字根拠で経営を変える」</p></div><div class='profile-avatar'>🧑‍🏫</div></div><div class='stats-strip' style='margin:32px 0 8px;'><div class='stat'><div class='num'>75%</div><div class='label'>製造コスト削減達成</div></div><div class='stat'><div class='num'>40+</div><div class='label'>ジムシステム提供</div></div><div class='stat'><div class='num'>120</div><div class='label'>シューズモデル在庫</div></div><div class='stat'><div class='num'>90%</div><div class='label'>機器稼働率達成</div></div></div><div style='display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:24px;'><a class='btn btn-primary' href='/speaker.html'>🎤 講師紹介をもっと詳しく</a><a class='btn btn-secondary' href='/profile.html'>📜 経歴をもっと詳しく</a></div></div></section><section class='block' id='faq'><p class='section-heading'>FAQ</p><h2 class='section-title'>よくある質問</h2><div class='faq-list'><details class='faq-item'><summary>料金はどれくらいですか？</summary><p>LP 1本（簡易ヒアリング込み）で 18〜30万円が目安です。業務システム・EC 統合・社内RAG は内容により別途お見積もり。補助金併用を前提に組むことが多いです。</p></details><details class='faq-item'><summary>対応エリアは？</summary><p>滋賀県を中心に、京都・大阪・名古屋まで対面 / 出張可。リモートだけでも全国対応します。</p></details><details class='faq-item'><summary>自分は IT に弱いのですが、大丈夫ですか？</summary><p>9事業のオーナーをやっているので「経営者目線」で話します。LINE / メール / ZOOM どれでも、専門用語を避けて進めます。</p></details><details class='faq-item'><summary>AI を会社で使いたいのですが、何から始めれば？</summary><p>まずは社内ドキュメントを 1 ヶ所にまとめ、RAG（社内 Q&amp;A）から導入するのを推奨しています。AIハブ自体がそのリファレンス実装になっています。</p></details></div></section><div class='watch-link-bar'><p>📂 <strong>実績・事業ポートフォリオ</strong>や <strong>講習資料</strong> はこちら</p><span style='display:flex;gap:16px;flex-wrap:wrap;'><a href='/portfolio.html'>実績一覧 →</a><a href='/lectures/index.html'>講習資料 →</a><a href='/watch/index.html'>自分ポータル →</a></span></div><section class='block' id='contact'><div class='contact-block'><h2>まずは 30 分、無料でご相談</h2><p>事業の状況・課題・予算感をヒアリングして、最適なアウトプット案をご提案します。</p><a class='contact-mail' href='mailto:goodbouldering@gmail.com'>✉ goodbouldering@gmail.com に相談する</a></div></section><footer class='site-footer'>© 2026 由井辰美 / AIハブ — Web経営コンサル · 滋賀</footer></div><div class='diagnose-modal' id='diagnoseModal' role='dialog' aria-modal='true' aria-label='コース診断'><div class='diagnose-box'><button type='button' class='diagnose-close' aria-label='閉じる'>&times;</button><div class='diagnose-head'>🔍 60秒コース診断</div><div class='diagnose-body'></div></div></div>
 <script>
 (function(){
   var header = document.getElementById('site-header');
@@ -979,32 +996,6 @@ footer.site-footer {
       if (!ticking) { window.requestAnimationFrame(updateParallax); ticking = true; }
     }, { passive: true });
     updateParallax();
-  }
-
-  // ---- Typewriter rotate (hero sub-catch のキーワードを打ち替える)
-  var typeEl = document.querySelector('.type-rotate');
-  if (typeEl && !prefersReduced) {
-    var words = (typeEl.getAttribute('data-words') || '').split('｜').filter(Boolean);
-    if (words.length > 1) {
-      var wi = 0, ci = 0, deleting = false;
-      typeEl.textContent = '';
-      typeEl.classList.add('typing');
-      var step = function(){
-        var word = words[wi];
-        if (!deleting) {
-          ci++;
-          typeEl.textContent = word.slice(0, ci);
-          if (ci >= word.length) { deleting = true; return setTimeout(step, 1600); }
-          return setTimeout(step, 110);
-        } else {
-          ci--;
-          typeEl.textContent = word.slice(0, ci);
-          if (ci <= 0) { deleting = false; wi = (wi + 1) % words.length; return setTimeout(step, 320); }
-          return setTimeout(step, 55);
-        }
-      };
-      setTimeout(step, 900);
-    }
   }
 
   // ---- Dark mode toggle (localStorage 永続 + システム設定追従)

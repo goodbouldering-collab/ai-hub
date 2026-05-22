@@ -18,7 +18,7 @@
  */
 
 import { ValidationError, withAdmin } from "../_lib/http.js";
-import { templateIdFor } from "../_lib/config.js";
+import { groupPageUrl, templateIdFor } from "../_lib/config.js";
 import { getTemplatePage, updateTemplatePage } from "../_lib/colorme.js";
 import {
   ensureOuterBlock,
@@ -63,6 +63,7 @@ export default withAdmin({ method: "POST" }, async ({ res, body }) => {
     pageType: PAGE_TYPE,
     blockSize: articleHtml.length,
     pageSize: newPageHtml.length,
+    liveUrl: groupPageUrl(parentGroupId),
   });
 });
 

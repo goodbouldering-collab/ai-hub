@@ -356,6 +356,15 @@
       <button id="btn-unpublish-live" class="danger">🗑 公開取り消し</button>
     </div>
     <small>※ 記事は対象親グループのページ表示時のみ Smarty 条件で出る</small>
+    <div id="live-url-area" style="display:none; margin-top:12px; padding:12px;
+      background:rgba(126,235,163,.08); border:1px solid rgba(126,235,163,.4);
+      border-radius:10px;">
+      <div style="font-size:12px; color:var(--muted); margin-bottom:6px;">✅ 完成URL（公開先ページ）</div>
+      <a id="live-url-link" href="#" target="_blank" rel="noopener" style="color:var(--ok);
+        font-family:'SFMono-Regular',Consolas,monospace; font-size:13px; word-break:break-all;
+        text-decoration:underline;"></a>
+      <button id="btn-copy-live-url" style="margin-left:8px; padding:4px 10px; font-size:11px;">📋 コピー</button>
+    </div>
     <pre class="log" id="publish-log">操作ログ…</pre>
   </div>
 </div>
@@ -779,6 +788,12 @@ async function publish(target) {
       body: JSON.stringify({ parentGroupId: Number(parentGroupId), groupId, title, html, publishedAt, target }),
     });
     log(`[${target}] 公開OK pageType=${out.pageType} pageSize=${out.pageSize}`);
+    if (out.liveUrl) {
+      $("live-url-link").href = out.liveUrl;
+      $("live-url-link").textContent = out.liveUrl;
+      $("live-url-area").style.display = "block";
+      log(`[${target}] 完成URL: ${out.liveUrl}`);
+    }
     if (target === "live") {
       try {
         await api("/api/admin/groups", {
@@ -810,8 +825,20 @@ $("btn-unpublish-live").addEventListener("click", async () => {
       body: JSON.stringify({ groupId, target: "live", hideGroup: true }),
     });
     log("[live] 削除完了 + display_state=hidden");
+    $("live-url-area").style.display = "none";
   } catch (e) {
     log("[live] 削除失敗: " + e.message);
+  }
+});
+
+$("btn-copy-live-url").addEventListener("click", async () => {
+  const url = $("live-url-link").href;
+  if (!url) return;
+  try {
+    await navigator.clipboard.writeText(url);
+    log("完成URL をクリップボードにコピーしました");
+  } catch (e) {
+    log("コピー失敗: " + e.message);
   }
 });
 

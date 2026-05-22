@@ -1,6 +1,41 @@
 {
-  "generated_at": "2026-05-22T19:37:08Z",
+  "generated_at": "2026-05-22T22:50:49Z",
   "recent_works": [
+    {
+      "date": "2026-05-22",
+      "filename": "2026-05-22-not-este-top-redesign.md",
+      "title": "Notエステ トップページ刷新（グラスモーフィズム＋インタラクティブ＋SEO）",
+      "business": "not",
+      "path": "/ops?file=2026-05-22-not-este-top-redesign.md#sec-docs"
+    },
+    {
+      "date": "2026-05-22",
+      "filename": "2026-05-22-not-este-design-align-n-design.md",
+      "title": "Notエステ トップページデザインを N-デザインのトーンに寄せる改修",
+      "business": "not",
+      "path": "/ops?file=2026-05-22-not-este-design-align-n-design.md#sec-docs"
+    },
+    {
+      "date": "2026-05-22",
+      "filename": "2026-05-22-n-design-sectionnav-dot-align.md",
+      "title": "N-デザイン サイド縦ステップナビのドット列ズレ修正",
+      "business": "Nデザイン",
+      "path": "/ops?file=2026-05-22-n-design-sectionnav-dot-align.md#sec-docs"
+    },
+    {
+      "date": "2026-05-22",
+      "filename": "2026-05-22-n-design-nav-audit-fix.md",
+      "title": "N-デザイン トップのナビ総点検と修正（番号二重基準・サービス導線）",
+      "business": "Nデザイン",
+      "path": "/ops?file=2026-05-22-n-design-nav-audit-fix.md#sec-docs"
+    },
+    {
+      "date": "2026-05-22",
+      "filename": "2026-05-22-api-mcp-automation-inventory.md",
+      "title": "API / MCP / トークン 自動化棚卸し（consul 全事業横断・2026-05-22）",
+      "business": "api",
+      "path": "/ops?file=2026-05-22-api-mcp-automation-inventory.md#sec-docs"
+    },
     {
       "date": "2026-05-22",
       "filename": "2026-05-22-aihub-top-simplify-by-agent.md",
@@ -10,55 +45,41 @@
     },
     {
       "date": "2026-05-22",
+      "filename": "2026-05-22-aihub-merge-open-prs.md",
+      "title": "2026-05-22 AIハブ 残オープンPR 3件を処理（コンフリクト解消含む）",
+      "business": "AIハブ",
+      "path": "/ops?file=2026-05-22-aihub-merge-open-prs.md#sec-docs"
+    },
+    {
+      "date": "2026-05-22",
       "filename": "2026-05-22-aihub-hero-simplify-visual-rich.md",
       "title": "2026-05-22 AIハブ ヒーロー簡潔化 + 画像増量 + パララックス演出",
       "business": "AIハブ",
       "path": "/ops?file=2026-05-22-aihub-hero-simplify-visual-rich.md#sec-docs"
-    },
-    {
-      "date": "2026-05-21",
-      "filename": "2026-05-21-minanowa-admin-save-and-hero-dedup.md",
-      "title": "みんなのWA: イベント保存401修正 + ヒーロー押出一元化",
-      "business": "みんなのWA",
-      "path": "/ops?file=2026-05-21-minanowa-admin-save-and-hero-dedup.md#sec-docs"
-    },
-    {
-      "date": "2026-05-21",
-      "filename": "2026-05-21-aihub-hero-pattern1-interactive.md",
-      "title": "2026-05-21 AIハブ ヒーロー刷新（パターン1）+ iPhone対応 + インタラクティブ強化",
-      "business": "AIハブ",
-      "path": "/ops?file=2026-05-21-aihub-hero-pattern1-interactive.md#sec-docs"
-    },
-    {
-      "date": "2026-05-21",
-      "filename": "2026-05-21-aihub-hero-copy-3patterns.md",
-      "title": "AIハブ ヒーローコピー 3パターン（CEO 提供・2026-05-21）",
-      "business": "AIハブ",
-      "path": "/ops?file=2026-05-21-aihub-hero-copy-3patterns.md#sec-docs"
-    },
-    {
-      "date": "2026-05-20",
-      "filename": "2026-05-20-trust-saas-migration-comparison.md",
-      "title": "トラスト 戦略C 候補SaaS 比較表（らくしふ／ほのぼの／ケアコラボ）",
-      "business": "トラスト",
-      "path": "/ops?file=2026-05-20-trust-saas-migration-comparison.md#sec-docs"
-    },
-    {
-      "date": "2026-05-20",
-      "filename": "2026-05-20-successor-outreach-email-draft.md",
-      "title": "後継エンジニア探索 — 知人ネットワーク向け声がけメール文面",
-      "business": "successor",
-      "path": "/ops?file=2026-05-20-successor-outreach-email-draft.md#sec-docs"
-    },
-    {
-      "date": "2026-05-20",
-      "filename": "2026-05-20-successor-engineer-strategy.md",
-      "title": "後継エンジニア戦略 — 戦略B 5事業の出口設計（advisor 提言）",
-      "business": "successor",
-      "path": "/ops?file=2026-05-20-successor-engineer-strategy.md#sec-docs"
     }
   ],
   "tasks_open": [
+    {
+      "date": "2026-05-22",
+      "filename": "2026-05-22-api-mcp-automation-inventory.md",
+      "business": "api",
+      "snippet": "| `GITHUB_PERSONAL_ACCESS_TOKEN` | GitHub | リポ push / Actions 連携 / gh CLI | GitHub Developer settings | classic か fine-grained か要確認 |",
+      "path": "/ops?file=2026-05-22-api-mcp-automation-inventory.md#sec-docs"
+    },
+    {
+      "date": "2026-05-22",
+      "filename": "2026-05-22-api-mcp-automation-inventory.md",
+      "business": "api",
+      "snippet": "| 高 | `CONSUL_REPO_PAT` 失効疑い（前台帳より継続）。sync-consul-docs.yml 不動作 | 未対応 |",
+      "path": "/ops?file=2026-05-22-api-mcp-automation-inventory.md#sec-docs"
+    },
+    {
+      "date": "2026-05-22",
+      "filename": "2026-05-22-api-mcp-automation-inventory.md",
+      "business": "api",
+      "snippet": "| 中 | `THREADS_ACCESS_TOKEN` 60日失効の棚卸し・カレンダー登録未整備 | 未対応 |",
+      "path": "/ops?file=2026-05-22-api-mcp-automation-inventory.md#sec-docs"
+    },
     {
       "date": "2026-05-20",
       "filename": "2026-05-20-successor-outreach-email-draft.md",
@@ -177,45 +198,28 @@
       "business": "secrets",
       "snippet": "| 鍵名 | 保管場所 | 発行元 | 有効期限 | ローテ手順 |",
       "path": "/ops?file=2026-05-17-secrets-inventory.md#sec-docs"
-    },
-    {
-      "date": "2026-05-17",
-      "filename": "2026-05-17-n-design-estimate.md",
-      "business": "Nデザイン",
-      "snippet": "| 見積有効期限 | 発行日から30日（2026年6月16日まで） |",
-      "path": "/ops?file=2026-05-17-n-design-estimate.md#sec-docs"
-    },
-    {
-      "date": "2026-05-17",
-      "filename": "2026-05-17-n-design-estimate.md",
-      "business": "Nデザイン",
-      "snippet": "有効期限：2026年6月16日",
-      "path": "/ops?file=2026-05-17-n-design-estimate.md#sec-docs"
-    },
-    {
-      "date": "2026-05-17",
-      "filename": "2026-05-17-ai-hub-cleanup-inventory.md",
-      "business": "AIハブ",
-      "snippet": "| ブロック | 中身 | F 回答の反映 |",
-      "path": "/ops?file=2026-05-17-ai-hub-cleanup-inventory.md#sec-docs"
     }
   ],
   "per_business_recent": [
     {
       "business": "AIハブ",
-      "count": 12
+      "count": 13
+    },
+    {
+      "business": "Nデザイン",
+      "count": 6
     },
     {
       "business": "みんなのWA",
       "count": 6
     },
     {
-      "business": "Nデザイン",
-      "count": 4
-    },
-    {
       "business": "github",
       "count": 3
+    },
+    {
+      "business": "not",
+      "count": 2
     },
     {
       "business": "トラスト",
@@ -228,6 +232,10 @@
     {
       "business": "handoff",
       "count": 2
+    },
+    {
+      "business": "api",
+      "count": 1
     },
     {
       "business": "client",
@@ -309,62 +317,13 @@
     },
     {
       "date": "2026-05-22",
-      "count": 2
+      "count": 8
     }
   ],
-  "cma_apps": [
-    {
-      "name": "App1_CommunityBoard",
-      "last_run": "2026-04-11",
-      "kind": "FastAPI Hello World",
-      "status": "✅ 完了"
-    },
-    {
-      "name": "App2_TodoAPI",
-      "last_run": "2026-04-11",
-      "kind": "FastAPI ToDo CRUD",
-      "status": "✅ 完了"
-    },
-    {
-      "name": "App3_WeatherAPI",
-      "last_run": "2026-04-11",
-      "kind": "FastAPI モック天気",
-      "status": "✅ 完了"
-    },
-    {
-      "name": "App4_CounterAPI",
-      "last_run": "2026-04-11",
-      "kind": "FastAPI カウンタ",
-      "status": "✅ 動作確認のみ（ポート衝突あり）"
-    },
-    {
-      "name": "SiteCrawlChecker",
-      "last_run": "2026-04-11",
-      "kind": "ブラウザ QA 巡回",
-      "status": "⚠️ クリティカル所見あり"
-    },
-    {
-      "name": "App_MinanowaPolish",
-      "last_run": "2026-04-16",
-      "kind": "Next.js 16 + Supabase 改善 10 タスク",
-      "status": "✅ クラウド側完了・**納品物は Render 前提で陳腐化**"
-    },
-    {
-      "name": "gtn_ai_mvp",
-      "last_run": "2026-04-16 推定",
-      "kind": "AI パイプライン",
-      "status": "❌ 失敗（0 バイト出力）/ プロジェクト自体終了"
-    },
-    {
-      "name": "vibe_0514_051921",
-      "last_run": "2026-05-14",
-      "kind": "Next.js 16 Hello World（Vercel 集約版検証）",
-      "status": "✅ 完了・本番デプロイ稼働中（[cma-vibe-0514-051921.vercel.app](https://cma-vibe-0514-051921.vercel.app)）"
-    }
-  ],
+  "cma_apps": [],
   "totals": {
-    "consul_work_total": 75,
-    "recent_7d_total": 37,
+    "consul_work_total": 81,
+    "recent_7d_total": 43,
     "tasks_open_total": 20
   }
 }

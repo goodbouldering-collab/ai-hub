@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/Screenshot-2026-05-22-at-8.44.28AM.png?quality=90&amp;strip=all&amp;crop=0%2C13.100144814526%2C100%2C73.799710370948&amp;w=1200",
-      "published": "2026-05-22T16:39:54-04:00"
+      "published": "2026-05-22T16:39:54-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "27c5dcf5fd7fe193",
@@ -37,7 +39,9 @@
         "freshness": 10.0
       },
       "thumbnail": "",
-      "published": "2026-05-22T22:01:31+00:00"
+      "published": "2026-05-22T22:01:31+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "faaa4275736e1be3",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/VRG_Illo_STK022_K_Radtke_Musk_Smiles.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-05-22T13:17:06-04:00"
+      "published": "2026-05-22T13:17:06-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "a24b778fde5b9607",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/257664_7_writing_apps_CVirginia.gif?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-05-22T10:30:00-04:00"
+      "published": "2026-05-22T10:30:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "27d8fc459407a0be",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/STK467_AI_MUSIC_CVirginia_A.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-05-22T10:20:00-04:00"
+      "published": "2026-05-22T10:20:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "2b5e8df067eb31c9",
@@ -113,7 +123,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/gettyimages-2272013055.jpg?quality=90&amp;strip=all&amp;crop=0%2C12.56851276178%2C100%2C74.86297447644&amp;w=1200",
-      "published": "2026-05-22T07:05:25-04:00"
+      "published": "2026-05-22T07:05:25-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "8146537c179fa046",
@@ -132,7 +144,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/7-ozeWadx1k/hqdefault.jpg",
-      "published": "2026-05-22T11:00:15+00:00"
+      "published": "2026-05-22T11:00:15+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "9d3c8d6b82a3b27c",
@@ -151,7 +165,9 @@
         "freshness": 3.0
       },
       "thumbnail": "",
-      "published": "2026-05-22T04:48:32+00:00"
+      "published": "2026-05-22T04:48:32+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "1a12d94c0da611dc",
@@ -170,7 +186,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/TJbiuAxcve0/hqdefault.jpg",
-      "published": "2026-05-22T03:08:10+00:00"
+      "published": "2026-05-22T03:08:10+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "eef2a1fc969ebadd",
@@ -189,7 +207,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/v1at8wYx9g4/hqdefault.jpg",
-      "published": "2026-05-22T10:00:02+00:00"
+      "published": "2026-05-22T10:00:02+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     }
   ]
 }

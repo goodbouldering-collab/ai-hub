@@ -452,6 +452,39 @@ header.site-header.scrolled {
 }
 @media (max-width: 900px) { .hero-actions { justify-content: center; } }
 
+/* ヒーロー起点の AIレベル診断（第1問） */
+.hero-quiz {
+  margin-top: 8px; padding: 20px; border: 1px solid var(--line);
+  border-left: 3px solid var(--primary); background: var(--bg-elev);
+}
+.hq-label {
+  font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 14px;
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+}
+.hq-mono {
+  font-family: var(--mono); font-size: 10.5px; font-weight: 700; letter-spacing: .1em;
+  color: var(--primary-soft); border: 1px solid var(--primary); padding: 3px 8px;
+}
+.hq-opts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+@media (max-width: 560px) { .hq-opts { grid-template-columns: 1fr; } }
+.hq-opt {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 6px;
+  padding: 14px 14px; background: var(--bg-base); border: 1px solid var(--line);
+  color: var(--text); font-size: 13.5px; font-weight: 600; text-align: left;
+  cursor: pointer; transition: border-color .15s, transform .12s, background .15s;
+}
+.hq-opt:hover { border-color: var(--primary); transform: translateY(-2px); background: var(--primary-bg); }
+.hq-lv {
+  font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: .08em;
+  color: var(--primary-soft); border: 1px solid var(--primary); padding: 1px 7px;
+}
+.hq-sub {
+  display: inline-block; margin-top: 12px; font-size: 11.5px; color: var(--muted);
+  text-decoration: none;
+}
+.hq-sub:hover { color: var(--primary); }
+@media (max-width: 900px) { .hero-quiz { text-align: left; } .hq-label { justify-content: flex-start; } }
+
 /* hero visual (右側ビジュアル) */
 .hero-visual {
   position: relative; aspect-ratio: 4/5; max-width: 460px; justify-self: end;
@@ -737,12 +770,16 @@ section.block + section.block { border-top: 1px solid var(--line); }
 
 /* ---- packages (AI講習・相談・伴走パック) ---- */
 .packages-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 12px;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 12px;
 }
-@media (max-width: 900px) { .packages-grid { grid-template-columns: 1fr; } }
+@media (max-width: 1100px) { .packages-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .packages-grid { grid-template-columns: 1fr; } }
+/* 診断結果で該当レベル以外を減光（.pkg-filter-active 時のみ） */
+.packages-grid.pkg-filter-active .pkg-card { opacity: .38; transition: opacity .35s ease; }
+.packages-grid.pkg-filter-active .pkg-card.pkg-match { opacity: 1; outline: 2px solid var(--primary); outline-offset: 2px; }
 .pkg-card {
-  background: linear-gradient(180deg, rgba(255,255,255,.7), rgba(255,255,255,.45));
-  border: 1px solid rgba(45,203,161,.12);
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
   border-radius: 6px;
   display: flex; flex-direction: column;
   box-shadow: var(--shadow-card);
@@ -781,7 +818,15 @@ section.block + section.block { border-top: 1px solid var(--line); }
   padding: 4px 10px; border-radius: 6px;
 }
 .pkg-title { font-size: 16px; font-weight: 800; color: var(--text); line-height: 1.4; margin: 2px 0 0; flex: 1; }
-.pkg-meta { font-size: 12px; color: var(--muted); }
+.pkg-meta { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.pkg-level {
+  font-family: var(--mono); font-size: 10.5px; font-weight: 700; letter-spacing: .08em;
+  padding: 2px 8px; border: 1px solid var(--primary); color: var(--primary-soft);
+  border-radius: 0;
+}
+.pkg-level[data-level="beginner"] { opacity: 1; }
+.pkg-level[data-level="intermediate"] { opacity: 1; }
+.pkg-level[data-level="advanced"] { opacity: 1; }
 .pkg-price { font-size: 19px; font-weight: 900; color: var(--primary); }
 .pkg-subsidy {
   display: inline-flex; align-items: center; gap: 4px;
@@ -865,9 +910,11 @@ section.block + section.block { border-top: 1px solid var(--line); }
 }
 .diag-opt:hover { border-color: var(--primary); background: var(--primary-bg); transform: translateX(2px); }
 .diag-result { text-align: center; }
-.diag-result-badge { font-size: 12px; font-weight: 700; color: var(--primary); background: var(--primary-bg); display: inline-block; padding: 4px 12px; border-radius: 6px; margin-bottom: 10px; }
-.diag-result-name { font-size: 22px; font-weight: 900; color: var(--text); margin: 6px 0; }
-.diag-result-desc { font-size: 14px; line-height: 1.7; color: var(--text-soft); margin: 0 0 18px; }
+.diag-result-badge { font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .1em; color: var(--primary-soft); border: 1px solid var(--primary); display: inline-block; padding: 4px 12px; border-radius: 0; margin-bottom: 12px; }
+.diag-result-lv { font-size: 14px; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+.diag-result-name { font-family: var(--serif); font-size: 26px; font-weight: 900; color: var(--text); margin: 6px 0; line-height: 1.3; }
+.diag-result-desc { font-size: 14px; line-height: 1.8; color: var(--text-soft); margin: 0 0 18px; }
+.diag-result .btn { display: flex; width: 100%; justify-content: center; margin-bottom: 8px; }
 .diag-result .btn { display: inline-flex; }
 .diag-restart { display: block; margin: 14px auto 0; border: none; background: none; color: var(--muted); font-size: 12.5px; text-decoration: underline; cursor: pointer; }
 
@@ -1328,60 +1375,109 @@ HEADER_JS = """
     });
   })();
 
-  // ---- 診断チャット (2-3問でおすすめコースを判定)
+  // ---- AIレベル診断 (3段階: 初級/中級/上級。ヒーロー第1問から起動)
   (function(){
-    var openBtn = document.querySelector('.diagnose-open');
     var modal = document.getElementById('diagnoseModal');
-    if (!openBtn || !modal) return;
+    if (!modal) return;
+    var body = modal.querySelector('.diagnose-body');
+
+    // 各設問の選択肢にレベルスコアを持たせ、合計で初級/中級/上級を判定
     var QUESTIONS = [
-      { q: 'いま一番の課題はどれに近いですか？', a: [
-        { label: 'まず何ができるか相談したい', score: 'consultation' },
-        { label: '自分や社員のスキルを底上げしたい', score: 'workshop' },
-        { label: '会社全体の業務を自動化・仕組み化したい', score: 'package' },
+      { q: 'いま、AIをどれくらい使っていますか？', a: [
+        { label: 'ほぼ使っていない', lv: 'beginner' },
+        { label: 'ChatGPTなどを自己流で時々', lv: 'intermediate' },
+        { label: '一部業務で日常的に使えている', lv: 'advanced' },
       ]},
-      { q: 'どれくらいのスパンで取り組みたいですか？', a: [
-        { label: 'まず1回・短時間で', score: 'consultation' },
-        { label: '月1回ペースで継続的に学びたい', score: 'workshop' },
-        { label: '数ヶ月かけて本格的に組織へ実装したい', score: 'package' },
+      { q: '一番かなえたいことは？', a: [
+        { label: 'まず何ができるか知りたい', lv: 'beginner' },
+        { label: '自分や社員のスキルを底上げしたい', lv: 'intermediate' },
+        { label: '会社の業務を仕組み化・自動化したい', lv: 'advanced' },
       ]},
-      { q: '補助金の活用に興味はありますか？', a: [
-        { label: '今は考えていない', score: 'consultation' },
-        { label: '使えるなら使いたい', score: 'workshop' },
-        { label: '補助金前提でしっかり投資したい', score: 'package' },
+      { q: 'どのスパンで取り組みたい？', a: [
+        { label: 'まず1回・短時間で', lv: 'beginner' },
+        { label: '半日〜月1回で集中的に', lv: 'intermediate' },
+        { label: '数ヶ月かけて本格的に', lv: 'advanced' },
       ]},
     ];
     var RESULT = {
-      consultation: { name: 'AI個別相談 60分', desc: 'まず気軽に相談から。あなたのビジネスに最適なAI活用を最短でアドバイスします。', anchor: '#packages' },
-      workshop:     { name: 'AI講習会 120分', desc: '月1回の実践型講習。考え方とコツを学びながら現場で使える力を養います。', anchor: '#packages' },
-      package:      { name: 'AI伴走パック 6回', desc: '6ヶ月で組織にAIを定着。補助金で負担1/3以下に。本格実装ならこれ。', anchor: '#packages' },
+      beginner: {
+        badge: '初級', title: 'まずは「効く実感」から',
+        name: 'AI個別相談 60分',
+        desc: '何ができるかを30〜60分で具体化。あなたの業務に効くAI活用を最短でアドバイスします。',
+        level_id: 'beginner'
+      },
+      intermediate: {
+        badge: '中級', title: '「使える」を「仕組み」に',
+        name: 'AI仕組み化ワークショップ 半日 / AI講習会',
+        desc: '自己流から脱却し、1業務をその場で仕組み化。属人化を断ち切り明日から動くマニュアルごと持ち帰れます。',
+        level_id: 'intermediate'
+      },
+      advanced: {
+        badge: '上級', title: '組織のインフラにする',
+        name: 'AI伴走パック 6回',
+        desc: '6ヶ月で組織にAIを定着。導入・内製化・自動化まで伴走。滋賀・彦根の補助金で負担1/3以下に。',
+        level_id: 'advanced'
+      }
     };
-    var step = 0, scores = { consultation:0, workshop:0, package:0 };
-    var body = modal.querySelector('.diagnose-body');
+    var ORDER = ['beginner','intermediate','advanced'];
+
+    var step = 0, scores = { beginner:0, intermediate:0, advanced:0 };
+
     function render(){
       if (step < QUESTIONS.length) {
         var Q = QUESTIONS[step];
-        var html = '<div class="diag-progress">質問 ' + (step+1) + ' / ' + QUESTIONS.length + '</div>';
-        html += '<h3 class="diag-q">' + Q.q + '</h3><div class="diag-opts">';
-        Q.a.forEach(function(opt, i){ html += '<button class="diag-opt" data-score="' + opt.score + '">' + opt.label + '</button>'; });
-        html += '</div>';
-        body.innerHTML = html;
+        var h = '<div class="diag-progress">STEP ' + (step+1) + ' / ' + QUESTIONS.length + '</div>';
+        h += '<h3 class="diag-q">' + Q.q + '</h3><div class="diag-opts">';
+        Q.a.forEach(function(opt){ h += '<button class="diag-opt" data-lv="' + opt.lv + '">' + opt.label + '</button>'; });
+        h += '</div>';
+        body.innerHTML = h;
       } else {
-        var best = Object.keys(scores).sort(function(a,b){ return scores[b]-scores[a]; })[0];
+        // 同点は「より高いレベル」を優先（ORDER後方優先）
+        var best = ORDER[0], bestScore = -1;
+        ORDER.forEach(function(k){ if (scores[k] >= bestScore) { bestScore = scores[k]; best = k; } });
         var r = RESULT[best];
-        body.innerHTML = '<div class="diag-result"><div class="diag-result-badge">あなたへのおすすめ</div>' +
+        body.innerHTML =
+          '<div class="diag-result">' +
+          '<div class="diag-result-badge">あなたは ' + r.badge + ' タイプ</div>' +
+          '<div class="diag-result-lv">' + r.title + '</div>' +
           '<h3 class="diag-result-name">' + r.name + '</h3>' +
           '<p class="diag-result-desc">' + r.desc + '</p>' +
-          '<a class="btn btn-primary" href="' + r.anchor + '" data-close-diag>このプランを見る →</a>' +
-          '<button class="diag-restart" type="button">もう一度診断する</button></div>';
+          '<a class="btn btn-primary" href="#packages" data-close-diag data-focus-level="' + r.level_id + '">この講座を見る →</a>' +
+          '<a class="btn btn-secondary" href="mailto:goodbouldering@gmail.com" data-close-diag>無料で相談する</a>' +
+          '<button class="diag-restart" type="button">もう一度診断する</button>' +
+          '</div>';
       }
     }
-    function open(){ step = 0; scores = { consultation:0, workshop:0, package:0 }; render(); modal.classList.add('open'); }
+    // start(preLv): ヒーロー第1問で選んだレベルを1問目の回答として引き継ぐ
+    function open(preLv){
+      step = 0; scores = { beginner:0, intermediate:0, advanced:0 };
+      if (preLv && scores.hasOwnProperty(preLv)) { scores[preLv]++; step = 1; }
+      render(); modal.classList.add('open');
+    }
     function close(){ modal.classList.remove('open'); }
-    openBtn.addEventListener('click', open);
+
+    // PACKAGES の該当レベルをハイライト
+    function focusLevel(lv){
+      var grid = document.querySelector('.packages-grid');
+      if (!grid) return;
+      grid.classList.add('pkg-filter-active');
+      grid.querySelectorAll('.pkg-card').forEach(function(c){
+        c.classList.toggle('pkg-match', c.getAttribute('data-level') === lv);
+      });
+    }
+
+    // 起動口: PACKAGESの診断ボタン + ヒーロー第1問
+    document.addEventListener('click', function(e){
+      var dOpen = e.target.closest('.diagnose-open');
+      if (dOpen) { open(dOpen.getAttribute('data-prelevel') || null); return; }
+    });
     modal.addEventListener('click', function(e){
-      if (e.target === modal || e.target.closest('.diagnose-close') || e.target.closest('[data-close-diag]')) { close(); return; }
+      if (e.target === modal || e.target.closest('.diagnose-close')) { close(); return; }
+      var focusBtn = e.target.closest('[data-focus-level]');
+      if (focusBtn) { focusLevel(focusBtn.getAttribute('data-focus-level')); close(); return; }
+      if (e.target.closest('[data-close-diag]')) { close(); return; }
       var opt = e.target.closest('.diag-opt');
-      if (opt) { scores[opt.getAttribute('data-score')]++; step++; render(); return; }
+      if (opt) { scores[opt.getAttribute('data-lv')]++; step++; render(); return; }
       if (e.target.closest('.diag-restart')) { open(); }
     });
   })();
@@ -1412,10 +1508,18 @@ def _render_hero() -> str:
         "ITの勉強はゼロ。社長の仕事は「どの業務を任せるか」を決めるだけ。"
         "<strong>週10時間の無駄</strong>を削る仕組みを、その日のうちに持ち帰れます。"
         "</p>"
-        "<div class='hero-actions'>"
-        "<a class='btn btn-primary' href='#packages'>受講プランを見る →</a>"
-        f"<a class='btn btn-secondary' href='mailto:{html.escape(OWNER_EMAIL)}'>無料相談する</a>"
-        "<a class='btn btn-ghost' href='/admin'>🔐 管理ログイン</a>"
+        # ヒーロー起点の AIレベル診断（第1問を常時表示）
+        "<div class='hero-quiz'>"
+        "<div class='hq-label'><span class='hq-mono'>30秒 AI診断</span>いま、AIをどれくらい使っていますか？</div>"
+        "<div class='hq-opts'>"
+        "<button type='button' class='hq-opt diagnose-open' data-prelevel='beginner'>"
+        "<span class='hq-lv'>初級</span>ほぼ使っていない</button>"
+        "<button type='button' class='hq-opt diagnose-open' data-prelevel='intermediate'>"
+        "<span class='hq-lv'>中級</span>自己流で時々使う</button>"
+        "<button type='button' class='hq-opt diagnose-open' data-prelevel='advanced'>"
+        "<span class='hq-lv'>上級</span>一部業務で日常的に</button>"
+        "</div>"
+        "<a class='hq-sub' href='/admin'>🔐 管理ログイン</a>"
         "</div>"
         "</div>"
         "<div class='hero-visual fade-up d2'>"
@@ -1535,6 +1639,8 @@ def _render_courses_packages() -> str:
         {
             "icon": "💬",
             "cat": "個別相談",
+            "level": "初級",
+            "level_id": "beginner",
             "title": "AI個別相談 60分",
             "price": "2,200円〜5,500円",
             "duration": "60分",
@@ -1547,6 +1653,8 @@ def _render_courses_packages() -> str:
         {
             "icon": "📚",
             "cat": "講習会",
+            "level": "中級",
+            "level_id": "intermediate",
             "title": "AI講習会 120分（月1回 / 定員8名）",
             "price": "5,500円",
             "duration": "120分",
@@ -1557,8 +1665,24 @@ def _render_courses_packages() -> str:
             "img": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=800&q=70",
         },
         {
+            "icon": "🛠️",
+            "cat": "ワークショップ",
+            "level": "中級",
+            "level_id": "intermediate",
+            "title": "AI仕組み化ワークショップ 半日",
+            "price": "33,000円（税込・補助金対象）",
+            "duration": "半日（4時間・対面）",
+            "subsidy": True,
+            "desc": "「使える」から「仕組みになる」へ。見積作成・問い合わせ対応・日報など現場の1業務をその場で自動化し、明日から動くマニュアルごと持ち帰る対面ワークショップ。属人化を断ち切る中級者の実装回。",
+            "url": "mailto:goodbouldering@gmail.com?subject=AI仕組み化ワークショップ（半日）の相談",
+            "cta": "開催を相談する",
+            "img": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=70",
+        },
+        {
             "icon": "🚀",
             "cat": "伴走パック",
+            "level": "上級",
+            "level_id": "advanced",
             "title": "AI伴走パック 6回（補助金対象）",
             "price": "月額 100,000円（税込）× 6ヶ月",
             "duration": "6ヶ月（導入相談60分から開始）",
@@ -1580,19 +1704,25 @@ def _render_courses_packages() -> str:
             f"<span class='pkg-cat'>{html.escape(it['cat'])}</span>"
             f"</div>"
         ) if it.get("img") else ""
+        lvl = it.get("level", "")
+        lvl_id = it.get("level_id", "")
+        level_badge = f"<span class='pkg-level' data-level='{html.escape(lvl_id)}'>{html.escape(lvl)}</span>" if lvl else ""
+        # 外部URL(http)は別タブ、mailtoは同タブ
+        is_ext = it["url"].startswith("http")
+        target_attr = " target='_blank' rel='noopener'" if is_ext else ""
         parts.append(
-            f"<div class='pkg-card fade-up d{(i % 3) + 1}'>"
+            f"<div class='pkg-card fade-up d{(i % 3) + 1}' data-level='{html.escape(lvl_id)}'>"
             f"{img_html}"
             f"<div class='pkg-body'>"
             f"<div class='pkg-head'>"
             f"<span class='pkg-icon' aria-hidden='true'>{html.escape(it['icon'])}</span>"
             f"<h3 class='pkg-title'>{html.escape(it['title'])}</h3>"
             f"</div>"
-            f"<div class='pkg-meta'>⏱ {html.escape(it['duration'])}</div>"
+            f"<div class='pkg-meta'>{level_badge}<span>⏱ {html.escape(it['duration'])}</span></div>"
             f"<div class='pkg-price'>{html.escape(it['price'])}</div>"
             f"{subsidy_badge}"
             f"<p class='pkg-desc'>{html.escape(it['desc'])}</p>"
-            f"<a class='pkg-cta' href='{html.escape(it['url'], quote=True)}' target='_blank' rel='noopener'>{html.escape(it['cta'])} →</a>"
+            f"<a class='pkg-cta' href='{html.escape(it['url'], quote=True)}'{target_attr}>{html.escape(it['cta'])} →</a>"
             f"</div>"
             f"</div>"
         )

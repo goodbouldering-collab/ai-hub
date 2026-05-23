@@ -32,6 +32,17 @@ sections:
     href: programming-map.html
     summary: プログラミング言語と用途の俯瞰図。何から学ぶか迷ったときの全体地図。やり方が分からないときは「💬 やり方を聞く」から AI に質問できる
     date: 2026-04-25
+  # クライミングの歴史 スライド（content/slides/*.md から Marp 生成・/slides/ 配下に公開）
+  - title: クライミングの歴史 I（世界史編）
+    icon: 🧗
+    href: slides/climbing-history-1.html
+    summary: 1786年モンブランから種目の分化、パタゴニア／ノースフェイス誕生秘話、五輪採用まで。初心者向け講習スライド（投影用HTML）。PDF・台本は参考資料ページから
+    date: 2026-05-23
+  - title: クライミングの歴史 II（日本史・ぐっぼる編）
+    icon: 🧗
+    href: slides/climbing-history-2.html
+    summary: 日本のクライミング独立史、ジムの爆発的普及、世界に挑んだ日本人、そして「ぐっぼる」がジム＋ショップ＋カフェである理由。投影用HTML
+    date: 2026-05-23
 
 - name: 補助資料
   icon: 📚

@@ -452,14 +452,17 @@ header.site-header.scrolled {
 }
 @media (max-width: 900px) { .hero-actions { justify-content: center; } }
 
-/* ヒーロー起点の AIレベル診断（第1問） */
+/* ヒーロー起点の AIレベル診断（第1問・主役） */
 .hero-quiz {
-  margin-top: 8px; padding: 20px; border: 1px solid var(--line);
-  border-left: 3px solid var(--primary); background: var(--bg-elev);
+  margin-top: 14px; padding: 24px; border: 1px solid var(--primary);
+  border-left: 4px solid var(--primary);
+  background:
+    radial-gradient(120% 140% at 100% 0%, rgba(45,203,161,.08), transparent 55%),
+    var(--bg-elev);
 }
 .hq-label {
-  font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 14px;
-  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  font-size: 16.5px; font-weight: 800; color: var(--text); margin-bottom: 16px;
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap; line-height: 1.5;
 }
 .hq-mono {
   font-family: var(--mono); font-size: 10.5px; font-weight: 700; letter-spacing: .1em;
@@ -606,6 +609,12 @@ section.block + section.block { border-top: 1px solid var(--line); }
   text-transform: uppercase; color: var(--primary);
   margin: 0 0 14px; text-align: center;
 }
+.lv-flow { display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 10px; }
+.lv-flow-step {
+  font-family: var(--mono); font-size: 11.5px; font-weight: 700; letter-spacing: .05em;
+  color: var(--primary-soft); border: 1px solid var(--primary); padding: 4px 12px;
+}
+.lv-flow-arr { color: var(--primary); font-weight: 800; }
 
 /* ---- services grid ---- */
 .services-grid {
@@ -2078,8 +2087,12 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     # 1. 受講プラン（AI相談 / 講習会 / 伴走パック）— メインCTA
     parts.append("<section class='block' id='packages'>")
     parts.append("<p class='section-heading fade-up'>PACKAGES</p>")
-    parts.append("<h2 class='section-title fade-up d1'>AI講習・相談・伴走パック</h2>")
-    parts.append("<p class='section-sub fade-up d2'>現役オーナー講師による実践型。サイト構築・SEO・LLMO・補助金対応まで、3つのコースから選べます。</p>")
+    parts.append("<h2 class='section-title fade-up d1'>レベル別・AI受講プラン</h2>")
+    parts.append("<p class='section-sub fade-up d2'>"
+                 "<span class='lv-flow'><span class='lv-flow-step'>初級 まず実感</span><span class='lv-flow-arr'>→</span>"
+                 "<span class='lv-flow-step'>中級 仕組み化</span><span class='lv-flow-arr'>→</span>"
+                 "<span class='lv-flow-step'>上級 組織実装</span></span><br>"
+                 "あなたの現在地から、次の一手を選べます。迷ったら上の30秒診断へ。</p>")
     parts.append(_render_courses_packages())
     parts.append("</section>")
 

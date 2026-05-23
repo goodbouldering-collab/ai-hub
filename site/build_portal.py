@@ -1108,17 +1108,64 @@ section.block + section.block { border-top: 1px solid var(--line); }
 }
 .contact-mail:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,0,0,.24); }
 
-/* ---- watch link bar ---- */
-.watch-link-bar {
-  margin-top: 32px; padding: 16px 22px;
-  border-radius: 6px;
-  background: var(--bg-white); border: 1px solid var(--line);
-  box-shadow: var(--shadow-card);
-  display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+/* ---- explore (メニュー集約カード) ---- */
+.explore-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
 }
-.watch-link-bar p { font-size: 13px; color: var(--text-soft); margin: 0; }
-.watch-link-bar a { font-size: 13px; font-weight: 700; color: var(--primary); text-decoration: none; white-space: nowrap; }
-.watch-link-bar a:hover { text-decoration: underline; }
+@media (max-width: 760px) { .explore-grid { grid-template-columns: 1fr; } }
+.explore-card {
+  display: flex; flex-direction: column; gap: 10px;
+  padding: 26px 22px; background: var(--bg-elev); border: 1px solid var(--line);
+  border-radius: 6px; text-decoration: none; color: var(--text);
+  transition: border-color .18s, transform .15s, background .18s;
+}
+.explore-card:hover { border-color: var(--primary); transform: translateY(-4px); }
+.explore-ico { font-size: 30px; line-height: 1; }
+.explore-title { font-size: 16px; font-weight: 800; color: var(--text); margin: 4px 0 0; line-height: 1.4; }
+.explore-desc { font-size: 13px; color: var(--text-soft); line-height: 1.8; margin: 0; flex: 1; }
+.explore-cta { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--primary-soft); margin-top: 6px; }
+
+/* ---- contact form (Resend) ---- */
+.contact-wrap {
+  display: grid; grid-template-columns: 1fr 300px; gap: 24px; align-items: start;
+}
+@media (max-width: 820px) { .contact-wrap { grid-template-columns: 1fr; } }
+.contact-form {
+  display: flex; flex-direction: column; gap: 14px;
+  padding: 28px; background: var(--bg-elev); border: 1px solid var(--line); border-radius: 6px;
+}
+.cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 560px) { .cf-row { grid-template-columns: 1fr; } }
+.cf-field { display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: var(--text-soft); }
+.cf-field > span { font-weight: 700; }
+.cf-field em { color: var(--primary); font-style: normal; }
+.cf-field input, .cf-field select, .cf-field textarea {
+  font: inherit; font-size: 14px; color: var(--text);
+  background: var(--bg-base); border: 1px solid var(--line); border-radius: 4px;
+  padding: 11px 13px; width: 100%; box-sizing: border-box;
+  transition: border-color .15s;
+}
+.cf-field input:focus, .cf-field select:focus, .cf-field textarea:focus {
+  outline: none; border-color: var(--primary);
+}
+.cf-field textarea { resize: vertical; min-height: 110px; }
+.cf-submit { align-self: flex-start; margin-top: 4px; }
+.cf-submit[disabled] { opacity: .55; cursor: progress; }
+.cf-status { font-size: 13px; margin: 4px 0 0; min-height: 18px; }
+.cf-status.ok { color: var(--primary-soft); }
+.cf-status.ng { color: #ff8585; }
+.contact-aside {
+  display: flex; flex-direction: column; gap: 12px;
+  padding: 24px; background: var(--bg-elev); border: 1px solid var(--line); border-radius: 6px;
+}
+.contact-aside-lead { font-size: 14px; font-weight: 700; color: var(--text); margin: 0; line-height: 1.6; }
+.contact-aside .contact-mail {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 12px 18px; border-radius: 6px; background: var(--primary); color: #06281F;
+  font-size: 14px; font-weight: 800; text-decoration: none; box-shadow: none;
+}
+.contact-aside .contact-mail:hover { transform: translateY(-2px); }
+.contact-aside-note { font-size: 11.5px; color: var(--muted); margin: 4px 0 0; line-height: 1.7; }
 
 /* ---- footer ---- */
 footer.site-footer {
@@ -1490,6 +1537,51 @@ HEADER_JS = """
       if (e.target.closest('.diag-restart')) { open(); }
     });
   })();
+
+  // ---- お問い合わせフォーム送信 (/api/contact → Resend)
+  (function(){
+    var form = document.getElementById('contactForm');
+    if (!form) return;
+    var statusEl = document.getElementById('cfStatus');
+    var btn = form.querySelector('.cf-submit');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var data = {
+        name: (form.name.value || '').trim(),
+        email: (form.email.value || '').trim(),
+        type: (form.type.value || '').trim(),
+        message: (form.message.value || '').trim()
+      };
+      if (!data.name || !data.email || !data.message) {
+        statusEl.className = 'cf-status ng';
+        statusEl.textContent = 'お名前・メール・内容は必須です。';
+        return;
+      }
+      btn.disabled = true;
+      statusEl.className = 'cf-status';
+      statusEl.textContent = '送信中…';
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      }).then(function(r){ return r.json().then(function(j){ return { ok: r.ok, j: j }; }); })
+        .then(function(res){
+          if (res.ok && res.j && res.j.success) {
+            statusEl.className = 'cf-status ok';
+            statusEl.textContent = '送信しました。2営業日以内にご連絡します。ありがとうございます！';
+            form.reset();
+          } else {
+            statusEl.className = 'cf-status ng';
+            statusEl.textContent = (res.j && res.j.error) ? res.j.error : '送信に失敗しました。メールでのご連絡もご検討ください。';
+          }
+        })
+        .catch(function(){
+          statusEl.className = 'cf-status ng';
+          statusEl.textContent = '通信エラーが発生しました。メールでのご連絡もご検討ください。';
+        })
+        .finally(function(){ btn.disabled = false; });
+    });
+  })();
 })();
 </script>
 """
@@ -1760,6 +1852,68 @@ def _render_diagnose_modal() -> str:
         "<button type='button' class='diagnose-close' aria-label='閉じる'>&times;</button>"
         "<div class='diagnose-head'>🔍 60秒コース診断</div>"
         "<div class='diagnose-body'></div>"
+        "</div>"
+        "</div>"
+    )
+
+
+def _render_explore() -> str:
+    """メニュー集約: 実績 / 講習資料 / 自分ポータル をカードで（詳細は各ページへ）。"""
+    cards = [
+        ("📂", "制作実績・事業ポートフォリオ",
+         "運営事業・制作したサイト・生成した提案LP。すべて自分で構築・運用した実物。",
+         "/portfolio.html", "実績を見る"),
+        ("📚", "講習資料",
+         "AI業務活用・SNSアルゴリズム・LLMO（AI検索最適化）の講習で使う資料。プログラミングマップも。",
+         "/lectures/index.html", "資料を見る"),
+        ("📡", "自分ポータル（AI Watch）",
+         "AI / SNS の最新動向を毎朝ダイジェスト配信。一次情報ベースで追える更新型ポータル。",
+         "/watch/index.html", "ポータルへ"),
+    ]
+    parts = ["<div class='explore-grid'>"]
+    for icon, title, desc, href, cta in cards:
+        parts.append(
+            f"<a class='explore-card fade-up' href='{html.escape(href, quote=True)}'>"
+            f"<span class='explore-ico'>{icon}</span>"
+            f"<h3 class='explore-title'>{html.escape(title)}</h3>"
+            f"<p class='explore-desc'>{html.escape(desc)}</p>"
+            f"<span class='explore-cta'>{html.escape(cta)} →</span>"
+            f"</a>"
+        )
+    parts.append("</div>")
+    return "".join(parts)
+
+
+def _render_contact_form() -> str:
+    """Resend 送信の問い合わせフォーム + 直接メール導線。"""
+    return (
+        "<div class='contact-wrap'>"
+        "<form id='contactForm' class='contact-form fade-up' novalidate>"
+        "<div class='cf-row'>"
+        "<label class='cf-field'><span>お名前 <em>*</em></span>"
+        "<input type='text' name='name' required autocomplete='name' placeholder='山田 太郎'></label>"
+        "<label class='cf-field'><span>メール <em>*</em></span>"
+        "<input type='email' name='email' required autocomplete='email' placeholder='you@example.com'></label>"
+        "</div>"
+        "<label class='cf-field'><span>ご相談種別</span>"
+        "<select name='type'>"
+        "<option value=''>選択してください（任意）</option>"
+        "<option>AI個別相談（初級）</option>"
+        "<option>AI講習会・仕組み化ワークショップ（中級）</option>"
+        "<option>AI伴走パック（上級）</option>"
+        "<option>Web制作・LP・EC</option>"
+        "<option>その他・まだ決まっていない</option>"
+        "</select></label>"
+        "<label class='cf-field'><span>ご相談内容 <em>*</em></span>"
+        "<textarea name='message' rows='5' required placeholder='現状の課題・やりたいこと・ご予算感など、わかる範囲でお書きください。'></textarea></label>"
+        "<button type='submit' class='btn btn-primary cf-submit'>送信する →</button>"
+        "<p class='cf-status' id='cfStatus' role='status' aria-live='polite'></p>"
+        "</form>"
+        "<div class='contact-aside fade-up d2'>"
+        "<p class='contact-aside-lead'>フォームが苦手な方は<br>こちらからでもどうぞ。</p>"
+        f"<a class='contact-mail' href='mailto:{html.escape(OWNER_EMAIL)}'>✉ メールで相談する</a>"
+        "<button type='button' class='btn btn-secondary diagnose-open' style='width:100%;justify-content:center;'>🔍 30秒AI診断から始める</button>"
+        "<p class='contact-aside-note'>お急ぎの場合はメールが確実です。2営業日以内にご連絡します。</p>"
         "</div>"
         "</div>"
     )
@@ -2119,27 +2273,20 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append(_render_faq())
     parts.append("</section>")
 
-    # 実績・講習資料へのリンクバー（常時展開なし）
-    parts.append(
-        "<div class='watch-link-bar'>"
-        "<p>📂 <strong>実績・事業ポートフォリオ</strong>や <strong>講習資料</strong> はこちら</p>"
-        "<span style='display:flex;gap:16px;flex-wrap:wrap;'>"
-        "<a href='/portfolio.html'>実績一覧 →</a>"
-        "<a href='/lectures/index.html'>講習資料 →</a>"
-        "<a href='/watch/index.html'>自分ポータル →</a>"
-        "</span>"
-        "</div>"
-    )
+    # 4b. もっと見る（メニュー集約: 実績 / 講習資料 / 自分ポータル をカードで・詳細はリンク）
+    parts.append("<section class='block' id='explore'>")
+    parts.append("<p class='section-heading fade-up'>EXPLORE</p>")
+    parts.append("<h2 class='section-title fade-up d1'>もっと知る</h2>")
+    parts.append("<p class='section-sub fade-up d2'>制作実績・講習で使う資料・毎朝更新のAIダイジェスト。気になるところから。</p>")
+    parts.append(_render_explore())
+    parts.append("</section>")
 
-    # 5. お問い合わせ
+    # 5. お問い合わせ（Resend 送信フォーム）
     parts.append("<section class='block' id='contact'>")
-    parts.append(
-        "<div class='contact-block'>"
-        "<h2>まずは 30 分、無料でご相談</h2>"
-        "<p>事業の状況・課題・予算感をヒアリングして、最適なアウトプット案をご提案します。</p>"
-        f"<a class='contact-mail' href='mailto:{html.escape(OWNER_EMAIL)}'>✉ {html.escape(OWNER_EMAIL)} に相談する</a>"
-        "</div>"
-    )
+    parts.append("<p class='section-heading fade-up'>CONTACT</p>")
+    parts.append("<h2 class='section-title fade-up d1'>まずは 30 分、無料でご相談</h2>")
+    parts.append("<p class='section-sub fade-up d2'>事業の状況・課題・予算感をヒアリングして、最適なアウトプット案をご提案します。下のフォーム・メール・診断のいずれからでもどうぞ。</p>")
+    parts.append(_render_contact_form())
     parts.append("</section>")
 
     parts.append(f"<footer class='site-footer'>© {today[:4]} 由井辰美 / AIハブ — Web経営コンサル · 滋賀</footer>")

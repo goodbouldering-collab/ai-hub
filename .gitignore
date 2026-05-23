@@ -10,3 +10,4 @@ node_modules/
 .vercel/
 _tmp/
 *.bak-*
+.vercel

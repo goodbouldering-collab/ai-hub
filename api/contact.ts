@@ -146,5 +146,3 @@ export default async function handler(req: VercelReq, res: VercelRes): Promise<v
     return sendError(res, 500, "サーバーエラーが発生しました。");
   }
 }
-
-export const config = { runtime: "nodejs" };

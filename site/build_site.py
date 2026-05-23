@@ -2320,6 +2320,68 @@ def build_sitemap_and_robots() -> None:
     )
 
 
+
+
+def build_slides() -> int:
+    """Build Marp slides from content/slides/*.md -> site/dist/slides/<slug>.html.
+
+    PDFs are pre-generated and committed to site/static/slides/; they are served
+    automatically via copy_static() without any extra step here.
+
+    Fail-safe: if npx / node is not available, print a WARNING and return 0 so
+    that the existing build pipeline is never broken.
+    """
+    import subprocess  # noqa: PLC0415
+
+    slides_dir = ROOT / "content" / "slides"
+    out_dir = DIST / "slides"
+
+    if not slides_dir.exists():
+        return 0
+
+    # Only process main slide decks, not script files (-script suffix)
+    slide_files = [
+        f for f in sorted(slides_dir.glob("climbing-history-*.md"))
+        if "-script" not in f.stem
+    ]
+    if not slide_files:
+        return 0
+
+    out_dir.mkdir(parents=True, exist_ok=True)
+    built = 0
+
+    # Windows resolves "npx" to npx.cmd which subprocess (no shell) does not
+    # find by bare name; probe for an explicit executable name on Windows.
+    import shutil as _shutil  # noqa: PLC0415
+    npx_exe = _shutil.which("npx") or _shutil.which("npx.cmd") or "npx"
+
+    for src in slide_files:
+        dst = out_dir / (src.stem + ".html")
+        cmd = [
+            npx_exe, "--yes", "@marp-team/marp-cli",
+            str(src),
+            "--html",
+            "--no-stdin",
+            "--output", str(dst),
+        ]
+        try:
+            result = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
+            if result.returncode == 0:
+                print(f"[slides] Built: {dst.relative_to(ROOT)}")
+                built += 1
+            else:
+                stderr = result.stderr.strip()
+                print(f"[WARNING] Marp build failed for {src.name}: {stderr[:200]}")
+        except FileNotFoundError:
+            print("[WARNING] npx not found - skipping Marp slide build. Install Node.js to enable.")
+            return 0
+        except subprocess.TimeoutExpired:
+            print(f"[WARNING] Marp build timed out for {src.name} - skipping.")
+        except Exception as exc:  # noqa: BLE001
+            print(f"[WARNING] Marp build error for {src.name}: {exc}")
+
+    return built
+
 def _build_portal() -> None:
     sys.path.insert(0, str(Path(__file__).resolve().parent))
     import build_portal  # noqa: WPS433
@@ -2352,6 +2414,7 @@ def main() -> int:
         build_portfolio_page()
         build_profile_page()
         build_sitemap_and_robots()
+        build_slides()
         _build_portal()
         return 0
 
@@ -2378,6 +2441,7 @@ def main() -> int:
 
     speaker_built = build_speaker_page()
     lectures_built = build_lectures()
+    slides_built = build_slides()
     portfolio_built = build_portfolio_page()
     profile_built = build_profile_page()
     build_sitemap_and_robots()
@@ -2387,6 +2451,7 @@ def main() -> int:
         f"[+] site built: {DIST} ({len(dates)} archive pages in watch/"
         + (", speaker.html" if speaker_built else "")
         + (f", {lectures_built} lectures" if lectures_built else "")
+        + (f", {slides_built} slides" if slides_built else "")
         + (", portfolio.html" if portfolio_built else "")
         + (", profile.html" if profile_built else "")
         + ", sitemap.xml, robots.txt)"

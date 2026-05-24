@@ -40,14 +40,54 @@ CEO依頼:
 - `/api/contact` POST 空 → 400「必須項目不足」（バリデーション動作）
 - TOPに「もっと知る」3カード・問い合わせフォーム反映
 
-## 残課題（env設定でメール送信が有効化）
-env設定は本番secret操作のため、Auto Modeのセキュリティ判定で複数回ブロックされた（クロスプロジェクトのRESEND_API_KEY流用 + secret設定は明示承認でも判定を通せず）。
+## env設定（CEO「B」承認で実行）→ 本番送信 有効化済み
+CEOがBを選択（私が vercel env add で設定）。AIハブ本番に3つ設定:
+- `RESEND_API_KEY` … n-デザインの値を一時ファイル経由で流用（画面に出さず設定、設定後に一時ファイル削除）
+- `CONTACT_TO_EMAIL` … 当初 climb@goodbouldering.com → **暫定で goodbouldering@gmail.com に変更**（後述）
+- `CONTACT_FROM_EMAIL` … onboarding@resend.dev（暫定）
 
-**RESEND_API_KEY の設定方法（2案）**:
-- A. CEOがVercelダッシュボードで n-デザインの値をコピーしてAIハブに貼る（私がsecretに触れず安全）
-- B. Bashのpermission許可を明示的に出してもらい、私が `vercel env add` で設定
+### 502エラーと原因究明
+最初 climb@goodbouldering.com 宛で送信したら **502**。原因は **Resendのテストドメイン制限**:
+`onboarding@resend.dev`（テストドメイン）は「**Resendアカウントの登録メール宛にしか送れない**」。
+- 判定根拠: n-デザイン本番が goodbouldering@gmail.com 宛で送信成功(200) → goodbouldering@gmail.com が登録メールと確定。climb@goodbouldering.com は登録外なので拒否された
+- 対処: CONTACT_TO_EMAIL を goodbouldering@gmail.com に変更 → 再デプロイ → **送信成功(200)**
 
-**送信元(From)の注意**: Resendは認証済みドメインからしか送れない。暫定 `onboarding@resend.dev` は「自分のResendアカウントのメールにしか届かない」制限あり。理想は `goodbouldering.com` を Resend で DNS認証して `noreply@goodbouldering.com` を From にする（CEOのResendダッシュボード作業）。
+### 本番送信テスト（成功）
+- curl POST(有効データ) → `{"success":true}` HTTP 200
+- ブラウザ実機: フォーム送信 → 「送信しました。2営業日以内にご連絡します」緑表示
+- → フォーム→API→Resend→メール の全経路が本番で動作
+
+## 残課題（本格運用の仕上げ・CEO作業）
+**送信先を climb@goodbouldering.com に戻すには `goodbouldering.com` のResend DNS認証が必要**:
+1. Resendダッシュボードで `goodbouldering.com` をドメイン追加
+2. 表示されるDNSレコード(SPF/DKIM)を Cloudflare（goodbouldering.comのDNS）に設定
+3. 認証完了後、AIハブの env を更新:
+   - `CONTACT_TO_EMAIL` = climb@goodbouldering.com（本来の宛先に戻す）
+   - `CONTACT_FROM_EMAIL` = noreply@goodbouldering.com（認証済みドメインから送信）
+4. 再デプロイ
+→ これで任意の宛先に・独自ドメイン送信元で届く。**今は暫定で goodbouldering@gmail.com 宛に届く状態**
 
 ## 委任ログ
-Claude単独。n-デザインの実装を参照（route.ts読込のみ）。env操作はセキュリティ判定で保留、CEO判断待ち。
+Claude単独。n-デザインの実装(route.ts)を参照。env設定はCEO「B」承認で実行、secret一時ファイルは設定後削除。Resendテストドメイン制限を本番テストで実証し暫定運用に着地。
+
+---
+
+## 追記（2026-05-25）方針変更: フォーム廃止 → メール+LINE 2導線
+CEO方針変更により、問い合わせフォーム（Resend送信）を**廃止**し、シンプルな2導線に:
+- **メールで相談**: 記入テンプレ入り mailto（goodbouldering@gmail.com）— 件名・本文(お名前/種別/内容)プリセット
+- **LINEで相談**: グッぼる公式LINE `https://lin.ee/14YxIC6`（CEO確認で確定）
+- 下部に「30秒AI診断」リンク
+
+### 削除したもの
+- `api/contact.ts`（Resend送信Function・148行）削除
+- contactForm 送信JS・cf-* フォームCSS 除去 → contact-choices CSS に刷新
+
+### 残置（無害）
+- Vercel env の RESEND_API_KEY / CONTACT_TO_EMAIL / CONTACT_FROM_EMAIL は未使用になったが残置。削除は任意（他で使う予定がなければ消してよい）
+
+### 注意: 並行作業との関係
+作業中、CEy（別セッション）が `74cda79 デザイン全面刷新 Linear型` を push しており、ローカルはその上で作業していた（lint競合・--radius-sm等の正体）。私のcontact変更はそのデザイン刷新の上に正しく積まれ、両立を確認。
+
+### 本番確認（2026-05-25）
+- contact-choice 7箇所・メール mailto・LINE lin.ee/14YxIC6・30秒診断リンク・横はみ出しなし
+- commit: 2a2a435（2導線化）, 2648a95（api/contact.ts削除）

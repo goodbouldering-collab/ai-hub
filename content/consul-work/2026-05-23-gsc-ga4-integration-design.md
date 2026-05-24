@@ -14,6 +14,7 @@
 | 論点 | 決定 | 理由 |
 |---|---|---|
 | 認証方式 | 既存 `google_ops` OAuth に**スコープ追加して再認可** | トークン保管/自動refresh基盤が完成済み。SA方式はプロパティ毎の手動招待が要り全事業一斉と相性が悪い |
+| トークン保管 | **ローカルJSON `token_<account>.json`（Supabase廃止）** | 2026-05-24 CEO指示。個人運用＋ローカル実行なので専用Supabaseプロジェクト(`consul-ops`)を増やす意味が薄い。`.env`/oauth_tokensテーブル/service_roleキー全部不要に。get_credentials()のインターフェースは不変なのでgsc/ga4/poc全部そのまま動く。**親CLAUDE.mdに全プロジェクト共通方針として記録** |
 | 対象範囲 | GSC登録済み**全プロパティを `sites().list()` で自動列挙** | 「何社あるか」は認可後にAPIで判明する。手で事業リストを書かない＝取りこぼし防止 |
 | GSC/GA4 | 両方。ただしAPIは別物 | GSC=Search Console API（`webmasters`/`searchconsole`）、GA4=Analytics Data API（`google-analytics-data`） |
 | MCP | 使わない | 公式MCP未成熟・認証は結局OAuthが要る。API直叩きが安定 |

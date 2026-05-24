@@ -1782,7 +1782,7 @@ def _render_courses_packages() -> str:
             "duration": "120分",
             "subsidy": True,
             "desc": "彦根でAIや経営を学べる実践型講習。一般の講師が教えない「考え方とコツ」を中心に、参加者のレベルに合わせて内容を最適化。Claude Code / オフィス自動化 / 通販サイト構築まで。",
-            "url": "https://minanowa.com/#events",
+            "url": "https://goodbouldering.com/?pid=188553378",
             "cta": "次回開催を見る",
             "img": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=800&q=70",
         },

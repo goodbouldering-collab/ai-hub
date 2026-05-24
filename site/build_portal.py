@@ -2317,7 +2317,7 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append("<section class='block' id='contact'>")
     parts.append("<p class='section-heading fade-up'>CONTACT</p>")
     parts.append("<h2 class='section-title fade-up d1'>まずは 30 分、無料でご相談</h2>")
-    parts.append("<p class='section-sub fade-up d2'>事業の状況・課題・予算感をヒアリングして、最適なアウトプット案をご提案します。下のフォーム・メール・診断のいずれからでもどうぞ。</p>")
+    parts.append("<p class='section-sub fade-up d2'>事業の状況・課題・予算感をヒアリングして、最適なアウトプット案をご提案します。メールまたはLINEから、お気軽にどうぞ。</p>")
     parts.append(_render_contact_form())
     parts.append("</section>")
 

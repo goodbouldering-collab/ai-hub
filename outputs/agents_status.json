@@ -1,12 +1,33 @@
 {
-  "generated_at": "2026-05-24T17:31:48Z",
+  "generated_at": "2026-05-24T22:48:00Z",
   "recent_works": [
+    {
+      "date": "2026-05-25",
+      "filename": "2026-05-25-gubble-seo-api-diagnosis-confirmed.md",
+      "title": "グッぼるSEO低下 — GSC API実データによる確定診断",
+      "business": "gubble",
+      "path": "/ops?file=2026-05-25-gubble-seo-api-diagnosis-confirmed.md#sec-docs"
+    },
     {
       "date": "2026-05-24",
       "filename": "2026-05-24-aihub-menu-consolidation-contact-form.md",
       "title": "2026-05-24 AIハブ メニュー集約 + Resend問い合わせフォーム",
       "business": "AIハブ",
       "path": "/ops?file=2026-05-24-aihub-menu-consolidation-contact-form.md#sec-docs"
+    },
+    {
+      "date": "2026-05-24",
+      "filename": "2026-05-24-ai-hub-speaker-image-prompt-ready.md",
+      "title": "AIハブ 講師紹介ビジュアル — コピペ実行用プロンプト（2026-05-24）",
+      "business": "AIハブ",
+      "path": "/ops?file=2026-05-24-ai-hub-speaker-image-prompt-ready.md#sec-docs"
+    },
+    {
+      "date": "2026-05-24",
+      "filename": "2026-05-24-ai-hub-slides-and-redesign.md",
+      "title": "2026-05-24 ぐっぼるスライド作成 → AIハブ公開 → デザイン改修",
+      "business": "AIハブ",
+      "path": "/ops?file=2026-05-24-ai-hub-slides-and-redesign.md#sec-docs"
     },
     {
       "date": "2026-05-23",
@@ -24,38 +45,17 @@
     },
     {
       "date": "2026-05-22",
+      "filename": "2026-05-22-trust-home-shift-wbs.md",
+      "title": "プロジェクト名: home-shift 4棟体制本稼働（2026-08-01）",
+      "business": "トラスト",
+      "path": "/ops?file=2026-05-22-trust-home-shift-wbs.md#sec-docs"
+    },
+    {
+      "date": "2026-05-22",
       "filename": "2026-05-22-not-este-top-redesign.md",
       "title": "Notエステ トップページ刷新（グラスモーフィズム＋インタラクティブ＋SEO）",
       "business": "not",
       "path": "/ops?file=2026-05-22-not-este-top-redesign.md#sec-docs"
-    },
-    {
-      "date": "2026-05-22",
-      "filename": "2026-05-22-not-este-design-align-n-design.md",
-      "title": "Notエステ トップページデザインを N-デザインのトーンに寄せる改修",
-      "business": "not",
-      "path": "/ops?file=2026-05-22-not-este-design-align-n-design.md#sec-docs"
-    },
-    {
-      "date": "2026-05-22",
-      "filename": "2026-05-22-n-design-sectionnav-dot-align.md",
-      "title": "N-デザイン サイド縦ステップナビのドット列ズレ修正",
-      "business": "Nデザイン",
-      "path": "/ops?file=2026-05-22-n-design-sectionnav-dot-align.md#sec-docs"
-    },
-    {
-      "date": "2026-05-22",
-      "filename": "2026-05-22-n-design-nav-audit-fix.md",
-      "title": "N-デザイン トップのナビ総点検と修正（番号二重基準・サービス導線）",
-      "business": "Nデザイン",
-      "path": "/ops?file=2026-05-22-n-design-nav-audit-fix.md#sec-docs"
-    },
-    {
-      "date": "2026-05-22",
-      "filename": "2026-05-22-api-mcp-automation-inventory.md",
-      "title": "API / MCP / トークン 自動化棚卸し（consul 全事業横断・2026-05-22）",
-      "business": "api",
-      "path": "/ops?file=2026-05-22-api-mcp-automation-inventory.md#sec-docs"
     }
   ],
   "tasks_open": [
@@ -79,6 +79,13 @@
       "business": "api",
       "snippet": "| 中 | `THREADS_ACCESS_TOKEN` 60日失効の棚卸し・カレンダー登録未整備 | 未対応 |",
       "path": "/ops?file=2026-05-22-api-mcp-automation-inventory.md#sec-docs"
+    },
+    {
+      "date": "2026-05-22",
+      "filename": "2026-05-22-all-vercel-cf-migration-analysis.md",
+      "business": "all",
+      "snippet": "| Node API欠落(bcrypt等) | 中 | トラストのiron-session要確認 |",
+      "path": "/ops?file=2026-05-22-all-vercel-cf-migration-analysis.md#sec-docs"
     },
     {
       "date": "2026-05-20",
@@ -177,33 +184,12 @@
       "business": "github",
       "snippet": "| Notエステ | 不明（.env.example に変数あり・値は未確認） | Resend 使用の可能性（RESEND 系キーあり） | 要確認 |",
       "path": "/ops?file=2026-05-19-github-domain-mail-audit.md#sec-docs"
-    },
-    {
-      "date": "2026-05-17",
-      "filename": "2026-05-17-secrets-inventory.md",
-      "business": "secrets",
-      "snippet": "| 鍵名 | 保管場所 | 発行元 | 有効期限 | ローテ手順 |",
-      "path": "/ops?file=2026-05-17-secrets-inventory.md#sec-docs"
-    },
-    {
-      "date": "2026-05-17",
-      "filename": "2026-05-17-secrets-inventory.md",
-      "business": "secrets",
-      "snippet": "| `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` | **L** (`credentials.json`) | GCP OAuth クライアント | 無期限 | GCP コンソールで再発行 → credentials.json 差替 |",
-      "path": "/ops?file=2026-05-17-secrets-inventory.md#sec-docs"
-    },
-    {
-      "date": "2026-05-17",
-      "filename": "2026-05-17-secrets-inventory.md",
-      "business": "secrets",
-      "snippet": "| 鍵名 | 保管場所 | 発行元 | 有効期限 | ローテ手順 |",
-      "path": "/ops?file=2026-05-17-secrets-inventory.md#sec-docs"
     }
   ],
   "per_business_recent": [
     {
       "business": "AIハブ",
-      "count": 17
+      "count": 19
     },
     {
       "business": "みんなのWA",
@@ -214,15 +200,19 @@
       "count": 5
     },
     {
+      "business": "トラスト",
+      "count": 3
+    },
+    {
       "business": "github",
       "count": 3
     },
     {
-      "business": "not",
+      "business": "gubble",
       "count": 2
     },
     {
-      "business": "トラスト",
+      "business": "not",
       "count": 2
     },
     {
@@ -234,15 +224,19 @@
       "count": 2
     },
     {
-      "business": "gubble",
-      "count": 1
-    },
-    {
       "business": "gsc",
       "count": 1
     },
     {
+      "business": "cloudflare",
+      "count": 1
+    },
+    {
       "business": "api",
+      "count": 1
+    },
+    {
+      "business": "all",
       "count": 1
     },
     {
@@ -313,7 +307,7 @@
     },
     {
       "date": "2026-05-22",
-      "count": 12
+      "count": 15
     },
     {
       "date": "2026-05-23",
@@ -321,62 +315,13 @@
     },
     {
       "date": "2026-05-24",
-      "count": 1
+      "count": 3
     }
   ],
-  "cma_apps": [
-    {
-      "name": "App1_CommunityBoard",
-      "last_run": "2026-04-11",
-      "kind": "FastAPI Hello World",
-      "status": "✅ 完了"
-    },
-    {
-      "name": "App2_TodoAPI",
-      "last_run": "2026-04-11",
-      "kind": "FastAPI ToDo CRUD",
-      "status": "✅ 完了"
-    },
-    {
-      "name": "App3_WeatherAPI",
-      "last_run": "2026-04-11",
-      "kind": "FastAPI モック天気",
-      "status": "✅ 完了"
-    },
-    {
-      "name": "App4_CounterAPI",
-      "last_run": "2026-04-11",
-      "kind": "FastAPI カウンタ",
-      "status": "✅ 動作確認のみ（ポート衝突あり）"
-    },
-    {
-      "name": "SiteCrawlChecker",
-      "last_run": "2026-04-11",
-      "kind": "ブラウザ QA 巡回",
-      "status": "⚠️ クリティカル所見あり"
-    },
-    {
-      "name": "App_MinanowaPolish",
-      "last_run": "2026-04-16",
-      "kind": "Next.js 16 + Supabase 改善 10 タスク",
-      "status": "✅ クラウド側完了・**納品物は Render 前提で陳腐化**"
-    },
-    {
-      "name": "gtn_ai_mvp",
-      "last_run": "2026-04-16 推定",
-      "kind": "AI パイプライン",
-      "status": "❌ 失敗（0 バイト出力）/ プロジェクト自体終了"
-    },
-    {
-      "name": "vibe_0514_051921",
-      "last_run": "2026-05-14",
-      "kind": "Next.js 16 Hello World（Vercel 集約版検証）",
-      "status": "✅ 完了・本番デプロイ稼働中（[cma-vibe-0514-051921.vercel.app](https://cma-vibe-0514-051921.vercel.app)）"
-    }
-  ],
+  "cma_apps": [],
   "totals": {
-    "consul_work_total": 88,
-    "recent_7d_total": 47,
-    "tasks_open_total": 20
+    "consul_work_total": 94,
+    "recent_7d_total": 53,
+    "tasks_open_total": 18
   }
 }

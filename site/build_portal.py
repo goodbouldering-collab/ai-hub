@@ -1038,7 +1038,7 @@ section.block + section.block { border-top: 1px solid var(--line); }
   min-height: 320px; aspect-ratio: 4/5; align-self: stretch;
   background: var(--bg-base);
 }
-.speaker-art img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.speaker-art img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
 @media (max-width: 720px) { .speaker-art { max-width: 320px; margin: 0 auto; } }
 /* CSSプレースホルダ: クライミング×テクノロジーの抽象アート */
 .speaker-art-ph {
@@ -1094,7 +1094,9 @@ section.block + section.block { border-top: 1px solid var(--line); }
   font-size: 88px; box-shadow: 0 12px 36px rgba(15,23,42,.10);
   border: 6px solid #fff;
   justify-self: center;
+  overflow: hidden;
 }
+.profile-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
 
 /* ---- FAQ ---- */
 .faq-list { max-width: 760px; margin: 0 auto; }
@@ -2134,6 +2136,14 @@ def _render_lectures_section() -> str:
 
 
 def _render_profile() -> str:
+    avatar = (_load_speaker() or {}).get("avatar_url") or ""
+    if avatar:
+        avatar_html = (
+            f"<div class='profile-avatar'><img src='{html.escape(avatar, quote=True)}' "
+            f"alt='{html.escape(OWNER_NAME)}' loading='lazy' decoding='async'></div>"
+        )
+    else:
+        avatar_html = "<div class='profile-avatar'>🧗</div>"
     return (
         "<div class='profile-block'>"
         "<div>"
@@ -2144,7 +2154,7 @@ def _render_profile() -> str:
         "「コンサルだけする人」ではなく「実際に経営している同業」として相談に乗ります。</p>"
         "<p style='font-weight:700;color:var(--text);'>「異端OK、数字根拠で経営を変える」</p>"
         "</div>"
-        "<div class='profile-avatar'>🧗</div>"
+        f"{avatar_html}"
         "</div>"
     )
 

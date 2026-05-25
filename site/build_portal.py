@@ -83,34 +83,147 @@ ADMIN_BUTTON_HTML = """
 """
 
 
-def _build_ogp(title: str, description: str, page_url: str) -> str:
+OG_IMAGE_URL = SITE_URL + "/img/ogp.png"
+
+
+def _build_ogp(title: str, description: str, page_url: str, *, image: str | None = None) -> str:
+    img = image or OG_IMAGE_URL
     return "".join([
         f"<meta property='og:title' content='{html.escape(title, quote=True)}'>",
         f"<meta property='og:description' content='{html.escape(description, quote=True)}'>",
         f"<meta property='og:url' content='{html.escape(page_url, quote=True)}'>",
         "<meta property='og:type' content='website'>",
         "<meta property='og:site_name' content='AIハブ'>",
-        "<meta name='twitter:card' content='summary'>",
+        "<meta property='og:locale' content='ja_JP'>",
+        f"<meta property='og:image' content='{html.escape(img, quote=True)}'>",
+        "<meta property='og:image:width' content='1200'>",
+        "<meta property='og:image:height' content='630'>",
+        f"<meta property='og:image:alt' content='{html.escape(title, quote=True)}'>",
+        "<meta name='twitter:card' content='summary_large_image'>",
+        f"<meta name='twitter:title' content='{html.escape(title, quote=True)}'>",
+        f"<meta name='twitter:description' content='{html.escape(description, quote=True)}'>",
+        f"<meta name='twitter:image' content='{html.escape(img, quote=True)}'>",
     ])
 
 
 def _build_jsonld_website() -> str:
-    doc = {
-        "@context": "https://schema.org",
+    """TOP の構造化データを @graph で一括出力。
+    LocalBusiness(地域シグナル) / Person(異色の権威) / WebSite / Service×4(価格付き Offer) /
+    FAQPage(一次情報) / BreadcrumbList を相互参照させ、SEO・LLMO 両面の引用源にする。"""
+    org_id = SITE_URL + "/#business"
+    person_id = SITE_URL + "/#yui"
+    web_id = SITE_URL + "/#website"
+
+    local_business = {
+        "@type": ["ProfessionalService", "LocalBusiness"],
+        "@id": org_id,
+        "name": "AIハブ（クライミングコンサル）",
+        "alternateName": "AIハブ",
+        "url": SITE_URL,
+        "image": OG_IMAGE_URL,
+        "email": OWNER_EMAIL,
+        "priceRange": "¥¥",
+        "founder": {"@id": person_id},
+        "areaServed": [
+            {"@type": "City", "name": "彦根市"},
+            {"@type": "AdministrativeArea", "name": "滋賀県湖東地域"},
+            {"@type": "AdministrativeArea", "name": "滋賀県"},
+        ],
+        "address": {
+            "@type": "PostalAddress",
+            "postalCode": "522-0043",
+            "addressRegion": "滋賀県",
+            "addressLocality": "彦根市",
+            "streetAddress": "岡町12番地",
+            "addressCountry": "JP",
+        },
+        "description": "滋賀県彦根市を拠点に、中小事業者向けのAI業務活用講習・Web経営コンサル・LP/業務システム制作・補助金支援を行う。9事業を実際に回す現役オーナーが、補助金申請からAIの現場定着まで一気通貫で伴走する。",
+        "knowsAbout": [
+            "生成AI業務活用", "ChatGPT", "Claude Code", "LLMO（AI検索最適化）",
+            "SEO", "MEO", "業務自動化", "AI導入補助金", "デジタル化補助金", "中小企業DX",
+        ],
+        "slogan": OWNER_TAGLINE,
+    }
+
+    person = {
+        "@type": "Person",
+        "@id": person_id,
+        "name": OWNER_NAME,
+        "jobTitle": "AI講師 / Web経営コンサルタント / 複数事業オーナー",
+        "email": OWNER_EMAIL,
+        "url": SITE_URL + "/speaker.html",
+        "image": SITE_URL + "/img/speaker.webp",
+        "worksFor": {"@id": org_id},
+        "knowsAbout": ["生成AI", "クライミング", "店舗経営", "マーケティング", "補助金活用"],
+        "description": "クライミング歴30年。ボルダリングカフェ「グッぼる」をはじめ9事業を経営しながら、滋賀の中小事業者にAI活用を教える。経営者でありコードを書く実装者でもある二重性が強み。",
+    }
+
+    website = {
         "@type": "WebSite",
+        "@id": web_id,
         "name": "AIハブ",
         "url": SITE_URL,
-        "description": f"{OWNER_NAME}のCEOポータル。9事業への入口・講習資料・AI情報を集約。",
+        "inLanguage": "ja",
+        "publisher": {"@id": org_id},
+        "description": "滋賀・彦根の中小事業者向けAI講習とWeb経営コンサルのポータル。",
     }
-    person = {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": OWNER_NAME,
-        "jobTitle": "AI講師 / 複数事業オーナー",
-        "email": OWNER_EMAIL,
-        "url": SITE_URL,
+
+    # 受講プランを Service + Offer として構造化（_render_packages の items と整合）
+    plans = [
+        ("AI個別相談 60分", "経営者・専門職・初心者なんでも相談。LLMO/SEO/MEO/Claude Code活用・補助金申請まで現役オーナーがその場で解決。", "2200", "5500", "BusinessCoaching"),
+        ("AI講習会 120分", "彦根で月1回・定員8名の実践型講習。一般の講師が教えない考え方とコツを、参加者のレベルに合わせて。", "5500", "5500", "Course"),
+        ("AI仕組み化ワークショップ 半日", "見積作成・問い合わせ対応・日報など現場の1業務をその場で自動化。明日から動くマニュアルごと持ち帰る対面ワークショップ。補助金対象。", "33000", "33000", "Service"),
+        ("AI伴走パック 6回", "HP公開から事務自動化・経理・マーケまで6ヶ月で一気に定着。技術的な難所は講師が代行・支援。滋賀・彦根の補助金で負担1/3以下に。", "100000", "100000", "Service"),
+    ]
+    services = []
+    for name, desc, lo, hi, stype in plans:
+        offer = {
+            "@type": "Offer",
+            "priceCurrency": "JPY",
+            "availability": "https://schema.org/InStock",
+        }
+        if lo == hi:
+            offer["price"] = lo
+        else:
+            offer["priceSpecification"] = {
+                "@type": "PriceSpecification",
+                "minPrice": lo, "maxPrice": hi, "priceCurrency": "JPY",
+            }
+        services.append({
+            "@type": "Service",
+            "serviceType": stype,
+            "name": name,
+            "description": desc,
+            "provider": {"@id": org_id},
+            "areaServed": {"@type": "AdministrativeArea", "name": "滋賀県"},
+            "offers": offer,
+        })
+
+    faq = {
+        "@type": "FAQPage",
+        "@id": SITE_URL + "/#faq",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": q,
+                "acceptedAnswer": {"@type": "Answer", "text": a},
+            }
+            for q, a in FAQ_QA
+        ],
     }
-    return json.dumps([doc, person], ensure_ascii=False)
+
+    breadcrumb = {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "ホーム", "item": SITE_URL + "/"},
+            {"@type": "ListItem", "position": 2, "name": "受講プラン", "item": SITE_URL + "/#packages"},
+            {"@type": "ListItem", "position": 3, "name": "制作実績", "item": SITE_URL + "/#works"},
+            {"@type": "ListItem", "position": 4, "name": "講師紹介", "item": SITE_URL + "/#speaker"},
+        ],
+    }
+
+    graph = {"@context": "https://schema.org", "@graph": [local_business, person, website, *services, faq, breadcrumb]}
+    return json.dumps(graph, ensure_ascii=False)
 
 
 def _load_businesses() -> list[dict]:
@@ -1175,6 +1288,12 @@ section.block + section.block { border-top: 1px solid var(--line); }
 }
 @media (max-width: 760px) { .explore-grid { grid-template-columns: 1fr; } }
 .section-more { display: flex; justify-content: center; margin-top: 28px; }
+/* スクリーンリーダー/クローラには読ませるが視覚的には隠す（SEOキーワード補強用） */
+.visually-hidden {
+  position: absolute !important; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0);
+  white-space: nowrap; border: 0;
+}
 .explore-card {
   display: flex; flex-direction: column; gap: 10px;
   padding: 26px 22px; background: var(--bg-elev); border: 1px solid var(--line);
@@ -1620,8 +1739,10 @@ def _render_hero() -> str:
         "<h1>"
         "<span class='accent'>業務まるごと、</span><br>"
         "AIに任せる。"
+        "<span class='visually-hidden'>｜滋賀・彦根の中小事業者向けAI講習・AI導入支援・補助金サポート</span>"
         "</h1>"
         "<p class='sub-catch'>"
+        "<strong>滋賀・彦根のAI講習／AI導入コンサル。</strong>"
         "彦根の対面ワークショップで、"
         "<strong>集客・人手不足・業務の自動化</strong>の仕組みを、その場で完成。"
         "</p>"
@@ -1972,17 +2093,28 @@ def _render_flow() -> str:
     return "".join(parts)
 
 
+# FAQ は本文表示と FAQPage 構造化データの両方で使う（一次情報＝LLMO引用源）。
+# 地域・お悩み・補助金の検索意図を素の質問形で網羅する。
+FAQ_QA = [
+    ("彦根・滋賀でAIの講習や相談はできますか？",
+     "はい。滋賀県彦根市を拠点に、彦根・湖東・東近江を中心とした対面のAI講習・個別相談を行っています。京都・大阪・名古屋までは出張可、リモートなら全国対応します。"),
+    ("料金はどれくらいですか？",
+     "AI個別相談は60分2,200〜5,500円、AI講習会は120分5,500円から。AI仕組み化ワークショップ（半日）は33,000円、AI伴走パックは月額10万円×6ヶ月です。LP制作は1本18〜30万円が目安。多くは補助金併用を前提に組みます。"),
+    ("補助金は使えますか？滋賀の事業者でも対象ですか？",
+     "ワークショップ・伴走パックは「デジタル化・AI導入補助金」や滋賀県・彦根市の補助金の対象になります。補助率は小規模事業者で最大4/5、実質負担が1/3以下になるケースが多いです。申請からツール選定・実装・定着まで一気通貫で支援します。"),
+    ("自分は IT に弱いのですが、大丈夫ですか？",
+     "9事業のオーナーをやっているので「経営者目線」で話します。LINE / メール / ZOOM どれでも、専門用語を避けて進めます。ITの勉強はゼロからで構いません。"),
+    ("AI を会社で使いたいのですが、何から始めれば？",
+     "まず「どの業務をAIに任せるか」を1つ決めるところから始めます。社内ドキュメントを1ヶ所にまとめ、RAG（社内Q&A）や請求書・見積・問い合わせ返信など反復業務の自動化から入るのが定着しやすい順序です。"),
+    ("人手不足や業務の属人化に効きますか？",
+     "そこが伴走パックの本丸です。特定の人しかできない作業（属人化）をAIとマニュアルに置き換え、誰でも回せる仕組みにします。請求書作成が月8時間→1時間といった削減を狙います。"),
+    ("出張やオンラインだけの依頼も可能ですか？",
+     "可能です。滋賀県外への出張AI研修、オンライン完結の伴走、単発の講演・登壇いずれも対応します。まずは無料の30分相談でご要望をお聞かせください。"),
+]
+
+
 def _render_faq() -> str:
-    qa = [
-        ("料金はどれくらいですか？",
-         "LP 1本（簡易ヒアリング込み）で 18〜30万円が目安です。業務システム・EC 統合・社内RAG は内容により別途お見積もり。補助金併用を前提に組むことが多いです。"),
-        ("対応エリアは？",
-         "滋賀県を中心に、京都・大阪・名古屋まで対面 / 出張可。リモートだけでも全国対応します。"),
-        ("自分は IT に弱いのですが、大丈夫ですか？",
-         "9事業のオーナーをやっているので「経営者目線」で話します。LINE / メール / ZOOM どれでも、専門用語を避けて進めます。"),
-        ("AI を会社で使いたいのですが、何から始めれば？",
-         "まずは社内ドキュメントを 1 ヶ所にまとめ、RAG（社内 Q&A）から導入するのを推奨しています。AIハブ自体がそのリファレンス実装になっています。"),
-    ]
+    qa = FAQ_QA
     parts = ["<div class='faq-list'>"]
     for q, a in qa:
         parts.append(

@@ -17,7 +17,7 @@ from pathlib import Path
 
 import yaml
 
-SITE_URL = os.environ.get("AIHUB_SITE_URL", os.environ.get("AIWATCH_SITE_URL", "https://goodbouldering-collab.github.io/ai-hub")).rstrip("/")
+SITE_URL = os.environ.get("AIHUB_SITE_URL", os.environ.get("AIWATCH_SITE_URL", "https://ai-hub-jp.vercel.app")).rstrip("/")
 
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -2331,15 +2331,7 @@ def build_sitemap_and_robots() -> None:
             if lp.name == "index.html":
                 continue
             add(f"lectures/{lp.name}", 0.8)
-    # watch: AI Watch トップ + アーカイブ
-    add("watch/index.html", 0.7)
-    add("watch/archive.html", 0.5)
-    watch_dir = DIST / "watch"
-    if watch_dir.exists():
-        for arc in sorted(watch_dir.glob("*.html")):
-            m = re.match(r"^(\d{4}-\d{2}-\d{2})\.html$", arc.name)
-            if m:
-                add(f"watch/{arc.name}", 0.4)
+    # watch(SNSポータル) は管理ページ配下へ移行したため公開 sitemap には含めない。
 
     if not urls:
         return
@@ -2360,6 +2352,10 @@ def build_sitemap_and_robots() -> None:
     (DIST / "robots.txt").write_text(
         "User-agent: *\n"
         "Allow: /\n"
+        "Disallow: /admin\n"
+        "Disallow: /api/\n"
+        "Disallow: /ops\n"
+        "Disallow: /watch/\n"
         f"Sitemap: {SITE_URL}/sitemap.xml\n",
         encoding="utf-8",
     )

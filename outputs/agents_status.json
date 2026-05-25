@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-25T07:18:16Z",
+  "generated_at": "2026-05-25T07:33:30Z",
   "recent_works": [
     {
       "date": "2026-05-25",
@@ -60,90 +60,6 @@
   ],
   "tasks_open": [
     {
-      "date": "2026-05-22",
-      "filename": "2026-05-22-api-mcp-automation-inventory.md",
-      "business": "api",
-      "snippet": "| `GITHUB_PERSONAL_ACCESS_TOKEN` | GitHub | リポ push / Actions 連携 / gh CLI | GitHub Developer settings | classic か fine-grained か要確認 |",
-      "path": "/ops?file=2026-05-22-api-mcp-automation-inventory.md#sec-docs"
-    },
-    {
-      "date": "2026-05-22",
-      "filename": "2026-05-22-api-mcp-automation-inventory.md",
-      "business": "api",
-      "snippet": "| 高 | `CONSUL_REPO_PAT` 失効疑い（前台帳より継続）。sync-consul-docs.yml 不動作 | 未対応 |",
-      "path": "/ops?file=2026-05-22-api-mcp-automation-inventory.md#sec-docs"
-    },
-    {
-      "date": "2026-05-22",
-      "filename": "2026-05-22-api-mcp-automation-inventory.md",
-      "business": "api",
-      "snippet": "| 中 | `THREADS_ACCESS_TOKEN` 60日失効の棚卸し・カレンダー登録未整備 | 未対応 |",
-      "path": "/ops?file=2026-05-22-api-mcp-automation-inventory.md#sec-docs"
-    },
-    {
-      "date": "2026-05-22",
-      "filename": "2026-05-22-all-vercel-cf-migration-analysis.md",
-      "business": "all",
-      "snippet": "| Node API欠落(bcrypt等) | 中 | トラストのiron-session要確認 |",
-      "path": "/ops?file=2026-05-22-all-vercel-cf-migration-analysis.md#sec-docs"
-    },
-    {
-      "date": "2026-05-20",
-      "filename": "2026-05-20-successor-outreach-email-draft.md",
-      "business": "successor",
-      "snippet": "作成: 2026-05-20 / 担当: writer / 送信期限: 2026-05-23（金）**",
-      "path": "/ops?file=2026-05-20-successor-outreach-email-draft.md#sec-docs"
-    },
-    {
-      "date": "2026-05-20",
-      "filename": "2026-05-20-successor-engineer-strategy.md",
-      "business": "successor",
-      "snippet": "| 期限 | 撤退対象 | 累積撤退率 |",
-      "path": "/ops?file=2026-05-20-successor-engineer-strategy.md#sec-docs"
-    },
-    {
-      "date": "2026-05-20",
-      "filename": "2026-05-20-successor-engineer-strategy.md",
-      "business": "successor",
-      "snippet": "期限: **2026-05-23（今週金曜）まで送信完了**",
-      "path": "/ops?file=2026-05-20-successor-engineer-strategy.md#sec-docs"
-    },
-    {
-      "date": "2026-05-20",
-      "filename": "2026-05-20-minanowa-event28-banner-brief.md",
-      "business": "みんなのWA",
-      "snippet": "| 日付ブロック 年 | 2026 | 2026（変更なし） |",
-      "path": "/ops?file=2026-05-20-minanowa-event28-banner-brief.md#sec-docs"
-    },
-    {
-      "date": "2026-05-20",
-      "filename": "2026-05-20-minanowa-event28-banner-brief.md",
-      "business": "みんなのWA",
-      "snippet": "| 日付ブロック 月日・曜日 | （第27回実施日） | **6/3（水）** |",
-      "path": "/ops?file=2026-05-20-minanowa-event28-banner-brief.md#sec-docs"
-    },
-    {
-      "date": "2026-05-20",
-      "filename": "2026-05-20-minanowa-event28-banner-brief.md",
-      "business": "みんなのWA",
-      "snippet": "| 日付ブロック 時間 | 12:00〜15:00 | 12:00〜15:00（変更なし） |",
-      "path": "/ops?file=2026-05-20-minanowa-event28-banner-brief.md#sec-docs"
-    },
-    {
-      "date": "2026-05-19",
-      "filename": "2026-05-19-handoff-master-plan.md",
-      "business": "handoff",
-      "snippet": "| 1 | **GitHub アカウント1つ（個人）** = 凍結で全社コード同時消失 | **GitHub Organization 化**。Org に全リポ移管、Owner を2名以上に | 未着手 |",
-      "path": "/ops?file=2026-05-19-handoff-master-plan.md#sec-docs"
-    },
-    {
-      "date": "2026-05-19",
-      "filename": "2026-05-19-handoff-master-plan.md",
-      "business": "handoff",
-      "snippet": "| 2 | **API キー・各サービスのログインが由井のローカル/頭にしかない** | **Bitwarden 無料 Organization**。Collection を事業別に。Emergency Access で死活時に継承 | 未着手 |",
-      "path": "/ops?file=2026-05-19-handoff-master-plan.md#sec-docs"
-    },
-    {
       "date": "2026-05-19",
       "filename": "2026-05-19-handoff-dashboard-checklist.md",
       "business": "handoff",
@@ -161,29 +77,22 @@
       "date": "2026-05-19",
       "filename": "2026-05-19-handoff-dashboard-checklist.md",
       "business": "handoff",
-      "snippet": "| ドメイン | 事業 | レジストラ名 | 管理者メール | 有効期限 | 自動更新 | 支払いカード名義 |",
+      "snippet": "🟠 ブロック C：ホスティング・ダッシュボードのメンバー（⏱20分・承認#1#3の補強）",
       "path": "/ops?file=2026-05-19-handoff-dashboard-checklist.md#sec-docs"
     },
     {
       "date": "2026-05-19",
-      "filename": "2026-05-19-github-domain-mail-audit.md",
-      "business": "github",
-      "snippet": "| カラッと | 未確認 | — | Shopify テーマ管理の可能性あり・要確認 |",
-      "path": "/ops?file=2026-05-19-github-domain-mail-audit.md#sec-docs"
+      "filename": "2026-05-19-handoff-dashboard-checklist.md",
+      "business": "handoff",
+      "snippet": "🟠 ブロック D：メール受信経路（⏱15分・承認#4の前提）",
+      "path": "/ops?file=2026-05-19-handoff-dashboard-checklist.md#sec-docs"
     },
     {
       "date": "2026-05-19",
-      "filename": "2026-05-19-github-domain-mail-audit.md",
-      "business": "github",
-      "snippet": "| ファディー | 未確認 | — | 再生成中のため未確定・要確認 |",
-      "path": "/ops?file=2026-05-19-github-domain-mail-audit.md#sec-docs"
-    },
-    {
-      "date": "2026-05-19",
-      "filename": "2026-05-19-github-domain-mail-audit.md",
-      "business": "github",
-      "snippet": "| Notエステ | 不明（.env.example に変数あり・値は未確認） | Resend 使用の可能性（RESEND 系キーあり） | 要確認 |",
-      "path": "/ops?file=2026-05-19-github-domain-mail-audit.md#sec-docs"
+      "filename": "2026-05-19-handoff-dashboard-checklist.md",
+      "business": "handoff",
+      "snippet": "🟡 ブロック E：期限つきトークンの実地確認（⏱10分・既知の地雷の確認）",
+      "path": "/ops?file=2026-05-19-handoff-dashboard-checklist.md#sec-docs"
     }
   ],
   "per_business_recent": [
@@ -363,6 +272,6 @@
   "totals": {
     "consul_work_total": 94,
     "recent_7d_total": 44,
-    "tasks_open_total": 18
+    "tasks_open_total": 5
   }
 }

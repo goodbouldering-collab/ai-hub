@@ -52,6 +52,12 @@ TASK_KEYWORDS = re.compile(
     re.IGNORECASE,
 )
 
+# 「もう終わっている」ことを示す語。これを含む行は未対応タスクではないので捨てる。
+DONE_MARKERS = re.compile(
+    r"(完了|済(?:み)?|✅|🟢|対応済|移行済|削除済|解消|クローズ|done|closed|resolved)",
+    re.IGNORECASE,
+)
+
 
 def _read_text(p: Path) -> str:
     try:
@@ -92,18 +98,43 @@ def _business_label(filename: str) -> str:
     return parts[3]
 
 
+def _is_table_row(line: str) -> bool:
+    """Markdown 表の行か（`| col | col |` 形式）。
+    パイプで 2 つ以上に区切られている行は表とみなして捨てる。
+    表の断片はキーワードを含んでも「タスク文」として読めないため。"""
+    if not line.startswith("|"):
+        return False
+    return line.count("|") >= 2
+
+
 def _extract_tasks(text: str, limit: int = 3) -> list[str]:
-    """TODO / FIXME / 未対応 などのキーワードを含む行を抜粋。
+    """work ファイルから「未対応タスクとして読める行」を抜粋する。
+
+    機械抽出の精度を上げるため、キーワードヒットに加えて次を除外:
+      - Markdown 表の行（`| ... | ... |`）= 文脈不明な断片の最大の発生源
+      - 完了済みを示す語（完了 / 済 / ✅ など）を含む行 = もうタスクではない
+      - キーワードが行のかなり後ろにしか出ない行 = ラベルでなく本文中の言及
     短すぎる行は捨て、長すぎる行は 140 字で切る。"""
     out: list[str] = []
     for raw in _strip_frontmatter(text).splitlines():
         line = raw.strip()
         if len(line) < 8:
             continue
-        if not TASK_KEYWORDS.search(line):
+        if _is_table_row(line):
+            continue
+        m = TASK_KEYWORDS.search(line)
+        if not m:
             continue
         # 先頭の Markdown 装飾を剥がす
         clean = re.sub(r"^[#*\->\s]+", "", line)
+        # 完了済みの行は未対応タスクではない
+        if DONE_MARKERS.search(clean):
+            continue
+        # キーワードがラベルとして機能している（行の前半 30 字以内に出る）ものだけ採用。
+        # 「期限:」「未対応：」のように頭で宣言されている行は読めるが、
+        # 本文の末尾でたまたまキーワードに触れただけの行は文脈が落ちて読めない。
+        if clean.find(m.group(1)) > 30:
+            continue
         if len(clean) > 140:
             clean = clean[:138] + "…"
         out.append(clean)
@@ -140,7 +171,9 @@ def _collect() -> dict:
 
     for date, name, path in works_files[:40]:  # 直近 40 件まで task 抽出
         text = _read_text(path)
-        tasks = _extract_tasks(text, limit=3)
+        # 1 ファイルから最大 5 件（チェックリスト型の work で A〜E のような
+        # 重要項目を 3 件で打ち切らないため）。全体上限は下の [:20] で別途効かせる。
+        tasks = _extract_tasks(text, limit=5)
         for t in tasks:
             tasks_open.append({
                 "date": date,

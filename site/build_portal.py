@@ -508,16 +508,28 @@ header.site-header.scrolled {
   text-decoration: none;
 }
 .site-nav .menu-drop a:hover { background: var(--primary-bg); color: var(--primary); }
-.site-nav .login-btn {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 9px 18px; border-radius: 999px;
-  background: var(--glass-bg); color: var(--text);
-  border: 1px solid var(--glass-border);
-  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-  font-size: 13px; font-weight: 600;
-  text-decoration: none; transition: border-color .2s, transform .2s, box-shadow .2s;
+/* ドロップ内で管理ログインを区切って格下げ表示 */
+.site-nav .menu-drop a.menu-drop-sep {
+  margin-top: 6px; padding-top: 12px; border-top: 1px solid var(--line);
+  font-size: 12px; color: var(--muted);
 }
-.site-nav .login-btn:hover { border-color: var(--line-strong); transform: translateY(-1px); box-shadow: 0 0 24px rgba(110,139,255,.22); }
+/* ヘッダー右端の主CTA: 無料相談（グラデ・最も目立たせる） */
+.site-nav .nav-cta {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 10px 20px; border-radius: 999px;
+  background: var(--grad); color: #fff;
+  font-size: 13.5px; font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 6px 22px rgba(110,139,255,.40), inset 0 1px 0 rgba(255,255,255,.25);
+  transition: transform .2s, box-shadow .2s, filter .2s;
+}
+.site-nav .nav-cta:hover { transform: translateY(-1px); filter: brightness(1.08); box-shadow: 0 12px 36px rgba(139,160,255,.55), inset 0 1px 0 rgba(255,255,255,.30); }
+/* モバイル: 管理ログインは控えめなテキストリンクに格下げ */
+.mobile-nav .mobile-admin-link {
+  display: block; padding: 10px 4px; margin-top: 4px;
+  font-size: 12.5px; color: var(--muted); text-decoration: none;
+  border-bottom: none;
+}
 
 .mobile-toggle {
   display: none; padding: 8px; border-radius: var(--radius-sm);
@@ -602,9 +614,25 @@ header.site-header.scrolled {
 .hero .lead strong { color: var(--text); font-weight: 700; }
 @media (max-width: 900px) { .hero .lead { margin: 0 auto 28px; } }
 .hero-actions {
-  display: flex; flex-wrap: wrap; gap: 12px;
+  display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px;
 }
 @media (max-width: 900px) { .hero-actions { justify-content: center; } }
+.btn-lg { padding: 16px 32px; font-size: 16px; }
+/* 主CTAを脈動させて視線を集める（控えめ・reduced-motionで停止） */
+.hero-actions .btn-primary { animation: cta-pulse 2.6s ease-in-out infinite; }
+@keyframes cta-pulse {
+  0%,100% { box-shadow: 0 8px 30px rgba(110,139,255,.40), inset 0 1px 0 rgba(255,255,255,.25); }
+  50% { box-shadow: 0 12px 44px rgba(139,160,255,.62), inset 0 1px 0 rgba(255,255,255,.30); }
+}
+@media (prefers-reduced-motion: reduce) { .hero-actions .btn-primary { animation: none; } }
+.hero-trust {
+  list-style: none; padding: 0; margin: 18px 0 0;
+  display: flex; flex-wrap: wrap; gap: 8px 18px;
+  font-size: 13px; color: var(--text-soft);
+}
+.hero-trust li { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
+.hero-trust strong { color: var(--text); }
+@media (max-width: 900px) { .hero-trust { justify-content: center; } }
 
 /* ヒーロー起点の AIレベル診断（第1問・主役） */
 .hero-quiz {
@@ -1425,7 +1453,7 @@ def _render_header() -> str:
         "<a class='site-logo' href='/'><span class='dot'></span>AIハブ <span style='color:var(--muted);font-weight:600;font-size:13px;margin-left:6px;'>by 由井辰美</span></a>"
         "<nav class='site-nav' aria-label='メインナビ'>"
         "<a class='nav-link' href='#packages'>受講プラン</a>"
-        "<a class='nav-link' href='#flow'>ご依頼の流れ</a>"
+        "<a class='nav-link' href='#works'>制作実績</a>"
         "<a class='nav-link' href='#speaker'>講師紹介</a>"
         "<a class='nav-link' href='#faq'>FAQ</a>"
         "<div class='menu-wrap'>"
@@ -1433,13 +1461,14 @@ def _render_header() -> str:
         "<svg class='chev' width='14' height='14' viewBox='0 0 20 20' fill='none' aria-hidden='true'><path d='M5 8l5 5 5-5' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>"
         "</button>"
         "<div class='menu-drop' id='menu-drop' role='menu'>"
-        "<a href='#works'>📂 制作実績</a>"
+        "<a href='#flow'>🛠 ご依頼の流れ</a>"
         "<a href='#lectures'>📚 講習資料</a>"
-        "<a href='#contact'>✉ お問い合わせ</a>"
+        "<a href='/portfolio.html'>📂 実績の詳細</a>"
+        "<a class='menu-drop-sep' href='/admin'>🔐 管理ログイン</a>"
         "</div>"
         "</div>"
         "<button type='button' class='theme-toggle' aria-label='ダークモードに切替'>🌙</button>"
-        "<a class='login-btn' href='/admin'>🔐 管理ログイン</a>"
+        "<a class='nav-cta' href='#contact'>📩 無料相談</a>"
         "</nav>"
         "<button type='button' class='theme-toggle theme-toggle-mobile' aria-label='ダークモードに切替'>🌙</button>"
         "<button class='mobile-toggle' id='mobile-toggle' aria-label='メニュー'>"
@@ -1448,13 +1477,13 @@ def _render_header() -> str:
         "</div>"
         "<div class='mobile-nav' id='mobile-nav'>"
         "<a href='#packages'>受講プラン</a>"
-        "<a href='#flow'>ご依頼の流れ</a>"
-        "<a href='#speaker'>講師紹介</a>"
-        "<a href='#faq'>FAQ</a>"
-        "<a href='#contact'>お問い合わせ</a>"
         "<a href='#works'>制作実績</a>"
+        "<a href='#speaker'>講師紹介</a>"
+        "<a href='#flow'>ご依頼の流れ</a>"
         "<a href='#lectures'>講習資料</a>"
-        "<a class='login-btn-mobile' href='/admin'>🔐 管理ログイン</a>"
+        "<a href='#faq'>FAQ</a>"
+        "<a class='login-btn-mobile' href='#contact'>📩 無料で30分相談する</a>"
+        "<a class='mobile-admin-link' href='/admin'>🔐 管理ログイン</a>"
         "</div>"
         "</header>"
     )
@@ -1750,8 +1779,19 @@ def _render_hero() -> str:
         "ITの勉強はゼロ。社長の仕事は「どの業務を任せるか」を決めるだけ。"
         "<strong>週10時間の無駄</strong>を削る仕組みを、その日のうちに持ち帰れます。"
         "</p>"
+        # 主CTA: 無料30分相談 / 副: 30秒AI診断（ファーストビューで行動できるように）
+        "<div class='hero-actions'>"
+        "<a class='btn btn-primary btn-lg' href='#contact'>📩 まずは無料で30分相談する</a>"
+        "<a class='btn btn-secondary btn-lg' href='#hero-quiz'>⚡ 30秒でAIレベル診断</a>"
+        "</div>"
+        # 信頼バッジ（無料・補助金・実績を一目で）
+        "<ul class='hero-trust'>"
+        "<li>✅ 相談は<strong>無料</strong></li>"
+        "<li>💰 補助金で<strong>実質1/3以下</strong></li>"
+        "<li>🏢 <strong>9事業</strong>を回す現役オーナー</li>"
+        "</ul>"
         # ヒーロー起点の AIレベル診断（第1問を常時表示）
-        "<div class='hero-quiz'>"
+        "<div class='hero-quiz' id='hero-quiz'>"
         "<div class='hq-label'><span class='hq-mono'>30秒 AI診断</span>いま、AIをどれくらい使っていますか？</div>"
         "<div class='hq-opts'>"
         "<button type='button' class='hq-opt diagnose-open' data-prelevel='beginner'>"

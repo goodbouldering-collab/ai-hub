@@ -7,11 +7,11 @@
 
 ---
 
-## サマリ（2026-05-13 現在）
+## サマリ（2026-05-25 更新）
 
-- **GitHub Actions cron**: 3 件
+- **GitHub Actions cron**: 4 件
 - **Vercel Cron**: 2 件
-- **合計**: 5 件
+- **合計**: 6 件
 
 ---
 
@@ -94,6 +94,26 @@
 | **必要 Secret** | `SUPABASE_SERVICE_ROLE_KEY` |
 | **ダッシュボード** | https://github.com/goodbouldering-collab/business21/actions/workflows/supabase-backup.yml |
 | **Vercel 移行可否** | 🟡 技術的には可能だが、Artifact 90 日無料の利点を失うので非推奨 |
+
+### 6. consul / SEO週次ダイジェスト (seo-weekly.yml)
+
+| 項目 | 値 |
+|---|---|
+| **プロジェクト** | consul（google_ops 基盤） |
+| **定義場所** | `consul/.github/workflows/seo-weekly.yml` → `weekly_seo_digest.py` |
+| **スケジュール (UTC)** | `0 23 * * 0` |
+| **JST 実行時刻** | 毎週月曜 08:00 |
+| **言語** | Python |
+| **用途** | 全GSCプロパティの直近28日 vs 前28日を比較→ダイジェストを `work/<日付>-seo-weekly-digest.md` に生成→`REPORTS-HUB.md` 更新→commit |
+| **報告** | 生成MDは [REPORTS-HUB.md](REPORTS-HUB.md) に集約・ai-hub `/admin/docs` にも自動同期。🔴悪化があればClaudeが深掘り |
+| **手動実行** | `workflow_dispatch` 対応 |
+| **失敗時** | Issue 自動作成（トークン失効・Secret不正を検知） |
+| **必要 Secret** | `GOOGLE_OAUTH_CREDENTIALS`（credentials.json中身）/ `GSC_TOKEN_GOODBOULDERING`（**本番公開後の無期限トークン**） |
+| **ダッシュボード** | https://github.com/goodbouldering-collab/consul/actions/workflows/seo-weekly.yml |
+| **Vercel 移行可否** | ❌ Python＋git commit back のため Vercel Functions 不可 |
+
+> ⚠️ 前提: OAuth同意画面を「本番環境」に公開しないとトークンが7日で失効し失敗する。
+> 当初ローカル(Windowsタスク)案だったが「Windows管理しにくい」によりGH Actionsへ切替（2026-05-25 CEO判断）。
 
 ---
 

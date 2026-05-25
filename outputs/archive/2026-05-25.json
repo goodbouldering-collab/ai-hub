@@ -2,13 +2,13 @@
   "date": "2026-05-25",
   "items": [
     {
-      "hash": "47a13e4b053bba1c",
-      "title": "datasette 1.0a30",
-      "orig_title": "datasette 1.0a30",
+      "hash": "24d77726b5a4c1b0",
+      "title": "Pope Leo calls for being ‘profoundly human’ in the age of AI",
+      "orig_title": "Pope Leo calls for being ‘profoundly human’ in the age of AI",
       "summary": "",
-      "url": "https://simonwillison.net/2026/May/24/datasette/#atom-everything",
-      "source": "Simon Willison's Weblog",
-      "category": "AI研究者ブログ",
+      "url": "https://www.theverge.com/news/936945/pope-leo-letter-encyclical-ai-anthropic-labor-warfare",
+      "source": "The Verge AI",
+      "category": "AIニュース",
       "genre": "industry",
       "score": 56.0,
       "breakdown": {
@@ -17,19 +17,19 @@
         "source_bonus": 0.0,
         "freshness": 6.0
       },
-      "thumbnail": "",
-      "published": "2026-05-24T23:52:37+00:00",
+      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/gettyimages-2278126608.jpg?quality=90&amp;strip=all&amp;crop=0%2C0%2C100%2C78.487862082976&amp;w=1200",
+      "published": "2026-05-25T11:05:07-04:00",
       "_is_video": false,
       "_summary_clean": ""
     },
     {
-      "hash": "111ee21a7348571b",
-      "title": "datasette-agent 0.1a4",
-      "orig_title": "datasette-agent 0.1a4",
+      "hash": "21fba0dfee1ad47b",
+      "title": "時代はローカルLLMか / API価格のさらなる高騰が予想される / Claude CodeもCodexもローカルLLMで動かす",
+      "orig_title": "時代はローカルLLMか / API価格のさらなる高騰が予想される / Claude CodeもCodexもローカルLLMで動かす",
       "summary": "",
-      "url": "https://simonwillison.net/2026/May/24/datasette-agent/#atom-everything",
-      "source": "Simon Willison's Weblog",
-      "category": "AI研究者ブログ",
+      "url": "https://www.youtube.com/watch?v=jyI4KF-eIHQ",
+      "source": "ウェブ職TV",
+      "category": "AI動画(日本語)",
       "genre": "industry",
       "score": 56.0,
       "breakdown": {
@@ -38,72 +38,9 @@
         "source_bonus": 0.0,
         "freshness": 6.0
       },
-      "thumbnail": "",
-      "published": "2026-05-24T23:19:34+00:00",
-      "_is_video": false,
-      "_summary_clean": ""
-    },
-    {
-      "hash": "fa42418f078bb134",
-      "title": "datasette-fixtures 0.1a0",
-      "orig_title": "datasette-fixtures 0.1a0",
-      "summary": "",
-      "url": "https://simonwillison.net/2026/May/24/datasette-fixtures/#atom-everything",
-      "source": "Simon Willison's Weblog",
-      "category": "AI研究者ブログ",
-      "genre": "industry",
-      "score": 56.0,
-      "breakdown": {
-        "base": 50.0,
-        "genre_bonus": 0.0,
-        "source_bonus": 0.0,
-        "freshness": 6.0
-      },
-      "thumbnail": "",
-      "published": "2026-05-24T21:38:32+00:00",
-      "_is_video": false,
-      "_summary_clean": ""
-    },
-    {
-      "hash": "c3c9dd420d0dab55",
-      "title": "Quoting Armin Ronacher",
-      "orig_title": "Quoting Armin Ronacher",
-      "summary": "",
-      "url": "https://simonwillison.net/2026/May/24/armin-ronacher/#atom-everything",
-      "source": "Simon Willison's Weblog",
-      "category": "AI研究者ブログ",
-      "genre": "industry",
-      "score": 56.0,
-      "breakdown": {
-        "base": 50.0,
-        "genre_bonus": 0.0,
-        "source_bonus": 0.0,
-        "freshness": 6.0
-      },
-      "thumbnail": "",
-      "published": "2026-05-24T18:46:53+00:00",
-      "_is_video": false,
-      "_summary_clean": ""
-    },
-    {
-      "hash": "1f23b39e1105286a",
-      "title": "Mad House — Usborne Creepy Computer Games",
-      "orig_title": "Mad House — Usborne Creepy Computer Games",
-      "summary": "",
-      "url": "https://simonwillison.net/2026/May/24/usborne-mad-house/#atom-everything",
-      "source": "Simon Willison's Weblog",
-      "category": "AI研究者ブログ",
-      "genre": "industry",
-      "score": 56.0,
-      "breakdown": {
-        "base": 50.0,
-        "genre_bonus": 0.0,
-        "source_bonus": 0.0,
-        "freshness": 6.0
-      },
-      "thumbnail": "https://static.simonwillison.net/static/2026/mad-house.jpg",
-      "published": "2026-05-24T17:14:11+00:00",
-      "_is_video": false,
+      "thumbnail": "https://img.youtube.com/vi/jyI4KF-eIHQ/hqdefault.jpg",
+      "published": "2026-05-25T19:42:00+00:00",
+      "_is_video": true,
       "_summary_clean": ""
     },
     {
@@ -123,18 +60,39 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/8pGjwe_hwSI/hqdefault.jpg",
-      "published": "2026-05-24T18:50:36+00:00",
+      "published": "2026-05-25T14:21:05+00:00",
       "_is_video": true,
       "_summary_clean": ""
     },
     {
-      "hash": "0b60095e850bb644",
-      "title": "Hackers are learning to exploit chatbot &#8216;personalities&#8217;",
-      "orig_title": "Hackers are learning to exploit chatbot &#8216;personalities&#8217;",
+      "hash": "07263b3842cbe4a3",
+      "title": "【神アプデ】これ使ったら誰でも簡単に稼げてしまうやんw",
+      "orig_title": "【神アプデ】これ使ったら誰でも簡単に稼げてしまうやんw",
       "summary": "",
-      "url": "https://www.theverge.com/column/935545/hackers-ai-chatbots",
-      "source": "The Verge AI",
-      "category": "AIニュース",
+      "url": "https://www.youtube.com/watch?v=q785fpB5rqo",
+      "source": "AI収益化ラボ",
+      "category": "AI動画(日本語)",
+      "genre": "industry",
+      "score": 56.0,
+      "breakdown": {
+        "base": 50.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 6.0
+      },
+      "thumbnail": "https://img.youtube.com/vi/q785fpB5rqo/hqdefault.jpg",
+      "published": "2026-05-25T11:05:22+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
+    },
+    {
+      "hash": "47a13e4b053bba1c",
+      "title": "datasette 1.0a30",
+      "orig_title": "datasette 1.0a30",
+      "summary": "",
+      "url": "https://simonwillison.net/2026/May/24/datasette/#atom-everything",
+      "source": "Simon Willison's Weblog",
+      "category": "AI研究者ブログ",
       "genre": "industry",
       "score": 53.0,
       "breakdown": {
@@ -143,18 +101,39 @@
         "source_bonus": 0.0,
         "freshness": 3.0
       },
-      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/09/STK414_AI_CVIRGINIA_I__0005_3.png?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-05-24T08:00:00-04:00",
+      "thumbnail": "",
+      "published": "2026-05-24T23:52:37+00:00",
       "_is_video": false,
       "_summary_clean": ""
     },
     {
-      "hash": "2b8a269437c7f04e",
-      "title": "Claude × X【早い者勝ち】XとClaudeを使った稼ぎ方が簡単すぎたw",
-      "orig_title": "Claude × X【早い者勝ち】XとClaudeを使った稼ぎ方が簡単すぎたw",
+      "hash": "111ee21a7348571b",
+      "title": "datasette-agent 0.1a4",
+      "orig_title": "datasette-agent 0.1a4",
       "summary": "",
-      "url": "https://www.youtube.com/watch?v=BqrL9Z8-Feo",
-      "source": "AI収益化ラボ",
+      "url": "https://simonwillison.net/2026/May/24/datasette-agent/#atom-everything",
+      "source": "Simon Willison's Weblog",
+      "category": "AI研究者ブログ",
+      "genre": "industry",
+      "score": 53.0,
+      "breakdown": {
+        "base": 50.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 3.0
+      },
+      "thumbnail": "",
+      "published": "2026-05-24T23:19:34+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
+    },
+    {
+      "hash": "52b9ab4c7ea93f9c",
+      "title": "Manusのクラウドコンピューター機能で24時間ずっと働く自動化AIワークフローを作る＋LINE連携で自動通知",
+      "orig_title": "Manusのクラウドコンピューター機能で24時間ずっと働く自動化AIワークフローを作る＋LINE連携で自動通知",
+      "summary": "",
+      "url": "https://www.youtube.com/watch?v=Mb4qa_r4k8Q",
+      "source": "KEITO AI&WEB",
       "category": "AI動画(日本語)",
       "genre": "industry",
       "score": 53.0,
@@ -164,9 +143,72 @@
         "source_bonus": 0.0,
         "freshness": 3.0
       },
-      "thumbnail": "https://img.youtube.com/vi/BqrL9Z8-Feo/hqdefault.jpg",
-      "published": "2026-05-24T10:00:22+00:00",
+      "thumbnail": "https://img.youtube.com/vi/Mb4qa_r4k8Q/hqdefault.jpg",
+      "published": "2026-05-25T10:00:10+00:00",
       "_is_video": true,
+      "_summary_clean": ""
+    },
+    {
+      "hash": "b7a238b0ccd329d9",
+      "title": "OpenAI, Grupo Folha and Grupo UOL announce strategic content partnership",
+      "orig_title": "OpenAI, Grupo Folha and Grupo UOL announce strategic content partnership",
+      "summary": "",
+      "url": "https://openai.com/index/grupo-folha-grupo-uol-partnership",
+      "source": "OpenAI Blog",
+      "category": "AI公式",
+      "genre": "industry",
+      "score": 50.0,
+      "breakdown": {
+        "base": 50.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 0.0
+      },
+      "thumbnail": "https://images.ctfassets.net/kftzwdyauwt9/5r2QUTvY5Zjg2vjOFVqbFA/63060b11739247750d8eabb3d029e7ae/Grup-SEO-Image.png?w=1600&amp;h=900&amp;fit=fill",
+      "published": "Mon, 25 May 2026 00:00:00 GMT",
+      "_is_video": false,
+      "_summary_clean": ""
+    },
+    {
+      "hash": "88752236c6636eef",
+      "title": "Harness, Scaffold, and the AI Agent Terms Worth Getting Right",
+      "orig_title": "Harness, Scaffold, and the AI Agent Terms Worth Getting Right",
+      "summary": "",
+      "url": "https://huggingface.co/blog/agent-glossary",
+      "source": "Hugging Face Blog",
+      "category": "AI業界",
+      "genre": "industry",
+      "score": 50.0,
+      "breakdown": {
+        "base": 50.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 0.0
+      },
+      "thumbnail": "https://huggingface.co/blog/assets/agent-glossary/thumbnail.png",
+      "published": "Mon, 25 May 2026 00:00:00 GMT",
+      "_is_video": false,
+      "_summary_clean": ""
+    },
+    {
+      "hash": "0a90bf7991f8e890",
+      "title": "Webサイトの二重管理に限界　青森県庁チャットbot「生成AI化」でコスト7割減",
+      "orig_title": "Webサイトの二重管理に限界　青森県庁チャットbot「生成AI化」でコスト7割減",
+      "summary": "",
+      "url": "https://kn.itmedia.co.jp/kn/articles/2605/26/news022.html",
+      "source": "ITmedia AI+",
+      "category": "AI国内",
+      "genre": "industry",
+      "score": 50.0,
+      "breakdown": {
+        "base": 50.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 0.0
+      },
+      "thumbnail": "https://image.itmedia.co.jp/kn/articles/2605/26/cover_news022.jpg",
+      "published": "Tue, 26 May 2026 07:00:00 +0900",
+      "_is_video": false,
       "_summary_clean": ""
     }
   ]

@@ -63,7 +63,7 @@ top_buttons:
 
 - id: watch
   group: AI情報
-  label: AI Watch
+  label: SNSポータル
   icon: 📡
   href: watch/index.html
   kind: link

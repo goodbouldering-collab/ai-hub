@@ -1171,9 +1171,10 @@ section.block + section.block { border-top: 1px solid var(--line); }
 
 /* ---- explore (メニュー集約カード) ---- */
 .explore-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;
 }
 @media (max-width: 760px) { .explore-grid { grid-template-columns: 1fr; } }
+.section-more { display: flex; justify-content: center; margin-top: 28px; }
 .explore-card {
   display: flex; flex-direction: column; gap: 10px;
   padding: 26px 22px; background: var(--bg-elev); border: 1px solid var(--line);
@@ -1313,9 +1314,8 @@ def _render_header() -> str:
         "<svg class='chev' width='14' height='14' viewBox='0 0 20 20' fill='none' aria-hidden='true'><path d='M5 8l5 5 5-5' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>"
         "</button>"
         "<div class='menu-drop' id='menu-drop' role='menu'>"
-        "<a href='/portfolio.html'>📂 実績一覧</a>"
-        "<a href='/lectures/index.html'>📚 講習資料</a>"
-        "<a href='/watch/index.html'>📡 自分ポータル</a>"
+        "<a href='#works'>📂 制作実績</a>"
+        "<a href='#lectures'>📚 講習資料</a>"
         "<a href='#contact'>✉ お問い合わせ</a>"
         "</div>"
         "</div>"
@@ -1333,9 +1333,8 @@ def _render_header() -> str:
         "<a href='#speaker'>講師紹介</a>"
         "<a href='#faq'>FAQ</a>"
         "<a href='#contact'>お問い合わせ</a>"
-        "<a href='/portfolio.html'>実績一覧</a>"
-        "<a href='/lectures/index.html'>講習資料</a>"
-        "<a href='/watch/index.html'>自分ポータル</a>"
+        "<a href='#works'>制作実績</a>"
+        "<a href='#lectures'>講習資料</a>"
         "<a class='login-btn-mobile' href='/admin'>🔐 管理ログイン</a>"
         "</div>"
         "</header>"
@@ -1879,7 +1878,8 @@ def _render_diagnose_modal() -> str:
 
 
 def _render_explore() -> str:
-    """メニュー集約: 実績 / 講習資料 / 自分ポータル をカードで（詳細は各ページへ）。"""
+    """メニュー集約: 実績 / 講習資料 をカードで（詳細は各ページへ）。
+    ※ SNSポータル(AI Watch /watch/)は管理ページ(/admin)へ移行したため公開側には出さない。"""
     cards = [
         ("📂", "制作実績・事業ポートフォリオ",
          "運営事業・制作したサイト・生成した提案LP。すべて自分で構築・運用した実物。",
@@ -1887,9 +1887,6 @@ def _render_explore() -> str:
         ("📚", "講習資料",
          "AI業務活用・SNSアルゴリズム・LLMO（AI検索最適化）の講習で使う資料。プログラミングマップも。",
          "/lectures/index.html", "資料を見る"),
-        ("📡", "自分ポータル（AI Watch）",
-         "AI / SNS の最新動向を毎朝ダイジェスト配信。一次情報ベースで追える更新型ポータル。",
-         "/watch/index.html", "ポータルへ"),
     ]
     parts = ["<div class='explore-grid'>"]
     for icon, title, desc, href, cta in cards:
@@ -2101,6 +2098,40 @@ def _render_portfolio_section() -> str:
     return "".join(parts)
 
 
+def _render_works_section() -> str:
+    """制作実績セクション（TOP内サマリ）。portfolio.yaml から live のみを抜き、
+    各カードは公開サイト本体へ直リンク。ページ遷移を減らすため一覧をインライン掲載。"""
+    items = [p for p in _load_portfolio() if str(p.get("status") or "live") != "retired"]
+    if not items:
+        return ""
+    parts = ["<div class='pf-grid'>"]
+    for p in items:
+        name = html.escape(str(p.get("name") or p.get("slug") or ""))
+        url = str(p.get("url") or "").strip()
+        host = html.escape(url.replace("https://", "").replace("http://", "").rstrip("/")) if url else ""
+        cat = html.escape(str(p.get("category") or ""))
+        summary = html.escape(str(p.get("summary") or ""))
+        status = str(p.get("status") or "live")
+        techs = p.get("tech") or []
+        chips = [f"<span class='pf-chip cat'>{cat}</span>"] if cat else []
+        for t in list(techs)[:3]:
+            chips.append(f"<span class='pf-chip'>{html.escape(str(t))}</span>")
+        if status == "dev":
+            chips.append("<span class='pf-chip dev'>開発中</span>")
+        href = html.escape(url, quote=True) if url else "/portfolio.html"
+        target = " target='_blank' rel='noopener'" if url else ""
+        parts.append(
+            f"<a class='pf-card' href='{href}'{target}>"
+            f"<div class='pf-title'>{name}</div>"
+            + (f"<div class='pf-host'>{host}</div>" if host else "")
+            + (f"<div class='pf-sum'>{summary}</div>" if summary else "")
+            + (f"<div class='pf-meta'>{''.join(chips)}</div>" if chips else "")
+            + "</a>"
+        )
+    parts.append("</div>")
+    return "".join(parts)
+
+
 def _render_lectures_section() -> str:
     """講習資料セクション。プログラミングマップを資料の1つとして配下に含める。"""
     pmap_card = {
@@ -2305,12 +2336,26 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append(_render_faq())
     parts.append("</section>")
 
-    # 4b. もっと見る（メニュー集約: 実績 / 講習資料 / 自分ポータル をカードで・詳細はリンク）
-    parts.append("<section class='block' id='explore'>")
-    parts.append("<p class='section-heading fade-up'>EXPLORE</p>")
-    parts.append("<h2 class='section-title fade-up d1'>もっと知る</h2>")
-    parts.append("<p class='section-sub fade-up d2'>制作実績・講習で使う資料・毎朝更新のAIダイジェスト。気になるところから。</p>")
-    parts.append(_render_explore())
+    # 4b. 制作実績（TOP内にサマリを掲載・各カードは公開サイト本体へ直リンク）
+    parts.append("<section class='block' id='works'>")
+    parts.append("<p class='section-heading fade-up'>WORKS</p>")
+    parts.append("<h2 class='section-title fade-up d1'>制作実績・運営サイト</h2>")
+    parts.append("<p class='section-sub fade-up d2'>すべて自分で構築・運用している実物。カードから各サイトへ直接どうぞ。</p>")
+    parts.append("<div class='fade-up d2'>")
+    parts.append(_render_works_section())
+    parts.append("</div>")
+    parts.append("<div class='section-more fade-up d3'><a class='btn btn-secondary' href='/portfolio.html'>📂 実績の詳細・技術スタックを見る →</a></div>")
+    parts.append("</section>")
+
+    # 4c. 講習資料（TOP内にサマリを掲載）
+    parts.append("<section class='block' id='lectures'>")
+    parts.append("<p class='section-heading fade-up'>MATERIALS</p>")
+    parts.append("<h2 class='section-title fade-up d1'>講習資料</h2>")
+    parts.append("<p class='section-sub fade-up d2'>AI業務活用・SNSアルゴリズム・LLMO（AI検索最適化）の講習で使う資料。</p>")
+    parts.append("<div class='fade-up d2'>")
+    parts.append(_render_lectures_section())
+    parts.append("</div>")
+    parts.append("<div class='section-more fade-up d3'><a class='btn btn-secondary' href='/lectures/index.html'>📚 講習資料の一覧を見る →</a></div>")
     parts.append("</section>")
 
     # 5. お問い合わせ（Resend 送信フォーム）

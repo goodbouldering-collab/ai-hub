@@ -144,8 +144,8 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
     parts.append("<a class='nav-link' href='/#flow'>ご依頼の流れ</a>")
     parts.append("<a class='nav-link' href='/#speaker'>講師紹介</a>")
     parts.append("<a class='nav-link' href='/#faq'>FAQ</a>")
-    parts.append("<a class='nav-link' href='/portfolio.html'>実績一覧</a>")
-    parts.append("<a class='nav-link' href='/lectures/index.html'>講習資料</a>")
+    parts.append("<a class='nav-link' href='/#works'>制作実績</a>")
+    parts.append("<a class='nav-link' href='/#lectures'>講習資料</a>")
     parts.append("</nav>")
     parts.append(
         f"<a class='login-btn' href='{admin_href}'>🔐 管理ログイン</a>"

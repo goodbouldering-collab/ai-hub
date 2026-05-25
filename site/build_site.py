@@ -138,7 +138,14 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
         "</a>"
         "<nav class='site-nav top-nav' aria-label='サイトナビ'>"
     ]
-    parts.append(f"<a class='nav-btn' href='{safe_home}'>🏠 ホームへ戻る</a>")
+    # TOP(_render_header) と同じリンク群を表示して固定メニューを共通化する。
+    # 下層ページからは TOP のセクションへ飛ぶため href は "/#..." の絶対指定にする。
+    parts.append("<a class='nav-link' href='/#packages'>受講プラン</a>")
+    parts.append("<a class='nav-link' href='/#flow'>ご依頼の流れ</a>")
+    parts.append("<a class='nav-link' href='/#speaker'>講師紹介</a>")
+    parts.append("<a class='nav-link' href='/#faq'>FAQ</a>")
+    parts.append("<a class='nav-link' href='/portfolio.html'>実績一覧</a>")
+    parts.append("<a class='nav-link' href='/lectures/index.html'>講習資料</a>")
     parts.append("</nav>")
     parts.append(
         f"<a class='login-btn' href='{admin_href}'>🔐 管理ログイン</a>"
@@ -374,8 +381,8 @@ header.site-header {
   transition: background .3s, box-shadow .3s, backdrop-filter .3s;
 }
 header.site-header.scrolled {
-  background: rgba(255,255,255,0.92);
-  box-shadow: 0 1px 0 rgba(15,23,42,0.05), 0 10px 30px rgba(15,23,42,0.04);
+  background: var(--glass-bg);
+  border-bottom: 1px solid var(--line);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 }
@@ -389,16 +396,18 @@ header.site-header.scrolled {
   color: var(--text); text-decoration: none;
   display: inline-flex; align-items: center; gap: 8px;
 }
-.site-logo .dot { width: 8px; height: 8px; border-radius: 999px; background: var(--primary); display: inline-block; }
+.site-logo .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--grad); box-shadow: 0 0 12px rgba(139,160,255,.6); display: inline-block; }
 .site-header .login-btn {
   display: inline-flex; align-items: center; gap: 6px;
   padding: 9px 18px; border-radius: 999px;
-  background: var(--text); color: #fff;
-  font-size: 13px; font-weight: 700; text-decoration: none;
-  transition: background .2s, transform .2s;
+  background: var(--glass-bg); color: var(--text);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  font-size: 13px; font-weight: 600; text-decoration: none;
+  transition: border-color .2s, transform .2s, box-shadow .2s;
   white-space: nowrap;
 }
-.site-header .login-btn:hover { background: var(--primary); transform: translateY(-1px); }
+.site-header .login-btn:hover { border-color: var(--line-strong); transform: translateY(-1px); box-shadow: 0 0 24px rgba(110,139,255,.22); }
 @media (max-width: 720px) {
   .site-header-inner { padding: 10px 14px; gap: 8px; }
   .site-logo { font-size: 16px; }
@@ -429,28 +438,34 @@ nav.top-nav .nav-btn {
 nav.top-nav .nav-btn:hover:not(:disabled) {
   background: var(--primary-bg);
   color: var(--primary);
+  border-color: var(--glass-border);
 }
 nav.top-nav .nav-current {
-  background: var(--primary);
-  border-color: var(--primary);
-  color:#fff; font-weight:800;
-  box-shadow: 0 6px 16px rgba(37,99,235,.30);
+  background: var(--grad);
+  border-color: transparent;
+  color:#fff; font-weight:700;
+  box-shadow: 0 6px 22px rgba(110,139,255,.40), inset 0 1px 0 rgba(255,255,255,.22);
   cursor:default;
 }
 nav.top-nav .run-btn {
-  background: var(--primary); color:#fff;
-  border:1px solid var(--primary);
-  font-weight:800; box-shadow: 0 6px 16px rgba(37,99,235,.30);
+  background: var(--grad); color:#fff;
+  border:1px solid transparent;
+  font-weight:600; box-shadow: 0 6px 22px rgba(110,139,255,.40), inset 0 1px 0 rgba(255,255,255,.22);
 }
 nav.top-nav .run-btn:hover:not(:disabled) {
-  background:#1d4fd6; box-shadow: 0 10px 24px rgba(37,99,235,.40);
+  filter: brightness(1.08); transform: translateY(-1px);
+  box-shadow: 0 14px 44px rgba(139,160,255,.55), inset 0 1px 0 rgba(255,255,255,.30);
 }
 nav.top-nav .run-btn:disabled { opacity:.6; cursor:not-allowed; }
+/* TOP(.site-nav) と同じく、狭幅ではヘッダー内リンク群を隠してロゴ+CTAだけ残す。
+   下層ページはハンバーガーを持たないため、リンクは隠してヘッダー高を一定に保つ。 */
+@media (max-width: 900px) {
+  nav.top-nav { display: none; }
+  .site-logo { white-space: nowrap; }
+}
 @media (max-width: 640px) {
   html { scroll-padding-top: 78px; }
   [id] { scroll-margin-top: 78px; }
-  nav.top-nav { padding: 10px 14px; gap:4px; }
-  nav.top-nav .nav-btn { padding:6px 11px; font-size:11.5px; }
 }
 .run-status { margin-left:10px; font-size:12px; color:var(--muted); }
 .run-status.ok { color:#047857; }

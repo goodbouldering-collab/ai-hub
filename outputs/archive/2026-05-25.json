@@ -18,7 +18,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-05-24T23:52:37+00:00"
+      "published": "2026-05-24T23:52:37+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "111ee21a7348571b",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-05-24T23:19:34+00:00"
+      "published": "2026-05-24T23:19:34+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "fa42418f078bb134",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-05-24T21:38:32+00:00"
+      "published": "2026-05-24T21:38:32+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "c3c9dd420d0dab55",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-05-24T18:46:53+00:00"
+      "published": "2026-05-24T18:46:53+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "1f23b39e1105286a",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://static.simonwillison.net/static/2026/mad-house.jpg",
-      "published": "2026-05-24T17:14:11+00:00"
+      "published": "2026-05-24T17:14:11+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "01f97bb6bac0f1c1",
@@ -113,7 +123,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/8pGjwe_hwSI/hqdefault.jpg",
-      "published": "2026-05-24T18:50:36+00:00"
+      "published": "2026-05-24T18:50:36+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "0b60095e850bb644",
@@ -132,7 +144,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/09/STK414_AI_CVIRGINIA_I__0005_3.png?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-05-24T08:00:00-04:00"
+      "published": "2026-05-24T08:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "2b8a269437c7f04e",
@@ -151,7 +165,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/BqrL9Z8-Feo/hqdefault.jpg",
-      "published": "2026-05-24T10:00:22+00:00"
+      "published": "2026-05-24T10:00:22+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     }
   ]
 }

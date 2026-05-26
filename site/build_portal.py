@@ -1367,12 +1367,57 @@ section.block + section.block { border-top: 1px solid var(--line); }
 }
 .link-btn:hover { color: var(--primary-soft); }
 
-/* ---- footer ---- */
+/* ---- footer (リッチ: ナビ + NAP + CTA) ---- */
 footer.site-footer {
-  margin-top: 48px; padding: 32px 0 12px;
-  color: var(--muted); font-size: 12px; text-align: center;
+  margin-top: 64px; padding: 48px 0 16px;
+  color: var(--text-soft); font-size: 13px;
   border-top: 1px solid var(--line);
 }
+.footer-grid {
+  display: grid; grid-template-columns: 1.6fr 1fr 1.2fr; gap: 32px;
+  max-width: 1000px; margin: 0 auto 32px;
+}
+@media (max-width: 760px) { .footer-grid { grid-template-columns: 1fr; gap: 28px; text-align: left; } }
+.footer-logo { display: inline-flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 800; color: var(--text); }
+.footer-logo .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--grad); box-shadow: 0 0 12px rgba(139,160,255,.6); }
+.footer-tagline { margin: 12px 0 16px; line-height: 1.8; color: var(--text-soft); max-width: 380px; }
+.footer-cta {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 11px 22px; border-radius: 999px;
+  background: var(--grad); color: #fff; font-weight: 700; font-size: 13.5px;
+  text-decoration: none; box-shadow: 0 6px 22px rgba(110,139,255,.40);
+  transition: transform .2s, filter .2s;
+}
+.footer-cta:hover { transform: translateY(-1px); filter: brightness(1.08); }
+.footer-nav, .footer-nap { display: flex; flex-direction: column; gap: 9px; }
+.footer-nav-head { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+.footer-nav a { color: var(--text-soft); text-decoration: none; transition: color .2s; }
+.footer-nav a:hover { color: var(--primary); }
+.footer-nap p { margin: 0; line-height: 1.7; }
+.footer-nap a { color: var(--primary-soft); text-decoration: none; }
+.footer-area { margin-top: 6px !important; font-size: 12px; color: var(--muted); }
+.footer-copy { text-align: center; font-size: 12px; color: var(--muted); padding-top: 20px; border-top: 1px solid var(--line); }
+
+/* ---- sticky モバイルCTA（スクロール中も常時相談導線）---- */
+.sticky-cta {
+  position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 90;
+  display: none; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 10px 12px 10px 18px; border-radius: 999px;
+  background: var(--glass-bg); border: 1px solid var(--glass-border);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 12px 40px rgba(0,0,0,.45);
+}
+.sticky-cta-text { display: flex; flex-direction: column; line-height: 1.25; }
+.sticky-cta-text strong { font-size: 13px; color: var(--text); }
+.sticky-cta-text span { font-size: 11px; color: var(--text-soft); }
+.sticky-cta-btn {
+  flex: 0 0 auto; padding: 11px 18px; border-radius: 999px;
+  background: var(--grad); color: #fff; font-weight: 700; font-size: 13.5px;
+  text-decoration: none; white-space: nowrap;
+  box-shadow: 0 6px 18px rgba(110,139,255,.45), inset 0 1px 0 rgba(255,255,255,.25);
+}
+@media (max-width: 760px) { .sticky-cta { display: flex; } }
+@media (prefers-reduced-motion: no-preference) { .sticky-cta { transition: transform .3s ease, opacity .3s ease; } }
 
 /* ---- 制作実績カード（LP #portfolio。build_site CONTENT_CSS から移植・PORTALトークン化）---- */
 .pf-grid {
@@ -1750,6 +1795,25 @@ HEADER_JS = """
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
     els.forEach(function(el){ io.observe(el); });
   })();
+
+  // スティッキーCTA: ヒーロー通過後に出し、問い合わせ/フッター付近で引っ込める
+  (function(){
+    var bar = document.getElementById('sticky-cta');
+    if (!bar) return;
+    var contact = document.getElementById('contact');
+    bar.style.transform = 'translateY(140%)';
+    function update(){
+      var y = window.scrollY || document.documentElement.scrollTop;
+      var show = y > 520;
+      if (contact){
+        var r = contact.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) show = false; // 問い合わせ表示中は隠す
+      }
+      bar.style.transform = show ? 'translateY(0)' : 'translateY(140%)';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  })();
 })();
 </script>
 """
@@ -2024,6 +2088,50 @@ def _render_courses_packages() -> str:
         "</p>"
     )
     return "".join(parts)
+
+
+def _render_footer(today: str) -> str:
+    """リッチフッター: 屋号+一言 / ナビ / NAP(ローカルSEOの住所明示) / CTA。"""
+    year = today[:4]
+    return (
+        "<footer class='site-footer'>"
+        "<div class='footer-grid'>"
+        "<div class='footer-brand'>"
+        "<div class='footer-logo'><span class='dot'></span>AIハブ</div>"
+        "<p class='footer-tagline'>滋賀・彦根の中小事業者向けに、AI講習・Web経営コンサル・補助金支援を行う"
+        "「実装する経営者」。9事業を実際に回しながら、現場に居着くAIを一緒に作ります。</p>"
+        "<a class='footer-cta' href='#contact'>📩 無料で30分相談する</a>"
+        "</div>"
+        "<nav class='footer-nav' aria-label='フッターナビ'>"
+        "<span class='footer-nav-head'>メニュー</span>"
+        "<a href='#packages'>受講プラン</a>"
+        "<a href='#works'>制作実績</a>"
+        "<a href='#speaker'>講師紹介</a>"
+        "<a href='#lectures'>講習資料</a>"
+        "<a href='#faq'>よくある質問</a>"
+        "</nav>"
+        "<div class='footer-nap'>"
+        "<span class='footer-nav-head'>運営</span>"
+        "<p>AIハブ（クライミングコンサル）</p>"
+        "<p>代表 由井 辰美</p>"
+        "<p>〒522-0043<br>滋賀県彦根市岡町12番地</p>"
+        f"<p><a href='mailto:{OWNER_EMAIL}'>{OWNER_EMAIL}</a></p>"
+        "<p class='footer-area'>対応: 彦根・湖東・滋賀県全域 / 出張・オンライン全国</p>"
+        "</div>"
+        "</div>"
+        f"<div class='footer-copy'>© {year} 由井 辰美 / AIハブ — 滋賀・彦根のAI講習 & Web経営コンサル</div>"
+        "</footer>"
+    )
+
+
+def _render_sticky_cta() -> str:
+    """モバイルで常時追従する無料相談バー（スクロール中もCVできる）。"""
+    return (
+        "<div class='sticky-cta' id='sticky-cta' aria-hidden='false'>"
+        "<div class='sticky-cta-text'><strong>相談は無料</strong><span>補助金で実質1/3以下</span></div>"
+        "<a class='sticky-cta-btn' href='#contact'>📩 30分相談する</a>"
+        "</div>"
+    )
 
 
 def _render_diagnose_modal() -> str:
@@ -2538,8 +2646,9 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append(_render_contact_form())
     parts.append("</section>")
 
-    parts.append(f"<footer class='site-footer'>© {today[:4]} 由井辰美 / AIハブ — Web経営コンサル · 滋賀</footer>")
+    parts.append(_render_footer(today))
     parts.append("</div>")
+    parts.append(_render_sticky_cta())
     parts.append(_render_diagnose_modal())
     parts.append(HEADER_JS)
     parts.append("</body></html>")

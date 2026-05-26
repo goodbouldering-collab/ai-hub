@@ -1,40 +1,12 @@
 {
-  "generated_at": "2026-05-25T22:52:27Z",
+  "generated_at": "2026-05-26T07:20:16Z",
   "recent_works": [
-    {
-      "date": "2026-05-26",
-      "filename": "2026-05-26-gubble-eeeat-product-text.md",
-      "title": "グッぼる 商品ページ用「一次経験テキスト」原稿",
-      "business": "gubble",
-      "path": "/ops?file=2026-05-26-gubble-eeeat-product-text.md#sec-docs"
-    },
-    {
-      "date": "2026-05-25",
-      "filename": "2026-05-25-seo-weekly-digest.md",
-      "title": "SEO週次ダイジェスト（2026-05-25）",
-      "business": "seo",
-      "path": "/ops?file=2026-05-25-seo-weekly-digest.md#sec-docs"
-    },
-    {
-      "date": "2026-05-25",
-      "filename": "2026-05-25-gubble-seo-recovery-actions.md",
-      "title": "グッぼる コアアップデート被弾からの回復 — 対策①②の具体策",
-      "business": "gubble",
-      "path": "/ops?file=2026-05-25-gubble-seo-recovery-actions.md#sec-docs"
-    },
     {
       "date": "2026-05-25",
       "filename": "2026-05-25-gubble-seo-api-diagnosis-confirmed.md",
       "title": "グッぼるSEO低下 — GSC API実データによる確定診断",
       "business": "gubble",
       "path": "/ops?file=2026-05-25-gubble-seo-api-diagnosis-confirmed.md#sec-docs"
-    },
-    {
-      "date": "2026-05-25",
-      "filename": "2026-05-25-ai-hub-seo-llmo-redesign.md",
-      "title": "AIハブ SEO/LLMO 特化リデザイン — 実装記録と拡張提案（2026-05-25）",
-      "business": "AIハブ",
-      "path": "/ops?file=2026-05-25-ai-hub-seo-llmo-redesign.md#sec-docs"
     },
     {
       "date": "2026-05-24",
@@ -56,29 +28,93 @@
       "title": "2026-05-24 ぐっぼるスライド作成 → AIハブ公開 → デザイン改修",
       "business": "AIハブ",
       "path": "/ops?file=2026-05-24-ai-hub-slides-and-redesign.md#sec-docs"
+    },
+    {
+      "date": "2026-05-23",
+      "filename": "2026-05-23-gubble-shoe-seo-diagnosis.md",
+      "title": "グッぼる クライミングシューズ販売ページ SEO低下 一次診断",
+      "business": "gubble",
+      "path": "/ops?file=2026-05-23-gubble-shoe-seo-diagnosis.md#sec-docs"
+    },
+    {
+      "date": "2026-05-23",
+      "filename": "2026-05-23-gsc-ga4-integration-design.md",
+      "title": "GSC / GA4 自動閲覧基盤 — 全事業横断データ取得＆施策出力",
+      "business": "gsc",
+      "path": "/ops?file=2026-05-23-gsc-ga4-integration-design.md#sec-docs"
+    },
+    {
+      "date": "2026-05-22",
+      "filename": "2026-05-22-trust-home-shift-wbs.md",
+      "title": "プロジェクト名: home-shift 4棟体制本稼働（2026-08-01）",
+      "business": "トラスト",
+      "path": "/ops?file=2026-05-22-trust-home-shift-wbs.md#sec-docs"
+    },
+    {
+      "date": "2026-05-22",
+      "filename": "2026-05-22-not-este-top-redesign.md",
+      "title": "Notエステ トップページ刷新（グラスモーフィズム＋インタラクティブ＋SEO）",
+      "business": "not",
+      "path": "/ops?file=2026-05-22-not-este-top-redesign.md#sec-docs"
     }
   ],
-  "tasks_open": [],
+  "tasks_open": [
+    {
+      "date": "2026-05-19",
+      "filename": "2026-05-19-handoff-dashboard-checklist.md",
+      "business": "handoff",
+      "snippet": "🔴 最優先ブロック A：GitHub の正体（⏱5分・これで承認#1の前提が解ける）",
+      "path": "/ops?file=2026-05-19-handoff-dashboard-checklist.md#sec-docs"
+    },
+    {
+      "date": "2026-05-19",
+      "filename": "2026-05-19-handoff-dashboard-checklist.md",
+      "business": "handoff",
+      "snippet": "🔴 最優先ブロック B：ドメイン棚卸し（⏱30分・最大の時限爆弾・承認#3の前提）",
+      "path": "/ops?file=2026-05-19-handoff-dashboard-checklist.md#sec-docs"
+    },
+    {
+      "date": "2026-05-19",
+      "filename": "2026-05-19-handoff-dashboard-checklist.md",
+      "business": "handoff",
+      "snippet": "🟠 ブロック C：ホスティング・ダッシュボードのメンバー（⏱20分・承認#1#3の補強）",
+      "path": "/ops?file=2026-05-19-handoff-dashboard-checklist.md#sec-docs"
+    },
+    {
+      "date": "2026-05-19",
+      "filename": "2026-05-19-handoff-dashboard-checklist.md",
+      "business": "handoff",
+      "snippet": "🟠 ブロック D：メール受信経路（⏱15分・承認#4の前提）",
+      "path": "/ops?file=2026-05-19-handoff-dashboard-checklist.md#sec-docs"
+    },
+    {
+      "date": "2026-05-19",
+      "filename": "2026-05-19-handoff-dashboard-checklist.md",
+      "business": "handoff",
+      "snippet": "🟡 ブロック E：期限つきトークンの実地確認（⏱10分・既知の地雷の確認）",
+      "path": "/ops?file=2026-05-19-handoff-dashboard-checklist.md#sec-docs"
+    }
+  ],
   "per_business_recent": [
     {
       "business": "AIハブ",
-      "count": 17
+      "count": 14
     },
     {
       "business": "みんなのWA",
       "count": 5
     },
     {
+      "business": "github",
+      "count": 3
+    },
+    {
       "business": "gubble",
-      "count": 4
+      "count": 2
     },
     {
       "business": "トラスト",
-      "count": 3
-    },
-    {
-      "business": "github",
-      "count": 3
+      "count": 2
     },
     {
       "business": "not",
@@ -95,10 +131,6 @@
     {
       "business": "handoff",
       "count": 2
-    },
-    {
-      "business": "seo",
-      "count": 1
     },
     {
       "business": "gsc",
@@ -130,10 +162,6 @@
     }
   ],
   "daily_histogram": [
-    {
-      "date": "2026-05-12",
-      "count": 12
-    },
     {
       "date": "2026-05-13",
       "count": 4
@@ -184,13 +212,66 @@
     },
     {
       "date": "2026-05-25",
-      "count": 4
+      "count": 1
+    },
+    {
+      "date": "2026-05-26",
+      "count": 0
     }
   ],
-  "cma_apps": [],
+  "cma_apps": [
+    {
+      "name": "App1_CommunityBoard",
+      "last_run": "2026-04-11",
+      "kind": "FastAPI Hello World",
+      "status": "✅ 完了"
+    },
+    {
+      "name": "App2_TodoAPI",
+      "last_run": "2026-04-11",
+      "kind": "FastAPI ToDo CRUD",
+      "status": "✅ 完了"
+    },
+    {
+      "name": "App3_WeatherAPI",
+      "last_run": "2026-04-11",
+      "kind": "FastAPI モック天気",
+      "status": "✅ 完了"
+    },
+    {
+      "name": "App4_CounterAPI",
+      "last_run": "2026-04-11",
+      "kind": "FastAPI カウンタ",
+      "status": "✅ 動作確認のみ（ポート衝突あり）"
+    },
+    {
+      "name": "SiteCrawlChecker",
+      "last_run": "2026-04-11",
+      "kind": "ブラウザ QA 巡回",
+      "status": "⚠️ クリティカル所見あり"
+    },
+    {
+      "name": "App_MinanowaPolish",
+      "last_run": "2026-04-16",
+      "kind": "Next.js 16 + Supabase 改善 10 タスク",
+      "status": "✅ クラウド側完了・**納品物は Render 前提で陳腐化**"
+    },
+    {
+      "name": "gtn_ai_mvp",
+      "last_run": "2026-04-16 推定",
+      "kind": "AI パイプライン",
+      "status": "❌ 失敗（0 バイト出力）/ プロジェクト自体終了"
+    },
+    {
+      "name": "vibe_0514_051921",
+      "last_run": "2026-05-14",
+      "kind": "Next.js 16 Hello World（Vercel 集約版検証）",
+      "status": "✅ 完了・本番デプロイ稼働中（[cma-vibe-0514-051921.vercel.app](https://cma-vibe-0514-051921.vercel.app)）"
+    }
+  ],
   "totals": {
-    "consul_work_total": 98,
-    "recent_7d_total": 48,
-    "tasks_open_total": 0
+    "consul_work_total": 94,
+    "recent_7d_total": 41,
+    "tasks_open_total": 5
   }
 }

@@ -1,12 +1,40 @@
 {
-  "generated_at": "2026-05-26T15:28:43Z",
+  "generated_at": "2026-05-26T23:01:58Z",
   "recent_works": [
+    {
+      "date": "2026-05-27",
+      "filename": "2026-05-27-gubble-rope-category-eeeat.md",
+      "title": "カテゴリページ「クライミングロープ・ザイル」増補原稿",
+      "business": "gubble",
+      "path": "/ops?file=2026-05-27-gubble-rope-category-eeeat.md#sec-docs"
+    },
+    {
+      "date": "2026-05-26",
+      "filename": "2026-05-26-seo-weekly-digest.md",
+      "title": "SEO週次ダイジェスト（2026-05-26）",
+      "business": "seo",
+      "path": "/ops?file=2026-05-26-seo-weekly-digest.md#sec-docs"
+    },
     {
       "date": "2026-05-26",
       "filename": "2026-05-26-gubble-eeeat-product-text.md",
       "title": "グッぼる 商品ページ用「一次経験テキスト」原稿",
       "business": "gubble",
       "path": "/ops?file=2026-05-26-gubble-eeeat-product-text.md#sec-docs"
+    },
+    {
+      "date": "2026-05-26",
+      "filename": "2026-05-26-gubble-category-page-enhancement.md",
+      "title": "グッぼる カテゴリ(cate)ページ 強化案 — 現状診断と具体策",
+      "business": "gubble",
+      "path": "/ops?file=2026-05-26-gubble-category-page-enhancement.md#sec-docs"
+    },
+    {
+      "date": "2026-05-26",
+      "filename": "2026-05-26-all-cron-inventory.md",
+      "title": "全 cron 一覧表（正本）",
+      "business": "all",
+      "path": "/ops?file=2026-05-26-all-cron-inventory.md#sec-docs"
     },
     {
       "date": "2026-05-25",
@@ -28,34 +56,6 @@
       "title": "グッぼるSEO低下 — GSC API実データによる確定診断",
       "business": "gubble",
       "path": "/ops?file=2026-05-25-gubble-seo-api-diagnosis-confirmed.md#sec-docs"
-    },
-    {
-      "date": "2026-05-25",
-      "filename": "2026-05-25-ai-hub-seo-llmo-redesign.md",
-      "title": "AIハブ SEO/LLMO 特化リデザイン — 実装記録と拡張提案（2026-05-25）",
-      "business": "AIハブ",
-      "path": "/ops?file=2026-05-25-ai-hub-seo-llmo-redesign.md#sec-docs"
-    },
-    {
-      "date": "2026-05-24",
-      "filename": "2026-05-24-aihub-menu-consolidation-contact-form.md",
-      "title": "2026-05-24 AIハブ メニュー集約 + Resend問い合わせフォーム",
-      "business": "AIハブ",
-      "path": "/ops?file=2026-05-24-aihub-menu-consolidation-contact-form.md#sec-docs"
-    },
-    {
-      "date": "2026-05-24",
-      "filename": "2026-05-24-ai-hub-speaker-image-prompt-ready.md",
-      "title": "AIハブ 講師紹介ビジュアル — コピペ実行用プロンプト（2026-05-24）",
-      "business": "AIハブ",
-      "path": "/ops?file=2026-05-24-ai-hub-speaker-image-prompt-ready.md#sec-docs"
-    },
-    {
-      "date": "2026-05-24",
-      "filename": "2026-05-24-ai-hub-slides-and-redesign.md",
-      "title": "2026-05-24 ぐっぼるスライド作成 → AIハブ公開 → デザイン改修",
-      "business": "AIハブ",
-      "path": "/ops?file=2026-05-24-ai-hub-slides-and-redesign.md#sec-docs"
     }
   ],
   "tasks_open": [],
@@ -65,16 +65,24 @@
       "count": 15
     },
     {
+      "business": "gubble",
+      "count": 6
+    },
+    {
       "business": "みんなのWA",
       "count": 5
     },
     {
-      "business": "gubble",
-      "count": 4
-    },
-    {
       "business": "github",
       "count": 3
+    },
+    {
+      "business": "seo",
+      "count": 2
+    },
+    {
+      "business": "all",
+      "count": 2
     },
     {
       "business": "トラスト",
@@ -97,10 +105,6 @@
       "count": 2
     },
     {
-      "business": "seo",
-      "count": 1
-    },
-    {
       "business": "gsc",
       "count": 1
     },
@@ -110,10 +114,6 @@
     },
     {
       "business": "api",
-      "count": 1
-    },
-    {
-      "business": "all",
       "count": 1
     },
     {
@@ -184,62 +184,13 @@
     },
     {
       "date": "2026-05-26",
-      "count": 1
+      "count": 4
     }
   ],
-  "cma_apps": [
-    {
-      "name": "App1_CommunityBoard",
-      "last_run": "2026-04-11",
-      "kind": "FastAPI Hello World",
-      "status": "✅ 完了"
-    },
-    {
-      "name": "App2_TodoAPI",
-      "last_run": "2026-04-11",
-      "kind": "FastAPI ToDo CRUD",
-      "status": "✅ 完了"
-    },
-    {
-      "name": "App3_WeatherAPI",
-      "last_run": "2026-04-11",
-      "kind": "FastAPI モック天気",
-      "status": "✅ 完了"
-    },
-    {
-      "name": "App4_CounterAPI",
-      "last_run": "2026-04-11",
-      "kind": "FastAPI カウンタ",
-      "status": "✅ 動作確認のみ（ポート衝突あり）"
-    },
-    {
-      "name": "SiteCrawlChecker",
-      "last_run": "2026-04-11",
-      "kind": "ブラウザ QA 巡回",
-      "status": "⚠️ クリティカル所見あり"
-    },
-    {
-      "name": "App_MinanowaPolish",
-      "last_run": "2026-04-16",
-      "kind": "Next.js 16 + Supabase 改善 10 タスク",
-      "status": "✅ クラウド側完了・**納品物は Render 前提で陳腐化**"
-    },
-    {
-      "name": "gtn_ai_mvp",
-      "last_run": "2026-04-16 推定",
-      "kind": "AI パイプライン",
-      "status": "❌ 失敗（0 バイト出力）/ プロジェクト自体終了"
-    },
-    {
-      "name": "vibe_0514_051921",
-      "last_run": "2026-05-14",
-      "kind": "Next.js 16 Hello World（Vercel 集約版検証）",
-      "status": "✅ 完了・本番デプロイ稼働中（[cma-vibe-0514-051921.vercel.app](https://cma-vibe-0514-051921.vercel.app)）"
-    }
-  ],
+  "cma_apps": [],
   "totals": {
-    "consul_work_total": 98,
-    "recent_7d_total": 45,
+    "consul_work_total": 102,
+    "recent_7d_total": 49,
     "tasks_open_total": 0
   }
 }

@@ -685,12 +685,25 @@ header.site-header.scrolled {
 .hero-visual:hover { transform: translateY(-4px); }
 .hero-visual img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s ease; }
 .hero-visual:hover img { transform: scale(1.04); }
-.hero-visual::after {
+.hero-visual:not(.hero-visual-svg)::after {
   content:''; position: absolute; inset: 0;
   background:
     linear-gradient(160deg, rgba(110,139,255,.10) 0%, rgba(199,125,255,.12) 50%, transparent 70%),
     linear-gradient(0deg, rgba(11,13,20,.40) 0%, rgba(11,13,20,0) 42%);
   pointer-events: none;
+}
+/* アニメ調ヒーローSVG */
+.hero-svg { width: 100%; height: 100%; display: block; }
+.hsvg-glow { transform-box: fill-box; transform-origin: center; animation: hsvg-breathe 4s ease-in-out infinite; }
+@keyframes hsvg-breathe { 0%,100% { opacity: .8; transform: scale(1); } 50% { opacity: 1; transform: scale(1.07); } }
+.hsvg-stream path { stroke-dasharray: 10 14; animation: hsvg-flow 3s linear infinite; animation-delay: var(--d, 0s); }
+@keyframes hsvg-flow { to { stroke-dashoffset: -48; } }
+.hsvg-p { transform-box: fill-box; transform-origin: center; animation: hsvg-pulse 2.4s ease-in-out infinite; animation-delay: var(--pd, 0s); }
+@keyframes hsvg-pulse { 0%,100% { opacity: .55; transform: scale(.8); } 50% { opacity: 1; transform: scale(1.25); } }
+.hsvg-dot { animation: hsvg-blink 1.4s ease-in-out infinite; }
+@keyframes hsvg-blink { 0%,100% { opacity: 1; } 50% { opacity: .3; } }
+@media (prefers-reduced-motion: reduce) {
+  .hsvg-glow, .hsvg-stream path, .hsvg-p, .hsvg-dot { animation: none; }
 }
 .hero-blob {
   position: absolute; width: 260px; height: 260px; border-radius: 50%;
@@ -1821,6 +1834,100 @@ HEADER_JS = """
 
 HERO_IMG = "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=70"
 
+# アニメ調ヒーローSVG（designer設計仕様 2026-05-27 を実装）。
+# 7レイヤー: 背景グラデ→glowリング→データストリーム→書類スタック(✓)→
+# 人物(IT苦手だが前向きな経営者の安堵の笑み)→データ粒子→ラベルバッジ。
+# フラットカラー+統一アウトライン(#F0F4FF)でアニメ感。ロボット要素は出さない。
+HERO_SVG = """
+<svg class="hero-svg" viewBox="0 0 460 575" role="img"
+  aria-label="アニメ調イラスト: 彦根の経営者がAIの光と一緒に山積みの業務を片付けて軽くなっていく様子"
+  xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="hbg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#11162a"/><stop offset="1" stop-color="#0B0D14"/>
+    </linearGradient>
+    <linearGradient id="hgrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6E8BFF"/><stop offset="0.55" stop-color="#9B7BFF"/><stop offset="1" stop-color="#C77DFF"/>
+    </linearGradient>
+    <radialGradient id="hglow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#8AA0FF" stop-opacity="0.55"/><stop offset="1" stop-color="#8AA0FF" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="hblur" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="14"/></filter>
+  </defs>
+
+  <rect width="460" height="575" fill="url(#hbg)"/>
+
+  <!-- 透視グリッド（床・消失点 230,150）-->
+  <g stroke="#6E8BFF" stroke-opacity="0.12" stroke-width="1.2">
+    <path d="M-40 430 L210 165"/><path d="M120 430 L222 165"/><path d="M300 430 L238 165"/><path d="M500 430 L250 165"/>
+    <path d="M0 350 H460" stroke-opacity="0.07"/><path d="M0 400 H460" stroke-opacity="0.07"/>
+  </g>
+
+  <!-- glow リング（呼吸）-->
+  <ellipse class="hsvg-glow" cx="230" cy="215" rx="140" ry="150" fill="url(#hglow)" filter="url(#hblur)"/>
+
+  <!-- データストリーム（流れ）-->
+  <g class="hsvg-stream" fill="none" stroke="url(#hgrad)" stroke-width="2.4" stroke-linecap="round" stroke-opacity="0.85">
+    <path style="--d:0s" d="M40 70 C150 45 210 120 300 72"/>
+    <path style="--d:.5s" d="M60 120 C160 96 250 165 360 108"/>
+    <path style="--d:1s" d="M40 185 C140 178 250 140 340 188"/>
+  </g>
+
+  <!-- 書類スタック（左・✓で片付き）-->
+  <g stroke="#F0F4FF" stroke-width="2.2" stroke-linejoin="round">
+    <rect x="40" y="372" width="116" height="24" rx="6" fill="#222C46"/>
+    <rect x="48" y="352" width="116" height="24" rx="6" fill="#2A3656"/>
+    <rect x="56" y="332" width="116" height="24" rx="6" fill="#33406A"/>
+    <path d="M72 344 l7 7 l14 -16" fill="none" stroke="#5BE0B0" stroke-width="3.4" stroke-linecap="round"/>
+  </g>
+
+  <!-- 人物（中央やや右・安堵の笑み）-->
+  <g stroke="#F0F4FF" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round">
+    <!-- 胴・ジャケット -->
+    <path d="M178 405 C182 320 204 286 244 286 C284 286 306 320 310 405 Z" fill="#1C2840"/>
+    <path d="M244 286 L244 392" stroke-opacity="0.5"/>
+    <path d="M228 290 L244 322 L260 290" fill="#F4F6FB"/>
+    <!-- 首 -->
+    <rect x="232" y="268" width="24" height="24" rx="8" fill="#F1C9A5"/>
+    <!-- 顔 -->
+    <ellipse cx="244" cy="240" rx="33" ry="36" fill="#F6D3B0"/>
+    <!-- 髪（白髪混じりショート）-->
+    <path d="M211 234 C209 197 229 184 244 184 C259 184 280 197 277 234 C271 219 259 211 244 211 C229 211 217 219 211 234 Z" fill="#54607A"/>
+    <!-- 目（やや大きめ・アニメ感）-->
+    <circle cx="232" cy="241" r="3.4" fill="#2A3142" stroke="none"/>
+    <circle cx="256" cy="241" r="3.4" fill="#2A3142" stroke="none"/>
+    <!-- 安堵の笑み -->
+    <path d="M235 255 Q244 261 253 255" fill="none" stroke="#B5805A" stroke-width="2.4"/>
+    <!-- 上げた右手（粒子を受け止める）-->
+    <path d="M304 326 C334 306 348 262 344 238" fill="none" stroke="#1C2840" stroke-width="14" stroke-linecap="round"/>
+    <circle cx="344" cy="234" r="11" fill="#F1C9A5"/>
+  </g>
+
+  <!-- データ粒子（手・頭上で脈動）-->
+  <g fill="url(#hgrad)">
+    <circle class="hsvg-p" cx="344" cy="210" r="6" style="--pd:0s"/>
+    <circle class="hsvg-p" cx="366" cy="186" r="4" style="--pd:.4s"/>
+    <circle class="hsvg-p" cx="322" cy="176" r="5" style="--pd:.8s"/>
+    <circle class="hsvg-p" cx="390" cy="220" r="3.5" style="--pd:1.2s"/>
+    <circle class="hsvg-p" cx="300" cy="140" r="4" style="--pd:1.6s"/>
+    <circle class="hsvg-p" cx="358" cy="130" r="3" style="--pd:2s"/>
+  </g>
+
+  <!-- ラベルバッジ -->
+  <g font-family="Inter, sans-serif" font-weight="700">
+    <g transform="translate(290,96)">
+      <rect width="118" height="30" rx="15" fill="#161925" stroke="#6E8BFF" stroke-opacity="0.5"/>
+      <circle class="hsvg-dot" cx="17" cy="15" r="4" fill="#5BE0B0"/>
+      <text x="30" y="20" fill="#A6AEC4" font-size="12">自動化中…</text>
+    </g>
+    <g transform="translate(40,294)">
+      <rect width="92" height="30" rx="15" fill="#161925" stroke="#5BE0B0" stroke-opacity="0.6"/>
+      <text x="14" y="20" fill="#5BE0B0" font-size="12">✓ 業務完了</text>
+    </g>
+  </g>
+</svg>
+"""
+
 
 def _render_hero() -> str:
     return (
@@ -1868,8 +1975,8 @@ def _render_hero() -> str:
         "<a class='hq-sub' href='/admin'>🔐 管理ログイン</a>"
         "</div>"
         "</div>"
-        "<div class='hero-visual fade-up d2'>"
-        f"<img src='{HERO_IMG}' alt='彦根・滋賀の現場リーダーがAI講師と対面で自社の業務仕組み化を設計している様子' loading='eager' fetchpriority='high' decoding='async'>"
+        "<div class='hero-visual hero-visual-svg fade-up d2'>"
+        + HERO_SVG +
         "<div class='hero-flow' aria-label='ワークショップの3ステップ'>"
         "<div class='hflow-step'>"
         "<span class='hflow-ico'>😵</span>"

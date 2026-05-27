@@ -584,9 +584,9 @@ header.site-header.scrolled {
   }
 }
 .hero h1 {
-  margin: 20px 0 16px; font-size: clamp(34px, 5.4vw, 60px);
+  margin: 20px 0 16px; font-size: clamp(40px, 6.4vw, 72px);
   font-family: var(--serif); font-weight: 800; letter-spacing: -.03em;
-  color: var(--text); line-height: 1.18;
+  color: var(--text); line-height: 1.12;
   overflow-wrap: anywhere; word-break: normal;
 }
 .hero h1 .accent {
@@ -1937,18 +1937,15 @@ def _render_hero() -> str:
         "<div class='hero-text fade-up'>"
         "<span class='eyebrow'>📍 滋賀・彦根の中小事業者むけ｜AI講習・導入コンサル</span>"
         "<h1>"
-        "その「めんどうな仕事」、<br>"
-        "<span class='accent'>AIに任せませんか？</span>"
+        "その作業、<span class='accent'>AIがやります。</span>"
         "<span class='visually-hidden'>｜滋賀・彦根の中小事業者向けAI講習・AI導入支援・補助金サポート</span>"
         "</h1>"
         "<p class='sub-catch'>"
-        "請求書・問い合わせ対応・日報…<strong>毎日くり返す作業をAIにまかせて、"
-        "週10時間をとり戻す。</strong>"
+        "<strong>週10時間の事務作業を、取り戻す。</strong>"
         "</p>"
         "<p class='lead'>"
-        "ITの知識はゼロでOK。彦根の対面ワークショップで、"
-        "<strong>あなたの会社の業務にあわせた“使えるAIの仕組み”</strong>を、"
-        "その場で一緒に作って持ち帰れます。補助金で<strong>実質1/3以下</strong>に。"
+        "ITは苦手でOK。彦根の対面で、あなたの会社に合うAIを一緒に作ります。"
+        "<strong>補助金で実質1/3以下。</strong>"
         "</p>"
         # 主CTA: 無料30分相談 / 副: 30秒AI診断（ファーストビューで行動できるように）
         "<div class='hero-actions'>"

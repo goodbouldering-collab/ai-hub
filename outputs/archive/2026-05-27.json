@@ -18,7 +18,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/gettyimages-2271137268.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.752607989199%2C100%2C78.494784021602&amp;w=1200",
-      "published": "2026-05-27T11:40:00-04:00"
+      "published": "2026-05-27T11:40:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "3236cc42216f5570",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/acastro_STK049_03.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-05-27T10:36:10-04:00"
+      "published": "2026-05-27T10:36:10-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "7059a2e153a51f6e",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/8A0A6250.jpeg?quality=90&amp;strip=all&amp;crop=0%2C10.725973578017%2C100%2C78.548052843967&amp;w=1200",
-      "published": "2026-05-27T10:00:00-04:00"
+      "published": "2026-05-27T10:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "f0087db3f77c6afd",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/YouTube-updated-AI-labels.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-05-27T09:00:00-04:00"
+      "published": "2026-05-27T09:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "16dc8eeb6aba28e6",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/gettyimages-1171305932.jpg?quality=90&amp;strip=all&amp;crop=0%2C15.095986038394%2C100%2C69.808027923211&amp;w=1200",
-      "published": "2026-05-27T08:00:00-04:00"
+      "published": "2026-05-27T08:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "5b805cf451041341",
@@ -113,7 +123,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/gettyimages-2214106807.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.735754453032%2C100%2C78.528491093936&amp;w=1200",
-      "published": "2026-05-27T08:00:00-04:00"
+      "published": "2026-05-27T08:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "ffe2bb5e5908ab7b",
@@ -132,7 +144,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-05-27T16:38:35+00:00"
+      "published": "2026-05-27T16:38:35+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "f04174c295b41794",
@@ -151,7 +165,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/lLILQVPnab8/hqdefault.jpg",
-      "published": "2026-05-27T14:05:21+00:00"
+      "published": "2026-05-27T14:05:21+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "0e3fb44a77cdb1f1",
@@ -170,7 +186,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/gettyimages-2278118480.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.752607989199%2C100%2C78.494784021602&amp;w=1200",
-      "published": "2026-05-26T20:38:11-04:00"
+      "published": "2026-05-26T20:38:11-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "213fb4e5601cf648",
@@ -189,7 +207,9 @@
         "freshness": 3.0
       },
       "thumbnail": "",
-      "published": "2026-05-27T06:41:43+00:00"
+      "published": "2026-05-27T06:41:43+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

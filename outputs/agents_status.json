@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-26T23:01:58Z",
+  "generated_at": "2026-05-27T23:10:48Z",
   "recent_works": [
     {
       "date": "2026-05-27",
@@ -7,6 +7,13 @@
       "title": "カテゴリページ「クライミングロープ・ザイル」増補原稿",
       "business": "gubble",
       "path": "/ops?file=2026-05-27-gubble-rope-category-eeeat.md#sec-docs"
+    },
+    {
+      "date": "2026-05-27",
+      "filename": "2026-05-27-gubble-belay-device-cate-expansion.md",
+      "title": "ビレイデバイス・確保器カテゴリページ 増補原稿",
+      "business": "gubble",
+      "path": "/ops?file=2026-05-27-gubble-belay-device-cate-expansion.md#sec-docs"
     },
     {
       "date": "2026-05-26",
@@ -49,13 +56,6 @@
       "title": "グッぼる コアアップデート被弾からの回復 — 対策①②の具体策",
       "business": "gubble",
       "path": "/ops?file=2026-05-25-gubble-seo-recovery-actions.md#sec-docs"
-    },
-    {
-      "date": "2026-05-25",
-      "filename": "2026-05-25-gubble-seo-api-diagnosis-confirmed.md",
-      "title": "グッぼるSEO低下 — GSC API実データによる確定診断",
-      "business": "gubble",
-      "path": "/ops?file=2026-05-25-gubble-seo-api-diagnosis-confirmed.md#sec-docs"
     }
   ],
   "tasks_open": [],
@@ -66,15 +66,11 @@
     },
     {
       "business": "gubble",
-      "count": 6
+      "count": 7
     },
     {
       "business": "みんなのWA",
       "count": 5
-    },
-    {
-      "business": "github",
-      "count": 3
     },
     {
       "business": "seo",
@@ -101,7 +97,7 @@
       "count": 2
     },
     {
-      "business": "handoff",
+      "business": "github",
       "count": 2
     },
     {
@@ -119,21 +115,9 @@
     {
       "business": "client",
       "count": 1
-    },
-    {
-      "business": "supabase",
-      "count": 1
-    },
-    {
-      "business": "ビジネス21",
-      "count": 1
     }
   ],
   "daily_histogram": [
-    {
-      "date": "2026-05-13",
-      "count": 4
-    },
     {
       "date": "2026-05-14",
       "count": 0
@@ -185,12 +169,16 @@
     {
       "date": "2026-05-26",
       "count": 4
+    },
+    {
+      "date": "2026-05-27",
+      "count": 2
     }
   ],
   "cma_apps": [],
   "totals": {
-    "consul_work_total": 102,
-    "recent_7d_total": 49,
+    "consul_work_total": 103,
+    "recent_7d_total": 45,
     "tasks_open_total": 0
   }
 }

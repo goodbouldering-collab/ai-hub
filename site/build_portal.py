@@ -682,6 +682,22 @@ header.site-header.scrolled {
   transition: transform .6s cubic-bezier(.22,1,.36,1);
 }
 @media (max-width: 900px) { .hero-visual { justify-self: center; max-width: 380px; } }
+/* モバイル: SVGをヒーロー最上部の背景に敷き、その上にテキストを重ねる */
+@media (max-width: 900px) {
+  .hero { padding-top: 8px; position: relative; }
+  .hero-visual {
+    position: absolute; top: 0; left: 0; right: 0; transform: none;
+    width: 100%; max-width: none; aspect-ratio: auto; height: 360px;
+    border-radius: 0; box-shadow: none; z-index: 0; opacity: .92;
+    -webkit-mask-image: linear-gradient(180deg, #000 42%, rgba(0,0,0,.30) 72%, transparent 100%);
+    mask-image: linear-gradient(180deg, #000 42%, rgba(0,0,0,.30) 72%, transparent 100%);
+    pointer-events: none;
+  }
+  .hero-svg { object-fit: cover; }  /* 人物が中央に来るよう全幅カバー */
+  .hero-visual:hover { transform: none; }
+  .hero-visual .hero-flow { display: none; }  /* 背景化時は3ステップ帯を隠す */
+  .hero-text { position: relative; z-index: 1; padding-top: 250px; }
+}
 .hero-visual:hover { transform: translateY(-4px); }
 .hero-visual img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s ease; }
 .hero-visual:hover img { transform: scale(1.04); }
@@ -1937,15 +1953,15 @@ def _render_hero() -> str:
         "<div class='hero-text fade-up'>"
         "<span class='eyebrow'>📍 滋賀・彦根の中小事業者むけ｜AI講習・導入コンサル</span>"
         "<h1>"
-        "その作業、<span class='accent'>AIがやります。</span>"
+        "AIの使い方、<span class='accent'>教えます。</span>"
         "<span class='visually-hidden'>｜滋賀・彦根の中小事業者向けAI講習・AI導入支援・補助金サポート</span>"
         "</h1>"
         "<p class='sub-catch'>"
-        "<strong>週10時間の事務作業を、取り戻す。</strong>"
+        "<strong>あなたの会社の業務に使えるAIを、彦根の対面で一緒に身につける。</strong>"
         "</p>"
         "<p class='lead'>"
-        "ITは苦手でOK。彦根の対面で、あなたの会社に合うAIを一緒に作ります。"
-        "<strong>補助金で実質1/3以下。</strong>"
+        "ITは苦手でOK。社長が「使えるようになる」ところまで伴走します。"
+        "週10時間の事務作業を取り戻し、<strong>補助金で実質1/3以下。</strong>"
         "</p>"
         # 主CTA: 無料30分相談 / 副: 30秒AI診断（ファーストビューで行動できるように）
         "<div class='hero-actions'>"

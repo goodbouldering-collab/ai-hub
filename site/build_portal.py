@@ -346,61 +346,64 @@ PORTAL_CSS = """
    デフォルトをオブシディアン・ダークに。アクセントはシアン #6E8BFF 単色。
    data-theme="light" で明るいバリアントに切替可能（トグルは維持）。 */
 :root {
-  /* ===== Linear 型: 暗背景 × 青→紫グラデ発光 ===== */
-  --bg-base: #0B0D14;        /* 深い夜空ネイビー */
-  --bg-white: #11131D;       /* 1段明るいパネル */
-  --bg-elev: #161925;        /* さらに上のカード面 */
-  --text: #F4F6FB;
-  --text-soft: #A6AEC4;
-  --muted: #6B7488;
-  --line: rgba(255,255,255,0.08);   /* 極薄の境界線（硬い枠を排除） */
-  --line-strong: rgba(255,255,255,0.14);
-  --primary: #6E8BFF;        /* インディゴ・ブルー */
-  --primary-soft: #8AA0FF;
-  --violet: #9B7BFF;         /* バイオレット */
-  --primary-bg: rgba(110,139,255,0.10);   /* アクセントの淡い面 */
-  /* グラデーション（Linear のシグネチャ：青→紫） */
-  --grad: linear-gradient(120deg, #6E8BFF 0%, #9B7BFF 55%, #C77DFF 100%);
-  --grad-soft: linear-gradient(120deg, rgba(110,139,255,.16), rgba(199,125,255,.14));
-  --emerald: #5BE0B0;
-  --amber: #F4C667;
+  /* ===== デフォルト=ライト（初心者に「難しそう」を与えない）。dark は data-theme=dark で。 ===== */
+  /* --- 共有トークン（テーマ非依存） --- */
+  --emerald: #15B886;
+  --amber: #E0A93B;
   --pink: #C77DFF;
-  --glass-bg: rgba(20,23,34,0.62);          /* ガラス面 */
-  --glass-border: rgba(255,255,255,0.10);   /* 微細な光彩ボーダー */
-  --glass-hi: rgba(255,255,255,0.06);       /* 内側ハイライト(上端の光) */
-  --glass-blur: 22px;                        /* backdrop blur 基準値 */
-  --shadow-card: 0 10px 40px rgba(0,0,0,0.30);
-  --shadow-card-hover: 0 24px 70px rgba(0,0,0,0.45), 0 0 0 1px rgba(139,160,255,0.22);
-  --glow: 0 0 60px rgba(110,139,255,0.35);   /* 柔らかい発光 */
+  --glass-blur: 22px;
   --radius: 20px;                            /* カード角丸（やわらかく） */
   --radius-sm: 14px;
-  --serif: "Inter", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;  /* 見出しもサンセリフ化 */
+  --serif: "Inter", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
   --mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
-}
-:root[data-theme="light"] {
+  /* --- ライト配色 --- */
   --bg-base: #F7F8FC;
   --bg-white: #FFFFFF;
   --bg-elev: #FFFFFF;
   --text: #0B0D14;
   --text-soft: #404A63;
-  --muted: #6B7488;
-  --line: rgba(11,13,20,0.08);
-  --line-strong: rgba(11,13,20,0.14);
-  --primary: #5468FF;
+  --muted: #5A6478;
+  --line: rgba(11,13,20,0.10);
+  --line-strong: rgba(11,13,20,0.16);
+  --primary: #5468FF;        /* インディゴ・ブルー */
   --primary-soft: #6E8BFF;
   --violet: #8B5CF6;
   --primary-bg: rgba(84,104,255,0.08);
   --grad: linear-gradient(120deg, #5468FF 0%, #8B5CF6 55%, #C77DFF 100%);
   --grad-soft: linear-gradient(120deg, rgba(84,104,255,.10), rgba(199,125,255,.08));
-  --glass-bg: rgba(255,255,255,0.70);
-  --glass-border: rgba(11,13,20,0.08);
-  --glass-hi: rgba(255,255,255,0.65);
+  --glass-bg: rgba(255,255,255,0.78);
+  --glass-border: rgba(11,13,20,0.10);
+  --glass-hi: rgba(255,255,255,0.70);
   --shadow-card: 0 10px 40px rgba(15,23,42,0.08);
   --shadow-card-hover: 0 24px 70px rgba(15,23,42,0.16), 0 0 0 1px rgba(84,104,255,0.20);
   --glow: 0 0 50px rgba(84,104,255,0.20);
 }
-:root { color-scheme: dark; }
-:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"] {
+  /* ===== Linear 型: 暗背景 × 青→紫グラデ発光（任意で切替） ===== */
+  --bg-base: #0B0D14;
+  --bg-white: #11131D;
+  --bg-elev: #161925;
+  --text: #F4F6FB;
+  --text-soft: #A6AEC4;
+  --muted: #6B7488;
+  --line: rgba(255,255,255,0.08);
+  --line-strong: rgba(255,255,255,0.14);
+  --primary: #6E8BFF;
+  --primary-soft: #8AA0FF;
+  --violet: #9B7BFF;
+  --primary-bg: rgba(110,139,255,0.10);
+  --grad: linear-gradient(120deg, #6E8BFF 0%, #9B7BFF 55%, #C77DFF 100%);
+  --grad-soft: linear-gradient(120deg, rgba(110,139,255,.16), rgba(199,125,255,.14));
+  --emerald: #5BE0B0;
+  --glass-bg: rgba(20,23,34,0.62);
+  --glass-border: rgba(255,255,255,0.10);
+  --glass-hi: rgba(255,255,255,0.06);
+  --shadow-card: 0 10px 40px rgba(0,0,0,0.30);
+  --shadow-card-hover: 0 24px 70px rgba(0,0,0,0.45), 0 0 0 1px rgba(139,160,255,0.22);
+  --glow: 0 0 60px rgba(110,139,255,0.35);
+}
+:root { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }
 html, body, .hero, .biz-card, .service-card, .pkg-card, .faq-item, .stat,
 .site-header, .menu-drop, .mobile-nav, .diagnose-box {
   transition: background-color .3s ease, color .3s ease, border-color .3s ease;
@@ -1364,8 +1367,35 @@ section.block + section.block { border-top: 1px solid var(--line); }
 .explore-cta { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--primary-soft); margin-top: 6px; }
 
 /* ---- contact choices (メール / LINE の2導線) ---- */
+/* 主導線: 無料相談の予約カード（大きく・グラデで最優先） */
+.contact-primary {
+  display: flex; align-items: center; gap: 18px;
+  max-width: 680px; margin: 0 auto; padding: 22px 26px;
+  border-radius: var(--radius); text-decoration: none;
+  background: var(--grad); color: #fff;
+  box-shadow: 0 14px 44px rgba(110,139,255,.40), inset 0 1px 0 rgba(255,255,255,.25);
+  transition: transform .2s, filter .2s, box-shadow .2s;
+}
+.contact-primary:hover { transform: translateY(-2px); filter: brightness(1.06); box-shadow: 0 20px 56px rgba(139,160,255,.55); }
+.cp-ico { font-size: 34px; flex: 0 0 auto; }
+.cp-body { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+.cp-title { font-size: 19px; font-weight: 800; }
+.cp-desc { font-size: 13px; opacity: .92; line-height: 1.6; }
+.cp-cta { flex: 0 0 auto; font-weight: 700; white-space: nowrap; }
+@media (max-width: 560px) {
+  .contact-primary { flex-wrap: wrap; gap: 10px; padding: 18px 18px; }
+  .cp-cta { width: 100%; text-align: center; padding-top: 8px; border-top: 1px solid rgba(255,255,255,.25); }
+}
+.contact-or { text-align: center; color: var(--muted); font-size: 13px; margin: 22px 0 14px; }
+/* 受講者の声 */
+.voices-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; max-width: 960px; margin: 0 auto; }
+.voice-card { background: var(--bg-white); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px 22px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 12px; }
+.voice-quote { margin: 0; font-size: 15px; font-weight: 700; line-height: 1.8; color: var(--text); }
+.voice-ba { align-self: flex-start; font-size: 12px; font-weight: 700; color: var(--primary); background: var(--primary-bg); border: 1px solid var(--glass-border); border-radius: 999px; padding: 4px 12px; }
+.voice-who { font-size: 12.5px; color: var(--muted); }
 .contact-choices {
   display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  max-width: 680px; margin: 0 auto;
 }
 @media (max-width: 680px) { .contact-choices { grid-template-columns: 1fr; } }
 .contact-choice {
@@ -1680,16 +1710,16 @@ HEADER_JS = """
     updateParallax();
   }
 
-  // ---- テーマ切替 (デフォルトはオブシディアン dark。light で明るいバリアント)
+  // ---- テーマ切替 (デフォルトはライト。dark で暗いバリアント=data-theme属性で付与)
   (function(){
     var KEY = 'aihub-theme';
     var root = document.documentElement;
     var saved = null;
     try { saved = localStorage.getItem(KEY); } catch(e) {}
-    // 保存があればそれ、無ければデフォルト dark(=data-theme属性なし)
-    var mode = saved === 'light' ? 'light' : 'dark';
+    // 保存があればそれ、無ければデフォルト light(=data-theme属性なし)
+    var mode = saved === 'dark' ? 'dark' : 'light';
     function apply(m){
-      if (m === 'light') root.setAttribute('data-theme', 'light');
+      if (m === 'dark') root.setAttribute('data-theme', 'dark');
       else root.removeAttribute('data-theme');
       var btns = document.querySelectorAll('.theme-toggle');
       btns.forEach(function(b){ b.textContent = (m === 'dark') ? '☀️' : '🌙'; b.setAttribute('aria-label', m === 'dark' ? 'ライトモードに切替' : 'ダークモードに切替'); });
@@ -1698,7 +1728,7 @@ HEADER_JS = """
     document.addEventListener('click', function(e){
       var t = e.target.closest && e.target.closest('.theme-toggle');
       if (!t) return;
-      mode = (root.getAttribute('data-theme') === 'light') ? 'dark' : 'light';
+      mode = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
       apply(mode);
       try { localStorage.setItem(KEY, mode); } catch(e) {}
     });
@@ -1736,9 +1766,9 @@ HEADER_JS = """
         level_id: 'beginner'
       },
       intermediate: {
-        badge: '中級', title: '「使える」を「仕組み」に',
+        badge: '中級', title: '毎日の作業をAIにまかせる',
         name: 'AI仕組み化ワークショップ 半日 / AI講習会',
-        desc: '自己流から脱却し、1業務をその場で仕組み化。属人化を断ち切り明日から動くマニュアルごと持ち帰れます。',
+        desc: 'いつもの作業を1つ選んで、その場でAIにまかせる形に。「自分でもできる」手順書ごと持ち帰れます。',
         level_id: 'intermediate'
       },
       advanced: {
@@ -1951,17 +1981,17 @@ def _render_hero() -> str:
         "<div class='hero-blob b1'></div>"
         "<div class='hero-blob b2'></div>"
         "<div class='hero-text fade-up'>"
-        "<span class='eyebrow'>📍 滋賀・彦根の中小事業者むけ｜AI講習・導入コンサル</span>"
+        "<span class='eyebrow'>📍 彦根・滋賀｜「AIってよく分からない」人から始められる</span>"
         "<h1>"
         "AIの使い方、<span class='accent'>教えます。</span>"
         "<span class='visually-hidden'>｜滋賀・彦根の中小事業者向けAI講習・AI導入支援・補助金サポート</span>"
         "</h1>"
         "<p class='sub-catch'>"
-        "<strong>あなたの会社の業務に使えるAIを、彦根の対面で一緒に身につける。</strong>"
+        "<strong>見積もりの下書き、問い合わせの返信、日報——その毎日の作業、AIにまかせます。</strong>"
         "</p>"
         "<p class='lead'>"
-        "ITは苦手でOK。社長が「使えるようになる」ところまで伴走します。"
-        "週10時間の事務作業を取り戻し、<strong>補助金で実質1/3以下。</strong>"
+        "スマホが使えれば大丈夫。彦根で顔を合わせて、「使えるようになる」まで一緒にやります。"
+        "毎日の作業が減って<strong>週10時間が浮く。費用は補助金で実質1/3以下。</strong>"
         "</p>"
         # 主CTA: 無料30分相談 / 副: 30秒AI診断（ファーストビューで行動できるように）
         "<div class='hero-actions'>"
@@ -1993,7 +2023,7 @@ def _render_hero() -> str:
         "<div class='hero-flow' aria-label='ワークショップの3ステップ'>"
         "<div class='hflow-step'>"
         "<span class='hflow-ico'>😵</span>"
-        "<div class='hflow-txt'><b>現場の課題</b><small>人手不足・残業・属人化</small></div>"
+        "<div class='hflow-txt'><b>毎日の困りごと</b><small>人手不足・残業・手間</small></div>"
         "</div>"
         "<div class='hflow-arrow'>→</div>"
         "<div class='hflow-step accent'>"
@@ -2139,7 +2169,7 @@ def _render_courses_packages() -> str:
             "price": "33,000円（税込・補助金対象）",
             "duration": "半日（4時間・対面）",
             "subsidy": True,
-            "desc": "「使える」から「仕組みになる」へ。見積作成・問い合わせ対応・日報など現場の1業務をその場で自動化し、明日から動くマニュアルごと持ち帰る対面ワークショップ。属人化を断ち切る中級者の実装回。",
+            "desc": "たとえば見積書の文面づくりを、半日でAIにまかせる形まで完成。「自分でもできる」手順書ごと持ち帰り、翌日から同じ作業が1/5の時間に。一歩進めたい方向け。",
             "url": "mailto:goodbouldering@gmail.com?subject=AI仕組み化ワークショップ（半日）の相談",
             "cta": "開催を相談する",
             "img": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=70",
@@ -2292,34 +2322,45 @@ def _render_explore() -> str:
 
 
 GUBBLE_LINE_URL = "https://lin.ee/14YxIC6"
+# 無料相談の予約導線（Square・個別相談60分のサービスID）。全CTAの最終到達先をここに一本化。
+CONSULT_BOOK_URL = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/TO3XHZT6XP3OM4QBDYMW7TZP"
 
 
 def _render_contact_form() -> str:
-    """問い合わせは「メール作成」と「LINE」の2導線（フォーム/サーバ送信なし）。"""
+    """申込導線を一本化: ①日程予約(Square)を主に。②LINE・③メールは「その他の方法」。"""
     mail_subject = "AI相談・講習のお問い合わせ"
     mail_body = (
         "下記にご記入のうえ送信してください。%0D%0A%0D%0A"
         "・お名前：%0D%0A"
-        "・ご相談種別（AI個別相談 / 講習会・ワークショップ / 伴走パック / Web制作 / その他）：%0D%0A"
-        "・ご相談内容（現状の課題・やりたいこと・ご予算感など）：%0D%0A"
+        "・ご相談内容（困っていること・やってみたいこと）：%0D%0A"
     )
     mailto = (
         f"mailto:{html.escape(OWNER_EMAIL)}"
         f"?subject={html.escape(mail_subject, quote=True)}&body={mail_body}"
     )
     return (
-        "<div class='contact-choices'>"
-        f"<a class='contact-choice cc-mail fade-up' href='{mailto}'>"
-        "<span class='cc-ico'>✉</span>"
-        "<span class='cc-title'>メールで相談する</span>"
-        "<span class='cc-desc'>記入項目入りのメールが立ち上がります。埋めて送信するだけ。2営業日以内にご返信します。</span>"
-        "<span class='cc-cta'>メールを作成 →</span>"
+        # 主導線: 日程を選ぶだけで予約完了
+        f"<a class='contact-primary fade-up' href='{CONSULT_BOOK_URL}' target='_blank' rel='noopener'>"
+        "<span class='cp-ico'>📅</span>"
+        "<span class='cp-body'>"
+        "<span class='cp-title'>無料の30分相談を予約する</span>"
+        "<span class='cp-desc'>カレンダーから空いている日時を選ぶだけ。2〜3分で予約できます（料金はかかりません）。</span>"
+        "</span>"
+        "<span class='cp-cta'>日程を選ぶ →</span>"
         "</a>"
-        f"<a class='contact-choice cc-line fade-up d2' href='{GUBBLE_LINE_URL}' target='_blank' rel='noopener'>"
+        "<p class='contact-or fade-up'>または、気軽にメッセージでも</p>"
+        "<div class='contact-choices'>"
+        f"<a class='contact-choice cc-line fade-up' href='{GUBBLE_LINE_URL}' target='_blank' rel='noopener'>"
         "<span class='cc-ico'>💬</span>"
-        "<span class='cc-title'>LINEで相談する</span>"
-        "<span class='cc-desc'>グッぼる公式LINEから、その場でメッセージ。気軽な質問・日程調整はこちらが早いです。</span>"
+        "<span class='cc-title'>LINEで聞いてみる</span>"
+        "<span class='cc-desc'>その場でメッセージ。ちょっとした質問はこれが一番早いです。</span>"
         "<span class='cc-cta'>LINEを開く →</span>"
+        "</a>"
+        f"<a class='contact-choice cc-mail fade-up d2' href='{mailto}'>"
+        "<span class='cc-ico'>✉</span>"
+        "<span class='cc-title'>メールで送る</span>"
+        "<span class='cc-desc'>記入欄つきのメールが立ち上がります。2営業日以内にご返信します。</span>"
+        "<span class='cc-cta'>メールを作成 →</span>"
         "</a>"
         "</div>"
         "<p class='contact-sub-note fade-up'>"
@@ -2347,10 +2388,10 @@ def _render_parallax_band() -> str:
 
 def _render_flow() -> str:
     steps = [
-        ("ご相談", "メール／LINEで現状をヒアリング。事業内容・課題・予算感を 30 分でつかみます。"),
-        ("提案・見積", "課題に対する具体的なアウトプット案（LP / 業務システム / 研修 等）と費用感を提示。"),
-        ("制作・実装", "Next.js + Supabase + Vercel で構築。PR プレビューで毎日確認できる開発フロー。"),
-        ("運用・伴走", "公開後も月次レビューで KPI を一緒に確認。必要な機能追加・運用代行も対応。"),
+        ("① まず相談（無料）", "メールかLINEで「困っていること」を教えてください。30分で、AIで何ができそうかを一緒に整理します。"),
+        ("② やることを決める", "あなたの仕事の中で「まずこれをAIに任せよう」という1つを決め、費用と進め方をお見せします。"),
+        ("③ 一緒に作る", "むずかしい設定は講師が代わりにやります。あなたは「使えるようになる」ことに集中。その日から動く形で持ち帰り。"),
+        ("④ 続けてサポート", "始めたあとも毎月いっしょに振り返り。うまくいかない所は何度でも聞けます。"),
     ]
     parts = ["<div class='flow-list'>"]
     for title, body in steps:
@@ -2370,15 +2411,41 @@ FAQ_QA = [
      "AI個別相談は60分2,200〜5,500円、AI講習会は120分5,500円から。AI仕組み化ワークショップ（半日）は33,000円、AI伴走パックは月額10万円×6ヶ月です。LP制作は1本18〜30万円が目安。多くは補助金併用を前提に組みます。"),
     ("補助金は使えますか？滋賀の事業者でも対象ですか？",
      "ワークショップ・伴走パックは「デジタル化・AI導入補助金」や滋賀県・彦根市の補助金の対象になります。補助率は小規模事業者で最大4/5、実質負担が1/3以下になるケースが多いです。申請からツール選定・実装・定着まで一気通貫で支援します。"),
-    ("自分は IT に弱いのですが、大丈夫ですか？",
-     "9事業のオーナーをやっているので「経営者目線」で話します。LINE / メール / ZOOM どれでも、専門用語を避けて進めます。ITの勉強はゼロからで構いません。"),
-    ("AI を会社で使いたいのですが、何から始めれば？",
-     "まず「どの業務をAIに任せるか」を1つ決めるところから始めます。社内ドキュメントを1ヶ所にまとめ、RAG（社内Q&A）や請求書・見積・問い合わせ返信など反復業務の自動化から入るのが定着しやすい順序です。"),
-    ("人手不足や業務の属人化に効きますか？",
-     "そこが伴走パックの本丸です。特定の人しかできない作業（属人化）をAIとマニュアルに置き換え、誰でも回せる仕組みにします。請求書作成が月8時間→1時間といった削減を狙います。"),
+    ("パソコンやスマホが苦手ですが、大丈夫ですか？",
+     "大丈夫です。スマホで文字が打てれば始められます。専門用語は使わず、画面を一緒に見ながら進めます。「こんなことも聞いていいの？」というレベルから歓迎します。"),
+    ("AI を仕事で使いたいのですが、何から始めれば？",
+     "毎日やっている作業で「これ、同じような文章を毎回書いてるな」と思うものを1つ思い浮かべてください。問い合わせの返信・見積の文面・日報など、決まり文句の多い仕事から始めると、最初の30分でAIが役に立つのを実感できます。むずかしいことは後でOKです。"),
+    ("特定の人しかできない仕事が多くて困っています。効きますか？",
+     "そこが得意分野です。「あの人がいないと回らない」作業をAIと手順書に置き換え、誰でもできる形にします。たとえば請求書づくりが月8時間→1時間に減った例があります。"),
     ("出張やオンラインだけの依頼も可能ですか？",
      "可能です。滋賀県外への出張AI研修、オンライン完結の伴走、単発の講演・登壇いずれも対応します。まずは無料の30分相談でご要望をお聞かせください。"),
 ]
+
+
+# 受講者の声。実データが入るまで空のまま（空ならセクションごと非表示＝虚偽を出さない）。
+# 形式: {"quote": 一言, "who": "彦根市・建設業・50代", "before_after": "見積作成 月4時間→30分"}
+# CEO が実際の受講者から許諾を得た声をここに追記すると、自動でセクションが表示される。
+VOICES: list[dict] = []
+
+
+def _render_voices() -> str:
+    if not VOICES:
+        return ""
+    parts = ["<div class='voices-grid'>"]
+    for v in VOICES:
+        quote = html.escape(str(v.get("quote") or ""))
+        who = html.escape(str(v.get("who") or ""))
+        ba = html.escape(str(v.get("before_after") or ""))
+        ba_html = f"<span class='voice-ba'>{ba}</span>" if ba else ""
+        parts.append(
+            "<figure class='voice-card'>"
+            f"<blockquote class='voice-quote'>「{quote}」</blockquote>"
+            f"{ba_html}"
+            f"<figcaption class='voice-who'>— {who}</figcaption>"
+            "</figure>"
+        )
+    parts.append("</div>")
+    return "".join(parts)
 
 
 def _render_faq() -> str:
@@ -2681,7 +2748,7 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts: list[str] = []
     parts.append("<!doctype html><html lang='ja'><head><meta charset='utf-8'>" + FAVICON_HEAD_HTML)
     parts.append("<meta name='viewport' content='width=device-width,initial-scale=1'>")
-    parts.append("<meta name='theme-color' content='#0A0F1C'>")
+    parts.append("<meta name='theme-color' content='#F7F8FC'>")
     # 案A: 和文明朝の大見出し + monospace ラベル用に Google Fonts を読み込む
     parts.append("<link rel='preconnect' href='https://fonts.googleapis.com'>")
     parts.append("<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>")
@@ -2728,6 +2795,16 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append("<p class='section-sub fade-up d2'>AI 活用の啓発・講習・地域コミュニティ運営・複数事業のマーケ支援を行う実践者。</p>")
     parts.append(_render_speaker_section())
     parts.append("</section>")
+
+    # 3b. 受講者の声（信頼の証拠・実データがある時だけ表示）
+    voices_html = _render_voices()
+    if voices_html:
+        parts.append("<section class='block' id='voices'>")
+        parts.append("<p class='section-heading fade-up'>VOICES</p>")
+        parts.append("<h2 class='section-title fade-up d1'>受講した方の声</h2>")
+        parts.append("<p class='section-sub fade-up d2'>あなたと同じ「AIは苦手」だった方が、何をできるようになったか。</p>")
+        parts.append(voices_html)
+        parts.append("</section>")
 
     # 4. FAQ（疑問解消）
     parts.append("<section class='block' id='faq'>")

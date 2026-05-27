@@ -561,7 +561,7 @@ header.site-header.scrolled {
 /* ---- hero ---- */
 .hero {
   padding: 32px 0 64px;
-  display: grid; grid-template-columns: 1.05fr 1fr; gap: 48px; align-items: center;
+  display: grid; grid-template-columns: 1.05fr 1fr; gap: 48px; align-items: start;
   position: relative;
 }
 .hero-text { text-align: left; min-width: 0; max-width: 100%; }
@@ -584,9 +584,9 @@ header.site-header.scrolled {
   }
 }
 .hero h1 {
-  margin: 22px 0 18px; font-size: clamp(38px, 7vw, 78px);
+  margin: 20px 0 16px; font-size: clamp(34px, 5.4vw, 60px);
   font-family: var(--serif); font-weight: 800; letter-spacing: -.03em;
-  color: var(--text); line-height: 1.08;
+  color: var(--text); line-height: 1.18;
   overflow-wrap: anywhere; word-break: normal;
 }
 .hero h1 .accent {
@@ -1935,20 +1935,20 @@ def _render_hero() -> str:
         "<div class='hero-blob b1'></div>"
         "<div class='hero-blob b2'></div>"
         "<div class='hero-text fade-up'>"
-        "<span class='eyebrow'>📍 彦根・滋賀・湖東｜現場リーダー限定ワークショップ</span>"
+        "<span class='eyebrow'>📍 滋賀・彦根の中小事業者むけ｜AI講習・導入コンサル</span>"
         "<h1>"
-        "<span class='accent'>業務まるごと、</span><br>"
-        "AIに任せる。"
+        "その「めんどうな仕事」、<br>"
+        "<span class='accent'>AIに任せませんか？</span>"
         "<span class='visually-hidden'>｜滋賀・彦根の中小事業者向けAI講習・AI導入支援・補助金サポート</span>"
         "</h1>"
         "<p class='sub-catch'>"
-        "<strong>滋賀・彦根のAI講習／AI導入コンサル。</strong>"
-        "彦根の対面ワークショップで、"
-        "<strong>集客・人手不足・業務の自動化</strong>の仕組みを、その場で完成。"
+        "請求書・問い合わせ対応・日報…<strong>毎日くり返す作業をAIにまかせて、"
+        "週10時間をとり戻す。</strong>"
         "</p>"
         "<p class='lead'>"
-        "ITの勉強はゼロ。社長の仕事は「どの業務を任せるか」を決めるだけ。"
-        "<strong>週10時間の無駄</strong>を削る仕組みを、その日のうちに持ち帰れます。"
+        "ITの知識はゼロでOK。彦根の対面ワークショップで、"
+        "<strong>あなたの会社の業務にあわせた“使えるAIの仕組み”</strong>を、"
+        "その場で一緒に作って持ち帰れます。補助金で<strong>実質1/3以下</strong>に。"
         "</p>"
         # 主CTA: 無料30分相談 / 副: 30秒AI診断（ファーストビューで行動できるように）
         "<div class='hero-actions'>"

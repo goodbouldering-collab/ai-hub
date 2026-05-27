@@ -292,7 +292,7 @@ ADMIN_BUTTON_HTML = """
 REVEAL_JS = """<script>
 (function(){
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var sel = '.tr-card, .pf-card, .profile-stat, .profile-tech-card, .sns-card, article, .content-toc, .tr-section';
+  var sel = '.tr-card, .pf-card, .profile-stat, .profile-tech-card, .sns-card, article, .content-toc, .tr-section, .profile-tl-item, .profile-app-card, .profile-biz-card';
   var els = Array.prototype.slice.call(document.querySelectorAll(sel));
   if (!els.length || !('IntersectionObserver' in window)) return;
   els.forEach(function(el, i){ el.classList.add('reveal'); el.style.transitionDelay = Math.min(i * 40, 240) + 'ms'; });
@@ -1720,10 +1720,10 @@ def build_speaker_page() -> bool:
     if profile_body:
         body_html += (
             "<hr class='speaker-divider'>"
-            "<h2 id='career' style='margin-top:8px'>📜 経歴・実績の詳細</h2>"
+            "<h2 id='career' style='margin-top:8px'>📜 経歴・履歴（時系列）</h2>"
             + profile_body
         )
-    title = meta.get("name") or "講師紹介"
+    title = "講師紹介履歴をもっと詳しく"
     nav = render_top_nav(path_prefix="./", current_id="speaker", include_run=False)
     html_text = render_content_page(title, meta, body_html, nav, page_path="speaker.html", kind="speaker")
     (DIST / "speaker.html").write_text(html_text, encoding="utf-8")

@@ -1875,7 +1875,7 @@ HEADER_JS = """
   /* スクロールで要素をふわっと出す（reduced-motion は即表示） */
   (function(){
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var sel = '.biz-card, .service-card, .pkg-card, .faq-item, .stat';
+    var sel = '.biz-card, .service-card, .pkg-card, .faq-item, .stat, .profile-tl-item, .profile-app-card, .profile-tech-card, .profile-biz-card';
     var els = Array.prototype.slice.call(document.querySelectorAll(sel));
     if (!els.length || !('IntersectionObserver' in window)) return;
     els.forEach(function(el, i){ el.classList.add('reveal'); el.style.transitionDelay = Math.min(i * 40, 240) + 'ms'; });
@@ -2535,7 +2535,7 @@ def _render_speaker_section() -> str:
 
     parts.append(
         "<div style='display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:24px;'>"
-        "<a class='btn btn-primary' href='/speaker.html'>🎤 講師紹介・経歴をもっと詳しく</a>"
+        "<a class='btn btn-primary' href='/speaker.html'>🎤 講師紹介履歴をもっと詳しく</a>"
         "</div>"
         "</div>"
     )

@@ -2327,44 +2327,19 @@ CONSULT_BOOK_URL = "https://book.squareup.com/appointments/zymaszkc9pdwq2/locati
 
 
 def _render_contact_form() -> str:
-    """申込導線を一本化: ①日程予約(Square)を主に。②LINE・③メールは「その他の方法」。"""
-    mail_subject = "AI相談・講習のお問い合わせ"
-    mail_body = (
-        "下記にご記入のうえ送信してください。%0D%0A%0D%0A"
-        "・お名前：%0D%0A"
-        "・ご相談内容（困っていること・やってみたいこと）：%0D%0A"
-    )
-    mailto = (
-        f"mailto:{html.escape(OWNER_EMAIL)}"
-        f"?subject={html.escape(mail_subject, quote=True)}&body={mail_body}"
-    )
+    """申込導線は「無料30分相談の予約(Square)」に一本化。相談はZoomまたはLINEで実施。"""
     return (
         # 主導線: 日程を選ぶだけで予約完了
         f"<a class='contact-primary fade-up' href='{CONSULT_BOOK_URL}' target='_blank' rel='noopener'>"
         "<span class='cp-ico'>📅</span>"
         "<span class='cp-body'>"
         "<span class='cp-title'>無料の30分相談を予約する</span>"
-        "<span class='cp-desc'>カレンダーから空いている日時を選ぶだけ。2〜3分で予約できます（料金はかかりません）。</span>"
+        "<span class='cp-desc'>カレンダーから空いている日時を選ぶだけ。2〜3分で予約できます（料金はかかりません）。相談は Zoom か LINE で行います。</span>"
         "</span>"
         "<span class='cp-cta'>日程を選ぶ →</span>"
         "</a>"
-        "<p class='contact-or fade-up'>または、気軽にメッセージでも</p>"
-        "<div class='contact-choices'>"
-        f"<a class='contact-choice cc-line fade-up' href='{GUBBLE_LINE_URL}' target='_blank' rel='noopener'>"
-        "<span class='cc-ico'>💬</span>"
-        "<span class='cc-title'>LINEで聞いてみる</span>"
-        "<span class='cc-desc'>その場でメッセージ。ちょっとした質問はこれが一番早いです。</span>"
-        "<span class='cc-cta'>LINEを開く →</span>"
-        "</a>"
-        f"<a class='contact-choice cc-mail fade-up d2' href='{mailto}'>"
-        "<span class='cc-ico'>✉</span>"
-        "<span class='cc-title'>メールで送る</span>"
-        "<span class='cc-desc'>記入欄つきのメールが立ち上がります。2営業日以内にご返信します。</span>"
-        "<span class='cc-cta'>メールを作成 →</span>"
-        "</a>"
-        "</div>"
         "<p class='contact-sub-note fade-up'>"
-        "どちらか迷う方は、まず "
+        "どんなプランが合うか迷う方は、まず "
         "<button type='button' class='link-btn diagnose-open'>🔍 30秒AI診断</button>"
         " から。あなたに合うプランをご提案します。"
         "</p>"
@@ -2839,7 +2814,7 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append("<section class='block' id='contact'>")
     parts.append("<p class='section-heading fade-up'>CONTACT</p>")
     parts.append("<h2 class='section-title fade-up d1'>まずは 30 分、無料でご相談</h2>")
-    parts.append("<p class='section-sub fade-up d2'>事業の状況・課題・予算感をヒアリングして、最適なアウトプット案をご提案します。メールまたはLINEから、お気軽にどうぞ。</p>")
+    parts.append("<p class='section-sub fade-up d2'>「何から始めればいいか」を一緒に整理します。日程を選んで予約するだけ。相談は Zoom か LINE で、お気軽にどうぞ。</p>")
     parts.append(_render_contact_form())
     parts.append("</section>")
 

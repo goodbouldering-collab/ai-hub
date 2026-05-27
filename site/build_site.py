@@ -1715,6 +1715,14 @@ def build_speaker_page() -> bool:
     raw = SPEAKER_MD.read_text(encoding="utf-8")
     meta, body = _parse_frontmatter(raw)
     body_html = md.markdown(body, extensions=["extra", "sane_lists"])
+    # 経歴(profile.yaml)を講師紹介ページに融合する
+    profile_body = _build_profile_body()
+    if profile_body:
+        body_html += (
+            "<hr class='speaker-divider'>"
+            "<h2 id='career' style='margin-top:8px'>📜 経歴・実績の詳細</h2>"
+            + profile_body
+        )
     title = meta.get("name") or "講師紹介"
     nav = render_top_nav(path_prefix="./", current_id="speaker", include_run=False)
     html_text = render_content_page(title, meta, body_html, nav, page_path="speaker.html", kind="speaker")
@@ -2006,15 +2014,16 @@ def _inline_md(text: str) -> str:
     return escaped.replace("\n", "<br>")
 
 
-def build_profile_page() -> bool:
-    """config/profile.yaml から包括的経歴ページを生成。"""
+def _build_profile_body() -> str:
+    """config/profile.yaml から経歴セクション群の HTML を生成して返す（ページ枠なし）。
+    speaker.html に融合して使う。profile.html 単独ページは廃止しリダイレクトにした。"""
     if not PROFILE_YAML.exists():
-        return False
+        return ""
     try:
         data = yaml.safe_load(PROFILE_YAML.read_text(encoding="utf-8")) or {}
     except Exception as e:
         print(f"[!] profile.yaml load error: {e}")
-        return False
+        return ""
 
     meta = data.get("meta") or {}
     title = str(meta.get("title") or "由井 辰美")
@@ -2184,16 +2193,20 @@ def build_profile_page() -> bool:
             "<code>python site/build_site.py</code> で再ビルド。</span></div>"
         )
 
-    body_html = "".join(parts)
-    page_meta = {
-        "summary": description,
-        "role": subtitle,
-        "gen_by": gen_by,
-        "profile_url": source_url,
-    }
-    nav = render_top_nav(path_prefix="./", current_id="profile", include_run=False)
-    html_text = render_content_page(title, page_meta, body_html, nav, page_path="profile.html", kind="speaker")
-    (DIST / "profile.html").write_text(html_text, encoding="utf-8")
+    return "".join(parts)
+
+
+def build_profile_page() -> bool:
+    """profile.html は speaker.html へ統合済み。互換のため speaker.html へリダイレクトする HTML を出力。"""
+    redirect = (
+        "<!doctype html><html lang='ja'><head><meta charset='utf-8'>"
+        "<meta http-equiv='refresh' content='0; url=/speaker.html'>"
+        "<link rel='canonical' href='/speaker.html'>"
+        "<title>講師紹介・経歴 — AIハブ</title>"
+        "<script>location.replace('/speaker.html');</script></head>"
+        "<body>このページは <a href='/speaker.html'>講師紹介ページ</a> に移動しました。</body></html>"
+    )
+    (DIST / "profile.html").write_text(redirect, encoding="utf-8")
     return True
 
 

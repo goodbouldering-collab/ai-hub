@@ -140,3 +140,60 @@ portfolio:
     category: 生成LP
     tech: [Genspark]
     summary: マーケ基礎 → 1億到達までの考え方を1枚で
+
+  # ── インディーハッカーツール（1人で素早く作った単機能ツール・生成物・コンサル成果物）──
+  - name: LLMO診断
+    slug: llmo-shindan
+    url: https://claude.ai/public/artifacts/b468aa0c-3157-476f-aff2-bf049569ba42
+    status: live
+    category: インディーハッカーツール
+    tech: [Claude Artifacts]
+    summary: そのサイト、AI検索に対応してる？を即診断するツール
+
+  - name: 損益計算アプリ
+    slug: soneki-app
+    url: https://claude.ai/public/artifacts/53bac4a1-54f1-4bc4-8ba9-892d7e58c3c8
+    status: live
+    category: インディーハッカーツール
+    tech: [Claude Artifacts]
+    summary: 数字から経営の弱点を見つける損益シミュレーター
+
+  - name: 企業アンバサダープラニング
+    slug: ambassador-planning
+    url: https://www.genspark.ai/agents?id=53db61cb-f365-44fa-b9fa-f705968bea84
+    status: live
+    category: インディーハッカーツール
+    tech: [Genspark]
+    summary: 企業アンバサダー企画から補助金申請までを支援するAIエージェント
+
+  - name: もぐログファディー
+    slug: moglog-fadie
+    url: https://www.genspark.ai/agents?id=7d2b5d1f-e26f-415f-9827-ee23b1992eff
+    status: live
+    category: インディーハッカーツール
+    tech: [Genspark]
+    summary: AIフィットネスの食事記録アプリ
+
+  - name: りーる整骨院 提案
+    slug: rieru-seikotsu
+    url: https://page.gensparksite.com/docs_agent/ae984fea-d97f-4b5a-98c9-8011a693338b/8bbe382c-e37d-4d34-8096-bac941888769/70e67802-89c1-443e-a8fc-4a3e8be3f27b.html
+    status: live
+    category: インディーハッカーツール
+    tech: [Genspark]
+    summary: Google広告と補助金活用のコンサル提案書（生成）
+
+  - name: ClimbHero（生成版LP）
+    slug: climbhero-gen
+    url: https://readdy.link/share/13eb240b3d2b62b6333bede5f74452a0
+    status: dev
+    category: インディーハッカーツール
+    tech: [Readdy]
+    summary: 登る動画ランキングの生成LP版
+
+  - name: KARATTO＋（生成版LP）
+    slug: karatto-gen
+    url: https://readdy.link/share/cab435b49a3700ed3d683c7db6bddd5b
+    status: dev
+    category: インディーハッカーツール
+    tech: [Readdy]
+    summary: カラッとプラスの生成LP版

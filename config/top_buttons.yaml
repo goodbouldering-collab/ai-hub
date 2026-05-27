@@ -34,9 +34,9 @@ top_buttons:
   group: 講師
   label: 経歴
   icon: 📜
-  href: profile.html
+  href: speaker.html#career
   kind: link
-  enabled: true
+  enabled: false   # 講師紹介(speaker.html)に経歴を統合したため無効化
 
 - id: portfolio
   group: 作品

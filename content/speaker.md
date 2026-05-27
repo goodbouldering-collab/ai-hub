@@ -48,26 +48,7 @@ AI / SNS / LLMO の最新動向を一次情報ベースで発信している。
 - AI 業務活用 / SNSアルゴリズム / LLMO（AI検索最適化）の講習を定期開催
 - 複数の AI アプリ・LP・診断ツールを Genspark / Claude / NotebookLM で生成・公開
 
-## 制作実績
-
-### AI アプリ・ツール
-- [みんなのWA — 彦根異業種交流会](https://minanowa.com)
-- [企業アンバサダープラニング — 補助金申請まで](https://www.genspark.ai/agents?id=53db61cb-f365-44fa-b9fa-f705968bea84)
-- [まずは0から1億マーケティング](https://khktfxqf.gensparkspace.com/)
-- [LLMO診断 — そのサイトAI対応してる？](https://claude.ai/public/artifacts/b468aa0c-3157-476f-aff2-bf049569ba42)
-- [損益計算アプリ — 数字から見える弱点克服](https://claude.ai/public/artifacts/53bac4a1-54f1-4bc4-8ba9-892d7e58c3c8)
-- [もぐログファディー — AIフィットネス食事記録](https://www.genspark.ai/agents?id=7d2b5d1f-e26f-415f-9827-ee23b1992eff)
-- [ClimbHero — 登る動画ランキング](https://project-02ceb497.pages.dev/)
-
-### 生成 LP・ブランドサイト
-- [今心 — 心地いいスナック](https://readdy.link/share/042372463c05d7076e5a1b8d3ee28e0e)
-- [ClimbHero — 登る動画ランキング（生成版）](https://readdy.link/share/13eb240b3d2b62b6333bede5f74452a0)
-- [GPsole — 新世代リソール](https://readdy.link/share/473607684647d6e150399fa3e68b7fd9)
-- [KARATTO＋（カラッとプラス）](https://readdy.link/share/cab435b49a3700ed3d683c7db6bddd5b)
-- [日本のスタートアップに革命が起きる？ — 暗号資産の税制改正](https://8080-ipf3hnewspbhywdnp2p1p-b9b802c4.sandbox.novita.ai/blog_article.html)
-
-### 生成アドバイス・コンサル成果物
-- [りーる整骨院 — Google広告と補助金](https://page.gensparksite.com/docs_agent/ae984fea-d97f-4b5a-98c9-8011a693338b/8bbe382c-e37d-4d34-8096-bac941888769/70e67802-89c1-443e-a8fc-4a3e8be3f27b.html)
+> 制作実績（運営サイト・生成LP・インディーハッカーツール）は、トップページの「制作実績」一覧に集約しています。
 
 ## 講習で伝える「考え方」
 

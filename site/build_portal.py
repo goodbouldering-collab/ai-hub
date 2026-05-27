@@ -1485,6 +1485,31 @@ footer.site-footer {
   gap: 16px;
   margin: 16px 0 8px;
 }
+/* 制作実績の横スライド（カルーセル） */
+.pf-carousel-wrap { position: relative; margin: 16px 0 8px; }
+.pf-carousel {
+  display: grid; grid-auto-flow: column;
+  grid-auto-columns: minmax(260px, 300px);
+  gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory;
+  scroll-behavior: smooth; padding: 6px 4px 18px;
+  -ms-overflow-style: none; scrollbar-width: thin;
+}
+.pf-carousel > .pf-card { scroll-snap-align: start; }
+.pf-carousel::-webkit-scrollbar { height: 8px; }
+.pf-carousel::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 999px; }
+.pf-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%); z-index: 3;
+  width: 44px; height: 44px; border-radius: 50%; cursor: pointer;
+  border: 1px solid var(--glass-border); background: var(--glass-bg);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  color: var(--text); font-size: 26px; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: var(--shadow-card); transition: transform .15s, border-color .15s, box-shadow .15s;
+}
+.pf-arrow:hover { transform: translateY(-50%) scale(1.08); border-color: var(--primary); box-shadow: 0 0 24px rgba(110,139,255,.25); }
+.pf-prev { left: -10px; }
+.pf-next { right: -10px; }
+@media (max-width: 760px) { .pf-arrow { display: none; } .pf-carousel { grid-auto-columns: 78%; } }
 .pf-card {
   display: flex; flex-direction: column;
   background: var(--bg-white);
@@ -1872,6 +1897,18 @@ HEADER_JS = """
     }
     window.addEventListener('scroll', update, { passive: true });
     update();
+  })();
+
+  // 制作実績カルーセルの左右矢印
+  (function(){
+    var track = document.getElementById('works-carousel');
+    if (!track) return;
+    document.querySelectorAll('.pf-arrow').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var dir = parseInt(btn.getAttribute('data-dir'), 10) || 1;
+        track.scrollBy({ left: dir * Math.round(track.clientWidth * 0.8), behavior: 'smooth' });
+      });
+    });
   })();
 })();
 </script>
@@ -2491,8 +2528,7 @@ def _render_speaker_section() -> str:
 
     parts.append(
         "<div style='display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:24px;'>"
-        "<a class='btn btn-primary' href='/speaker.html'>🎤 講師紹介をもっと詳しく</a>"
-        "<a class='btn btn-secondary' href='/profile.html'>📜 経歴をもっと詳しく</a>"
+        "<a class='btn btn-primary' href='/speaker.html'>🎤 講師紹介・経歴をもっと詳しく</a>"
         "</div>"
         "</div>"
     )
@@ -2546,7 +2582,12 @@ def _render_works_section() -> str:
     items = [p for p in _load_portfolio() if str(p.get("status") or "live") != "retired"]
     if not items:
         return ""
-    parts = ["<div class='pf-grid'>"]
+    # 横スライド（カルーセル）。左右の矢印 + scroll-snap で見やすく。
+    parts = [
+        "<div class='pf-carousel-wrap'>"
+        "<button type='button' class='pf-arrow pf-prev' aria-label='前へ' data-dir='-1'>‹</button>"
+        "<div class='pf-carousel' id='works-carousel'>"
+    ]
     for p in items:
         name = html.escape(str(p.get("name") or p.get("slug") or ""))
         url = str(p.get("url") or "").strip()
@@ -2570,7 +2611,9 @@ def _render_works_section() -> str:
             + (f"<div class='pf-meta'>{''.join(chips)}</div>" if chips else "")
             + "</a>"
         )
-    parts.append("</div>")
+    parts.append("</div>")  # .pf-carousel
+    parts.append("<button type='button' class='pf-arrow pf-next' aria-label='次へ' data-dir='1'>›</button>")
+    parts.append("</div>")  # .pf-carousel-wrap
     return "".join(parts)
 
 

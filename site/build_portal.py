@@ -356,38 +356,38 @@ PORTAL_CSS = """
   --radius-sm: 14px;
   --serif: "Inter", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
   --mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
-  /* --- ライト配色 --- */
-  --bg-base: #F7F8FC;
+  /* --- ライト配色（しっとり: 純黒を避け深墨、影は2層拡散） --- */
+  --bg-base: #F6F7FB;
   --bg-white: #FFFFFF;
   --bg-elev: #FFFFFF;
-  --text: #0B0D14;
-  --text-soft: #404A63;
+  --text: #1A1D2E;           /* 純黒を避けた深墨（やわらかい対比） */
+  --text-soft: #46506A;
   --muted: #5A6478;
-  --line: rgba(11,13,20,0.10);
-  --line-strong: rgba(11,13,20,0.16);
+  --line: rgba(26,29,46,0.09);
+  --line-strong: rgba(26,29,46,0.15);
   --primary: #5468FF;        /* インディゴ・ブルー */
   --primary-soft: #6E8BFF;
   --violet: #8B5CF6;
-  --primary-bg: rgba(84,104,255,0.08);
+  --primary-bg: rgba(84,104,255,0.07);
   --grad: linear-gradient(120deg, #5468FF 0%, #8B5CF6 55%, #C77DFF 100%);
   --grad-soft: linear-gradient(120deg, rgba(84,104,255,.10), rgba(199,125,255,.08));
   --glass-bg: rgba(255,255,255,0.78);
-  --glass-border: rgba(11,13,20,0.10);
+  --glass-border: rgba(26,29,46,0.09);
   --glass-hi: rgba(255,255,255,0.70);
-  --shadow-card: 0 10px 40px rgba(15,23,42,0.08);
-  --shadow-card-hover: 0 24px 70px rgba(15,23,42,0.16), 0 0 0 1px rgba(84,104,255,0.20);
-  --glow: 0 0 50px rgba(84,104,255,0.20);
+  --shadow-card: 0 2px 8px rgba(26,29,46,0.04), 0 16px 48px rgba(26,29,46,0.07);
+  --shadow-card-hover: 0 6px 16px rgba(26,29,46,0.06), 0 28px 72px rgba(26,29,46,0.13), 0 0 0 1px rgba(84,104,255,0.16);
+  --glow: 0 0 50px rgba(84,104,255,0.18);
 }
 :root[data-theme="dark"] {
-  /* ===== Linear 型: 暗背景 × 青→紫グラデ発光（任意で切替） ===== */
-  --bg-base: #0B0D14;
-  --bg-white: #11131D;
-  --bg-elev: #161925;
-  --text: #F4F6FB;
+  /* ===== しっとりした深夜色（ただの黒でなく藍みの墨）× 青→紫グラデ発光 ===== */
+  --bg-base: #0C0E18;        /* 藍の深みを持つ墨色（B が R/G の約2倍） */
+  --bg-white: #111422;       /* 濡れた舗装の深夜色 */
+  --bg-elev: #171A2B;        /* カード面・暗室の作業台 */
+  --text: #E8EAF2;           /* わずかに紫みのクリーム（温かみのある対比） */
   --text-soft: #A6AEC4;
-  --muted: #6B7488;
-  --line: rgba(255,255,255,0.08);
-  --line-strong: rgba(255,255,255,0.14);
+  --muted: #707A92;
+  --line: rgba(255,255,255,0.07);
+  --line-strong: rgba(255,255,255,0.13);
   --primary: #6E8BFF;
   --primary-soft: #8AA0FF;
   --violet: #9B7BFF;
@@ -395,12 +395,16 @@ PORTAL_CSS = """
   --grad: linear-gradient(120deg, #6E8BFF 0%, #9B7BFF 55%, #C77DFF 100%);
   --grad-soft: linear-gradient(120deg, rgba(110,139,255,.16), rgba(199,125,255,.14));
   --emerald: #5BE0B0;
-  --glass-bg: rgba(20,23,34,0.62);
-  --glass-border: rgba(255,255,255,0.10);
-  --glass-hi: rgba(255,255,255,0.06);
-  --shadow-card: 0 10px 40px rgba(0,0,0,0.30);
-  --shadow-card-hover: 0 24px 70px rgba(0,0,0,0.45), 0 0 0 1px rgba(139,160,255,0.22);
-  --glow: 0 0 60px rgba(110,139,255,0.35);
+  --glass-bg: rgba(23,26,43,0.64);
+  --glass-border: rgba(255,255,255,0.09);
+  --glass-hi: rgba(255,255,255,0.05);
+  --shadow-card: 0 2px 10px rgba(0,0,0,0.24), 0 18px 50px rgba(0,0,0,0.40);
+  --shadow-card-hover: 0 6px 20px rgba(0,0,0,0.30), 0 30px 76px rgba(0,0,0,0.52), 0 0 0 1px rgba(139,160,255,0.20);
+  --glow: 0 0 60px rgba(110,139,255,0.32);
+  /* ダークは発光をやや強めに（深夜の灯り） */
+  --grad-glow-a: rgba(110,139,255,.20);
+  --grad-glow-b: rgba(199,125,255,.14);
+  --grad-glow-c: rgba(155,123,255,.10);
 }
 :root { color-scheme: light; }
 :root[data-theme="dark"] { color-scheme: dark; }
@@ -412,15 +416,15 @@ html, body, .hero, .biz-card, .service-card, .pkg-card, .faq-item, .stat,
 html, body { margin: 0; padding: 0; overflow-x: hidden; }
 html { scroll-behavior: smooth; }
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
   color: var(--text);
-  line-height: 1.7;
+  line-height: 1.82;            /* しっとり: ゆったり読める日本語行間 */
   min-height: 100vh;
   background:
-    radial-gradient(1100px 600px at 8% -8%, rgba(110,139,255,.20), transparent 58%),
-    radial-gradient(900px 600px at 92% 4%, rgba(199,125,255,.14), transparent 56%),
-    radial-gradient(700px 500px at 50% 110%, rgba(155,123,255,.10), transparent 60%),
-    linear-gradient(180deg, var(--bg-white) 0%, var(--bg-base) 60%);
+    radial-gradient(1100px 600px at 8% -8%, var(--grad-glow-a, rgba(110,139,255,.14)), transparent 60%),
+    radial-gradient(900px 600px at 92% 4%, var(--grad-glow-b, rgba(199,125,255,.10)), transparent 58%),
+    radial-gradient(700px 500px at 50% 112%, var(--grad-glow-c, rgba(155,123,255,.07)), transparent 62%),
+    linear-gradient(180deg, var(--bg-white) 0%, var(--bg-base) 62%);
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
   letter-spacing: -0.005em;
@@ -816,13 +820,14 @@ header.site-header.scrolled {
   line-height: 1.1; letter-spacing: -.02em;
 }
 .stat .label { font-size: 12.5px; color: var(--muted); margin-top: 6px; font-weight: 600; }
+.stat .stat-sub { font-size: 10.5px; color: var(--muted); margin-top: 3px; font-style: italic; opacity: .8; }
 
 /* ---- section frame ---- */
 section.block { padding: 72px 0; scroll-margin-top: 96px; }
 section.block + section.block { border-top: 1px solid var(--line); }
 .section-title {
   font-family: var(--serif);
-  font-size: clamp(28px, 4vw, 46px); font-weight: 800; letter-spacing: -.03em;
+  font-size: clamp(28px, 4vw, 46px); font-weight: 700; letter-spacing: -.03em;
   color: var(--text); text-align: center; margin: 0 0 14px; line-height: 1.15;
 }
 .section-sub {
@@ -884,7 +889,7 @@ section.block + section.block { border-top: 1px solid var(--line); }
   font-size: 26px; box-shadow: 0 10px 24px rgba(15,23,42,.10);
   border: 1px solid var(--line); z-index: 3;
 }
-.service-name { font-size: 17px; font-weight: 800; color: var(--text); margin-bottom: 8px; }
+.service-name { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
 .service-desc { font-size: 13.5px; color: var(--text-soft); line-height: 1.7; }
 
 /* ---- biz grid (事業ポートフォリオ) ---- */
@@ -943,7 +948,7 @@ section.block + section.block { border-top: 1px solid var(--line); }
 .biz-card.no-link:hover { transform: none; box-shadow: var(--shadow-card); border-color: var(--line); }
 .biz-card.self-card { border-color: rgba(139,160,255,.5); background: var(--primary-bg); }
 .biz-card-icon { font-size: 28px; line-height: 1; margin-bottom: 2px; }
-.biz-card-name { font-size: 16.5px; font-weight: 800; color: var(--text); line-height: 1.3; }
+.biz-card-name { font-size: 16.5px; font-weight: 700; color: var(--text); line-height: 1.3; }
 .biz-card-tagline { font-size: 12px; color: var(--muted); letter-spacing: .02em; font-weight: 600; }
 .biz-card-desc { font-size: 13px; color: var(--text-soft); line-height: 1.65; flex: 1; }
 .biz-card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 4px; }
@@ -1054,7 +1059,7 @@ section.block + section.block { border-top: 1px solid var(--line); }
   color: #b45309; background: #fef3c7;
   padding: 4px 10px; border-radius: var(--radius-sm);
 }
-.pkg-title { font-size: 16px; font-weight: 800; color: var(--text); line-height: 1.4; margin: 2px 0 0; flex: 1; }
+.pkg-title { font-size: 16px; font-weight: 700; color: var(--text); line-height: 1.4; margin: 2px 0 0; flex: 1; }
 .pkg-meta { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .pkg-level {
   font-family: var(--mono); font-size: 10.5px; font-weight: 700; letter-spacing: .06em;
@@ -1201,7 +1206,7 @@ section.block + section.block { border-top: 1px solid var(--line); }
   font-size: 26px; font-weight: 800; color: rgba(139,160,255,.18);
   letter-spacing: -.02em;
 }
-.flow-step h3 { font-size: 15px; font-weight: 800; color: var(--text); margin: 0 0 8px; }
+.flow-step h3 { font-size: 15px; font-weight: 700; color: var(--text); margin: 0 0 8px; }
 .flow-step p { font-size: 13px; color: var(--text-soft); margin: 0; line-height: 1.7; }
 
 /* ---- lecture preview ---- */
@@ -1292,7 +1297,7 @@ section.block + section.block { border-top: 1px solid var(--line); }
   box-shadow: var(--shadow-card);
 }
 @media (max-width: 720px) { .profile-block { grid-template-columns: 1fr; text-align: center; } }
-.profile-block h3 { font-size: 22px; font-weight: 800; margin: 0 0 10px; color: var(--text); }
+.profile-block h3 { font-size: 22px; font-weight: 700; margin: 0 0 10px; color: var(--text); }
 .profile-block p { font-size: 14px; color: var(--text-soft); line-height: 1.85; margin: 0 0 10px; }
 .profile-avatar {
   width: 200px; height: 200px; border-radius: 50%;
@@ -2080,17 +2085,19 @@ def _render_hero() -> str:
 
 def _render_stats() -> str:
     items = [
-        ("9", "", "同時運営事業"),
-        ("30", "年", "クライミング歴"),
-        ("100", "%", "Web 自社構築"),
-        ("2027", "", "育成就労 移行支援"),
+        ("9", "", "同時運営事業", ""),
+        ("30", "年", "クライミング歴", "経営よりずっと長い"),
+        ("100", "%", "Web 自社構築", "外注ゼロ・全部自前"),
+        ("2027", "", "育成就労 移行支援", ""),
     ]
     parts = ["<div class='stats-strip'>"]
-    for i, (num, suffix, label) in enumerate(items):
+    for i, (num, suffix, label, sub) in enumerate(items):
         cls = f"stat fade-up d{i+1}"
         suf_html = f"<span style='font-size:.6em'>{html.escape(suffix)}</span>" if suffix else ""
+        sub_html = f"<div class='stat-sub'>{html.escape(sub)}</div>" if sub else ""
         parts.append(
-            f"<div class='{cls}'><div class='num' data-count='{html.escape(num)}'>0{suf_html}</div><div class='label'>{html.escape(label)}</div></div>"
+            f"<div class='{cls}'><div class='num' data-count='{html.escape(num)}'>0{suf_html}</div>"
+            f"<div class='label'>{html.escape(label)}</div>{sub_html}</div>"
         )
     parts.append("</div>")
     return "".join(parts)

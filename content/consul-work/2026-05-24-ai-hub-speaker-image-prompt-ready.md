@@ -1,6 +1,6 @@
 # AIハブ 講師紹介ビジュアル — コピペ実行用プロンプト（2026-05-24）
 
-> 既存の詳細版: `ai-hub/content/consul-work/2026-05-22-aihub-speaker-image-brief.md`（3案＋仕様の解説）
+> 既存の詳細版: [ai-hub/content/consul-work/2026-05-22-aihub-speaker-image-brief.md](ai-hub/content/consul-work/2026-05-22-aihub-speaker-image-brief.md)（3案＋仕様の解説）
 > このファイルは「**そのまま貼って生成 → URL入れるだけ**」の実行用1枚。推奨の案B（クライミング×テクノロジー融合）に絞った。
 
 ---
@@ -59,12 +59,12 @@ Midjourney の場合は末尾に追加 → `--ar 4:3 --style raw --q 2 --v 7`
    - **A. Supabase Storage**（`ai-hub-public` バケット） → パブリックURLを取得
    - **B. リポジトリに直接置く**（`ai-hub/site/static/img/speaker-hero.webp`）→ 私がパスを通す。**外部ストレージ不要・一番楽**
 3. CEO は「この画像で」と私に渡す（URL or ファイル）。あとは私が：
-   - `ai-hub/content/speaker.md` の frontmatter `avatar_url:` に設定
+   - [ai-hub/content/speaker.md](ai-hub/content/speaker.md) の frontmatter `avatar_url:` に設定
    - `python site/build_site.py` でビルド
    - 安全ゲート通過 → `git push`（main = Vercel即本番）
    - 🌐 Deploy URL を報告
 
-> **B案（リポに直接置く）が最短**。画像ファイルを `ai-hub/site/static/img/` に置いてくれれば、URLは `/img/speaker-hero.webp` で通る。Supabaseの設定もアップロードも不要。
+> **B案（リポに直接置く）が最短**。画像ファイルを [ai-hub/site/static/img/](ai-hub/site/static/img/) に置いてくれれば、URLは `/img/speaker-hero.webp` で通る。Supabaseの設定もアップロードも不要。
 
 ---
 

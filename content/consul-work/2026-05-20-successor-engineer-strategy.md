@@ -366,7 +366,7 @@ cfo へ別途依頼予定とのことだが、**契約承継条項を後追い�
 - 必要なアクション:
   1. CEO が本レポートを読了
   2. 撤退タイムラインを「2.5〜3年」と再宣言するか、「1〜2年厳守＋トラスト等のリスク許容範囲を明確化」するかを書面化
-  3. 結果を `work/2026-05-20-client-self-service-model-master.md` に追記反映（最終戦略文書の更新）
+  3. 結果を [work/2026-05-20-client-self-service-model-master.md](work/2026-05-20-client-self-service-model-master.md) に追記反映（最終戦略文書の更新）
 - 担当エージェント: CEO 自身 + secretary（更新作業）
 
 ---

@@ -89,7 +89,7 @@ CEO は**並行してダッシュボードでローテーション実施中**。
 ## 残課題
 
 1. **トークンローテーション完了確認**（CEO 作業）
-2. **第28回交流会バナー画像**（前タスク）: 別ファイル `2026-05-20-minanowa-event28-banner-brief.md` に指示書あり。CEO 判断待ち
+2. **第28回交流会バナー画像**（前タスク）: 別ファイル [2026-05-20-minanowa-event28-banner-brief.md](2026-05-20-minanowa-event28-banner-brief.md) に指示書あり。CEO 判断待ち
 3. **コースの予約URL**: 講習会のみ `https://minanowa.com/` という汎用URLになっている。本来は `minanowa.com/#courses` か Square で講習会用のサービスID を発行するのが望ましい
 
 ## 委任ログ

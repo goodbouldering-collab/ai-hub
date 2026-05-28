@@ -162,7 +162,7 @@ CEO 承認（着手指示 + G3 削除OK）を受けて残骸を削除。ClimbHer
 
 ### 撤回理由：3本は「Webhook」ではなく CRM 製品の 3 インスタンスだった
 
-ローカル実コード（`グッぼる/line-crm/line-harness-oss/`）を確認した結果、3本のWorkerの正体は **`line-harness-oss` という本格的なLINE-CRMモノレポ製品**:
+ローカル実コード（[グッぼる/line-crm/line-harness-oss/](グッぼる/line-crm/line-harness-oss/)）を確認した結果、3本のWorkerの正体は **`line-harness-oss` という本格的なLINE-CRMモノレポ製品**:
 
 | 構成 | 中身 |
 |---|---|
@@ -173,7 +173,7 @@ CEO 承認（着手指示 + G3 削除OK）を受けて残骸を削除。ClimbHer
 | `packages/create-line-harness` | **新規事業にCRMを展開するCLIツール**（= 事業ごとインスタンス展開する設計の証拠） |
 | ランタイム | Cloudflare固有: **D1 + Workers AI + Vectorize(RAG) + Cron Triggers + wrangler 4.x** |
 
-グッぼる・カラッと・Notエステはこの同一CRM製品の**3インスタンス**（カラッと `カラッと/line-crm/`、Notエステ `Notエステ/line-crm/` にも一式存在）。
+グッぼる・カラッと・Notエステはこの同一CRM製品の**3インスタンス**（カラッと [カラッと/line-crm/](カラッと/line-crm/)、Notエステ [Notエステ/line-crm/](Notエステ/line-crm/) にも一式存在）。
 
 ### Vercel移行が意味すること（= ClimbHero と同じ「移行＝再実装」）
 

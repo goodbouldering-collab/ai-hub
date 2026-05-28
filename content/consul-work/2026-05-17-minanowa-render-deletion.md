@@ -38,9 +38,9 @@
 
 ## 削除完了後に Claude が更新するファイル（CEO の完了報告後に実施）
 
-1. `consul/minanowa.md` L33: 「2026-04-30 09:06 suspend、完全削除は様子見」→「**2026-05-17 完全削除済**」
-2. `consul/minanowa.md` L47: 「Render Starter の完全削除（…確認後）」のタスク行を削除（完了済みのため）
+1. [consul/minanowa.md](consul/minanowa.md) L33: 「2026-04-30 09:06 suspend、完全削除は様子見」→「**2026-05-17 完全削除済**」
+2. [consul/minanowa.md](consul/minanowa.md) L47: 「Render Starter の完全削除（…確認後）」のタスク行を削除（完了済みのため）
 3. 親 `C:\VSCode\Project\CLAUDE.md` 計画表 #5 みんなのWA 状態: 「Render は同日 suspend／完全削除は様子見」→「**Render 完全削除済（2026-05-17）**」
-4. `consul/work/2026-05-17-secrets-inventory.md` 過去検討記録に1行追記（Render 認証はそもそも保管庫に無かった旨は既出なので追記不要、削除完了の事実のみ）
+4. [consul/work/2026-05-17-secrets-inventory.md](consul/work/2026-05-17-secrets-inventory.md) 過去検討記録に1行追記（Render 認証はそもそも保管庫に無かった旨は既出なので追記不要、削除完了の事実のみ）
 
 → 親 CLAUDE.md は別リポ `claude-workspace`。consul 鉄則5（共有基盤変更は CEO 指示必須）に基づき、本手順書での更新は今回の CEO 指示「Render 削除も実行」に紐づく記録更新として実施する。

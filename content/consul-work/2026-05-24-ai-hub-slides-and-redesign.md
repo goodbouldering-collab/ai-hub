@@ -26,7 +26,7 @@ CEO 依頼「クライミングの歴史」を初心者向け講習用にスラ�
 CEO 方針「編集を常に反映する直リンク」「AIハブにスライドも乗せて公開」に従い、
 スライド正本を AIハブに移して AIハブのビルドで Marp 生成する構成に確定。
 
-- `ai-hub/content/slides/` にスライド正本(.md)＋台本を配置（ASCIIスラッグ: climbing-history-1/2）
+- [ai-hub/content/slides/](ai-hub/content/slides/) にスライド正本(.md)＋台本を配置（ASCIIスラッグ: climbing-history-1/2）
 - `site/build_site.py` に `build_slides()` 追加: content/slides/*.md → Marp で /slides/*.html 自動生成
   - Marp 不在環境はスキップする fail-safe / Windows の npx.cmd 解決 / --no-stdin 対応
 - PDF は事前生成して `site/static/slides/` から配信（CIでChromium DLを避ける）

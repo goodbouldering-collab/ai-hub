@@ -36,7 +36,7 @@ CEO 判断で「今後 Claude / CLI から直接イベント・コンテンツ�
 ### ADMIN_TOKEN の保管場所
 
 - **発行値そのもの**: Vercel 本番 env (`vercel env ls` で存在確認可・値は Encrypted)
-- **ローカル参照**: `みんなのWA/.env.local` に `ADMIN_TOKEN=<値>` として追記推奨（**ただし `.gitignore` 確認の上**。本リポは `.env` パターン全般を ignore 済みのため `.env.local` も同様に ignore される想定）。今回はまだローカル `.env` には追記していない。Claude セッションを跨いで再利用する場合は次回も `vercel env pull` で取り出すか、`.env.local` を作る判断が必要
+- **ローカル参照**: [みんなのWA/.env.local](みんなのWA/.env.local) に `ADMIN_TOKEN=<値>` として追記推奨（**ただし `.gitignore` 確認の上**。本リポは `.env` パターン全般を ignore 済みのため `.env.local` も同様に ignore される想定）。今回はまだローカル `.env` には追記していない。Claude セッションを跨いで再利用する場合は次回も `vercel env pull` で取り出すか、`.env.local` を作る判断が必要
 - **secret 管理**: 万一漏洩したら `vercel env rm ADMIN_TOKEN production` で削除 → 再生成 → redeploy
 
 ## ペイロード

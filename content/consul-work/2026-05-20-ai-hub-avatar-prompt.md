@@ -7,7 +7,7 @@ TOPページ・講師紹介セクション右側の円形アバター（200×200
 ## 差し替え方法
 1. 下記プロンプトで画像を生成（ChatGPT/DALL-E/Nano Banana/Gemini 等）
 2. 生成画像を Supabase Storage `ai-hub-public` バケットなどにアップロード
-3. `ai-hub/content/speaker.md` の frontmatter `avatar_url:` に画像URLを記載
+3. [ai-hub/content/speaker.md](ai-hub/content/speaker.md) の frontmatter `avatar_url:` に画像URLを記載
 4. ビルド (`python site/build_site.py`) → push → 数分でVercel本番反映
 
 ## 推奨プロンプト
@@ -47,6 +47,6 @@ TOPページ・講師紹介セクション右側の円形アバター（200×200
 - **ブランドカラー**: `--primary: #2563eb` / `--primary-bg: #eff6ff` と調和する青系が望ましい
 
 ## コード差し替え箇所（参考）
-- `ai-hub/content/speaker.md` frontmatter `avatar_url:`
-- レンダー: `ai-hub/site/build_portal.py` `_render_speaker_section()` 内
+- [ai-hub/content/speaker.md](ai-hub/content/speaker.md) frontmatter `avatar_url:`
+- レンダー: [ai-hub/site/build_portal.py](ai-hub/site/build_portal.py) `_render_speaker_section()` 内
 - フォールバック絵文字: 🧑‍🏫

@@ -2,7 +2,7 @@
 
 **作成日**: 2026-05-17（日）
 **経緯**: みんなのWA Render削除に伴い親 `C:\VSCode\Project\CLAUDE.md` の計画表を訂正 → push しようとして `non-fast-forward` rejected → 作業ツリーに第三者の大量未コミット変更を発見 → [consul 鉄則5](../CLAUDE.md)に基づき Claude は親リポに手を出さず、本資料で CEO に引き継ぐ
-**Claude が行った親リポ操作**: `CLAUDE.md` の3行訂正を commit（`cec5da1`）のみ。**add/stash/reset/pull/push は一切していない**（push は rejected で未実行）
+**Claude が行った親リポ操作**: [CLAUDE.md](CLAUDE.md) の3行訂正を commit（`cec5da1`）のみ。**add/stash/reset/pull/push は一切していない**（push は rejected で未実行）
 
 ---
 
@@ -35,21 +35,21 @@ ab176a8 agents_system: Vercel 集約版に正常化、cma が再稼働      ← 
 | `MIGRATION.md`（186行） | `67c6920 2026-04-26 初期化` |
 | `MIGRATION_BACKUP.ps1`（104行） | `67c6920 2026-04-26` |
 | `MIGRATION_BOOTSTRAP.ps1`（167行） | `67c6920 2026-04-26` |
-| `_audits/README.md` ほか `_audits/` 配下4本（監査記録） | `a593c70 2026-05-03` |
+| [_audits/README.md](_audits/README.md) ほか [_audits/](_audits/) 配下4本（監査記録） | `a593c70 2026-05-03` |
 
 ### 変更(M) — 共有基盤含む（consul 鉄則5の対象）
 
-`set-ports.js`（最終 `8bc655c 2026-05-04`）, `clients.code-workspace`（同）, `.mcp.json`, `Notエステ/CLAUDE.md`, `カラッと/CLAUDE.md`, `グッぼる/CLAUDE.md`, `ファディー/CLAUDE.md`, `agents_system/README.md`
+[set-ports.js](set-ports.js)（最終 `8bc655c 2026-05-04`）, `clients.code-workspace`（同）, `.mcp.json`, [Notエステ/CLAUDE.md](Notエステ/CLAUDE.md), [カラッと/CLAUDE.md](カラッと/CLAUDE.md), [グッぼる/CLAUDE.md](グッぼる/CLAUDE.md), [ファディー/CLAUDE.md](ファディー/CLAUDE.md), [agents_system/README.md](agents_system/README.md)
 
 ### 未追跡(??)
 
-`consul/`, `_archive/`, `Notエステ/`, `プロギング/`, `.obsidian/`
+[consul/](consul/), [_archive/](_archive/), [Notエステ/](Notエステ/), [プロギング/](プロギング/), `.obsidian/`
 
 ## 3. なぜ Claude が処理しないか
 
 1. これらの変更/削除を**誰がなぜ行ったか不明**。別作業の途中の可能性。Claude が commit/stash で巻き込むとその作業を破壊する
 2. `MIGRATION.md` 等の削除は不可逆性が高く、中身未確認で rebase の道連れにできない
-3. `set-ports.js` / `clients.code-workspace` は[consul 鉄則5](../CLAUDE.md)「共有基盤への変更は CEO 明示指示が必要」に直接該当
+3. [set-ports.js](set-ports.js) / `clients.code-workspace` は[consul 鉄則5](../CLAUDE.md)「共有基盤への変更は CEO 明示指示が必要」に直接該当
 
 ## 4. CEO への推奨アクション（順序）
 
@@ -60,7 +60,7 @@ ab176a8 agents_system: Vercel 集約版に正常化、cma が再稼働      ← 
 
 ## 5. 実害評価
 
-**小さい。** 親 `CLAUDE.md` の計画表訂正（ai-hub URL誤記・みんなのWA Render削除）が GitHub に反映されていないだけ。同じ判断・記録は **consul リポに push 済み**（minanowa.md / work/）。親 CLAUDE.md がやや古いままなのは、次に親リポを整理する誰かが本資料を見れば追従できる。
+**小さい。** 親 [CLAUDE.md](CLAUDE.md) の計画表訂正（ai-hub URL誤記・みんなのWA Render削除）が GitHub に反映されていないだけ。同じ判断・記録は **consul リポに push 済み**（minanowa.md / work/）。親 CLAUDE.md がやや古いままなのは、次に親リポを整理する誰かが本資料を見れば追従できる。
 
 ## 6. 教訓（commit→push 必須ルールの安全ゲート穴）
 

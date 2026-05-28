@@ -47,7 +47,7 @@
 - [ ] 「企業別 Project」と「複合 Project」を一覧化
 - [ ] 複合 Project ごとに「どのテーブル/スキーマがどの事業か」を特定
 - [ ] 複合の相乗り社数・解約時の波及範囲を1表にまとめる
-- [ ] → 結果を `work/2026-05-19-supabase-tenancy-audit.md` に出力
+- [ ] → 結果を [work/2026-05-19-supabase-tenancy-audit.md](work/2026-05-19-supabase-tenancy-audit.md) に出力
 - [ ] その上で「分離するか・台帳明記で済ますか」を CEO 判断
 
 **この調査はコードベース横断スキャンになるため Codex 併用を検討**

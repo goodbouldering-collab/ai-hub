@@ -3,7 +3,7 @@
 - 日付: 2026-05-25
 - 前提: [2026-05-25-gubble-seo-api-diagnosis-confirmed.md](2026-05-25-gubble-seo-api-diagnosis-confirmed.md) で真因＝Googleコアアップデート(3月+5月)と確定
 - 最大の出血点: **PRODUCT_SNIPPETS のクリックが 5071→2417 でほぼ半減**
-- 対象実コード: `グッぼる/カラーミー/template_backup/1064_MONO_current/product.html` ほか（カラーミーのSmartyテンプレ・EUC-JP配信）
+- 対象実コード: [グッぼる/カラーミー/template_backup/1064_MONO_current/product.html](グッぼる/カラーミー/template_backup/1064_MONO_current/product.html) ほか（カラーミーのSmartyテンプレ・EUC-JP配信）
 
 ---
 

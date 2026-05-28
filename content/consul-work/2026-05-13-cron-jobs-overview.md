@@ -22,7 +22,7 @@
 | 項目 | 値 |
 |---|---|
 | **プロジェクト** | ビジネス21 |
-| **定義場所** | `ビジネス21/vercel.json` の `crons[0]` |
+| **定義場所** | [ビジネス21/vercel.json](ビジネス21/vercel.json) の `crons[0]` |
 | **エンドポイント** | `/api/cron/legal-crawl` |
 | **スケジュール (UTC)** | `0 21 * * *` |
 | **JST 実行時刻** | 毎日 06:00 |
@@ -35,7 +35,7 @@
 | 項目 | 値 |
 |---|---|
 | **プロジェクト** | みんなのWA |
-| **定義場所** | `みんなのWA/vercel.json` の `crons[0]` |
+| **定義場所** | [みんなのWA/vercel.json](みんなのWA/vercel.json) の `crons[0]` |
 | **エンドポイント** | `/api/cron/send-event-registration-mails` |
 | **スケジュール (UTC)** | `0 12 * * *` |
 | **JST 実行時刻** | 毎日 21:00 |
@@ -54,7 +54,7 @@
 | 項目 | 値 |
 |---|---|
 | **プロジェクト** | ai-hub |
-| **定義場所** | `ai-hub/.github/workflows/daily.yml` |
+| **定義場所** | [ai-hub/.github/workflows/daily.yml](ai-hub/.github/workflows/daily.yml) |
 | **スケジュール (UTC)** | `0 22 * * *`（毎日）+ `0 0 * * 1`（月曜・週次フル版） |
 | **JST 実行時刻** | 毎日 07:00 + 月曜 09:00 |
 | **言語** | Python (`run.py`) |
@@ -69,7 +69,7 @@
 | 項目 | 値 |
 |---|---|
 | **プロジェクト** | ai-hub |
-| **定義場所** | `ai-hub/.github/workflows/sync-consul-docs.yml` |
+| **定義場所** | [ai-hub/.github/workflows/sync-consul-docs.yml](ai-hub/.github/workflows/sync-consul-docs.yml) |
 | **スケジュール (UTC)** | `0 21 * * *` |
 | **JST 実行時刻** | 毎日 06:00 |
 | **用途** | プライベートリポ `consul` を fetch → `ai-hub/content/consul-work/*.md` に上書き → ai-hub に commit + push |
@@ -84,7 +84,7 @@
 | 項目 | 値 |
 |---|---|
 | **プロジェクト** | ビジネス21 |
-| **定義場所** | `ビジネス21/.github/workflows/supabase-backup.yml` |
+| **定義場所** | [ビジネス21/.github/workflows/supabase-backup.yml](ビジネス21/.github/workflows/supabase-backup.yml) |
 | **スケジュール (UTC)** | `0 18 * * 0` |
 | **JST 実行時刻** | 毎週月曜 03:00 |
 | **言語** | Python（bash 引数解析事故を避けるためインライン Python） |
@@ -100,11 +100,11 @@
 | 項目 | 値 |
 |---|---|
 | **プロジェクト** | consul（google_ops 基盤） |
-| **定義場所** | `consul/.github/workflows/seo-weekly.yml` → `weekly_seo_digest.py` |
+| **定義場所** | [consul/.github/workflows/seo-weekly.yml](consul/.github/workflows/seo-weekly.yml) → `weekly_seo_digest.py` |
 | **スケジュール (UTC)** | `0 23 * * 0` |
 | **JST 実行時刻** | 毎週月曜 08:00 |
 | **言語** | Python |
-| **用途** | 全GSCプロパティの直近28日 vs 前28日を比較→ダイジェストを `work/<日付>-seo-weekly-digest.md` に生成→`REPORTS-HUB.md` 更新→commit |
+| **用途** | 全GSCプロパティの直近28日 vs 前28日を比較→ダイジェストを `work/<日付>-seo-weekly-digest.md` に生成→[REPORTS-HUB.md](REPORTS-HUB.md) 更新→commit |
 | **報告** | 生成MDは [REPORTS-HUB.md](REPORTS-HUB.md) に集約・ai-hub `/admin/docs` にも自動同期。🔴悪化があればClaudeが深掘り |
 | **手動実行** | `workflow_dispatch` 対応 |
 | **失敗時** | Issue 自動作成（トークン失効・Secret不正を検知） |
@@ -119,7 +119,7 @@
 
 ## 運用ルール
 
-1. **新規 cron 追加時のチェック**: 親 `CLAUDE.md` の「Cron ジョブの選定」セクションのフローチャートで Vercel / GitHub Actions を決める
+1. **新規 cron 追加時のチェック**: 親 [CLAUDE.md](CLAUDE.md) の「Cron ジョブの選定」セクションのフローチャートで Vercel / GitHub Actions を決める
 2. **追加・削除したらこのファイルを更新**: 表に行を追加・該当行を削除
 3. **Secret 漏洩防止**: `CRON_SECRET` や PAT を commit に含めない。Vercel CLI / GitHub Settings 経由で登録
 4. **失敗時通知**: GitHub Actions は Issue 自動作成、Vercel Cron は Vercel ダッシュボード手動確認（将来 Slack/Discord webhook を仕掛ける余地あり）
@@ -129,4 +129,4 @@
 
 ## 過去の検討記録
 
-- **2026-05-13**: CEO「Vercel Cron に全部まとめたい」相談 → コスト・移行工数の試算で「現状維持」判定。詳細は親 `CLAUDE.md` 「すべて統一の罠」セクション参照
+- **2026-05-13**: CEO「Vercel Cron に全部まとめたい」相談 → コスト・移行工数の試算で「現状維持」判定。詳細は親 [CLAUDE.md](CLAUDE.md) 「すべて統一の罠」セクション参照

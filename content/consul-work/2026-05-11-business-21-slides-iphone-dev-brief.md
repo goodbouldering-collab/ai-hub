@@ -113,7 +113,7 @@
 - ❌ アニメーション (`animate-tile-in` `animate-reveal` 等) の削除
 - ❌ Image Optimization (`unoptimized` 属性) の変更
 - ❌ Tailwind 以外の依存追加
-- ❌ `set-ports.js` / `clients.code-workspace` への波及
+- ❌ [set-ports.js](set-ports.js) / `clients.code-workspace` への波及
 - ❌ git commit / push (CEO が手動で行う)
 
 ## 検証手順
@@ -168,7 +168,7 @@ npm run dev
 
 ## 完了報告フォーマット
 
-完了時、以下を `work/` に追記:
+完了時、以下を [work/](work/) に追記:
 
 ```
 ファイル: work/2026-05-11-business-21-slides-iphone-result.md

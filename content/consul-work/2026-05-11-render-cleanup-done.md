@@ -6,7 +6,7 @@
 |---|---|---|---|
 | 1 | `c:\VSCode\Project\.github\workflows\render-keepalive.yml` 削除 | 本部 | ✅ 完了 |
 | 2 | 親 `c:\VSCode\Project\CLAUDE.md` の Render 運用ルール縮小（行 242〜291 → 5 行） | 本部 | ✅ 完了 |
-| 3 | 親 `CLAUDE.md` 行 214「Render は段階的廃止」→「完全廃止済」に更新 | 本部 | ✅ 完了 |
+| 3 | 親 [CLAUDE.md](CLAUDE.md) 行 214「Render は段階的廃止」→「完全廃止済」に更新 | 本部 | ✅ 完了 |
 | 4 | Render Dashboard で minanowa を完全削除 | CEO | ✅ 完了（CEO 報告） |
 
 ## 影響範囲
@@ -36,5 +36,5 @@ modified:   consul/ai-hub.md
 ## 参考（将来 Render を再採用するときの参照点）
 
 旧 keepalive 運用ルール（matrix・5分 cron・本番昇格チェックリスト）は git 履歴の以下コミット範囲から復元可能:
-- 親 `CLAUDE.md` 行 242〜291 を削除した本日（2026-05-11）のコミットの 1 つ前
+- 親 [CLAUDE.md](CLAUDE.md) 行 242〜291 を削除した本日（2026-05-11）のコミットの 1 つ前
 - 削除した YAML: `.github/workflows/render-keepalive.yml`

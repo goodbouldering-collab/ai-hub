@@ -2,7 +2,7 @@
 
 **作成日**: 2026-05-16（土）
 **目的**: 動画で紹介されていた「マルチエージェント（チーム）運用」を、Claude Code の実際の仕組み・本 consul 環境の実構造に合わせて**正しく動く形**に修正して体系化する
-**保存規則**: consul の `work/` フラット保存・日付プレフィックス命名に準拠
+**保存規則**: consul の [work/](work/) フラット保存・日付プレフィックス命名に準拠
 
 > このファイルは「動画の一般論」を鵜呑みにせず、**実際に動くもの**へ直した版。元解説の誤り箇所を表で示し、その上で consul の `.claude/agents/` 10 体体制を実例に正しい設計を解説する。
 
@@ -14,14 +14,14 @@
 
 | # | 動画の記述 | なぜ動かない / 非効率か | 正しい形 |
 |---|---|---|---|
-| 1 | 各エージェント専用ディレクトリに `CLAUDE.md` を置いて性格を決める | サブエージェントは `CLAUDE.md` では定義されない。`CLAUDE.md` は**ワークスペース/プロジェクト全体の共有指示**であり、エージェント単位の人格分割の仕組みではない | `.claude/agents/<name>.md` に **frontmatter（`name`/`description`/`tools`/`model`）+ 本文プロンプト**で定義する |
+| 1 | 各エージェント専用ディレクトリに [CLAUDE.md](CLAUDE.md) を置いて性格を決める | サブエージェントは [CLAUDE.md](CLAUDE.md) では定義されない。[CLAUDE.md](CLAUDE.md) は**ワークスペース/プロジェクト全体の共有指示**であり、エージェント単位の人格分割の仕組みではない | `.claude/agents/<name>.md` に **frontmatter（`name`/`description`/`tools`/`model`）+ 本文プロンプト**で定義する |
 | 2 | ターミナルを複数開き、人間が各セッションに役割を叩き込む | VS Code 拡張運用（CEO はターミナルを開かない方針）と矛盾。また人間が全セッションを手動同期するのは破綻しやすい | **1 セッションをオーケストレーターにし、`Agent` ツールでサブエージェントを並列起動**する |
 | 3 | `git worktree add ../project-coder feature/x` を人間が手で叩く | consul は事業フォルダが**独立 git リポ**。親から `../` に切ると別リポを汚染。手動 worktree は後片付けも人間負担 | `Agent` ツールの **`isolation: "worktree"`** を使う。変更なしなら自動クリーンアップ |
 | 4 | 「エージェント1のリストに基づき」と人間が結果を中継 | サブエージェントの最終メッセージは**親に tool result として自動で返る**。人間中継は不要 | 親が agent1 の戻り値を agent2 の `prompt` に組み込んで**連鎖**する |
 
 ---
 
-## 1. 役割定義は `CLAUDE.md` ではなく `.claude/agents/<name>.md`
+## 1. 役割定義は [CLAUDE.md](CLAUDE.md) ではなく `.claude/agents/<name>.md`
 
 ### 動画の誤り
 
@@ -31,7 +31,7 @@
 
 | 概念 | 実体 | 役割 |
 |---|---|---|
-| `CLAUDE.md` | プロジェクト/ワークスペース直下の Markdown | **全エージェント・全セッション共通**の制約（コーディング規約・ディレクトリ規則）。人格を分けるものではない |
+| [CLAUDE.md](CLAUDE.md) | プロジェクト/ワークスペース直下の Markdown | **全エージェント・全セッション共通**の制約（コーディング規約・ディレクトリ規則）。人格を分けるものではない |
 | サブエージェント定義 | `.claude/agents/<name>.md`（frontmatter 付き） | **個別エージェントの人格・権限・モデル**。ここで初めて「コーダー」「テスター」が分かれる |
 
 ### 正しい書式（consul の実物 [developer.md](../.claude/agents/developer.md) に準拠）
@@ -51,7 +51,7 @@ color: cyan
 
 ## 必ず守る順序
 1. 指定された設計書（`work/YYYY-MM-DD-<略称>-design.md` 等）を Read
-2. 対象事業フォルダ直下の `CLAUDE.md` を Read（コーディング規約・データ層を把握）
+2. 対象事業フォルダ直下の [CLAUDE.md](CLAUDE.md) を Read（コーディング規約・データ層を把握）
 3. 既存コードを Grep / Read で十分に調査
 4. 実装と同時にテストコードも作成
 5. 変更内容を `work/YYYY-MM-DD-<略称>-dev-<内容>.md` に作業ログとして残す
@@ -120,7 +120,7 @@ Claude Code は **`Agent` ツール**で 1 つの親セッションからサブ�
 | 実装 | developer | 「その設計書を Read してから実装。設計を疑うなら止めて差し戻せ」 |
 | 検証 | developer（テスト工程） | 「実装したものに対しテストを書き `npm test` / `next build` 通過まで」 |
 
-各委任プロンプトに **(a) 入力（読むべきファイルパス） (b) 出力先（`work/` の保存パス） (c) スコープ境界（やってはいけないこと）** を必ず書く。consul の secretary が「委任プロンプトの組み立て」で必須としている 3 点と同じ。
+各委任プロンプトに **(a) 入力（読むべきファイルパス） (b) 出力先（[work/](work/) の保存パス） (c) スコープ境界（やってはいけないこと）** を必ず書く。consul の secretary が「委任プロンプトの組み立て」で必須としている 3 点と同じ。
 
 ---
 
@@ -251,7 +251,7 @@ Skill は Claude Agent SDK（Python / TypeScript）からも利用可能。`sett
 
 | 段階 | 方式 | 状態 |
 |---|---|---|
-| 古（動画） | 専用 `CLAUDE.md` ＋ 複数ターミナル ＋ 手動 worktree | ❌ 動かない/非効率 |
+| 古（動画） | 専用 [CLAUDE.md](CLAUDE.md) ＋ 複数ターミナル ＋ 手動 worktree | ❌ 動かない/非効率 |
 | 中（本書 §1〜4） | `.claude/agents/` ＋ `Agent` ツール ＋ `isolation:"worktree"` | ✅ 正しく動く |
 | 最新（本章） | ＋ Skill `context: fork` ＋ Skill/Subagent 組み合わせ ＋ 多モデル委任 | ✅ context 効率・再利用性が最大 |
 
@@ -261,7 +261,7 @@ Skill は Claude Agent SDK（Python / TypeScript）からも利用可能。`sett
 
 | 観点 | 動画の解説 | Claude Code / consul の正しい実装 |
 |---|---|---|
-| エージェント定義 | エージE専用 `CLAUDE.md` | `.claude/agents/<name>.md`（frontmatter + 本文） |
+| エージェント定義 | エージE専用 [CLAUDE.md](CLAUDE.md) | `.claude/agents/<name>.md`（frontmatter + 本文） |
 | 人格・権限の分離 | プロンプトで都度叩き込む | frontmatter の `description`/`tools`/`model` で恒久定義 |
 | オーケストレーション | 人間が複数ターミナル | 1 親セッション + `Agent` ツール（並列/順次） |
 | 結果の受け渡し | 人間が手で中継 | 親が tool result を次の prompt に連鎖 |

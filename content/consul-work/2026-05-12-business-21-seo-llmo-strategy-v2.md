@@ -295,7 +295,7 @@ CEO の予算上限次第だが、**最低構成（月¥230,000）から開始**
 
 ## 参照
 
-- v1 戦略書: `work/2026-05-11-business-21-seo-llmo-strategy.md`
+- v1 戦略書: [work/2026-05-11-business-21-seo-llmo-strategy.md](work/2026-05-11-business-21-seo-llmo-strategy.md)
 - 敵対的レビューログ: agentId `a5d7d228874732c79` の出力（advisor opus）
 - 自社調査ログ: agentId `af696a9e1907f35ba`（advisor）
 - 競合調査ログ: agentId `af9350e07766373cd`（marketer）

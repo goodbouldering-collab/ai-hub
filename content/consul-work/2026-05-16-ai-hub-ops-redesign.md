@@ -5,7 +5,7 @@
 **ステータス**: 📋 設計書（実装未着手）。事業リポ書き込みは [consul 鉄則](../CLAUDE.md)により **CEO 承認後**に着手
 **確定方針（2026-05-16 CEO 回答）**:
 - 公開ポータルは無傷、`/ops/` 配下に Basic 認証付き内部ダッシュを追加
-- データは Google Calendar（scheduler 経由）+ `consul/work/` を**読むだけ**（二重管理しない）
+- データは Google Calendar（scheduler 経由）+ [consul/work/](consul/work/) を**読むだけ**（二重管理しない）
 - エージェントコントロールは**読み取り専用の状態可視化**（AIハブからエージェント起動はしない）
 
 ---
@@ -66,7 +66,7 @@ consul/work/*.md ──(同期: 経路要確認 G3)──▶ ai-hub/content/cons
 
 #### 経路A（推奨）: scheduler エージェント経由でスナップショット JSON 化
 
-consul には既に `scheduler` エージェント + `consul/google_ops/scripts/refresh.py` の OAuth 基盤がある。これを使い、予定を JSON スナップショット化して AIハブに渡す。
+consul には既に `scheduler` エージェント + [consul/google_ops/scripts/refresh.py](consul/google_ops/scripts/refresh.py) の OAuth 基盤がある。これを使い、予定を JSON スナップショット化して AIハブに渡す。
 
 ```
 consul/google_ops/scripts/refresh.py(get_credentials)
@@ -143,8 +143,8 @@ def _collect_schedule() -> list[dict]:
 
 | 追加物 | 場所 | 性質 |
 |---|---|---|
-| `export_schedule_snapshot.py` | `consul/google_ops/scripts/` | 新規スクリプト。scheduler の「長いスクリプトは scripts/ に置く」運用に合致 |
-| `_schedule_snapshot.json` | `consul/work/` | scheduler が生成。Markdown でないので index には載せない。`.gitignore` 追加を検討（個人予定が入るため）|
+| `export_schedule_snapshot.py` | [consul/google_ops/scripts/](consul/google_ops/scripts/) | 新規スクリプト。scheduler の「長いスクリプトは scripts/ に置く」運用に合致 |
+| `_schedule_snapshot.json` | [consul/work/](consul/work/) | scheduler が生成。Markdown でないので index には載せない。`.gitignore` 追加を検討（個人予定が入るため）|
 
 → これらは consul リポ内なので CEO 事前確認の鉄則の対象外（work/ と google_ops/scripts/ は scheduler の書き込み許可範囲）。**ただし個人カレンダー予定を JSON 化する**点はプライバシー観点で CEO 判断が要る（§5 リスク）。
 
@@ -183,7 +183,7 @@ GET https://ai-hub.vercel.app/admin/status → 404
 GET https://ai-hub.vercel.app/ops     → 404（未実装なので想定どおり）
 ```
 
-- `/admin` が 401 ではなく **404** = Basic 認証以前に**ルーティング/関数自体が Vercel に存在しない**。`ai-hub.md` の「2026-05-13 時点で 404、要復旧」が**未解決のまま継続**
+- `/admin` が 401 ではなく **404** = Basic 認証以前に**ルーティング/関数自体が Vercel に存在しない**。[ai-hub.md](ai-hub.md) の「2026-05-13 時点で 404、要復旧」が**未解決のまま継続**
 
 ### R1: `/admin` 404 の根本原因究明 → **決定的に特定（2026-05-16 実測）**
 
@@ -210,7 +210,7 @@ GET https://ai-hub.vercel.app/ops     → 404（未実装なので想定どお�
 **根本原因（確定）**: `vercel.json` や `withAdmin` 認証コードのバグではない。**`ai-hub.vercel.app` ドメインに、この ai-hub リポとは別の Next.js プロジェクトがデプロイ／ドメイン紐付けされている**（あるいは ai-hub の Vercel プロジェクトが Framework Preset を Next.js と誤検出してビルドし、`site/dist` も `api/` も成果物に含まれていない）。**`site/dist/` 静的配信も `api/**` Functions も、本番にそもそも存在しない。**
 
 - **致命的な含意**: `/ops` を新規実装しても、デプロイ先が別物（または誤ビルド）である限り**同じく 404**。コードを1行書く前に、**Vercel プロジェクトのドメイン紐付け／Framework Preset／Root Directory／Build & Output 設定の是正が先**。これは Vercel ダッシュボード操作であり、コード変更ではない（要 CEO・`VERCEL_TOKEN` 経由の API 確認も可）
-- 補足: `ai-hub.md` には本番 URL を `ai-hub-jp.vercel.app`（404）→ `ai-hub.vercel.app`（200）に「訂正」した記録がある（2026-05-13）。だが今回の実測で **`ai-hub.vercel.app` の 200 はトップだけで、配下は全部別物の 404**。つまり「200 だから正常」という当時の判断自体が誤りで、**ドメインが正しい Vercel プロジェクトを指していない**可能性が高い
+- 補足: [ai-hub.md](ai-hub.md) には本番 URL を `ai-hub-jp.vercel.app`（404）→ `ai-hub.vercel.app`（200）に「訂正」した記録がある（2026-05-13）。だが今回の実測で **`ai-hub.vercel.app` の 200 はトップだけで、配下は全部別物の 404**。つまり「200 だから正常」という当時の判断自体が誤りで、**ドメインが正しい Vercel プロジェクトを指していない**可能性が高い
 
 ### Q4: 個人カレンダー（`lossismore`）を AIハブに載せてよいか → **CEO 判断事項（技術調査では決められない）**
 

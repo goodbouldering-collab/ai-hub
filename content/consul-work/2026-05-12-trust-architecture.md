@@ -40,13 +40,13 @@ CEO（由井辰美）が Claude.ai での要件定義セッションを完了し
 - `supabase/migrations/0001_init_schema.sql` — 8テーブル + RLS skeleton + updated_at トリガ
 - `supabase/seed.sql` — 勤務パターン + 棟マスタ初期値
 - `.env.example` — 全12変数を文書化
-- `CLAUDE.md` — プロジェクト憲法
+- [CLAUDE.md](CLAUDE.md) — プロジェクト憲法
 - `docs/REQUIREMENTS.md` — 仕様書（文字化けハンドオフの整形版）
 
 ### `C:\VSCode\Project\consul\`（更新）
-- `トラスト.md` 新規作成（事業情報ハブ）
-- `CLAUDE.md` 更新：9事業 → 10事業、地形図、事業略称テーブル（trust）、Codex 推奨方針表
-- `work/2026-05-12-trust-architecture.md` 新規作成（このファイル）
+- [トラスト.md](トラスト.md) 新規作成（事業情報ハブ）
+- [CLAUDE.md](CLAUDE.md) 更新：9事業 → 10事業、地形図、事業略称テーブル（trust）、Codex 推奨方針表
+- [work/2026-05-12-trust-architecture.md](work/2026-05-12-trust-architecture.md) 新規作成（このファイル）
 
 ### `C:\VSCode\Project\CLAUDE.md`（親憲法・更新）
 - プラットフォーム横断比較表：Vercel 列に「LINE Webhook も Vercel」追記
@@ -61,7 +61,7 @@ CEO（由井辰美）が Claude.ai での要件定義セッションを完了し
 |---|---|---|
 | `npm install`（トラスト/） | 必須・大量ファイル落ちる | CEO 承認後の次ターン冒頭 |
 | `clients.code-workspace` への登録 | VSCode CLIENTS パネル表示用 | `npm install` と同時 |
-| `set-ports.js` への 3010 追加 | ポート自動割り当て統合 | `clients.code-workspace` 更新と同時 |
+| [set-ports.js](set-ports.js) への 3010 追加 | ポート自動割り当て統合 | `clients.code-workspace` 更新と同時 |
 | Vercel プロジェクト作成 | デプロイ準備 | 動作確認後・Phase 1 完了時 |
 | Supabase プロジェクト作成 | DB 接続のため | `npm run dev` 起動前に必須 |
 | LINE Developers チャネル作成 | Webhook URL 設定・テスト送信 | Supabase 完了後 |
@@ -128,7 +128,7 @@ CEO 指示により「LINE Webhook を Cloudflare 補完レイヤとして残す
 - `tsconfig.json`: `@/*` を `./*` に（src/ を取った）
 - `tailwind.config.ts`: content globs を `./app/**` `./components/**` `./lib/**` に
 - `package.json`: name を `trust-shift` → **`trust`**・description を「トラストエージェント 業務管理プラットフォーム」に
-- `CLAUDE.md`: 「単一アプリ」→「プラットフォーム」前提で全面改訂、「アプリを追加するときのルール」を追記
+- [CLAUDE.md](CLAUDE.md): 「単一アプリ」→「プラットフォーム」前提で全面改訂、「アプリを追加するときのルール」を追記
 
 #### `C:\VSCode\Project\consul\トラスト.md`（書き換え）
 - 「収容アプリ一覧」テーブル追加（home-shift だけ・今後追記）
@@ -150,7 +150,7 @@ CEO 指示により「LINE Webhook を Cloudflare 補完レイヤとして残す
 | アクション | タイミング |
 |---|---|
 | `npm install`（トラスト/） | CEO 承認後の次ターン冒頭 |
-| `clients.code-workspace` への登録 + `set-ports.js` に 3011 追加（3010 は ai-hub・修正済） | 上と同時 |
+| `clients.code-workspace` への登録 + [set-ports.js](set-ports.js) に 3011 追加（3010 は ai-hub・修正済） | 上と同時 |
 | Vercel プロジェクト `trust` 作成（API or ダッシュボード） | 動作確認後 |
 | Supabase プロジェクト作成 → `supabase/home-shift/migrations/0001` 実行 | `npm run dev` 起動前 |
 | LINE Developers でチャネル作成 → Webhook URL を `trust.vercel.app/api/line/webhook` に設定 | Supabase 完了後 |

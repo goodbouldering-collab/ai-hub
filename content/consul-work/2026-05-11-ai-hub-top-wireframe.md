@@ -4,7 +4,7 @@
 
 - `ai-hub-jp.vercel.app/` — CEO 由井辰美の公開ポータル（10事業ハブ + 講習資料 + SNS + 問い合わせ）
 - 訪問者層: 取引先・講習受講希望者・メディア関係者・採用検討先（個人クリエイターではなく中小企業オーナーとしてのブランド）
-- 参照ドキュメント: `consul/work/2026-05-11-ai-hub-portal-redesign.md`
+- 参照ドキュメント: [consul/work/2026-05-11-ai-hub-portal-redesign.md](consul/work/2026-05-11-ai-hub-portal-redesign.md)
 
 ---
 
@@ -267,6 +267,6 @@ Google Fonts から `Noto+Serif+JP:wght@700` + `Noto+Sans+JP:wght@400` + `Inter:
 
 ## 委任先
 
-- コピー文（Hero・各事業カードの説明文）→ **writer**（`ai-hub.md` / 各事業 .md を参照してトーン合わせ）
+- コピー文（Hero・各事業カードの説明文）→ **writer**（[ai-hub.md](ai-hub.md) / 各事業 .md を参照してトーン合わせ）
 - 実装（Next.js コンポーネント・Tailwind CSS）→ **developer**
 - CV 率・CTA 配置の効果検証 → **marketer**

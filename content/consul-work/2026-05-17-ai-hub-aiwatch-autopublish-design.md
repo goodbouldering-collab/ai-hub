@@ -16,7 +16,7 @@
 | RSS収集→要約→ランキング→AI Watchサイト生成 | `run.py`（daily.yml JST07:00） | ✅ **完全自動** |
 | カラーミー記事 **生成** | `api/admin/generate-articles.ts`（`generateArticleDrafts(theme)`） | ❌ 管理画面で手動テーマ入力 |
 | カラーミー記事 **公開** | `api/admin/publish-article.ts`（**実装完成済・本番投入可**） | ❌ 管理画面で手動ボタン |
-| SNS 投稿（X / Threads） | **コード・APIゼロ**（手順書 `2026-05-11-ai-hub-sns-mvp-keys-howto.md` のみ。`portal.sns_posts` SQL も実ファイル無し） | ❌ 未実装 |
+| SNS 投稿（X / Threads） | **コード・APIゼロ**（手順書 [2026-05-11-ai-hub-sns-mvp-keys-howto.md](2026-05-11-ai-hub-sns-mvp-keys-howto.md) のみ。`portal.sns_posts` SQL も実ファイル無し） | ❌ 未実装 |
 | `/ops` ダッシュ | `api/ops/index.ts` + `site/static/ops/index.html`（シェルのみ） | 記事キューUI無し |
 
 **設計の核心ギャップ**:

@@ -23,7 +23,7 @@
 1. `git -C consul push origin main` → `6f73c34..31452e3` push 成功。GitHub上 consul/work/ が **32→45ファイル**に更新
 2. `gh workflow run sync-consul-docs.yml --repo goodbouldering-collab/ai-hub` で即時同期トリガー
 3. ラン `25988907273` が `completed success`（10秒）。ログに `Sync 完了: 45 ファイル` / `[main 5ff664d] chore(consul-docs): daily sync 2026-05-17`
-4. GitHub上 ai-hub/content/consul-work/ が **32→45ファイル**・最新 `2026-05-17-secrets-inventory.md` まで反映を実証
+4. GitHub上 ai-hub/content/consul-work/ が **32→45ファイル**・最新 [2026-05-17-secrets-inventory.md](2026-05-17-secrets-inventory.md) まで反映を実証
 
 Vercel・PAT・ワークフロー定義は**一切変更していない**（変更不要だった）。
 
@@ -37,7 +37,7 @@ Vercel・PAT・ワークフロー定義は**一切変更していない**（変�
 | daily.yml は 5/13 で停止 | ❌ 5/12〜5/16 毎日 `success` で完走 |
 | ワークフローが GitHub に自動 disable | ❌ 両方 `active` |
 | `CONSUL_REPO_PAT` 失効 | ❌ PAT 欠落なら exit 1 で fail。全ラン success ＝ PAT 健在 |
-| `ai-hub.vercel.app` が別 Next.js プロジェクト（5/16 R1） | △ 取り違えは事実だが本番は `ai-hub-jp.vercel.app`（`ai-hub.md` に正本記録済）。今回問題の主因ではない |
+| `ai-hub.vercel.app` が別 Next.js プロジェクト（5/16 R1） | △ 取り違えは事実だが本番は `ai-hub-jp.vercel.app`（[ai-hub.md](ai-hub.md) に正本記録済）。今回問題の主因ではない |
 
 ## なぜ全員（5/16設計書・Codex・調査途中の Claude）が外したか
 

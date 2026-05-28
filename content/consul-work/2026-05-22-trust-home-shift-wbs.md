@@ -51,7 +51,7 @@ LINE Bot + LIFF でスタッフが希望を提出し、管理者がワンコマ�
 
 > A1〜A6は一連の操作で1〜2時間で完了可能。LINE Developers Console（developers.line.biz）にログインして順番に進める。
 > A4のLIFF登録では、URLを `https://trust-nine-tau.vercel.app/home-shift/liff/shift-request` と `…/shift-view` にセットする。
-> A8は `トラスト/supabase/home-shift/migrations/0001_init_schema.sql` の内容をSupabase DashboardのSQL Editorに貼り付けて実行する（trust_site適用と同じ手順）。
+> A8は [トラスト/supabase/home-shift/migrations/0001_init_schema.sql](トラスト/supabase/home-shift/migrations/0001_init_schema.sql) の内容をSupabase DashboardのSQL Editorに貼り付けて実行する（trust_site適用と同じ手順）。
 
 ---
 

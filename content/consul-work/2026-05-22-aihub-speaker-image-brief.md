@@ -4,7 +4,7 @@
 
 1. **推奨はコンセプト案B「クライミング×テクノロジーの融合」**。下記「B. 推奨プロンプト（英語・1280×960px横長）」をそのままコピーして **DALL-E 3**（ChatGPTのImage生成）または **Midjourney** に貼る
 2. 生成した画像を Supabase Storage `ai-hub-public` にアップロードし、ファイル名は `speaker-hero-2026.webp`（または .jpg）にする
-3. `ai-hub/content/speaker.md` の frontmatter `avatar_url:` に生成画像のパブリックURLを記入し、`python site/build_site.py` → `git push` で本番反映
+3. [ai-hub/content/speaker.md](ai-hub/content/speaker.md) の frontmatter `avatar_url:` に生成画像のパブリックURLを記入し、`python site/build_site.py` → `git push` で本番反映
 
 ---
 
@@ -17,7 +17,7 @@
 
 ---
 
-## サイトデザイン文脈（参照元: `consul/work/2026-05-11-ai-hub-top-wireframe.md`）
+## サイトデザイン文脈（参照元: [consul/work/2026-05-11-ai-hub-top-wireframe.md](consul/work/2026-05-11-ai-hub-top-wireframe.md)）
 
 | 項目 | 値 |
 |---|---|
@@ -223,7 +223,7 @@ avatar_url: "https://<project-ref>.supabase.co/storage/v1/object/public/ai-hub-p
 
 ### 利用上の推奨事項
 
-- **生成ログを保存する**: プロンプトと生成画像を `consul/work/` に記録しておく。将来「どのツールで生成したか」が問われたときの根拠になる
+- **生成ログを保存する**: プロンプトと生成画像を [consul/work/](consul/work/) に記録しておく。将来「どのツールで生成したか」が問われたときの根拠になる
 - **モデル・人物の肖像権は不要**: 今回のプロンプトはすべて「顔・人物なし」で設計しているため、肖像権問題は発生しない
 - **岩壁・建築の著作権**: 実在の岩壁や建物を写実的に再現した場合は建築物の著作権に注意が必要だが、今回は「ボルダリング壁の抽象的なテクスチャ」レベルの指示のため問題が生じる可能性は低い
 - **再販・第三者への提供は禁止**: 生成画像はAIハブサイト内の使用に限定する。他事業のビジュアルとして転用する場合は再生成を推奨する
@@ -232,13 +232,13 @@ avatar_url: "https://<project-ref>.supabase.co/storage/v1/object/public/ai-hub-p
 
 ## 参照ファイル
 
-- サイトデザイン方針: `consul/work/2026-05-11-ai-hub-top-wireframe.md`
-- 既存アバター指示書: `consul/work/2026-05-20-ai-hub-avatar-prompt.md`（200x200px円形アバター用・本ファイルとは別用途）
-- 講師コンテンツ: `ai-hub/content/speaker.md`
-- 事業情報: `consul/ai-hub.md`
+- サイトデザイン方針: [consul/work/2026-05-11-ai-hub-top-wireframe.md](consul/work/2026-05-11-ai-hub-top-wireframe.md)
+- 既存アバター指示書: [consul/work/2026-05-20-ai-hub-avatar-prompt.md](consul/work/2026-05-20-ai-hub-avatar-prompt.md)（200x200px円形アバター用・本ファイルとは別用途）
+- 講師コンテンツ: [ai-hub/content/speaker.md](ai-hub/content/speaker.md)
+- 事業情報: [consul/ai-hub.md](consul/ai-hub.md)
 
 ## 委任先
 
 - 生成画像のサイト実装（`build_portal.py` 改修・レイアウト変更） → **developer**
-- 講師セクションのコピー文（プロフィール・キャッチコピー） → **writer**（`ai-hub.md` のトーン参照）
+- 講師セクションのコピー文（プロフィール・キャッチコピー） → **writer**（[ai-hub.md](ai-hub.md) のトーン参照）
 - 配置パターンのCV率評価 → **marketer**

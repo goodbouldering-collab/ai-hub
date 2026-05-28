@@ -45,7 +45,7 @@
 - `lib/supabase.ts` — module-load 時 throw を lazy 評価に変更（Supabase 未設定でも他ページが動く）
 - `.env.example` — `LINE_LOGIN_CHANNEL_ID` / `LINE_LOGIN_CHANNEL_SECRET` / `SESSION_SECRET` 追加
 - `app/page.tsx` / `app/home-shift/page.tsx` — SessionNav 組み込み
-- `CLAUDE.md` — 「認証フロー」セクション追加、ディレクトリ構成図更新
+- [CLAUDE.md](CLAUDE.md) — 「認証フロー」セクション追加、ディレクトリ構成図更新
 - `package.json` — `iron-session ^8.x` 追加
 
 ### 動作確認結果（dev サーバー実機）

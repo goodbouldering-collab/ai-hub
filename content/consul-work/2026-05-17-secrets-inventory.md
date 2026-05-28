@@ -23,7 +23,7 @@
 
 | ID | 保管庫 | 実体 | 読み出し方 |
 |---|---|---|---|
-| **S** | Supabase `consul-ops` | `oauth_tokens` テーブル（service_role 専用・RLS 有効） | `google_ops/scripts/refresh.py` の `get_credentials()` |
+| **S** | Supabase `consul-ops` | `oauth_tokens` テーブル（service_role 専用・RLS 有効） | [google_ops/scripts/refresh.py](google_ops/scripts/refresh.py) の `get_credentials()` |
 | **V** | Vercel Dashboard | 各プロジェクト Settings > Environment Variables | Vercel CLI / API（`VERCEL_TOKEN`）/ ダッシュボード手動 |
 | **G** | GitHub Secrets | 各リポ Settings > Secrets and variables > Actions | Actions ワークフロー内 `${{ secrets.X }}` |
 | **L** | ローカル | `consul/google_ops/.env` / `credentials.json` / `~/.codex/auth.json` | PC ローカルのみ・git 管理外 |

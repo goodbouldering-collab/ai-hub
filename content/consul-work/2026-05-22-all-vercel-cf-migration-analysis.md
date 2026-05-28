@@ -27,7 +27,7 @@
 
 ### さらに重い前提崩れ：10日前に自分で「Cloudflare撤退」を承認している
 
-2026-05-12（`work/2026-05-12-render-cloudflare-slow-migration.md`）で CEO 自身が「**Cloudflare から撤退して Vercel に集約する**」ロードマップを承認。動機は「**コンソールが多すぎてしんどい・管理プラットフォームを減らしたい**」。
+2026-05-12（[work/2026-05-12-render-cloudflare-slow-migration.md](work/2026-05-12-render-cloudflare-slow-migration.md)）で CEO 自身が「**Cloudflare から撤退して Vercel に集約する**」ロードマップを承認。動機は「**コンソールが多すぎてしんどい・管理プラットフォームを減らしたい**」。
 
 → **今回の相談はその方針の180度反転**。CF全面移行すると、当時嫌った「複数コンソール」が「Cloudflare + Supabase（D1寄せなら実質DB2系統）」に変わるだけで、**「管理を減らす」目的は1ミリも達成されない**。
 
@@ -212,6 +212,6 @@ CEO依頼の「ブランチ切ってOpenNext化→CFデプロイ→検証→切�
 - [Vercel Pricing (公式)](https://vercel.com/pricing) / [Image Optimization Pricing](https://vercel.com/docs/image-optimization/limits-and-pricing)
 - [OpenNext Cloudflare (公式)](https://opennext.js.org/cloudflare)
 - [Cloudflare 300+ cities network](https://blog.cloudflare.com/cloudflare-connected-in-over-300-cities/)
-- 内部正本: `work/2026-05-12-render-cloudflare-slow-migration.md`（CEO過去判断=CF撤退方向）/ `トラスト.md`（8/1本稼働・Supabase相乗りFree）/ 親 `CLAUDE.md`（Vercel集約方針・OpenNext不等式）
+- 内部正本: [work/2026-05-12-render-cloudflare-slow-migration.md](work/2026-05-12-render-cloudflare-slow-migration.md)（CEO過去判断=CF撤退方向）/ [トラスト.md](トラスト.md)（8/1本稼働・Supabase相乗りFree）/ 親 [CLAUDE.md](CLAUDE.md)（Vercel集約方針・OpenNext不等式）
 
 **推測と明記した箇所**: 7事業合算の実従量($5-10/月)、1事業あたり移行工数(15-28h)、1000人規模の体感差、帯域将来予測 — いずれもWebSearchの実数（料金・拠点数・OpenNext対応）を土台にした見積もりで実機計測値ではない。確定数値はVercel APIの集約事実($20×1)とWebSearch取得の公式料金のみ。

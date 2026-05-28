@@ -121,7 +121,7 @@ git push
 
 ファディーは既に再生成方針確定（Vercel + Supabase 構成）。旧 Cloudflare アセットは廃棄予定。
 
-**2026-05-13 訂正**: 以前 consul に「`webapp-production` (`2faec3c4-...`) もファディー旧資産」と記録されていたが、`ファディー\fadyhikone\wrangler.jsonc` を直接読んで実体確認した結果**誤記録と判明**。`webapp-production` は **ClimbHero 専用**の D1 / Worker。
+**2026-05-13 訂正**: 以前 consul に「`webapp-production` (`2faec3c4-...`) もファディー旧資産」と記録されていたが、[ファディー\fadyhikone\wrangler.jsonc](ファディー\fadyhikone\wrangler.jsonc) を直接読んで実体確認した結果**誤記録と判明**。`webapp-production` は **ClimbHero 専用**の D1 / Worker。
 → ファディー旧の実資産は **`fadyhikone-production` のみ**。`webapp-production` への言及を本ロードマップから削除。
 
 ```bash

@@ -114,7 +114,7 @@
 | Workers `fadyhikone-production` | - | 廃棄予定（Phase 2 で削除） |
 | D1 `fadyhikone-production` | `3c41910c-1b96-47ad-99e7-604df7428bdb` | 廃棄予定（Phase 2 で削除） |
 
-> **過去の誤記録について**: 以前「ファディーは `webapp-production` Worker / D1 (`2faec3c4-...`) も持っている」と記載していたが、`ファディー\fadyhikone\wrangler.jsonc` を直接読んで確認した結果、**`webapp-production` は ClimbHero 専用**であり、ファディーとは無関係と判明。ID 重複疑惑は consul の記録ミスが原因で、実体は別物・無関係。
+> **過去の誤記録について**: 以前「ファディーは `webapp-production` Worker / D1 (`2faec3c4-...`) も持っている」と記載していたが、[ファディー\fadyhikone\wrangler.jsonc](ファディー\fadyhikone\wrangler.jsonc) を直接読んで確認した結果、**`webapp-production` は ClimbHero 専用**であり、ファディーとは無関係と判明。ID 重複疑惑は consul の記録ミスが原因で、実体は別物・無関係。
 >
 > → ファディー旧の Phase 2 削除は ClimbHero 側 (Phase 1) に**一切影響しない**。連動性なし。
 

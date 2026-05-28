@@ -1,7 +1,7 @@
 # 全 cron 一覧表（正本）
 
 最終更新: 2026-05-26
-方針: **GitHub Actions 一元化**（親 `CLAUDE.md`「Cron ジョブの選定」セクション参照）。Vercel Cron は 3 条件 AND を満たす例外のみ。
+方針: **GitHub Actions 一元化**（親 [CLAUDE.md](CLAUDE.md)「Cron ジョブの選定」セクション参照）。Vercel Cron は 3 条件 AND を満たす例外のみ。
 
 ダッシュボードを跨がず 1 枚で全 cron を把握するための正本。新規追加・削除・スケジュール変更時はこの表を必ず更新する。
 
@@ -11,12 +11,12 @@ Vercel Cron は **現在 0 本**（`vercel.json` の `crons[]` を持つプロ�
 
 | # | 事業 | ジョブ名 | ファイル | cron式(UTC) | JST | 内容 | 性質 |
 |---|---|---|---|---|---|---|---|
-| 1 | AIハブ | AIハブ daily digest（日次） | `ai-hub/.github/workflows/daily.yml` | `0 22 * * *` | 毎日 07:00 | 日次ダイジェスト生成 | Python・git push back |
+| 1 | AIハブ | AIハブ daily digest（日次） | [ai-hub/.github/workflows/daily.yml](ai-hub/.github/workflows/daily.yml) | `0 22 * * *` | 毎日 07:00 | 日次ダイジェスト生成 | Python・git push back |
 | 2 | AIハブ | AIハブ daily digest（週次モード） | 同上（同ファイル内 2nd schedule） | `0 0 * * 1` | 毎週月 09:00 | 週次モード切替 | 同上 |
-| 3 | AIハブ | Sync consul docs | `ai-hub/.github/workflows/sync-consul-docs.yml` | `0 21 * * *` | 毎日 06:00 | consul の work/ を ai-hub へ同期 | git clone/push（リポ間同期） |
-| 4 | consul | SEO週次ダイジェスト | `consul/.github/workflows/seo-weekly.yml` | `0 23 * * 0` | 毎週日 08:00 | GSC/GA4 の SEO レポート生成 | Python・git push back |
-| 5 | グッぼる | 本店シューズ自動スクレイピング | `グッぼる/クライミングシューズサーチ/.github/workflows/scrape-store.yml` | `30 15 28 * *` | 毎月28日 翌0:30 | 本店シューズ一覧を月次取得（EUC-JP変換） | Node・git commit/push |
-| 6 | ビジネス21 | Supabase Weekly Backup (b21) | `ビジネス21/.github/workflows/supabase-backup.yml` | `0 18 * * 0` | 毎週月 03:00 | DB 全テーブルをバックアップ | pg_dump 相当・Artifact 保管 |
+| 3 | AIハブ | Sync consul docs | [ai-hub/.github/workflows/sync-consul-docs.yml](ai-hub/.github/workflows/sync-consul-docs.yml) | `0 21 * * *` | 毎日 06:00 | consul の work/ を ai-hub へ同期 | git clone/push（リポ間同期） |
+| 4 | consul | SEO週次ダイジェスト | [consul/.github/workflows/seo-weekly.yml](consul/.github/workflows/seo-weekly.yml) | `0 23 * * 0` | 毎週日 08:00 | GSC/GA4 の SEO レポート生成 | Python・git push back |
+| 5 | グッぼる | 本店シューズ自動スクレイピング | [グッぼる/クライミングシューズサーチ/.github/workflows/scrape-store.yml](グッぼる/クライミングシューズサーチ/.github/workflows/scrape-store.yml) | `30 15 28 * *` | 毎月28日 翌0:30 | 本店シューズ一覧を月次取得（EUC-JP変換） | Node・git commit/push |
+| 6 | ビジネス21 | Supabase Weekly Backup (b21) | [ビジネス21/.github/workflows/supabase-backup.yml](ビジネス21/.github/workflows/supabase-backup.yml) | `0 18 * * 0` | 毎週月 03:00 | DB 全テーブルをバックアップ | pg_dump 相当・Artifact 保管 |
 
 > #1・#2 は同一 `daily.yml` 内の 2 スケジュール（日次 + 週次切替）。実体ファイル数は 5。
 
@@ -31,9 +31,9 @@ Vercel Cron は **現在 0 本**（`vercel.json` の `crons[]` を持つプロ�
 ## デプロイ系 workflow（cron ではない・参考）
 
 `schedule:` を持たず push トリガーで動くもの（cron 一覧には含めない）:
-- `N-デザイン/.github/workflows/ci.yml`、`Notエステ/web/.github/workflows/ci.yml`、`ビジネス21/.github/workflows/{deploy,kanri-ci}.yml`
+- [N-デザイン/.github/workflows/ci.yml](N-デザイン/.github/workflows/ci.yml)、[Notエステ/web/.github/workflows/ci.yml](Notエステ/web/.github/workflows/ci.yml)、`ビジネス21/.github/workflows/{deploy,kanri-ci}.yml`
 - `Notエステ/line-crm/.../deploy-worker.yml`、`グッぼる/line-crm/.../deploy-worker.yml`（Cloudflare Workers デプロイ）
-- `ai-hub/.github/workflows/pages.yml`
+- [ai-hub/.github/workflows/pages.yml](ai-hub/.github/workflows/pages.yml)
 
 ## 将来の追加候補
 

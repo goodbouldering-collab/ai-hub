@@ -118,7 +118,7 @@ trust-nine-tau.vercel.app/
 1. 実サイト全ページの本文を順次取り込み（news 詳細・blog 各記事・諸手続き・用語集・利用規約）
 2. `lib/data/` に静的データとして格納（`news-data.ts` `blog-data.ts` `guide-data.ts` `glossary-data.ts` `site-settings.ts`）
 3. これがフォールバック兼 seed の正本になる
-4. **成果物確認単位**: 取り込んだコピーを `work/` にレビュー用 Markdown で出す → CEO 文面確認
+4. **成果物確認単位**: 取り込んだコピーを [work/](work/) にレビュー用 Markdown で出す → CEO 文面確認
 
 ### フェーズ2：公開ページ実装（静的データ表示）
 1. 共通：Header のナビを実サイト構成に拡張（物件検索＝外部リンク、それ以外＝内部）
@@ -153,7 +153,7 @@ trust-nine-tau.vercel.app/
 
 - **N-デザイン**（`C:\VSCode\Project\N-デザイン\`）が同型の「コーポレート＋ブログ＋施工事例＋admin タブ式」構成。
   - admin タブ UI、`lib/supabase-mappers.ts`、二層データ戦略、JSON-LD、`components/admin/*`（image-uploader/rich-textarea/tabs）を**設計パターンとして流用**（コードのコピペではなくトラスト用に再実装）。
-- 既存 `トラスト/components/`（Header/Footer/AdminShell/FadeIn）と `config/constants.ts` を土台に拡張。
+- 既存 [トラスト/components/](トラスト/components/)（Header/Footer/AdminShell/FadeIn）と `config/constants.ts` を土台に拡張。
 - home-shift 系（認証・LIFF・制約チェッカー）は不変。
 
 ---

@@ -641,6 +641,39 @@ header.site-header.scrolled {
 .hero-trust strong { color: var(--text); }
 @media (max-width: 900px) { .hero-trust { justify-content: center; } }
 
+/* ヒーロー直下の補助金訴求バナー（advisor推奨の最優先軸を front-and-center に） */
+.hero-subsidy-banner {
+  display: inline-flex; align-items: center; gap: 12px;
+  margin: 14px 0 18px; padding: 10px 14px 10px 12px;
+  border-radius: 999px; text-decoration: none;
+  background: var(--grad-soft);
+  border: 1px solid rgba(110,139,255,.30);
+  box-shadow: 0 4px 18px rgba(110,139,255,.18);
+  transition: transform .2s, box-shadow .2s, border-color .2s;
+  max-width: 100%;
+}
+.hero-subsidy-banner:hover {
+  transform: translateY(-1px);
+  border-color: rgba(110,139,255,.55);
+  box-shadow: 0 8px 24px rgba(110,139,255,.30);
+}
+.hero-subsidy-banner .hsb-tag {
+  flex: 0 0 auto;
+  padding: 3px 10px; border-radius: 999px;
+  background: var(--grad); color: #fff;
+  font-family: var(--mono); font-size: 10.5px; font-weight: 800; letter-spacing: .06em;
+  box-shadow: 0 4px 14px rgba(110,139,255,.40);
+}
+.hero-subsidy-banner .hsb-text { display: flex; flex-direction: column; line-height: 1.35; min-width: 0; }
+.hero-subsidy-banner .hsb-text strong { font-size: 14.5px; color: var(--text); }
+.hero-subsidy-banner .hsb-text span { font-size: 12px; color: var(--text-soft); }
+.hero-subsidy-banner .hsb-arrow { flex: 0 0 auto; font-size: 18px; font-weight: 700; color: var(--primary); }
+@media (max-width: 560px) {
+  .hero-subsidy-banner { gap: 10px; padding: 10px 12px; }
+  .hero-subsidy-banner .hsb-text strong { font-size: 13.5px; }
+  .hero-subsidy-banner .hsb-text span { font-size: 11.5px; }
+}
+
 /* ヒーロー起点の AIレベル診断（第1問・主役） */
 .hero-quiz {
   margin-top: 16px; padding: 26px; border: 1px solid var(--glass-border);
@@ -2033,14 +2066,23 @@ def _render_hero() -> str:
         "<span class='eyebrow'>📍 彦根・滋賀｜「AIってよく分からない」人から始められる</span>"
         "<h1>"
         "AIの使い方、<span class='accent'>教えます。</span>"
-        "<span class='visually-hidden'>｜滋賀・彦根の中小事業者向けAI講習・AI導入支援・補助金サポート</span>"
+        "<span class='visually-hidden'>｜滋賀・彦根の中小事業者向けAI講習・AI導入支援・補助金申請サポート</span>"
         "</h1>"
+        # 補助金訴求の旗印（advisor推奨の最優先軸＝補助金クラスタを front-and-center に）
+        "<a class='hero-subsidy-banner' href='#packages'>"
+        "<span class='hsb-tag'>💰 NEW</span>"
+        "<span class='hsb-text'>"
+        "<strong>AI導入を、補助金申請まで。</strong>"
+        "<span>選定・申請・実装・定着まで丸ごと伴走。実質負担 1/3以下に。</span>"
+        "</span>"
+        "<span class='hsb-arrow'>→</span>"
+        "</a>"
         "<p class='sub-catch'>"
         "<strong>見積もりの下書き、問い合わせの返信、日報——その毎日の作業、AIにまかせます。</strong>"
         "</p>"
         "<p class='lead'>"
         "スマホが使えれば大丈夫。彦根で顔を合わせて、「使えるようになる」まで一緒にやります。"
-        "毎日の作業が減って<strong>週10時間が浮く。費用は補助金で実質1/3以下。</strong>"
+        "毎日の作業が減って<strong>週10時間が浮く。</strong>"
         "</p>"
         # 主CTA: 無料30分相談 / 副: 30秒AI診断（ファーストビューで行動できるように）
         "<div class='hero-actions'>"
@@ -2050,7 +2092,7 @@ def _render_hero() -> str:
         # 信頼バッジ（無料・補助金・実績を一目で）
         "<ul class='hero-trust'>"
         "<li>✅ 相談は<strong>無料</strong></li>"
-        "<li>💰 補助金で<strong>実質1/3以下</strong></li>"
+        "<li>💰 補助金<strong>申請まで丸ごと支援</strong></li>"
         "<li>🏢 <strong>9事業</strong>を回す現役オーナー</li>"
         "</ul>"
         # ヒーロー起点の AIレベル診断（第1問を常時表示）

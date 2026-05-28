@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/M365Copilot_Hero_BannerImage_1920x1080.webp?quality=90&amp;strip=all&amp;crop=0%2C3.4613147178592%2C100%2C93.077370564282&amp;w=1200",
-      "published": "2026-05-28T16:14:07-04:00"
+      "published": "2026-05-28T16:14:07-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "09a6cf4f6468dade",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/08/STKB364_CLAUDE_C.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-05-28T13:00:00-04:00"
+      "published": "2026-05-28T13:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "421316b5ffd0ef2e",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/ai-dreams-of-violets.png?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-05-28T12:08:45-04:00"
+      "published": "2026-05-28T12:08:45-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "f8d6e782a6036f3b",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/youtube-on-the-go-mode-news.jpg?quality=90&amp;strip=all&amp;crop=0%2C3.4613147178592%2C100%2C93.077370564282&amp;w=1200",
-      "published": "2026-05-28T12:05:00-04:00"
+      "published": "2026-05-28T12:05:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "4dd218f5c85adf73",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25698444/DSC08567_processed_2.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.723165084465%2C100%2C78.55366983107&amp;w=1200",
-      "published": "2026-05-28T10:33:31-04:00"
+      "published": "2026-05-28T10:33:31-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "91fda19b770f9838",
@@ -113,7 +123,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/11/STK_Cnn_K_Radtke_2.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-05-28T10:08:36-04:00"
+      "published": "2026-05-28T10:08:36-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "30c813f5adb54c34",
@@ -132,7 +144,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/DCD-Wassym-Bensaid.png?quality=90&amp;strip=all&amp;crop=0%2C10.711631919237%2C100%2C78.576736161526&amp;w=1200",
-      "published": "2026-05-28T10:00:00-04:00"
+      "published": "2026-05-28T10:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "29190a47329bba0d",
@@ -151,7 +165,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/2KwWjyqIcSM/hqdefault.jpg",
-      "published": "2026-05-28T15:40:07+00:00"
+      "published": "2026-05-28T15:40:07+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "18b09928056ee920",
@@ -170,7 +186,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/edKThZt4Qrw/hqdefault.jpg",
-      "published": "2026-05-28T14:45:33+00:00"
+      "published": "2026-05-28T14:45:33+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "8c92d03030d43bd3",
@@ -189,7 +207,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/XZD5QZtqELE/hqdefault.jpg",
-      "published": "2026-05-28T13:56:15+00:00"
+      "published": "2026-05-28T13:56:15+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

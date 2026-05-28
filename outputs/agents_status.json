@@ -1,87 +1,106 @@
 {
-  "generated_at": "2026-05-27T23:10:48Z",
+  "generated_at": "2026-05-28T23:08:14Z",
   "recent_works": [
     {
-      "date": "2026-05-27",
-      "filename": "2026-05-27-gubble-rope-category-eeeat.md",
-      "title": "カテゴリページ「クライミングロープ・ザイル」増補原稿",
-      "business": "gubble",
-      "path": "/ops?file=2026-05-27-gubble-rope-category-eeeat.md#sec-docs"
+      "date": "2026-05-29",
+      "filename": "2026-05-29-minanowa-event-url-shortening.md",
+      "title": "みんなのWA：イベントURL短縮（/event/<long-id> → /e/<6文字>）",
+      "business": "みんなのWA",
+      "path": "/ops?file=2026-05-29-minanowa-event-url-shortening.md#sec-docs"
     },
     {
-      "date": "2026-05-27",
-      "filename": "2026-05-27-gubble-belay-device-cate-expansion.md",
-      "title": "ビレイデバイス・確保器カテゴリページ 増補原稿",
-      "business": "gubble",
-      "path": "/ops?file=2026-05-27-gubble-belay-device-cate-expansion.md#sec-docs"
+      "date": "2026-05-29",
+      "filename": "2026-05-29-minanowa-domain-switch-minnanowa-net.md",
+      "title": "みんなのWA：独自ドメイン切替（`minanowa.com` → `minnanowa.net`）",
+      "business": "みんなのWA",
+      "path": "/ops?file=2026-05-29-minanowa-domain-switch-minnanowa-net.md#sec-docs"
     },
     {
-      "date": "2026-05-26",
-      "filename": "2026-05-26-seo-weekly-digest.md",
-      "title": "SEO週次ダイジェスト（2026-05-26）",
-      "business": "seo",
-      "path": "/ops?file=2026-05-26-seo-weekly-digest.md#sec-docs"
-    },
-    {
-      "date": "2026-05-26",
-      "filename": "2026-05-26-gubble-eeeat-product-text.md",
-      "title": "グッぼる 商品ページ用「一次経験テキスト」原稿",
-      "business": "gubble",
-      "path": "/ops?file=2026-05-26-gubble-eeeat-product-text.md#sec-docs"
-    },
-    {
-      "date": "2026-05-26",
-      "filename": "2026-05-26-gubble-category-page-enhancement.md",
-      "title": "グッぼる カテゴリ(cate)ページ 強化案 — 現状診断と具体策",
-      "business": "gubble",
-      "path": "/ops?file=2026-05-26-gubble-category-page-enhancement.md#sec-docs"
-    },
-    {
-      "date": "2026-05-26",
-      "filename": "2026-05-26-all-cron-inventory.md",
-      "title": "全 cron 一覧表（正本）",
+      "date": "2026-05-29",
+      "filename": "2026-05-29-all-automation-roadmap.md",
+      "title": "consul 自動化ロードマップ（全8案・見積もり）",
       "business": "all",
-      "path": "/ops?file=2026-05-26-all-cron-inventory.md#sec-docs"
+      "path": "/ops?file=2026-05-29-all-automation-roadmap.md#sec-docs"
     },
     {
-      "date": "2026-05-25",
-      "filename": "2026-05-25-seo-weekly-digest.md",
-      "title": "SEO週次ダイジェスト（2026-05-25）",
-      "business": "seo",
-      "path": "/ops?file=2026-05-25-seo-weekly-digest.md#sec-docs"
+      "date": "2026-05-28",
+      "filename": "2026-05-28-n-design-persona-cro-audit.md",
+      "title": "N-デザイン 5ペルソナ×3回 CRO評価 → 問題点集約・優先実行リスト",
+      "business": "Nデザイン",
+      "path": "/ops?file=2026-05-28-n-design-persona-cro-audit.md#sec-docs"
     },
     {
-      "date": "2026-05-25",
-      "filename": "2026-05-25-gubble-seo-recovery-actions.md",
-      "title": "グッぼる コアアップデート被弾からの回復 — 対策①②の具体策",
+      "date": "2026-05-28",
+      "filename": "2026-05-28-n-design-hero-why-profile-copy-rewrite.md",
+      "title": "N-デザイン ヒーロー〜Why〜Profile コピー全面書き直し（SEO/MEO/LLMO/AIO 統合視点）",
+      "business": "Nデザイン",
+      "path": "/ops?file=2026-05-28-n-design-hero-why-profile-copy-rewrite.md#sec-docs"
+    },
+    {
+      "date": "2026-05-28",
+      "filename": "2026-05-28-gubble-cate-harness-supplement.md",
+      "title": "グッぼる カテゴリページ「ハーネス」増補原稿",
       "business": "gubble",
-      "path": "/ops?file=2026-05-25-gubble-seo-recovery-actions.md#sec-docs"
+      "path": "/ops?file=2026-05-28-gubble-cate-harness-supplement.md#sec-docs"
+    },
+    {
+      "date": "2026-05-28",
+      "filename": "2026-05-28-all-imagen4-deployment.md",
+      "title": "2026-05-28 全事業 Imagen 4 (Google) 画像生成基盤配備",
+      "business": "all",
+      "path": "/ops?file=2026-05-28-all-imagen4-deployment.md#sec-docs"
+    },
+    {
+      "date": "2026-05-28",
+      "filename": "2026-05-28-all-favicon-design-spec.md",
+      "title": "全11事業 ファビコン設計指示書",
+      "business": "all",
+      "path": "/ops?file=2026-05-28-all-favicon-design-spec.md#sec-docs"
     }
   ],
-  "tasks_open": [],
+  "tasks_open": [
+    {
+      "date": "2026-05-29",
+      "filename": "2026-05-29-minanowa-domain-switch-minnanowa-net.md",
+      "business": "みんなのWA",
+      "snippet": "期限: 2027-05-29",
+      "path": "/ops?file=2026-05-29-minanowa-domain-switch-minnanowa-net.md#sec-docs"
+    },
+    {
+      "date": "2026-05-28",
+      "filename": "2026-05-28-ai-shindan-matching-design-system.md",
+      "business": "ai",
+      "snippet": "△ 要確認:         背景 #d29922 opacity 0.12 / テキスト #d29922 / monospace 11px",
+      "path": "/ops?file=2026-05-28-ai-shindan-matching-design-system.md#sec-docs"
+    }
+  ],
   "per_business_recent": [
     {
       "business": "AIハブ",
-      "count": 15
+      "count": 17
     },
     {
       "business": "gubble",
+      "count": 8
+    },
+    {
+      "business": "Nデザイン",
       "count": 7
     },
     {
+      "business": "all",
+      "count": 6
+    },
+    {
       "business": "みんなのWA",
-      "count": 5
+      "count": 3
+    },
+    {
+      "business": "ai",
+      "count": 2
     },
     {
       "business": "seo",
-      "count": 2
-    },
-    {
-      "business": "all",
-      "count": 2
-    },
-    {
-      "business": "トラスト",
       "count": 2
     },
     {
@@ -89,19 +108,11 @@
       "count": 2
     },
     {
-      "business": "Nデザイン",
-      "count": 2
-    },
-    {
-      "business": "successor",
-      "count": 2
-    },
-    {
-      "business": "github",
-      "count": 2
-    },
-    {
       "business": "gsc",
+      "count": 1
+    },
+    {
+      "business": "トラスト",
       "count": 1
     },
     {
@@ -111,17 +122,9 @@
     {
       "business": "api",
       "count": 1
-    },
-    {
-      "business": "client",
-      "count": 1
     }
   ],
   "daily_histogram": [
-    {
-      "date": "2026-05-14",
-      "count": 0
-    },
     {
       "date": "2026-05-15",
       "count": 1
@@ -164,21 +167,25 @@
     },
     {
       "date": "2026-05-25",
-      "count": 4
+      "count": 5
     },
     {
       "date": "2026-05-26",
-      "count": 4
+      "count": 6
     },
     {
       "date": "2026-05-27",
-      "count": 2
+      "count": 4
+    },
+    {
+      "date": "2026-05-28",
+      "count": 10
     }
   ],
   "cma_apps": [],
   "totals": {
-    "consul_work_total": 103,
-    "recent_7d_total": 45,
-    "tasks_open_total": 0
+    "consul_work_total": 121,
+    "recent_7d_total": 51,
+    "tasks_open_total": 2
   }
 }

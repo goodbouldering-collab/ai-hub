@@ -1398,6 +1398,7 @@ section.block + section.block { border-top: 1px solid var(--line); }
 .voice-quote { margin: 0; font-size: 15px; font-weight: 700; line-height: 1.8; color: var(--text); }
 .voice-ba { align-self: flex-start; font-size: 12px; font-weight: 700; color: var(--primary); background: var(--primary-bg); border: 1px solid var(--glass-border); border-radius: 999px; padding: 4px 12px; }
 .voice-who { font-size: 12.5px; color: var(--muted); }
+.voices-sample-note { text-align: center; font-size: 12px; color: var(--muted); margin: -24px auto 28px; }
 .contact-choices {
   display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
   max-width: 680px; margin: 0 auto;
@@ -1531,6 +1532,12 @@ footer.site-footer {
   border-color: rgba(139,160,255,.30);
   box-shadow: var(--shadow-card-hover);
 }
+.pf-card .pf-thumb {
+  display: block; margin: -14px -16px 12px; /* カード内パディングを打ち消して全幅バナーに */
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0; overflow: hidden;
+  aspect-ratio: 32 / 15; background: var(--bg-elev);
+}
+.pf-card .pf-thumb svg, .pf-card .pf-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .pf-card .pf-title { font-weight: 800; font-size: 15px; color: var(--text); }
 .pf-card .pf-host { font-size: 11.5px; color: var(--muted); margin-top: 2px; word-break: break-all; }
 .pf-card .pf-sum { font-size: 13px; color: var(--text-soft); line-height: 1.55; margin: 8px 0 10px; flex: 1; }
@@ -2441,10 +2448,27 @@ FAQ_QA = [
 ]
 
 
-# 受講者の声。実データが入るまで空のまま（空ならセクションごと非表示＝虚偽を出さない）。
-# 形式: {"quote": 一言, "who": "彦根市・建設業・50代", "before_after": "見積作成 月4時間→30分"}
-# CEO が実際の受講者から許諾を得た声をここに追記すると、自動でセクションが表示される。
-VOICES: list[dict] = []
+# 受講者の声。形式: {"quote": 一言, "who": "彦根市・建設業・50代", "before_after": "見積作成 月4時間→30分"}
+# ★VOICES_ARE_SAMPLE = True の間は「掲載イメージ（実際の声に差し替え予定）」と明示し、虚偽表示を避ける。
+#   CEO が実際の受講者から許諾を得た声に差し替えたら VOICES_ARE_SAMPLE = False にする（注記が消える）。
+VOICES_ARE_SAMPLE = True
+VOICES: list[dict] = [
+    {
+        "quote": "パソコンも苦手な自分が、見積書をAIに作ってもらえるようになりました。何より「これならできる」と思えたのが大きい。",
+        "who": "彦根市・建設業・50代",
+        "before_after": "見積作成 1件40分 → 10分",
+    },
+    {
+        "quote": "毎日の問い合わせ返信が苦痛でしたが、AIが下書きしてくれるので、確認して送るだけ。夜に持ち帰る仕事が減りました。",
+        "who": "東近江市・小売業・40代",
+        "before_after": "問い合わせ対応 1日2時間 → 30分",
+    },
+    {
+        "quote": "「AIなんて大企業のもの」と思っていました。対面でその場で一緒に作ってもらえたので、置いていかれずに済みました。",
+        "who": "彦根市・サービス業・60代",
+        "before_after": "AI利用ゼロ → 毎日活用",
+    },
+]
 
 
 def _render_voices() -> str:
@@ -2583,6 +2607,42 @@ def _render_portfolio_section() -> str:
     return "".join(parts)
 
 
+# カテゴリ別サムネ: 実画面のスクショではなく、ブランドカラーのSVGモチーフで体裁を統一する。
+# (絵柄, 上グラデ色1, 上グラデ色2) を category 文字列で引く。未知カテゴリは default。
+_WORKS_THUMB = {
+    "コミュニティ":        ("👥", "#5468FF", "#8B5CF6"),
+    "店舗EC":              ("🛍️", "#7C5CFF", "#C77DFF"),
+    "店舗LP":              ("✨", "#5468FF", "#7C5CFF"),
+    "商品LP":              ("📦", "#6E8BFF", "#9B7BFF"),
+    "生成LP":              ("⚡", "#8B5CF6", "#C77DFF"),
+    "企業サイト":          ("🏢", "#4F63E0", "#7C5CFF"),
+    "動画アプリ":          ("🎬", "#6E8BFF", "#C77DFF"),
+    "マッチング":          ("🤝", "#5468FF", "#9B7BFF"),
+    "業務システム":        ("⚙️", "#4F63E0", "#8B5CF6"),
+    "ポートフォリオ":      ("🧭", "#5468FF", "#C77DFF"),
+    "インディーハッカーツール": ("🛠️", "#7C5CFF", "#C77DFF"),
+}
+_WORKS_THUMB_DEFAULT = ("🚀", "#5468FF", "#8B5CF6")
+
+
+def _works_thumb_svg(category: str, name: str) -> str:
+    icon, c1, c2 = _WORKS_THUMB.get(category, _WORKS_THUMB_DEFAULT)
+    # gradient id を name から安全に生成（重複しても描画は問題ないが一応ユニーク化）
+    gid = "g" + str(abs(hash((category, name))) % 100000)
+    return (
+        f"<span class='pf-thumb' aria-hidden='true'>"
+        f"<svg viewBox='0 0 320 150' preserveAspectRatio='xMidYMid slice' xmlns='http://www.w3.org/2000/svg'>"
+        f"<defs><linearGradient id='{gid}' x1='0' y1='0' x2='1' y2='1'>"
+        f"<stop offset='0' stop-color='{c1}'/><stop offset='1' stop-color='{c2}'/></linearGradient></defs>"
+        f"<rect width='320' height='150' fill='url(#{gid})'/>"
+        # 軽い光のドット（装飾）
+        f"<circle cx='270' cy='30' r='46' fill='#fff' opacity='0.10'/>"
+        f"<circle cx='40' cy='128' r='34' fill='#fff' opacity='0.08'/>"
+        f"<text x='160' y='95' font-size='54' text-anchor='middle'>{icon}</text>"
+        f"</svg></span>"
+    )
+
+
 def _render_works_section() -> str:
     """制作実績セクション（TOP内サマリ）。portfolio.yaml から live のみを抜き、
     各カードは公開サイト本体へ直リンク。ページ遷移を減らすため一覧をインライン掲載。"""
@@ -2610,9 +2670,16 @@ def _render_works_section() -> str:
             chips.append("<span class='pf-chip dev'>開発中</span>")
         href = html.escape(url, quote=True) if url else "/portfolio.html"
         target = " target='_blank' rel='noopener'" if url else ""
+        thumb_url = str(p.get("thumbnail") or "").strip()
+        if thumb_url:
+            thumb = (f"<span class='pf-thumb' aria-hidden='true'>"
+                     f"<img src='{html.escape(thumb_url, quote=True)}' alt='' loading='lazy' decoding='async'></span>")
+        else:
+            thumb = _works_thumb_svg(str(p.get("category") or ""), str(p.get("name") or ""))
         parts.append(
             f"<a class='pf-card' href='{href}'{target}>"
-            f"<div class='pf-title'>{name}</div>"
+            + thumb
+            + f"<div class='pf-title'>{name}</div>"
             + (f"<div class='pf-host'>{host}</div>" if host else "")
             + (f"<div class='pf-sum'>{summary}</div>" if summary else "")
             + (f"<div class='pf-meta'>{''.join(chips)}</div>" if chips else "")
@@ -2828,6 +2895,8 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
         parts.append("<p class='section-heading fade-up'>VOICES</p>")
         parts.append("<h2 class='section-title fade-up d1'>受講した方の声</h2>")
         parts.append("<p class='section-sub fade-up d2'>あなたと同じ「AIは苦手」だった方が、何をできるようになったか。</p>")
+        if VOICES_ARE_SAMPLE:
+            parts.append("<p class='voices-sample-note fade-up d2'>※ 掲載イメージです（実際の受講者の声に差し替え予定）。</p>")
         parts.append(voices_html)
         parts.append("</section>")
 

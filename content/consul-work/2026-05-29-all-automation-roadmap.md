@@ -1,8 +1,23 @@
 # consul 自動化ロードマップ（全8案・見積もり）
 
-最終更新: 2026-05-29
+最終更新: 2026-05-29（実装ステータス追記）
 対象: consul 本部リポジトリ（C:\VSCode\Project\consul\）
 方針: 既知事故の再発防止 > 新規便利機能。投資判断は「**実装コスト時間 vs 防ぐ事故の発生確率 × 影響**」で評価。
+
+## 実装ステータス（2026-05-29 時点）
+
+| # | 案 | ステータス | 備考 |
+|---|---|---|---|
+| #1 | Stop hook（git status + 未push表示） | ✅ **既に実装済み** | `~/.claude/settings.json` L106-118 に `[WARN] uncommitted/unpushed commits:` を表示する PowerShell コマンドが既設置。ロードマップ起票時の「未実装」認識がズレていた。本日確認 |
+| #2 | gitleaks pre-commit | ✅ **新規実装** | gitleaks 8.30.1 を winget でインストール／`consul/.git/hooks/pre-commit` に設置／ダミーAWS+GitHubトークンで検知→exit 1 拒否を検証済／`GITLEAKS_SKIP=1` エスケープも検証済 |
+| #3〜#8 | 残り6本 | ⬜ 未着手 | CEO 判断待ち（投資対効果サマリ参照） |
+
+### #2 実装メモ（後継への引き継ぎ）
+
+- gitleaks **v8.20+ で `protect/detect` サブコマンド廃止**。新コマンドは `gitleaks git --staged`。古い記事/AI の指示にそのまま従うと "no leaks found" で誤検知ゼロになる罠あり
+- AWS の公式例示キー `AKIAIOSFODNN7EXAMPLE` は gitleaks の組み込み allowlist にあるためテストでは検知されない。テストする場合はランダム化した値を使う
+- winget で入れた gitleaks の本体は `%LOCALAPPDATA%/Microsoft/WinGet/Packages/gitleaks.gitleaks_*/gitleaks.exe`。winget の Links ディレクトリは Windows によっては PATH に未登録のため、pre-commit スクリプトは絶対パスをフォールバックで持つ設計
+- 緊急時のバイパス: `GITLEAKS_SKIP=1 git commit ...` または `git commit --no-verify`（後者は他フックも全てバイパスするので推奨は前者）
 
 ## 現状の自動化資産（2026-05-29 時点）
 

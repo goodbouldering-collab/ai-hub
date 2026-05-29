@@ -768,9 +768,9 @@ header.site-header.scrolled {
 .hero-blob.b1 { background: #6E8BFF; top: -40px; right: -40px; }
 .hero-blob.b2 { background: #9B7BFF; bottom: -40px; left: 30%; width: 200px; height: 200px; }
 
-/* photo hero（抽象背景 + 円形ポートレート + キャプション）*/
+/* AI lesson hero illustration */
 .hero-visual-photo {
-  background: #0b0d14;
+  background: #f8fafc;
   width: 100%;
   min-height: 480px;
 }
@@ -783,49 +783,16 @@ header.site-header.scrolled {
 .hero-visual-photo::after {
   content:''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
   background:
-    radial-gradient(120% 80% at 50% 45%, rgba(11,13,20,0) 0%, rgba(11,13,20,.20) 55%, rgba(11,13,20,.70) 100%),
-    linear-gradient(180deg, rgba(11,13,20,0) 0%, rgba(11,13,20,.55) 100%);
-}
-.hero-portrait {
-  position: absolute; left: 50%; bottom: 96px; transform: translateX(-50%);
-  z-index: 2; text-align: center; pointer-events: none;
-}
-.hero-portrait img {
-  width: 168px; height: 168px; border-radius: 50%; object-fit: cover;
-  display: block; margin: 0 auto;
-  box-shadow:
-    0 0 0 4px rgba(255,255,255,.18),
-    0 0 0 1px rgba(255,255,255,.32),
-    0 24px 60px rgba(0,0,0,.55),
-    0 0 80px 8px rgba(110,139,255,.35);
-  animation: portrait-pulse 4.2s ease-in-out infinite;
-}
-@keyframes portrait-pulse {
-  0%,100% { box-shadow: 0 0 0 4px rgba(255,255,255,.18), 0 0 0 1px rgba(255,255,255,.32), 0 24px 60px rgba(0,0,0,.55), 0 0 80px 8px rgba(110,139,255,.35); }
-  50%    { box-shadow: 0 0 0 4px rgba(255,255,255,.22), 0 0 0 1px rgba(255,255,255,.42), 0 24px 60px rgba(0,0,0,.55), 0 0 110px 14px rgba(155,123,255,.55); }
-}
-.hero-portrait-caption {
-  margin-top: 14px; color: #fff;
-  text-shadow: 0 2px 12px rgba(0,0,0,.65), 0 0 24px rgba(0,0,0,.45);
-}
-.hero-portrait-caption .hpc-name {
-  font-size: 20px; font-weight: 800; letter-spacing: .06em;
-}
-.hero-portrait-caption .hpc-title {
-  font-size: 12px; font-weight: 600; letter-spacing: .12em; opacity: .92; margin-top: 4px;
+    radial-gradient(90% 64% at 76% 18%, rgba(255,255,255,.46), transparent 70%),
+    linear-gradient(180deg, rgba(248,250,252,0) 48%, rgba(248,250,252,.16) 100%),
+    linear-gradient(90deg, rgba(37,99,235,.06), rgba(139,92,246,.06));
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-visual-photo .hero-bg { transition: none; }
-  .hero-portrait img { animation: none; }
 }
 @media (max-width: 900px) {
   .hero-visual-photo { min-height: 360px; }
-  .hero-visual-photo .hero-bg { object-position: center 35%; }
-  .hero-portrait { bottom: auto; top: 24px; left: 16px; transform: none; text-align: left; }
-  .hero-portrait img { width: 84px; height: 84px; }
-  .hero-portrait-caption { margin-top: 8px; }
-  .hero-portrait-caption .hpc-name { font-size: 14px; }
-  .hero-portrait-caption .hpc-title { font-size: 10px; letter-spacing: .08em; }
+  .hero-visual-photo .hero-bg { object-position: center 42%; }
 }
 @media (max-width: 560px) {
   .hero-blob { width: 180px; height: 180px; opacity: .4; }
@@ -2170,14 +2137,7 @@ def _render_hero() -> str:
         "</div>"
         "</div>"
         "<div class='hero-visual hero-visual-photo fade-up d2'>"
-        "<img class='hero-bg' src='/img/hero-bg.png' alt='AIハブ — 知性が集約し、躍動する点' loading='eager' decoding='async' fetchpriority='high'>"
-        "<div class='hero-portrait'>"
-        "<img src='/img/speaker.webp' alt='由井辰美' loading='eager' decoding='async'>"
-        "<div class='hero-portrait-caption'>"
-        "<div class='hpc-name'>由井 辰美</div>"
-        "<div class='hpc-title'>9事業オーナー × クライミング歴30年</div>"
-        "</div>"
-        "</div>"
+        "<img class='hero-bg' src='/img/hero-ai-lesson-line.png' alt='AI講習で日々の業務を整理し、実践ステップへ変えていくAIハブの線画ヒーロービジュアル' loading='eager' decoding='async' fetchpriority='high'>"
         "<div class='hero-flow' aria-label='ワークショップの3ステップ'>"
         "<div class='hflow-step'>"
         "<span class='hflow-ico'>😵</span>"

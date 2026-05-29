@@ -18,7 +18,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/STK414_AI_CVIRGINIA_I__0009_7.png?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-05-29T13:37:43-04:00"
+      "published": "2026-05-29T13:37:43-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "59b26f17f77e6376",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/VRG_VST_052926_Site.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-05-29T08:25:12-04:00"
+      "published": "2026-05-29T08:25:12-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "a34659f718755c4f",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/Screenshot-2026-05-29-at-12.44.12.png?quality=90&amp;strip=all&amp;crop=0,1.3015853110533,100,97.396829377893",
-      "published": "2026-05-29T07:58:40-04:00"
+      "published": "2026-05-29T07:58:40-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "8e54aa156d266d1e",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/hoVS_wKQdaI/hqdefault.jpg",
-      "published": "2026-05-29T13:53:45+00:00"
+      "published": "2026-05-29T13:53:45+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "f41fe8344474418a",
@@ -94,7 +102,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/Adobe-Firefly-AI-Assistant-hands-on-hero.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-05-29T06:00:00-04:00"
+      "published": "2026-05-29T06:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "176b92982400ea7b",
@@ -113,7 +123,9 @@
         "freshness": 3.0
       },
       "thumbnail": "",
-      "published": "2026-05-29T03:32:02+00:00"
+      "published": "2026-05-29T03:32:02+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "a3ac6b7350e45e9f",
@@ -132,7 +144,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://static.simonwillison.net/static/2026/anthropic-run-rate.png",
-      "published": "2026-05-29T01:23:08+00:00"
+      "published": "2026-05-29T01:23:08+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "6c9a3852c87b690c",
@@ -151,7 +165,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://static.simonwillison.net/static/2026/opus-3-8-card.jpg",
-      "published": "2026-05-28T23:59:50+00:00"
+      "published": "2026-05-28T23:59:50+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "83b934e62c5be5d4",
@@ -170,7 +186,9 @@
         "freshness": 3.0
       },
       "thumbnail": "",
-      "published": "2026-05-28T23:54:56+00:00"
+      "published": "2026-05-28T23:54:56+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "29190a47329bba0d",
@@ -189,7 +207,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/2KwWjyqIcSM/hqdefault.jpg",
-      "published": "2026-05-29T01:24:36+00:00"
+      "published": "2026-05-29T01:24:36+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     }
   ]
 }

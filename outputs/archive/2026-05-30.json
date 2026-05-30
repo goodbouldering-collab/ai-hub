@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "",
-      "published": "2026-05-30T21:36:24+00:00"
+      "published": "2026-05-30T21:36:24+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "f3604affb3017391",
@@ -37,7 +39,9 @@
         "freshness": 10.0
       },
       "thumbnail": "",
-      "published": "2026-05-30T21:02:16+00:00"
+      "published": "2026-05-30T21:02:16+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "c37d3f3d475f6d79",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/Screenshot-2026-05-27-at-11.17.27AM.png?quality=90&amp;strip=all&amp;crop=0%2C9.2187253673634%2C100%2C81.562549265273&amp;w=1200",
-      "published": "2026-05-30T09:00:00-04:00"
+      "published": "2026-05-30T09:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "42b90d85d4b870e7",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/268550_Crying_AI_avatars_AParkin_2.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-05-30T09:00:00-04:00"
+      "published": "2026-05-30T09:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "5ef3e8e1e271a360",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/03/STKB355_SPACE_X_IPO_B.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-05-30T08:00:00-04:00"
+      "published": "2026-05-30T08:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "bde9f758e00ca253",
@@ -113,7 +123,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-05-30T19:39:08+00:00"
+      "published": "2026-05-30T19:39:08+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "de20d08ead759fc8",
@@ -132,7 +144,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-05-30T17:29:55+00:00"
+      "published": "2026-05-30T17:29:55+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "f11191acea19a750",
@@ -151,7 +165,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/_vonGP_kBJ8/hqdefault.jpg",
-      "published": "2026-05-30T10:00:01+00:00"
+      "published": "2026-05-30T10:00:01+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "34452b11fa55b037",
@@ -170,7 +186,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/2JOLh8vtJS0/hqdefault.jpg",
-      "published": "2026-05-30T09:00:00+00:00"
+      "published": "2026-05-30T09:00:00+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     }
   ]
 }

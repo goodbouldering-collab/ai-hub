@@ -1,6 +1,13 @@
 {
-  "generated_at": "2026-06-01T04:09:59Z",
+  "generated_at": "2026-06-01T23:22:11Z",
   "recent_works": [
+    {
+      "date": "2026-06-01",
+      "filename": "2026-06-01-seo-weekly-digest.md",
+      "title": "SEO週次ダイジェスト（2026-06-01）",
+      "business": "seo",
+      "path": "/ops?file=2026-06-01-seo-weekly-digest.md#sec-docs"
+    },
     {
       "date": "2026-05-29",
       "filename": "2026-05-29-minanowa-event-url-shortening.md",
@@ -49,13 +56,6 @@
       "title": "グッぼる カテゴリページ「ハーネス」増補原稿",
       "business": "gubble",
       "path": "/ops?file=2026-05-28-gubble-cate-harness-supplement.md#sec-docs"
-    },
-    {
-      "date": "2026-05-28",
-      "filename": "2026-05-28-all-imagen4-deployment.md",
-      "title": "2026-05-28 全事業 Imagen 4 (Google) 画像生成基盤配備",
-      "business": "all",
-      "path": "/ops?file=2026-05-28-all-imagen4-deployment.md#sec-docs"
     }
   ],
   "tasks_open": [
@@ -92,15 +92,15 @@
       "count": 5
     },
     {
+      "business": "seo",
+      "count": 3
+    },
+    {
       "business": "みんなのWA",
       "count": 3
     },
     {
       "business": "ai",
-      "count": 2
-    },
-    {
-      "business": "seo",
       "count": 2
     }
   ],
@@ -159,13 +159,13 @@
     },
     {
       "date": "2026-06-01",
-      "count": 0
+      "count": 1
     }
   ],
   "cma_apps": [],
   "totals": {
-    "consul_work_total": 122,
-    "recent_7d_total": 29,
+    "consul_work_total": 123,
+    "recent_7d_total": 30,
     "tasks_open_total": 2
   }
 }

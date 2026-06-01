@@ -2,32 +2,51 @@
   "date": "2026-06-01",
   "items": [
     {
-      "hash": "ed47c1248fd69ed0",
-      "title": "datasette 1.0a32",
-      "orig_title": "datasette 1.0a32",
+      "hash": "7336a9258775df89",
+      "title": "Hackers Simply Asked Meta AI to Give Them Access to High-Profile Instagram Accounts. It Worked",
+      "orig_title": "Hackers Simply Asked Meta AI to Give Them Access to High-Profile Instagram Accounts. It Worked",
       "summary": "",
-      "url": "https://simonwillison.net/2026/May/31/datasette/#atom-everything",
+      "url": "https://simonwillison.net/2026/Jun/1/hackers-simply-asked-meta-ai/#atom-everything",
       "source": "Simon Willison's Weblog",
       "category": "AI研究者ブログ",
       "genre": "industry",
-      "score": 56.0,
+      "score": 60.0,
       "breakdown": {
         "base": 50.0,
         "genre_bonus": 0.0,
         "source_bonus": 0.0,
-        "freshness": 6.0
+        "freshness": 10.0
       },
       "thumbnail": "",
-      "published": "2026-05-31T23:23:38+00:00"
+      "published": "2026-06-01T21:14:47+00:00"
     },
     {
-      "hash": "9424098bd709b28a",
-      "title": "The solution might be cancelling my AI subscription",
-      "orig_title": "The solution might be cancelling my AI subscription",
+      "hash": "b7dd77e73c2d5ed8",
+      "title": "Claude Opus4.8でプロ風のゲームを簡単に作る方法 / まじ楽しいからやってみ？ / Claude CodeとCodexの選び方",
+      "orig_title": "Claude Opus4.8でプロ風のゲームを簡単に作る方法 / まじ楽しいからやってみ？ / Claude CodeとCodexの選び方",
       "summary": "",
-      "url": "https://simonwillison.net/2026/May/31/the-solution-might-be-cancelling-my-ai-subscription/#atom-everything",
-      "source": "Simon Willison's Weblog",
-      "category": "AI研究者ブログ",
+      "url": "https://www.youtube.com/watch?v=N8_GLZC7pOs",
+      "source": "ウェブ職TV",
+      "category": "AI動画(日本語)",
+      "genre": "industry",
+      "score": 60.0,
+      "breakdown": {
+        "base": 50.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 10.0
+      },
+      "thumbnail": "https://img.youtube.com/vi/N8_GLZC7pOs/hqdefault.jpg",
+      "published": "2026-06-01T21:00:15+00:00"
+    },
+    {
+      "hash": "7fd06e1dadfbaf66",
+      "title": "This could be Windows’ M1 moment — but expect it to cost a ton",
+      "orig_title": "This could be Windows’ M1 moment — but expect it to cost a ton",
+      "summary": "",
+      "url": "https://www.theverge.com/tech/941215/windows-laptops-nvidia-rtx-spark-apple-m1-arm-price-ram",
+      "source": "The Verge AI",
+      "category": "AIニュース",
       "genre": "industry",
       "score": 56.0,
       "breakdown": {
@@ -36,8 +55,122 @@
         "source_bonus": 0.0,
         "freshness": 6.0
       },
-      "thumbnail": "",
-      "published": "2026-05-31T16:31:32+00:00"
+      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/Screenshot_20260531_212701.png?quality=90&amp;strip=all&amp;crop=0%2C9.3778095086996%2C100%2C81.244380982601&amp;w=1200",
+      "published": "2026-06-01T16:02:31-04:00"
+    },
+    {
+      "hash": "1b19b717de40880f",
+      "title": "Gemini’s new AI agent is about as good as Google’s demo",
+      "orig_title": "Gemini’s new AI agent is about as good as Google’s demo",
+      "summary": "",
+      "url": "https://www.theverge.com/tech/941138/google-gemini-spark-ai-agent-hands-on",
+      "source": "The Verge AI",
+      "category": "AIニュース",
+      "genre": "industry",
+      "score": 56.0,
+      "breakdown": {
+        "base": 50.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 6.0
+      },
+      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/lcimg-0ebbe911-9fbb-4f68-97b0-b7361d7cb53c.jpeg?quality=90&amp;strip=all&amp;crop=0%2C10.604950381935%2C100%2C78.79009923613&amp;w=1200",
+      "published": "2026-06-01T16:00:00-04:00"
+    },
+    {
+      "hash": "e1cb429cd26a36cc",
+      "title": "Meta&#8217;s own AI was exploited to hijack Instagram accounts",
+      "orig_title": "Meta&#8217;s own AI was exploited to hijack Instagram accounts",
+      "summary": "",
+      "url": "https://www.theverge.com/tech/941179/meta-instagram-ai-support-chatbot-exploit-hacked",
+      "source": "The Verge AI",
+      "category": "AIニュース",
+      "genre": "industry",
+      "score": 56.0,
+      "breakdown": {
+        "base": 50.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 6.0
+      },
+      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/meta-chatbot-support.png?quality=90&amp;strip=all&amp;crop=0%2C9.2919928911091%2C100%2C81.416014217782&amp;w=1200",
+      "published": "2026-06-01T15:20:47-04:00"
+    },
+    {
+      "hash": "43660e378abec62d",
+      "title": "Anthropic has officially filed to go public",
+      "orig_title": "Anthropic has officially filed to go public",
+      "summary": "",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/941016/anthropic-has-officially-filed-to-go-public",
+      "source": "The Verge AI",
+      "category": "AIニュース",
+      "genre": "industry",
+      "score": 56.0,
+      "breakdown": {
+        "base": 50.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 6.0
+      },
+      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25469941/STK202_DARIO_AMODEI_CVIRGINIA_D.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
+      "published": "2026-06-01T12:40:38-04:00"
+    },
+    {
+      "hash": "d8901ce73571d7ef",
+      "title": "Microsoft to unveil new AI models and Windows improvements at Build",
+      "orig_title": "Microsoft to unveil new AI models and Windows improvements at Build",
+      "summary": "",
+      "url": "https://www.theverge.com/report/940861/microsoft-build-ai-models-windows-dev-mode-what-to-expect",
+      "source": "The Verge AI",
+      "category": "AIニュース",
+      "genre": "industry",
+      "score": 56.0,
+      "breakdown": {
+        "base": 50.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 6.0
+      },
+      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/03/MS_BUILD.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
+      "published": "2026-06-01T10:39:03-04:00"
+    },
+    {
+      "hash": "ae3ab198619868ce",
+      "title": "AI is blowing up music. How should the Grammys handle it?",
+      "orig_title": "AI is blowing up music. How should the Grammys handle it?",
+      "summary": "",
+      "url": "https://www.theverge.com/podcast/940831/ai-grammys-music-recording-harvey-mason",
+      "source": "The Verge AI",
+      "category": "AIニュース",
+      "genre": "industry",
+      "score": 56.0,
+      "breakdown": {
+        "base": 50.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 6.0
+      },
+      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/DCD_20260601_Mason_Grammys.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
+      "published": "2026-06-01T10:30:00-04:00"
+    },
+    {
+      "hash": "6999cfd3223f2dfc",
+      "title": "Strava blames zero-code AI apps and scrapers as it tightens API access",
+      "orig_title": "Strava blames zero-code AI apps and scrapers as it tightens API access",
+      "summary": "",
+      "url": "https://www.theverge.com/gadgets/940854/strava-restricts-api-access-ai-apps",
+      "source": "The Verge AI",
+      "category": "AIニュース",
+      "genre": "industry",
+      "score": 56.0,
+      "breakdown": {
+        "base": 50.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 6.0
+      },
+      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/10/STKB305_STRAVA_B.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
+      "published": "2026-06-01T10:06:44-04:00"
     },
     {
       "hash": "ddfdd1e8c49b95d8",
@@ -56,140 +189,7 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/ml-x65wvBWE/hqdefault.jpg",
-      "published": "2026-05-31T18:57:32+00:00"
-    },
-    {
-      "hash": "60b2a673bd328962",
-      "title": "I went looking for the AI weed vape that gives you Bitcoin for smoking",
-      "orig_title": "I went looking for the AI weed vape that gives you Bitcoin for smoking",
-      "summary": "",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/933916/ai-powered-crypto-cannabis-vape",
-      "source": "The Verge AI",
-      "category": "AIニュース",
-      "genre": "industry",
-      "score": 53.0,
-      "breakdown": {
-        "base": 50.0,
-        "genre_bonus": 0.0,
-        "source_bonus": 0.0,
-        "freshness": 3.0
-      },
-      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/268553_We_went_looking_for_the_weed_vape_that_gives_you_Bitcoin_for_smoking_CVirginia2.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-05-31T09:00:00-04:00"
-    },
-    {
-      "hash": "fd8dce1dac052a15",
-      "title": "OpenAI「Codex」完全ガイド【この動画1本ですべて理解できる】スキル作成・便利機能・AI自動化などの使い方を解説【初心者OK】",
-      "orig_title": "OpenAI「Codex」完全ガイド【この動画1本ですべて理解できる】スキル作成・便利機能・AI自動化などの使い方を解説【初心者OK】",
-      "summary": "",
-      "url": "https://www.youtube.com/watch?v=ESGl8Juwytc",
-      "source": "KEITO AI&WEB",
-      "category": "AI動画(日本語)",
-      "genre": "industry",
-      "score": 53.0,
-      "breakdown": {
-        "base": 50.0,
-        "genre_bonus": 0.0,
-        "source_bonus": 0.0,
-        "freshness": 3.0
-      },
-      "thumbnail": "https://img.youtube.com/vi/ESGl8Juwytc/hqdefault.jpg",
-      "published": "2026-05-31T10:30:38+00:00"
-    },
-    {
-      "hash": "41bf43b20c564f89",
-      "title": "【完全保存版】本気でOpenAIを使って稼ぎたい人は、まずこの動画を見てください【ChatGPT / Codexの教科書】",
-      "orig_title": "【完全保存版】本気でOpenAIを使って稼ぎたい人は、まずこの動画を見てください【ChatGPT / Codexの教科書】",
-      "summary": "",
-      "url": "https://www.youtube.com/watch?v=wFMLWcTUe-Q",
-      "source": "AI収益化ラボ",
-      "category": "AI動画(日本語)",
-      "genre": "industry",
-      "score": 53.0,
-      "breakdown": {
-        "base": 50.0,
-        "genre_bonus": 0.0,
-        "source_bonus": 0.0,
-        "freshness": 3.0
-      },
-      "thumbnail": "https://img.youtube.com/vi/wFMLWcTUe-Q/hqdefault.jpg",
-      "published": "2026-05-31T10:00:14+00:00"
-    },
-    {
-      "hash": "849bfadd685a71cc",
-      "title": "インテルがロボット開発の課題を解決、オープンなロボティクスライブラリで",
-      "orig_title": "インテルがロボット開発の課題を解決、オープンなロボティクスライブラリで",
-      "summary": "",
-      "url": "https://monoist.itmedia.co.jp/mn/articles/2606/01/news082.html",
-      "source": "ITmedia AI+",
-      "category": "AI国内",
-      "genre": "industry",
-      "score": 50.0,
-      "breakdown": {
-        "base": 50.0,
-        "genre_bonus": 0.0,
-        "source_bonus": 0.0,
-        "freshness": 0.0
-      },
-      "thumbnail": "https://image.itmedia.co.jp/mn/articles/2606/01/cover_news082.jpg",
-      "published": "Mon, 01 Jun 2026 12:45:00 +0900"
-    },
-    {
-      "hash": "dc332854d420bb29",
-      "title": "図面SaaSに高精度な3Dモデル生成とアセンブリ機能、CAE機能のβ版を追加",
-      "orig_title": "図面SaaSに高精度な3Dモデル生成とアセンブリ機能、CAE機能のβ版を追加",
-      "summary": "",
-      "url": "https://monoist.itmedia.co.jp/mn/articles/2606/01/news013.html",
-      "source": "ITmedia AI+",
-      "category": "AI国内",
-      "genre": "industry",
-      "score": 50.0,
-      "breakdown": {
-        "base": 50.0,
-        "genre_bonus": 0.0,
-        "source_bonus": 0.0,
-        "freshness": 0.0
-      },
-      "thumbnail": "https://image.itmedia.co.jp/mn/articles/2606/01/cover_news013.jpg",
-      "published": "Mon, 01 Jun 2026 09:00:00 +0900"
-    },
-    {
-      "hash": "9357f8050b3f8abd",
-      "title": "富士通が認めた「人月モデル」の限界　時田社長「労働集約型SIモデルからの転換を」",
-      "orig_title": "富士通が認めた「人月モデル」の限界　時田社長「労働集約型SIモデルからの転換を」",
-      "summary": "",
-      "url": "https://www.itmedia.co.jp/business/articles/2606/01/news040.html",
-      "source": "ITmedia AI+",
-      "category": "AI国内",
-      "genre": "industry",
-      "score": 50.0,
-      "breakdown": {
-        "base": 50.0,
-        "genre_bonus": 0.0,
-        "source_bonus": 0.0,
-        "freshness": 0.0
-      },
-      "thumbnail": "https://image.itmedia.co.jp/business/articles/2606/01/cover_news040.jpg",
-      "published": "Mon, 01 Jun 2026 07:00:00 +0900"
-    },
-    {
-      "hash": "ef8a243695690f17",
-      "title": "「ハーネス」って結局、何？　みんな使い方が違うAIエージェント用語をHugging Faceが整理",
-      "orig_title": "「ハーネス」って結局、何？　みんな使い方が違うAIエージェント用語をHugging Faceが整理",
-      "summary": "",
-      "url": "https://atmarkit.itmedia.co.jp/ait/articles/2606/01/news016.html",
-      "source": "ITmedia AI+",
-      "category": "AI国内",
-      "genre": "industry",
-      "score": 50.0,
-      "breakdown": {
-        "base": 50.0,
-        "genre_bonus": 0.0,
-        "source_bonus": 0.0,
-        "freshness": 0.0
-      },
-      "thumbnail": "https://image.itmedia.co.jp/ait/articles/2606/01/cover_news016.jpg",
-      "published": "Mon, 01 Jun 2026 05:00:00 +0900"
+      "published": "2026-06-01T12:00:04+00:00"
     }
   ]
 }

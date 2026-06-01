@@ -18,7 +18,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-05-31T23:23:38+00:00"
+      "published": "2026-05-31T23:23:38+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "9424098bd709b28a",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-05-31T16:31:32+00:00"
+      "published": "2026-05-31T16:31:32+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "ddfdd1e8c49b95d8",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/ml-x65wvBWE/hqdefault.jpg",
-      "published": "2026-05-31T18:57:32+00:00"
+      "published": "2026-05-31T18:57:32+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "60b2a673bd328962",
@@ -75,7 +81,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/268553_We_went_looking_for_the_weed_vape_that_gives_you_Bitcoin_for_smoking_CVirginia2.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-05-31T09:00:00-04:00"
+      "published": "2026-05-31T09:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "fd8dce1dac052a15",
@@ -94,7 +102,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/ESGl8Juwytc/hqdefault.jpg",
-      "published": "2026-05-31T10:30:38+00:00"
+      "published": "2026-05-31T10:30:38+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "41bf43b20c564f89",
@@ -113,7 +123,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/wFMLWcTUe-Q/hqdefault.jpg",
-      "published": "2026-05-31T10:00:14+00:00"
+      "published": "2026-05-31T10:00:14+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "849bfadd685a71cc",
@@ -132,7 +144,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://image.itmedia.co.jp/mn/articles/2606/01/cover_news082.jpg",
-      "published": "Mon, 01 Jun 2026 12:45:00 +0900"
+      "published": "Mon, 01 Jun 2026 12:45:00 +0900",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "dc332854d420bb29",
@@ -151,7 +165,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://image.itmedia.co.jp/mn/articles/2606/01/cover_news013.jpg",
-      "published": "Mon, 01 Jun 2026 09:00:00 +0900"
+      "published": "Mon, 01 Jun 2026 09:00:00 +0900",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "9357f8050b3f8abd",
@@ -170,7 +186,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://image.itmedia.co.jp/business/articles/2606/01/cover_news040.jpg",
-      "published": "Mon, 01 Jun 2026 07:00:00 +0900"
+      "published": "Mon, 01 Jun 2026 07:00:00 +0900",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "ef8a243695690f17",
@@ -189,7 +207,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://image.itmedia.co.jp/ait/articles/2606/01/cover_news016.jpg",
-      "published": "Mon, 01 Jun 2026 05:00:00 +0900"
+      "published": "Mon, 01 Jun 2026 05:00:00 +0900",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

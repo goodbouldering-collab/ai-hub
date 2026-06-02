@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "",
-      "published": "2026-06-02T22:21:52+00:00"
+      "published": "2026-06-02T22:21:52+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "cb574ca9914905b4",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/nadella-build-2026.png?quality=90&amp;strip=all&amp;crop=0%2C2.9395307941329%2C100%2C94.120938411734&amp;w=1200",
-      "published": "2026-06-02T15:23:52-04:00"
+      "published": "2026-06-02T15:23:52-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "75a04c728ba52093",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/09/STK466_ELECTION_2024_CVirginia_E.jpg?quality=90&amp;strip=all&amp;crop=0%2C9.9676601489831%2C100%2C80.064679702034&amp;w=1200",
-      "published": "2026-06-02T14:33:42-04:00"
+      "published": "2026-06-02T14:33:42-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "a1df68480d6e7fa9",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25832912/STK095_MICROSOFT_2_CVirginia_A.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-06-02T14:12:44-04:00"
+      "published": "2026-06-02T14:12:44-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "a802da9a6b88d90c",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/Microsoft-Scout.png?quality=90&amp;strip=all&amp;crop=0%2C8.7943183843327%2C100%2C82.411363231335&amp;w=1200",
-      "published": "2026-06-02T14:00:00-04:00"
+      "published": "2026-06-02T14:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "97a154a842a00849",
@@ -113,7 +123,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/0.-Fake-call-detection-header.png?quality=90&amp;strip=all&amp;crop=0%2C3.579433208423%2C100%2C92.841133583154&amp;w=1200",
-      "published": "2026-06-02T14:00:00-04:00"
+      "published": "2026-06-02T14:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "6eeaaf85ecec1a6c",
@@ -132,7 +144,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/projectsolara.jpg?quality=90&amp;strip=all&amp;crop=0%2C3.4613147178592%2C100%2C93.077370564282&amp;w=1200",
-      "published": "2026-06-02T13:31:02-04:00"
+      "published": "2026-06-02T13:31:02-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "2830973e1d7ad7f5",
@@ -151,7 +165,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/Surface-RTX-Spark-Image-4.png?quality=90&amp;strip=all&amp;crop=0%2C3.4686413370787%2C100%2C93.062717325843&amp;w=1200",
-      "published": "2026-06-02T12:30:00-04:00"
+      "published": "2026-06-02T12:30:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "bee6273ed7d5225f",
@@ -170,7 +186,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-06-02T11:59:58-04:00"
+      "published": "2026-06-02T11:59:58-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "e9537be12f06022a",
@@ -189,7 +207,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/Google-Gemini-Spark.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.711701357851%2C100%2C78.576597284297&amp;w=1200",
-      "published": "2026-06-02T08:38:08-04:00"
+      "published": "2026-06-02T08:38:08-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

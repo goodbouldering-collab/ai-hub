@@ -18,7 +18,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/11503853/mdoying_180419_1777_0454_2.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-06-03T13:45:35-04:00"
+      "published": "2026-06-03T13:45:35-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "2e72d004d2727b50",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/amazon-ai-search.png?quality=90&amp;strip=all&amp;crop=0%2C4.865499187579%2C100%2C90.269001624842&amp;w=1200",
-      "published": "2026-06-03T12:07:31-04:00"
+      "published": "2026-06-03T12:07:31-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "f9721fee3ea1d132",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/10/STK178_Satya_Nadella_B.jpg?quality=90&amp;strip=all&amp;crop=0%2C9.9676601489831%2C100%2C80.064679702034&amp;w=1200",
-      "published": "2026-06-03T10:04:00-04:00"
+      "published": "2026-06-03T10:04:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "b56527c706678bee",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-06-03T12:01:27+00:00"
+      "published": "2026-06-03T12:01:27+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "a7bd5e7018372259",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/HlkkKMRBdh0/hqdefault.jpg",
-      "published": "2026-06-03T15:27:36+00:00"
+      "published": "2026-06-03T15:27:36+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "63de1462b15391bf",
@@ -113,7 +123,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/STKS528_DATA_CENTERS_B.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-06-03T05:00:00-04:00"
+      "published": "2026-06-03T05:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "4669904f5b6c2799",
@@ -132,7 +144,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/STKS487_ANTITRUST_2__STK093_GOOGLE.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-06-03T04:45:48-04:00"
+      "published": "2026-06-03T04:45:48-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "85f2a0d252dc9e8b",
@@ -151,7 +165,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/2XHE0Vk940U/hqdefault.jpg",
-      "published": "2026-06-03T11:08:47+00:00"
+      "published": "2026-06-03T11:08:47+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "c229f6dae9906bdb",
@@ -170,7 +186,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/Cge1h_MINM0/hqdefault.jpg",
-      "published": "2026-06-03T10:00:03+00:00"
+      "published": "2026-06-03T10:00:03+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "1d5eafbcb7306fdf",
@@ -189,7 +207,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://images.ctfassets.net/kftzwdyauwt9/3fieJVeKCR31cbZa1xIuNt/adbb14a236da2942035f43ef7b392ca3/GPT-Rosalind_SEO_Card.png?w=1600&amp;h=900&amp;fit=fill",
-      "published": "Wed, 03 Jun 2026 13:15:00 GMT"
+      "published": "Wed, 03 Jun 2026 13:15:00 GMT",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

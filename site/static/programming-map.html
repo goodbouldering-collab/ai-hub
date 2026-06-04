@@ -1479,6 +1479,420 @@
     text-align: center;
   }
   .term-hint-mini .ic { margin-right: 5px; }
+
+  /* ===== 2026 LP refresh: no overflow + modern Codex guide ===== */
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: clip;
+  }
+  img,
+  svg,
+  video,
+  canvas {
+    max-width: 100%;
+    height: auto;
+  }
+  h1,
+  .subtitle,
+  .pm-section-head,
+  .card,
+  .pm-modern-hero,
+  .pm-modern-section {
+    overflow-wrap: anywhere;
+  }
+  .pm-shell,
+  .pm-section-head,
+  .pm-section-toc,
+  .grid,
+  .legend,
+  .freq-legend,
+  .term-toolbar,
+  .pm-agenda,
+  .big-metaphor,
+  .pm-modern-hero,
+  .pm-modern-section {
+    width: min(100%, 1120px);
+    max-width: calc(100vw - 32px);
+  }
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  }
+  .card,
+  .card-header,
+  .card-title-wrap,
+  .item,
+  .prompt-mini,
+  .prompt-card,
+  .ai-stack,
+  .pm-flow,
+  .layer-compare,
+  .term-search {
+    min-width: 0;
+  }
+  .card h2,
+  .item,
+  .prompt-mini code.line,
+  .prompt-card pre,
+  .ai-stack,
+  .pm-flow .step,
+  .layer-compare .lc-old,
+  .layer-compare .lc-new {
+    overflow-wrap: anywhere;
+  }
+  .card-type-badges {
+    flex-wrap: wrap;
+  }
+  .progress-bar {
+    flex-wrap: wrap;
+    row-gap: 10px;
+  }
+  .progress-line {
+    flex: 0 1 46px;
+  }
+  .prompt-mini-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  }
+  .big-metaphor .bm-figure {
+    overflow: hidden;
+  }
+  .big-metaphor svg {
+    min-width: 0 !important;
+    width: 100%;
+    height: auto;
+  }
+  .ai-stack svg,
+  .git-visual svg,
+  .pipeline svg,
+  .finish-diagram svg,
+  .security-diagram svg {
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100%;
+    height: auto;
+  }
+  .git-visual,
+  .pipeline,
+  .finish-diagram,
+  .ai-stack,
+  .security-diagram,
+  .pm-flow {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  .pm-flow {
+    flex-wrap: wrap;
+  }
+  .pipeline {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+  .pipe-step {
+    flex: 0 1 78px;
+  }
+  .pipe-name {
+    white-space: normal;
+    line-height: 1.35;
+  }
+  .pm-modern-hero {
+    margin: 28px auto 22px;
+    padding: clamp(24px, 4vw, 42px);
+    color: #0f172a;
+    background:
+      linear-gradient(135deg, rgba(255,255,255,.98), rgba(239,246,255,.98) 54%, rgba(240,253,250,.98)),
+      repeating-linear-gradient(90deg, rgba(37,99,235,.08) 0 1px, transparent 1px 28px);
+    border: 1px solid rgba(37,99,235,.18);
+    border-radius: 24px;
+    box-shadow: 0 24px 60px rgba(15,23,42,.10);
+  }
+  .pm-modern-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(280px, .75fr);
+    gap: clamp(18px, 4vw, 34px);
+    align-items: center;
+  }
+  .pm-modern-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: #0f172a;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .08em;
+  }
+  .pm-modern-hero h2 {
+    margin: 0 0 12px;
+    font-size: clamp(28px, 5vw, 54px);
+    line-height: 1.08;
+    letter-spacing: 0;
+    color: #0f172a;
+  }
+  .pm-modern-hero .lead {
+    margin: 0;
+    color: #334155;
+    font-size: clamp(16px, 2vw, 20px);
+    line-height: 1.8;
+  }
+  .pm-modern-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 22px;
+  }
+  .pm-modern-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 800;
+    text-decoration: none;
+    border: 1px solid #cbd5e1;
+    color: #0f172a;
+    background: #fff;
+  }
+  .pm-modern-btn.primary {
+    color: #fff;
+    border-color: #2563eb;
+    background: linear-gradient(135deg, #2563eb, #0f766e);
+    box-shadow: 0 10px 24px rgba(37,99,235,.22);
+  }
+  .pm-hero-panel {
+    padding: 16px;
+    border-radius: 18px;
+    background: #0f172a;
+    color: #e2e8f0;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+  }
+  .pm-hero-panel h3 {
+    margin: 0 0 12px;
+    color: #fff;
+    font-size: 17px;
+  }
+  .pm-signal-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .pm-signal {
+    min-height: 106px;
+    padding: 12px;
+    border-radius: 14px;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.12);
+  }
+  .pm-signal b {
+    display: block;
+    color: #fff;
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+  .pm-signal span {
+    display: block;
+    color: #cbd5e1;
+    font-size: 12.5px;
+    line-height: 1.55;
+  }
+  .pm-modern-section {
+    margin: 0 auto 28px;
+    padding: clamp(22px, 4vw, 34px);
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 22px;
+    box-shadow: 0 14px 40px rgba(15,23,42,.08);
+  }
+  .pm-modern-section h2 {
+    margin: 0 0 8px;
+    font-size: clamp(24px, 4vw, 36px);
+    line-height: 1.2;
+    color: #0f172a;
+  }
+  .pm-modern-section .section-lead {
+    margin: 0 0 20px;
+    color: #475569;
+    font-size: 15.5px;
+    line-height: 1.85;
+  }
+  .pm-modern-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .pm-modern-card {
+    padding: 16px;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    background: linear-gradient(180deg, #fff, #f8fafc);
+  }
+  .pm-modern-card h3 {
+    margin: 0 0 8px;
+    color: #0f172a;
+    font-size: 18px;
+    line-height: 1.35;
+  }
+  .tool-label {
+    display: inline-flex;
+    margin-bottom: 10px;
+    padding: 4px 9px;
+    border-radius: 999px;
+    background: #ecfeff;
+    color: #0e7490;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .06em;
+  }
+  .pm-modern-card p,
+  .pm-modern-card li {
+    color: #475569;
+    font-size: 13.5px;
+    line-height: 1.7;
+  }
+  .pm-modern-card ul {
+    margin: 10px 0 0;
+    padding-left: 18px;
+  }
+  .pm-modern-card.codex { border-top: 4px solid #2563eb; }
+  .pm-modern-card.claude { border-top: 4px solid #d97706; }
+  .pm-modern-card.vscode { border-top: 4px solid #0d9488; }
+  .pm-modern-card.creative { border-top: 4px solid #db2777; }
+  .pm-modern-card.plugins { border-top: 4px solid #7c3aed; }
+  .pm-modern-card.review { border-top: 4px solid #16a34a; }
+  .pm-modern-compare {
+    display: grid;
+    grid-template-columns: 130px repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    margin: 18px 0;
+    padding: 12px;
+    border-radius: 16px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+  }
+  .pm-modern-compare div {
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: #fff;
+    color: #475569;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .pm-modern-compare b {
+    display: block;
+    color: #0f172a;
+    margin-bottom: 3px;
+  }
+  .pm-modern-compare .head {
+    background: #0f172a;
+    color: #fff;
+    font-weight: 800;
+  }
+  .pm-plugin-grid {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 12px;
+  }
+  .pm-plugin-chip {
+    min-height: 118px;
+    padding: 12px;
+    border-radius: 14px;
+    background: #faf5ff;
+    border: 1px solid #e9d5ff;
+  }
+  .pm-plugin-chip b {
+    display: block;
+    color: #581c87;
+    font-size: 13.5px;
+    margin-bottom: 5px;
+  }
+  .pm-plugin-chip span {
+    display: block;
+    color: #475569;
+    font-size: 12px;
+    line-height: 1.55;
+  }
+  .pm-modern-workflow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .pm-modern-workflow span {
+    padding: 8px 11px;
+    border-radius: 999px;
+    background: #f1f5f9;
+    color: #334155;
+    font-size: 12.5px;
+    font-weight: 700;
+  }
+  @media (max-width: 900px) {
+    .pm-modern-hero-grid,
+    .pm-modern-grid {
+      grid-template-columns: 1fr;
+    }
+    .pm-plugin-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .pm-modern-compare {
+      grid-template-columns: 1fr;
+    }
+    .pm-modern-compare .head {
+      display: none;
+    }
+  }
+  @media (max-width: 720px) {
+    body {
+      padding: 86px 14px 72px;
+    }
+    .progress-line {
+      display: none;
+    }
+    .progress-bar {
+      justify-content: center;
+      gap: 10px 8px;
+      margin-bottom: 32px;
+    }
+    .progress-step {
+      width: 70px;
+    }
+    .pipeline {
+      gap: 10px;
+    }
+    .pipe-arrow {
+      display: none;
+    }
+    .card {
+      padding: 18px;
+      border-radius: 14px;
+    }
+    .card-header,
+    .item {
+      align-items: flex-start;
+    }
+    .item {
+      flex-direction: column;
+    }
+    .item-left {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    .pm-signal-grid,
+    .pm-plugin-grid {
+      grid-template-columns: 1fr;
+    }
+    .pm-modern-actions {
+      display: grid;
+    }
+    .pm-modern-btn {
+      width: 100%;
+    }
+  }
 </style>
 </head>
 <body>
@@ -1509,6 +1923,145 @@
 
 <h1 id="top">プログラミングマップ</h1>
 <p class="subtitle">環境構築 → 開発 → Git管理 → テスト → デプロイ → 運用監視 → AI時代の手法</p>
+
+<section class="pm-modern-hero" aria-labelledby="pm-modern-title">
+  <div class="pm-modern-hero-grid">
+    <div>
+      <div class="pm-modern-kicker">2026 UPDATE / AI開発の現在地</div>
+      <h2 id="pm-modern-title">コードを書く前に、AIと制作の地図を持つ。</h2>
+      <p class="lead">
+        このページは「HTMLやReactの用語集」だけではありません。Codexアプリ、Claude Code、VS Code、Creative Production、プラグイン連携まで含めて、今の制作現場でどう使い分けるかを大きな文字と図解で整理します。
+      </p>
+      <div class="pm-modern-actions" aria-label="主要セクション">
+        <a class="pm-modern-btn primary" href="#pm-modern-ai">今のAI開発を先に見る</a>
+        <a class="pm-modern-btn" href="#sec-ccode">Claude Code詳説</a>
+        <a class="pm-modern-btn" href="#part-1">基礎から順に見る</a>
+      </div>
+    </div>
+    <div class="pm-hero-panel" aria-label="このページでできるようになること">
+      <h3>最初に押さえる4つ</h3>
+      <div class="pm-signal-grid">
+        <div class="pm-signal"><b>作る</b><span>VS Codeとローカル環境で、ファイル・ターミナル・Gitを扱う。</span></div>
+        <div class="pm-signal"><b>任せる</b><span>CodexやClaude Codeに、実装・修正・レビューを依頼する。</span></div>
+        <div class="pm-signal"><b>見せる</b><span>LP、講習資料、動画、図解を制作物として整える。</span></div>
+        <div class="pm-signal"><b>広げる</b><span>プラグインでCanva、Figma、GitHub、Browserなどへ接続する。</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pm-modern-ai" class="pm-modern-section" aria-labelledby="pm-modern-ai-title">
+  <h2 id="pm-modern-ai-title">Codex・Claude Code・VS Codeを混同しない</h2>
+  <p class="section-lead">
+    初心者がつまずきやすいのは「AIに頼む場所」と「実際のファイルがある場所」が分かれたり重なったりすることです。まずは、下の4層で覚えると迷いません。
+  </p>
+
+  <div class="pm-modern-compare" role="table" aria-label="AI開発ツールの比較">
+    <div class="head">項目</div>
+    <div class="head">VS Code</div>
+    <div class="head">Claude Code</div>
+    <div class="head">Codexアプリ</div>
+    <div><b>一言で</b></div>
+    <div><b>作業机</b>ファイル編集、ターミナル、Git、拡張機能を開く場所。</div>
+    <div><b>実装エージェント</b>CLIやエディタから、コードベースを読んで作業するAI。</div>
+    <div><b>制作司令室</b>会話、worktree、レビュー、ブラウザ確認、プラグインをまとめて扱う場所。</div>
+    <div><b>得意な依頼</b></div>
+    <div>人が直接ファイルを見て直す。細かい確認、手作業、拡張機能の利用。</div>
+    <div>リポジトリ内の調査、実装、テスト、HooksやMCPを使う自動化。</div>
+    <div>要件整理、画面制作、独立レビュー、成果物化、別ツール連携。</div>
+    <div><b>初心者向けの考え方</b></div>
+    <div>「どのファイルを触っているか」を見る場所。</div>
+    <div>「コード作業をAIに進めてもらう」場所。</div>
+    <div>「プロジェクト全体をAIと一緒に進める」場所。</div>
+  </div>
+
+  <div class="pm-modern-grid">
+    <article class="pm-modern-card codex">
+      <span class="tool-label">CODEX APP</span>
+      <h3>Codexアプリは、開発と制作の管理画面</h3>
+      <p>Codexは単なるチャットではなく、ローカルのプロジェクト、ブラウザ確認、画像や資料生成、Git作業、独立レビューを同じ流れで扱うためのアプリです。</p>
+      <ul>
+        <li><b>worktree</b>: 変更を分けて試すための作業コピー。安全に別案を作れる。</li>
+        <li><b>独立レビュー</b>: 実装した本人とは別視点で、バグや分かりにくさを確認する使い方。</li>
+        <li><b>成果物化</b>: HTML、LP、講習資料、動画、画像を保存して確認できる。</li>
+      </ul>
+    </article>
+
+    <article class="pm-modern-card claude">
+      <span class="tool-label">CLAUDE CODE</span>
+      <h3>Claude Codeは、コードベース内で働く実装担当</h3>
+      <p>Claude Codeはターミナルやエディタに近い場所で動き、ファイルを読み、コマンドを実行し、修正を繰り返すAI開発者です。</p>
+      <ul>
+        <li><b>CLAUDE.md</b>: プロジェクトごとの作業ルール。</li>
+        <li><b>Hooks</b>: 作業前後にlintや通知などを自動実行する仕組み。</li>
+        <li><b>MCP</b>: GitHub、Supabase、Figmaなど外部ツールへの接続口。</li>
+      </ul>
+    </article>
+
+    <article class="pm-modern-card vscode">
+      <span class="tool-label">VS CODE</span>
+      <h3>VS Codeは、現場のファイルと実行結果を見る場所</h3>
+      <p>VS CodeはAIそのものではなく、コードを書くための統合開発環境です。AIが直した内容も、最終的にはVS Code上のファイルとして存在します。</p>
+      <ul>
+        <li>エクスプローラーでファイル構造を見る。</li>
+        <li>ターミナルで <code>npm run dev</code> やビルドを動かす。</li>
+        <li>Git差分で「何が変わったか」を確認する。</li>
+      </ul>
+    </article>
+
+    <article class="pm-modern-card creative">
+      <span class="tool-label">CREATIVE PRODUCTION</span>
+      <h3>Creative Productionは、コード以外の制作物まで広げる発想</h3>
+      <p>今のCodex活用は、アプリ開発だけで終わりません。LP、講習資料、図解、動画、サムネイル、SNS素材まで、同じプロジェクトの成果物として作れます。</p>
+      <ul>
+        <li>教材LPを作り、ブラウザで見た目を確認する。</li>
+        <li>講習スライドや動画台本を同じ内容から作る。</li>
+        <li>Canva、Figma、Remotion、HeyGenなどへ必要に応じて接続する。</li>
+      </ul>
+    </article>
+
+    <article class="pm-modern-card plugins">
+      <span class="tool-label">PLUGINS</span>
+      <h3>プラグインは、Codexに専門道具を追加する仕組み</h3>
+      <p>プラグインを入れると、Codexが使える作業手順や外部接続が増えます。「AIが賢くなる」というより、専門の道具箱が増えると考えると分かりやすいです。</p>
+      <ul>
+        <li>Browserでローカルページを開いて確認する。</li>
+        <li>GitHubでPRやIssueを扱う。</li>
+        <li>VercelやSupabaseの実運用に接続する。</li>
+      </ul>
+    </article>
+
+    <article class="pm-modern-card review">
+      <span class="tool-label">NO-CODE EXPECTATION</span>
+      <h3>「ノーコードで全部」ではなく、AIに作業単位で任せる</h3>
+      <p>初心者でも始めやすい理由は、コードを一字一句覚える前に「何を作りたいか」を日本語で伝え、AIがファイル変更と検証まで進められるからです。</p>
+      <ul>
+        <li>小さな画面修正から依頼する。</li>
+        <li>できたものをブラウザで見て、言葉で直す。</li>
+        <li>公開前にレビューで不具合や説明不足を探す。</li>
+      </ul>
+    </article>
+  </div>
+
+  <h2 style="margin-top:28px;">プラグインの6種類を先に覚える</h2>
+  <p class="section-lead">「フックがあります」「プラグインを使う」と表示されても怖くないように、Codex/Claude Code周辺でよく出る6分類を先に押さえます。</p>
+  <div class="pm-plugin-grid" aria-label="プラグイン6分類">
+    <div class="pm-plugin-chip"><b>1. Skills</b><span>作業手順書。動画制作、ドキュメント作成、レビューなどの進め方をAIに渡す。</span></div>
+    <div class="pm-plugin-chip"><b>2. Hooks</b><span>作業の前後に自動で走る処理。lint、通知、保存、検査など。</span></div>
+    <div class="pm-plugin-chip"><b>3. MCP</b><span>外部サービスへの接続口。GitHub、Figma、Supabaseなどを扱える。</span></div>
+    <div class="pm-plugin-chip"><b>4. Apps</b><span>CanvaやGmailのようなアプリ連携。ログイン済みサービスを使う入口。</span></div>
+    <div class="pm-plugin-chip"><b>5. Assets</b><span>テンプレート、画像、台本、スライド素材など、制作で再利用する部品。</span></div>
+    <div class="pm-plugin-chip"><b>6. Scripts</b><span>何度も使う処理をコマンド化したもの。変換、ビルド、検査、書き出しに使う。</span></div>
+  </div>
+  <div class="pm-modern-workflow" aria-label="制作フロー">
+    <span>要件を日本語で整理</span>
+    <span>Codexで実装</span>
+    <span>Browserで確認</span>
+    <span>Creative Productionで教材化</span>
+    <span>レビューで初心者目線を確認</span>
+    <span>必要ならGitHub/Vercelへ公開</span>
+  </div>
+</section>
 
 <div class="term-hint">
   <span class="ic">💡</span>各カードの<strong>用語タグ</strong>をタップ／クリックすると、詳しい解説・使いどころ・関連用語が開きます
@@ -1593,6 +2146,7 @@
 <aside class="pm-agenda" aria-label="本日の流れ">
   <h3>📚 本日の流れ</h3>
   <ol>
+    <li><a href="#pm-modern-ai"><span class="num">0</span>2026年版：Codex / Claude Code / VS Code / プラグイン</a></li>
     <li><a href="#part-1"><span class="num">1</span>環境（OS / ランタイム / フレームワーク）</a></li>
     <li><a href="#part-2"><span class="num">2</span>開発（コーディング / Git / テスト）</a></li>
     <li><a href="#part-3"><span class="num">3</span>公開・運用（Deploy / DB / SEO / 監視）</a></li>

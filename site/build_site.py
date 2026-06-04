@@ -260,8 +260,8 @@ FAVICON_HEAD_HTML = (
     "<link rel='icon' type='image/svg+xml' href='/favicon.svg'>"
     "<link rel='alternate icon' type='image/svg+xml' href='/favicon.svg'>"
     "<link rel='apple-touch-icon' href='/apple-touch-icon.svg'>"
-    "<link rel='mask-icon' href='/favicon.svg' color='#7aa2ff'>"
-    "<meta name='theme-color' content='#0d1126'>"
+    "<link rel='mask-icon' href='/favicon.svg' color='#0EA5E9'>"
+    "<meta name='theme-color' content='#F7FBFF'>"
 )
 
 # top_buttons の中で `localhost_only: true` のリンクは
@@ -1763,7 +1763,12 @@ def _load_teaching_sections(lecture_md_items: list[dict]) -> list[dict]:
                     sec_copy = {k: v for k, v in sec.items() if k != "source"}
                     # YAML 側に追加 items があれば結合（lectures-md + 手動アイテム）
                     extra_items = sec.get("items") or []
-                    sec_copy["items"] = list(lecture_md_items) + list(extra_items)
+                    priority_items = [
+                        item for item in extra_items
+                        if str(item.get("href", "")).strip().lstrip("./") == "programming-map.html"
+                    ]
+                    other_extra_items = [item for item in extra_items if item not in priority_items]
+                    sec_copy["items"] = priority_items + list(lecture_md_items) + other_extra_items
                     resolved.append(sec_copy)
                 else:
                     resolved.append(sec)
@@ -2244,6 +2249,7 @@ def _patch_programming_map_nav(pmap_file: Path) -> None:
         "<nav class='pm-chapter-toc' aria-label='ページ内目次'>"
         "<span class='pm-toc-label'>📖 章立て</span>"
         "<a href='#top'>🗺 全体</a>"
+        "<a href='#pm-modern-ai'>✨ 2026 AI制作</a>"
         "<a href='#part-1'>① 環境</a>"
         "<a href='#part-2'>② 開発</a>"
         "<a href='#part-3'>③ 公開・運用</a>"

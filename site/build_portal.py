@@ -59,8 +59,8 @@ FAVICON_HEAD_HTML = (
     "<link rel='icon' type='image/svg+xml' href='/favicon.svg'>"
     "<link rel='alternate icon' type='image/svg+xml' href='/favicon.svg'>"
     "<link rel='apple-touch-icon' href='/apple-touch-icon.svg'>"
-    "<link rel='mask-icon' href='/favicon.svg' color='#7aa2ff'>"
-    "<meta name='theme-color' content='#0d1126'>"
+    "<link rel='mask-icon' href='/favicon.svg' color='#0EA5E9'>"
+    "<meta name='theme-color' content='#F7FBFF'>"
 )
 
 ADMIN_BUTTON_HTML = """
@@ -342,58 +342,61 @@ def _load_all_lectures() -> list[dict]:
 
 
 PORTAL_CSS = """
-/* ===== Obsidian Solid (案A: ダーク高級ミニマル + ブルータリズム) =====
-   デフォルトをオブシディアン・ダークに。アクセントはシアン #6E8BFF 単色。
-   data-theme="light" で明るいバリアントに切替可能（トグルは維持）。 */
+/* ===== Light Hub System =====
+   明るいベースに、AIらしいシアン/ブルーと発見感のあるライムを混ぜる。 */
 :root {
   /* ===== デフォルト=ライト（初心者に「難しそう」を与えない）。dark は data-theme=dark で。 ===== */
   /* --- 共有トークン（テーマ非依存） --- */
-  --emerald: #15B886;
-  --amber: #E0A93B;
-  --pink: #C77DFF;
+  --cyan: #0EA5E9;
+  --blue: #2563EB;
+  --lime: #A3E635;
+  --emerald: #10B981;
+  --amber: #F59E0B;
+  --pink: #EC4899;
   --glass-blur: 22px;
-  --radius: 20px;                            /* カード角丸（やわらかく） */
-  --radius-sm: 14px;
+  --radius: 18px;
+  --radius-sm: 12px;
   --serif: "Inter", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
   --mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
-  /* --- ライト配色（しっとり: 純黒を避け深墨、影は2層拡散） --- */
-  --bg-base: #F6F7FB;
+  --bg-base: #F4F8FC;
   --bg-white: #FFFFFF;
   --bg-elev: #FFFFFF;
-  --text: #1A1D2E;           /* 純黒を避けた深墨（やわらかい対比） */
-  --text-soft: #46506A;
-  --muted: #5A6478;
-  --line: rgba(26,29,46,0.09);
-  --line-strong: rgba(26,29,46,0.15);
-  --primary: #5468FF;        /* インディゴ・ブルー */
-  --primary-soft: #6E8BFF;
-  --violet: #8B5CF6;
-  --primary-bg: rgba(84,104,255,0.07);
-  --grad: linear-gradient(120deg, #5468FF 0%, #8B5CF6 55%, #C77DFF 100%);
-  --grad-soft: linear-gradient(120deg, rgba(84,104,255,.10), rgba(199,125,255,.08));
-  --glass-bg: rgba(255,255,255,0.78);
-  --glass-border: rgba(26,29,46,0.09);
-  --glass-hi: rgba(255,255,255,0.70);
-  --shadow-card: 0 2px 8px rgba(26,29,46,0.04), 0 16px 48px rgba(26,29,46,0.07);
-  --shadow-card-hover: 0 6px 16px rgba(26,29,46,0.06), 0 28px 72px rgba(26,29,46,0.13), 0 0 0 1px rgba(84,104,255,0.16);
-  --glow: 0 0 50px rgba(84,104,255,0.18);
+  --text: #111827;
+  --text-soft: #334155;
+  --muted: #64748B;
+  --line: rgba(15,23,42,0.10);
+  --line-strong: rgba(15,23,42,0.18);
+  --primary: #2563EB;
+  --primary-soft: #0EA5E9;
+  --violet: #7C3AED;
+  --primary-bg: rgba(14,165,233,0.09);
+  --grad: linear-gradient(120deg, #0EA5E9 0%, #2563EB 48%, #22C55E 100%);
+  --grad-soft: linear-gradient(120deg, rgba(14,165,233,.12), rgba(34,197,94,.10));
+  --glass-bg: rgba(255,255,255,0.84);
+  --glass-border: rgba(15,23,42,0.10);
+  --glass-hi: rgba(255,255,255,0.86);
+  --shadow-card: 0 2px 8px rgba(15,23,42,0.04), 0 18px 56px rgba(15,23,42,0.08);
+  --shadow-card-hover: 0 8px 18px rgba(15,23,42,0.07), 0 30px 78px rgba(37,99,235,0.15), 0 0 0 1px rgba(14,165,233,0.20);
+  --glow: 0 0 50px rgba(14,165,233,0.22);
+  --grad-glow-a: rgba(14,165,233,.16);
+  --grad-glow-b: rgba(34,197,94,.12);
+  --grad-glow-c: rgba(245,158,11,.08);
 }
 :root[data-theme="dark"] {
-  /* ===== しっとりした深夜色（ただの黒でなく藍みの墨）× 青→紫グラデ発光 ===== */
-  --bg-base: #0C0E18;        /* 藍の深みを持つ墨色（B が R/G の約2倍） */
-  --bg-white: #111422;       /* 濡れた舗装の深夜色 */
-  --bg-elev: #171A2B;        /* カード面・暗室の作業台 */
-  --text: #E8EAF2;           /* わずかに紫みのクリーム（温かみのある対比） */
+  --bg-base: #0B1120;
+  --bg-white: #111827;
+  --bg-elev: #162033;
+  --text: #E8F2FF;
   --text-soft: #A6AEC4;
   --muted: #707A92;
   --line: rgba(255,255,255,0.07);
   --line-strong: rgba(255,255,255,0.13);
-  --primary: #6E8BFF;
-  --primary-soft: #8AA0FF;
-  --violet: #9B7BFF;
-  --primary-bg: rgba(110,139,255,0.10);
-  --grad: linear-gradient(120deg, #6E8BFF 0%, #9B7BFF 55%, #C77DFF 100%);
-  --grad-soft: linear-gradient(120deg, rgba(110,139,255,.16), rgba(199,125,255,.14));
+  --primary: #38BDF8;
+  --primary-soft: #7DD3FC;
+  --violet: #A78BFA;
+  --primary-bg: rgba(56,189,248,0.12);
+  --grad: linear-gradient(120deg, #38BDF8 0%, #60A5FA 48%, #86EFAC 100%);
+  --grad-soft: linear-gradient(120deg, rgba(56,189,248,.16), rgba(134,239,172,.14));
   --emerald: #5BE0B0;
   --glass-bg: rgba(23,26,43,0.64);
   --glass-border: rgba(255,255,255,0.09);
@@ -401,10 +404,9 @@ PORTAL_CSS = """
   --shadow-card: 0 2px 10px rgba(0,0,0,0.24), 0 18px 50px rgba(0,0,0,0.40);
   --shadow-card-hover: 0 6px 20px rgba(0,0,0,0.30), 0 30px 76px rgba(0,0,0,0.52), 0 0 0 1px rgba(139,160,255,0.20);
   --glow: 0 0 60px rgba(110,139,255,0.32);
-  /* ダークは発光をやや強めに（深夜の灯り） */
-  --grad-glow-a: rgba(110,139,255,.20);
-  --grad-glow-b: rgba(199,125,255,.14);
-  --grad-glow-c: rgba(155,123,255,.10);
+  --grad-glow-a: rgba(56,189,248,.22);
+  --grad-glow-b: rgba(134,239,172,.14);
+  --grad-glow-c: rgba(245,158,11,.08);
 }
 :root { color-scheme: light; }
 :root[data-theme="dark"] { color-scheme: dark; }
@@ -484,6 +486,34 @@ header.site-header.scrolled {
   display: inline-flex; align-items: center; gap: 8px;
 }
 .site-logo .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--grad); box-shadow: 0 0 12px rgba(139,160,255,.6); display: inline-block; }
+.brand-mark {
+  width: 34px; height: 34px; border-radius: 10px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, #E0F7FF 0%, #FFFFFF 52%, #ECFCCB 100%);
+  border: 1px solid rgba(14,165,233,.22);
+  box-shadow: 0 10px 30px rgba(14,165,233,.20), inset 0 1px 0 rgba(255,255,255,.9);
+  color: #0F172A; font-family: var(--mono); font-weight: 900; line-height: 1;
+}
+.brand-mark .brand-a { font-size: 16px; letter-spacing: -.08em; color: #2563EB; }
+.brand-mark .brand-ha { font-size: 16px; margin-left: -2px; color: #10B981; transform: translateY(1px); }
+.wordmark {
+  display: inline-flex; align-items: baseline; gap: 3px;
+  font-weight: 900; letter-spacing: 0;
+}
+.wordmark .word-ai {
+  font-family: var(--mono); color: var(--primary); letter-spacing: -.04em;
+}
+.wordmark .word-hub {
+  color: var(--text); font-weight: 900;
+}
+.wordmark .word-en {
+  margin-left: 8px; color: var(--muted); font-family: var(--mono);
+  font-size: 11px; font-weight: 700; letter-spacing: .08em;
+}
+.site-logo-by { color: var(--muted); font-weight: 600; font-size: 12px; margin-left: 4px; }
+@media (max-width: 720px) {
+  .wordmark .word-en, .site-logo-by { display: none; }
+}
 .site-nav { display: flex; align-items: center; gap: 22px; }
 .site-nav a.nav-link {
   font-size: 13.5px; font-weight: 600; color: var(--text-soft);
@@ -567,8 +597,8 @@ header.site-header.scrolled {
 
 /* ---- hero ---- */
 .hero {
-  padding: 32px 0 64px;
-  display: grid; grid-template-columns: 1.05fr 1fr; gap: 48px; align-items: start;
+  padding: 36px 0 54px;
+  display: grid; grid-template-columns: minmax(0, 1.02fr) minmax(380px, .92fr); gap: 44px; align-items: center;
   position: relative;
 }
 .hero-text { text-align: left; min-width: 0; max-width: 100%; }
@@ -591,8 +621,8 @@ header.site-header.scrolled {
   }
 }
 .hero h1 {
-  margin: 20px 0 16px; font-size: clamp(40px, 6.4vw, 72px);
-  font-family: var(--serif); font-weight: 800; letter-spacing: -.03em;
+  margin: 20px 0 14px; font-size: clamp(42px, 6.2vw, 76px);
+  font-family: var(--serif); font-weight: 900; letter-spacing: 0;
   color: var(--text); line-height: 1.12;
   overflow-wrap: anywhere; word-break: normal;
 }
@@ -607,6 +637,30 @@ header.site-header.scrolled {
   content:''; position: absolute; left: 0; right: 0; bottom: 2px; height: 8px;
   background: var(--grad); opacity: .35;
   border-radius: 999px; z-index: -1; filter: blur(2px);
+}
+.hero-brand { display: block; max-width: 680px; }
+.fusion-logo-large {
+  display: inline-flex; align-items: baseline; gap: .08em;
+  letter-spacing: 0;
+}
+.fusion-logo-large .ai {
+  font-family: var(--mono); color: var(--primary); letter-spacing: -.08em;
+}
+.fusion-logo-large .hub {
+  color: var(--text); letter-spacing: -.03em;
+}
+.fusion-logo-large .pipe {
+  font-family: var(--mono); color: rgba(14,165,233,.45);
+  font-size: .62em; margin: 0 .08em; transform: translateY(-.08em);
+}
+.hero-title-sub {
+  display: block; margin-top: 8px;
+  font-size: clamp(22px, 2.7vw, 34px);
+  line-height: 1.28; color: var(--text-soft); letter-spacing: 0;
+}
+.hero-title-sub strong {
+  color: transparent; background: var(--grad);
+  -webkit-background-clip: text; background-clip: text;
 }
 .hero .sub-catch {
   max-width: 560px; margin: 0 0 18px;
@@ -640,6 +694,32 @@ header.site-header.scrolled {
 .hero-trust li { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
 .hero-trust strong { color: var(--text); }
 @media (max-width: 900px) { .hero-trust { justify-content: center; } }
+
+.hero-entry-strip {
+  margin-top: 22px;
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px; max-width: 620px;
+}
+.entry-chip {
+  min-height: 74px; padding: 12px;
+  border-radius: 16px; border: 1px solid var(--line);
+  background: rgba(255,255,255,.74);
+  text-decoration: none; color: var(--text);
+  display: flex; flex-direction: column; justify-content: center; gap: 4px;
+  transition: transform .18s ease, border-radius .28s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.entry-chip:hover,
+.entry-chip:focus-visible {
+  transform: translateY(-3px);
+  border-radius: 24px;
+  border-color: rgba(14,165,233,.42);
+  box-shadow: 0 18px 42px rgba(14,165,233,.14);
+  background: #fff;
+  outline: none;
+}
+.entry-chip b { font-size: 13.5px; line-height: 1.25; }
+.entry-chip span { font-size: 11.5px; color: var(--muted); line-height: 1.35; }
+@media (max-width: 680px) { .hero-entry-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 /* ヒーロー直下の補助金訴求バナー（advisor推奨の最優先軸を front-and-center に） */
 .hero-subsidy-banner {
@@ -725,7 +805,7 @@ header.site-header.scrolled {
 /* モバイル: SVGをヒーロー最上部の背景に敷き、その上にテキストを重ねる */
 @media (max-width: 900px) {
   .hero { padding-top: 8px; position: relative; }
-  .hero-visual {
+  .hero-visual:not(.hub-visual) {
     position: absolute; top: 0; left: 0; right: 0; transform: none;
     width: 100%; max-width: none; aspect-ratio: auto; height: 360px;
     border-radius: 0; box-shadow: none; z-index: 0; opacity: .92;
@@ -734,9 +814,10 @@ header.site-header.scrolled {
     pointer-events: none;
   }
   .hero-svg { object-fit: cover; }  /* 人物が中央に来るよう全幅カバー */
-  .hero-visual:hover { transform: none; }
-  .hero-visual .hero-flow { display: none; }  /* 背景化時は3ステップ帯を隠す */
-  .hero-text { position: relative; z-index: 1; padding-top: 250px; }
+  .hero-visual:not(.hub-visual):hover { transform: none; }
+  .hero-visual:not(.hub-visual) .hero-flow { display: none; }  /* 背景化時は3ステップ帯を隠す */
+  .hero-text { position: relative; z-index: 1; }
+  .hero:has(.hero-visual:not(.hub-visual)) .hero-text { padding-top: 250px; }
 }
 .hero-visual:hover { transform: translateY(-4px); }
 .hero-visual img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s ease; }
@@ -747,6 +828,103 @@ header.site-header.scrolled {
     linear-gradient(160deg, rgba(110,139,255,.10) 0%, rgba(199,125,255,.12) 50%, transparent 70%),
     linear-gradient(0deg, rgba(11,13,20,.40) 0%, rgba(11,13,20,0) 42%);
   pointer-events: none;
+}
+.hub-visual {
+  aspect-ratio: 1 / 1; max-width: 500px; min-height: 0;
+  padding: 22px; justify-self: end;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.92), rgba(240,249,255,.88)),
+    radial-gradient(70% 70% at 80% 10%, rgba(163,230,53,.16), transparent 70%);
+  box-shadow: 0 28px 80px rgba(15,23,42,.12), 0 0 0 1px rgba(14,165,233,.14);
+}
+.hub-visual::before {
+  content:''; position: absolute; inset: 64px; z-index: 0;
+  background:
+    linear-gradient(90deg, transparent 49%, rgba(14,165,233,.18) 49.5%, rgba(14,165,233,.18) 50.5%, transparent 51%),
+    linear-gradient(0deg, transparent 49%, rgba(34,197,94,.16) 49.5%, rgba(34,197,94,.16) 50.5%, transparent 51%);
+  border-radius: 32px; pointer-events: none;
+}
+.hub-visual::after { display: none; }
+.hub-core {
+  position: absolute; z-index: 2; inset: 50%; width: 168px; height: 168px;
+  transform: translate(-50%, -50%);
+  border-radius: 42px;
+  background: linear-gradient(145deg, #FFFFFF, #E0F7FF 62%, #ECFCCB);
+  border: 1px solid rgba(14,165,233,.20);
+  box-shadow: 0 24px 58px rgba(37,99,235,.16), inset 0 1px 0 rgba(255,255,255,.95);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center;
+  transition: border-radius .45s cubic-bezier(.22,1,.36,1), transform .45s cubic-bezier(.22,1,.36,1);
+}
+.hub-visual:hover .hub-core { border-radius: 58px; transform: translate(-50%, -50%) scale(1.03); }
+.hub-core-logo {
+  display: inline-flex; align-items: baseline; gap: 3px;
+  font-size: 28px; font-weight: 900; line-height: 1;
+}
+.hub-core-logo .ai { font-family: var(--mono); color: var(--primary); letter-spacing: -.08em; }
+.hub-core-logo .hub { color: var(--text); letter-spacing: -.03em; }
+.hub-core small { margin-top: 10px; color: var(--text-soft); font-size: 12px; font-weight: 700; line-height: 1.35; }
+.hub-route {
+  position: absolute; z-index: 3;
+  width: 178px; min-height: 116px;
+  padding: 16px;
+  border-radius: 24px;
+  background: rgba(255,255,255,.86);
+  border: 1px solid rgba(15,23,42,.10);
+  box-shadow: 0 14px 42px rgba(15,23,42,.08);
+  text-decoration: none; color: var(--text);
+  display: flex; flex-direction: column; justify-content: center; gap: 6px;
+  transition: transform .22s ease, border-radius .34s cubic-bezier(.22,1,.36,1), border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.hub-route:hover,
+.hub-route:focus-visible {
+  transform: translateY(-5px) scale(1.02);
+  border-radius: 32px;
+  border-color: rgba(14,165,233,.42);
+  background: #fff;
+  box-shadow: 0 24px 58px rgba(14,165,233,.16);
+  outline: none;
+}
+.hub-route .route-kicker {
+  font-family: var(--mono); font-size: 10px; font-weight: 800; letter-spacing: .10em;
+  color: var(--primary-soft);
+}
+.hub-route b { font-size: 18px; line-height: 1.25; }
+.hub-route small { font-size: 12px; color: var(--muted); line-height: 1.45; }
+.route-consult { top: 22px; left: 22px; }
+.route-works { top: 22px; right: 22px; }
+.route-learn { bottom: 22px; left: 22px; }
+.route-watch { bottom: 22px; right: 22px; }
+.hub-status {
+  position: absolute; left: 50%; bottom: 148px; z-index: 4;
+  transform: translateX(-50%);
+  min-width: 210px; padding: 9px 14px; border-radius: 999px;
+  background: rgba(15,23,42,.86); color: #fff;
+  font-size: 12px; font-weight: 700; text-align: center;
+  box-shadow: 0 16px 38px rgba(15,23,42,.18);
+}
+@media (max-width: 1020px) {
+  .hub-route { width: 160px; min-height: 108px; }
+  .hub-core { width: 150px; height: 150px; }
+}
+@media (max-width: 900px) {
+  .hub-visual { justify-self: center; width: min(100%, 500px); margin-top: 8px; }
+}
+@media (max-width: 560px) {
+  .hub-visual { padding: 16px; }
+  .hub-visual::before { inset: 52px; }
+  .hub-route {
+    width: calc(50% - 22px); min-height: 104px; padding: 13px;
+  }
+  .hub-route b { font-size: 16px; }
+  .hub-route small { font-size: 11.5px; }
+  .hub-core { width: 128px; height: 128px; border-radius: 34px; }
+  .hub-core-logo { font-size: 24px; }
+  .hub-core small { font-size: 11px; }
+  .hub-status { bottom: 126px; min-width: 188px; font-size: 11px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hub-core, .hub-route, .entry-chip { transition: none; }
 }
 /* アニメ調ヒーローSVG */
 .hero-svg { width: 100%; height: 100%; display: block; }
@@ -1311,7 +1489,107 @@ section.block + section.block { border-top: 1px solid var(--line); }
   background: var(--bg-base);
 }
 .speaker-art img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
-@media (max-width: 720px) { .speaker-art { max-width: 320px; margin: 0 auto; } }
+.speaker-art-animated {
+  isolation: isolate;
+  transform: translateZ(0);
+  box-shadow: 0 18px 48px rgba(15,23,42,.16);
+  animation: speakerFloat 7s ease-in-out infinite;
+}
+.speaker-art-animated img {
+  transform-origin: 52% 34%;
+  filter: saturate(1.08) contrast(1.03);
+  animation: speakerKenburns 12s ease-in-out infinite alternate;
+}
+.speaker-art-animated::before {
+  content: "";
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    radial-gradient(220px 180px at 76% 18%, rgba(96,165,250,.34), transparent 62%),
+    radial-gradient(220px 190px at 18% 82%, rgba(45,212,191,.22), transparent 66%),
+    linear-gradient(115deg, transparent 0%, rgba(255,255,255,.34) 46%, transparent 58%);
+  mix-blend-mode: screen;
+  opacity: .72;
+  transform: translateX(-42%);
+  animation: speakerLightSweep 5.6s ease-in-out infinite;
+}
+.speaker-art-animated::after {
+  content: "";
+  position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  border-radius: inherit;
+  background-image:
+    linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px);
+  background-size: 34px 34px;
+  opacity: .42;
+  -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,.92), rgba(0,0,0,.34) 74%, transparent);
+  mask-image: linear-gradient(180deg, rgba(0,0,0,.92), rgba(0,0,0,.34) 74%, transparent);
+  animation: speakerGridDrift 11s linear infinite;
+}
+.speaker-art-orbit {
+  position: absolute; inset: 16px; z-index: 3; pointer-events: none;
+  border: 1px solid rgba(255,255,255,.34); border-radius: calc(var(--radius-sm) - 2px);
+  box-shadow: inset 0 0 38px rgba(96,165,250,.14);
+}
+.speaker-art-chip {
+  position: absolute; z-index: 4; pointer-events: none;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 10px; border-radius: 999px;
+  background: rgba(255,255,255,.88); color: #17202a;
+  border: 1px solid rgba(255,255,255,.70);
+  box-shadow: 0 12px 32px rgba(15,23,42,.18);
+  font-size: 11px; font-weight: 800; letter-spacing: .06em;
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+}
+.speaker-art-chip.ai { top: 20px; left: 18px; color: #2563eb; animation: speakerChipFloat 4.8s ease-in-out infinite; }
+.speaker-art-chip.live { right: 18px; bottom: 20px; color: #0f8b8d; animation: speakerChipFloat 5.4s ease-in-out infinite reverse; }
+.speaker-art-spark {
+  position: absolute; z-index: 3; width: 8px; height: 8px; border-radius: 50%;
+  background: #fff; box-shadow: 0 0 18px rgba(255,255,255,.9), 0 0 30px rgba(96,165,250,.6);
+  pointer-events: none; opacity: .9;
+}
+.speaker-art-spark.s1 { top: 18%; right: 24%; animation: speakerSpark 3.2s ease-in-out infinite; }
+.speaker-art-spark.s2 { top: 48%; left: 13%; animation: speakerSpark 4.1s ease-in-out infinite .5s; }
+.speaker-art-spark.s3 { bottom: 24%; right: 16%; animation: speakerSpark 3.8s ease-in-out infinite 1.1s; }
+@keyframes speakerFloat {
+  0%, 100% { transform: translateY(0) rotate(.001deg); }
+  50% { transform: translateY(-8px) rotate(.001deg); }
+}
+@keyframes speakerKenburns {
+  0% { transform: scale(1.015) translate3d(0,0,0); }
+  100% { transform: scale(1.075) translate3d(-1.8%, -1.2%, 0); }
+}
+@keyframes speakerLightSweep {
+  0%, 18% { transform: translateX(-58%); opacity: .30; }
+  48% { transform: translateX(32%); opacity: .82; }
+  100% { transform: translateX(58%); opacity: .24; }
+}
+@keyframes speakerGridDrift {
+  from { background-position: 0 0, 0 0; }
+  to { background-position: 34px 68px, 68px 34px; }
+}
+@keyframes speakerChipFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+@keyframes speakerSpark {
+  0%, 100% { transform: scale(.72); opacity: .28; }
+  42% { transform: scale(1.25); opacity: .95; }
+  70% { transform: scale(.92); opacity: .58; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .speaker-art-animated,
+  .speaker-art-animated img,
+  .speaker-art-animated::before,
+  .speaker-art-animated::after,
+  .speaker-art-chip,
+  .speaker-art-spark {
+    animation: none !important;
+  }
+}
+@media (max-width: 720px) {
+  .speaker-art { max-width: 320px; margin: 0 auto; }
+  .speaker-art-chip.live { top: 20px; right: 18px; bottom: auto; }
+}
 /* CSSプレースホルダ: クライミング×テクノロジーの抽象アート */
 .speaker-art-ph {
   background:
@@ -1651,7 +1929,11 @@ def _render_header() -> str:
     return (
         "<header class='site-header' id='site-header'>"
         "<div class='site-header-inner'>"
-        "<a class='site-logo' href='/'><span class='dot'></span>AIハブ <span style='color:var(--muted);font-weight:600;font-size:13px;margin-left:6px;'>by 由井辰美</span></a>"
+        "<a class='site-logo' href='/' aria-label='AIハブ トップへ'>"
+        "<span class='brand-mark' aria-hidden='true'><span class='brand-a'>A</span><span class='brand-ha'>ハ</span></span>"
+        "<span class='wordmark'><span class='word-ai'>AI</span><span class='word-hub'>ハブ</span><span class='word-en'>AI HUB</span></span>"
+        "<span class='site-logo-by'>by 由井辰美</span>"
+        "</a>"
         "<nav class='site-nav' aria-label='メインナビ'>"
         "<a class='nav-link' href='#packages'>受講プラン</a>"
         "<a class='nav-link' href='#works'>制作実績</a>"
@@ -2087,73 +2369,43 @@ HERO_SVG = """
 def _render_hero() -> str:
     return (
         "<section class='hero' id='top'>"
-        "<div class='hero-blob b1'></div>"
-        "<div class='hero-blob b2'></div>"
         "<div class='hero-text fade-up'>"
-        "<span class='eyebrow'>📍 彦根・滋賀｜「AIってよく分からない」人から始められる</span>"
-        "<h1>"
-        "AIの使い方、<span class='accent'>教えます。</span>"
+        "<span class='eyebrow'>彦根・滋賀｜AIを作る・教える・集める場所</span>"
+        "<h1 class='hero-brand'>"
+        "<span class='fusion-logo-large'><span class='ai'>AI</span><span class='pipe'>|</span><span class='hub'>ハブ</span></span>"
+        "<span class='hero-title-sub'><strong>仕事で使えるAI</strong>を、ひとつの入口に。</span>"
         "<span class='visually-hidden'>｜滋賀・彦根の中小事業者向けAI講習・AI導入支援・補助金申請サポート</span>"
         "</h1>"
-        # 補助金訴求の旗印（advisor推奨の最優先軸＝補助金クラスタを front-and-center に）
-        "<a class='hero-subsidy-banner' href='#packages'>"
-        "<span class='hsb-tag'>💰 NEW</span>"
-        "<span class='hsb-text'>"
-        "<strong>AI導入を、補助金申請まで。</strong>"
-        "<span>選定・申請・実装・定着まで丸ごと伴走。実質負担 1/3以下に。</span>"
-        "</span>"
-        "<span class='hsb-arrow'>→</span>"
-        "</a>"
         "<p class='sub-catch'>"
-        "<strong>見積もりの下書き、問い合わせの返信、日報——その毎日の作業、AIにまかせます。</strong>"
+        "<strong>講習、相談、制作実績、AI情報を整理して、次にやることをすぐ選べるトップへ。</strong>"
         "</p>"
         "<p class='lead'>"
-        "スマホが使えれば大丈夫。彦根で顔を合わせて、「使えるようになる」まで一緒にやります。"
-        "毎日の作業が減って<strong>週10時間が浮く。</strong>"
+        "スマホが使えれば大丈夫。彦根で顔を合わせて、見積もり・問い合わせ返信・日報など、"
+        "毎日の仕事で使える形まで一緒に落とし込みます。補助金申請まで伴走できます。"
         "</p>"
-        # 主CTA: 無料30分相談 / 副: 30秒AI診断（ファーストビューで行動できるように）
         "<div class='hero-actions'>"
-        "<a class='btn btn-primary btn-lg' href='#contact'>📩 まずは無料で30分相談する</a>"
-        "<a class='btn btn-secondary btn-lg' href='#hero-quiz'>⚡ 30秒でAIレベル診断</a>"
+        "<a class='btn btn-primary btn-lg' href='#contact'>無料で30分相談する</a>"
+        "<button type='button' class='btn btn-secondary btn-lg diagnose-open' data-prelevel='beginner'>30秒でAIレベル診断</button>"
         "</div>"
-        # 信頼バッジ（無料・補助金・実績を一目で）
         "<ul class='hero-trust'>"
-        "<li>✅ 相談は<strong>無料</strong></li>"
-        "<li>💰 補助金<strong>申請まで丸ごと支援</strong></li>"
-        "<li>🏢 <strong>9事業</strong>を回す現役オーナー</li>"
+        "<li>相談は<strong>無料</strong></li>"
+        "<li>補助金<strong>申請まで支援</strong></li>"
+        "<li><strong>9事業</strong>を回す現役オーナー</li>"
         "</ul>"
-        # ヒーロー起点の AIレベル診断（第1問を常時表示）
-        "<div class='hero-quiz' id='hero-quiz'>"
-        "<div class='hq-label'><span class='hq-mono'>30秒 AI診断</span>いま、AIをどれくらい使っていますか？</div>"
-        "<div class='hq-opts'>"
-        "<button type='button' class='hq-opt diagnose-open' data-prelevel='beginner'>"
-        "<span class='hq-lv'>初級</span>ほぼ使っていない</button>"
-        "<button type='button' class='hq-opt diagnose-open' data-prelevel='intermediate'>"
-        "<span class='hq-lv'>中級</span>自己流で時々使う</button>"
-        "<button type='button' class='hq-opt diagnose-open' data-prelevel='advanced'>"
-        "<span class='hq-lv'>上級</span>一部業務で日常的に</button>"
-        "</div>"
-        "<a class='hq-sub' href='/admin'>🔐 管理ログイン</a>"
+        "<div class='hero-entry-strip' aria-label='AIハブの主要入口'>"
+        "<a class='entry-chip' href='#packages'><b>相談・講習</b><span>料金と受講プラン</span></a>"
+        "<a class='entry-chip' href='#works'><b>制作実績</b><span>作れるものを見る</span></a>"
+        "<a class='entry-chip' href='#lectures'><b>講習資料</b><span>教材で学ぶ</span></a>"
+        "<a class='entry-chip' href='/watch/index.html'><b>AI情報</b><span>最新要約を見る</span></a>"
         "</div>"
         "</div>"
-        "<div class='hero-visual hero-visual-photo fade-up d2'>"
-        "<img class='hero-bg' src='/img/hero-ai-lesson-line.png' alt='AI講習で日々の業務を整理し、実践ステップへ変えていくAIハブの線画ヒーロービジュアル' loading='eager' decoding='async' fetchpriority='high'>"
-        "<div class='hero-flow' aria-label='ワークショップの3ステップ'>"
-        "<div class='hflow-step'>"
-        "<span class='hflow-ico'>😵</span>"
-        "<div class='hflow-txt'><b>毎日の困りごと</b><small>人手不足・残業・手間</small></div>"
-        "</div>"
-        "<div class='hflow-arrow'>→</div>"
-        "<div class='hflow-step accent'>"
-        "<span class='hflow-ico'>🧑‍🏫</span>"
-        "<div class='hflow-txt'><b>対面ワークショップ</b><small>その場で一緒に設計</small></div>"
-        "</div>"
-        "<div class='hflow-arrow'>→</div>"
-        "<div class='hflow-step done'>"
-        "<span class='hflow-ico'>⚙️</span>"
-        "<div class='hflow-txt'><b>仕組みが完成</b><small>週10時間を削減</small></div>"
-        "</div>"
-        "</div>"
+        "<div class='hero-visual hub-visual fade-up d2' aria-label='AIハブの4つの入口'>"
+        "<div class='hub-core'><span class='hub-core-logo'><span class='ai'>AI</span><span class='hub'>ハブ</span></span><small>作る・教える・集める</small></div>"
+        "<a class='hub-route route-consult' href='#contact'><span class='route-kicker'>CONSULT</span><b>相談する</b><small>30分で課題と導入順を整理</small></a>"
+        "<a class='hub-route route-works' href='#works'><span class='route-kicker'>WORKS</span><b>実績を見る</b><small>Web・EC・業務システム</small></a>"
+        "<a class='hub-route route-learn' href='#lectures'><span class='route-kicker'>LEARN</span><b>資料で学ぶ</b><small>講習スライドと教材</small></a>"
+        "<a class='hub-route route-watch' href='/watch/index.html'><span class='route-kicker'>WATCH</span><b>AI情報を見る</b><small>RSS収集と要約ログ</small></a>"
+        "<div class='hub-status'>次にやることを、この入口から選ぶ</div>"
         "</div>"
         "</section>"
     )
@@ -2367,7 +2619,7 @@ def _render_footer(today: str) -> str:
         "<footer class='site-footer'>"
         "<div class='footer-grid'>"
         "<div class='footer-brand'>"
-        "<div class='footer-logo'><span class='dot'></span>AIハブ</div>"
+        "<div class='footer-logo'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>A</span><span class='brand-ha'>ハ</span></span><span class='wordmark'><span class='word-ai'>AI</span><span class='word-hub'>ハブ</span><span class='word-en'>AI HUB</span></span></div>"
         "<p class='footer-tagline'>滋賀・彦根の中小事業者向けに、AI講習・Web経営コンサル・補助金支援を行う"
         "「実装する経営者」。9事業を実際に回しながら、現場に居着くAIを一緒に作ります。</p>"
         "<a class='footer-cta' href='#contact'>📩 無料で30分相談する</a>"
@@ -2597,9 +2849,16 @@ def _render_speaker_section() -> str:
         "<p style='font-weight:700;color:var(--text);margin-top:16px;'>「異端OK、数字根拠で経営を変える」</p>"
         "</div>"
         + (
-            f"<div class='speaker-art'>"
+            f"<div class='speaker-art speaker-art-animated'>"
             f"<img src='{html.escape(sp.get('avatar_url') or '', quote=True)}' alt='{name} のビジュアル' "
-            f"loading='lazy' decoding='async'></div>"
+            f"loading='lazy' decoding='async'>"
+            "<span class='speaker-art-orbit' aria-hidden='true'></span>"
+            "<span class='speaker-art-chip ai' aria-hidden='true'>AI GUIDE</span>"
+            "<span class='speaker-art-chip live' aria-hidden='true'>LIVE LESSON</span>"
+            "<span class='speaker-art-spark s1' aria-hidden='true'></span>"
+            "<span class='speaker-art-spark s2' aria-hidden='true'></span>"
+            "<span class='speaker-art-spark s3' aria-hidden='true'></span>"
+            "</div>"
             if sp.get("avatar_url")
             # 画像未設定時は CSS アート（クライミング×テクノロジーの抽象ビジュアル）を表示
             else (

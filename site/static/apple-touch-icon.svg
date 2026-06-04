@@ -1,72 +1,28 @@
-<svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AIハブ">
   <defs>
-    <linearGradient id="aihBg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#1b2150"/>
-      <stop offset="0.5" stop-color="#0d1126"/>
-      <stop offset="1" stop-color="#1a0e2e"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F7FBFF"/>
+      <stop offset="0.58" stop-color="#E0F7FF"/>
+      <stop offset="1" stop-color="#ECFCCB"/>
     </linearGradient>
-    <linearGradient id="aihSpoke" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#7aa2ff"/>
-      <stop offset="0.5" stop-color="#c77dff"/>
-      <stop offset="1" stop-color="#ff7ab6"/>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0EA5E9"/>
+      <stop offset="1" stop-color="#2563EB"/>
     </linearGradient>
-    <radialGradient id="aihHub" cx="0.5" cy="0.4" r="0.65">
-      <stop offset="0" stop-color="#ffffff"/>
-      <stop offset="0.4" stop-color="#dceaff"/>
-      <stop offset="0.85" stop-color="#7aa2ff"/>
-      <stop offset="1" stop-color="#5b6fd8"/>
-    </radialGradient>
-    <radialGradient id="aihHalo" cx="0.5" cy="0.5" r="0.55">
-      <stop offset="0" stop-color="#7aa2ff" stop-opacity="0.55"/>
-      <stop offset="0.6" stop-color="#c77dff" stop-opacity="0.18"/>
-      <stop offset="1" stop-color="#0d1126" stop-opacity="0"/>
-    </radialGradient>
-    <filter id="aihGlow" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur stdDeviation="2.4" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    <linearGradient id="green" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22C55E"/>
+      <stop offset="1" stop-color="#10B981"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#0EA5E9" flood-opacity="0.20"/>
     </filter>
   </defs>
-
-  <!-- 角丸タイル + ハロー -->
-  <rect x="0" y="0" width="180" height="180" rx="40" fill="url(#aihBg)"/>
-  <circle cx="90" cy="90" r="78" fill="url(#aihHalo)"/>
-
-  <!-- 装飾の薄い同心リング -->
-  <g fill="none" stroke="url(#aihSpoke)" opacity="0.22">
-    <circle cx="90" cy="90" r="64" stroke-width="1.5"/>
-    <circle cx="90" cy="90" r="44" stroke-width="1.2"/>
+  <rect x="8" y="8" width="164" height="164" rx="42" fill="url(#bg)"/>
+  <rect x="8" y="8" width="164" height="164" rx="42" fill="none" stroke="#BAE6FD" stroke-width="4"/>
+  <g filter="url(#shadow)">
+    <path d="M38 134L70 45L102 134M51 104H89" fill="none" stroke="url(#blue)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M111 134C124 110 130 80 132 52M148 52C152 85 160 111 169 134" fill="none" stroke="url(#green)" stroke-width="15" stroke-linecap="round"/>
+    <circle cx="146" cy="35" r="7" fill="#2563EB"/>
+    <circle cx="163" cy="35" r="7" fill="#10B981"/>
   </g>
-
-  <!-- 8本スポーク（45度ずつ） -->
-  <g stroke="url(#aihSpoke)" stroke-width="6.8" stroke-linecap="round" opacity="0.95">
-    <line x1="90" y1="90" x2="90" y2="32"/>
-    <line x1="90" y1="90" x2="131" y2="49"/>
-    <line x1="90" y1="90" x2="148" y2="90"/>
-    <line x1="90" y1="90" x2="131" y2="131"/>
-    <line x1="90" y1="90" x2="90" y2="148"/>
-    <line x1="90" y1="90" x2="49" y2="131"/>
-    <line x1="90" y1="90" x2="32" y2="90"/>
-    <line x1="90" y1="90" x2="49" y2="49"/>
-  </g>
-
-  <!-- 外周ノード（8点・統一カラー）-->
-  <g fill="#e8ebf5" filter="url(#aihGlow)">
-    <circle cx="90" cy="32" r="6.5"/>
-    <circle cx="131" cy="49" r="6.5"/>
-    <circle cx="148" cy="90" r="6.5"/>
-    <circle cx="131" cy="131" r="6.5"/>
-    <circle cx="90" cy="148" r="6.5"/>
-    <circle cx="49" cy="131" r="6.5"/>
-    <circle cx="32" cy="90" r="6.5"/>
-    <circle cx="49" cy="49" r="6.5"/>
-  </g>
-
-  <!-- 中央ハブ（球体感）-->
-  <circle cx="90" cy="90" r="26" fill="url(#aihHub)"/>
-  <circle cx="83" cy="83" r="6.5" fill="#ffffff" opacity="0.9"/>
-
-  <!-- 下部に小さく "AI HUB" -->
-  <text x="90" y="170" text-anchor="middle"
-        font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif"
-        font-size="10" font-weight="800" letter-spacing="3" fill="#aab1c5" opacity="0.78">AI HUB</text>
 </svg>

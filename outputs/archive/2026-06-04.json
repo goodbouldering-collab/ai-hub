@@ -18,7 +18,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/STKP224_KEVIN_O_LEARY_CVIRGINIA_A.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-06-04T14:38:04-04:00"
+      "published": "2026-06-04T14:38:04-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "197903e1084c98cc",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/acastro_210430_1777_semiCon_0001.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-06-04T10:15:44-04:00"
+      "published": "2026-06-04T10:15:44-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "48d21cc8243f8c90",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/VRG_DCD_0604_Musk_IPO_AParkin.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-06-04T10:00:00-04:00"
+      "published": "2026-06-04T10:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "eefc722c936fcc93",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/05/STKS511_AI_SLOP_B.jpg?quality=90&amp;strip=all&amp;crop=0%2C9.9676601489831%2C100%2C80.064679702034&amp;w=1200",
-      "published": "2026-06-04T08:30:00-04:00"
+      "published": "2026-06-04T08:30:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "b85f9f86f84ec981",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/acastro_200512_1777_faceMask_0001.0.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-06-04T08:12:12-04:00"
+      "published": "2026-06-04T08:12:12-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "b533180c6bf5cbae",
@@ -113,7 +123,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-06-04T16:38:29+00:00"
+      "published": "2026-06-04T16:38:29+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "60eab8033296e405",
@@ -132,7 +144,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/R9Ih1CeCQP4/hqdefault.jpg",
-      "published": "2026-06-04T15:30:27+00:00"
+      "published": "2026-06-04T15:30:27+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "1c2d92d4ff6cd679",
@@ -151,7 +165,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/proteus.jpeg?quality=90&amp;strip=all&amp;crop=2.25%2C0%2C95.5%2C100&amp;w=1200",
-      "published": "2026-06-04T05:31:14-04:00"
+      "published": "2026-06-04T05:31:14-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "7ab4529fa286d094",
@@ -170,7 +186,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/RulxinmNMJc/hqdefault.jpg",
-      "published": "2026-06-04T10:00:07+00:00"
+      "published": "2026-06-04T10:00:07+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "629d5a939acd7578",
@@ -189,7 +207,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://images.ctfassets.net/kftzwdyauwt9/4gxDAOkxUXKVkAcM8eGhNj/03482b84b74c225d36ad173865b67b14/oai_Endava_SEO.png?w=1600&amp;h=900&amp;fit=fill",
-      "published": "Thu, 04 Jun 2026 12:00:00 GMT"
+      "published": "Thu, 04 Jun 2026 12:00:00 GMT",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

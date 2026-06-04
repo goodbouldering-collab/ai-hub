@@ -1,6 +1,13 @@
 {
-  "generated_at": "2026-06-03T23:27:20Z",
+  "generated_at": "2026-06-04T23:01:58Z",
   "recent_works": [
+    {
+      "date": "2026-06-05",
+      "filename": "2026-06-05-gubble-sns-automation-prep.md",
+      "title": "グッぼる SNS自動化 準備書",
+      "business": "gubble",
+      "path": "/ops?file=2026-06-05-gubble-sns-automation-prep.md#sec-docs"
+    },
     {
       "date": "2026-06-01",
       "filename": "2026-06-01-seo-weekly-digest.md",
@@ -49,13 +56,6 @@
       "title": "N-デザイン ヒーロー〜Why〜Profile コピー全面書き直し（SEO/MEO/LLMO/AIO 統合視点）",
       "business": "Nデザイン",
       "path": "/ops?file=2026-05-28-n-design-hero-why-profile-copy-rewrite.md#sec-docs"
-    },
-    {
-      "date": "2026-05-28",
-      "filename": "2026-05-28-gubble-cate-harness-supplement.md",
-      "title": "グッぼる カテゴリページ「ハーネス」増補原稿",
-      "business": "gubble",
-      "path": "/ops?file=2026-05-28-gubble-cate-harness-supplement.md#sec-docs"
     }
   ],
   "tasks_open": [
@@ -80,35 +80,31 @@
       "count": 4
     },
     {
-      "business": "AIハブ",
-      "count": 4
-    },
-    {
       "business": "みんなのWA",
       "count": 3
     },
     {
-      "business": "gubble",
+      "business": "AIハブ",
       "count": 3
+    },
+    {
+      "business": "gubble",
+      "count": 2
     },
     {
       "business": "Nデザイン",
       "count": 2
     },
     {
-      "business": "ai",
-      "count": 2
+      "business": "seo",
+      "count": 1
     },
     {
-      "business": "seo",
+      "business": "ai",
       "count": 1
     }
   ],
   "daily_histogram": [
-    {
-      "date": "2026-05-21",
-      "count": 3
-    },
     {
       "date": "2026-05-22",
       "count": 15
@@ -160,12 +156,16 @@
     {
       "date": "2026-06-03",
       "count": 0
+    },
+    {
+      "date": "2026-06-04",
+      "count": 0
     }
   ],
   "cma_apps": [],
   "totals": {
-    "consul_work_total": 123,
-    "recent_7d_total": 19,
+    "consul_work_total": 124,
+    "recent_7d_total": 16,
     "tasks_open_total": 2
   }
 }

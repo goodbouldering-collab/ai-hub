@@ -18,7 +18,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/VRG_VST_0605_Site.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-06-05T12:39:07-04:00"
+      "published": "2026-06-05T12:39:07-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "fdec7f0e209fc7e5",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/STKS528_DATA_CENTERS_C.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-06-05T11:25:10-04:00"
+      "published": "2026-06-05T11:25:10-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "882c72ebbd2752d2",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/268573_This_AI_startup_wants_tell_you_if_your_script_will_make_a_hit_film_CVirginia.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-06-05T09:57:31-04:00"
+      "published": "2026-06-05T09:57:31-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "a1d2ef13646ba05b",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-06-05T11:10:05+00:00"
+      "published": "2026-06-05T11:10:05+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "1210c6169baa6932",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/dP-MogY1tiY/hqdefault.jpg",
-      "published": "2026-06-05T13:12:01+00:00"
+      "published": "2026-06-05T13:12:01+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "dca5d91bccf1daea",
@@ -113,7 +123,9 @@
         "freshness": 3.0
       },
       "thumbnail": "",
-      "published": "2026-06-04T23:55:27+00:00"
+      "published": "2026-06-04T23:55:27+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "b7e276bc70a77c93",
@@ -132,7 +144,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/1iWecewAgJ4/hqdefault.jpg",
-      "published": "2026-06-05T10:00:36+00:00"
+      "published": "2026-06-05T10:00:36+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "bdbb839a4599bb31",
@@ -151,7 +165,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/zmOJGQQMuIU/hqdefault.jpg",
-      "published": "2026-06-05T10:00:18+00:00"
+      "published": "2026-06-05T10:00:18+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "ef9d98c82816c4d9",
@@ -170,7 +186,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://wp.technologyreview.com/wp-content/uploads/2026/06/hand-keys1.jpg?resize=1200,600",
-      "published": "Fri, 05 Jun 2026 09:00:00 +0000"
+      "published": "Fri, 05 Jun 2026 09:00:00 +0000",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "62a76b2b97462de3",
@@ -189,7 +207,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://www.itmedia.co.jp/aiplus/article/ogp/2606/06/2000000065/10000356/2048",
-      "published": "Fri, 05 Jun 2026 22:27:33 +0900"
+      "published": "Fri, 05 Jun 2026 22:27:33 +0900",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

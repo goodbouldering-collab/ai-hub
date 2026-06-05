@@ -65,7 +65,7 @@ DEFAULT_TOP_BUTTONS = [
     {"id": "profile",         "group": "講師",         "label": "経歴",               "icon": "📜", "href": "profile.html",          "kind": "link",   "enabled": True},
     {"id": "portfolio",       "group": "作品",         "label": "実績",               "icon": "🏆", "href": "portfolio.html",        "kind": "link",   "enabled": True},
     {"id": "lectures",        "group": "教材資料",     "label": "講習資料",           "icon": "📝", "href": "lectures/index.html",   "kind": "link",   "enabled": True},
-    # プログラミングマップは lectures index の中にリンクとして掲載するためトップナビからは外す
+    # AIコーディング総合講習は lectures index の中にリンクとして掲載するためトップナビからは外す
     {"id": "archive",         "group": "アーカイブ",   "label": "過去ログ",           "icon": "📚", "href": "archive.html",          "kind": "link",   "enabled": True},
     {"id": "run",             "group": "操作",         "label": "巡回実行",           "icon": "🔄", "href": "",                      "kind": "action", "action_id": "run", "enabled": True},
 ]
@@ -1763,12 +1763,7 @@ def _load_teaching_sections(lecture_md_items: list[dict]) -> list[dict]:
                     sec_copy = {k: v for k, v in sec.items() if k != "source"}
                     # YAML 側に追加 items があれば結合（lectures-md + 手動アイテム）
                     extra_items = sec.get("items") or []
-                    priority_items = [
-                        item for item in extra_items
-                        if str(item.get("href", "")).strip().lstrip("./") == "programming-map.html"
-                    ]
-                    other_extra_items = [item for item in extra_items if item not in priority_items]
-                    sec_copy["items"] = priority_items + list(lecture_md_items) + other_extra_items
+                    sec_copy["items"] = list(lecture_md_items) + extra_items
                     resolved.append(sec_copy)
                 else:
                     resolved.append(sec)
@@ -1845,7 +1840,7 @@ def build_lectures() -> int:
     out_dir.mkdir(parents=True, exist_ok=True)
     count = 0
     lecture_md_items: list[dict] = []
-    for f in sorted(LECTURES_DIR.glob("*.md")):
+    for f in sorted(LECTURES_DIR.glob("*.md"), reverse=True):
         raw = f.read_text(encoding="utf-8")
         meta, body = _parse_frontmatter(raw)
         body_html = md.markdown(body, extensions=["extra", "sane_lists"])
@@ -1863,6 +1858,18 @@ def build_lectures() -> int:
             "date": str(meta.get("date", "")),
         })
         count += 1
+
+    assets_src = LECTURES_DIR / "assets"
+    assets_dst = out_dir / "assets"
+    if assets_src.exists():
+        assets_dst.mkdir(parents=True, exist_ok=True)
+        for src in assets_src.rglob("*"):
+            if src.is_dir():
+                continue
+            rel = src.relative_to(assets_src)
+            dst = assets_dst / rel
+            dst.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(src, dst)
 
     sections = _load_teaching_sections(lecture_md_items)
     if sections:
@@ -2244,19 +2251,19 @@ def _patch_programming_map_nav(pmap_file: Path) -> None:
     text = pmap_file.read_text(encoding="utf-8")
     # 共通ナビ HTML（pmap を current として）
     common_nav = render_top_nav(path_prefix="./", current_id="pmap", include_run=False)
-    # ページ内目次バー（programming-map 専用 — sticky とは別）
+    # ページ内目次バー（AIコーディング総合講習 専用 — sticky とは別）
     chapter_toc = (
         "<nav class='pm-chapter-toc' aria-label='ページ内目次'>"
-        "<span class='pm-toc-label'>📖 章立て</span>"
-        "<a href='#top'>🗺 全体</a>"
-        "<a href='#pm-modern-ai'>✨ 2026 AI制作</a>"
-        "<a href='#part-1'>① 環境</a>"
-        "<a href='#part-2'>② 開発</a>"
-        "<a href='#part-3'>③ 公開・運用</a>"
-        "<a href='#part-4'>④ AI時代</a>"
-        "<a href='#sec-cms'>📝 CMS</a>"
-        "<a href='#sec-ccode'>🤖 Claude</a>"
-        "<a href='#sec-line'>💬 LINE</a>"
+        "<span class='pm-toc-label'>COURSE</span>"
+        "<a href='#top'>全体</a>"
+        "<a href='#pm-modern-ai'>00 AI全体像</a>"
+        "<a href='#part-1'>01 入口</a>"
+        "<a href='#part-2'>02 基礎</a>"
+        "<a href='#part-3'>03 実装</a>"
+        "<a href='#part-4'>04 公開</a>"
+        "<a href='#sec-cms'>05 応用制作</a>"
+        "<a href='#sec-ccode'>06 実務運用</a>"
+        "<a href='#sec-line'>07 総合演習</a>"
         "</nav>"
     )
     # 共通トップヘッダー/ナビの CSS を、正本 CSS 定数からマーカーで切り出して注入する。
@@ -2280,7 +2287,7 @@ def _patch_programming_map_nav(pmap_file: Path) -> None:
         "<style id='pm-chapter-toc-css'>"
         # ---- 共通トップヘッダー/ナビ（index.html 等と同一・正本 CSS から抽出） ----
         + common_nav_css
-        # ページ内目次バー（programming-map 専用：fixed top-nav の真下に sticky で吸着）
+        # ページ内目次バー（AIコーディング総合講習 専用：fixed top-nav の真下に sticky で吸着）
         # 共通 top-nav は fixed (height ≒ 68px) なので、本文先頭は 96px から
         + "html{scroll-padding-top:144px;}"
         "[id]{scroll-margin-top:144px;}"

@@ -27,11 +27,11 @@ sections:
   source: lectures-md
   items:
   # 大型 HTML コンテンツ（Markdown 化が難しいので独立 HTML のまま講習資料として並べる）
-  - title: プログラミングマップ
-    icon: 🗺️
+  - title: AIコーディング総合講習
+    icon: 🧭
     href: programming-map.html
-    summary: 2026年版のAI開発地図。Codexアプリ、Claude Code、VS Code、Creative Production、プラグイン6分類まで、初心者が混同しやすい全体像をLP風に整理。
-    date: 2026-06-04
+    summary: Codex導入からプログラミング基礎、実装、公開運用、AI応用制作、総合演習までを、投影しやすいPowerPoint風LPとして段階的に学ぶ総合講習資料。
+    date: 2026-06-05
   # クライミングの歴史 スライド（content/slides/*.md から Marp 生成・/slides/ 配下に公開）
   - title: クライミングの歴史 I（世界史編）
     icon: 🧗

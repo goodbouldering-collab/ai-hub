@@ -1,14 +1,19 @@
 ---
-title: Codexアプリ導入ガイド ChatGPTユーザー向け初期設定と使い方
-date: 2026-06-04
+title: Codexアプリ導入手順 スライド・動画つき初期設定ガイド
+date: 2026-06-05
 role: 講習資料 / Codex導入
 gen_by: Codex
-summary: ChatGPTは使えるがCodexアプリは初めての人向けに、最初の成功体験、安全装置、AGENTS.md、worktree、独立レビュー、hooks、MCP、Apps、公式ロール別プラグインと構成要素を大きな文字と図解で整理した講習資料。
+summary: ChatGPTは使えるがCodexアプリは初めての人向けに、導入手順・最初の依頼・安全装置・独立レビューを、ページ内スライドと動画で見られる講習資料。
 ---
 
 <style>
 .codex-onboard{--ink:var(--text,#0f172a);--soft:var(--text-soft,#334155);--mut:var(--muted,#64748b);--line:var(--line,#e2e8f0);--pri:var(--primary,#2563eb);--bg:#fff;--wash:#f8fafc;--teal:#0f8b8d;--coral:#e85d5a;--green:#2f9d58;--amber:#f2b705;color:var(--ink);}
 .codex-onboard *{box-sizing:border-box;}
+.codex-hero{margin:4px 0 26px;padding:28px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(135deg,#eff6ff 0%,#fff 54%,#ecfdf5 100%);box-shadow:0 18px 50px rgba(15,23,42,.08);}
+.codex-hero h2{margin:0 0 10px;font-size:clamp(30px,4.5vw,52px);line-height:1.15;letter-spacing:0;color:var(--ink);}
+.codex-hero p{margin:0;font-size:17px;line-height:1.85;color:var(--soft);}
+.codex-source{font-size:13px;line-height:1.8;color:var(--mut);margin:10px 0 22px;}
+.codex-source a{font-weight:700;}
 .codex-video{margin:8px 0 28px;background:#111827;border-radius:8px;padding:10px;box-shadow:0 18px 50px rgba(15,23,42,.18);}
 .codex-video video{display:block;width:100%;border-radius:6px;background:#000;}
 .codex-note{border:1px solid var(--line);border-left:5px solid var(--pri);background:var(--wash);border-radius:8px;padding:16px 18px;margin:16px 0 26px;font-size:15px;line-height:1.85;color:var(--soft);}
@@ -30,17 +35,105 @@ summary: ChatGPTは使えるがCodexアプリは初めての人向けに、最�
 .codex-call{background:linear-gradient(135deg,#17202a,#2563eb);color:#fff;border-radius:8px;padding:22px 24px;margin:26px 0;}
 .codex-call b{display:block;font-size:24px;line-height:1.35;margin-bottom:8px;}
 .codex-call p{margin:0;line-height:1.8;color:rgba(255,255,255,.92);}
+.codex-slide-deck{display:grid;gap:18px;margin:14px 0 34px;counter-reset:slide;}
+.codex-slide{position:relative;min-height:260px;padding:30px;border-radius:10px;border:1px solid var(--line);background:#fff;box-shadow:0 12px 34px rgba(15,23,42,.07);overflow:hidden;}
+.codex-slide:before{counter-increment:slide;content:counter(slide,decimal-leading-zero);position:absolute;right:22px;top:18px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:44px;font-weight:900;color:rgba(37,99,235,.10);line-height:1;}
+.codex-slide h3{position:relative;margin:0 0 14px;font-size:clamp(26px,3vw,38px);line-height:1.22;color:var(--ink);}
+.codex-slide p{position:relative;margin:0 0 14px;font-size:17px;line-height:1.8;color:var(--soft);}
+.codex-slide ul{position:relative;margin:12px 0 0;padding-left:1.2em;}
+.codex-slide li{font-size:16px;line-height:1.75;margin:4px 0;color:var(--soft);}
+.codex-slide strong{color:var(--ink);}
+.codex-slide.dark{background:linear-gradient(135deg,#111827,#1d4ed8);border-color:#1d4ed8;color:#fff;}
+.codex-slide.dark h3,.codex-slide.dark p,.codex-slide.dark li{color:#fff;}
+.codex-slide.dark:before{color:rgba(255,255,255,.14);}
 .codex-prompt{background:#0f172a;color:#e5e7eb;border-radius:8px;padding:16px 18px;margin:10px 0 20px;font-size:14px;line-height:1.8;white-space:pre-wrap;}
 .codex-check li{margin:7px 0;}
-@media(max-width:760px){.codex-grid,.codex-grid.two,.codex-flow{grid-template-columns:1fr}.codex-card h3,.codex-card h4{font-size:18px}.codex-table{font-size:13px}.codex-table td:first-child{white-space:normal}}
+@media(max-width:760px){.codex-grid,.codex-grid.two,.codex-flow{grid-template-columns:1fr}.codex-card h3,.codex-card h4{font-size:18px}.codex-table{font-size:13px}.codex-table td:first-child{white-space:normal}.codex-hero,.codex-slide{padding:22px}.codex-slide{min-height:auto}}
 </style>
 
 <div class="codex-onboard">
+
+<div class="codex-hero">
+<h2>Codexは、作業場を持つAI共同作業者。</h2>
+<p>このページは、Codexアプリの導入手順を「短い動画」と「投影しやすいスライド」で見られる講習用ページです。AIコーディング総合講習とは別資料として、初回講習の入口に置きます。</p>
+</div>
+
+<p class="codex-source">
+公式確認: OpenAI の <a href="https://openai.com/codex/get-started/" target="_blank" rel="noopener">Get started with Codex</a> と
+<a href="https://openai.com/academy/codex-how-to-start/" target="_blank" rel="noopener">How to get started with Codex</a> を元に、講習向けに手順を短く整理しています。
+</p>
+
+<h2>動画版</h2>
 
 <div class="codex-video">
 <video controls playsinline preload="metadata" poster="./assets/codex-app-onboarding-poster.png">
   <source src="./assets/codex-app-onboarding.webm" type="video/webm">
 </video>
+</div>
+
+<h2>スライド版</h2>
+
+<div class="codex-slide-deck" aria-label="Codex導入手順スライド">
+<section class="codex-slide dark">
+<h3>1. Codexは「会話」ではなく「作業場」</h3>
+<p>ChatGPTは相談相手。Codexはフォルダを読み、編集し、確認まで進める共同作業者です。</p>
+<ul>
+<li>作業フォルダを選ぶ</li>
+<li>小さなタスクを渡す</li>
+<li>差分を見て採用する</li>
+</ul>
+</section>
+
+<section class="codex-slide">
+<h3>2. 最初はChatGPTでログイン</h3>
+<p>公式手順はシンプルです。Codexを開き、ChatGPTアカウントでサインインします。</p>
+<ul>
+<li>Codexを開く</li>
+<li>ChatGPTでサインイン</li>
+<li>プロジェクトを選ぶ</li>
+</ul>
+</section>
+
+<section class="codex-slide">
+<h3>3. フォルダかGitリポジトリを選ぶ</h3>
+<p>Codexが触れる場所を先に限定します。ここが安全装置の第一歩です。</p>
+<ul>
+<li>作業用フォルダを1つ選ぶ</li>
+<li>最初は空フォルダでもよい</li>
+<li>秘密情報が入った場所は避ける</li>
+</ul>
+</section>
+
+<section class="codex-slide">
+<h3>4. 最初の依頼は小さく</h3>
+<p>いきなり公開サイト全体を任せません。1ファイル、1画面、1文章から始めます。</p>
+<ul>
+<li>「このフォルダを見て説明して」</li>
+<li>「小さく直せる候補を3つ出して」</li>
+<li>「変更前に確認して」</li>
+</ul>
+</section>
+
+<section class="codex-slide">
+<h3>5. 画面と差分で確認する</h3>
+<p>Codexの成果は、言葉ではなく結果で確認します。</p>
+<ul>
+<li>ブラウザ表示を見る</li>
+<li>変更差分を見る</li>
+<li>リンク・画像・文字サイズを確認する</li>
+</ul>
+</section>
+
+<section class="codex-slide">
+<h3>6. 公開前は独立レビュー</h3>
+<p>作った直後は見落としが出ます。別視点で壊れそうな点を先に出します。</p>
+<ul>
+<li>表示崩れ</li>
+<li>リンク切れ</li>
+<li>秘密情報の混入</li>
+<li>公開前に止めるべき変更</li>
+</ul>
+</section>
 </div>
 
 <div class="codex-note">

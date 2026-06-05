@@ -83,7 +83,7 @@ ADMIN_BUTTON_HTML = """
 """
 
 
-OG_IMAGE_URL = SITE_URL + "/img/ogp.png"
+OG_IMAGE_URL = SITE_URL + "/img/hero-ai-hub-studio.png"
 
 
 def _build_ogp(title: str, description: str, page_url: str, *, image: str | None = None) -> str:
@@ -170,10 +170,11 @@ def _build_jsonld_website() -> str:
 
     # 受講プランを Service + Offer として構造化（_render_packages の items と整合）
     plans = [
-        ("AI個別相談 60分", "経営者・専門職・初心者なんでも相談。LLMO/SEO/MEO/Claude Code活用・補助金申請まで現役オーナーがその場で解決。", "2200", "5500", "BusinessCoaching"),
-        ("AI講習会 120分", "彦根で月1回・定員8名の実践型講習。一般の講師が教えない考え方とコツを、参加者のレベルに合わせて。", "5500", "5500", "Course"),
-        ("AI仕組み化ワークショップ 半日", "見積作成・問い合わせ対応・日報など現場の1業務をその場で自動化。明日から動くマニュアルごと持ち帰る対面ワークショップ。補助金対象。", "33000", "33000", "Service"),
-        ("AI伴走パック 6回", "HP公開から事務自動化・経理・マーケまで6ヶ月で一気に定着。技術的な難所は講師が代行・支援。滋賀・彦根の補助金で負担1/3以下に。", "100000", "100000", "Service"),
+        ("彦根 Claude Code / Codex 実践会", "Claude Code または Codex の環境が整い、自分で1つ以上動くものを作った人向けの月例少人数セミナー。持ち込み課題をその場で進める。", "5500", "5500", "Course"),
+        ("Claude Code / Codex 準備会", "実践会の前に、環境構築・ログイン・最初の成果物作成までを整える少人数の準備講座。", "5500", "5500", "Course"),
+        ("AI個別相談 60分", "経営者・専門職・初心者なんでも相談。AI活用、Claude Code / Codex導入、補助金申請まで現役オーナーがその場で解決。", "2200", "5500", "BusinessCoaching"),
+        ("AI仕組み化ワークショップ 半日", "見積作成・問い合わせ対応・日報など現場の1業務をその場で自動化。明日から動く手順書ごと持ち帰る対面ワークショップ。補助金対象。", "33000", "33000", "Service"),
+        ("AI実装伴走 6回", "HP公開から事務自動化・経理・マーケまで6ヶ月で一気に定着。技術的な難所は講師が代行・支援。滋賀・彦根の補助金で負担1/3以下に。", "100000", "100000", "Service"),
     ]
     services = []
     for name, desc, lo, hi, stype in plans:
@@ -347,40 +348,40 @@ PORTAL_CSS = """
 :root {
   /* ===== デフォルト=ライト（初心者に「難しそう」を与えない）。dark は data-theme=dark で。 ===== */
   /* --- 共有トークン（テーマ非依存） --- */
-  --cyan: #0EA5E9;
-  --blue: #2563EB;
-  --lime: #A3E635;
-  --emerald: #10B981;
-  --amber: #F59E0B;
-  --pink: #EC4899;
-  --glass-blur: 22px;
-  --radius: 18px;
-  --radius-sm: 12px;
+  --cyan: #2BA7C8;
+  --blue: #2854C5;
+  --sage: #7AA58A;
+  --emerald: #0F8F72;
+  --amber: #D9852B;
+  --coral: #D95B43;
+  --glass-blur: 14px;
+  --radius: 8px;
+  --radius-sm: 8px;
   --serif: "Inter", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
   --mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
-  --bg-base: #F4F8FC;
-  --bg-white: #FFFFFF;
+  --bg-base: #F5F7F3;
+  --bg-white: #FFFEFA;
   --bg-elev: #FFFFFF;
-  --text: #111827;
-  --text-soft: #334155;
-  --muted: #64748B;
-  --line: rgba(15,23,42,0.10);
-  --line-strong: rgba(15,23,42,0.18);
-  --primary: #2563EB;
-  --primary-soft: #0EA5E9;
-  --violet: #7C3AED;
-  --primary-bg: rgba(14,165,233,0.09);
-  --grad: linear-gradient(120deg, #0EA5E9 0%, #2563EB 48%, #22C55E 100%);
-  --grad-soft: linear-gradient(120deg, rgba(14,165,233,.12), rgba(34,197,94,.10));
-  --glass-bg: rgba(255,255,255,0.84);
-  --glass-border: rgba(15,23,42,0.10);
-  --glass-hi: rgba(255,255,255,0.86);
-  --shadow-card: 0 2px 8px rgba(15,23,42,0.04), 0 18px 56px rgba(15,23,42,0.08);
-  --shadow-card-hover: 0 8px 18px rgba(15,23,42,0.07), 0 30px 78px rgba(37,99,235,0.15), 0 0 0 1px rgba(14,165,233,0.20);
-  --glow: 0 0 50px rgba(14,165,233,0.22);
-  --grad-glow-a: rgba(14,165,233,.16);
-  --grad-glow-b: rgba(34,197,94,.12);
-  --grad-glow-c: rgba(245,158,11,.08);
+  --text: #152032;
+  --text-soft: #3C4A5D;
+  --muted: #6B7685;
+  --line: rgba(21,32,50,0.12);
+  --line-strong: rgba(21,32,50,0.22);
+  --primary: #2854C5;
+  --primary-soft: #2BA7C8;
+  --violet: #5B5EA6;
+  --primary-bg: rgba(43,84,197,0.08);
+  --grad: linear-gradient(120deg, #2854C5 0%, #2BA7C8 48%, #0F8F72 100%);
+  --grad-soft: linear-gradient(120deg, rgba(43,84,197,.10), rgba(122,165,138,.14), rgba(217,133,43,.10));
+  --glass-bg: rgba(255,254,250,0.88);
+  --glass-border: rgba(21,32,50,0.12);
+  --glass-hi: rgba(255,255,255,0.82);
+  --shadow-card: 0 1px 2px rgba(21,32,50,0.04), 0 14px 34px rgba(21,32,50,0.08);
+  --shadow-card-hover: 0 6px 16px rgba(21,32,50,0.08), 0 24px 54px rgba(40,84,197,0.12), 0 0 0 1px rgba(15,143,114,0.18);
+  --glow: 0 18px 54px rgba(40,84,197,0.16);
+  --grad-glow-a: rgba(40,84,197,.10);
+  --grad-glow-b: rgba(122,165,138,.12);
+  --grad-glow-c: rgba(217,133,43,.08);
 }
 :root[data-theme="dark"] {
   --bg-base: #0B1120;
@@ -423,26 +424,36 @@ body {
   line-height: 1.82;            /* しっとり: ゆったり読める日本語行間 */
   min-height: 100vh;
   background:
-    radial-gradient(1100px 600px at 8% -8%, var(--grad-glow-a, rgba(110,139,255,.14)), transparent 60%),
-    radial-gradient(900px 600px at 92% 4%, var(--grad-glow-b, rgba(199,125,255,.10)), transparent 58%),
-    radial-gradient(700px 500px at 50% 112%, var(--grad-glow-c, rgba(155,123,255,.07)), transparent 62%),
-    linear-gradient(180deg, var(--bg-white) 0%, var(--bg-base) 62%);
+    linear-gradient(120deg, rgba(40,84,197,.04) 0%, transparent 32%),
+    linear-gradient(180deg, var(--bg-white) 0%, #F7F8F2 42%, #EFF5F8 100%);
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
-  letter-spacing: -0.005em;
+  letter-spacing: 0;
 }
-::selection { background: rgba(139,160,255,.35); color: var(--text); }
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(21,32,50,.035) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(21,32,50,.025) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(180deg, rgba(0,0,0,.44), transparent 58%);
+}
+::selection { background: rgba(40,84,197,.22); color: var(--text); }
 
 /* ---- glassmorphism helpers (再利用) ----
    カード/ヘッダー/ドロップに共通で当てる「ガラス質感」。
    半透明背景 + backdrop blur + 1px光彩ボーダー + 上端の内側ハイライト。 */
 .biz-card, .service-card, .pkg-card, .faq-item, .stat,
 .menu-drop, .diagnose-box, .hero-quiz {
-  background: var(--glass-bg) !important;
-  backdrop-filter: blur(var(--glass-blur)) saturate(140%);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+  background: var(--bg-elev) !important;
+  backdrop-filter: blur(var(--glass-blur)) saturate(118%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(118%);
   border: 1px solid var(--glass-border) !important;
-  box-shadow: var(--shadow-card), inset 0 1px 0 var(--glass-hi);
+  box-shadow: var(--shadow-card);
 }
 
 /* スクロールでふわっと現れる reveal（JSが .is-in を付与） */
@@ -481,27 +492,27 @@ header.site-header.scrolled {
   gap: 16px;
 }
 .site-logo {
-  font-size: 18px; font-weight: 800; letter-spacing: -.01em;
+  font-size: 18px; font-weight: 800; letter-spacing: 0;
   color: var(--text); text-decoration: none;
   display: inline-flex; align-items: center; gap: 8px;
 }
-.site-logo .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--grad); box-shadow: 0 0 12px rgba(139,160,255,.6); display: inline-block; }
+.site-logo .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--grad); box-shadow: 0 0 12px rgba(40,84,197,.42); display: inline-block; }
 .brand-mark {
   width: 34px; height: 34px; border-radius: 10px;
   display: inline-flex; align-items: center; justify-content: center;
-  background: linear-gradient(135deg, #E0F7FF 0%, #FFFFFF 52%, #ECFCCB 100%);
-  border: 1px solid rgba(14,165,233,.22);
-  box-shadow: 0 10px 30px rgba(14,165,233,.20), inset 0 1px 0 rgba(255,255,255,.9);
+  background: linear-gradient(135deg, #EEF5FF 0%, #FFFFFF 52%, #F0F4E8 100%);
+  border: 1px solid rgba(40,84,197,.20);
+  box-shadow: 0 10px 24px rgba(40,84,197,.14), inset 0 1px 0 rgba(255,255,255,.9);
   color: #0F172A; font-family: var(--mono); font-weight: 900; line-height: 1;
 }
-.brand-mark .brand-a { font-size: 16px; letter-spacing: -.08em; color: #2563EB; }
-.brand-mark .brand-ha { font-size: 16px; margin-left: -2px; color: #10B981; transform: translateY(1px); }
+.brand-mark .brand-a { font-size: 16px; letter-spacing: 0; color: var(--primary); }
+.brand-mark .brand-ha { font-size: 16px; margin-left: -2px; color: var(--emerald); transform: translateY(1px); }
 .wordmark {
   display: inline-flex; align-items: baseline; gap: 3px;
   font-weight: 900; letter-spacing: 0;
 }
 .wordmark .word-ai {
-  font-family: var(--mono); color: var(--primary); letter-spacing: -.04em;
+  font-family: var(--mono); color: var(--primary); letter-spacing: 0;
 }
 .wordmark .word-hub {
   color: var(--text); font-weight: 900;
@@ -557,10 +568,10 @@ header.site-header.scrolled {
   background: var(--grad); color: #fff;
   font-size: 13.5px; font-weight: 700;
   text-decoration: none;
-  box-shadow: 0 6px 22px rgba(110,139,255,.40), inset 0 1px 0 rgba(255,255,255,.25);
+  box-shadow: 0 6px 22px rgba(40,84,197,.24), inset 0 1px 0 rgba(255,255,255,.25);
   transition: transform .2s, box-shadow .2s, filter .2s;
 }
-.site-nav .nav-cta:hover { transform: translateY(-1px); filter: brightness(1.08); box-shadow: 0 12px 36px rgba(139,160,255,.55), inset 0 1px 0 rgba(255,255,255,.30); }
+.site-nav .nav-cta:hover { transform: translateY(-1px); filter: brightness(1.08); box-shadow: 0 12px 36px rgba(15,143,114,.22), inset 0 1px 0 rgba(255,255,255,.30); }
 /* モバイル: 管理ログインは控えめなテキストリンクに格下げ */
 .mobile-nav .mobile-admin-link {
   display: block; padding: 10px 4px; margin-top: 4px;
@@ -597,9 +608,19 @@ header.site-header.scrolled {
 
 /* ---- hero ---- */
 .hero {
-  padding: 36px 0 54px;
-  display: grid; grid-template-columns: minmax(0, 1.02fr) minmax(380px, .92fr); gap: 44px; align-items: center;
+  padding: 54px 0 66px;
+  display: grid; grid-template-columns: minmax(0, .95fr) minmax(420px, 1.05fr); gap: 52px; align-items: center;
   position: relative;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 8px calc(50% - 50vw) 0;
+  z-index: -1;
+  background:
+    linear-gradient(120deg, rgba(255,254,250,.92) 0%, rgba(245,247,243,.82) 52%, rgba(239,245,248,.86) 100%);
+  border-top: 1px solid rgba(21,32,50,.06);
+  border-bottom: 1px solid rgba(21,32,50,.07);
 }
 .hero-text { text-align: left; min-width: 0; max-width: 100%; }
 @media (max-width: 900px) { .hero { grid-template-columns: 1fr; gap: 28px; }
@@ -608,10 +629,10 @@ header.site-header.scrolled {
 .hero .eyebrow {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 7px 16px; border-radius: 999px;
-  background: var(--primary-bg); color: var(--primary-soft);
+  background: rgba(255,255,255,.78); color: var(--primary);
   font-family: var(--mono); font-size: 11.5px; font-weight: 600; letter-spacing: .06em;
   border: 1px solid var(--glass-border);
-  box-shadow: inset 0 0 0 1px rgba(139,160,255,.10), 0 0 24px rgba(110,139,255,.12);
+  box-shadow: 0 8px 24px rgba(21,32,50,.06);
   max-width: 100%;
 }
 @media (max-width: 560px) {
@@ -627,16 +648,15 @@ header.site-header.scrolled {
   overflow-wrap: anywhere; word-break: normal;
 }
 .hero h1 .accent {
-  background: var(--grad);
-  -webkit-background-clip: text; background-clip: text; color: transparent;
+  color: var(--primary);
 }
 .hero h1 .underline {
   position: relative;
 }
 .hero h1 .underline::after {
   content:''; position: absolute; left: 0; right: 0; bottom: 2px; height: 8px;
-  background: var(--grad); opacity: .35;
-  border-radius: 999px; z-index: -1; filter: blur(2px);
+  background: rgba(217,133,43,.28);
+  border-radius: 999px; z-index: -1;
 }
 .hero-brand { display: block; max-width: 680px; }
 .fusion-logo-large {
@@ -644,10 +664,10 @@ header.site-header.scrolled {
   letter-spacing: 0;
 }
 .fusion-logo-large .ai {
-  font-family: var(--mono); color: var(--primary); letter-spacing: -.08em;
+  font-family: var(--mono); color: var(--primary); letter-spacing: 0;
 }
 .fusion-logo-large .hub {
-  color: var(--text); letter-spacing: -.03em;
+  color: var(--text); letter-spacing: 0;
 }
 .fusion-logo-large .pipe {
   font-family: var(--mono); color: rgba(14,165,233,.45);
@@ -659,8 +679,8 @@ header.site-header.scrolled {
   line-height: 1.28; color: var(--text-soft); letter-spacing: 0;
 }
 .hero-title-sub strong {
-  color: transparent; background: var(--grad);
-  -webkit-background-clip: text; background-clip: text;
+  color: var(--primary);
+  background: transparent;
 }
 .hero .sub-catch {
   max-width: 560px; margin: 0 0 18px;
@@ -682,8 +702,8 @@ header.site-header.scrolled {
 /* 主CTAを脈動させて視線を集める（控えめ・reduced-motionで停止） */
 .hero-actions .btn-primary { animation: cta-pulse 2.6s ease-in-out infinite; }
 @keyframes cta-pulse {
-  0%,100% { box-shadow: 0 8px 30px rgba(110,139,255,.40), inset 0 1px 0 rgba(255,255,255,.25); }
-  50% { box-shadow: 0 12px 44px rgba(139,160,255,.62), inset 0 1px 0 rgba(255,255,255,.30); }
+  0%,100% { box-shadow: 0 8px 26px rgba(40,84,197,.28), inset 0 1px 0 rgba(255,255,255,.25); }
+  50% { box-shadow: 0 12px 34px rgba(15,143,114,.25), inset 0 1px 0 rgba(255,255,255,.30); }
 }
 @media (prefers-reduced-motion: reduce) { .hero-actions .btn-primary { animation: none; } }
 .hero-trust {
@@ -702,7 +722,7 @@ header.site-header.scrolled {
 }
 .entry-chip {
   min-height: 74px; padding: 12px;
-  border-radius: 16px; border: 1px solid var(--line);
+  border-radius: var(--radius-sm); border: 1px solid var(--line);
   background: rgba(255,255,255,.74);
   text-decoration: none; color: var(--text);
   display: flex; flex-direction: column; justify-content: center; gap: 4px;
@@ -711,9 +731,9 @@ header.site-header.scrolled {
 .entry-chip:hover,
 .entry-chip:focus-visible {
   transform: translateY(-3px);
-  border-radius: 24px;
-  border-color: rgba(14,165,233,.42);
-  box-shadow: 0 18px 42px rgba(14,165,233,.14);
+  border-radius: var(--radius-sm);
+  border-color: rgba(40,84,197,.34);
+  box-shadow: 0 14px 32px rgba(40,84,197,.12);
   background: #fff;
   outline: none;
 }
@@ -722,27 +742,97 @@ header.site-header.scrolled {
 @media (max-width: 680px) { .hero-entry-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 /* ヒーロー直下の補助金訴求バナー（advisor推奨の最優先軸を front-and-center に） */
+.hero-photo-card {
+  position: relative;
+  justify-self: end;
+  width: min(100%, 580px);
+  aspect-ratio: 5 / 4;
+  padding: 10px;
+  border-radius: var(--radius);
+  background: rgba(255,255,255,.88);
+  border: 1px solid var(--line);
+  box-shadow: 0 22px 58px rgba(21,32,50,.15);
+  overflow: hidden;
+}
+.hero-photo-card img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 6px;
+}
+.hero-photo-card::after {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border-radius: 6px;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255,255,255,.04) 0%, rgba(21,32,50,.12) 100%);
+}
+.hero-photo-note {
+  position: absolute;
+  left: 24px;
+  bottom: 24px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 13px;
+  border-radius: var(--radius-sm);
+  background: rgba(255,255,255,.88);
+  border: 1px solid rgba(255,255,255,.72);
+  box-shadow: 0 14px 32px rgba(21,32,50,.14);
+  color: var(--text);
+  font-size: 12.5px;
+  font-weight: 800;
+}
+.hero-photo-note i {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--emerald);
+  box-shadow: 0 0 0 4px rgba(15,143,114,.14);
+}
+@media (max-width: 900px) {
+  .hero-photo-card {
+    justify-self: center;
+    width: min(100%, 560px);
+    aspect-ratio: 4 / 3;
+  }
+}
+@media (max-width: 560px) {
+  .hero-photo-card { padding: 7px; }
+  .hero-photo-card::after { inset: 7px; }
+  .hero-photo-note {
+    left: 16px;
+    bottom: 16px;
+    max-width: calc(100% - 32px);
+    font-size: 11.5px;
+  }
+}
+
 .hero-subsidy-banner {
   display: inline-flex; align-items: center; gap: 12px;
   margin: 14px 0 18px; padding: 10px 14px 10px 12px;
   border-radius: 999px; text-decoration: none;
   background: var(--grad-soft);
-  border: 1px solid rgba(110,139,255,.30);
-  box-shadow: 0 4px 18px rgba(110,139,255,.18);
+  border: 1px solid rgba(40,84,197,.22);
+  box-shadow: 0 4px 18px rgba(40,84,197,.12);
   transition: transform .2s, box-shadow .2s, border-color .2s;
   max-width: 100%;
 }
 .hero-subsidy-banner:hover {
   transform: translateY(-1px);
-  border-color: rgba(110,139,255,.55);
-  box-shadow: 0 8px 24px rgba(110,139,255,.30);
+  border-color: rgba(15,143,114,.40);
+  box-shadow: 0 8px 24px rgba(15,143,114,.16);
 }
 .hero-subsidy-banner .hsb-tag {
   flex: 0 0 auto;
   padding: 3px 10px; border-radius: 999px;
   background: var(--grad); color: #fff;
   font-family: var(--mono); font-size: 10.5px; font-weight: 800; letter-spacing: .06em;
-  box-shadow: 0 4px 14px rgba(110,139,255,.40);
+  box-shadow: 0 4px 14px rgba(40,84,197,.24);
 }
 .hero-subsidy-banner .hsb-text { display: flex; flex-direction: column; line-height: 1.35; min-width: 0; }
 .hero-subsidy-banner .hsb-text strong { font-size: 14.5px; color: var(--text); }
@@ -781,7 +871,7 @@ header.site-header.scrolled {
   color: var(--text); font-size: 13.5px; font-weight: 600; text-align: left;
   cursor: pointer; transition: border-color .15s, transform .12s, background .15s, box-shadow .15s;
 }
-.hq-opt:hover { border-color: var(--primary); transform: translateY(-2px); background: var(--primary-bg); box-shadow: 0 0 24px rgba(110,139,255,.18); }
+.hq-opt:hover { border-color: var(--primary); transform: translateY(-2px); background: var(--primary-bg); box-shadow: 0 12px 28px rgba(40,84,197,.12); }
 .hq-lv {
   font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: .06em;
   color: var(--primary-soft); background: var(--primary-bg);
@@ -861,8 +951,8 @@ header.site-header.scrolled {
   display: inline-flex; align-items: baseline; gap: 3px;
   font-size: 28px; font-weight: 900; line-height: 1;
 }
-.hub-core-logo .ai { font-family: var(--mono); color: var(--primary); letter-spacing: -.08em; }
-.hub-core-logo .hub { color: var(--text); letter-spacing: -.03em; }
+.hub-core-logo .ai { font-family: var(--mono); color: var(--primary); letter-spacing: 0; }
+.hub-core-logo .hub { color: var(--text); letter-spacing: 0; }
 .hub-core small { margin-top: 10px; color: var(--text-soft); font-size: 12px; font-weight: 700; line-height: 1.35; }
 .hub-route {
   position: absolute; z-index: 3;
@@ -943,8 +1033,8 @@ header.site-header.scrolled {
   position: absolute; width: 260px; height: 260px; border-radius: 50%;
   filter: blur(60px); opacity: .55; z-index: -1; pointer-events: none;
 }
-.hero-blob.b1 { background: #6E8BFF; top: -40px; right: -40px; }
-.hero-blob.b2 { background: #9B7BFF; bottom: -40px; left: 30%; width: 200px; height: 200px; }
+.hero-blob.b1 { background: #2BA7C8; top: -40px; right: -40px; }
+.hero-blob.b2 { background: #7AA58A; bottom: -40px; left: 30%; width: 200px; height: 200px; }
 
 /* AI lesson hero illustration */
 .hero-visual-photo {
@@ -1024,20 +1114,20 @@ header.site-header.scrolled {
   padding: 13px 28px; border-radius: 999px;
   font-size: 14.5px; font-weight: 600; text-decoration: none;
   transition: transform .2s, box-shadow .2s, background .2s, filter .2s;
-  cursor: pointer; border: none; letter-spacing: -.01em;
+  cursor: pointer; border: none; letter-spacing: 0;
 }
 .btn-primary {
   background: var(--grad); color: #fff;
-  box-shadow: 0 8px 30px rgba(110,139,255,.40), inset 0 1px 0 rgba(255,255,255,.25);
+  box-shadow: 0 8px 28px rgba(40,84,197,.26), inset 0 1px 0 rgba(255,255,255,.25);
 }
-.btn-primary:hover { transform: translateY(-2px); filter: brightness(1.08); box-shadow: 0 14px 44px rgba(139,160,255,.55), inset 0 1px 0 rgba(255,255,255,.30); }
+.btn-primary:hover { transform: translateY(-2px); filter: brightness(1.08); box-shadow: 0 14px 38px rgba(15,143,114,.23), inset 0 1px 0 rgba(255,255,255,.30); }
 .btn-secondary {
   background: var(--glass-bg); color: var(--text);
   border: 1px solid var(--glass-border);
   backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
   box-shadow: inset 0 1px 0 var(--glass-hi);
 }
-.btn-secondary:hover { border-color: var(--line-strong); transform: translateY(-2px); box-shadow: 0 0 30px rgba(110,139,255,.18); }
+.btn-secondary:hover { border-color: var(--line-strong); transform: translateY(-2px); box-shadow: 0 14px 30px rgba(21,32,50,.10); }
 .btn-ghost { background: transparent; color: var(--text-soft); padding: 9px 16px; }
 .btn-ghost:hover { color: var(--primary); }
 
@@ -1055,7 +1145,7 @@ header.site-header.scrolled {
 .stat .num {
   font-size: clamp(26px, 3.4vw, 38px); font-weight: 800;
   background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent;
-  line-height: 1.1; letter-spacing: -.02em;
+  line-height: 1.1; letter-spacing: 0;
 }
 .stat .label { font-size: 12.5px; color: var(--muted); margin-top: 6px; font-weight: 600; }
 .stat .stat-sub { font-size: 10.5px; color: var(--muted); margin-top: 3px; font-style: italic; opacity: .8; }
@@ -1065,8 +1155,9 @@ section.block { padding: 72px 0; scroll-margin-top: 96px; }
 section.block + section.block { border-top: 1px solid var(--line); }
 .section-title {
   font-family: var(--serif);
-  font-size: clamp(28px, 4vw, 46px); font-weight: 700; letter-spacing: -.03em;
+  font-size: clamp(28px, 4vw, 46px); font-weight: 700; letter-spacing: 0;
   color: var(--text); text-align: center; margin: 0 0 14px; line-height: 1.15;
+  overflow-wrap: anywhere;
 }
 .section-sub {
   text-align: center; color: var(--text-soft);
@@ -1101,7 +1192,7 @@ section.block + section.block { border-top: 1px solid var(--line); }
   transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s, border-color .25s;
   display: flex; flex-direction: column;
 }
-.service-card:hover { transform: translateY(-6px) rotate(-.3deg); box-shadow: var(--shadow-card-hover); border-color: rgba(139,160,255,.30); }
+.service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-card-hover); border-color: rgba(40,84,197,.24); }
 .service-image {
   position: relative; aspect-ratio: 16/9; overflow: hidden;
 }
@@ -1173,18 +1264,18 @@ section.block + section.block { border-top: 1px solid var(--line); }
 }
 .biz-card::before {
   content:''; position: absolute; inset: 0;
-  background: radial-gradient(420px 160px at 0% 0%, var(--card-glow, rgba(139,160,255,.12)) 0%, transparent 60%);
+  background: linear-gradient(120deg, var(--card-glow, rgba(40,84,197,.08)) 0%, transparent 48%);
   opacity: 0; transition: opacity .35s; pointer-events: none;
 }
 .biz-card:hover::before { opacity: 1; }
 .biz-card:hover {
-  transform: translateY(-6px) rotate(.3deg);
-  border-color: var(--card-border, rgba(139,160,255,.45));
+  transform: translateY(-6px);
+  border-color: var(--card-border, rgba(40,84,197,.28));
   box-shadow: var(--shadow-card-hover);
 }
 .biz-card.no-link { cursor: default; opacity: .65; }
 .biz-card.no-link:hover { transform: none; box-shadow: var(--shadow-card); border-color: var(--line); }
-.biz-card.self-card { border-color: rgba(139,160,255,.5); background: var(--primary-bg); }
+.biz-card.self-card { border-color: rgba(40,84,197,.30); background: var(--primary-bg); }
 .biz-card-icon { font-size: 28px; line-height: 1; margin-bottom: 2px; }
 .biz-card-name { font-size: 16.5px; font-weight: 700; color: var(--text); line-height: 1.3; }
 .biz-card-tagline { font-size: 12px; color: var(--muted); letter-spacing: .02em; font-weight: 600; }
@@ -1197,7 +1288,7 @@ section.block + section.block { border-top: 1px solid var(--line); }
 .biz-badge.live { background: rgba(16,185,129,.12); color: #047857; border: 1px solid rgba(16,185,129,.25); }
 .biz-badge.coming-soon { background: rgba(245,158,11,.15); color: #b45309; border: 1px solid rgba(245,158,11,.30); }
 .biz-badge.empty { background: rgba(100,116,139,.10); color: var(--muted); border: 1px solid rgba(100,116,139,.20); }
-.biz-badge.self { background: rgba(139,160,255,.15); color: var(--primary); border: 1px solid rgba(139,160,255,.35); }
+.biz-badge.self { background: rgba(40,84,197,.10); color: var(--primary); border: 1px solid rgba(40,84,197,.22); }
 .biz-arrow { font-size: 14px; color: var(--muted); transition: color .2s, transform .2s; }
 .biz-card:not(.no-link):hover .biz-arrow { color: var(--primary); transform: translateX(3px); }
 
@@ -1248,91 +1339,312 @@ section.block + section.block { border-top: 1px solid var(--line); }
   .fade-up { opacity: 1; transform: none; transition: none; }
 }
 
-/* ---- packages (AI講習・相談・伴走パック) ---- */
-.packages-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 12px;
+/* ---- packages (Claude Code / Codex 講習プラン) ---- */
+.packages-stage {
+  display: grid;
+  grid-template-columns: minmax(280px, .94fr) minmax(0, 1.06fr);
+  gap: 18px;
+  align-items: stretch;
+  margin: -22px 0 20px;
 }
-@media (max-width: 1100px) { .packages-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 560px) { .packages-grid { grid-template-columns: 1fr; } }
+.package-visual,
+.package-stage-copy {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid var(--glass-border);
+  background:
+    linear-gradient(140deg, rgba(255,255,255,.78), rgba(255,255,255,.44)),
+    linear-gradient(120deg, rgba(43,167,200,.12), rgba(245,249,255,.7) 42%, rgba(122,165,138,.15));
+  backdrop-filter: blur(22px) saturate(128%);
+  -webkit-backdrop-filter: blur(22px) saturate(128%);
+  box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255,255,255,.82);
+}
+.package-visual {
+  min-height: 340px;
+  display: grid;
+  place-items: center;
+  padding: 26px;
+  isolation: isolate;
+}
+.package-visual::before,
+.package-visual::after {
+  content: "";
+  position: absolute;
+  border-radius: 999px;
+  pointer-events: none;
+  filter: blur(2px);
+}
+.package-visual::before {
+  width: 220px; height: 220px; left: -88px; top: -74px;
+  background: rgba(43,167,200,.18);
+}
+.package-visual::after {
+  width: 190px; height: 190px; right: -64px; bottom: -60px;
+  background: rgba(217,133,43,.14);
+}
+.package-line-art {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 430px);
+  aspect-ratio: 1.12;
+}
+.package-line-art svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.line-orbit { transform-origin: 200px 180px; animation: lineOrbit 18s linear infinite; }
+.line-orbit.slow { animation-duration: 28s; animation-direction: reverse; }
+.line-pulse { transform-origin: center; animation: linePulse 3.2s ease-in-out infinite; }
+.line-dash { stroke-dasharray: 7 12; animation: lineDash 12s linear infinite; }
+.line-bubble { animation: bubbleFloat 7s ease-in-out infinite; }
+.line-bubble.b2 { animation-delay: -2.1s; }
+.line-bubble.b3 { animation-delay: -4.2s; }
+.package-visual-label {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 18px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--text-soft);
+}
+.package-visual-label span {
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(40,84,197,.14);
+  background: rgba(255,255,255,.54);
+}
+@keyframes lineOrbit { to { transform: rotate(360deg); } }
+@keyframes linePulse { 0%,100% { transform: scale(1); opacity: .82; } 50% { transform: scale(1.08); opacity: 1; } }
+@keyframes lineDash { to { stroke-dashoffset: -180; } }
+@keyframes bubbleFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+.package-stage-copy {
+  padding: clamp(24px, 3vw, 34px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+.package-stage-kicker {
+  margin: 0 0 10px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  color: var(--primary);
+}
+.package-stage-copy h3 {
+  margin: 0 0 12px;
+  font-size: clamp(24px, 3vw, 36px);
+  line-height: 1.24;
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
+}
+.package-stage-copy p {
+  margin: 0;
+  color: var(--text-soft);
+  line-height: 1.85;
+  font-size: 14.5px;
+}
+.package-track-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 18px;
+}
+.track-pill {
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(40,84,197,.14);
+  background: rgba(255,255,255,.52);
+  padding: 13px 14px;
+}
+.track-pill b { display: block; color: var(--text); font-size: 13.5px; line-height: 1.35; }
+.track-pill span { display: block; color: var(--muted); font-size: 12px; line-height: 1.55; margin-top: 3px; }
+.packages-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
 /* 診断結果で該当レベル以外を減光（.pkg-filter-active 時のみ） */
-.packages-grid.pkg-filter-active .pkg-card { opacity: .38; transition: opacity .35s ease; }
+.packages-grid.pkg-filter-active .pkg-card { opacity: .34; transition: opacity .35s ease; }
 .packages-grid.pkg-filter-active .pkg-card.pkg-match { opacity: 1; outline: 2px solid var(--primary); outline-offset: 2px; }
 .pkg-card {
-  background: var(--bg-elev);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-  display: flex; flex-direction: column;
-  box-shadow: var(--shadow-card);
-  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-  position: relative; overflow: hidden;
+  grid-column: span 3;
+  min-height: 100%;
+  min-width: 0;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.72), rgba(255,255,255,.44)),
+    var(--glass-bg) !important;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255,255,255,.76);
+  transition: transform .25s cubic-bezier(.22,1,.36,1), box-shadow .25s, border-color .2s;
+  position: relative;
+  overflow: hidden;
+}
+.pkg-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(180px 140px at 16% 0%, rgba(43,167,200,.14), transparent 72%),
+    radial-gradient(180px 150px at 100% 20%, rgba(217,133,43,.10), transparent 70%);
+  opacity: .86;
 }
 .pkg-card:hover {
-  transform: translateY(-6px); box-shadow: var(--shadow-card-hover);
-  border-color: rgba(139,160,255,.28);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-card-hover), inset 0 1px 0 rgba(255,255,255,.85);
+  border-color: rgba(40,84,197,.24);
 }
-.pkg-image {
-  position: relative; aspect-ratio: 16/10; overflow: hidden;
-}
-.pkg-image img {
-  width: 100%; height: 100%; object-fit: cover; display: block;
-  transition: transform .6s cubic-bezier(.22,1,.36,1);
-}
-.pkg-card:hover .pkg-image img { transform: scale(1.07); }
-.pkg-image::after {
-  content:''; position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(15,23,42,0) 40%, rgba(15,23,42,.28) 100%);
-}
-.pkg-image .pkg-cat {
-  position: absolute; top: 12px; left: 12px; z-index: 1;
-  box-shadow: 0 4px 12px rgba(0,0,0,.18);
+.pkg-featured,
+.pkg-wide { grid-column: span 6; }
+.pkg-featured {
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.82), rgba(238,247,255,.7) 42%, rgba(240,248,236,.76)),
+    var(--glass-bg) !important;
 }
 .pkg-body {
-  padding: 20px 22px 22px;
-  display: flex; flex-direction: column; gap: 10px; flex: 1;
+  position: relative;
+  z-index: 1;
+  padding: 20px 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+.pkg-topline { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.pkg-cat {
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  color: var(--primary);
+  background: rgba(255,255,255,.56);
+  border: 1px solid rgba(40,84,197,.14);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+.pkg-no {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 900;
+  color: rgba(40,84,197,.34);
 }
 .pkg-head { display: flex; align-items: flex-start; gap: 10px; }
-.pkg-icon { font-size: 26px; line-height: 1.1; }
-.pkg-cat {
-  font-size: 11px; font-weight: 700; letter-spacing: .08em;
-  color: #b45309; background: #fef3c7;
-  padding: 4px 10px; border-radius: var(--radius-sm);
+.pkg-icon {
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  background: rgba(255,255,255,.62);
+  border: 1px solid rgba(40,84,197,.12);
+  font-size: 18px;
+  line-height: 1;
 }
-.pkg-title { font-size: 16px; font-weight: 700; color: var(--text); line-height: 1.4; margin: 2px 0 0; flex: 1; }
+.pkg-title { font-size: 17px; font-weight: 900; color: var(--text); line-height: 1.38; margin: 0; flex: 1; letter-spacing: 0; min-width: 0; overflow-wrap: anywhere; }
+.pkg-featured .pkg-title { font-size: clamp(22px, 2.6vw, 30px); line-height: 1.22; }
 .pkg-meta { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .pkg-level {
-  font-family: var(--mono); font-size: 10.5px; font-weight: 700; letter-spacing: .06em;
-  padding: 3px 10px; border: 1px solid var(--glass-border); color: var(--primary-soft);
+  font-family: var(--mono); font-size: 10.5px; font-weight: 800; letter-spacing: .06em;
+  padding: 3px 10px; border: 1px solid var(--glass-border); color: var(--primary);
   background: var(--primary-bg); border-radius: 999px;
 }
-.pkg-level[data-level="beginner"] { opacity: 1; }
-.pkg-level[data-level="intermediate"] { opacity: 1; }
-.pkg-level[data-level="advanced"] { opacity: 1; }
 .pkg-price {
   font-size: 20px; font-weight: 900;
   background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 .pkg-subsidy {
   display: inline-flex; align-items: center; gap: 4px;
-  font-size: 11px; font-weight: 700; color: #047857;
-  background: #d1fae5; padding: 4px 10px; border-radius: 8px;
+  font-size: 11px; font-weight: 800; color: #047857;
+  background: rgba(209,250,229,.74); padding: 4px 10px; border-radius: 999px;
   width: fit-content;
 }
-.pkg-desc { font-size: 13px; line-height: 1.7; color: var(--text); flex: 1; margin: 4px 0; }
+.pkg-desc { font-size: 13px; line-height: 1.78; color: var(--text-soft); flex: 1; margin: 0; }
+.pkg-fit,
+.pkg-req {
+  display: grid;
+  gap: 6px;
+  margin: 2px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.pkg-fit li,
+.pkg-req li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--text);
+}
+.pkg-fit li::before,
+.pkg-req li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .66em;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--primary-soft);
+  box-shadow: 0 0 0 4px rgba(43,167,200,.12);
+}
+.pkg-req-box {
+  margin-top: 4px;
+  padding: 12px 13px;
+  border-radius: var(--radius-sm);
+  background: rgba(255,255,255,.54);
+  border: 1px solid rgba(40,84,197,.12);
+}
+.pkg-req-title {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 12px;
+  font-weight: 900;
+  color: var(--primary);
+}
+.pkg-verify {
+  margin: 8px 0 0;
+  font-size: 12px;
+  line-height: 1.65;
+  color: var(--muted);
+}
 .pkg-cta {
   display: inline-flex; align-items: center; justify-content: center;
   margin-top: auto; padding: 12px 16px;
   background: var(--grad);
-  color: #fff; font-weight: 600; font-size: 14px;
-  text-decoration: none; border-radius: 999px;
-  box-shadow: 0 6px 22px rgba(110,139,255,.32), inset 0 1px 0 rgba(255,255,255,.22);
+  color: #fff; font-weight: 800; font-size: 14px;
+  text-decoration: none; border-radius: var(--radius-sm);
+  box-shadow: 0 6px 22px rgba(40,84,197,.22), inset 0 1px 0 rgba(255,255,255,.22);
   transition: opacity .15s ease, transform .15s ease;
 }
 .pkg-cta:hover { opacity: .92; transform: translateY(-1px); }
 .packages-note {
   margin-top: 22px; padding: 16px 20px;
   background: var(--grad-soft); border: 1px solid var(--glass-border);
-  border-radius: var(--radius-sm);
-  font-size: 13px; line-height: 1.7; color: var(--text);
+  border-radius: var(--radius);
+  font-size: 13px; line-height: 1.75; color: var(--text);
+}
+@media (max-width: 1060px) {
+  .packages-stage { grid-template-columns: 1fr; }
+  .package-visual { min-height: 300px; }
+  .pkg-card, .pkg-featured, .pkg-wide { grid-column: span 6; }
+}
+@media (max-width: 680px) {
+  .packages-stage { margin-top: -12px; }
+  .package-track-tabs { grid-template-columns: 1fr; }
+  .packages-grid { grid-template-columns: 1fr; }
+  .pkg-card, .pkg-featured, .pkg-wide { grid-column: auto; }
+  .package-visual { min-height: 260px; padding: 18px; }
+  .pkg-featured .pkg-title { font-size: 22px; }
+  #packages .section-title { font-size: 28px; line-height: 1.2; }
+  #packages .section-title .title-line { display: block; }
 }
 
 
@@ -1350,20 +1662,19 @@ section.block + section.block { border-top: 1px solid var(--line); }
   .theme-toggle-mobile { display: inline-flex; margin-right: 8px; }
 }
 
-/* ---- カード/パネル面は変数化（デフォルト=obsidian dark） ---- */
-.pkg-card, .service-card, .biz-card { background: var(--bg-elev); }
-.pkg-cat { background: var(--primary-bg); color: var(--primary-soft); }
+/* ---- カード/パネル面は変数化 ---- */
+.service-card, .biz-card { background: var(--bg-elev); }
 .pkg-subsidy { background: var(--primary-bg); color: var(--primary-soft); }
 
 /* ---- diagnose modal ---- */
 .btn-diagnose {
-  background: var(--primary); color: #0B0D14;
+  background: var(--primary); color: #fff;
   border: none; cursor: pointer; font-weight: 800; font-size: 15px;
   padding: 14px 26px; border-radius: var(--radius-sm);
-  box-shadow: 0 10px 30px rgba(139,160,255,.32);
+  box-shadow: 0 10px 30px rgba(40,84,197,.22);
   transition: transform .15s ease, box-shadow .15s ease;
 }
-.btn-diagnose:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(139,160,255,.42); }
+.btn-diagnose:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(15,143,114,.24); }
 .packages-cta-row { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 28px; text-align: center; }
 .packages-cta-hint { font-size: 12.5px; color: var(--muted); }
 .diagnose-modal {
@@ -1442,7 +1753,7 @@ section.block + section.block { border-top: 1px solid var(--line); }
   content: "0" counter(step);
   position: absolute; top: 14px; right: 18px;
   font-size: 26px; font-weight: 800; color: rgba(139,160,255,.18);
-  letter-spacing: -.02em;
+  letter-spacing: 0;
 }
 .flow-step h3 { font-size: 15px; font-weight: 700; color: var(--text); margin: 0 0 8px; }
 .flow-step p { font-size: 13px; color: var(--text-soft); margin: 0; line-height: 1.7; }
@@ -1459,7 +1770,7 @@ section.block + section.block { border-top: 1px solid var(--line); }
   box-shadow: var(--shadow-card);
   transition: transform .2s, border-color .2s, box-shadow .2s;
 }
-.lecture-card:hover { transform: translateY(-3px); border-color: rgba(139,160,255,.40); box-shadow: var(--shadow-card-hover); }
+.lecture-card:hover { transform: translateY(-3px); border-color: rgba(40,84,197,.26); box-shadow: var(--shadow-card-hover); }
 .lecture-title { font-size: 14.5px; font-weight: 800; color: var(--primary); line-height: 1.4; }
 .lecture-date { font-size: 11.5px; color: var(--muted); font-weight: 600; }
 .lecture-summary {
@@ -1540,7 +1851,7 @@ section.block + section.block { border-top: 1px solid var(--line); }
   font-size: 11px; font-weight: 800; letter-spacing: .06em;
   backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
 }
-.speaker-art-chip.ai { top: 20px; left: 18px; color: #2563eb; animation: speakerChipFloat 4.8s ease-in-out infinite; }
+.speaker-art-chip.ai { top: 20px; left: 18px; color: var(--primary); animation: speakerChipFloat 4.8s ease-in-out infinite; }
 .speaker-art-chip.live { right: 18px; bottom: 20px; color: #0f8b8d; animation: speakerChipFloat 5.4s ease-in-out infinite reverse; }
 .speaker-art-spark {
   position: absolute; z-index: 3; width: 8px; height: 8px; border-radius: 50%;
@@ -1716,10 +2027,10 @@ section.block + section.block { border-top: 1px solid var(--line); }
   max-width: 680px; margin: 0 auto; padding: 22px 26px;
   border-radius: var(--radius); text-decoration: none;
   background: var(--grad); color: #fff;
-  box-shadow: 0 14px 44px rgba(110,139,255,.40), inset 0 1px 0 rgba(255,255,255,.25);
+  box-shadow: 0 14px 38px rgba(40,84,197,.24), inset 0 1px 0 rgba(255,255,255,.25);
   transition: transform .2s, filter .2s, box-shadow .2s;
 }
-.contact-primary:hover { transform: translateY(-2px); filter: brightness(1.06); box-shadow: 0 20px 56px rgba(139,160,255,.55); }
+.contact-primary:hover { transform: translateY(-2px); filter: brightness(1.06); box-shadow: 0 20px 46px rgba(15,143,114,.22); }
 .cp-ico { font-size: 34px; flex: 0 0 auto; }
 .cp-body { display: flex; flex-direction: column; gap: 4px; flex: 1; }
 .cp-title { font-size: 19px; font-weight: 800; }
@@ -1782,13 +2093,13 @@ footer.site-footer {
 }
 @media (max-width: 760px) { .footer-grid { grid-template-columns: 1fr; gap: 28px; text-align: left; } }
 .footer-logo { display: inline-flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 800; color: var(--text); }
-.footer-logo .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--grad); box-shadow: 0 0 12px rgba(139,160,255,.6); }
+.footer-logo .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--grad); box-shadow: 0 0 12px rgba(40,84,197,.42); }
 .footer-tagline { margin: 12px 0 16px; line-height: 1.8; color: var(--text-soft); max-width: 380px; }
 .footer-cta {
   display: inline-flex; align-items: center; gap: 6px;
   padding: 11px 22px; border-radius: 999px;
   background: var(--grad); color: #fff; font-weight: 700; font-size: 13.5px;
-  text-decoration: none; box-shadow: 0 6px 22px rgba(110,139,255,.40);
+  text-decoration: none; box-shadow: 0 6px 22px rgba(40,84,197,.24);
   transition: transform .2s, filter .2s;
 }
 .footer-cta:hover { transform: translateY(-1px); filter: brightness(1.08); }
@@ -1817,7 +2128,7 @@ footer.site-footer {
   flex: 0 0 auto; padding: 11px 18px; border-radius: 999px;
   background: var(--grad); color: #fff; font-weight: 700; font-size: 13.5px;
   text-decoration: none; white-space: nowrap;
-  box-shadow: 0 6px 18px rgba(110,139,255,.45), inset 0 1px 0 rgba(255,255,255,.25);
+  box-shadow: 0 6px 18px rgba(40,84,197,.25), inset 0 1px 0 rgba(255,255,255,.25);
 }
 @media (max-width: 760px) { .sticky-cta { display: flex; } }
 @media (prefers-reduced-motion: no-preference) { .sticky-cta { transition: transform .3s ease, opacity .3s ease; } }
@@ -1850,7 +2161,7 @@ footer.site-footer {
   display: flex; align-items: center; justify-content: center;
   box-shadow: var(--shadow-card); transition: transform .15s, border-color .15s, box-shadow .15s;
 }
-.pf-arrow:hover { transform: translateY(-50%) scale(1.08); border-color: var(--primary); box-shadow: 0 0 24px rgba(110,139,255,.25); }
+.pf-arrow:hover { transform: translateY(-50%) scale(1.08); border-color: var(--primary); box-shadow: 0 14px 28px rgba(40,84,197,.16); }
 .pf-prev { left: -10px; }
 .pf-next { right: -10px; }
 @media (max-width: 760px) { .pf-arrow { display: none; } .pf-carousel { grid-auto-columns: 78%; } }
@@ -1867,7 +2178,7 @@ footer.site-footer {
 }
 .pf-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(139,160,255,.30);
+  border-color: rgba(40,84,197,.24);
   box-shadow: var(--shadow-card-hover);
 }
 .pf-card .pf-thumb {
@@ -1882,10 +2193,10 @@ footer.site-footer {
 .pf-card .pf-meta { display: flex; flex-wrap: wrap; gap: 6px; font-size: 11px; }
 .pf-card .pf-chip {
   padding: 2px 8px; border-radius: var(--radius-sm);
-  background: rgba(139,160,255,.10); color: var(--primary);
-  border: 1px solid rgba(139,160,255,.20);
+  background: rgba(40,84,197,.08); color: var(--primary);
+  border: 1px solid rgba(40,84,197,.16);
 }
-.pf-card .pf-chip.cat { background: rgba(139,160,255,.10); color: var(--primary); border-color: rgba(139,160,255,.20); }
+.pf-card .pf-chip.cat { background: rgba(40,84,197,.08); color: var(--primary); border-color: rgba(40,84,197,.16); }
 .pf-card .pf-chip.retired { background: rgba(120,120,120,.2); color: var(--muted); }
 .pf-card .pf-chip.dev { background: rgba(245,158,11,.15); color: #b45309; border-color: rgba(245,158,11,.35); }
 
@@ -1906,12 +2217,12 @@ footer.site-footer {
   box-shadow: var(--shadow-card);
   transition: border-color .2s ease, transform .2s ease;
 }
-.profile-tl-item:hover { border-color: rgba(139,160,255,.30); transform: translateX(2px); }
+.profile-tl-item:hover { border-color: rgba(40,84,197,.22); transform: translateX(2px); }
 .profile-tl-item::before {
   content: ''; position: absolute; left: -36px; top: 22px;
   width: 14px; height: 14px; border-radius: 50%;
   background: var(--primary); border: 3px solid #fff;
-  box-shadow: 0 0 0 3px rgba(139,160,255,.20);
+  box-shadow: 0 0 0 3px rgba(40,84,197,.14);
 }
 .profile-tl-year { font-size: 13px; font-weight: 700; color: var(--primary); letter-spacing: .03em; margin-bottom: 4px; }
 .profile-tl-role { font-size: 16px; font-weight: 800; color: var(--text); margin-bottom: 8px; line-height: 1.4; }
@@ -2121,39 +2432,39 @@ HEADER_JS = """
 
     // 各設問の選択肢にレベルスコアを持たせ、合計で初級/中級/上級を判定
     var QUESTIONS = [
-      { q: 'いま、AIをどれくらい使っていますか？', a: [
-        { label: 'ほぼ使っていない', lv: 'beginner' },
-        { label: 'ChatGPTなどを自己流で時々', lv: 'intermediate' },
-        { label: '一部業務で日常的に使えている', lv: 'advanced' },
+      { q: 'Claude Code / Codex はどこまで触れていますか？', a: [
+        { label: 'これから環境を整えたい', lv: 'beginner' },
+        { label: '3日以上触って、少し作った', lv: 'intermediate' },
+        { label: '業務やサイト制作で使い始めている', lv: 'advanced' },
       ]},
-      { q: '一番かなえたいことは？', a: [
-        { label: 'まず何ができるか知りたい', lv: 'beginner' },
-        { label: '自分や社員のスキルを底上げしたい', lv: 'intermediate' },
-        { label: '会社の業務を仕組み化・自動化したい', lv: 'advanced' },
+      { q: '当日いちばん進めたいことは？', a: [
+        { label: 'ログインや最初の依頼を整えたい', lv: 'beginner' },
+        { label: '持ち込み課題をその場で進めたい', lv: 'intermediate' },
+        { label: '自社業務の仕組みまで作りたい', lv: 'advanced' },
       ]},
       { q: 'どのスパンで取り組みたい？', a: [
-        { label: 'まず1回・短時間で', lv: 'beginner' },
-        { label: '半日〜月1回で集中的に', lv: 'intermediate' },
-        { label: '数ヶ月かけて本格的に', lv: 'advanced' },
+        { label: 'まず90分で準備したい', lv: 'beginner' },
+        { label: '月1回・120分で継続したい', lv: 'intermediate' },
+        { label: '半日〜6ヶ月で本格導入したい', lv: 'advanced' },
       ]},
     ];
     var RESULT = {
       beginner: {
-        badge: '初級', title: 'まずは「効く実感」から',
-        name: 'AI個別相談 60分',
-        desc: '何ができるかを30〜60分で具体化。あなたの業務に効くAI活用を最短でアドバイスします。',
+        badge: '準備', title: '実践会の前に環境を整える',
+        name: 'Claude Code / Codex 準備会',
+        desc: 'ログイン、作業フォルダ、最初の依頼、差分確認までを整えます。実践会で置いていかれない状態を作ります。',
         level_id: 'beginner'
       },
       intermediate: {
-        badge: '中級', title: '毎日の作業をAIにまかせる',
-        name: 'AI仕組み化ワークショップ 半日 / AI講習会',
-        desc: 'いつもの作業を1つ選んで、その場でAIにまかせる形に。「自分でもできる」手順書ごと持ち帰れます。',
+        badge: '実践', title: '持ち込み課題を深く進める',
+        name: '彦根 Claude Code / Codex 実践会',
+        desc: '3日以上の利用経験、1つ以上の成果物、基本コマンドへの抵抗がない方に向く月例少人数会です。',
         level_id: 'intermediate'
       },
       advanced: {
-        badge: '上級', title: '組織のインフラにする',
-        name: 'AI伴走パック 6回',
-        desc: '6ヶ月で組織にAIを定着。導入・内製化・自動化まで伴走。滋賀・彦根の補助金で負担1/3以下に。',
+        badge: '実装', title: '業務に組み込む',
+        name: 'AI仕組み化ワークショップ / AI実装伴走',
+        desc: '自社業務の自動化、社内手順化、補助金前提の導入まで進めたい方向けです。',
         level_id: 'advanced'
       }
     };
@@ -2284,7 +2595,7 @@ HERO_SVG = """
       <stop offset="0" stop-color="#11162a"/><stop offset="1" stop-color="#0B0D14"/>
     </linearGradient>
     <linearGradient id="hgrad" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#6E8BFF"/><stop offset="0.55" stop-color="#9B7BFF"/><stop offset="1" stop-color="#C77DFF"/>
+      <stop offset="0" stop-color="#2BA7C8"/><stop offset="0.55" stop-color="#7AA58A"/><stop offset="1" stop-color="#D9852B"/>
     </linearGradient>
     <radialGradient id="hglow" cx="0.5" cy="0.5" r="0.5">
       <stop offset="0" stop-color="#8AA0FF" stop-opacity="0.55"/><stop offset="1" stop-color="#8AA0FF" stop-opacity="0"/>
@@ -2295,7 +2606,7 @@ HERO_SVG = """
   <rect width="460" height="575" fill="url(#hbg)"/>
 
   <!-- 透視グリッド（床・消失点 230,150）-->
-  <g stroke="#6E8BFF" stroke-opacity="0.12" stroke-width="1.2">
+  <g stroke="#2BA7C8" stroke-opacity="0.12" stroke-width="1.2">
     <path d="M-40 430 L210 165"/><path d="M120 430 L222 165"/><path d="M300 430 L238 165"/><path d="M500 430 L250 165"/>
     <path d="M0 350 H460" stroke-opacity="0.07"/><path d="M0 400 H460" stroke-opacity="0.07"/>
   </g>
@@ -2353,7 +2664,7 @@ HERO_SVG = """
   <!-- ラベルバッジ -->
   <g font-family="Inter, sans-serif" font-weight="700">
     <g transform="translate(290,96)">
-      <rect width="118" height="30" rx="15" fill="#161925" stroke="#6E8BFF" stroke-opacity="0.5"/>
+      <rect width="118" height="30" rx="15" fill="#161925" stroke="#2BA7C8" stroke-opacity="0.5"/>
       <circle class="hsvg-dot" cx="17" cy="15" r="4" fill="#5BE0B0"/>
       <text x="30" y="20" fill="#A6AEC4" font-size="12">自動化中…</text>
     </g>
@@ -2399,7 +2710,11 @@ def _render_hero() -> str:
         "<a class='entry-chip' href='/watch/index.html'><b>AI情報</b><span>最新要約を見る</span></a>"
         "</div>"
         "</div>"
-        "<div class='hero-visual hub-visual fade-up d2' aria-label='AIハブの4つの入口'>"
+        "<div class='hero-photo-card fade-up d2' aria-label='AIハブの相談イメージ'>"
+        "<img src='/img/hero-ai-hub-studio.png' alt='AI相談と制作、講習資料を一緒に整理するAIハブのイメージ' decoding='async' fetchpriority='high'>"
+        "<span class='hero-photo-note'><i aria-hidden='true'></i>相談・制作・講習を一つに</span>"
+        "</div>"
+        "<div class='hero-visual hub-visual fade-up d2' aria-label='AIハブの4つの入口' style='display:none'>"
         "<div class='hub-core'><span class='hub-core-logo'><span class='ai'>AI</span><span class='hub'>ハブ</span></span><small>作る・教える・集める</small></div>"
         "<a class='hub-route route-consult' href='#contact'><span class='route-kicker'>CONSULT</span><b>相談する</b><small>30分で課題と導入順を整理</small></a>"
         "<a class='hub-route route-works' href='#works'><span class='route-kicker'>WORKS</span><b>実績を見る</b><small>Web・EC・業務システム</small></a>"
@@ -2502,86 +2817,164 @@ def _render_services() -> str:
 
 
 def _render_courses_packages() -> str:
-    """AI個別相談 / AI講習会 / AI伴走パック の3カード（minanowaから移管）"""
+    """Claude Code / Codex 実践会を中心にした講習プラン。"""
     items = [
         {
-            "icon": "💬",
-            "cat": "個別相談",
+            "icon": "⌘",
+            "cat": "月例・実践編",
+            "level": "実践者向け",
+            "level_id": "intermediate",
+            "title": "Claude Code / Codex 実践会",
+            "price": "5,500円",
+            "duration": "120分 / 月1回 / 定員8名",
+            "subsidy": True,
+            "desc": "Claude Code と Codex を使って、自分の課題をその場で進める少人数セミナー。環境構築だけで終わらせず、差分・画面・成果物まで見ながら進めます。",
+            "fit": ["自分のPCで Claude Code / Codex が動く", "作りたいもの・直したい課題を持ち込む", "参加者同士の質を保ちながら深く進める"],
+            "req_title": "参加条件",
+            "requirements": [
+                "Claude Code または Codex を3日以上使ったことがある",
+                "自分で1つ以上「動くもの」を作った経験がある",
+                "cd / ls / git など基本コマンドに抵抗がない",
+                "申込時に当日扱いたい課題を一言で書ける",
+            ],
+            "verify": "申込時に「作ったもの」「環境構築済みか」「持ち込み課題」を確認します。条件に満たない方は準備会を案内します。",
+            "url": "https://goodbouldering.com/?pid=188553378",
+            "cta": "実践会の詳細を見る",
+            "variant": "featured",
+        },
+        {
+            "icon": "↗",
+            "cat": "入門・準備編",
+            "level": "準備中",
+            "level_id": "beginner",
+            "title": "Claude Code / Codex 準備会",
+            "price": "5,500円",
+            "duration": "90分 / 少人数",
+            "subsidy": False,
+            "desc": "実践会に来る前の入口。ログイン、作業フォルダ、最初の依頼、差分確認までを整え、当日トラブルで時間が溶けない状態にします。",
+            "fit": ["インストールやログインが不安", "Codex / Claude Code の違いを整理したい", "まず1つ小さな成果物を作りたい"],
+            "url": "mailto:goodbouldering@gmail.com?subject=Claude Code / Codex 準備会の相談",
+            "cta": "準備会を相談する",
+        },
+        {
+            "icon": "?",
+            "cat": "相談・振り分け",
             "level": "初級",
             "level_id": "beginner",
             "title": "AI個別相談 60分",
             "price": "2,200円〜5,500円",
             "duration": "60分",
             "subsidy": False,
-            "desc": "経営者・専門職・初心者なんでも相談。LLMO / SEO / MEO / Claude Code 活用 / バックオフィス効率化 / 補助金申請まで、現役オーナーがその場で「困った」を解決。",
+            "desc": "どの講座が合うか、仕事の何に使うかを一緒に整理。経営者・専門職・初心者の相談から、Claude Code / Codex 導入、補助金まで対応します。",
+            "fit": ["実践会か準備会か迷う", "仕事への使いどころを決めたい", "補助金や導入順序も相談したい"],
             "url": "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/TO3XHZT6XP3OM4QBDYMW7TZP",
-            "cta": "予約する（Square）",
-            "img": "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=800&q=70",
+            "cta": "相談を予約する",
         },
         {
-            "icon": "📚",
-            "cat": "講習会",
-            "level": "中級",
-            "level_id": "intermediate",
-            "title": "AI講習会 120分（月1回 / 定員8名）",
-            "price": "5,500円",
-            "duration": "120分",
-            "subsidy": True,
-            "desc": "彦根でAIや経営を学べる実践型講習。一般の講師が教えない「考え方とコツ」を中心に、参加者のレベルに合わせて内容を最適化。Claude Code / オフィス自動化 / 通販サイト構築まで。",
-            "url": "https://goodbouldering.com/?pid=188553378",
-            "cta": "詳細・お申込みはこちら",
-            "img": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=800&q=70",
-        },
-        {
-            "icon": "🛠️",
-            "cat": "ワークショップ",
-            "level": "中級",
-            "level_id": "intermediate",
+            "icon": "◧",
+            "cat": "半日制作",
+            "level": "実務化",
+            "level_id": "advanced",
             "title": "AI仕組み化ワークショップ 半日",
             "price": "33,000円（税込・補助金対象）",
             "duration": "半日（4時間・対面）",
             "subsidy": True,
-            "desc": "たとえば見積書の文面づくりを、半日でAIにまかせる形まで完成。「自分でもできる」手順書ごと持ち帰り、翌日から同じ作業が1/5の時間に。一歩進めたい方向け。",
+            "desc": "見積書、問い合わせ返信、日報、商品説明など、現場の1業務をAIにまかせる形まで半日で作ります。手順書ごと持ち帰れます。",
+            "fit": ["実践会より自社業務に寄せたい", "翌日から使う手順書がほしい", "社員にも渡せる形にしたい"],
             "url": "mailto:goodbouldering@gmail.com?subject=AI仕組み化ワークショップ（半日）の相談",
             "cta": "開催を相談する",
-            "img": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=70",
+            "variant": "wide",
         },
         {
-            "icon": "🚀",
-            "cat": "伴走パック",
+            "icon": "◇",
+            "cat": "伴走",
             "level": "上級",
             "level_id": "advanced",
-            "title": "AI伴走パック 6回（補助金対象）",
+            "title": "AI実装伴走 6回（補助金対象）",
             "price": "月額 100,000円（税込）× 6ヶ月",
             "duration": "6ヶ月（導入相談60分から開始）",
             "subsidy": True,
-            "desc": "HP公開から事務自動化まで、技術的な難所は講師が代行・支援。AI導入・デザイン内製化・書類営業効率化・経理自動化・マーケティングを6ヶ月で一気に定着。滋賀・彦根の補助金で負担1/3以下に。",
+            "desc": "HP公開から事務自動化まで、技術的な難所は講師が代行・支援。AI導入・デザイン内製化・経理・マーケティングを6ヶ月で定着させます。",
+            "fit": ["社内にAI運用を定着させたい", "複数業務をまとめて仕組み化したい", "補助金前提で導入計画を組みたい"],
             "url": "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/V57YTNICA2KV2TN7ENARAVQE",
-            "cta": "導入相談（無料・60分）",
-            "img": "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=70",
+            "cta": "導入相談を予約する",
+            "variant": "wide",
         },
     ]
-    parts = ["<div class='packages-grid'>"]
+    parts = [
+        "<div class='packages-stage fade-up d1'>"
+        "<div class='package-visual' aria-hidden='true'>"
+        "<div class='package-line-art'>"
+        "<svg viewBox='0 0 400 360' xmlns='http://www.w3.org/2000/svg'>"
+        "<defs>"
+        "<linearGradient id='pkgLineGrad' x1='0' y1='0' x2='1' y2='1'>"
+        "<stop offset='0' stop-color='#2854C5'/><stop offset='.52' stop-color='#2BA7C8'/><stop offset='1' stop-color='#0F8F72'/>"
+        "</linearGradient>"
+        "<filter id='pkgGlow' x='-40%' y='-40%' width='180%' height='180%'><feGaussianBlur stdDeviation='7'/></filter>"
+        "</defs>"
+        "<circle class='line-bubble' cx='78' cy='88' r='20' fill='rgba(43,167,200,.15)'/>"
+        "<circle class='line-bubble b2' cx='320' cy='94' r='26' fill='rgba(217,133,43,.13)'/>"
+        "<circle class='line-bubble b3' cx='330' cy='274' r='18' fill='rgba(15,143,114,.13)'/>"
+        "<g fill='none' stroke='url(#pkgLineGrad)' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'>"
+        "<circle class='line-orbit slow' cx='200' cy='180' r='132' opacity='.36'/>"
+        "<circle class='line-orbit' cx='200' cy='180' r='96' opacity='.5'/>"
+        "<path class='line-dash' d='M74 220 C118 136 174 102 244 120 C306 136 338 190 314 246 C286 314 180 316 124 270' opacity='.72'/>"
+        "<path d='M124 230 L176 178 L226 210 L280 142' opacity='.88'/>"
+        "</g>"
+        "<g fill='rgba(255,255,255,.84)' stroke='url(#pkgLineGrad)' stroke-width='2.4'>"
+        "<circle class='line-pulse' cx='124' cy='230' r='20'/><circle class='line-pulse' cx='176' cy='178' r='24'/><circle class='line-pulse' cx='226' cy='210' r='20'/><circle class='line-pulse' cx='280' cy='142' r='26'/>"
+        "</g>"
+        "<g fill='url(#pkgLineGrad)' filter='url(#pkgGlow)' opacity='.42'>"
+        "<circle cx='200' cy='180' r='54'/>"
+        "</g>"
+        "<g fill='#152032' font-family='Inter, Noto Sans JP, sans-serif' text-anchor='middle' font-weight='800'>"
+        "<text x='200' y='174' font-size='18'>Claude Code</text>"
+        "<text x='200' y='199' font-size='18'>Codex Lab</text>"
+        "</g>"
+        "</svg>"
+        "</div>"
+        "<div class='package-visual-label'><span>環境構築済み</span><span>成果物あり</span><span>課題持ち込み</span></div>"
+        "</div>"
+        "<div class='package-stage-copy'>"
+        "<p class='package-stage-kicker'>HIKONE MONTHLY LAB</p>"
+        "<h3>入口は広く、実践会は深く。<br>彦根で Claude Code / Codex を定期開催。</h3>"
+        "<p>実践会は、当日のインストール対応で終わらないよう参加条件を明確にします。まだ不安な方には準備会を用意し、実践会の質と集客の入口を両方守ります。</p>"
+        "<div class='package-track-tabs'>"
+        "<div class='track-pill'><b>準備会</b><span>環境構築・最初の成果物まで</span></div>"
+        "<div class='track-pill'><b>実践会</b><span>3日以上利用 + 成果物 + 課題持ち込み</span></div>"
+        "</div>"
+        "</div>"
+        "</div>"
+        "<div class='packages-grid'>"
+    ]
     for i, it in enumerate(items):
         subsidy_badge = (
             "<span class='pkg-subsidy'>✓ 補助金対応</span>" if it["subsidy"] else ""
         )
-        img_html = (
-            f"<div class='pkg-image'>"
-            f"<img src='{html.escape(it['img'], quote=True)}' alt='{html.escape(it['title'])}' loading='lazy' decoding='async'>"
-            f"<span class='pkg-cat'>{html.escape(it['cat'])}</span>"
-            f"</div>"
-        ) if it.get("img") else ""
         lvl = it.get("level", "")
         lvl_id = it.get("level_id", "")
         level_badge = f"<span class='pkg-level' data-level='{html.escape(lvl_id)}'>{html.escape(lvl)}</span>" if lvl else ""
+        fit_items = "".join(f"<li>{html.escape(v)}</li>" for v in it.get("fit", []))
+        fit_html = f"<ul class='pkg-fit'>{fit_items}</ul>" if fit_items else ""
+        req_items = "".join(f"<li>{html.escape(v)}</li>" for v in it.get("requirements", []))
+        req_html = ""
+        if req_items:
+            req_html = (
+                "<div class='pkg-req-box'>"
+                f"<strong class='pkg-req-title'>{html.escape(it.get('req_title') or '条件')}</strong>"
+                f"<ul class='pkg-req'>{req_items}</ul>"
+                f"<p class='pkg-verify'>{html.escape(it.get('verify') or '')}</p>"
+                "</div>"
+            )
+        variant = str(it.get("variant") or "")
+        variant_cls = " pkg-featured" if variant == "featured" else (" pkg-wide" if variant == "wide" else "")
         # 外部URL(http)は別タブ、mailtoは同タブ
         is_ext = it["url"].startswith("http")
         target_attr = " target='_blank' rel='noopener'" if is_ext else ""
         parts.append(
-            f"<div class='pkg-card fade-up d{(i % 3) + 1}' data-level='{html.escape(lvl_id)}'>"
-            f"{img_html}"
+            f"<div class='pkg-card{variant_cls} fade-up d{(i % 3) + 1}' data-level='{html.escape(lvl_id)}'>"
             f"<div class='pkg-body'>"
+            f"<div class='pkg-topline'><span class='pkg-cat'>{html.escape(it['cat'])}</span><span class='pkg-no'>{i + 1:02d}</span></div>"
             f"<div class='pkg-head'>"
             f"<span class='pkg-icon' aria-hidden='true'>{html.escape(it['icon'])}</span>"
             f"<h3 class='pkg-title'>{html.escape(it['title'])}</h3>"
@@ -2590,6 +2983,8 @@ def _render_courses_packages() -> str:
             f"<div class='pkg-price'>{html.escape(it['price'])}</div>"
             f"{subsidy_badge}"
             f"<p class='pkg-desc'>{html.escape(it['desc'])}</p>"
+            f"{fit_html}"
+            f"{req_html}"
             f"<a class='pkg-cta' href='{html.escape(it['url'], quote=True)}'{target_attr}>{html.escape(it['cta'])} →</a>"
             f"</div>"
             f"</div>"
@@ -2598,15 +2993,16 @@ def _render_courses_packages() -> str:
     parts.append(
         "<div class='packages-cta-row fade-up d4'>"
         "<button type='button' class='btn btn-diagnose diagnose-open'>"
-        "🔍 60秒診断｜あなたに合うプランは？"
+        "60秒診断｜準備会・実践会・伴走のどれ？"
         "</button>"
-        "<span class='packages-cta-hint'>3つの質問に答えるだけ。最適なコースをその場でご提案します。</span>"
+        "<span class='packages-cta-hint'>3つの質問に答えるだけ。いまの状態に合う入口をその場で提案します。</span>"
         "</div>"
     )
     parts.append(
         "<p class='packages-note fade-up d4'>"
-        "🛡 <strong>滋賀県未来投資総合補助金</strong>（最大50万円・補助率2/3／一次：3/2〜3/31、二次：6/8〜7/17）と "
-        "<strong>彦根市小規模事業者デジタル化推進補助金</strong>（最大20万円）に対応。申請サポートも個別相談で受け付けます。"
+        "<strong>実践会の品質方針:</strong> 「3日以上使った」だけではなく、環境構築済み・成果物あり・持ち込み課題ありを基準にします。"
+        "まだ条件に満たない方は準備会へ案内し、入口を閉じずに実践会の密度を守ります。"
+        "<br><strong>補助金:</strong> AI仕組み化ワークショップと伴走は、滋賀県・彦根市のデジタル化/AI導入系補助金と組み合わせて相談できます。"
         "</p>"
     )
     return "".join(parts)
@@ -2676,7 +3072,7 @@ def _render_explore() -> str:
          "運営事業・制作したサイト・生成した提案LP。すべて自分で構築・運用した実物。",
          "/portfolio.html", "実績を見る"),
         ("📚", "講習資料",
-         "AI業務活用・SNSアルゴリズム・LLMO（AI検索最適化）の講習で使う資料。プログラミングマップも。",
+         "AI業務活用・SNSアルゴリズム・LLMO（AI検索最適化）の講習で使う資料。AIコーディング総合講習も。",
          "/lectures/index.html", "資料を見る"),
     ]
     parts = ["<div class='explore-grid'>"]
@@ -2754,8 +3150,10 @@ def _render_flow() -> str:
 FAQ_QA = [
     ("彦根・滋賀でAIの講習や相談はできますか？",
      "はい。滋賀県彦根市を拠点に、彦根・湖東・東近江を中心とした対面のAI講習・個別相談を行っています。京都・大阪・名古屋までは出張可、リモートなら全国対応します。"),
+    ("Claude Code / Codex 実践会の参加条件はありますか？",
+     "あります。実践会は、Claude Code または Codex を3日以上使ったことがあり、自分で1つ以上動くものを作った経験があり、cd・ls・git など基本コマンドに抵抗がない方を対象にします。申込時に、環境構築済みか、作ったもの、当日扱いたい課題を確認します。条件に満たない方は準備会を案内します。"),
     ("料金はどれくらいですか？",
-     "AI個別相談は60分2,200〜5,500円、AI講習会は120分5,500円から。AI仕組み化ワークショップ（半日）は33,000円、AI伴走パックは月額10万円×6ヶ月です。LP制作は1本18〜30万円が目安。多くは補助金併用を前提に組みます。"),
+     "AI個別相談は60分2,200〜5,500円、Claude Code / Codex 準備会と彦根実践会は5,500円から。AI仕組み化ワークショップ（半日）は33,000円、AI実装伴走は月額10万円×6ヶ月です。LP制作は1本18〜30万円が目安。多くは補助金併用を前提に組みます。"),
     ("補助金は使えますか？滋賀の事業者でも対象ですか？",
      "ワークショップ・伴走パックは「デジタル化・AI導入補助金」や滋賀県・彦根市の補助金の対象になります。補助率は小規模事業者で最大4/5、実質負担が1/3以下になるケースが多いです。申請からツール選定・実装・定着まで一気通貫で支援します。"),
     ("パソコンやスマホが苦手ですが、大丈夫ですか？",
@@ -2938,19 +3336,19 @@ def _render_portfolio_section() -> str:
 # カテゴリ別サムネ: 実画面のスクショではなく、ブランドカラーのSVGモチーフで体裁を統一する。
 # (絵柄, 上グラデ色1, 上グラデ色2) を category 文字列で引く。未知カテゴリは default。
 _WORKS_THUMB = {
-    "コミュニティ":        ("👥", "#5468FF", "#8B5CF6"),
-    "店舗EC":              ("🛍️", "#7C5CFF", "#C77DFF"),
-    "店舗LP":              ("✨", "#5468FF", "#7C5CFF"),
-    "商品LP":              ("📦", "#6E8BFF", "#9B7BFF"),
-    "生成LP":              ("⚡", "#8B5CF6", "#C77DFF"),
-    "企業サイト":          ("🏢", "#4F63E0", "#7C5CFF"),
-    "動画アプリ":          ("🎬", "#6E8BFF", "#C77DFF"),
-    "マッチング":          ("🤝", "#5468FF", "#9B7BFF"),
-    "業務システム":        ("⚙️", "#4F63E0", "#8B5CF6"),
-    "ポートフォリオ":      ("🧭", "#5468FF", "#C77DFF"),
-    "インディーハッカーツール": ("🛠️", "#7C5CFF", "#C77DFF"),
+    "コミュニティ":        ("👥", "#2854C5", "#D95B43"),
+    "店舗EC":              ("🛍️", "#0F8F72", "#D9852B"),
+    "店舗LP":              ("✨", "#2854C5", "#0F8F72"),
+    "商品LP":              ("📦", "#2BA7C8", "#7AA58A"),
+    "生成LP":              ("⚡", "#D95B43", "#D9852B"),
+    "企業サイト":          ("🏢", "#152032", "#0F8F72"),
+    "動画アプリ":          ("🎬", "#2BA7C8", "#D9852B"),
+    "マッチング":          ("🤝", "#2854C5", "#7AA58A"),
+    "業務システム":        ("⚙️", "#152032", "#D95B43"),
+    "ポートフォリオ":      ("🧭", "#2854C5", "#D9852B"),
+    "インディーハッカーツール": ("🛠️", "#0F8F72", "#D9852B"),
 }
-_WORKS_THUMB_DEFAULT = ("🚀", "#5468FF", "#8B5CF6")
+_WORKS_THUMB_DEFAULT = ("🚀", "#2854C5", "#D95B43")
 
 
 def _works_thumb_svg(category: str, name: str) -> str:
@@ -3020,15 +3418,15 @@ def _render_works_section() -> str:
 
 
 def _render_lectures_section() -> str:
-    """講習資料セクション。プログラミングマップを資料の1つとして配下に含める。"""
+    """講習資料セクション。最新の講習資料を先頭にし、AIコーディング総合講習は独立資料として残す。"""
     pmap_card = {
-        "title": "プログラミングマップ",
-        "icon": "🗺️",
-        "date": "2026-04-25",
-        "summary": "プログラミング言語・用途・AI活用までの俯瞰図。何から学ぶか迷ったときの全体地図。",
+        "title": "AIコーディング総合講習",
+        "icon": "🧭",
+        "date": "2026-06-05",
+        "summary": "Codex導入からプログラミング基礎、実装、公開運用、AI応用制作、総合演習までを段階的に学ぶ総合講習LP。",
         "href": "/programming-map.html",
     }
-    lecs = [pmap_card] + list(_load_all_lectures())
+    lecs = list(_load_all_lectures()) + [pmap_card]
     parts: list[str] = []
     parts.append("<div class='lecture-grid'>")
     for lec in lecs:
@@ -3188,15 +3586,15 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
 
     parts.append(_render_hero())
 
-    # 1. 受講プラン（AI相談 / 講習会 / 伴走パック）— メインCTA
+    # 1. 受講プラン（Claude Code / Codex 実践会を中心に再編）— メインCTA
     parts.append("<section class='block' id='packages'>")
-    parts.append("<p class='section-heading fade-up'>PACKAGES</p>")
-    parts.append("<h2 class='section-title fade-up d1'>レベル別・AI受講プラン</h2>")
+    parts.append("<p class='section-heading fade-up'>HIKONE AI LAB</p>")
+    parts.append("<h2 class='section-title fade-up d1'><span class='title-line'>彦根 Claude Code</span> <span class='title-line'>/ Codex</span> <span class='title-line'>講習プラン</span></h2>")
     parts.append("<p class='section-sub fade-up d2'>"
-                 "<span class='lv-flow'><span class='lv-flow-step'>初級 まず実感</span><span class='lv-flow-arr'>→</span>"
-                 "<span class='lv-flow-step'>中級 仕組み化</span><span class='lv-flow-arr'>→</span>"
-                 "<span class='lv-flow-step'>上級 組織実装</span></span><br>"
-                 "あなたの現在地から、次の一手を選べます。迷ったら上の30秒診断へ。</p>")
+                 "<span class='lv-flow'><span class='lv-flow-step'>準備会 環境を整える</span><span class='lv-flow-arr'>→</span>"
+                 "<span class='lv-flow-step'>実践会 作って深める</span><span class='lv-flow-arr'>→</span>"
+                 "<span class='lv-flow-step'>伴走 業務に入れる</span></span><br>"
+                 "実践会は参加条件を設け、初心者は準備会へ案内します。場の質を守りながら、入口は閉じません。</p>")
     parts.append(_render_courses_packages())
     parts.append("</section>")
 
@@ -3293,15 +3691,15 @@ def main(dry_run: bool = False) -> int:
         print(f"  agents_status 生成スキップ: {e}")
 
     recent_lectures = _load_recent_lectures(limit=3)
-    # プログラミングマップを講習資料カードとして先頭に常設
+    # AIコーディング総合講習は講習資料カードとして残すが、最新資料を先頭にする
     pmap_card = {
-        "title": "プログラミングマップ",
-        "icon": "🗺️ ",
-        "date": "2026-04-25",
-        "summary": "プログラミング言語・用途・AI 活用までの俯瞰図。何から学ぶか迷ったときの全体地図。",
+        "title": "AIコーディング総合講習",
+        "icon": "🧭",
+        "date": "2026-06-05",
+        "summary": "Codex導入からプログラミング基礎、実装、公開運用、AI応用制作、総合演習までを段階的に学ぶ総合講習LP。",
         "href": "/programming-map.html",
     }
-    recent_lectures = [pmap_card] + list(recent_lectures)
+    recent_lectures = list(recent_lectures) + [pmap_card]
 
     html_text = render_portal(businesses, recent_lectures)
 

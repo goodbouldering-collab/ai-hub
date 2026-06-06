@@ -111,4 +111,4 @@ NotebookLMは、あなたが指定した資料（画像、YouTube動画、テキ
 
 - [講師紹介](../speaker.html) — 運営サイト・実績の一覧
 - [実績サイト](../portfolio.html) — このワークスペースで作ったサイト群
-- [AIコーディング総合講習](../programming-map.html) — AI活用に必要な用語と仕組みの体系整理
+- [AIコーディング実装講習](../programming-map.html) — AI活用に必要な用語と仕組みの体系整理

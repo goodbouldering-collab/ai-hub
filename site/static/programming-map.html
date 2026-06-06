@@ -5,32 +5,38 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/apple-touch-icon.svg">
-<link rel="mask-icon" href="/favicon.svg" color="#2563eb">
-<meta name="theme-color" content="#f8fafc">
-<meta name="description" content="Codex導入からプログラミング基礎、実装、公開、AIコーディング応用までを段階的に学ぶAIハブの総合講習資料。">
-<title>AIコーディング総合講習 | AIハブ</title>
+<link rel="mask-icon" href="/favicon.svg" color="#0ea5e9">
+<meta name="theme-color" content="#f7f9fc">
+<meta name="description" content="Codex導入からプログラミング基礎、実装、公開、AIコーディング応用までを段階的に学ぶAIハブの実装講習資料。">
+<title>AIコーディング実装講習 | AIハブ</title>
 <style>
   :root {
-    --text: #0f172a;
-    --text-soft: #334155;
-    --muted: #64748b;
-    --line: #d9e2ee;
+    --ink: #0b1020;
+    --text: #142033;
+    --text-soft: #435169;
+    --muted: #6d778a;
+    --line: rgba(20, 32, 51, .13);
+    --line-strong: rgba(20, 32, 51, .24);
     --page: #f6f8fb;
-    --paper: #ffffff;
-    --wash: #eef6f5;
-    --primary: #2563eb;
-    --teal: #0f8b8d;
-    --green: #2f9d58;
-    --coral: #e85d5a;
-    --amber: #f2b705;
-    --inkband: #17202a;
-    --shadow: 0 16px 44px rgba(15, 23, 42, .09);
-    --shadow-soft: 0 8px 24px rgba(15, 23, 42, .06);
+    --paper: rgba(255, 255, 255, .76);
+    --paper-strong: rgba(255, 255, 255, .92);
+    --glass: rgba(255, 255, 255, .62);
+    --glass-dark: rgba(11, 16, 32, .82);
+    --blue: #2357e5;
+    --cyan: #06a7d8;
+    --lime: #92d923;
+    --teal: #0b8f86;
+    --coral: #e65f4f;
+    --violet: #6c5ce7;
+    --mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
+    --grad: linear-gradient(120deg, var(--blue), var(--cyan) 52%, var(--lime));
+    --shadow: 0 18px 54px rgba(11, 16, 32, .10);
+    --shadow-soft: 0 8px 28px rgba(11, 16, 32, .07);
+    --radius: 8px;
   }
 
-  * {
-    box-sizing: border-box;
-  }
+  * { box-sizing: border-box; }
 
   html {
     scroll-behavior: smooth;
@@ -41,120 +47,75 @@
     margin: 0;
     min-height: 100vh;
     color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
+    font-family: var(--sans);
     line-height: 1.75;
+    letter-spacing: 0;
     background:
-      linear-gradient(180deg, #ffffff 0%, var(--page) 42%, #ffffff 100%);
+      linear-gradient(90deg, rgba(20,32,51,.035) 1px, transparent 1px),
+      linear-gradient(180deg, rgba(20,32,51,.025) 1px, transparent 1px),
+      linear-gradient(120deg, rgba(35,87,229,.08), transparent 32%),
+      linear-gradient(180deg, #fbfcff 0%, #f1f5f9 52%, #f8fafc 100%);
+    background-size: 72px 72px, 72px 72px, auto, auto;
     -webkit-font-smoothing: antialiased;
   }
 
-  a {
-    color: inherit;
-  }
+  a { color: inherit; }
 
   code {
-    font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+    font-family: var(--mono);
     font-size: .92em;
-    background: #f1f5f9;
-    border: 1px solid #e2e8f0;
-    border-radius: 6px;
     padding: 1px 5px;
+    border-radius: 6px;
+    border: 1px solid rgba(35,87,229,.14);
+    background: rgba(255,255,255,.78);
   }
 
-  /* Source-page fallback. build_site.py replaces this nav with the shared header. */
   .top-nav {
     position: sticky;
     top: 0;
     z-index: 30;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 8px;
     padding: 10px 16px;
-    background: rgba(255, 255, 255, .92);
+    background: rgba(255,255,255,.78);
     border-bottom: 1px solid var(--line);
-    backdrop-filter: blur(14px);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
   }
 
   .top-nav a {
     display: inline-flex;
     align-items: center;
-    padding: 7px 12px;
+    min-height: 32px;
+    padding: 6px 12px;
     border-radius: 999px;
+    border: 1px solid transparent;
     color: var(--text-soft);
     text-decoration: none;
     font-size: 12px;
     font-weight: 800;
-    border: 1px solid transparent;
   }
 
   .top-nav a:hover,
   .top-nav .nav-current {
-    background: #eff6ff;
-    border-color: rgba(37, 99, 235, .25);
-    color: var(--primary);
+    color: var(--blue);
+    border-color: rgba(35,87,229,.22);
+    background: rgba(255,255,255,.9);
   }
 
   .course-shell {
-    width: min(1180px, calc(100% - 32px));
+    width: min(1160px, calc(100% - 32px));
     margin: 0 auto;
   }
 
-  .hero-band {
-    padding: 104px 0 42px;
-    background:
-      linear-gradient(90deg, rgba(239, 246, 255, .86), rgba(236, 253, 245, .72) 48%, rgba(255, 247, 237, .74));
-    border-bottom: 1px solid var(--line);
-  }
-
-  .hero-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.12fr) minmax(320px, .88fr);
-    gap: 34px;
-    align-items: center;
-  }
-
-  .kicker {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 14px;
-    color: var(--teal);
-    font-size: 12px;
-    font-weight: 900;
-    letter-spacing: .14em;
-    text-transform: uppercase;
-  }
-
-  .kicker::before {
-    content: "";
-    width: 26px;
-    height: 3px;
-    background: var(--teal);
-    border-radius: 999px;
-  }
-
-  h1 {
-    margin: 0;
-    max-width: 880px;
-    color: var(--text);
-    font-size: clamp(38px, 6vw, 76px);
-    line-height: 1.03;
-    letter-spacing: 0;
-  }
-
-  .hero-lead {
-    max-width: 780px;
-    margin: 20px 0 0;
-    color: var(--text-soft);
-    font-size: clamp(17px, 2.2vw, 22px);
-    line-height: 1.78;
-  }
-
-  .hero-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin: 26px 0 0;
+  .glass {
+    border: 1px solid var(--line);
+    background: var(--glass);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(255,255,255,.82);
   }
 
   .btn {
@@ -163,535 +124,739 @@
     justify-content: center;
     min-height: 44px;
     padding: 10px 17px;
-    border-radius: 8px;
+    border-radius: var(--radius);
     border: 1px solid var(--line);
-    background: #fff;
+    background: rgba(255,255,255,.84);
     color: var(--text);
     text-decoration: none;
     font-size: 14px;
     font-weight: 850;
     box-shadow: var(--shadow-soft);
+    cursor: pointer;
+    transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+  }
+
+  .btn:hover,
+  .btn:focus-visible {
+    transform: translateY(-2px);
+    border-color: rgba(35,87,229,.34);
+    box-shadow: 0 14px 34px rgba(35,87,229,.13);
+    outline: none;
   }
 
   .btn.primary {
     color: #fff;
-    background: var(--primary);
-    border-color: var(--primary);
+    border-color: transparent;
+    background: var(--grad);
   }
 
-  .hero-photo {
-    margin: 0;
-    border: 1px solid rgba(15, 23, 42, .12);
-    border-radius: 8px;
+  .btn.dark {
+    color: #fff;
+    border-color: rgba(255,255,255,.16);
+    background: var(--ink);
+  }
+
+  .hero-band {
+    position: relative;
+    padding: 110px 0 36px;
     overflow: hidden;
-    background: #fff;
-    box-shadow: var(--shadow);
+    border-bottom: 1px solid var(--line);
   }
 
-  .hero-photo img {
+  .hero-band::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      linear-gradient(135deg, rgba(255,255,255,.88), rgba(234,244,255,.86) 48%, rgba(238,252,234,.82)),
+      linear-gradient(180deg, transparent, rgba(255,255,255,.72));
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(350px, .88fr);
+    gap: 32px;
+    align-items: stretch;
+  }
+
+  .kicker,
+  .section-label,
+  .mini-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--blue);
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .10em;
+    text-transform: uppercase;
+  }
+
+  .kicker::before,
+  .section-label::before {
+    content: "";
+    width: 26px;
+    height: 3px;
+    border-radius: 999px;
+    background: var(--grad);
+  }
+
+  h1,
+  h2,
+  h3,
+  p { margin-top: 0; }
+
+  h1 {
+    margin: 18px 0 0;
+    max-width: 850px;
+    color: var(--ink);
+    font-size: clamp(42px, 6.1vw, 78px);
+    line-height: 1.02;
+    letter-spacing: 0;
+  }
+
+  .hero-lead {
+    max-width: 760px;
+    margin: 22px 0 0;
+    color: var(--text-soft);
+    font-size: clamp(17px, 2.1vw, 21px);
+    line-height: 1.76;
+  }
+
+  .value-copy {
+    margin: 22px 0 0;
+    max-width: 760px;
+    padding: 15px 16px;
+    border-radius: var(--radius);
+    color: #fff;
+    background:
+      linear-gradient(120deg, rgba(11,16,32,.94), rgba(23,39,66,.88)),
+      var(--ink);
+    border: 1px solid rgba(255,255,255,.12);
+    box-shadow: 0 18px 44px rgba(11,16,32,.18);
+  }
+
+  .value-copy b {
+    color: #c8ff5f;
+  }
+
+  .hero-actions,
+  .inline-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 26px 0 0;
+  }
+
+  .hero-visual {
+    position: relative;
+    min-height: 100%;
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: minmax(280px, 1fr) auto;
+  }
+
+  .hero-image {
+    position: relative;
+    min-height: 310px;
+    overflow: hidden;
+  }
+
+  .hero-image img {
     display: block;
     width: 100%;
-    aspect-ratio: 4 / 3;
+    height: 100%;
+    min-height: 310px;
     object-fit: cover;
+    filter: saturate(1.02) contrast(1.03);
   }
 
-  .hero-photo figcaption {
+  .hero-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 42%, rgba(11,16,32,.26));
+    pointer-events: none;
+  }
+
+  .visual-caption {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1px;
-    background: var(--line);
-    font-size: 12px;
-    font-weight: 800;
-    color: var(--text-soft);
+    background: rgba(20,32,51,.10);
   }
 
-  .hero-photo figcaption span {
-    background: #fff;
-    padding: 10px;
+  .visual-caption span {
+    padding: 12px 10px;
+    background: rgba(255,255,255,.76);
+    color: var(--text);
+    font-size: 12px;
+    font-weight: 850;
     text-align: center;
   }
 
-  .summary-strip {
+  .line-dock {
+    position: absolute;
+    right: 14px;
+    bottom: 64px;
+    width: min(68%, 300px);
+    padding: 12px;
+    border-radius: var(--radius);
+    color: #fff;
+    background: rgba(11,16,32,.78);
+    border: 1px solid rgba(255,255,255,.16);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+  }
+
+  .line-dock svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .line-dock path,
+  .line-dock line,
+  .line-dock polyline,
+  .line-dock circle,
+  .line-dock rect {
+    vector-effect: non-scaling-stroke;
+  }
+
+  .draw-line {
+    stroke-dasharray: 10 10;
+    animation: dash 5s linear infinite;
+  }
+
+  @keyframes dash { to { stroke-dashoffset: -80; } }
+
+  .quick-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 10px;
-    margin: 30px 0 0;
+    margin: 28px 0 0;
   }
 
-  .summary-item {
-    min-height: 118px;
-    padding: 16px;
-    border: 1px solid var(--line);
-    border-top: 4px solid var(--accent, var(--primary));
-    border-radius: 8px;
-    background: rgba(255, 255, 255, .9);
-    box-shadow: var(--shadow-soft);
+  .quick-card {
+    min-height: 108px;
+    padding: 15px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: transform .18s ease, border-color .18s ease, background .18s ease;
   }
 
-  .summary-item b {
+  .quick-card:hover,
+  .quick-card:focus-visible {
+    transform: translateY(-3px);
+    border-color: rgba(35,87,229,.34);
+    background: var(--paper-strong);
+    outline: none;
+  }
+
+  .quick-card b {
     display: block;
-    margin-bottom: 6px;
-    color: var(--text);
-    font-size: 16px;
-    line-height: 1.3;
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.35;
   }
 
-  .summary-item span {
+  .quick-card span {
     display: block;
+    margin-top: 7px;
     color: var(--muted);
-    font-size: 12.5px;
+    font-size: 12px;
     line-height: 1.55;
   }
 
   .section-band {
-    padding: 54px 0;
+    padding: 58px 0;
+    scroll-margin-top: 146px;
   }
 
   .section-band.tint {
-    background: #f8fbfc;
+    background: rgba(255,255,255,.44);
     border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
   }
 
   .section-head {
     display: grid;
-    grid-template-columns: minmax(0, .78fr) minmax(280px, .22fr);
+    grid-template-columns: minmax(0, .82fr) minmax(220px, .18fr);
     gap: 24px;
     align-items: end;
     margin-bottom: 22px;
   }
 
   .section-head h2 {
-    margin: 0;
-    color: var(--text);
-    font-size: clamp(30px, 4vw, 48px);
-    line-height: 1.1;
+    margin: 10px 0 10px;
+    color: var(--ink);
+    font-size: clamp(28px, 4vw, 48px);
+    line-height: 1.12;
     letter-spacing: 0;
   }
 
   .section-head p {
-    margin: 10px 0 0;
+    max-width: 760px;
     color: var(--text-soft);
     font-size: 16px;
   }
 
-  .section-label {
-    display: inline-flex;
-    align-items: center;
-    width: fit-content;
-    min-height: 32px;
-    padding: 5px 10px;
-    border-radius: 8px;
-    color: #fff;
-    background: var(--inkband);
-    font-size: 12px;
-    font-weight: 900;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-  }
-
-  .slide-grid {
+  .overview-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
+    grid-template-columns: minmax(0, .98fr) minmax(300px, .62fr);
+    gap: 18px;
   }
 
-  .slide-grid.three {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .slide {
-    position: relative;
-    min-height: 292px;
-    padding: 28px;
-    border: 1px solid var(--line);
-    border-top: 5px solid var(--accent, var(--primary));
-    border-radius: 8px;
-    background: var(--paper);
-    box-shadow: var(--shadow-soft);
+  .system-panel {
+    border-radius: var(--radius);
     overflow: hidden;
   }
 
-  .slide.wide {
-    grid-column: 1 / -1;
-    min-height: 360px;
-  }
-
-  .slide.dark {
+  .system-visual {
+    min-height: 320px;
+    padding: 22px;
     color: #fff;
-    background: var(--inkband);
-    border-color: var(--inkband);
+    background:
+      linear-gradient(135deg, rgba(11,16,32,.96), rgba(18,38,64,.94)),
+      var(--ink);
   }
 
-  .slide.dark p,
-  .slide.dark li,
-  .slide.dark .mini {
-    color: rgba(255, 255, 255, .88);
-  }
-
-  .slide-no {
+  .system-visual svg {
+    width: 100%;
+    height: auto;
     display: block;
-    margin-bottom: 18px;
-    color: var(--accent, var(--primary));
-    font-size: 12px;
-    font-weight: 950;
-    letter-spacing: .16em;
-    text-transform: uppercase;
   }
 
-  .slide.dark .slide-no {
-    color: #93c5fd;
-  }
-
-  .slide h3 {
-    margin: 0 0 12px;
-    color: inherit;
-    font-size: clamp(22px, 2.5vw, 34px);
-    line-height: 1.22;
+  .system-visual text {
+    font-family: var(--sans);
     letter-spacing: 0;
   }
 
-  .slide p {
-    margin: 0 0 14px;
+  .role-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    padding: 14px;
+  }
+
+  .role-card {
+    min-height: 142px;
+    padding: 15px;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,.72);
+  }
+
+  .role-card h3 {
+    margin: 5px 0 6px;
+    color: var(--ink);
+    font-size: 18px;
+  }
+
+  .role-card p {
+    margin: 0;
     color: var(--text-soft);
-    font-size: 15px;
-    line-height: 1.75;
+    font-size: 13px;
+    line-height: 1.65;
   }
 
-  .slide ul,
-  .slide ol {
-    margin: 14px 0 0;
-    padding-left: 1.15em;
+  .stage-console {
+    border-radius: var(--radius);
+    overflow: hidden;
   }
 
-  .slide li {
-    margin: 5px 0;
+  .stage-tabs {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: rgba(20,32,51,.10);
+  }
+
+  .stage-tab {
+    min-height: 62px;
+    padding: 11px 8px;
+    border: 0;
+    background: rgba(255,255,255,.72);
     color: var(--text-soft);
-    font-size: 14px;
-    line-height: 1.68;
-  }
-
-  .mini {
-    display: inline-flex;
-    width: fit-content;
-    margin-top: 12px;
-    padding: 4px 9px;
-    border: 1px solid rgba(100, 116, 139, .26);
-    border-radius: 999px;
-    color: var(--muted);
+    font: inherit;
     font-size: 12px;
     font-weight: 850;
+    cursor: pointer;
   }
 
-  .flow {
+  .stage-tab[aria-selected="true"] {
+    color: #fff;
+    background: var(--ink);
+  }
+
+  .stage-body {
+    padding: 22px;
+    background: rgba(255,255,255,.70);
+  }
+
+  .stage-panel { display: none; }
+  .stage-panel.active { display: grid; gap: 16px; }
+
+  .stage-panel h3 {
+    margin: 0;
+    color: var(--ink);
+    font-size: clamp(24px, 3vw, 34px);
+    line-height: 1.18;
+  }
+
+  .stage-panel p {
+    margin: 0;
+    color: var(--text-soft);
+  }
+
+  .stage-meta {
     display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: 8px;
-    margin: 18px 0 0;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
   }
 
-  .flow-step {
-    min-height: 98px;
-    padding: 13px 12px;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    background: #fff;
-  }
-
-  .flow-step b {
-    display: block;
-    color: var(--text);
-    font-size: 14px;
-    line-height: 1.35;
-  }
-
-  .flow-step span {
-    display: block;
-    margin-top: 5px;
-    color: var(--muted);
-    font-size: 12px;
-    line-height: 1.55;
-  }
-
-  .compare {
-    display: grid;
-    grid-template-columns: .8fr repeat(4, 1fr);
-    overflow: hidden;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    background: #fff;
-  }
-
-  .compare div {
-    min-height: 76px;
+  .stage-meta div {
+    min-height: 92px;
     padding: 13px;
-    border-right: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,.66);
+  }
+
+  .stage-meta b {
+    display: block;
+    color: var(--blue);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  .stage-meta span {
+    display: block;
+    margin-top: 6px;
     color: var(--text-soft);
     font-size: 13px;
     line-height: 1.55;
   }
 
-  .compare div:nth-child(5n) {
-    border-right: 0;
+  .progress-card {
+    position: sticky;
+    top: 148px;
+    padding: 18px;
+    border-radius: var(--radius);
   }
 
-  .compare .head {
-    color: #fff;
-    background: var(--inkband);
-    font-size: 12px;
+  .progress-title {
+    margin: 0 0 10px;
+    color: var(--ink);
     font-weight: 900;
-    letter-spacing: .06em;
   }
 
-  .compare b {
-    color: var(--text);
+  .progress-meter {
+    height: 10px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(20,32,51,.10);
   }
 
-  .compare .head b {
-    color: #fff;
+  .progress-meter span {
+    display: block;
+    width: 12%;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--grad);
+    transition: width .35s ease;
   }
 
-  .ladder {
+  .progress-list {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 14px;
+  }
+
+  .progress-list a {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 8px 10px;
+    border-radius: var(--radius);
+    color: var(--text-soft);
+    text-decoration: none;
+    font-size: 12.5px;
+    font-weight: 800;
+  }
+
+  .progress-list a.active {
+    color: var(--ink);
+    background: rgba(255,255,255,.78);
+    box-shadow: inset 0 0 0 1px rgba(35,87,229,.18);
+  }
+
+  .split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(250px, .34fr);
+    gap: 18px;
+    align-items: start;
+  }
+
+  .stack-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 12px;
   }
 
-  .ladder-card {
-    min-height: 210px;
-    padding: 20px;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    background: #fff;
-    box-shadow: var(--shadow-soft);
+  .stack-card,
+  .loop-card,
+  .official-card,
+  .exercise-card,
+  details {
+    padding: 18px;
+    border-radius: var(--radius);
   }
 
-  .ladder-card b {
-    display: block;
-    margin-bottom: 10px;
-    color: var(--accent, var(--primary));
-    font-size: 13px;
-    font-weight: 950;
-    letter-spacing: .12em;
+  .stack-card h3,
+  .loop-card h3,
+  .official-card h3,
+  .exercise-card h3 {
+    margin: 8px 0 8px;
+    color: var(--ink);
+    font-size: 20px;
+    line-height: 1.25;
   }
 
-  .ladder-card h3 {
-    margin: 0 0 8px;
-    font-size: 21px;
-    line-height: 1.28;
-  }
-
-  .ladder-card p {
+  .stack-card p,
+  .loop-card p,
+  .official-card p,
+  .exercise-card p {
     margin: 0;
     color: var(--text-soft);
     font-size: 13.5px;
     line-height: 1.65;
   }
 
-  .prompt {
-    margin: 14px 0 0;
-    padding: 16px;
-    color: #dbeafe;
-    background: #0f172a;
-    border-radius: 8px;
-    white-space: pre-wrap;
-    font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
-    font-size: 13px;
-    line-height: 1.7;
-  }
-
-  .callout {
-    display: grid;
-    grid-template-columns: minmax(0, .74fr) minmax(260px, .26fr);
-    gap: 18px;
-    align-items: center;
-    margin-top: 18px;
-    padding: 22px;
-    border: 1px solid rgba(15, 139, 141, .28);
-    border-radius: 8px;
-    background: #eef9f8;
-  }
-
-  .callout b {
-    display: block;
-    margin-bottom: 8px;
-    color: var(--teal);
-    font-size: 22px;
-    line-height: 1.35;
-  }
-
-  .callout p {
-    margin: 0;
-    color: var(--text-soft);
-  }
-
-  .checklist {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-    margin: 18px 0 0;
-  }
-
-  .check {
-    display: grid;
-    grid-template-columns: 34px minmax(0, 1fr);
-    gap: 10px;
-    align-items: start;
-    min-height: 76px;
-    padding: 14px;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    background: #fff;
-  }
-
-  .check i {
+  .tag {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
-    border-radius: 8px;
+    min-height: 25px;
+    padding: 4px 9px;
+    border-radius: 999px;
+    color: var(--blue);
+    border: 1px solid rgba(35,87,229,.18);
+    background: rgba(255,255,255,.72);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 900;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  .loop-grid,
+  .official-grid,
+  .exercise-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .loop-card.dark {
     color: #fff;
-    background: var(--accent, var(--primary));
-    font-style: normal;
-    font-weight: 950;
+    background:
+      linear-gradient(135deg, rgba(11,16,32,.94), rgba(22,42,71,.90)),
+      var(--ink);
+    border-color: rgba(255,255,255,.14);
   }
 
-  .check b {
+  .loop-card.dark h3,
+  .loop-card.dark p {
+    color: #fff;
+  }
+
+  .prompt-box {
+    margin-top: 14px;
+    padding: 14px;
+    border-radius: var(--radius);
+    color: #dbeafe;
+    background: rgba(0,0,0,.22);
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+  }
+
+  .line-image {
+    min-height: 330px;
+    overflow: hidden;
+    border-radius: var(--radius);
+  }
+
+  .line-image img {
+    width: 100%;
+    height: 100%;
+    min-height: 330px;
+    object-fit: cover;
     display: block;
-    color: var(--text);
+    filter: saturate(.96) contrast(1.04);
+  }
+
+  details {
+    background: var(--glass);
+    border: 1px solid var(--line);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+  }
+
+  details + details { margin-top: 10px; }
+
+  summary {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    color: var(--ink);
+    font-weight: 900;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  summary::-webkit-details-marker { display: none; }
+
+  summary::after {
+    content: "+";
+    color: var(--blue);
+    font-family: var(--mono);
+    font-weight: 900;
+  }
+
+  details[open] summary::after { content: "-"; }
+
+  details p,
+  details ul {
+    color: var(--text-soft);
     font-size: 14px;
-    line-height: 1.35;
   }
 
-  .check span {
-    display: block;
-    margin-top: 3px;
+  .official-card {
+    min-height: 190px;
+    text-decoration: none;
+    transition: transform .18s ease, border-color .18s ease, background .18s ease;
+  }
+
+  .official-card:hover,
+  .official-card:focus-visible {
+    transform: translateY(-3px);
+    border-color: rgba(35,87,229,.34);
+    background: var(--paper-strong);
+    outline: none;
+  }
+
+  .official-card .date {
     color: var(--muted);
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 900;
+  }
+
+  .check-row {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .check-btn {
+    min-height: 84px;
+    padding: 12px;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,.68);
+    color: var(--text-soft);
+    text-align: left;
+    font: inherit;
     font-size: 12.5px;
-    line-height: 1.55;
+    font-weight: 850;
+    cursor: pointer;
+  }
+
+  .check-btn.done {
+    color: var(--ink);
+    border-color: rgba(146,217,35,.46);
+    background: rgba(245,255,229,.78);
   }
 
   .footer-cta {
-    padding: 48px 0 72px;
+    padding: 60px 0 76px;
     color: #fff;
-    background: var(--inkband);
+    background:
+      linear-gradient(135deg, rgba(11,16,32,.96), rgba(13,35,60,.94)),
+      var(--ink);
   }
 
   .footer-cta h2 {
-    margin: 0 0 12px;
-    font-size: clamp(30px, 5vw, 58px);
-    line-height: 1.12;
-    letter-spacing: 0;
+    max-width: 880px;
+    margin: 0;
+    font-size: clamp(28px, 4vw, 48px);
+    line-height: 1.16;
   }
 
   .footer-cta p {
-    max-width: 820px;
-    margin: 0 0 22px;
-    color: rgba(255, 255, 255, .82);
+    max-width: 760px;
+    margin: 16px 0 0;
+    color: #cbd5e1;
     font-size: 16px;
   }
 
-  .footer-cta .btn {
-    box-shadow: none;
-  }
-
-  @media (max-width: 980px) {
+  @media (max-width: 920px) {
+    html { scroll-padding-top: 164px; }
+    .hero-band { padding-top: 92px; }
     .hero-grid,
-    .section-head,
-    .callout {
+    .overview-grid,
+    .split,
+    .section-head {
       grid-template-columns: 1fr;
     }
-
-    .summary-strip,
-    .slide-grid.three,
-    .ladder {
+    .quick-grid,
+    .stack-grid,
+    .check-row {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
-
-    .flow {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .compare {
-      grid-template-columns: 1fr;
-    }
-
-    .compare div,
-    .compare div:nth-child(5n) {
-      border-right: 0;
-    }
+    .progress-card { position: relative; top: auto; }
   }
 
-  @media (max-width: 720px) {
-    html {
-      scroll-padding-top: 124px;
-    }
-
-    .course-shell {
-      width: min(100% - 24px, 1180px);
-    }
-
-    .hero-band {
-      padding-top: 76px;
-    }
-
-    .summary-strip,
-    .slide-grid,
-    .slide-grid.three,
-    .ladder,
-    .checklist,
-    .flow {
+  @media (max-width: 640px) {
+    .course-shell { width: min(100% - 22px, 1160px); }
+    .hero-band { padding-top: 78px; }
+    .quick-grid,
+    .role-grid,
+    .stage-meta,
+    .stack-grid,
+    .loop-grid,
+    .official-grid,
+    .exercise-grid,
+    .check-row {
       grid-template-columns: 1fr;
     }
-
-    .slide,
-    .slide.wide {
-      min-height: auto;
-      padding: 22px;
+    .stage-tabs { grid-template-columns: 1fr; }
+    .line-dock {
+      position: relative;
+      right: auto;
+      bottom: auto;
+      width: auto;
+      margin: 10px;
     }
-
-    .hero-actions {
-      display: grid;
-    }
-
-    .btn {
-      width: 100%;
-    }
+    .visual-caption { grid-template-columns: 1fr; }
+    h1 { font-size: clamp(36px, 13vw, 52px); }
   }
 
-  @media print {
-    .top-nav,
-    .pm-chapter-toc,
-    .hero-actions,
-    .footer-cta .btn {
-      display: none !important;
-    }
-
-    body {
-      background: #fff;
-    }
-
-    .hero-band,
-    .section-band,
-    .footer-cta {
-      padding: 0;
-      background: #fff;
-      color: var(--text);
-      border: 0;
-    }
-
-    .slide,
-    .hero-grid,
-    .section-head,
-    .callout {
-      page-break-after: always;
-    }
-
-    .slide {
-      min-height: 92vh;
-      box-shadow: none;
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .draw-line { animation: none; }
+    .btn,
+    .quick-card,
+    .official-card {
+      transition: none;
     }
   }
 </style>
@@ -701,12 +866,11 @@
 <nav class="top-nav" aria-label="サイトナビゲーション">
   <a href="./index.html">AIハブ</a>
   <a href="./lectures/index.html">講習資料</a>
-  <a class="nav-current" href="#top">総合講習</a>
-  <a href="#pm-modern-ai">AI全体像</a>
-  <a href="#part-1">入口</a>
+  <a class="nav-current" href="#top">実装講習</a>
+  <a href="#pm-modern-ai">全体像</a>
   <a href="#part-2">基礎</a>
   <a href="#part-3">実装</a>
-  <a href="#part-4">公開</a>
+  <a href="#sec-ccode">公式更新</a>
   <a href="#sec-line">演習</a>
 </nav>
 
@@ -714,33 +878,56 @@
   <div class="course-shell">
     <div class="hero-grid">
       <div>
-        <span class="kicker">AI Hub Course / 2026-06</span>
-        <h1>AIコーディング総合講習</h1>
+        <span class="kicker">AI Hub Course / Codex + Programming</span>
+        <h1>AIコーディング実装講習</h1>
         <p class="hero-lead">
-          Codexを「魔法の自動制作」ではなく、作業を任せて確認する共同作業者として使うための講習資料です。最初にAIコーディングの全体像を押さえ、その流れのままプログラミングを基礎から少しずつ学び、LP・アプリ・資料・公開運用までつなげます。
+          Codexを「コードを書いてくれる箱」ではなく、相談、実装、確認、公開を一緒に進める作業者として使うための実装講習です。プログラミング基礎は、全部を手書きするためではなく、AIの成果物を判断し、直し、仕事に入れるために学びます。
+        </p>
+        <p class="value-copy">
+          AIコーディングは、<b>上位0.6%級の早期層</b>という言い方が出るほど、まだ少数派の実務スキルです。今学ぶ価値は「珍しいから」ではなく、早い段階で作業設計と確認の型を身につけられることにあります。
         </p>
         <div class="hero-actions" aria-label="主要導線">
-          <a class="btn primary" href="#pm-modern-ai">最初に押さえる全体像へ</a>
-          <a class="btn" href="#part-2">基礎から順に学ぶ</a>
-          <a class="btn" href="#sec-line">総合演習を見る</a>
+          <a class="btn primary" href="#pm-modern-ai">全体像から始める</a>
+          <a class="btn" href="#part-2">基礎語彙を見る</a>
+          <a class="btn dark" href="#sec-ccode">Codex公式更新へ</a>
         </div>
       </div>
-      <figure class="hero-photo">
-        <img src="./img/hero-ai-hub-studio.png" alt="AIハブの講習・制作スタジオイメージ">
-        <figcaption>
-          <span>相談する</span>
-          <span>作らせる</span>
-          <span>確認する</span>
-        </figcaption>
-      </figure>
+      <div class="hero-visual glass" aria-label="AIコーディング講習のビジュアル">
+        <div class="hero-image">
+          <img src="./img/hero-ai-hub-studio.png" alt="AI相談と制作、講習資料を整理するスタジオイメージ">
+          <div class="line-dock" aria-hidden="true">
+            <svg viewBox="0 0 320 190" fill="none">
+              <rect x="10" y="12" width="88" height="54" rx="8" stroke="#8bdcff" stroke-width="2"/>
+              <rect x="118" y="12" width="88" height="54" rx="8" stroke="#c8ff5f" stroke-width="2"/>
+              <rect x="222" y="12" width="88" height="54" rx="8" stroke="#ffb3a8" stroke-width="2"/>
+              <path class="draw-line" d="M98 39H118M206 39H222" stroke="#ffffff" stroke-width="2"/>
+              <text x="27" y="45" fill="#ffffff" font-size="14">相談</text>
+              <text x="135" y="45" fill="#ffffff" font-size="14">実装</text>
+              <text x="239" y="45" fill="#ffffff" font-size="14">確認</text>
+              <path class="draw-line" d="M54 66C54 120 266 120 266 66" stroke="#8bdcff" stroke-width="2"/>
+              <circle cx="54" cy="126" r="22" stroke="#c8ff5f" stroke-width="2"/>
+              <circle cx="160" cy="140" r="26" stroke="#8bdcff" stroke-width="2"/>
+              <circle cx="266" cy="126" r="22" stroke="#ffb3a8" stroke-width="2"/>
+              <path d="M78 126H134M186 140H242" stroke="#ffffff" stroke-opacity=".72" stroke-width="2"/>
+              <text x="36" y="131" fill="#ffffff" font-size="12">Git</text>
+              <text x="141" y="145" fill="#ffffff" font-size="12">Browser</text>
+              <text x="249" y="131" fill="#ffffff" font-size="12">Deploy</text>
+            </svg>
+          </div>
+        </div>
+        <div class="visual-caption">
+          <span>AIに任せる</span>
+          <span>自分で見る</span>
+          <span>仕事に入れる</span>
+        </div>
+      </div>
     </div>
 
-    <div class="summary-strip" aria-label="講習で身につける5領域">
-      <div class="summary-item" style="--accent:var(--primary)"><b>AIの役割</b><span>ChatGPT、Codex、VS Code、Claude Code、Browserを混同しない。</span></div>
-      <div class="summary-item" style="--accent:var(--teal)"><b>基礎語彙</b><span>HTML、CSS、JavaScript、API、DB、Gitを実務の流れで覚える。</span></div>
-      <div class="summary-item" style="--accent:var(--coral)"><b>実装ループ</b><span>小さく依頼し、差分を見て、ブラウザで確認して直す。</span></div>
-      <div class="summary-item" style="--accent:var(--green)"><b>公開運用</b><span>Vercel、Supabase、SEO、セキュリティ、監視まで理解する。</span></div>
-      <div class="summary-item" style="--accent:var(--amber)"><b>応用制作</b><span>LP、講習資料、動画、SNS、業務アプリへ広げる。</span></div>
+    <div class="quick-grid" aria-label="講習で身につける領域">
+      <a class="quick-card glass" href="#pm-modern-ai"><b>01 全体像</b><span>ChatGPT、Codex、VS Code、Browserの役割を分ける。</span></a>
+      <a class="quick-card glass" href="#part-2"><b>02 基礎語彙</b><span>HTML/CSS/JS/API/DB/Gitを仕事の流れで覚える。</span></a>
+      <a class="quick-card glass" href="#part-3"><b>03 実装ループ</b><span>依頼、差分、表示確認、レビューを1セットにする。</span></a>
+      <a class="quick-card glass" href="#sec-line"><b>04 総合演習</b><span>LP、資料、フォーム、公開レビューまで作る。</span></a>
     </div>
   </div>
 </header>
@@ -751,63 +938,57 @@
       <div class="section-head">
         <div>
           <span class="section-label">00 / Orientation</span>
-          <h2>最初に押さえるAIコーディングの全体像</h2>
-          <p>コードの前に、どのAIが何を担当するかを分けます。ここが分かると、初心者でも「どこで相談し、どこで作業し、どこで確認するか」を迷いにくくなります。</p>
+          <h2>まず「AIがどこで働くか」を整理する</h2>
+          <p>AIコーディングで混乱する原因は、AIの性能よりも作業場所の混線です。相談、実装、確認、公開の役割を分けると、初心者でも安全に学習を進められます。</p>
         </div>
-        <a class="btn" href="#part-1">次は入口へ</a>
+        <a class="btn" href="#part-1">価値と入口へ</a>
       </div>
 
-      <div class="compare" role="table" aria-label="AIコーディングで使う道具の役割">
-        <div class="head">項目</div>
-        <div class="head">ChatGPT</div>
-        <div class="head">Codex</div>
-        <div class="head">VS Code</div>
-        <div class="head">Claude Code</div>
-        <div><b>一言で</b></div>
-        <div>相談、整理、文章化、アイデア出し。</div>
-        <div>作業場を持つAI共同作業者。編集、実行、確認まで扱う。</div>
-        <div>ファイル、ターミナル、Git差分を見る作業机。</div>
-        <div>コードベースの中で動く実装担当。</div>
-        <div><b>最初の使い方</b></div>
-        <div>目的、依頼文、説明の下書きを作る。</div>
-        <div>フォルダを開き、小さな変更から任せる。</div>
-        <div>AIが直したファイルと実行結果を確認する。</div>
-        <div>実装、調査、テスト、HooksやMCPを扱う。</div>
-        <div><b>確認方法</b></div>
-        <div>内容が伝わるか読む。</div>
-        <div>差分、ブラウザ、テスト、独立レビューを見る。</div>
-        <div>エラー、表示、Git状態を見る。</div>
-        <div>コマンド結果とレビュー指摘を見る。</div>
-      </div>
+      <div class="overview-grid">
+        <div class="system-panel glass">
+          <div class="system-visual" aria-label="AIコーディングの作業線画">
+            <svg viewBox="0 0 760 430" fill="none" role="img">
+              <title>相談から公開までのAIコーディング作業図</title>
+              <rect x="22" y="24" width="190" height="92" rx="8" stroke="#8bdcff" stroke-width="2"/>
+              <text x="48" y="58" fill="#ffffff" font-size="21" font-weight="800">ChatGPT</text>
+              <text x="48" y="88" fill="#b8c7d9" font-size="14">目的・整理・依頼文</text>
+              <rect x="286" y="24" width="190" height="92" rx="8" stroke="#c8ff5f" stroke-width="2"/>
+              <text x="326" y="58" fill="#ffffff" font-size="21" font-weight="800">Codex</text>
+              <text x="322" y="88" fill="#b8c7d9" font-size="14">編集・実行・レビュー</text>
+              <rect x="548" y="24" width="190" height="92" rx="8" stroke="#ffb3a8" stroke-width="2"/>
+              <text x="592" y="58" fill="#ffffff" font-size="21" font-weight="800">Browser</text>
+              <text x="586" y="88" fill="#b8c7d9" font-size="14">表示・リンク・操作</text>
+              <path class="draw-line" d="M212 70H286M476 70H548" stroke="#ffffff" stroke-width="2"/>
+              <rect x="70" y="178" width="620" height="160" rx="8" stroke="#6ea8ff" stroke-opacity=".8" stroke-width="2"/>
+              <path d="M96 214H666M96 252H666M96 290H666" stroke="#ffffff" stroke-opacity=".12"/>
+              <text x="112" y="230" fill="#ffffff" font-size="18" font-weight="800">Workspace</text>
+              <text x="112" y="270" fill="#b8c7d9" font-size="15">files / terminal / git diff / tests / env</text>
+              <circle cx="600" cy="254" r="52" stroke="#c8ff5f" stroke-width="2"/>
+              <path class="draw-line" d="M560 254H640M600 214V294" stroke="#c8ff5f" stroke-width="2"/>
+              <text x="560" y="368" fill="#b8c7d9" font-size="14">小さく頼む → 画面で見る → 差分で選ぶ</text>
+            </svg>
+          </div>
+          <div class="role-grid" aria-label="道具の役割">
+            <div class="role-card"><span class="tag">Talk</span><h3>ChatGPT</h3><p>目的、説明、講習文、依頼文、判断材料を整理する相談役。</p></div>
+            <div class="role-card"><span class="tag">Build</span><h3>Codex</h3><p>フォルダを持ち、ファイル編集、コマンド実行、差分確認まで進める共同作業者。</p></div>
+            <div class="role-card"><span class="tag">Desk</span><h3>VS Code / Git</h3><p>作業対象、変更履歴、戻し方、レビュー対象を見える化する作業机。</p></div>
+            <div class="role-card"><span class="tag">View</span><h3>Browser</h3><p>見た目、リンク、フォーム、スマホ表示を自分の目で確かめる検査場所。</p></div>
+          </div>
+        </div>
 
-      <div class="flow" aria-label="AIコーディングの基本フロー">
-        <div class="flow-step"><b>1. 目的を書く</b><span>何を作るか、誰が使うかを日本語で決める。</span></div>
-        <div class="flow-step"><b>2. 作業場を選ぶ</b><span>Codexで安全なフォルダやリポジトリを開く。</span></div>
-        <div class="flow-step"><b>3. 小さく頼む</b><span>1画面、1文章、1機能に切って依頼する。</span></div>
-        <div class="flow-step"><b>4. 表示で見る</b><span>BrowserやChromeで画面を確認する。</span></div>
-        <div class="flow-step"><b>5. 差分で選ぶ</b><span>何が変わったかを見て採用判断する。</span></div>
-        <div class="flow-step"><b>6. 公開前レビュー</b><span>壊れそうな点を別視点で確認する。</span></div>
-      </div>
-
-      <div class="slide-grid three" style="margin-top:16px;">
-        <article class="slide" style="--accent:var(--primary)">
-          <span class="slide-no">Slide 00-A</span>
-          <h3>Codexは作業場を持つ</h3>
-          <p>ChatGPTの会話だけではなく、フォルダ、ファイル、コマンド、ブラウザ確認まで同じ流れにできます。だから「できた」という返事より、結果の確認が大事です。</p>
-          <span class="mini">覚える語彙: workspace / diff / review</span>
-        </article>
-        <article class="slide" style="--accent:var(--teal)">
-          <span class="slide-no">Slide 00-B</span>
-          <h3>プログラミングはAIへの指示精度を上げる基礎</h3>
-          <p>全部を手書きするためだけに学ぶのではなく、AIが出した変更を理解し、正しく直し、危険な公開を止めるために学びます。</p>
-          <span class="mini">覚える語彙: HTML / CSS / JS / API</span>
-        </article>
-        <article class="slide" style="--accent:var(--coral)">
-          <span class="slide-no">Slide 00-C</span>
-          <h3>最初から全自動を狙わない</h3>
-          <p>最初の成功体験は「AIに小さく作らせて、自分が見て選ぶ」ことです。大きな公開作業は、Git差分と独立レビューを挟んでから進めます。</p>
-          <span class="mini">覚える語彙: small task / browser check</span>
-        </article>
+        <aside class="progress-card glass" aria-label="現在位置">
+          <p class="progress-title">学習進捗</p>
+          <div class="progress-meter" aria-hidden="true"><span id="courseProgress"></span></div>
+          <nav class="progress-list" aria-label="講習セクション">
+            <a href="#pm-modern-ai" data-watch="pm-modern-ai">00 <span>全体像</span></a>
+            <a href="#part-1" data-watch="part-1">01 <span>価値と入口</span></a>
+            <a href="#part-2" data-watch="part-2">02 <span>基礎語彙</span></a>
+            <a href="#part-3" data-watch="part-3">03 <span>実装</span></a>
+            <a href="#part-4" data-watch="part-4">04 <span>公開</span></a>
+            <a href="#sec-ccode" data-watch="sec-ccode">06 <span>Codex公式</span></a>
+            <a href="#sec-line" data-watch="sec-line">07 <span>演習</span></a>
+          </nav>
+        </aside>
       </div>
     </div>
   </section>
@@ -816,51 +997,73 @@
     <div class="course-shell">
       <div class="section-head">
         <div>
-          <span class="section-label">01 / Entry</span>
-          <h2>入口: PCと作業場を整える</h2>
-          <p>AIコーディングの最初の山は、難しいアルゴリズムではありません。フォルダ、ターミナル、ブラウザ、Git、秘密情報の置き場所を分けられることです。</p>
+          <span class="section-label">01 / Value and Entry</span>
+          <h2>高い価値は、コード暗記ではなく作業設計にある</h2>
+          <p>AIコーディングを使いこなす人は、完璧なコードを書ける人ではありません。何を任せるか、何を確認するか、どこで止めるかを決められる人です。</p>
         </div>
-        <a class="btn" href="#part-2">基礎へ進む</a>
+        <a class="btn" href="#part-2">基礎語彙へ</a>
       </div>
 
-      <div class="slide-grid">
-        <article class="slide dark wide" style="--accent:var(--teal)">
-          <span class="slide-no">Slide 01</span>
-          <h3>「どこで何をしているか」を見失わない</h3>
-          <p>初心者がつまずく原因の多くは、AIの能力不足ではなく、作業場所の混乱です。ローカルフォルダ、GitHub、本番URL、管理画面、Notebookや資料の保存先を分けて考えます。</p>
-          <div class="flow">
-            <div class="flow-step"><b>フォルダ</b><span>作業対象</span></div>
-            <div class="flow-step"><b>ターミナル</b><span>実行結果</span></div>
-            <div class="flow-step"><b>ブラウザ</b><span>見た目</span></div>
-            <div class="flow-step"><b>Git</b><span>変更差分</span></div>
-            <div class="flow-step"><b>.env</b><span>秘密情報</span></div>
-            <div class="flow-step"><b>AGENTS.md</b><span>作業ルール</span></div>
-          </div>
-        </article>
-
-        <article class="slide" style="--accent:var(--primary)">
-          <span class="slide-no">Slide 01-A</span>
-          <h3>最初に開くもの</h3>
-          <ul>
-            <li>制作するプロジェクトのフォルダ</li>
-            <li>VS CodeまたはCodexの作業画面</li>
-            <li>ローカル表示用のブラウザ</li>
-            <li>Git差分または変更一覧</li>
-          </ul>
-          <p>最初は空フォルダでも構いません。重要なのは、AIが触れる範囲を自分で把握することです。</p>
-        </article>
-
-        <article class="slide" style="--accent:var(--coral)">
-          <span class="slide-no">Slide 01-B</span>
-          <h3>最初から触らなくてよいもの</h3>
-          <ul>
-            <li>モデル設定の細かい比較</li>
-            <li>MCPサーバーの全設定</li>
-            <li>Hooksの自作</li>
-            <li>大規模な認証や決済</li>
-          </ul>
-          <p>講習の入口では「何を頼むか」「どこを確認するか」「公開してよいか」の判断を先に作ります。</p>
-        </article>
+      <div class="stage-console glass">
+        <div class="stage-tabs" role="tablist" aria-label="学習ステージ">
+          <button class="stage-tab" type="button" role="tab" aria-selected="true" data-stage-target="stage-entry">入口</button>
+          <button class="stage-tab" type="button" role="tab" aria-selected="false" data-stage-target="stage-words">語彙</button>
+          <button class="stage-tab" type="button" role="tab" aria-selected="false" data-stage-target="stage-build">制作</button>
+          <button class="stage-tab" type="button" role="tab" aria-selected="false" data-stage-target="stage-ops">公開</button>
+          <button class="stage-tab" type="button" role="tab" aria-selected="false" data-stage-target="stage-apply">応用</button>
+        </div>
+        <div class="stage-body">
+          <article id="stage-entry" class="stage-panel active" role="tabpanel">
+            <span class="mini-label">First 30 minutes</span>
+            <h3>作業場を迷子にしない</h3>
+            <p>フォルダ、GitHub、本番URL、管理画面、資料ファイルを分けて見ます。ここが整うだけで、AIへの依頼と確認が一気に安定します。</p>
+            <div class="stage-meta">
+              <div><b>Goal</b><span>AIが触る範囲を自分で把握する。</span></div>
+              <div><b>Check</b><span><code>git status</code> とブラウザ表示を見る。</span></div>
+              <div><b>Avoid</b><span>秘密情報や本番DBを最初から触らない。</span></div>
+            </div>
+          </article>
+          <article id="stage-words" class="stage-panel" role="tabpanel">
+            <span class="mini-label">Programming words</span>
+            <h3>AIに任せるための語彙を持つ</h3>
+            <p>HTMLは構造、CSSは見た目、JavaScriptは動き、APIとDBは情報の出入口。これだけで修正依頼の精度が上がります。</p>
+            <div class="stage-meta">
+              <div><b>Goal</b><span>不具合がどの層で起きているか言える。</span></div>
+              <div><b>Check</b><span>画面、コンソール、差分を分けて見る。</span></div>
+              <div><b>Avoid</b><span>用語だけ暗記して実物を見ない。</span></div>
+            </div>
+          </article>
+          <article id="stage-build" class="stage-panel" role="tabpanel">
+            <span class="mini-label">Build loop</span>
+            <h3>小さく頼み、見て、直す</h3>
+            <p>1画面、1セクション、1フォームのように単位を切ります。AIには完了条件と確認方法を同時に渡します。</p>
+            <div class="stage-meta">
+              <div><b>Goal</b><span>依頼を作業単位に分解する。</span></div>
+              <div><b>Check</b><span>変更差分、ブラウザ、主要リンク。</span></div>
+              <div><b>Avoid</b><span>大きな一括変更をそのまま採用しない。</span></div>
+            </div>
+          </article>
+          <article id="stage-ops" class="stage-panel" role="tabpanel">
+            <span class="mini-label">Publish and Ops</span>
+            <h3>公開して壊さない</h3>
+            <p>Vercel、Git、環境変数、SEO、レビューをつなげます。本番URLを取り違えないことが公開作業の第一条件です。</p>
+            <div class="stage-meta">
+              <div><b>Goal</b><span>公開前に止める判断を持つ。</span></div>
+              <div><b>Check</b><span>ビルド、リンク、スマホ、差分。</span></div>
+              <div><b>Avoid</b><span>pushだけで本番完了と言わない。</span></div>
+            </div>
+          </article>
+          <article id="stage-apply" class="stage-panel" role="tabpanel">
+            <span class="mini-label">Applied production</span>
+            <h3>LP、資料、動画、業務画面へ広げる</h3>
+            <p>コードの外側も同じです。要件を整理し、AIに初稿を任せ、人が品質と公開可否を判断します。</p>
+            <div class="stage-meta">
+              <div><b>Goal</b><span>AI制作を業務フローに接続する。</span></div>
+              <div><b>Check</b><span>文章、権利、画像、公開範囲。</span></div>
+              <div><b>Avoid</b><span>素材や文章の責任をAIに丸投げしない。</span></div>
+            </div>
+          </article>
+        </div>
       </div>
     </div>
   </section>
@@ -870,50 +1073,24 @@
       <div class="section-head">
         <div>
           <span class="section-label">02 / Programming Basics</span>
-          <h2>基礎: AIに任せるためのプログラミング語彙</h2>
-          <p>ここは暗記リストではありません。LPやWebアプリをAIに作らせる時に、何がどの層を担当しているかを説明できるようにします。</p>
+          <h2>プログラミングは、AIの出力を読めるようにする地図</h2>
+          <p>全部を手書きできる必要はありません。ただし、AIがどの層を触ったか分からないと、修正も公開判断もできません。</p>
         </div>
         <a class="btn" href="#part-3">実装ループへ</a>
       </div>
 
-      <div class="ladder" aria-label="プログラミング学習の段階">
-        <div class="ladder-card" style="--accent:var(--primary)"><b>STEP 1</b><h3>HTML</h3><p>見出し、段落、リンク、画像、フォーム。ページの意味と構造を作る層。</p></div>
-        <div class="ladder-card" style="--accent:var(--teal)"><b>STEP 2</b><h3>CSS</h3><p>余白、色、文字サイズ、レイアウト、スマホ対応。見た目と読みやすさの層。</p></div>
-        <div class="ladder-card" style="--accent:var(--coral)"><b>STEP 3</b><h3>JavaScript</h3><p>クリック、入力、保存、表示切替。画面を動かす層。</p></div>
-        <div class="ladder-card" style="--accent:var(--green)"><b>STEP 4</b><h3>データ</h3><p>JSON、YAML、API、DB。情報を持ち、読み書きし、画面へ渡す層。</p></div>
-      </div>
-
-      <div class="slide-grid three" style="margin-top:16px;">
-        <article class="slide" style="--accent:var(--primary)">
-          <span class="slide-no">Slide 02-A</span>
-          <h3>HTMLは「何があるか」</h3>
-          <p>AIに「カードを追加して」と頼む時、実際には見出し、画像、説明文、リンクの構造が必要です。HTMLを少し知ると、AIの出力を読む力が上がります。</p>
-        </article>
-        <article class="slide" style="--accent:var(--teal)">
-          <span class="slide-no">Slide 02-B</span>
-          <h3>CSSは「どう見えるか」</h3>
-          <p>余白が詰まる、スマホで崩れる、ボタンの文字がはみ出る。こうした問題はCSSの責任範囲です。AIへの修正指示も具体的になります。</p>
-        </article>
-        <article class="slide" style="--accent:var(--coral)">
-          <span class="slide-no">Slide 02-C</span>
-          <h3>JavaScriptは「どう動くか」</h3>
-          <p>タブ、検索、保存、API呼び出し、フォーム送信。画面が反応するところはJavaScriptです。エラーの場所もここに出やすくなります。</p>
-        </article>
-        <article class="slide" style="--accent:var(--green)">
-          <span class="slide-no">Slide 02-D</span>
-          <h3>React / Next.jsは部品化</h3>
-          <p>同じ見た目を繰り返す、ページごとに状態を持つ、サーバー側でデータを読む。実務ではHTML/CSS/JSを部品として組み合わせます。</p>
-        </article>
-        <article class="slide" style="--accent:var(--amber)">
-          <span class="slide-no">Slide 02-E</span>
-          <h3>APIとDBは「情報の出入口」</h3>
-          <p>問い合わせ、記事、ユーザー、商品、在庫。画面に出る情報は、APIやデータベースから来ます。公開後の不具合はこの層にも起きます。</p>
-        </article>
-        <article class="slide" style="--accent:var(--inkband)">
-          <span class="slide-no">Slide 02-F</span>
-          <h3>Markdown / YAMLは教材と設定の入口</h3>
-          <p>講習資料、カード一覧、設定ファイルはコードより読みやすい形式で持てます。AIに編集させる時も、構造が明確なファイルは扱いやすいです。</p>
-        </article>
+      <div class="split">
+        <div class="stack-grid">
+          <article class="stack-card glass"><span class="tag">Structure</span><h3>HTML</h3><p>見出し、段落、リンク、画像、フォーム。AIに「カードを追加して」と頼むと、まずこの構造が変わります。</p></article>
+          <article class="stack-card glass"><span class="tag">Visual</span><h3>CSS</h3><p>余白、色、レイアウト、スマホ対応、グラス表現。見た目の違和感はCSSの言葉で直します。</p></article>
+          <article class="stack-card glass"><span class="tag">Motion</span><h3>JavaScript</h3><p>タブ、検索、保存、フォーム送信、表示切替。インタラクティブな表示はここで作ります。</p></article>
+          <article class="stack-card glass"><span class="tag">Data</span><h3>API / DB</h3><p>問い合わせ、記事、ユーザー、商品、在庫。画面に出る情報の出入口を扱います。</p></article>
+          <article class="stack-card glass"><span class="tag">History</span><h3>Git</h3><p>変更履歴、差分、戻し方、別案比較。AIに任せるほどGitを見る力が必要です。</p></article>
+          <article class="stack-card glass"><span class="tag">Config</span><h3>Markdown / YAML</h3><p>教材、カード一覧、設定ファイル。AIに編集させやすく、人も読みやすい入口です。</p></article>
+        </div>
+        <figure class="line-image glass">
+          <img src="./img/hero-ai-lesson-line.png" alt="AI講習の線画スタイルイメージ">
+        </figure>
       </div>
     </div>
   </section>
@@ -923,51 +1100,24 @@
       <div class="section-head">
         <div>
           <span class="section-label">03 / Build Loop</span>
-          <h2>実装: AIと一緒に作る作業ループ</h2>
-          <p>プログラミングを学ぶ目的は、AIの出力を信じ込むことではありません。小さく頼み、画面で確認し、差分を読んで、次の指示を出すことです。</p>
+          <h2>実装は、依頼文と確認方法をセットにする</h2>
+          <p>AIに頼む時は、作業対象、完了条件、触ってはいけない範囲、確認方法を同時に渡します。</p>
         </div>
-        <a class="btn" href="#part-4">公開・運用へ</a>
+        <a class="btn" href="#part-4">公開へ</a>
       </div>
 
-      <div class="slide-grid">
-        <article class="slide wide" style="--accent:var(--coral)">
-          <span class="slide-no">Slide 03</span>
-          <h3>1回の依頼を「作業単位」に切る</h3>
-          <p>よい依頼は、AIに全部を丸投げする文章ではなく、作業対象、完了条件、確認方法、触ってはいけない範囲が分かる文章です。</p>
-          <div class="prompt">このフォルダで、講習LPの「基礎」セクションだけを見直してください。
-AGENTS.mdのルールに従ってください。
-変更前に対象ファイルを確認し、完了後にブラウザ表示とリンクを確認してください。
-本文の意味は変えず、初心者が順番に学べる構成へ整理してください。</div>
+      <div class="loop-grid">
+        <article class="loop-card dark glass">
+          <span class="tag">Prompt</span>
+          <h3>良い依頼の型</h3>
+          <p>「この部分だけ」「この条件で」「最後にこれを確認して」と書くと、AIは作業単位で動きやすくなります。</p>
+          <div class="prompt-box">このフォルダで、講習LPの基礎セクションだけを見直してください。
+文章の意味は変えず、初心者が順番に学べる構成へ整理してください。
+変更後にブラウザ表示、主要リンク、差分を確認してください。</div>
         </article>
-
-        <article class="slide" style="--accent:var(--primary)">
-          <span class="slide-no">Slide 03-A</span>
-          <h3>依頼に入れる4点</h3>
-          <ul>
-            <li>何を作るか</li>
-            <li>誰が読むか</li>
-            <li>どこを触るか</li>
-            <li>何で確認するか</li>
-          </ul>
-        </article>
-
-        <article class="slide" style="--accent:var(--teal)">
-          <span class="slide-no">Slide 03-B</span>
-          <h3>確認は3種類</h3>
-          <ul>
-            <li>表示確認: ブラウザで崩れを見る</li>
-            <li>差分確認: 変更されたファイルを見る</li>
-            <li>独立レビュー: 壊れそうな点を別視点で出す</li>
-          </ul>
-        </article>
-      </div>
-
-      <div class="callout">
-        <div>
-          <b>「AIが作った」ではなく「自分が採用した」に変える</b>
-          <p>AIコーディングを応用する人に必要なのは、全コードを暗記する力ではなく、成果物を判断する力です。だから基礎語彙、確認方法、レビュー依頼を講習の中心に置きます。</p>
-        </div>
-        <a class="btn primary" href="#sec-ccode">実務運用を見る</a>
+        <article class="loop-card glass"><span class="tag">Diff</span><h3>差分で採用判断する</h3><p>AIの返事ではなく、実際にどのファイルが変わったかを見ます。関係ない変更、秘密情報、意図しない削除を止めます。</p></article>
+        <article class="loop-card glass"><span class="tag">View</span><h3>ブラウザで見る</h3><p>文字のはみ出し、スマホ崩れ、タブやフォームの動き、リンク切れを確認します。見た目の品質は実画面でしか分かりません。</p></article>
+        <article class="loop-card glass"><span class="tag">Review</span><h3>独立レビューを挟む</h3><p>公開前は、褒めてもらうより止めるべき点を探します。バグ、表示崩れ、誤情報、権利、秘密情報を重大度順に見ます。</p></article>
       </div>
     </div>
   </section>
@@ -977,46 +1127,22 @@ AGENTS.mdのルールに従ってください。
       <div class="section-head">
         <div>
           <span class="section-label">04 / Publish and Ops</span>
-          <h2>公開: Git・テスト・デプロイ・運用をつなげる</h2>
-          <p>AIが画面を作れるようになった後、実務で必要になるのは公開して壊さない力です。ここからはWeb制作が業務システムに近づきます。</p>
+          <h2>公開運用は、作った後の品質管理</h2>
+          <p>公開して終わりではありません。URL、ビルド、環境変数、SEO、ログ、問い合わせまでを見て、仕事で使える状態にします。</p>
         </div>
-        <a class="btn" href="#sec-cms">AI応用へ</a>
+        <a class="btn" href="#sec-cms">応用制作へ</a>
       </div>
 
-      <div class="slide-grid three">
-        <article class="slide" style="--accent:var(--green)">
-          <span class="slide-no">Slide 04-A</span>
-          <h3>Gitは変更の履歴</h3>
-          <p>失敗しても戻れる、何を変えたか説明できる、別案を比較できる。AIに作らせるほどGitの重要度は上がります。</p>
-          <ul><li>status</li><li>diff</li><li>commit</li><li>branch / worktree</li></ul>
-        </article>
-        <article class="slide" style="--accent:var(--primary)">
-          <span class="slide-no">Slide 04-B</span>
-          <h3>テストとビルドは最低限の関門</h3>
-          <p>見た目が良くても、構文エラー、リンク切れ、APIエラーがあれば公開できません。AIに「何を確認したか」を報告させます。</p>
-          <ul><li>syntax check</li><li>build</li><li>主要リンク</li><li>フォーム送信</li></ul>
-        </article>
-        <article class="slide" style="--accent:var(--coral)">
-          <span class="slide-no">Slide 04-C</span>
-          <h3>デプロイは本番へ届ける作業</h3>
-          <p>Vercel、GitHub Pages、サーバー、ドメイン。どこが本番URLかを取り違えないことが、公開作業の第一条件です。</p>
-          <ul><li>production URL</li><li>preview URL</li><li>domain</li><li>environment variables</li></ul>
-        </article>
-        <article class="slide" style="--accent:var(--teal)">
-          <span class="slide-no">Slide 04-D</span>
-          <h3>DBと認証は慎重に扱う</h3>
-          <p>Supabase、Shopify、Googleログイン、管理画面。書き込みや秘密情報を扱う箇所は、確認モーダルや権限設計をセットにします。</p>
-        </article>
-        <article class="slide" style="--accent:var(--amber)">
-          <span class="slide-no">Slide 04-E</span>
-          <h3>SEO / LLMOは読まれる設計</h3>
-          <p>タイトル、見出し、構造化データ、OGP、本文の説明力。検索エンジンにもAI検索にも、ページの意図が伝わるように作ります。</p>
-        </article>
-        <article class="slide" style="--accent:var(--inkband)">
-          <span class="slide-no">Slide 04-F</span>
-          <h3>監視は公開後の授業</h3>
-          <p>アクセス、エラー、表示速度、問い合わせ、検索流入。公開後に何が起きたかを見ることで、次の改善依頼が具体的になります。</p>
-        </article>
+      <div class="check-row" aria-label="公開前チェック">
+        <button type="button" class="check-btn">本番URLとPreview URLを取り違えていない</button>
+        <button type="button" class="check-btn">ビルド、主要リンク、スマホ表示を確認した</button>
+        <button type="button" class="check-btn">APIキーや.envを公開していない</button>
+        <button type="button" class="check-btn">公開後の修正手順を説明できる</button>
+      </div>
+
+      <div class="loop-grid" style="margin-top:14px;">
+        <article class="loop-card glass"><span class="tag">Vercel</span><h3>本番へ届ける</h3><p>push、ビルド、Production URL、Preview URL、環境変数を分けます。公開確認は必ず本番URLで行います。</p></article>
+        <article class="loop-card glass"><span class="tag">Security</span><h3>危険な変更を止める</h3><p>認証、DB書き込み、決済、管理画面、秘密情報は確認モーダルや権限設計とセットで扱います。</p></article>
       </div>
     </div>
   </section>
@@ -1025,41 +1151,18 @@ AGENTS.mdのルールに従ってください。
     <div class="course-shell">
       <div class="section-head">
         <div>
-          <span class="section-label">05 / AI Production</span>
-          <h2>応用: コードから教材・LP・業務制作へ広げる</h2>
-          <p>AIコーディングの応用先は、Webアプリだけではありません。LP、講習資料、動画、SNS、CMS、業務管理画面を同じプロジェクトの成果物として扱います。</p>
+          <span class="section-label">05 / Applied Production</span>
+          <h2>AIコーディングは、LP・教材・動画・業務画面に広がる</h2>
+          <p>コードの講習で終わらせず、文章、画像、プレゼン、SNS、CMS、管理画面へ広げます。共通するのは、構造化してAIに任せ、人が確認して公開する流れです。</p>
         </div>
-        <a class="btn" href="#sec-ccode">実務運用へ</a>
+        <a class="btn" href="#sec-ccode">Codex公式更新へ</a>
       </div>
 
-      <div class="slide-grid">
-        <article class="slide" style="--accent:var(--teal)">
-          <span class="slide-no">Slide 05-A</span>
-          <h3>LPは「作って見せる」練習に向く</h3>
-          <p>見出し、導線、カード、FAQ、問い合わせ。視覚確認がしやすく、HTML/CSS/JSの基礎をまとめて学べます。このページ自体もLP型の講習資料です。</p>
-        </article>
-        <article class="slide" style="--accent:var(--primary)">
-          <span class="slide-no">Slide 05-B</span>
-          <h3>講習資料はコードで管理できる</h3>
-          <p>Markdown、HTML、スライド、動画、PDFを同じリポジトリに置くと、更新履歴が残り、AIに再構成や要約を任せやすくなります。</p>
-        </article>
-        <article class="slide" style="--accent:var(--coral)">
-          <span class="slide-no">Slide 05-C</span>
-          <h3>CMSはAI編集の受け皿になる</h3>
-          <p>WordPress、独自/studio、Payloadの違いは、誰がどこで編集し、どのデータを画面へ出すかです。AIで下書きし、人が確認して公開します。</p>
-        </article>
-        <article class="slide" style="--accent:var(--green)">
-          <span class="slide-no">Slide 05-D</span>
-          <h3>Creative Productionで素材まで作る</h3>
-          <p>画像、広告案、SNS投稿、動画台本、プレゼン資料。コードの外側も、要件整理と確認の流れは同じです。</p>
-        </article>
-      </div>
-
-      <div class="checklist">
-        <div class="check" style="--accent:var(--primary)"><i>1</i><div><b>コンテンツを構造化</b><span>見出し、要約、カード、FAQ、CTAに分ける。</span></div></div>
-        <div class="check" style="--accent:var(--teal)"><i>2</i><div><b>AIに初稿を任せる</b><span>文章、配置、画像案、台本を作らせる。</span></div></div>
-        <div class="check" style="--accent:var(--coral)"><i>3</i><div><b>画面で直す</b><span>スマホ、文字量、余白、リンクを確認する。</span></div></div>
-        <div class="check" style="--accent:var(--green)"><i>4</i><div><b>公開前に止める</b><span>秘密情報、誤情報、権利、表示崩れを確認する。</span></div></div>
+      <div class="loop-grid">
+        <article class="loop-card glass"><span class="tag">LP</span><h3>見せる成果物</h3><p>ヒーロー、カード、FAQ、CTA、フォームを作りながら、HTML/CSS/JSの基礎をまとめて学びます。</p></article>
+        <article class="loop-card glass"><span class="tag">Materials</span><h3>講習資料をコードで管理</h3><p>Markdown、HTML、スライド、PDFを同じリポジトリで扱うと、更新履歴と再構成が楽になります。</p></article>
+        <article class="loop-card glass"><span class="tag">Creative</span><h3>画像と線画を制作に入れる</h3><p>説明図、線画、OGP、SNS素材、動画台本までAIに初稿を任せ、デザインの統一感は人が整えます。</p></article>
+        <article class="loop-card glass"><span class="tag">Business</span><h3>業務画面へ接続する</h3><p>フォーム、顧客管理、在庫、記事、問い合わせ。AI制作を日常業務の中に入れる段階です。</p></article>
       </div>
     </div>
   </section>
@@ -1068,44 +1171,34 @@ AGENTS.mdのルールに従ってください。
     <div class="course-shell">
       <div class="section-head">
         <div>
-          <span class="section-label">06 / Codex Operations</span>
-          <h2>実務運用: Codexを安全に拡張する</h2>
-          <p>基礎と制作ループを理解したら、プラグイン、Skills、Hooks、MCP、Apps、worktree、独立レビューを使って、実務の作業範囲を広げます。</p>
+          <span class="section-label">06 / Codex Official Updates</span>
+          <h2>Codexの最新機能は、講習内容と直結している</h2>
+          <p>OpenAI公式発表では、Codexは単なるコード生成ではなく、複数エージェント、アプリ、IDE/CLI、ロール別プラグイン、Sites、annotationsへ広がっています。講習では、この流れを実務で使える順番に落とし込みます。</p>
         </div>
-        <a class="btn" href="#sec-line">総合演習へ</a>
+        <a class="btn" href="#sec-line">演習へ</a>
       </div>
 
-      <div class="slide-grid three">
-        <article class="slide" style="--accent:var(--primary)">
-          <span class="slide-no">Slide 06-A</span>
-          <h3>ロール別プラグインは仕事別の道具箱</h3>
-          <p>Data analytics、Creative production、Sales、Product design、Public equity investing、Investment bankingのように、仕事の進め方と接続先をまとめて渡します。</p>
-        </article>
-        <article class="slide" style="--accent:var(--teal)">
-          <span class="slide-no">Slide 06-B</span>
-          <h3>Skills / Hooks / Scripts</h3>
-          <p>Skillsは手順書、Hooksは自動チェック係、Scriptsはよく使う処理の実行ボタンです。最初は存在を理解し、必要になった時に増やします。</p>
-        </article>
-        <article class="slide" style="--accent:var(--coral)">
-          <span class="slide-no">Slide 06-C</span>
-          <h3>MCP / Apps / Connectors</h3>
-          <p>GitHub、Figma、Gmail、Canva、Supabaseなどに接続する入口です。ログイン済みサービスや外部データを扱う時ほど、権限と公開範囲に注意します。</p>
-        </article>
-        <article class="slide" style="--accent:var(--green)">
-          <span class="slide-no">Slide 06-D</span>
-          <h3>Browser / Chrome / Computer Use</h3>
-          <p>ローカル表示はBrowser、ログイン済み画面はChrome、ブラウザ外のWindows操作はComputer Use。確認対象に合わせて道具を選びます。</p>
-        </article>
-        <article class="slide" style="--accent:var(--amber)">
-          <span class="slide-no">Slide 06-E</span>
-          <h3>worktreeで別案を試す</h3>
-          <p>大きな変更、デザイン案、危険な実験は本線から分けます。AIに複数案を作らせる時も、差分を分けると採用判断が楽になります。</p>
-        </article>
-        <article class="slide" style="--accent:var(--inkband)">
-          <span class="slide-no">Slide 06-F</span>
-          <h3>独立レビューは公開前のブレーキ</h3>
-          <p>レビュー依頼では、褒めるよりもバグ、表示崩れ、説明不足、秘密情報、公開前に止めるべき点を重大度順に出してもらいます。</p>
-        </article>
+      <div class="official-grid" aria-label="OpenAI公式Codexリンク">
+        <a class="official-card glass" href="https://openai.com/index/codex-for-every-role-tool-workflow/" target="_blank" rel="noopener">
+          <span class="date">2026-06-02 / OpenAI</span>
+          <h3>Codex for every role, tool, and workflow</h3>
+          <p>ロール別プラグイン、Sites、annotations、非エンジニア活用の広がり。AIコーディングを業務全体へ広げる根拠リンク。</p>
+        </a>
+        <a class="official-card glass" href="https://openai.com/index/introducing-the-codex-app/" target="_blank" rel="noopener">
+          <span class="date">2026-02-02 / OpenAI</span>
+          <h3>Introducing the Codex app</h3>
+          <p>複数エージェント管理、CLI/IDE/クラウドとの連携、Skills、Automations、クラウドデプロイまでの導線。</p>
+        </a>
+        <a class="official-card glass" href="https://openai.com/index/introducing-upgrades-to-codex/" target="_blank" rel="noopener">
+          <span class="date">2025-09-15 / OpenAI</span>
+          <h3>Introducing upgrades to Codex</h3>
+          <p>IDE拡張、GitHub連携、PRレビューなど、日常開発ワークフローへCodexを近づける公式アップデート。</p>
+        </a>
+        <a class="official-card glass" href="https://openai.com/index/introducing-codex/" target="_blank" rel="noopener">
+          <span class="date">2025-05-16 / OpenAI</span>
+          <h3>Introducing Codex</h3>
+          <p>クラウド上のサンドボックスで複数タスクを並行し、機能追加、バグ修正、PR提案まで行うCodexの基礎発表。</p>
+        </a>
       </div>
     </div>
   </section>
@@ -1115,45 +1208,37 @@ AGENTS.mdのルールに従ってください。
       <div class="section-head">
         <div>
           <span class="section-label">07 / Exercises</span>
-          <h2>総合演習: だんだん作れるようになる4本立て</h2>
-          <p>最終的には、AIに任せる範囲を少しずつ広げながら、公開できる成果物を作ります。各演習は、講習中に投影しやすい1枚スライドとして扱えます。</p>
+          <h2>だんだん作れるようになる総合演習</h2>
+          <p>1回で全部を作るのではなく、成果物を小さく積み上げます。各演習は講習中に投影しやすく、通常閲覧では折りたたんで読めます。</p>
         </div>
         <a class="btn" href="#top">先頭へ戻る</a>
       </div>
 
-      <div class="slide-grid">
-        <article class="slide" style="--accent:var(--primary)">
-          <span class="slide-no">Exercise 1</span>
-          <h3>自己紹介LPを作る</h3>
-          <p>HTML/CSS、画像、リンク、スマホ表示を学びます。Codexにはセクション追加やデザイン調整を小さく依頼します。</p>
-          <ul><li>完成物: 1ページLP</li><li>確認: ブラウザとリンク</li><li>学ぶ語彙: hero / card / CTA</li></ul>
-        </article>
-        <article class="slide" style="--accent:var(--teal)">
-          <span class="slide-no">Exercise 2</span>
-          <h3>講習資料を再構成する</h3>
-          <p>Markdown、見出し、要約、スライド調UIを学びます。内容の流れをAIに整理させ、人が読みやすさを判断します。</p>
-          <ul><li>完成物: 講習LP</li><li>確認: 文字量と見出し</li><li>学ぶ語彙: Markdown / section / summary</li></ul>
-        </article>
-        <article class="slide" style="--accent:var(--coral)">
-          <span class="slide-no">Exercise 3</span>
-          <h3>問い合わせフォームを作る</h3>
-          <p>JavaScript、API、入力検証、送信後の表示を学びます。秘密情報や書き込み処理は慎重に確認します。</p>
-          <ul><li>完成物: 動くフォーム</li><li>確認: 入力と送信</li><li>学ぶ語彙: form / API / validation</li></ul>
-        </article>
-        <article class="slide" style="--accent:var(--green)">
-          <span class="slide-no">Exercise 4</span>
-          <h3>公開してレビューする</h3>
-          <p>Git、ビルド、Vercel、SEO、独立レビューを学びます。本番URLを確認し、公開前に止めるべき点を洗い出します。</p>
-          <ul><li>完成物: 公開ページ</li><li>確認: 本番URLと差分</li><li>学ぶ語彙: deploy / env / review</li></ul>
-        </article>
+      <div class="exercise-grid">
+        <article class="exercise-card glass"><span class="tag">01</span><h3>自己紹介LP</h3><p>HTML/CSS、画像、リンク、スマホ表示を確認。AIにはセクション追加やデザイン調整を小さく頼みます。</p></article>
+        <article class="exercise-card glass"><span class="tag">02</span><h3>講習資料の再構成</h3><p>Markdown、見出し、要約、線画、タブUIを扱い、文章の流れを保ったまま整理します。</p></article>
+        <article class="exercise-card glass"><span class="tag">03</span><h3>問い合わせフォーム</h3><p>JavaScript、API、入力検証、送信後の表示を学び、秘密情報の扱いを確認します。</p></article>
+        <article class="exercise-card glass"><span class="tag">04</span><h3>公開とレビュー</h3><p>Git、ビルド、Vercel、本番URL、SEO、独立レビューを学び、公開前に止める力を作ります。</p></article>
       </div>
 
-      <div class="callout">
-        <div>
-          <b>この講習のゴール</b>
-          <p>受講後は、AIに「何を作るか」を説明し、AIが作ったものをブラウザと差分で確認し、必要な基礎用語を使って修正依頼できる状態を目指します。</p>
-        </div>
+      <div style="margin-top:18px;">
+        <details open>
+          <summary>講習中の進め方</summary>
+          <p>最初に全体像を投影し、ステージタブで現在地を確認します。その後、基礎語彙を実画面で見せ、最後に各自の題材で小さな依頼文を作ります。</p>
+        </details>
+        <details>
+          <summary>受講後の到達目標</summary>
+          <p>AIに何を作るか説明できる、AIが変えたファイルを差分で見られる、ブラウザで表示と動きを確認できる、公開前に止めるべき点を言える状態を目指します。</p>
+        </details>
+        <details>
+          <summary>次に増やすとよい内容</summary>
+          <p>実際の受講者ワーク、修正前後のスクリーンショット、失敗例の差分、講師のレビュー例、Codexで作った教材の更新履歴を追加すると、講習資料としてさらに強くなります。</p>
+        </details>
+      </div>
+
+      <div class="inline-actions">
         <a class="btn primary" href="/admin/chat">AIに質問する</a>
+        <a class="btn" href="./lectures/index.html">講習資料一覧へ</a>
       </div>
     </div>
   </section>
@@ -1161,14 +1246,56 @@ AGENTS.mdのルールに従ってください。
 
 <footer class="footer-cta">
   <div class="course-shell">
-    <h2>AIコーディングは、作れる人だけの技術ではなく、作業を設計して確認できる人の技術です。</h2>
-    <p>この資料は、Codex導入講習、プログラミング基礎、制作演習、公開前レビューを1本にまとめた総合講習LPとして使えます。投影時は各スライドを1章ずつ送り、通常閲覧時はLPとして上から順に読めます。</p>
+    <h2>AIコーディングは、作れる人だけでなく、作業を設計して確認できる人の技術です。</h2>
+    <p>この講習は、Codex導入、プログラミング基礎、実装、公開、AI応用制作を1本にまとめた総合LPです。投影時は上から順に、通常閲覧時はタブと折りたたみで必要な章だけ読めます。</p>
     <div class="hero-actions">
       <a class="btn primary" href="#pm-modern-ai">もう一度全体像から見る</a>
-      <a class="btn" href="./lectures/index.html">講習資料一覧へ</a>
+      <a class="btn" href="./index.html">AIハブへ戻る</a>
     </div>
   </div>
 </footer>
+
+<script>
+(function(){
+  var tabs = Array.prototype.slice.call(document.querySelectorAll("[data-stage-target]"));
+  var panels = Array.prototype.slice.call(document.querySelectorAll(".stage-panel"));
+  tabs.forEach(function(tab){
+    tab.addEventListener("click", function(){
+      var target = tab.getAttribute("data-stage-target");
+      tabs.forEach(function(t){ t.setAttribute("aria-selected", String(t === tab)); });
+      panels.forEach(function(panel){ panel.classList.toggle("active", panel.id === target); });
+    });
+  });
+
+  var sections = ["pm-modern-ai","part-1","part-2","part-3","part-4","sec-cms","sec-ccode","sec-line"];
+  var links = Array.prototype.slice.call(document.querySelectorAll("[data-watch]"));
+  var meter = document.getElementById("courseProgress");
+  function setActive(id){
+    var idx = Math.max(0, sections.indexOf(id));
+    links.forEach(function(link){ link.classList.toggle("active", link.getAttribute("data-watch") === id); });
+    if (meter) meter.style.width = Math.max(12, Math.round(((idx + 1) / sections.length) * 100)) + "%";
+  }
+  if ("IntersectionObserver" in window) {
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) setActive(entry.target.id);
+      });
+    }, { rootMargin: "-35% 0px -55% 0px", threshold: 0.01 });
+    sections.forEach(function(id){
+      var el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+  } else {
+    setActive("pm-modern-ai");
+  }
+
+  Array.prototype.slice.call(document.querySelectorAll(".check-btn")).forEach(function(btn){
+    btn.addEventListener("click", function(){
+      btn.classList.toggle("done");
+    });
+  });
+})();
+</script>
 
 </body>
 </html>

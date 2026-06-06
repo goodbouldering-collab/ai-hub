@@ -27,11 +27,11 @@ sections:
   source: lectures-md
   items:
   # 大型 HTML コンテンツ（Markdown 化が難しいので独立 HTML のまま講習資料として並べる）
-  - title: AIコーディング総合講習
+  - title: AIコーディング実装講習
     icon: 🧭
     href: programming-map.html
-    summary: Codex導入からプログラミング基礎、実装、公開運用、AI応用制作、総合演習までを、投影しやすいPowerPoint風LPとして段階的に学ぶ総合講習資料。
-    date: 2026-06-05
+    summary: Codex導入、プログラミング基礎、実装、公開、公式アップデート、AI応用制作までを、線画とタブUIで段階的に学ぶ講習LP。
+    date: 2026-06-06
   # クライミングの歴史 スライド（content/slides/*.md から Marp 生成・/slides/ 配下に公開）
   - title: クライミングの歴史 I（世界史編）
     icon: 🧗

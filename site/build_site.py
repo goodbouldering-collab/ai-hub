@@ -65,7 +65,7 @@ DEFAULT_TOP_BUTTONS = [
     {"id": "profile",         "group": "講師",         "label": "経歴",               "icon": "📜", "href": "profile.html",          "kind": "link",   "enabled": True},
     {"id": "portfolio",       "group": "作品",         "label": "実績",               "icon": "🏆", "href": "portfolio.html",        "kind": "link",   "enabled": True},
     {"id": "lectures",        "group": "教材資料",     "label": "講習資料",           "icon": "📝", "href": "lectures/index.html",   "kind": "link",   "enabled": True},
-    # AIコーディング総合講習は lectures index の中にリンクとして掲載するためトップナビからは外す
+    # AIコーディング実装講習は lectures index の中にリンクとして掲載するためトップナビからは外す
     {"id": "archive",         "group": "アーカイブ",   "label": "過去ログ",           "icon": "📚", "href": "archive.html",          "kind": "link",   "enabled": True},
     {"id": "run",             "group": "操作",         "label": "巡回実行",           "icon": "🔄", "href": "",                      "kind": "action", "action_id": "run", "enabled": True},
 ]
@@ -2251,13 +2251,13 @@ def _patch_programming_map_nav(pmap_file: Path) -> None:
     text = pmap_file.read_text(encoding="utf-8")
     # 共通ナビ HTML（pmap を current として）
     common_nav = render_top_nav(path_prefix="./", current_id="pmap", include_run=False)
-    # ページ内目次バー（AIコーディング総合講習 専用 — sticky とは別）
+    # ページ内目次バー（AIコーディング実装講習 専用 — sticky とは別）
     chapter_toc = (
         "<nav class='pm-chapter-toc' aria-label='ページ内目次'>"
-        "<span class='pm-toc-label'>COURSE</span>"
+        "<span class='pm-toc-label'>AI CODING</span>"
         "<a href='#top'>全体</a>"
         "<a href='#pm-modern-ai'>00 AI全体像</a>"
-        "<a href='#part-1'>01 入口</a>"
+        "<a href='#part-1'>01 価値と入口</a>"
         "<a href='#part-2'>02 基礎</a>"
         "<a href='#part-3'>03 実装</a>"
         "<a href='#part-4'>04 公開</a>"
@@ -2287,7 +2287,7 @@ def _patch_programming_map_nav(pmap_file: Path) -> None:
         "<style id='pm-chapter-toc-css'>"
         # ---- 共通トップヘッダー/ナビ（index.html 等と同一・正本 CSS から抽出） ----
         + common_nav_css
-        # ページ内目次バー（AIコーディング総合講習 専用：fixed top-nav の真下に sticky で吸着）
+        # ページ内目次バー（AIコーディング実装講習 専用：fixed top-nav の真下に sticky で吸着）
         # 共通 top-nav は fixed (height ≒ 68px) なので、本文先頭は 96px から
         + "html{scroll-padding-top:144px;}"
         "[id]{scroll-margin-top:144px;}"
@@ -2295,18 +2295,18 @@ def _patch_programming_map_nav(pmap_file: Path) -> None:
         "max-width:1100px;"
         "display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;"
         "margin:0 auto 18px;padding:8px 12px;"
-        "background:rgba(255,255,255,.92);border:1px solid var(--line,#e2e8f0);"
-        "border-radius:14px;backdrop-filter:blur(14px) saturate(160%);"
-        "-webkit-backdrop-filter:blur(14px) saturate(160%);"
-        "box-shadow:0 8px 24px rgba(15,23,42,.06);}"
+        "background:rgba(255,255,255,.70);border:1px solid rgba(16,24,39,.12);"
+        "border-radius:14px;backdrop-filter:blur(18px) saturate(160%);"
+        "-webkit-backdrop-filter:blur(18px) saturate(160%);"
+        "box-shadow:0 10px 28px rgba(16,24,39,.08),inset 0 1px 0 rgba(255,255,255,.82);}"
         ".pm-chapter-toc .pm-toc-label{font-size:10.5px;font-weight:800;letter-spacing:.14em;"
-        "color:#2563eb;text-transform:uppercase;padding-right:4px;white-space:nowrap;}"
+        "color:#2357e5;text-transform:uppercase;padding-right:4px;white-space:nowrap;}"
         ".pm-chapter-toc a{display:inline-flex;align-items:center;gap:3px;padding:5px 11px;"
-        "border-radius:999px;background:#fff;border:1px solid #e2e8f0;"
-        "color:#334155;text-decoration:none;font-size:11.5px;font-weight:700;line-height:1.3;"
+        "border-radius:999px;background:rgba(255,255,255,.78);border:1px solid rgba(16,24,39,.12);"
+        "color:#3a475d;text-decoration:none;font-size:11.5px;font-weight:700;line-height:1.3;"
         "white-space:nowrap;transition:all .2s;}"
-        ".pm-chapter-toc a:hover{background:#eff6ff;color:#2563eb;"
-        "border-color:rgba(37,99,235,.30);transform:translateY(-1px);}"
+        ".pm-chapter-toc a:hover{background:rgba(255,255,255,.95);color:#2357e5;"
+        "border-color:rgba(6,167,216,.34);transform:translateY(-1px);}"
         "@media (max-width:640px){"
         "html{scroll-padding-top:160px;}[id]{scroll-margin-top:160px;}"
         ".pm-chapter-toc{padding:6px 8px;gap:3px 5px;top:74px;}"

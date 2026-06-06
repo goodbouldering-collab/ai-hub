@@ -348,40 +348,40 @@ PORTAL_CSS = """
 :root {
   /* ===== デフォルト=ライト（初心者に「難しそう」を与えない）。dark は data-theme=dark で。 ===== */
   /* --- 共有トークン（テーマ非依存） --- */
-  --cyan: #2BA7C8;
-  --blue: #2854C5;
-  --sage: #7AA58A;
-  --emerald: #0F8F72;
-  --amber: #D9852B;
-  --coral: #D95B43;
-  --glass-blur: 14px;
+  --cyan: #06A7D8;
+  --blue: #2357E5;
+  --sage: #86D1AF;
+  --emerald: #12A88A;
+  --amber: #F5C542;
+  --coral: #FF6B5B;
+  --glass-blur: 18px;
   --radius: 8px;
   --radius-sm: 8px;
   --serif: "Inter", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
   --mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
-  --bg-base: #F5F7F3;
-  --bg-white: #FFFEFA;
+  --bg-base: #F4F7FB;
+  --bg-white: #FBFCFF;
   --bg-elev: #FFFFFF;
-  --text: #152032;
-  --text-soft: #3C4A5D;
-  --muted: #6B7685;
-  --line: rgba(21,32,50,0.12);
-  --line-strong: rgba(21,32,50,0.22);
-  --primary: #2854C5;
-  --primary-soft: #2BA7C8;
-  --violet: #5B5EA6;
-  --primary-bg: rgba(43,84,197,0.08);
-  --grad: linear-gradient(120deg, #2854C5 0%, #2BA7C8 48%, #0F8F72 100%);
-  --grad-soft: linear-gradient(120deg, rgba(43,84,197,.10), rgba(122,165,138,.14), rgba(217,133,43,.10));
-  --glass-bg: rgba(255,254,250,0.88);
-  --glass-border: rgba(21,32,50,0.12);
-  --glass-hi: rgba(255,255,255,0.82);
-  --shadow-card: 0 1px 2px rgba(21,32,50,0.04), 0 14px 34px rgba(21,32,50,0.08);
-  --shadow-card-hover: 0 6px 16px rgba(21,32,50,0.08), 0 24px 54px rgba(40,84,197,0.12), 0 0 0 1px rgba(15,143,114,0.18);
-  --glow: 0 18px 54px rgba(40,84,197,0.16);
-  --grad-glow-a: rgba(40,84,197,.10);
-  --grad-glow-b: rgba(122,165,138,.12);
-  --grad-glow-c: rgba(217,133,43,.08);
+  --text: #101827;
+  --text-soft: #3A475D;
+  --muted: #687489;
+  --line: rgba(16,24,39,0.12);
+  --line-strong: rgba(16,24,39,0.24);
+  --primary: #2357E5;
+  --primary-soft: #06A7D8;
+  --violet: #6C5CE7;
+  --primary-bg: rgba(35,87,229,0.08);
+  --grad: linear-gradient(120deg, #2357E5 0%, #06A7D8 52%, #9BE43A 100%);
+  --grad-soft: linear-gradient(120deg, rgba(35,87,229,.11), rgba(6,167,216,.11), rgba(155,228,58,.12));
+  --glass-bg: rgba(255,255,255,0.66);
+  --glass-border: rgba(16,24,39,0.13);
+  --glass-hi: rgba(255,255,255,0.88);
+  --shadow-card: 0 1px 2px rgba(16,24,39,0.04), 0 16px 38px rgba(16,24,39,0.08);
+  --shadow-card-hover: 0 6px 16px rgba(16,24,39,0.08), 0 24px 58px rgba(35,87,229,0.13), 0 0 0 1px rgba(6,167,216,0.18);
+  --glow: 0 18px 58px rgba(35,87,229,0.16);
+  --grad-glow-a: rgba(35,87,229,.11);
+  --grad-glow-b: rgba(6,167,216,.11);
+  --grad-glow-c: rgba(155,228,58,.09);
 }
 :root[data-theme="dark"] {
   --bg-base: #0B1120;
@@ -424,8 +424,8 @@ body {
   line-height: 1.82;            /* しっとり: ゆったり読める日本語行間 */
   min-height: 100vh;
   background:
-    linear-gradient(120deg, rgba(40,84,197,.04) 0%, transparent 32%),
-    linear-gradient(180deg, var(--bg-white) 0%, #F7F8F2 42%, #EFF5F8 100%);
+    linear-gradient(120deg, rgba(35,87,229,.05) 0%, transparent 34%),
+    linear-gradient(180deg, var(--bg-white) 0%, #F4F7FB 45%, #EDF5F8 100%);
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
   letter-spacing: 0;
@@ -449,7 +449,7 @@ body::before {
    半透明背景 + backdrop blur + 1px光彩ボーダー + 上端の内側ハイライト。 */
 .biz-card, .service-card, .pkg-card, .faq-item, .stat,
 .menu-drop, .diagnose-box, .hero-quiz {
-  background: var(--bg-elev) !important;
+  background: var(--glass-bg) !important;
   backdrop-filter: blur(var(--glass-blur)) saturate(118%);
   -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(118%);
   border: 1px solid var(--glass-border) !important;
@@ -618,7 +618,7 @@ header.site-header.scrolled {
   inset: 8px calc(50% - 50vw) 0;
   z-index: -1;
   background:
-    linear-gradient(120deg, rgba(255,254,250,.92) 0%, rgba(245,247,243,.82) 52%, rgba(239,245,248,.86) 100%);
+    linear-gradient(120deg, rgba(255,255,255,.90) 0%, rgba(236,246,255,.84) 48%, rgba(239,255,245,.82) 100%);
   border-top: 1px solid rgba(21,32,50,.06);
   border-bottom: 1px solid rgba(21,32,50,.07);
 }
@@ -655,7 +655,7 @@ header.site-header.scrolled {
 }
 .hero h1 .underline::after {
   content:''; position: absolute; left: 0; right: 0; bottom: 2px; height: 8px;
-  background: rgba(217,133,43,.28);
+  background: rgba(155,228,58,.32);
   border-radius: 999px; z-index: -1;
 }
 .hero-brand { display: block; max-width: 680px; }
@@ -723,7 +723,9 @@ header.site-header.scrolled {
 .entry-chip {
   min-height: 74px; padding: 12px;
   border-radius: var(--radius-sm); border: 1px solid var(--line);
-  background: rgba(255,255,255,.74);
+  background: var(--glass-bg);
+  backdrop-filter: blur(14px) saturate(130%);
+  -webkit-backdrop-filter: blur(14px) saturate(130%);
   text-decoration: none; color: var(--text);
   display: flex; flex-direction: column; justify-content: center; gap: 4px;
   transition: transform .18s ease, border-radius .28s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease;
@@ -749,9 +751,11 @@ header.site-header.scrolled {
   aspect-ratio: 5 / 4;
   padding: 10px;
   border-radius: var(--radius);
-  background: rgba(255,255,255,.88);
-  border: 1px solid var(--line);
-  box-shadow: 0 22px 58px rgba(21,32,50,.15);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 24px 68px rgba(16,24,39,.16), inset 0 1px 0 var(--glass-hi);
+  backdrop-filter: blur(var(--glass-blur)) saturate(126%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(126%);
   overflow: hidden;
 }
 .hero-photo-card img {
@@ -768,12 +772,14 @@ header.site-header.scrolled {
   inset: 10px;
   border-radius: 6px;
   pointer-events: none;
-  background: linear-gradient(180deg, rgba(255,255,255,.04) 0%, rgba(21,32,50,.12) 100%);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.02) 0%, rgba(11,16,32,.16) 100%),
+    linear-gradient(120deg, rgba(35,87,229,.10), rgba(6,167,216,.08), transparent 62%);
 }
 .hero-photo-note {
   position: absolute;
   left: 24px;
-  bottom: 24px;
+  top: 24px;
   z-index: 2;
   display: inline-flex;
   align-items: center;
@@ -794,6 +800,79 @@ header.site-header.scrolled {
   background: var(--emerald);
   box-shadow: 0 0 0 4px rgba(15,143,114,.14);
 }
+.hero-photo-map {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  z-index: 3;
+  width: min(48%, 260px);
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  background: rgba(11,16,32,.72);
+  border: 1px solid rgba(255,255,255,.18);
+  color: #fff;
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  box-shadow: 0 18px 42px rgba(11,16,32,.22);
+}
+.hero-photo-map svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.hero-photo-map path,
+.hero-photo-map line,
+.hero-photo-map circle,
+.hero-photo-map rect {
+  vector-effect: non-scaling-stroke;
+}
+.hero-photo-map .route-line {
+  stroke-dasharray: 8 10;
+  animation: route-dash 4.8s linear infinite;
+}
+@keyframes route-dash { to { stroke-dashoffset: -72; } }
+.hero-mini-routes {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  z-index: 4;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 7px;
+}
+.hero-mini-routes a {
+  min-height: 66px;
+  padding: 9px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255,255,255,.62);
+  background: rgba(255,255,255,.78);
+  color: var(--text);
+  text-decoration: none;
+  box-shadow: 0 12px 30px rgba(16,24,39,.14);
+  backdrop-filter: blur(14px) saturate(130%);
+  -webkit-backdrop-filter: blur(14px) saturate(130%);
+  transition: transform .18s ease, border-color .18s ease, background .18s ease;
+}
+.hero-mini-routes a:hover,
+.hero-mini-routes a:focus-visible {
+  transform: translateY(-3px);
+  border-color: rgba(6,167,216,.44);
+  background: rgba(255,255,255,.94);
+  outline: none;
+}
+.hero-mini-routes b {
+  display: block;
+  font-size: 12px;
+  line-height: 1.25;
+}
+.hero-mini-routes small {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.25;
+}
 @media (max-width: 900px) {
   .hero-photo-card {
     justify-self: center;
@@ -806,9 +885,29 @@ header.site-header.scrolled {
   .hero-photo-card::after { inset: 7px; }
   .hero-photo-note {
     left: 16px;
-    bottom: 16px;
+    top: 16px;
     max-width: calc(100% - 32px);
     font-size: 11.5px;
+  }
+  .hero-mini-routes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hero-photo-map { width: 48%; right: 14px; top: 14px; }
+}
+@media (max-width: 900px) {
+  .hero-mini-routes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hero-photo-map { width: 48%; right: 14px; top: 14px; }
+}
+@media (max-width: 560px) {
+  .hero-photo-map {
+    display: none;
+  }
+  .hero-mini-routes {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+  }
+  .hero-mini-routes a {
+    min-height: 58px;
+    padding: 8px;
   }
 }
 
@@ -2681,18 +2780,18 @@ def _render_hero() -> str:
     return (
         "<section class='hero' id='top'>"
         "<div class='hero-text fade-up'>"
-        "<span class='eyebrow'>彦根・滋賀｜AIを作る・教える・集める場所</span>"
+        "<span class='eyebrow'>彦根・滋賀｜AIコーディングと業務AIを学ぶ入口</span>"
         "<h1 class='hero-brand'>"
         "<span class='fusion-logo-large'><span class='ai'>AI</span><span class='pipe'>|</span><span class='hub'>ハブ</span></span>"
-        "<span class='hero-title-sub'><strong>仕事で使えるAI</strong>を、ひとつの入口に。</span>"
+        "<span class='hero-title-sub'><strong>AIに作らせ、自分で確認する力</strong>を、ひとつの入口に。</span>"
         "<span class='visually-hidden'>｜滋賀・彦根の中小事業者向けAI講習・AI導入支援・補助金申請サポート</span>"
         "</h1>"
         "<p class='sub-catch'>"
-        "<strong>講習、相談、制作実績、AI情報を整理して、次にやることをすぐ選べるトップへ。</strong>"
+        "<strong>AIコーディングは、まだ早期層の実務スキル。講習、相談、制作実績、AI情報を整理して、次にやることをすぐ選べるトップへ。</strong>"
         "</p>"
         "<p class='lead'>"
-        "スマホが使えれば大丈夫。彦根で顔を合わせて、見積もり・問い合わせ返信・日報など、"
-        "毎日の仕事で使える形まで一緒に落とし込みます。補助金申請まで伴走できます。"
+        "上位0.6%級という言い方が出るほど、AIコーディングはまだ少数派です。"
+        "だからこそ、コード暗記よりも、依頼文、差分確認、ブラウザ確認、公開前レビューを早く身につける価値があります。"
         "</p>"
         "<div class='hero-actions'>"
         "<a class='btn btn-primary btn-lg' href='#contact'>無料で30分相談する</a>"
@@ -2704,7 +2803,7 @@ def _render_hero() -> str:
         "<li><strong>9事業</strong>を回す現役オーナー</li>"
         "</ul>"
         "<div class='hero-entry-strip' aria-label='AIハブの主要入口'>"
-        "<a class='entry-chip' href='#packages'><b>相談・講習</b><span>料金と受講プラン</span></a>"
+        "<a class='entry-chip' href='#packages'><b>相談・講習</b><span>Codexと実務AIを学ぶ</span></a>"
         "<a class='entry-chip' href='#works'><b>制作実績</b><span>作れるものを見る</span></a>"
         "<a class='entry-chip' href='#lectures'><b>講習資料</b><span>教材で学ぶ</span></a>"
         "<a class='entry-chip' href='/watch/index.html'><b>AI情報</b><span>最新要約を見る</span></a>"
@@ -2713,14 +2812,31 @@ def _render_hero() -> str:
         "<div class='hero-photo-card fade-up d2' aria-label='AIハブの相談イメージ'>"
         "<img src='/img/hero-ai-hub-studio.png' alt='AI相談と制作、講習資料を一緒に整理するAIハブのイメージ' decoding='async' fetchpriority='high'>"
         "<span class='hero-photo-note'><i aria-hidden='true'></i>相談・制作・講習を一つに</span>"
+        "<div class='hero-photo-map' aria-hidden='true'>"
+        "<svg viewBox='0 0 280 170' fill='none' xmlns='http://www.w3.org/2000/svg'>"
+        "<rect x='12' y='14' width='76' height='44' rx='8' stroke='#8bdcff' stroke-width='2'/>"
+        "<rect x='102' y='14' width='76' height='44' rx='8' stroke='#c8ff5f' stroke-width='2'/>"
+        "<rect x='192' y='14' width='76' height='44' rx='8' stroke='#ffb3a8' stroke-width='2'/>"
+        "<path class='route-line' d='M88 36H102M178 36H192' stroke='#fff' stroke-width='2'/>"
+        "<text x='31' y='40' fill='#fff' font-size='12'>相談</text>"
+        "<text x='121' y='40' fill='#fff' font-size='12'>実装</text>"
+        "<text x='211' y='40' fill='#fff' font-size='12'>確認</text>"
+        "<path class='route-line' d='M50 58C50 112 230 112 230 58' stroke='#8bdcff' stroke-width='2'/>"
+        "<circle cx='50' cy='120' r='20' stroke='#c8ff5f' stroke-width='2'/>"
+        "<circle cx='140' cy='134' r='23' stroke='#8bdcff' stroke-width='2'/>"
+        "<circle cx='230' cy='120' r='20' stroke='#ffb3a8' stroke-width='2'/>"
+        "<path d='M70 120H117M163 134H210' stroke='#fff' stroke-opacity='.72' stroke-width='2'/>"
+        "<text x='39' y='124' fill='#fff' font-size='10'>Git</text>"
+        "<text x='121' y='138' fill='#fff' font-size='10'>Browser</text>"
+        "<text x='214' y='124' fill='#fff' font-size='10'>Deploy</text>"
+        "</svg>"
         "</div>"
-        "<div class='hero-visual hub-visual fade-up d2' aria-label='AIハブの4つの入口' style='display:none'>"
-        "<div class='hub-core'><span class='hub-core-logo'><span class='ai'>AI</span><span class='hub'>ハブ</span></span><small>作る・教える・集める</small></div>"
-        "<a class='hub-route route-consult' href='#contact'><span class='route-kicker'>CONSULT</span><b>相談する</b><small>30分で課題と導入順を整理</small></a>"
-        "<a class='hub-route route-works' href='#works'><span class='route-kicker'>WORKS</span><b>実績を見る</b><small>Web・EC・業務システム</small></a>"
-        "<a class='hub-route route-learn' href='#lectures'><span class='route-kicker'>LEARN</span><b>資料で学ぶ</b><small>講習スライドと教材</small></a>"
-        "<a class='hub-route route-watch' href='/watch/index.html'><span class='route-kicker'>WATCH</span><b>AI情報を見る</b><small>RSS収集と要約ログ</small></a>"
-        "<div class='hub-status'>次にやることを、この入口から選ぶ</div>"
+        "<div class='hero-mini-routes' aria-label='AIハブの主要入口'>"
+        "<a href='#contact'><b>相談する</b><small>課題を整理</small></a>"
+        "<a href='#packages'><b>学ぶ</b><small>講習プラン</small></a>"
+        "<a href='#works'><b>作る</b><small>実績を見る</small></a>"
+        "<a href='/watch/index.html'><b>追う</b><small>AI情報</small></a>"
+        "</div>"
         "</div>"
         "</section>"
     )
@@ -3072,7 +3188,7 @@ def _render_explore() -> str:
          "運営事業・制作したサイト・生成した提案LP。すべて自分で構築・運用した実物。",
          "/portfolio.html", "実績を見る"),
         ("📚", "講習資料",
-         "AI業務活用・SNSアルゴリズム・LLMO（AI検索最適化）の講習で使う資料。AIコーディング総合講習も。",
+         "AI業務活用・SNSアルゴリズム・LLMO（AI検索最適化）の講習で使う資料。AIコーディング実装講習も。",
          "/lectures/index.html", "資料を見る"),
     ]
     parts = ["<div class='explore-grid'>"]
@@ -3418,12 +3534,12 @@ def _render_works_section() -> str:
 
 
 def _render_lectures_section() -> str:
-    """講習資料セクション。最新の講習資料を先頭にし、AIコーディング総合講習は独立資料として残す。"""
+    """講習資料セクション。最新の講習資料を先頭にし、AIコーディング実装講習は独立資料として残す。"""
     pmap_card = {
-        "title": "AIコーディング総合講習",
+        "title": "AIコーディング実装講習",
         "icon": "🧭",
-        "date": "2026-06-05",
-        "summary": "Codex導入からプログラミング基礎、実装、公開運用、AI応用制作、総合演習までを段階的に学ぶ総合講習LP。",
+        "date": "2026-06-06",
+        "summary": "Codex導入、プログラミング基礎、実装、公開、公式アップデート、AI応用制作までを、線画とタブUIで段階的に学ぶ講習LP。",
         "href": "/programming-map.html",
     }
     lecs = list(_load_all_lectures()) + [pmap_card]
@@ -3648,7 +3764,7 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append("<section class='block' id='lectures'>")
     parts.append("<p class='section-heading fade-up'>MATERIALS</p>")
     parts.append("<h2 class='section-title fade-up d1'>講習資料</h2>")
-    parts.append("<p class='section-sub fade-up d2'>AI業務活用・SNSアルゴリズム・LLMO（AI検索最適化）の講習で使う資料。</p>")
+    parts.append("<p class='section-sub fade-up d2'>AI業務活用・SNSアルゴリズム・LLMO（AI検索最適化）に加え、CodexとAIコーディングを仕事で使うための実装講習を整理しています。</p>")
     parts.append("<div class='fade-up d2'>")
     parts.append(_render_lectures_section())
     parts.append("</div>")
@@ -3691,12 +3807,12 @@ def main(dry_run: bool = False) -> int:
         print(f"  agents_status 生成スキップ: {e}")
 
     recent_lectures = _load_recent_lectures(limit=3)
-    # AIコーディング総合講習は講習資料カードとして残すが、最新資料を先頭にする
+    # AIコーディング実装講習は講習資料カードとして残すが、最新資料を先頭にする
     pmap_card = {
-        "title": "AIコーディング総合講習",
+        "title": "AIコーディング実装講習",
         "icon": "🧭",
-        "date": "2026-06-05",
-        "summary": "Codex導入からプログラミング基礎、実装、公開運用、AI応用制作、総合演習までを段階的に学ぶ総合講習LP。",
+        "date": "2026-06-06",
+        "summary": "Codex導入、プログラミング基礎、実装、公開、公式アップデート、AI応用制作までを、線画とタブUIで段階的に学ぶ講習LP。",
         "href": "/programming-map.html",
     }
     recent_lectures = list(recent_lectures) + [pmap_card]

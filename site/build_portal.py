@@ -168,15 +168,16 @@ def _build_jsonld_website() -> str:
         "description": "滋賀・彦根の中小事業者向けAI講習とWeb経営コンサルのポータル。",
     }
 
-    seminar_title = "【講習】ClaudeCode Codex準備/実践 ※AI無料相談/ AI個別相談/AI伴走支援 ※上位0.6%実践講座 ※講師はエンジニア歴30年 ※HP 通販 SEO SNS ※補助金対応"
-    free_consult_title = "【AI無料相談】まずは30分の導入相談"
-    consult_title = "【AI個別相談】しっかり60分最適AI導入"
-    support_title = "【AI伴走支援パック】いっしょに実務導入 ※初回相談予約"
+    practice_title = "ClaudeCode・Codex 実践会"
+    prep_title = "ClaudeCode・Codex 準備会"
+    free_consult_title = "AI無料相談 30分"
+    consult_title = "AI個別相談 60分"
+    support_title = "AI伴走支援パック"
 
     # 受講プランを Service + Offer として構造化（_render_packages の items と整合）
     plans = [
-        (seminar_title, "Claude Code または Codex の環境が整い、自分で1つ以上動くものを作った人向けの月例少人数セミナー。持ち込み課題をその場で進める。", "5500", "5500", "Course"),
-        (seminar_title, "実践会の前に、環境構築・ログイン・最初の成果物作成までを整える少人数の準備講座。", "5500", "5500", "Course"),
+        (practice_title, "Claude Code または Codex の環境が整い、自分で1つ以上動くものを作った人向けの月例少人数セミナー。持ち込み課題をその場で進める。", "5500", "5500", "Course"),
+        (prep_title, "実践会の前に、環境構築・ログイン・最初の成果物作成までを整える少人数の準備講座。", "5500", "5500", "Course"),
         (free_consult_title, "来店またはオンラインで、AI導入の入口を30分で整理する無料相談。講習や伴走の前に、今の課題と次の一手を確認する。", "0", "0", "BusinessCoaching"),
         (consult_title, "経営者・専門職・初心者なんでも相談。AI活用、Claude Code / Codex導入、補助金申請まで現役オーナーがその場で解決。", "4400", "4400", "BusinessCoaching"),
         (support_title, "HP公開から事務自動化・経理・マーケまで6ヶ月で一気に定着。技術的な難所は講師が代行・支援。滋賀・彦根の補助金で負担1/3以下に。", "100000", "100000", "Service"),
@@ -1639,19 +1640,7 @@ section.block + section.block { border-top: 1px solid var(--line); }
   font-weight: 900;
   color: rgba(40,84,197,.34);
 }
-.pkg-head { display: flex; align-items: flex-start; gap: 10px; }
-.pkg-icon {
-  width: 34px;
-  height: 34px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--radius-sm);
-  background: rgba(255,255,255,.62);
-  border: 1px solid rgba(40,84,197,.12);
-  font-size: 18px;
-  line-height: 1;
-}
+.pkg-head { display: block; }
 .pkg-title { font-size: 17px; font-weight: 900; color: var(--text); line-height: 1.38; margin: 0; flex: 1; letter-spacing: 0; min-width: 0; overflow-wrap: anywhere; }
 .pkg-featured .pkg-title { font-size: clamp(22px, 2.6vw, 30px); line-height: 1.22; }
 .pkg-meta { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
@@ -2555,19 +2544,19 @@ HEADER_JS = """
     var RESULT = {
       beginner: {
         badge: '準備', title: '実践会の前に環境を整える',
-        name: '【講習】ClaudeCode Codex準備/実践 ※AI無料相談/ AI個別相談/AI伴走支援 ※上位0.6%実践講座 ※講師はエンジニア歴30年 ※HP 通販 SEO SNS ※補助金対応',
+        name: 'ClaudeCode・Codex 準備会',
         desc: 'ログイン、作業フォルダ、最初の依頼、差分確認までを整えます。実践会で置いていかれない状態を作ります。',
         level_id: 'beginner'
       },
       intermediate: {
         badge: '実践', title: '持ち込み課題を深く進める',
-        name: '【講習】ClaudeCode Codex準備/実践 ※AI無料相談/ AI個別相談/AI伴走支援 ※上位0.6%実践講座 ※講師はエンジニア歴30年 ※HP 通販 SEO SNS ※補助金対応',
+        name: 'ClaudeCode・Codex 実践会',
         desc: '3日以上の利用経験、1つ以上の成果物、基本コマンドへの抵抗がない方に向く月例少人数会です。',
         level_id: 'intermediate'
       },
       advanced: {
         badge: '実装', title: '業務に組み込む',
-        name: '【AI伴走支援パック】いっしょに実務導入 ※初回相談予約',
+        name: 'AI伴走支援パック',
         desc: '自社業務の自動化、社内手順化、補助金前提の導入まで進めたい方向けです。',
         level_id: 'advanced'
       }
@@ -2939,19 +2928,20 @@ def _render_services() -> str:
 
 def _render_courses_packages() -> str:
     """Claude Code / Codex 実践会を中心にした講習プラン。"""
-    seminar_title = "【講習】ClaudeCode Codex準備/実践 ※AI無料相談/ AI個別相談/AI伴走支援 ※上位0.6%実践講座 ※講師はエンジニア歴30年 ※HP 通販 SEO SNS ※補助金対応"
+    practice_title = "ClaudeCode・Codex 実践会"
+    prep_title = "ClaudeCode・Codex 準備会"
     seminar_url = "https://goodbouldering.com/?pid=188553378"
-    free_consult_title = "【AI無料相談】まずは30分の導入相談"
+    free_consult_title = "AI無料相談 30分"
     free_consult_url = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/AW5O5XSBHLEHYUBHLZUGFKYE"
-    consult_title = "【AI個別相談】しっかり60分最適AI導入"
-    support_title = "【AI伴走支援パック】いっしょに実務導入 ※初回相談予約"
+    consult_title = "AI個別相談 60分"
+    support_title = "AI伴走支援パック"
     items = [
         {
             "icon": "⌘",
             "cat": "月例・実践編",
             "level": "実践者向け",
             "level_id": "intermediate",
-            "title": seminar_title,
+            "title": practice_title,
             "price": "5,500円",
             "duration": "120分 / 月1回 / 定員8名",
             "subsidy": True,
@@ -2974,7 +2964,7 @@ def _render_courses_packages() -> str:
             "cat": "入門・準備編",
             "level": "準備中",
             "level_id": "beginner",
-            "title": seminar_title,
+            "title": prep_title,
             "price": "5,500円",
             "duration": "90分 / 少人数",
             "subsidy": False,
@@ -3102,7 +3092,6 @@ def _render_courses_packages() -> str:
             f"<div class='pkg-body'>"
             f"<div class='pkg-topline'><span class='pkg-cat'>{html.escape(it['cat'])}</span><span class='pkg-no'>{i + 1:02d}</span></div>"
             f"<div class='pkg-head'>"
-            f"<span class='pkg-icon' aria-hidden='true'>{html.escape(it['icon'])}</span>"
             f"<h3 class='pkg-title'>{html.escape(it['title'])}</h3>"
             f"</div>"
             f"<div class='pkg-meta'>{level_badge}<span>⏱ {html.escape(it['duration'])}</span></div>"
@@ -3279,7 +3268,7 @@ FAQ_QA = [
     ("Claude Code / Codex 実践会の参加条件はありますか？",
      "あります。実践会は、Claude Code または Codex を3日以上使ったことがあり、自分で1つ以上動くものを作った経験があり、cd・ls・git など基本コマンドに抵抗がない方を対象にします。申込時に、環境構築済みか、作ったもの、当日扱いたい課題を確認します。条件に満たない方は準備会を案内します。"),
     ("料金はどれくらいですか？",
-     "【AI無料相談】まずは30分の導入相談は無料、【AI個別相談】しっかり60分最適AI導入は4,400円、【講習】ClaudeCode Codex準備/実践は5,500円から。【AI伴走支援パック】いっしょに実務導入は月額10万円×6ヶ月が目安です。LP制作は1本18〜30万円が目安。多くは補助金併用を前提に組みます。"),
+     "AI無料相談30分は無料、AI個別相談60分は4,400円、ClaudeCode・Codex講習は5,500円から。AI伴走支援パックは月額10万円×6ヶ月が目安です。LP制作は1本18〜30万円が目安。多くは補助金併用を前提に組みます。"),
     ("補助金は使えますか？滋賀の事業者でも対象ですか？",
      "講習・伴走パックは「デジタル化・AI導入補助金」や滋賀県・彦根市の補助金の対象になります。補助率は小規模事業者で最大4/5、実質負担が1/3以下になるケースが多いです。申請からツール選定・実装・定着まで一気通貫で支援します。"),
     ("パソコンやスマホが苦手ですが、大丈夫ですか？",

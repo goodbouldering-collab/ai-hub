@@ -251,6 +251,38 @@
       position: relative;
     }
 
+    .source-linkable {
+      cursor: pointer;
+      position: relative;
+    }
+
+    .source-linkable:hover {
+      border-color: color-mix(in srgb, var(--cyan) 42%, var(--stroke));
+      background: rgba(255, 255, 255, 0.075);
+    }
+
+    .source-linkable:focus-visible {
+      outline: 2px solid var(--cyan);
+      outline-offset: 2px;
+    }
+
+    .source-linkable::after {
+      position: absolute;
+      top: 8px;
+      right: 9px;
+      content: "↗";
+      color: rgba(245, 251, 255, 0.42);
+      font-size: 0.72rem;
+      font-weight: 900;
+      opacity: 0;
+      transition: opacity 160ms ease;
+    }
+
+    .source-linkable:hover::after,
+    .source-linkable:focus-visible::after {
+      opacity: 1;
+    }
+
     .metric-card::after {
       position: absolute;
       left: 0;
@@ -346,6 +378,7 @@
       padding: 10px;
       display: grid;
       gap: 8px;
+      position: relative;
     }
 
     .goal-top {
@@ -455,6 +488,7 @@
       border-radius: var(--radius);
       background: rgba(255, 255, 255, 0.045);
       padding: 10px;
+      position: relative;
     }
 
     .insight-label {
@@ -924,42 +958,42 @@
     <div class="alert" id="errorBox" hidden></div>
 
     <section class="overview-grid" aria-label="SNS SEO 統合指標">
-      <article class="metric-card glass">
+      <article class="metric-card glass" id="totalFollowersCard">
         <div>
           <div class="metric-label">総フォロワー / ユーザー</div>
           <div class="metric-value" id="totalFollowersValue">--</div>
         </div>
         <div class="metric-note" id="totalFollowersNote">SNS + GSC + GA4</div>
       </article>
-      <article class="metric-card glass">
+      <article class="metric-card glass" id="totalReachCard">
         <div>
           <div class="metric-label">総リーチ / 表示 / セッション</div>
           <div class="metric-value" id="totalReachValue">--</div>
         </div>
         <div class="metric-note" id="totalReachNote">全SNS + SEO自動収集</div>
       </article>
-      <article class="metric-card glass">
+      <article class="metric-card glass" id="totalPostsCard">
         <div>
           <div class="metric-label">投稿 / ページ / イベント</div>
           <div class="metric-value" id="totalPostsValue">--</div>
         </div>
         <div class="metric-note" id="totalPostsNote">全媒体合算</div>
       </article>
-      <article class="metric-card glass">
+      <article class="metric-card glass" id="avgEngagementCard">
         <div>
           <div class="metric-label">平均反応率</div>
           <div class="metric-value" id="avgEngagementValue">--</div>
         </div>
         <div class="metric-note" id="avgEngagementNote">likes + comments / views</div>
       </article>
-      <article class="metric-card glass video-accent">
+      <article class="metric-card glass video-accent" id="spotlightCard">
         <div>
           <div class="metric-label">注目スコア</div>
           <div class="metric-value" id="liveValue">--</div>
         </div>
         <div class="metric-note" id="liveNote">全媒体のトップ項目</div>
       </article>
-      <article class="metric-card glass">
+      <article class="metric-card glass" id="refreshSourceCard">
         <div>
           <div class="metric-label">次回自動更新</div>
           <div class="metric-value" id="nextRefreshValue">--</div>
@@ -969,7 +1003,7 @@
     </section>
 
     <section class="main-grid">
-      <article class="panel chart-panel glass">
+      <article class="panel chart-panel glass" id="chartPanel">
         <div class="section-head">
           <div>
             <div class="section-title">重ね表示グラフ</div>
@@ -978,7 +1012,7 @@
           <div class="section-subtitle" id="goalModeLabel">目標は自動計算</div>
         </div>
 
-        <div class="chart-wrap">
+        <div class="chart-wrap" id="chartWrap">
           <canvas id="trendCanvas" width="860" height="360"></canvas>
           <div class="chart-legend">
             <span class="legend-item"><span class="legend-swatch bar"></span>SNS媒体</span>
@@ -988,7 +1022,7 @@
         </div>
 
         <div class="goal-row">
-          <div class="goal-card">
+          <div class="goal-card" id="followerGoalCard">
             <div class="goal-top">
               <div class="goal-name">横断フォロワー / ユーザーゴール</div>
               <div class="goal-percent" id="subscriberGoalPct">--%</div>
@@ -999,7 +1033,7 @@
               <span id="subscriberGoalTarget">目標 --</span>
             </div>
           </div>
-          <div class="goal-card">
+          <div class="goal-card" id="reachGoalCard">
             <div class="goal-top">
               <div class="goal-name">横断リーチ / 表示ゴール</div>
               <div class="goal-percent" id="viewGoalPct">--%</div>
@@ -1013,15 +1047,15 @@
         </div>
 
         <div class="insight-row">
-          <div class="insight">
+          <div class="insight" id="avgReachInsightCard">
             <div class="insight-label">平均リーチ</div>
             <div class="insight-value" id="avgViewsInsight">--</div>
           </div>
-          <div class="insight">
+          <div class="insight" id="topPlatformInsightCard">
             <div class="insight-label">横断トップ媒体</div>
             <div class="insight-value" id="topPlatformInsight">--</div>
           </div>
-          <div class="insight">
+          <div class="insight" id="topItemInsightCard">
             <div class="insight-label">トップ投稿</div>
             <div class="insight-value" id="topVideoInsight">--</div>
           </div>
@@ -1121,12 +1155,12 @@
       const ACCOUNT_SETTINGS_SCRIPT_ID = "gubbleSnsAccountSettingsScript";
 
       const PLATFORM_DEFAULTS = [
-        { id: "youtube", short: "YT", name: "YouTube", color: "#ff0033", auto: true },
-        { id: "instagram", short: "IG", name: "Instagram", color: "#ff4fb8", accountLabel: "IG User ID / @", accountPlaceholder: "1784... または @goodbouldering" },
-        { id: "threads", short: "TH", name: "Threads", color: "#f5fbff", accountLabel: "Threads User ID / @", accountPlaceholder: "123... または @goodbouldering" },
-        { id: "facebook", short: "FB", name: "Facebook", color: "#5a9dff", accountLabel: "Page ID / ページ名", accountPlaceholder: "page_id または goodbouldering" },
-        { id: "x", short: "X", name: "X", color: "#a6b1c5", accountLabel: "X username", accountPlaceholder: "goodbouldering" },
-        { id: "reels", short: "RL", name: "Reels / Shorts", color: "#2df2c0", accountLabel: "取得元", accountPlaceholder: "instagram / youtube" },
+        { id: "youtube", short: "YT", name: "YouTube", color: "#ff0033", auto: true, baseUrl: "https://www.youtube.com/" },
+        { id: "instagram", short: "IG", name: "Instagram", color: "#ff4fb8", accountLabel: "IG User ID / @", accountPlaceholder: "1784... または @goodbouldering", baseUrl: "https://www.instagram.com/" },
+        { id: "threads", short: "TH", name: "Threads", color: "#f5fbff", accountLabel: "Threads User ID / @", accountPlaceholder: "123... または @goodbouldering", baseUrl: "https://www.threads.net/" },
+        { id: "facebook", short: "FB", name: "Facebook", color: "#5a9dff", accountLabel: "Page ID / ページ名", accountPlaceholder: "page_id または goodbouldering", baseUrl: "https://www.facebook.com/" },
+        { id: "x", short: "X", name: "X", color: "#a6b1c5", accountLabel: "X username", accountPlaceholder: "goodbouldering", baseUrl: "https://x.com/" },
+        { id: "reels", short: "RL", name: "Reels / Shorts", color: "#2df2c0", accountLabel: "取得元", accountPlaceholder: "instagram / youtube", baseUrl: "https://www.instagram.com/" },
         {
           id: "gsc",
           short: "GSC",
@@ -1134,6 +1168,7 @@
           color: "#5cff9d",
           accountLabel: "GSC siteUrl",
           accountPlaceholder: "sc-domain:goodbouldering.com",
+          baseUrl: "https://search.google.com/search-console",
           labels: { followers: "クリック", reach: "表示回数", posts: "ページ数", engagement: "CTR %" }
         },
         {
@@ -1143,6 +1178,7 @@
           color: "#ffc857",
           accountLabel: "GA4 property",
           accountPlaceholder: "257088701",
+          baseUrl: "https://analytics.google.com/analytics/web/",
           labels: { followers: "ユーザー", reach: "セッション", posts: "イベント", engagement: "Engagement %" }
         }
       ];
@@ -1153,6 +1189,7 @@
         platforms: [],
         externalMetrics: null,
         accountSettings: null,
+        chartHitAreas: [],
         loading: false,
         refreshTimer: null,
         countdownTimer: null,
@@ -1169,6 +1206,12 @@
         refreshButton: document.getElementById("refreshButton"),
         settingsButton: document.getElementById("settingsButton"),
         errorBox: document.getElementById("errorBox"),
+        totalFollowersCard: document.getElementById("totalFollowersCard"),
+        totalReachCard: document.getElementById("totalReachCard"),
+        totalPostsCard: document.getElementById("totalPostsCard"),
+        avgEngagementCard: document.getElementById("avgEngagementCard"),
+        spotlightCard: document.getElementById("spotlightCard"),
+        refreshSourceCard: document.getElementById("refreshSourceCard"),
         totalFollowersValue: document.getElementById("totalFollowersValue"),
         totalFollowersNote: document.getElementById("totalFollowersNote"),
         totalReachValue: document.getElementById("totalReachValue"),
@@ -1190,7 +1233,14 @@
         viewGoalBar: document.getElementById("viewGoalBar"),
         viewGoalNow: document.getElementById("viewGoalNow"),
         viewGoalTarget: document.getElementById("viewGoalTarget"),
+        chartPanel: document.getElementById("chartPanel"),
+        chartWrap: document.getElementById("chartWrap"),
+        followerGoalCard: document.getElementById("followerGoalCard"),
+        reachGoalCard: document.getElementById("reachGoalCard"),
         chart: document.getElementById("trendCanvas"),
+        avgReachInsightCard: document.getElementById("avgReachInsightCard"),
+        topPlatformInsightCard: document.getElementById("topPlatformInsightCard"),
+        topItemInsightCard: document.getElementById("topItemInsightCard"),
         avgViewsInsight: document.getElementById("avgViewsInsight"),
         topPlatformInsight: document.getElementById("topPlatformInsight"),
         topVideoInsight: document.getElementById("topVideoInsight"),
@@ -1262,6 +1312,9 @@
         el.resetButton.addEventListener("click", resetSettings);
         el.downloadSettingsButton.addEventListener("click", downloadAccountSettings);
         el.form.addEventListener("submit", onSaveConfig);
+        el.chart.addEventListener("click", onChartClick);
+        document.addEventListener("click", onSourceClick);
+        document.addEventListener("keydown", onSourceKeydown);
         window.addEventListener("resize", () => drawTrend(readHistory(), state.platforms));
       }
 
@@ -1801,6 +1854,10 @@
         const items = buildUnifiedItems(dashboard, platforms);
         const topItem = items[0] || null;
         const avgItemReach = items.length ? Math.round(numeric(sum(items.map((item) => item.reach))) / items.length) : null;
+        const topFollowersPlatform = topByMetric(platforms, "followers");
+        const topReachPlatform = topByMetric(platforms, "reach");
+        const topPostsPlatform = topByMetric(platforms, "posts");
+        const topEngagementPlatform = topByMetric(platforms, "engagement");
         const fetched = dashboard ? new Date(dashboard.fetchedAt) : null;
         const externalFetched = externalGeneratedDate();
 
@@ -1873,6 +1930,20 @@
           el.nextRefreshValue.textContent = state.config?.apiKey && state.config?.channelInput ? `${state.config.refreshSeconds || 60} 秒` : "--";
         }
 
+        setSourceLink(el.totalFollowersCard, sourceUrlForPlatform(topFollowersPlatform || topPlatform), "総フォロワー / ユーザーの根拠を開く");
+        setSourceLink(el.totalReachCard, sourceUrlForPlatform(topReachPlatform || topPlatform), "総リーチ / 表示 / セッションの根拠を開く");
+        setSourceLink(el.totalPostsCard, sourceUrlForPlatform(topPostsPlatform || topPlatform), "投稿 / ページ / イベントの根拠を開く");
+        setSourceLink(el.avgEngagementCard, sourceUrlForPlatform(topEngagementPlatform || topPlatform), "平均反応率の根拠を開く");
+        setSourceLink(el.spotlightCard, itemSourceUrl(topItem) || sourceUrlForPlatform(topPlatform), "注目スコアの根拠を開く");
+        setSourceLink(el.refreshSourceCard, metricsSourceUrl(), "自動収集データを開く");
+        setSourceLink(el.chartPanel, sourceUrlForPlatform(topReachPlatform || topPlatform), "重ね表示グラフの根拠を開く");
+        setSourceLink(el.chartWrap, sourceUrlForPlatform(topReachPlatform || topPlatform), "媒体別グラフの根拠を開く");
+        setSourceLink(el.followerGoalCard, sourceUrlForPlatform(topFollowersPlatform || topPlatform), "フォロワー / ユーザー目標の根拠を開く");
+        setSourceLink(el.reachGoalCard, sourceUrlForPlatform(topReachPlatform || topPlatform), "リーチ / 表示目標の根拠を開く");
+        setSourceLink(el.avgReachInsightCard, itemSourceUrl(topItem) || sourceUrlForPlatform(topReachPlatform || topPlatform), "平均リーチの根拠を開く");
+        setSourceLink(el.topPlatformInsightCard, sourceUrlForPlatform(topPlatform), "横断トップ媒体を開く");
+        setSourceLink(el.topItemInsightCard, itemSourceUrl(topItem) || sourceUrlForPlatform(topPlatform), "トップ投稿の根拠を開く");
+
         renderPlatforms(platforms);
         renderUnifiedItems(items);
         drawTrend(history, platforms);
@@ -1889,6 +1960,7 @@
               reach: dashboard?.metrics.viewCount ?? external?.reach ?? saved.reach ?? null,
               posts: dashboard?.metrics.videoCount ?? external?.posts ?? saved.posts ?? null,
               engagement: dashboard?.metrics.engagement ?? external?.engagement ?? saved.engagement ?? null,
+              sourceUrl: sourceUrlForPlatformId(platform.id, dashboard),
               note: dashboard ? "自動取得" : external ? external.note : "API未接続"
             };
           }
@@ -1899,9 +1971,128 @@
             reach: source.reach ?? null,
             posts: source.posts ?? null,
             engagement: source.engagement ?? null,
+            sourceUrl: sourceUrlForPlatformId(platform.id, dashboard),
             note: external ? source.note : hasPlatformData(saved) ? "手入力フォールバック" : "自動収集待ち"
           };
         });
+      }
+
+      function topByMetric(platforms, key) {
+        return [...platforms]
+          .filter((platform) => Number.isFinite(platform[key]))
+          .sort((a, b) => numeric(b[key]) - numeric(a[key]))[0] || null;
+      }
+
+      function sourceUrlForPlatform(platform) {
+        if (!platform) return "";
+        return platform.sourceUrl || sourceUrlForPlatformId(platform.id, state.dashboard);
+      }
+
+      function sourceUrlForPlatformId(platformId, dashboard = state.dashboard) {
+        const id = cleanString(platformId).toLowerCase();
+        const config = state.config || {};
+        const account = config.accounts?.[id] || {};
+        const text = cleanAccountText(accountValue(account));
+        if (id === "youtube") {
+          if (dashboard?.channel?.id) return `https://www.youtube.com/channel/${encodeURIComponent(dashboard.channel.id)}`;
+          if (text) return text.startsWith("UC") ? `https://www.youtube.com/channel/${encodeURIComponent(text)}` : `https://www.youtube.com/@${encodeURIComponent(text)}`;
+          return "https://www.youtube.com/";
+        }
+        if (id === "instagram") {
+          return text ? `https://www.instagram.com/${encodeURIComponent(text)}/` : "https://www.instagram.com/";
+        }
+        if (id === "threads") {
+          return text ? `https://www.threads.net/@${encodeURIComponent(text)}` : "https://www.threads.net/";
+        }
+        if (id === "facebook") {
+          return text ? `https://www.facebook.com/${encodeURIComponent(text)}` : "https://www.facebook.com/";
+        }
+        if (id === "x") {
+          return text ? `https://x.com/${encodeURIComponent(text)}` : "https://x.com/";
+        }
+        if (id === "reels") {
+          const source = cleanString(account.source || account.account).toLowerCase();
+          if (source === "youtube") return "https://www.youtube.com/shorts/";
+          return sourceUrlForPlatformId("instagram", dashboard);
+        }
+        if (id === "gsc") {
+          const siteUrl = cleanString(account.siteUrl || account.account || "sc-domain:goodbouldering.com");
+          return `https://search.google.com/search-console?resource_id=${encodeURIComponent(siteUrl)}`;
+        }
+        if (id === "ga4") {
+          const propertyId = cleanString(account.propertyId || account.account || "257088701").replace(/^properties\//, "");
+          return `https://analytics.google.com/analytics/web/#/p${encodeURIComponent(propertyId)}/reports/intelligenthome`;
+        }
+        return platformById(id).baseUrl || "";
+      }
+
+      function itemSourceUrl(item) {
+        if (!item) return "";
+        return cleanString(item.url) || sourceUrlForPlatformId(item.platform);
+      }
+
+      function metricsSourceUrl() {
+        try {
+          return new URL("./sns-metrics.js", window.location.href).toString();
+        } catch {
+          return "./sns-metrics.js";
+        }
+      }
+
+      function setSourceLink(node, url, label) {
+        if (!node) return;
+        const cleanUrl = cleanString(url);
+        if (!cleanUrl) {
+          node.classList.remove("source-linkable");
+          node.removeAttribute("data-source-url");
+          node.removeAttribute("role");
+          node.removeAttribute("tabindex");
+          node.removeAttribute("title");
+          return;
+        }
+        node.classList.add("source-linkable");
+        node.dataset.sourceUrl = cleanUrl;
+        node.setAttribute("role", "link");
+        node.setAttribute("tabindex", "0");
+        node.setAttribute("title", label || "根拠URLを開く");
+      }
+
+      function sourceAttributes(url, label) {
+        const cleanUrl = cleanString(url);
+        if (!cleanUrl) return "";
+        return ` data-source-url="${escapeAttr(cleanUrl)}" role="link" tabindex="0" title="${escapeAttr(label || "根拠URLを開く")}"`;
+      }
+
+      function onSourceClick(event) {
+        if (event.target.closest("a,button,input,select,textarea,label")) return;
+        const target = event.target.closest("[data-source-url]");
+        if (!target) return;
+        openSourceUrl(target.dataset.sourceUrl);
+      }
+
+      function onSourceKeydown(event) {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        const target = event.target.closest("[data-source-url]");
+        if (!target) return;
+        event.preventDefault();
+        openSourceUrl(target.dataset.sourceUrl);
+      }
+
+      function onChartClick(event) {
+        const rect = el.chart.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        const hit = state.chartHitAreas.find((area) => x >= area.x && x <= area.x + area.width && y >= area.y && y <= area.y + area.height);
+        if (!hit?.url) return;
+        event.preventDefault();
+        event.stopPropagation();
+        openSourceUrl(hit.url);
+      }
+
+      function openSourceUrl(url) {
+        const cleanUrl = cleanString(url);
+        if (!cleanUrl) return;
+        window.open(cleanUrl, "_blank", "noopener,noreferrer");
       }
 
       function hasPlatformData(item) {
@@ -1924,7 +2115,7 @@
 
       function renderPlatforms(platforms) {
         el.platformGrid.innerHTML = platforms.map((platform) => `
-          <article class="platform-card" style="--platform-color:${platform.color}">
+          <article class="platform-card source-linkable" style="--platform-color:${platform.color}"${sourceAttributes(sourceUrlForPlatform(platform), `${platform.name} の根拠URLを開く`)}>
             <div class="platform-top">
               <div class="platform-name">${escapeHtml(platform.name)}</div>
               <div class="platform-badge">${escapeHtml(platform.short)}</div>
@@ -2065,7 +2256,7 @@
             ? `<img class="thumb" src="${escapeAttr(item.thumbnail)}" alt="">`
             : `<div class="item-rank">${String(index + 1).padStart(2, "0")}</div>`;
           return `
-            <div class="video-item" style="--platform-color:${item.color}">
+            <div class="video-item source-linkable" style="--platform-color:${item.color}"${sourceAttributes(itemSourceUrl(item), `${item.platformName} ${item.type} の根拠URLを開く`)}>
               ${media}
               <div class="video-copy">
                 <div class="video-title">${title}</div>
@@ -2160,12 +2351,21 @@
         const max = Math.max(...values, 1);
         const gap = 10;
         const barW = (plotW - gap * (platforms.length - 1)) / platforms.length;
+        state.chartHitAreas = [];
         ctx.save();
         platforms.forEach((platform, index) => {
           const value = numeric(platform.reach);
           const h = Math.max(3, (value / max) * (plotH * 0.78));
           const x = pad + index * (barW + gap);
           const y = pad + plotH - h;
+          state.chartHitAreas.push({
+            x,
+            y: pad,
+            width: barW,
+            height: plotH + 20,
+            url: sourceUrlForPlatform(platform),
+            label: platform.name
+          });
           ctx.fillStyle = hexToRgba(platform.color, 0.34);
           roundedRect(ctx, x, y, barW, h, 6);
           ctx.fill();

@@ -1,5 +1,5 @@
 window.GUBBLE_SNS_METRICS = {
-  "generatedAt": "2026-06-07T02:12:16.206693+00:00",
+  "generatedAt": "2026-06-07T03:15:42.844442+00:00",
   "source": "gubble-sns-metrics-collector",
   "platforms": {
     "gsc": {
@@ -11,9 +11,9 @@ window.GUBBLE_SNS_METRICS = {
     },
     "ga4": {
       "followers": 25094,
-      "reach": 41849,
-      "posts": 297654,
-      "engagement": 97.97,
+      "reach": 41854,
+      "posts": 297945,
+      "engagement": 97.99,
       "note": "GA4 28日 自動"
     }
   },
@@ -142,18 +142,20 @@ window.GUBBLE_SNS_METRICS = {
       "platform": "ga4",
       "type": "ランディング",
       "title": "/",
-      "reach": 8986,
-      "reactions": 49990,
-      "engagement": 99.72,
+      "reach": 8997,
+      "reactions": 50175,
+      "engagement": 99.74,
+      "url": "https://goodbouldering.com/",
       "note": "GA4 28日"
     },
     {
       "platform": "ga4",
       "type": "ランディング",
       "title": "(not set)",
-      "reach": 8504,
-      "reactions": 15965,
-      "engagement": 0.24,
+      "reach": 8520,
+      "reactions": 15999,
+      "engagement": 0.23,
+      "url": "https://analytics.google.com/analytics/web/#/p257088701/reports/intelligenthome",
       "note": "GA4 28日"
     },
     {
@@ -163,6 +165,7 @@ window.GUBBLE_SNS_METRICS = {
       "reach": 513,
       "reactions": 2554,
       "engagement": 99.81,
+      "url": "https://goodbouldering.com/?pid=185751584",
       "note": "GA4 28日"
     },
     {
@@ -172,6 +175,7 @@ window.GUBBLE_SNS_METRICS = {
       "reach": 442,
       "reactions": 3695,
       "engagement": 100.0,
+      "url": "https://goodbouldering.com/?mode=cate&cbid=1847272&csid=0",
       "note": "GA4 28日"
     },
     {
@@ -181,6 +185,7 @@ window.GUBBLE_SNS_METRICS = {
       "reach": 430,
       "reactions": 2348,
       "engagement": 99.77,
+      "url": "https://goodbouldering.com/?pid=133843232",
       "note": "GA4 28日"
     },
     {
@@ -190,6 +195,7 @@ window.GUBBLE_SNS_METRICS = {
       "reach": 386,
       "reactions": 1217,
       "engagement": 100.0,
+      "url": "https://goodbouldering.com/?mode=grp&gid=2605413",
       "note": "GA4 28日"
     },
     {
@@ -199,6 +205,7 @@ window.GUBBLE_SNS_METRICS = {
       "reach": 303,
       "reactions": 946,
       "engagement": 100.0,
+      "url": "https://goodbouldering.com/?mode=grp&gid=2472348",
       "note": "GA4 28日"
     },
     {
@@ -208,6 +215,7 @@ window.GUBBLE_SNS_METRICS = {
       "reach": 253,
       "reactions": 1041,
       "engagement": 100.0,
+      "url": "https://goodbouldering.com/?mode=grp&gid=3121226",
       "note": "GA4 28日"
     },
     {
@@ -217,6 +225,7 @@ window.GUBBLE_SNS_METRICS = {
       "reach": 245,
       "reactions": 1631,
       "engagement": 100.0,
+      "url": "https://goodbouldering.com/?pid=134199666",
       "note": "GA4 28日"
     },
     {
@@ -226,6 +235,7 @@ window.GUBBLE_SNS_METRICS = {
       "reach": 235,
       "reactions": 1761,
       "engagement": 99.15,
+      "url": "https://goodbouldering.com/?mode=cate&cbid=1847272&csid=0&sort=n",
       "note": "GA4 28日"
     },
     {
@@ -235,6 +245,7 @@ window.GUBBLE_SNS_METRICS = {
       "reach": 215,
       "reactions": 1011,
       "engagement": 100.0,
+      "url": "https://goodbouldering.com/?pid=182629623",
       "note": "GA4 28日"
     },
     {
@@ -244,6 +255,7 @@ window.GUBBLE_SNS_METRICS = {
       "reach": 174,
       "reactions": 731,
       "engagement": 100.0,
+      "url": "https://goodbouldering.com/?mode=grp&gid=2987470",
       "note": "GA4 28日"
     }
   ],

@@ -1,0 +1,2493 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GOOD BOULDERING SNS Live Board</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #02070c;
+      --panel: rgba(255, 255, 255, 0.082);
+      --panel-strong: rgba(255, 255, 255, 0.13);
+      --panel-soft: rgba(255, 255, 255, 0.05);
+      --stroke: rgba(255, 255, 255, 0.17);
+      --stroke-soft: rgba(255, 255, 255, 0.1);
+      --text: #f5fbff;
+      --muted: rgba(235, 248, 255, 0.68);
+      --faint: rgba(235, 248, 255, 0.45);
+      --cyan: #29e8ff;
+      --teal: #2df2c0;
+      --green: #5cff9d;
+      --blue: #5a9dff;
+      --red: #ff0033;
+      --pink: #ff4fb8;
+      --purple: #9a7cff;
+      --amber: #ffc857;
+      --shadow: 0 24px 76px rgba(0, 0, 0, 0.44);
+      --radius: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 13% 18%, rgba(41, 232, 255, 0.22), transparent 28%),
+        radial-gradient(circle at 80% 12%, rgba(45, 242, 192, 0.16), transparent 30%),
+        radial-gradient(circle at 72% 88%, rgba(90, 157, 255, 0.18), transparent 34%),
+        radial-gradient(circle at 18% 92%, rgba(92, 255, 157, 0.12), transparent 36%),
+        linear-gradient(135deg, #02070c 0%, #041018 44%, #07121d 100%);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+      letter-spacing: 0;
+    }
+
+    body::before {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      content: "";
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+      background-size: 54px 54px;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.68), transparent 95%);
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      min-height: 36px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+      cursor: pointer;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      border-color: rgba(41, 232, 255, 0.52);
+      background: rgba(255, 255, 255, 0.13);
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+      transform: none;
+    }
+
+    input {
+      width: 100%;
+      min-height: 38px;
+      border: 1px solid var(--stroke-soft);
+      border-radius: var(--radius);
+      background: rgba(3, 12, 19, 0.64);
+      color: var(--text);
+      padding: 0 10px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: rgba(41, 232, 255, 0.72);
+      box-shadow: 0 0 0 3px rgba(41, 232, 255, 0.13);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    .app-shell {
+      width: min(1920px, calc(100vw - 24px));
+      height: 100vh;
+      margin: 0 auto;
+      padding: 12px 0;
+      display: grid;
+      grid-template-rows: 74px 108px minmax(0, 1fr) 44px;
+      gap: 10px;
+      overflow: hidden;
+    }
+
+    .glass {
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, var(--panel-strong), var(--panel-soft));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(26px) saturate(142%);
+      -webkit-backdrop-filter: blur(26px) saturate(142%);
+    }
+
+    .topbar {
+      padding: 12px 16px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .brand-row {
+      min-width: 0;
+      display: grid;
+      grid-template-columns: 50px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+    }
+
+    .channel-avatar {
+      width: 50px;
+      height: 50px;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      object-fit: cover;
+    }
+
+    .logo-fallback {
+      width: 50px;
+      height: 50px;
+      border: 1px solid rgba(41, 232, 255, 0.38);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--cyan);
+      background: rgba(41, 232, 255, 0.08);
+      font-weight: 900;
+    }
+
+    .eyebrow {
+      margin-bottom: 3px;
+      color: var(--cyan);
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 900px;
+      overflow: hidden;
+      font-size: 1.7rem;
+      line-height: 1.08;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .channel-line {
+      margin-top: 6px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .status-pill {
+      min-height: 36px;
+      min-width: 152px;
+      padding: 0 12px;
+      border: 1px solid rgba(45, 242, 192, 0.32);
+      border-radius: var(--radius);
+      display: grid;
+      place-items: center;
+      color: var(--teal);
+      background: rgba(45, 242, 192, 0.085);
+      font-size: 0.82rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .status-pill.is-error {
+      border-color: rgba(255, 0, 51, 0.4);
+      color: #ff8ba0;
+      background: rgba(255, 0, 51, 0.1);
+    }
+
+    .status-pill.is-loading {
+      border-color: rgba(90, 157, 255, 0.42);
+      color: #a9c8ff;
+      background: rgba(90, 157, 255, 0.1);
+    }
+
+    .action-button {
+      min-width: 80px;
+      padding: 0 12px;
+      font-weight: 800;
+    }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .metric-card {
+      min-height: 108px;
+      padding: 12px;
+      display: grid;
+      align-content: space-between;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .metric-card::after {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 3px;
+      content: "";
+      background: linear-gradient(90deg, var(--cyan), var(--teal));
+      opacity: 0.75;
+    }
+
+    .metric-card.video-accent::after {
+      background: linear-gradient(90deg, var(--red), rgba(255, 0, 51, 0.12));
+    }
+
+    .metric-label {
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 800;
+    }
+
+    .metric-value {
+      margin-top: 8px;
+      min-height: 32px;
+      font-size: 1.62rem;
+      line-height: 1;
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .metric-note {
+      min-height: 18px;
+      color: var(--faint);
+      font-size: 0.72rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .main-grid {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: minmax(360px, 1.08fr) minmax(390px, 0.9fr) minmax(420px, 1.02fr);
+      gap: 10px;
+    }
+
+    .panel {
+      min-height: 0;
+      padding: 14px;
+      overflow: hidden;
+    }
+
+    .section-head {
+      height: 38px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: 1rem;
+      font-weight: 900;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      font-size: 0.74rem;
+      text-align: right;
+    }
+
+    .chart-panel {
+      display: grid;
+      grid-template-rows: auto 1fr 96px;
+      gap: 10px;
+    }
+
+    .goal-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .goal-card {
+      min-height: 92px;
+      border: 1px solid var(--stroke-soft);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.052);
+      padding: 10px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .goal-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .goal-name {
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 900;
+    }
+
+    .goal-percent {
+      color: var(--cyan);
+      font-size: 1.24rem;
+      line-height: 1;
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .goal-bar {
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+    }
+
+    .goal-bar span {
+      display: block;
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--cyan), var(--teal), var(--green));
+      box-shadow: 0 0 22px rgba(45, 242, 192, 0.36);
+      transition: width 420ms ease;
+    }
+
+    .goal-caption {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--faint);
+      font-size: 0.68rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .chart-wrap {
+      min-height: 0;
+      border: 1px solid var(--stroke-soft);
+      border-radius: var(--radius);
+      background: rgba(0, 0, 0, 0.18);
+      padding: 10px;
+      position: relative;
+    }
+
+    canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .chart-legend {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 0.66rem;
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .legend-swatch {
+      width: 12px;
+      height: 3px;
+      border-radius: 999px;
+      background: var(--cyan);
+    }
+
+    .legend-swatch.teal {
+      background: var(--teal);
+    }
+
+    .legend-swatch.bar {
+      background: var(--pink);
+    }
+
+    .insight-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .insight {
+      min-height: 80px;
+      border: 1px solid var(--stroke-soft);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.045);
+      padding: 10px;
+    }
+
+    .insight-label {
+      color: var(--faint);
+      font-size: 0.66rem;
+      font-weight: 900;
+    }
+
+    .insight-value {
+      margin-top: 8px;
+      font-size: 1.04rem;
+      font-weight: 900;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .platform-panel {
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+    }
+
+    .platform-grid {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      align-content: stretch;
+    }
+
+    .platform-card {
+      min-height: 92px;
+      border: 1px solid var(--stroke-soft);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.052);
+      padding: 10px;
+      overflow: hidden;
+      position: relative;
+      display: grid;
+      gap: 6px;
+      align-content: space-between;
+    }
+
+    .platform-card::before {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 3px;
+      content: "";
+      background: var(--platform-color, var(--cyan));
+      opacity: 0.88;
+    }
+
+    .platform-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .platform-name {
+      font-size: 0.82rem;
+      font-weight: 900;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .platform-badge {
+      min-width: 30px;
+      min-height: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--platform-color, var(--cyan));
+      background: rgba(255, 255, 255, 0.055);
+      font-size: 0.64rem;
+      font-weight: 900;
+    }
+
+    .platform-main {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .platform-stat {
+      min-width: 0;
+    }
+
+    .platform-stat label {
+      display: block;
+      color: var(--faint);
+      font-size: 0.62rem;
+      font-weight: 900;
+    }
+
+    .platform-stat strong {
+      display: block;
+      margin-top: 2px;
+      overflow: hidden;
+      font-size: 1rem;
+      line-height: 1;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .platform-note {
+      color: var(--muted);
+      font-size: 0.66rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .video-panel {
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+    }
+
+    .video-list {
+      min-height: 0;
+      display: grid;
+      gap: 6px;
+      align-content: start;
+      overflow: hidden;
+    }
+
+    .video-item {
+      min-height: 58px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.05);
+      display: grid;
+      grid-template-columns: 82px minmax(0, 1fr);
+      gap: 8px;
+      padding: 6px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .video-item::before {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 3px;
+      content: "";
+      background: var(--platform-color, var(--red));
+    }
+
+    .thumb {
+      width: 82px;
+      height: 44px;
+      border-radius: 6px;
+      background: rgba(255, 0, 51, 0.16);
+      object-fit: cover;
+    }
+
+    .item-rank {
+      width: 82px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--stroke-soft);
+      border-radius: 6px;
+      background:
+        radial-gradient(circle at 28% 24%, color-mix(in srgb, var(--platform-color, var(--cyan)) 62%, transparent), transparent 38%),
+        rgba(255, 255, 255, 0.055);
+      color: var(--text);
+      font-size: 0.98rem;
+      font-weight: 950;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .video-copy {
+      min-width: 0;
+      display: grid;
+      gap: 4px;
+      align-content: center;
+    }
+
+    .video-title {
+      color: var(--text);
+      font-size: 0.72rem;
+      line-height: 1.15;
+      font-weight: 900;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .video-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .video-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      color: var(--muted);
+      font-size: 0.56rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .video-stats span {
+      min-height: 17px;
+      padding: 1px 5px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .video-stats .hot {
+      border-color: rgba(255, 0, 51, 0.34);
+      color: #ff9bab;
+      background: rgba(255, 0, 51, 0.16);
+    }
+
+    .video-stats .platform-chip {
+      border-color: color-mix(in srgb, var(--platform-color, var(--cyan)) 54%, rgba(255, 255, 255, 0.12));
+      color: var(--text);
+      background: color-mix(in srgb, var(--platform-color, var(--cyan)) 22%, rgba(255, 255, 255, 0.07));
+    }
+
+    .video-stats .score-chip {
+      border-color: rgba(41, 232, 255, 0.28);
+      color: var(--cyan);
+      background: rgba(41, 232, 255, 0.12);
+    }
+
+    .ticker {
+      padding: 0 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      overflow: hidden;
+    }
+
+    .ticker strong {
+      color: var(--text);
+    }
+
+    .alert {
+      position: fixed;
+      top: 88px;
+      right: 16px;
+      z-index: 15;
+      max-width: min(620px, calc(100vw - 32px));
+      min-height: 44px;
+      border: 1px solid rgba(255, 0, 51, 0.38);
+      border-radius: var(--radius);
+      background: rgba(64, 7, 17, 0.92);
+      color: #ffd7de;
+      padding: 12px 14px;
+      box-shadow: var(--shadow);
+      font-size: 0.86rem;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      background: rgba(0, 0, 0, 0.52);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .modal-backdrop[hidden],
+    .alert[hidden],
+    .is-hidden {
+      display: none;
+    }
+
+    .setup-card {
+      width: min(1060px, 100%);
+      max-height: calc(100vh - 36px);
+      overflow: auto;
+      padding: 20px;
+    }
+
+    .setup-card h2 {
+      font-size: 1.38rem;
+      line-height: 1.2;
+    }
+
+    .setup-copy {
+      margin-top: 6px;
+      color: var(--muted);
+      line-height: 1.52;
+      font-size: 0.86rem;
+    }
+
+    .form-grid {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .field {
+      display: grid;
+      gap: 6px;
+    }
+
+    .field.wide {
+      grid-column: span 2;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      color: var(--muted);
+      font-size: 0.76rem;
+      font-weight: 900;
+    }
+
+    .field-help {
+      color: var(--faint);
+      font-size: 0.68rem;
+      line-height: 1.42;
+    }
+
+    .social-form {
+      margin-top: 16px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .social-row {
+      border: 1px solid var(--stroke-soft);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.045);
+      padding: 8px;
+      display: grid;
+      grid-template-columns: 126px minmax(190px, 1.35fr) repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      align-items: end;
+    }
+
+    .social-row-title {
+      color: var(--text);
+      font-size: 0.82rem;
+      font-weight: 900;
+    }
+
+    .social-account {
+      min-width: 0;
+    }
+
+    .form-actions {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .primary-button {
+      min-width: 142px;
+      border-color: rgba(41, 232, 255, 0.5);
+      background: linear-gradient(135deg, rgba(41, 232, 255, 0.28), rgba(45, 242, 192, 0.18));
+    }
+
+    .danger-button {
+      border-color: rgba(255, 0, 51, 0.35);
+      background: rgba(255, 0, 51, 0.11);
+      color: #ffd2dc;
+    }
+
+    @media (max-width: 1360px) {
+      .app-shell {
+        width: calc(100vw - 16px);
+        grid-template-rows: 70px 100px minmax(0, 1fr) 40px;
+        gap: 8px;
+      }
+
+      .overview-grid {
+        gap: 8px;
+      }
+
+      .metric-card {
+        min-height: 100px;
+      }
+
+      .metric-value {
+        font-size: 1.36rem;
+      }
+
+      .main-grid {
+        grid-template-columns: minmax(330px, 1.05fr) minmax(360px, 0.9fr) minmax(360px, 1fr);
+        gap: 8px;
+      }
+    }
+
+    @media (max-width: 980px) {
+      html,
+      body {
+        height: auto;
+        overflow: auto;
+      }
+
+      .app-shell {
+        height: auto;
+        overflow: visible;
+        grid-template-rows: auto;
+      }
+
+      .topbar,
+      .main-grid,
+      .overview-grid,
+      .form-grid,
+      .social-row {
+        grid-template-columns: 1fr;
+      }
+
+      .field.wide,
+      .field.full {
+        grid-column: auto;
+      }
+
+      h1 {
+        white-space: normal;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app-shell" aria-live="polite">
+    <header class="topbar glass">
+      <div class="brand-row">
+        <img class="channel-avatar" id="channelAvatar" alt="" hidden>
+        <div class="logo-fallback" id="logoFallback">GB</div>
+        <div class="brand-block">
+          <div class="eyebrow">GOOD BOULDERING SNS / SEO LIVE BOARD</div>
+          <h1 id="channelTitle">Cross Media Dashboard</h1>
+          <div class="channel-line">
+            <span id="channelIdLabel">全媒体未接続</span>
+            <span id="lastUpdated">初回設定待ち</span>
+            <span id="layoutLabel">PC 1画面表示</span>
+          </div>
+        </div>
+      </div>
+      <div class="top-actions">
+        <div class="status-pill" id="connectionState">待機中</div>
+        <button class="action-button" id="refreshButton" type="button">更新</button>
+        <button class="action-button" id="settingsButton" type="button">設定</button>
+      </div>
+    </header>
+
+    <div class="alert" id="errorBox" hidden></div>
+
+    <section class="overview-grid" aria-label="SNS SEO 統合指標">
+      <article class="metric-card glass">
+        <div>
+          <div class="metric-label">総フォロワー / ユーザー</div>
+          <div class="metric-value" id="totalFollowersValue">--</div>
+        </div>
+        <div class="metric-note" id="totalFollowersNote">SNS + GSC + GA4</div>
+      </article>
+      <article class="metric-card glass">
+        <div>
+          <div class="metric-label">総リーチ / 表示 / セッション</div>
+          <div class="metric-value" id="totalReachValue">--</div>
+        </div>
+        <div class="metric-note" id="totalReachNote">全SNS + SEO自動収集</div>
+      </article>
+      <article class="metric-card glass">
+        <div>
+          <div class="metric-label">投稿 / ページ / イベント</div>
+          <div class="metric-value" id="totalPostsValue">--</div>
+        </div>
+        <div class="metric-note" id="totalPostsNote">全媒体合算</div>
+      </article>
+      <article class="metric-card glass">
+        <div>
+          <div class="metric-label">平均反応率</div>
+          <div class="metric-value" id="avgEngagementValue">--</div>
+        </div>
+        <div class="metric-note" id="avgEngagementNote">likes + comments / views</div>
+      </article>
+      <article class="metric-card glass video-accent">
+        <div>
+          <div class="metric-label">注目スコア</div>
+          <div class="metric-value" id="liveValue">--</div>
+        </div>
+        <div class="metric-note" id="liveNote">全媒体のトップ項目</div>
+      </article>
+      <article class="metric-card glass">
+        <div>
+          <div class="metric-label">次回自動更新</div>
+          <div class="metric-value" id="nextRefreshValue">--</div>
+        </div>
+        <div class="metric-note" id="quotaLabel">YouTube 約3 quota/update</div>
+      </article>
+    </section>
+
+    <section class="main-grid">
+      <article class="panel chart-panel glass">
+        <div class="section-head">
+          <div>
+            <div class="section-title">重ね表示グラフ</div>
+            <div class="section-subtitle">棒=媒体別リーチ / 線=主要推移</div>
+          </div>
+          <div class="section-subtitle" id="goalModeLabel">目標は自動計算</div>
+        </div>
+
+        <div class="chart-wrap">
+          <canvas id="trendCanvas" width="860" height="360"></canvas>
+          <div class="chart-legend">
+            <span class="legend-item"><span class="legend-swatch bar"></span>SNS媒体</span>
+            <span class="legend-item"><span class="legend-swatch"></span>フォロワー/ユーザー</span>
+            <span class="legend-item"><span class="legend-swatch teal"></span>リーチ/表示</span>
+          </div>
+        </div>
+
+        <div class="goal-row">
+          <div class="goal-card">
+            <div class="goal-top">
+              <div class="goal-name">横断フォロワー / ユーザーゴール</div>
+              <div class="goal-percent" id="subscriberGoalPct">--%</div>
+            </div>
+            <div class="goal-bar"><span id="subscriberGoalBar"></span></div>
+            <div class="goal-caption">
+              <span id="subscriberGoalNow">現在 --</span>
+              <span id="subscriberGoalTarget">目標 --</span>
+            </div>
+          </div>
+          <div class="goal-card">
+            <div class="goal-top">
+              <div class="goal-name">横断リーチ / 表示ゴール</div>
+              <div class="goal-percent" id="viewGoalPct">--%</div>
+            </div>
+            <div class="goal-bar"><span id="viewGoalBar"></span></div>
+            <div class="goal-caption">
+              <span id="viewGoalNow">現在 --</span>
+              <span id="viewGoalTarget">目標 --</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="insight-row">
+          <div class="insight">
+            <div class="insight-label">平均リーチ</div>
+            <div class="insight-value" id="avgViewsInsight">--</div>
+          </div>
+          <div class="insight">
+            <div class="insight-label">横断トップ媒体</div>
+            <div class="insight-value" id="topPlatformInsight">--</div>
+          </div>
+          <div class="insight">
+            <div class="insight-label">トップ投稿</div>
+            <div class="insight-value" id="topVideoInsight">--</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel platform-panel glass">
+        <div class="section-head">
+          <div>
+              <div class="section-title">SNS / SEOすべて</div>
+              <div class="section-subtitle">アカウント指定 + API自動収集 / 数値は保険入力</div>
+          </div>
+          <div class="section-subtitle" id="platformCountLabel">8媒体</div>
+        </div>
+        <div class="platform-grid" id="platformGrid"></div>
+      </article>
+
+      <article class="panel video-panel glass">
+        <div class="section-head">
+          <div>
+            <div class="section-title">全投稿 / 全媒体</div>
+            <div class="section-subtitle" id="videoPanelSubtitle">API接続待ち</div>
+          </div>
+          <div class="section-subtitle" id="videoSortLabel">重要度順</div>
+        </div>
+        <div class="video-list" id="videoList"></div>
+      </article>
+    </section>
+
+    <footer class="ticker glass">
+      <div id="tickerMain"><strong>待機中</strong> 初回設定を保存してください</div>
+      <div id="tickerSub">YouTube Data API v3 + sns-metrics.js / official APIs</div>
+    </footer>
+  </main>
+
+  <div class="modal-backdrop" id="configModal" hidden>
+    <form class="setup-card glass" id="configForm">
+      <h2 id="modalTitle">SNSボード設定</h2>
+      <p class="setup-copy">各SNSのアカウント/IDをそろえて指定します。秘密トークンはHTMLに保存せず、同じフォルダの sns-metrics.env だけに置きます。数値欄はAPI未接続時のフォールバックです。</p>
+
+      <div class="form-grid">
+        <div class="field wide">
+          <label for="apiKeyInput">YouTube Data API v3 APIキー</label>
+          <input id="apiKeyInput" name="apiKey" type="password" autocomplete="off">
+          <div class="field-help">空欄でもSNS手入力ボードとして保存できます。</div>
+        </div>
+        <div class="field wide">
+          <label for="channelInput">チャンネルID / @ハンドル / URL</label>
+          <input id="channelInput" name="channelInput" type="text" placeholder="https://www.youtube.com/@cafe1132" autocomplete="off">
+          <div class="field-help">@付きURLは内部でハンドルだけに変換します。</div>
+        </div>
+        <div class="field">
+          <label for="subscriberGoalInput">登録者目標</label>
+          <input id="subscriberGoalInput" name="subscriberGoal" type="number" min="1" step="1" placeholder="空欄なら自動">
+        </div>
+        <div class="field">
+          <label for="viewGoalInput">総再生目標</label>
+          <input id="viewGoalInput" name="viewGoal" type="number" min="1" step="1" placeholder="空欄なら自動">
+        </div>
+        <div class="field">
+          <label for="refreshInput">更新間隔 秒</label>
+          <input id="refreshInput" name="refreshSeconds" type="number" min="30" max="600" step="10" value="60">
+        </div>
+        <div class="field">
+          <label for="videoLimitInput">新着動画数</label>
+          <input id="videoLimitInput" name="videoLimit" type="number" min="4" max="12" step="1" value="6">
+        </div>
+      </div>
+
+      <div class="social-form" id="socialForm"></div>
+
+      <div class="form-actions">
+        <button class="danger-button" id="resetButton" type="button">設定削除</button>
+        <button id="downloadSettingsButton" type="button">収集設定を書き出し</button>
+        <button id="cancelSettingsButton" type="button">閉じる</button>
+        <button class="primary-button" type="submit">保存して表示</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const API_BASE = "https://www.googleapis.com/youtube/v3";
+      const STORAGE = {
+        config: "gubble.youtube.dashboard.config.v2",
+        legacyConfig: "gubble.youtube.dashboard.config.v1",
+        snapshot: "gubble.youtube.dashboard.snapshot.v2",
+        legacySnapshot: "gubble.youtube.dashboard.snapshot.v1",
+        history: "gubble.youtube.dashboard.history.v2",
+        legacyHistory: "gubble.youtube.dashboard.history.v1"
+      };
+      const EXTERNAL_METRICS_GLOBAL = "GUBBLE_SNS_METRICS";
+      const EXTERNAL_METRICS_SCRIPT_ID = "gubbleSnsMetricsScript";
+      const ACCOUNT_SETTINGS_GLOBAL = "GUBBLE_SNS_ACCOUNTS";
+      const ACCOUNT_SETTINGS_SCRIPT_ID = "gubbleSnsAccountSettingsScript";
+
+      const PLATFORM_DEFAULTS = [
+        { id: "youtube", short: "YT", name: "YouTube", color: "#ff0033", auto: true },
+        { id: "instagram", short: "IG", name: "Instagram", color: "#ff4fb8", accountLabel: "IG User ID / @", accountPlaceholder: "1784... または @goodbouldering" },
+        { id: "threads", short: "TH", name: "Threads", color: "#f5fbff", accountLabel: "Threads User ID / @", accountPlaceholder: "123... または @goodbouldering" },
+        { id: "facebook", short: "FB", name: "Facebook", color: "#5a9dff", accountLabel: "Page ID / ページ名", accountPlaceholder: "page_id または goodbouldering" },
+        { id: "x", short: "X", name: "X", color: "#a6b1c5", accountLabel: "X username", accountPlaceholder: "goodbouldering" },
+        { id: "reels", short: "RL", name: "Reels / Shorts", color: "#2df2c0", accountLabel: "取得元", accountPlaceholder: "instagram / youtube" },
+        {
+          id: "gsc",
+          short: "GSC",
+          name: "Search Console",
+          color: "#5cff9d",
+          accountLabel: "GSC siteUrl",
+          accountPlaceholder: "sc-domain:goodbouldering.com",
+          labels: { followers: "クリック", reach: "表示回数", posts: "ページ数", engagement: "CTR %" }
+        },
+        {
+          id: "ga4",
+          short: "GA4",
+          name: "GA4",
+          color: "#ffc857",
+          accountLabel: "GA4 property",
+          accountPlaceholder: "257088701",
+          labels: { followers: "ユーザー", reach: "セッション", posts: "イベント", engagement: "Engagement %" }
+        }
+      ];
+
+      const state = {
+        config: null,
+        dashboard: null,
+        platforms: [],
+        externalMetrics: null,
+        accountSettings: null,
+        loading: false,
+        refreshTimer: null,
+        countdownTimer: null,
+        nextRefreshAt: 0
+      };
+
+      const el = {
+        avatar: document.getElementById("channelAvatar"),
+        logoFallback: document.getElementById("logoFallback"),
+        title: document.getElementById("channelTitle"),
+        channelId: document.getElementById("channelIdLabel"),
+        lastUpdated: document.getElementById("lastUpdated"),
+        connection: document.getElementById("connectionState"),
+        refreshButton: document.getElementById("refreshButton"),
+        settingsButton: document.getElementById("settingsButton"),
+        errorBox: document.getElementById("errorBox"),
+        totalFollowersValue: document.getElementById("totalFollowersValue"),
+        totalFollowersNote: document.getElementById("totalFollowersNote"),
+        totalReachValue: document.getElementById("totalReachValue"),
+        totalReachNote: document.getElementById("totalReachNote"),
+        totalPostsValue: document.getElementById("totalPostsValue"),
+        totalPostsNote: document.getElementById("totalPostsNote"),
+        avgEngagementValue: document.getElementById("avgEngagementValue"),
+        avgEngagementNote: document.getElementById("avgEngagementNote"),
+        liveValue: document.getElementById("liveValue"),
+        liveNote: document.getElementById("liveNote"),
+        nextRefreshValue: document.getElementById("nextRefreshValue"),
+        quotaLabel: document.getElementById("quotaLabel"),
+        goalModeLabel: document.getElementById("goalModeLabel"),
+        subscriberGoalPct: document.getElementById("subscriberGoalPct"),
+        subscriberGoalBar: document.getElementById("subscriberGoalBar"),
+        subscriberGoalNow: document.getElementById("subscriberGoalNow"),
+        subscriberGoalTarget: document.getElementById("subscriberGoalTarget"),
+        viewGoalPct: document.getElementById("viewGoalPct"),
+        viewGoalBar: document.getElementById("viewGoalBar"),
+        viewGoalNow: document.getElementById("viewGoalNow"),
+        viewGoalTarget: document.getElementById("viewGoalTarget"),
+        chart: document.getElementById("trendCanvas"),
+        avgViewsInsight: document.getElementById("avgViewsInsight"),
+        topPlatformInsight: document.getElementById("topPlatformInsight"),
+        topVideoInsight: document.getElementById("topVideoInsight"),
+        platformCountLabel: document.getElementById("platformCountLabel"),
+        platformGrid: document.getElementById("platformGrid"),
+        videoPanelSubtitle: document.getElementById("videoPanelSubtitle"),
+        videoSortLabel: document.getElementById("videoSortLabel"),
+        videoList: document.getElementById("videoList"),
+        tickerMain: document.getElementById("tickerMain"),
+        tickerSub: document.getElementById("tickerSub"),
+        modal: document.getElementById("configModal"),
+        modalTitle: document.getElementById("modalTitle"),
+        form: document.getElementById("configForm"),
+        socialForm: document.getElementById("socialForm"),
+        apiKeyInput: document.getElementById("apiKeyInput"),
+        channelInput: document.getElementById("channelInput"),
+        subscriberGoalInput: document.getElementById("subscriberGoalInput"),
+        viewGoalInput: document.getElementById("viewGoalInput"),
+        refreshInput: document.getElementById("refreshInput"),
+        videoLimitInput: document.getElementById("videoLimitInput"),
+        resetButton: document.getElementById("resetButton"),
+        downloadSettingsButton: document.getElementById("downloadSettingsButton"),
+        cancelSettingsButton: document.getElementById("cancelSettingsButton")
+      };
+
+      const numberFull = new Intl.NumberFormat("ja-JP");
+      const numberCompact = new Intl.NumberFormat("ja-JP", {
+        notation: "compact",
+        maximumFractionDigits: 1
+      });
+      const percentFormat = new Intl.NumberFormat("ja-JP", {
+        maximumFractionDigits: 1
+      });
+      const dateFormat = new Intl.DateTimeFormat("ja-JP", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit"
+      });
+      const timeFormat = new Intl.DateTimeFormat("ja-JP", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit"
+      });
+
+      async function init() {
+        bindEvents();
+        await refreshAccountSettings();
+        state.config = normalizeConfig(readJson(STORAGE.config) || readJson(STORAGE.legacyConfig));
+        renderSocialForm();
+        hydrateForm();
+        renderBoard(null);
+        drawTrend(readJson(STORAGE.history) || readJson(STORAGE.legacyHistory) || [], state.platforms);
+        await refreshExternalMetrics();
+        renderBoard(null);
+
+        if (hasAnyConfig(state.config) || state.externalMetrics) {
+          closeConfig();
+          loadDashboard({ manual: true });
+        } else {
+          openConfig(true);
+          setConnection("自動収集待ち");
+        }
+      }
+
+      function bindEvents() {
+        el.refreshButton.addEventListener("click", () => loadDashboard({ manual: true }));
+        el.settingsButton.addEventListener("click", () => openConfig(false));
+        el.cancelSettingsButton.addEventListener("click", closeConfig);
+        el.resetButton.addEventListener("click", resetSettings);
+        el.downloadSettingsButton.addEventListener("click", downloadAccountSettings);
+        el.form.addEventListener("submit", onSaveConfig);
+        window.addEventListener("resize", () => drawTrend(readHistory(), state.platforms));
+      }
+
+      function normalizeConfig(raw) {
+        const config = raw || {};
+        const socials = {};
+        const accounts = {};
+        PLATFORM_DEFAULTS.forEach((platform) => {
+          const saved = config.socials?.[platform.id] || {};
+          const savedAccount = config.accounts?.[platform.id] || {};
+          const externalAccount = state.accountSettings?.accounts?.[platform.id] || {};
+          socials[platform.id] = {
+            followers: optionalInteger(saved.followers),
+            reach: optionalInteger(saved.reach),
+            posts: optionalInteger(saved.posts),
+            engagement: optionalFloat(saved.engagement)
+          };
+          accounts[platform.id] = {
+            account: cleanString(savedAccount.account ?? externalAccount.account),
+            userId: cleanString(savedAccount.userId ?? externalAccount.userId),
+            username: cleanString(savedAccount.username ?? externalAccount.username),
+            pageId: cleanString(savedAccount.pageId ?? externalAccount.pageId),
+            siteUrl: cleanString(savedAccount.siteUrl ?? externalAccount.siteUrl),
+            propertyId: cleanString(savedAccount.propertyId ?? externalAccount.propertyId),
+            source: cleanString(savedAccount.source ?? externalAccount.source)
+          };
+        });
+
+        return {
+          apiKey: config.apiKey || "",
+          channelInput: config.channelInput || "",
+          subscriberGoal: optionalInteger(config.subscriberGoal),
+          viewGoal: optionalInteger(config.viewGoal),
+          refreshSeconds: clamp(integerOr(config.refreshSeconds, 60), 30, 600),
+          videoLimit: clamp(integerOr(config.videoLimit, 6), 4, 12),
+          accounts,
+          socials
+        };
+      }
+
+      function hasAnyConfig(config) {
+        if (!config) return false;
+        if (config.apiKey || config.channelInput) return true;
+        if (PLATFORM_DEFAULTS.some((platform) => accountValue(config.accounts?.[platform.id]))) return true;
+        return PLATFORM_DEFAULTS.some((platform) => {
+          const item = config.socials?.[platform.id];
+          return item && (item.followers || item.reach || item.posts || item.engagement);
+        });
+      }
+
+      function renderSocialForm() {
+        el.socialForm.innerHTML = PLATFORM_DEFAULTS
+          .filter((platform) => !platform.auto)
+          .map((platform) => `
+            <div class="social-row" style="--platform-color:${platform.color}">
+              <div class="social-row-title">${escapeHtml(platform.name)}</div>
+              ${accountInput(platform)}
+              ${metricInput(platform.id, "followers", metricLabel(platform, "followers"))}
+              ${metricInput(platform.id, "reach", metricLabel(platform, "reach"))}
+              ${metricInput(platform.id, "posts", metricLabel(platform, "posts"))}
+              ${metricInput(platform.id, "engagement", metricLabel(platform, "engagement"), "number", "0.1")}
+            </div>
+          `).join("");
+      }
+
+      function metricLabel(platform, key) {
+        const defaults = {
+          followers: "フォロワー",
+          reach: "リーチ/再生",
+          posts: "投稿数",
+          engagement: "反応率 %"
+        };
+        return platform.labels?.[key] || defaults[key] || key;
+      }
+
+      function metricInput(platformId, key, label, type = "number", step = "1") {
+        return `
+          <div class="field">
+            <label for="${platformId}-${key}">${label}</label>
+            <input id="${platformId}-${key}" data-social="${platformId}" data-key="${key}" type="${type}" min="0" step="${step}">
+          </div>
+        `;
+      }
+
+      function accountInput(platform) {
+        return `
+          <div class="field social-account">
+            <label for="${platform.id}-account">${escapeHtml(platform.accountLabel || "アカウント")}</label>
+            <input id="${platform.id}-account" data-account="${platform.id}" type="text" placeholder="${escapeAttr(platform.accountPlaceholder || "")}" autocomplete="off">
+            <div class="field-help">${escapeHtml(accountHelp(platform.id))}</div>
+          </div>
+        `;
+      }
+
+      function accountHelp(platformId) {
+        const helps = {
+          instagram: "IG User IDが最優先。@だけでは公式APIで取れない場合があります。",
+          threads: "Threads APIはUser IDと権限付きトークンが必要です。",
+          facebook: "Page IDまたはページ名。Page access tokenはenv側に分離します。",
+          x: "@なしのユーザー名。Bearer Tokenはenv側に分離します。",
+          reels: "通常はinstagram。Reels値はInstagramから推定します。",
+          gsc: "Search ConsoleのsiteUrl。既定値あり。",
+          ga4: "GA4のproperty ID。既定値あり。"
+        };
+        return helps[platformId] || "";
+      }
+
+      function hydrateForm() {
+        const config = state.config || normalizeConfig();
+        el.apiKeyInput.value = config.apiKey || "";
+        el.channelInput.value = config.channelInput || "";
+        el.subscriberGoalInput.value = config.subscriberGoal || "";
+        el.viewGoalInput.value = config.viewGoal || "";
+        el.refreshInput.value = config.refreshSeconds || 60;
+        el.videoLimitInput.value = config.videoLimit || 6;
+        PLATFORM_DEFAULTS.forEach((platform) => {
+          const accountInputEl = document.querySelector(`[data-account="${platform.id}"]`);
+          if (accountInputEl) accountInputEl.value = accountValue(config.accounts?.[platform.id]) || "";
+          const saved = config.socials?.[platform.id] || {};
+          ["followers", "reach", "posts", "engagement"].forEach((key) => {
+            const input = document.querySelector(`[data-social="${platform.id}"][data-key="${key}"]`);
+            if (input) input.value = saved[key] ?? "";
+          });
+        });
+      }
+
+      function onSaveConfig(event) {
+        event.preventDefault();
+        const socials = {};
+        const accounts = {};
+        PLATFORM_DEFAULTS.forEach((platform) => {
+          const accountText = document.querySelector(`[data-account="${platform.id}"]`)?.value || "";
+          accounts[platform.id] = normalizeAccountInput(platform.id, accountText);
+          socials[platform.id] = {};
+          ["followers", "reach", "posts", "engagement"].forEach((key) => {
+            const input = document.querySelector(`[data-social="${platform.id}"][data-key="${key}"]`);
+            const value = input?.value || "";
+            socials[platform.id][key] = key === "engagement" ? optionalFloat(value) : optionalInteger(value);
+          });
+        });
+
+        const next = normalizeConfig({
+          apiKey: el.apiKeyInput.value.trim(),
+          channelInput: el.channelInput.value.trim(),
+          subscriberGoal: optionalInteger(el.subscriberGoalInput.value),
+          viewGoal: optionalInteger(el.viewGoalInput.value),
+          refreshSeconds: clamp(integerOr(el.refreshInput.value, 60), 30, 600),
+          videoLimit: clamp(integerOr(el.videoLimitInput.value, 6), 4, 12),
+          accounts,
+          socials
+        });
+
+        state.config = next;
+        localStorage.setItem(STORAGE.config, JSON.stringify(next));
+        closeConfig();
+        loadDashboard({ manual: true });
+      }
+
+      function resetSettings() {
+        localStorage.removeItem(STORAGE.config);
+        localStorage.removeItem(STORAGE.legacyConfig);
+        localStorage.removeItem(STORAGE.snapshot);
+        localStorage.removeItem(STORAGE.legacySnapshot);
+        localStorage.removeItem(STORAGE.history);
+        localStorage.removeItem(STORAGE.legacyHistory);
+        state.config = normalizeConfig();
+        state.dashboard = null;
+        clearTimers();
+        hydrateForm();
+        renderBoard(null);
+        openConfig(true);
+      }
+
+      function openConfig(isFirstRun) {
+        const hasConfig = hasAnyConfig(state.config);
+        el.modalTitle.textContent = isFirstRun ? "初回設定" : "SNSボード設定";
+        el.cancelSettingsButton.hidden = isFirstRun && !hasConfig;
+        el.resetButton.hidden = !hasConfig;
+        el.modal.hidden = false;
+        hydrateForm();
+        setTimeout(() => el.channelInput.focus(), 40);
+      }
+
+      function closeConfig() {
+        el.modal.hidden = true;
+      }
+
+      async function refreshAccountSettings() {
+        const raw = await loadScriptGlobal({
+          globalName: ACCOUNT_SETTINGS_GLOBAL,
+          scriptId: ACCOUNT_SETTINGS_SCRIPT_ID,
+          candidates: accountSettingsCandidates()
+        });
+        state.accountSettings = normalizeAccountSettings(raw);
+        return state.accountSettings;
+      }
+
+      function accountSettingsCandidates() {
+        const path = decodeURIComponent(window.location.pathname || "").replace(/\\/g, "/");
+        if (/\/sns-dashboard\//.test(path)) {
+          return ["./sns-dashboard-settings.js", "../sns-dashboard-settings.js"];
+        }
+        return ["./sns-dashboard/sns-dashboard-settings.js", "./sns-dashboard-settings.js"];
+      }
+
+      function normalizeAccountSettings(raw) {
+        if (!raw || typeof raw !== "object") return null;
+        const source = raw.accounts || raw.platforms || raw;
+        const accounts = {};
+        PLATFORM_DEFAULTS.forEach((platform) => {
+          accounts[platform.id] = normalizeAccountInput(platform.id, source?.[platform.id] || "");
+        });
+        return { accounts };
+      }
+
+      async function refreshExternalMetrics() {
+        const raw = await loadExternalMetricsFile();
+        state.externalMetrics = normalizeExternalMetrics(raw);
+        return state.externalMetrics;
+      }
+
+      function loadExternalMetricsFile() {
+        return loadScriptGlobal({
+          globalName: EXTERNAL_METRICS_GLOBAL,
+          scriptId: EXTERNAL_METRICS_SCRIPT_ID,
+          candidates: externalMetricsCandidates()
+        });
+      }
+
+      function loadScriptGlobal({ globalName, scriptId, candidates }) {
+        const previous = window[globalName] || null;
+        window[globalName] = null;
+
+        return new Promise((resolve) => {
+          let index = 0;
+          const tryNext = () => {
+            const existing = document.getElementById(scriptId);
+            if (existing) existing.remove();
+            if (index >= candidates.length) {
+              resolve(previous);
+              return;
+            }
+            window[globalName] = null;
+            const src = candidates[index];
+            index += 1;
+            const script = document.createElement("script");
+            script.id = scriptId;
+            script.async = true;
+            script.src = `${src}?ts=${Date.now()}`;
+            script.onload = () => resolve(window[globalName] || previous);
+            script.onerror = tryNext;
+            document.head.appendChild(script);
+          };
+          tryNext();
+        });
+      }
+
+      function externalMetricsCandidates() {
+        const path = decodeURIComponent(window.location.pathname || "").replace(/\\/g, "/");
+        if (/\/sns-dashboard\//.test(path)) {
+          return ["./sns-metrics.js", "../sns-metrics.js"];
+        }
+        return ["./sns-dashboard/sns-metrics.js", "./sns-metrics.js"];
+      }
+
+      function normalizeExternalMetrics(raw) {
+        if (!raw || typeof raw !== "object") return null;
+        const platforms = {};
+        Object.entries(raw.platforms || {}).forEach(([id, item]) => {
+          if (!item || typeof item !== "object") return;
+          platforms[id] = {
+            followers: optionalInteger(item.followers),
+            reach: optionalInteger(item.reach),
+            posts: optionalInteger(item.posts),
+            engagement: optionalFloat(item.engagement),
+            note: item.note || "自動収集"
+          };
+        });
+        const items = Array.isArray(raw.items)
+          ? raw.items.map(normalizeExternalItem).filter(Boolean)
+          : [];
+        if (!Object.keys(platforms).length) return null;
+        return {
+          generatedAt: raw.generatedAt || raw.fetchedAt || "",
+          source: raw.source || "sns-metrics.js",
+          platforms,
+          items
+        };
+      }
+
+      function normalizeExternalItem(item) {
+        if (!item || typeof item !== "object") return null;
+        const platform = cleanString(item.platform || item.source || "other").toLowerCase();
+        const title = cleanString(item.title || item.name || item.url || item.id);
+        if (!title) return null;
+        return {
+          id: cleanString(item.id || `${platform}:${title}`),
+          platform,
+          type: cleanString(item.type || "項目"),
+          title,
+          reach: optionalInteger(item.reach ?? item.views ?? item.impressions ?? item.sessions),
+          reactions: optionalInteger(item.reactions ?? item.engagements ?? item.clicks ?? item.likes),
+          engagement: optionalFloat(item.engagement ?? item.ctr ?? item.engagementRate),
+          publishedAt: cleanString(item.publishedAt || item.createdAt || item.date || ""),
+          thumbnail: cleanString(item.thumbnail || item.image || ""),
+          url: cleanString(item.url || item.permalink || ""),
+          note: cleanString(item.note || "")
+        };
+      }
+
+      async function loadDashboard({ manual = false } = {}) {
+        if (state.loading) return;
+        state.loading = true;
+        hideError();
+        setConnection("取得中", "is-loading");
+        el.refreshButton.disabled = true;
+
+        try {
+          const externalMetrics = await refreshExternalMetrics();
+          const hasYoutubeConfig = Boolean(state.config?.apiKey && state.config?.channelInput);
+          if (!hasYoutubeConfig) {
+            state.dashboard = null;
+            renderBoard(null);
+            if (externalMetrics) {
+              scheduleRefresh();
+              setConnection("自動収集中");
+              if (manual) {
+                el.tickerMain.innerHTML = `<strong>更新完了</strong> ${externalTimestampText()}`;
+              }
+            } else {
+              clearTimers();
+              setConnection("設定待ち");
+            }
+            return;
+          }
+
+          const previous = readJson(STORAGE.snapshot) || readJson(STORAGE.legacySnapshot);
+          const dashboard = await fetchDashboardData(state.config);
+          const snapshot = buildSnapshot(dashboard);
+          const history = appendHistory(snapshot);
+          state.dashboard = dashboard;
+          localStorage.setItem(STORAGE.snapshot, JSON.stringify(snapshot));
+          renderBoard(dashboard, previous, history);
+          scheduleRefresh();
+          setConnection("接続中");
+          if (manual) {
+            el.tickerMain.innerHTML = `<strong>更新完了</strong> ${timeFormat.format(new Date(snapshot.fetchedAt))}`;
+          }
+        } catch (error) {
+          const message = simplifyError(error);
+          showError(message);
+          renderBoard(null);
+          setConnection("エラー", "is-error");
+          el.tickerMain.innerHTML = `<strong>取得失敗</strong> ${escapeHtml(message)}`;
+        } finally {
+          state.loading = false;
+          el.refreshButton.disabled = false;
+        }
+      }
+
+      async function fetchDashboardData(config) {
+        const channelLookup = parseChannelInput(config.channelInput);
+        const channelResponse = await yt("channels", {
+          part: "snippet,statistics,contentDetails",
+          ...channelLookup
+        });
+        const channel = channelResponse.items?.[0];
+        if (!channel) {
+          throw new Error("チャンネルが見つかりません。YouTube StudioのUC...形式チャンネルIDを入れると確実です。");
+        }
+
+        const uploadsPlaylistId = channel.contentDetails?.relatedPlaylists?.uploads;
+        if (!uploadsPlaylistId) {
+          throw new Error("uploads playlist を取得できませんでした。");
+        }
+
+        const playlist = await yt("playlistItems", {
+          part: "snippet,contentDetails",
+          playlistId: uploadsPlaylistId,
+          maxResults: config.videoLimit || 6
+        });
+
+        const videoIds = (playlist.items || [])
+          .map((item) => item.contentDetails?.videoId || item.snippet?.resourceId?.videoId)
+          .filter(Boolean);
+
+        let videos = [];
+        if (videoIds.length) {
+          const videosResponse = await yt("videos", {
+            part: "snippet,statistics,contentDetails,liveStreamingDetails",
+            id: videoIds.join(",")
+          });
+          const videoById = new Map((videosResponse.items || []).map((video) => [video.id, video]));
+          videos = videoIds
+            .map((id) => videoById.get(id))
+            .filter(Boolean)
+            .map(normalizeVideo);
+        }
+
+        return normalizeDashboard(channel, videos);
+      }
+
+      async function yt(resource, params) {
+        const url = new URL(`${API_BASE}/${resource}`);
+        Object.entries(params).forEach(([key, value]) => {
+          if (value !== undefined && value !== null && value !== "") {
+            url.searchParams.set(key, value);
+          }
+        });
+        url.searchParams.set("key", state.config.apiKey);
+        const response = await fetch(url.toString());
+        const body = await response.json().catch(() => null);
+        if (!response.ok) {
+          const reason = body?.error?.errors?.[0]?.reason;
+          const message = body?.error?.message || response.statusText || "API error";
+          throw new Error(`${response.status} ${message}${reason ? ` (${reason})` : ""}`);
+        }
+        return body;
+      }
+
+      function parseChannelInput(rawInput) {
+        const raw = rawInput.trim();
+        if (!raw) return { id: raw };
+
+        const asHandle = (value) => ({ forHandle: value.replace(/^@/, "") });
+
+        try {
+          if (/^https?:\/\//i.test(raw)) {
+            const url = new URL(raw);
+            const parts = url.pathname.split("/").filter(Boolean);
+            const first = decodeURIComponent(parts[0] || "");
+            if (first === "channel" && parts[1]) return { id: parts[1] };
+            if (first.startsWith("@")) return asHandle(first);
+            if (first === "user" && parts[1]) return { forUsername: parts[1] };
+            const idParam = url.searchParams.get("channel_id") || url.searchParams.get("channelId");
+            if (idParam) return { id: idParam };
+          }
+        } catch {
+          return { id: raw };
+        }
+
+        if (raw.startsWith("@")) return asHandle(raw);
+        if (/^UC[\w-]{20,}$/i.test(raw)) return { id: raw };
+        if (/^[\w.-]{2,}$/.test(raw)) return asHandle(raw);
+        return { id: raw };
+      }
+
+      function normalizeDashboard(channel, videos) {
+        const stats = channel.statistics || {};
+        const hiddenSubscribers = Boolean(stats.hiddenSubscriberCount);
+        const subscriberCount = hiddenSubscribers ? null : toInt(stats.subscriberCount);
+        const viewCount = toInt(stats.viewCount);
+        const videoCount = toInt(stats.videoCount);
+        const recentViews = videos.reduce((sum, video) => sum + video.views, 0);
+        const recentLikes = videos.reduce((sum, video) => sum + video.likes, 0);
+        const recentComments = videos.reduce((sum, video) => sum + video.comments, 0);
+        const liveVideos = videos.filter((video) => video.isLive);
+        const liveViewers = liveVideos.reduce((sum, video) => sum + video.liveViewers, 0);
+        const averageViews = videos.length ? Math.round(recentViews / videos.length) : 0;
+        const engagement = recentViews > 0 ? ((recentLikes + recentComments) / recentViews) * 100 : 0;
+        const topVideo = [...videos].sort((a, b) => b.views - a.views)[0] || null;
+
+        return {
+          fetchedAt: Date.now(),
+          channel: {
+            id: channel.id,
+            title: channel.snippet?.title || "YouTube Channel",
+            description: channel.snippet?.description || "",
+            customUrl: channel.snippet?.customUrl || "",
+            thumbnail: bestThumbnail(channel.snippet?.thumbnails)
+          },
+          metrics: {
+            hiddenSubscribers,
+            subscriberCount,
+            viewCount,
+            videoCount,
+            recentViews,
+            recentLikes,
+            recentComments,
+            liveVideos: liveVideos.length,
+            liveViewers,
+            averageViews,
+            engagement,
+            topVideo
+          },
+          videos
+        };
+      }
+
+      function normalizeVideo(video) {
+        const stats = video.statistics || {};
+        const live = video.liveStreamingDetails || {};
+        const actualStart = live.actualStartTime ? new Date(live.actualStartTime) : null;
+        const actualEnd = live.actualEndTime ? new Date(live.actualEndTime) : null;
+        const liveViewers = toInt(live.concurrentViewers);
+        return {
+          id: video.id,
+          title: video.snippet?.title || "Untitled",
+          publishedAt: video.snippet?.publishedAt || "",
+          thumbnail: bestThumbnail(video.snippet?.thumbnails) || `https://i.ytimg.com/vi/${video.id}/mqdefault.jpg`,
+          views: toInt(stats.viewCount),
+          likes: toInt(stats.likeCount),
+          comments: toInt(stats.commentCount),
+          duration: parseDuration(video.contentDetails?.duration),
+          liveViewers,
+          isLive: Boolean(actualStart && !actualEnd)
+        };
+      }
+
+      function buildSnapshot(dashboard) {
+        return {
+          fetchedAt: dashboard.fetchedAt,
+          subscriberCount: dashboard.metrics.subscriberCount,
+          viewCount: dashboard.metrics.viewCount,
+          videoCount: dashboard.metrics.videoCount,
+          recentViews: dashboard.metrics.recentViews,
+          liveViewers: dashboard.metrics.liveViewers
+        };
+      }
+
+      function appendHistory(snapshot) {
+        const history = readHistory();
+        const next = [...history, snapshot].slice(-80);
+        localStorage.setItem(STORAGE.history, JSON.stringify(next));
+        return next;
+      }
+
+      function readHistory() {
+        return readJson(STORAGE.history) || readJson(STORAGE.legacyHistory) || [];
+      }
+
+      function renderBoard(dashboard, previous = null, history = readHistory()) {
+        const platforms = buildPlatforms(dashboard);
+        state.platforms = platforms;
+        const totals = summarizePlatforms(platforms);
+        const topPlatform = [...platforms].sort((a, b) => numeric(b.reach) - numeric(a.reach))[0];
+        const items = buildUnifiedItems(dashboard, platforms);
+        const topItem = items[0] || null;
+        const avgItemReach = items.length ? Math.round(numeric(sum(items.map((item) => item.reach))) / items.length) : null;
+        const fetched = dashboard ? new Date(dashboard.fetchedAt) : null;
+        const externalFetched = externalGeneratedDate();
+
+        if (dashboard) {
+          const { channel } = dashboard;
+          el.title.textContent = channel.title;
+          el.channelId.textContent = channel.customUrl || channel.id;
+          el.lastUpdated.textContent = `最終更新 ${dateFormat.format(fetched)} ${timeFormat.format(fetched)}`;
+          if (channel.thumbnail) {
+            el.avatar.src = channel.thumbnail;
+            el.avatar.hidden = false;
+            el.logoFallback.classList.add("is-hidden");
+          }
+        } else {
+          el.title.textContent = "SNS Cross Media Dashboard";
+          el.channelId.textContent = state.externalMetrics ? "外部自動収集フィード" : "YouTube未接続";
+          el.lastUpdated.textContent = externalFetched
+            ? `SNS自動収集 ${dateFormat.format(externalFetched)} ${timeFormat.format(externalFetched)}`
+            : "SNS自動収集待ち";
+          el.avatar.hidden = true;
+          el.logoFallback.classList.remove("is-hidden");
+        }
+
+        el.totalFollowersValue.textContent = formatNumber(totals.followers);
+        el.totalFollowersNote.textContent = `${totals.activePlatforms}媒体を合算`;
+        el.totalReachValue.textContent = formatNumber(totals.reach);
+        el.totalReachNote.textContent = "総再生・リーチ・インプレッション";
+        el.totalPostsValue.textContent = formatNumber(totals.posts);
+        el.totalPostsNote.textContent = "投稿/動画本数";
+        el.avgEngagementValue.textContent = totals.engagement === null ? "--" : `${percentFormat.format(totals.engagement)}%`;
+        el.avgEngagementNote.textContent = "全媒体の平均";
+        el.quotaLabel.textContent = "API + 30分収集";
+        el.liveValue.textContent = topItem ? Math.round(topItem.score) : "--";
+        el.liveNote.textContent = topItem ? `${topItem.platformName} / ${topItem.type}` : "全媒体のトップ項目";
+        el.avgViewsInsight.textContent = formatNumber(avgItemReach);
+        el.topPlatformInsight.textContent = topPlatform ? topPlatform.name : "--";
+        el.topVideoInsight.textContent = topItem ? topItem.title : "--";
+        el.platformCountLabel.textContent = `${platforms.length}媒体`;
+        el.videoPanelSubtitle.textContent = items.length ? `${items.length}件 / リーチ・反応・鮮度の共通スコア` : "自動収集待ち";
+        el.videoSortLabel.textContent = "重要度順";
+        el.tickerSub.textContent = dashboard
+          ? `Channel ${dashboard.channel.id}`
+          : state.externalMetrics
+            ? `sns-metrics.js ${externalTimestampText()}`
+            : "sns-metrics.js 自動収集待ち";
+
+        const subscriberGoal = state.config?.subscriberGoal || nextMilestone(totals.followers || 0, "subscribers");
+        const viewGoal = state.config?.viewGoal || nextMilestone(totals.reach || 0, "views");
+        renderGoal({
+          current: totals.followers,
+          goal: subscriberGoal,
+          percentEl: el.subscriberGoalPct,
+          barEl: el.subscriberGoalBar,
+          nowEl: el.subscriberGoalNow,
+          targetEl: el.subscriberGoalTarget,
+          hidden: false
+        });
+        renderGoal({
+          current: totals.reach,
+          goal: viewGoal,
+          percentEl: el.viewGoalPct,
+          barEl: el.viewGoalBar,
+          nowEl: el.viewGoalNow,
+          targetEl: el.viewGoalTarget,
+          hidden: false
+        });
+        el.goalModeLabel.textContent = state.config?.subscriberGoal || state.config?.viewGoal ? "固定目標" : "目標は自動計算";
+
+        if (!state.nextRefreshAt) {
+          el.nextRefreshValue.textContent = state.config?.apiKey && state.config?.channelInput ? `${state.config.refreshSeconds || 60} 秒` : "--";
+        }
+
+        renderPlatforms(platforms);
+        renderUnifiedItems(items);
+        drawTrend(history, platforms);
+      }
+
+      function buildPlatforms(dashboard) {
+        return PLATFORM_DEFAULTS.map((platform) => {
+          const saved = state.config?.socials?.[platform.id] || {};
+          const external = state.externalMetrics?.platforms?.[platform.id] || null;
+          if (platform.id === "youtube") {
+            return {
+              ...platform,
+              followers: dashboard?.metrics.subscriberCount ?? external?.followers ?? saved.followers ?? null,
+              reach: dashboard?.metrics.viewCount ?? external?.reach ?? saved.reach ?? null,
+              posts: dashboard?.metrics.videoCount ?? external?.posts ?? saved.posts ?? null,
+              engagement: dashboard?.metrics.engagement ?? external?.engagement ?? saved.engagement ?? null,
+              note: dashboard ? "自動取得" : external ? external.note : "API未接続"
+            };
+          }
+          const source = external || saved;
+          return {
+            ...platform,
+            followers: source.followers ?? null,
+            reach: source.reach ?? null,
+            posts: source.posts ?? null,
+            engagement: source.engagement ?? null,
+            note: external ? source.note : hasPlatformData(saved) ? "手入力フォールバック" : "自動収集待ち"
+          };
+        });
+      }
+
+      function hasPlatformData(item) {
+        return item && [item.followers, item.reach, item.posts, item.engagement].some((value) => value !== null && value !== undefined);
+      }
+
+      function summarizePlatforms(platforms) {
+        const followers = sum(platforms.map((platform) => platform.followers));
+        const reach = sum(platforms.map((platform) => platform.reach));
+        const posts = sum(platforms.map((platform) => platform.posts));
+        const engagementValues = platforms
+          .map((platform) => platform.engagement)
+          .filter((value) => Number.isFinite(value));
+        const engagement = engagementValues.length
+          ? engagementValues.reduce((total, value) => total + value, 0) / engagementValues.length
+          : null;
+        const activePlatforms = platforms.filter((platform) => hasPlatformData(platform)).length;
+        return { followers, reach, posts, engagement, activePlatforms };
+      }
+
+      function renderPlatforms(platforms) {
+        el.platformGrid.innerHTML = platforms.map((platform) => `
+          <article class="platform-card" style="--platform-color:${platform.color}">
+            <div class="platform-top">
+              <div class="platform-name">${escapeHtml(platform.name)}</div>
+              <div class="platform-badge">${escapeHtml(platform.short)}</div>
+            </div>
+            <div class="platform-main">
+              <div class="platform-stat">
+                <label>${escapeHtml(metricLabel(platform, "followers"))}</label>
+                <strong>${formatCompact(platform.followers)}</strong>
+              </div>
+              <div class="platform-stat">
+                <label>${escapeHtml(metricLabel(platform, "reach"))}</label>
+                <strong>${formatCompact(platform.reach)}</strong>
+              </div>
+              <div class="platform-stat">
+                <label>${escapeHtml(metricLabel(platform, "posts"))}</label>
+                <strong>${formatNumber(platform.posts)}</strong>
+              </div>
+              <div class="platform-stat">
+                <label>${escapeHtml(metricLabel(platform, "engagement"))}</label>
+                <strong>${platform.engagement === null || platform.engagement === undefined ? "--" : `${percentFormat.format(platform.engagement)}%`}</strong>
+              </div>
+            </div>
+            <div class="platform-note">${escapeHtml(platform.note || "")}</div>
+          </article>
+        `).join("");
+      }
+
+      function buildUnifiedItems(dashboard, platforms) {
+        const youtubeItems = (dashboard?.videos || []).map((video) => {
+          const engagement = video.views > 0 ? ((video.likes + video.comments) / video.views) * 100 : null;
+          return {
+            id: `youtube:${video.id}`,
+            platform: "youtube",
+            type: video.isLive ? "ライブ" : "動画",
+            title: video.title,
+            reach: video.views,
+            reactions: video.likes + video.comments,
+            engagement,
+            publishedAt: video.publishedAt,
+            thumbnail: video.thumbnail,
+            url: `https://www.youtube.com/watch?v=${encodeURIComponent(video.id)}`,
+            note: video.duration || ""
+          };
+        });
+        const externalItems = state.externalMetrics?.items || [];
+        const rawItems = [...youtubeItems, ...externalItems];
+        if (!rawItems.length) {
+          platforms
+            .filter((platform) => hasPlatformData(platform))
+            .forEach((platform) => {
+              rawItems.push({
+                id: `platform:${platform.id}`,
+                platform: platform.id,
+                type: "媒体サマリー",
+                title: `${platform.name} ${metricLabel(platform, "reach")} ${formatCompact(platform.reach)}`,
+                reach: platform.reach,
+                reactions: platform.followers ?? platform.posts,
+                engagement: platform.engagement,
+                publishedAt: state.externalMetrics?.generatedAt || "",
+                thumbnail: "",
+                url: "",
+                note: platform.note || ""
+              });
+            });
+        }
+        return scoreUnifiedItems(rawItems).slice(0, 8);
+      }
+
+      function scoreUnifiedItems(rawItems) {
+        const maxReach = Math.max(...rawItems.map((item) => numeric(item.reach)), 1);
+        const maxReactions = Math.max(...rawItems.map((item) => numeric(item.reactions)), 1);
+        return rawItems.map((item) => {
+          const platform = platformById(item.platform);
+          const reachScore = (numeric(item.reach) / maxReach) * 100;
+          const reactionScore = (numeric(item.reactions) / maxReactions) * 100;
+          const engagementScore = Number.isFinite(item.engagement)
+            ? clamp((item.engagement / 20) * 100, 0, 100)
+            : 0;
+          const score = (reachScore * 0.4)
+            + (engagementScore * 0.25)
+            + (reactionScore * 0.2)
+            + (freshnessScore(item.publishedAt) * 0.1)
+            + 3;
+          return {
+            ...item,
+            platformName: platform.name,
+            platformShort: platform.short,
+            color: platform.color,
+            score
+          };
+        }).sort((a, b) => {
+          if (b.score !== a.score) return b.score - a.score;
+          return numeric(b.reach) - numeric(a.reach);
+        });
+      }
+
+      function platformById(id) {
+        const normalized = cleanString(id).toLowerCase();
+        return PLATFORM_DEFAULTS.find((platform) => platform.id === normalized) || {
+          id: normalized || "other",
+          short: (normalized || "SNS").slice(0, 3).toUpperCase(),
+          name: normalized || "SNS",
+          color: "#29e8ff"
+        };
+      }
+
+      function freshnessScore(value) {
+        const time = value ? new Date(value).getTime() : NaN;
+        if (!Number.isFinite(time)) return 45;
+        const days = Math.max(0, (Date.now() - time) / 86400000);
+        if (days <= 2) return 100;
+        if (days <= 7) return 80;
+        if (days <= 28) return 58;
+        if (days <= 90) return 35;
+        return 18;
+      }
+
+      function renderUnifiedItems(items) {
+        if (!items.length) {
+          el.videoList.innerHTML = `
+            <div class="video-item">
+              <div class="item-rank">--</div>
+              <div class="video-copy">
+                <div class="video-title">全媒体データ取得待ち</div>
+                <div class="video-stats"><span>設定からアカウント/IDを保存し、収集タスクを実行</span></div>
+              </div>
+            </div>
+          `;
+          return;
+        }
+
+        el.videoList.innerHTML = items.map((item, index) => {
+          const published = dateText(item.publishedAt);
+          const title = item.url
+            ? `<a href="${escapeAttr(item.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.title)}</a>`
+            : escapeHtml(item.title);
+          const media = item.thumbnail
+            ? `<img class="thumb" src="${escapeAttr(item.thumbnail)}" alt="">`
+            : `<div class="item-rank">${String(index + 1).padStart(2, "0")}</div>`;
+          return `
+            <div class="video-item" style="--platform-color:${item.color}">
+              ${media}
+              <div class="video-copy">
+                <div class="video-title">${title}</div>
+                <div class="video-stats">
+                  <span class="platform-chip">${escapeHtml(item.platformShort)} ${escapeHtml(item.type)}</span>
+                  <span class="score-chip">重要度 ${Math.round(item.score)}</span>
+                  <span class="hot">${formatNumber(item.reach)} reach</span>
+                  <span>${formatNumber(item.reactions)} reactions</span>
+                  <span>${Number.isFinite(item.engagement) ? `${percentFormat.format(item.engagement)}%` : "--%"}</span>
+                  <span>${escapeHtml(published || item.note || "--")}</span>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join("");
+      }
+
+      function dateText(value) {
+        if (!value) return "";
+        const date = new Date(value);
+        if (Number.isNaN(date.getTime())) return "";
+        return dateFormat.format(date);
+      }
+
+      function renderGoal({ current, goal, percentEl, barEl, nowEl, targetEl, hidden }) {
+        if (hidden || current === null || current === undefined) {
+          percentEl.textContent = "--%";
+          barEl.style.width = "0%";
+          nowEl.textContent = "現在 --";
+          targetEl.textContent = `目標 ${formatNumber(goal)}`;
+          return;
+        }
+        const pct = goal > 0 ? Math.min((current / goal) * 100, 100) : 0;
+        percentEl.textContent = `${percentFormat.format(pct)}%`;
+        barEl.style.width = `${pct}%`;
+        nowEl.textContent = `現在 ${formatNumber(current)}`;
+        targetEl.textContent = `目標 ${formatNumber(goal)}`;
+      }
+
+      function drawTrend(history, platforms) {
+        const canvas = el.chart;
+        const ctx = canvas.getContext("2d");
+        const rect = canvas.getBoundingClientRect();
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width = Math.max(640, Math.floor(rect.width * dpr));
+        canvas.height = Math.max(260, Math.floor(rect.height * dpr));
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        const width = rect.width || 720;
+        const height = rect.height || 280;
+        ctx.clearRect(0, 0, width, height);
+
+        const pad = 28;
+        const plotW = width - pad * 2;
+        const plotH = height - pad * 2;
+        drawGrid(ctx, pad, plotW, plotH);
+        drawPlatformBars(ctx, platforms, pad, plotW, plotH);
+
+        if (!history || history.length < 2) {
+          ctx.fillStyle = "rgba(235, 248, 255, 0.52)";
+          ctx.font = "700 13px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif";
+          ctx.fillText("主要KPIの更新履歴が2点以上になると線グラフを重ねます", pad, height / 2);
+          return;
+        }
+
+        const subscriberSeries = history
+          .filter((point) => Number.isFinite(point.subscriberCount))
+          .map((point) => ({ t: point.fetchedAt, y: point.subscriberCount }));
+        const viewSeries = history
+          .filter((point) => Number.isFinite(point.viewCount))
+          .map((point) => ({ t: point.fetchedAt, y: point.viewCount }));
+
+        drawLine(ctx, normalizeSeries(subscriberSeries, pad, plotW, plotH), "rgba(41, 232, 255, 0.94)");
+        drawLine(ctx, normalizeSeries(viewSeries, pad, plotW, plotH), "rgba(45, 242, 192, 0.9)");
+      }
+
+      function drawGrid(ctx, pad, plotW, plotH) {
+        ctx.save();
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+        ctx.lineWidth = 1;
+        for (let i = 0; i <= 4; i += 1) {
+          const y = pad + (plotH / 4) * i;
+          ctx.beginPath();
+          ctx.moveTo(pad, y);
+          ctx.lineTo(pad + plotW, y);
+          ctx.stroke();
+        }
+        ctx.restore();
+      }
+
+      function drawPlatformBars(ctx, platforms, pad, plotW, plotH) {
+        const values = platforms.map((platform) => numeric(platform.reach));
+        const max = Math.max(...values, 1);
+        const gap = 10;
+        const barW = (plotW - gap * (platforms.length - 1)) / platforms.length;
+        ctx.save();
+        platforms.forEach((platform, index) => {
+          const value = numeric(platform.reach);
+          const h = Math.max(3, (value / max) * (plotH * 0.78));
+          const x = pad + index * (barW + gap);
+          const y = pad + plotH - h;
+          ctx.fillStyle = hexToRgba(platform.color, 0.34);
+          roundedRect(ctx, x, y, barW, h, 6);
+          ctx.fill();
+          ctx.fillStyle = "rgba(245, 251, 255, 0.72)";
+          ctx.font = "800 10px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif";
+          ctx.textAlign = "center";
+          ctx.fillText(platform.short, x + barW / 2, pad + plotH + 16);
+        });
+        ctx.restore();
+      }
+
+      function roundedRect(ctx, x, y, width, height, radius) {
+        const r = Math.min(radius, width / 2, height / 2);
+        ctx.beginPath();
+        ctx.moveTo(x + r, y);
+        ctx.arcTo(x + width, y, x + width, y + height, r);
+        ctx.arcTo(x + width, y + height, x, y + height, r);
+        ctx.arcTo(x, y + height, x, y, r);
+        ctx.arcTo(x, y, x + width, y, r);
+        ctx.closePath();
+      }
+
+      function normalizeSeries(series, pad, plotW, plotH) {
+        if (series.length < 2) return [];
+        const times = series.map((point) => point.t);
+        const values = series.map((point) => point.y);
+        const minT = Math.min(...times);
+        const maxT = Math.max(...times);
+        let minY = Math.min(...values);
+        let maxY = Math.max(...values);
+        if (minY === maxY) {
+          minY -= 1;
+          maxY += 1;
+        }
+        return series.map((point) => ({
+          x: pad + ((point.t - minT) / Math.max(maxT - minT, 1)) * plotW,
+          y: pad + plotH - ((point.y - minY) / Math.max(maxY - minY, 1)) * plotH
+        }));
+      }
+
+      function drawLine(ctx, points, color) {
+        if (points.length < 2) return;
+        ctx.save();
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 3;
+        ctx.lineJoin = "round";
+        ctx.lineCap = "round";
+        ctx.shadowBlur = 14;
+        ctx.shadowColor = color;
+        ctx.beginPath();
+        points.forEach((point, index) => {
+          if (index === 0) ctx.moveTo(point.x, point.y);
+          else ctx.lineTo(point.x, point.y);
+        });
+        ctx.stroke();
+        ctx.restore();
+      }
+
+      function scheduleRefresh() {
+        clearTimeout(state.refreshTimer);
+        clearInterval(state.countdownTimer);
+        const seconds = state.config.refreshSeconds || 60;
+        state.nextRefreshAt = Date.now() + seconds * 1000;
+        updateCountdown();
+        state.countdownTimer = setInterval(updateCountdown, 1000);
+        state.refreshTimer = setTimeout(() => loadDashboard(), seconds * 1000);
+      }
+
+      function updateCountdown() {
+        if (!state.nextRefreshAt) return;
+        const seconds = Math.max(0, Math.ceil((state.nextRefreshAt - Date.now()) / 1000));
+        el.nextRefreshValue.textContent = `${seconds}秒`;
+        if (!state.loading && (state.dashboard || state.externalMetrics)) {
+          el.tickerMain.innerHTML = `<strong>自動更新中</strong> 次回 ${seconds} 秒後`;
+        }
+      }
+
+      function clearTimers() {
+        clearTimeout(state.refreshTimer);
+        clearInterval(state.countdownTimer);
+        state.nextRefreshAt = 0;
+      }
+
+      function externalGeneratedDate() {
+        const generatedAt = state.externalMetrics?.generatedAt;
+        if (!generatedAt) return null;
+        const date = new Date(generatedAt);
+        return Number.isNaN(date.getTime()) ? null : date;
+      }
+
+      function externalTimestampText() {
+        const date = externalGeneratedDate();
+        if (!date) return "自動収集時刻不明";
+        return `${dateFormat.format(date)} ${timeFormat.format(date)}`;
+      }
+
+      function setConnection(text, modifier) {
+        el.connection.textContent = text;
+        el.connection.className = "status-pill";
+        if (modifier) el.connection.classList.add(modifier);
+      }
+
+      function showError(message) {
+        el.errorBox.textContent = message;
+        el.errorBox.hidden = false;
+      }
+
+      function hideError() {
+        el.errorBox.hidden = true;
+        el.errorBox.textContent = "";
+      }
+
+      function simplifyError(error) {
+        const text = error?.message || String(error);
+        if (/403/.test(text) && /key|API|quota|forbidden|refer/i.test(text)) {
+          return `${text}。APIキー、YouTube Data API v3 の有効化、割り当て、HTTP referrer 制限を確認してください。file://運用ではアプリケーション制限なしで確認してください。`;
+        }
+        if (/400/.test(text)) {
+          return `${text}。@ハンドルURLで失敗する場合は、YouTube StudioのUC...形式チャンネルIDを入れてください。`;
+        }
+        return text;
+      }
+
+      function nextMilestone(value, type) {
+        const safe = Math.max(0, Number(value) || 0);
+        const steps = type === "views"
+          ? [10000, 50000, 100000, 250000, 500000, 1000000, 2500000, 5000000, 10000000]
+          : [100, 250, 500, 1000, 1500, 2000, 3000, 5000, 10000, 25000, 50000, 100000];
+        const found = steps.find((step) => step > safe);
+        if (found) return found;
+        const scale = type === "views" ? 1000000 : 10000;
+        return Math.ceil((safe + 1) / scale) * scale;
+      }
+
+      function bestThumbnail(thumbnails) {
+        if (!thumbnails) return "";
+        return thumbnails.maxres?.url
+          || thumbnails.standard?.url
+          || thumbnails.high?.url
+          || thumbnails.medium?.url
+          || thumbnails.default?.url
+          || "";
+      }
+
+      function parseDuration(duration) {
+        if (!duration) return "";
+        const match = duration.match(/^P(?:(\d+)D)?T?(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/);
+        if (!match) return "";
+        const days = toInt(match[1]);
+        const hours = toInt(match[2]);
+        const minutes = toInt(match[3]);
+        const seconds = toInt(match[4]);
+        const total = seconds + minutes * 60 + hours * 3600 + days * 86400;
+        if (!total) return "";
+        const h = Math.floor(total / 3600);
+        const m = Math.floor((total % 3600) / 60);
+        const s = total % 60;
+        if (h) return `${h}:${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+        return `${m}:${String(s).padStart(2, "0")}`;
+      }
+
+      function readJson(key) {
+        try {
+          const raw = localStorage.getItem(key);
+          return raw ? JSON.parse(raw) : null;
+        } catch {
+          return null;
+        }
+      }
+
+      function downloadAccountSettings() {
+        const accounts = {};
+        PLATFORM_DEFAULTS.forEach((platform) => {
+          const accountText = document.querySelector(`[data-account="${platform.id}"]`)?.value || "";
+          accounts[platform.id] = normalizeAccountInput(platform.id, accountText);
+        });
+        const payload = {
+          generatedAt: new Date().toISOString(),
+          accounts
+        };
+        const body = `window.${ACCOUNT_SETTINGS_GLOBAL} = ${JSON.stringify(payload, null, 2)};\n`;
+        const url = URL.createObjectURL(new Blob([body], { type: "text/javascript;charset=utf-8" }));
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "sns-dashboard-settings.js";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+        el.tickerMain.innerHTML = "<strong>設定を書き出しました</strong> sns-dashboard-settings.js を同じフォルダに置くと収集側も読みます";
+      }
+
+      function normalizeAccountInput(platformId, input) {
+        const item = input && typeof input === "object" ? input : { account: input };
+        const raw = cleanString(item.account ?? item.userId ?? item.username ?? item.pageId ?? item.siteUrl ?? item.propertyId ?? item.source);
+        const normalized = cleanAccountText(raw);
+        const account = cleanString(raw);
+        const next = {
+          account,
+          userId: cleanString(item.userId),
+          username: cleanString(item.username),
+          pageId: cleanString(item.pageId),
+          siteUrl: cleanString(item.siteUrl),
+          propertyId: cleanString(item.propertyId),
+          source: cleanString(item.source)
+        };
+
+        if (platformId === "instagram") {
+          if (!next.userId && /^\d{5,}$/.test(normalized)) next.userId = normalized;
+          if (!next.username && normalized && !next.userId) next.username = normalized;
+        } else if (platformId === "threads") {
+          if (!next.userId && /^\d{5,}$/.test(normalized)) next.userId = normalized;
+          if (!next.username && normalized && !next.userId) next.username = normalized;
+        } else if (platformId === "facebook") {
+          if (!next.pageId && normalized) next.pageId = normalized;
+        } else if (platformId === "x") {
+          if (!next.username && normalized) next.username = normalized;
+          next.account = next.username || account;
+        } else if (platformId === "reels") {
+          if (!next.source && normalized) next.source = normalized.toLowerCase();
+        } else if (platformId === "gsc") {
+          if (!next.siteUrl && account) next.siteUrl = account;
+        } else if (platformId === "ga4") {
+          if (!next.propertyId && normalized) next.propertyId = normalized.replace(/^properties\//, "");
+        }
+        return next;
+      }
+
+      function accountValue(item) {
+        if (!item) return "";
+        if (typeof item === "string") return item;
+        return cleanString(item.account || item.userId || item.username || item.pageId || item.siteUrl || item.propertyId || item.source);
+      }
+
+      function cleanAccountText(value) {
+        let text = cleanString(value);
+        if (!text) return "";
+        try {
+          if (/^https?:\/\//i.test(text)) {
+            const url = new URL(text);
+            const parts = url.pathname.split("/").filter(Boolean);
+            text = decodeURIComponent(parts[0] || text);
+          }
+        } catch {
+          return text;
+        }
+        return text.replace(/^@/, "").trim();
+      }
+
+      function cleanString(value) {
+        return value === null || value === undefined ? "" : String(value).trim();
+      }
+
+      function optionalInteger(value) {
+        if (value === "" || value === null || value === undefined) return null;
+        const parsed = Number.parseInt(value, 10);
+        return Number.isFinite(parsed) && parsed >= 0 ? parsed : null;
+      }
+
+      function optionalFloat(value) {
+        if (value === "" || value === null || value === undefined) return null;
+        const parsed = Number.parseFloat(value);
+        return Number.isFinite(parsed) && parsed >= 0 ? parsed : null;
+      }
+
+      function integerOr(value, fallback) {
+        const parsed = Number.parseInt(value, 10);
+        return Number.isFinite(parsed) ? parsed : fallback;
+      }
+
+      function toInt(value) {
+        const number = Number.parseInt(value, 10);
+        return Number.isFinite(number) ? number : 0;
+      }
+
+      function clamp(value, min, max) {
+        return Math.min(Math.max(value, min), max);
+      }
+
+      function sum(values) {
+        const valid = values.filter((value) => Number.isFinite(value));
+        return valid.length ? valid.reduce((total, value) => total + value, 0) : null;
+      }
+
+      function numeric(value) {
+        return Number.isFinite(value) ? value : 0;
+      }
+
+      function formatNumber(value) {
+        if (value === null || value === undefined || !Number.isFinite(value)) return "--";
+        return numberFull.format(value);
+      }
+
+      function formatCompact(value) {
+        if (value === null || value === undefined || !Number.isFinite(value)) return "--";
+        return numberCompact.format(value);
+      }
+
+      function hexToRgba(hex, alpha) {
+        const normalized = hex.replace("#", "");
+        const bigint = Number.parseInt(normalized, 16);
+        const r = (bigint >> 16) & 255;
+        const g = (bigint >> 8) & 255;
+        const b = bigint & 255;
+        return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+      }
+
+      function escapeHtml(value) {
+        return String(value)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+      }
+
+      function escapeAttr(value) {
+        return escapeHtml(value).replace(/`/g, "&#96;");
+      }
+
+      init();
+    })();
+  </script>
+</body>
+</html>

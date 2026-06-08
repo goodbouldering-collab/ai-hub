@@ -18,7 +18,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-06-07T23:56:38+00:00"
+      "published": "2026-06-07T23:56:38+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "e19518f80f6f7df7",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/5OeLgJKWmq0/hqdefault.jpg",
-      "published": "2026-06-07T22:25:44+00:00"
+      "published": "2026-06-07T22:25:44+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "7af166255915fca8",
@@ -56,7 +60,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/GAUYdq3a4AAAlsX.jpg?quality=90&amp;strip=all&amp;crop=0%2C0.6699364330709%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-06-07T08:00:00-04:00"
+      "published": "2026-06-07T08:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "3ef76c34199d551e",
@@ -75,7 +81,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/Rf5K3reQWIM/hqdefault.jpg",
-      "published": "2026-06-07T10:00:10+00:00"
+      "published": "2026-06-07T10:00:10+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "755a9470b81ba32e",
@@ -94,7 +102,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/JPfq4Mj-hvw/hqdefault.jpg",
-      "published": "2026-06-07T10:00:00+00:00"
+      "published": "2026-06-07T10:00:00+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "3cbcac280ddb892d",
@@ -113,7 +123,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://cdn-thumbnails.huggingface.co/social-thumbnails/blog/build-small-hackathon/amazingdigitaldentures.png",
-      "published": "Sun, 07 Jun 2026 19:44:27 GMT"
+      "published": "Sun, 07 Jun 2026 19:44:27 GMT",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "836467320c92e7ef",
@@ -132,7 +144,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://cdn.arstechnica.net/wp-content/uploads/2026/06/GettyImages-1434414748-2560x1440-1780697712.jpg",
-      "published": "Sun, 07 Jun 2026 11:08:30 +0000"
+      "published": "Sun, 07 Jun 2026 11:08:30 +0000",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "f5197e2d1be78dd8",
@@ -151,7 +165,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://image.itmedia.co.jp/mn/articles/2606/08/tt_MONOistWP97147_w240.jpg",
-      "published": "Mon, 08 Jun 2026 12:30:00 +0900"
+      "published": "Mon, 08 Jun 2026 12:30:00 +0900",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "b8ec9be2715ae824",
@@ -170,7 +186,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://image.itmedia.co.jp/news/articles/2606/08/cover_news084.jpg",
-      "published": "Mon, 08 Jun 2026 11:12:00 +0900"
+      "published": "Mon, 08 Jun 2026 11:12:00 +0900",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "ef8f8dfa989d0cf6",
@@ -189,7 +207,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://image.itmedia.co.jp/enterprise/articles/2606/05/cover_news028.jpg",
-      "published": "Mon, 08 Jun 2026 08:00:00 +0900"
+      "published": "Mon, 08 Jun 2026 08:00:00 +0900",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

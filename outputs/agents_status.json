@@ -1,6 +1,13 @@
 {
-  "generated_at": "2026-06-08T04:05:42Z",
+  "generated_at": "2026-06-08T23:08:37Z",
   "recent_works": [
+    {
+      "date": "2026-06-08",
+      "filename": "2026-06-08-seo-weekly-digest.md",
+      "title": "SEO週次ダイジェスト（2026-06-08）",
+      "business": "seo",
+      "path": "/ops?file=2026-06-08-seo-weekly-digest.md#sec-docs"
+    },
     {
       "date": "2026-06-05",
       "filename": "2026-06-05-gubble-sns-automation-prep.md",
@@ -49,13 +56,6 @@
       "title": "N-デザイン 5ペルソナ×3回 CRO評価 → 問題点集約・優先実行リスト",
       "business": "Nデザイン",
       "path": "/ops?file=2026-05-28-n-design-persona-cro-audit.md#sec-docs"
-    },
-    {
-      "date": "2026-05-28",
-      "filename": "2026-05-28-n-design-hero-why-profile-copy-rewrite.md",
-      "title": "N-デザイン ヒーロー〜Why〜Profile コピー全面書き直し（SEO/MEO/LLMO/AIO 統合視点）",
-      "business": "Nデザイン",
-      "path": "/ops?file=2026-05-28-n-design-hero-why-profile-copy-rewrite.md#sec-docs"
     }
   ],
   "tasks_open": [
@@ -76,11 +76,11 @@
   ],
   "per_business_recent": [
     {
-      "business": "gubble",
-      "count": 1
+      "business": "seo",
+      "count": 2
     },
     {
-      "business": "seo",
+      "business": "gubble",
       "count": 1
     }
   ],
@@ -139,13 +139,13 @@
     },
     {
       "date": "2026-06-08",
-      "count": 0
+      "count": 1
     }
   ],
   "cma_apps": [],
   "totals": {
-    "consul_work_total": 124,
-    "recent_7d_total": 2,
+    "consul_work_total": 125,
+    "recent_7d_total": 3,
     "tasks_open_total": 2
   }
 }

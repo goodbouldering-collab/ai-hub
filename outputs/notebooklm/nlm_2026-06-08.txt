@@ -2,31 +2,102 @@
 
 ## AIニュース
 
-### AI ‘content creators’ are getting harder to spot
-This is The Stepback, a weekly newsletter breaking down one essential story from the tech world. For more on AI confusion, follow Robert Hart. The Stepback arrives in our subscribers' inboxes at 8AM E...
-出典: https://www.theverge.com/ai-artificial-intelligence/943187/ai-content-creators
+### Apple is using AI to fix Safari’s extension problem
+Apple is trying to solve one of Safari's biggest weaknesses with AI. Safari has long lacked the robust library of extensions that its rivals have, mainly due to the stringent development requirements ...
+出典: https://www.theverge.com/tech/946345/apple-safari-ai-update-extensions
 
-### School shooting survivor sues AI gun detection firm after system failed to spot weapon
-How accurate does an AI system need to be?
-出典: https://arstechnica.com/tech-policy/2026/06/school-shooting-survivor-sues-ai-gun-detection-firm-after-system-failed-to-spot-weapon/
+### OpenAI files for IPO, following Anthropic
+OpenAI on Monday checked off a preliminary step in the IPO race that it and rival Anthropic have been competing in for the better part of a year: The company announced it has confidentially submitted ...
+出典: https://www.theverge.com/ai-artificial-intelligence/946335/openai-ipo-s-1-confidential
+
+### Amazon is launching AI-generated custom merch
+Amazon is expanding its print-on-demand features to AI-generated designs created using Alexa for Shopping for products like T-shirts, water bottles, and hoodies. Shoppers can use text prompts to gener...
+出典: https://www.theverge.com/news/945905/amazon-alexa-shopping-ai-generated-custom-merch-design-printing
+
+### Apple announces Siri AI and its next generation of Apple Intelligence
+Two years after first revealing its plans for Apple Intelligence and a smarter Siri that never fully materialized, at WWDC, Apple just revealed a new set of AI features and a smarter, more personalize...
+出典: https://www.theverge.com/tech/942416/apple-siri-ai-update-wwdc
+
+### NotebookLM&#8217;s Gemini 3.5 upgrade adds a cloud computer and help finding sources
+Google is rolling out "across the board" updates to NotebookLM. The AI-powered note-taking app now uses Google's upgraded Gemini 3.5 model, which will allow it to respond with "more accurate and relia...
+出典: https://www.theverge.com/tech/944325/google-notebooklm-ai-gemini-update
+
+### Microsoft’s AI chief says superintelligence is near, but won’t take your job
+Today I’m talking with Mustafa Suleyman, the CEO of Microsoft AI. And I’m actually going to keep today’s intro short — I’m working from my wife’s family farm this week, as you’ll see in the video, but...
+出典: https://www.theverge.com/podcast/944138/microsoft-ai-ceo-mustafa-suleyman-superintelligence-agi-openai-automation
+
+### WWDC 2026: How to watch and what to expect
+Apple's biggest event of the year is nearly here. The company's Worldwide Developers Conference will spotlight updates to iOS, macOS, and all of Apple's other operating systems, and this year's event ...
+出典: https://www.theverge.com/tech/944099/wwdc-2026-how-to-watch
+
+### Say hi to "Siri AI"—Apple announces new, more "conversational" voice assistant
+New features coming this fall alongside two-tiered, Google-powered AI model overhaul.
+出典: https://arstechnica.com/apple/2026/06/say-hi-to-siri-ai-apple-announces-new-more-conversational-voice-assistant/
+
+### Gemini 3.5 and Antigravity come to Google NotebookLM
+NotebookLM is getting a big upgrade, but it's only for AI Ultra and enterprise accounts right now.
+出典: https://arstechnica.com/ai/2026/06/gemini-3-5-and-antigravity-come-to-google-notebooklm/
+
+### For the 2nd time in weeks, Microsoft packages laced with credential stealer
+73 packages run self-replicating stealer as soon as they're opened by an AI agent.
+出典: https://arstechnica.com/security/2026/06/for-the-2nd-time-in-weeks-microsoft-packages-laced-with-credential-stealer/
+
+### "Chat is dead": OpenAI preps overhaul of ChatGPT
+OpenAI to recast hit chatbot as a route to higher-margin products before a potential IPO.
+出典: https://arstechnica.com/ai/2026/06/chat-is-dead-openai-preps-overhaul-of-chatgpt/
+
+### The weather and climate science AI revolution isn’t revolutionary
+Machine learning has its limits—how is it being used?
+出典: https://arstechnica.com/science/2026/06/the-weather-and-climate-science-ai-revolution-isnt-revolutionary/
+
+
+## AI公式
+
+### Confidential submission of draft S-1 to the SEC
+OpenAI confirms a confidential S-1 submission to the SEC and has not yet determined timing for further action.
+出典: https://openai.com/index/openai-submits-confidential-s-1
+
+### Built to benefit everyone: our plan
+A vision for the future of AI, focusing on access, safety, and shared prosperity as OpenAI works to ensure AGI benefits everyone.
+出典: https://openai.com/index/built-to-benefit-everyone-our-plan
+
+### Introducing the OpenAI Economic Research Exchange
+OpenAI launches the Economic Research Exchange to study AI’s impact on jobs, productivity, and the economy. Applications are now open for selected research projects.
+出典: https://openai.com/index/economic-research-exchange
 
 
 ## AI動画(日本語)
+
+### Claude Codeのセキュリティチェックを自動化できる「Security Guidance」 / Anthropic公式プラグインだから安心 /
+【2026/6/14開催】非エンジニア向けAIセキュリティ基礎講座 https://touchai.jp/courses/t01ewp6gGjF  【全5回 特別講義】スマートシティ研究の第一人者に学ぶAIの仕組みと自作・実践講座 https://touchai.jp/series/f08ff6df-040a-4e88-8d4b-a934b1b77b31/enroll ※第1回は2026年6月19...
+出典: https://www.youtube.com/watch?v=VGWSsXFaVYA
 
 ### Codexのスマホ連携が神すぎる！ / Claudeの性能低下が深刻 / 慶應義塾大学西先生の特別講義が決定！
 なかじへの質問募集フォーム！ https://touchai.jp/forms/nakaji-question  【10秒で完了】本日のアンケートにご協力ください。 https://touchai.jp/forms/youtube-20260529  【全5回 特別講義】スマートシティ研究の第一人者に学ぶAIの仕組みと自作・実践講座 慶應義塾大学大学院理工学研究科教授・西宏章氏 https://t...
 出典: https://www.youtube.com/watch?v=5OeLgJKWmq0
 
-### 絶対に入れるべき『Codex』の便利なプラグイン２４選！
-OpenAIのAIエージェントツール「Codex」に絶対に入れるべきプラグインを紹介。AIエージェントを使いこなすにはプラグインは必須なので参考にしてください。  ★プロセボ｜AIコミュニティ AI活用を実際に操作しながら学ぶワークショップ型AIスクール。 参加申し込みはこちら → https://procevo.biz/  ★Substack（メルマガ）は下記から購読 https://kt-li...
-出典: https://www.youtube.com/watch?v=Rf5K3reQWIM
-
-### 【超激ヤバ】RunwayとClaudeを連携させたら流石に稼げるやろw
-▼動画内で紹介したプレゼントの受け取りは以下の公式LINEから https://liff.line.me/2006805073-rn36NG8b/landing?follow=%40933hyolt&amp;lp=WOKwdL&amp;liff_id=2006805073-rn36NG8b  ▼現在開催中のセミナーを確認する https://n1seminar-vsuoymjh.manus.spa...
-出典: https://www.youtube.com/watch?v=JPfq4Mj-hvw
+### この稼ぎ方を知っている人がいたら間違いなく上位0.01%です。
+▼動画内で紹介したプレゼントの受け取りは以下の公式LINEから https://liff.line.me/2006805073-rn36NG8b/landing?follow=%40933hyolt&amp;lp=VU35AN&amp;liff_id=2006805073-rn36NG8b  ▼現在開催中のセミナーを確認する https://n1seminar-vsuoymjh.manus.spa...
+出典: https://www.youtube.com/watch?v=SY8O1A8xuK8
 
 
 ## AI国内
+
+### 「Siri AI」新登場　「Apple Intelligence」大幅刷新、Googleと共同開発　年内に英語版
+Appleは6月8日（現地時間）のWWDCで新たな音声アシスタント「Siri AI」を発表。Googleと提携して開発したマルチモーダルのAIモデル「Apple Foundation Model」を基盤に「Apple Intelligence」をアップデートし、「Siri」に組み込んだ。
+出典: https://www.itmedia.co.jp/aiplus/article/2606/09/2000000069/
+
+### パナソニックエナジー、28年度に売上高2兆円目指す　AIデータセンター向けに主力転換
+パナソニックホールディングス傘下で電池事業を担うパナソニックエナジーが2028年度に売上高2兆円規模を目指す中期方針を明らかにした。達成すれば25年度から約1兆円増の大幅な成長となる。生成AIの普及で電力需要が増えるデータセンター向け蓄電システムを成長の柱に据え、26～28年度に3500億円を投資する。
+出典: https://www.itmedia.co.jp/news/articles/2606/08/news131.html
+
+### 「業務の前提そのもの」をどうアップデートする？　IBMが説く「AXの要件」を考察
+IBMが企業のAXにおける新たな指針として「AIオペレーティングモデル」を打ち出した。その内容から、企業がAXに向けて取り組むべき要件を探る。
+出典: https://www.itmedia.co.jp/enterprise/articles/2606/08/news088.html
+
+### 「AI＝質問」は遅れてる　エージェント型AI「Claude Cowork」、組織展開に向けた管理機能を拡充
+Anthropicは、AIエージェントによる業務支援機能「Claude Cowork」を全ての有料プランで一般提供すると発表した。組織全体への展開に向けた管理機能も同時に拡充する。
+出典: https://atmarkit.itmedia.co.jp/ait/articles/2606/08/news062.html
 
 ### AI×設計開発ニュースまとめ（2026年4月）
 MONOistに掲載した主要な記事を、読みやすいPDF形式の電子ブックレットに再編集した「エンジニア電子ブックレット」。今回は、設計や解析など製品開発の現場で活用が進みつつあるAI関連のニュースをまとめた「AI×設計開発ニュースまとめ（2026年4月）」をお送りします。
@@ -36,32 +107,20 @@ MONOistに掲載した主要な記事を、読みやすいPDF形式の電子ブ�
 カシオ計算機が新規事業の創出に注力している。好調に推移する「G-SHOCK」（ジーショック）など腕時計事業に加え、経営の多角化を進める狙いだ。精鋭が集まった社長直轄組織がその役割を担い、挑戦の行方が注目される。
 出典: https://www.itmedia.co.jp/news/articles/2606/08/news084.html
 
-### AIによるコード生成、3年後は3倍超に　AI普及で浮上する課題は
-IDCの調査によると、AIが主体的にコードを生成する企業の割合が3年後には約3倍に拡大するという。AI普及に伴い、浮上する課題とは。
-出典: https://www.itmedia.co.jp/enterprise/articles/2606/05/news028.html
+### “AIでAIを開発”加速へ　Sakana AI　「計算資源の量ではなく、アイデアで進歩」
+Sakana AIは、AIによってAIを開発する仕組みを研究するチーム「RSI Lab」を立ち上げると発表した。計算資源の量に頼ることなく、効率的にAIの性能を高める手法の構築を目指す。
+出典: https://www.itmedia.co.jp/aiplus/article/2606/08/2000000068/
 
-### なぜ姫路市の救急病院AIチャットは、2週間で正答率最高90％を出せたのか？
-生成AIで多くの業務が効率化されるなか、電話対応だけは何十年も変わらない光景が続いている。AIを実務で機能させる鍵は何か。メディアリンクが姫路市との実証実験で示した「ナレッジ循環」の仕組みを読み解く。
-出典: https://kn.itmedia.co.jp/kn/articles/2606/08/news036.html
-
-### NEC、富士通に先手!?　日立が「Claude Mythos」アクセス権を取得した背景
-日立製作所が、Anthropicの先進AI「Claude Mythos」のアクセス権を取得した。Anthropicを巡っては、NECや富士通も協業を発表している。
-出典: https://www.itmedia.co.jp/business/articles/2606/08/news058.html
-
-### ワークフロー承認はAIに任せられるのか　7割が否定した理由
-エイトレッドの調査によると、ワークフローにおける承認・決裁プロセスそのものについては、AIに委ねるべきではないとする回答が7割を超えた。
-出典: https://kn.itmedia.co.jp/kn/articles/2606/08/news048.html
-
-### AIエージェントに対する製造業のリアルな声
-製造業のちょっと気になる話題をAIプレゼンターが紹介する「MONOistポッドキャスト」。今回は、MONOist編集部が実施した「製造業のAIエージェント活用実態調査 2026」の結果レポートの概要をお届けします。
-出典: https://monoist.itmedia.co.jp/mn/articles/2606/08/news025.html
+### LINEヤフー、AI強化へ若手エンジニア募集　新卒・第二新卒、給与に一律の上限なし
+給与に一律の上限は設けない。標準年収（年間を通じて標準的な評価だった場合）は651万円～（基準給与×12＋賞与2回分）。
+出典: https://www.itmedia.co.jp/aiplus/article/2606/08/2000000067/
 
 
 ## AI業界
 
-### Amazing Digital Dentures (a failed project)
+### The Open Source Community is backing OpenEnv for Agentic RL
 
-出典: https://huggingface.co/blog/build-small-hackathon/amazingdigitaldentures
+出典: https://huggingface.co/blog/openenv-agentic-rl
 
 
 ## AI研究者ブログ
@@ -71,24 +130,27 @@ IDCの調査によると、AIが主体的にコードを生成する企業の割
 出典: https://simonwillison.net/2026/Jun/7/datasette-agent-edit/#atom-everything
 
 
-## SNS動向
+## SNS公式
 
-### Edits adds new audio and font features
-<p>Meta&rsquo;s separate video editing app continues to roll out near-weekly updates for creators and social media marketers.</p>
-出典: https://www.socialmediatoday.com/news/edits-adds-new-audio-and-font-features/822194/
+### America’s Workforce Academy: The Future Is for Everyone
+<div><img alt="" class="attachment-large size-large wp-post-image" height="501" src="https://about.fb.com/wp-content/uploads/2026/06/Americas-Workforce-Academy_The-Future-is-for-Everyone_Thumbnail.gif...
+出典: https://about.fb.com/news/2026/06/americas-workforce-academy-free-skilled-trade-training/
 
-### LinkedIn adds more post performance insights
-<p>The platform will provide users with detailed data points on who posts are reaching both in-network and out-of-network.</p>
-出典: https://www.socialmediatoday.com/news/linkedin-adds-more-post-performance-insights/822193/
+### Fighting Spyware: An Update From WhatsApp
+<div><img alt="" class="attachment-large size-large wp-post-image" height="501" src="https://about.fb.com/wp-content/uploads/2026/06/WA-Spyware-Trial_Thumbnail.jpg?fit=890%2C501" style="margin-bottom:...
+出典: https://about.fb.com/news/2026/06/fighting-spyware-an-update-from-whatsapp/
 
-### Google to pay SpaceX $290 million a month
-<figure><div><img src="https://imgproxy.divecdn.com/Zwd-s116MrSlx4045L-pyOqH-h99Z1uDeoTbUrFbqUk/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9HZXR0eUltYWdlcy0yMTcxMDA3MzI0LmpwZw==...
-出典: https://www.socialmediatoday.com/news/google-to-pay-spacex-290-million-a-month/822192/
+### The ultimate YouTube watchlist for 'Backrooms,' 'Obsession,' and 'Iron Lung' fans
+Explore the early videos of Curry Barker, Markiplier, and Kane Parsons before seeing their horror hits Obsession, Iron Lung, and Backrooms.
+出典: https://blog.youtube/creator-and-artist-stories/youtube-horror-directors-barker-markiplier-parsons/
 
-### YouTube ends product tag experiment
-<p>The feature, which allowed some creators to tag Shopping products in community posts, is no longer available and old tags will be removed.</p>
-出典: https://www.socialmediatoday.com/news/youtube-ends-product-tag-experiment/822191/
 
-### Instagram outlines add-on subscription offerings
-<p>Instagram Plus will cost $3.99 a month and feature Super Hearts, Story Spotlights and other niche tools to enhance the in-app experience.</p>
-出典: https://www.socialmediatoday.com/news/instagram-outlines-add-on-subscription-offerings/822190/
+## SNS運用
+
+### We Built a Custom Workflow with the Buffer API — and Tripled Our X Impressions
+Needing a fresh coat of paint on an important workflow, Anthony built a custom workflow for QAJobs using the Buffer API.
+出典: https://buffer.com/resources/we-built-a-custom-workflow-with-the-buffer-api-and-tripled-our-x-impressions/
+
+### The 11 Best Social Media Management Tools in 2026 — Tried + Tested
+Social media management tools can help take the admin of social media off your plate — so you can focus on the fun stuff. Here’s a list of the 11 best tools available right now.
+出典: https://buffer.com/resources/best-social-media-management-tools/

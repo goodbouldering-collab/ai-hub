@@ -2,13 +2,55 @@
   "date": "2026-06-08",
   "items": [
     {
-      "hash": "61e20595796c3fc3",
-      "title": "datasette-agent-edit 0.1a0",
-      "orig_title": "datasette-agent-edit 0.1a0",
+      "hash": "0f021d163db0cfb5",
+      "title": "Apple is using AI to fix Safari’s extension problem",
+      "orig_title": "Apple is using AI to fix Safari’s extension problem",
       "summary": "",
-      "url": "https://simonwillison.net/2026/Jun/7/datasette-agent-edit/#atom-everything",
-      "source": "Simon Willison's Weblog",
-      "category": "AI研究者ブログ",
+      "url": "https://www.theverge.com/tech/946345/apple-safari-ai-update-extensions",
+      "source": "The Verge AI",
+      "category": "AIニュース",
+      "genre": "industry",
+      "score": 60.0,
+      "breakdown": {
+        "base": 50.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 10.0
+      },
+      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/describe-extension-safari.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.742998834307%2C100%2C78.514002331385&amp;w=1200",
+      "published": "2026-06-08T18:14:17-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
+    },
+    {
+      "hash": "e9795f352337877f",
+      "title": "OpenAI files for IPO, following Anthropic",
+      "orig_title": "OpenAI files for IPO, following Anthropic",
+      "summary": "",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/946335/openai-ipo-s-1-confidential",
+      "source": "The Verge AI",
+      "category": "AIニュース",
+      "genre": "industry",
+      "score": 60.0,
+      "breakdown": {
+        "base": 50.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 10.0
+      },
+      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/STK155_OPEN_AI_CVirginia_C.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
+      "published": "2026-06-08T17:38:29-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
+    },
+    {
+      "hash": "a60b87942bdb359b",
+      "title": "Amazon is launching AI-generated custom merch",
+      "orig_title": "Amazon is launching AI-generated custom merch",
+      "summary": "",
+      "url": "https://www.theverge.com/news/945905/amazon-alexa-shopping-ai-generated-custom-merch-design-printing",
+      "source": "The Verge AI",
+      "category": "AIニュース",
       "genre": "industry",
       "score": 56.0,
       "breakdown": {
@@ -17,9 +59,93 @@
         "source_bonus": 0.0,
         "freshness": 6.0
       },
-      "thumbnail": "",
-      "published": "2026-06-07T23:56:38+00:00",
+      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/09/acastro_STK103__03.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
+      "published": "2026-06-08T13:52:51-04:00",
       "_is_video": false,
+      "_summary_clean": ""
+    },
+    {
+      "hash": "c866b5543760dd61",
+      "title": "Apple announces Siri AI and its next generation of Apple Intelligence",
+      "orig_title": "Apple announces Siri AI and its next generation of Apple Intelligence",
+      "summary": "",
+      "url": "https://www.theverge.com/tech/942416/apple-siri-ai-update-wwdc",
+      "source": "The Verge AI",
+      "category": "AIニュース",
+      "genre": "industry",
+      "score": 56.0,
+      "breakdown": {
+        "base": 50.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 6.0
+      },
+      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/Apple-announces-Siri-AI-and-its-next-generation-of-Apple-Intelligence.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
+      "published": "2026-06-08T13:34:24-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
+    },
+    {
+      "hash": "5780e9f8abf4858d",
+      "title": "NotebookLM&#8217;s Gemini 3.5 upgrade adds a cloud computer and help finding sources",
+      "orig_title": "NotebookLM&#8217;s Gemini 3.5 upgrade adds a cloud computer and help finding sources",
+      "summary": "",
+      "url": "https://www.theverge.com/tech/944325/google-notebooklm-ai-gemini-update",
+      "source": "The Verge AI",
+      "category": "AIニュース",
+      "genre": "industry",
+      "score": 56.0,
+      "breakdown": {
+        "base": 50.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 6.0
+      },
+      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/NotebookLM-Welcome.png?quality=90&amp;strip=all&amp;crop=0%2C3.4613147178592%2C100%2C93.077370564282&amp;w=1200",
+      "published": "2026-06-08T12:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
+    },
+    {
+      "hash": "530e99bbb67a6588",
+      "title": "Microsoft’s AI chief says superintelligence is near, but won’t take your job",
+      "orig_title": "Microsoft’s AI chief says superintelligence is near, but won’t take your job",
+      "summary": "",
+      "url": "https://www.theverge.com/podcast/944138/microsoft-ai-ceo-mustafa-suleyman-superintelligence-agi-openai-automation",
+      "source": "The Verge AI",
+      "category": "AIニュース",
+      "genre": "industry",
+      "score": 56.0,
+      "breakdown": {
+        "base": 50.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 6.0
+      },
+      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/DCD-Mustafa-Suleyman.png?quality=90&amp;strip=all&amp;crop=0%2C10.711631919237%2C100%2C78.576736161526&amp;w=1200",
+      "published": "2026-06-08T10:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
+    },
+    {
+      "hash": "d8bfccc3faa286e8",
+      "title": "Claude Codeのセキュリティチェックを自動化できる「Security Guidance」 / Anthropic公式プラグインだから安心 /",
+      "orig_title": "Claude Codeのセキュリティチェックを自動化できる「Security Guidance」 / Anthropic公式プラグインだから安心 /",
+      "summary": "",
+      "url": "https://www.youtube.com/watch?v=VGWSsXFaVYA",
+      "source": "ウェブ職TV",
+      "category": "AI動画(日本語)",
+      "genre": "industry",
+      "score": 56.0,
+      "breakdown": {
+        "base": 50.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 6.0
+      },
+      "thumbnail": "https://img.youtube.com/vi/VGWSsXFaVYA/hqdefault.jpg",
+      "published": "2026-06-08T14:15:19+00:00",
+      "_is_video": true,
       "_summary_clean": ""
     },
     {
@@ -39,16 +165,16 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/5OeLgJKWmq0/hqdefault.jpg",
-      "published": "2026-06-07T22:25:44+00:00",
+      "published": "2026-06-08T13:13:44+00:00",
       "_is_video": true,
       "_summary_clean": ""
     },
     {
-      "hash": "7af166255915fca8",
-      "title": "AI ‘content creators’ are getting harder to spot",
-      "orig_title": "AI ‘content creators’ are getting harder to spot",
+      "hash": "b7bc89f27aadc19c",
+      "title": "WWDC 2026: How to watch and what to expect",
+      "orig_title": "WWDC 2026: How to watch and what to expect",
       "summary": "",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/943187/ai-content-creators",
+      "url": "https://www.theverge.com/tech/944099/wwdc-2026-how-to-watch",
       "source": "The Verge AI",
       "category": "AIニュース",
       "genre": "industry",
@@ -59,19 +185,19 @@
         "source_bonus": 0.0,
         "freshness": 3.0
       },
-      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/GAUYdq3a4AAAlsX.jpg?quality=90&amp;strip=all&amp;crop=0%2C0.6699364330709%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-06-07T08:00:00-04:00",
+      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/unnamed-8.jpg?quality=90&amp;strip=all&amp;crop=0%2C18.517948191493%2C100%2C62.964103617014&amp;w=1200",
+      "published": "2026-06-08T07:00:00-04:00",
       "_is_video": false,
       "_summary_clean": ""
     },
     {
-      "hash": "3ef76c34199d551e",
-      "title": "絶対に入れるべき『Codex』の便利なプラグイン２４選！",
-      "orig_title": "絶対に入れるべき『Codex』の便利なプラグイン２４選！",
+      "hash": "61e20595796c3fc3",
+      "title": "datasette-agent-edit 0.1a0",
+      "orig_title": "datasette-agent-edit 0.1a0",
       "summary": "",
-      "url": "https://www.youtube.com/watch?v=Rf5K3reQWIM",
-      "source": "KEITO AI&WEB",
-      "category": "AI動画(日本語)",
+      "url": "https://simonwillison.net/2026/Jun/7/datasette-agent-edit/#atom-everything",
+      "source": "Simon Willison's Weblog",
+      "category": "AI研究者ブログ",
       "genre": "industry",
       "score": 53.0,
       "breakdown": {
@@ -80,134 +206,8 @@
         "source_bonus": 0.0,
         "freshness": 3.0
       },
-      "thumbnail": "https://img.youtube.com/vi/Rf5K3reQWIM/hqdefault.jpg",
-      "published": "2026-06-07T10:00:10+00:00",
-      "_is_video": true,
-      "_summary_clean": ""
-    },
-    {
-      "hash": "755a9470b81ba32e",
-      "title": "【超激ヤバ】RunwayとClaudeを連携させたら流石に稼げるやろw",
-      "orig_title": "【超激ヤバ】RunwayとClaudeを連携させたら流石に稼げるやろw",
-      "summary": "",
-      "url": "https://www.youtube.com/watch?v=JPfq4Mj-hvw",
-      "source": "AI収益化ラボ",
-      "category": "AI動画(日本語)",
-      "genre": "industry",
-      "score": 53.0,
-      "breakdown": {
-        "base": 50.0,
-        "genre_bonus": 0.0,
-        "source_bonus": 0.0,
-        "freshness": 3.0
-      },
-      "thumbnail": "https://img.youtube.com/vi/JPfq4Mj-hvw/hqdefault.jpg",
-      "published": "2026-06-07T10:00:00+00:00",
-      "_is_video": true,
-      "_summary_clean": ""
-    },
-    {
-      "hash": "3cbcac280ddb892d",
-      "title": "Amazing Digital Dentures (a failed project)",
-      "orig_title": "Amazing Digital Dentures (a failed project)",
-      "summary": "",
-      "url": "https://huggingface.co/blog/build-small-hackathon/amazingdigitaldentures",
-      "source": "Hugging Face Blog",
-      "category": "AI業界",
-      "genre": "industry",
-      "score": 50.0,
-      "breakdown": {
-        "base": 50.0,
-        "genre_bonus": 0.0,
-        "source_bonus": 0.0,
-        "freshness": 0.0
-      },
-      "thumbnail": "https://cdn-thumbnails.huggingface.co/social-thumbnails/blog/build-small-hackathon/amazingdigitaldentures.png",
-      "published": "Sun, 07 Jun 2026 19:44:27 GMT",
-      "_is_video": false,
-      "_summary_clean": ""
-    },
-    {
-      "hash": "836467320c92e7ef",
-      "title": "School shooting survivor sues AI gun detection firm after system failed to spot weapon",
-      "orig_title": "School shooting survivor sues AI gun detection firm after system failed to spot weapon",
-      "summary": "",
-      "url": "https://arstechnica.com/tech-policy/2026/06/school-shooting-survivor-sues-ai-gun-detection-firm-after-system-failed-to-spot-weapon/",
-      "source": "Ars Technica AI",
-      "category": "AIニュース",
-      "genre": "industry",
-      "score": 50.0,
-      "breakdown": {
-        "base": 50.0,
-        "genre_bonus": 0.0,
-        "source_bonus": 0.0,
-        "freshness": 0.0
-      },
-      "thumbnail": "https://cdn.arstechnica.net/wp-content/uploads/2026/06/GettyImages-1434414748-2560x1440-1780697712.jpg",
-      "published": "Sun, 07 Jun 2026 11:08:30 +0000",
-      "_is_video": false,
-      "_summary_clean": ""
-    },
-    {
-      "hash": "f5197e2d1be78dd8",
-      "title": "AI×設計開発ニュースまとめ（2026年4月）",
-      "orig_title": "AI×設計開発ニュースまとめ（2026年4月）",
-      "summary": "",
-      "url": "https://monoist.itmedia.co.jp/mn/articles/2606/08/news029.html",
-      "source": "ITmedia AI+",
-      "category": "AI国内",
-      "genre": "industry",
-      "score": 50.0,
-      "breakdown": {
-        "base": 50.0,
-        "genre_bonus": 0.0,
-        "source_bonus": 0.0,
-        "freshness": 0.0
-      },
-      "thumbnail": "https://image.itmedia.co.jp/mn/articles/2606/08/tt_MONOistWP97147_w240.jpg",
-      "published": "Mon, 08 Jun 2026 12:30:00 +0900",
-      "_is_video": false,
-      "_summary_clean": ""
-    },
-    {
-      "hash": "b8ec9be2715ae824",
-      "title": "AIペットロボット「モフリン」好調、カシオが新規事業に注力　4本目の柱に育成",
-      "orig_title": "AIペットロボット「モフリン」好調、カシオが新規事業に注力　4本目の柱に育成",
-      "summary": "",
-      "url": "https://www.itmedia.co.jp/news/articles/2606/08/news084.html",
-      "source": "ITmedia AI+",
-      "category": "AI国内",
-      "genre": "industry",
-      "score": 50.0,
-      "breakdown": {
-        "base": 50.0,
-        "genre_bonus": 0.0,
-        "source_bonus": 0.0,
-        "freshness": 0.0
-      },
-      "thumbnail": "https://image.itmedia.co.jp/news/articles/2606/08/cover_news084.jpg",
-      "published": "Mon, 08 Jun 2026 11:12:00 +0900",
-      "_is_video": false,
-      "_summary_clean": ""
-    },
-    {
-      "hash": "ef8f8dfa989d0cf6",
-      "title": "AIによるコード生成、3年後は3倍超に　AI普及で浮上する課題は",
-      "orig_title": "AIによるコード生成、3年後は3倍超に　AI普及で浮上する課題は",
-      "summary": "",
-      "url": "https://www.itmedia.co.jp/enterprise/articles/2606/05/news028.html",
-      "source": "ITmedia AI+",
-      "category": "AI国内",
-      "genre": "industry",
-      "score": 50.0,
-      "breakdown": {
-        "base": 50.0,
-        "genre_bonus": 0.0,
-        "source_bonus": 0.0,
-        "freshness": 0.0
-      },
-      "thumbnail": "https://image.itmedia.co.jp/enterprise/articles/2606/05/cover_news028.jpg",
-      "published": "Mon, 08 Jun 2026 08:00:00 +0900",
+      "thumbnail": "",
+      "published": "2026-06-07T23:56:38+00:00",
       "_is_video": false,
       "_summary_clean": ""
     }

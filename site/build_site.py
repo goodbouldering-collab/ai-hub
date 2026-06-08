@@ -133,8 +133,9 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
         "<header class='site-header scrolled' aria-label='サイトヘッダー'>"
         "<div class='site-header-inner'>"
         f"<a class='site-logo' href='{safe_home}'>"
-        "<span class='dot'></span>AIハブ"
-        " <span style='color:var(--muted);font-weight:600;font-size:13px;margin-left:6px;'>by 由井辰美</span>"
+        "<span class='brand-mark' aria-hidden='true'><span class='brand-a'>A</span><span class='brand-ha'>ハ</span></span>"
+        "<span class='wordmark'><span class='word-ai'>AI</span><span class='word-hub'>ハブ</span><span class='word-en'>AI HUB</span></span>"
+        "<span class='site-logo-by'>by 由井辰美</span>"
         "</a>"
         "<nav class='site-nav top-nav' aria-label='サイトナビ'>"
     ]
@@ -142,9 +143,10 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
     # 下層ページからは TOP のセクションへ飛ぶため href は "/#..." の絶対指定にする。
     parts.append("<a class='nav-link' href='/#packages'>受講プラン</a>")
     parts.append("<a class='nav-link' href='/#works'>制作実績</a>")
-    parts.append("<a class='nav-link' href='/#speaker'>講師紹介</a>")
-    parts.append("<a class='nav-link' href='/#faq'>FAQ</a>")
     parts.append("<a class='nav-link' href='/#lectures'>講習資料</a>")
+    parts.append("<a class='nav-link' href='/#speaker'>講師紹介</a>")
+    parts.append("<a class='nav-link' href='/watch/index.html'>AI Watch</a>")
+    parts.append("<a class='nav-link' href='/#faq'>FAQ</a>")
     parts.append(f"<a class='nav-link' href='{admin_href}' style='color:var(--muted);'>🔐 管理</a>")
     parts.append("</nav>")
     parts.append(
@@ -1599,12 +1601,15 @@ def _build_jsonld(kind: str, meta: dict, title: str, page_url: str) -> str:
         }
         return json.dumps(doc, ensure_ascii=False)
     if kind == "speaker":
+        avatar_url = str(meta.get("avatar_url") or "/img/speaker-anime.png")
+        avatar_image = avatar_url if avatar_url.startswith(("http://", "https://")) else SITE_URL + avatar_url
         doc = {
             "@context": "https://schema.org",
             "@type": "Person",
             "name": title,
             "jobTitle": str(meta.get("role") or "AI講師"),
             "url": page_url,
+            "image": avatar_image,
             "sameAs": [str(meta.get("profile_url"))] if meta.get("profile_url") else [],
         }
         return json.dumps(doc, ensure_ascii=False)
@@ -1715,6 +1720,28 @@ def build_speaker_page() -> bool:
     raw = SPEAKER_MD.read_text(encoding="utf-8")
     meta, body = _parse_frontmatter(raw)
     body_html = md.markdown(body, extensions=["extra", "sane_lists"])
+    avatar_url = str(meta.get("avatar_url") or "").strip()
+    if avatar_url:
+        speaker_name = html.escape(str(meta.get("name") or "由井 辰美"))
+        speaker_role = html.escape(str(meta.get("role") or "AI講師"))
+        avatar = html.escape(avatar_url, quote=True)
+        body_html = (
+            "<div class='speaker-page-visual'>"
+            "<div class='speaker-page-copy'>"
+            f"<p class='speaker-page-role'>{speaker_role}</p>"
+            "<p>写真をもとにしたアニメ調ビジュアル。AI講習・制作・運用をまとめて扱うAIハブの顔として、トップページと共通で表示しています。</p>"
+            "</div>"
+            "<div class='speaker-art speaker-art-animated'>"
+            f"<img src='{avatar}' alt='{speaker_name} のアニメ調ビジュアル' loading='eager' decoding='async'>"
+            "<span class='speaker-art-orbit' aria-hidden='true'></span>"
+            "<span class='speaker-art-chip ai' aria-hidden='true'>AI講師</span>"
+            "<span class='speaker-art-chip live' aria-hidden='true'>LIVE WORKSHOP</span>"
+            "<span class='speaker-art-spark s1' aria-hidden='true'></span>"
+            "<span class='speaker-art-spark s2' aria-hidden='true'></span>"
+            "<span class='speaker-art-spark s3' aria-hidden='true'></span>"
+            "</div>"
+            "</div>"
+        ) + body_html
     # 経歴(profile.yaml)を講師紹介ページに融合する
     profile_body = _build_profile_body()
     if profile_body:

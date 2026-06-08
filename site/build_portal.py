@@ -83,7 +83,7 @@ ADMIN_BUTTON_HTML = """
 """
 
 
-OG_IMAGE_URL = SITE_URL + "/img/hero-ai-hub-studio.png"
+OG_IMAGE_URL = SITE_URL + "/img/hero-ai-hub-studio-cool.png"
 
 
 def _build_ogp(title: str, description: str, page_url: str, *, image: str | None = None) -> str:
@@ -152,7 +152,7 @@ def _build_jsonld_website() -> str:
         "jobTitle": "AI講師 / Web経営コンサルタント / 複数事業オーナー",
         "email": OWNER_EMAIL,
         "url": SITE_URL + "/speaker.html",
-        "image": SITE_URL + "/img/speaker.webp",
+        "image": SITE_URL + "/img/speaker-anime.png",
         "worksFor": {"@id": org_id},
         "knowsAbout": ["生成AI", "クライミング", "店舗経営", "マーケティング", "補助金活用"],
         "description": "クライミング歴30年。ボルダリングカフェ「グッぼる」をはじめ9事業を経営しながら、滋賀の中小事業者にAI活用を教える。経営者でありコードを書く実装者でもある二重性が強み。",
@@ -168,16 +168,16 @@ def _build_jsonld_website() -> str:
         "description": "滋賀・彦根の中小事業者向けAI講習とWeb経営コンサルのポータル。",
     }
 
-    practice_title = "ClaudeCode・Codex 実践会"
-    prep_title = "ClaudeCode・Codex 準備会"
-    free_consult_title = "AI無料相談 30分"
-    consult_title = "AI個別相談 60分"
-    support_title = "AI伴走支援パック"
+    prep_title = "2. ClaudeCode Codex 準備"
+    practice_title = "1. ClaudeCode Codex 実践"
+    free_consult_title = "3. AI無料相談 とりあえず30分"
+    consult_title = "4. AI個別相談 しっかり60分"
+    support_title = "5. AI伴走支援 いっしょに導入"
 
     # 受講プランを Service + Offer として構造化（_render_packages の items と整合）
     plans = [
-        (practice_title, "Claude Code または Codex の環境が整い、自分で1つ以上動くものを作った人向けの月例少人数セミナー。持ち込み課題をその場で進める。", "5500", "5500", "Course"),
         (prep_title, "実践会の前に、環境構築・ログイン・最初の成果物作成までを整える少人数の準備講座。", "5500", "5500", "Course"),
+        (practice_title, "Claude Code または Codex の環境が整い、自分で1つ以上動くものを作った人向けの月例少人数セミナー。持ち込み課題をその場で進める。", "5500", "5500", "Course"),
         (free_consult_title, "来店またはオンラインで、AI導入の入口を30分で整理する無料相談。講習や伴走の前に、今の課題と次の一手を確認する。", "0", "0", "BusinessCoaching"),
         (consult_title, "経営者・専門職・初心者なんでも相談。AI活用、Claude Code / Codex導入、補助金申請まで現役オーナーがその場で解決。", "4400", "4400", "BusinessCoaching"),
         (support_title, "HP公開から事務自動化・経理・マーケまで6ヶ月で一気に定着。技術的な難所は講師が代行・支援。滋賀・彦根の補助金で負担1/3以下に。", "100000", "100000", "Service"),
@@ -354,40 +354,40 @@ PORTAL_CSS = """
 :root {
   /* ===== デフォルト=ライト（初心者に「難しそう」を与えない）。dark は data-theme=dark で。 ===== */
   /* --- 共有トークン（テーマ非依存） --- */
-  --cyan: #06A7D8;
-  --blue: #2357E5;
-  --sage: #86D1AF;
-  --emerald: #12A88A;
-  --amber: #F5C542;
-  --coral: #FF6B5B;
+  --cyan: #0098C8;
+  --blue: #0B4AA2;
+  --sage: #6FB7A8;
+  --emerald: #00A98F;
+  --amber: #C58B1B;
+  --coral: #E85E4F;
   --glass-blur: 18px;
   --radius: 8px;
   --radius-sm: 8px;
   --serif: "Inter", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
   --mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
-  --bg-base: #F4F7FB;
-  --bg-white: #FBFCFF;
+  --bg-base: #F4F9FC;
+  --bg-white: #FFFFFF;
   --bg-elev: #FFFFFF;
-  --text: #101827;
-  --text-soft: #3A475D;
-  --muted: #687489;
-  --line: rgba(16,24,39,0.12);
-  --line-strong: rgba(16,24,39,0.24);
-  --primary: #2357E5;
-  --primary-soft: #06A7D8;
-  --violet: #6C5CE7;
-  --primary-bg: rgba(35,87,229,0.08);
-  --grad: linear-gradient(120deg, #2357E5 0%, #06A7D8 52%, #9BE43A 100%);
-  --grad-soft: linear-gradient(120deg, rgba(35,87,229,.11), rgba(6,167,216,.11), rgba(155,228,58,.12));
-  --glass-bg: rgba(255,255,255,0.66);
-  --glass-border: rgba(16,24,39,0.13);
+  --text: #071A3A;
+  --text-soft: #35465D;
+  --muted: #6A7890;
+  --line: rgba(7,26,58,0.12);
+  --line-strong: rgba(7,26,58,0.24);
+  --primary: #005F9E;
+  --primary-soft: #0098C8;
+  --violet: #5667B0;
+  --primary-bg: rgba(0,152,200,0.08);
+  --grad: linear-gradient(120deg, #005F9E 0%, #0098C8 54%, #00A98F 100%);
+  --grad-soft: linear-gradient(120deg, rgba(0,95,158,.10), rgba(0,152,200,.10), rgba(0,169,143,.10));
+  --glass-bg: rgba(255,255,255,0.78);
+  --glass-border: rgba(7,26,58,0.12);
   --glass-hi: rgba(255,255,255,0.88);
-  --shadow-card: 0 1px 2px rgba(16,24,39,0.04), 0 16px 38px rgba(16,24,39,0.08);
-  --shadow-card-hover: 0 6px 16px rgba(16,24,39,0.08), 0 24px 58px rgba(35,87,229,0.13), 0 0 0 1px rgba(6,167,216,0.18);
-  --glow: 0 18px 58px rgba(35,87,229,0.16);
-  --grad-glow-a: rgba(35,87,229,.11);
-  --grad-glow-b: rgba(6,167,216,.11);
-  --grad-glow-c: rgba(155,228,58,.09);
+  --shadow-card: 0 1px 2px rgba(7,26,58,0.04), 0 14px 34px rgba(7,26,58,0.08);
+  --shadow-card-hover: 0 8px 22px rgba(7,26,58,0.08), 0 26px 64px rgba(0,95,158,0.14), 0 0 0 1px rgba(0,152,200,0.20);
+  --glow: 0 20px 64px rgba(0,152,200,0.18);
+  --grad-glow-a: rgba(0,95,158,.12);
+  --grad-glow-b: rgba(0,152,200,.12);
+  --grad-glow-c: rgba(197,139,27,.08);
 }
 :root[data-theme="dark"] {
   --bg-base: #0B1120;
@@ -430,8 +430,8 @@ body {
   line-height: 1.82;            /* しっとり: ゆったり読める日本語行間 */
   min-height: 100vh;
   background:
-    linear-gradient(120deg, rgba(35,87,229,.05) 0%, transparent 34%),
-    linear-gradient(180deg, var(--bg-white) 0%, #F4F7FB 45%, #EDF5F8 100%);
+    linear-gradient(110deg, rgba(0,152,200,.06) 0%, transparent 32%),
+    linear-gradient(180deg, #FFFFFF 0%, #F6FAFD 46%, #EEF7FA 100%);
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
   letter-spacing: 0;
@@ -443,10 +443,10 @@ body::before {
   z-index: 0;
   pointer-events: none;
   background:
-    linear-gradient(90deg, rgba(21,32,50,.035) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(21,32,50,.025) 1px, transparent 1px);
+    linear-gradient(90deg, rgba(7,26,58,.035) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(7,26,58,.024) 1px, transparent 1px);
   background-size: 72px 72px;
-  mask-image: linear-gradient(180deg, rgba(0,0,0,.44), transparent 58%);
+  mask-image: linear-gradient(180deg, rgba(0,0,0,.38), transparent 62%);
 }
 ::selection { background: rgba(40,84,197,.22); color: var(--text); }
 
@@ -454,10 +454,11 @@ body::before {
    カード/ヘッダー/ドロップに共通で当てる「ガラス質感」。
    半透明背景 + backdrop blur + 1px光彩ボーダー + 上端の内側ハイライト。 */
 .biz-card, .service-card, .pkg-card, .faq-item, .stat,
+.lecture-card, .pf-card, .voice-card, .explore-card, .contact-choice,
 .menu-drop, .diagnose-box, .hero-quiz {
   background: var(--glass-bg) !important;
-  backdrop-filter: blur(var(--glass-blur)) saturate(118%);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(118%);
+  backdrop-filter: blur(14px) saturate(112%);
+  -webkit-backdrop-filter: blur(14px) saturate(112%);
   border: 1px solid var(--glass-border) !important;
   box-shadow: var(--shadow-card);
 }
@@ -483,17 +484,19 @@ html { scroll-padding-top: 96px; }
 /* ---- header (fixed N-デザイン風) ---- */
 header.site-header {
   position: fixed; inset: 0 0 auto 0; z-index: 50;
+  background: rgba(255,255,255,.92);
+  border-bottom: 1px solid rgba(7,26,58,.10);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
   transition: background .3s, box-shadow .3s, backdrop-filter .3s;
 }
 header.site-header.scrolled {
-  background: var(--glass-bg);
-  border-bottom: 1px solid var(--line);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  background: rgba(255,255,255,.96);
+  box-shadow: 0 12px 34px rgba(7,26,58,.08);
 }
 .site-header-inner {
   max-width: 1280px; margin: 0 auto;
-  padding: 14px 24px;
+  padding: 12px 24px;
   display: flex; align-items: center; justify-content: space-between;
   gap: 16px;
 }
@@ -504,11 +507,11 @@ header.site-header.scrolled {
 }
 .site-logo .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--grad); box-shadow: 0 0 12px rgba(40,84,197,.42); display: inline-block; }
 .brand-mark {
-  width: 34px; height: 34px; border-radius: 10px;
+  width: 36px; height: 36px; border-radius: 8px;
   display: inline-flex; align-items: center; justify-content: center;
-  background: linear-gradient(135deg, #EEF5FF 0%, #FFFFFF 52%, #F0F4E8 100%);
-  border: 1px solid rgba(40,84,197,.20);
-  box-shadow: 0 10px 24px rgba(40,84,197,.14), inset 0 1px 0 rgba(255,255,255,.9);
+  background: linear-gradient(135deg, #FFFFFF 0%, #EAF8FF 58%, #EAFBF7 100%);
+  border: 1px solid rgba(0,95,158,.18);
+  box-shadow: 0 10px 24px rgba(0,95,158,.12), inset 0 1px 0 rgba(255,255,255,.95);
   color: #0F172A; font-family: var(--mono); font-weight: 900; line-height: 1;
 }
 .brand-mark .brand-a { font-size: 16px; letter-spacing: 0; color: var(--primary); }
@@ -531,9 +534,9 @@ header.site-header.scrolled {
 @media (max-width: 720px) {
   .wordmark .word-en, .site-logo-by { display: none; }
 }
-.site-nav { display: flex; align-items: center; gap: 22px; }
+.site-nav { display: flex; align-items: center; gap: 18px; }
 .site-nav a.nav-link {
-  font-size: 13.5px; font-weight: 600; color: var(--text-soft);
+  font-size: 13px; font-weight: 800; color: var(--text-soft);
   text-decoration: none; transition: color .2s;
 }
 .site-nav a.nav-link:hover { color: var(--primary); }
@@ -541,7 +544,7 @@ header.site-header.scrolled {
 .site-nav .menu-toggle {
   display: inline-flex; align-items: center; gap: 4px;
   background: transparent; border: none; cursor: pointer;
-  font: inherit; font-size: 13.5px; font-weight: 600; color: var(--text-soft);
+  font: inherit; font-size: 13px; font-weight: 800; color: var(--text-soft);
   padding: 0;
 }
 .site-nav .menu-toggle:hover { color: var(--primary); }
@@ -550,9 +553,9 @@ header.site-header.scrolled {
 .site-nav .menu-drop {
   position: absolute; right: 0; top: calc(100% + 10px);
   min-width: 220px; padding: 8px;
-  background: var(--glass-bg); border: 1px solid var(--line);
+  background: rgba(255,255,255,.94); border: 1px solid var(--line);
   border-radius: var(--radius-sm); box-shadow: var(--shadow-card);
-  backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px) saturate(140%);
   display: none;
 }
 .site-nav .menu-drop.open { display: block; }
@@ -570,9 +573,9 @@ header.site-header.scrolled {
 /* ヘッダー右端の主CTA: 無料相談（グラデ・最も目立たせる） */
 .site-nav .nav-cta {
   display: inline-flex; align-items: center; gap: 6px;
-  padding: 10px 20px; border-radius: 999px;
+  padding: 10px 18px; border-radius: var(--radius-sm);
   background: var(--grad); color: #fff;
-  font-size: 13.5px; font-weight: 700;
+  font-size: 13px; font-weight: 800;
   text-decoration: none;
   box-shadow: 0 6px 22px rgba(40,84,197,.24), inset 0 1px 0 rgba(255,255,255,.25);
   transition: transform .2s, box-shadow .2s, filter .2s;
@@ -614,31 +617,32 @@ header.site-header.scrolled {
 
 /* ---- hero ---- */
 .hero {
-  padding: 54px 0 66px;
-  display: grid; grid-template-columns: minmax(0, .95fr) minmax(420px, 1.05fr); gap: 52px; align-items: center;
+  padding: 62px 0 58px;
+  min-height: 620px;
+  display: grid; grid-template-columns: minmax(0, .88fr) minmax(460px, 1.12fr); gap: 48px; align-items: center;
   position: relative;
 }
 .hero::before {
   content: "";
   position: absolute;
-  inset: 8px calc(50% - 50vw) 0;
+  inset: 0 calc(50% - 50vw) 0;
   z-index: -1;
   background:
-    linear-gradient(120deg, rgba(255,255,255,.90) 0%, rgba(236,246,255,.84) 48%, rgba(239,255,245,.82) 100%);
-  border-top: 1px solid rgba(21,32,50,.06);
-  border-bottom: 1px solid rgba(21,32,50,.07);
+    linear-gradient(90deg, #FFFFFF 0%, rgba(255,255,255,.94) 34%, rgba(233,247,255,.72) 58%, rgba(236,251,249,.68) 100%);
+  border-top: 1px solid rgba(7,26,58,.06);
+  border-bottom: 1px solid rgba(7,26,58,.08);
 }
 .hero-text { text-align: left; min-width: 0; max-width: 100%; }
 @media (max-width: 900px) { .hero { grid-template-columns: 1fr; gap: 28px; }
   .hero-text { text-align: center; }
 }
 .hero .eyebrow {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 7px 16px; border-radius: 999px;
-  background: rgba(255,255,255,.78); color: var(--primary);
-  font-family: var(--mono); font-size: 11.5px; font-weight: 600; letter-spacing: .06em;
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 8px 24px rgba(21,32,50,.06);
+  display: block;
+  padding: 0;
+  background: transparent; color: var(--primary);
+  font-family: var(--mono); font-size: 11.5px; font-weight: 800; letter-spacing: .14em;
+  border: 0;
+  box-shadow: none;
   max-width: 100%;
 }
 @media (max-width: 560px) {
@@ -648,9 +652,9 @@ header.site-header.scrolled {
   }
 }
 .hero h1 {
-  margin: 20px 0 14px; font-size: clamp(42px, 6.2vw, 76px);
+  margin: 20px 0 14px; font-size: clamp(48px, 6.8vw, 88px);
   font-family: var(--serif); font-weight: 900; letter-spacing: 0;
-  color: var(--text); line-height: 1.12;
+  color: var(--text); line-height: 1.04;
   overflow-wrap: anywhere; word-break: normal;
 }
 .hero h1 .accent {
@@ -676,13 +680,14 @@ header.site-header.scrolled {
   color: var(--text); letter-spacing: 0;
 }
 .fusion-logo-large .pipe {
+  display: none;
   font-family: var(--mono); color: rgba(14,165,233,.45);
   font-size: .62em; margin: 0 .08em; transform: translateY(-.08em);
 }
 .hero-title-sub {
-  display: block; margin-top: 8px;
-  font-size: clamp(22px, 2.7vw, 34px);
-  line-height: 1.28; color: var(--text-soft); letter-spacing: 0;
+  display: block; margin-top: 14px;
+  font-size: clamp(23px, 2.9vw, 38px);
+  line-height: 1.24; color: var(--text); letter-spacing: 0;
 }
 .hero-title-sub strong {
   color: var(--primary);
@@ -690,13 +695,13 @@ header.site-header.scrolled {
 }
 .hero .sub-catch {
   max-width: 560px; margin: 0 0 18px;
-  font-size: clamp(15px, 1.7vw, 18px); font-weight: 700; color: var(--text); line-height: 1.7;
+  font-size: clamp(15px, 1.7vw, 18px); font-weight: 800; color: var(--text); line-height: 1.7;
 }
 .hero .sub-catch strong { color: var(--primary); }
 @media (max-width: 900px) { .hero .sub-catch { margin: 0 auto 18px; } }
 .hero .lead {
   max-width: 560px; margin: 0 0 28px;
-  font-size: clamp(14px, 1.5vw, 16px); color: var(--text-soft); line-height: 1.85;
+  font-size: clamp(14px, 1.5vw, 16px); color: var(--text-soft); line-height: 1.9;
 }
 .hero .lead strong { color: var(--text); font-weight: 700; }
 @media (max-width: 900px) { .hero .lead { margin: 0 auto 28px; } }
@@ -705,8 +710,8 @@ header.site-header.scrolled {
 }
 @media (max-width: 900px) { .hero-actions { justify-content: center; } }
 .btn-lg { padding: 16px 32px; font-size: 16px; }
-/* 主CTAを脈動させて視線を集める（控えめ・reduced-motionで停止） */
-.hero-actions .btn-primary { animation: cta-pulse 2.6s ease-in-out infinite; }
+/* 主CTAは静かに強調。過度な脈動はクールな印象を崩すため使わない。 */
+.hero-actions .btn-primary { animation: none; }
 @keyframes cta-pulse {
   0%,100% { box-shadow: 0 8px 26px rgba(40,84,197,.28), inset 0 1px 0 rgba(255,255,255,.25); }
   50% { box-shadow: 0 12px 34px rgba(15,143,114,.25), inset 0 1px 0 rgba(255,255,255,.30); }
@@ -753,13 +758,13 @@ header.site-header.scrolled {
 .hero-photo-card {
   position: relative;
   justify-self: end;
-  width: min(100%, 580px);
-  aspect-ratio: 5 / 4;
-  padding: 10px;
+  width: min(100%, 640px);
+  aspect-ratio: 16 / 10;
+  padding: 8px;
   border-radius: var(--radius);
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 24px 68px rgba(16,24,39,.16), inset 0 1px 0 var(--glass-hi);
+  background: rgba(255,255,255,.84);
+  border: 1px solid rgba(7,26,58,.12);
+  box-shadow: 0 28px 74px rgba(7,26,58,.15), inset 0 1px 0 var(--glass-hi);
   backdrop-filter: blur(var(--glass-blur)) saturate(126%);
   -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(126%);
   overflow: hidden;
@@ -775,12 +780,12 @@ header.site-header.scrolled {
 .hero-photo-card::after {
   content: "";
   position: absolute;
-  inset: 10px;
+  inset: 8px;
   border-radius: 6px;
   pointer-events: none;
   background:
-    linear-gradient(180deg, rgba(255,255,255,.02) 0%, rgba(11,16,32,.16) 100%),
-    linear-gradient(120deg, rgba(35,87,229,.10), rgba(6,167,216,.08), transparent 62%);
+    linear-gradient(180deg, rgba(255,255,255,.02) 0%, rgba(7,26,58,.10) 100%),
+    linear-gradient(120deg, rgba(0,95,158,.08), rgba(0,152,200,.08), transparent 64%);
 }
 .hero-photo-note {
   position: absolute;
@@ -792,11 +797,11 @@ header.site-header.scrolled {
   gap: 9px;
   padding: 10px 13px;
   border-radius: var(--radius-sm);
-  background: rgba(255,255,255,.88);
+  background: rgba(255,255,255,.92);
   border: 1px solid rgba(255,255,255,.72);
   box-shadow: 0 14px 32px rgba(21,32,50,.14);
   color: var(--text);
-  font-size: 12.5px;
+  font-size: 12px;
   font-weight: 800;
 }
 .hero-photo-note i {
@@ -814,7 +819,7 @@ header.site-header.scrolled {
   width: min(48%, 260px);
   padding: 12px;
   border-radius: var(--radius-sm);
-  background: rgba(11,16,32,.72);
+  background: rgba(7,26,58,.76);
   border: 1px solid rgba(255,255,255,.18);
   color: #fff;
   backdrop-filter: blur(16px) saturate(140%);
@@ -852,7 +857,7 @@ header.site-header.scrolled {
   padding: 9px;
   border-radius: var(--radius-sm);
   border: 1px solid rgba(255,255,255,.62);
-  background: rgba(255,255,255,.78);
+  background: rgba(255,255,255,.86);
   color: var(--text);
   text-decoration: none;
   box-shadow: 0 12px 30px rgba(16,24,39,.14);
@@ -1216,18 +1221,18 @@ header.site-header.scrolled {
 }
 .btn {
   display: inline-flex; align-items: center; gap: 8px;
-  padding: 13px 28px; border-radius: 999px;
-  font-size: 14.5px; font-weight: 600; text-decoration: none;
+  padding: 13px 26px; border-radius: var(--radius-sm);
+  font-size: 14.5px; font-weight: 800; text-decoration: none;
   transition: transform .2s, box-shadow .2s, background .2s, filter .2s;
   cursor: pointer; border: none; letter-spacing: 0;
 }
 .btn-primary {
   background: var(--grad); color: #fff;
-  box-shadow: 0 8px 28px rgba(40,84,197,.26), inset 0 1px 0 rgba(255,255,255,.25);
+  box-shadow: 0 10px 28px rgba(0,95,158,.24), inset 0 1px 0 rgba(255,255,255,.25);
 }
-.btn-primary:hover { transform: translateY(-2px); filter: brightness(1.08); box-shadow: 0 14px 38px rgba(15,143,114,.23), inset 0 1px 0 rgba(255,255,255,.30); }
+.btn-primary:hover { transform: translateY(-2px); filter: brightness(1.06); box-shadow: 0 16px 42px rgba(0,152,200,.22), inset 0 1px 0 rgba(255,255,255,.30); }
 .btn-secondary {
-  background: var(--glass-bg); color: var(--text);
+  background: rgba(255,255,255,.84); color: var(--text);
   border: 1px solid var(--glass-border);
   backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
   box-shadow: inset 0 1px 0 var(--glass-hi);
@@ -1238,14 +1243,25 @@ header.site-header.scrolled {
 
 /* ---- stats strip ---- */
 .stats-strip {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
-  margin: 24px 0 56px;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+  margin: 0 0 56px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255,255,255,.76);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
 }
 @media (max-width: 720px) { .stats-strip { grid-template-columns: repeat(2, 1fr); } }
 .stat {
-  text-align: center; padding: 22px 18px; border-radius: var(--radius-sm);
-  background: var(--bg-white); border: 1px solid var(--line);
-  box-shadow: var(--shadow-card);
+  text-align: center; padding: 22px 18px; border-radius: 0;
+  background: transparent; border: 0;
+  border-right: 1px solid var(--line);
+  box-shadow: none;
+}
+.stat:last-child { border-right: 0; }
+@media (max-width: 720px) {
+  .stat:nth-child(2n) { border-right: 0; }
+  .stat:nth-child(n+3) { border-top: 1px solid var(--line); }
 }
 .stat .num {
   font-size: clamp(26px, 3.4vw, 38px); font-weight: 800;
@@ -1256,21 +1272,45 @@ header.site-header.scrolled {
 .stat .stat-sub { font-size: 10.5px; color: var(--muted); margin-top: 3px; font-style: italic; opacity: .8; }
 
 /* ---- section frame ---- */
-section.block { padding: 72px 0; scroll-margin-top: 96px; }
+section.block { padding: 70px 0; scroll-margin-top: 96px; }
 section.block + section.block { border-top: 1px solid var(--line); }
 .section-title {
   font-family: var(--serif);
-  font-size: clamp(28px, 4vw, 46px); font-weight: 700; letter-spacing: 0;
+  font-size: clamp(28px, 4vw, 44px); font-weight: 900; letter-spacing: 0;
   color: var(--text); text-align: center; margin: 0 0 14px; line-height: 1.15;
   overflow-wrap: anywhere;
 }
+.packages-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.packages-title span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--grad);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: clamp(13px, 1.5vw, 16px);
+  font-weight: 900;
+  line-height: 1;
+  box-shadow: 0 10px 24px rgba(0,95,158,.18);
+}
+#packages .section-sub { margin-bottom: 26px; }
+#packages .packages-stage { margin-top: 0; }
 .section-sub {
   text-align: center; color: var(--text-soft);
-  font-size: 14.5px; max-width: 640px; margin: 0 auto 48px; line-height: 1.8;
+  font-size: 14.5px; width: 100%; max-width: 640px; margin: 0 auto 48px; line-height: 1.8;
+  overflow-wrap: anywhere;
 }
 .section-heading {
   font-family: var(--mono);
-  font-size: 11px; font-weight: 700; letter-spacing: .18em;
+  font-size: 11px; font-weight: 800; letter-spacing: .16em;
   text-transform: uppercase;
   background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent;
   margin: 0 0 14px; text-align: center;
@@ -1444,7 +1484,7 @@ section.block + section.block { border-top: 1px solid var(--line); }
   .fade-up { opacity: 1; transform: none; transition: none; }
 }
 
-/* ---- packages (Claude Code / Codex 講習プラン) ---- */
+/* ---- packages (彦根AI講習) ---- */
 .packages-stage {
   display: grid;
   grid-template-columns: minmax(280px, .94fr) minmax(0, 1.06fr);
@@ -1459,10 +1499,10 @@ section.block + section.block { border-top: 1px solid var(--line); }
   border-radius: var(--radius);
   border: 1px solid var(--glass-border);
   background:
-    linear-gradient(140deg, rgba(255,255,255,.78), rgba(255,255,255,.44)),
-    linear-gradient(120deg, rgba(43,167,200,.12), rgba(245,249,255,.7) 42%, rgba(122,165,138,.15));
-  backdrop-filter: blur(22px) saturate(128%);
-  -webkit-backdrop-filter: blur(22px) saturate(128%);
+    linear-gradient(140deg, rgba(255,255,255,.88), rgba(255,255,255,.64)),
+    linear-gradient(120deg, rgba(0,152,200,.10), rgba(246,250,253,.78) 42%, rgba(0,169,143,.10));
+  backdrop-filter: blur(16px) saturate(118%);
+  -webkit-backdrop-filter: blur(16px) saturate(118%);
   box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255,255,255,.82);
 }
 .package-visual {
@@ -1474,19 +1514,7 @@ section.block + section.block { border-top: 1px solid var(--line); }
 }
 .package-visual::before,
 .package-visual::after {
-  content: "";
-  position: absolute;
-  border-radius: 999px;
-  pointer-events: none;
-  filter: blur(2px);
-}
-.package-visual::before {
-  width: 220px; height: 220px; left: -88px; top: -74px;
-  background: rgba(43,167,200,.18);
-}
-.package-visual::after {
-  width: 190px; height: 190px; right: -64px; bottom: -60px;
-  background: rgba(217,133,43,.14);
+  content: none;
 }
 .package-line-art {
   position: relative;
@@ -1517,9 +1545,9 @@ section.block + section.block { border-top: 1px solid var(--line); }
 }
 .package-visual-label span {
   padding: 5px 10px;
-  border-radius: 999px;
-  border: 1px solid rgba(40,84,197,.14);
-  background: rgba(255,255,255,.54);
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(0,95,158,.14);
+  background: rgba(255,255,255,.70);
 }
 @keyframes lineOrbit { to { transform: rotate(360deg); } }
 @keyframes linePulse { 0%,100% { transform: scale(1); opacity: .82; } 50% { transform: scale(1.08); opacity: 1; } }
@@ -1552,6 +1580,8 @@ section.block + section.block { border-top: 1px solid var(--line); }
   color: var(--text-soft);
   line-height: 1.85;
   font-size: 14.5px;
+  width: 100%;
+  overflow-wrap: anywhere;
 }
 .package-track-tabs {
   display: grid;
@@ -1581,7 +1611,7 @@ section.block + section.block { border-top: 1px solid var(--line); }
   min-height: 100%;
   min-width: 0;
   background:
-    linear-gradient(145deg, rgba(255,255,255,.72), rgba(255,255,255,.44)),
+    linear-gradient(145deg, rgba(255,255,255,.86), rgba(255,255,255,.62)),
     var(--glass-bg) !important;
   border: 1px solid var(--glass-border);
   border-radius: var(--radius);
@@ -1597,15 +1627,13 @@ section.block + section.block { border-top: 1px solid var(--line); }
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background:
-    radial-gradient(180px 140px at 16% 0%, rgba(43,167,200,.14), transparent 72%),
-    radial-gradient(180px 150px at 100% 20%, rgba(217,133,43,.10), transparent 70%);
-  opacity: .86;
+  background: linear-gradient(90deg, rgba(0,152,200,.10), transparent 44%, rgba(0,169,143,.06));
+  opacity: .72;
 }
 .pkg-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-4px);
   box-shadow: var(--shadow-card-hover), inset 0 1px 0 rgba(255,255,255,.85);
-  border-color: rgba(40,84,197,.24);
+  border-color: rgba(0,152,200,.24);
 }
 .pkg-featured,
 .pkg-wide { grid-column: span 6; }
@@ -1630,15 +1658,9 @@ section.block + section.block { border-top: 1px solid var(--line); }
   letter-spacing: .08em;
   color: var(--primary);
   background: rgba(255,255,255,.56);
-  border: 1px solid rgba(40,84,197,.14);
+  border: 1px solid rgba(0,95,158,.14);
   padding: 4px 10px;
-  border-radius: 999px;
-}
-.pkg-no {
-  font-family: var(--mono);
-  font-size: 12px;
-  font-weight: 900;
-  color: rgba(40,84,197,.34);
+  border-radius: var(--radius-sm);
 }
 .pkg-head { display: block; }
 .pkg-title { font-size: 17px; font-weight: 900; color: var(--text); line-height: 1.38; margin: 0; flex: 1; letter-spacing: 0; min-width: 0; overflow-wrap: anywhere; }
@@ -1647,7 +1669,7 @@ section.block + section.block { border-top: 1px solid var(--line); }
 .pkg-level {
   font-family: var(--mono); font-size: 10.5px; font-weight: 800; letter-spacing: .06em;
   padding: 3px 10px; border: 1px solid var(--glass-border); color: var(--primary);
-  background: var(--primary-bg); border-radius: 999px;
+  background: var(--primary-bg); border-radius: var(--radius-sm);
 }
 .pkg-price {
   font-size: 20px; font-weight: 900;
@@ -1656,7 +1678,7 @@ section.block + section.block { border-top: 1px solid var(--line); }
 .pkg-subsidy {
   display: inline-flex; align-items: center; gap: 4px;
   font-size: 11px; font-weight: 800; color: #047857;
-  background: rgba(209,250,229,.74); padding: 4px 10px; border-radius: 999px;
+  background: rgba(209,250,229,.74); padding: 4px 10px; border-radius: var(--radius-sm);
   width: fit-content;
 }
 .pkg-desc { font-size: 13px; line-height: 1.78; color: var(--text-soft); flex: 1; margin: 0; }
@@ -1731,6 +1753,14 @@ section.block + section.block { border-top: 1px solid var(--line); }
 }
 @media (max-width: 680px) {
   .packages-stage { margin-top: -12px; }
+  .packages-stage,
+  .package-visual,
+  .package-stage-copy,
+  .pkg-card {
+    min-width: 0;
+    max-width: 100%;
+  }
+  #packages .section-sub { padding: 0 4px; }
   .package-track-tabs { grid-template-columns: 1fr; }
   .packages-grid { grid-template-columns: 1fr; }
   .pkg-card, .pkg-featured, .pkg-wide { grid-column: auto; }
@@ -1744,12 +1774,12 @@ section.block + section.block { border-top: 1px solid var(--line); }
 /* ---- theme toggle ---- */
 .theme-toggle {
   width: 38px; height: 38px; border-radius: var(--radius-sm);
-  border: 1px solid var(--line); background: var(--bg-white);
+  border: 1px solid var(--line); background: rgba(255,255,255,.84);
   font-size: 16px; cursor: pointer; line-height: 1;
   display: inline-flex; align-items: center; justify-content: center;
   transition: transform .15s ease, border-color .15s ease, background .3s ease;
 }
-.theme-toggle:hover { transform: translateY(-1px) rotate(-12deg); border-color: var(--primary); }
+.theme-toggle:hover { transform: translateY(-1px); border-color: var(--primary); }
 .theme-toggle-mobile { display: none; }
 @media (max-width: 900px) {
   .theme-toggle-mobile { display: inline-flex; margin-right: 8px; }
@@ -1993,6 +2023,44 @@ section.block + section.block { border-top: 1px solid var(--line); }
 @media (max-width: 720px) {
   .speaker-art { max-width: 320px; margin: 0 auto; }
   .speaker-art-chip.live { top: 20px; right: 18px; bottom: auto; }
+}
+.speaker-page-visual {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 340px);
+  gap: 28px;
+  align-items: center;
+  margin: 0 0 34px;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(140deg, rgba(255,255,255,.92), rgba(239,249,253,.76)),
+    linear-gradient(90deg, rgba(0,152,200,.08), transparent);
+  box-shadow: var(--shadow-card);
+}
+.speaker-page-copy {
+  min-width: 0;
+}
+.speaker-page-copy p {
+  margin: 0;
+  color: var(--text-soft);
+  line-height: 1.85;
+}
+.speaker-page-role {
+  color: var(--primary) !important;
+  font-weight: 900;
+  margin: 0 0 10px !important;
+}
+.speaker-page-visual .speaker-art {
+  min-height: 300px;
+  width: 100%;
+}
+@media (max-width: 760px) {
+  .speaker-page-visual {
+    grid-template-columns: 1fr;
+    padding: 20px;
+    text-align: left;
+  }
 }
 /* CSSプレースホルダ: クライミング×テクノロジーの抽象アート */
 .speaker-art-ph {
@@ -2341,15 +2409,16 @@ def _render_header() -> str:
         "<nav class='site-nav' aria-label='メインナビ'>"
         "<a class='nav-link' href='#packages'>受講プラン</a>"
         "<a class='nav-link' href='#works'>制作実績</a>"
+        "<a class='nav-link' href='#lectures'>講習資料</a>"
         "<a class='nav-link' href='#speaker'>講師紹介</a>"
-        "<a class='nav-link' href='#faq'>FAQ</a>"
+        "<a class='nav-link' href='/watch/index.html'>AI Watch</a>"
         "<div class='menu-wrap'>"
         "<button class='menu-toggle' id='menu-toggle' aria-haspopup='menu' aria-expanded='false'>その他"
         "<svg class='chev' width='14' height='14' viewBox='0 0 20 20' fill='none' aria-hidden='true'><path d='M5 8l5 5 5-5' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>"
         "</button>"
         "<div class='menu-drop' id='menu-drop' role='menu'>"
         "<a href='#flow'>🛠 ご依頼の流れ</a>"
-        "<a href='#lectures'>📚 講習資料</a>"
+        "<a href='#faq'>FAQ</a>"
         "<a href='/portfolio.html'>📂 実績の詳細</a>"
         "<a class='menu-drop-sep' href='/admin'>🔐 管理ログイン</a>"
         "</div>"
@@ -2365,9 +2434,10 @@ def _render_header() -> str:
         "<div class='mobile-nav' id='mobile-nav'>"
         "<a href='#packages'>受講プラン</a>"
         "<a href='#works'>制作実績</a>"
-        "<a href='#speaker'>講師紹介</a>"
-        "<a href='#flow'>ご依頼の流れ</a>"
         "<a href='#lectures'>講習資料</a>"
+        "<a href='#speaker'>講師紹介</a>"
+        "<a href='/watch/index.html'>AI Watch</a>"
+        "<a href='#flow'>ご依頼の流れ</a>"
         "<a href='#faq'>FAQ</a>"
         "<a class='login-btn-mobile' href='#contact'>📩 無料で30分相談する</a>"
         "<a class='mobile-admin-link' href='/admin'>🔐 管理ログイン</a>"
@@ -2544,19 +2614,19 @@ HEADER_JS = """
     var RESULT = {
       beginner: {
         badge: '準備', title: '実践会の前に環境を整える',
-        name: 'ClaudeCode・Codex 準備会',
+        name: '2. ClaudeCode Codex 準備',
         desc: 'ログイン、作業フォルダ、最初の依頼、差分確認までを整えます。実践会で置いていかれない状態を作ります。',
         level_id: 'beginner'
       },
       intermediate: {
         badge: '実践', title: '持ち込み課題を深く進める',
-        name: 'ClaudeCode・Codex 実践会',
+        name: '1. ClaudeCode Codex 実践',
         desc: '3日以上の利用経験、1つ以上の成果物、基本コマンドへの抵抗がない方に向く月例少人数会です。',
         level_id: 'intermediate'
       },
       advanced: {
         badge: '実装', title: '業務に組み込む',
-        name: 'AI伴走支援パック',
+        name: '5. AI伴走支援 いっしょに導入',
         desc: '自社業務の自動化、社内手順化、補助金前提の導入まで進めたい方向けです。',
         level_id: 'advanced'
       }
@@ -2774,22 +2844,21 @@ def _render_hero() -> str:
     return (
         "<section class='hero' id='top'>"
         "<div class='hero-text fade-up'>"
-        "<span class='eyebrow'>彦根・滋賀｜AIコーディングと業務AIを学ぶ入口</span>"
+        "<span class='eyebrow'>AI TRAINING / PORTFOLIO / DAILY WATCH</span>"
         "<h1 class='hero-brand'>"
         "<span class='fusion-logo-large'><span class='ai'>AI</span><span class='pipe'>|</span><span class='hub'>ハブ</span></span>"
-        "<span class='hero-title-sub'><strong>AIに作らせ、自分で確認する力</strong>を、ひとつの入口に。</span>"
+        "<span class='hero-title-sub'><strong>自分のAIを</strong>ひとつに集める場所。</span>"
         "<span class='visually-hidden'>｜滋賀・彦根の中小事業者向けAI講習・AI導入支援・補助金申請サポート</span>"
         "</h1>"
         "<p class='sub-catch'>"
-        "<strong>AIコーディングは、まだ早期層の実務スキル。講習、相談、制作実績、AI情報を整理して、次にやることをすぐ選べるトップへ。</strong>"
+        "<strong>講習、相談、制作実績、AI/SNS情報収集を1つにまとめ、次にやることをすぐ選べる入口です。</strong>"
         "</p>"
         "<p class='lead'>"
-        "上位0.6%級という言い方が出るほど、AIコーディングはまだ少数派です。"
-        "だからこそ、コード暗記よりも、依頼文、差分確認、ブラウザ確認、公開前レビューを早く身につける価値があります。"
+        "初心者には丁寧に、実務では速く。AIの使い方だけでなく、依頼文、差分確認、ブラウザ確認、公開前レビューまで、仕事に入る形で整理します。"
         "</p>"
         "<div class='hero-actions'>"
-        "<a class='btn btn-primary btn-lg' href='#contact'>無料で30分相談する</a>"
-        "<button type='button' class='btn btn-secondary btn-lg diagnose-open' data-prelevel='beginner'>30秒でAIレベル診断</button>"
+        "<a class='btn btn-primary btn-lg' href='#contact'>無料相談を申し込む</a>"
+        "<a class='btn btn-secondary btn-lg' href='#lectures'>講習資料を見る</a>"
         "</div>"
         "<ul class='hero-trust'>"
         "<li>相談は<strong>無料</strong></li>"
@@ -2804,7 +2873,7 @@ def _render_hero() -> str:
         "</div>"
         "</div>"
         "<div class='hero-photo-card fade-up d2' aria-label='AIハブの相談イメージ'>"
-        "<img src='/img/hero-ai-hub-studio.png' alt='AI相談と制作、講習資料を一緒に整理するAIハブのイメージ' decoding='async' fetchpriority='high'>"
+        "<img src='/img/hero-ai-hub-studio-cool.png' alt='AI相談と制作、講習資料を一緒に整理するAIハブのクールなスタジオイメージ' decoding='async' fetchpriority='high'>"
         "<span class='hero-photo-note'><i aria-hidden='true'></i>相談・制作・講習を一つに</span>"
         "<div class='hero-photo-map' aria-hidden='true'>"
         "<svg viewBox='0 0 280 170' fill='none' xmlns='http://www.w3.org/2000/svg'>"
@@ -2927,15 +2996,29 @@ def _render_services() -> str:
 
 
 def _render_courses_packages() -> str:
-    """Claude Code / Codex 実践会を中心にした講習プラン。"""
-    practice_title = "ClaudeCode・Codex 実践会"
-    prep_title = "ClaudeCode・Codex 準備会"
+    """彦根AI講習を中心にした講習プラン。"""
+    prep_title = "2. ClaudeCode Codex 準備"
+    practice_title = "1. ClaudeCode Codex 実践"
     seminar_url = "https://goodbouldering.com/?pid=188553378"
-    free_consult_title = "AI無料相談 30分"
+    free_consult_title = "3. AI無料相談 とりあえず30分"
     free_consult_url = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/AW5O5XSBHLEHYUBHLZUGFKYE"
-    consult_title = "AI個別相談 60分"
-    support_title = "AI伴走支援パック"
+    consult_title = "4. AI個別相談 しっかり60分"
+    support_title = "5. AI伴走支援 いっしょに導入"
     items = [
+        {
+            "icon": "↗",
+            "cat": "入門・準備編",
+            "level": "準備中",
+            "level_id": "beginner",
+            "title": prep_title,
+            "price": "5,500円",
+            "duration": "90分 / 少人数",
+            "subsidy": False,
+            "desc": "実践会に来る前の入口。ログイン、作業フォルダ、最初の依頼、差分確認までを整え、当日トラブルで時間が溶けない状態にします。",
+            "fit": ["インストールやログインが不安", "Codex / Claude Code の違いを整理したい", "まず1つ小さな成果物を作りたい"],
+            "url": seminar_url,
+            "cta": "準備会の詳細を見る",
+        },
         {
             "icon": "⌘",
             "cat": "月例・実践編",
@@ -2958,20 +3041,6 @@ def _render_courses_packages() -> str:
             "url": seminar_url,
             "cta": "実践会の詳細を見る",
             "variant": "featured",
-        },
-        {
-            "icon": "↗",
-            "cat": "入門・準備編",
-            "level": "準備中",
-            "level_id": "beginner",
-            "title": prep_title,
-            "price": "5,500円",
-            "duration": "90分 / 少人数",
-            "subsidy": False,
-            "desc": "実践会に来る前の入口。ログイン、作業フォルダ、最初の依頼、差分確認までを整え、当日トラブルで時間が溶けない状態にします。",
-            "fit": ["インストールやログインが不安", "Codex / Claude Code の違いを整理したい", "まず1つ小さな成果物を作りたい"],
-            "url": seminar_url,
-            "cta": "準備会の詳細を見る",
         },
         {
             "icon": "◧",
@@ -3044,17 +3113,17 @@ def _render_courses_packages() -> str:
         "<circle cx='200' cy='180' r='54'/>"
         "</g>"
         "<g fill='#152032' font-family='Inter, Noto Sans JP, sans-serif' text-anchor='middle' font-weight='800'>"
-        "<text x='200' y='174' font-size='18'>Claude Code</text>"
-        "<text x='200' y='199' font-size='18'>Codex Lab</text>"
+        "<text x='200' y='174' font-size='20'>彦根AI講習</text>"
+        "<text x='200' y='200' font-size='16'>受付中</text>"
         "</g>"
         "</svg>"
         "</div>"
-        "<div class='package-visual-label'><span>環境構築済み</span><span>成果物あり</span><span>課題持ち込み</span></div>"
+        "<div class='package-visual-label'><span>準備会</span><span>実践会</span><span>個別相談</span></div>"
         "</div>"
         "<div class='package-stage-copy'>"
-        "<p class='package-stage-kicker'>HIKONE MONTHLY LAB</p>"
-        "<h3>入口は広く、実践会は深く。<br>彦根で Claude Code / Codex を定期開催。</h3>"
-        "<p>実践会は、当日のインストール対応で終わらないよう参加条件を明確にします。まだ不安な方には準備会を用意し、実践会の質と集客の入口を両方守ります。</p>"
+        "<p class='package-stage-kicker'>HIKONE AI LESSON</p>"
+        "<h3>彦根AI講習</h3>"
+        "<p>Claude Code / Codex を使って、AIに作らせ、自分で確認する力を身につける講習です。はじめての方は準備会、課題を進めたい方は実践会へ。</p>"
         "<div class='package-track-tabs'>"
         "<div class='track-pill'><b>準備会</b><span>環境構築・最初の成果物まで</span></div>"
         "<div class='track-pill'><b>実践会</b><span>3日以上利用 + 成果物 + 課題持ち込み</span></div>"
@@ -3090,7 +3159,7 @@ def _render_courses_packages() -> str:
         parts.append(
             f"<div class='pkg-card{variant_cls} fade-up d{(i % 3) + 1}' data-level='{html.escape(lvl_id)}'>"
             f"<div class='pkg-body'>"
-            f"<div class='pkg-topline'><span class='pkg-cat'>{html.escape(it['cat'])}</span><span class='pkg-no'>{i + 1:02d}</span></div>"
+            f"<div class='pkg-topline'><span class='pkg-cat'>{html.escape(it['cat'])}</span></div>"
             f"<div class='pkg-head'>"
             f"<h3 class='pkg-title'>{html.escape(it['title'])}</h3>"
             f"</div>"
@@ -3265,10 +3334,10 @@ def _render_flow() -> str:
 FAQ_QA = [
     ("彦根・滋賀でAIの講習や相談はできますか？",
      "はい。滋賀県彦根市を拠点に、彦根・湖東・東近江を中心とした対面のAI講習・個別相談を行っています。京都・大阪・名古屋までは出張可、リモートなら全国対応します。"),
-    ("Claude Code / Codex 実践会の参加条件はありますか？",
+    ("彦根AI講習 実践会の参加条件はありますか？",
      "あります。実践会は、Claude Code または Codex を3日以上使ったことがあり、自分で1つ以上動くものを作った経験があり、cd・ls・git など基本コマンドに抵抗がない方を対象にします。申込時に、環境構築済みか、作ったもの、当日扱いたい課題を確認します。条件に満たない方は準備会を案内します。"),
     ("料金はどれくらいですか？",
-     "AI無料相談30分は無料、AI個別相談60分は4,400円、ClaudeCode・Codex講習は5,500円から。AI伴走支援パックは月額10万円×6ヶ月が目安です。LP制作は1本18〜30万円が目安。多くは補助金併用を前提に組みます。"),
+     "3. AI無料相談 とりあえず30分は無料、4. AI個別相談 しっかり60分は4,400円、1. ClaudeCode Codex 実践と2. ClaudeCode Codex 準備は5,500円から。5. AI伴走支援 いっしょに導入は月額10万円×6ヶ月が目安です。LP制作は1本18〜30万円が目安。多くは補助金併用を前提に組みます。"),
     ("補助金は使えますか？滋賀の事業者でも対象ですか？",
      "講習・伴走パックは「デジタル化・AI導入補助金」や滋賀県・彦根市の補助金の対象になります。補助率は小規模事業者で最大4/5、実質負担が1/3以下になるケースが多いです。申請からツール選定・実装・定着まで一気通貫で支援します。"),
     ("パソコンやスマホが苦手ですが、大丈夫ですか？",
@@ -3363,11 +3432,11 @@ def _render_speaker_section() -> str:
         "</div>"
         + (
             f"<div class='speaker-art speaker-art-animated'>"
-            f"<img src='{html.escape(sp.get('avatar_url') or '', quote=True)}' alt='{name} のビジュアル' "
+            f"<img src='{html.escape(sp.get('avatar_url') or '', quote=True)}' alt='{name} のアニメ調ビジュアル' "
             f"loading='lazy' decoding='async'>"
             "<span class='speaker-art-orbit' aria-hidden='true'></span>"
-            "<span class='speaker-art-chip ai' aria-hidden='true'>AI GUIDE</span>"
-            "<span class='speaker-art-chip live' aria-hidden='true'>LIVE LESSON</span>"
+            "<span class='speaker-art-chip ai' aria-hidden='true'>AI講師</span>"
+            "<span class='speaker-art-chip live' aria-hidden='true'>LIVE WORKSHOP</span>"
             "<span class='speaker-art-spark s1' aria-hidden='true'></span>"
             "<span class='speaker-art-spark s2' aria-hidden='true'></span>"
             "<span class='speaker-art-spark s3' aria-hidden='true'></span>"
@@ -3701,15 +3770,11 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
 
     parts.append(_render_hero())
 
-    # 1. 受講プラン（Claude Code / Codex 実践会を中心に再編）— メインCTA
+    # 1. 受講プラン（彦根AI講習を中心に再編）— メインCTA
     parts.append("<section class='block' id='packages'>")
-    parts.append("<p class='section-heading fade-up'>HIKONE AI LAB</p>")
-    parts.append("<h2 class='section-title fade-up d1'><span class='title-line'>彦根 Claude Code</span> <span class='title-line'>/ Codex</span> <span class='title-line'>講習プラン</span></h2>")
-    parts.append("<p class='section-sub fade-up d2'>"
-                 "<span class='lv-flow'><span class='lv-flow-step'>準備会 環境を整える</span><span class='lv-flow-arr'>→</span>"
-                 "<span class='lv-flow-step'>実践会 作って深める</span><span class='lv-flow-arr'>→</span>"
-                 "<span class='lv-flow-step'>伴走 業務に入れる</span></span><br>"
-                 "実践会は参加条件を設け、初心者は準備会へ案内します。場の質を守りながら、入口は閉じません。</p>")
+    parts.append("<p class='section-heading fade-up'>AI LESSON</p>")
+    parts.append("<h2 class='section-title packages-title fade-up d1'>彦根AI講習 <span>受付中！</span></h2>")
+    parts.append("<p class='section-sub fade-up d2'>Claude Code / Codex の準備会・実践会・個別相談を、目的に合わせて選べます。</p>")
     parts.append(_render_courses_packages())
     parts.append("</section>")
 

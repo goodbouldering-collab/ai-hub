@@ -1302,7 +1302,6 @@ section.block + section.block { border-top: 1px solid var(--line); }
   box-shadow: 0 10px 24px rgba(0,95,158,.18);
 }
 #packages .section-sub { margin-bottom: 26px; }
-#packages .packages-stage { margin-top: 0; }
 .section-sub {
   text-align: center; color: var(--text-soft);
   font-size: 14.5px; width: 100%; max-width: 640px; margin: 0 auto 48px; line-height: 1.8;
@@ -1484,119 +1483,7 @@ section.block + section.block { border-top: 1px solid var(--line); }
   .fade-up { opacity: 1; transform: none; transition: none; }
 }
 
-/* ---- packages (彦根AI講習) ---- */
-.packages-stage {
-  display: grid;
-  grid-template-columns: minmax(280px, .94fr) minmax(0, 1.06fr);
-  gap: 18px;
-  align-items: stretch;
-  margin: -22px 0 20px;
-}
-.package-visual,
-.package-stage-copy {
-  position: relative;
-  overflow: hidden;
-  border-radius: var(--radius);
-  border: 1px solid var(--glass-border);
-  background:
-    linear-gradient(140deg, rgba(255,255,255,.94), rgba(255,255,255,.80)),
-    linear-gradient(120deg, rgba(47,142,173,.08), rgba(247,250,248,.86) 44%, rgba(111,175,152,.08));
-  backdrop-filter: blur(6px) saturate(108%);
-  -webkit-backdrop-filter: blur(6px) saturate(108%);
-  box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255,255,255,.90);
-}
-.package-visual {
-  min-height: 340px;
-  display: grid;
-  place-items: center;
-  padding: 26px;
-  isolation: isolate;
-}
-.package-visual::before,
-.package-visual::after {
-  content: none;
-}
-.package-line-art {
-  position: relative;
-  z-index: 1;
-  width: min(100%, 430px);
-  aspect-ratio: 1.12;
-}
-.package-line-art svg { width: 100%; height: 100%; display: block; overflow: visible; }
-.line-orbit { transform-origin: 200px 180px; animation: lineOrbit 18s linear infinite; }
-.line-orbit.slow { animation-duration: 28s; animation-direction: reverse; }
-.line-pulse { transform-origin: center; animation: linePulse 3.2s ease-in-out infinite; }
-.line-dash { stroke-dasharray: 7 12; animation: lineDash 12s linear infinite; }
-.line-bubble { animation: bubbleFloat 7s ease-in-out infinite; }
-.line-bubble.b2 { animation-delay: -2.1s; }
-.line-bubble.b3 { animation-delay: -4.2s; }
-.package-visual-label {
-  position: absolute;
-  left: 20px;
-  right: 20px;
-  bottom: 18px;
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  font-size: 12px;
-  color: var(--text-soft);
-}
-.package-visual-label span {
-  padding: 5px 10px;
-  border-radius: var(--radius-sm);
-  border: 1px solid rgba(0,95,158,.14);
-  background: rgba(255,255,255,.70);
-}
-@keyframes lineOrbit { to { transform: rotate(360deg); } }
-@keyframes linePulse { 0%,100% { transform: scale(1); opacity: .82; } 50% { transform: scale(1.08); opacity: 1; } }
-@keyframes lineDash { to { stroke-dashoffset: -180; } }
-@keyframes bubbleFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
-.package-stage-copy {
-  padding: clamp(24px, 3vw, 34px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-width: 0;
-}
-.package-stage-kicker {
-  margin: 0 0 10px;
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: .14em;
-  color: var(--primary);
-}
-.package-stage-copy h3 {
-  margin: 0 0 12px;
-  font-size: clamp(24px, 3vw, 36px);
-  line-height: 1.24;
-  letter-spacing: 0;
-  overflow-wrap: anywhere;
-}
-.package-stage-copy p {
-  margin: 0;
-  color: var(--text-soft);
-  line-height: 1.85;
-  font-size: 14.5px;
-  width: 100%;
-  overflow-wrap: anywhere;
-}
-.package-track-tabs {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-  margin-top: 18px;
-}
-.track-pill {
-  border-radius: var(--radius-sm);
-  border: 1px solid rgba(40,84,197,.14);
-  background: rgba(255,255,255,.52);
-  padding: 13px 14px;
-}
-.track-pill b { display: block; color: var(--text); font-size: 13.5px; line-height: 1.35; }
-.track-pill span { display: block; color: var(--muted); font-size: 12px; line-height: 1.55; margin-top: 3px; }
+/* ---- packages ---- */
 .packages-grid {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -1747,24 +1634,16 @@ section.block + section.block { border-top: 1px solid var(--line); }
   font-size: 13px; line-height: 1.75; color: var(--text);
 }
 @media (max-width: 1060px) {
-  .packages-stage { grid-template-columns: 1fr; }
-  .package-visual { min-height: 300px; }
   .pkg-card, .pkg-featured, .pkg-wide { grid-column: span 6; }
 }
 @media (max-width: 680px) {
-  .packages-stage { margin-top: -12px; }
-  .packages-stage,
-  .package-visual,
-  .package-stage-copy,
   .pkg-card {
     min-width: 0;
     max-width: 100%;
   }
   #packages .section-sub { padding: 0 4px; }
-  .package-track-tabs { grid-template-columns: 1fr; }
   .packages-grid { grid-template-columns: 1fr; }
   .pkg-card, .pkg-featured, .pkg-wide { grid-column: auto; }
-  .package-visual { min-height: 260px; padding: 18px; }
   .pkg-featured .pkg-title { font-size: 22px; }
   #packages .section-title { font-size: 28px; line-height: 1.2; }
   #packages .section-title .title-line { display: block; }
@@ -2924,7 +2803,7 @@ def _render_services() -> str:
 
 
 def _render_courses_packages() -> str:
-    """彦根AI講習を中心にした講習プラン。"""
+    """講習・相談プランのカード一覧。"""
     prep_title = "2. ClaudeCode Codex 準備"
     practice_title = "1. ClaudeCode Codex 実践"
     seminar_url = "https://goodbouldering.com/?pid=188553378"
@@ -3014,52 +2893,7 @@ def _render_courses_packages() -> str:
             "variant": "wide",
         },
     ]
-    parts = [
-        "<div class='packages-stage fade-up d1'>"
-        "<div class='package-visual' aria-hidden='true'>"
-        "<div class='package-line-art'>"
-        "<svg viewBox='0 0 400 360' xmlns='http://www.w3.org/2000/svg'>"
-        "<defs>"
-        "<linearGradient id='pkgLineGrad' x1='0' y1='0' x2='1' y2='1'>"
-        "<stop offset='0' stop-color='#2854C5'/><stop offset='.52' stop-color='#2BA7C8'/><stop offset='1' stop-color='#0F8F72'/>"
-        "</linearGradient>"
-        "<filter id='pkgGlow' x='-40%' y='-40%' width='180%' height='180%'><feGaussianBlur stdDeviation='7'/></filter>"
-        "</defs>"
-        "<circle class='line-bubble' cx='78' cy='88' r='20' fill='rgba(43,167,200,.15)'/>"
-        "<circle class='line-bubble b2' cx='320' cy='94' r='26' fill='rgba(217,133,43,.13)'/>"
-        "<circle class='line-bubble b3' cx='330' cy='274' r='18' fill='rgba(15,143,114,.13)'/>"
-        "<g fill='none' stroke='url(#pkgLineGrad)' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'>"
-        "<circle class='line-orbit slow' cx='200' cy='180' r='132' opacity='.36'/>"
-        "<circle class='line-orbit' cx='200' cy='180' r='96' opacity='.5'/>"
-        "<path class='line-dash' d='M74 220 C118 136 174 102 244 120 C306 136 338 190 314 246 C286 314 180 316 124 270' opacity='.72'/>"
-        "<path d='M124 230 L176 178 L226 210 L280 142' opacity='.88'/>"
-        "</g>"
-        "<g fill='rgba(255,255,255,.84)' stroke='url(#pkgLineGrad)' stroke-width='2.4'>"
-        "<circle class='line-pulse' cx='124' cy='230' r='20'/><circle class='line-pulse' cx='176' cy='178' r='24'/><circle class='line-pulse' cx='226' cy='210' r='20'/><circle class='line-pulse' cx='280' cy='142' r='26'/>"
-        "</g>"
-        "<g fill='url(#pkgLineGrad)' filter='url(#pkgGlow)' opacity='.42'>"
-        "<circle cx='200' cy='180' r='54'/>"
-        "</g>"
-        "<g fill='#152032' font-family='Inter, Noto Sans JP, sans-serif' text-anchor='middle' font-weight='800'>"
-        "<text x='200' y='174' font-size='20'>彦根AI講習</text>"
-        "<text x='200' y='200' font-size='16'>受付中</text>"
-        "</g>"
-        "</svg>"
-        "</div>"
-        "<div class='package-visual-label'><span>準備会</span><span>実践会</span><span>個別相談</span></div>"
-        "</div>"
-        "<div class='package-stage-copy'>"
-        "<p class='package-stage-kicker'>HIKONE AI LESSON</p>"
-        "<h3>彦根AI講習</h3>"
-        "<p>Claude Code / Codex を使って、AIに作らせ、自分で確認する力を身につける講習です。はじめての方は準備会、課題を進めたい方は実践会へ。</p>"
-        "<div class='package-track-tabs'>"
-        "<div class='track-pill'><b>準備会</b><span>環境構築・最初の成果物まで</span></div>"
-        "<div class='track-pill'><b>実践会</b><span>3日以上利用 + 成果物 + 課題持ち込み</span></div>"
-        "</div>"
-        "</div>"
-        "</div>"
-        "<div class='packages-grid'>"
-    ]
+    parts = ["<div class='packages-grid'>"]
     for i, it in enumerate(items):
         subsidy_badge = (
             "<span class='pkg-subsidy'>✓ 補助金対応</span>" if it["subsidy"] else ""
@@ -3692,10 +3526,10 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
 
     parts.append(_render_hero())
 
-    # 1. 受講プラン（彦根AI講習を中心に再編）— メインCTA
+    # 1. 受講プラン — メインCTA
     parts.append("<section class='block' id='packages'>")
     parts.append("<p class='section-heading fade-up'>AI LESSON</p>")
-    parts.append("<h2 class='section-title packages-title fade-up d1'>彦根AI講習 <span>受付中！</span></h2>")
+    parts.append("<h2 class='section-title packages-title fade-up d1'>受付中！</h2>")
     parts.append("<p class='section-sub fade-up d2'>Claude Code / Codex の準備会・実践会・個別相談を、目的に合わせて選べます。</p>")
     parts.append(_render_courses_packages())
     parts.append("</section>")

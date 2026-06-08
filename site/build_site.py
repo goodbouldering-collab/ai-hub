@@ -1601,7 +1601,7 @@ def _build_jsonld(kind: str, meta: dict, title: str, page_url: str) -> str:
         }
         return json.dumps(doc, ensure_ascii=False)
     if kind == "speaker":
-        avatar_url = str(meta.get("avatar_url") or "/img/speaker-anime.png")
+        avatar_url = str(meta.get("avatar_url") or "/img/speaker.webp")
         avatar_image = avatar_url if avatar_url.startswith(("http://", "https://")) else SITE_URL + avatar_url
         doc = {
             "@context": "https://schema.org",
@@ -1729,16 +1729,10 @@ def build_speaker_page() -> bool:
             "<div class='speaker-page-visual'>"
             "<div class='speaker-page-copy'>"
             f"<p class='speaker-page-role'>{speaker_role}</p>"
-            "<p>写真をもとにしたアニメ調ビジュアル。AI講習・制作・運用をまとめて扱うAIハブの顔として、トップページと共通で表示しています。</p>"
+            "<p>講師本人の写真を、AI講習・制作・運用をまとめて扱うAIハブの顔として掲載しています。</p>"
             "</div>"
             "<div class='speaker-art speaker-art-animated'>"
-            f"<img src='{avatar}' alt='{speaker_name} のアニメ調ビジュアル' loading='eager' decoding='async'>"
-            "<span class='speaker-art-orbit' aria-hidden='true'></span>"
-            "<span class='speaker-art-chip ai' aria-hidden='true'>AI講師</span>"
-            "<span class='speaker-art-chip live' aria-hidden='true'>LIVE WORKSHOP</span>"
-            "<span class='speaker-art-spark s1' aria-hidden='true'></span>"
-            "<span class='speaker-art-spark s2' aria-hidden='true'></span>"
-            "<span class='speaker-art-spark s3' aria-hidden='true'></span>"
+            f"<img src='{avatar}' alt='{speaker_name} の講師写真' loading='eager' decoding='async'>"
             "</div>"
             "</div>"
         ) + body_html

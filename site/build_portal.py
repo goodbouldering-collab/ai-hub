@@ -83,7 +83,7 @@ ADMIN_BUTTON_HTML = """
 """
 
 
-OG_IMAGE_URL = SITE_URL + "/img/hero-ai-hub-studio-cool.png"
+OG_IMAGE_URL = SITE_URL + "/img/hero-ai-hub-studio.png"
 
 
 def _build_ogp(title: str, description: str, page_url: str, *, image: str | None = None) -> str:
@@ -152,7 +152,7 @@ def _build_jsonld_website() -> str:
         "jobTitle": "AI講師 / Web経営コンサルタント / 複数事業オーナー",
         "email": OWNER_EMAIL,
         "url": SITE_URL + "/speaker.html",
-        "image": SITE_URL + "/img/speaker-anime.png",
+        "image": SITE_URL + "/img/speaker.webp",
         "worksFor": {"@id": org_id},
         "knowsAbout": ["生成AI", "クライミング", "店舗経営", "マーケティング", "補助金活用"],
         "description": "クライミング歴30年。ボルダリングカフェ「グッぼる」をはじめ9事業を経営しながら、滋賀の中小事業者にAI活用を教える。経営者でありコードを書く実装者でもある二重性が強み。",
@@ -350,44 +350,44 @@ def _load_all_lectures() -> list[dict]:
 
 PORTAL_CSS = """
 /* ===== Light Hub System =====
-   明るいベースに、AIらしいシアン/ブルーと発見感のあるライムを混ぜる。 */
+   講習会・相談サービスとして読みやすい、自然で落ち着いたライト基調。 */
 :root {
   /* ===== デフォルト=ライト（初心者に「難しそう」を与えない）。dark は data-theme=dark で。 ===== */
   /* --- 共有トークン（テーマ非依存） --- */
-  --cyan: #0098C8;
-  --blue: #0B4AA2;
-  --sage: #6FB7A8;
-  --emerald: #00A98F;
-  --amber: #C58B1B;
-  --coral: #E85E4F;
-  --glass-blur: 18px;
+  --cyan: #2F8EAD;
+  --blue: #1F5F8B;
+  --sage: #6FAF98;
+  --emerald: #2C8C78;
+  --amber: #B7791F;
+  --coral: #D65E4B;
+  --glass-blur: 8px;
   --radius: 8px;
   --radius-sm: 8px;
   --serif: "Inter", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
   --mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
-  --bg-base: #F4F9FC;
+  --bg-base: #F7FAF8;
   --bg-white: #FFFFFF;
   --bg-elev: #FFFFFF;
-  --text: #071A3A;
-  --text-soft: #35465D;
-  --muted: #6A7890;
-  --line: rgba(7,26,58,0.12);
-  --line-strong: rgba(7,26,58,0.24);
-  --primary: #005F9E;
-  --primary-soft: #0098C8;
-  --violet: #5667B0;
-  --primary-bg: rgba(0,152,200,0.08);
-  --grad: linear-gradient(120deg, #005F9E 0%, #0098C8 54%, #00A98F 100%);
-  --grad-soft: linear-gradient(120deg, rgba(0,95,158,.10), rgba(0,152,200,.10), rgba(0,169,143,.10));
-  --glass-bg: rgba(255,255,255,0.78);
-  --glass-border: rgba(7,26,58,0.12);
-  --glass-hi: rgba(255,255,255,0.88);
-  --shadow-card: 0 1px 2px rgba(7,26,58,0.04), 0 14px 34px rgba(7,26,58,0.08);
-  --shadow-card-hover: 0 8px 22px rgba(7,26,58,0.08), 0 26px 64px rgba(0,95,158,0.14), 0 0 0 1px rgba(0,152,200,0.20);
-  --glow: 0 20px 64px rgba(0,152,200,0.18);
-  --grad-glow-a: rgba(0,95,158,.12);
-  --grad-glow-b: rgba(0,152,200,.12);
-  --grad-glow-c: rgba(197,139,27,.08);
+  --text: #122033;
+  --text-soft: #405166;
+  --muted: #728093;
+  --line: rgba(18,32,51,0.12);
+  --line-strong: rgba(18,32,51,0.22);
+  --primary: #1F6E8C;
+  --primary-soft: #3C9CAD;
+  --violet: #61758F;
+  --primary-bg: rgba(47,142,173,0.09);
+  --grad: linear-gradient(120deg, #1F6E8C 0%, #3C9CAD 54%, #6FAF98 100%);
+  --grad-soft: linear-gradient(120deg, rgba(31,110,140,.09), rgba(60,156,173,.08), rgba(111,175,152,.10));
+  --glass-bg: rgba(255,255,255,0.90);
+  --glass-border: rgba(18,32,51,0.12);
+  --glass-hi: rgba(255,255,255,0.94);
+  --shadow-card: 0 1px 2px rgba(18,32,51,0.04), 0 10px 26px rgba(18,32,51,0.07);
+  --shadow-card-hover: 0 7px 18px rgba(18,32,51,0.08), 0 20px 46px rgba(31,110,140,0.12);
+  --glow: 0 18px 48px rgba(47,142,173,0.14);
+  --grad-glow-a: rgba(31,110,140,.10);
+  --grad-glow-b: rgba(60,156,173,.10);
+  --grad-glow-c: rgba(183,121,31,.06);
 }
 :root[data-theme="dark"] {
   --bg-base: #0B1120;
@@ -430,8 +430,8 @@ body {
   line-height: 1.82;            /* しっとり: ゆったり読める日本語行間 */
   min-height: 100vh;
   background:
-    linear-gradient(110deg, rgba(0,152,200,.06) 0%, transparent 32%),
-    linear-gradient(180deg, #FFFFFF 0%, #F6FAFD 46%, #EEF7FA 100%);
+    linear-gradient(110deg, rgba(111,175,152,.08) 0%, transparent 34%),
+    linear-gradient(180deg, #FFFFFF 0%, #F8FBF9 48%, #F1F7F5 100%);
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
   letter-spacing: 0;
@@ -443,10 +443,10 @@ body::before {
   z-index: 0;
   pointer-events: none;
   background:
-    linear-gradient(90deg, rgba(7,26,58,.035) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(7,26,58,.024) 1px, transparent 1px);
-  background-size: 72px 72px;
-  mask-image: linear-gradient(180deg, rgba(0,0,0,.38), transparent 62%);
+    linear-gradient(90deg, rgba(18,32,51,.022) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(18,32,51,.016) 1px, transparent 1px);
+  background-size: 88px 88px;
+  mask-image: linear-gradient(180deg, rgba(0,0,0,.22), transparent 58%);
 }
 ::selection { background: rgba(40,84,197,.22); color: var(--text); }
 
@@ -457,8 +457,8 @@ body::before {
 .lecture-card, .pf-card, .voice-card, .explore-card, .contact-choice,
 .menu-drop, .diagnose-box, .hero-quiz {
   background: var(--glass-bg) !important;
-  backdrop-filter: blur(14px) saturate(112%);
-  -webkit-backdrop-filter: blur(14px) saturate(112%);
+  backdrop-filter: blur(6px) saturate(108%);
+  -webkit-backdrop-filter: blur(6px) saturate(108%);
   border: 1px solid var(--glass-border) !important;
   box-shadow: var(--shadow-card);
 }
@@ -617,9 +617,9 @@ header.site-header.scrolled {
 
 /* ---- hero ---- */
 .hero {
-  padding: 62px 0 58px;
-  min-height: 620px;
-  display: grid; grid-template-columns: minmax(0, .88fr) minmax(460px, 1.12fr); gap: 48px; align-items: center;
+  padding: 54px 0 52px;
+  min-height: 590px;
+  display: grid; grid-template-columns: minmax(0, .94fr) minmax(440px, 1.06fr); gap: 44px; align-items: center;
   position: relative;
 }
 .hero::before {
@@ -628,9 +628,9 @@ header.site-header.scrolled {
   inset: 0 calc(50% - 50vw) 0;
   z-index: -1;
   background:
-    linear-gradient(90deg, #FFFFFF 0%, rgba(255,255,255,.94) 34%, rgba(233,247,255,.72) 58%, rgba(236,251,249,.68) 100%);
-  border-top: 1px solid rgba(7,26,58,.06);
-  border-bottom: 1px solid rgba(7,26,58,.08);
+    linear-gradient(90deg, #FFFFFF 0%, rgba(255,255,255,.96) 38%, rgba(241,248,246,.82) 100%);
+  border-top: 1px solid rgba(18,32,51,.05);
+  border-bottom: 1px solid rgba(18,32,51,.08);
 }
 .hero-text { text-align: left; min-width: 0; max-width: 100%; }
 @media (max-width: 900px) { .hero { grid-template-columns: 1fr; gap: 28px; }
@@ -652,7 +652,7 @@ header.site-header.scrolled {
   }
 }
 .hero h1 {
-  margin: 20px 0 14px; font-size: clamp(48px, 6.8vw, 88px);
+  margin: 18px 0 14px; font-size: clamp(42px, 6vw, 76px);
   font-family: var(--serif); font-weight: 900; letter-spacing: 0;
   color: var(--text); line-height: 1.04;
   overflow-wrap: anywhere; word-break: normal;
@@ -686,7 +686,7 @@ header.site-header.scrolled {
 }
 .hero-title-sub {
   display: block; margin-top: 14px;
-  font-size: clamp(23px, 2.9vw, 38px);
+  font-size: clamp(22px, 2.7vw, 34px);
   line-height: 1.24; color: var(--text); letter-spacing: 0;
 }
 .hero-title-sub strong {
@@ -759,14 +759,14 @@ header.site-header.scrolled {
   position: relative;
   justify-self: end;
   width: min(100%, 640px);
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 10.4;
   padding: 8px;
   border-radius: var(--radius);
-  background: rgba(255,255,255,.84);
-  border: 1px solid rgba(7,26,58,.12);
-  box-shadow: 0 28px 74px rgba(7,26,58,.15), inset 0 1px 0 var(--glass-hi);
-  backdrop-filter: blur(var(--glass-blur)) saturate(126%);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(126%);
+  background: rgba(255,255,255,.92);
+  border: 1px solid rgba(18,32,51,.12);
+  box-shadow: 0 18px 46px rgba(18,32,51,.12), inset 0 1px 0 var(--glass-hi);
+  backdrop-filter: blur(6px) saturate(112%);
+  -webkit-backdrop-filter: blur(6px) saturate(112%);
   overflow: hidden;
 }
 .hero-photo-card img {
@@ -784,8 +784,8 @@ header.site-header.scrolled {
   border-radius: 6px;
   pointer-events: none;
   background:
-    linear-gradient(180deg, rgba(255,255,255,.02) 0%, rgba(7,26,58,.10) 100%),
-    linear-gradient(120deg, rgba(0,95,158,.08), rgba(0,152,200,.08), transparent 64%);
+    linear-gradient(180deg, rgba(255,255,255,.02) 0%, rgba(18,32,51,.08) 100%),
+    linear-gradient(120deg, rgba(31,110,140,.06), rgba(111,175,152,.05), transparent 64%);
 }
 .hero-photo-note {
   position: absolute;
@@ -797,9 +797,9 @@ header.site-header.scrolled {
   gap: 9px;
   padding: 10px 13px;
   border-radius: var(--radius-sm);
-  background: rgba(255,255,255,.92);
-  border: 1px solid rgba(255,255,255,.72);
-  box-shadow: 0 14px 32px rgba(21,32,50,.14);
+  background: rgba(255,255,255,.94);
+  border: 1px solid rgba(18,32,51,.10);
+  box-shadow: 0 10px 24px rgba(21,32,50,.10);
   color: var(--text);
   font-size: 12px;
   font-weight: 800;
@@ -819,12 +819,12 @@ header.site-header.scrolled {
   width: min(48%, 260px);
   padding: 12px;
   border-radius: var(--radius-sm);
-  background: rgba(7,26,58,.76);
+  background: rgba(18,32,51,.72);
   border: 1px solid rgba(255,255,255,.18);
   color: #fff;
   backdrop-filter: blur(16px) saturate(140%);
   -webkit-backdrop-filter: blur(16px) saturate(140%);
-  box-shadow: 0 18px 42px rgba(11,16,32,.22);
+  box-shadow: 0 14px 34px rgba(11,16,32,.18);
 }
 .hero-photo-map svg {
   display: block;
@@ -857,12 +857,12 @@ header.site-header.scrolled {
   padding: 9px;
   border-radius: var(--radius-sm);
   border: 1px solid rgba(255,255,255,.62);
-  background: rgba(255,255,255,.86);
+  background: rgba(255,255,255,.90);
   color: var(--text);
   text-decoration: none;
-  box-shadow: 0 12px 30px rgba(16,24,39,.14);
-  backdrop-filter: blur(14px) saturate(130%);
-  -webkit-backdrop-filter: blur(14px) saturate(130%);
+  box-shadow: 0 10px 24px rgba(16,24,39,.11);
+  backdrop-filter: blur(8px) saturate(112%);
+  -webkit-backdrop-filter: blur(8px) saturate(112%);
   transition: transform .18s ease, border-color .18s ease, background .18s ease;
 }
 .hero-mini-routes a:hover,
@@ -1126,7 +1126,7 @@ header.site-header.scrolled {
 @media (prefers-reduced-motion: reduce) {
   .hub-core, .hub-route, .entry-chip { transition: none; }
 }
-/* アニメ調ヒーローSVG */
+/* 線画ヒーローSVG */
 .hero-svg { width: 100%; height: 100%; display: block; }
 .hsvg-glow { transform-box: fill-box; transform-origin: center; animation: hsvg-breathe 4s ease-in-out infinite; }
 @keyframes hsvg-breathe { 0%,100% { opacity: .8; transform: scale(1); } 50% { opacity: 1; transform: scale(1.07); } }
@@ -1499,11 +1499,11 @@ section.block + section.block { border-top: 1px solid var(--line); }
   border-radius: var(--radius);
   border: 1px solid var(--glass-border);
   background:
-    linear-gradient(140deg, rgba(255,255,255,.88), rgba(255,255,255,.64)),
-    linear-gradient(120deg, rgba(0,152,200,.10), rgba(246,250,253,.78) 42%, rgba(0,169,143,.10));
-  backdrop-filter: blur(16px) saturate(118%);
-  -webkit-backdrop-filter: blur(16px) saturate(118%);
-  box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255,255,255,.82);
+    linear-gradient(140deg, rgba(255,255,255,.94), rgba(255,255,255,.80)),
+    linear-gradient(120deg, rgba(47,142,173,.08), rgba(247,250,248,.86) 44%, rgba(111,175,152,.08));
+  backdrop-filter: blur(6px) saturate(108%);
+  -webkit-backdrop-filter: blur(6px) saturate(108%);
+  box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255,255,255,.90);
 }
 .package-visual {
   min-height: 340px;
@@ -1611,13 +1611,13 @@ section.block + section.block { border-top: 1px solid var(--line); }
   min-height: 100%;
   min-width: 0;
   background:
-    linear-gradient(145deg, rgba(255,255,255,.86), rgba(255,255,255,.62)),
+    linear-gradient(145deg, rgba(255,255,255,.95), rgba(255,255,255,.78)),
     var(--glass-bg) !important;
   border: 1px solid var(--glass-border);
   border-radius: var(--radius);
   display: flex;
   flex-direction: column;
-  box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255,255,255,.76);
+  box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255,255,255,.86);
   transition: transform .25s cubic-bezier(.22,1,.36,1), box-shadow .25s, border-color .2s;
   position: relative;
   overflow: hidden;
@@ -1627,8 +1627,8 @@ section.block + section.block { border-top: 1px solid var(--line); }
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(90deg, rgba(0,152,200,.10), transparent 44%, rgba(0,169,143,.06));
-  opacity: .72;
+  background: linear-gradient(90deg, rgba(47,142,173,.08), transparent 44%, rgba(111,175,152,.05));
+  opacity: .55;
 }
 .pkg-card:hover {
   transform: translateY(-4px);
@@ -1909,133 +1909,61 @@ section.block + section.block { border-top: 1px solid var(--line); }
 
 /* ---- speaker section intro grid (PC: 2col, mobile: 1col) ---- */
 .speaker-intro-grid {
-  display: grid; grid-template-columns: 1fr 360px; gap: 36px; align-items: stretch;
+  display: grid; grid-template-columns: 1fr 280px; gap: 36px; align-items: center;
 }
 @media (max-width: 720px) {
   .speaker-intro-grid { grid-template-columns: 1fr; gap: 24px; text-align: center; }
   .speaker-intro-grid .profile-avatar { margin: 0 auto; }
 }
-/* 講師アートビジュアル（実画像 or CSSプレースホルダ） */
+/* 講師ビジュアル（本人写真を自然な丸いポートレートとして表示） */
 .speaker-art {
-  position: relative; overflow: hidden;
-  border: 1px solid var(--line); border-radius: var(--radius-sm);
-  min-height: 320px; aspect-ratio: 4/5; align-self: stretch;
-  background: var(--bg-base);
+  position: relative;
+  overflow: hidden;
+  width: min(100%, 280px);
+  min-height: 0;
+  aspect-ratio: 1 / 1;
+  align-self: center;
+  justify-self: center;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #FFFFFF, #EEF5F2);
+  border: 8px solid #fff;
+  box-shadow: 0 14px 34px rgba(18,32,51,.13), 0 0 0 1px rgba(18,32,51,.08);
 }
-.speaker-art img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
-.speaker-art-animated {
-  isolation: isolate;
-  transform: translateZ(0);
-  box-shadow: 0 18px 48px rgba(15,23,42,.16);
-  animation: speakerFloat 7s ease-in-out infinite;
+.speaker-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 48% 34%;
+  display: block;
+  transform: scale(1.45);
+  transform-origin: 48% 42%;
+  filter: sepia(.12) saturate(.52) contrast(.98) brightness(1.13) hue-rotate(5deg);
 }
-.speaker-art-animated img {
-  transform-origin: 52% 34%;
-  filter: saturate(1.08) contrast(1.03);
-  animation: speakerKenburns 12s ease-in-out infinite alternate;
-}
-.speaker-art-animated::before {
+.speaker-art-animated { animation: none; isolation: auto; }
+.speaker-art::after {
   content: "";
-  position: absolute; inset: 0; z-index: 1; pointer-events: none;
-  background:
-    radial-gradient(220px 180px at 76% 18%, rgba(96,165,250,.34), transparent 62%),
-    radial-gradient(220px 190px at 18% 82%, rgba(45,212,191,.22), transparent 66%),
-    linear-gradient(115deg, transparent 0%, rgba(255,255,255,.34) 46%, transparent 58%);
-  mix-blend-mode: screen;
-  opacity: .72;
-  transform: translateX(-42%);
-  animation: speakerLightSweep 5.6s ease-in-out infinite;
-}
-.speaker-art-animated::after {
-  content: "";
-  position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  position: absolute;
+  inset: 0;
   border-radius: inherit;
-  background-image:
-    linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px);
-  background-size: 34px 34px;
-  opacity: .42;
-  -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,.92), rgba(0,0,0,.34) 74%, transparent);
-  mask-image: linear-gradient(180deg, rgba(0,0,0,.92), rgba(0,0,0,.34) 74%, transparent);
-  animation: speakerGridDrift 11s linear infinite;
+  pointer-events: none;
+  background: radial-gradient(circle at 48% 44%, transparent 0 34%, rgba(255,255,255,.20) 48%, rgba(255,255,255,.58) 76%, rgba(247,250,248,.84) 100%);
 }
-.speaker-art-orbit {
-  position: absolute; inset: 16px; z-index: 3; pointer-events: none;
-  border: 1px solid rgba(255,255,255,.34); border-radius: calc(var(--radius-sm) - 2px);
-  box-shadow: inset 0 0 38px rgba(96,165,250,.14);
-}
-.speaker-art-chip {
-  position: absolute; z-index: 4; pointer-events: none;
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 7px 10px; border-radius: 999px;
-  background: rgba(255,255,255,.88); color: #17202a;
-  border: 1px solid rgba(255,255,255,.70);
-  box-shadow: 0 12px 32px rgba(15,23,42,.18);
-  font-size: 11px; font-weight: 800; letter-spacing: .06em;
-  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-}
-.speaker-art-chip.ai { top: 20px; left: 18px; color: var(--primary); animation: speakerChipFloat 4.8s ease-in-out infinite; }
-.speaker-art-chip.live { right: 18px; bottom: 20px; color: #0f8b8d; animation: speakerChipFloat 5.4s ease-in-out infinite reverse; }
-.speaker-art-spark {
-  position: absolute; z-index: 3; width: 8px; height: 8px; border-radius: 50%;
-  background: #fff; box-shadow: 0 0 18px rgba(255,255,255,.9), 0 0 30px rgba(96,165,250,.6);
-  pointer-events: none; opacity: .9;
-}
-.speaker-art-spark.s1 { top: 18%; right: 24%; animation: speakerSpark 3.2s ease-in-out infinite; }
-.speaker-art-spark.s2 { top: 48%; left: 13%; animation: speakerSpark 4.1s ease-in-out infinite .5s; }
-.speaker-art-spark.s3 { bottom: 24%; right: 16%; animation: speakerSpark 3.8s ease-in-out infinite 1.1s; }
-@keyframes speakerFloat {
-  0%, 100% { transform: translateY(0) rotate(.001deg); }
-  50% { transform: translateY(-8px) rotate(.001deg); }
-}
-@keyframes speakerKenburns {
-  0% { transform: scale(1.015) translate3d(0,0,0); }
-  100% { transform: scale(1.075) translate3d(-1.8%, -1.2%, 0); }
-}
-@keyframes speakerLightSweep {
-  0%, 18% { transform: translateX(-58%); opacity: .30; }
-  48% { transform: translateX(32%); opacity: .82; }
-  100% { transform: translateX(58%); opacity: .24; }
-}
-@keyframes speakerGridDrift {
-  from { background-position: 0 0, 0 0; }
-  to { background-position: 34px 68px, 68px 34px; }
-}
-@keyframes speakerChipFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-7px); }
-}
-@keyframes speakerSpark {
-  0%, 100% { transform: scale(.72); opacity: .28; }
-  42% { transform: scale(1.25); opacity: .95; }
-  70% { transform: scale(.92); opacity: .58; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .speaker-art-animated,
-  .speaker-art-animated img,
-  .speaker-art-animated::before,
-  .speaker-art-animated::after,
-  .speaker-art-chip,
-  .speaker-art-spark {
-    animation: none !important;
-  }
-}
+.speaker-art-orbit,
+.speaker-art-chip,
+.speaker-art-spark { display: none; }
 @media (max-width: 720px) {
-  .speaker-art { max-width: 320px; margin: 0 auto; }
-  .speaker-art-chip.live { top: 20px; right: 18px; bottom: auto; }
+  .speaker-art { max-width: 260px; margin: 0 auto; }
 }
 .speaker-page-visual {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(240px, 340px);
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 300px);
   gap: 28px;
   align-items: center;
   margin: 0 0 34px;
   padding: 28px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background:
-    linear-gradient(140deg, rgba(255,255,255,.92), rgba(239,249,253,.76)),
-    linear-gradient(90deg, rgba(0,152,200,.08), transparent);
+  background: linear-gradient(140deg, rgba(255,255,255,.96), rgba(247,250,248,.92));
   box-shadow: var(--shadow-card);
 }
 .speaker-page-copy {
@@ -2052,8 +1980,8 @@ section.block + section.block { border-top: 1px solid var(--line); }
   margin: 0 0 10px !important;
 }
 .speaker-page-visual .speaker-art {
-  min-height: 300px;
-  width: 100%;
+  min-height: 0;
+  width: min(100%, 260px);
 }
 @media (max-width: 760px) {
   .speaker-page-visual {
@@ -2745,13 +2673,13 @@ HEADER_JS = """
 
 HERO_IMG = "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=70"
 
-# アニメ調ヒーローSVG（designer設計仕様 2026-05-27 を実装）。
+# 線画ヒーローSVG（designer設計仕様 2026-05-27 を実装）。
 # 7レイヤー: 背景グラデ→glowリング→データストリーム→書類スタック(✓)→
 # 人物(IT苦手だが前向きな経営者の安堵の笑み)→データ粒子→ラベルバッジ。
-# フラットカラー+統一アウトライン(#F0F4FF)でアニメ感。ロボット要素は出さない。
+# フラットカラー+統一アウトライン(#F0F4FF)。ロボット要素は出さない。
 HERO_SVG = """
 <svg class="hero-svg" viewBox="0 0 460 575" role="img"
-  aria-label="アニメ調イラスト: 彦根の経営者がAIの光と一緒に山積みの業務を片付けて軽くなっていく様子"
+  aria-label="線画イラスト: 彦根の経営者がAIの光と一緒に山積みの業務を片付けて軽くなっていく様子"
   xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
   <defs>
     <linearGradient id="hbg" x1="0" y1="0" x2="1" y2="1">
@@ -2804,7 +2732,7 @@ HERO_SVG = """
     <ellipse cx="244" cy="240" rx="33" ry="36" fill="#F6D3B0"/>
     <!-- 髪（白髪混じりショート）-->
     <path d="M211 234 C209 197 229 184 244 184 C259 184 280 197 277 234 C271 219 259 211 244 211 C229 211 217 219 211 234 Z" fill="#54607A"/>
-    <!-- 目（やや大きめ・アニメ感）-->
+    <!-- 目（やや大きめ）-->
     <circle cx="232" cy="241" r="3.4" fill="#2A3142" stroke="none"/>
     <circle cx="256" cy="241" r="3.4" fill="#2A3142" stroke="none"/>
     <!-- 安堵の笑み -->
@@ -2873,7 +2801,7 @@ def _render_hero() -> str:
         "</div>"
         "</div>"
         "<div class='hero-photo-card fade-up d2' aria-label='AIハブの相談イメージ'>"
-        "<img src='/img/hero-ai-hub-studio-cool.png' alt='AI相談と制作、講習資料を一緒に整理するAIハブのクールなスタジオイメージ' decoding='async' fetchpriority='high'>"
+        "<img src='/img/hero-ai-hub-studio.png' alt='明るいワークスペースでAI相談を進める自然なイメージ' decoding='async' fetchpriority='high'>"
         "<span class='hero-photo-note'><i aria-hidden='true'></i>相談・制作・講習を一つに</span>"
         "<div class='hero-photo-map' aria-hidden='true'>"
         "<svg viewBox='0 0 280 170' fill='none' xmlns='http://www.w3.org/2000/svg'>"
@@ -3432,14 +3360,8 @@ def _render_speaker_section() -> str:
         "</div>"
         + (
             f"<div class='speaker-art speaker-art-animated'>"
-            f"<img src='{html.escape(sp.get('avatar_url') or '', quote=True)}' alt='{name} のアニメ調ビジュアル' "
+            f"<img src='{html.escape(sp.get('avatar_url') or '', quote=True)}' alt='{name} の講師写真' "
             f"loading='lazy' decoding='async'>"
-            "<span class='speaker-art-orbit' aria-hidden='true'></span>"
-            "<span class='speaker-art-chip ai' aria-hidden='true'>AI講師</span>"
-            "<span class='speaker-art-chip live' aria-hidden='true'>LIVE WORKSHOP</span>"
-            "<span class='speaker-art-spark s1' aria-hidden='true'></span>"
-            "<span class='speaker-art-spark s2' aria-hidden='true'></span>"
-            "<span class='speaker-art-spark s3' aria-hidden='true'></span>"
             "</div>"
             if sp.get("avatar_url")
             # 画像未設定時は CSS アート（クライミング×テクノロジーの抽象ビジュアル）を表示

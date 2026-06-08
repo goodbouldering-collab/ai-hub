@@ -3,9 +3,8 @@ name: 由井 辰美
 role: AI講師 / マーケター / グッぼる代表
 gen_by: DeepResearch 生成 + 公開情報整理
 profile_url: https://www.genspark.ai/api/code_sandbox_light/preview/598e1ca9-55a0-42ef-94b1-2c2072dee9f3
-# CEO のアニメ化肖像画 URL。未設定なら絵文字フォールバック。
-# 生成は ChatGPT/DALL-E/Nano Banana 等で。プロンプトは consul/work/2026-05-20-ai-hub-avatar-prompt.md 参照
-avatar_url: "/img/speaker-anime.png"
+# 講師写真 URL。未設定なら絵文字フォールバック。
+avatar_url: "/img/speaker.webp"
 ---
 
 # 由井 辰美 — AI講習 / 進行メモ

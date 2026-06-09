@@ -176,7 +176,7 @@ def _build_jsonld_website() -> str:
 
     # 受講プランを Service + Offer として構造化（_render_packages の items と整合）
     plans = [
-        (prep_title, "実践会の前に、環境構築・ログイン・最初の成果物作成までを整える少人数の準備講座。", "5500", "5500", "Course"),
+        (prep_title, "実践の前に、環境構築・ログイン・最初の成果物作成までを整える少人数の準備講座。", "5500", "5500", "Course"),
         (practice_title, "Claude Code または Codex の環境が整い、自分で1つ以上動くものを作った人向けの月例少人数セミナー。持ち込み課題をその場で進める。", "5500", "5500", "Course"),
         (free_consult_title, "来店またはオンラインで、AI導入の入口を30分で整理する無料相談。講習や伴走の前に、今の課題と次の一手を確認する。", "0", "0", "BusinessCoaching"),
         (consult_title, "経営者・専門職・初心者なんでも相談。AI活用、Claude Code / Codex導入、補助金申請まで現役オーナーがその場で解決。", "4400", "4400", "BusinessCoaching"),
@@ -2432,9 +2432,9 @@ HEADER_JS = """
     ];
     var RESULT = {
       beginner: {
-        badge: '準備', title: '実践会の前に環境を整える',
+        badge: '準備', title: '実践の前に環境を整える',
         name: 'ClaudeCode Codex 準備',
-        desc: 'ログイン、作業フォルダ、最初の依頼、差分確認までを整えます。実践会で置いていかれない状態を作ります。',
+        desc: 'ログイン、作業フォルダ、最初の依頼、差分確認までを整えます。実践で置いていかれない状態を作ります。',
         level_id: 'beginner'
       },
       intermediate: {
@@ -2833,10 +2833,10 @@ def _render_courses_packages() -> str:
             "price": "5,500円",
             "duration": "90分 / 少人数",
             "subsidy": False,
-            "desc": "実践会に来る前の入口。ログイン、作業フォルダ、最初の依頼、差分確認までを整え、当日トラブルで時間が溶けない状態にします。",
+            "desc": "実践に来る前の入口。ログイン、作業フォルダ、最初の依頼、差分確認までを整え、当日トラブルで時間が溶けない状態にします。",
             "fit": ["インストールやログインが不安", "Codex / Claude Code の違いを整理したい", "まず1つ小さな成果物を作りたい"],
             "url": seminar_url,
-            "cta": "準備会の詳細を見る",
+            "cta": "準備の詳細を見る",
         },
         {
             "icon": "⌘",
@@ -2856,9 +2856,9 @@ def _render_courses_packages() -> str:
                 "cd / ls / git など基本コマンドに抵抗がない",
                 "申込時に当日扱いたい課題を一言で書ける",
             ],
-            "verify": "申込時に「作ったもの」「環境構築済みか」「持ち込み課題」を確認します。条件に満たない方は準備会を案内します。",
+            "verify": "申込時に「作ったもの」「環境構築済みか」「持ち込み課題」を確認します。条件に満たない方は準備を案内します。",
             "url": seminar_url,
-            "cta": "実践会の詳細を見る",
+            "cta": "実践の詳細を見る",
             "variant": "featured",
         },
         {
@@ -2885,7 +2885,7 @@ def _render_courses_packages() -> str:
             "duration": "60分",
             "subsidy": False,
             "desc": "実務をこなす経営者が、ビジネスに最適なAI活用を最短でアドバイス。Claude Code / Codex 導入、補助金、業務改善まで対応します。",
-            "fit": ["実践会か準備会か迷う", "仕事への使いどころを決めたい", "補助金や導入順序も相談したい"],
+            "fit": ["実践か準備か迷う", "仕事への使いどころを決めたい", "補助金や導入順序も相談したい"],
             "url": "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/TO3XHZT6XP3OM4QBDYMW7TZP",
             "cta": "個別相談を予約する",
         },
@@ -2951,15 +2951,15 @@ def _render_courses_packages() -> str:
     parts.append(
         "<div class='packages-cta-row fade-up d4'>"
         "<button type='button' class='btn btn-diagnose diagnose-open'>"
-        "60秒診断｜準備会・実践会・伴走のどれ？"
+        "60秒診断｜準備・実践・伴走のどれ？"
         "</button>"
         "<span class='packages-cta-hint'>3つの質問に答えるだけ。いまの状態に合う入口をその場で提案します。</span>"
         "</div>"
     )
     parts.append(
         "<p class='packages-note fade-up d4'>"
-        "<strong>実践会の品質方針:</strong> 「3日以上使った」だけではなく、環境構築済み・成果物あり・持ち込み課題ありを基準にします。"
-        "まだ条件に満たない方は準備会へ案内し、入口を閉じずに実践会の密度を守ります。"
+        "<strong>実践の品質方針:</strong> 「3日以上使った」だけではなく、環境構築済み・成果物あり・持ち込み課題ありを基準にします。"
+        "まだ条件に満たない方は準備へ案内し、入口を閉じずに実践の密度を守ります。"
         "<br><strong>補助金:</strong> 講習と伴走支援は、滋賀県・彦根市のデジタル化/AI導入系補助金と組み合わせて相談できます。"
         "</p>"
     )
@@ -3108,8 +3108,8 @@ def _render_flow() -> str:
 FAQ_QA = [
     ("彦根・滋賀でAIの講習や相談はできますか？",
      "はい。滋賀県彦根市を拠点に、彦根・湖東・東近江を中心とした対面のAI講習・個別相談を行っています。京都・大阪・名古屋までは出張可、リモートなら全国対応します。"),
-    ("彦根AI講習 実践会の参加条件はありますか？",
-     "あります。実践会は、Claude Code または Codex を3日以上使ったことがあり、自分で1つ以上動くものを作った経験があり、cd・ls・git など基本コマンドに抵抗がない方を対象にします。申込時に、環境構築済みか、作ったもの、当日扱いたい課題を確認します。条件に満たない方は準備会を案内します。"),
+    ("彦根AI講習 実践の参加条件はありますか？",
+     "あります。実践は、Claude Code または Codex を3日以上使ったことがあり、自分で1つ以上動くものを作った経験があり、cd・ls・git など基本コマンドに抵抗がない方を対象にします。申込時に、環境構築済みか、作ったもの、当日扱いたい課題を確認します。条件に満たない方は準備を案内します。"),
     ("料金はどれくらいですか？",
      "AI無料相談 とりあえず30分は無料、AI個別相談 しっかり60分は4,400円、ClaudeCode Codex 実践とClaudeCode Codex 準備は5,500円から。AI伴走支援 いっしょに導入は月額10万円×6ヶ月が目安です。LP制作は1本18〜30万円が目安。多くは補助金併用を前提に組みます。"),
     ("補助金は使えますか？滋賀の事業者でも対象ですか？",
@@ -3542,7 +3542,7 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append("<section class='block' id='packages'>")
     parts.append("<p class='section-heading fade-up'>AI LESSON</p>")
     parts.append("<h2 class='section-title packages-title fade-up d1'>講習プラン</h2>")
-    parts.append("<p class='section-sub fade-up d2'>Claude Code / Codex の準備会・実践会・個別相談を、目的に合わせて選べます。</p>")
+    parts.append("<p class='section-sub fade-up d2'>Claude Code / Codex の準備・実践・個別相談を、目的に合わせて選べます。</p>")
     parts.append(_render_courses_packages())
     parts.append("</section>")
 

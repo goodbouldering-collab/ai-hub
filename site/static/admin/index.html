@@ -19,7 +19,7 @@
     background:linear-gradient(180deg,#ffffff 0%,#f8fafc 100%);
     color:var(--text); min-height:100vh; padding:24px; line-height:1.6; }
   ::selection { background: var(--primary); color: #fff; }
-  .container { max-width:1200px; margin:0 auto; padding-top:24px; }
+  .container { max-width:1200px; margin:0 auto; padding-top:72px; }
   /* PORTAL(build_portal.py)と同一の site-header に統一。中身は管理用動線。 */
   header.site-header {
     position:fixed; inset:0 0 auto 0; z-index:50;
@@ -208,6 +208,67 @@
   .dash-cma summary { cursor:pointer; font-size:13px; color:var(--text-soft); padding:8px 0; font-weight:600; }
   .dash-cma summary:hover { color: var(--primary); }
   .dash-meta { color:var(--muted); font-size:11px; text-align:right; margin-top:10px; font-family:'SFMono-Regular',monospace; }
+
+  /* === Admin menu === */
+  .admin-menu-panel { padding:0; overflow:hidden; }
+  .admin-menu-head {
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    padding:18px 20px; background:#0f172a; color:#fff;
+  }
+  .admin-menu-head h2 {
+    margin:0; color:#fff; letter-spacing:.08em;
+  }
+  .admin-menu-primary {
+    display:inline-flex; align-items:center; justify-content:center;
+    min-height:38px; padding:0 16px; border-radius:8px;
+    background:#fff; color:#0f172a; text-decoration:none;
+    font-size:13px; font-weight:800; white-space:nowrap;
+  }
+  .admin-menu-grid {
+    display:grid; grid-template-columns:repeat(3, minmax(0, 1fr));
+    border-top:1px solid var(--line);
+  }
+  .admin-menu-group {
+    padding:16px; border-right:1px solid var(--line);
+  }
+  .admin-menu-group:last-child { border-right:none; }
+  .admin-menu-group h3 {
+    font-size:12px; font-weight:800; color:var(--muted);
+    letter-spacing:.10em; margin-bottom:10px;
+  }
+  .admin-link {
+    display:grid; grid-template-columns:34px minmax(0, 1fr) auto;
+    align-items:center; gap:10px; min-height:58px;
+    padding:10px; margin-top:8px; border:1px solid var(--line);
+    border-radius:8px; background:#fff; text-decoration:none;
+    color:var(--text); transition:background .2s, border-color .2s, transform .2s;
+  }
+  .admin-link:hover {
+    background:var(--primary-bg); border-color:rgba(37,99,235,.35);
+    transform:translateY(-1px);
+  }
+  .admin-link-icon {
+    width:34px; height:34px; border-radius:8px; display:grid; place-items:center;
+    background:#f1f5f9; font-size:16px;
+  }
+  .admin-link strong {
+    display:block; font-size:13.5px; line-height:1.35; color:var(--text);
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+  .admin-link small {
+    display:block; margin-top:2px; line-height:1.35;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+  .admin-link-action {
+    font-size:11px; font-weight:800; color:var(--primary);
+  }
+  @media (max-width:900px) {
+    .admin-menu-grid { grid-template-columns:1fr; }
+    .admin-menu-group { border-right:none; border-bottom:1px solid var(--line); }
+    .admin-menu-group:last-child { border-bottom:none; }
+    .admin-menu-head { align-items:flex-start; flex-direction:column; }
+    .admin-menu-primary { width:100%; }
+  }
 </style>
 </head>
 <body>
@@ -215,11 +276,10 @@
   <div class="site-header-inner">
     <a class="site-logo" href="/"><span class="dot"></span>AIハブ <span style="color:var(--muted);font-weight:600;font-size:13px;margin-left:6px;">管理画面</span></a>
     <nav class="site-nav" aria-label="管理ナビ">
-      <a class="nav-link" href="/">🌐 公開トップ</a>
-      <a class="nav-link" href="/ops">⚙️ 運用本部（OPS）</a>
-      <a class="nav-link" href="/admin/chat">🤖 社内エージェント</a>
-      <a class="nav-link" href="/watch/index.html">📡 SNSポータル</a>
-      <a class="login-btn" href="/">↩ サイトへ戻る</a>
+      <a class="nav-link" href="#admin-menu">管理メニュー</a>
+      <a class="nav-link" href="#panel-dashboard">今週の動き</a>
+      <a class="nav-link" href="/">公開トップ</a>
+      <a class="login-btn" href="/ops">OPS</a>
     </nav>
   </div>
 </header>
@@ -228,6 +288,69 @@
     <div>
       <h1><span class="dot"></span>AIハブ 管理画面</h1>
       <p class="sub">9事業の運用ダッシュボード + グッぼる グループ記事の発行</p>
+    </div>
+  </div>
+
+  <div class="panel admin-menu-panel" id="admin-menu">
+    <div class="admin-menu-head">
+      <h2>管理メニュー</h2>
+      <a class="admin-menu-primary" href="/admin/gubble-sns">ぐっぼるSNS分析を開く</a>
+    </div>
+    <div class="admin-menu-grid">
+      <section class="admin-menu-group" aria-label="見る">
+        <h3>見る</h3>
+        <a class="admin-link" href="/admin/gubble-sns">
+          <span class="admin-link-icon">📊</span>
+          <span><strong>ぐっぼるSNS分析</strong><small>YouTube / SNS / GA4 / GSC</small></span>
+          <span class="admin-link-action">開く</span>
+        </a>
+        <a class="admin-link" href="/ops">
+          <span class="admin-link-icon">⚙️</span>
+          <span><strong>運用本部 OPS</strong><small>資料・台帳・運用確認</small></span>
+          <span class="admin-link-action">開く</span>
+        </a>
+        <a class="admin-link" href="/watch/index.html">
+          <span class="admin-link-icon">📡</span>
+          <span><strong>SNSポータル</strong><small>監視・投稿確認</small></span>
+          <span class="admin-link-action">開く</span>
+        </a>
+      </section>
+      <section class="admin-menu-group" aria-label="作る">
+        <h3>作る</h3>
+        <a class="admin-link" href="/admin/sns-post">
+          <span class="admin-link-icon">📣</span>
+          <span><strong>SNS一括投稿</strong><small>X / Threads</small></span>
+          <span class="admin-link-action">開く</span>
+        </a>
+        <a class="admin-link" href="#panel-status">
+          <span class="admin-link-icon">✍️</span>
+          <span><strong>グループ記事作成</strong><small>生成・編集・公開</small></span>
+          <span class="admin-link-action">移動</span>
+        </a>
+        <a class="admin-link" href="/admin/chat">
+          <span class="admin-link-icon">🤖</span>
+          <span><strong>社内エージェント</strong><small>相談・指示・下書き</small></span>
+          <span class="admin-link-action">開く</span>
+        </a>
+      </section>
+      <section class="admin-menu-group" aria-label="公開">
+        <h3>公開</h3>
+        <a class="admin-link" href="https://ai-hub-red-tau.vercel.app/index.html#works" target="_blank" rel="noopener">
+          <span class="admin-link-icon">🧩</span>
+          <span><strong>制作実績 WORKS</strong><small>公開ページの実績一覧</small></span>
+          <span class="admin-link-action">開く</span>
+        </a>
+        <a class="admin-link" href="/">
+          <span class="admin-link-icon">🌐</span>
+          <span><strong>公開トップ</strong><small>AIハブ本体</small></span>
+          <span class="admin-link-action">開く</span>
+        </a>
+        <a class="admin-link" href="#panel-dashboard">
+          <span class="admin-link-icon">⭐</span>
+          <span><strong>今週の動き</strong><small>タスク・成果物</small></span>
+          <span class="admin-link-action">移動</span>
+        </a>
+      </section>
     </div>
   </div>
 
@@ -249,15 +372,6 @@
       <ul id="dash-cma" class="dash-list"><li class="muted">読み込み中…</li></ul>
     </details>
     <p class="dash-meta" id="dash-meta"></p>
-  </div>
-
-  <div class="panel" style="margin-bottom:12px;">
-    <h2>サブ管理画面</h2>
-    <div class="row">
-      <a href="/admin/gubble-sns" style="color:var(--primary);text-decoration:none;font-size:13px;font-weight:800;">📊 ぐっぼるSNS分析ダッシュボード →</a>
-      <a href="/admin/sns-post" style="color:var(--primary);text-decoration:none;font-size:13px;font-weight:800;">📣 SNS 一括投稿 (X + Threads) →</a>
-      <a href="https://ai-hub-red-tau.vercel.app/index.html#works" target="_blank" rel="noopener" style="color:var(--primary);text-decoration:none;font-size:13px;font-weight:800;">🧩 制作実績 WORKS →</a>
-    </div>
   </div>
 
   <div class="panel" id="panel-status">

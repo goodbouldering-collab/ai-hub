@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "",
-      "published": "2026-06-09T21:35:31+00:00"
+      "published": "2026-06-09T21:35:31+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "ec36e55300051af7",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-06-09T19:03:10+00:00"
+      "published": "2026-06-09T19:03:10+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "62ae6ca0a19ab074",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/a7SZsz2HB8A/hqdefault.jpg",
-      "published": "2026-06-09T15:00:20+00:00"
+      "published": "2026-06-09T15:00:20+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "c9ebc9008e88af8b",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/50DlZ9oP9O0/hqdefault.jpg",
-      "published": "2026-06-09T12:15:27+00:00"
+      "published": "2026-06-09T12:15:27+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "1461b01e3d64350f",
@@ -94,7 +102,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/STKS528_DATA_CENTERS_A.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-06-09T06:00:00-04:00"
+      "published": "2026-06-09T06:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "24830327a4c145f3",
@@ -113,7 +123,9 @@
         "freshness": 3.0
       },
       "thumbnail": "",
-      "published": "2026-06-08T23:58:04+00:00"
+      "published": "2026-06-08T23:58:04+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "4c0e9211c6095e9d",
@@ -132,7 +144,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/Rl3Ozmn23pU/hqdefault.jpg",
-      "published": "2026-06-09T10:00:24+00:00"
+      "published": "2026-06-09T10:00:24+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "d9fdc97b1a37338d",
@@ -151,7 +165,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/ap4ECBIdIjA/hqdefault.jpg",
-      "published": "2026-06-09T10:34:41+00:00"
+      "published": "2026-06-09T10:34:41+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "6876cc4bc30e229e",
@@ -170,7 +186,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://images.ctfassets.net/kftzwdyauwt9/2VQiKydNUVAutnHRuCIV4S/3262cc8deff3fe49c6b512f854e14dcf/oai_Nextdoor_1x1.png?w=1600&amp;h=900&amp;fit=fill",
-      "published": "Tue, 09 Jun 2026 12:00:00 GMT"
+      "published": "Tue, 09 Jun 2026 12:00:00 GMT",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "9e6f35a6bca67692",
@@ -189,7 +207,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://images.ctfassets.net/kftzwdyauwt9/4kuHNpLFWGTJ5PFyZ8ZYKs/f294630773ebdf81c05804a62fed2f00/oai_Notion_SEO.png?w=1600&amp;h=900&amp;fit=fill",
-      "published": "Tue, 09 Jun 2026 10:00:00 GMT"
+      "published": "Tue, 09 Jun 2026 10:00:00 GMT",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

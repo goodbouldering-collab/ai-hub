@@ -152,7 +152,7 @@ def _build_jsonld_website() -> str:
         "jobTitle": "AI講師 / Web経営コンサルタント / 複数事業オーナー",
         "email": OWNER_EMAIL,
         "url": SITE_URL + "/speaker.html",
-        "image": SITE_URL + "/img/speaker.webp",
+        "image": SITE_URL + "/img/speaker-portrait.webp",
         "worksFor": {"@id": org_id},
         "knowsAbout": ["生成AI", "クライミング", "店舗経営", "マーケティング", "補助金活用"],
         "description": "クライミング歴30年。ボルダリングカフェ「グッぼる」をはじめ9事業を経営しながら、滋賀の中小事業者にAI活用を教える。経営者でありコードを書く実装者でもある二重性が強み。",
@@ -168,11 +168,11 @@ def _build_jsonld_website() -> str:
         "description": "滋賀・彦根の中小事業者向けAI講習とWeb経営コンサルのポータル。",
     }
 
-    prep_title = "2. ClaudeCode Codex 準備"
-    practice_title = "1. ClaudeCode Codex 実践"
-    free_consult_title = "3. AI無料相談 とりあえず30分"
-    consult_title = "4. AI個別相談 しっかり60分"
-    support_title = "5. AI伴走支援 いっしょに導入"
+    prep_title = "ClaudeCode Codex 準備"
+    practice_title = "ClaudeCode Codex 実践"
+    free_consult_title = "AI無料相談 とりあえず30分"
+    consult_title = "AI個別相談 しっかり60分"
+    support_title = "AI伴走支援 いっしょに導入"
 
     # 受講プランを Service + Offer として構造化（_render_packages の items と整合）
     plans = [
@@ -1550,8 +1550,17 @@ section.block + section.block { border-top: 1px solid var(--line); }
   border-radius: var(--radius-sm);
 }
 .pkg-head { display: block; }
-.pkg-title { font-size: 17px; font-weight: 900; color: var(--text); line-height: 1.38; margin: 0; flex: 1; letter-spacing: 0; min-width: 0; overflow-wrap: anywhere; }
-.pkg-featured .pkg-title { font-size: clamp(22px, 2.6vw, 30px); line-height: 1.22; }
+.pkg-title {
+  font-size: clamp(22px, 2.6vw, 30px);
+  font-weight: 900;
+  color: var(--text);
+  line-height: 1.22;
+  margin: 0;
+  flex: 1;
+  letter-spacing: 0;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
 .pkg-meta { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .pkg-level {
   font-family: var(--mono); font-size: 10.5px; font-weight: 800; letter-spacing: .06em;
@@ -1644,7 +1653,7 @@ section.block + section.block { border-top: 1px solid var(--line); }
   #packages .section-sub { padding: 0 4px; }
   .packages-grid { grid-template-columns: 1fr; }
   .pkg-card, .pkg-featured, .pkg-wide { grid-column: auto; }
-  .pkg-featured .pkg-title { font-size: 22px; }
+  .pkg-title { font-size: 22px; }
   #packages .section-title { font-size: 28px; line-height: 1.2; }
   #packages .section-title .title-line { display: block; }
 }
@@ -1798,25 +1807,26 @@ section.block + section.block { border-top: 1px solid var(--line); }
 .speaker-art {
   position: relative;
   overflow: hidden;
-  width: min(100%, 280px);
+  width: min(100%, 300px);
   min-height: 0;
   aspect-ratio: 1 / 1;
   align-self: center;
   justify-self: center;
   border-radius: 50%;
-  background: linear-gradient(145deg, #FFFFFF, #EEF5F2);
-  border: 8px solid #fff;
-  box-shadow: 0 14px 34px rgba(18,32,51,.13), 0 0 0 1px rgba(18,32,51,.08);
+  background:
+    radial-gradient(circle at 50% 38%, #FFFFFF 0 42%, #F5F7F4 72%, #E7EEE9 100%);
+  border: 10px solid #fff;
+  box-shadow: 0 16px 38px rgba(18,32,51,.12), 0 0 0 1px rgba(18,32,51,.08);
 }
 .speaker-art img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 48% 34%;
+  object-position: 50% 50%;
   display: block;
-  transform: scale(1.45);
-  transform-origin: 48% 42%;
-  filter: sepia(.12) saturate(.52) contrast(.98) brightness(1.13) hue-rotate(5deg);
+  transform: scale(1.02);
+  transform-origin: center;
+  filter: saturate(.94) contrast(1.02) brightness(1.01);
 }
 .speaker-art-animated { animation: none; isolation: auto; }
 .speaker-art::after {
@@ -1825,7 +1835,9 @@ section.block + section.block { border-top: 1px solid var(--line); }
   inset: 0;
   border-radius: inherit;
   pointer-events: none;
-  background: radial-gradient(circle at 48% 44%, transparent 0 34%, rgba(255,255,255,.20) 48%, rgba(255,255,255,.58) 76%, rgba(247,250,248,.84) 100%);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,0) 36%, rgba(18,32,51,.04) 100%);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.34);
 }
 .speaker-art-orbit,
 .speaker-art-chip,
@@ -2421,19 +2433,19 @@ HEADER_JS = """
     var RESULT = {
       beginner: {
         badge: '準備', title: '実践会の前に環境を整える',
-        name: '2. ClaudeCode Codex 準備',
+        name: 'ClaudeCode Codex 準備',
         desc: 'ログイン、作業フォルダ、最初の依頼、差分確認までを整えます。実践会で置いていかれない状態を作ります。',
         level_id: 'beginner'
       },
       intermediate: {
         badge: '実践', title: '持ち込み課題を深く進める',
-        name: '1. ClaudeCode Codex 実践',
+        name: 'ClaudeCode Codex 実践',
         desc: '3日以上の利用経験、1つ以上の成果物、基本コマンドへの抵抗がない方に向く月例少人数会です。',
         level_id: 'intermediate'
       },
       advanced: {
         badge: '実装', title: '業務に組み込む',
-        name: '5. AI伴走支援 いっしょに導入',
+        name: 'AI伴走支援 いっしょに導入',
         desc: '自社業務の自動化、社内手順化、補助金前提の導入まで進めたい方向けです。',
         level_id: 'advanced'
       }
@@ -2804,13 +2816,13 @@ def _render_services() -> str:
 
 def _render_courses_packages() -> str:
     """講習・相談プランのカード一覧。"""
-    prep_title = "2. ClaudeCode Codex 準備"
-    practice_title = "1. ClaudeCode Codex 実践"
+    prep_title = "ClaudeCode Codex 準備"
+    practice_title = "ClaudeCode Codex 実践"
     seminar_url = "https://goodbouldering.com/?pid=188553378"
-    free_consult_title = "3. AI無料相談 とりあえず30分"
+    free_consult_title = "AI無料相談 とりあえず30分"
     free_consult_url = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/AW5O5XSBHLEHYUBHLZUGFKYE"
-    consult_title = "4. AI個別相談 しっかり60分"
-    support_title = "5. AI伴走支援 いっしょに導入"
+    consult_title = "AI個別相談 しっかり60分"
+    support_title = "AI伴走支援 いっしょに導入"
     items = [
         {
             "icon": "↗",
@@ -3099,7 +3111,7 @@ FAQ_QA = [
     ("彦根AI講習 実践会の参加条件はありますか？",
      "あります。実践会は、Claude Code または Codex を3日以上使ったことがあり、自分で1つ以上動くものを作った経験があり、cd・ls・git など基本コマンドに抵抗がない方を対象にします。申込時に、環境構築済みか、作ったもの、当日扱いたい課題を確認します。条件に満たない方は準備会を案内します。"),
     ("料金はどれくらいですか？",
-     "3. AI無料相談 とりあえず30分は無料、4. AI個別相談 しっかり60分は4,400円、1. ClaudeCode Codex 実践と2. ClaudeCode Codex 準備は5,500円から。5. AI伴走支援 いっしょに導入は月額10万円×6ヶ月が目安です。LP制作は1本18〜30万円が目安。多くは補助金併用を前提に組みます。"),
+     "AI無料相談 とりあえず30分は無料、AI個別相談 しっかり60分は4,400円、ClaudeCode Codex 実践とClaudeCode Codex 準備は5,500円から。AI伴走支援 いっしょに導入は月額10万円×6ヶ月が目安です。LP制作は1本18〜30万円が目安。多くは補助金併用を前提に組みます。"),
     ("補助金は使えますか？滋賀の事業者でも対象ですか？",
      "講習・伴走パックは「デジタル化・AI導入補助金」や滋賀県・彦根市の補助金の対象になります。補助率は小規模事業者で最大4/5、実質負担が1/3以下になるケースが多いです。申請からツール選定・実装・定着まで一気通貫で支援します。"),
     ("パソコンやスマホが苦手ですが、大丈夫ですか？",
@@ -3529,7 +3541,7 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     # 1. 受講プラン — メインCTA
     parts.append("<section class='block' id='packages'>")
     parts.append("<p class='section-heading fade-up'>AI LESSON</p>")
-    parts.append("<h2 class='section-title packages-title fade-up d1'>受付中！</h2>")
+    parts.append("<h2 class='section-title packages-title fade-up d1'>講習プラン</h2>")
     parts.append("<p class='section-sub fade-up d2'>Claude Code / Codex の準備会・実践会・個別相談を、目的に合わせて選べます。</p>")
     parts.append(_render_courses_packages())
     parts.append("</section>")

@@ -4,7 +4,7 @@ role: AI講師 / マーケター / グッぼる代表
 gen_by: DeepResearch 生成 + 公開情報整理
 profile_url: https://www.genspark.ai/api/code_sandbox_light/preview/598e1ca9-55a0-42ef-94b1-2c2072dee9f3
 # 講師写真 URL。未設定なら絵文字フォールバック。
-avatar_url: "/img/speaker.webp"
+avatar_url: "/img/speaker-portrait.webp"
 ---
 
 # 由井 辰美 — AI講習 / 進行メモ

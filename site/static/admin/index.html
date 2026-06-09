@@ -55,6 +55,7 @@
   }
   .site-nav .login-btn:hover { background:var(--primary); transform:translateY(-1px); }
   .topbar { margin-bottom:20px; }
+  .topbar, #admin-menu, #panel-dashboard, #panel-status { scroll-margin-top:96px; }
   .topbar h1 {
     font-size:24px; font-weight:800; letter-spacing:-.01em; color:var(--text);
     display:inline-flex; align-items:center; gap:10px;
@@ -65,6 +66,7 @@
     background:var(--bg-white); border:1px solid var(--line);
     border-radius:18px; padding:22px;
     margin-bottom:18px; box-shadow:var(--shadow-card);
+    scroll-margin-top:96px;
   }
   .panel h2 {
     font-size:13px; font-weight:800; letter-spacing:.10em;
@@ -209,6 +211,33 @@
   .dash-cma summary:hover { color: var(--primary); }
   .dash-meta { color:var(--muted); font-size:11px; text-align:right; margin-top:10px; font-family:'SFMono-Regular',monospace; }
 
+  /* === First-view operation pulse === */
+  .ops-pulse {
+    display:grid; grid-template-columns:repeat(3, minmax(0, 1fr));
+    gap:12px; margin-bottom:18px;
+  }
+  .ops-pulse-card {
+    min-height:88px; padding:16px; border-radius:8px;
+    background:#fff; border:1px solid var(--line);
+    box-shadow:0 8px 26px rgba(15,23,42,.06);
+  }
+  .ops-pulse-card strong {
+    display:block; font-size:26px; line-height:1; letter-spacing:-.02em;
+    color:var(--text); margin:8px 0 4px;
+  }
+  .ops-pulse-card span {
+    display:block; font-size:11px; font-weight:800; color:var(--muted);
+    letter-spacing:.10em;
+  }
+  .ops-pulse-card small { display:block; line-height:1.35; }
+  .ops-pulse-card.alert {
+    border-color:rgba(239,68,68,.40); background:#fff7f7;
+  }
+  .ops-pulse-card.alert strong { color:#b91c1c; font-size:18px; }
+  @media (max-width:760px) {
+    .ops-pulse { grid-template-columns:1fr; }
+  }
+
   /* === Admin menu === */
   .admin-menu-panel { padding:0; overflow:hidden; }
   .admin-menu-head {
@@ -268,6 +297,7 @@
     .admin-menu-group:last-child { border-bottom:none; }
     .admin-menu-head { align-items:flex-start; flex-direction:column; }
     .admin-menu-primary { width:100%; }
+    .panel, .topbar, #admin-menu, #panel-dashboard, #panel-status { scroll-margin-top:132px; }
   }
 </style>
 </head>
@@ -288,6 +318,24 @@
     <div>
       <h1><span class="dot"></span>AIハブ 管理画面</h1>
       <p class="sub">9事業の運用ダッシュボード + グッぼる グループ記事の発行</p>
+    </div>
+  </div>
+
+  <div class="ops-pulse" id="ops-pulse" aria-label="運用サマリー">
+    <div class="ops-pulse-card">
+      <span>直近7日</span>
+      <strong id="pulse-recent">--</strong>
+      <small>成果・作業ログ</small>
+    </div>
+    <div class="ops-pulse-card">
+      <span>未対応</span>
+      <strong id="pulse-open">--</strong>
+      <small>要確認タスク</small>
+    </div>
+    <div class="ops-pulse-card" id="pulse-health-card">
+      <span>接続状態</span>
+      <strong id="pulse-health">確認中</strong>
+      <small id="pulse-health-note">API確認中</small>
     </div>
   </div>
 
@@ -381,7 +429,7 @@
 
   <div class="panel">
     <h2>② 対象親グループ</h2>
-    <label>親グループ（記事を表示したいページ）</label>
+    <label for="parent-select">親グループ（記事を表示したいページ）</label>
     <div class="row">
       <select id="parent-select" class="grow"><option value="">（読み込み中…）</option></select>
       <button id="btn-load-parents">親グループ再読込</button>
@@ -402,10 +450,10 @@
 
   <div class="panel">
     <h2>④ テーマからAI記事案を生成</h2>
-    <label>テーマ</label>
+    <label for="theme">テーマ</label>
     <input type="text" id="theme" placeholder="例: 春の岩場シーズン到来 / La Sportiva 新作シューズ徹底比較">
     <div class="row" style="margin-top:8px;">
-      <label style="margin:0;">案数</label>
+      <label for="count" style="margin:0;">案数</label>
       <input type="number" id="count" value="3" min="1" max="5" style="width:80px;">
       <button class="primary" id="btn-generate">🤖 案を生成</button>
       <span id="gen-status" class="badge muted">待機中</span>
@@ -415,10 +463,10 @@
 
   <div class="panel" id="panel-edit" style="display:none;">
     <h2>⑤ 採用案の編集 + 画像生成 + 公開</h2>
-    <label>グループ名（=タイトル）</label>
+    <label for="edit-title">グループ名（=タイトル）</label>
     <input type="text" id="edit-title">
 
-    <label>本文 HTML（左：ソース / 右：ライブプレビュー）</label>
+    <label for="edit-html">本文 HTML（左：ソース / 右：ライブプレビュー）</label>
     <div class="editor-wrap">
       <div class="editor-toolbar" id="editor-toolbar">
         <button type="button" data-ed="h2">H2 見出し</button>
@@ -440,16 +488,16 @@
     </div>
 
     <div class="row" style="margin-top:6px;">
-      <input type="text" id="revise-instruction" class="grow" placeholder="例: 初心者向けに語りかける口調にして">
+      <input type="text" id="revise-instruction" class="grow" aria-label="AI修正指示" placeholder="例: 初心者向けに語りかける口調にして">
       <button id="btn-revise">✏️ AI に修正させる</button>
     </div>
 
     <hr>
-    <label>公開日 (PC用フリースペース2 相当)</label>
+    <label for="edit-date">公開日 (PC用フリースペース2 相当)</label>
     <input type="date" id="edit-date">
 
     <hr>
-    <label>グループ画像 — DALL-E プロンプト</label>
+    <label for="img-prompt">グループ画像 — DALL-E プロンプト</label>
     <div class="row">
       <input type="text" id="img-prompt" class="grow" placeholder="例: クライミングシューズが棚に並ぶショップの写真風イメージ">
       <button id="btn-image">🎨 画像を生成</button>
@@ -458,11 +506,11 @@
     <div>
       <img id="img-preview" class="img-preview" style="display:none;" alt="">
       <div><small id="img-url-text"></small></div>
-      <input type="text" id="image-url" placeholder="または画像 URL を直接入力" style="margin-top:6px;">
+      <input type="text" id="image-url" aria-label="画像URL" placeholder="または画像 URL を直接入力" style="margin-top:6px;">
     </div>
 
     <hr>
-    <label>表示設定（カラーミーグループの display_state）</label>
+    <label for="edit-display-state">表示設定（カラーミーグループの display_state）</label>
     <select id="edit-display-state">
       <option value="hidden">しない (hidden) ※公開後に「表示する」へ</option>
       <option value="showing">する (showing)</option>
@@ -473,7 +521,7 @@
     <div class="row">
       <button id="btn-create-group" class="primary">📁 投稿（選択親グループ配下の最上部 sort=0 / ID 入力時は更新）</button>
       <span id="group-status" class="badge muted">未作成</span>
-      <input type="text" id="group-id" placeholder="既存グループID（編集時に自動入力）" style="width:160px;">
+      <input type="text" id="group-id" aria-label="既存グループID" placeholder="既存グループID（編集時に自動入力）" style="width:160px;">
     </div>
     <div class="row" style="margin-top:8px;">
       <button id="btn-publish-live" class="primary">🚀 公開（product_list に書込）</button>
@@ -599,11 +647,20 @@ async function api(path, opts = {}) {
     if (d.generated_at) {
       $("dash-meta").textContent = `更新: ${d.generated_at}`;
     }
+    $("pulse-recent").textContent = `${totals.recent_7d_total ?? 0}`;
+    $("pulse-open").textContent = `${totals.tasks_open_total ?? 0}`;
+    $("pulse-health").textContent = "OK";
+    $("pulse-health-note").textContent = "管理API応答あり";
   } catch (e) {
     $("dashboard-summary").innerHTML = `<span class="badge err">ダッシュボード読み込み失敗: ${e.message}</span>`;
     $("dash-tasks").innerHTML = '';
     $("dash-works").innerHTML = '';
     $("dash-cma").innerHTML = '';
+    $("pulse-recent").textContent = "--";
+    $("pulse-open").textContent = "--";
+    $("pulse-health").textContent = "接続異常";
+    $("pulse-health-note").textContent = e.message;
+    $("pulse-health-card").classList.add("alert");
   }
 })();
 

@@ -168,16 +168,14 @@ def _build_jsonld_website() -> str:
         "description": "滋賀・彦根の中小事業者向けAI講習とWeb経営コンサルのポータル。",
     }
 
-    prep_title = "ClaudeCode Codex 準備"
-    practice_title = "ClaudeCode Codex 実践"
+    codex_title = "今週のCodex講習 準備＋実践"
     free_consult_title = "AI無料相談 とりあえず30分"
     consult_title = "AI個別相談 しっかり60分"
     support_title = "AI伴走支援 いっしょに導入"
 
     # 受講プランを Service + Offer として構造化（_render_packages の items と整合）
     plans = [
-        (prep_title, "実践の前に、環境構築・ログイン・最初の成果物作成までを整える少人数の準備講座。", "5500", "5500", "Course"),
-        (practice_title, "Claude Code または Codex の環境が整い、自分で1つ以上動くものを作った人向けの月例少人数セミナー。持ち込み課題をその場で進める。", "5500", "5500", "Course"),
+        (codex_title, "Codex の環境準備から、持ち込み課題の実践までを1つにまとめた今週の少人数講習。ログイン、最初の依頼、差分確認、成果物の確認まで進める。", "5500", "5500", "Course"),
         (free_consult_title, "来店またはオンラインで、AI導入の入口を30分で整理する無料相談。講習や伴走の前に、今の課題と次の一手を確認する。", "0", "0", "BusinessCoaching"),
         (consult_title, "経営者・専門職・初心者なんでも相談。AI活用、Claude Code / Codex導入、補助金申請まで現役オーナーがその場で解決。", "4400", "4400", "BusinessCoaching"),
         (support_title, "HP公開から事務自動化・経理・マーケまで6ヶ月で一気に定着。技術的な難所は講師が代行・支援。滋賀・彦根の補助金で負担1/3以下に。", "100000", "100000", "Service"),
@@ -2432,15 +2430,15 @@ HEADER_JS = """
     ];
     var RESULT = {
       beginner: {
-        badge: '準備', title: '実践の前に環境を整える',
-        name: 'ClaudeCode Codex 準備',
-        desc: 'ログイン、作業フォルダ、最初の依頼、差分確認までを整えます。実践で置いていかれない状態を作ります。',
+        badge: 'Codex', title: '準備から実践まで一気に整える',
+        name: '今週のCodex講習 準備＋実践',
+        desc: 'ログイン、作業フォルダ、最初の依頼、差分確認、持ち込み課題の進め方までを1つの講習メニューで整えます。',
         level_id: 'beginner'
       },
       intermediate: {
-        badge: '実践', title: '持ち込み課題を深く進める',
-        name: 'ClaudeCode Codex 実践',
-        desc: '3日以上の利用経験、1つ以上の成果物、基本コマンドへの抵抗がない方に向く月例少人数会です。',
+        badge: 'Codex', title: '持ち込み課題をその場で進める',
+        name: '今週のCodex講習 準備＋実践',
+        desc: '環境準備を確認しながら、自分の課題をその場で進める少人数講習です。',
         level_id: 'intermediate'
       },
       advanced: {
@@ -2493,7 +2491,8 @@ HEADER_JS = """
       if (!grid) return;
       grid.classList.add('pkg-filter-active');
       grid.querySelectorAll('.pkg-card').forEach(function(c){
-        c.classList.toggle('pkg-match', c.getAttribute('data-level') === lv);
+        var levels = (c.getAttribute('data-level') || '').split(/\\s+/);
+        c.classList.toggle('pkg-match', levels.indexOf(lv) !== -1);
       });
     }
 
@@ -2816,8 +2815,7 @@ def _render_services() -> str:
 
 def _render_courses_packages() -> str:
     """講習・相談プランのカード一覧。"""
-    prep_title = "ClaudeCode Codex 準備"
-    practice_title = "ClaudeCode Codex 実践"
+    codex_title = "今週のCodex講習 準備＋実践"
     seminar_url = "https://goodbouldering.com/?pid=188553378"
     free_consult_title = "AI無料相談 とりあえず30分"
     free_consult_url = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/AW5O5XSBHLEHYUBHLZUGFKYE"
@@ -2825,40 +2823,25 @@ def _render_courses_packages() -> str:
     support_title = "AI伴走支援 いっしょに導入"
     items = [
         {
-            "icon": "↗",
-            "cat": "入門・準備編",
-            "level": "準備中",
-            "level_id": "beginner",
-            "title": prep_title,
-            "price": "5,500円",
-            "duration": "90分 / 少人数",
-            "subsidy": False,
-            "desc": "実践に来る前の入口。ログイン、作業フォルダ、最初の依頼、差分確認までを整え、当日トラブルで時間が溶けない状態にします。",
-            "fit": ["インストールやログインが不安", "Codex / Claude Code の違いを整理したい", "まず1つ小さな成果物を作りたい"],
-            "url": seminar_url,
-            "cta": "準備の詳細を見る",
-        },
-        {
             "icon": "⌘",
-            "cat": "月例・実践編",
-            "level": "実践者向け",
-            "level_id": "intermediate",
-            "title": practice_title,
+            "cat": "今週の講習メニュー",
+            "level": "準備＋実践",
+            "level_id": "beginner intermediate",
+            "title": codex_title,
             "price": "5,500円",
-            "duration": "120分 / 月1回 / 定員8名",
+            "duration": "90〜120分 / 少人数",
             "subsidy": True,
-            "desc": "Claude Code と Codex を使って、自分の課題をその場で進める少人数セミナー。環境構築だけで終わらせず、差分・画面・成果物まで見ながら進めます。",
-            "fit": ["自分のPCで Claude Code / Codex が動く", "作りたいもの・直したい課題を持ち込む", "参加者同士の質を保ちながら深く進める"],
-            "req_title": "参加条件",
+            "desc": "Codex の環境準備と実践を1つにまとめた今週の講習メニュー。ログイン、作業フォルダ、最初の依頼、差分確認、持ち込み課題の進め方まで見ながら進めます。",
+            "fit": ["インストールやログインが不安", "Codex の最初の依頼と差分確認を整えたい", "作りたいもの・直したい課題を持ち込む"],
+            "req_title": "参加前に確認すること",
             "requirements": [
-                "Claude Code または Codex を3日以上使ったことがある",
-                "自分で1つ以上「動くもの」を作った経験がある",
-                "cd / ls / git など基本コマンドに抵抗がない",
-                "申込時に当日扱いたい課題を一言で書ける",
+                "使っているPCとログイン状態",
+                "作りたいもの、直したいもの、試したい課題",
+                "環境が未設定でも参加可。状況に合わせて準備から始めます",
             ],
-            "verify": "申込時に「作ったもの」「環境構築済みか」「持ち込み課題」を確認します。条件に満たない方は準備を案内します。",
+            "verify": "申込時に、環境構築済みか、作ったもの、当日扱いたい課題を確認します。準備が必要な人も、実践に進みたい人も同じメニュー内で振り分けます。",
             "url": seminar_url,
-            "cta": "実践の詳細を見る",
+            "cta": "講習メニューを見る",
             "variant": "featured",
         },
         {
@@ -2885,7 +2868,7 @@ def _render_courses_packages() -> str:
             "duration": "60分",
             "subsidy": False,
             "desc": "実務をこなす経営者が、ビジネスに最適なAI活用を最短でアドバイス。Claude Code / Codex 導入、補助金、業務改善まで対応します。",
-            "fit": ["実践か準備か迷う", "仕事への使いどころを決めたい", "補助金や導入順序も相談したい"],
+            "fit": ["今週の講習か個別相談か迷う", "仕事への使いどころを決めたい", "補助金や導入順序も相談したい"],
             "url": "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/TO3XHZT6XP3OM4QBDYMW7TZP",
             "cta": "個別相談を予約する",
         },
@@ -2951,15 +2934,15 @@ def _render_courses_packages() -> str:
     parts.append(
         "<div class='packages-cta-row fade-up d4'>"
         "<button type='button' class='btn btn-diagnose diagnose-open'>"
-        "60秒診断｜準備・実践・伴走のどれ？"
+        "60秒診断｜今週の講習・個別相談・伴走のどれ？"
         "</button>"
         "<span class='packages-cta-hint'>3つの質問に答えるだけ。いまの状態に合う入口をその場で提案します。</span>"
         "</div>"
     )
     parts.append(
         "<p class='packages-note fade-up d4'>"
-        "<strong>実践の品質方針:</strong> 「3日以上使った」だけではなく、環境構築済み・成果物あり・持ち込み課題ありを基準にします。"
-        "まだ条件に満たない方は準備へ案内し、入口を閉じずに実践の密度を守ります。"
+        "<strong>今週のCodex講習:</strong> 準備と実践を分けず、環境構築済みか・成果物があるか・持ち込み課題があるかを確認して、その場で進める内容を決めます。"
+        "入口を閉じずに、同じ講習メニュー内で準備から実践までつなげます。"
         "<br><strong>補助金:</strong> 講習と伴走支援は、滋賀県・彦根市のデジタル化/AI導入系補助金と組み合わせて相談できます。"
         "</p>"
     )
@@ -3108,10 +3091,10 @@ def _render_flow() -> str:
 FAQ_QA = [
     ("彦根・滋賀でAIの講習や相談はできますか？",
      "はい。滋賀県彦根市を拠点に、彦根・湖東・東近江を中心とした対面のAI講習・個別相談を行っています。京都・大阪・名古屋までは出張可、リモートなら全国対応します。"),
-    ("彦根AI講習 実践の参加条件はありますか？",
-     "あります。実践は、Claude Code または Codex を3日以上使ったことがあり、自分で1つ以上動くものを作った経験があり、cd・ls・git など基本コマンドに抵抗がない方を対象にします。申込時に、環境構築済みか、作ったもの、当日扱いたい課題を確認します。条件に満たない方は準備を案内します。"),
+    ("今週のCodex講習は準備と実践が一緒ですか？",
+     "はい。準備と実践を1つの講習メニューにまとめています。環境構築済みか、作ったもの、当日扱いたい課題を確認し、必要な人はログインや最初の依頼から、進んでいる人は持ち込み課題の実践から始めます。"),
     ("料金はどれくらいですか？",
-     "AI無料相談 とりあえず30分は無料、AI個別相談 しっかり60分は4,400円、ClaudeCode Codex 実践とClaudeCode Codex 準備は5,500円から。AI伴走支援 いっしょに導入は月額10万円×6ヶ月が目安です。LP制作は1本18〜30万円が目安。多くは補助金併用を前提に組みます。"),
+     "AI無料相談 とりあえず30分は無料、AI個別相談 しっかり60分は4,400円、今週のCodex講習 準備＋実践は5,500円から。AI伴走支援 いっしょに導入は月額10万円×6ヶ月が目安です。LP制作は1本18〜30万円が目安。多くは補助金併用を前提に組みます。"),
     ("補助金は使えますか？滋賀の事業者でも対象ですか？",
      "講習・伴走パックは「デジタル化・AI導入補助金」や滋賀県・彦根市の補助金の対象になります。補助率は小規模事業者で最大4/5、実質負担が1/3以下になるケースが多いです。申請からツール選定・実装・定着まで一気通貫で支援します。"),
     ("パソコンやスマホが苦手ですが、大丈夫ですか？",
@@ -3542,7 +3525,7 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append("<section class='block' id='packages'>")
     parts.append("<p class='section-heading fade-up'>AI LESSON</p>")
     parts.append("<h2 class='section-title packages-title fade-up d1'>講習プラン</h2>")
-    parts.append("<p class='section-sub fade-up d2'>Claude Code / Codex の準備・実践・個別相談を、目的に合わせて選べます。</p>")
+    parts.append("<p class='section-sub fade-up d2'>今週のCodex講習は、準備と実践を1つの講習メニューにまとめました。個別相談や伴走支援も目的に合わせて選べます。</p>")
     parts.append(_render_courses_packages())
     parts.append("</section>")
 

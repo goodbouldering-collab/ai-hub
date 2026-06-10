@@ -2990,6 +2990,7 @@ def _render_courses_packages() -> str:
             "verify": "Codexの申込リンクは準備と同じです。申込時に「Codex実践」をオプション選択してください。",
             "url": seminar_url,
             "cta": "Codexメニューで実践を選ぶ",
+            "variant": "featured",
         },
         {
             "icon": "◧",

@@ -1,5 +1,5 @@
 ---
-title: "Codex実践 スライド+動画  構築と応用"
+title: "Codex実践 構築と応用"
 date: 2026-06-10
 role: 講習資料 / Codex実践
 gen_by: Codex
@@ -60,7 +60,7 @@ summary: Codexアプリを実務で使うための応用編。プロジェクト
 <div class="codex-onboard">
 
 <div class="codex-hero">
-<h2>Codex実践 スライド+動画  構築と応用</h2>
+<h2>Codex実践 構築と応用</h2>
 <p>準備編で「開く、頼む、確認する」まで進んだ人向けに、ここでは実際の運用を組みます。プロジェクトの分け方、フォルダの置き方、AGENTS.md、.codex/config.toml、skills、plugins、MCP、hooks、rules、automations、レビュー、ブラウザ確認、公式更新の追い方までを、仕事で使う前提でまとめます。</p>
 </div>
 

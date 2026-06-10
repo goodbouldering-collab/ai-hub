@@ -1,9 +1,9 @@
 ---
-title: Codex準備 スライド+動画 導入と習得
+title: Codex準備 導入と習得
 date: 2026-06-05
 role: 講習資料 / Codex準備
 gen_by: Codex
-summary: ChatGPTは使えるがCodexアプリは初めての人向けに、導入、最初のプロジェクト、権限、安全装置、差分確認、公式アップデートの追い方までを、スライドと動画で学ぶ準備編。
+summary: ChatGPTは使えるがCodexアプリは初めての人向けに、導入、最初のプロジェクト、権限、安全装置、差分確認、公式アップデートの追い方までを学ぶ準備編。
 ---
 
 <style>
@@ -54,7 +54,7 @@ summary: ChatGPTは使えるがCodexアプリは初めての人向けに、導�
 <div class="codex-onboard">
 
 <div class="codex-hero">
-<h2>Codex準備 スライド+動画 導入と習得</h2>
+<h2>Codex準備 導入と習得</h2>
 <p>このページは、Codexアプリを初めて開く人が「ログインする」「プロジェクトを選ぶ」「小さく頼む」「差分を見て採用する」までを迷わず進めるための準備編です。次の実践編では、実運用のフォルダ管理、skills、plugins、hooks、automations、設定の応用まで進みます。</p>
 </div>
 

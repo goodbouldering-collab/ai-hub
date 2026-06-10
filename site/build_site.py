@@ -133,15 +133,17 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
         "<header class='site-header scrolled' aria-label='サイトヘッダー'>"
         "<div class='site-header-inner'>"
         f"<a class='site-logo' href='{safe_home}'>"
-        "<span class='brand-mark' aria-hidden='true'><span class='brand-a'>A</span><span class='brand-ha'>ハ</span></span>"
-        "<span class='wordmark'><span class='word-ai'>AI</span><span class='word-hub'>ハブ</span><span class='word-en'>AI HUB</span></span>"
-        "<span class='site-logo-by'>by 由井辰美</span>"
+        "<span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span>"
+        "<span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span>"
+        "<span class='site-logo-by'>講師 由井辰美</span>"
         "</a>"
         "<nav class='site-nav top-nav' aria-label='サイトナビ'>"
     ]
     # TOP(_render_header) と同じリンク群・順序で固定メニューを共通化する。
     # 下層ページからは TOP のセクションへ飛ぶため href は "/#..." の絶対指定にする。
     parts.append("<a class='nav-link' href='/#packages'>受講プラン</a>")
+    parts.append("<a class='nav-link' href='/#usecases'>実例</a>")
+    parts.append("<a class='nav-link' href='/#growth'>集客施策</a>")
     parts.append("<a class='nav-link' href='/#works'>制作実績</a>")
     parts.append("<a class='nav-link' href='/#lectures'>講習資料</a>")
     parts.append("<a class='nav-link' href='/#speaker'>講師紹介</a>")
@@ -399,6 +401,28 @@ header.site-header.scrolled {
   display: inline-flex; align-items: center; gap: 8px;
 }
 .site-logo .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--grad); box-shadow: 0 0 12px rgba(139,160,255,.6); display: inline-block; }
+.brand-mark {
+  width: 44px; height: 36px; border-radius: 8px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, #FFFFFF 0%, #EAF8FF 58%, #EAFBF7 100%);
+  border: 1px solid rgba(0,95,158,.18);
+  box-shadow: 0 10px 24px rgba(0,95,158,.12), inset 0 1px 0 rgba(255,255,255,.95);
+  color: #0F172A; font-family: var(--mono, monospace); font-weight: 900; line-height: 1;
+}
+.brand-mark .brand-a { font-size: 14px; letter-spacing: 0; color: var(--primary); }
+.brand-mark .brand-ha { font-size: 16px; margin-left: -2px; color: var(--emerald); transform: translateY(1px); }
+.wordmark { display: inline-flex; align-items: baseline; gap: 3px; font-weight: 900; letter-spacing: 0; }
+.wordmark .word-ai { font-family: var(--mono, monospace); color: var(--primary); letter-spacing: 0; }
+.wordmark .word-hub { color: var(--text); font-weight: 900; }
+.wordmark .word-en { margin-left: 8px; color: var(--muted); font-family: var(--mono, monospace); font-size: 11px; font-weight: 700; letter-spacing: .08em; }
+.site-logo-by { color: var(--muted); font-weight: 600; font-size: 12px; margin-left: 4px; white-space: nowrap; }
+.nav-cta {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 9px 16px; border-radius: 8px;
+  background: var(--grad); color: #fff; font-size: 13px; font-weight: 800; text-decoration: none;
+  box-shadow: 0 6px 22px rgba(40,84,197,.22), inset 0 1px 0 rgba(255,255,255,.25);
+  white-space: nowrap;
+}
 .site-header .login-btn {
   display: inline-flex; align-items: center; gap: 6px;
   padding: 9px 18px; border-radius: 999px;
@@ -413,6 +437,7 @@ header.site-header.scrolled {
 @media (max-width: 720px) {
   .site-header-inner { padding: 10px 14px; gap: 8px; }
   .site-logo { font-size: 16px; }
+  .wordmark .word-en, .site-logo-by { display: none; }
   .site-header .login-btn { padding: 7px 14px; font-size: 12px; }
 }
 
@@ -698,26 +723,26 @@ def render_index(payload: dict, genres: list[dict], is_live: bool = True) -> str
     parts: list[str] = []
     parts.append("<!doctype html><html lang='ja'><head><meta charset='utf-8'>" + FAVICON_HEAD_HTML)
     parts.append("<meta name='viewport' content='width=device-width,initial-scale=1'>")
-    parts.append(f"<title>AIハブ Top{total} / {date}</title>")
+    parts.append(f"<title>AI Watch Top{total} / {date} | AI相談 彦根</title>")
     desc = f"AI情報とSNSアルゴリズム動向を毎朝要約・ランキング。{date} のTop{total}を掲載。"
     parts.append(f"<meta name='description' content='{html.escape(desc, quote=True)}'>")
     parts.append(f"<link rel='canonical' href='{html.escape(SITE_URL + '/watch/index.html', quote=True)}'>")
-    parts.append(_build_ogp("AIハブ AI Watch", desc, SITE_URL + "/watch/index.html", kind="website"))
-    ld = _build_jsonld("website", {}, "AIハブ AI Watch", SITE_URL + "/watch/index.html")
+    parts.append(_build_ogp("AI相談 彦根 AI Watch", desc, SITE_URL + "/watch/index.html", kind="website"))
+    ld = _build_jsonld("website", {}, "AI相談 彦根 AI Watch", SITE_URL + "/watch/index.html")
     if ld:
         parts.append(f"<script type='application/ld+json'>{ld}</script>")
     parts.append(f"<style>{MASTER_CSS}</style></head><body><div class='container'>")
     parts.append(ADMIN_BUTTON_HTML)
     parts.append(render_top_nav(path_prefix="../", current_id="home" if is_live else "archive", include_run=is_live))
     parts.append("<header>")
-    parts.append("<h1>AIハブ</h1>")
+    parts.append("<h1>AI相談 彦根</h1>")
     parts.append(f"<p class='sub'>{date} ・ 今日の注目Top{total} ・ クリックで好みを学習</p>")
     parts.append("</header>")
 
     if not items:
         parts.append("<p class='empty'>今日の記事はありません。</p>")
         parts.append(render_support_sns_section(load_support_sns()))
-        parts.append("<footer>AIハブ</footer></div></body></html>")
+        parts.append("<footer>AI相談 彦根</footer></div></body></html>")
         return "".join(parts)
 
     parts.append("<div class='genre-tabs'>")
@@ -789,7 +814,7 @@ def render_index(payload: dict, genres: list[dict], is_live: bool = True) -> str
         parts.append("</section>")
 
     parts.append(render_support_sns_section(load_support_sns()))
-    parts.append("<footer>AIハブ / Generated by Claude</footer>")
+    parts.append("<footer>AI相談 彦根 / Generated by Claude</footer>")
     parts.append("</div>")
 
     parts.append("""<script>
@@ -914,7 +939,7 @@ def render_archive(dates: list[str]) -> str:
     parts: list[str] = []
     parts.append("<!doctype html><html lang='ja'><head><meta charset='utf-8'>" + FAVICON_HEAD_HTML)
     parts.append("<meta name='viewport' content='width=device-width,initial-scale=1'>")
-    parts.append("<title>AIハブ — 過去ログ</title>")
+    parts.append("<title>AI相談 彦根 — AI Watch 過去ログ</title>")
     parts.append(f"<style>{MASTER_CSS}</style></head><body><div class='container'>")
     parts.append(ADMIN_BUTTON_HTML)
     parts.append(render_top_nav(path_prefix="../", current_id="archive", include_run=False))
@@ -935,7 +960,7 @@ def render_archive(dates: list[str]) -> str:
         parts.append("</ul>")
     else:
         parts.append("<p class='empty'>アーカイブはまだありません。</p>")
-    parts.append("<footer>AIハブ</footer></div></body></html>")
+    parts.append("<footer>AI相談 彦根</footer></div></body></html>")
     return "".join(parts)
 
 
@@ -1523,7 +1548,7 @@ CONTENT_CSS = """
 def _redirect_html(a, t):
     d = "https://ai-hub-jp.vercel.app/#" + a
     return ("<!doctype html><html lang='ja'><head><meta charset='utf-8'>"
-        "<title>" + t + " | AIハブ</title>"
+        "<title>" + t + " | AI相談 彦根</title>"
         "<link rel='canonical' href='" + d + "'>"
         "<meta http-equiv='refresh' content='0; url=" + d + "'>"
         "<meta name='robots' content='noindex,follow'>"
@@ -1590,7 +1615,7 @@ def _build_jsonld(kind: str, meta: dict, title: str, page_url: str) -> str:
             "author": { "@type": "Person", "name": "由井 辰美" },
             "publisher": {
                 "@type": "Organization",
-                "name": "AIハブ",
+                "name": "AI相談 彦根",
                 "url": SITE_URL,
             },
             "description": str(meta.get("summary") or title),
@@ -1617,7 +1642,7 @@ def _build_jsonld(kind: str, meta: dict, title: str, page_url: str) -> str:
         doc = {
             "@context": "https://schema.org",
             "@type": "WebSite",
-            "name": "AIハブ",
+            "name": "AI相談 彦根",
             "url": SITE_URL,
             "description": "AI情報とSNSアルゴリズム動向を毎朝要約して届ける静的サイト",
         }
@@ -1632,7 +1657,7 @@ def _build_ogp(title: str, description: str, page_url: str, kind: str = "article
         f"<meta property='og:description' content='{html.escape(desc, quote=True)}'>",
         f"<meta property='og:url' content='{html.escape(page_url, quote=True)}'>",
         f"<meta property='og:type' content='{html.escape(kind, quote=True)}'>",
-        "<meta property='og:site_name' content='AIハブ'>",
+        "<meta property='og:site_name' content='AI相談 彦根'>",
         "<meta name='twitter:card' content='summary'>",
     ])
 
@@ -1667,7 +1692,7 @@ def render_content_page(title: str, meta: dict, body_html: str, nav_html: str, p
     parts: list[str] = []
     parts.append("<!doctype html><html lang='ja'><head><meta charset='utf-8'>" + FAVICON_HEAD_HTML)
     parts.append("<meta name='viewport' content='width=device-width,initial-scale=1'>")
-    parts.append(f"<title>{html.escape(title)} | AIハブ</title>")
+    parts.append(f"<title>{html.escape(title)} | AI相談 彦根</title>")
     desc = str(meta.get("summary") or "")
     if desc:
         parts.append(f"<meta name='description' content='{html.escape(desc, quote=True)}'>")
@@ -1705,7 +1730,7 @@ def render_content_page(title: str, meta: dict, body_html: str, nav_html: str, p
         parts.append("</ol></div>")
     parts.append(body_html)
     parts.append("</div>")
-    parts.append("<footer>AIハブ / Generated by Claude</footer>")
+    parts.append("<footer>AI相談 彦根 / Generated by Claude</footer>")
     parts.append("<button class='back-to-top' id='backTop' aria-label='トップへ戻る'>↑</button>")
     parts.append("<script>(function(){var b=document.getElementById('backTop');if(!b)return;window.addEventListener('scroll',function(){b.classList.toggle('show',window.scrollY>400);});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script>")
     parts.append(REVEAL_JS)
@@ -1729,7 +1754,7 @@ def build_speaker_page() -> bool:
             "<div class='speaker-page-visual'>"
             "<div class='speaker-page-copy'>"
             f"<p class='speaker-page-role'>{speaker_role}</p>"
-            "<p>講師本人の写真を、AI講習・制作・運用をまとめて扱うAIハブの顔として掲載しています。</p>"
+            "<p>講師本人の写真を、AI講習・制作・運用をまとめて扱うAI相談 彦根の顔として掲載しています。</p>"
             "</div>"
             "<div class='speaker-art speaker-art-animated'>"
             f"<img src='{avatar}' alt='{speaker_name} の講師写真' loading='eager' decoding='async'>"
@@ -1897,7 +1922,7 @@ def build_lectures() -> int:
         body_html = _render_teaching_index(sections)
         nav = render_top_nav(path_prefix="../", current_id="lectures", include_run=False)
         (out_dir / "index.html").write_text(
-            render_content_page("講習資料 ディレクトリ", {"summary": "AIハブの講習資料・補助教材・外部リソースのディレクトリ"}, body_html, nav, page_path="lectures/index.html"),
+            render_content_page("講習資料 ディレクトリ", {"summary": "AI相談 彦根の講習資料・補助教材・外部リソースのディレクトリ"}, body_html, nav, page_path="lectures/index.html"),
             encoding="utf-8",
         )
     return count
@@ -2029,7 +2054,7 @@ def build_portfolio_page() -> bool:
     )
     body_html = "".join(parts)
     meta = {
-        "summary": "AIハブ 講師の由井辰美が制作・運営している実績サイト一覧。カテゴリ・技術スタック・公開年で絞って俯瞰できる。",
+        "summary": "AI相談 彦根 講師の由井辰美が制作・運営している実績サイト一覧。カテゴリ・技術スタック・公開年で絞って俯瞰できる。",
     }
     nav = render_top_nav(path_prefix="./", current_id="portfolio", include_run=False)
     html_text = render_content_page("実績サイト", meta, body_html, nav, page_path="portfolio.html", kind="portfolio")
@@ -2235,7 +2260,7 @@ def build_profile_page() -> bool:
         "<!doctype html><html lang='ja'><head><meta charset='utf-8'>"
         "<meta http-equiv='refresh' content='0; url=/speaker.html'>"
         "<link rel='canonical' href='/speaker.html'>"
-        "<title>講師紹介・経歴 — AIハブ</title>"
+        "<title>講師紹介・経歴 — AI相談 彦根</title>"
         "<script>location.replace('/speaker.html');</script></head>"
         "<body>このページは <a href='/speaker.html'>講師紹介ページ</a> に移動しました。</body></html>"
     )

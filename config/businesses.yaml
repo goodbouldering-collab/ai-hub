@@ -100,15 +100,15 @@ businesses:
   description: Vercel + Supabase で新規再生成中。みんなのWA の構成をベースに立ち上げ予定。
 
 - id: ai-hub
-  name: AIハブ
-  tagline: CEO ポータル + AI 集約パイプライン
+  name: AI相談 彦根
+  tagline: 講習募集 + 資料センター + AI情報パイプライン
   url: https://ai-hub-jp.vercel.app
   icon: 🤖
   color: cyan
   status: live
   self: true
   kind: business
-  description: あなたは今ここにいます。9事業の入口・講習資料・AI情報を1箇所に集約。
+  description: あなたは今ここにいます。AI相談・講習資料・実例・AI/SNS情報を1箇所に集約。
 
 - id: plogging
   name: プロギング・ジャパン

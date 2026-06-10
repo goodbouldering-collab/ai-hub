@@ -155,7 +155,7 @@ def _build_jsonld_website() -> str:
         "jobTitle": "AI講師 / Web経営コンサルタント / 複数事業オーナー",
         "email": OWNER_EMAIL,
         "url": SITE_URL + "/speaker.html",
-        "image": SITE_URL + "/img/speaker-portrait.webp",
+        "image": SITE_URL + "/img/speaker-portrait-v2.webp",
         "worksFor": {"@id": org_id},
         "knowsAbout": ["生成AI", "クライミング", "店舗経営", "マーケティング", "補助金活用"],
         "description": "クライミング歴30年。ボルダリングカフェ「グッぼる」をはじめ9事業を経営しながら、滋賀・彦根の中小事業者にAI相談、生成AI講習、Codex実践、SNS/LLMO導線づくりを教える。経営者でありコードを書く実装者でもある二重性が強み。",
@@ -299,10 +299,11 @@ def _load_speaker() -> dict:
         if capture and ln.strip() and not ln.strip().startswith(">"):
             buf.append(ln.strip())
     intro = " ".join(buf).strip()
+    top_intro = str(meta.get("top_intro") or "").strip()
     return {
         "name": str(meta.get("name") or OWNER_NAME),
         "role": str(meta.get("role") or ""),
-        "intro": intro,
+        "intro": top_intro or intro,
         "avatar_url": str(meta.get("avatar_url") or "").strip(),
     }
 
@@ -3400,7 +3401,7 @@ def _render_speaker_section() -> str:
         f"<h3>{name}</h3>"
         f"{role_html}"
         f"{intro_html}"
-        "<p style='font-weight:700;color:var(--text);margin-top:16px;'>「異端OK、数字根拠で経営を変える」</p>"
+        "<p style='font-weight:700;color:var(--text);margin-top:16px;'>「現場で使えるAIを、実例で教える。」</p>"
         "</div>"
         + (
             f"<div class='speaker-art speaker-art-animated'>"
@@ -3435,7 +3436,7 @@ def _render_speaker_section() -> str:
 
     parts.append(
         "<div style='display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:24px;'>"
-        "<a class='btn btn-primary' href='/speaker.html'>🎤 講師紹介履歴をもっと詳しく</a>"
+        "<a class='btn btn-primary' href='/speaker.html'>🎤 詳しい経歴を見る</a>"
         "</div>"
         "</div>"
     )

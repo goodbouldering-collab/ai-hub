@@ -1769,7 +1769,7 @@ def build_speaker_page() -> bool:
             "<h2 id='career' style='margin-top:8px'>📜 経歴・履歴（時系列）</h2>"
             + profile_body
         )
-    title = "講師紹介履歴をもっと詳しく"
+    title = "講師紹介・経歴"
     nav = render_top_nav(path_prefix="./", current_id="speaker", include_run=False)
     html_text = render_content_page(title, meta, body_html, nav, page_path="speaker.html", kind="speaker")
     (DIST / "speaker.html").write_text(html_text, encoding="utf-8")

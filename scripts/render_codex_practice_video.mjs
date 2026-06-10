@@ -13,10 +13,9 @@ const require = Module.createRequire(import.meta.url);
 const { chromium } = require(path.join(depsRoot, "playwright"));
 
 const outDir = path.join(ROOT, "content", "lectures", "assets");
-const videoPath = path.join(outDir, "codex-app-practice.webm");
-const posterPath = path.join(outDir, "codex-app-practice-poster.png");
+const mode = process.argv[2] || "practice";
 
-const slides = [
+const practiceSlides = [
   {
     kicker: "01 / WORKSPACE",
     title: "導入の次は仕事場づくり",
@@ -103,6 +102,103 @@ const slides = [
   },
 ];
 
+const prepSlides = [
+  {
+    kicker: "01 / START",
+    title: "Codex準備は入口を整える",
+    body: "最初の目的は、ログイン、作業場所、依頼の小ささ、差分確認を迷わず進める状態にすることです。",
+    bullets: ["ChatGPTでサインイン", "Projectを選ぶ", "最初は小さく頼む"],
+    accent: "#2563eb",
+  },
+  {
+    kicker: "02 / WORKSPACE",
+    title: "会話ではなく作業場",
+    body: "ChatGPTは相談相手。Codexはフォルダを読み、編集し、確認まで進める共同作業者です。",
+    bullets: ["ファイルを読む", "変更を提案する", "結果を確認する"],
+    accent: "#0f8b8d",
+  },
+  {
+    kicker: "03 / SIGN IN",
+    title: "最初はChatGPTでログイン",
+    body: "公式手順どおり、Codexを開き、ChatGPTアカウントでサインインして作業を始めます。",
+    bullets: ["Codexを開く", "ChatGPTでサインイン", "プロジェクトを選ぶ"],
+    accent: "#2f9d58",
+  },
+  {
+    kicker: "04 / SCOPE",
+    title: "触る場所を先に限定する",
+    body: "安全装置の第一歩は、Codexに見せるフォルダやGitリポジトリを明確にすることです。",
+    bullets: ["作業用フォルダを1つ選ぶ", "秘密情報を混ぜない", "最初は空フォルダでもよい"],
+    accent: "#e85d5a",
+  },
+  {
+    kicker: "05 / PROMPT",
+    title: "最初の依頼は小さく",
+    body: "いきなり全体改修を任せず、1ファイル、1画面、1文章から始めます。",
+    bullets: ["まず説明してもらう", "候補を3つ出してもらう", "変更前に確認する"],
+    accent: "#f2b705",
+  },
+  {
+    kicker: "06 / DIFF",
+    title: "差分を見て採用する",
+    body: "Codexの成果は、言葉ではなく変更差分とブラウザ表示で確認します。",
+    bullets: ["変更ファイルを見る", "ブラウザで確認する", "戻せる状態を保つ"],
+    accent: "#7c3aed",
+  },
+  {
+    kicker: "07 / REVIEW",
+    title: "公開前は独立レビュー",
+    body: "作った直後は見落としが出ます。別視点で壊れそうな点を先に出します。",
+    bullets: ["表示崩れ", "リンク切れ", "秘密情報の混入"],
+    accent: "#dc2626",
+  },
+  {
+    kicker: "08 / AGENTS",
+    title: "AGENTS.mdにルールを残す",
+    body: "毎回言いたくないルールは、プロジェクトのAGENTS.mdに置きます。",
+    bullets: ["触ってよい範囲", "確認コマンド", "公開前条件"],
+    accent: "#0891b2",
+  },
+  {
+    kicker: "09 / OFFICIAL",
+    title: "公式アップデートを追う",
+    body: "Codexは更新が速いので、X、OpenAI News、Changelog、GitHub releasesを確認先にします。",
+    bullets: ["@OpenAI / @OpenAIDevs", "Codex Changelog", "Feature Maturity"],
+    accent: "#1d4ed8",
+  },
+  {
+    kicker: "10 / NEXT",
+    title: "準備の次は実践へ",
+    body: "準備編のゴールは導入完了ではなく、小さな成果物を作り、次の運用ルールを決めることです。",
+    bullets: ["1ページを直す", "1資料を整理する", "実践編で作業場を育てる"],
+    accent: "#111827",
+  },
+];
+
+const decks = {
+  practice: {
+    header: "AIハブ / Codex実践",
+    pointLabel: "実務ポイント",
+    baseName: "codex-app-practice",
+    slides: practiceSlides,
+  },
+  prep: {
+    header: "AIハブ / Codex準備",
+    pointLabel: "準備ポイント",
+    baseName: "codex-app-onboarding",
+    slides: prepSlides,
+  },
+};
+
+const deck = decks[mode];
+if (!deck) {
+  throw new Error(`Unknown mode: ${mode}. Use "practice" or "prep".`);
+}
+
+const { slides } = deck;
+const videoPath = path.join(outDir, `${deck.baseName}.webm`);
+const posterPath = path.join(outDir, `${deck.baseName}-poster.png`);
+
 function findChrome() {
   const candidates = [
     "C:/Program Files/Google/Chrome/Application/chrome.exe",
@@ -125,7 +221,7 @@ const browser = await chromium.launch({
 });
 const page = await browser.newPage({ viewport: { width: 1280, height: 720 } });
 
-const result = await page.evaluate(async ({ slides }) => {
+const result = await page.evaluate(async ({ slides, header, pointLabel }) => {
   const width = 1280;
   const height = 720;
   const fps = 30;
@@ -197,7 +293,7 @@ const result = await page.evaluate(async ({ slides }) => {
 
     ctx.fillStyle = "#e5e7eb";
     ctx.font = `700 20px ${font}`;
-    ctx.fillText("AIハブ / Codex実践", 64, 58);
+    ctx.fillText(header, 64, 58);
     ctx.textAlign = "right";
     ctx.fillText(`${String(slideIndex + 1).padStart(2, "0")} / ${String(slides.length).padStart(2, "0")}`, width - 64, 58);
     ctx.textAlign = "left";
@@ -233,7 +329,7 @@ const result = await page.evaluate(async ({ slides }) => {
 
     ctx.fillStyle = "#0f172a";
     ctx.font = `900 28px ${font}`;
-    ctx.fillText("実務ポイント", cardX + 36, cardY + 62);
+    ctx.fillText(pointLabel, cardX + 36, cardY + 62);
     ctx.font = `600 24px ${font}`;
     slide.bullets.forEach((bullet, index) => {
       const y = cardY + 128 + index * 78;
@@ -292,7 +388,7 @@ const result = await page.evaluate(async ({ slides }) => {
     binary += String.fromCharCode(bytes[i]);
   }
   return { video: btoa(binary), poster };
-}, { slides });
+}, { slides, header: deck.header, pointLabel: deck.pointLabel });
 
 fs.mkdirSync(outDir, { recursive: true });
 fs.writeFileSync(videoPath, Buffer.from(result.video, "base64"));

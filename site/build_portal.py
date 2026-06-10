@@ -1582,6 +1582,7 @@ section.block + section.block { border-top: 1px solid var(--line); }
   width: fit-content;
 }
 .pkg-desc { font-size: 13px; line-height: 1.78; color: var(--text-soft); flex: 1; margin: 0; }
+.pkg-content,
 .pkg-fit,
 .pkg-req {
   display: grid;
@@ -1590,6 +1591,7 @@ section.block + section.block { border-top: 1px solid var(--line); }
   padding: 0;
   list-style: none;
 }
+.pkg-content li,
 .pkg-fit li,
 .pkg-req li {
   position: relative;
@@ -1598,6 +1600,7 @@ section.block + section.block { border-top: 1px solid var(--line); }
   line-height: 1.55;
   color: var(--text);
 }
+.pkg-content li::before,
 .pkg-fit li::before,
 .pkg-req li::before {
   content: "";
@@ -1609,6 +1612,20 @@ section.block + section.block { border-top: 1px solid var(--line); }
   border-radius: 999px;
   background: var(--primary-soft);
   box-shadow: 0 0 0 4px rgba(43,167,200,.12);
+}
+.pkg-content-box {
+  margin-top: 2px;
+  padding: 12px 13px;
+  border-radius: var(--radius-sm);
+  background: rgba(47,142,173,.08);
+  border: 1px solid rgba(47,142,173,.16);
+}
+.pkg-content-title {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 12px;
+  font-weight: 900;
+  color: var(--primary);
 }
 .pkg-req-box {
   margin-top: 4px;
@@ -2957,6 +2974,11 @@ def _render_courses_packages() -> str:
             "duration": "90分 / 少人数",
             "subsidy": False,
             "desc": "講習ページ「Codex準備 導入と習得」の順番に沿って、開く、プロジェクトを選ぶ、小さく頼む、差分を見て採用する、公開前に独立レビューするところまでを90分で整えます。",
+            "content": [
+                "ChatGPTログイン、Codex起動、プロジェクト/フォルダ選択を一緒に確認",
+                "秘密情報を入れない作業場、権限、最初の小さな依頼文を設定",
+                "差分確認、ブラウザ表示確認、独立レビュー、公式更新確認まで練習",
+            ],
             "fit": ["Codexを開いたが、何から頼めばよいか分からない", "フォルダ選択・権限・秘密情報の扱いを安全にしたい", "PC/モバイル両方で、最初の成果物と確認手順を残したい"],
             "req_title": "90分で整えること",
             "requirements": [
@@ -2981,6 +3003,11 @@ def _render_courses_packages() -> str:
             "duration": "120分 / 少人数",
             "subsidy": True,
             "desc": "Codexでページ、資料、コード、動画台本、運用マニュアルなどの成果物を作る実践講習です。理解度に合わせて、完成までの手順を一緒に進めます。",
+            "content": [
+                "持ち込み課題を要件に分け、Codexへ依頼する単位まで整理",
+                "ページ、資料、コード、動画台本、運用マニュアルなどをその場で制作",
+                "修正指示、差分確認、表示確認、次回使えるテンプレ化まで実施",
+            ],
             "fit": ["持ち込み課題を成果物にしたい", "講習中に公開物や資料を作りたい", "Codexの使い方を実務で定着させたい"],
             "req_title": "実践で扱うこと",
             "requirements": [
@@ -3003,6 +3030,11 @@ def _render_courses_packages() -> str:
             "duration": "30分",
             "subsidy": False,
             "desc": "来店相談とオンライン相談を選べる30分の入口相談。講習・AI導入・補助金のどこから始めるかを短時間で整理します。",
+            "content": [
+                "来店またはオンラインで、今の課題とAIで試したいことを整理",
+                "講習、個別相談、伴走支援のどれから始めるかを切り分け",
+                "補助金、交流会、次回予約など必要な導線を短時間で確認",
+            ],
             "fit": ["まず話を聞きたい", "講習か伴走か迷う", "来店またはオンラインで相談したい"],
             "url": free_consult_url,
             "cta": "無料相談を予約する",
@@ -3017,6 +3049,11 @@ def _render_courses_packages() -> str:
             "duration": "60分",
             "subsidy": False,
             "desc": "AIの使い方、指示書、確認体制、運用導線を60分でしっかり整理する個別相談です。今の仕事や課題を聞きながら、次に使える形まで落とし込みます。",
+            "content": [
+                "LLMO/SEO/MEO、アプリ作成、業務改善など相談テーマを整理",
+                "指示文、確認手順、ファイル整理、AIを使う役割分担を設計",
+                "相談後すぐ試せる次の一手と、継続運用に使うテンプレを残す",
+            ],
             "fit": ["自分の仕事でAIをどう使うか整理したい", "指示文やチェック体制を整えたい", "成果物づくりを継続運用に変えたい"],
             "url": "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/TO3XHZT6XP3OM4QBDYMW7TZP",
             "cta": "AI個別相談を予約する",
@@ -3031,6 +3068,11 @@ def _render_courses_packages() -> str:
             "duration": "初回相談予約",
             "subsidy": True,
             "desc": "HP公開から事務自動化まで、技術的な難所は講師が代行・支援。AI導入・デザイン内製化・経理・マーケティングを6ヶ月で定着させます。",
+            "content": [
+                "AIホームページ、デザイン内製化、書類作成、営業効率化を設計",
+                "経理・バックオフィス自動化や専用AIツール作成を実務として支援",
+                "補助金申請に必要なカリキュラム案、見積、導入計画まで並走",
+            ],
             "fit": ["社内にAI運用を定着させたい", "複数業務をまとめて仕組み化したい", "補助金前提で導入計画を組みたい"],
             "url": "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/V57YTNICA2KV2TN7ENARAVQE",
             "cta": "導入相談を予約する",
@@ -3045,6 +3087,15 @@ def _render_courses_packages() -> str:
         lvl = it.get("level", "")
         lvl_id = it.get("level_id", "")
         level_badge = f"<span class='pkg-level' data-level='{html.escape(lvl_id)}'>{html.escape(lvl)}</span>" if lvl else ""
+        content_items = "".join(f"<li>{html.escape(v)}</li>" for v in it.get("content", []))
+        content_html = ""
+        if content_items:
+            content_html = (
+                "<div class='pkg-content-box'>"
+                "<strong class='pkg-content-title'>受講内容</strong>"
+                f"<ul class='pkg-content'>{content_items}</ul>"
+                "</div>"
+            )
         fit_items = "".join(f"<li>{html.escape(v)}</li>" for v in it.get("fit", []))
         fit_html = f"<ul class='pkg-fit'>{fit_items}</ul>" if fit_items else ""
         req_items = "".join(f"<li>{html.escape(v)}</li>" for v in it.get("requirements", []))
@@ -3073,6 +3124,7 @@ def _render_courses_packages() -> str:
             f"<div class='pkg-price'>{html.escape(it['price'])}</div>"
             f"{subsidy_badge}"
             f"<p class='pkg-desc'>{html.escape(it['desc'])}</p>"
+            f"{content_html}"
             f"{fit_html}"
             f"{req_html}"
             f"<a class='pkg-cta' href='{html.escape(it['url'], quote=True)}'{target_attr}>{html.escape(it['cta'])} →</a>"
@@ -3741,7 +3793,7 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append("<section class='block' id='packages'>")
     parts.append("<p class='section-heading fade-up'>AI LESSON</p>")
     parts.append("<h2 class='section-title packages-title fade-up d1'>AI相談・講習プラン</h2>")
-    parts.append("<p class='section-sub fade-up d2'>レベルは理解度で分けます。Codexは準備90分無料と実践120分5,500円に分け、同じ申込リンク内でオプション選択。相談はAI個別相談で今の課題を整理します。</p>")
+    parts.append("<p class='section-sub fade-up d2'>各申込リンクと講習資料の内容を「受講内容」として整理しました。Codexは準備90分無料と実践120分5,500円に分け、相談は30分の入口相談と60分の個別相談、伴走支援で選べます。</p>")
     parts.append(_render_courses_packages())
     parts.append("</section>")
 

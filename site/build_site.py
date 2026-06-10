@@ -1262,6 +1262,287 @@ CONTENT_CSS = """
   color: #1d4fd6;
   border: 1px solid rgba(37,99,235,.25);
 }
+.tr-home {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(260px, .65fr);
+  gap: 20px;
+  align-items: stretch;
+  margin: 0 0 26px;
+  padding: clamp(20px, 4vw, 32px);
+  border: 1px solid rgba(37,99,235,.16);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 96% 12%, rgba(15,139,141,.13), transparent 30%),
+    linear-gradient(135deg, #f8fbff 0%, #fff 48%, #f0fdf4 100%);
+  box-shadow: 0 18px 50px rgba(15,23,42,.08);
+}
+.tr-home h2 {
+  margin: 0 0 10px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  font-size: clamp(26px, 4vw, 42px);
+  line-height: 1.2;
+}
+.tr-home p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 14.5px;
+  line-height: 1.85;
+}
+.tr-home-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+.tr-home-actions a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 8px 13px;
+  border-radius: 999px;
+  border: 1px solid rgba(37,99,235,.24);
+  background: #fff;
+  color: var(--primary) !important;
+  font-size: 12.5px;
+  font-weight: 800;
+  text-decoration: none !important;
+}
+.tr-home-panel {
+  display: grid;
+  gap: 10px;
+}
+.tr-home-stat {
+  padding: 14px 15px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.82);
+  border: 1px solid var(--glass-border);
+}
+.tr-home-stat b {
+  display: block;
+  color: var(--text);
+  font-size: 22px;
+  line-height: 1.1;
+}
+.tr-home-stat span {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.tr-format-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 18px 0 26px;
+}
+.tr-format {
+  min-height: 92px;
+  padding: 13px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--glass-border);
+  background: #fff;
+}
+.tr-format b {
+  display: block;
+  color: var(--text);
+  font-size: 13.5px;
+  line-height: 1.4;
+}
+.tr-format span {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.55;
+}
+.tr-card .tr-meta {
+  row-gap: 7px;
+}
+.tr-chip.format {
+  background: #f8fafc;
+  color: var(--text-soft);
+  border: 1px solid var(--glass-border);
+}
+.tr-chip.format.on {
+  background: rgba(37,99,235,.10);
+  color: #1d4fd6;
+  border-color: rgba(37,99,235,.20);
+}
+.tr-featured {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  margin: 0 0 22px;
+  padding: 16px 18px;
+  border-radius: 16px;
+  border: 1px solid rgba(15,139,141,.22);
+  background: linear-gradient(135deg, rgba(15,139,141,.08), rgba(37,99,235,.08));
+  text-decoration: none !important;
+  color: inherit !important;
+}
+.tr-featured b {
+  display: block;
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.45;
+}
+.tr-featured span {
+  display: block;
+  color: var(--muted);
+  font-size: 12.5px;
+  line-height: 1.65;
+  margin-top: 3px;
+}
+.tr-featured .arrow {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  color: var(--primary);
+  border: 1px solid rgba(37,99,235,.2);
+  font-weight: 900;
+}
+.lecture-shell {
+  margin: 0 0 22px;
+  padding: 18px;
+  border: 1px solid rgba(37,99,235,.16);
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(15,139,141,.10), transparent 28%),
+    linear-gradient(135deg, #f8fbff 0%, #fff 55%, #f6fef9 100%);
+}
+.lecture-shell-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: start;
+}
+.lecture-shell-title {
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--text);
+  line-height: 1.4;
+}
+.lecture-shell-desc {
+  margin: 5px 0 0 !important;
+  color: var(--text-soft) !important;
+  font-size: 13.5px !important;
+  line-height: 1.7 !important;
+}
+.lecture-home-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid rgba(37,99,235,.22) !important;
+  color: var(--primary) !important;
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: none !important;
+}
+.lecture-format-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 14px;
+}
+.lecture-format-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--glass-border);
+  background: #fff;
+  color: var(--text-soft);
+  font-size: 11.5px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+.lecture-format-chip small {
+  color: inherit;
+  opacity: .72;
+  font-size: 10px;
+  font-weight: 800;
+}
+.lecture-format-chip.on {
+  background: rgba(37,99,235,.10);
+  border-color: rgba(37,99,235,.22);
+  color: #1d4fd6;
+}
+.lecture-format-chip.missing {
+  color: var(--muted);
+  background: rgba(148,163,184,.10);
+}
+.lecture-jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+.lecture-jump a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 7px 11px;
+  border-radius: 10px;
+  border: 1px solid var(--glass-border) !important;
+  background: rgba(255,255,255,.82);
+  color: var(--text-soft) !important;
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: none !important;
+}
+.lecture-jump a:hover {
+  color: var(--primary) !important;
+  border-color: rgba(37,99,235,.30) !important;
+}
+.lecture-outline-preview {
+  margin: 14px 0 0;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(255,255,255,.78);
+  border: 1px solid var(--glass-border);
+}
+.lecture-outline-preview b {
+  display: block;
+  color: var(--text);
+  font-size: 12.5px;
+  margin-bottom: 6px;
+}
+.lecture-outline-preview ol {
+  columns: 2;
+  column-gap: 22px;
+  margin: 0 0 0 1.2em !important;
+  font-size: 12.5px !important;
+}
+.lecture-outline-preview li {
+  break-inside: avoid;
+}
+.content-toc {
+  scroll-margin-top: 92px;
+}
+@media (max-width: 760px) {
+  .tr-home,
+  .lecture-shell-head,
+  .tr-featured {
+    grid-template-columns: 1fr;
+  }
+  .tr-format-grid {
+    grid-template-columns: 1fr;
+  }
+  .lecture-outline-preview ol {
+    columns: 1;
+  }
+}
 
 /* ---- Profile page (config/profile.yaml) ---- */
 .profile-tagline {
@@ -1599,8 +1880,170 @@ def _parse_frontmatter(text: str) -> tuple[dict, str]:
     return (meta if isinstance(meta, dict) else {}), body
 
 
-_HEADING_ID_RE = re.compile(r"<h2>([^<]+)</h2>")
+_SECTION_HEADING_RE = re.compile(
+    r"<h2(?P<h2_attrs>[^>]*)>(?P<h2_content>.*?)</h2>"
+    r"|<div(?P<div_attrs>[^>]*(?:data-lecture-section|class=[\"'][^\"']*\bcc-h\b[^\"']*[\"'])[^>]*)>(?P<div_content>.*?)</div>",
+    re.I | re.S,
+)
+_HTML_ID_ATTR_RE = re.compile(r"\sid=(['\"])(.*?)\1", re.I | re.S)
 _SLUG_NON_ALNUM = re.compile(r"[^0-9A-Za-z぀-ヿ一-鿿\-]+")
+
+LECTURE_FORMATS = [
+    ("toc", "目次"),
+    ("video", "動画"),
+    ("narration", "ナレーション"),
+    ("slides", "スライド"),
+    ("pdf", "PDF"),
+    ("check", "チェック"),
+]
+
+
+def _plain_text_from_html(markup: str) -> str:
+    text = re.sub(r"<style[\s\S]*?</style>", " ", markup, flags=re.I)
+    text = re.sub(r"<script[\s\S]*?</script>", " ", text, flags=re.I)
+    text = re.sub(r"<[^>]+>", " ", text)
+    return html.unescape(re.sub(r"\s+", " ", text)).strip()
+
+
+def _heading_match_parts(m: re.Match) -> tuple[str, str, str]:
+    if m.group("h2_content") is not None:
+        return "h2", m.group("h2_attrs") or "", m.group("h2_content") or ""
+    return "div", m.group("div_attrs") or "", m.group("div_content") or ""
+
+
+def _existing_html_id(attrs: str) -> str:
+    match = _HTML_ID_ATTR_RE.search(attrs)
+    return html.unescape(match.group(2).strip()) if match else ""
+
+
+def _collect_h2_toc(body_html: str) -> list[tuple[str, str]]:
+    toc: list[tuple[str, str]] = []
+    for i, m in enumerate(_SECTION_HEADING_RE.finditer(body_html)):
+        _tag, attrs, content = _heading_match_parts(m)
+        text = _plain_text_from_html(content)
+        if not text:
+            continue
+        slug = _existing_html_id(attrs) or f"h-{i + 1}"
+        toc.append((slug, text))
+    return toc
+
+
+def _lecture_feature_flags(body_html: str, toc: list[tuple[str, str]]) -> dict[str, bool]:
+    text = _plain_text_from_html(body_html)
+    text_l = text.lower()
+    markup_l = body_html.lower()
+    return {
+        "body": bool(text),
+        "toc": len(toc) >= 3,
+        "video": "<video" in markup_l or "youtube.com" in markup_l or "youtu.be" in markup_l,
+        "narration": any(k in text for k in ("ナレーション", "台本", "収録用")),
+        "slides": "codex-slide-deck" in markup_l or "/slides/" in markup_l or "スライド" in text,
+        "pdf": ".pdf" in markup_l,
+        "check": any(k in text for k in ("チェックリスト", "アップロード前チェック", "宿題", "進行メモ", "確認リスト")),
+        "sources": any(k in text for k in ("公式確認", "出典", "参考リンク", "事実確認")),
+    }
+
+
+def _teaching_item_features(item: dict) -> dict[str, bool]:
+    explicit = item.get("features")
+    base = {"body": False, "sources": False}
+    for key, _label in LECTURE_FORMATS:
+        base[key] = False
+    if isinstance(explicit, dict):
+        flags = dict(base)
+        for key in flags:
+            flags[key] = bool(explicit.get(key, False))
+        return flags
+    href = str(item.get("href", ""))
+    href_l = href.lower()
+    text = " ".join(str(item.get(k, "")) for k in ("title", "summary", "href")).lower()
+    inferred_body = bool(href_l and href_l.endswith(".html") and not href_l.startswith("slides/"))
+    return {
+        "body": inferred_body,
+        "toc": bool(item.get("toc")),
+        "video": any(k in text for k in ("動画", "video", ".webm", "youtube", "youtu.be")),
+        "narration": any(k in text for k in ("ナレーション", "台本", "script")),
+        "slides": any(k in text for k in ("スライド", "slides/", "slide", "marp")),
+        "pdf": ".pdf" in text or "pdf" in text,
+        "check": any(k in text for k in ("チェック", "宿題", "演習")),
+        "sources": any(k in text for k in ("出典", "参考", "公式")),
+    }
+
+
+def _find_toc_anchor(toc: list[tuple[str, str]], *keywords: str) -> str:
+    for slug, text in toc:
+        if any(k in text for k in keywords):
+            return f"#{slug}"
+    return ""
+
+
+def _render_feature_chips(flags: dict[str, bool], *, show_missing: bool = False, css_prefix: str = "lecture") -> str:
+    parts: list[str] = []
+    for key, label in LECTURE_FORMATS:
+        active = bool(flags.get(key))
+        if not active and not show_missing:
+            continue
+        if css_prefix == "lecture":
+            cls = "lecture-format-chip on" if active else "lecture-format-chip missing"
+            state = "あり" if active else "整備待ち"
+            parts.append(f"<span class='{cls}'>{html.escape(label)}<small>{state}</small></span>")
+        else:
+            cls = "tr-chip format on" if active else "tr-chip format"
+            parts.append(f"<span class='{cls}'>{html.escape(label)}</span>")
+    return "".join(parts)
+
+
+def _render_lecture_overview(title: str, meta: dict, body_html: str, toc: list[tuple[str, str]]) -> str:
+    flags = _lecture_feature_flags(body_html, toc)
+    desc = str(meta.get("summary") or "")
+    parts: list[str] = []
+    parts.append("<section class='lecture-shell' aria-label='この資料の入口'>")
+    parts.append("<div class='lecture-shell-head'>")
+    parts.append("<div>")
+    parts.append("<div class='lecture-shell-title'>この資料の入口</div>")
+    if desc:
+        parts.append(f"<p class='lecture-shell-desc'>{html.escape(desc)}</p>")
+    else:
+        parts.append(f"<p class='lecture-shell-desc'>{html.escape(title)} の目次・本文・関連形式をまとめています。</p>")
+    parts.append("</div>")
+    parts.append("<a class='lecture-home-link' href='./index.html'>講習資料ホーム</a>")
+    parts.append("</div>")
+    parts.append("<div class='lecture-format-strip'>")
+    parts.append("<span class='lecture-format-chip on'>本文<small>あり</small></span>")
+    parts.append(_render_feature_chips(flags, show_missing=False, css_prefix="lecture"))
+    parts.append("</div>")
+
+    jumps: list[tuple[str, str]] = [("資料ホーム", "./index.html")]
+    if flags.get("toc"):
+        jumps.append(("目次", "#lecture-toc"))
+    video_anchor = _find_toc_anchor(toc, "動画", "動画版")
+    if flags.get("video") and video_anchor:
+        jumps.append(("動画へ", video_anchor))
+    narration_anchor = _find_toc_anchor(toc, "ナレーション", "台本", "収録")
+    if flags.get("narration") and narration_anchor:
+        jumps.append(("台本へ", narration_anchor))
+    slide_anchor = _find_toc_anchor(toc, "スライド", "スライド版", "第I部", "第II部")
+    if flags.get("slides") and slide_anchor:
+        jumps.append(("スライドへ", slide_anchor))
+    check_anchor = _find_toc_anchor(toc, "チェック", "宿題", "進行メモ")
+    if flags.get("check") and check_anchor:
+        jumps.append(("確認へ", check_anchor))
+    source_anchor = _find_toc_anchor(toc, "出典", "参考", "確認先", "アップデート")
+    if flags.get("sources") and source_anchor:
+        jumps.append(("出典へ", source_anchor))
+    parts.append("<div class='lecture-jump'>")
+    for label, href in jumps:
+        parts.append(f"<a href='{html.escape(href, quote=True)}'>{html.escape(label)}</a>")
+    parts.append("</div>")
+
+    preview_toc = [(slug, text) for slug, text in toc if text != title][:6]
+    if preview_toc:
+        parts.append("<div class='lecture-outline-preview'><b>この資料の流れ</b><ol>")
+        for _slug, text in preview_toc:
+            parts.append(f"<li>{html.escape(text)}</li>")
+        parts.append("</ol></div>")
+    parts.append("</section>")
+    return "".join(parts)
 
 
 def _build_jsonld(kind: str, meta: dict, title: str, page_url: str) -> str:
@@ -1663,14 +2106,18 @@ def _build_ogp(title: str, description: str, page_url: str, kind: str = "article
 
 
 def _inject_heading_ids(body_html: str) -> tuple[str, list[tuple[str, str]]]:
-    """h2 に id を付与し、(id, text) のリストを返す。"""
+    """講習で章見出しとして使う h2 / .cc-h に id を付与し、(id, text) のリストを返す。"""
     toc: list[tuple[str, str]] = []
     used: set[str] = set()
 
     def repl(m: re.Match) -> str:
-        text = m.group(1).strip()
+        tag, attrs, content = _heading_match_parts(m)
+        text = _plain_text_from_html(content)
+        if not text:
+            return m.group(0)
+        existing_id = _existing_html_id(attrs)
         # slug 作成(日本語も通す)
-        slug = _SLUG_NON_ALNUM.sub("-", text).strip("-").lower()
+        slug = existing_id or _SLUG_NON_ALNUM.sub("-", text).strip("-").lower()
         if not slug:
             slug = f"h-{len(toc) + 1}"
         base = slug
@@ -1680,9 +2127,11 @@ def _inject_heading_ids(body_html: str) -> tuple[str, list[tuple[str, str]]]:
             i += 1
         used.add(slug)
         toc.append((slug, text))
-        return f"<h2 id='{slug}'>{text}</h2>"
+        if existing_id:
+            return m.group(0)
+        return f"<{tag}{attrs} id='{html.escape(slug, quote=True)}'>{content}</{tag}>"
 
-    new_html = _HEADING_ID_RE.sub(repl, body_html)
+    new_html = _SECTION_HEADING_RE.sub(repl, body_html)
     return new_html, toc
 
 
@@ -1722,9 +2171,12 @@ def render_content_page(title: str, meta: dict, body_html: str, nav_html: str, p
         parts.append("<div class='speaker-meta'>" + "".join(sub_bits) + "</div>")
     parts.append("</header>")
     parts.append("<div class='content-wrap'>")
+    if kind == "lecture":
+        parts.append(_render_lecture_overview(title, meta, body_html, toc))
     # TOC: h2 が 3 個以上あれば出す
     if len(toc) >= 3:
-        parts.append("<div class='content-toc'><div class='toc-label'>🗂 目次</div><ol>")
+        toc_id = " id='lecture-toc'" if kind == "lecture" else ""
+        parts.append(f"<div class='content-toc'{toc_id}><div class='toc-label'>🗂 目次</div><ol>")
         for slug, text in toc:
             parts.append(f"<li><a href='#{slug}'>{html.escape(text)}</a></li>")
         parts.append("</ol></div>")
@@ -1821,13 +2273,89 @@ def _load_teaching_sections(lecture_md_items: list[dict]) -> list[dict]:
     return []
 
 
+def _flatten_teaching_items(sections: list[dict]) -> list[dict]:
+    items: list[dict] = []
+    for sec in sections:
+        for item in sec.get("items") or []:
+            if isinstance(item, dict):
+                items.append(item)
+    return items
+
+
+def _teaching_section_id(section: dict) -> str:
+    sec_id = re.sub(r"[^a-zA-Z0-9一-鿿぀-ヿ]+", "-", str(section.get("name", ""))).strip("-").lower()
+    return sec_id or "section"
+
+
+def _render_teaching_home(sections: list[dict]) -> str:
+    items = _flatten_teaching_items(sections)
+    primary_items = [item for item in (sections[0].get("items") if sections else []) or [] if isinstance(item, dict)]
+    feature_counts: dict[str, int] = {key: 0 for key, _label in LECTURE_FORMATS}
+    for item in items:
+        flags = _teaching_item_features(item)
+        for key, _label in LECTURE_FORMATS:
+            if flags.get(key):
+                feature_counts[key] += 1
+
+    featured = next((it for it in items if it.get("featured")), None)
+    if not featured:
+        featured = next((it for it in items if "Codex実践" in str(it.get("title", ""))), items[0] if items else {})
+    featured_href = _resolve_lecture_href(str(featured.get("href", ""))) if featured else ""
+    first_section_id = _teaching_section_id(sections[0]) if sections else ""
+    parts: list[str] = []
+    parts.append("<section class='tr-home' aria-label='講習資料ホーム'>")
+    parts.append("<div>")
+    parts.append("<h2>講習資料ホーム</h2>")
+    parts.append(
+        "<p>「Codex実践 構築と応用」の形式を基準に、各資料を目次、本文、動画、"
+        "ナレーション、スライド、PDF、チェックの観点で探せるようにまとめた入口です。"
+        "講習中は投影資料へ、復習時は本文と目次へ、制作時はチェック項目へ進めます。</p>"
+    )
+    parts.append("<div class='tr-home-actions'>")
+    if featured_href:
+        parts.append(f"<a href='{html.escape(featured_href, quote=True)}'>Codex実践から見る</a>")
+    if first_section_id:
+        parts.append(f"<a href='#sec-{html.escape(first_section_id, quote=True)}'>全資料を見る</a>")
+    parts.append("</div>")
+    parts.append("</div>")
+    parts.append("<div class='tr-home-panel'>")
+    parts.append(f"<div class='tr-home-stat'><b>{len(primary_items)}</b><span>講習本体</span></div>")
+    parts.append(f"<div class='tr-home-stat'><b>{max(len(items) - len(primary_items), 0)}</b><span>補助・投影資料</span></div>")
+    parts.append(f"<div class='tr-home-stat'><b>{feature_counts.get('video', 0)}</b><span>動画付き</span></div>")
+    parts.append("</div></section>")
+
+    if featured:
+        title = html.escape(str(featured.get("title", "")))
+        summary = html.escape(str(featured.get("summary", "")))
+        parts.append(f"<a class='tr-featured' href='{html.escape(featured_href, quote=True)}'>")
+        parts.append("<div>")
+        parts.append(f"<b>基準フォーマット: {title}</b>")
+        if summary:
+            parts.append(f"<span>{summary}</span>")
+        parts.append("</div><span class='arrow'>→</span></a>")
+
+    parts.append("<div class='tr-format-grid' aria-label='共通フォーマット'>")
+    format_notes = [
+        ("目次", "最初に流れを確認し、必要な章へ移動する。"),
+        ("動画・ナレーション", "講師の説明順で見せる資料や収録台本を確認する。"),
+        ("スライド式説明", "投影、画面共有、短時間説明に使う。"),
+        ("本文", "復習、引用、手順確認のための読み物として使う。"),
+        ("PDF・配布物", "印刷、配布、別ページ資料がある場合に使う。"),
+        ("チェック", "宿題、運用確認、公開前レビューに使う。"),
+    ]
+    for label, note in format_notes:
+        parts.append(f"<div class='tr-format'><b>{html.escape(label)}</b><span>{html.escape(note)}</span></div>")
+    parts.append("</div>")
+    return "".join(parts)
+
+
 def _render_teaching_index(sections: list[dict]) -> str:
     """セクション付きのカード式ディレクトリを描画。"""
     parts: list[str] = []
+    parts.append(_render_teaching_home(sections))
     parts.append(
-        "<p class='tr-intro'>講習で使った資料・補助教材・外部リソースをひとまとめにしたディレクトリ。"
-        "新しい資料は <code>config/teaching_resources.yaml</code> に追記すれば自動で並ぶ。"
-        "講習スライド本体（Markdown）は <code>content/lectures/</code> に置くか、ローカル <code>/admin</code> の「📝 講習資料」タブから追加できる。</p>"
+        "<p class='tr-intro'>まず講習本体を開き、必要に応じて投影用スライドや補助資料へ進む。"
+        "講習中はスライド、復習では本文と目次、制作前にはチェック項目を見ると迷いにくい。</p>"
     )
     rendered_any = False
     for sec in sections:
@@ -1838,7 +2366,7 @@ def _render_teaching_index(sections: list[dict]) -> str:
         name = html.escape(str(sec.get("name", "")))
         icon = html.escape(str(sec.get("icon", "")))
         desc = html.escape(str(sec.get("description", "")))
-        sec_id = re.sub(r"[^a-zA-Z0-9一-鿿぀-ヿ]+", "-", str(sec.get("name", ""))).strip("-").lower()
+        sec_id = _teaching_section_id(sec)
         parts.append(f"<section class='tr-section' id='sec-{sec_id}'>")
         parts.append(
             f"<h2 class='tr-section-head'><span class='tr-section-icon'>{icon}</span>"
@@ -1859,6 +2387,7 @@ def _render_teaching_index(sections: list[dict]) -> str:
             attrs = f" target='_blank' rel='noopener'" if ext else ""
             safe_href = html.escape(href, quote=True)
             chip = "<span class='tr-chip ext'>外部</span>" if ext else ""
+            features = _teaching_item_features(it)
             parts.append(f"<a class='tr-card' href='{safe_href}'{attrs}>")
             parts.append(
                 f"<div class='tr-title'>{(iicon + ' ') if iicon else ''}{title}</div>"
@@ -1867,8 +2396,12 @@ def _render_teaching_index(sections: list[dict]) -> str:
                 parts.append(f"<div class='tr-date'>📅 {date}</div>")
             if summary:
                 parts.append(f"<div class='tr-sum'>{summary}</div>")
-            if chip:
-                parts.append(f"<div class='tr-meta'>{chip}</div>")
+            meta_bits = [chip] if chip else []
+            if features.get("body"):
+                meta_bits.append("<span class='tr-chip format on'>本文</span>")
+            meta_bits.append(_render_feature_chips(features, show_missing=False, css_prefix="tr"))
+            if meta_bits:
+                parts.append(f"<div class='tr-meta'>{''.join(meta_bits)}</div>")
             parts.append("</a>")
         parts.append("</div></section>")
     if not rendered_any:
@@ -1891,17 +2424,22 @@ def build_lectures() -> int:
         meta, body = _parse_frontmatter(raw)
         body_html = md.markdown(body, extensions=["extra", "sane_lists"])
         title = meta.get("title") or f.stem
+        toc_for_item = _collect_h2_toc(body_html)
+        features = _lecture_feature_flags(body_html, toc_for_item)
         nav = render_top_nav(path_prefix="../", current_id="lectures", include_run=False)
         (out_dir / f"{f.stem}.html").write_text(
             render_content_page(title, meta, body_html, nav, page_path=f"lectures/{f.stem}.html", kind="lecture"),
             encoding="utf-8",
         )
         lecture_md_items.append({
+            "id": f.stem,
             "title": title,
             "icon": "📝",
             "href": f"./{f.stem}.html",
             "summary": str(meta.get("summary", "")),
             "date": str(meta.get("date", "")),
+            "features": features,
+            "featured": f.stem == "2026-06-codex-app-practice",
         })
         count += 1
 

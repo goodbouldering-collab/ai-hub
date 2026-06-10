@@ -23,31 +23,38 @@ sections:
 
 - name: 講習資料
   icon: 📝
-  description: 講習で実際に使った資料・スライド（content/lectures/*.md から自動取り込み + 大型コンテンツの手動追加）
+  description: まず開く講習本体。本文、目次、動画、スライド、チェック項目がある資料はここから確認する
   source: lectures-md
+  items: []
+
+- name: 補助・投影資料
+  icon: 📚
+  description: 講習中の画面共有、短時間説明、追加学習に使う資料
   items:
-  # 大型 HTML コンテンツ（Markdown 化が難しいので独立 HTML のまま講習資料として並べる）
   - title: AIコーディング実装講習
     icon: 🧭
     href: programming-map.html
     summary: Codex導入、プログラミング基礎、実装、公開、公式アップデート、AI応用制作までを、線画とタブUIで段階的に学ぶ講習LP。
     date: 2026-06-06
-  # クライミングの歴史 スライド（content/slides/*.md から Marp 生成・/slides/ 配下に公開）
+    features:
+      body: true
+      toc: true
+      slides: true
+      check: true
   - title: クライミングの歴史 I（世界史編）
     icon: 🧗
     href: slides/climbing-history-1.html
-    summary: 1786年モンブランから種目の分化、パタゴニア／ノースフェイス誕生秘話、五輪採用まで。初心者向け講習スライド（投影用HTML）。PDF・台本は参考資料ページから
+    summary: 1786年モンブランから種目の分化、パタゴニア／ノースフェイス誕生秘話、五輪採用まで。初心者向け講習スライド（投影用HTML）
     date: 2026-05-23
+    features:
+      slides: true
   - title: クライミングの歴史 II（日本史・ぐっぼる編）
     icon: 🧗
     href: slides/climbing-history-2.html
     summary: 日本のクライミング独立史、ジムの爆発的普及、世界に挑んだ日本人、そして「ぐっぼる」がジム＋ショップ＋カフェである理由。投影用HTML
     date: 2026-05-23
-
-- name: 補助資料
-  icon: 📚
-  description: 講習を補完する独立コンテンツ
-  items: []
+    features:
+      slides: true
 
 - name: 外部リソース
   icon: 🌐

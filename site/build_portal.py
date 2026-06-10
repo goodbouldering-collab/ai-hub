@@ -174,7 +174,7 @@ def _build_jsonld_website() -> str:
     codex_prep_title = "Codex準備 90分"
     codex_practice_title = "Codex実践 120分"
     free_consult_title = "AI無料相談 とりあえず30分"
-    consult_title = "エージェント組織構築相談"
+    consult_title = "AI個別相談 しっかり60分"
     support_title = "AI伴走支援 いっしょに導入"
 
     # 受講プランを Service + Offer として構造化（_render_packages の items と整合）
@@ -182,7 +182,7 @@ def _build_jsonld_website() -> str:
         (codex_prep_title, "Codex準備 導入と習得の流れに沿って、ChatGPTログイン、作業フォルダ選定、最初の小さな依頼、差分確認、独立レビュー、AGENTS.md、公式アップデート確認先までを90分で整える無料の準備講習。", "0", "0", "Course"),
         (codex_practice_title, "Codexで持ち込み課題を進め、ページ、資料、コード、動画台本などの成果物を120分で作る実践講習。", "5500", "5500", "Course"),
         (free_consult_title, "来店またはオンラインで、AI導入の入口を30分で整理する無料相談。講習や伴走の前に、今の課題と次の一手を確認する。", "0", "0", "BusinessCoaching"),
-        (consult_title, "社内や事業内で動くAIエージェントの役割分担、権限、手順、チェック体制を設計し、エージェント組織として回す相談。", "4400", "4400", "BusinessCoaching"),
+        (consult_title, "AIの使い方、役割分担、指示書、確認体制、運用導線を60分で整理する個別相談。", "4400", "4400", "BusinessCoaching"),
         (support_title, "HP公開から事務自動化・経理・マーケまで6ヶ月で一気に定着。技術的な難所は講師が代行・支援。滋賀・彦根の補助金で負担1/3以下に。", "100000", "100000", "Service"),
     ]
     services = []
@@ -2565,9 +2565,9 @@ HEADER_JS = """
         level_id: 'intermediate'
       },
       advanced: {
-        badge: '相談', title: 'エージェント組織を設計する',
-        name: 'エージェント組織構築相談',
-        desc: 'AIエージェントの役割分担、チェック体制、指示書、運用導線を事業内に組み込む方向けです。',
+        badge: '相談', title: '個別相談で整理する',
+        name: 'AI個別相談 しっかり60分',
+        desc: 'AIの使い方、指示書、確認体制、運用導線を60分でしっかり整理します。',
         level_id: 'advanced'
       }
     };
@@ -2943,7 +2943,7 @@ def _render_courses_packages() -> str:
     seminar_url = "https://goodbouldering.com/?pid=188553378"
     free_consult_title = "AI無料相談 とりあえず30分"
     free_consult_url = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/AW5O5XSBHLEHYUBHLZUGFKYE"
-    consult_title = "エージェント組織構築相談"
+    consult_title = "AI個別相談 しっかり60分"
     support_title = "AI伴走支援 いっしょに導入"
     items = [
         {
@@ -3015,10 +3015,10 @@ def _render_courses_packages() -> str:
             "price": "4,400円",
             "duration": "60分",
             "subsidy": False,
-            "desc": "AIエージェントを1人の便利ツールではなく、役割を持った組織として設計する相談です。企画、調査、制作、確認、投稿、改善の担当と指示書を整理します。",
-            "fit": ["社内や事業内でAIの役割分担を作りたい", "複数エージェントの指示書やチェック体制を整えたい", "成果物づくりを継続運用に変えたい"],
+            "desc": "AIの使い方、指示書、確認体制、運用導線を60分でしっかり整理する個別相談です。今の仕事や課題を聞きながら、次に使える形まで落とし込みます。",
+            "fit": ["自分の仕事でAIをどう使うか整理したい", "指示文やチェック体制を整えたい", "成果物づくりを継続運用に変えたい"],
             "url": "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/TO3XHZT6XP3OM4QBDYMW7TZP",
-            "cta": "組織構築相談を予約する",
+            "cta": "AI個別相談を予約する",
         },
         {
             "icon": "◇",
@@ -3082,7 +3082,7 @@ def _render_courses_packages() -> str:
     parts.append(
         "<div class='packages-cta-row fade-up d4'>"
         "<button type='button' class='btn btn-diagnose diagnose-open'>"
-        "60秒診断｜準備・実践・組織構築のどれ？"
+        "60秒診断｜準備・実践・個別相談のどれ？"
         "</button>"
         "<span class='packages-cta-hint'>3つの質問に答えるだけ。いまの状態に合う入口をその場で提案します。</span>"
         "</div>"
@@ -3091,7 +3091,7 @@ def _render_courses_packages() -> str:
         "<p class='packages-note fade-up d4'>"
         "<strong>Codex講習:</strong> レベルは経験年数ではなく理解度で分けます。準備はログイン、フォルダ選択、最初の依頼、差分確認、独立レビュー、公式更新確認まで90分無料、実践は成果物作成まで120分5,500円です。"
         "Codexの申込リンクは1つに統一し、申込時に「準備」または「実践」をオプション選択します。"
-        "<br><strong>相談:</strong> 相談メニューは、AIエージェントの役割分担、指示書、確認体制を組むエージェント組織構築に寄せています。"
+        "<br><strong>相談:</strong> AI個別相談は、AIの使い方、指示書、確認体制、運用導線を60分で整理します。"
         "<br><strong>補助金:</strong> 講習と伴走支援は、滋賀県・彦根市のデジタル化/AI導入系補助金と組み合わせて相談できます。"
         "</p>"
     )
@@ -3309,7 +3309,7 @@ FAQ_QA = [
     ("LLMO やAI検索に強いサイトにできますか？",
      "できます。地域名、講師の一次経験、料金、対応範囲、実例、FAQ、構造化データを整理し、AIが回答に引用しやすい形で公開します。大量の自動生成ではなく、講習と実例に基づく一次情報を重視します。"),
     ("料金はどれくらいですか？",
-     "AI無料相談 とりあえず30分は無料、Codex準備90分は無料、Codex実践120分は5,500円、エージェント組織構築相談60分は4,400円です。AI伴走支援 いっしょに導入は月額10万円×6ヶ月が目安です。LP制作は1本18〜30万円が目安。多くは補助金併用を前提に組みます。"),
+     "AI無料相談 とりあえず30分は無料、Codex準備90分は無料、Codex実践120分は5,500円、AI個別相談 しっかり60分は4,400円です。AI伴走支援 いっしょに導入は月額10万円×6ヶ月が目安です。LP制作は1本18〜30万円が目安。多くは補助金併用を前提に組みます。"),
     ("補助金は使えますか？滋賀の事業者でも対象ですか？",
      "講習・伴走パックは「デジタル化・AI導入補助金」や滋賀県・彦根市の補助金の対象になります。補助率は小規模事業者で最大4/5、実質負担が1/3以下になるケースが多いです。申請からツール選定・実装・定着まで一気通貫で支援します。"),
     ("パソコンやスマホが苦手ですが、大丈夫ですか？",
@@ -3740,7 +3740,7 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append("<section class='block' id='packages'>")
     parts.append("<p class='section-heading fade-up'>AI LESSON</p>")
     parts.append("<h2 class='section-title packages-title fade-up d1'>AI相談・講習プラン</h2>")
-    parts.append("<p class='section-sub fade-up d2'>レベルは理解度で分けます。Codexは準備90分無料と実践120分5,500円に分け、同じ申込リンク内でオプション選択。相談はエージェント組織構築に寄せています。</p>")
+    parts.append("<p class='section-sub fade-up d2'>レベルは理解度で分けます。Codexは準備90分無料と実践120分5,500円に分け、同じ申込リンク内でオプション選択。相談はAI個別相談で今の課題を整理します。</p>")
     parts.append(_render_courses_packages())
     parts.append("</section>")
 
@@ -3821,7 +3821,7 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append("<section class='block' id='contact'>")
     parts.append("<p class='section-heading fade-up'>CONTACT</p>")
     parts.append("<h2 class='section-title fade-up d1'>彦根のAI相談、まずは30分無料</h2>")
-    parts.append("<p class='section-sub fade-up d2'>講習に参加するか、エージェント組織構築を相談するか、伴走で進めるか。日程を選んで、今の課題をそのまま持ってきてください。</p>")
+    parts.append("<p class='section-sub fade-up d2'>講習に参加するか、AI個別相談で整理するか、伴走で進めるか。日程を選んで、今の課題をそのまま持ってきてください。</p>")
     parts.append(_render_contact_form())
     parts.append("</section>")
 

@@ -14,6 +14,8 @@ summary: Codexアプリを実務で使うための応用編。プロジェクト
 .codex-hero p{margin:0;font-size:17px;line-height:1.85;color:var(--soft);}
 .codex-source{font-size:13px;line-height:1.8;color:var(--mut);margin:10px 0 22px;}
 .codex-source a{font-weight:700;}
+.codex-video{margin:8px 0 18px;background:#111827;border-radius:8px;padding:10px;box-shadow:0 18px 50px rgba(15,23,42,.18);}
+.codex-video video{display:block;width:100%;border-radius:6px;background:#000;}
 .codex-video-script{margin:8px 0 28px;background:#111827;border-radius:8px;padding:20px 22px;box-shadow:0 18px 50px rgba(15,23,42,.18);color:#e5e7eb;}
 .codex-video-script h3{margin:0 0 12px;color:#fff;font-size:22px;}
 .codex-video-script p,.codex-video-script li{color:#e5e7eb;line-height:1.75;font-size:14px;}
@@ -77,9 +79,15 @@ summary: Codexアプリを実務で使うための応用編。プロジェクト
 
 <h2>動画版</h2>
 
+<div class="codex-video">
+<video controls playsinline preload="metadata" poster="./assets/codex-app-practice-poster.png">
+  <source src="./assets/codex-app-practice.webm" type="video/webm">
+</video>
+</div>
+
 <div class="codex-video-script">
 <h3>収録用ナレーション構成 18分</h3>
-<p>この実践編は、講師がこのページを見ながら収録できるように、動画台本を本文内に持たせています。収録時は各章をそのまま画面共有し、プロジェクトフォルダ、設定ファイル、レビュー画面、ブラウザ確認の順に見せます。</p>
+<p>上の動画は実践編の要点を短く見せるスライド動画です。講師が長尺で収録する場合は、以下の台本に沿って各章を画面共有し、プロジェクトフォルダ、設定ファイル、レビュー画面、ブラウザ確認の順に見せます。</p>
 <ol>
 <li>0:00 導入。Codexは「1回使うアプリ」ではなく「仕事場を育てるアプリ」。</li>
 <li>1:30 Project、Thread、Local、Worktree、Cloudを実例で分ける。</li>

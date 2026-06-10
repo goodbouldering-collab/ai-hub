@@ -1,9 +1,9 @@
 ---
-title: Codexアプリ導入手順 スライド・動画つき初期設定ガイド
+title: Codex準備 スライド+動画 導入と習得
 date: 2026-06-05
-role: 講習資料 / Codex導入
+role: 講習資料 / Codex準備
 gen_by: Codex
-summary: ChatGPTは使えるがCodexアプリは初めての人向けに、導入手順・最初の依頼・安全装置・独立レビューを、ページ内スライドと動画で見られる講習資料。
+summary: ChatGPTは使えるがCodexアプリは初めての人向けに、導入、最初のプロジェクト、権限、安全装置、差分確認、公式アップデートの追い方までを、スライドと動画で学ぶ準備編。
 ---
 
 <style>
@@ -54,13 +54,19 @@ summary: ChatGPTは使えるがCodexアプリは初めての人向けに、導�
 <div class="codex-onboard">
 
 <div class="codex-hero">
-<h2>Codexは、作業場を持つAI共同作業者。</h2>
-<p>このページは、Codexアプリの導入手順を「短い動画」と「投影しやすいスライド」で見られる講習用ページです。AIコーディング実装講習とは別資料として、初回講習の入口に置きます。</p>
+<h2>Codex準備 スライド+動画 導入と習得</h2>
+<p>このページは、Codexアプリを初めて開く人が「ログインする」「プロジェクトを選ぶ」「小さく頼む」「差分を見て採用する」までを迷わず進めるための準備編です。次の実践編では、実運用のフォルダ管理、skills、plugins、hooks、automations、設定の応用まで進みます。</p>
 </div>
 
 <p class="codex-source">
 公式確認: OpenAI の <a href="https://openai.com/codex/get-started/" target="_blank" rel="noopener">Get started with Codex</a> と
-<a href="https://openai.com/academy/codex-how-to-start/" target="_blank" rel="noopener">How to get started with Codex</a> を元に、講習向けに手順を短く整理しています。
+<a href="https://openai.com/academy/codex-how-to-start/" target="_blank" rel="noopener">How to get started with Codex</a>、
+<a href="https://openai.com/academy/working-with-codex/" target="_blank" rel="noopener">Working with Codex</a>、
+<a href="https://developers.openai.com/codex/changelog" target="_blank" rel="noopener">Codex Changelog</a> を元に、講習向けに手順を整理しています。新機能は
+<a href="https://x.com/OpenAI" target="_blank" rel="noopener">X: @OpenAI</a> /
+<a href="https://x.com/OpenAIDevs" target="_blank" rel="noopener">X: @OpenAIDevs</a> /
+<a href="https://openai.com/news/" target="_blank" rel="noopener">OpenAI News</a> /
+<a href="https://github.com/openai/codex/releases" target="_blank" rel="noopener">openai/codex Releases</a> も確認先にします。
 </p>
 
 <h2>動画版</h2>
@@ -134,6 +140,46 @@ summary: ChatGPTは使えるがCodexアプリは初めての人向けに、導�
 <li>公開前に止めるべき変更</li>
 </ul>
 </section>
+
+<section class="codex-slide">
+<h3>7. AGENTS.mdを読ませる</h3>
+<p>毎回言いたくないルールは、プロジェクトのAGENTS.mdに置きます。</p>
+<ul>
+<li>触ってよい範囲</li>
+<li>ビルドや確認コマンド</li>
+<li>公開前レビューの条件</li>
+</ul>
+</section>
+
+<section class="codex-slide">
+<h3>8. 公式アップデートを追う</h3>
+<p>Codexは更新が速いので、講習資料だけで止めず、公式のX・サイト・Changelogを確認します。</p>
+<ul>
+<li>OpenAI / OpenAI Developers on X</li>
+<li>Codex Changelog</li>
+<li>OpenAI News</li>
+</ul>
+</section>
+
+<section class="codex-slide">
+<h3>9. 実践編で作業場を育てる</h3>
+<p>導入できたら、次はプロジェクト・フォルダ・skills・plugins・hooks・automationsを実務用に整えます。</p>
+<ul>
+<li>Local / Worktree / Cloudの使い分け</li>
+<li>繰り返し作業をskill化</li>
+<li>定期作業をautomation化</li>
+</ul>
+</section>
+
+<section class="codex-slide dark">
+<h3>10. 最初の成果物は小さく公開する</h3>
+<p>準備編のゴールは「Codexを入れた」ではなく、1つの小さな成果物を作り、確認し、次の運用ルールを決めることです。</p>
+<ul>
+<li>1ページを直す</li>
+<li>1資料を整理する</li>
+<li>1つの確認手順を残す</li>
+</ul>
+</section>
 </div>
 
 <div class="codex-note">
@@ -145,6 +191,39 @@ summary: ChatGPTは使えるがCodexアプリは初めての人向けに、導�
 <div class="codex-call">
 <b>Codexは、会話だけのAIではなく「作業場を持つAI共同作業者」です。</b>
 <p>ファイルを読み、編集し、コマンドを実行し、ブラウザで確認できます。だからこそ、作らせっぱなしにせず、差分確認と独立レビューをセットにします。</p>
+</div>
+
+<h2>公式アップデートの確認先</h2>
+
+<table class="codex-table">
+<tr><th>確認先</th><th>URL</th><th>見る理由</th></tr>
+<tr><td>Codex公式サイト</td><td><a href="https://openai.com/codex/" target="_blank" rel="noopener">https://openai.com/codex/</a></td><td>Codexアプリの位置づけ、対応OS、代表的な機能を確認する。</td></tr>
+<tr><td>Codex Changelog</td><td><a href="https://developers.openai.com/codex/changelog" target="_blank" rel="noopener">https://developers.openai.com/codex/changelog</a></td><td>新機能、仕様変更、修正を時系列で追う。</td></tr>
+<tr><td>Feature Maturity</td><td><a href="https://developers.openai.com/codex/feature-maturity" target="_blank" rel="noopener">https://developers.openai.com/codex/feature-maturity</a></td><td>Experimental / Beta / Stable の扱いを確認する。</td></tr>
+<tr><td>OpenAI News</td><td><a href="https://openai.com/news/" target="_blank" rel="noopener">https://openai.com/news/</a></td><td>大きな発表、製品横断の発表、公式ブログを確認する。</td></tr>
+<tr><td>Codex role/plugin発表</td><td><a href="https://openai.com/index/codex-for-every-role-tool-workflow/" target="_blank" rel="noopener">https://openai.com/index/codex-for-every-role-tool-workflow/</a></td><td>role-specific plugins、Sites、annotations などの発表元。</td></tr>
+<tr><td>X: OpenAI</td><td><a href="https://x.com/OpenAI" target="_blank" rel="noopener">https://x.com/OpenAI</a></td><td>OpenAI全体の製品発表を追う。</td></tr>
+<tr><td>X: OpenAI Developers</td><td><a href="https://x.com/OpenAIDevs" target="_blank" rel="noopener">https://x.com/OpenAIDevs</a></td><td>開発者向けのCodex、API、SDK、ツール更新を追う。</td></tr>
+<tr><td>GitHub releases</td><td><a href="https://github.com/openai/codex/releases" target="_blank" rel="noopener">https://github.com/openai/codex/releases</a></td><td>CLIやオープンソース側のリリースを確認する。</td></tr>
+</table>
+
+<h2>初回の実例</h2>
+
+<div class="codex-grid two">
+<div class="codex-card" style="--accent:#0f8b8d">
+<h3>資料整理フォルダ</h3>
+<p>まずは空フォルダを作り、講習メモ、画像、PDFだけを入れてCodexに見せます。秘密情報や本番データを混ぜない状態で、命名整理、要約、スライド構成を頼みます。</p>
+<div class="codex-prompt">このフォルダを見て、入っている資料の種類を説明してください。
+次に、初心者向け講習資料として安全に進められる小さな作業を3つ提案してください。
+まだファイルは編集しないでください。</div>
+</div>
+<div class="codex-card" style="--accent:#e85d5a">
+<h3>既存サイトフォルダ</h3>
+<p>Git管理されたサイトなら、まず差分が出る小さな文言変更から始めます。完成条件は「ブラウザで見える」「差分が読める」「戻せる」の3つです。</p>
+<div class="codex-prompt">このサイトのトップページだけを対象に、見出しの分かりにくい箇所を1つ直してください。
+変更後にビルドして、ブラウザ表示または生成HTMLで確認してください。
+最後に、変更ファイルと確認結果を短く報告してください。</div>
+</div>
 </div>
 
 <div class="codex-grid three">

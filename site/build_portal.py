@@ -85,7 +85,7 @@ ADMIN_BUTTON_HTML = """
 """
 
 
-OG_IMAGE_URL = SITE_URL + "/img/hero-ai-consult-hikone.png"
+OG_IMAGE_URL = SITE_URL + "/img/hero-ai-bento-glass.png"
 
 
 def _build_ogp(title: str, description: str, page_url: str, *, image: str | None = None) -> str:
@@ -2864,6 +2864,512 @@ section.block { padding: 72px 0; }
 }
 """
 
+PORTAL_CSS += """
+
+/* ---- Bento glass morphing redesign: light-only, generated-photo led ---- */
+:root,
+:root[data-theme="dark"] {
+  color-scheme: light;
+  --bg-base: #F5FBFF;
+  --bg-white: rgba(255,255,255,.76);
+  --bg-elev: rgba(255,255,255,.64);
+  --text: #07172C;
+  --text-soft: #314763;
+  --muted: #6E7F92;
+  --line: rgba(7,23,44,.14);
+  --line-strong: rgba(0,136,171,.32);
+  --primary: #008CAC;
+  --primary-soft: #00B8D4;
+  --emerald: #8AAE18;
+  --coral: #FF6D4F;
+  --violet: #725CFF;
+  --primary-bg: rgba(0,184,212,.12);
+  --grad: linear-gradient(135deg, #008CAC 0%, #00B8D4 44%, #8AAE18 100%);
+  --grad-soft: linear-gradient(135deg, rgba(0,184,212,.16), rgba(114,92,255,.10), rgba(255,109,79,.10));
+  --glass-bg: rgba(255,255,255,.55);
+  --glass-hi: rgba(255,255,255,.82);
+  --glass-border: rgba(255,255,255,.68);
+  --shadow-card: 0 1px 0 rgba(255,255,255,.70) inset, 0 18px 50px rgba(16,55,84,.11);
+  --shadow-card-hover: 0 1px 0 rgba(255,255,255,.80) inset, 0 26px 70px rgba(0,140,172,.18);
+}
+
+html,
+body {
+  background:
+    linear-gradient(112deg, rgba(0,184,212,.20) 0 12%, transparent 12% 58%, rgba(255,109,79,.11) 58% 70%, transparent 70%),
+    linear-gradient(24deg, rgba(114,92,255,.10) 0 18%, transparent 18% 54%, rgba(138,174,24,.13) 54% 66%, transparent 66%),
+    linear-gradient(180deg, #FFFFFF 0%, #F4FBFF 45%, #EBFAF7 100%);
+}
+
+body {
+  color: var(--text);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(0,140,172,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,140,172,.06) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(180deg, rgba(0,0,0,.80), rgba(0,0,0,.18) 78%, transparent);
+}
+
+.theme-toggle,
+.theme-toggle-mobile {
+  display: none !important;
+}
+
+.container,
+.site-header-inner {
+  max-width: 1360px;
+}
+
+.site-header {
+  background: rgba(255,255,255,.62);
+  border-bottom: 1px solid rgba(255,255,255,.64);
+  box-shadow: 0 10px 34px rgba(16,55,84,.07);
+  backdrop-filter: blur(22px) saturate(170%);
+  -webkit-backdrop-filter: blur(22px) saturate(170%);
+}
+
+.site-header.scrolled,
+.site-header:hover {
+  background: rgba(255,255,255,.76);
+  border-bottom-color: rgba(0,140,172,.16);
+}
+
+.brand-mark,
+.nav-cta,
+.menu-toggle,
+.mobile-toggle {
+  border-radius: 8px;
+  background: rgba(255,255,255,.70);
+  border: 1px solid rgba(255,255,255,.78);
+  box-shadow: 0 1px 0 rgba(255,255,255,.8) inset, 0 12px 30px rgba(0,140,172,.12);
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+}
+
+.nav-cta {
+  background: linear-gradient(135deg, rgba(0,140,172,.96), rgba(139,174,24,.92));
+  color: #fff;
+}
+
+.hero {
+  min-height: min(840px, calc(100svh - 10px));
+  grid-template-columns: minmax(430px, .88fr) minmax(560px, 1.12fr);
+  gap: 62px;
+  padding: 108px 0 64px;
+  perspective: 1400px;
+}
+
+.hero::before {
+  background:
+    linear-gradient(122deg, rgba(255,255,255,.90) 0 34%, rgba(226,250,255,.66) 34% 54%, rgba(255,255,255,.82) 54%),
+    linear-gradient(24deg, rgba(114,92,255,.10), transparent 46%, rgba(255,109,79,.10));
+  border-bottom: 1px solid rgba(0,140,172,.16);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 104px calc(50% - 50vw) 48px;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent 0 49%, rgba(0,140,172,.12) 49% 50%, transparent 50%),
+    linear-gradient(0deg, transparent 0 49%, rgba(114,92,255,.10) 49% 50%, transparent 50%);
+  background-size: 168px 168px;
+  opacity: .46;
+  transform: skewY(-3deg);
+}
+
+.hero .eyebrow {
+  display: none;
+}
+
+.hero h1 {
+  margin: 0 0 22px;
+  font-size: clamp(52px, 6.9vw, 98px);
+  line-height: .94;
+  letter-spacing: 0;
+}
+
+.fusion-logo-large {
+  display: grid;
+  gap: 0;
+}
+
+.fusion-logo-large .ai,
+.fusion-logo-large .hub {
+  color: var(--text);
+  text-shadow: 0 12px 34px rgba(0,140,172,.16);
+}
+
+.hero-title-sub {
+  margin-top: 22px;
+  padding: 0;
+  font-size: clamp(25px, 3.1vw, 43px);
+  line-height: 1.12;
+}
+
+.hero-title-sub strong {
+  color: transparent;
+  background: linear-gradient(95deg, #008CAC 0%, #00B8D4 36%, #725CFF 70%, #FF6D4F 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.hero .sub-catch {
+  max-width: 690px;
+  margin-bottom: 16px;
+  color: #007A94;
+  font-size: clamp(17px, 1.8vw, 22px);
+  line-height: 1.58;
+}
+
+.hero .lead {
+  max-width: 660px;
+  font-size: 16px;
+  line-height: 2;
+}
+
+.hero-actions {
+  gap: 12px;
+}
+
+.hero-actions .btn,
+.pkg-cta,
+.contact-primary,
+.footer-cta {
+  border-radius: 8px;
+}
+
+.hero-actions .btn-primary,
+.contact-primary {
+  background: linear-gradient(135deg, #008CAC, #00B8D4 48%, #8AAE18);
+  box-shadow: 0 16px 40px rgba(0,140,172,.25), 0 1px 0 rgba(255,255,255,.42) inset;
+}
+
+.hero-actions .btn-secondary {
+  background: rgba(255,255,255,.54);
+  border: 1px solid rgba(255,255,255,.86);
+  box-shadow: 0 12px 32px rgba(16,55,84,.09), 0 1px 0 rgba(255,255,255,.76) inset;
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+}
+
+.hero-proof-grid {
+  max-width: 720px;
+  margin-top: 30px;
+  padding: 10px;
+  gap: 10px;
+  border: 1px solid rgba(255,255,255,.70);
+  border-radius: 8px;
+  background: rgba(255,255,255,.42);
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+}
+
+.hero-proof {
+  min-height: 92px;
+  padding: 14px;
+  border: 1px solid rgba(0,140,172,.14);
+  border-radius: 8px;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.70), rgba(255,255,255,.34)),
+    linear-gradient(135deg, rgba(0,184,212,.10), rgba(114,92,255,.06));
+  box-shadow: 0 1px 0 rgba(255,255,255,.72) inset;
+}
+
+.hero-proof .proof-icon {
+  border-radius: 8px;
+  background: linear-gradient(135deg, #008CAC, #00B8D4);
+}
+
+.hero-photo-card {
+  width: min(100%, 760px);
+  aspect-ratio: 16 / 10.7;
+  border: 1px solid rgba(255,255,255,.78);
+  border-radius: 8px;
+  background: rgba(255,255,255,.36);
+  box-shadow: 0 34px 90px rgba(16,55,84,.18), 0 1px 0 rgba(255,255,255,.82) inset;
+  overflow: visible;
+  transform: rotateY(-8deg) rotateX(3deg) translateZ(0);
+  transform-origin: center;
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+}
+
+.hero-photo-card img {
+  border-radius: 8px;
+  transform: translate(12px, -10px);
+  width: calc(100% - 6px);
+  height: calc(100% - 6px);
+  object-fit: cover;
+  object-position: center;
+  box-shadow: 0 24px 60px rgba(0,140,172,.16);
+}
+
+.hero-photo-card::after {
+  inset: -1px;
+  border-radius: 8px;
+  background:
+    linear-gradient(126deg, rgba(255,255,255,.42) 0 18%, transparent 18% 58%, rgba(255,255,255,.26) 58% 72%, transparent 72%),
+    linear-gradient(180deg, rgba(255,255,255,0) 50%, rgba(7,23,44,.18));
+}
+
+.hero-lesson-board,
+.hero-class-caption {
+  border: 1px solid rgba(255,255,255,.78);
+  border-radius: 8px;
+  background: rgba(255,255,255,.58);
+  box-shadow: 0 18px 52px rgba(16,55,84,.16), 0 1px 0 rgba(255,255,255,.78) inset;
+  backdrop-filter: blur(22px) saturate(180%);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+}
+
+.hero-lesson-board {
+  right: 20px;
+  top: 22px;
+  width: min(42%, 310px);
+  padding: 16px;
+}
+
+.lesson-board-title {
+  font-size: 17px;
+  letter-spacing: 0;
+}
+
+.lesson-board-list {
+  gap: 8px;
+}
+
+.lesson-board-item {
+  min-height: 82px;
+  border-color: rgba(0,184,212,.22);
+  background: linear-gradient(145deg, rgba(255,255,255,.64), rgba(239,252,255,.42));
+  box-shadow: 0 1px 0 rgba(255,255,255,.78) inset;
+}
+
+.lesson-board-item:nth-child(2) {
+  background: linear-gradient(145deg, rgba(255,255,255,.66), rgba(246,255,218,.48));
+}
+
+.lesson-board-item:nth-child(3) {
+  background: linear-gradient(145deg, rgba(255,255,255,.66), rgba(246,236,255,.48));
+}
+
+.lesson-board-item:nth-child(4) {
+  background: linear-gradient(145deg, rgba(255,255,255,.66), rgba(255,239,233,.50));
+}
+
+.hero-class-caption {
+  left: 24px;
+  bottom: 24px;
+  max-width: 370px;
+}
+
+section.block {
+  padding: 82px 0;
+}
+
+.section-heading {
+  display: inline-flex;
+  padding: 6px 10px;
+  border: 1px solid rgba(255,255,255,.70);
+  border-radius: 8px;
+  background: rgba(255,255,255,.52);
+  box-shadow: 0 1px 0 rgba(255,255,255,.72) inset;
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+}
+
+.packages-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.pkg-card {
+  grid-column: span 4;
+  min-height: 100%;
+  border: 1px solid rgba(255,255,255,.70);
+  background: rgba(255,255,255,.55) !important;
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(18px) saturate(155%);
+  -webkit-backdrop-filter: blur(18px) saturate(155%);
+}
+
+.pkg-card:nth-child(1) {
+  grid-column: span 7;
+}
+
+.pkg-card:nth-child(2) {
+  grid-column: span 5;
+}
+
+.pkg-card:nth-child(5) {
+  grid-column: span 8;
+}
+
+.pkg-card::before {
+  background:
+    linear-gradient(90deg, rgba(0,184,212,.16), transparent 38%, rgba(114,92,255,.10) 62%, rgba(255,109,79,.12));
+}
+
+.pkg-content-box,
+.pkg-req-box,
+.packages-note,
+.usecase-card,
+.lecture-card,
+.growth-panel,
+.profile-block,
+.flow-step,
+.faq-item,
+.voice-card,
+.biz-card,
+.service-card {
+  border: 1px solid rgba(255,255,255,.66);
+  border-radius: 8px;
+  background: rgba(255,255,255,.52);
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(18px) saturate(155%);
+  -webkit-backdrop-filter: blur(18px) saturate(155%);
+}
+
+.usecase-grid,
+.lecture-grid,
+.voices-grid,
+.flow-list {
+  gap: 18px;
+}
+
+.usecase-card {
+  text-align: left;
+  min-height: 238px;
+}
+
+.usecase-label {
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(255,255,255,.72), rgba(226,250,255,.55));
+  box-shadow: 0 1px 0 rgba(255,255,255,.80) inset;
+}
+
+.lecture-card {
+  border-top: 0;
+}
+
+.lecture-card::before,
+.usecase-card::before,
+.flow-step::before {
+  content: "";
+  display: block;
+  width: 54px;
+  height: 4px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #00B8D4, #8AAE18, #FF6D4F);
+}
+
+.sticky-cta {
+  border: 1px solid rgba(255,255,255,.78);
+  border-radius: 8px;
+  background: rgba(255,255,255,.58);
+  box-shadow: 0 18px 54px rgba(16,55,84,.18), 0 1px 0 rgba(255,255,255,.82) inset;
+}
+
+.sticky-cta-btn {
+  border-radius: 8px;
+  background: linear-gradient(135deg, #008CAC, #00B8D4 48%, #8AAE18);
+}
+
+@media (max-width: 1040px) {
+  .hero {
+    grid-template-columns: 1fr;
+    perspective: none;
+  }
+
+  .hero-photo-card {
+    transform: none;
+    width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .packages-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pkg-card,
+  .pkg-card:nth-child(1),
+  .pkg-card:nth-child(2),
+  .pkg-card:nth-child(5) {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 680px) {
+  .hero {
+    width: calc(100vw - 32px);
+    max-width: calc(100vw - 32px);
+    overflow: hidden;
+  }
+
+  .hero h1 {
+    font-size: clamp(40px, 11vw, 50px);
+  }
+
+  .hero-title-sub {
+    display: block;
+    font-size: clamp(22px, 6.2vw, 27px);
+    line-height: 1.2;
+  }
+
+  .hero-title-sub strong,
+  .hero .sub-catch strong,
+  .hero .lead {
+    display: block;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: break-all;
+  }
+
+  .hero .sub-catch {
+    font-size: 16px;
+  }
+
+  .hero .lead {
+    font-size: 14.5px;
+    line-height: 1.9;
+  }
+
+  .hero-photo-card {
+    aspect-ratio: 4 / 3.6;
+    overflow: hidden;
+  }
+
+  .hero-photo-card img {
+    transform: none;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-lesson-board {
+    width: auto;
+  }
+
+  .packages-grid {
+    grid-template-columns: 1fr;
+  }
+}
+"""
+
 
 def _render_header() -> str:
     """N デザイン風 fixed ヘッダー。スクロールで white/90 + blur に切替。"""
@@ -2893,10 +3399,8 @@ def _render_header() -> str:
         "<a class='menu-drop-sep' href='/admin'>🔐 管理ログイン</a>"
         "</div>"
         "</div>"
-        "<button type='button' class='theme-toggle' aria-label='ダークモードに切替'>🌙</button>"
         "<a class='nav-cta' href='#contact'>📩 無料相談</a>"
         "</nav>"
-        "<button type='button' class='theme-toggle theme-toggle-mobile' aria-label='ダークモードに切替'>🌙</button>"
         "<button class='mobile-toggle' id='mobile-toggle' aria-label='メニュー'>"
         "<svg width='20' height='20' viewBox='0 0 24 24' fill='none'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg>"
         "</button>"
@@ -3034,28 +3538,11 @@ HEADER_JS = """
     updateParallax();
   }
 
-  // ---- テーマ切替 (デフォルトはライト。dark で暗いバリアント=data-theme属性で付与)
+  // ---- Light-only. 夜モードは使わない。
   (function(){
-    var KEY = 'aihub-theme';
     var root = document.documentElement;
-    var saved = null;
-    try { saved = localStorage.getItem(KEY); } catch(e) {}
-    // 保存があればそれ、無ければデフォルト light(=data-theme属性なし)
-    var mode = saved === 'dark' ? 'dark' : 'light';
-    function apply(m){
-      if (m === 'dark') root.setAttribute('data-theme', 'dark');
-      else root.removeAttribute('data-theme');
-      var btns = document.querySelectorAll('.theme-toggle');
-      btns.forEach(function(b){ b.textContent = (m === 'dark') ? '☀️' : '🌙'; b.setAttribute('aria-label', m === 'dark' ? 'ライトモードに切替' : 'ダークモードに切替'); });
-    }
-    apply(mode);
-    document.addEventListener('click', function(e){
-      var t = e.target.closest && e.target.closest('.theme-toggle');
-      if (!t) return;
-      mode = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
-      apply(mode);
-      try { localStorage.setItem(KEY, mode); } catch(e) {}
-    });
+    root.removeAttribute('data-theme');
+    try { localStorage.removeItem('aihub-theme'); } catch(e) {}
   })();
 
   // ---- AIレベル診断 (3段階: 初級/中級/上級。ヒーロー第1問から起動)
@@ -3343,29 +3830,29 @@ def _render_hero() -> str:
         "<span class='eyebrow'>初心者でも、今日から使えるAI活用へ</span>"
         "<h1 class='hero-brand'>"
         "<span class='fusion-logo-large'><span class='ai'>AI相談</span><span class='pipe'>|</span><span class='hub'>彦根</span></span>"
-        "<span class='hero-title-sub'><strong>聞く、試す、作る。</strong><br>講習資料まで残るAI講習会。</span>"
+        "<span class='hero-title-sub'><strong>AIを弁当箱みたいに<br>詰めて、</strong><br>明日そのまま仕事へ持ち帰る。</span>"
         "<span class='visually-hidden'>｜彦根 AI相談、滋賀 生成AI講習、Codex講習、ChatGPT講座、AI導入支援、補助金申請サポート、LLMO対策、YouTube SEO、Reels集客</span>"
         "</h1>"
         "<p class='sub-catch'>"
-        "<strong>ChatGPTや生成AIを、あなたの仕事や暮らしに。彦根で学ぶ少人数のAI講習会・個別相談。</strong>"
+        "<strong>ChatGPT、資料、画像、SNS、分析を<br>透明な道具箱に分けて、その場で使える形にします。</strong>"
         "</p>"
         "<p class='lead'>"
-        "文章、資料、画像、SNS、YouTube、予約導線、Webページまで、実際の仕事を題材に一緒に触ります。講習後は資料センターで手順を見返せるので、聞いて終わりになりません。"
+        "普通のAI講座ではなく、仕事の断片をガラスの弁当箱に仕分けるように、AIで動く手順へ変換します。彦根の現場感と、少人数での実践を組み合わせたAI講習会です。"
         "</p>"
         "<div class='hero-actions'>"
         "<a class='btn btn-primary btn-lg' href='#contact'>無料30分相談を予約</a>"
         "<a class='btn btn-secondary btn-lg' href='#packages'>講習プランを見る</a>"
         "</div>"
         "<div class='hero-proof-grid' aria-label='AI講習会の特徴'>"
-        "<div class='hero-proof'><span class='proof-icon'>01</span><span><b>彦根・湖東対応</b><span>リアル/オンラインOK</span></span></div>"
-        "<div class='hero-proof'><span class='proof-icon'>02</span><span><b>少人数・実践型</b><span>1クラス最大6名</span></span></div>"
-        "<div class='hero-proof'><span class='proof-icon'>03</span><span><b>初心者歓迎</b><span>不安にサポート</span></span></div>"
+        "<div class='hero-proof'><span class='proof-icon'>01</span><span><b>AI弁当箱設計</b><span>使い道ごとに仕分ける</span></span></div>"
+        "<div class='hero-proof'><span class='proof-icon'>02</span><span><b>その場で完成</b><span>資料・SNS・導線まで</span></span></div>"
+        "<div class='hero-proof'><span class='proof-icon'>03</span><span><b>彦根で実践</b><span>リアル/オンラインOK</span></span></div>"
         "</div>"
         "</div>"
         "<div class='hero-photo-card fade-up d2' aria-label='AI相談 彦根の講習イメージ'>"
-        "<img src='img/hero-ai-consult-hikone.png' alt='彦根の明るい教室でAI相談と少人数講習を進めるイメージ' decoding='async' fetchpriority='high'>"
+        "<img src='img/hero-ai-bento-glass.png' alt='彦根の明るい教室で透明な弁当箱状のAIツールを使いながら少人数講習を進めるイメージ' decoding='async' fetchpriority='high'>"
         "<div class='hero-lesson-board'>"
-        "<p class='lesson-board-title'>AIで広がる、仕事の可能性</p>"
+        "<p class='lesson-board-title'>AI Bento Lab</p>"
         "<div class='lesson-board-list'>"
         f"<span class='lesson-board-item'>{icon_search}<span>情報収集</span></span>"
         f"<span class='lesson-board-item'>{icon_doc}<span>資料作成</span></span>"
@@ -3374,7 +3861,7 @@ def _render_hero() -> str:
         "</div>"
         "</div>"
         "<div class='hero-class-caption'>"
-        "<b>リアルな仕事を題材に、その場でAIを動かす。</b>"
+        "<b>普通の講座じゃない。仕事をAIの弁当箱に詰め直す。</b>"
         "<span>相談、講習、資料化、集客まで一気通貫でサポートします。</span>"
         "</div>"
         "</div>"

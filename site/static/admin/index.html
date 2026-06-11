@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AIハブ管理画面 — グッぼる グループ記事</title>
+<title>AIハブ管理画面 — 管理メニュー</title>
 <meta name="robots" content="noindex,nofollow">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -292,6 +292,7 @@
     font-size:11px; font-weight:800; color:var(--primary);
   }
   @media (max-width:900px) {
+    .container { padding-top:116px; }
     .admin-menu-grid { grid-template-columns:1fr; }
     .admin-menu-group { border-right:none; border-bottom:1px solid var(--line); }
     .admin-menu-group:last-child { border-bottom:none; }
@@ -306,10 +307,12 @@
   <div class="site-header-inner">
     <a class="site-logo" href="/"><span class="dot"></span>AIハブ <span style="color:var(--muted);font-weight:600;font-size:13px;margin-left:6px;">管理画面</span></a>
     <nav class="site-nav" aria-label="管理ナビ">
-      <a class="nav-link" href="#admin-menu">管理メニュー</a>
-      <a class="nav-link" href="#panel-dashboard">今週の動き</a>
-      <a class="nav-link" href="/">公開トップ</a>
+      <a class="nav-link" href="/admin#admin-menu">管理</a>
+      <a class="nav-link" href="/admin/gubble-sns">SNS分析</a>
+      <a class="nav-link" href="/admin/sns-post">SNS投稿</a>
+      <a class="nav-link" href="/admin/chat">社内AI</a>
       <a class="login-btn" href="/ops">OPS</a>
+      <a class="nav-link" href="/">TOP</a>
     </nav>
   </div>
 </header>
@@ -317,7 +320,7 @@
   <div class="topbar">
     <div>
       <h1><span class="dot"></span>AIハブ 管理画面</h1>
-      <p class="sub">9事業の運用ダッシュボード + グッぼる グループ記事の発行</p>
+      <p class="sub">9事業の運用ダッシュボード + グループ記事の発行</p>
     </div>
   </div>
 
@@ -342,14 +345,14 @@
   <div class="panel admin-menu-panel" id="admin-menu">
     <div class="admin-menu-head">
       <h2>管理メニュー</h2>
-      <a class="admin-menu-primary" href="/admin/gubble-sns">ぐっぼるSNS分析を開く</a>
+      <a class="admin-menu-primary" href="/admin/gubble-sns">SNS分析を開く</a>
     </div>
     <div class="admin-menu-grid">
       <section class="admin-menu-group" aria-label="見る">
         <h3>見る</h3>
         <a class="admin-link" href="/admin/gubble-sns">
           <span class="admin-link-icon">📊</span>
-          <span><strong>ぐっぼるSNS分析</strong><small>YouTube / SNS / GA4 / GSC</small></span>
+          <span><strong>SNS分析</strong><small>YouTube / SNS / GA4 / GSC</small></span>
           <span class="admin-link-action">開く</span>
         </a>
         <a class="admin-link" href="/ops">

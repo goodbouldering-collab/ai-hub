@@ -18,7 +18,7 @@
     background:linear-gradient(180deg,#ffffff 0%,#f8fafc 100%);
     color:var(--text); min-height:100vh; padding:24px; line-height:1.6; }
   ::selection { background: var(--primary); color: #fff; }
-  .container { max-width:960px; margin:0 auto; padding-top:24px; }
+  .container { max-width:960px; margin:0 auto; padding-top:72px; }
   /* PORTAL(build_portal.py)と同一の site-header に統一。中身は管理用動線。 */
   header.site-header {
     position:fixed; inset:0 0 auto 0; z-index:50;
@@ -117,17 +117,24 @@
     transition: all .2s;
   }
   .examples button:hover { background: var(--primary-bg); color: var(--primary); border-color: rgba(37,99,235,.30); }
+  @media (max-width:900px) {
+    .container { padding-top:116px; }
+    .site-header-inner { align-items:flex-start; flex-direction:column; }
+    .site-nav { gap:12px; }
+  }
 </style>
 </head>
 <body>
 <header class="site-header scrolled" id="site-header">
   <div class="site-header-inner">
-    <a class="site-logo" href="/"><span class="dot"></span>AIハブ <span style="color:var(--muted);font-weight:600;font-size:13px;margin-left:6px;">社内エージェント</span></a>
+    <a class="site-logo" href="/admin"><span class="dot"></span>AIハブ <span style="color:var(--muted);font-weight:600;font-size:13px;margin-left:6px;">管理画面</span></a>
     <nav class="site-nav" aria-label="管理ナビ">
-      <a class="nav-link" href="/">🌐 公開トップ</a>
-      <a class="nav-link" href="/admin">🛠 管理画面</a>
-      <a class="nav-link" href="/ops">⚙️ 運用本部（OPS）</a>
-      <a class="login-btn" href="/admin">↩ 管理へ戻る</a>
+      <a class="nav-link" href="/admin#admin-menu">管理</a>
+      <a class="nav-link" href="/admin/gubble-sns">SNS分析</a>
+      <a class="nav-link" href="/admin/sns-post">SNS投稿</a>
+      <a class="nav-link" href="/admin/chat">社内AI</a>
+      <a class="login-btn" href="/ops">OPS</a>
+      <a class="nav-link" href="/">TOP</a>
     </nav>
   </div>
 </header>

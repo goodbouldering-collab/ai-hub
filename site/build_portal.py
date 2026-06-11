@@ -2349,6 +2349,521 @@ footer.site-footer {
 }
 """
 
+PORTAL_CSS += """
+
+/* ---- AI seminar landing redesign (Figma/community inspired, original implementation) ---- */
+:root {
+  --bg-base: #F8FAFC;
+  --bg-white: #FFFFFF;
+  --bg-elev: #FFFFFF;
+  --text: #0B1B33;
+  --text-soft: #35475E;
+  --muted: #6C7A8C;
+  --line: rgba(11,27,51,.12);
+  --line-strong: rgba(11,27,51,.24);
+  --primary: #007F8F;
+  --primary-soft: #0E9BA8;
+  --emerald: #86A81E;
+  --coral: #E8654D;
+  --primary-bg: rgba(0,127,143,.08);
+  --grad: linear-gradient(135deg, #007F8F 0%, #0B9B96 64%, #6F9E27 100%);
+  --grad-soft: linear-gradient(135deg, rgba(0,127,143,.09), rgba(134,168,30,.08));
+  --radius: 8px;
+  --radius-sm: 8px;
+  --shadow-card: 0 1px 2px rgba(11,27,51,.05), 0 14px 38px rgba(11,27,51,.07);
+  --shadow-card-hover: 0 8px 20px rgba(11,27,51,.08), 0 24px 54px rgba(0,127,143,.13);
+}
+
+body {
+  background:
+    linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 58%, #EEF7F7 100%);
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1280px;
+  padding: 0 28px 80px;
+}
+
+.site-header-inner { max-width: 1280px; }
+.site-header.scrolled,
+.site-header:hover {
+  background: rgba(255,255,255,.92);
+  border-bottom-color: rgba(11,27,51,.10);
+}
+.nav-cta { border-radius: 8px; }
+.menu-toggle,
+.theme-toggle,
+.mobile-toggle { border-radius: 8px; }
+
+.hero {
+  min-height: min(748px, calc(100svh - 18px));
+  padding: 92px 0 44px;
+  grid-template-columns: minmax(0, .9fr) minmax(460px, 1.1fr);
+  gap: 54px;
+}
+.hero .fade-up {
+  opacity: 1;
+  transform: none;
+}
+.hero::before {
+  background:
+    linear-gradient(90deg, #FFFFFF 0%, rgba(255,255,255,.98) 42%, rgba(239,248,249,.88) 100%),
+    linear-gradient(180deg, rgba(0,127,143,.035), transparent 40%);
+  border-top: 0;
+  border-bottom: 1px solid rgba(11,27,51,.10);
+}
+.hero .eyebrow {
+  display: inline-flex;
+  max-width: fit-content;
+  color: var(--primary);
+  font-size: 13px;
+  font-family: var(--serif);
+  font-weight: 900;
+  letter-spacing: 0;
+}
+.hero h1 {
+  margin: 14px 0 18px;
+  font-size: clamp(46px, 6.2vw, 82px);
+  line-height: 1.02;
+}
+.fusion-logo-large {
+  display: inline-flex;
+  align-items: baseline;
+  gap: .18em;
+}
+.fusion-logo-large .ai,
+.fusion-logo-large .hub {
+  color: var(--text);
+}
+.hero-title-sub {
+  margin-top: 10px;
+  font-size: clamp(24px, 2.9vw, 38px);
+  color: var(--text);
+}
+.hero-title-sub strong { color: var(--primary); }
+.hero .sub-catch {
+  max-width: 640px;
+  font-size: clamp(16px, 1.7vw, 20px);
+  line-height: 1.65;
+}
+.hero .lead {
+  max-width: 640px;
+  font-size: 15.5px;
+  line-height: 1.95;
+}
+.hero-actions { gap: 14px; }
+.btn-lg { padding: 15px 24px; }
+.hero-proof-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 28px 0 0;
+  max-width: 650px;
+}
+.hero-proof {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  padding: 12px 10px;
+  border-top: 1px solid rgba(11,27,51,.12);
+  color: var(--text);
+}
+.hero-proof .proof-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 900;
+}
+.hero-proof b {
+  display: block;
+  font-size: 13.5px;
+  line-height: 1.25;
+}
+.hero-proof span {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 11.5px;
+  line-height: 1.4;
+}
+.hero-entry-strip { display: none; }
+
+.hero-photo-card {
+  width: min(100%, 690px);
+  aspect-ratio: 16 / 10;
+  padding: 0;
+  border-radius: 0;
+  border: 0;
+  background: #EAF4F5;
+  box-shadow: 0 26px 74px rgba(11,27,51,.14);
+}
+.hero-photo-card img {
+  border-radius: 0;
+  object-position: center;
+}
+.hero-photo-card::after {
+  inset: 0;
+  border-radius: 0;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.50) 0%, rgba(255,255,255,.06) 34%, rgba(11,27,51,.06) 100%),
+    linear-gradient(180deg, rgba(255,255,255,0) 58%, rgba(11,27,51,.22) 100%);
+}
+.hero-photo-note,
+.hero-photo-map,
+.hero-mini-routes { display: none; }
+.hero-lesson-board {
+  position: absolute;
+  right: 24px;
+  top: 24px;
+  z-index: 5;
+  width: min(43%, 286px);
+  padding: 18px;
+  border: 1px solid rgba(11,27,51,.10);
+  border-radius: 8px;
+  background: rgba(255,255,255,.94);
+  box-shadow: 0 18px 46px rgba(11,27,51,.13);
+  backdrop-filter: blur(12px) saturate(130%);
+  -webkit-backdrop-filter: blur(12px) saturate(130%);
+}
+.lesson-board-title {
+  margin: 0 0 14px;
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 900;
+  line-height: 1.45;
+}
+.lesson-board-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.lesson-board-item {
+  min-height: 72px;
+  padding: 10px 8px;
+  border: 1px solid rgba(0,127,143,.16);
+  border-radius: 8px;
+  background: #F8FCFC;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  text-align: center;
+}
+.lesson-board-item svg {
+  display: block;
+  width: 24px;
+  height: 24px;
+  margin: 0 auto;
+  color: var(--primary);
+}
+.lesson-board-item span {
+  color: var(--text-soft);
+  font-size: 10.5px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+.hero-class-caption {
+  position: absolute;
+  left: 22px;
+  bottom: 22px;
+  z-index: 5;
+  max-width: 300px;
+  padding: 13px 15px;
+  border-radius: 8px;
+  background: rgba(255,255,255,.92);
+  border: 1px solid rgba(255,255,255,.70);
+  box-shadow: 0 14px 34px rgba(11,27,51,.12);
+}
+.hero-class-caption b {
+  display: block;
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.35;
+}
+.hero-class-caption span {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+section.block { padding: 72px 0; }
+#packages { padding-top: 66px; }
+.section-title {
+  font-size: clamp(30px, 4vw, 46px);
+}
+.section-heading {
+  font-size: 12px;
+  color: var(--primary);
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+}
+.section-sub {
+  max-width: 760px;
+  font-size: 15px;
+}
+
+.packages-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+.pkg-card,
+.pkg-featured,
+.pkg-wide {
+  grid-column: auto;
+}
+.pkg-card {
+  border: 1px solid rgba(11,27,51,.13);
+  background: #fff !important;
+  box-shadow: 0 1px 2px rgba(11,27,51,.04);
+}
+.pkg-card::before {
+  background: linear-gradient(90deg, rgba(0,127,143,.07), transparent 52%, rgba(232,101,77,.045));
+}
+.pkg-card:hover {
+  border-color: rgba(0,127,143,.28);
+  box-shadow: var(--shadow-card-hover);
+}
+.pkg-body {
+  padding: 26px 24px 24px;
+  gap: 12px;
+}
+.pkg-cat {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--primary);
+}
+.pkg-title {
+  font-size: clamp(23px, 2.4vw, 31px);
+}
+.pkg-meta {
+  gap: 10px;
+}
+.pkg-level,
+.pkg-subsidy {
+  border-radius: 8px;
+}
+.pkg-price {
+  color: var(--text);
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+}
+.pkg-content-box,
+.pkg-req-box {
+  background: #F8FBFC;
+  border-color: rgba(0,127,143,.13);
+}
+.pkg-fit {
+  padding-top: 2px;
+}
+.pkg-fit li {
+  color: var(--text-soft);
+}
+.pkg-cta {
+  border-radius: 8px;
+}
+.packages-note {
+  background: #F5FAFA;
+  border-color: rgba(0,127,143,.15);
+}
+
+.usecase-card,
+.lecture-card,
+.growth-panel,
+.profile-block,
+.flow-step,
+.faq-item {
+  border-radius: 8px;
+  background: #fff;
+  border-color: rgba(11,27,51,.12);
+  box-shadow: 0 1px 2px rgba(11,27,51,.04);
+}
+.usecase-card {
+  min-height: 214px;
+  padding: 26px 22px;
+  text-align: center;
+}
+.usecase-label {
+  display: inline-flex;
+  min-width: 58px;
+  min-height: 58px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+  border: 2px solid rgba(0,127,143,.78);
+  border-radius: 8px;
+  color: var(--primary);
+  font-weight: 900;
+  background: #F8FCFC;
+}
+.usecase-card h3 {
+  font-size: 16px;
+  color: var(--text);
+}
+.usecase-card p {
+  color: var(--text-soft);
+}
+.lecture-card {
+  min-height: 170px;
+  border-top: 4px solid var(--primary);
+}
+.lecture-title {
+  color: var(--text);
+  font-size: 15px;
+}
+.growth-layout { gap: 22px; }
+.growth-action {
+  border-radius: 8px;
+}
+.contact-primary {
+  border-radius: 8px;
+  background: linear-gradient(135deg, #007F8F 0%, #0B9B96 100%);
+}
+
+@media (max-width: 1040px) {
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    padding-top: 92px;
+  }
+  .hero-text { text-align: left; }
+  .hero .sub-catch,
+  .hero .lead { margin-left: 0; }
+  .hero-actions { justify-content: flex-start; }
+  .hero-photo-card { justify-self: stretch; width: 100%; }
+}
+
+@media (max-width: 900px) {
+  .container { padding-left: 18px; padding-right: 18px; }
+  .hero {
+    gap: 28px;
+    padding-top: 86px;
+  }
+  .hero-text { text-align: left; }
+  .hero .sub-catch,
+  .hero .lead { margin-left: 0; margin-right: 0; }
+  .hero-actions,
+  .hero-trust { justify-content: flex-start; }
+  .packages-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 680px) {
+  .container { padding-left: 16px; padding-right: 16px; }
+  .hero { padding-top: 78px; }
+  .hero {
+    width: min(100%, 356px);
+    max-width: min(100%, 356px);
+    margin-left: 0;
+    margin-right: auto;
+    min-width: 0;
+  }
+  .hero-text,
+  .hero-actions,
+  .hero-photo-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+  .hero h1 { font-size: clamp(39px, 12vw, 54px); }
+  .hero-title-sub { font-size: clamp(21px, 7vw, 28px); }
+  .hero .sub-catch,
+  .hero .lead,
+  .hero h1,
+  .hero-title-sub {
+    width: 100%;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+  .hero-actions .btn {
+    justify-content: center;
+    width: 100%;
+    min-width: 0;
+    padding-left: 18px;
+    padding-right: 18px;
+    white-space: normal;
+  }
+  .hero-proof-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .hero-photo-card {
+    max-width: 100%;
+    aspect-ratio: 4 / 3.35;
+  }
+  .hero-lesson-board {
+    left: 14px;
+    right: 14px;
+    top: 14px;
+    width: auto;
+    max-width: calc(100% - 28px);
+    padding: 13px;
+  }
+  .lesson-board-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+  }
+  .lesson-board-item {
+    min-height: 60px;
+    padding: 7px 4px;
+  }
+  .lesson-board-item svg { width: 19px; height: 19px; }
+  .lesson-board-item span { font-size: 9.5px; }
+  .hero-class-caption {
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+    max-width: none;
+  }
+  .packages-grid { grid-template-columns: 1fr; }
+  .sticky-cta {
+    left: 16px;
+    right: auto;
+    width: min(100%, 356px);
+    max-width: calc(100% - 32px);
+  }
+  .sticky-cta-btn {
+    min-width: 0;
+    white-space: normal;
+    text-align: center;
+  }
+}
+
+@media (max-width: 520px) {
+  .hero {
+    width: min(100%, 356px);
+    max-width: min(100%, 356px);
+    margin-left: 0;
+    margin-right: auto;
+  }
+  .hero-text,
+  .hero .sub-catch,
+  .hero .lead,
+  .hero-actions,
+  .hero-proof-grid,
+  .hero-photo-card {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+"""
+
 
 def _render_header() -> str:
     """N デザイン風 fixed ヘッダー。スクロールで white/90 + blur に切替。"""
@@ -2800,64 +3315,69 @@ HERO_SVG = """
 
 
 def _render_hero() -> str:
+    icon_search = (
+        "<svg viewBox='0 0 24 24' aria-hidden='true' fill='none'>"
+        "<circle cx='10.5' cy='10.5' r='5.5' stroke='currentColor' stroke-width='2'/>"
+        "<path d='M15 15l4.5 4.5' stroke='currentColor' stroke-width='2' stroke-linecap='round'/>"
+        "</svg>"
+    )
+    icon_doc = (
+        "<svg viewBox='0 0 24 24' aria-hidden='true' fill='none'>"
+        "<path d='M7 3h7l4 4v14H7z' stroke='currentColor' stroke-width='2' stroke-linejoin='round'/>"
+        "<path d='M14 3v5h5M10 12h6M10 16h6' stroke='currentColor' stroke-width='2' stroke-linecap='round'/>"
+        "</svg>"
+    )
+    icon_media = (
+        "<svg viewBox='0 0 24 24' aria-hidden='true' fill='none'>"
+        "<rect x='4' y='6' width='16' height='12' rx='2' stroke='currentColor' stroke-width='2'/>"
+        "<path d='M10 10l5 2-5 2z' fill='currentColor'/>"
+        "</svg>"
+    )
+    icon_growth = (
+        "<svg viewBox='0 0 24 24' aria-hidden='true' fill='none'>"
+        "<path d='M5 18V9M12 18V5M19 18v-7' stroke='currentColor' stroke-width='2' stroke-linecap='round'/>"
+        "<path d='M4 18h16M15 7l4-4 1 5' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>"
+        "</svg>"
+    )
     return (
         "<section class='hero' id='top'>"
         "<div class='hero-text fade-up'>"
-        "<span class='eyebrow'>HIKONE AI CONSULTATION / LESSON / RESOURCE CENTER</span>"
+        "<span class='eyebrow'>初心者でも、今日から使えるAI活用へ</span>"
         "<h1 class='hero-brand'>"
         "<span class='fusion-logo-large'><span class='ai'>AI相談</span><span class='pipe'>|</span><span class='hub'>彦根</span></span>"
-        "<span class='hero-title-sub'><strong>聞く、試す、作る。</strong>講習資料まで残るAI相談。</span>"
+        "<span class='hero-title-sub'><strong>聞く、試す、作る。</strong><br>講習資料まで残るAI講習会。</span>"
         "<span class='visually-hidden'>｜彦根 AI相談、滋賀 生成AI講習、Codex講習、ChatGPT講座、AI導入支援、補助金申請サポート、LLMO対策、YouTube SEO、Reels集客</span>"
         "</h1>"
         "<p class='sub-catch'>"
-        "<strong>彦根・湖東の事業者と個人向けに、AI相談、少人数講習、実例、講習資料をひとつの入口にまとめました。</strong>"
+        "<strong>ChatGPTや生成AIを、あなたの仕事や暮らしに。彦根で学ぶ少人数のAI講習会・個別相談。</strong>"
         "</p>"
         "<p class='lead'>"
-        "ただ便利ツールを紹介して終わりではなく、あなたの仕事の文章、写真、SNS、YouTube、資料、予約導線、Webページまで一緒に触って、講習後も見返せる形で残します。"
+        "文章、資料、画像、SNS、YouTube、予約導線、Webページまで、実際の仕事を題材に一緒に触ります。講習後は資料センターで手順を見返せるので、聞いて終わりになりません。"
         "</p>"
         "<div class='hero-actions'>"
         "<a class='btn btn-primary btn-lg' href='#contact'>無料30分相談を予約</a>"
         "<a class='btn btn-secondary btn-lg' href='#packages'>講習プランを見る</a>"
         "</div>"
-        "<ul class='hero-trust'>"
-        "<li>彦根で<strong>対面相談可</strong></li>"
-        "<li>資料は<strong>あとで見返せる</strong></li>"
-        "<li><strong>9事業</strong>を回す講師が実例で説明</li>"
-        "</ul>"
-        "<div class='hero-entry-strip' aria-label='AI相談 彦根の主要入口'>"
-        "<a class='entry-chip' href='#packages'><b>相談・講習</b><span>初心者から実装まで</span></a>"
-        "<a class='entry-chip' href='#usecases'><b>実例</b><span>仕事でどう使うか</span></a>"
-        "<a class='entry-chip' href='#lectures'><b>資料センター</b><span>教材・動画・スライド</span></a>"
-        "<a class='entry-chip' href='#growth'><b>集客施策</b><span>Reels / YouTube / LLMO</span></a>"
+        "<div class='hero-proof-grid' aria-label='AI講習会の特徴'>"
+        "<div class='hero-proof'><span class='proof-icon'>01</span><span><b>彦根・湖東対応</b><span>リアル/オンラインOK</span></span></div>"
+        "<div class='hero-proof'><span class='proof-icon'>02</span><span><b>少人数・実践型</b><span>1クラス最大6名</span></span></div>"
+        "<div class='hero-proof'><span class='proof-icon'>03</span><span><b>初心者歓迎</b><span>不安にサポート</span></span></div>"
         "</div>"
         "</div>"
         "<div class='hero-photo-card fade-up d2' aria-label='AI相談 彦根の講習イメージ'>"
-        "<img src='/img/hero-ai-consult-hikone.png' alt='彦根の明るい教室でAI相談と少人数講習を進めるイメージ' decoding='async' fetchpriority='high'>"
-        "<span class='hero-photo-note'><i aria-hidden='true'></i>彦根でAIを一緒に触る</span>"
-        "<div class='hero-photo-map' aria-hidden='true'>"
-        "<svg viewBox='0 0 280 170' fill='none' xmlns='http://www.w3.org/2000/svg'>"
-        "<rect x='12' y='14' width='76' height='44' rx='8' stroke='#8bdcff' stroke-width='2'/>"
-        "<rect x='102' y='14' width='76' height='44' rx='8' stroke='#c8ff5f' stroke-width='2'/>"
-        "<rect x='192' y='14' width='76' height='44' rx='8' stroke='#ffb3a8' stroke-width='2'/>"
-        "<path class='route-line' d='M88 36H102M178 36H192' stroke='#fff' stroke-width='2'/>"
-        "<text x='31' y='40' fill='#fff' font-size='12'>相談</text>"
-        "<text x='121' y='40' fill='#fff' font-size='12'>講習</text>"
-        "<text x='211' y='40' fill='#fff' font-size='12'>資料</text>"
-        "<path class='route-line' d='M50 58C50 112 230 112 230 58' stroke='#8bdcff' stroke-width='2'/>"
-        "<circle cx='50' cy='120' r='20' stroke='#c8ff5f' stroke-width='2'/>"
-        "<circle cx='140' cy='134' r='23' stroke='#8bdcff' stroke-width='2'/>"
-        "<circle cx='230' cy='120' r='20' stroke='#ffb3a8' stroke-width='2'/>"
-        "<path d='M70 120H117M163 134H210' stroke='#fff' stroke-opacity='.72' stroke-width='2'/>"
-        "<text x='36' y='124' fill='#fff' font-size='10'>SNS</text>"
-        "<text x='122' y='138' fill='#fff' font-size='10'>LLMO</text>"
-        "<text x='212' y='124' fill='#fff' font-size='10'>動画</text>"
-        "</svg>"
+        "<img src='img/hero-ai-consult-hikone.png' alt='彦根の明るい教室でAI相談と少人数講習を進めるイメージ' decoding='async' fetchpriority='high'>"
+        "<div class='hero-lesson-board'>"
+        "<p class='lesson-board-title'>AIで広がる、仕事の可能性</p>"
+        "<div class='lesson-board-list'>"
+        f"<span class='lesson-board-item'>{icon_search}<span>情報収集</span></span>"
+        f"<span class='lesson-board-item'>{icon_doc}<span>資料作成</span></span>"
+        f"<span class='lesson-board-item'>{icon_media}<span>SNS・動画</span></span>"
+        f"<span class='lesson-board-item'>{icon_growth}<span>分析・改善</span></span>"
         "</div>"
-        "<div class='hero-mini-routes' aria-label='AI相談 彦根の主要入口'>"
-        "<a href='#contact'><b>相談する</b><small>課題を整理</small></a>"
-        "<a href='#packages'><b>学ぶ</b><small>講習プラン</small></a>"
-        "<a href='#lectures'><b>残す</b><small>資料で復習</small></a>"
-        "<a href='#growth'><b>集客</b><small>SEO/動画</small></a>"
+        "</div>"
+        "<div class='hero-class-caption'>"
+        "<b>リアルな仕事を題材に、その場でAIを動かす。</b>"
+        "<span>相談、講習、資料化、集客まで一気通貫でサポートします。</span>"
         "</div>"
         "</div>"
         "</section>"

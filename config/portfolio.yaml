@@ -12,8 +12,9 @@
 portfolio:
   - name: みんなのWA
     slug: minanowa
-    url: https://minanowa.com
+    url: https://minnanowa.net
     aliases:
+      - https://minanowa.com
       - https://minanowa.vercel.app
     status: live
     category: コミュニティ

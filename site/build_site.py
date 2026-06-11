@@ -142,7 +142,6 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
     # TOP(_render_header) と同じリンク群・順序で固定メニューを共通化する。
     # 下層ページからは TOP のセクションへ飛ぶため href は "/#..." の絶対指定にする。
     parts.append("<a class='nav-link' href='/#packages'>受講プラン</a>")
-    parts.append("<a class='nav-link' href='/#usecases'>実例</a>")
     parts.append("<a class='nav-link' href='/#growth'>集客施策</a>")
     parts.append("<a class='nav-link' href='/#works'>制作実績</a>")
     parts.append("<a class='nav-link' href='/#lectures'>講習資料</a>")

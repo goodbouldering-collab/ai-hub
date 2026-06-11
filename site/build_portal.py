@@ -2877,7 +2877,6 @@ def _render_header() -> str:
         "</a>"
         "<nav class='site-nav' aria-label='メインナビ'>"
         "<a class='nav-link' href='#packages'>受講プラン</a>"
-        "<a class='nav-link' href='#usecases'>実例</a>"
         "<a class='nav-link' href='#growth'>集客施策</a>"
         "<a class='nav-link' href='#works'>制作実績</a>"
         "<a class='nav-link' href='#lectures'>講習資料</a>"
@@ -2904,7 +2903,6 @@ def _render_header() -> str:
         "</div>"
         "<div class='mobile-nav' id='mobile-nav'>"
         "<a href='#packages'>受講プラン</a>"
-        "<a href='#usecases'>実例</a>"
         "<a href='#growth'>集客施策</a>"
         "<a href='#works'>制作実績</a>"
         "<a href='#lectures'>講習資料</a>"
@@ -3808,29 +3806,6 @@ def _render_flow() -> str:
     return "".join(parts)
 
 
-def _render_usecases_section() -> str:
-    """講習で扱う実例。相談者が自分ごと化しやすい業務別メニューにする。"""
-    items = [
-        ("文章", "問い合わせ返信・見積文・募集文", "いつも似た文章を書く仕事を、AIの下書きと確認フローに変える。"),
-        ("写真", "商品写真・講習告知・サムネ", "生成/編集した写真を、サイト・Instagram・YouTubeサムネに展開する。"),
-        ("資料", "講習資料・議事録・マニュアル", "NotebookLMやCodexで、資料を質問できる状態にして属人化を減らす。"),
-        ("集客", "Reels・YouTube・SEO/LLMO", "1本の実例から、ショート動画、説明ページ、FAQ、構造化データへ分解する。"),
-        ("実装", "Webページ・予約・申込導線", "相談から申込までのページ、フォーム、Square予約、Vercel公開まで見る。"),
-        ("補助金", "AI導入計画・見積・実績報告", "補助金前提で、導入目的、費用、講習、成果物の説明を整える。"),
-    ]
-    parts = ["<div class='usecase-grid'>"]
-    for label, title, body in items:
-        parts.append(
-            "<article class='usecase-card fade-up'>"
-            f"<span class='usecase-label'>{html.escape(label)}</span>"
-            f"<h3>{html.escape(title)}</h3>"
-            f"<p>{html.escape(body)}</p>"
-            "</article>"
-        )
-    parts.append("</div>")
-    return "".join(parts)
-
-
 def _render_growth_plan_section() -> str:
     """競合比較から逆算した、今後の集客施策。"""
     rows = [
@@ -4323,14 +4298,6 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append("<h2 class='section-title'>相談から資料化・集客まで</h2>")
     parts.append("<p class='section-sub'>一度聞いて終わりではなく、講習内容を資料センターと集客導線に変換します。</p>")
     parts.append(_render_flow())
-    parts.append("</section>")
-
-    # 2b. 講習で扱う実例
-    parts.append("<section class='block' id='usecases'>")
-    parts.append("<p class='section-heading fade-up'>USE CASES</p>")
-    parts.append("<h2 class='section-title fade-up d1'>講習で扱う実例</h2>")
-    parts.append("<p class='section-sub fade-up d2'>AIの説明だけではなく、実際の文章・写真・資料・SNS・Web導線をその場で触ります。</p>")
-    parts.append(_render_usecases_section())
     parts.append("</section>")
 
     # 3. 講師紹介（誰が教えるか）

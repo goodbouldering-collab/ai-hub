@@ -171,15 +171,19 @@ def _build_jsonld_website() -> str:
         "description": "滋賀・彦根の中小事業者向けAI相談、講習募集、講習資料、実例、講師紹介、AI/SNS/LLMO情報の資料センター。",
     }
 
-    individual_title = "個別（オン/オフライン）"
-    workshop_title = "講習会（少人数）"
-    codex_title = "Codex"
+    codex_prep_title = "Codex準備 90分"
+    codex_practice_title = "Codex実践 120分"
+    free_consult_title = "AI無料相談 とりあえず30分"
+    consult_title = "AI個別相談 しっかり60分"
+    support_title = "AI伴走支援 いっしょに導入"
 
     # 受講プランを Service + Offer として構造化（_render_packages の items と整合）
     plans = [
-        (individual_title, "来店・オンラインのどちらでも受けられる個別相談。無料30分の入口確認から、AIの使い方、指示書、確認体制、運用導線を整理する60分相談まで対応する。", "0", "5500", "BusinessCoaching"),
-        (workshop_title, "ChatGPT、Claude、NotebookLM、画像生成、SNS、LLMOなどを、少人数で画面を見ながら実務に当てはめる講習会。", "5500", "5500", "Course"),
-        (codex_title, "Codex準備90分とCodex実践120分を、理解度と持ち込み課題に合わせて選べる少人数講習。作業フォルダ、権限、依頼文、差分確認、成果物作成まで扱う。", "2200", "5500", "Course"),
+        (codex_prep_title, "Codex準備 導入と習得の流れに沿って、ChatGPTログイン、作業フォルダ選定、秘密情報を入れない権限設計、最初の依頼、差分確認、ブラウザ表示確認、独立レビュー、AGENTS.md、公式アップデート確認先までを90分で整える準備講習。", "2200", "2200", "Course"),
+        (codex_practice_title, "Codexで持ち込み課題を進め、ページ、資料、コード、動画台本などの成果物を120分で作る実践講習。", "5500", "5500", "Course"),
+        (free_consult_title, "来店またはオンラインで、AI導入の入口を30分で整理する無料相談。講習や伴走の前に、今の課題と次の一手を確認する。", "0", "0", "BusinessCoaching"),
+        (consult_title, "AIの使い方、役割分担、指示書、確認体制、運用導線を60分で整理する個別相談。", "5500", "5500", "BusinessCoaching"),
+        (support_title, "HP公開から事務自動化・経理・マーケまで6ヶ月で一気に定着。技術的な難所は講師が代行・支援。滋賀・彦根の補助金で負担1/3以下に。", "100000", "100000", "Service"),
     ]
     services = []
     for name, desc, lo, hi, stype in plans:
@@ -4370,53 +4374,53 @@ HEADER_JS = """
     try { localStorage.removeItem('aihub-theme'); } catch(e) {}
   })();
 
-  // ---- 受講プラン診断 (3入口: 個別/講習会/Codex。ヒーロー第1問から起動)
+  // ---- AIレベル診断 (3段階: 初級/中級/上級。ヒーロー第1問から起動)
   (function(){
     var modal = document.getElementById('diagnoseModal');
     if (!modal) return;
     var body = modal.querySelector('.diagnose-body');
 
-    // 各設問の選択肢に入口スコアを持たせ、合計で個別/講習会/Codexを判定
+    // 各設問の選択肢にレベルスコアを持たせ、合計で初級/中級/上級を判定
     var QUESTIONS = [
-      { q: '受講したい形はどれですか？', a: [
-        { label: '自分の仕事を個別に相談したい', lv: 'individual' },
-        { label: '少人数で一緒に触りたい', lv: 'workshop' },
-        { label: 'Codexを準備・実践したい', lv: 'codex' },
+      { q: 'Codex の理解度はどの段階ですか？', a: [
+        { label: 'インストールから確認したい', lv: 'beginner' },
+        { label: '基本は触れるので成果物を作りたい', lv: 'intermediate' },
+        { label: 'エージェント組織まで作りたい', lv: 'advanced' },
       ]},
       { q: '当日いちばん進めたいことは？', a: [
-        { label: '課題整理と次の一手を決めたい', lv: 'individual' },
-        { label: 'AIの基本を画面で練習したい', lv: 'workshop' },
-        { label: '差分確認や成果物作成まで進めたい', lv: 'codex' },
+        { label: 'PCとモバイルの準備を整えたい', lv: 'beginner' },
+        { label: 'ページや資料などを完成させたい', lv: 'intermediate' },
+        { label: 'AIの役割分担と運用設計を作りたい', lv: 'advanced' },
       ]},
       { q: 'どのスパンで取り組みたい？', a: [
-        { label: '来店かオンラインでじっくり話したい', lv: 'individual' },
-        { label: '少人数で同じ画面を見ながら学びたい', lv: 'workshop' },
-        { label: 'Codex準備か実践を選びたい', lv: 'codex' },
+        { label: 'まず90分2,200円で準備したい', lv: 'beginner' },
+        { label: '120分で成果物を作りたい', lv: 'intermediate' },
+        { label: '相談から伴走まで設計したい', lv: 'advanced' },
       ]},
     ];
     var RESULT = {
-      individual: {
-        badge: '個別', title: 'オン/オフラインで整理する',
-        name: '個別（オン/オフライン）',
-        desc: '来店・Zoom・LINE通話で、今の仕事に合わせて課題、指示文、確認体制を整理します。',
-        level_id: 'individual'
+      beginner: {
+        badge: 'Codex準備', title: 'インストールからモバイルまで整える',
+        name: 'Codex準備 90分',
+        desc: 'インストール、ログイン、作業フォルダ、最初の依頼、差分確認、モバイル確認までを2,200円で整えます。',
+        level_id: 'beginner'
       },
-      workshop: {
-        badge: '講習会', title: '少人数で一緒に触る',
-        name: '講習会（少人数）',
-        desc: 'ChatGPT、Claude、NotebookLM、画像生成、SNS、LLMOを画面を見ながら実務に当てはめます。',
-        level_id: 'workshop'
+      intermediate: {
+        badge: 'Codex実践', title: '成果物をその場で作る',
+        name: 'Codex実践 120分',
+        desc: 'ページ、資料、コード、動画台本など、持ち込み課題を成果物として形にする少人数講習です。',
+        level_id: 'intermediate'
       },
-      codex: {
-        badge: 'Codex', title: '準備から実践まで進める',
-        name: 'Codex',
-        desc: 'Codex準備90分、Codex実践120分から選び、差分確認や成果物作成まで進めます。',
-        level_id: 'codex'
+      advanced: {
+        badge: '相談', title: '個別相談で整理する',
+        name: 'AI個別相談 しっかり60分',
+        desc: 'AIの使い方、指示書、確認体制、運用導線を60分でしっかり整理します。',
+        level_id: 'advanced'
       }
     };
-    var ORDER = ['individual','workshop','codex'];
+    var ORDER = ['beginner','intermediate','advanced'];
 
-    var step = 0, scores = { individual:0, workshop:0, codex:0 };
+    var step = 0, scores = { beginner:0, intermediate:0, advanced:0 };
 
     function render(){
       if (step < QUESTIONS.length) {
@@ -4427,7 +4431,7 @@ HEADER_JS = """
         h += '</div>';
         body.innerHTML = h;
       } else {
-        // 同点はORDER後方を優先
+        // 同点は「より高いレベル」を優先（ORDER後方優先）
         var best = ORDER[0], bestScore = -1;
         ORDER.forEach(function(k){ if (scores[k] >= bestScore) { bestScore = scores[k]; best = k; } });
         var r = RESULT[best];
@@ -4443,15 +4447,15 @@ HEADER_JS = """
           '</div>';
       }
     }
-    // start(preLv): ヒーロー第1問で選んだ入口を1問目の回答として引き継ぐ
+    // start(preLv): ヒーロー第1問で選んだレベルを1問目の回答として引き継ぐ
     function open(preLv){
-      step = 0; scores = { individual:0, workshop:0, codex:0 };
+      step = 0; scores = { beginner:0, intermediate:0, advanced:0 };
       if (preLv && scores.hasOwnProperty(preLv)) { scores[preLv]++; step = 1; }
       render(); modal.classList.add('open');
     }
     function close(){ modal.classList.remove('open'); }
 
-    // PACKAGES の該当入口をハイライト
+    // PACKAGES の該当レベルをハイライト
     function focusLevel(lv){
       var grid = document.querySelector('.packages-grid');
       if (!grid) return;
@@ -4786,72 +4790,122 @@ def _render_services() -> str:
 
 def _render_courses_packages() -> str:
     """講習・相談プランのカード一覧。"""
+    codex_prep_title = "Codex準備 90分"
+    codex_practice_title = "Codex実践 120分"
     seminar_url = "https://goodbouldering.com/?pid=188553378"
     free_consult_title = "AI無料相談 とりあえず30分"
-    consult_url = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/TO3XHZT6XP3OM4QBDYMW7TZP"
+    free_consult_url = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/AW5O5XSBHLEHYUBHLZUGFKYE"
+    consult_title = "AI個別相談 しっかり60分"
+    support_title = "AI伴走支援 いっしょに導入"
     items = [
         {
             "icon": "◧",
-            "cat": "個別",
-            "level": "オン/オフライン",
-            "level_id": "individual",
-            "title": "個別（オン/オフライン）",
-            "price": "無料〜5,500円",
-            "duration": "30〜60分",
+            "cat": "無料相談",
+            "level": "入口",
+            "level_id": "beginner",
+            "title": free_consult_title,
+            "price": "無料",
+            "duration": "30分",
             "subsidy": False,
-            "desc": "来店・Zoom・LINE通話のどれでも、今の仕事に合わせてAIの使い方を整理します。",
+            "desc": "来店またはオンラインで、講習・AI導入・補助金の入口を30分で整理します。",
             "content": [
-                f"{free_consult_title}で課題と受講方針を確認",
-                "60分相談では指示文、確認手順、ファイル整理まで設計",
-                "対面、Zoom、LINE通話から受けやすい形を選択",
+                "今の課題とAIで試したいことを聞き取り",
+                "講習、個別相談、伴走支援の入口を切り分け",
+                "補助金、交流会、次回予約の導線を確認",
             ],
-            "fit": ["自分の仕事に合わせて相談したい", "オンラインだけで完結したい", "講習前に課題を整理したい"],
-            "url": consult_url,
-            "cta": "個別相談を予約する",
+            "fit": ["まず話を聞きたい", "講習か伴走か迷う", "来店またはオンラインで相談したい"],
+            "url": free_consult_url,
+            "cta": "無料相談を予約する",
+        },
+        {
+            "icon": "?",
+            "cat": "相談",
+            "level": "上級",
+            "level_id": "advanced",
+            "title": consult_title,
+            "price": "5,500円",
+            "duration": "60分",
+            "subsidy": False,
+            "desc": "仕事や課題を聞き、AIの使い方、指示書、確認体制、運用導線を60分で整理します。",
+            "content": [
+                "LLMO/SEO/MEO、アプリ作成、業務改善の相談テーマを整理",
+                "指示文、確認手順、ファイル整理、AIの役割分担を設計",
+                "相談後すぐ試す次の一手と、継続用テンプレを残す",
+            ],
+            "fit": ["自分の仕事でAIをどう使うか整理したい", "指示文やチェック体制を整えたい", "成果物づくりを継続運用に変えたい"],
+            "url": "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/TO3XHZT6XP3OM4QBDYMW7TZP",
+            "cta": "AI個別相談を予約する",
         },
         {
             "icon": "◇",
-            "cat": "講習会",
-            "level": "少人数",
-            "level_id": "workshop",
-            "title": "講習会（少人数）",
-            "price": "5,500円",
-            "duration": "120分 / 少人数",
+            "cat": "伴走",
+            "level": "上級",
+            "level_id": "advanced",
+            "title": support_title,
+            "price": "月額 100,000円（税込）× 6ヶ月",
+            "duration": "初回相談予約",
             "subsidy": True,
-            "desc": "ChatGPT、Claude、NotebookLM、画像生成、SNS、LLMOを、実務に当てはめながら少人数で学びます。",
+            "desc": "HP公開、事務自動化、AI導入、デザイン内製化、経理、マーケを6ヶ月で定着させます。",
             "content": [
-                "画面を見ながらAIの基本操作と仕事への当て方を練習",
-                "資料、投稿、FAQ、画像案など小さな成果物を作成",
-                "講習後に見返せる手順とプロンプトを持ち帰り",
+                "AIホームページ、書類作成、営業効率化を設計",
+                "経理・バックオフィス自動化、専用AIツール作成を支援",
+                "補助金用のカリキュラム案、見積、導入計画まで並走",
             ],
-            "fit": ["少人数で一緒に触りたい", "自分だけで続けるのが不安", "AI活用をチームで始めたい"],
-            "url": seminar_url,
-            "cta": "講習会を申し込む",
+            "fit": ["社内にAI運用を定着させたい", "複数業務をまとめて仕組み化したい", "補助金前提で導入計画を組みたい"],
+            "url": "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/V57YTNICA2KV2TN7ENARAVQE",
+            "cta": "導入相談を予約する",
+            "variant": "wide",
         },
         {
             "icon": "⌘",
-            "cat": "Codex",
-            "level": "準備/実践",
-            "level_id": "codex",
-            "title": "Codex",
-            "price": "2,200〜5,500円",
-            "duration": "90〜120分 / 少人数",
-            "subsidy": True,
-            "desc": "Codex準備90分とCodex実践120分を、理解度と持ち込み課題に合わせて選べます。",
+            "cat": "Codex講習",
+            "level": "準備",
+            "level_id": "beginner",
+            "title": codex_prep_title,
+            "price": "2,200円",
+            "duration": "90分 / 少人数",
+            "subsidy": False,
+            "desc": "Codexを安全に使い始めるため、ログイン、作業フォルダ、最初の依頼、確認手順を90分で揃えます。",
             "content": [
-                "準備: ログイン、作業フォルダ、権限、秘密情報の扱いを設定",
-                "実践: ページ、資料、コード、動画台本など持ち込み課題を制作",
-                "差分確認、ブラウザ表示、独立レビュー、次回用テンプレまで練習",
+                "ChatGPTログイン、Codex起動、PC/モバイルの表示を確認",
+                "作業フォルダ、権限、秘密情報を入れないルールを設定",
+                "最初の依頼文、差分、ブラウザ表示、独立レビューを練習",
             ],
-            "fit": ["Codexを安全に始めたい", "持ち込み課題を成果物にしたい", "AIエージェントを仕事に入れたい"],
+            "fit": ["開いた後に何を頼むか迷っている", "権限や秘密情報の扱いを安全にしたい", "小さな成果物を作って実践へ進みたい"],
             "req_title": "持ち帰れる形",
             "requirements": [
-                "準備は90分2,200円、実践は120分5,500円",
-                "申込時に「Codex準備」または「Codex実践」を選択",
+                "AGENTS.md、公式アップデート確認先、説明→候補→編集前確認の依頼テンプレ",
+                "差分、リンク、画像、文字サイズを見て採用判断する確認手順",
             ],
-            "verify": "到達点は、差分を読んで採用判断できることと、次回も使える作業テンプレを持ち帰ることです。",
+            "verify": "到達点は小さな成果物を1つ作り、差分を読める状態です。申込時に「Codex準備」を選択してください。",
             "url": seminar_url,
-            "cta": "Codexメニューを選ぶ",
+            "cta": "Codexメニューで準備を選ぶ",
+            "variant": "featured",
+        },
+        {
+            "icon": "▣",
+            "cat": "Codex講習",
+            "level": "実践",
+            "level_id": "intermediate",
+            "title": codex_practice_title,
+            "price": "5,500円",
+            "duration": "120分 / 少人数",
+            "subsidy": True,
+            "desc": "持ち込み課題をCodexで分解し、ページ、資料、コード、動画台本、運用マニュアルを成果物にします。",
+            "content": [
+                "作りたいもの、直したいページ、既存資料を要件に分解",
+                "ページ、資料、コード、動画台本、運用マニュアルを制作",
+                "修正指示、差分、表示確認、次回使えるテンプレ化まで実施",
+            ],
+            "fit": ["持ち込み課題を成果物にしたい", "講習中に公開物や資料を作りたい", "Codexの使い方を実務で定着させたい"],
+            "req_title": "当日の進め方",
+            "requirements": [
+                "要件整理、依頼文、差分確認、修正指示を一緒に実行",
+                "完成物を確認し、次回も使える作業テンプレとして保存",
+            ],
+            "verify": "申込リンクは準備と同じです。申込時に「Codex実践」をオプション選択してください。",
+            "url": seminar_url,
+            "cta": "Codexメニューで実践を選ぶ",
             "variant": "featured",
         },
     ]
@@ -4911,16 +4965,16 @@ def _render_courses_packages() -> str:
     parts.append(
         "<div class='packages-cta-row fade-up d4'>"
         "<button type='button' class='btn btn-diagnose diagnose-open'>"
-        "60秒診断｜個別・講習会・Codexのどれ？"
+        "60秒診断｜準備・実践・個別相談のどれ？"
         "</button>"
         "<span class='packages-cta-hint'>3つの質問に答えるだけ。いまの状態に合う入口をその場で提案します。</span>"
         "</div>"
     )
     parts.append(
         "<p class='packages-note fade-up d4'>"
-        "<strong>個別:</strong> 来店・オンラインどちらでも対応。無料30分相談から、60分5,500円の個別相談へ進めます。"
-        "<br><strong>講習会:</strong> 少人数でChatGPT、Claude、NotebookLM、画像生成、SNS、LLMOを実務に当てはめます。"
-        "<br><strong>Codex:</strong> 準備は90分2,200円、実践は120分5,500円。申込時に「Codex準備」または「Codex実践」を選択します。"
+        "<strong>Codex講習:</strong> レベルは経験年数ではなく理解度で分けます。準備はログイン、フォルダ選択、最初の依頼、差分確認、独立レビュー、公式更新確認まで90分2,200円、実践は成果物作成まで120分5,500円です。"
+        "Codexの申込リンクは1つに統一し、申込時に「準備」または「実践」をオプション選択します。"
+        "<br><strong>相談:</strong> AI個別相談は、AIの使い方、指示書、確認体制、運用導線を60分で整理します。"
         "<br><strong>補助金:</strong> 講習と伴走支援は、滋賀県・彦根市のデジタル化/AI導入系補助金と組み合わせて相談できます。"
         "</p>"
     )
@@ -5107,7 +5161,7 @@ FAQ_QA = [
     ("彦根・滋賀でAIの講習や相談はできますか？",
      "はい。滋賀県彦根市を拠点に、彦根・湖東・東近江を中心とした対面のAI講習・個別相談を行っています。京都・大阪・名古屋までは出張可、リモートなら全国対応します。"),
     ("Codex準備とCodex実践はどう違いますか？",
-     "受講プラン上では「Codex」にまとめています。Codex準備は90分2,200円で、ログイン、作業フォルダ選択、秘密情報を入れない権限設計、最初の小さな依頼、差分確認、ブラウザ表示確認、独立レビュー、AGENTS.md、公式アップデート確認先までを整えます。Codex実践は120分5,500円で、ページ、資料、コード、動画台本、運用マニュアルなどの成果物作成まで進めます。申込リンクは1つで、申込時に準備か実践をオプション選択します。"),
+     "レベルは理解度で分けます。Codex準備は90分2,200円で、ログイン、作業フォルダ選択、秘密情報を入れない権限設計、最初の小さな依頼、差分確認、ブラウザ表示確認、独立レビュー、AGENTS.md、公式アップデート確認先までを整えます。Codex実践は120分5,500円で、ページ、資料、コード、動画台本、運用マニュアルなどの成果物作成まで進めます。申込リンクは1つで、申込時に準備か実践をオプション選択します。"),
     ("講習資料はあとから見返せますか？",
      "はい。講習で使った資料、プロンプト、実例、動画、スライドは資料センターとして整理し、あとから復習できるようにします。受講前に内容を確認したい方も、講習資料ページから雰囲気を見られます。"),
     ("Reels や YouTube の集客にも使えますか？",
@@ -5115,7 +5169,7 @@ FAQ_QA = [
     ("LLMO やAI検索に強いサイトにできますか？",
      "できます。地域名、講師の一次経験、料金、対応範囲、実例、FAQ、構造化データを整理し、AIが回答に引用しやすい形で公開します。大量の自動生成ではなく、講習と実例に基づく一次情報を重視します。"),
     ("料金はどれくらいですか？",
-     "受講プランは、個別（オン/オフライン）が無料30分〜60分5,500円、講習会（少人数）が120分5,500円、Codexが準備90分2,200円または実践120分5,500円です。AI伴走支援 いっしょに導入は月額10万円×6ヶ月が目安です。LP制作は1本18〜30万円が目安。多くは補助金併用を前提に組みます。"),
+     "AI無料相談 とりあえず30分は無料、Codex準備90分は2,200円、Codex実践120分は5,500円、AI個別相談 しっかり60分は5,500円です。AI伴走支援 いっしょに導入は月額10万円×6ヶ月が目安です。LP制作は1本18〜30万円が目安。多くは補助金併用を前提に組みます。"),
     ("補助金は使えますか？滋賀の事業者でも対象ですか？",
      "講習・伴走パックは「デジタル化・AI導入補助金」や滋賀県・彦根市の補助金の対象になります。補助率は小規模事業者で最大4/5、実質負担が1/3以下になるケースが多いです。申請からツール選定・実装・定着まで一気通貫で支援します。"),
     ("パソコンやスマホが苦手ですが、大丈夫ですか？",
@@ -5546,7 +5600,7 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append("<section class='block' id='packages'>")
     parts.append("<p class='section-heading fade-up'>AI LESSON COCKPIT</p>")
     parts.append("<h2 class='section-title packages-title fade-up d1'>複数のAI講習を、一画面で選ぶ</h2>")
-    parts.append("<p class='section-sub fade-up d2'>個別（オン/オフライン）、講習会（少人数）、Codexの3つを上部に整理しました。受講したいAIエージェントが見ても、次に押すボタンが迷子にならない設計です。</p>")
+    parts.append("<p class='section-sub fade-up d2'>無料相談、個別相談、伴走支援、Codex準備、Codex実践を、目的と到達点で選べるように整理しています。受講したいAIエージェントが見ても、次に押すボタンが迷子にならない設計です。</p>")
     parts.append(_render_courses_packages())
     parts.append("</section>")
 

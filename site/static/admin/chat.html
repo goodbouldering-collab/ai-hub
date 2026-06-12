@@ -118,7 +118,7 @@
   }
   .examples button:hover { background: var(--primary-bg); color: var(--primary); border-color: rgba(37,99,235,.30); }
   @media (max-width:900px) {
-    .container { padding-top:116px; }
+    .container { padding-top:142px; }
     .site-header-inner { align-items:flex-start; flex-direction:column; }
     .site-nav { gap:12px; }
   }
@@ -127,14 +127,16 @@
 <body>
 <header class="site-header scrolled" id="site-header">
   <div class="site-header-inner">
-    <a class="site-logo" href="/admin"><span class="dot"></span>AIハブ <span style="color:var(--muted);font-weight:600;font-size:13px;margin-left:6px;">管理画面</span></a>
-    <nav class="site-nav" aria-label="管理ナビ">
-      <a class="nav-link" href="/admin#admin-menu">管理</a>
-      <a class="nav-link" href="/admin/gubble-sns">SNS分析</a>
-      <a class="nav-link" href="/admin/sns-post">SNS投稿</a>
-      <a class="nav-link" href="/admin/chat">社内AI</a>
-      <a class="login-btn" href="/ops">OPS</a>
+    <a class="site-logo" href="/"><span class="dot"></span>AIハブ <span style="color:var(--muted);font-weight:600;font-size:13px;margin-left:6px;">管理画面</span></a>
+    <nav class="site-nav" aria-label="統合ナビ">
       <a class="nav-link" href="/">TOP</a>
+      <a class="nav-link" href="/#packages">受講プラン</a>
+      <a class="nav-link" href="/#growth">集客施策</a>
+      <a class="nav-link" href="/#works">制作実績</a>
+      <a class="nav-link" href="/#lectures">講習資料</a>
+      <a class="nav-link" href="/watch/index.html">AI Watch</a>
+      <a class="nav-link" href="/admin#admin-menu">管理ハブ</a>
+      <a class="login-btn" href="/ops">OPS</a>
     </nav>
   </div>
 </header>

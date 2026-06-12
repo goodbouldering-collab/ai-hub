@@ -114,7 +114,7 @@ portfolio:
     status: live
     category: ポートフォリオ
     tech: [Vercel, Supabase, GitHub Actions]
-    summary: 彦根のAI相談・生成AI講習・講習資料センター + AI集約パイプライン
+    summary: 彦根のAI相談・生成AI講習・講習資料 + AI集約パイプライン
     since: 2025-04
 
   # ---- 生成・試作系 ----

@@ -25,7 +25,7 @@
     background-attachment:fixed;color:var(--text);
     min-height:100vh;line-height:1.6;-webkit-text-size-adjust:100%;
     padding:env(safe-area-inset-top) env(safe-area-inset-right) calc(env(safe-area-inset-bottom) + 70px) env(safe-area-inset-left)}
-  .wrap{max-width:880px;margin:0 auto;padding:78px 14px 18px}
+  .wrap{max-width:880px;margin:0 auto;padding:142px 14px 18px}
   /* PORTAL(build_portal.py)と同一の site-header に統一。中身は運用動線。 */
   header.site-header{position:fixed;inset:0 0 auto 0;z-index:50;
     transition:background .3s,box-shadow .3s,backdrop-filter .3s}
@@ -137,7 +137,7 @@
     padding:10px 18px;border-radius:999px;font-size:12.5px;z-index:99;opacity:0;
     transition:opacity .25s;pointer-events:none}
   .toast.show{opacity:1}
-  @media(min-width:760px){
+  @media(min-width:980px){
     .wrap{padding:86px 20px 26px}
     section.card{padding:20px 22px}
   }
@@ -147,11 +147,15 @@
 <header class="site-header scrolled" id="site-header">
   <div class="site-header-inner">
     <a class="site-logo" href="/"><span class="dot"></span>AIハブ <span style="color:var(--muted);font-weight:600;font-size:13px;margin-left:6px;">運用本部</span></a>
-    <nav class="site-nav" aria-label="運用ナビ">
-      <a class="nav-link" href="/">🌐 公開トップ</a>
-      <a class="nav-link" href="/admin">🛠 管理画面</a>
-      <a class="nav-link" href="/admin/chat">🤖 社内エージェント</a>
-      <a class="login-btn" href="/">↩ サイトへ戻る</a>
+    <nav class="site-nav" aria-label="統合ナビ">
+      <a class="nav-link" href="/">TOP</a>
+      <a class="nav-link" href="/#packages">受講プラン</a>
+      <a class="nav-link" href="/#growth">集客施策</a>
+      <a class="nav-link" href="/#works">制作実績</a>
+      <a class="nav-link" href="/#lectures">講習資料</a>
+      <a class="nav-link" href="/watch/index.html">AI Watch</a>
+      <a class="nav-link" href="/admin#admin-menu">管理ハブ</a>
+      <a class="login-btn" href="/ops">OPS</a>
     </nav>
   </div>
 </header>

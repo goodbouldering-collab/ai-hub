@@ -70,6 +70,30 @@
     display:inline-flex; align-items:center; gap:10px;
   }
   .topbar h1 .dot { width:10px; height:10px; border-radius:999px; background:var(--primary); }
+  .topbar-lead {
+    margin-top:10px; max-width:760px;
+    color:var(--text-soft); font-size:14px; line-height:1.75;
+  }
+  .quickflow {
+    display:grid; grid-template-columns:repeat(3, minmax(0, 1fr));
+    gap:12px; margin:18px 0 20px;
+  }
+  .quickflow-card {
+    padding:16px; border-radius:14px;
+    background:#fff; border:1px solid var(--line);
+    box-shadow:0 8px 24px rgba(15,23,42,.06);
+  }
+  .quickflow-card span {
+    display:inline-flex; padding:4px 10px; margin-bottom:10px;
+    border-radius:999px; background:var(--primary-bg);
+    color:var(--primary); font-size:11px; font-weight:800; letter-spacing:.08em;
+  }
+  .quickflow-card strong {
+    display:block; margin-bottom:6px; color:var(--text); font-size:16px;
+  }
+  .quickflow-card p {
+    color:var(--text-soft); font-size:13px; line-height:1.65;
+  }
   .sub { color:var(--muted); font-size:13px; margin-bottom:6px; }
   .panel {
     background:var(--bg-white); border:1px solid var(--line);
@@ -245,6 +269,7 @@
   .ops-pulse-card.alert strong { color:#b91c1c; font-size:18px; }
   @media (max-width:760px) {
     .ops-pulse { grid-template-columns:1fr; }
+    .quickflow { grid-template-columns:1fr; }
   }
 
   /* === Admin menu === */
@@ -331,6 +356,25 @@
     <div>
       <h1><span class="dot"></span>AIハブ 管理画面</h1>
       <p class="sub">9事業の運用ダッシュボード + グループ記事の発行</p>
+      <p class="topbar-lead">最短でやることを先に固定しました。まず接続状態を見て、次に対象グループを選び、最後に記事案の生成と公開へ進む順番です。</p>
+    </div>
+  </div>
+
+  <div class="quickflow" aria-label="最短操作">
+    <div class="quickflow-card">
+      <span>STEP 1</span>
+      <strong>接続状態を確認</strong>
+      <p>API と環境変数の状態を最初に見て、止まっている原因を先に外します。</p>
+    </div>
+    <div class="quickflow-card">
+      <span>STEP 2</span>
+      <strong>親グループを選ぶ</strong>
+      <p>公開先の親グループを決めると、並び替えと公開先の事故を減らせます。</p>
+    </div>
+    <div class="quickflow-card">
+      <span>STEP 3</span>
+      <strong>生成して公開</strong>
+      <p>記事案の生成、採用案の編集、画像作成、公開の順で作業を閉じます。</p>
     </div>
   </div>
 
@@ -359,15 +403,15 @@
     </div>
     <div class="admin-menu-grid">
       <section class="admin-menu-group" aria-label="今日やる">
-        <h3>今日やる</h3>
+        <h3>本日の主作業</h3>
+        <a class="admin-link" href="#panel-status">
+          <span class="admin-link-icon">✍️</span>
+          <span><strong>接続と記事生成</strong><small>生成・編集・公開</small></span>
+          <span class="admin-link-action">移動</span>
+        </a>
         <a class="admin-link" href="#panel-dashboard">
           <span class="admin-link-icon">⭐</span>
           <span><strong>今週の動き</strong><small>タスク・成果物</small></span>
-          <span class="admin-link-action">移動</span>
-        </a>
-        <a class="admin-link" href="#panel-status">
-          <span class="admin-link-icon">✍️</span>
-          <span><strong>グループ記事作成</strong><small>生成・編集・公開</small></span>
           <span class="admin-link-action">移動</span>
         </a>
         <a class="admin-link" href="/admin/gubble-sns">
@@ -392,7 +436,7 @@
         </a>
       </section>
       <section class="admin-menu-group" aria-label="公開確認">
-        <h3>公開確認</h3>
+        <h3>公開導線チェック</h3>
         <a class="admin-link" href="/">
           <span class="admin-link-icon">🌐</span>
           <span><strong>公開トップ</strong><small>AIハブ本体</small></span>
@@ -425,7 +469,7 @@
         </a>
       </section>
       <section class="admin-menu-group" aria-label="運用と監視">
-        <h3>運用 / 監視</h3>
+        <h3>資料 / 監視</h3>
         <a class="admin-link" href="/watch/index.html">
           <span class="admin-link-icon">📡</span>
           <span><strong>AI Watch</strong><small>自動収集ニュース</small></span>

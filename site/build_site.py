@@ -3038,10 +3038,31 @@ def _build_portal() -> None:
     build_portal.main(dry_run=False)
 
 
-def main() -> int:
-    if DIST.exists():
+def _reset_dist() -> None:
+    """Reset dist while tolerating a Windows process holding the dist folder."""
+    if not DIST.exists():
+        DIST.mkdir(parents=True, exist_ok=True)
+        return
+
+    try:
         shutil.rmtree(DIST)
+        DIST.mkdir(parents=True, exist_ok=True)
+        return
+    except PermissionError as exc:
+        if os.name != "nt":
+            raise
+        print(f"[WARNING] dist root is locked; reusing folder after clearing contents: {exc}")
+
+    for child in DIST.iterdir():
+        if child.is_dir():
+            shutil.rmtree(child)
+        else:
+            child.unlink()
     DIST.mkdir(parents=True, exist_ok=True)
+
+
+def main() -> int:
+    _reset_dist()
 
     copy_static()
 

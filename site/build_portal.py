@@ -85,7 +85,7 @@ ADMIN_BUTTON_HTML = """
 """
 
 
-OG_IMAGE_URL = SITE_URL + "/img/hero-ai-bento-glass.png"
+OG_IMAGE_URL = SITE_URL + "/img/hero-agent-grown-20260612.png"
 
 
 def _build_ogp(title: str, description: str, page_url: str, *, image: str | None = None) -> str:
@@ -179,7 +179,7 @@ def _build_jsonld_website() -> str:
 
     # 受講プランを Service + Offer として構造化（_render_packages の items と整合）
     plans = [
-        (codex_prep_title, "Codex準備 導入と習得の流れに沿って、ChatGPTログイン、作業フォルダ選定、最初の小さな依頼、差分確認、独立レビュー、AGENTS.md、公式アップデート確認先までを90分で整える無料の準備講習。", "0", "0", "Course"),
+        (codex_prep_title, "Codex準備 導入と習得の流れに沿って、ChatGPTログイン、作業フォルダ選定、秘密情報を入れない権限設計、最初の依頼、差分確認、ブラウザ表示確認、独立レビュー、AGENTS.md、公式アップデート確認先までを90分で整える準備講習。", "2200", "2200", "Course"),
         (codex_practice_title, "Codexで持ち込み課題を進め、ページ、資料、コード、動画台本などの成果物を120分で作る実践講習。", "5500", "5500", "Course"),
         (free_consult_title, "来店またはオンラインで、AI導入の入口を30分で整理する無料相談。講習や伴走の前に、今の課題と次の一手を確認する。", "0", "0", "BusinessCoaching"),
         (consult_title, "AIの使い方、役割分担、指示書、確認体制、運用導線を60分で整理する個別相談。", "5500", "5500", "BusinessCoaching"),
@@ -556,23 +556,31 @@ header.site-header.scrolled {
 .site-nav .menu-toggle[aria-expanded="true"] .chev { transform: rotate(180deg); }
 .site-nav .menu-drop {
   position: absolute; right: 0; top: calc(100% + 10px);
-  min-width: 220px; padding: 8px;
-  background: rgba(255,255,255,.94); border: 1px solid var(--line);
+  min-width: 280px; padding: 8px;
+  background: #fff !important; border: 1px solid var(--line);
   border-radius: var(--radius-sm); box-shadow: var(--shadow-card);
-  backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: none;
   display: none;
 }
 .site-nav .menu-drop.open { display: block; }
+.site-nav .menu-drop-label {
+  display: block; padding: 7px 14px 4px;
+  font-size: 10px; font-weight: 900; letter-spacing: .14em;
+  color: var(--muted); text-transform: uppercase;
+}
 .site-nav .menu-drop a {
   display: block; padding: 9px 14px; border-radius: 10px;
   font-size: 13px; font-weight: 600; color: var(--text-soft);
   text-decoration: none;
 }
 .site-nav .menu-drop a:hover { background: var(--primary-bg); color: var(--primary); }
-/* ドロップ内で管理ログインを区切って格下げ表示 */
+/* ドロップ内で管理メニューを区切って格下げ表示 */
 .site-nav .menu-drop a.menu-drop-sep {
   margin-top: 6px; padding-top: 12px; border-top: 1px solid var(--line);
   font-size: 12px; color: var(--muted);
+}
+.site-nav .menu-drop a.admin-drop-link {
+  font-weight: 800;
 }
 /* ヘッダー右端の主CTA: 無料相談（グラデ・最も目立たせる） */
 .site-nav .nav-cta {
@@ -585,7 +593,7 @@ header.site-header.scrolled {
   transition: transform .2s, box-shadow .2s, filter .2s;
 }
 .site-nav .nav-cta:hover { transform: translateY(-1px); filter: brightness(1.08); box-shadow: 0 12px 36px rgba(15,143,114,.22), inset 0 1px 0 rgba(255,255,255,.30); }
-/* モバイル: 管理ログインは控えめなテキストリンクに格下げ */
+/* モバイル: 管理メニューは控えめなテキストリンクに格下げ */
 .mobile-nav .mobile-admin-link {
   display: block; padding: 10px 4px; margin-top: 4px;
   font-size: 12.5px; color: var(--muted); text-decoration: none;
@@ -608,6 +616,11 @@ header.site-header.scrolled {
   color: var(--text); text-decoration: none; border-bottom: 1px solid var(--line);
 }
 .mobile-nav a:last-child { border-bottom: none; }
+.mobile-nav .mobile-nav-label {
+  display: block; padding: 14px 4px 6px;
+  font-size: 11px; font-weight: 900; letter-spacing: .14em;
+  color: var(--muted); text-transform: uppercase;
+}
 .mobile-nav .login-btn-mobile {
   display: block; margin-top: 14px; padding: 12px 18px; border-radius: 999px;
   background: var(--grad); color: #fff; text-align: center;
@@ -1490,7 +1503,7 @@ section.block + section.block { border-top: 1px solid var(--line); }
 /* ---- packages ---- */
 .packages-grid {
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
   margin-top: 18px;
 }
@@ -1498,7 +1511,7 @@ section.block + section.block { border-top: 1px solid var(--line); }
 .packages-grid.pkg-filter-active .pkg-card { opacity: .34; transition: opacity .35s ease; }
 .packages-grid.pkg-filter-active .pkg-card.pkg-match { opacity: 1; outline: 2px solid var(--primary); outline-offset: 2px; }
 .pkg-card {
-  grid-column: span 3;
+  grid-column: auto;
   min-height: 100%;
   min-width: 0;
   background:
@@ -1526,8 +1539,8 @@ section.block + section.block { border-top: 1px solid var(--line); }
   box-shadow: var(--shadow-card-hover), inset 0 1px 0 rgba(255,255,255,.85);
   border-color: rgba(0,152,200,.24);
 }
-.pkg-featured,
-.pkg-wide { grid-column: span 6; }
+.pkg-featured { grid-column: auto; }
+.pkg-wide { grid-column: 1 / -1; }
 .pkg-featured {
   background:
     linear-gradient(135deg, rgba(255,255,255,.82), rgba(238,247,255,.7) 42%, rgba(240,248,236,.76)),
@@ -1664,7 +1677,8 @@ section.block + section.block { border-top: 1px solid var(--line); }
   font-size: 13px; line-height: 1.75; color: var(--text);
 }
 @media (max-width: 1060px) {
-  .pkg-card, .pkg-featured, .pkg-wide { grid-column: span 6; }
+  .pkg-card, .pkg-featured { grid-column: auto; }
+  .pkg-wide { grid-column: 1 / -1; }
 }
 @media (max-width: 680px) {
   .pkg-card {
@@ -2614,14 +2628,14 @@ section.block { padding: 72px 0; }
 }
 
 .packages-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 22px;
 }
 .pkg-card,
-.pkg-featured,
-.pkg-wide {
+.pkg-featured {
   grid-column: auto;
 }
+.pkg-wide { grid-column: 1 / -1; }
 .pkg-card {
   border: 1px solid rgba(11,27,51,.13);
   background: #fff !important;
@@ -3192,12 +3206,12 @@ section.block {
 
 .packages-grid {
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px;
 }
 
 .pkg-card {
-  grid-column: span 4;
+  grid-column: auto;
   min-height: 100%;
   border: 1px solid rgba(255,255,255,.70);
   background: rgba(255,255,255,.55) !important;
@@ -3206,16 +3220,8 @@ section.block {
   -webkit-backdrop-filter: blur(18px) saturate(155%);
 }
 
-.pkg-card:nth-child(1) {
-  grid-column: span 7;
-}
-
-.pkg-card:nth-child(2) {
-  grid-column: span 5;
-}
-
-.pkg-card:nth-child(5) {
-  grid-column: span 8;
+.pkg-wide {
+  grid-column: 1 / -1;
 }
 
 .pkg-card::before {
@@ -3307,9 +3313,7 @@ section.block {
   }
 
   .pkg-card,
-  .pkg-card:nth-child(1),
-  .pkg-card:nth-child(2),
-  .pkg-card:nth-child(5) {
+  .pkg-featured {
     grid-column: auto;
   }
 }
@@ -3370,6 +3374,465 @@ section.block {
 }
 """
 
+PORTAL_CSS += """
+
+/* ---- Agent-grown design pass: 2026-06-12 ---- */
+:root,
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg-base: #090807;
+  --bg-white: rgba(255,253,244,.09);
+  --bg-elev: rgba(255,253,244,.12);
+  --text: #F8F4E8;
+  --text-soft: #D8D0BD;
+  --muted: #9E9788;
+  --line: rgba(248,244,232,.16);
+  --line-strong: rgba(0,238,255,.42);
+  --primary: #00E6FF;
+  --primary-soft: #75F0FF;
+  --emerald: #D7F75D;
+  --coral: #FF6347;
+  --violet: #C887FF;
+  --primary-bg: rgba(0,230,255,.13);
+  --grad: linear-gradient(118deg, #00E6FF 0%, #D7F75D 38%, #FF6347 68%, #C887FF 100%);
+  --grad-soft: linear-gradient(118deg, rgba(0,230,255,.18), rgba(215,247,93,.12), rgba(255,99,71,.13), rgba(200,135,255,.12));
+  --glass-bg: rgba(14,13,11,.74);
+  --glass-hi: rgba(255,253,244,.12);
+  --glass-border: rgba(248,244,232,.18);
+  --shadow-card: 0 1px 0 rgba(255,253,244,.12) inset, 0 24px 72px rgba(0,0,0,.34);
+  --shadow-card-hover: 0 1px 0 rgba(255,253,244,.18) inset, 0 34px 92px rgba(0,230,255,.16);
+}
+
+html,
+body {
+  background:
+    repeating-linear-gradient(112deg, rgba(255,253,244,.045) 0 1px, transparent 1px 42px),
+    linear-gradient(90deg, rgba(0,230,255,.12), transparent 32%, rgba(255,99,71,.10) 62%, transparent 100%),
+    linear-gradient(180deg, #090807 0%, #13100D 44%, #0B0A09 100%);
+}
+
+body {
+  color: var(--text);
+}
+
+body::before {
+  background:
+    linear-gradient(rgba(0,230,255,.065) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(248,244,232,.04) 1px, transparent 1px);
+  background-size: 78px 78px, 78px 78px;
+  mask-image: linear-gradient(180deg, rgba(0,0,0,.72), rgba(0,0,0,.20) 70%, transparent);
+}
+
+.site-header,
+.site-header.scrolled,
+.site-header:hover {
+  background: rgba(9,8,7,.76);
+  border-bottom-color: rgba(248,244,232,.13);
+  box-shadow: 0 12px 46px rgba(0,0,0,.36);
+}
+
+.site-logo,
+.nav-link,
+.menu-link,
+.mobile-nav a {
+  color: var(--text);
+}
+
+.brand-mark,
+.menu-toggle,
+.mobile-toggle,
+.nav-cta {
+  background: rgba(255,253,244,.10);
+  border-color: rgba(248,244,232,.18);
+  color: var(--text);
+}
+
+.nav-cta,
+.login-btn-mobile {
+  background: var(--grad);
+  color: #080806;
+  font-weight: 900;
+}
+
+.hero {
+  min-height: min(860px, calc(100svh - 8px));
+  grid-template-columns: minmax(0, .92fr) minmax(520px, 1.08fr);
+  gap: 58px;
+  padding: 116px 0 64px;
+}
+
+.hero::before {
+  background:
+    linear-gradient(112deg, rgba(9,8,7,.97) 0 45%, rgba(30,21,16,.90) 45% 61%, rgba(9,8,7,.90) 61% 100%),
+    repeating-linear-gradient(90deg, rgba(255,253,244,.06) 0 1px, transparent 1px 118px);
+  border-bottom: 1px solid rgba(248,244,232,.13);
+}
+
+.hero::after {
+  inset: 88px calc(50% - 50vw) 34px;
+  background:
+    linear-gradient(90deg, transparent 0 49%, rgba(0,230,255,.22) 49% 50%, transparent 50%),
+    linear-gradient(0deg, transparent 0 49%, rgba(215,247,93,.13) 49% 50%, transparent 50%),
+    repeating-linear-gradient(145deg, transparent 0 22px, rgba(255,99,71,.09) 22px 23px, transparent 23px 46px);
+  background-size: 190px 190px, 190px 190px, 190px 190px;
+  opacity: .66;
+  transform: skewY(-2deg);
+}
+
+.fusion-logo-large {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.fusion-logo-large .pipe {
+  display: none;
+}
+
+.fusion-logo-large .ai {
+  color: var(--text);
+  font-size: clamp(58px, 8vw, 112px);
+  line-height: .86;
+}
+
+.fusion-logo-large .hub {
+  width: fit-content;
+  padding: 4px 10px 5px;
+  color: #090807;
+  background: var(--emerald);
+  font-family: var(--mono);
+  font-size: clamp(15px, 1.4vw, 22px);
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  margin-bottom: 20px;
+}
+
+.hero-title-sub {
+  max-width: 760px;
+  color: var(--text);
+  font-size: clamp(25px, 3.1vw, 45px);
+  line-height: 1.14;
+}
+
+.hero-title-sub strong {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.hero .sub-catch {
+  color: var(--primary-soft);
+  font-size: clamp(17px, 1.7vw, 22px);
+  line-height: 1.68;
+}
+
+.hero .lead {
+  color: var(--text-soft);
+  font-size: 15.5px;
+  line-height: 2.02;
+}
+
+.hero-actions .btn-primary,
+.pkg-cta,
+.contact-primary,
+.sticky-cta-btn {
+  background: var(--grad);
+  color: #090807;
+  border: 0;
+  box-shadow: 0 18px 46px rgba(0,230,255,.18), 0 1px 0 rgba(255,253,244,.30) inset;
+}
+
+.hero-actions .btn-secondary,
+.btn-secondary {
+  color: var(--text);
+  background: rgba(248,244,232,.09);
+  border: 1px solid rgba(248,244,232,.20);
+  box-shadow: var(--shadow-card);
+}
+
+.hero-proof-grid {
+  background: rgba(9,8,7,.58);
+  border: 1px solid rgba(248,244,232,.16);
+  box-shadow: 0 1px 0 rgba(248,244,232,.10) inset, 0 18px 50px rgba(0,0,0,.28);
+}
+
+.hero-proof {
+  background:
+    linear-gradient(180deg, rgba(248,244,232,.12), rgba(248,244,232,.055)),
+    repeating-linear-gradient(90deg, rgba(0,230,255,.09) 0 1px, transparent 1px 18px);
+  border-color: rgba(248,244,232,.14);
+}
+
+.hero-proof .proof-icon {
+  background: #F8F4E8;
+  color: #090807;
+  font-family: var(--mono);
+}
+
+.hero-proof b,
+.hero-proof span {
+  color: var(--text);
+}
+
+.hero-proof span span {
+  color: var(--muted);
+}
+
+.hero-photo-card {
+  width: min(100%, 790px);
+  aspect-ratio: 16 / 10.4;
+  padding: 8px;
+  border: 1px solid rgba(248,244,232,.20);
+  background: linear-gradient(135deg, rgba(248,244,232,.16), rgba(0,230,255,.08), rgba(255,99,71,.09));
+  box-shadow: 0 38px 110px rgba(0,0,0,.48), 0 1px 0 rgba(248,244,232,.16) inset;
+  transform: rotate(-1.4deg) translateZ(0);
+  overflow: hidden;
+}
+
+.hero-photo-card img {
+  width: 100%;
+  height: 100%;
+  transform: none;
+  border-radius: 8px;
+  object-fit: cover;
+  object-position: center top;
+  filter: saturate(1.08) contrast(1.02);
+}
+
+.hero-photo-card::after {
+  inset: 8px;
+  border-radius: 8px;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,.10), transparent 34%, rgba(0,0,0,.20)),
+    repeating-linear-gradient(0deg, rgba(255,253,244,.12) 0 1px, transparent 1px 39px);
+}
+
+.hero-lesson-board,
+.hero-class-caption {
+  color: var(--text);
+  background: rgba(9,8,7,.72);
+  border-color: rgba(248,244,232,.20);
+  box-shadow: 0 18px 64px rgba(0,0,0,.40), 0 1px 0 rgba(248,244,232,.12) inset;
+}
+
+.lesson-board-title {
+  color: var(--text);
+  font-family: var(--mono);
+}
+
+.lesson-board-item {
+  background: rgba(248,244,232,.09);
+  border-color: rgba(248,244,232,.17);
+}
+
+.lesson-board-item svg {
+  color: var(--primary-soft);
+}
+
+.lesson-board-item span,
+.hero-class-caption b {
+  color: var(--text);
+}
+
+.hero-class-caption span {
+  color: var(--text-soft);
+}
+
+section.block {
+  position: relative;
+}
+
+.section-heading {
+  color: #090807;
+  background: var(--emerald);
+  border: 0;
+  font-family: var(--mono);
+  font-weight: 900;
+}
+
+.section-title {
+  color: var(--text);
+}
+
+.section-sub {
+  color: var(--text-soft);
+}
+
+.pkg-card,
+.pkg-content-box,
+.pkg-req-box,
+.packages-note,
+.lecture-card,
+.growth-panel,
+.profile-block,
+.flow-step,
+.faq-item,
+.voice-card,
+.biz-card,
+.service-card,
+.contact-choice,
+.explore-card {
+  color: var(--text);
+  background:
+    linear-gradient(180deg, rgba(248,244,232,.12), rgba(248,244,232,.07)) !important;
+  border-color: rgba(248,244,232,.16) !important;
+  box-shadow: var(--shadow-card);
+}
+
+.pkg-card::before {
+  height: 5px;
+  background: var(--grad);
+}
+
+.pkg-cat,
+.pkg-content-title,
+.pkg-req-title,
+.growth-row strong,
+.growth-action b,
+.lecture-title {
+  color: var(--primary-soft);
+}
+
+.pkg-title,
+.pkg-price,
+.flow-step h3,
+.faq-item summary,
+.profile-block h3 {
+  color: var(--text);
+}
+
+.pkg-desc,
+.pkg-fit li,
+.pkg-content li,
+.pkg-req li,
+.pkg-verify,
+.growth-row span,
+.growth-row em,
+.growth-action p,
+.lecture-summary,
+.faq-item p,
+.voice-who {
+  color: var(--text-soft);
+}
+
+.pkg-level,
+.pkg-subsidy,
+.voice-ba {
+  color: #090807;
+  background: var(--primary-soft);
+  border: 0;
+}
+
+.pkg-card:nth-child(2n) .pkg-level,
+.pkg-card:nth-child(2n) .pkg-subsidy,
+.voice-ba {
+  background: var(--emerald);
+}
+
+.growth-layout {
+  align-items: stretch;
+}
+
+.growth-row,
+.growth-action {
+  border-top-color: rgba(248,244,232,.13);
+}
+
+.faq-item[open] {
+  border-color: rgba(0,230,255,.34) !important;
+}
+
+.sticky-cta {
+  color: var(--text);
+  background: rgba(9,8,7,.78);
+  border-color: rgba(248,244,232,.18);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-photo-card {
+    animation: agentPosterDrift 8s ease-in-out infinite alternate;
+  }
+
+  .lesson-board-item svg {
+    animation: agentSignal 2.8s ease-in-out infinite;
+  }
+
+  .lesson-board-item:nth-child(2) svg { animation-delay: .35s; }
+  .lesson-board-item:nth-child(3) svg { animation-delay: .70s; }
+  .lesson-board-item:nth-child(4) svg { animation-delay: 1.05s; }
+}
+
+@keyframes agentPosterDrift {
+  from { transform: rotate(-1.4deg) translateY(0); }
+  to { transform: rotate(.6deg) translateY(-10px); }
+}
+
+@keyframes agentSignal {
+  0%, 100% { transform: translateY(0); opacity: .72; }
+  50% { transform: translateY(-3px); opacity: 1; }
+}
+
+@media (max-width: 1040px) {
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .hero-photo-card {
+    transform: none;
+    width: 100%;
+  }
+}
+
+@media (max-width: 680px) {
+  .hero {
+    width: calc(100vw - 32px);
+    max-width: calc(100vw - 32px);
+    padding-top: 94px;
+  }
+
+  .fusion-logo-large .ai {
+    font-size: clamp(49px, 15vw, 66px);
+  }
+
+  .fusion-logo-large .hub {
+    font-size: 13px;
+  }
+
+  .hero-title-sub {
+    font-size: clamp(23px, 7.2vw, 31px);
+  }
+
+  .hero .sub-catch strong,
+  .hero .lead {
+    word-break: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .hero-photo-card {
+    aspect-ratio: 4 / 3.7;
+    padding: 5px;
+  }
+
+  .hero-photo-card::after {
+    inset: 5px;
+  }
+
+  .hero-lesson-board {
+    padding: 12px;
+  }
+
+  .hero-class-caption {
+    max-height: 104px;
+    overflow: hidden;
+  }
+}
+"""
+
 
 def _render_header() -> str:
     """N デザイン風 fixed ヘッダー。スクロールで white/90 + blur に切替。"""
@@ -3393,10 +3856,16 @@ def _render_header() -> str:
         "<svg class='chev' width='14' height='14' viewBox='0 0 20 20' fill='none' aria-hidden='true'><path d='M5 8l5 5 5-5' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>"
         "</button>"
         "<div class='menu-drop' id='menu-drop' role='menu'>"
+        "<span class='menu-drop-label'>公開ページ</span>"
         "<a href='#flow'>🛠 ご依頼の流れ</a>"
         "<a href='#faq'>FAQ</a>"
         "<a href='/portfolio.html'>📂 実績の詳細</a>"
-        "<a class='menu-drop-sep' href='/admin'>🔐 管理ログイン</a>"
+        "<span class='menu-drop-label'>管理メニュー</span>"
+        "<a class='menu-drop-sep admin-drop-link' href='/admin#admin-menu'>🔐 管理ハブ</a>"
+        "<a class='admin-drop-link' href='/admin/gubble-sns'>📊 SNS分析</a>"
+        "<a class='admin-drop-link' href='/admin/sns-post'>📣 SNS投稿</a>"
+        "<a class='admin-drop-link' href='/admin/chat'>🤖 社内AI</a>"
+        "<a class='admin-drop-link' href='/ops'>⚙️ OPS</a>"
         "</div>"
         "</div>"
         "<a class='nav-cta' href='#contact'>📩 無料相談</a>"
@@ -3414,8 +3883,13 @@ def _render_header() -> str:
         "<a href='/watch/index.html'>AI Watch</a>"
         "<a href='#flow'>ご依頼の流れ</a>"
         "<a href='#faq'>FAQ</a>"
+        "<span class='mobile-nav-label'>管理メニュー</span>"
+        "<a class='mobile-admin-link' href='/admin#admin-menu'>🔐 管理ハブ</a>"
+        "<a class='mobile-admin-link' href='/admin/gubble-sns'>📊 SNS分析</a>"
+        "<a class='mobile-admin-link' href='/admin/sns-post'>📣 SNS投稿</a>"
+        "<a class='mobile-admin-link' href='/admin/chat'>🤖 社内AI</a>"
+        "<a class='mobile-admin-link' href='/ops'>⚙️ OPS</a>"
         "<a class='login-btn-mobile' href='#contact'>📩 無料で30分相談する</a>"
-        "<a class='mobile-admin-link' href='/admin'>🔐 管理ログイン</a>"
         "</div>"
         "</header>"
     )
@@ -3564,7 +4038,7 @@ HEADER_JS = """
         { label: 'AIの役割分担と運用設計を作りたい', lv: 'advanced' },
       ]},
       { q: 'どのスパンで取り組みたい？', a: [
-        { label: 'まず90分無料で準備したい', lv: 'beginner' },
+        { label: 'まず90分2,200円で準備したい', lv: 'beginner' },
         { label: '120分で成果物を作りたい', lv: 'intermediate' },
         { label: '相談から伴走まで設計したい', lv: 'advanced' },
       ]},
@@ -3573,7 +4047,7 @@ HEADER_JS = """
       beginner: {
         badge: 'Codex準備', title: 'インストールからモバイルまで整える',
         name: 'Codex準備 90分',
-        desc: 'インストール、ログイン、作業フォルダ、最初の依頼、差分確認、モバイル確認までを無料で整えます。',
+        desc: 'インストール、ログイン、作業フォルダ、最初の依頼、差分確認、モバイル確認までを2,200円で整えます。',
         level_id: 'beginner'
       },
       intermediate: {
@@ -3827,42 +4301,42 @@ def _render_hero() -> str:
     return (
         "<section class='hero' id='top'>"
         "<div class='hero-text fade-up'>"
-        "<span class='eyebrow'>初心者でも、今日から使えるAI活用へ</span>"
+        "<span class='eyebrow'>毎朝8:00に育つAI講習デザイン</span>"
         "<h1 class='hero-brand'>"
-        "<span class='fusion-logo-large'><span class='ai'>AI相談</span><span class='pipe'>|</span><span class='hub'>彦根</span></span>"
-        "<span class='hero-title-sub'><strong>AIを弁当箱みたいに<br>詰めて、</strong><br>明日そのまま仕事へ持ち帰る。</span>"
-        "<span class='visually-hidden'>｜彦根 AI相談、滋賀 生成AI講習、Codex講習、ChatGPT講座、AI導入支援、補助金申請サポート、LLMO対策、YouTube SEO、Reels集客</span>"
+        "<span class='fusion-logo-large'><span class='ai'>AIハブ</span><span class='pipe'>|</span><span class='hub'>Agent Design Lab</span></span>"
+        "<span class='hero-title-sub'><strong>競合・日本トレンド・SNS反響で、</strong><br>講習の入口が毎日変異する。</span>"
+        "<span class='visually-hidden'>｜彦根 AI相談、滋賀 生成AI講習、Codex講習、ChatGPT講座、Claude講習、AI導入支援、補助金申請サポート、LLMO対策、YouTube SEO、SNS集客</span>"
         "</h1>"
         "<p class='sub-catch'>"
-        "<strong>ChatGPT、資料、画像、SNS、分析を<br>透明な道具箱に分けて、その場で使える形にします。</strong>"
+        "<strong>ChatGPT、Codex、Claude、画像、動画、SNS、LLMOを<br>ひとつの操縦席で選べるAI講習ポータル。</strong>"
         "</p>"
         "<p class='lead'>"
-        "普通のAI講座ではなく、仕事の断片をガラスの弁当箱に仕分けるように、AIで動く手順へ変換します。彦根の現場感と、少人数での実践を組み合わせたAI講習会です。"
+        "普通の講座一覧ではなく、エージェントが競合、国内トレンド、YouTube、SNS反応を読んで、見せ方を育て続ける実験場です。機能は保ち、予約・資料・講習導線はそのまま、見た目だけ毎回攻めます。"
         "</p>"
         "<div class='hero-actions'>"
         "<a class='btn btn-primary btn-lg' href='#contact'>無料30分相談を予約</a>"
         "<a class='btn btn-secondary btn-lg' href='#packages'>講習プランを見る</a>"
         "</div>"
         "<div class='hero-proof-grid' aria-label='AI講習会の特徴'>"
-        "<div class='hero-proof'><span class='proof-icon'>01</span><span><b>AI弁当箱設計</b><span>使い道ごとに仕分ける</span></span></div>"
-        "<div class='hero-proof'><span class='proof-icon'>02</span><span><b>その場で完成</b><span>資料・SNS・導線まで</span></span></div>"
-        "<div class='hero-proof'><span class='proof-icon'>03</span><span><b>彦根で実践</b><span>リアル/オンラインOK</span></span></div>"
+        "<div class='hero-proof'><span class='proof-icon'>01</span><span><b>Trend Loop</b><span>日本の反応を毎日読む</span></span></div>"
+        "<div class='hero-proof'><span class='proof-icon'>02</span><span><b>Course Cockpit</b><span>複数AI講習を迷わず選ぶ</span></span></div>"
+        "<div class='hero-proof'><span class='proof-icon'>03</span><span><b>Human Check</b><span>機能と予約導線を壊さない</span></span></div>"
         "</div>"
         "</div>"
-        "<div class='hero-photo-card fade-up d2' aria-label='AI相談 彦根の講習イメージ'>"
-        "<img src='img/hero-ai-bento-glass.png' alt='彦根の明るい教室で透明な弁当箱状のAIツールを使いながら少人数講習を進めるイメージ' decoding='async' fetchpriority='high'>"
+        "<div class='hero-photo-card fade-up d2' aria-label='AIハブのエージェント成長型デザインイメージ'>"
+        "<img src='img/hero-agent-grown-20260612.png' alt='AIエージェントが講習、SNS、動画、資料の導線を毎日育てるコックピット風ビジュアル' decoding='async' fetchpriority='high'>"
         "<div class='hero-lesson-board'>"
-        "<p class='lesson-board-title'>AI Bento Lab</p>"
+        "<p class='lesson-board-title'>Agent Growth Loop</p>"
         "<div class='lesson-board-list'>"
-        f"<span class='lesson-board-item'>{icon_search}<span>情報収集</span></span>"
-        f"<span class='lesson-board-item'>{icon_doc}<span>資料作成</span></span>"
-        f"<span class='lesson-board-item'>{icon_media}<span>SNS・動画</span></span>"
-        f"<span class='lesson-board-item'>{icon_growth}<span>分析・改善</span></span>"
+        f"<span class='lesson-board-item'>{icon_search}<span>競合分析</span></span>"
+        f"<span class='lesson-board-item'>{icon_doc}<span>国内トレンド</span></span>"
+        f"<span class='lesson-board-item'>{icon_media}<span>YouTube/SNS</span></span>"
+        f"<span class='lesson-board-item'>{icon_growth}<span>UI/画像更新</span></span>"
         "</div>"
         "</div>"
         "<div class='hero-class-caption'>"
-        "<b>普通の講座じゃない。仕事をAIの弁当箱に詰め直す。</b>"
-        "<span>相談、講習、資料化、集客まで一気通貫でサポートします。</span>"
+        "<b>エージェントが見ても、受けたいと思う講習入口へ。</b>"
+        "<span>相談、講習、資料化、集客まで、毎日の観測で磨きます。</span>"
         "</div>"
         "</div>"
         "</section>"
@@ -3970,62 +4444,6 @@ def _render_courses_packages() -> str:
     support_title = "AI伴走支援 いっしょに導入"
     items = [
         {
-            "icon": "⌘",
-            "cat": "Codexオプション",
-            "level": "準備",
-            "level_id": "beginner",
-            "title": codex_prep_title,
-            "price": "無料",
-            "duration": "90分 / 少人数",
-            "subsidy": False,
-            "desc": "講習ページ「Codex準備 導入と習得」の順番に沿って、開く、プロジェクトを選ぶ、小さく頼む、差分を見て採用する、公開前に独立レビューするところまでを90分で整えます。",
-            "content": [
-                "ChatGPTログイン、Codex起動、プロジェクト/フォルダ選択を一緒に確認",
-                "秘密情報を入れない作業場、権限、最初の小さな依頼文を設定",
-                "差分確認、ブラウザ表示確認、独立レビュー、公式更新確認まで練習",
-            ],
-            "fit": ["Codexを開いたが、何から頼めばよいか分からない", "フォルダ選択・権限・秘密情報の扱いを安全にしたい", "PC/モバイル両方で、最初の成果物と確認手順を残したい"],
-            "req_title": "90分で整えること",
-            "requirements": [
-                "ChatGPTログイン、Codex起動、プロジェクト/フォルダ選択",
-                "秘密情報を避ける作業フォルダと権限の決め方",
-                "最初の依頼テンプレ: 説明して、候補を出して、編集前に確認",
-                "差分、ブラウザ表示、リンク・画像・文字サイズの確認",
-                "AGENTS.md、独立レビュー、公式アップデート確認先の初期セット",
-            ],
-            "verify": "到達点は「Codexを入れた」ではなく、小さな成果物を1つ作り、差分を読んで、次に実践120分へ進める状態です。申込時に「Codex準備」を選択してください。",
-            "url": seminar_url,
-            "cta": "Codexメニューで準備を選ぶ",
-            "variant": "featured",
-        },
-        {
-            "icon": "▣",
-            "cat": "Codexオプション",
-            "level": "実践",
-            "level_id": "intermediate",
-            "title": codex_practice_title,
-            "price": "5,500円",
-            "duration": "120分 / 少人数",
-            "subsidy": True,
-            "desc": "Codexでページ、資料、コード、動画台本、運用マニュアルなどの成果物を作る実践講習です。理解度に合わせて、完成までの手順を一緒に進めます。",
-            "content": [
-                "持ち込み課題を要件に分け、Codexへ依頼する単位まで整理",
-                "ページ、資料、コード、動画台本、運用マニュアルなどをその場で制作",
-                "修正指示、差分確認、表示確認、次回使えるテンプレ化まで実施",
-            ],
-            "fit": ["持ち込み課題を成果物にしたい", "講習中に公開物や資料を作りたい", "Codexの使い方を実務で定着させたい"],
-            "req_title": "実践で扱うこと",
-            "requirements": [
-                "作りたい成果物、直したいページ、資料の持ち込み",
-                "要件整理、依頼文、差分確認、修正指示",
-                "完成物の確認と次に使えるテンプレ化",
-            ],
-            "verify": "Codexの申込リンクは準備と同じです。申込時に「Codex実践」をオプション選択してください。",
-            "url": seminar_url,
-            "cta": "Codexメニューで実践を選ぶ",
-            "variant": "featured",
-        },
-        {
             "icon": "◧",
             "cat": "無料相談",
             "level": "入口",
@@ -4034,11 +4452,11 @@ def _render_courses_packages() -> str:
             "price": "無料",
             "duration": "30分",
             "subsidy": False,
-            "desc": "来店相談とオンライン相談を選べる30分の入口相談。講習・AI導入・補助金のどこから始めるかを短時間で整理します。",
+            "desc": "来店またはオンラインで、講習・AI導入・補助金の入口を30分で整理します。",
             "content": [
-                "来店またはオンラインで、今の課題とAIで試したいことを整理",
-                "講習、個別相談、伴走支援のどれから始めるかを切り分け",
-                "補助金、交流会、次回予約など必要な導線を短時間で確認",
+                "今の課題とAIで試したいことを聞き取り",
+                "講習、個別相談、伴走支援の入口を切り分け",
+                "補助金、交流会、次回予約の導線を確認",
             ],
             "fit": ["まず話を聞きたい", "講習か伴走か迷う", "来店またはオンラインで相談したい"],
             "url": free_consult_url,
@@ -4053,11 +4471,11 @@ def _render_courses_packages() -> str:
             "price": "5,500円",
             "duration": "60分",
             "subsidy": False,
-            "desc": "AIの使い方、指示書、確認体制、運用導線を60分でしっかり整理する個別相談です。今の仕事や課題を聞きながら、次に使える形まで落とし込みます。",
+            "desc": "仕事や課題を聞き、AIの使い方、指示書、確認体制、運用導線を60分で整理します。",
             "content": [
-                "LLMO/SEO/MEO、アプリ作成、業務改善など相談テーマを整理",
-                "指示文、確認手順、ファイル整理、AIを使う役割分担を設計",
-                "相談後すぐ試せる次の一手と、継続運用に使うテンプレを残す",
+                "LLMO/SEO/MEO、アプリ作成、業務改善の相談テーマを整理",
+                "指示文、確認手順、ファイル整理、AIの役割分担を設計",
+                "相談後すぐ試す次の一手と、継続用テンプレを残す",
             ],
             "fit": ["自分の仕事でAIをどう使うか整理したい", "指示文やチェック体制を整えたい", "成果物づくりを継続運用に変えたい"],
             "url": "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/TO3XHZT6XP3OM4QBDYMW7TZP",
@@ -4072,16 +4490,68 @@ def _render_courses_packages() -> str:
             "price": "月額 100,000円（税込）× 6ヶ月",
             "duration": "初回相談予約",
             "subsidy": True,
-            "desc": "HP公開から事務自動化まで、技術的な難所は講師が代行・支援。AI導入・デザイン内製化・経理・マーケティングを6ヶ月で定着させます。",
+            "desc": "HP公開、事務自動化、AI導入、デザイン内製化、経理、マーケを6ヶ月で定着させます。",
             "content": [
-                "AIホームページ、デザイン内製化、書類作成、営業効率化を設計",
-                "経理・バックオフィス自動化や専用AIツール作成を実務として支援",
-                "補助金申請に必要なカリキュラム案、見積、導入計画まで並走",
+                "AIホームページ、書類作成、営業効率化を設計",
+                "経理・バックオフィス自動化、専用AIツール作成を支援",
+                "補助金用のカリキュラム案、見積、導入計画まで並走",
             ],
             "fit": ["社内にAI運用を定着させたい", "複数業務をまとめて仕組み化したい", "補助金前提で導入計画を組みたい"],
             "url": "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/V57YTNICA2KV2TN7ENARAVQE",
             "cta": "導入相談を予約する",
             "variant": "wide",
+        },
+        {
+            "icon": "⌘",
+            "cat": "Codex講習",
+            "level": "準備",
+            "level_id": "beginner",
+            "title": codex_prep_title,
+            "price": "2,200円",
+            "duration": "90分 / 少人数",
+            "subsidy": False,
+            "desc": "Codexを安全に使い始めるため、ログイン、作業フォルダ、最初の依頼、確認手順を90分で揃えます。",
+            "content": [
+                "ChatGPTログイン、Codex起動、PC/モバイルの表示を確認",
+                "作業フォルダ、権限、秘密情報を入れないルールを設定",
+                "最初の依頼文、差分、ブラウザ表示、独立レビューを練習",
+            ],
+            "fit": ["開いた後に何を頼むか迷っている", "権限や秘密情報の扱いを安全にしたい", "小さな成果物を作って実践へ進みたい"],
+            "req_title": "持ち帰れる形",
+            "requirements": [
+                "AGENTS.md、公式アップデート確認先、説明→候補→編集前確認の依頼テンプレ",
+                "差分、リンク、画像、文字サイズを見て採用判断する確認手順",
+            ],
+            "verify": "到達点は小さな成果物を1つ作り、差分を読める状態です。申込時に「Codex準備」を選択してください。",
+            "url": seminar_url,
+            "cta": "Codexメニューで準備を選ぶ",
+            "variant": "featured",
+        },
+        {
+            "icon": "▣",
+            "cat": "Codex講習",
+            "level": "実践",
+            "level_id": "intermediate",
+            "title": codex_practice_title,
+            "price": "5,500円",
+            "duration": "120分 / 少人数",
+            "subsidy": True,
+            "desc": "持ち込み課題をCodexで分解し、ページ、資料、コード、動画台本、運用マニュアルを成果物にします。",
+            "content": [
+                "作りたいもの、直したいページ、既存資料を要件に分解",
+                "ページ、資料、コード、動画台本、運用マニュアルを制作",
+                "修正指示、差分、表示確認、次回使えるテンプレ化まで実施",
+            ],
+            "fit": ["持ち込み課題を成果物にしたい", "講習中に公開物や資料を作りたい", "Codexの使い方を実務で定着させたい"],
+            "req_title": "当日の進め方",
+            "requirements": [
+                "要件整理、依頼文、差分確認、修正指示を一緒に実行",
+                "完成物を確認し、次回も使える作業テンプレとして保存",
+            ],
+            "verify": "申込リンクは準備と同じです。申込時に「Codex実践」をオプション選択してください。",
+            "url": seminar_url,
+            "cta": "Codexメニューで実践を選ぶ",
+            "variant": "featured",
         },
     ]
     parts = ["<div class='packages-grid'>"]
@@ -4147,7 +4617,7 @@ def _render_courses_packages() -> str:
     )
     parts.append(
         "<p class='packages-note fade-up d4'>"
-        "<strong>Codex講習:</strong> レベルは経験年数ではなく理解度で分けます。準備はログイン、フォルダ選択、最初の依頼、差分確認、独立レビュー、公式更新確認まで90分無料、実践は成果物作成まで120分5,500円です。"
+        "<strong>Codex講習:</strong> レベルは経験年数ではなく理解度で分けます。準備はログイン、フォルダ選択、最初の依頼、差分確認、独立レビュー、公式更新確認まで90分2,200円、実践は成果物作成まで120分5,500円です。"
         "Codexの申込リンクは1つに統一し、申込時に「準備」または「実践」をオプション選択します。"
         "<br><strong>相談:</strong> AI個別相談は、AIの使い方、指示書、確認体制、運用導線を60分で整理します。"
         "<br><strong>補助金:</strong> 講習と伴走支援は、滋賀県・彦根市のデジタル化/AI導入系補助金と組み合わせて相談できます。"
@@ -4185,7 +4655,7 @@ def _render_footer(today: str) -> str:
         "<p class='footer-area'>対応: 彦根・湖東・滋賀県全域 / 出張・オンライン全国</p>"
         "</div>"
         "</div>"
-        f"<div class='footer-copy'>© {year} 由井 辰美 / AI相談 彦根 — 滋賀・彦根のAI相談・講習資料センター</div>"
+        f"<div class='footer-copy'>© {year} 由井 辰美 / AI相談 彦根 — 滋賀・彦根のAI相談・講習資料</div>"
         "</footer>"
     )
 
@@ -4294,21 +4764,21 @@ def _render_flow() -> str:
 
 
 def _render_growth_plan_section() -> str:
-    """競合比較から逆算した、今後の集客施策。"""
+    """競合・国内トレンド・SNS反応から逆算した、デザイン育成ループ。"""
     rows = [
-        ("公的DX相談・商工支援", "信頼は強いが、実際の画面操作・成果物・復習資料が見えにくい", "講習ごとに教材、プロンプト、実例、予約導線を公開して「相談後に何が残るか」を見せる"),
-        ("一般パソコン教室", "初心者対応は強いが、地域事業の売上導線やAI検索までは弱くなりやすい", "彦根の事業例、SNS投稿、YouTube説明欄、Googleビジネスプロフィールまで講習内で扱う"),
-        ("大手AI/DX研修", "体系化は強いが、地元でその場の実務に合わせる柔軟性が弱い", "少人数・持ち込み課題・即日公開確認で、地元の具体課題を成果物にする"),
-        ("制作会社・SEO会社", "公開後のサイト制作は強いが、本人がAIを使えるようになる導線が薄い", "制作実績と講習を同じページで見せ、内製化と外注の境目を相談で決める"),
+        ("公的DX相談・商工支援", "信頼は強いが、画面・成果物・講習後の復習導線が静的になりやすい", "毎朝の調査で、講座の入口・FAQ・資料リンクを最新の不安と需要に合わせて更新する"),
+        ("一般パソコン教室", "初心者対応は強いが、AIエージェント、SNS反響、AI検索まで横断しにくい", "ChatGPT/Codex/Claude/SNS/動画/LLMOを1つの操縦席で選べるデザインにする"),
+        ("大手AI/DX研修", "体系化は強いが、受講者の持ち込み課題や地元商売への変換が弱くなりやすい", "彦根の現場感、少人数、即日成果物、予約導線を目立たせて「ここで動かせる」印象を作る"),
+        ("制作会社・SEO会社", "制作やSEOは強いが、本人がAIを使えるようになる講習導線が薄い", "実績・講習・資料・予約を同じページに置き、内製化と外注の境目を選べる構造にする"),
     ]
     actions = [
-        ("Reels / Shorts", "講習1テーマを15〜45秒に分解し、タイトル先頭に「彦根 AI相談」「ChatGPT講習」を入れる。"),
-        ("YouTube", "各動画に専用ページを作り、タイトル・説明・チャプター・字幕・講習資料リンクをセット化する。"),
-        ("LLMO", "FAQを質問文で増やし、講師の一次経験、価格、対応地域、実例、補助金の根拠を構造化データに入れる。"),
-        ("MEO", "Googleビジネスプロフィールへ写真・講習風景・受講後の声・最新投稿を継続追加する。"),
+        ("08:00 Research", "競合、国内Web/UIトレンド、AI講習の検索意図、YouTubeとSNS反響を確認する。"),
+        ("Design Mutation", "ヒーロー画像、見出し、講習カード、FAQ、集客施策の見せ方を1回分だけ更新する。"),
+        ("Function Gate", "予約リンク、講習資料、診断モーダル、管理導線、OGP、構造化データが壊れていないか確認する。"),
+        ("Deploy & Verify", "ビルド後に本番へ反映し、公開URLで新しい文言・画像・主要リンクを検証する。"),
     ]
     parts = ["<div class='growth-layout'>"]
-    parts.append("<div class='growth-panel fade-up'><h3>競合との比較</h3><div class='growth-table'>")
+    parts.append("<div class='growth-panel fade-up'><h3>競合から見た勝ち筋</h3><div class='growth-table'>")
     for competitor, gap, move in rows:
         parts.append(
             "<div class='growth-row'>"
@@ -4318,7 +4788,7 @@ def _render_growth_plan_section() -> str:
             "</div>"
         )
     parts.append("</div></div>")
-    parts.append("<div class='growth-panel growth-actions fade-up d2'><h3>今後90日の施策</h3>")
+    parts.append("<div class='growth-panel growth-actions fade-up d2'><h3>毎日の育成ループ</h3>")
     for title, body in actions:
         parts.append(
             "<article class='growth-action'>"
@@ -4336,7 +4806,7 @@ FAQ_QA = [
     ("彦根・滋賀でAIの講習や相談はできますか？",
      "はい。滋賀県彦根市を拠点に、彦根・湖東・東近江を中心とした対面のAI講習・個別相談を行っています。京都・大阪・名古屋までは出張可、リモートなら全国対応します。"),
     ("Codex準備とCodex実践はどう違いますか？",
-     "レベルは理解度で分けます。Codex準備は90分無料で、ログイン、作業フォルダ選択、最初の小さな依頼、差分確認、ブラウザ表示確認、独立レビュー、AGENTS.md、公式アップデート確認先までを整えます。Codex実践は120分5,500円で、ページ、資料、コード、動画台本などの成果物作成まで進めます。申込リンクは1つで、申込時に準備か実践をオプション選択します。"),
+     "レベルは理解度で分けます。Codex準備は90分2,200円で、ログイン、作業フォルダ選択、秘密情報を入れない権限設計、最初の小さな依頼、差分確認、ブラウザ表示確認、独立レビュー、AGENTS.md、公式アップデート確認先までを整えます。Codex実践は120分5,500円で、ページ、資料、コード、動画台本、運用マニュアルなどの成果物作成まで進めます。申込リンクは1つで、申込時に準備か実践をオプション選択します。"),
     ("講習資料はあとから見返せますか？",
      "はい。講習で使った資料、プロンプト、実例、動画、スライドは資料センターとして整理し、あとから復習できるようにします。受講前に内容を確認したい方も、講習資料ページから雰囲気を見られます。"),
     ("Reels や YouTube の集客にも使えますか？",
@@ -4344,7 +4814,7 @@ FAQ_QA = [
     ("LLMO やAI検索に強いサイトにできますか？",
      "できます。地域名、講師の一次経験、料金、対応範囲、実例、FAQ、構造化データを整理し、AIが回答に引用しやすい形で公開します。大量の自動生成ではなく、講習と実例に基づく一次情報を重視します。"),
     ("料金はどれくらいですか？",
-     "AI無料相談 とりあえず30分は無料、Codex準備90分は無料、Codex実践120分は5,500円、AI個別相談 しっかり60分は5,500円です。AI伴走支援 いっしょに導入は月額10万円×6ヶ月が目安です。LP制作は1本18〜30万円が目安。多くは補助金併用を前提に組みます。"),
+     "AI無料相談 とりあえず30分は無料、Codex準備90分は2,200円、Codex実践120分は5,500円、AI個別相談 しっかり60分は5,500円です。AI伴走支援 いっしょに導入は月額10万円×6ヶ月が目安です。LP制作は1本18〜30万円が目安。多くは補助金併用を前提に組みます。"),
     ("補助金は使えますか？滋賀の事業者でも対象ですか？",
      "講習・伴走パックは「デジタル化・AI導入補助金」や滋賀県・彦根市の補助金の対象になります。補助率は小規模事業者で最大4/5、実質負担が1/3以下になるケースが多いです。申請からツール選定・実装・定着まで一気通貫で支援します。"),
     ("パソコンやスマホが苦手ですが、大丈夫ですか？",
@@ -4745,8 +5215,8 @@ def _render_lecture_card(lec: dict) -> str:
 
 def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     today = datetime.now().strftime("%Y-%m-%d")
-    title = f"AI相談 彦根 — 生成AI講習・Codex講習・資料センター | {OWNER_NAME}"
-    desc = "彦根・滋賀の中小事業者向けAI相談サイト。生成AI講習、Codex準備/実践、講習資料、実例、講師紹介、Reels/YouTube/LLMO集客施策まで、9事業を回す講師が伴走。"
+    title = f"AIハブ — 毎朝育つAI講習デザイン・Codex講習・資料センター | {OWNER_NAME}"
+    desc = "彦根・滋賀の中小事業者向けAI講習ポータル。競合分析、日本のAI/Webトレンド、YouTube/SNS反響を読み、生成AI講習、Codex準備/実践、資料センター、予約導線を毎日磨く実験場。"
 
     parts: list[str] = []
     parts.append("<!doctype html><html lang='ja'><head><meta charset='utf-8'>" + FAVICON_HEAD_HTML)
@@ -4773,9 +5243,9 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
 
     # 1. 受講プラン — メインCTA
     parts.append("<section class='block' id='packages'>")
-    parts.append("<p class='section-heading fade-up'>AI LESSON</p>")
-    parts.append("<h2 class='section-title packages-title fade-up d1'>AI相談・講習プラン</h2>")
-    parts.append("<p class='section-sub fade-up d2'>各申込リンクと講習資料の内容を「受講内容」として整理しました。Codexは準備90分無料と実践120分5,500円に分け、相談は30分の入口相談と60分の個別相談、伴走支援で選べます。</p>")
+    parts.append("<p class='section-heading fade-up'>AI LESSON COCKPIT</p>")
+    parts.append("<h2 class='section-title packages-title fade-up d1'>複数のAI講習を、一画面で選ぶ</h2>")
+    parts.append("<p class='section-sub fade-up d2'>無料相談、個別相談、伴走支援、Codex準備、Codex実践を、目的と到達点で選べるように整理しています。受講したいAIエージェントが見ても、次に押すボタンが迷子にならない設計です。</p>")
     parts.append(_render_courses_packages())
     parts.append("</section>")
 
@@ -4809,9 +5279,9 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
 
     # 4. 競合比較と集客施策
     parts.append("<section class='block' id='growth'>")
-    parts.append("<p class='section-heading fade-up'>GROWTH PLAN</p>")
-    parts.append("<h2 class='section-title fade-up d1'>競合比較から作る集客施策</h2>")
-    parts.append("<p class='section-sub fade-up d2'>公的DX相談・パソコン教室・大手AI研修・制作会社と比較し、AI相談 彦根が勝てる導線を講習ページ内に組み込みます。</p>")
+    parts.append("<p class='section-heading fade-up'>DAILY DESIGN LOOP</p>")
+    parts.append("<h2 class='section-title fade-up d1'>競合とSNS反響で、デザインを育てる</h2>")
+    parts.append("<p class='section-sub fade-up d2'>公的DX相談・パソコン教室・大手AI研修・制作会社と比較し、さらにYouTube/Shorts/SNSの反応を見て、講習ページの入口を毎朝アップデートします。</p>")
     parts.append(_render_growth_plan_section())
     parts.append("</section>")
 
@@ -4836,7 +5306,7 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     # 7. 講習資料（TOP内にサマリを掲載）
     parts.append("<section class='block' id='lectures'>")
     parts.append("<p class='section-heading fade-up'>MATERIALS</p>")
-    parts.append("<h2 class='section-title fade-up d1'>講習資料センター</h2>")
+    parts.append("<h2 class='section-title fade-up d1'>講習資料</h2>")
     parts.append("<p class='section-sub fade-up d2'>AI業務活用・SNSアルゴリズム・LLMO（AI検索最適化）・Codex実践・AIコーディングを、講習後も見返せる形で整理しています。</p>")
     parts.append("<div class='fade-up d2'>")
     parts.append(_render_lectures_section())

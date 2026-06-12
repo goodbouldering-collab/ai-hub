@@ -307,14 +307,13 @@
   <div class="site-header-inner">
     <a class="site-logo" href="/"><span class="dot"></span>AIハブ <span style="color:var(--muted);font-weight:600;font-size:13px;margin-left:6px;">管理画面</span></a>
     <nav class="site-nav" aria-label="統合ナビ">
-      <a class="nav-link" href="/">TOP</a>
-      <a class="nav-link" href="/#packages">受講プラン</a>
-      <a class="nav-link" href="/#growth">集客施策</a>
-      <a class="nav-link" href="/#works">制作実績</a>
-      <a class="nav-link" href="/#lectures">講習資料</a>
-      <a class="nav-link" href="/watch/index.html">AI Watch</a>
       <a class="nav-link" href="/admin#admin-menu">管理ハブ</a>
-      <a class="login-btn" href="/ops">OPS</a>
+      <a class="nav-link" href="#panel-status">記事生成</a>
+      <a class="nav-link" href="/admin/gubble-sns">SNS分析</a>
+      <a class="nav-link" href="/admin/sns-post">SNS投稿</a>
+      <a class="nav-link" href="/admin/chat">社内AI</a>
+      <a class="nav-link" href="/ops">OPS</a>
+      <a class="login-btn" href="/">公開TOP</a>
     </nav>
   </div>
 </header>
@@ -350,41 +349,8 @@
       <a class="admin-menu-primary" href="/">公開TOPを見る</a>
     </div>
     <div class="admin-menu-grid">
-      <section class="admin-menu-group" aria-label="公開TOP">
-        <h3>公開TOP</h3>
-        <a class="admin-link" href="/">
-          <span class="admin-link-icon">🌐</span>
-          <span><strong>公開トップ</strong><small>AIハブ本体</small></span>
-          <span class="admin-link-action">開く</span>
-        </a>
-        <a class="admin-link" href="/#packages">
-          <span class="admin-link-icon">🎓</span>
-          <span><strong>受講プラン</strong><small>講座・相談メニュー</small></span>
-          <span class="admin-link-action">移動</span>
-        </a>
-        <a class="admin-link" href="/#growth">
-          <span class="admin-link-icon">📈</span>
-          <span><strong>集客施策</strong><small>SNS / SEO / LLMO</small></span>
-          <span class="admin-link-action">移動</span>
-        </a>
-        <a class="admin-link" href="/#works">
-          <span class="admin-link-icon">🧩</span>
-          <span><strong>制作実績</strong><small>公開ページの実績一覧</small></span>
-          <span class="admin-link-action">移動</span>
-        </a>
-        <a class="admin-link" href="/#lectures">
-          <span class="admin-link-icon">📝</span>
-          <span><strong>講習資料</strong><small>公開教材・講座LP</small></span>
-          <span class="admin-link-action">移動</span>
-        </a>
-        <a class="admin-link" href="/#speaker">
-          <span class="admin-link-icon">🎤</span>
-          <span><strong>講師紹介</strong><small>由井辰美プロフィール</small></span>
-          <span class="admin-link-action">移動</span>
-        </a>
-      </section>
-      <section class="admin-menu-group" aria-label="管理">
-        <h3>管理</h3>
+      <section class="admin-menu-group" aria-label="今日やる">
+        <h3>今日やる</h3>
         <a class="admin-link" href="#panel-dashboard">
           <span class="admin-link-icon">⭐</span>
           <span><strong>今週の動き</strong><small>タスク・成果物</small></span>
@@ -410,14 +376,47 @@
           <span><strong>社内エージェント</strong><small>相談・指示・下書き</small></span>
           <span class="admin-link-action">開く</span>
         </a>
-      </section>
-      <section class="admin-menu-group" aria-label="運用と監視">
-        <h3>運用 / 監視</h3>
         <a class="admin-link" href="/ops">
           <span class="admin-link-icon">⚙️</span>
           <span><strong>運用本部 OPS</strong><small>資料・台帳・運用確認</small></span>
           <span class="admin-link-action">開く</span>
         </a>
+      </section>
+      <section class="admin-menu-group" aria-label="公開確認">
+        <h3>公開確認</h3>
+        <a class="admin-link" href="/">
+          <span class="admin-link-icon">🌐</span>
+          <span><strong>公開トップ</strong><small>AIハブ本体</small></span>
+          <span class="admin-link-action">開く</span>
+        </a>
+        <a class="admin-link" href="/#packages">
+          <span class="admin-link-icon">🎓</span>
+          <span><strong>受講プラン</strong><small>講座・相談メニュー</small></span>
+          <span class="admin-link-action">移動</span>
+        </a>
+        <a class="admin-link" href="/#speaker">
+          <span class="admin-link-icon">🎤</span>
+          <span><strong>講師紹介</strong><small>由井辰美プロフィール</small></span>
+          <span class="admin-link-action">移動</span>
+        </a>
+        <a class="admin-link" href="/#lectures">
+          <span class="admin-link-icon">📝</span>
+          <span><strong>講習資料</strong><small>公開教材・講座LP</small></span>
+          <span class="admin-link-action">移動</span>
+        </a>
+        <a class="admin-link" href="/#flow">
+          <span class="admin-link-icon">🛠</span>
+          <span><strong>ご依頼の流れ</strong><small>相談から公開まで</small></span>
+          <span class="admin-link-action">移動</span>
+        </a>
+        <a class="admin-link" href="/#faq">
+          <span class="admin-link-icon">❔</span>
+          <span><strong>FAQ</strong><small>受講前の不安解消</small></span>
+          <span class="admin-link-action">移動</span>
+        </a>
+      </section>
+      <section class="admin-menu-group" aria-label="運用と監視">
+        <h3>運用 / 監視</h3>
         <a class="admin-link" href="/watch/index.html">
           <span class="admin-link-icon">📡</span>
           <span><strong>AI Watch</strong><small>自動収集ニュース</small></span>
@@ -437,6 +436,16 @@
           <span class="admin-link-icon">🧭</span>
           <span><strong>AIコーディング実装</strong><small>講習用マップ</small></span>
           <span class="admin-link-action">開く</span>
+        </a>
+        <a class="admin-link" href="/#works">
+          <span class="admin-link-icon">🧩</span>
+          <span><strong>制作実績</strong><small>公開ページの実績一覧</small></span>
+          <span class="admin-link-action">移動</span>
+        </a>
+        <a class="admin-link" href="/#growth">
+          <span class="admin-link-icon">📈</span>
+          <span><strong>集客施策</strong><small>SNS / SEO / LLMO</small></span>
+          <span class="admin-link-action">移動</span>
         </a>
       </section>
     </div>

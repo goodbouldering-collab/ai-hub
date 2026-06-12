@@ -227,8 +227,9 @@ def _build_jsonld_website() -> str:
         "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": "ホーム", "item": SITE_URL + "/"},
             {"@type": "ListItem", "position": 2, "name": "受講プラン", "item": SITE_URL + "/#packages"},
-            {"@type": "ListItem", "position": 3, "name": "制作実績", "item": SITE_URL + "/#works"},
-            {"@type": "ListItem", "position": 4, "name": "講師紹介", "item": SITE_URL + "/#speaker"},
+            {"@type": "ListItem", "position": 3, "name": "講師紹介", "item": SITE_URL + "/#speaker"},
+            {"@type": "ListItem", "position": 4, "name": "講習資料", "item": SITE_URL + "/#lectures"},
+            {"@type": "ListItem", "position": 5, "name": "FAQ", "item": SITE_URL + "/#faq"},
         ],
     }
 
@@ -3846,20 +3847,20 @@ def _render_header() -> str:
         "</a>"
         "<nav class='site-nav' aria-label='メインナビ'>"
         "<a class='nav-link' href='#packages'>受講プラン</a>"
-        "<a class='nav-link' href='#growth'>集客施策</a>"
-        "<a class='nav-link' href='#works'>制作実績</a>"
-        "<a class='nav-link' href='#lectures'>講習資料</a>"
         "<a class='nav-link' href='#speaker'>講師紹介</a>"
-        "<a class='nav-link' href='/watch/index.html'>AI Watch</a>"
+        "<a class='nav-link' href='#lectures'>講習資料</a>"
+        "<a class='nav-link' href='#flow'>ご依頼の流れ</a>"
+        "<a class='nav-link' href='#faq'>FAQ</a>"
         "<div class='menu-wrap'>"
         "<button class='menu-toggle' id='menu-toggle' aria-haspopup='menu' aria-expanded='false'>その他"
         "<svg class='chev' width='14' height='14' viewBox='0 0 20 20' fill='none' aria-hidden='true'><path d='M5 8l5 5 5-5' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>"
         "</button>"
         "<div class='menu-drop' id='menu-drop' role='menu'>"
-        "<span class='menu-drop-label'>公開ページ</span>"
-        "<a href='#flow'>🛠 ご依頼の流れ</a>"
-        "<a href='#faq'>FAQ</a>"
+        "<span class='menu-drop-label'>検討材料</span>"
+        "<a href='#works'>🧩 制作実績</a>"
+        "<a href='#growth'>📈 集客施策</a>"
         "<a href='/portfolio.html'>📂 実績の詳細</a>"
+        "<a href='/watch/index.html'>📡 AI Watch</a>"
         "<span class='menu-drop-label'>管理メニュー</span>"
         "<a class='menu-drop-sep admin-drop-link' href='/admin#admin-menu'>🔐 管理ハブ</a>"
         "<a class='admin-drop-link' href='/admin/gubble-sns'>📊 SNS分析</a>"
@@ -3876,13 +3877,13 @@ def _render_header() -> str:
         "</div>"
         "<div class='mobile-nav' id='mobile-nav'>"
         "<a href='#packages'>受講プラン</a>"
-        "<a href='#growth'>集客施策</a>"
-        "<a href='#works'>制作実績</a>"
-        "<a href='#lectures'>講習資料</a>"
         "<a href='#speaker'>講師紹介</a>"
-        "<a href='/watch/index.html'>AI Watch</a>"
+        "<a href='#lectures'>講習資料</a>"
         "<a href='#flow'>ご依頼の流れ</a>"
         "<a href='#faq'>FAQ</a>"
+        "<a href='#works'>制作実績</a>"
+        "<a href='#growth'>集客施策</a>"
+        "<a href='/watch/index.html'>AI Watch</a>"
         "<span class='mobile-nav-label'>管理メニュー</span>"
         "<a class='mobile-admin-link' href='/admin#admin-menu'>🔐 管理ハブ</a>"
         "<a class='mobile-admin-link' href='/admin/gubble-sns'>📊 SNS分析</a>"

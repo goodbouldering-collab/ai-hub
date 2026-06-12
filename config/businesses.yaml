@@ -100,7 +100,7 @@ businesses:
   description: Vercel + Supabase で新規再生成中。みんなのWA の構成をベースに立ち上げ予定。
 
 - id: ai-hub
-  name: AI相談 彦根
+  name: AI相談。彦根
   tagline: 講習募集 + 資料センター + AI情報パイプライン
   url: https://ai-hub-jp.vercel.app
   icon: 🤖

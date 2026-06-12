@@ -1,0 +1,852 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>SNS Cross Media Dashboard</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #03070d;
+      --panel: rgba(255,255,255,.075);
+      --panel-strong: rgba(255,255,255,.12);
+      --line: rgba(255,255,255,.14);
+      --line-soft: rgba(255,255,255,.08);
+      --text: #f6fbff;
+      --muted: rgba(232,243,252,.68);
+      --faint: rgba(232,243,252,.45);
+      --cyan: #27ddff;
+      --teal: #2ef0bc;
+      --red: #ff375f;
+      --amber: #ffc85a;
+      --blue: #66a6ff;
+      --green: #68f59b;
+      --radius: 8px;
+      --header-h: 66px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html, body { min-height: 100%; margin: 0; overflow-x: hidden; }
+    body {
+      padding-top: var(--header-h);
+      color: var(--text);
+      background:
+        linear-gradient(120deg, rgba(39,221,255,.12), transparent 36%),
+        linear-gradient(230deg, rgba(46,240,188,.09), transparent 42%),
+        linear-gradient(180deg, #03070d 0%, #06111b 52%, #071522 100%);
+      letter-spacing: 0;
+    }
+    body::before {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      content: "";
+      background:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+      background-size: 54px 54px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.7), transparent 94%);
+    }
+    button, input { font: inherit; }
+    button {
+      min-height: 36px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.08);
+      color: var(--text);
+      cursor: pointer;
+    }
+    button:hover { border-color: rgba(39,221,255,.5); background: rgba(255,255,255,.13); }
+    input {
+      width: 100%;
+      min-height: 38px;
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius);
+      background: rgba(0,0,0,.28);
+      color: var(--text);
+      padding: 0 10px;
+      outline: none;
+    }
+    input:focus { border-color: rgba(39,221,255,.7); box-shadow: 0 0 0 3px rgba(39,221,255,.13); }
+    h1, h2, h3, p { margin: 0; }
+    .site-header {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 20;
+      background: rgba(3,7,13,.92);
+      border-bottom: 1px solid var(--line-soft);
+      backdrop-filter: blur(18px) saturate(140%);
+    }
+    .site-header-inner {
+      max-width: 1420px;
+      min-height: var(--header-h);
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .site-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text);
+      font-size: 18px;
+      font-weight: 900;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .dot { width: 8px; height: 8px; border-radius: 99px; background: var(--cyan); display: inline-block; }
+    .site-logo-sub { color: var(--muted); font-size: 13px; font-weight: 700; }
+    .site-nav { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+    .site-nav a { color: var(--muted); font-size: 13px; font-weight: 750; text-decoration: none; }
+    .site-nav a:hover { color: var(--cyan); }
+    .site-nav .login-btn {
+      min-height: 36px;
+      padding: 0 16px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      color: #02070c;
+      background: var(--text);
+      font-weight: 900;
+    }
+    .shell {
+      width: min(1880px, calc(100vw - 24px));
+      min-height: calc(100vh - var(--header-h));
+      margin: 0 auto;
+      padding: 12px 0 16px;
+      display: grid;
+      grid-template-rows: auto auto minmax(560px, 1fr) auto;
+      gap: 10px;
+    }
+    .glass {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, var(--panel-strong), var(--panel));
+      box-shadow: 0 24px 76px rgba(0,0,0,.38);
+      backdrop-filter: blur(22px) saturate(138%);
+    }
+    .topbar {
+      padding: 12px 16px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 16px;
+      align-items: center;
+    }
+    .brand-row { min-width: 0; display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 12px; align-items: center; }
+    .mark {
+      width: 50px; height: 50px; border: 1px solid rgba(39,221,255,.38);
+      border-radius: 50%; display: grid; place-items: center;
+      color: var(--cyan); background: rgba(39,221,255,.08); font-weight: 950;
+    }
+    .eyebrow { color: var(--cyan); font-size: 11px; font-weight: 900; }
+    h1 {
+      margin-top: 3px;
+      font-size: clamp(22px, 2vw, 31px);
+      line-height: 1.1;
+      overflow-wrap: anywhere;
+    }
+    .channel-line { margin-top: 6px; display: flex; gap: 10px; flex-wrap: wrap; color: var(--muted); font-size: 13px; }
+    .top-actions { display: flex; align-items: center; gap: 8px; }
+    .status-pill {
+      min-height: 36px; min-width: 142px; padding: 0 12px;
+      border: 1px solid rgba(46,240,188,.32); border-radius: var(--radius);
+      display: grid; place-items: center; color: var(--teal);
+      background: rgba(46,240,188,.085); font-size: 13px; font-weight: 900;
+    }
+    .status-pill.err { border-color: rgba(255,55,95,.38); color: #ff9aad; background: rgba(255,55,95,.1); }
+    .metric-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; }
+    .metric {
+      min-height: 106px;
+      padding: 12px;
+      display: grid;
+      align-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+    .metric::after {
+      position: absolute; inset: auto 0 0 0; height: 3px; content: "";
+      background: linear-gradient(90deg, var(--cyan), var(--teal));
+    }
+    .metric.hot::after { background: linear-gradient(90deg, var(--red), rgba(255,55,95,.15)); }
+    .label { color: var(--muted); font-size: 11px; font-weight: 900; }
+    .value { margin-top: 8px; font-size: clamp(22px, 2vw, 29px); line-height: 1; font-weight: 950; font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .note { color: var(--faint); font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .main-grid {
+      min-height: 560px;
+      display: grid;
+      grid-template-columns: minmax(360px, 1.08fr) minmax(380px, .9fr) minmax(420px, 1fr);
+      gap: 10px;
+    }
+    .panel { min-height: 0; padding: 14px; overflow: hidden; }
+    .section-head { min-height: 38px; display: flex; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
+    .section-title { font-size: 16px; font-weight: 950; }
+    .section-subtitle { color: var(--muted); font-size: 12px; text-align: right; }
+    .chart-panel { display: grid; grid-template-rows: auto minmax(240px, 1fr) 96px 80px; gap: 10px; }
+    .chart-wrap { min-height: 240px; border: 1px solid var(--line-soft); border-radius: var(--radius); background: rgba(0,0,0,.2); padding: 10px; position: relative; }
+    canvas { width: 100%; height: 100%; display: block; }
+    .legend { position: absolute; top: 8px; right: 10px; display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; color: var(--muted); font-size: 11px; }
+    .swatch { width: 12px; height: 3px; border-radius: 99px; background: var(--cyan); display: inline-block; }
+    .swatch.bar { background: var(--red); }
+    .swatch.teal { background: var(--teal); }
+    .goal-row, .insight-row { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px; }
+    .insight-row { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    .mini {
+      min-height: 78px;
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.045);
+      padding: 10px;
+      min-width: 0;
+    }
+    .mini-top { display: flex; justify-content: space-between; gap: 8px; color: var(--muted); font-size: 11px; font-weight: 900; }
+    .mini-value { margin-top: 8px; font-size: 17px; font-weight: 950; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .bar { height: 10px; margin-top: 8px; border-radius: 99px; background: rgba(255,255,255,.1); overflow: hidden; }
+    .bar span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--cyan), var(--teal), var(--green)); }
+    .platform-panel { display: grid; grid-template-rows: auto minmax(0, 1fr); }
+    .platform-grid { min-height: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; align-content: start; overflow: auto; padding-right: 2px; }
+    .platform-card {
+      min-height: 104px;
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.052);
+      padding: 10px;
+      display: grid;
+      gap: 7px;
+      position: relative;
+      overflow: hidden;
+    }
+    .platform-card::before { position: absolute; inset: 0 0 auto 0; height: 3px; content: ""; background: var(--c, var(--cyan)); }
+    .platform-top { display: flex; justify-content: space-between; gap: 8px; align-items: center; }
+    .platform-name { font-size: 13px; font-weight: 950; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .badge { min-width: 30px; min-height: 22px; border: 1px solid rgba(255,255,255,.16); border-radius: 999px; display: grid; place-items: center; color: var(--c, var(--cyan)); font-size: 10px; font-weight: 950; }
+    .platform-stats { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 6px; }
+    .stat span { display: block; color: var(--faint); font-size: 10px; font-weight: 900; }
+    .stat strong { display: block; margin-top: 2px; font-size: 16px; line-height: 1; font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .mix { height: 5px; border-radius: 99px; background: rgba(255,255,255,.08); overflow: hidden; }
+    .mix span { display: block; height: 100%; border-radius: inherit; background: var(--c, var(--cyan)); }
+    .action-panel { display: grid; grid-template-rows: auto minmax(0,1fr) 120px; gap: 10px; }
+    .item-list { min-height: 0; display: grid; gap: 6px; align-content: start; overflow: auto; padding-right: 2px; }
+    .item {
+      min-height: 58px;
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      display: grid;
+      grid-template-columns: 78px minmax(0,1fr);
+      gap: 8px;
+      padding: 6px;
+      position: relative;
+      overflow: hidden;
+    }
+    .item::before { position: absolute; inset: 0 auto 0 0; width: 3px; content: ""; background: var(--c, var(--cyan)); }
+    .rank { width: 78px; height: 44px; border: 1px solid var(--line-soft); border-radius: 6px; display: grid; place-items: center; color: var(--text); background: rgba(255,255,255,.055); font-weight: 950; }
+    .thumb { width: 78px; height: 44px; border-radius: 6px; object-fit: cover; background: rgba(255,55,95,.16); }
+    .item-title { font-size: 12px; line-height: 1.2; font-weight: 900; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .item-title a { color: inherit; text-decoration: none; }
+    .chips { margin-top: 5px; display: flex; flex-wrap: wrap; gap: 4px; color: var(--muted); font-size: 10px; }
+    .chips span { min-height: 17px; padding: 1px 6px; border: 1px solid rgba(255,255,255,.1); border-radius: 999px; background: rgba(255,255,255,.06); }
+    .chips .hot { border-color: rgba(255,55,95,.32); color: #ffa1b2; background: rgba(255,55,95,.14); }
+    .automation {
+      min-height: 0;
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.045);
+      padding: 9px;
+      overflow: hidden;
+    }
+    .automation-head { display: flex; justify-content: space-between; gap: 8px; color: var(--muted); font-size: 11px; font-weight: 900; margin-bottom: 6px; }
+    .automation-list { max-height: 82px; display: grid; gap: 5px; overflow: auto; }
+    .log-row { display: grid; grid-template-columns: 58px minmax(0,1fr) auto; gap: 6px; align-items: center; color: var(--muted); font-size: 10px; }
+    .log-copy { min-width: 0; display: grid; gap: 1px; }
+    .log-copy strong, .log-copy span { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+    .log-copy strong { color: var(--text); }
+    .ok { color: var(--teal); }
+    .err { color: #ff9aad; }
+    .ticker { min-height: 44px; padding: 0 14px; display: flex; align-items: center; justify-content: space-between; gap: 12px; color: var(--muted); font-size: 13px; overflow: hidden; }
+    .ticker strong { color: var(--text); }
+    .modal-backdrop { position: fixed; inset: 0; z-index: 30; display: grid; place-items: center; padding: 18px; background: rgba(0,0,0,.55); backdrop-filter: blur(16px); }
+    .modal-backdrop[hidden] { display: none; }
+    .modal {
+      width: min(980px, 100%);
+      max-height: calc(100vh - 36px);
+      overflow: auto;
+      padding: 20px;
+    }
+    .modal h2 { font-size: 22px; }
+    .modal-copy { margin-top: 6px; color: var(--muted); line-height: 1.55; font-size: 13px; }
+    .form-grid { margin-top: 16px; display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 12px; }
+    .field { display: grid; gap: 6px; }
+    .field.wide { grid-column: span 2; }
+    label { color: var(--muted); font-size: 12px; font-weight: 900; }
+    .help { color: var(--faint); font-size: 11px; line-height: 1.4; }
+    .accounts { margin-top: 16px; display: grid; gap: 8px; }
+    .account-row { border: 1px solid var(--line-soft); border-radius: var(--radius); background: rgba(255,255,255,.045); padding: 8px; display: grid; grid-template-columns: 130px minmax(220px,1fr); gap: 8px; align-items: center; }
+    .account-name { font-size: 13px; font-weight: 950; }
+    .form-actions { margin-top: 16px; display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
+    .primary { border-color: rgba(39,221,255,.5); background: linear-gradient(135deg, rgba(39,221,255,.25), rgba(46,240,188,.16)); }
+    @media (max-width: 1360px) {
+      .shell { width: calc(100vw - 16px); grid-template-rows: auto auto minmax(560px,1fr) auto; gap: 8px; }
+      .metric-grid { gap: 8px; }
+      .main-grid { grid-template-columns: minmax(330px,1fr) minmax(350px,.9fr) minmax(360px,1fr); gap: 8px; }
+    }
+    @media (max-width: 980px) {
+      :root { --header-h: 116px; }
+      .site-header-inner { align-items: flex-start; flex-direction: column; }
+      .site-nav { gap: 12px; }
+      .shell { min-height: auto; grid-template-rows: auto; }
+      .topbar, .metric-grid, .main-grid, .form-grid, .account-row { grid-template-columns: 1fr; }
+      .main-grid { min-height: auto; }
+      .field.wide { grid-column: auto; }
+      .top-actions { align-items: stretch; flex-direction: column; }
+      .goal-row, .insight-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="site-logo" href="/admin"><span class="dot"></span>AIハブ <span class="site-logo-sub">管理画面</span></a>
+      <nav class="site-nav" aria-label="管理ナビ">
+        <a href="/admin#admin-menu">管理</a>
+        <a href="/admin/gubble-sns">SNS分析</a>
+        <a href="/admin/sns-post">SNS投稿</a>
+        <a href="/admin/chat">社内AI</a>
+        <a class="login-btn" href="/ops">OPS</a>
+        <a href="/">TOP</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="shell">
+    <header class="topbar glass">
+      <div class="brand-row">
+        <div class="mark">SNS</div>
+        <div>
+          <div class="eyebrow">SNS CROSS MEDIA DASHBOARD</div>
+          <h1 id="title">SNS Cross Media Dashboard</h1>
+          <div class="channel-line">
+            <span id="sourceLabel">自動収集フィード未接続</span>
+            <span id="updatedLabel">初回同期待ち</span>
+            <span>可変レイアウト</span>
+          </div>
+        </div>
+      </div>
+      <div class="top-actions">
+        <div class="status-pill" id="status">待機中</div>
+        <button type="button" id="refreshBtn">更新</button>
+        <button type="button" id="settingsBtn">設定</button>
+      </div>
+    </header>
+
+    <section class="metric-grid" aria-label="SNS横断指標">
+      <article class="metric glass"><div><div class="label">総フォロワー / ユーザー</div><div class="value" id="totalFollowers">--</div></div><div class="note" id="followersNote">媒体合算</div></article>
+      <article class="metric glass"><div><div class="label">総リーチ / 表示 / セッション</div><div class="value" id="totalReach">--</div></div><div class="note">全媒体横断</div></article>
+      <article class="metric glass"><div><div class="label">投稿 / ページ / イベント</div><div class="value" id="totalPosts">--</div></div><div class="note">収集値合算</div></article>
+      <article class="metric glass"><div><div class="label">平均反応率</div><div class="value" id="avgEngagement">--</div></div><div class="note">取得済み媒体の平均</div></article>
+      <article class="metric glass hot"><div><div class="label">注目スコア</div><div class="value" id="spotlight">--</div></div><div class="note" id="spotlightNote">トップ項目</div></article>
+      <article class="metric glass"><div><div class="label">次回自動更新</div><div class="value" id="nextRefresh">--</div></div><div class="note">ローカル表示は60秒</div></article>
+    </section>
+
+    <section class="main-grid">
+      <article class="panel chart-panel glass">
+        <div class="section-head">
+          <div><div class="section-title">重ね表示グラフ</div><div class="section-subtitle">棒=媒体別リーチ / 線=履歴</div></div>
+          <div class="section-subtitle" id="historyCount">履歴 0点</div>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="trendCanvas"></canvas>
+          <div class="legend"><span><i class="swatch bar"></i>媒体</span><span><i class="swatch"></i>フォロワー/ユーザー</span><span><i class="swatch teal"></i>リーチ/表示</span></div>
+        </div>
+        <div class="goal-row">
+          <div class="mini"><div class="mini-top"><span>フォロワー / ユーザー目標</span><span id="goalFollowersPct">--%</span></div><div class="bar"><span id="goalFollowersBar"></span></div><div class="note" id="goalFollowersText">現在 --</div></div>
+          <div class="mini"><div class="mini-top"><span>リーチ / 表示目標</span><span id="goalReachPct">--%</span></div><div class="bar"><span id="goalReachBar"></span></div><div class="note" id="goalReachText">現在 --</div></div>
+        </div>
+        <div class="insight-row">
+          <div class="mini"><div class="label">平均リーチ</div><div class="mini-value" id="avgReach">--</div></div>
+          <div class="mini"><div class="label">横断トップ媒体</div><div class="mini-value" id="topPlatform">--</div></div>
+          <div class="mini"><div class="label">トップ項目</div><div class="mini-value" id="topItem">--</div></div>
+        </div>
+      </article>
+
+      <article class="panel platform-panel glass">
+        <div class="section-head">
+          <div><div class="section-title">媒体ミックス</div><div class="section-subtitle">アカウント指定 + API自動収集</div></div>
+          <div class="section-subtitle" id="platformCount">8媒体</div>
+        </div>
+        <div class="platform-grid" id="platformGrid"></div>
+      </article>
+
+      <article class="panel action-panel glass">
+        <div class="section-head">
+          <div><div class="section-title">横断アクション / 全媒体</div><div class="section-subtitle" id="itemCount">自動収集待ち</div></div>
+          <div class="section-subtitle">重要度順</div>
+        </div>
+        <div class="item-list" id="itemList"></div>
+        <div class="automation">
+          <div class="automation-head"><span>オートメーション記録</span><span id="automationCount">0件</span></div>
+          <div class="automation-list" id="automationLog"></div>
+        </div>
+      </article>
+    </section>
+
+    <footer class="ticker glass">
+      <div id="tickerMain"><strong>待機中</strong> 自動収集ファイルを確認中</div>
+      <div id="tickerSub">sns-metrics.js / official APIs</div>
+    </footer>
+  </main>
+
+  <div class="modal-backdrop" id="modal" hidden>
+    <form class="modal glass" id="settingsForm">
+      <h2>SNSボード設定</h2>
+      <p class="modal-copy">各SNSのアカウント/IDをそろえて指定します。秘密トークンはHTMLに保存せず、収集側のenvに分離します。媒体数値は収集ファイルから読み込み、ここでは直接入力しません。</p>
+      <div class="form-grid">
+        <div class="field wide"><label for="apiKey">YouTube Data API v3 APIキー</label><input id="apiKey" type="password" autocomplete="off"><div class="help">空欄でも収集済み sns-metrics.js の横断ボードとして表示できます。</div></div>
+        <div class="field wide"><label for="channel">YouTube チャンネルID / @ハンドル / URL</label><input id="channel" type="text" placeholder="https://www.youtube.com/@channel_name" autocomplete="off"><div class="help">YouTubeだけはAPI接続先を指定します。ほかの媒体の数値入力欄はありません。</div></div>
+        <div class="field"><label for="goalFollowers">フォロワー目標</label><input id="goalFollowers" type="number" min="1" step="1" placeholder="空欄なら自動"></div>
+        <div class="field"><label for="goalReach">リーチ目標</label><input id="goalReach" type="number" min="1" step="1" placeholder="空欄なら自動"></div>
+        <div class="field"><label for="refreshSeconds">更新間隔 秒</label><input id="refreshSeconds" type="number" min="30" max="600" step="10" value="60"></div>
+      </div>
+      <div class="accounts" id="accountRows"></div>
+      <div class="form-actions">
+        <button type="button" id="resetBtn">設定削除</button>
+        <button type="button" id="closeBtn">閉じる</button>
+        <button class="primary" type="submit">保存して表示</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const STORAGE = {
+        config: "sns.crossmedia.dashboard.config.v1",
+        history: "sns.crossmedia.dashboard.history.v1",
+        automation: "sns.crossmedia.dashboard.automation.v1"
+      };
+      const METRIC_GLOBALS = ["SNS_CROSS_MEDIA_METRICS", "GUBBLE_SNS_METRICS"];
+      const PLATFORMS = [
+        { id:"youtube", short:"YT", name:"YouTube", color:"#ff375f", accountLabel:"YouTube Channel", placeholder:"@channel_name" },
+        { id:"instagram", short:"IG", name:"Instagram", color:"#ff4fb8", accountLabel:"IG User ID / @", placeholder:"1784... または @account_name" },
+        { id:"threads", short:"TH", name:"Threads", color:"#f6fbff", accountLabel:"Threads User ID / @", placeholder:"123... または @account_name" },
+        { id:"facebook", short:"FB", name:"Facebook", color:"#66a6ff", accountLabel:"Page ID / ページ名", placeholder:"page_id または page_name" },
+        { id:"x", short:"X", name:"X", color:"#a6b1c5", accountLabel:"X username", placeholder:"account_name" },
+        { id:"reels", short:"RL", name:"Reels / Shorts", color:"#2ef0bc", accountLabel:"取得元", placeholder:"instagram / youtube" },
+        { id:"gsc", short:"GSC", name:"Search Console", color:"#68f59b", accountLabel:"GSC siteUrl", placeholder:"sc-domain:example.com", labels:{followers:"クリック", reach:"表示回数", posts:"ページ数", engagement:"CTR %"} },
+        { id:"ga4", short:"GA4", name:"GA4", color:"#ffc85a", accountLabel:"GA4 property", placeholder:"properties/123456789", labels:{followers:"ユーザー", reach:"セッション", posts:"イベント", engagement:"Engagement %"} }
+      ];
+
+      const fmt = new Intl.NumberFormat("ja-JP");
+      const compact = new Intl.NumberFormat("ja-JP", { notation:"compact", maximumFractionDigits:1 });
+      const pct = new Intl.NumberFormat("ja-JP", { maximumFractionDigits:1 });
+      const dateFmt = new Intl.DateTimeFormat("ja-JP", { year:"numeric", month:"2-digit", day:"2-digit" });
+      const timeFmt = new Intl.DateTimeFormat("ja-JP", { hour:"2-digit", minute:"2-digit", second:"2-digit" });
+      const state = { metrics:null, platforms:[], items:[], timer:null, nextAt:0 };
+      const $ = (id) => document.getElementById(id);
+
+      const el = {
+        status: $("status"), sourceLabel: $("sourceLabel"), updatedLabel: $("updatedLabel"),
+        totalFollowers: $("totalFollowers"), followersNote: $("followersNote"), totalReach: $("totalReach"),
+        totalPosts: $("totalPosts"), avgEngagement: $("avgEngagement"), spotlight: $("spotlight"), spotlightNote: $("spotlightNote"),
+        nextRefresh: $("nextRefresh"), historyCount: $("historyCount"), goalFollowersPct: $("goalFollowersPct"),
+        goalFollowersBar: $("goalFollowersBar"), goalFollowersText: $("goalFollowersText"), goalReachPct: $("goalReachPct"),
+        goalReachBar: $("goalReachBar"), goalReachText: $("goalReachText"), avgReach: $("avgReach"), topPlatform: $("topPlatform"),
+        topItem: $("topItem"), platformCount: $("platformCount"), platformGrid: $("platformGrid"), itemCount: $("itemCount"),
+        itemList: $("itemList"), automationCount: $("automationCount"), automationLog: $("automationLog"),
+        tickerMain: $("tickerMain"), tickerSub: $("tickerSub"), modal: $("modal"), accountRows: $("accountRows"),
+        form: $("settingsForm"), canvas: $("trendCanvas")
+      };
+
+      init();
+
+      async function init() {
+        bind();
+        renderAccountRows();
+        hydrateForm();
+        await refresh(true);
+      }
+
+      function bind() {
+        $("refreshBtn").addEventListener("click", () => refresh(true));
+        $("settingsBtn").addEventListener("click", openSettings);
+        $("closeBtn").addEventListener("click", closeSettings);
+        $("resetBtn").addEventListener("click", resetSettings);
+        el.form.addEventListener("submit", saveSettings);
+        window.addEventListener("resize", () => requestAnimationFrame(drawChart));
+      }
+
+      async function refresh(manual = false) {
+        clearTimeout(state.timer);
+        setStatus("取得中");
+        try {
+          state.metrics = normalizeMetrics(await loadMetricsScript());
+          state.platforms = buildPlatforms();
+          state.items = buildItems();
+          const totals = summarize(state.platforms);
+          appendHistory(snapshot(totals));
+          record("ok", "外部メトリクス読込", state.metrics ? `${state.platforms.filter(hasData).length}媒体` : "収集ファイルなし");
+          render(totals);
+          setStatus(state.metrics ? "自動収集中" : "設定待ち");
+          if (manual) el.tickerMain.innerHTML = `<strong>更新完了</strong> ${timeFmt.format(new Date())}`;
+        } catch (error) {
+          record("err", "取得失敗", error.message || String(error));
+          setStatus("エラー", true);
+          el.tickerMain.innerHTML = `<strong>取得失敗</strong> ${escapeHtml(error.message || String(error))}`;
+          render(summarize([]));
+        }
+        schedule();
+      }
+
+      function loadMetricsScript() {
+        METRIC_GLOBALS.forEach((name) => { window[name] = null; });
+        const srcs = location.protocol === "file:"
+          ? ["./sns-metrics.js"]
+          : ["/admin/sns-metrics.js", "./sns-metrics.js"];
+        return new Promise((resolve) => {
+          let i = 0;
+          const next = () => {
+            if (i >= srcs.length) return resolve(null);
+            const script = document.createElement("script");
+            script.async = true;
+            script.src = `${srcs[i++]}?ts=${Date.now()}`;
+            script.onload = () => resolve(METRIC_GLOBALS.map((name) => window[name]).find(Boolean) || null);
+            script.onerror = next;
+            document.head.appendChild(script);
+          };
+          next();
+        });
+      }
+
+      function normalizeMetrics(raw) {
+        if (!raw || typeof raw !== "object") return null;
+        const platforms = {};
+        Object.entries(raw.platforms || {}).forEach(([id, item]) => {
+          platforms[String(id).toLowerCase()] = {
+            followers: int(item.followers),
+            reach: int(item.reach),
+            posts: int(item.posts),
+            engagement: num(item.engagement),
+            note: item.note || "自動収集"
+          };
+        });
+        const items = Array.isArray(raw.items) ? raw.items.map(normalizeItem).filter(Boolean) : [];
+        return { generatedAt: raw.generatedAt || raw.fetchedAt || "", source: raw.source || "sns-metrics.js", platforms, items };
+      }
+
+      function normalizeItem(item) {
+        const platform = clean(item.platform || item.source || "other").toLowerCase();
+        const title = clean(item.title || item.name || item.url || item.id);
+        if (!title) return null;
+        return {
+          platform, type: clean(item.type || "項目"), title,
+          reach: int(item.reach ?? item.views ?? item.impressions ?? item.sessions),
+          reactions: int(item.reactions ?? item.engagements ?? item.clicks ?? item.likes),
+          engagement: num(item.engagement ?? item.ctr ?? item.engagementRate),
+          publishedAt: clean(item.publishedAt || item.createdAt || item.date || ""),
+          thumbnail: clean(item.thumbnail || item.image || ""),
+          url: clean(item.url || item.permalink || ""),
+          note: clean(item.note || "")
+        };
+      }
+
+      function buildPlatforms() {
+        const config = readConfig();
+        return PLATFORMS.map((p) => {
+          const external = state.metrics?.platforms?.[p.id] || {};
+          return { ...p, ...external, account: config.accounts?.[p.id] || {}, note: external.note || "自動収集待ち" };
+        });
+      }
+
+      function buildItems() {
+        const raw = [...(state.metrics?.items || [])];
+        if (!raw.length) {
+          state.platforms.filter(hasData).forEach((p) => raw.push({
+            platform: p.id, type: "媒体サマリー", title: `${p.name} ${metricLabel(p,"reach")} ${compactValue(p.reach)}`,
+            reach: p.reach, reactions: p.followers ?? p.posts, engagement: p.engagement, note: p.note
+          }));
+        }
+        return scoreItems(raw).slice(0, 10);
+      }
+
+      function scoreItems(items) {
+        const maxReach = Math.max(...items.map((i) => finite(i.reach)), 1);
+        const maxReact = Math.max(...items.map((i) => finite(i.reactions)), 1);
+        return items.map((item) => {
+          const platform = platformById(item.platform);
+          const score = finite(item.reach) / maxReach * 42
+            + finite(item.reactions) / maxReact * 22
+            + (Number.isFinite(item.engagement) ? Math.min(item.engagement / 20 * 100, 100) : 0) * .24
+            + freshness(item.publishedAt) * .12;
+          return { ...item, platformName: platform.name, platformShort: platform.short, color: platform.color, score };
+        }).sort((a,b) => b.score - a.score || finite(b.reach) - finite(a.reach));
+      }
+
+      function render(totals) {
+        const active = state.platforms.filter(hasData);
+        const topPlatform = [...active].sort((a,b) => finite(b.reach) - finite(a.reach))[0] || null;
+        const topItem = state.items[0] || null;
+        const generated = generatedDate();
+        el.sourceLabel.textContent = state.metrics ? "外部自動収集フィード" : "自動収集フィード未接続";
+        el.updatedLabel.textContent = generated ? `SNS自動収集 ${dateFmt.format(generated)} ${timeFmt.format(generated)}` : "SNS自動収集待ち";
+        el.totalFollowers.textContent = fullValue(totals.followers);
+        el.followersNote.textContent = `${active.length}媒体を合算`;
+        el.totalReach.textContent = fullValue(totals.reach);
+        el.totalPosts.textContent = fullValue(totals.posts);
+        el.avgEngagement.textContent = Number.isFinite(totals.engagement) ? `${pct.format(totals.engagement)}%` : "--";
+        el.spotlight.textContent = topItem ? Math.round(topItem.score) : "--";
+        el.spotlightNote.textContent = topItem ? `${topItem.platformName} / ${topItem.type}` : "トップ項目";
+        el.platformCount.textContent = `${state.platforms.length}媒体`;
+        el.itemCount.textContent = state.items.length ? `${state.items.length}件 / 共通スコア` : "自動収集待ち";
+        el.avgReach.textContent = state.items.length ? fullValue(Math.round(finite(sum(state.items.map((i) => i.reach))) / state.items.length)) : "--";
+        el.topPlatform.textContent = topPlatform?.name || "--";
+        el.topItem.textContent = topItem?.title || "--";
+        el.tickerSub.textContent = state.metrics ? `${state.metrics.source} ${generated ? timeFmt.format(generated) : ""}` : "sns-metrics.js 自動収集待ち";
+        renderGoal(totals.followers, readConfig().goalFollowers || milestone(totals.followers, "followers"), el.goalFollowersPct, el.goalFollowersBar, el.goalFollowersText);
+        renderGoal(totals.reach, readConfig().goalReach || milestone(totals.reach, "reach"), el.goalReachPct, el.goalReachBar, el.goalReachText);
+        renderPlatforms();
+        renderItems();
+        renderAutomation();
+        requestAnimationFrame(drawChart);
+      }
+
+      function renderGoal(current, goal, pctEl, barEl, textEl) {
+        if (!Number.isFinite(current) || !Number.isFinite(goal) || goal <= 0) {
+          pctEl.textContent = "--%"; barEl.style.width = "0%"; textEl.textContent = "現在 --"; return;
+        }
+        const value = Math.min(current / goal * 100, 100);
+        pctEl.textContent = `${pct.format(value)}%`;
+        barEl.style.width = `${value}%`;
+        textEl.textContent = `現在 ${fullValue(current)} / 目標 ${fullValue(goal)}`;
+      }
+
+      function renderPlatforms() {
+        const maxReach = Math.max(...state.platforms.map((p) => finite(p.reach)), 1);
+        el.platformGrid.innerHTML = state.platforms.map((p) => `
+          <article class="platform-card" style="--c:${p.color}">
+            <div class="platform-top"><div class="platform-name">${escapeHtml(p.name)}</div><div class="badge">${escapeHtml(p.short)}</div></div>
+            <div class="platform-stats">
+              <div class="stat"><span>${escapeHtml(metricLabel(p,"followers"))}</span><strong>${compactValue(p.followers)}</strong></div>
+              <div class="stat"><span>${escapeHtml(metricLabel(p,"reach"))}</span><strong>${compactValue(p.reach)}</strong></div>
+              <div class="stat"><span>${escapeHtml(metricLabel(p,"posts"))}</span><strong>${fullValue(p.posts)}</strong></div>
+              <div class="stat"><span>${escapeHtml(metricLabel(p,"engagement"))}</span><strong>${Number.isFinite(p.engagement) ? `${pct.format(p.engagement)}%` : "--"}</strong></div>
+            </div>
+            <div class="mix"><span style="width:${Math.min(finite(p.reach) / maxReach * 100, 100)}%"></span></div>
+            <div class="note">${escapeHtml(p.note || "")}</div>
+          </article>`).join("");
+      }
+
+      function renderItems() {
+        if (!state.items.length) {
+          el.itemList.innerHTML = `<div class="item"><div class="rank">--</div><div><div class="item-title">全媒体データ取得待ち</div><div class="chips"><span>収集タスクを実行</span></div></div></div>`;
+          return;
+        }
+        el.itemList.innerHTML = state.items.map((item, i) => {
+          const media = item.thumbnail ? `<img class="thumb" src="${attr(item.thumbnail)}" alt="">` : `<div class="rank">${String(i+1).padStart(2,"0")}</div>`;
+          const title = item.url ? `<a href="${attr(item.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.title)}</a>` : escapeHtml(item.title);
+          return `<div class="item" style="--c:${item.color}">${media}<div><div class="item-title">${title}</div><div class="chips"><span>${escapeHtml(item.platformShort)} ${escapeHtml(item.type)}</span><span>重要度 ${Math.round(item.score)}</span><span class="hot">${fullValue(item.reach)} reach</span><span>${fullValue(item.reactions)} reactions</span><span>${Number.isFinite(item.engagement) ? `${pct.format(item.engagement)}%` : "--%"}</span></div></div></div>`;
+        }).join("");
+      }
+
+      function drawChart() {
+        const c = el.canvas;
+        const rect = c.getBoundingClientRect();
+        const dpr = devicePixelRatio || 1;
+        const w = Math.max(320, rect.width || 720);
+        const h = Math.max(220, rect.height || 280);
+        c.width = Math.floor(w * dpr);
+        c.height = Math.floor(h * dpr);
+        const ctx = c.getContext("2d");
+        ctx.setTransform(dpr,0,0,dpr,0,0);
+        ctx.clearRect(0,0,w,h);
+        const pad = 28, plotW = w - pad * 2, plotH = h - pad * 2;
+        ctx.strokeStyle = "rgba(255,255,255,.08)";
+        for (let i=0; i<=4; i++) { const y = pad + plotH / 4 * i; ctx.beginPath(); ctx.moveTo(pad,y); ctx.lineTo(pad+plotW,y); ctx.stroke(); }
+        const values = state.platforms.map((p) => finite(p.reach));
+        const max = Math.max(...values, 1);
+        const gap = 10;
+        const bw = Math.max(8, (plotW - gap * (state.platforms.length - 1)) / Math.max(state.platforms.length,1));
+        state.platforms.forEach((p, i) => {
+          const bh = Math.max(3, finite(p.reach) / max * plotH * .78);
+          const x = pad + i * (bw + gap), y = pad + plotH - bh;
+          roundRect(ctx, x, y, bw, bh, 6);
+          ctx.fillStyle = rgba(p.color, .36);
+          ctx.fill();
+          ctx.fillStyle = "rgba(246,251,255,.72)";
+          ctx.font = "800 10px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif";
+          ctx.textAlign = "center";
+          ctx.fillText(p.short, x + bw / 2, pad + plotH + 16);
+        });
+        const history = readHistory();
+        el.historyCount.textContent = `履歴 ${history.length}点`;
+        if (history.length < 2) {
+          ctx.fillStyle = "rgba(232,243,252,.54)";
+          ctx.font = "700 13px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif";
+          ctx.fillText("履歴が2点以上になると線グラフを重ねます", pad, h / 2);
+          return;
+        }
+        drawLine(ctx, history.map((p) => ({ t:p.fetchedAt, y:p.followers })).filter(validPoint), pad, plotW, plotH, "rgba(39,221,255,.94)");
+        drawLine(ctx, history.map((p) => ({ t:p.fetchedAt, y:p.reach })).filter(validPoint), pad, plotW, plotH, "rgba(46,240,188,.9)");
+      }
+
+      function drawLine(ctx, series, pad, plotW, plotH, color) {
+        if (series.length < 2) return;
+        const points = normalizeSeries(series, pad, plotW, plotH);
+        if (points.length < 2) return;
+        ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 3; ctx.lineCap = "round"; ctx.lineJoin = "round"; ctx.shadowColor = color; ctx.shadowBlur = 12; ctx.beginPath();
+        points.forEach((p, i) => i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y));
+        ctx.stroke(); ctx.restore();
+      }
+
+      function normalizeSeries(series, pad, plotW, plotH) {
+        const times = series.map((p) => normalizeTime(p.t));
+        const vals = series.map((p) => p.y);
+        const minT = Math.min(...times), maxT = Math.max(...times);
+        let minY = Math.min(...vals), maxY = Math.max(...vals);
+        if (minY === maxY) { minY -= 1; maxY += 1; }
+        return series.map((p, i) => ({ x: pad + (times[i] - minT) / Math.max(maxT-minT,1) * plotW, y: pad + plotH - (p.y - minY) / Math.max(maxY-minY,1) * plotH }));
+      }
+
+      function roundRect(ctx, x, y, w, h, r) {
+        r = Math.min(r, w/2, h/2); ctx.beginPath(); ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r); ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath();
+      }
+
+      function renderAccountRows() {
+        el.accountRows.innerHTML = PLATFORMS.filter((p) => p.id !== "youtube").map((p) => `
+          <div class="account-row" style="--c:${p.color}">
+            <div class="account-name">${escapeHtml(p.name)}</div>
+            <div class="field"><label for="account-${p.id}">${escapeHtml(p.accountLabel)}</label><input id="account-${p.id}" data-account="${p.id}" type="text" placeholder="${attr(p.placeholder)}" autocomplete="off"><div class="help">${escapeHtml(helpText(p.id))}</div></div>
+          </div>`).join("");
+      }
+
+      function openSettings() { hydrateForm(); el.modal.hidden = false; }
+      function closeSettings() { el.modal.hidden = true; }
+      function saveSettings(e) {
+        e.preventDefault();
+        const accounts = {};
+        PLATFORMS.forEach((p) => {
+          const node = document.querySelector(`[data-account="${p.id}"]`);
+          accounts[p.id] = clean(node?.value || "");
+        });
+        const config = {
+          apiKey: clean($("apiKey").value),
+          channel: clean($("channel").value),
+          goalFollowers: int($("goalFollowers").value),
+          goalReach: int($("goalReach").value),
+          refreshSeconds: Math.min(Math.max(int($("refreshSeconds").value) || 60, 30), 600),
+          accounts
+        };
+        localStorage.setItem(STORAGE.config, JSON.stringify(config));
+        record("ok", "設定保存", "アカウント設定を更新");
+        closeSettings();
+        refresh(true);
+      }
+      function resetSettings() {
+        localStorage.removeItem(STORAGE.config);
+        localStorage.removeItem(STORAGE.history);
+        record("ok", "設定削除", "設定と履歴をクリア");
+        hydrateForm();
+        refresh(true);
+      }
+      function hydrateForm() {
+        const c = readConfig();
+        $("apiKey").value = c.apiKey || "";
+        $("channel").value = c.channel || "";
+        $("goalFollowers").value = c.goalFollowers || "";
+        $("goalReach").value = c.goalReach || "";
+        $("refreshSeconds").value = c.refreshSeconds || 60;
+        PLATFORMS.forEach((p) => {
+          const node = document.querySelector(`[data-account="${p.id}"]`);
+          if (node) node.value = c.accounts?.[p.id] || "";
+        });
+      }
+
+      function record(status, title, detail) {
+        const next = [{ at:Date.now(), status, title:clean(title), detail:clean(detail) }, ...readAutomation()].slice(0,24);
+        localStorage.setItem(STORAGE.automation, JSON.stringify(next));
+        renderAutomation(next);
+      }
+      function renderAutomation(rows = readAutomation()) {
+        el.automationCount.textContent = `${rows.length}件`;
+        if (!rows.length) {
+          el.automationLog.innerHTML = `<div class="log-row"><span>--:--</span><span class="log-copy"><strong>記録待ち</strong><span>自動収集後に表示</span></span><span>--</span></div>`;
+          return;
+        }
+        el.automationLog.innerHTML = rows.slice(0,5).map((r) => {
+          const d = new Date(r.at);
+          const cls = r.status === "err" ? "err" : "ok";
+          const label = r.status === "err" ? "失敗" : "成功";
+          return `<div class="log-row" title="${attr(r.detail)}"><span>${timeFmt.format(d)}</span><span class="log-copy"><strong>${escapeHtml(r.title)}</strong><span>${escapeHtml(r.detail || "--")}</span></span><span class="${cls}">${label}</span></div>`;
+        }).join("");
+      }
+
+      function schedule() {
+        clearTimeout(state.timer);
+        const seconds = readConfig().refreshSeconds || 60;
+        state.nextAt = Date.now() + seconds * 1000;
+        updateCountdown();
+        state.timer = setTimeout(() => refresh(false), seconds * 1000);
+      }
+      function updateCountdown() {
+        const left = Math.max(0, Math.ceil((state.nextAt - Date.now()) / 1000));
+        el.nextRefresh.textContent = `${left}秒`;
+        if (left > 0) setTimeout(updateCountdown, 1000);
+      }
+
+      function summarize(platforms) {
+        const source = platforms.length ? platforms : state.platforms;
+        const followers = sum(source.map((p) => p.followers));
+        const reach = sum(source.map((p) => p.reach));
+        const posts = sum(source.map((p) => p.posts));
+        const eng = source.map((p) => p.engagement).filter(Number.isFinite);
+        return { followers, reach, posts, engagement: eng.length ? eng.reduce((a,b)=>a+b,0) / eng.length : null };
+      }
+      function snapshot(totals) { return { fetchedAt: generatedDate()?.getTime() || Date.now(), followers: totals.followers, reach: totals.reach, posts: totals.posts, source: state.metrics?.source || "manual" }; }
+      function appendHistory(point) {
+        const rows = readHistory();
+        const last = rows[rows.length - 1];
+        const same = last && Number(last.fetchedAt) === Number(point.fetchedAt) && clean(last.source) === clean(point.source);
+        const next = same ? [...rows.slice(0,-1), point].slice(-80) : [...rows, point].slice(-80);
+        localStorage.setItem(STORAGE.history, JSON.stringify(next));
+        return next;
+      }
+      function readHistory() { return readArray(STORAGE.history); }
+      function readAutomation() { return readArray(STORAGE.automation); }
+      function readArray(key) { try { const v = JSON.parse(localStorage.getItem(key) || "[]"); return Array.isArray(v) ? v : []; } catch { return []; } }
+      function readConfig() { try { return JSON.parse(localStorage.getItem(STORAGE.config) || "{}"); } catch { return {}; } }
+      function generatedDate() { const d = state.metrics?.generatedAt ? new Date(state.metrics.generatedAt) : null; return d && !Number.isNaN(d.getTime()) ? d : null; }
+      function platformById(id) { return PLATFORMS.find((p) => p.id === clean(id).toLowerCase()) || { id, short:String(id || "SNS").slice(0,3).toUpperCase(), name:id || "SNS", color:"#27ddff" }; }
+      function hasData(p) { return [p.followers,p.reach,p.posts,p.engagement].some((v) => v !== null && v !== undefined && Number.isFinite(v)); }
+      function metricLabel(p, key) { return (p.labels || {})[key] || ({followers:"フォロワー", reach:"リーチ/再生", posts:"投稿数", engagement:"反応率 %"}[key] || key); }
+      function helpText(id) {
+        return ({ instagram:"IG User IDが最優先。", threads:"Threads APIはUser IDと権限付きトークンが必要です。", facebook:"Page IDまたはページ名。", x:"@なしのユーザー名。", reels:"通常はinstagram。", gsc:"未指定ならSearch Consoleトップへリンクします。", ga4:"未指定ならGA4トップへリンクします。" })[id] || "";
+      }
+      function milestone(value, type) {
+        const safe = finite(value);
+        const steps = type === "reach" ? [10000,50000,100000,250000,500000,1000000,2500000,5000000,10000000] : [100,250,500,1000,1500,2000,3000,5000,10000,25000,50000];
+        return steps.find((s) => s > safe) || Math.ceil((safe + 1) / 10000) * 10000;
+      }
+      function freshness(value) { const t = value ? new Date(value).getTime() : NaN; if (!Number.isFinite(t)) return 45; const d = Math.max(0, (Date.now() - t) / 86400000); return d <= 2 ? 100 : d <= 7 ? 80 : d <= 28 ? 58 : d <= 90 ? 35 : 18; }
+      function validPoint(p) { return Number.isFinite(normalizeTime(p.t)) && Number.isFinite(p.y); }
+      function normalizeTime(v) { if (Number.isFinite(v)) return v; const t = new Date(v).getTime(); return Number.isFinite(t) ? t : NaN; }
+      function setStatus(text, error=false) { el.status.textContent = text; el.status.className = `status-pill${error ? " err" : ""}`; }
+      function int(v) { if (v === "" || v === null || v === undefined) return null; const n = Number.parseInt(v, 10); return Number.isFinite(n) && n >= 0 ? n : null; }
+      function num(v) { if (v === "" || v === null || v === undefined) return null; const n = Number.parseFloat(v); return Number.isFinite(n) && n >= 0 ? n : null; }
+      function finite(v) { return Number.isFinite(v) ? v : 0; }
+      function sum(values) { const vals = values.filter(Number.isFinite); return vals.length ? vals.reduce((a,b)=>a+b,0) : null; }
+      function fullValue(v) { return Number.isFinite(v) ? fmt.format(v) : "--"; }
+      function compactValue(v) { return Number.isFinite(v) ? compact.format(v) : "--"; }
+      function clean(v) { return v === null || v === undefined ? "" : String(v).trim(); }
+      function escapeHtml(v) { return String(v).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;"); }
+      function attr(v) { return escapeHtml(v).replace(/`/g,"&#96;"); }
+      function rgba(hex, alpha) {
+        const n = Number.parseInt(String(hex).replace("#",""), 16);
+        return `rgba(${(n>>16)&255}, ${(n>>8)&255}, ${n&255}, ${alpha})`;
+      }
+    })();
+  </script>
+</body>
+</html>

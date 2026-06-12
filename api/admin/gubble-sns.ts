@@ -1,6 +1,6 @@
 /**
  * /api/admin/gubble-sns
- * GET -> ぐっぼる SNS / SEO 横断ダッシュボード HTML を返す。
+ * GET -> SNS Cross Media Dashboard HTML を返す。
  */
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
@@ -10,7 +10,7 @@ let cachedHtml: string | null = null;
 
 function loadDashboardHtml(): string {
   if (cachedHtml) return cachedHtml;
-  const p = join(process.cwd(), "site", "static", "admin", "gubble-sns.html");
+  const p = join(process.cwd(), "site", "static", "admin", "sns-cross-media-dashboard.html");
   cachedHtml = readFileSync(p, "utf-8");
   return cachedHtml;
 }

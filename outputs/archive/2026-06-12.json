@@ -18,7 +18,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/VST_0612_Site.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-06-12T13:17:04-04:00"
+      "published": "2026-06-12T13:17:04-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "22ebf457d871bd18",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/STKE012_SPACEX_IPO_2026_D.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-06-12T12:24:39-04:00"
+      "published": "2026-06-12T12:24:39-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "9f8d12a4da5c22bf",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-06-12T10:35:48-04:00"
+      "published": "2026-06-12T10:35:48-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "e2578a3da4300dfa",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/23951505/VRG_Illo_STK173_L_Normand_JeffBezos_Positive.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-06-12T10:03:39-04:00"
+      "published": "2026-06-12T10:03:39-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "e6130631382c21a2",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-06-12T18:09:21+00:00"
+      "published": "2026-06-12T18:09:21+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "f017e8cf3a484e61",
@@ -113,7 +123,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/siri-ai.jpg?quality=90&amp;strip=all&amp;crop=0.17391304347827%2C0%2C99.652173913043%2C100&amp;w=1200",
-      "published": "2026-06-12T03:00:31-04:00"
+      "published": "2026-06-12T03:00:31-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "6803b3c830b715bc",
@@ -132,7 +144,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://static.simonwillison.net/static/2026/jump-to-bug.jpg",
-      "published": "2026-06-11T23:35:17+00:00"
+      "published": "2026-06-11T23:35:17+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "520338832f7fe0bb",
@@ -151,7 +165,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/LP2nn67pWQI/hqdefault.jpg",
-      "published": "2026-06-12T01:30:02+00:00"
+      "published": "2026-06-12T01:30:02+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "608d064ba706af7c",
@@ -170,7 +186,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/GegjeYn8zEg/hqdefault.jpg",
-      "published": "2026-06-12T10:00:18+00:00"
+      "published": "2026-06-12T10:00:18+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "a9183251da250b6c",
@@ -189,7 +207,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/bw_vUx2kFnw/hqdefault.jpg",
-      "published": "2026-06-12T10:09:37+00:00"
+      "published": "2026-06-12T10:09:37+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     }
   ]
 }

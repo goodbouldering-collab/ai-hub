@@ -42,6 +42,7 @@ SITE_BRAND = "AI相談。彦根"
 SITE_LEGACY_NAME = "AIハブ"
 OWNER_SUBTITLE = "クライミング歴30年・9事業を回す滋賀のAI講師"
 OWNER_TAGLINE = "AIを聞いて終わりにせず、講習・実例・資料で仕事に入れる"
+AI_CODING_BOOK_URL = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/S7GERYVDIPRV76DKXCC3WJWH"
 
 
 COLOR_MAP = {
@@ -110,7 +111,7 @@ def _build_ogp(title: str, description: str, page_url: str, *, image: str | None
 
 def _build_jsonld_website() -> str:
     """TOP の構造化データを @graph で一括出力。
-    LocalBusiness(地域シグナル) / Person(異色の権威) / WebSite / Service×4(価格付き Offer) /
+    LocalBusiness(地域シグナル) / Person(異色の権威) / WebSite / Service×6(価格付き Offer) /
     FAQPage(一次情報) / BreadcrumbList を相互参照させ、SEO・LLMO 両面の引用源にする。"""
     org_id = SITE_URL + "/#business"
     person_id = SITE_URL + "/#yui"
@@ -139,9 +140,9 @@ def _build_jsonld_website() -> str:
             "streetAddress": "岡町12番地",
             "addressCountry": "JP",
         },
-        "description": "滋賀県彦根市を拠点に、中小事業者・地域団体・個人事業者向けのAI相談、生成AI講習、Codex実践講習、講習資料公開、実例紹介、Web/業務システム制作、補助金を使ったAI導入支援を行う。9事業を実際に回す現役オーナーが、相談から講習、実装、公開、運用定着まで伴走する。",
+        "description": "滋賀県彦根市を拠点に、中小事業者・地域団体・個人事業者向けのAI相談、生成AI講習、Codex実践講習、AIコーディング実装講習、講習資料公開、実例紹介、Web/業務システム制作、補助金を使ったAI導入支援を行う。9事業を実際に回す現役オーナーが、相談から講習、実装、公開、運用定着まで伴走する。",
         "knowsAbout": [
-            "AI相談", "生成AI講習", "ChatGPT", "Claude Code", "Codex",
+            "AI相談", "生成AI講習", "ChatGPT", "Claude Code", "Codex", "AIコーディング実装",
             "LLMO（AI検索最適化）", "SEO", "MEO", "YouTube SEO", "Reels導線",
             "業務自動化", "AI導入補助金", "デジタル化補助金", "中小企業DX",
         ],
@@ -173,6 +174,7 @@ def _build_jsonld_website() -> str:
 
     codex_prep_title = "Codex準備 90分"
     codex_practice_title = "Codex実践 120分"
+    ai_coding_title = "AIコーディング実装 120分"
     free_consult_title = "AI無料相談 とりあえず30分"
     consult_title = "AI個別相談 しっかり60分"
     support_title = "AI伴走支援 いっしょに導入"
@@ -181,6 +183,7 @@ def _build_jsonld_website() -> str:
     plans = [
         (codex_prep_title, "Codex準備 導入と習得の流れに沿って、ChatGPTログイン、作業フォルダ選定、秘密情報を入れない権限設計、最初の依頼、差分確認、ブラウザ表示確認、独立レビュー、AGENTS.md、公式アップデート確認先までを90分で整える準備講習。", "2200", "2200", "Course"),
         (codex_practice_title, "Codexで持ち込み課題を進め、ページ、資料、コード、動画台本などの成果物を120分で作る実践講習。", "5500", "5500", "Course"),
+        (ai_coding_title, "Codex導入、プログラミング基礎、実装ループ、公開前確認、AI応用制作までを1本で学ぶAIコーディング実装講習。AIの成果物を判断し、直し、仕事に入れるための作業設計と確認の型を120分で身につける。", "10000", "10000", "Course"),
         (free_consult_title, "来店またはオンラインで、AI導入の入口を30分で整理する無料相談。講習や伴走の前に、今の課題と次の一手を確認する。", "0", "0", "BusinessCoaching"),
         (consult_title, "AIの使い方、役割分担、指示書、確認体制、運用導線を60分で整理する個別相談。", "5500", "5500", "BusinessCoaching"),
         (support_title, "HP公開から事務自動化・経理・マーケまで6ヶ月で一気に定着。技術的な難所は講師が代行・支援。滋賀・彦根の補助金で負担1/3以下に。", "100000", "100000", "Service"),
@@ -199,7 +202,7 @@ def _build_jsonld_website() -> str:
                 "@type": "PriceSpecification",
                 "minPrice": lo, "maxPrice": hi, "priceCurrency": "JPY",
             }
-        services.append({
+        service = {
             "@type": "Service",
             "serviceType": stype,
             "name": name,
@@ -207,7 +210,11 @@ def _build_jsonld_website() -> str:
             "provider": {"@id": org_id},
             "areaServed": {"@type": "AdministrativeArea", "name": "滋賀県"},
             "offers": offer,
-        })
+        }
+        if name == ai_coding_title:
+            offer["url"] = AI_CODING_BOOK_URL
+            service["url"] = AI_CODING_BOOK_URL
+        services.append(service)
 
     faq = {
         "@type": "FAQPage",
@@ -4445,7 +4452,7 @@ HEADER_JS = """
     try { localStorage.removeItem('aihub-theme'); } catch(e) {}
   })();
 
-  // ---- AIレベル診断 (3段階: 初級/中級/上級。ヒーロー第1問から起動)
+  // ---- AIレベル診断 (4段階: 初級/中級/実装/上級。ヒーロー第1問から起動)
   (function(){
     var modal = document.getElementById('diagnoseModal');
     if (!modal) return;
@@ -4456,16 +4463,19 @@ HEADER_JS = """
       { q: 'Codex の理解度はどの段階ですか？', a: [
         { label: 'インストールから確認したい', lv: 'beginner' },
         { label: '基本は触れるので成果物を作りたい', lv: 'intermediate' },
+        { label: 'コードの基礎から公開まで学びたい', lv: 'implementation' },
         { label: 'エージェント組織まで作りたい', lv: 'advanced' },
       ]},
       { q: '当日いちばん進めたいことは？', a: [
         { label: 'PCとモバイルの準備を整えたい', lv: 'beginner' },
         { label: 'ページや資料などを完成させたい', lv: 'intermediate' },
+        { label: 'AIの成果物を読んで直せるようにしたい', lv: 'implementation' },
         { label: 'AIの役割分担と運用設計を作りたい', lv: 'advanced' },
       ]},
       { q: 'どのスパンで取り組みたい？', a: [
         { label: 'まず90分2,200円で準備したい', lv: 'beginner' },
-        { label: '120分で成果物を作りたい', lv: 'intermediate' },
+        { label: '120分5,500円で成果物を作りたい', lv: 'intermediate' },
+        { label: '120分10,000円で体系的に実装を学びたい', lv: 'implementation' },
         { label: '相談から伴走まで設計したい', lv: 'advanced' },
       ]},
     ];
@@ -4482,6 +4492,12 @@ HEADER_JS = """
         desc: 'ページ、資料、コード、動画台本など、持ち込み課題を成果物として形にする少人数講習です。',
         level_id: 'intermediate'
       },
+      implementation: {
+        badge: 'AIコーディング実装', title: '基礎から公開前チェックまで学ぶ',
+        name: 'AIコーディング実装 120分',
+        desc: 'Codex導入、プログラミング基礎、依頼文、差分、ブラウザ確認、公開前レビューまでを体系的に学ぶ講習です。',
+        level_id: 'implementation'
+      },
       advanced: {
         badge: '相談', title: '個別相談で整理する',
         name: 'AI個別相談 しっかり60分',
@@ -4489,9 +4505,9 @@ HEADER_JS = """
         level_id: 'advanced'
       }
     };
-    var ORDER = ['beginner','intermediate','advanced'];
+    var ORDER = ['beginner','intermediate','implementation','advanced'];
 
-    var step = 0, scores = { beginner:0, intermediate:0, advanced:0 };
+    var step = 0, scores = { beginner:0, intermediate:0, implementation:0, advanced:0 };
 
     function render(){
       if (step < QUESTIONS.length) {
@@ -4520,7 +4536,7 @@ HEADER_JS = """
     }
     // start(preLv): ヒーロー第1問で選んだレベルを1問目の回答として引き継ぐ
     function open(preLv){
-      step = 0; scores = { beginner:0, intermediate:0, advanced:0 };
+      step = 0; scores = { beginner:0, intermediate:0, implementation:0, advanced:0 };
       if (preLv && scores.hasOwnProperty(preLv)) { scores[preLv]++; step = 1; }
       render(); modal.classList.add('open');
     }
@@ -4902,6 +4918,7 @@ def _render_courses_packages() -> str:
     """講習・相談プランのカード一覧。"""
     codex_prep_title = "Codex準備 90分"
     codex_practice_title = "Codex実践 120分"
+    ai_coding_title = "AIコーディング実装 120分"
     seminar_url = "https://goodbouldering.com/?pid=188553378"
     free_consult_title = "AI無料相談 とりあえず30分"
     free_consult_url = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/AW5O5XSBHLEHYUBHLZUGFKYE"
@@ -5018,6 +5035,32 @@ def _render_courses_packages() -> str:
             "cta": "Codexメニューで実践を選ぶ",
             "variant": "featured",
         },
+        {
+            "icon": "▧",
+            "cat": "AIコーディング講習",
+            "level": "実装",
+            "level_id": "implementation",
+            "title": ai_coding_title,
+            "price": "10,000円",
+            "duration": "120分 / 少人数",
+            "subsidy": False,
+            "desc": "Codex導入、プログラミング基礎、実装、公開、AI応用制作までを1本で学ぶ総合講習です。",
+            "content": [
+                "ChatGPT、Codex、VS Code、Git、Browserの役割を分ける",
+                "HTML/CSS/JS/API/DB/GitをAIの成果物を読むために学ぶ",
+                "依頼文、差分、ブラウザ確認、独立レビュー、本番確認を実行",
+            ],
+            "fit": ["AIの成果物を判断して直せるようになりたい", "LP、資料、フォーム、業務画面を作りたい", "Codex実践より体系的に学びたい"],
+            "req_title": "講習で扱う資料",
+            "requirements": [
+                "AIコーディング実装講習ページをもとに、相談、実装、確認、公開を通しで学ぶ",
+                "受講後は小さな制作物を作り、公開前に止める判断まで練習する",
+            ],
+            "verify": "予約サイトでは「【AIコーディング実装】AI時代の専門技術を伝授」を選んでください。",
+            "url": AI_CODING_BOOK_URL,
+            "cta": "AIコーディング実装を予約する",
+            "variant": "featured",
+        },
     ]
     parts = ["<div class='packages-grid'>"]
     for i, it in enumerate(items):
@@ -5075,7 +5118,7 @@ def _render_courses_packages() -> str:
     parts.append(
         "<div class='packages-cta-row fade-up d4'>"
         "<button type='button' class='btn btn-diagnose diagnose-open'>"
-        "60秒診断｜準備・実践・個別相談のどれ？"
+        "60秒診断｜準備・実践・実装・個別相談のどれ？"
         "</button>"
         "<span class='packages-cta-hint'>3つの質問に答えるだけ。いまの状態に合う入口をその場で提案します。</span>"
         "</div>"
@@ -5084,6 +5127,7 @@ def _render_courses_packages() -> str:
         "<p class='packages-note fade-up d4'>"
         "<strong>Codex講習:</strong> レベルは経験年数ではなく理解度で分けます。準備はログイン、フォルダ選択、最初の依頼、差分確認、独立レビュー、公式更新確認まで90分2,200円、実践は成果物作成まで120分5,500円です。"
         "Codexの申込リンクは1つに統一し、申込時に「準備」または「実践」をオプション選択します。"
+        "<br><strong>AIコーディング実装:</strong> Codex導入、プログラミング基礎、実装、公開、AI応用制作までを120分10,000円で扱う総合講習です。専用のSquare予約メニューから申し込めます。"
         "<br><strong>相談:</strong> AI個別相談は、AIの使い方、指示書、確認体制、運用導線を60分で整理します。"
         "<br><strong>補助金:</strong> 講習と伴走支援は、滋賀県・彦根市のデジタル化/AI導入系補助金と組み合わせて相談できます。"
         "</p>"
@@ -5099,7 +5143,7 @@ def _render_footer(today: str) -> str:
         "<div class='footer-grid'>"
         "<div class='footer-brand'>"
         "<div class='footer-logo'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span><span class='wordmark'><span class='word-ai'>AI相談。</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span></div>"
-        "<p class='footer-tagline'>滋賀・彦根の中小事業者向けに、AI相談・生成AI講習・Codex準備/実践・講習資料・Web集客支援を行う"
+        "<p class='footer-tagline'>滋賀・彦根の中小事業者向けに、AI相談・生成AI講習・Codex準備/実践・AIコーディング実装・講習資料・Web集客支援を行う"
         "資料センター型の相談サイト。9事業を実際に回しながら、現場に居着くAIを一緒に作ります。</p>"
         "<a class='footer-cta' href='#contact'>📩 無料で30分相談する</a>"
         "</div>"
@@ -5271,7 +5315,9 @@ FAQ_QA = [
     ("彦根・滋賀でAIの講習や相談はできますか？",
      "はい。滋賀県彦根市を拠点に、彦根・湖東・東近江を中心とした対面のAI講習・個別相談を行っています。京都・大阪・名古屋までは出張可、リモートなら全国対応します。"),
     ("Codex準備とCodex実践はどう違いますか？",
-     "レベルは理解度で分けます。Codex準備は90分2,200円で、ログイン、作業フォルダ選択、秘密情報を入れない権限設計、最初の小さな依頼、差分確認、ブラウザ表示確認、独立レビュー、AGENTS.md、公式アップデート確認先までを整えます。Codex実践は120分5,500円で、ページ、資料、コード、動画台本、運用マニュアルなどの成果物作成まで進めます。申込リンクは1つで、申込時に準備か実践をオプション選択します。"),
+     "レベルは理解度で分けます。Codex準備は90分2,200円で、ログイン、作業フォルダ選択、秘密情報を入れない権限設計、最初の小さな依頼、差分確認、ブラウザ表示確認、独立レビュー、AGENTS.md、公式アップデート確認先までを整えます。Codex実践は120分5,500円で、ページ、資料、コード、動画台本、運用マニュアルなどの成果物作成まで進めます。AIコーディング実装は120分10,000円で、プログラミング基礎、実装ループ、公開前確認、AI応用制作までを体系的に扱います。"),
+    ("AIコーディング実装講習では何を学びますか？",
+     "Codexを、相談、実装、確認、公開を一緒に進める作業者として使うための総合講習です。HTML/CSS/JavaScript/API/DB/Gitを暗記ではなくAIの成果物を判断する地図として学び、依頼文、差分確認、ブラウザ表示、独立レビュー、本番URL確認までを120分で通します。料金は10,000円で、専用のSquare予約メニューから申し込めます。"),
     ("講習資料はあとから見返せますか？",
      "はい。講習で使った資料、プロンプト、実例、動画、スライドは資料センターとして整理し、あとから復習できるようにします。受講前に内容を確認したい方も、講習資料ページから雰囲気を見られます。"),
     ("Reels や YouTube の集客にも使えますか？",
@@ -5279,7 +5325,7 @@ FAQ_QA = [
     ("LLMO やAI検索に強いサイトにできますか？",
      "できます。地域名、講師の一次経験、料金、対応範囲、実例、FAQ、構造化データを整理し、AIが回答に引用しやすい形で公開します。大量の自動生成ではなく、講習と実例に基づく一次情報を重視します。"),
     ("料金はどれくらいですか？",
-     "AI無料相談 とりあえず30分は無料、Codex準備90分は2,200円、Codex実践120分は5,500円、AI個別相談 しっかり60分は5,500円です。AI伴走支援 いっしょに導入は月額10万円×6ヶ月が目安です。LP制作は1本18〜30万円が目安。多くは補助金併用を前提に組みます。"),
+     "AI無料相談 とりあえず30分は無料、Codex準備90分は2,200円、Codex実践120分は5,500円、AIコーディング実装120分は10,000円、AI個別相談 しっかり60分は5,500円です。AI伴走支援 いっしょに導入は月額10万円×6ヶ月が目安です。LP制作は1本18〜30万円が目安。多くは補助金併用を前提に組みます。"),
     ("補助金は使えますか？滋賀の事業者でも対象ですか？",
      "講習・伴走パックは「デジタル化・AI導入補助金」や滋賀県・彦根市の補助金の対象になります。補助率は小規模事業者で最大4/5、実質負担が1/3以下になるケースが多いです。申請からツール選定・実装・定着まで一気通貫で支援します。"),
     ("パソコンやスマホが苦手ですが、大丈夫ですか？",
@@ -5681,7 +5727,7 @@ def _render_lecture_card(lec: dict) -> str:
 def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     today = datetime.now().strftime("%Y-%m-%d")
     title = SITE_BRAND
-    desc = "彦根・滋賀の中小事業者向けAI相談・生成AI講習ポータル。無料相談、Codex準備/実践、講習資料、伴走支援を迷わず選べる構成で、競合とSNS反応を見ながら毎日改善しています。"
+    desc = "彦根・滋賀の中小事業者向けAI相談・生成AI講習ポータル。無料相談、Codex準備/実践、AIコーディング実装、講習資料、伴走支援を迷わず選べる構成で、競合とSNS反応を見ながら毎日改善しています。"
 
     parts: list[str] = []
     parts.append("<!doctype html><html lang='ja'><head><meta charset='utf-8'>" + FAVICON_HEAD_HTML)
@@ -5718,7 +5764,7 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append("<section class='block' id='packages'>")
     parts.append("<p class='section-heading fade-up'>AI LESSON COCKPIT</p>")
     parts.append("<h2 class='section-title packages-title fade-up d1'>複数のAI講習を、一画面で選ぶ</h2>")
-    parts.append("<p class='section-sub fade-up d2'>無料相談、個別相談、伴走支援、Codex準備、Codex実践を、目的と到達点で選べるように整理しています。受講したいAIエージェントが見ても、次に押すボタンが迷子にならない設計です。</p>")
+    parts.append("<p class='section-sub fade-up d2'>無料相談、個別相談、伴走支援、Codex準備、Codex実践、AIコーディング実装を、目的と到達点で選べるように整理しています。受講したいAIエージェントが見ても、次に押すボタンが迷子にならない設計です。</p>")
     parts.append(_render_courses_packages())
     parts.append("</section>")
 

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-13T11:03:47Z",
+  "generated_at": "2026-06-13T22:54:56Z",
   "recent_works": [
     {
       "date": "2026-06-10",
@@ -156,56 +156,7 @@
       "count": 0
     }
   ],
-  "cma_apps": [
-    {
-      "name": "App1_CommunityBoard",
-      "last_run": "2026-04-11",
-      "kind": "FastAPI Hello World",
-      "status": "✅ 完了"
-    },
-    {
-      "name": "App2_TodoAPI",
-      "last_run": "2026-04-11",
-      "kind": "FastAPI ToDo CRUD",
-      "status": "✅ 完了"
-    },
-    {
-      "name": "App3_WeatherAPI",
-      "last_run": "2026-04-11",
-      "kind": "FastAPI モック天気",
-      "status": "✅ 完了"
-    },
-    {
-      "name": "App4_CounterAPI",
-      "last_run": "2026-04-11",
-      "kind": "FastAPI カウンタ",
-      "status": "✅ 動作確認のみ（ポート衝突あり）"
-    },
-    {
-      "name": "SiteCrawlChecker",
-      "last_run": "2026-04-11",
-      "kind": "ブラウザ QA 巡回",
-      "status": "⚠️ クリティカル所見あり"
-    },
-    {
-      "name": "App_MinanowaPolish",
-      "last_run": "2026-04-16",
-      "kind": "Next.js 16 + Supabase 改善 10 タスク",
-      "status": "✅ クラウド側完了・**納品物は Render 前提で陳腐化**"
-    },
-    {
-      "name": "gtn_ai_mvp",
-      "last_run": "2026-04-16 推定",
-      "kind": "AI パイプライン",
-      "status": "❌ 失敗（0 バイト出力）/ プロジェクト自体終了"
-    },
-    {
-      "name": "vibe_0514_051921",
-      "last_run": "2026-05-14",
-      "kind": "Next.js 16 Hello World（Vercel 集約版検証）",
-      "status": "✅ 完了・本番デプロイ稼働中（[cma-vibe-0514-051921.vercel.app](https://cma-vibe-0514-051921.vercel.app)）"
-    }
-  ],
+  "cma_apps": [],
   "totals": {
     "consul_work_total": 126,
     "recent_7d_total": 2,

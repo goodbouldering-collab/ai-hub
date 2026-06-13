@@ -1,0 +1,227 @@
+:root {
+  --admin-title: "AI相談。彦根";
+  --admin-accent: var(--primary, var(--cyan, var(--accent, #2563eb)));
+  --admin-border: var(--line, var(--line-soft, var(--stroke-soft, rgba(148,163,184,.28))));
+  --admin-muted: var(--muted, #64748b);
+  --admin-text: var(--text, #0f172a);
+}
+
+body.admin-theme-light {
+  --admin-header-bg: rgba(255,255,255,.98);
+  --admin-header-shadow: 0 1px 0 rgba(15,23,42,.08), 0 12px 32px rgba(15,23,42,.08);
+  --admin-link-bg: #fff;
+  --admin-link-hover: #eff6ff;
+  --admin-link-text: #1e293b;
+  --admin-cta-bg: #0f172a;
+  --admin-cta-text: #fff;
+}
+
+body.admin-theme-dark {
+  --admin-header-bg: rgba(3,7,13,.92);
+  --admin-header-shadow: 0 1px 0 rgba(255,255,255,.08), 0 10px 34px rgba(0,0,0,.24);
+  --admin-link-bg: rgba(255,255,255,.06);
+  --admin-link-hover: rgba(255,255,255,.12);
+  --admin-link-text: var(--admin-muted);
+  --admin-cta-bg: var(--admin-text);
+  --admin-cta-text: #06111b;
+  --admin-header-height: 112px;
+  --header-h: 112px;
+}
+
+body.admin-theme-light .container {
+  padding-top: 124px !important;
+}
+
+body.admin-page-form {
+  padding-top: 144px !important;
+}
+
+header.site-header,
+.site-header {
+  position: fixed !important;
+  inset: 0 0 auto 0 !important;
+  z-index: 100 !important;
+  background: var(--admin-header-bg) !important;
+  border-bottom: 1px solid var(--admin-border) !important;
+  box-shadow: var(--admin-header-shadow) !important;
+  backdrop-filter: blur(18px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(140%) !important;
+}
+
+.site-header-inner {
+  max-width: 1280px !important;
+  min-height: 68px;
+  margin: 0 auto !important;
+  padding: 14px 24px 10px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+}
+
+.site-logo {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  min-width: 0;
+  color: var(--admin-text) !important;
+  text-decoration: none !important;
+  font-size: 18px !important;
+  font-weight: 900 !important;
+  letter-spacing: 0 !important;
+  white-space: nowrap !important;
+}
+
+.brand-mark {
+  width: 44px !important;
+  height: 36px !important;
+  border-radius: 8px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: linear-gradient(135deg, rgba(255,255,255,.98), rgba(234,248,255,.90)) !important;
+  border: 1px solid rgba(0,95,158,.20) !important;
+  box-shadow: 0 10px 24px rgba(0,95,158,.12), inset 0 1px 0 rgba(255,255,255,.95) !important;
+  color: #0f172a !important;
+  font-size: 14px !important;
+  font-weight: 950 !important;
+}
+
+.brand-mark .brand-ha {
+  color: #2563eb !important;
+  margin-left: 1px !important;
+}
+
+.wordmark {
+  display: inline-flex !important;
+  align-items: baseline !important;
+  gap: 3px !important;
+  font-weight: 950 !important;
+  letter-spacing: 0 !important;
+}
+
+.wordmark .word-ai { color: var(--admin-accent) !important; }
+.wordmark .word-hub { color: var(--admin-text) !important; }
+.wordmark .word-en {
+  margin-left: 8px !important;
+  color: var(--admin-muted) !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  letter-spacing: .08em !important;
+}
+
+.site-logo-by {
+  color: var(--admin-muted) !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  margin-left: 4px !important;
+}
+
+.site-nav {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.site-nav a,
+.site-nav a.nav-link {
+  min-height: 36px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 0 11px !important;
+  border: 1px solid var(--admin-border) !important;
+  border-radius: 8px !important;
+  background: var(--admin-link-bg) !important;
+  color: var(--admin-link-text) !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  text-decoration: none !important;
+  transition: color .2s, background .2s, border-color .2s, transform .2s !important;
+}
+
+.site-nav a:hover,
+.site-nav a.nav-link:hover {
+  color: var(--admin-accent) !important;
+  background: var(--admin-link-hover) !important;
+  border-color: var(--admin-accent) !important;
+}
+
+.site-nav .login-btn,
+.site-nav a.login-btn {
+  background: var(--admin-cta-bg) !important;
+  color: var(--admin-cta-text) !important;
+  border-color: transparent !important;
+}
+
+.site-nav .login-btn:hover,
+.site-nav a.login-btn:hover {
+  background: var(--admin-accent) !important;
+  color: #fff !important;
+  transform: translateY(-1px) !important;
+}
+
+.admin-subnav {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.admin-subnav a {
+  flex: 0 0 auto;
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 12px;
+  border: 1px solid var(--admin-border);
+  border-radius: 8px;
+  background: var(--admin-link-bg);
+  color: var(--admin-link-text);
+  font-size: 12.5px;
+  font-weight: 850;
+  text-decoration: none;
+}
+
+.admin-subnav a:hover {
+  color: var(--admin-accent);
+  background: var(--admin-link-hover);
+  border-color: var(--admin-accent);
+}
+
+@media (max-width: 900px) {
+  body.admin-theme-light .container {
+    padding-top: 190px !important;
+  }
+
+  body.admin-page-form {
+    padding-top: 198px !important;
+  }
+
+  body.admin-theme-dark {
+    --admin-header-height: 164px;
+    --header-h: 164px;
+  }
+
+  .site-header-inner {
+    align-items: flex-start !important;
+    flex-direction: column !important;
+  }
+
+  .wordmark .word-en,
+  .site-logo-by {
+    display: none !important;
+  }
+
+  .admin-subnav {
+    padding: 0 24px 14px;
+  }
+}

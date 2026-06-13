@@ -85,15 +85,18 @@ def build_metrics() -> dict:
     )
     gsc_items = []
     for page in gsc_pages[:12]:
+        impressions = as_int(page.get("impressions"))
+        clicks = as_int(page.get("clicks"))
+        ctr = rounded_percent(page.get("ctr"))
         title = str(page.get("page") or "")
         gsc_items.append(
             {
                 "platform": "gsc",
                 "type": SEARCH_PAGE,
                 "title": title,
-                "reach": as_int(page.get("impressions")),
-                "reactions": as_int(page.get("clicks")),
-                "engagement": rounded_percent(page.get("ctr")),
+                "reach": impressions,
+                "reactions": clicks,
+                "engagement": ctr,
                 "url": title,
                 "note": GSC_NOTE,
             }

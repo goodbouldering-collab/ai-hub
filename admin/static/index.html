@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AIハブ 管理</title>
+<title>AI相談。彦根</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -11,7 +11,90 @@
     background: #f5f7fb;
     color: #1e293b;
     line-height: 1.6;
-    padding: 32px 20px 80px;
+    padding: 150px 20px 80px;
+  }
+  .site-header {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.98);
+    border-bottom: 1px solid #d8e2ee;
+    box-shadow: 0 1px 0 rgba(15,23,42,0.08), 0 12px 32px rgba(15,23,42,0.08);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+  .site-header-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 14px 24px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .site-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #0f172a;
+    font-size: 18px;
+    font-weight: 900;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .brand-mark {
+    width: 44px;
+    height: 36px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg,#ffffff 0%,#eaf8ff 58%,#eafbf7 100%);
+    border: 1px solid rgba(0,95,158,.18);
+    box-shadow: 0 10px 24px rgba(0,95,158,.12), inset 0 1px 0 rgba(255,255,255,.95);
+    color: #0f172a;
+    font-size: 14px;
+    font-weight: 900;
+  }
+  .brand-mark .brand-ha { color: #2563eb; margin-left: 1px; }
+  .wordmark { display: inline-flex; align-items: baseline; gap: 3px; font-weight: 900; }
+  .wordmark .word-ai { color: #2563eb; }
+  .wordmark .word-hub { color: #0f172a; }
+  .wordmark .word-en { margin-left: 8px; color: #64748b; font-size: 11px; font-weight: 800; letter-spacing: .08em; }
+  .site-logo-by { color: #64748b; font-size: 12px; font-weight: 700; margin-left: 4px; }
+  .site-nav, .admin-subnav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .site-nav a, .admin-subnav a {
+    min-height: 36px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 11px;
+    border: 1px solid #d8e2ee;
+    border-radius: 8px;
+    background: #fff;
+    color: #1e293b;
+    font-size: 13px;
+    font-weight: 800;
+    text-decoration: none;
+  }
+  .site-nav a:hover, .admin-subnav a:hover { color: #2563eb; background: #eff6ff; border-color: #2563eb; }
+  .site-nav .login-btn { background: #0f172a; color: #fff; border-color: transparent; }
+  .admin-subnav {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px 12px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+  }
+  @media (max-width: 900px) {
+    body { padding-top: 214px; }
+    .site-header-inner { align-items: flex-start; flex-direction: column; }
+    .site-nav { gap: 8px; }
+    .wordmark .word-en, .site-logo-by { display: none; }
   }
   .wrap { max-width: 960px; margin: 0 auto; }
   .topbar {
@@ -229,12 +312,34 @@
 </style>
 </head>
 <body>
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="site-logo" href="/site/" aria-label="AI相談。彦根 公開ページへ">
+      <span class="brand-mark" aria-hidden="true"><span class="brand-a">AI</span><span class="brand-ha">相</span></span>
+      <span class="wordmark"><span class="word-ai">AI相談</span><span class="word-hub">彦根</span><span class="word-en">AI CONSULT</span></span>
+      <span class="site-logo-by">管理画面</span>
+    </a>
+    <nav class="site-nav" aria-label="公開ページナビ">
+      <a href="/site/#packages">受講プラン</a>
+      <a href="/site/#speaker">講師紹介</a>
+      <a href="/site/#lectures">講習資料</a>
+      <a href="/site/watch/index.html">AI Watch</a>
+      <a class="login-btn" href="/site/">公開ページへ戻る</a>
+    </nav>
+  </div>
+  <nav class="admin-subnav" aria-label="管理メニュー">
+    <a href="#panel-sns">サポートSNS</a>
+    <a href="#panel-speaker">講師紹介</a>
+    <a href="#panel-lectures">講習資料</a>
+    <a href="#panel-buttons">トップボタン</a>
+    <a href="#panel-shopify">Shopify</a>
+  </nav>
+</header>
 <div class="wrap">
   <div class="topbar">
-    <a href="/site/" class="back-btn">← メインページに戻る</a>
     <button class="rebuild-btn" id="rebuild-btn">🔨 サイト再ビルド</button>
   </div>
-  <h1>AIハブ 管理画面</h1>
+  <h1>AI相談。彦根 管理画面</h1>
   <p class="sub">サポートSNS / 講師紹介 / トップボタンをブラウザから編集できる</p>
 
   <div class="tabs">
@@ -245,11 +350,11 @@
     <button class="tab" data-tab="shopify">🛒 Shopify</button>
   </div>
 
-  <section class="panel active" data-panel="sns">
+  <section class="panel active" id="panel-sns" data-panel="sns">
     <div id="sns-app"></div>
   </section>
 
-  <section class="panel" data-panel="speaker">
+  <section class="panel" id="panel-speaker" data-panel="speaker">
     <div class="card">
       <h2>🎤 講師紹介 <span class="badge" id="speaker-path">content/speaker.md</span></h2>
       <p class="helper">Markdown として保存。保存後は「サイト再ビルド」を押すと <code>/speaker.html</code> に反映。</p>
@@ -262,7 +367,7 @@
     </div>
   </section>
 
-  <section class="panel" data-panel="lectures">
+  <section class="panel" id="panel-lectures" data-panel="lectures">
     <div class="card">
       <h2>📝 講習資料 <span class="badge" id="lec-count-badge">—</span></h2>
       <p class="helper">
@@ -328,7 +433,7 @@
     </div>
   </section>
 
-  <section class="panel" data-panel="shopify">
+  <section class="panel" id="panel-shopify" data-panel="shopify">
     <div class="card">
       <h2>🛒 Shopify Admin <span class="badge" id="shopify-status-badge">確認中…</span></h2>
       <p class="helper">
@@ -383,7 +488,7 @@
     </div>
   </section>
 
-  <section class="panel" data-panel="buttons">
+  <section class="panel" id="panel-buttons" data-panel="buttons">
     <div class="card">
       <h2>🧭 トップページ ナビボタン</h2>
       <p class="helper">並び順・ラベル・リンク・表示/非表示を編集。保存後「サイト再ビルド」で反映。</p>

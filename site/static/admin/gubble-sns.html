@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SNS / SEO Live Board</title>
+  <title>AI相談。彦根</title>
+  <meta name="robots" content="noindex,nofollow">
   <style>
     :root {
       color-scheme: dark;
@@ -1040,20 +1041,32 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="/admin/admin-common.css">
 </head>
-<body>
+<body class="admin-page admin-theme-dark admin-page-dashboard">
   <header class="site-header" id="site-header">
     <div class="site-header-inner">
-      <a class="site-logo" href="/admin"><span class="dot"></span>AIハブ <span class="site-logo-sub">管理画面</span></a>
-      <nav class="site-nav" aria-label="管理ナビ">
-        <a href="/admin#admin-menu">管理</a>
-        <a href="/admin/gubble-sns">SNS分析</a>
-        <a href="/admin/sns-post">SNS投稿</a>
-        <a href="/admin/chat">社内AI</a>
-        <a class="login-btn" href="/ops">OPS</a>
-        <a href="/">TOP</a>
+      <a class="site-logo" href="/" aria-label="AI相談。彦根 公開ページへ">
+        <span class="brand-mark" aria-hidden="true"><span class="brand-a">AI</span><span class="brand-ha">相</span></span>
+        <span class="wordmark"><span class="word-ai">AI相談</span><span class="word-hub">彦根</span><span class="word-en">AI CONSULT</span></span>
+        <span class="site-logo-by">管理画面</span>
+      </a>
+      <nav class="site-nav" aria-label="公開ページナビ">
+        <a class="nav-link" href="/#packages">受講プラン</a>
+        <a class="nav-link" href="/#speaker">講師紹介</a>
+        <a class="nav-link" href="/#lectures">講習資料</a>
+        <a class="nav-link" href="/watch/index.html">AI Watch</a>
+        <a class="login-btn" href="/">公開ページへ戻る</a>
       </nav>
     </div>
+    <nav class="admin-subnav" aria-label="管理メニュー">
+      <a href="/admin#admin-menu">管理ハブ</a>
+      <a href="/admin#panel-status">記事生成</a>
+      <a href="/admin/gubble-sns">SNS分析</a>
+      <a href="/admin/sns-post">SNS投稿</a>
+      <a href="/admin/chat">社内AI</a>
+      <a href="/ops">OPS</a>
+    </nav>
   </header>
   <main class="app-shell" aria-live="polite">
     <header class="topbar glass">

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AIハブ 管理画面 — 社内エージェントに質問</title>
+<title>AI相談。彦根</title>
 <meta name="robots" content="noindex,nofollow">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -18,7 +18,7 @@
     background:linear-gradient(180deg,#ffffff 0%,#f8fafc 100%);
     color:var(--text); min-height:100vh; padding:24px; line-height:1.6; }
   ::selection { background: var(--primary); color: #fff; }
-  .container { max-width:960px; margin:0 auto; padding-top:72px; }
+  .container { max-width:960px; margin:0 auto; padding-top:124px; }
   /* PORTAL(build_portal.py)と同一の site-header に統一。中身は管理用動線。 */
   header.site-header {
     position:fixed; inset:0 0 auto 0; z-index:50;
@@ -39,20 +39,46 @@
     display:inline-flex; align-items:center; gap:8px;
   }
   .site-logo .dot { width:8px; height:8px; border-radius:999px; background:var(--primary); display:inline-block; }
-  .site-nav { display:flex; align-items:center; gap:22px; flex-wrap:wrap; }
-  .site-nav a.nav-link {
-    font-size:13.5px; font-weight:600; color:var(--text-soft);
-    text-decoration:none; transition:color .2s;
+  .brand-mark {
+    width:44px; height:36px; border-radius:8px;
+    display:inline-flex; align-items:center; justify-content:center;
+    background:linear-gradient(135deg,#ffffff 0%,#eaf8ff 58%,#eafbf7 100%);
+    border:1px solid rgba(0,95,158,.18);
+    box-shadow:0 10px 24px rgba(0,95,158,.12), inset 0 1px 0 rgba(255,255,255,.95);
+    color:#0f172a; font-size:14px; font-weight:900; letter-spacing:0;
   }
-  .site-nav a.nav-link:hover { color:var(--primary); }
+  .brand-mark .brand-ha { color:var(--primary); margin-left:1px; }
+  .wordmark { display:inline-flex; align-items:baseline; gap:3px; font-weight:900; letter-spacing:0; }
+  .wordmark .word-ai { color:var(--primary); }
+  .wordmark .word-hub { color:var(--text); }
+  .wordmark .word-en { margin-left:8px; color:var(--muted); font-size:11px; font-weight:700; letter-spacing:.08em; }
+  .site-logo-by { color:var(--muted); font-weight:600; font-size:12px; margin-left:4px; white-space:nowrap; }
+  .site-nav { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .site-nav a.nav-link {
+    padding:8px 10px; border-radius:8px; border:1px solid #e2e8f0;
+    background:#fff; font-size:13px; font-weight:750; color:#1e293b;
+    text-decoration:none; transition:color .2s, background .2s, border-color .2s;
+  }
+  .site-nav a.nav-link:hover { color:#1d4ed8; background:#eff6ff; border-color:#bfdbfe; }
   .site-nav .login-btn {
     display:inline-flex; align-items:center; gap:6px;
-    padding:9px 18px; border-radius:999px;
+    padding:9px 16px; border-radius:8px;
     background:var(--text); color:#fff;
     font-size:13px; font-weight:700;
     text-decoration:none; transition:background .2s, transform .2s;
   }
   .site-nav .login-btn:hover { background:var(--primary); transform:translateY(-1px); }
+  .admin-subnav {
+    max-width:1280px; margin:0 auto; padding:0 24px 12px;
+    display:flex; align-items:center; gap:8px; overflow-x:auto;
+  }
+  .admin-subnav a {
+    flex:0 0 auto; min-height:34px; display:inline-flex; align-items:center;
+    padding:0 12px; border-radius:8px; border:1px solid #d8e2ee;
+    background:rgba(255,255,255,.82); color:#1e293b;
+    font-size:12.5px; font-weight:800; text-decoration:none;
+  }
+  .admin-subnav a:hover { color:#1d4ed8; background:#eff6ff; border-color:#bfdbfe; }
   .topbar { margin-bottom:18px; }
   .topbar h1 {
     font-size:22px; font-weight:800; letter-spacing:-.01em; color:var(--text);
@@ -118,27 +144,39 @@
   }
   .examples button:hover { background: var(--primary-bg); color: var(--primary); border-color: rgba(37,99,235,.30); }
   @media (max-width:900px) {
-    .container { padding-top:142px; }
+    .container { padding-top:190px; }
     .site-header-inner { align-items:flex-start; flex-direction:column; }
     .site-nav { gap:12px; }
+    .wordmark .word-en, .site-logo-by { display:none; }
+    .admin-subnav { padding:0 24px 14px; }
   }
 </style>
+<link rel="stylesheet" href="/admin/admin-common.css">
 </head>
-<body>
+<body class="admin-page admin-theme-light">
 <header class="site-header scrolled" id="site-header">
   <div class="site-header-inner">
-    <a class="site-logo" href="/"><span class="dot"></span>AIハブ <span style="color:var(--muted);font-weight:600;font-size:13px;margin-left:6px;">管理画面</span></a>
-    <nav class="site-nav" aria-label="統合ナビ">
-      <a class="nav-link" href="/">TOP</a>
+    <a class="site-logo" href="/" aria-label="AI相談。彦根 公開ページへ">
+      <span class="brand-mark" aria-hidden="true"><span class="brand-a">AI</span><span class="brand-ha">相</span></span>
+      <span class="wordmark"><span class="word-ai">AI相談</span><span class="word-hub">彦根</span><span class="word-en">AI CONSULT</span></span>
+      <span class="site-logo-by">管理画面</span>
+    </a>
+    <nav class="site-nav" aria-label="公開ページナビ">
       <a class="nav-link" href="/#packages">受講プラン</a>
-      <a class="nav-link" href="/#growth">集客施策</a>
-      <a class="nav-link" href="/#works">制作実績</a>
+      <a class="nav-link" href="/#speaker">講師紹介</a>
       <a class="nav-link" href="/#lectures">講習資料</a>
       <a class="nav-link" href="/watch/index.html">AI Watch</a>
-      <a class="nav-link" href="/admin#admin-menu">管理ハブ</a>
-      <a class="login-btn" href="/ops">OPS</a>
+      <a class="login-btn" href="/">公開ページへ戻る</a>
     </nav>
   </div>
+  <nav class="admin-subnav" aria-label="管理メニュー">
+    <a href="/admin#admin-menu">管理ハブ</a>
+    <a href="/admin#panel-status">記事生成</a>
+    <a href="/admin/gubble-sns">SNS分析</a>
+    <a href="/admin/sns-post">SNS投稿</a>
+    <a href="/admin/chat">社内AI</a>
+    <a href="/ops">OPS</a>
+  </nav>
 </header>
 <div class="container">
   <div class="topbar">

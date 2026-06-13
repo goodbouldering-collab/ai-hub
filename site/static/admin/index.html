@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AIハブ管理画面 — 管理メニュー</title>
+<title>AI相談。彦根</title>
 <meta name="robots" content="noindex,nofollow">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -19,7 +19,7 @@
     background:linear-gradient(180deg,#ffffff 0%,#f8fafc 100%);
     color:var(--text); min-height:100vh; padding:24px; line-height:1.6; }
   ::selection { background: var(--primary); color: #fff; }
-  .container { max-width:1200px; margin:0 auto; padding-top:72px; }
+  .container { max-width:1200px; margin:0 auto; padding-top:124px; }
   /* PORTAL(build_portal.py)と同一の site-header に統一。中身は管理用動線。 */
   header.site-header {
     position:fixed; inset:0 0 auto 0; z-index:50;
@@ -43,6 +43,20 @@
     display:inline-flex; align-items:center; gap:8px;
   }
   .site-logo .dot { width:8px; height:8px; border-radius:999px; background:var(--primary); display:inline-block; }
+  .brand-mark {
+    width:44px; height:36px; border-radius:8px;
+    display:inline-flex; align-items:center; justify-content:center;
+    background:linear-gradient(135deg,#ffffff 0%,#eaf8ff 58%,#eafbf7 100%);
+    border:1px solid rgba(0,95,158,.18);
+    box-shadow:0 10px 24px rgba(0,95,158,.12), inset 0 1px 0 rgba(255,255,255,.95);
+    color:#0f172a; font-size:14px; font-weight:900; letter-spacing:0;
+  }
+  .brand-mark .brand-ha { color:var(--primary); margin-left:1px; }
+  .wordmark { display:inline-flex; align-items:baseline; gap:3px; font-weight:900; letter-spacing:0; }
+  .wordmark .word-ai { color:var(--primary); }
+  .wordmark .word-hub { color:var(--text); }
+  .wordmark .word-en { margin-left:8px; color:var(--muted); font-size:11px; font-weight:700; letter-spacing:.08em; }
+  .site-logo-by { color:var(--muted); font-weight:600; font-size:12px; margin-left:4px; white-space:nowrap; }
   .site-nav {
     display:flex; align-items:center; gap:8px; flex-wrap:wrap;
     padding:4px; border:1px solid #d8e2ee; border-radius:12px;
@@ -63,6 +77,17 @@
     text-decoration:none; transition:background .2s, transform .2s;
   }
   .site-nav .login-btn:hover { background:var(--primary); transform:translateY(-1px); }
+  .admin-subnav {
+    max-width:1280px; margin:0 auto; padding:0 24px 12px;
+    display:flex; align-items:center; gap:8px; overflow-x:auto;
+  }
+  .admin-subnav a {
+    flex:0 0 auto; min-height:34px; display:inline-flex; align-items:center;
+    padding:0 12px; border-radius:8px; border:1px solid #d8e2ee;
+    background:rgba(255,255,255,.82); color:#1e293b;
+    font-size:12.5px; font-weight:800; text-decoration:none;
+  }
+  .admin-subnav a:hover { color:#1d4ed8; background:#eff6ff; border-color:#bfdbfe; }
   .topbar { margin-bottom:20px; }
   .topbar, #admin-menu, #panel-dashboard, #panel-status { scroll-margin-top:96px; }
   .topbar h1 {
@@ -106,7 +131,7 @@
     color:var(--primary); margin-bottom:14px; text-transform:uppercase;
   }
   label { display:block; font-size:12px; color:var(--muted); margin:12px 0 4px; font-weight:600; }
-  input[type=text], input[type=date], input[type=number], textarea, select {
+  input[type=text], input[type=url], input[type=date], input[type=number], textarea, select {
     width:100%; padding:10px 14px; border-radius:10px;
     background:#fff; border:1px solid var(--line);
     color:var(--text); font:inherit; font-size:13.5px;
@@ -272,6 +297,134 @@
     .quickflow { grid-template-columns:1fr; }
   }
 
+  /* === Homepage intake === */
+  .intake-panel {
+    padding:0;
+    overflow:hidden;
+  }
+  .intake-head {
+    display:grid;
+    grid-template-columns:minmax(0, 1fr) auto;
+    gap:16px;
+    align-items:center;
+    padding:18px 20px;
+    background:linear-gradient(135deg,#0f172a 0%,#1e3a8a 100%);
+    color:#fff;
+  }
+  .intake-head h2 {
+    margin:0 0 4px;
+    color:#fff;
+    font-size:16px;
+    letter-spacing:0;
+    text-transform:none;
+  }
+  .intake-head p {
+    margin:0;
+    color:rgba(255,255,255,.76);
+    font-size:12.5px;
+  }
+  .intake-body {
+    padding:18px 20px 20px;
+  }
+  .intake-url-row {
+    display:grid;
+    grid-template-columns:minmax(0, 1fr) auto;
+    gap:10px;
+    align-items:center;
+  }
+  .intake-options {
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 14px;
+    margin-top:10px;
+    color:var(--muted);
+    font-size:12px;
+  }
+  .intake-options label {
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    margin:0;
+    color:var(--muted);
+    font-weight:700;
+  }
+  .intake-options input {
+    width:auto;
+  }
+  .intake-result {
+    margin-top:14px;
+    border:1px solid var(--line);
+    border-radius:12px;
+    background:#f8fafc;
+    overflow:hidden;
+  }
+  .intake-result[hidden] { display:none; }
+  .intake-result-head {
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    padding:12px 14px;
+    border-bottom:1px solid var(--line);
+    background:#fff;
+  }
+  .intake-result-title {
+    font-size:14px;
+    font-weight:850;
+    color:var(--text);
+  }
+  .intake-result-url {
+    display:block;
+    margin-top:2px;
+    color:var(--muted);
+    font-size:11px;
+    word-break:break-all;
+  }
+  .intake-result-body {
+    display:grid;
+    grid-template-columns:minmax(0, 1.2fr) minmax(260px, .8fr);
+    gap:12px;
+    padding:12px 14px;
+  }
+  .intake-result-body p {
+    color:var(--text-soft);
+    font-size:12.5px;
+  }
+  .intake-chip-list {
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    margin-top:8px;
+  }
+  .intake-chip {
+    display:inline-flex;
+    align-items:center;
+    min-height:24px;
+    padding:0 9px;
+    border-radius:999px;
+    background:#fff;
+    border:1px solid var(--line);
+    color:var(--text-soft);
+    font-size:11px;
+    font-weight:800;
+    text-decoration:none;
+  }
+  .intake-result-actions {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+    gap:8px;
+  }
+  @media (max-width:760px) {
+    .intake-head,
+    .intake-url-row,
+    .intake-result-body {
+      grid-template-columns:1fr;
+    }
+    .intake-result-actions {
+      justify-content:flex-start;
+    }
+  }
+
   /* === Admin menu === */
   .admin-menu-panel { padding:0; overflow:hidden; }
   .admin-menu-head {
@@ -326,7 +479,10 @@
     font-size:11px; font-weight:800; color:var(--primary);
   }
   @media (max-width:900px) {
-    .container { padding-top:142px; }
+    .container { padding-top:190px; }
+    .site-header-inner { align-items:flex-start; flex-direction:column; }
+    .wordmark .word-en, .site-logo-by { display:none; }
+    .admin-subnav { padding:0 24px 14px; }
     .admin-menu-grid { grid-template-columns:1fr; }
     .admin-menu-group { border-right:none; border-bottom:1px solid var(--line); }
     .admin-menu-group:last-child { border-bottom:none; }
@@ -335,26 +491,38 @@
     .panel, .topbar, #admin-menu, #panel-dashboard, #panel-status { scroll-margin-top:156px; }
   }
 </style>
+<link rel="stylesheet" href="/admin/admin-common.css">
 </head>
-<body>
+<body class="admin-page admin-theme-light">
 <header class="site-header scrolled" id="site-header">
   <div class="site-header-inner">
-    <a class="site-logo" href="/"><span class="dot"></span>AIハブ <span style="color:var(--muted);font-weight:600;font-size:13px;margin-left:6px;">管理画面</span></a>
-    <nav class="site-nav" aria-label="統合ナビ">
-      <a class="nav-link" href="/admin#admin-menu">管理ハブ</a>
-      <a class="nav-link" href="#panel-status">記事生成</a>
-      <a class="nav-link" href="/admin/gubble-sns">SNS分析</a>
-      <a class="nav-link" href="/admin/sns-post">SNS投稿</a>
-      <a class="nav-link" href="/admin/chat">社内AI</a>
-      <a class="nav-link" href="/ops">OPS</a>
-      <a class="login-btn" href="/">公開TOP</a>
+    <a class="site-logo" href="/" aria-label="AI相談。彦根 公開ページへ">
+      <span class="brand-mark" aria-hidden="true"><span class="brand-a">AI</span><span class="brand-ha">相</span></span>
+      <span class="wordmark"><span class="word-ai">AI相談</span><span class="word-hub">彦根</span><span class="word-en">AI CONSULT</span></span>
+      <span class="site-logo-by">管理画面</span>
+    </a>
+    <nav class="site-nav" aria-label="公開ページナビ">
+      <a class="nav-link" href="/#packages">受講プラン</a>
+      <a class="nav-link" href="/#speaker">講師紹介</a>
+      <a class="nav-link" href="/#lectures">講習資料</a>
+      <a class="nav-link" href="/watch/index.html">AI Watch</a>
+      <a class="login-btn" href="/">公開ページへ戻る</a>
     </nav>
   </div>
+  <nav class="admin-subnav" aria-label="管理メニュー">
+    <a href="/admin#admin-menu">管理ハブ</a>
+    <a href="#panel-dashboard">今週の動き</a>
+    <a href="#panel-status">記事生成</a>
+    <a href="/admin/gubble-sns">SNS分析</a>
+    <a href="/admin/sns-post">SNS投稿</a>
+    <a href="/admin/chat">社内AI</a>
+    <a href="/ops">OPS</a>
+  </nav>
 </header>
 <div class="container">
   <div class="topbar">
     <div>
-      <h1><span class="dot"></span>AIハブ 管理画面</h1>
+      <h1><span class="dot"></span>AI相談。彦根 管理画面</h1>
       <p class="sub">9事業の運用ダッシュボード + グループ記事の発行</p>
       <p class="topbar-lead">最短でやることを先に固定しました。まず接続状態を見て、次に対象グループを選び、最後に記事案の生成と公開へ進む順番です。</p>
     </div>
@@ -393,6 +561,29 @@
       <span>接続状態</span>
       <strong id="pulse-health">確認中</strong>
       <small id="pulse-health-note">API確認中</small>
+    </div>
+  </div>
+
+  <div class="panel intake-panel" id="panel-site-intake">
+    <div class="intake-head">
+      <div>
+        <h2>ホームページURLから管理入力を作る</h2>
+        <p>外部提供用の初期セットアップ。公式サイトを読むだけで、記事テーマ・下書き・画像プロンプト・SNS分析設定の候補を作ります。</p>
+      </div>
+      <span class="badge ok" id="site-intake-badge">新規</span>
+    </div>
+    <div class="intake-body">
+      <div class="intake-url-row">
+        <input type="url" id="site-intake-url" placeholder="https://example.com">
+        <button type="button" class="primary" id="btn-site-intake">URLを読み取る</button>
+      </div>
+      <div class="intake-options" aria-label="反映先">
+        <label><input type="checkbox" id="site-intake-fill-article" checked> 記事入力に反映</label>
+        <label><input type="checkbox" id="site-intake-fill-image" checked> 画像プロンプトに反映</label>
+        <label><input type="checkbox" id="site-intake-fill-dashboard" checked> SNS分析設定を保存</label>
+        <label><input type="checkbox" id="site-intake-overwrite"> 既存入力も上書き</label>
+      </div>
+      <div class="intake-result" id="site-intake-result" hidden></div>
     </div>
   </div>
 
@@ -439,7 +630,7 @@
         <h3>公開導線チェック</h3>
         <a class="admin-link" href="/">
           <span class="admin-link-icon">🌐</span>
-          <span><strong>公開トップ</strong><small>AIハブ本体</small></span>
+          <span><strong>公開トップ</strong><small>AI相談。彦根本体</small></span>
           <span class="admin-link-action">開く</span>
         </a>
         <a class="admin-link" href="/#packages">
@@ -664,6 +855,176 @@ async function api(path, opts = {}) {
   }
   return json;
 }
+
+// === ホームページURLから初期入力
+let lastSiteIntake = null;
+
+function canWriteField(id, overwrite) {
+  const node = $(id);
+  if (!node) return false;
+  return overwrite || !String(node.value || "").trim();
+}
+
+function setFieldIfAllowed(id, value, overwrite) {
+  const node = $(id);
+  if (!node || !value || !canWriteField(id, overwrite)) return false;
+  node.value = value;
+  node.dispatchEvent(new Event("input", { bubbles: true }));
+  return true;
+}
+
+function applySiteIntake(data, options = {}) {
+  const overwrite = Boolean(options.overwrite);
+  let changed = 0;
+
+  if (options.article) {
+    if (setFieldIfAllowed("theme", data.suggestions?.theme || "", overwrite)) changed++;
+    if (setFieldIfAllowed("edit-title", data.suggestions?.title || data.siteName || data.title || "", overwrite)) changed++;
+    if (setFieldIfAllowed("edit-html", data.suggestions?.articleHtml || "", overwrite)) changed++;
+    if (canWriteField("edit-date", overwrite)) {
+      $("edit-date").value = new Date().toISOString().slice(0, 10);
+      changed++;
+    }
+    $("panel-edit").style.display = "block";
+    renderEditorPreview();
+  }
+
+  if (options.image) {
+    if (setFieldIfAllowed("img-prompt", data.suggestions?.imagePrompt || "", overwrite)) changed++;
+    if (setFieldIfAllowed("image-url", data.imageUrl || "", overwrite)) {
+      $("img-preview").src = data.imageUrl;
+      $("img-preview").style.display = "block";
+      $("img-url-text").textContent = data.imageUrl;
+      changed++;
+    }
+  }
+
+  if (options.dashboard) {
+    saveDashboardIntakeConfig(data.suggestions?.dashboardConfig || {});
+    changed++;
+  }
+
+  $("site-intake-badge").className = "badge ok";
+  $("site-intake-badge").textContent = `${changed}項目反映`;
+  log(`ホームページ取込: ${data.finalUrl} / ${changed}項目反映`);
+}
+
+function saveDashboardIntakeConfig(config) {
+  const key = "gubble.youtube.dashboard.config.v2";
+  let current = {};
+  try { current = JSON.parse(localStorage.getItem(key) || "{}") || {}; } catch {}
+  const next = {
+    ...current,
+    channelInput: config.channelInput || current.channelInput || "",
+    refreshSeconds: current.refreshSeconds || 60,
+    videoLimit: current.videoLimit || 6,
+    accounts: mergeAccounts(current.accounts || {}, config.accounts || {}),
+    socials: current.socials || {},
+  };
+  localStorage.setItem(key, JSON.stringify(next));
+
+  const legacyKey = "sns.crossmedia.dashboard.config.v1";
+  let legacy = {};
+  try { legacy = JSON.parse(localStorage.getItem(legacyKey) || "{}") || {}; } catch {}
+  const simpleAccounts = {};
+  Object.entries(next.accounts || {}).forEach(([platform, account]) => {
+    simpleAccounts[platform] = account.account || account.username || account.pageId || account.siteUrl || account.propertyId || account.source || "";
+  });
+  localStorage.setItem(legacyKey, JSON.stringify({
+    ...legacy,
+    channel: next.channelInput || legacy.channel || "",
+    refreshSeconds: legacy.refreshSeconds || 60,
+    accounts: { ...(legacy.accounts || {}), ...simpleAccounts },
+  }));
+}
+
+function mergeAccounts(current, incoming) {
+  const out = { ...current };
+  Object.entries(incoming || {}).forEach(([platform, fields]) => {
+    out[platform] = { ...(out[platform] || {}) };
+    Object.entries(fields || {}).forEach(([key, value]) => {
+      if (value && !out[platform][key]) out[platform][key] = value;
+    });
+  });
+  return out;
+}
+
+function renderSiteIntakeResult(data) {
+  const result = $("site-intake-result");
+  const socials = (data.socialLinks || []).slice(0, 10);
+  const contacts = [...(data.emails || []), ...(data.phones || [])].slice(0, 5);
+  const chips = [
+    ...socials.map((link) => `<a class="intake-chip" href="${escapeAttr(link.url)}" target="_blank" rel="noopener">${escapeHtml(platformLabel(link.platform, link.handle))}</a>`),
+    ...contacts.map((value) => `<span class="intake-chip">${escapeHtml(value)}</span>`),
+  ].join("");
+  result.hidden = false;
+  result.innerHTML = `
+    <div class="intake-result-head">
+      <div>
+        <div class="intake-result-title">${escapeHtml(data.siteName || data.title || "取得結果")}</div>
+        <a class="intake-result-url" href="${escapeAttr(data.finalUrl)}" target="_blank" rel="noopener">${escapeHtml(data.finalUrl)}</a>
+      </div>
+      <span class="badge ok">取得完了</span>
+    </div>
+    <div class="intake-result-body">
+      <div>
+        <p>${escapeHtml(data.description || "description は見つかりませんでした。")}</p>
+        <div class="intake-chip-list">${chips || '<span class="intake-chip">SNSリンクなし</span>'}</div>
+      </div>
+      <div class="intake-result-actions">
+        <button type="button" id="btn-site-intake-apply">この内容を反映</button>
+        <a class="admin-menu-primary" href="/admin/gubble-sns">SNS分析を開く</a>
+      </div>
+    </div>
+  `;
+  $("btn-site-intake-apply").addEventListener("click", () => applySiteIntake(data, readSiteIntakeOptions()));
+}
+
+function readSiteIntakeOptions() {
+  return {
+    article: $("site-intake-fill-article").checked,
+    image: $("site-intake-fill-image").checked,
+    dashboard: $("site-intake-fill-dashboard").checked,
+    overwrite: $("site-intake-overwrite").checked,
+  };
+}
+
+function platformLabel(platform, handle) {
+  const names = { youtube:"YouTube", instagram:"Instagram", threads:"Threads", facebook:"Facebook", x:"X", tiktok:"TikTok", note:"note", line:"LINE", linkedin:"LinkedIn" };
+  return `${names[platform] || platform}${handle ? ` / ${handle}` : ""}`;
+}
+
+$("btn-site-intake").addEventListener("click", async () => {
+  const url = $("site-intake-url").value.trim();
+  if (!url) { alert("ホームページURLを入力してください"); return; }
+  $("btn-site-intake").disabled = true;
+  $("site-intake-badge").className = "badge muted";
+  $("site-intake-badge").textContent = "取得中";
+  $("site-intake-result").hidden = true;
+  try {
+    const data = await api("/api/admin/site-intake", {
+      method: "POST",
+      body: JSON.stringify({ url }),
+    });
+    lastSiteIntake = data;
+    renderSiteIntakeResult(data);
+    applySiteIntake(data, readSiteIntakeOptions());
+  } catch (e) {
+    $("site-intake-badge").className = "badge err";
+    $("site-intake-badge").textContent = "失敗";
+    $("site-intake-result").hidden = false;
+    $("site-intake-result").innerHTML = `<div class="intake-result-head"><div class="intake-result-title">取得できませんでした</div><span class="badge err">ERROR</span></div><div class="intake-result-body"><p>${escapeHtml(e.message)}</p></div>`;
+  } finally {
+    $("btn-site-intake").disabled = false;
+  }
+});
+
+$("site-intake-url").addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    $("btn-site-intake").click();
+  }
+});
 
 // === 接続確認
 (async () => {

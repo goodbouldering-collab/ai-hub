@@ -86,7 +86,7 @@ ADMIN_BUTTON_HTML = """
 """
 
 
-OG_IMAGE_URL = SITE_URL + "/img/hero-agent-grown-20260612.png"
+OG_IMAGE_URL = SITE_URL + "/img/hero-service-atlas-20260614.png"
 
 
 def _build_ogp(title: str, description: str, page_url: str, *, image: str | None = None) -> str:
@@ -4280,6 +4280,425 @@ section.block.block-tight {
 }
 """
 
+PORTAL_CSS += """
+
+/* ---- Service atlas hero: image-led + interactive, 2026-06-14 ---- */
+.hero.hero-atlas {
+  isolation: isolate;
+  overflow: hidden;
+  min-height: min(760px, calc(100svh - 8px)) !important;
+  grid-template-columns: minmax(0, .92fr) minmax(420px, .88fr) !important;
+  gap: 44px !important;
+  padding: 104px 0 46px !important;
+}
+
+.hero.hero-atlas::before {
+  display: none !important;
+}
+
+.hero.hero-atlas::after {
+  content: "";
+  display: block !important;
+  position: absolute;
+  inset: 0 calc(50% - 50vw);
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at calc(var(--mx, .58) * 100%) calc(var(--my, .45) * 100%), rgba(0,184,212,.18), transparent 28rem),
+    linear-gradient(90deg, rgba(255,255,255,.98) 0%, rgba(255,255,255,.92) 33%, rgba(255,255,255,.42) 63%, rgba(255,255,255,.10) 100%),
+    linear-gradient(180deg, rgba(255,255,255,.72) 0%, rgba(247,250,248,.88) 100%);
+}
+
+.hero-bg-layer {
+  position: absolute;
+  inset: 0 calc(50% - 50vw);
+  z-index: -3;
+  overflow: hidden;
+  background: #F8FBF8;
+}
+
+.hero-bg-layer img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(1.04) contrast(1.02);
+  transform: scale(1.025) translate3d(calc((var(--mx, .58) - .5) * -18px), calc((var(--my, .45) - .5) * -12px), 0);
+  transform-origin: center;
+  transition: transform .18s ease-out;
+}
+
+.hero.hero-atlas .hero-text {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+  padding: 18px 0 12px;
+}
+
+.hero.hero-atlas .fusion-logo-large .ai {
+  font-size: 86px !important;
+}
+
+.hero.hero-atlas .fusion-logo-large .hub {
+  color: #0F8F72 !important;
+}
+
+.hero.hero-atlas .hero-title-sub {
+  max-width: 690px;
+  text-wrap: balance;
+}
+
+.hero.hero-atlas .hero-title-sub strong {
+  color: transparent !important;
+  background: linear-gradient(105deg, #1F6E8C 0%, #0F8F72 42%, #B7791F 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+.hero.hero-atlas .lead {
+  max-width: 660px;
+  color: #334155 !important;
+}
+
+.hero.hero-atlas .hero-proof-grid {
+  background: rgba(255,255,255,.64) !important;
+  border: 1px solid rgba(255,255,255,.86) !important;
+  box-shadow: 0 20px 54px rgba(18,32,51,.10), inset 0 1px 0 rgba(255,255,255,.9) !important;
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+}
+
+.hero.hero-atlas .hero-proof {
+  background: rgba(255,255,255,.66) !important;
+}
+
+.hero-atlas-panel {
+  position: relative;
+  justify-self: stretch;
+  align-self: stretch;
+  width: min(100%, 620px) !important;
+  min-height: 468px;
+  aspect-ratio: auto !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+  transform: none !important;
+  perspective: 1100px;
+}
+
+.atlas-pathlines {
+  position: absolute;
+  inset: 10% 3% 8% 4%;
+  border-radius: 8px;
+  pointer-events: none;
+  opacity: .82;
+  transform: rotateX(calc((var(--my, .45) - .5) * 7deg)) rotateY(calc((var(--mx, .58) - .5) * -9deg));
+  transition: transform .18s ease-out;
+}
+
+.atlas-pathlines::before,
+.atlas-pathlines::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    linear-gradient(110deg, transparent 0 18%, rgba(31,110,140,.24) 18.4%, transparent 19.2% 37%, rgba(15,143,114,.20) 37.4%, transparent 38.2% 62%, rgba(183,121,31,.18) 62.4%, transparent 63.2%),
+    linear-gradient(22deg, transparent 0 31%, rgba(31,110,140,.20) 31.4%, transparent 32.2% 54%, rgba(0,184,212,.18) 54.4%, transparent 55.2%),
+    radial-gradient(circle at 40% 35%, rgba(31,110,140,.22) 0 2px, transparent 3px),
+    radial-gradient(circle at 64% 24%, rgba(15,143,114,.22) 0 2px, transparent 3px),
+    radial-gradient(circle at 71% 52%, rgba(0,184,212,.22) 0 2px, transparent 3px),
+    radial-gradient(circle at 50% 68%, rgba(183,121,31,.20) 0 2px, transparent 3px),
+    radial-gradient(circle at 83% 72%, rgba(31,110,140,.22) 0 2px, transparent 3px);
+}
+
+.atlas-pathlines::after {
+  inset: 12% 8% 12% 10%;
+  opacity: .56;
+  filter: blur(.2px);
+  animation: atlas-drift 8s linear infinite;
+}
+
+@keyframes atlas-drift {
+  from { transform: translateX(-10px); }
+  to { transform: translateX(10px); }
+}
+
+.atlas-node {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  z-index: 4;
+  width: min(210px, 40vw);
+  min-height: 70px;
+  padding: 10px 12px 10px 11px;
+  border: 1px solid rgba(255,255,255,.88);
+  border-radius: 8px;
+  background: rgba(255,255,255,.70);
+  color: #122033;
+  box-shadow: 0 18px 44px rgba(18,32,51,.12), inset 0 1px 0 rgba(255,255,255,.95);
+  backdrop-filter: blur(18px) saturate(155%);
+  -webkit-backdrop-filter: blur(18px) saturate(155%);
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  gap: 9px;
+  align-items: center;
+  text-align: left;
+  cursor: pointer;
+  transform: translate(-50%, -50%) translateZ(0);
+  transition: transform .2s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+
+.atlas-node:hover,
+.atlas-node:focus-visible,
+.atlas-node.is-active {
+  transform: translate(-50%, -50%) translateY(-4px);
+  background: rgba(255,255,255,.92);
+  border-color: rgba(31,110,140,.34);
+  box-shadow: 0 24px 58px rgba(18,32,51,.16), 0 0 0 4px rgba(31,110,140,.08);
+  outline: none;
+}
+
+.atlas-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: #0F8F72;
+  box-shadow: 0 0 0 5px rgba(15,143,114,.13), 0 0 20px rgba(0,184,212,.45);
+}
+
+.atlas-node:nth-of-type(2) .atlas-dot { background: #1F6E8C; }
+.atlas-node:nth-of-type(3) .atlas-dot { background: #00A5C8; }
+.atlas-node:nth-of-type(4) .atlas-dot { background: #B7791F; }
+.atlas-node:nth-of-type(5) .atlas-dot { background: #61758F; }
+
+.atlas-node-copy {
+  display: block;
+  min-width: 0;
+}
+
+.atlas-node-copy b {
+  display: block;
+  font-size: 14px;
+  line-height: 1.25;
+}
+
+.atlas-node-copy small {
+  display: block;
+  margin-top: 3px;
+  color: #52647A;
+  font-size: 11px;
+  line-height: 1.3;
+}
+
+.atlas-live-card {
+  position: absolute;
+  left: 0;
+  bottom: 18px;
+  z-index: 5;
+  width: min(360px, 78%);
+  padding: 18px 18px 16px;
+  border: 1px solid rgba(255,255,255,.86);
+  border-radius: 8px;
+  background: rgba(255,255,255,.78);
+  color: #122033;
+  box-shadow: 0 26px 64px rgba(18,32,51,.14), inset 0 1px 0 rgba(255,255,255,.92);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+}
+
+.atlas-live-kicker {
+  display: block;
+  color: #1F6E8C;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.atlas-live-title {
+  display: block;
+  margin-top: 6px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+
+.atlas-live-desc {
+  margin: 8px 0 14px;
+  color: #405166;
+  font-size: 13.5px;
+  line-height: 1.7;
+}
+
+.atlas-live-cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 9px 13px;
+  border-radius: 8px;
+  color: #FFFFFF;
+  background: linear-gradient(135deg, #1F6E8C, #0F8F72);
+  font-size: 13px;
+  font-weight: 900;
+  text-decoration: none;
+  box-shadow: 0 12px 28px rgba(31,110,140,.20);
+}
+
+.block {
+  position: relative;
+}
+
+.block::before {
+  content: "";
+  position: absolute;
+  left: max(0px, calc(50% - 560px));
+  right: max(0px, calc(50% - 560px));
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(31,110,140,.22), rgba(15,143,114,.18), transparent);
+  pointer-events: none;
+}
+
+.path-card,
+.pkg-card,
+.lecture-card,
+.pf-card,
+.flow-step,
+.faq-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.path-card::after,
+.pkg-card::after,
+.lecture-card::after,
+.pf-card::after,
+.flow-step::after,
+.faq-item::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: linear-gradient(90deg, rgba(31,110,140,.42), rgba(0,184,212,.18), rgba(183,121,31,.20));
+  opacity: .55;
+  pointer-events: none;
+}
+
+@media (max-width: 1040px) {
+  .hero.hero-atlas {
+    min-height: auto !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  .hero.hero-atlas .fusion-logo-large .ai {
+    font-size: 72px !important;
+  }
+
+  .hero-atlas-panel {
+    justify-self: center;
+    width: min(100%, 680px) !important;
+    min-height: 440px;
+  }
+}
+
+@media (max-width: 680px) {
+  .hero.hero-atlas {
+    width: calc(100vw - 32px) !important;
+    max-width: calc(100vw - 32px) !important;
+    padding-top: 78px !important;
+    gap: 24px !important;
+  }
+
+  .hero.hero-atlas::after {
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.96) 0%, rgba(255,255,255,.92) 45%, rgba(255,255,255,.72) 100%),
+      radial-gradient(circle at 76% 28%, rgba(0,184,212,.16), transparent 18rem);
+  }
+
+  .hero-bg-layer img {
+    object-position: 68% center;
+    opacity: .72;
+  }
+
+  .hero.hero-atlas .fusion-logo-large .ai {
+    font-size: 56px !important;
+  }
+
+  .hero.hero-atlas .fusion-logo-large .hub {
+    font-size: 38px !important;
+  }
+
+  .hero.hero-atlas .hero-title-sub {
+    font-size: 28px;
+    line-height: 1.16;
+  }
+
+  .hero.hero-atlas .sub-catch {
+    font-size: 18px;
+    line-height: 1.55;
+  }
+
+  .hero.hero-atlas .lead {
+    font-size: 14.5px;
+    line-height: 1.8;
+  }
+
+  .hero.hero-atlas .hero-proof-grid {
+    display: none !important;
+  }
+
+  .hero-atlas-panel {
+    min-height: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .atlas-pathlines {
+    display: none;
+  }
+
+  .atlas-node,
+  .atlas-live-card {
+    position: relative;
+    left: auto;
+    top: auto;
+    bottom: auto;
+    width: 100%;
+    transform: none;
+  }
+
+  .atlas-node:hover,
+  .atlas-node:focus-visible,
+  .atlas-node.is-active {
+    transform: translateY(-2px);
+  }
+
+  .atlas-live-card {
+    order: -1;
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-bg-layer img,
+  .atlas-pathlines,
+  .atlas-node {
+    transition: none !important;
+  }
+
+  .atlas-pathlines::after {
+    animation: none !important;
+  }
+}
+"""
+
 
 def _render_header() -> str:
     """N デザイン風 fixed ヘッダー。スクロールで white/90 + blur に切替。"""
@@ -4628,6 +5047,45 @@ HEADER_JS = """
       });
     });
   })();
+
+  // ヒーローのサービス地図: ホットスポット選択 + 背景の軽い奥行き
+  (function(){
+    var hero = document.querySelector('[data-hero-atlas]');
+    if (!hero) return;
+    var nodes = Array.prototype.slice.call(hero.querySelectorAll('.atlas-node'));
+    var kicker = hero.querySelector('.atlas-live-kicker');
+    var title = hero.querySelector('.atlas-live-title');
+    var desc = hero.querySelector('.atlas-live-desc');
+    var cta = hero.querySelector('.atlas-live-cta');
+    if (!nodes.length || !kicker || !title || !desc || !cta) return;
+
+    function selectNode(node){
+      nodes.forEach(function(n){
+        var active = n === node;
+        n.classList.toggle('is-active', active);
+        n.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+      kicker.textContent = 'Service ' + (node.getAttribute('data-index') || '');
+      title.textContent = node.getAttribute('data-title') || '';
+      desc.textContent = node.getAttribute('data-desc') || '';
+      cta.textContent = node.getAttribute('data-cta') || '詳しく見る';
+      cta.setAttribute('href', node.getAttribute('data-href') || '#contact');
+    }
+
+    nodes.forEach(function(node){
+      node.addEventListener('pointerenter', function(){ selectNode(node); });
+      node.addEventListener('focus', function(){ selectNode(node); });
+      node.addEventListener('click', function(){ selectNode(node); });
+    });
+
+    if (!prefersReduced) {
+      hero.addEventListener('pointermove', function(e){
+        var r = hero.getBoundingClientRect();
+        hero.style.setProperty('--mx', Math.max(0, Math.min(1, (e.clientX - r.left) / r.width)).toFixed(3));
+        hero.style.setProperty('--my', Math.max(0, Math.min(1, (e.clientY - r.top) / r.height)).toFixed(3));
+      }, { passive: true });
+    }
+  })();
 })();
 </script>
 """
@@ -4731,69 +5189,115 @@ HERO_SVG = """
 
 
 def _render_hero() -> str:
-    icon_search = (
-        "<svg viewBox='0 0 24 24' aria-hidden='true' fill='none'>"
-        "<circle cx='10.5' cy='10.5' r='5.5' stroke='currentColor' stroke-width='2'/>"
-        "<path d='M15 15l4.5 4.5' stroke='currentColor' stroke-width='2' stroke-linecap='round'/>"
-        "</svg>"
-    )
-    icon_doc = (
-        "<svg viewBox='0 0 24 24' aria-hidden='true' fill='none'>"
-        "<path d='M7 3h7l4 4v14H7z' stroke='currentColor' stroke-width='2' stroke-linejoin='round'/>"
-        "<path d='M14 3v5h5M10 12h6M10 16h6' stroke='currentColor' stroke-width='2' stroke-linecap='round'/>"
-        "</svg>"
-    )
-    icon_media = (
-        "<svg viewBox='0 0 24 24' aria-hidden='true' fill='none'>"
-        "<rect x='4' y='6' width='16' height='12' rx='2' stroke='currentColor' stroke-width='2'/>"
-        "<path d='M10 10l5 2-5 2z' fill='currentColor'/>"
-        "</svg>"
-    )
-    icon_growth = (
-        "<svg viewBox='0 0 24 24' aria-hidden='true' fill='none'>"
-        "<path d='M5 18V9M12 18V5M19 18v-7' stroke='currentColor' stroke-width='2' stroke-linecap='round'/>"
-        "<path d='M4 18h16M15 7l4-4 1 5' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>"
-        "</svg>"
-    )
+    atlas_items = [
+        {
+            "index": "01",
+            "title": "無料相談",
+            "sub": "入口を30分で整理",
+            "desc": "課題を聞き、講習・個別相談・伴走のどれから始めるかを決めます。",
+            "cta": "相談日程を見る",
+            "href": "#contact",
+            "x": "42%",
+            "y": "35%",
+        },
+        {
+            "index": "02",
+            "title": "AI講習",
+            "sub": "Codex / ChatGPT / Claude",
+            "desc": "準備会、実践会、AIコーディング講習を、到達点から選べます。",
+            "cta": "講習プランを見る",
+            "href": "#packages",
+            "x": "64%",
+            "y": "24%",
+        },
+        {
+            "index": "03",
+            "title": "受講資料",
+            "sub": "あとから見返せる",
+            "desc": "講習内容、AI活用、SNS、LLMOを資料センターとして整理します。",
+            "cta": "資料を見る",
+            "href": "#lectures",
+            "x": "71%",
+            "y": "52%",
+        },
+        {
+            "index": "04",
+            "title": "実例サイト",
+            "sub": "運営中の制作物",
+            "desc": "実際に構築・運用しているサイトを教材として見せながら進めます。",
+            "cta": "実例を見る",
+            "href": "#works",
+            "x": "50%",
+            "y": "68%",
+        },
+        {
+            "index": "05",
+            "title": "SNS / AI観測",
+            "sub": "毎朝チューニング",
+            "desc": "競合、国内トレンド、YouTube、SNS反応を見て入口を更新します。",
+            "cta": "改善ループを見る",
+            "href": "#growth",
+            "x": "83%",
+            "y": "72%",
+        },
+    ]
+    atlas_buttons: list[str] = []
+    for i, item in enumerate(atlas_items):
+        active = " is-active" if i == 0 else ""
+        atlas_buttons.append(
+            "<button type='button' "
+            f"class='atlas-node{active}' "
+            f"aria-pressed='{'true' if i == 0 else 'false'}' "
+            f"data-index='{html.escape(item['index'], quote=True)}' "
+            f"data-title='{html.escape(item['title'], quote=True)}' "
+            f"data-desc='{html.escape(item['desc'], quote=True)}' "
+            f"data-cta='{html.escape(item['cta'], quote=True)}' "
+            f"data-href='{html.escape(item['href'], quote=True)}' "
+            f"style='--x:{item['x']};--y:{item['y']}'>"
+            "<span class='atlas-dot' aria-hidden='true'></span>"
+            "<span class='atlas-node-copy'>"
+            f"<b>{html.escape(item['title'])}</b>"
+            f"<small>{html.escape(item['sub'])}</small>"
+            "</span>"
+            "</button>"
+        )
+    first_item = atlas_items[0]
     return (
-        "<section class='hero' id='top'>"
+        "<section class='hero hero-atlas' id='top' data-hero-atlas>"
+        "<div class='hero-bg-layer' aria-hidden='true'>"
+        "<img src='img/hero-service-atlas-20260614.png' alt='' decoding='async' fetchpriority='high'>"
+        "</div>"
         "<div class='hero-text fade-up'>"
         "<span class='eyebrow'>彦根・滋賀の事業者向け AI相談 / 講習 / 導入支援</span>"
         "<h1 class='hero-brand'>"
         "<span class='fusion-logo-large'><span class='ai'>AI相談。</span><span class='hub'>彦根</span></span>"
-        "<span class='hero-title-sub'><strong>何から始めるかを、30分で決める。</strong><br>相談、講習、資料、伴走を迷わず選べる入口へ。</span>"
+        "<span class='hero-title-sub'><strong>相談、講習、資料、実例、SNS観測。</strong><br>必要な入口を、ひとつの地図で選ぶ。</span>"
         "<span class='visually-hidden'>｜彦根 AI相談、滋賀 生成AI講習、Codex講習、ChatGPT講座、Claude講習、AI導入支援、補助金申請サポート、LLMO対策、YouTube SEO、SNS集客</span>"
         "</h1>"
         "<p class='sub-catch'>"
-        "<strong>ChatGPT、Codex、Claude、画像、動画、SNS、LLMOまで。<br>今の課題に合わせて、受け方を先に整理できるAI講習ポータルです。</strong>"
+        "<strong>ChatGPT、Codex、Claude、画像、SNSまで。<br>課題から、受け方と作るものを整理します。</strong>"
         "</p>"
         "<p class='lead'>"
-        "無料相談で入口を整理し、そのまま講習、資料、伴走支援へつなげます。競合、国内トレンド、YouTube、SNS反応を毎朝読み直しながら、見た目ではなく選びやすさを育て続けます。"
+        "無料相談、AI講習、受講資料、実例サイト、SNS/AI観測を1つに接続。初回で迷わず次の行動へ進める設計です。"
         "</p>"
         "<div class='hero-actions'>"
         "<a class='btn btn-primary btn-lg' href='#contact'>無料30分相談を予約</a>"
         "<a class='btn btn-secondary btn-lg' href='#lectures'>受講資料を先に見る</a>"
         "</div>"
         "<div class='hero-proof-grid' aria-label='AI講習会の特徴'>"
-        "<div class='hero-proof'><span class='proof-icon'>01</span><span><b>Local Fit</b><span>彦根の商売に合わせて整理</span></span></div>"
+        "<div class='hero-proof'><span class='proof-icon'>01</span><span><b>Map First</b><span>入口を先に選びやすくする</span></span></div>"
         "<div class='hero-proof'><span class='proof-icon'>02</span><span><b>Owner Led</b><span>9事業を回す実践者が担当</span></span></div>"
-        "<div class='hero-proof'><span class='proof-icon'>03</span><span><b>Daily QA</b><span>見やすさと予約導線を毎朝点検</span></span></div>"
+        "<div class='hero-proof'><span class='proof-icon'>03</span><span><b>Daily Loop</b><span>反応を見て導線を育てる</span></span></div>"
         "</div>"
         "</div>"
-        "<div class='hero-photo-card fade-up d2' aria-label='AI相談。彦根のエージェント成長型デザインイメージ'>"
-        "<img src='img/hero-agent-grown-20260612.png' alt='AIエージェントが講習、SNS、動画、資料の導線を毎日育てるコックピット風ビジュアル' decoding='async' fetchpriority='high'>"
-        "<div class='hero-lesson-board'>"
-        "<p class='lesson-board-title'>Agent Growth Loop</p>"
-        "<div class='lesson-board-list'>"
-        f"<span class='lesson-board-item'>{icon_search}<span>競合分析</span></span>"
-        f"<span class='lesson-board-item'>{icon_doc}<span>国内トレンド</span></span>"
-        f"<span class='lesson-board-item'>{icon_media}<span>YouTube/SNS</span></span>"
-        f"<span class='lesson-board-item'>{icon_growth}<span>UI/画像更新</span></span>"
-        "</div>"
-        "</div>"
-        "<div class='hero-class-caption'>"
-        "<b>エージェントが見ても、受けたいと思う講習入口へ。</b>"
-        "<span>相談、講習、資料化、集客まで、毎日の観測で磨きます。</span>"
+        "<div class='hero-photo-card hero-atlas-panel fade-up d2' aria-label='AIハブのサービス地図'>"
+        "<div class='atlas-pathlines' aria-hidden='true'></div>"
+        f"{''.join(atlas_buttons)}"
+        "<div class='atlas-live-card' aria-live='polite'>"
+        f"<span class='atlas-live-kicker'>Service {html.escape(first_item['index'])}</span>"
+        f"<b class='atlas-live-title'>{html.escape(first_item['title'])}</b>"
+        f"<p class='atlas-live-desc'>{html.escape(first_item['desc'])}</p>"
+        f"<a class='atlas-live-cta' href='{html.escape(first_item['href'], quote=True)}'>{html.escape(first_item['cta'])}</a>"
         "</div>"
         "</div>"
         "</section>"
@@ -5807,7 +6311,7 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     # 3. 制作実績（TOP内にサマリを掲載・各カードは公開サイト本体へ直リンク）
     parts.append("<section class='block' id='works'>")
     parts.append("<p class='section-heading fade-up'>WORKS</p>")
-    parts.append("<h2 class='section-title fade-up d1'>講習で見せられる実例・運営サイト</h2>")
+    parts.append("<h2 class='section-title fade-up d1'>実例サイト</h2>")
     parts.append("<p class='section-sub fade-up d2'>説明だけではなく、講師が実際に構築・運用しているサイトや業務システムを教材として使います。</p>")
     parts.append("<div class='fade-up d2'>")
     parts.append(_render_works_section())

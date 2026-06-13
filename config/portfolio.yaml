@@ -142,6 +142,14 @@ portfolio:
     tech: [Genspark]
     summary: マーケ基礎 → 1億到達までの考え方を1枚で
 
+  - name: T3-C
+    slug: t3-c
+    url: https://bavosruo.gensparkspace.com/blog.html
+    status: live
+    category: 生成LP
+    tech: [Genspark]
+    summary: T3-C の生成ブログページ
+
   # ── インディーハッカーツール（1人で素早く作った単機能ツール・生成物・コンサル成果物）──
   - name: LLMO診断
     slug: llmo-shindan

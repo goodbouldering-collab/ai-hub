@@ -65,7 +65,7 @@ DEFAULT_TOP_BUTTONS = [
     {"id": "profile",         "group": "講師",         "label": "経歴",               "icon": "📜", "href": "profile.html",          "kind": "link",   "enabled": True},
     {"id": "portfolio",       "group": "作品",         "label": "実績",               "icon": "🏆", "href": "portfolio.html",        "kind": "link",   "enabled": True},
     {"id": "lectures",        "group": "教材資料",     "label": "講習資料",           "icon": "📝", "href": "lectures/index.html",   "kind": "link",   "enabled": True},
-    # AIコーディング実装講習は lectures index の中にリンクとして掲載するためトップナビからは外す
+    # AIコーディング講習は lectures index の中にリンクとして掲載するためトップナビからは外す
     {"id": "archive",         "group": "アーカイブ",   "label": "過去ログ",           "icon": "📚", "href": "archive.html",          "kind": "link",   "enabled": True},
     {"id": "run",             "group": "操作",         "label": "巡回実行",           "icon": "🔄", "href": "",                      "kind": "action", "action_id": "run", "enabled": True},
 ]
@@ -2834,7 +2834,7 @@ def _patch_programming_map_nav(pmap_file: Path) -> None:
     text = pmap_file.read_text(encoding="utf-8")
     # 共通ナビ HTML（pmap を current として）
     common_nav = render_top_nav(path_prefix="./", current_id="pmap", include_run=False)
-    # ページ内目次バー（AIコーディング実装講習 専用 — sticky とは別）
+    # ページ内目次バー（AIコーディング講習 専用 — sticky とは別）
     chapter_toc = (
         "<nav class='pm-chapter-toc' aria-label='ページ内目次'>"
         "<span class='pm-toc-label'>AI CODING</span>"
@@ -2870,7 +2870,7 @@ def _patch_programming_map_nav(pmap_file: Path) -> None:
         "<style id='pm-chapter-toc-css'>"
         # ---- 共通トップヘッダー/ナビ（index.html 等と同一・正本 CSS から抽出） ----
         + common_nav_css
-        # ページ内目次バー（AIコーディング実装講習 専用：fixed top-nav の真下に sticky で吸着）
+        # ページ内目次バー（AIコーディング講習 専用：fixed top-nav の真下に sticky で吸着）
         # 共通 top-nav は fixed (height ≒ 68px) なので、本文先頭は 96px から
         + "html{scroll-padding-top:144px;}"
         "[id]{scroll-margin-top:144px;}"

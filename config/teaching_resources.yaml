@@ -31,7 +31,7 @@ sections:
   icon: 📚
   description: 講習中の画面共有、短時間説明、追加学習に使う資料
   items:
-  - title: AIコーディング実装 120分
+  - title: AIコーディング講習 120分
     icon: 🧭
     href: programming-map.html
     summary: Codex導入、プログラミング基礎、実装、公開、公式アップデート、AI応用制作までを、線画とタブUIで段階的に学ぶ講習LP。

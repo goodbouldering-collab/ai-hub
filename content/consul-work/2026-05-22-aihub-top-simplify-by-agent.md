@@ -32,7 +32,7 @@ ai-hub commit `739e4cc`。本番 https://ai-hub-jp.vercel.app/ 反映・検証�
 3. **FLOW**: ご依頼の4ステップ
 4. **SPEAKER**: 講師紹介1ブロック（実績数字込み・詳細は speaker.html へ）
 5. **FAQ**: 4問アコーディオン
-6. **CONTACT**: mailto + 実績/受講資料/自分ポータルの3リンクバー
+6. **CONTACT**: mailto + 実績/講習資料/自分ポータルの3リンクバー
 
 ## 削った/縮小
 - 完全削除: STATS(top-level) / WORK GALLERY / SERVICES6カード / パララックスバンド / 事業ポートフォリオ全カード(biz-grid)

@@ -10,7 +10,7 @@
 
 ```
 hero → stats → gallery(事例) → services(提供6つ) → works(事業ポートフォリオ)
-  → flow(依頼の流れ) → profile(簡易プロフィール) → news(受講資料3件) → faq → contact
+  → flow(依頼の流れ) → profile(簡易プロフィール) → news(講習資料3件) → faq → contact
 ```
 
 ## メニュー項目（build_site.py NAV）とのギャップ
@@ -20,7 +20,7 @@ hero → stats → gallery(事例) → services(提供6つ) → works(事業ポ�
 | 講師紹介 | speaker.html | **なし** | 新規セクション `#speaker` 追加（content/speaker.md から要約） |
 | 経歴 | profile.html | 簡易 `#profile` のみ | `#profile` を config/profile.yaml の timeline/stats で充実化 |
 | 実績 | portfolio.html | works(事業)とは別物 | 新規セクション `#portfolio` 追加（config/portfolio.yaml 14件） |
-| 受講資料 | lectures/index.html | news 3件プレビュー | `#lectures` セクションに拡充（全件 + DL動線） |
+| 講習資料 | lectures/index.html | news 3件プレビュー | `#lectures` セクションに拡充（全件 + DL動線） |
 | プログラミングマップ | programming-map.html | なし | `#lectures` 内にリンクカードで内包（現lectures踏襲） |
 | 過去ログ | archive.html | なし | フッターリンク扱い（LPに節は作らない） |
 
@@ -34,7 +34,7 @@ hero
  → services     （現状維持：提供6つ）
  → portfolio    ★新規：制作実績（portfolio.yaml 14件カード + 詳細ページへ）
  → works        （現状維持：事業ポートフォリオ）
- → lectures     ◇拡充：受講資料（全件 + programming-map リンク + DL動線）
+ → lectures     ◇拡充：講習資料（全件 + programming-map リンク + DL動線）
  → gallery      （現状維持：事例ギャラリー）
  → flow         （現状維持：依頼の流れ）
  → faq          （現状維持）

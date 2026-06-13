@@ -2306,13 +2306,13 @@ def _render_teaching_home(sections: list[dict]) -> str:
     parts.append("<div>")
     parts.append("<h2>講習資料ホーム</h2>")
     parts.append(
-        "<p>「Codex実践 構築と応用」の形式を基準に、各資料を目次、本文、動画、"
+        "<p>「Codex実践会 120分 構築と応用」の形式を基準に、各資料を目次、本文、動画、"
         "ナレーション、スライド、PDF、チェックの観点で探せるようにまとめた入口です。"
         "講習中は投影資料へ、復習時は本文と目次へ、制作時はチェック項目へ進めます。</p>"
     )
     parts.append("<div class='tr-home-actions'>")
     if featured_href:
-        parts.append(f"<a href='{html.escape(featured_href, quote=True)}'>Codex実践から見る</a>")
+        parts.append(f"<a href='{html.escape(featured_href, quote=True)}'>Codex実践会から見る</a>")
     if first_section_id:
         parts.append(f"<a href='#sec-{html.escape(first_section_id, quote=True)}'>全資料を見る</a>")
     parts.append("</div>")

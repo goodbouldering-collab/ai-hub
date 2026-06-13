@@ -3948,21 +3948,26 @@ body::before {
 }
 
 .site-nav {
-  background: rgba(255,255,255,.82) !important;
-  border-color: rgba(18,32,51,.10) !important;
+  background: rgba(255,255,255,.94) !important;
+  border-color: rgba(18,32,51,.14) !important;
+  box-shadow: 0 8px 22px rgba(18,32,51,.08), inset 0 1px 0 rgba(255,255,255,.96) !important;
 }
 
 .site-nav a.nav-link,
 .site-nav .menu-toggle {
-  color: #26364D !important;
+  color: #203045 !important;
+  background: rgba(255,255,255,.96) !important;
+  border: 1px solid rgba(18,32,51,.12) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.98) !important;
 }
 
 .site-nav a.nav-link:hover,
 .site-nav .menu-toggle:hover,
 .site-nav .menu-toggle[aria-expanded="true"] {
-  background: #EAF6F8 !important;
-  color: #0F5F78 !important;
-  border-color: rgba(31,110,140,.22) !important;
+  background: #E7F4F6 !important;
+  color: #0B5A73 !important;
+  border-color: rgba(31,110,140,.34) !important;
+  box-shadow: 0 10px 24px rgba(31,110,140,.10) !important;
 }
 
 .site-nav .menu-drop {
@@ -3990,6 +3995,7 @@ body::before {
   background: linear-gradient(135deg, #1F6E8C 0%, #2C8C78 100%) !important;
   color: #FFFFFF !important;
   font-weight: 900 !important;
+  box-shadow: 0 14px 30px rgba(31,110,140,.22) !important;
 }
 
 .mobile-nav {
@@ -4701,38 +4707,37 @@ PORTAL_CSS += """
 
 
 def _render_header() -> str:
-    """N デザイン風 fixed ヘッダー。スクロールで white/90 + blur に切替。"""
+    """N デザイン寄り fixed ヘッダー。スクロールで white/90 + blur に変化。"""
     return (
         "<header class='site-header' id='site-header'>"
         "<div class='site-header-inner'>"
         "<a class='site-logo' href='/' aria-label='AI相談。彦根 トップへ'>"
-        "<span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span>"
+        "<span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>談</span></span>"
         "<span class='wordmark'><span class='word-ai'>AI相談。</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span>"
         "<span class='site-logo-by'>講師 由井辰美</span>"
         "</a>"
         "<nav class='site-nav' aria-label='メインナビ'>"
         "<a class='nav-link' href='#packages'>受講プラン</a>"
-        "<a class='nav-link' href='#works'>制作実績</a>"
-        "<a class='nav-link' href='#lectures'>受講資料</a>"
         "<a class='nav-link' href='#flow'>ご依頼の流れ</a>"
+        "<a class='nav-link' href='#lectures'>受講資料</a>"
         "<a class='nav-link' href='#speaker'>講師紹介</a>"
         "<a class='nav-link' href='#faq'>FAQ</a>"
         "<div class='menu-wrap'>"
-        "<button class='menu-toggle' id='menu-toggle' aria-haspopup='menu' aria-expanded='false'>その他"
+        "<button class='menu-toggle' id='menu-toggle' aria-haspopup='menu' aria-expanded='false'>そのほか"
         "<svg class='chev' width='14' height='14' viewBox='0 0 20 20' fill='none' aria-hidden='true'><path d='M5 8l5 5 5-5' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>"
         "</button>"
         "<div class='menu-drop' id='menu-drop' role='menu'>"
-        "<span class='menu-drop-label'>検討材料</span>"
+        "<span class='menu-drop-label'>実績と運用</span>"
         "<a href='#works'>🧩 制作実績</a>"
+        "<a href='/portfolio.html'>📚 実績の詳細</a>"
         "<a href='#growth'>📈 集客施策</a>"
-        "<a href='/portfolio.html'>📂 実績の詳細</a>"
         "<a href='/watch/index.html'>📡 AI Watch</a>"
-        "<span class='menu-drop-label'>管理メニュー</span>"
+        "<span class='menu-drop-label'>公開と管理</span>"
         "<a class='menu-drop-sep admin-drop-link' href='/admin#admin-menu'>🔐 管理ハブ</a>"
-        "<a class='admin-drop-link' href='/admin/gubble-sns'>📊 SNS分析</a>"
-        "<a class='admin-drop-link' href='/admin/sns-post'>📣 SNS投稿</a>"
-        "<a class='admin-drop-link' href='/admin/chat'>🤖 社内AI</a>"
-        "<a class='admin-drop-link' href='/ops'>⚙️ OPS</a>"
+        "<a class='admin-drop-link' href='/admin/gubble-sns'>📮 SNS投稿</a>"
+        "<a class='admin-drop-link' href='/admin/sns-post'>🧵 SNS分析</a>"
+        "<a class='admin-drop-link' href='/admin/chat'>💬 社内AI</a>"
+        "<a class='admin-drop-link' href='/ops'>🛠 OPS</a>"
         "</div>"
         "</div>"
         "<a class='nav-cta' href='#contact'>📩 無料相談</a>"
@@ -4743,24 +4748,24 @@ def _render_header() -> str:
         "</div>"
         "<div class='mobile-nav' id='mobile-nav'>"
         "<a href='#packages'>受講プラン</a>"
-        "<a href='#works'>制作実績</a>"
-        "<a href='#lectures'>受講資料</a>"
         "<a href='#flow'>ご依頼の流れ</a>"
+        "<a href='#lectures'>受講資料</a>"
         "<a href='#speaker'>講師紹介</a>"
         "<a href='#faq'>FAQ</a>"
+        "<span class='mobile-nav-label'>実績と運用</span>"
+        "<a href='#works'>制作実績</a>"
         "<a href='#growth'>集客施策</a>"
         "<a href='/watch/index.html'>AI Watch</a>"
-        "<span class='mobile-nav-label'>管理メニュー</span>"
+        "<span class='mobile-nav-label'>公開と管理</span>"
         "<a class='mobile-admin-link' href='/admin#admin-menu'>🔐 管理ハブ</a>"
-        "<a class='mobile-admin-link' href='/admin/gubble-sns'>📊 SNS分析</a>"
-        "<a class='mobile-admin-link' href='/admin/sns-post'>📣 SNS投稿</a>"
-        "<a class='mobile-admin-link' href='/admin/chat'>🤖 社内AI</a>"
-        "<a class='mobile-admin-link' href='/ops'>⚙️ OPS</a>"
+        "<a class='mobile-admin-link' href='/admin/gubble-sns'>📮 SNS投稿</a>"
+        "<a class='mobile-admin-link' href='/admin/sns-post'>🧵 SNS分析</a>"
+        "<a class='mobile-admin-link' href='/admin/chat'>💬 社内AI</a>"
+        "<a class='mobile-admin-link' href='/ops'>🛠 OPS</a>"
         "<a class='login-btn-mobile' href='#contact'>📩 無料で30分相談する</a>"
         "</div>"
         "</header>"
     )
-
 
 HEADER_JS = """
 <script>
@@ -6308,26 +6313,16 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append(_render_courses_packages())
     parts.append("</section>")
 
-    # 3. 制作実績（TOP内にサマリを掲載・各カードは公開サイト本体へ直リンク）
-    parts.append("<section class='block' id='works'>")
-    parts.append("<p class='section-heading fade-up'>WORKS</p>")
-    parts.append("<h2 class='section-title fade-up d1'>実例サイト</h2>")
-    parts.append("<p class='section-sub fade-up d2'>説明だけではなく、講師が実際に構築・運用しているサイトや業務システムを教材として使います。</p>")
-    parts.append("<div class='fade-up d2'>")
-    parts.append(_render_works_section())
-    parts.append("</div>")
-    parts.append("<div class='section-more fade-up d3'><a class='btn btn-secondary' href='/portfolio.html'>📂 実績の詳細・技術スタックを見る →</a></div>")
-    parts.append("</section>")
-
-    # 4. ご依頼の流れ
+    # 3. ご依頼の流れ
     parts.append("<section class='block' id='flow'>")
     parts.append("<p class='section-heading'>FLOW</p>")
     parts.append("<h2 class='section-title'>相談から資料化・集客まで</h2>")
     parts.append("<p class='section-sub'>一度聞いて終わりではなく、受講内容を資料センターと集客導線に変換します。</p>")
     parts.append(_render_flow())
+    parts.append("<div class='section-more fade-up d3'><a class='btn btn-secondary' href='#lectures'>受講資料を先に見る →</a><a class='btn btn-primary' href='#contact'>無料相談を予約する →</a></div>")
     parts.append("</section>")
 
-    # 5. 受講資料（TOP内にサマリを掲載）
+    # 4. 受講資料（TOP内にサマリを掲載）
     parts.append("<section class='block' id='lectures'>")
     parts.append("<p class='section-heading fade-up'>MATERIALS</p>")
     parts.append("<h2 class='section-title fade-up d1'>受講資料</h2>")
@@ -6336,6 +6331,17 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append(_render_lectures_section())
     parts.append("</div>")
     parts.append("<div class='section-more fade-up d3'><a class='btn btn-primary' href='#packages'>受講プランへ戻る →</a><a class='btn btn-secondary' href='/lectures/index.html'>📚 受講資料の一覧を見る →</a></div>")
+    parts.append("</section>")
+
+    # 5. 制作実績（検討材料として後段へ）
+    parts.append("<section class='block' id='works'>")
+    parts.append("<p class='section-heading fade-up'>WORKS</p>")
+    parts.append("<h2 class='section-title fade-up d1'>実例サイト</h2>")
+    parts.append("<p class='section-sub fade-up d2'>数分の相談だけで終わらせず、実際に改善と運用を回している公開サイト・業務導線を検討材料としてまとめています。</p>")
+    parts.append("<div class='fade-up d2'>")
+    parts.append(_render_works_section())
+    parts.append("</div>")
+    parts.append("<div class='section-more fade-up d3'><a class='btn btn-secondary' href='/portfolio.html'>📂 実績の詳細・技術スタックを見る →</a></div>")
     parts.append("</section>")
 
     # 6. 講師紹介（誰が教えるか）

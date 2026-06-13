@@ -140,7 +140,7 @@ def _build_jsonld_website() -> str:
             "streetAddress": "岡町12番地",
             "addressCountry": "JP",
         },
-        "description": "滋賀県彦根市を拠点に、中小事業者・地域団体・個人事業者向けのAI相談、生成AI講習、Codex実践会、AIコーディング講習、講習資料公開、実例紹介、Web/業務システム制作、補助金を使ったAI導入支援を行う。9事業を実際に回す現役オーナーが、相談から講習、実装、公開、運用定着まで伴走する。",
+        "description": "滋賀県彦根市を拠点に、中小事業者・地域団体・個人事業者向けのAI相談、生成AI講習、Codex実践会、AIコーディング講習、受講資料公開、実例紹介、Web/業務システム制作、補助金を使ったAI導入支援を行う。9事業を実際に回す現役オーナーが、相談から講習、実装、公開、運用定着まで伴走する。",
         "knowsAbout": [
             "AI相談", "生成AI講習", "ChatGPT", "Claude Code", "Codex", "AIコーディング講習",
             "LLMO（AI検索最適化）", "SEO", "MEO", "YouTube SEO", "Reels導線",
@@ -169,7 +169,7 @@ def _build_jsonld_website() -> str:
         "url": SITE_URL,
         "inLanguage": "ja",
         "publisher": {"@id": org_id},
-        "description": "滋賀・彦根の中小事業者向けAI相談、講習募集、講習資料、実例、講師紹介、AI/SNS/LLMO情報の資料センター。",
+        "description": "滋賀・彦根の中小事業者向けAI相談、講習募集、受講資料、実例、講師紹介、AI/SNS/LLMO情報の資料センター。",
     }
 
     codex_prep_title = "Codex準備会 60分"
@@ -235,7 +235,7 @@ def _build_jsonld_website() -> str:
             {"@type": "ListItem", "position": 1, "name": "ホーム", "item": SITE_URL + "/"},
             {"@type": "ListItem", "position": 2, "name": "受講プラン", "item": SITE_URL + "/#packages"},
             {"@type": "ListItem", "position": 3, "name": "講師紹介", "item": SITE_URL + "/#speaker"},
-            {"@type": "ListItem", "position": 4, "name": "講習資料", "item": SITE_URL + "/#lectures"},
+            {"@type": "ListItem", "position": 4, "name": "受講資料", "item": SITE_URL + "/#lectures"},
             {"@type": "ListItem", "position": 5, "name": "FAQ", "item": SITE_URL + "/#faq"},
         ],
     }
@@ -338,7 +338,7 @@ def _load_portfolio() -> list[dict]:
 
 
 def _load_all_lectures() -> list[dict]:
-    """講習資料を全件（新しい順）。LP の講習資料セクション用。"""
+    """受講資料を全件（新しい順）。LP の受講資料セクション用。"""
     if not LECTURES_DIR.exists():
         return []
     items: list[dict] = []
@@ -1697,6 +1697,21 @@ section.block + section.block { border-top: 1px solid var(--line); }
   transition: opacity .15s ease, transform .15s ease;
 }
 .pkg-cta:hover { opacity: .92; transform: translateY(-1px); }
+.pkg-material-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(40,84,197,.14);
+  background: rgba(255,255,255,.62);
+  color: var(--primary);
+  font-size: 12.5px;
+  font-weight: 800;
+  text-decoration: none;
+}
+.pkg-material-link:hover { border-color: rgba(40,84,197,.28); }
 .packages-note {
   margin-top: 22px; padding: 16px 20px;
   background: var(--grad-soft); border: 1px solid var(--glass-border);
@@ -2157,7 +2172,7 @@ section.block + section.block { border-top: 1px solid var(--line); }
   display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;
 }
 @media (max-width: 760px) { .explore-grid { grid-template-columns: 1fr; } }
-.section-more { display: flex; justify-content: center; margin-top: 28px; }
+.section-more { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 28px; }
 /* スクリーンリーダー/クローラには読ませるが視覚的には隠す（SEOキーワード補強用） */
 .visually-hidden {
   position: absolute !important; width: 1px; height: 1px;
@@ -4279,7 +4294,7 @@ def _render_header() -> str:
         "<nav class='site-nav' aria-label='メインナビ'>"
         "<a class='nav-link' href='#packages'>受講プラン</a>"
         "<a class='nav-link' href='#works'>制作実績</a>"
-        "<a class='nav-link' href='#lectures'>講習資料</a>"
+        "<a class='nav-link' href='#lectures'>受講資料</a>"
         "<a class='nav-link' href='#flow'>ご依頼の流れ</a>"
         "<a class='nav-link' href='#speaker'>講師紹介</a>"
         "<a class='nav-link' href='#faq'>FAQ</a>"
@@ -4310,7 +4325,7 @@ def _render_header() -> str:
         "<div class='mobile-nav' id='mobile-nav'>"
         "<a href='#packages'>受講プラン</a>"
         "<a href='#works'>制作実績</a>"
-        "<a href='#lectures'>講習資料</a>"
+        "<a href='#lectures'>受講資料</a>"
         "<a href='#flow'>ご依頼の流れ</a>"
         "<a href='#speaker'>講師紹介</a>"
         "<a href='#faq'>FAQ</a>"
@@ -4757,7 +4772,7 @@ def _render_hero() -> str:
         "</p>"
         "<div class='hero-actions'>"
         "<a class='btn btn-primary btn-lg' href='#contact'>無料30分相談を予約</a>"
-        "<a class='btn btn-secondary btn-lg' href='#lectures'>講習資料を先に見る</a>"
+        "<a class='btn btn-secondary btn-lg' href='#lectures'>受講資料を先に見る</a>"
         "</div>"
         "<div class='hero-proof-grid' aria-label='AI講習会の特徴'>"
         "<div class='hero-proof'><span class='proof-icon'>01</span><span><b>Local Fit</b><span>彦根の商売に合わせて整理</span></span></div>"
@@ -4789,22 +4804,22 @@ def _render_path_selector() -> str:
     cards = [
         (
             "無料相談から始めたい",
-            "今の課題を30分で整理して、講習か伴走かを決める入口です。",
+            "今の課題を30分で整理して、受講プランか伴走かを決める入口です。",
             "相談を予約する",
             "#contact",
             "30分 / 無料",
         ),
         (
-            "講習プランを比べたい",
-            "Codex準備、Codex実践、個別相談、伴走支援の違いを先に見たい方向け。",
+            "受講プランを比べたい",
+            "Codex準備、Codex実践、個別相談、伴走支援の違いを先に見たい方向け。各カードから関連資料へ進めます。",
             "受講プランを見る",
             "#packages",
             "料金と到達点を確認",
         ),
         (
-            "資料を先に見たい",
-            "講習資料やAIコーディング講習を見て、雰囲気を確かめてから相談できます。",
-            "講習資料を見る",
+            "受講資料を先に見たい",
+            "受講資料やAIコーディング講習を見て、雰囲気を確かめてから受講プランへ戻れます。",
+            "受講資料を見る",
             "#lectures",
             "公開資料あり",
         ),
@@ -4943,6 +4958,8 @@ def _render_courses_packages() -> str:
             "fit": ["まず話を聞きたい", "講習か伴走か迷う", "来店またはオンラインで相談したい"],
             "url": free_consult_url,
             "cta": "無料相談を予約する",
+            "material_url": "#lectures",
+            "material_cta": "受講資料で選び方を見る",
         },
         {
             "icon": "?",
@@ -4962,6 +4979,8 @@ def _render_courses_packages() -> str:
             "fit": ["自分の仕事でAIをどう使うか整理したい", "指示文やチェック体制を整えたい", "成果物づくりを継続運用に変えたい"],
             "url": "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/TO3XHZT6XP3OM4QBDYMW7TZP",
             "cta": "AI個別相談を予約する",
+            "material_url": "#lectures",
+            "material_cta": "受講資料を見て相談内容を整理",
         },
         {
             "icon": "◇",
@@ -4981,6 +5000,8 @@ def _render_courses_packages() -> str:
             "fit": ["社内にAI運用を定着させたい", "複数業務をまとめて仕組み化したい", "補助金前提で導入計画を組みたい"],
             "url": "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/V57YTNICA2KV2TN7ENARAVQE",
             "cta": "導入相談を予約する",
+            "material_url": "#lectures",
+            "material_cta": "受講資料で導入の流れを見る",
             "variant": "wide",
         },
         {
@@ -5007,6 +5028,8 @@ def _render_courses_packages() -> str:
             "verify": "到達点は小さな成果物を1つ作り、差分を読める状態です。申込時に「Codex準備会」を選択してください。",
             "url": seminar_url,
             "cta": "Codexメニューで準備会を選ぶ",
+            "material_url": "/lectures/2026-06-codex-app-onboarding.html",
+            "material_cta": "Codex準備会の受講資料を見る",
             "variant": "featured",
         },
         {
@@ -5033,6 +5056,8 @@ def _render_courses_packages() -> str:
             "verify": "申込リンクは準備会と同じです。申込時に「Codex実践会」をオプション選択してください。",
             "url": seminar_url,
             "cta": "Codexメニューで実践会を選ぶ",
+            "material_url": "/lectures/2026-06-codex-app-practice.html",
+            "material_cta": "Codex実践会の受講資料を見る",
             "variant": "featured",
         },
         {
@@ -5051,7 +5076,7 @@ def _render_courses_packages() -> str:
                 "依頼文、差分、ブラウザ確認、独立レビュー、本番確認を実行",
             ],
             "fit": ["AIの成果物を判断して直せるようになりたい", "LP、資料、フォーム、業務画面を作りたい", "Codex実践会より体系的に学びたい"],
-            "req_title": "講習で扱う資料",
+            "req_title": "このプランで使う受講資料",
             "requirements": [
                 "AIコーディング講習ページをもとに、相談、実装、確認、公開を通しで学ぶ",
                 "受講後は小さな制作物を作り、公開前に止める判断まで練習する",
@@ -5059,6 +5084,8 @@ def _render_courses_packages() -> str:
             "verify": "予約サイトでは「【AIコーディング講習 120分】AI時代の専門技術を伝授」を選んでください。",
             "url": AI_CODING_BOOK_URL,
             "cta": "AIコーディング講習を予約する",
+            "material_url": "/programming-map.html",
+            "material_cta": "AIコーディング講習の受講資料を見る",
             "variant": "featured",
         },
     ]
@@ -5096,6 +5123,14 @@ def _render_courses_packages() -> str:
         # 外部URL(http)は別タブ、mailtoは同タブ
         is_ext = it["url"].startswith("http")
         target_attr = " target='_blank' rel='noopener'" if is_ext else ""
+        material_url = str(it.get("material_url") or "")
+        material_html = ""
+        if material_url:
+            material_target = " target='_blank' rel='noopener'" if material_url.startswith("http") else ""
+            material_html = (
+                f"<a class='pkg-material-link' href='{html.escape(material_url, quote=True)}'{material_target}>"
+                f"{html.escape(str(it.get('material_cta') or '関連する受講資料を見る'))} →</a>"
+            )
         parts.append(
             f"<div class='pkg-card{variant_cls} fade-up d{(i % 3) + 1}' data-level='{html.escape(lvl_id)}'>"
             f"<div class='pkg-body'>"
@@ -5111,6 +5146,7 @@ def _render_courses_packages() -> str:
             f"{fit_html}"
             f"{req_html}"
             f"<a class='pkg-cta' href='{html.escape(it['url'], quote=True)}'{target_attr}>{html.escape(it['cta'])} →</a>"
+            f"{material_html}"
             f"</div>"
             f"</div>"
         )
@@ -5126,7 +5162,7 @@ def _render_courses_packages() -> str:
     parts.append(
         "<p class='packages-note fade-up d4'>"
         "<strong>Codex講習:</strong> レベルは経験年数ではなく理解度で分けます。準備会はログイン、フォルダ選択、最初の依頼、差分確認、独立レビュー、公式更新確認まで60分2,200円、実践会は成果物作成まで120分5,500円です。"
-        "Codexの申込リンクは1つに統一し、申込時に「準備会」または「実践会」をオプション選択します。"
+        "Codexの申込リンクは1つに統一し、申込時に「準備会」または「実践会」をオプション選択します。各カードから関連する受講資料へ進めます。"
         "<br><strong>AIコーディング講習:</strong> Codex導入、プログラミング基礎、実装、公開、AI応用制作までを120分11,000円で扱う総合講習です。専用のSquare予約メニューから申し込めます。"
         "<br><strong>相談:</strong> AI個別相談は、AIの使い方、指示書、確認体制、運用導線を60分で整理します。"
         "<br><strong>補助金:</strong> 講習と伴走支援は、滋賀県・彦根市のデジタル化/AI導入系補助金と組み合わせて相談できます。"
@@ -5143,7 +5179,7 @@ def _render_footer(today: str) -> str:
         "<div class='footer-grid'>"
         "<div class='footer-brand'>"
         "<div class='footer-logo'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span><span class='wordmark'><span class='word-ai'>AI相談。</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span></div>"
-        "<p class='footer-tagline'>滋賀・彦根の中小事業者向けに、AI相談・生成AI講習・Codex準備会/実践会・AIコーディング講習・講習資料・Web集客支援を行う"
+        "<p class='footer-tagline'>滋賀・彦根の中小事業者向けに、AI相談・生成AI講習・Codex準備会/実践会・AIコーディング講習・受講資料・Web集客支援を行う"
         "資料センター型の相談サイト。9事業を実際に回しながら、現場に居着くAIを一緒に作ります。</p>"
         "<a class='footer-cta' href='#contact'>📩 無料で30分相談する</a>"
         "</div>"
@@ -5152,7 +5188,7 @@ def _render_footer(today: str) -> str:
         "<a href='#packages'>受講プラン</a>"
         "<a href='#works'>制作実績</a>"
         "<a href='#speaker'>講師紹介</a>"
-        "<a href='#lectures'>講習資料</a>"
+        "<a href='#lectures'>受講資料</a>"
         "<a href='#faq'>よくある質問</a>"
         "</nav>"
         "<div class='footer-nap'>"
@@ -5164,7 +5200,7 @@ def _render_footer(today: str) -> str:
         "<p class='footer-area'>対応: 彦根・湖東・滋賀県全域 / 出張・オンライン全国</p>"
         "</div>"
         "</div>"
-        f"<div class='footer-copy'>© {year} 由井 辰美 / AI相談。彦根 — 滋賀・彦根のAI相談・講習資料</div>"
+        f"<div class='footer-copy'>© {year} 由井 辰美 / AI相談。彦根 — 滋賀・彦根のAI相談・受講資料</div>"
         "</footer>"
     )
 
@@ -5192,13 +5228,13 @@ def _render_diagnose_modal() -> str:
 
 
 def _render_explore() -> str:
-    """メニュー集約: 実績 / 講習資料 をカードで（詳細は各ページへ）。
+    """メニュー集約: 実績 / 受講資料 をカードで（詳細は各ページへ）。
     ※ SNSポータル(AI Watch /watch/)は管理ページ(/admin)へ移行したため公開側には出さない。"""
     cards = [
         ("📂", "制作実績・事業ポートフォリオ",
          "運営事業・制作したサイト・生成した提案LP。すべて自分で構築・運用した実物。",
          "/portfolio.html", "実績を見る"),
-        ("📚", "講習資料",
+        ("📚", "受講資料",
          "AI業務活用・SNSアルゴリズム・LLMO（AI検索最適化）の講習で使う資料。AIコーディング講習も。",
          "/lectures/index.html", "資料を見る"),
     ]
@@ -5260,7 +5296,7 @@ def _render_flow() -> str:
     steps = [
         ("① まず相談（無料）", "彦根・湖東の仕事で困っていること、SNSで伸ばしたいこと、AIで試したいことを30分で整理します。"),
         ("② 講習で一緒に触る", "ChatGPT / Codex / NotebookLM / 画像生成などを、画面を見ながら実際の仕事に当てはめます。"),
-        ("③ 資料として残す", "講習で使った手順、プロンプト、動画、実例を資料センターに残し、あとから復習できるようにします。"),
+        ("③ 資料として残す", "受講で使った手順、プロンプト、動画、実例を資料センターに残し、あとから復習できるようにします。"),
         ("④ 集客へつなげる", "Reels、YouTube、ブログ、Googleビジネスプロフィール、LLMO向けFAQへ展開し、検索とAI回答に残します。"),
     ]
     parts = ["<div class='flow-list'>"]
@@ -5283,7 +5319,7 @@ def _render_growth_plan_section() -> str:
     actions = [
         ("08:00 Research", "競合、国内Web/UIトレンド、AI講習の検索意図、YouTubeとSNS反響を確認する。"),
         ("Design Mutation", "ヒーロー画像、見出し、講習カード、FAQ、集客施策の見せ方を1回分だけ更新する。"),
-        ("Function Gate", "予約リンク、講習資料、診断モーダル、管理導線、OGP、構造化データが壊れていないか確認する。"),
+        ("Function Gate", "予約リンク、受講資料、診断モーダル、管理導線、OGP、構造化データが壊れていないか確認する。"),
         ("Deploy & Verify", "ビルド後に本番へ反映し、公開URLで新しい文言・画像・主要リンクを検証する。"),
     ]
     parts = ["<div class='growth-layout'>"]
@@ -5318,8 +5354,8 @@ FAQ_QA = [
      "レベルは理解度で分けます。Codex準備会は60分2,200円で、ログイン、作業フォルダ選択、秘密情報を入れない権限設計、最初の小さな依頼、差分確認、ブラウザ表示確認、独立レビュー、AGENTS.md、公式アップデート確認先までを整えます。Codex実践会は120分5,500円で、ページ、資料、コード、動画台本、運用マニュアルなどの成果物作成まで進めます。AIコーディング講習は120分11,000円で、プログラミング基礎、実装ループ、公開前確認、AI応用制作までを体系的に扱います。"),
     ("AIコーディング講習では何を学びますか？",
      "Codexを、相談、実装、確認、公開を一緒に進める作業者として使うための総合講習です。HTML/CSS/JavaScript/API/DB/Gitを暗記ではなくAIの成果物を判断する地図として学び、依頼文、差分確認、ブラウザ表示、独立レビュー、本番URL確認までを120分で通します。料金は11,000円で、専用のSquare予約メニューから申し込めます。"),
-    ("講習資料はあとから見返せますか？",
-     "はい。講習で使った資料、プロンプト、実例、動画、スライドは資料センターとして整理し、あとから復習できるようにします。受講前に内容を確認したい方も、講習資料ページから雰囲気を見られます。"),
+    ("受講資料はあとから見返せますか？",
+     "はい。受講で使った資料、プロンプト、実例、動画、スライドは資料センターとして整理し、あとから復習できるようにします。受講前に内容を確認したい方も、受講資料ページから雰囲気を見られます。"),
     ("Reels や YouTube の集客にも使えますか？",
      "使えます。1つの講習テーマから、Reels/Shorts用の短い台本、YouTubeタイトル・説明欄・チャプター、サイト内の動画専用ページ、FAQ、ブログ要約まで展開する流れを作ります。"),
     ("LLMO やAI検索に強いサイトにできますか？",
@@ -5584,7 +5620,7 @@ def _render_works_section() -> str:
 
 
 def _render_lectures_section() -> str:
-    """講習資料セクション。最新の講習資料を先頭にし、AIコーディング講習 120分は独立資料として残す。"""
+    """受講資料セクション。最新の受講資料を先頭にし、AIコーディング講習 120分は独立資料として残す。"""
     pmap_card = {
         "title": "AIコーディング講習 120分",
         "icon": "🧭",
@@ -5727,7 +5763,7 @@ def _render_lecture_card(lec: dict) -> str:
 def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     today = datetime.now().strftime("%Y-%m-%d")
     title = SITE_BRAND
-    desc = "彦根・滋賀の中小事業者向けAI相談・生成AI講習ポータル。無料相談、Codex準備会/実践会、AIコーディング講習、講習資料、伴走支援を迷わず選べる構成で、競合とSNS反応を見ながら毎日改善しています。"
+    desc = "彦根・滋賀の中小事業者向けAI相談・生成AI講習ポータル。無料相談、Codex準備会/実践会、AIコーディング講習、受講資料、伴走支援を迷わず選べる構成で、競合とSNS反応を見ながら毎日改善しています。"
 
     parts: list[str] = []
     parts.append("<!doctype html><html lang='ja'><head><meta charset='utf-8'>" + FAVICON_HEAD_HTML)
@@ -5756,7 +5792,7 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append("<section class='block block-tight' id='start'>")
     parts.append("<p class='section-heading fade-up'>START HERE</p>")
     parts.append("<h2 class='section-title fade-up d1'>最初の一歩を、3つに絞る</h2>")
-    parts.append("<p class='section-sub fade-up d2'>初回訪問で迷いやすい「相談する」「講習を選ぶ」「資料を先に見る」を先頭にまとめました。</p>")
+    parts.append("<p class='section-sub fade-up d2'>初回訪問で迷いやすい「相談する」「受講プランを選ぶ」「受講資料を先に見る」を先頭にまとめました。</p>")
     parts.append(_render_path_selector())
     parts.append("</section>")
 
@@ -5764,7 +5800,7 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append("<section class='block' id='packages'>")
     parts.append("<p class='section-heading fade-up'>AI LESSON COCKPIT</p>")
     parts.append("<h2 class='section-title packages-title fade-up d1'>複数のAI講習を、一画面で選ぶ</h2>")
-    parts.append("<p class='section-sub fade-up d2'>無料相談、個別相談、伴走支援、Codex準備会、Codex実践会、AIコーディング講習を、目的と到達点で選べるように整理しています。受講したいAIエージェントが見ても、次に押すボタンが迷子にならない設計です。</p>")
+    parts.append("<p class='section-sub fade-up d2'>無料相談、個別相談、伴走支援、Codex準備会、Codex実践会、AIコーディング講習を、目的と到達点で選べるように整理しています。各プランから対応する受講資料へ進み、内容を確認してから予約できます。</p>")
     parts.append(_render_courses_packages())
     parts.append("</section>")
 
@@ -5783,19 +5819,19 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append("<section class='block' id='flow'>")
     parts.append("<p class='section-heading'>FLOW</p>")
     parts.append("<h2 class='section-title'>相談から資料化・集客まで</h2>")
-    parts.append("<p class='section-sub'>一度聞いて終わりではなく、講習内容を資料センターと集客導線に変換します。</p>")
+    parts.append("<p class='section-sub'>一度聞いて終わりではなく、受講内容を資料センターと集客導線に変換します。</p>")
     parts.append(_render_flow())
     parts.append("</section>")
 
-    # 5. 講習資料（TOP内にサマリを掲載）
+    # 5. 受講資料（TOP内にサマリを掲載）
     parts.append("<section class='block' id='lectures'>")
     parts.append("<p class='section-heading fade-up'>MATERIALS</p>")
-    parts.append("<h2 class='section-title fade-up d1'>講習資料</h2>")
-    parts.append("<p class='section-sub fade-up d2'>AI業務活用・SNSアルゴリズム・LLMO（AI検索最適化）・Codex実践会・AIコーディングを、講習後も見返せる形で整理しています。</p>")
+    parts.append("<h2 class='section-title fade-up d1'>受講資料</h2>")
+    parts.append("<p class='section-sub fade-up d2'>AI業務活用・SNSアルゴリズム・LLMO（AI検索最適化）・Codex実践会・AIコーディングを、受講後も見返せる形で整理しています。資料を読んだら、上の受講プランへ戻って予約できます。</p>")
     parts.append("<div class='fade-up d2'>")
     parts.append(_render_lectures_section())
     parts.append("</div>")
-    parts.append("<div class='section-more fade-up d3'><a class='btn btn-secondary' href='/lectures/index.html'>📚 講習資料の一覧を見る →</a></div>")
+    parts.append("<div class='section-more fade-up d3'><a class='btn btn-primary' href='#packages'>受講プランへ戻る →</a><a class='btn btn-secondary' href='/lectures/index.html'>📚 受講資料の一覧を見る →</a></div>")
     parts.append("</section>")
 
     # 6. 講師紹介（誰が教えるか）
@@ -5869,7 +5905,7 @@ def main(dry_run: bool = False) -> int:
         print(f"  agents_status 生成スキップ: {e}")
 
     recent_lectures = _load_recent_lectures(limit=3)
-    # AIコーディング講習 120分は講習資料カードとして残すが、最新資料を先頭にする
+    # AIコーディング講習 120分は受講資料カードとして残すが、最新資料を先頭にする
     pmap_card = {
         "title": "AIコーディング講習 120分",
         "icon": "🧭",

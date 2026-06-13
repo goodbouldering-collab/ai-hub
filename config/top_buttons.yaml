@@ -48,7 +48,7 @@ top_buttons:
 
 - id: lectures
   group: 教材資料
-  label: 講習資料
+  label: 受講資料
   icon: 📝
   href: lectures/index.html
   kind: link

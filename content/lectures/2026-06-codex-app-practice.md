@@ -1,7 +1,7 @@
 ---
 title: "Codex実践会 120分 構築と応用"
 date: 2026-06-10
-role: 講習資料 / Codex実践会
+role: 受講資料 / Codex実践会
 gen_by: Codex
 summary: Codexアプリを実務で使うための応用編。プロジェクトとフォルダ管理、Local/Worktree/Cloud、skills、plugins、MCP、hooks、rules、automations、設定、隠れ機能、公式アップデート確認先までを実例中心に整理。
 ---
@@ -159,7 +159,7 @@ summary: Codexアプリを実務で使うための応用編。プロジェクト
 <h3>6. skillは作業手順書</h3>
 <p>同じ依頼を何度もするなら、skillにします。Codexは必要な時だけSKILL.mdを読みます。</p>
 <ul>
-<li>講習資料を作る手順</li>
+<li>受講資料を作る手順</li>
 <li>週次レポート形式</li>
 <li>公開前レビューの型</li>
 </ul>
@@ -207,7 +207,7 @@ summary: Codexアプリを実務で使うための応用編。プロジェクト
 
 <section class="codex-slide">
 <h3>11. 公式発表を見る場所を固定する</h3>
-<p>Codexは更新が速いので、古い講習資料だけで判断しません。</p>
+<p>Codexは更新が速いので、古い受講資料だけで判断しません。</p>
 <ul>
 <li>X: @OpenAI / @OpenAIDevs</li>
 <li>Codex Changelog</li>
@@ -250,7 +250,7 @@ summary: Codexアプリを実務で使うための応用編。プロジェクト
     .agents\
       skills\
         lecture-builder\
-          SKILL.md                    # 講習資料を作る手順
+          SKILL.md                    # 受講資料を作る手順
         publish-check\
           SKILL.md                    # 公開前チェックの手順
       plugins\
@@ -270,7 +270,7 @@ summary: Codexアプリを実務で使うための応用編。プロジェクト
 
 <div class="codex-grid three">
 <div class="codex-card" style="--accent:#2563eb"><span class="codex-label">Project</span><h3>1事業1プロジェクト</h3><p>AIハブ、みんなのWA、N-Designのように事業ごとにProjectを分けます。違う事業の秘密情報や方針が混ざらないようにします。</p></div>
-<div class="codex-card" style="--accent:#0f8b8d"><span class="codex-label">Thread</span><h3>1目的1スレッド</h3><p>「講習資料を作る」「公開前レビュー」「Vercelデプロイ確認」のように、会話の目的を分けます。あとで検索しやすくなります。</p></div>
+<div class="codex-card" style="--accent:#0f8b8d"><span class="codex-label">Thread</span><h3>1目的1スレッド</h3><p>「受講資料を作る」「公開前レビュー」「Vercelデプロイ確認」のように、会話の目的を分けます。あとで検索しやすくなります。</p></div>
 <div class="codex-card" style="--accent:#e85d5a"><span class="codex-label">Worktree</span><h3>大きい変更は別作業場</h3><p>トップページ刷新、管理画面変更、依存関係更新などはWorktreeに逃がします。Localで作業中の状態を壊さず試せます。</p></div>
 </div>
 
@@ -281,7 +281,7 @@ summary: Codexアプリを実務で使うための応用編。プロジェクト
 <tr><td>Prompt / Thread</td><td>今の会話</td><td>一回限りの条件、今日だけの判断、止めたい範囲</td><td>「今回は公開しない」「まず調査だけ」「日本語で説明」</td></tr>
 <tr><td>AGENTS.md</td><td>repo rootや下位フォルダ</td><td>毎回守るプロジェクトルール、ビルド、検証、禁止事項</td><td>「site/build_site.pyで再ビルド」「本番確認URLを報告」</td></tr>
 <tr><td>.codex/config.toml</td><td>projectまたはuser</td><td>model、reasoning、sandbox、approval、MCP、feature flags</td><td>workspace-write、on-request、web_search、memories</td></tr>
-<tr><td>skills</td><td>.agents/skills or ~/.agents/skills</td><td>繰り返し使う作業手順</td><td>講習資料作成、PRレビュー、週次レポート</td></tr>
+<tr><td>skills</td><td>.agents/skills or ~/.agents/skills</td><td>繰り返し使う作業手順</td><td>受講資料作成、PRレビュー、週次レポート</td></tr>
 <tr><td>plugins</td><td>Plugin Directory / marketplace</td><td>skills、apps、MCP serversをまとめた道具箱</td><td>Google Drive、Figma、Canva、GitHub、Data Analytics</td></tr>
 <tr><td>MCP</td><td>config.toml or plugin</td><td>外部ツール、DB、ブラウザ、社内ツールへの接続</td><td>OpenAI Docs MCP、Figma MCP、Playwright MCP、Sentry MCP</td></tr>
 <tr><td>hooks</td><td>hooks.json or config.toml</td><td>作業前後に自動で走るチェック</td><td>PreToolUseで危険コマンド検査、Stopで完了ログ</td></tr>
@@ -397,7 +397,7 @@ summary: Codexアプリを実務で使うための応用編。プロジェクト
 <tr><td>Sites</td><td>Codexで作ったinteractive website/appをURL共有する新機能。</td><td>workspace向けdashboard、planner、hub。</td></tr>
 <tr><td>Annotations</td><td>作成物の一部を指して修正する仕組み。</td><td>site、documents、spreadsheets、slidesの局所修正。</td></tr>
 <tr><td>Feature Maturity</td><td>機能のExperimental / Beta / Stableなどの成熟度。</td><td>本番運用に使う前の確認。</td></tr>
-<tr><td>Changelog</td><td>Codexの変更履歴。</td><td>講習資料の更新、機能追加確認。</td></tr>
+<tr><td>Changelog</td><td>Codexの変更履歴。</td><td>受講資料の更新、機能追加確認。</td></tr>
 </table>
 
 <h2>skillsの作り方</h2>
@@ -408,13 +408,13 @@ skillは「自分の仕事の型」です。短い説明で起動条件を明確
 
 <div class="codex-grid two">
 <div class="codex-card" style="--accent:#2563eb">
-<h3>実例: 講習資料skill</h3>
+<h3>実例: 受講資料skill</h3>
 <div class="codex-prompt">---
 name: lecture-builder
-description: 講習資料をAIハブのcontent/lectures形式で作る時に使う。タイトル、summary、スライド、動画台本、実例、確認リストを含める。
+description: 受講資料をAIハブのcontent/lectures形式で作る時に使う。タイトル、summary、スライド、動画台本、実例、確認リストを含める。
 ---
 
-1. 既存講習資料の文体を確認する。
+1. 既存受講資料の文体を確認する。
 2. frontmatterを作る。
 3. 受講者向けの短いスライドを先に作る。
 4. 本文は実例、表、テンプレートを多めにする。
@@ -424,7 +424,7 @@ description: 講習資料をAIハブのcontent/lectures形式で作る時に使�
 <h3>実例: 公開前チェックskill</h3>
 <div class="codex-prompt">---
 name: publish-check
-description: サイトや講習資料を公開する前に、差分、ビルド、リンク、秘密情報、公式URL、最終報告を確認する時に使う。
+description: サイトや受講資料を公開する前に、差分、ビルド、リンク、秘密情報、公式URL、最終報告を確認する時に使う。
 ---
 
 1. git diffを確認する。
@@ -444,7 +444,7 @@ description: サイトや講習資料を公開する前に、差分、ビルド�
 <tr><td>Gmail</td><td>メール文脈を使った返信や要約。</td><td>@Gmail 今日の未返信メールから、返信が必要なものだけ下書きして。</td></tr>
 <tr><td>Google Calendar</td><td>予定、会議準備、日次brief。</td><td>@Google Calendar 明日の予定を見て、準備が必要な会議だけ箇条書きにして。</td></tr>
 <tr><td>Figma</td><td>デザイン読み取り、画面案、プロトタイプ。</td><td>@Figma この画面案を営業資料向けに整理して、実装時のUI注意点を出して。</td></tr>
-<tr><td>Canva</td><td>SNS投稿、資料、ブランド素材。</td><td>@Canva この講習内容からInstagram用告知画像を3案作って。</td></tr>
+<tr><td>Canva</td><td>SNS投稿、資料、ブランド素材。</td><td>@Canva この受講内容からInstagram用告知画像を3案作って。</td></tr>
 <tr><td>Browser</td><td>localhostやfile previewを確認。</td><td>@Browser http://localhost:3000 を開いて、モバイル表示の崩れを確認して。</td></tr>
 <tr><td>Chrome</td><td>ログイン済みChromeが必要なサイト。</td><td>@Chrome 管理画面にログイン済みの状態で、この設定ページの表示を確認して。</td></tr>
 <tr><td>Computer Use</td><td>Windows/macOSアプリのGUI操作。</td><td>@Computer このデスクトップアプリを開き、設定画面の文言崩れを確認して。</td></tr>
@@ -500,8 +500,8 @@ prefix_rule(
 <table class="codex-table">
 <tr><th>種類</th><th>使う時</th><th>プロンプト例</th></tr>
 <tr><td>Thread automation</td><td>同じ会話で継続確認したい。</td><td>このthreadに30分後戻って、Vercel deployが完了しているか確認し、失敗ならログを見て次の修正案を出して。</td></tr>
-<tr><td>Standalone automation</td><td>毎回独立してよい定期作業。</td><td>毎週金曜17時に、今週の講習資料変更、未完了タスク、次週の候補を短い週報にしてTriageへ出して。</td></tr>
-<tr><td>Project automation</td><td>特定projectを定期確認する。</td><td>毎朝8時にこのAIハブprojectを確認し、講習資料、トップページ、AI Watch出力に新しい差分があれば要約して。</td></tr>
+<tr><td>Standalone automation</td><td>毎回独立してよい定期作業。</td><td>毎週金曜17時に、今週の受講資料変更、未完了タスク、次週の候補を短い週報にしてTriageへ出して。</td></tr>
+<tr><td>Project automation</td><td>特定projectを定期確認する。</td><td>毎朝8時にこのAIハブprojectを確認し、受講資料、トップページ、AI Watch出力に新しい差分があれば要約して。</td></tr>
 <tr><td>Skill-driven automation</td><td>形式を固定したい。</td><td>毎週月曜に $publish-check を使い、site/distの主要ページと公式更新URLの確認結果をレポートして。</td></tr>
 </table>
 
@@ -519,7 +519,7 @@ prefix_rule(
 <tr><td>Custom instructions</td><td>個人の既定指示を入れる。</td><td>ただしプロジェクト必須ルールはAGENTS.mdへ。</td></tr>
 <tr><td>Context-aware suggestions</td><td>再開すべき作業を提案してくれる。</td><td>中断が多い運用で有効。</td></tr>
 <tr><td>Memories</td><td>過去の傾向を引き継ぐ。</td><td>ONにする前に、秘密情報を入れない運用にする。</td></tr>
-<tr><td>Archived threads</td><td>閉じた会話を戻せる。</td><td>過去の講習資料作成threadを探す。</td></tr>
+<tr><td>Archived threads</td><td>閉じた会話を戻せる。</td><td>過去の受講資料作成threadを探す。</td></tr>
 <tr><td>Deep links</td><td>Codex画面へ直接移動するURL。</td><td>codex://settings、codex://skills、codex://automations。</td></tr>
 <tr><td>codex://plugins/install</td><td>plugin install flowを開く。</td><td>チーム導入資料にリンクを貼る。</td></tr>
 <tr><td>codex://threads/new?prompt=&path=</td><td>特定folderとpromptで新規threadを開始。</td><td>講習の演習リンクを作る。</td></tr>
@@ -534,7 +534,7 @@ prefix_rule(
 <tr><td>Codex公式サイト</td><td><a href="https://openai.com/codex/" target="_blank" rel="noopener">https://openai.com/codex/</a></td><td>全体像、対応OS、代表機能を説明する前。</td></tr>
 <tr><td>OpenAI Academy Codex</td><td><a href="https://openai.com/academy/codex-for-work/" target="_blank" rel="noopener">https://openai.com/academy/codex-for-work/</a></td><td>非エンジニア向けの実務例を探す時。</td></tr>
 <tr><td>OpenAI Developers Codex Docs</td><td><a href="https://developers.openai.com/codex" target="_blank" rel="noopener">https://developers.openai.com/codex</a></td><td>設定名、機能名、公式用語を確認する時。</td></tr>
-<tr><td>Codex Changelog</td><td><a href="https://developers.openai.com/codex/changelog" target="_blank" rel="noopener">https://developers.openai.com/codex/changelog</a></td><td>講習資料を更新する時、新機能を確認する時。</td></tr>
+<tr><td>Codex Changelog</td><td><a href="https://developers.openai.com/codex/changelog" target="_blank" rel="noopener">https://developers.openai.com/codex/changelog</a></td><td>受講資料を更新する時、新機能を確認する時。</td></tr>
 <tr><td>Feature Maturity</td><td><a href="https://developers.openai.com/codex/feature-maturity" target="_blank" rel="noopener">https://developers.openai.com/codex/feature-maturity</a></td><td>Experimental / Beta / Stableを判断する時。</td></tr>
 <tr><td>Codex role/plugin発表</td><td><a href="https://openai.com/index/codex-for-every-role-tool-workflow/" target="_blank" rel="noopener">https://openai.com/index/codex-for-every-role-tool-workflow/</a></td><td>role-specific plugins、Sites、annotationsを説明する時。</td></tr>
 <tr><td>X: OpenAI</td><td><a href="https://x.com/OpenAI" target="_blank" rel="noopener">https://x.com/OpenAI</a></td><td>OpenAI全体の大きな発表を追う時。</td></tr>

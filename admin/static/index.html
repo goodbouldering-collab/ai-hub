@@ -322,7 +322,7 @@
     <nav class="site-nav" aria-label="公開ページナビ">
       <a href="/site/#packages">受講プラン</a>
       <a href="/site/#speaker">講師紹介</a>
-      <a href="/site/#lectures">講習資料</a>
+      <a href="/site/#lectures">受講資料</a>
       <a href="/site/watch/index.html">AI Watch</a>
       <a class="login-btn" href="/site/">公開ページへ戻る</a>
     </nav>
@@ -330,7 +330,7 @@
   <nav class="admin-subnav" aria-label="管理メニュー">
     <a href="#panel-sns">サポートSNS</a>
     <a href="#panel-speaker">講師紹介</a>
-    <a href="#panel-lectures">講習資料</a>
+    <a href="#panel-lectures">受講資料</a>
     <a href="#panel-buttons">トップボタン</a>
     <a href="#panel-shopify">Shopify</a>
   </nav>
@@ -346,7 +346,7 @@
     <button class="tab active" data-tab="sns">🔗 サポートSNS</button>
     <button class="tab" data-tab="speaker">🎤 講師紹介</button>
     <button class="tab" data-tab="buttons">🧭 トップボタン</button>
-    <button class="tab" data-tab="lectures">📝 講習資料</button>
+    <button class="tab" data-tab="lectures">📝 受講資料</button>
     <button class="tab" data-tab="shopify">🛒 Shopify</button>
   </div>
 
@@ -369,7 +369,7 @@
 
   <section class="panel" id="panel-lectures" data-panel="lectures">
     <div class="card">
-      <h2>📝 講習資料 <span class="badge" id="lec-count-badge">—</span></h2>
+      <h2>📝 受講資料 <span class="badge" id="lec-count-badge">—</span></h2>
       <p class="helper">
         <code>content/lectures/*.md</code> を直接編集する。保存後「💾 保存して再ビルド」を押すと
         <code>/lectures/&lt;slug&gt;.html</code> に反映される。
@@ -750,7 +750,7 @@ document.getElementById("btn-save-rebuild").addEventListener("click", async () =
 });
 btnsLoad();
 
-/* ---------------- 講習資料 ---------------- */
+/* ---------------- 受講資料 ---------------- */
 let LEC_CURRENT = null;   // 現在編集中の slug。null は未選択
 
 function lecShowEditor(show) {

@@ -1,4 +1,4 @@
-# AIハブ 新方針：CEOポータル + 講習資料・データ表示（2026-05-11）
+# AIハブ 新方針：CEOポータル + 受講資料・データ表示（2026-05-11）
 
 ## CEO からの方針指示（2026-05-11）
 
@@ -44,7 +44,7 @@ ai-hub-jp.vercel.app
 ├── /                          ← 【新】CEO ポータル・トップ
 │   ├─ Hero: 由井辰美（写真+肩書+クライミング歴30年）
 │   ├─ 10 事業カード（9事業 + ぐっぼる本店 goodbouldering.com）
-│   ├─ 最新講習資料（3件サムネ）
+│   ├─ 最新受講資料（3件サムネ）
 │   ├─ 最新 SNS 投稿（3件サムネ・各SNSへ外部リンク）
 │   ├─ 最新メディア掲載・講演履歴（3件）
 │   └─ お問い合わせ：mailto:goodbouldering@gmail.com 直リンク
@@ -86,7 +86,7 @@ ai-hub-jp.vercel.app
 | 順 | 機能 | 根拠 |
 |---|---|---|
 | **1** | **10事業ハブカード（トップページ）** | ポータルとしての最低成立条件。ぐっぼる本店含む |
-| **2** | **講習資料一覧 + PDF DL** | 既存 `content/lectures/` の延長で最速。最重要軸 |
+| **2** | **受講資料一覧 + PDF DL** | 既存 `content/lectures/` の延長で最速。最重要軸 |
 | **3** | **データ表示 `/data/ai-trends/`** | 既存 `ai_watch.*` を Recharts で出すだけ・最速で「データ表示」公約を果たせる |
 | **4** | **SNS 一括投稿（管理画面拡張）** | 運用の即効性高い。AI下書き生成は既存 ANTHROPIC_API_KEY 活用 |
 | **5** | データ表示 `/data/lectures/` | 受講者データ Supabase 投入後 |
@@ -179,7 +179,7 @@ ai-hub-jp.vercel.app
 | 2 | 新トップページ設計書（ワイヤーフレーム・10 事業カード） | designer | 次の依頼候補 |
 | 3 | SNS 一括投稿の SNS 別 API 仕様調査（Meta + X） | advisor / developer | 次の依頼候補 |
 | 4 | 既存 `/` を `/watch/` に移設、新 `/` 構築 | developer | wireframe 確定後 |
-| 5 | 講習資料一覧ページ（`/lectures/`）実装 | developer | 順次 |
+| 5 | 受講資料一覧ページ（`/lectures/`）実装 | developer | 順次 |
 | 6 | データ表示 `/data/ai-trends/` 実装 | developer | 順次 |
 | 7 | SNS 一括投稿管理画面 `/admin/sns-post` 実装 | developer | API 仕様確定後 |
 | 8 | [ai-hub.md](../ai-hub.md) を新方針で書き換え | secretary | 実装着手時 |

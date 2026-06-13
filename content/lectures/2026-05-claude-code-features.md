@@ -195,7 +195,7 @@ summary: 2026年1月〜5月のClaude Codeリリースから「実際に手元の
 
 <div class="cc-src">
 出典: Claude Code 公式 changelog / What's new（週次ダイジェスト, code.claude.com）、Anthropic Engineering（Auto Mode）、Claude Code Plugin Marketplace（anthropics/claude-plugins-official）、週次上限拡大の各報道。<br>
-関連: <a href="../index.html">AIハブ トップ</a> ・ <a href="./2026-04-ai-kihon.html">講習資料 入門 #01</a> ・ <a href="../speaker.html">講師紹介</a>
+関連: <a href="../index.html">AIハブ トップ</a> ・ <a href="./2026-04-ai-kihon.html">受講資料 入門 #01</a> ・ <a href="../speaker.html">講師紹介</a>
 </div>
 
 </div>

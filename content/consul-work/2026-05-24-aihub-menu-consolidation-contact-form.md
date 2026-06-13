@@ -11,7 +11,7 @@ CEO依頼:
 ### ① メニュー集約「EXPLORE / もっと知る」セクション
 ヘッダーの「その他」ドロップ・mobile-nav にあった項目をトップに3カードで集約（詳細は各ページへリンク）:
 - 制作実績・事業ポートフォリオ → /portfolio.html
-- 講習資料 → /lectures/index.html
+- 受講資料 → /lectures/index.html
 - 自分ポータル（AI Watch） → /watch/index.html
 
 旧 watch-link-bar（地味なリンク行）を `_render_explore()` のカードグリッドに格上げ。

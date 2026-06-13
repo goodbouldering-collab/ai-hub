@@ -32,7 +32,7 @@ CEO 方針「編集を常に反映する直リンク」「AIハブにスライ�
 - PDF は事前生成して `site/static/slides/` から配信（CIでChromium DLを避ける）
 - 参考資料ページ `content/lectures/2026-05-climbing-history.md` を追加し /slides/ へ直リンク
 - `pages.yml` に Node 20 セットアップ追加
-- 講習資料一覧（teaching_resources.yaml）にスライド直リンクを追加
+- 受講資料一覧（teaching_resources.yaml）にスライド直リンクを追加
 - 公開確認: GitHub Pages で全URL HTTP 200・リンク切れなし
 
 公開URL（GitHub Pages）:
@@ -54,7 +54,7 @@ CEO 指示「並べ方・見せ方が古い。文字ベースを保ちつつイ�
 - スクロールでふわっと出る reveal（IntersectionObserver・prefers-reduced-motion尊重）
 - 文字ベースのタイポグラフィ（serif見出し/mono装飾/字間）は維持
 - 対象: build_portal.py の PORTAL_CSS（正本）＋ build_site.py の CSS/CONTENT_CSS
-- ローカルビルド exit 0・トップ/講習資料一覧をスクショ目視確認
+- ローカルビルド exit 0・トップ/受講資料一覧をスクショ目視確認
 - push 時 non-fast-forward（自動ジョブのcommit先行）→ 生成物stash→rebase→push で解消
 - 本番反映を curl 実測で確認（glass-blur/radius/IntersectionObserver/backdrop-filter）
 
@@ -71,7 +71,7 @@ CEO 指示「並べ方・見せ方が古い。文字ベースを保ちつつイ�
 ## push 履歴（ai-hub / origin/main = 即本番デプロイ）
 
 - スライド公開: `6c754b6..db69434`
-- 講習資料リンク追加: `db69434..ecc2d2c`
+- 受講資料リンク追加: `db69434..ecc2d2c`
 - デザイン改修: `dd8fc5c..544db8b`（rebase後）
 
 2026-05-24 codex:rescue 発火（ai-hub/Marpスライド公開ビルド実装/HTML生成成功・Windows互換は手元修正）

@@ -1,7 +1,7 @@
 ---
 title: Codex準備会 60分 導入と習得
 date: 2026-06-05
-role: 講習資料 / Codex準備会
+role: 受講資料 / Codex準備会
 gen_by: Codex
 summary: ChatGPTは使えるがCodexアプリは初めての人向けに、導入、最初のプロジェクト、権限、安全装置、差分確認、公式アップデートの追い方までを学ぶ準備編。
 ---
@@ -153,7 +153,7 @@ summary: ChatGPTは使えるがCodexアプリは初めての人向けに、導�
 
 <section class="codex-slide">
 <h3>8. 公式アップデートを追う</h3>
-<p>Codexは更新が速いので、講習資料だけで止めず、公式のX・サイト・Changelogを確認します。</p>
+<p>Codexは更新が速いので、受講資料だけで止めず、公式のX・サイト・Changelogを確認します。</p>
 <ul>
 <li>OpenAI / OpenAI Developers on X</li>
 <li>Codex Changelog</li>
@@ -214,7 +214,7 @@ summary: ChatGPTは使えるがCodexアプリは初めての人向けに、導�
 <h3>資料整理フォルダ</h3>
 <p>まずは空フォルダを作り、講習メモ、画像、PDFだけを入れてCodexに見せます。秘密情報や本番データを混ぜない状態で、命名整理、要約、スライド構成を頼みます。</p>
 <div class="codex-prompt">このフォルダを見て、入っている資料の種類を説明してください。
-次に、初心者向け講習資料として安全に進められる小さな作業を3つ提案してください。
+次に、初心者向け受講資料として安全に進められる小さな作業を3つ提案してください。
 まだファイルは編集しないでください。</div>
 </div>
 <div class="codex-card" style="--accent:#e85d5a">

@@ -1,7 +1,7 @@
 # AGENTS.md — AIハブ
 
 **AIハブ** は「自分のAIをひとつに集める場所」をテーマにした個人ポートフォリオ兼マイページ。
-作品（アプリ集）・講師紹介・講習資料を見せる**フロント面**と、AI/SNS関連情報をRSSから自動収集・要約してNotebookLMに流し込む**バックエンドのパイプライン**を1つのサイトに同居させている。
+作品（アプリ集）・講師紹介・受講資料を見せる**フロント面**と、AI/SNS関連情報をRSSから自動収集・要約してNotebookLMに流し込む**バックエンドのパイプライン**を1つのサイトに同居させている。
 
 ## リポジトリ名の正規化
 
@@ -35,7 +35,7 @@
 | `core/shopify_admin.py` | Shopify Admin REST クライアント。`.env` の `SHOPIFY_ACCESS_TOKEN` / `SHOPIFY_STORE_DOMAIN` を読む |
 | `scripts/migrate_sqlite_to_supabase.py` | SQLite → Supabase へのマイグレーション |
 | `content/speaker.md` | 講師紹介（由井辰美）の編集ソース。ビルドで `speaker.html` になる |
-| `content/lectures/*.md` | 講習資料の編集ソース。ビルドで `lectures/<slug>.html` になる |
+| `content/lectures/*.md` | 受講資料の編集ソース。ビルドで `lectures/<slug>.html` になる |
 | `content/assets/` | 画像・PDF。`./assets/xxx` で参照 |
 
 ## デプロイ構成（**Vercel 集約・2026-04-29 移行済**）
@@ -91,7 +91,7 @@ AIハブには**2系統の管理画面**がある:
 
 ### 1. ローカル管理画面 (`admin/server.py`)
 
-FastAPI ベースの**ローカル専用** UI。記事収集ジョブの状態確認・講習資料の編集・Shopify Admin 操作などに使う。
+FastAPI ベースの**ローカル専用** UI。記事収集ジョブの状態確認・受講資料の編集・Shopify Admin 操作などに使う。
 ローカルで `uvicorn admin.server:app --port 3010 --reload` で起動 → `http://localhost:3010/admin`。
 運用（記事収集）は GitHub Actions 任せで、ここは手元確認用。
 
@@ -150,15 +150,16 @@ FastAPI ベースの**ローカル専用** UI。記事収集ジョブの状態�
 | `SUPABASE_URL` / `SUPABASE_SERVICE_ROLE_KEY` | 画像アップロード先 |
 | `SUPABASE_BUCKET` | 既定 `ai-hub-public` (public=true で作成済) |
 
-### 講習資料タブ
+### 受講資料タブ
 
-`/admin` の「📝 講習資料」タブで `content/lectures/*.md` を一覧・新規作成・編集・削除できる。
+`/admin` の「📝 受講資料」タブで `content/lectures/*.md` を一覧・新規作成・編集・削除できる。
 
 **操作**:
 - 左カラム: 既存資料一覧（日付の新しい順）
 - 右カラム: frontmatter (title/date/role/gen_by/summary) と Markdown 本文のエディタ
 - **slug** はファイル名（例: `2026-04-ai-kihon`）。小文字英数とハイフンのみ
 - 「💾 保存して再ビルド」で `/lectures/<slug>.html` に即反映
+- 受講プランと関係する資料を追加・改名するときは、受講プランカードから該当する受講資料へ、受講資料側から受講プランへ戻れる導線を同時に更新する
 
 **追加機能**:
 - **Markdownライブプレビュー**（右半分に即時描画、入力から400ms後に更新）

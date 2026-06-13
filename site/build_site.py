@@ -64,7 +64,7 @@ DEFAULT_TOP_BUTTONS = [
     {"id": "speaker",         "group": "講師",         "label": "講師紹介",           "icon": "🎤", "href": "speaker.html",          "kind": "link",   "enabled": True},
     {"id": "profile",         "group": "講師",         "label": "経歴",               "icon": "📜", "href": "profile.html",          "kind": "link",   "enabled": True},
     {"id": "portfolio",       "group": "作品",         "label": "実績",               "icon": "🏆", "href": "portfolio.html",        "kind": "link",   "enabled": True},
-    {"id": "lectures",        "group": "教材資料",     "label": "講習資料",           "icon": "📝", "href": "lectures/index.html",   "kind": "link",   "enabled": True},
+    {"id": "lectures",        "group": "教材資料",     "label": "受講資料",           "icon": "📝", "href": "lectures/index.html",   "kind": "link",   "enabled": True},
     # AIコーディング講習は lectures index の中にリンクとして掲載するためトップナビからは外す
     {"id": "archive",         "group": "アーカイブ",   "label": "過去ログ",           "icon": "📚", "href": "archive.html",          "kind": "link",   "enabled": True},
     {"id": "run",             "group": "操作",         "label": "巡回実行",           "icon": "🔄", "href": "",                      "kind": "action", "action_id": "run", "enabled": True},
@@ -144,7 +144,7 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
     parts.append("<a class='nav-link' href='/#packages'>受講プラン</a>")
     parts.append("<a class='nav-link' href='/#growth'>集客施策</a>")
     parts.append("<a class='nav-link' href='/#works'>制作実績</a>")
-    parts.append("<a class='nav-link' href='/#lectures'>講習資料</a>")
+    parts.append("<a class='nav-link' href='/#lectures'>受講資料</a>")
     parts.append("<a class='nav-link' href='/#speaker'>講師紹介</a>")
     parts.append("<a class='nav-link' href='/watch/index.html'>AI Watch</a>")
     parts.append("<a class='nav-link' href='/#faq'>FAQ</a>")
@@ -1434,6 +1434,12 @@ CONTENT_CSS = """
   font-size: 13.5px !important;
   line-height: 1.7 !important;
 }
+.lecture-shell-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
 .lecture-home-link {
   display: inline-flex;
   align-items: center;
@@ -2005,14 +2011,17 @@ def _render_lecture_overview(title: str, meta: dict, body_html: str, toc: list[t
     else:
         parts.append(f"<p class='lecture-shell-desc'>{html.escape(title)} の目次・本文・関連形式をまとめています。</p>")
     parts.append("</div>")
-    parts.append("<a class='lecture-home-link' href='./index.html'>講習資料ホーム</a>")
+    parts.append("<div class='lecture-shell-actions'>")
+    parts.append("<a class='lecture-home-link' href='../#packages'>受講プラン</a>")
+    parts.append("<a class='lecture-home-link' href='./index.html'>受講資料ホーム</a>")
+    parts.append("</div>")
     parts.append("</div>")
     parts.append("<div class='lecture-format-strip'>")
     parts.append("<span class='lecture-format-chip on'>本文<small>あり</small></span>")
     parts.append(_render_feature_chips(flags, show_missing=False, css_prefix="lecture"))
     parts.append("</div>")
 
-    jumps: list[tuple[str, str]] = [("資料ホーム", "./index.html")]
+    jumps: list[tuple[str, str]] = [("受講資料ホーム", "./index.html"), ("受講プラン", "../#packages")]
     if flags.get("toc"):
         jumps.append(("目次", "#lecture-toc"))
     video_anchor = _find_toc_anchor(toc, "動画", "動画版")
@@ -2248,7 +2257,7 @@ def _resolve_lecture_href(href: str) -> str:
 def _load_teaching_sections(lecture_md_items: list[dict]) -> list[dict]:
     """config/teaching_resources.yaml を読み、source: lectures-md は自動展開して返す。
 
-    YAML が無ければ「講習資料」セクションだけを返す簡易フォールバック。
+    YAML が無ければ「受講資料」セクションだけを返す簡易フォールバック。
     """
     if TEACHING_YAML.exists():
         try:
@@ -2268,7 +2277,7 @@ def _load_teaching_sections(lecture_md_items: list[dict]) -> list[dict]:
         except Exception as e:
             print(f"[!] teaching_resources.yaml parse error: {e}")
     if lecture_md_items:
-        return [{"name": "講習資料", "icon": "📝", "items": lecture_md_items}]
+        return [{"name": "受講資料", "icon": "📝", "items": lecture_md_items}]
     return []
 
 
@@ -2302,15 +2311,16 @@ def _render_teaching_home(sections: list[dict]) -> str:
     featured_href = _resolve_lecture_href(str(featured.get("href", ""))) if featured else ""
     first_section_id = _teaching_section_id(sections[0]) if sections else ""
     parts: list[str] = []
-    parts.append("<section class='tr-home' aria-label='講習資料ホーム'>")
+    parts.append("<section class='tr-home' aria-label='受講資料ホーム'>")
     parts.append("<div>")
-    parts.append("<h2>講習資料ホーム</h2>")
+    parts.append("<h2>受講資料ホーム</h2>")
     parts.append(
         "<p>「Codex実践会 120分 構築と応用」の形式を基準に、各資料を目次、本文、動画、"
         "ナレーション、スライド、PDF、チェックの観点で探せるようにまとめた入口です。"
-        "講習中は投影資料へ、復習時は本文と目次へ、制作時はチェック項目へ進めます。</p>"
+        "受講前は内容確認、受講中は投影資料、受講後は本文とチェック項目へ進めます。</p>"
     )
     parts.append("<div class='tr-home-actions'>")
+    parts.append("<a href='../#packages'>受講プランを見る</a>")
     if featured_href:
         parts.append(f"<a href='{html.escape(featured_href, quote=True)}'>Codex実践会から見る</a>")
     if first_section_id:
@@ -2318,7 +2328,7 @@ def _render_teaching_home(sections: list[dict]) -> str:
     parts.append("</div>")
     parts.append("</div>")
     parts.append("<div class='tr-home-panel'>")
-    parts.append(f"<div class='tr-home-stat'><b>{len(primary_items)}</b><span>講習本体</span></div>")
+    parts.append(f"<div class='tr-home-stat'><b>{len(primary_items)}</b><span>受講資料本体</span></div>")
     parts.append(f"<div class='tr-home-stat'><b>{max(len(items) - len(primary_items), 0)}</b><span>補助・投影資料</span></div>")
     parts.append(f"<div class='tr-home-stat'><b>{feature_counts.get('video', 0)}</b><span>動画付き</span></div>")
     parts.append("</div></section>")
@@ -2353,8 +2363,8 @@ def _render_teaching_index(sections: list[dict]) -> str:
     parts: list[str] = []
     parts.append(_render_teaching_home(sections))
     parts.append(
-        "<p class='tr-intro'>まず講習本体を開き、必要に応じて投影用スライドや補助資料へ進む。"
-        "講習中はスライド、復習では本文と目次、制作前にはチェック項目を見ると迷いにくい。</p>"
+        "<p class='tr-intro'>まず受講資料本体を開き、必要に応じて投影用スライドや補助資料へ進む。"
+        "内容を確認したら受講プランへ戻り、準備会・実践会・個別相談のどれで進めるかを選べます。</p>"
     )
     rendered_any = False
     for sec in sections:
@@ -2459,7 +2469,7 @@ def build_lectures() -> int:
         body_html = _render_teaching_index(sections)
         nav = render_top_nav(path_prefix="../", current_id="lectures", include_run=False)
         (out_dir / "index.html").write_text(
-            render_content_page("講習資料 ディレクトリ", {"summary": "AI相談。彦根の講習資料・補助教材・外部リソースのディレクトリ"}, body_html, nav, page_path="lectures/index.html"),
+            render_content_page("受講資料 ディレクトリ", {"summary": "AI相談。彦根の受講資料・補助教材・外部リソースのディレクトリ"}, body_html, nav, page_path="lectures/index.html"),
             encoding="utf-8",
         )
     return count
@@ -2540,6 +2550,8 @@ def build_portfolio_page() -> bool:
         for it in grouped[cat]:
             if not online:
                 break
+            if str(it.get("slug") or "") == "ai-hub":
+                continue
             meta = _fetch_meta(str(it.get("url")))
             if meta.get("title") and not it.get("_title"):
                 it["_title"] = meta["title"]

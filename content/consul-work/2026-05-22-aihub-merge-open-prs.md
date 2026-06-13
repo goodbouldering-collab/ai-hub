@@ -10,7 +10,7 @@ ai-hub commits: `7a56b5c`(#4) / `c3814c9`(#1) / `d08a8b2`(#3マージ)。本番�
 
 | PR | タイトル | 状態 | 処理 |
 |---|---|---|---|
-| #4 | 講習資料: Claude Code 2026新機能 | MERGEABLE/CLEAN | squashマージ + ブランチ削除 |
+| #4 | 受講資料: Claude Code 2026新機能 | MERGEABLE/CLEAN | squashマージ + ブランチ削除 |
 | #1 | 記事公開後に完成URL表示 | MERGEABLE/CLEAN | squashマージ + ブランチ削除 |
 | #3 | SNS一括投稿MVP (X+Threads) | CONFLICTING/DIRTY | コンフリクト解消 → マージ + ブランチ削除 |
 

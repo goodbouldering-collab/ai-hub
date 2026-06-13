@@ -186,7 +186,7 @@ def put_speaker(payload: SpeakerPayload) -> dict:
 DEFAULT_TOP_BUTTONS = [
     {"id": "speaker",         "label": "講師紹介",           "icon": "🎤", "href": "./speaker.html",            "kind": "link",   "enabled": True},
     {"id": "portfolio",       "label": "実績",               "icon": "🏆", "href": "./portfolio.html",          "kind": "link",   "enabled": True},
-    {"id": "lectures",        "label": "講習資料",           "icon": "📝", "href": "./lectures/index.html",     "kind": "link",   "enabled": True},
+    {"id": "lectures",        "label": "受講資料",           "icon": "📝", "href": "./lectures/index.html",     "kind": "link",   "enabled": True},
     {"id": "archive",         "label": "過去ログ",           "icon": "📚", "href": "./archive.html",            "kind": "link",   "enabled": True},
     {"id": "programming_map", "label": "AIコーディング講習", "icon": "📘", "href": "./programming-map.html",    "kind": "link",   "enabled": True},
     {"id": "run",             "label": "巡回実行",           "icon": "🔄", "href": "",                          "kind": "action", "action_id": "run", "enabled": True},
@@ -363,7 +363,7 @@ def run_status() -> dict:
     return _run_state
 
 
-# ---------- 講習資料 (content/lectures/*.md) ----------
+# ---------- 受講資料 (content/lectures/*.md) ----------
 
 import re
 

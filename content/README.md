@@ -7,7 +7,7 @@ AIハブ のサイトに出す「静的コンテンツ」の一次ソース。Ma
 | パス | 生成先 | 用途 |
 |---|---|---|
 | `speaker.md` | `site/dist/speaker.html` | 講師紹介（由井辰美）。AI講習の進行メモ・作成アプリ・関わっているWebサイト・参考リンクまで一元管理 |
-| `lectures/*.md` | `site/dist/lectures/<slug>.html` | 講習資料の個別ページ（これから追加） |
+| `lectures/*.md` | `site/dist/lectures/<slug>.html` | 受講資料の個別ページ（これから追加） |
 | `assets/` | `site/dist/assets/` | 画像・PDFなどの添付物 |
 
 ## 書き方のルール
@@ -17,7 +17,7 @@ AIハブ のサイトに出す「静的コンテンツ」の一次ソース。Ma
 - H1 直後に YAML フロントマターで `name`, `role`, `profile_url` 等のメタを書くと、ビルド時にヘッダーに展開される
 - 資料やスクリーンショットは `assets/` に入れ、相対パス `./assets/xxx.png` で参照
 
-## 新しい講習資料を追加する
+## 新しい受講資料を追加する
 
 ```bash
 # content/lectures/2026-04-ai-basics.md を作って編集

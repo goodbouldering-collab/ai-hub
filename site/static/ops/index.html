@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
-<meta name="color-scheme" content="dark">
+<meta name="color-scheme" content="light">
 <title>OPS — AIハブ運用本部</title>
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
@@ -142,22 +142,37 @@
     section.card{padding:20px 22px}
   }
 </style>
+<link rel="stylesheet" href="/admin/admin-common.css">
+<style>
+  body.ops-page .wrap{padding-top:132px}
+  @media(min-width:980px){body.ops-page .wrap{padding-top:132px}}
+  @media(max-width:900px){body.ops-page .wrap{padding-top:190px}}
+</style>
 </head>
-<body>
+<body class="admin-page admin-theme-light ops-page">
 <header class="site-header scrolled" id="site-header">
   <div class="site-header-inner">
-    <a class="site-logo" href="/"><span class="dot"></span>AIハブ <span style="color:var(--muted);font-weight:600;font-size:13px;margin-left:6px;">運用本部</span></a>
-    <nav class="site-nav" aria-label="統合ナビ">
-      <a class="nav-link" href="/">TOP</a>
+    <a class="site-logo" href="/" aria-label="AI相談。彦根 公開ページへ">
+      <span class="brand-mark" aria-hidden="true"><span class="brand-a">AI</span><span class="brand-ha">相</span></span>
+      <span class="wordmark"><span class="word-ai">AI相談</span><span class="word-hub">彦根</span><span class="word-en">AI CONSULT</span></span>
+      <span class="site-logo-by">管理画面</span>
+    </a>
+    <nav class="site-nav" aria-label="公開ページナビ">
       <a class="nav-link" href="/#packages">受講プラン</a>
-      <a class="nav-link" href="/#growth">集客施策</a>
-      <a class="nav-link" href="/#works">制作実績</a>
+      <a class="nav-link" href="/#speaker">講師紹介</a>
       <a class="nav-link" href="/#lectures">受講資料</a>
       <a class="nav-link" href="/watch/index.html">AI Watch</a>
-      <a class="nav-link" href="/admin#admin-menu">管理ハブ</a>
-      <a class="login-btn" href="/ops">OPS</a>
+      <a class="login-btn" href="/">公開ページへ戻る</a>
     </nav>
   </div>
+  <nav class="admin-subnav" aria-label="管理メニュー">
+    <a href="/admin#admin-menu">管理ハブ</a>
+    <a href="/admin#panel-status">記事生成</a>
+    <a href="/admin/gubble-sns">SNS分析</a>
+    <a href="/admin/sns-post">SNS投稿</a>
+    <a href="/admin/chat">社内AI</a>
+    <a href="/ops">OPS</a>
+  </nav>
 </header>
 <div class="wrap">
   <header class="top">

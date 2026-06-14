@@ -18,7 +18,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/01/STK269_ANTHROPIC_2_C.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-06-14T14:27:55-04:00"
+      "published": "2026-06-14T14:27:55-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "992500d3ffb0e62a",
@@ -37,7 +39,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://static.simonwillison.net/static/2026/luau-wasm.jpg",
-      "published": "2026-06-13T23:55:18+00:00"
+      "published": "2026-06-13T23:55:18+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "162f06c2cb4dbb14",
@@ -56,7 +60,9 @@
         "freshness": 3.0
       },
       "thumbnail": "",
-      "published": "2026-06-13T23:14:30+00:00"
+      "published": "2026-06-13T23:14:30+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "b8476589fb5bc1d1",
@@ -75,7 +81,9 @@
         "freshness": 3.0
       },
       "thumbnail": "",
-      "published": "2026-06-13T23:05:00+00:00"
+      "published": "2026-06-13T23:05:00+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "445ffe39d179d702",
@@ -94,7 +102,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/vK6hTqhYJgQ/hqdefault.jpg",
-      "published": "2026-06-14T10:00:12+00:00"
+      "published": "2026-06-14T10:00:12+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "d222e2e952945148",
@@ -113,7 +123,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/GkWaL-NVH1M/hqdefault.jpg",
-      "published": "2026-06-14T10:00:00+00:00"
+      "published": "2026-06-14T10:00:00+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "632cef8af025c86a",
@@ -132,7 +144,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://image.itmedia.co.jp/news/articles/2606/14/cover_news019.jpg",
-      "published": "Sun, 14 Jun 2026 18:20:00 +0900"
+      "published": "Sun, 14 Jun 2026 18:20:00 +0900",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

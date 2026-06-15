@@ -106,6 +106,7 @@
   .quickflow-card {
     padding:16px; border-radius:14px;
     background:#fff; border:1px solid var(--line);
+    border-top:4px solid rgba(37,99,235,.18);
     box-shadow:0 8px 24px rgba(15,23,42,.06);
   }
   .quickflow-card span {
@@ -512,7 +513,8 @@
   <nav class="admin-subnav" aria-label="管理メニュー">
     <a href="/admin#admin-menu">管理ハブ</a>
     <a href="#panel-dashboard">今週の動き</a>
-    <a href="#panel-status">記事生成</a>
+    <a href="#panel-lectures">受講資料</a>
+    <a href="#panel-status">記事作成</a>
     <a href="/admin/gubble-sns">SNS分析</a>
     <a href="/admin/sns-post">SNS投稿</a>
     <a href="/admin/chat">社内AI</a>
@@ -531,17 +533,17 @@
   <div class="quickflow" aria-label="最短操作">
     <div class="quickflow-card">
       <span>STEP 1</span>
-      <strong>接続状態を確認</strong>
+      <strong>状態を確認</strong>
       <p>API と環境変数の状態を最初に見て、止まっている原因を先に外します。</p>
     </div>
     <div class="quickflow-card">
       <span>STEP 2</span>
-      <strong>親グループを選ぶ</strong>
+      <strong>公開先を決める</strong>
       <p>公開先の親グループを決めると、並び替えと公開先の事故を減らせます。</p>
     </div>
     <div class="quickflow-card">
       <span>STEP 3</span>
-      <strong>生成して公開</strong>
+      <strong>生成して整える</strong>
       <p>記事案の生成、採用案の編集、画像作成、公開の順で作業を閉じます。</p>
     </div>
   </div>

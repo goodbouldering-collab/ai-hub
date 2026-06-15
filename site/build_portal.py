@@ -556,25 +556,26 @@ header.site-header.scrolled {
 }
 .site-nav {
   display: flex; align-items: center; gap: 8px;
-  padding: 4px;
-  border: 1px solid rgba(18,32,51,.10);
-  border-radius: 10px;
-  background: rgba(255,255,255,.78);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.96);
+  padding: 5px;
+  border: 1px solid rgba(18,32,51,.14);
+  border-radius: 12px;
+  background: rgba(255,255,255,.92);
+  box-shadow: 0 10px 26px rgba(18,32,51,.08), inset 0 1px 0 rgba(255,255,255,.98);
 }
 .site-nav a.nav-link {
-  padding: 8px 10px; border-radius: 8px;
+  padding: 8px 12px; border-radius: 9px;
   font-size: 12.5px; font-weight: 850; color: #26364D;
   text-decoration: none; transition: color .2s, background .2s, border-color .2s;
-  border: 1px solid transparent;
+  border: 1px solid rgba(18,32,51,.06);
+  background: rgba(255,255,255,.7);
 }
 .site-nav a.nav-link:hover {
-  background: #EAF6F8; color: #0F5F78; border-color: rgba(31,110,140,.20);
+  background: #F2FBFC; color: #0F5F78; border-color: rgba(31,110,140,.24);
 }
 .site-nav .menu-wrap { position: relative; }
 .site-nav .menu-toggle {
   display: inline-flex; align-items: center; gap: 4px;
-  background: rgba(255,255,255,.72); border: 1px solid transparent; cursor: pointer;
+  background: rgba(255,255,255,.78); border: 1px solid rgba(18,32,51,.06); cursor: pointer;
   border-radius: 8px;
   font: inherit; font-size: 13px; font-weight: 850; color: #26364D;
   padding: 8px 10px;
@@ -5362,6 +5363,41 @@ body {
   border-color: rgba(255,255,255,.96) !important;
 }
 
+.hero-choice-bar {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.hero-choice-pill {
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(255,255,255,.84);
+  border: 1px solid rgba(7,22,43,.08);
+  box-shadow: 0 14px 30px rgba(7,22,43,.08);
+}
+
+.hero-choice-pill strong {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 13px;
+  color: #07162B;
+}
+
+.hero-choice-pill span {
+  display: block;
+  font-size: 11.5px;
+  line-height: 1.55;
+  color: #31455D;
+}
+
+@media (max-width: 900px) {
+  .hero-choice-bar {
+    grid-template-columns: 1fr;
+  }
+}
+
 .hero.hero-atlas .hero-proof {
   background:
     linear-gradient(135deg, rgba(255,255,255,.92), rgba(255,255,255,.72)),
@@ -5680,20 +5716,18 @@ def _render_header() -> str:
         "</a>"
         "<nav class='site-nav' aria-label='メインナビ'>"
         "<a class='nav-link' href='#packages'>受講プラン</a>"
-        "<a class='nav-link' href='#web-showcase'>HP制作</a>"
-        "<a class='nav-link' href='#works'>制作実績</a>"
-        "<a class='nav-link' href='#lectures'>受講資料</a>"
         "<a class='nav-link' href='#flow'>ご依頼の流れ</a>"
-        "<a class='nav-link' href='#speaker'>講師紹介</a>"
+        "<a class='nav-link' href='#lectures'>受講資料</a>"
         "<a class='nav-link' href='#faq'>FAQ</a>"
         "<div class='menu-wrap'>"
-        "<button class='menu-toggle' id='menu-toggle' aria-haspopup='menu' aria-expanded='false'>その他"
+        "<button class='menu-toggle' id='menu-toggle' aria-haspopup='menu' aria-expanded='false'>制作と実績"
         "<svg class='chev' width='14' height='14' viewBox='0 0 20 20' fill='none' aria-hidden='true'><path d='M5 8l5 5 5-5' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>"
         "</button>"
         "<div class='menu-drop' id='menu-drop' role='menu'>"
-        "<span class='menu-drop-label'>検討材料</span>"
+        "<span class='menu-drop-label'>制作と実績</span>"
         "<a href='#web-showcase'>🖥️ HP制作</a>"
         "<a href='#works'>🧩 制作実績</a>"
+        "<a href='#speaker'>👤 講師紹介</a>"
         "<a href='#growth'>📈 集客施策</a>"
         "<a href='/portfolio.html'>📂 実績の詳細</a>"
         "<a href='/watch/index.html'>📡 AI Watch</a>"
@@ -5713,12 +5747,12 @@ def _render_header() -> str:
         "</div>"
         "<div class='mobile-nav' id='mobile-nav'>"
         "<a href='#packages'>受講プラン</a>"
+        "<a href='#flow'>ご依頼の流れ</a>"
+        "<a href='#lectures'>受講資料</a>"
+        "<a href='#faq'>FAQ</a>"
         "<a href='#web-showcase'>HP制作</a>"
         "<a href='#works'>制作実績</a>"
-        "<a href='#lectures'>受講資料</a>"
-        "<a href='#flow'>ご依頼の流れ</a>"
         "<a href='#speaker'>講師紹介</a>"
-        "<a href='#faq'>FAQ</a>"
         "<a href='#growth'>集客施策</a>"
         "<a href='/watch/index.html'>AI Watch</a>"
         "<span class='mobile-nav-label'>管理メニュー</span>"
@@ -6376,6 +6410,11 @@ def _render_hero() -> str:
         "<div class='hero-actions'>"
         "<a class='btn btn-primary btn-lg' href='#contact'>無料30分相談を予約</a>"
         "<a class='btn btn-secondary btn-lg' href='#lectures'>受講資料を先に見る</a>"
+        "</div>"
+        "<div class='hero-choice-bar' aria-label='最初の選び方'>"
+        "<div class='hero-choice-pill'><strong>まず相談</strong><span>課題整理と導入判断を30分で。</span></div>"
+        "<div class='hero-choice-pill'><strong>講座を比較</strong><span>Codex準備会・実践会・AIコーディングまで一画面で比較。</span></div>"
+        "<div class='hero-choice-pill'><strong>資料を先に確認</strong><span>受講前に資料と実例を見てから予約へ戻れます。</span></div>"
         "</div>"
         "<div class='hero-proof-grid' aria-label='AI講習会の特徴'>"
         "<div class='hero-proof'><span class='proof-icon'>01</span><span><b>Codex Core</b><span>実装と確認を中心に進める</span></span></div>"
@@ -7690,14 +7729,6 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append(_render_hero())
     parts.append(_render_growth_booster())
 
-    # 0b. ホームページ制作ショールーム
-    parts.append("<section class='block web-showcase-block' id='web-showcase'>")
-    parts.append("<p class='section-heading fade-up'>WEB PRODUCTION</p>")
-    parts.append("<h2 class='section-title fade-up d1'>ホームページ制作も、提案書のように見せる</h2>")
-    parts.append("<p class='section-sub fade-up d2'>店舗LP、企業サイト、EC、講習資料、管理画面、SNS改善まで。「こんなものも作れます」を、用途別の完成イメージとしてわかりやすく提示します。</p>")
-    parts.append(_render_web_showcase())
-    parts.append("</section>")
-
     # 1. 最初の選び方
     parts.append("<section class='block block-tight' id='start'>")
     parts.append("<p class='section-heading fade-up'>START HERE</p>")
@@ -7714,18 +7745,7 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append(_render_courses_packages())
     parts.append("</section>")
 
-    # 3. 制作実績（TOP内にサマリを掲載・各カードは公開サイト本体へ直リンク）
-    parts.append("<section class='block' id='works'>")
-    parts.append("<p class='section-heading fade-up'>WORKS</p>")
-    parts.append("<h2 class='section-title fade-up d1'>実例サイト</h2>")
-    parts.append("<p class='section-sub fade-up d2'>説明だけではなく、講師が実際に構築・運用しているサイトや業務システムを教材として使います。</p>")
-    parts.append("<div class='fade-up d2'>")
-    parts.append(_render_works_section())
-    parts.append("</div>")
-    parts.append("<div class='section-more fade-up d3'><a class='btn btn-secondary' href='/portfolio.html'>📂 実績の詳細・技術スタックを見る →</a></div>")
-    parts.append("</section>")
-
-    # 4. ご依頼の流れ
+    # 3. ご依頼の流れ
     parts.append("<section class='block' id='flow'>")
     parts.append("<p class='section-heading'>FLOW</p>")
     parts.append("<h2 class='section-title'>相談から資料化・集客まで</h2>")
@@ -7733,7 +7753,7 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append(_render_flow())
     parts.append("</section>")
 
-    # 5. 受講資料（TOP内にサマリを掲載）
+    # 4. 受講資料（TOP内にサマリを掲載）
     parts.append("<section class='block' id='lectures'>")
     parts.append("<p class='section-heading fade-up'>MATERIALS</p>")
     parts.append("<h2 class='section-title fade-up d1'>受講資料</h2>")
@@ -7744,7 +7764,26 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append("<div class='section-more fade-up d3'><a class='btn btn-primary' href='#packages'>受講プランへ戻る →</a><a class='btn btn-secondary' href='/lectures/index.html'>📚 受講資料の一覧を見る →</a></div>")
     parts.append("</section>")
 
-    # 6. 講師紹介（誰が教えるか）
+    # 5. ホームページ制作ショールーム
+    parts.append("<section class='block web-showcase-block' id='web-showcase'>")
+    parts.append("<p class='section-heading fade-up'>WEB PRODUCTION</p>")
+    parts.append("<h2 class='section-title fade-up d1'>ホームページ制作も、提案書のように見せる</h2>")
+    parts.append("<p class='section-sub fade-up d2'>店舗LP、企業サイト、EC、講習資料、管理画面、SNS改善まで。「こんなものも作れます」を、用途別の完成イメージとしてわかりやすく提示します。</p>")
+    parts.append(_render_web_showcase())
+    parts.append("</section>")
+
+    # 6. 制作実績（TOP内にサマリを掲載・各カードは公開サイト本体へ直リンク）
+    parts.append("<section class='block' id='works'>")
+    parts.append("<p class='section-heading fade-up'>WORKS</p>")
+    parts.append("<h2 class='section-title fade-up d1'>実例サイト</h2>")
+    parts.append("<p class='section-sub fade-up d2'>説明だけではなく、講師が実際に構築・運用しているサイトや業務システムを教材として使います。</p>")
+    parts.append("<div class='fade-up d2'>")
+    parts.append(_render_works_section())
+    parts.append("</div>")
+    parts.append("<div class='section-more fade-up d3'><a class='btn btn-secondary' href='/portfolio.html'>📂 実績の詳細・技術スタックを見る →</a></div>")
+    parts.append("</section>")
+
+    # 7. 講師紹介（誰が教えるか）
     parts.append("<section class='block' id='speaker'>")
     parts.append("<p class='section-heading fade-up'>SPEAKER</p>")
     parts.append("<h2 class='section-title fade-up d1'>講師紹介</h2>")

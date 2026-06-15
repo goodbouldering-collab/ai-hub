@@ -1,102 +1,128 @@
 # AIハブ 2026-06-15
 
-> 生成日時: 2026-06-15 04:21:13
-> 新着: 12件 / 継続: 4件 / 合計: 16件
+> 生成日時: 2026-06-15 23:28:56
+> 新着: 16件 / 継続: 4件 / 合計: 20件
 
 ---
 
 ## 🆕 新着 (前回取得以降)
 
-### カテゴリ: AI公式 (1件)
+### カテゴリ: AIニュース (3件)
 
-### [OpenAI Blog] Introducing the OpenAI Partner Network
-- URL: https://openai.com/index/introducing-openai-partner-network
-- 取得: 2026-06-15 04:21:03
-- 公開: Sun, 14 Jun 2026 17:00:00 GMT
-- 原文抜粋: OpenAI launches the Partner Network, investing $150M to help global partners accelerate enterprise AI adoption, deployment, and transformation.
+### [The Verge AI] Skydio CEO Adam Bry on why Silicon Valley shouldn’t draw red lines for drone use
+- URL: https://www.theverge.com/podcast/949195/skydio-ceo-adam-bry-autonmous-drones-china-red-lines-military
+- 取得: 2026-06-15 23:28:50
+- 公開: 2026-06-15T10:00:00-04:00
+- 原文抜粋: Today, I’m talking with Adam Bry, who is CEO of Skydio, the leading US maker of autonomous drones. Before we recorded this episode, I actually got to remotely operate one of Skydio’s drones in the Bay Area from Adam’s laptop in our podcast studio in New York and fly an indoor drone around our office...
 
-### カテゴリ: AI国内 (4件)
+### [MIT Technology Review AI] Why do South Koreans love AI so much?
+- URL: https://www.technologyreview.com/2026/06/15/1138983/why-do-south-koreans-love-ai-so-much/
+- 取得: 2026-06-15 23:28:51
+- 公開: Mon, 15 Jun 2026 18:46:08 +0000
+- 原文抜粋: This story originally appeared in The Algorithm, our weekly newsletter on AI. To get stories like this in your inbox first, sign up here. When I landed in Seoul after a grueling 12-hour flight from San Francisco, I walked through an unmanned immigration checkpoint, where a machine scanned my face an...
 
-### [ITmedia AI+] Sakana AI、初の商用プロダクト「Marlin」リリース　その実力は？【出力レポート全文掲載】
-- URL: https://www.itmedia.co.jp/news/articles/2606/15/news015.html
-- 取得: 2026-06-15 04:21:08
-- 公開: Mon, 15 Jun 2026 11:56:00 +0900
-- 原文抜粋: Sakana AIがAI調査エージェント「Sakana Marlin」の提供を開始した。4月からβ版を提供していたものを商用化する。公開に先んじてメディア向けにサービスのハンズオンを実施。事前に集めたテーマを基に、AIに作成させたレポートを報道陣に公開した。
+### [Ars Technica AI] Chipmaker Nvidia seeks to raise over $25B in first bond deal since 2021
+- URL: https://arstechnica.com/ai/2026/06/chipmaker-nvidia-seeks-to-raise-over-25b-in-first-bond-deal-since-2021/
+- 取得: 2026-06-15 23:28:51
+- 公開: Mon, 15 Jun 2026 19:07:02 +0000
+- 原文抜粋: Debt sale set to test investor appetite for further exposure to AI sector amid a deluge of borrowing.
 
-### [ITmedia AI+] Sakana?AI、初の商用サービスはリサーチ特化　「Deep Research」との違いは？　後発で“ベンチマークも追わない”ワケ
-- URL: https://www.itmedia.co.jp/aiplus/article/2606/15/2000000085/
-- 取得: 2026-06-15 04:21:08
-- 公開: Mon, 15 Jun 2026 11:50:55 +0900
-- 原文抜粋: Sakana?AIが6月15日に提供を始めた同社初の商用サービス「Sakana?Marlin」（サカナ・マーリン）。詳細や狙いを担当者に聞いた。
+### カテゴリ: AI動画(日本語) (3件)
 
-### [ITmedia AI+] ChatGPT vs. Google検索──どっちで調べるのが学習効果が高い？　8日間の実験で検証した研究
-- URL: https://www.itmedia.co.jp/news/articles/2606/15/news028.html
-- 取得: 2026-06-15 04:21:08
-- 公開: Mon, 15 Jun 2026 08:00:00 +0900
-- 原文抜粋: 米ジョージア工科大学やミシガン大学などに所属する研究者らが発表した論文「Learning by Chatting? Investigating the Impact of Generative AI on Information Seeking and Learning」は、AIチャットbotと検索エンジンではどちらが学習効果が高いかを検証した研究報告だ。
+### [ウェブ職TV] Claude Fable 5の米国政府による停止命令 / 原因はAmazonからの密告？ / Anthropicと米国政府の深い溝とは
+- URL: https://www.youtube.com/watch?v=kjCiSmLTuGI
+- 取得: 2026-06-15 23:28:53
+- 公開: 2026-06-15T13:47:33+00:00
+- 原文抜粋: 【6月22日まで早割】非エンジニアでもできるClaude Codeセキュリティ対策講座 https://touchai.jp/courses/uiBGBxzwUX8?utm_source=IFuP6y_RCng&amp;utm_medium=webshokutv&amp;utm_campaign=20260616  【全6回】非エンジニア向けITリテラシー向上講座 ※準備中。準備が出来次第、案内します。  ▼Claude Codeを安全に全社導入する仕組み「Claude Code Safety Hub」のお問い合わせはこちら https://touchai.jp/claude-code-saf...
 
-### [ITmedia AI+] AI・ロボット人材は約340万人不足　労働市場のスキル需給、AIでどう可視化する？
-- URL: https://www.itmedia.co.jp/enterprise/articles/2606/15/news024.html
-- 取得: 2026-06-15 04:21:08
-- 公開: Mon, 15 Jun 2026 08:00:00 +0900
-- 原文抜粋: 産業構造の変化と人口減少が同時に進み、業種や職種の間で人材の過不足が広がると予測されている。経済産業省は事業を通じて、労働市場全体のスキル需給をAIなどで可視化する取り組みに乗り出した。受託したNRIは、具体的に何に取り組むのか。
+### [KEITO AI&WEB] 非エンジニアでも出来る『Codex』のオートメーション機能（自動化）が便利すぎる
+- URL: https://www.youtube.com/watch?v=CV08cqYNpEA
+- 取得: 2026-06-15 23:28:54
+- 公開: 2026-06-15T10:00:06+00:00
+- 原文抜粋: OpenAIのAIエージェントのCodexのオートメーション機能を解説。非エンジニアでも凄く簡単に設定できて実用的です。  ★Substack（メルマガ）は下記から購読 https://kt-life.net/sns-links/newsletter.html  ★プロセボ｜AIコミュニティ AI活用を実際に操作しながら学ぶワークショップ型AIスクール。 参加申し込みはこちら → https://procevo.biz/  ▼KEITOの著書 ChatGPT むちゃぶり仕事術 → https://amzn.to/46u5zjd やりたい！ができる生成AIでアプリづくり → https://am...
 
-### カテゴリ: AI研究者ブログ (2件)
+### [AI収益化ラボ] 【使うほど稼げる】Codex / Claude Codeの10倍すごいAIを見つけました
+- URL: https://www.youtube.com/watch?v=4_BWCPR0PD0
+- 取得: 2026-06-15 23:28:54
+- 公開: 2026-06-15T10:00:30+00:00
+- 原文抜粋: ▼動画内で紹介したプレゼントの受け取りは以下の公式LINEから https://liff.line.me/2006805073-rn36NG8b/landing?follow=%40933hyolt&amp;lp=maQ4Oc&amp;liff_id=2006805073-rn36NG8b  ▼現在開催中のセミナーを確認する https://n1seminar-vsuoymjh.manus.space/  ▼プレゼントの受け取り方法 ① LINE登録後に送信される配信をタップ ② アンケートに回答（1度登録されたメールアドレスでは2度と受け取れません） ③ 届いだNotionをブックマーク o...
 
-### [Simon Willison's Weblog] Quoting Julia Evans
-- URL: https://simonwillison.net/2026/Jun/15/julia-evans/#atom-everything
-- 取得: 2026-06-15 04:21:07
-- 公開: 2026-06-15T02:05:19+00:00
-- 原文抜粋: <blockquote cite="https://wizardzines.com/comics/write-for-one-person/"><p>[...] Instead, I picture a specific person and I just write for them. Often this person is "me, but 3 years ago" or a good friend.</p></blockquote> <p class="cite">&mdash; <a href="https://wizardzines.com/comics/write-for-one...
+### カテゴリ: AI国内 (7件)
 
-### [Simon Willison's Weblog] Why AI hasn’t replaced software engineers, and won’t
-- URL: https://simonwillison.net/2026/Jun/14/why-ai-hasnt-replaced-software-engineers/#atom-everything
-- 取得: 2026-06-15 04:21:07
-- 公開: 2026-06-14T23:54:11+00:00
-- 原文抜粋: <p><strong><a href="https://www.normaltech.ai/p/why-ai-hasnt-replaced-software-engineers">Why AI hasn’t replaced software engineers, and won’t</a></strong></p> Arvind Narayanan and Sayash Kappor take on the question of AI job losses through the lens of a profession that is uniquely suited to AI disr...
+### [ITmedia AI+] 急拡大するAIインフラの電力需要……光明は「ワットビット連携」に？　さくら田中社長と東電が対談
+- URL: https://www.itmedia.co.jp/news/articles/2606/15/news082.html
+- 取得: 2026-06-15 23:28:52
+- 公開: Tue, 16 Jun 2026 08:00:00 +0900
+- 原文抜粋: AIインフラの拡大で急増する電力需要に、データセンターと電力網はどう向き合うべきか──6月10～12日に幕張メッセで開催された「Interop Tokyo 2026」の基調講演では、東京電力ホールディングスの岡本浩氏（上席フェロー）と、さくらインターネットの田中邦裕代表取締役社長が議論を交わした。
 
-### カテゴリ: SNS動向 (5件)
+### [ITmedia AI+] 300億円は「ROI不問」　Olive、Trunkを仕掛けるSMBC、新規事業の神髄は「撤退」にアリ
+- URL: https://www.itmedia.co.jp/business/articles/2606/16/news018.html
+- 取得: 2026-06-15 23:28:52
+- 公開: Tue, 16 Jun 2026 07:00:00 +0900
+- 原文抜粋: 「Olive」や「Trunk」を相次いで成長軌道に乗せ、生成AI活用に向けて500億円の投資計画も打ち出した三井住友フィナンシャルグループ。そんな同社だが、約10年前はモバイルアプリで競合他行に大きく後れを取るなど、変革が進んでいなかった。堅実なメガバンクは、いかに挑戦を次々と形にできる組織へと変貌したのか。
 
-### [Social Media Today] TikTok launches digital trading cards for 2026 FIFA World Cup
-- URL: https://www.socialmediatoday.com/news/tiktok-launches-digital-trading-cards-for-2026-fifa-world-cup/822867/
-- 取得: 2026-06-15 04:21:08
-- 公開: Sun, 14 Jun 2026 19:27:48 -0400
-- 原文抜粋: <p>TikTok&rsquo;s launching its own form of collectible&nbsp;NFTs for the event, which users can earn by undertaking various engagement actions.&nbsp;</p>
+### [ITmedia AI+] 生成AI×3D CADでどこまでできるか試してみた
+- URL: https://monoist.itmedia.co.jp/mn/articles/2606/16/news023.html
+- 取得: 2026-06-15 23:28:52
+- 公開: Tue, 16 Jun 2026 07:00:00 +0900
+- 原文抜粋: 生成AIの活用は、文章や画像、動画だけでなく、3D CADの分野にも広がり始めています。自然言語で指示するだけで、3Dモデルのたたき台を作成できる環境も登場しつつあります。今回はAutodesk Fusionの「Autodesk Assistant」を使い、ペットボトルの3Dモデル作成を試しながら、生成AI×3D CADの可能性と課題を紹介します。
 
-### [Social Media Today] YouTube announces new live concert series
-- URL: https://www.socialmediatoday.com/news/youtube-announces-new-live-concert-series/822866/
-- 取得: 2026-06-15 04:21:08
-- 公開: Sun, 14 Jun 2026 19:25:18 -0400
-- 原文抜粋: <p>YouTube&rsquo;s new live music series will help to underline the platform&rsquo;s role in music discovery and promotion.&nbsp;</p>
+### [ITmedia AI+] 月2000時間のムダをなくす大阪ガスらのNotion×AI活用　「使われない情報」の生かし方
+- URL: https://kn.itmedia.co.jp/kn/articles/2606/16/news022.html
+- 取得: 2026-06-15 23:28:52
+- 公開: Tue, 16 Jun 2026 07:00:00 +0900
+- 原文抜粋: 「あの資料はどこ」といった情報探索の負担を、NotionとAIの活用によって大幅に軽減した大阪ガスら2社の事例を紹介。月2000時間の業務削減を実現した取り組みによって埋もれた情報を組織の知識資産へと変え、属人化を防ぐ仕組みづくりのポイントを分かりやすく解説する。
 
-### [Social Media Today] X’s Grok chatbot is still generating fake nude images
-- URL: https://www.socialmediatoday.com/news/x-formerly-twitter-grok-chatbot-is-still-producing-fake-nude-images/822865/
-- 取得: 2026-06-15 04:21:08
-- 公開: Sun, 14 Jun 2026 19:21:03 -0400
-- 原文抜粋: <p>New research shows that despite xAI&rsquo;s claiming to have addressed misuse concerns, users are still able to generate deepfake nudes via Grok.&nbsp;</p>
+### [ITmedia AI+] データセンターの見回り業務をロボットに　自在に伸びるカメラでくまなく点検できる「ugo mini」
+- URL: https://www.itmedia.co.jp/news/articles/2606/15/news119.html
+- 取得: 2026-06-15 23:28:52
+- 公開: Mon, 15 Jun 2026 20:40:00 +0900
+- 原文抜粋: 6月10日から12日に幕張メッセで開催したインターネット技術の総合イベント「Interop Tokyo 2026」で、ugo（東京都千代田区）は小型の点検ロボット「ugo mini」を展示した。
 
-### [Social Media Today] Edits is getting a desktop version and an AI production assistant
-- URL: https://www.socialmediatoday.com/news/edits-is-getting-a-desktop-version-and-an-ai-production-assistant/822864/
-- 取得: 2026-06-15 04:21:08
-- 公開: Sun, 14 Jun 2026 19:16:35 -0400
-- 原文抜粋: <p>A desktop version of Meta&rsquo;s separate video editing app will help to enhance the utility of the tool.</p>
+### [ITmedia AI+] 人工知能学会「AIは人間を代替しない」　社会実装へ4提言　安保・著作権にも言及
+- URL: https://www.itmedia.co.jp/aiplus/article/2606/15/2000000091/
+- 取得: 2026-06-15 23:28:52
+- 公開: Mon, 15 Jun 2026 19:56:36 +0900
+- 原文抜粋: 人工知能学会は、設立40周年にあたり、日本におけるAIの社会実装に向けた提言を発表した。
 
-### [Social Media Today] Meta is giving 130K US veterans free AI glasses
-- URL: https://www.socialmediatoday.com/news/meta-is-giving-130k-us-veterans-free-ai-glasses/822863/
-- 取得: 2026-06-15 04:21:08
-- 公開: Sun, 14 Jun 2026 19:13:05 -0400
-- 原文抜粋: <p>The program aims to showcase the utility of Meta&rsquo;s evolving AI-powered device.&nbsp;</p>
+### [ITmedia AI+] Javaアプリ更新を1カ月→3日に爆速化　“ソースコード生成AI止まり”じゃない「IBM Bob」の仕組み
+- URL: https://atmarkit.itmedia.co.jp/ait/articles/2606/15/news042.html
+- 取得: 2026-06-15 23:28:52
+- 公開: Mon, 15 Jun 2026 13:00:00 +0900
+- 原文抜粋: IBMが発表したAIツール「IBM Bob」は、先行導入した企業でJavaアプリケーションのモダナイゼーション作業を30日から3日に短縮するといった効果があったという。ソースコード生成にとどまらない、IBM Bobの特徴とは。
+
+### カテゴリ: AI研究者ブログ (1件)
+
+### [Simon Willison's Weblog] "They screwed us": Personality clashes sent Anthropic's models offline
+- URL: https://simonwillison.net/2026/Jun/15/axios-clashes-anthropics/#atom-everything
+- 取得: 2026-06-15 23:28:51
+- 公開: 2026-06-15T14:57:33+00:00
+- 原文抜粋: <p><strong><a href="https://www.axios.com/2026/06/15/anthropic-white-house-fable-mythos">&quot;They screwed us&quot;: Personality clashes sent Anthropic&#x27;s models offline</a></strong></p> Lots of "source familiar with the administration's thinking" and "source close to Anthropic" in this Axios p...
+
+### カテゴリ: SNS公式 (1件)
+
+### [Meta Newsroom] New AI Tools to Help You Make Things Happen on Facebook
+- URL: https://about.fb.com/news/2026/06/new-ai-tools-to-help-you-make-things-happen-on-facebook/
+- 取得: 2026-06-15 23:28:53
+- 公開: Mon, 15 Jun 2026 16:00:23 +0000
+- 原文抜粋: <div><img alt="" class="attachment-large size-large wp-post-image" height="501" src="https://about.fb.com/wp-content/uploads/2026/06/New-AI-Tools-to-Help-You-Make-Things-on-Facebook_Thumbnail-1.gif?fit=890%2C501" style="margin-bottom: 15px;" width="890" /></div> <p>We’re introducing new AI-powered F...
+
+### カテゴリ: SNS運用 (1件)
+
+### [Buffer Blog] I Had 1,000+ Pokémon Cards to Sell — So I Built an App That Lists Them in My Store and Promotes Them via Buffer
+- URL: https://buffer.com/resources/pokemon-cards/
+- 取得: 2026-06-15 23:28:53
+- 公開: Mon, 15 Jun 2026 16:47:29 GMT
+- 原文抜粋: <p>I collect vintage Pok&#xe9;mon cards, and they&apos;re quite hard to get a hold of. Often, the card I needed was only available in a bulk lot someone was selling. So, through trying to source cards for my own collection from old box sets and starter packs,</p>
 
 ---
 
 ## 📚 継続ソース (参照用・一覧のみ)
 
-### AIニュース (1件)
-- [The Verge AI] China may have accessed Mythos — https://www.theverge.com/ai-artificial-intelligence/949644/china-white-house-anthropic-mythos
+### AI国内 (2件)
+- [ITmedia AI+] Sakana AI、初の商用プロダクト「Marlin」リリース　その実力は？【出力レポート全文掲載】 — https://www.itmedia.co.jp/news/articles/2606/15/news015.html
+- [ITmedia AI+] Sakana?AI、初の商用サービスはリサーチ特化　「Deep Research」との違いは？　後発で“ベンチマークも追わない”ワケ — https://www.itmedia.co.jp/aiplus/article/2606/15/2000000085/
 
-### AI動画(日本語) (2件)
-- [KEITO AI&WEB] Codexのおすすめプラグイン７選❗️ — https://www.youtube.com/shorts/vK6hTqhYJgQ
-- [AI収益化ラボ] 【初心者必見】Codexの神アプデによって、誰でも簡単に〇〇で稼げる時代がきました — https://www.youtube.com/watch?v=GkWaL-NVH1M
-
-### AI国内 (1件)
-- [ITmedia AI+] Amazon、Anthropicの最新AIについて懸念を伝えていた　米政権による停止命令に先立ち　関係筋 — https://www.itmedia.co.jp/news/articles/2606/14/news019.html
+### AI研究者ブログ (2件)
+- [Simon Willison's Weblog] Quoting Julia Evans — https://simonwillison.net/2026/Jun/15/julia-evans/#atom-everything
+- [Simon Willison's Weblog] Why AI hasn’t replaced software engineers, and won’t — https://simonwillison.net/2026/Jun/14/why-ai-hasnt-replaced-software-engineers/#atom-everything

@@ -1,6 +1,13 @@
 {
-  "generated_at": "2026-06-15T04:22:07Z",
+  "generated_at": "2026-06-15T23:29:25Z",
   "recent_works": [
+    {
+      "date": "2026-06-15",
+      "filename": "2026-06-15-seo-weekly-digest.md",
+      "title": "SEO週次ダイジェスト（2026-06-15）",
+      "business": "seo",
+      "path": "/ops?file=2026-06-15-seo-weekly-digest.md#sec-docs"
+    },
     {
       "date": "2026-06-10",
       "filename": "2026-06-10-ai-hub-advisor-admin-dashboard-improvement-loop.md",
@@ -49,13 +56,6 @@
       "title": "みんなのWA：管理者アカウント追加 + マイページにログアウトボタン",
       "business": "みんなのWA",
       "path": "/ops?file=2026-05-29-minanowa-admin-account-and-mypage-logout.md#sec-docs"
-    },
-    {
-      "date": "2026-05-29",
-      "filename": "2026-05-29-all-automation-roadmap.md",
-      "title": "consul 自動化ロードマップ（全8案・見積もり）",
-      "business": "all",
-      "path": "/ops?file=2026-05-29-all-automation-roadmap.md#sec-docs"
     }
   ],
   "tasks_open": [
@@ -90,11 +90,11 @@
   ],
   "per_business_recent": [
     {
-      "business": "AIハブ",
-      "count": 1
+      "business": "seo",
+      "count": 2
     },
     {
-      "business": "seo",
+      "business": "AIハブ",
       "count": 1
     }
   ],
@@ -153,13 +153,13 @@
     },
     {
       "date": "2026-06-15",
-      "count": 0
+      "count": 1
     }
   ],
   "cma_apps": [],
   "totals": {
-    "consul_work_total": 126,
-    "recent_7d_total": 2,
+    "consul_work_total": 127,
+    "recent_7d_total": 3,
     "tasks_open_total": 4
   }
 }

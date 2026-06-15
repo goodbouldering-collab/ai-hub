@@ -2,30 +2,11 @@
   "date": "2026-06-15",
   "items": [
     {
-      "hash": "71e23ec245a9e365",
-      "title": "Quoting Julia Evans",
-      "orig_title": "Quoting Julia Evans",
+      "hash": "8d2b9c4816d5f77d",
+      "title": "Skydio CEO Adam Bry on why Silicon Valley shouldn’t draw red lines for drone use",
+      "orig_title": "Skydio CEO Adam Bry on why Silicon Valley shouldn’t draw red lines for drone use",
       "summary": "",
-      "url": "https://simonwillison.net/2026/Jun/15/julia-evans/#atom-everything",
-      "source": "Simon Willison's Weblog",
-      "category": "AI研究者ブログ",
-      "genre": "industry",
-      "score": 60.0,
-      "breakdown": {
-        "base": 50.0,
-        "genre_bonus": 0.0,
-        "source_bonus": 0.0,
-        "freshness": 10.0
-      },
-      "thumbnail": "",
-      "published": "2026-06-15T02:05:19+00:00"
-    },
-    {
-      "hash": "da7edc31ceca6899",
-      "title": "China may have accessed Mythos",
-      "orig_title": "China may have accessed Mythos",
-      "summary": "",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/949644/china-white-house-anthropic-mythos",
+      "url": "https://www.theverge.com/podcast/949195/skydio-ceo-adam-bry-autonmous-drones-china-red-lines-military",
       "source": "The Verge AI",
       "category": "AIニュース",
       "genre": "industry",
@@ -36,15 +17,15 @@
         "source_bonus": 0.0,
         "freshness": 6.0
       },
-      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/01/STK269_ANTHROPIC_2_C.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-06-14T14:27:55-04:00"
+      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/DCD_20260615_Adam_Bry.png?quality=90&amp;strip=all&amp;crop=0%2C10.711631919237%2C100%2C78.576736161526&amp;w=1200",
+      "published": "2026-06-15T10:00:00-04:00"
     },
     {
-      "hash": "8b48e896ba9cd5c6",
-      "title": "Why AI hasn’t replaced software engineers, and won’t",
-      "orig_title": "Why AI hasn’t replaced software engineers, and won’t",
+      "hash": "d097ebc3d828bd9b",
+      "title": "\"They screwed us\": Personality clashes sent Anthropic's models offline",
+      "orig_title": "\"They screwed us\": Personality clashes sent Anthropic's models offline",
       "summary": "",
-      "url": "https://simonwillison.net/2026/Jun/14/why-ai-hasnt-replaced-software-engineers/#atom-everything",
+      "url": "https://simonwillison.net/2026/Jun/15/axios-clashes-anthropics/#atom-everything",
       "source": "Simon Willison's Weblog",
       "category": "AI研究者ブログ",
       "genre": "industry",
@@ -56,14 +37,71 @@
         "freshness": 6.0
       },
       "thumbnail": "",
+      "published": "2026-06-15T14:57:33+00:00"
+    },
+    {
+      "hash": "484b2fbd611ccf99",
+      "title": "Claude Fable 5の米国政府による停止命令 / 原因はAmazonからの密告？ / Anthropicと米国政府の深い溝とは",
+      "orig_title": "Claude Fable 5の米国政府による停止命令 / 原因はAmazonからの密告？ / Anthropicと米国政府の深い溝とは",
+      "summary": "",
+      "url": "https://www.youtube.com/watch?v=kjCiSmLTuGI",
+      "source": "ウェブ職TV",
+      "category": "AI動画(日本語)",
+      "genre": "industry",
+      "score": 56.0,
+      "breakdown": {
+        "base": 50.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 6.0
+      },
+      "thumbnail": "https://img.youtube.com/vi/kjCiSmLTuGI/hqdefault.jpg",
+      "published": "2026-06-15T13:47:33+00:00"
+    },
+    {
+      "hash": "71e23ec245a9e365",
+      "title": "Quoting Julia Evans",
+      "orig_title": "Quoting Julia Evans",
+      "summary": "",
+      "url": "https://simonwillison.net/2026/Jun/15/julia-evans/#atom-everything",
+      "source": "Simon Willison's Weblog",
+      "category": "AI研究者ブログ",
+      "genre": "industry",
+      "score": 53.0,
+      "breakdown": {
+        "base": 50.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 3.0
+      },
+      "thumbnail": "",
+      "published": "2026-06-15T02:05:19+00:00"
+    },
+    {
+      "hash": "8b48e896ba9cd5c6",
+      "title": "Why AI hasn’t replaced software engineers, and won’t",
+      "orig_title": "Why AI hasn’t replaced software engineers, and won’t",
+      "summary": "",
+      "url": "https://simonwillison.net/2026/Jun/14/why-ai-hasnt-replaced-software-engineers/#atom-everything",
+      "source": "Simon Willison's Weblog",
+      "category": "AI研究者ブログ",
+      "genre": "industry",
+      "score": 53.0,
+      "breakdown": {
+        "base": 50.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 3.0
+      },
+      "thumbnail": "",
       "published": "2026-06-14T23:54:11+00:00"
     },
     {
-      "hash": "445ffe39d179d702",
-      "title": "Codexのおすすめプラグイン７選❗️",
-      "orig_title": "Codexのおすすめプラグイン７選❗️",
+      "hash": "99ac650ce311ac59",
+      "title": "非エンジニアでも出来る『Codex』のオートメーション機能（自動化）が便利すぎる",
+      "orig_title": "非エンジニアでも出来る『Codex』のオートメーション機能（自動化）が便利すぎる",
       "summary": "",
-      "url": "https://www.youtube.com/shorts/vK6hTqhYJgQ",
+      "url": "https://www.youtube.com/watch?v=CV08cqYNpEA",
       "source": "KEITO AI&WEB",
       "category": "AI動画(日本語)",
       "genre": "industry",
@@ -74,15 +112,15 @@
         "source_bonus": 0.0,
         "freshness": 3.0
       },
-      "thumbnail": "https://img.youtube.com/vi/vK6hTqhYJgQ/hqdefault.jpg",
-      "published": "2026-06-14T10:00:12+00:00"
+      "thumbnail": "https://img.youtube.com/vi/CV08cqYNpEA/hqdefault.jpg",
+      "published": "2026-06-15T10:00:06+00:00"
     },
     {
-      "hash": "d222e2e952945148",
-      "title": "【初心者必見】Codexの神アプデによって、誰でも簡単に〇〇で稼げる時代がきました",
-      "orig_title": "【初心者必見】Codexの神アプデによって、誰でも簡単に〇〇で稼げる時代がきました",
+      "hash": "f8bbd781cf4c2341",
+      "title": "【使うほど稼げる】Codex / Claude Codeの10倍すごいAIを見つけました",
+      "orig_title": "【使うほど稼げる】Codex / Claude Codeの10倍すごいAIを見つけました",
       "summary": "",
-      "url": "https://www.youtube.com/watch?v=GkWaL-NVH1M",
+      "url": "https://www.youtube.com/watch?v=4_BWCPR0PD0",
       "source": "AI収益化ラボ",
       "category": "AI動画(日本語)",
       "genre": "industry",
@@ -93,17 +131,17 @@
         "source_bonus": 0.0,
         "freshness": 3.0
       },
-      "thumbnail": "https://img.youtube.com/vi/GkWaL-NVH1M/hqdefault.jpg",
-      "published": "2026-06-14T10:00:00+00:00"
+      "thumbnail": "https://img.youtube.com/vi/4_BWCPR0PD0/hqdefault.jpg",
+      "published": "2026-06-15T10:00:30+00:00"
     },
     {
-      "hash": "4f7ec1682a2a3889",
-      "title": "Introducing the OpenAI Partner Network",
-      "orig_title": "Introducing the OpenAI Partner Network",
+      "hash": "8be13c7bd64da538",
+      "title": "Why do South Koreans love AI so much?",
+      "orig_title": "Why do South Koreans love AI so much?",
       "summary": "",
-      "url": "https://openai.com/index/introducing-openai-partner-network",
-      "source": "OpenAI Blog",
-      "category": "AI公式",
+      "url": "https://www.technologyreview.com/2026/06/15/1138983/why-do-south-koreans-love-ai-so-much/",
+      "source": "MIT Technology Review AI",
+      "category": "AIニュース",
       "genre": "industry",
       "score": 50.0,
       "breakdown": {
@@ -112,15 +150,34 @@
         "source_bonus": 0.0,
         "freshness": 0.0
       },
-      "thumbnail": "https://images.ctfassets.net/kftzwdyauwt9/4Mmo10RLJ6HIoEmbRe3QPf/4dd23942812b8e483d345607db7bc551/Introducing_OAI_Partner_Network_seo_card.png?w=1600&amp;h=900&amp;fit=fill",
-      "published": "Sun, 14 Jun 2026 17:00:00 GMT"
+      "thumbnail": "https://wp.technologyreview.com/wp-content/uploads/2026/06/AP26126222060508.jpg?resize=1200,600",
+      "published": "Mon, 15 Jun 2026 18:46:08 +0000"
     },
     {
-      "hash": "02ff167bb65fa8f5",
-      "title": "Sakana AI、初の商用プロダクト「Marlin」リリース　その実力は？【出力レポート全文掲載】",
-      "orig_title": "Sakana AI、初の商用プロダクト「Marlin」リリース　その実力は？【出力レポート全文掲載】",
+      "hash": "8dd113533294975d",
+      "title": "Chipmaker Nvidia seeks to raise over $25B in first bond deal since 2021",
+      "orig_title": "Chipmaker Nvidia seeks to raise over $25B in first bond deal since 2021",
       "summary": "",
-      "url": "https://www.itmedia.co.jp/news/articles/2606/15/news015.html",
+      "url": "https://arstechnica.com/ai/2026/06/chipmaker-nvidia-seeks-to-raise-over-25b-in-first-bond-deal-since-2021/",
+      "source": "Ars Technica AI",
+      "category": "AIニュース",
+      "genre": "industry",
+      "score": 50.0,
+      "breakdown": {
+        "base": 50.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 0.0
+      },
+      "thumbnail": "https://cdn.arstechnica.net/wp-content/uploads/2025/08/nvidia-chip-1152x648-1754500479.jpg",
+      "published": "Mon, 15 Jun 2026 19:07:02 +0000"
+    },
+    {
+      "hash": "c5d67aeaddc2bb3e",
+      "title": "急拡大するAIインフラの電力需要……光明は「ワットビット連携」に？　さくら田中社長と東電が対談",
+      "orig_title": "急拡大するAIインフラの電力需要……光明は「ワットビット連携」に？　さくら田中社長と東電が対談",
+      "summary": "",
+      "url": "https://www.itmedia.co.jp/news/articles/2606/15/news082.html",
       "source": "ITmedia AI+",
       "category": "AI国内",
       "genre": "industry",
@@ -131,65 +188,8 @@
         "source_bonus": 0.0,
         "freshness": 0.0
       },
-      "thumbnail": "https://image.itmedia.co.jp/news/articles/2606/15/cover_news015.jpg",
-      "published": "Mon, 15 Jun 2026 11:56:00 +0900"
-    },
-    {
-      "hash": "89cd6db27ca204fb",
-      "title": "Sakana?AI、初の商用サービスはリサーチ特化　「Deep Research」との違いは？　後発で“ベンチマークも追わない”ワケ",
-      "orig_title": "Sakana?AI、初の商用サービスはリサーチ特化　「Deep Research」との違いは？　後発で“ベンチマークも追わない”ワケ",
-      "summary": "",
-      "url": "https://www.itmedia.co.jp/aiplus/article/2606/15/2000000085/",
-      "source": "ITmedia AI+",
-      "category": "AI国内",
-      "genre": "industry",
-      "score": 50.0,
-      "breakdown": {
-        "base": 50.0,
-        "genre_bonus": 0.0,
-        "source_bonus": 0.0,
-        "freshness": 0.0
-      },
-      "thumbnail": "https://www.itmedia.co.jp/aiplus/article/ogp/2606/15/2000000085/10000441/2048",
-      "published": "Mon, 15 Jun 2026 11:50:55 +0900"
-    },
-    {
-      "hash": "0a6d35a78cf52f42",
-      "title": "ChatGPT vs. Google検索──どっちで調べるのが学習効果が高い？　8日間の実験で検証した研究",
-      "orig_title": "ChatGPT vs. Google検索──どっちで調べるのが学習効果が高い？　8日間の実験で検証した研究",
-      "summary": "",
-      "url": "https://www.itmedia.co.jp/news/articles/2606/15/news028.html",
-      "source": "ITmedia AI+",
-      "category": "AI国内",
-      "genre": "industry",
-      "score": 50.0,
-      "breakdown": {
-        "base": 50.0,
-        "genre_bonus": 0.0,
-        "source_bonus": 0.0,
-        "freshness": 0.0
-      },
-      "thumbnail": "https://image.itmedia.co.jp/news/articles/2606/15/cover_news028.jpg",
-      "published": "Mon, 15 Jun 2026 08:00:00 +0900"
-    },
-    {
-      "hash": "feefa9d1a4ab7ff5",
-      "title": "AI・ロボット人材は約340万人不足　労働市場のスキル需給、AIでどう可視化する？",
-      "orig_title": "AI・ロボット人材は約340万人不足　労働市場のスキル需給、AIでどう可視化する？",
-      "summary": "",
-      "url": "https://www.itmedia.co.jp/enterprise/articles/2606/15/news024.html",
-      "source": "ITmedia AI+",
-      "category": "AI国内",
-      "genre": "industry",
-      "score": 50.0,
-      "breakdown": {
-        "base": 50.0,
-        "genre_bonus": 0.0,
-        "source_bonus": 0.0,
-        "freshness": 0.0
-      },
-      "thumbnail": "https://image.itmedia.co.jp/enterprise/articles/2606/15/cover_news024.jpg",
-      "published": "Mon, 15 Jun 2026 08:00:00 +0900"
+      "thumbnail": "https://image.itmedia.co.jp/news/articles/2606/15/cover_news082.jpg",
+      "published": "Tue, 16 Jun 2026 08:00:00 +0900"
     }
   ]
 }

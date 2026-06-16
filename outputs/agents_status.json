@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-15T23:29:25Z",
+  "generated_at": "2026-06-16T23:18:09Z",
   "recent_works": [
     {
       "date": "2026-06-15",
@@ -91,7 +91,7 @@
   "per_business_recent": [
     {
       "business": "seo",
-      "count": 2
+      "count": 1
     },
     {
       "business": "AIハブ",
@@ -99,10 +99,6 @@
     }
   ],
   "daily_histogram": [
-    {
-      "date": "2026-06-02",
-      "count": 0
-    },
     {
       "date": "2026-06-03",
       "count": 0
@@ -154,12 +150,16 @@
     {
       "date": "2026-06-15",
       "count": 1
+    },
+    {
+      "date": "2026-06-16",
+      "count": 0
     }
   ],
   "cma_apps": [],
   "totals": {
     "consul_work_total": 127,
-    "recent_7d_total": 3,
+    "recent_7d_total": 2,
     "tasks_open_total": 4
   }
 }

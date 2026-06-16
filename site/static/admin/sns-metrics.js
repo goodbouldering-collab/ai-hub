@@ -1,5 +1,5 @@
 window.GUBBLE_SNS_METRICS = {
-  "generatedAt": "2026-06-15T22:33:53.428317+00:00",
+  "generatedAt": "2026-06-16T08:03:35.927039+00:00",
   "source": "gubble-sns-metrics-collector",
   "platforms": {
     "gsc": {
@@ -10,10 +10,10 @@ window.GUBBLE_SNS_METRICS = {
       "note": "GSC 28\u65e5 \u81ea\u52d5"
     },
     "ga4": {
-      "followers": 23973,
-      "reach": 40062,
-      "posts": 292941,
-      "engagement": 98.48,
+      "followers": 23951,
+      "reach": 40134,
+      "posts": 293867,
+      "engagement": 98.49,
       "note": "GA4 28\u65e5 \u81ea\u52d5"
     }
   },
@@ -142,9 +142,9 @@ window.GUBBLE_SNS_METRICS = {
       "platform": "ga4",
       "type": "\u30e9\u30f3\u30c7\u30a3\u30f3\u30b0",
       "title": "/",
-      "reach": 8665,
-      "reactions": 69853,
-      "engagement": 99.62,
+      "reach": 8719,
+      "reactions": 71186,
+      "engagement": 99.81,
       "url": "https://goodbouldering.com/",
       "note": "GA4 28\u65e5 \u81ea\u52d5"
     },
@@ -152,19 +152,9 @@ window.GUBBLE_SNS_METRICS = {
       "platform": "ga4",
       "type": "\u30e9\u30f3\u30c7\u30a3\u30f3\u30b0",
       "title": "(not set)",
-      "reach": 8366,
-      "reactions": 16324,
-      "engagement": 0.23,
-      "url": "https://analytics.google.com/analytics/web/#/p257088701/reports/intelligenthome",
-      "note": "GA4 28\u65e5 \u81ea\u52d5"
-    },
-    {
-      "platform": "ga4",
-      "type": "\u30e9\u30f3\u30c7\u30a3\u30f3\u30b0",
-      "title": "",
-      "reach": 588,
-      "reactions": 954,
-      "engagement": 0.68,
+      "reach": 8655,
+      "reactions": 16888,
+      "engagement": 0.22,
       "url": "https://analytics.google.com/analytics/web/#/p257088701/reports/intelligenthome",
       "note": "GA4 28\u65e5 \u81ea\u52d5"
     },
@@ -172,8 +162,8 @@ window.GUBBLE_SNS_METRICS = {
       "platform": "ga4",
       "type": "\u30e9\u30f3\u30c7\u30a3\u30f3\u30b0",
       "title": "/?pid=185751584",
-      "reach": 537,
-      "reactions": 3277,
+      "reach": 536,
+      "reactions": 3273,
       "engagement": 99.81,
       "url": "https://goodbouldering.com/?pid=185751584",
       "note": "GA4 28\u65e5 \u81ea\u52d5"
@@ -182,8 +172,8 @@ window.GUBBLE_SNS_METRICS = {
       "platform": "ga4",
       "type": "\u30e9\u30f3\u30c7\u30a3\u30f3\u30b0",
       "title": "/?mode=cate&cbid=1847272&csid=0",
-      "reach": 445,
-      "reactions": 5782,
+      "reach": 448,
+      "reactions": 5864,
       "engagement": 100.0,
       "url": "https://goodbouldering.com/?mode=cate&cbid=1847272&csid=0",
       "note": "GA4 28\u65e5 \u81ea\u52d5"
@@ -192,8 +182,8 @@ window.GUBBLE_SNS_METRICS = {
       "platform": "ga4",
       "type": "\u30e9\u30f3\u30c7\u30a3\u30f3\u30b0",
       "title": "/?mode=grp&gid=2605413",
-      "reach": 385,
-      "reactions": 1434,
+      "reach": 389,
+      "reactions": 1453,
       "engagement": 100.0,
       "url": "https://goodbouldering.com/?mode=grp&gid=2605413",
       "note": "GA4 28\u65e5 \u81ea\u52d5"
@@ -203,7 +193,7 @@ window.GUBBLE_SNS_METRICS = {
       "type": "\u30e9\u30f3\u30c7\u30a3\u30f3\u30b0",
       "title": "/?pid=134199666",
       "reach": 293,
-      "reactions": 2707,
+      "reactions": 2732,
       "engagement": 100.0,
       "url": "https://goodbouldering.com/?pid=134199666",
       "note": "GA4 28\u65e5 \u81ea\u52d5"
@@ -212,8 +202,8 @@ window.GUBBLE_SNS_METRICS = {
       "platform": "ga4",
       "type": "\u30e9\u30f3\u30c7\u30a3\u30f3\u30b0",
       "title": "/?mode=grp&gid=2472348",
-      "reach": 289,
-      "reactions": 1192,
+      "reach": 290,
+      "reactions": 1199,
       "engagement": 100.0,
       "url": "https://goodbouldering.com/?mode=grp&gid=2472348",
       "note": "GA4 28\u65e5 \u81ea\u52d5"
@@ -223,7 +213,7 @@ window.GUBBLE_SNS_METRICS = {
       "type": "\u30e9\u30f3\u30c7\u30a3\u30f3\u30b0",
       "title": "/?pid=182629623",
       "reach": 240,
-      "reactions": 1219,
+      "reactions": 1222,
       "engagement": 100.0,
       "url": "https://goodbouldering.com/?pid=182629623",
       "note": "GA4 28\u65e5 \u81ea\u52d5"
@@ -232,8 +222,8 @@ window.GUBBLE_SNS_METRICS = {
       "platform": "ga4",
       "type": "\u30e9\u30f3\u30c7\u30a3\u30f3\u30b0",
       "title": "/?pid=133843232",
-      "reach": 234,
-      "reactions": 1648,
+      "reach": 233,
+      "reactions": 1645,
       "engagement": 99.57,
       "url": "https://goodbouldering.com/?pid=133843232",
       "note": "GA4 28\u65e5 \u81ea\u52d5"
@@ -241,9 +231,19 @@ window.GUBBLE_SNS_METRICS = {
     {
       "platform": "ga4",
       "type": "\u30e9\u30f3\u30c7\u30a3\u30f3\u30b0",
+      "title": "/?mode=grp&gid=3121226",
+      "reach": 210,
+      "reactions": 1172,
+      "engagement": 100.0,
+      "url": "https://goodbouldering.com/?mode=grp&gid=3121226",
+      "note": "GA4 28\u65e5 \u81ea\u52d5"
+    },
+    {
+      "platform": "ga4",
+      "type": "\u30e9\u30f3\u30c7\u30a3\u30f3\u30b0",
       "title": "/?pid=182627183",
-      "reach": 211,
-      "reactions": 1440,
+      "reach": 210,
+      "reactions": 1419,
       "engagement": 100.0,
       "url": "https://goodbouldering.com/?pid=182627183",
       "note": "GA4 28\u65e5 \u81ea\u52d5"
@@ -251,11 +251,11 @@ window.GUBBLE_SNS_METRICS = {
     {
       "platform": "ga4",
       "type": "\u30e9\u30f3\u30c7\u30a3\u30f3\u30b0",
-      "title": "/?mode=grp&gid=3121226",
-      "reach": 210,
-      "reactions": 1168,
-      "engagement": 100.0,
-      "url": "https://goodbouldering.com/?mode=grp&gid=3121226",
+      "title": "/?mode=cate&cbid=1847272&csid=0&sort=n",
+      "reach": 195,
+      "reactions": 2554,
+      "engagement": 99.49,
+      "url": "https://goodbouldering.com/?mode=cate&cbid=1847272&csid=0&sort=n",
       "note": "GA4 28\u65e5 \u81ea\u52d5"
     }
   ],

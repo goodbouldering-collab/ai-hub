@@ -61,11 +61,8 @@ COLOR_MAP = {
 
 FAVICON_HEAD_HTML = (
     "<link rel='icon' type='image/svg+xml' href='/favicon.svg'>"
-    "<link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png'>"
-    "<link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png'>"
-    "<link rel='shortcut icon' href='/favicon.ico'>"
-    "<link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png'>"
-    "<link rel='manifest' href='/site.webmanifest'>"
+    "<link rel='alternate icon' type='image/svg+xml' href='/favicon.svg'>"
+    "<link rel='apple-touch-icon' href='/apple-touch-icon.svg'>"
     "<link rel='mask-icon' href='/favicon.svg' color='#0EA5E9'>"
     "<meta name='theme-color' content='#F7FBFF'>"
 )
@@ -5281,6 +5278,214 @@ PORTAL_CSS += """
 
 PORTAL_CSS += """
 
+/* ---- Daily design director pass: market-led routing + contrast guardrails, 2026-06-16 ---- */
+.site-header,
+.site-header.scrolled,
+.site-header:hover {
+  background: rgba(255,255,255,.98) !important;
+  border-bottom: 1px solid rgba(7,22,43,.14) !important;
+  box-shadow: 0 14px 36px rgba(7,22,43,.11), inset 0 1px 0 rgba(255,255,255,.96) !important;
+}
+
+.site-nav {
+  background: #FFFFFF !important;
+  border-color: rgba(7,22,43,.12) !important;
+  box-shadow: 0 8px 22px rgba(7,22,43,.08), inset 0 1px 0 rgba(255,255,255,.98) !important;
+}
+
+.site-nav a.nav-link,
+.site-nav .menu-toggle {
+  color: #15243A !important;
+  background: rgba(248,252,253,.92) !important;
+}
+
+.site-nav a.nav-link[href="#packages"],
+.site-nav a.nav-link[href="/#packages"] {
+  color: #064E63 !important;
+  border-color: rgba(0,184,212,.28) !important;
+  background: linear-gradient(180deg, #F5FEFF, #ECFAFC) !important;
+}
+
+.site-nav .nav-cta {
+  color: #FFFFFF !important;
+  background: linear-gradient(135deg, #0B5C74 0%, #0E876F 100%) !important;
+  box-shadow: 0 14px 34px rgba(11,92,116,.22), inset 0 1px 0 rgba(255,255,255,.22) !important;
+}
+
+.site-nav .menu-drop {
+  background: #FFFFFF !important;
+  border-color: rgba(7,22,43,.16) !important;
+}
+
+.hero.hero-atlas {
+  min-height: min(720px, calc(100svh - 82px)) !important;
+  padding: 96px 0 40px !important;
+}
+
+.hero.hero-atlas::after {
+  background:
+    linear-gradient(116deg, rgba(33,212,253,.18) 49%, transparent 49.3% 57%, rgba(155,226,45,.18) 57.3% 68%, transparent 68.3% 76%, rgba(255,216,77,.18) 76.3% 86%, transparent 86.3%),
+    linear-gradient(92deg, rgba(255,255,255,1) 0%, rgba(255,255,255,.965) 34%, rgba(255,255,255,.74) 60%, rgba(255,255,255,.36) 100%),
+    linear-gradient(180deg, rgba(255,255,255,.82) 0%, rgba(246,253,253,.92) 100%) !important;
+}
+
+.hero-choice-pill {
+  border-radius: 8px !important;
+  border-left: 4px solid #00A5C8 !important;
+}
+
+.hero-choice-pill:nth-child(2) { border-left-color: #7CC414 !important; }
+.hero-choice-pill:nth-child(3) { border-left-color: #FF8A3D !important; }
+
+section.block.block-tight {
+  padding-top: 48px !important;
+}
+
+.path-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 12px !important;
+}
+
+.path-card {
+  min-height: 196px !important;
+  padding: 18px !important;
+  border-radius: 8px !important;
+}
+
+.path-card:nth-child(1) { border-top: 4px solid #00A5C8 !important; }
+.path-card:nth-child(2) { border-top: 4px solid #7CC414 !important; }
+.path-card:nth-child(3) { border-top: 4px solid #FF8A3D !important; }
+.path-card:nth-child(4) { border-top: 4px solid #7C3AED !important; }
+
+.path-card strong {
+  font-size: 19px !important;
+}
+
+.path-card p {
+  font-size: 13.5px !important;
+  line-height: 1.72 !important;
+}
+
+.package-intent-panel {
+  margin: 0 auto 22px;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: minmax(240px, .88fr) minmax(360px, 1.12fr);
+  gap: 14px;
+  align-items: center;
+  border: 1px solid rgba(7,22,43,.12);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.94), rgba(255,255,255,.84)),
+    linear-gradient(100deg, rgba(33,212,253,.12), rgba(155,226,45,.10), rgba(255,216,77,.10));
+  box-shadow: 0 14px 34px rgba(7,22,43,.08), inset 0 1px 0 rgba(255,255,255,.92);
+}
+
+.package-intent-copy strong {
+  display: block;
+  color: #07162B;
+  font-size: 16px;
+  line-height: 1.35;
+}
+
+.package-intent-copy span {
+  display: block;
+  margin-top: 4px;
+  color: #405166;
+  font-size: 12.5px;
+  line-height: 1.65;
+}
+
+.package-intent-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.package-intent-bar button {
+  min-height: 38px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(7,22,43,.14);
+  background: #FFFFFF;
+  color: #15243A;
+  font-size: 12.5px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: transform .18s ease, border-color .18s ease, background .18s ease, color .18s ease, box-shadow .18s ease;
+}
+
+.package-intent-bar button:hover,
+.package-intent-bar button:focus-visible {
+  transform: translateY(-1px);
+  border-color: rgba(0,165,200,.38);
+  background: #F1FCFE;
+  color: #064E63;
+  outline: none;
+}
+
+.package-intent-bar button[aria-pressed="true"] {
+  color: #FFFFFF;
+  border-color: transparent;
+  background: linear-gradient(135deg, #0B5C74, #0E876F);
+  box-shadow: 0 12px 28px rgba(11,92,116,.20);
+}
+
+.packages-grid.pkg-filter-active .pkg-card {
+  opacity: .26 !important;
+  filter: saturate(.72);
+}
+
+.packages-grid.pkg-filter-active .pkg-card.pkg-match {
+  opacity: 1 !important;
+  filter: none;
+  outline: 2px solid #00A5C8 !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 22px 54px rgba(0,165,200,.14), var(--shadow-card) !important;
+}
+
+@media (max-width: 1060px) {
+  .path-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .package-intent-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .package-intent-bar {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 680px) {
+  .hero.hero-atlas {
+    min-height: auto !important;
+    padding-top: 88px !important;
+  }
+
+  .path-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .package-intent-panel {
+    padding: 13px;
+  }
+
+  .package-intent-bar button {
+    flex: 1 1 calc(50% - 8px);
+  }
+
+  .mobile-nav {
+    background: #FFFFFF !important;
+    color: #122033 !important;
+  }
+}
+"""
+
+PORTAL_CSS += """
+
 /* ---- Bright growth campaign layer: Codex era + acquisition booster ---- */
 :root {
   --bright-teal: #00B8D4;
@@ -5703,6 +5908,53 @@ body {
 }
 """
 
+PORTAL_CSS += """
+
+/* ---- Final cascade lock: readable menu + customer-first routing, 2026-06-16 ---- */
+.site-header,
+.site-header.scrolled,
+.site-header:hover {
+  background: rgba(255,255,255,.985) !important;
+  border-bottom: 1px solid rgba(7,22,43,.14) !important;
+  box-shadow: 0 14px 36px rgba(7,22,43,.11), inset 0 1px 0 rgba(255,255,255,.96) !important;
+}
+.site-nav {
+  background: #FFFFFF !important;
+  border-color: rgba(7,22,43,.12) !important;
+}
+.site-nav a.nav-link,
+.site-nav .menu-toggle {
+  color: #15243A !important;
+  background: rgba(248,252,253,.94) !important;
+}
+.site-nav a.nav-link[href="#packages"],
+.site-nav a.nav-link[href="/#packages"] {
+  color: #064E63 !important;
+  border-color: rgba(0,184,212,.30) !important;
+  background: linear-gradient(180deg, #F5FEFF, #ECFAFC) !important;
+}
+.site-nav .nav-cta {
+  background: linear-gradient(135deg, #0B5C74 0%, #0E876F 100%) !important;
+  color: #FFFFFF !important;
+}
+.hero.hero-atlas {
+  min-height: min(720px, calc(100svh - 82px)) !important;
+  padding: 96px 0 40px !important;
+}
+.hero.hero-atlas::after {
+  background:
+    linear-gradient(116deg, rgba(33,212,253,.18) 49%, transparent 49.3% 57%, rgba(155,226,45,.18) 57.3% 68%, transparent 68.3% 76%, rgba(255,216,77,.18) 76.3% 86%, transparent 86.3%),
+    linear-gradient(92deg, rgba(255,255,255,1) 0%, rgba(255,255,255,.965) 34%, rgba(255,255,255,.74) 60%, rgba(255,255,255,.36) 100%),
+    linear-gradient(180deg, rgba(255,255,255,.82) 0%, rgba(246,253,253,.92) 100%) !important;
+}
+@media (max-width: 680px) {
+  .hero.hero-atlas {
+    min-height: auto !important;
+    padding-top: 88px !important;
+  }
+}
+"""
+
 
 def _render_header() -> str:
     """N デザイン風 fixed ヘッダー。スクロールで white/90 + blur に切替。"""
@@ -5716,15 +5968,16 @@ def _render_header() -> str:
         "</a>"
         "<nav class='site-nav' aria-label='メインナビ'>"
         "<a class='nav-link' href='#packages'>受講プラン</a>"
-        "<a class='nav-link' href='#flow'>ご依頼の流れ</a>"
         "<a class='nav-link' href='#lectures'>受講資料</a>"
+        "<a class='nav-link' href='#speaker'>講師紹介</a>"
+        "<a class='nav-link' href='#flow'>ご依頼の流れ</a>"
         "<a class='nav-link' href='#faq'>FAQ</a>"
         "<div class='menu-wrap'>"
-        "<button class='menu-toggle' id='menu-toggle' aria-haspopup='menu' aria-expanded='false'>制作と実績"
+        "<button class='menu-toggle' id='menu-toggle' aria-haspopup='menu' aria-expanded='false'>実績・運用"
         "<svg class='chev' width='14' height='14' viewBox='0 0 20 20' fill='none' aria-hidden='true'><path d='M5 8l5 5 5-5' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>"
         "</button>"
         "<div class='menu-drop' id='menu-drop' role='menu'>"
-        "<span class='menu-drop-label'>制作と実績</span>"
+        "<span class='menu-drop-label'>実績・運用</span>"
         "<a href='#web-showcase'>🖥️ HP制作</a>"
         "<a href='#works'>🧩 制作実績</a>"
         "<a href='#speaker'>👤 講師紹介</a>"
@@ -5747,8 +6000,9 @@ def _render_header() -> str:
         "</div>"
         "<div class='mobile-nav' id='mobile-nav'>"
         "<a href='#packages'>受講プラン</a>"
-        "<a href='#flow'>ご依頼の流れ</a>"
         "<a href='#lectures'>受講資料</a>"
+        "<a href='#speaker'>講師紹介</a>"
+        "<a href='#flow'>ご依頼の流れ</a>"
         "<a href='#faq'>FAQ</a>"
         "<a href='#web-showcase'>HP制作</a>"
         "<a href='#works'>制作実績</a>"
@@ -5883,6 +6137,35 @@ HEADER_JS = """
     }, { passive: true });
     updateParallax();
   }
+
+  // ---- 目的別プランフィルタ: 相談/講座/制作/運用の選択を即時反映
+  (function(){
+    var controls = Array.prototype.slice.call(document.querySelectorAll('[data-package-intent]'));
+    var grid = document.querySelector('.packages-grid');
+    if (!controls.length || !grid) return;
+
+    function applyIntent(intent){
+      controls.forEach(function(btn){
+        btn.setAttribute('aria-pressed', btn.getAttribute('data-package-intent') === intent ? 'true' : 'false');
+      });
+      if (intent === 'all') {
+        grid.classList.remove('pkg-filter-active');
+        grid.querySelectorAll('.pkg-card').forEach(function(card){ card.classList.remove('pkg-match'); });
+        return;
+      }
+      grid.classList.add('pkg-filter-active');
+      grid.querySelectorAll('.pkg-card').forEach(function(card){
+        var intents = (card.getAttribute('data-intent') || '').split(/\\s+/);
+        card.classList.toggle('pkg-match', intents.indexOf(intent) !== -1);
+      });
+    }
+
+    controls.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        applyIntent(btn.getAttribute('data-package-intent') || 'all');
+      });
+    });
+  })();
 
   // ---- Light-only. 夜モードは使わない。
   (function(){
@@ -6762,6 +7045,13 @@ def _render_path_selector() -> str:
             "#lectures",
             "公開資料あり",
         ),
+        (
+            "公開・運用まで任せたい",
+            "ホームページ、SNS、社内AI、月次伴走までまとめたい方向け。作って終わりではなく運用に落とします。",
+            "制作と伴走を見る",
+            "#web-showcase",
+            "制作 / 運用",
+        ),
     ]
     parts = ["<div class='path-grid'>"]
     for title, desc, cta, href, meta in cards:
@@ -6899,6 +7189,7 @@ def _render_courses_packages() -> str:
             "cta": "無料相談を予約する",
             "material_url": "#lectures",
             "material_cta": "受講資料で選び方を見る",
+            "intent": ["consult"],
         },
         {
             "icon": "?",
@@ -6920,6 +7211,7 @@ def _render_courses_packages() -> str:
             "cta": "AI個別相談を予約する",
             "material_url": "#lectures",
             "material_cta": "受講資料を見て相談内容を整理",
+            "intent": ["consult"],
         },
         {
             "icon": "◇",
@@ -6942,6 +7234,7 @@ def _render_courses_packages() -> str:
             "material_url": "#lectures",
             "material_cta": "受講資料で導入の流れを見る",
             "variant": "wide",
+            "intent": ["operate", "build", "consult"],
         },
         {
             "icon": "⌘",
@@ -6970,6 +7263,7 @@ def _render_courses_packages() -> str:
             "material_url": "/lectures/2026-06-codex-app-onboarding.html",
             "material_cta": "Codex準備会の受講資料を見る",
             "variant": "featured",
+            "intent": ["lesson"],
         },
         {
             "icon": "▣",
@@ -6998,6 +7292,7 @@ def _render_courses_packages() -> str:
             "material_url": "/lectures/2026-06-codex-app-practice.html",
             "material_cta": "Codex実践会の受講資料を見る",
             "variant": "featured",
+            "intent": ["lesson"],
         },
         {
             "icon": "▧",
@@ -7026,9 +7321,25 @@ def _render_courses_packages() -> str:
             "material_url": "/programming-map.html",
             "material_cta": "AIコーディング講習の受講資料を見る",
             "variant": "featured",
+            "intent": ["lesson", "build"],
         },
     ]
-    parts = ["<div class='packages-grid'>"]
+    parts = [
+        "<div class='package-intent-panel fade-up d1' aria-label='受講プランの絞り込み'>"
+        "<div class='package-intent-copy'>"
+        "<strong>目的で先に絞る</strong>"
+        "<span>大手のAI研修LPは資料請求や法人研修を前面に出します。AIハブでは、相談・講座・制作・運用の入口を先に分けます。</span>"
+        "</div>"
+        "<div class='package-intent-bar' role='group' aria-label='目的別に受講プランを絞り込む'>"
+        "<button type='button' data-package-intent='all' aria-pressed='true'>すべて</button>"
+        "<button type='button' data-package-intent='consult' aria-pressed='false'>まず相談</button>"
+        "<button type='button' data-package-intent='lesson' aria-pressed='false'>講座だけ</button>"
+        "<button type='button' data-package-intent='build' aria-pressed='false'>制作・公開</button>"
+        "<button type='button' data-package-intent='operate' aria-pressed='false'>運用伴走</button>"
+        "</div>"
+        "</div>"
+        "<div class='packages-grid'>"
+    ]
     for i, it in enumerate(items):
         subsidy_badge = (
             "<span class='pkg-subsidy'>✓ 補助金対応</span>" if it["subsidy"] else ""
@@ -7059,6 +7370,7 @@ def _render_courses_packages() -> str:
             )
         variant = str(it.get("variant") or "")
         variant_cls = " pkg-featured" if variant == "featured" else (" pkg-wide" if variant == "wide" else "")
+        intent_attr = " ".join(str(v) for v in it.get("intent", []))
         # 外部URL(http)は別タブ、mailtoは同タブ
         is_ext = it["url"].startswith("http")
         target_attr = " target='_blank' rel='noopener'" if is_ext else ""
@@ -7071,7 +7383,7 @@ def _render_courses_packages() -> str:
                 f"{html.escape(str(it.get('material_cta') or '関連する受講資料を見る'))} →</a>"
             )
         parts.append(
-            f"<div class='pkg-card{variant_cls} fade-up d{(i % 3) + 1}' data-level='{html.escape(lvl_id)}'>"
+            f"<div class='pkg-card{variant_cls} fade-up d{(i % 3) + 1}' data-level='{html.escape(lvl_id)}' data-intent='{html.escape(intent_attr)}'>"
             f"<div class='pkg-body'>"
             f"<div class='pkg-topline'><span class='pkg-cat'>{html.escape(it['cat'])}</span></div>"
             f"<div class='pkg-head'>"
@@ -7727,13 +8039,12 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append(ADMIN_BUTTON_HTML)
 
     parts.append(_render_hero())
-    parts.append(_render_growth_booster())
 
     # 1. 最初の選び方
     parts.append("<section class='block block-tight' id='start'>")
     parts.append("<p class='section-heading fade-up'>START HERE</p>")
-    parts.append("<h2 class='section-title fade-up d1'>最初の一歩を、3つに絞る</h2>")
-    parts.append("<p class='section-sub fade-up d2'>初回訪問で迷いやすい「相談する」「受講プランを選ぶ」「受講資料を先に見る」を先頭にまとめました。</p>")
+    parts.append("<h2 class='section-title fade-up d1'>最初の一歩を、4つに絞る</h2>")
+    parts.append("<p class='section-sub fade-up d2'>初回訪問で迷いやすい「相談する」「受講プランを選ぶ」「受講資料を先に見る」「公開・運用まで任せる」を先頭にまとめました。</p>")
     parts.append(_render_path_selector())
     parts.append("</section>")
 
@@ -7744,6 +8055,7 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append("<p class='section-sub fade-up d2'>無料相談、個別相談、伴走支援、Codex準備会、Codex実践会、AIコーディング講習を、目的と到達点で選べるように整理しています。CodexとClaude Codeの併用、画像生成まで含めて、各プランから対応する受講資料へ進み、内容を確認してから予約できます。</p>")
     parts.append(_render_courses_packages())
     parts.append("</section>")
+    parts.append(_render_growth_booster())
 
     # 3. ご依頼の流れ
     parts.append("<section class='block' id='flow'>")

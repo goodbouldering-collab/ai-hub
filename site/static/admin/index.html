@@ -89,7 +89,7 @@
   }
   .admin-subnav a:hover { color:#1d4ed8; background:#eff6ff; border-color:#bfdbfe; }
   .topbar { margin-bottom:20px; }
-  .topbar, #admin-menu, #panel-dashboard, #panel-status { scroll-margin-top:96px; }
+  .topbar, #panel-command-dashboard, #admin-menu, #panel-dashboard, #panel-status { scroll-margin-top:96px; }
   .topbar h1 {
     font-size:24px; font-weight:800; letter-spacing:-.01em; color:var(--text);
     display:inline-flex; align-items:center; gap:10px;
@@ -119,6 +119,137 @@
   }
   .quickflow-card p {
     color:var(--text-soft); font-size:13px; line-height:1.65;
+  }
+  .command-panel {
+    padding:0;
+    overflow:hidden;
+    border-color:#bfdbfe;
+  }
+  .command-head {
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto;
+    gap:16px;
+    align-items:center;
+    padding:20px 22px;
+    background:linear-gradient(135deg,#0f172a 0%,#1d4ed8 62%,#0f766e 100%);
+    color:#fff;
+  }
+  .command-head h2 {
+    margin:0 0 6px;
+    color:#fff;
+    font-size:18px;
+    letter-spacing:0;
+    text-transform:none;
+  }
+  .command-head p {
+    margin:0;
+    max-width:760px;
+    color:rgba(255,255,255,.78);
+    font-size:13px;
+  }
+  .command-status {
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    min-height:34px;
+    padding:0 12px;
+    border-radius:999px;
+    background:rgba(255,255,255,.14);
+    border:1px solid rgba(255,255,255,.28);
+    color:#fff;
+    font-size:12px;
+    font-weight:900;
+    white-space:nowrap;
+  }
+  .command-status::before {
+    content:"";
+    width:10px;
+    height:10px;
+    border-radius:999px;
+    background:#38bdf8;
+    box-shadow:0 0 0 4px rgba(56,189,248,.18);
+  }
+  .command-body {
+    padding:18px 20px 20px;
+  }
+  .command-metrics {
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:10px;
+    margin-bottom:14px;
+  }
+  .command-metric {
+    min-height:82px;
+    padding:13px 14px;
+    border-radius:8px;
+    border:1px solid var(--line);
+    background:#f8fafc;
+  }
+  .command-metric span {
+    display:block;
+    color:var(--muted);
+    font-size:11px;
+    font-weight:850;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+  }
+  .command-metric strong {
+    display:block;
+    margin-top:6px;
+    color:var(--text);
+    font-size:20px;
+    line-height:1.2;
+  }
+  .command-grid {
+    display:grid;
+    grid-template-columns:minmax(0,1.1fr) minmax(260px,.9fr);
+    gap:12px;
+  }
+  .command-card {
+    padding:14px;
+    border:1px solid var(--line);
+    border-radius:8px;
+    background:#fff;
+  }
+  .command-card h3 {
+    margin:0 0 8px;
+    color:var(--text);
+    font-size:14px;
+  }
+  .command-card p,
+  .command-card li {
+    color:var(--text-soft);
+    font-size:12.5px;
+    line-height:1.7;
+  }
+  .command-card ul {
+    margin:0;
+    padding-left:18px;
+  }
+  .command-actions {
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:12px;
+  }
+  .command-actions a {
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:34px;
+    padding:0 12px;
+    border-radius:8px;
+    border:1px solid var(--line);
+    background:#fff;
+    color:var(--primary);
+    font-size:12px;
+    font-weight:850;
+    text-decoration:none;
+  }
+  .command-actions a.primary-link {
+    background:var(--primary);
+    border-color:var(--primary);
+    color:#fff;
   }
   .sub { color:var(--muted); font-size:13px; margin-bottom:6px; }
   .panel {
@@ -489,7 +620,10 @@
     .admin-menu-group:last-child { border-bottom:none; }
     .admin-menu-head { align-items:flex-start; flex-direction:column; }
     .admin-menu-primary { width:100%; }
-    .panel, .topbar, #admin-menu, #panel-dashboard, #panel-status { scroll-margin-top:156px; }
+    .panel, .topbar, #panel-command-dashboard, #admin-menu, #panel-dashboard, #panel-status { scroll-margin-top:156px; }
+    .command-head,
+    .command-grid,
+    .command-metrics { grid-template-columns:1fr; }
   }
 </style>
 <link rel="stylesheet" href="/admin/admin-common.css">
@@ -513,6 +647,7 @@
   <nav class="admin-subnav" aria-label="管理メニュー">
     <span class="admin-subnav-label">Core</span>
     <a href="/admin#admin-menu" aria-current="page">管理ハブ</a>
+    <a href="#panel-command-dashboard">司令塔</a>
     <a href="#panel-dashboard">今週の動き</a>
     <span class="admin-subnav-label">Content</span>
     <a href="#panel-lectures">受講資料</a>
@@ -530,7 +665,45 @@
     <div>
       <h1><span class="dot"></span>AI相談。彦根 管理画面</h1>
       <p class="sub">9事業の運用ダッシュボード + グループ記事の発行</p>
-      <p class="topbar-lead">最短でやることを先に固定しました。まず接続状態を見て、次に対象グループを選び、最後に記事案の生成と公開へ進む順番です。</p>
+      <p class="topbar-lead">最初に司令塔を見て、CEO承認待ちを確認します。次に接続状態、対象グループ、記事案生成へ進む順番です。</p>
+    </div>
+  </div>
+
+  <div class="panel command-panel" id="panel-command-dashboard">
+    <div class="command-head">
+      <div>
+        <h2>司令塔ダッシュボード</h2>
+        <p>Growth Council Cloud Runner が全事業を事業担当プロファイルで点検し、最大7件のCEO承認待ち提案へ統合します。</p>
+      </div>
+      <span class="command-status">毎日 09:10 JST / ACTIVE</span>
+    </div>
+    <div class="command-body">
+      <div class="command-metrics" aria-label="司令塔ステータス">
+        <div class="command-metric"><span>確認場所</span><strong>この画面の最上部</strong></div>
+        <div class="command-metric"><span>対象</span><strong>15プロファイル</strong></div>
+        <div class="command-metric"><span>出力</span><strong>最大7提案</strong></div>
+        <div class="command-metric"><span>安全ゲート</span><strong>承認後だけ実行</strong></div>
+      </div>
+      <div class="command-grid">
+        <div class="command-card">
+          <h3>見る順番</h3>
+          <ul>
+            <li>今日の結論とCEO承認待ちを確認する。</li>
+            <li>必要なら事業別小レポートで根拠を見る。</li>
+            <li>承認した番号だけ、実装・投稿・外部連絡へ渡す。</li>
+          </ul>
+          <div class="command-actions">
+            <a class="primary-link" href="/ops">OPSで正本を見る</a>
+            <a href="/admin/chat">社内AIに聞く</a>
+            <a href="#panel-dashboard">今週の動き</a>
+          </div>
+        </div>
+        <div class="command-card">
+          <h3>automationに含める処理</h3>
+          <p>司令塔レポート生成後に、管理トップ用の表示を更新します。SNS投稿、メール送信、広告、課金、DB変更は行いません。</p>
+          <p><small>正本: consul/work/2026-06-17-growth-council-cloud-runner.md</small></p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -601,6 +774,11 @@
     <div class="admin-menu-grid">
       <section class="admin-menu-group" aria-label="今日やる">
         <h3>本日の主作業</h3>
+        <a class="admin-link" href="#panel-command-dashboard">
+          <span class="admin-link-icon">🧭</span>
+          <span><strong>司令塔</strong><small>全事業提案・CEO承認待ち</small></span>
+          <span class="admin-link-action">見る</span>
+        </a>
         <a class="admin-link" href="#panel-status">
           <span class="admin-link-icon">✍️</span>
           <span><strong>接続と記事生成</strong><small>生成・編集・公開</small></span>

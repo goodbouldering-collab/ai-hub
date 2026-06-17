@@ -2152,16 +2152,29 @@ def _build_jsonld(kind: str, meta: dict, title: str, page_url: str) -> str:
     return ""
 
 
-def _build_ogp(title: str, description: str, page_url: str, kind: str = "article") -> str:
+def _build_ogp(title: str, description: str, page_url: str, kind: str = "article", image: str | None = None) -> str:
     desc = description or title
-    return "".join([
+    tags = [
         f"<meta property='og:title' content='{html.escape(title, quote=True)}'>",
         f"<meta property='og:description' content='{html.escape(desc, quote=True)}'>",
         f"<meta property='og:url' content='{html.escape(page_url, quote=True)}'>",
         f"<meta property='og:type' content='{html.escape(kind, quote=True)}'>",
         "<meta property='og:site_name' content='AI相談。彦根'>",
-        "<meta name='twitter:card' content='summary'>",
-    ])
+    ]
+    if image:
+        image_url = str(image)
+        if image_url.startswith("/"):
+            image_url = SITE_URL + image_url
+        elif not image_url.startswith(("http://", "https://")):
+            image_url = SITE_URL + "/" + image_url.lstrip("./")
+        tags.extend([
+            f"<meta property='og:image' content='{html.escape(image_url, quote=True)}'>",
+            f"<meta name='twitter:image' content='{html.escape(image_url, quote=True)}'>",
+            "<meta name='twitter:card' content='summary_large_image'>",
+        ])
+    else:
+        tags.append("<meta name='twitter:card' content='summary'>")
+    return "".join(tags)
 
 
 def _inject_heading_ids(body_html: str) -> tuple[str, list[tuple[str, str]]]:
@@ -2205,7 +2218,8 @@ def render_content_page(title: str, meta: dict, body_html: str, nav_html: str, p
     if desc:
         parts.append(f"<meta name='description' content='{html.escape(desc, quote=True)}'>")
     parts.append(f"<link rel='canonical' href='{html.escape(page_url, quote=True)}'>")
-    parts.append(_build_ogp(title, desc, page_url, "article" if kind in ("lecture", "speaker", "blog") else "website"))
+    image = str(meta.get("image") or "")
+    parts.append(_build_ogp(title, desc, page_url, "article" if kind in ("lecture", "speaker", "blog") else "website", image or None))
     if kind:
         jsonld_kind = "website" if kind == "portfolio" else kind
         ld = _build_jsonld(jsonld_kind, meta, title, page_url)

@@ -18,7 +18,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/STKB364_CLAUDE_2_A_3800fc.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-06-17T14:28:50-04:00"
+      "published": "2026-06-17T14:28:50-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "d118833aa6568c62",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/STK_414_AI_J-copy.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-06-17T13:20:24-04:00"
+      "published": "2026-06-17T13:20:24-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "b50a88e85a65b7db",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/gettyimages-2282033342.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.740280282734%2C100%2C78.519439434532&amp;w=1200",
-      "published": "2026-06-17T12:27:00-04:00"
+      "published": "2026-06-17T12:27:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "756f8ffe189af3a1",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/image-3-1.png?quality=90&amp;strip=all&amp;crop=0%2C3.4892491027825%2C100%2C93.021501794435&amp;w=1200",
-      "published": "2026-06-17T12:13:34-04:00"
+      "published": "2026-06-17T12:13:34-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "7c8febe61c725a6b",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/DSC03787_processed.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.723165084465%2C100%2C78.55366983107&amp;w=1200",
-      "published": "2026-06-17T09:30:00-04:00"
+      "published": "2026-06-17T09:30:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "87287973107bfcdc",
@@ -113,7 +123,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/10/IMG_0204.jpeg?quality=90&amp;strip=all&amp;crop=0%2C15.095986038394%2C100%2C69.808027923211&amp;w=1200",
-      "published": "2026-06-17T09:00:00-04:00"
+      "published": "2026-06-17T09:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "f260e65d91f03f4c",
@@ -132,7 +144,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-06-17T17:12:41+00:00"
+      "published": "2026-06-17T17:12:41+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "8005d82e3d4d086c",
@@ -151,7 +165,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/etOdkKWQwI4/hqdefault.jpg",
-      "published": "2026-06-17T13:06:47+00:00"
+      "published": "2026-06-17T13:06:47+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "3c7f57c23a5a0848",
@@ -170,7 +186,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/Genesis-Eno-Home-Pebble-Beach-CA-06062026-Pouring.png?quality=90&amp;strip=all&amp;crop=0%2C10.761594140703%2C100%2C78.476811718594&amp;w=1200",
-      "published": "2026-06-17T05:46:56-04:00"
+      "published": "2026-06-17T05:46:56-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "d09ef483ac513047",
@@ -189,7 +207,9 @@
         "freshness": 3.0
       },
       "thumbnail": "",
-      "published": "2026-06-17T03:56:10+00:00"
+      "published": "2026-06-17T03:56:10+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

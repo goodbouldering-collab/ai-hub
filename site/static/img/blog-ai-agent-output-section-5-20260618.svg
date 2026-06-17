@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">AIハブの制作ループ</title>
+  <desc id="desc">Codex、Claude Code、画像生成、NotebookLM、公開確認がつながるAIハブの制作ループ。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F4FBFF"/>
+      <stop offset="1" stop-color="#FFF4E0"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#16333B" flood-opacity=".14"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <circle cx="600" cy="338" r="206" fill="#FFFFFF" opacity=".68"/>
+  <path d="M600 132a206 206 0 1 1-178 103" fill="none" stroke="#0E9F8F" stroke-width="18" stroke-linecap="round"/>
+  <path d="M406 232l38-6-14 36" fill="none" stroke="#0E9F8F" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  <g filter="url(#shadow)">
+    <rect x="470" y="246" width="260" height="184" rx="34" fill="#102F39"/>
+    <text x="600" y="322" text-anchor="middle" fill="#FFFFFF" font-family="sans-serif" font-size="36" font-weight="900">AIハブ</text>
+    <text x="600" y="370" text-anchor="middle" fill="#BDEDE6" font-family="sans-serif" font-size="22" font-weight="700">量を意味へ変える</text>
+  </g>
+  <g filter="url(#shadow)" font-family="sans-serif" font-weight="800">
+    <rect x="108" y="96" width="230" height="112" rx="28" fill="#FFFFFF"/>
+    <text x="223" y="162" text-anchor="middle" fill="#17363A" font-size="28">Codexで直す</text>
+    <rect x="862" y="96" width="230" height="112" rx="28" fill="#FFFFFF"/>
+    <text x="977" y="162" text-anchor="middle" fill="#17363A" font-size="28">構造を見る</text>
+    <rect x="108" y="466" width="230" height="112" rx="28" fill="#FFFFFF"/>
+    <text x="223" y="532" text-anchor="middle" fill="#17363A" font-size="28">画像で伝える</text>
+    <rect x="862" y="466" width="230" height="112" rx="28" fill="#FFFFFF"/>
+    <text x="977" y="532" text-anchor="middle" fill="#17363A" font-size="28">公開確認</text>
+  </g>
+  <g stroke="#91A8AF" stroke-width="10" stroke-linecap="round" opacity=".8">
+    <path d="M338 152h120"/>
+    <path d="M742 152h120"/>
+    <path d="M338 522h120"/>
+    <path d="M742 522h120"/>
+  </g>
+  <text x="600" y="640" text-anchor="middle" fill="#405F65" font-family="sans-serif" font-size="24" font-weight="800">AIが量を増やし、人間が意味を与える制作導線</text>
+</svg>

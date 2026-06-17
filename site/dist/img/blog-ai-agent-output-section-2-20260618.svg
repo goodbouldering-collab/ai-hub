@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">量産されたAIアプリの整理</title>
+  <desc id="desc">大量に生まれるAI成果物を、作物のように育てるものと整理するものへ分ける図。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F6FCFF"/>
+      <stop offset="1" stop-color="#F7F0DF"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#243B36" flood-opacity=".14"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <path d="M0 468c174-62 349-62 524 0s386 65 676-12v219H0z" fill="#DDEFD2"/>
+  <path d="M0 540c238-52 422-36 642 0 201 33 366 19 558-48v183H0z" fill="#BFDFA9"/>
+  <g filter="url(#shadow)">
+    <rect x="98" y="92" width="374" height="228" rx="30" fill="#FFFFFF"/>
+    <text x="132" y="152" fill="#18373B" font-family="sans-serif" font-size="34" font-weight="800">大量に生える成果物</text>
+    <text x="132" y="198" fill="#526A69" font-family="sans-serif" font-size="22" font-weight="700">見た目だけ整った案も混ざる</text>
+    <g fill="#0E9F8F">
+      <rect x="136" y="234" width="58" height="42" rx="12"/>
+      <rect x="214" y="234" width="58" height="42" rx="12"/>
+      <rect x="292" y="234" width="58" height="42" rx="12"/>
+      <rect x="370" y="234" width="58" height="42" rx="12"/>
+    </g>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="718" y="92" width="384" height="228" rx="30" fill="#FFFFFF"/>
+    <text x="752" y="152" fill="#18373B" font-family="sans-serif" font-size="34" font-weight="800">育てる成果物</text>
+    <text x="752" y="198" fill="#526A69" font-family="sans-serif" font-size="22" font-weight="700">目的に合うものへ手を入れる</text>
+    <path d="M786 264c50-52 104-50 162 0 44-45 87-50 130-15" fill="none" stroke="#E59A32" stroke-width="18" stroke-linecap="round"/>
+  </g>
+  <g>
+    <g transform="translate(128 390)">
+      <rect width="138" height="104" rx="20" fill="#FFFFFF" opacity=".92"/>
+      <circle cx="38" cy="36" r="15" fill="#91C979"/>
+      <path d="M38 94V52" stroke="#5F8C4E" stroke-width="8" stroke-linecap="round"/>
+      <text x="72" y="48" fill="#17363A" font-family="sans-serif" font-size="20" font-weight="800">使う</text>
+    </g>
+    <g transform="translate(330 424)">
+      <rect width="138" height="104" rx="20" fill="#FFFFFF" opacity=".86"/>
+      <circle cx="38" cy="36" r="15" fill="#F0C777"/>
+      <path d="M22 74h34" stroke="#B98523" stroke-width="8" stroke-linecap="round"/>
+      <text x="72" y="48" fill="#17363A" font-family="sans-serif" font-size="20" font-weight="800">保留</text>
+    </g>
+    <g transform="translate(532 400)">
+      <rect width="138" height="104" rx="20" fill="#FFFFFF" opacity=".86"/>
+      <path d="M28 76l42-42M70 76L28 34" stroke="#D86757" stroke-width="10" stroke-linecap="round"/>
+      <text x="82" y="48" fill="#17363A" font-family="sans-serif" font-size="20" font-weight="800">捨てる</text>
+    </g>
+    <g transform="translate(734 424)">
+      <rect width="138" height="104" rx="20" fill="#FFFFFF" opacity=".9"/>
+      <path d="M28 62h54M55 35v54" stroke="#0E9F8F" stroke-width="10" stroke-linecap="round"/>
+      <text x="88" y="56" fill="#17363A" font-family="sans-serif" font-size="20" font-weight="800">統合</text>
+    </g>
+    <g transform="translate(936 390)">
+      <rect width="138" height="104" rx="20" fill="#FFFFFF" opacity=".92"/>
+      <path d="M28 52h70" stroke="#18373B" stroke-width="9" stroke-linecap="round"/>
+      <path d="M28 76h44" stroke="#0E9F8F" stroke-width="9" stroke-linecap="round"/>
+      <text x="74" y="40" fill="#17363A" font-family="sans-serif" font-size="20" font-weight="800">直す</text>
+    </g>
+  </g>
+</svg>

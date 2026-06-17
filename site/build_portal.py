@@ -6802,7 +6802,7 @@ def _render_blog_teaser() -> str:
         "</div>"
         "</div>"
         "<div class='blog-teaser__image'>"
-        "<img src='/img/blog-ai-agent-output-20260618.jpg' alt='AI時代、やる気がなくても成果物は増えるというテーマのブログ画像' loading='lazy' decoding='async'>"
+        "<img src='/img/blog-ai-agent-output-section-1-20260618.svg' alt='AIが生成した多数の成果物を人間が目的に合わせて選別する図' loading='lazy' decoding='async'>"
         "</div>"
         "</div>"
         "</section>"

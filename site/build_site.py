@@ -148,6 +148,7 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
     parts.append("<a class='nav-link' href='/#faq'>FAQ</a>")
     parts.append("<a class='nav-link' href='/#works'>制作実績</a>")
     parts.append("<a class='nav-link' href='/#growth'>集客施策</a>")
+    parts.append("<a class='nav-link' href='/blog/index.html'>ブログ</a>")
     parts.append("<a class='nav-link' href='/watch/index.html'>AI Watch</a>")
     parts.append(f"<a class='nav-link' href='{admin_href}' style='color:var(--muted);'>🔐 管理</a>")
     parts.append("</nav>")
@@ -967,6 +968,7 @@ def render_archive(dates: list[str]) -> str:
 CONTENT_DIR = ROOT / "content"
 SPEAKER_MD = CONTENT_DIR / "speaker.md"
 LECTURES_DIR = CONTENT_DIR / "lectures"
+BLOG_DIR = CONTENT_DIR / "blog"
 PORTFOLIO_YAML = ROOT / "config" / "portfolio.yaml"
 PROFILE_YAML = ROOT / "config" / "profile.yaml"
 TEACHING_YAML = ROOT / "config" / "teaching_resources.yaml"
@@ -1025,6 +1027,54 @@ CONTENT_CSS = """
   color: var(--primary);
 }
 .content-wrap strong { color: var(--text); font-weight: 700; }
+.content-wrap figure {
+  margin: 26px 0;
+}
+.content-wrap figure img {
+  display: block;
+  width: 100%;
+  max-height: 540px;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-card);
+}
+.content-wrap figcaption {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 12.5px;
+  line-height: 1.7;
+}
+.blog-list {
+  display: grid;
+  gap: 18px;
+  margin-top: 18px;
+}
+.blog-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 180px;
+  gap: 18px;
+  align-items: center;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #fff;
+}
+.blog-card h2 {
+  margin-top: 0;
+}
+.blog-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+}
+@media (max-width: 720px) {
+  .blog-card {
+    grid-template-columns: 1fr;
+  }
+}
 .speaker-meta {
   display: flex;
   flex-wrap: wrap;
@@ -2155,7 +2205,7 @@ def render_content_page(title: str, meta: dict, body_html: str, nav_html: str, p
     if desc:
         parts.append(f"<meta name='description' content='{html.escape(desc, quote=True)}'>")
     parts.append(f"<link rel='canonical' href='{html.escape(page_url, quote=True)}'>")
-    parts.append(_build_ogp(title, desc, page_url, "article" if kind in ("lecture", "speaker") else "website"))
+    parts.append(_build_ogp(title, desc, page_url, "article" if kind in ("lecture", "speaker", "blog") else "website"))
     if kind:
         jsonld_kind = "website" if kind == "portfolio" else kind
         ld = _build_jsonld(jsonld_kind, meta, title, page_url)
@@ -2474,6 +2524,74 @@ def build_lectures() -> int:
             encoding="utf-8",
         )
     return count
+
+
+def build_blog() -> int:
+    """Build content/blog/*.md into public blog pages and a blog index."""
+    if not BLOG_DIR.exists():
+        return 0
+    md = _load_markdown()
+    out_dir = DIST / "blog"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    posts: list[dict] = []
+    for f in sorted(BLOG_DIR.glob("*.md"), reverse=True):
+        raw = f.read_text(encoding="utf-8")
+        meta, body = _parse_frontmatter(raw)
+        body_html = md.markdown(body, extensions=["extra", "sane_lists", "attr_list"])
+        title = str(meta.get("title") or f.stem)
+        nav = render_top_nav(path_prefix="../", current_id="blog", include_run=False)
+        (out_dir / f"{f.stem}.html").write_text(
+            render_content_page(title, meta, body_html, nav, page_path=f"blog/{f.stem}.html", kind="blog"),
+            encoding="utf-8",
+        )
+        posts.append({
+            "slug": f.stem,
+            "title": title,
+            "summary": str(meta.get("summary") or ""),
+            "date": str(meta.get("date") or ""),
+            "role": str(meta.get("role") or ""),
+            "image": str(meta.get("image") or ""),
+        })
+
+    cards: list[str] = []
+    for post in sorted(posts, key=lambda x: (x.get("date") or "", x.get("slug") or ""), reverse=True):
+        href = f"./{html.escape(post['slug'], quote=True)}.html"
+        image_html = ""
+        if post.get("image"):
+            image_html = (
+                f"<img src='{html.escape(post['image'], quote=True)}' "
+                f"alt='{html.escape(post['title'], quote=True)}' loading='lazy' decoding='async'>"
+            )
+        meta_bits = []
+        if post.get("date"):
+            meta_bits.append(html.escape(post["date"]))
+        if post.get("role"):
+            meta_bits.append(html.escape(post["role"]))
+        meta_html = " / ".join(meta_bits)
+        cards.append(
+            "<article class='blog-card'>"
+            "<div>"
+            f"<p class='speaker-meta'>{meta_html}</p>"
+            f"<h2><a href='{href}'>{html.escape(post['title'])}</a></h2>"
+            f"<p>{html.escape(post.get('summary') or '')}</p>"
+            f"<p><a href='{href}'>記事を読む →</a></p>"
+            "</div>"
+            f"{image_html}"
+            "</article>"
+        )
+
+    body_html = (
+        "<p>AIハブのブログです。AI活用、Codex、Claude Code、画像生成、Web制作、集客導線の実践記録を残していきます。</p>"
+        "<div class='blog-list'>"
+        + "".join(cards)
+        + "</div>"
+    )
+    nav = render_top_nav(path_prefix="../", current_id="blog", include_run=False)
+    (out_dir / "index.html").write_text(
+        render_content_page("ブログ", {"summary": "AIハブのブログ一覧。AI活用と制作の実践記録。"}, body_html, nav, page_path="blog/index.html"),
+        encoding="utf-8",
+    )
+    return len(posts)
 
 
 _OGP_TITLE_RE = re.compile(r"<meta[^>]+property=['\"]og:title['\"][^>]+content=['\"]([^'\"]+)['\"]", re.I)
@@ -2953,6 +3071,15 @@ def build_sitemap_and_robots() -> None:
             if lp.name == "index.html":
                 continue
             add(f"lectures/{lp.name}", 0.8)
+    blog_idx = DIST / "blog" / "index.html"
+    if blog_idx.exists():
+        add("blog/index.html", 0.7)
+    blog_dir = DIST / "blog"
+    if blog_dir.exists():
+        for bp in sorted(blog_dir.glob("*.html")):
+            if bp.name == "index.html":
+                continue
+            add(f"blog/{bp.name}", 0.8)
     # watch(SNSポータル) は管理ページ配下へ移行したため公開 sitemap には含めない。
 
     if not urls:
@@ -3095,6 +3222,7 @@ def main() -> int:
         (DIST / ".nojekyll").write_text("", encoding="utf-8")
         build_speaker_page()
         build_lectures()
+        build_blog()
         build_portfolio_page()
         build_profile_page()
         build_sitemap_and_robots()
@@ -3125,6 +3253,7 @@ def main() -> int:
 
     speaker_built = build_speaker_page()
     lectures_built = build_lectures()
+    blog_built = build_blog()
     slides_built = build_slides()
     portfolio_built = build_portfolio_page()
     profile_built = build_profile_page()
@@ -3135,6 +3264,7 @@ def main() -> int:
         f"[+] site built: {DIST} ({len(dates)} archive pages in watch/"
         + (", speaker.html" if speaker_built else "")
         + (f", {lectures_built} lectures" if lectures_built else "")
+        + (f", {blog_built} blog posts" if blog_built else "")
         + (f", {slides_built} slides" if slides_built else "")
         + (", portfolio.html" if portfolio_built else "")
         + (", profile.html" if profile_built else "")

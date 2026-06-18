@@ -4250,6 +4250,8 @@ section.block.block-tight {
 .path-kicker,
 .path-meta {
   display: inline-flex;
+  align-items: center;
+  gap: 6px;
   width: fit-content;
   padding: 4px 10px;
   border-radius: 999px;
@@ -4259,6 +4261,20 @@ section.block.block-tight {
   font-size: 11px;
   font-weight: 800;
   letter-spacing: .08em;
+}
+
+.path-kicker b {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  margin-left: -5px;
+  border-radius: 999px;
+  background: #0F5F78;
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0;
 }
 
 .path-card strong {
@@ -4278,8 +4294,78 @@ section.block.block-tight {
   font-weight: 800;
 }
 
+.route-clarifier {
+  margin-top: 16px;
+  padding: 14px;
+  border: 1px solid rgba(18,32,51,.12);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.96), rgba(247,252,251,.92)),
+    linear-gradient(90deg, rgba(0,165,200,.08), rgba(124,196,20,.07), rgba(255,138,61,.07));
+  box-shadow: 0 12px 32px rgba(18,32,51,.07);
+}
+
+.route-clarifier > strong {
+  display: block;
+  margin-bottom: 10px;
+  color: #07162B;
+  font-size: 13px;
+  font-weight: 950;
+  letter-spacing: .02em;
+}
+
+.route-clarifier-list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.route-clarifier-list a {
+  display: flex;
+  min-height: 78px;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(18,32,51,.10);
+  background: #fff;
+  color: #203045;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(18,32,51,.045);
+}
+
+.route-clarifier-list a:hover,
+.route-clarifier-list a:focus-visible {
+  border-color: rgba(15,95,120,.30);
+  background: #F2FBFC;
+  outline: none;
+}
+
+.route-clarifier-list span {
+  color: #405166;
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+
+.route-clarifier-list b {
+  color: #0F5F78;
+  font-size: 12.5px;
+  font-weight: 900;
+}
+
 @media (max-width: 980px) {
   .path-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .route-clarifier-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .route-clarifier-list {
     grid-template-columns: 1fr;
   }
 }
@@ -7115,6 +7201,8 @@ def _render_web_showcase() -> str:
 def _render_path_selector() -> str:
     cards = [
         (
+            "01",
+            "相談",
             "無料相談から始めたい",
             "今の課題を30分で整理して、受講プランか伴走かを決める入口です。",
             "相談を予約する",
@@ -7122,6 +7210,8 @@ def _render_path_selector() -> str:
             "30分 / 無料",
         ),
         (
+            "02",
+            "比較",
             "受講プランを比べたい",
             "Codex準備、Codex実践、個別相談、伴走支援の違いを先に見たい方向け。各カードから関連資料へ進めます。",
             "受講プランを見る",
@@ -7129,6 +7219,8 @@ def _render_path_selector() -> str:
             "料金と到達点を確認",
         ),
         (
+            "03",
+            "予習",
             "受講資料を先に見たい",
             "受講資料やAIコーディング講習を見て、雰囲気を確かめてから受講プランへ戻れます。",
             "受講資料を見る",
@@ -7136,6 +7228,8 @@ def _render_path_selector() -> str:
             "公開資料あり",
         ),
         (
+            "04",
+            "実装",
             "公開・運用まで任せたい",
             "ホームページ、SNS、社内AI、月次伴走までまとめたい方向け。作って終わりではなく運用に落とします。",
             "制作と伴走を見る",
@@ -7144,10 +7238,10 @@ def _render_path_selector() -> str:
         ),
     ]
     parts = ["<div class='path-grid'>"]
-    for title, desc, cta, href, meta in cards:
+    for step, mode, title, desc, cta, href, meta in cards:
         parts.append(
             "<a class='path-card fade-up' href='{href}'>"
-            "<span class='path-kicker'>FIRST STEP</span>"
+            f"<span class='path-kicker'><b>{html.escape(step)}</b>{html.escape(mode)}</span>"
             f"<strong>{html.escape(title)}</strong>"
             f"<p>{html.escape(desc)}</p>"
             f"<span class='path-meta'>{html.escape(meta)}</span>"
@@ -7155,6 +7249,20 @@ def _render_path_selector() -> str:
             "</a>".format(href=html.escape(href, quote=True))
         )
     parts.append("</div>")
+    clarifiers = [
+        ("まだ何を頼むか決まっていない", "無料相談", "#contact"),
+        ("使い方を覚えて自分で動かしたい", "Codex準備会・実践会", "#packages"),
+        ("AIの成果物を判断できるようになりたい", "AIコーディング講習", "#packages"),
+        ("Web公開やSNS運用まで任せたい", "伴走支援", "#web-showcase"),
+    ]
+    parts.append("<div class='route-clarifier fade-up d2' aria-label='状態別のおすすめ入口'>")
+    parts.append("<strong>迷ったら、今の状態で選ぶ</strong>")
+    parts.append("<div class='route-clarifier-list'>")
+    for problem, route, href in clarifiers:
+        parts.append(
+            f"<a href='{html.escape(href, quote=True)}'><span>{html.escape(problem)}</span><b>{html.escape(route)} →</b></a>"
+        )
+    parts.append("</div></div>")
     return "".join(parts)
 
 

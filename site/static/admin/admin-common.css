@@ -145,10 +145,14 @@ header.site-header,
 }
 
 .site-nav a:hover,
-.site-nav a.nav-link:hover {
+.site-nav a.nav-link:hover,
+.site-nav a:focus-visible,
+.site-nav a.nav-link:focus-visible {
   color: var(--admin-accent) !important;
   background: var(--admin-link-hover) !important;
   border-color: var(--admin-accent) !important;
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(37,99,235,.14) !important;
 }
 
 .site-nav .login-btn,
@@ -159,7 +163,9 @@ header.site-header,
 }
 
 .site-nav .login-btn:hover,
-.site-nav a.login-btn:hover {
+.site-nav a.login-btn:hover,
+.site-nav .login-btn:focus-visible,
+.site-nav a.login-btn:focus-visible {
   background: var(--admin-accent) !important;
   color: #fff !important;
   transform: translateY(-1px) !important;
@@ -210,6 +216,7 @@ header.site-header,
   background: var(--admin-link-hover);
   border-color: var(--admin-accent);
   outline: none;
+  box-shadow: 0 0 0 3px rgba(37,99,235,.14);
 }
 
 .admin-subnav a[aria-current="page"],

@@ -104,10 +104,21 @@
     gap:12px; margin:18px 0 20px;
   }
   .quickflow-card {
+    display:block;
     padding:16px; border-radius:14px;
     background:#fff; border:1px solid var(--line);
     border-top:4px solid rgba(37,99,235,.18);
     box-shadow:0 8px 24px rgba(15,23,42,.06);
+    color:inherit; text-decoration:none;
+    transition:transform .18s, border-color .18s, box-shadow .18s, background .18s;
+  }
+  .quickflow-card:hover,
+  .quickflow-card:focus-visible {
+    transform:translateY(-2px);
+    border-color:#93c5fd;
+    background:#f8fbff;
+    box-shadow:0 14px 30px rgba(15,23,42,.10);
+    outline:none;
   }
   .quickflow-card span {
     display:inline-flex; padding:4px 10px; margin-bottom:10px;
@@ -119,6 +130,10 @@
   }
   .quickflow-card p {
     color:var(--text-soft); font-size:13px; line-height:1.65;
+  }
+  .quickflow-card em {
+    display:inline-flex; margin-top:10px;
+    color:var(--primary); font-style:normal; font-size:12px; font-weight:850;
   }
   .command-panel {
     padding:0;
@@ -708,21 +723,24 @@
   </div>
 
   <div class="quickflow" aria-label="最短操作">
-    <div class="quickflow-card">
+    <a class="quickflow-card" href="#panel-status">
       <span>STEP 1</span>
       <strong>状態を確認</strong>
       <p>API と環境変数の状態を最初に見て、止まっている原因を先に外します。</p>
-    </div>
-    <div class="quickflow-card">
+      <em>接続状態へ移動 →</em>
+    </a>
+    <a class="quickflow-card" href="#admin-menu">
       <span>STEP 2</span>
-      <strong>公開先を決める</strong>
-      <p>公開先の親グループを決めると、並び替えと公開先の事故を減らせます。</p>
-    </div>
-    <div class="quickflow-card">
+      <strong>作業先を決める</strong>
+      <p>今日やる作業、公開確認、運用監視を管理ハブで分けてから作業へ入ります。</p>
+      <em>管理ハブへ移動 →</em>
+    </a>
+    <a class="quickflow-card" href="#panel-status">
       <span>STEP 3</span>
       <strong>生成して整える</strong>
       <p>記事案の生成、採用案の編集、画像作成、公開の順で作業を閉じます。</p>
-    </div>
+      <em>記事作成へ移動 →</em>
+    </a>
   </div>
 
   <div class="ops-pulse" id="ops-pulse" aria-label="運用サマリー">

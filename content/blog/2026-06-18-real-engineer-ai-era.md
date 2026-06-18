@@ -22,6 +22,11 @@ AIに頼めば、ECサイトも、LPも、管理画面も、ブログ記事も�
 
 ## 「AIで作れた」は、まだ入口にすぎない
 
+<figure>
+  <img src="/img/blog-real-engineer-ai-era-section-01-entry-20260618.png" alt="AIの出力を人が確認し仕事で使える成果物へ変える流れ" loading="lazy" decoding="async">
+  <figcaption>AIで形にした後、人が確認・説明・運用判断を通して初めて仕事で使える成果物になる。</figcaption>
+</figure>
+
 例えばAIにECサイトを作らせたとします。トップページがあり、商品ページがあり、カートがあり、問い合わせフォームもある。見た目だけなら、かなり立派に見えるかもしれません。
 
 でも仕事として見るなら、次の問いに答えられる必要があります。
@@ -41,6 +46,11 @@ AIはコードを書けます。画面も作れます。説明文も出せます
 
 ## 本物のプロは「作業」ではなく「責任範囲」を説明できる
 
+<figure>
+  <img src="/img/blog-real-engineer-ai-era-section-02-responsibility-20260618.png" alt="DNS、WAF、認証、監視、バックアップ、復旧手順まで含めた責任範囲" loading="lazy" decoding="async">
+  <figcaption>プロの価値は作業量ではなく、どこまで守り、誰が戻せるかを説明できる責任範囲にある。</figcaption>
+</figure>
+
 AI時代のエンジニア像は、単にキーボードを速く打てる人ではありません。
 
 むしろ重要になるのは、次のような説明です。
@@ -59,6 +69,11 @@ AI時代のエンジニア像は、単にキーボードを速く打てる人で
 AIを使うほど、責任は軽くなるのではなく、判断する範囲が広がります。
 
 ## レベルが上がるとは、質問に答えられる範囲が広がること
+
+<figure>
+  <img src="/img/blog-real-engineer-ai-era-section-03-levels-20260618.png" alt="AIツールからチーム設計まで答えられる範囲が広がるレベル図" loading="lazy" decoding="async">
+  <figcaption>レベルが上がるほど、操作できる道具ではなく、説明できる範囲が広がっていく。</figcaption>
+</figure>
 
 投稿画像では、エンジニアのレベルをざっくり地図にしました。
 
@@ -82,6 +97,11 @@ AIを使うほど、責任は軽くなるのではなく、判断する範囲が
 
 ## 会社やお店に必要なのは、AIを使った人ではなく、AIで仕事を進められる人
 
+<figure>
+  <img src="/img/blog-real-engineer-ai-era-section-04-operations-20260618.png" alt="AIの出力をWeb更新、SNS、数字確認、顧客対応、予約導線へつなぐ業務フロー" loading="lazy" decoding="async">
+  <figcaption>会社やお店に必要なのは、AIの出力を実際の業務フローへ戻し、測り、直せる人。</figcaption>
+</figure>
+
 これからは、制作会社、社内担当者、フリーランス、経営者の全員がAIを使うようになります。
 
 そのときに差が出るのは「AIを使ったことがあるか」ではありません。差が出るのは、AIで作ったものを、実際の仕事の流れに戻せるかどうかです。
@@ -97,6 +117,11 @@ AIで作った記事なら、誰に向けた記事なのか、検索で何を拾
 仕事の中で使われ、説明でき、改善でき、守れる状態になったものです。
 
 ## AIハブで伝えたいこと
+
+<figure>
+  <img src="/img/blog-real-engineer-ai-era-section-05-aihub-20260618.png" alt="Codex、Claude Code、画像生成、NotebookLM、SNSとブログ公開確認をつなぐAIハブの制作ループ" loading="lazy" decoding="async">
+  <figcaption>AIハブでは、生成から確認、編集、公開、改善までをひとつの制作ループとして扱う。</figcaption>
+</figure>
 
 AIハブで扱いたいのは、単に「AIの使い方」ではありません。
 

@@ -18,7 +18,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/STK201_SAM_ALTMAN_CVIRGINIA2D_717b98.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-06-19T10:15:29-04:00"
+      "published": "2026-06-19T10:15:29-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "33eac72e408eecb3",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/hCWGYmidKc8/hqdefault.jpg",
-      "published": "2026-06-19T14:26:17+00:00"
+      "published": "2026-06-19T14:26:17+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "321677075b66e6cf",
@@ -56,7 +60,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/STK155_OPEN_AI_CVirginia_C.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-06-19T00:49:33-04:00"
+      "published": "2026-06-19T00:49:33-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "6e8699ecc774ee99",
@@ -75,7 +81,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://static.simonwillison.net/static/2026/datasette-apps-card.jpg",
-      "published": "2026-06-18T23:58:38+00:00"
+      "published": "2026-06-18T23:58:38+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "366fae7cd5e9e833",
@@ -94,7 +102,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/cRTtuaL7pII/hqdefault.jpg",
-      "published": "2026-06-19T10:00:16+00:00"
+      "published": "2026-06-19T10:00:16+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "bfe9ac8bbc236b5a",
@@ -113,7 +123,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/5fvIHgONsv4/hqdefault.jpg",
-      "published": "2026-06-19T10:00:39+00:00"
+      "published": "2026-06-19T10:00:39+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "febb1aa803b1a6be",
@@ -132,7 +144,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://wp.technologyreview.com/wp-content/uploads/2026/06/cheetah-speed2a.jpg?resize=1200,600",
-      "published": "Fri, 19 Jun 2026 10:40:24 +0000"
+      "published": "Fri, 19 Jun 2026 10:40:24 +0000",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "07be249524e19a68",
@@ -151,7 +165,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://www.itmedia.co.jp/aiplus/article/ogp/2606/19/2000000110/10000556/2048",
-      "published": "Fri, 19 Jun 2026 17:00:51 +0900"
+      "published": "Fri, 19 Jun 2026 17:00:51 +0900",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "6e86fcaa38b58084",
@@ -170,7 +186,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://image.itmedia.co.jp/kn/articles/2606/19/cover_news113.jpg",
-      "published": "Fri, 19 Jun 2026 16:26:00 +0900"
+      "published": "Fri, 19 Jun 2026 16:26:00 +0900",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "5b40fac85bf147e1",
@@ -189,7 +207,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://www.itmedia.co.jp/aiplus/article/ogp/2606/19/2000000109/10000553/2048",
-      "published": "Fri, 19 Jun 2026 16:16:24 +0900"
+      "published": "Fri, 19 Jun 2026 16:16:24 +0900",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

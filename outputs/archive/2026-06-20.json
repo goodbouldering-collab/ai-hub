@@ -18,7 +18,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/hCWGYmidKc8/hqdefault.jpg",
-      "published": "2026-06-20T03:52:31+00:00"
+      "published": "2026-06-20T03:52:31+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "abe9e9d496bcfd46",
@@ -37,7 +39,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/lVeWukyWFmk/hqdefault.jpg",
-      "published": "2026-06-20T10:00:22+00:00"
+      "published": "2026-06-20T10:00:22+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "26e661879fea5b68",
@@ -56,7 +60,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/OFGT8hP-Kto/hqdefault.jpg",
-      "published": "2026-06-20T10:00:37+00:00"
+      "published": "2026-06-20T10:00:37+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "b913f1b3aca9f892",
@@ -75,7 +81,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/7lJyLVoIja4/hqdefault.jpg",
-      "published": "2026-06-20T09:00:37+00:00"
+      "published": "2026-06-20T09:00:37+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     }
   ]
 }

@@ -87,7 +87,7 @@ function sendLoginPage(
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <title>AI相談。彦根 管理ログイン</title>
+  <title>AIスペシャリスト 由井辰美</title>
   <style>
     :root {
       color-scheme: light;

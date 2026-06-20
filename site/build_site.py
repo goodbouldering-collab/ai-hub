@@ -145,7 +145,8 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
     parts.append("<a class='nav-link nav-essential' href='/#packages'>受講プラン</a>")
     parts.append(f"<a class='nav-link nav-essential{pmap_cls}' href='/programming-map.html'>AIコーディング</a>")
     parts.append("<a class='nav-link nav-essential' href='/#lectures'>資料</a>")
-    parts.append(f"<a class='nav-link' href='{admin_href}' style='color:var(--muted);'>🔐 管理</a>")
+    parts.append("<a class='nav-link' href='/#faq'>FAQ</a>")
+    parts.append(f"<a class='nav-link nav-admin' href='{admin_href}'>🔐 管理</a>")
     parts.append("</nav>")
     parts.append(
         "<a class='nav-cta' href='/#contact'>📩 無料相談</a>"
@@ -503,9 +504,9 @@ html { scroll-padding-top: 78px; }
 header.site-header,
 header.site-header.scrolled {
   min-height: 62px;
-  background: linear-gradient(135deg, rgba(255,255,255,.92), rgba(247,252,253,.84));
-  border-bottom: 1px solid rgba(7,20,38,.13);
-  box-shadow: 0 10px 34px rgba(7,20,38,.08), inset 0 1px 0 rgba(255,255,255,.92);
+  background: rgba(255,255,255,.985);
+  border-bottom: 1px solid rgba(7,22,43,.14);
+  box-shadow: 0 14px 36px rgba(7,22,43,.11), inset 0 1px 0 rgba(255,255,255,.96);
   backdrop-filter: blur(20px) saturate(150%);
   -webkit-backdrop-filter: blur(20px) saturate(150%);
 }
@@ -522,6 +523,11 @@ nav.top-nav {
   flex-wrap: nowrap;
   justify-content: flex-end;
   gap: 6px;
+  padding: 4px;
+  border: 1px solid rgba(7,22,43,.12);
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 8px 22px rgba(7,22,43,.08), inset 0 1px 0 rgba(255,255,255,.98);
 }
 nav.top-nav .nav-link {
   min-height: 36px;
@@ -530,7 +536,8 @@ nav.top-nav .nav-link {
   padding: 0 10px;
   border-radius: 8px;
   border: 1px solid transparent;
-  color: #223148;
+  color: #15243A;
+  background: rgba(248,252,253,.94);
   text-decoration: none;
   font-size: 12.5px;
   font-weight: 850;
@@ -544,16 +551,19 @@ nav.top-nav .nav-link:focus-visible {
   outline: none;
 }
 nav.top-nav .nav-current {
-  color: #075e67;
-  background: rgba(14,165,198,.12);
-  border-color: rgba(14,165,198,.26);
+  color: #064E63;
+  background: linear-gradient(180deg, #F5FEFF, #ECFAFC);
+  border-color: rgba(0,184,212,.30);
   box-shadow: none;
+}
+nav.top-nav .nav-admin {
+  color: #405166;
 }
 .nav-cta {
   min-height: 38px;
   padding: 0 14px;
-  background: linear-gradient(135deg, #F26655, #D99A20);
-  box-shadow: 0 12px 28px rgba(242,102,85,.20), inset 0 1px 0 rgba(255,255,255,.28);
+  background: linear-gradient(135deg, #0B5C74 0%, #0E876F 100%);
+  box-shadow: 0 14px 34px rgba(11,92,116,.22), inset 0 1px 0 rgba(255,255,255,.22);
 }
 @media (max-width: 900px) {
   html { scroll-padding-top: 68px; }
@@ -3039,25 +3049,25 @@ def _patch_programming_map_nav(pmap_file: Path) -> None:
         # ページ内目次バー（AIコーディング講習 専用：fixed top-nav の真下に1段で吸着）
         + "html{scroll-padding-top:118px;}"
         "[id]{scroll-margin-top:118px;}"
-        ".pm-chapter-toc{position:sticky;top:66px;z-index:40;"
+        ".pm-chapter-toc{position:sticky;top:72px;z-index:40;"
         "max-width:min(1160px,calc(100vw - 20px));"
         "display:flex;flex-wrap:nowrap;align-items:center;gap:6px;"
         "margin:0 auto 18px;padding:7px 10px;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;"
-        "background:rgba(255,255,255,.82);border:1px solid rgba(16,24,39,.12);"
+        "background:rgba(255,255,255,.94);border:1px solid rgba(7,22,43,.13);"
         "border-radius:8px;backdrop-filter:blur(18px) saturate(160%);"
         "-webkit-backdrop-filter:blur(18px) saturate(160%);"
-        "box-shadow:0 10px 28px rgba(16,24,39,.08),inset 0 1px 0 rgba(255,255,255,.82);}"
+        "box-shadow:0 12px 28px rgba(7,22,43,.08),inset 0 1px 0 rgba(255,255,255,.92);}"
         ".pm-chapter-toc .pm-toc-label{font-size:10.5px;font-weight:800;letter-spacing:.14em;"
-        "color:#2357e5;text-transform:uppercase;padding-right:4px;white-space:nowrap;}"
+        "color:#064E63;text-transform:uppercase;padding-right:4px;white-space:nowrap;}"
         ".pm-chapter-toc a{display:inline-flex;align-items:center;gap:3px;padding:5px 11px;"
-        "flex:0 0 auto;border-radius:8px;background:rgba(255,255,255,.78);border:1px solid rgba(16,24,39,.12);"
-        "color:#3a475d;text-decoration:none;font-size:11.5px;font-weight:700;line-height:1.3;"
+        "flex:0 0 auto;border-radius:8px;background:rgba(248,252,253,.94);border:1px solid rgba(7,22,43,.10);"
+        "color:#405166;text-decoration:none;font-size:11.5px;font-weight:800;line-height:1.3;"
         "white-space:nowrap;transition:all .2s;}"
-        ".pm-chapter-toc a:hover{background:rgba(255,255,255,.95);color:#2357e5;"
-        "border-color:rgba(6,167,216,.34);transform:translateY(-1px);}"
+        ".pm-chapter-toc a:hover{background:#E9F8F6;color:#075e67;"
+        "border-color:rgba(11,92,116,.28);transform:translateY(-1px);}"
         "@media (max-width:640px){"
         "html{scroll-padding-top:108px;}[id]{scroll-margin-top:108px;}"
-        ".pm-chapter-toc{padding:6px 8px;gap:5px;top:60px;max-width:calc(100vw - 12px);}"
+        ".pm-chapter-toc{padding:6px 8px;gap:5px;top:64px;max-width:calc(100vw - 12px);}"
         ".pm-chapter-toc a{padding:5px 10px;font-size:11px;}}"
         "</style>"
     )

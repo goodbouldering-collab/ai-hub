@@ -546,9 +546,68 @@
     <div>
       <h1><span class="dot"></span>AI相談。彦根 管理画面</h1>
       <p class="sub">9事業の運用ダッシュボード + グループ記事の発行</p>
-      <p class="topbar-lead">最短でやることを先に固定しました。まず接続状態を見て、次に対象グループを選び、最後に記事案の生成と公開へ進む順番です。</p>
+      <p class="topbar-lead">総合管理メニューを先頭に置き、公開ページと重なるリンクは外しました。管理画面では、接続確認、URL取込、記事生成、SNS運用だけを迷わず選べます。</p>
     </div>
   </div>
+
+  <details class="panel admin-menu-panel admin-command-menu" id="admin-menu" open>
+    <summary class="admin-menu-head">
+      <span class="admin-menu-trigger" aria-hidden="true">☰</span>
+      <span class="admin-menu-title">
+        <strong>総合管理メニュー</strong>
+        <small>公開ページと重なる導線は上の公開ナビへ分離。ここは運用作業だけに絞ります。</small>
+      </span>
+      <span class="admin-menu-state">開閉</span>
+    </summary>
+    <div class="admin-menu-grid admin-menu-grid-2">
+      <section class="admin-menu-group" aria-label="今日やる">
+        <h3>本日の主作業</h3>
+        <a class="admin-link" href="#panel-status">
+          <span class="admin-link-icon">✍️</span>
+          <span><strong>接続と記事生成</strong><small>生成・編集・公開</small></span>
+          <span class="admin-link-action">移動</span>
+        </a>
+        <a class="admin-link" href="#panel-site-intake">
+          <span class="admin-link-icon">🔎</span>
+          <span><strong>URLから入力作成</strong><small>記事・画像・SNS設定</small></span>
+          <span class="admin-link-action">移動</span>
+        </a>
+        <a class="admin-link" href="#panel-dashboard">
+          <span class="admin-link-icon">⭐</span>
+          <span><strong>今週の動き</strong><small>タスク・成果物</small></span>
+          <span class="admin-link-action">移動</span>
+        </a>
+        <a class="admin-link" href="#panel-lectures">
+          <span class="admin-link-icon">📝</span>
+          <span><strong>受講資料の編集</strong><small>教材の追加・更新</small></span>
+          <span class="admin-link-action">移動</span>
+        </a>
+      </section>
+      <section class="admin-menu-group" aria-label="運用ツール">
+        <h3>運用ツール</h3>
+        <a class="admin-link" href="/admin/gubble-sns">
+          <span class="admin-link-icon">📊</span>
+          <span><strong>SNS分析</strong><small>YouTube / SNS / GA4 / GSC</small></span>
+          <span class="admin-link-action">開く</span>
+        </a>
+        <a class="admin-link" href="/admin/sns-post">
+          <span class="admin-link-icon">📣</span>
+          <span><strong>SNS一括投稿</strong><small>X / Threads</small></span>
+          <span class="admin-link-action">開く</span>
+        </a>
+        <a class="admin-link" href="/admin/chat">
+          <span class="admin-link-icon">🤖</span>
+          <span><strong>社内エージェント</strong><small>相談・指示・下書き</small></span>
+          <span class="admin-link-action">開く</span>
+        </a>
+        <a class="admin-link" href="/ops">
+          <span class="admin-link-icon">⚙️</span>
+          <span><strong>運用本部 OPS</strong><small>資料・台帳・運用確認</small></span>
+          <span class="admin-link-action">開く</span>
+        </a>
+      </section>
+    </div>
+  </details>
 
   <div class="quickflow" aria-label="最短操作">
     <a class="quickflow-card" href="#panel-status">
@@ -563,11 +622,11 @@
       <p>公式サイトを読み取り、記事テーマ・画像プロンプト・SNS分析設定の候補を作ります。</p>
       <em>URL取込へ移動 →</em>
     </a>
-    <a class="quickflow-card" href="#admin-menu">
+    <a class="quickflow-card" href="#panel-dashboard">
       <span>STEP 3</span>
-      <strong>作業先を決める</strong>
-      <p>記事作成、公開確認、SNS分析、OPS を管理ハブで分けてから作業に入ります。</p>
-      <em>管理ハブへ移動 →</em>
+      <strong>今週の動きを見る</strong>
+      <p>未対応タスクと最近の成果物を確認し、次に触る運用作業を決めます。</p>
+      <em>今週の動きへ移動 →</em>
     </a>
   </div>
 
@@ -609,119 +668,6 @@
         <label><input type="checkbox" id="site-intake-overwrite"> 既存入力も上書き</label>
       </div>
       <div class="intake-result" id="site-intake-result" hidden></div>
-    </div>
-  </div>
-
-  <div class="panel admin-menu-panel" id="admin-menu">
-    <div class="admin-menu-head">
-      <h2>TOP / 管理 統合メニュー</h2>
-      <a class="admin-menu-primary" href="/">公開TOPを見る</a>
-    </div>
-    <div class="admin-menu-grid">
-      <section class="admin-menu-group" aria-label="今日やる">
-        <h3>本日の主作業</h3>
-        <a class="admin-link" href="#panel-status">
-          <span class="admin-link-icon">✍️</span>
-          <span><strong>接続と記事生成</strong><small>生成・編集・公開</small></span>
-          <span class="admin-link-action">移動</span>
-        </a>
-        <a class="admin-link" href="#panel-site-intake">
-          <span class="admin-link-icon">🔎</span>
-          <span><strong>URLから入力作成</strong><small>記事・画像・SNS設定</small></span>
-          <span class="admin-link-action">移動</span>
-        </a>
-        <a class="admin-link" href="#panel-dashboard">
-          <span class="admin-link-icon">⭐</span>
-          <span><strong>今週の動き</strong><small>タスク・成果物</small></span>
-          <span class="admin-link-action">移動</span>
-        </a>
-        <a class="admin-link" href="/admin/gubble-sns">
-          <span class="admin-link-icon">📊</span>
-          <span><strong>SNS分析</strong><small>YouTube / SNS / GA4 / GSC</small></span>
-          <span class="admin-link-action">開く</span>
-        </a>
-        <a class="admin-link" href="/admin/sns-post">
-          <span class="admin-link-icon">📣</span>
-          <span><strong>SNS一括投稿</strong><small>X / Threads</small></span>
-          <span class="admin-link-action">開く</span>
-        </a>
-        <a class="admin-link" href="/admin/chat">
-          <span class="admin-link-icon">🤖</span>
-          <span><strong>社内エージェント</strong><small>相談・指示・下書き</small></span>
-          <span class="admin-link-action">開く</span>
-        </a>
-        <a class="admin-link" href="/ops">
-          <span class="admin-link-icon">⚙️</span>
-          <span><strong>運用本部 OPS</strong><small>資料・台帳・運用確認</small></span>
-          <span class="admin-link-action">開く</span>
-        </a>
-      </section>
-      <section class="admin-menu-group" aria-label="公開確認">
-        <h3>公開導線チェック</h3>
-        <a class="admin-link" href="/">
-          <span class="admin-link-icon">🌐</span>
-          <span><strong>公開トップ</strong><small>AI相談。彦根本体</small></span>
-          <span class="admin-link-action">開く</span>
-        </a>
-        <a class="admin-link" href="/#packages">
-          <span class="admin-link-icon">🎓</span>
-          <span><strong>受講プラン</strong><small>講座・相談メニュー</small></span>
-          <span class="admin-link-action">移動</span>
-        </a>
-        <a class="admin-link" href="/#speaker">
-          <span class="admin-link-icon">🎤</span>
-          <span><strong>講師紹介</strong><small>由井辰美プロフィール</small></span>
-          <span class="admin-link-action">移動</span>
-        </a>
-        <a class="admin-link" href="/#lectures">
-          <span class="admin-link-icon">📝</span>
-          <span><strong>受講資料</strong><small>公開教材・講座LP</small></span>
-          <span class="admin-link-action">移動</span>
-        </a>
-        <a class="admin-link" href="/#flow">
-          <span class="admin-link-icon">🛠</span>
-          <span><strong>ご依頼の流れ</strong><small>相談から公開まで</small></span>
-          <span class="admin-link-action">移動</span>
-        </a>
-        <a class="admin-link" href="/#faq">
-          <span class="admin-link-icon">❔</span>
-          <span><strong>FAQ</strong><small>受講前の不安解消</small></span>
-          <span class="admin-link-action">移動</span>
-        </a>
-      </section>
-      <section class="admin-menu-group" aria-label="運用と監視">
-        <h3>資料 / 監視</h3>
-        <a class="admin-link" href="/watch/index.html">
-          <span class="admin-link-icon">📡</span>
-          <span><strong>AI Watch</strong><small>自動収集ニュース</small></span>
-          <span class="admin-link-action">開く</span>
-        </a>
-        <a class="admin-link" href="/watch/archive.html">
-          <span class="admin-link-icon">📚</span>
-          <span><strong>過去ログ</strong><small>日次アーカイブ</small></span>
-          <span class="admin-link-action">開く</span>
-        </a>
-        <a class="admin-link" href="/portfolio.html">
-          <span class="admin-link-icon">🏆</span>
-          <span><strong>実績詳細</strong><small>ポートフォリオ一覧</small></span>
-          <span class="admin-link-action">開く</span>
-        </a>
-        <a class="admin-link" href="/programming-map.html">
-          <span class="admin-link-icon">🧭</span>
-          <span><strong>AIコーディング講習</strong><small>講習用マップ</small></span>
-          <span class="admin-link-action">開く</span>
-        </a>
-        <a class="admin-link" href="/#works">
-          <span class="admin-link-icon">🧩</span>
-          <span><strong>制作実績</strong><small>公開ページの実績一覧</small></span>
-          <span class="admin-link-action">移動</span>
-        </a>
-        <a class="admin-link" href="/#growth">
-          <span class="admin-link-icon">📈</span>
-          <span><strong>集客施策</strong><small>SNS / SEO / LLMO</small></span>
-          <span class="admin-link-action">移動</span>
-        </a>
-      </section>
     </div>
   </div>
 

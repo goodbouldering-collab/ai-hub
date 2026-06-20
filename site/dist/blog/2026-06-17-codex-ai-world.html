@@ -195,9 +195,9 @@ html { scroll-padding-top: 78px; }
 header.site-header,
 header.site-header.scrolled {
   min-height: 62px;
-  background: linear-gradient(135deg, rgba(255,255,255,.92), rgba(247,252,253,.84));
-  border-bottom: 1px solid rgba(7,20,38,.13);
-  box-shadow: 0 10px 34px rgba(7,20,38,.08), inset 0 1px 0 rgba(255,255,255,.92);
+  background: rgba(255,255,255,.985);
+  border-bottom: 1px solid rgba(7,22,43,.14);
+  box-shadow: 0 14px 36px rgba(7,22,43,.11), inset 0 1px 0 rgba(255,255,255,.96);
   backdrop-filter: blur(20px) saturate(150%);
   -webkit-backdrop-filter: blur(20px) saturate(150%);
 }
@@ -214,6 +214,11 @@ nav.top-nav {
   flex-wrap: nowrap;
   justify-content: flex-end;
   gap: 6px;
+  padding: 4px;
+  border: 1px solid rgba(7,22,43,.12);
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 8px 22px rgba(7,22,43,.08), inset 0 1px 0 rgba(255,255,255,.98);
 }
 nav.top-nav .nav-link {
   min-height: 36px;
@@ -222,7 +227,8 @@ nav.top-nav .nav-link {
   padding: 0 10px;
   border-radius: 8px;
   border: 1px solid transparent;
-  color: #223148;
+  color: #15243A;
+  background: rgba(248,252,253,.94);
   text-decoration: none;
   font-size: 12.5px;
   font-weight: 850;
@@ -236,16 +242,19 @@ nav.top-nav .nav-link:focus-visible {
   outline: none;
 }
 nav.top-nav .nav-current {
-  color: #075e67;
-  background: rgba(14,165,198,.12);
-  border-color: rgba(14,165,198,.26);
+  color: #064E63;
+  background: linear-gradient(180deg, #F5FEFF, #ECFAFC);
+  border-color: rgba(0,184,212,.30);
   box-shadow: none;
+}
+nav.top-nav .nav-admin {
+  color: #405166;
 }
 .nav-cta {
   min-height: 38px;
   padding: 0 14px;
-  background: linear-gradient(135deg, #F26655, #D99A20);
-  box-shadow: 0 12px 28px rgba(242,102,85,.20), inset 0 1px 0 rgba(255,255,255,.28);
+  background: linear-gradient(135deg, #0B5C74 0%, #0E876F 100%);
+  box-shadow: 0 14px 34px rgba(11,92,116,.22), inset 0 1px 0 rgba(255,255,255,.22);
 }
 @media (max-width: 900px) {
   html { scroll-padding-top: 68px; }
@@ -7151,7 +7160,7 @@ button:focus-visible {
   }
 })();
 </script>
-<header class='site-header scrolled' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span><span class='wordmark'><span class='word-ai'>AI相談。</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span><span class='site-logo-by'>講師 由井辰美</span></a><nav class='site-nav top-nav' aria-label='サイトナビ'><a class='nav-link nav-essential' href='/#packages'>受講プラン</a><a class='nav-link nav-essential' href='/programming-map.html'>AIコーディング</a><a class='nav-link nav-essential' href='/#lectures'>資料</a><a class='nav-link' href='/admin' style='color:var(--muted);'>🔐 管理</a></nav><a class='nav-cta' href='/#contact'>📩 無料相談</a></div></header><header><h1>Codexが開いた、AI活動の最前線</h1><div class='speaker-meta'><span class='role'>ブログ / AIコーディング考察</span><span>📅 2026-06-17</span><span>由井 辰美 / AIハブ</span></div></header><div class='content-wrap'><div class='content-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#ideの力を超えるのではなく-ideの外側まで含める'>IDEの力を超えるのではなく、IDEの外側まで含める</a></li><li><a href='#claude-codeとの差は-思想よりも作業面の広さに出る'>Claude Codeとの差は、思想よりも作業面の広さに出る</a></li><li><a href='#画像も文章もコードも-分けずに成果物へ向かえる'>画像も文章もコードも、分けずに成果物へ向かえる</a></li><li><a href='#モバイルと音声入力が-ai活動の入口を変える'>モバイルと音声入力が、AI活動の入口を変える</a></li><li><a href='#プラグインとスキルの多彩さが-仕事の守備範囲を変える'>プラグインとスキルの多彩さが、仕事の守備範囲を変える</a></li></ol></div><figure>
+<header class='site-header scrolled' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span><span class='wordmark'><span class='word-ai'>AI相談。</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span><span class='site-logo-by'>講師 由井辰美</span></a><nav class='site-nav top-nav' aria-label='サイトナビ'><a class='nav-link nav-essential' href='/#packages'>受講プラン</a><a class='nav-link nav-essential' href='/programming-map.html'>AIコーディング</a><a class='nav-link nav-essential' href='/#lectures'>資料</a><a class='nav-link' href='/#faq'>FAQ</a><a class='nav-link nav-admin' href='/admin'>🔐 管理</a></nav><a class='nav-cta' href='/#contact'>📩 無料相談</a></div></header><header><h1>Codexが開いた、AI活動の最前線</h1><div class='speaker-meta'><span class='role'>ブログ / AIコーディング考察</span><span>📅 2026-06-17</span><span>由井 辰美 / AIハブ</span></div></header><div class='content-wrap'><div class='content-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#ideの力を超えるのではなく-ideの外側まで含める'>IDEの力を超えるのではなく、IDEの外側まで含める</a></li><li><a href='#claude-codeとの差は-思想よりも作業面の広さに出る'>Claude Codeとの差は、思想よりも作業面の広さに出る</a></li><li><a href='#画像も文章もコードも-分けずに成果物へ向かえる'>画像も文章もコードも、分けずに成果物へ向かえる</a></li><li><a href='#モバイルと音声入力が-ai活動の入口を変える'>モバイルと音声入力が、AI活動の入口を変える</a></li><li><a href='#プラグインとスキルの多彩さが-仕事の守備範囲を変える'>プラグインとスキルの多彩さが、仕事の守備範囲を変える</a></li></ol></div><figure>
   <img src="/img/blog-codex-ai-world-hero-20260617.png" alt="Codexを中心にコード、レビュー、ブラウザ確認、画像生成、音声入力が統合されたAIワークスペースのイメージ" loading="eager" decoding="async">
   <figcaption>Codexを、単なるコード生成ではなく「AI活動をひとつに集める操作面」として見る。</figcaption>
 </figure>

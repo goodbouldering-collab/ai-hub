@@ -195,9 +195,9 @@ html { scroll-padding-top: 78px; }
 header.site-header,
 header.site-header.scrolled {
   min-height: 62px;
-  background: linear-gradient(135deg, rgba(255,255,255,.92), rgba(247,252,253,.84));
-  border-bottom: 1px solid rgba(7,20,38,.13);
-  box-shadow: 0 10px 34px rgba(7,20,38,.08), inset 0 1px 0 rgba(255,255,255,.92);
+  background: rgba(255,255,255,.985);
+  border-bottom: 1px solid rgba(7,22,43,.14);
+  box-shadow: 0 14px 36px rgba(7,22,43,.11), inset 0 1px 0 rgba(255,255,255,.96);
   backdrop-filter: blur(20px) saturate(150%);
   -webkit-backdrop-filter: blur(20px) saturate(150%);
 }
@@ -214,6 +214,11 @@ nav.top-nav {
   flex-wrap: nowrap;
   justify-content: flex-end;
   gap: 6px;
+  padding: 4px;
+  border: 1px solid rgba(7,22,43,.12);
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 8px 22px rgba(7,22,43,.08), inset 0 1px 0 rgba(255,255,255,.98);
 }
 nav.top-nav .nav-link {
   min-height: 36px;
@@ -222,7 +227,8 @@ nav.top-nav .nav-link {
   padding: 0 10px;
   border-radius: 8px;
   border: 1px solid transparent;
-  color: #223148;
+  color: #15243A;
+  background: rgba(248,252,253,.94);
   text-decoration: none;
   font-size: 12.5px;
   font-weight: 850;
@@ -236,16 +242,19 @@ nav.top-nav .nav-link:focus-visible {
   outline: none;
 }
 nav.top-nav .nav-current {
-  color: #075e67;
-  background: rgba(14,165,198,.12);
-  border-color: rgba(14,165,198,.26);
+  color: #064E63;
+  background: linear-gradient(180deg, #F5FEFF, #ECFAFC);
+  border-color: rgba(0,184,212,.30);
   box-shadow: none;
+}
+nav.top-nav .nav-admin {
+  color: #405166;
 }
 .nav-cta {
   min-height: 38px;
   padding: 0 14px;
-  background: linear-gradient(135deg, #F26655, #D99A20);
-  box-shadow: 0 12px 28px rgba(242,102,85,.20), inset 0 1px 0 rgba(255,255,255,.28);
+  background: linear-gradient(135deg, #0B5C74 0%, #0E876F 100%);
+  box-shadow: 0 14px 34px rgba(11,92,116,.22), inset 0 1px 0 rgba(255,255,255,.22);
 }
 @media (max-width: 900px) {
   html { scroll-padding-top: 68px; }
@@ -7151,7 +7160,7 @@ button:focus-visible {
   }
 })();
 </script>
-<header class='site-header scrolled' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span><span class='wordmark'><span class='word-ai'>AI相談。</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span><span class='site-logo-by'>講師 由井辰美</span></a><nav class='site-nav top-nav' aria-label='サイトナビ'><a class='nav-link nav-essential' href='/#packages'>受講プラン</a><a class='nav-link nav-essential' href='/programming-map.html'>AIコーディング</a><a class='nav-link nav-essential' href='/#lectures'>資料</a><a class='nav-link' href='/admin' style='color:var(--muted);'>🔐 管理</a></nav><a class='nav-cta' href='/#contact'>📩 無料相談</a></div></header><header><h1>業務システム開発の優先順位：EC・AI活用で先に固めるべき8項目</h1><div class='speaker-meta'><span class='role'>ブログ / 業務システム設計</span><span>📅 2026-06-20</span><span>由井 辰美 / AIハブ</span></div></header><div class='content-wrap'><div class='content-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#業務システム開発は-kubernetesよりデータ設計から始める'>業務システム開発は、Kubernetesよりデータ設計から始める</a></li><li><a href='#3人の顧客視点で見ると-改善点は3つに絞られる'>3人の顧客視点で見ると、改善点は3つに絞られる</a></li><li><a href='#ci-cdとコスト最適化は-開発後ではなく運用設計として入れる'>CI/CDとコスト最適化は、開発後ではなく運用設計として入れる</a></li><li><a href='#iac・マイクロサービス・kubernetesは-後から速く移れる状態を作る'>IaC・マイクロサービス・Kubernetesは、後から速く移れる状態を作る</a></li><li><a href='#aiハブで相談するときは-優先順位をチェックリストに落とす'>AIハブで相談するときは、優先順位をチェックリストに落とす</a></li></ol></div><p>Facebookに「私の優先順位」として、ECや業務システム寄りの開発では <strong>データ設計、認証、クラウド設計、CI/CD、コスト最適化、IaC、マイクロサービス、Kubernetes</strong> の順で考える、という投稿をしました。</p>
+<header class='site-header scrolled' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span><span class='wordmark'><span class='word-ai'>AI相談。</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span><span class='site-logo-by'>講師 由井辰美</span></a><nav class='site-nav top-nav' aria-label='サイトナビ'><a class='nav-link nav-essential' href='/#packages'>受講プラン</a><a class='nav-link nav-essential' href='/programming-map.html'>AIコーディング</a><a class='nav-link nav-essential' href='/#lectures'>資料</a><a class='nav-link' href='/#faq'>FAQ</a><a class='nav-link nav-admin' href='/admin'>🔐 管理</a></nav><a class='nav-cta' href='/#contact'>📩 無料相談</a></div></header><header><h1>業務システム開発の優先順位：EC・AI活用で先に固めるべき8項目</h1><div class='speaker-meta'><span class='role'>ブログ / 業務システム設計</span><span>📅 2026-06-20</span><span>由井 辰美 / AIハブ</span></div></header><div class='content-wrap'><div class='content-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#業務システム開発は-kubernetesよりデータ設計から始める'>業務システム開発は、Kubernetesよりデータ設計から始める</a></li><li><a href='#3人の顧客視点で見ると-改善点は3つに絞られる'>3人の顧客視点で見ると、改善点は3つに絞られる</a></li><li><a href='#ci-cdとコスト最適化は-開発後ではなく運用設計として入れる'>CI/CDとコスト最適化は、開発後ではなく運用設計として入れる</a></li><li><a href='#iac・マイクロサービス・kubernetesは-後から速く移れる状態を作る'>IaC・マイクロサービス・Kubernetesは、後から速く移れる状態を作る</a></li><li><a href='#aiハブで相談するときは-優先順位をチェックリストに落とす'>AIハブで相談するときは、優先順位をチェックリストに落とす</a></li></ol></div><p>Facebookに「私の優先順位」として、ECや業務システム寄りの開発では <strong>データ設計、認証、クラウド設計、CI/CD、コスト最適化、IaC、マイクロサービス、Kubernetes</strong> の順で考える、という投稿をしました。</p>
 <p>この順番は、単なる技術スタックの好みではありません。業務システム開発で失敗しやすいのは、最初から高度な技術を使うことではなく、売上、顧客、在庫、権限、運用費、障害対応の前提が曖昧なまま作り始めることです。</p>
 <p>この記事では、Facebook投稿をそのまま転載せず、SEOで検索されやすい「業務システム開発の優先順位」「EC システム設計」「データ設計 認証 クラウド設計」という観点に整理し直します。さらに、顧客になりそうな3タイプの視点で改善点を絞り込み、導入相談につながる形に落とし込みます。</p>
 <h2 id='業務システム開発は-kubernetesよりデータ設計から始める'>業務システム開発は、Kubernetesよりデータ設計から始める</h2>

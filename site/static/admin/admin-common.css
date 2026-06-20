@@ -586,3 +586,149 @@ body.admin-page .admin-link-action {
     display: none !important;
   }
 }
+
+/* ---- Admin command menu: single source for top-level operations, 2026-06-20 ---- */
+body.admin-page .admin-command-menu {
+  margin: 0 0 18px !important;
+  overflow: hidden !important;
+  border-color: rgba(7,22,43,.16) !important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.98), rgba(248,252,253,.90)) !important;
+  box-shadow: 0 16px 38px rgba(7,22,43,.10), inset 0 1px 0 rgba(255,255,255,.94) !important;
+}
+
+body.admin-page .admin-command-menu > summary {
+  list-style: none !important;
+}
+
+body.admin-page .admin-command-menu > summary::-webkit-details-marker {
+  display: none !important;
+}
+
+body.admin-page .admin-command-menu .admin-menu-head {
+  cursor: pointer !important;
+  display: grid !important;
+  grid-template-columns: 42px minmax(0, 1fr) auto !important;
+  align-items: center !important;
+  gap: 12px !important;
+  min-height: 66px !important;
+  padding: 14px 16px !important;
+  background:
+    linear-gradient(135deg, #071426, #0B5C74 58%, #0E876F) !important;
+  color: #fff !important;
+}
+
+body.admin-page .admin-command-menu .admin-menu-trigger {
+  width: 38px !important;
+  height: 38px !important;
+  display: grid !important;
+  place-items: center !important;
+  border-radius: 8px !important;
+  background: rgba(255,255,255,.14) !important;
+  border: 1px solid rgba(255,255,255,.24) !important;
+  color: #fff !important;
+  font-size: 19px !important;
+  font-weight: 900 !important;
+}
+
+body.admin-page .admin-command-menu .admin-menu-title {
+  min-width: 0 !important;
+  display: grid !important;
+  gap: 3px !important;
+}
+
+body.admin-page .admin-command-menu .admin-menu-title strong {
+  color: #fff !important;
+  font-size: 18px !important;
+  line-height: 1.25 !important;
+  letter-spacing: 0 !important;
+}
+
+body.admin-page .admin-command-menu .admin-menu-title small {
+  color: rgba(255,255,255,.78) !important;
+  font-size: 12.5px !important;
+  line-height: 1.55 !important;
+}
+
+body.admin-page .admin-command-menu .admin-menu-state {
+  min-height: 32px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 0 11px !important;
+  border-radius: 999px !important;
+  background: rgba(255,255,255,.13) !important;
+  border: 1px solid rgba(255,255,255,.22) !important;
+  color: rgba(255,255,255,.86) !important;
+  font-size: 11px !important;
+  font-weight: 900 !important;
+}
+
+body.admin-page .admin-command-menu .admin-menu-state::after {
+  content: "▲" !important;
+  margin-left: 6px !important;
+  font-size: 9px !important;
+}
+
+body.admin-page .admin-command-menu:not([open]) .admin-menu-state::after {
+  content: "▼" !important;
+}
+
+body.admin-page .admin-command-menu .admin-menu-grid,
+body.admin-page .admin-command-menu .admin-menu-grid-2 {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 12px !important;
+  padding: 14px !important;
+  border-top: 0 !important;
+  background:
+    linear-gradient(135deg, rgba(14,165,198,.06), rgba(17,163,127,.05)),
+    rgba(255,255,255,.72) !important;
+}
+
+body.admin-page .admin-command-menu .admin-menu-group,
+body.admin-page .admin-command-menu .admin-menu-group:first-child,
+body.admin-page .admin-command-menu .admin-menu-group:nth-child(2n),
+body.admin-page .admin-command-menu .admin-menu-group:last-child {
+  grid-row: auto !important;
+  grid-column: auto !important;
+  border: 1px solid rgba(7,22,43,.12) !important;
+  border-radius: 8px !important;
+  background: rgba(255,255,255,.88) !important;
+  padding: 12px !important;
+}
+
+body.admin-page .admin-command-menu .admin-menu-group h3 {
+  margin: 0 0 8px !important;
+  color: #405166 !important;
+  font-size: 11px !important;
+  letter-spacing: .12em !important;
+}
+
+body.admin-page .admin-command-menu .admin-link {
+  background: rgba(255,255,255,.96) !important;
+}
+
+body.admin-page .admin-command-menu .admin-link:hover,
+body.admin-page .admin-command-menu .admin-link:focus-visible {
+  background: #E9F8F6 !important;
+  border-color: #0B5C74 !important;
+  box-shadow: 0 0 0 3px rgba(11,92,116,.12) !important;
+}
+
+@media (max-width: 720px) {
+  body.admin-page .admin-command-menu .admin-menu-head {
+    grid-template-columns: 38px minmax(0, 1fr) !important;
+  }
+
+  body.admin-page .admin-command-menu .admin-menu-state {
+    grid-column: 2 !important;
+    justify-self: start !important;
+  }
+
+  body.admin-page .admin-command-menu .admin-menu-grid,
+  body.admin-page .admin-command-menu .admin-menu-grid-2 {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+    padding: 10px !important;
+  }
+}

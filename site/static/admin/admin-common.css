@@ -1042,3 +1042,271 @@ body.admin-page.admin-fixed-menu-page .mobile-nav .mobile-nav-label {
     grid-template-columns: 1fr !important;
   }
 }
+
+/* ---- Admin fixed horizontal menu: no drawer replacement, 2026-06-21 ---- */
+body.admin-page.admin-fixed-menu-page header.site-header,
+body.admin-page.admin-fixed-menu-page .site-header,
+body.admin-page.admin-fixed-menu-page header.site-header.scrolled,
+body.admin-page.admin-fixed-menu-page header.site-header:hover {
+  min-height: 66px !important;
+  height: 66px !important;
+}
+
+body.admin-page.admin-fixed-menu-page .site-header-inner {
+  max-width: none !important;
+  min-height: 66px !important;
+  height: 66px !important;
+  padding: 8px 16px !important;
+  gap: 10px !important;
+  overflow: hidden !important;
+}
+
+body.admin-page.admin-fixed-menu-page .site-logo {
+  flex: 0 0 auto !important;
+}
+
+body.admin-page.admin-fixed-menu-page .admin-slide-nav {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  width: auto !important;
+  max-width: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 6px !important;
+  padding: 5px !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(18,32,51,.11) !important;
+  border-radius: 10px !important;
+  background: rgba(255,255,255,.88) !important;
+}
+
+body.admin-page.admin-fixed-menu-page .admin-scroll-menu {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  white-space: nowrap !important;
+  scroll-snap-type: x proximity !important;
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(31,110,140,.42) rgba(18,32,51,.08) !important;
+  padding: 0 2px 2px !important;
+}
+
+body.admin-page.admin-fixed-menu-page .admin-scroll-menu::-webkit-scrollbar {
+  height: 6px !important;
+}
+
+body.admin-page.admin-fixed-menu-page .admin-scroll-menu::-webkit-scrollbar-track {
+  background: rgba(18,32,51,.07) !important;
+  border-radius: 999px !important;
+}
+
+body.admin-page.admin-fixed-menu-page .admin-scroll-menu::-webkit-scrollbar-thumb {
+  background: rgba(31,110,140,.42) !important;
+  border-radius: 999px !important;
+}
+
+body.admin-page.admin-fixed-menu-page .home-icon-link,
+body.admin-page.admin-fixed-menu-page .admin-scroll-link,
+body.admin-page.admin-fixed-menu-page .logout-link {
+  flex: 0 0 auto !important;
+  min-height: 38px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  scroll-snap-align: start !important;
+  border-radius: 8px !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+}
+
+body.admin-page.admin-fixed-menu-page .home-icon-link {
+  width: 38px !important;
+  min-width: 38px !important;
+  padding: 0 !important;
+  border: 1px solid rgba(31,110,140,.18) !important;
+  background: #EAF6F8 !important;
+  color: #0F5F78 !important;
+}
+
+body.admin-page.admin-fixed-menu-page .home-icon-link:hover,
+body.admin-page.admin-fixed-menu-page .home-icon-link:focus-visible {
+  background: #DDF1F4 !important;
+  color: #094F65 !important;
+  border-color: rgba(31,110,140,.34) !important;
+}
+
+body.admin-page.admin-fixed-menu-page .admin-scroll-link {
+  padding: 0 11px !important;
+  border: 1px solid rgba(18,32,51,.10) !important;
+  background: rgba(255,255,255,.78) !important;
+  color: #24354C !important;
+  font-size: 12.5px !important;
+  font-weight: 850 !important;
+}
+
+body.admin-page.admin-fixed-menu-page .admin-scroll-link:hover,
+body.admin-page.admin-fixed-menu-page .admin-scroll-link:focus-visible,
+body.admin-page.admin-fixed-menu-page .admin-scroll-link.is-current {
+  background: #EAF6F8 !important;
+  color: #0F5F78 !important;
+  border-color: rgba(31,110,140,.30) !important;
+}
+
+body.admin-page.admin-fixed-menu-page .admin-scroll-link.public-link {
+  background: rgba(248,252,253,.78) !important;
+  color: #53627A !important;
+  border-style: dashed !important;
+}
+
+body.admin-page.admin-fixed-menu-page .admin-scroll-link.public-link:hover,
+body.admin-page.admin-fixed-menu-page .admin-scroll-link.public-link:focus-visible {
+  background: #F1F8EA !important;
+  color: #315E34 !important;
+  border-color: rgba(49,94,52,.30) !important;
+}
+
+body.admin-page.admin-fixed-menu-page .admin-scroll-link.logout-scroll-link {
+  background: rgba(255,255,255,.82) !important;
+  color: #7B2F2F !important;
+  border-color: rgba(194,58,58,.16) !important;
+}
+
+body.admin-page.admin-fixed-menu-page .admin-scroll-link.logout-scroll-link:hover,
+body.admin-page.admin-fixed-menu-page .admin-scroll-link.logout-scroll-link:focus-visible {
+  background: #FFF1F0 !important;
+  color: #A53737 !important;
+  border-color: rgba(194,58,58,.30) !important;
+}
+
+body.admin-page.admin-fixed-menu-page .site-nav a.logout-link,
+body.admin-page.admin-fixed-menu-page .logout-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 11px !important;
+  border: 1px solid rgba(194,58,58,.16) !important;
+  background: rgba(255,255,255,.82) !important;
+  color: #7B2F2F !important;
+  font-size: 12px !important;
+  font-weight: 850 !important;
+}
+
+body.admin-page.admin-fixed-menu-page .site-nav a.logout-link:hover,
+body.admin-page.admin-fixed-menu-page .logout-link:hover,
+body.admin-page.admin-fixed-menu-page .site-nav a.logout-link:focus-visible,
+body.admin-page.admin-fixed-menu-page .logout-link:focus-visible {
+  background: #FFF1F0 !important;
+  color: #A53737 !important;
+  border-color: rgba(194,58,58,.30) !important;
+}
+
+body.admin-page.admin-fixed-menu-page .admin-subnav,
+body.admin-page.admin-fixed-menu-page .admin-command-menu,
+body.admin-page.admin-fixed-menu-page .site-nav .menu-wrap,
+body.admin-page.admin-fixed-menu-page .site-nav .menu-drop,
+body.admin-page.admin-fixed-menu-page .site-nav .menu-toggle,
+body.admin-page.admin-fixed-menu-page .mobile-toggle,
+body.admin-page.admin-fixed-menu-page .mobile-nav {
+  display: none !important;
+}
+
+body.admin-page.admin-fixed-menu-page,
+body.admin-page.admin-fixed-menu-page .container {
+  padding-top: 82px !important;
+}
+
+@media (max-width: 1180px) {
+  body.admin-page.admin-fixed-menu-page .wordmark .word-en,
+  body.admin-page.admin-fixed-menu-page .site-logo-by {
+    display: none !important;
+  }
+}
+
+@media (max-width: 900px) {
+  body.admin-page.admin-fixed-menu-page,
+  body.admin-page.admin-fixed-menu-page .container {
+    padding-top: 78px !important;
+  }
+
+  body.admin-page.admin-fixed-menu-page .site-header-inner {
+    padding: 8px 10px !important;
+  }
+
+  body.admin-page.admin-fixed-menu-page .site-logo {
+    max-width: 112px !important;
+    font-size: 14px !important;
+  }
+
+  body.admin-page.admin-fixed-menu-page .brand-mark {
+    width: 34px !important;
+    height: 30px !important;
+    font-size: 12px !important;
+  }
+
+  body.admin-page.admin-fixed-menu-page .wordmark {
+    display: none !important;
+  }
+
+  body.admin-page.admin-fixed-menu-page .admin-slide-nav {
+    display: flex !important;
+    gap: 4px !important;
+    padding: 4px !important;
+  }
+
+  body.admin-page.admin-fixed-menu-page .admin-scroll-menu {
+    gap: 4px !important;
+  }
+
+  body.admin-page.admin-fixed-menu-page .home-icon-link {
+    width: 36px !important;
+    min-width: 36px !important;
+    min-height: 36px !important;
+  }
+
+  body.admin-page.admin-fixed-menu-page .admin-scroll-link,
+  body.admin-page.admin-fixed-menu-page .site-nav a.logout-link {
+    min-height: 36px !important;
+    padding: 0 9px !important;
+    font-size: 12px !important;
+  }
+}
+
+@media (max-width: 560px) {
+  body.admin-page.admin-fixed-menu-page .site-logo {
+    max-width: 42px !important;
+  }
+
+  body.admin-page.admin-fixed-menu-page .site-logo .wordmark,
+  body.admin-page.admin-fixed-menu-page .site-logo-by {
+    display: none !important;
+  }
+
+  body.admin-page.admin-fixed-menu-page .site-nav a.logout-link,
+  body.admin-page.admin-fixed-menu-page .logout-link {
+    width: 36px !important;
+    min-width: 36px !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    color: transparent !important;
+    font-size: 0 !important;
+    position: relative !important;
+  }
+
+  body.admin-page.admin-fixed-menu-page .site-nav a.logout-link::after,
+  body.admin-page.admin-fixed-menu-page .logout-link::after {
+    content: "出" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #7B2F2F !important;
+    font-size: 12px !important;
+    font-weight: 900 !important;
+  }
+}

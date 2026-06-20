@@ -139,17 +139,12 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
         "</a>"
         "<nav class='site-nav top-nav' aria-label='サイトナビ'>"
     ]
-    # TOP(_render_header) と同じリンク群・順序で固定メニューを共通化する。
-    # 下層ページからは TOP のセクションへ飛ぶため href は "/#..." の絶対指定にする。
-    parts.append("<a class='nav-link' href='/#packages'>受講プラン</a>")
-    parts.append("<a class='nav-link' href='/#lectures'>受講資料</a>")
-    parts.append("<a class='nav-link' href='/#speaker'>講師紹介</a>")
-    parts.append("<a class='nav-link' href='/#flow'>ご依頼の流れ</a>")
-    parts.append("<a class='nav-link' href='/#faq'>FAQ</a>")
-    parts.append("<a class='nav-link' href='/#works'>制作実績</a>")
-    parts.append("<a class='nav-link' href='/#growth'>集客施策</a>")
-    parts.append("<a class='nav-link' href='/blog/index.html'>ブログ</a>")
-    parts.append("<a class='nav-link' href='/watch/index.html'>AI Watch</a>")
+    # TOP(_render_header) と同じく、固定メニューは主要導線だけにする。
+    # 詳細な章移動は各ページ内の目次レールへ分離し、ヘッダーを1段に保つ。
+    pmap_cls = " nav-current" if current_id == "pmap" else ""
+    parts.append("<a class='nav-link nav-essential' href='/#packages'>受講プラン</a>")
+    parts.append(f"<a class='nav-link nav-essential{pmap_cls}' href='/programming-map.html'>AIコーディング</a>")
+    parts.append("<a class='nav-link nav-essential' href='/#lectures'>資料</a>")
     parts.append(f"<a class='nav-link' href='{admin_href}' style='color:var(--muted);'>🔐 管理</a>")
     parts.append("</nav>")
     parts.append(
@@ -260,11 +255,14 @@ def is_video(item: dict) -> bool:
 
 
 # 全ページ共通の favicon (HEAD に注入)
-# モダンブラウザは SVG favicon を優先、Apple は SVG/PNG どちらも apple-touch-icon を読む
+# SVGを正本にし、Apple/iPhone向けはPNGの apple-touch-icon を明示する
 FAVICON_HEAD_HTML = (
     "<link rel='icon' type='image/svg+xml' href='/favicon.svg'>"
-    "<link rel='alternate icon' type='image/svg+xml' href='/favicon.svg'>"
-    "<link rel='apple-touch-icon' href='/apple-touch-icon.svg'>"
+    "<link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png'>"
+    "<link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png'>"
+    "<link rel='shortcut icon' href='/favicon.ico'>"
+    "<link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png'>"
+    "<link rel='manifest' href='/site.webmanifest'>"
     "<link rel='mask-icon' href='/favicon.svg' color='#0EA5E9'>"
     "<meta name='theme-color' content='#F7FBFF'>"
 )
@@ -498,6 +496,73 @@ nav.top-nav .run-btn:disabled { opacity:.6; cursor:not-allowed; }
 .run-status { margin-left:10px; font-size:12px; color:var(--muted); }
 .run-status.ok { color:#047857; }
 .run-status.err { color:#b91c1c; }
+
+/* ---- compact glass command header override for generated pages ---- */
+html { scroll-padding-top: 78px; }
+[id] { scroll-margin-top: 78px; }
+header.site-header,
+header.site-header.scrolled {
+  min-height: 62px;
+  background: linear-gradient(135deg, rgba(255,255,255,.92), rgba(247,252,253,.84));
+  border-bottom: 1px solid rgba(7,20,38,.13);
+  box-shadow: 0 10px 34px rgba(7,20,38,.08), inset 0 1px 0 rgba(255,255,255,.92);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+}
+.site-header-inner {
+  min-height: 62px;
+  padding: 8px 20px;
+  gap: 12px;
+}
+.brand-mark {
+  width: 40px;
+  height: 34px;
+}
+nav.top-nav {
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  gap: 6px;
+}
+nav.top-nav .nav-link {
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 10px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  color: #223148;
+  text-decoration: none;
+  font-size: 12.5px;
+  font-weight: 850;
+  white-space: nowrap;
+}
+nav.top-nav .nav-link:hover,
+nav.top-nav .nav-link:focus-visible {
+  color: #075e67;
+  background: rgba(14,165,198,.10);
+  border-color: rgba(14,165,198,.24);
+  outline: none;
+}
+nav.top-nav .nav-current {
+  color: #075e67;
+  background: rgba(14,165,198,.12);
+  border-color: rgba(14,165,198,.26);
+  box-shadow: none;
+}
+.nav-cta {
+  min-height: 38px;
+  padding: 0 14px;
+  background: linear-gradient(135deg, #F26655, #D99A20);
+  box-shadow: 0 12px 28px rgba(242,102,85,.20), inset 0 1px 0 rgba(255,255,255,.28);
+}
+@media (max-width: 900px) {
+  html { scroll-padding-top: 68px; }
+  [id] { scroll-margin-top: 68px; }
+  .site-header-inner {
+    min-height: 60px;
+    padding: 8px 14px;
+  }
+}
 .run-status.running { color:#b45309; }
 
 .genre-tabs {
@@ -968,10 +1033,10 @@ def render_archive(dates: list[str]) -> str:
 CONTENT_DIR = ROOT / "content"
 SPEAKER_MD = CONTENT_DIR / "speaker.md"
 LECTURES_DIR = CONTENT_DIR / "lectures"
-BLOG_DIR = CONTENT_DIR / "blog"
 PORTFOLIO_YAML = ROOT / "config" / "portfolio.yaml"
 PROFILE_YAML = ROOT / "config" / "profile.yaml"
 TEACHING_YAML = ROOT / "config" / "teaching_resources.yaml"
+BLOG_DIR = ROOT / "content" / "blog"
 
 CONTENT_CSS = """
 .content-wrap {
@@ -1027,53 +1092,26 @@ CONTENT_CSS = """
   color: var(--primary);
 }
 .content-wrap strong { color: var(--text); font-weight: 700; }
+.content-wrap img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  box-shadow: 0 16px 44px rgba(15,23,42,.10);
+  margin: 22px 0;
+}
 .content-wrap figure {
   margin: 26px 0;
 }
 .content-wrap figure img {
-  display: block;
-  width: 100%;
-  max-height: 540px;
-  object-fit: cover;
-  border-radius: 16px;
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow-card);
+  margin: 0;
 }
 .content-wrap figcaption {
-  margin-top: 8px;
   color: var(--muted);
   font-size: 12.5px;
   line-height: 1.7;
-}
-.blog-list {
-  display: grid;
-  gap: 18px;
-  margin-top: 18px;
-}
-.blog-card {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 180px;
-  gap: 18px;
-  align-items: center;
-  padding: 18px;
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  background: #fff;
-}
-.blog-card h2 {
-  margin-top: 0;
-}
-.blog-card img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  border-radius: 12px;
-  border: 1px solid var(--line);
-}
-@media (max-width: 720px) {
-  .blog-card {
-    grid-template-columns: 1fr;
-  }
+  margin-top: 8px;
 }
 .speaker-meta {
   display: flex;
@@ -2152,29 +2190,16 @@ def _build_jsonld(kind: str, meta: dict, title: str, page_url: str) -> str:
     return ""
 
 
-def _build_ogp(title: str, description: str, page_url: str, kind: str = "article", image: str | None = None) -> str:
+def _build_ogp(title: str, description: str, page_url: str, kind: str = "article") -> str:
     desc = description or title
-    tags = [
+    return "".join([
         f"<meta property='og:title' content='{html.escape(title, quote=True)}'>",
         f"<meta property='og:description' content='{html.escape(desc, quote=True)}'>",
         f"<meta property='og:url' content='{html.escape(page_url, quote=True)}'>",
         f"<meta property='og:type' content='{html.escape(kind, quote=True)}'>",
         "<meta property='og:site_name' content='AI相談。彦根'>",
-    ]
-    if image:
-        image_url = str(image)
-        if image_url.startswith("/"):
-            image_url = SITE_URL + image_url
-        elif not image_url.startswith(("http://", "https://")):
-            image_url = SITE_URL + "/" + image_url.lstrip("./")
-        tags.extend([
-            f"<meta property='og:image' content='{html.escape(image_url, quote=True)}'>",
-            f"<meta name='twitter:image' content='{html.escape(image_url, quote=True)}'>",
-            "<meta name='twitter:card' content='summary_large_image'>",
-        ])
-    else:
-        tags.append("<meta name='twitter:card' content='summary'>")
-    return "".join(tags)
+        "<meta name='twitter:card' content='summary'>",
+    ])
 
 
 def _inject_heading_ids(body_html: str) -> tuple[str, list[tuple[str, str]]]:
@@ -2218,8 +2243,7 @@ def render_content_page(title: str, meta: dict, body_html: str, nav_html: str, p
     if desc:
         parts.append(f"<meta name='description' content='{html.escape(desc, quote=True)}'>")
     parts.append(f"<link rel='canonical' href='{html.escape(page_url, quote=True)}'>")
-    image = str(meta.get("image") or "")
-    parts.append(_build_ogp(title, desc, page_url, "article" if kind in ("lecture", "speaker", "blog") else "website", image or None))
+    parts.append(_build_ogp(title, desc, page_url, "article" if kind in ("lecture", "speaker", "blog") else "website"))
     if kind:
         jsonld_kind = "website" if kind == "portfolio" else kind
         ld = _build_jsonld(jsonld_kind, meta, title, page_url)
@@ -2541,13 +2565,14 @@ def build_lectures() -> int:
 
 
 def build_blog() -> int:
-    """Build content/blog/*.md into public blog pages and a blog index."""
+    """Build public blog markdown pages from content/blog/*.md."""
     if not BLOG_DIR.exists():
         return 0
     md = _load_markdown()
     out_dir = DIST / "blog"
     out_dir.mkdir(parents=True, exist_ok=True)
-    posts: list[dict] = []
+    count = 0
+    items: list[dict] = []
     for f in sorted(BLOG_DIR.glob("*.md"), reverse=True):
         raw = f.read_text(encoding="utf-8")
         meta, body = _parse_frontmatter(raw)
@@ -2558,54 +2583,47 @@ def build_blog() -> int:
             render_content_page(title, meta, body_html, nav, page_path=f"blog/{f.stem}.html", kind="blog"),
             encoding="utf-8",
         )
-        posts.append({
+        items.append({
             "slug": f.stem,
             "title": title,
-            "summary": str(meta.get("summary") or ""),
             "date": str(meta.get("date") or ""),
-            "role": str(meta.get("role") or ""),
+            "summary": str(meta.get("summary") or ""),
             "image": str(meta.get("image") or ""),
         })
+        count += 1
 
-    cards: list[str] = []
-    for post in sorted(posts, key=lambda x: (x.get("date") or "", x.get("slug") or ""), reverse=True):
-        href = f"./{html.escape(post['slug'], quote=True)}.html"
-        image_html = ""
-        if post.get("image"):
-            image_html = (
-                f"<img src='{html.escape(post['image'], quote=True)}' "
-                f"alt='{html.escape(post['title'], quote=True)}' loading='lazy' decoding='async'>"
-            )
-        meta_bits = []
-        if post.get("date"):
-            meta_bits.append(html.escape(post["date"]))
-        if post.get("role"):
-            meta_bits.append(html.escape(post["role"]))
-        meta_html = " / ".join(meta_bits)
-        cards.append(
-            "<article class='blog-card'>"
-            "<div>"
-            f"<p class='speaker-meta'>{meta_html}</p>"
-            f"<h2><a href='{href}'>{html.escape(post['title'])}</a></h2>"
-            f"<p>{html.escape(post.get('summary') or '')}</p>"
-            f"<p><a href='{href}'>記事を読む →</a></p>"
-            "</div>"
-            f"{image_html}"
-            "</article>"
+    if items:
+        parts = [
+            "<div class='tr-section'>",
+            "<p>AIハブのブログです。講習・制作・AI活用の現場から、実際に使える視点を残していきます。</p>",
+            "<div class='tr-grid'>",
+        ]
+        for item in items:
+            safe_href = html.escape(f"./{item['slug']}.html", quote=True)
+            safe_title = html.escape(item["title"])
+            safe_date = html.escape(item["date"])
+            safe_summary = html.escape(item["summary"])
+            parts.append(f"<a class='tr-card' href='{safe_href}'>")
+            parts.append(f"<div class='tr-title'>{safe_title}</div>")
+            if safe_date:
+                parts.append(f"<div class='tr-date'>{safe_date}</div>")
+            if safe_summary:
+                parts.append(f"<div class='tr-sum'>{safe_summary}</div>")
+            parts.append("</a>")
+        parts.append("</div></div>")
+        nav = render_top_nav(path_prefix="../", current_id="blog", include_run=False)
+        (out_dir / "index.html").write_text(
+            render_content_page(
+                "ブログ",
+                {"summary": "AIハブのブログ一覧。Codex、Claude Code、生成AI活用、AIコーディングの実践記録。"},
+                "".join(parts),
+                nav,
+                page_path="blog/index.html",
+                kind="blog",
+            ),
+            encoding="utf-8",
         )
-
-    body_html = (
-        "<p>AIハブのブログです。AI活用、Codex、Claude Code、画像生成、Web制作、集客導線の実践記録を残していきます。</p>"
-        "<div class='blog-list'>"
-        + "".join(cards)
-        + "</div>"
-    )
-    nav = render_top_nav(path_prefix="../", current_id="blog", include_run=False)
-    (out_dir / "index.html").write_text(
-        render_content_page("ブログ", {"summary": "AIハブのブログ一覧。AI活用と制作の実践記録。"}, body_html, nav, page_path="blog/index.html"),
-        encoding="utf-8",
-    )
-    return len(posts)
+    return count
 
 
 _OGP_TITLE_RE = re.compile(r"<meta[^>]+property=['\"]og:title['\"][^>]+content=['\"]([^'\"]+)['\"]", re.I)
@@ -2984,14 +3002,17 @@ def _patch_programming_map_nav(pmap_file: Path) -> None:
         "<nav class='pm-chapter-toc' aria-label='ページ内目次'>"
         "<span class='pm-toc-label'>AI CODING</span>"
         "<a href='#top'>全体</a>"
-        "<a href='#pm-modern-ai'>00 AI全体像</a>"
-        "<a href='#part-1'>01 価値と入口</a>"
-        "<a href='#part-2'>02 基礎</a>"
-        "<a href='#part-3'>03 実装</a>"
-        "<a href='#part-4'>04 公開</a>"
-        "<a href='#sec-cms'>05 応用制作</a>"
-        "<a href='#sec-ccode'>06 実務運用</a>"
-        "<a href='#sec-line'>07 総合演習</a>"
+        "<a href='#pm-real-pro'>00 本物のプロ</a>"
+        "<a href='#pm-level-map'>01 レベル</a>"
+        "<a href='#pm-pro-check'>02 説明力</a>"
+        "<a href='#pm-modern-ai'>03 AI全体像</a>"
+        "<a href='#part-1'>04 価値と入口</a>"
+        "<a href='#part-2'>05 基礎</a>"
+        "<a href='#part-3'>06 実装</a>"
+        "<a href='#part-4'>07 公開</a>"
+        "<a href='#sec-cms'>08 応用制作</a>"
+        "<a href='#sec-ccode'>09 実務運用</a>"
+        "<a href='#sec-line'>10 総合演習</a>"
         "</nav>"
     )
     # 共通トップヘッダー/ナビの CSS を、正本 CSS 定数からマーカーで切り出して注入する。
@@ -3015,29 +3036,28 @@ def _patch_programming_map_nav(pmap_file: Path) -> None:
         "<style id='pm-chapter-toc-css'>"
         # ---- 共通トップヘッダー/ナビ（index.html 等と同一・正本 CSS から抽出） ----
         + common_nav_css
-        # ページ内目次バー（AIコーディング講習 専用：fixed top-nav の真下に sticky で吸着）
-        # 共通 top-nav は fixed (height ≒ 68px) なので、本文先頭は 96px から
-        + "html{scroll-padding-top:144px;}"
-        "[id]{scroll-margin-top:144px;}"
-        ".pm-chapter-toc{position:sticky;top:84px;z-index:40;"
-        "max-width:1100px;"
-        "display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;"
-        "margin:0 auto 18px;padding:8px 12px;"
-        "background:rgba(255,255,255,.70);border:1px solid rgba(16,24,39,.12);"
-        "border-radius:14px;backdrop-filter:blur(18px) saturate(160%);"
+        # ページ内目次バー（AIコーディング講習 専用：fixed top-nav の真下に1段で吸着）
+        + "html{scroll-padding-top:118px;}"
+        "[id]{scroll-margin-top:118px;}"
+        ".pm-chapter-toc{position:sticky;top:66px;z-index:40;"
+        "max-width:min(1160px,calc(100vw - 20px));"
+        "display:flex;flex-wrap:nowrap;align-items:center;gap:6px;"
+        "margin:0 auto 18px;padding:7px 10px;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;"
+        "background:rgba(255,255,255,.82);border:1px solid rgba(16,24,39,.12);"
+        "border-radius:8px;backdrop-filter:blur(18px) saturate(160%);"
         "-webkit-backdrop-filter:blur(18px) saturate(160%);"
         "box-shadow:0 10px 28px rgba(16,24,39,.08),inset 0 1px 0 rgba(255,255,255,.82);}"
         ".pm-chapter-toc .pm-toc-label{font-size:10.5px;font-weight:800;letter-spacing:.14em;"
         "color:#2357e5;text-transform:uppercase;padding-right:4px;white-space:nowrap;}"
         ".pm-chapter-toc a{display:inline-flex;align-items:center;gap:3px;padding:5px 11px;"
-        "border-radius:999px;background:rgba(255,255,255,.78);border:1px solid rgba(16,24,39,.12);"
+        "flex:0 0 auto;border-radius:8px;background:rgba(255,255,255,.78);border:1px solid rgba(16,24,39,.12);"
         "color:#3a475d;text-decoration:none;font-size:11.5px;font-weight:700;line-height:1.3;"
         "white-space:nowrap;transition:all .2s;}"
         ".pm-chapter-toc a:hover{background:rgba(255,255,255,.95);color:#2357e5;"
         "border-color:rgba(6,167,216,.34);transform:translateY(-1px);}"
         "@media (max-width:640px){"
-        "html{scroll-padding-top:160px;}[id]{scroll-margin-top:160px;}"
-        ".pm-chapter-toc{padding:6px 8px;gap:3px 5px;top:74px;}"
+        "html{scroll-padding-top:108px;}[id]{scroll-margin-top:108px;}"
+        ".pm-chapter-toc{padding:6px 8px;gap:5px;top:60px;max-width:calc(100vw - 12px);}"
         ".pm-chapter-toc a{padding:5px 10px;font-size:11px;}}"
         "</style>"
     )
@@ -3085,6 +3105,7 @@ def build_sitemap_and_robots() -> None:
             if lp.name == "index.html":
                 continue
             add(f"lectures/{lp.name}", 0.8)
+    # blog
     blog_idx = DIST / "blog" / "index.html"
     if blog_idx.exists():
         add("blog/index.html", 0.7)

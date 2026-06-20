@@ -100,15 +100,15 @@ businesses:
   description: Vercel + Supabase で新規再生成中。みんなのWA の構成をベースに立ち上げ予定。
 
 - id: ai-hub
-  name: AI相談。彦根
-  tagline: 講習募集 + 資料センター + AI情報パイプライン
+  name: AIスペシャリスト 由井辰美
+  tagline: AI導入相談 + 生成AI講習 + 社内定着支援
   url: https://ai-hub-jp.vercel.app
   icon: 🤖
   color: cyan
   status: live
   self: true
   kind: business
-  description: あなたは今ここにいます。AI相談・受講資料・実例・AI/SNS情報を1箇所に集約。
+  description: あなたは今ここにいます。AI導入相談・生成AI講習・受講資料・実例ブログ・AI/SNS情報を1箇所に集約。
 
 - id: plogging
   name: プロギング・ジャパン

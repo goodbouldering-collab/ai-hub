@@ -39,10 +39,10 @@ SITE_URL = os.environ.get("AIHUB_SITE_URL", os.environ.get("AIWATCH_SITE_URL", "
 
 OWNER_NAME = "由井 辰美"
 OWNER_EMAIL = "goodbouldering@gmail.com"
-SITE_BRAND = "AI相談。彦根"
-SITE_LEGACY_NAME = "AIハブ"
-OWNER_SUBTITLE = "クライミング歴30年・9事業を回す滋賀のAI講師"
-OWNER_TAGLINE = "AIを聞いて終わりにせず、講習・実例・資料で仕事に入れる"
+SITE_BRAND = "AIスペシャリスト 由井辰美"
+SITE_LEGACY_NAME = "AI相談。彦根 / AIハブ"
+OWNER_SUBTITLE = "彦根・滋賀のAI導入定着スペシャリスト"
+OWNER_TAGLINE = "経験をAI導入に翻訳し、相談から実装・社内定着まで伴走する"
 AI_CODING_BOOK_URL = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/S7GERYVDIPRV76DKXCC3WJWH"
 MONTHLY_SUPPORT_CHECKOUT_URL = "/api/stripe/monthly-support"
 
@@ -126,7 +126,7 @@ def _build_jsonld_website() -> str:
         "@type": ["ProfessionalService", "LocalBusiness"],
         "@id": org_id,
         "name": SITE_BRAND,
-        "alternateName": [SITE_LEGACY_NAME, "AI Hub Hikone", "AI講習 彦根"],
+        "alternateName": [SITE_LEGACY_NAME, "AI相談。彦根", "AI Hub Hikone", "AI講習 彦根", "彦根 AIスペシャリスト"],
         "url": SITE_URL,
         "image": OG_IMAGE_URL,
         "email": OWNER_EMAIL,
@@ -145,9 +145,9 @@ def _build_jsonld_website() -> str:
             "streetAddress": "岡町12番地",
             "addressCountry": "JP",
         },
-        "description": "滋賀県彦根市を拠点に、中小事業者・地域団体・個人事業者向けのAI相談、生成AI講習、Codex実践会、Claude Code併用、画像生成、AIコーディング講習、受講資料公開、実例紹介、Web/業務システム制作、補助金を使ったAI導入支援を行う。9事業を実際に回す現役オーナーが、相談から講習、実装、公開、運用定着まで伴走する。",
+        "description": "滋賀県彦根市を拠点に、中小事業者・地域団体・個人事業者向けのAIスペシャリスト相談、生成AI講習、Codex実践会、Claude Code併用、画像生成、AIコーディング講習、受講資料公開、実例紹介、Web/業務システム制作、補助金を使ったAI導入支援を行う。エンジニア経験、コンサル経験、9事業運営の実務経験をもとに、相談から講習、実装、公開、社内定着まで伴走する。",
         "knowsAbout": [
-            "AI相談", "生成AI講習", "ChatGPT", "Claude Code", "Codex", "画像生成", "AIコーディング講習",
+            "AIスペシャリスト", "AI相談", "生成AI講習", "ChatGPT", "Claude Code", "Codex", "画像生成", "AIコーディング講習",
             "LLMO（AI検索最適化）", "SEO", "MEO", "YouTube SEO", "Reels導線",
             "業務自動化", "AI導入補助金", "デジタル化補助金", "中小企業DX",
         ],
@@ -158,13 +158,13 @@ def _build_jsonld_website() -> str:
         "@type": "Person",
         "@id": person_id,
         "name": OWNER_NAME,
-        "jobTitle": "AI講師 / Web経営コンサルタント / 複数事業オーナー",
+        "jobTitle": "AIスペシャリスト / AI講師 / Web経営コンサルタント / 複数事業オーナー",
         "email": OWNER_EMAIL,
         "url": SITE_URL + "/speaker.html",
         "image": SITE_URL + "/img/speaker-portrait-v2.webp",
         "worksFor": {"@id": org_id},
         "knowsAbout": ["生成AI", "クライミング", "店舗経営", "マーケティング", "補助金活用"],
-        "description": "クライミング歴30年。ボルダリングカフェ「グッぼる」をはじめ9事業を経営しながら、滋賀・彦根の中小事業者にAI相談、生成AI講習、Codex実践会、SNS/LLMO導線づくりを教える。経営者でありコードを書く実装者でもある二重性が強み。",
+        "description": "クライミング歴30年。ボルダリングカフェ「グッぼる」をはじめ9事業を経営しながら、滋賀・彦根の中小事業者にAI相談、生成AI講習、Codex実践会、SNS/LLMO導線づくりを教える。経営者であり、コードを書き、業務導入を設計するAIスペシャリストであることが強み。",
     }
 
     website = {
@@ -174,7 +174,7 @@ def _build_jsonld_website() -> str:
         "url": SITE_URL,
         "inLanguage": "ja",
         "publisher": {"@id": org_id},
-        "description": "滋賀・彦根の中小事業者向けAI相談、講習募集、受講資料、実例、講師紹介、AI/SNS/LLMO情報の資料センター。",
+        "description": "滋賀・彦根の中小事業者向けAIスペシャリスト相談、AI導入支援、講習募集、受講資料、実例、講師紹介、AI/SNS/LLMO情報の資料センター。",
     }
 
     codex_prep_title = "Codex準備会 60分"
@@ -6192,6 +6192,98 @@ PORTAL_CSS += """
 
 
 BLOG_TEASER_CSS = """
+.specialist-grid {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  gap: clamp(14px, 2vw, 22px);
+  align-items: stretch;
+}
+.specialist-lead-card,
+.specialist-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255,255,255,.92);
+  box-shadow: var(--shadow-card);
+}
+.specialist-lead-card {
+  padding: clamp(18px, 3vw, 28px);
+  background: linear-gradient(135deg, rgba(255,255,255,.96), rgba(238,249,247,.90));
+}
+.specialist-kicker {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(14,165,198,.10);
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .04em;
+}
+.specialist-lead-card h3 {
+  margin: 14px 0 12px;
+  color: var(--text);
+  font-size: clamp(24px, 3vw, 38px);
+  line-height: 1.22;
+  letter-spacing: 0;
+}
+.specialist-lead-card p,
+.specialist-card p {
+  margin: 0;
+  color: var(--text-soft);
+  line-height: 1.9;
+}
+.specialist-source {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+.specialist-source a {
+  color: var(--primary);
+  font-weight: 800;
+}
+.specialist-card-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.specialist-card {
+  min-height: 100%;
+  padding: 18px;
+}
+.specialist-card b {
+  display: block;
+  color: var(--text);
+  font-size: 17px;
+  margin-bottom: 8px;
+}
+.specialist-card small {
+  display: inline-flex;
+  margin-bottom: 10px;
+  color: var(--primary);
+  font-weight: 900;
+  letter-spacing: .04em;
+}
+.blog-section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+.blog-section-head .section-title,
+.blog-section-head .section-sub {
+  text-align: left;
+  margin-left: 0;
+  margin-right: 0;
+}
+.blog-section-head .section-sub {
+  max-width: 680px;
+}
 .blog-feature {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(280px, .95fr);
@@ -6202,6 +6294,8 @@ BLOG_TEASER_CSS = """
   border-radius: 18px;
   background: linear-gradient(135deg, rgba(255,255,255,.96), rgba(239,248,246,.86));
   box-shadow: var(--shadow-card);
+  color: var(--text);
+  text-decoration: none;
 }
 .blog-feature-copy h3 {
   margin: 0 0 10px;
@@ -6313,6 +6407,12 @@ BLOG_TEASER_CSS = """
   font-weight: 900;
 }
 @media (max-width: 820px) {
+  .specialist-grid,
+  .specialist-card-list,
+  .blog-section-head {
+    grid-template-columns: 1fr;
+    display: grid;
+  }
   .blog-feature {
     grid-template-columns: 1fr;
   }
@@ -6328,33 +6428,35 @@ def _render_header() -> str:
     return (
         "<header class='site-header' id='site-header'>"
         "<div class='site-header-inner'>"
-        "<a class='site-logo' href='/' aria-label='AI相談。彦根 トップへ'>"
-        "<span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span>"
-        "<span class='wordmark'><span class='word-ai'>AI相談。</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span>"
-        "<span class='site-logo-by'>講師 由井辰美</span>"
+        "<a class='site-logo' href='/' aria-label='AIスペシャリスト 由井辰美 トップへ'>"
+        "<span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>専</span></span>"
+        "<span class='wordmark'><span class='word-ai'>AIスペシャリスト</span><span class='word-hub'>由井辰美</span><span class='word-en'>HIKONE AI SPECIALIST</span></span>"
+        "<span class='site-logo-by'>彦根・滋賀のAI導入支援</span>"
         "</a>"
         "<nav class='site-nav' aria-label='メインナビ'>"
-        "<a class='nav-link nav-essential' href='#packages'>受講プラン</a>"
-        "<a class='nav-link nav-essential' href='/programming-map.html'>AIコーディング</a>"
-        "<a class='nav-link nav-essential' href='#lectures'>資料</a>"
+        "<a class='nav-link nav-essential' href='#specialist'>専門性</a>"
+        "<a class='nav-link nav-essential' href='#blog'>ブログ</a>"
+        "<a class='nav-link nav-essential' href='#packages'>講習/伴走</a>"
         "<div class='menu-wrap'>"
         "<button class='menu-toggle' id='menu-toggle' aria-haspopup='menu' aria-expanded='false'>見る"
         "<svg class='chev' width='14' height='14' viewBox='0 0 20 20' fill='none' aria-hidden='true'><path d='M5 8l5 5 5-5' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>"
         "</button>"
         "<div class='menu-drop' id='menu-drop' role='menu'>"
-        "<span class='menu-drop-label'>制作・発信</span>"
-        "<a href='#web-showcase'>HP制作メニュー</a>"
-        "<a href='#works'>実例サイト</a>"
-        "<a href='/portfolio.html'>実績詳細</a>"
+        "<span class='menu-drop-label'>学ぶ・確認する</span>"
+        "<a href='#lectures'>受講資料</a>"
+        "<a href='/programming-map.html'>AIコーディング</a>"
         "<a href='/blog/index.html'>ブログ一覧</a>"
-        "<a href='/watch/index.html'>AI Watch</a>"
+        "<span class='menu-drop-label'>実績・制作</span>"
+        "<a href='#works'>実例サイト</a>"
+        "<a href='#web-showcase'>HP制作メニュー</a>"
+        "<a href='/portfolio.html'>実績詳細</a>"
         "<span class='menu-drop-label'>確認</span>"
         "<a href='#faq'>FAQ</a>"
         "<a href='#speaker'>講師紹介</a>"
         "<a href='/admin'>🔐 管理画面</a>"
         "</div>"
         "</div>"
-        "<a class='nav-cta' href='#contact'>📩 無料相談</a>"
+        "<a class='nav-cta' href='#contact'>無料相談</a>"
         "</nav>"
         "<button class='mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'>"
         "<svg width='20' height='20' viewBox='0 0 24 24' fill='none'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg>"
@@ -6363,22 +6465,22 @@ def _render_header() -> str:
         "<div class='mobile-nav' id='mobile-nav'>"
         "<div class='mobile-nav-panel'>"
         "<div class='mobile-nav-primary'>"
-        "<a class='login-btn-mobile' href='#contact'>📩 無料相談</a>"
-        "<a class='mobile-main-link' href='#packages'>受講プラン</a>"
+        "<a class='login-btn-mobile' href='#contact'>無料相談</a>"
+        "<a class='mobile-main-link' href='#specialist'>AIスペシャリストとは</a>"
         "</div>"
         "<span class='mobile-nav-label'>講習</span>"
         "<div class='mobile-link-grid'>"
+        "<a href='#packages'>講習/伴走</a>"
         "<a href='/programming-map.html'>AIコーディング</a>"
         "<a href='#lectures'>受講資料</a>"
-        "<a href='#faq'>FAQ</a>"
-        "<a href='#speaker'>講師紹介</a>"
+        "<a href='#blog'>ブログ</a>"
         "</div>"
         "<span class='mobile-nav-label'>制作・運用</span>"
         "<div class='mobile-link-grid'>"
         "<a href='#web-showcase'>HP制作</a>"
         "<a href='#works'>実例サイト</a>"
-        "<a href='/blog/index.html'>ブログ</a>"
-        "<a href='/watch/index.html'>AI Watch</a>"
+        "<a href='#speaker'>講師紹介</a>"
+        "<a href='#faq'>FAQ</a>"
         "</div>"
         "<a class='mobile-admin-link' href='/admin'>🔐 管理画面</a>"
         "</div>"
@@ -6943,9 +7045,9 @@ def _render_hero() -> str:
     atlas_items = [
         {
             "index": "01",
-            "title": "無料相談",
-            "sub": "入口を30分で整理",
-            "desc": "課題を聞き、講習・個別相談・伴走のどれから始めるかを決めます。",
+            "title": "AI導入相談",
+            "sub": "経験を業務に翻訳",
+            "desc": "課題を聞き、AIをどこに入れ、誰が使い、どう続けるかを30分で整理します。",
             "cta": "相談日程を見る",
             "href": "#contact",
             "x": "42%",
@@ -6953,9 +7055,9 @@ def _render_hero() -> str:
         },
         {
             "index": "02",
-            "title": "AI講習",
-            "sub": "Codex / Claude Code / 画像生成",
-            "desc": "準備会、実践会、AIコーディング講習、画像生成までを、到達点から選べます。",
+            "title": "講習会",
+            "sub": "現場で使える型を学ぶ",
+            "desc": "Codex、Claude Code、画像生成、AIコーディングを、仕事の成果物に結びつけます。",
             "cta": "講習プランを見る",
             "href": "#packages",
             "x": "64%",
@@ -6963,11 +7065,11 @@ def _render_hero() -> str:
         },
         {
             "index": "03",
-            "title": "受講資料",
-            "sub": "あとから見返せる",
-            "desc": "講習内容、AI活用、SNS、LLMOを資料センターとして整理します。",
-            "cta": "資料を見る",
-            "href": "#lectures",
+            "title": "実践ブログ",
+            "sub": "経験を記事で確認",
+            "desc": "AI導入、業務システム、Codex、RAG、AI時代のエンジニア像を実例で読めます。",
+            "cta": "ブログを見る",
+            "href": "#blog",
             "x": "71%",
             "y": "52%",
         },
@@ -6983,9 +7085,9 @@ def _render_hero() -> str:
         },
         {
             "index": "05",
-            "title": "SNS / AI観測",
-            "sub": "毎朝チューニング",
-            "desc": "競合、国内トレンド、YouTube、SNS反応を見て入口を更新します。",
+            "title": "社内定着",
+            "sub": "相談で終わらせない",
+            "desc": "講習後の資料化、予約導線、ブログ、SNS、業務システムまで接続します。",
             "cta": "改善ループを見る",
             "href": "#growth",
             "x": "83%",
@@ -7019,32 +7121,32 @@ def _render_hero() -> str:
         "<img src='img/hero-codex-claude-imagegen-20260616.png' alt='' decoding='async' fetchpriority='high'>"
         "</div>"
         "<div class='hero-text fade-up'>"
-        "<span class='eyebrow'>彦根・滋賀の事業者向け AI相談 / 講習 / 導入支援</span>"
+        "<span class='eyebrow'>彦根・滋賀のAIスペシャリスト / AI導入・講習・社内定着支援</span>"
         "<h1 class='hero-brand'>"
-        "<span class='fusion-logo-large'><span class='ai'>AI相談。</span><span class='hub'>彦根</span></span>"
-        "<span class='hero-title-sub'><strong>時代はCodex。</strong><br>Claude Codeと併用、画像も生成。</span>"
-        "<span class='visually-hidden'>｜彦根 AI相談、滋賀 生成AI講習、Codex講習、Claude Code併用、ChatGPT講座、画像生成講習、AI導入支援、補助金申請サポート、LLMO対策、YouTube SEO、SNS集客</span>"
+        "<span class='fusion-logo-large'><span class='ai'>AIスペシャリスト</span><span class='hub'>由井辰美</span></span>"
+        "<span class='hero-title-sub'><strong>経験をAI導入に変える。</strong><br>相談から実装・社内定着まで伴走。</span>"
+        "<span class='visually-hidden'>｜彦根 AIスペシャリスト、滋賀 AI導入相談、生成AI講習、Codex講習、Claude Code併用、ChatGPT講座、画像生成講習、AI導入支援、補助金申請サポート、LLMO対策、YouTube SEO、SNS集客</span>"
         "</h1>"
         "<p class='sub-catch'>"
-        "<strong>Codexを中心に、Claude Code、ChatGPT、画像生成、SNSまで。<br>課題から、受け方と作るものを整理します。</strong>"
+        "<strong>AIスペシャリストの価値は、ツール名を知っていることだけではありません。<br>現場経験をもとに、AIをどこへ入れ、どう続けるかを設計できることです。</strong>"
         "</p>"
         "<p class='lead'>"
-        "無料相談、AI講習、受講資料、実例サイト、SNS/AI観測を1つに接続。コード、資料、画像、投稿まで、初回で迷わず次の行動へ進める設計です。"
+        "エンジニアとして作れること、コンサルタントとして整理できること、9事業を回す経営者として続けられること。その経験を使って、AI導入、講習、業務改善、Web集客、資料化まで一気通貫で支援します。"
         "</p>"
         "<div class='hero-actions'>"
         "<a class='btn btn-primary btn-lg' href='#contact'>無料30分相談を予約</a>"
-        "<a class='btn btn-secondary btn-lg' href='#lectures'>受講資料を先に見る</a>"
+        "<a class='btn btn-secondary btn-lg' href='#blog'>実践ブログを読む</a>"
         "</div>"
         "<div class='hero-route-bento' aria-label='最初に選ぶ4つの入口'>"
-        "<a class='hero-route-card route-consult' href='#contact'><small>01 / FREE</small><b>無料相談</b><span>今の課題を30分で整理</span></a>"
-        "<a class='hero-route-card route-plan' href='#packages'><small>02 / PLAN</small><b>受講プラン</b><span>相談・講習・伴走を選ぶ</span></a>"
-        "<a class='hero-route-card route-code' href='/programming-map.html'><small>03 / CODEX</small><b>AIコーディング講習</b><span>中身をすぐ確認する</span></a>"
+        "<a class='hero-route-card route-consult' href='#contact'><small>01 / FREE</small><b>無料相談</b><span>AI導入の入口を整理</span></a>"
+        "<a class='hero-route-card route-plan' href='#packages'><small>02 / PLAN</small><b>講習/伴走</b><span>学ぶか任せるかを選ぶ</span></a>"
+        "<a class='hero-route-card route-code' href='#blog'><small>03 / BLOG</small><b>実践ブログ</b><span>経験と実績を読む</span></a>"
         "<a class='hero-route-card route-material' href='#lectures'><small>04 / MATERIAL</small><b>受講資料</b><span>先に読んで判断する</span></a>"
         "</div>"
         "<div class='hero-proof-grid' aria-label='AI講習会の特徴'>"
-        "<div class='hero-proof'><span class='proof-icon'>01</span><span><b>Codex Core</b><span>実装と確認を中心に進める</span></span></div>"
-        "<div class='hero-proof'><span class='proof-icon'>02</span><span><b>Claude Pair</b><span>Claude Codeと役割を分ける</span></span></div>"
-        "<div class='hero-proof'><span class='proof-icon'>03</span><span><b>Image Ready</b><span>画像生成も成果物に入れる</span></span></div>"
+        "<div class='hero-proof'><span class='proof-icon'>01</span><span><b>Engineer</b><span>AIの出力を読み、直し、公開まで見られる</span></span></div>"
+        "<div class='hero-proof'><span class='proof-icon'>02</span><span><b>Consultant</b><span>業務課題を分解し、社内手順に落とす</span></span></div>"
+        "<div class='hero-proof'><span class='proof-icon'>03</span><span><b>Owner</b><span>9事業の現場で使い続ける視点がある</span></span></div>"
         "</div>"
         "</div>"
         "<div class='hero-photo-card hero-atlas-panel fade-up d2' aria-label='AIハブのサービス地図'>"
@@ -7364,21 +7466,77 @@ def _render_web_showcase() -> str:
     )
 
 
+def _render_specialist_value() -> str:
+    """AIスペシャリスト訴求の核。動画の要点を営業導線へ翻訳する。"""
+    cards = [
+        (
+            "01 / Engineer",
+            "AIの出力を判断できる",
+            "コード、画面、文章、画像、データのどこが使えるかを読み、必要なら自分で直して公開前確認まで進めます。",
+        ),
+        (
+            "02 / Consultant",
+            "業務に入れる順番を設計できる",
+            "何をAIに任せ、どこを人が確認し、誰が毎日使うのか。現場の言葉に直して手順へ落とします。",
+        ),
+        (
+            "03 / Operator",
+            "自分の事業で使い続けている",
+            "9事業のWeb、SNS、資料、予約、管理画面を自分で動かすため、机上のAI論ではなく運用の詰まりを話せます。",
+        ),
+        (
+            "04 / Teacher",
+            "講習後に戻れる資料を残す",
+            "講習、受講資料、実践ブログ、予約導線をつなげ、聞いて終わりではなく社内に残る形へ変えます。",
+        ),
+    ]
+    card_html = "".join(
+        "<article class='specialist-card fade-up d2'>"
+        f"<small>{html.escape(kicker)}</small>"
+        f"<b>{html.escape(title)}</b>"
+        f"<p>{html.escape(body)}</p>"
+        "</article>"
+        for kicker, title, body in cards
+    )
+    return (
+        "<section class='block block-tight' id='specialist'>"
+        "<p class='section-heading fade-up'>AI SPECIALIST</p>"
+        "<h2 class='section-title fade-up d1'>AIスペシャリストとは、経験をAI導入に翻訳できる人</h2>"
+        "<div class='specialist-grid'>"
+        "<div class='specialist-lead-card fade-up d1'>"
+        "<span class='specialist-kicker'>動画から読み取った本質</span>"
+        "<h3>非エンジニアでもAI時代の仕事は作れる。差がつくのは、これまでの経験をAIに渡せるかです。</h3>"
+        "<p>AIスペシャリストの仕事は、ツールの説明だけではありません。現場経験をもとに課題を言語化し、AIに任せる範囲、人が判断する範囲、社内で続ける手順まで設計する仕事です。由井辰美は、エンジニア、コンサルタント、複数事業オーナーの経験を重ねているため、AI導入から定着までを一続きで見られます。</p>"
+        "<div class='specialist-source'>参考動画: <a href='https://youtu.be/99EQoP7q3pA' target='_blank' rel='noopener'>「非エンジニアが荒稼ぎするAI時代の新しいお仕事」</a>。字幕本文は取得できなかったため、公開タイトルと依頼内容の要点を営業ページ向けに再構成しています。</div>"
+        "</div>"
+        f"<div class='specialist-card-list'>{card_html}</div>"
+        "</div>"
+        "</section>"
+    )
+
+
 def _render_path_selector() -> str:
     cards = [
         (
-            "無料相談から始めたい",
-            "今の課題を30分で整理して、受講プランか伴走かを決める入口です。",
+            "AI導入を相談したい",
+            "今の課題を30分で整理して、講習で学ぶか、伴走で定着させるかを決める入口です。",
             "相談を予約する",
             "#contact",
             "30分 / 無料",
         ),
         (
-            "受講プランを比べたい",
-            "Codex準備、Codex実践、個別相談、伴走支援の違いを先に見たい方向け。各カードから関連資料へ進めます。",
-            "受講プランを見る",
+            "講習会を比べたい",
+            "Codex準備、Codex実践、AIコーディング、個別相談、伴走支援の違いを先に見たい方向け。",
+            "講習/伴走を見る",
             "#packages",
             "料金と到達点を確認",
+        ),
+        (
+            "実績ブログを読みたい",
+            "AIスペシャリストとして何を考え、何を作っているか。Codex、RAG、業務システムの記事で確認できます。",
+            "ブログを読む",
+            "#blog",
+            "複数記事を掲載",
         ),
         (
             "受講資料を先に見たい",
@@ -7743,8 +7901,8 @@ def _render_footer(today: str) -> str:
         "<footer class='site-footer'>"
         "<div class='footer-grid'>"
         "<div class='footer-brand'>"
-        "<div class='footer-logo'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span><span class='wordmark'><span class='word-ai'>AI相談。</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span></div>"
-        "<p class='footer-tagline'>滋賀・彦根の中小事業者向けに、AI相談・生成AI講習・Codex準備会/実践会・AIコーディング講習・受講資料・Web集客支援を行う"
+        "<div class='footer-logo'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>専</span></span><span class='wordmark'><span class='word-ai'>AIスペシャリスト</span><span class='word-hub'>由井辰美</span><span class='word-en'>HIKONE AI SPECIALIST</span></span></div>"
+        "<p class='footer-tagline'>滋賀・彦根の中小事業者向けに、AI導入相談・生成AI講習・Codex準備会/実践会・AIコーディング講習・受講資料・Web集客支援を行う"
         "資料センター型の相談サイト。9事業を実際に回しながら、現場に居着くAIを一緒に作ります。</p>"
         "<a class='footer-cta' href='#contact'>📩 無料で30分相談する</a>"
         "</div>"
@@ -7758,14 +7916,14 @@ def _render_footer(today: str) -> str:
         "</nav>"
         "<div class='footer-nap'>"
         "<span class='footer-nav-head'>運営</span>"
-        "<p>AI相談。彦根（クライミングコンサル）</p>"
+        "<p>AIスペシャリスト 由井辰美（AI相談。彦根 / クライミングコンサル）</p>"
         "<p>代表 由井 辰美</p>"
         "<p>〒522-0043<br>滋賀県彦根市岡町12番地</p>"
         f"<p><a href='mailto:{OWNER_EMAIL}'>{OWNER_EMAIL}</a></p>"
         "<p class='footer-area'>対応: 彦根・湖東・滋賀県全域 / 出張・オンライン全国</p>"
         "</div>"
         "</div>"
-        f"<div class='footer-copy'>© {year} 由井 辰美 / AI相談。彦根 — 滋賀・彦根のAI相談・受講資料</div>"
+        f"<div class='footer-copy'>© {year} 由井 辰美 / AIスペシャリスト — 滋賀・彦根のAI導入相談・受講資料</div>"
         "</footer>"
     )
 
@@ -7774,8 +7932,8 @@ def _render_sticky_cta() -> str:
     """モバイルで常時追従する無料相談バー（スクロール中もCVできる）。"""
     return (
         "<div class='sticky-cta' id='sticky-cta' aria-hidden='false'>"
-        "<div class='sticky-cta-text'><strong>彦根のAI相談は無料</strong><span>講習・資料・集客まで整理</span></div>"
-        "<a class='sticky-cta-btn' href='#contact'>📩 30分相談する</a>"
+        "<div class='sticky-cta-text'><strong>AI導入相談は30分無料</strong><span>講習・実装・社内定着まで整理</span></div>"
+        "<a class='sticky-cta-btn' href='#contact'>30分相談する</a>"
         "</div>"
     )
 
@@ -7829,8 +7987,8 @@ def _render_contact_form() -> str:
         f"<a class='contact-primary fade-up' href='{CONSULT_BOOK_URL}' target='_blank' rel='noopener'>"
         "<span class='cp-ico'>📅</span>"
         "<span class='cp-body'>"
-        "<span class='cp-title'>AI相談。彦根の無料30分相談を予約する</span>"
-        "<span class='cp-desc'>カレンダーから空いている日時を選ぶだけ。2〜3分で予約できます（料金はかかりません）。相談は対面・Zoom・LINEから選べます。</span>"
+        "<span class='cp-title'>AIスペシャリストの無料30分相談を予約する</span>"
+        "<span class='cp-desc'>カレンダーから空いている日時を選ぶだけ。2〜3分で予約できます（料金はかかりません）。彦根での対面、Zoom、LINE相談から選べます。</span>"
         "</span>"
         "<span class='cp-cta'>日程を選ぶ →</span>"
         "</a>"
@@ -7913,8 +8071,10 @@ def _render_growth_plan_section() -> str:
 # FAQ は本文表示と FAQPage 構造化データの両方で使う（一次情報＝LLMO引用源）。
 # 地域・お悩み・補助金の検索意図を素の質問形で網羅する。
 FAQ_QA = [
-    ("彦根・滋賀でAIの講習や相談はできますか？",
-     "はい。滋賀県彦根市を拠点に、彦根・湖東・東近江を中心とした対面のAI講習・個別相談を行っています。京都・大阪・名古屋までは出張可、リモートなら全国対応します。"),
+    ("彦根・滋賀でAIスペシャリストに相談できますか？",
+     "はい。滋賀県彦根市を拠点に、彦根・湖東・東近江を中心とした対面のAI導入相談・AI講習・個別相談を行っています。京都・大阪・名古屋までは出張可、リモートなら全国対応します。"),
+    ("AIスペシャリストには何を頼めますか？",
+     "AIツールの使い方だけでなく、業務整理、AIに任せる範囲の設計、社内手順化、Web/予約/ブログ/SNSへの展開、公開前確認、定着まで相談できます。エンジニア経験とコンサル経験を合わせて、実装と運用の両方を見ます。"),
     ("Codex準備会とCodex実践会はどう違いますか？",
      "レベルは理解度で分けます。Codex準備会は60分2,200円で、ログイン、作業フォルダ選択、秘密情報を入れない権限設計、最初の小さな依頼、差分確認、ブラウザ表示確認、独立レビュー、AGENTS.md、公式アップデート確認先までを整えます。Codex実践会は120分5,500円で、Claude Codeとの使い分け、ページ、資料、コード、画像生成プロンプト、動画台本、運用マニュアルなどの成果物作成まで進めます。AIコーディング講習は120分11,000円で、Codex導入、Claude Code併用、画像生成、本物のエンジニア像、レベルマップ、専門用語、設計・データ・運用・セキュリティ、実装ループ、公開前確認までを体系的に扱います。"),
     ("AIコーディング講習では何を学びますか？",
@@ -7931,7 +8091,7 @@ FAQ_QA = [
      "講習・伴走パックは「デジタル化・AI導入補助金」や滋賀県・彦根市の補助金の対象になります。補助率は小規模事業者で最大4/5、実質負担が1/3以下になるケースが多いです。申請からツール選定・実装・定着まで一気通貫で支援します。"),
     ("パソコンやスマホが苦手ですが、大丈夫ですか？",
      "大丈夫です。スマホで文字が打てれば始められます。専門用語は使わず、画面を一緒に見ながら進めます。「こんなことも聞いていいの？」というレベルから歓迎します。"),
-    ("AI を仕事で使いたいのですが、何から始めれば？",
+    ("AIを仕事で使いたいのですが、何から始めれば？",
      "毎日やっている作業で「これ、同じような文章を毎回書いてるな」と思うものを1つ思い浮かべてください。問い合わせの返信・見積の文面・日報など、決まり文句の多い仕事から始めると、最初の30分でAIが役に立つのを実感できます。むずかしいことは後でOKです。"),
     ("特定の人しかできない仕事が多くて困っています。効きますか？",
      "そこが得意分野です。「あの人がいないと回らない」作業をAIと手順書に置き換え、誰でもできる形にします。たとえば請求書づくりが月8時間→1時間に減った例があります。"),
@@ -8290,25 +8450,35 @@ def _render_blog_card(post: dict, *, extra_class: str = "") -> str:
 
 
 def _render_blog_teaser() -> str:
-    posts = _load_recent_blog_posts(limit=3)
+    posts = _load_recent_blog_posts(limit=6)
     if not posts:
         return ""
-    cards = [_render_blog_card(post, extra_class="fade-up d2") for post in posts]
-    if len(cards) == 1:
-        cards.append(
-            "<a class='blog-card fade-up d3' href='/blog/index.html'>"
-            "<div class='blog-card-body'>"
-            "<div class='blog-card-meta'><span>BLOG INDEX</span></div>"
-            "<h3>ブログ一覧</h3>"
-            "<p>AIハブの実践記録を一覧で確認できます。新しい記事を追加すると、このトップにも自動で並びます。</p>"
-            "<span class='blog-card-more'>一覧を見る</span>"
-            "</div>"
-            "</a>"
-        )
+    featured = posts[0]
+    feature_title = html.escape(str(featured.get("title") or "AIスペシャリストの実践記事"))
+    feature_summary = html.escape(str(featured.get("summary") or "AI導入、講習、制作、業務改善の実践記録。"))
+    feature_href = html.escape(str(featured.get("href") or "/blog/index.html"), quote=True)
+    feature_date = html.escape(str(featured.get("date") or "BLOG"))
+    feature_image = html.escape(str(featured.get("image") or "/img/hero-codex-claude-imagegen-20260616.png"), quote=True)
+    cards = [_render_blog_card(post, extra_class="fade-up d2") for post in posts[1:]]
     return (
         "<section class='block' id='blog'>"
-        "<p class='section-heading fade-up'>BLOG</p>"
-        "<h2 class='section-title fade-up d1'>最近のブログ</h2>"
+        "<div class='blog-section-head'>"
+        "<div>"
+        "<p class='section-heading fade-up'>BLOG / PROOF</p>"
+        "<h2 class='section-title fade-up d1'>AIスペシャリストの実践ブログ</h2>"
+        "<p class='section-sub fade-up d2'>講習で話す内容、実際に作っている業務システム、AI時代のエンジニア像を記事で確認できます。営業前の信頼材料として、トップ上部に複数掲載しています。</p>"
+        "</div>"
+        "<a class='btn btn-secondary fade-up d2' href='/blog/index.html'>すべての記事を見る</a>"
+        "</div>"
+        f"<a class='blog-feature fade-up d2' href='{feature_href}'>"
+        "<div class='blog-feature-copy'>"
+        f"<div class='blog-feature-meta'><span>{feature_date}</span><span>FEATURED</span></div>"
+        f"<h3>{feature_title}</h3>"
+        f"<p>{feature_summary}</p>"
+        "<span class='blog-card-more'>特集記事を読む</span>"
+        "</div>"
+        f"<div class='blog-feature-visual'><img src='{feature_image}' alt='' loading='lazy' decoding='async'></div>"
+        "</a>"
         "<div class='blog-list'>"
         + "".join(cards) +
         "</div>"
@@ -8441,8 +8611,8 @@ def _render_lecture_card(lec: dict) -> str:
 
 def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     today = datetime.now().strftime("%Y-%m-%d")
-    title = SITE_BRAND
-    desc = "彦根・滋賀の中小事業者向けAI相談・生成AI講習・ホームページ制作ポータル。Codex、Claude Code、画像生成、店舗LP、企業サイト、EC、講習サイト、管理画面、SNS改善導線まで、実例を見せながら相談できます。"
+    title = "AIスペシャリスト 由井辰美｜彦根・滋賀のAI導入相談・生成AI講習・実装支援"
+    desc = "彦根・滋賀でAIを学びたい企業・個人へ。エンジニア経験とコンサル経験を持つAIスペシャリスト由井辰美が、生成AI講習、Codex、Claude Code、画像生成、業務改善、ホームページ制作、社内定着まで伴走します。"
 
     parts: list[str] = []
     parts.append("<!doctype html><html lang='ja'><head><meta charset='utf-8'>" + FAVICON_HEAD_HTML)
@@ -8467,67 +8637,71 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
 
     parts.append(_render_hero())
 
-    # 1. 最初の選び方
+    # 1. AIスペシャリストの定義と専門性
+    parts.append(_render_specialist_value())
+
+    # 2. ブログを信頼材料として上部に出す
+    parts.append(_render_blog_teaser())
+
+    # 3. 最初の選び方
     parts.append("<section class='block block-tight' id='start'>")
     parts.append("<p class='section-heading fade-up'>START HERE</p>")
-    parts.append("<h2 class='section-title fade-up d1'>最初の一歩を、3つに絞る</h2>")
-    parts.append("<p class='section-sub fade-up d2'>初回訪問で迷いやすい「相談する」「受講プランを選ぶ」「受講資料を先に見る」を先頭にまとめました。</p>")
+    parts.append("<h2 class='section-title fade-up d1'>最初の一歩を、4つに絞る</h2>")
+    parts.append("<p class='section-sub fade-up d2'>AI導入を相談する、講習会を選ぶ、実践ブログで確かめる、受講資料を先に読む。初回訪問で迷わないよう、営業の入口を上部に集約しました。</p>")
     parts.append(_render_path_selector())
     parts.append("</section>")
 
-    # 2. 受講プラン — メインCTA
+    # 4. 受講プラン — メインCTA
     parts.append("<section class='block' id='packages'>")
-    parts.append("<p class='section-heading fade-up'>AI LESSON COCKPIT</p>")
-    parts.append("<h2 class='section-title packages-title fade-up d1'>複数のAI講習を、一画面で選ぶ</h2>")
-    parts.append("<p class='section-sub fade-up d2'>無料相談、個別相談、伴走支援、Codex準備会、Codex実践会、AIコーディング講習を、目的と到達点で選べるように整理しています。CodexとClaude Codeの併用、画像生成まで含めて、各プランから対応する受講資料へ進み、内容を確認してから予約できます。</p>")
+    parts.append("<p class='section-heading fade-up'>AI LESSON / SUPPORT</p>")
+    parts.append("<h2 class='section-title packages-title fade-up d1'>AI導入・講習・実装支援のプラン</h2>")
+    parts.append("<p class='section-sub fade-up d2'>無料相談、個別相談、伴走支援、Codex準備会、Codex実践会、AIコーディング講習を、目的と到達点で選べるように整理しています。学びたい方も、社内に定着させたい企業も、各プランから関連資料を確認して予約できます。</p>")
     parts.append(_render_courses_packages())
     parts.append("</section>")
 
-    # 3. ホームページ制作ショールーム
+    # 5. ホームページ制作ショールーム
     parts.append("<section class='block web-showcase-block' id='web-showcase'>")
-    parts.append("<p class='section-heading fade-up'>WEB PRODUCTION</p>")
-    parts.append("<h2 class='section-title fade-up d1'>ホームページ制作も、提案書のように見せる</h2>")
-    parts.append("<p class='section-sub fade-up d2'>店舗LP、企業サイト、EC、講習資料、管理画面、SNS改善まで。「こんなものも作れます」を、用途別の完成イメージとしてわかりやすく提示します。</p>")
+    parts.append("<p class='section-heading fade-up'>WEB / SYSTEM</p>")
+    parts.append("<h2 class='section-title fade-up d1'>AIを入れるホームページと業務システムも作る</h2>")
+    parts.append("<p class='section-sub fade-up d2'>店舗LP、企業サイト、EC、講習資料、管理画面、SNS改善まで。AIスペシャリストとして、相談だけでなく実装できることを用途別に提示します。</p>")
     parts.append(_render_web_showcase())
     parts.append("</section>")
 
-    # 3. 制作実績（TOP内にサマリを掲載・各カードは公開サイト本体へ直リンク）
+    # 6. 制作実績（TOP内にサマリを掲載・各カードは公開サイト本体へ直リンク）
     parts.append("<section class='block' id='works'>")
     parts.append("<p class='section-heading fade-up'>WORKS</p>")
-    parts.append("<h2 class='section-title fade-up d1'>実例サイト</h2>")
-    parts.append("<p class='section-sub fade-up d2'>説明だけではなく、講師が実際に構築・運用しているサイトや業務システムを教材として使います。</p>")
+    parts.append("<h2 class='section-title fade-up d1'>AI導入に使える実例サイト</h2>")
+    parts.append("<p class='section-sub fade-up d2'>説明だけではなく、講師が実際に構築・運用しているサイトや業務システムを教材として使います。経験があるから、AIに任せる部分と人が見る部分を具体化できます。</p>")
     parts.append("<div class='fade-up d2'>")
     parts.append(_render_works_section())
     parts.append("</div>")
     parts.append("<div class='section-more fade-up d3'><a class='btn btn-secondary' href='/portfolio.html'>📂 実績の詳細・技術スタックを見る →</a></div>")
     parts.append("</section>")
 
-    parts.append(_render_blog_teaser())
-
-    # 4. ご依頼の流れ
+    # 7. ご依頼の流れ
     parts.append("<section class='block' id='flow'>")
     parts.append("<p class='section-heading'>FLOW</p>")
-    parts.append("<h2 class='section-title'>相談から資料化・集客まで</h2>")
-    parts.append("<p class='section-sub'>一度聞いて終わりではなく、受講内容を資料センターと集客導線に変換します。</p>")
+    parts.append("<h2 class='section-title'>相談から実装・社内定着まで</h2>")
+    parts.append("<p class='section-sub'>一度聞いて終わりではなく、受講内容を資料センター、ブログ、予約導線、業務システムに変換します。</p>")
     parts.append(_render_flow())
     parts.append("</section>")
 
-    # 5. 受講資料（TOP内にサマリを掲載）
+    # 8. 受講資料（TOP内にサマリを掲載）
     parts.append("<section class='block' id='lectures'>")
     parts.append("<p class='section-heading fade-up'>MATERIALS</p>")
-    parts.append("<h2 class='section-title fade-up d1'>受講資料</h2>")
-    parts.append("<p class='section-sub fade-up d2'>AI業務活用・SNSアルゴリズム・LLMO（AI検索最適化）・Codex実践会・Claude Code併用・画像生成・AIコーディングを、受講後も見返せる形で整理しています。資料を読んだら、上の受講プランへ戻って予約できます。</p>")
+    parts.append("<h2 class='section-title fade-up d1'>予約前に読める受講資料</h2>")
+    parts.append("<p class='section-sub fade-up d2'>AI業務活用・SNSアルゴリズム・LLMO（AI検索最適化）・Codex実践会・Claude Code併用・画像生成・AIコーディングを、受講後も見返せる形で整理しています。資料を読んだら、上の講習/伴走プランへ戻って予約できます。</p>")
     parts.append("<div class='fade-up d2'>")
     parts.append(_render_lectures_section())
     parts.append("</div>")
     parts.append("<div class='section-more fade-up d3'><a class='btn btn-primary' href='#packages'>受講プランへ戻る →</a><a class='btn btn-secondary' href='/lectures/index.html'>📚 受講資料の一覧を見る →</a></div>")
     parts.append("</section>")
 
-    # 6. 講師紹介（誰が教えるか）
+    # 9. 講師紹介（誰が教えるか）
     parts.append("<section class='block' id='speaker'>")
     parts.append("<p class='section-heading fade-up'>SPEAKER</p>")
-    parts.append("<h2 class='section-title fade-up d1'>講師紹介</h2>")
-    parts.append("<p class='section-sub fade-up d2'>AI 活用の啓発・講習・地域コミュニティ運営・複数事業のマーケ支援を行う実践者。</p>")
+    parts.append("<h2 class='section-title fade-up d1'>AIスペシャリストとしての経歴</h2>")
+    parts.append("<p class='section-sub fade-up d2'>AI活用の啓発・講習・地域コミュニティ運営・複数事業のマーケ支援を行う実践者。エンジニアとコンサルタントの両方の視点で支援します。</p>")
     parts.append(_render_speaker_section())
     parts.append("</section>")
 
@@ -8543,26 +8717,26 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
         parts.append(voices_html)
         parts.append("</section>")
 
-    # 7. FAQ（疑問解消）
+    # 10. FAQ（疑問解消）
     parts.append("<section class='block' id='faq'>")
     parts.append("<p class='section-heading'>FAQ</p>")
-    parts.append("<h2 class='section-title'>AI相談。彦根のよくある質問</h2>")
+    parts.append("<h2 class='section-title'>AIスペシャリスト相談のよくある質問</h2>")
     parts.append(_render_faq())
     parts.append("</section>")
 
-    # 8. 競合比較と集客施策
+    # 11. 競合比較と集客施策
     parts.append("<section class='block' id='growth'>")
     parts.append("<p class='section-heading fade-up'>DAILY DESIGN LOOP</p>")
-    parts.append("<h2 class='section-title fade-up d1'>競合とSNS反響で、講習導線を育てる</h2>")
-    parts.append("<p class='section-sub fade-up d2'>公的DX相談・パソコン教室・大手AI研修・制作会社と比較し、さらにYouTube/Shorts/SNSの反応を見て、入口とFAQを毎朝チューニングします。</p>")
+    parts.append("<h2 class='section-title fade-up d1'>検索・SNS反響で、AI相談ページを育てる</h2>")
+    parts.append("<p class='section-sub fade-up d2'>公的DX相談・パソコン教室・大手AI研修・制作会社と比較し、さらにYouTube/Shorts/SNSの反応を見て、入口、FAQ、ブログ導線をチューニングします。</p>")
     parts.append(_render_growth_plan_section())
     parts.append("</section>")
 
-    # 9. お問い合わせ（予約）
+    # 12. お問い合わせ（予約）
     parts.append("<section class='block' id='contact'>")
     parts.append("<p class='section-heading fade-up'>CONTACT</p>")
-    parts.append("<h2 class='section-title fade-up d1'>彦根のAI相談、まずは30分無料</h2>")
-    parts.append("<p class='section-sub fade-up d2'>講習に参加するか、AI個別相談で整理するか、伴走で進めるか。日程を選んで、今の課題をそのまま持ってきてください。</p>")
+    parts.append("<h2 class='section-title fade-up d1'>彦根でAIを学びたい、業務を改善したい方へ</h2>")
+    parts.append("<p class='section-sub fade-up d2'>企業も個人も、まずは無料30分相談から。講習に参加するか、AI個別相談で整理するか、伴走で社内定着まで進めるかを一緒に決めましょう。</p>")
     parts.append(_render_contact_form())
     parts.append("</section>")
 

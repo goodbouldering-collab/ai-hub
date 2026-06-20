@@ -1,6 +1,6 @@
 /**
  * /api/admin/status
- *   GET → outputs/agents_status.json をそのまま返す (Basic 認証必須)
+ *   GET → outputs/agents_status.json をそのまま返す (管理ログイン必須)
  *
  * /admin の「タスクと最近の動き」パネルが fetch して動的描画する。
  */

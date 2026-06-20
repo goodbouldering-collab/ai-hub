@@ -97,11 +97,11 @@ FastAPI ベースの**ローカル専用** UI。記事収集ジョブの状態�
 
 ### 2. クラウド管理画面 (`/admin` on Vercel)
 
-**Basic 認証付きの Web 管理画面** (Vercel Serverless Functions + 静的 HTML)。
+**パスワードログイン付きの Web 管理画面** (Vercel Serverless Functions + 静的 HTML)。
 グッぼる（カラーミー）のグループ追加・AI記事生成・トップページ最上部への記事公開を担う。
 
 - URL: https://ai-hub-jp.vercel.app/admin
-- 認証: Basic 認証 (`ADMIN_USER` / `ADMIN_PASS` を Vercel env)
+- 認証: パスワードのみの管理ログイン (`ADMIN_PASS` を Vercel env)
 - API:
   - `/api/admin/ping` 接続/環境変数チェック
   - `/api/admin/generate-articles` Codex で複数案生成
@@ -141,7 +141,8 @@ FastAPI ベースの**ローカル専用** UI。記事収集ジョブの状態�
 
 | Env | 役割 |
 |---|---|
-| `ADMIN_USER` / `ADMIN_PASS` | Basic 認証 |
+| `ADMIN_PASS` | 管理ログイン用パスワード |
+| `ADMIN_SESSION_SECRET` | 管理ログインCookie署名用。未設定時は `ADMIN_PASS` を使用 |
 | `COLORME_ACCESS_TOKEN` | グッぼる本店操作用 OAuth トークン |
 | `COLORME_PREVIEW_TEMPLATE_ID` | 既定 1086 |
 | `COLORME_LIVE_TEMPLATE_ID` | 既定 1064 |

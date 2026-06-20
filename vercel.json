@@ -12,6 +12,10 @@
     { "source": "/admin/docs/", "destination": "/ops", "permanent": false }
   ],
   "rewrites": [
+    { "source": "/admin/login", "destination": "/api/admin/login" },
+    { "source": "/admin/login/", "destination": "/api/admin/login" },
+    { "source": "/admin/logout", "destination": "/api/admin/logout" },
+    { "source": "/admin/logout/", "destination": "/api/admin/logout" },
     { "source": "/admin", "destination": "/api/admin" },
     { "source": "/admin/", "destination": "/api/admin" },
     { "source": "/admin/chat", "destination": "/api/admin/chat" },

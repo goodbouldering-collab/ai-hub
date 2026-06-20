@@ -1,5 +1,5 @@
 /**
- * /api/admin → /admin の HTML を Basic 認証ゲートで返す。
+ * /api/admin → /admin の HTML を管理ログインゲートで返す。
  * vercel.json の rewrites で /admin と /admin/ を /api/admin に転送する。
  *
  * cachedHtml は同一 Function インスタンス内のホットリロードを高速化するため

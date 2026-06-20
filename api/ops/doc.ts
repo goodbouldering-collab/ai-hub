@@ -1,5 +1,5 @@
 /**
- * /api/ops/doc?file=<slug> → consul-work の MD 1 件を HTML 化して JSON で返す（Basic 認証必須）
+ * /api/ops/doc?file=<slug> → consul-work の MD 1 件を HTML 化して JSON で返す（管理ログイン必須）
  *
  * CEO 指示（2026-05-17）: MD を全文ずらっと展開する旧 /admin/docs はやめる。
  * /ops は要点（タスク）を主に出し、原文は「必要時だけ折りたたみで開く」。

@@ -2,9 +2,9 @@
  * /api/admin/chat
  *   POST { history: [{role:"user"|"assistant", content:string}, ...] }
  *     → { reply: string }
- *   GET  → /admin/chat の HTML を Basic 認証ゲートで返す
+ *   GET  → /admin/chat の HTML を管理ログインゲートで返す
  *
- * vercel.json で /admin/chat → /api/admin/chat にルーティング、Basic 認証は withAdmin が担う。
+ * vercel.json で /admin/chat → /api/admin/chat にルーティング、管理ログインは withAdmin が担う。
  */
 import { readFileSync } from "node:fs";
 import { join } from "node:path";

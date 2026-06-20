@@ -2,7 +2,7 @@
  * /api/admin/docs → /admin/docs の HTML を返す。
  * consul/work/ から取り込んだ Markdown を一覧表示する。
  *
- * - 認証: withAdmin で Basic 認証ゲート
+ * - 認証: withAdmin で管理ログインゲート
  * - データソース: ai-hub/content/consul-work/*.md（GitHub Actions で日次同期される）
  * - 表示: 左サイドバー（日付降順）+ 中央ペイン（進捗ロードマップを初期表示）
  * - 個別ドキュメント: /admin/docs?file=<slug> でクエリ指定

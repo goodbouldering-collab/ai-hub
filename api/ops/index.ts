@@ -1,5 +1,5 @@
 /**
- * /api/ops → /ops のメインダッシュボード HTML を返す（Basic 認証必須）
+ * /api/ops → /ops のメインダッシュボード HTML を返す（管理ログイン必須）
  *
  * 設計（2026-05-17 CEO 指示の集大成ページ）:
  *  - 旧 /admin/docs（consul-work MD を全文展開＝ややこしい）を置換

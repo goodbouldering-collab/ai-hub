@@ -3,12 +3,12 @@
  * - readJson: body を1MB上限で安全に JSON 化
  * - sendError: エラー応答 shape の一元化
  * - methodGuard: 許容 HTTP method 以外を 405 で弾く
- * - withAdmin: requireBasicAuth + methodGuard + JSON parse + エラーハンドリングを1関数にまとめる
+ * - withAdmin: requireAdminAuth + methodGuard + JSON parse + エラーハンドリングを1関数にまとめる
  *
  * すべての admin endpoint はこのファイルを経由すること。
  */
 
-import { requireBasicAuth, type VercelReq, type VercelRes } from "./auth.js";
+import { requireAdminAuth, type VercelReq, type VercelRes } from "./auth.js";
 
 const MAX_BODY_BYTES = 1024 * 1024; // 1MB（カラーミーのテンプレ HTML が乗ることを想定して余裕）
 
@@ -91,7 +91,7 @@ export type WithAdminOptions = {
 
 /**
  * すべての admin endpoint をラップする統一エントリ:
- *  - Basic 認証チェック (auth.ts)
+ *  - 管理画面のパスワード認証チェック (auth.ts)
  *  - HTTP method ガード
  *  - JSON body の安全な読み込み（必要な場合）
  *  - 例外を ConfigError / ValidationError / 一般 Error に分けて適切な status で返す
@@ -101,7 +101,7 @@ export function withAdmin(
   handler: Handler,
 ): (req: VercelReq, res: VercelRes) => Promise<void> {
   return async (req, res) => {
-    if (!requireBasicAuth(req, res)) return;
+    if (!requireAdminAuth(req, res)) return;
     if (options.method && !methodGuard(req, res, options.method)) return;
 
     let body: any = {};

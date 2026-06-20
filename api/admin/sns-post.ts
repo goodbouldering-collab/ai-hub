@@ -1,5 +1,5 @@
 /**
- * GET  /api/admin/sns-post  → SNS 投稿 UI HTML を返す（Basic 認証付き）
+ * GET  /api/admin/sns-post  → SNS 投稿 UI HTML を返す（管理ログイン付き）
  * POST /api/admin/sns-post  → X + Threads に投稿し、portal.sns_posts にログを記録
  *
  * POST body:

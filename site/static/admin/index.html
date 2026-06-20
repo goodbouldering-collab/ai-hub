@@ -509,7 +509,7 @@
 </style>
 <link rel="stylesheet" href="/admin/admin-common.css">
 </head>
-<body class="admin-page admin-theme-light">
+<body class="admin-page admin-theme-light admin-fixed-menu-page">
 <header class="site-header scrolled" id="site-header">
   <div class="site-header-inner">
     <a class="site-logo" href="/" aria-label="AI相談。彦根 公開ページへ">
@@ -522,9 +522,54 @@
       <a class="nav-link" href="/#flow">ご依頼の流れ</a>
       <a class="nav-link" href="/#lectures">受講資料</a>
       <a class="nav-link" href="/#faq">FAQ</a>
+      <a class="nav-link nav-essential" href="#panel-status">接続確認</a>
+      <a class="nav-link nav-essential" href="#panel-site-intake">URL取込</a>
+      <a class="nav-link nav-essential" href="#panel-dashboard">今週</a>
+      <div class="menu-wrap admin-fixed-menu-wrap">
+        <button class="menu-toggle admin-fixed-menu-toggle" id="admin-menu-toggle" aria-haspopup="menu" aria-controls="admin-menu-drop" aria-expanded="false">管理
+          <svg class="chev" width="14" height="14" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="menu-drop admin-fixed-menu-drop" id="admin-menu-drop" role="menu">
+          <span class="menu-drop-label">本日の主作業</span>
+          <a href="#panel-status">接続と記事生成</a>
+          <a href="#panel-site-intake">URLから入力作成</a>
+          <a href="#panel-dashboard">今週の動き</a>
+          <a href="#panel-lectures">受講資料の編集</a>
+          <span class="menu-drop-label">運用ツール</span>
+          <a href="/admin/gubble-sns">SNS分析</a>
+          <a href="/admin/sns-post">SNS一括投稿</a>
+          <a href="/admin/chat">社内エージェント</a>
+          <a href="/ops">運用本部 OPS</a>
+        </div>
+      </div>
       <a class="login-btn" href="/">公開ページへ戻る</a>
       <a class="nav-link" href="/admin/logout">ログアウト</a>
     </nav>
+    <button class="mobile-toggle" id="mobile-toggle" aria-label="メニュー" aria-controls="mobile-nav" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <div class="mobile-nav" id="mobile-nav">
+    <div class="mobile-nav-panel">
+      <div class="mobile-nav-primary">
+        <a class="login-btn-mobile" href="/">公開ページへ戻る</a>
+        <a class="mobile-main-link" href="#panel-status">接続確認</a>
+      </div>
+      <span class="mobile-nav-label">管理</span>
+      <div class="mobile-link-grid">
+        <a href="#panel-site-intake">URL取込</a>
+        <a href="#panel-dashboard">今週</a>
+        <a href="#panel-lectures">受講資料</a>
+        <a href="/admin/chat">社内AI</a>
+      </div>
+      <span class="mobile-nav-label">運用</span>
+      <div class="mobile-link-grid">
+        <a href="/admin/gubble-sns">SNS分析</a>
+        <a href="/admin/sns-post">SNS投稿</a>
+        <a href="/ops">OPS</a>
+        <a href="/admin/logout">ログアウト</a>
+      </div>
+    </div>
   </div>
   <nav class="admin-subnav" aria-label="管理メニュー">
     <span class="admin-subnav-label">Core</span>
@@ -813,6 +858,56 @@
 
 <script>
 const $ = (id) => document.getElementById(id);
+(() => {
+  const header = $("site-header");
+  const toggle = $("admin-menu-toggle");
+  const drop = $("admin-menu-drop");
+  const mobileToggle = $("mobile-toggle");
+  const mobileNav = $("mobile-nav");
+
+  function setScrolled() {
+    if (!header) return;
+    header.classList.toggle("scrolled", window.scrollY > 20);
+  }
+
+  function closeDesktopMenu() {
+    if (!toggle || !drop) return;
+    toggle.setAttribute("aria-expanded", "false");
+    drop.classList.remove("open");
+  }
+
+  if (toggle && drop) {
+    toggle.addEventListener("click", () => {
+      const open = toggle.getAttribute("aria-expanded") === "true";
+      toggle.setAttribute("aria-expanded", String(!open));
+      drop.classList.toggle("open", !open);
+    });
+    document.addEventListener("click", (event) => {
+      if (!drop.contains(event.target) && !toggle.contains(event.target)) closeDesktopMenu();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeDesktopMenu();
+    });
+    drop.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeDesktopMenu));
+  }
+
+  if (mobileToggle && mobileNav) {
+    mobileToggle.addEventListener("click", () => {
+      const open = mobileToggle.getAttribute("aria-expanded") === "true";
+      mobileToggle.setAttribute("aria-expanded", String(!open));
+      mobileNav.classList.toggle("open", !open);
+    });
+    mobileNav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileToggle.setAttribute("aria-expanded", "false");
+        mobileNav.classList.remove("open");
+      });
+    });
+  }
+
+  window.addEventListener("scroll", setScrolled, { passive: true });
+  setScrolled();
+})();
 const log = (msg) => {
   const el = $("publish-log");
   el.textContent += "\n" + new Date().toISOString().slice(11,19) + " " + msg;

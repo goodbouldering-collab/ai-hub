@@ -732,3 +732,313 @@ body.admin-page .admin-command-menu .admin-link:focus-visible {
     padding: 10px !important;
   }
 }
+
+/* ---- Admin fixed hamburger menu: match public top navigation, 2026-06-21 ---- */
+body.admin-page.admin-fixed-menu-page {
+  --admin-header-height: 64px;
+  --header-h: 64px;
+}
+
+body.admin-page.admin-fixed-menu-page header.site-header,
+body.admin-page.admin-fixed-menu-page .site-header,
+body.admin-page.admin-fixed-menu-page header.site-header.scrolled,
+body.admin-page.admin-fixed-menu-page header.site-header:hover {
+  min-height: 62px !important;
+  height: 62px !important;
+  background: rgba(255,255,255,.985) !important;
+  border-bottom: 1px solid rgba(18,32,51,.14) !important;
+  box-shadow: 0 12px 34px rgba(18,32,51,.10), inset 0 1px 0 rgba(255,255,255,.94) !important;
+  backdrop-filter: blur(20px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(150%) !important;
+}
+
+body.admin-page.admin-fixed-menu-page .site-header-inner {
+  max-width: 1280px !important;
+  min-height: 62px !important;
+  height: 62px !important;
+  padding: 8px 20px !important;
+  flex-direction: row !important;
+  align-items: center !important;
+}
+
+body.admin-page.admin-fixed-menu-page .site-nav {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  flex-wrap: nowrap !important;
+  gap: 6px !important;
+  padding: 4px !important;
+  border: 1px solid rgba(18,32,51,.10) !important;
+  border-radius: 10px !important;
+  background: rgba(255,255,255,.82) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.96) !important;
+}
+
+body.admin-page.admin-fixed-menu-page .site-nav a.nav-link {
+  display: none !important;
+}
+
+body.admin-page.admin-fixed-menu-page .site-nav a.nav-link.nav-essential,
+body.admin-page.admin-fixed-menu-page .site-nav a.nav-link[href="/admin/logout"],
+body.admin-page.admin-fixed-menu-page .site-nav .menu-toggle {
+  min-height: 36px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  padding: 0 10px !important;
+  border: 1px solid transparent !important;
+  border-radius: 8px !important;
+  background: rgba(255,255,255,.72) !important;
+  color: #26364D !important;
+  font-size: 12.5px !important;
+  font-weight: 850 !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+}
+
+body.admin-page.admin-fixed-menu-page .site-nav a.nav-link.nav-essential:hover,
+body.admin-page.admin-fixed-menu-page .site-nav a.nav-link[href="/admin/logout"]:hover,
+body.admin-page.admin-fixed-menu-page .site-nav .menu-toggle:hover,
+body.admin-page.admin-fixed-menu-page .site-nav .menu-toggle[aria-expanded="true"] {
+  background: #EAF6F8 !important;
+  color: #0F5F78 !important;
+  border-color: rgba(31,110,140,.22) !important;
+}
+
+body.admin-page.admin-fixed-menu-page .site-nav .menu-toggle .chev {
+  transition: transform .2s !important;
+}
+
+body.admin-page.admin-fixed-menu-page .site-nav .menu-toggle[aria-expanded="true"] .chev {
+  transform: rotate(180deg) !important;
+}
+
+body.admin-page.admin-fixed-menu-page .site-nav .menu-wrap,
+body.admin-page.admin-fixed-menu-page .site-nav .admin-fixed-menu-wrap {
+  position: relative !important;
+  display: inline-flex !important;
+}
+
+body.admin-page.admin-fixed-menu-page .site-nav .menu-drop,
+body.admin-page.admin-fixed-menu-page .site-nav .admin-fixed-menu-drop {
+  position: absolute !important;
+  right: 0 !important;
+  top: calc(100% + 14px) !important;
+  width: min(520px, calc(100vw - 32px)) !important;
+  max-height: calc(100dvh - 84px) !important;
+  overflow-y: auto !important;
+  padding: 10px !important;
+  display: none !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 6px !important;
+  background: #FFFFFF !important;
+  color: #122033 !important;
+  border: 1px solid rgba(18,32,51,.16) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 18px 44px rgba(18,32,51,.16), inset 0 1px 0 rgba(255,255,255,.95) !important;
+}
+
+body.admin-page.admin-fixed-menu-page .site-nav .menu-drop.open,
+body.admin-page.admin-fixed-menu-page .site-nav .admin-fixed-menu-drop.open {
+  display: grid !important;
+}
+
+body.admin-page.admin-fixed-menu-page .site-nav .menu-drop-label {
+  grid-column: 1 / -1 !important;
+  display: block !important;
+  padding: 7px 8px 4px !important;
+  color: #66758A !important;
+  font-size: 10px !important;
+  font-weight: 900 !important;
+  letter-spacing: .14em !important;
+  text-transform: uppercase !important;
+}
+
+body.admin-page.admin-fixed-menu-page .site-nav .menu-drop a,
+body.admin-page.admin-fixed-menu-page .site-nav .admin-fixed-menu-drop a {
+  min-height: 40px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  padding: 9px 10px !important;
+  border: 1px solid rgba(18,32,51,.10) !important;
+  border-radius: 8px !important;
+  background: rgba(248,252,253,.94) !important;
+  color: #203045 !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  text-decoration: none !important;
+}
+
+body.admin-page.admin-fixed-menu-page .site-nav .menu-drop a:hover,
+body.admin-page.admin-fixed-menu-page .site-nav .admin-fixed-menu-drop a:hover {
+  background: #EAF6F8 !important;
+  color: #0F5F78 !important;
+  border-color: rgba(31,110,140,.22) !important;
+}
+
+body.admin-page.admin-fixed-menu-page .site-nav .login-btn,
+body.admin-page.admin-fixed-menu-page .site-nav a.login-btn,
+body.admin-page.admin-fixed-menu-page .site-nav .nav-cta {
+  min-height: 38px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 0 14px !important;
+  border-radius: 8px !important;
+  border-color: transparent !important;
+  background: linear-gradient(135deg, #1F6E8C 0%, #2C8C78 100%) !important;
+  color: #FFFFFF !important;
+  font-size: 13px !important;
+  font-weight: 900 !important;
+  box-shadow: 0 14px 34px rgba(31,110,140,.20), inset 0 1px 0 rgba(255,255,255,.24) !important;
+}
+
+body.admin-page.admin-fixed-menu-page .site-nav .login-btn:hover,
+body.admin-page.admin-fixed-menu-page .site-nav a.login-btn:hover,
+body.admin-page.admin-fixed-menu-page .site-nav .nav-cta:hover {
+  transform: translateY(-1px) !important;
+  filter: brightness(1.06) !important;
+  color: #fff !important;
+}
+
+body.admin-page.admin-fixed-menu-page .admin-subnav,
+body.admin-page.admin-fixed-menu-page .admin-command-menu {
+  display: none !important;
+}
+
+body.admin-page.admin-fixed-menu-page .mobile-toggle {
+  display: none !important;
+  width: 42px !important;
+  height: 42px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(18,32,51,.16) !important;
+  background: #FFFFFF !important;
+  color: #122033 !important;
+  box-shadow: 0 6px 16px rgba(18,32,51,.08) !important;
+  cursor: pointer !important;
+}
+
+body.admin-page.admin-fixed-menu-page .mobile-toggle svg path {
+  stroke: #122033 !important;
+}
+
+body.admin-page.admin-fixed-menu-page .mobile-nav {
+  position: fixed !important;
+  top: 62px !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 99 !important;
+  display: none !important;
+  max-height: calc(100dvh - 62px) !important;
+  overflow-y: auto !important;
+  padding: 10px 16px 18px !important;
+  background: rgba(255,255,255,.96) !important;
+  color: #122033 !important;
+  border-top: 1px solid rgba(18,32,51,.14) !important;
+  box-shadow: 0 18px 34px rgba(18,32,51,.14) !important;
+}
+
+body.admin-page.admin-fixed-menu-page .mobile-nav.open {
+  display: block !important;
+}
+
+body.admin-page.admin-fixed-menu-page .mobile-nav-panel {
+  width: min(100%, 720px) !important;
+  margin: 0 auto !important;
+  display: grid !important;
+  gap: 10px !important;
+}
+
+body.admin-page.admin-fixed-menu-page .mobile-nav-primary,
+body.admin-page.admin-fixed-menu-page .mobile-link-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 8px !important;
+}
+
+body.admin-page.admin-fixed-menu-page .mobile-nav a,
+body.admin-page.admin-fixed-menu-page .mobile-nav .login-btn-mobile,
+body.admin-page.admin-fixed-menu-page .mobile-nav .mobile-main-link {
+  min-height: 44px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 9px 10px !important;
+  border: 1px solid rgba(18,32,51,.10) !important;
+  border-radius: 8px !important;
+  background: rgba(255,255,255,.78) !important;
+  color: #122033 !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  text-decoration: none !important;
+}
+
+body.admin-page.admin-fixed-menu-page .mobile-nav a:hover,
+body.admin-page.admin-fixed-menu-page .mobile-nav a:focus-visible {
+  background: #EAF6F8 !important;
+  color: #0F5F78 !important;
+}
+
+body.admin-page.admin-fixed-menu-page .mobile-nav .login-btn-mobile,
+body.admin-page.admin-fixed-menu-page .mobile-nav .mobile-main-link {
+  background: linear-gradient(135deg, #1F6E8C 0%, #2C8C78 100%) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+}
+
+body.admin-page.admin-fixed-menu-page .mobile-nav .mobile-nav-label {
+  padding: 2px 2px 0 !important;
+  color: #5D6C80 !important;
+  font-size: 11px !important;
+  font-weight: 900 !important;
+  letter-spacing: .14em !important;
+  line-height: 1.2 !important;
+  text-transform: uppercase !important;
+}
+
+@media (max-width: 1040px) {
+  body.admin-page.admin-fixed-menu-page .site-nav a.nav-link.nav-essential {
+    display: none !important;
+  }
+}
+
+@media (max-width: 900px) {
+  body.admin-page.admin-fixed-menu-page {
+    padding-top: 76px !important;
+  }
+
+  body.admin-page.admin-fixed-menu-page .container {
+    padding-top: 76px !important;
+  }
+
+  body.admin-page.admin-fixed-menu-page .site-header-inner {
+    padding: 8px 14px !important;
+    flex-direction: row !important;
+    align-items: center !important;
+  }
+
+  body.admin-page.admin-fixed-menu-page .site-nav {
+    display: none !important;
+  }
+
+  body.admin-page.admin-fixed-menu-page .mobile-toggle {
+    display: inline-flex !important;
+    margin-left: auto !important;
+  }
+
+  body.admin-page.admin-fixed-menu-page .wordmark .word-en,
+  body.admin-page.admin-fixed-menu-page .site-logo-by {
+    display: none !important;
+  }
+}
+
+@media (max-width: 520px) {
+  body.admin-page.admin-fixed-menu-page .mobile-nav-primary,
+  body.admin-page.admin-fixed-menu-page .mobile-link-grid {
+    grid-template-columns: 1fr !important;
+  }
+}

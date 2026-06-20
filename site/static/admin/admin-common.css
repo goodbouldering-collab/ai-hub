@@ -7,12 +7,14 @@
 }
 
 body.admin-theme-light {
-  --admin-header-bg: rgba(255,255,255,.98);
-  --admin-header-shadow: 0 1px 0 rgba(15,23,42,.08), 0 12px 32px rgba(15,23,42,.08);
-  --admin-link-bg: #fff;
-  --admin-link-hover: #eff6ff;
-  --admin-link-text: #1e293b;
-  --admin-cta-bg: #0f172a;
+  --admin-accent: #0B5C74;
+  --admin-border: rgba(7,22,43,.15);
+  --admin-header-bg: rgba(255,255,255,.985);
+  --admin-header-shadow: 0 1px 0 rgba(7,22,43,.10), 0 14px 34px rgba(7,22,43,.10);
+  --admin-link-bg: rgba(255,255,255,.96);
+  --admin-link-hover: #E9F8F6;
+  --admin-link-text: #15243A;
+  --admin-cta-bg: linear-gradient(135deg, #0B5C74, #0E876F);
   --admin-cta-text: #fff;
 }
 
@@ -222,9 +224,29 @@ header.site-header,
 .admin-subnav a[aria-current="page"],
 .admin-subnav a[aria-current="true"] {
   color: #fff;
-  background: var(--admin-accent);
+  background: linear-gradient(135deg, #0B5C74, #0E876F);
   border-color: var(--admin-accent);
-  box-shadow: 0 8px 20px rgba(37,99,235,.18);
+  box-shadow: 0 8px 20px rgba(11,92,116,.18);
+}
+
+body.admin-theme-light .site-nav a.nav-link[href="/#packages"],
+body.admin-theme-light .admin-subnav a[href="#panel-status"],
+body.admin-theme-light .admin-subnav a[href="#panel-site-intake"] {
+  color: #064E63 !important;
+  border-color: rgba(11,92,116,.25) !important;
+  background: linear-gradient(180deg, #F6FEFF, #ECFAFC) !important;
+}
+
+body.admin-theme-light .site-nav a.nav-link[href="/#packages"]:hover,
+body.admin-theme-light .site-nav a.nav-link[href="/#packages"]:focus-visible,
+body.admin-theme-light .admin-subnav a[href="#panel-status"]:hover,
+body.admin-theme-light .admin-subnav a[href="#panel-status"]:focus-visible,
+body.admin-theme-light .admin-subnav a[href="#panel-site-intake"]:hover,
+body.admin-theme-light .admin-subnav a[href="#panel-site-intake"]:focus-visible {
+  color: #fff !important;
+  background: linear-gradient(135deg, #0B5C74, #0E876F) !important;
+  border-color: #0B5C74 !important;
+  box-shadow: 0 0 0 3px rgba(11,92,116,.14) !important;
 }
 
 @media (max-width: 900px) {

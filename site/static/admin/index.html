@@ -528,10 +528,11 @@
   <nav class="admin-subnav" aria-label="管理メニュー">
     <span class="admin-subnav-label">Core</span>
     <a href="/admin#admin-menu" aria-current="page">管理ハブ</a>
+    <a href="#panel-status">接続・記事</a>
+    <a href="#panel-site-intake">URL取込</a>
     <a href="#panel-dashboard">今週の動き</a>
     <span class="admin-subnav-label">Content</span>
     <a href="#panel-lectures">受講資料</a>
-    <a href="#panel-status">記事作成</a>
     <span class="admin-subnav-label">SNS</span>
     <a href="/admin/gubble-sns">SNS分析</a>
     <a href="/admin/sns-post">SNS投稿</a>
@@ -556,17 +557,17 @@
       <p>API と環境変数の状態を最初に見て、止まっている原因を先に外します。</p>
       <em>接続状態へ移動 →</em>
     </a>
-    <a class="quickflow-card" href="#admin-menu">
+    <a class="quickflow-card" href="#panel-site-intake">
       <span>STEP 2</span>
-      <strong>作業先を決める</strong>
-      <p>今日やる作業、公開確認、運用監視を管理ハブで分けてから作業へ入ります。</p>
-      <em>管理ハブへ移動 →</em>
+      <strong>URLから下書き</strong>
+      <p>公式サイトを読み取り、記事テーマ・画像プロンプト・SNS分析設定の候補を作ります。</p>
+      <em>URL取込へ移動 →</em>
     </a>
-    <a class="quickflow-card" href="#panel-status">
+    <a class="quickflow-card" href="#admin-menu">
       <span>STEP 3</span>
-      <strong>生成して整える</strong>
-      <p>記事案の生成、採用案の編集、画像作成、公開の順で作業を閉じます。</p>
-      <em>記事作成へ移動 →</em>
+      <strong>作業先を決める</strong>
+      <p>記事作成、公開確認、SNS分析、OPS を管理ハブで分けてから作業に入ります。</p>
+      <em>管理ハブへ移動 →</em>
     </a>
   </div>
 
@@ -622,6 +623,11 @@
         <a class="admin-link" href="#panel-status">
           <span class="admin-link-icon">✍️</span>
           <span><strong>接続と記事生成</strong><small>生成・編集・公開</small></span>
+          <span class="admin-link-action">移動</span>
+        </a>
+        <a class="admin-link" href="#panel-site-intake">
+          <span class="admin-link-icon">🔎</span>
+          <span><strong>URLから入力作成</strong><small>記事・画像・SNS設定</small></span>
           <span class="admin-link-action">移動</span>
         </a>
         <a class="admin-link" href="#panel-dashboard">

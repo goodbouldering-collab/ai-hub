@@ -6033,10 +6033,84 @@ PORTAL_CSS += """
     linear-gradient(92deg, rgba(255,255,255,1) 0%, rgba(255,255,255,.965) 34%, rgba(255,255,255,.74) 60%, rgba(255,255,255,.36) 100%),
     linear-gradient(180deg, rgba(255,255,255,.82) 0%, rgba(246,253,253,.92) 100%) !important;
 }
+.course-decision-rail {
+  margin: 0 auto 18px;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+.course-decision-card {
+  position: relative;
+  min-height: 184px;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(7,22,43,.13);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.98), rgba(248,252,253,.92));
+  color: #15243A;
+  text-decoration: none;
+  box-shadow: 0 12px 28px rgba(7,22,43,.075), inset 0 1px 0 rgba(255,255,255,.95);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+}
+.course-decision-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 4px;
+  border-radius: 8px 8px 0 0;
+  background: var(--decision-color, #0B5C74);
+}
+.course-decision-card:hover,
+.course-decision-card:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--decision-color, #0B5C74);
+  box-shadow: 0 18px 36px rgba(7,22,43,.11), 0 0 0 3px rgba(11,92,116,.10);
+  outline: none;
+}
+.course-decision-kicker {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 900;
+  letter-spacing: .10em;
+  color: var(--decision-color, #0B5C74);
+  text-transform: uppercase;
+}
+.course-decision-card b {
+  color: #07162B;
+  font-size: 16px;
+  line-height: 1.42;
+}
+.course-decision-card span {
+  color: #405166;
+  font-size: 13px;
+  line-height: 1.62;
+}
+.course-decision-card em {
+  margin-top: auto;
+  color: #07162B;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 900;
+}
 @media (max-width: 680px) {
   .hero.hero-atlas {
     min-height: auto !important;
     padding-top: 88px !important;
+  }
+  .course-decision-rail {
+    grid-template-columns: 1fr;
+  }
+  .course-decision-card {
+    min-height: 0;
+  }
+}
+@media (min-width: 681px) and (max-width: 1080px) {
+  .course-decision-rail {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 """
@@ -7522,7 +7596,27 @@ def _render_courses_packages() -> str:
             "intent": ["lesson", "build"],
         },
     ]
+    decision_cards = [
+        ("相談前", "何を頼むか決まっていない", "無料30分相談", "今の課題、講座か伴走か、補助金の使い方を先に整理します。", free_consult_url, "#0B5C74"),
+        ("初回", "Codexを安全に開きたい", "Codex準備会", "ログイン、作業フォルダ、秘密情報を入れない依頼、差分確認までを60分で整えます。", seminar_url, "#0E876F"),
+        ("実践", "持ち込み課題を成果物にしたい", "Codex実践会", "ページ、資料、コード、画像生成プロンプト、動画台本まで作業テンプレに落とします。", seminar_url, "#C77910"),
+        ("判断力", "AIが作ったものを読めるようにしたい", "AIコーディング講習", "設計、データ、運用、セキュリティまで、公開前に止める判断を学びます。", AI_CODING_BOOK_URL, "#6D5DD3"),
+        ("定着", "会社や店舗で運用まで回したい", support_title, "HP公開、事務自動化、SNS、社内AI、月次改善を6ヶ月で定着させます。", MONTHLY_SUPPORT_CHECKOUT_URL, "#F26655"),
+    ]
+    decision_html = ["<div class='course-decision-rail fade-up d1' aria-label='状態別おすすめ講座'>"]
+    for kicker, concern, route, detail, href, color in decision_cards:
+        target_attr = " target='_blank' rel='noopener'" if href.startswith("http") else ""
+        decision_html.append(
+            f"<a class='course-decision-card' style='--decision-color:{html.escape(color)}' href='{html.escape(href, quote=True)}'{target_attr}>"
+            f"<small class='course-decision-kicker'>{html.escape(kicker)}</small>"
+            f"<b>{html.escape(concern)}</b>"
+            f"<span>{html.escape(detail)}</span>"
+            f"<em>{html.escape(route)} →</em>"
+            "</a>"
+        )
+    decision_html.append("</div>")
     parts = [
+        "".join(decision_html),
         "<div class='package-intent-panel fade-up d1' aria-label='受講プランの絞り込み'>"
         "<div class='package-intent-copy'>"
         "<strong>目的で先に絞る</strong>"

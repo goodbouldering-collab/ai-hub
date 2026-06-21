@@ -90,11 +90,65 @@
     overflow-x: auto;
     flex-wrap: nowrap;
   }
+  body.admin-page .brand-mark { display: none; }
+  body.admin-page.admin-fixed-menu-page { padding-top: 94px; }
+  body.admin-page.admin-fixed-menu-page .site-header-inner {
+    padding: 8px 16px;
+    flex-direction: row;
+    align-items: center;
+    overflow: hidden;
+  }
+  body.admin-page.admin-fixed-menu-page .site-logo {
+    flex: 0 0 auto;
+    min-width: 0;
+  }
+  body.admin-page.admin-fixed-menu-page .admin-slide-nav {
+    flex: 1 1 auto;
+    min-width: 0;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    padding: 5px;
+    border: 1px solid #d8e2ee;
+    border-radius: 10px;
+    background: rgba(255,255,255,.88);
+  }
+  body.admin-page.admin-fixed-menu-page .admin-scroll-menu {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding: 0 2px 2px;
+  }
+  body.admin-page.admin-fixed-menu-page .admin-scroll-link {
+    flex: 0 0 auto;
+    min-height: 38px;
+  }
+  body.admin-page.admin-fixed-menu-page .admin-scroll-link.public-link {
+    border-style: dashed;
+    color: #315e34;
+  }
   @media (max-width: 900px) {
     body { padding-top: 214px; }
     .site-header-inner { align-items: flex-start; flex-direction: column; }
     .site-nav { gap: 8px; }
     .wordmark .word-en, .site-logo-by { display: none; }
+    body.admin-page.admin-fixed-menu-page { padding-top: 88px; }
+    body.admin-page.admin-fixed-menu-page .site-header-inner {
+      align-items: center;
+      flex-direction: row;
+      padding: 8px 10px;
+    }
+    body.admin-page.admin-fixed-menu-page .site-logo {
+      max-width: 132px;
+      font-size: 14px;
+    }
+    body.admin-page.admin-fixed-menu-page .wordmark { display: inline-flex; }
+    body.admin-page.admin-fixed-menu-page .wordmark .word-hub,
+    body.admin-page.admin-fixed-menu-page .wordmark .word-en,
+    body.admin-page.admin-fixed-menu-page .site-logo-by { display: none; }
   }
   .wrap { max-width: 960px; margin: 0 auto; }
   .topbar {
@@ -311,30 +365,24 @@
   }
 </style>
 </head>
-<body>
-<header class="site-header">
+<body class="admin-page admin-theme-light admin-fixed-menu-page">
+<header class="site-header scrolled" id="site-header">
   <div class="site-header-inner">
-    <a class="site-logo" href="/site/" aria-label="AIスペシャリスト 由井辰美 公開ページへ">
-      <span class="brand-mark" aria-hidden="true"><span class="brand-a">AI</span><span class="brand-ha">専</span></span>
+    <a class="site-logo" href="/admin" aria-label="AIスペシャリスト 由井辰美 管理トップへ">
       <span class="wordmark"><span class="word-ai">AIスペシャリスト</span><span class="word-hub">由井辰美</span><span class="word-en">HIKONE AI SPECIALIST</span></span>
-      <span class="site-logo-by">管理画面</span>
+      <span class="site-logo-by">管理</span>
     </a>
-    <nav class="site-nav" aria-label="公開ページナビ">
-      <a href="/site/#specialist">専門性</a>
-      <a href="/site/#blog">ブログ</a>
-      <a href="/site/#packages">講習/伴走</a>
-      <a href="/site/#lectures">受講資料</a>
-      <a href="/site/watch/index.html">AI Watch</a>
-      <a class="login-btn" href="/site/">公開ページへ戻る</a>
+    <nav class="site-nav admin-slide-nav" aria-label="管理固定メニュー">
+      <div class="admin-scroll-menu" aria-label="横にスライドできる管理メニュー">
+        <a class="admin-scroll-link" href="#panel-sns">サポートSNS</a>
+        <a class="admin-scroll-link" href="#panel-speaker">講師紹介</a>
+        <a class="admin-scroll-link" href="#panel-lectures">受講資料</a>
+        <a class="admin-scroll-link" href="#panel-buttons">トップボタン</a>
+        <a class="admin-scroll-link" href="#panel-shopify">Shopify</a>
+        <a class="admin-scroll-link public-link" href="/site/">公開ページ</a>
+      </div>
     </nav>
   </div>
-  <nav class="admin-subnav" aria-label="管理メニュー">
-    <a href="#panel-sns">サポートSNS</a>
-    <a href="#panel-speaker">講師紹介</a>
-    <a href="#panel-lectures">受講資料</a>
-    <a href="#panel-buttons">トップボタン</a>
-    <a href="#panel-shopify">Shopify</a>
-  </nav>
 </header>
 <div class="wrap">
   <div class="topbar">

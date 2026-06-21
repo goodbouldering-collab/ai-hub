@@ -153,6 +153,10 @@ header.site-header,
   font-weight: 950 !important;
 }
 
+body.admin-page .brand-mark {
+  display: none !important;
+}
+
 .brand-mark .brand-a,
 .wordmark .word-ai { color: var(--admin-accent) !important; }
 .brand-mark .brand-ha { color: var(--admin-teal) !important; margin-left: 1px !important; }
@@ -1110,7 +1114,6 @@ body.admin-page.admin-fixed-menu-page .admin-scroll-menu::-webkit-scrollbar-thum
   border-radius: 999px !important;
 }
 
-body.admin-page.admin-fixed-menu-page .home-icon-link,
 body.admin-page.admin-fixed-menu-page .admin-scroll-link,
 body.admin-page.admin-fixed-menu-page .logout-link {
   flex: 0 0 auto !important;
@@ -1122,22 +1125,6 @@ body.admin-page.admin-fixed-menu-page .logout-link {
   border-radius: 8px !important;
   text-decoration: none !important;
   white-space: nowrap !important;
-}
-
-body.admin-page.admin-fixed-menu-page .home-icon-link {
-  width: 38px !important;
-  min-width: 38px !important;
-  padding: 0 !important;
-  border: 1px solid rgba(31,110,140,.18) !important;
-  background: #EAF6F8 !important;
-  color: #0F5F78 !important;
-}
-
-body.admin-page.admin-fixed-menu-page .home-icon-link:hover,
-body.admin-page.admin-fixed-menu-page .home-icon-link:focus-visible {
-  background: #DDF1F4 !important;
-  color: #094F65 !important;
-  border-color: rgba(31,110,140,.34) !important;
 }
 
 body.admin-page.admin-fixed-menu-page .admin-scroll-link {
@@ -1238,17 +1225,20 @@ body.admin-page.admin-fixed-menu-page .container {
   }
 
   body.admin-page.admin-fixed-menu-page .site-logo {
-    max-width: 112px !important;
+    max-width: 132px !important;
     font-size: 14px !important;
   }
 
   body.admin-page.admin-fixed-menu-page .brand-mark {
-    width: 34px !important;
-    height: 30px !important;
-    font-size: 12px !important;
+    display: none !important;
   }
 
   body.admin-page.admin-fixed-menu-page .wordmark {
+    display: inline-flex !important;
+  }
+
+  body.admin-page.admin-fixed-menu-page .wordmark .word-hub,
+  body.admin-page.admin-fixed-menu-page .wordmark .word-en {
     display: none !important;
   }
 
@@ -1262,12 +1252,6 @@ body.admin-page.admin-fixed-menu-page .container {
     gap: 4px !important;
   }
 
-  body.admin-page.admin-fixed-menu-page .home-icon-link {
-    width: 36px !important;
-    min-width: 36px !important;
-    min-height: 36px !important;
-  }
-
   body.admin-page.admin-fixed-menu-page .admin-scroll-link,
   body.admin-page.admin-fixed-menu-page .site-nav a.logout-link {
     min-height: 36px !important;
@@ -1278,10 +1262,15 @@ body.admin-page.admin-fixed-menu-page .container {
 
 @media (max-width: 560px) {
   body.admin-page.admin-fixed-menu-page .site-logo {
-    max-width: 42px !important;
+    max-width: 122px !important;
   }
 
-  body.admin-page.admin-fixed-menu-page .site-logo .wordmark,
+  body.admin-page.admin-fixed-menu-page .site-logo .wordmark {
+    display: inline-flex !important;
+  }
+
+  body.admin-page.admin-fixed-menu-page .site-logo .word-hub,
+  body.admin-page.admin-fixed-menu-page .site-logo .word-en,
   body.admin-page.admin-fixed-menu-page .site-logo-by {
     display: none !important;
   }

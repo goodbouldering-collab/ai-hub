@@ -153,34 +153,28 @@
 </style>
 <link rel="stylesheet" href="/admin/admin-common.css">
 </head>
-<body class="admin-page admin-theme-light">
+<body class="admin-page admin-theme-light admin-fixed-menu-page">
 <header class="site-header scrolled" id="site-header">
   <div class="site-header-inner">
-    <a class="site-logo" href="/" aria-label="AIスペシャリスト 由井辰美 公開ページへ">
-      <span class="brand-mark" aria-hidden="true"><span class="brand-a">AI</span><span class="brand-ha">専</span></span>
+    <a class="site-logo" href="/admin" aria-label="AIスペシャリスト 由井辰美 管理トップへ">
       <span class="wordmark"><span class="word-ai">AIスペシャリスト</span><span class="word-hub">由井辰美</span><span class="word-en">HIKONE AI SPECIALIST</span></span>
-      <span class="site-logo-by">AI管理</span>
+      <span class="site-logo-by">管理</span>
     </a>
-    <nav class="site-nav" aria-label="公開ページナビ">
-      <a class="nav-link" href="/#specialist">専門性</a>
-      <a class="nav-link" href="/#blog">ブログ</a>
-      <a class="nav-link" href="/#packages">講習/伴走</a>
-      <a class="nav-link" href="/#lectures">受講資料</a>
-      <a class="login-btn" href="/">公開ページへ戻る</a>
+    <nav class="site-nav admin-slide-nav" aria-label="管理固定メニュー">
+      <div class="admin-scroll-menu" aria-label="横にスライドできる管理メニュー">
+        <a class="admin-scroll-link" href="/admin#panel-status">接続と記事生成</a>
+        <a class="admin-scroll-link" href="/admin#panel-site-intake">URLから入力作成</a>
+        <a class="admin-scroll-link" href="/admin#panel-dashboard">今週の動き</a>
+        <a class="admin-scroll-link" href="/admin#panel-lectures">受講資料の編集</a>
+        <a class="admin-scroll-link" href="/admin/gubble-sns">SNS分析</a>
+        <a class="admin-scroll-link" href="/admin/sns-post">SNS一括投稿</a>
+        <a class="admin-scroll-link" href="/admin/chat">社内AI</a>
+        <a class="admin-scroll-link" href="/ops">OPS</a>
+        <a class="admin-scroll-link public-link" href="/">公開ページ</a>
+        <a class="admin-scroll-link logout-scroll-link" href="/admin/logout">ログアウト</a>
+      </div>
     </nav>
   </div>
-  <nav class="admin-subnav" aria-label="管理メニュー">
-    <span class="admin-subnav-label">Core</span>
-    <a href="/admin#admin-menu">管理ハブ</a>
-    <span class="admin-subnav-label">Content</span>
-    <a href="/admin#panel-status">記事生成</a>
-    <span class="admin-subnav-label">SNS</span>
-    <a href="/admin/gubble-sns">SNS分析</a>
-    <a href="/admin/sns-post">SNS投稿</a>
-    <span class="admin-subnav-label">Tools</span>
-    <a href="/admin/chat" aria-current="page">社内AI</a>
-    <a href="/ops">OPS</a>
-  </nav>
 </header>
 <div class="container">
   <div class="topbar">

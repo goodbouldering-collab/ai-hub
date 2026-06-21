@@ -1,4 +1,4 @@
-<!doctype html><html lang='ja'><head><meta charset='utf-8'><link rel='icon' type='image/svg+xml' href='/favicon.svg'><link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png'><link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png'><link rel='shortcut icon' href='/favicon.ico'><link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png'><link rel='manifest' href='/site.webmanifest'><link rel='mask-icon' href='/favicon.svg' color='#0EA5E9'><meta name='theme-color' content='#F7FBFF'><meta name='viewport' content='width=device-width,initial-scale=1'><title>クラウドAIエージェント時代のRAG設計｜AIにどの順番で考えてもらうか | AIスペシャリスト 由井辰美</title><meta name='description' content='クラウドAIエージェントが毎日の業務を判断する時代に必要なRAG設計を、AI専用の資料棚、見る順番、EC・交流会の例、人間が確認する範囲までわかりやすく整理。'><link rel='canonical' href='https://ai-hub-jp.vercel.app/lectures/2026-06-ai-agent-rag-design.html'><meta property='og:title' content='クラウドAIエージェント時代のRAG設計｜AIにどの順番で考えてもらうか'><meta property='og:description' content='クラウドAIエージェントが毎日の業務を判断する時代に必要なRAG設計を、AI専用の資料棚、見る順番、EC・交流会の例、人間が確認する範囲までわかりやすく整理。'><meta property='og:url' content='https://ai-hub-jp.vercel.app/lectures/2026-06-ai-agent-rag-design.html'><meta property='og:type' content='article'><meta property='og:site_name' content='AIスペシャリスト 由井辰美'><meta name='twitter:card' content='summary'><script type='application/ld+json'>{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "クラウドAIエージェント時代のRAG設計｜AIにどの順番で考えてもらうか", "datePublished": "2026-06-17", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://ai-hub-jp.vercel.app/lectures/2026-06-ai-agent-rag-design.html"}, "author": {"@type": "Person", "name": "由井 辰美"}, "publisher": {"@type": "Organization", "name": "AIスペシャリスト 由井辰美", "url": "https://ai-hub-jp.vercel.app"}, "description": "クラウドAIエージェントが毎日の業務を判断する時代に必要なRAG設計を、AI専用の資料棚、見る順番、EC・交流会の例、人間が確認する範囲までわかりやすく整理。", "speakable": {"@type": "SpeakableSpecification", "cssSelector": ["h1", ".content-wrap p:first-of-type"]}}</script><style>
+<!doctype html><html lang='ja'><head><meta charset='utf-8'><link rel='icon' type='image/svg+xml' href='/favicon.svg'><link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png'><link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png'><link rel='shortcut icon' href='/favicon.ico'><link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png'><link rel='manifest' href='/site.webmanifest'><link rel='mask-icon' href='/favicon.svg' color='#0EA5E9'><meta name='theme-color' content='#F7FBFF'><meta name='viewport' content='width=device-width,initial-scale=1'><title>クラウドAIエージェント時代のRAG設計｜AIにどの順番で考えてもらうか | AIスペシャリスト 彦根</title><meta name='description' content='クラウドAIエージェントが毎日の業務を判断する時代に必要なRAG設計を、AI専用の資料棚、見る順番、EC・交流会の例、人間が確認する範囲までわかりやすく整理。'><link rel='canonical' href='https://ai-hub-jp.vercel.app/lectures/2026-06-ai-agent-rag-design.html'><meta property='og:title' content='クラウドAIエージェント時代のRAG設計｜AIにどの順番で考えてもらうか'><meta property='og:description' content='クラウドAIエージェントが毎日の業務を判断する時代に必要なRAG設計を、AI専用の資料棚、見る順番、EC・交流会の例、人間が確認する範囲までわかりやすく整理。'><meta property='og:url' content='https://ai-hub-jp.vercel.app/lectures/2026-06-ai-agent-rag-design.html'><meta property='og:type' content='article'><meta property='og:site_name' content='AIスペシャリスト 彦根'><meta name='twitter:card' content='summary'><script type='application/ld+json'>{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "クラウドAIエージェント時代のRAG設計｜AIにどの順番で考えてもらうか", "datePublished": "2026-06-17", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://ai-hub-jp.vercel.app/lectures/2026-06-ai-agent-rag-design.html"}, "author": {"@type": "Person", "name": "由井 辰美"}, "publisher": {"@type": "Organization", "name": "AIスペシャリスト 彦根", "url": "https://ai-hub-jp.vercel.app"}, "description": "クラウドAIエージェントが毎日の業務を判断する時代に必要なRAG設計を、AI専用の資料棚、見る順番、EC・交流会の例、人間が確認する範囲までわかりやすく整理。", "speakable": {"@type": "SpeakableSpecification", "cssSelector": ["h1", ".content-wrap p:first-of-type"]}}</script><style>
 :root {
   --bg-base:#f8fafc;
   --bg-white:#ffffff;
@@ -95,9 +95,9 @@ header.site-header.scrolled {
 .brand-mark {
   width: 44px; height: 36px; border-radius: 8px;
   display: inline-flex; align-items: center; justify-content: center;
-  background: linear-gradient(135deg, #FFFFFF 0%, #EAF8FF 58%, #EAFBF7 100%);
-  border: 1px solid rgba(0,95,158,.18);
-  box-shadow: 0 10px 24px rgba(0,95,158,.12), inset 0 1px 0 rgba(255,255,255,.95);
+  background: linear-gradient(135deg, #FFFFFF 0%, #E8F8F5 52%, #F2F9E8 100%);
+  border: 1px solid rgba(15,143,114,.22);
+  box-shadow: 0 10px 24px rgba(15,143,114,.13), inset 0 1px 0 rgba(255,255,255,.95);
   color: #0F172A; font-family: var(--mono, monospace); font-weight: 900; line-height: 1;
 }
 .brand-mark .brand-a { font-size: 14px; letter-spacing: 0; color: var(--primary); }
@@ -106,7 +106,17 @@ header.site-header.scrolled {
 .wordmark .word-ai { font-family: var(--mono, monospace); color: var(--primary); letter-spacing: 0; }
 .wordmark .word-hub { color: var(--text); font-weight: 900; }
 .wordmark .word-en { margin-left: 8px; color: var(--muted); font-family: var(--mono, monospace); font-size: 11px; font-weight: 700; letter-spacing: .08em; }
-.site-logo-by { color: var(--muted); font-weight: 600; font-size: 12px; margin-left: 4px; white-space: nowrap; }
+.site-logo-by {
+  color: #0F5F78;
+  font-weight: 850;
+  font-size: 11.5px;
+  margin-left: 4px;
+  padding: 4px 7px;
+  border: 1px solid rgba(14,165,198,.22);
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(232,248,245,.88), rgba(255,255,255,.72));
+  white-space: nowrap;
+}
 .nav-cta {
   display: inline-flex; align-items: center; gap: 6px;
   padding: 9px 16px; border-radius: 8px;
@@ -1505,9 +1515,9 @@ header.site-header.scrolled {
 .brand-mark {
   width: 44px; height: 36px; border-radius: 8px;
   display: inline-flex; align-items: center; justify-content: center;
-  background: linear-gradient(135deg, #FFFFFF 0%, #EAF8FF 58%, #EAFBF7 100%);
-  border: 1px solid rgba(0,95,158,.18);
-  box-shadow: 0 10px 24px rgba(0,95,158,.12), inset 0 1px 0 rgba(255,255,255,.95);
+  background: linear-gradient(135deg, #FFFFFF 0%, #E8F8F5 52%, #F2F9E8 100%);
+  border: 1px solid rgba(15,143,114,.22);
+  box-shadow: 0 10px 24px rgba(15,143,114,.13), inset 0 1px 0 rgba(255,255,255,.95);
   color: #0F172A; font-family: var(--mono); font-weight: 900; line-height: 1;
 }
 .brand-mark .brand-a { font-size: 14px; letter-spacing: 0; color: var(--primary); }
@@ -1526,7 +1536,17 @@ header.site-header.scrolled {
   margin-left: 8px; color: var(--muted); font-family: var(--mono);
   font-size: 11px; font-weight: 700; letter-spacing: .08em;
 }
-.site-logo-by { color: var(--muted); font-weight: 600; font-size: 12px; margin-left: 4px; white-space: nowrap; }
+.site-logo-by {
+  color: #0F5F78;
+  font-weight: 850;
+  font-size: 11.5px;
+  margin-left: 4px;
+  padding: 4px 7px;
+  border: 1px solid rgba(14,165,198,.22);
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(232,248,245,.88), rgba(255,255,255,.72));
+  white-space: nowrap;
+}
 @media (max-width: 720px) {
   .wordmark .word-en, .site-logo-by { display: none; }
 }
@@ -7160,7 +7180,7 @@ button:focus-visible {
   }
 })();
 </script>
-<header class='site-header scrolled' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>専</span></span><span class='wordmark'><span class='word-ai'>AIスペシャリスト</span><span class='word-hub'>由井辰美</span><span class='word-en'>HIKONE AI SPECIALIST</span></span><span class='site-logo-by'>彦根・滋賀のAI導入支援</span></a><nav class='site-nav top-nav' aria-label='サイトナビ'><a class='nav-link nav-essential' href='/#specialist'>専門性</a><a class='nav-link nav-essential' href='/#blog'>ブログ</a><a class='nav-link nav-essential' href='/#packages'>講習/伴走</a><a class='nav-link' href='/#faq'>FAQ</a><a class='nav-link nav-admin' href='/admin'>🔐 管理</a></nav><a class='nav-cta' href='/#contact'>無料相談</a></div></header><header><h1>クラウドAIエージェント時代のRAG設計｜AIにどの順番で考えてもらうか</h1><div class='speaker-meta'><span class='role'>SEOブログ / RAG設計・AIエージェント</span><span>📅 2026-06-17</span><span>由井 辰美 / AIハブ</span></div></header><div class='content-wrap'><section class='lecture-shell' aria-label='この資料の入口'><div class='lecture-shell-head'><div><div class='lecture-shell-title'>この資料の入口</div><p class='lecture-shell-desc'>クラウドAIエージェントが毎日の業務を判断する時代に必要なRAG設計を、AI専用の資料棚、見る順番、EC・交流会の例、人間が確認する範囲までわかりやすく整理。</p></div><div class='lecture-shell-actions'><a class='lecture-home-link' href='../#packages'>受講プラン</a><a class='lecture-home-link' href='./index.html'>受講資料ホーム</a></div></div><div class='lecture-format-strip'><span class='lecture-format-chip on'>本文<small>あり</small></span><span class='lecture-format-chip on'>目次<small>あり</small></span></div><div class='lecture-jump'><a href='./index.html'>受講資料ホーム</a><a href='../#packages'>受講プラン</a><a href='#lecture-toc'>目次</a><a href='#出典・参考リンク'>出典へ</a></div><div class='lecture-outline-preview'><b>この資料の流れ</b><ol><li>RAGは「AI専用の資料棚」</li><li>大事なのは資料の量ではなく、見る順番</li><li>ECと交流会では、見る順番が変わる</li><li>クラウドAIエージェントは、毎日同じ確認を続ける</li><li>RAG設計の第一歩は5つだけ</li><li>これからは「AIにどう考えてもらうか」が差になる</li></ol></div></section><div class='content-toc' id='lecture-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#ragは-ai専用の資料棚'>RAGは「AI専用の資料棚」</a></li><li><a href='#大事なのは資料の量ではなく-見る順番'>大事なのは資料の量ではなく、見る順番</a></li><li><a href='#ecと交流会では-見る順番が変わる'>ECと交流会では、見る順番が変わる</a></li><li><a href='#クラウドaiエージェントは-毎日同じ確認を続ける'>クラウドAIエージェントは、毎日同じ確認を続ける</a></li><li><a href='#rag設計の第一歩は5つだけ'>RAG設計の第一歩は5つだけ</a></li><li><a href='#これからは-aiにどう考えてもらうか-が差になる'>これからは「AIにどう考えてもらうか」が差になる</a></li><li><a href='#出典・参考リンク'>出典・参考リンク</a></li></ol></div><style>
+<header class='site-header scrolled' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>専</span></span><span class='wordmark'><span class='word-ai'>AIスペシャリスト</span><span class='word-hub'>彦根</span><span class='word-en'>HIKONE AI SPECIALIST</span></span><span class='site-logo-by'>彦根・滋賀のAI導入支援</span></a><nav class='site-nav top-nav' aria-label='サイトナビ'><a class='nav-link nav-essential' href='/#specialist'>専門性</a><a class='nav-link nav-essential' href='/#blog'>ブログ</a><a class='nav-link nav-essential' href='/#packages'>講習/伴走</a><a class='nav-link' href='/#faq'>FAQ</a><a class='nav-link nav-admin' href='/admin'>🔐 管理</a></nav><a class='nav-cta' href='/#contact'>無料相談</a></div></header><header><h1>クラウドAIエージェント時代のRAG設計｜AIにどの順番で考えてもらうか</h1><div class='speaker-meta'><span class='role'>SEOブログ / RAG設計・AIエージェント</span><span>📅 2026-06-17</span><span>由井 辰美 / AIハブ</span></div></header><div class='content-wrap'><section class='lecture-shell' aria-label='この資料の入口'><div class='lecture-shell-head'><div><div class='lecture-shell-title'>この資料の入口</div><p class='lecture-shell-desc'>クラウドAIエージェントが毎日の業務を判断する時代に必要なRAG設計を、AI専用の資料棚、見る順番、EC・交流会の例、人間が確認する範囲までわかりやすく整理。</p></div><div class='lecture-shell-actions'><a class='lecture-home-link' href='../#packages'>受講プラン</a><a class='lecture-home-link' href='./index.html'>受講資料ホーム</a></div></div><div class='lecture-format-strip'><span class='lecture-format-chip on'>本文<small>あり</small></span><span class='lecture-format-chip on'>目次<small>あり</small></span></div><div class='lecture-jump'><a href='./index.html'>受講資料ホーム</a><a href='../#packages'>受講プラン</a><a href='#lecture-toc'>目次</a><a href='#出典・参考リンク'>出典へ</a></div><div class='lecture-outline-preview'><b>この資料の流れ</b><ol><li>RAGは「AI専用の資料棚」</li><li>大事なのは資料の量ではなく、見る順番</li><li>ECと交流会では、見る順番が変わる</li><li>クラウドAIエージェントは、毎日同じ確認を続ける</li><li>RAG設計の第一歩は5つだけ</li><li>これからは「AIにどう考えてもらうか」が差になる</li></ol></div></section><div class='content-toc' id='lecture-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#ragは-ai専用の資料棚'>RAGは「AI専用の資料棚」</a></li><li><a href='#大事なのは資料の量ではなく-見る順番'>大事なのは資料の量ではなく、見る順番</a></li><li><a href='#ecと交流会では-見る順番が変わる'>ECと交流会では、見る順番が変わる</a></li><li><a href='#クラウドaiエージェントは-毎日同じ確認を続ける'>クラウドAIエージェントは、毎日同じ確認を続ける</a></li><li><a href='#rag設計の第一歩は5つだけ'>RAG設計の第一歩は5つだけ</a></li><li><a href='#これからは-aiにどう考えてもらうか-が差になる'>これからは「AIにどう考えてもらうか」が差になる</a></li><li><a href='#出典・参考リンク'>出典・参考リンク</a></li></ol></div><style>
 .rag-post{--ink:#102033;--soft:#405166;--muted:#6b7280;--line:#d8e2ee;--blue:#2563eb;--green:#15803d;--amber:#b7791f;--red:#b42318;--wash:#f6f9fc;color:var(--ink);}
 .rag-post *{box-sizing:border-box;}
 .rag-hero{display:grid;grid-template-columns:1.08fr .92fr;gap:22px;align-items:center;margin:4px 0 28px;padding:22px;border:1px solid var(--line);border-radius:8px;background:linear-gradient(135deg,#f8fbff 0%,#ffffff 52%,#f2fbf6 100%);}
@@ -7440,7 +7460,7 @@ SEO</div>
 <li><a href="https://www.ibm.com/think/topics/retrieval-augmented-generation" target="_blank" rel="noopener">IBM Think: What is retrieval augmented generation?</a></li>
 </ul>
 </div>
-</div></div><footer>AIスペシャリスト 由井辰美 / Generated by Claude</footer><button class='back-to-top' id='backTop' aria-label='トップへ戻る'>↑</button><script>(function(){var b=document.getElementById('backTop');if(!b)return;window.addEventListener('scroll',function(){b.classList.toggle('show',window.scrollY>400);});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script><script>
+</div></div><footer>AIスペシャリスト 彦根 / Generated by Claude</footer><button class='back-to-top' id='backTop' aria-label='トップへ戻る'>↑</button><script>(function(){var b=document.getElementById('backTop');if(!b)return;window.addEventListener('scroll',function(){b.classList.toggle('show',window.scrollY>400);});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script><script>
 (function(){
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var sel = '.tr-card, .pf-card, .profile-stat, .profile-tech-card, .sns-card, article, .content-toc, .tr-section, .profile-tl-item, .profile-app-card, .profile-biz-card';

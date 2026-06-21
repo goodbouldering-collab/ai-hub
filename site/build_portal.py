@@ -39,7 +39,7 @@ SITE_URL = os.environ.get("AIHUB_SITE_URL", os.environ.get("AIWATCH_SITE_URL", "
 
 OWNER_NAME = "由井 辰美"
 OWNER_EMAIL = "goodbouldering@gmail.com"
-SITE_BRAND = "AIスペシャリスト 由井辰美"
+SITE_BRAND = "AIスペシャリスト 彦根"
 SITE_LEGACY_NAME = "AI相談。彦根 / AIハブ"
 OWNER_SUBTITLE = "彦根・滋賀のAI導入定着スペシャリスト"
 OWNER_TAGLINE = "経験をAI導入に翻訳し、相談から実装・社内定着まで伴走する"
@@ -530,9 +530,9 @@ header.site-header.scrolled {
 .brand-mark {
   width: 44px; height: 36px; border-radius: 8px;
   display: inline-flex; align-items: center; justify-content: center;
-  background: linear-gradient(135deg, #FFFFFF 0%, #EAF8FF 58%, #EAFBF7 100%);
-  border: 1px solid rgba(0,95,158,.18);
-  box-shadow: 0 10px 24px rgba(0,95,158,.12), inset 0 1px 0 rgba(255,255,255,.95);
+  background: linear-gradient(135deg, #FFFFFF 0%, #E8F8F5 52%, #F2F9E8 100%);
+  border: 1px solid rgba(15,143,114,.22);
+  box-shadow: 0 10px 24px rgba(15,143,114,.13), inset 0 1px 0 rgba(255,255,255,.95);
   color: #0F172A; font-family: var(--mono); font-weight: 900; line-height: 1;
 }
 .brand-mark .brand-a { font-size: 14px; letter-spacing: 0; color: var(--primary); }
@@ -551,7 +551,17 @@ header.site-header.scrolled {
   margin-left: 8px; color: var(--muted); font-family: var(--mono);
   font-size: 11px; font-weight: 700; letter-spacing: .08em;
 }
-.site-logo-by { color: var(--muted); font-weight: 600; font-size: 12px; margin-left: 4px; white-space: nowrap; }
+.site-logo-by {
+  color: #0F5F78;
+  font-weight: 850;
+  font-size: 11.5px;
+  margin-left: 4px;
+  padding: 4px 7px;
+  border: 1px solid rgba(14,165,198,.22);
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(232,248,245,.88), rgba(255,255,255,.72));
+  white-space: nowrap;
+}
 @media (max-width: 720px) {
   .wordmark .word-en, .site-logo-by { display: none; }
 }
@@ -6428,9 +6438,9 @@ def _render_header() -> str:
     return (
         "<header class='site-header' id='site-header'>"
         "<div class='site-header-inner'>"
-        "<a class='site-logo' href='/' aria-label='AIスペシャリスト 由井辰美 トップへ'>"
+        "<a class='site-logo' href='/' aria-label='AIスペシャリスト 彦根 トップへ'>"
         "<span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>専</span></span>"
-        "<span class='wordmark'><span class='word-ai'>AIスペシャリスト</span><span class='word-hub'>由井辰美</span><span class='word-en'>HIKONE AI SPECIALIST</span></span>"
+        "<span class='wordmark'><span class='word-ai'>AIスペシャリスト</span><span class='word-hub'>彦根</span><span class='word-en'>HIKONE AI SPECIALIST</span></span>"
         "<span class='site-logo-by'>彦根・滋賀のAI導入支援</span>"
         "</a>"
         "<nav class='site-nav' aria-label='メインナビ'>"
@@ -7123,7 +7133,7 @@ def _render_hero() -> str:
         "<div class='hero-text fade-up'>"
         "<span class='eyebrow'>彦根・滋賀のAIスペシャリスト / AI導入・講習・社内定着支援</span>"
         "<h1 class='hero-brand'>"
-        "<span class='fusion-logo-large'><span class='ai'>AIスペシャリスト</span><span class='hub'>由井辰美</span></span>"
+        "<span class='fusion-logo-large'><span class='ai'>AIスペシャリスト</span><span class='hub'>彦根</span></span>"
         "<span class='hero-title-sub'><strong>経験をAI導入に変える。</strong><br>相談から実装・社内定着まで伴走。</span>"
         "<span class='visually-hidden'>｜彦根 AIスペシャリスト、滋賀 AI導入相談、生成AI講習、Codex講習、Claude Code併用、ChatGPT講座、画像生成講習、AI導入支援、補助金申請サポート、LLMO対策、YouTube SEO、SNS集客</span>"
         "</h1>"
@@ -7901,7 +7911,7 @@ def _render_footer(today: str) -> str:
         "<footer class='site-footer'>"
         "<div class='footer-grid'>"
         "<div class='footer-brand'>"
-        "<div class='footer-logo'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>専</span></span><span class='wordmark'><span class='word-ai'>AIスペシャリスト</span><span class='word-hub'>由井辰美</span><span class='word-en'>HIKONE AI SPECIALIST</span></span></div>"
+        "<div class='footer-logo'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>専</span></span><span class='wordmark'><span class='word-ai'>AIスペシャリスト</span><span class='word-hub'>彦根</span><span class='word-en'>HIKONE AI SPECIALIST</span></span></div>"
         "<p class='footer-tagline'>滋賀・彦根の中小事業者向けに、AI導入相談・生成AI講習・Codex準備会/実践会・AIコーディング講習・受講資料・Web集客支援を行う"
         "資料センター型の相談サイト。9事業を実際に回しながら、現場に居着くAIを一緒に作ります。</p>"
         "<a class='footer-cta' href='#contact'>📩 無料で30分相談する</a>"
@@ -7916,7 +7926,7 @@ def _render_footer(today: str) -> str:
         "</nav>"
         "<div class='footer-nap'>"
         "<span class='footer-nav-head'>運営</span>"
-        "<p>AIスペシャリスト 由井辰美（AI相談。彦根 / クライミングコンサル）</p>"
+        "<p>AIスペシャリスト 彦根（AI相談。彦根 / クライミングコンサル）</p>"
         "<p>代表 由井 辰美</p>"
         "<p>〒522-0043<br>滋賀県彦根市岡町12番地</p>"
         f"<p><a href='mailto:{OWNER_EMAIL}'>{OWNER_EMAIL}</a></p>"
@@ -8611,8 +8621,8 @@ def _render_lecture_card(lec: dict) -> str:
 
 def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     today = datetime.now().strftime("%Y-%m-%d")
-    title = "AIスペシャリスト 由井辰美｜彦根・滋賀のAI導入相談・生成AI講習・実装支援"
-    desc = "彦根・滋賀でAIを学びたい企業・個人へ。エンジニア経験とコンサル経験を持つAIスペシャリスト由井辰美が、生成AI講習、Codex、Claude Code、画像生成、業務改善、ホームページ制作、社内定着まで伴走します。"
+    title = "AIスペシャリスト 彦根｜滋賀のAI導入相談・生成AI講習・実装支援"
+    desc = "彦根・滋賀でAIを学びたい企業・個人へ。エンジニア経験とコンサル経験を持つAIスペシャリストが、生成AI講習、Codex、Claude Code、画像生成、業務改善、ホームページ制作、社内定着まで伴走します。"
 
     parts: list[str] = []
     parts.append("<!doctype html><html lang='ja'><head><meta charset='utf-8'>" + FAVICON_HEAD_HTML)

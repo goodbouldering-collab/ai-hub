@@ -98,7 +98,7 @@ function renderHtml(docs: DocEntry[], current: DocEntry | null, bodyHtml: string
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AIスペシャリスト 由井辰美</title>
+<title>AIスペシャリスト</title>
 <meta name="robots" content="noindex,nofollow">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }

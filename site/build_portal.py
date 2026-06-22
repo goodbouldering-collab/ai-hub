@@ -18,6 +18,7 @@ import os
 import sys
 from datetime import datetime
 from pathlib import Path
+from urllib.parse import quote
 
 import yaml
 
@@ -599,13 +600,49 @@ header.site-header.scrolled {
 .site-nav .menu-drop {
   position: absolute; right: 0; top: calc(100% + 14px);
   min-width: 240px; padding: 8px;
-  background: #FEFFFF !important; border: 1px solid rgba(18,32,51,.18);
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.78), rgba(241,249,248,.58)),
+    linear-gradient(160deg, rgba(14,165,198,.08), rgba(242,102,85,.05)) !important;
+  border: 1px solid rgba(255,255,255,.48);
   border-radius: var(--radius-sm);
   box-shadow: 0 18px 44px rgba(18,32,51,.16), inset 0 1px 0 rgba(255,255,255,.95);
-  backdrop-filter: none;
+  backdrop-filter: blur(22px) saturate(160%);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
   display: none;
 }
 .site-nav .menu-drop.open { display: block; }
+.site-nav .menu-drop-visual {
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  margin: 0 0 8px;
+  padding: 8px;
+  border-radius: 10px;
+  background: rgba(255,255,255,.62);
+  border: 1px solid rgba(255,255,255,.54);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.72);
+}
+.site-nav .menu-drop-visual img {
+  width: 46px;
+  height: 46px;
+  display: block;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.site-nav .menu-drop-visual strong {
+  display: block;
+  color: #122033;
+  font-size: 13px;
+  line-height: 1.25;
+}
+.site-nav .menu-drop-visual span {
+  display: block;
+  margin-top: 2px;
+  color: #607086;
+  font-size: 11px;
+  line-height: 1.4;
+}
 .site-nav .menu-drop-label {
   display: block; padding: 7px 14px 4px;
   font-size: 10px; font-weight: 900; letter-spacing: .14em;
@@ -2375,11 +2412,40 @@ footer.site-footer {
   box-shadow: var(--shadow-card-hover);
 }
 .pf-card .pf-thumb {
+  position: relative;
   display: block; margin: -14px -16px 12px; /* カード内パディングを打ち消して全幅バナーに */
   border-radius: var(--radius-sm) var(--radius-sm) 0 0; overflow: hidden;
-  aspect-ratio: 32 / 15; background: var(--bg-elev);
+  aspect-ratio: 32 / 15;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.78), rgba(226,247,244,.56)),
+    linear-gradient(120deg, rgba(14,165,198,.10), rgba(146,200,62,.08));
 }
-.pf-card .pf-thumb svg, .pf-card .pf-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.pf-card .pf-thumb svg, .pf-card .pf-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.pf-card .pf-thumb.is-site-shot {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.82);
+}
+.pf-card .pf-thumb.is-site-shot::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 2;
+  height: 18px;
+  background:
+    radial-gradient(circle at 10px 9px, #EF6864 0 3px, transparent 3.4px),
+    radial-gradient(circle at 22px 9px, #F5B445 0 3px, transparent 3.4px),
+    radial-gradient(circle at 34px 9px, #46B87A 0 3px, transparent 3.4px),
+    linear-gradient(180deg, rgba(255,255,255,.94), rgba(244,248,249,.76));
+  border-bottom: 1px solid rgba(18,32,51,.10);
+  pointer-events: none;
+}
+.pf-card .pf-thumb.is-site-shot::after {
+  content: "";
+  position: absolute;
+  inset: 18px 0 0;
+  z-index: 2;
+  background: linear-gradient(180deg, transparent 62%, rgba(7,20,38,.16));
+  pointer-events: none;
+}
 .pf-card .pf-title { font-weight: 800; font-size: 15px; color: var(--text); }
 .pf-card .pf-host { font-size: 11.5px; color: var(--muted); margin-top: 2px; word-break: break-all; }
 .pf-card .pf-sum { font-size: 13px; color: var(--text-soft); line-height: 1.55; margin: 8px 0 10px; flex: 1; }
@@ -6201,6 +6267,102 @@ PORTAL_CSS += """
 """
 
 
+PORTAL_CSS += """
+
+/* ---- Human-led glass polish, 2026-06-22 ---- */
+body {
+  background:
+    linear-gradient(116deg, rgba(14,165,198,.08) 0%, transparent 34%),
+    linear-gradient(244deg, rgba(242,102,85,.07) 0%, transparent 36%),
+    linear-gradient(180deg, #FFFFFF 0%, #F7FBFA 46%, #EEF7F4 100%) !important;
+}
+
+body::before {
+  background:
+    linear-gradient(90deg, rgba(18,32,51,.026) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(18,32,51,.018) 1px, transparent 1px),
+    linear-gradient(125deg, transparent 0 48%, rgba(14,165,198,.055) 48% 49%, transparent 49% 100%) !important;
+  background-size: 96px 96px, 96px 96px, 220px 220px !important;
+}
+
+header.site-header,
+header.site-header.scrolled {
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.76), rgba(244,251,250,.56)) !important;
+  border-bottom: 1px solid rgba(255,255,255,.52) !important;
+  box-shadow: 0 18px 46px rgba(18,32,51,.09), inset 0 1px 0 rgba(255,255,255,.78) !important;
+  backdrop-filter: blur(24px) saturate(165%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(165%) !important;
+}
+
+.site-nav,
+.mobile-nav {
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.56), rgba(244,251,250,.36)) !important;
+  border-color: rgba(255,255,255,.50) !important;
+  box-shadow: 0 14px 34px rgba(18,32,51,.07), inset 0 1px 0 rgba(255,255,255,.70) !important;
+  backdrop-filter: blur(22px) saturate(155%) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(155%) !important;
+}
+
+.biz-card, .service-card, .pkg-card, .faq-item, .stat,
+.lecture-card, .pf-card, .voice-card, .explore-card, .contact-choice,
+.specialist-lead-card, .specialist-card, .blog-feature, .blog-list-card,
+.route-card, .path-card, .flow-card, .tr-card, .profile-tech-card {
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.68), rgba(255,255,255,.40)),
+    linear-gradient(135deg, rgba(14,165,198,.055), rgba(242,102,85,.045)) !important;
+  border-color: rgba(255,255,255,.48) !important;
+  box-shadow: 0 20px 54px rgba(18,32,51,.10), inset 0 1px 0 rgba(255,255,255,.72) !important;
+  backdrop-filter: blur(22px) saturate(158%) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(158%) !important;
+}
+
+.biz-card:hover, .service-card:hover, .pkg-card:hover, .pf-card:hover,
+.lecture-card:hover, .blog-list-card:hover, .contact-choice:hover {
+  border-color: rgba(14,165,198,.28) !important;
+  box-shadow: 0 28px 70px rgba(18,32,51,.14), inset 0 1px 0 rgba(255,255,255,.82) !important;
+}
+
+.pf-card {
+  padding: 14px 16px 13px !important;
+  overflow: hidden;
+}
+
+.pf-card .pf-thumb {
+  margin: -14px -16px 13px !important;
+  border-radius: 8px 8px 0 0 !important;
+}
+
+.pf-card .pf-title {
+  color: #122033 !important;
+}
+
+.pf-card .pf-chip {
+  background: rgba(255,255,255,.58) !important;
+  border-color: rgba(18,32,51,.10) !important;
+  color: #0F5F78 !important;
+}
+
+.section-heading {
+  color: #0F5F78 !important;
+}
+
+.hero-proof-grid,
+.hero-proof,
+.web-showcase,
+.web-browser,
+.web-mini-panel {
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.62), rgba(255,255,255,.30)),
+    linear-gradient(135deg, rgba(14,165,198,.07), rgba(146,200,62,.055)) !important;
+  border-color: rgba(255,255,255,.46) !important;
+  backdrop-filter: blur(22px) saturate(155%) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(155%) !important;
+}
+"""
+
+
 BLOG_TEASER_CSS = """
 .specialist-grid {
   display: grid;
@@ -6452,6 +6614,7 @@ def _render_header() -> str:
         "<svg class='chev' width='14' height='14' viewBox='0 0 20 20' fill='none' aria-hidden='true'><path d='M5 8l5 5 5-5' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>"
         "</button>"
         "<div class='menu-drop' id='menu-drop' role='menu'>"
+        "<div class='menu-drop-visual' aria-hidden='true'><img src='/img/speaker-portrait-v2.webp' alt='' loading='lazy' decoding='async'><span><strong>人が判断し、AIを定着させる</strong><span>相談・講習・実装を一続きで見る</span></span></div>"
         "<span class='menu-drop-label'>学ぶ・確認する</span>"
         "<a href='#lectures'>受講資料</a>"
         "<a href='/programming-map.html'>AIコーディング</a>"
@@ -8257,8 +8420,15 @@ def _render_portfolio_section() -> str:
         tag = "a" if is_link else "div"
         href = f" href='{url}' target='_blank' rel='noopener'" if is_link else ""
         since_html = f"<span class='pf-host'>since {since}</span>" if since else ""
+        thumb_url = _portfolio_thumb_url(str(it.get("thumbnail") or ""), str(it.get("url") or ""))
+        thumb_html = (
+            f"<span class='pf-thumb is-site-shot' aria-hidden='true'>"
+            f"<img src='{html.escape(thumb_url, quote=True)}' alt='' loading='lazy' decoding='async' onerror=\"this.style.display='none'\"></span>"
+            if thumb_url else ""
+        )
         parts.append(
             f"<{tag} class='pf-card'{href}>"
+            f"{thumb_html}"
             f"<div class='pf-title'>{name}</div>"
             f"<div class='pf-host'>{html.escape(host)}</div>"
             f"<div class='pf-sum'>{summary}</div>"
@@ -8286,6 +8456,16 @@ _WORKS_THUMB = {
     "インディーハッカーツール": ("🛠️", "#0F8F72", "#D9852B"),
 }
 _WORKS_THUMB_DEFAULT = ("🚀", "#2854C5", "#D95B43")
+
+
+def _portfolio_thumb_url(thumbnail: str, url: str) -> str:
+    thumbnail = (thumbnail or "").strip()
+    if thumbnail:
+        return thumbnail
+    url = (url or "").strip()
+    if not url or url.startswith("#") or url.startswith("mailto:") or url.startswith("tel:"):
+        return ""
+    return "https://s.wordpress.com/mshots/v1/" + quote(url, safe="") + "?w=960"
 
 
 def _works_thumb_svg(category: str, name: str) -> str:
@@ -8333,10 +8513,10 @@ def _render_works_section() -> str:
             chips.append("<span class='pf-chip dev'>開発中</span>")
         href = html.escape(url, quote=True) if url else "/portfolio.html"
         target = " target='_blank' rel='noopener'" if url else ""
-        thumb_url = str(p.get("thumbnail") or "").strip()
+        thumb_url = _portfolio_thumb_url(str(p.get("thumbnail") or ""), url)
         if thumb_url:
-            thumb = (f"<span class='pf-thumb' aria-hidden='true'>"
-                     f"<img src='{html.escape(thumb_url, quote=True)}' alt='' loading='lazy' decoding='async'></span>")
+            thumb = (f"<span class='pf-thumb is-site-shot' aria-hidden='true'>"
+                     f"<img src='{html.escape(thumb_url, quote=True)}' alt='' loading='lazy' decoding='async' onerror=\"this.style.display='none'\"></span>")
         else:
             thumb = _works_thumb_svg(str(p.get("category") or ""), str(p.get("name") or ""))
         parts.append(

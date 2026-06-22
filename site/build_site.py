@@ -14,6 +14,7 @@ import shutil
 import sys
 from datetime import datetime
 from pathlib import Path
+from urllib.parse import quote
 
 import yaml
 
@@ -1216,19 +1217,65 @@ CONTENT_CSS = """
 .pf-card {
   display: flex;
   flex-direction: column;
-  background: #fff;
-  border: 1px solid var(--glass-border);
-  border-radius: 16px;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.74), rgba(255,255,255,.46)),
+    linear-gradient(135deg, rgba(14,165,198,.06), rgba(242,102,85,.04));
+  border: 1px solid rgba(255,255,255,.50);
+  border-radius: 8px;
   padding: 14px 16px 12px;
+  overflow: hidden;
   transition: transform .15s, border-color .15s, box-shadow .15s;
   text-decoration: none;
   color: inherit;
   min-height: 150px;
+  box-shadow: 0 18px 48px rgba(15,23,42,.10), inset 0 1px 0 rgba(255,255,255,.74);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
 }
 .pf-card:hover {
   transform: translateY(-2px);
-  border-color: rgba(37,99,235,.40);
+  border-color: rgba(14,165,198,.30);
   box-shadow: var(--shadow-card-hover);
+}
+.pf-card .pf-thumb {
+  position: relative;
+  display: block;
+  margin: -14px -16px 12px;
+  aspect-ratio: 32 / 15;
+  overflow: hidden;
+  border-radius: 8px 8px 0 0;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.78), rgba(226,247,244,.56)),
+    linear-gradient(120deg, rgba(14,165,198,.10), rgba(146,200,62,.08));
+}
+.pf-card .pf-thumb img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: top center;
+}
+.pf-card .pf-thumb::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 2;
+  height: 18px;
+  background:
+    radial-gradient(circle at 10px 9px, #EF6864 0 3px, transparent 3.4px),
+    radial-gradient(circle at 22px 9px, #F5B445 0 3px, transparent 3.4px),
+    radial-gradient(circle at 34px 9px, #46B87A 0 3px, transparent 3.4px),
+    linear-gradient(180deg, rgba(255,255,255,.94), rgba(244,248,249,.76));
+  border-bottom: 1px solid rgba(18,32,51,.10);
+  pointer-events: none;
+}
+.pf-card .pf-thumb::after {
+  content: "";
+  position: absolute;
+  inset: 18px 0 0;
+  z-index: 2;
+  background: linear-gradient(180deg, transparent 62%, rgba(7,20,38,.16));
+  pointer-events: none;
 }
 .pf-card .pf-title {
   font-weight: 800;
@@ -2691,6 +2738,16 @@ def _host_of(url: str) -> str:
         return url
 
 
+def _portfolio_thumb_url(thumbnail: str, url: str) -> str:
+    thumbnail = (thumbnail or "").strip()
+    if thumbnail:
+        return thumbnail
+    url = (url or "").strip()
+    if not url or url.startswith("#") or url.startswith("mailto:") or url.startswith("tel:"):
+        return ""
+    return "https://s.wordpress.com/mshots/v1/" + quote(url, safe="") + "?w=960"
+
+
 def build_portfolio_page() -> bool:
     if not PORTFOLIO_YAML.exists():
         return False
@@ -2750,21 +2807,28 @@ def build_portfolio_page() -> bool:
             tech = it.get("tech") or []
             since = str(it.get("since") or "")
 
-            parts.append(f"<a class='pf-card' href='{html.escape(url, quote=True)}' target='_blank' rel='noopener'>")
-            parts.append(f"<div class='pf-title'>{html.escape(name)}</div>")
-            parts.append(f"<div class='pf-host'>{html.escape(host)}</div>")
+            card_parts = [f"<a class='pf-card' href='{html.escape(url, quote=True)}' target='_blank' rel='noopener'>"]
+            thumb_url = _portfolio_thumb_url(str(it.get("thumbnail") or ""), url)
+            if thumb_url:
+                card_parts.append(
+                    f"<span class='pf-thumb' aria-hidden='true'>"
+                    f"<img src='{html.escape(thumb_url, quote=True)}' alt='' loading='lazy' decoding='async' onerror=\"this.style.display='none'\"></span>"
+                )
+            card_parts.append(f"<div class='pf-title'>{html.escape(name)}</div>")
+            card_parts.append(f"<div class='pf-host'>{html.escape(host)}</div>")
             if summary:
-                parts.append(f"<div class='pf-sum'>{html.escape(summary)}</div>")
-            parts.append("<div class='pf-meta'>")
-            parts.append(f"<span class='pf-chip cat'>{html.escape(cat)}</span>")
+                card_parts.append(f"<div class='pf-sum'>{html.escape(summary)}</div>")
+            card_parts.append("<div class='pf-meta'>")
+            card_parts.append(f"<span class='pf-chip cat'>{html.escape(cat)}</span>")
             if status != "live":
-                parts.append(f"<span class='pf-chip {html.escape(status)}'>{html.escape(status)}</span>")
+                card_parts.append(f"<span class='pf-chip {html.escape(status)}'>{html.escape(status)}</span>")
             for t in tech:
-                parts.append(f"<span class='pf-chip'>{html.escape(str(t))}</span>")
+                card_parts.append(f"<span class='pf-chip'>{html.escape(str(t))}</span>")
             if since:
-                parts.append(f"<span class='pf-chip'>since {html.escape(since)}</span>")
-            parts.append("</div>")
-            parts.append("</a>")
+                card_parts.append(f"<span class='pf-chip'>since {html.escape(since)}</span>")
+            card_parts.append("</div>")
+            card_parts.append("</a>")
+            parts.append("".join(card_parts))
         parts.append("</div>")
 
     parts.append(

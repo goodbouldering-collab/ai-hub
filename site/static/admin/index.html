@@ -512,9 +512,8 @@
 <body class="admin-page admin-theme-light admin-fixed-menu-page">
 <header class="site-header scrolled" id="site-header">
   <div class="site-header-inner">
-    <a class="site-logo" href="/admin" aria-label="AIスペシャリスト 管理トップへ">
-      <span class="wordmark"><span class="word-ai">AIスペシャリスト</span><span class="word-en">HIKONE AI SPECIALIST</span></span>
-      <span class="site-logo-by">管理</span>
+    <a class="admin-home-link" href="/" aria-label="トップページへ戻る" title="トップページ">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 10.8 12 4l8 6.8V20a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1v-9.2Z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg>
     </a>
     <nav class="site-nav admin-slide-nav" aria-label="管理固定メニュー">
       <div class="admin-scroll-menu" aria-label="横にスライドできる管理メニュー">
@@ -526,7 +525,6 @@
         <a class="admin-scroll-link" href="/admin/sns-post">SNS一括投稿</a>
         <a class="admin-scroll-link" href="/admin/chat">社内AI</a>
         <a class="admin-scroll-link" href="/ops">OPS</a>
-        <a class="admin-scroll-link public-link" href="/">公開ページ</a>
         <a class="admin-scroll-link logout-scroll-link" href="/admin/logout">ログアウト</a>
       </div>
     </nav>
@@ -537,7 +535,7 @@
     <div>
       <h1><span class="dot"></span>AIスペシャリスト 管理画面</h1>
       <p class="sub">9事業の運用ダッシュボード + グループ記事の発行</p>
-      <p class="topbar-lead">総合管理メニューを先頭に置き、公開ページと重なるリンクは外しました。管理画面では、接続確認、URL取込、記事生成、SNS運用だけを迷わず選べます。</p>
+      <p class="topbar-lead">総合管理メニューを先頭に置き、トップページと重なるリンクは外しました。管理画面では、接続確認、URL取込、記事生成、SNS運用だけを迷わず選べます。</p>
     </div>
   </div>
 
@@ -546,7 +544,7 @@
       <span class="admin-menu-trigger" aria-hidden="true">☰</span>
       <span class="admin-menu-title">
         <strong>総合管理メニュー</strong>
-        <small>公開ページと重なる導線は上の公開ナビへ分離。ここは運用作業だけに絞ります。</small>
+        <small>トップページと重なる導線は上のナビへ分離。ここは運用作業だけに絞ります。</small>
       </span>
       <span class="admin-menu-state">開閉</span>
     </summary>
@@ -689,7 +687,7 @@
 
   <div class="panel" id="panel-lectures">
     <h2>受講資料の編集導線</h2>
-    <p class="muted">クラウド管理画面では公開状態の確認を行い、本文編集はローカル管理画面の「受講資料」タブで行います。編集後は再ビルドして公開ページに反映します。</p>
+    <p class="muted">クラウド管理画面では公開状態の確認を行い、本文編集はローカル管理画面の「受講資料」タブで行います。編集後は再ビルドしてトップページ側に反映します。</p>
     <div class="row" style="margin-top:10px;">
       <a class="btn primary" href="/lectures/index.html">公開資料を確認</a>
       <a class="btn" href="/#packages">講習/伴走との導線を見る</a>

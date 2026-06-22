@@ -1,6 +1,13 @@
 {
-  "generated_at": "2026-06-22T04:19:25Z",
+  "generated_at": "2026-06-22T23:12:33Z",
   "recent_works": [
+    {
+      "date": "2026-06-22",
+      "filename": "2026-06-22-seo-weekly-digest.md",
+      "title": "SEO週次ダイジェスト（2026-06-22）",
+      "business": "seo",
+      "path": "/ops?file=2026-06-22-seo-weekly-digest.md#sec-docs"
+    },
     {
       "date": "2026-06-15",
       "filename": "2026-06-15-seo-weekly-digest.md",
@@ -49,13 +56,6 @@
       "title": "みんなのWA：独自ドメイン切替（`minanowa.com` → `minnanowa.net`）",
       "business": "みんなのWA",
       "path": "/ops?file=2026-05-29-minanowa-domain-switch-minnanowa-net.md#sec-docs"
-    },
-    {
-      "date": "2026-05-29",
-      "filename": "2026-05-29-minanowa-admin-account-and-mypage-logout.md",
-      "title": "みんなのWA：管理者アカウント追加 + マイページにログアウトボタン",
-      "business": "みんなのWA",
-      "path": "/ops?file=2026-05-29-minanowa-admin-account-and-mypage-logout.md#sec-docs"
     }
   ],
   "tasks_open": [
@@ -91,7 +91,7 @@
   "per_business_recent": [
     {
       "business": "seo",
-      "count": 1
+      "count": 2
     }
   ],
   "daily_histogram": [
@@ -149,13 +149,13 @@
     },
     {
       "date": "2026-06-22",
-      "count": 0
+      "count": 1
     }
   ],
   "cma_apps": [],
   "totals": {
-    "consul_work_total": 127,
-    "recent_7d_total": 1,
+    "consul_work_total": 128,
+    "recent_7d_total": 2,
     "tasks_open_total": 4
   }
 }

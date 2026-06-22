@@ -1,24 +1,99 @@
 # AIハブ 2026-06-22 (過去24時間・AI+SNSアルゴリズム動向)
 
+## AIニュース
+
+### AI is cursing renters with the promise of impossible homes
+Joyce, a native New Yorker, didn't think finding her first solo apartment in the city would be easy. But she also didn't think it'd be "hell." After looking at a lot of tiny, overpriced places she des...
+出典: https://www.theverge.com/report/953888/ai-virtual-staging-real-estate-apartment-listings
+
+### Read this before you vibe-code another app
+Bob Starr was delighted with his vibe-coded website. "Boomberg" showed how much US tax money is going to tech companies, and Starr launched it online immediately after making it. It wasn't until month...
+出典: https://www.theverge.com/ai-artificial-intelligence/950844/vibe-coding-security-risks-apps
+
+### Three things to watch amid Anthropic’s latest feud with the government
+This story originally appeared in The Algorithm, our weekly newsletter on AI. To get stories like this in your inbox first, sign up here. For those of you enjoying your summer unaware of Anthropic’s l...
+出典: https://www.technologyreview.com/2026/06/22/1139424/three-things-to-watch-amid-anthropics-latest-feud-with-the-government/
+
+### GM installs robots at flagship EV factory after laying off 1,300 workers
+US autoworkers union warns of robot automation as dark factory future looms.
+出典: https://arstechnica.com/ai/2026/06/gm-installs-robots-at-flagship-ev-factory-after-laying-off-1300-workers/
+
+### How Anthropic may have talked itself into an AI export ban
+The company warned about dangers of advanced AI far more than rival OpenAI.
+出典: https://arstechnica.com/ai/2026/06/how-anthropic-may-have-talked-itself-into-an-ai-export-ban/
+
+
 ## AI公式
 
-### Samsung Electronics brings ChatGPT and Codex to employees
-Samsung Electronics deploys ChatGPT Enterprise and Codex to employees worldwide, marking one of OpenAI’s largest enterprise AI rollouts.
-出典: https://openai.com/index/samsung-electronics-chatgpt-codex-deployment
+### Daybreak: Tools for securing every organization in the world
+OpenAI introduces new Daybreak tools, including Codex Security and GPT-5.5-Cyber, to help organizations find, validate, and patch vulnerabilities at scale.
+出典: https://openai.com/index/daybreak-securing-the-world
+
+### Patch the Planet: a Daybreak initiative to support open source maintainers
+OpenAI introduces Patch the Planet, a Daybreak initiative helping open-source maintainers find, validate, and fix vulnerabilities with AI and expert review.
+出典: https://openai.com/index/patch-the-planet
+
+### Codex-maxxing for long-running work
+Learn how Jason Liu uses Codex to preserve context, manage complex projects, and help work continue beyond a single prompt.
+出典: https://openai.com/index/codex-maxxing-long-running-work
 
 
 ## AI動画(日本語)
 
-### PDFをAIで要約・翻訳・分析する方法｜ChatGPT・Gemini対応のPDFelement V12完全ガイド
-▼PDFelement V12はこちら https://pdfelement.go.link/9Y9Ag  今回は、AI搭載PDFソフト「PDFelement V12」を使って、PDFをAIで要約・翻訳・分析する方法を実際の画面で紹介します。  ChatGPTやGeminiを毎日使っていても、PDFだけは「コピーして貼り付ける」「別ツールにアップロードする」「内容を確認し直す」といった作業が残りが...
-出典: https://www.youtube.com/watch?v=8cigkOB8ZMc
+### 画面録画がAIスキルになるCodexの『Record & Replay』が便利すぎた！
+手元で作業したものを録画して、その作業手順がAIエージェントスキルになる機能『Record & Replay』を徹底解説。いくつかの事例を紹介します。  生成AIコンテストのエントリーは下記 https://www.progdence.co.jp/projects/contest/index.html  ★プロセボ｜AIコミュニティ AI活用を実際に操作しながら学ぶワークショップ型AIスクール。 ...
+出典: https://www.youtube.com/watch?v=KQTu8lhsrGg
 
-### 【楽天ROOM副業】Codexで今すぐ稼げる方法教えます
-▼動画内で紹介したプレゼントの受け取りは以下の公式LINEから https://liff.line.me/2006805073-rn36NG8b/landing?follow=%40933hyolt&amp;lp=8ot2Ry&amp;liff_id=2006805073-rn36NG8b  ▼現在開催中のセミナーを確認する https://n1seminar-vsuoymjh.manus.spa...
-出典: https://www.youtube.com/watch?v=4u1azbFFiD0
+### 【超有益】第二の脳であなたの収入が大きく変わります【Obsidian】
+▼動画内で紹介したプレゼントの受け取りは以下の公式LINEから https://liff.line.me/2006805073-rn36NG8b/landing?follow=%40933hyolt&amp;lp=nLr01X&amp;liff_id=2006805073-rn36NG8b  ▼現在開催中のセミナーを確認する https://n1seminar-vsuoymjh.manus.spa...
+出典: https://www.youtube.com/watch?v=JRpZR3C6J_c
 
 
 ## AI国内
+
+### AIに詳しくなくても大丈夫、月額制で中小企業のAI活用をプロが支える新サービス
+ソルバは、AIアークスと提携し、地域企業向けのAI顧問サービスを開始した。AI・DXの専門人材による伴走支援を月額制で提供し、企業ごとの課題に応じたAI活用を後押しする。生産性向上や原価改善、人手不足対策を通じて、地域企業の競争力強化を目指す。
+出典: https://kn.itmedia.co.jp/kn/articles/2606/23/news042.html
+
+### 経営者は「何を捨てるか考えて」――中東紛争“サイバー戦”のリアルが突き付ける、無視できない脅威
+サイバー戦やAIの悪用など、サイバー空間は“危険と隣り合わせの場所”になった。企業の経営者は、この課題にどう向き合えばよいのだろうか。
+出典: https://www.itmedia.co.jp/business/articles/2606/23/news011.html
+
+### Excelの10万行データを3分でAIに処理させる、M365 Copilotの使い方
+上司から突然「このデータを見ておいて」と任され、Excelを前に手が止まった経験がある人も多いはずだ。大量データの集計は負担が大きく、分析業務は特定の担当者に偏ってしまう。Copilotのチャットや関数機能は、その前提を変えつつある。
+出典: https://kn.itmedia.co.jp/kn/articles/2606/23/news043.html
+
+### 「取引先経由」のサイバー攻撃が増加　狙われる中小企業が見直すべき「セキュリティ対策」の3ステップ
+企業を狙ったサイバー攻撃が後を絶たない。2025年後半に、アスクルやアサヒグループホールディングスが被害を受け、商品の受注や出荷が停止したことは記憶に新しい。ローカーや交渉人、実行組織などが絡み合う犯罪集団に、人手やリソースが限られる中堅・中小企業が単独で立ち向かうのは難しい。では、どのように対策を進めればよいのか。
+出典: https://www.itmedia.co.jp/business/articles/2606/23/news032.html
+
+### ダイハツがAI品質検査システムを共同開発、アルミ加工穴内部の目視検査を自動化
+ダイハツ工業は、滋賀（竜王）工場 第1地区にAIを用いた自動車部品の品質検査システムを導入したと発表した。製造業向けAIソリューションを提供するスタートアップのVRAIN Solutionと共同開発したもので、現場主導のDX推進の取り組みに位置付けられる。
+出典: https://monoist.itmedia.co.jp/mn/articles/2606/23/news046.html
+
+### ループエンジニアリングとは？　チャットとAIコーディングの往復から卒業する新しい開発スタイル
+AI開発で人間がプロンプトを書く時代は終わるのか。ループを回してAIエージェントを動かし続ける新概念「ループエンジニアリング」の基本を、提唱者の記事に沿って解説。チャットAIとAIコーディングの往復から卒業したい筆者の考えも示す。
+出典: https://atmarkit.itmedia.co.jp/ait/articles/2606/23/news017.html
+
+### Claude Codeに指示を出す「7つの方法」と使い分け　公式が解説
+米Anthropicは、AIコーディング支援ツール「Claude Code」に指示を出す7つの方法を解説する公式ブログを公開した。各方法の概要や使い分け方などを紹介している。
+出典: https://www.itmedia.co.jp/aiplus/article/2606/22/2000000117/
+
+### ダイハツ、自動車部品のキズ検査をAIで自動化　“人の目と感性”を代替
+アルミ加工ラインで生産されているトランスミッション用の部品について、AIで加工穴内部のキズなどを検査。人の目と感性に頼っていた検査工程を自動化した。
+出典: https://www.itmedia.co.jp/aiplus/article/2606/22/2000000115/
+
+### 踏切に取り残された人をAIで検知→列車を自動停止　小田急が実運用
+遮断機が降りた後に取り残しを検知すると、信号設備と連動し、接近する列車を停止させるための信号を発するとともに、乗務員に危険を知らせてブレーキを操作させる。
+出典: https://www.itmedia.co.jp/news/articles/2606/22/news125.html
+
+### 日立はAX事業にどう臨む？　徳永CEOの話から「成長につなげるための勘所」を探る
+企業はAIトランスフォーメーション（AX）にどう取り組めばよいのか。日立のAX事業に臨む姿勢から、その勘所を探る。
+出典: https://www.itmedia.co.jp/enterprise/articles/2606/22/news076.html
+
+### 国産フルスクラッチAI「PLaMo 3.0 Prime」提供開始、“高コスパ”うたう　無料のAPIプランも　PFN
+Preferred Networksは、AIモデル「PLaMo 3.0 Prime」の提供を始めると発表した。
+出典: https://www.itmedia.co.jp/aiplus/article/2606/22/2000000113/
 
 ### OpenAIが明かす、新職種「FDE」の実態　半年で様変わり、「仕事の7割が消滅」したことも
 新職種「FDE」の実態はどのようなものなのか。米OpenAIのColin Jarvis氏（Global Head of Forward Deployed Engineering）が語った。
@@ -36,41 +111,12 @@ Sakana AIは、複数のAIモデルを組み合わせてタスクをこなすAI�
 日本経済新聞社とNTTデータが6月19日、日経の法人向け生成AIサービス「NIKKEI KAI」の販売契約を結んだと発表した。
 出典: https://www.itmedia.co.jp/news/articles/2606/19/news121.html
 
-### Anthropicへの500万ドル間接出資を解消、広告事業のイオレ　軸足移すAIデータセンター事業に資金投入
-イオレは6月19日、3月に決めた米Anthropicへの間接出資を解消し、出資金500万ドル（約7億9355万円）全額の返還を受けると発表した。返還資金は自社で開発を進めるAIDCへの投資に充てる。
-出典: https://www.itmedia.co.jp/news/articles/2606/19/news138.html
 
-### 7割超の企業はシャドーAIを管理できていない　ガートナーがガバナンスの現実解を提唱
-AIの能力向上に伴って、シャドーAIのリスクも増している。ガートナーの調査によると、国内企業の73％はシャドーAIを管理できていないという。同社が推奨する、事業部門を巻き込んだガバナンスの仕組みとは。
-出典: https://www.itmedia.co.jp/enterprise/articles/2606/22/news035.html
+## AI業界
 
-### シャドーAI対策「7割が未着手」　「AIは全て禁止」は限界　IT部門が採るべき一手とは？　Gartner提言
-生成AIの爆発的な普及に伴い、企業のITガバナンスは新たな局面に直面している。情報システム部門が抱えてきた旧来のシャドーSaaSといった問題に、個人契約のAIツールやローカルLLMなど幾つものリスクが積み重なった「難局」を迎えているためだ。限られたリソースで推進と統制をどう両立すべきなのか。こうした中、Gartnerは「分業モデル」への移行を提言している。
-出典: https://atmarkit.itmedia.co.jp/ait/articles/2606/22/news036.html
+### PP-OCRv6 on Hugging Face: 50-Language OCR from 1.5M to 34.5M Parameters
 
-### AIに頼ると技術が落ちる？　医師・エンジニアたちの懸念、検証結果は……Natureも警鐘
-AIツールが職場に普及するにつれて、専門家たちが長年培ってきたスキルが衰えてしまうのではないかという懸念が広がっている。
-出典: https://www.itmedia.co.jp/news/articles/2606/22/news041.html
-
-### 定番データベースを捨て、あのコーディングAIにエンジニアたちが群がる理由
-技術の世界では、長く使われてきた“定番”が必ずしも選ばれ続けるとは限らない。データベースとAI開発ツールという異なる領域で起きている変化は、エンジニアが重視する基準の変化を映し出しているのかもしれない。
-出典: https://kn.itmedia.co.jp/kn/articles/2606/22/news028.html
-
-### 情シスが「日本1位のAIスパコン」作るまで　猶予は4カ月、ソフトバンク“社長プロジェクト”の舞台裏
-ソフトバンクのスパコンが、AI計算性能で国内1位を獲得した。実は、これを開発したのは「情シス」のメンバーだった。“社長プロジェクト”に挑んだメンバーの奮闘を追う。
-出典: https://www.itmedia.co.jp/business/articles/2606/22/news029.html
-
-### エッジAIと無線リモコンを融合、DMG MORI Digitalが建機操作支援システム
-双葉電子工業とDMG MORI Digitalは、「第8回 国際 建設・測量展（CSPI 2026）」において、エッジAIの画像認識技術と無線リモコンを組み合わせた、建設重機の遠隔操作支援システムを展示した。
-出典: https://monoist.itmedia.co.jp/mn/articles/2606/22/news021.html
-
-### インテル「シリーズ3」はフィジカルAIでも力を発揮、“ヤマネコ”の実力は？
-インテルがメインストリームPC向け製品「インテル Core シリーズ3 プロセッサー」と、ハンドヘルドゲーミングPC向け製品「インテル Arc G3 プロセッサー」について説明。また、「COMPUTEX TAIPEI 2026」に併せて発表したエッジAI／フィジカルAI向けソリューションも紹介した。
-出典: https://monoist.itmedia.co.jp/mn/articles/2606/22/news051.html
-
-### 千葉県印西市はなぜ「データセンターの聖地」になったのか　Google、Microsoftを呼び込んだ半世紀前の“読み違い”
-東京都心から北東へおよそ40キロメートルにある千葉県印西市。かつて「千葉ニュータウン」として開発されたこの郊外の街が、いま世界の巨大IT企業にとって“聖地”になっている。
-出典: https://www.itmedia.co.jp/business/articles/2606/22/news018.html
+出典: https://huggingface.co/blog/PaddlePaddle/pp-ocrv6
 
 
 ## AI研究者ブログ
@@ -83,36 +129,51 @@ AIツールが職場に普及するにつれて、専門家たちが長年培っ
 <p><strong>Release:</strong> <a href="https://github.com/simonw/sqlite-utils/releases/tag/4.0rc1">sqlite-utils 4.0rc1</a></p>         <p>See <a href="https://simonwillison.net/2026/Jun/21/sqlite-utils...
 出典: https://simonwillison.net/2026/Jun/21/sqlite-utils/#atom-everything
 
-### Temporary Cloudflare Accounts for AI agents
-<p><strong><a href="https://blog.cloudflare.com/temporary-accounts/">Temporary Cloudflare Accounts for AI agents</a></strong></p> The announcement says this is "for AI agents" but (as is pretty common...
-出典: https://simonwillison.net/2026/Jun/21/temporary-cloudflare-accounts/#atom-everything
-
 
 ## SNS公式
 
-### Where to Find YouTube This Event Season
+### Instagram for TV Gets Bigger, With New Ways to Watch Together
+<div><img alt="" class="attachment-large size-large wp-post-image" height="501" src="https://about.fb.com/wp-content/uploads/2026/06/Instagram-for-TV-Gets-Bigger_With-New-Ways-to-Watch-Together_Thumbn...
+出典: https://about.fb.com/news/2026/06/instagram-for-tv-gets-bigger-with-new-ways-to-watch-together/
+
+### Where to find YouTube this event season
 <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Image_20260618_130803.max-600x600.format-webp.webp" />Discover where to find YouTube experts this season. Get details on panel...
 出典: https://blog.youtube/news-and-events/where-to-find-youtube-this-event-season/
 
 
 ## SNS動向
 
-### LinkedIn lets users set core brand rules
-<p>Colors, fonts and even brand voice can all be created using the platform&rsquo;s brand kit, which will then use these selections for artificial intelligence-generated content.</p>
-出典: https://www.socialmediatoday.com/news/linkedin-lets-users-set-core-brand-rules/823351/
+### LinkedIn adds collaborative posts
+<p>The platform is rolling out a test at Cannes, and said it plans to offer the feature to more users over the next few months.</p>
+出典: https://www.socialmediatoday.com/news/linkedin-adds-collaborative-posts/823470/
 
-### Snapchat launches ‘House of the Dragon’ AR ad in New York City
-<p>The interactive large-format experience in Times Square allows people to project themselves onto billboards while inserting themselves into fictional scenes.</p>
-出典: https://www.socialmediatoday.com/news/snapchat-launches-house-of-the-dragon-ar-ad-in-new-york-city/823350/
+### Pinterest showcases key in-app trends at Cannes
+<figure><div><img src="https://imgproxy.divecdn.com/QydJbEqAU1DFlKlKLL9R8ZQe-3hSzCulckdosdOarJg/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9waW50ZXJlc3RfbWFuaWZlc3RpdmFsXzIwMjZf...
+出典: https://www.socialmediatoday.com/news/pinterest-showcases-key-in-app-trends-at-cannes/823467/
 
-### YouTube updates mobile UI and channel membership pricing
-<p>Like, dislike, share and ask icons got a new format and channel managers will be able to factor in foreign exchange rates when setting membership prices.</p>
-出典: https://www.socialmediatoday.com/news/youtube-updates-mobile-ui-and-channel-membership-pricing/823349/
+### Reddit launches more integrated ad options to assure shoppers
+<p>Reddit's free-form ads will enable advertisers to create more organic, engaging in-stream promotions.&nbsp;&nbsp;</p>
+出典: https://www.socialmediatoday.com/news/reddit-launches-more-integrated-ad-options-to-assure-shoppers/823466/
 
-### Snapchat launches AI-powered ad creation tools
-<p>Updated features include a chatbot-guided set-up and Snap Creator Network, which is designed to help advertisers find the right creator partners.&nbsp;</p>
-出典: https://www.socialmediatoday.com/news/snapchat-launches-ai-powered-ad-creation-tools/823348/
+### Meta buys stake in Cred, appoints founder to lead WhatsApp
+<p>Meta invested $900 million for 20% of the India-based fintech firm and tapped Kunal Shah to succeed Will Cathcart at the messaging app.</p>  <p>&nbsp;</p>
+出典: https://www.socialmediatoday.com/news/meta-buys-stake-in-cred-appoints-founder-to-lead-whatsapp/823465/
 
-### Google adds AI bot to Ad Manager
-<p>The in-stream assistant provides personalized answers to campaign-related questions and is powered by Gemini&rsquo;s artificial intelligence model.</p>
-出典: https://www.socialmediatoday.com/news/google-adds-ai-bot-to-ad-manager/823347/
+### TikTok adds new AI creation tools for marketers
+<p>The company&rsquo;s artificial intelligence-powered Symphony Agent will generate new promotions based on trending campaigns, text and visual prompts.</p>
+出典: https://www.socialmediatoday.com/news/tiktok-adds-new-ai-creation-tools-for-marketers/823463/
+
+### Instagram expands to Samsung Smart TV
+<figure><div><img src="https://imgproxy.divecdn.com/MhDyyoedDuslLWf0E9aecIrrznzWVmEKj-SIcGuBDGw/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9pbnN0YWdyYW1fdHYucG5n.webp" /></div><...
+出典: https://www.socialmediatoday.com/news/instagram-expands-to-samsung-smart-tv/823458/
+
+
+## SNS運用
+
+### I Built a Content Engine That Creates 21 Social Posts a Week Using the Buffer API
+I went from impulse-posting to 21 posts a week across three platforms. Here's the automation I built with the Buffer API.
+出典: https://buffer.com/resources/i-built-a-content-engine-that-creates-21-social-posts-a-week-using-the-buffer-api/
+
+### Buffer vs. Hootsuite: Which Social Media Management Tool Is Right For You?
+A deep dive into the differences between Buffer and Hootsuite, including pricing, features, and who each social media tool might be the best fit for.
+出典: https://buffer.com/resources/buffer-vs-hootsuite/

@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/23451196/acastro_220510_STK123_0002.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-06-23T18:28:19-04:00"
+      "published": "2026-06-23T18:28:19-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "22325bb9df4c1b57",
@@ -37,7 +39,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25431704/STK201_SAM_ALTMAN_CVIRGINIA_C.jpg?quality=90&amp;strip=all&amp;crop=4.7487503051758%2C21.869598945592%2C95.251249694824%2C74.804666989327&amp;w=1200",
-      "published": "2026-06-23T18:03:18-04:00"
+      "published": "2026-06-23T18:03:18-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "f77c128f5aad0cd2",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/gettyimages-2280753489.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.755291928874%2C100%2C78.489416142251&amp;w=1200",
-      "published": "2026-06-23T13:00:00-04:00"
+      "published": "2026-06-23T13:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "d8a33d091924e5aa",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/ultrasound_phantom_segmentation-b254a71d083eb5c9.png?quality=90&amp;strip=all&amp;crop=28.441715022566,0,70.316569954868,100",
-      "published": "2026-06-23T11:56:35-04:00"
+      "published": "2026-06-23T11:56:35-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "db6fb88d38b02620",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/268538_Fitbit_Air_AKrales_0012.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-06-23T11:00:00-04:00"
+      "published": "2026-06-23T11:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "e2e5ece27aec94d2",
@@ -113,7 +123,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/sony-xperia-1-viii-ai-camera-assistant-samples.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.741906587151%2C100%2C78.516186825698&amp;w=1200",
-      "published": "2026-06-23T09:25:42-04:00"
+      "published": "2026-06-23T09:25:42-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "70698344b02ae738",
@@ -132,7 +144,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/MetaGlasses_1.jpg?quality=90&amp;strip=all&amp;crop=8.55%2C24.971192772515%2C82.25546875%2C66.205436991061&amp;w=1200",
-      "published": "2026-06-23T09:00:00-04:00"
+      "published": "2026-06-23T09:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "cee2c605e8449e9f",
@@ -151,7 +165,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-06-23T18:58:54+00:00"
+      "published": "2026-06-23T18:58:54+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "52bc07b57e16c394",
@@ -170,7 +186,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/STKS528_DATA_CENTERS2_D.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-06-22T19:24:32-04:00"
+      "published": "2026-06-22T19:24:32-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "181262a0b1de325f",
@@ -189,7 +207,9 @@
         "freshness": 3.0
       },
       "thumbnail": "",
-      "published": "2026-06-22T23:59:53+00:00"
+      "published": "2026-06-22T23:59:53+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

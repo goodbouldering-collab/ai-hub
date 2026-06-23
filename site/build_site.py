@@ -154,6 +154,38 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
         "</div>"
         "</header>"
     )
+    parts.append(
+        "<button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'>"
+        "<svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg>"
+        "</button>"
+        "<div class='mobile-nav generated-mobile-nav' id='mobile-nav'>"
+        "<div class='mobile-nav-panel'>"
+        "<div class='mobile-nav-primary'>"
+        "<a class='login-btn-mobile' href='/#contact'>無料相談</a>"
+        "<a class='mobile-main-link' href='/#packages'>講習/伴走</a>"
+        "</div>"
+        "<span class='mobile-nav-label'>公開ページ</span>"
+        "<div class='mobile-link-grid'>"
+        "<a href='/#specialist'>専門性</a>"
+        "<a href='/#blog'>ブログ</a>"
+        "<a href='/#packages'>講習/伴走</a>"
+        "<a href='/#faq'>FAQ</a>"
+        "<a href='/programming-map.html'>AIコーディング</a>"
+        "<a href='/portfolio.html'>実績</a>"
+        "<a href='/watch/index.html'>AI Watch</a>"
+        "<a class='mobile-admin-link' href='/admin'>管理画面</a>"
+        "</div>"
+        "</div>"
+        "</div>"
+        "<script>(function(){"
+        "var b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav');"
+        "if(!b||!n)return;"
+        "function close(){n.classList.remove('open');b.setAttribute('aria-expanded','false');}"
+        "b.addEventListener('click',function(e){e.stopPropagation();var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});"
+        "n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});"
+        "document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});"
+        "})();</script>"
+    )
     return "".join(parts)
 
 
@@ -576,12 +608,115 @@ nav.top-nav .nav-admin {
   background: linear-gradient(135deg, #0B5C74 0%, #0E876F 100%);
   box-shadow: 0 14px 34px rgba(11,92,116,.22), inset 0 1px 0 rgba(255,255,255,.22);
 }
+.mobile-toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(18,32,51,.20);
+  border-radius: 8px;
+  background: #fff;
+  color: #122033;
+  box-shadow: 0 8px 18px rgba(18,32,51,.10);
+  cursor: pointer;
+}
+.generated-mobile-toggle {
+  position: fixed;
+  top: 10px;
+  right: max(14px, env(safe-area-inset-right));
+  z-index: 72;
+}
+.mobile-toggle svg { display: block; }
+.mobile-toggle svg path { stroke: currentColor; }
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: 62px;
+  left: 0;
+  right: 0;
+  z-index: 70;
+  max-height: calc(100dvh - 62px);
+  padding: 12px max(16px, env(safe-area-inset-left)) calc(18px + env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-right));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: #fff;
+  color: #122033;
+  border-top: 1px solid rgba(18,32,51,.14);
+  box-shadow: 0 18px 34px rgba(18,32,51,.14);
+}
+.mobile-nav.open { display: block; }
+.mobile-nav-panel {
+  width: min(100%, 720px);
+  margin: 0 auto;
+  display: grid;
+  gap: 10px;
+}
+.mobile-nav-primary,
+.mobile-link-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+.mobile-nav a,
+.mobile-nav .mobile-admin-link,
+.mobile-nav .login-btn-mobile,
+.mobile-nav .mobile-main-link {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 10px;
+  border: 1px solid rgba(18,32,51,.12);
+  border-radius: 8px;
+  background: rgba(255,255,255,.94);
+  color: #122033;
+  text-align: center;
+  text-decoration: none;
+  line-height: 1.35;
+  font-size: 13px;
+  font-weight: 850;
+}
+.mobile-nav .login-btn-mobile,
+.mobile-nav .mobile-main-link {
+  background: linear-gradient(135deg, #0B5C74 0%, #0E876F 100%);
+  color: #fff;
+  border-color: transparent;
+}
+.mobile-nav .mobile-admin-link {
+  grid-column: 1 / -1;
+  background: rgba(7,20,38,.05);
+}
+.mobile-nav .mobile-nav-label {
+  padding: 2px 2px 0;
+  color: #5D6C80;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .14em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
 @media (max-width: 900px) {
   html { scroll-padding-top: 68px; }
   [id] { scroll-margin-top: 68px; }
   .site-header-inner {
     min-height: 60px;
     padding: 8px 14px;
+  }
+  nav.top-nav,
+  .nav-cta {
+    display: none;
+  }
+  .site-logo {
+    max-width: calc(100% - 58px);
+    overflow: hidden;
+  }
+  .mobile-toggle {
+    display: inline-flex;
+  }
+  .mobile-nav {
+    top: 60px;
+    max-height: calc(100dvh - 60px);
   }
 }
 .run-status.running { color:#b45309; }

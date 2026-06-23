@@ -266,12 +266,115 @@ nav.top-nav .nav-admin {
   background: linear-gradient(135deg, #0B5C74 0%, #0E876F 100%);
   box-shadow: 0 14px 34px rgba(11,92,116,.22), inset 0 1px 0 rgba(255,255,255,.22);
 }
+.mobile-toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(18,32,51,.20);
+  border-radius: 8px;
+  background: #fff;
+  color: #122033;
+  box-shadow: 0 8px 18px rgba(18,32,51,.10);
+  cursor: pointer;
+}
+.generated-mobile-toggle {
+  position: fixed;
+  top: 10px;
+  right: max(14px, env(safe-area-inset-right));
+  z-index: 72;
+}
+.mobile-toggle svg { display: block; }
+.mobile-toggle svg path { stroke: currentColor; }
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: 62px;
+  left: 0;
+  right: 0;
+  z-index: 70;
+  max-height: calc(100dvh - 62px);
+  padding: 12px max(16px, env(safe-area-inset-left)) calc(18px + env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-right));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: #fff;
+  color: #122033;
+  border-top: 1px solid rgba(18,32,51,.14);
+  box-shadow: 0 18px 34px rgba(18,32,51,.14);
+}
+.mobile-nav.open { display: block; }
+.mobile-nav-panel {
+  width: min(100%, 720px);
+  margin: 0 auto;
+  display: grid;
+  gap: 10px;
+}
+.mobile-nav-primary,
+.mobile-link-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+.mobile-nav a,
+.mobile-nav .mobile-admin-link,
+.mobile-nav .login-btn-mobile,
+.mobile-nav .mobile-main-link {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 10px;
+  border: 1px solid rgba(18,32,51,.12);
+  border-radius: 8px;
+  background: rgba(255,255,255,.94);
+  color: #122033;
+  text-align: center;
+  text-decoration: none;
+  line-height: 1.35;
+  font-size: 13px;
+  font-weight: 850;
+}
+.mobile-nav .login-btn-mobile,
+.mobile-nav .mobile-main-link {
+  background: linear-gradient(135deg, #0B5C74 0%, #0E876F 100%);
+  color: #fff;
+  border-color: transparent;
+}
+.mobile-nav .mobile-admin-link {
+  grid-column: 1 / -1;
+  background: rgba(7,20,38,.05);
+}
+.mobile-nav .mobile-nav-label {
+  padding: 2px 2px 0;
+  color: #5D6C80;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .14em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
 @media (max-width: 900px) {
   html { scroll-padding-top: 68px; }
   [id] { scroll-margin-top: 68px; }
   .site-header-inner {
     min-height: 60px;
     padding: 8px 14px;
+  }
+  nav.top-nav,
+  .nav-cta {
+    display: none;
+  }
+  .site-logo {
+    max-width: calc(100% - 58px);
+    overflow: hidden;
+  }
+  .mobile-toggle {
+    display: inline-flex;
+  }
+  .mobile-nav {
+    top: 60px;
+    max-height: calc(100dvh - 60px);
   }
 }
 .run-status.running { color:#b45309; }
@@ -632,19 +735,65 @@ footer {
 .pf-card {
   display: flex;
   flex-direction: column;
-  background: #fff;
-  border: 1px solid var(--glass-border);
-  border-radius: 16px;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.74), rgba(255,255,255,.46)),
+    linear-gradient(135deg, rgba(14,165,198,.06), rgba(242,102,85,.04));
+  border: 1px solid rgba(255,255,255,.50);
+  border-radius: 8px;
   padding: 14px 16px 12px;
+  overflow: hidden;
   transition: transform .15s, border-color .15s, box-shadow .15s;
   text-decoration: none;
   color: inherit;
   min-height: 150px;
+  box-shadow: 0 18px 48px rgba(15,23,42,.10), inset 0 1px 0 rgba(255,255,255,.74);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
 }
 .pf-card:hover {
   transform: translateY(-2px);
-  border-color: rgba(37,99,235,.40);
+  border-color: rgba(14,165,198,.30);
   box-shadow: var(--shadow-card-hover);
+}
+.pf-card .pf-thumb {
+  position: relative;
+  display: block;
+  margin: -14px -16px 12px;
+  aspect-ratio: 32 / 15;
+  overflow: hidden;
+  border-radius: 8px 8px 0 0;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.78), rgba(226,247,244,.56)),
+    linear-gradient(120deg, rgba(14,165,198,.10), rgba(146,200,62,.08));
+}
+.pf-card .pf-thumb img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: top center;
+}
+.pf-card .pf-thumb::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 2;
+  height: 18px;
+  background:
+    radial-gradient(circle at 10px 9px, #EF6864 0 3px, transparent 3.4px),
+    radial-gradient(circle at 22px 9px, #F5B445 0 3px, transparent 3.4px),
+    radial-gradient(circle at 34px 9px, #46B87A 0 3px, transparent 3.4px),
+    linear-gradient(180deg, rgba(255,255,255,.94), rgba(244,248,249,.76));
+  border-bottom: 1px solid rgba(18,32,51,.10);
+  pointer-events: none;
+}
+.pf-card .pf-thumb::after {
+  content: "";
+  position: absolute;
+  inset: 18px 0 0;
+  z-index: 2;
+  background: linear-gradient(180deg, transparent 62%, rgba(7,20,38,.16));
+  pointer-events: none;
 }
 .pf-card .pf-title {
   font-weight: 800;
@@ -1584,13 +1733,49 @@ header.site-header.scrolled {
 .site-nav .menu-drop {
   position: absolute; right: 0; top: calc(100% + 14px);
   min-width: 240px; padding: 8px;
-  background: #FEFFFF !important; border: 1px solid rgba(18,32,51,.18);
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.78), rgba(241,249,248,.58)),
+    linear-gradient(160deg, rgba(14,165,198,.08), rgba(242,102,85,.05)) !important;
+  border: 1px solid rgba(255,255,255,.48);
   border-radius: var(--radius-sm);
   box-shadow: 0 18px 44px rgba(18,32,51,.16), inset 0 1px 0 rgba(255,255,255,.95);
-  backdrop-filter: none;
+  backdrop-filter: blur(22px) saturate(160%);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
   display: none;
 }
 .site-nav .menu-drop.open { display: block; }
+.site-nav .menu-drop-visual {
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  margin: 0 0 8px;
+  padding: 8px;
+  border-radius: 10px;
+  background: rgba(255,255,255,.62);
+  border: 1px solid rgba(255,255,255,.54);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.72);
+}
+.site-nav .menu-drop-visual img {
+  width: 46px;
+  height: 46px;
+  display: block;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.site-nav .menu-drop-visual strong {
+  display: block;
+  color: #122033;
+  font-size: 13px;
+  line-height: 1.25;
+}
+.site-nav .menu-drop-visual span {
+  display: block;
+  margin-top: 2px;
+  color: #607086;
+  font-size: 11px;
+  line-height: 1.4;
+}
 .site-nav .menu-drop-label {
   display: block; padding: 7px 14px 4px;
   font-size: 10px; font-weight: 900; letter-spacing: .14em;
@@ -3360,11 +3545,40 @@ footer.site-footer {
   box-shadow: var(--shadow-card-hover);
 }
 .pf-card .pf-thumb {
+  position: relative;
   display: block; margin: -14px -16px 12px; /* カード内パディングを打ち消して全幅バナーに */
   border-radius: var(--radius-sm) var(--radius-sm) 0 0; overflow: hidden;
-  aspect-ratio: 32 / 15; background: var(--bg-elev);
+  aspect-ratio: 32 / 15;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.78), rgba(226,247,244,.56)),
+    linear-gradient(120deg, rgba(14,165,198,.10), rgba(146,200,62,.08));
 }
-.pf-card .pf-thumb svg, .pf-card .pf-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.pf-card .pf-thumb svg, .pf-card .pf-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.pf-card .pf-thumb.is-site-shot {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.82);
+}
+.pf-card .pf-thumb.is-site-shot::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 2;
+  height: 18px;
+  background:
+    radial-gradient(circle at 10px 9px, #EF6864 0 3px, transparent 3.4px),
+    radial-gradient(circle at 22px 9px, #F5B445 0 3px, transparent 3.4px),
+    radial-gradient(circle at 34px 9px, #46B87A 0 3px, transparent 3.4px),
+    linear-gradient(180deg, rgba(255,255,255,.94), rgba(244,248,249,.76));
+  border-bottom: 1px solid rgba(18,32,51,.10);
+  pointer-events: none;
+}
+.pf-card .pf-thumb.is-site-shot::after {
+  content: "";
+  position: absolute;
+  inset: 18px 0 0;
+  z-index: 2;
+  background: linear-gradient(180deg, transparent 62%, rgba(7,20,38,.16));
+  pointer-events: none;
+}
 .pf-card .pf-title { font-weight: 800; font-size: 15px; color: var(--text); }
 .pf-card .pf-host { font-size: 11.5px; color: var(--muted); margin-top: 2px; word-break: break-all; }
 .pf-card .pf-sum { font-size: 13px; color: var(--text-soft); line-height: 1.55; margin: 8px 0 10px; flex: 1; }
@@ -7163,6 +7377,99 @@ button:focus-visible {
     font-size: 13px !important;
   }
 }
+
+
+/* ---- Human-led glass polish, 2026-06-22 ---- */
+body {
+  background:
+    linear-gradient(116deg, rgba(14,165,198,.08) 0%, transparent 34%),
+    linear-gradient(244deg, rgba(242,102,85,.07) 0%, transparent 36%),
+    linear-gradient(180deg, #FFFFFF 0%, #F7FBFA 46%, #EEF7F4 100%) !important;
+}
+
+body::before {
+  background:
+    linear-gradient(90deg, rgba(18,32,51,.026) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(18,32,51,.018) 1px, transparent 1px),
+    linear-gradient(125deg, transparent 0 48%, rgba(14,165,198,.055) 48% 49%, transparent 49% 100%) !important;
+  background-size: 96px 96px, 96px 96px, 220px 220px !important;
+}
+
+header.site-header,
+header.site-header.scrolled {
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.76), rgba(244,251,250,.56)) !important;
+  border-bottom: 1px solid rgba(255,255,255,.52) !important;
+  box-shadow: 0 18px 46px rgba(18,32,51,.09), inset 0 1px 0 rgba(255,255,255,.78) !important;
+  backdrop-filter: blur(24px) saturate(165%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(165%) !important;
+}
+
+.site-nav,
+.mobile-nav {
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.56), rgba(244,251,250,.36)) !important;
+  border-color: rgba(255,255,255,.50) !important;
+  box-shadow: 0 14px 34px rgba(18,32,51,.07), inset 0 1px 0 rgba(255,255,255,.70) !important;
+  backdrop-filter: blur(22px) saturate(155%) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(155%) !important;
+}
+
+.biz-card, .service-card, .pkg-card, .faq-item, .stat,
+.lecture-card, .pf-card, .voice-card, .explore-card, .contact-choice,
+.specialist-lead-card, .specialist-card, .blog-feature, .blog-list-card,
+.route-card, .path-card, .flow-card, .tr-card, .profile-tech-card {
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.68), rgba(255,255,255,.40)),
+    linear-gradient(135deg, rgba(14,165,198,.055), rgba(242,102,85,.045)) !important;
+  border-color: rgba(255,255,255,.48) !important;
+  box-shadow: 0 20px 54px rgba(18,32,51,.10), inset 0 1px 0 rgba(255,255,255,.72) !important;
+  backdrop-filter: blur(22px) saturate(158%) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(158%) !important;
+}
+
+.biz-card:hover, .service-card:hover, .pkg-card:hover, .pf-card:hover,
+.lecture-card:hover, .blog-list-card:hover, .contact-choice:hover {
+  border-color: rgba(14,165,198,.28) !important;
+  box-shadow: 0 28px 70px rgba(18,32,51,.14), inset 0 1px 0 rgba(255,255,255,.82) !important;
+}
+
+.pf-card {
+  padding: 14px 16px 13px !important;
+  overflow: hidden;
+}
+
+.pf-card .pf-thumb {
+  margin: -14px -16px 13px !important;
+  border-radius: 8px 8px 0 0 !important;
+}
+
+.pf-card .pf-title {
+  color: #122033 !important;
+}
+
+.pf-card .pf-chip {
+  background: rgba(255,255,255,.58) !important;
+  border-color: rgba(18,32,51,.10) !important;
+  color: #0F5F78 !important;
+}
+
+.section-heading {
+  color: #0F5F78 !important;
+}
+
+.hero-proof-grid,
+.hero-proof,
+.web-showcase,
+.web-browser,
+.web-mini-panel {
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.62), rgba(255,255,255,.30)),
+    linear-gradient(135deg, rgba(14,165,198,.07), rgba(146,200,62,.055)) !important;
+  border-color: rgba(255,255,255,.46) !important;
+  backdrop-filter: blur(22px) saturate(155%) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(155%) !important;
+}
 </style></head><body><div class='container'>
 <script>
 (function(){
@@ -7180,7 +7487,7 @@ button:focus-visible {
   }
 })();
 </script>
-<header class='site-header scrolled' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>専</span></span><span class='wordmark'><span class='word-ai'>AIスペシャリスト</span><span class='word-hub'>彦根</span><span class='word-en'>HIKONE AI SPECIALIST</span></span><span class='site-logo-by'>彦根・滋賀のAI導入支援</span></a><nav class='site-nav top-nav' aria-label='サイトナビ'><a class='nav-link nav-essential' href='/#specialist'>専門性</a><a class='nav-link nav-essential' href='/#blog'>ブログ</a><a class='nav-link nav-essential' href='/#packages'>講習/伴走</a><a class='nav-link' href='/#faq'>FAQ</a><a class='nav-link nav-admin' href='/admin'>🔐 管理</a></nav><a class='nav-cta' href='/#contact'>無料相談</a></div></header><header><h1>AI時代、やる気がなくても成果物は増える。だから最後に勝つのは編集できる人</h1><div class='speaker-meta'><span class='role'>ブログ / AIエージェント実践</span><span>📅 2026-06-18</span><span>由井 辰美 / AIハブ</span></div></header><div class='content-wrap'><div class='content-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#成果物が増えること自体は-もう珍しくない'>成果物が増えること自体は、もう珍しくない</a></li><li><a href='#量産されたaiアプリは-畑に一気に生える草に近い'>量産されたAIアプリは、畑に一気に生える草に近い</a></li><li><a href='#人間のやる気より-目的の置き方が成果を決める'>人間のやる気より、目的の置き方が成果を決める</a></li><li><a href='#aiを使った人-ではなく-専門知識をaiで増幅した人'>「AIを使った人」ではなく「専門知識をAIで増幅した人」</a></li><li><a href='#aiハブでやりたいこと'>AIハブでやりたいこと</a></li></ol></div><p>Facebookに「AI時代、やる気がなくても成果物は増える」という投稿を書いた。これは、少し冗談のように見えて、かなり本質的な変化だと思っている。</p>
+<header class='site-header scrolled' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>専</span></span><span class='wordmark'><span class='word-ai'>AIスペシャリスト</span><span class='word-hub'>彦根</span><span class='word-en'>HIKONE AI SPECIALIST</span></span><span class='site-logo-by'>彦根・滋賀のAI導入支援</span></a><nav class='site-nav top-nav' aria-label='サイトナビ'><a class='nav-link nav-essential' href='/#specialist'>専門性</a><a class='nav-link nav-essential' href='/#blog'>ブログ</a><a class='nav-link nav-essential' href='/#packages'>講習/伴走</a><a class='nav-link' href='/#faq'>FAQ</a><a class='nav-link nav-admin' href='/admin'>🔐 管理</a></nav><a class='nav-cta' href='/#contact'>無料相談</a></div></header><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'><svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button><div class='mobile-nav generated-mobile-nav' id='mobile-nav'><div class='mobile-nav-panel'><div class='mobile-nav-primary'><a class='login-btn-mobile' href='/#contact'>無料相談</a><a class='mobile-main-link' href='/#packages'>講習/伴走</a></div><span class='mobile-nav-label'>公開ページ</span><div class='mobile-link-grid'><a href='/#specialist'>専門性</a><a href='/#blog'>ブログ</a><a href='/#packages'>講習/伴走</a><a href='/#faq'>FAQ</a><a href='/programming-map.html'>AIコーディング</a><a href='/portfolio.html'>実績</a><a href='/watch/index.html'>AI Watch</a><a class='mobile-admin-link' href='/admin'>管理画面</a></div></div></div><script>(function(){var b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav');if(!b||!n)return;function close(){n.classList.remove('open');b.setAttribute('aria-expanded','false');}b.addEventListener('click',function(e){e.stopPropagation();var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});})();</script><header><h1>AI時代、やる気がなくても成果物は増える。だから最後に勝つのは編集できる人</h1><div class='speaker-meta'><span class='role'>ブログ / AIエージェント実践</span><span>📅 2026-06-18</span><span>由井 辰美 / AIハブ</span></div></header><div class='content-wrap'><div class='content-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#成果物が増えること自体は-もう珍しくない'>成果物が増えること自体は、もう珍しくない</a></li><li><a href='#量産されたaiアプリは-畑に一気に生える草に近い'>量産されたAIアプリは、畑に一気に生える草に近い</a></li><li><a href='#人間のやる気より-目的の置き方が成果を決める'>人間のやる気より、目的の置き方が成果を決める</a></li><li><a href='#aiを使った人-ではなく-専門知識をaiで増幅した人'>「AIを使った人」ではなく「専門知識をAIで増幅した人」</a></li><li><a href='#aiハブでやりたいこと'>AIハブでやりたいこと</a></li></ol></div><p>Facebookに「AI時代、やる気がなくても成果物は増える」という投稿を書いた。これは、少し冗談のように見えて、かなり本質的な変化だと思っている。</p>
 <p>昔のプログラミングや制作は、気分、体力、集中力にかなり左右された。今日は頭が回らない。今日は手が動かない。今日はここまで。そういう日があると、成果物はそこで止まった。</p>
 <p>でも今は違う。目的さえ決めておけば、AIエージェントは文句を言わずに動き続ける。文章案、LP、管理画面、画像、台本、資料、コード、チェックリスト。人間が少し休んでいても、次の確認対象は増えていく。</p>
 <h2 id='成果物が増えること自体は-もう珍しくない'>成果物が増えること自体は、もう珍しくない</h2>

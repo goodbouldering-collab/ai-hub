@@ -1346,3 +1346,124 @@ body.admin-page.admin-fixed-menu-page .container {
     font-weight: 900 !important;
   }
 }
+
+/* ---- Admin hamburger/sidebar final override, 2026-06-23 ---- */
+@media (min-width: 901px) {
+  body.admin-page.admin-fixed-menu-page {
+    padding-left: 248px !important;
+  }
+
+  body.admin-page.admin-fixed-menu-page .container,
+  body.admin-page.admin-fixed-menu-page .wrap,
+  body.admin-page.admin-fixed-menu-page .app-shell,
+  body.admin-page.admin-fixed-menu-page .shell {
+    max-width: min(1240px, calc(100vw - 292px)) !important;
+  }
+
+  body.admin-page.admin-fixed-menu-page .admin-slide-nav {
+    position: fixed !important;
+    top: calc(var(--admin-header-height) + 16px) !important;
+    left: 16px !important;
+    right: auto !important;
+    bottom: 16px !important;
+    z-index: 90 !important;
+    width: 216px !important;
+    height: calc(100dvh - var(--admin-header-height) - 32px) !important;
+    min-height: 240px !important;
+    max-height: calc(100dvh - var(--admin-header-height) - 32px) !important;
+    margin: 0 !important;
+    padding: 12px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 8px !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    white-space: normal !important;
+    border: 1px solid rgba(7,20,38,.13) !important;
+    border-radius: 8px !important;
+    background: #fff !important;
+    box-shadow: 0 18px 46px rgba(7,20,38,.11), inset 0 1px 0 rgba(255,255,255,.94) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  body.admin-page.admin-fixed-menu-page .admin-slide-nav::before {
+    content: "ADMIN";
+    display: block;
+    padding: 2px 4px 4px;
+    color: #64748b;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .14em;
+  }
+
+  body.admin-page.admin-fixed-menu-page .admin-scroll-menu {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 8px !important;
+    overflow: visible !important;
+  }
+
+  body.admin-page.admin-fixed-menu-page .admin-scroll-link,
+  body.admin-page.admin-fixed-menu-page .logout-scroll-link {
+    width: 100% !important;
+    min-height: 40px !important;
+    justify-content: flex-start !important;
+    padding: 0 11px !important;
+    border-radius: 8px !important;
+    font-size: 12px !important;
+    line-height: 1.25 !important;
+  }
+
+  body.admin-page.admin-fixed-menu-page .mobile-toggle,
+  body.admin-page.admin-fixed-menu-page .mobile-nav {
+    display: none !important;
+  }
+}
+
+@media (max-width: 900px) {
+  body.admin-page.admin-fixed-menu-page,
+  body.admin-page.admin-fixed-menu-page .container,
+  body.admin-page.admin-fixed-menu-page .wrap,
+  body.admin-page.admin-fixed-menu-page .app-shell,
+  body.admin-page.admin-fixed-menu-page .shell {
+    padding-left: 0 !important;
+    padding-top: calc(var(--admin-header-height) + 14px) !important;
+  }
+
+  body.admin-page.admin-fixed-menu-page .site-header-inner {
+    padding: 8px 14px !important;
+    flex-direction: row !important;
+    align-items: center !important;
+  }
+
+  body.admin-page.admin-fixed-menu-page .site-logo,
+  body.admin-page.admin-fixed-menu-page .admin-home-link {
+    display: inline-flex !important;
+  }
+
+  body.admin-page.admin-fixed-menu-page .site-nav,
+  body.admin-page.admin-fixed-menu-page .admin-slide-nav,
+  body.admin-page.admin-fixed-menu-page .admin-scroll-menu,
+  body.admin-page.admin-fixed-menu-page .admin-subnav,
+  body.admin-page.admin-fixed-menu-page .admin-command-menu {
+    display: none !important;
+  }
+
+  body.admin-page.admin-fixed-menu-page .mobile-toggle {
+    display: inline-flex !important;
+    margin-left: auto !important;
+  }
+
+  body.admin-page.admin-fixed-menu-page .mobile-nav.open {
+    display: block !important;
+  }
+
+  body.admin-page.admin-fixed-menu-page .wordmark .word-en,
+  body.admin-page.admin-fixed-menu-page .site-logo-by {
+    display: none !important;
+  }
+}

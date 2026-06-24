@@ -542,17 +542,17 @@ nav.top-nav .run-btn:disabled { opacity:.6; cursor:not-allowed; }
 .run-status.ok { color:#047857; }
 .run-status.err { color:#b91c1c; }
 
-/* ---- compact glass command header override for generated pages ---- */
+/* ---- compact solid command header override for generated pages ---- */
 html { scroll-padding-top: 78px; }
 [id] { scroll-margin-top: 78px; }
 header.site-header,
 header.site-header.scrolled {
   min-height: 62px;
-  background: rgba(255,255,255,.985);
-  border-bottom: 1px solid rgba(7,22,43,.14);
-  box-shadow: 0 14px 36px rgba(7,22,43,.11), inset 0 1px 0 rgba(255,255,255,.96);
-  backdrop-filter: blur(20px) saturate(150%);
-  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  background: linear-gradient(135deg, #FFFFFF 0%, #F7FBFC 100%);
+  border-bottom: 1px solid rgba(7,20,38,.18);
+  box-shadow: 0 16px 42px rgba(7,20,38,.13), inset 0 1px 0 rgba(255,255,255,.96);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 .site-header-inner {
   min-height: 62px;
@@ -2152,8 +2152,99 @@ def _portal_css() -> str:
 # 後置して後勝ちにすることで、共通セレクタ(body/.container/.site-header 等)を
 # トップ(LP)と完全一致させる。watch/lectures 固有の .thumb/.genre-tabs 等は
 # PORTAL に無いため前置の CSS 側で生き残る（破綻しない）。
-MASTER_CSS = CSS + _portal_css()
-MASTER_CONTENT_CSS = CSS + CONTENT_CSS + _portal_css()
+GENERATED_SOLID_MENU_CSS = """
+/* ---- Shared solid generated menu surfaces, 2026-06-24 ---- */
+header.site-header,
+header.site-header.scrolled,
+.site-header,
+.site-header.scrolled,
+.site-header:hover {
+  min-height: 62px !important;
+  background: linear-gradient(135deg, #FFFFFF 0%, #F7FBFC 100%) !important;
+  border-bottom: 1px solid rgba(7,20,38,.18) !important;
+  box-shadow: 0 16px 42px rgba(7,20,38,.13), inset 0 1px 0 rgba(255,255,255,.96) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.site-nav,
+nav.top-nav {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(7,20,38,.18) !important;
+  box-shadow: 0 10px 26px rgba(7,20,38,.08), inset 0 1px 0 rgba(255,255,255,.96) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.site-nav a.nav-link,
+nav.top-nav .nav-link,
+.site-nav .menu-toggle,
+.site-nav .nav-admin {
+  background: #FFFFFF !important;
+  color: #122033 !important;
+  border: 1px solid rgba(7,20,38,.13) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.site-nav a.nav-link:hover,
+.site-nav a.nav-link:focus-visible,
+nav.top-nav .nav-link:hover,
+nav.top-nav .nav-link:focus-visible,
+.site-nav .menu-toggle:hover,
+.site-nav .menu-toggle:focus-visible,
+.site-nav .menu-toggle[aria-expanded="true"],
+.site-nav .nav-admin:hover,
+.site-nav .nav-admin:focus-visible {
+  background: #EAF6F8 !important;
+  color: #075E67 !important;
+  border-color: rgba(14,165,198,.32) !important;
+  box-shadow: none !important;
+}
+
+.site-nav .menu-drop,
+.site-nav .admin-fixed-menu-drop {
+  background: #FFFFFF !important;
+  color: #122033 !important;
+  border: 1px solid rgba(7,20,38,.18) !important;
+  box-shadow: 0 24px 62px rgba(7,20,38,.16), inset 0 1px 0 rgba(255,255,255,.98) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.mobile-toggle,
+.generated-mobile-toggle {
+  background: #FFFFFF !important;
+  color: #122033 !important;
+  border: 1px solid rgba(7,20,38,.18) !important;
+  box-shadow: 0 10px 24px rgba(7,20,38,.12) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.mobile-nav,
+.generated-mobile-nav,
+.mobile-nav.open {
+  background: #FFFFFF !important;
+  color: #122033 !important;
+  border-top: 1px solid rgba(7,20,38,.18) !important;
+  box-shadow: 0 24px 52px rgba(7,20,38,.18) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.mobile-nav a,
+.mobile-nav .mobile-admin-link,
+.mobile-nav .login-btn-mobile,
+.mobile-nav .mobile-main-link {
+  background: #FFFFFF !important;
+  color: #122033 !important;
+  border: 1px solid rgba(7,20,38,.13) !important;
+}
+"""
+
+MASTER_CSS = CSS + _portal_css() + GENERATED_SOLID_MENU_CSS
+MASTER_CONTENT_CSS = CSS + CONTENT_CSS + _portal_css() + GENERATED_SOLID_MENU_CSS
 
 
 def _load_markdown():

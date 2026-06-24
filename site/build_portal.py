@@ -6587,6 +6587,174 @@ PORTAL_CSS += """
 """
 
 
+PORTAL_CSS += """
+
+/* ---- Shared solid menu surfaces, 2026-06-24 ---- */
+:root {
+  --menu-surface: #FFFFFF;
+  --menu-surface-soft: #F7FBFC;
+  --menu-border: rgba(7,20,38,.18);
+  --menu-text: #122033;
+  --menu-muted: #536276;
+  --menu-accent: #0EA5C6;
+  --menu-strong: #071426;
+  --menu-focus: #EAF6F8;
+  --menu-shadow: 0 16px 42px rgba(7,20,38,.13), inset 0 1px 0 rgba(255,255,255,.96);
+}
+
+header.site-header,
+.site-header,
+.site-header.scrolled,
+.site-header:hover {
+  background: linear-gradient(135deg, var(--menu-surface) 0%, var(--menu-surface-soft) 100%) !important;
+  border-bottom: 1px solid var(--menu-border) !important;
+  box-shadow: var(--menu-shadow) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.site-nav,
+nav.top-nav {
+  background: var(--menu-surface) !important;
+  border: 1px solid var(--menu-border) !important;
+  box-shadow: 0 10px 26px rgba(7,20,38,.08), inset 0 1px 0 rgba(255,255,255,.96) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.site-nav a.nav-link,
+nav.top-nav .nav-link,
+.site-nav .menu-toggle,
+.site-nav .nav-admin {
+  background: #FFFFFF !important;
+  color: var(--menu-text) !important;
+  border: 1px solid rgba(7,20,38,.12) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.site-nav a.nav-link:hover,
+.site-nav a.nav-link:focus-visible,
+nav.top-nav .nav-link:hover,
+nav.top-nav .nav-link:focus-visible,
+.site-nav .menu-toggle:hover,
+.site-nav .menu-toggle:focus-visible,
+.site-nav .menu-toggle[aria-expanded="true"],
+.site-nav .nav-admin:hover,
+.site-nav .nav-admin:focus-visible {
+  background: var(--menu-focus) !important;
+  color: #075E67 !important;
+  border-color: rgba(14,165,198,.32) !important;
+  box-shadow: none !important;
+}
+
+.site-nav a.nav-link.nav-essential[href="#packages"],
+.site-nav a.nav-link.nav-essential[href="/#packages"],
+nav.top-nav .nav-link.nav-essential[href="/#packages"] {
+  background: var(--menu-strong) !important;
+  color: #FFFFFF !important;
+  border-color: var(--menu-strong) !important;
+}
+
+.site-nav a.nav-link.nav-essential[href="#lectures"],
+.site-nav a.nav-link.nav-essential[href="/#lectures"],
+nav.top-nav .nav-link.nav-essential[href="/#lectures"],
+.site-nav a.nav-link[href="/programming-map.html"],
+nav.top-nav .nav-link[href="/programming-map.html"] {
+  background: rgba(14,165,198,.10) !important;
+  color: #075E67 !important;
+  border-color: rgba(14,165,198,.24) !important;
+}
+
+.site-nav .menu-drop,
+.site-nav .admin-fixed-menu-drop {
+  background: var(--menu-surface) !important;
+  color: var(--menu-text) !important;
+  border: 1px solid var(--menu-border) !important;
+  box-shadow: 0 24px 62px rgba(7,20,38,.16), inset 0 1px 0 rgba(255,255,255,.98) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.site-nav .menu-drop-label,
+.mobile-nav .mobile-nav-label {
+  color: var(--menu-muted) !important;
+}
+
+.site-nav .menu-drop a,
+.site-nav .admin-fixed-menu-drop a {
+  background: #FFFFFF !important;
+  color: var(--menu-text) !important;
+  border-radius: 8px !important;
+}
+
+.site-nav .menu-drop a:hover,
+.site-nav .menu-drop a:focus-visible,
+.site-nav .admin-fixed-menu-drop a:hover,
+.site-nav .admin-fixed-menu-drop a:focus-visible {
+  background: var(--menu-focus) !important;
+  color: #075E67 !important;
+  outline: none !important;
+}
+
+.mobile-toggle,
+.generated-mobile-toggle {
+  background: #FFFFFF !important;
+  color: var(--menu-text) !important;
+  border: 1px solid var(--menu-border) !important;
+  box-shadow: 0 10px 24px rgba(7,20,38,.12) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.mobile-nav,
+.generated-mobile-nav,
+.mobile-nav.open {
+  background: var(--menu-surface) !important;
+  color: var(--menu-text) !important;
+  border-top: 1px solid var(--menu-border) !important;
+  box-shadow: 0 24px 52px rgba(7,20,38,.18) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.mobile-nav a,
+.mobile-nav .mobile-admin-link,
+.mobile-nav .login-btn-mobile,
+.mobile-nav .mobile-main-link {
+  background: #FFFFFF !important;
+  color: var(--menu-text) !important;
+  border: 1px solid rgba(7,20,38,.13) !important;
+}
+
+.mobile-nav a:hover,
+.mobile-nav a:focus-visible {
+  background: var(--menu-focus) !important;
+  color: #075E67 !important;
+  outline: none !important;
+}
+
+.mobile-nav .login-btn-mobile,
+.site-nav .nav-cta,
+.nav-cta {
+  background: linear-gradient(135deg, #F26655, #D99A20) !important;
+  color: #FFFFFF !important;
+  border-color: transparent !important;
+}
+
+.mobile-nav .mobile-main-link,
+.mobile-nav a[href="/programming-map.html"] {
+  background: rgba(14,165,198,.10) !important;
+  color: #075E67 !important;
+  border-color: rgba(14,165,198,.24) !important;
+}
+
+.mobile-nav .mobile-admin-link {
+  background: #F7FBFC !important;
+}
+"""
+
+
 BLOG_TEASER_CSS = """
 .specialist-grid {
   display: grid;

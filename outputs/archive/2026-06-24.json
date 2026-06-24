@@ -18,7 +18,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/01/STK481_STK432_CONGRESS_GOVERNMENT_CIVRGINIA_C.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-06-24T15:36:46-04:00"
+      "published": "2026-06-24T15:36:46-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "2700ad167130ef57",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/gettyimages-2282522212.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-06-24T13:25:00-04:00"
+      "published": "2026-06-24T13:25:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "41c7e9094ecc60ac",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/Figma-config-2026.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-06-24T12:15:00-04:00"
+      "published": "2026-06-24T12:15:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "535a65cb19ce795b",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/openai-broadcom-jalapeno-inference-chip-image.webp?quality=90&amp;strip=all&amp;crop=0%2C3.5043662306087%2C100%2C92.991267538783&amp;w=1200",
-      "published": "2026-06-24T10:36:47-04:00"
+      "published": "2026-06-24T10:36:47-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "a495344e22657214",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/Google-Home-Speaker.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.728785061485%2C100%2C78.54242987703&amp;w=1200",
-      "published": "2026-06-24T09:00:00-04:00"
+      "published": "2026-06-24T09:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "fa7d37dc355c9318",
@@ -113,7 +123,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-06-24T18:13:51+00:00"
+      "published": "2026-06-24T18:13:51+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "074403543f28c333",
@@ -132,7 +144,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/5ao_Y5Xg3Dk/hqdefault.jpg",
-      "published": "2026-06-24T13:54:46+00:00"
+      "published": "2026-06-24T13:54:46+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "85a8877d08ed5ae2",
@@ -151,7 +165,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/pHr9NkOfa4Y/hqdefault.jpg",
-      "published": "2026-06-24T10:00:13+00:00"
+      "published": "2026-06-24T10:00:13+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "ca8768da91de9da8",
@@ -170,7 +186,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://images.ctfassets.net/kftzwdyauwt9/4DeZq8e24W4qgIrtAu4Xmg/54189176ae1c6150d94cac02fb104f79/openai-broadcom-jalapeno-inference-chip-image-16_9.png?w=1600&amp;h=900&amp;fit=fill",
-      "published": "Wed, 24 Jun 2026 06:00:00 GMT"
+      "published": "Wed, 24 Jun 2026 06:00:00 GMT",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "a92df6dd5eb98d28",
@@ -189,7 +207,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini-3-5__keyword__blog-header__light_7VsKV.width-1300.png",
-      "published": "Wed, 24 Jun 2026 16:30:01 +0000"
+      "published": "Wed, 24 Jun 2026 16:30:01 +0000",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

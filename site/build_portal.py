@@ -4361,9 +4361,112 @@ section.block.block-tight {
   font-weight: 800;
 }
 
+.choice-lens {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: .78fr 1fr .92fr;
+  gap: 0;
+  overflow: hidden;
+  border: 1px solid rgba(18,32,51,.13);
+  border-radius: 14px;
+  background: rgba(255,255,255,.94);
+  box-shadow: var(--shadow-card);
+}
+
+.choice-lens-head,
+.choice-lens-row {
+  display: contents;
+}
+
+.choice-lens-head span,
+.choice-lens-row > * {
+  padding: 12px 14px;
+  border-right: 1px solid rgba(18,32,51,.09);
+  border-bottom: 1px solid rgba(18,32,51,.09);
+}
+
+.choice-lens-head span {
+  background: #071426;
+  color: #FFFFFF;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .08em;
+}
+
+.choice-lens-row:last-child > * {
+  border-bottom: 0;
+}
+
+.choice-lens-head span:last-child,
+.choice-lens-row > *:last-child {
+  border-right: 0;
+}
+
+.choice-lens-state {
+  color: var(--text);
+  font-size: 13.5px;
+  font-weight: 900;
+  line-height: 1.55;
+}
+
+.choice-lens-reco {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 850;
+  line-height: 1.5;
+}
+
+.choice-lens-reco small {
+  color: #0F5F78;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 900;
+  letter-spacing: .06em;
+}
+
+.choice-lens-proof {
+  color: var(--text-soft);
+  font-size: 12.5px;
+  line-height: 1.65;
+}
+
 @media (max-width: 980px) {
   .path-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .choice-lens {
+    grid-template-columns: 1fr;
+  }
+
+  .choice-lens-head {
+    display: none;
+  }
+
+  .choice-lens-row {
+    display: grid;
+    gap: 0;
+    padding: 12px;
+    border-bottom: 1px solid rgba(18,32,51,.09);
+  }
+
+  .choice-lens-row:last-child {
+    border-bottom: 0;
+  }
+
+  .choice-lens-row > * {
+    padding: 3px 0;
+    border: 0;
+  }
+
+  .choice-lens-reco {
+    margin-top: 4px;
   }
 }
 """
@@ -5813,7 +5916,8 @@ body {
 }
 
 .site-nav {
-  flex: 1 1 auto;
+  flex: 0 0 auto !important;
+  margin-left: auto !important;
   justify-content: flex-end;
   flex-wrap: nowrap !important;
   gap: 6px !important;
@@ -5868,6 +5972,19 @@ body {
   background: rgba(255,255,255,.96) !important;
   border-color: rgba(7,20,38,.12) !important;
   box-shadow: 0 24px 62px rgba(7,20,38,.15), inset 0 1px 0 rgba(255,255,255,.96) !important;
+}
+
+.mobile-nav.open {
+  background: #FFFFFF !important;
+  border-top: 1px solid rgba(7,20,38,.16) !important;
+  box-shadow: 0 22px 48px rgba(7,20,38,.18) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.mobile-nav-panel {
+  background: #FFFFFF !important;
+  border-radius: 0 0 12px 12px;
 }
 
 .hero.hero-atlas {
@@ -7841,6 +7958,40 @@ def _render_path_selector() -> str:
     return "".join(parts)
 
 
+def _render_choice_lens() -> str:
+    rows = [
+        (
+            "AIを始めたいが、何から聞けばよいか分からない",
+            "無料30分相談",
+            "課題を聞いて、講習・個別相談・伴走のどれに進むかをその場で切り分けます。",
+        ),
+        (
+            "CodexやClaude Codeで、自分の資料やページを作りたい",
+            "Codex実践会 / AIコーディング講習",
+            "持ち込み課題を成果物にし、差分確認と公開前チェックまで練習します。",
+        ),
+        (
+            "社内や店舗にAI運用を定着させたい",
+            "AI伴走支援",
+            "6ヶ月の導入計画、補助金相談、HP・事務・SNSの実装をまとめて扱います。",
+        ),
+    ]
+    parts = [
+        "<div class='choice-lens fade-up d3' aria-label='今の状態から選ぶAI導入と講習の入口'>",
+        "<div class='choice-lens-head'><span>いまの状態</span><span>おすすめ入口</span><span>判断材料</span></div>",
+    ]
+    for state, reco, proof in rows:
+        parts.append(
+            "<div class='choice-lens-row'>"
+            f"<div class='choice-lens-state'>{html.escape(state)}</div>"
+            f"<div class='choice-lens-reco'><small>NEXT</small>{html.escape(reco)}</div>"
+            f"<div class='choice-lens-proof'>{html.escape(proof)}</div>"
+            "</div>"
+        )
+    parts.append("</div>")
+    return "".join(parts)
+
+
 def _render_stats() -> str:
     items = [
         ("9", "", "同時運営事業", ""),
@@ -8946,6 +9097,7 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append("<h2 class='section-title fade-up d1'>最初の一歩を、4つに絞る</h2>")
     parts.append("<p class='section-sub fade-up d2'>AI導入を相談する、講習会を選ぶ、実践ブログで確かめる、受講資料を先に読む。初回訪問で迷わないよう、営業の入口を上部に集約しました。</p>")
     parts.append(_render_path_selector())
+    parts.append(_render_choice_lens())
     parts.append("</section>")
 
     # 4. 受講プラン — メインCTA

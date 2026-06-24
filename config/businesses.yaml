@@ -100,7 +100,7 @@ businesses:
   description: Vercel + Supabase で新規再生成中。みんなのWA の構成をベースに立ち上げ予定。
 
 - id: ai-hub
-  name: AIスペシャリスト 由井辰美
+  name: AI相談
   tagline: AI導入相談 + 生成AI講習 + 社内定着支援
   url: https://ai-hub-jp.vercel.app
   icon: 🤖

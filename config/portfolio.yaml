@@ -108,7 +108,7 @@ portfolio:
     summary: 障害者グループホームのシフト管理・LINE Bot 連携
     since: 2026-05
 
-  - name: AIスペシャリスト 由井辰美
+  - name: AI相談
     slug: ai-hub
     url: https://ai-hub-jp.vercel.app
     status: live

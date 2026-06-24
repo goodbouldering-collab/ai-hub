@@ -40,10 +40,10 @@ SITE_URL = os.environ.get("AIHUB_SITE_URL", os.environ.get("AIWATCH_SITE_URL", "
 
 OWNER_NAME = "由井 辰美"
 OWNER_EMAIL = "goodbouldering@gmail.com"
-SITE_BRAND = "AIスペシャリスト 彦根"
-SITE_LEGACY_NAME = "AI相談。彦根 / AIハブ"
-OWNER_SUBTITLE = "彦根・滋賀のAI導入定着スペシャリスト"
-OWNER_TAGLINE = "経験をAI導入に翻訳し、相談から実装・社内定着まで伴走する"
+SITE_BRAND = "AI相談"
+SITE_LEGACY_NAME = "AI相談。彦根 / AIハブ / AIスペシャリスト 彦根"
+OWNER_SUBTITLE = "彦根・滋賀のAI相談・導入定着スペシャリスト"
+OWNER_TAGLINE = "専門用語を判断軸に翻訳し、相談から実装・社内定着まで伴走する"
 AI_CODING_BOOK_URL = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/S7GERYVDIPRV76DKXCC3WJWH"
 MONTHLY_SUPPORT_CHECKOUT_URL = "/api/stripe/monthly-support"
 
@@ -127,7 +127,7 @@ def _build_jsonld_website() -> str:
         "@type": ["ProfessionalService", "LocalBusiness"],
         "@id": org_id,
         "name": SITE_BRAND,
-        "alternateName": [SITE_LEGACY_NAME, "AI相談。彦根", "AI Hub Hikone", "AI講習 彦根", "彦根 AIスペシャリスト"],
+        "alternateName": [SITE_LEGACY_NAME, "AI相談。彦根", "AI Hub Hikone", "AI講習 彦根", "彦根 AIスペシャリスト", "AIスペシャリスト 彦根"],
         "url": SITE_URL,
         "image": OG_IMAGE_URL,
         "email": OWNER_EMAIL,
@@ -146,7 +146,7 @@ def _build_jsonld_website() -> str:
             "streetAddress": "岡町12番地",
             "addressCountry": "JP",
         },
-        "description": "滋賀県彦根市を拠点に、中小事業者・地域団体・個人事業者向けのAIスペシャリスト相談、生成AI講習、Codex実践会、Claude Code併用、画像生成、AIコーディング講習、受講資料公開、実例紹介、Web/業務システム制作、補助金を使ったAI導入支援を行う。エンジニア経験、コンサル経験、9事業運営の実務経験をもとに、相談から講習、実装、公開、社内定着まで伴走する。",
+        "description": "滋賀県彦根市を拠点に、中小事業者・地域団体・個人事業者向けのAI相談、AIスペシャリスト相談、生成AI講習、Codex実践会、Claude Code併用、画像生成、AIコーディング講習、受講資料公開、実例紹介、Web/業務システム制作、補助金を使ったAI導入支援を行う。エンジニア経験、コンサル経験、9事業運営の実務経験をもとに、相談から講習、実装、公開、社内定着まで伴走する。",
         "knowsAbout": [
             "AIスペシャリスト", "AI相談", "生成AI講習", "ChatGPT", "Claude Code", "Codex", "画像生成", "AIコーディング講習",
             "LLMO（AI検索最適化）", "SEO", "MEO", "YouTube SEO", "Reels導線",
@@ -175,7 +175,7 @@ def _build_jsonld_website() -> str:
         "url": SITE_URL,
         "inLanguage": "ja",
         "publisher": {"@id": org_id},
-        "description": "滋賀・彦根の中小事業者向けAIスペシャリスト相談、AI導入支援、講習募集、受講資料、実例、講師紹介、AI/SNS/LLMO情報の資料センター。",
+        "description": "滋賀・彦根の中小事業者向けAI相談、AIスペシャリスト相談、AI導入支援、講習募集、受講資料、実例、講師紹介、AI/SNS/LLMO情報の資料センター。",
     }
 
     codex_prep_title = "Codex準備会 60分"
@@ -6362,6 +6362,113 @@ header.site-header.scrolled {
 }
 """
 
+PORTAL_CSS += """
+
+/* ---- Mac glass bento section separation, 2026-06-24 ---- */
+.block {
+  position: relative;
+  margin-block: clamp(28px, 5vw, 58px);
+  padding-block: clamp(34px, 5.5vw, 72px);
+  isolation: isolate;
+}
+
+.block::before {
+  content: "";
+  position: absolute;
+  inset: 0 calc(50% - 50vw);
+  z-index: -1;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.64), rgba(255,255,255,.26)),
+    linear-gradient(90deg, var(--section-accent, rgba(14,165,198,.10)), transparent 34%, rgba(242,102,85,.07));
+  border-top: 1px solid rgba(255,255,255,.62);
+  border-bottom: 1px solid rgba(18,32,51,.08);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.78), 0 18px 54px rgba(18,32,51,.06);
+  backdrop-filter: blur(18px) saturate(145%);
+  -webkit-backdrop-filter: blur(18px) saturate(145%);
+}
+
+.block::after {
+  content: "";
+  position: absolute;
+  inset: clamp(18px, 3vw, 32px) calc(50% - 50vw) auto;
+  height: 1px;
+  z-index: -1;
+  background: linear-gradient(90deg, transparent, rgba(14,165,198,.26), transparent);
+}
+
+.block-tight {
+  margin-top: clamp(18px, 3vw, 38px);
+}
+
+.block .section-heading {
+  width: fit-content;
+  min-height: 30px;
+  padding: 5px 12px;
+  border-radius: 8px;
+  background: rgba(255,255,255,.64);
+  border: 1px solid rgba(255,255,255,.72);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.82), 0 10px 24px rgba(18,32,51,.07);
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+}
+
+.block .section-title,
+.block .section-sub {
+  max-width: 920px;
+}
+
+#specialist { --section-accent: rgba(14,165,198,.14); }
+#blog { --section-accent: rgba(114,92,255,.12); }
+#start { --section-accent: rgba(146,200,62,.14); }
+#packages { --section-accent: rgba(242,102,85,.12); }
+#web-showcase { --section-accent: rgba(0,184,212,.13); }
+#works { --section-accent: rgba(217,154,32,.13); }
+#flow { --section-accent: rgba(17,163,127,.12); }
+#lectures { --section-accent: rgba(114,92,255,.10); }
+#speaker { --section-accent: rgba(14,165,198,.11); }
+#faq { --section-accent: rgba(146,200,62,.11); }
+#growth { --section-accent: rgba(242,102,85,.10); }
+#contact { --section-accent: rgba(0,140,172,.15); }
+
+.path-grid,
+.pkg-grid,
+.service-grid,
+.lecture-grid,
+.pf-grid,
+.flow-list,
+.faq-list,
+.growth-layout,
+.blog-list,
+.specialist-card-list {
+  gap: clamp(12px, 1.8vw, 20px) !important;
+}
+
+.path-card,
+.pkg-card,
+.service-card,
+.lecture-card,
+.pf-card,
+.flow-step,
+.faq-item,
+.growth-panel,
+.blog-list-card,
+.specialist-card,
+.specialist-lead-card,
+.blog-feature {
+  border-radius: 8px !important;
+}
+
+@media (max-width: 760px) {
+  .block {
+    margin-block: 24px;
+    padding-block: 32px;
+  }
+  .block::before {
+    inset-inline: -18px;
+  }
+}
+"""
+
 
 BLOG_TEASER_CSS = """
 .specialist-grid {
@@ -6600,10 +6707,10 @@ def _render_header() -> str:
     return (
         "<header class='site-header' id='site-header'>"
         "<div class='site-header-inner'>"
-        "<a class='site-logo' href='/' aria-label='AIスペシャリスト 彦根 トップへ'>"
-        "<span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>専</span></span>"
-        "<span class='wordmark'><span class='word-ai'>AIスペシャリスト</span><span class='word-hub'>彦根</span><span class='word-en'>HIKONE AI SPECIALIST</span></span>"
-        "<span class='site-logo-by'>彦根・滋賀のAI導入支援</span>"
+        "<a class='site-logo' href='/' aria-label='AI相談 トップへ'>"
+        "<span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span>"
+        "<span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span>"
+        "<span class='site-logo-by'>専門性を判断に変える</span>"
         "</a>"
         "<nav class='site-nav' aria-label='メインナビ'>"
         "<a class='nav-link nav-essential' href='#specialist'>専門性</a>"
@@ -6639,7 +6746,7 @@ def _render_header() -> str:
         "<div class='mobile-nav-panel'>"
         "<div class='mobile-nav-primary'>"
         "<a class='login-btn-mobile' href='#contact'>無料相談</a>"
-        "<a class='mobile-main-link' href='#specialist'>AIスペシャリストとは</a>"
+        "<a class='mobile-main-link' href='#specialist'>AI相談の専門性</a>"
         "</div>"
         "<span class='mobile-nav-label'>講習</span>"
         "<div class='mobile-link-grid'>"
@@ -7294,17 +7401,17 @@ def _render_hero() -> str:
         "<img src='img/hero-codex-claude-imagegen-20260616.png' alt='' decoding='async' fetchpriority='high'>"
         "</div>"
         "<div class='hero-text fade-up'>"
-        "<span class='eyebrow'>彦根・滋賀のAIスペシャリスト / AI導入・講習・社内定着支援</span>"
+        "<span class='eyebrow'>彦根・滋賀のAI相談 / AIスペシャリストの導入・講習・社内定着支援</span>"
         "<h1 class='hero-brand'>"
-        "<span class='fusion-logo-large'><span class='ai'>AIスペシャリスト</span><span class='hub'>彦根</span></span>"
-        "<span class='hero-title-sub'><strong>経験をAI導入に変える。</strong><br>相談から実装・社内定着まで伴走。</span>"
-        "<span class='visually-hidden'>｜彦根 AIスペシャリスト、滋賀 AI導入相談、生成AI講習、Codex講習、Claude Code併用、ChatGPT講座、画像生成講習、AI導入支援、補助金申請サポート、LLMO対策、YouTube SEO、SNS集客</span>"
+        "<span class='fusion-logo-large'><span class='ai'>AI相談</span><span class='hub'>彦根</span></span>"
+        "<span class='hero-title-sub'><strong>専門の言葉を、仕事で判断できる形へ。</strong><br>相談から実装・社内定着まで伴走。</span>"
+        "<span class='visually-hidden'>｜彦根 AI相談、彦根 AIスペシャリスト、滋賀 AI導入相談、生成AI講習、Codex講習、Claude Code併用、ChatGPT講座、画像生成講習、AI導入支援、補助金申請サポート、LLMO対策、YouTube SEO、SNS集客</span>"
         "</h1>"
         "<p class='sub-catch'>"
-        "<strong>AIスペシャリストの価値は、ツール名を知っていることだけではありません。<br>現場経験をもとに、AIをどこへ入れ、どう続けるかを設計できることです。</strong>"
+        "<strong>AIスペシャリストの視点を、相談・講習・実装に配置します。<br>ツール名だけでなく、AIをどこへ入れ、どう続けるかを設計します。</strong>"
         "</p>"
         "<p class='lead'>"
-        "エンジニアとして作れること、コンサルタントとして整理できること、9事業を回す経営者として続けられること。その経験を使って、AI導入、講習、業務改善、Web集客、資料化まで一気通貫で支援します。"
+        "専門用語は削らず、使う場面と確認ポイントを整理して、仕事の判断に変えます。エンジニアとして作れること、コンサルタントとして整理できること、9事業を回す経営者として続けられることを使い、AI導入、講習、業務改善、Web集客、資料化まで一気通貫で支援します。"
         "</p>"
         "<div class='hero-actions'>"
         "<a class='btn btn-primary btn-lg' href='#contact'>無料30分相談を予約</a>"
@@ -7319,7 +7426,7 @@ def _render_hero() -> str:
         "<div class='hero-proof-grid' aria-label='AI講習会の特徴'>"
         "<div class='hero-proof'><span class='proof-icon'>01</span><span><b>Engineer</b><span>AIの出力を読み、直し、公開まで見られる</span></span></div>"
         "<div class='hero-proof'><span class='proof-icon'>02</span><span><b>Consultant</b><span>業務課題を分解し、社内手順に落とす</span></span></div>"
-        "<div class='hero-proof'><span class='proof-icon'>03</span><span><b>Owner</b><span>9事業の現場で使い続ける視点がある</span></span></div>"
+        "<div class='hero-proof'><span class='proof-icon'>03</span><span><b>Specialist Lens</b><span>専門用語を判断軸に翻訳する</span></span></div>"
         "</div>"
         "</div>"
         "<div class='hero-photo-card hero-atlas-panel fade-up d2' aria-label='AIハブのサービス地図'>"
@@ -7673,8 +7780,8 @@ def _render_specialist_value() -> str:
     )
     return (
         "<section class='block block-tight' id='specialist'>"
-        "<p class='section-heading fade-up'>AI SPECIALIST</p>"
-        "<h2 class='section-title fade-up d1'>AIスペシャリストとは、経験をAI導入に翻訳できる人</h2>"
+        "<p class='section-heading fade-up'>SPECIALIST LENS</p>"
+        "<h2 class='section-title fade-up d1'>AI相談で使う、AIスペシャリストの解釈</h2>"
         "<div class='specialist-grid'>"
         "<div class='specialist-lead-card fade-up d1'>"
         "<span class='specialist-kicker'>動画から読み取った本質</span>"
@@ -8074,7 +8181,7 @@ def _render_footer(today: str) -> str:
         "<footer class='site-footer'>"
         "<div class='footer-grid'>"
         "<div class='footer-brand'>"
-        "<div class='footer-logo'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>専</span></span><span class='wordmark'><span class='word-ai'>AIスペシャリスト</span><span class='word-hub'>彦根</span><span class='word-en'>HIKONE AI SPECIALIST</span></span></div>"
+        "<div class='footer-logo'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span></div>"
         "<p class='footer-tagline'>滋賀・彦根の中小事業者向けに、AI導入相談・生成AI講習・Codex準備会/実践会・AIコーディング講習・受講資料・Web集客支援を行う"
         "資料センター型の相談サイト。9事業を実際に回しながら、現場に居着くAIを一緒に作ります。</p>"
         "<a class='footer-cta' href='#contact'>📩 無料で30分相談する</a>"
@@ -8089,14 +8196,14 @@ def _render_footer(today: str) -> str:
         "</nav>"
         "<div class='footer-nap'>"
         "<span class='footer-nav-head'>運営</span>"
-        "<p>AIスペシャリスト 彦根（AI相談。彦根 / クライミングコンサル）</p>"
+        "<p>AI相談（AI相談。彦根 / AIスペシャリスト 彦根 / クライミングコンサル）</p>"
         "<p>代表 由井 辰美</p>"
         "<p>〒522-0043<br>滋賀県彦根市岡町12番地</p>"
         f"<p><a href='mailto:{OWNER_EMAIL}'>{OWNER_EMAIL}</a></p>"
         "<p class='footer-area'>対応: 彦根・湖東・滋賀県全域 / 出張・オンライン全国</p>"
         "</div>"
         "</div>"
-        f"<div class='footer-copy'>© {year} 由井 辰美 / AIスペシャリスト — 滋賀・彦根のAI導入相談・受講資料</div>"
+        f"<div class='footer-copy'>© {year} 由井 辰美 / AI相談 — 滋賀・彦根のAI導入相談・受講資料</div>"
         "</footer>"
     )
 
@@ -8160,7 +8267,7 @@ def _render_contact_form() -> str:
         f"<a class='contact-primary fade-up' href='{CONSULT_BOOK_URL}' target='_blank' rel='noopener'>"
         "<span class='cp-ico'>📅</span>"
         "<span class='cp-body'>"
-        "<span class='cp-title'>AIスペシャリストの無料30分相談を予約する</span>"
+        "<span class='cp-title'>AI相談の無料30分相談を予約する</span>"
         "<span class='cp-desc'>カレンダーから空いている日時を選ぶだけ。2〜3分で予約できます（料金はかかりません）。彦根での対面、Zoom、LINE相談から選べます。</span>"
         "</span>"
         "<span class='cp-cta'>日程を選ぶ →</span>"
@@ -8244,9 +8351,9 @@ def _render_growth_plan_section() -> str:
 # FAQ は本文表示と FAQPage 構造化データの両方で使う（一次情報＝LLMO引用源）。
 # 地域・お悩み・補助金の検索意図を素の質問形で網羅する。
 FAQ_QA = [
-    ("彦根・滋賀でAIスペシャリストに相談できますか？",
+    ("彦根・滋賀でAI相談できますか？",
      "はい。滋賀県彦根市を拠点に、彦根・湖東・東近江を中心とした対面のAI導入相談・AI講習・個別相談を行っています。京都・大阪・名古屋までは出張可、リモートなら全国対応します。"),
-    ("AIスペシャリストには何を頼めますか？",
+    ("AI相談では何を頼めますか？",
      "AIツールの使い方だけでなく、業務整理、AIに任せる範囲の設計、社内手順化、Web/予約/ブログ/SNSへの展開、公開前確認、定着まで相談できます。エンジニア経験とコンサル経験を合わせて、実装と運用の両方を見ます。"),
     ("Codex準備会とCodex実践会はどう違いますか？",
      "レベルは理解度で分けます。Codex準備会は60分2,200円で、ログイン、作業フォルダ選択、秘密情報を入れない権限設計、最初の小さな依頼、差分確認、ブラウザ表示確認、独立レビュー、AGENTS.md、公式アップデート確認先までを整えます。Codex実践会は120分5,500円で、Claude Codeとの使い分け、ページ、資料、コード、画像生成プロンプト、動画台本、運用マニュアルなどの成果物作成まで進めます。AIコーディング講習は120分11,000円で、Codex導入、Claude Code併用、画像生成、本物のエンジニア像、レベルマップ、専門用語、設計・データ・運用・セキュリティ、実装ループ、公開前確認までを体系的に扱います。"),
@@ -8801,8 +8908,8 @@ def _render_lecture_card(lec: dict) -> str:
 
 def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     today = datetime.now().strftime("%Y-%m-%d")
-    title = "AIスペシャリスト 彦根｜滋賀のAI導入相談・生成AI講習・実装支援"
-    desc = "彦根・滋賀でAIを学びたい企業・個人へ。エンジニア経験とコンサル経験を持つAIスペシャリストが、生成AI講習、Codex、Claude Code、画像生成、業務改善、ホームページ制作、社内定着まで伴走します。"
+    title = "AI相談"
+    desc = "彦根・滋賀でAIを学びたい企業・個人へ。エンジニア経験とコンサル経験を持つAIスペシャリストが、AI相談、生成AI講習、Codex、Claude Code、画像生成、業務改善、ホームページ制作、社内定着まで伴走します。"
 
     parts: list[str] = []
     parts.append("<!doctype html><html lang='ja'><head><meta charset='utf-8'>" + FAVICON_HEAD_HTML)
@@ -8910,7 +9017,7 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     # 10. FAQ（疑問解消）
     parts.append("<section class='block' id='faq'>")
     parts.append("<p class='section-heading'>FAQ</p>")
-    parts.append("<h2 class='section-title'>AIスペシャリスト相談のよくある質問</h2>")
+    parts.append("<h2 class='section-title'>AI相談のよくある質問</h2>")
     parts.append(_render_faq())
     parts.append("</section>")
 
@@ -8925,7 +9032,7 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     # 12. お問い合わせ（予約）
     parts.append("<section class='block' id='contact'>")
     parts.append("<p class='section-heading fade-up'>CONTACT</p>")
-    parts.append("<h2 class='section-title fade-up d1'>彦根でAIを学びたい、業務を改善したい方へ</h2>")
+    parts.append("<h2 class='section-title fade-up d1'>AI相談、まずは30分無料</h2>")
     parts.append("<p class='section-sub fade-up d2'>企業も個人も、まずは無料30分相談から。講習に参加するか、AI個別相談で整理するか、伴走で社内定着まで進めるかを一緒に決めましょう。</p>")
     parts.append(_render_contact_form())
     parts.append("</section>")

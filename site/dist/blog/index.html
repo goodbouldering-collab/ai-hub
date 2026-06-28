@@ -3409,14 +3409,14 @@ footer.site-footer {
 @media (max-width: 760px) { .sticky-cta { display: flex; } }
 @media (prefers-reduced-motion: no-preference) { .sticky-cta { transition: transform .3s ease, opacity .3s ease; } }
 
-/* ---- 制作実績カード（LP #portfolio。build_site CONTENT_CSS から移植・PORTALトークン化）---- */
+/* ---- Portfolio cards (kept for non-public internal reuse; not linked from the top page) ---- */
 .pf-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 16px;
   margin: 16px 0 8px;
 }
-/* 制作実績の横スライド（カルーセル） */
+/* Portfolio carousel */
 .pf-carousel-wrap { position: relative; margin: 16px 0 8px; }
 .pf-carousel {
   display: grid; grid-auto-flow: column;
@@ -7783,7 +7783,6 @@ section.block > * {
 #start { --section-accent: var(--mac-coral); }
 #packages { --section-accent: var(--mac-cyan); }
 #web-showcase { --section-accent: var(--mac-amber); }
-#works { --section-accent: var(--mac-teal); }
 #flow { --section-accent: var(--mac-lime); }
 #lectures { --section-accent: var(--mac-cyan); }
 #speaker { --section-accent: var(--mac-coral); }
@@ -8809,98 +8808,293 @@ section.block::before {
   transform: translateY(-1px);
 }
 
-.hero-compass-card {
+.atlas-node,
+.atlas-live-card {
+  z-index: 3;
+}
+
+
+/* ---- AI fish line motion pass: shared top/admin motif, 2026-06-28 ---- */
+:root {
+  --ai-fish-ink: #071426;
+  --ai-fish-red: #E60012;
+  --ai-fish-cyan: #00A5C8;
+  --ai-fish-green: #00A676;
+  --ai-fish-yellow: #F5B83D;
+  --ai-fish-line: rgba(7,20,38,.18);
+}
+
+.brand-mark,
+.fish-mark {
+  position: relative !important;
+  width: 50px !important;
+  height: 34px !important;
+  flex: 0 0 50px !important;
+  border-radius: 999px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background:
+    linear-gradient(135deg, rgba(0,165,200,.12), rgba(245,184,61,.16) 48%, rgba(230,0,18,.10)),
+    #FFFFFF !important;
+  border: 2px solid var(--ai-fish-ink) !important;
+  box-shadow: 5px 5px 0 rgba(230,0,18,.12) !important;
+  overflow: visible !important;
+}
+
+.brand-mark .brand-a,
+.brand-mark .brand-ha {
+  opacity: 0 !important;
+  width: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+}
+
+.brand-mark::before,
+.fish-mark::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 8px !important;
+  top: 50% !important;
+  width: 27px !important;
+  height: 14px !important;
+  border: 2px solid var(--ai-fish-ink) !important;
+  border-radius: 54% 46% 46% 54% / 58% 50% 50% 58% !important;
+  background:
+    radial-gradient(circle at 74% 42%, var(--ai-fish-red) 0 2px, transparent 2.4px),
+    #FFFFFF !important;
+  transform: translateY(-50%) !important;
+}
+
+.brand-mark::after,
+.fish-mark::after {
+  content: "" !important;
+  position: absolute !important;
+  right: 5px !important;
+  top: 50% !important;
+  width: 14px !important;
+  height: 18px !important;
+  border: 2px solid var(--ai-fish-ink) !important;
+  border-left: 0 !important;
+  clip-path: polygon(0 50%, 100% 4%, 82% 50%, 100% 96%) !important;
+  background: #FFFFFF !important;
+  transform: translateY(-50%) !important;
+}
+
+.site-logo:hover .brand-mark,
+.site-logo:focus-visible .brand-mark {
+  box-shadow: 5px 5px 0 rgba(230,0,18,.22) !important;
+  transform: translateY(-1px);
+}
+
+.hero-fish-card {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  max-width: 480px;
+  max-width: 520px;
   margin: 0 0 20px;
   padding: 10px 12px;
   border: 1px solid var(--sakana-line);
   border-radius: var(--sakana-radius);
   background: #FFFFFF;
   box-shadow: 4px 4px 0 rgba(7,20,38,.04);
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
 }
 
-.hero-compass-card .compass-mark {
-  width: 38px !important;
-  height: 38px !important;
-  flex-basis: 38px !important;
-  border-width: 2px !important;
-  box-shadow: 3px 3px 0 rgba(230,0,18,.12) !important;
+.hero-fish-card:hover,
+.hero-fish-card:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(0,165,200,.42);
+  box-shadow: 8px 8px 0 rgba(245,184,61,.18), 0 18px 42px rgba(0,165,200,.16);
+  outline: none;
 }
 
-.hero-compass-card b,
-.atlas-compass-core b {
+.hero-fish-card .fish-mark {
+  width: 48px !important;
+  height: 34px !important;
+  flex-basis: 48px !important;
+}
+
+.hero-fish-card b {
   display: block;
   color: var(--sakana-ink);
   font-weight: 900;
   letter-spacing: 0;
 }
 
-.hero-compass-card small,
-.atlas-compass-core small {
+.hero-fish-card small {
   display: block;
   color: var(--sakana-muted);
   font-weight: 750;
   letter-spacing: 0;
 }
 
-.atlas-compass-core {
+.atlas-fish-core {
   position: absolute;
   left: 50%;
   top: 50%;
   z-index: 2;
   transform: translate(-50%, -50%);
+  width: min(420px, 72%);
+  aspect-ratio: 2 / 1;
   display: grid;
-  justify-items: center;
-  gap: 6px;
-  padding: 12px 14px;
-  border: 1px solid var(--sakana-line);
-  border-radius: var(--sakana-radius);
-  background: rgba(255,255,255,.94);
-  box-shadow: 5px 5px 0 rgba(7,20,38,.04), 0 12px 30px rgba(7,20,38,.08);
+  place-items: center;
   pointer-events: none;
 }
 
-.atlas-compass-core .compass-mark {
-  width: 58px !important;
-  height: 58px !important;
-  flex-basis: 58px !important;
+.ai-fish-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--sakana-line);
+  border-radius: var(--sakana-radius);
+  background:
+    linear-gradient(135deg, rgba(0,165,200,.16), rgba(0,166,118,.10) 36%, rgba(245,184,61,.18) 68%, rgba(230,0,18,.12)),
+    linear-gradient(90deg, rgba(7,20,38,.035) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(7,20,38,.028) 1px, transparent 1px),
+    rgba(255,255,255,.94);
+  background-size: auto, 36px 36px, 36px 36px, auto;
+  box-shadow: 6px 6px 0 rgba(7,20,38,.04), 0 18px 42px rgba(7,20,38,.09);
+  overflow: hidden;
 }
 
-.atlas-node,
-.atlas-live-card {
-  z-index: 3;
+.ai-fish-stage::after {
+  content: "AI LINE";
+  position: absolute;
+  left: 14px;
+  bottom: 11px;
+  color: rgba(7,20,38,.48);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .12em;
+}
+
+.ai-fish-video {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.fish-flow,
+.fish-outline,
+.fish-spine,
+.fish-circuit,
+.fish-tail {
+  fill: none;
+  stroke: var(--ai-fish-ink);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.fish-flow {
+  stroke-width: 1.4;
+  opacity: .32;
+  stroke-dasharray: 16 18;
+  animation: fishFlow 8s linear infinite;
+}
+
+.fish-flow:nth-of-type(1) {
+  stroke: var(--ai-fish-cyan);
+}
+
+.fish-flow:nth-of-type(2) {
+  stroke: var(--ai-fish-green);
+  animation-duration: 10s;
+}
+
+.fish-outline {
+  stroke-width: 3;
+  stroke-dasharray: 760;
+  stroke-dashoffset: 760;
+  animation: fishDraw 5.8s ease-in-out infinite;
+}
+
+.fish-tail {
+  stroke-width: 3;
+  stroke: var(--ai-fish-red);
+  stroke-dasharray: 340;
+  stroke-dashoffset: 340;
+  animation: fishDraw 5.8s .18s ease-in-out infinite;
+}
+
+.fish-spine {
+  stroke-width: 2;
+  stroke: var(--ai-fish-cyan);
+  stroke-dasharray: 240;
+  stroke-dashoffset: 240;
+  animation: fishDraw 5.8s .32s ease-in-out infinite;
+}
+
+.fish-circuit {
+  stroke-width: 1.8;
+  stroke: var(--ai-fish-yellow);
+  opacity: .88;
+  stroke-dasharray: 180;
+  stroke-dashoffset: 180;
+  animation: fishDraw 5.8s .55s ease-in-out infinite;
+}
+
+.fish-dot {
+  fill: #FFFFFF;
+  stroke: var(--ai-fish-ink);
+  stroke-width: 2;
+  transform-origin: center;
+  animation: fishPulse 3.4s ease-in-out infinite;
+}
+
+.fish-dot.is-red { fill: var(--ai-fish-red); stroke: var(--ai-fish-red); }
+.fish-dot.is-cyan { fill: var(--ai-fish-cyan); stroke: var(--ai-fish-cyan); }
+.fish-dot.is-green { fill: var(--ai-fish-green); stroke: var(--ai-fish-green); }
+
+@keyframes fishDraw {
+  0% { stroke-dashoffset: 760; opacity: .25; }
+  22%, 72% { stroke-dashoffset: 0; opacity: 1; }
+  100% { stroke-dashoffset: -760; opacity: .20; }
+}
+
+@keyframes fishFlow {
+  to { stroke-dashoffset: -180; }
+}
+
+@keyframes fishPulse {
+  0%, 100% { transform: scale(.86); opacity: .55; }
+  45%, 70% { transform: scale(1.08); opacity: 1; }
 }
 
 section.block::before {
   background:
-    url("data:image/svg+xml,%3Csvg width='420' height='180' viewBox='0 0 420 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23071426' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' opacity='.12'%3E%3Ccircle cx='88' cy='88' r='38'/%3E%3Ccircle cx='88' cy='88' r='7'/%3E%3Cpath d='M88 48l10 40-10 40-10-40z' fill='%23E60012' stroke='none' opacity='.74'/%3E%3Cpath d='M148 126h48l34-58h54l30 34h70'/%3E%3Ccircle cx='196' cy='126' r='5'/%3E%3Ccircle cx='230' cy='68' r='5'/%3E%3Ccircle cx='314' cy='102' r='5'/%3E%3Cpath d='M372 94l18 8-18 8'/%3E%3C/g%3E%3C/svg%3E") right 8% top 18px / min(420px, 72vw) auto no-repeat,
+    url("data:image/svg+xml,%3Csvg width='420' height='180' viewBox='0 0 420 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23071426' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' opacity='.12'%3E%3Cpath d='M42 92C100 42 210 42 286 92C210 142 100 142 42 92Z'/%3E%3Cpath d='M286 92l78-42c-28 34-28 50 0 84z'/%3E%3Cpath d='M94 92c50-18 102-18 160 0'/%3E%3Cpath d='M156 76v34m42-42v48m-84-8h86'/%3E%3Ccircle cx='238' cy='82' r='5'/%3E%3Ccircle cx='150' cy='76' r='4'/%3E%3Ccircle cx='198' cy='116' r='4'/%3E%3C/g%3E%3C/svg%3E") right 8% top 18px / min(420px, 72vw) auto no-repeat,
     linear-gradient(180deg, rgba(255,255,255,.90), rgba(255,255,255,.72)) !important;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .fish-flow,
+  .fish-outline,
+  .fish-spine,
+  .fish-circuit,
+  .fish-tail,
+  .fish-dot {
+    animation: none !important;
+    stroke-dashoffset: 0 !important;
+  }
+}
+
 @media (max-width: 900px) {
-  .hero-compass-card {
+  .hero-fish-card {
     margin-left: auto;
     margin-right: auto;
   }
 }
 
 @media (max-width: 680px) {
-  .atlas-compass-core {
-    opacity: .86;
-    padding: 9px 10px;
-  }
-
-  .atlas-compass-core .compass-mark {
-    width: 44px !important;
-    height: 44px !important;
-    flex-basis: 44px !important;
-  }
-
-  .atlas-compass-core small {
-    display: none;
+  .atlas-fish-core {
+    width: min(310px, 84%);
+    opacity: .90;
   }
 }
 </style></head><body><div class='container'>
@@ -8920,7 +9114,7 @@ section.block::before {
   }
 })();
 </script>
-<header class='site-header scrolled' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span><span class='site-logo-by'>滋賀・彦根</span></a><nav class='site-nav top-nav' aria-label='サイトナビ'><a class='nav-link nav-essential' href='/#packages'>受講プラン</a><a class='nav-link nav-essential' href='/#lectures'>資料</a><a class='nav-link nav-essential' href='/#works'>実績</a><a class='nav-link' href='/admin' style='color:var(--muted);'>🔐 管理</a></nav><a class='nav-cta' href='/#contact'>個別相談</a></div></header><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'><svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button><div class='mobile-nav generated-mobile-nav' id='mobile-nav'><div class='mobile-nav-panel'><div class='mobile-nav-primary'><a class='login-btn-mobile' href='/#contact'>個別相談</a><a class='mobile-main-link' href='/#packages'>受講プラン</a></div><span class='mobile-nav-label'>公開ページ</span><div class='mobile-link-grid'><a class='' href='/programming-map.html'>AIコーディング</a><a href='/#lectures'>資料</a><a href='/#speaker'>講師紹介</a><a href='/#faq'>FAQ</a><a href='/portfolio.html'>実績</a><a href='/blog/index.html'>ブログ</a><a href='/watch/index.html'>AI Watch</a><a class='mobile-admin-link' href='/admin'>管理画面</a></div></div></div><script>(function(){var b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav');if(!b||!n)return;function close(){n.classList.remove('open');b.setAttribute('aria-expanded','false');}b.addEventListener('click',function(e){e.stopPropagation();var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});})();</script><header><h1>ブログ</h1></header><div class='content-wrap'><div class='tr-section'><p>AIハブのブログです。講習・制作・AI活用の現場から、実際に使える視点を残していきます。</p><div class='tr-grid'><a class='tr-card' href='./2026-06-20-business-system-development-priority.html'><div class='tr-title'>業務システム開発の優先順位：EC・AI活用で先に固めるべき8項目</div><div class='tr-date'>2026-06-20</div><div class='tr-sum'>Facebook投稿「私の優先順位」をもとに、ECや業務システム開発でデータ設計、認証、クラウド設計、CI/CD、コスト最適化、IaC、マイクロサービス、Kubernetesをどう並べるべきかを整理しました。</div></a><a class='tr-card' href='./2026-06-18-real-engineer-ai-era.html'><div class='tr-title'>AI時代、本物のエンジニアとは？作れる人より説明できる人が残る</div><div class='tr-date'>2026-06-18</div><div class='tr-sum'>AIにECサイトやアプリを作らせられる時代に、仕事として評価されるのは「なぜそう作ったのか」「どう守るのか」を説明できる力です。</div></a><a class='tr-card' href='./2026-06-18-cloud-ai-agent-rag-design.html'><div class='tr-title'>クラウドAIエージェント時代のRAG設計</div><div class='tr-date'>2026-06-18</div><div class='tr-sum'>AIに資料を入れるだけではなく、どの情報をどの順番で見てもらうかを設計する。プロから初心者まで、RAGを仕事で使うための考え方を整理する。</div></a><a class='tr-card' href='./2026-06-18-ai-agent-output-curation.html'><div class='tr-title'>AI時代、やる気がなくても成果物は増える。だから最後に勝つのは編集できる人</div><div class='tr-date'>2026-06-18</div><div class='tr-sum'>Facebook投稿「AI時代、やる気がなくても成果物は増える」をもとに、AIエージェントが成果物を量産する時代に人間が担う編集、選別、目的設計の価値を整理する。</div></a><a class='tr-card' href='./2026-06-17-codex-ai-world.html'><div class='tr-title'>Codexが開いた、AI活動の最前線</div><div class='tr-date'>2026-06-17</div><div class='tr-sum'>AIハブ初のブログ。Codexを、IDE、Claude Code、画像生成、モバイル音声、プラグイン連携まで含めたAI活動の統合UIとして分析する。</div></a></div></div></div><footer>AI相談 / Generated by Claude</footer><button class='back-to-top' id='backTop' aria-label='トップへ戻る'>↑</button><script>(function(){var b=document.getElementById('backTop');if(!b)return;window.addEventListener('scroll',function(){b.classList.toggle('show',window.scrollY>400);});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script><script>
+<header class='site-header scrolled' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span><span class='site-logo-by'>滋賀・彦根</span></a><nav class='site-nav top-nav' aria-label='サイトナビ'><a class='nav-link nav-essential' href='/#packages'>受講プラン</a><a class='nav-link nav-essential' href='/#lectures'>資料</a><a class='nav-link nav-essential' href='/#flow'>流れ</a><a class='nav-link' href='/admin' style='color:var(--muted);'>🔐 管理</a></nav><a class='nav-cta' href='/#contact'>個別相談</a></div></header><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'><svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button><div class='mobile-nav generated-mobile-nav' id='mobile-nav'><div class='mobile-nav-panel'><div class='mobile-nav-primary'><a class='login-btn-mobile' href='/#contact'>個別相談</a><a class='mobile-main-link' href='/#packages'>受講プラン</a></div><span class='mobile-nav-label'>公開ページ</span><div class='mobile-link-grid'><a class='' href='/programming-map.html'>AIコーディング</a><a href='/#lectures'>資料</a><a href='/#speaker'>講師紹介</a><a href='/#faq'>FAQ</a><a href='/blog/index.html'>ブログ</a><a href='/watch/index.html'>AI Watch</a><a class='mobile-admin-link' href='/admin'>管理画面</a></div></div></div><script>(function(){var b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav');if(!b||!n)return;function close(){n.classList.remove('open');b.setAttribute('aria-expanded','false');}b.addEventListener('click',function(e){e.stopPropagation();var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});})();</script><header><h1>ブログ</h1></header><div class='content-wrap'><div class='tr-section'><p>AIハブのブログです。講習・制作・AI活用の現場から、実際に使える視点を残していきます。</p><div class='tr-grid'><a class='tr-card' href='./2026-06-20-business-system-development-priority.html'><div class='tr-title'>業務システム開発の優先順位：EC・AI活用で先に固めるべき8項目</div><div class='tr-date'>2026-06-20</div><div class='tr-sum'>Facebook投稿「私の優先順位」をもとに、ECや業務システム開発でデータ設計、認証、クラウド設計、CI/CD、コスト最適化、IaC、マイクロサービス、Kubernetesをどう並べるべきかを整理しました。</div></a><a class='tr-card' href='./2026-06-18-real-engineer-ai-era.html'><div class='tr-title'>AI時代、本物のエンジニアとは？作れる人より説明できる人が残る</div><div class='tr-date'>2026-06-18</div><div class='tr-sum'>AIにECサイトやアプリを作らせられる時代に、仕事として評価されるのは「なぜそう作ったのか」「どう守るのか」を説明できる力です。</div></a><a class='tr-card' href='./2026-06-18-cloud-ai-agent-rag-design.html'><div class='tr-title'>クラウドAIエージェント時代のRAG設計</div><div class='tr-date'>2026-06-18</div><div class='tr-sum'>AIに資料を入れるだけではなく、どの情報をどの順番で見てもらうかを設計する。プロから初心者まで、RAGを仕事で使うための考え方を整理する。</div></a><a class='tr-card' href='./2026-06-18-ai-agent-output-curation.html'><div class='tr-title'>AI時代、やる気がなくても成果物は増える。だから最後に勝つのは編集できる人</div><div class='tr-date'>2026-06-18</div><div class='tr-sum'>Facebook投稿「AI時代、やる気がなくても成果物は増える」をもとに、AIエージェントが成果物を量産する時代に人間が担う編集、選別、目的設計の価値を整理する。</div></a><a class='tr-card' href='./2026-06-17-codex-ai-world.html'><div class='tr-title'>Codexが開いた、AI活動の最前線</div><div class='tr-date'>2026-06-17</div><div class='tr-sum'>AIハブ初のブログ。Codexを、IDE、Claude Code、画像生成、モバイル音声、プラグイン連携まで含めたAI活動の統合UIとして分析する。</div></a></div></div></div><footer>AI相談 / Generated by Claude</footer><button class='back-to-top' id='backTop' aria-label='トップへ戻る'>↑</button><script>(function(){var b=document.getElementById('backTop');if(!b)return;window.addEventListener('scroll',function(){b.classList.toggle('show',window.scrollY>400);});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script><script>
 (function(){
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var sel = '.tr-card, .pf-card, .profile-stat, .profile-tech-card, .sns-card, article, .content-toc, .tr-section, .profile-tl-item, .profile-app-card, .profile-biz-card';

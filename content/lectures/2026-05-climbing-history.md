@@ -61,7 +61,7 @@ summary: クライミングが240年かけて枝分かれしてきた歴史を�
 ## 参考リンク
 
 - [AIハブ トップページ](../index.html) — CEO ポータル・各事業への入口
-- [講師紹介](../speaker.html) — 由井辰美（クライミング歴30年以上）の実績・考え方
+- [講師紹介](../speaker.html) — 由井辰美の支援内容と考え方
 - ぐっぼる本店: [goodbouldering.com](https://goodbouldering.com)
 
 ---

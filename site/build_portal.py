@@ -2326,14 +2326,14 @@ footer.site-footer {
 @media (max-width: 760px) { .sticky-cta { display: flex; } }
 @media (prefers-reduced-motion: no-preference) { .sticky-cta { transition: transform .3s ease, opacity .3s ease; } }
 
-/* ---- 制作実績カード（LP #portfolio。build_site CONTENT_CSS から移植・PORTALトークン化）---- */
+/* ---- Portfolio cards (kept for non-public internal reuse; not linked from the top page) ---- */
 .pf-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 16px;
   margin: 16px 0 8px;
 }
-/* 制作実績の横スライド（カルーセル） */
+/* Portfolio carousel */
 .pf-carousel-wrap { position: relative; margin: 16px 0 8px; }
 .pf-carousel {
   display: grid; grid-auto-flow: column;
@@ -6729,7 +6729,6 @@ section.block > * {
 #start { --section-accent: var(--mac-coral); }
 #packages { --section-accent: var(--mac-cyan); }
 #web-showcase { --section-accent: var(--mac-amber); }
-#works { --section-accent: var(--mac-teal); }
 #flow { --section-accent: var(--mac-lime); }
 #lectures { --section-accent: var(--mac-cyan); }
 #speaker { --section-accent: var(--mac-coral); }
@@ -7937,98 +7936,295 @@ PORTAL_CSS += """
   transform: translateY(-1px);
 }
 
-.hero-compass-card {
+.atlas-node,
+.atlas-live-card {
+  z-index: 3;
+}
+"""
+
+PORTAL_CSS += """
+
+/* ---- AI fish line motion pass: shared top/admin motif, 2026-06-28 ---- */
+:root {
+  --ai-fish-ink: #071426;
+  --ai-fish-red: #E60012;
+  --ai-fish-cyan: #00A5C8;
+  --ai-fish-green: #00A676;
+  --ai-fish-yellow: #F5B83D;
+  --ai-fish-line: rgba(7,20,38,.18);
+}
+
+.brand-mark,
+.fish-mark {
+  position: relative !important;
+  width: 50px !important;
+  height: 34px !important;
+  flex: 0 0 50px !important;
+  border-radius: 999px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background:
+    linear-gradient(135deg, rgba(0,165,200,.12), rgba(245,184,61,.16) 48%, rgba(230,0,18,.10)),
+    #FFFFFF !important;
+  border: 2px solid var(--ai-fish-ink) !important;
+  box-shadow: 5px 5px 0 rgba(230,0,18,.12) !important;
+  overflow: visible !important;
+}
+
+.brand-mark .brand-a,
+.brand-mark .brand-ha {
+  opacity: 0 !important;
+  width: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+}
+
+.brand-mark::before,
+.fish-mark::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 8px !important;
+  top: 50% !important;
+  width: 27px !important;
+  height: 14px !important;
+  border: 2px solid var(--ai-fish-ink) !important;
+  border-radius: 54% 46% 46% 54% / 58% 50% 50% 58% !important;
+  background:
+    radial-gradient(circle at 74% 42%, var(--ai-fish-red) 0 2px, transparent 2.4px),
+    #FFFFFF !important;
+  transform: translateY(-50%) !important;
+}
+
+.brand-mark::after,
+.fish-mark::after {
+  content: "" !important;
+  position: absolute !important;
+  right: 5px !important;
+  top: 50% !important;
+  width: 14px !important;
+  height: 18px !important;
+  border: 2px solid var(--ai-fish-ink) !important;
+  border-left: 0 !important;
+  clip-path: polygon(0 50%, 100% 4%, 82% 50%, 100% 96%) !important;
+  background: #FFFFFF !important;
+  transform: translateY(-50%) !important;
+}
+
+.site-logo:hover .brand-mark,
+.site-logo:focus-visible .brand-mark {
+  box-shadow: 5px 5px 0 rgba(230,0,18,.22) !important;
+  transform: translateY(-1px);
+}
+
+.hero-fish-card {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  max-width: 480px;
+  max-width: 520px;
   margin: 0 0 20px;
   padding: 10px 12px;
   border: 1px solid var(--sakana-line);
   border-radius: var(--sakana-radius);
   background: #FFFFFF;
   box-shadow: 4px 4px 0 rgba(7,20,38,.04);
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
 }
 
-.hero-compass-card .compass-mark {
-  width: 38px !important;
-  height: 38px !important;
-  flex-basis: 38px !important;
-  border-width: 2px !important;
-  box-shadow: 3px 3px 0 rgba(230,0,18,.12) !important;
+.hero-fish-card:hover,
+.hero-fish-card:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(0,165,200,.42);
+  box-shadow: 8px 8px 0 rgba(245,184,61,.18), 0 18px 42px rgba(0,165,200,.16);
+  outline: none;
 }
 
-.hero-compass-card b,
-.atlas-compass-core b {
+.hero-fish-card .fish-mark {
+  width: 48px !important;
+  height: 34px !important;
+  flex-basis: 48px !important;
+}
+
+.hero-fish-card b {
   display: block;
   color: var(--sakana-ink);
   font-weight: 900;
   letter-spacing: 0;
 }
 
-.hero-compass-card small,
-.atlas-compass-core small {
+.hero-fish-card small {
   display: block;
   color: var(--sakana-muted);
   font-weight: 750;
   letter-spacing: 0;
 }
 
-.atlas-compass-core {
+.atlas-fish-core {
   position: absolute;
   left: 50%;
   top: 50%;
   z-index: 2;
   transform: translate(-50%, -50%);
+  width: min(420px, 72%);
+  aspect-ratio: 2 / 1;
   display: grid;
-  justify-items: center;
-  gap: 6px;
-  padding: 12px 14px;
-  border: 1px solid var(--sakana-line);
-  border-radius: var(--sakana-radius);
-  background: rgba(255,255,255,.94);
-  box-shadow: 5px 5px 0 rgba(7,20,38,.04), 0 12px 30px rgba(7,20,38,.08);
+  place-items: center;
   pointer-events: none;
 }
 
-.atlas-compass-core .compass-mark {
-  width: 58px !important;
-  height: 58px !important;
-  flex-basis: 58px !important;
+.ai-fish-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--sakana-line);
+  border-radius: var(--sakana-radius);
+  background:
+    linear-gradient(135deg, rgba(0,165,200,.16), rgba(0,166,118,.10) 36%, rgba(245,184,61,.18) 68%, rgba(230,0,18,.12)),
+    linear-gradient(90deg, rgba(7,20,38,.035) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(7,20,38,.028) 1px, transparent 1px),
+    rgba(255,255,255,.94);
+  background-size: auto, 36px 36px, 36px 36px, auto;
+  box-shadow: 6px 6px 0 rgba(7,20,38,.04), 0 18px 42px rgba(7,20,38,.09);
+  overflow: hidden;
 }
 
-.atlas-node,
-.atlas-live-card {
-  z-index: 3;
+.ai-fish-stage::after {
+  content: "AI LINE";
+  position: absolute;
+  left: 14px;
+  bottom: 11px;
+  color: rgba(7,20,38,.48);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .12em;
+}
+
+.ai-fish-video {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.fish-flow,
+.fish-outline,
+.fish-spine,
+.fish-circuit,
+.fish-tail {
+  fill: none;
+  stroke: var(--ai-fish-ink);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.fish-flow {
+  stroke-width: 1.4;
+  opacity: .32;
+  stroke-dasharray: 16 18;
+  animation: fishFlow 8s linear infinite;
+}
+
+.fish-flow:nth-of-type(1) {
+  stroke: var(--ai-fish-cyan);
+}
+
+.fish-flow:nth-of-type(2) {
+  stroke: var(--ai-fish-green);
+  animation-duration: 10s;
+}
+
+.fish-outline {
+  stroke-width: 3;
+  stroke-dasharray: 760;
+  stroke-dashoffset: 760;
+  animation: fishDraw 5.8s ease-in-out infinite;
+}
+
+.fish-tail {
+  stroke-width: 3;
+  stroke: var(--ai-fish-red);
+  stroke-dasharray: 340;
+  stroke-dashoffset: 340;
+  animation: fishDraw 5.8s .18s ease-in-out infinite;
+}
+
+.fish-spine {
+  stroke-width: 2;
+  stroke: var(--ai-fish-cyan);
+  stroke-dasharray: 240;
+  stroke-dashoffset: 240;
+  animation: fishDraw 5.8s .32s ease-in-out infinite;
+}
+
+.fish-circuit {
+  stroke-width: 1.8;
+  stroke: var(--ai-fish-yellow);
+  opacity: .88;
+  stroke-dasharray: 180;
+  stroke-dashoffset: 180;
+  animation: fishDraw 5.8s .55s ease-in-out infinite;
+}
+
+.fish-dot {
+  fill: #FFFFFF;
+  stroke: var(--ai-fish-ink);
+  stroke-width: 2;
+  transform-origin: center;
+  animation: fishPulse 3.4s ease-in-out infinite;
+}
+
+.fish-dot.is-red { fill: var(--ai-fish-red); stroke: var(--ai-fish-red); }
+.fish-dot.is-cyan { fill: var(--ai-fish-cyan); stroke: var(--ai-fish-cyan); }
+.fish-dot.is-green { fill: var(--ai-fish-green); stroke: var(--ai-fish-green); }
+
+@keyframes fishDraw {
+  0% { stroke-dashoffset: 760; opacity: .25; }
+  22%, 72% { stroke-dashoffset: 0; opacity: 1; }
+  100% { stroke-dashoffset: -760; opacity: .20; }
+}
+
+@keyframes fishFlow {
+  to { stroke-dashoffset: -180; }
+}
+
+@keyframes fishPulse {
+  0%, 100% { transform: scale(.86); opacity: .55; }
+  45%, 70% { transform: scale(1.08); opacity: 1; }
 }
 
 section.block::before {
   background:
-    url("data:image/svg+xml,%3Csvg width='420' height='180' viewBox='0 0 420 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23071426' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' opacity='.12'%3E%3Ccircle cx='88' cy='88' r='38'/%3E%3Ccircle cx='88' cy='88' r='7'/%3E%3Cpath d='M88 48l10 40-10 40-10-40z' fill='%23E60012' stroke='none' opacity='.74'/%3E%3Cpath d='M148 126h48l34-58h54l30 34h70'/%3E%3Ccircle cx='196' cy='126' r='5'/%3E%3Ccircle cx='230' cy='68' r='5'/%3E%3Ccircle cx='314' cy='102' r='5'/%3E%3Cpath d='M372 94l18 8-18 8'/%3E%3C/g%3E%3C/svg%3E") right 8% top 18px / min(420px, 72vw) auto no-repeat,
+    url("data:image/svg+xml,%3Csvg width='420' height='180' viewBox='0 0 420 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23071426' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' opacity='.12'%3E%3Cpath d='M42 92C100 42 210 42 286 92C210 142 100 142 42 92Z'/%3E%3Cpath d='M286 92l78-42c-28 34-28 50 0 84z'/%3E%3Cpath d='M94 92c50-18 102-18 160 0'/%3E%3Cpath d='M156 76v34m42-42v48m-84-8h86'/%3E%3Ccircle cx='238' cy='82' r='5'/%3E%3Ccircle cx='150' cy='76' r='4'/%3E%3Ccircle cx='198' cy='116' r='4'/%3E%3C/g%3E%3C/svg%3E") right 8% top 18px / min(420px, 72vw) auto no-repeat,
     linear-gradient(180deg, rgba(255,255,255,.90), rgba(255,255,255,.72)) !important;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .fish-flow,
+  .fish-outline,
+  .fish-spine,
+  .fish-circuit,
+  .fish-tail,
+  .fish-dot {
+    animation: none !important;
+    stroke-dashoffset: 0 !important;
+  }
+}
+
 @media (max-width: 900px) {
-  .hero-compass-card {
+  .hero-fish-card {
     margin-left: auto;
     margin-right: auto;
   }
 }
 
 @media (max-width: 680px) {
-  .atlas-compass-core {
-    opacity: .86;
-    padding: 9px 10px;
-  }
-
-  .atlas-compass-core .compass-mark {
-    width: 44px !important;
-    height: 44px !important;
-    flex-basis: 44px !important;
-  }
-
-  .atlas-compass-core small {
-    display: none;
+  .atlas-fish-core {
+    width: min(310px, 84%);
+    opacity: .90;
   }
 }
 """
@@ -8047,7 +8243,7 @@ def _render_header() -> str:
         "<nav class='site-nav' aria-label='メインナビ'>"
         "<a class='nav-link nav-essential' href='#packages'>受講プラン</a>"
         "<a class='nav-link nav-essential' href='#lectures'>資料</a>"
-        "<a class='nav-link nav-essential' href='#works'>実績</a>"
+        "<a class='nav-link nav-essential' href='#flow'>流れ</a>"
         "<div class='menu-wrap'>"
         "<button class='menu-toggle' id='menu-toggle' aria-haspopup='menu' aria-expanded='false'>見る"
         "<svg class='chev' width='14' height='14' viewBox='0 0 20 20' fill='none' aria-hidden='true'><path d='M5 8l5 5 5-5' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>"
@@ -8055,8 +8251,6 @@ def _render_header() -> str:
         "<div class='menu-drop' id='menu-drop' role='menu'>"
         "<span class='menu-drop-label'>制作・発信</span>"
         "<a href='#web-showcase'>HP制作メニュー</a>"
-        "<a href='#works'>実例サイト</a>"
-        "<a href='/portfolio.html'>実績詳細</a>"
         "<a href='/blog/index.html'>ブログ一覧</a>"
         "<a href='/watch/index.html'>AI Watch</a>"
         "<span class='menu-drop-label'>確認</span>"
@@ -8087,7 +8281,6 @@ def _render_header() -> str:
         "<span class='mobile-nav-label'>制作・運用</span>"
         "<div class='mobile-link-grid'>"
         "<a href='#web-showcase'>HP制作</a>"
-        "<a href='#works'>実例サイト</a>"
         "<a href='/blog/index.html'>ブログ</a>"
         "<a href='/watch/index.html'>AI Watch</a>"
         "</div>"
@@ -8376,7 +8569,7 @@ HEADER_JS = """
     update();
   })();
 
-  // 制作実績/ブログカルーセルの左右矢印
+  // Portfolio/blog carousel arrows
   (function(){
     document.querySelectorAll('.pf-carousel-wrap').forEach(function(wrap){
       var track = wrap.querySelector('.pf-carousel');
@@ -8690,6 +8883,25 @@ HERO_SVG = """
 """
 
 
+def _render_fish_line_video() -> str:
+    return (
+        "<div class='ai-fish-stage'>"
+        "<svg class='ai-fish-video' viewBox='0 0 520 260' role='img' aria-label='魚の線画がゆっくり描かれるAIモーション'>"
+        "<path class='fish-flow' d='M22 132 C88 96 168 88 246 126 S394 170 498 112'/>"
+        "<path class='fish-flow' d='M34 170 C116 206 230 206 326 160 S426 112 504 146'/>"
+        "<path class='fish-outline' d='M72 134 C150 72 272 76 362 134 C272 194 150 198 72 134 Z'/>"
+        "<path class='fish-tail' d='M360 134 L456 82 C426 124 426 144 456 186 Z'/>"
+        "<path class='fish-spine' d='M126 134 C188 114 262 116 334 134'/>"
+        "<path class='fish-circuit' d='M154 116 V88 H216 V112 M214 154 V184 H282 V150 M246 104 V78 H306'/>"
+        "<circle class='fish-dot is-red' cx='300' cy='116' r='6'/>"
+        "<circle class='fish-dot is-cyan' cx='216' cy='88' r='5'/>"
+        "<circle class='fish-dot is-green' cx='282' cy='184' r='5'/>"
+        "<circle class='fish-dot' cx='132' cy='132' r='5'/>"
+        "</svg>"
+        "</div>"
+    )
+
+
 def _render_hero() -> str:
     atlas_items = [
         {
@@ -8724,11 +8936,11 @@ def _render_hero() -> str:
         },
         {
             "index": "04",
-            "title": "実例サイト",
-            "sub": "運営中の制作物",
-            "desc": "実際に構築・運用しているサイトを教材として見せながら進めます。",
-            "cta": "実例を見る",
-            "href": "#works",
+            "title": "進め方",
+            "sub": "相談から手順化",
+            "desc": "自慢として見せるのではなく、相談、講習、資料、公開前確認の順番を見せます。",
+            "cta": "流れを見る",
+            "href": "#flow",
             "x": "50%",
             "y": "68%",
         },
@@ -8779,12 +8991,12 @@ def _render_hero() -> str:
         "<p class='sub-catch'>"
         "<strong>相談で整理。講習で実践。資料で復習。</strong>"
         "</p>"
-        "<div class='hero-compass-card' aria-label='AIコンパス'>"
-        "<span class='compass-mark' aria-hidden='true'></span>"
-        "<span><b>AIコンパス</b><small>相談・講習・資料の進む方向を整理</small></span>"
-        "</div>"
+        "<button type='button' class='hero-fish-card diagnose-open' aria-label='AI魚線画モーションとコース診断を開く'>"
+        "<span class='fish-mark' aria-hidden='true'></span>"
+        "<span><b>AIフィッシュライン</b><small>相談・講習・資料を流れで整理</small></span>"
+        "</button>"
         "<p class='lead'>"
-        "個別相談、AI講習、受講資料、実例サイトを1つの導線へ。見て、触って、次の行動を選べる入口です。"
+        "個別相談、AI講習、受講資料、進め方を1つの導線へ。見て、触って、次の行動を選べる入口です。"
         "</p>"
         "<div class='hero-actions'>"
         "<a class='btn btn-primary btn-lg' href='#packages'>AI講習を見る</a>"
@@ -8799,12 +9011,14 @@ def _render_hero() -> str:
         "<div class='hero-proof-grid' aria-label='AI講習会の特徴'>"
         "<div class='hero-proof'><span class='proof-icon'>88</span><span><b>AI利用</b><span>使うだけでなく定着へ</span></span></div>"
         "<div class='hero-proof'><span class='proof-icon'>47</span><span><b>研修不足</b><span>手順と確認の型を作る</span></span></div>"
-        "<div class='hero-proof'><span class='proof-icon'>120</span><span><b>実例化</b><span>講習中に成果物を作る</span></span></div>"
+        "<div class='hero-proof'><span class='proof-icon'>120</span><span><b>手順化</b><span>講習後に迷わない形へ</span></span></div>"
         "</div>"
         "</div>"
         "<div class='hero-photo-card hero-atlas-panel fade-up d2' aria-label='AI相談のサービス地図'>"
         "<div class='atlas-pathlines' aria-hidden='true'></div>"
-        "<div class='atlas-compass-core' aria-hidden='true'><span class='compass-mark'></span><small>AIコンパス</small></div>"
+        "<div class='atlas-fish-core' aria-hidden='true'>"
+        f"{_render_fish_line_video()}"
+        "</div>"
         f"{''.join(atlas_buttons)}"
         "<div class='atlas-live-card' aria-live='polite'>"
         f"<span class='atlas-live-kicker'>Service {html.escape(first_item['index'])}</span>"
@@ -8970,11 +9184,11 @@ def _render_web_showcase() -> str:
             "kicker": "Site 02 / 会社の見せ方",
             "desc": "会社概要だけで終わらせず、強み、施工事例、採用情報、代表メッセージを読みやすく配置。紹介先に送れる名刺代わりのサイトへ整えます。",
             "target": "紹介先や採用候補に、安心して見せられること",
-            "primary": "トップ、事業紹介、実績、採用、問い合わせ",
+            "primary": "トップ、事業紹介、サービス、採用、問い合わせ",
             "secondary": "写真整理、文章作成、公開後の更新しやすさ",
             "cta": "企業サイトを相談する",
             "href": "#contact",
-            "chips": ["会社案内", "実績", "採用", "代表紹介", "FAQ"],
+            "chips": ["会社案内", "サービス", "採用", "代表紹介", "FAQ"],
             "mini": ["強みの整理", "事例一覧", "採用導線"],
             "accent": "#3F6E9A",
         },
@@ -9704,7 +9918,7 @@ def _render_footer(today: str) -> str:
         "<nav class='footer-nav' aria-label='フッターナビ'>"
         "<span class='footer-nav-head'>メニュー</span>"
         "<a href='#packages'>受講プラン</a>"
-        "<a href='#works'>制作実績</a>"
+        "<a href='#flow'>進め方</a>"
         "<a href='#speaker'>講師紹介</a>"
         "<a href='#lectures'>受講資料</a>"
         "<a href='#faq'>よくある質問</a>"
@@ -9746,15 +9960,15 @@ def _render_diagnose_modal() -> str:
 
 
 def _render_explore() -> str:
-    """メニュー集約: 実績 / 受講資料 をカードで（詳細は各ページへ）。
+    """メニュー集約: 受講資料 / ブログ をカードで（詳細は各ページへ）。
     ※ SNSポータル(AI Watch /watch/)は管理ページ(/admin)へ移行したため公開側には出さない。"""
     cards = [
-        ("📂", "制作実績・事業ポートフォリオ",
-         "運営事業・制作したサイト・生成した提案LP。すべて自分で構築・運用した実物。",
-         "/portfolio.html", "実績を見る"),
         ("📚", "受講資料",
          "AI業務活用・SNSアルゴリズム・LLMO（AI検索最適化）の講習で使う資料。AIコーディング講習も。",
          "/lectures/index.html", "資料を見る"),
+        ("📝", "ブログ",
+         "相談、講習、SNS、AI活用の考え方をあとから見返せる記事として整理します。",
+         "/blog/index.html", "ブログを見る"),
     ]
     parts = ["<div class='explore-grid'>"]
     for icon, title, desc, href, cta in cards:
@@ -9832,7 +10046,7 @@ def _render_growth_plan_section() -> str:
         ("公的DX相談・商工支援", "信頼は強いが、画面・成果物・講習後の復習導線が静的になりやすい", "毎朝の調査で、講座の入口・FAQ・資料リンクを最新の不安と需要に合わせて更新する"),
         ("一般パソコン教室", "初心者対応は強いが、AIエージェント、SNS反響、AI検索まで横断しにくい", "ChatGPT/Codex/Claude Code/画像生成/SNS/動画/LLMOを1つの操縦席で選べるデザインにする"),
         ("大手AI/DX研修", "体系化は強いが、受講者の持ち込み課題や地元商売への変換が弱くなりやすい", "彦根の現場感、少人数、即日成果物、予約導線を目立たせて「ここで動かせる」印象を作る"),
-        ("制作会社・SEO会社", "制作やSEOは強いが、本人がAIを使えるようになる講習導線が薄い", "実績・講習・資料・予約を同じページに置き、内製化と外注の境目を選べる構造にする"),
+        ("制作会社・SEO会社", "制作やSEOは強いが、本人がAIを使えるようになる講習導線が薄い", "相談・講習・資料・予約を同じページに置き、内製化と外注の境目を選べる構造にする"),
     ]
     actions = [
         ("08:00 Research", "競合、国内Web/UIトレンド、AI講習の検索意図、YouTubeとSNS反響を確認する。"),
@@ -9948,9 +10162,7 @@ def _render_faq() -> str:
 
 
 def _render_speaker_section() -> str:
-    """講師紹介+経歴の統合要約セクション。
-    speaker.md の役職とプロフィール冒頭 + profile.yaml の stats を一体で表示し、
-    詳細は「もっと詳しく」ボタンで speaker.html / profile.html へ誘導する。"""
+    """講師紹介の要約セクション。詳細は speaker.html へ誘導する。"""
     sp = _load_speaker()
     prof = _load_profile()
     name = html.escape(sp.get("name") or OWNER_NAME)
@@ -9991,66 +10203,17 @@ def _render_speaker_section() -> str:
         "</div>"
     ]
 
-    stats = (prof.get("stats") or []) if prof else []
-    if stats:
-        parts.append("<div class='stats-strip' style='margin:32px 0 8px;'>")
-        for st in stats[:4]:
-            num = html.escape(str(st.get("number") or ""))
-            lbl = html.escape(str(st.get("label") or ""))
-            parts.append(
-                f"<div class='stat'><div class='num'>{num}</div>"
-                f"<div class='label'>{lbl}</div></div>"
-            )
-        parts.append("</div>")
-
     parts.append(
         "<div style='display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:24px;'>"
-        "<a class='btn btn-primary' href='/speaker.html'>🎤 詳しい経歴を見る</a>"
+        "<a class='btn btn-primary' href='/speaker.html'>🎤 講師紹介を見る</a>"
         "</div>"
         "</div>"
     )
     return "".join(parts)
 
 def _render_portfolio_section() -> str:
-    """L3 制作実績セクション。portfolio.yaml の全件をカードグリッドで。
-    詳細は portfolio.html へ誘導。"""
-    items = _load_portfolio()
-    if not items:
-        return ""
-    parts: list[str] = ["<div class='pf-grid'>"]
-    for it in items:
-        name = html.escape(str(it.get("name") or ""))
-        url = html.escape(str(it.get("url") or ""), quote=True)
-        summary = html.escape(str(it.get("summary") or ""))
-        category = html.escape(str(it.get("category") or ""))
-        status = str(it.get("status") or "")
-        tech = it.get("tech") or []
-        since = html.escape(str(it.get("since") or ""))
-        status_label = {"live": "公開中", "dev": "開発中", "retired": "終了"}.get(status, "")
-        status_cls = {"live": "", "dev": " dev", "retired": " retired"}.get(status, "")
-        chips = ""
-        if category:
-            chips += f"<span class='pf-chip cat'>{category}</span>"
-        for tg in (tech if isinstance(tech, list) else [])[:3]:
-            chips += f"<span class='pf-chip'>{html.escape(str(tg))}</span>"
-        if status_label:
-            chips += f"<span class='pf-chip{status_cls}'>{status_label}</span>"
-        host = url.replace("https://", "").replace("http://", "").rstrip("/")
-        is_link = bool(it.get("url"))
-        tag = "a" if is_link else "div"
-        href = f" href='{url}' target='_blank' rel='noopener'" if is_link else ""
-        since_html = f"<span class='pf-host'>since {since}</span>" if since else ""
-        parts.append(
-            f"<{tag} class='pf-card'{href}>"
-            f"<div class='pf-title'>{name}</div>"
-            f"<div class='pf-host'>{html.escape(host)}</div>"
-            f"<div class='pf-sum'>{summary}</div>"
-            f"<div class='pf-meta'>{chips}</div>"
-            f"{since_html}"
-            f"</{tag}>"
-        )
-    parts.append("</div>")
-    return "".join(parts)
+    """Retired public portfolio section. Kept as a no-op for older call sites."""
+    return ""
 
 
 # カテゴリ別サムネ: 実画面のスクショではなく、ブランドカラーのSVGモチーフで体裁を統一する。
@@ -10090,7 +10253,7 @@ def _works_thumb_svg(category: str, name: str) -> str:
 
 
 def _render_works_section() -> str:
-    """制作実績セクション（TOP内サマリ）。portfolio.yaml から live のみを抜き、
+    """Portfolio summary helper. Not used on the public top page.
     各カードは公開サイト本体へ直リンク。ページ遷移を減らすため一覧をインライン掲載。"""
     items = [p for p in _load_portfolio() if str(p.get("status") or "live") != "retired"]
     if not items:
@@ -10114,7 +10277,7 @@ def _render_works_section() -> str:
             chips.append(f"<span class='pf-chip'>{html.escape(str(t))}</span>")
         if status == "dev":
             chips.append("<span class='pf-chip dev'>開発中</span>")
-        href = html.escape(url, quote=True) if url else "/portfolio.html"
+        href = html.escape(url, quote=True) if url else "#flow"
         target = " target='_blank' rel='noopener'" if url else ""
         thumb_url = str(p.get("thumbnail") or "").strip()
         if thumb_url:
@@ -10473,17 +10636,6 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append("<h2 class='section-title fade-up d1'>ホームページ制作も、提案書のように見せる</h2>")
     parts.append("<p class='section-sub fade-up d2'>店舗LP、企業サイト、EC、講習資料、管理画面、SNS改善まで。「こんなものも作れます」を、用途別の完成イメージとしてわかりやすく提示します。</p>")
     parts.append(_render_web_showcase())
-    parts.append("</section>")
-
-    # 3. 制作実績（TOP内にサマリを掲載・各カードは公開サイト本体へ直リンク）
-    parts.append("<section class='block' id='works'>")
-    parts.append("<p class='section-heading fade-up'>WORKS</p>")
-    parts.append("<h2 class='section-title fade-up d1'>実績サイト</h2>")
-    parts.append("<p class='section-sub fade-up d2'>説明だけではなく、講師が実際に構築・運用しているサイトや業務システムを教材として使います。</p>")
-    parts.append("<div class='fade-up d2'>")
-    parts.append(_render_works_section())
-    parts.append("</div>")
-    parts.append("<div class='section-more fade-up d3'><a class='btn btn-secondary' href='/portfolio.html'>📂 実績の詳細・技術スタックを見る →</a></div>")
     parts.append("</section>")
 
     parts.append(_render_blog_teaser())

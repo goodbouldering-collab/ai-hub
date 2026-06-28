@@ -32,19 +32,19 @@ top_buttons:
   enabled: true
 - id: profile
   group: 講師
-  label: 経歴
+  label: 人物メモ
   icon: 📜
-  href: speaker.html#career
+  href: speaker.html
   kind: link
-  enabled: false   # 講師紹介(speaker.html)に経歴を統合したため無効化
+  enabled: false
 
 - id: portfolio
-  group: 作品
-  label: 実績
-  icon: 🏆
-  href: portfolio.html
+  group: 資料
+  label: 運営メモ
+  icon: 🧭
+  href: index.html#flow
   kind: link
-  enabled: true
+  enabled: false
 
 - id: lectures
   group: 教材資料

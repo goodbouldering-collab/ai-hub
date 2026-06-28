@@ -3409,14 +3409,14 @@ footer.site-footer {
 @media (max-width: 760px) { .sticky-cta { display: flex; } }
 @media (prefers-reduced-motion: no-preference) { .sticky-cta { transition: transform .3s ease, opacity .3s ease; } }
 
-/* ---- 制作実績カード（LP #portfolio。build_site CONTENT_CSS から移植・PORTALトークン化）---- */
+/* ---- Portfolio cards (kept for non-public internal reuse; not linked from the top page) ---- */
 .pf-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 16px;
   margin: 16px 0 8px;
 }
-/* 制作実績の横スライド（カルーセル） */
+/* Portfolio carousel */
 .pf-carousel-wrap { position: relative; margin: 16px 0 8px; }
 .pf-carousel {
   display: grid; grid-auto-flow: column;
@@ -7783,7 +7783,6 @@ section.block > * {
 #start { --section-accent: var(--mac-coral); }
 #packages { --section-accent: var(--mac-cyan); }
 #web-showcase { --section-accent: var(--mac-amber); }
-#works { --section-accent: var(--mac-teal); }
 #flow { --section-accent: var(--mac-lime); }
 #lectures { --section-accent: var(--mac-cyan); }
 #speaker { --section-accent: var(--mac-coral); }
@@ -8809,98 +8808,293 @@ section.block::before {
   transform: translateY(-1px);
 }
 
-.hero-compass-card {
+.atlas-node,
+.atlas-live-card {
+  z-index: 3;
+}
+
+
+/* ---- AI fish line motion pass: shared top/admin motif, 2026-06-28 ---- */
+:root {
+  --ai-fish-ink: #071426;
+  --ai-fish-red: #E60012;
+  --ai-fish-cyan: #00A5C8;
+  --ai-fish-green: #00A676;
+  --ai-fish-yellow: #F5B83D;
+  --ai-fish-line: rgba(7,20,38,.18);
+}
+
+.brand-mark,
+.fish-mark {
+  position: relative !important;
+  width: 50px !important;
+  height: 34px !important;
+  flex: 0 0 50px !important;
+  border-radius: 999px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background:
+    linear-gradient(135deg, rgba(0,165,200,.12), rgba(245,184,61,.16) 48%, rgba(230,0,18,.10)),
+    #FFFFFF !important;
+  border: 2px solid var(--ai-fish-ink) !important;
+  box-shadow: 5px 5px 0 rgba(230,0,18,.12) !important;
+  overflow: visible !important;
+}
+
+.brand-mark .brand-a,
+.brand-mark .brand-ha {
+  opacity: 0 !important;
+  width: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+}
+
+.brand-mark::before,
+.fish-mark::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 8px !important;
+  top: 50% !important;
+  width: 27px !important;
+  height: 14px !important;
+  border: 2px solid var(--ai-fish-ink) !important;
+  border-radius: 54% 46% 46% 54% / 58% 50% 50% 58% !important;
+  background:
+    radial-gradient(circle at 74% 42%, var(--ai-fish-red) 0 2px, transparent 2.4px),
+    #FFFFFF !important;
+  transform: translateY(-50%) !important;
+}
+
+.brand-mark::after,
+.fish-mark::after {
+  content: "" !important;
+  position: absolute !important;
+  right: 5px !important;
+  top: 50% !important;
+  width: 14px !important;
+  height: 18px !important;
+  border: 2px solid var(--ai-fish-ink) !important;
+  border-left: 0 !important;
+  clip-path: polygon(0 50%, 100% 4%, 82% 50%, 100% 96%) !important;
+  background: #FFFFFF !important;
+  transform: translateY(-50%) !important;
+}
+
+.site-logo:hover .brand-mark,
+.site-logo:focus-visible .brand-mark {
+  box-shadow: 5px 5px 0 rgba(230,0,18,.22) !important;
+  transform: translateY(-1px);
+}
+
+.hero-fish-card {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  max-width: 480px;
+  max-width: 520px;
   margin: 0 0 20px;
   padding: 10px 12px;
   border: 1px solid var(--sakana-line);
   border-radius: var(--sakana-radius);
   background: #FFFFFF;
   box-shadow: 4px 4px 0 rgba(7,20,38,.04);
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
 }
 
-.hero-compass-card .compass-mark {
-  width: 38px !important;
-  height: 38px !important;
-  flex-basis: 38px !important;
-  border-width: 2px !important;
-  box-shadow: 3px 3px 0 rgba(230,0,18,.12) !important;
+.hero-fish-card:hover,
+.hero-fish-card:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(0,165,200,.42);
+  box-shadow: 8px 8px 0 rgba(245,184,61,.18), 0 18px 42px rgba(0,165,200,.16);
+  outline: none;
 }
 
-.hero-compass-card b,
-.atlas-compass-core b {
+.hero-fish-card .fish-mark {
+  width: 48px !important;
+  height: 34px !important;
+  flex-basis: 48px !important;
+}
+
+.hero-fish-card b {
   display: block;
   color: var(--sakana-ink);
   font-weight: 900;
   letter-spacing: 0;
 }
 
-.hero-compass-card small,
-.atlas-compass-core small {
+.hero-fish-card small {
   display: block;
   color: var(--sakana-muted);
   font-weight: 750;
   letter-spacing: 0;
 }
 
-.atlas-compass-core {
+.atlas-fish-core {
   position: absolute;
   left: 50%;
   top: 50%;
   z-index: 2;
   transform: translate(-50%, -50%);
+  width: min(420px, 72%);
+  aspect-ratio: 2 / 1;
   display: grid;
-  justify-items: center;
-  gap: 6px;
-  padding: 12px 14px;
-  border: 1px solid var(--sakana-line);
-  border-radius: var(--sakana-radius);
-  background: rgba(255,255,255,.94);
-  box-shadow: 5px 5px 0 rgba(7,20,38,.04), 0 12px 30px rgba(7,20,38,.08);
+  place-items: center;
   pointer-events: none;
 }
 
-.atlas-compass-core .compass-mark {
-  width: 58px !important;
-  height: 58px !important;
-  flex-basis: 58px !important;
+.ai-fish-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--sakana-line);
+  border-radius: var(--sakana-radius);
+  background:
+    linear-gradient(135deg, rgba(0,165,200,.16), rgba(0,166,118,.10) 36%, rgba(245,184,61,.18) 68%, rgba(230,0,18,.12)),
+    linear-gradient(90deg, rgba(7,20,38,.035) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(7,20,38,.028) 1px, transparent 1px),
+    rgba(255,255,255,.94);
+  background-size: auto, 36px 36px, 36px 36px, auto;
+  box-shadow: 6px 6px 0 rgba(7,20,38,.04), 0 18px 42px rgba(7,20,38,.09);
+  overflow: hidden;
 }
 
-.atlas-node,
-.atlas-live-card {
-  z-index: 3;
+.ai-fish-stage::after {
+  content: "AI LINE";
+  position: absolute;
+  left: 14px;
+  bottom: 11px;
+  color: rgba(7,20,38,.48);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .12em;
+}
+
+.ai-fish-video {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.fish-flow,
+.fish-outline,
+.fish-spine,
+.fish-circuit,
+.fish-tail {
+  fill: none;
+  stroke: var(--ai-fish-ink);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.fish-flow {
+  stroke-width: 1.4;
+  opacity: .32;
+  stroke-dasharray: 16 18;
+  animation: fishFlow 8s linear infinite;
+}
+
+.fish-flow:nth-of-type(1) {
+  stroke: var(--ai-fish-cyan);
+}
+
+.fish-flow:nth-of-type(2) {
+  stroke: var(--ai-fish-green);
+  animation-duration: 10s;
+}
+
+.fish-outline {
+  stroke-width: 3;
+  stroke-dasharray: 760;
+  stroke-dashoffset: 760;
+  animation: fishDraw 5.8s ease-in-out infinite;
+}
+
+.fish-tail {
+  stroke-width: 3;
+  stroke: var(--ai-fish-red);
+  stroke-dasharray: 340;
+  stroke-dashoffset: 340;
+  animation: fishDraw 5.8s .18s ease-in-out infinite;
+}
+
+.fish-spine {
+  stroke-width: 2;
+  stroke: var(--ai-fish-cyan);
+  stroke-dasharray: 240;
+  stroke-dashoffset: 240;
+  animation: fishDraw 5.8s .32s ease-in-out infinite;
+}
+
+.fish-circuit {
+  stroke-width: 1.8;
+  stroke: var(--ai-fish-yellow);
+  opacity: .88;
+  stroke-dasharray: 180;
+  stroke-dashoffset: 180;
+  animation: fishDraw 5.8s .55s ease-in-out infinite;
+}
+
+.fish-dot {
+  fill: #FFFFFF;
+  stroke: var(--ai-fish-ink);
+  stroke-width: 2;
+  transform-origin: center;
+  animation: fishPulse 3.4s ease-in-out infinite;
+}
+
+.fish-dot.is-red { fill: var(--ai-fish-red); stroke: var(--ai-fish-red); }
+.fish-dot.is-cyan { fill: var(--ai-fish-cyan); stroke: var(--ai-fish-cyan); }
+.fish-dot.is-green { fill: var(--ai-fish-green); stroke: var(--ai-fish-green); }
+
+@keyframes fishDraw {
+  0% { stroke-dashoffset: 760; opacity: .25; }
+  22%, 72% { stroke-dashoffset: 0; opacity: 1; }
+  100% { stroke-dashoffset: -760; opacity: .20; }
+}
+
+@keyframes fishFlow {
+  to { stroke-dashoffset: -180; }
+}
+
+@keyframes fishPulse {
+  0%, 100% { transform: scale(.86); opacity: .55; }
+  45%, 70% { transform: scale(1.08); opacity: 1; }
 }
 
 section.block::before {
   background:
-    url("data:image/svg+xml,%3Csvg width='420' height='180' viewBox='0 0 420 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23071426' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' opacity='.12'%3E%3Ccircle cx='88' cy='88' r='38'/%3E%3Ccircle cx='88' cy='88' r='7'/%3E%3Cpath d='M88 48l10 40-10 40-10-40z' fill='%23E60012' stroke='none' opacity='.74'/%3E%3Cpath d='M148 126h48l34-58h54l30 34h70'/%3E%3Ccircle cx='196' cy='126' r='5'/%3E%3Ccircle cx='230' cy='68' r='5'/%3E%3Ccircle cx='314' cy='102' r='5'/%3E%3Cpath d='M372 94l18 8-18 8'/%3E%3C/g%3E%3C/svg%3E") right 8% top 18px / min(420px, 72vw) auto no-repeat,
+    url("data:image/svg+xml,%3Csvg width='420' height='180' viewBox='0 0 420 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23071426' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' opacity='.12'%3E%3Cpath d='M42 92C100 42 210 42 286 92C210 142 100 142 42 92Z'/%3E%3Cpath d='M286 92l78-42c-28 34-28 50 0 84z'/%3E%3Cpath d='M94 92c50-18 102-18 160 0'/%3E%3Cpath d='M156 76v34m42-42v48m-84-8h86'/%3E%3Ccircle cx='238' cy='82' r='5'/%3E%3Ccircle cx='150' cy='76' r='4'/%3E%3Ccircle cx='198' cy='116' r='4'/%3E%3C/g%3E%3C/svg%3E") right 8% top 18px / min(420px, 72vw) auto no-repeat,
     linear-gradient(180deg, rgba(255,255,255,.90), rgba(255,255,255,.72)) !important;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .fish-flow,
+  .fish-outline,
+  .fish-spine,
+  .fish-circuit,
+  .fish-tail,
+  .fish-dot {
+    animation: none !important;
+    stroke-dashoffset: 0 !important;
+  }
+}
+
 @media (max-width: 900px) {
-  .hero-compass-card {
+  .hero-fish-card {
     margin-left: auto;
     margin-right: auto;
   }
 }
 
 @media (max-width: 680px) {
-  .atlas-compass-core {
-    opacity: .86;
-    padding: 9px 10px;
-  }
-
-  .atlas-compass-core .compass-mark {
-    width: 44px !important;
-    height: 44px !important;
-    flex-basis: 44px !important;
-  }
-
-  .atlas-compass-core small {
-    display: none;
+  .atlas-fish-core {
+    width: min(310px, 84%);
+    opacity: .90;
   }
 }
 </style></head><body><div class='container'>
@@ -8920,7 +9114,7 @@ section.block::before {
   }
 })();
 </script>
-<header class='site-header scrolled' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span><span class='site-logo-by'>滋賀・彦根</span></a><nav class='site-nav top-nav' aria-label='サイトナビ'><a class='nav-link nav-essential' href='/#packages'>受講プラン</a><a class='nav-link nav-essential' href='/#lectures'>資料</a><a class='nav-link nav-essential' href='/#works'>実績</a><a class='nav-link' href='/admin' style='color:var(--muted);'>🔐 管理</a></nav><a class='nav-cta' href='/#contact'>個別相談</a></div></header><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'><svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button><div class='mobile-nav generated-mobile-nav' id='mobile-nav'><div class='mobile-nav-panel'><div class='mobile-nav-primary'><a class='login-btn-mobile' href='/#contact'>個別相談</a><a class='mobile-main-link' href='/#packages'>受講プラン</a></div><span class='mobile-nav-label'>公開ページ</span><div class='mobile-link-grid'><a class='' href='/programming-map.html'>AIコーディング</a><a href='/#lectures'>資料</a><a href='/#speaker'>講師紹介</a><a href='/#faq'>FAQ</a><a href='/portfolio.html'>実績</a><a href='/blog/index.html'>ブログ</a><a href='/watch/index.html'>AI Watch</a><a class='mobile-admin-link' href='/admin'>管理画面</a></div></div></div><script>(function(){var b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav');if(!b||!n)return;function close(){n.classList.remove('open');b.setAttribute('aria-expanded','false');}b.addEventListener('click',function(e){e.stopPropagation();var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});})();</script><header><h1>受講資料 ディレクトリ</h1></header><div class='content-wrap'><div class='content-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#受講資料ホーム'>受講資料ホーム</a></li><li><a href='#受講資料-8-件'>📝 受講資料 8 件</a></li><li><a href='#補助・投影資料-3-件'>📚 補助・投影資料 3 件</a></li></ol></div><section class='tr-home' aria-label='受講資料ホーム'><div><h2 id='受講資料ホーム'>受講資料ホーム</h2><p>「Codex実践会 120分 構築と応用」の形式を基準に、各資料を目次、本文、動画、ナレーション、スライド、PDF、チェックの観点で探せるようにまとめた入口です。受講前は内容確認、受講中は投影資料、受講後は本文とチェック項目へ進めます。</p><div class='tr-home-actions'><a href='../#packages'>受講プランを見る</a><a href='./2026-06-codex-app-practice.html'>Codex実践会から見る</a><a href='#sec-受講資料'>全資料を見る</a></div></div><div class='tr-home-panel'><div class='tr-home-stat'><b>8</b><span>受講資料本体</span></div><div class='tr-home-stat'><b>3</b><span>補助・投影資料</span></div><div class='tr-home-stat'><b>2</b><span>動画付き</span></div></div></section><a class='tr-featured' href='./2026-06-codex-app-practice.html'><div><b>基準フォーマット: Codex実践会 120分 構築と応用</b><span>Codexアプリを実務で使うための応用編。プロジェクトとフォルダ管理、Local/Worktree/Cloud、skills、plugins、MCP、hooks、rules、automations、設定、隠れ機能、公式アップデート確認先までを実例中心に整理。</span></div><span class='arrow'>→</span></a><div class='tr-format-grid' aria-label='共通フォーマット'><div class='tr-format'><b>目次</b><span>最初に流れを確認し、必要な章へ移動する。</span></div><div class='tr-format'><b>動画・ナレーション</b><span>講師の説明順で見せる資料や収録台本を確認する。</span></div><div class='tr-format'><b>スライド式説明</b><span>投影、画面共有、短時間説明に使う。</span></div><div class='tr-format'><b>本文</b><span>復習、引用、手順確認のための読み物として使う。</span></div><div class='tr-format'><b>PDF・配布物</b><span>印刷、配布、別ページ資料がある場合に使う。</span></div><div class='tr-format'><b>チェック</b><span>宿題、運用確認、公開前レビューに使う。</span></div></div><p class='tr-intro'>まず受講資料本体を開き、必要に応じて投影用スライドや補助資料へ進む。内容を確認したら受講プランへ戻り、準備会・実践会・個別相談のどれで進めるかを選べます。</p><section class='tr-section' id='sec-受講資料'><h2 class='tr-section-head' id='受講資料-8-件'><span class='tr-section-icon'>📝</span><span class='tr-section-name'>受講資料</span><span class='tr-section-count'>8 件</span></h2><p class='tr-section-desc'>まず開く受講資料本体。本文、目次、動画、スライド、チェック項目がある資料はここから確認する</p><div class='tr-grid'><a class='tr-card' href='./2026-06-codex-app-practice.html'><div class='tr-title'>📝 Codex実践会 120分 構築と応用</div><div class='tr-date'>📅 2026-06-10</div><div class='tr-sum'>Codexアプリを実務で使うための応用編。プロジェクトとフォルダ管理、Local/Worktree/Cloud、skills、plugins、MCP、hooks、rules、automations、設定、隠れ機能、公式アップデート確認先までを実例中心に整理。</div><div class='tr-meta'><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span><span class='tr-chip format on'>動画</span><span class='tr-chip format on'>ナレーション</span><span class='tr-chip format on'>スライド</span><span class='tr-chip format on'>チェック</span></div></a><a class='tr-card' href='./2026-06-codex-app-onboarding.html'><div class='tr-title'>📝 Codex準備会 60分 導入と習得</div><div class='tr-date'>📅 2026-06-05</div><div class='tr-sum'>ChatGPTは使えるがCodexアプリは初めての人向けに、導入、最初のプロジェクト、権限、安全装置、差分確認、公式アップデートの追い方までを学ぶ準備編。</div><div class='tr-meta'><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span><span class='tr-chip format on'>動画</span><span class='tr-chip format on'>スライド</span><span class='tr-chip format on'>チェック</span></div></a><a class='tr-card' href='./2026-06-ai-tsukaikonaseru-hito.html'><div class='tr-title'>📝 AIを使いこなせる人と使いこなせない人の違い｜仕事で差がつく5つの実践</div><div class='tr-date'>📅 2026-06-16</div><div class='tr-sum'>AIを使いこなせる人と使いこなせない人の違いを、仕事の言語化、材料の渡し方、修正指示、検証、業務導入の観点で解説。ChatGPT、Codex、Claude Code、画像生成を仕事に入れる具体的な手順とセルフチェック付き。</div><div class='tr-meta'><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span><span class='tr-chip format on'>チェック</span></div></a><a class='tr-card' href='./2026-06-ai-agent-rag-design.html'><div class='tr-title'>📝 クラウドAIエージェント時代のRAG設計｜AIにどの順番で考えてもらうか</div><div class='tr-date'>📅 2026-06-17</div><div class='tr-sum'>クラウドAIエージェントが毎日の業務を判断する時代に必要なRAG設計を、AI専用の資料棚、見る順番、EC・交流会の例、人間が確認する範囲までわかりやすく整理。</div><div class='tr-meta'><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span></div></a><a class='tr-card' href='./2026-05-climbing-history.html'><div class='tr-title'>📝 クライミングの歴史 — 参考資料</div><div class='tr-date'>📅 2026-05-23</div><div class='tr-sum'>クライミングが240年かけて枝分かれしてきた歴史を、初心者向け講習用にまとめた参考資料。世界史編（第I部）と日本史・ぐっぼる編（第II部）の2部構成。</div><div class='tr-meta'><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span><span class='tr-chip format on'>ナレーション</span><span class='tr-chip format on'>スライド</span><span class='tr-chip format on'>PDF</span></div></a><a class='tr-card' href='./2026-05-claude-code-features.html'><div class='tr-title'>📝 Claude Code 2026 棚卸し — 開発フローを変えた機能だけ</div><div class='tr-date'>📅 2026-05-21</div><div class='tr-sum'>2026年1月〜5月のClaude Codeリリースから「実際に手元の開発フローが変わった」機能だけを、タイムライン・カテゴリカード・コマンド早見表のインフォグラフィックで一望する。コマンド名・設定キー・出荷時期(Week番号)は公式 changelog / What&#x27;s new で裏取り済み。</div><div class='tr-meta'><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span></div></a><a class='tr-card' href='./2026-04-ai-kihon.html'><div class='tr-title'>📝 AIの「こと」を吸収する — 入門講習</div><div class='tr-date'>📅 2026-04-22</div><div class='tr-sum'>AIを「使う」のではなく「のこと」を知る。最初の一歩として、言語化・共有・ショートカット化の3軸で日常に組み込む考え方を、実例つきで整理する。</div><div class='tr-meta'><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span><span class='tr-chip format on'>チェック</span></div></a><a class='tr-card' href='./2026-04-ai-kangaekata.html'><div class='tr-title'>📝 AI活用の「考え方」— 入門講習</div><div class='tr-date'>📅 2026-04-22</div><div class='tr-sum'>AIを日常になじませる「考え方」を15項目にまとめた原典。講習スライドの元資料として使える本編。</div><div class='tr-meta'><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span></div></a></div></section><section class='tr-section' id='sec-補助・投影資料'><h2 class='tr-section-head' id='補助・投影資料-3-件'><span class='tr-section-icon'>📚</span><span class='tr-section-name'>補助・投影資料</span><span class='tr-section-count'>3 件</span></h2><p class='tr-section-desc'>講習中の画面共有、短時間説明、追加学習に使う資料</p><div class='tr-grid'><a class='tr-card' href='../programming-map.html'><div class='tr-title'>🧭 AIコーディング講習 120分</div><div class='tr-date'>📅 2026-06-06</div><div class='tr-sum'>Codex導入、プログラミング基礎、実装、公開、公式アップデート、AI応用制作までを、線画とタブUIで段階的に学ぶ講習LP。</div><div class='tr-meta'><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span><span class='tr-chip format on'>スライド</span><span class='tr-chip format on'>チェック</span></div></a><a class='tr-card' href='../slides/climbing-history-1.html'><div class='tr-title'>🧗 クライミングの歴史 I（世界史編）</div><div class='tr-date'>📅 2026-05-23</div><div class='tr-sum'>1786年モンブランから種目の分化、パタゴニア／ノースフェイス誕生秘話、五輪採用まで。初心者向け講習スライド（投影用HTML）</div><div class='tr-meta'><span class='tr-chip format on'>スライド</span></div></a><a class='tr-card' href='../slides/climbing-history-2.html'><div class='tr-title'>🧗 クライミングの歴史 II（日本史・ぐっぼる編）</div><div class='tr-date'>📅 2026-05-23</div><div class='tr-sum'>日本のクライミング独立史、ジムの爆発的普及、世界に挑んだ日本人、そして「ぐっぼる」がジム＋ショップ＋カフェである理由。投影用HTML</div><div class='tr-meta'><span class='tr-chip format on'>スライド</span></div></a></div></section></div><footer>AI相談 / Generated by Claude</footer><button class='back-to-top' id='backTop' aria-label='トップへ戻る'>↑</button><script>(function(){var b=document.getElementById('backTop');if(!b)return;window.addEventListener('scroll',function(){b.classList.toggle('show',window.scrollY>400);});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script><script>
+<header class='site-header scrolled' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span><span class='site-logo-by'>滋賀・彦根</span></a><nav class='site-nav top-nav' aria-label='サイトナビ'><a class='nav-link nav-essential' href='/#packages'>受講プラン</a><a class='nav-link nav-essential' href='/#lectures'>資料</a><a class='nav-link nav-essential' href='/#flow'>流れ</a><a class='nav-link' href='/admin' style='color:var(--muted);'>🔐 管理</a></nav><a class='nav-cta' href='/#contact'>個別相談</a></div></header><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'><svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button><div class='mobile-nav generated-mobile-nav' id='mobile-nav'><div class='mobile-nav-panel'><div class='mobile-nav-primary'><a class='login-btn-mobile' href='/#contact'>個別相談</a><a class='mobile-main-link' href='/#packages'>受講プラン</a></div><span class='mobile-nav-label'>公開ページ</span><div class='mobile-link-grid'><a class='' href='/programming-map.html'>AIコーディング</a><a href='/#lectures'>資料</a><a href='/#speaker'>講師紹介</a><a href='/#faq'>FAQ</a><a href='/blog/index.html'>ブログ</a><a href='/watch/index.html'>AI Watch</a><a class='mobile-admin-link' href='/admin'>管理画面</a></div></div></div><script>(function(){var b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav');if(!b||!n)return;function close(){n.classList.remove('open');b.setAttribute('aria-expanded','false');}b.addEventListener('click',function(e){e.stopPropagation();var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});})();</script><header><h1>受講資料 ディレクトリ</h1></header><div class='content-wrap'><div class='content-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#受講資料ホーム'>受講資料ホーム</a></li><li><a href='#受講資料-8-件'>📝 受講資料 8 件</a></li><li><a href='#補助・投影資料-3-件'>📚 補助・投影資料 3 件</a></li></ol></div><section class='tr-home' aria-label='受講資料ホーム'><div><h2 id='受講資料ホーム'>受講資料ホーム</h2><p>「Codex実践会 120分 構築と応用」の形式を基準に、各資料を目次、本文、動画、ナレーション、スライド、PDF、チェックの観点で探せるようにまとめた入口です。受講前は内容確認、受講中は投影資料、受講後は本文とチェック項目へ進めます。</p><div class='tr-home-actions'><a href='../#packages'>受講プランを見る</a><a href='./2026-06-codex-app-practice.html'>Codex実践会から見る</a><a href='#sec-受講資料'>全資料を見る</a></div></div><div class='tr-home-panel'><div class='tr-home-stat'><b>8</b><span>受講資料本体</span></div><div class='tr-home-stat'><b>3</b><span>補助・投影資料</span></div><div class='tr-home-stat'><b>2</b><span>動画付き</span></div></div></section><a class='tr-featured' href='./2026-06-codex-app-practice.html'><div><b>基準フォーマット: Codex実践会 120分 構築と応用</b><span>Codexアプリを実務で使うための応用編。プロジェクトとフォルダ管理、Local/Worktree/Cloud、skills、plugins、MCP、hooks、rules、automations、設定、隠れ機能、公式アップデート確認先までを実例中心に整理。</span></div><span class='arrow'>→</span></a><div class='tr-format-grid' aria-label='共通フォーマット'><div class='tr-format'><b>目次</b><span>最初に流れを確認し、必要な章へ移動する。</span></div><div class='tr-format'><b>動画・ナレーション</b><span>講師の説明順で見せる資料や収録台本を確認する。</span></div><div class='tr-format'><b>スライド式説明</b><span>投影、画面共有、短時間説明に使う。</span></div><div class='tr-format'><b>本文</b><span>復習、引用、手順確認のための読み物として使う。</span></div><div class='tr-format'><b>PDF・配布物</b><span>印刷、配布、別ページ資料がある場合に使う。</span></div><div class='tr-format'><b>チェック</b><span>宿題、運用確認、公開前レビューに使う。</span></div></div><p class='tr-intro'>まず受講資料本体を開き、必要に応じて投影用スライドや補助資料へ進む。内容を確認したら受講プランへ戻り、準備会・実践会・個別相談のどれで進めるかを選べます。</p><section class='tr-section' id='sec-受講資料'><h2 class='tr-section-head' id='受講資料-8-件'><span class='tr-section-icon'>📝</span><span class='tr-section-name'>受講資料</span><span class='tr-section-count'>8 件</span></h2><p class='tr-section-desc'>まず開く受講資料本体。本文、目次、動画、スライド、チェック項目がある資料はここから確認する</p><div class='tr-grid'><a class='tr-card' href='./2026-06-codex-app-practice.html'><div class='tr-title'>📝 Codex実践会 120分 構築と応用</div><div class='tr-date'>📅 2026-06-10</div><div class='tr-sum'>Codexアプリを実務で使うための応用編。プロジェクトとフォルダ管理、Local/Worktree/Cloud、skills、plugins、MCP、hooks、rules、automations、設定、隠れ機能、公式アップデート確認先までを実例中心に整理。</div><div class='tr-meta'><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span><span class='tr-chip format on'>動画</span><span class='tr-chip format on'>ナレーション</span><span class='tr-chip format on'>スライド</span><span class='tr-chip format on'>チェック</span></div></a><a class='tr-card' href='./2026-06-codex-app-onboarding.html'><div class='tr-title'>📝 Codex準備会 60分 導入と習得</div><div class='tr-date'>📅 2026-06-05</div><div class='tr-sum'>ChatGPTは使えるがCodexアプリは初めての人向けに、導入、最初のプロジェクト、権限、安全装置、差分確認、公式アップデートの追い方までを学ぶ準備編。</div><div class='tr-meta'><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span><span class='tr-chip format on'>動画</span><span class='tr-chip format on'>スライド</span><span class='tr-chip format on'>チェック</span></div></a><a class='tr-card' href='./2026-06-ai-tsukaikonaseru-hito.html'><div class='tr-title'>📝 AIを使いこなせる人と使いこなせない人の違い｜仕事で差がつく5つの実践</div><div class='tr-date'>📅 2026-06-16</div><div class='tr-sum'>AIを使いこなせる人と使いこなせない人の違いを、仕事の言語化、材料の渡し方、修正指示、検証、業務導入の観点で解説。ChatGPT、Codex、Claude Code、画像生成を仕事に入れる具体的な手順とセルフチェック付き。</div><div class='tr-meta'><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span><span class='tr-chip format on'>チェック</span></div></a><a class='tr-card' href='./2026-06-ai-agent-rag-design.html'><div class='tr-title'>📝 クラウドAIエージェント時代のRAG設計｜AIにどの順番で考えてもらうか</div><div class='tr-date'>📅 2026-06-17</div><div class='tr-sum'>クラウドAIエージェントが毎日の業務を判断する時代に必要なRAG設計を、AI専用の資料棚、見る順番、EC・交流会の例、人間が確認する範囲までわかりやすく整理。</div><div class='tr-meta'><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span></div></a><a class='tr-card' href='./2026-05-climbing-history.html'><div class='tr-title'>📝 クライミングの歴史 — 参考資料</div><div class='tr-date'>📅 2026-05-23</div><div class='tr-sum'>クライミングが240年かけて枝分かれしてきた歴史を、初心者向け講習用にまとめた参考資料。世界史編（第I部）と日本史・ぐっぼる編（第II部）の2部構成。</div><div class='tr-meta'><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span><span class='tr-chip format on'>ナレーション</span><span class='tr-chip format on'>スライド</span><span class='tr-chip format on'>PDF</span></div></a><a class='tr-card' href='./2026-05-claude-code-features.html'><div class='tr-title'>📝 Claude Code 2026 棚卸し — 開発フローを変えた機能だけ</div><div class='tr-date'>📅 2026-05-21</div><div class='tr-sum'>2026年1月〜5月のClaude Codeリリースから「実際に手元の開発フローが変わった」機能だけを、タイムライン・カテゴリカード・コマンド早見表のインフォグラフィックで一望する。コマンド名・設定キー・出荷時期(Week番号)は公式 changelog / What&#x27;s new で裏取り済み。</div><div class='tr-meta'><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span></div></a><a class='tr-card' href='./2026-04-ai-kihon.html'><div class='tr-title'>📝 AIの「こと」を吸収する — 入門講習</div><div class='tr-date'>📅 2026-04-22</div><div class='tr-sum'>AIを「使う」のではなく「のこと」を知る。最初の一歩として、言語化・共有・ショートカット化の3軸で日常に組み込む考え方を、実例つきで整理する。</div><div class='tr-meta'><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span><span class='tr-chip format on'>チェック</span></div></a><a class='tr-card' href='./2026-04-ai-kangaekata.html'><div class='tr-title'>📝 AI活用の「考え方」— 入門講習</div><div class='tr-date'>📅 2026-04-22</div><div class='tr-sum'>AIを日常になじませる「考え方」を15項目にまとめた原典。講習スライドの元資料として使える本編。</div><div class='tr-meta'><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span></div></a></div></section><section class='tr-section' id='sec-補助・投影資料'><h2 class='tr-section-head' id='補助・投影資料-3-件'><span class='tr-section-icon'>📚</span><span class='tr-section-name'>補助・投影資料</span><span class='tr-section-count'>3 件</span></h2><p class='tr-section-desc'>講習中の画面共有、短時間説明、追加学習に使う資料</p><div class='tr-grid'><a class='tr-card' href='../programming-map.html'><div class='tr-title'>🧭 AIコーディング講習 120分</div><div class='tr-date'>📅 2026-06-06</div><div class='tr-sum'>Codex導入、プログラミング基礎、実装、公開、公式アップデート、AI応用制作までを、線画とタブUIで段階的に学ぶ講習LP。</div><div class='tr-meta'><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span><span class='tr-chip format on'>スライド</span><span class='tr-chip format on'>チェック</span></div></a><a class='tr-card' href='../slides/climbing-history-1.html'><div class='tr-title'>🧗 クライミングの歴史 I（世界史編）</div><div class='tr-date'>📅 2026-05-23</div><div class='tr-sum'>1786年モンブランから種目の分化、パタゴニア／ノースフェイス誕生秘話、五輪採用まで。初心者向け講習スライド（投影用HTML）</div><div class='tr-meta'><span class='tr-chip format on'>スライド</span></div></a><a class='tr-card' href='../slides/climbing-history-2.html'><div class='tr-title'>🧗 クライミングの歴史 II（日本史・ぐっぼる編）</div><div class='tr-date'>📅 2026-05-23</div><div class='tr-sum'>日本のクライミング独立史、ジムの爆発的普及、世界に挑んだ日本人、そして「ぐっぼる」がジム＋ショップ＋カフェである理由。投影用HTML</div><div class='tr-meta'><span class='tr-chip format on'>スライド</span></div></a></div></section></div><footer>AI相談 / Generated by Claude</footer><button class='back-to-top' id='backTop' aria-label='トップへ戻る'>↑</button><script>(function(){var b=document.getElementById('backTop');if(!b)return;window.addEventListener('scroll',function(){b.classList.toggle('show',window.scrollY>400);});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script><script>
 (function(){
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var sel = '.tr-card, .pf-card, .profile-stat, .profile-tech-card, .sns-card, article, .content-toc, .tr-section, .profile-tl-item, .profile-app-card, .profile-biz-card';

@@ -62,8 +62,8 @@ def load_genres() -> list[dict]:
 DEFAULT_TOP_BUTTONS = [
     {"id": "home",            "group": "メイン",       "label": "トップ",             "icon": "🏠", "href": "index.html",            "kind": "link",   "enabled": True},
     {"id": "speaker",         "group": "講師",         "label": "講師紹介",           "icon": "🎤", "href": "speaker.html",          "kind": "link",   "enabled": True},
-    {"id": "profile",         "group": "講師",         "label": "経歴",               "icon": "📜", "href": "profile.html",          "kind": "link",   "enabled": True},
-    {"id": "portfolio",       "group": "作品",         "label": "実績",               "icon": "🏆", "href": "portfolio.html",        "kind": "link",   "enabled": True},
+    {"id": "profile",         "group": "講師",         "label": "人物メモ",           "icon": "📜", "href": "speaker.html",          "kind": "link",   "enabled": False},
+    {"id": "portfolio",       "group": "資料",         "label": "運営メモ",           "icon": "🧭", "href": "index.html#flow",       "kind": "link",   "enabled": False},
     {"id": "lectures",        "group": "教材資料",     "label": "受講資料",           "icon": "📝", "href": "lectures/index.html",   "kind": "link",   "enabled": True},
     # AIコーディング講習は lectures index の中にリンクとして掲載するためトップナビからは外す
     {"id": "archive",         "group": "アーカイブ",   "label": "過去ログ",           "icon": "📚", "href": "archive.html",          "kind": "link",   "enabled": True},
@@ -144,7 +144,7 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
     pmap_cls = " nav-current" if current_id == "pmap" else ""
     parts.append("<a class='nav-link nav-essential' href='/#packages'>受講プラン</a>")
     parts.append("<a class='nav-link nav-essential' href='/#lectures'>資料</a>")
-    parts.append("<a class='nav-link nav-essential' href='/#works'>実績</a>")
+    parts.append("<a class='nav-link nav-essential' href='/#flow'>流れ</a>")
     parts.append(f"<a class='nav-link' href='{admin_href}' style='color:var(--muted);'>🔐 管理</a>")
     parts.append("</nav>")
     parts.append(
@@ -168,7 +168,6 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
         "<a href='/#lectures'>資料</a>"
         "<a href='/#speaker'>講師紹介</a>"
         "<a href='/#faq'>FAQ</a>"
-        "<a href='/portfolio.html'>実績</a>"
         "<a href='/blog/index.html'>ブログ</a>"
         "<a href='/watch/index.html'>AI Watch</a>"
         "<a class='mobile-admin-link' href='/admin'>管理画面</a>"
@@ -2459,15 +2458,7 @@ def build_speaker_page() -> bool:
             "</div>"
             "</div>"
         ) + body_html
-    # 経歴(profile.yaml)を講師紹介ページに融合する
-    profile_body = _build_profile_body()
-    if profile_body:
-        body_html += (
-            "<hr class='speaker-divider'>"
-            "<h2 id='career' style='margin-top:8px'>📜 経歴・履歴（時系列）</h2>"
-            + profile_body
-        )
-    title = "講師紹介・経歴"
+    title = "講師紹介"
     nav = render_top_nav(path_prefix="./", current_id="speaker", include_run=False)
     html_text = render_content_page(title, meta, body_html, nav, page_path="speaker.html", kind="speaker")
     (DIST / "speaker.html").write_text(html_text, encoding="utf-8")
@@ -2821,94 +2812,11 @@ def _host_of(url: str) -> str:
 
 
 def build_portfolio_page() -> bool:
-    if not PORTFOLIO_YAML.exists():
-        return False
-    try:
-        raw = yaml.safe_load(PORTFOLIO_YAML.read_text(encoding="utf-8")) or {}
-    except Exception:
-        return False
-    items = raw.get("portfolio") or []
-    if not items:
-        return False
-
-    online = os.environ.get("AIWATCH_PORTFOLIO_NO_FETCH") != "1"
-
-    # カテゴリでグループ化(定義順を維持)
-    grouped: dict[str, list[dict]] = {}
-    cat_order: list[str] = []
-    for it in items:
-        if it.get("status") == "retired":
-            continue
-        cat = it.get("category") or "その他"
-        if cat not in grouped:
-            grouped[cat] = []
-            cat_order.append(cat)
-        grouped[cat].append(it)
-
-    # オンラインなら OGP を軽く取りに行く
-    for cat in cat_order:
-        for it in grouped[cat]:
-            if not online:
-                break
-            if str(it.get("slug") or "") == "ai-hub":
-                continue
-            meta = _fetch_meta(str(it.get("url")))
-            if meta.get("title") and not it.get("_title"):
-                it["_title"] = meta["title"]
-            if meta.get("desc") and not it.get("_desc"):
-                it["_desc"] = meta["desc"]
-
-    parts: list[str] = ["<h1>🏆 実績・運営サイト</h1>"]
-    parts.append(
-        "<p>このワークスペース(Claude/配下)で制作・運営しているサイトを、カテゴリ別に掲載。"
-        "各サイトは現在の公開ドメインを設定ファイル (<code>config/portfolio.yaml</code>) から引き、"
-        "ドメインが変わったら 1 箇所書き換えるだけで全リンクが追従する。</p>"
-    )
-
-    for cat in cat_order:
-        parts.append(f"<h2>{html.escape(cat)}</h2>")
-        parts.append("<div class='pf-grid'>")
-        for it in grouped[cat]:
-            url = str(it.get("url") or "")
-            name = str(it.get("name") or url)
-            host = _host_of(url)
-            summary = str(it.get("_desc") or it.get("summary") or "")
-            if len(summary) > 140:
-                summary = summary[:137] + "…"
-            status = str(it.get("status") or "live")
-            tech = it.get("tech") or []
-            since = str(it.get("since") or "")
-
-            parts.append(f"<a class='pf-card' href='{html.escape(url, quote=True)}' target='_blank' rel='noopener'>")
-            parts.append(f"<div class='pf-title'>{html.escape(name)}</div>")
-            parts.append(f"<div class='pf-host'>{html.escape(host)}</div>")
-            if summary:
-                parts.append(f"<div class='pf-sum'>{html.escape(summary)}</div>")
-            parts.append("<div class='pf-meta'>")
-            parts.append(f"<span class='pf-chip cat'>{html.escape(cat)}</span>")
-            if status != "live":
-                parts.append(f"<span class='pf-chip {html.escape(status)}'>{html.escape(status)}</span>")
-            for t in tech:
-                parts.append(f"<span class='pf-chip'>{html.escape(str(t))}</span>")
-            if since:
-                parts.append(f"<span class='pf-chip'>since {html.escape(since)}</span>")
-            parts.append("</div>")
-            parts.append("</a>")
-        parts.append("</div>")
-
-    parts.append(
-        "<p class='pf-note'>💡 新しいサイトを追加する場合は <code>config/portfolio.yaml</code> に 1 ブロック追記。"
-        "ドメイン変更時も同ファイルで URL を差し替えるだけ。"
-        "オフラインビルドや CI で外部取得を止めたい場合は <code>AIWATCH_PORTFOLIO_NO_FETCH=1</code> を設定。</p>"
-    )
-    body_html = "".join(parts)
-    meta = {
-        "summary": "AI相談の講師、由井辰美が制作・運営している実績サイト一覧。カテゴリ・技術スタック・公開年で絞って俯瞰できる。",
-    }
-    nav = render_top_nav(path_prefix="./", current_id="portfolio", include_run=False)
-    html_text = render_content_page("実績サイト", meta, body_html, nav, page_path="portfolio.html", kind="portfolio")
-    (DIST / "portfolio.html").write_text(html_text, encoding="utf-8")
-    return True
+    """Retired public portfolio route. Delete stale output if it exists."""
+    target = DIST / "portfolio.html"
+    if target.exists():
+        target.unlink()
+    return False
 
 
 _INLINE_BOLD_RE = re.compile(r"\*\*([^*]+)\*\*")
@@ -2922,8 +2830,8 @@ def _inline_md(text: str) -> str:
 
 
 def _build_profile_body() -> str:
-    """config/profile.yaml から経歴セクション群の HTML を生成して返す（ページ枠なし）。
-    speaker.html に融合して使う。profile.html 単独ページは廃止しリダイレクトにした。"""
+    """Builds the retired internal profile fragment. Public callers no longer use it."""
+    return ""
     if not PROFILE_YAML.exists():
         return ""
     try:
@@ -2953,10 +2861,10 @@ def _build_profile_body() -> str:
             parts.append(f"<span style='color:var(--muted);font-size:13px'>{html.escape(tagline)}</span>")
         parts.append("</p>")
 
-    # 主要数値
+    # Retired metric block.
     stats = data.get("stats") or []
     if stats:
-        parts.append("<h2 id='stats'>📊 主要数値</h2>")
+        parts.append("<h2 id='stats'>Profile metrics</h2>")
         parts.append("<div class='profile-stats'>")
         for st in stats:
             num = html.escape(str(st.get("number", "")))
@@ -3104,17 +3012,11 @@ def _build_profile_body() -> str:
 
 
 def build_profile_page() -> bool:
-    """profile.html は speaker.html へ統合済み。互換のため speaker.html へリダイレクトする HTML を出力。"""
-    redirect = (
-        "<!doctype html><html lang='ja'><head><meta charset='utf-8'>"
-        "<meta http-equiv='refresh' content='0; url=/speaker.html'>"
-        "<link rel='canonical' href='/speaker.html'>"
-        "<title>講師紹介・経歴 — AI相談</title>"
-        "<script>location.replace('/speaker.html');</script></head>"
-        "<body>このページは <a href='/speaker.html'>講師紹介ページ</a> に移動しました。</body></html>"
-    )
-    (DIST / "profile.html").write_text(redirect, encoding="utf-8")
-    return True
+    """profile.html is retired so achievement-heavy profile content is not published."""
+    target = DIST / "profile.html"
+    if target.exists():
+        target.unlink()
+    return False
 
 
 def copy_static() -> None:
@@ -3241,8 +3143,6 @@ def build_sitemap_and_robots() -> None:
 
     add("index.html", 1.0)
     add("speaker.html", 0.9)
-    add("profile.html", 0.9)
-    add("portfolio.html", 0.9)
     add("programming-map.html", 0.8)
     # lectures
     lec_idx = DIST / "lectures" / "index.html"
@@ -3407,7 +3307,6 @@ def main() -> int:
         build_speaker_page()
         build_lectures()
         build_blog()
-        build_portfolio_page()
         build_profile_page()
         build_sitemap_and_robots()
         build_slides()
@@ -3439,8 +3338,7 @@ def main() -> int:
     lectures_built = build_lectures()
     blog_built = build_blog()
     slides_built = build_slides()
-    portfolio_built = build_portfolio_page()
-    profile_built = build_profile_page()
+    profile_removed = build_profile_page()
     build_sitemap_and_robots()
     _build_portal()
 
@@ -3450,8 +3348,7 @@ def main() -> int:
         + (f", {lectures_built} lectures" if lectures_built else "")
         + (f", {blog_built} blog posts" if blog_built else "")
         + (f", {slides_built} slides" if slides_built else "")
-        + (", portfolio.html" if portfolio_built else "")
-        + (", profile.html" if profile_built else "")
+        + (", profile.html removed" if profile_removed else "")
         + ", sitemap.xml, robots.txt)"
     )
     return 0

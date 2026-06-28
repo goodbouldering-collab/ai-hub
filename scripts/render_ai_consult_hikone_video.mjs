@@ -1,7 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
 import Module from "node:module";
-import { spawnSync } from "node:child_process";
 
 const ROOT = process.cwd();
 const depsRoot =
@@ -15,8 +14,9 @@ const { chromium } = require(path.join(depsRoot, "playwright"));
 
 const slug = "ai-consult-hikone-20260629";
 const outDir = path.join(ROOT, "site", "static", "media", slug);
-const audioPath = path.join(outDir, "ai-consult-hikone-narration.wav");
+const distOutDir = path.join(ROOT, "site", "dist", "media", slug);
 const audioMp3Path = path.join(outDir, "ai-consult-hikone-narration.mp3");
+const audioWavPath = path.join(outDir, "ai-consult-hikone-narration.wav");
 const videoPath = path.join(outDir, "ai-consult-hikone-course.webm");
 const visualVideoPath = path.join(ROOT, "_tmp", slug, "ai-consult-hikone-course-visual.webm");
 const posterPath = path.join(outDir, "ai-consult-hikone-poster.png");
@@ -24,57 +24,73 @@ const posterPath = path.join(outDir, "ai-consult-hikone-poster.png");
 const slides = [
   {
     kicker: "01 / WHY",
-    title: "AIを、彦根の現場へ",
-    body: "AIは知識ではなく、時間を増やし、仕事を前に進めるための実践道具です。",
-    bullets: ["地域事業者", "学校・福祉", "個人事業主"],
-    stat: "2-6h",
-    statLabel: "短時間で考え方を体験",
+    title: "まず、毎日の詰まりから",
+    body: "時間がない、告知が苦手、事務作業が重い。AI相談は身近な悩みから始めます。",
+    bullets: ["返信", "資料", "投稿", "HP"],
+    stat: "1つ",
+    statLabel: "困りごとを持ち込む",
+    numbers: ["時間", "告知", "事務", "予約", "SNS"],
     accent: "#0EA5A8",
   },
   {
-    kicker: "02 / WORLD CLASS",
-    title: "世界レベルの道具を知る",
-    body: "コーデックス、AIエージェント、画像生成、SNS改善を、彦根の仕事に接続します。",
-    bullets: ["調べる", "作る", "直す", "公開する"],
-    stat: "Codex",
-    statLabel: "チャットから作業へ",
+    kicker: "02 / DESIGN",
+    title: "生成AIとデザインで整える",
+    body: "文章だけでなく、順番、見せ方、デザイン、確認の流れまで一緒に整えます。",
+    bullets: ["台本", "導線", "画像", "確認"],
+    stat: "4媒体",
+    statLabel: "Web / SNS / note / 動画",
+    numbers: ["Web", "SNS", "note", "動画", "再編集"],
     accent: "#2563EB",
   },
   {
-    kicker: "03 / LOOP",
-    title: "短時間でAIの考え方を入れる",
-    body: "指示、材料、修正、確認、改善。このループを講座中に何度も回します。",
-    bullets: ["指示", "確認", "修正", "改善"],
-    stat: "Loop",
-    statLabel: "聞いて終わらない",
+    kicker: "03 / AGENT",
+    title: "Codexを作業者にする",
+    body: "AIは答えを聞くだけではなく、調べる、作る、直す、公開する流れを進めます。",
+    bullets: ["調べる", "作る", "直す", "公開する"],
+    stat: "Codex",
+    statLabel: "チャットから作業へ",
+    numbers: ["差分", "ファイル", "公開", "確認", "AIエージェント"],
     accent: "#F59E0B",
   },
   {
-    kicker: "04 / PRACTICE",
-    title: "実践者が教える",
-    body: "複数事業を動かすソロプレナー兼エンジニアが、現場で使える形へ翻訳します。",
-    bullets: ["9事業運営", "業務アプリ制作", "集客導線改善"],
-    stat: "200万-1500万",
-    statLabel: "規模相当の制作経験",
+    kicker: "04 / LOOP",
+    title: "2時間から6時間でループする",
+    body: "指示、制作、確認、修正、改善。この型を講座中に何度も体験します。",
+    bullets: ["指示", "制作", "確認", "改善"],
+    stat: "2-6h",
+    statLabel: "短時間で考え方を体験",
+    numbers: ["120分", "360分", "修正", "確認", "改善"],
     accent: "#E11D48",
   },
   {
-    kicker: "05 / OUTPUT",
-    title: "成果物が必ず残る",
-    body: "SNS投稿、ホームページ改善、業務アプリ、AIエージェントの型を事業ごとに作ります。",
-    bullets: ["投稿", "HP改善", "業務アプリ", "AIエージェント"],
-    stat: "70+",
-    statLabel: "受講者が実践へ",
+    kicker: "05 / NUMBERS",
+    title: "数字は判断材料にする",
+    body: "価格、時間、人数、制作経験。自慢ではなく、続けるか決めるために見せます。",
+    bullets: ["5,500円", "10回 55,000円", "70名以上"],
+    stat: "200万-1500万",
+    statLabel: "規模相当の制作経験",
+    numbers: ["5,500", "55,000", "70+", "9事業", "月1本+"],
     accent: "#16A34A",
   },
   {
-    kicker: "06 / ACCESS",
-    title: "低コストで続ける",
-    body: "5,500円から始められ、10回でも55,000円。高額研修の前に、自分の仕事で試せます。",
-    bullets: ["1回 5,500円", "10回 55,000円", "個別相談へ接続"],
+    kicker: "06 / OUTPUT",
+    title: "成果物が必ず残る",
+    body: "SNS投稿、note、YouTube台本、HP改善、業務アプリの型を事業ごとに作ります。",
+    bullets: ["投稿", "台本", "HP改善", "業務アプリ"],
+    stat: "Assets",
+    statLabel: "あとから使える事業資産",
+    numbers: ["YouTube", "Shorts", "ブログ", "資料", "予約導線"],
+    accent: "#7C3AED",
+  },
+  {
+    kicker: "07 / ACCESS",
+    title: "彦根で使える形へ",
+    body: "学校、福祉、地域活動、若い挑戦者まで。困っている作業を一つ持ち込みます。",
+    bullets: ["個別相談", "講座予約", "地域支援"],
     stat: "5,500円",
     statLabel: "始めやすい入口",
-    accent: "#7C3AED",
+    numbers: ["相談", "講習", "伴走", "公開", "継続"],
+    accent: "#DC6D2A",
   },
 ];
 
@@ -94,10 +110,13 @@ if (!chromePath) {
 }
 
 fs.mkdirSync(outDir, { recursive: true });
+fs.mkdirSync(distOutDir, { recursive: true });
 fs.mkdirSync(path.dirname(visualVideoPath), { recursive: true });
-const audioDataUrl = fs.existsSync(audioPath)
-  ? `data:audio/wav;base64,${fs.readFileSync(audioPath).toString("base64")}`
-  : "";
+const audioDataUrl = fs.existsSync(audioMp3Path)
+  ? `data:audio/mpeg;base64,${fs.readFileSync(audioMp3Path).toString("base64")}`
+  : fs.existsSync(audioWavPath)
+    ? `data:audio/wav;base64,${fs.readFileSync(audioWavPath).toString("base64")}`
+    : "";
 
 const browser = await chromium.launch({
   headless: true,
@@ -241,6 +260,27 @@ const result = await page.evaluate(async ({ slides, audioDataUrl }) => {
       ctx.arc(x, y, r, 0, Math.PI * 2);
       ctx.fill();
     }
+    ctx.restore();
+
+    ctx.save();
+    const numberWords = slide.numbers || [];
+    ctx.font = `900 26px ${mono}`;
+    ctx.textAlign = "center";
+    for (let i = 0; i < 24; i += 1) {
+      const word = numberWords[i % Math.max(numberWords.length, 1)] || "AI";
+      const x = ((i * 149 + t * 42) % (width + 220)) - 110;
+      const y = 134 + ((i * 71 + Math.sin(t * 0.8 + i) * 44) % 470);
+      const scale = 0.78 + (i % 5) * 0.11;
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(Math.sin(t * 0.35 + i) * 0.06);
+      ctx.globalAlpha = 0.075 + (i % 4) * 0.025;
+      ctx.fillStyle = i % 3 === 0 ? slide.accent : "#071426";
+      ctx.font = `900 ${Math.round(22 * scale)}px ${mono}`;
+      ctx.fillText(word, 0, 0);
+      ctx.restore();
+    }
+    ctx.textAlign = "left";
     ctx.restore();
   }
 
@@ -408,6 +448,8 @@ const result = await page.evaluate(async ({ slides, audioDataUrl }) => {
   }
 
   let audio = null;
+  let audioContext = null;
+  let audioDestination = null;
   let duration = 72;
   if (audioDataUrl) {
     audio = new Audio(audioDataUrl);
@@ -417,6 +459,10 @@ const result = await page.evaluate(async ({ slides, audioDataUrl }) => {
       audio.onerror = reject;
     });
     duration = Math.max(30, audio.duration + 0.5);
+    audioContext = new AudioContext();
+    audioDestination = audioContext.createMediaStreamDestination();
+    const source = audioContext.createMediaElementSource(audio);
+    source.connect(audioDestination);
   }
 
   drawAtTime(duration * 0.16, duration);
@@ -430,13 +476,18 @@ const result = await page.evaluate(async ({ slides, audioDataUrl }) => {
 
   const canvasStream = canvas.captureStream(fps);
   const tracks = [...canvasStream.getVideoTracks()];
+  if (audioDestination) {
+    tracks.push(...audioDestination.stream.getAudioTracks());
+  }
   const stream = new MediaStream(tracks);
-  const mime = MediaRecorder.isTypeSupported("video/webm;codecs=vp8")
-    ? "video/webm;codecs=vp8"
-    : "video/webm";
+  const mimeCandidates = audioDestination
+    ? ["video/webm;codecs=vp8,opus", "video/webm"]
+    : ["video/webm;codecs=vp8", "video/webm"];
+  const mime = mimeCandidates.find((candidate) => MediaRecorder.isTypeSupported(candidate)) || "video/webm";
   const recorder = new MediaRecorder(stream, {
     mimeType: mime,
     videoBitsPerSecond: 3200000,
+    audioBitsPerSecond: audioDestination ? 128000 : undefined,
   });
   const chunks = [];
   recorder.ondataavailable = (event) => {
@@ -445,6 +496,11 @@ const result = await page.evaluate(async ({ slides, audioDataUrl }) => {
 
   recorder.start(500);
   const track = canvasStream.getVideoTracks()[0];
+  if (audio && audioContext) {
+    await audioContext.resume();
+    audio.currentTime = 0;
+    await audio.play();
+  }
 
   const totalFrames = Math.ceil(duration * fps);
   for (let frame = 0; frame < totalFrames; frame += 1) {
@@ -452,12 +508,16 @@ const result = await page.evaluate(async ({ slides, audioDataUrl }) => {
     if (track.requestFrame) track.requestFrame();
     await new Promise((resolve) => setTimeout(resolve, 1000 / fps));
   }
+  if (audio) audio.pause();
 
   recorder.stop();
   await new Promise((resolve) => {
     recorder.onstop = resolve;
   });
   stream.getTracks().forEach((mediaTrack) => mediaTrack.stop());
+  if (audioContext) {
+    await audioContext.close();
+  }
 
   const blob = new Blob(chunks, { type: mime });
   const buffer = await blob.arrayBuffer();
@@ -477,23 +537,9 @@ result.sceneImages.forEach((image, index) => {
 });
 
 await browser.close();
-
-if (fs.existsSync(audioMp3Path)) {
-  const mux = spawnSync("ffmpeg", [
-    "-y",
-    "-i", visualVideoPath,
-    "-i", audioMp3Path,
-    "-c:v", "copy",
-    "-c:a", "libopus",
-    "-b:a", "128k",
-    "-shortest",
-    videoPath,
-  ], { stdio: "inherit" });
-  if (mux.status !== 0) {
-    throw new Error(`ffmpeg mux failed with exit code ${mux.status}`);
-  }
-} else {
-  fs.copyFileSync(visualVideoPath, videoPath);
+fs.copyFileSync(visualVideoPath, videoPath);
+for (const filename of fs.readdirSync(outDir)) {
+  fs.copyFileSync(path.join(outDir, filename), path.join(distOutDir, filename));
 }
 
 console.log(`Wrote ${path.relative(ROOT, videoPath)} (${fs.statSync(videoPath).size} bytes)`);

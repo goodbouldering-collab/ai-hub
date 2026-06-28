@@ -11,7 +11,7 @@
 - ナレーション原稿: `narration.txt` / `/media/ai-consult-hikone-20260629/ai-consult-hikone-narration.txt`
 - ナレーション音声: `/media/ai-consult-hikone-20260629/ai-consult-hikone-narration.mp3`
 - 動画ポスター: `/media/ai-consult-hikone-20260629/ai-consult-hikone-poster.png`
-- シーン画像: `/media/ai-consult-hikone-20260629/ai-consult-hikone-scene-01.png` から `06.png`
+- シーン画像: `/media/ai-consult-hikone-20260629/ai-consult-hikone-scene-01.png` から `07.png`
 - ブログ記事: `/blog/2026-06-29-ai-consult-hikone-practical-ai-course.html`
 
 ## 元素材
@@ -35,7 +35,9 @@ node .\scripts\render_ai_consult_hikone_video.mjs
 python -m pip install edge-tts
 ```
 
-`render_ai_consult_hikone_video.mjs` は動的な背景・数値・カード・ワイプ入りの映像を作り、最後に `ffmpeg` でナレーション音声をWebMへ結合する。
+`synthesize_ai_consult_narration.ps1` は `python` がPATHになくても、CodexランタイムPythonを自動検出して `edge-tts` を実行する。
+`render_ai_consult_hikone_video.mjs` は動的な背景・数値・カード・ワイプ入りの映像を作り、ブラウザ録画時にナレーション音声トラックもWebMへ入れる。
+トップページではHero直下に配置し、iPhone幅では動画が画面幅いっぱいに広がる。
 
 その後、サイトを再ビルド:
 

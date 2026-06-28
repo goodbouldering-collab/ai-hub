@@ -1,6 +1,7 @@
 param(
   [string]$VoiceName = "ja-JP-NanamiNeural",
-  [string]$Rate = "+8%"
+  [string]$Rate = "+8%",
+  [string]$PythonExe = ""
 )
 
 $ErrorActionPreference = "Stop"
@@ -12,10 +13,36 @@ $NarrationPath = Join-Path $Root "content\media\$Slug\narration.txt"
 $OutDir = Join-Path $Root "site\static\media\$Slug"
 $TmpDir = Join-Path $Root "_tmp\$Slug"
 $Mp3Path = Join-Path $OutDir "ai-consult-hikone-narration.mp3"
-$WavPath = Join-Path $TmpDir "ai-consult-hikone-narration.wav"
 $VttPath = Join-Path $OutDir "ai-consult-hikone-captions.vtt"
 $SrtPath = Join-Path $TmpDir "edge-subtitles.srt"
 $NarrationCopyPath = Join-Path $OutDir "ai-consult-hikone-narration.txt"
+
+if ([string]::IsNullOrWhiteSpace($PythonExe)) {
+  $Candidates = @(
+    $env:PYTHON,
+    "C:\Users\yui\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe",
+    "C:\Users\yui\AppData\Local\Programs\Python\Python312\python.exe",
+    "python",
+    "py"
+  ) | Where-Object { $_ }
+
+  foreach ($Candidate in $Candidates) {
+    try {
+      $Command = Get-Command $Candidate -ErrorAction Stop
+      $PythonExe = $Command.Source
+      break
+    } catch {
+      if (Test-Path -LiteralPath $Candidate) {
+        $PythonExe = $Candidate
+        break
+      }
+    }
+  }
+}
+
+if ([string]::IsNullOrWhiteSpace($PythonExe)) {
+  throw "Python executable was not found. Pass -PythonExe explicitly."
+}
 
 if (!(Test-Path $NarrationPath)) {
   throw "Narration source not found: $NarrationPath"
@@ -29,7 +56,7 @@ $env:AI_CONSULT_SLUG = $Slug
 $env:AI_CONSULT_VOICE = $VoiceName
 $env:AI_CONSULT_RATE = $Rate
 
-@'
+$PythonScript = @'
 from pathlib import Path
 import asyncio
 import os
@@ -77,11 +104,10 @@ async def main():
 asyncio.run(main())
 print(media_path)
 print(vtt_path)
-'@ | python -
+'@
 
-ffmpeg -y -i $Mp3Path -ar 48000 -ac 2 $WavPath
+$PythonScript | & $PythonExe -
 
 Write-Output "Wrote $Mp3Path"
-Write-Output "Wrote $WavPath"
 Write-Output "Wrote $VttPath"
 Write-Output "Wrote $NarrationCopyPath"

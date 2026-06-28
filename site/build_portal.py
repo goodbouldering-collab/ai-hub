@@ -8604,7 +8604,7 @@ section.block.block-tight {
 }
 
 .ai-course-video-block {
-  padding-top: clamp(82px, 10vw, 112px);
+  padding-top: clamp(28px, 5vw, 48px);
 }
 
 .ai-course-video-feature {
@@ -8717,11 +8717,42 @@ section.block.block-tight {
 }
 
 @media (max-width: 560px) {
+  .hero.hero-atlas {
+    min-height: auto !important;
+    padding-bottom: 24px !important;
+    align-content: start !important;
+  }
+  .ai-course-video-block {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin-left: calc(50% - 50vw) !important;
+    margin-right: calc(50% - 50vw) !important;
+    padding-top: 0 !important;
+    padding-bottom: 44px !important;
+  }
   .ai-course-video-feature {
-    padding: 14px;
+    padding: 0 0 18px;
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+    box-shadow: 0 14px 36px rgba(7,20,38,.08);
+  }
+  .ai-course-video-copy {
+    padding: 0 16px;
   }
   .ai-course-video-frame {
-    padding: 6px;
+    width: 100vw;
+    margin-left: 0;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .ai-course-video-frame video {
+    width: 100vw;
+    border-radius: 0;
+  }
+  .ai-course-video-frame figcaption {
+    margin: 8px 16px 0;
   }
   .ai-course-video-points {
     grid-template-columns: 1fr;
@@ -9562,7 +9593,7 @@ def _render_ai_course_video_feature() -> str:
         f"<source src='{video_src}' type='video/webm'>"
         f"<track src='{captions_src}' kind='captions' srclang='ja' label='日本語字幕' default>"
         "</video>"
-        "<figcaption>ナレーション・字幕付きの講座ダイジェスト。目的、対象者、成果物、費用感を約1分26秒で確認できます。</figcaption>"
+        "<figcaption>ナレーション・字幕付きの講座ダイジェスト。目的、対象者、成果物、費用感を約90秒で確認できます。</figcaption>"
         "</figure>"
         "</div>"
         "</div>"
@@ -11299,8 +11330,8 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append("<div class='container'>")
     parts.append(ADMIN_BUTTON_HTML)
 
-    parts.append(_render_ai_course_video_feature())
     parts.append(_render_hero())
+    parts.append(_render_ai_course_video_feature())
 
     # 1. 入口を一括化: 選び方、必要性、講習と資料をまとめて見せる
     parts.append("<section class='block block-tight merged-section' id='start'>")

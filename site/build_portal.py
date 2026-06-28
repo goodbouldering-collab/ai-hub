@@ -8498,15 +8498,15 @@ section.block::before {
 }
 
 .ai-course-video-block {
-  padding-top: clamp(28px, 5vw, 54px);
+  padding-top: clamp(82px, 10vw, 112px);
 }
 
 .ai-course-video-feature {
   display: grid;
-  grid-template-columns: minmax(0, .92fr) minmax(360px, 1.08fr);
-  gap: clamp(18px, 3vw, 34px);
+  grid-template-columns: minmax(280px, .62fr) minmax(540px, 1.38fr);
+  gap: clamp(18px, 2.6vw, 30px);
   align-items: center;
-  padding: clamp(18px, 3vw, 30px);
+  padding: clamp(16px, 2.6vw, 26px);
   border: 1px solid rgba(7, 20, 38, .12);
   border-radius: 8px;
   background:
@@ -8538,7 +8538,7 @@ section.block::before {
 
 .ai-course-video-points {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: 10px;
   padding: 0;
   margin: 18px 0 20px;
@@ -8576,7 +8576,7 @@ section.block::before {
 
 .ai-course-video-frame {
   margin: 0;
-  padding: 8px;
+  padding: 10px;
   border-radius: 8px;
   background: #071426;
   box-shadow: 0 18px 52px rgba(7,20,38,.20);
@@ -8597,15 +8597,25 @@ section.block::before {
   line-height: 1.6;
 }
 
+.ai-course-video-panel {
+  width: 100%;
+}
+
 @media (max-width: 980px) {
   .ai-course-video-feature {
     grid-template-columns: 1fr;
+  }
+  .ai-course-video-panel {
+    order: -1;
   }
 }
 
 @media (max-width: 560px) {
   .ai-course-video-feature {
     padding: 14px;
+  }
+  .ai-course-video-frame {
+    padding: 6px;
   }
   .ai-course-video-points {
     grid-template-columns: 1fr;
@@ -9446,7 +9456,7 @@ def _render_ai_course_video_feature() -> str:
         f"<source src='{video_src}' type='video/webm'>"
         f"<track src='{captions_src}' kind='captions' srclang='ja' label='日本語字幕' default>"
         "</video>"
-        "<figcaption>字幕付きの講座ダイジェスト。目的、対象者、成果物、費用感を1分12秒で確認できます。</figcaption>"
+        "<figcaption>ナレーション・字幕付きの講座ダイジェスト。目的、対象者、成果物、費用感を約1分26秒で確認できます。</figcaption>"
         "</figure>"
         "</div>"
         "</div>"
@@ -11183,8 +11193,8 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append("<div class='container'>")
     parts.append(ADMIN_BUTTON_HTML)
 
-    parts.append(_render_hero())
     parts.append(_render_ai_course_video_feature())
+    parts.append(_render_hero())
 
     # 1. 最新データから、講習が必要な理由を先に見せる
     parts.append("<section class='block block-tight' id='why-now'>")

@@ -9,6 +9,7 @@
 - トップ掲載動画: `/media/ai-consult-hikone-20260629/ai-consult-hikone-course.webm`
 - 字幕: `/media/ai-consult-hikone-20260629/ai-consult-hikone-captions.vtt`
 - ナレーション原稿: `narration.txt` / `/media/ai-consult-hikone-20260629/ai-consult-hikone-narration.txt`
+- ナレーション音声: `/media/ai-consult-hikone-20260629/ai-consult-hikone-narration.mp3`
 - 動画ポスター: `/media/ai-consult-hikone-20260629/ai-consult-hikone-poster.png`
 - シーン画像: `/media/ai-consult-hikone-20260629/ai-consult-hikone-scene-01.png` から `06.png`
 - ブログ記事: `/blog/2026-06-29-ai-consult-hikone-practical-ai-course.html`
@@ -28,7 +29,13 @@ PowerShellで実行:
 node .\scripts\render_ai_consult_hikone_video.mjs
 ```
 
-注意: この作業環境ではWindowsローカルTTSが `0x8004503A` で発話できず、外部TTSは明示承認が必要なため、現時点のWebMは字幕・テキスト入りの無音動画。音声WAVはTTS利用が許可された後に生成する。
+ナレーションは `edge-tts` の `ja-JP-NanamiNeural` で生成する。初回のみ以下が必要:
+
+```powershell
+python -m pip install edge-tts
+```
+
+`render_ai_consult_hikone_video.mjs` は動的な背景・数値・カード・ワイプ入りの映像を作り、最後に `ffmpeg` でナレーション音声をWebMへ結合する。
 
 その後、サイトを再ビルド:
 

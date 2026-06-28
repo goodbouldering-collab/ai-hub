@@ -7023,7 +7023,7 @@ section.block::before {
 
 PORTAL_CSS += """
 
-/* ---- AI data + Red Cross lesson bridge, 2026-06-25 ---- */
+/* ---- AI data + lesson bridge, 2026-06-25 ---- */
 :root {
   --lesson-red: #E60012;
   --lesson-blue: #0877C6;
@@ -7034,7 +7034,7 @@ PORTAL_CSS += """
 }
 
 #why-now { --section-accent: var(--lesson-blue); }
-#lesson-bridge { --section-accent: var(--lesson-red); }
+#lesson-bridge { --section-accent: var(--lesson-blue); }
 
 .ai-impact-board,
 .lesson-bridge-shell {
@@ -7045,7 +7045,7 @@ PORTAL_CSS += """
   background:
     linear-gradient(135deg, rgba(255,255,255,.82), rgba(255,255,255,.50)),
     radial-gradient(circle at 12% 18%, rgba(8,119,198,.16), transparent 18rem),
-    radial-gradient(circle at 86% 12%, rgba(230,0,18,.12), transparent 17rem),
+    radial-gradient(circle at 86% 12%, rgba(0,166,118,.12), transparent 17rem),
     rgba(255,255,255,.56);
   box-shadow: 0 28px 78px rgba(7,20,38,.12), inset 0 1px 0 rgba(255,255,255,.92);
   backdrop-filter: blur(24px) saturate(155%);
@@ -7264,7 +7264,7 @@ PORTAL_CSS += """
   background: var(--track-color);
 }
 
-.lesson-track-card.redcross { --track-color: var(--lesson-red); }
+.lesson-track-card.material { --track-color: var(--lesson-green); }
 .lesson-track-card.ai { --track-color: var(--lesson-blue); }
 
 .lesson-track-label {
@@ -8079,7 +8079,7 @@ def _render_header() -> str:
         "</div>"
         "<span class='mobile-nav-label'>講習</span>"
         "<div class='mobile-link-grid'>"
-        "<a href='#lesson-bridge'>日赤/AI講習</a>"
+        "<a href='#packages'>AI講習</a>"
         "<a href='/programming-map.html'>AIコーディング</a>"
         "<a href='#lectures'>受講資料</a>"
         "<a href='#faq'>FAQ</a>"
@@ -8429,7 +8429,7 @@ HEADER_JS = """
     }
   })();
 
-  // 日赤/AI講習ブリッジ: タブで到達点を切り替える
+  // AI講習ブリッジ: タブで到達点を切り替える
   (function(){
     var root = document.querySelector('[data-lesson-bridge]');
     if (!root) return;
@@ -8704,11 +8704,11 @@ def _render_hero() -> str:
         },
         {
             "index": "02",
-            "title": "日赤・AI講習",
-            "sub": "赤と青で迷わせない",
-            "desc": "日赤講習の予習・復習導線と、AI講習の実務導線を色分けして並べます。",
-            "cta": "講習プランを見る",
-            "href": "#lesson-bridge",
+            "title": "AI講習",
+            "sub": "目的別に迷わせない",
+            "desc": "個別相談、Codex準備会、実践会、AIコーディング講習を目的別に並べます。",
+            "cta": "受講プランを見る",
+            "href": "#packages",
             "x": "64%",
             "y": "24%",
         },
@@ -8770,10 +8770,10 @@ def _render_hero() -> str:
         "<img src='img/hero-codex-claude-imagegen-20260616.png' alt='' decoding='async' fetchpriority='high'>"
         "</div>"
         "<div class='hero-text fade-up'>"
-        "<span class='eyebrow'>日赤導線 / AI講習 / 彦根・滋賀の導入支援</span>"
+        "<span class='eyebrow'>AI講習 / 受講資料 / 彦根・滋賀の導入支援</span>"
         "<h1 class='hero-brand'>"
         "<span class='fusion-logo-large'><span class='ai'>AI相談</span><span class='hub'>彦根・滋賀</span></span>"
-        "<span class='hero-title-sub'><strong>AIを、現場へ。</strong><br>日赤も講習も、迷わず進む。</span>"
+        "<span class='hero-title-sub'><strong>AIを、現場へ。</strong><br>相談も講習も、迷わず進む。</span>"
         "<span class='visually-hidden'>｜彦根 AI相談、滋賀 生成AI講習、Codex講習、Claude Code併用、ChatGPT講座、画像生成講習、AI導入支援、補助金申請サポート、LLMO対策、YouTube SEO、SNS集客</span>"
         "</h1>"
         "<p class='sub-catch'>"
@@ -8784,16 +8784,16 @@ def _render_hero() -> str:
         "<span><b>AIコンパス</b><small>相談・講習・資料の進む方向を整理</small></span>"
         "</div>"
         "<p class='lead'>"
-        "日赤講習の予習・復習、AI講習、受講資料、実例サイトを1つの導線へ。赤は日赤、青はAI、緑は成果。見て、触って、次の行動を選べる入口です。"
+        "個別相談、AI講習、受講資料、実例サイトを1つの導線へ。見て、触って、次の行動を選べる入口です。"
         "</p>"
         "<div class='hero-actions'>"
-        "<a class='btn btn-primary btn-lg' href='#lesson-bridge'>日赤/AI講習を見る</a>"
+        "<a class='btn btn-primary btn-lg' href='#packages'>AI講習を見る</a>"
         "<a class='btn btn-secondary btn-lg' href='#contact'>個別相談を予約</a>"
         "</div>"
         "<div class='hero-route-bento' aria-label='最初に選ぶ4つの入口'>"
         "<a class='hero-route-card route-consult' href='#contact'><small>01 / CONSULT</small><b>個別相談</b><span>今の課題と次の一手を整理</span></a>"
         "<a class='hero-route-card route-plan' href='#why-now'><small>02 / DATA</small><b>数字で判断</b><span>最新データで必要性を見る</span></a>"
-        "<a class='hero-route-card route-code' href='#lesson-bridge'><small>03 / RED+BLUE</small><b>日赤/AI講習</b><span>赤と青で導線を分ける</span></a>"
+        "<a class='hero-route-card route-code' href='#packages'><small>03 / LESSON</small><b>AI講習</b><span>目的別に選ぶ</span></a>"
         "<a class='hero-route-card route-material' href='#lectures'><small>04 / MATERIAL</small><b>受講資料</b><span>先に読んで判断する</span></a>"
         "</div>"
         "<div class='hero-proof-grid' aria-label='AI講習会の特徴'>"
@@ -9132,12 +9132,12 @@ def _render_path_selector() -> str:
             "次に: 課題メモだけ持参",
         ),
         (
-            "日赤と講習を見分けたい人",
-            "日赤/AI講習を並べて見る",
-            "日赤講習の予習・復習導線と、AI講習の実務導線を赤と青で分けて確認できます。",
-            "色分け導線を見る",
-            "#lesson-bridge",
-            "赤=日赤 / 青=AI",
+            "講習を選びたい人",
+            "AI講習と資料を並べて見る",
+            "個別相談、準備会、実践会、AIコーディング講習を目的と到達点で確認できます。",
+            "講習導線を見る",
+            "#packages",
+            "相談 / 講習 / 資料",
             "次に: 相談・準備会・実践会へ",
         ),
         (
@@ -9175,9 +9175,9 @@ def _render_choice_lens() -> str:
             "課題を聞いて、講習・伴走のどちらに進むかをその場で切り分けます。",
         ),
         (
-            "日赤講習の案内や復習を、参加者に分かりやすく見せたい",
-            "日赤・講習導線",
-            "救急法やAEDの学びを赤、AI講習を青で分け、予習、当日、復習、資料リンクまで整理します。",
+            "AI講習の内容や復習先を、参加者に分かりやすく見せたい",
+            "AI講習導線",
+            "講習前の確認、当日の実践、復習資料、予約導線までを1つに整理します。",
         ),
         (
             "CodexやClaude Codeで、自分の資料やページを作りたい",
@@ -9224,7 +9224,7 @@ def _render_ai_impact_board() -> str:
     )
     rows = [
         ("受付・問い合わせ", "AIで返信文、FAQ、電話メモを整える", "相談で課題を3つに絞る", "返信の迷いを減らす"),
-        ("日赤・講習案内", "予習、当日、復習の資料リンクを1本化", "赤=日赤、青=AI講習で表示", "参加前後の迷子を減らす"),
+        ("講習案内", "予習、当日、復習の資料リンクを1本化", "AI講習と資料リンクで表示", "参加前後の迷子を減らす"),
         ("広報・SNS", "動画台本、投稿文、画像案、FAQへ展開", "1テーマから3本の発信案", "週1更新に落とす"),
         ("サイト・業務", "CodexでLP、資料、フォーム、管理画面を作る", "120分で原型と確認手順", "6ヶ月で定着させる"),
     ]
@@ -9262,22 +9262,22 @@ def _render_ai_impact_board() -> str:
     )
 
 
-def _render_redcross_lesson_bridge() -> str:
-    """日赤とAI講習を混同せず、色と導線で並べる。"""
+def _render_lesson_bridge() -> str:
+    """AI講習と受講資料を、目的別の導線で並べる。"""
     panels = [
         (
-            "redcross",
-            "日赤講習",
-            "#E60012",
-            "日赤の講習で扱う心肺蘇生、AED、救急法、WEB CROSSの予習・復習導線を、参加者が見返しやすい形に整理します。",
-            [("01", "公式内容を尊重"), ("02", "予習リンクを先頭へ"), ("03", "復習ページを残す")],
-        ),
-        (
-            "ai",
+            "starter",
             "AI講習",
             "#0877C6",
-            "ChatGPT、Codex、Claude Code、画像生成を、業務文書、広報、資料化、確認作業に接続します。講習後に自分で再現できる手順を残します。",
-            [("相", "個別相談"), ("60", "準備会"), ("120", "実践会")],
+            "ChatGPT、Codex、Claude Code、画像生成を、仕事の文章、資料、広報、サイト改善に接続します。",
+            [("01", "個別相談で整理"), ("02", "準備会で導入"), ("03", "実践会で成果物化")],
+        ),
+        (
+            "material",
+            "受講資料",
+            "#00A676",
+            "講習後に自分で再現できるように、プロンプト、手順、確認ポイント、関連ページを残します。",
+            [("読", "先に確認"), ("戻", "講習後に復習"), ("使", "仕事に転用")],
         ),
         (
             "outcome",
@@ -9320,39 +9320,38 @@ def _render_redcross_lesson_bridge() -> str:
         "<div class='lesson-bridge-shell fade-up d2' data-lesson-bridge>"
         "<div class='lesson-bridge-inner'>"
         "<div class='lesson-bridge-copy'>"
-        "<span class='lesson-bridge-kicker'>RED CROSS / AI LESSON</span>"
-        "<h3>日赤は赤。AI講習は青。</h3>"
-        "<p>日赤の学びとAI講習を同じページで見せるときは、役割を混ぜないことが大事です。参加者には、今どちらを見ているのか、次に何を押すのかを色と数字で示します。</p>"
+        "<span class='lesson-bridge-kicker'>AI LESSON / MATERIAL</span>"
+        "<h3>AI講習と資料を、迷わず選ぶ。</h3>"
+        "<p>講習を受ける前、受けた後、仕事に使う段階で、押すべき場所が変わります。個別相談、準備会、実践会、受講資料を目的別に並べます。</p>"
         "<div class='lesson-tabs'>"
-        f"<div class='lesson-tab-controls' role='tablist' aria-label='日赤とAI講習の切り替え'>{''.join(tab_buttons)}</div>"
+        f"<div class='lesson-tab-controls' role='tablist' aria-label='AI講習と受講資料の切り替え'>{''.join(tab_buttons)}</div>"
         f"{''.join(tab_panels)}"
         "</div>"
         "</div>"
         "<div class='lesson-track-grid'>"
-        "<article class='lesson-track-card redcross'>"
-        "<span class='lesson-track-label'>日赤</span>"
-        "<h3>救急法・AED</h3>"
-        "<p>心肺蘇生、AED、救急法、WEB CROSSの予習・復習を、赤い導線でまとめます。</p>"
-        "<div class='lesson-track-list'>"
-        "<span><b>予</b>公式ページ・動画を先に見る</span>"
-        "<span><b>当</b>講習当日の持ち物と流れを確認</span>"
-        "<span><b>復</b>復習リンクと次回案内を残す</span>"
-        "</div>"
-        "</article>"
         "<article class='lesson-track-card ai'>"
         "<span class='lesson-track-label'>AI講習</span>"
-        "<h3>AIを現場へ</h3>"
-        "<p>ChatGPT、Codex、Claude Code、画像生成を、資料、広報、サイト、業務手順に接続します。</p>"
+        "<h3>相談から実践へ</h3>"
+        "<p>AIを何に使うかを個別相談で整理し、準備会、実践会、AIコーディング講習へ進めます。</p>"
         "<div class='lesson-track-list'>"
         "<span><b>相</b>個別相談で課題を切り分け</span>"
         "<span><b>60</b>準備会で使える状態にする</span>"
         "<span><b>120</b>実践会で成果物を作る</span>"
         "</div>"
         "</article>"
+        "<article class='lesson-track-card material'>"
+        "<span class='lesson-track-label'>資料</span>"
+        "<h3>あとから見返せる</h3>"
+        "<p>講習の内容を、資料、チェックリスト、実例ページ、予約導線として残します。</p>"
+        "<div class='lesson-track-list'>"
+        "<span><b>読</b>受講前に概要を見る</span>"
+        "<span><b>復</b>講習後に手順を復習</span>"
+        "<span><b>使</b>仕事の型に転用</span>"
+        "</div>"
+        "</article>"
         "</div>"
         "</div>"
-        "<p class='ai-source-note'>日赤公式講習の代替ではありません。日本赤十字社公式サイトの講習内容、心肺蘇生・AED、WEB CROSSの案内を参照し、AIハブでは案内、資料化、復習導線づくりを支援します。"
-        " <a href='https://www.jrc.or.jp/study/safety/' target='_blank' rel='noopener'>日本赤十字社 講習の内容について</a></p>"
+        "<p class='ai-source-note'>AI講習は、相談、準備、実践、復習を分けるほど継続しやすくなります。まずは個別相談で目的を絞り、必要な資料と講習を選びます。</p>"
         "</div>"
     )
 
@@ -10443,19 +10442,19 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append(_render_ai_impact_board())
     parts.append("</section>")
 
-    # 2. 日赤とAI講習を、色分けして並べる
+    # 2. AI講習と受講資料を、目的別に並べる
     parts.append("<section class='block block-tight' id='lesson-bridge'>")
-    parts.append("<p class='section-heading fade-up'>RED CROSS / AI</p>")
-    parts.append("<h2 class='section-title fade-up d1'>日赤と講習を、迷わず選ぶ</h2>")
-    parts.append("<p class='section-sub fade-up d2'>日赤講習の予習・復習と、AI講習の実務化を混ぜずに並べます。赤は日赤、青はAI講習、緑は実例化です。</p>")
-    parts.append(_render_redcross_lesson_bridge())
+    parts.append("<p class='section-heading fade-up'>AI LESSON / MATERIAL</p>")
+    parts.append("<h2 class='section-title fade-up d1'>AI講習と資料を、迷わず選ぶ</h2>")
+    parts.append("<p class='section-sub fade-up d2'>個別相談、準備会、実践会、受講資料を混ぜずに並べます。講習前に選び、講習後に復習し、仕事に転用できる導線です。</p>")
+    parts.append(_render_lesson_bridge())
     parts.append("</section>")
 
     # 3. 最初の選び方
     parts.append("<section class='block block-tight' id='start'>")
     parts.append("<p class='section-heading fade-up'>START HERE</p>")
     parts.append("<h2 class='section-title fade-up d1'>最初の一歩を、3つに絞る</h2>")
-    parts.append("<p class='section-sub fade-up d2'>初回訪問で迷いやすい「相談する」「日赤/講習導線を見る」「受講資料を先に見る」を先頭にまとめました。</p>")
+    parts.append("<p class='section-sub fade-up d2'>初回訪問で迷いやすい「相談する」「講習を選ぶ」「受講資料を先に見る」を先頭にまとめました。</p>")
     parts.append(_render_path_selector())
     parts.append(_render_choice_lens())
     parts.append("</section>")

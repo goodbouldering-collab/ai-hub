@@ -8301,6 +8301,22 @@ PORTAL_CSS += """
   font: inherit;
   text-align: left;
   transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+  position: relative;
+  isolation: isolate;
+}
+
+.hero-fish-card::after {
+  content: "";
+  position: absolute;
+  left: 72px;
+  right: 14px;
+  bottom: 9px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--ai-fish-cyan), var(--ai-fish-green), var(--ai-fish-yellow), transparent);
+  opacity: .72;
+  transform-origin: left center;
+  animation: fishLineSweep 4.6s ease-in-out infinite;
+  z-index: -1;
 }
 
 .hero-fish-card:hover,
@@ -8329,6 +8345,11 @@ PORTAL_CSS += """
   color: var(--sakana-muted);
   font-weight: 750;
   letter-spacing: 0;
+}
+
+@keyframes fishLineSweep {
+  0%, 100% { transform: scaleX(.38); opacity: .35; }
+  48%, 72% { transform: scaleX(1); opacity: .82; }
 }
 
 .atlas-fish-core {
@@ -8360,16 +8381,26 @@ PORTAL_CSS += """
   overflow: hidden;
 }
 
+.ai-fish-stage::before {
+  content: "";
+  position: absolute;
+  inset: 13px;
+  border: 2px solid rgba(7,20,38,.10);
+  border-radius: 999px;
+  clip-path: polygon(0 38%, 83% 38%, 100% 0, 88% 50%, 100% 100%, 83% 62%, 0 62%);
+  opacity: .84;
+}
+
 .ai-fish-stage::after {
-  content: "AI LINE";
+  content: "AI相談";
   position: absolute;
   left: 14px;
   bottom: 11px;
   color: rgba(7,20,38,.48);
-  font-family: var(--mono);
-  font-size: 10px;
+  font-family: var(--sans);
+  font-size: 11px;
   font-weight: 900;
-  letter-spacing: .12em;
+  letter-spacing: 0;
 }
 
 .ai-fish-video {
@@ -8477,7 +8508,8 @@ section.block::before {
   .fish-spine,
   .fish-circuit,
   .fish-tail,
-  .fish-dot {
+  .fish-dot,
+  .hero-fish-card::after {
     animation: none !important;
     stroke-dashoffset: 0 !important;
   }
@@ -8494,6 +8526,80 @@ section.block::before {
   .atlas-fish-core {
     width: min(310px, 84%);
     opacity: .90;
+  }
+}
+
+/* ---- Compact top-page recomposition, 2026-06-29 ---- */
+section.block {
+  padding-top: clamp(42px, 6vw, 64px) !important;
+  padding-bottom: clamp(42px, 6vw, 64px) !important;
+}
+
+section.block.block-tight {
+  padding-top: clamp(34px, 5vw, 52px) !important;
+  padding-bottom: clamp(34px, 5vw, 52px) !important;
+}
+
+.merged-section .section-sub {
+  margin-bottom: clamp(22px, 4vw, 34px);
+}
+
+.section-cluster {
+  margin-top: clamp(30px, 5vw, 54px);
+  padding-top: clamp(24px, 4vw, 38px);
+  border-top: 1px solid rgba(7,20,38,.10);
+  scroll-margin-top: 112px;
+}
+
+.section-mini-head {
+  display: grid;
+  grid-template-columns: minmax(180px, .62fr) minmax(0, 1fr);
+  gap: 8px clamp(18px, 4vw, 38px);
+  align-items: end;
+  margin: 0 0 clamp(16px, 3vw, 24px);
+}
+
+.section-mini-head p,
+.section-mini-head h3,
+.section-mini-head span {
+  margin: 0;
+}
+
+.section-mini-head p {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .14em;
+  color: var(--primary);
+  text-transform: uppercase;
+}
+
+.section-mini-head h3 {
+  color: var(--text);
+  font-size: clamp(21px, 2.6vw, 30px);
+  line-height: 1.25;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.section-mini-head span {
+  grid-column: 2;
+  color: var(--text-soft);
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+#lectures #speaker .profile-block,
+#web-showcase #business-compass .business-compass {
+  margin-top: 0;
+}
+
+@media (max-width: 760px) {
+  .section-mini-head {
+    grid-template-columns: 1fr;
+  }
+  .section-mini-head span {
+    grid-column: auto;
   }
 }
 
@@ -9385,9 +9491,9 @@ def _render_hero() -> str:
         "<p class='sub-catch'>"
         "<strong>相談で整理。講習で実践。資料で復習。</strong>"
         "</p>"
-        "<button type='button' class='hero-fish-card diagnose-open' aria-label='AI魚線画モーションとコース診断を開く'>"
+        "<button type='button' class='hero-fish-card diagnose-open' aria-label='AI相談の入口診断を開く'>"
         "<span class='fish-mark' aria-hidden='true'></span>"
-        "<span><b>AIフィッシュライン</b><small>相談・講習・資料を流れで整理</small></span>"
+        "<span><b>AI相談</b><small>悩みから講習・資料・制作へ流れで整理</small></span>"
         "</button>"
         "<p class='lead'>"
         "個別相談、AI講習、受講資料、進め方を1つの導線へ。見て、触って、次の行動を選べる入口です。"
@@ -11196,111 +11302,89 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append(_render_ai_course_video_feature())
     parts.append(_render_hero())
 
-    # 1. 最新データから、講習が必要な理由を先に見せる
-    parts.append("<section class='block block-tight' id='why-now'>")
-    parts.append("<p class='section-heading fade-up'>WHY NOW</p>")
-    parts.append("<h2 class='section-title fade-up d1'>数字で見る、AI講習の必要性</h2>")
-    parts.append("<p class='section-sub fade-up d2'>AIはもう使われています。差が出るのは、現場の作業に落とし、確認し、復習できる導線があるかどうかです。</p>")
-    parts.append(_render_ai_impact_board())
-    parts.append("</section>")
-
-    # 2. AI講習と受講資料を、目的別に並べる
-    parts.append("<section class='block block-tight' id='lesson-bridge'>")
-    parts.append("<p class='section-heading fade-up'>AI LESSON / MATERIAL</p>")
-    parts.append("<h2 class='section-title fade-up d1'>AI講習と資料を、迷わず選ぶ</h2>")
-    parts.append("<p class='section-sub fade-up d2'>個別相談、準備会、実践会、受講資料を混ぜずに並べます。講習前に選び、講習後に復習し、仕事に転用できる導線です。</p>")
-    parts.append(_render_lesson_bridge())
-    parts.append("</section>")
-
-    # 3. 最初の選び方
-    parts.append("<section class='block block-tight' id='start'>")
-    parts.append("<p class='section-heading fade-up'>START HERE</p>")
-    parts.append("<h2 class='section-title fade-up d1'>最初の一歩を、3つに絞る</h2>")
-    parts.append("<p class='section-sub fade-up d2'>初回訪問で迷いやすい「相談する」「講習を選ぶ」「受講資料を先に見る」を先頭にまとめました。</p>")
+    # 1. 入口を一括化: 選び方、必要性、講習と資料をまとめて見せる
+    parts.append("<section class='block block-tight merged-section' id='start'>")
+    parts.append("<p class='section-heading fade-up'>START / AI CONSULT</p>")
+    parts.append("<h2 class='section-title fade-up d1'>悩みから、AI相談の入口を選ぶ</h2>")
+    parts.append("<p class='section-sub fade-up d2'>時間がない、告知が苦手、AIが分からない、事務作業が重い。最初の3択から入り、数字、講習、資料まで同じ流れで確認できます。</p>")
     parts.append(_render_path_selector())
     parts.append(_render_choice_lens())
+    parts.append("<div class='section-cluster' id='why-now'>")
+    parts.append("<div class='section-mini-head'><p>WHY NOW</p><h3>数字で見る、AI講習の必要性</h3><span>現場の作業に落とし、確認し、復習できるかで差が出ます。</span></div>")
+    parts.append(_render_ai_impact_board())
+    parts.append("</div>")
+    parts.append("<div class='section-cluster' id='lesson-bridge'>")
+    parts.append("<div class='section-mini-head'><p>AI LESSON / MATERIAL</p><h3>AI講習と資料を、迷わず選ぶ</h3><span>講習前に選び、講習後に復習し、仕事に転用する導線です。</span></div>")
+    parts.append(_render_lesson_bridge())
+    parts.append("</div>")
     parts.append("</section>")
 
-    # 4. 受講プラン — メインCTA
+    # 2. 受講プラン — メインCTA
     parts.append("<section class='block' id='packages'>")
     parts.append("<p class='section-heading fade-up'>AI LESSON COCKPIT</p>")
     parts.append("<h2 class='section-title packages-title fade-up d1'>複数のAI講習を、一画面で選ぶ</h2>")
-    parts.append("<p class='section-sub fade-up d2'>個別相談、伴走支援、Codex準備会、Codex実践会、AIコーディング講習を、目的と到達点で選べるように整理しています。CodexとClaude Codeの併用、画像生成まで含めて、各プランから対応する受講資料へ進み、内容を確認してから予約できます。</p>")
+    parts.append("<p class='section-sub fade-up d2'>個別相談、伴走支援、Codex準備会、Codex実践会、AIコーディング講習を、目的と到達点で比較できます。</p>")
     parts.append(_render_courses_packages())
     parts.append("</section>")
 
-    # 3. ホームページ制作ショールーム
-    parts.append("<section class='block web-showcase-block' id='web-showcase'>")
-    parts.append("<p class='section-heading fade-up'>WEB PRODUCTION</p>")
-    parts.append("<h2 class='section-title fade-up d1'>ホームページ制作も、提案書のように見せる</h2>")
-    parts.append("<p class='section-sub fade-up d2'>店舗LP、企業サイト、EC、講習資料、管理画面、SNS改善まで。「こんなものも作れます」を、用途別の完成イメージとしてわかりやすく提示します。</p>")
+    # 3. 制作、実績、進め方、改善ループを一括化
+    parts.append("<section class='block web-showcase-block merged-section' id='web-showcase'>")
+    parts.append("<p class='section-heading fade-up'>MAKE / OPERATE</p>")
+    parts.append("<h2 class='section-title fade-up d1'>制作、実績、改善までを一つの流れにする</h2>")
+    parts.append("<p class='section-sub fade-up d2'>店舗LP、企業サイト、EC、講習資料、管理画面、SNS改善、実績、相談後の進め方を、提案書のようにまとめて見られる構成にしました。</p>")
     parts.append(_render_web_showcase())
-    parts.append("</section>")
-
-    parts.append("<section class='block' id='business-compass'>")
-    parts.append("<p class='section-heading fade-up'>BUSINESS COMPASS</p>")
-    parts.append("<h2 class='section-title fade-up d1'>全事業を、悩みから選べる入口にする</h2>")
-    parts.append("<p class='section-sub fade-up d2'>各事業サイトを直接見に行く前に、誰に向けて、何の悩みを解決し、どの行動へ進めばよいかを1画面で整理します。</p>")
+    parts.append("<div class='section-cluster' id='works'>")
+    parts.append("<div class='section-mini-head'><p>WORKS</p><h3>公開実績</h3><span>AI相談、制作、管理画面、地域事業の実例を横に並べます。</span></div>")
+    parts.append(_render_works_section())
+    parts.append("</div>")
+    parts.append("<div class='section-cluster' id='business-compass'>")
+    parts.append("<div class='section-mini-head'><p>BUSINESS COMPASS</p><h3>全事業を、悩みから選べる入口にする</h3><span>誰に向けて、何の悩みを解決し、どの行動へ進めばよいかを整理します。</span></div>")
     parts.append(_render_business_compass())
+    parts.append("</div>")
+    parts.append("<div class='section-cluster' id='flow'>")
+    parts.append("<div class='section-mini-head'><p>FLOW</p><h3>相談から資料化・集客まで</h3><span>一度聞いて終わりではなく、資料センターと集客導線に変換します。</span></div>")
+    parts.append(_render_flow())
+    parts.append("</div>")
+    parts.append("<div class='section-cluster' id='growth'>")
+    parts.append("<div class='section-mini-head'><p>DAILY DESIGN LOOP</p><h3>競合とSNS反響で、講習導線を育てる</h3><span>入口とFAQを毎朝チューニングし、検索とSNSの反応を次の改善に戻します。</span></div>")
+    parts.append(_render_growth_plan_section())
+    parts.append("</div>")
     parts.append("</section>")
 
     parts.append(_render_blog_teaser())
 
-    # 4. ご依頼の流れ
-    parts.append("<section class='block' id='flow'>")
-    parts.append("<p class='section-heading'>FLOW</p>")
-    parts.append("<h2 class='section-title'>相談から資料化・集客まで</h2>")
-    parts.append("<p class='section-sub'>一度聞いて終わりではなく、受講内容を資料センターと集客導線に変換します。</p>")
-    parts.append(_render_flow())
-    parts.append("</section>")
-
-    # 5. 受講資料（TOP内にサマリを掲載）
-    parts.append("<section class='block' id='lectures'>")
-    parts.append("<p class='section-heading fade-up'>MATERIALS</p>")
-    parts.append("<h2 class='section-title fade-up d1'>受講資料</h2>")
-    parts.append("<p class='section-sub fade-up d2'>AI業務活用・SNSアルゴリズム・LLMO（AI検索最適化）・Codex実践会・Claude Code併用・画像生成・AIコーディングを、受講後も見返せる形で整理しています。資料を読んだら、上の受講プランへ戻って予約できます。</p>")
+    # 4. 資料、講師、声を一括化
+    parts.append("<section class='block merged-section' id='lectures'>")
+    parts.append("<p class='section-heading fade-up'>MATERIALS / SPEAKER</p>")
+    parts.append("<h2 class='section-title fade-up d1'>受講前後に見返せる資料と、教える人</h2>")
+    parts.append("<p class='section-sub fade-up d2'>AI業務活用、SNS、LLMO、Codex、Claude Code、画像生成、AIコーディングを資料として残し、誰がどう教えるかまで同じ場所で確認できます。</p>")
     parts.append("<div class='fade-up d2'>")
     parts.append(_render_lectures_section())
     parts.append("</div>")
     parts.append("<div class='section-more fade-up d3'><a class='btn btn-primary' href='#packages'>受講プランへ戻る →</a><a class='btn btn-secondary' href='/lectures/index.html'>📚 受講資料の一覧を見る →</a></div>")
-    parts.append("</section>")
-
-    # 6. 講師紹介（誰が教えるか）
-    parts.append("<section class='block' id='speaker'>")
-    parts.append("<p class='section-heading fade-up'>SPEAKER</p>")
-    parts.append("<h2 class='section-title fade-up d1'>講師紹介</h2>")
-    parts.append("<p class='section-sub fade-up d2'>AI 活用の啓発・講習・地域コミュニティ運営・複数事業のマーケ支援を行う実践者。</p>")
+    parts.append("<div class='section-cluster' id='speaker'>")
+    parts.append("<div class='section-mini-head'><p>SPEAKER</p><h3>講師紹介</h3><span>AI活用、講習、地域コミュニティ運営、複数事業の実践者です。</span></div>")
     parts.append(_render_speaker_section())
-    parts.append("</section>")
+    parts.append("</div>")
 
-    # 6b. 受講者の声（信頼の証拠・実データがある時だけ表示）
     voices_html = _render_voices()
     if voices_html:
-        parts.append("<section class='block' id='voices'>")
-        parts.append("<p class='section-heading fade-up'>VOICES</p>")
-        parts.append("<h2 class='section-title fade-up d1'>受講した方の声</h2>")
-        parts.append("<p class='section-sub fade-up d2'>あなたと同じ「AIは苦手」だった方が、何をできるようになったか。</p>")
+        parts.append("<div class='section-cluster' id='voices'>")
+        parts.append("<div class='section-mini-head'><p>VOICES</p><h3>受講した方の声</h3><span>あなたと同じ「AIは苦手」だった方が、何をできるようになったか。</span></div>")
         if VOICES_ARE_SAMPLE:
             parts.append("<p class='voices-sample-note fade-up d2'>※ 掲載イメージです（実際の受講者の声に差し替え予定）。</p>")
         parts.append(voices_html)
-        parts.append("</section>")
+        parts.append("</div>")
+    parts.append("</section>")
 
-    # 7. FAQ（疑問解消）
+    # 5. FAQ（疑問解消）
     parts.append("<section class='block' id='faq'>")
     parts.append("<p class='section-heading'>FAQ</p>")
     parts.append("<h2 class='section-title'>AI相談のよくある質問</h2>")
     parts.append(_render_faq())
     parts.append("</section>")
 
-    # 8. 競合比較と集客施策
-    parts.append("<section class='block' id='growth'>")
-    parts.append("<p class='section-heading fade-up'>DAILY DESIGN LOOP</p>")
-    parts.append("<h2 class='section-title fade-up d1'>競合とSNS反響で、講習導線を育てる</h2>")
-    parts.append("<p class='section-sub fade-up d2'>公的DX相談・パソコン教室・大手AI研修・制作会社と比較し、さらにYouTube/Shorts/SNSの反応を見て、入口とFAQを毎朝チューニングします。</p>")
-    parts.append(_render_growth_plan_section())
-    parts.append("</section>")
-
-    # 9. お問い合わせ（予約）
+    # 6. お問い合わせ（予約）
     parts.append("<section class='block' id='contact'>")
     parts.append("<p class='section-heading fade-up'>CONTACT</p>")
     parts.append("<h2 class='section-title fade-up d1'>AI個別相談で、今の課題を整理する</h2>")

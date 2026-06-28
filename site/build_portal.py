@@ -19,7 +19,79 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-import yaml
+try:
+    import yaml
+except ModuleNotFoundError:
+    class _MiniYaml:
+        """Small fallback for this site's simple config/frontmatter YAML."""
+
+        @staticmethod
+        def _value(raw: str):
+            value = raw.strip()
+            if not value:
+                return ""
+            if value in {"null", "NULL", "~"}:
+                return None
+            if value in {"true", "True"}:
+                return True
+            if value in {"false", "False"}:
+                return False
+            if (value.startswith('"') and value.endswith('"')) or (value.startswith("'") and value.endswith("'")):
+                return value[1:-1]
+            if value.startswith("[") and value.endswith("]"):
+                body = value[1:-1].strip()
+                if not body:
+                    return []
+                return [_MiniYaml._value(part.strip()) for part in body.split(",")]
+            return value
+
+        @classmethod
+        def safe_load(cls, text: str):
+            data: dict = {}
+            section_key = ""
+            current_item: dict | None = None
+            pending_list_key = ""
+            for raw_line in text.splitlines():
+                if not raw_line.strip() or raw_line.lstrip().startswith("#"):
+                    continue
+                line = raw_line.rstrip()
+                indent = len(line) - len(line.lstrip(" "))
+                stripped = line.strip()
+                if indent == 0 and stripped.endswith(":"):
+                    section_key = stripped[:-1].strip()
+                    data[section_key] = []
+                    current_item = None
+                    pending_list_key = ""
+                    continue
+                if section_key and indent <= 2 and stripped.startswith("- "):
+                    value = stripped[2:].strip()
+                    if ":" in value:
+                        key, item_value = value.split(":", 1)
+                        current_item = {key.strip(): cls._value(item_value)}
+                        data[section_key].append(current_item)
+                        pending_list_key = key.strip() if not item_value.strip() else ""
+                    else:
+                        data[section_key].append(cls._value(value))
+                    continue
+                if indent == 0 and ":" in stripped:
+                    key, value = stripped.split(":", 1)
+                    data[key.strip()] = cls._value(value)
+                    continue
+                if current_item is not None and indent >= 2:
+                    if stripped.startswith("- ") and pending_list_key:
+                        current_item.setdefault(pending_list_key, []).append(cls._value(stripped[2:].strip()))
+                    elif ":" in stripped:
+                        key, value = stripped.split(":", 1)
+                        key = key.strip()
+                        if value.strip():
+                            current_item[key] = cls._value(value)
+                            pending_list_key = ""
+                        else:
+                            current_item[key] = []
+                            pending_list_key = key
+            return data
+
+    yaml = _MiniYaml()
 
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -316,6 +388,8 @@ def _load_speaker() -> dict:
             buf.append(ln.strip())
     intro = " ".join(buf).strip()
     top_intro = str(meta.get("top_intro") or "").strip()
+    if top_intro in {">", "|"}:
+        top_intro = ""
     return {
         "name": str(meta.get("name") or OWNER_NAME),
         "role": str(meta.get("role") or ""),
@@ -7944,6 +8018,201 @@ PORTAL_CSS += """
 
 PORTAL_CSS += """
 
+/* ---- Cross-business consultation compass, 2026-06-29 ---- */
+#business-compass { --section-accent: var(--mac-teal); }
+
+.business-compass {
+  display: grid;
+  gap: 18px;
+}
+
+.business-compass-lead {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+.business-compass-copy,
+.agent-review-panel,
+.business-compass-card {
+  border-radius: 8px;
+  border: 1px solid rgba(7,20,38,.13);
+  background: #FFFFFF;
+  box-shadow: 0 16px 40px rgba(7,20,38,.07);
+}
+
+.business-compass-copy {
+  padding: clamp(22px, 4vw, 34px);
+}
+
+.business-compass-copy h3 {
+  margin: 0 0 12px;
+  font-size: clamp(22px, 3vw, 34px);
+  line-height: 1.25;
+  color: var(--text);
+  letter-spacing: 0;
+}
+
+.business-compass-copy p {
+  margin: 0;
+  color: var(--text-soft);
+  line-height: 1.9;
+  font-size: 15px;
+}
+
+.business-compass-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.agent-review-panel {
+  padding: 20px;
+}
+
+.agent-review-panel h3 {
+  margin: 0 0 12px;
+  font-size: 16px;
+  color: var(--text);
+}
+
+.agent-review-list {
+  display: grid;
+  gap: 9px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.agent-review-list li {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 9px 0;
+  border-top: 1px solid rgba(7,20,38,.08);
+  color: var(--text-soft);
+  font-size: 13px;
+}
+
+.agent-review-list li:first-child { border-top: 0; }
+.agent-review-list b { color: var(--text); font-size: 13.5px; }
+.agent-review-list em {
+  grid-column: 1 / -1;
+  font-style: normal;
+  line-height: 1.55;
+}
+.agent-review-list span { font-weight: 800; color: var(--mac-teal); white-space: nowrap; }
+
+.business-compass-decision {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: rgba(245,184,61,.14);
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.business-compass-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.business-compass-card {
+  min-height: 100%;
+  padding: 18px;
+  display: grid;
+  gap: 12px;
+  align-content: start;
+}
+
+.business-compass-kicker {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(7,20,38,.12);
+  background: rgba(14,165,233,.07);
+  color: var(--text);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.business-compass-card h3 {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.35;
+  color: var(--text);
+}
+
+.business-compass-card p {
+  margin: 0;
+  color: var(--text-soft);
+  line-height: 1.75;
+  font-size: 13.5px;
+}
+
+.business-compass-map {
+  display: grid;
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.business-compass-map li {
+  display: grid;
+  grid-template-columns: 82px 1fr;
+  gap: 10px;
+  padding: 8px 0;
+  border-top: 1px solid rgba(7,20,38,.08);
+  font-size: 12.5px;
+  color: var(--text-soft);
+}
+
+.business-compass-map li:first-child { border-top: 0; }
+.business-compass-map b { color: var(--text); }
+
+.business-compass-card a {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 9px 13px;
+  border-radius: 8px;
+  background: var(--text);
+  color: #FFFFFF;
+  font-size: 12.5px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.business-compass-note {
+  margin: 0;
+  padding: 14px 16px;
+  border-left: 4px solid var(--mac-teal);
+  background: rgba(0,166,118,.07);
+  color: var(--text-soft);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+@media (max-width: 980px) {
+  .business-compass-lead,
+  .business-compass-grid {
+    grid-template-columns: 1fr;
+  }
+}
+"""
+
+PORTAL_CSS += """
+
 /* ---- AI fish line motion pass: shared top/admin motif, 2026-06-28 ---- */
 :root {
   --ai-fish-ink: #071426;
@@ -10446,6 +10715,170 @@ def _render_blog_teaser() -> str:
     )
 
 
+def _business_compass_routes() -> list[dict]:
+    return [
+        {
+            "kicker": "彦根・湖東の地域事業者",
+            "title": "告知が苦手、予約や問い合わせが増えない",
+            "pain": "忙しくて発信が後回し。何を直せば来店や相談につながるか分からない。",
+            "route": "AI個別相談 -> HP/LP改善 -> SNS/ブログ再編集",
+            "light": "投稿文作成 / 問い合わせ返信 / 予約導線の見直し",
+            "decide": "直すページ、使う媒体、最初の投稿テーマ",
+            "assets": "AI相談、N-デザイン、みんなのWA、グッぼる",
+            "cta": "この悩みを無料相談で整理する",
+        },
+        {
+            "kicker": "学校・福祉・支援者",
+            "title": "AIを使いたいが、説明責任と安全面が不安",
+            "pain": "便利そうでも、個人情報、教材化、職員への伝え方で止まりやすい。",
+            "route": "初心者向け講習 -> 受講資料 -> 現場手順書",
+            "light": "説明資料 / 職員向け手順 / 公開前確認",
+            "decide": "同席者、本人同意、教材化する範囲",
+            "assets": "AI相談、トラスト、受講資料、講師紹介",
+            "cta": "学校・福祉の相談を整理する",
+        },
+        {
+            "kicker": "店舗・EC・商品",
+            "title": "商品や店の良さが、購入前に伝わりきらない",
+            "pain": "写真、料金、比較、レビュー、買う理由がページ内で分断されている。",
+            "route": "商品LP -> FAQ -> 購入/予約CTA -> 投稿素材化",
+            "light": "商品説明 / FAQ / 比較表 / 予約CTA",
+            "decide": "見せる商品、買う理由、公開前に確認する文言",
+            "assets": "グッぼる、カラッと、Notエステ、プロギング",
+            "cta": "商品・店舗ページを相談する",
+        },
+        {
+            "kicker": "スポーツ・若手・習慣",
+            "title": "続けたい人を、練習・回復・挑戦へ導きたい",
+            "pain": "魅力はあるのに、初心者が次に何をすればよいか分かりにくい。",
+            "route": "体験導線 -> 継続プラン -> 動画/記録 -> コミュニティ",
+            "light": "体験案内 / 練習メモ / 動画説明 / 継続連絡",
+            "decide": "初心者の入口、継続プラン、次に見る実例",
+            "assets": "グッぼる、ClimbHero、スポーツ睡眠ラボ、HYROX",
+            "cta": "体験・継続導線を相談する",
+        },
+        {
+            "kicker": "業務アプリ・管理画面",
+            "title": "事務作業が重く、特定の人しか回せない",
+            "pain": "シフト、問い合わせ、記事作成、マッチング、報告が属人化している。",
+            "route": "業務棚卸し -> 管理画面 -> AI下書き -> 確認フロー",
+            "light": "シフト作成 / 問い合わせ下書き / 報告書下書き",
+            "decide": "相談で済むか、講習か、制作か、管理画面化か",
+            "assets": "トラスト、ビジネス21、リビルドマッチ、AI Hub管理",
+            "cta": "業務改善を無料相談する",
+        },
+        {
+            "kicker": "発信・YouTube・note",
+            "title": "1つの実践知を、媒体ごとに使い回せていない",
+            "pain": "動画、SNS、note、Webが別々になり、投稿後に問い合わせへ戻らない。",
+            "route": "YouTube母材 -> Shorts/SNS3本 -> note -> Web/LINE/申込",
+            "light": "動画台本 / 投稿文 / note構成 / 申込導線",
+            "decide": "週テーマ、短尺化する素材、申込へ戻すURL",
+            "assets": "AI相談ブログ、AI Watch、受講資料、SNS改善",
+            "cta": "YouTube・note再編集を相談する",
+        },
+    ]
+
+
+def _build_business_compass_jsonld() -> str:
+    item_list = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "全事業を悩みから選ぶ入口",
+        "description": "彦根・滋賀の事業者、学校、福祉、店舗、スポーツ、発信の悩みからAI相談・講習・制作・業務改善へ進むための案内。",
+        "itemListElement": [],
+    }
+    for idx, item in enumerate(_business_compass_routes(), start=1):
+        item_list["itemListElement"].append({
+            "@type": "ListItem",
+            "position": idx,
+            "item": {
+                "@type": "Service",
+                "name": item["title"],
+                "audience": {
+                    "@type": "Audience",
+                    "audienceType": item["kicker"],
+                },
+                "areaServed": ["彦根", "湖東", "滋賀"],
+                "description": item["pain"],
+                "serviceType": item["route"],
+                "provider": {
+                    "@type": "LocalBusiness",
+                    "name": "AI相談 彦根",
+                    "url": SITE_URL,
+                },
+                "potentialAction": {
+                    "@type": "ContactAction",
+                    "name": item["cta"],
+                    "target": f"{SITE_URL}/#contact",
+                },
+                "additionalProperty": [
+                    {"@type": "PropertyValue", "name": "軽くなる作業", "value": item["light"]},
+                    {"@type": "PropertyValue", "name": "相談で決めること", "value": item["decide"]},
+                    {"@type": "PropertyValue", "name": "関連事業", "value": item["assets"]},
+                ],
+            },
+        })
+    return json.dumps(item_list, ensure_ascii=False)
+
+
+def _render_business_compass() -> str:
+    """Render a cross-business guide that routes common pains to the right offer."""
+    assurances = [
+        ("初回無料", "まず悩み、URL、困っている作業、使っているSNSだけ持参すれば相談できます。", "安心"),
+        ("無理な営業なし", "無料相談 -> 選択肢提示 -> 持ち帰りOK -> 同意後に見積・実施の順で進めます。", "明確"),
+        ("個人情報に配慮", "相談内容は課題整理と提案のみに使い、本人確認なく外部公開・教材化しません。", "保護"),
+        ("学校・福祉も対応", "保護者・担当職員同席、本人同意、公開前確認を前提に進めます。", "配慮"),
+    ]
+    assurance_html = "".join(
+        f"<li><b>{html.escape(name)}</b><span>{html.escape(label)}</span><em>{html.escape(text)}</em></li>"
+        for name, text, label in assurances
+    )
+    card_html = []
+    for item in _business_compass_routes():
+        card_html.append(
+            "<article class='business-compass-card fade-up'>"
+            f"<span class='business-compass-kicker'>{html.escape(item['kicker'])}</span>"
+            f"<h3>{html.escape(item['title'])}</h3>"
+            f"<p>{html.escape(item['pain'])}</p>"
+            "<ul class='business-compass-map'>"
+            f"<li><b>軽くなる作業</b><span>{html.escape(item['light'])}</span></li>"
+            f"<li><b>相談で決める</b><span>{html.escape(item['decide'])}</span></li>"
+            f"<li><b>行動</b><span>{html.escape(item['route'])}</span></li>"
+            f"<li><b>関連</b><span>{html.escape(item['assets'])}</span></li>"
+            "</ul>"
+            f"<a href='#contact'>{html.escape(item['cta'])}</a>"
+            "</article>"
+        )
+    return (
+        "<div class='business-compass'>"
+        "<div class='business-compass-lead'>"
+        "<div class='business-compass-copy fade-up'>"
+        "<h3>彦根・湖東の小さな事業者も、悩みから選べる</h3>"
+        "<p>全事業を一覧で見せるだけでは、初めての人は動けません。"
+        "ここでは、時間がない、告知が苦手、AIが分からない、事務作業が重い、学び直しが不安という入口から、"
+        "相談・講習・制作・業務アプリ・発信へ迷わず進めるように整理しています。</p>"
+        "<p class='business-compass-decision'><b>迷ったら:</b> 相談=整理 / 講習=自分で使う / 制作=公開物を作る / "
+        "業務アプリ=毎月の作業を減らす。2〜3分で日時を選べて、対面・Zoom・LINEから選べます。</p>"
+        "<div class='business-compass-actions'>"
+        "<a class='btn btn-primary' href='#contact'>初回無料の個別相談を予約する</a>"
+        "<a class='btn btn-secondary' href='#web-showcase'>HP制作の種類を見る</a>"
+        "</div>"
+        "<p class='business-compass-note'>相談前に不安が出やすい個人情報、未成年・高齢者・福祉利用者への配慮、"
+        "安全面、苦情窓口、無理な営業をしない流れは、各事業のページへ横展開する前提で整理します。</p>"
+        "</div>"
+        "<aside class='agent-review-panel fade-up d2' aria-label='初めてでも安心な理由'>"
+        "<h3>初めてでも安心な理由</h3>"
+        f"<ul class='agent-review-list'>{assurance_html}</ul>"
+        "</aside>"
+        "</div>"
+        f"<div class='business-compass-grid'>{''.join(card_html)}</div>"
+        "<p class='business-compass-note fade-up d3'>この型は各事業で「誰向け・悩み・軽くなる業務・次の行動」として再利用します。"
+        "公開やDB変更が必要な事業は、ビルド、差分確認、本番URL確認を通してから反映します。</p>"
+        "</div>"
+    )
+
+
 def _render_profile() -> str:
     avatar = (_load_speaker() or {}).get("avatar_url") or ""
     if avatar:
@@ -10587,6 +11020,7 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append(f"<link rel='canonical' href='{html.escape(SITE_URL + '/', quote=True)}'>")
     parts.append(_build_ogp(title, desc, SITE_URL + "/"))
     parts.append(f"<script type='application/ld+json'>{_build_jsonld_website()}</script>")
+    parts.append(f"<script type='application/ld+json' id='business-compass-jsonld'>{_build_business_compass_jsonld()}</script>")
     parts.append(f"<style>{PORTAL_CSS}{BLOG_TEASER_CSS}</style>")
     parts.append("</head><body>")
 
@@ -10636,6 +11070,13 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append("<h2 class='section-title fade-up d1'>ホームページ制作も、提案書のように見せる</h2>")
     parts.append("<p class='section-sub fade-up d2'>店舗LP、企業サイト、EC、講習資料、管理画面、SNS改善まで。「こんなものも作れます」を、用途別の完成イメージとしてわかりやすく提示します。</p>")
     parts.append(_render_web_showcase())
+    parts.append("</section>")
+
+    parts.append("<section class='block' id='business-compass'>")
+    parts.append("<p class='section-heading fade-up'>BUSINESS COMPASS</p>")
+    parts.append("<h2 class='section-title fade-up d1'>全事業を、悩みから選べる入口にする</h2>")
+    parts.append("<p class='section-sub fade-up d2'>各事業サイトを直接見に行く前に、誰に向けて、何の悩みを解決し、どの行動へ進めばよいかを1画面で整理します。</p>")
+    parts.append(_render_business_compass())
     parts.append("</section>")
 
     parts.append(_render_blog_teaser())

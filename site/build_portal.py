@@ -8496,6 +8496,121 @@ section.block::before {
     opacity: .90;
   }
 }
+
+.ai-course-video-block {
+  padding-top: clamp(28px, 5vw, 54px);
+}
+
+.ai-course-video-feature {
+  display: grid;
+  grid-template-columns: minmax(0, .92fr) minmax(360px, 1.08fr);
+  gap: clamp(18px, 3vw, 34px);
+  align-items: center;
+  padding: clamp(18px, 3vw, 30px);
+  border: 1px solid rgba(7, 20, 38, .12);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.94), rgba(248,252,255,.88)),
+    radial-gradient(circle at 8% 14%, rgba(14,165,168,.16), rgba(14,165,168,0) 34%),
+    radial-gradient(circle at 88% 76%, rgba(124,58,237,.12), rgba(124,58,237,0) 36%);
+  box-shadow: 10px 10px 0 rgba(7,20,38,.045), 0 24px 70px rgba(7,20,38,.10);
+}
+
+.ai-course-video-copy {
+  min-width: 0;
+}
+
+.ai-course-video-copy .section-heading,
+.ai-course-video-copy .section-title,
+.ai-course-video-copy .section-sub {
+  text-align: left;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.ai-course-video-copy .section-title {
+  max-width: 720px;
+}
+
+.ai-course-video-copy .section-sub {
+  max-width: 700px;
+}
+
+.ai-course-video-points {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  padding: 0;
+  margin: 18px 0 20px;
+  list-style: none;
+}
+
+.ai-course-video-points li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid rgba(7,20,38,.10);
+  border-radius: 8px;
+  background: rgba(255,255,255,.76);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 850;
+  line-height: 1.45;
+}
+
+.ai-course-video-points li::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  flex: 0 0 9px;
+  border-radius: 999px;
+  background: var(--primary);
+  box-shadow: 0 0 0 4px rgba(14,165,168,.12);
+}
+
+.ai-course-video-panel {
+  min-width: 0;
+}
+
+.ai-course-video-frame {
+  margin: 0;
+  padding: 8px;
+  border-radius: 8px;
+  background: #071426;
+  box-shadow: 0 18px 52px rgba(7,20,38,.20);
+}
+
+.ai-course-video-frame video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 6px;
+  background: #000;
+}
+
+.ai-course-video-frame figcaption {
+  margin: 8px 4px 2px;
+  color: rgba(230,241,255,.82);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+@media (max-width: 980px) {
+  .ai-course-video-feature {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .ai-course-video-feature {
+    padding: 14px;
+  }
+  .ai-course-video-points {
+    grid-template-columns: 1fr;
+  }
+}
 """
 
 
@@ -9294,6 +9409,45 @@ def _render_hero() -> str:
         f"<b class='atlas-live-title'>{html.escape(first_item['title'])}</b>"
         f"<p class='atlas-live-desc'>{html.escape(first_item['desc'])}</p>"
         f"<a class='atlas-live-cta' href='{html.escape(first_item['href'], quote=True)}'>{html.escape(first_item['cta'])}</a>"
+        "</div>"
+        "</div>"
+        "</section>"
+    )
+
+
+def _render_ai_course_video_feature() -> str:
+    video_src = "/media/ai-consult-hikone-20260629/ai-consult-hikone-course.webm"
+    poster_src = "/media/ai-consult-hikone-20260629/ai-consult-hikone-poster.png"
+    captions_src = "/media/ai-consult-hikone-20260629/ai-consult-hikone-captions.vtt"
+    return (
+        "<section class='block ai-course-video-block' id='ai-course-video'>"
+        "<div class='ai-course-video-feature'>"
+        "<div class='ai-course-video-copy fade-up'>"
+        "<p class='section-heading'>FEATURE VIDEO</p>"
+        "<h2 class='section-title'>AI講座の全体像を動画で見る</h2>"
+        "<p class='section-sub'>"
+        "なぜ彦根でAI講座を行うのか。CodexやAIエージェントの考え方を、2時間から6時間でどう現場に入れるのか。"
+        "講師の実践力、低コスト、成果物が残る講座設計を1本にまとめました。"
+        "</p>"
+        "<ul class='ai-course-video-points'>"
+        "<li>地域事業者・学校・福祉・個人事業主向け</li>"
+        "<li>Codex / AIエージェント / ループ改善</li>"
+        "<li>5,500円から始められる実践講座</li>"
+        "<li>SNS投稿・HP改善・業務アプリまで成果物化</li>"
+        "</ul>"
+        "<div class='section-more'>"
+        "<a class='btn btn-primary' href='/blog/2026-06-29-ai-consult-hikone-practical-ai-course.html'>ブログで詳しく読む →</a>"
+        "<a class='btn btn-secondary' href='#packages'>受講プランを見る</a>"
+        "</div>"
+        "</div>"
+        "<div class='ai-course-video-panel fade-up d2'>"
+        "<figure class='ai-course-video-frame'>"
+        f"<video controls playsinline preload='metadata' poster='{poster_src}'>"
+        f"<source src='{video_src}' type='video/webm'>"
+        f"<track src='{captions_src}' kind='captions' srclang='ja' label='日本語字幕' default>"
+        "</video>"
+        "<figcaption>字幕付きの講座ダイジェスト。目的、対象者、成果物、費用感を1分12秒で確認できます。</figcaption>"
+        "</figure>"
         "</div>"
         "</div>"
         "</section>"
@@ -11030,6 +11184,7 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append(ADMIN_BUTTON_HTML)
 
     parts.append(_render_hero())
+    parts.append(_render_ai_course_video_feature())
 
     # 1. 最新データから、講習が必要な理由を先に見せる
     parts.append("<section class='block block-tight' id='why-now'>")

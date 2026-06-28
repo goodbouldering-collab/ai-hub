@@ -199,17 +199,17 @@ nav.top-nav .run-btn:disabled { opacity:.6; cursor:not-allowed; }
 .run-status.ok { color:#047857; }
 .run-status.err { color:#b91c1c; }
 
-/* ---- compact solid command header override for generated pages ---- */
+/* ---- compact glass command header override for generated pages ---- */
 html { scroll-padding-top: 78px; }
 [id] { scroll-margin-top: 78px; }
 header.site-header,
 header.site-header.scrolled {
   min-height: 62px;
-  background: linear-gradient(135deg, #FFFFFF 0%, #F7FBFC 100%);
-  border-bottom: 1px solid rgba(7,20,38,.18);
-  box-shadow: 0 16px 42px rgba(7,20,38,.13), inset 0 1px 0 rgba(255,255,255,.96);
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
+  background: linear-gradient(135deg, rgba(255,255,255,.92), rgba(247,252,253,.84));
+  border-bottom: 1px solid rgba(7,20,38,.13);
+  box-shadow: 0 10px 34px rgba(7,20,38,.08), inset 0 1px 0 rgba(255,255,255,.92);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
 }
 .site-header-inner {
   min-height: 62px;
@@ -224,11 +224,6 @@ nav.top-nav {
   flex-wrap: nowrap;
   justify-content: flex-end;
   gap: 6px;
-  padding: 4px;
-  border: 1px solid rgba(7,22,43,.12);
-  border-radius: 10px;
-  background: #fff;
-  box-shadow: 0 8px 22px rgba(7,22,43,.08), inset 0 1px 0 rgba(255,255,255,.98);
 }
 nav.top-nav .nav-link {
   min-height: 36px;
@@ -237,8 +232,7 @@ nav.top-nav .nav-link {
   padding: 0 10px;
   border-radius: 8px;
   border: 1px solid transparent;
-  color: #15243A;
-  background: rgba(248,252,253,.94);
+  color: #223148;
   text-decoration: none;
   font-size: 12.5px;
   font-weight: 850;
@@ -252,19 +246,16 @@ nav.top-nav .nav-link:focus-visible {
   outline: none;
 }
 nav.top-nav .nav-current {
-  color: #064E63;
-  background: linear-gradient(180deg, #F5FEFF, #ECFAFC);
-  border-color: rgba(0,184,212,.30);
+  color: #075e67;
+  background: rgba(14,165,198,.12);
+  border-color: rgba(14,165,198,.26);
   box-shadow: none;
-}
-nav.top-nav .nav-admin {
-  color: #405166;
 }
 .nav-cta {
   min-height: 38px;
   padding: 0 14px;
-  background: linear-gradient(135deg, #0B5C74 0%, #0E876F 100%);
-  box-shadow: 0 14px 34px rgba(11,92,116,.22), inset 0 1px 0 rgba(255,255,255,.22);
+  background: linear-gradient(135deg, #F26655, #D99A20);
+  box-shadow: 0 12px 28px rgba(242,102,85,.20), inset 0 1px 0 rgba(255,255,255,.28);
 }
 .mobile-toggle {
   display: none;
@@ -335,11 +326,15 @@ nav.top-nav .nav-admin {
   font-size: 13px;
   font-weight: 850;
 }
-.mobile-nav .login-btn-mobile,
-.mobile-nav .mobile-main-link {
-  background: linear-gradient(135deg, #0B5C74 0%, #0E876F 100%);
+.mobile-nav .login-btn-mobile {
+  background: linear-gradient(135deg, #F26655, #D99A20);
   color: #fff;
   border-color: transparent;
+}
+.mobile-nav .mobile-main-link,
+.mobile-nav a[href="/programming-map.html"] {
+  background: rgba(14,165,198,.10);
+  color: #075E67;
 }
 .mobile-nav .mobile-admin-link {
   grid-column: 1 / -1;
@@ -735,65 +730,19 @@ footer {
 .pf-card {
   display: flex;
   flex-direction: column;
-  background:
-    linear-gradient(135deg, rgba(255,255,255,.74), rgba(255,255,255,.46)),
-    linear-gradient(135deg, rgba(14,165,198,.06), rgba(242,102,85,.04));
-  border: 1px solid rgba(255,255,255,.50);
-  border-radius: 8px;
+  background: #fff;
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
   padding: 14px 16px 12px;
-  overflow: hidden;
   transition: transform .15s, border-color .15s, box-shadow .15s;
   text-decoration: none;
   color: inherit;
   min-height: 150px;
-  box-shadow: 0 18px 48px rgba(15,23,42,.10), inset 0 1px 0 rgba(255,255,255,.74);
-  backdrop-filter: blur(20px) saturate(150%);
-  -webkit-backdrop-filter: blur(20px) saturate(150%);
 }
 .pf-card:hover {
   transform: translateY(-2px);
-  border-color: rgba(14,165,198,.30);
+  border-color: rgba(37,99,235,.40);
   box-shadow: var(--shadow-card-hover);
-}
-.pf-card .pf-thumb {
-  position: relative;
-  display: block;
-  margin: -14px -16px 12px;
-  aspect-ratio: 32 / 15;
-  overflow: hidden;
-  border-radius: 8px 8px 0 0;
-  background:
-    linear-gradient(135deg, rgba(255,255,255,.78), rgba(226,247,244,.56)),
-    linear-gradient(120deg, rgba(14,165,198,.10), rgba(146,200,62,.08));
-}
-.pf-card .pf-thumb img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  object-position: top center;
-}
-.pf-card .pf-thumb::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto;
-  z-index: 2;
-  height: 18px;
-  background:
-    radial-gradient(circle at 10px 9px, #EF6864 0 3px, transparent 3.4px),
-    radial-gradient(circle at 22px 9px, #F5B445 0 3px, transparent 3.4px),
-    radial-gradient(circle at 34px 9px, #46B87A 0 3px, transparent 3.4px),
-    linear-gradient(180deg, rgba(255,255,255,.94), rgba(244,248,249,.76));
-  border-bottom: 1px solid rgba(18,32,51,.10);
-  pointer-events: none;
-}
-.pf-card .pf-thumb::after {
-  content: "";
-  position: absolute;
-  inset: 18px 0 0;
-  z-index: 2;
-  background: linear-gradient(180deg, transparent 62%, rgba(7,20,38,.16));
-  pointer-events: none;
 }
 .pf-card .pf-title {
   font-weight: 800;
@@ -1733,49 +1682,13 @@ header.site-header.scrolled {
 .site-nav .menu-drop {
   position: absolute; right: 0; top: calc(100% + 14px);
   min-width: 240px; padding: 8px;
-  background:
-    linear-gradient(135deg, rgba(255,255,255,.78), rgba(241,249,248,.58)),
-    linear-gradient(160deg, rgba(14,165,198,.08), rgba(242,102,85,.05)) !important;
-  border: 1px solid rgba(255,255,255,.48);
+  background: #FEFFFF !important; border: 1px solid rgba(18,32,51,.18);
   border-radius: var(--radius-sm);
   box-shadow: 0 18px 44px rgba(18,32,51,.16), inset 0 1px 0 rgba(255,255,255,.95);
-  backdrop-filter: blur(22px) saturate(160%);
-  -webkit-backdrop-filter: blur(22px) saturate(160%);
+  backdrop-filter: none;
   display: none;
 }
 .site-nav .menu-drop.open { display: block; }
-.site-nav .menu-drop-visual {
-  display: grid;
-  grid-template-columns: 46px minmax(0, 1fr);
-  gap: 10px;
-  align-items: center;
-  margin: 0 0 8px;
-  padding: 8px;
-  border-radius: 10px;
-  background: rgba(255,255,255,.62);
-  border: 1px solid rgba(255,255,255,.54);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.72);
-}
-.site-nav .menu-drop-visual img {
-  width: 46px;
-  height: 46px;
-  display: block;
-  object-fit: cover;
-  border-radius: 10px;
-}
-.site-nav .menu-drop-visual strong {
-  display: block;
-  color: #122033;
-  font-size: 13px;
-  line-height: 1.25;
-}
-.site-nav .menu-drop-visual span {
-  display: block;
-  margin-top: 2px;
-  color: #607086;
-  font-size: 11px;
-  line-height: 1.4;
-}
 .site-nav .menu-drop-label {
   display: block; padding: 7px 14px 4px;
   font-size: 10px; font-weight: 900; letter-spacing: .14em;
@@ -1801,7 +1714,7 @@ header.site-header.scrolled {
   color: #0F5F78;
   border-color: rgba(31,110,140,.24);
 }
-/* ヘッダー右端の主CTA: 無料相談（グラデ・最も目立たせる） */
+/* ヘッダー右端の主CTA: 個別相談 */
 .site-nav .nav-cta {
   display: inline-flex; align-items: center; gap: 6px;
   padding: 10px 18px; border-radius: var(--radius-sm);
@@ -3384,7 +3297,7 @@ section.block + section.block { border-top: 1px solid var(--line); }
 .explore-cta { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--primary-soft); margin-top: 6px; }
 
 /* ---- contact choices (メール / LINE の2導線) ---- */
-/* 主導線: 無料相談の予約カード（大きく・グラデで最優先） */
+/* 主導線: 個別相談の予約カード */
 .contact-primary {
   display: flex; align-items: center; gap: 18px;
   max-width: 680px; margin: 0 auto; padding: 22px 26px;
@@ -3545,40 +3458,11 @@ footer.site-footer {
   box-shadow: var(--shadow-card-hover);
 }
 .pf-card .pf-thumb {
-  position: relative;
   display: block; margin: -14px -16px 12px; /* カード内パディングを打ち消して全幅バナーに */
   border-radius: var(--radius-sm) var(--radius-sm) 0 0; overflow: hidden;
-  aspect-ratio: 32 / 15;
-  background:
-    linear-gradient(135deg, rgba(255,255,255,.78), rgba(226,247,244,.56)),
-    linear-gradient(120deg, rgba(14,165,198,.10), rgba(146,200,62,.08));
+  aspect-ratio: 16 / 9; background: var(--bg-elev);
 }
-.pf-card .pf-thumb svg, .pf-card .pf-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
-.pf-card .pf-thumb.is-site-shot {
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.82);
-}
-.pf-card .pf-thumb.is-site-shot::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto;
-  z-index: 2;
-  height: 18px;
-  background:
-    radial-gradient(circle at 10px 9px, #EF6864 0 3px, transparent 3.4px),
-    radial-gradient(circle at 22px 9px, #F5B445 0 3px, transparent 3.4px),
-    radial-gradient(circle at 34px 9px, #46B87A 0 3px, transparent 3.4px),
-    linear-gradient(180deg, rgba(255,255,255,.94), rgba(244,248,249,.76));
-  border-bottom: 1px solid rgba(18,32,51,.10);
-  pointer-events: none;
-}
-.pf-card .pf-thumb.is-site-shot::after {
-  content: "";
-  position: absolute;
-  inset: 18px 0 0;
-  z-index: 2;
-  background: linear-gradient(180deg, transparent 62%, rgba(7,20,38,.16));
-  pointer-events: none;
-}
+.pf-card .pf-thumb svg, .pf-card .pf-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .pf-card .pf-title { font-weight: 800; font-size: 15px; color: var(--text); }
 .pf-card .pf-host { font-size: 11.5px; color: var(--muted); margin-top: 2px; word-break: break-all; }
 .pf-card .pf-sum { font-size: 13px; color: var(--text-soft); line-height: 1.55; margin: 8px 0 10px; flex: 1; }
@@ -5486,112 +5370,9 @@ section.block.block-tight {
   font-weight: 800;
 }
 
-.choice-lens {
-  margin-top: 18px;
-  display: grid;
-  grid-template-columns: .78fr 1fr .92fr;
-  gap: 0;
-  overflow: hidden;
-  border: 1px solid rgba(18,32,51,.13);
-  border-radius: 14px;
-  background: rgba(255,255,255,.94);
-  box-shadow: var(--shadow-card);
-}
-
-.choice-lens-head,
-.choice-lens-row {
-  display: contents;
-}
-
-.choice-lens-head span,
-.choice-lens-row > * {
-  padding: 12px 14px;
-  border-right: 1px solid rgba(18,32,51,.09);
-  border-bottom: 1px solid rgba(18,32,51,.09);
-}
-
-.choice-lens-head span {
-  background: #071426;
-  color: #FFFFFF;
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: .08em;
-}
-
-.choice-lens-row:last-child > * {
-  border-bottom: 0;
-}
-
-.choice-lens-head span:last-child,
-.choice-lens-row > *:last-child {
-  border-right: 0;
-}
-
-.choice-lens-state {
-  color: var(--text);
-  font-size: 13.5px;
-  font-weight: 900;
-  line-height: 1.55;
-}
-
-.choice-lens-reco {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  color: var(--text);
-  font-size: 13px;
-  font-weight: 850;
-  line-height: 1.5;
-}
-
-.choice-lens-reco small {
-  color: #0F5F78;
-  font-family: var(--mono);
-  font-size: 10.5px;
-  font-weight: 900;
-  letter-spacing: .06em;
-}
-
-.choice-lens-proof {
-  color: var(--text-soft);
-  font-size: 12.5px;
-  line-height: 1.65;
-}
-
 @media (max-width: 980px) {
   .path-grid {
     grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 760px) {
-  .choice-lens {
-    grid-template-columns: 1fr;
-  }
-
-  .choice-lens-head {
-    display: none;
-  }
-
-  .choice-lens-row {
-    display: grid;
-    gap: 0;
-    padding: 12px;
-    border-bottom: 1px solid rgba(18,32,51,.09);
-  }
-
-  .choice-lens-row:last-child {
-    border-bottom: 0;
-  }
-
-  .choice-lens-row > * {
-    padding: 3px 0;
-    border: 0;
-  }
-
-  .choice-lens-reco {
-    margin-top: 4px;
   }
 }
 
@@ -7032,8 +6813,7 @@ body {
 }
 
 .site-nav {
-  flex: 0 0 auto !important;
-  margin-left: auto !important;
+  flex: 1 1 auto;
   justify-content: flex-end;
   flex-wrap: nowrap !important;
   gap: 6px !important;
@@ -7088,19 +6868,6 @@ body {
   background: rgba(255,255,255,.96) !important;
   border-color: rgba(7,20,38,.12) !important;
   box-shadow: 0 24px 62px rgba(7,20,38,.15), inset 0 1px 0 rgba(255,255,255,.96) !important;
-}
-
-.mobile-nav.open {
-  background: #FFFFFF !important;
-  border-top: 1px solid rgba(7,20,38,.16) !important;
-  box-shadow: 0 22px 48px rgba(7,20,38,.18) !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-}
-
-.mobile-nav-panel {
-  background: #FFFFFF !important;
-  border-radius: 0 0 12px 12px;
 }
 
 .hero.hero-atlas {
@@ -7496,200 +7263,240 @@ button:focus-visible {
 }
 
 
-/* ---- Human-led glass polish, 2026-06-22 ---- */
-body {
-  background:
-    linear-gradient(116deg, rgba(14,165,198,.08) 0%, transparent 34%),
-    linear-gradient(244deg, rgba(242,102,85,.07) 0%, transparent 36%),
-    linear-gradient(180deg, #FFFFFF 0%, #F7FBFA 46%, #EEF7F4 100%) !important;
+/* ---- Decision-first header and path selector, 2026-06-21 ---- */
+.site-header,
+.site-header.scrolled,
+.site-header:hover {
+  background: linear-gradient(135deg, rgba(255,255,255,.97), rgba(244,251,253,.93)) !important;
+  border-bottom-color: rgba(7,20,38,.18) !important;
+  box-shadow: 0 14px 38px rgba(7,20,38,.12), inset 0 1px 0 rgba(255,255,255,.98) !important;
 }
 
-body::before {
-  background:
-    linear-gradient(90deg, rgba(18,32,51,.026) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(18,32,51,.018) 1px, transparent 1px),
-    linear-gradient(125deg, transparent 0 48%, rgba(14,165,198,.055) 48% 49%, transparent 49% 100%) !important;
-  background-size: 96px 96px, 96px 96px, 220px 220px !important;
+.site-nav {
+  flex: 0 0 auto !important;
+  margin-left: auto !important;
+  background: rgba(255,255,255,.78) !important;
+  border: 1px solid rgba(7,20,38,.13) !important;
 }
 
-header.site-header,
-header.site-header.scrolled {
-  background:
-    linear-gradient(90deg, rgba(255,255,255,.76), rgba(244,251,250,.56)) !important;
-  border-bottom: 1px solid rgba(255,255,255,.52) !important;
-  box-shadow: 0 18px 46px rgba(18,32,51,.09), inset 0 1px 0 rgba(255,255,255,.78) !important;
-  backdrop-filter: blur(24px) saturate(165%) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(165%) !important;
+.site-nav a.nav-link:hover,
+.site-nav a.nav-link:focus-visible,
+.site-nav .menu-toggle:hover,
+.site-nav .menu-toggle:focus-visible {
+  background: #071426 !important;
+  color: #FFFFFF !important;
+  border-color: #071426 !important;
+  box-shadow: 0 12px 24px rgba(7,20,38,.14) !important;
 }
 
-.site-nav,
-.mobile-nav {
-  background:
-    linear-gradient(135deg, rgba(255,255,255,.56), rgba(244,251,250,.36)) !important;
-  border-color: rgba(255,255,255,.50) !important;
-  box-shadow: 0 14px 34px rgba(18,32,51,.07), inset 0 1px 0 rgba(255,255,255,.70) !important;
-  backdrop-filter: blur(22px) saturate(155%) !important;
-  -webkit-backdrop-filter: blur(22px) saturate(155%) !important;
+.site-nav a.nav-link.nav-essential[href="#packages"] {
+  background: rgba(7,20,38,.92) !important;
+  color: #FFFFFF !important;
+  border-color: rgba(7,20,38,.92) !important;
 }
 
-.biz-card, .service-card, .pkg-card, .faq-item, .stat,
-.lecture-card, .pf-card, .voice-card, .explore-card, .contact-choice,
-.specialist-lead-card, .specialist-card, .blog-feature, .blog-list-card,
-.route-card, .path-card, .flow-card, .tr-card, .profile-tech-card {
-  background:
-    linear-gradient(135deg, rgba(255,255,255,.68), rgba(255,255,255,.40)),
-    linear-gradient(135deg, rgba(14,165,198,.055), rgba(242,102,85,.045)) !important;
-  border-color: rgba(255,255,255,.48) !important;
-  box-shadow: 0 20px 54px rgba(18,32,51,.10), inset 0 1px 0 rgba(255,255,255,.72) !important;
-  backdrop-filter: blur(22px) saturate(158%) !important;
-  -webkit-backdrop-filter: blur(22px) saturate(158%) !important;
+.site-nav a.nav-link.nav-essential[href="#lesson-bridge"] {
+  background: rgba(230,0,18,.10) !important;
+  color: #8C0010 !important;
+  border-color: rgba(230,0,18,.24) !important;
 }
 
-.biz-card:hover, .service-card:hover, .pkg-card:hover, .pf-card:hover,
-.lecture-card:hover, .blog-list-card:hover, .contact-choice:hover {
-  border-color: rgba(14,165,198,.28) !important;
-  box-shadow: 0 28px 70px rgba(18,32,51,.14), inset 0 1px 0 rgba(255,255,255,.82) !important;
+.site-nav a.nav-link.nav-essential[href="#lectures"] {
+  background: rgba(146,200,62,.14) !important;
+  color: #35560F !important;
+  border-color: rgba(146,200,62,.26) !important;
 }
 
-.pf-card {
-  padding: 14px 16px 13px !important;
-  overflow: hidden;
+.mobile-nav.open {
+  border-top: 1px solid rgba(7,20,38,.14);
+  box-shadow: 0 22px 46px rgba(7,20,38,.16);
 }
 
-.pf-card .pf-thumb {
-  margin: -14px -16px 13px !important;
-  border-radius: 8px 8px 0 0 !important;
+.path-grid {
+  align-items: stretch;
 }
 
-.pf-card .pf-title {
-  color: #122033 !important;
+.path-card {
+  min-height: 248px !important;
+  padding: 20px !important;
+  border-color: rgba(7,20,38,.14) !important;
+  box-shadow: 0 18px 42px rgba(7,20,38,.09), inset 0 1px 0 rgba(255,255,255,.94) !important;
 }
 
-.pf-card .pf-chip {
-  background: rgba(255,255,255,.58) !important;
-  border-color: rgba(18,32,51,.10) !important;
-  color: #0F5F78 !important;
-}
+.path-card:nth-child(1) { --path-accent: #F26655; }
+.path-card:nth-child(2) { --path-accent: #0EA5C6; }
+.path-card:nth-child(3) { --path-accent: #92C83E; }
 
-.section-heading {
-  color: #0F5F78 !important;
-}
-
-.hero-proof-grid,
-.hero-proof,
-.web-showcase,
-.web-browser,
-.web-mini-panel {
-  background:
-    linear-gradient(135deg, rgba(255,255,255,.62), rgba(255,255,255,.30)),
-    linear-gradient(135deg, rgba(14,165,198,.07), rgba(146,200,62,.055)) !important;
-  border-color: rgba(255,255,255,.46) !important;
-  backdrop-filter: blur(22px) saturate(155%) !important;
-  -webkit-backdrop-filter: blur(22px) saturate(155%) !important;
-}
-
-
-/* ---- Mac glass bento section separation, 2026-06-24 ---- */
-.block {
-  position: relative;
-  margin-block: clamp(28px, 5vw, 58px);
-  padding-block: clamp(34px, 5.5vw, 72px);
-  isolation: isolate;
-}
-
-.block::before {
+.path-card::before {
   content: "";
   position: absolute;
-  inset: 0 calc(50% - 50vw);
-  z-index: -1;
-  background:
-    linear-gradient(135deg, rgba(255,255,255,.64), rgba(255,255,255,.26)),
-    linear-gradient(90deg, var(--section-accent, rgba(14,165,198,.10)), transparent 34%, rgba(242,102,85,.07));
-  border-top: 1px solid rgba(255,255,255,.62);
-  border-bottom: 1px solid rgba(18,32,51,.08);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.78), 0 18px 54px rgba(18,32,51,.06);
-  backdrop-filter: blur(18px) saturate(145%);
-  -webkit-backdrop-filter: blur(18px) saturate(145%);
+  inset: 0 0 auto;
+  height: 6px;
+  background: var(--path-accent, #0EA5C6);
 }
 
-.block::after {
-  content: "";
-  position: absolute;
-  inset: clamp(18px, 3vw, 32px) calc(50% - 50vw) auto;
-  height: 1px;
-  z-index: -1;
-  background: linear-gradient(90deg, transparent, rgba(14,165,198,.26), transparent);
+.path-card:hover,
+.path-card:focus-visible {
+  border-color: color-mix(in srgb, var(--path-accent, #0EA5C6) 44%, rgba(7,20,38,.14)) !important;
+  box-shadow: 0 24px 58px rgba(7,20,38,.14), 0 0 0 4px color-mix(in srgb, var(--path-accent, #0EA5C6) 14%, transparent) !important;
 }
 
-.block-tight {
-  margin-top: clamp(18px, 3vw, 38px);
-}
-
-.block .section-heading {
+.path-persona {
+  display: inline-flex;
   width: fit-content;
-  min-height: 30px;
-  padding: 5px 12px;
-  border-radius: 8px;
-  background: rgba(255,255,255,.64);
-  border: 1px solid rgba(255,255,255,.72);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.82), 0 10px 24px rgba(18,32,51,.07);
-  backdrop-filter: blur(16px) saturate(150%);
-  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  margin-top: -2px;
+  color: #071426;
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1.35;
 }
 
-.block .section-title,
-.block .section-sub {
-  max-width: 920px;
-}
-
-#specialist { --section-accent: rgba(14,165,198,.14); }
-#blog { --section-accent: rgba(114,92,255,.12); }
-#start { --section-accent: rgba(146,200,62,.14); }
-#packages { --section-accent: rgba(242,102,85,.12); }
-#web-showcase { --section-accent: rgba(0,184,212,.13); }
-#works { --section-accent: rgba(217,154,32,.13); }
-#flow { --section-accent: rgba(17,163,127,.12); }
-#lectures { --section-accent: rgba(114,92,255,.10); }
-#speaker { --section-accent: rgba(14,165,198,.11); }
-#faq { --section-accent: rgba(146,200,62,.11); }
-#growth { --section-accent: rgba(242,102,85,.10); }
-#contact { --section-accent: rgba(0,140,172,.15); }
-
-.path-grid,
-.pkg-grid,
-.service-grid,
-.lecture-grid,
-.pf-grid,
-.flow-list,
-.faq-list,
-.growth-layout,
-.blog-list,
-.specialist-card-list {
-  gap: clamp(12px, 1.8vw, 20px) !important;
-}
-
-.path-card,
-.pkg-card,
-.service-card,
-.lecture-card,
-.pf-card,
-.flow-step,
-.faq-item,
-.growth-panel,
-.blog-list-card,
-.specialist-card,
-.specialist-lead-card,
-.blog-feature {
+.path-meta,
+.path-proof {
   border-radius: 8px !important;
 }
 
+.path-meta {
+  background: color-mix(in srgb, var(--path-accent, #0EA5C6) 12%, #FFFFFF) !important;
+  border-color: color-mix(in srgb, var(--path-accent, #0EA5C6) 25%, rgba(7,20,38,.12)) !important;
+  color: color-mix(in srgb, var(--path-accent, #0EA5C6) 70%, #071426) !important;
+}
+
+.path-proof {
+  display: inline-flex;
+  width: fit-content;
+  padding: 5px 9px;
+  background: rgba(7,20,38,.045);
+  border: 1px solid rgba(7,20,38,.08);
+  color: #405166;
+  font-size: 11.5px;
+  font-weight: 800;
+}
+
+.path-cta {
+  margin-top: 2px;
+}
+
+.path-card:hover .path-cta,
+.path-card:focus-visible .path-cta {
+  color: color-mix(in srgb, var(--path-accent, #0EA5C6) 78%, #071426) !important;
+}
+
+.choice-lens {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: .78fr 1fr .92fr;
+  gap: 0;
+  overflow: hidden;
+  border: 1px solid rgba(7,20,38,.13);
+  border-radius: 8px;
+  background: rgba(255,255,255,.92);
+  box-shadow: 0 18px 42px rgba(7,20,38,.08), inset 0 1px 0 rgba(255,255,255,.96);
+}
+
+.choice-lens-head,
+.choice-lens-row {
+  display: contents;
+}
+
+.choice-lens-head span,
+.choice-lens-row > * {
+  padding: 12px 14px;
+  border-right: 1px solid rgba(7,20,38,.09);
+  border-bottom: 1px solid rgba(7,20,38,.09);
+}
+
+.choice-lens-head span {
+  background: #071426;
+  color: #FFFFFF;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .08em;
+}
+
+.choice-lens-row:last-child > * {
+  border-bottom: 0;
+}
+
+.choice-lens-head span:last-child,
+.choice-lens-row > *:last-child {
+  border-right: 0;
+}
+
+.choice-lens-state {
+  color: #071426;
+  font-size: 13.5px;
+  font-weight: 900;
+  line-height: 1.55;
+}
+
+.choice-lens-reco {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  color: #102033;
+  font-size: 13px;
+  font-weight: 850;
+  line-height: 1.5;
+}
+
+.choice-lens-reco small {
+  color: #0F5F78;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 900;
+  letter-spacing: .06em;
+}
+
+.choice-lens-proof {
+  color: #405166;
+  font-size: 12.5px;
+  line-height: 1.65;
+}
+
 @media (max-width: 760px) {
-  .block {
-    margin-block: 24px;
-    padding-block: 32px;
+  .choice-lens {
+    grid-template-columns: 1fr;
   }
-  .block::before {
-    inset-inline: -18px;
+
+  .choice-lens-head {
+    display: none;
+  }
+
+  .choice-lens-row {
+    display: grid;
+    gap: 0;
+    padding: 12px;
+    border-bottom: 1px solid rgba(7,20,38,.09);
+  }
+
+  .choice-lens-row:last-child {
+    border-bottom: 0;
+  }
+
+  .choice-lens-row > * {
+    padding: 3px 0;
+    border: 0;
+  }
+
+  .choice-lens-reco {
+    margin-top: 4px;
+  }
+}
+
+@media (max-width: 680px) {
+  .path-card {
+    min-height: 0 !important;
+    padding: 18px !important;
+  }
+
+  .path-card strong {
+    font-size: 20px !important;
+  }
+
+  .path-card p {
+    line-height: 1.7 !important;
   }
 }
 
@@ -7734,8 +7541,6 @@ nav.top-nav .nav-link,
   background: #FFFFFF !important;
   color: var(--menu-text) !important;
   border: 1px solid rgba(7,20,38,.12) !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
 }
 
 .site-nav a.nav-link:hover,
@@ -7764,6 +7569,9 @@ nav.top-nav .nav-link.nav-essential[href="/#packages"] {
 .site-nav a.nav-link.nav-essential[href="#lectures"],
 .site-nav a.nav-link.nav-essential[href="/#lectures"],
 nav.top-nav .nav-link.nav-essential[href="/#lectures"],
+.site-nav a.nav-link.nav-essential[href="#lesson-bridge"],
+.site-nav a.nav-link.nav-essential[href="/#lesson-bridge"],
+nav.top-nav .nav-link.nav-essential[href="/#lesson-bridge"],
 .site-nav a.nav-link[href="/programming-map.html"],
 nav.top-nav .nav-link[href="/programming-map.html"] {
   background: rgba(14,165,198,.10) !important;
@@ -7771,8 +7579,15 @@ nav.top-nav .nav-link[href="/programming-map.html"] {
   border-color: rgba(14,165,198,.24) !important;
 }
 
-.site-nav .menu-drop,
-.site-nav .admin-fixed-menu-drop {
+.site-nav a.nav-link.nav-essential[href="#lesson-bridge"],
+.site-nav a.nav-link.nav-essential[href="/#lesson-bridge"],
+nav.top-nav .nav-link.nav-essential[href="/#lesson-bridge"] {
+  background: rgba(230,0,18,.10) !important;
+  color: #8C0010 !important;
+  border-color: rgba(230,0,18,.26) !important;
+}
+
+.site-nav .menu-drop {
   background: var(--menu-surface) !important;
   color: var(--menu-text) !important;
   border: 1px solid var(--menu-border) !important;
@@ -7786,17 +7601,14 @@ nav.top-nav .nav-link[href="/programming-map.html"] {
   color: var(--menu-muted) !important;
 }
 
-.site-nav .menu-drop a,
-.site-nav .admin-fixed-menu-drop a {
+.site-nav .menu-drop a {
   background: #FFFFFF !important;
   color: var(--menu-text) !important;
   border-radius: 8px !important;
 }
 
 .site-nav .menu-drop a:hover,
-.site-nav .menu-drop a:focus-visible,
-.site-nav .admin-fixed-menu-drop a:hover,
-.site-nav .admin-fixed-menu-drop a:focus-visible {
+.site-nav .menu-drop a:focus-visible {
   background: var(--menu-focus) !important;
   color: #075E67 !important;
   outline: none !important;
@@ -7808,8 +7620,6 @@ nav.top-nav .nav-link[href="/programming-map.html"] {
   color: var(--menu-text) !important;
   border: 1px solid var(--menu-border) !important;
   box-shadow: 0 10px 24px rgba(7,20,38,.12) !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
 }
 
 .mobile-nav,
@@ -7858,93 +7668,1240 @@ nav.top-nav .nav-link[href="/programming-map.html"] {
   background: #F7FBFC !important;
 }
 
-/* ---- Shared solid generated menu surfaces, 2026-06-24 ---- */
+
+/* ---- Mac glass bento refresh, 2026-06-24 ---- */
+:root {
+  --mac-ink: #071426;
+  --mac-text: #122033;
+  --mac-muted: #536276;
+  --mac-line: rgba(7,20,38,.13);
+  --mac-line-strong: rgba(7,20,38,.20);
+  --mac-glass: rgba(255,255,255,.66);
+  --mac-glass-strong: rgba(255,255,255,.88);
+  --mac-cyan: #0EA5C6;
+  --mac-teal: #11A37F;
+  --mac-lime: #92C83E;
+  --mac-coral: #F26655;
+  --mac-amber: #D99A20;
+  --mac-shadow: 0 18px 48px rgba(7,20,38,.10), inset 0 1px 0 rgba(255,255,255,.92);
+}
+
+body {
+  background:
+    linear-gradient(90deg, rgba(7,20,38,.035) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(7,20,38,.025) 1px, transparent 1px),
+    linear-gradient(120deg, rgba(14,165,198,.10), transparent 32%),
+    linear-gradient(240deg, rgba(242,102,85,.08), transparent 34%),
+    linear-gradient(180deg, #FFFFFF 0%, #F5FBFC 46%, #FFFFFF 100%) !important;
+  background-size: 92px 92px, 92px 92px, auto, auto, auto !important;
+}
+
+.fusion-logo-large {
+  gap: 10px !important;
+  align-items: baseline !important;
+}
+
+.hero.hero-atlas .fusion-logo-large .ai {
+  color: var(--mac-ink) !important;
+  text-shadow: 0 1px 0 rgba(255,255,255,.72);
+}
+
+.hero.hero-atlas .fusion-logo-large .hub {
+  align-self: center;
+  padding: 7px 12px;
+  border: 1px solid rgba(7,20,38,.14);
+  border-radius: 999px;
+  background: rgba(255,255,255,.72) !important;
+  color: #075E67 !important;
+  font-size: clamp(15px, 1.5vw, 18px) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.9);
+}
+
+.hero-title-sub {
+  max-width: 680px;
+}
+
+.hero-proof,
+.atlas-live-card,
+.hero-route-card,
+.path-card,
+.choice-lens,
+.pkg-card,
+.lecture-card,
+.pf-card,
+.biz-card,
+.service-card,
+.voice-card,
+.faq-item,
+.growth-panel,
+.flow-step,
+.contact-primary,
+.blog-feature,
+.blog-card,
+.web-showcase {
+  background: var(--mac-glass) !important;
+  border: 1px solid rgba(255,255,255,.74) !important;
+  box-shadow: var(--mac-shadow) !important;
+  backdrop-filter: blur(18px) saturate(145%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(145%) !important;
+}
+
+section.block {
+  position: relative;
+  padding: clamp(58px, 7vw, 92px) 0 !important;
+  border-top: 0 !important;
+  scroll-margin-top: 92px;
+}
+
+section.block + section.block {
+  border-top: 0 !important;
+}
+
+section.block::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 18px;
+  bottom: 18px;
+  left: calc(50% - 50vw);
+  width: 100vw;
+  border-top: 1px solid rgba(7,20,38,.08);
+  border-bottom: 1px solid rgba(7,20,38,.08);
+  background:
+    linear-gradient(120deg, color-mix(in srgb, var(--section-accent, var(--mac-cyan)) 10%, transparent), transparent 34%),
+    linear-gradient(180deg, rgba(255,255,255,.56), rgba(255,255,255,.38));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.88), 0 24px 70px rgba(7,20,38,.045);
+  backdrop-filter: blur(14px) saturate(130%);
+  -webkit-backdrop-filter: blur(14px) saturate(130%);
+}
+
+section.block > * {
+  position: relative;
+  z-index: 1;
+}
+
+#start { --section-accent: var(--mac-coral); }
+#packages { --section-accent: var(--mac-cyan); }
+#web-showcase { --section-accent: var(--mac-amber); }
+#works { --section-accent: var(--mac-teal); }
+#flow { --section-accent: var(--mac-lime); }
+#lectures { --section-accent: var(--mac-cyan); }
+#speaker { --section-accent: var(--mac-coral); }
+#voices { --section-accent: var(--mac-lime); }
+#faq { --section-accent: var(--mac-teal); }
+#growth { --section-accent: var(--mac-amber); }
+#contact { --section-accent: var(--mac-coral); }
+
+.section-heading {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  padding: 5px 11px;
+  margin-left: 50% !important;
+  transform: translateX(-50%);
+  border: 1px solid color-mix(in srgb, var(--section-accent, var(--mac-cyan)) 26%, rgba(7,20,38,.10));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--section-accent, var(--mac-cyan)) 10%, rgba(255,255,255,.78));
+  color: color-mix(in srgb, var(--section-accent, var(--mac-cyan)) 78%, #071426) !important;
+  background-clip: border-box !important;
+  -webkit-background-clip: border-box !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.86);
+}
+
+.section-title {
+  max-width: 880px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 4px;
+  margin: 16px auto 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--section-accent, var(--mac-cyan)), color-mix(in srgb, var(--section-accent, var(--mac-cyan)) 45%, #FFFFFF));
+}
+
+.section-sub {
+  max-width: 760px !important;
+  margin-bottom: clamp(28px, 4vw, 44px) !important;
+}
+
+.packages-grid,
+.path-grid,
+.lecture-grid,
+.portfolio-grid,
+.voices-grid,
+.growth-layout,
+.blog-list {
+  gap: clamp(14px, 2vw, 22px) !important;
+}
+
+.hero-route-card,
+.path-card,
+.pkg-card,
+.lecture-card,
+.blog-card,
+.voice-card,
+.faq-item {
+  border-radius: 14px !important;
+}
+
+.hero-route-card::before,
+.path-card::before {
+  height: 4px !important;
+}
+
+.pkg-card:hover,
+.lecture-card:hover,
+.blog-card:hover,
+.hero-route-card:hover,
+.path-card:hover,
+.faq-item:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--section-accent, var(--mac-cyan)) 34%, rgba(7,20,38,.13)) !important;
+  box-shadow: 0 24px 62px rgba(7,20,38,.13), inset 0 1px 0 rgba(255,255,255,.94) !important;
+}
+
+@media (max-width: 680px) {
+  section.block {
+    padding: 48px 0 !important;
+  }
+
+  section.block::before {
+    top: 8px;
+    bottom: 8px;
+  }
+
+  .hero.hero-atlas .fusion-logo-large {
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 8px !important;
+  }
+
+  .hero.hero-atlas .fusion-logo-large .hub {
+    font-size: 13px !important;
+    padding: 5px 9px;
+  }
+}
+
+
+/* ---- Pop line-art refresh inspired by Sakana AI's airy homepage, 2026-06-25 ---- */
+:root {
+  --linepop-ink: #071426;
+  --linepop-text: #122033;
+  --linepop-muted: #536276;
+  --linepop-line: rgba(7,20,38,.18);
+  --linepop-cyan: #00A5C8;
+  --linepop-lime: #A6D83F;
+  --linepop-coral: #F26655;
+  --linepop-yellow: #FFD84D;
+  --linepop-shadow: 7px 7px 0 rgba(7,20,38,.045), 0 18px 42px rgba(7,20,38,.075);
+}
+
+body {
+  color: var(--linepop-text) !important;
+  background:
+    radial-gradient(circle at 10% 18%, rgba(255,216,77,.18), transparent 20rem),
+    radial-gradient(circle at 88% 9%, rgba(0,165,200,.14), transparent 22rem),
+    radial-gradient(circle at 78% 82%, rgba(242,102,85,.12), transparent 24rem),
+    linear-gradient(180deg, #FFFFFF 0%, #F9FDFF 46%, #FFFFFF 100%) !important;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: .42;
+  background-image:
+    url("data:image/svg+xml,%3Csvg width='460' height='260' viewBox='0 0 460 260' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23071426' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' opacity='.18'%3E%3Cpath d='M24 162c54-82 122-82 176 0s122 82 176 0'/%3E%3Cpath d='M56 96c34-38 74-38 108 0s74 38 108 0'/%3E%3Ccircle cx='92' cy='96' r='8'/%3E%3Ccircle cx='202' cy='162' r='9'/%3E%3Ccircle cx='334' cy='96' r='7'/%3E%3Cpath d='M390 138l28-12-8 28zM132 183l22-10-6 22z'/%3E%3C/g%3E%3C/svg%3E"),
+    linear-gradient(90deg, rgba(7,20,38,.035) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(7,20,38,.025) 1px, transparent 1px);
+  background-size: 460px 260px, 104px 104px, 104px 104px;
+  background-position: 8% 118px, 0 0, 0 0;
+}
+
+.site-header,
+.container,
+.sticky-cta {
+  position: relative;
+  z-index: 1;
+}
+
 header.site-header,
-header.site-header.scrolled,
 .site-header,
 .site-header.scrolled,
-.site-header:hover {
-  min-height: 62px !important;
-  background: linear-gradient(135deg, #FFFFFF 0%, #F7FBFC 100%) !important;
-  border-bottom: 1px solid rgba(7,20,38,.18) !important;
-  box-shadow: 0 16px 42px rgba(7,20,38,.13), inset 0 1px 0 rgba(255,255,255,.96) !important;
+.site-header:hover,
+.site-nav,
+nav.top-nav {
+  background: rgba(255,255,255,.96) !important;
+  border-color: var(--linepop-line) !important;
+  box-shadow: 0 10px 30px rgba(7,20,38,.07) !important;
+}
+
+.hero.hero-atlas::after {
+  background:
+    linear-gradient(100deg, rgba(255,255,255,.98) 0%, rgba(255,255,255,.92) 58%, rgba(255,255,255,.52) 100%),
+    radial-gradient(circle at calc(var(--mx, .72) * 100%) calc(var(--my, .36) * 100%), rgba(0,165,200,.16), transparent 20rem) !important;
+}
+
+.hero.hero-atlas .fusion-logo-large .hub,
+.site-nav a.nav-link,
+.site-nav .menu-toggle,
+.site-nav .nav-admin,
+.mobile-nav a {
+  border-radius: 999px !important;
+}
+
+.hero.hero-atlas .hero-title-sub strong,
+.boost-copy h2 strong {
+  background: linear-gradient(100deg, var(--linepop-ink) 0%, var(--linepop-cyan) 34%, var(--linepop-lime) 66%, var(--linepop-coral) 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+}
+
+section.block::before {
+  border-top: 1.5px solid rgba(7,20,38,.11) !important;
+  border-bottom: 1.5px solid rgba(7,20,38,.10) !important;
+  background:
+    url("data:image/svg+xml,%3Csvg width='420' height='180' viewBox='0 0 420 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%2300A5C8' stroke-width='2' stroke-linecap='round' opacity='.16'%3E%3Cpath d='M18 118c48-58 96-58 144 0s96 58 144 0 72-44 96-18'/%3E%3Cpath d='M72 62c28-22 56-22 84 0s56 22 84 0'/%3E%3C/g%3E%3C/svg%3E") right 12% top 18px / 420px 180px no-repeat,
+    linear-gradient(180deg, rgba(255,255,255,.84), rgba(255,255,255,.62)) !important;
+  box-shadow: none !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
 }
 
-.site-nav,
-nav.top-nav {
+.section-heading {
+  border-color: rgba(7,20,38,.18) !important;
   background: #FFFFFF !important;
-  border: 1px solid rgba(7,20,38,.18) !important;
-  box-shadow: 0 10px 26px rgba(7,20,38,.08), inset 0 1px 0 rgba(255,255,255,.96) !important;
+  color: var(--linepop-ink) !important;
+  box-shadow: 4px 4px 0 color-mix(in srgb, var(--section-accent, var(--linepop-cyan)) 28%, transparent) !important;
+}
+
+.section-title {
+  color: var(--linepop-ink) !important;
+}
+
+.section-title::after {
+  width: 74px !important;
+  height: 5px !important;
+  border-radius: 0 !important;
+  background: linear-gradient(90deg, var(--linepop-cyan), var(--linepop-lime) 48%, var(--linepop-coral)) !important;
+  box-shadow: 0 5px 0 rgba(255,216,77,.38);
+}
+
+.hero-proof,
+.atlas-live-card,
+.hero-route-card,
+.path-card,
+.choice-lens,
+.pkg-card,
+.lecture-card,
+.pf-card,
+.biz-card,
+.service-card,
+.voice-card,
+.faq-item,
+.growth-panel,
+.flow-step,
+.contact-primary,
+.blog-feature,
+.blog-card,
+.web-showcase,
+.boost-lab {
+  background: rgba(255,255,255,.94) !important;
+  border: 1.5px solid var(--linepop-line) !important;
+  box-shadow: var(--linepop-shadow) !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
+}
+
+.pf-card,
+.blog-card {
+  border-radius: 12px !important;
+}
+
+.pf-card::after,
+.blog-card::after,
+.pkg-card::after,
+.lecture-card::after,
+.path-card::after {
+  height: 4px !important;
+  background: linear-gradient(90deg, var(--linepop-cyan), var(--linepop-lime), var(--linepop-yellow), var(--linepop-coral)) !important;
+  opacity: .9 !important;
+}
+
+.pf-card .pf-thumb,
+.blog-card-media {
+  border-bottom: 1.5px solid rgba(7,20,38,.14);
+}
+
+.pf-card .pf-chip,
+.blog-card-meta span {
+  border-radius: 999px !important;
+  background: #FFFFFF !important;
+  border-color: rgba(7,20,38,.16) !important;
+  color: var(--linepop-ink) !important;
+}
+
+.pf-arrow {
+  background: #FFFFFF !important;
+  border: 1.5px solid var(--linepop-line) !important;
+  color: var(--linepop-ink) !important;
+  box-shadow: 4px 4px 0 rgba(7,20,38,.08), 0 10px 24px rgba(7,20,38,.10) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.pf-arrow:hover {
+  border-color: var(--linepop-cyan) !important;
+  box-shadow: 4px 4px 0 rgba(0,165,200,.18), 0 14px 28px rgba(7,20,38,.12) !important;
+}
+
+@media (max-width: 760px) {
+  body::before {
+    opacity: .28;
+    background-size: 360px 204px, 88px 88px, 88px 88px;
+  }
+}
+
+
+/* ---- AI data + Red Cross lesson bridge, 2026-06-25 ---- */
+:root {
+  --lesson-red: #E60012;
+  --lesson-blue: #0877C6;
+  --lesson-green: #00A676;
+  --lesson-amber: #F5B83D;
+  --lesson-ink: #071426;
+  --lesson-muted: #52647A;
+}
+
+#why-now { --section-accent: var(--lesson-blue); }
+#lesson-bridge { --section-accent: var(--lesson-red); }
+
+.ai-impact-board,
+.lesson-bridge-shell {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.74);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.82), rgba(255,255,255,.50)),
+    radial-gradient(circle at 12% 18%, rgba(8,119,198,.16), transparent 18rem),
+    radial-gradient(circle at 86% 12%, rgba(230,0,18,.12), transparent 17rem),
+    rgba(255,255,255,.56);
+  box-shadow: 0 28px 78px rgba(7,20,38,.12), inset 0 1px 0 rgba(255,255,255,.92);
+  backdrop-filter: blur(24px) saturate(155%);
+  -webkit-backdrop-filter: blur(24px) saturate(155%);
+}
+
+.ai-impact-board::before,
+.lesson-bridge-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .45;
+  background-image:
+    linear-gradient(90deg, rgba(7,20,38,.045) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(7,20,38,.035) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+.ai-impact-shell,
+.lesson-bridge-inner {
+  position: relative;
+  z-index: 1;
+  padding: clamp(18px, 3vw, 32px);
+}
+
+.ai-impact-top {
+  display: grid;
+  grid-template-columns: minmax(0, .88fr) minmax(280px, 1fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+.ai-impact-copy {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px;
+  border: 1px solid rgba(7,20,38,.10);
+  border-radius: 8px;
+  background: rgba(255,255,255,.72);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.88);
+}
+
+.ai-impact-kicker,
+.lesson-bridge-kicker {
+  width: fit-content;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: rgba(7,20,38,.92);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .08em;
+}
+
+.ai-impact-copy h3,
+.lesson-bridge-copy h3 {
+  margin: 0;
+  color: var(--lesson-ink);
+  font-size: clamp(24px, 3.2vw, 38px);
+  line-height: 1.16;
+  letter-spacing: 0;
+}
+
+.ai-impact-copy p,
+.lesson-bridge-copy p {
+  margin: 0;
+  color: #32455E;
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+.ai-impact-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.ai-impact-card {
+  min-height: 142px;
+  padding: 14px;
+  border: 1px solid rgba(255,255,255,.72);
+  border-radius: 8px;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.78), rgba(255,255,255,.48)),
+    color-mix(in srgb, var(--card-color, var(--lesson-blue)) 10%, transparent);
+  box-shadow: 0 16px 38px rgba(7,20,38,.10), inset 0 1px 0 rgba(255,255,255,.86);
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+}
+
+.ai-impact-card b {
+  display: block;
+  color: color-mix(in srgb, var(--card-color, var(--lesson-blue)) 84%, #071426);
+  font-family: var(--mono);
+  font-size: clamp(28px, 4.8vw, 48px);
+  line-height: 1;
+}
+
+.ai-impact-card span {
+  display: block;
+  margin-top: 10px;
+  color: var(--lesson-ink);
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1.35;
+}
+
+.ai-impact-card small {
+  display: block;
+  margin-top: 7px;
+  color: var(--lesson-muted);
+  font-size: 11.5px;
+  line-height: 1.5;
+}
+
+.ai-benefit-table {
+  margin-top: 18px;
+  display: grid;
+  border: 1px solid rgba(7,20,38,.11);
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(255,255,255,.72);
+}
+
+.ai-benefit-row {
+  display: grid;
+  grid-template-columns: .82fr 1.05fr 1fr .78fr;
+}
+
+.ai-benefit-row > * {
+  padding: 12px 14px;
+  border-right: 1px solid rgba(7,20,38,.09);
+  border-bottom: 1px solid rgba(7,20,38,.09);
+  color: #2E4058;
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+
+.ai-benefit-row > *:last-child {
+  border-right: 0;
+}
+
+.ai-benefit-row:last-child > * {
+  border-bottom: 0;
+}
+
+.ai-benefit-head > * {
+  background: rgba(7,20,38,.94);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 900;
+  letter-spacing: .06em;
+}
+
+.ai-benefit-row strong {
+  color: var(--lesson-ink);
+  font-weight: 900;
+}
+
+.ai-source-note {
+  margin-top: 12px;
+  color: var(--lesson-muted);
+  font-size: 11.5px;
+  line-height: 1.7;
+}
+
+.ai-source-note a {
+  color: #075C71;
+  font-weight: 800;
+}
+
+.lesson-bridge-inner {
+  display: grid;
+  grid-template-columns: minmax(240px, .42fr) minmax(0, 1fr);
+  gap: 20px;
+}
+
+.lesson-bridge-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.lesson-track-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.lesson-track-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 250px;
+  padding: 18px;
+  border: 1px solid rgba(255,255,255,.70);
+  border-radius: 8px;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.78), rgba(255,255,255,.48)),
+    color-mix(in srgb, var(--track-color) 11%, transparent);
+  box-shadow: 0 18px 44px rgba(7,20,38,.10), inset 0 1px 0 rgba(255,255,255,.88);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+}
+
+.lesson-track-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 6px;
+  background: var(--track-color);
+}
+
+.lesson-track-card.redcross { --track-color: var(--lesson-red); }
+.lesson-track-card.ai { --track-color: var(--lesson-blue); }
+
+.lesson-track-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 28px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  color: #fff;
+  background: var(--track-color);
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .06em;
+}
+
+.lesson-track-card h3 {
+  margin: 16px 0 8px;
+  color: var(--lesson-ink);
+  font-size: clamp(22px, 2.8vw, 34px);
+  line-height: 1.15;
+}
+
+.lesson-track-card p {
+  margin: 0;
+  color: #334155;
+  font-size: 13.5px;
+  line-height: 1.75;
+}
+
+.lesson-track-list {
+  margin: 14px 0 0;
+  display: grid;
+  gap: 8px;
+}
+
+.lesson-track-list span {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  gap: 8px;
+  align-items: center;
+  color: #233349;
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+
+.lesson-track-list b {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 28px;
+  border-radius: 8px;
+  color: color-mix(in srgb, var(--track-color) 78%, #071426);
+  background: color-mix(in srgb, var(--track-color) 14%, #FFFFFF);
+  font-family: var(--mono);
+  font-size: 11px;
+}
+
+.lesson-tabs {
+  margin-top: 16px;
+  border: 1px solid rgba(7,20,38,.11);
+  border-radius: 8px;
+  background: rgba(255,255,255,.70);
+  overflow: hidden;
+}
+
+.lesson-tab-controls {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+}
+
+.lesson-tab {
+  min-height: 48px;
+  padding: 10px 8px;
+  border: 0;
+  border-right: 1px solid rgba(7,20,38,.09);
+  border-bottom: 1px solid rgba(7,20,38,.09);
+  background: rgba(255,255,255,.58);
+  color: #24364D;
+  font-size: 12px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.lesson-tab:last-child {
+  border-right: 0;
+}
+
+.lesson-tab.is-active {
+  color: #fff;
+  background: var(--tab-color, var(--lesson-blue));
+}
+
+.lesson-tab-panel {
+  display: none;
+  padding: 16px;
+}
+
+.lesson-tab-panel.is-active {
+  display: grid;
+  gap: 12px;
+}
+
+.lesson-tab-panel h4 {
+  margin: 0;
+  color: var(--lesson-ink);
+  font-size: 18px;
+}
+
+.lesson-tab-panel p {
+  margin: 0;
+  color: #32455E;
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.lesson-outcome-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.lesson-outcome-grid span {
+  min-height: 82px;
+  padding: 12px;
+  border: 1px solid rgba(7,20,38,.09);
+  border-radius: 8px;
+  background: rgba(255,255,255,.68);
+  color: #2A3A51;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.lesson-outcome-grid b {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--lesson-ink);
+  font-family: var(--mono);
+  font-size: 15px;
+}
+
+@media (max-width: 980px) {
+  .ai-impact-top,
+  .lesson-bridge-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .ai-impact-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .ai-impact-shell,
+  .lesson-bridge-inner {
+    padding: 14px;
+  }
+
+  .lesson-track-grid,
+  .lesson-outcome-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ai-benefit-table {
+    display: block;
+    overflow: visible;
+  }
+
+  .ai-benefit-row {
+    grid-template-columns: 1fr;
+    border-bottom: 1px solid rgba(7,20,38,.10);
+  }
+
+  .ai-benefit-row:last-child {
+    border-bottom: 0;
+  }
+
+  .ai-benefit-row > * {
+    border-right: 0;
+    border-bottom: 1px solid rgba(7,20,38,.07);
+  }
+
+  .ai-benefit-row > *:last-child {
+    border-bottom: 0;
+  }
+
+  .ai-benefit-head {
+    display: none;
+  }
+
+  .ai-benefit-row > *::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 3px;
+    color: var(--lesson-muted);
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .06em;
+  }
+
+  .lesson-tab-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .lesson-tab {
+    border-right: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .ai-impact-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ---- Minimal white identity system pass: white space, ink lines, one red CTA, 2026-06-28 ---- */
+:root {
+  --sakana-ink: #071426;
+  --sakana-text: #132033;
+  --sakana-muted: #58677A;
+  --sakana-line: rgba(7,20,38,.18);
+  --sakana-line-soft: rgba(7,20,38,.10);
+  --sakana-red: #E60012;
+  --sakana-cyan: #00A5C8;
+  --sakana-lime: #A6D83F;
+  --sakana-yellow: #FFD84D;
+  --sakana-radius: 8px;
+  --sakana-shadow: 5px 5px 0 rgba(7,20,38,.035), 0 14px 34px rgba(7,20,38,.065);
+}
+
+html,
+body {
+  background: #FFFFFF !important;
+  color: var(--sakana-text) !important;
+}
+
+body::before {
+  opacity: .25 !important;
+}
+
+.site-header,
+.site-header.scrolled,
+header.site-header,
+header.site-header.scrolled,
+.site-nav,
+nav.top-nav,
+.menu-drop,
+.mobile-nav,
+.mobile-nav-panel {
+  background: #FFFFFF !important;
+  color: var(--sakana-ink) !important;
+  border-color: var(--sakana-line) !important;
+  box-shadow: 0 10px 26px rgba(7,20,38,.07) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.site-header-inner {
+  min-height: 62px !important;
+}
+
+.wordmark .word-ai,
+.brand-mark .brand-ha {
+  color: var(--sakana-red) !important;
+}
+
+.wordmark .word-en,
+.site-logo-by {
+  color: var(--sakana-muted) !important;
 }
 
 .site-nav a.nav-link,
-nav.top-nav .nav-link,
 .site-nav .menu-toggle,
-.site-nav .nav-admin {
+.site-nav .nav-admin,
+.mobile-nav a,
+.menu-drop a,
+nav.top-nav .nav-link {
+  min-height: 36px !important;
+  border: 1px solid var(--sakana-line-soft) !important;
+  border-radius: var(--sakana-radius) !important;
   background: #FFFFFF !important;
-  color: #122033 !important;
-  border: 1px solid rgba(7,20,38,.13) !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
+  color: var(--sakana-ink) !important;
+  box-shadow: none !important;
 }
 
 .site-nav a.nav-link:hover,
 .site-nav a.nav-link:focus-visible,
-nav.top-nav .nav-link:hover,
-nav.top-nav .nav-link:focus-visible,
 .site-nav .menu-toggle:hover,
 .site-nav .menu-toggle:focus-visible,
-.site-nav .menu-toggle[aria-expanded="true"],
-.site-nav .nav-admin:hover,
-.site-nav .nav-admin:focus-visible {
-  background: #EAF6F8 !important;
-  color: #075E67 !important;
-  border-color: rgba(14,165,198,.32) !important;
+.mobile-nav a:hover,
+.mobile-nav a:focus-visible,
+.menu-drop a:hover,
+.menu-drop a:focus-visible,
+nav.top-nav .nav-link:hover,
+nav.top-nav .nav-link:focus-visible {
+  background: #FFF6F6 !important;
+  border-color: rgba(230,0,18,.36) !important;
+  color: var(--sakana-red) !important;
+  outline: none !important;
+}
+
+.nav-cta,
+.login-btn-mobile,
+.contact-primary,
+.sticky-cta-btn,
+.footer-cta,
+.btn.btn-primary,
+.atlas-live-cta,
+.boost-action.primary,
+.pkg-card .pkg-cta-primary {
+  border: 1px solid var(--sakana-red) !important;
+  border-radius: var(--sakana-radius) !important;
+  background: var(--sakana-red) !important;
+  color: #FFFFFF !important;
+  box-shadow: 4px 4px 0 rgba(230,0,18,.16) !important;
+  letter-spacing: 0 !important;
+}
+
+.nav-cta:hover,
+.login-btn-mobile:hover,
+.contact-primary:hover,
+.sticky-cta-btn:hover,
+.footer-cta:hover,
+.btn.btn-primary:hover,
+.atlas-live-cta:hover,
+.boost-action.primary:hover,
+.pkg-card .pkg-cta-primary:hover {
+  background: var(--sakana-ink) !important;
+  border-color: var(--sakana-ink) !important;
+  color: #FFFFFF !important;
+  transform: translateY(-1px);
+}
+
+.section-heading {
+  min-height: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: var(--sakana-red) !important;
+  font-size: 12px !important;
+  letter-spacing: 0 !important;
+}
+
+.section-title::after {
+  height: 3px !important;
+  width: 64px !important;
+  border-radius: 0 !important;
+  background: linear-gradient(90deg, var(--sakana-red), var(--sakana-cyan), var(--sakana-lime)) !important;
   box-shadow: none !important;
 }
 
-.site-nav .menu-drop,
-.site-nav .admin-fixed-menu-drop {
-  background: #FFFFFF !important;
-  color: #122033 !important;
-  border: 1px solid rgba(7,20,38,.18) !important;
-  box-shadow: 0 24px 62px rgba(7,20,38,.16), inset 0 1px 0 rgba(255,255,255,.98) !important;
+.hero-proof,
+.atlas-live-card,
+.hero-route-card,
+.path-card,
+.choice-lens,
+.pkg-card,
+.lecture-card,
+.pf-card,
+.biz-card,
+.service-card,
+.voice-card,
+.faq-item,
+.growth-panel,
+.flow-step,
+.contact-primary,
+.blog-feature,
+.blog-card,
+.web-showcase,
+.boost-lab,
+.ai-impact-board,
+.lesson-bridge-shell,
+.lesson-track-card,
+.ai-impact-copy,
+.ai-impact-card {
+  border-radius: var(--sakana-radius) !important;
+  border: 1px solid var(--sakana-line) !important;
+  background: rgba(255,255,255,.96) !important;
+  box-shadow: var(--sakana-shadow) !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
 }
 
-.mobile-toggle,
-.generated-mobile-toggle {
-  background: #FFFFFF !important;
-  color: #122033 !important;
-  border: 1px solid rgba(7,20,38,.18) !important;
-  box-shadow: 0 10px 24px rgba(7,20,38,.12) !important;
+.hero-route-card::before,
+.path-card::before,
+.pf-card::after,
+.blog-card::after,
+.pkg-card::after,
+.lecture-card::after,
+.path-card::after {
+  background: linear-gradient(90deg, var(--sakana-red), var(--sakana-cyan), var(--sakana-lime)) !important;
+}
+
+section.block::before {
+  background:
+    url("data:image/svg+xml,%3Csvg width='420' height='180' viewBox='0 0 420 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23071426' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' opacity='.11'%3E%3Cpath d='M18 118c48-58 96-58 144 0s96 58 144 0 72-44 96-18'/%3E%3Cpath d='M76 64c28-22 56-22 84 0s56 22 84 0'/%3E%3Ccircle cx='114' cy='64' r='5'/%3E%3Cpath d='M342 92l24-10-7 24z'/%3E%3C/g%3E%3C/svg%3E") right 8% top 18px / min(420px, 72vw) auto no-repeat,
+    linear-gradient(180deg, rgba(255,255,255,.90), rgba(255,255,255,.72)) !important;
+  border-top: 1px solid var(--sakana-line-soft) !important;
+  border-bottom: 1px solid var(--sakana-line-soft) !important;
+  box-shadow: none !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
 }
 
-.mobile-nav,
-.generated-mobile-nav,
-.mobile-nav.open {
+.sticky-cta {
+  border: 1px solid var(--sakana-line) !important;
+  border-radius: var(--sakana-radius) var(--sakana-radius) 0 0 !important;
   background: #FFFFFF !important;
-  color: #122033 !important;
-  border-top: 1px solid rgba(7,20,38,.18) !important;
-  box-shadow: 0 24px 52px rgba(7,20,38,.18) !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
+  color: var(--sakana-ink) !important;
+  box-shadow: 0 -10px 30px rgba(7,20,38,.09) !important;
 }
 
-.mobile-nav a,
-.mobile-nav .mobile-admin-link,
-.mobile-nav .login-btn-mobile,
-.mobile-nav .mobile-main-link {
+@media (max-width: 820px) {
+  .site-nav {
+    display: none !important;
+  }
+
+  .mobile-toggle {
+    display: inline-flex !important;
+    background: #FFFFFF !important;
+    border-color: var(--sakana-line) !important;
+    color: var(--sakana-ink) !important;
+  }
+}
+
+
+/* ---- AI compass identity pass: guide mark, 2026-06-28 ---- */
+:root {
+  --ai-compass-red: #E60012;
+  --ai-compass-ink: #071426;
+  --ai-compass-cyan: #00A5C8;
+  --ai-compass-lime: #A6D83F;
+}
+
+.brand-mark,
+.compass-mark {
+  position: relative !important;
+  width: 42px !important;
+  height: 42px !important;
+  flex: 0 0 42px !important;
+  border-radius: 50% !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
   background: #FFFFFF !important;
-  color: #122033 !important;
-  border: 1px solid rgba(7,20,38,.13) !important;
+  border: 2px solid var(--ai-compass-ink) !important;
+  box-shadow: 4px 4px 0 rgba(230,0,18,.13) !important;
+  overflow: hidden !important;
+}
+
+.brand-mark .brand-a,
+.brand-mark .brand-ha {
+  opacity: 0 !important;
+  width: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+}
+
+.brand-mark::before,
+.compass-mark::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 7px !important;
+  border-radius: 50% !important;
+  border: 2px solid var(--ai-compass-ink) !important;
+  background:
+    radial-gradient(circle at 50% 50%, #FFFFFF 0 27%, transparent 29%),
+    conic-gradient(from 45deg, rgba(0,165,200,.18), transparent 18%, rgba(166,216,63,.18) 38%, transparent 58%, rgba(230,0,18,.16) 78%, transparent);
+}
+
+.brand-mark::after,
+.compass-mark::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
+  width: 20px !important;
+  height: 20px !important;
+  background: linear-gradient(135deg, var(--ai-compass-red) 0 50%, var(--ai-compass-ink) 50% 100%) !important;
+  clip-path: polygon(50% 0, 63% 40%, 100% 50%, 63% 60%, 50% 100%, 37% 60%, 0 50%, 37% 40%) !important;
+  transform: translate(-50%, -50%) rotate(34deg) !important;
+}
+
+.site-logo:hover .brand-mark,
+.site-logo:focus-visible .brand-mark {
+  box-shadow: 4px 4px 0 rgba(230,0,18,.22) !important;
+  transform: translateY(-1px);
+}
+
+.hero-compass-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 480px;
+  margin: 0 0 20px;
+  padding: 10px 12px;
+  border: 1px solid var(--sakana-line);
+  border-radius: var(--sakana-radius);
+  background: #FFFFFF;
+  box-shadow: 4px 4px 0 rgba(7,20,38,.04);
+}
+
+.hero-compass-card .compass-mark {
+  width: 38px !important;
+  height: 38px !important;
+  flex-basis: 38px !important;
+  border-width: 2px !important;
+  box-shadow: 3px 3px 0 rgba(230,0,18,.12) !important;
+}
+
+.hero-compass-card b,
+.atlas-compass-core b {
+  display: block;
+  color: var(--sakana-ink);
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.hero-compass-card small,
+.atlas-compass-core small {
+  display: block;
+  color: var(--sakana-muted);
+  font-weight: 750;
+  letter-spacing: 0;
+}
+
+.atlas-compass-core {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  padding: 12px 14px;
+  border: 1px solid var(--sakana-line);
+  border-radius: var(--sakana-radius);
+  background: rgba(255,255,255,.94);
+  box-shadow: 5px 5px 0 rgba(7,20,38,.04), 0 12px 30px rgba(7,20,38,.08);
+  pointer-events: none;
+}
+
+.atlas-compass-core .compass-mark {
+  width: 58px !important;
+  height: 58px !important;
+  flex-basis: 58px !important;
+}
+
+.atlas-node,
+.atlas-live-card {
+  z-index: 3;
+}
+
+section.block::before {
+  background:
+    url("data:image/svg+xml,%3Csvg width='420' height='180' viewBox='0 0 420 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23071426' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' opacity='.12'%3E%3Ccircle cx='88' cy='88' r='38'/%3E%3Ccircle cx='88' cy='88' r='7'/%3E%3Cpath d='M88 48l10 40-10 40-10-40z' fill='%23E60012' stroke='none' opacity='.74'/%3E%3Cpath d='M148 126h48l34-58h54l30 34h70'/%3E%3Ccircle cx='196' cy='126' r='5'/%3E%3Ccircle cx='230' cy='68' r='5'/%3E%3Ccircle cx='314' cy='102' r='5'/%3E%3Cpath d='M372 94l18 8-18 8'/%3E%3C/g%3E%3C/svg%3E") right 8% top 18px / min(420px, 72vw) auto no-repeat,
+    linear-gradient(180deg, rgba(255,255,255,.90), rgba(255,255,255,.72)) !important;
+}
+
+@media (max-width: 900px) {
+  .hero-compass-card {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 680px) {
+  .atlas-compass-core {
+    opacity: .86;
+    padding: 9px 10px;
+  }
+
+  .atlas-compass-core .compass-mark {
+    width: 44px !important;
+    height: 44px !important;
+    flex-basis: 44px !important;
+  }
+
+  .atlas-compass-core small {
+    display: none;
+  }
 }
 </style></head><body><div class='container'>
 <script>
@@ -7963,7 +8920,7 @@ nav.top-nav .nav-link:focus-visible,
   }
 })();
 </script>
-<header class='site-header scrolled' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span><span class='site-logo-by'>専門性を判断に変える</span></a><nav class='site-nav top-nav' aria-label='サイトナビ'><a class='nav-link nav-essential' href='/#specialist'>専門性</a><a class='nav-link nav-essential' href='/#blog'>ブログ</a><a class='nav-link nav-essential' href='/#packages'>講習/伴走</a><a class='nav-link' href='/#faq'>FAQ</a><a class='nav-link nav-admin' href='/admin'>🔐 管理</a></nav><a class='nav-cta' href='/#contact'>無料相談</a></div></header><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'><svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button><div class='mobile-nav generated-mobile-nav' id='mobile-nav'><div class='mobile-nav-panel'><div class='mobile-nav-primary'><a class='login-btn-mobile' href='/#contact'>無料相談</a><a class='mobile-main-link' href='/#packages'>講習/伴走</a></div><span class='mobile-nav-label'>公開ページ</span><div class='mobile-link-grid'><a href='/#specialist'>専門性</a><a href='/#blog'>ブログ</a><a href='/#packages'>講習/伴走</a><a href='/#faq'>FAQ</a><a href='/programming-map.html'>AIコーディング</a><a href='/portfolio.html'>実績</a><a href='/watch/index.html'>AI Watch</a><a class='mobile-admin-link' href='/admin'>管理画面</a></div></div></div><script>(function(){var b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav');if(!b||!n)return;function close(){n.classList.remove('open');b.setAttribute('aria-expanded','false');}b.addEventListener('click',function(e){e.stopPropagation();var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});})();</script><header><h1>受講資料 ディレクトリ</h1></header><div class='content-wrap'><div class='content-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#受講資料ホーム'>受講資料ホーム</a></li><li><a href='#受講資料-8-件'>📝 受講資料 8 件</a></li><li><a href='#補助・投影資料-3-件'>📚 補助・投影資料 3 件</a></li></ol></div><section class='tr-home' aria-label='受講資料ホーム'><div><h2 id='受講資料ホーム'>受講資料ホーム</h2><p>「Codex実践会 120分 構築と応用」の形式を基準に、各資料を目次、本文、動画、ナレーション、スライド、PDF、チェックの観点で探せるようにまとめた入口です。受講前は内容確認、受講中は投影資料、受講後は本文とチェック項目へ進めます。</p><div class='tr-home-actions'><a href='../#packages'>受講プランを見る</a><a href='./2026-06-codex-app-practice.html'>Codex実践会から見る</a><a href='#sec-受講資料'>全資料を見る</a></div></div><div class='tr-home-panel'><div class='tr-home-stat'><b>8</b><span>受講資料本体</span></div><div class='tr-home-stat'><b>3</b><span>補助・投影資料</span></div><div class='tr-home-stat'><b>2</b><span>動画付き</span></div></div></section><a class='tr-featured' href='./2026-06-codex-app-practice.html'><div><b>基準フォーマット: Codex実践会 120分 構築と応用</b><span>Codexアプリを実務で使うための応用編。プロジェクトとフォルダ管理、Local/Worktree/Cloud、skills、plugins、MCP、hooks、rules、automations、設定、隠れ機能、公式アップデート確認先までを実例中心に整理。</span></div><span class='arrow'>→</span></a><div class='tr-format-grid' aria-label='共通フォーマット'><div class='tr-format'><b>目次</b><span>最初に流れを確認し、必要な章へ移動する。</span></div><div class='tr-format'><b>動画・ナレーション</b><span>講師の説明順で見せる資料や収録台本を確認する。</span></div><div class='tr-format'><b>スライド式説明</b><span>投影、画面共有、短時間説明に使う。</span></div><div class='tr-format'><b>本文</b><span>復習、引用、手順確認のための読み物として使う。</span></div><div class='tr-format'><b>PDF・配布物</b><span>印刷、配布、別ページ資料がある場合に使う。</span></div><div class='tr-format'><b>チェック</b><span>宿題、運用確認、公開前レビューに使う。</span></div></div><p class='tr-intro'>まず受講資料本体を開き、必要に応じて投影用スライドや補助資料へ進む。内容を確認したら受講プランへ戻り、準備会・実践会・個別相談のどれで進めるかを選べます。</p><section class='tr-section' id='sec-受講資料'><h2 class='tr-section-head' id='受講資料-8-件'><span class='tr-section-icon'>📝</span><span class='tr-section-name'>受講資料</span><span class='tr-section-count'>8 件</span></h2><p class='tr-section-desc'>まず開く受講資料本体。本文、目次、動画、スライド、チェック項目がある資料はここから確認する</p><div class='tr-grid'><a class='tr-card' href='./2026-06-codex-app-practice.html'><div class='tr-title'>📝 Codex実践会 120分 構築と応用</div><div class='tr-date'>📅 2026-06-10</div><div class='tr-sum'>Codexアプリを実務で使うための応用編。プロジェクトとフォルダ管理、Local/Worktree/Cloud、skills、plugins、MCP、hooks、rules、automations、設定、隠れ機能、公式アップデート確認先までを実例中心に整理。</div><div class='tr-meta'><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span><span class='tr-chip format on'>動画</span><span class='tr-chip format on'>ナレーション</span><span class='tr-chip format on'>スライド</span><span class='tr-chip format on'>チェック</span></div></a><a class='tr-card' href='./2026-06-codex-app-onboarding.html'><div class='tr-title'>📝 Codex準備会 60分 導入と習得</div><div class='tr-date'>📅 2026-06-05</div><div class='tr-sum'>ChatGPTは使えるがCodexアプリは初めての人向けに、導入、最初のプロジェクト、権限、安全装置、差分確認、公式アップデートの追い方までを学ぶ準備編。</div><div class='tr-meta'><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span><span class='tr-chip format on'>動画</span><span class='tr-chip format on'>スライド</span><span class='tr-chip format on'>チェック</span></div></a><a class='tr-card' href='./2026-06-ai-tsukaikonaseru-hito.html'><div class='tr-title'>📝 AIを使いこなせる人と使いこなせない人の違い｜仕事で差がつく5つの実践</div><div class='tr-date'>📅 2026-06-16</div><div class='tr-sum'>AIを使いこなせる人と使いこなせない人の違いを、仕事の言語化、材料の渡し方、修正指示、検証、業務導入の観点で解説。ChatGPT、Codex、Claude Code、画像生成を仕事に入れる具体的な手順とセルフチェック付き。</div><div class='tr-meta'><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span><span class='tr-chip format on'>チェック</span></div></a><a class='tr-card' href='./2026-06-ai-agent-rag-design.html'><div class='tr-title'>📝 クラウドAIエージェント時代のRAG設計｜AIにどの順番で考えてもらうか</div><div class='tr-date'>📅 2026-06-17</div><div class='tr-sum'>クラウドAIエージェントが毎日の業務を判断する時代に必要なRAG設計を、AI専用の資料棚、見る順番、EC・交流会の例、人間が確認する範囲までわかりやすく整理。</div><div class='tr-meta'><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span></div></a><a class='tr-card' href='./2026-05-climbing-history.html'><div class='tr-title'>📝 クライミングの歴史 — 参考資料</div><div class='tr-date'>📅 2026-05-23</div><div class='tr-sum'>クライミングが240年かけて枝分かれしてきた歴史を、初心者向け講習用にまとめた参考資料。世界史編（第I部）と日本史・ぐっぼる編（第II部）の2部構成。</div><div class='tr-meta'><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span><span class='tr-chip format on'>ナレーション</span><span class='tr-chip format on'>スライド</span><span class='tr-chip format on'>PDF</span></div></a><a class='tr-card' href='./2026-05-claude-code-features.html'><div class='tr-title'>📝 Claude Code 2026 棚卸し — 開発フローを変えた機能だけ</div><div class='tr-date'>📅 2026-05-21</div><div class='tr-sum'>2026年1月〜5月のClaude Codeリリースから「実際に手元の開発フローが変わった」機能だけを、タイムライン・カテゴリカード・コマンド早見表のインフォグラフィックで一望する。コマンド名・設定キー・出荷時期(Week番号)は公式 changelog / What&#x27;s new で裏取り済み。</div><div class='tr-meta'><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span></div></a><a class='tr-card' href='./2026-04-ai-kihon.html'><div class='tr-title'>📝 AIの「こと」を吸収する — 入門講習</div><div class='tr-date'>📅 2026-04-22</div><div class='tr-sum'>AIを「使う」のではなく「のこと」を知る。最初の一歩として、言語化・共有・ショートカット化の3軸で日常に組み込む考え方を、実例つきで整理する。</div><div class='tr-meta'><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span><span class='tr-chip format on'>チェック</span></div></a><a class='tr-card' href='./2026-04-ai-kangaekata.html'><div class='tr-title'>📝 AI活用の「考え方」— 入門講習</div><div class='tr-date'>📅 2026-04-22</div><div class='tr-sum'>AIを日常になじませる「考え方」を15項目にまとめた原典。講習スライドの元資料として使える本編。</div><div class='tr-meta'><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span></div></a></div></section><section class='tr-section' id='sec-補助・投影資料'><h2 class='tr-section-head' id='補助・投影資料-3-件'><span class='tr-section-icon'>📚</span><span class='tr-section-name'>補助・投影資料</span><span class='tr-section-count'>3 件</span></h2><p class='tr-section-desc'>講習中の画面共有、短時間説明、追加学習に使う資料</p><div class='tr-grid'><a class='tr-card' href='../programming-map.html'><div class='tr-title'>🧭 AIコーディング講習 120分</div><div class='tr-date'>📅 2026-06-06</div><div class='tr-sum'>Codex導入、プログラミング基礎、実装、公開、公式アップデート、AI応用制作までを、線画とタブUIで段階的に学ぶ講習LP。</div><div class='tr-meta'><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span><span class='tr-chip format on'>スライド</span><span class='tr-chip format on'>チェック</span></div></a><a class='tr-card' href='../slides/climbing-history-1.html'><div class='tr-title'>🧗 クライミングの歴史 I（世界史編）</div><div class='tr-date'>📅 2026-05-23</div><div class='tr-sum'>1786年モンブランから種目の分化、パタゴニア／ノースフェイス誕生秘話、五輪採用まで。初心者向け講習スライド（投影用HTML）</div><div class='tr-meta'><span class='tr-chip format on'>スライド</span></div></a><a class='tr-card' href='../slides/climbing-history-2.html'><div class='tr-title'>🧗 クライミングの歴史 II（日本史・ぐっぼる編）</div><div class='tr-date'>📅 2026-05-23</div><div class='tr-sum'>日本のクライミング独立史、ジムの爆発的普及、世界に挑んだ日本人、そして「ぐっぼる」がジム＋ショップ＋カフェである理由。投影用HTML</div><div class='tr-meta'><span class='tr-chip format on'>スライド</span></div></a></div></section></div><footer>AI相談 / Generated by Claude</footer><button class='back-to-top' id='backTop' aria-label='トップへ戻る'>↑</button><script>(function(){var b=document.getElementById('backTop');if(!b)return;window.addEventListener('scroll',function(){b.classList.toggle('show',window.scrollY>400);});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script><script>
+<header class='site-header scrolled' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span><span class='site-logo-by'>滋賀・彦根</span></a><nav class='site-nav top-nav' aria-label='サイトナビ'><a class='nav-link nav-essential' href='/#packages'>受講プラン</a><a class='nav-link nav-essential' href='/#lectures'>資料</a><a class='nav-link nav-essential' href='/#works'>実績</a><a class='nav-link' href='/admin' style='color:var(--muted);'>🔐 管理</a></nav><a class='nav-cta' href='/#contact'>個別相談</a></div></header><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'><svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button><div class='mobile-nav generated-mobile-nav' id='mobile-nav'><div class='mobile-nav-panel'><div class='mobile-nav-primary'><a class='login-btn-mobile' href='/#contact'>個別相談</a><a class='mobile-main-link' href='/#packages'>受講プラン</a></div><span class='mobile-nav-label'>公開ページ</span><div class='mobile-link-grid'><a class='' href='/programming-map.html'>AIコーディング</a><a href='/#lectures'>資料</a><a href='/#speaker'>講師紹介</a><a href='/#faq'>FAQ</a><a href='/portfolio.html'>実績</a><a href='/blog/index.html'>ブログ</a><a href='/watch/index.html'>AI Watch</a><a class='mobile-admin-link' href='/admin'>管理画面</a></div></div></div><script>(function(){var b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav');if(!b||!n)return;function close(){n.classList.remove('open');b.setAttribute('aria-expanded','false');}b.addEventListener('click',function(e){e.stopPropagation();var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});})();</script><header><h1>受講資料 ディレクトリ</h1></header><div class='content-wrap'><div class='content-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#受講資料ホーム'>受講資料ホーム</a></li><li><a href='#受講資料-8-件'>📝 受講資料 8 件</a></li><li><a href='#補助・投影資料-3-件'>📚 補助・投影資料 3 件</a></li></ol></div><section class='tr-home' aria-label='受講資料ホーム'><div><h2 id='受講資料ホーム'>受講資料ホーム</h2><p>「Codex実践会 120分 構築と応用」の形式を基準に、各資料を目次、本文、動画、ナレーション、スライド、PDF、チェックの観点で探せるようにまとめた入口です。受講前は内容確認、受講中は投影資料、受講後は本文とチェック項目へ進めます。</p><div class='tr-home-actions'><a href='../#packages'>受講プランを見る</a><a href='./2026-06-codex-app-practice.html'>Codex実践会から見る</a><a href='#sec-受講資料'>全資料を見る</a></div></div><div class='tr-home-panel'><div class='tr-home-stat'><b>8</b><span>受講資料本体</span></div><div class='tr-home-stat'><b>3</b><span>補助・投影資料</span></div><div class='tr-home-stat'><b>2</b><span>動画付き</span></div></div></section><a class='tr-featured' href='./2026-06-codex-app-practice.html'><div><b>基準フォーマット: Codex実践会 120分 構築と応用</b><span>Codexアプリを実務で使うための応用編。プロジェクトとフォルダ管理、Local/Worktree/Cloud、skills、plugins、MCP、hooks、rules、automations、設定、隠れ機能、公式アップデート確認先までを実例中心に整理。</span></div><span class='arrow'>→</span></a><div class='tr-format-grid' aria-label='共通フォーマット'><div class='tr-format'><b>目次</b><span>最初に流れを確認し、必要な章へ移動する。</span></div><div class='tr-format'><b>動画・ナレーション</b><span>講師の説明順で見せる資料や収録台本を確認する。</span></div><div class='tr-format'><b>スライド式説明</b><span>投影、画面共有、短時間説明に使う。</span></div><div class='tr-format'><b>本文</b><span>復習、引用、手順確認のための読み物として使う。</span></div><div class='tr-format'><b>PDF・配布物</b><span>印刷、配布、別ページ資料がある場合に使う。</span></div><div class='tr-format'><b>チェック</b><span>宿題、運用確認、公開前レビューに使う。</span></div></div><p class='tr-intro'>まず受講資料本体を開き、必要に応じて投影用スライドや補助資料へ進む。内容を確認したら受講プランへ戻り、準備会・実践会・個別相談のどれで進めるかを選べます。</p><section class='tr-section' id='sec-受講資料'><h2 class='tr-section-head' id='受講資料-8-件'><span class='tr-section-icon'>📝</span><span class='tr-section-name'>受講資料</span><span class='tr-section-count'>8 件</span></h2><p class='tr-section-desc'>まず開く受講資料本体。本文、目次、動画、スライド、チェック項目がある資料はここから確認する</p><div class='tr-grid'><a class='tr-card' href='./2026-06-codex-app-practice.html'><div class='tr-title'>📝 Codex実践会 120分 構築と応用</div><div class='tr-date'>📅 2026-06-10</div><div class='tr-sum'>Codexアプリを実務で使うための応用編。プロジェクトとフォルダ管理、Local/Worktree/Cloud、skills、plugins、MCP、hooks、rules、automations、設定、隠れ機能、公式アップデート確認先までを実例中心に整理。</div><div class='tr-meta'><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span><span class='tr-chip format on'>動画</span><span class='tr-chip format on'>ナレーション</span><span class='tr-chip format on'>スライド</span><span class='tr-chip format on'>チェック</span></div></a><a class='tr-card' href='./2026-06-codex-app-onboarding.html'><div class='tr-title'>📝 Codex準備会 60分 導入と習得</div><div class='tr-date'>📅 2026-06-05</div><div class='tr-sum'>ChatGPTは使えるがCodexアプリは初めての人向けに、導入、最初のプロジェクト、権限、安全装置、差分確認、公式アップデートの追い方までを学ぶ準備編。</div><div class='tr-meta'><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span><span class='tr-chip format on'>動画</span><span class='tr-chip format on'>スライド</span><span class='tr-chip format on'>チェック</span></div></a><a class='tr-card' href='./2026-06-ai-tsukaikonaseru-hito.html'><div class='tr-title'>📝 AIを使いこなせる人と使いこなせない人の違い｜仕事で差がつく5つの実践</div><div class='tr-date'>📅 2026-06-16</div><div class='tr-sum'>AIを使いこなせる人と使いこなせない人の違いを、仕事の言語化、材料の渡し方、修正指示、検証、業務導入の観点で解説。ChatGPT、Codex、Claude Code、画像生成を仕事に入れる具体的な手順とセルフチェック付き。</div><div class='tr-meta'><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span><span class='tr-chip format on'>チェック</span></div></a><a class='tr-card' href='./2026-06-ai-agent-rag-design.html'><div class='tr-title'>📝 クラウドAIエージェント時代のRAG設計｜AIにどの順番で考えてもらうか</div><div class='tr-date'>📅 2026-06-17</div><div class='tr-sum'>クラウドAIエージェントが毎日の業務を判断する時代に必要なRAG設計を、AI専用の資料棚、見る順番、EC・交流会の例、人間が確認する範囲までわかりやすく整理。</div><div class='tr-meta'><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span></div></a><a class='tr-card' href='./2026-05-climbing-history.html'><div class='tr-title'>📝 クライミングの歴史 — 参考資料</div><div class='tr-date'>📅 2026-05-23</div><div class='tr-sum'>クライミングが240年かけて枝分かれしてきた歴史を、初心者向け講習用にまとめた参考資料。世界史編（第I部）と日本史・ぐっぼる編（第II部）の2部構成。</div><div class='tr-meta'><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span><span class='tr-chip format on'>ナレーション</span><span class='tr-chip format on'>スライド</span><span class='tr-chip format on'>PDF</span></div></a><a class='tr-card' href='./2026-05-claude-code-features.html'><div class='tr-title'>📝 Claude Code 2026 棚卸し — 開発フローを変えた機能だけ</div><div class='tr-date'>📅 2026-05-21</div><div class='tr-sum'>2026年1月〜5月のClaude Codeリリースから「実際に手元の開発フローが変わった」機能だけを、タイムライン・カテゴリカード・コマンド早見表のインフォグラフィックで一望する。コマンド名・設定キー・出荷時期(Week番号)は公式 changelog / What&#x27;s new で裏取り済み。</div><div class='tr-meta'><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span></div></a><a class='tr-card' href='./2026-04-ai-kihon.html'><div class='tr-title'>📝 AIの「こと」を吸収する — 入門講習</div><div class='tr-date'>📅 2026-04-22</div><div class='tr-sum'>AIを「使う」のではなく「のこと」を知る。最初の一歩として、言語化・共有・ショートカット化の3軸で日常に組み込む考え方を、実例つきで整理する。</div><div class='tr-meta'><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span><span class='tr-chip format on'>チェック</span></div></a><a class='tr-card' href='./2026-04-ai-kangaekata.html'><div class='tr-title'>📝 AI活用の「考え方」— 入門講習</div><div class='tr-date'>📅 2026-04-22</div><div class='tr-sum'>AIを日常になじませる「考え方」を15項目にまとめた原典。講習スライドの元資料として使える本編。</div><div class='tr-meta'><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span></div></a></div></section><section class='tr-section' id='sec-補助・投影資料'><h2 class='tr-section-head' id='補助・投影資料-3-件'><span class='tr-section-icon'>📚</span><span class='tr-section-name'>補助・投影資料</span><span class='tr-section-count'>3 件</span></h2><p class='tr-section-desc'>講習中の画面共有、短時間説明、追加学習に使う資料</p><div class='tr-grid'><a class='tr-card' href='../programming-map.html'><div class='tr-title'>🧭 AIコーディング講習 120分</div><div class='tr-date'>📅 2026-06-06</div><div class='tr-sum'>Codex導入、プログラミング基礎、実装、公開、公式アップデート、AI応用制作までを、線画とタブUIで段階的に学ぶ講習LP。</div><div class='tr-meta'><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span><span class='tr-chip format on'>スライド</span><span class='tr-chip format on'>チェック</span></div></a><a class='tr-card' href='../slides/climbing-history-1.html'><div class='tr-title'>🧗 クライミングの歴史 I（世界史編）</div><div class='tr-date'>📅 2026-05-23</div><div class='tr-sum'>1786年モンブランから種目の分化、パタゴニア／ノースフェイス誕生秘話、五輪採用まで。初心者向け講習スライド（投影用HTML）</div><div class='tr-meta'><span class='tr-chip format on'>スライド</span></div></a><a class='tr-card' href='../slides/climbing-history-2.html'><div class='tr-title'>🧗 クライミングの歴史 II（日本史・ぐっぼる編）</div><div class='tr-date'>📅 2026-05-23</div><div class='tr-sum'>日本のクライミング独立史、ジムの爆発的普及、世界に挑んだ日本人、そして「ぐっぼる」がジム＋ショップ＋カフェである理由。投影用HTML</div><div class='tr-meta'><span class='tr-chip format on'>スライド</span></div></a></div></section></div><footer>AI相談 / Generated by Claude</footer><button class='back-to-top' id='backTop' aria-label='トップへ戻る'>↑</button><script>(function(){var b=document.getElementById('backTop');if(!b)return;window.addEventListener('scroll',function(){b.classList.toggle('show',window.scrollY>400);});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script><script>
 (function(){
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var sel = '.tr-card, .pf-card, .profile-stat, .profile-tech-card, .sns-card, article, .content-toc, .tr-section, .profile-tl-item, .profile-app-card, .profile-biz-card';

@@ -14,12 +14,10 @@ import shutil
 import sys
 from datetime import datetime
 from pathlib import Path
-from urllib.parse import quote
 
 import yaml
 
 SITE_URL = os.environ.get("AIHUB_SITE_URL", os.environ.get("AIWATCH_SITE_URL", "https://ai-hub-jp.vercel.app")).rstrip("/")
-SITE_BRAND = "AI相談"
 
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -137,21 +135,20 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
         f"<a class='site-logo' href='{safe_home}'>"
         "<span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span>"
         "<span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span>"
-        "<span class='site-logo-by'>専門性を判断に変える</span>"
+        "<span class='site-logo-by'>滋賀・彦根</span>"
         "</a>"
         "<nav class='site-nav top-nav' aria-label='サイトナビ'>"
     ]
     # TOP(_render_header) と同じく、固定メニューは主要導線だけにする。
     # 詳細な章移動は各ページ内の目次レールへ分離し、ヘッダーを1段に保つ。
     pmap_cls = " nav-current" if current_id == "pmap" else ""
-    parts.append("<a class='nav-link nav-essential' href='/#specialist'>専門性</a>")
-    parts.append("<a class='nav-link nav-essential' href='/#blog'>ブログ</a>")
-    parts.append("<a class='nav-link nav-essential' href='/#packages'>講習/伴走</a>")
-    parts.append("<a class='nav-link' href='/#faq'>FAQ</a>")
-    parts.append(f"<a class='nav-link nav-admin' href='{admin_href}'>🔐 管理</a>")
+    parts.append("<a class='nav-link nav-essential' href='/#packages'>受講プラン</a>")
+    parts.append("<a class='nav-link nav-essential' href='/#lectures'>資料</a>")
+    parts.append("<a class='nav-link nav-essential' href='/#works'>実績</a>")
+    parts.append(f"<a class='nav-link' href='{admin_href}' style='color:var(--muted);'>🔐 管理</a>")
     parts.append("</nav>")
     parts.append(
-        "<a class='nav-cta' href='/#contact'>無料相談</a>"
+        "<a class='nav-cta' href='/#contact'>個別相談</a>"
         "</div>"
         "</header>"
     )
@@ -162,17 +159,17 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
         "<div class='mobile-nav generated-mobile-nav' id='mobile-nav'>"
         "<div class='mobile-nav-panel'>"
         "<div class='mobile-nav-primary'>"
-        "<a class='login-btn-mobile' href='/#contact'>無料相談</a>"
-        "<a class='mobile-main-link' href='/#packages'>講習/伴走</a>"
+        "<a class='login-btn-mobile' href='/#contact'>個別相談</a>"
+        "<a class='mobile-main-link' href='/#packages'>受講プラン</a>"
         "</div>"
         "<span class='mobile-nav-label'>公開ページ</span>"
         "<div class='mobile-link-grid'>"
-        "<a href='/#specialist'>専門性</a>"
-        "<a href='/#blog'>ブログ</a>"
-        "<a href='/#packages'>講習/伴走</a>"
+        f"<a class='{'is-current' if current_id == 'pmap' else ''}' href='/programming-map.html'>AIコーディング</a>"
+        "<a href='/#lectures'>資料</a>"
+        "<a href='/#speaker'>講師紹介</a>"
         "<a href='/#faq'>FAQ</a>"
-        "<a href='/programming-map.html'>AIコーディング</a>"
         "<a href='/portfolio.html'>実績</a>"
+        "<a href='/blog/index.html'>ブログ</a>"
         "<a href='/watch/index.html'>AI Watch</a>"
         "<a class='mobile-admin-link' href='/admin'>管理画面</a>"
         "</div>"
@@ -542,17 +539,17 @@ nav.top-nav .run-btn:disabled { opacity:.6; cursor:not-allowed; }
 .run-status.ok { color:#047857; }
 .run-status.err { color:#b91c1c; }
 
-/* ---- compact solid command header override for generated pages ---- */
+/* ---- compact glass command header override for generated pages ---- */
 html { scroll-padding-top: 78px; }
 [id] { scroll-margin-top: 78px; }
 header.site-header,
 header.site-header.scrolled {
   min-height: 62px;
-  background: linear-gradient(135deg, #FFFFFF 0%, #F7FBFC 100%);
-  border-bottom: 1px solid rgba(7,20,38,.18);
-  box-shadow: 0 16px 42px rgba(7,20,38,.13), inset 0 1px 0 rgba(255,255,255,.96);
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
+  background: linear-gradient(135deg, rgba(255,255,255,.92), rgba(247,252,253,.84));
+  border-bottom: 1px solid rgba(7,20,38,.13);
+  box-shadow: 0 10px 34px rgba(7,20,38,.08), inset 0 1px 0 rgba(255,255,255,.92);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
 }
 .site-header-inner {
   min-height: 62px;
@@ -567,11 +564,6 @@ nav.top-nav {
   flex-wrap: nowrap;
   justify-content: flex-end;
   gap: 6px;
-  padding: 4px;
-  border: 1px solid rgba(7,22,43,.12);
-  border-radius: 10px;
-  background: #fff;
-  box-shadow: 0 8px 22px rgba(7,22,43,.08), inset 0 1px 0 rgba(255,255,255,.98);
 }
 nav.top-nav .nav-link {
   min-height: 36px;
@@ -580,8 +572,7 @@ nav.top-nav .nav-link {
   padding: 0 10px;
   border-radius: 8px;
   border: 1px solid transparent;
-  color: #15243A;
-  background: rgba(248,252,253,.94);
+  color: #223148;
   text-decoration: none;
   font-size: 12.5px;
   font-weight: 850;
@@ -595,19 +586,16 @@ nav.top-nav .nav-link:focus-visible {
   outline: none;
 }
 nav.top-nav .nav-current {
-  color: #064E63;
-  background: linear-gradient(180deg, #F5FEFF, #ECFAFC);
-  border-color: rgba(0,184,212,.30);
+  color: #075e67;
+  background: rgba(14,165,198,.12);
+  border-color: rgba(14,165,198,.26);
   box-shadow: none;
-}
-nav.top-nav .nav-admin {
-  color: #405166;
 }
 .nav-cta {
   min-height: 38px;
   padding: 0 14px;
-  background: linear-gradient(135deg, #0B5C74 0%, #0E876F 100%);
-  box-shadow: 0 14px 34px rgba(11,92,116,.22), inset 0 1px 0 rgba(255,255,255,.22);
+  background: linear-gradient(135deg, #F26655, #D99A20);
+  box-shadow: 0 12px 28px rgba(242,102,85,.20), inset 0 1px 0 rgba(255,255,255,.28);
 }
 .mobile-toggle {
   display: none;
@@ -678,11 +666,15 @@ nav.top-nav .nav-admin {
   font-size: 13px;
   font-weight: 850;
 }
-.mobile-nav .login-btn-mobile,
-.mobile-nav .mobile-main-link {
-  background: linear-gradient(135deg, #0B5C74 0%, #0E876F 100%);
+.mobile-nav .login-btn-mobile {
+  background: linear-gradient(135deg, #F26655, #D99A20);
   color: #fff;
   border-color: transparent;
+}
+.mobile-nav .mobile-main-link,
+.mobile-nav a[href="/programming-map.html"] {
+  background: rgba(14,165,198,.10);
+  color: #075E67;
 }
 .mobile-nav .mobile-admin-link {
   grid-column: 1 / -1;
@@ -946,26 +938,26 @@ def render_index(payload: dict, genres: list[dict], is_live: bool = True) -> str
     parts: list[str] = []
     parts.append("<!doctype html><html lang='ja'><head><meta charset='utf-8'>" + FAVICON_HEAD_HTML)
     parts.append("<meta name='viewport' content='width=device-width,initial-scale=1'>")
-    parts.append(f"<title>AI Watch Top{total} / {date} | {SITE_BRAND}</title>")
+    parts.append(f"<title>AI Watch Top{total} / {date} | AI相談</title>")
     desc = f"AI情報とSNSアルゴリズム動向を毎朝要約・ランキング。{date} のTop{total}を掲載。"
     parts.append(f"<meta name='description' content='{html.escape(desc, quote=True)}'>")
     parts.append(f"<link rel='canonical' href='{html.escape(SITE_URL + '/watch/index.html', quote=True)}'>")
-    parts.append(_build_ogp(f"{SITE_BRAND} AI Watch", desc, SITE_URL + "/watch/index.html", kind="website"))
-    ld = _build_jsonld("website", {}, f"{SITE_BRAND} AI Watch", SITE_URL + "/watch/index.html")
+    parts.append(_build_ogp("AI相談 AI Watch", desc, SITE_URL + "/watch/index.html", kind="website"))
+    ld = _build_jsonld("website", {}, "AI相談 AI Watch", SITE_URL + "/watch/index.html")
     if ld:
         parts.append(f"<script type='application/ld+json'>{ld}</script>")
     parts.append(f"<style>{MASTER_CSS}</style></head><body><div class='container'>")
     parts.append(ADMIN_BUTTON_HTML)
     parts.append(render_top_nav(path_prefix="../", current_id="home" if is_live else "archive", include_run=is_live))
     parts.append("<header>")
-    parts.append(f"<h1>{SITE_BRAND}</h1>")
+    parts.append("<h1>AI相談</h1>")
     parts.append(f"<p class='sub'>{date} ・ 今日の注目Top{total} ・ クリックで好みを学習</p>")
     parts.append("</header>")
 
     if not items:
         parts.append("<p class='empty'>今日の記事はありません。</p>")
         parts.append(render_support_sns_section(load_support_sns()))
-        parts.append(f"<footer>{SITE_BRAND}</footer></div></body></html>")
+        parts.append("<footer>AI相談</footer></div></body></html>")
         return "".join(parts)
 
     parts.append("<div class='genre-tabs'>")
@@ -1037,7 +1029,7 @@ def render_index(payload: dict, genres: list[dict], is_live: bool = True) -> str
         parts.append("</section>")
 
     parts.append(render_support_sns_section(load_support_sns()))
-    parts.append(f"<footer>{SITE_BRAND} / Generated by Claude</footer>")
+    parts.append("<footer>AI相談 / Generated by Claude</footer>")
     parts.append("</div>")
 
     parts.append("""<script>
@@ -1162,7 +1154,7 @@ def render_archive(dates: list[str]) -> str:
     parts: list[str] = []
     parts.append("<!doctype html><html lang='ja'><head><meta charset='utf-8'>" + FAVICON_HEAD_HTML)
     parts.append("<meta name='viewport' content='width=device-width,initial-scale=1'>")
-    parts.append(f"<title>{SITE_BRAND} — AI Watch 過去ログ</title>")
+    parts.append("<title>AI相談 — AI Watch 過去ログ</title>")
     parts.append(f"<style>{MASTER_CSS}</style></head><body><div class='container'>")
     parts.append(ADMIN_BUTTON_HTML)
     parts.append(render_top_nav(path_prefix="../", current_id="archive", include_run=False))
@@ -1183,7 +1175,7 @@ def render_archive(dates: list[str]) -> str:
         parts.append("</ul>")
     else:
         parts.append("<p class='empty'>アーカイブはまだありません。</p>")
-    parts.append(f"<footer>{SITE_BRAND}</footer></div></body></html>")
+    parts.append("<footer>AI相談</footer></div></body></html>")
     return "".join(parts)
 
 
@@ -1353,65 +1345,19 @@ CONTENT_CSS = """
 .pf-card {
   display: flex;
   flex-direction: column;
-  background:
-    linear-gradient(135deg, rgba(255,255,255,.74), rgba(255,255,255,.46)),
-    linear-gradient(135deg, rgba(14,165,198,.06), rgba(242,102,85,.04));
-  border: 1px solid rgba(255,255,255,.50);
-  border-radius: 8px;
+  background: #fff;
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
   padding: 14px 16px 12px;
-  overflow: hidden;
   transition: transform .15s, border-color .15s, box-shadow .15s;
   text-decoration: none;
   color: inherit;
   min-height: 150px;
-  box-shadow: 0 18px 48px rgba(15,23,42,.10), inset 0 1px 0 rgba(255,255,255,.74);
-  backdrop-filter: blur(20px) saturate(150%);
-  -webkit-backdrop-filter: blur(20px) saturate(150%);
 }
 .pf-card:hover {
   transform: translateY(-2px);
-  border-color: rgba(14,165,198,.30);
+  border-color: rgba(37,99,235,.40);
   box-shadow: var(--shadow-card-hover);
-}
-.pf-card .pf-thumb {
-  position: relative;
-  display: block;
-  margin: -14px -16px 12px;
-  aspect-ratio: 32 / 15;
-  overflow: hidden;
-  border-radius: 8px 8px 0 0;
-  background:
-    linear-gradient(135deg, rgba(255,255,255,.78), rgba(226,247,244,.56)),
-    linear-gradient(120deg, rgba(14,165,198,.10), rgba(146,200,62,.08));
-}
-.pf-card .pf-thumb img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  object-position: top center;
-}
-.pf-card .pf-thumb::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto;
-  z-index: 2;
-  height: 18px;
-  background:
-    radial-gradient(circle at 10px 9px, #EF6864 0 3px, transparent 3.4px),
-    radial-gradient(circle at 22px 9px, #F5B445 0 3px, transparent 3.4px),
-    radial-gradient(circle at 34px 9px, #46B87A 0 3px, transparent 3.4px),
-    linear-gradient(180deg, rgba(255,255,255,.94), rgba(244,248,249,.76));
-  border-bottom: 1px solid rgba(18,32,51,.10);
-  pointer-events: none;
-}
-.pf-card .pf-thumb::after {
-  content: "";
-  position: absolute;
-  inset: 18px 0 0;
-  z-index: 2;
-  background: linear-gradient(180deg, transparent 62%, rgba(7,20,38,.16));
-  pointer-events: none;
 }
 .pf-card .pf-title {
   font-weight: 800;
@@ -2126,7 +2072,7 @@ CONTENT_CSS = """
 def _redirect_html(a, t):
     d = "https://ai-hub-jp.vercel.app/#" + a
     return ("<!doctype html><html lang='ja'><head><meta charset='utf-8'>"
-        "<title>" + t + " | " + SITE_BRAND + "</title>"
+        "<title>" + t + " | AI相談</title>"
         "<link rel='canonical' href='" + d + "'>"
         "<meta http-equiv='refresh' content='0; url=" + d + "'>"
         "<meta name='robots' content='noindex,follow'>"
@@ -2152,99 +2098,8 @@ def _portal_css() -> str:
 # 後置して後勝ちにすることで、共通セレクタ(body/.container/.site-header 等)を
 # トップ(LP)と完全一致させる。watch/lectures 固有の .thumb/.genre-tabs 等は
 # PORTAL に無いため前置の CSS 側で生き残る（破綻しない）。
-GENERATED_SOLID_MENU_CSS = """
-/* ---- Shared solid generated menu surfaces, 2026-06-24 ---- */
-header.site-header,
-header.site-header.scrolled,
-.site-header,
-.site-header.scrolled,
-.site-header:hover {
-  min-height: 62px !important;
-  background: linear-gradient(135deg, #FFFFFF 0%, #F7FBFC 100%) !important;
-  border-bottom: 1px solid rgba(7,20,38,.18) !important;
-  box-shadow: 0 16px 42px rgba(7,20,38,.13), inset 0 1px 0 rgba(255,255,255,.96) !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-}
-
-.site-nav,
-nav.top-nav {
-  background: #FFFFFF !important;
-  border: 1px solid rgba(7,20,38,.18) !important;
-  box-shadow: 0 10px 26px rgba(7,20,38,.08), inset 0 1px 0 rgba(255,255,255,.96) !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-}
-
-.site-nav a.nav-link,
-nav.top-nav .nav-link,
-.site-nav .menu-toggle,
-.site-nav .nav-admin {
-  background: #FFFFFF !important;
-  color: #122033 !important;
-  border: 1px solid rgba(7,20,38,.13) !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-}
-
-.site-nav a.nav-link:hover,
-.site-nav a.nav-link:focus-visible,
-nav.top-nav .nav-link:hover,
-nav.top-nav .nav-link:focus-visible,
-.site-nav .menu-toggle:hover,
-.site-nav .menu-toggle:focus-visible,
-.site-nav .menu-toggle[aria-expanded="true"],
-.site-nav .nav-admin:hover,
-.site-nav .nav-admin:focus-visible {
-  background: #EAF6F8 !important;
-  color: #075E67 !important;
-  border-color: rgba(14,165,198,.32) !important;
-  box-shadow: none !important;
-}
-
-.site-nav .menu-drop,
-.site-nav .admin-fixed-menu-drop {
-  background: #FFFFFF !important;
-  color: #122033 !important;
-  border: 1px solid rgba(7,20,38,.18) !important;
-  box-shadow: 0 24px 62px rgba(7,20,38,.16), inset 0 1px 0 rgba(255,255,255,.98) !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-}
-
-.mobile-toggle,
-.generated-mobile-toggle {
-  background: #FFFFFF !important;
-  color: #122033 !important;
-  border: 1px solid rgba(7,20,38,.18) !important;
-  box-shadow: 0 10px 24px rgba(7,20,38,.12) !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-}
-
-.mobile-nav,
-.generated-mobile-nav,
-.mobile-nav.open {
-  background: #FFFFFF !important;
-  color: #122033 !important;
-  border-top: 1px solid rgba(7,20,38,.18) !important;
-  box-shadow: 0 24px 52px rgba(7,20,38,.18) !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-}
-
-.mobile-nav a,
-.mobile-nav .mobile-admin-link,
-.mobile-nav .login-btn-mobile,
-.mobile-nav .mobile-main-link {
-  background: #FFFFFF !important;
-  color: #122033 !important;
-  border: 1px solid rgba(7,20,38,.13) !important;
-}
-"""
-
-MASTER_CSS = CSS + _portal_css() + GENERATED_SOLID_MENU_CSS
-MASTER_CONTENT_CSS = CSS + CONTENT_CSS + _portal_css() + GENERATED_SOLID_MENU_CSS
+MASTER_CSS = CSS + _portal_css()
+MASTER_CONTENT_CSS = CSS + CONTENT_CSS + _portal_css()
 
 
 def _load_markdown():
@@ -2439,7 +2294,7 @@ def _render_lecture_overview(title: str, meta: dict, body_html: str, toc: list[t
 
 def _build_jsonld(kind: str, meta: dict, title: str, page_url: str) -> str:
     """BlogPosting / Person / WebSite の JSON-LD を生成。"""
-    if kind in {"lecture", "blog"}:
+    if kind == "lecture":
         doc = {
             "@context": "https://schema.org",
             "@type": "BlogPosting",
@@ -2449,7 +2304,7 @@ def _build_jsonld(kind: str, meta: dict, title: str, page_url: str) -> str:
             "author": { "@type": "Person", "name": "由井 辰美" },
             "publisher": {
                 "@type": "Organization",
-                "name": SITE_BRAND,
+                "name": "AI相談",
                 "url": SITE_URL,
             },
             "description": str(meta.get("summary") or title),
@@ -2476,7 +2331,7 @@ def _build_jsonld(kind: str, meta: dict, title: str, page_url: str) -> str:
         doc = {
             "@context": "https://schema.org",
             "@type": "WebSite",
-            "name": SITE_BRAND,
+            "name": "AI相談",
             "url": SITE_URL,
             "description": "AI情報とSNSアルゴリズム動向を毎朝要約して届ける静的サイト",
         }
@@ -2491,7 +2346,7 @@ def _build_ogp(title: str, description: str, page_url: str, kind: str = "article
         f"<meta property='og:description' content='{html.escape(desc, quote=True)}'>",
         f"<meta property='og:url' content='{html.escape(page_url, quote=True)}'>",
         f"<meta property='og:type' content='{html.escape(kind, quote=True)}'>",
-        f"<meta property='og:site_name' content='{SITE_BRAND}'>",
+        "<meta property='og:site_name' content='AI相談'>",
         "<meta name='twitter:card' content='summary'>",
     ])
 
@@ -2532,7 +2387,7 @@ def render_content_page(title: str, meta: dict, body_html: str, nav_html: str, p
     parts: list[str] = []
     parts.append("<!doctype html><html lang='ja'><head><meta charset='utf-8'>" + FAVICON_HEAD_HTML)
     parts.append("<meta name='viewport' content='width=device-width,initial-scale=1'>")
-    parts.append(f"<title>{html.escape(title)} | {SITE_BRAND}</title>")
+    parts.append(f"<title>{html.escape(title)} | AI相談</title>")
     desc = str(meta.get("summary") or "")
     if desc:
         parts.append(f"<meta name='description' content='{html.escape(desc, quote=True)}'>")
@@ -2573,7 +2428,7 @@ def render_content_page(title: str, meta: dict, body_html: str, nav_html: str, p
         parts.append("</ol></div>")
     parts.append(body_html)
     parts.append("</div>")
-    parts.append(f"<footer>{SITE_BRAND} / Generated by Claude</footer>")
+    parts.append("<footer>AI相談 / Generated by Claude</footer>")
     parts.append("<button class='back-to-top' id='backTop' aria-label='トップへ戻る'>↑</button>")
     parts.append("<script>(function(){var b=document.getElementById('backTop');if(!b)return;window.addEventListener('scroll',function(){b.classList.toggle('show',window.scrollY>400);});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script>")
     parts.append(REVEAL_JS)
@@ -2597,7 +2452,7 @@ def build_speaker_page() -> bool:
             "<div class='speaker-page-visual'>"
             "<div class='speaker-page-copy'>"
             f"<p class='speaker-page-role'>{speaker_role}</p>"
-            "<p>講師本人の写真を、AI導入相談・講習・制作・運用をまとめて扱うAIスペシャリストの顔として掲載しています。</p>"
+            "<p>講師本人の写真を、AI講習・制作・運用をまとめて扱うAI相談の顔として掲載しています。</p>"
             "</div>"
             "<div class='speaker-art speaker-art-animated'>"
             f"<img src='{avatar}' alt='{speaker_name} の講師写真' loading='eager' decoding='async'>"
@@ -2889,7 +2744,7 @@ def build_blog() -> int:
     if items:
         parts = [
             "<div class='tr-section'>",
-            "<p>AI相談の実践ブログです。講習・制作・AI活用の現場から、AIスペシャリストとして実際に使える視点を残していきます。</p>",
+            "<p>AIハブのブログです。講習・制作・AI活用の現場から、実際に使える視点を残していきます。</p>",
             "<div class='tr-grid'>",
         ]
         for item in items:
@@ -2909,11 +2764,11 @@ def build_blog() -> int:
         (out_dir / "index.html").write_text(
             render_content_page(
                 "ブログ",
-                {"summary": "AI相談のブログ一覧。Codex、Claude Code、生成AI活用、AIコーディングの実践記録。"},
+                {"summary": "AIハブのブログ一覧。Codex、Claude Code、生成AI活用、AIコーディングの実践記録。"},
                 "".join(parts),
                 nav,
                 page_path="blog/index.html",
-                kind="",
+                kind="blog",
             ),
             encoding="utf-8",
         )
@@ -2963,16 +2818,6 @@ def _host_of(url: str) -> str:
         return urlparse(url).hostname or url
     except Exception:
         return url
-
-
-def _portfolio_thumb_url(thumbnail: str, url: str) -> str:
-    thumbnail = (thumbnail or "").strip()
-    if thumbnail:
-        return thumbnail
-    url = (url or "").strip()
-    if not url or url.startswith("#") or url.startswith("mailto:") or url.startswith("tel:"):
-        return ""
-    return "https://s.wordpress.com/mshots/v1/" + quote(url, safe="") + "?w=960"
 
 
 def build_portfolio_page() -> bool:
@@ -3034,28 +2879,21 @@ def build_portfolio_page() -> bool:
             tech = it.get("tech") or []
             since = str(it.get("since") or "")
 
-            card_parts = [f"<a class='pf-card' href='{html.escape(url, quote=True)}' target='_blank' rel='noopener'>"]
-            thumb_url = _portfolio_thumb_url(str(it.get("thumbnail") or ""), url)
-            if thumb_url:
-                card_parts.append(
-                    f"<span class='pf-thumb' aria-hidden='true'>"
-                    f"<img src='{html.escape(thumb_url, quote=True)}' alt='' loading='lazy' decoding='async' onerror=\"this.style.display='none'\"></span>"
-                )
-            card_parts.append(f"<div class='pf-title'>{html.escape(name)}</div>")
-            card_parts.append(f"<div class='pf-host'>{html.escape(host)}</div>")
+            parts.append(f"<a class='pf-card' href='{html.escape(url, quote=True)}' target='_blank' rel='noopener'>")
+            parts.append(f"<div class='pf-title'>{html.escape(name)}</div>")
+            parts.append(f"<div class='pf-host'>{html.escape(host)}</div>")
             if summary:
-                card_parts.append(f"<div class='pf-sum'>{html.escape(summary)}</div>")
-            card_parts.append("<div class='pf-meta'>")
-            card_parts.append(f"<span class='pf-chip cat'>{html.escape(cat)}</span>")
+                parts.append(f"<div class='pf-sum'>{html.escape(summary)}</div>")
+            parts.append("<div class='pf-meta'>")
+            parts.append(f"<span class='pf-chip cat'>{html.escape(cat)}</span>")
             if status != "live":
-                card_parts.append(f"<span class='pf-chip {html.escape(status)}'>{html.escape(status)}</span>")
+                parts.append(f"<span class='pf-chip {html.escape(status)}'>{html.escape(status)}</span>")
             for t in tech:
-                card_parts.append(f"<span class='pf-chip'>{html.escape(str(t))}</span>")
+                parts.append(f"<span class='pf-chip'>{html.escape(str(t))}</span>")
             if since:
-                card_parts.append(f"<span class='pf-chip'>since {html.escape(since)}</span>")
-            card_parts.append("</div>")
-            card_parts.append("</a>")
-            parts.append("".join(card_parts))
+                parts.append(f"<span class='pf-chip'>since {html.escape(since)}</span>")
+            parts.append("</div>")
+            parts.append("</a>")
         parts.append("</div>")
 
     parts.append(
@@ -3065,7 +2903,7 @@ def build_portfolio_page() -> bool:
     )
     body_html = "".join(parts)
     meta = {
-        "summary": "AI相談が制作・運営している実績サイト一覧。カテゴリ・技術スタック・公開年で絞って俯瞰できる。",
+        "summary": "AI相談の講師、由井辰美が制作・運営している実績サイト一覧。カテゴリ・技術スタック・公開年で絞って俯瞰できる。",
     }
     nav = render_top_nav(path_prefix="./", current_id="portfolio", include_run=False)
     html_text = render_content_page("実績サイト", meta, body_html, nav, page_path="portfolio.html", kind="portfolio")
@@ -3350,25 +3188,25 @@ def _patch_programming_map_nav(pmap_file: Path) -> None:
         # ページ内目次バー（AIコーディング講習 専用：fixed top-nav の真下に1段で吸着）
         + "html{scroll-padding-top:118px;}"
         "[id]{scroll-margin-top:118px;}"
-        ".pm-chapter-toc{position:sticky;top:72px;z-index:40;"
+        ".pm-chapter-toc{position:sticky;top:66px;z-index:40;"
         "max-width:min(1160px,calc(100vw - 20px));"
         "display:flex;flex-wrap:nowrap;align-items:center;gap:6px;"
         "margin:0 auto 18px;padding:7px 10px;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;"
-        "background:rgba(255,255,255,.94);border:1px solid rgba(7,22,43,.13);"
+        "background:rgba(255,255,255,.82);border:1px solid rgba(16,24,39,.12);"
         "border-radius:8px;backdrop-filter:blur(18px) saturate(160%);"
         "-webkit-backdrop-filter:blur(18px) saturate(160%);"
-        "box-shadow:0 12px 28px rgba(7,22,43,.08),inset 0 1px 0 rgba(255,255,255,.92);}"
+        "box-shadow:0 10px 28px rgba(16,24,39,.08),inset 0 1px 0 rgba(255,255,255,.82);}"
         ".pm-chapter-toc .pm-toc-label{font-size:10.5px;font-weight:800;letter-spacing:.14em;"
-        "color:#064E63;text-transform:uppercase;padding-right:4px;white-space:nowrap;}"
+        "color:#2357e5;text-transform:uppercase;padding-right:4px;white-space:nowrap;}"
         ".pm-chapter-toc a{display:inline-flex;align-items:center;gap:3px;padding:5px 11px;"
-        "flex:0 0 auto;border-radius:8px;background:rgba(248,252,253,.94);border:1px solid rgba(7,22,43,.10);"
-        "color:#405166;text-decoration:none;font-size:11.5px;font-weight:800;line-height:1.3;"
+        "flex:0 0 auto;border-radius:8px;background:rgba(255,255,255,.78);border:1px solid rgba(16,24,39,.12);"
+        "color:#3a475d;text-decoration:none;font-size:11.5px;font-weight:700;line-height:1.3;"
         "white-space:nowrap;transition:all .2s;}"
-        ".pm-chapter-toc a:hover{background:#E9F8F6;color:#075e67;"
-        "border-color:rgba(11,92,116,.28);transform:translateY(-1px);}"
+        ".pm-chapter-toc a:hover{background:rgba(255,255,255,.95);color:#2357e5;"
+        "border-color:rgba(6,167,216,.34);transform:translateY(-1px);}"
         "@media (max-width:640px){"
         "html{scroll-padding-top:108px;}[id]{scroll-margin-top:108px;}"
-        ".pm-chapter-toc{padding:6px 8px;gap:5px;top:64px;max-width:calc(100vw - 12px);}"
+        ".pm-chapter-toc{padding:6px 8px;gap:5px;top:60px;max-width:calc(100vw - 12px);}"
         ".pm-chapter-toc a{padding:5px 10px;font-size:11px;}}"
         "</style>"
     )

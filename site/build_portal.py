@@ -18,7 +18,6 @@ import os
 import sys
 from datetime import datetime
 from pathlib import Path
-from urllib.parse import quote
 
 import yaml
 
@@ -41,9 +40,9 @@ SITE_URL = os.environ.get("AIHUB_SITE_URL", os.environ.get("AIWATCH_SITE_URL", "
 OWNER_NAME = "由井 辰美"
 OWNER_EMAIL = "goodbouldering@gmail.com"
 SITE_BRAND = "AI相談"
-SITE_LEGACY_NAME = "AI相談。彦根 / AIハブ / AIスペシャリスト 彦根"
-OWNER_SUBTITLE = "彦根・滋賀のAI相談・導入定着スペシャリスト"
-OWNER_TAGLINE = "専門用語を判断軸に翻訳し、相談から実装・社内定着まで伴走する"
+SITE_LEGACY_NAME = "AIハブ"
+OWNER_SUBTITLE = "クライミング歴30年・9事業を回す滋賀のAI講師"
+OWNER_TAGLINE = "AIを聞いて終わりにせず、講習・実例・資料で仕事に入れる"
 AI_CODING_BOOK_URL = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/S7GERYVDIPRV76DKXCC3WJWH"
 MONTHLY_SUPPORT_CHECKOUT_URL = "/api/stripe/monthly-support"
 
@@ -127,7 +126,7 @@ def _build_jsonld_website() -> str:
         "@type": ["ProfessionalService", "LocalBusiness"],
         "@id": org_id,
         "name": SITE_BRAND,
-        "alternateName": [SITE_LEGACY_NAME, "AI相談。彦根", "AI Hub Hikone", "AI講習 彦根", "彦根 AIスペシャリスト", "AIスペシャリスト 彦根"],
+        "alternateName": [SITE_LEGACY_NAME, "AI相談。彦根", "AI Hub Hikone", "AI講習 彦根"],
         "url": SITE_URL,
         "image": OG_IMAGE_URL,
         "email": OWNER_EMAIL,
@@ -146,9 +145,9 @@ def _build_jsonld_website() -> str:
             "streetAddress": "岡町12番地",
             "addressCountry": "JP",
         },
-        "description": "滋賀県彦根市を拠点に、中小事業者・地域団体・個人事業者向けのAI相談、AIスペシャリスト相談、生成AI講習、Codex実践会、Claude Code併用、画像生成、AIコーディング講習、受講資料公開、実例紹介、Web/業務システム制作、補助金を使ったAI導入支援を行う。エンジニア経験、コンサル経験、9事業運営の実務経験をもとに、相談から講習、実装、公開、社内定着まで伴走する。",
+        "description": "滋賀県彦根市を拠点に、中小事業者・地域団体・個人事業者向けのAI相談、生成AI講習、Codex実践会、Claude Code併用、画像生成、AIコーディング講習、受講資料公開、実例紹介、Web/業務システム制作、補助金を使ったAI導入支援を行う。9事業を実際に回す現役オーナーが、相談から講習、実装、公開、運用定着まで伴走する。",
         "knowsAbout": [
-            "AIスペシャリスト", "AI相談", "生成AI講習", "ChatGPT", "Claude Code", "Codex", "画像生成", "AIコーディング講習",
+            "AI相談", "生成AI講習", "ChatGPT", "Claude Code", "Codex", "画像生成", "AIコーディング講習",
             "LLMO（AI検索最適化）", "SEO", "MEO", "YouTube SEO", "Reels導線",
             "業務自動化", "AI導入補助金", "デジタル化補助金", "中小企業DX",
         ],
@@ -159,13 +158,13 @@ def _build_jsonld_website() -> str:
         "@type": "Person",
         "@id": person_id,
         "name": OWNER_NAME,
-        "jobTitle": "AIスペシャリスト / AI講師 / Web経営コンサルタント / 複数事業オーナー",
+        "jobTitle": "AI講師 / Web経営コンサルタント / 複数事業オーナー",
         "email": OWNER_EMAIL,
         "url": SITE_URL + "/speaker.html",
         "image": SITE_URL + "/img/speaker-portrait-v2.webp",
         "worksFor": {"@id": org_id},
         "knowsAbout": ["生成AI", "クライミング", "店舗経営", "マーケティング", "補助金活用"],
-        "description": "クライミング歴30年。ボルダリングカフェ「グッぼる」をはじめ9事業を経営しながら、滋賀・彦根の中小事業者にAI相談、生成AI講習、Codex実践会、SNS/LLMO導線づくりを教える。経営者であり、コードを書き、業務導入を設計するAIスペシャリストであることが強み。",
+        "description": "クライミング歴30年。ボルダリングカフェ「グッぼる」をはじめ9事業を経営しながら、滋賀・彦根の中小事業者にAI相談、生成AI講習、Codex実践会、SNS/LLMO導線づくりを教える。経営者でありコードを書く実装者でもある二重性が強み。",
     }
 
     website = {
@@ -175,13 +174,13 @@ def _build_jsonld_website() -> str:
         "url": SITE_URL,
         "inLanguage": "ja",
         "publisher": {"@id": org_id},
-        "description": "滋賀・彦根の中小事業者向けAI相談、AIスペシャリスト相談、AI導入支援、講習募集、受講資料、実例、講師紹介、AI/SNS/LLMO情報の資料センター。",
+        "description": "滋賀・彦根の中小事業者向けAI相談、講習募集、受講資料、実例、講師紹介、AI/SNS/LLMO情報の資料センター。",
     }
 
     codex_prep_title = "Codex準備会 60分"
     codex_practice_title = "Codex実践会 120分"
     ai_coding_title = "AIコーディング講習 120分"
-    free_consult_title = "AI無料相談 とりあえず30分"
+    free_consult_title = "AI個別相談 入口整理"
     consult_title = "AI個別相談 しっかり60分"
     support_title = "AI伴走支援 いっしょに導入"
 
@@ -190,7 +189,7 @@ def _build_jsonld_website() -> str:
         (codex_prep_title, "Codex準備会 導入と習得の流れに沿って、ChatGPTログイン、作業フォルダ選定、秘密情報を入れない権限設計、最初の依頼、差分確認、ブラウザ表示確認、独立レビュー、AGENTS.md、公式アップデート確認先までを60分で整える準備講習。", "2200", "2200", "Course"),
         (codex_practice_title, "Codex実践会で持ち込み課題を進め、Claude Codeとの使い分け、ページ、資料、コード、画像生成プロンプト、動画台本などの成果物を120分で作る実践講習。", "5500", "5500", "Course"),
         (ai_coding_title, "Codex導入、Claude Code併用、画像生成、AI時代の本物のエンジニア像、レベルマップ、プログラミング基礎、設計、データ、運用、セキュリティを1本で学ぶAIコーディング講習。AIの成果物を判断し、説明し、仕事に入れるための作業設計と確認の型を120分で身につける。", "11000", "11000", "Course"),
-        (free_consult_title, "来店またはオンラインで、AI導入の入口を30分で整理する無料相談。講習や伴走の前に、今の課題と次の一手を確認する。", "0", "0", "BusinessCoaching"),
+        (free_consult_title, "来店またはオンラインで、AI導入の入口を整理する個別相談。講習や伴走の前に、今の課題と次の一手を確認する。", "0", "0", "BusinessCoaching"),
         (consult_title, "AIの使い方、役割分担、指示書、確認体制、運用導線を60分で整理する個別相談。", "5500", "5500", "BusinessCoaching"),
         (support_title, "HP公開から事務自動化・経理・マーケまで6ヶ月で一気に定着。技術的な難所は講師が代行・支援。滋賀・彦根の補助金で負担1/3以下に。", "100000", "100000", "Service"),
     ]
@@ -600,49 +599,13 @@ header.site-header.scrolled {
 .site-nav .menu-drop {
   position: absolute; right: 0; top: calc(100% + 14px);
   min-width: 240px; padding: 8px;
-  background:
-    linear-gradient(135deg, rgba(255,255,255,.78), rgba(241,249,248,.58)),
-    linear-gradient(160deg, rgba(14,165,198,.08), rgba(242,102,85,.05)) !important;
-  border: 1px solid rgba(255,255,255,.48);
+  background: #FEFFFF !important; border: 1px solid rgba(18,32,51,.18);
   border-radius: var(--radius-sm);
   box-shadow: 0 18px 44px rgba(18,32,51,.16), inset 0 1px 0 rgba(255,255,255,.95);
-  backdrop-filter: blur(22px) saturate(160%);
-  -webkit-backdrop-filter: blur(22px) saturate(160%);
+  backdrop-filter: none;
   display: none;
 }
 .site-nav .menu-drop.open { display: block; }
-.site-nav .menu-drop-visual {
-  display: grid;
-  grid-template-columns: 46px minmax(0, 1fr);
-  gap: 10px;
-  align-items: center;
-  margin: 0 0 8px;
-  padding: 8px;
-  border-radius: 10px;
-  background: rgba(255,255,255,.62);
-  border: 1px solid rgba(255,255,255,.54);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.72);
-}
-.site-nav .menu-drop-visual img {
-  width: 46px;
-  height: 46px;
-  display: block;
-  object-fit: cover;
-  border-radius: 10px;
-}
-.site-nav .menu-drop-visual strong {
-  display: block;
-  color: #122033;
-  font-size: 13px;
-  line-height: 1.25;
-}
-.site-nav .menu-drop-visual span {
-  display: block;
-  margin-top: 2px;
-  color: #607086;
-  font-size: 11px;
-  line-height: 1.4;
-}
 .site-nav .menu-drop-label {
   display: block; padding: 7px 14px 4px;
   font-size: 10px; font-weight: 900; letter-spacing: .14em;
@@ -668,7 +631,7 @@ header.site-header.scrolled {
   color: #0F5F78;
   border-color: rgba(31,110,140,.24);
 }
-/* ヘッダー右端の主CTA: 無料相談（グラデ・最も目立たせる） */
+/* ヘッダー右端の主CTA: 個別相談 */
 .site-nav .nav-cta {
   display: inline-flex; align-items: center; gap: 6px;
   padding: 10px 18px; border-radius: var(--radius-sm);
@@ -2251,7 +2214,7 @@ section.block + section.block { border-top: 1px solid var(--line); }
 .explore-cta { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--primary-soft); margin-top: 6px; }
 
 /* ---- contact choices (メール / LINE の2導線) ---- */
-/* 主導線: 無料相談の予約カード（大きく・グラデで最優先） */
+/* 主導線: 個別相談の予約カード */
 .contact-primary {
   display: flex; align-items: center; gap: 18px;
   max-width: 680px; margin: 0 auto; padding: 22px 26px;
@@ -2412,40 +2375,11 @@ footer.site-footer {
   box-shadow: var(--shadow-card-hover);
 }
 .pf-card .pf-thumb {
-  position: relative;
   display: block; margin: -14px -16px 12px; /* カード内パディングを打ち消して全幅バナーに */
   border-radius: var(--radius-sm) var(--radius-sm) 0 0; overflow: hidden;
-  aspect-ratio: 32 / 15;
-  background:
-    linear-gradient(135deg, rgba(255,255,255,.78), rgba(226,247,244,.56)),
-    linear-gradient(120deg, rgba(14,165,198,.10), rgba(146,200,62,.08));
+  aspect-ratio: 16 / 9; background: var(--bg-elev);
 }
-.pf-card .pf-thumb svg, .pf-card .pf-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
-.pf-card .pf-thumb.is-site-shot {
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.82);
-}
-.pf-card .pf-thumb.is-site-shot::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto;
-  z-index: 2;
-  height: 18px;
-  background:
-    radial-gradient(circle at 10px 9px, #EF6864 0 3px, transparent 3.4px),
-    radial-gradient(circle at 22px 9px, #F5B445 0 3px, transparent 3.4px),
-    radial-gradient(circle at 34px 9px, #46B87A 0 3px, transparent 3.4px),
-    linear-gradient(180deg, rgba(255,255,255,.94), rgba(244,248,249,.76));
-  border-bottom: 1px solid rgba(18,32,51,.10);
-  pointer-events: none;
-}
-.pf-card .pf-thumb.is-site-shot::after {
-  content: "";
-  position: absolute;
-  inset: 18px 0 0;
-  z-index: 2;
-  background: linear-gradient(180deg, transparent 62%, rgba(7,20,38,.16));
-  pointer-events: none;
-}
+.pf-card .pf-thumb svg, .pf-card .pf-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .pf-card .pf-title { font-weight: 800; font-size: 15px; color: var(--text); }
 .pf-card .pf-host { font-size: 11.5px; color: var(--muted); margin-top: 2px; word-break: break-all; }
 .pf-card .pf-sum { font-size: 13px; color: var(--text-soft); line-height: 1.55; margin: 8px 0 10px; flex: 1; }
@@ -4361,112 +4295,9 @@ section.block.block-tight {
   font-weight: 800;
 }
 
-.choice-lens {
-  margin-top: 18px;
-  display: grid;
-  grid-template-columns: .78fr 1fr .92fr;
-  gap: 0;
-  overflow: hidden;
-  border: 1px solid rgba(18,32,51,.13);
-  border-radius: 14px;
-  background: rgba(255,255,255,.94);
-  box-shadow: var(--shadow-card);
-}
-
-.choice-lens-head,
-.choice-lens-row {
-  display: contents;
-}
-
-.choice-lens-head span,
-.choice-lens-row > * {
-  padding: 12px 14px;
-  border-right: 1px solid rgba(18,32,51,.09);
-  border-bottom: 1px solid rgba(18,32,51,.09);
-}
-
-.choice-lens-head span {
-  background: #071426;
-  color: #FFFFFF;
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: .08em;
-}
-
-.choice-lens-row:last-child > * {
-  border-bottom: 0;
-}
-
-.choice-lens-head span:last-child,
-.choice-lens-row > *:last-child {
-  border-right: 0;
-}
-
-.choice-lens-state {
-  color: var(--text);
-  font-size: 13.5px;
-  font-weight: 900;
-  line-height: 1.55;
-}
-
-.choice-lens-reco {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  color: var(--text);
-  font-size: 13px;
-  font-weight: 850;
-  line-height: 1.5;
-}
-
-.choice-lens-reco small {
-  color: #0F5F78;
-  font-family: var(--mono);
-  font-size: 10.5px;
-  font-weight: 900;
-  letter-spacing: .06em;
-}
-
-.choice-lens-proof {
-  color: var(--text-soft);
-  font-size: 12.5px;
-  line-height: 1.65;
-}
-
 @media (max-width: 980px) {
   .path-grid {
     grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 760px) {
-  .choice-lens {
-    grid-template-columns: 1fr;
-  }
-
-  .choice-lens-head {
-    display: none;
-  }
-
-  .choice-lens-row {
-    display: grid;
-    gap: 0;
-    padding: 12px;
-    border-bottom: 1px solid rgba(18,32,51,.09);
-  }
-
-  .choice-lens-row:last-child {
-    border-bottom: 0;
-  }
-
-  .choice-lens-row > * {
-    padding: 3px 0;
-    border: 0;
-  }
-
-  .choice-lens-reco {
-    margin-top: 4px;
   }
 }
 """
@@ -5916,8 +5747,7 @@ body {
 }
 
 .site-nav {
-  flex: 0 0 auto !important;
-  margin-left: auto !important;
+  flex: 1 1 auto;
   justify-content: flex-end;
   flex-wrap: nowrap !important;
   gap: 6px !important;
@@ -5972,19 +5802,6 @@ body {
   background: rgba(255,255,255,.96) !important;
   border-color: rgba(7,20,38,.12) !important;
   box-shadow: 0 24px 62px rgba(7,20,38,.15), inset 0 1px 0 rgba(255,255,255,.96) !important;
-}
-
-.mobile-nav.open {
-  background: #FFFFFF !important;
-  border-top: 1px solid rgba(7,20,38,.16) !important;
-  box-shadow: 0 22px 48px rgba(7,20,38,.18) !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-}
-
-.mobile-nav-panel {
-  background: #FFFFFF !important;
-  border-radius: 0 0 12px 12px;
 }
 
 .hero.hero-atlas {
@@ -6386,202 +6203,240 @@ PORTAL_CSS += """
 
 PORTAL_CSS += """
 
-/* ---- Human-led glass polish, 2026-06-22 ---- */
-body {
-  background:
-    linear-gradient(116deg, rgba(14,165,198,.08) 0%, transparent 34%),
-    linear-gradient(244deg, rgba(242,102,85,.07) 0%, transparent 36%),
-    linear-gradient(180deg, #FFFFFF 0%, #F7FBFA 46%, #EEF7F4 100%) !important;
+/* ---- Decision-first header and path selector, 2026-06-21 ---- */
+.site-header,
+.site-header.scrolled,
+.site-header:hover {
+  background: linear-gradient(135deg, rgba(255,255,255,.97), rgba(244,251,253,.93)) !important;
+  border-bottom-color: rgba(7,20,38,.18) !important;
+  box-shadow: 0 14px 38px rgba(7,20,38,.12), inset 0 1px 0 rgba(255,255,255,.98) !important;
 }
 
-body::before {
-  background:
-    linear-gradient(90deg, rgba(18,32,51,.026) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(18,32,51,.018) 1px, transparent 1px),
-    linear-gradient(125deg, transparent 0 48%, rgba(14,165,198,.055) 48% 49%, transparent 49% 100%) !important;
-  background-size: 96px 96px, 96px 96px, 220px 220px !important;
+.site-nav {
+  flex: 0 0 auto !important;
+  margin-left: auto !important;
+  background: rgba(255,255,255,.78) !important;
+  border: 1px solid rgba(7,20,38,.13) !important;
 }
 
-header.site-header,
-header.site-header.scrolled {
-  background:
-    linear-gradient(90deg, rgba(255,255,255,.76), rgba(244,251,250,.56)) !important;
-  border-bottom: 1px solid rgba(255,255,255,.52) !important;
-  box-shadow: 0 18px 46px rgba(18,32,51,.09), inset 0 1px 0 rgba(255,255,255,.78) !important;
-  backdrop-filter: blur(24px) saturate(165%) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(165%) !important;
+.site-nav a.nav-link:hover,
+.site-nav a.nav-link:focus-visible,
+.site-nav .menu-toggle:hover,
+.site-nav .menu-toggle:focus-visible {
+  background: #071426 !important;
+  color: #FFFFFF !important;
+  border-color: #071426 !important;
+  box-shadow: 0 12px 24px rgba(7,20,38,.14) !important;
 }
 
-.site-nav,
-.mobile-nav {
-  background:
-    linear-gradient(135deg, rgba(255,255,255,.56), rgba(244,251,250,.36)) !important;
-  border-color: rgba(255,255,255,.50) !important;
-  box-shadow: 0 14px 34px rgba(18,32,51,.07), inset 0 1px 0 rgba(255,255,255,.70) !important;
-  backdrop-filter: blur(22px) saturate(155%) !important;
-  -webkit-backdrop-filter: blur(22px) saturate(155%) !important;
+.site-nav a.nav-link.nav-essential[href="#packages"] {
+  background: rgba(7,20,38,.92) !important;
+  color: #FFFFFF !important;
+  border-color: rgba(7,20,38,.92) !important;
 }
 
-.biz-card, .service-card, .pkg-card, .faq-item, .stat,
-.lecture-card, .pf-card, .voice-card, .explore-card, .contact-choice,
-.specialist-lead-card, .specialist-card, .blog-feature, .blog-list-card,
-.route-card, .path-card, .flow-card, .tr-card, .profile-tech-card {
-  background:
-    linear-gradient(135deg, rgba(255,255,255,.68), rgba(255,255,255,.40)),
-    linear-gradient(135deg, rgba(14,165,198,.055), rgba(242,102,85,.045)) !important;
-  border-color: rgba(255,255,255,.48) !important;
-  box-shadow: 0 20px 54px rgba(18,32,51,.10), inset 0 1px 0 rgba(255,255,255,.72) !important;
-  backdrop-filter: blur(22px) saturate(158%) !important;
-  -webkit-backdrop-filter: blur(22px) saturate(158%) !important;
+.site-nav a.nav-link.nav-essential[href="#lesson-bridge"] {
+  background: rgba(230,0,18,.10) !important;
+  color: #8C0010 !important;
+  border-color: rgba(230,0,18,.24) !important;
 }
 
-.biz-card:hover, .service-card:hover, .pkg-card:hover, .pf-card:hover,
-.lecture-card:hover, .blog-list-card:hover, .contact-choice:hover {
-  border-color: rgba(14,165,198,.28) !important;
-  box-shadow: 0 28px 70px rgba(18,32,51,.14), inset 0 1px 0 rgba(255,255,255,.82) !important;
+.site-nav a.nav-link.nav-essential[href="#lectures"] {
+  background: rgba(146,200,62,.14) !important;
+  color: #35560F !important;
+  border-color: rgba(146,200,62,.26) !important;
 }
 
-.pf-card {
-  padding: 14px 16px 13px !important;
-  overflow: hidden;
+.mobile-nav.open {
+  border-top: 1px solid rgba(7,20,38,.14);
+  box-shadow: 0 22px 46px rgba(7,20,38,.16);
 }
 
-.pf-card .pf-thumb {
-  margin: -14px -16px 13px !important;
-  border-radius: 8px 8px 0 0 !important;
+.path-grid {
+  align-items: stretch;
 }
 
-.pf-card .pf-title {
-  color: #122033 !important;
+.path-card {
+  min-height: 248px !important;
+  padding: 20px !important;
+  border-color: rgba(7,20,38,.14) !important;
+  box-shadow: 0 18px 42px rgba(7,20,38,.09), inset 0 1px 0 rgba(255,255,255,.94) !important;
 }
 
-.pf-card .pf-chip {
-  background: rgba(255,255,255,.58) !important;
-  border-color: rgba(18,32,51,.10) !important;
-  color: #0F5F78 !important;
-}
+.path-card:nth-child(1) { --path-accent: #F26655; }
+.path-card:nth-child(2) { --path-accent: #0EA5C6; }
+.path-card:nth-child(3) { --path-accent: #92C83E; }
 
-.section-heading {
-  color: #0F5F78 !important;
-}
-
-.hero-proof-grid,
-.hero-proof,
-.web-showcase,
-.web-browser,
-.web-mini-panel {
-  background:
-    linear-gradient(135deg, rgba(255,255,255,.62), rgba(255,255,255,.30)),
-    linear-gradient(135deg, rgba(14,165,198,.07), rgba(146,200,62,.055)) !important;
-  border-color: rgba(255,255,255,.46) !important;
-  backdrop-filter: blur(22px) saturate(155%) !important;
-  -webkit-backdrop-filter: blur(22px) saturate(155%) !important;
-}
-"""
-
-PORTAL_CSS += """
-
-/* ---- Mac glass bento section separation, 2026-06-24 ---- */
-.block {
-  position: relative;
-  margin-block: clamp(28px, 5vw, 58px);
-  padding-block: clamp(34px, 5.5vw, 72px);
-  isolation: isolate;
-}
-
-.block::before {
+.path-card::before {
   content: "";
   position: absolute;
-  inset: 0 calc(50% - 50vw);
-  z-index: -1;
-  background:
-    linear-gradient(135deg, rgba(255,255,255,.64), rgba(255,255,255,.26)),
-    linear-gradient(90deg, var(--section-accent, rgba(14,165,198,.10)), transparent 34%, rgba(242,102,85,.07));
-  border-top: 1px solid rgba(255,255,255,.62);
-  border-bottom: 1px solid rgba(18,32,51,.08);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.78), 0 18px 54px rgba(18,32,51,.06);
-  backdrop-filter: blur(18px) saturate(145%);
-  -webkit-backdrop-filter: blur(18px) saturate(145%);
+  inset: 0 0 auto;
+  height: 6px;
+  background: var(--path-accent, #0EA5C6);
 }
 
-.block::after {
-  content: "";
-  position: absolute;
-  inset: clamp(18px, 3vw, 32px) calc(50% - 50vw) auto;
-  height: 1px;
-  z-index: -1;
-  background: linear-gradient(90deg, transparent, rgba(14,165,198,.26), transparent);
+.path-card:hover,
+.path-card:focus-visible {
+  border-color: color-mix(in srgb, var(--path-accent, #0EA5C6) 44%, rgba(7,20,38,.14)) !important;
+  box-shadow: 0 24px 58px rgba(7,20,38,.14), 0 0 0 4px color-mix(in srgb, var(--path-accent, #0EA5C6) 14%, transparent) !important;
 }
 
-.block-tight {
-  margin-top: clamp(18px, 3vw, 38px);
-}
-
-.block .section-heading {
+.path-persona {
+  display: inline-flex;
   width: fit-content;
-  min-height: 30px;
-  padding: 5px 12px;
-  border-radius: 8px;
-  background: rgba(255,255,255,.64);
-  border: 1px solid rgba(255,255,255,.72);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.82), 0 10px 24px rgba(18,32,51,.07);
-  backdrop-filter: blur(16px) saturate(150%);
-  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  margin-top: -2px;
+  color: #071426;
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1.35;
 }
 
-.block .section-title,
-.block .section-sub {
-  max-width: 920px;
-}
-
-#specialist { --section-accent: rgba(14,165,198,.14); }
-#blog { --section-accent: rgba(114,92,255,.12); }
-#start { --section-accent: rgba(146,200,62,.14); }
-#packages { --section-accent: rgba(242,102,85,.12); }
-#web-showcase { --section-accent: rgba(0,184,212,.13); }
-#works { --section-accent: rgba(217,154,32,.13); }
-#flow { --section-accent: rgba(17,163,127,.12); }
-#lectures { --section-accent: rgba(114,92,255,.10); }
-#speaker { --section-accent: rgba(14,165,198,.11); }
-#faq { --section-accent: rgba(146,200,62,.11); }
-#growth { --section-accent: rgba(242,102,85,.10); }
-#contact { --section-accent: rgba(0,140,172,.15); }
-
-.path-grid,
-.pkg-grid,
-.service-grid,
-.lecture-grid,
-.pf-grid,
-.flow-list,
-.faq-list,
-.growth-layout,
-.blog-list,
-.specialist-card-list {
-  gap: clamp(12px, 1.8vw, 20px) !important;
-}
-
-.path-card,
-.pkg-card,
-.service-card,
-.lecture-card,
-.pf-card,
-.flow-step,
-.faq-item,
-.growth-panel,
-.blog-list-card,
-.specialist-card,
-.specialist-lead-card,
-.blog-feature {
+.path-meta,
+.path-proof {
   border-radius: 8px !important;
 }
 
+.path-meta {
+  background: color-mix(in srgb, var(--path-accent, #0EA5C6) 12%, #FFFFFF) !important;
+  border-color: color-mix(in srgb, var(--path-accent, #0EA5C6) 25%, rgba(7,20,38,.12)) !important;
+  color: color-mix(in srgb, var(--path-accent, #0EA5C6) 70%, #071426) !important;
+}
+
+.path-proof {
+  display: inline-flex;
+  width: fit-content;
+  padding: 5px 9px;
+  background: rgba(7,20,38,.045);
+  border: 1px solid rgba(7,20,38,.08);
+  color: #405166;
+  font-size: 11.5px;
+  font-weight: 800;
+}
+
+.path-cta {
+  margin-top: 2px;
+}
+
+.path-card:hover .path-cta,
+.path-card:focus-visible .path-cta {
+  color: color-mix(in srgb, var(--path-accent, #0EA5C6) 78%, #071426) !important;
+}
+
+.choice-lens {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: .78fr 1fr .92fr;
+  gap: 0;
+  overflow: hidden;
+  border: 1px solid rgba(7,20,38,.13);
+  border-radius: 8px;
+  background: rgba(255,255,255,.92);
+  box-shadow: 0 18px 42px rgba(7,20,38,.08), inset 0 1px 0 rgba(255,255,255,.96);
+}
+
+.choice-lens-head,
+.choice-lens-row {
+  display: contents;
+}
+
+.choice-lens-head span,
+.choice-lens-row > * {
+  padding: 12px 14px;
+  border-right: 1px solid rgba(7,20,38,.09);
+  border-bottom: 1px solid rgba(7,20,38,.09);
+}
+
+.choice-lens-head span {
+  background: #071426;
+  color: #FFFFFF;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .08em;
+}
+
+.choice-lens-row:last-child > * {
+  border-bottom: 0;
+}
+
+.choice-lens-head span:last-child,
+.choice-lens-row > *:last-child {
+  border-right: 0;
+}
+
+.choice-lens-state {
+  color: #071426;
+  font-size: 13.5px;
+  font-weight: 900;
+  line-height: 1.55;
+}
+
+.choice-lens-reco {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  color: #102033;
+  font-size: 13px;
+  font-weight: 850;
+  line-height: 1.5;
+}
+
+.choice-lens-reco small {
+  color: #0F5F78;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 900;
+  letter-spacing: .06em;
+}
+
+.choice-lens-proof {
+  color: #405166;
+  font-size: 12.5px;
+  line-height: 1.65;
+}
+
 @media (max-width: 760px) {
-  .block {
-    margin-block: 24px;
-    padding-block: 32px;
+  .choice-lens {
+    grid-template-columns: 1fr;
   }
-  .block::before {
-    inset-inline: -18px;
+
+  .choice-lens-head {
+    display: none;
+  }
+
+  .choice-lens-row {
+    display: grid;
+    gap: 0;
+    padding: 12px;
+    border-bottom: 1px solid rgba(7,20,38,.09);
+  }
+
+  .choice-lens-row:last-child {
+    border-bottom: 0;
+  }
+
+  .choice-lens-row > * {
+    padding: 3px 0;
+    border: 0;
+  }
+
+  .choice-lens-reco {
+    margin-top: 4px;
+  }
+}
+
+@media (max-width: 680px) {
+  .path-card {
+    min-height: 0 !important;
+    padding: 18px !important;
+  }
+
+  .path-card strong {
+    font-size: 20px !important;
+  }
+
+  .path-card p {
+    line-height: 1.7 !important;
   }
 }
 """
@@ -6629,8 +6484,6 @@ nav.top-nav .nav-link,
   background: #FFFFFF !important;
   color: var(--menu-text) !important;
   border: 1px solid rgba(7,20,38,.12) !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
 }
 
 .site-nav a.nav-link:hover,
@@ -6659,6 +6512,9 @@ nav.top-nav .nav-link.nav-essential[href="/#packages"] {
 .site-nav a.nav-link.nav-essential[href="#lectures"],
 .site-nav a.nav-link.nav-essential[href="/#lectures"],
 nav.top-nav .nav-link.nav-essential[href="/#lectures"],
+.site-nav a.nav-link.nav-essential[href="#lesson-bridge"],
+.site-nav a.nav-link.nav-essential[href="/#lesson-bridge"],
+nav.top-nav .nav-link.nav-essential[href="/#lesson-bridge"],
 .site-nav a.nav-link[href="/programming-map.html"],
 nav.top-nav .nav-link[href="/programming-map.html"] {
   background: rgba(14,165,198,.10) !important;
@@ -6666,8 +6522,15 @@ nav.top-nav .nav-link[href="/programming-map.html"] {
   border-color: rgba(14,165,198,.24) !important;
 }
 
-.site-nav .menu-drop,
-.site-nav .admin-fixed-menu-drop {
+.site-nav a.nav-link.nav-essential[href="#lesson-bridge"],
+.site-nav a.nav-link.nav-essential[href="/#lesson-bridge"],
+nav.top-nav .nav-link.nav-essential[href="/#lesson-bridge"] {
+  background: rgba(230,0,18,.10) !important;
+  color: #8C0010 !important;
+  border-color: rgba(230,0,18,.26) !important;
+}
+
+.site-nav .menu-drop {
   background: var(--menu-surface) !important;
   color: var(--menu-text) !important;
   border: 1px solid var(--menu-border) !important;
@@ -6681,17 +6544,14 @@ nav.top-nav .nav-link[href="/programming-map.html"] {
   color: var(--menu-muted) !important;
 }
 
-.site-nav .menu-drop a,
-.site-nav .admin-fixed-menu-drop a {
+.site-nav .menu-drop a {
   background: #FFFFFF !important;
   color: var(--menu-text) !important;
   border-radius: 8px !important;
 }
 
 .site-nav .menu-drop a:hover,
-.site-nav .menu-drop a:focus-visible,
-.site-nav .admin-fixed-menu-drop a:hover,
-.site-nav .admin-fixed-menu-drop a:focus-visible {
+.site-nav .menu-drop a:focus-visible {
   background: var(--menu-focus) !important;
   color: #075E67 !important;
   outline: none !important;
@@ -6703,8 +6563,6 @@ nav.top-nav .nav-link[href="/programming-map.html"] {
   color: var(--menu-text) !important;
   border: 1px solid var(--menu-border) !important;
   box-shadow: 0 10px 24px rgba(7,20,38,.12) !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
 }
 
 .mobile-nav,
@@ -6755,99 +6613,880 @@ nav.top-nav .nav-link[href="/programming-map.html"] {
 """
 
 
-BLOG_TEASER_CSS = """
-.specialist-grid {
-  display: grid;
-  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
-  gap: clamp(14px, 2vw, 22px);
-  align-items: stretch;
+PORTAL_CSS += """
+
+/* ---- Mac glass bento refresh, 2026-06-24 ---- */
+:root {
+  --mac-ink: #071426;
+  --mac-text: #122033;
+  --mac-muted: #536276;
+  --mac-line: rgba(7,20,38,.13);
+  --mac-line-strong: rgba(7,20,38,.20);
+  --mac-glass: rgba(255,255,255,.66);
+  --mac-glass-strong: rgba(255,255,255,.88);
+  --mac-cyan: #0EA5C6;
+  --mac-teal: #11A37F;
+  --mac-lime: #92C83E;
+  --mac-coral: #F26655;
+  --mac-amber: #D99A20;
+  --mac-shadow: 0 18px 48px rgba(7,20,38,.10), inset 0 1px 0 rgba(255,255,255,.92);
 }
-.specialist-lead-card,
-.specialist-card {
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: rgba(255,255,255,.92);
-  box-shadow: var(--shadow-card);
+
+body {
+  background:
+    linear-gradient(90deg, rgba(7,20,38,.035) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(7,20,38,.025) 1px, transparent 1px),
+    linear-gradient(120deg, rgba(14,165,198,.10), transparent 32%),
+    linear-gradient(240deg, rgba(242,102,85,.08), transparent 34%),
+    linear-gradient(180deg, #FFFFFF 0%, #F5FBFC 46%, #FFFFFF 100%) !important;
+  background-size: 92px 92px, 92px 92px, auto, auto, auto !important;
 }
-.specialist-lead-card {
-  padding: clamp(18px, 3vw, 28px);
-  background: linear-gradient(135deg, rgba(255,255,255,.96), rgba(238,249,247,.90));
+
+.fusion-logo-large {
+  gap: 10px !important;
+  align-items: baseline !important;
 }
-.specialist-kicker {
-  display: inline-flex;
-  align-items: center;
-  min-height: 28px;
-  padding: 4px 10px;
+
+.hero.hero-atlas .fusion-logo-large .ai {
+  color: var(--mac-ink) !important;
+  text-shadow: 0 1px 0 rgba(255,255,255,.72);
+}
+
+.hero.hero-atlas .fusion-logo-large .hub {
+  align-self: center;
+  padding: 7px 12px;
+  border: 1px solid rgba(7,20,38,.14);
   border-radius: 999px;
-  background: rgba(14,165,198,.10);
-  color: var(--primary);
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: .04em;
+  background: rgba(255,255,255,.72) !important;
+  color: #075E67 !important;
+  font-size: clamp(15px, 1.5vw, 18px) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.9);
 }
-.specialist-lead-card h3 {
-  margin: 14px 0 12px;
-  color: var(--text);
-  font-size: clamp(24px, 3vw, 38px);
-  line-height: 1.22;
-  letter-spacing: 0;
-}
-.specialist-lead-card p,
-.specialist-card p {
-  margin: 0;
-  color: var(--text-soft);
-  line-height: 1.9;
-}
-.specialist-source {
-  margin-top: 16px;
-  padding-top: 14px;
-  border-top: 1px solid var(--line);
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.7;
-}
-.specialist-source a {
-  color: var(--primary);
-  font-weight: 800;
-}
-.specialist-card-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-}
-.specialist-card {
-  min-height: 100%;
-  padding: 18px;
-}
-.specialist-card b {
-  display: block;
-  color: var(--text);
-  font-size: 17px;
-  margin-bottom: 8px;
-}
-.specialist-card small {
-  display: inline-flex;
-  margin-bottom: 10px;
-  color: var(--primary);
-  font-weight: 900;
-  letter-spacing: .04em;
-}
-.blog-section-head {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 18px;
-}
-.blog-section-head .section-title,
-.blog-section-head .section-sub {
-  text-align: left;
-  margin-left: 0;
-  margin-right: 0;
-}
-.blog-section-head .section-sub {
+
+.hero-title-sub {
   max-width: 680px;
 }
+
+.hero-proof,
+.atlas-live-card,
+.hero-route-card,
+.path-card,
+.choice-lens,
+.pkg-card,
+.lecture-card,
+.pf-card,
+.biz-card,
+.service-card,
+.voice-card,
+.faq-item,
+.growth-panel,
+.flow-step,
+.contact-primary,
+.blog-feature,
+.blog-card,
+.web-showcase {
+  background: var(--mac-glass) !important;
+  border: 1px solid rgba(255,255,255,.74) !important;
+  box-shadow: var(--mac-shadow) !important;
+  backdrop-filter: blur(18px) saturate(145%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(145%) !important;
+}
+
+section.block {
+  position: relative;
+  padding: clamp(58px, 7vw, 92px) 0 !important;
+  border-top: 0 !important;
+  scroll-margin-top: 92px;
+}
+
+section.block + section.block {
+  border-top: 0 !important;
+}
+
+section.block::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 18px;
+  bottom: 18px;
+  left: calc(50% - 50vw);
+  width: 100vw;
+  border-top: 1px solid rgba(7,20,38,.08);
+  border-bottom: 1px solid rgba(7,20,38,.08);
+  background:
+    linear-gradient(120deg, color-mix(in srgb, var(--section-accent, var(--mac-cyan)) 10%, transparent), transparent 34%),
+    linear-gradient(180deg, rgba(255,255,255,.56), rgba(255,255,255,.38));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.88), 0 24px 70px rgba(7,20,38,.045);
+  backdrop-filter: blur(14px) saturate(130%);
+  -webkit-backdrop-filter: blur(14px) saturate(130%);
+}
+
+section.block > * {
+  position: relative;
+  z-index: 1;
+}
+
+#start { --section-accent: var(--mac-coral); }
+#packages { --section-accent: var(--mac-cyan); }
+#web-showcase { --section-accent: var(--mac-amber); }
+#works { --section-accent: var(--mac-teal); }
+#flow { --section-accent: var(--mac-lime); }
+#lectures { --section-accent: var(--mac-cyan); }
+#speaker { --section-accent: var(--mac-coral); }
+#voices { --section-accent: var(--mac-lime); }
+#faq { --section-accent: var(--mac-teal); }
+#growth { --section-accent: var(--mac-amber); }
+#contact { --section-accent: var(--mac-coral); }
+
+.section-heading {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  padding: 5px 11px;
+  margin-left: 50% !important;
+  transform: translateX(-50%);
+  border: 1px solid color-mix(in srgb, var(--section-accent, var(--mac-cyan)) 26%, rgba(7,20,38,.10));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--section-accent, var(--mac-cyan)) 10%, rgba(255,255,255,.78));
+  color: color-mix(in srgb, var(--section-accent, var(--mac-cyan)) 78%, #071426) !important;
+  background-clip: border-box !important;
+  -webkit-background-clip: border-box !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.86);
+}
+
+.section-title {
+  max-width: 880px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 4px;
+  margin: 16px auto 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--section-accent, var(--mac-cyan)), color-mix(in srgb, var(--section-accent, var(--mac-cyan)) 45%, #FFFFFF));
+}
+
+.section-sub {
+  max-width: 760px !important;
+  margin-bottom: clamp(28px, 4vw, 44px) !important;
+}
+
+.packages-grid,
+.path-grid,
+.lecture-grid,
+.portfolio-grid,
+.voices-grid,
+.growth-layout,
+.blog-list {
+  gap: clamp(14px, 2vw, 22px) !important;
+}
+
+.hero-route-card,
+.path-card,
+.pkg-card,
+.lecture-card,
+.blog-card,
+.voice-card,
+.faq-item {
+  border-radius: 14px !important;
+}
+
+.hero-route-card::before,
+.path-card::before {
+  height: 4px !important;
+}
+
+.pkg-card:hover,
+.lecture-card:hover,
+.blog-card:hover,
+.hero-route-card:hover,
+.path-card:hover,
+.faq-item:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--section-accent, var(--mac-cyan)) 34%, rgba(7,20,38,.13)) !important;
+  box-shadow: 0 24px 62px rgba(7,20,38,.13), inset 0 1px 0 rgba(255,255,255,.94) !important;
+}
+
+@media (max-width: 680px) {
+  section.block {
+    padding: 48px 0 !important;
+  }
+
+  section.block::before {
+    top: 8px;
+    bottom: 8px;
+  }
+
+  .hero.hero-atlas .fusion-logo-large {
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 8px !important;
+  }
+
+  .hero.hero-atlas .fusion-logo-large .hub {
+    font-size: 13px !important;
+    padding: 5px 9px;
+  }
+}
+"""
+
+
+PORTAL_CSS += """
+
+/* ---- Pop line-art refresh inspired by Sakana AI's airy homepage, 2026-06-25 ---- */
+:root {
+  --linepop-ink: #071426;
+  --linepop-text: #122033;
+  --linepop-muted: #536276;
+  --linepop-line: rgba(7,20,38,.18);
+  --linepop-cyan: #00A5C8;
+  --linepop-lime: #A6D83F;
+  --linepop-coral: #F26655;
+  --linepop-yellow: #FFD84D;
+  --linepop-shadow: 7px 7px 0 rgba(7,20,38,.045), 0 18px 42px rgba(7,20,38,.075);
+}
+
+body {
+  color: var(--linepop-text) !important;
+  background:
+    radial-gradient(circle at 10% 18%, rgba(255,216,77,.18), transparent 20rem),
+    radial-gradient(circle at 88% 9%, rgba(0,165,200,.14), transparent 22rem),
+    radial-gradient(circle at 78% 82%, rgba(242,102,85,.12), transparent 24rem),
+    linear-gradient(180deg, #FFFFFF 0%, #F9FDFF 46%, #FFFFFF 100%) !important;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: .42;
+  background-image:
+    url("data:image/svg+xml,%3Csvg width='460' height='260' viewBox='0 0 460 260' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23071426' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' opacity='.18'%3E%3Cpath d='M24 162c54-82 122-82 176 0s122 82 176 0'/%3E%3Cpath d='M56 96c34-38 74-38 108 0s74 38 108 0'/%3E%3Ccircle cx='92' cy='96' r='8'/%3E%3Ccircle cx='202' cy='162' r='9'/%3E%3Ccircle cx='334' cy='96' r='7'/%3E%3Cpath d='M390 138l28-12-8 28zM132 183l22-10-6 22z'/%3E%3C/g%3E%3C/svg%3E"),
+    linear-gradient(90deg, rgba(7,20,38,.035) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(7,20,38,.025) 1px, transparent 1px);
+  background-size: 460px 260px, 104px 104px, 104px 104px;
+  background-position: 8% 118px, 0 0, 0 0;
+}
+
+.site-header,
+.container,
+.sticky-cta {
+  position: relative;
+  z-index: 1;
+}
+
+header.site-header,
+.site-header,
+.site-header.scrolled,
+.site-header:hover,
+.site-nav,
+nav.top-nav {
+  background: rgba(255,255,255,.96) !important;
+  border-color: var(--linepop-line) !important;
+  box-shadow: 0 10px 30px rgba(7,20,38,.07) !important;
+}
+
+.hero.hero-atlas::after {
+  background:
+    linear-gradient(100deg, rgba(255,255,255,.98) 0%, rgba(255,255,255,.92) 58%, rgba(255,255,255,.52) 100%),
+    radial-gradient(circle at calc(var(--mx, .72) * 100%) calc(var(--my, .36) * 100%), rgba(0,165,200,.16), transparent 20rem) !important;
+}
+
+.hero.hero-atlas .fusion-logo-large .hub,
+.site-nav a.nav-link,
+.site-nav .menu-toggle,
+.site-nav .nav-admin,
+.mobile-nav a {
+  border-radius: 999px !important;
+}
+
+.hero.hero-atlas .hero-title-sub strong,
+.boost-copy h2 strong {
+  background: linear-gradient(100deg, var(--linepop-ink) 0%, var(--linepop-cyan) 34%, var(--linepop-lime) 66%, var(--linepop-coral) 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+}
+
+section.block::before {
+  border-top: 1.5px solid rgba(7,20,38,.11) !important;
+  border-bottom: 1.5px solid rgba(7,20,38,.10) !important;
+  background:
+    url("data:image/svg+xml,%3Csvg width='420' height='180' viewBox='0 0 420 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%2300A5C8' stroke-width='2' stroke-linecap='round' opacity='.16'%3E%3Cpath d='M18 118c48-58 96-58 144 0s96 58 144 0 72-44 96-18'/%3E%3Cpath d='M72 62c28-22 56-22 84 0s56 22 84 0'/%3E%3C/g%3E%3C/svg%3E") right 12% top 18px / 420px 180px no-repeat,
+    linear-gradient(180deg, rgba(255,255,255,.84), rgba(255,255,255,.62)) !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.section-heading {
+  border-color: rgba(7,20,38,.18) !important;
+  background: #FFFFFF !important;
+  color: var(--linepop-ink) !important;
+  box-shadow: 4px 4px 0 color-mix(in srgb, var(--section-accent, var(--linepop-cyan)) 28%, transparent) !important;
+}
+
+.section-title {
+  color: var(--linepop-ink) !important;
+}
+
+.section-title::after {
+  width: 74px !important;
+  height: 5px !important;
+  border-radius: 0 !important;
+  background: linear-gradient(90deg, var(--linepop-cyan), var(--linepop-lime) 48%, var(--linepop-coral)) !important;
+  box-shadow: 0 5px 0 rgba(255,216,77,.38);
+}
+
+.hero-proof,
+.atlas-live-card,
+.hero-route-card,
+.path-card,
+.choice-lens,
+.pkg-card,
+.lecture-card,
+.pf-card,
+.biz-card,
+.service-card,
+.voice-card,
+.faq-item,
+.growth-panel,
+.flow-step,
+.contact-primary,
+.blog-feature,
+.blog-card,
+.web-showcase,
+.boost-lab {
+  background: rgba(255,255,255,.94) !important;
+  border: 1.5px solid var(--linepop-line) !important;
+  box-shadow: var(--linepop-shadow) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.pf-card,
+.blog-card {
+  border-radius: 12px !important;
+}
+
+.pf-card::after,
+.blog-card::after,
+.pkg-card::after,
+.lecture-card::after,
+.path-card::after {
+  height: 4px !important;
+  background: linear-gradient(90deg, var(--linepop-cyan), var(--linepop-lime), var(--linepop-yellow), var(--linepop-coral)) !important;
+  opacity: .9 !important;
+}
+
+.pf-card .pf-thumb,
+.blog-card-media {
+  border-bottom: 1.5px solid rgba(7,20,38,.14);
+}
+
+.pf-card .pf-chip,
+.blog-card-meta span {
+  border-radius: 999px !important;
+  background: #FFFFFF !important;
+  border-color: rgba(7,20,38,.16) !important;
+  color: var(--linepop-ink) !important;
+}
+
+.pf-arrow {
+  background: #FFFFFF !important;
+  border: 1.5px solid var(--linepop-line) !important;
+  color: var(--linepop-ink) !important;
+  box-shadow: 4px 4px 0 rgba(7,20,38,.08), 0 10px 24px rgba(7,20,38,.10) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.pf-arrow:hover {
+  border-color: var(--linepop-cyan) !important;
+  box-shadow: 4px 4px 0 rgba(0,165,200,.18), 0 14px 28px rgba(7,20,38,.12) !important;
+}
+
+@media (max-width: 760px) {
+  body::before {
+    opacity: .28;
+    background-size: 360px 204px, 88px 88px, 88px 88px;
+  }
+}
+"""
+
+
+PORTAL_CSS += """
+
+/* ---- AI data + Red Cross lesson bridge, 2026-06-25 ---- */
+:root {
+  --lesson-red: #E60012;
+  --lesson-blue: #0877C6;
+  --lesson-green: #00A676;
+  --lesson-amber: #F5B83D;
+  --lesson-ink: #071426;
+  --lesson-muted: #52647A;
+}
+
+#why-now { --section-accent: var(--lesson-blue); }
+#lesson-bridge { --section-accent: var(--lesson-red); }
+
+.ai-impact-board,
+.lesson-bridge-shell {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.74);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.82), rgba(255,255,255,.50)),
+    radial-gradient(circle at 12% 18%, rgba(8,119,198,.16), transparent 18rem),
+    radial-gradient(circle at 86% 12%, rgba(230,0,18,.12), transparent 17rem),
+    rgba(255,255,255,.56);
+  box-shadow: 0 28px 78px rgba(7,20,38,.12), inset 0 1px 0 rgba(255,255,255,.92);
+  backdrop-filter: blur(24px) saturate(155%);
+  -webkit-backdrop-filter: blur(24px) saturate(155%);
+}
+
+.ai-impact-board::before,
+.lesson-bridge-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .45;
+  background-image:
+    linear-gradient(90deg, rgba(7,20,38,.045) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(7,20,38,.035) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+.ai-impact-shell,
+.lesson-bridge-inner {
+  position: relative;
+  z-index: 1;
+  padding: clamp(18px, 3vw, 32px);
+}
+
+.ai-impact-top {
+  display: grid;
+  grid-template-columns: minmax(0, .88fr) minmax(280px, 1fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+.ai-impact-copy {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px;
+  border: 1px solid rgba(7,20,38,.10);
+  border-radius: 8px;
+  background: rgba(255,255,255,.72);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.88);
+}
+
+.ai-impact-kicker,
+.lesson-bridge-kicker {
+  width: fit-content;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: rgba(7,20,38,.92);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .08em;
+}
+
+.ai-impact-copy h3,
+.lesson-bridge-copy h3 {
+  margin: 0;
+  color: var(--lesson-ink);
+  font-size: clamp(24px, 3.2vw, 38px);
+  line-height: 1.16;
+  letter-spacing: 0;
+}
+
+.ai-impact-copy p,
+.lesson-bridge-copy p {
+  margin: 0;
+  color: #32455E;
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+.ai-impact-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.ai-impact-card {
+  min-height: 142px;
+  padding: 14px;
+  border: 1px solid rgba(255,255,255,.72);
+  border-radius: 8px;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.78), rgba(255,255,255,.48)),
+    color-mix(in srgb, var(--card-color, var(--lesson-blue)) 10%, transparent);
+  box-shadow: 0 16px 38px rgba(7,20,38,.10), inset 0 1px 0 rgba(255,255,255,.86);
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+}
+
+.ai-impact-card b {
+  display: block;
+  color: color-mix(in srgb, var(--card-color, var(--lesson-blue)) 84%, #071426);
+  font-family: var(--mono);
+  font-size: clamp(28px, 4.8vw, 48px);
+  line-height: 1;
+}
+
+.ai-impact-card span {
+  display: block;
+  margin-top: 10px;
+  color: var(--lesson-ink);
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1.35;
+}
+
+.ai-impact-card small {
+  display: block;
+  margin-top: 7px;
+  color: var(--lesson-muted);
+  font-size: 11.5px;
+  line-height: 1.5;
+}
+
+.ai-benefit-table {
+  margin-top: 18px;
+  display: grid;
+  border: 1px solid rgba(7,20,38,.11);
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(255,255,255,.72);
+}
+
+.ai-benefit-row {
+  display: grid;
+  grid-template-columns: .82fr 1.05fr 1fr .78fr;
+}
+
+.ai-benefit-row > * {
+  padding: 12px 14px;
+  border-right: 1px solid rgba(7,20,38,.09);
+  border-bottom: 1px solid rgba(7,20,38,.09);
+  color: #2E4058;
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+
+.ai-benefit-row > *:last-child {
+  border-right: 0;
+}
+
+.ai-benefit-row:last-child > * {
+  border-bottom: 0;
+}
+
+.ai-benefit-head > * {
+  background: rgba(7,20,38,.94);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 900;
+  letter-spacing: .06em;
+}
+
+.ai-benefit-row strong {
+  color: var(--lesson-ink);
+  font-weight: 900;
+}
+
+.ai-source-note {
+  margin-top: 12px;
+  color: var(--lesson-muted);
+  font-size: 11.5px;
+  line-height: 1.7;
+}
+
+.ai-source-note a {
+  color: #075C71;
+  font-weight: 800;
+}
+
+.lesson-bridge-inner {
+  display: grid;
+  grid-template-columns: minmax(240px, .42fr) minmax(0, 1fr);
+  gap: 20px;
+}
+
+.lesson-bridge-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.lesson-track-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.lesson-track-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 250px;
+  padding: 18px;
+  border: 1px solid rgba(255,255,255,.70);
+  border-radius: 8px;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.78), rgba(255,255,255,.48)),
+    color-mix(in srgb, var(--track-color) 11%, transparent);
+  box-shadow: 0 18px 44px rgba(7,20,38,.10), inset 0 1px 0 rgba(255,255,255,.88);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+}
+
+.lesson-track-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 6px;
+  background: var(--track-color);
+}
+
+.lesson-track-card.redcross { --track-color: var(--lesson-red); }
+.lesson-track-card.ai { --track-color: var(--lesson-blue); }
+
+.lesson-track-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 28px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  color: #fff;
+  background: var(--track-color);
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .06em;
+}
+
+.lesson-track-card h3 {
+  margin: 16px 0 8px;
+  color: var(--lesson-ink);
+  font-size: clamp(22px, 2.8vw, 34px);
+  line-height: 1.15;
+}
+
+.lesson-track-card p {
+  margin: 0;
+  color: #334155;
+  font-size: 13.5px;
+  line-height: 1.75;
+}
+
+.lesson-track-list {
+  margin: 14px 0 0;
+  display: grid;
+  gap: 8px;
+}
+
+.lesson-track-list span {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  gap: 8px;
+  align-items: center;
+  color: #233349;
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+
+.lesson-track-list b {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 28px;
+  border-radius: 8px;
+  color: color-mix(in srgb, var(--track-color) 78%, #071426);
+  background: color-mix(in srgb, var(--track-color) 14%, #FFFFFF);
+  font-family: var(--mono);
+  font-size: 11px;
+}
+
+.lesson-tabs {
+  margin-top: 16px;
+  border: 1px solid rgba(7,20,38,.11);
+  border-radius: 8px;
+  background: rgba(255,255,255,.70);
+  overflow: hidden;
+}
+
+.lesson-tab-controls {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+}
+
+.lesson-tab {
+  min-height: 48px;
+  padding: 10px 8px;
+  border: 0;
+  border-right: 1px solid rgba(7,20,38,.09);
+  border-bottom: 1px solid rgba(7,20,38,.09);
+  background: rgba(255,255,255,.58);
+  color: #24364D;
+  font-size: 12px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.lesson-tab:last-child {
+  border-right: 0;
+}
+
+.lesson-tab.is-active {
+  color: #fff;
+  background: var(--tab-color, var(--lesson-blue));
+}
+
+.lesson-tab-panel {
+  display: none;
+  padding: 16px;
+}
+
+.lesson-tab-panel.is-active {
+  display: grid;
+  gap: 12px;
+}
+
+.lesson-tab-panel h4 {
+  margin: 0;
+  color: var(--lesson-ink);
+  font-size: 18px;
+}
+
+.lesson-tab-panel p {
+  margin: 0;
+  color: #32455E;
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.lesson-outcome-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.lesson-outcome-grid span {
+  min-height: 82px;
+  padding: 12px;
+  border: 1px solid rgba(7,20,38,.09);
+  border-radius: 8px;
+  background: rgba(255,255,255,.68);
+  color: #2A3A51;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.lesson-outcome-grid b {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--lesson-ink);
+  font-family: var(--mono);
+  font-size: 15px;
+}
+
+@media (max-width: 980px) {
+  .ai-impact-top,
+  .lesson-bridge-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .ai-impact-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .ai-impact-shell,
+  .lesson-bridge-inner {
+    padding: 14px;
+  }
+
+  .lesson-track-grid,
+  .lesson-outcome-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ai-benefit-table {
+    display: block;
+    overflow: visible;
+  }
+
+  .ai-benefit-row {
+    grid-template-columns: 1fr;
+    border-bottom: 1px solid rgba(7,20,38,.10);
+  }
+
+  .ai-benefit-row:last-child {
+    border-bottom: 0;
+  }
+
+  .ai-benefit-row > * {
+    border-right: 0;
+    border-bottom: 1px solid rgba(7,20,38,.07);
+  }
+
+  .ai-benefit-row > *:last-child {
+    border-bottom: 0;
+  }
+
+  .ai-benefit-head {
+    display: none;
+  }
+
+  .ai-benefit-row > *::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 3px;
+    color: var(--lesson-muted);
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .06em;
+  }
+
+  .lesson-tab-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .lesson-tab {
+    border-right: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .ai-impact-stats {
+    grid-template-columns: 1fr;
+  }
+}
+"""
+
+
+BLOG_TEASER_CSS = """
 .blog-feature {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(280px, .95fr);
@@ -6858,8 +7497,6 @@ BLOG_TEASER_CSS = """
   border-radius: 18px;
   background: linear-gradient(135deg, rgba(255,255,255,.96), rgba(239,248,246,.86));
   box-shadow: var(--shadow-card);
-  color: var(--text);
-  text-decoration: none;
 }
 .blog-feature-copy h3 {
   margin: 0 0 10px;
@@ -6970,18 +7607,428 @@ BLOG_TEASER_CSS = """
   font-size: 12.5px;
   font-weight: 900;
 }
+.blog-carousel-wrap {
+  margin-top: 8px;
+}
+.pf-carousel.blog-carousel {
+  grid-auto-columns: minmax(260px, 300px);
+}
+.pf-carousel.blog-carousel > .blog-card {
+  scroll-snap-align: start;
+}
+.blog-card-media {
+  position: relative;
+  overflow: hidden;
+}
+.blog-card-media--line {
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 22% 24%, rgba(255,216,77,.42), transparent 5.4rem),
+    radial-gradient(circle at 82% 72%, rgba(242,102,85,.18), transparent 6rem),
+    linear-gradient(135deg, rgba(0,165,200,.12), rgba(166,216,63,.12));
+}
+.blog-card-media--line svg {
+  width: 82%;
+  max-width: 250px;
+  height: auto;
+}
+.blog-card-media--line path,
+.blog-card-media--line circle {
+  fill: none;
+  stroke: var(--linepop-ink, #071426);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 @media (max-width: 820px) {
-  .specialist-grid,
-  .specialist-card-list,
-  .blog-section-head {
-    grid-template-columns: 1fr;
-    display: grid;
-  }
   .blog-feature {
     grid-template-columns: 1fr;
   }
   .blog-list {
     grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 760px) {
+  .pf-carousel.blog-carousel {
+    grid-auto-columns: 78%;
+  }
+}
+"""
+
+
+PORTAL_CSS += """
+
+/* ---- Minimal white identity system pass: white space, ink lines, one red CTA, 2026-06-28 ---- */
+:root {
+  --sakana-ink: #071426;
+  --sakana-text: #132033;
+  --sakana-muted: #58677A;
+  --sakana-line: rgba(7,20,38,.18);
+  --sakana-line-soft: rgba(7,20,38,.10);
+  --sakana-red: #E60012;
+  --sakana-cyan: #00A5C8;
+  --sakana-lime: #A6D83F;
+  --sakana-yellow: #FFD84D;
+  --sakana-radius: 8px;
+  --sakana-shadow: 5px 5px 0 rgba(7,20,38,.035), 0 14px 34px rgba(7,20,38,.065);
+}
+
+html,
+body {
+  background: #FFFFFF !important;
+  color: var(--sakana-text) !important;
+}
+
+body::before {
+  opacity: .25 !important;
+}
+
+.site-header,
+.site-header.scrolled,
+header.site-header,
+header.site-header.scrolled,
+.site-nav,
+nav.top-nav,
+.menu-drop,
+.mobile-nav,
+.mobile-nav-panel {
+  background: #FFFFFF !important;
+  color: var(--sakana-ink) !important;
+  border-color: var(--sakana-line) !important;
+  box-shadow: 0 10px 26px rgba(7,20,38,.07) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.site-header-inner {
+  min-height: 62px !important;
+}
+
+.wordmark .word-ai,
+.brand-mark .brand-ha {
+  color: var(--sakana-red) !important;
+}
+
+.wordmark .word-en,
+.site-logo-by {
+  color: var(--sakana-muted) !important;
+}
+
+.site-nav a.nav-link,
+.site-nav .menu-toggle,
+.site-nav .nav-admin,
+.mobile-nav a,
+.menu-drop a,
+nav.top-nav .nav-link {
+  min-height: 36px !important;
+  border: 1px solid var(--sakana-line-soft) !important;
+  border-radius: var(--sakana-radius) !important;
+  background: #FFFFFF !important;
+  color: var(--sakana-ink) !important;
+  box-shadow: none !important;
+}
+
+.site-nav a.nav-link:hover,
+.site-nav a.nav-link:focus-visible,
+.site-nav .menu-toggle:hover,
+.site-nav .menu-toggle:focus-visible,
+.mobile-nav a:hover,
+.mobile-nav a:focus-visible,
+.menu-drop a:hover,
+.menu-drop a:focus-visible,
+nav.top-nav .nav-link:hover,
+nav.top-nav .nav-link:focus-visible {
+  background: #FFF6F6 !important;
+  border-color: rgba(230,0,18,.36) !important;
+  color: var(--sakana-red) !important;
+  outline: none !important;
+}
+
+.nav-cta,
+.login-btn-mobile,
+.contact-primary,
+.sticky-cta-btn,
+.footer-cta,
+.btn.btn-primary,
+.atlas-live-cta,
+.boost-action.primary,
+.pkg-card .pkg-cta-primary {
+  border: 1px solid var(--sakana-red) !important;
+  border-radius: var(--sakana-radius) !important;
+  background: var(--sakana-red) !important;
+  color: #FFFFFF !important;
+  box-shadow: 4px 4px 0 rgba(230,0,18,.16) !important;
+  letter-spacing: 0 !important;
+}
+
+.nav-cta:hover,
+.login-btn-mobile:hover,
+.contact-primary:hover,
+.sticky-cta-btn:hover,
+.footer-cta:hover,
+.btn.btn-primary:hover,
+.atlas-live-cta:hover,
+.boost-action.primary:hover,
+.pkg-card .pkg-cta-primary:hover {
+  background: var(--sakana-ink) !important;
+  border-color: var(--sakana-ink) !important;
+  color: #FFFFFF !important;
+  transform: translateY(-1px);
+}
+
+.section-heading {
+  min-height: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: var(--sakana-red) !important;
+  font-size: 12px !important;
+  letter-spacing: 0 !important;
+}
+
+.section-title::after {
+  height: 3px !important;
+  width: 64px !important;
+  border-radius: 0 !important;
+  background: linear-gradient(90deg, var(--sakana-red), var(--sakana-cyan), var(--sakana-lime)) !important;
+  box-shadow: none !important;
+}
+
+.hero-proof,
+.atlas-live-card,
+.hero-route-card,
+.path-card,
+.choice-lens,
+.pkg-card,
+.lecture-card,
+.pf-card,
+.biz-card,
+.service-card,
+.voice-card,
+.faq-item,
+.growth-panel,
+.flow-step,
+.contact-primary,
+.blog-feature,
+.blog-card,
+.web-showcase,
+.boost-lab,
+.ai-impact-board,
+.lesson-bridge-shell,
+.lesson-track-card,
+.ai-impact-copy,
+.ai-impact-card {
+  border-radius: var(--sakana-radius) !important;
+  border: 1px solid var(--sakana-line) !important;
+  background: rgba(255,255,255,.96) !important;
+  box-shadow: var(--sakana-shadow) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.hero-route-card::before,
+.path-card::before,
+.pf-card::after,
+.blog-card::after,
+.pkg-card::after,
+.lecture-card::after,
+.path-card::after {
+  background: linear-gradient(90deg, var(--sakana-red), var(--sakana-cyan), var(--sakana-lime)) !important;
+}
+
+section.block::before {
+  background:
+    url("data:image/svg+xml,%3Csvg width='420' height='180' viewBox='0 0 420 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23071426' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' opacity='.11'%3E%3Cpath d='M18 118c48-58 96-58 144 0s96 58 144 0 72-44 96-18'/%3E%3Cpath d='M76 64c28-22 56-22 84 0s56 22 84 0'/%3E%3Ccircle cx='114' cy='64' r='5'/%3E%3Cpath d='M342 92l24-10-7 24z'/%3E%3C/g%3E%3C/svg%3E") right 8% top 18px / min(420px, 72vw) auto no-repeat,
+    linear-gradient(180deg, rgba(255,255,255,.90), rgba(255,255,255,.72)) !important;
+  border-top: 1px solid var(--sakana-line-soft) !important;
+  border-bottom: 1px solid var(--sakana-line-soft) !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.sticky-cta {
+  border: 1px solid var(--sakana-line) !important;
+  border-radius: var(--sakana-radius) var(--sakana-radius) 0 0 !important;
+  background: #FFFFFF !important;
+  color: var(--sakana-ink) !important;
+  box-shadow: 0 -10px 30px rgba(7,20,38,.09) !important;
+}
+
+@media (max-width: 820px) {
+  .site-nav {
+    display: none !important;
+  }
+
+  .mobile-toggle {
+    display: inline-flex !important;
+    background: #FFFFFF !important;
+    border-color: var(--sakana-line) !important;
+    color: var(--sakana-ink) !important;
+  }
+}
+"""
+
+PORTAL_CSS += """
+
+/* ---- AI compass identity pass: guide mark, 2026-06-28 ---- */
+:root {
+  --ai-compass-red: #E60012;
+  --ai-compass-ink: #071426;
+  --ai-compass-cyan: #00A5C8;
+  --ai-compass-lime: #A6D83F;
+}
+
+.brand-mark,
+.compass-mark {
+  position: relative !important;
+  width: 42px !important;
+  height: 42px !important;
+  flex: 0 0 42px !important;
+  border-radius: 50% !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: #FFFFFF !important;
+  border: 2px solid var(--ai-compass-ink) !important;
+  box-shadow: 4px 4px 0 rgba(230,0,18,.13) !important;
+  overflow: hidden !important;
+}
+
+.brand-mark .brand-a,
+.brand-mark .brand-ha {
+  opacity: 0 !important;
+  width: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+}
+
+.brand-mark::before,
+.compass-mark::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 7px !important;
+  border-radius: 50% !important;
+  border: 2px solid var(--ai-compass-ink) !important;
+  background:
+    radial-gradient(circle at 50% 50%, #FFFFFF 0 27%, transparent 29%),
+    conic-gradient(from 45deg, rgba(0,165,200,.18), transparent 18%, rgba(166,216,63,.18) 38%, transparent 58%, rgba(230,0,18,.16) 78%, transparent);
+}
+
+.brand-mark::after,
+.compass-mark::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
+  width: 20px !important;
+  height: 20px !important;
+  background: linear-gradient(135deg, var(--ai-compass-red) 0 50%, var(--ai-compass-ink) 50% 100%) !important;
+  clip-path: polygon(50% 0, 63% 40%, 100% 50%, 63% 60%, 50% 100%, 37% 60%, 0 50%, 37% 40%) !important;
+  transform: translate(-50%, -50%) rotate(34deg) !important;
+}
+
+.site-logo:hover .brand-mark,
+.site-logo:focus-visible .brand-mark {
+  box-shadow: 4px 4px 0 rgba(230,0,18,.22) !important;
+  transform: translateY(-1px);
+}
+
+.hero-compass-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 480px;
+  margin: 0 0 20px;
+  padding: 10px 12px;
+  border: 1px solid var(--sakana-line);
+  border-radius: var(--sakana-radius);
+  background: #FFFFFF;
+  box-shadow: 4px 4px 0 rgba(7,20,38,.04);
+}
+
+.hero-compass-card .compass-mark {
+  width: 38px !important;
+  height: 38px !important;
+  flex-basis: 38px !important;
+  border-width: 2px !important;
+  box-shadow: 3px 3px 0 rgba(230,0,18,.12) !important;
+}
+
+.hero-compass-card b,
+.atlas-compass-core b {
+  display: block;
+  color: var(--sakana-ink);
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.hero-compass-card small,
+.atlas-compass-core small {
+  display: block;
+  color: var(--sakana-muted);
+  font-weight: 750;
+  letter-spacing: 0;
+}
+
+.atlas-compass-core {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  padding: 12px 14px;
+  border: 1px solid var(--sakana-line);
+  border-radius: var(--sakana-radius);
+  background: rgba(255,255,255,.94);
+  box-shadow: 5px 5px 0 rgba(7,20,38,.04), 0 12px 30px rgba(7,20,38,.08);
+  pointer-events: none;
+}
+
+.atlas-compass-core .compass-mark {
+  width: 58px !important;
+  height: 58px !important;
+  flex-basis: 58px !important;
+}
+
+.atlas-node,
+.atlas-live-card {
+  z-index: 3;
+}
+
+section.block::before {
+  background:
+    url("data:image/svg+xml,%3Csvg width='420' height='180' viewBox='0 0 420 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23071426' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' opacity='.12'%3E%3Ccircle cx='88' cy='88' r='38'/%3E%3Ccircle cx='88' cy='88' r='7'/%3E%3Cpath d='M88 48l10 40-10 40-10-40z' fill='%23E60012' stroke='none' opacity='.74'/%3E%3Cpath d='M148 126h48l34-58h54l30 34h70'/%3E%3Ccircle cx='196' cy='126' r='5'/%3E%3Ccircle cx='230' cy='68' r='5'/%3E%3Ccircle cx='314' cy='102' r='5'/%3E%3Cpath d='M372 94l18 8-18 8'/%3E%3C/g%3E%3C/svg%3E") right 8% top 18px / min(420px, 72vw) auto no-repeat,
+    linear-gradient(180deg, rgba(255,255,255,.90), rgba(255,255,255,.72)) !important;
+}
+
+@media (max-width: 900px) {
+  .hero-compass-card {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 680px) {
+  .atlas-compass-core {
+    opacity: .86;
+    padding: 9px 10px;
+  }
+
+  .atlas-compass-core .compass-mark {
+    width: 44px !important;
+    height: 44px !important;
+    flex-basis: 44px !important;
+  }
+
+  .atlas-compass-core small {
+    display: none;
   }
 }
 """
@@ -6995,33 +8042,30 @@ def _render_header() -> str:
         "<a class='site-logo' href='/' aria-label='AI相談 トップへ'>"
         "<span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span>"
         "<span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span>"
-        "<span class='site-logo-by'>専門性を判断に変える</span>"
+        "<span class='site-logo-by'>滋賀・彦根</span>"
         "</a>"
         "<nav class='site-nav' aria-label='メインナビ'>"
-        "<a class='nav-link nav-essential' href='#specialist'>専門性</a>"
-        "<a class='nav-link nav-essential' href='#blog'>ブログ</a>"
-        "<a class='nav-link nav-essential' href='#packages'>講習/伴走</a>"
+        "<a class='nav-link nav-essential' href='#packages'>受講プラン</a>"
+        "<a class='nav-link nav-essential' href='#lectures'>資料</a>"
+        "<a class='nav-link nav-essential' href='#works'>実績</a>"
         "<div class='menu-wrap'>"
         "<button class='menu-toggle' id='menu-toggle' aria-haspopup='menu' aria-expanded='false'>見る"
         "<svg class='chev' width='14' height='14' viewBox='0 0 20 20' fill='none' aria-hidden='true'><path d='M5 8l5 5 5-5' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>"
         "</button>"
         "<div class='menu-drop' id='menu-drop' role='menu'>"
-        "<div class='menu-drop-visual' aria-hidden='true'><img src='/img/speaker-portrait-v2.webp' alt='' loading='lazy' decoding='async'><span><strong>人が判断し、AIを定着させる</strong><span>相談・講習・実装を一続きで見る</span></span></div>"
-        "<span class='menu-drop-label'>学ぶ・確認する</span>"
-        "<a href='#lectures'>受講資料</a>"
-        "<a href='/programming-map.html'>AIコーディング</a>"
-        "<a href='/blog/index.html'>ブログ一覧</a>"
-        "<span class='menu-drop-label'>実績・制作</span>"
-        "<a href='#works'>実例サイト</a>"
+        "<span class='menu-drop-label'>制作・発信</span>"
         "<a href='#web-showcase'>HP制作メニュー</a>"
+        "<a href='#works'>実例サイト</a>"
         "<a href='/portfolio.html'>実績詳細</a>"
+        "<a href='/blog/index.html'>ブログ一覧</a>"
+        "<a href='/watch/index.html'>AI Watch</a>"
         "<span class='menu-drop-label'>確認</span>"
         "<a href='#faq'>FAQ</a>"
         "<a href='#speaker'>講師紹介</a>"
         "<a href='/admin'>🔐 管理画面</a>"
         "</div>"
         "</div>"
-        "<a class='nav-cta' href='#contact'>無料相談</a>"
+        "<a class='nav-cta' href='#contact'>個別相談</a>"
         "</nav>"
         "<button class='mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'>"
         "<svg width='20' height='20' viewBox='0 0 24 24' fill='none'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg>"
@@ -7030,22 +8074,22 @@ def _render_header() -> str:
         "<div class='mobile-nav' id='mobile-nav'>"
         "<div class='mobile-nav-panel'>"
         "<div class='mobile-nav-primary'>"
-        "<a class='login-btn-mobile' href='#contact'>無料相談</a>"
-        "<a class='mobile-main-link' href='#specialist'>AI相談の専門性</a>"
+        "<a class='login-btn-mobile' href='#contact'>個別相談</a>"
+        "<a class='mobile-main-link' href='#packages'>受講プラン</a>"
         "</div>"
         "<span class='mobile-nav-label'>講習</span>"
         "<div class='mobile-link-grid'>"
-        "<a href='#packages'>講習/伴走</a>"
+        "<a href='#lesson-bridge'>日赤/AI講習</a>"
         "<a href='/programming-map.html'>AIコーディング</a>"
         "<a href='#lectures'>受講資料</a>"
-        "<a href='#blog'>ブログ</a>"
+        "<a href='#faq'>FAQ</a>"
         "</div>"
         "<span class='mobile-nav-label'>制作・運用</span>"
         "<div class='mobile-link-grid'>"
         "<a href='#web-showcase'>HP制作</a>"
         "<a href='#works'>実例サイト</a>"
-        "<a href='#speaker'>講師紹介</a>"
-        "<a href='#faq'>FAQ</a>"
+        "<a href='/blog/index.html'>ブログ</a>"
+        "<a href='/watch/index.html'>AI Watch</a>"
         "</div>"
         "<a class='mobile-admin-link' href='/admin'>🔐 管理画面</a>"
         "</div>"
@@ -7332,14 +8376,16 @@ HEADER_JS = """
     update();
   })();
 
-  // 制作実績カルーセルの左右矢印
+  // 制作実績/ブログカルーセルの左右矢印
   (function(){
-    var track = document.getElementById('works-carousel');
-    if (!track) return;
-    document.querySelectorAll('.pf-arrow').forEach(function(btn){
-      btn.addEventListener('click', function(){
-        var dir = parseInt(btn.getAttribute('data-dir'), 10) || 1;
-        track.scrollBy({ left: dir * Math.round(track.clientWidth * 0.8), behavior: 'smooth' });
+    document.querySelectorAll('.pf-carousel-wrap').forEach(function(wrap){
+      var track = wrap.querySelector('.pf-carousel');
+      if (!track) return;
+      wrap.querySelectorAll('.pf-arrow').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var dir = parseInt(btn.getAttribute('data-dir'), 10) || 1;
+          track.scrollBy({ left: dir * Math.round(track.clientWidth * 0.8), behavior: 'smooth' });
+        });
       });
     });
   })();
@@ -7381,6 +8427,44 @@ HEADER_JS = """
         hero.style.setProperty('--my', Math.max(0, Math.min(1, (e.clientY - r.top) / r.height)).toFixed(3));
       }, { passive: true });
     }
+  })();
+
+  // 日赤/AI講習ブリッジ: タブで到達点を切り替える
+  (function(){
+    var root = document.querySelector('[data-lesson-bridge]');
+    if (!root) return;
+    var tabs = Array.prototype.slice.call(root.querySelectorAll('.lesson-tab'));
+    var panels = Array.prototype.slice.call(root.querySelectorAll('.lesson-tab-panel'));
+    if (!tabs.length || !panels.length) return;
+
+    function select(tab){
+      var target = tab.getAttribute('data-lesson-tab');
+      tabs.forEach(function(btn){
+        var active = btn === tab;
+        btn.classList.toggle('is-active', active);
+        btn.setAttribute('aria-selected', active ? 'true' : 'false');
+        btn.setAttribute('tabindex', active ? '0' : '-1');
+      });
+      panels.forEach(function(panel){
+        var active = panel.getAttribute('data-lesson-panel') === target;
+        panel.classList.toggle('is-active', active);
+        panel.hidden = !active;
+      });
+    }
+
+    tabs.forEach(function(tab){
+      tab.addEventListener('click', function(){ select(tab); });
+      tab.addEventListener('keydown', function(e){
+        if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+        e.preventDefault();
+        var index = tabs.indexOf(tab);
+        var next = e.key === 'ArrowRight'
+          ? (index + 1) % tabs.length
+          : (index - 1 + tabs.length) % tabs.length;
+        tabs[next].focus();
+        select(tabs[next]);
+      });
+    });
   })();
 
   // ホームページ制作ショールーム: 用途別の提案プレビューを切り替える
@@ -7610,9 +8694,9 @@ def _render_hero() -> str:
     atlas_items = [
         {
             "index": "01",
-            "title": "AI導入相談",
-            "sub": "経験を業務に翻訳",
-            "desc": "課題を聞き、AIをどこに入れ、誰が使い、どう続けるかを30分で整理します。",
+            "title": "個別相談",
+            "sub": "入口を整理",
+            "desc": "課題を聞き、講習・個別相談・伴走のどれから始めるかを決めます。",
             "cta": "相談日程を見る",
             "href": "#contact",
             "x": "42%",
@@ -7620,21 +8704,21 @@ def _render_hero() -> str:
         },
         {
             "index": "02",
-            "title": "講習会",
-            "sub": "現場で使える型を学ぶ",
-            "desc": "Codex、Claude Code、画像生成、AIコーディングを、仕事の成果物に結びつけます。",
+            "title": "日赤・AI講習",
+            "sub": "赤と青で迷わせない",
+            "desc": "日赤講習の予習・復習導線と、AI講習の実務導線を色分けして並べます。",
             "cta": "講習プランを見る",
-            "href": "#packages",
+            "href": "#lesson-bridge",
             "x": "64%",
             "y": "24%",
         },
         {
             "index": "03",
-            "title": "実践ブログ",
-            "sub": "経験を記事で確認",
-            "desc": "AI導入、業務システム、Codex、RAG、AI時代のエンジニア像を実例で読めます。",
-            "cta": "ブログを見る",
-            "href": "#blog",
+            "title": "受講資料",
+            "sub": "あとから見返せる",
+            "desc": "講習内容、AI活用、SNS、LLMOを資料センターとして整理します。",
+            "cta": "資料を見る",
+            "href": "#lectures",
             "x": "71%",
             "y": "52%",
         },
@@ -7650,9 +8734,9 @@ def _render_hero() -> str:
         },
         {
             "index": "05",
-            "title": "社内定着",
-            "sub": "相談で終わらせない",
-            "desc": "講習後の資料化、予約導線、ブログ、SNS、業務システムまで接続します。",
+            "title": "SNS / AI観測",
+            "sub": "毎朝チューニング",
+            "desc": "競合、国内トレンド、YouTube、SNS反応を見て入口を更新します。",
             "cta": "改善ループを見る",
             "href": "#growth",
             "x": "83%",
@@ -7686,36 +8770,41 @@ def _render_hero() -> str:
         "<img src='img/hero-codex-claude-imagegen-20260616.png' alt='' decoding='async' fetchpriority='high'>"
         "</div>"
         "<div class='hero-text fade-up'>"
-        "<span class='eyebrow'>彦根・滋賀のAI相談 / AIスペシャリストの導入・講習・社内定着支援</span>"
+        "<span class='eyebrow'>日赤導線 / AI講習 / 彦根・滋賀の導入支援</span>"
         "<h1 class='hero-brand'>"
-        "<span class='fusion-logo-large'><span class='ai'>AI相談</span><span class='hub'>彦根</span></span>"
-        "<span class='hero-title-sub'><strong>専門の言葉を、仕事で判断できる形へ。</strong><br>相談から実装・社内定着まで伴走。</span>"
-        "<span class='visually-hidden'>｜彦根 AI相談、彦根 AIスペシャリスト、滋賀 AI導入相談、生成AI講習、Codex講習、Claude Code併用、ChatGPT講座、画像生成講習、AI導入支援、補助金申請サポート、LLMO対策、YouTube SEO、SNS集客</span>"
+        "<span class='fusion-logo-large'><span class='ai'>AI相談</span><span class='hub'>彦根・滋賀</span></span>"
+        "<span class='hero-title-sub'><strong>AIを、現場へ。</strong><br>日赤も講習も、迷わず進む。</span>"
+        "<span class='visually-hidden'>｜彦根 AI相談、滋賀 生成AI講習、Codex講習、Claude Code併用、ChatGPT講座、画像生成講習、AI導入支援、補助金申請サポート、LLMO対策、YouTube SEO、SNS集客</span>"
         "</h1>"
         "<p class='sub-catch'>"
-        "<strong>AIスペシャリストの視点を、相談・講習・実装に配置します。<br>ツール名だけでなく、AIをどこへ入れ、どう続けるかを設計します。</strong>"
+        "<strong>相談で整理。講習で実践。資料で復習。</strong>"
         "</p>"
+        "<div class='hero-compass-card' aria-label='AIコンパス'>"
+        "<span class='compass-mark' aria-hidden='true'></span>"
+        "<span><b>AIコンパス</b><small>相談・講習・資料の進む方向を整理</small></span>"
+        "</div>"
         "<p class='lead'>"
-        "専門用語は削らず、使う場面と確認ポイントを整理して、仕事の判断に変えます。エンジニアとして作れること、コンサルタントとして整理できること、9事業を回す経営者として続けられることを使い、AI導入、講習、業務改善、Web集客、資料化まで一気通貫で支援します。"
+        "日赤講習の予習・復習、AI講習、受講資料、実例サイトを1つの導線へ。赤は日赤、青はAI、緑は成果。見て、触って、次の行動を選べる入口です。"
         "</p>"
         "<div class='hero-actions'>"
-        "<a class='btn btn-primary btn-lg' href='#contact'>無料30分相談を予約</a>"
-        "<a class='btn btn-secondary btn-lg' href='#blog'>実践ブログを読む</a>"
+        "<a class='btn btn-primary btn-lg' href='#lesson-bridge'>日赤/AI講習を見る</a>"
+        "<a class='btn btn-secondary btn-lg' href='#contact'>個別相談を予約</a>"
         "</div>"
         "<div class='hero-route-bento' aria-label='最初に選ぶ4つの入口'>"
-        "<a class='hero-route-card route-consult' href='#contact'><small>01 / FREE</small><b>無料相談</b><span>AI導入の入口を整理</span></a>"
-        "<a class='hero-route-card route-plan' href='#packages'><small>02 / PLAN</small><b>講習/伴走</b><span>学ぶか任せるかを選ぶ</span></a>"
-        "<a class='hero-route-card route-code' href='#blog'><small>03 / BLOG</small><b>実践ブログ</b><span>経験と実績を読む</span></a>"
+        "<a class='hero-route-card route-consult' href='#contact'><small>01 / CONSULT</small><b>個別相談</b><span>今の課題と次の一手を整理</span></a>"
+        "<a class='hero-route-card route-plan' href='#why-now'><small>02 / DATA</small><b>数字で判断</b><span>最新データで必要性を見る</span></a>"
+        "<a class='hero-route-card route-code' href='#lesson-bridge'><small>03 / RED+BLUE</small><b>日赤/AI講習</b><span>赤と青で導線を分ける</span></a>"
         "<a class='hero-route-card route-material' href='#lectures'><small>04 / MATERIAL</small><b>受講資料</b><span>先に読んで判断する</span></a>"
         "</div>"
         "<div class='hero-proof-grid' aria-label='AI講習会の特徴'>"
-        "<div class='hero-proof'><span class='proof-icon'>01</span><span><b>Engineer</b><span>AIの出力を読み、直し、公開まで見られる</span></span></div>"
-        "<div class='hero-proof'><span class='proof-icon'>02</span><span><b>Consultant</b><span>業務課題を分解し、社内手順に落とす</span></span></div>"
-        "<div class='hero-proof'><span class='proof-icon'>03</span><span><b>Specialist Lens</b><span>専門用語を判断軸に翻訳する</span></span></div>"
+        "<div class='hero-proof'><span class='proof-icon'>88</span><span><b>AI利用</b><span>使うだけでなく定着へ</span></span></div>"
+        "<div class='hero-proof'><span class='proof-icon'>47</span><span><b>研修不足</b><span>手順と確認の型を作る</span></span></div>"
+        "<div class='hero-proof'><span class='proof-icon'>120</span><span><b>実例化</b><span>講習中に成果物を作る</span></span></div>"
         "</div>"
         "</div>"
-        "<div class='hero-photo-card hero-atlas-panel fade-up d2' aria-label='AIハブのサービス地図'>"
+        "<div class='hero-photo-card hero-atlas-panel fade-up d2' aria-label='AI相談のサービス地図'>"
         "<div class='atlas-pathlines' aria-hidden='true'></div>"
+        "<div class='atlas-compass-core' aria-hidden='true'><span class='compass-mark'></span><small>AIコンパス</small></div>"
         f"{''.join(atlas_buttons)}"
         "<div class='atlas-live-card' aria-live='polite'>"
         f"<span class='atlas-live-kicker'>Service {html.escape(first_item['index'])}</span>"
@@ -7789,10 +8878,10 @@ def _render_growth_booster() -> str:
         {
             "code": "ROUTE 06",
             "title": "HPへ着地",
-            "copy": "相談、講習、制作へ迷わず進める",
+            "copy": "個別相談、講習、制作へ迷わず進める",
             "output": "見て楽しいだけでなく、予約までつなぐ",
-            "desc": "明るい色と動きで興味を作り、最後は無料相談、受講プラン、制作相談のどれかに着地させます。",
-            "bullets": ["無料相談を迷わない位置へ置く", "講習と制作の違いを選べる形にする", "スマホでもCTAを押しやすくする"],
+            "desc": "明るい色と動きで興味を作り、最後は個別相談、受講プラン、制作相談のどれかに着地させます。",
+            "bullets": ["個別相談を迷わない位置へ置く", "講習と制作の違いを選べる形にする", "スマホでもCTAを押しやすくする"],
             "score": "93",
             "label": "予約導線",
             "color": "#FF8A3D",
@@ -7829,9 +8918,9 @@ def _render_growth_booster() -> str:
         "<p class='section-heading'>GROWTH BOOST</p>"
         "<h2>集客ブースターを、<strong>斜め上</strong>に回す</h2>"
         "<p><strong>時代はCodex。Claude Codeと併用、画像も生成。</strong>"
-        "暗いAIサイトではなく、触ってわかる明るい入口に変えて、相談、講習、HP制作、SNS集客へ迷わず進めます。</p>"
+        "暗いAIサイトではなく、触ってわかる明るい入口に変えて、個別相談、講習、HP制作、SNS集客へ迷わず進めます。</p>"
         "<div class='boost-actions'>"
-        "<a class='boost-action primary' href='#contact'>30分相談へ進む</a>"
+        "<a class='boost-action primary' href='#contact'>個別相談へ進む</a>"
         "<a class='boost-action' href='#packages'>講習プランを見る</a>"
         "<a class='boost-action' href='#web-showcase'>HP制作を見る</a>"
         "</div>"
@@ -8031,94 +9120,46 @@ def _render_web_showcase() -> str:
     )
 
 
-def _render_specialist_value() -> str:
-    """AIスペシャリスト訴求の核。動画の要点を営業導線へ翻訳する。"""
-    cards = [
-        (
-            "01 / Engineer",
-            "AIの出力を判断できる",
-            "コード、画面、文章、画像、データのどこが使えるかを読み、必要なら自分で直して公開前確認まで進めます。",
-        ),
-        (
-            "02 / Consultant",
-            "業務に入れる順番を設計できる",
-            "何をAIに任せ、どこを人が確認し、誰が毎日使うのか。現場の言葉に直して手順へ落とします。",
-        ),
-        (
-            "03 / Operator",
-            "自分の事業で使い続けている",
-            "9事業のWeb、SNS、資料、予約、管理画面を自分で動かすため、机上のAI論ではなく運用の詰まりを話せます。",
-        ),
-        (
-            "04 / Teacher",
-            "講習後に戻れる資料を残す",
-            "講習、受講資料、実践ブログ、予約導線をつなげ、聞いて終わりではなく社内に残る形へ変えます。",
-        ),
-    ]
-    card_html = "".join(
-        "<article class='specialist-card fade-up d2'>"
-        f"<small>{html.escape(kicker)}</small>"
-        f"<b>{html.escape(title)}</b>"
-        f"<p>{html.escape(body)}</p>"
-        "</article>"
-        for kicker, title, body in cards
-    )
-    return (
-        "<section class='block block-tight' id='specialist'>"
-        "<p class='section-heading fade-up'>SPECIALIST LENS</p>"
-        "<h2 class='section-title fade-up d1'>AI相談で使う、AIスペシャリストの解釈</h2>"
-        "<div class='specialist-grid'>"
-        "<div class='specialist-lead-card fade-up d1'>"
-        "<span class='specialist-kicker'>動画から読み取った本質</span>"
-        "<h3>非エンジニアでもAI時代の仕事は作れる。差がつくのは、これまでの経験をAIに渡せるかです。</h3>"
-        "<p>AIスペシャリストの仕事は、ツールの説明だけではありません。現場経験をもとに課題を言語化し、AIに任せる範囲、人が判断する範囲、社内で続ける手順まで設計する仕事です。由井辰美は、エンジニア、コンサルタント、複数事業オーナーの経験を重ねているため、AI導入から定着までを一続きで見られます。</p>"
-        "<div class='specialist-source'>参考動画: <a href='https://youtu.be/99EQoP7q3pA' target='_blank' rel='noopener'>「非エンジニアが荒稼ぎするAI時代の新しいお仕事」</a>。字幕本文は取得できなかったため、公開タイトルと依頼内容の要点を営業ページ向けに再構成しています。</div>"
-        "</div>"
-        f"<div class='specialist-card-list'>{card_html}</div>"
-        "</div>"
-        "</section>"
-    )
-
-
 def _render_path_selector() -> str:
     cards = [
         (
-            "AI導入を相談したい",
-            "今の課題を30分で整理して、講習で学ぶか、伴走で定着させるかを決める入口です。",
-            "相談を予約する",
+            "迷っている人",
+            "個別相談から始める",
+            "今の課題を整理して、受講プランか伴走かを決める入口です。",
+            "個別相談を予約する",
             "#contact",
-            "30分 / 無料",
+            "入口整理 / 無料",
+            "次に: 課題メモだけ持参",
         ),
         (
-            "講習会を比べたい",
-            "Codex準備、Codex実践、AIコーディング、個別相談、伴走支援の違いを先に見たい方向け。",
-            "講習/伴走を見る",
+            "日赤と講習を見分けたい人",
+            "日赤/AI講習を並べて見る",
+            "日赤講習の予習・復習導線と、AI講習の実務導線を赤と青で分けて確認できます。",
+            "色分け導線を見る",
+            "#lesson-bridge",
+            "赤=日赤 / 青=AI",
+            "次に: 相談・準備会・実践会へ",
+        ),
+        (
+            "プランを選びたい人",
+            "受講プランを比べる",
+            "個別相談、Codex準備、実践会、伴走支援を、料金と到達点で比べられます。",
+            "受講プランを見る",
             "#packages",
-            "料金と到達点を確認",
-        ),
-        (
-            "実績ブログを読みたい",
-            "AIスペシャリストとして何を考え、何を作っているか。Codex、RAG、業務システムの記事で確認できます。",
-            "ブログを読む",
-            "#blog",
-            "複数記事を掲載",
-        ),
-        (
-            "受講資料を先に見たい",
-            "受講資料やAIコーディング講習を見て、雰囲気を確かめてから受講プランへ戻れます。",
-            "受講資料を見る",
-            "#lectures",
-            "公開資料あり",
+            "相談 / 60分 / 120分",
+            "次に: 関連資料を確認",
         ),
     ]
     parts = ["<div class='path-grid'>"]
-    for title, desc, cta, href, meta in cards:
+    for persona, title, desc, cta, href, meta, proof in cards:
         parts.append(
             "<a class='path-card fade-up' href='{href}'>"
             "<span class='path-kicker'>FIRST STEP</span>"
+            f"<span class='path-persona'>{html.escape(persona)}</span>"
             f"<strong>{html.escape(title)}</strong>"
             f"<p>{html.escape(desc)}</p>"
             f"<span class='path-meta'>{html.escape(meta)}</span>"
+            f"<span class='path-proof'>{html.escape(proof)}</span>"
             f"<span class='path-cta'>{html.escape(cta)} →</span>"
             "</a>".format(href=html.escape(href, quote=True))
         )
@@ -8130,8 +9171,13 @@ def _render_choice_lens() -> str:
     rows = [
         (
             "AIを始めたいが、何から聞けばよいか分からない",
-            "無料30分相談",
-            "課題を聞いて、講習・個別相談・伴走のどれに進むかをその場で切り分けます。",
+            "個別相談",
+            "課題を聞いて、講習・伴走のどちらに進むかをその場で切り分けます。",
+        ),
+        (
+            "日赤講習の案内や復習を、参加者に分かりやすく見せたい",
+            "日赤・講習導線",
+            "救急法やAEDの学びを赤、AI講習を青で分け、予習、当日、復習、資料リンクまで整理します。",
         ),
         (
             "CodexやClaude Codeで、自分の資料やページを作りたい",
@@ -8145,7 +9191,7 @@ def _render_choice_lens() -> str:
         ),
     ]
     parts = [
-        "<div class='choice-lens fade-up d3' aria-label='今の状態から選ぶAI導入と講習の入口'>",
+        "<div class='choice-lens fade-up d3' aria-label='今の状態から選ぶAI講習の入口'>",
         "<div class='choice-lens-head'><span>いまの状態</span><span>おすすめ入口</span><span>判断材料</span></div>",
     ]
     for state, reco, proof in rows:
@@ -8158,6 +9204,157 @@ def _render_choice_lens() -> str:
         )
     parts.append("</div>")
     return "".join(parts)
+
+
+def _render_ai_impact_board() -> str:
+    """AI導入の現在地を、講習に進む理由として数字で見せる。"""
+    stats = [
+        ("88%", "AI利用", "McKinsey 2025: 1業務以上で定常利用", "#0877C6"),
+        ("約1/3", "全社展開", "多くはまだ実験・試行段階", "#00A676"),
+        ("62%", "Agent実験", "AIエージェントを試す企業が増加", "#F5B83D"),
+        ("47%", "AI研修あり", "使っているのに教わっていない人が多い", "#E60012"),
+    ]
+    stat_html = "".join(
+        f"<div class='ai-impact-card' style='--card-color:{html.escape(color, quote=True)}'>"
+        f"<b>{html.escape(num)}</b>"
+        f"<span>{html.escape(label)}</span>"
+        f"<small>{html.escape(note)}</small>"
+        "</div>"
+        for num, label, note, color in stats
+    )
+    rows = [
+        ("受付・問い合わせ", "AIで返信文、FAQ、電話メモを整える", "相談で課題を3つに絞る", "返信の迷いを減らす"),
+        ("日赤・講習案内", "予習、当日、復習の資料リンクを1本化", "赤=日赤、青=AI講習で表示", "参加前後の迷子を減らす"),
+        ("広報・SNS", "動画台本、投稿文、画像案、FAQへ展開", "1テーマから3本の発信案", "週1更新に落とす"),
+        ("サイト・業務", "CodexでLP、資料、フォーム、管理画面を作る", "120分で原型と確認手順", "6ヶ月で定着させる"),
+    ]
+    row_html = [
+        "<div class='ai-benefit-row ai-benefit-head'><span>場面</span><span>AIで変えること</span><span>講習で作るもの</span><span>目標</span></div>"
+    ]
+    for scene, change, output, goal in rows:
+        row_html.append(
+            "<div class='ai-benefit-row'>"
+            f"<strong data-label='場面'>{html.escape(scene)}</strong>"
+            f"<span data-label='AIで変えること'>{html.escape(change)}</span>"
+            f"<span data-label='講習で作るもの'>{html.escape(output)}</span>"
+            f"<span data-label='目標'>{html.escape(goal)}</span>"
+            "</div>"
+        )
+    return (
+        "<div class='ai-impact-board fade-up d2'>"
+        "<div class='ai-impact-shell'>"
+        "<div class='ai-impact-top'>"
+        "<div class='ai-impact-copy'>"
+        "<span class='ai-impact-kicker'>2025 DATA / WHY NOW</span>"
+        "<h3>使うだけでは、成果にならない。</h3>"
+        "<p>AI利用は急増しています。ただし全社で使い切れている企業はまだ少なく、研修や検証の型が追いついていません。だから講習では、ツール名よりも「何を作り、どう確認し、どこへ戻るか」を先に決めます。</p>"
+        "</div>"
+        f"<div class='ai-impact-stats'>{stat_html}</div>"
+        "</div>"
+        f"<div class='ai-benefit-table'>{''.join(row_html)}</div>"
+        "<p class='ai-source-note'>Sources: "
+        "<a href='https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai' target='_blank' rel='noopener'>McKinsey, The state of AI in 2025</a>"
+        " / "
+        "<a href='https://www.businessinsider.com/kpmg-trust-in-ai-study-2025-how-employees-use-ai-2025-4' target='_blank' rel='noopener'>KPMG + University of Melbourne global AI trust study reporting</a>"
+        "。数字は講習設計の参考値で、個別の成果を保証するものではありません。</p>"
+        "</div>"
+        "</div>"
+    )
+
+
+def _render_redcross_lesson_bridge() -> str:
+    """日赤とAI講習を混同せず、色と導線で並べる。"""
+    panels = [
+        (
+            "redcross",
+            "日赤講習",
+            "#E60012",
+            "日赤の講習で扱う心肺蘇生、AED、救急法、WEB CROSSの予習・復習導線を、参加者が見返しやすい形に整理します。",
+            [("01", "公式内容を尊重"), ("02", "予習リンクを先頭へ"), ("03", "復習ページを残す")],
+        ),
+        (
+            "ai",
+            "AI講習",
+            "#0877C6",
+            "ChatGPT、Codex、Claude Code、画像生成を、業務文書、広報、資料化、確認作業に接続します。講習後に自分で再現できる手順を残します。",
+            [("相", "個別相談"), ("60", "準備会"), ("120", "実践会")],
+        ),
+        (
+            "outcome",
+            "実例化",
+            "#00A676",
+            "講習で終わらせず、1テーマからFAQ、配布資料、予約導線、SNS投稿、サイト内ページまで展開します。",
+            [("3", "入口を選ぶ"), ("1", "復習先を作る"), ("6", "ヶ月で定着")],
+        ),
+    ]
+    tab_buttons = []
+    tab_panels = []
+    for i, (key, label, color, body, outcomes) in enumerate(panels):
+        active = i == 0
+        tab_buttons.append(
+            "<button type='button' "
+            f"class='lesson-tab{' is-active' if active else ''}' "
+            f"style='--tab-color:{html.escape(color, quote=True)}' "
+            "role='tab' "
+            f"aria-selected='{'true' if active else 'false'}' "
+            f"tabindex='{'0' if active else '-1'}' "
+            f"data-lesson-tab='{html.escape(key, quote=True)}'>"
+            f"{html.escape(label)}</button>"
+        )
+        outcome_html = "".join(
+            f"<span><b>{html.escape(num)}</b>{html.escape(text)}</span>"
+            for num, text in outcomes
+        )
+        tab_panels.append(
+            "<div "
+            f"class='lesson-tab-panel{' is-active' if active else ''}' "
+            "role='tabpanel' "
+            f"data-lesson-panel='{html.escape(key, quote=True)}' "
+            f"{'' if active else 'hidden'}>"
+            f"<h4>{html.escape(label)}で見せること</h4>"
+            f"<p>{html.escape(body)}</p>"
+            f"<div class='lesson-outcome-grid'>{outcome_html}</div>"
+            "</div>"
+        )
+    return (
+        "<div class='lesson-bridge-shell fade-up d2' data-lesson-bridge>"
+        "<div class='lesson-bridge-inner'>"
+        "<div class='lesson-bridge-copy'>"
+        "<span class='lesson-bridge-kicker'>RED CROSS / AI LESSON</span>"
+        "<h3>日赤は赤。AI講習は青。</h3>"
+        "<p>日赤の学びとAI講習を同じページで見せるときは、役割を混ぜないことが大事です。参加者には、今どちらを見ているのか、次に何を押すのかを色と数字で示します。</p>"
+        "<div class='lesson-tabs'>"
+        f"<div class='lesson-tab-controls' role='tablist' aria-label='日赤とAI講習の切り替え'>{''.join(tab_buttons)}</div>"
+        f"{''.join(tab_panels)}"
+        "</div>"
+        "</div>"
+        "<div class='lesson-track-grid'>"
+        "<article class='lesson-track-card redcross'>"
+        "<span class='lesson-track-label'>日赤</span>"
+        "<h3>救急法・AED</h3>"
+        "<p>心肺蘇生、AED、救急法、WEB CROSSの予習・復習を、赤い導線でまとめます。</p>"
+        "<div class='lesson-track-list'>"
+        "<span><b>予</b>公式ページ・動画を先に見る</span>"
+        "<span><b>当</b>講習当日の持ち物と流れを確認</span>"
+        "<span><b>復</b>復習リンクと次回案内を残す</span>"
+        "</div>"
+        "</article>"
+        "<article class='lesson-track-card ai'>"
+        "<span class='lesson-track-label'>AI講習</span>"
+        "<h3>AIを現場へ</h3>"
+        "<p>ChatGPT、Codex、Claude Code、画像生成を、資料、広報、サイト、業務手順に接続します。</p>"
+        "<div class='lesson-track-list'>"
+        "<span><b>相</b>個別相談で課題を切り分け</span>"
+        "<span><b>60</b>準備会で使える状態にする</span>"
+        "<span><b>120</b>実践会で成果物を作る</span>"
+        "</div>"
+        "</article>"
+        "</div>"
+        "</div>"
+        "<p class='ai-source-note'>日赤公式講習の代替ではありません。日本赤十字社公式サイトの講習内容、心肺蘇生・AED、WEB CROSSの案内を参照し、AIハブでは案内、資料化、復習導線づくりを支援します。"
+        " <a href='https://www.jrc.or.jp/study/safety/' target='_blank' rel='noopener'>日本赤十字社 講習の内容について</a></p>"
+        "</div>"
+    )
 
 
 def _render_stats() -> str:
@@ -8256,21 +9453,21 @@ def _render_courses_packages() -> str:
     codex_practice_title = "Codex実践会 120分"
     ai_coding_title = "AIコーディング講習 120分"
     seminar_url = "https://goodbouldering.com/?pid=188553378"
-    free_consult_title = "AI無料相談 とりあえず30分"
+    free_consult_title = "AI個別相談 入口整理"
     free_consult_url = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/AW5O5XSBHLEHYUBHLZUGFKYE"
     consult_title = "AI個別相談 しっかり60分"
     support_title = "AI伴走支援 いっしょに導入"
     items = [
         {
             "icon": "◧",
-            "cat": "無料相談",
+            "cat": "個別相談",
             "level": "入口",
             "level_id": "beginner",
             "title": free_consult_title,
             "price": "無料",
-            "duration": "30分",
+            "duration": "初回 / 無料",
             "subsidy": False,
-            "desc": "来店またはオンラインで、講習・AI導入・補助金の入口を30分で整理します。",
+            "desc": "来店またはオンラインで、講習・AI導入・補助金の入口を整理します。",
             "content": [
                 "今の課題とAIで試したいことを聞き取り",
                 "講習、個別相談、伴走支援の入口を切り分け",
@@ -8278,7 +9475,7 @@ def _render_courses_packages() -> str:
             ],
             "fit": ["まず話を聞きたい", "講習か伴走か迷う", "来店またはオンラインで相談したい"],
             "url": free_consult_url,
-            "cta": "無料相談を予約する",
+            "cta": "個別相談を予約する",
             "material_url": "#lectures",
             "material_cta": "受講資料で選び方を見る",
         },
@@ -8485,7 +9682,7 @@ def _render_courses_packages() -> str:
         "<strong>Codex講習:</strong> レベルは経験年数ではなく理解度で分けます。準備会はログイン、フォルダ選択、最初の依頼、差分確認、独立レビュー、公式更新確認まで60分2,200円、実践会はClaude Codeとの使い分けや画像生成も含めた成果物作成まで120分5,500円です。"
         "Codexの申込リンクは1つに統一し、申込時に「準備会」または「実践会」をオプション選択します。各カードから関連する受講資料へ進めます。"
         "<br><strong>AIコーディング講習:</strong> Codex導入、Claude Code併用、画像生成、AI時代の本物のエンジニア像、レベルマップ、設計・データ・運用・セキュリティ、実装、公開までを120分11,000円で扱う総合講習です。専用のSquare予約メニューから申し込めます。"
-        "<br><strong>相談:</strong> AI個別相談は、AIの使い方、指示書、確認体制、運用導線を60分で整理します。"
+        "<br><strong>相談:</strong> AI個別相談は、AIの使い方、指示書、確認体制、運用導線を整理します。"
         "<br><strong>月額支払い:</strong> AI伴走支援の月額決済はStripe Checkoutで受け付け、申込後に初回範囲と日程を確認します。"
         "<br><strong>補助金:</strong> 講習と伴走支援は、滋賀県・彦根市のデジタル化/AI導入系補助金と組み合わせて相談できます。"
         "</p>"
@@ -8501,9 +9698,9 @@ def _render_footer(today: str) -> str:
         "<div class='footer-grid'>"
         "<div class='footer-brand'>"
         "<div class='footer-logo'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span></div>"
-        "<p class='footer-tagline'>滋賀・彦根の中小事業者向けに、AI導入相談・生成AI講習・Codex準備会/実践会・AIコーディング講習・受講資料・Web集客支援を行う"
+        "<p class='footer-tagline'>滋賀・彦根の中小事業者向けに、AI相談・生成AI講習・Codex準備会/実践会・AIコーディング講習・受講資料・Web集客支援を行う"
         "資料センター型の相談サイト。9事業を実際に回しながら、現場に居着くAIを一緒に作ります。</p>"
-        "<a class='footer-cta' href='#contact'>📩 無料で30分相談する</a>"
+        "<a class='footer-cta' href='#contact'>個別相談する</a>"
         "</div>"
         "<nav class='footer-nav' aria-label='フッターナビ'>"
         "<span class='footer-nav-head'>メニュー</span>"
@@ -8515,24 +9712,24 @@ def _render_footer(today: str) -> str:
         "</nav>"
         "<div class='footer-nap'>"
         "<span class='footer-nav-head'>運営</span>"
-        "<p>AI相談（AI相談。彦根 / AIスペシャリスト 彦根 / クライミングコンサル）</p>"
+        "<p>AI相談（彦根 / クライミングコンサル）</p>"
         "<p>代表 由井 辰美</p>"
         "<p>〒522-0043<br>滋賀県彦根市岡町12番地</p>"
         f"<p><a href='mailto:{OWNER_EMAIL}'>{OWNER_EMAIL}</a></p>"
         "<p class='footer-area'>対応: 彦根・湖東・滋賀県全域 / 出張・オンライン全国</p>"
         "</div>"
         "</div>"
-        f"<div class='footer-copy'>© {year} 由井 辰美 / AI相談 — 滋賀・彦根のAI導入相談・受講資料</div>"
+        f"<div class='footer-copy'>© {year} 由井 辰美 / AI相談 — 滋賀・彦根のAI相談・受講資料</div>"
         "</footer>"
     )
 
 
 def _render_sticky_cta() -> str:
-    """モバイルで常時追従する無料相談バー（スクロール中もCVできる）。"""
+    """モバイルで常時追従する個別相談バー（スクロール中もCVできる）。"""
     return (
         "<div class='sticky-cta' id='sticky-cta' aria-hidden='false'>"
-        "<div class='sticky-cta-text'><strong>AI導入相談は30分無料</strong><span>講習・実装・社内定着まで整理</span></div>"
-        "<a class='sticky-cta-btn' href='#contact'>30分相談する</a>"
+        "<div class='sticky-cta-text'><strong>個別相談で入口整理</strong><span>講習・資料・集客まで整理</span></div>"
+        "<a class='sticky-cta-btn' href='#contact'>個別相談</a>"
         "</div>"
     )
 
@@ -8575,19 +9772,19 @@ def _render_explore() -> str:
 
 
 GUBBLE_LINE_URL = "https://lin.ee/14YxIC6"
-# 無料相談の予約導線（Square・個別相談60分のサービスID）。全CTAの最終到達先をここに一本化。
+# 個別相談の予約導線（Squareの相談サービスID）。全CTAの最終到達先をここに一本化。
 CONSULT_BOOK_URL = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/AW5O5XSBHLEHYUBHLZUGFKYE"
 
 
 def _render_contact_form() -> str:
-    """申込導線は「無料30分相談の予約(Square)」に一本化。相談はZoomまたはLINEで実施。"""
+    """申込導線は「個別相談の予約(Square)」に一本化。相談はZoomまたはLINEで実施。"""
     return (
         # 主導線: 日程を選ぶだけで予約完了
         f"<a class='contact-primary fade-up' href='{CONSULT_BOOK_URL}' target='_blank' rel='noopener'>"
         "<span class='cp-ico'>📅</span>"
         "<span class='cp-body'>"
-        "<span class='cp-title'>AI相談の無料30分相談を予約する</span>"
-        "<span class='cp-desc'>カレンダーから空いている日時を選ぶだけ。2〜3分で予約できます（料金はかかりません）。彦根での対面、Zoom、LINE相談から選べます。</span>"
+        "<span class='cp-title'>AI個別相談を予約する</span>"
+        "<span class='cp-desc'>カレンダーから空いている日時を選ぶだけ。2〜3分で予約できます。初回の入口整理は料金がかかりません。相談は対面・Zoom・LINEから選べます。</span>"
         "</span>"
         "<span class='cp-cta'>日程を選ぶ →</span>"
         "</a>"
@@ -8616,7 +9813,7 @@ def _render_parallax_band() -> str:
 
 def _render_flow() -> str:
     steps = [
-        ("① まず相談（無料）", "彦根・湖東の仕事で困っていること、SNSで伸ばしたいこと、AIで試したいことを30分で整理します。"),
+        ("① 個別相談", "彦根・湖東の仕事で困っていること、SNSで伸ばしたいこと、AIで試したいことを整理します。"),
         ("② 講習で一緒に触る", "ChatGPT / Codex / Claude Code / NotebookLM / 画像生成などを、画面を見ながら実際の仕事に当てはめます。"),
         ("③ 資料として残す", "受講で使った手順、プロンプト、動画、実例を資料センターに残し、あとから復習できるようにします。"),
         ("④ 集客へつなげる", "Reels、YouTube、ブログ、Googleビジネスプロフィール、LLMO向けFAQへ展開し、検索とAI回答に残します。"),
@@ -8670,10 +9867,8 @@ def _render_growth_plan_section() -> str:
 # FAQ は本文表示と FAQPage 構造化データの両方で使う（一次情報＝LLMO引用源）。
 # 地域・お悩み・補助金の検索意図を素の質問形で網羅する。
 FAQ_QA = [
-    ("彦根・滋賀でAI相談できますか？",
-     "はい。滋賀県彦根市を拠点に、彦根・湖東・東近江を中心とした対面のAI導入相談・AI講習・個別相談を行っています。京都・大阪・名古屋までは出張可、リモートなら全国対応します。"),
-    ("AI相談では何を頼めますか？",
-     "AIツールの使い方だけでなく、業務整理、AIに任せる範囲の設計、社内手順化、Web/予約/ブログ/SNSへの展開、公開前確認、定着まで相談できます。エンジニア経験とコンサル経験を合わせて、実装と運用の両方を見ます。"),
+    ("彦根・滋賀でAIの講習や相談はできますか？",
+     "はい。滋賀県彦根市を拠点に、彦根・湖東・東近江を中心とした対面のAI講習・個別相談を行っています。京都・大阪・名古屋までは出張可、リモートなら全国対応します。"),
     ("Codex準備会とCodex実践会はどう違いますか？",
      "レベルは理解度で分けます。Codex準備会は60分2,200円で、ログイン、作業フォルダ選択、秘密情報を入れない権限設計、最初の小さな依頼、差分確認、ブラウザ表示確認、独立レビュー、AGENTS.md、公式アップデート確認先までを整えます。Codex実践会は120分5,500円で、Claude Codeとの使い分け、ページ、資料、コード、画像生成プロンプト、動画台本、運用マニュアルなどの成果物作成まで進めます。AIコーディング講習は120分11,000円で、Codex導入、Claude Code併用、画像生成、本物のエンジニア像、レベルマップ、専門用語、設計・データ・運用・セキュリティ、実装ループ、公開前確認までを体系的に扱います。"),
     ("AIコーディング講習では何を学びますか？",
@@ -8685,17 +9880,17 @@ FAQ_QA = [
     ("LLMO やAI検索に強いサイトにできますか？",
      "できます。地域名、講師の一次経験、料金、対応範囲、実例、FAQ、構造化データを整理し、AIが回答に引用しやすい形で公開します。大量の自動生成ではなく、講習と実例に基づく一次情報を重視します。"),
     ("料金はどれくらいですか？",
-     "AI無料相談 とりあえず30分は無料、Codex準備会60分は2,200円、Codex実践会120分は5,500円、AIコーディング講習120分は11,000円、AI個別相談 しっかり60分は5,500円です。AI伴走支援 いっしょに導入は月額10万円×6ヶ月が目安で、月額決済はStripe Checkoutで行います。LP制作は1本18〜30万円が目安。多くは補助金併用を前提に組みます。"),
+     "AI個別相談の入口整理は無料、Codex準備会60分は2,200円、Codex実践会120分は5,500円、AIコーディング講習120分は11,000円、AI個別相談 しっかり60分は5,500円です。AI伴走支援 いっしょに導入は月額10万円×6ヶ月が目安で、月額決済はStripe Checkoutで行います。LP制作は1本18〜30万円が目安。多くは補助金併用を前提に組みます。"),
     ("補助金は使えますか？滋賀の事業者でも対象ですか？",
      "講習・伴走パックは「デジタル化・AI導入補助金」や滋賀県・彦根市の補助金の対象になります。補助率は小規模事業者で最大4/5、実質負担が1/3以下になるケースが多いです。申請からツール選定・実装・定着まで一気通貫で支援します。"),
     ("パソコンやスマホが苦手ですが、大丈夫ですか？",
      "大丈夫です。スマホで文字が打てれば始められます。専門用語は使わず、画面を一緒に見ながら進めます。「こんなことも聞いていいの？」というレベルから歓迎します。"),
-    ("AIを仕事で使いたいのですが、何から始めれば？",
-     "毎日やっている作業で「これ、同じような文章を毎回書いてるな」と思うものを1つ思い浮かべてください。問い合わせの返信・見積の文面・日報など、決まり文句の多い仕事から始めると、最初の30分でAIが役に立つのを実感できます。むずかしいことは後でOKです。"),
+    ("AI を仕事で使いたいのですが、何から始めれば？",
+     "毎日やっている作業で「これ、同じような文章を毎回書いてるな」と思うものを1つ思い浮かべてください。問い合わせの返信・見積の文面・日報など、決まり文句の多い仕事から始めると、最初の相談でAIが役に立つのを実感できます。むずかしいことは後でOKです。"),
     ("特定の人しかできない仕事が多くて困っています。効きますか？",
      "そこが得意分野です。「あの人がいないと回らない」作業をAIと手順書に置き換え、誰でもできる形にします。たとえば請求書づくりが月8時間→1時間に減った例があります。"),
     ("出張やオンラインだけの依頼も可能ですか？",
-     "可能です。滋賀県外への出張AI研修、オンライン完結の伴走、単発の講演・登壇いずれも対応します。まずは無料の30分相談でご要望をお聞かせください。"),
+     "可能です。滋賀県外への出張AI研修、オンライン完結の伴走、単発の講演・登壇いずれも対応します。まずは個別相談でご要望をお聞かせください。"),
 ]
 
 
@@ -8846,15 +10041,8 @@ def _render_portfolio_section() -> str:
         tag = "a" if is_link else "div"
         href = f" href='{url}' target='_blank' rel='noopener'" if is_link else ""
         since_html = f"<span class='pf-host'>since {since}</span>" if since else ""
-        thumb_url = _portfolio_thumb_url(str(it.get("thumbnail") or ""), str(it.get("url") or ""))
-        thumb_html = (
-            f"<span class='pf-thumb is-site-shot' aria-hidden='true'>"
-            f"<img src='{html.escape(thumb_url, quote=True)}' alt='' loading='lazy' decoding='async' onerror=\"this.style.display='none'\"></span>"
-            if thumb_url else ""
-        )
         parts.append(
             f"<{tag} class='pf-card'{href}>"
-            f"{thumb_html}"
             f"<div class='pf-title'>{name}</div>"
             f"<div class='pf-host'>{html.escape(host)}</div>"
             f"<div class='pf-sum'>{summary}</div>"
@@ -8884,30 +10072,20 @@ _WORKS_THUMB = {
 _WORKS_THUMB_DEFAULT = ("🚀", "#2854C5", "#D95B43")
 
 
-def _portfolio_thumb_url(thumbnail: str, url: str) -> str:
-    thumbnail = (thumbnail or "").strip()
-    if thumbnail:
-        return thumbnail
-    url = (url or "").strip()
-    if not url or url.startswith("#") or url.startswith("mailto:") or url.startswith("tel:"):
-        return ""
-    return "https://s.wordpress.com/mshots/v1/" + quote(url, safe="") + "?w=960"
-
-
 def _works_thumb_svg(category: str, name: str) -> str:
     icon, c1, c2 = _WORKS_THUMB.get(category, _WORKS_THUMB_DEFAULT)
     # gradient id を name から安全に生成（重複しても描画は問題ないが一応ユニーク化）
     gid = "g" + str(abs(hash((category, name))) % 100000)
     return (
         f"<span class='pf-thumb' aria-hidden='true'>"
-        f"<svg viewBox='0 0 320 150' preserveAspectRatio='xMidYMid slice' xmlns='http://www.w3.org/2000/svg'>"
+        f"<svg viewBox='0 0 320 180' preserveAspectRatio='xMidYMid slice' xmlns='http://www.w3.org/2000/svg'>"
         f"<defs><linearGradient id='{gid}' x1='0' y1='0' x2='1' y2='1'>"
         f"<stop offset='0' stop-color='{c1}'/><stop offset='1' stop-color='{c2}'/></linearGradient></defs>"
-        f"<rect width='320' height='150' fill='url(#{gid})'/>"
+        f"<rect width='320' height='180' fill='url(#{gid})'/>"
         # 軽い光のドット（装飾）
         f"<circle cx='270' cy='30' r='46' fill='#fff' opacity='0.10'/>"
-        f"<circle cx='40' cy='128' r='34' fill='#fff' opacity='0.08'/>"
-        f"<text x='160' y='95' font-size='54' text-anchor='middle'>{icon}</text>"
+        f"<circle cx='40' cy='152' r='34' fill='#fff' opacity='0.08'/>"
+        f"<text x='160' y='108' font-size='54' text-anchor='middle'>{icon}</text>"
         f"</svg></span>"
     )
 
@@ -8939,10 +10117,10 @@ def _render_works_section() -> str:
             chips.append("<span class='pf-chip dev'>開発中</span>")
         href = html.escape(url, quote=True) if url else "/portfolio.html"
         target = " target='_blank' rel='noopener'" if url else ""
-        thumb_url = _portfolio_thumb_url(str(p.get("thumbnail") or ""), url)
+        thumb_url = str(p.get("thumbnail") or "").strip()
         if thumb_url:
-            thumb = (f"<span class='pf-thumb is-site-shot' aria-hidden='true'>"
-                     f"<img src='{html.escape(thumb_url, quote=True)}' alt='' loading='lazy' decoding='async' onerror=\"this.style.display='none'\"></span>")
+            thumb = (f"<span class='pf-thumb' aria-hidden='true'>"
+                     f"<img src='{html.escape(thumb_url, quote=True)}' alt='' loading='lazy' decoding='async'></span>")
         else:
             thumb = _works_thumb_svg(str(p.get("category") or ""), str(p.get("name") or ""))
         parts.append(
@@ -9052,6 +10230,16 @@ def _render_blog_card(post: dict, *, extra_class: str = "") -> str:
     if image:
         safe_image = html.escape(image, quote=True)
         media = f"<div class='blog-card-media'><img src='{safe_image}' alt='' loading='lazy' decoding='async'></div>"
+    else:
+        media = (
+            "<div class='blog-card-media blog-card-media--line' aria-hidden='true'>"
+            "<svg viewBox='0 0 320 180' role='img' focusable='false'>"
+            "<path d='M38 112 C72 52 135 52 162 102 C188 151 248 146 286 82'/>"
+            "<circle cx='84' cy='72' r='12'/><circle cx='164' cy='101' r='10'/><circle cx='245' cy='102' r='14'/>"
+            "<path d='M58 129 l18 -11 l-3 22 Z M218 63 l22 -10 l-6 23 Z'/>"
+            "</svg>"
+            "</div>"
+        )
     return (
         f"<a class='{cls}' href='{href}'>"
         f"{media}"
@@ -9069,34 +10257,28 @@ def _render_blog_teaser() -> str:
     posts = _load_recent_blog_posts(limit=6)
     if not posts:
         return ""
-    featured = posts[0]
-    feature_title = html.escape(str(featured.get("title") or "AIスペシャリストの実践記事"))
-    feature_summary = html.escape(str(featured.get("summary") or "AI導入、講習、制作、業務改善の実践記録。"))
-    feature_href = html.escape(str(featured.get("href") or "/blog/index.html"), quote=True)
-    feature_date = html.escape(str(featured.get("date") or "BLOG"))
-    feature_image = html.escape(str(featured.get("image") or "/img/hero-codex-claude-imagegen-20260616.png"), quote=True)
-    cards = [_render_blog_card(post, extra_class="fade-up d2") for post in posts[1:]]
+    cards = [_render_blog_card(post, extra_class="fade-up d2") for post in posts]
+    if len(cards) == 1:
+        cards.append(
+            "<a class='blog-card fade-up d3' href='/blog/index.html'>"
+            "<div class='blog-card-body'>"
+            "<div class='blog-card-meta'><span>BLOG INDEX</span></div>"
+            "<h3>ブログ一覧</h3>"
+            "<p>AIハブの実践記録を一覧で確認できます。新しい記事を追加すると、このトップにも自動で並びます。</p>"
+            "<span class='blog-card-more'>一覧を見る</span>"
+            "</div>"
+            "</a>"
+        )
     return (
         "<section class='block' id='blog'>"
-        "<div class='blog-section-head'>"
-        "<div>"
-        "<p class='section-heading fade-up'>BLOG / PROOF</p>"
-        "<h2 class='section-title fade-up d1'>AIスペシャリストの実践ブログ</h2>"
-        "<p class='section-sub fade-up d2'>講習で話す内容、実際に作っている業務システム、AI時代のエンジニア像を記事で確認できます。営業前の信頼材料として、トップ上部に複数掲載しています。</p>"
-        "</div>"
-        "<a class='btn btn-secondary fade-up d2' href='/blog/index.html'>すべての記事を見る</a>"
-        "</div>"
-        f"<a class='blog-feature fade-up d2' href='{feature_href}'>"
-        "<div class='blog-feature-copy'>"
-        f"<div class='blog-feature-meta'><span>{feature_date}</span><span>FEATURED</span></div>"
-        f"<h3>{feature_title}</h3>"
-        f"<p>{feature_summary}</p>"
-        "<span class='blog-card-more'>特集記事を読む</span>"
-        "</div>"
-        f"<div class='blog-feature-visual'><img src='{feature_image}' alt='' loading='lazy' decoding='async'></div>"
-        "</a>"
-        "<div class='blog-list'>"
+        "<p class='section-heading fade-up'>BLOG</p>"
+        "<h2 class='section-title fade-up d1'>最近のブログ</h2>"
+        "<div class='pf-carousel-wrap blog-carousel-wrap'>"
+        "<button type='button' class='pf-arrow pf-prev' aria-label='前へ' data-dir='-1'>‹</button>"
+        "<div class='pf-carousel blog-carousel' id='blog-carousel'>"
         + "".join(cards) +
+        "</div>"
+        "<button type='button' class='pf-arrow pf-next' aria-label='次へ' data-dir='1'>›</button>"
         "</div>"
         "</section>"
     )
@@ -9227,8 +10409,8 @@ def _render_lecture_card(lec: dict) -> str:
 
 def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     today = datetime.now().strftime("%Y-%m-%d")
-    title = "AI相談"
-    desc = "彦根・滋賀でAIを学びたい企業・個人へ。エンジニア経験とコンサル経験を持つAIスペシャリストが、AI相談、生成AI講習、Codex、Claude Code、画像生成、業務改善、ホームページ制作、社内定着まで伴走します。"
+    title = SITE_BRAND
+    desc = "AI相談は、彦根・滋賀の中小事業者向けAI相談・生成AI講習・ホームページ制作ポータルです。Codex、Claude Code、画像生成、店舗LP、企業サイト、EC、講習サイト、管理画面、SNS改善導線まで、実例を見せながら相談できます。"
 
     parts: list[str] = []
     parts.append("<!doctype html><html lang='ja'><head><meta charset='utf-8'>" + FAVICON_HEAD_HTML)
@@ -9253,72 +10435,84 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
 
     parts.append(_render_hero())
 
-    # 1. AIスペシャリストの定義と専門性
-    parts.append(_render_specialist_value())
+    # 1. 最新データから、講習が必要な理由を先に見せる
+    parts.append("<section class='block block-tight' id='why-now'>")
+    parts.append("<p class='section-heading fade-up'>WHY NOW</p>")
+    parts.append("<h2 class='section-title fade-up d1'>数字で見る、AI講習の必要性</h2>")
+    parts.append("<p class='section-sub fade-up d2'>AIはもう使われています。差が出るのは、現場の作業に落とし、確認し、復習できる導線があるかどうかです。</p>")
+    parts.append(_render_ai_impact_board())
+    parts.append("</section>")
 
-    # 2. ブログを信頼材料として上部に出す
-    parts.append(_render_blog_teaser())
+    # 2. 日赤とAI講習を、色分けして並べる
+    parts.append("<section class='block block-tight' id='lesson-bridge'>")
+    parts.append("<p class='section-heading fade-up'>RED CROSS / AI</p>")
+    parts.append("<h2 class='section-title fade-up d1'>日赤と講習を、迷わず選ぶ</h2>")
+    parts.append("<p class='section-sub fade-up d2'>日赤講習の予習・復習と、AI講習の実務化を混ぜずに並べます。赤は日赤、青はAI講習、緑は実例化です。</p>")
+    parts.append(_render_redcross_lesson_bridge())
+    parts.append("</section>")
 
     # 3. 最初の選び方
     parts.append("<section class='block block-tight' id='start'>")
     parts.append("<p class='section-heading fade-up'>START HERE</p>")
-    parts.append("<h2 class='section-title fade-up d1'>最初の一歩を、4つに絞る</h2>")
-    parts.append("<p class='section-sub fade-up d2'>AI導入を相談する、講習会を選ぶ、実践ブログで確かめる、受講資料を先に読む。初回訪問で迷わないよう、営業の入口を上部に集約しました。</p>")
+    parts.append("<h2 class='section-title fade-up d1'>最初の一歩を、3つに絞る</h2>")
+    parts.append("<p class='section-sub fade-up d2'>初回訪問で迷いやすい「相談する」「日赤/講習導線を見る」「受講資料を先に見る」を先頭にまとめました。</p>")
     parts.append(_render_path_selector())
     parts.append(_render_choice_lens())
     parts.append("</section>")
 
     # 4. 受講プラン — メインCTA
     parts.append("<section class='block' id='packages'>")
-    parts.append("<p class='section-heading fade-up'>AI LESSON / SUPPORT</p>")
-    parts.append("<h2 class='section-title packages-title fade-up d1'>AI導入・講習・実装支援のプラン</h2>")
-    parts.append("<p class='section-sub fade-up d2'>無料相談、個別相談、伴走支援、Codex準備会、Codex実践会、AIコーディング講習を、目的と到達点で選べるように整理しています。学びたい方も、社内に定着させたい企業も、各プランから関連資料を確認して予約できます。</p>")
+    parts.append("<p class='section-heading fade-up'>AI LESSON COCKPIT</p>")
+    parts.append("<h2 class='section-title packages-title fade-up d1'>複数のAI講習を、一画面で選ぶ</h2>")
+    parts.append("<p class='section-sub fade-up d2'>個別相談、伴走支援、Codex準備会、Codex実践会、AIコーディング講習を、目的と到達点で選べるように整理しています。CodexとClaude Codeの併用、画像生成まで含めて、各プランから対応する受講資料へ進み、内容を確認してから予約できます。</p>")
     parts.append(_render_courses_packages())
     parts.append("</section>")
 
-    # 5. ホームページ制作ショールーム
+    # 3. ホームページ制作ショールーム
     parts.append("<section class='block web-showcase-block' id='web-showcase'>")
-    parts.append("<p class='section-heading fade-up'>WEB / SYSTEM</p>")
-    parts.append("<h2 class='section-title fade-up d1'>AIを入れるホームページと業務システムも作る</h2>")
-    parts.append("<p class='section-sub fade-up d2'>店舗LP、企業サイト、EC、講習資料、管理画面、SNS改善まで。AIスペシャリストとして、相談だけでなく実装できることを用途別に提示します。</p>")
+    parts.append("<p class='section-heading fade-up'>WEB PRODUCTION</p>")
+    parts.append("<h2 class='section-title fade-up d1'>ホームページ制作も、提案書のように見せる</h2>")
+    parts.append("<p class='section-sub fade-up d2'>店舗LP、企業サイト、EC、講習資料、管理画面、SNS改善まで。「こんなものも作れます」を、用途別の完成イメージとしてわかりやすく提示します。</p>")
     parts.append(_render_web_showcase())
     parts.append("</section>")
 
-    # 6. 制作実績（TOP内にサマリを掲載・各カードは公開サイト本体へ直リンク）
+    # 3. 制作実績（TOP内にサマリを掲載・各カードは公開サイト本体へ直リンク）
     parts.append("<section class='block' id='works'>")
     parts.append("<p class='section-heading fade-up'>WORKS</p>")
-    parts.append("<h2 class='section-title fade-up d1'>AI導入に使える実例サイト</h2>")
-    parts.append("<p class='section-sub fade-up d2'>説明だけではなく、講師が実際に構築・運用しているサイトや業務システムを教材として使います。経験があるから、AIに任せる部分と人が見る部分を具体化できます。</p>")
+    parts.append("<h2 class='section-title fade-up d1'>実績サイト</h2>")
+    parts.append("<p class='section-sub fade-up d2'>説明だけではなく、講師が実際に構築・運用しているサイトや業務システムを教材として使います。</p>")
     parts.append("<div class='fade-up d2'>")
     parts.append(_render_works_section())
     parts.append("</div>")
     parts.append("<div class='section-more fade-up d3'><a class='btn btn-secondary' href='/portfolio.html'>📂 実績の詳細・技術スタックを見る →</a></div>")
     parts.append("</section>")
 
-    # 7. ご依頼の流れ
+    parts.append(_render_blog_teaser())
+
+    # 4. ご依頼の流れ
     parts.append("<section class='block' id='flow'>")
     parts.append("<p class='section-heading'>FLOW</p>")
-    parts.append("<h2 class='section-title'>相談から実装・社内定着まで</h2>")
-    parts.append("<p class='section-sub'>一度聞いて終わりではなく、受講内容を資料センター、ブログ、予約導線、業務システムに変換します。</p>")
+    parts.append("<h2 class='section-title'>相談から資料化・集客まで</h2>")
+    parts.append("<p class='section-sub'>一度聞いて終わりではなく、受講内容を資料センターと集客導線に変換します。</p>")
     parts.append(_render_flow())
     parts.append("</section>")
 
-    # 8. 受講資料（TOP内にサマリを掲載）
+    # 5. 受講資料（TOP内にサマリを掲載）
     parts.append("<section class='block' id='lectures'>")
     parts.append("<p class='section-heading fade-up'>MATERIALS</p>")
-    parts.append("<h2 class='section-title fade-up d1'>予約前に読める受講資料</h2>")
-    parts.append("<p class='section-sub fade-up d2'>AI業務活用・SNSアルゴリズム・LLMO（AI検索最適化）・Codex実践会・Claude Code併用・画像生成・AIコーディングを、受講後も見返せる形で整理しています。資料を読んだら、上の講習/伴走プランへ戻って予約できます。</p>")
+    parts.append("<h2 class='section-title fade-up d1'>受講資料</h2>")
+    parts.append("<p class='section-sub fade-up d2'>AI業務活用・SNSアルゴリズム・LLMO（AI検索最適化）・Codex実践会・Claude Code併用・画像生成・AIコーディングを、受講後も見返せる形で整理しています。資料を読んだら、上の受講プランへ戻って予約できます。</p>")
     parts.append("<div class='fade-up d2'>")
     parts.append(_render_lectures_section())
     parts.append("</div>")
     parts.append("<div class='section-more fade-up d3'><a class='btn btn-primary' href='#packages'>受講プランへ戻る →</a><a class='btn btn-secondary' href='/lectures/index.html'>📚 受講資料の一覧を見る →</a></div>")
     parts.append("</section>")
 
-    # 9. 講師紹介（誰が教えるか）
+    # 6. 講師紹介（誰が教えるか）
     parts.append("<section class='block' id='speaker'>")
     parts.append("<p class='section-heading fade-up'>SPEAKER</p>")
-    parts.append("<h2 class='section-title fade-up d1'>AIスペシャリストとしての経歴</h2>")
-    parts.append("<p class='section-sub fade-up d2'>AI活用の啓発・講習・地域コミュニティ運営・複数事業のマーケ支援を行う実践者。エンジニアとコンサルタントの両方の視点で支援します。</p>")
+    parts.append("<h2 class='section-title fade-up d1'>講師紹介</h2>")
+    parts.append("<p class='section-sub fade-up d2'>AI 活用の啓発・講習・地域コミュニティ運営・複数事業のマーケ支援を行う実践者。</p>")
     parts.append(_render_speaker_section())
     parts.append("</section>")
 
@@ -9334,26 +10528,26 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
         parts.append(voices_html)
         parts.append("</section>")
 
-    # 10. FAQ（疑問解消）
+    # 7. FAQ（疑問解消）
     parts.append("<section class='block' id='faq'>")
     parts.append("<p class='section-heading'>FAQ</p>")
     parts.append("<h2 class='section-title'>AI相談のよくある質問</h2>")
     parts.append(_render_faq())
     parts.append("</section>")
 
-    # 11. 競合比較と集客施策
+    # 8. 競合比較と集客施策
     parts.append("<section class='block' id='growth'>")
     parts.append("<p class='section-heading fade-up'>DAILY DESIGN LOOP</p>")
-    parts.append("<h2 class='section-title fade-up d1'>検索・SNS反響で、AI相談ページを育てる</h2>")
-    parts.append("<p class='section-sub fade-up d2'>公的DX相談・パソコン教室・大手AI研修・制作会社と比較し、さらにYouTube/Shorts/SNSの反応を見て、入口、FAQ、ブログ導線をチューニングします。</p>")
+    parts.append("<h2 class='section-title fade-up d1'>競合とSNS反響で、講習導線を育てる</h2>")
+    parts.append("<p class='section-sub fade-up d2'>公的DX相談・パソコン教室・大手AI研修・制作会社と比較し、さらにYouTube/Shorts/SNSの反応を見て、入口とFAQを毎朝チューニングします。</p>")
     parts.append(_render_growth_plan_section())
     parts.append("</section>")
 
-    # 12. お問い合わせ（予約）
+    # 9. お問い合わせ（予約）
     parts.append("<section class='block' id='contact'>")
     parts.append("<p class='section-heading fade-up'>CONTACT</p>")
-    parts.append("<h2 class='section-title fade-up d1'>AI相談、まずは30分無料</h2>")
-    parts.append("<p class='section-sub fade-up d2'>企業も個人も、まずは無料30分相談から。講習に参加するか、AI個別相談で整理するか、伴走で社内定着まで進めるかを一緒に決めましょう。</p>")
+    parts.append("<h2 class='section-title fade-up d1'>AI個別相談で、今の課題を整理する</h2>")
+    parts.append("<p class='section-sub fade-up d2'>講習に参加するか、伴走で進めるか。日程を選んで、今の課題をそのまま持ってきてください。</p>")
     parts.append(_render_contact_form())
     parts.append("</section>")
 

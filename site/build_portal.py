@@ -9277,6 +9277,234 @@ section.block::before {
 """
 
 
+PORTAL_CSS += """
+
+/* ---- Bright polish pass: cleaner white background and lighter cards, 2026-06-30 ---- */
+:root {
+  --bright-ink: #071426;
+  --bright-text: #182437;
+  --bright-muted: #566579;
+  --bright-line: rgba(7,20,38,.105);
+  --bright-line-soft: rgba(7,20,38,.065);
+  --bright-surface: rgba(255,255,255,.985);
+  --bright-surface-soft: rgba(249,253,255,.96);
+  --bright-cyan: #00A5C8;
+  --bright-teal: #0F8F72;
+  --bright-lime: #A6D83F;
+  --bright-shadow: 0 16px 40px rgba(7,20,38,.07), inset 0 1px 0 rgba(255,255,255,.98);
+  --bright-shadow-hover: 0 22px 54px rgba(7,20,38,.10), inset 0 1px 0 rgba(255,255,255,.98);
+}
+
+html,
+body {
+  background: #FFFFFF !important;
+  color: var(--bright-text) !important;
+}
+
+body {
+  background:
+    linear-gradient(180deg, #FFFFFF 0%, #FBFEFF 36%, #FFFFFF 74%) !important;
+  background-size: auto !important;
+}
+
+body::before {
+  opacity: .42 !important;
+  background-image:
+    linear-gradient(90deg, rgba(7,20,38,.014) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(7,20,38,.010) 1px, transparent 1px) !important;
+  background-size: 112px 112px, 112px 112px !important;
+}
+
+.site-header,
+.site-header.scrolled,
+header.site-header,
+header.site-header.scrolled,
+.sticky-cta {
+  border-color: var(--bright-line-soft) !important;
+  background: rgba(255,255,255,.975) !important;
+  box-shadow: 0 12px 32px rgba(7,20,38,.055) !important;
+}
+
+.hero.hero-refined {
+  min-height: calc(100svh - 34px) !important;
+}
+
+.hero.hero-refined::before {
+  background:
+    linear-gradient(112deg, #FFFFFF 0%, rgba(255,255,255,.985) 54%, rgba(244,252,253,.94) 100%) !important;
+}
+
+.hero.hero-refined::after {
+  opacity: .10 !important;
+}
+
+.hero-refined .hero-bg-layer img {
+  opacity: .16 !important;
+  filter: saturate(.82) contrast(.92) brightness(1.14) !important;
+}
+
+.hero-refined .fusion-logo-large .hub,
+.hero-refined .hero-route-card,
+.hero-decision-panel,
+.decision-output-card,
+.ai-course-video-feature,
+.blog-feature,
+.web-showcase,
+.choice-lens,
+.ai-impact-board,
+.lesson-bridge-shell,
+.business-compass-copy,
+.agent-review-panel,
+.business-compass-card,
+.speaker-modern,
+.pkg-card,
+.lecture-card,
+.pf-card,
+.biz-card,
+.service-card,
+.voice-card,
+.faq-item,
+.growth-panel,
+.flow-step,
+.blog-card {
+  border-color: var(--bright-line) !important;
+  background: var(--bright-surface) !important;
+  box-shadow: var(--bright-shadow) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.hero-refined .hero-route-card:hover,
+.pkg-card:hover,
+.lecture-card:hover,
+.pf-card:hover,
+.biz-card:hover,
+.service-card:hover,
+.blog-card:hover {
+  border-color: rgba(0,165,200,.20) !important;
+  box-shadow: var(--bright-shadow-hover) !important;
+}
+
+section.block {
+  padding-top: clamp(62px, 7vw, 96px) !important;
+  padding-bottom: clamp(62px, 7vw, 96px) !important;
+}
+
+section.block::before {
+  top: 22px !important;
+  bottom: 22px !important;
+  border-color: rgba(7,20,38,.055) !important;
+  background:
+    linear-gradient(120deg, color-mix(in srgb, var(--section-accent, var(--bright-cyan)) 5%, transparent), transparent 38%),
+    linear-gradient(180deg, rgba(255,255,255,.94), rgba(250,253,255,.78)) !important;
+  box-shadow: 0 18px 52px rgba(7,20,38,.035) !important;
+}
+
+#packages::before {
+  background:
+    linear-gradient(120deg, rgba(0,165,200,.055), transparent 34%),
+    linear-gradient(180deg, rgba(255,255,255,.97), rgba(248,253,255,.86)) !important;
+}
+
+.section-heading {
+  color: color-mix(in srgb, var(--section-accent, var(--bright-cyan)) 76%, var(--bright-ink)) !important;
+}
+
+.section-title {
+  color: var(--bright-ink) !important;
+}
+
+.section-sub,
+.pkg-desc,
+.hero-refined .lead,
+.hero-flow-card span,
+.speaker-modern-lead,
+.blog-card p {
+  color: var(--bright-muted) !important;
+}
+
+.hero-decision-panel {
+  border-radius: 16px !important;
+  background:
+    linear-gradient(145deg, #FFFFFF, #F8FDFF) !important;
+}
+
+.decision-output-card {
+  background: #071426 !important;
+  box-shadow: none !important;
+}
+
+.hero-flow-card {
+  border-bottom-color: rgba(7,20,38,.075) !important;
+}
+
+.packages-grid {
+  gap: clamp(16px, 2.4vw, 26px) !important;
+  margin-top: 22px !important;
+}
+
+.pkg-card {
+  border-radius: 12px !important;
+  overflow: hidden !important;
+}
+
+.pkg-card::before {
+  opacity: .22 !important;
+  background: linear-gradient(90deg, rgba(0,165,200,.055), transparent 48%, rgba(166,216,63,.045)) !important;
+}
+
+.pkg-card::after,
+.hero-route-card::before,
+.path-card::before,
+.lecture-card::after,
+.pf-card::after,
+.blog-card::after {
+  background: linear-gradient(90deg, var(--ai-compass-red, #E60012), var(--bright-cyan), var(--bright-lime)) !important;
+}
+
+.pkg-cat,
+.pkg-level,
+.packages-note,
+.decision-panel-head,
+.hero-refined .fusion-logo-large .hub {
+  border-color: rgba(0,165,200,.16) !important;
+  background: rgba(244,252,253,.92) !important;
+}
+
+.pkg-price {
+  background: linear-gradient(90deg, #071426, #007A94) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+}
+
+.packages-note {
+  color: var(--bright-muted) !important;
+  box-shadow: none !important;
+}
+
+.ai-course-video-crop {
+  border-color: var(--bright-line) !important;
+  box-shadow: 0 16px 42px rgba(7,20,38,.08) !important;
+}
+
+.sticky-cta {
+  color: var(--bright-ink) !important;
+  box-shadow: 0 -10px 28px rgba(7,20,38,.07) !important;
+}
+
+@media (max-width: 560px) {
+  body::before {
+    background-size: 88px 88px, 88px 88px !important;
+  }
+
+  section.block::before {
+    top: 14px !important;
+    bottom: 14px !important;
+  }
+}
+"""
+
+
 def _render_header() -> str:
     """N デザイン風 fixed ヘッダー。スクロールで white/90 + blur に切替。"""
     return (

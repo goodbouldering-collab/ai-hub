@@ -89,7 +89,7 @@
   }
   .admin-subnav a:hover { color:#1d4ed8; background:#eff6ff; border-color:#bfdbfe; }
   .topbar { margin-bottom:20px; }
-  .topbar, #admin-menu, #panel-site-intake, #panel-dashboard, #panel-status, #panel-lectures { scroll-margin-top:96px; }
+  .topbar, #admin-menu, #panel-status, #panel-blog-parent, #panel-blog-list, #panel-edit { scroll-margin-top:96px; }
   .topbar h1 {
     font-size:24px; font-weight:800; letter-spacing:-.01em; color:var(--text);
     display:inline-flex; align-items:center; gap:10px;
@@ -246,199 +246,8 @@
   .gname{ flex:1 1 auto; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-weight:600; }
   .gstate { font-size:10px; }
 
-  /* === Dashboard panel === */
-  .dash-summary {
-    display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px;
-  }
-  .dash-summary .pill {
-    padding:7px 14px; border-radius:999px;
-    background: var(--primary-bg);
-    border:1px solid rgba(37,99,235,.20);
-    font-size:12.5px; font-weight:700; color:var(--text-soft);
-  }
-  .dash-summary .pill .c { color: var(--primary); margin-left:6px; font-weight:800; }
-  .dash-summary .pill.muted { background:#f1f5f9; border-color: var(--line); color:var(--muted); }
-
-  .dash-cols { display:grid; grid-template-columns: 1fr 1fr; gap:16px; }
-  @media (max-width: 720px) { .dash-cols { grid-template-columns:1fr; } }
-
-  .dash-col h3 { font-size:12px; font-weight:800; letter-spacing:.10em; color:var(--muted); margin-bottom:10px; text-transform:uppercase; }
-  .dash-list { list-style:none; padding:0; margin:0; max-height: 320px; overflow-y:auto; }
-  .dash-list li {
-    padding:10px 12px; margin:5px 0;
-    background: #fff;
-    border:1px solid var(--line);
-    border-radius:10px;
-    font-size:13px; line-height:1.55;
-    transition: border-color .2s, background .2s;
-  }
-  .dash-list li:hover { border-color: rgba(37,99,235,.30); background: var(--primary-bg); }
-  .dash-list li.muted { color: var(--muted); background:#f8fafc; }
-  .dash-list li.muted:hover { background:#f8fafc; }
-  .dash-list li a { color: var(--text); text-decoration:none; font-weight:600; }
-  .dash-list li a:hover { color: var(--primary); }
-  .dash-list .row-meta { display:flex; gap:8px; align-items:center; margin-bottom:4px; font-size:10.5px; }
-  .dash-list .row-meta .biz { padding:2px 9px; border-radius:999px; background:rgba(37,99,235,.10); color:var(--primary); font-weight:700; }
-  .dash-list .row-meta .date { color: var(--muted); font-family:'SFMono-Regular',monospace; }
-  .dash-cma { margin-top:16px; }
-  .dash-cma summary { cursor:pointer; font-size:13px; color:var(--text-soft); padding:8px 0; font-weight:600; }
-  .dash-cma summary:hover { color: var(--primary); }
-  .dash-meta { color:var(--muted); font-size:11px; text-align:right; margin-top:10px; font-family:'SFMono-Regular',monospace; }
-
-  /* === First-view operation pulse === */
-  .ops-pulse {
-    display:grid; grid-template-columns:repeat(3, minmax(0, 1fr));
-    gap:12px; margin-bottom:18px;
-  }
-  .ops-pulse-card {
-    min-height:88px; padding:16px; border-radius:8px;
-    background:#fff; border:1px solid var(--line);
-    box-shadow:0 8px 26px rgba(15,23,42,.06);
-  }
-  .ops-pulse-card strong {
-    display:block; font-size:26px; line-height:1; letter-spacing:-.02em;
-    color:var(--text); margin:8px 0 4px;
-  }
-  .ops-pulse-card span {
-    display:block; font-size:11px; font-weight:800; color:var(--muted);
-    letter-spacing:.10em;
-  }
-  .ops-pulse-card small { display:block; line-height:1.35; }
-  .ops-pulse-card.alert {
-    border-color:rgba(239,68,68,.40); background:#fff7f7;
-  }
-  .ops-pulse-card.alert strong { color:#b91c1c; font-size:18px; }
   @media (max-width:760px) {
-    .ops-pulse { grid-template-columns:1fr; }
     .quickflow { grid-template-columns:1fr; }
-  }
-
-  /* === Homepage intake === */
-  .intake-panel {
-    padding:0;
-    overflow:hidden;
-  }
-  .intake-head {
-    display:grid;
-    grid-template-columns:minmax(0, 1fr) auto;
-    gap:16px;
-    align-items:center;
-    padding:18px 20px;
-    background:linear-gradient(135deg,#0f172a 0%,#1e3a8a 100%);
-    color:#fff;
-  }
-  .intake-head h2 {
-    margin:0 0 4px;
-    color:#fff;
-    font-size:16px;
-    letter-spacing:0;
-    text-transform:none;
-  }
-  .intake-head p {
-    margin:0;
-    color:rgba(255,255,255,.76);
-    font-size:12.5px;
-  }
-  .intake-body {
-    padding:18px 20px 20px;
-  }
-  .intake-url-row {
-    display:grid;
-    grid-template-columns:minmax(0, 1fr) auto;
-    gap:10px;
-    align-items:center;
-  }
-  .intake-options {
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px 14px;
-    margin-top:10px;
-    color:var(--muted);
-    font-size:12px;
-  }
-  .intake-options label {
-    display:inline-flex;
-    align-items:center;
-    gap:6px;
-    margin:0;
-    color:var(--muted);
-    font-weight:700;
-  }
-  .intake-options input {
-    width:auto;
-  }
-  .intake-result {
-    margin-top:14px;
-    border:1px solid var(--line);
-    border-radius:12px;
-    background:#f8fafc;
-    overflow:hidden;
-  }
-  .intake-result[hidden] { display:none; }
-  .intake-result-head {
-    display:flex;
-    justify-content:space-between;
-    gap:12px;
-    padding:12px 14px;
-    border-bottom:1px solid var(--line);
-    background:#fff;
-  }
-  .intake-result-title {
-    font-size:14px;
-    font-weight:850;
-    color:var(--text);
-  }
-  .intake-result-url {
-    display:block;
-    margin-top:2px;
-    color:var(--muted);
-    font-size:11px;
-    word-break:break-all;
-  }
-  .intake-result-body {
-    display:grid;
-    grid-template-columns:minmax(0, 1.2fr) minmax(260px, .8fr);
-    gap:12px;
-    padding:12px 14px;
-  }
-  .intake-result-body p {
-    color:var(--text-soft);
-    font-size:12.5px;
-  }
-  .intake-chip-list {
-    display:flex;
-    flex-wrap:wrap;
-    gap:6px;
-    margin-top:8px;
-  }
-  .intake-chip {
-    display:inline-flex;
-    align-items:center;
-    min-height:24px;
-    padding:0 9px;
-    border-radius:999px;
-    background:#fff;
-    border:1px solid var(--line);
-    color:var(--text-soft);
-    font-size:11px;
-    font-weight:800;
-    text-decoration:none;
-  }
-  .intake-result-actions {
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:flex-end;
-    gap:8px;
-  }
-  @media (max-width:760px) {
-    .intake-head,
-    .intake-url-row,
-    .intake-result-body {
-      grid-template-columns:1fr;
-    }
-    .intake-result-actions {
-      justify-content:flex-start;
-    }
   }
 
   /* === Admin menu === */
@@ -504,7 +313,7 @@
     .admin-menu-group:last-child { border-bottom:none; }
     .admin-menu-head { align-items:flex-start; flex-direction:column; }
     .admin-menu-primary { width:100%; }
-    .panel, .topbar, #admin-menu, #panel-site-intake, #panel-dashboard, #panel-status, #panel-lectures { scroll-margin-top:156px; }
+    .panel, .topbar, #admin-menu, #panel-status, #panel-blog-parent, #panel-blog-list, #panel-edit { scroll-margin-top:156px; }
   }
 </style>
 <link rel="stylesheet" href="/admin/admin-common.css">
@@ -512,19 +321,19 @@
 <body class="admin-page admin-theme-light admin-fixed-menu-page">
 <header class="site-header scrolled" id="site-header">
   <div class="site-header-inner">
-    <a class="admin-home-link" href="/" aria-label="トップページへ戻る" title="トップページ">
-      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 10.8 12 4l8 6.8V20a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1v-9.2Z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg>
+    <a class="site-logo" href="/" aria-label="AI相談 トップへ">
+      <span class="brand-mark" aria-hidden="true"><span class="brand-a">AI</span><span class="brand-ha">相</span></span>
+      <span class="wordmark"><span class="word-ai">AI相談</span><span class="word-hub">彦根</span><span class="word-en">AI CONSULT</span></span>
+      <span class="site-logo-by">管理</span>
     </a>
     <nav class="site-nav admin-slide-nav" aria-label="管理固定メニュー">
       <div class="admin-scroll-menu" aria-label="横にスライドできる管理メニュー">
-        <a class="admin-scroll-link" href="/admin#panel-status">接続と記事生成</a>
-        <a class="admin-scroll-link" href="/admin#panel-site-intake">URLから入力作成</a>
-        <a class="admin-scroll-link" href="/admin#panel-dashboard">今週の動き</a>
-        <a class="admin-scroll-link" href="/admin#panel-lectures">受講資料の編集</a>
-        <a class="admin-scroll-link" href="/admin/gubble-sns">SNS分析</a>
-        <a class="admin-scroll-link" href="/admin/sns-post">SNS一括投稿</a>
-        <a class="admin-scroll-link" href="/admin/chat">社内AI</a>
-        <a class="admin-scroll-link" href="/ops">OPS</a>
+        <a class="admin-scroll-link" href="/admin#panel-status">接続</a>
+        <a class="admin-scroll-link" href="/admin#panel-blog-parent">ブログ設定</a>
+        <a class="admin-scroll-link" href="/admin#panel-blog-list">記事一覧</a>
+        <a class="admin-scroll-link" href="/admin#theme">記事生成</a>
+        <a class="admin-scroll-link" href="/blog/index.html">ブログを見る</a>
+        <a class="admin-scroll-link" href="/">公開ページ</a>
         <a class="admin-scroll-link logout-scroll-link" href="/admin/logout">ログアウト</a>
       </div>
     </nav>
@@ -538,16 +347,13 @@
         <a class="login-btn-mobile" href="/">公開ページ</a>
         <a class="mobile-main-link" href="/admin">管理ハブ</a>
       </div>
-      <span class="mobile-nav-label">管理メニュー</span>
+      <span class="mobile-nav-label">ブログ管理</span>
       <div class="mobile-link-grid">
-        <a href="/admin#panel-status">接続/生成</a>
-        <a href="/admin#panel-site-intake">URL入力</a>
-        <a href="/admin#panel-dashboard">今週</a>
-        <a href="/admin#panel-lectures">資料編集</a>
-        <a href="/admin/gubble-sns">SNS分析</a>
-        <a href="/admin/sns-post">SNS投稿</a>
-        <a href="/admin/chat">社内AI</a>
-        <a href="/ops">OPS</a>
+        <a href="/admin#panel-status">接続</a>
+        <a href="/admin#panel-blog-parent">ブログ設定</a>
+        <a href="/admin#panel-blog-list">記事一覧</a>
+        <a href="/admin#theme">記事生成</a>
+        <a href="/blog/index.html">ブログを見る</a>
         <a href="/admin/logout">ログアウト</a>
       </div>
     </div>
@@ -556,16 +362,16 @@
 <div class="container">
   <div class="topbar">
     <div>
-      <h1><span class="dot"></span>AI相談 管理画面</h1>
-      <p class="sub">9事業の運用ダッシュボード + グループ記事の発行</p>
-      <p class="topbar-lead">総合管理メニューを先頭に置き、トップページと重なるリンクは外しました。管理画面では、接続確認、URL取込、記事生成、SNS運用だけを迷わず選べます。</p>
+      <h1><span class="dot"></span>AI相談 ブログ管理</h1>
+      <p class="sub">ブログ記事の生成・編集・公開だけに絞った軽量画面</p>
+      <p class="topbar-lead">公開トップ用のデータベース一覧や運用ダッシュボードは読み込みません。ページを開いた直後は軽くし、必要なときだけブログ配下の記事一覧を取得します。</p>
     </div>
   </div>
 
   <section class="admin-fish-hero" aria-label="AI魚線画モーション">
     <div class="admin-fish-copy">
-      <strong>AIの流れを、管理画面でも同じ線で見る</strong>
-      <span>トップページと同じ魚線画モーションを管理側にも置き、記事生成・資料編集・SNS運用をひとつの流れとして扱います。</span>
+      <strong>記事作成だけを、迷わず前へ進める</strong>
+      <span>ブログ親IDを固定し、AIで下書きを作り、必要な記事だけ編集して公開します。SNS、OPS、公開トップのDB確認はこの画面から外しました。</span>
     </div>
     <div class="admin-fish-motion" aria-hidden="true">
       <svg viewBox="0 0 520 260" role="img" aria-label="魚の線画がゆっくり描かれるAIモーション">
@@ -587,141 +393,75 @@
     <summary class="admin-menu-head">
       <span class="admin-menu-trigger" aria-hidden="true">☰</span>
       <span class="admin-menu-title">
-        <strong>総合管理メニュー</strong>
-        <small>トップページと重なる導線は上のナビへ分離。ここは運用作業だけに絞ります。</small>
+        <strong>ブログだけの管理メニュー</strong>
+        <small>重い一覧取得は自動実行しません。ブログIDを保存し、必要な操作だけ押してください。</small>
       </span>
       <span class="admin-menu-state">開閉</span>
     </summary>
     <div class="admin-menu-grid admin-menu-grid-2">
-      <section class="admin-menu-group" aria-label="今日やる">
-        <h3>本日の主作業</h3>
+      <section class="admin-menu-group" aria-label="ブログ作業">
+        <h3>ブログ作業</h3>
         <a class="admin-link" href="#panel-status">
           <span class="admin-link-icon">✍️</span>
-          <span><strong>接続と記事生成</strong><small>生成・編集・公開</small></span>
+          <span><strong>接続確認</strong><small>必要なAPIキーの状態だけ確認</small></span>
           <span class="admin-link-action">移動</span>
         </a>
-        <a class="admin-link" href="#panel-site-intake">
-          <span class="admin-link-icon">🔎</span>
-          <span><strong>URLから入力作成</strong><small>記事・画像・SNS設定</small></span>
+        <a class="admin-link" href="#panel-blog-parent">
+          <span class="admin-link-icon">🧭</span>
+          <span><strong>ブログ設定</strong><small>親グループIDを保存</small></span>
           <span class="admin-link-action">移動</span>
         </a>
-        <a class="admin-link" href="#panel-dashboard">
-          <span class="admin-link-icon">⭐</span>
-          <span><strong>今週の動き</strong><small>タスク・成果物</small></span>
+        <a class="admin-link" href="#panel-blog-list">
+          <span class="admin-link-icon">📚</span>
+          <span><strong>記事一覧</strong><small>必要な時だけ取得</small></span>
           <span class="admin-link-action">移動</span>
         </a>
-        <a class="admin-link" href="#panel-lectures">
-          <span class="admin-link-icon">📝</span>
-          <span><strong>受講資料の編集</strong><small>教材の追加・更新</small></span>
+        <a class="admin-link" href="#theme">
+          <span class="admin-link-icon">🤖</span>
+          <span><strong>AI記事生成</strong><small>下書きから公開へ</small></span>
           <span class="admin-link-action">移動</span>
         </a>
       </section>
-      <section class="admin-menu-group" aria-label="運用ツール">
-        <h3>運用ツール</h3>
-        <a class="admin-link" href="/admin/gubble-sns">
-          <span class="admin-link-icon">📊</span>
-          <span><strong>SNS分析</strong><small>YouTube / SNS / GA4 / GSC</small></span>
+      <section class="admin-menu-group" aria-label="確認">
+        <h3>確認</h3>
+        <a class="admin-link" href="/blog/index.html">
+          <span class="admin-link-icon">📝</span>
+          <span><strong>公開ブログ</strong><small>公開済み記事一覧を確認</small></span>
           <span class="admin-link-action">開く</span>
         </a>
-        <a class="admin-link" href="/admin/sns-post">
-          <span class="admin-link-icon">📣</span>
-          <span><strong>SNS一括投稿</strong><small>X / Threads</small></span>
+        <a class="admin-link" href="/">
+          <span class="admin-link-icon">🏠</span>
+          <span><strong>公開トップ</strong><small>トップページと同じ見た目を確認</small></span>
           <span class="admin-link-action">開く</span>
         </a>
-        <a class="admin-link" href="/admin/chat">
-          <span class="admin-link-icon">🤖</span>
-          <span><strong>社内エージェント</strong><small>相談・指示・下書き</small></span>
-          <span class="admin-link-action">開く</span>
-        </a>
-        <a class="admin-link" href="/ops">
-          <span class="admin-link-icon">⚙️</span>
-          <span><strong>運用本部 OPS</strong><small>資料・台帳・運用確認</small></span>
-          <span class="admin-link-action">開く</span>
+        <a class="admin-link" href="/admin/logout">
+          <span class="admin-link-icon">↪</span>
+          <span><strong>ログアウト</strong><small>管理画面から退出</small></span>
+          <span class="admin-link-action">実行</span>
         </a>
       </section>
     </div>
   </details>
 
   <div class="quickflow" aria-label="最短操作">
-    <a class="quickflow-card" href="#panel-status">
+    <a class="quickflow-card" href="#panel-blog-parent">
       <span>STEP 1</span>
-      <strong>状態を確認</strong>
-      <p>API と環境変数の状態を最初に見て、止まっている原因を先に外します。</p>
-      <em>接続状態へ移動 →</em>
+      <strong>ブログIDを保存</strong>
+      <p>公開トップの親グループ一覧は読みません。ブログ親グループIDだけを保存して使います。</p>
+      <em>ブログ設定へ移動 →</em>
     </a>
-    <a class="quickflow-card" href="#panel-site-intake">
+    <a class="quickflow-card" href="#theme">
       <span>STEP 2</span>
-      <strong>URLから下書き</strong>
-      <p>公式サイトを読み取り、記事テーマ・画像プロンプト・SNS分析設定の候補を作ります。</p>
-      <em>URL取込へ移動 →</em>
+      <strong>AIで記事案を作る</strong>
+      <p>テーマを入れて候補を作り、採用案を編集欄へ送ります。</p>
+      <em>記事生成へ移動 →</em>
     </a>
-    <a class="quickflow-card" href="#panel-dashboard">
+    <a class="quickflow-card" href="#panel-edit">
       <span>STEP 3</span>
-      <strong>今週の動きを見る</strong>
-      <p>未対応タスクと最近の成果物を確認し、次に触る運用作業を決めます。</p>
-      <em>今週の動きへ移動 →</em>
+      <strong>編集して公開</strong>
+      <p>本文、画像、表示設定を整えてブログ配下に公開します。</p>
+      <em>編集欄へ移動 →</em>
     </a>
-  </div>
-
-  <div class="ops-pulse" id="ops-pulse" aria-label="運用サマリー">
-    <div class="ops-pulse-card">
-      <span>直近7日</span>
-      <strong id="pulse-recent">--</strong>
-      <small>成果・作業ログ</small>
-    </div>
-    <div class="ops-pulse-card">
-      <span>未対応</span>
-      <strong id="pulse-open">--</strong>
-      <small>要確認タスク</small>
-    </div>
-    <div class="ops-pulse-card" id="pulse-health-card">
-      <span>接続状態</span>
-      <strong id="pulse-health">確認中</strong>
-      <small id="pulse-health-note">API確認中</small>
-    </div>
-  </div>
-
-  <div class="panel intake-panel" id="panel-site-intake">
-    <div class="intake-head">
-      <div>
-        <h2>ホームページURLから管理入力を作る</h2>
-        <p>外部提供用の初期セットアップ。公式サイトを読むだけで、記事テーマ・下書き・画像プロンプト・SNS分析設定の候補を作ります。</p>
-      </div>
-      <span class="badge ok" id="site-intake-badge">新規</span>
-    </div>
-    <div class="intake-body">
-      <div class="intake-url-row">
-        <input type="url" id="site-intake-url" placeholder="https://example.com">
-        <button type="button" class="primary" id="btn-site-intake">URLを読み取る</button>
-      </div>
-      <div class="intake-options" aria-label="反映先">
-        <label><input type="checkbox" id="site-intake-fill-article" checked> 記事入力に反映</label>
-        <label><input type="checkbox" id="site-intake-fill-image" checked> 画像プロンプトに反映</label>
-        <label><input type="checkbox" id="site-intake-fill-dashboard" checked> SNS分析設定を保存</label>
-        <label><input type="checkbox" id="site-intake-overwrite"> 既存入力も上書き</label>
-      </div>
-      <div class="intake-result" id="site-intake-result" hidden></div>
-    </div>
-  </div>
-
-  <div class="panel" id="panel-dashboard">
-    <h2>⭐ 今週の動き（事業別 / 直近 7 日）</h2>
-    <div id="dashboard-summary" class="dash-summary">読み込み中…</div>
-    <div class="dash-cols">
-      <div class="dash-col">
-        <h3>📌 未対応・要確認タスク</h3>
-        <ul id="dash-tasks" class="dash-list"><li class="muted">読み込み中…</li></ul>
-      </div>
-      <div class="dash-col">
-        <h3>📝 最近の成果物</h3>
-        <ul id="dash-works" class="dash-list"><li class="muted">読み込み中…</li></ul>
-      </div>
-    </div>
-    <details class="dash-cma">
-      <summary>📡 CMA（Managed Agents）実行履歴を見る</summary>
-      <ul id="dash-cma" class="dash-list"><li class="muted">読み込み中…</li></ul>
-    </details>
-    <p class="dash-meta" id="dash-meta"></p>
   </div>
 
   <div class="panel" id="panel-status">
@@ -729,36 +469,27 @@
     <div id="status-area">確認中…</div>
   </div>
 
-  <div class="panel" id="panel-lectures">
-    <h2>受講資料の編集導線</h2>
-    <p class="muted">クラウド管理画面では公開状態の確認を行い、本文編集はローカル管理画面の「受講資料」タブで行います。編集後は再ビルドしてトップページ側に反映します。</p>
-    <div class="row" style="margin-top:10px;">
-      <a class="btn primary" href="/lectures/index.html">公開資料を確認</a>
-      <a class="btn" href="/#packages">講習/伴走との導線を見る</a>
-      <a class="btn" href="/#lectures">トップの資料セクションを見る</a>
+  <div class="panel" id="panel-blog-parent">
+    <h2>② ブログ設定</h2>
+    <p class="muted">トップレベルのグループ一覧は自動取得しません。ブログ親グループIDだけを保存して、記事一覧・作成・公開に使います。</p>
+    <label for="blog-parent-id">ブログ親グループID</label>
+    <div class="row">
+      <input type="number" id="blog-parent-id" class="grow" min="1" inputmode="numeric" placeholder="例: 123456">
+      <button id="btn-save-blog-parent" class="primary">保存</button>
+      <span id="blog-parent-status" class="badge muted">未設定</span>
     </div>
-    <small>ローカル編集: <code>uvicorn admin.server:app --port 3010 --reload</code> → <code>http://localhost:3010/admin</code></small>
+    <small>※ 初回だけブログ親IDを入力してください。保存後はこのブラウザに記憶します。</small>
   </div>
 
-  <div class="panel">
-    <h2>② 対象親グループ</h2>
-    <label for="parent-select">親グループ（記事を表示したいページ）</label>
+  <div class="panel" id="panel-blog-list">
+    <h2>③ ブログ記事一覧（必要な時だけ取得）</h2>
     <div class="row">
-      <select id="parent-select" class="grow"><option value="">（読み込み中…）</option></select>
-      <button id="btn-load-parents">親グループ再読込</button>
-    </div>
-    <small>※ 親グループは parent_group_id=null のトップレベルのみ表示</small>
-  </div>
-
-  <div class="panel">
-    <h2>③ 配下グループ一覧（並び替え・編集）</h2>
-    <div class="row">
-      <button id="btn-load-children">読み込み</button>
+      <button id="btn-load-children">ブログ記事一覧を読み込む</button>
       <button id="btn-save-order" class="primary" disabled>並び替えを保存</button>
-      <span id="children-status" class="badge muted">親未選択</span>
+      <span id="children-status" class="badge muted">未取得</span>
     </div>
     <ul class="sortable" id="children-list"></ul>
-    <small>※ ドラッグして順序変更 → 「並び替えを保存」で sort 値を一括更新</small>
+    <small>※ ここで初めてブログ配下のグループを取得します。ドラッグして順序変更 →「並び替えを保存」で sort 値を一括更新。</small>
   </div>
 
   <div class="panel">
@@ -832,7 +563,7 @@
     <hr>
     <h2 style="margin-top:14px;">⑥ 投稿（グループ作成 or 更新）</h2>
     <div class="row">
-      <button id="btn-create-group" class="primary">📁 投稿（選択親グループ配下の最上部 sort=0 / ID 入力時は更新）</button>
+      <button id="btn-create-group" class="primary">📁 投稿（ブログ親グループ配下の最上部 sort=0 / ID 入力時は更新）</button>
       <span id="group-status" class="badge muted">未作成</span>
       <input type="text" id="group-id" aria-label="既存グループID" placeholder="既存グループID（編集時に自動入力）" style="width:160px;">
     </div>
@@ -840,7 +571,7 @@
       <button id="btn-publish-live" class="primary">🚀 公開（product_list に書込）</button>
       <button id="btn-unpublish-live" class="danger">🗑 公開取り消し</button>
     </div>
-    <small>※ 記事は対象親グループのページ表示時のみ Smarty 条件で出る</small>
+    <small>※ 記事はブログ親グループのページ表示時のみ Smarty 条件で出ます。</small>
     <div id="live-url-area" style="display:none; margin-top:12px; padding:12px;
       background:rgba(126,235,163,.08); border:1px solid rgba(126,235,163,.4);
       border-radius:10px;">
@@ -923,176 +654,6 @@ async function api(path, opts = {}) {
   return json;
 }
 
-// === ホームページURLから初期入力
-let lastSiteIntake = null;
-
-function canWriteField(id, overwrite) {
-  const node = $(id);
-  if (!node) return false;
-  return overwrite || !String(node.value || "").trim();
-}
-
-function setFieldIfAllowed(id, value, overwrite) {
-  const node = $(id);
-  if (!node || !value || !canWriteField(id, overwrite)) return false;
-  node.value = value;
-  node.dispatchEvent(new Event("input", { bubbles: true }));
-  return true;
-}
-
-function applySiteIntake(data, options = {}) {
-  const overwrite = Boolean(options.overwrite);
-  let changed = 0;
-
-  if (options.article) {
-    if (setFieldIfAllowed("theme", data.suggestions?.theme || "", overwrite)) changed++;
-    if (setFieldIfAllowed("edit-title", data.suggestions?.title || data.siteName || data.title || "", overwrite)) changed++;
-    if (setFieldIfAllowed("edit-html", data.suggestions?.articleHtml || "", overwrite)) changed++;
-    if (canWriteField("edit-date", overwrite)) {
-      $("edit-date").value = new Date().toISOString().slice(0, 10);
-      changed++;
-    }
-    $("panel-edit").style.display = "block";
-    renderEditorPreview();
-  }
-
-  if (options.image) {
-    if (setFieldIfAllowed("img-prompt", data.suggestions?.imagePrompt || "", overwrite)) changed++;
-    if (setFieldIfAllowed("image-url", data.imageUrl || "", overwrite)) {
-      $("img-preview").src = data.imageUrl;
-      $("img-preview").style.display = "block";
-      $("img-url-text").textContent = data.imageUrl;
-      changed++;
-    }
-  }
-
-  if (options.dashboard) {
-    saveDashboardIntakeConfig(data.suggestions?.dashboardConfig || {});
-    changed++;
-  }
-
-  $("site-intake-badge").className = "badge ok";
-  $("site-intake-badge").textContent = `${changed}項目反映`;
-  log(`ホームページ取込: ${data.finalUrl} / ${changed}項目反映`);
-}
-
-function saveDashboardIntakeConfig(config) {
-  const key = "gubble.youtube.dashboard.config.v2";
-  let current = {};
-  try { current = JSON.parse(localStorage.getItem(key) || "{}") || {}; } catch {}
-  const next = {
-    ...current,
-    channelInput: config.channelInput || current.channelInput || "",
-    refreshSeconds: current.refreshSeconds || 60,
-    videoLimit: current.videoLimit || 6,
-    accounts: mergeAccounts(current.accounts || {}, config.accounts || {}),
-    socials: current.socials || {},
-  };
-  localStorage.setItem(key, JSON.stringify(next));
-
-  const legacyKey = "sns.crossmedia.dashboard.config.v1";
-  let legacy = {};
-  try { legacy = JSON.parse(localStorage.getItem(legacyKey) || "{}") || {}; } catch {}
-  const simpleAccounts = {};
-  Object.entries(next.accounts || {}).forEach(([platform, account]) => {
-    simpleAccounts[platform] = account.account || account.username || account.pageId || account.siteUrl || account.propertyId || account.source || "";
-  });
-  localStorage.setItem(legacyKey, JSON.stringify({
-    ...legacy,
-    channel: next.channelInput || legacy.channel || "",
-    refreshSeconds: legacy.refreshSeconds || 60,
-    accounts: { ...(legacy.accounts || {}), ...simpleAccounts },
-  }));
-}
-
-function mergeAccounts(current, incoming) {
-  const out = { ...current };
-  Object.entries(incoming || {}).forEach(([platform, fields]) => {
-    out[platform] = { ...(out[platform] || {}) };
-    Object.entries(fields || {}).forEach(([key, value]) => {
-      if (value && !out[platform][key]) out[platform][key] = value;
-    });
-  });
-  return out;
-}
-
-function renderSiteIntakeResult(data) {
-  const result = $("site-intake-result");
-  const socials = (data.socialLinks || []).slice(0, 10);
-  const contacts = [...(data.emails || []), ...(data.phones || [])].slice(0, 5);
-  const chips = [
-    ...socials.map((link) => `<a class="intake-chip" href="${escapeAttr(link.url)}" target="_blank" rel="noopener">${escapeHtml(platformLabel(link.platform, link.handle))}</a>`),
-    ...contacts.map((value) => `<span class="intake-chip">${escapeHtml(value)}</span>`),
-  ].join("");
-  result.hidden = false;
-  result.innerHTML = `
-    <div class="intake-result-head">
-      <div>
-        <div class="intake-result-title">${escapeHtml(data.siteName || data.title || "取得結果")}</div>
-        <a class="intake-result-url" href="${escapeAttr(data.finalUrl)}" target="_blank" rel="noopener">${escapeHtml(data.finalUrl)}</a>
-      </div>
-      <span class="badge ok">取得完了</span>
-    </div>
-    <div class="intake-result-body">
-      <div>
-        <p>${escapeHtml(data.description || "description は見つかりませんでした。")}</p>
-        <div class="intake-chip-list">${chips || '<span class="intake-chip">SNSリンクなし</span>'}</div>
-      </div>
-      <div class="intake-result-actions">
-        <button type="button" id="btn-site-intake-apply">この内容を反映</button>
-        <a class="admin-menu-primary" href="/admin/gubble-sns">SNS分析を開く</a>
-      </div>
-    </div>
-  `;
-  $("btn-site-intake-apply").addEventListener("click", () => applySiteIntake(data, readSiteIntakeOptions()));
-}
-
-function readSiteIntakeOptions() {
-  return {
-    article: $("site-intake-fill-article").checked,
-    image: $("site-intake-fill-image").checked,
-    dashboard: $("site-intake-fill-dashboard").checked,
-    overwrite: $("site-intake-overwrite").checked,
-  };
-}
-
-function platformLabel(platform, handle) {
-  const names = { youtube:"YouTube", instagram:"Instagram", threads:"Threads", facebook:"Facebook", x:"X", tiktok:"TikTok", note:"note", line:"LINE", linkedin:"LinkedIn" };
-  return `${names[platform] || platform}${handle ? ` / ${handle}` : ""}`;
-}
-
-$("btn-site-intake").addEventListener("click", async () => {
-  const url = $("site-intake-url").value.trim();
-  if (!url) { alert("ホームページURLを入力してください"); return; }
-  $("btn-site-intake").disabled = true;
-  $("site-intake-badge").className = "badge muted";
-  $("site-intake-badge").textContent = "取得中";
-  $("site-intake-result").hidden = true;
-  try {
-    const data = await api("/api/admin/site-intake", {
-      method: "POST",
-      body: JSON.stringify({ url }),
-    });
-    lastSiteIntake = data;
-    renderSiteIntakeResult(data);
-    applySiteIntake(data, readSiteIntakeOptions());
-  } catch (e) {
-    $("site-intake-badge").className = "badge err";
-    $("site-intake-badge").textContent = "失敗";
-    $("site-intake-result").hidden = false;
-    $("site-intake-result").innerHTML = `<div class="intake-result-head"><div class="intake-result-title">取得できませんでした</div><span class="badge err">ERROR</span></div><div class="intake-result-body"><p>${escapeHtml(e.message)}</p></div>`;
-  } finally {
-    $("btn-site-intake").disabled = false;
-  }
-});
-
-$("site-intake-url").addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    e.preventDefault();
-    $("btn-site-intake").click();
-  }
-});
-
 // === 接続確認
 (async () => {
   try {
@@ -1110,135 +671,60 @@ $("site-intake-url").addEventListener("keydown", (e) => {
   }
 })();
 
-// === ダッシュボード読み込み
-(async () => {
-  try {
-    const d = await api("/api/admin/status");
-    // サマリ pill
-    const sum = $("dashboard-summary");
-    const totals = d.totals || {};
-    const pills = [];
-    pills.push(`<span class="pill">直近7日<span class="c">${totals.recent_7d_total ?? 0}</span>件</span>`);
-    pills.push(`<span class="pill">未対応<span class="c">${totals.tasks_open_total ?? 0}</span>件</span>`);
-    pills.push(`<span class="pill muted">consul/work 全体 ${totals.consul_work_total ?? 0}件</span>`);
-    (d.per_business_recent || []).slice(0, 6).forEach(b => {
-      pills.push(`<span class="pill">${escapeHtml(b.business || '')}<span class="c">${b.count}</span></span>`);
-    });
-    sum.innerHTML = pills.join(" ");
+// === ブログ親グループ ID（トップレベルDB一覧は読まない）
+const BLOG_PARENT_KEY = "aih.blogParentId";
 
-    // タスク
-    const taskUl = $("dash-tasks");
-    if ((d.tasks_open || []).length === 0) {
-      taskUl.innerHTML = '<li class="muted">未対応タスクは見つかりませんでした</li>';
-    } else {
-      taskUl.innerHTML = d.tasks_open.map(t => `
-        <li>
-          <div class="row-meta">
-            ${t.business ? `<span class="biz">${escapeHtml(t.business)}</span>` : ''}
-            <span class="date">${escapeHtml(t.date || '')}</span>
-          </div>
-          <a href="${escapeAttr(t.path || '#')}">${escapeHtml(t.snippet || '')}</a>
-        </li>
-      `).join("");
-    }
-
-    // 最近の成果物
-    const workUl = $("dash-works");
-    if ((d.recent_works || []).length === 0) {
-      workUl.innerHTML = '<li class="muted">記録なし</li>';
-    } else {
-      workUl.innerHTML = d.recent_works.map(w => `
-        <li>
-          <div class="row-meta">
-            ${w.business ? `<span class="biz">${escapeHtml(w.business)}</span>` : ''}
-            <span class="date">${escapeHtml(w.date || '')}</span>
-          </div>
-          <a href="${escapeAttr(w.path || '#')}">${escapeHtml(w.title || '')}</a>
-        </li>
-      `).join("");
-    }
-
-    // CMA
-    const cmaUl = $("dash-cma");
-    if ((d.cma_apps || []).length === 0) {
-      cmaUl.innerHTML = '<li class="muted">CMA 実行履歴は読めませんでした（agents_system/INDEX.md）</li>';
-    } else {
-      cmaUl.innerHTML = d.cma_apps.map(c => `
-        <li>
-          <div class="row-meta">
-            <span class="date">${escapeHtml(c.last_run || '')}</span>
-            <span style="color:var(--muted);">${escapeHtml(c.kind || '')}</span>
-          </div>
-          <strong>${escapeHtml(c.name || '')}</strong> — ${escapeHtml(c.status || '')}
-        </li>
-      `).join("");
-    }
-
-    if (d.generated_at) {
-      $("dash-meta").textContent = `更新: ${d.generated_at}`;
-    }
-    $("pulse-recent").textContent = `${totals.recent_7d_total ?? 0}`;
-    $("pulse-open").textContent = `${totals.tasks_open_total ?? 0}`;
-    $("pulse-health").textContent = "OK";
-    $("pulse-health-note").textContent = "管理API応答あり";
-  } catch (e) {
-    $("dashboard-summary").innerHTML = `<span class="badge err">ダッシュボード読み込み失敗: ${e.message}</span>`;
-    $("dash-tasks").innerHTML = '';
-    $("dash-works").innerHTML = '';
-    $("dash-cma").innerHTML = '';
-    $("pulse-recent").textContent = "--";
-    $("pulse-open").textContent = "--";
-    $("pulse-health").textContent = "接続異常";
-    $("pulse-health-note").textContent = e.message;
-    $("pulse-health-card").classList.add("alert");
-  }
-})();
-
-// === 親グループ ロード（デフォルトは「ブログ」）
-async function loadParents() {
-  $("parent-select").innerHTML = '<option value="">（読み込み中…）</option>';
-  try {
-    const out = await api("/api/admin/groups?top=1");
-    const list = out.groups || [];
-    let cur = localStorage.getItem("aih.parentId") || "";
-    // localStorage に保存がなければ name に「ブログ」を含むグループをデフォルト選択
-    if (!cur) {
-      const blog = list.find(g => /ブログ|blog/i.test(g.name || ""));
-      if (blog) {
-        cur = String(blog.id);
-        localStorage.setItem("aih.parentId", cur);
-      }
-    }
-    $("parent-select").innerHTML =
-      '<option value="">— 選択してください —</option>' +
-      list.map(g => `<option value="${g.id}" ${String(g.id)===cur?'selected':''}>#${g.id} ${escapeHtml(g.name)} (${g.display_state})</option>`).join("");
-    // ブログを既定にして即・子一覧を読み込む
-    if (cur && $("parent-select").value === cur) {
-      loadChildren().catch(() => {});
-    }
-  } catch (e) {
-    $("parent-select").innerHTML = `<option value="">エラー: ${e.message}</option>`;
-  }
+function setBlogParentStatus(text, cls = "muted") {
+  $("blog-parent-status").className = `badge ${cls}`;
+  $("blog-parent-status").textContent = text;
 }
-$("btn-load-parents").addEventListener("click", loadParents);
-loadParents();
 
-$("parent-select").addEventListener("change", () => {
-  const v = $("parent-select").value;
-  if (v) localStorage.setItem("aih.parentId", v);
+function getParentId() {
+  const id = String($("blog-parent-id").value || "").trim();
+  return /^\d+$/.test(id) ? id : "";
+}
+
+function saveBlogParentId() {
+  const id = getParentId();
+  if (!/^\d+$/.test(id)) {
+    setBlogParentStatus("数字で入力", "err");
+    return "";
+  }
+  localStorage.setItem(BLOG_PARENT_KEY, id);
+  localStorage.setItem("aih.parentId", id);
+  setBlogParentStatus(`保存済み #${id}`, "ok");
   $("children-list").innerHTML = "";
   $("children-status").className = "badge muted";
-  $("children-status").textContent = v ? "未取得" : "親未選択";
+  $("children-status").textContent = "未取得";
   $("btn-save-order").disabled = true;
+  return id;
+}
+
+function initBlogParentId() {
+  const saved = localStorage.getItem(BLOG_PARENT_KEY) || localStorage.getItem("aih.parentId") || "";
+  if (saved) {
+    $("blog-parent-id").value = saved;
+    setBlogParentStatus(`保存済み #${saved}`, "ok");
+  } else {
+    setBlogParentStatus("未設定", "muted");
+  }
+}
+
+$("btn-save-blog-parent").addEventListener("click", saveBlogParentId);
+$("blog-parent-id").addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    saveBlogParentId();
+  }
 });
+initBlogParentId();
 
 // === 子グループロード + ドラッグ並び替え
 let originalOrder = [];
-function getParentId() { return $("parent-select").value; }
 
 async function loadChildren() {
-  const pid = getParentId();
-  if (!pid) { alert("先に親グループを選択してください"); return; }
+  const pid = saveBlogParentId();
+  if (!pid) { alert("先にブログ親グループIDを保存してください"); return; }
   $("children-status").className = "badge muted"; $("children-status").textContent = "取得中…";
   try {
     const out = await api(`/api/admin/groups?parent=${pid}`);
@@ -1442,7 +928,7 @@ $("btn-create-group").addEventListener("click", async () => {
   const expl = $("edit-html").value;
   const parent_group_id = getParentId();
   const existingId = ($("group-id").value || "").trim();
-  if (!parent_group_id) { alert("先に対象親グループを選択してください"); return; }
+  if (!parent_group_id) { alert("先にブログ親グループIDを保存してください"); return; }
   if (!name) { alert("グループ名(=タイトル)を入力"); return; }
 
   // 既存グループ ID が入っているなら PUT で更新、空なら POST で「選択親配下の最上部」に新規作成
@@ -1489,7 +975,7 @@ async function publish(target) {
   const title = $("edit-title").value.trim();
   const html = $("edit-html").value.trim();
   const publishedAt = $("edit-date").value;
-  if (!parentGroupId) { alert("対象親グループ未選択"); return; }
+  if (!parentGroupId) { alert("ブログ親グループIDが未設定です"); return; }
   if (!groupId) { alert("先にグループ作成 or グループID入力"); return; }
   if (!title || !html || !publishedAt) { alert("タイトル/本文/公開日 必須"); return; }
   log(`[${target}] 公開開始 parent=${parentGroupId} group=${groupId}`);
@@ -1522,7 +1008,7 @@ async function publish(target) {
 }
 
 $("btn-publish-live").addEventListener("click", () => {
-  if (!confirm("対象親グループのページに記事を公開します。よろしいですか？")) return;
+  if (!confirm("ブログ親グループのページに記事を公開します。よろしいですか？")) return;
   publish("live");
 });
 

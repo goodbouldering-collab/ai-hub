@@ -3308,9 +3308,9 @@ def main() -> int:
         build_lectures()
         build_blog()
         build_profile_page()
-        build_sitemap_and_robots()
         build_slides()
         _build_portal()
+        build_sitemap_and_robots()
         return 0
 
     payload = json.loads(TOP10_JSON.read_text(encoding="utf-8"))
@@ -3339,8 +3339,8 @@ def main() -> int:
     blog_built = build_blog()
     slides_built = build_slides()
     profile_removed = build_profile_page()
-    build_sitemap_and_robots()
     _build_portal()
+    build_sitemap_and_robots()
 
     print(
         f"[+] site built: {DIST} ({len(dates)} archive pages in watch/"

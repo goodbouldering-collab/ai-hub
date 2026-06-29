@@ -8761,6 +8761,500 @@ section.block.block-tight {
 """
 
 
+PORTAL_CSS += """
+
+/* ---- Refinement from user review: remove fish/icon noise, crop intro video, raise readability ---- */
+body::before {
+  background-image:
+    linear-gradient(90deg, rgba(7,20,38,.032) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(7,20,38,.024) 1px, transparent 1px) !important;
+  background-size: 96px 96px, 96px 96px !important;
+  background-position: 0 0, 0 0 !important;
+}
+
+section.block::before {
+  background:
+    linear-gradient(120deg, color-mix(in srgb, var(--section-accent, #00A5C8) 9%, transparent), transparent 36%),
+    linear-gradient(180deg, rgba(255,255,255,.72), rgba(255,255,255,.48)) !important;
+}
+
+.hero-fish-card,
+.atlas-fish-core,
+.ai-fish-stage,
+.fish-mark {
+  display: none !important;
+}
+
+.hero.hero-refined {
+  min-height: calc(100svh - 18px) !important;
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 460px) !important;
+  gap: clamp(28px, 4vw, 52px) !important;
+  align-items: center !important;
+  padding: clamp(86px, 9vw, 108px) 0 clamp(26px, 4vw, 44px) !important;
+}
+
+.hero.hero-refined::before {
+  background:
+    linear-gradient(110deg, #FFFFFF 0%, rgba(255,255,255,.96) 52%, rgba(236,249,251,.86) 100%),
+    radial-gradient(circle at 84% 20%, rgba(0,165,200,.16), transparent 30%),
+    radial-gradient(circle at 14% 82%, rgba(242,102,85,.12), transparent 28%) !important;
+}
+
+.hero.hero-refined::after {
+  opacity: .18 !important;
+  transform: none !important;
+}
+
+.hero-refined .hero-bg-layer img {
+  opacity: .24 !important;
+  filter: saturate(.88) contrast(.92) brightness(1.08) !important;
+}
+
+.site-logo .brand-mark {
+  display: none !important;
+}
+
+.hero-refined .eyebrow {
+  font-size: 14px !important;
+  color: #007A94 !important;
+}
+
+.hero-refined .fusion-logo-large {
+  gap: 10px !important;
+}
+
+.hero-refined .fusion-logo-large .ai {
+  font-size: clamp(46px, 5.7vw, 76px) !important;
+  line-height: .92 !important;
+  letter-spacing: 0 !important;
+  color: #071426 !important;
+}
+
+.hero-refined .fusion-logo-large .hub {
+  width: fit-content;
+  padding: 6px 12px !important;
+  border: 1px solid rgba(7,20,38,.12);
+  border-radius: 999px;
+  background: #EAF8FA !important;
+  color: #007A94 !important;
+  font-size: clamp(18px, 1.8vw, 25px) !important;
+  line-height: 1.1 !important;
+}
+
+.hero-refined .hero-title-sub {
+  margin-top: 18px !important;
+  max-width: 840px !important;
+  color: #071426 !important;
+  font-size: clamp(36px, 4.2vw, 56px) !important;
+  line-height: 1.12 !important;
+}
+
+.hero-refined .hero-title-sub strong {
+  color: #007A94 !important;
+  background: transparent !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+
+.hero-refined .sub-catch {
+  max-width: 680px !important;
+  margin: 20px 0 8px !important;
+  color: #0F5132 !important;
+  font-size: clamp(18px, 1.7vw, 23px) !important;
+  line-height: 1.55 !important;
+}
+
+.hero-refined .lead {
+  max-width: 600px !important;
+  color: #324256 !important;
+  font-size: clamp(16px, 1.24vw, 18px) !important;
+  line-height: 1.7 !important;
+}
+
+.hero-refined .hero-actions {
+  margin-top: 22px !important;
+}
+
+.hero-refined .btn-lg {
+  min-height: 52px;
+  padding: 15px 22px !important;
+  font-size: 16px !important;
+}
+
+.hero-refined .hero-route-bento {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 12px !important;
+  max-width: 720px !important;
+  margin-top: 26px !important;
+}
+
+.hero-refined .hero-route-card {
+  min-height: 118px !important;
+  padding: 18px !important;
+  border-radius: 12px !important;
+  background: rgba(255,255,255,.86) !important;
+}
+
+.hero-refined .hero-route-card small {
+  font-size: 12px !important;
+  letter-spacing: .08em !important;
+}
+
+.hero-refined .hero-route-card b {
+  font-size: 21px !important;
+  line-height: 1.25 !important;
+}
+
+.hero-refined .hero-route-card span {
+  font-size: 14.5px !important;
+  line-height: 1.55 !important;
+}
+
+.hero-decision-panel {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  gap: 18px !important;
+  min-height: 500px !important;
+  aspect-ratio: auto !important;
+  padding: clamp(22px, 3.2vw, 34px) !important;
+  overflow: hidden !important;
+  transform: none !important;
+  border-radius: 18px !important;
+  border: 1px solid rgba(7,20,38,.12) !important;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.96), rgba(244,252,253,.90)),
+    radial-gradient(circle at 88% 12%, rgba(0,165,200,.18), transparent 30%),
+    radial-gradient(circle at 18% 88%, rgba(242,102,85,.13), transparent 34%) !important;
+  box-shadow: 0 28px 74px rgba(7,20,38,.13), inset 0 1px 0 rgba(255,255,255,.96) !important;
+}
+
+.hero-decision-panel::after {
+  display: none !important;
+}
+
+.decision-panel-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: flex-start;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(7,20,38,.10);
+}
+
+.decision-panel-head span,
+.decision-output-card small,
+.hero-flow-card small {
+  color: #007A94;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .08em;
+}
+
+.decision-panel-head b {
+  max-width: 260px;
+  color: #071426;
+  font-size: clamp(20px, 1.9vw, 27px);
+  line-height: 1.25;
+  text-align: right;
+}
+
+.hero-flow-stack {
+  display: grid;
+  gap: 0;
+}
+
+.hero-flow-card {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  gap: 5px 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(7,20,38,.10);
+}
+
+.hero-flow-card:last-child {
+  border-bottom: 0;
+}
+
+.hero-flow-card small {
+  grid-row: span 2;
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border-radius: 999px;
+  background: #071426;
+  color: #FFFFFF;
+  letter-spacing: 0;
+}
+
+.hero-flow-card b {
+  color: #071426;
+  font-size: clamp(18px, 1.65vw, 23px);
+  line-height: 1.25;
+}
+
+.hero-flow-card span {
+  color: #344256;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.decision-output-card {
+  display: grid;
+  gap: 8px;
+  padding: 18px;
+  border-radius: 14px;
+  background: #071426;
+  color: #FFFFFF;
+}
+
+.decision-output-card b {
+  color: #FFFFFF;
+  font-size: clamp(20px, 1.8vw, 25px);
+  line-height: 1.25;
+}
+
+.decision-output-card span {
+  color: rgba(255,255,255,.78);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.decision-output-card a {
+  width: fit-content;
+  color: #A6D83F;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.section-sub {
+  font-size: clamp(16px, 1.25vw, 18px) !important;
+  line-height: 1.72 !important;
+}
+
+.ai-course-video-feature {
+  grid-template-columns: minmax(280px, .68fr) minmax(520px, 1.32fr) !important;
+  align-items: stretch !important;
+  padding: clamp(18px, 2.8vw, 32px) !important;
+  border-radius: 18px !important;
+}
+
+.ai-course-video-copy .section-title {
+  font-size: clamp(32px, 3.7vw, 50px) !important;
+}
+
+.ai-course-video-copy .section-sub {
+  font-size: clamp(16px, 1.35vw, 19px) !important;
+}
+
+.ai-course-video-points {
+  gap: 8px !important;
+}
+
+.ai-course-video-points li {
+  padding: 11px 0 11px 14px !important;
+  border: 0 !important;
+  border-left: 4px solid #00A5C8 !important;
+  background: transparent !important;
+  font-size: 15px !important;
+  line-height: 1.55 !important;
+}
+
+.ai-course-video-points li::before {
+  display: none !important;
+}
+
+.ai-course-video-frame {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 16px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.ai-course-video-crop {
+  width: 100%;
+  aspect-ratio: 16 / 7.1;
+  overflow: hidden;
+  border: 1px solid rgba(7,20,38,.12);
+  border-radius: 16px;
+  background: #FFFFFF;
+  box-shadow: 0 22px 58px rgba(7,20,38,.16);
+}
+
+.ai-course-video-frame video {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center 62% !important;
+  transform: none;
+  border-radius: 0 !important;
+  background: #FFFFFF !important;
+}
+
+.ai-course-video-frame figcaption {
+  margin: 0 2px !important;
+  color: #536276 !important;
+  font-size: 14px !important;
+}
+
+.speaker-modern {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
+  gap: clamp(24px, 4vw, 44px);
+  align-items: center;
+  padding: clamp(26px, 4vw, 42px) !important;
+}
+
+.speaker-modern-copy h3 {
+  margin: 8px 0 6px;
+  color: #071426;
+  font-size: clamp(34px, 4vw, 54px);
+  line-height: 1.12;
+}
+
+.speaker-modern-kicker {
+  color: #007A94;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .10em;
+}
+
+.speaker-modern-role {
+  margin: 0 0 16px;
+  color: #007A94;
+  font-size: 17px;
+  font-weight: 900;
+}
+
+.speaker-modern-lead {
+  max-width: 720px;
+  margin: 0;
+  color: #2F3E52;
+  font-size: clamp(17px, 1.4vw, 20px);
+  line-height: 1.74;
+}
+
+.speaker-modern-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.speaker-modern-point {
+  padding: 14px 0 0;
+  border-top: 3px solid #00A5C8;
+}
+
+.speaker-modern-point small {
+  display: block;
+  color: #071426;
+  font-size: 15px;
+  font-weight: 900;
+  line-height: 1.3;
+}
+
+.speaker-modern-point span {
+  display: block;
+  margin-top: 8px;
+  color: #536276;
+  font-size: 14.5px;
+  line-height: 1.62;
+}
+
+.speaker-modern-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.speaker-modern .speaker-art {
+  max-width: 360px !important;
+  justify-self: center;
+  border-radius: 16px !important;
+}
+
+@media (max-width: 1040px) {
+  .hero.hero-refined {
+    grid-template-columns: 1fr !important;
+  }
+  .hero-decision-panel {
+    min-height: 0 !important;
+  }
+  .ai-course-video-feature {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero-refined .hero-route-bento,
+  .speaker-modern-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .speaker-modern {
+    grid-template-columns: 1fr;
+  }
+  .speaker-modern .speaker-art {
+    order: -1;
+    max-width: 260px !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero.hero-refined {
+    width: calc(100vw - 32px) !important;
+    max-width: calc(100vw - 32px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-top: 86px !important;
+  }
+  .hero-refined .fusion-logo-large .ai {
+    font-size: clamp(46px, 13vw, 58px) !important;
+  }
+  .hero-refined .hero-title-sub {
+    font-size: clamp(29px, 9vw, 40px) !important;
+  }
+  .hero-flow-card {
+    grid-template-columns: 44px minmax(0, 1fr);
+    padding: 14px 0;
+  }
+  .hero-flow-card small {
+    width: 36px;
+    height: 36px;
+  }
+  .ai-course-video-block {
+    width: auto !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding: 44px 0 !important;
+  }
+  .ai-course-video-feature {
+    padding: 16px !important;
+    border-radius: 18px !important;
+  }
+  .ai-course-video-copy {
+    padding: 0 !important;
+  }
+  .ai-course-video-frame {
+    width: 100% !important;
+  }
+  .ai-course-video-crop {
+    aspect-ratio: 16 / 7.1;
+    border-radius: 14px;
+  }
+}
+"""
+
+
 def _render_header() -> str:
     """N デザイン風 fixed ヘッダー。スクロールで white/90 + blur に切替。"""
     return (
@@ -9506,56 +10000,59 @@ def _render_hero() -> str:
             "</span>"
             "</button>"
         )
-    first_item = atlas_items[0]
+    flow_steps = [
+        ("01", "悩みを整理", "課題を1行にする"),
+        ("02", "講習で触る", "画面を見ながら試す"),
+        ("03", "資料に残す", "手順として残す"),
+        ("04", "発信へ回す", "各媒体へ再編集"),
+    ]
+    flow_html = "".join(
+        "<div class='hero-flow-card'>"
+        f"<small>{html.escape(num)}</small>"
+        f"<b>{html.escape(title)}</b>"
+        f"<span>{html.escape(body)}</span>"
+        "</div>"
+        for num, title, body in flow_steps
+    )
     return (
-        "<section class='hero hero-atlas' id='top' data-hero-atlas>"
+        "<section class='hero hero-atlas hero-refined' id='top'>"
         "<div class='hero-bg-layer' aria-hidden='true'>"
         "<img src='img/hero-codex-claude-imagegen-20260616.png' alt='' decoding='async' fetchpriority='high'>"
         "</div>"
         "<div class='hero-text fade-up'>"
-        "<span class='eyebrow'>AI講習 / 受講資料 / 彦根・滋賀の導入支援</span>"
+        "<span class='eyebrow'>滋賀・彦根 / AI相談と実践講座</span>"
         "<h1 class='hero-brand'>"
-        "<span class='fusion-logo-large'><span class='ai'>AI相談</span><span class='hub'>彦根・滋賀</span></span>"
-        "<span class='hero-title-sub'><strong>AIを、現場へ。</strong><br>相談も講習も、迷わず進む。</span>"
+        "<span class='fusion-logo-large'><span class='ai'>AI相談</span><span class='hub'>彦根</span></span>"
+        "<span class='hero-title-sub'><strong>AIで、仕事を整える。</strong></span>"
         "<span class='visually-hidden'>｜彦根 AI相談、滋賀 生成AI講習、Codex講習、Claude Code併用、ChatGPT講座、画像生成講習、AI導入支援、補助金申請サポート、LLMO対策、YouTube SEO、SNS集客</span>"
         "</h1>"
         "<p class='sub-catch'>"
-        "<strong>相談で整理。講習で実践。資料で復習。</strong>"
+        "<strong>相談、講習、資料化、発信まで一気に。</strong>"
         "</p>"
-        "<button type='button' class='hero-fish-card diagnose-open' aria-label='AI相談の入口診断を開く'>"
-        "<span class='fish-mark' aria-hidden='true'></span>"
-        "<span><b>AI相談</b><small>悩みから講習・資料・制作へ流れで整理</small></span>"
-        "</button>"
         "<p class='lead'>"
-        "個別相談、AI講習、受講資料、進め方を1つの導線へ。見て、触って、次の行動を選べる入口です。"
+        "時間がない、告知が苦手、AIが分からない。身近な困りごとを、今日から使える形に変えます。"
         "</p>"
         "<div class='hero-actions'>"
-        "<a class='btn btn-primary btn-lg' href='#packages'>AI講習を見る</a>"
-        "<a class='btn btn-secondary btn-lg' href='#contact'>個別相談を予約</a>"
+        "<a class='btn btn-primary btn-lg' href='#contact'>まず相談する</a>"
+        "<a class='btn btn-secondary btn-lg' href='#ai-course-video'>動画で見る</a>"
         "</div>"
-        "<div class='hero-route-bento' aria-label='最初に選ぶ4つの入口'>"
-        "<a class='hero-route-card route-consult' href='#contact'><small>01 / CONSULT</small><b>個別相談</b><span>今の課題と次の一手を整理</span></a>"
-        "<a class='hero-route-card route-plan' href='#why-now'><small>02 / DATA</small><b>数字で判断</b><span>最新データで必要性を見る</span></a>"
-        "<a class='hero-route-card route-code' href='#packages'><small>03 / LESSON</small><b>AI講習</b><span>目的別に選ぶ</span></a>"
-        "<a class='hero-route-card route-material' href='#lectures'><small>04 / MATERIAL</small><b>受講資料</b><span>先に読んで判断する</span></a>"
-        "</div>"
-        "<div class='hero-proof-grid' aria-label='AI講習会の特徴'>"
-        "<div class='hero-proof'><span class='proof-icon'>88</span><span><b>AI利用</b><span>使うだけでなく定着へ</span></span></div>"
-        "<div class='hero-proof'><span class='proof-icon'>47</span><span><b>研修不足</b><span>手順と確認の型を作る</span></span></div>"
-        "<div class='hero-proof'><span class='proof-icon'>120</span><span><b>手順化</b><span>講習後に迷わない形へ</span></span></div>"
+        "<div class='hero-route-bento' aria-label='最初に選ぶ3つの入口'>"
+        "<a class='hero-route-card route-consult' href='#contact'><small>CONSULT</small><b>相談</b><span>今の課題を整理</span></a>"
+        "<a class='hero-route-card route-code' href='#packages'><small>LESSON</small><b>講習</b><span>画面を見ながら実践</span></a>"
+        "<a class='hero-route-card route-material' href='#lectures'><small>MATERIAL</small><b>資料</b><span>手順を残して復習</span></a>"
         "</div>"
         "</div>"
-        "<div class='hero-photo-card hero-atlas-panel fade-up d2' aria-label='AI相談のサービス地図'>"
-        "<div class='atlas-pathlines' aria-hidden='true'></div>"
-        "<div class='atlas-fish-core' aria-hidden='true'>"
-        f"{_render_fish_line_video()}"
+        "<div class='hero-photo-card hero-atlas-panel hero-decision-panel fade-up d2' aria-label='AI相談の進め方'>"
+        "<div class='decision-panel-head'>"
+        "<span>AI CONSULT FLOW</span>"
+        "<b>1つの悩みを、4媒体へ展開</b>"
         "</div>"
-        f"{''.join(atlas_buttons)}"
-        "<div class='atlas-live-card' aria-live='polite'>"
-        f"<span class='atlas-live-kicker'>Service {html.escape(first_item['index'])}</span>"
-        f"<b class='atlas-live-title'>{html.escape(first_item['title'])}</b>"
-        f"<p class='atlas-live-desc'>{html.escape(first_item['desc'])}</p>"
-        f"<a class='atlas-live-cta' href='{html.escape(first_item['href'], quote=True)}'>{html.escape(first_item['cta'])}</a>"
+        f"<div class='hero-flow-stack'>{flow_html}</div>"
+        "<div class='decision-output-card'>"
+        "<small>OUTPUT</small>"
+        "<b>相談メモ / 講習資料 / 投稿文 / 公開ページ</b>"
+        "<span>一度の実践知を、媒体ごとに使い回せる形にします。</span>"
+        "<a href='#flow'>進め方を見る →</a>"
         "</div>"
         "</div>"
         "</section>"
@@ -9570,17 +10067,15 @@ def _render_ai_course_video_feature() -> str:
         "<section class='block ai-course-video-block' id='ai-course-video'>"
         "<div class='ai-course-video-feature'>"
         "<div class='ai-course-video-copy fade-up'>"
-        "<p class='section-heading'>FEATURE VIDEO</p>"
-        "<h2 class='section-title'>AI講座の全体像を動画で見る</h2>"
+        "<p class='section-heading'>INTRO MOVIE</p>"
+        "<h2 class='section-title'>紹介動画で、講座の空気をつかむ</h2>"
         "<p class='section-sub'>"
-        "なぜ彦根でAI講座を行うのか。CodexやAIエージェントの考え方を、2時間から6時間でどう現場に入れるのか。"
-        "講師の実践力、低コスト、成果物が残る講座設計を1本にまとめました。"
+        "難しいAIの話から入らず、毎日の困りごとをどう講習・資料・発信へ変えるかだけに絞りました。"
         "</p>"
         "<ul class='ai-course-video-points'>"
-        "<li>地域事業者・学校・福祉・個人事業主向け</li>"
-        "<li>Codex / AIエージェント / ループ改善</li>"
-        "<li>5,500円から始められる実践講座</li>"
-        "<li>SNS投稿・HP改善・業務アプリまで成果物化</li>"
+        "<li>時間がない、告知が苦手、AIが分からない人向け</li>"
+        "<li>講習後に手順と資料が残る進め方</li>"
+        "<li>SNS投稿・HP改善・業務アプリまで展開</li>"
         "</ul>"
         "<div class='section-more'>"
         "<a class='btn btn-primary' href='/blog/2026-06-29-ai-consult-hikone-practical-ai-course.html'>ブログで詳しく読む →</a>"
@@ -9589,11 +10084,13 @@ def _render_ai_course_video_feature() -> str:
         "</div>"
         "<div class='ai-course-video-panel fade-up d2'>"
         "<figure class='ai-course-video-frame'>"
-        f"<video controls playsinline preload='metadata' poster='{poster_src}'>"
+        "<div class='ai-course-video-crop'>"
+        f"<video autoplay muted loop playsinline preload='metadata' poster='{poster_src}' aria-label='AI講座紹介動画'>"
         f"<source src='{video_src}' type='video/webm'>"
         f"<track src='{captions_src}' kind='captions' srclang='ja' label='日本語字幕' default>"
         "</video>"
-        "<figcaption>ナレーション・字幕付きの講座ダイジェスト。目的、対象者、成果物、費用感を約90秒で確認できます。</figcaption>"
+        "</div>"
+        "<figcaption>目的、対象者、成果物を短く確認できます。</figcaption>"
         "</figure>"
         "</div>"
         "</div>"
@@ -10734,25 +11231,34 @@ def _render_faq() -> str:
 def _render_speaker_section() -> str:
     """講師紹介の要約セクション。詳細は speaker.html へ誘導する。"""
     sp = _load_speaker()
-    prof = _load_profile()
     name = html.escape(sp.get("name") or OWNER_NAME)
     role = html.escape(sp.get("role") or "")
-    import re as _re
-    intro_raw = sp.get("intro") or ""
-    intro = html.escape(intro_raw)
-    # **強調** を <strong> に変換（Markdown は要約段階で残ってしまうため）
-    intro = _re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", intro)
-    role_html = f"<p style='font-weight:700;color:var(--primary);margin:0 0 16px;'>{role}</p>" if role else ""
-    intro_html = f"<p style='line-height:1.9;'>{intro}</p>" if intro else ""
+    role_html = f"<p class='speaker-modern-role'>{role}</p>" if role else ""
+    highlights = [
+        ("現場で使う", "AIを説明だけで終わらせず、返信文、資料、投稿、ページへ落とします。"),
+        ("作って確認する", "CodexやClaude Codeで作り、差分と公開前チェックまで見ます。"),
+        ("地域で続ける", "彦根・滋賀の事業者、学校、福祉、個人事業主の継続運用を支えます。"),
+    ]
+    highlight_html = "".join(
+        "<div class='speaker-modern-point'>"
+        f"<small>{html.escape(title)}</small>"
+        f"<span>{html.escape(body)}</span>"
+        "</div>"
+        for title, body in highlights
+    )
 
     parts = [
-        "<div class='profile-block' style='display:block;'>"
-        "<div class='speaker-intro-grid'>"
-        "<div>"
+        "<div class='profile-block speaker-modern'>"
+        "<div class='speaker-modern-copy'>"
+        "<span class='speaker-modern-kicker'>TEACHER / OPERATOR</span>"
         f"<h3>{name}</h3>"
         f"{role_html}"
-        f"{intro_html}"
-        "<p style='font-weight:700;color:var(--text);margin-top:16px;'>「現場で使えるAIを、実例で教える。」</p>"
+        "<p class='speaker-modern-lead'>AI講習、Web制作、ボルダリング指導、複数事業運営をつなぎ、現場で使える手順に変える講師です。</p>"
+        f"<div class='speaker-modern-grid'>{highlight_html}</div>"
+        "<div class='speaker-modern-actions'>"
+        "<a class='btn btn-primary' href='/speaker.html'>詳しい講師紹介を見る</a>"
+        "<a class='btn btn-secondary' href='#contact'>相談する</a>"
+        "</div>"
         "</div>"
         + (
             f"<div class='speaker-art speaker-art-animated'>"
@@ -10772,13 +11278,7 @@ def _render_speaker_section() -> str:
         ) +
         "</div>"
     ]
-
-    parts.append(
-        "<div style='display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:24px;'>"
-        "<a class='btn btn-primary' href='/speaker.html'>🎤 講師紹介を見る</a>"
-        "</div>"
-        "</div>"
-    )
+    parts.append("</div>")
     return "".join(parts)
 
 def _render_portfolio_section() -> str:

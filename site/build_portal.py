@@ -18,6 +18,7 @@ import os
 import sys
 from datetime import datetime
 from pathlib import Path
+from urllib.parse import quote
 
 try:
     import yaml
@@ -2449,11 +2450,34 @@ footer.site-footer {
   box-shadow: var(--shadow-card-hover);
 }
 .pf-card .pf-thumb {
+  position: relative;
   display: block; margin: -14px -16px 12px; /* カード内パディングを打ち消して全幅バナーに */
   border-radius: var(--radius-sm) var(--radius-sm) 0 0; overflow: hidden;
   aspect-ratio: 16 / 9; background: var(--bg-elev);
 }
-.pf-card .pf-thumb svg, .pf-card .pf-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.pf-card .pf-thumb svg, .pf-card .pf-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.pf-card .pf-thumb.is-site-shot { box-shadow: inset 0 1px 0 rgba(255,255,255,.82); }
+.pf-card .pf-thumb.is-site-shot::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 2;
+  height: 18px;
+  background:
+    radial-gradient(circle at 10px 9px, #EF6864 0 3px, transparent 3.4px),
+    radial-gradient(circle at 22px 9px, #F5B445 0 3px, transparent 3.4px),
+    linear-gradient(180deg, rgba(255,255,255,.94), rgba(244,248,249,.76));
+  border-bottom: 1px solid rgba(18,32,51,.10);
+  pointer-events: none;
+}
+.pf-card .pf-thumb.is-site-shot::after {
+  content: "";
+  position: absolute;
+  inset: 18px 0 0;
+  z-index: 2;
+  background: linear-gradient(180deg, transparent 62%, rgba(7,20,38,.16));
+  pointer-events: none;
+}
 .pf-card .pf-title { font-weight: 800; font-size: 15px; color: var(--text); }
 .pf-card .pf-host { font-size: 11.5px; color: var(--muted); margin-top: 2px; word-break: break-all; }
 .pf-card .pf-sum { font-size: 13px; color: var(--text-soft); line-height: 1.55; margin: 8px 0 10px; flex: 1; }
@@ -11304,6 +11328,16 @@ _WORKS_THUMB = {
 _WORKS_THUMB_DEFAULT = ("🚀", "#2854C5", "#D95B43")
 
 
+def _portfolio_thumb_url(thumbnail: str, url: str) -> str:
+    thumbnail = (thumbnail or "").strip()
+    if thumbnail:
+        return thumbnail
+    url = (url or "").strip()
+    if not url or url.startswith("#") or url.startswith("mailto:") or url.startswith("tel:"):
+        return ""
+    return "https://s.wordpress.com/mshots/v1/" + quote(url, safe="") + "?w=960"
+
+
 def _works_thumb_svg(category: str, name: str) -> str:
     icon, c1, c2 = _WORKS_THUMB.get(category, _WORKS_THUMB_DEFAULT)
     # gradient id を name から安全に生成（重複しても描画は問題ないが一応ユニーク化）
@@ -11349,10 +11383,10 @@ def _render_works_section() -> str:
             chips.append("<span class='pf-chip dev'>開発中</span>")
         href = html.escape(url, quote=True) if url else "#flow"
         target = " target='_blank' rel='noopener'" if url else ""
-        thumb_url = str(p.get("thumbnail") or "").strip()
+        thumb_url = _portfolio_thumb_url(str(p.get("thumbnail") or ""), url)
         if thumb_url:
-            thumb = (f"<span class='pf-thumb' aria-hidden='true'>"
-                     f"<img src='{html.escape(thumb_url, quote=True)}' alt='' loading='lazy' decoding='async'></span>")
+            thumb = (f"<span class='pf-thumb is-site-shot' aria-hidden='true'>"
+                     f"<img src='{html.escape(thumb_url, quote=True)}' alt='' loading='lazy' decoding='async' onerror=\"this.style.display='none'\"></span>")
         else:
             thumb = _works_thumb_svg(str(p.get("category") or ""), str(p.get("name") or ""))
         parts.append(

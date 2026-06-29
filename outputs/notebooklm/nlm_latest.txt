@@ -2,38 +2,98 @@
 
 ## AIニュース
 
-### China’s Z.ai claims it can match Mythos on cybersecurity
-China's Zhipu AI (Z.ai) released its open-weight GLM-5.2, and some researchers have claimed that it matches Mythos in certain bug-finding and cybersecurity scenarios. While GLM lags behind models from...
-出典: https://www.theverge.com/ai-artificial-intelligence/958804/chinas-z-ai-glm-52-mythos-cybersecurity
+### Tidal won’t pay royalties on AI-generated music but isn’t banning it outright
+Tidal shared its new policies regarding AI-generated music today and how the platform plans to "protect artists" and "inform listeners." Instead of banning it outright, starting on July 15th Tidal wil...
+出典: https://www.theverge.com/tech/959211/tidal-ai-music-policy-demonetizingdetect-label
 
-### Suno launches Spark incubator program to feed independent artists to its AI machine
-Suno has ambitions to be more than just a toy to churn out AI slop, it also wants to be a streaming destination and to break new artists. Spark is their new incubator program for independent artists t...
-出典: https://www.theverge.com/ai-artificial-intelligence/958801/suno-launches-spark-incubator-program-to-feed-independent-artists-to-its-ai-machine
+### OpenAI is teasing new hardware… for Codex
+OpenAI is releasing some sort of device related to its AI-powered coding tool, Codex, on July 15th. In a video posted to X on Monday, OpenAI shows a square-shaped device with several buttons, alongsid...
+出典: https://www.theverge.com/ai-artificial-intelligence/959174/openai-codex-hardware-work-louder
 
-### Prosecutors used ChatGPT logs as evidence in the Palisades fire trial
-Jonathan Rinderknecht was facing arson charges for setting a fire on New Year's Day in 2025, which became one of the deadliest wildfires in LA history. To make their case, prosecutors turned to locati...
-出典: https://www.theverge.com/ai-artificial-intelligence/958751/prosecutors-chatgpt-palisades-wildfire-arson-mistrial
+### Lawmakers want to ban AI companies from selling your health data
+A new proposal would ban the sale of Americans' health and location information to data brokers - including information people reveal to an AI chatbot like ChatGPT or Claude. In the coming weeks, Sena...
+出典: https://www.theverge.com/ai-artificial-intelligence/959033/health-location-data-protection-act-ai-warren-scanlon
+
+### AI agents are not your “coworkers”
+This story originally appeared in The Algorithm, our weekly newsletter on AI. To get stories like this in your inbox first, sign up here. Imagine coming in to work to learn that a new underling will r...
+出典: https://www.technologyreview.com/2026/06/29/1139849/ai-agents-are-not-your-coworkers/
+
+### Agent confidence on the technical frontier
+Enterprise investment in AI is booming. Gartner is calling 2026 an “inflection year” for organizations to align their AI projects with strategic business objectives. As the pressure to prove ROI mount...
+出典: https://www.technologyreview.com/2026/06/29/1139635/agent-confidence-on-the-technical-frontier/
+
+### South Korea to spend $1T on more memory chip production and humanoid robots
+South Korea targets physical AI lead and commercial humanoid robots by 2028.
+出典: https://arstechnica.com/ai/2026/06/south-korea-to-spend-1t-on-more-memory-chip-production-and-humanoid-robots/
 
 
 ## AI公式
 
-### HP Inc. launches Frontier strategic partnership with OpenAI
-HP Inc. scales its OpenAI Frontier partnership to deploy AI across customer experiences, software development, and enterprise operations.
-出典: https://openai.com/index/hp-frontier-partnership
+### Mapping Europe’s AI Workforce Opportunity
+A new OpenAI report maps how AI could reshape jobs across the EU, highlighting which occupations may face automation, growth, or workflow changes.
+出典: https://openai.com/index/mapping-ai-jobs-transition-eu
 
 
 ## AI動画(日本語)
 
-### スプレッドシートのGemini Canvas機能が今すぐ仕事で使いたいほど便利！AI活用パターンをいくつか紹介
-Spreadsheets（スプレッドシート）に追加されたGeminiでのCanvas機能が便利すぎました！相性良すぎるし、今すぐ仕事で使えると思います！  ★プロセボ｜AIコミュニティ AI活用を実際に操作しながら学ぶワークショップ型AIスクール。 参加申し込みはこちら → https://procevo.biz/  ★Substack（メルマガ）は下記から購読 https://kt-life.n...
-出典: https://www.youtube.com/watch?v=ovW60rmGB7k
+### OpenAIの最新モデル「GPT-5.6」がキタァアアーー！ / GPT-5.5との違いは？ / Claude Fable 5の最新動向
+●直近の講座案内  ▼【早く申し込むほどお得】非エンジニアでもできるClaude Codeセキュリティ対策講座 https://touchai.jp/courses/uiBGBxzwUX8?utm_source=Ow--rLNn3zQ/edit&amp;utm_medium=webshokutv&amp;utm_campaign=20260629  ▼【7月3日まで早割】非エンジニア向けITリテラ...
+出典: https://www.youtube.com/watch?v=Ow--rLNn3zQ
 
-### 【Calude超え】一番稼げる画期的なAIが誕生しました【SakanaAIFugu】
-▼動画内で紹介したプレゼントの受け取りは以下の公式LINEから https://liff.line.me/2006805073-rn36NG8b/landing?follow=%40933hyolt&amp;lp=ckRcpO&amp;liff_id=2006805073-rn36NG8b  ▼現在開催中のセミナーを確認する https://n1seminar-vsuoymjh.manus.spa...
-出典: https://www.youtube.com/watch?v=-25Tk-9LqbM
+### 【超穴場】Higgsfieldを使ってゲームを作ったら予想外の結果になりました
+▼動画内で紹介したプレゼントの受け取りは以下の公式LINEから https://liff.line.me/2006805073-rn36NG8b/landing?follow=%40933hyolt&amp;lp=nquk2E&amp;liff_id=2006805073-rn36NG8b  ▼現在開催中のセミナーを確認する https://n1seminar-vsuoymjh.manus.spa...
+出典: https://www.youtube.com/watch?v=fdcSUMQiJYc
 
 
 ## AI国内
+
+### 社長もAIが代わる時代に　社員の相談にいつでも答えるエージェント「AI社長」が登場
+日テレHR総合研究所は、社長やキーパーソンの価値観と判断基準を基に答える専用AI「AI社長」の提供を開始した。忙しい社長や決定層の思考を学習し、考えの整理と判断の質向上を支える社内用の相談役として活用できる。
+出典: https://kn.itmedia.co.jp/kn/articles/2606/30/news046.html
+
+### 中小企業の採用から勤怠・経費管理まで　バラバラのSaaSからまとめてAIがデータ分析
+中小企業では、複数のSaaSや紙、Excelが混在することで、管理業務の負担が増えている。NoahWorksは、採用から勤怠、決済までを一元化し、AIによるデータ分析で現場の業務改善を支援する。
+出典: https://kn.itmedia.co.jp/kn/articles/2606/29/news108.html
+
+### 自社の業務に合わせたAIエージェントを「10分で作成」　freeeが「AI戦略」を強化
+クラウド会計システム「freee」の開発などを手掛けるフリーは、2月に発表したAI戦略の実現に向けた新たな取り組みとして「freee AIアシスタント」と「freee カスタムオーダー」の提供を6月に開始した。「AIから最も使いやすいSaaS」として、AI業界におけるリーディングカンパニーの地位確立を目指す。
+出典: https://www.itmedia.co.jp/business/articles/2606/30/news064.html
+
+### メール、Teams、Slack――バラバラな連絡ツールの「見落とし」　ChatGPT Agentsで解決する方法
+メールやTeams、Slackなど複数の連絡ツールを使っていると、重要なメッセージの見落としや返信漏れをしてしまいます。AIで解決できませんか？
+出典: https://www.itmedia.co.jp/business/articles/2606/30/news060.html
+
+### 死んだのは「低成長モデル」だけ　HRBrainのCSaOが読み解く「SaaS is Dead」の本質
+Salesforce出身で、創業10年のHRテック・HRBrainのCSaOを務める小山径氏。同氏は「SaaSは死んでいない」と主張する。その理由は？
+出典: https://www.itmedia.co.jp/business/articles/2606/30/news025.html
+
+### AIで人は幸せになれるのか？　「AIで稼ぐ企業」と「コストを負担する企業」
+Appleが複数製品の価格を引き上げる一方で、AI需要の拡大を追い風にキオクシアなど半導体関連企業は成長を続けている。技術革新が生む大きな利益の裏側で、誰が恩恵を受け、誰がコストを負担するのか。
+出典: https://kn.itmedia.co.jp/kn/articles/2606/30/news041.html
+
+### 「前任者が不在」でも大丈夫　PCログからAIがマニュアルを自動作成する時代へ
+特定の担当者に業務が依存する属人化や、急な退職・異動による引き継ぎ不足は、多くの企業が抱える課題だ。こうした問題を解決するため、PCログのデータからAIが業務マニュアルを自動作成する仕組みが提供された。
+出典: https://kn.itmedia.co.jp/kn/articles/2606/30/news050.html
+
+### ルネサスが2035年の売上高3倍増も視野に、AIで3段階の成長を目指す
+ルネサス エレクトロニクスが同社の概況や事業方針などについて説明。足元で半導体市場の拡大をけん引するAIに焦点を当てた事業展開を強化し、AIインフラ、フィジカルAIとSDV、「Intelligence at the Edge」の3段階で優位なポジションを構築し成長を目指す。
+出典: https://monoist.itmedia.co.jp/mn/articles/2606/30/news081.html
+
+### 日本の「完璧主義」から脱却し中国ヒューマノイドにどう立ち向かうか
+ハードウェアと市場が先行して急拡大する一方で、自律制御を担う基盤モデルの領域にはいまだ乗り越えるべき壁が多い。後編となる本稿では、オープンソース化で社会実装を急ぐ中国プレイヤーの動向を解説。圧倒的なスピードで独走する中国に対し、日本が目指すべき生存戦略を提示する。
+出典: https://monoist.itmedia.co.jp/mn/articles/2606/30/news059.html
+
+### 「ヤフコメまとめ」開始　ヤフコメの論点、AIがグラフで可視化
+OpenAIのAPIを活用し、ユーザーが投稿したコメントの論点を生成AIが分類し、グラフ化する。
+出典: https://www.itmedia.co.jp/news/articles/2606/29/news114.html
+
+### AIエージェントの投資優先順位、どう決める？　Gartnerが「投資スコア」の作り方を公開
+業務におけるAIエージェントの投資優先順位をどう決めればよいか。業務・業種別のAIエージェントはどう進化していくか。ガートナージャパンの著名アナリストである亦賀忠明氏のWebセミナーから探る。
+出典: https://www.itmedia.co.jp/enterprise/articles/2606/29/news068.html
+
+### 「AI活用が単発質問の企業は大敗」　楽天にコストと遅延の30％低下も達成させた、AIエージェント運用の勝ち筋
+Anthropicは、先進的な企業がどのようにAIエージェントを活用して業務を変革しているかを紹介するガイド「Building AI agents for the enterprise」を公開した。
+出典: https://atmarkit.itmedia.co.jp/ait/articles/2606/29/news061.html
 
 ### ロボットの模倣学習を60時間→4.8時間に　AWSのGPUでフィジカルAI開発を加速　ファナック
 ファナックは「AWS Summit Japan 2026」の基調講演で、ロボットに動作を教える「模倣学習」の時間を、AWSのGPU活用で60時間から4.8時間へ短縮したと示した。
@@ -51,44 +111,54 @@ AccentureとAvanadeはMicrosoftと協働し、製造業向け工場インテリ�
 AIの活用が設計／製造の現場にも広がる中、CADの操作や設計者の役割はどう変わるのか。米Autodesk 製品開発／製造ソリューション担当エグゼクティブバイスプレジデントのジェフ・キンダー氏に、AIが設計業務にもたらす変化、AI時代に求められる設計データの在り方、そして同社が描く設計／製造ワークフローの将来像を聞いた。
 出典: https://monoist.itmedia.co.jp/mn/articles/2606/29/news008.html
 
-### 解剖・孫正義氏の「ガチョウ論」　「ソフトバンクG株価が低過ぎ」主張を信じてよいのか
-孫正義氏が、ソフトバンクGの株価に不満をにじませた。孫氏が「本当の企業価値」として示す「時価純資産」の論理と危うさを解説する。
-出典: https://www.itmedia.co.jp/business/articles/2606/29/news034.html
 
-### ひろゆき氏「SIer衰退予測」、AI代替の「逆転現象」の理由　2026年に生き残るエンジニア“4つの役割”
-2026年上半期に＠ITで公開された記事の中から、AI系の話題で特に注目を集めた5本をランキング形式で紹介します。何が読者の関心を引いたのでしょうか。
-出典: https://atmarkit.itmedia.co.jp/ait/articles/2606/28/news006.html
+## AI業界
+
+### DiScoFormer: One transformer for density and score, across distributions
+
+出典: https://huggingface.co/blog/allenai/discoformer
 
 
 ## AI研究者ブログ
 
-### Quoting Jon Udell
-<blockquote cite="https://blog.jonudell.net/2026/06/28/doctor-it-hurts-when-agents-create-unreviewable-prs-dont-do-that/"><p><strong><del>Human</del> Agent in the loop</strong></p> <p>I dislike the ph...
-出典: https://simonwillison.net/2026/Jun/28/jon-udell/#atom-everything
+### Count the number of Safari tabs
+<p>Tiniest TIL, using AppleScript to count the number of open browser tabs in Safari:</p> <pre><code>osascript -e 'tell application "Safari" to count tabs of every window' </code></pre> <p><img alt="I...
+出典: https://simonwillison.net/2026/Jun/29/safari-tab-count/#atom-everything
 
-### Hack Your Summer
-<p><strong><a href="https://www.hackyoursummer.org/">Hack Your Summer</a></strong></p> I learned about this initiative from DJ Patil this morning:</p> <blockquote> <p>It’s a 4-week, high-velocity prod...
-出典: https://simonwillison.net/2026/Jun/28/hack-your-summer/#atom-everything
+### Ornith-1.0: Self-Scaffolding LLMs for Agentic Coding
+<p><strong><a href="https://deep-reinforce.com/ornith_1_0.html">Ornith-1.0: Self-Scaffolding LLMs for Agentic Coding</a></strong></p> This is an interesting new open weights (MIT licensed) model, the ...
+出典: https://simonwillison.net/2026/Jun/29/ornith/#atom-everything
+
+
+## SNS公式
+
+### It’s Time to Reserve Your WhatsApp Username
+<div><img alt="" class="attachment-large size-large wp-post-image" height="501" src="https://about.fb.com/wp-content/uploads/2026/06/Its-time-to-reserve-your-WhatsApp-username_Thumbnail.jpg?fit=890%2C...
+出典: https://about.fb.com/news/2026/06/its-time-to-reserve-your-whatsapp-username/
 
 
 ## SNS動向
 
-### ChatGPT is the most popular AI tool for people in the US
-<p>Most users are turning to artificial intelligence for help with searches, with less than a quarter using them for image generation, according to research from Pew.</p>
-出典: https://www.socialmediatoday.com/news/chatgpt-is-the-most-popular-ai-tool-for-people-in-the-us/823940/
+### TikTok launches branded minidramas
+<p>The platform wants to tap into the popularity of these popular episodic shorts by offering companies the opportunity to promote their own microseries content.</p>
+出典: https://www.socialmediatoday.com/news/tiktok-launches-branded-minidramas/824044/
 
-### YouTube adds AI-powered comment filtering
-<p>The new tools allow channel managers to group similar comments together for review, reply or deletion, streamlining control of user responses.</p>
-出典: https://www.socialmediatoday.com/news/youtube-adds-ai-powered-comment-filtering/823939/
+### WhatsApp prompts users to choose a username ahead of update
+<p>In a promotional campaign fronted by athlete Anthony Joshua, the platform demonstrated how to choose a new name that will function as a primary ID.</p>
+出典: https://www.socialmediatoday.com/news/whatsapp-prompts-users-to-choose-a-username-ahead-of-update/824043/
 
-### Meta tries to limit liabilities in child harm cases
-<figure><div><img src="https://imgproxy.divecdn.com/_F9K7808g-egAJKt4BktdI9h92MmalSfxjmoYu3HMRM/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS8ySDNZQlJBLmpwZw==.webp" /></div></fig...
-出典: https://www.socialmediatoday.com/news/meta-tries-to-limit-liabilities-in-child-harm-cases/823938/
+### TikTok partners with Madonna for ‘Confessions II’
+<p>The app will launch activations and events including an in-app live preview with iHeartRadio during the pop star&rsquo;s July 2 album release party in London.</p>
+出典: https://www.socialmediatoday.com/news/tiktok-partners-with-madonna-for-confessions-ii/824038/
 
-### Trump threatens tariffs over EU digital taxes
-<figure><div><img src="https://imgproxy.divecdn.com/DdqEFpCeaMtT5w-qT-QRDOwz7tyYWnqBXC3DOvozg8Y/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9HZXR0eUltYWdlcy0xNDk0MzExNDUuanBn.web...
-出典: https://www.socialmediatoday.com/news/trump-threatens-tariffs-over-eu-digital-taxes/823937/
+### Pinterest expands international campaign insights
+<p>The platform launched a markets view element to help businesses get better insights into multi-regional promotions.</p>
+出典: https://www.socialmediatoday.com/news/pinterest-expands-international-campaign-insights/824037/
 
-### Instagram tests more algorithm controls
-<p>The app&rsquo;s Your Algorithm is getting new access points and features, but the experiments fail to address some of users&rsquo; biggest requests.</p>
-出典: https://www.socialmediatoday.com/news/instagram-tests-more-algorithm-controls/823936/
+### Google adds features to Video Reach and Video View campaigns
+<p>YouTube and Google Ads will get expanded metrics to help advertisers gain more insight into how their spending drives results.</p>
+出典: https://www.socialmediatoday.com/news/google-adds-features-to-video-reach-and-video-view-campaigns/824035/
+
+### Reddit launches ‘People are the Best’ campaign
+<p>The platform&rsquo;s new promotional message highlights the real conversations happening in-app each day, and takes subtle aim at artificial intelligence.</p>
+出典: https://www.socialmediatoday.com/news/reddit-launches-people-are-the-best-campaign/824032/

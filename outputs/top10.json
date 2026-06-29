@@ -2,11 +2,30 @@
   "date": "2026-06-29",
   "items": [
     {
-      "hash": "614fcd01f32b9b1e",
-      "title": "China’s Z.ai claims it can match Mythos on cybersecurity",
-      "orig_title": "China’s Z.ai claims it can match Mythos on cybersecurity",
+      "hash": "7faa29dd9d2cd75e",
+      "title": "Tidal won’t pay royalties on AI-generated music but isn’t banning it outright",
+      "orig_title": "Tidal won’t pay royalties on AI-generated music but isn’t banning it outright",
       "summary": "",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/958804/chinas-z-ai-glm-52-mythos-cybersecurity",
+      "url": "https://www.theverge.com/tech/959211/tidal-ai-music-policy-demonetizingdetect-label",
+      "source": "The Verge AI",
+      "category": "AIニュース",
+      "genre": "industry",
+      "score": 60.0,
+      "breakdown": {
+        "base": 50.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 10.0
+      },
+      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25319678/STK301_Tidal_01.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
+      "published": "2026-06-29T15:47:35-04:00"
+    },
+    {
+      "hash": "405f0675bdb0e664",
+      "title": "OpenAI is teasing new hardware… for Codex",
+      "orig_title": "OpenAI is teasing new hardware… for Codex",
+      "summary": "",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/959174/openai-codex-hardware-work-louder",
       "source": "The Verge AI",
       "category": "AIニュース",
       "genre": "industry",
@@ -17,15 +36,15 @@
         "source_bonus": 0.0,
         "freshness": 6.0
       },
-      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/03/STKS515_CYBER_WARFARE2_C.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-06-28T17:42:51-04:00"
+      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/openai-codex-hardware.png?quality=90&amp;strip=all&amp;crop=0%2C8.6878272251309%2C100%2C82.624345549738&amp;w=1200",
+      "published": "2026-06-29T14:52:03-04:00"
     },
     {
-      "hash": "02f3ba6601e91e65",
-      "title": "Suno launches Spark incubator program to feed independent artists to its AI machine",
-      "orig_title": "Suno launches Spark incubator program to feed independent artists to its AI machine",
+      "hash": "48dbeb0304733118",
+      "title": "Lawmakers want to ban AI companies from selling your health data",
+      "orig_title": "Lawmakers want to ban AI companies from selling your health data",
       "summary": "",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/958801/suno-launches-spark-incubator-program-to-feed-independent-artists-to-its-ai-machine",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/959033/health-location-data-protection-act-ai-warren-scanlon",
       "source": "The Verge AI",
       "category": "AIニュース",
       "genre": "industry",
@@ -36,15 +55,15 @@
         "source_bonus": 0.0,
         "freshness": 6.0
       },
-      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/01/STK467_AI_MUSIC_CVirginia_C.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-06-28T16:27:36-04:00"
+      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25299197/STK442_Password_Manager_A_CVirginia.jpg?quality=90&amp;strip=all&amp;crop=0%2C9.9676601489831%2C100%2C80.064679702034&amp;w=1200",
+      "published": "2026-06-29T12:00:00-04:00"
     },
     {
-      "hash": "a7ee07444fe3e93d",
-      "title": "Quoting Jon Udell",
-      "orig_title": "Quoting Jon Udell",
+      "hash": "f788162d5d6a34cd",
+      "title": "Count the number of Safari tabs",
+      "orig_title": "Count the number of Safari tabs",
       "summary": "",
-      "url": "https://simonwillison.net/2026/Jun/28/jon-udell/#atom-everything",
+      "url": "https://simonwillison.net/2026/Jun/29/safari-tab-count/#atom-everything",
       "source": "Simon Willison's Weblog",
       "category": "AI研究者ブログ",
       "genre": "industry",
@@ -56,14 +75,14 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-06-28T21:57:41+00:00"
+      "published": "2026-06-29T18:36:18+00:00"
     },
     {
-      "hash": "fa92fae9596069c5",
-      "title": "Hack Your Summer",
-      "orig_title": "Hack Your Summer",
+      "hash": "024a010797189844",
+      "title": "Ornith-1.0: Self-Scaffolding LLMs for Agentic Coding",
+      "orig_title": "Ornith-1.0: Self-Scaffolding LLMs for Agentic Coding",
       "summary": "",
-      "url": "https://simonwillison.net/2026/Jun/28/hack-your-summer/#atom-everything",
+      "url": "https://simonwillison.net/2026/Jun/29/ornith/#atom-everything",
       "source": "Simon Willison's Weblog",
       "category": "AI研究者ブログ",
       "genre": "industry",
@@ -74,53 +93,34 @@
         "source_bonus": 0.0,
         "freshness": 6.0
       },
-      "thumbnail": "",
-      "published": "2026-06-28T19:26:11+00:00"
+      "thumbnail": "https://static.simonwillison.net/static/2024/ornith-1-pelican.png",
+      "published": "2026-06-29T16:17:59+00:00"
     },
     {
-      "hash": "6af9fea3fc3d147a",
-      "title": "Prosecutors used ChatGPT logs as evidence in the Palisades fire trial",
-      "orig_title": "Prosecutors used ChatGPT logs as evidence in the Palisades fire trial",
+      "hash": "85a4706f94587004",
+      "title": "OpenAIの最新モデル「GPT-5.6」がキタァアアーー！ / GPT-5.5との違いは？ / Claude Fable 5の最新動向",
+      "orig_title": "OpenAIの最新モデル「GPT-5.6」がキタァアアーー！ / GPT-5.5との違いは？ / Claude Fable 5の最新動向",
       "summary": "",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/958751/prosecutors-chatgpt-palisades-wildfire-arson-mistrial",
-      "source": "The Verge AI",
-      "category": "AIニュース",
-      "genre": "industry",
-      "score": 53.0,
-      "breakdown": {
-        "base": 50.0,
-        "genre_bonus": 0.0,
-        "source_bonus": 0.0,
-        "freshness": 3.0
-      },
-      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/22530766/1232927726.jpg?quality=90&amp;strip=all&amp;crop=0%2C9.1603455154706%2C100%2C81.679308969059&amp;w=1200",
-      "published": "2026-06-28T10:12:06-04:00"
-    },
-    {
-      "hash": "b4a5c642562e621b",
-      "title": "スプレッドシートのGemini Canvas機能が今すぐ仕事で使いたいほど便利！AI活用パターンをいくつか紹介",
-      "orig_title": "スプレッドシートのGemini Canvas機能が今すぐ仕事で使いたいほど便利！AI活用パターンをいくつか紹介",
-      "summary": "",
-      "url": "https://www.youtube.com/watch?v=ovW60rmGB7k",
-      "source": "KEITO AI&WEB",
+      "url": "https://www.youtube.com/watch?v=Ow--rLNn3zQ",
+      "source": "ウェブ職TV",
       "category": "AI動画(日本語)",
       "genre": "industry",
-      "score": 53.0,
+      "score": 56.0,
       "breakdown": {
         "base": 50.0,
         "genre_bonus": 0.0,
         "source_bonus": 0.0,
-        "freshness": 3.0
+        "freshness": 6.0
       },
-      "thumbnail": "https://img.youtube.com/vi/ovW60rmGB7k/hqdefault.jpg",
-      "published": "2026-06-28T10:00:21+00:00"
+      "thumbnail": "https://img.youtube.com/vi/Ow--rLNn3zQ/hqdefault.jpg",
+      "published": "2026-06-29T14:30:06+00:00"
     },
     {
-      "hash": "bf2a386e74be500a",
-      "title": "【Calude超え】一番稼げる画期的なAIが誕生しました【SakanaAIFugu】",
-      "orig_title": "【Calude超え】一番稼げる画期的なAIが誕生しました【SakanaAIFugu】",
+      "hash": "5e96d22e9a334f14",
+      "title": "【超穴場】Higgsfieldを使ってゲームを作ったら予想外の結果になりました",
+      "orig_title": "【超穴場】Higgsfieldを使ってゲームを作ったら予想外の結果になりました",
       "summary": "",
-      "url": "https://www.youtube.com/watch?v=-25Tk-9LqbM",
+      "url": "https://www.youtube.com/watch?v=fdcSUMQiJYc",
       "source": "AI収益化ラボ",
       "category": "AI動画(日本語)",
       "genre": "industry",
@@ -131,15 +131,15 @@
         "source_bonus": 0.0,
         "freshness": 3.0
       },
-      "thumbnail": "https://img.youtube.com/vi/-25Tk-9LqbM/hqdefault.jpg",
-      "published": "2026-06-28T10:00:02+00:00"
+      "thumbnail": "https://img.youtube.com/vi/fdcSUMQiJYc/hqdefault.jpg",
+      "published": "2026-06-29T10:00:39+00:00"
     },
     {
-      "hash": "34c71e99090da4e7",
-      "title": "HP Inc. launches Frontier strategic partnership with OpenAI",
-      "orig_title": "HP Inc. launches Frontier strategic partnership with OpenAI",
+      "hash": "6084714dc26d908c",
+      "title": "Mapping Europe’s AI Workforce Opportunity",
+      "orig_title": "Mapping Europe’s AI Workforce Opportunity",
       "summary": "",
-      "url": "https://openai.com/index/hp-frontier-partnership",
+      "url": "https://openai.com/index/mapping-ai-jobs-transition-eu",
       "source": "OpenAI Blog",
       "category": "AI公式",
       "genre": "industry",
@@ -150,17 +150,17 @@
         "source_bonus": 0.0,
         "freshness": 0.0
       },
-      "thumbnail": "https://images.ctfassets.net/kftzwdyauwt9/27SeSwGzXJ8BQXlEobHQIG/6cd70adfdfd93e9ba1b41bc38e0f01be/HP-16_9.png?w=1600&amp;h=900&amp;fit=fill",
-      "published": "Sun, 28 Jun 2026 17:00:00 GMT"
+      "thumbnail": "https://images.ctfassets.net/kftzwdyauwt9/2p06ZCpbXiQhTAbOY9J6OH/2f69f47125b18f9ced9c6000a0bcee0b/mapping-europes-ai-workforce-opportunity-seo-card.png?w=1600&amp;h=900&amp;fit=fill",
+      "published": "Mon, 29 Jun 2026 07:00:00 GMT"
     },
     {
-      "hash": "9d2a07f554311792",
-      "title": "ロボットの模倣学習を60時間→4.8時間に　AWSのGPUでフィジカルAI開発を加速　ファナック",
-      "orig_title": "ロボットの模倣学習を60時間→4.8時間に　AWSのGPUでフィジカルAI開発を加速　ファナック",
+      "hash": "d5a11e3e1fc7f62f",
+      "title": "DiScoFormer: One transformer for density and score, across distributions",
+      "orig_title": "DiScoFormer: One transformer for density and score, across distributions",
       "summary": "",
-      "url": "https://www.itmedia.co.jp/aiplus/article/2606/29/2000000136/",
-      "source": "ITmedia AI+",
-      "category": "AI国内",
+      "url": "https://huggingface.co/blog/allenai/discoformer",
+      "source": "Hugging Face Blog",
+      "category": "AI業界",
       "genre": "industry",
       "score": 50.0,
       "breakdown": {
@@ -169,17 +169,17 @@
         "source_bonus": 0.0,
         "freshness": 0.0
       },
-      "thumbnail": "https://www.itmedia.co.jp/aiplus/article/ogp/2606/29/2000000136/10000681/2048",
-      "published": "Mon, 29 Jun 2026 10:39:09 +0900"
+      "thumbnail": "https://cdn-uploads.huggingface.co/production/uploads/638e39b249de7ae552d977b5/AnOX0pzQm-Hep_CLFOVM7.png",
+      "published": "Mon, 29 Jun 2026 18:02:48 GMT"
     },
     {
-      "hash": "f6d0c1b04343eae7",
-      "title": "カインズが画像AIで売上UP模索、店頭でのインテリア“試着”をテスト　立ちはだかる「正確性と効率」の壁",
-      "orig_title": "カインズが画像AIで売上UP模索、店頭でのインテリア“試着”をテスト　立ちはだかる「正確性と効率」の壁",
+      "hash": "56d248854c77ef72",
+      "title": "AI agents are not your “coworkers”",
+      "orig_title": "AI agents are not your “coworkers”",
       "summary": "",
-      "url": "https://www.itmedia.co.jp/news/articles/2606/26/news114.html",
-      "source": "ITmedia AI+",
-      "category": "AI国内",
+      "url": "https://www.technologyreview.com/2026/06/29/1139849/ai-agents-are-not-your-coworkers/",
+      "source": "MIT Technology Review AI",
+      "category": "AIニュース",
       "genre": "industry",
       "score": 50.0,
       "breakdown": {
@@ -188,8 +188,8 @@
         "source_bonus": 0.0,
         "freshness": 0.0
       },
-      "thumbnail": "https://image.itmedia.co.jp/news/articles/2606/26/cover_news114.jpg",
-      "published": "Mon, 29 Jun 2026 10:00:00 +0900"
+      "thumbnail": "https://wp.technologyreview.com/wp-content/uploads/2026/06/260625_AIAgents.jpg?resize=1200,600",
+      "published": "Mon, 29 Jun 2026 18:00:00 +0000"
     }
   ]
 }

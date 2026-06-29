@@ -189,7 +189,7 @@ def _build_ogp(title: str, description: str, page_url: str, *, image: str | None
 
 def _build_jsonld_website() -> str:
     """TOP の構造化データを @graph で一括出力。
-    LocalBusiness(地域シグナル) / Person(異色の権威) / WebSite / Service×6(価格付き Offer) /
+    LocalBusiness(地域シグナル) / Person(異色の権威) / WebSite / Service×5(価格付き Offer) /
     FAQPage(一次情報) / BreadcrumbList を相互参照させ、SEO・LLMO 両面の引用源にする。"""
     org_id = SITE_URL + "/#business"
     person_id = SITE_URL + "/#yui"
@@ -253,7 +253,6 @@ def _build_jsonld_website() -> str:
     codex_prep_title = "Codex準備会 60分"
     codex_practice_title = "Codex実践会 120分"
     ai_coding_title = "AIコーディング講習 120分"
-    free_consult_title = "AI個別相談 入口整理"
     consult_title = "AI個別相談 しっかり60分"
     support_title = "AI伴走支援 いっしょに導入"
 
@@ -262,7 +261,6 @@ def _build_jsonld_website() -> str:
         (codex_prep_title, "Codex準備会 導入と習得の流れに沿って、ChatGPTログイン、作業フォルダ選定、秘密情報を入れない権限設計、最初の依頼、差分確認、ブラウザ表示確認、独立レビュー、AGENTS.md、公式アップデート確認先までを60分で整える準備講習。", "2200", "2200", "Course"),
         (codex_practice_title, "Codex実践会で持ち込み課題を進め、Claude Codeとの使い分け、ページ、資料、コード、画像生成プロンプト、動画台本などの成果物を120分で作る実践講習。", "5500", "5500", "Course"),
         (ai_coding_title, "Codex導入、Claude Code併用、画像生成、AI時代の本物のエンジニア像、レベルマップ、プログラミング基礎、設計、データ、運用、セキュリティを1本で学ぶAIコーディング講習。AIの成果物を判断し、説明し、仕事に入れるための作業設計と確認の型を120分で身につける。", "11000", "11000", "Course"),
-        (free_consult_title, "来店またはオンラインで、AI導入の入口を整理する個別相談。講習や伴走の前に、今の課題と次の一手を確認する。", "0", "0", "BusinessCoaching"),
         (consult_title, "AIの使い方、役割分担、指示書、確認体制、運用導線を60分で整理する個別相談。", "5500", "5500", "BusinessCoaching"),
         (support_title, "HP公開から事務自動化・経理・マーケまで6ヶ月で一気に定着。技術的な難所は講師が代行・支援。滋賀・彦根の補助金で負担1/3以下に。", "100000", "100000", "Service"),
     ]
@@ -9956,8 +9954,8 @@ def _render_hero() -> str:
         {
             "index": "01",
             "title": "個別相談",
-            "sub": "入口を整理",
-            "desc": "課題を聞き、講習・個別相談・伴走のどれから始めるかを決めます。",
+            "sub": "課題を整理",
+            "desc": "課題を聞き、講習・個別相談・伴走のどれから始めるかを一緒に決めます。",
             "cta": "相談日程を見る",
             "href": "#contact",
             "x": "42%",
@@ -10433,7 +10431,7 @@ def _render_path_selector() -> str:
             "今の課題を整理して、受講プランか伴走かを決める入口です。",
             "個別相談を予約する",
             "#contact",
-            "入口整理 / 無料",
+            "相談前メモ",
             "次に: 課題メモだけ持参",
         ),
         (
@@ -10757,32 +10755,9 @@ def _render_courses_packages() -> str:
     codex_practice_title = "Codex実践会 120分"
     ai_coding_title = "AIコーディング講習 120分"
     seminar_url = "https://goodbouldering.com/?pid=188553378"
-    free_consult_title = "AI個別相談 入口整理"
-    free_consult_url = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/AW5O5XSBHLEHYUBHLZUGFKYE"
     consult_title = "AI個別相談 しっかり60分"
     support_title = "AI伴走支援 いっしょに導入"
     items = [
-        {
-            "icon": "◧",
-            "cat": "個別相談",
-            "level": "入口",
-            "level_id": "beginner",
-            "title": free_consult_title,
-            "price": "無料",
-            "duration": "初回 / 無料",
-            "subsidy": False,
-            "desc": "来店またはオンラインで、講習・AI導入・補助金の入口を整理します。",
-            "content": [
-                "今の課題とAIで試したいことを聞き取り",
-                "講習、個別相談、伴走支援の入口を切り分け",
-                "補助金、交流会、次回予約の導線を確認",
-            ],
-            "fit": ["まず話を聞きたい", "講習か伴走か迷う", "来店またはオンラインで相談したい"],
-            "url": free_consult_url,
-            "cta": "個別相談を予約する",
-            "material_url": "#lectures",
-            "material_cta": "受講資料で選び方を見る",
-        },
         {
             "icon": "?",
             "cat": "相談",
@@ -11032,7 +11007,7 @@ def _render_sticky_cta() -> str:
     """モバイルで常時追従する個別相談バー（スクロール中もCVできる）。"""
     return (
         "<div class='sticky-cta' id='sticky-cta' aria-hidden='false'>"
-        "<div class='sticky-cta-text'><strong>個別相談で入口整理</strong><span>講習・資料・集客まで整理</span></div>"
+        "<div class='sticky-cta-text'><strong>個別相談で課題整理</strong><span>講習・資料・集客まで確認</span></div>"
         "<a class='sticky-cta-btn' href='#contact'>個別相談</a>"
         "</div>"
     )
@@ -11088,7 +11063,7 @@ def _render_contact_form() -> str:
         "<span class='cp-ico'>📅</span>"
         "<span class='cp-body'>"
         "<span class='cp-title'>AI個別相談を予約する</span>"
-        "<span class='cp-desc'>カレンダーから空いている日時を選ぶだけ。2〜3分で予約できます。初回の入口整理は料金がかかりません。相談は対面・Zoom・LINEから選べます。</span>"
+        "<span class='cp-desc'>カレンダーから空いている日時を選ぶだけ。2〜3分で予約できます。相談は対面・Zoom・LINEから選べます。</span>"
         "</span>"
         "<span class='cp-cta'>日程を選ぶ →</span>"
         "</a>"
@@ -11184,7 +11159,7 @@ FAQ_QA = [
     ("LLMO やAI検索に強いサイトにできますか？",
      "できます。地域名、講師の一次経験、料金、対応範囲、実例、FAQ、構造化データを整理し、AIが回答に引用しやすい形で公開します。大量の自動生成ではなく、講習と実例に基づく一次情報を重視します。"),
     ("料金はどれくらいですか？",
-     "AI個別相談の入口整理は無料、Codex準備会60分は2,200円、Codex実践会120分は5,500円、AIコーディング講習120分は11,000円、AI個別相談 しっかり60分は5,500円です。AI伴走支援 いっしょに導入は月額10万円×6ヶ月が目安で、月額決済はStripe Checkoutで行います。LP制作は1本18〜30万円が目安。多くは補助金併用を前提に組みます。"),
+     "Codex準備会60分は2,200円、Codex実践会120分は5,500円、AIコーディング講習120分は11,000円、AI個別相談 しっかり60分は5,500円です。AI伴走支援 いっしょに導入は月額10万円×6ヶ月が目安で、月額決済はStripe Checkoutで行います。LP制作は1本18〜30万円が目安。多くは補助金併用を前提に組みます。"),
     ("補助金は使えますか？滋賀の事業者でも対象ですか？",
      "講習・伴走パックは「デジタル化・AI導入補助金」や滋賀県・彦根市の補助金の対象になります。補助率は小規模事業者で最大4/5、実質負担が1/3以下になるケースが多いです。申請からツール選定・実装・定着まで一気通貫で支援します。"),
     ("パソコンやスマホが苦手ですが、大丈夫ですか？",

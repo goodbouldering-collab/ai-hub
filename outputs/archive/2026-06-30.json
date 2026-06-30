@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://static.simonwillison.net/static/2026/nano-banana-2-lite-raccoon.jpg",
-      "published": "2026-06-30T22:15:35+00:00"
+      "published": "2026-06-30T22:15:35+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "ba48d56193561dea",
@@ -37,7 +39,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://static.simonwillison.net/static/2026/sonnet-5-pelican.png",
-      "published": "2026-06-30T21:23:02+00:00"
+      "published": "2026-06-30T21:23:02+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "0c5c433b13e39e5e",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/notebooklm-shorts.png?quality=90&amp;strip=all&amp;crop=0,16.342557965595,100,67.314884068811",
-      "published": "2026-06-30T15:24:51-04:00"
+      "published": "2026-06-30T15:24:51-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "558ce6cd95f78353",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/videoframe_9748.png?quality=90&amp;strip=all&amp;crop=0%2C3.4613147178592%2C100%2C93.077370564282&amp;w=1200",
-      "published": "2026-06-30T13:19:15-04:00"
+      "published": "2026-06-30T13:19:15-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "9892812ab371a2a9",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/24148705/PXL_20221028_153245856.jpg?quality=90&amp;strip=all&amp;crop=0%2C15.232329842932%2C100%2C69.535340314136&amp;w=1200",
-      "published": "2026-06-30T11:30:00-04:00"
+      "published": "2026-06-30T11:30:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "8e2aa679208bc185",
@@ -113,7 +123,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/268607_An_interview_with_William_Savitt_Elon_Musks_courtroom_nemesis_CVirginia.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-06-30T08:00:00-04:00"
+      "published": "2026-06-30T08:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "0540568c753622e0",
@@ -132,7 +144,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-06-30T17:39:23+00:00"
+      "published": "2026-06-30T17:39:23+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "1017ded853ba0fea",
@@ -151,7 +165,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://static.simonwillison.net/static/2026/shot-scraper-video-card.jpg",
-      "published": "2026-06-30T16:54:26+00:00"
+      "published": "2026-06-30T16:54:26+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "11255b877c7df729",
@@ -170,7 +186,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-06-30T15:10:14+00:00"
+      "published": "2026-06-30T15:10:14+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "0dacc4047d1d96bf",
@@ -189,7 +207,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/9pG6ZkjfSao/hqdefault.jpg",
-      "published": "2026-06-30T11:16:14+00:00"
+      "published": "2026-06-30T11:16:14+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

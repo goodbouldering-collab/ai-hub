@@ -19,7 +19,7 @@ export function requireAdminAuth(req: VercelReq, res: VercelRes): boolean {
     return false;
   }
 
-  if (hasValidAdminSession(req) || hasValidBasicPassword(req, expectedPass)) {
+  if (hasValidAdminSession(req)) {
     return true;
   }
 
@@ -79,20 +79,6 @@ export function safeNextPath(value: unknown): string {
   if (typeof raw !== "string" || !raw) return "/admin";
   if (!raw.startsWith("/") || raw.startsWith("//")) return "/admin";
   return raw;
-}
-
-function hasValidBasicPassword(req: VercelReq, expectedPass: string): boolean {
-  const header = req.headers["authorization"] || "";
-  if (typeof header !== "string" || !header.startsWith("Basic ")) {
-    return false;
-  }
-  const decoded = Buffer.from(header.slice(6), "base64").toString("utf-8");
-  const idx = decoded.indexOf(":");
-  if (idx < 0) {
-    return false;
-  }
-  const pass = decoded.slice(idx + 1);
-  return timingSafeEqual(pass, expectedPass);
 }
 
 function parseCookies(req: VercelReq): Record<string, string> {

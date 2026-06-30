@@ -805,7 +805,7 @@ body.admin-page .admin-menu-primary:focus-visible {
     width: min(100%, 720px) !important;
     margin: 0 auto 12px !important;
     display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-columns: 1fr !important;
     gap: 8px !important;
   }
 
@@ -2135,7 +2135,7 @@ body.admin-page .mobile-nav {
   body.admin-page .mobile-nav-primary,
   body.admin-page .mobile-link-grid {
     display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-columns: 1fr !important;
     gap: 8px !important;
   }
 

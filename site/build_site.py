@@ -60,7 +60,7 @@ def load_genres() -> list[dict]:
 
 
 DEFAULT_TOP_BUTTONS = [
-    {"id": "home",            "group": "メイン",       "label": "トップ",             "icon": "🏠", "href": "index.html",            "kind": "link",   "enabled": True},
+    {"id": "home",            "group": "メイン",       "label": "ホーム",             "icon": "🏠", "href": "index.html",            "kind": "link",   "enabled": True},
     {"id": "speaker",         "group": "講師",         "label": "講師紹介",           "icon": "🎤", "href": "speaker.html",          "kind": "link",   "enabled": True},
     {"id": "profile",         "group": "講師",         "label": "人物メモ",           "icon": "📜", "href": "speaker.html",          "kind": "link",   "enabled": False},
     {"id": "portfolio",       "group": "資料",         "label": "運営メモ",           "icon": "🧭", "href": "index.html#flow",       "kind": "link",   "enabled": False},
@@ -142,6 +142,7 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
     # TOP(_render_header) と同じく、固定メニューは主要導線だけにする。
     # 詳細な章移動は各ページ内の目次レールへ分離し、ヘッダーを1段に保つ。
     pmap_cls = " nav-current" if current_id == "pmap" else ""
+    parts.append(f"<a class='nav-link nav-essential' href='{safe_home}'>ホーム</a>")
     parts.append("<a class='nav-link nav-essential' href='/#packages'>受講プラン</a>")
     parts.append("<a class='nav-link nav-essential' href='/#lectures'>資料</a>")
     parts.append("<a class='nav-link nav-essential' href='/#flow'>流れ</a>")
@@ -162,8 +163,9 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
         "<a class='login-btn-mobile' href='/#contact'>個別相談</a>"
         "<a class='mobile-main-link' href='/#packages'>受講プラン</a>"
         "</div>"
-        "<span class='mobile-nav-label'>公開ページ</span>"
+        "<span class='mobile-nav-label'>ホーム</span>"
         "<div class='mobile-link-grid'>"
+        "<a href='/'>ホーム</a>"
         f"<a class='{'is-current' if current_id == 'pmap' else ''}' href='/programming-map.html'>AIコーディング</a>"
         "<a href='/#lectures'>資料</a>"
         "<a href='/#speaker'>講師紹介</a>"
@@ -643,7 +645,7 @@ nav.top-nav .nav-current {
 .mobile-nav-primary,
 .mobile-link-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: 8px;
 }
 .mobile-nav a,
@@ -3026,7 +3028,7 @@ def copy_static() -> None:
         if src.is_dir():
             continue
         rel = src.relative_to(STATIC)
-        # admin/ ・ ops/ は静的配信せず Basic 認証付きの
+        # admin/ ・ ops/ は静的配信せず管理ログイン付きの
         # api/admin/index.ts ・ api/ops/index.ts から返す（認証素通り防止）
         if rel.parts and rel.parts[0] in ("admin", "ops"):
             continue

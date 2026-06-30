@@ -10,14 +10,14 @@
 # グループ表示順は最初に現れた順。
 #
 # Phase 1 変更点:
-#   - home (トップ) → CEO ポータル index.html へ
+#   - home (ホーム) → CEO ポータル index.html へ
 #   - archive → watch/archive.html へ移設
 #   - watch (AI Watch) リンクを新規追加
 
 top_buttons:
 - id: home
   group: メイン
-  label: ポータル
+  label: ホーム
   icon: 🏠
   href: index.html
   kind: link

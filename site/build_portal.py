@@ -6099,7 +6099,7 @@ PORTAL_CSS += """
 .mobile-nav-primary,
 .mobile-link-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: 8px;
 }
 
@@ -9516,6 +9516,7 @@ def _render_header() -> str:
         "<span class='site-logo-by'>滋賀・彦根</span>"
         "</a>"
         "<nav class='site-nav' aria-label='メインナビ'>"
+        "<a class='nav-link nav-essential' href='/'>ホーム</a>"
         "<a class='nav-link nav-essential' href='#packages'>受講プラン</a>"
         "<a class='nav-link nav-essential' href='#lectures'>資料</a>"
         "<a class='nav-link nav-essential' href='#flow'>流れ</a>"
@@ -9546,12 +9547,14 @@ def _render_header() -> str:
         "<a class='login-btn-mobile' href='#contact'>個別相談</a>"
         "<a class='mobile-main-link' href='#packages'>受講プラン</a>"
         "</div>"
-        "<span class='mobile-nav-label'>講習</span>"
+        "<span class='mobile-nav-label'>ホーム</span>"
         "<div class='mobile-link-grid'>"
+        "<a href='/'>ホーム</a>"
         "<a href='#packages'>AI講習</a>"
         "<a href='/programming-map.html'>AIコーディング</a>"
         "<a href='#lectures'>受講資料</a>"
         "<a href='#faq'>FAQ</a>"
+        "<a href='#speaker'>講師紹介</a>"
         "</div>"
         "<span class='mobile-nav-label'>制作・運用</span>"
         "<div class='mobile-link-grid'>"

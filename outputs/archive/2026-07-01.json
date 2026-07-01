@@ -18,7 +18,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/268614_Google_Home_Speaker_JTuohy_0009.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-01T08:00:00-04:00"
+      "published": "2026-07-01T08:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "5ac709f0e2cfe6c3",
@@ -37,7 +39,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/STKB364_CLAUDE_2_C_96d15c.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-06-30T20:03:55-04:00"
+      "published": "2026-06-30T20:03:55-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "3219a543e860832a",
@@ -56,7 +60,9 @@
         "freshness": 3.0
       },
       "thumbnail": "",
-      "published": "2026-06-30T23:58:15+00:00"
+      "published": "2026-06-30T23:58:15+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "104b926146fc37e8",
@@ -75,7 +81,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/Q0e6ziX4mnw/hqdefault.jpg",
-      "published": "2026-07-01T11:00:02+00:00"
+      "published": "2026-07-01T11:00:02+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "1b0ea94ed44176f1",
@@ -94,7 +102,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/ljHmZxnnnh4/hqdefault.jpg",
-      "published": "2026-07-01T10:00:24+00:00"
+      "published": "2026-07-01T10:00:24+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "5903e5c3a46d627a",
@@ -113,7 +123,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/LVPUqj8cCZg/hqdefault.jpg",
-      "published": "2026-07-01T10:00:38+00:00"
+      "published": "2026-07-01T10:00:38+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "3eda1b870397111e",
@@ -132,7 +144,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://huggingface.co/blog/assets/cerebras-gemma4-voice-ai/thumbnail.png",
-      "published": "Wed, 01 Jul 2026 00:00:00 GMT"
+      "published": "Wed, 01 Jul 2026 00:00:00 GMT",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "47df12d7d00199af",
@@ -151,7 +165,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://wp.technologyreview.com/wp-content/uploads/2026/06/260626_LLMhallucinations.jpg?resize=1200,600",
-      "published": "Wed, 01 Jul 2026 14:35:16 +0000"
+      "published": "Wed, 01 Jul 2026 14:35:16 +0000",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "1146e0f8b3f50264",
@@ -170,7 +186,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://cdn.arstechnica.net/wp-content/uploads/2026/07/GettyImages-2280258777-1024x648.jpg",
-      "published": "Wed, 01 Jul 2026 16:44:18 +0000"
+      "published": "Wed, 01 Jul 2026 16:44:18 +0000",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "58630895cb198c66",
@@ -189,7 +207,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://image.itmedia.co.jp/news/articles/2607/02/cover_news017.jpg",
-      "published": "Thu, 02 Jul 2026 07:00:00 +0900"
+      "published": "Thu, 02 Jul 2026 07:00:00 +0900",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

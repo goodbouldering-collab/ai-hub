@@ -159,18 +159,19 @@
     <a class="admin-home-link" href="/" aria-label="トップページへ戻る" title="トップページ">
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 10.8 12 4l8 6.8V20a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1v-9.2Z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg>
     </a>
-    <nav class="site-nav admin-slide-nav" aria-label="管理固定メニュー">
-      <div class="admin-scroll-menu" aria-label="公開ページと同じメニュー">
-        <a class="admin-scroll-link" href="/">ホーム</a>
-        <a class="admin-scroll-link" href="/#packages">受講プラン</a>
-        <a class="admin-scroll-link" href="/#lectures">資料</a>
-        <a class="admin-scroll-link" href="/#flow">流れ</a>
-        <a class="admin-scroll-link" href="/#web-showcase">HP制作</a>
-        <a class="admin-scroll-link" href="/blog/index.html">ブログ</a>
-        <a class="admin-scroll-link" href="/watch/index.html">AI Watch</a>
-        <a class="admin-scroll-link" href="/#faq">FAQ</a>
-        <a class="admin-scroll-link" href="/#speaker">講師紹介</a>
-        <a class="admin-scroll-link" href="/#contact">個別相談</a>
+    <nav class="site-nav admin-slide-nav" aria-label="管理ページメニュー">
+      <div class="admin-scroll-menu" aria-label="管理作業順メニュー">
+        <a class="admin-scroll-link" href="/admin">管理ホーム</a>
+        <a class="admin-scroll-link" href="/admin#panel-status">接続確認</a>
+        <a class="admin-scroll-link" href="/admin#panel-blog-parent">ブログ設定</a>
+        <a class="admin-scroll-link" href="/admin#panel-blog-list">記事一覧</a>
+        <a class="admin-scroll-link" href="/admin#theme">記事生成</a>
+        <a class="admin-scroll-link" href="/admin#panel-edit">編集・公開</a>
+        <a class="admin-scroll-link" href="/admin/sns-post">SNS投稿</a>
+        <a class="admin-scroll-link" href="/admin/gubble-sns">SNS分析</a>
+        <a class="admin-scroll-link" href="/admin/chat">AI相談</a>
+        <a class="admin-scroll-link" href="/ops">OPS</a>
+        <a class="admin-scroll-link" href="/">公開ホーム</a>
         <a class="admin-scroll-link logout-scroll-link" href="/admin/logout">ログアウト</a>
       </div>
     </nav>
@@ -179,26 +180,27 @@
     </button>
   </div>
   <div class="mobile-nav" id="mobile-nav">
-    <div class="mobile-nav-panel">
-      <div class="mobile-nav-primary">
-        <a class="login-btn-mobile" href="/#contact">個別相談</a>
-        <a class="mobile-main-link" href="/#packages">受講プラン</a>
+    <div class="mobile-nav-panel mobile-nav-panel--admin">
+      <span class="mobile-nav-label">管理の作業順</span>
+      <div class="mobile-link-list">
+        <a href="/admin"><span class="mobile-link-title">管理ホーム</span><small>管理トップへ戻る</small></a>
+        <a href="/admin#panel-status"><span class="mobile-link-title">接続確認</span><small>APIと環境変数を確認</small></a>
+        <a href="/admin#panel-blog-parent"><span class="mobile-link-title">ブログ設定</span><small>親グループIDを保存</small></a>
+        <a href="/admin#panel-blog-list"><span class="mobile-link-title">記事一覧</span><small>既存記事を確認</small></a>
+        <a href="/admin#theme"><span class="mobile-link-title">記事生成</span><small>テーマから下書き作成</small></a>
+        <a href="/admin#panel-edit"><span class="mobile-link-title">編集・公開</span><small>本文、画像、表示状態を調整</small></a>
       </div>
-      <span class="mobile-nav-label">ホーム</span>
-      <div class="mobile-link-grid">
-        <a href="/">ホーム</a>
-        <a href="/#packages">AI講習</a>
-        <a href="/programming-map.html">AIコーディング</a>
-        <a href="/#lectures">受講資料</a>
-        <a href="/#faq">FAQ</a>
-        <a href="/#speaker">講師紹介</a>
+      <span class="mobile-nav-label">別の管理ページ</span>
+      <div class="mobile-link-list">
+        <a href="/admin/sns-post"><span class="mobile-link-title">SNS投稿</span><small>X・Threads投稿を準備</small></a>
+        <a href="/admin/gubble-sns"><span class="mobile-link-title">SNS分析</span><small>反応と改善を見る</small></a>
+        <a href="/admin/chat"><span class="mobile-link-title">AI相談</span><small>運用メモを相談する</small></a>
+        <a href="/ops"><span class="mobile-link-title">OPS</span><small>運用資料とプロンプト</small></a>
       </div>
-      <span class="mobile-nav-label">制作・運用</span>
-      <div class="mobile-link-grid">
-        <a href="/#web-showcase">HP制作</a>
-        <a href="/blog/index.html">ブログ</a>
-        <a href="/watch/index.html">AI Watch</a>
-        <a href="/admin/logout">ログアウト</a>
+      <span class="mobile-nav-label">移動</span>
+      <div class="mobile-link-list">
+        <a href="/"><span class="mobile-link-title">公開ホーム</span><small>利用者向けページを見る</small></a>
+        <a class="mobile-admin-link" href="/admin/logout"><span class="mobile-link-title">ログアウト</span><small>管理画面から退出</small></a>
       </div>
     </div>
   </div>

@@ -2041,7 +2041,7 @@ body.admin-page .admin-slide-nav,
 body.ops-page .admin-slide-nav {
   flex: 1 1 auto !important;
   min-width: 0 !important;
-  max-width: 760px !important;
+  max-width: 940px !important;
   height: 46px !important;
   padding: 4px !important;
   overflow: hidden !important;
@@ -2246,5 +2246,113 @@ body.ops-page .mobile-nav {
     font-size: 12px !important;
     font-weight: 800 !important;
     line-height: 1.2 !important;
+  }
+}
+
+/* ---- Admin mobile menu: work-order right rail, 2026-07-01 ---- */
+@media (max-width: 900px) {
+  body.admin-page .mobile-toggle,
+  body.ops-page .mobile-toggle {
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: #122033 !important;
+  }
+
+  body.admin-page .mobile-toggle:hover,
+  body.admin-page .mobile-toggle:focus-visible,
+  body.ops-page .mobile-toggle:hover,
+  body.ops-page .mobile-toggle:focus-visible {
+    background: transparent !important;
+    color: #0F5F78 !important;
+    outline: none !important;
+  }
+
+  body.admin-page .mobile-nav-panel--admin,
+  body.ops-page .mobile-nav-panel--admin,
+  body.admin-page .mobile-nav-panel,
+  body.ops-page .mobile-nav-panel {
+    width: min(100%, 680px) !important;
+    gap: 4px !important;
+    justify-items: stretch !important;
+  }
+
+  body.admin-page .mobile-nav-primary,
+  body.admin-page .mobile-link-grid,
+  body.ops-page .mobile-nav-primary,
+  body.ops-page .mobile-link-grid {
+    display: none !important;
+  }
+
+  body.admin-page .mobile-link-list,
+  body.ops-page .mobile-link-list {
+    display: grid !important;
+    gap: 0 !important;
+  }
+
+  body.admin-page .mobile-link-list a,
+  body.admin-page .mobile-nav .mobile-link-list a,
+  body.admin-page .mobile-nav .mobile-admin-link,
+  body.ops-page .mobile-link-list a,
+  body.ops-page .mobile-nav .mobile-link-list a,
+  body.ops-page .mobile-nav .mobile-admin-link {
+    min-height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-end !important;
+    justify-content: center !important;
+    gap: 2px !important;
+    padding: 11px 2px 11px 16px !important;
+    border: 0 !important;
+    border-bottom: 1px solid rgba(18,32,51,.10) !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: #122033 !important;
+    text-align: right !important;
+    text-decoration: none !important;
+  }
+
+  body.admin-page .mobile-link-list a:hover,
+  body.admin-page .mobile-link-list a:focus-visible,
+  body.admin-page .mobile-nav .mobile-admin-link:hover,
+  body.admin-page .mobile-nav .mobile-admin-link:focus-visible,
+  body.ops-page .mobile-link-list a:hover,
+  body.ops-page .mobile-link-list a:focus-visible,
+  body.ops-page .mobile-nav .mobile-admin-link:hover,
+  body.ops-page .mobile-nav .mobile-admin-link:focus-visible {
+    background: #F7FBFC !important;
+    color: #0F5F78 !important;
+    outline: none !important;
+  }
+
+  body.admin-page .mobile-link-title,
+  body.ops-page .mobile-link-title {
+    display: block !important;
+    font-size: 15px !important;
+    font-weight: 900 !important;
+    line-height: 1.2 !important;
+  }
+
+  body.admin-page .mobile-link-list small,
+  body.ops-page .mobile-link-list small {
+    display: block !important;
+    color: #64748b !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    line-height: 1.35 !important;
+  }
+
+  body.admin-page .mobile-nav-label,
+  body.ops-page .mobile-nav-label {
+    padding: 12px 2px 4px !important;
+    color: #0F5F78 !important;
+    font-size: 11px !important;
+    font-weight: 900 !important;
+    letter-spacing: .10em !important;
+    line-height: 1.2 !important;
+    text-align: right !important;
+    text-transform: uppercase !important;
   }
 }

@@ -143,10 +143,12 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
     # 詳細な章移動は各ページ内の目次レールへ分離し、ヘッダーを1段に保つ。
     pmap_cls = " nav-current" if current_id == "pmap" else ""
     parts.append(f"<a class='nav-link nav-essential' href='{safe_home}'>ホーム</a>")
-    parts.append("<a class='nav-link nav-essential' href='/#packages'>受講プラン</a>")
-    parts.append("<a class='nav-link nav-essential' href='/#lectures'>資料</a>")
+    parts.append("<a class='nav-link nav-essential' href='/#start'>入口</a>")
+    parts.append("<a class='nav-link nav-essential' href='/#packages'>講習</a>")
+    parts.append("<a class='nav-link nav-essential' href='/#web-showcase'>制作</a>")
     parts.append("<a class='nav-link nav-essential' href='/#flow'>流れ</a>")
-    parts.append(f"<a class='nav-link' href='{admin_href}' style='color:var(--muted);'>🔐 管理</a>")
+    parts.append("<a class='nav-link nav-essential' href='/#lectures'>資料</a>")
+    parts.append(f"<a class='nav-link' href='{admin_href}' style='color:var(--muted);'>管理</a>")
     parts.append("</nav>")
     parts.append(
         "<a class='nav-cta' href='/#contact'>個別相談</a>"
@@ -158,21 +160,24 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
         "<svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg>"
         "</button>"
         "<div class='mobile-nav generated-mobile-nav' id='mobile-nav'>"
-        "<div class='mobile-nav-panel'>"
-        "<div class='mobile-nav-primary'>"
-        "<a class='login-btn-mobile' href='/#contact'>個別相談</a>"
-        "<a class='mobile-main-link' href='/#packages'>受講プラン</a>"
+        "<div class='mobile-nav-panel mobile-nav-panel--public'>"
+        "<span class='mobile-nav-label'>公開ページの流れ</span>"
+        "<div class='mobile-link-list'>"
+        "<a href='/'><span class='mobile-link-title'>ホーム</span><small>最初に戻る</small></a>"
+        "<a href='/#start'><span class='mobile-link-title'>入口</span><small>悩みから選ぶ</small></a>"
+        "<a href='/#packages'><span class='mobile-link-title'>講習</span><small>AI講習を選ぶ</small></a>"
+        "<a href='/#web-showcase'><span class='mobile-link-title'>制作</span><small>HP制作と運用を見る</small></a>"
+        "<a href='/#flow'><span class='mobile-link-title'>流れ</span><small>相談から公開まで</small></a>"
+        "<a href='/#growth'><span class='mobile-link-title'>改善</span><small>SNSと検索を育てる</small></a>"
+        "<a href='/blog/index.html'><span class='mobile-link-title'>ブログ</span><small>実践知を読む</small></a>"
+        "<a href='/#lectures'><span class='mobile-link-title'>資料</span><small>復習と手順を見る</small></a>"
+        "<a href='/#speaker'><span class='mobile-link-title'>講師</span><small>誰が支援するか</small></a>"
+        "<a href='/#faq'><span class='mobile-link-title'>FAQ</span><small>不安を先に解消</small></a>"
+        "<a href='/#contact'><span class='mobile-link-title'>相談</span><small>予約へ進む</small></a>"
         "</div>"
-        "<span class='mobile-nav-label'>ホーム</span>"
-        "<div class='mobile-link-grid'>"
-        "<a href='/'>ホーム</a>"
-        f"<a class='{'is-current' if current_id == 'pmap' else ''}' href='/programming-map.html'>AIコーディング</a>"
-        "<a href='/#lectures'>資料</a>"
-        "<a href='/#speaker'>講師紹介</a>"
-        "<a href='/#faq'>FAQ</a>"
-        "<a href='/blog/index.html'>ブログ</a>"
-        "<a href='/watch/index.html'>AI Watch</a>"
-        "<a class='mobile-admin-link' href='/admin'>管理画面</a>"
+        "<span class='mobile-nav-label'>運用者</span>"
+        "<div class='mobile-link-list'>"
+        "<a class='mobile-admin-link' href='/admin'><span class='mobile-link-title'>管理画面</span><small>記事・運用を触る</small></a>"
         "</div>"
         "</div>"
         "</div>"
@@ -711,6 +716,87 @@ nav.top-nav .nav-current {
   .mobile-nav {
     top: 60px;
     max-height: calc(100dvh - 60px);
+  }
+}
+.mobile-link-list {
+  display: grid;
+  gap: 0;
+}
+@media (max-width: 900px) {
+  .mobile-toggle,
+  .generated-mobile-toggle {
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: #122033 !important;
+  }
+  .mobile-toggle:hover,
+  .mobile-toggle:focus-visible,
+  .generated-mobile-toggle:hover,
+  .generated-mobile-toggle:focus-visible {
+    background: transparent !important;
+    color: #0F5F78 !important;
+    outline: none !important;
+  }
+  .mobile-nav-panel--public,
+  .mobile-nav-panel {
+    width: min(100%, 680px);
+    gap: 4px;
+    justify-items: stretch;
+  }
+  .mobile-nav-primary {
+    display: none !important;
+  }
+  .mobile-link-list a,
+  .mobile-nav .mobile-link-list a,
+  .mobile-nav .mobile-admin-link {
+    min-height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-end !important;
+    justify-content: center !important;
+    gap: 2px !important;
+    padding: 11px 2px 11px 16px !important;
+    border: 0 !important;
+    border-bottom: 1px solid rgba(18,32,51,.10) !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: #122033 !important;
+    text-align: right !important;
+    text-decoration: none !important;
+  }
+  .mobile-link-list a:hover,
+  .mobile-link-list a:focus-visible,
+  .mobile-nav .mobile-admin-link:hover,
+  .mobile-nav .mobile-admin-link:focus-visible {
+    background: #F7FBFC !important;
+    color: #0F5F78 !important;
+    outline: none !important;
+  }
+  .mobile-link-title {
+    display: block;
+    font-size: 15px;
+    font-weight: 900;
+    line-height: 1.2;
+  }
+  .mobile-link-list small {
+    display: block;
+    color: #64748b;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+  .mobile-nav .mobile-nav-label {
+    padding: 12px 2px 4px !important;
+    color: #0F5F78 !important;
+    font-size: 11px !important;
+    font-weight: 900 !important;
+    letter-spacing: .10em !important;
+    line-height: 1.2 !important;
+    text-align: right !important;
+    text-transform: uppercase !important;
   }
 }
 .run-status.running { color:#b45309; }

@@ -304,7 +304,7 @@ nav.top-nav .nav-current {
 .mobile-nav-primary,
 .mobile-link-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: 8px;
 }
 .mobile-nav a,
@@ -370,6 +370,87 @@ nav.top-nav .nav-current {
   .mobile-nav {
     top: 60px;
     max-height: calc(100dvh - 60px);
+  }
+}
+.mobile-link-list {
+  display: grid;
+  gap: 0;
+}
+@media (max-width: 900px) {
+  .mobile-toggle,
+  .generated-mobile-toggle {
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: #122033 !important;
+  }
+  .mobile-toggle:hover,
+  .mobile-toggle:focus-visible,
+  .generated-mobile-toggle:hover,
+  .generated-mobile-toggle:focus-visible {
+    background: transparent !important;
+    color: #0F5F78 !important;
+    outline: none !important;
+  }
+  .mobile-nav-panel--public,
+  .mobile-nav-panel {
+    width: min(100%, 680px);
+    gap: 4px;
+    justify-items: stretch;
+  }
+  .mobile-nav-primary {
+    display: none !important;
+  }
+  .mobile-link-list a,
+  .mobile-nav .mobile-link-list a,
+  .mobile-nav .mobile-admin-link {
+    min-height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-end !important;
+    justify-content: center !important;
+    gap: 2px !important;
+    padding: 11px 2px 11px 16px !important;
+    border: 0 !important;
+    border-bottom: 1px solid rgba(18,32,51,.10) !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: #122033 !important;
+    text-align: right !important;
+    text-decoration: none !important;
+  }
+  .mobile-link-list a:hover,
+  .mobile-link-list a:focus-visible,
+  .mobile-nav .mobile-admin-link:hover,
+  .mobile-nav .mobile-admin-link:focus-visible {
+    background: #F7FBFC !important;
+    color: #0F5F78 !important;
+    outline: none !important;
+  }
+  .mobile-link-title {
+    display: block;
+    font-size: 15px;
+    font-weight: 900;
+    line-height: 1.2;
+  }
+  .mobile-link-list small {
+    display: block;
+    color: #64748b;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+  .mobile-nav .mobile-nav-label {
+    padding: 12px 2px 4px !important;
+    color: #0F5F78 !important;
+    font-size: 11px !important;
+    font-weight: 900 !important;
+    letter-spacing: .10em !important;
+    line-height: 1.2 !important;
+    text-align: right !important;
+    text-transform: uppercase !important;
   }
 }
 .run-status.running { color:#b45309; }
@@ -3458,11 +3539,34 @@ footer.site-footer {
   box-shadow: var(--shadow-card-hover);
 }
 .pf-card .pf-thumb {
+  position: relative;
   display: block; margin: -14px -16px 12px; /* カード内パディングを打ち消して全幅バナーに */
   border-radius: var(--radius-sm) var(--radius-sm) 0 0; overflow: hidden;
   aspect-ratio: 16 / 9; background: var(--bg-elev);
 }
-.pf-card .pf-thumb svg, .pf-card .pf-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.pf-card .pf-thumb svg, .pf-card .pf-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.pf-card .pf-thumb.is-site-shot { box-shadow: inset 0 1px 0 rgba(255,255,255,.82); }
+.pf-card .pf-thumb.is-site-shot::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 2;
+  height: 18px;
+  background:
+    radial-gradient(circle at 10px 9px, #EF6864 0 3px, transparent 3.4px),
+    radial-gradient(circle at 22px 9px, #F5B445 0 3px, transparent 3.4px),
+    linear-gradient(180deg, rgba(255,255,255,.94), rgba(244,248,249,.76));
+  border-bottom: 1px solid rgba(18,32,51,.10);
+  pointer-events: none;
+}
+.pf-card .pf-thumb.is-site-shot::after {
+  content: "";
+  position: absolute;
+  inset: 18px 0 0;
+  z-index: 2;
+  background: linear-gradient(180deg, transparent 62%, rgba(7,20,38,.16));
+  pointer-events: none;
+}
 .pf-card .pf-title { font-weight: 800; font-size: 15px; color: var(--text); }
 .pf-card .pf-host { font-size: 11.5px; color: var(--muted); margin-top: 2px; word-break: break-all; }
 .pf-card .pf-sum { font-size: 13px; color: var(--text-soft); line-height: 1.55; margin: 8px 0 10px; flex: 1; }
@@ -7066,7 +7170,7 @@ button:focus-visible {
 .mobile-nav-primary,
 .mobile-link-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: 8px;
 }
 
@@ -10043,6 +10147,324 @@ section.block::before {
     border-radius: 14px;
   }
 }
+
+
+/* ---- Bright polish pass: cleaner white background and lighter cards, 2026-06-30 ---- */
+:root {
+  --bright-ink: #071426;
+  --bright-text: #182437;
+  --bright-muted: #566579;
+  --bright-line: rgba(7,20,38,.105);
+  --bright-line-soft: rgba(7,20,38,.065);
+  --bright-surface: rgba(255,255,255,.985);
+  --bright-surface-soft: rgba(249,253,255,.96);
+  --bright-cyan: #00A5C8;
+  --bright-teal: #0F8F72;
+  --bright-lime: #A6D83F;
+  --bright-shadow: 0 16px 40px rgba(7,20,38,.07), inset 0 1px 0 rgba(255,255,255,.98);
+  --bright-shadow-hover: 0 22px 54px rgba(7,20,38,.10), inset 0 1px 0 rgba(255,255,255,.98);
+}
+
+html,
+body {
+  background: #FFFFFF !important;
+  color: var(--bright-text) !important;
+}
+
+body {
+  background:
+    linear-gradient(180deg, #FFFFFF 0%, #FBFEFF 36%, #FFFFFF 74%) !important;
+  background-size: auto !important;
+}
+
+body::before {
+  opacity: .42 !important;
+  background-image:
+    linear-gradient(90deg, rgba(7,20,38,.014) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(7,20,38,.010) 1px, transparent 1px) !important;
+  background-size: 112px 112px, 112px 112px !important;
+}
+
+.site-header,
+.site-header.scrolled,
+header.site-header,
+header.site-header.scrolled,
+.sticky-cta {
+  border-color: var(--bright-line-soft) !important;
+  background: rgba(255,255,255,.975) !important;
+  box-shadow: 0 12px 32px rgba(7,20,38,.055) !important;
+}
+
+.hero.hero-refined {
+  min-height: calc(100svh - 34px) !important;
+}
+
+.hero.hero-refined::before {
+  background:
+    linear-gradient(112deg, #FFFFFF 0%, rgba(255,255,255,.985) 54%, rgba(244,252,253,.94) 100%) !important;
+}
+
+.hero.hero-refined::after {
+  opacity: .10 !important;
+}
+
+.hero-refined .hero-bg-layer img {
+  opacity: .16 !important;
+  filter: saturate(.82) contrast(.92) brightness(1.14) !important;
+}
+
+.hero-refined .fusion-logo-large .hub,
+.hero-refined .hero-route-card,
+.hero-decision-panel,
+.decision-output-card,
+.ai-course-video-feature,
+.blog-feature,
+.web-showcase,
+.choice-lens,
+.ai-impact-board,
+.lesson-bridge-shell,
+.business-compass-copy,
+.agent-review-panel,
+.business-compass-card,
+.speaker-modern,
+.pkg-card,
+.lecture-card,
+.pf-card,
+.biz-card,
+.service-card,
+.voice-card,
+.faq-item,
+.growth-panel,
+.flow-step,
+.blog-card {
+  border-color: var(--bright-line) !important;
+  background: var(--bright-surface) !important;
+  box-shadow: var(--bright-shadow) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.hero-refined .hero-route-card:hover,
+.pkg-card:hover,
+.lecture-card:hover,
+.pf-card:hover,
+.biz-card:hover,
+.service-card:hover,
+.blog-card:hover {
+  border-color: rgba(0,165,200,.20) !important;
+  box-shadow: var(--bright-shadow-hover) !important;
+}
+
+section.block {
+  padding-top: clamp(62px, 7vw, 96px) !important;
+  padding-bottom: clamp(62px, 7vw, 96px) !important;
+}
+
+section.block::before {
+  top: 22px !important;
+  bottom: 22px !important;
+  border-color: rgba(7,20,38,.055) !important;
+  background:
+    linear-gradient(120deg, color-mix(in srgb, var(--section-accent, var(--bright-cyan)) 5%, transparent), transparent 38%),
+    linear-gradient(180deg, rgba(255,255,255,.94), rgba(250,253,255,.78)) !important;
+  box-shadow: 0 18px 52px rgba(7,20,38,.035) !important;
+}
+
+#packages::before {
+  background:
+    linear-gradient(120deg, rgba(0,165,200,.055), transparent 34%),
+    linear-gradient(180deg, rgba(255,255,255,.97), rgba(248,253,255,.86)) !important;
+}
+
+.section-heading {
+  color: color-mix(in srgb, var(--section-accent, var(--bright-cyan)) 76%, var(--bright-ink)) !important;
+}
+
+.section-title {
+  color: var(--bright-ink) !important;
+}
+
+.section-sub,
+.pkg-desc,
+.hero-refined .lead,
+.hero-flow-card span,
+.speaker-modern-lead,
+.blog-card p {
+  color: var(--bright-muted) !important;
+}
+
+.hero-decision-panel {
+  border-radius: 16px !important;
+  background:
+    linear-gradient(145deg, #FFFFFF, #F8FDFF) !important;
+}
+
+.decision-output-card {
+  background: #071426 !important;
+  box-shadow: none !important;
+}
+
+.hero-flow-card {
+  border-bottom-color: rgba(7,20,38,.075) !important;
+}
+
+.packages-grid {
+  gap: clamp(16px, 2.4vw, 26px) !important;
+  margin-top: 22px !important;
+}
+
+.pkg-card {
+  border-radius: 12px !important;
+  overflow: hidden !important;
+}
+
+.pkg-card::before {
+  opacity: .22 !important;
+  background: linear-gradient(90deg, rgba(0,165,200,.055), transparent 48%, rgba(166,216,63,.045)) !important;
+}
+
+.pkg-card::after,
+.hero-route-card::before,
+.path-card::before,
+.lecture-card::after,
+.pf-card::after,
+.blog-card::after {
+  background: linear-gradient(90deg, var(--ai-compass-red, #E60012), var(--bright-cyan), var(--bright-lime)) !important;
+}
+
+.pkg-cat,
+.pkg-level,
+.packages-note,
+.decision-panel-head,
+.hero-refined .fusion-logo-large .hub {
+  border-color: rgba(0,165,200,.16) !important;
+  background: rgba(244,252,253,.92) !important;
+}
+
+.pkg-price {
+  background: linear-gradient(90deg, #071426, #007A94) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+}
+
+.packages-note {
+  color: var(--bright-muted) !important;
+  box-shadow: none !important;
+}
+
+.ai-course-video-crop {
+  border-color: var(--bright-line) !important;
+  box-shadow: 0 16px 42px rgba(7,20,38,.08) !important;
+}
+
+.sticky-cta {
+  color: var(--bright-ink) !important;
+  box-shadow: 0 -10px 28px rgba(7,20,38,.07) !important;
+}
+
+@media (max-width: 560px) {
+  body::before {
+    background-size: 88px 88px, 88px 88px !important;
+  }
+
+  section.block::before {
+    top: 14px !important;
+    bottom: 14px !important;
+  }
+}
+
+
+/* ---- Public mobile menu: section-order, borderless right rail, 2026-07-01 ---- */
+@media (max-width: 900px) {
+  .mobile-toggle,
+  .generated-mobile-toggle {
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: #122033 !important;
+  }
+
+  .mobile-toggle:hover,
+  .mobile-toggle:focus-visible,
+  .generated-mobile-toggle:hover,
+  .generated-mobile-toggle:focus-visible {
+    background: transparent !important;
+    color: #0F5F78 !important;
+    outline: none !important;
+  }
+
+  .mobile-nav-panel--public,
+  .mobile-nav-panel {
+    width: min(100%, 680px) !important;
+    gap: 4px !important;
+    justify-items: stretch !important;
+  }
+
+  .mobile-nav-primary {
+    display: none !important;
+  }
+
+  .mobile-link-list {
+    display: grid !important;
+    gap: 0 !important;
+  }
+
+  .mobile-link-list a,
+  .mobile-nav .mobile-link-list a,
+  .mobile-nav .mobile-admin-link {
+    min-height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-end !important;
+    justify-content: center !important;
+    gap: 2px !important;
+    padding: 11px 2px 11px 16px !important;
+    border: 0 !important;
+    border-bottom: 1px solid rgba(18,32,51,.10) !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: #122033 !important;
+    text-align: right !important;
+    text-decoration: none !important;
+  }
+
+  .mobile-link-list a:hover,
+  .mobile-link-list a:focus-visible,
+  .mobile-nav .mobile-admin-link:hover,
+  .mobile-nav .mobile-admin-link:focus-visible {
+    background: #F7FBFC !important;
+    color: #0F5F78 !important;
+    outline: none !important;
+  }
+
+  .mobile-link-title {
+    display: block !important;
+    font-size: 15px !important;
+    font-weight: 900 !important;
+    line-height: 1.2 !important;
+  }
+
+  .mobile-link-list small {
+    display: block !important;
+    color: #64748b !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    line-height: 1.35 !important;
+  }
+
+  .mobile-nav .mobile-nav-label {
+    padding: 12px 2px 4px !important;
+    color: #0F5F78 !important;
+    font-size: 11px !important;
+    font-weight: 900 !important;
+    letter-spacing: .10em !important;
+    line-height: 1.2 !important;
+    text-align: right !important;
+    text-transform: uppercase !important;
+  }
+}
 </style></head><body><div class='container'>
 <script>
 (function(){
@@ -10060,7 +10482,7 @@ section.block::before {
   }
 })();
 </script>
-<header class='site-header scrolled' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span><span class='site-logo-by'>滋賀・彦根</span></a><nav class='site-nav top-nav' aria-label='サイトナビ'><a class='nav-link nav-essential' href='/#packages'>受講プラン</a><a class='nav-link nav-essential' href='/#lectures'>資料</a><a class='nav-link nav-essential' href='/#flow'>流れ</a><a class='nav-link' href='/admin' style='color:var(--muted);'>🔐 管理</a></nav><a class='nav-cta' href='/#contact'>個別相談</a></div></header><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'><svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button><div class='mobile-nav generated-mobile-nav' id='mobile-nav'><div class='mobile-nav-panel'><div class='mobile-nav-primary'><a class='login-btn-mobile' href='/#contact'>個別相談</a><a class='mobile-main-link' href='/#packages'>受講プラン</a></div><span class='mobile-nav-label'>公開ページ</span><div class='mobile-link-grid'><a class='' href='/programming-map.html'>AIコーディング</a><a href='/#lectures'>資料</a><a href='/#speaker'>講師紹介</a><a href='/#faq'>FAQ</a><a href='/blog/index.html'>ブログ</a><a href='/watch/index.html'>AI Watch</a><a class='mobile-admin-link' href='/admin'>管理画面</a></div></div></div><script>(function(){var b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav');if(!b||!n)return;function close(){n.classList.remove('open');b.setAttribute('aria-expanded','false');}b.addEventListener('click',function(e){e.stopPropagation();var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});})();</script><header><h1>Codexが開いた、AI活動の最前線</h1><div class='speaker-meta'><span class='role'>ブログ / AIコーディング考察</span><span>📅 2026-06-17</span><span>由井 辰美 / AIハブ</span></div></header><div class='content-wrap'><div class='content-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#ideの力を超えるのではなく-ideの外側まで含める'>IDEの力を超えるのではなく、IDEの外側まで含める</a></li><li><a href='#claude-codeとの差は-思想よりも作業面の広さに出る'>Claude Codeとの差は、思想よりも作業面の広さに出る</a></li><li><a href='#画像も文章もコードも-分けずに成果物へ向かえる'>画像も文章もコードも、分けずに成果物へ向かえる</a></li><li><a href='#モバイルと音声入力が-ai活動の入口を変える'>モバイルと音声入力が、AI活動の入口を変える</a></li><li><a href='#プラグインとスキルの多彩さが-仕事の守備範囲を変える'>プラグインとスキルの多彩さが、仕事の守備範囲を変える</a></li></ol></div><figure>
+<header class='site-header scrolled' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span><span class='site-logo-by'>滋賀・彦根</span></a><nav class='site-nav top-nav' aria-label='サイトナビ'><a class='nav-link nav-essential' href='../index.html'>ホーム</a><a class='nav-link nav-essential' href='/#start'>入口</a><a class='nav-link nav-essential' href='/#packages'>講習</a><a class='nav-link nav-essential' href='/#web-showcase'>制作</a><a class='nav-link nav-essential' href='/#flow'>流れ</a><a class='nav-link nav-essential' href='/#lectures'>資料</a><a class='nav-link' href='/admin' style='color:var(--muted);'>管理</a></nav><a class='nav-cta' href='/#contact'>個別相談</a></div></header><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'><svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button><div class='mobile-nav generated-mobile-nav' id='mobile-nav'><div class='mobile-nav-panel mobile-nav-panel--public'><span class='mobile-nav-label'>公開ページの流れ</span><div class='mobile-link-list'><a href='/'><span class='mobile-link-title'>ホーム</span><small>最初に戻る</small></a><a href='/#start'><span class='mobile-link-title'>入口</span><small>悩みから選ぶ</small></a><a href='/#packages'><span class='mobile-link-title'>講習</span><small>AI講習を選ぶ</small></a><a href='/#web-showcase'><span class='mobile-link-title'>制作</span><small>HP制作と運用を見る</small></a><a href='/#flow'><span class='mobile-link-title'>流れ</span><small>相談から公開まで</small></a><a href='/#growth'><span class='mobile-link-title'>改善</span><small>SNSと検索を育てる</small></a><a href='/blog/index.html'><span class='mobile-link-title'>ブログ</span><small>実践知を読む</small></a><a href='/#lectures'><span class='mobile-link-title'>資料</span><small>復習と手順を見る</small></a><a href='/#speaker'><span class='mobile-link-title'>講師</span><small>誰が支援するか</small></a><a href='/#faq'><span class='mobile-link-title'>FAQ</span><small>不安を先に解消</small></a><a href='/#contact'><span class='mobile-link-title'>相談</span><small>予約へ進む</small></a></div><span class='mobile-nav-label'>運用者</span><div class='mobile-link-list'><a class='mobile-admin-link' href='/admin'><span class='mobile-link-title'>管理画面</span><small>記事・運用を触る</small></a></div></div></div><script>(function(){var b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav');if(!b||!n)return;function close(){n.classList.remove('open');b.setAttribute('aria-expanded','false');}b.addEventListener('click',function(e){e.stopPropagation();var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});})();</script><header><h1>Codexが開いた、AI活動の最前線</h1><div class='speaker-meta'><span class='role'>ブログ / AIコーディング考察</span><span>📅 2026-06-17</span><span>由井 辰美 / AIハブ</span></div></header><div class='content-wrap'><div class='content-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#ideの力を超えるのではなく-ideの外側まで含める'>IDEの力を超えるのではなく、IDEの外側まで含める</a></li><li><a href='#claude-codeとの差は-思想よりも作業面の広さに出る'>Claude Codeとの差は、思想よりも作業面の広さに出る</a></li><li><a href='#画像も文章もコードも-分けずに成果物へ向かえる'>画像も文章もコードも、分けずに成果物へ向かえる</a></li><li><a href='#モバイルと音声入力が-ai活動の入口を変える'>モバイルと音声入力が、AI活動の入口を変える</a></li><li><a href='#プラグインとスキルの多彩さが-仕事の守備範囲を変える'>プラグインとスキルの多彩さが、仕事の守備範囲を変える</a></li></ol></div><figure>
   <img src="/img/blog-codex-ai-world-hero-20260617.png" alt="Codexを中心にコード、レビュー、ブラウザ確認、画像生成、音声入力が統合されたAIワークスペースのイメージ" loading="eager" decoding="async">
   <figcaption>Codexを、単なるコード生成ではなく「AI活動をひとつに集める操作面」として見る。</figcaption>
 </figure>

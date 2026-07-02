@@ -18,7 +18,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-07-02T19:33:12+00:00"
+      "published": "2026-07-02T19:33:12+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "ffda50a5416ae153",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-07-02T18:25:00+00:00"
+      "published": "2026-07-02T18:25:00+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "3747c4a53a8a8a51",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-07-02T17:07:14+00:00"
+      "published": "2026-07-02T17:07:14+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "f1f658a993d7cc38",
@@ -75,7 +81,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/STK201_SAM_ALTMAN_CVIRGINIA2A.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-02T06:23:27-04:00"
+      "published": "2026-07-02T06:23:27-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "a9fd42ba3fa8adeb",
@@ -94,7 +102,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/RQ-iv4Yhv6o/hqdefault.jpg",
-      "published": "2026-07-02T10:00:09+00:00"
+      "published": "2026-07-02T10:00:09+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "b994a3c7192db35f",
@@ -113,7 +123,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/38nIJqrAnjU/hqdefault.jpg",
-      "published": "2026-07-02T10:00:06+00:00"
+      "published": "2026-07-02T10:00:06+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "e0f6e1a4a9a35368",
@@ -132,7 +144,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://wp.technologyreview.com/wp-content/uploads/2026/07/MITTR2026_TP2_1200SocialCover.png?resize=1200,600",
-      "published": "Thu, 02 Jul 2026 15:37:08 +0000"
+      "published": "Thu, 02 Jul 2026 15:37:08 +0000",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "d0181e447994b4d0",
@@ -151,7 +165,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://wp.technologyreview.com/wp-content/uploads/2026/06/Andrew-Melouney.png?resize=1200,600",
-      "published": "Thu, 02 Jul 2026 12:51:44 +0000"
+      "published": "Thu, 02 Jul 2026 12:51:44 +0000",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "f3306546fde96986",
@@ -170,7 +186,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://cdn.arstechnica.net/wp-content/uploads/2026/07/GettyImages-2267710211-1024x648.jpg",
-      "published": "Thu, 02 Jul 2026 15:12:25 +0000"
+      "published": "Thu, 02 Jul 2026 15:12:25 +0000",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "2282690233cdb6d0",
@@ -189,7 +207,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://cdn.arstechnica.net/wp-content/uploads/2026/07/GettyImages-2280413039-1024x648.jpg",
-      "published": "Thu, 02 Jul 2026 14:39:17 +0000"
+      "published": "Thu, 02 Jul 2026 14:39:17 +0000",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

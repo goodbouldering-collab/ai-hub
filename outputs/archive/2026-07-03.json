@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "",
-      "published": "2026-07-03T22:04:31+00:00"
+      "published": "2026-07-03T22:04:31+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "db335a56e4ed1b39",
@@ -37,7 +39,9 @@
         "freshness": 10.0
       },
       "thumbnail": "",
-      "published": "2026-07-03T21:25:52+00:00"
+      "published": "2026-07-03T21:25:52+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "6d5258a53bdee464",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/STKB364_CLAUDE_2_A_3800fc-1.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-03T09:56:52-04:00"
+      "published": "2026-07-03T09:56:52-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "b51d8ed2cafb1086",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/ultrasound_phantom_segmentation-b254a71d083eb5c9.png?quality=90&amp;strip=all&amp;crop=28.441715022566,0,70.316569954868,100",
-      "published": "2026-07-03T07:49:10-04:00"
+      "published": "2026-07-03T07:49:10-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "45d6cd640743187f",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-07-03T18:51:06+00:00"
+      "published": "2026-07-03T18:51:06+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "9b6808a7e8fd0ac5",
@@ -113,7 +123,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-07-03T14:50:50+00:00"
+      "published": "2026-07-03T14:50:50+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "f787552c529cb0c0",
@@ -132,7 +144,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/mtEpPHSBPuo/hqdefault.jpg",
-      "published": "2026-07-03T14:53:12+00:00"
+      "published": "2026-07-03T14:53:12+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "c73cfc1047992217",
@@ -151,7 +165,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/FNchS9fXRVk/hqdefault.jpg",
-      "published": "2026-07-03T13:13:12+00:00"
+      "published": "2026-07-03T13:13:12+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "725ba51264dd2b58",
@@ -170,7 +186,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/-S8E4Nm9Fj4/hqdefault.jpg",
-      "published": "2026-07-03T10:00:28+00:00"
+      "published": "2026-07-03T10:00:28+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "3b0e9f13def0a84a",
@@ -189,7 +207,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/3_SocialShare_gradient.max-1440x810.jpg",
-      "published": "Fri, 03 Jul 2026 14:25:43 +0000"
+      "published": "Fri, 03 Jul 2026 14:25:43 +0000",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>自宅サーバー回線速度 | AI相談 彦根</title>
+  <meta name="description" content="AI Hubの自宅サーバー回線速度を6時間ごとに計測し、ダウンロード、アップロード、応答速度の全履歴を公開しています。">
+  <link rel="canonical" href="https://ai-hub-jp.vercel.app/speed-monitor.html">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f6f8f9;
+      --surface: #ffffff;
+      --surface-soft: #edf5f3;
+      --ink: #142033;
+      --muted: #607083;
+      --line: #d9e2e6;
+      --teal: #19715f;
+      --blue: #245b83;
+      --rust: #c86432;
+      --violet: #5964a8;
+      --danger: #b42318;
+      --shadow: 0 14px 38px rgba(20, 32, 51, .08);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", "Yu Gothic UI", Meiryo, sans-serif;
+      line-height: 1.65;
+    }
+    a { color: inherit; }
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255,255,255,.92);
+      border-bottom: 1px solid rgba(20,32,51,.10);
+      backdrop-filter: blur(14px);
+    }
+    .site-header-inner {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .site-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 900;
+    }
+    .brand-mark {
+      display: inline-grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #1f6e8c, #2c8c78);
+      color: #fff;
+      letter-spacing: 0;
+    }
+    .header-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .header-links a {
+      display: inline-flex;
+      min-height: 36px;
+      align-items: center;
+      border: 1px solid rgba(20,32,51,.10);
+      border-radius: 8px;
+      padding: 0 12px;
+      background: #fff;
+      color: #26364d;
+      font-size: 13px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 34px 0 56px;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(300px, .85fr);
+      gap: 18px;
+      align-items: stretch;
+      margin-bottom: 18px;
+    }
+    .hero-main,
+    .hero-side,
+    .metric,
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+    .hero-main {
+      padding: clamp(24px, 4vw, 44px);
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    h1 {
+      margin: 0;
+      max-width: 780px;
+      font-size: clamp(34px, 6vw, 70px);
+      line-height: 1.02;
+      letter-spacing: 0;
+    }
+    .lead {
+      margin: 18px 0 0;
+      max-width: 680px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 26px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      border-radius: 8px;
+      padding: 0 16px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      font-weight: 850;
+      font-size: 14px;
+      text-decoration: none;
+    }
+    .btn-primary {
+      border-color: transparent;
+      background: linear-gradient(135deg, #1f6e8c, #2c8c78);
+      color: #fff;
+    }
+    .hero-side {
+      padding: 22px;
+      display: grid;
+      align-content: space-between;
+      gap: 18px;
+      background: linear-gradient(180deg, #ffffff 0%, #edf5f3 100%);
+    }
+    .latest-label {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .latest-time {
+      margin: 4px 0 0;
+      font-size: 19px;
+      font-weight: 900;
+    }
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      min-height: 30px;
+      border-radius: 8px;
+      padding: 0 10px;
+      background: rgba(25,113,95,.10);
+      color: var(--teal);
+      font-weight: 900;
+      font-size: 13px;
+    }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 18px 0;
+    }
+    .metric {
+      min-height: 132px;
+      padding: 18px;
+    }
+    .metric span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 850;
+    }
+    .metric strong {
+      display: block;
+      margin-top: 14px;
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1;
+      letter-spacing: 0;
+      overflow-wrap: anywhere;
+    }
+    .metric small {
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .panel {
+      overflow: hidden;
+      margin-top: 14px;
+    }
+    .panel-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-end;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--line);
+      background: var(--surface-soft);
+    }
+    .panel-head h2 {
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: 0;
+    }
+    .panel-head p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .chart-wrap {
+      height: 420px;
+      padding: 18px;
+      background: #fff;
+    }
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      background: #fff;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 860px;
+      font-size: 13px;
+    }
+    th,
+    td {
+      padding: 11px 12px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      white-space: nowrap;
+      vertical-align: top;
+    }
+    th {
+      background: #f8fafb;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+    }
+    td.error-cell {
+      max-width: 460px;
+      white-space: normal;
+      color: #78412f;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    .ok { color: var(--teal); font-weight: 900; }
+    .partial { color: var(--rust); font-weight: 900; }
+    .failed { color: var(--danger); font-weight: 900; }
+    .loading,
+    .error {
+      padding: 28px;
+      color: var(--muted);
+      text-align: center;
+    }
+    footer {
+      margin-top: 26px;
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+    }
+    @media (max-width: 900px) {
+      .site-header-inner,
+      main { width: min(100% - 22px, 1180px); }
+      .hero { grid-template-columns: 1fr; }
+      .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .panel-head { align-items: flex-start; flex-direction: column; }
+      .chart-wrap { height: 340px; }
+    }
+    @media (max-width: 560px) {
+      .site-header-inner { align-items: flex-start; flex-direction: column; padding: 10px 0; }
+      .header-links { width: 100%; }
+      .header-links a { flex: 1 1 auto; }
+      .metrics { grid-template-columns: 1fr; }
+      .hero-main { padding: 24px 18px; }
+      .chart-wrap { height: 300px; padding: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="site-logo" href="/" aria-label="AI相談 彦根 トップへ">
+        <span class="brand-mark">AI</span>
+        <span>AI相談 彦根</span>
+      </a>
+      <nav class="header-links" aria-label="ページ移動">
+        <a href="/">ホーム</a>
+        <a href="/blog/index.html">ブログ</a>
+        <a href="/data/speed-monitor.csv">CSV</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-main">
+        <h1>自宅サーバー回線速度</h1>
+        <p class="lead">AI活用や業務アプリを現場で動かす土台として、実際の通信状態を6時間ごとに記録しています。良い数字だけでなく、失敗や不安定な時間帯も残します。</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#chart">推移を見る</a>
+          <a class="btn" href="/data/speed-monitor.csv">CSVを見る</a>
+        </div>
+      </div>
+      <aside class="hero-side" aria-label="最新更新">
+        <div>
+          <p class="latest-label">最終計測</p>
+          <p class="latest-time" id="latestTime">読み込み中</p>
+        </div>
+        <div>
+          <p class="latest-label">状態</p>
+          <p><span class="status-pill" id="latestStatus">--</span></p>
+        </div>
+        <div>
+          <p class="latest-label">公開データ生成</p>
+          <p class="latest-time" id="generatedAt">--</p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="metrics" aria-label="最新値">
+      <div class="metric"><span>ダウンロード</span><strong id="downloadValue">--</strong><small>Mbps</small></div>
+      <div class="metric"><span>アップロード</span><strong id="uploadValue">--</strong><small>Mbps</small></div>
+      <div class="metric"><span>応答速度</span><strong id="latencyValue">--</strong><small>ms</small></div>
+      <div class="metric"><span>記録数</span><strong id="countValue">--</strong><small>件</small></div>
+    </section>
+
+    <section class="panel" id="chart">
+      <div class="panel-head">
+        <div>
+          <h2>全履歴グラフ</h2>
+          <p>CSVに残したすべての計測行を同じ時間軸で表示します。</p>
+        </div>
+        <p>Download / Upload / Latency</p>
+      </div>
+      <div class="chart-wrap">
+        <canvas id="speedChart" width="1100" height="420" aria-label="回線速度の全履歴グラフ"></canvas>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <h2>計測ログ</h2>
+          <p>失敗行も残し、あとから不安定な時間帯を確認できるようにしています。</p>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>日時</th>
+              <th>Down Mbps</th>
+              <th>Up Mbps</th>
+              <th>Latency ms</th>
+              <th>Status</th>
+              <th>Error</th>
+            </tr>
+          </thead>
+          <tbody id="logRows">
+            <tr><td colspan="6" class="loading">データを読み込み中です。</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer>AI相談 彦根 / 自宅サーバー回線速度</footer>
+
+  <script>
+    const dataUrl = '/data/speed-monitor.json';
+    const fmt = (value, digits = 2) => {
+      const num = Number(value);
+      if (!Number.isFinite(num)) return '--';
+      return num.toFixed(digits).replace(/\.0+$/, '').replace(/(\.\d*[1-9])0+$/, '$1');
+    };
+    const setText = (id, value) => {
+      const node = document.getElementById(id);
+      if (node) node.textContent = value;
+    };
+    const statusClass = (status) => status === 'ok' ? 'ok' : status === 'partial' ? 'partial' : 'failed';
+
+    function normalizeRows(rows) {
+      return (rows || []).map((row) => ({
+        ...row,
+        download_mbps: row.download_mbps === null || row.download_mbps === '' ? null : Number(row.download_mbps),
+        upload_mbps: row.upload_mbps === null || row.upload_mbps === '' ? null : Number(row.upload_mbps),
+        latency_ms: row.latency_ms === null || row.latency_ms === '' ? null : Number(row.latency_ms)
+      }));
+    }
+
+    function renderSummary(payload, rows) {
+      const latest = (payload.summary && (payload.summary.latest_with_metrics || payload.summary.latest)) || rows[rows.length - 1];
+      setText('generatedAt', payload.generated_at_local || '--');
+      setText('countValue', String(rows.length));
+      if (!latest) return;
+      setText('latestTime', latest.local_time || latest.timestamp_utc || '--');
+      setText('latestStatus', latest.status || '--');
+      const statusNode = document.getElementById('latestStatus');
+      statusNode.className = `status-pill ${statusClass(latest.status)}`;
+      setText('downloadValue', fmt(latest.download_mbps));
+      setText('uploadValue', fmt(latest.upload_mbps));
+      setText('latencyValue', fmt(latest.latency_ms, 1));
+    }
+
+    function renderTable(rows) {
+      const tbody = document.getElementById('logRows');
+      if (!rows.length) {
+        tbody.innerHTML = '<tr><td colspan="6" class="loading">まだ記録がありません。</td></tr>';
+        return;
+      }
+      tbody.innerHTML = rows.slice().reverse().map((row) => `
+        <tr>
+          <td>${row.local_time || ''}</td>
+          <td>${fmt(row.download_mbps)}</td>
+          <td>${fmt(row.upload_mbps)}</td>
+          <td>${fmt(row.latency_ms, 1)}</td>
+          <td class="${statusClass(row.status)}">${row.status || ''}</td>
+          <td class="error-cell">${row.error || ''}</td>
+        </tr>
+      `).join('');
+    }
+
+    function drawChart(rows) {
+      const canvas = document.getElementById('speedChart');
+      const ctx = canvas.getContext('2d');
+      const rect = canvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = Math.max(720, Math.floor(rect.width * dpr));
+      canvas.height = Math.max(280, Math.floor(rect.height * dpr));
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const width = rect.width;
+      const height = rect.height;
+      ctx.clearRect(0, 0, width, height);
+
+      const pad = { top: 24, right: 28, bottom: 44, left: 54 };
+      const plotW = width - pad.left - pad.right;
+      const plotH = height - pad.top - pad.bottom;
+      const speeds = rows.flatMap((row) => [row.download_mbps, row.upload_mbps]).filter(Number.isFinite);
+      const latencies = rows.map((row) => row.latency_ms).filter(Number.isFinite);
+      const maxSpeed = Math.max(10, ...speeds);
+      const maxLatency = Math.max(50, ...latencies);
+      const xFor = (i) => pad.left + (rows.length <= 1 ? plotW : (plotW * i) / (rows.length - 1));
+      const ySpeed = (value) => pad.top + plotH - (Math.max(0, value) / maxSpeed) * plotH;
+      const yLatency = (value) => pad.top + plotH - (Math.max(0, value) / maxLatency) * plotH;
+
+      ctx.strokeStyle = '#d9e2e6';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      for (let i = 0; i <= 4; i += 1) {
+        const y = pad.top + (plotH * i) / 4;
+        ctx.moveTo(pad.left, y);
+        ctx.lineTo(width - pad.right, y);
+      }
+      ctx.stroke();
+
+      ctx.fillStyle = '#607083';
+      ctx.font = '12px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+      ctx.fillText(`${Math.ceil(maxSpeed)} Mbps`, 8, pad.top + 4);
+      ctx.fillText(`${Math.ceil(maxLatency)} ms`, width - 76, pad.top + 4);
+      ctx.fillText('0', 34, pad.top + plotH + 4);
+
+      function drawSeries(field, color, yFunc) {
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        let started = false;
+        rows.forEach((row, index) => {
+          const value = row[field];
+          if (!Number.isFinite(value)) {
+            started = false;
+            return;
+          }
+          const x = xFor(index);
+          const y = yFunc(value);
+          if (!started) {
+            ctx.moveTo(x, y);
+            started = true;
+          } else {
+            ctx.lineTo(x, y);
+          }
+        });
+        ctx.stroke();
+      }
+
+      if (!rows.length) {
+        ctx.fillStyle = '#607083';
+        ctx.textAlign = 'center';
+        ctx.fillText('初回公開後にグラフを表示します。', width / 2, height / 2);
+        ctx.textAlign = 'left';
+        return;
+      }
+
+      drawSeries('download_mbps', '#19715f', ySpeed);
+      drawSeries('upload_mbps', '#c86432', ySpeed);
+      drawSeries('latency_ms', '#5964a8', yLatency);
+
+      const labels = [
+        ['Download', '#19715f'],
+        ['Upload', '#c86432'],
+        ['Latency', '#5964a8']
+      ];
+      labels.forEach(([label, color], index) => {
+        const x = pad.left + index * 104;
+        const y = height - 17;
+        ctx.fillStyle = color;
+        ctx.fillRect(x, y - 8, 20, 3);
+        ctx.fillStyle = '#142033';
+        ctx.fillText(label, x + 28, y - 5);
+      });
+    }
+
+    let cachedRows = [];
+    fetch(dataUrl, { cache: 'no-store' })
+      .then((response) => {
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        return response.json();
+      })
+      .then((payload) => {
+        cachedRows = normalizeRows(payload.rows);
+        renderSummary(payload, cachedRows);
+        renderTable(cachedRows);
+        drawChart(cachedRows);
+      })
+      .catch((error) => {
+        document.getElementById('logRows').innerHTML = `<tr><td colspan="6" class="error">速度データを読み込めませんでした: ${error.message}</td></tr>`;
+      });
+    window.addEventListener('resize', () => drawChart(cachedRows));
+  </script>
+</body>
+</html>

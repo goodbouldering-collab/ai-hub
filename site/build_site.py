@@ -3217,7 +3217,7 @@ def _patch_programming_map_nav(pmap_file: Path) -> None:
 
 
 def build_sitemap_and_robots() -> None:
-    """DIST 内の index.html / speaker.html / programming-map.html / lectures/*.html / watch/*.html を
+    """DIST 内の index.html / speaker.html / programming-map.html / speed-monitor.html / lectures/*.html を
     集めて sitemap.xml と robots.txt を生成。"""
     urls: list[tuple[str, str, float]] = []  # (loc, lastmod, priority)
     today = datetime.now().strftime("%Y-%m-%d")
@@ -3232,6 +3232,7 @@ def build_sitemap_and_robots() -> None:
     add("index.html", 1.0)
     add("speaker.html", 0.9)
     add("programming-map.html", 0.8)
+    add("speed-monitor.html", 0.7)
     # lectures
     lec_idx = DIST / "lectures" / "index.html"
     if lec_idx.exists():

@@ -9625,6 +9625,7 @@ def _render_header() -> str:
         "<div class='menu-drop' id='menu-drop' role='menu'>"
         "<span class='menu-drop-label'>読む・確認する</span>"
         "<a href='/blog/index.html'>ブログ</a>"
+        "<a href='/speed-monitor.html'>自宅サーバー速度</a>"
         "<a href='#speaker'>講師紹介</a>"
         "<a href='#faq'>FAQ</a>"
         "<a href='/admin'>管理画面</a>"
@@ -9647,6 +9648,7 @@ def _render_header() -> str:
         "<a href='#flow'><span class='mobile-link-title'>流れ</span><small>相談から公開まで</small></a>"
         "<a href='#growth'><span class='mobile-link-title'>改善</span><small>SNSと検索を育てる</small></a>"
         "<a href='/blog/index.html'><span class='mobile-link-title'>ブログ</span><small>実践知を読む</small></a>"
+        "<a href='/speed-monitor.html'><span class='mobile-link-title'>速度</span><small>自宅サーバーの実測を見る</small></a>"
         "<a href='#lectures'><span class='mobile-link-title'>資料</span><small>復習と手順を見る</small></a>"
         "<a href='#speaker'><span class='mobile-link-title'>講師</span><small>誰が支援するか</small></a>"
         "<a href='#faq'><span class='mobile-link-title'>FAQ</span><small>不安を先に解消</small></a>"
@@ -11359,6 +11361,9 @@ def _render_explore() -> str:
         ("📝", "ブログ",
          "相談、講習、SNS、AI活用の考え方をあとから見返せる記事として整理します。",
          "/blog/index.html", "ブログを見る"),
+        ("📈", "自宅サーバー速度",
+         "AI活用や業務アプリを支える回線速度を6時間ごとに記録し、成功も失敗も実測で公開します。",
+         "/speed-monitor.html", "速度を見る"),
     ]
     parts = ["<div class='explore-grid'>"]
     for icon, title, desc, href, cta in cards:

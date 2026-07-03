@@ -1,9 +1,9 @@
-﻿{
-    "generated_at_utc":  "2026-07-03T01:52:52.5292373Z",
-    "generated_at_local":  "2026-07-03 10:52:52",
+{
+    "generated_at_utc":  "2026-07-03T02:01:50.9384012Z",
+    "generated_at_local":  "2026-07-03 11:01:50",
     "monitor":  {
-                    "name":  "閾ｪ螳・し繝ｼ繝舌・蝗樒ｷ夐溷ｺｦ",
-                    "cadence":  "6譎る俣縺斐→",
+                    "name":  "home-server-speed",
+                    "cadence":  "6h",
                     "source":  "Cloudflare speed endpoint"
                 },
     "summary":  {

@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://img.youtube.com/vi/FwwoN_-LAyU/hqdefault.jpg",
-      "published": "2026-07-04T22:25:04+00:00"
+      "published": "2026-07-04T22:25:04+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "0fa57a45248d6038",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/08/AI_Hands_A_Bernis_02.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-04T08:00:00-04:00"
+      "published": "2026-07-04T08:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "6a864148c5838676",
@@ -56,7 +60,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/K7fejc8abWs/hqdefault.jpg",
-      "published": "2026-07-04T10:00:13+00:00"
+      "published": "2026-07-04T10:00:13+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "7c3a7db2589507b1",
@@ -75,7 +81,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/YSxSQ7R4Mkw/hqdefault.jpg",
-      "published": "2026-07-04T09:00:01+00:00"
+      "published": "2026-07-04T09:00:01+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "7b3021b89a9f6f10",
@@ -94,7 +102,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://www.itmedia.co.jp/aiplus/article/ogp/2607/04/2000000159/10000771/2048",
-      "published": "Sat, 04 Jul 2026 08:00:00 +0900"
+      "published": "Sat, 04 Jul 2026 08:00:00 +0900",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

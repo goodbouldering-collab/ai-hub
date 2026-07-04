@@ -395,12 +395,16 @@ nav.top-nav .nav-current {
   }
   .mobile-nav-panel--public,
   .mobile-nav-panel {
-    width: min(100%, 680px);
-    gap: 4px;
+    width: min(100%, 640px);
+    gap: 8px;
     justify-items: stretch;
   }
   .mobile-nav-primary {
     display: none !important;
+  }
+  .mobile-link-list {
+    display: grid !important;
+    gap: 8px !important;
   }
   .mobile-link-list a,
   .mobile-nav .mobile-link-list a,
@@ -408,17 +412,16 @@ nav.top-nav .nav-current {
     min-height: auto !important;
     display: flex !important;
     flex-direction: column !important;
-    align-items: flex-end !important;
+    align-items: flex-start !important;
     justify-content: center !important;
-    gap: 2px !important;
-    padding: 11px 2px 11px 16px !important;
-    border: 0 !important;
-    border-bottom: 1px solid rgba(18,32,51,.10) !important;
-    border-radius: 0 !important;
-    background: transparent !important;
+    gap: 3px !important;
+    padding: 12px 14px !important;
+    border: 1px solid rgba(18,32,51,.12) !important;
+    border-radius: 8px !important;
+    background: #FFFFFF !important;
     box-shadow: none !important;
     color: #122033 !important;
-    text-align: right !important;
+    text-align: left !important;
     text-decoration: none !important;
   }
   .mobile-link-list a:hover,
@@ -443,13 +446,13 @@ nav.top-nav .nav-current {
     line-height: 1.35;
   }
   .mobile-nav .mobile-nav-label {
-    padding: 12px 2px 4px !important;
+    padding: 8px 2px 2px !important;
     color: #0F5F78 !important;
     font-size: 11px !important;
     font-weight: 900 !important;
     letter-spacing: .10em !important;
     line-height: 1.2 !important;
-    text-align: right !important;
+    text-align: left !important;
     text-transform: uppercase !important;
   }
 }
@@ -10396,8 +10399,8 @@ section.block::before {
 
   .mobile-nav-panel--public,
   .mobile-nav-panel {
-    width: min(100%, 680px) !important;
-    gap: 4px !important;
+    width: min(100%, 640px) !important;
+    gap: 8px !important;
     justify-items: stretch !important;
   }
 
@@ -10407,7 +10410,7 @@ section.block::before {
 
   .mobile-link-list {
     display: grid !important;
-    gap: 0 !important;
+    gap: 8px !important;
   }
 
   .mobile-link-list a,
@@ -10416,17 +10419,16 @@ section.block::before {
     min-height: auto !important;
     display: flex !important;
     flex-direction: column !important;
-    align-items: flex-end !important;
+    align-items: flex-start !important;
     justify-content: center !important;
-    gap: 2px !important;
-    padding: 11px 2px 11px 16px !important;
-    border: 0 !important;
-    border-bottom: 1px solid rgba(18,32,51,.10) !important;
-    border-radius: 0 !important;
-    background: transparent !important;
+    gap: 3px !important;
+    padding: 12px 14px !important;
+    border: 1px solid rgba(18,32,51,.12) !important;
+    border-radius: 8px !important;
+    background: #FFFFFF !important;
     box-shadow: none !important;
     color: #122033 !important;
-    text-align: right !important;
+    text-align: left !important;
     text-decoration: none !important;
   }
 
@@ -10455,13 +10457,13 @@ section.block::before {
   }
 
   .mobile-nav .mobile-nav-label {
-    padding: 12px 2px 4px !important;
+    padding: 8px 2px 2px !important;
     color: #0F5F78 !important;
     font-size: 11px !important;
     font-weight: 900 !important;
     letter-spacing: .10em !important;
     line-height: 1.2 !important;
-    text-align: right !important;
+    text-align: left !important;
     text-transform: uppercase !important;
   }
 }
@@ -10482,7 +10484,7 @@ section.block::before {
   }
 })();
 </script>
-<header class='site-header scrolled' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span><span class='site-logo-by'>滋賀・彦根</span></a><nav class='site-nav top-nav' aria-label='サイトナビ'><a class='nav-link nav-essential' href='../index.html'>ホーム</a><a class='nav-link nav-essential' href='/#start'>入口</a><a class='nav-link nav-essential' href='/#packages'>講習</a><a class='nav-link nav-essential' href='/#web-showcase'>制作</a><a class='nav-link nav-essential' href='/#flow'>流れ</a><a class='nav-link nav-essential' href='/#lectures'>資料</a><a class='nav-link' href='/admin' style='color:var(--muted);'>管理</a></nav><a class='nav-cta' href='/#contact'>個別相談</a></div></header><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'><svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button><div class='mobile-nav generated-mobile-nav' id='mobile-nav'><div class='mobile-nav-panel mobile-nav-panel--public'><span class='mobile-nav-label'>公開ページの流れ</span><div class='mobile-link-list'><a href='/'><span class='mobile-link-title'>ホーム</span><small>最初に戻る</small></a><a href='/#start'><span class='mobile-link-title'>入口</span><small>悩みから選ぶ</small></a><a href='/#packages'><span class='mobile-link-title'>講習</span><small>AI講習を選ぶ</small></a><a href='/#web-showcase'><span class='mobile-link-title'>制作</span><small>HP制作と運用を見る</small></a><a href='/#flow'><span class='mobile-link-title'>流れ</span><small>相談から公開まで</small></a><a href='/#growth'><span class='mobile-link-title'>改善</span><small>SNSと検索を育てる</small></a><a href='/blog/index.html'><span class='mobile-link-title'>ブログ</span><small>実践知を読む</small></a><a href='/#lectures'><span class='mobile-link-title'>資料</span><small>復習と手順を見る</small></a><a href='/#speaker'><span class='mobile-link-title'>講師</span><small>誰が支援するか</small></a><a href='/#faq'><span class='mobile-link-title'>FAQ</span><small>不安を先に解消</small></a><a href='/#contact'><span class='mobile-link-title'>相談</span><small>予約へ進む</small></a></div><span class='mobile-nav-label'>運用者</span><div class='mobile-link-list'><a class='mobile-admin-link' href='/admin'><span class='mobile-link-title'>管理画面</span><small>記事・運用を触る</small></a></div></div></div><script>(function(){var b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav');if(!b||!n)return;function close(){n.classList.remove('open');b.setAttribute('aria-expanded','false');}b.addEventListener('click',function(e){e.stopPropagation();var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});})();</script><header><h1>ブログ</h1></header><div class='content-wrap'><div class='tr-section'><p>AIハブのブログです。講習・制作・AI活用の現場から、実際に使える視点を残していきます。</p><div class='tr-grid'><a class='tr-card' href='./2026-06-29-ai-consult-hikone-practical-ai-course.html'><div class='tr-title'>AI相談 彦根の実践AI講座：2時間から6時間で、AIを仕事に入れる理由</div><div class='tr-date'>2026-06-29</div><div class='tr-sum'>彦根・滋賀の地域事業者、学校、福祉、個人事業主に向けて、なぜAI講座を行うのか、CodexやAIエージェントの考え方をどう事業に入れるのか、低コストで成果物を残す講座設計を整理します。</div></a><a class='tr-card' href='./2026-06-20-business-system-development-priority.html'><div class='tr-title'>業務システム開発の優先順位：EC・AI活用で先に固めるべき8項目</div><div class='tr-date'>2026-06-20</div><div class='tr-sum'>Facebook投稿「私の優先順位」をもとに、ECや業務システム開発でデータ設計、認証、クラウド設計、CI/CD、コスト最適化、IaC、マイクロサービス、Kubernetesをどう並べるべきかを整理しました。</div></a><a class='tr-card' href='./2026-06-18-real-engineer-ai-era.html'><div class='tr-title'>AI時代、本物のエンジニアとは？作れる人より説明できる人が残る</div><div class='tr-date'>2026-06-18</div><div class='tr-sum'>AIにECサイトやアプリを作らせられる時代に、仕事として評価されるのは「なぜそう作ったのか」「どう守るのか」を説明できる力です。</div></a><a class='tr-card' href='./2026-06-18-cloud-ai-agent-rag-design.html'><div class='tr-title'>クラウドAIエージェント時代のRAG設計</div><div class='tr-date'>2026-06-18</div><div class='tr-sum'>AIに資料を入れるだけではなく、どの情報をどの順番で見てもらうかを設計する。プロから初心者まで、RAGを仕事で使うための考え方を整理する。</div></a><a class='tr-card' href='./2026-06-18-ai-agent-output-curation.html'><div class='tr-title'>AI時代、やる気がなくても成果物は増える。だから最後に勝つのは編集できる人</div><div class='tr-date'>2026-06-18</div><div class='tr-sum'>Facebook投稿「AI時代、やる気がなくても成果物は増える」をもとに、AIエージェントが成果物を量産する時代に人間が担う編集、選別、目的設計の価値を整理する。</div></a><a class='tr-card' href='./2026-06-17-codex-ai-world.html'><div class='tr-title'>Codexが開いた、AI活動の最前線</div><div class='tr-date'>2026-06-17</div><div class='tr-sum'>AIハブ初のブログ。Codexを、IDE、Claude Code、画像生成、モバイル音声、プラグイン連携まで含めたAI活動の統合UIとして分析する。</div></a></div></div></div><footer>AI相談 / Generated by Claude</footer><button class='back-to-top' id='backTop' aria-label='トップへ戻る'>↑</button><script>(function(){var b=document.getElementById('backTop');if(!b)return;window.addEventListener('scroll',function(){b.classList.toggle('show',window.scrollY>400);});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script><script>
+<header class='site-header scrolled' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span><span class='site-logo-by'>滋賀・彦根</span></a><nav class='site-nav top-nav' aria-label='サイトナビ'><a class='nav-link nav-essential' href='../index.html'>ホーム</a><a class='nav-link nav-essential' href='/#packages'>講習</a><a class='nav-link nav-essential' href='/#web-showcase'>制作</a><a class='nav-link nav-essential' href='/blog/index.html'>ブログ</a><a class='nav-link nav-essential' href='/#lectures'>資料</a><a class='nav-link nav-essential' href='/#faq'>FAQ</a></nav><a class='nav-cta' href='/#contact'>個別相談</a></div></header><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'><svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button><div class='mobile-nav generated-mobile-nav' id='mobile-nav'><div class='mobile-nav-panel mobile-nav-panel--public'><span class='mobile-nav-label'>ホームメニュー</span><div class='mobile-link-list'><a href='/'><span class='mobile-link-title'>ホーム</span><small>最初に戻る</small></a><a href='/#packages'><span class='mobile-link-title'>講習</span><small>AI講習を選ぶ</small></a><a href='/#web-showcase'><span class='mobile-link-title'>制作</span><small>HP制作と運用を見る</small></a><a href='/blog/index.html'><span class='mobile-link-title'>ブログ</span><small>実践知を読む</small></a><a href='/#lectures'><span class='mobile-link-title'>資料</span><small>復習と手順を見る</small></a><a href='/#speaker'><span class='mobile-link-title'>講師</span><small>誰が支援するか</small></a><a href='/#faq'><span class='mobile-link-title'>FAQ</span><small>不安を先に解消</small></a><a href='/#contact'><span class='mobile-link-title'>相談</span><small>予約へ進む</small></a></div></div></div><script>(function(){var b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav');if(!b||!n)return;function close(){n.classList.remove('open');b.setAttribute('aria-expanded','false');}b.addEventListener('click',function(e){e.stopPropagation();var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});})();</script><header><h1>ブログ</h1></header><div class='content-wrap'><div class='tr-section'><p>AIハブのブログです。講習・制作・AI活用の現場から、実際に使える視点を残していきます。</p><div class='tr-grid'><a class='tr-card' href='./2026-06-29-ai-consult-hikone-practical-ai-course.html'><div class='tr-title'>AI相談 彦根の実践AI講座：2時間から6時間で、AIを仕事に入れる理由</div><div class='tr-date'>2026-06-29</div><div class='tr-sum'>彦根・滋賀の地域事業者、学校、福祉、個人事業主に向けて、なぜAI講座を行うのか、CodexやAIエージェントの考え方をどう事業に入れるのか、低コストで成果物を残す講座設計を整理します。</div></a><a class='tr-card' href='./2026-06-20-business-system-development-priority.html'><div class='tr-title'>業務システム開発の優先順位：EC・AI活用で先に固めるべき8項目</div><div class='tr-date'>2026-06-20</div><div class='tr-sum'>Facebook投稿「私の優先順位」をもとに、ECや業務システム開発でデータ設計、認証、クラウド設計、CI/CD、コスト最適化、IaC、マイクロサービス、Kubernetesをどう並べるべきかを整理しました。</div></a><a class='tr-card' href='./2026-06-18-real-engineer-ai-era.html'><div class='tr-title'>AI時代、本物のエンジニアとは？作れる人より説明できる人が残る</div><div class='tr-date'>2026-06-18</div><div class='tr-sum'>AIにECサイトやアプリを作らせられる時代に、仕事として評価されるのは「なぜそう作ったのか」「どう守るのか」を説明できる力です。</div></a><a class='tr-card' href='./2026-06-18-cloud-ai-agent-rag-design.html'><div class='tr-title'>クラウドAIエージェント時代のRAG設計</div><div class='tr-date'>2026-06-18</div><div class='tr-sum'>AIに資料を入れるだけではなく、どの情報をどの順番で見てもらうかを設計する。プロから初心者まで、RAGを仕事で使うための考え方を整理する。</div></a><a class='tr-card' href='./2026-06-18-ai-agent-output-curation.html'><div class='tr-title'>AI時代、やる気がなくても成果物は増える。だから最後に勝つのは編集できる人</div><div class='tr-date'>2026-06-18</div><div class='tr-sum'>Facebook投稿「AI時代、やる気がなくても成果物は増える」をもとに、AIエージェントが成果物を量産する時代に人間が担う編集、選別、目的設計の価値を整理する。</div></a><a class='tr-card' href='./2026-06-17-codex-ai-world.html'><div class='tr-title'>Codexが開いた、AI活動の最前線</div><div class='tr-date'>2026-06-17</div><div class='tr-sum'>AIハブ初のブログ。Codexを、IDE、Claude Code、画像生成、モバイル音声、プラグイン連携まで含めたAI活動の統合UIとして分析する。</div></a></div></div></div><footer>AI相談 / Generated by Claude</footer><button class='back-to-top' id='backTop' aria-label='トップへ戻る'>↑</button><script>(function(){var b=document.getElementById('backTop');if(!b)return;window.addEventListener('scroll',function(){b.classList.toggle('show',window.scrollY>400);});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script><script>
 (function(){
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var sel = '.tr-card, .pf-card, .profile-stat, .profile-tech-card, .sns-card, article, .content-toc, .tr-section, .profile-tl-item, .profile-app-card, .profile-biz-card';

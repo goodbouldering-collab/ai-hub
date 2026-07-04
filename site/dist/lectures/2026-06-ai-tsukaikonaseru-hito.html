@@ -395,12 +395,16 @@ nav.top-nav .nav-current {
   }
   .mobile-nav-panel--public,
   .mobile-nav-panel {
-    width: min(100%, 680px);
-    gap: 4px;
+    width: min(100%, 640px);
+    gap: 8px;
     justify-items: stretch;
   }
   .mobile-nav-primary {
     display: none !important;
+  }
+  .mobile-link-list {
+    display: grid !important;
+    gap: 8px !important;
   }
   .mobile-link-list a,
   .mobile-nav .mobile-link-list a,
@@ -408,17 +412,16 @@ nav.top-nav .nav-current {
     min-height: auto !important;
     display: flex !important;
     flex-direction: column !important;
-    align-items: flex-end !important;
+    align-items: flex-start !important;
     justify-content: center !important;
-    gap: 2px !important;
-    padding: 11px 2px 11px 16px !important;
-    border: 0 !important;
-    border-bottom: 1px solid rgba(18,32,51,.10) !important;
-    border-radius: 0 !important;
-    background: transparent !important;
+    gap: 3px !important;
+    padding: 12px 14px !important;
+    border: 1px solid rgba(18,32,51,.12) !important;
+    border-radius: 8px !important;
+    background: #FFFFFF !important;
     box-shadow: none !important;
     color: #122033 !important;
-    text-align: right !important;
+    text-align: left !important;
     text-decoration: none !important;
   }
   .mobile-link-list a:hover,
@@ -443,13 +446,13 @@ nav.top-nav .nav-current {
     line-height: 1.35;
   }
   .mobile-nav .mobile-nav-label {
-    padding: 12px 2px 4px !important;
+    padding: 8px 2px 2px !important;
     color: #0F5F78 !important;
     font-size: 11px !important;
     font-weight: 900 !important;
     letter-spacing: .10em !important;
     line-height: 1.2 !important;
-    text-align: right !important;
+    text-align: left !important;
     text-transform: uppercase !important;
   }
 }
@@ -10396,8 +10399,8 @@ section.block::before {
 
   .mobile-nav-panel--public,
   .mobile-nav-panel {
-    width: min(100%, 680px) !important;
-    gap: 4px !important;
+    width: min(100%, 640px) !important;
+    gap: 8px !important;
     justify-items: stretch !important;
   }
 
@@ -10407,7 +10410,7 @@ section.block::before {
 
   .mobile-link-list {
     display: grid !important;
-    gap: 0 !important;
+    gap: 8px !important;
   }
 
   .mobile-link-list a,
@@ -10416,17 +10419,16 @@ section.block::before {
     min-height: auto !important;
     display: flex !important;
     flex-direction: column !important;
-    align-items: flex-end !important;
+    align-items: flex-start !important;
     justify-content: center !important;
-    gap: 2px !important;
-    padding: 11px 2px 11px 16px !important;
-    border: 0 !important;
-    border-bottom: 1px solid rgba(18,32,51,.10) !important;
-    border-radius: 0 !important;
-    background: transparent !important;
+    gap: 3px !important;
+    padding: 12px 14px !important;
+    border: 1px solid rgba(18,32,51,.12) !important;
+    border-radius: 8px !important;
+    background: #FFFFFF !important;
     box-shadow: none !important;
     color: #122033 !important;
-    text-align: right !important;
+    text-align: left !important;
     text-decoration: none !important;
   }
 
@@ -10455,13 +10457,13 @@ section.block::before {
   }
 
   .mobile-nav .mobile-nav-label {
-    padding: 12px 2px 4px !important;
+    padding: 8px 2px 2px !important;
     color: #0F5F78 !important;
     font-size: 11px !important;
     font-weight: 900 !important;
     letter-spacing: .10em !important;
     line-height: 1.2 !important;
-    text-align: right !important;
+    text-align: left !important;
     text-transform: uppercase !important;
   }
 }
@@ -10482,7 +10484,7 @@ section.block::before {
   }
 })();
 </script>
-<header class='site-header scrolled' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span><span class='site-logo-by'>滋賀・彦根</span></a><nav class='site-nav top-nav' aria-label='サイトナビ'><a class='nav-link nav-essential' href='../index.html'>ホーム</a><a class='nav-link nav-essential' href='/#start'>入口</a><a class='nav-link nav-essential' href='/#packages'>講習</a><a class='nav-link nav-essential' href='/#web-showcase'>制作</a><a class='nav-link nav-essential' href='/#flow'>流れ</a><a class='nav-link nav-essential' href='/#lectures'>資料</a><a class='nav-link' href='/admin' style='color:var(--muted);'>管理</a></nav><a class='nav-cta' href='/#contact'>個別相談</a></div></header><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'><svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button><div class='mobile-nav generated-mobile-nav' id='mobile-nav'><div class='mobile-nav-panel mobile-nav-panel--public'><span class='mobile-nav-label'>公開ページの流れ</span><div class='mobile-link-list'><a href='/'><span class='mobile-link-title'>ホーム</span><small>最初に戻る</small></a><a href='/#start'><span class='mobile-link-title'>入口</span><small>悩みから選ぶ</small></a><a href='/#packages'><span class='mobile-link-title'>講習</span><small>AI講習を選ぶ</small></a><a href='/#web-showcase'><span class='mobile-link-title'>制作</span><small>HP制作と運用を見る</small></a><a href='/#flow'><span class='mobile-link-title'>流れ</span><small>相談から公開まで</small></a><a href='/#growth'><span class='mobile-link-title'>改善</span><small>SNSと検索を育てる</small></a><a href='/blog/index.html'><span class='mobile-link-title'>ブログ</span><small>実践知を読む</small></a><a href='/#lectures'><span class='mobile-link-title'>資料</span><small>復習と手順を見る</small></a><a href='/#speaker'><span class='mobile-link-title'>講師</span><small>誰が支援するか</small></a><a href='/#faq'><span class='mobile-link-title'>FAQ</span><small>不安を先に解消</small></a><a href='/#contact'><span class='mobile-link-title'>相談</span><small>予約へ進む</small></a></div><span class='mobile-nav-label'>運用者</span><div class='mobile-link-list'><a class='mobile-admin-link' href='/admin'><span class='mobile-link-title'>管理画面</span><small>記事・運用を触る</small></a></div></div></div><script>(function(){var b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav');if(!b||!n)return;function close(){n.classList.remove('open');b.setAttribute('aria-expanded','false');}b.addEventListener('click',function(e){e.stopPropagation();var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});})();</script><header><h1>AIを使いこなせる人と使いこなせない人の違い｜仕事で差がつく5つの実践</h1><div class='speaker-meta'><span class='role'>SEOブログ / AI活用</span><span>📅 2026-06-16</span><span>由井 辰美 / AIハブ</span></div></header><div class='content-wrap'><section class='lecture-shell' aria-label='この資料の入口'><div class='lecture-shell-head'><div><div class='lecture-shell-title'>この資料の入口</div><p class='lecture-shell-desc'>AIを使いこなせる人と使いこなせない人の違いを、仕事の言語化、材料の渡し方、修正指示、検証、業務導入の観点で解説。ChatGPT、Codex、Claude Code、画像生成を仕事に入れる具体的な手順とセルフチェック付き。</p></div><div class='lecture-shell-actions'><a class='lecture-home-link' href='../#packages'>受講プラン</a><a class='lecture-home-link' href='./index.html'>受講資料ホーム</a></div></div><div class='lecture-format-strip'><span class='lecture-format-chip on'>本文<small>あり</small></span><span class='lecture-format-chip on'>目次<small>あり</small></span><span class='lecture-format-chip on'>チェック<small>あり</small></span></div><div class='lecture-jump'><a href='./index.html'>受講資料ホーム</a><a href='../#packages'>受講プラン</a><a href='#lecture-toc'>目次</a><a href='#aiを使いこなせる人のセルフチェック'>確認へ</a><a href='#参考にした主な情報'>出典へ</a></div><div class='lecture-outline-preview'><b>この資料の流れ</b><ol><li>AIを使いこなせる人と使いこなせない人の違い</li><li>2026年のAI活用は「試す」だけでは足りない</li><li>調査で見えた「AIで成果が出る条件」</li><li>AIを使いこなす人の5つの実践</li><li>ChatGPT、Codex、Claude Code、画像生成はどう使い分けるか</li><li>AIを使いこなせる人のセルフチェック</li></ol></div></section><div class='content-toc' id='lecture-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#aiを使いこなせる人と使いこなせない人の違い'>AIを使いこなせる人と使いこなせない人の違い</a></li><li><a href='#2026年のai活用は-試す-だけでは足りない'>2026年のAI活用は「試す」だけでは足りない</a></li><li><a href='#調査で見えた-aiで成果が出る条件'>調査で見えた「AIで成果が出る条件」</a></li><li><a href='#aiを使いこなす人の5つの実践'>AIを使いこなす人の5つの実践</a></li><li><a href='#chatgpt-codex-claude-code-画像生成はどう使い分けるか'>ChatGPT、Codex、Claude Code、画像生成はどう使い分けるか</a></li><li><a href='#aiを使いこなせる人のセルフチェック'>AIを使いこなせる人のセルフチェック</a></li><li><a href='#今日から使えるai依頼テンプレ'>今日から使えるAI依頼テンプレ</a></li><li><a href='#aiを学ぶ前に決めるべきこと'>AIを学ぶ前に決めるべきこと</a></li><li><a href='#aiを仕事に入れる3ステップ'>AIを仕事に入れる3ステップ</a></li><li><a href='#aiを-知っている-で止めず-仕事に入れる'>AIを「知っている」で止めず、仕事に入れる</a></li><li><a href='#よくある質問'>よくある質問</a></li><li><a href='#参考にした主な情報'>参考にした主な情報</a></li></ol></div><style>
+<header class='site-header scrolled' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span><span class='site-logo-by'>滋賀・彦根</span></a><nav class='site-nav top-nav' aria-label='サイトナビ'><a class='nav-link nav-essential' href='../index.html'>ホーム</a><a class='nav-link nav-essential' href='/#packages'>講習</a><a class='nav-link nav-essential' href='/#web-showcase'>制作</a><a class='nav-link nav-essential' href='/blog/index.html'>ブログ</a><a class='nav-link nav-essential' href='/#lectures'>資料</a><a class='nav-link nav-essential' href='/#faq'>FAQ</a></nav><a class='nav-cta' href='/#contact'>個別相談</a></div></header><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'><svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button><div class='mobile-nav generated-mobile-nav' id='mobile-nav'><div class='mobile-nav-panel mobile-nav-panel--public'><span class='mobile-nav-label'>ホームメニュー</span><div class='mobile-link-list'><a href='/'><span class='mobile-link-title'>ホーム</span><small>最初に戻る</small></a><a href='/#packages'><span class='mobile-link-title'>講習</span><small>AI講習を選ぶ</small></a><a href='/#web-showcase'><span class='mobile-link-title'>制作</span><small>HP制作と運用を見る</small></a><a href='/blog/index.html'><span class='mobile-link-title'>ブログ</span><small>実践知を読む</small></a><a href='/#lectures'><span class='mobile-link-title'>資料</span><small>復習と手順を見る</small></a><a href='/#speaker'><span class='mobile-link-title'>講師</span><small>誰が支援するか</small></a><a href='/#faq'><span class='mobile-link-title'>FAQ</span><small>不安を先に解消</small></a><a href='/#contact'><span class='mobile-link-title'>相談</span><small>予約へ進む</small></a></div></div></div><script>(function(){var b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav');if(!b||!n)return;function close(){n.classList.remove('open');b.setAttribute('aria-expanded','false');}b.addEventListener('click',function(e){e.stopPropagation();var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});})();</script><header><h1>AIを使いこなせる人と使いこなせない人の違い｜仕事で差がつく5つの実践</h1><div class='speaker-meta'><span class='role'>SEOブログ / AI活用</span><span>📅 2026-06-16</span><span>由井 辰美 / AIハブ</span></div></header><div class='content-wrap'><section class='lecture-shell' aria-label='この資料の入口'><div class='lecture-shell-head'><div><div class='lecture-shell-title'>この資料の入口</div><p class='lecture-shell-desc'>AIを使いこなせる人と使いこなせない人の違いを、仕事の言語化、材料の渡し方、修正指示、検証、業務導入の観点で解説。ChatGPT、Codex、Claude Code、画像生成を仕事に入れる具体的な手順とセルフチェック付き。</p></div><div class='lecture-shell-actions'><a class='lecture-home-link' href='../#packages'>受講プラン</a><a class='lecture-home-link' href='./index.html'>受講資料ホーム</a></div></div><div class='lecture-format-strip'><span class='lecture-format-chip on'>本文<small>あり</small></span><span class='lecture-format-chip on'>目次<small>あり</small></span><span class='lecture-format-chip on'>チェック<small>あり</small></span></div><div class='lecture-jump'><a href='./index.html'>受講資料ホーム</a><a href='../#packages'>受講プラン</a><a href='#lecture-toc'>目次</a><a href='#aiを使いこなせる人のセルフチェック'>確認へ</a><a href='#参考にした主な情報'>出典へ</a></div><div class='lecture-outline-preview'><b>この資料の流れ</b><ol><li>AIを使いこなせる人と使いこなせない人の違い</li><li>2026年のAI活用は「試す」だけでは足りない</li><li>調査で見えた「AIで成果が出る条件」</li><li>AIを使いこなす人の5つの実践</li><li>ChatGPT、Codex、Claude Code、画像生成はどう使い分けるか</li><li>AIを使いこなせる人のセルフチェック</li></ol></div></section><div class='content-toc' id='lecture-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#aiを使いこなせる人と使いこなせない人の違い'>AIを使いこなせる人と使いこなせない人の違い</a></li><li><a href='#2026年のai活用は-試す-だけでは足りない'>2026年のAI活用は「試す」だけでは足りない</a></li><li><a href='#調査で見えた-aiで成果が出る条件'>調査で見えた「AIで成果が出る条件」</a></li><li><a href='#aiを使いこなす人の5つの実践'>AIを使いこなす人の5つの実践</a></li><li><a href='#chatgpt-codex-claude-code-画像生成はどう使い分けるか'>ChatGPT、Codex、Claude Code、画像生成はどう使い分けるか</a></li><li><a href='#aiを使いこなせる人のセルフチェック'>AIを使いこなせる人のセルフチェック</a></li><li><a href='#今日から使えるai依頼テンプレ'>今日から使えるAI依頼テンプレ</a></li><li><a href='#aiを学ぶ前に決めるべきこと'>AIを学ぶ前に決めるべきこと</a></li><li><a href='#aiを仕事に入れる3ステップ'>AIを仕事に入れる3ステップ</a></li><li><a href='#aiを-知っている-で止めず-仕事に入れる'>AIを「知っている」で止めず、仕事に入れる</a></li><li><a href='#よくある質問'>よくある質問</a></li><li><a href='#参考にした主な情報'>参考にした主な情報</a></li></ol></div><style>
 .content{--ink:#102033;--soft:#405166;--muted:#6b7280;--line:#d8e2ee;--blue:#2563eb;--green:#15803d;--red:#b42318;--amber:#b7791f;--bg:#ffffff;--wash:#f6f9fc;}
 .content *{box-sizing:border-box;}
 .ai-use-hero{display:grid;grid-template-columns:1.05fr .95fr;gap:22px;align-items:center;margin:4px 0 26px;padding:22px;border:1px solid var(--line);border-radius:8px;background:linear-gradient(135deg,#f8fbff 0%,#ffffff 48%,#f2fbf6 100%);}

@@ -2356,3 +2356,132 @@ body.ops-page .mobile-nav {
     text-transform: uppercase !important;
   }
 }
+
+/* ---- Public/admin menu separation and standard hamburger, 2026-07-04 ---- */
+body.admin-page .site-header,
+body.ops-page .site-header {
+  background: #FFFFFF !important;
+  color: #122033 !important;
+}
+
+body.admin-page .admin-home-link,
+body.ops-page .admin-home-link {
+  width: auto !important;
+  min-width: 0 !important;
+  height: 42px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 0 12px !important;
+  border: 1px solid rgba(18,32,51,.14) !important;
+  border-radius: 8px !important;
+  background: #FFFFFF !important;
+  color: #122033 !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+}
+
+body.admin-page .admin-home-link svg,
+body.ops-page .admin-home-link svg {
+  width: 18px !important;
+  height: 18px !important;
+  flex: 0 0 18px !important;
+}
+
+body.admin-page .admin-home-link::after,
+body.ops-page .admin-home-link::after {
+  content: "AI相談 / 管理";
+  color: #122033;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+body.admin-page .site-logo-by,
+body.ops-page .site-logo-by {
+  color: #0F5F78 !important;
+  font-weight: 900 !important;
+  letter-spacing: 0 !important;
+}
+
+body.admin-page .admin-slide-nav,
+body.ops-page .admin-slide-nav {
+  max-width: 1040px !important;
+  border-color: rgba(18,32,51,.12) !important;
+}
+
+body.admin-page .admin-scroll-menu,
+body.ops-page .admin-scroll-menu {
+  justify-content: flex-start !important;
+}
+
+body.admin-page .admin-scroll-link[href="/"],
+body.ops-page .admin-scroll-link[href="/"] {
+  display: none !important;
+}
+
+@media (max-width: 900px) {
+  body.admin-page .mobile-nav-panel--admin,
+  body.ops-page .mobile-nav-panel--admin,
+  body.admin-page .mobile-nav-panel,
+  body.ops-page .mobile-nav-panel {
+    width: min(100%, 640px) !important;
+    gap: 8px !important;
+    justify-items: stretch !important;
+  }
+
+  body.admin-page .mobile-link-list,
+  body.ops-page .mobile-link-list {
+    display: grid !important;
+    gap: 8px !important;
+  }
+
+  body.admin-page .mobile-link-list a,
+  body.admin-page .mobile-nav .mobile-link-list a,
+  body.admin-page .mobile-nav .mobile-admin-link,
+  body.admin-page .mobile-nav .logout-mobile-link,
+  body.ops-page .mobile-link-list a,
+  body.ops-page .mobile-nav .mobile-link-list a,
+  body.ops-page .mobile-nav .mobile-admin-link,
+  body.ops-page .mobile-nav .logout-mobile-link {
+    min-height: 48px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    gap: 3px !important;
+    padding: 12px 14px !important;
+    border: 1px solid rgba(18,32,51,.12) !important;
+    border-radius: 8px !important;
+    background: #FFFFFF !important;
+    color: #122033 !important;
+    box-shadow: none !important;
+    text-align: left !important;
+    text-decoration: none !important;
+  }
+
+  body.admin-page .mobile-nav .logout-mobile-link,
+  body.ops-page .mobile-nav .logout-mobile-link {
+    background: #122033 !important;
+    color: #FFFFFF !important;
+    border-color: #122033 !important;
+  }
+
+  body.admin-page .mobile-nav .logout-mobile-link small,
+  body.ops-page .mobile-nav .logout-mobile-link small {
+    color: rgba(255,255,255,.72) !important;
+  }
+
+  body.admin-page .mobile-nav-label,
+  body.ops-page .mobile-nav-label {
+    padding: 8px 2px 2px !important;
+    color: #0F5F78 !important;
+    font-size: 11px !important;
+    font-weight: 900 !important;
+    letter-spacing: .10em !important;
+    line-height: 1.2 !important;
+    text-align: left !important;
+    text-transform: uppercase !important;
+  }
+}

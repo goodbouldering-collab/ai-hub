@@ -124,9 +124,8 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
         by_group[g].append(b)
 
     # トップポータルの fixed ヘッダーと同じ構造にして全ページの UI を統一する。
-    # ロゴ + 真ん中ナビ + 右側「管理ログイン」CTA の 3 ブロック。
+    # 公開ページのメニューは利用者向けだけに絞り、管理導線は管理面へ分離する。
     home_href = _resolve_nav_href("index.html", path_prefix)
-    admin_href = "/admin"  # 常にルート相対
     safe_home = html.escape(home_href, quote=True) if home_href else "/"
 
     parts: list[str] = [
@@ -141,14 +140,12 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
     ]
     # TOP(_render_header) と同じく、固定メニューは主要導線だけにする。
     # 詳細な章移動は各ページ内の目次レールへ分離し、ヘッダーを1段に保つ。
-    pmap_cls = " nav-current" if current_id == "pmap" else ""
     parts.append(f"<a class='nav-link nav-essential' href='{safe_home}'>ホーム</a>")
-    parts.append("<a class='nav-link nav-essential' href='/#start'>入口</a>")
     parts.append("<a class='nav-link nav-essential' href='/#packages'>講習</a>")
     parts.append("<a class='nav-link nav-essential' href='/#web-showcase'>制作</a>")
-    parts.append("<a class='nav-link nav-essential' href='/#flow'>流れ</a>")
+    parts.append("<a class='nav-link nav-essential' href='/blog/index.html'>ブログ</a>")
     parts.append("<a class='nav-link nav-essential' href='/#lectures'>資料</a>")
-    parts.append(f"<a class='nav-link' href='{admin_href}' style='color:var(--muted);'>管理</a>")
+    parts.append("<a class='nav-link nav-essential' href='/#faq'>FAQ</a>")
     parts.append("</nav>")
     parts.append(
         "<a class='nav-cta' href='/#contact'>個別相談</a>"
@@ -161,23 +158,16 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
         "</button>"
         "<div class='mobile-nav generated-mobile-nav' id='mobile-nav'>"
         "<div class='mobile-nav-panel mobile-nav-panel--public'>"
-        "<span class='mobile-nav-label'>公開ページの流れ</span>"
+        "<span class='mobile-nav-label'>ホームメニュー</span>"
         "<div class='mobile-link-list'>"
         "<a href='/'><span class='mobile-link-title'>ホーム</span><small>最初に戻る</small></a>"
-        "<a href='/#start'><span class='mobile-link-title'>入口</span><small>悩みから選ぶ</small></a>"
         "<a href='/#packages'><span class='mobile-link-title'>講習</span><small>AI講習を選ぶ</small></a>"
         "<a href='/#web-showcase'><span class='mobile-link-title'>制作</span><small>HP制作と運用を見る</small></a>"
-        "<a href='/#flow'><span class='mobile-link-title'>流れ</span><small>相談から公開まで</small></a>"
-        "<a href='/#growth'><span class='mobile-link-title'>改善</span><small>SNSと検索を育てる</small></a>"
         "<a href='/blog/index.html'><span class='mobile-link-title'>ブログ</span><small>実践知を読む</small></a>"
         "<a href='/#lectures'><span class='mobile-link-title'>資料</span><small>復習と手順を見る</small></a>"
         "<a href='/#speaker'><span class='mobile-link-title'>講師</span><small>誰が支援するか</small></a>"
         "<a href='/#faq'><span class='mobile-link-title'>FAQ</span><small>不安を先に解消</small></a>"
         "<a href='/#contact'><span class='mobile-link-title'>相談</span><small>予約へ進む</small></a>"
-        "</div>"
-        "<span class='mobile-nav-label'>運用者</span>"
-        "<div class='mobile-link-list'>"
-        "<a class='mobile-admin-link' href='/admin'><span class='mobile-link-title'>管理画面</span><small>記事・運用を触る</small></a>"
         "</div>"
         "</div>"
         "</div>"
@@ -741,12 +731,16 @@ nav.top-nav .nav-current {
   }
   .mobile-nav-panel--public,
   .mobile-nav-panel {
-    width: min(100%, 680px);
-    gap: 4px;
+    width: min(100%, 640px);
+    gap: 8px;
     justify-items: stretch;
   }
   .mobile-nav-primary {
     display: none !important;
+  }
+  .mobile-link-list {
+    display: grid !important;
+    gap: 8px !important;
   }
   .mobile-link-list a,
   .mobile-nav .mobile-link-list a,
@@ -754,17 +748,16 @@ nav.top-nav .nav-current {
     min-height: auto !important;
     display: flex !important;
     flex-direction: column !important;
-    align-items: flex-end !important;
+    align-items: flex-start !important;
     justify-content: center !important;
-    gap: 2px !important;
-    padding: 11px 2px 11px 16px !important;
-    border: 0 !important;
-    border-bottom: 1px solid rgba(18,32,51,.10) !important;
-    border-radius: 0 !important;
-    background: transparent !important;
+    gap: 3px !important;
+    padding: 12px 14px !important;
+    border: 1px solid rgba(18,32,51,.12) !important;
+    border-radius: 8px !important;
+    background: #FFFFFF !important;
     box-shadow: none !important;
     color: #122033 !important;
-    text-align: right !important;
+    text-align: left !important;
     text-decoration: none !important;
   }
   .mobile-link-list a:hover,
@@ -789,13 +782,13 @@ nav.top-nav .nav-current {
     line-height: 1.35;
   }
   .mobile-nav .mobile-nav-label {
-    padding: 12px 2px 4px !important;
+    padding: 8px 2px 2px !important;
     color: #0F5F78 !important;
     font-size: 11px !important;
     font-weight: 900 !important;
     letter-spacing: .10em !important;
     line-height: 1.2 !important;
-    text-align: right !important;
+    text-align: left !important;
     text-transform: uppercase !important;
   }
 }

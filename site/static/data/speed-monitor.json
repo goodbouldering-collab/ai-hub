@@ -3,7 +3,7 @@
     "generated_at_local":  "2026-07-03 11:01:50",
     "monitor":  {
                     "name":  "home-server-speed",
-                    "cadence":  "6h",
+                    "cadence":  "3h",
                     "source":  "Cloudflare speed endpoint"
                 },
     "summary":  {

@@ -8809,6 +8809,34 @@ nav.top-nav .nav-link:focus-visible {
   -webkit-backdrop-filter: none !important;
 }
 
+.contact-primary,
+.contact-primary .cp-ico,
+.contact-primary .cp-title,
+.contact-primary .cp-desc {
+  color: var(--sakana-ink) !important;
+}
+
+.contact-primary .cp-cta {
+  color: var(--sakana-red) !important;
+}
+
+.contact-primary:hover,
+.contact-primary:hover .cp-ico,
+.contact-primary:hover .cp-title,
+.contact-primary:hover .cp-desc,
+.contact-primary:hover .cp-cta {
+  color: #FFFFFF !important;
+}
+
+@media (max-width: 560px) {
+  .contact-primary .cp-cta {
+    border-top-color: var(--sakana-line-soft) !important;
+  }
+  .contact-primary:hover .cp-cta {
+    border-top-color: rgba(255,255,255,.35) !important;
+  }
+}
+
 .hero-route-card::before,
 .path-card::before,
 .pf-card::after,

@@ -36,5 +36,8 @@
     { "source": "/ops/doc/", "destination": "/api/ops/doc" },
     { "source": "/watch", "destination": "/watch/index.html" },
     { "source": "/watch/", "destination": "/watch/index.html" }
+  ],
+  "crons": [
+    { "path": "/api/cron/speed-monitor-watchdog", "schedule": "0 */3 * * *" }
   ]
 }

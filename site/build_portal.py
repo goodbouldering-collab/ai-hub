@@ -116,6 +116,7 @@ SITE_BRAND = "AI相談"
 SITE_LEGACY_NAME = "AIハブ"
 OWNER_SUBTITLE = "クライミング歴30年・9事業を回す滋賀のAI講師"
 OWNER_TAGLINE = "AIを聞いて終わりにせず、講習・実例・資料で仕事に入れる"
+CONSULT_BOOK_URL = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/AW5O5XSBHLEHYUBHLZUGFKYE"
 AI_CODING_BOOK_URL = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/S7GERYVDIPRV76DKXCC3WJWH"
 MONTHLY_SUPPORT_CHECKOUT_URL = "/api/stripe/monthly-support"
 
@@ -253,6 +254,7 @@ def _build_jsonld_website() -> str:
     codex_prep_title = "Codex準備会 60分"
     codex_practice_title = "Codex実践会 120分"
     ai_coding_title = "AIコーディング講習 120分"
+    free_consult_title = "AI無料相談 入口整理"
     consult_title = "AI個別相談 しっかり60分"
     support_title = "AI伴走支援 いっしょに導入"
 
@@ -261,6 +263,7 @@ def _build_jsonld_website() -> str:
         (codex_prep_title, "Codex準備会 導入と習得の流れに沿って、ChatGPTログイン、作業フォルダ選定、秘密情報を入れない権限設計、最初の依頼、差分確認、ブラウザ表示確認、独立レビュー、AGENTS.md、公式アップデート確認先までを60分で整える準備講習。", "2200", "2200", "Course"),
         (codex_practice_title, "Codex実践会で持ち込み課題を進め、Claude Codeとの使い分け、ページ、資料、コード、画像生成プロンプト、動画台本などの成果物を120分で作る実践講習。", "5500", "5500", "Course"),
         (ai_coding_title, "Codex導入、Claude Code併用、画像生成、AI時代の本物のエンジニア像、レベルマップ、プログラミング基礎、設計、データ、運用、セキュリティを1本で学ぶAIコーディング講習。AIの成果物を判断し、説明し、仕事に入れるための作業設計と確認の型を120分で身につける。", "11000", "11000", "Course"),
+        (free_consult_title, "来店またはオンラインで、AI導入の入口を整理する無料相談。講習や伴走の前に、今の課題と次の一手を確認する。", "0", "0", "BusinessCoaching"),
         (consult_title, "AIの使い方、役割分担、指示書、確認体制、運用導線を60分で整理する個別相談。", "5500", "5500", "BusinessCoaching"),
         (support_title, "HP公開から事務自動化・経理・マーケまで6ヶ月で一気に定着。技術的な難所は講師が代行・支援。滋賀・彦根の補助金で負担1/3以下に。", "100000", "100000", "Service"),
     ]
@@ -290,6 +293,9 @@ def _build_jsonld_website() -> str:
         if name == ai_coding_title:
             offer["url"] = AI_CODING_BOOK_URL
             service["url"] = AI_CODING_BOOK_URL
+        if name == free_consult_title:
+            offer["url"] = CONSULT_BOOK_URL
+            service["url"] = CONSULT_BOOK_URL
         if name == support_title:
             offer["url"] = SITE_URL + MONTHLY_SUPPORT_CHECKOUT_URL
             service["url"] = SITE_URL + MONTHLY_SUPPORT_CHECKOUT_URL
@@ -9617,7 +9623,7 @@ def _render_header() -> str:
         "<a class='nav-link nav-essential' href='/blog/index.html'>ブログ</a>"
         "<a class='nav-link nav-essential' href='#lectures'>資料</a>"
         "<a class='nav-link nav-essential' href='#faq'>FAQ</a>"
-        "<a class='nav-cta' href='#contact'>個別相談</a>"
+        "<a class='nav-cta' href='#contact'>無料相談</a>"
         "</nav>"
         "<button class='mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'>"
         "<svg width='20' height='20' viewBox='0 0 24 24' fill='none'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg>"
@@ -9634,7 +9640,7 @@ def _render_header() -> str:
         "<a href='#lectures'><span class='mobile-link-title'>資料</span><small>復習と手順を見る</small></a>"
         "<a href='#speaker'><span class='mobile-link-title'>講師</span><small>誰が支援するか</small></a>"
         "<a href='#faq'><span class='mobile-link-title'>FAQ</span><small>不安を先に解消</small></a>"
-        "<a href='#contact'><span class='mobile-link-title'>相談</span><small>予約へ進む</small></a>"
+        "<a href='#contact'><span class='mobile-link-title'>無料相談</span><small>初回の入口整理を予約</small></a>"
         "</div>"
         "</div>"
         "</div>"
@@ -10257,10 +10263,10 @@ def _render_hero() -> str:
     atlas_items = [
         {
             "index": "01",
-            "title": "個別相談",
+            "title": "無料相談",
             "sub": "課題を整理",
-            "desc": "課題を聞き、講習・個別相談・伴走のどれから始めるかを一緒に決めます。",
-            "cta": "相談日程を見る",
+            "desc": "課題を聞き、無料相談・講習・伴走のどれから始めるかを一緒に決めます。",
+            "cta": "無料相談の日程を見る",
             "href": "#contact",
             "x": "42%",
             "y": "35%",
@@ -10269,7 +10275,7 @@ def _render_hero() -> str:
             "index": "02",
             "title": "AI講習",
             "sub": "目的別に迷わせない",
-            "desc": "個別相談、Codex準備会、実践会、AIコーディング講習を目的別に並べます。",
+            "desc": "無料相談、Codex準備会、実践会、AIコーディング講習を目的別に並べます。",
             "cta": "受講プランを見る",
             "href": "#packages",
             "x": "64%",
@@ -10359,11 +10365,11 @@ def _render_hero() -> str:
         "時間がない、告知が苦手、AIが分からない。身近な困りごとを、今日から使える形に変えます。"
         "</p>"
         "<div class='hero-actions'>"
-        "<a class='btn btn-primary btn-lg' href='#contact'>まず相談する</a>"
+        "<a class='btn btn-primary btn-lg' href='#contact'>まず無料相談</a>"
         "<a class='btn btn-secondary btn-lg' href='#ai-course-video'>動画で見る</a>"
         "</div>"
         "<div class='hero-route-bento' aria-label='最初に選ぶ3つの入口'>"
-        "<a class='hero-route-card route-consult' href='#contact'><small>CONSULT</small><b>相談</b><span>今の課題を整理</span></a>"
+        "<a class='hero-route-card route-consult' href='#contact'><small>FREE CONSULT</small><b>無料相談</b><span>今の課題を整理</span></a>"
         "<a class='hero-route-card route-code' href='#packages'><small>LESSON</small><b>講習</b><span>画面を見ながら実践</span></a>"
         "<a class='hero-route-card route-material' href='#lectures'><small>MATERIAL</small><b>資料</b><span>手順を残して復習</span></a>"
         "</div>"
@@ -10485,10 +10491,10 @@ def _render_growth_booster() -> str:
         {
             "code": "ROUTE 06",
             "title": "HPへ着地",
-            "copy": "個別相談、講習、制作へ迷わず進める",
+            "copy": "無料相談、講習、制作へ迷わず進める",
             "output": "見て楽しいだけでなく、予約までつなぐ",
-            "desc": "明るい色と動きで興味を作り、最後は個別相談、受講プラン、制作相談のどれかに着地させます。",
-            "bullets": ["個別相談を迷わない位置へ置く", "講習と制作の違いを選べる形にする", "スマホでもCTAを押しやすくする"],
+            "desc": "明るい色と動きで興味を作り、最後は無料相談、受講プラン、制作相談のどれかに着地させます。",
+            "bullets": ["無料相談を迷わない位置へ置く", "講習と制作の違いを選べる形にする", "スマホでもCTAを押しやすくする"],
             "score": "93",
             "label": "予約導線",
             "color": "#FF8A3D",
@@ -10525,9 +10531,9 @@ def _render_growth_booster() -> str:
         "<p class='section-heading'>GROWTH BOOST</p>"
         "<h2>集客ブースターを、<strong>斜め上</strong>に回す</h2>"
         "<p><strong>時代はCodex。Claude Codeと併用、画像も生成。</strong>"
-        "暗いAIサイトではなく、触ってわかる明るい入口に変えて、個別相談、講習、HP制作、SNS集客へ迷わず進めます。</p>"
+        "暗いAIサイトではなく、触ってわかる明るい入口に変えて、無料相談、講習、HP制作、SNS集客へ迷わず進めます。</p>"
         "<div class='boost-actions'>"
-        "<a class='boost-action primary' href='#contact'>個別相談へ進む</a>"
+        "<a class='boost-action primary' href='#contact'>無料相談へ進む</a>"
         "<a class='boost-action' href='#packages'>講習プランを見る</a>"
         "<a class='boost-action' href='#web-showcase'>HP制作を見る</a>"
         "</div>"
@@ -10731,9 +10737,9 @@ def _render_path_selector() -> str:
     cards = [
         (
             "迷っている人",
-            "個別相談から始める",
+            "無料相談から始める",
             "今の課題を整理して、受講プランか伴走かを決める入口です。",
-            "個別相談を予約する",
+            "無料相談を予約する",
             "#contact",
             "相談前メモ",
             "次に: 課題メモだけ持参",
@@ -10741,7 +10747,7 @@ def _render_path_selector() -> str:
         (
             "講習を選びたい人",
             "AI講習と資料を並べて見る",
-            "個別相談、準備会、実践会、AIコーディング講習を目的と到達点で確認できます。",
+            "無料相談、準備会、実践会、AIコーディング講習を目的と到達点で確認できます。",
             "講習導線を見る",
             "#packages",
             "相談 / 講習 / 資料",
@@ -10750,7 +10756,7 @@ def _render_path_selector() -> str:
         (
             "プランを選びたい人",
             "受講プランを比べる",
-            "個別相談、Codex準備、実践会、伴走支援を、料金と到達点で比べられます。",
+            "無料相談、Codex準備、実践会、伴走支援を、料金と到達点で比べられます。",
             "受講プランを見る",
             "#packages",
             "相談 / 60分 / 120分",
@@ -10778,7 +10784,7 @@ def _render_choice_lens() -> str:
     rows = [
         (
             "AIを始めたいが、何から聞けばよいか分からない",
-            "個別相談",
+            "無料相談",
             "課題を聞いて、講習・伴走のどちらに進むかをその場で切り分けます。",
         ),
         (
@@ -10877,7 +10883,7 @@ def _render_lesson_bridge() -> str:
             "AI講習",
             "#0877C6",
             "ChatGPT、Codex、Claude Code、画像生成を、仕事の文章、資料、広報、サイト改善に接続します。",
-            [("01", "個別相談で整理"), ("02", "準備会で導入"), ("03", "実践会で成果物化")],
+            [("01", "無料相談で整理"), ("02", "準備会で導入"), ("03", "実践会で成果物化")],
         ),
         (
             "material",
@@ -10929,7 +10935,7 @@ def _render_lesson_bridge() -> str:
         "<div class='lesson-bridge-copy'>"
         "<span class='lesson-bridge-kicker'>AI LESSON / MATERIAL</span>"
         "<h3>AI講習と資料を、迷わず選ぶ。</h3>"
-        "<p>講習を受ける前、受けた後、仕事に使う段階で、押すべき場所が変わります。個別相談、準備会、実践会、受講資料を目的別に並べます。</p>"
+        "<p>講習を受ける前、受けた後、仕事に使う段階で、押すべき場所が変わります。無料相談、準備会、実践会、受講資料を目的別に並べます。</p>"
         "<div class='lesson-tabs'>"
         f"<div class='lesson-tab-controls' role='tablist' aria-label='AI講習と受講資料の切り替え'>{''.join(tab_buttons)}</div>"
         f"{''.join(tab_panels)}"
@@ -10939,9 +10945,9 @@ def _render_lesson_bridge() -> str:
         "<article class='lesson-track-card ai'>"
         "<span class='lesson-track-label'>AI講習</span>"
         "<h3>相談から実践へ</h3>"
-        "<p>AIを何に使うかを個別相談で整理し、準備会、実践会、AIコーディング講習へ進めます。</p>"
+        "<p>AIを何に使うかを無料相談で整理し、準備会、実践会、AIコーディング講習へ進めます。</p>"
         "<div class='lesson-track-list'>"
-        "<span><b>相</b>個別相談で課題を切り分け</span>"
+        "<span><b>相</b>無料相談で課題を切り分け</span>"
         "<span><b>60</b>準備会で使える状態にする</span>"
         "<span><b>120</b>実践会で成果物を作る</span>"
         "</div>"
@@ -10958,7 +10964,7 @@ def _render_lesson_bridge() -> str:
         "</article>"
         "</div>"
         "</div>"
-        "<p class='ai-source-note'>AI講習は、相談、準備、実践、復習を分けるほど継続しやすくなります。まずは個別相談で目的を絞り、必要な資料と講習を選びます。</p>"
+        "<p class='ai-source-note'>AI講習は、相談、準備、実践、復習を分けるほど継続しやすくなります。まずは無料相談で目的を絞り、必要な資料と講習を選びます。</p>"
         "</div>"
     )
 
@@ -11059,9 +11065,31 @@ def _render_courses_packages() -> str:
     codex_practice_title = "Codex実践会 120分"
     ai_coding_title = "AIコーディング講習 120分"
     seminar_url = "https://goodbouldering.com/?pid=188553378"
+    free_consult_title = "AI無料相談 入口整理"
     consult_title = "AI個別相談 しっかり60分"
     support_title = "AI伴走支援 いっしょに導入"
     items = [
+        {
+            "icon": "○",
+            "cat": "無料相談",
+            "level": "入口",
+            "level_id": "beginner",
+            "title": free_consult_title,
+            "price": "無料",
+            "duration": "初回 / 無料",
+            "subsidy": False,
+            "desc": "来店またはオンラインで、講習・AI導入・補助金の入口を整理します。",
+            "content": [
+                "今の課題とAIで試したいことを聞き取り",
+                "講習、個別相談、伴走支援の入口を切り分け",
+                "補助金、交流会、次回予約の導線を確認",
+            ],
+            "fit": ["まず話を聞きたい", "講習か伴走か迷う", "来店またはオンラインで相談したい"],
+            "url": CONSULT_BOOK_URL,
+            "cta": "無料相談を予約する",
+            "material_url": "#lectures",
+            "material_cta": "受講資料で選び方を見る",
+        },
         {
             "icon": "?",
             "cat": "相談",
@@ -11265,7 +11293,7 @@ def _render_courses_packages() -> str:
         "<strong>Codex講習:</strong> レベルは経験年数ではなく理解度で分けます。準備会はログイン、フォルダ選択、最初の依頼、差分確認、独立レビュー、公式更新確認まで60分2,200円、実践会はClaude Codeとの使い分けや画像生成も含めた成果物作成まで120分5,500円です。"
         "Codexの申込リンクは1つに統一し、申込時に「準備会」または「実践会」をオプション選択します。各カードから関連する受講資料へ進めます。"
         "<br><strong>AIコーディング講習:</strong> Codex導入、Claude Code併用、画像生成、AI時代の本物のエンジニア像、レベルマップ、設計・データ・運用・セキュリティ、実装、公開までを120分11,000円で扱う総合講習です。専用のSquare予約メニューから申し込めます。"
-        "<br><strong>相談:</strong> AI個別相談は、AIの使い方、指示書、確認体制、運用導線を整理します。"
+        "<br><strong>無料相談:</strong> AI無料相談は、講習・伴走・制作のどれから始めるかを無料で整理する入口です。しっかり60分のAI個別相談は、AIの使い方、指示書、確認体制、運用導線まで整理します。"
         "<br><strong>月額支払い:</strong> AI伴走支援の月額決済はStripe Checkoutで受け付け、申込後に初回範囲と日程を確認します。"
         "<br><strong>補助金:</strong> 講習と伴走支援は、滋賀県・彦根市のデジタル化/AI導入系補助金と組み合わせて相談できます。"
         "</p>"
@@ -11283,7 +11311,7 @@ def _render_footer(today: str) -> str:
         "<div class='footer-logo'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span></div>"
         "<p class='footer-tagline'>滋賀・彦根の中小事業者向けに、AI相談・生成AI講習・Codex準備会/実践会・AIコーディング講習・受講資料・Web集客支援を行う"
         "資料センター型の相談サイト。9事業を実際に回しながら、現場に居着くAIを一緒に作ります。</p>"
-        "<a class='footer-cta' href='#contact'>個別相談する</a>"
+        "<a class='footer-cta' href='#contact'>無料相談する</a>"
         "</div>"
         "<nav class='footer-nav' aria-label='フッターナビ'>"
         "<span class='footer-nav-head'>メニュー</span>"
@@ -11311,8 +11339,8 @@ def _render_sticky_cta() -> str:
     """モバイルで常時追従する個別相談バー（スクロール中もCVできる）。"""
     return (
         "<div class='sticky-cta' id='sticky-cta' aria-hidden='false'>"
-        "<div class='sticky-cta-text'><strong>個別相談で課題整理</strong><span>講習・資料・集客まで確認</span></div>"
-        "<a class='sticky-cta-btn' href='#contact'>個別相談</a>"
+        "<div class='sticky-cta-text'><strong>AI無料相談で入口整理</strong><span>講習・資料・集客まで確認</span></div>"
+        "<a class='sticky-cta-btn' href='#contact'>無料相談</a>"
         "</div>"
     )
 
@@ -11358,19 +11386,18 @@ def _render_explore() -> str:
 
 
 GUBBLE_LINE_URL = "https://lin.ee/14YxIC6"
-# 個別相談の予約導線（Squareの相談サービスID）。全CTAの最終到達先をここに一本化。
-CONSULT_BOOK_URL = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/AW5O5XSBHLEHYUBHLZUGFKYE"
+# 無料相談の予約導線（Squareの相談サービスID）。無料相談CTAの最終到達先をここに一本化。
 
 
 def _render_contact_form() -> str:
-    """申込導線は「個別相談の予約(Square)」に一本化。相談はZoomまたはLINEで実施。"""
+    """申込導線は「無料相談の予約(Square)」に一本化。相談は対面・Zoom・LINEで実施。"""
     return (
         # 主導線: 日程を選ぶだけで予約完了
         f"<a class='contact-primary fade-up' href='{CONSULT_BOOK_URL}' target='_blank' rel='noopener'>"
         "<span class='cp-ico'>📅</span>"
         "<span class='cp-body'>"
-        "<span class='cp-title'>AI個別相談を予約する</span>"
-        "<span class='cp-desc'>カレンダーから空いている日時を選ぶだけ。2〜3分で予約できます。相談は対面・Zoom・LINEから選べます。</span>"
+        "<span class='cp-title'>AI無料相談を予約する</span>"
+        "<span class='cp-desc'>カレンダーから空いている日時を選ぶだけ。2〜3分で予約できます。初回の入口整理は無料です。相談は対面・Zoom・LINEから選べます。</span>"
         "</span>"
         "<span class='cp-cta'>日程を選ぶ →</span>"
         "</a>"
@@ -11399,7 +11426,7 @@ def _render_parallax_band() -> str:
 
 def _render_flow() -> str:
     steps = [
-        ("① 個別相談", "彦根・湖東の仕事で困っていること、SNSで伸ばしたいこと、AIで試したいことを整理します。"),
+        ("① 無料相談", "彦根・湖東の仕事で困っていること、SNSで伸ばしたいこと、AIで試したいことを整理します。"),
         ("② 講習で一緒に触る", "ChatGPT / Codex / Claude Code / NotebookLM / 画像生成などを、画面を見ながら実際の仕事に当てはめます。"),
         ("③ 資料として残す", "受講で使った手順、プロンプト、動画、実例を資料センターに残し、あとから復習できるようにします。"),
         ("④ 集客へつなげる", "Reels、YouTube、ブログ、Googleビジネスプロフィール、LLMO向けFAQへ展開し、検索とAI回答に残します。"),
@@ -11466,7 +11493,7 @@ FAQ_QA = [
     ("LLMO やAI検索に強いサイトにできますか？",
      "できます。地域名、講師の一次経験、料金、対応範囲、実例、FAQ、構造化データを整理し、AIが回答に引用しやすい形で公開します。大量の自動生成ではなく、講習と実例に基づく一次情報を重視します。"),
     ("料金はどれくらいですか？",
-     "Codex準備会60分は2,200円、Codex実践会120分は5,500円、AIコーディング講習120分は11,000円、AI個別相談 しっかり60分は5,500円です。AI伴走支援 いっしょに導入は月額10万円×6ヶ月が目安で、月額決済はStripe Checkoutで行います。LP制作は1本18〜30万円が目安。多くは補助金併用を前提に組みます。"),
+     "AI無料相談の入口整理は無料、Codex準備会60分は2,200円、Codex実践会120分は5,500円、AIコーディング講習120分は11,000円、AI個別相談 しっかり60分は5,500円です。AI伴走支援 いっしょに導入は月額10万円×6ヶ月が目安で、月額決済はStripe Checkoutで行います。LP制作は1本18〜30万円が目安。多くは補助金併用を前提に組みます。"),
     ("補助金は使えますか？滋賀の事業者でも対象ですか？",
      "講習・伴走パックは「デジタル化・AI導入補助金」や滋賀県・彦根市の補助金の対象になります。補助率は小規模事業者で最大4/5、実質負担が1/3以下になるケースが多いです。申請からツール選定・実装・定着まで一気通貫で支援します。"),
     ("パソコンやスマホが苦手ですが、大丈夫ですか？",
@@ -11476,7 +11503,7 @@ FAQ_QA = [
     ("特定の人しかできない仕事が多くて困っています。効きますか？",
      "そこが得意分野です。「あの人がいないと回らない」作業をAIと手順書に置き換え、誰でもできる形にします。たとえば請求書づくりが月8時間→1時間に減った例があります。"),
     ("出張やオンラインだけの依頼も可能ですか？",
-     "可能です。滋賀県外への出張AI研修、オンライン完結の伴走、単発の講演・登壇いずれも対応します。まずは個別相談でご要望をお聞かせください。"),
+     "可能です。滋賀県外への出張AI研修、オンライン完結の伴走、単発の講演・登壇いずれも対応します。まずは無料相談でご要望をお聞かせください。"),
 ]
 
 
@@ -11838,7 +11865,7 @@ def _business_compass_routes() -> list[dict]:
             "kicker": "彦根・湖東の地域事業者",
             "title": "告知が苦手、予約や問い合わせが増えない",
             "pain": "忙しくて発信が後回し。何を直せば来店や相談につながるか分からない。",
-            "route": "AI個別相談 -> HP/LP改善 -> SNS/ブログ再編集",
+            "route": "AI無料相談 -> HP/LP改善 -> SNS/ブログ再編集",
             "light": "投稿文作成 / 問い合わせ返信 / 予約導線の見直し",
             "decide": "直すページ、使う媒体、最初の投稿テーマ",
             "assets": "AI相談、N-デザイン、みんなのWA、グッぼる",
@@ -11978,7 +12005,7 @@ def _render_business_compass() -> str:
         "<p class='business-compass-decision'><b>迷ったら:</b> 相談=整理 / 講習=自分で使う / 制作=公開物を作る / "
         "業務アプリ=毎月の作業を減らす。2〜3分で日時を選べて、対面・Zoom・LINEから選べます。</p>"
         "<div class='business-compass-actions'>"
-        "<a class='btn btn-primary' href='#contact'>初回無料の個別相談を予約する</a>"
+        "<a class='btn btn-primary' href='#contact'>AI無料相談を予約する</a>"
         "<a class='btn btn-secondary' href='#web-showcase'>HP制作の種類を見る</a>"
         "</div>"
         "<p class='business-compass-note'>相談前に不安が出やすい個人情報、未成年・高齢者・福祉利用者への配慮、"
@@ -12170,7 +12197,7 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append("<section class='block' id='packages'>")
     parts.append("<p class='section-heading fade-up'>AI LESSON COCKPIT</p>")
     parts.append("<h2 class='section-title packages-title fade-up d1'>複数のAI講習を、一画面で選ぶ</h2>")
-    parts.append("<p class='section-sub fade-up d2'>個別相談、伴走支援、Codex準備会、Codex実践会、AIコーディング講習を、目的と到達点で比較できます。</p>")
+    parts.append("<p class='section-sub fade-up d2'>AI無料相談、伴走支援、Codex準備会、Codex実践会、AIコーディング講習を、目的と到達点で比較できます。</p>")
     parts.append(_render_courses_packages())
     parts.append("</section>")
 
@@ -12234,8 +12261,8 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     # 6. お問い合わせ（予約）
     parts.append("<section class='block' id='contact'>")
     parts.append("<p class='section-heading fade-up'>CONTACT</p>")
-    parts.append("<h2 class='section-title fade-up d1'>AI個別相談で、今の課題を整理する</h2>")
-    parts.append("<p class='section-sub fade-up d2'>講習に参加するか、伴走で進めるか。日程を選んで、今の課題をそのまま持ってきてください。</p>")
+    parts.append("<h2 class='section-title fade-up d1'>AI無料相談で、今の課題を整理する</h2>")
+    parts.append("<p class='section-sub fade-up d2'>講習に参加するか、伴走で進めるか。初回は無料で入口を整理します。日程を選んで、今の課題をそのまま持ってきてください。</p>")
     parts.append(_render_contact_form())
     parts.append("</section>")
 

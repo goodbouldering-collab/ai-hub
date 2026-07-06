@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://img.youtube.com/vi/qVaQKAZjefA/hqdefault.jpg",
-      "published": "2026-07-06T00:57:17+00:00"
+      "published": "2026-07-06T00:57:17+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "918f9e2e992373c7",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25584700/STK483_EDUCATION_C.jpg?quality=90&amp;strip=all&amp;crop=0%2C9.9676601489831%2C100%2C80.064679702034&amp;w=1200",
-      "published": "2026-07-05T18:30:54-04:00"
+      "published": "2026-07-05T18:30:54-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "c326e7f462f3c87d",
@@ -56,7 +60,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/Q3RjZY-rSsc-HD.jpg?quality=90&amp;strip=all&amp;crop=0%2C3.4613147178592%2C100%2C93.077370564282&amp;w=1200",
-      "published": "2026-07-05T10:23:11-04:00"
+      "published": "2026-07-05T10:23:11-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "6c33c718f574837d",
@@ -75,7 +81,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/XHPTmvBn9bM/hqdefault.jpg",
-      "published": "2026-07-05T10:00:14+00:00"
+      "published": "2026-07-05T10:00:14+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "e8e32bcf56c303fd",
@@ -94,7 +102,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/bXsq5brfSLE/hqdefault.jpg",
-      "published": "2026-07-05T10:00:04+00:00"
+      "published": "2026-07-05T10:00:04+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "e18d8263b7448988",
@@ -113,7 +123,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://image.itmedia.co.jp/business/articles/2607/06/cover_news072.jpg",
-      "published": "Mon, 06 Jul 2026 11:50:00 +0900"
+      "published": "Mon, 06 Jul 2026 11:50:00 +0900",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "6508daf5292aec85",
@@ -132,7 +144,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://image.itmedia.co.jp/ee/articles/2607/06/cover_news069.jpg",
-      "published": "Mon, 06 Jul 2026 11:30:00 +0900"
+      "published": "Mon, 06 Jul 2026 11:30:00 +0900",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "206cd59d78b03d1f",
@@ -151,7 +165,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://image.itmedia.co.jp/enterprise/articles/2607/06/cover_news054.jpg",
-      "published": "Mon, 06 Jul 2026 10:45:00 +0900"
+      "published": "Mon, 06 Jul 2026 10:45:00 +0900",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "6f13e3186f9b2c0b",
@@ -170,7 +186,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://image.itmedia.co.jp/news/articles/2607/06/cover_news060.jpg",
-      "published": "Mon, 06 Jul 2026 10:35:00 +0900"
+      "published": "Mon, 06 Jul 2026 10:35:00 +0900",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "ac333c657ce7f75c",
@@ -189,7 +207,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://image.itmedia.co.jp/news/articles/2607/06/cover_news059.jpg",
-      "published": "Mon, 06 Jul 2026 10:22:00 +0900"
+      "published": "Mon, 06 Jul 2026 10:22:00 +0900",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

@@ -23,7 +23,7 @@ export function requireAdminAuth(req: VercelReq, res: VercelRes): boolean {
     return true;
   }
 
-  if (wantsHtml(req)) {
+  if (wantsHtml(req) || isAdminPageRequest(req)) {
     const next = safeNextFromRequest(req);
     res.status(303);
     res.setHeader("Location", `/admin/login?next=${encodeURIComponent(next)}`);
@@ -112,6 +112,28 @@ function wantsHtml(req: VercelReq): boolean {
   if ((req.method || "GET").toUpperCase() !== "GET") return false;
   const accept = String(req.headers.accept || "");
   return accept.includes("text/html");
+}
+
+function isAdminPageRequest(req: VercelReq): boolean {
+  if ((req.method || "GET").toUpperCase() !== "GET") return false;
+  try {
+    const url = new URL(req.url || "/admin", "https://ai-hub-jp.vercel.app");
+    const path = url.pathname.replace(/\/$/, "") || "/";
+    return [
+      "/admin",
+      "/api/admin",
+      "/admin/chat",
+      "/api/admin/chat",
+      "/admin/gubble-sns",
+      "/api/admin/gubble-sns",
+      "/admin/sns-post",
+      "/api/admin/sns-post",
+      "/ops",
+      "/api/ops",
+    ].includes(path);
+  } catch {
+    return false;
+  }
 }
 
 function signSessionExpiry(expires: number): string {

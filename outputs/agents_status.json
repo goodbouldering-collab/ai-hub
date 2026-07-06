@@ -1,6 +1,13 @@
 {
-  "generated_at": "2026-07-06T03:36:26Z",
+  "generated_at": "2026-07-06T22:58:49Z",
   "recent_works": [
+    {
+      "date": "2026-07-06",
+      "filename": "2026-07-06-seo-weekly-digest.md",
+      "title": "SEO週次ダイジェスト（2026-07-06）",
+      "business": "seo",
+      "path": "/ops?file=2026-07-06-seo-weekly-digest.md#sec-docs"
+    },
     {
       "date": "2026-06-29",
       "filename": "2026-06-29-seo-weekly-digest.md",
@@ -49,13 +56,6 @@
       "title": "SEO週次ダイジェスト（2026-06-01）",
       "business": "seo",
       "path": "/ops?file=2026-06-01-seo-weekly-digest.md#sec-docs"
-    },
-    {
-      "date": "2026-05-29",
-      "filename": "2026-05-29-minanowa-event-url-shortening.md",
-      "title": "みんなのWA：イベントURL短縮（/event/<long-id> → /e/<6文字>）",
-      "business": "みんなのWA",
-      "path": "/ops?file=2026-05-29-minanowa-event-url-shortening.md#sec-docs"
     }
   ],
   "tasks_open": [
@@ -91,7 +91,7 @@
   "per_business_recent": [
     {
       "business": "seo",
-      "count": 1
+      "count": 2
     }
   ],
   "daily_histogram": [
@@ -149,13 +149,13 @@
     },
     {
       "date": "2026-07-06",
-      "count": 0
+      "count": 1
     }
   ],
   "cma_apps": [],
   "totals": {
-    "consul_work_total": 129,
-    "recent_7d_total": 1,
+    "consul_work_total": 130,
+    "recent_7d_total": 2,
     "tasks_open_total": 4
   }
 }

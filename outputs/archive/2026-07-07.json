@@ -18,7 +18,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/Cowork-Web-Mobile-Press-No-Logo-1920x1080-1.png?quality=90&amp;strip=all&amp;crop=0%2C3.4613147178592%2C100%2C93.077370564282&amp;w=1200",
-      "published": "2026-07-07T13:46:59-04:00"
+      "published": "2026-07-07T13:46:59-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "edb5469597610d78",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/solos1.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-07T09:00:00-04:00"
+      "published": "2026-07-07T09:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "3187280768415033",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-07-07T19:32:57+00:00"
+      "published": "2026-07-07T19:32:57+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "0aab621dc0f518b6",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-07-07T16:33:55+00:00"
+      "published": "2026-07-07T16:33:55+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "97a241f7c10f2509",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-07-07T16:18:16+00:00"
+      "published": "2026-07-07T16:18:16+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "2924c9c70342879a",
@@ -113,7 +123,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-07-07T15:42:43+00:00"
+      "published": "2026-07-07T15:42:43+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "1c60395a3bcbd92a",
@@ -132,7 +144,9 @@
         "freshness": 3.0
       },
       "thumbnail": "",
-      "published": "2026-07-07T05:36:15+00:00"
+      "published": "2026-07-07T05:36:15+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "522104d4533f6925",
@@ -151,7 +165,9 @@
         "freshness": 3.0
       },
       "thumbnail": "",
-      "published": "2026-07-06T23:57:35+00:00"
+      "published": "2026-07-06T23:57:35+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "58327b0c6793f369",
@@ -170,7 +186,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/X2D-0QqKgKs/hqdefault.jpg",
-      "published": "2026-07-07T10:00:32+00:00"
+      "published": "2026-07-07T10:00:32+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "816b07fe59081883",
@@ -189,7 +207,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://images.ctfassets.net/kftzwdyauwt9/4dOzo0MCH8IYZpHDieNgbg/8c27d9ee088b65ed45bef5a097c800e6/oai_Australian_Payments_Plus_1x1.png?w=1600&amp;h=900&amp;fit=fill",
-      "published": "Tue, 07 Jul 2026 00:00:00 GMT"
+      "published": "Tue, 07 Jul 2026 00:00:00 GMT",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

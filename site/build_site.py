@@ -742,10 +742,13 @@ nav.top-nav .nav-admin:focus-visible {
     color: #0F5F78 !important;
     outline: none !important;
   }
+  .mobile-nav {
+    padding: 8px max(16px, env(safe-area-inset-left)) calc(12px + env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-right)) !important;
+  }
   .mobile-nav-panel--public,
   .mobile-nav-panel {
     width: min(100%, 640px);
-    gap: 8px;
+    gap: 2px;
     justify-items: stretch;
   }
   .mobile-nav-primary {
@@ -753,21 +756,21 @@ nav.top-nav .nav-admin:focus-visible {
   }
   .mobile-link-list {
     display: grid !important;
-    gap: 8px !important;
+    gap: 0 !important;
   }
   .mobile-link-list a,
   .mobile-nav .mobile-link-list a,
   .mobile-nav .mobile-admin-link {
-    min-height: auto !important;
+    min-height: 34px !important;
     display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    justify-content: center !important;
-    gap: 3px !important;
-    padding: 12px 14px !important;
-    border: 1px solid rgba(18,32,51,.12) !important;
-    border-radius: 8px !important;
-    background: #FFFFFF !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 0 !important;
+    padding: 7px 2px !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
     box-shadow: none !important;
     color: #122033 !important;
     text-align: left !important;
@@ -783,23 +786,23 @@ nav.top-nav .nav-admin:focus-visible {
   }
   .mobile-link-title {
     display: block;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 900;
-    line-height: 1.2;
+    line-height: 1.15;
   }
   .mobile-link-list small {
-    display: block;
+    display: none;
     color: #64748b;
     font-size: 11px;
     font-weight: 700;
     line-height: 1.35;
   }
   .mobile-nav .mobile-nav-label {
-    padding: 8px 2px 2px !important;
+    padding: 6px 2px 3px !important;
     color: #0F5F78 !important;
-    font-size: 11px !important;
+    font-size: 10px !important;
     font-weight: 900 !important;
-    letter-spacing: .10em !important;
+    letter-spacing: .08em !important;
     line-height: 1.2 !important;
     text-align: left !important;
     text-transform: uppercase !important;

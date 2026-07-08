@@ -8888,10 +8888,14 @@ section.block::before {
     outline: none !important;
   }
 
+  .mobile-nav {
+    padding: 8px max(16px, env(safe-area-inset-left)) calc(12px + env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-right)) !important;
+  }
+
   .mobile-nav-panel--public,
   .mobile-nav-panel {
     width: min(100%, 640px) !important;
-    gap: 8px !important;
+    gap: 2px !important;
     justify-items: stretch !important;
   }
 
@@ -8901,22 +8905,22 @@ section.block::before {
 
   .mobile-link-list {
     display: grid !important;
-    gap: 8px !important;
+    gap: 0 !important;
   }
 
   .mobile-link-list a,
   .mobile-nav .mobile-link-list a,
   .mobile-nav .mobile-admin-link {
-    min-height: auto !important;
+    min-height: 34px !important;
     display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    justify-content: center !important;
-    gap: 3px !important;
-    padding: 12px 14px !important;
-    border: 1px solid rgba(18,32,51,.12) !important;
-    border-radius: 8px !important;
-    background: #FFFFFF !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 0 !important;
+    padding: 7px 2px !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
     box-shadow: none !important;
     color: #122033 !important;
     text-align: left !important;
@@ -8934,13 +8938,13 @@ section.block::before {
 
   .mobile-link-title {
     display: block !important;
-    font-size: 15px !important;
+    font-size: 14px !important;
     font-weight: 900 !important;
-    line-height: 1.2 !important;
+    line-height: 1.15 !important;
   }
 
   .mobile-link-list small {
-    display: block !important;
+    display: none !important;
     color: #64748b !important;
     font-size: 11px !important;
     font-weight: 700 !important;
@@ -8948,11 +8952,11 @@ section.block::before {
   }
 
   .mobile-nav .mobile-nav-label {
-    padding: 8px 2px 2px !important;
+    padding: 6px 2px 3px !important;
     color: #0F5F78 !important;
-    font-size: 11px !important;
+    font-size: 10px !important;
     font-weight: 900 !important;
-    letter-spacing: .10em !important;
+    letter-spacing: .08em !important;
     line-height: 1.2 !important;
     text-align: left !important;
     text-transform: uppercase !important;

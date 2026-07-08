@@ -2766,6 +2766,82 @@ body.ops-page .mobile-link-list a:focus-visible {
   border-color: rgba(230,0,18,.36) !important;
 }
 
+/* ---- Compact frameless hamburger menus, 2026-07-08 ---- */
+body.admin-page .mobile-nav,
+body.ops-page .mobile-nav {
+  padding: 8px max(16px, env(safe-area-inset-left)) calc(12px + env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-right)) !important;
+}
+
+body.admin-page .mobile-nav-panel--admin,
+body.ops-page .mobile-nav-panel--admin,
+body.admin-page .mobile-nav-panel,
+body.ops-page .mobile-nav-panel {
+  gap: 2px !important;
+}
+
+body.admin-page .mobile-link-list,
+body.ops-page .mobile-link-list {
+  gap: 0 !important;
+}
+
+body.admin-page .mobile-link-list a,
+body.admin-page .mobile-nav .mobile-link-list a,
+body.admin-page .mobile-nav .mobile-admin-link,
+body.admin-page .mobile-nav .logout-mobile-link,
+body.ops-page .mobile-link-list a,
+body.ops-page .mobile-nav .mobile-link-list a,
+body.ops-page .mobile-nav .mobile-admin-link,
+body.ops-page .mobile-nav .logout-mobile-link {
+  min-height: 34px !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 0 !important;
+  padding: 7px 2px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: #122033 !important;
+  box-shadow: none !important;
+}
+
+body.admin-page .mobile-link-list a:hover,
+body.admin-page .mobile-link-list a:focus-visible,
+body.admin-page .mobile-nav .mobile-admin-link:hover,
+body.admin-page .mobile-nav .mobile-admin-link:focus-visible,
+body.admin-page .mobile-nav .logout-mobile-link:hover,
+body.admin-page .mobile-nav .logout-mobile-link:focus-visible,
+body.ops-page .mobile-link-list a:hover,
+body.ops-page .mobile-link-list a:focus-visible,
+body.ops-page .mobile-nav .mobile-admin-link:hover,
+body.ops-page .mobile-nav .mobile-admin-link:focus-visible,
+body.ops-page .mobile-nav .logout-mobile-link:hover,
+body.ops-page .mobile-nav .logout-mobile-link:focus-visible {
+  background: #FFF6F6 !important;
+  color: #E60012 !important;
+  outline: none !important;
+}
+
+body.admin-page .mobile-link-title,
+body.ops-page .mobile-link-title {
+  font-size: 14px !important;
+  line-height: 1.15 !important;
+}
+
+body.admin-page .mobile-link-list small,
+body.ops-page .mobile-link-list small,
+body.admin-page .mobile-nav .logout-mobile-link small,
+body.ops-page .mobile-nav .logout-mobile-link small {
+  display: none !important;
+}
+
+body.admin-page .mobile-nav-label,
+body.ops-page .mobile-nav-label {
+  padding: 6px 2px 3px !important;
+  font-size: 10px !important;
+  letter-spacing: .08em !important;
+}
+
 @media (max-width: 640px) {
   body.admin-page .site-header-inner,
   body.ops-page .site-header-inner {

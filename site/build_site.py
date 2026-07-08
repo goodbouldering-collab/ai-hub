@@ -124,7 +124,7 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
         by_group[g].append(b)
 
     # トップポータルの fixed ヘッダーと同じ構造にして全ページの UI を統一する。
-    # 公開ページのメニューは利用者向けだけに絞り、管理導線は管理面へ分離する。
+    # 公開ページのメニューは利用者向けを主軸にしつつ、管理画面への入口だけを固定メニューに置く。
     home_href = _resolve_nav_href("index.html", path_prefix)
     safe_home = html.escape(home_href, quote=True) if home_href else "/"
 
@@ -146,6 +146,7 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
     parts.append("<a class='nav-link nav-essential' href='/blog/index.html'>ブログ</a>")
     parts.append("<a class='nav-link nav-essential' href='/#lectures'>資料</a>")
     parts.append("<a class='nav-link nav-essential' href='/#faq'>FAQ</a>")
+    parts.append("<a class='nav-link nav-admin' href='/admin'>管理画面</a>")
     parts.append("</nav>")
     parts.append(
         "<a class='nav-cta' href='/#contact'>個別相談</a>"
@@ -168,6 +169,7 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
         "<a href='/#speaker'><span class='mobile-link-title'>講師</span><small>誰が支援するか</small></a>"
         "<a href='/#faq'><span class='mobile-link-title'>FAQ</span><small>不安を先に解消</small></a>"
         "<a href='/#contact'><span class='mobile-link-title'>相談</span><small>予約へ進む</small></a>"
+        "<a class='mobile-admin-link' href='/admin'><span class='mobile-link-title'>管理画面</span><small>記事、SNS、OPSを管理</small></a>"
         "</div>"
         "</div>"
         "</div>"
@@ -586,6 +588,17 @@ nav.top-nav .nav-current {
   background: rgba(14,165,198,.12);
   border-color: rgba(14,165,198,.26);
   box-shadow: none;
+}
+nav.top-nav .nav-admin {
+  color: #071426;
+  background: #FFFFFF;
+  border-color: rgba(7,20,38,.18);
+}
+nav.top-nav .nav-admin:hover,
+nav.top-nav .nav-admin:focus-visible {
+  color: #E60012;
+  background: #FFF6F6;
+  border-color: rgba(230,0,18,.36);
 }
 .nav-cta {
   min-height: 38px;

@@ -2648,3 +2648,139 @@ body.ops-page .mobile-nav-label {
   text-align: left !important;
   text-transform: uppercase !important;
 }
+
+/* ---- Public header parity for admin pages, 2026-07-08 ---- */
+body.admin-page,
+body.ops-page {
+  --admin-header-height: 62px;
+}
+
+body.admin-page header.site-header,
+body.admin-page .site-header,
+body.ops-page header.site-header,
+body.ops-page .site-header {
+  min-height: var(--admin-header-height) !important;
+  background: #FFFFFF !important;
+  color: #071426 !important;
+  border-bottom: 1px solid rgba(7,20,38,.13) !important;
+  box-shadow: 0 10px 26px rgba(7,20,38,.07) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+body.admin-page .site-header-inner,
+body.ops-page .site-header-inner {
+  width: min(100%, 1280px) !important;
+  min-height: var(--admin-header-height) !important;
+  margin: 0 auto !important;
+  padding: 8px 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+}
+
+body.admin-page .site-logo,
+body.ops-page .site-logo {
+  min-width: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  color: #071426 !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+}
+
+body.admin-page .site-logo-by,
+body.ops-page .site-logo-by {
+  color: #58677A !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  margin-left: 4px !important;
+}
+
+body.admin-page .admin-slide-nav,
+body.ops-page .admin-slide-nav {
+  display: none !important;
+}
+
+body.admin-page .mobile-toggle,
+body.ops-page .mobile-toggle {
+  flex: 0 0 42px !important;
+  width: 42px !important;
+  height: 42px !important;
+  margin-left: auto !important;
+  display: inline-grid !important;
+  place-items: center !important;
+  border: 1px solid rgba(18,32,51,.20) !important;
+  border-radius: 8px !important;
+  background: #FFFFFF !important;
+  color: #122033 !important;
+  box-shadow: 0 8px 18px rgba(18,32,51,.10) !important;
+  cursor: pointer !important;
+}
+
+body.admin-page .mobile-toggle:hover,
+body.admin-page .mobile-toggle:focus-visible,
+body.ops-page .mobile-toggle:hover,
+body.ops-page .mobile-toggle:focus-visible {
+  background: #FFF6F6 !important;
+  color: #E60012 !important;
+  border-color: rgba(230,0,18,.36) !important;
+  outline: none !important;
+}
+
+body.admin-page .mobile-nav,
+body.ops-page .mobile-nav {
+  top: var(--admin-header-height) !important;
+  max-height: calc(100dvh - var(--admin-header-height)) !important;
+  padding: 12px max(16px, env(safe-area-inset-left)) calc(18px + env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-right)) !important;
+  background: #FFFFFF !important;
+  color: #122033 !important;
+  border-top: 1px solid rgba(18,32,51,.14) !important;
+  box-shadow: 0 18px 34px rgba(18,32,51,.14) !important;
+}
+
+body.admin-page .mobile-nav-panel--admin,
+body.ops-page .mobile-nav-panel--admin {
+  width: min(100%, 720px) !important;
+  gap: 10px !important;
+}
+
+body.admin-page .mobile-link-list a,
+body.admin-page .mobile-nav .mobile-link-list a,
+body.ops-page .mobile-link-list a,
+body.ops-page .mobile-nav .mobile-link-list a {
+  border-radius: 8px !important;
+  background: #FFFFFF !important;
+  color: #122033 !important;
+  border-color: rgba(18,32,51,.12) !important;
+}
+
+body.admin-page .mobile-link-list a:hover,
+body.admin-page .mobile-link-list a:focus-visible,
+body.ops-page .mobile-link-list a:hover,
+body.ops-page .mobile-link-list a:focus-visible {
+  background: #FFF6F6 !important;
+  color: #E60012 !important;
+  border-color: rgba(230,0,18,.36) !important;
+}
+
+@media (max-width: 640px) {
+  body.admin-page .site-header-inner,
+  body.ops-page .site-header-inner {
+    padding: 8px 14px !important;
+  }
+
+  body.admin-page .site-logo,
+  body.ops-page .site-logo {
+    max-width: calc(100% - 58px) !important;
+  }
+
+  body.admin-page .wordmark .word-en,
+  body.admin-page .site-logo-by,
+  body.ops-page .wordmark .word-en,
+  body.ops-page .site-logo-by {
+    display: none !important;
+  }
+}

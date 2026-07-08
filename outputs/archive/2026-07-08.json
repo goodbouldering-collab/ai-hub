@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "",
-      "published": "2026-07-08T20:03:34+00:00"
+      "published": "2026-07-08T20:03:34+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "5aebdb040d472bde",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/chatgpt-voice-upgrade.jpg?quality=90&amp;strip=all&amp;crop=0%2C3.4613147178592%2C100%2C93.077370564282&amp;w=1200",
-      "published": "2026-07-08T13:00:00-04:00"
+      "published": "2026-07-08T13:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "ab17df17f5d8b7c3",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/-yn6GyuX-Ak/hqdefault.jpg",
-      "published": "2026-07-08T11:00:07+00:00"
+      "published": "2026-07-08T11:00:07+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "d62382632996657b",
@@ -75,7 +81,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/JhV0d1PTbss/hqdefault.jpg",
-      "published": "2026-07-08T10:00:09+00:00"
+      "published": "2026-07-08T10:00:09+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "c6217841a9640e84",
@@ -94,7 +102,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/WHFXuRATvSo/hqdefault.jpg",
-      "published": "2026-07-08T10:00:12+00:00"
+      "published": "2026-07-08T10:00:12+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "fbf7c32002dcf413",
@@ -113,7 +123,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://images.ctfassets.net/kftzwdyauwt9/2h3zDXkAt00qFTGsCqrLuV/f4b2ed4ee96f72220d4f6ddc9924a01a/Frame-1.png?w=1600&amp;h=900&amp;fit=fill",
-      "published": "Wed, 08 Jul 2026 13:30:00 GMT"
+      "published": "Wed, 08 Jul 2026 13:30:00 GMT",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "c43e6b3b916e3feb",
@@ -132,7 +144,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://images.ctfassets.net/kftzwdyauwt9/5f0Xf4wOuXVsX7TZUM4tjl/4672bf7bf93bad67ade28dce57f62638/Seperating-signal-from-noise-SEO.png?w=1600&amp;h=900&amp;fit=fill",
-      "published": "Wed, 08 Jul 2026 13:00:00 GMT"
+      "published": "Wed, 08 Jul 2026 13:00:00 GMT",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "d5d5336dbdb37450",
@@ -151,7 +165,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://images.ctfassets.net/kftzwdyauwt9/5zmUIk02ah3xYC8TQ6RR59/fa597b63e8bff26e7e6011cae4542f7b/Frame-1.png?w=1600&amp;h=900&amp;fit=fill",
-      "published": "Wed, 08 Jul 2026 10:00:00 GMT"
+      "published": "Wed, 08 Jul 2026 10:00:00 GMT",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "f1c9214c1f3cb036",
@@ -170,7 +186,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://images.ctfassets.net/kftzwdyauwt9/54glGpDpS58mKdx6Y3GobW/6ea5121851a36b8cf0505a96be2de994/bidi-art-card_16_9__1_.png?w=1600&amp;h=900&amp;fit=fill",
-      "published": "Wed, 08 Jul 2026 00:00:00 GMT"
+      "published": "Wed, 08 Jul 2026 00:00:00 GMT",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "c0323b76d0e9b95f",
@@ -189,7 +207,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://cdn-uploads.huggingface.co/production/uploads/68d2fec8856b85d927e44d32/P3b9bOHrdkEJeAcWX6FoW.gif",
-      "published": "Wed, 08 Jul 2026 17:16:05 GMT"
+      "published": "Wed, 08 Jul 2026 17:16:05 GMT",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

@@ -18,6 +18,8 @@
     { "source": "/admin/logout/", "destination": "/api/admin/logout" },
     { "source": "/admin", "destination": "/api/admin" },
     { "source": "/admin/", "destination": "/api/admin" },
+    { "source": "/admin/blog", "destination": "/api/admin/blog" },
+    { "source": "/admin/blog/", "destination": "/api/admin/blog" },
     { "source": "/admin/chat", "destination": "/api/admin/chat" },
     { "source": "/admin/chat/", "destination": "/api/admin/chat" },
     { "source": "/admin/status", "destination": "/api/admin/status" },

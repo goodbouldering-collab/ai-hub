@@ -15,7 +15,7 @@ let cachedHtml: string | null = null;
 export default withAdmin({ method: "GET" }, async ({ res }) => {
   if (!cachedHtml) {
     try {
-      const p = join(process.cwd(), "site", "static", "admin", "index.html");
+      const p = join(process.cwd(), "site", "static", "admin", "hub.html");
       cachedHtml = readFileSync(p, "utf-8");
     } catch (e: any) {
       res.status(500).send("admin html not found: " + e.message);

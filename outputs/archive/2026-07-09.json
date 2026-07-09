@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/10/STKB372_CHAT_GPT_ATLAS_B.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-09T16:34:05-04:00"
+      "published": "2026-07-09T16:34:05-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "e7dc820c45ba20f8",
@@ -37,7 +39,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/google-ai-ads-label.png?quality=90&amp;strip=all&amp;crop=0%2C3.6285242321584%2C100%2C92.742951535683&amp;w=1200",
-      "published": "2026-07-09T16:11:38-04:00"
+      "published": "2026-07-09T16:11:38-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "0cde9f8f3cb981f8",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/24038601/acastro_STK109_microsoft_02.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-09T13:00:00-04:00"
+      "published": "2026-07-09T13:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "422d01dff81c8118",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/02/STK155_OPEN_AI_4_CVirginia_A.png?quality=90&amp;strip=all&amp;crop=0%2C10.742221417566%2C100%2C78.515557164868&amp;w=1200",
-      "published": "2026-07-09T13:00:00-04:00"
+      "published": "2026-07-09T13:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "105267998259fc0d",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/02/STK043_VRG_Illo_N_Barclay_2_Meta.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-09T10:00:00-04:00"
+      "published": "2026-07-09T10:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "6a9043927bcd832c",
@@ -113,7 +123,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/Claude-Reflect-graph-blog.png?quality=90&amp;strip=all&amp;crop=0%2C3.4613147178592%2C100%2C93.077370564282&amp;w=1200",
-      "published": "2026-07-09T09:30:00-04:00"
+      "published": "2026-07-09T09:30:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "52b6537125a65431",
@@ -132,7 +144,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/c.ai-Series-1.jpg?quality=90&amp;strip=all&amp;crop=0%2C3.4613147178592%2C100%2C93.077370564282&amp;w=1200",
-      "published": "2026-07-09T09:11:53-04:00"
+      "published": "2026-07-09T09:11:53-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "42839a8db2ee6213",
@@ -151,7 +165,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/Hands-on-assistance-built-in.png?quality=90&amp;strip=all&amp;crop=0%2C3.4613147178592%2C100%2C93.077370564282&amp;w=1200",
-      "published": "2026-07-09T09:00:00-04:00"
+      "published": "2026-07-09T09:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "784af9f73922e8d7",
@@ -170,7 +186,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://static.simonwillison.net/static/2026/gpt-5.6-pelicans.webp",
-      "published": "2026-07-09T19:46:38+00:00"
+      "published": "2026-07-09T19:46:38+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "f6efe8153f08bfd5",
@@ -189,7 +207,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-07-09T16:24:09+00:00"
+      "published": "2026-07-09T16:24:09+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

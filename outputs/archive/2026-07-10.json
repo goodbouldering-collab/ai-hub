@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/STK468_APPLE_ANTITRUST_CVIRGINIA_D.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-10T17:36:51-04:00"
+      "published": "2026-07-10T17:36:51-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "c20382903b39ece1",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/gettyimages-2239561028.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.634570719994%2C100%2C78.730858560013&amp;w=1200",
-      "published": "2026-07-10T09:45:02-04:00"
+      "published": "2026-07-10T09:45:02-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "6c900d3b5ea993e8",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/sunrun-distributed-compute1.jpg?quality=90&amp;strip=all&amp;crop=0%2C7.6070218663382%2C100%2C92.392978133662&amp;w=1200",
-      "published": "2026-07-10T09:20:25-04:00"
+      "published": "2026-07-10T09:20:25-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "a43aebdd6a4c9b1a",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-07-10T17:05:26+00:00"
+      "published": "2026-07-10T17:05:26+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "ca2dd2d51cac96d7",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/Vy9BaT9C09I/hqdefault.jpg",
-      "published": "2026-07-10T16:35:54+00:00"
+      "published": "2026-07-10T16:35:54+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "3bb5d5f979548c81",
@@ -113,7 +123,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/gxdf-PiKJEw/hqdefault.jpg",
-      "published": "2026-07-10T13:30:21+00:00"
+      "published": "2026-07-10T13:30:21+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "2b632e0f7899f7dd",
@@ -132,7 +144,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/STKS528_DATA_CENTERS_A.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-09T20:04:13-04:00"
+      "published": "2026-07-09T20:04:13-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "a587e163e575c2f4",
@@ -151,7 +165,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/07/gettyimages-1239232101.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.723165084465%2C100%2C78.55366983107&amp;w=1200",
-      "published": "2026-07-09T19:24:04-04:00"
+      "published": "2026-07-09T19:24:04-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "75f59a9e63aef26a",
@@ -170,7 +186,9 @@
         "freshness": 3.0
       },
       "thumbnail": "",
-      "published": "2026-07-10T01:05:57+00:00"
+      "published": "2026-07-10T01:05:57+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "9ca69eca3a1f0073",
@@ -189,7 +207,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/3FZmyiHXSMI/hqdefault.jpg",
-      "published": "2026-07-10T10:00:19+00:00"
+      "published": "2026-07-10T10:00:19+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     }
   ]
 }

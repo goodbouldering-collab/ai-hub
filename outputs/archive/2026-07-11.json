@@ -18,7 +18,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/J-l0Gi7JP50/hqdefault.jpg",
-      "published": "2026-07-11T11:00:35+00:00"
+      "published": "2026-07-11T11:00:35+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "de24d79ebd65210e",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/yOEwag7gYxU/hqdefault.jpg",
-      "published": "2026-07-11T12:15:43+00:00"
+      "published": "2026-07-11T12:15:43+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "4e83178d290bc4e3",
@@ -56,7 +60,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/meta-muse-image-instagram-tag.png?quality=90&amp;strip=all&amp;crop=0,16.342557965595,100,67.314884068811",
-      "published": "2026-07-10T19:49:50-04:00"
+      "published": "2026-07-10T19:49:50-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "2c409e4afeeabdf0",
@@ -75,7 +81,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/Qw6sOGhRg8U/hqdefault.jpg",
-      "published": "2026-07-11T10:00:15+00:00"
+      "published": "2026-07-11T10:00:15+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "705f83c0a1cd4961",
@@ -94,7 +102,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/mfTqtxYZRrA/hqdefault.jpg",
-      "published": "2026-07-11T10:00:32+00:00"
+      "published": "2026-07-11T10:00:32+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "ca104143d72fc90b",
@@ -113,7 +123,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/6W8Qyw8CeDw/hqdefault.jpg",
-      "published": "2026-07-11T09:00:18+00:00"
+      "published": "2026-07-11T09:00:18+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     }
   ]
 }

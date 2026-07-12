@@ -12180,6 +12180,205 @@ def _render_lecture_card(lec: dict) -> str:
     )
 
 
+FOCUSED_PORTAL_CSS = r"""
+/* ---- Consultation-first redesign, selected direction 02, 2026-07-12 ---- */
+:root {
+  --focus-blue: #075fc8;
+  --focus-blue-dark: #064895;
+  --focus-cyan: #dff4ff;
+  --focus-ink: #0a1728;
+  --focus-muted: #526174;
+  --focus-line: #cbd9e8;
+  --focus-surface: #f5f9fd;
+}
+html { scroll-behavior: smooth; }
+body { background: #fff !important; color: var(--focus-ink) !important; }
+body::before { display: none !important; }
+.container { max-width: none !important; padding-top: 74px !important; overflow: hidden; }
+.site-header, .site-header.scrolled, .site-header:hover {
+  background: rgba(255,255,255,.97) !important;
+  border-bottom: 1px solid rgba(10,23,40,.1) !important;
+  box-shadow: 0 8px 30px rgba(10,23,40,.06) !important;
+}
+.site-header-inner { max-width: 1320px !important; min-height: 74px; padding: 10px 28px !important; }
+.site-logo { gap: 4px !important; }
+.brand-mark { display: none !important; }
+.wordmark { font-size: 23px !important; gap: 5px !important; }
+.wordmark .word-ai { color: var(--focus-blue) !important; }
+.wordmark .word-en, .site-logo-by { display: none !important; }
+.site-nav { gap: 24px !important; background: transparent !important; border: 0 !important; box-shadow: none !important; }
+.site-nav a.nav-link { padding: 10px 2px !important; color: var(--focus-ink) !important; background: transparent !important; border: 0 !important; font-size: 14px !important; }
+.site-nav a.nav-link:hover { color: var(--focus-blue) !important; }
+.site-nav .nav-cta { background: var(--focus-blue) !important; background-image: none !important; border-radius: 8px !important; padding: 12px 20px !important; box-shadow: 0 10px 24px rgba(7,95,200,.18) !important; }
+.focus-hero { min-height: 650px; display: grid; grid-template-columns: minmax(0,.88fr) minmax(560px,1.12fr); background: #fff; }
+.focus-hero-copy { display: flex; flex-direction: column; justify-content: center; padding: 74px clamp(30px,5vw,86px) 72px max(30px,calc((100vw - 1320px)/2)); }
+.focus-kicker { margin: 0 0 18px; color: var(--focus-ink); font-size: clamp(20px,2vw,30px); font-weight: 900; letter-spacing: -.03em; }
+.focus-title { margin: 0; max-width: 620px; color: #050b14; font-size: clamp(50px,4.7vw,68px); line-height: 1.08; letter-spacing: -.055em; }
+.focus-title strong { color: var(--focus-blue); position: relative; white-space: nowrap; }
+.focus-title-line { display:inline-block; white-space:nowrap; }
+.focus-title strong::after { content:""; position:absolute; left:0; right:0; bottom:-7px; height:4px; background:var(--focus-blue); transform:rotate(-1.5deg); }
+.focus-lead { max-width: 540px; margin: 28px 0 0; color: #24344a; font-size: clamp(16px,1.35vw,20px); line-height: 1.8; font-weight: 650; }
+.focus-actions { display: flex; gap: 14px; margin-top: 32px; flex-wrap: wrap; }
+.focus-btn { min-height: 54px; display: inline-flex; align-items: center; justify-content: center; padding: 0 28px; border-radius: 8px; border: 1.5px solid var(--focus-blue); font-weight: 900; text-decoration: none; transition: transform .2s, box-shadow .2s; }
+.focus-btn:hover { transform: translateY(-2px); }
+.focus-btn.primary { background: var(--focus-blue); color: #fff; box-shadow: 0 12px 28px rgba(7,95,200,.2); }
+.focus-btn.secondary { background: #fff; color: var(--focus-blue); }
+.focus-trust { display:flex; gap:16px; margin:24px 0 0; padding:0; list-style:none; color:var(--focus-muted); font-size:12.5px; font-weight:750; flex-wrap:wrap; }
+.focus-hero-visual { position: relative; min-height: 650px; overflow: hidden; background: #eaf2f8; }
+.focus-hero-visual img { width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
+.focus-outcomes { padding: 54px max(30px,calc((100vw - 1320px)/2)); background: linear-gradient(180deg,#d9efff,#edf8ff); }
+.focus-section-head { max-width:1320px; margin:0 auto 30px; text-align:center; }
+.focus-section-head small { display:block; color:var(--focus-blue); font-size:12px; font-weight:900; letter-spacing:.14em; }
+.focus-section-head h2 { margin:8px 0 0; font-size:clamp(30px,3vw,46px); line-height:1.2; letter-spacing:-.04em; }
+.outcome-grid { max-width:1320px; margin:auto; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px; }
+.outcome-item { min-height:210px; padding:24px; background:#fff; border:1px solid rgba(7,95,200,.18); border-radius:12px; box-shadow:0 14px 36px rgba(7,54,105,.08); }
+.outcome-num { color:var(--focus-blue); font:900 12px/1 Inter,sans-serif; letter-spacing:.1em; }
+.outcome-item h3 { margin:25px 0 10px; font-size:21px; }
+.outcome-item p { margin:0; color:var(--focus-muted); line-height:1.7; font-size:14px; }
+.focus-block { padding:82px max(30px,calc((100vw - 1320px)/2)); }
+.focus-block.soft { background:var(--focus-surface); }
+.path-grid { max-width:1320px; margin:auto; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; }
+.path-card-new { display:flex; flex-direction:column; min-height:360px; padding:30px; border:1.5px solid var(--focus-line); border-radius:14px; background:#fff; text-decoration:none; color:inherit; transition:transform .2s,border-color .2s,box-shadow .2s; }
+.path-card-new:hover { transform:translateY(-5px); border-color:var(--focus-blue); box-shadow:0 20px 50px rgba(10,40,80,.12); }
+.path-index { color:var(--focus-blue); font-size:34px; font-weight:900; letter-spacing:-.04em; }
+.path-card-new h3 { margin:16px 0 10px; font-size:26px; }
+.path-card-new p { margin:0; color:var(--focus-muted); line-height:1.75; }
+.path-card-new ul { margin:22px 0 0; padding:0; list-style:none; display:grid; gap:10px; color:#24344a; font-size:14px; font-weight:700; }
+.path-card-new li::before { content:"✓"; color:var(--focus-blue); margin-right:8px; }
+.path-card-new span:last-child { margin-top:auto; padding-top:24px; color:var(--focus-blue); font-weight:900; }
+.focus-proof-grid { max-width:1320px; margin:auto; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; }
+.focus-proof { overflow:hidden; border:1px solid var(--focus-line); border-radius:12px; background:#fff; }
+.focus-proof img { width:100%; aspect-ratio:16/9; object-fit:cover; display:block; border-bottom:1px solid var(--focus-line); }
+.focus-proof div { padding:22px; }
+.focus-proof small { color:var(--focus-blue); font-weight:900; }
+.focus-proof h3 { margin:7px 0 8px; font-size:22px; }
+.focus-proof p { margin:0; color:var(--focus-muted); line-height:1.65; font-size:14px; }
+.focus-split { max-width:1120px; margin:auto; display:grid; grid-template-columns:340px 1fr; gap:54px; align-items:center; }
+.focus-split img { width:100%; border-radius:14px; object-fit:cover; aspect-ratio:4/3; }
+.focus-split h2 { margin:0 0 18px; font-size:clamp(30px,3vw,46px); line-height:1.25; }
+.focus-split p { color:var(--focus-muted); font-size:16px; line-height:1.9; }
+.focus-flow { max-width:1100px; margin:auto; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:0; }
+.focus-step { position:relative; padding:24px 34px; border-left:1px solid var(--focus-line); }
+.focus-step:last-child { border-right:1px solid var(--focus-line); }
+.focus-step b { color:var(--focus-blue); font-size:28px; }
+.focus-step h3 { margin:8px 0; font-size:21px; }
+.focus-step p { margin:0; color:var(--focus-muted); line-height:1.7; font-size:14px; }
+.focus-faq { max-width:940px; margin:auto; }
+.focus-faq details { border-bottom:1px solid var(--focus-line); padding:20px 0; }
+.focus-faq summary { cursor:pointer; font-weight:850; font-size:16px; }
+.focus-faq p { margin:12px 0 0; color:var(--focus-muted); line-height:1.8; }
+.focus-contact { margin:0; padding:56px max(30px,calc((100vw - 1320px)/2)); background:var(--focus-blue); color:#fff; }
+.focus-contact-inner { max-width:1100px; margin:auto; display:flex; align-items:center; justify-content:space-between; gap:36px; }
+.focus-contact h2 { margin:0; font-size:clamp(28px,3vw,44px); }
+.focus-contact p { margin:10px 0 0; color:rgba(255,255,255,.82); }
+.focus-contact .focus-btn { background:#fff; color:var(--focus-blue); border-color:#fff; white-space:nowrap; }
+.focus-resources { max-width:1100px; margin:30px auto 0; padding-top:24px; border-top:1px solid var(--focus-line); display:flex; gap:20px; flex-wrap:wrap; justify-content:center; }
+.focus-resources a { color:var(--focus-muted); font-size:13px; font-weight:750; }
+.sticky-cta { background:#fff !important; color:var(--focus-ink) !important; border-color:var(--focus-line) !important; }
+@media (max-width: 900px) {
+  .focus-hero { grid-template-columns:1fr; min-height:0; }
+  .focus-hero-copy { padding:58px 24px 38px; }
+  .focus-title { font-size:clamp(44px,11vw,66px); }
+  .focus-hero-visual { min-height:360px; }
+  .outcome-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .path-grid,.focus-proof-grid { grid-template-columns:1fr; max-width:680px; }
+  .focus-split { grid-template-columns:1fr; max-width:680px; }
+  .focus-split img { max-width:360px; }
+}
+@media (max-width: 680px) {
+  .container { padding-top:64px !important; }
+  .site-header-inner { min-height:64px; padding:8px 18px !important; }
+  .wordmark { font-size:19px !important; }
+  .focus-hero-copy { padding:46px 20px 32px; }
+  .focus-kicker { font-size:18px; }
+  .focus-title { font-size:clamp(40px,12vw,54px); }
+  .focus-title-line { white-space:normal; }
+  .focus-title strong { white-space:normal; }
+  .focus-actions { display:grid; grid-template-columns:1fr; }
+  .focus-btn { width:100%; }
+  .focus-hero-visual { min-height:300px; }
+  .focus-outcomes,.focus-block { padding:52px 20px; }
+  .outcome-grid { grid-template-columns:1fr; }
+  .outcome-item { min-height:0; }
+  .focus-flow { grid-template-columns:1fr; }
+  .focus-step,.focus-step:last-child { border:0; border-top:1px solid var(--focus-line); padding:22px 0; }
+  .focus-contact-inner { align-items:flex-start; flex-direction:column; }
+  .focus-contact .focus-btn { width:100%; }
+}
+"""
+
+
+def _render_header_focused() -> str:
+    return (
+        "<header class='site-header' id='site-header'><div class='site-header-inner'>"
+        "<a class='site-logo' href='/' aria-label='AI相談 彦根 トップへ'>"
+        "<span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span></span></a>"
+        "<nav class='site-nav' aria-label='メインナビ'>"
+        "<a class='nav-link' href='#courses'>講習</a><a class='nav-link' href='#outcomes'>できること</a>"
+        "<a class='nav-link' href='#works'>実例</a><a class='nav-cta' href='#contact'>まず相談する</a></nav>"
+        "<button class='mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'>"
+        "<svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button>"
+        "</div><div class='mobile-nav' id='mobile-nav'><div class='mobile-nav-panel'>"
+        "<a class='login-btn-mobile' href='#contact'>まず相談する</a>"
+        "<div class='mobile-link-grid'><a href='#courses'>講習</a><a href='#outcomes'>できること</a><a href='#works'>実例</a><a href='#faq'>FAQ</a></div>"
+        "</div></div></header>"
+    )
+
+
+def _render_hero_focused() -> str:
+    return (
+        "<section class='focus-hero' id='top'>"
+        "<div class='focus-hero-copy fade-up'><p class='focus-kicker'>相談で終わらない。</p>"
+        "<h1 class='focus-title'>今日、ひとつ<br><span class='focus-title-line'><strong>動くもの</strong>を作る。</span></h1>"
+        "<p class='focus-lead'>AI活用・AIコーディング・サイト改善を、彦根で、対面で、すぐ形に。</p>"
+        "<div class='focus-actions'><a class='focus-btn primary' href='#courses'>講習を選ぶ</a>"
+        "<a class='focus-btn secondary' href='#contact'>まず相談する</a></div>"
+        "<ul class='focus-trust'><li>初心者OK</li><li>持ち込み課題OK</li><li>対面・オンライン対応</li></ul></div>"
+        "<div class='focus-hero-visual'><img src='/img/hero-ai-consult-hikone.png' alt='彦根で仕事を持ち寄り、AIを学ぶ少人数講習' fetchpriority='high' decoding='async'></div>"
+        "</section>"
+    )
+
+
+def _render_focused_main() -> str:
+    free_consult = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/AW5O5XSBHLEHYUBHLZUGFKYE"
+    seminar = "https://goodbouldering.com/?pid=188553378"
+    return (
+        "<section class='focus-outcomes' id='outcomes'><div class='focus-section-head'><small>WHAT YOU MAKE</small><h2>AIで、今日できること</h2></div>"
+        "<div class='outcome-grid'>"
+        "<article class='outcome-item'><span class='outcome-num'>01 / SNS</span><h3>SNS告知</h3><p>画像と文章を一気に作り、投稿まで迷わない。</p></article>"
+        "<article class='outcome-item'><span class='outcome-num'>02 / OFFICE</span><h3>面倒な事務</h3><p>集計・要約・定型文を、繰り返せる手順に。</p></article>"
+        "<article class='outcome-item'><span class='outcome-num'>03 / CODE</span><h3>AIコーディング</h3><p>作りたいものを、確認しながら動く形に。</p></article>"
+        "<article class='outcome-item'><span class='outcome-num'>04 / WEB</span><h3>サイト改善</h3><p>WordPressの悩みも、残すものから一緒に整理。</p></article>"
+        "</div></section>"
+        "<section class='focus-block' id='courses'><div class='focus-section-head'><small>THREE PATHS</small><h2>選べる3つの入口</h2></div>"
+        "<div class='path-grid'>"
+        f"<a class='path-card-new' href='{free_consult}' target='_blank' rel='noopener'><span class='path-index'>01</span><h3>はじめてのAI</h3><p>何から始めるか分からない方へ。仕事の困りごとから始めます。</p><ul><li>初心者OK</li><li>対面でも安心</li><li>初回相談は無料</li></ul><span>相談して入口を決める →</span></a>"
+        f"<a class='path-card-new' href='{seminar}' target='_blank' rel='noopener'><span class='path-index'>02</span><h3>AIコーディング</h3><p>AIと一緒に作り、差分を読み、安全に公開できる力を育てます。</p><ul><li>Codex実践</li><li>Claude Code併用</li><li>個別サポート</li></ul><span>講習を選ぶ →</span></a>"
+        "<a class='path-card-new' href='#contact'><span class='path-index'>03</span><h3>サイト・業務改善</h3><p>更新に追われるサイトや重い事務を、成果につながる仕組みへ。</p><ul><li>WordPress移行相談</li><li>業務の自動化</li><li>本番確認まで</li></ul><span>改善を相談する →</span></a>"
+        "</div></section>"
+        "<section class='focus-block soft' id='works'><div class='focus-section-head'><small>SELECTED WORK</small><h2>彦根の現場で、使っています</h2></div>"
+        "<div class='focus-proof-grid'>"
+        "<a class='focus-proof' href='https://minnanowa.net' target='_blank' rel='noopener'><img src='/img/web-production-showroom-20260614.png' alt='地域交流サイトの制作実例' loading='lazy'><div><small>地域・コミュニティ</small><h3>みんなのWA</h3><p>登録・イベント・紹介を1つにつないだ地域プラットフォーム。</p></div></a>"
+        "<a class='focus-proof' href='https://trust-nine-tau.vercel.app' target='_blank' rel='noopener'><img src='/img/hero-service-atlas-20260614.png' alt='業務システムの制作実例' loading='lazy'><div><small>福祉・業務改善</small><h3>トラスト</h3><p>シフト管理とLINE連携を、現場で使える業務画面へ。</p></div></a>"
+        "<a class='focus-proof' href='https://notesthe.com' target='_blank' rel='noopener'><img src='/img/hero-ai-hub-studio-cool.png' alt='予約につながる店舗サイトの制作実例' loading='lazy'><div><small>店舗・予約</small><h3>Notエステ</h3><p>サービス説明から予約までを迷わせない店舗サイト。</p></div></a>"
+        "</div><div class='focus-resources'><a href='/portfolio.html'>すべての実績</a><a href='/lectures/index.html'>受講資料</a><a href='/programming-map.html'>AIコーディング講習</a><a href='/blog/index.html'>ブログ</a></div></section>"
+        "<section class='focus-block'><div class='focus-split'><img src='/img/speaker-portrait-v2.webp' alt='AI相談 彦根 講師 由井辰美' loading='lazy'>"
+        "<div><small class='outcome-num'>INSTRUCTOR</small><h2>9つの事業を動かす現場から教える</h2><p>理想論ではなく、告知、予約、事務、サイト運営で実際に使った方法を扱います。相談、実装、スマホ確認、本番URLの確認まで一緒に進めます。</p><a class='focus-btn secondary' href='#contact'>彦根で相談する</a></div></div></section>"
+        "<section class='focus-block soft' id='flow'><div class='focus-section-head'><small>HOW IT WORKS</small><h2>相談から、今日の成果まで</h2></div><div class='focus-flow'>"
+        "<article class='focus-step'><b>01</b><h3>相談する</h3><p>やりたいこと、困っている作業をそのまま聞きます。</p></article>"
+        "<article class='focus-step'><b>02</b><h3>決める</h3><p>講習・相談・改善の中から、最短の進め方を選びます。</p></article>"
+        "<article class='focus-step'><b>03</b><h3>作る</h3><p>持ち帰って使える成果物と、次回の手順を残します。</p></article></div></section>"
+        "<section class='focus-block' id='faq'><div class='focus-section-head'><small>FAQ</small><h2>よくある質問</h2></div><div class='focus-faq'>"
+        "<details><summary>AIがまったく初めてでも大丈夫ですか？</summary><p>大丈夫です。専門用語ではなく、普段の仕事と困りごとから始めます。</p></details>"
+        "<details><summary>パソコンを持ち込めますか？</summary><p>はい。可能なら普段使っているPCと、直したい資料やページをお持ちください。</p></details>"
+        "<details><summary>オンラインでも受講できますか？</summary><p>対面・オンラインの両方に対応しています。彦根市内は訪問も相談できます。</p></details>"
+        "<details><summary>WordPressからの移行も相談できますか？</summary><p>はい。残す記事、URL、フォーム、SEOを整理してから、移行の必要性を判断します。</p></details>"
+        "</div></section>"
+        "<section class='focus-contact' id='contact'><div class='focus-contact-inner'><div><h2>まず、やりたいことを聞かせてください。</h2><p>講習を売る前に、今の仕事に合う入口を一緒に整理します。</p></div>"
+        f"<a class='focus-btn' href='{free_consult}' target='_blank' rel='noopener'>無料相談の日程を選ぶ</a></div></section>"
+    )
+
+
 def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     today = datetime.now().strftime("%Y-%m-%d")
     title = SITE_BRAND
@@ -12199,13 +12398,25 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append(_build_ogp(title, desc, SITE_URL + "/"))
     parts.append(f"<script type='application/ld+json'>{_build_jsonld_website()}</script>")
     parts.append(f"<script type='application/ld+json' id='business-compass-jsonld'>{_build_business_compass_jsonld()}</script>")
-    parts.append(f"<style>{PORTAL_CSS}{BLOG_TEASER_CSS}</style>")
+    parts.append(f"<style>{PORTAL_CSS}{BLOG_TEASER_CSS}{FOCUSED_PORTAL_CSS}</style>")
     parts.append("</head><body>")
 
-    parts.append(_render_header())
+    parts.append(_render_header_focused())
 
     parts.append("<div class='container'>")
-    parts.append(ADMIN_BUTTON_HTML)
+    parts.append(_render_hero_focused())
+
+    parts.append(_render_focused_main())
+
+    parts.append(_render_footer(today))
+    parts.append("</div>")
+    parts.append(_render_sticky_cta())
+    parts.append(HEADER_JS)
+    parts.append("</body></html>")
+    return "".join(parts)
+
+    # Legacy sections remain below as reusable source assets, but are intentionally
+    # outside the focused homepage composition.
 
     parts.append(_render_hero())
     parts.append(_render_ai_course_video_feature())

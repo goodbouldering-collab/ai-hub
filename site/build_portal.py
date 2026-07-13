@@ -11653,7 +11653,7 @@ def _render_portfolio_section() -> str:
     return ""
 
 
-# カテゴリ別サムネ: 実画面のスクショではなく、ブランドカラーのSVGモチーフで体裁を統一する。
+# URLがある実績はサイト画面キャプチャを使う。URLがない場合だけカテゴリ別SVGをフォールバックにする。
 # (絵柄, 上グラデ色1, 上グラデ色2) を category 文字列で引く。未知カテゴリは default。
 _WORKS_THUMB = {
     "コミュニティ":        ("👥", "#2854C5", "#D95B43"),
@@ -11700,9 +11700,8 @@ def _works_thumb_svg(category: str, name: str) -> str:
 
 
 def _render_works_section() -> str:
-    """Portfolio summary helper. Not used on the public top page.
-    各カードは公開サイト本体へ直リンク。ページ遷移を減らすため一覧をインライン掲載。"""
-    items = [p for p in _load_portfolio() if str(p.get("status") or "live") != "retired"]
+    """公開済みの全実績をURLとサイト画面付きで表示する。"""
+    items = [p for p in _load_portfolio() if str(p.get("status") or "") == "live"]
     if not items:
         return ""
     # 横スライド（カルーセル）。左右の矢印 + scroll-snap で見やすく。
@@ -11712,7 +11711,8 @@ def _render_works_section() -> str:
         "<div class='pf-carousel' id='works-carousel'>"
     ]
     for p in items:
-        name = html.escape(str(p.get("name") or p.get("slug") or ""))
+        name_raw = str(p.get("name") or p.get("slug") or "")
+        name = html.escape(name_raw)
         url = str(p.get("url") or "").strip()
         host = html.escape(url.replace("https://", "").replace("http://", "").rstrip("/")) if url else ""
         cat = html.escape(str(p.get("category") or ""))
@@ -11728,8 +11728,9 @@ def _render_works_section() -> str:
         target = " target='_blank' rel='noopener'" if url else ""
         thumb_url = _portfolio_thumb_url(str(p.get("thumbnail") or ""), url)
         if thumb_url:
-            thumb = (f"<span class='pf-thumb is-site-shot' aria-hidden='true'>"
-                     f"<img src='{html.escape(thumb_url, quote=True)}' alt='' loading='lazy' decoding='async' onerror=\"this.style.display='none'\"></span>")
+            thumb_alt = html.escape(f"{name_raw}のサイト画面", quote=True)
+            thumb = (f"<span class='pf-thumb is-site-shot'>"
+                     f"<img src='{html.escape(thumb_url, quote=True)}' alt='{thumb_alt}' loading='lazy' decoding='async' referrerpolicy='no-referrer' onerror=\"this.style.display='none'\"></span>")
         else:
             thumb = _works_thumb_svg(str(p.get("category") or ""), str(p.get("name") or ""))
         parts.append(
@@ -12425,7 +12426,7 @@ def _render_focused_blog_content() -> str:
 def _render_focused_main() -> str:
     free_consult = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/AW5O5XSBHLEHYUBHLZUGFKYE"
     seminar = "https://goodbouldering.com/?pid=188553378"
-    works_count = len([p for p in _load_portfolio() if str(p.get("status") or "live") != "retired"])
+    works_count = len([p for p in _load_portfolio() if str(p.get("status") or "") == "live"])
     lecture_count = len(_load_all_lectures()) + 1
     blog_count = len(_load_recent_blog_posts(limit=100))
 

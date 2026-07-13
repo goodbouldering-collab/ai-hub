@@ -1,208 +1,376 @@
-# AIハブ — ポートフォリオ整理メモ
-# このワークスペース(Claude/配下)で作ったサイトを掲載。
-#
-# 追加ルール:
-#   - url は「現在の公開ドメイン」。将来ドメインが変わったらここだけ書き換える
-#   - 旧ドメインは aliases に残しておくと、過去記事からの参照が切れない
-#   - status: live / dev / retired でフィルタ(retired は一覧に出さない)
-#   - tech はチップ表示(Next.js / Vite / Nuxt / Angular / Payload など)
-#   - summary は 1〜2 行で「何屋 / 何ができる」
-#   - thumbnail は null 可(ビルド時に取得できれば og:image を使う)
-#
+# AI相談 — 実績サイト
+# scripts/sync_portfolio.py が Vercel の公開サイトと手動登録フックを統合する正本。
+# 同名・同slug・同URL・同Vercel project IDは1件へ統合し、旧URLは aliases に残す。
+# status: live の項目だけが公開トップ「すべての実績」に表示される。
+
 portfolio:
-  - name: みんなのWA
-    slug: minanowa
-    url: https://minnanowa.net
-    aliases:
-      - https://minanowa.com
-      - https://minanowa.vercel.app
-    status: live
-    category: コミュニティ
-    tech: [Vercel, Supabase]
-    summary: 彦根市の異業種交流会。登録・イベント・紹介のプラットフォーム
-    since: 2025-03
-
-  - name: グッぼる 本店
-    slug: goodbouldering
-    url: https://goodbouldering.com
-    status: live
-    category: 店舗EC
-    tech: [カラーミーショップ, EUC-JP]
-    summary: ボルダリングカフェの本店サイト(商品・ブログ・予約)
-    since: 2014-01
-
-  - name: Notエステ
-    slug: notesthe
-    url: https://notesthe.com
-    status: live
-    category: 店舗LP
-    tech: [Next.js, Payload CMS]
-    summary: 美肌脱毛・ホワイトニング(彦根・長浜)
-    since: 2025-05
-
-  - name: プロギングジャパン
-    slug: plogging-japan
-    url: https://plogging.jp
-    status: live
-    category: 店舗EC
-    tech: [カラーミーショップ, EUC-JP]
-    summary: ゴミ拾いランニング(Plogging)の日本公式ショップ
-    since: 2020-04
-
-  - name: モクシャチャイ
-    slug: moksha-chai
-    url: https://mokshajapan.jp
-    status: live
-    category: 商品LP
-    tech: [Nuxt]
-    summary: インド伝統の煮出しチャイをそのまま日本へ
-    since: 2023-07
-
-  - name: N-デザイン
-    slug: n-design
-    url: https://n-design.work
-    aliases:
-      - https://n-design-lemon.vercel.app
-      - https://neri-design.co.jp
-    status: live
-    category: 企業サイト
-    tech: [Next.js, Supabase]
-    summary: 滋賀県彦根市の工務店サイト
-    since: 2019-04
-
-  - name: ClimbHero
-    slug: climbhero
-    url: https://project-02ceb497.pages.dev
-    status: live
-    category: 動画アプリ
-    tech: [Cloudflare Pages]
-    summary: 登る動画をランキングで競うクライミング特化アプリ
-    since: 2025-02
-
-  - name: 派遣マッチ
-    slug: business21-match
-    url: https://business21.vercel.app/match
-    status: live
-    category: マッチング
-    tech: [Next.js, Supabase]
-    summary: 派遣求人と求職者を結ぶマッチングプラットフォーム（協同組合ビジネス21）
-    since: 2024-11
-
-  - name: カラッと＋
-    slug: karatto-plus
-    url: https://karatto.life
-    aliases:
-      - https://ajlmshqi.gensparkspace.com
-    status: live
-    category: 店舗EC
-    tech: [Shopify, Cloudflare Workers]
-    summary: カラッとヒーローの Shopify ストア
-    since: 2025-01
-
-  - name: トラスト
-    slug: trust
-    url: https://trust-nine-tau.vercel.app
-    status: live
-    category: 業務システム
-    tech: [Next.js, Supabase, LINE Bot]
-    summary: 障害者グループホームのシフト管理・LINE Bot 連携
-    since: 2026-05
-
-  - name: AI相談
-    slug: ai-hub
-    url: https://ai-hub-jp.vercel.app
-    status: live
-    category: ポートフォリオ
-    tech: [Vercel, Supabase, GitHub Actions]
-    summary: 彦根・滋賀のAI導入相談、生成AI講習、受講資料、実践ブログ、AI情報パイプラインを集約
-    since: 2025-04
-
-  # ---- 生成・試作系 ----
-  - name: 今心
-    slug: imagokoro
-    url: https://readdy.link/share/042372463c05d7076e5a1b8d3ee28e0e
-    status: dev
-    category: 生成LP
-    tech: [Readdy]
-    summary: 心地いいスナックの雰囲気LP
-
-  - name: GPsole
-    slug: gpsole
-    url: https://readdy.link/share/473607684647d6e150399fa3e68b7fd9
-    status: dev
-    category: 生成LP
-    tech: [Readdy]
-    summary: 新世代リソールの製品サイト
-
-  - name: まずは0から1億マーケティング
-    slug: zero-to-oku
-    url: https://khktfxqf.gensparkspace.com
-    status: dev
-    category: 生成LP
-    tech: [Genspark]
-    summary: マーケ基礎 → 1億到達までの考え方を1枚で
-
-  - name: T3-C
-    slug: t3-c
-    url: https://bavosruo.gensparkspace.com/
-    status: live
-    category: 生成LP
-    tech: [Genspark]
-    summary: 長浜・彦根のパーソナルジム。プロストレッチと完全個室のパーソナル施術を案内する生成Webサイト
-
-  # ── インディーハッカーツール（1人で素早く作った単機能ツール・生成物・コンサル成果物）──
-  - name: LLMO診断
-    slug: llmo-shindan
-    url: https://claude.ai/public/artifacts/b468aa0c-3157-476f-aff2-bf049569ba42
-    status: live
-    category: インディーハッカーツール
-    tech: [Claude Artifacts]
-    summary: そのサイト、AI検索に対応してる？を即診断するツール
-
-  - name: 損益計算アプリ
-    slug: soneki-app
-    url: https://claude.ai/public/artifacts/53bac4a1-54f1-4bc4-8ba9-892d7e58c3c8
-    status: live
-    category: インディーハッカーツール
-    tech: [Claude Artifacts]
-    summary: 数字から経営の弱点を見つける損益シミュレーター
-
-  - name: 企業アンバサダープラニング
-    slug: ambassador-planning
-    url: https://www.genspark.ai/agents?id=53db61cb-f365-44fa-b9fa-f705968bea84
-    status: live
-    category: インディーハッカーツール
-    tech: [Genspark]
-    summary: 企業アンバサダー企画から補助金申請までを支援するAIエージェント
-
-  - name: もぐログファディー
-    slug: moglog-fadie
-    url: https://www.genspark.ai/agents?id=7d2b5d1f-e26f-415f-9827-ee23b1992eff
-    status: live
-    category: インディーハッカーツール
-    tech: [Genspark]
-    summary: AIフィットネスの食事記録アプリ
-
-  - name: りーる整骨院 提案
-    slug: rieru-seikotsu
-    url: https://page.gensparksite.com/docs_agent/ae984fea-d97f-4b5a-98c9-8011a693338b/8bbe382c-e37d-4d34-8096-bac941888769/70e67802-89c1-443e-a8fc-4a3e8be3f27b.html
-    status: live
-    category: インディーハッカーツール
-    tech: [Genspark]
-    summary: Google広告と補助金活用のコンサル提案書（生成）
-
-  - name: ClimbHero（生成版LP）
-    slug: climbhero-gen
-    url: https://readdy.link/share/13eb240b3d2b62b6333bede5f74452a0
-    status: dev
-    category: インディーハッカーツール
-    tech: [Readdy]
-    summary: 登る動画ランキングの生成LP版
-
-  - name: KARATTO＋（生成版LP）
-    slug: karatto-gen
-    url: https://readdy.link/share/cab435b49a3700ed3d683c7db6bddd5b
-    status: dev
-    category: インディーハッカーツール
-    tech: [Readdy]
-    summary: カラッとプラスの生成LP版
+- name: みんなのWA
+  slug: minanowa
+  url: https://minnanowa.net
+  aliases:
+  - https://minanowa.com
+  - https://minanowa.vercel.app
+  - https://www.minnanowa.net
+  - https://www.minanowa.com
+  status: live
+  category: コミュニティ
+  tech:
+  - Vercel
+  - Supabase
+  summary: 彦根市の異業種交流会。登録・イベント・紹介のプラットフォーム
+  since: 2025-03
+  source: vercel
+  source_id: prj_zVxZrMg0XkvuRqoWi9tr3iBXJNZm
+  source_project: minanowa
+- name: グッぼる 本店
+  slug: goodbouldering
+  url: https://goodbouldering.com
+  status: live
+  category: 店舗EC
+  tech:
+  - カラーミーショップ
+  - EUC-JP
+  summary: ボルダリングカフェの本店サイト(商品・ブログ・予約)
+  since: 2014-01
+- name: Notエステ
+  slug: notesthe
+  url: https://notesthe.com
+  aliases:
+  - https://www.notesthe.com
+  - https://notesthe.vercel.app
+  status: live
+  category: 店舗サイト
+  tech:
+  - Next.js
+  - Vercel
+  - Payload CMS
+  summary: 彦根・長浜の美肌脱毛、ホワイトニング、セルフケア情報を届ける店舗サイト
+  since: 2025-05
+  source: vercel
+  source_id: prj_8OLhLggQwGL6Yr8713W0POerpYpj
+  source_project: notesthe
+- name: プロギングジャパン
+  slug: plogging-japan
+  url: https://plogging.jp
+  status: live
+  category: 店舗EC
+  tech:
+  - カラーミーショップ
+  - EUC-JP
+  summary: ゴミ拾いランニング(Plogging)の日本公式ショップ
+  since: 2020-04
+- name: モクシャチャイ
+  slug: moksha-chai
+  url: https://mokshajapan.jp
+  status: live
+  category: 商品LP
+  tech:
+  - Nuxt
+  summary: インド伝統の煮出しチャイをそのまま日本へ
+  since: 2023-07
+- name: N-デザイン
+  slug: n-design
+  url: https://n-design.work
+  aliases:
+  - https://n-design-lemon.vercel.app
+  - https://neri-design.co.jp
+  - https://www.n-design.work
+  status: live
+  category: 企業サイト
+  tech:
+  - Next.js
+  - Vercel
+  - Supabase
+  summary: 滋賀県彦根市の工務店サイト
+  since: 2019-04
+  source: vercel
+  source_id: prj_r8V98vvsvSbRH7474KMWguViQBqf
+  source_project: n-design
+- name: ClimbHero
+  slug: climbhero
+  url: https://project-02ceb497.pages.dev
+  aliases:
+  - https://climbhero.vercel.app
+  status: live
+  category: 動画アプリ
+  tech:
+  - Cloudflare Pages
+  - Workers
+  - D1
+  summary: 世界中のクライミング動画を発見・共有し、ランキングと多言語表示で学べるプラットフォーム
+  since: 2025-02
+  source: vercel
+  source_id: prj_okdRDHfHVXPAl4Ae4MzsMvR29w1e
+  source_project: climbhero
+- name: 協同組合ビジネス21
+  slug: business21
+  url: https://business21.vercel.app
+  aliases:
+  - https://business21-kanri.vercel.app
+  - https://business21.vercel.app/match
+  status: live
+  category: 企業・支援機関
+  tech:
+  - Next.js
+  - Vercel
+  - Supabase
+  summary: 外国人材の受入れ、技能実習、特定技能、育成就労を支援する監理団体サイト
+  since: 2024-11
+  source: vercel
+  source_id: prj_lFs3tIEXi0GQeLQtAoIN1O6rAxpA
+  source_project: business21
+- name: カラッと＋
+  slug: karatto-plus
+  url: https://karatto.life
+  aliases:
+  - https://ajlmshqi.gensparkspace.com
+  status: live
+  category: 店舗EC
+  tech:
+  - Shopify
+  - Cloudflare Workers
+  summary: カラッとヒーローの Shopify ストア
+  since: 2025-01
+- name: トラスト
+  slug: trust
+  url: https://trusthikone.vercel.app
+  aliases:
+  - https://trust-nine-tau.vercel.app
+  status: live
+  category: 企業・地域相談
+  tech:
+  - Next.js
+  - Vercel
+  - Supabase
+  summary: 彦根の相続、空き家、土地、家族会議を地域の不動産会社が整理する相談サイト
+  since: 2026-05
+  source: vercel
+  source_id: prj_WgcnPJcTCdjo7iwneQjkZ30p7tPi
+  source_project: trusthikone
+- name: AI相談
+  slug: ai-hub
+  url: https://ai-hub-jp.vercel.app
+  aliases:
+  - https://ai-hub-red-tau.vercel.app
+  status: live
+  category: AI相談・講習
+  tech:
+  - Vercel
+  - Supabase
+  - GitHub Actions
+  summary: 彦根・滋賀のAI導入相談、生成AI講習、受講資料、実践ブログを集約
+  since: 2025-04
+  source: vercel
+  source_id: prj_e7vh73eF0KZpm8C49esnILvHO98o
+  source_project: ai-hub
+- name: 今心
+  slug: imagokoro
+  url: https://readdy.link/share/042372463c05d7076e5a1b8d3ee28e0e
+  status: dev
+  category: 生成LP
+  tech:
+  - Readdy
+  summary: 心地いいスナックの雰囲気LP
+- name: GPsole
+  slug: gpsole
+  url: https://readdy.link/share/473607684647d6e150399fa3e68b7fd9
+  status: dev
+  category: 生成LP
+  tech:
+  - Readdy
+  summary: 新世代リソールの製品サイト
+- name: まずは0から1億マーケティング
+  slug: zero-to-oku
+  url: https://khktfxqf.gensparkspace.com
+  status: dev
+  category: 生成LP
+  tech:
+  - Genspark
+  summary: マーケ基礎 → 1億到達までの考え方を1枚で
+- name: T3-C
+  slug: t3-c
+  url: https://bavosruo.gensparkspace.com/
+  status: live
+  category: 生成LP
+  tech:
+  - Genspark
+  summary: 長浜・彦根のパーソナルジム。プロストレッチと完全個室のパーソナル施術を案内する生成Webサイト
+- name: LLMO診断
+  slug: llmo-shindan
+  url: https://claude.ai/public/artifacts/b468aa0c-3157-476f-aff2-bf049569ba42
+  status: live
+  category: インディーハッカーツール
+  tech:
+  - Claude Artifacts
+  summary: そのサイト、AI検索に対応してる？を即診断するツール
+- name: 損益計算アプリ
+  slug: soneki-app
+  url: https://claude.ai/public/artifacts/53bac4a1-54f1-4bc4-8ba9-892d7e58c3c8
+  status: live
+  category: インディーハッカーツール
+  tech:
+  - Claude Artifacts
+  summary: 数字から経営の弱点を見つける損益シミュレーター
+- name: 企業アンバサダープラニング
+  slug: ambassador-planning
+  url: https://www.genspark.ai/agents?id=53db61cb-f365-44fa-b9fa-f705968bea84
+  status: live
+  category: インディーハッカーツール
+  tech:
+  - Genspark
+  summary: 企業アンバサダー企画から補助金申請までを支援するAIエージェント
+- name: もぐログファディー
+  slug: moglog-fadie
+  url: https://www.genspark.ai/agents?id=7d2b5d1f-e26f-415f-9827-ee23b1992eff
+  status: live
+  category: インディーハッカーツール
+  tech:
+  - Genspark
+  summary: AIフィットネスの食事記録アプリ
+- name: りーる整骨院 提案
+  slug: rieru-seikotsu
+  url: https://page.gensparksite.com/docs_agent/ae984fea-d97f-4b5a-98c9-8011a693338b/8bbe382c-e37d-4d34-8096-bac941888769/70e67802-89c1-443e-a8fc-4a3e8be3f27b.html
+  status: live
+  category: インディーハッカーツール
+  tech:
+  - Genspark
+  summary: Google広告と補助金活用のコンサル提案書（生成）
+- name: ClimbHero（生成版LP）
+  slug: climbhero-gen
+  url: https://readdy.link/share/13eb240b3d2b62b6333bede5f74452a0
+  status: dev
+  category: インディーハッカーツール
+  tech:
+  - Readdy
+  summary: 登る動画ランキングの生成LP版
+- name: KARATTO＋（生成版LP）
+  slug: karatto-gen
+  url: https://readdy.link/share/cab435b49a3700ed3d683c7db6bddd5b
+  status: dev
+  category: インディーハッカーツール
+  tech:
+  - Readdy
+  summary: カラッとプラスの生成LP版
+- name: RebuildMatch AIサイト診断
+  slug: rebuildmatch
+  url: https://site-shindan.vercel.app
+  status: live
+  category: AI診断
+  tech:
+  - Next.js
+  - Vercel
+  - AI
+  summary: 既存サイトをAI診断し、SEO・MEO・AI検索の改善点と費用、次の支援先を比較
+  since: 2026-07
+  source: vercel
+  source_id: prj_1cpMt5bEHXFvu12ci2cQJFe7CpiO
+  source_project: rebuildmatch
+- name: PROFIT彦根
+  slug: profit-hikone
+  url: https://profit-hikone.vercel.app
+  status: live
+  category: 店舗・予約
+  tech:
+  - Vite
+  - Vercel
+  - Square
+  summary: トレーナー予約、事前決済、24時間利用、Golf Plusレッスンをまとめたフィットネスサイト
+  since: 2026-06
+  source: vercel
+  source_id: prj_hzCKMgDmtUp8zCnRqidRbdtoeG5c
+  source_project: profit-hikone
+- name: 巡波 JUNPA
+  slug: junpa
+  url: https://yomogihikone.vercel.app
+  status: live
+  category: サロン・予約
+  tech:
+  - Vercel
+  - Square
+  summary: 彦根の黄土よもぎ蒸し、足裏、二の腕・肩まわりケアを案内する予約制サロンサイト
+  since: 2026-07
+  source: vercel
+  source_id: prj_IvdOoTzGKRUtOmKBBNQ1hBqLuYAa
+  source_project: yomogihikone
+- name: ハイロックス 本郷泰司
+  slug: hyrox-hongo
+  url: https://hyrox-zeta.vercel.app
+  status: live
+  category: 挑戦・メディア
+  tech:
+  - Vercel
+  - Static Site
+  summary: 本郷泰司のHYROX挑戦、ブログ、SNS、協賛相談をまとめた公式サイト
+  since: 2026-06
+  source: vercel
+  source_id: prj_KBrKdZ7GMgenLAuGQpkEAJPbTHl9
+  source_project: hyrox-hongo
+- name: NOKOSU
+  slug: nokosu
+  url: https://nokosu-ten.vercel.app
+  status: live
+  category: 写真・地域サービス
+  tech:
+  - Vercel
+  summary: 相続や解体で失われる家の記憶を、訪問撮影とアルバム・動画で残す彦根発のサービス
+  since: 2026-07
+  source: vercel
+  source_id: prj_ng8J2BHHXkSOgUcgsmB1ASymamAG
+  source_project: nokosu
+- name: 山仁ポータル
+  slug: yamani
+  url: https://yamani.vercel.app
+  aliases:
+  - https://ymani.vercel.app
+  status: live
+  category: 業務ポータル
+  tech:
+  - Vercel
+  - JavaScript
+  summary: 法人見積、再注文、納期相談、SDS・品質資料、社内管理の入口をまとめた取引先向けポータル
+  since: 2026-06
+  source: vercel
+  source_id: prj_PEURyGvqRU72zAj4DEaW5nOzmVCi
+  source_project: yamani
+- name: クライミングシューズの選び方 PRO
+  slug: climbing-shoe-search
+  url: https://shoes.goodbouldering.com
+  aliases:
+  - https://climbing-shoe-search.vercel.app
+  status: live
+  category: 検索・EC
+  tech:
+  - Vercel
+  - JavaScript
+  - カラーミーショップ
+  summary: 足型と用途からクライミングシューズを診断し、購入までつなぐ検索サイト
+  since: 2026-07
+  source: vercel
+  source_id: prj_pIKB7UDMncvhIsuyg1mVS52nllq3
+  source_project: climbing-shoe-search
+- name: ファディー彦根 AI健康管理
+  slug: fadie
+  url: https://fadie-v2.vercel.app
+  status: live
+  category: 健康管理アプリ
+  tech:
+  - Vercel
+  - Gemini
+  summary: 食事・運動・睡眠・体調の記録からAIコーチが助言し、スタッフ支援につなぐアプリ
+  since: 2026-07
+  source: vercel
+  source_id: prj_ipW2tSduDUDtmrRyv3bgaTz6hRGF
+  source_project: fadie-v2
+- name: アンバサダーROI分析
+  slug: ambassador-roi
+  url: https://ambassador-ashen.vercel.app
+  status: live
+  category: AI業務ツール
+  tech:
+  - Vercel
+  - JavaScript
+  summary: AI影響力スコアとROI可視化、契約テンプレートでアンバサダー施策を支援
+  since: 2026-07
+  source: vercel
+  source_id: prj_qChatogWSLwrW7uB6V0xuARXdPSS
+  source_project: ambassador

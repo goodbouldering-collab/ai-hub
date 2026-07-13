@@ -1,0 +1,195 @@
+version: 1
+
+# Vercel の公開プロジェクトを AI相談「すべての実績」へ同期する設定。
+# include: false は、管理API・社内資料・生成ログなど「公開実績サイトではない」ものだけに使う。
+vercel:
+  team_id: team_W9SCRWFpcGCWp6mtYgFIGXXw
+  default_category: Webサイト
+  default_tech: [Vercel]
+  exclude_name_patterns:
+    - '^cma-'
+    - '^out$'
+
+  projects:
+    ai-hub:
+      include: true
+      match_slug: ai-hub
+      slug: ai-hub
+      name: AI相談
+      canonical_url: https://ai-hub-jp.vercel.app
+      category: AI相談・講習
+      tech: [Vercel, Supabase, GitHub Actions]
+      summary: 彦根・滋賀のAI導入相談、生成AI講習、受講資料、実践ブログを集約
+      since: 2025-04
+
+    ambassador:
+      include: true
+      slug: ambassador-roi
+      name: アンバサダーROI分析
+      canonical_url: https://ambassador-ashen.vercel.app
+      category: AI業務ツール
+      tech: [Vercel, JavaScript]
+      summary: AI影響力スコアとROI可視化、契約テンプレートでアンバサダー施策を支援
+      since: 2026-07
+
+    business21:
+      include: true
+      match_slug: business21-match
+      slug: business21
+      name: 協同組合ビジネス21
+      canonical_url: https://business21.vercel.app
+      category: 企業・支援機関
+      tech: [Next.js, Vercel, Supabase]
+      summary: 外国人材の受入れ、技能実習、特定技能、育成就労を支援する監理団体サイト
+      since: 2024-11
+
+    climbhero:
+      include: true
+      match_slug: climbhero
+      slug: climbhero
+      name: ClimbHero
+      canonical_url: https://project-02ceb497.pages.dev
+      category: 動画アプリ
+      tech: [Cloudflare Pages, Workers, D1]
+      summary: 世界中のクライミング動画を発見・共有し、ランキングと多言語表示で学べるプラットフォーム
+      since: 2025-02
+
+    climbing-shoe-search:
+      include: true
+      slug: climbing-shoe-search
+      name: クライミングシューズの選び方 PRO
+      canonical_url: https://shoes.goodbouldering.com
+      category: 検索・EC
+      tech: [Vercel, JavaScript, カラーミーショップ]
+      summary: 足型と用途からクライミングシューズを診断し、購入までつなぐ検索サイト
+      since: 2026-07
+
+    fadie-v2:
+      include: true
+      slug: fadie
+      name: ファディー彦根 AI健康管理
+      canonical_url: https://fadie-v2.vercel.app
+      category: 健康管理アプリ
+      tech: [Vercel, Gemini]
+      summary: 食事・運動・睡眠・体調の記録からAIコーチが助言し、スタッフ支援につなぐアプリ
+      since: 2026-07
+
+    hyrox-hongo:
+      include: true
+      slug: hyrox-hongo
+      name: ハイロックス 本郷泰司
+      canonical_url: https://hyrox-zeta.vercel.app
+      category: 挑戦・メディア
+      tech: [Vercel, Static Site]
+      summary: 本郷泰司のHYROX挑戦、ブログ、SNS、協賛相談をまとめた公式サイト
+      since: 2026-06
+
+    minanowa:
+      include: true
+      match_slug: minanowa
+      slug: minanowa
+      name: みんなのWA
+      canonical_url: https://minnanowa.net
+      category: コミュニティ
+      tech: [Vercel, Supabase]
+      summary: 彦根市の異業種交流会。登録・イベント・紹介のプラットフォーム
+      since: 2025-03
+
+    n-design:
+      include: true
+      match_slug: n-design
+      slug: n-design
+      name: N-デザイン
+      canonical_url: https://n-design.work
+      category: 企業サイト
+      tech: [Next.js, Vercel, Supabase]
+      summary: 滋賀県彦根市の工務店サイト
+      since: 2019-04
+
+    nokosu:
+      include: true
+      slug: nokosu
+      name: NOKOSU
+      canonical_url: https://nokosu-ten.vercel.app
+      category: 写真・地域サービス
+      tech: [Vercel]
+      summary: 相続や解体で失われる家の記憶を、訪問撮影とアルバム・動画で残す彦根発のサービス
+      since: 2026-07
+
+    notesthe:
+      include: true
+      match_slug: notesthe
+      slug: notesthe
+      name: Notエステ
+      canonical_url: https://notesthe.com
+      category: 店舗サイト
+      tech: [Next.js, Vercel, Payload CMS]
+      summary: 彦根・長浜の美肌脱毛、ホワイトニング、セルフケア情報を届ける店舗サイト
+      since: 2025-05
+
+    profit-hikone:
+      include: true
+      slug: profit-hikone
+      name: PROFIT彦根
+      canonical_url: https://profit-hikone.vercel.app
+      category: 店舗・予約
+      tech: [Vite, Vercel, Square]
+      summary: トレーナー予約、事前決済、24時間利用、Golf Plusレッスンをまとめたフィットネスサイト
+      since: 2026-06
+
+    rebuildmatch:
+      include: true
+      slug: rebuildmatch
+      name: RebuildMatch AIサイト診断
+      canonical_url: https://site-shindan.vercel.app
+      category: AI診断
+      tech: [Next.js, Vercel, AI]
+      summary: 既存サイトをAI診断し、SEO・MEO・AI検索の改善点と費用、次の支援先を比較
+      since: 2026-07
+
+    trusthikone:
+      include: true
+      match_slug: trust
+      slug: trust
+      name: トラスト
+      canonical_url: https://trusthikone.vercel.app
+      category: 企業・地域相談
+      tech: [Next.js, Vercel, Supabase]
+      summary: 彦根の相続、空き家、土地、家族会議を地域の不動産会社が整理する相談サイト
+      since: 2026-05
+
+    yamani:
+      include: true
+      slug: yamani
+      name: 山仁ポータル
+      canonical_url: https://yamani.vercel.app
+      category: 業務ポータル
+      tech: [Vercel, JavaScript]
+      summary: 法人見積、再注文、納期相談、SDS・品質資料、社内管理の入口をまとめた取引先向けポータル
+      since: 2026-06
+
+    yomogihikone:
+      include: true
+      slug: junpa
+      name: 巡波 JUNPA
+      canonical_url: https://yomogihikone.vercel.app
+      category: サロン・予約
+      tech: [Vercel, Square]
+      summary: 彦根の黄土よもぎ蒸し、足裏、二の腕・肩まわりケアを案内する予約制サロンサイト
+      since: 2026-07
+
+    business-content-app-server:
+      include: false
+      reason: 複数事業の管理用APIであり、一般公開する実績サイトではない
+
+    cma-vibe-0514-051921:
+      include: false
+      reason: Managed Agentsの生成ログ・試作環境
+
+    karatto-growth-roadmap:
+      include: false
+      reason: 社内向け成長ロードマップ
+
+    out:
+      include: false
+      reason: 用途不明の一時生成プロジェクト

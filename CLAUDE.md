@@ -70,12 +70,21 @@ VSCode で `clients.code-workspace` を開けば「AIハブ起動」タスクで
 ## 守るべきルール
 
 - ソース追加は `config/sources.yaml` に 1 ブロック足すだけ。コードは触らない
-- 作品カードを増やすときは `config/portfolio.yaml` に1ブロック追加。コードは触らない
+- 実績サイトは `config/portfolio.yaml` が正本。公開直後は `portfolio-sync.yml` を実行し、手作業で重複カードを増やさない
 - RSS 以外（X API・スクレイピング等）を増やすときは `core/collector.py` の `DISPATCH` に関数を追加する
 - 日付入りの出力ファイルは上書きしない（NotebookLM 側がソースとして保持しているため）
 - `data/history.db` は commit back される前提。`.gitignore` で除外しない
 - 文字化け防止: グッぼる本店など EUC-JP ソースを HTML で取り込む場合は親 `CLAUDE.md` のルールに従って `iconv` 変換層を挟む
 - Supabase テーブル名 `ai_watch_*` は**改名しない**（旧名のまま運用継続）
+
+## 実績サイト自動同期
+
+- 全事業の本番公開完了フックは `.github/workflows/portfolio-sync.yml` へ確認済みURLとサイト情報を渡し、AI相談トップの「すべての実績」へURLとサイト画面付きで同期する。
+- 同名・同slug・同URL・同Vercel project IDは既存カードを更新し、旧URLを `aliases` に残す。重複カードは作らない。
+- 管理API、社内資料、契約上非公開など掲載禁止のものだけ `config/portfolio-sync.yaml` に `include: false` と理由を書く。その他の完成・公開サイトは掲載対象とする。
+- サイトを本番公開してURL確認が済んだ時点で、ホスティング先に関係なくworkflow inputsへ `name` / `url` / `slug` / `category` / `tech` / `summary` を渡して実行する。入力なしで終わらせない。
+- 日次処理は台帳・画像出力・重複を再検証する。Vercel全体の自動探索は、管理者がGitHub Actionsへ `VERCEL_TOKEN` を明示設定した場合だけ補助的に動かし、ローカル認証を自動移送しない。
+- 詳しい運用とコマンドは `docs/portfolio-auto-sync.md` を参照する。
 
 ## 管理画面について
 

@@ -1,0 +1,104 @@
+name: Sync AI consultation portfolio
+
+on:
+  schedule:
+    # 公開直後の登録フックを補完し、JST 06:17に台帳・画像出力・重複を再検証する。
+    - cron: "17 21 * * *"
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "公開サイト名。本番公開完了フックではホスティング先を問わず指定"
+        required: false
+        type: string
+      url:
+        description: "確認済み本番URL。nameとセットで指定"
+        required: false
+        type: string
+      slug:
+        description: "英数字slug（省略時は自動生成）"
+        required: false
+        type: string
+      category:
+        description: "例: 企業サイト、店舗・予約、業務ポータル"
+        required: false
+        type: string
+      tech:
+        description: "カンマ区切り。例: Next.js,Vercel,Supabase"
+        required: false
+        type: string
+      summary:
+        description: "実績カードの短い説明"
+        required: false
+        type: string
+  repository_dispatch:
+    types: [site-published]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ai-consultation-portfolio-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Test merge and deduplication rules
+        run: python -m unittest tests.test_portfolio_sync
+
+      - name: Sync Vercel and optional site-published hook
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          REGISTER_NAME: ${{ github.event.inputs.name || github.event.client_payload.name || '' }}
+          REGISTER_URL: ${{ github.event.inputs.url || github.event.client_payload.url || '' }}
+          REGISTER_SLUG: ${{ github.event.inputs.slug || github.event.client_payload.slug || '' }}
+          REGISTER_CATEGORY: ${{ github.event.inputs.category || github.event.client_payload.category || '' }}
+          REGISTER_TECH: ${{ github.event.inputs.tech || github.event.client_payload.tech || '' }}
+          REGISTER_SUMMARY: ${{ github.event.inputs.summary || github.event.client_payload.summary || '' }}
+        run: |
+          args=(--write)
+          if [ -z "$VERCEL_TOKEN" ]; then
+            echo "VERCEL_TOKEN未設定: 認証移送は行わず、site-published登録フックだけを実行します"
+            args+=(--no-vercel)
+          fi
+          if [ -n "$REGISTER_NAME" ] || [ -n "$REGISTER_URL" ]; then
+            args+=(--register-name "$REGISTER_NAME" --register-url "$REGISTER_URL")
+            [ -n "$REGISTER_SLUG" ] && args+=(--register-slug "$REGISTER_SLUG")
+            [ -n "$REGISTER_CATEGORY" ] && args+=(--register-category "$REGISTER_CATEGORY")
+            [ -n "$REGISTER_TECH" ] && args+=(--register-tech "$REGISTER_TECH")
+            [ -n "$REGISTER_SUMMARY" ] && args+=(--register-summary "$REGISTER_SUMMARY")
+          fi
+          python scripts/sync_portfolio.py "${args[@]}"
+
+      - name: Rebuild AI consultation site
+        env:
+          AIWATCH_PORTFOLIO_NO_FETCH: "1"
+        run: python site/build_site.py
+
+      - name: Verify every public work has URL and site image
+        run: python scripts/verify_portfolio_output.py
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add config/portfolio.yaml site/dist/index.html
+          if git diff --staged --quiet; then
+            echo "変更なし"
+          else
+            git commit -m "chore(portfolio): sync published sites"
+            git push
+          fi

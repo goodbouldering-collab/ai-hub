@@ -9,6 +9,7 @@ data/_migrate_*
 site/dist/
 .wrangler/
 node_modules/
+.playwright-browsers/
 .vercel/
 _tmp/
 *.bak-*

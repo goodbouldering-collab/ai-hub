@@ -80,6 +80,7 @@ VSCode で `clients.code-workspace` を開けば「AIハブ起動」タスクで
 ## 実績サイト自動同期
 
 - 全事業の本番公開完了フックは `.github/workflows/portfolio-sync.yml` へ確認済みURLとサイト情報を渡し、AI相談トップの「すべての実績」へURLとサイト画面付きで同期する。
+- workflowは起動のたびに公開中の全URLを撮影して `site/static/img/portfolio/` へ保存し、カードは保存済みの最新スクリーンショットを使う。外部MShots画像へ戻さない。
 - 同名・同slug・同URL・同Vercel project IDは既存カードを更新し、旧URLを `aliases` に残す。重複カードは作らない。
 - 管理API、社内資料、契約上非公開など掲載禁止のものだけ `config/portfolio-sync.yaml` に `include: false` と理由を書く。その他の完成・公開サイトは掲載対象とする。
 - サイトを本番公開してURL確認が済んだ時点で、ホスティング先に関係なくworkflow inputsへ `name` / `url` / `slug` / `category` / `tech` / `summary` を渡して実行する。入力なしで終わらせない。

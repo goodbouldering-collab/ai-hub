@@ -18,7 +18,6 @@ import os
 import sys
 from datetime import datetime
 from pathlib import Path
-from urllib.parse import quote
 
 try:
     import yaml
@@ -11675,10 +11674,7 @@ def _portfolio_thumb_url(thumbnail: str, url: str) -> str:
     thumbnail = (thumbnail or "").strip()
     if thumbnail:
         return thumbnail
-    url = (url or "").strip()
-    if not url or url.startswith("#") or url.startswith("mailto:") or url.startswith("tel:"):
-        return ""
-    return "https://s.wordpress.com/mshots/v1/" + quote(url, safe="") + "?w=960"
+    return ""
 
 
 def _works_thumb_svg(category: str, name: str) -> str:

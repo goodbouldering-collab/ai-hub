@@ -43,12 +43,13 @@ concurrency:
 jobs:
   sync:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.11"
           cache: pip
@@ -56,8 +57,11 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Test merge and deduplication rules
-        run: python -m unittest tests.test_portfolio_sync
+      - name: Install Chromium for portfolio screenshots
+        run: python -m playwright install --with-deps chromium
+
+      - name: Test portfolio sync and screenshot rules
+        run: python -m unittest tests.test_portfolio_sync tests.test_portfolio_screenshots
 
       - name: Sync Vercel and optional site-published hook
         env:
@@ -83,6 +87,9 @@ jobs:
           fi
           python scripts/sync_portfolio.py "${args[@]}"
 
+      - name: Capture every live site screenshot
+        run: python scripts/capture_portfolio_screenshots.py
+
       - name: Rebuild AI consultation site
         env:
           AIWATCH_PORTFOLIO_NO_FETCH: "1"
@@ -95,11 +102,11 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add config/portfolio.yaml
+          git add config/portfolio.yaml site/static/img/portfolio
           git add -f site/dist/index.html
           if git diff --staged --quiet; then
             echo "変更なし"
           else
-            git commit -m "chore(portfolio): sync published sites"
+            git commit -m "chore(portfolio): refresh sites and screenshots"
             git push
           fi

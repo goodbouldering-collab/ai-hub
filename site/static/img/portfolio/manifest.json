@@ -1,0 +1,295 @@
+{
+  "generated_at": "2026-07-13T17:11:19.053170+00:00",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "screenshots": {
+    "ai-hub": {
+      "name": "AI相談",
+      "url": "https://ai-hub-jp.vercel.app",
+      "path": "/img/portfolio/ai-hub.jpg",
+      "captured_at": "2026-07-13T17:05:16.170771+00:00",
+      "sha256": "46926364949add703aab218ee128baac4c6147450f8ed7f4fb1d69218a20ba08",
+      "bytes": 91937,
+      "width": 1280,
+      "height": 720,
+      "status": "captured"
+    },
+    "ambassador-planning": {
+      "name": "企業アンバサダープラニング",
+      "url": "https://www.genspark.ai/agents?id=53db61cb-f365-44fa-b9fa-f705968bea84",
+      "path": "/img/portfolio/ambassador-planning.jpg",
+      "captured_at": "2026-07-13T17:05:16.170771+00:00",
+      "sha256": "9bb661667bf060f637c21e36c5fdbb594e32e7f9126dab2cf6e876b23558625e",
+      "bytes": 59284,
+      "width": 1280,
+      "height": 720,
+      "status": "captured"
+    },
+    "ambassador-roi": {
+      "name": "アンバサダーROI分析",
+      "url": "https://ambassador-ashen.vercel.app",
+      "path": "/img/portfolio/ambassador-roi.jpg",
+      "captured_at": "2026-07-13T17:05:16.170771+00:00",
+      "sha256": "fad2edb321fe555b569ebbe50e865ade50d54f518deed44b16eaa5ee9f10704e",
+      "bytes": 45391,
+      "width": 1280,
+      "height": 720,
+      "status": "captured"
+    },
+    "business21": {
+      "name": "協同組合ビジネス21",
+      "url": "https://business21.vercel.app",
+      "path": "/img/portfolio/business21.jpg",
+      "captured_at": "2026-07-13T17:05:16.170771+00:00",
+      "sha256": "423da4d899e0359041d25a63744318272fc878e6972fb8ef1a582f209e7a6c2e",
+      "bytes": 69850,
+      "width": 1280,
+      "height": 720,
+      "status": "captured"
+    },
+    "climbhero": {
+      "name": "ClimbHero",
+      "url": "https://project-02ceb497.pages.dev",
+      "path": "/img/portfolio/climbhero.jpg",
+      "captured_at": "2026-07-13T17:05:16.170771+00:00",
+      "sha256": "81b302312b8f8ce055cc5fca29006335aa9c27010785680e36533b8cd2c53321",
+      "bytes": 48162,
+      "width": 1280,
+      "height": 720,
+      "status": "captured"
+    },
+    "climbing-shoe-search": {
+      "name": "クライミングシューズの選び方 PRO",
+      "url": "https://shoes.goodbouldering.com",
+      "path": "/img/portfolio/climbing-shoe-search.jpg",
+      "captured_at": "2026-07-13T17:05:16.170771+00:00",
+      "sha256": "ac36c26a7c98f4c03cf32a98fc423c6f31a2c02c473623fdef2a64a403ec8d10",
+      "bytes": 48872,
+      "width": 1280,
+      "height": 720,
+      "status": "captured"
+    },
+    "fadie": {
+      "name": "ファディー彦根 AI健康管理",
+      "url": "https://fadie-v2.vercel.app",
+      "path": "/img/portfolio/fadie.jpg",
+      "captured_at": "2026-07-13T17:05:16.170771+00:00",
+      "sha256": "8bc49b69e1c66d93de3f8cdc28ff7cb3a84ff551291923abc7be952ff713d0d7",
+      "bytes": 56881,
+      "width": 1280,
+      "height": 720,
+      "status": "captured"
+    },
+    "goodbouldering": {
+      "name": "グッぼる 本店",
+      "url": "https://goodbouldering.com",
+      "path": "/img/portfolio/goodbouldering.jpg",
+      "captured_at": "2026-07-13T17:11:19.053170+00:00",
+      "sha256": "c44be34cf671d986c181453dc04cdf82fea6287418595162936fb130ca114e12",
+      "bytes": 123439,
+      "width": 1280,
+      "height": 720,
+      "status": "captured"
+    },
+    "hyrox-hongo": {
+      "name": "ハイロックス 本郷泰司",
+      "url": "https://hyrox-zeta.vercel.app",
+      "path": "/img/portfolio/hyrox-hongo.jpg",
+      "captured_at": "2026-07-13T17:05:16.170771+00:00",
+      "sha256": "88f37b8cd8e00ef22bc997e9a34d2d1e3909cf2a87703578cd810352e4335d25",
+      "bytes": 114904,
+      "width": 1280,
+      "height": 720,
+      "status": "captured"
+    },
+    "junpa": {
+      "name": "巡波 JUNPA",
+      "url": "https://yomogihikone.vercel.app",
+      "path": "/img/portfolio/junpa.jpg",
+      "captured_at": "2026-07-13T17:05:16.170771+00:00",
+      "sha256": "a3c15b69b3ed7636394139bd37665ef294f1ae76c27ffa5bde0ccb704469da77",
+      "bytes": 72767,
+      "width": 1280,
+      "height": 720,
+      "status": "captured"
+    },
+    "karatto-plus": {
+      "name": "カラッと＋",
+      "url": "https://karatto.life",
+      "path": "/img/portfolio/karatto-plus.jpg",
+      "captured_at": "2026-07-13T17:05:16.170771+00:00",
+      "sha256": "a80675fba4c4cdd88e7fd4cbc2ba161cb98c63ec01a40c8d77d1beff63641103",
+      "bytes": 120918,
+      "width": 1280,
+      "height": 720,
+      "status": "captured"
+    },
+    "llmo-shindan": {
+      "name": "LLMO診断",
+      "url": "https://claude.ai/public/artifacts/b468aa0c-3157-476f-aff2-bf049569ba42",
+      "path": "/img/portfolio/llmo-shindan.jpg",
+      "captured_at": "2026-07-13T17:05:16.170771+00:00",
+      "sha256": "051493882a15d24d02c4b4db19715e42402420d22d580bcff90f4e1c71ef66fc",
+      "bytes": 42081,
+      "width": 1280,
+      "height": 720,
+      "status": "captured"
+    },
+    "minanowa": {
+      "name": "みんなのWA",
+      "url": "https://minnanowa.net",
+      "path": "/img/portfolio/minanowa.jpg",
+      "captured_at": "2026-07-13T17:05:16.170771+00:00",
+      "sha256": "f46d82db1cd9b424cc260d11aab8441d8576a28ad749e4a8cd0befd70c8b8247",
+      "bytes": 80545,
+      "width": 1280,
+      "height": 720,
+      "status": "captured"
+    },
+    "moglog-fadie": {
+      "name": "もぐログファディー",
+      "url": "https://www.genspark.ai/agents?id=7d2b5d1f-e26f-415f-9827-ee23b1992eff",
+      "path": "/img/portfolio/moglog-fadie.jpg",
+      "captured_at": "2026-07-13T17:05:16.170771+00:00",
+      "sha256": "f83b378231cd60a550492d9c5276c5bbbcc9b443056f4e721426e32f79e4a981",
+      "bytes": 26545,
+      "width": 1280,
+      "height": 720,
+      "status": "captured"
+    },
+    "moksha-chai": {
+      "name": "モクシャチャイ",
+      "url": "https://mokshajapan.jp",
+      "path": "/img/portfolio/moksha-chai.jpg",
+      "captured_at": "2026-07-13T17:05:16.170771+00:00",
+      "sha256": "de83d860dae4c2b0c7d5fa4c7b0b087088cdf212774ddcd0421f93210cd13ccf",
+      "bytes": 63849,
+      "width": 1280,
+      "height": 720,
+      "status": "captured"
+    },
+    "n-design": {
+      "name": "N-デザイン",
+      "url": "https://n-design.work",
+      "path": "/img/portfolio/n-design.jpg",
+      "captured_at": "2026-07-13T17:05:16.170771+00:00",
+      "sha256": "8ecfca7492ad5aa7dc1db4c93e0d5ab195f19eee410dade0efd56ccc4bee3c82",
+      "bytes": 103154,
+      "width": 1280,
+      "height": 720,
+      "status": "captured"
+    },
+    "nokosu": {
+      "name": "NOKOSU",
+      "url": "https://nokosu-ten.vercel.app",
+      "path": "/img/portfolio/nokosu.jpg",
+      "captured_at": "2026-07-13T17:05:16.170771+00:00",
+      "sha256": "38317f2a397bc57abc5401b8663ac0b2bdf4afa1ed398c1c997839de198644db",
+      "bytes": 76647,
+      "width": 1280,
+      "height": 720,
+      "status": "captured"
+    },
+    "notesthe": {
+      "name": "Notエステ",
+      "url": "https://notesthe.com",
+      "path": "/img/portfolio/notesthe.jpg",
+      "captured_at": "2026-07-13T17:05:16.170771+00:00",
+      "sha256": "2eb2e53c845346500422612e59e361d38fbac0540e8e4a89d6d05a87db0e33cd",
+      "bytes": 72503,
+      "width": 1280,
+      "height": 720,
+      "status": "captured"
+    },
+    "plogging-japan": {
+      "name": "プロギングジャパン",
+      "url": "https://plogging.jp",
+      "path": "/img/portfolio/plogging-japan.jpg",
+      "captured_at": "2026-07-13T17:05:16.170771+00:00",
+      "sha256": "0e2f198168d3483620af25acf98f1ba009ff8c91a73796f36ab789f9844553ec",
+      "bytes": 118978,
+      "width": 1280,
+      "height": 720,
+      "status": "captured"
+    },
+    "profit-hikone": {
+      "name": "PROFIT彦根",
+      "url": "https://profit-hikone.vercel.app",
+      "path": "/img/portfolio/profit-hikone.jpg",
+      "captured_at": "2026-07-13T17:05:16.170771+00:00",
+      "sha256": "f401435afaf1048c75a44f9ba4e1f764812e9878b15e47e8fc0651483a154736",
+      "bytes": 84986,
+      "width": 1280,
+      "height": 720,
+      "status": "captured"
+    },
+    "rebuildmatch": {
+      "name": "RebuildMatch AIサイト診断",
+      "url": "https://site-shindan.vercel.app",
+      "path": "/img/portfolio/rebuildmatch.jpg",
+      "captured_at": "2026-07-13T17:05:16.170771+00:00",
+      "sha256": "20e055d51bdfe12fe5faa7807b9bc2ea7155994bbfc672645104d1ccc9cb3fb5",
+      "bytes": 76411,
+      "width": 1280,
+      "height": 720,
+      "status": "captured"
+    },
+    "rieru-seikotsu": {
+      "name": "りーる整骨院 提案",
+      "url": "https://page.gensparksite.com/docs_agent/ae984fea-d97f-4b5a-98c9-8011a693338b/8bbe382c-e37d-4d34-8096-bac941888769/70e67802-89c1-443e-a8fc-4a3e8be3f27b.html",
+      "path": "/img/portfolio/rieru-seikotsu.jpg",
+      "captured_at": "2026-07-13T17:05:16.170771+00:00",
+      "sha256": "51a3b0281f5e5724545e60c21a3a2cc454156a1540276023f7fa11cf18184142",
+      "bytes": 42126,
+      "width": 1280,
+      "height": 720,
+      "status": "captured"
+    },
+    "soneki-app": {
+      "name": "損益計算アプリ",
+      "url": "https://claude.ai/public/artifacts/53bac4a1-54f1-4bc4-8ba9-892d7e58c3c8",
+      "path": "/img/portfolio/soneki-app.jpg",
+      "captured_at": "2026-07-13T17:05:16.170771+00:00",
+      "sha256": "ce2a390d94a9e5708bb8fa172a94c5b987b31998df5757c1f5f2d7c3867e42f4",
+      "bytes": 56044,
+      "width": 1280,
+      "height": 720,
+      "status": "captured"
+    },
+    "t3-c": {
+      "name": "T3-C",
+      "url": "https://bavosruo.gensparkspace.com",
+      "path": "/img/portfolio/t3-c.jpg",
+      "captured_at": "2026-07-13T17:05:16.170771+00:00",
+      "sha256": "8aadd8f49c97a44904ec4e29b61779e88f2d2ef4c84bef612f29e8fb08f01739",
+      "bytes": 99701,
+      "width": 1280,
+      "height": 720,
+      "status": "captured"
+    },
+    "trust": {
+      "name": "トラスト",
+      "url": "https://trusthikone.vercel.app",
+      "path": "/img/portfolio/trust.jpg",
+      "captured_at": "2026-07-13T17:05:16.170771+00:00",
+      "sha256": "3b9ee41b45c14a0e5137e0bab36e2b2f666be63bfbdafb88c12f62f17bca2da0",
+      "bytes": 89973,
+      "width": 1280,
+      "height": 720,
+      "status": "captured"
+    },
+    "yamani": {
+      "name": "山仁ポータル",
+      "url": "https://yamani.vercel.app",
+      "path": "/img/portfolio/yamani.jpg",
+      "captured_at": "2026-07-13T17:05:16.170771+00:00",
+      "sha256": "6e57ed4715fccf03c1d1f67c29b62364431c97342adb6a85c24e90c1f0be3b22",
+      "bytes": 87517,
+      "width": 1280,
+      "height": 720,
+      "status": "captured"
+    }
+  }
+}

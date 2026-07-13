@@ -22,6 +22,7 @@ portfolio:
   source: vercel
   source_id: prj_zVxZrMg0XkvuRqoWi9tr3iBXJNZm
   source_project: minanowa
+  thumbnail: /img/portfolio/minanowa.jpg
 - name: グッぼる 本店
   slug: goodbouldering
   url: https://goodbouldering.com
@@ -32,6 +33,7 @@ portfolio:
   - EUC-JP
   summary: ボルダリングカフェの本店サイト(商品・ブログ・予約)
   since: 2014-01
+  thumbnail: /img/portfolio/goodbouldering.jpg
 - name: Notエステ
   slug: notesthe
   url: https://notesthe.com
@@ -49,6 +51,7 @@ portfolio:
   source: vercel
   source_id: prj_8OLhLggQwGL6Yr8713W0POerpYpj
   source_project: notesthe
+  thumbnail: /img/portfolio/notesthe.jpg
 - name: プロギングジャパン
   slug: plogging-japan
   url: https://plogging.jp
@@ -59,6 +62,7 @@ portfolio:
   - EUC-JP
   summary: ゴミ拾いランニング(Plogging)の日本公式ショップ
   since: 2020-04
+  thumbnail: /img/portfolio/plogging-japan.jpg
 - name: モクシャチャイ
   slug: moksha-chai
   url: https://mokshajapan.jp
@@ -68,6 +72,7 @@ portfolio:
   - Nuxt
   summary: インド伝統の煮出しチャイをそのまま日本へ
   since: 2023-07
+  thumbnail: /img/portfolio/moksha-chai.jpg
 - name: N-デザイン
   slug: n-design
   url: https://n-design.work
@@ -86,6 +91,7 @@ portfolio:
   source: vercel
   source_id: prj_r8V98vvsvSbRH7474KMWguViQBqf
   source_project: n-design
+  thumbnail: /img/portfolio/n-design.jpg
 - name: ClimbHero
   slug: climbhero
   url: https://project-02ceb497.pages.dev
@@ -102,6 +108,7 @@ portfolio:
   source: vercel
   source_id: prj_okdRDHfHVXPAl4Ae4MzsMvR29w1e
   source_project: climbhero
+  thumbnail: /img/portfolio/climbhero.jpg
 - name: 協同組合ビジネス21
   slug: business21
   url: https://business21.vercel.app
@@ -119,6 +126,7 @@ portfolio:
   source: vercel
   source_id: prj_lFs3tIEXi0GQeLQtAoIN1O6rAxpA
   source_project: business21
+  thumbnail: /img/portfolio/business21.jpg
 - name: カラッと＋
   slug: karatto-plus
   url: https://karatto.life
@@ -131,6 +139,7 @@ portfolio:
   - Cloudflare Workers
   summary: カラッとヒーローの Shopify ストア
   since: 2025-01
+  thumbnail: /img/portfolio/karatto-plus.jpg
 - name: トラスト
   slug: trust
   url: https://trusthikone.vercel.app
@@ -147,6 +156,7 @@ portfolio:
   source: vercel
   source_id: prj_WgcnPJcTCdjo7iwneQjkZ30p7tPi
   source_project: trusthikone
+  thumbnail: /img/portfolio/trust.jpg
 - name: AI相談
   slug: ai-hub
   url: https://ai-hub-jp.vercel.app
@@ -163,6 +173,7 @@ portfolio:
   source: vercel
   source_id: prj_e7vh73eF0KZpm8C49esnILvHO98o
   source_project: ai-hub
+  thumbnail: /img/portfolio/ai-hub.jpg
 - name: 今心
   slug: imagokoro
   url: https://readdy.link/share/042372463c05d7076e5a1b8d3ee28e0e
@@ -195,6 +206,7 @@ portfolio:
   tech:
   - Genspark
   summary: 長浜・彦根のパーソナルジム。プロストレッチと完全個室のパーソナル施術を案内する生成Webサイト
+  thumbnail: /img/portfolio/t3-c.jpg
 - name: LLMO診断
   slug: llmo-shindan
   url: https://claude.ai/public/artifacts/b468aa0c-3157-476f-aff2-bf049569ba42
@@ -203,6 +215,7 @@ portfolio:
   tech:
   - Claude Artifacts
   summary: そのサイト、AI検索に対応してる？を即診断するツール
+  thumbnail: /img/portfolio/llmo-shindan.jpg
 - name: 損益計算アプリ
   slug: soneki-app
   url: https://claude.ai/public/artifacts/53bac4a1-54f1-4bc4-8ba9-892d7e58c3c8
@@ -211,6 +224,7 @@ portfolio:
   tech:
   - Claude Artifacts
   summary: 数字から経営の弱点を見つける損益シミュレーター
+  thumbnail: /img/portfolio/soneki-app.jpg
 - name: 企業アンバサダープラニング
   slug: ambassador-planning
   url: https://www.genspark.ai/agents?id=53db61cb-f365-44fa-b9fa-f705968bea84
@@ -219,6 +233,7 @@ portfolio:
   tech:
   - Genspark
   summary: 企業アンバサダー企画から補助金申請までを支援するAIエージェント
+  thumbnail: /img/portfolio/ambassador-planning.jpg
 - name: もぐログファディー
   slug: moglog-fadie
   url: https://www.genspark.ai/agents?id=7d2b5d1f-e26f-415f-9827-ee23b1992eff
@@ -227,6 +242,7 @@ portfolio:
   tech:
   - Genspark
   summary: AIフィットネスの食事記録アプリ
+  thumbnail: /img/portfolio/moglog-fadie.jpg
 - name: りーる整骨院 提案
   slug: rieru-seikotsu
   url: https://page.gensparksite.com/docs_agent/ae984fea-d97f-4b5a-98c9-8011a693338b/8bbe382c-e37d-4d34-8096-bac941888769/70e67802-89c1-443e-a8fc-4a3e8be3f27b.html
@@ -235,6 +251,7 @@ portfolio:
   tech:
   - Genspark
   summary: Google広告と補助金活用のコンサル提案書（生成）
+  thumbnail: /img/portfolio/rieru-seikotsu.jpg
 - name: ClimbHero（生成版LP）
   slug: climbhero-gen
   url: https://readdy.link/share/13eb240b3d2b62b6333bede5f74452a0
@@ -265,6 +282,7 @@ portfolio:
   source: vercel
   source_id: prj_1cpMt5bEHXFvu12ci2cQJFe7CpiO
   source_project: rebuildmatch
+  thumbnail: /img/portfolio/rebuildmatch.jpg
 - name: PROFIT彦根
   slug: profit-hikone
   url: https://profit-hikone.vercel.app
@@ -279,6 +297,7 @@ portfolio:
   source: vercel
   source_id: prj_hzCKMgDmtUp8zCnRqidRbdtoeG5c
   source_project: profit-hikone
+  thumbnail: /img/portfolio/profit-hikone.jpg
 - name: 巡波 JUNPA
   slug: junpa
   url: https://yomogihikone.vercel.app
@@ -292,6 +311,7 @@ portfolio:
   source: vercel
   source_id: prj_IvdOoTzGKRUtOmKBBNQ1hBqLuYAa
   source_project: yomogihikone
+  thumbnail: /img/portfolio/junpa.jpg
 - name: ハイロックス 本郷泰司
   slug: hyrox-hongo
   url: https://hyrox-zeta.vercel.app
@@ -305,6 +325,7 @@ portfolio:
   source: vercel
   source_id: prj_KBrKdZ7GMgenLAuGQpkEAJPbTHl9
   source_project: hyrox-hongo
+  thumbnail: /img/portfolio/hyrox-hongo.jpg
 - name: NOKOSU
   slug: nokosu
   url: https://nokosu-ten.vercel.app
@@ -317,6 +338,7 @@ portfolio:
   source: vercel
   source_id: prj_ng8J2BHHXkSOgUcgsmB1ASymamAG
   source_project: nokosu
+  thumbnail: /img/portfolio/nokosu.jpg
 - name: 山仁ポータル
   slug: yamani
   url: https://yamani.vercel.app
@@ -332,6 +354,7 @@ portfolio:
   source: vercel
   source_id: prj_PEURyGvqRU72zAj4DEaW5nOzmVCi
   source_project: yamani
+  thumbnail: /img/portfolio/yamani.jpg
 - name: クライミングシューズの選び方 PRO
   slug: climbing-shoe-search
   url: https://shoes.goodbouldering.com
@@ -348,6 +371,7 @@ portfolio:
   source: vercel
   source_id: prj_pIKB7UDMncvhIsuyg1mVS52nllq3
   source_project: climbing-shoe-search
+  thumbnail: /img/portfolio/climbing-shoe-search.jpg
 - name: ファディー彦根 AI健康管理
   slug: fadie
   url: https://fadie-v2.vercel.app
@@ -361,6 +385,7 @@ portfolio:
   source: vercel
   source_id: prj_ipW2tSduDUDtmrRyv3bgaTz6hRGF
   source_project: fadie-v2
+  thumbnail: /img/portfolio/fadie.jpg
 - name: アンバサダーROI分析
   slug: ambassador-roi
   url: https://ambassador-ashen.vercel.app
@@ -374,3 +399,4 @@ portfolio:
   source: vercel
   source_id: prj_qChatogWSLwrW7uB6V0xuARXdPSS
   source_project: ambassador
+  thumbnail: /img/portfolio/ambassador-roi.jpg

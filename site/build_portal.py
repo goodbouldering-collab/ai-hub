@@ -12255,6 +12255,7 @@ body::before { display: none !important; }
 .path-grid { max-width:1320px; margin:auto; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; }
 .path-card-new { display:flex; flex-direction:column; min-height:360px; padding:30px; border:1.5px solid var(--focus-line); border-radius:14px; background:#fff; text-decoration:none; color:inherit; transition:transform .2s,border-color .2s,box-shadow .2s; }
 .path-card-new:hover { transform:translateY(-5px); border-color:var(--focus-blue); box-shadow:0 20px 50px rgba(10,40,80,.12); }
+.path-card-visual { display:block; width:100%; aspect-ratio:4/3; margin:0 0 24px; border:1px solid rgba(7,95,200,.14); border-radius:10px; background:#fffaf0; object-fit:cover; }
 .path-index { color:var(--focus-blue); font-size:34px; font-weight:900; letter-spacing:-.04em; }
 .path-card-new h3 { margin:16px 0 10px; font-size:26px; }
 .path-card-new p { margin:0; color:var(--focus-muted); line-height:1.75; }
@@ -12270,6 +12271,7 @@ body::before { display: none !important; }
 .focus-proof p { margin:0; color:var(--focus-muted); line-height:1.65; font-size:14px; }
 .focus-split { max-width:1120px; margin:auto; display:grid; grid-template-columns:340px 1fr; gap:54px; align-items:center; }
 .focus-split img { width:100%; border-radius:14px; object-fit:cover; aspect-ratio:4/3; }
+.focus-split .speaker-painting { aspect-ratio:1/1; object-position:center; background:#fffaf0; box-shadow:0 18px 46px rgba(10,40,80,.10); }
 .focus-split h2 { margin:0 0 18px; font-size:clamp(30px,3vw,46px); line-height:1.25; }
 .focus-split p { color:var(--focus-muted); font-size:16px; line-height:1.9; }
 .focus-flow { max-width:1100px; margin:auto; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:0; }
@@ -12376,14 +12378,16 @@ def _render_header_focused() -> str:
         "<nav class='site-nav' aria-label='メインナビ'>"
         "<a class='nav-link nav-essential' href='#all-works'>すべての実績</a>"
         "<a class='nav-link nav-essential' href='#lectures'>受講資料</a><a class='nav-link nav-essential' href='#ai-coding'>AIコーディング講習</a>"
-        "<a class='nav-link nav-essential' href='#blog'>ブログ</a><a class='nav-cta' href='#contact'>まず相談する</a></nav>"
+        "<a class='nav-link nav-essential' href='#blog'>ブログ</a><a class='nav-link nav-essential' href='/admin'>管理</a>"
+        "<a class='nav-cta' href='#contact'>まず相談する</a></nav>"
         "<button class='mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'>"
         "<svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button>"
         "</div><div class='mobile-nav' id='mobile-nav'><div class='mobile-nav-panel'>"
         "<a class='login-btn-mobile' href='#contact'>まず相談する</a>"
         "<div class='mobile-link-grid'><a href='#all-works'>すべての実績</a>"
         "<a href='#lectures'>受講資料</a><a href='#ai-coding'>AIコーディング講習</a>"
-        "<a href='#blog'>ブログ</a><a href='#courses'>講習・相談</a><a href='#faq'>FAQ</a></div>"
+        "<a href='#blog'>ブログ</a><a href='#courses'>講習・相談</a><a href='#faq'>FAQ</a>"
+        "<a class='mobile-admin-link' href='/admin'>管理</a></div>"
         "</div></div></header>"
     )
 
@@ -12460,10 +12464,10 @@ def _render_focused_main() -> str:
         "<article class='outcome-item'><span class='outcome-num'>03 / CODE</span><h3>AIコーディング</h3><p>作りたいものを、確認しながら動く形に。</p></article>",
         "<article class='outcome-item'><span class='outcome-num'>04 / WEB</span><h3>サイト改善</h3><p>WordPressの悩みも、残すものから一緒に整理。</p></article></div></section>",
         "<section class='focus-block' id='courses'><div class='focus-section-head'><small>THREE PATHS</small><h2>選べる3つの入口</h2></div><div class='path-grid'>",
-        f"<a class='path-card-new' href='{free_consult}' target='_blank' rel='noopener'><span class='path-index'>01</span><h3>はじめてのAI</h3><p>何から始めるか分からない方へ。仕事の困りごとから始めます。</p><ul><li>初心者OK</li><li>対面でも安心</li><li>初回相談は無料</li></ul><span>相談して入口を決める →</span></a>",
-        f"<a class='path-card-new' href='{seminar}' target='_blank' rel='noopener'><span class='path-index'>02</span><h3>AIコーディング</h3><p>AIと一緒に作り、差分を読み、安全に公開できる力を育てます。</p><ul><li>Codex実践</li><li>Claude Code併用</li><li>個別サポート</li></ul><span>講習を選ぶ →</span></a>",
-        "<a class='path-card-new' href='#contact'><span class='path-index'>03</span><h3>サイト・業務改善</h3><p>更新に追われるサイトや重い事務を、成果につながる仕組みへ。</p><ul><li>WordPress移行相談</li><li>業務の自動化</li><li>本番確認まで</li></ul><span>改善を相談する →</span></a></div></section>",
-        "<section class='focus-block soft'><div class='focus-split'><img src='/img/speaker-portrait-v2.webp' alt='AI相談 彦根 講師 由井辰美' loading='lazy'>",
+        f"<a class='path-card-new' href='{free_consult}' target='_blank' rel='noopener'><img class='path-card-visual' src='/img/course-path-beginner.webp' alt='仕事の困りごとをAIで整理するイメージ' loading='lazy'><span class='path-index'>01</span><h3>はじめてのAI</h3><p>何から始めるか分からない方へ。仕事の困りごとから始めます。</p><ul><li>初心者OK</li><li>対面でも安心</li><li>初回相談は無料</li></ul><span>相談して入口を決める →</span></a>",
+        f"<a class='path-card-new' href='{seminar}' target='_blank' rel='noopener'><img class='path-card-visual' src='/img/course-path-coding.webp' alt='AIと一緒にコードを確認して公開するイメージ' loading='lazy'><span class='path-index'>02</span><h3>AIコーディング</h3><p>AIと一緒に作り、差分を読み、安全に公開できる力を育てます。</p><ul><li>Codex実践</li><li>Claude Code併用</li><li>個別サポート</li></ul><span>講習を選ぶ →</span></a>",
+        "<a class='path-card-new' href='#contact'><img class='path-card-visual' src='/img/course-path-workflow.webp' alt='複雑なサイトと事務を一つの仕組みに整えるイメージ' loading='lazy'><span class='path-index'>03</span><h3>サイト・業務改善</h3><p>更新に追われるサイトや重い事務を、成果につながる仕組みへ。</p><ul><li>WordPress移行相談</li><li>業務の自動化</li><li>本番確認まで</li></ul><span>改善を相談する →</span></a></div></section>",
+        "<section class='focus-block soft'><div class='focus-split'><img class='speaker-painting' src='/img/speaker-portrait-painting.webp' alt='AI相談 彦根 講師 由井辰美の絵画調ポートレート' loading='lazy'>",
         "<div><small class='outcome-num'>INSTRUCTOR</small><h2>9つの事業を動かす現場から教える</h2><p>理想論ではなく、告知、予約、事務、サイト運営で実際に使った方法を扱います。相談、実装、スマホ確認、本番URLの確認まで一緒に進めます。</p><a class='focus-btn secondary' href='#contact'>彦根で相談する</a></div></div></section>",
         "<section class='focus-block' id='flow'><div class='focus-section-head'><small>HOW IT WORKS</small><h2>相談から、今日の成果まで</h2></div><div class='focus-flow'>",
         "<article class='focus-step'><b>01</b><h3>相談する</h3><p>やりたいこと、困っている作業をそのまま聞きます。</p></article>",

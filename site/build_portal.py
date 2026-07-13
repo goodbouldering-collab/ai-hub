@@ -12206,12 +12206,12 @@ body::before { display: none !important; }
 .wordmark { font-size: 23px !important; gap: 5px !important; }
 .wordmark .word-ai { color: var(--focus-blue) !important; }
 .wordmark .word-en, .site-logo-by { display: none !important; }
-.site-nav { gap: 24px !important; background: transparent !important; border: 0 !important; box-shadow: none !important; }
+.site-nav { gap: 18px !important; background: transparent !important; border: 0 !important; box-shadow: none !important; }
 .site-nav a.nav-link { padding: 10px 2px !important; color: var(--focus-ink) !important; background: transparent !important; border: 0 !important; font-size: 14px !important; }
 .site-nav a.nav-link:hover { color: var(--focus-blue) !important; }
 .site-nav .nav-cta { background: var(--focus-blue) !important; background-image: none !important; border-radius: 8px !important; padding: 12px 20px !important; box-shadow: 0 10px 24px rgba(7,95,200,.18) !important; }
-.focus-hero { min-height: 650px; display: grid; grid-template-columns: minmax(0,.88fr) minmax(560px,1.12fr); background: #fff; }
-.focus-hero-copy { display: flex; flex-direction: column; justify-content: center; padding: 74px clamp(30px,5vw,86px) 72px max(30px,calc((100vw - 1320px)/2)); }
+.focus-hero { min-height: 540px; display: grid; grid-template-columns: minmax(0,.95fr) minmax(520px,1.05fr); background: #fff; }
+.focus-hero-copy { display: flex; flex-direction: column; justify-content: center; padding: 58px clamp(30px,5vw,86px) 58px max(30px,calc((100vw - 1320px)/2)); }
 .focus-kicker { margin: 0 0 18px; color: var(--focus-ink); font-size: clamp(20px,2vw,30px); font-weight: 900; letter-spacing: -.03em; }
 .focus-title { margin: 0; max-width: 620px; color: #050b14; font-size: clamp(50px,4.7vw,68px); line-height: 1.08; letter-spacing: -.055em; }
 .focus-title strong { color: var(--focus-blue); position: relative; white-space: nowrap; }
@@ -12224,8 +12224,23 @@ body::before { display: none !important; }
 .focus-btn.primary { background: var(--focus-blue); color: #fff; box-shadow: 0 12px 28px rgba(7,95,200,.2); }
 .focus-btn.secondary { background: #fff; color: var(--focus-blue); }
 .focus-trust { display:flex; gap:16px; margin:24px 0 0; padding:0; list-style:none; color:var(--focus-muted); font-size:12.5px; font-weight:750; flex-wrap:wrap; }
-.focus-hero-visual { position: relative; min-height: 650px; overflow: hidden; background: #eaf2f8; }
+.focus-hero-visual { position: relative; min-height: 540px; overflow: hidden; background: #eaf2f8; }
 .focus-hero-visual img { width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
+.focus-hub { padding:52px max(30px,calc((100vw - 1320px)/2)) 66px; background:#fff; border-top:1px solid var(--focus-line); }
+.focus-hub-head { max-width:1320px; margin:0 auto 24px; display:flex; align-items:end; justify-content:space-between; gap:24px; }
+.focus-hub-head small { color:var(--focus-blue); font-size:12px; font-weight:900; letter-spacing:.14em; }
+.focus-hub-head h2 { margin:7px 0 0; font-size:clamp(28px,3vw,42px); letter-spacing:-.04em; }
+.focus-hub-head p { max-width:520px; margin:0; color:var(--focus-muted); line-height:1.75; font-size:14px; }
+.focus-hub-grid { max-width:1320px; margin:0 auto; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px; }
+.focus-hub-card { position:relative; min-height:210px; display:flex; flex-direction:column; padding:24px; overflow:hidden; color:var(--focus-ink); text-decoration:none; background:var(--focus-surface); border:1px solid var(--focus-line); border-radius:14px; transition:transform .2s,border-color .2s,box-shadow .2s; }
+.focus-hub-card::before { content:""; position:absolute; inset:0 auto 0 0; width:5px; background:var(--focus-blue); }
+.focus-hub-card:hover { transform:translateY(-4px); border-color:var(--focus-blue); box-shadow:0 18px 42px rgba(10,40,80,.11); }
+.focus-hub-card small { color:var(--focus-blue); font-size:11px; font-weight:900; letter-spacing:.11em; }
+.focus-hub-card h3 { margin:16px 0 8px; font-size:23px; line-height:1.35; letter-spacing:-.025em; }
+.focus-hub-card p { margin:0; color:var(--focus-muted); font-size:13px; line-height:1.7; }
+.focus-hub-meta { display:flex; align-items:baseline; gap:7px; margin-top:auto; padding-top:18px; color:var(--focus-blue); }
+.focus-hub-meta strong { font-size:28px; line-height:1; }
+.focus-hub-meta span { font-size:12px; font-weight:800; }
 .focus-outcomes { padding: 54px max(30px,calc((100vw - 1320px)/2)); background: linear-gradient(180deg,#d9efff,#edf8ff); }
 .focus-section-head { max-width:1320px; margin:0 auto 30px; text-align:center; }
 .focus-section-head small { display:block; color:var(--focus-blue); font-size:12px; font-weight:900; letter-spacing:.14em; }
@@ -12274,6 +12289,37 @@ body::before { display: none !important; }
 .focus-contact .focus-btn { background:#fff; color:var(--focus-blue); border-color:#fff; white-space:nowrap; }
 .focus-resources { max-width:1100px; margin:30px auto 0; padding-top:24px; border-top:1px solid var(--focus-line); display:flex; gap:20px; flex-wrap:wrap; justify-content:center; }
 .focus-resources a { color:var(--focus-muted); font-size:13px; font-weight:750; }
+.focus-block[id] { scroll-margin-top:88px; }
+.focus-section-lead { max-width:820px; margin:-12px auto 30px; color:var(--focus-muted); font-size:15px; line-height:1.85; text-align:center; }
+.focus-content-shell { max-width:1320px; margin:0 auto; }
+.focus-content-actions { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin:28px auto 0; }
+.focus-content-actions .focus-btn { min-height:48px; padding:0 22px; font-size:14px; }
+.focus-block .pf-carousel-wrap,
+.focus-block .lecture-grid { max-width:1320px; margin-left:auto; margin-right:auto; }
+.focus-block .pf-card,
+.focus-block .lecture-card,
+.focus-block .blog-card { background:#fff !important; border:1px solid var(--focus-line) !important; box-shadow:0 12px 30px rgba(10,40,80,.07) !important; }
+.focus-block .pf-card:hover,
+.focus-block .lecture-card:hover,
+.focus-block .blog-card:hover { border-color:var(--focus-blue) !important; box-shadow:0 18px 42px rgba(10,40,80,.12) !important; }
+.focus-block .lecture-title { color:var(--focus-ink) !important; }
+.focus-block .lecture-summary,
+.focus-block .lecture-date,
+.focus-block .pf-sum,
+.focus-block .pf-host,
+.focus-block .blog-card p { color:var(--focus-muted) !important; }
+.focus-ai-course { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:minmax(0,1.4fr) minmax(280px,.6fr); border:1px solid var(--focus-line); border-radius:16px; overflow:hidden; background:#fff; box-shadow:0 18px 46px rgba(10,40,80,.09); }
+.focus-ai-course-main { padding:38px; }
+.focus-ai-course-main h3 { margin:0; font-size:clamp(27px,3vw,40px); letter-spacing:-.035em; }
+.focus-ai-course-main > p { margin:16px 0 0; color:var(--focus-muted); line-height:1.85; }
+.focus-ai-checks { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px 18px; margin:26px 0 0; padding:0; list-style:none; color:#24344a; font-size:14px; font-weight:750; }
+.focus-ai-checks li::before { content:"✓"; margin-right:8px; color:var(--focus-blue); font-weight:900; }
+.focus-ai-course-side { display:flex; flex-direction:column; justify-content:center; gap:20px; padding:34px; background:linear-gradient(155deg,var(--focus-blue-dark),var(--focus-blue)); color:#fff; }
+.focus-course-fact { padding-bottom:18px; border-bottom:1px solid rgba(255,255,255,.25); }
+.focus-course-fact:last-child { padding-bottom:0; border-bottom:0; }
+.focus-course-fact small { display:block; color:rgba(255,255,255,.72); font-size:11px; font-weight:850; letter-spacing:.12em; }
+.focus-course-fact strong { display:block; margin-top:6px; font-size:22px; }
+.focus-blog-carousel { max-width:1320px; margin:0 auto; }
 .sticky-cta { background:#fff !important; color:var(--focus-ink) !important; border-color:var(--focus-line) !important; }
 @media (max-width: 900px) {
   .focus-hero { grid-template-columns:1fr; min-height:0; }
@@ -12284,6 +12330,12 @@ body::before { display: none !important; }
   .path-grid,.focus-proof-grid { grid-template-columns:1fr; max-width:680px; }
   .focus-split { grid-template-columns:1fr; max-width:680px; }
   .focus-split img { max-width:360px; }
+  .focus-ai-course { grid-template-columns:1fr; max-width:680px; }
+  .focus-ai-course-side { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .focus-course-fact { padding:0 12px 0 0; border-bottom:0; border-right:1px solid rgba(255,255,255,.25); }
+  .focus-course-fact:last-child { border-right:0; }
+  .focus-hub-head { align-items:flex-start; flex-direction:column; }
+  .focus-hub-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
 }
 @media (max-width: 680px) {
   .container { padding-top:64px !important; }
@@ -12297,13 +12349,21 @@ body::before { display: none !important; }
   .focus-actions { display:grid; grid-template-columns:1fr; }
   .focus-btn { width:100%; }
   .focus-hero-visual { min-height:300px; }
-  .focus-outcomes,.focus-block { padding:52px 20px; }
+  .focus-outcomes,.focus-block,.focus-hub { padding:52px 20px; }
+  .focus-hub-grid { grid-template-columns:1fr; }
+  .focus-hub-card { min-height:180px; }
   .outcome-grid { grid-template-columns:1fr; }
   .outcome-item { min-height:0; }
   .focus-flow { grid-template-columns:1fr; }
   .focus-step,.focus-step:last-child { border:0; border-top:1px solid var(--focus-line); padding:22px 0; }
   .focus-contact-inner { align-items:flex-start; flex-direction:column; }
   .focus-contact .focus-btn { width:100%; }
+  .focus-section-lead { margin-top:-14px; font-size:14px; text-align:left; }
+  .focus-ai-course-main { padding:26px 22px; }
+  .focus-ai-checks { grid-template-columns:1fr; }
+  .focus-ai-course-side { grid-template-columns:1fr; padding:26px 22px; }
+  .focus-course-fact { padding:0 0 16px; border-right:0; border-bottom:1px solid rgba(255,255,255,.25); }
+  .focus-course-fact:last-child { padding-bottom:0; border-bottom:0; }
 }
 """
 
@@ -12314,13 +12374,16 @@ def _render_header_focused() -> str:
         "<a class='site-logo' href='/' aria-label='AI相談 彦根 トップへ'>"
         "<span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span></span></a>"
         "<nav class='site-nav' aria-label='メインナビ'>"
-        "<a class='nav-link' href='#courses'>講習</a><a class='nav-link' href='#outcomes'>できること</a>"
-        "<a class='nav-link' href='#works'>実例</a><a class='nav-cta' href='#contact'>まず相談する</a></nav>"
+        "<a class='nav-link nav-essential' href='#all-works'>すべての実績</a>"
+        "<a class='nav-link nav-essential' href='#lectures'>受講資料</a><a class='nav-link nav-essential' href='#ai-coding'>AIコーディング講習</a>"
+        "<a class='nav-link nav-essential' href='#blog'>ブログ</a><a class='nav-cta' href='#contact'>まず相談する</a></nav>"
         "<button class='mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'>"
         "<svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button>"
         "</div><div class='mobile-nav' id='mobile-nav'><div class='mobile-nav-panel'>"
         "<a class='login-btn-mobile' href='#contact'>まず相談する</a>"
-        "<div class='mobile-link-grid'><a href='#courses'>講習</a><a href='#outcomes'>できること</a><a href='#works'>実例</a><a href='#faq'>FAQ</a></div>"
+        "<div class='mobile-link-grid'><a href='#all-works'>すべての実績</a>"
+        "<a href='#lectures'>受講資料</a><a href='#ai-coding'>AIコーディング講習</a>"
+        "<a href='#blog'>ブログ</a><a href='#courses'>講習・相談</a><a href='#faq'>FAQ</a></div>"
         "</div></div></header>"
     )
 
@@ -12328,55 +12391,93 @@ def _render_header_focused() -> str:
 def _render_hero_focused() -> str:
     return (
         "<section class='focus-hero' id='top'>"
-        "<div class='focus-hero-copy fade-up'><p class='focus-kicker'>相談で終わらない。</p>"
-        "<h1 class='focus-title'>今日、ひとつ<br><span class='focus-title-line'><strong>動くもの</strong>を作る。</span></h1>"
-        "<p class='focus-lead'>AI活用・AIコーディング・サイト改善を、彦根で、対面で、すぐ形に。</p>"
-        "<div class='focus-actions'><a class='focus-btn primary' href='#courses'>講習を選ぶ</a>"
-        "<a class='focus-btn secondary' href='#contact'>まず相談する</a></div>"
-        "<ul class='focus-trust'><li>初心者OK</li><li>持ち込み課題OK</li><li>対面・オンライン対応</li></ul></div>"
+        "<div class='focus-hero-copy fade-up'><p class='focus-kicker'>学ぶ。作る。地域で使う。</p>"
+        "<h1 class='focus-title'>AIを、<br><span class='focus-title-line'><strong>仕事で使える形に。</strong></span></h1>"
+        "<p class='focus-lead'>彦根の現場で作った実績、受講資料、AIコーディング講習、ブログをひとつに集めました。</p>"
+        "<div class='focus-actions'><a class='focus-btn primary' href='#all-works'>すべての実績を見る</a>"
+        "<a class='focus-btn secondary' href='#ai-coding'>AIコーディング講習</a></div>"
+        "<ul class='focus-trust'><li>地域・福祉・教育</li><li>初心者OK</li><li>相談から本番確認まで</li></ul></div>"
         "<div class='focus-hero-visual'><img src='/img/hero-ai-consult-hikone.png' alt='彦根で仕事を持ち寄り、AIを学ぶ少人数講習' fetchpriority='high' decoding='async'></div>"
         "</section>"
+    )
+
+
+def _render_focused_blog_content() -> str:
+    posts = _load_recent_blog_posts(limit=6)
+    if not posts:
+        return "<p class='focus-section-lead'>ブログ記事は準備中です。</p>"
+    cards = [_render_blog_card(post) for post in posts]
+    return (
+        "<div class='pf-carousel-wrap blog-carousel-wrap focus-blog-carousel'>"
+        "<button type='button' class='pf-arrow pf-prev' aria-label='前へ' data-dir='-1'>‹</button>"
+        "<div class='pf-carousel blog-carousel' id='blog-carousel'>"
+        + "".join(cards)
+        + "</div>"
+        "<button type='button' class='pf-arrow pf-next' aria-label='次へ' data-dir='1'>›</button>"
+        "</div>"
     )
 
 
 def _render_focused_main() -> str:
     free_consult = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/AW5O5XSBHLEHYUBHLZUGFKYE"
     seminar = "https://goodbouldering.com/?pid=188553378"
-    return (
-        "<section class='focus-outcomes' id='outcomes'><div class='focus-section-head'><small>WHAT YOU MAKE</small><h2>AIで、今日できること</h2></div>"
-        "<div class='outcome-grid'>"
-        "<article class='outcome-item'><span class='outcome-num'>01 / SNS</span><h3>SNS告知</h3><p>画像と文章を一気に作り、投稿まで迷わない。</p></article>"
-        "<article class='outcome-item'><span class='outcome-num'>02 / OFFICE</span><h3>面倒な事務</h3><p>集計・要約・定型文を、繰り返せる手順に。</p></article>"
-        "<article class='outcome-item'><span class='outcome-num'>03 / CODE</span><h3>AIコーディング</h3><p>作りたいものを、確認しながら動く形に。</p></article>"
-        "<article class='outcome-item'><span class='outcome-num'>04 / WEB</span><h3>サイト改善</h3><p>WordPressの悩みも、残すものから一緒に整理。</p></article>"
-        "</div></section>"
-        "<section class='focus-block' id='courses'><div class='focus-section-head'><small>THREE PATHS</small><h2>選べる3つの入口</h2></div>"
-        "<div class='path-grid'>"
-        f"<a class='path-card-new' href='{free_consult}' target='_blank' rel='noopener'><span class='path-index'>01</span><h3>はじめてのAI</h3><p>何から始めるか分からない方へ。仕事の困りごとから始めます。</p><ul><li>初心者OK</li><li>対面でも安心</li><li>初回相談は無料</li></ul><span>相談して入口を決める →</span></a>"
-        f"<a class='path-card-new' href='{seminar}' target='_blank' rel='noopener'><span class='path-index'>02</span><h3>AIコーディング</h3><p>AIと一緒に作り、差分を読み、安全に公開できる力を育てます。</p><ul><li>Codex実践</li><li>Claude Code併用</li><li>個別サポート</li></ul><span>講習を選ぶ →</span></a>"
-        "<a class='path-card-new' href='#contact'><span class='path-index'>03</span><h3>サイト・業務改善</h3><p>更新に追われるサイトや重い事務を、成果につながる仕組みへ。</p><ul><li>WordPress移行相談</li><li>業務の自動化</li><li>本番確認まで</li></ul><span>改善を相談する →</span></a>"
-        "</div></section>"
-        "<section class='focus-block soft' id='works'><div class='focus-section-head'><small>SELECTED WORK</small><h2>彦根の現場で、使っています</h2></div>"
-        "<div class='focus-proof-grid'>"
-        "<a class='focus-proof' href='https://minnanowa.net' target='_blank' rel='noopener'><img src='/img/web-production-showroom-20260614.png' alt='地域交流サイトの制作実例' loading='lazy'><div><small>地域・コミュニティ</small><h3>みんなのWA</h3><p>登録・イベント・紹介を1つにつないだ地域プラットフォーム。</p></div></a>"
-        "<a class='focus-proof' href='https://trust-nine-tau.vercel.app' target='_blank' rel='noopener'><img src='/img/hero-service-atlas-20260614.png' alt='業務システムの制作実例' loading='lazy'><div><small>福祉・業務改善</small><h3>トラスト</h3><p>シフト管理とLINE連携を、現場で使える業務画面へ。</p></div></a>"
-        "<a class='focus-proof' href='https://notesthe.com' target='_blank' rel='noopener'><img src='/img/hero-ai-hub-studio-cool.png' alt='予約につながる店舗サイトの制作実例' loading='lazy'><div><small>店舗・予約</small><h3>Notエステ</h3><p>サービス説明から予約までを迷わせない店舗サイト。</p></div></a>"
-        "</div><div class='focus-resources'><a href='/portfolio.html'>すべての実績</a><a href='/lectures/index.html'>受講資料</a><a href='/programming-map.html'>AIコーディング講習</a><a href='/blog/index.html'>ブログ</a></div></section>"
-        "<section class='focus-block'><div class='focus-split'><img src='/img/speaker-portrait-v2.webp' alt='AI相談 彦根 講師 由井辰美' loading='lazy'>"
-        "<div><small class='outcome-num'>INSTRUCTOR</small><h2>9つの事業を動かす現場から教える</h2><p>理想論ではなく、告知、予約、事務、サイト運営で実際に使った方法を扱います。相談、実装、スマホ確認、本番URLの確認まで一緒に進めます。</p><a class='focus-btn secondary' href='#contact'>彦根で相談する</a></div></div></section>"
-        "<section class='focus-block soft' id='flow'><div class='focus-section-head'><small>HOW IT WORKS</small><h2>相談から、今日の成果まで</h2></div><div class='focus-flow'>"
-        "<article class='focus-step'><b>01</b><h3>相談する</h3><p>やりたいこと、困っている作業をそのまま聞きます。</p></article>"
-        "<article class='focus-step'><b>02</b><h3>決める</h3><p>講習・相談・改善の中から、最短の進め方を選びます。</p></article>"
-        "<article class='focus-step'><b>03</b><h3>作る</h3><p>持ち帰って使える成果物と、次回の手順を残します。</p></article></div></section>"
-        "<section class='focus-block' id='faq'><div class='focus-section-head'><small>FAQ</small><h2>よくある質問</h2></div><div class='focus-faq'>"
-        "<details><summary>AIがまったく初めてでも大丈夫ですか？</summary><p>大丈夫です。専門用語ではなく、普段の仕事と困りごとから始めます。</p></details>"
-        "<details><summary>パソコンを持ち込めますか？</summary><p>はい。可能なら普段使っているPCと、直したい資料やページをお持ちください。</p></details>"
-        "<details><summary>オンラインでも受講できますか？</summary><p>対面・オンラインの両方に対応しています。彦根市内は訪問も相談できます。</p></details>"
-        "<details><summary>WordPressからの移行も相談できますか？</summary><p>はい。残す記事、URL、フォーム、SEOを整理してから、移行の必要性を判断します。</p></details>"
-        "</div></section>"
-        "<section class='focus-contact' id='contact'><div class='focus-contact-inner'><div><h2>まず、やりたいことを聞かせてください。</h2><p>講習を売る前に、今の仕事に合う入口を一緒に整理します。</p></div>"
-        f"<a class='focus-btn' href='{free_consult}' target='_blank' rel='noopener'>無料相談の日程を選ぶ</a></div></section>"
-    )
+    works_count = len([p for p in _load_portfolio() if str(p.get("status") or "live") != "retired"])
+    lecture_count = len(_load_all_lectures()) + 1
+    blog_count = len(_load_recent_blog_posts(limit=100))
+
+    parts = [
+        "<section class='focus-hub' id='hub'><div class='focus-hub-head'><div><small>EXPLORE AI HUB</small><h2>AIハブの中身</h2></div>"
+        "<p>相談だけでなく、作ったもの、学べる資料、講習、実践記録から自由に入れます。</p></div><div class='focus-hub-grid'>",
+        f"<a class='focus-hub-card' href='#all-works'><small>ALL WORKS</small><h3>すべての実績</h3><p>地域、福祉、店舗、業務改善で実際に公開・運用している制作物。</p><span class='focus-hub-meta'><strong>{works_count}</strong><span>件の実績</span></span></a>",
+        f"<a class='focus-hub-card' href='#lectures'><small>MATERIALS</small><h3>受講資料</h3><p>AIの基本からCodex実践まで、講習後も見返せる公開資料。</p><span class='focus-hub-meta'><strong>{lecture_count}</strong><span>件の資料</span></span></a>",
+        "<a class='focus-hub-card' href='#ai-coding'><small>AI CODING</small><h3>AIコーディング講習</h3><p>作りたいものを題材に、確認・修正・公開まで身につける実践講習。</p><span class='focus-hub-meta'><strong>120</strong><span>分の実践</span></span></a>",
+        f"<a class='focus-hub-card' href='#blog'><small>BLOG</small><h3>ブログ</h3><p>AI活用と業務改善の成功、失敗、修正を残した実践記録。</p><span class='focus-hub-meta'><strong>{blog_count}</strong><span>本の記事</span></span></a>",
+        "</div></section>",
+        "<section class='focus-block' id='all-works'><div class='focus-section-head'><small>ALL WORKS</small><h2>すべての実績</h2></div>",
+        "<p class='focus-section-lead'>地域交流、福祉、店舗、EC、予約、業務システム。現場の悩みを、公開して使えるWebサービスや運用の仕組みに変えた実績です。</p><div class='focus-content-shell'>",
+        _render_works_section(),
+        "</div><div class='focus-content-actions'><a class='focus-btn secondary' href='#contact'>似た課題を相談する</a></div></section>",
+        "<section class='focus-block soft' id='lectures'><div class='focus-section-head'><small>LEARNING MATERIALS</small><h2>受講資料</h2></div>",
+        "<p class='focus-section-lead'>AIが分からない、学び直しが不安、講習後に忘れそう。初めての考え方からCodex実践まで、あとから見返せる資料として公開しています。</p>",
+        _render_lectures_section(),
+        "<div class='focus-content-actions'><a class='focus-btn secondary' href='/lectures/index.html'>受講資料を一覧で見る</a></div></section>",
+        "<section class='focus-block' id='ai-coding'><div class='focus-section-head'><small>AI CODING COURSE</small><h2>AIコーディング講習</h2></div>",
+        "<p class='focus-section-lead'>コード経験よりも、作りたいものがあることから始めます。AIに任せきらず、確認し、直し、安全に公開するところまでを身につけます。</p>",
+        "<div class='focus-ai-course'><div class='focus-ai-course-main'><h3>自分の仕事で、動くものを作る。</h3>",
+        "<p>告知ページ、業務ツール、集計、資料、予約導線など、持ち込み課題を題材にCodexとClaude Codeの使い分けを実践します。</p>",
+        "<ul class='focus-ai-checks'><li>Codexの導入と安全な権限設定</li><li>Claude Codeとの使い分け</li><li>差分・表示・スマホ幅の確認</li><li>本番公開と次の改善手順</li></ul>",
+        "<div class='focus-content-actions'><a class='focus-btn primary' href='/programming-map.html'>講習内容を詳しく見る</a>",
+        f"<a class='focus-btn secondary' href='{seminar}' target='_blank' rel='noopener'>講習を予約する</a></div></div>",
+        "<aside class='focus-ai-course-side' aria-label='講習の概要'><div class='focus-course-fact'><small>時間</small><strong>120分</strong></div>",
+        "<div class='focus-course-fact'><small>対象</small><strong>初心者OK</strong></div><div class='focus-course-fact'><small>形式</small><strong>対面・オンライン</strong></div></aside></div></section>",
+        "<section class='focus-block soft' id='blog'><div class='focus-section-head'><small>PRACTICAL BLOG</small><h2>ブログ</h2></div>",
+        "<p class='focus-section-lead'>AI活用、AIコーディング、業務改善で試したことを、成功だけでなく失敗と修正も含めて残しています。SNSや講習の続きとして読めます。</p>",
+        _render_focused_blog_content(),
+        "<div class='focus-content-actions'><a class='focus-btn secondary' href='/blog/index.html'>ブログを一覧で読む</a></div></section>",
+        "<section class='focus-outcomes' id='outcomes'><div class='focus-section-head'><small>WHAT YOU MAKE</small><h2>AIで、今日できること</h2></div><div class='outcome-grid'>",
+        "<article class='outcome-item'><span class='outcome-num'>01 / SNS</span><h3>SNS告知</h3><p>画像と文章を一気に作り、投稿まで迷わない。</p></article>",
+        "<article class='outcome-item'><span class='outcome-num'>02 / OFFICE</span><h3>面倒な事務</h3><p>集計・要約・定型文を、繰り返せる手順に。</p></article>",
+        "<article class='outcome-item'><span class='outcome-num'>03 / CODE</span><h3>AIコーディング</h3><p>作りたいものを、確認しながら動く形に。</p></article>",
+        "<article class='outcome-item'><span class='outcome-num'>04 / WEB</span><h3>サイト改善</h3><p>WordPressの悩みも、残すものから一緒に整理。</p></article></div></section>",
+        "<section class='focus-block' id='courses'><div class='focus-section-head'><small>THREE PATHS</small><h2>選べる3つの入口</h2></div><div class='path-grid'>",
+        f"<a class='path-card-new' href='{free_consult}' target='_blank' rel='noopener'><span class='path-index'>01</span><h3>はじめてのAI</h3><p>何から始めるか分からない方へ。仕事の困りごとから始めます。</p><ul><li>初心者OK</li><li>対面でも安心</li><li>初回相談は無料</li></ul><span>相談して入口を決める →</span></a>",
+        f"<a class='path-card-new' href='{seminar}' target='_blank' rel='noopener'><span class='path-index'>02</span><h3>AIコーディング</h3><p>AIと一緒に作り、差分を読み、安全に公開できる力を育てます。</p><ul><li>Codex実践</li><li>Claude Code併用</li><li>個別サポート</li></ul><span>講習を選ぶ →</span></a>",
+        "<a class='path-card-new' href='#contact'><span class='path-index'>03</span><h3>サイト・業務改善</h3><p>更新に追われるサイトや重い事務を、成果につながる仕組みへ。</p><ul><li>WordPress移行相談</li><li>業務の自動化</li><li>本番確認まで</li></ul><span>改善を相談する →</span></a></div></section>",
+        "<section class='focus-block soft'><div class='focus-split'><img src='/img/speaker-portrait-v2.webp' alt='AI相談 彦根 講師 由井辰美' loading='lazy'>",
+        "<div><small class='outcome-num'>INSTRUCTOR</small><h2>9つの事業を動かす現場から教える</h2><p>理想論ではなく、告知、予約、事務、サイト運営で実際に使った方法を扱います。相談、実装、スマホ確認、本番URLの確認まで一緒に進めます。</p><a class='focus-btn secondary' href='#contact'>彦根で相談する</a></div></div></section>",
+        "<section class='focus-block' id='flow'><div class='focus-section-head'><small>HOW IT WORKS</small><h2>相談から、今日の成果まで</h2></div><div class='focus-flow'>",
+        "<article class='focus-step'><b>01</b><h3>相談する</h3><p>やりたいこと、困っている作業をそのまま聞きます。</p></article>",
+        "<article class='focus-step'><b>02</b><h3>決める</h3><p>講習・相談・改善の中から、最短の進め方を選びます。</p></article>",
+        "<article class='focus-step'><b>03</b><h3>作る</h3><p>持ち帰って使える成果物と、次回の手順を残します。</p></article></div></section>",
+        "<section class='focus-block soft' id='faq'><div class='focus-section-head'><small>FAQ</small><h2>よくある質問</h2></div><div class='focus-faq'>",
+        "<details><summary>AIがまったく初めてでも大丈夫ですか？</summary><p>大丈夫です。専門用語ではなく、普段の仕事と困りごとから始めます。</p></details>",
+        "<details><summary>パソコンを持ち込めますか？</summary><p>はい。可能なら普段使っているPCと、直したい資料やページをお持ちください。</p></details>",
+        "<details><summary>オンラインでも受講できますか？</summary><p>対面・オンラインの両方に対応しています。彦根市内は訪問も相談できます。</p></details>",
+        "<details><summary>WordPressからの移行も相談できますか？</summary><p>はい。残す記事、URL、フォーム、SEOを整理してから、移行の必要性を判断します。</p></details></div></section>",
+        "<section class='focus-contact' id='contact'><div class='focus-contact-inner'><div><h2>まず、やりたいことを聞かせてください。</h2><p>講習を売る前に、今の仕事に合う入口を一緒に整理します。</p></div>",
+        f"<a class='focus-btn' href='{free_consult}' target='_blank' rel='noopener'>無料相談の日程を選ぶ</a></div></section>",
+    ]
+    return "".join(parts)
 
 
 def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:

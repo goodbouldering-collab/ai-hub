@@ -1,38 +1,87 @@
 <!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex,nofollow">
-  <title>リール App Server | AI相談 管理</title>
-  <style>
-    :root { color-scheme: light; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Sans","Noto Sans JP",sans-serif; }
-    * { box-sizing:border-box; }
-    html, body { width:100%; height:100%; margin:0; overflow:hidden; background:#f3f7f8; color:#071426; }
-    body { display:grid; grid-template-rows:auto minmax(0,1fr); }
-    header { min-height:64px; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:10px 18px; border-bottom:1px solid rgba(7,20,38,.14); background:#fff; box-shadow:0 8px 24px rgba(7,20,38,.08); z-index:2; }
-    .title { min-width:0; display:flex; align-items:center; gap:12px; }
-    .mark { width:40px; height:40px; display:grid; place-items:center; border-radius:9px; background:linear-gradient(135deg,#7c3aed,#db2777); color:#fff; font-weight:900; }
-    h1 { margin:0; font-size:17px; line-height:1.25; }
-    p { margin:3px 0 0; color:#5a6878; font-size:11px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-    nav { display:flex; gap:8px; flex:0 0 auto; }
-    a { min-height:40px; display:inline-flex; align-items:center; justify-content:center; padding:0 13px; border:1px solid rgba(7,20,38,.16); border-radius:8px; background:#fff; color:#122033; text-decoration:none; font-size:12px; font-weight:850; }
-    a.primary { border-color:#7c3aed; background:#7c3aed; color:#fff; }
-    iframe { width:100%; height:100%; border:0; background:#fff; }
-    @media (max-width:700px) { header { padding:8px 10px; } .mark { width:36px; height:36px; } h1 { font-size:14px; } p { display:none; } a { min-height:36px; padding:0 9px; font-size:11px; } }
-  </style>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
+  <title>リール App Server</title><link rel="stylesheet" href="./styles.css"><link rel="stylesheet" href="./styles-content.css">
 </head>
-<body>
-  <header>
-    <div class="title">
-      <span class="mark" aria-hidden="true">R</span>
-      <div><h1>リール App Server</h1><p>企画・素材承認・9:16動画・投稿前プレビュー</p></div>
-    </div>
-    <nav aria-label="リール App Server 操作">
-      <a href="/admin">管理へ戻る</a>
-      <a class="primary" href="https://business-content-app-server.vercel.app/reel?business=ai-hub" target="_blank" rel="noopener">個別に開く</a>
-    </nav>
-  </header>
-  <iframe title="リール App Server" src="https://business-content-app-server.vercel.app/reel?business=ai-hub" allow="clipboard-read; clipboard-write; fullscreen"></iframe>
+<body data-app="reel">
+  <div class="login-gate" id="login-gate" hidden>
+    <form class="login-card" id="login-form"><span class="eyebrow">REEL APP SERVER</span><h1>管理画面へログイン</h1><p>リール制作専用の管理画面です。</p><label>管理パスワード<input id="studio-password" type="password" autocomplete="current-password" required></label><button class="primary" type="submit">ログイン</button><span class="login-error" id="login-error"></span></form>
+  </div>
+  <header class="topbar"><div><span class="eyebrow">REEL APP SERVER</span><h1>事業別リール制作</h1></div><div class="server-state" id="server-state">接続確認中</div></header>
+  <nav class="studio-tabs" aria-label="制作画面"><a id="studio-nav-blog" href="./blog.html">ブログ</a><a class="active" id="studio-nav-reel" href="./reel.html">リール</a><a id="studio-nav-back" href="/studio">入口</a></nav>
+  <section class="api-key-panel" aria-labelledby="api-key-heading">
+    <div><span class="eyebrow">API KEY</span><h2 id="api-key-heading">OpenAI APIキー設定</h2><p>このタブを閉じるまでだけ保持し、企画・Sora背景動画生成時に使用します。サーバーやファイルには保存しません。</p></div>
+    <div class="api-key-controls"><label>OpenAI APIキー<input id="api-key-input" type="password" autocomplete="off" spellcheck="false" placeholder="sk-... または sk-proj-..."></label><div class="actions"><button class="secondary" id="clear-api-key" type="button" hidden>削除</button><button class="primary" id="save-api-key" type="button">このタブで使用</button></div><span class="api-key-status" id="api-key-status"></span></div>
+  </section>
+  <main class="reel-workspace">
+    <section class="reel-editor">
+      <div class="notice" id="mode-notice" hidden></div>
+      <div class="notice reel-rule">制作と投稿準備の画面です。判断.mdの事業別アカウント確認と、内容への明示承認が揃うまで最終投稿はしません。</div>
+      <section class="panel">
+        <div class="panel-head"><span>REEL STEP 1</span><h2>ブログ・文章・URL・動画から一次情報を準備する</h2></div>
+        <div class="form-grid">
+          <label>事業<select id="reel-profile"></select></label>
+          <label>テーマ<input id="reel-topic" placeholder="例：相談でよく聞かれること"></label>
+          <label class="wide">主な読者<input id="reel-audience"></label>
+          <label>背景素材の作り方<select id="reel-source-mode"><option value="stills">承認済み画像 4〜5枚</option><option value="video">承認済み動画 1本</option><option value="generated">内容から背景動画を生成</option></select></label>
+          <label>投稿予定（任意）<input id="reel-scheduled-at" type="datetime-local"></label>
+          <label class="wide">元ページURL<input id="reel-source-url" type="url" placeholder="https://..."></label>
+          <label class="wide">ブログ本文・メモ・文字起こし<textarea id="reel-source-text" rows="7" placeholder="元記事や指定テキストを貼り付けます。URLだけの場合は公式ページを調査します。"></textarea></label>
+          <label class="wide">事業者本人の言葉・実話<textarea id="reel-story" rows="5" placeholder="実際の会話、失敗、修正、数字、場所など。入力のない実績はAIが作りません。"></textarea></label>
+          <label class="wide upload-field">承認済み画像・動画を選ぶ<input id="reel-files" type="file" accept="image/*,video/*" multiple><small id="reel-file-status">選択したファイルはブラウザ内だけでプレビューと書き出しに使います。</small></label>
+          <label class="wide">HTTPS素材URL（1行1件・任意）<textarea id="reel-media" rows="4" placeholder="https://example.com/photo-01.jpg"></textarea><small>画像モードは合計4〜5枚、動画モードは1本。生成モードは素材なしでも進められます。</small></label>
+          <label class="wide">最終調整プロンプト<textarea id="reel-final-prompt" rows="4" placeholder="例：売り込みを弱め、現場で失敗して直した順番を中心にする"></textarea></label>
+        </div>
+        <div class="actions"><button class="primary" id="make-reel-concepts">1. 入力元を調べてリール企画を3案作る</button></div>
+      </section>
+      <section class="panel" id="reel-concept-panel" hidden>
+        <div class="panel-head"><span>REEL STEP 2</span><h2>3案を編集し、1案を選ぶ</h2></div>
+        <div class="choice-grid" id="reel-concepts"></div>
+        <div class="actions"><button class="primary" id="make-reel-draft">2. 9:16投稿プレビューを作る</button></div>
+      </section>
+      <section class="panel" id="reel-approval-panel" hidden>
+        <div class="panel-head"><span>REEL STEP 3</span><h2>5場面・本文・投稿情報を編集する</h2></div>
+        <div id="reel-account-status"></div>
+        <div class="reel-meta-editors">
+          <label>カバー文言（3行以内）<textarea id="reel-cover-title" rows="3"></textarea></label>
+          <label>CTA<textarea id="reel-cta" rows="3"></textarea></label>
+          <label>本文末尾URL<input id="reel-final-url" type="url"></label>
+          <label>投稿予定<input id="reel-final-scheduled-at" type="datetime-local"></label>
+          <label class="wide">背景動画の生成プロンプト<textarea id="reel-video-prompt" rows="5"></textarea></label>
+        </div>
+        <div id="reel-frame-editors" class="reel-frame-editors"></div>
+        <div class="reel-copy-grid"><label>Instagramキャプション<textarea id="instagram-caption" rows="9"></textarea></label><label>Threads本文<textarea id="threads-caption" rows="9"></textarea></label></div>
+        <div id="reel-approval-list" class="reel-approval"></div>
+        <div class="reel-render-note"><b>投稿用動画の作り方</b><span>①背景を用意 → ②ブラウザで5つの白文字・黒縁テロップを決定的に焼き込み → ③完成動画を確認。AI生成映像内に文字は任せません。</span></div>
+        <div class="reel-actions">
+          <button class="secondary" id="copy-instagram" type="button">Instagram文をコピー</button>
+          <button class="secondary" id="copy-threads" type="button">Threads文をコピー</button>
+          <button class="secondary" id="download-manifest" type="button">投稿マニフェストJSON</button>
+          <button class="secondary" id="save-reel-package" type="button">事業フォルダへ保存</button>
+          <button class="primary local-admin-action" id="handoff-reel-draft" type="button">管理画面へ下書きを渡す</button>
+          <button class="secondary" id="generate-reel-video" type="button">Sora背景動画を生成</button>
+          <a class="secondary button-link" id="download-raw-video" href="#" hidden>背景動画を保存</a>
+          <button class="primary" id="render-final-reel" type="button">5場面テロップを焼き込む</button>
+          <a class="primary button-link" id="download-reel-video" href="#" hidden>完成動画を保存</a>
+          <a class="secondary button-link" id="download-reel-cover" href="#" hidden>カバー画像を保存</a>
+        </div>
+        <div id="reel-video-status" class="video-status"></div>
+        <div class="reel-video-pair">
+          <figure id="raw-video-wrap" hidden><figcaption>背景動画</figcaption><video id="reel-video-result" class="reel-video-result" controls playsinline></video></figure>
+          <figure id="final-video-wrap" hidden><figcaption>投稿用・テロップ焼き込み済み</figcaption><video id="reel-final-video" class="reel-video-result" controls playsinline></video></figure>
+        </div>
+        <section class="chrome-posting">
+          <span class="eyebrow">CHROME POSTING</span><h3>ログイン済みアカウントの投稿画面へ進む</h3>
+          <p>Meta APIによる無人投稿は使いません。判断.mdと画面上のアカウントを照合し、完成動画と本文を準備します。警告・認証要求・レート制限が表示されたら中止してください。</p>
+          <label class="chrome-confirm"><input id="chrome-post-confirm" type="checkbox"> 投稿先、テロップ焼き込み済み動画、本文、末尾URLを確認しました</label>
+          <div class="reel-actions"><button class="primary" id="prepare-chrome-instagram" type="button">Instagram投稿画面へ</button><button class="secondary" id="prepare-chrome-threads" type="button">Threads投稿画面へ</button></div>
+          <div class="video-status" id="chrome-post-status">投稿画面を開いた後も、最終の「シェア／投稿」は明示承認まで押しません。</div>
+        </section>
+      </section>
+    </section>
+    <section class="reel-preview-column" aria-label="リールプレビュー"><div class="preview-toolbar"><span>実表示プレビュー｜1080 × 1920・各3秒・5場面</span></div><div class="reel-phone-grid" id="reel-preview"><div class="empty-preview"><b>ここに5場面が表示されます</b><p>ブログ、文章、URL、または承認済み動画・画像から企画を作ってください。</p></div></div></section>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div><script>window.CONTENT_STUDIO_CONFIG={"apiBase":"https://business-content-app-server.vercel.app","profileId":"ai-hub","localAdmin":true,"adminUrl":"/admin/blog","publicBase":"/admin/apps"};</script><script type="module" src="./reel.js"></script>
 </body>
 </html>

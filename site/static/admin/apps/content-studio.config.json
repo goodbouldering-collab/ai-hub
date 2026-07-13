@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "siteId": "ai-hub",
+  "apiBase": "https://business-content-app-server.vercel.app",
+  "profileId": "ai-hub",
+  "localAdmin": true,
+  "adminUrl": "/admin/blog",
+  "publicBase": "/admin/apps"
+}

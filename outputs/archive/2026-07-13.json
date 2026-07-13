@@ -2,11 +2,32 @@
   "date": "2026-07-13",
   "items": [
     {
-      "hash": "996e779f93187147",
-      "title": "Directly Responsible Individuals (DRI)",
-      "orig_title": "Directly Responsible Individuals (DRI)",
+      "hash": "5c8725b942713e69",
+      "title": "DOOMQL",
+      "orig_title": "DOOMQL",
       "summary": "",
-      "url": "https://simonwillison.net/2026/Jul/12/directly-responsible-individuals/#atom-everything",
+      "url": "https://simonwillison.net/2026/Jul/13/doomql/#atom-everything",
+      "source": "Simon Willison's Weblog",
+      "category": "AI研究者ブログ",
+      "genre": "industry",
+      "score": 60.0,
+      "breakdown": {
+        "base": 50.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 10.0
+      },
+      "thumbnail": "https://static.simonwillison.net/static/2026/doomql-datasette-app.png",
+      "published": "2026-07-13T22:34:41+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
+    },
+    {
+      "hash": "7fbe9ff79dcc5fe4",
+      "title": "datasette code-frequency chart on GitHub",
+      "orig_title": "datasette code-frequency chart on GitHub",
+      "summary": "",
+      "url": "https://simonwillison.net/2026/Jul/13/datasette-code-frequency/#atom-everything",
       "source": "Simon Willison's Weblog",
       "category": "AI研究者ブログ",
       "genre": "industry",
@@ -18,7 +39,7 @@
         "freshness": 10.0
       },
       "thumbnail": "",
-      "published": "2026-07-12T23:57:14+00:00",
+      "published": "2026-07-13T21:45:27+00:00",
       "_is_video": false,
       "_summary_clean": ""
     },
@@ -31,26 +52,26 @@
       "source": "ウェブ職TV",
       "category": "AI動画(日本語)",
       "genre": "industry",
-      "score": 60.0,
+      "score": 56.0,
       "breakdown": {
         "base": 50.0,
         "genre_bonus": 0.0,
         "source_bonus": 0.0,
-        "freshness": 10.0
+        "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/k_cTiY1Qnig/hqdefault.jpg",
-      "published": "2026-07-13T02:06:13+00:00",
+      "published": "2026-07-13T15:13:02+00:00",
       "_is_video": true,
       "_summary_clean": ""
     },
     {
-      "hash": "94605f38f2b7b734",
-      "title": "Lorde says Ray-Ban Meta AI glasses are ‘not sexy’",
-      "orig_title": "Lorde says Ray-Ban Meta AI glasses are ‘not sexy’",
+      "hash": "a15747168e82b3fb",
+      "title": "【AIで検証】自動で働くCodexに3万円が稼げる方法を支持した結果...",
+      "orig_title": "【AIで検証】自動で働くCodexに3万円が稼げる方法を支持した結果...",
       "summary": "",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/964539/lorde-says-ray-ban-meta-ai-glasses-are-not-sexy",
-      "source": "The Verge AI",
-      "category": "AIニュース",
+      "url": "https://www.youtube.com/watch?v=88yAPtEyvFA",
+      "source": "AI収益化ラボ",
+      "category": "AI動画(日本語)",
       "genre": "industry",
       "score": 56.0,
       "breakdown": {
@@ -59,29 +80,50 @@
         "source_bonus": 0.0,
         "freshness": 6.0
       },
-      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/gettyimages-2279420244.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.807256256556%2C100%2C78.385487486888&amp;w=1200",
-      "published": "2026-07-12T16:10:19-04:00",
+      "thumbnail": "https://img.youtube.com/vi/88yAPtEyvFA/hqdefault.jpg",
+      "published": "2026-07-13T11:12:52+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
+    },
+    {
+      "hash": "06bfe282fcea5737",
+      "title": "Waze is getting a bunch of new AI-powered features",
+      "orig_title": "Waze is getting a bunch of new AI-powered features",
+      "summary": "",
+      "url": "https://www.theverge.com/transportation/964132/waze-gemini-ai-voice-commands-less-chatty",
+      "source": "The Verge AI",
+      "category": "AIニュース",
+      "genre": "industry",
+      "score": 53.0,
+      "breakdown": {
+        "base": 50.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 3.0
+      },
+      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25708121/waze_conversational_report.png?quality=90&amp;strip=all&amp;crop=0%2C3.2347601883764%2C100%2C93.530479623247&amp;w=1200",
+      "published": "2026-07-13T05:00:00-04:00",
       "_is_video": false,
       "_summary_clean": ""
     },
     {
-      "hash": "1648bc33a3c09c46",
-      "title": "Apple’s failed self-driving car program left a legacy of powerful AI chips",
-      "orig_title": "Apple’s failed self-driving car program left a legacy of powerful AI chips",
+      "hash": "996e779f93187147",
+      "title": "Directly Responsible Individuals (DRI)",
+      "orig_title": "Directly Responsible Individuals (DRI)",
       "summary": "",
-      "url": "https://www.theverge.com/tech/964519/apple-silicon-self-driving-car-ai-m7-ultra",
-      "source": "The Verge AI",
-      "category": "AIニュース",
+      "url": "https://simonwillison.net/2026/Jul/12/directly-responsible-individuals/#atom-everything",
+      "source": "Simon Willison's Weblog",
+      "category": "AI研究者ブログ",
       "genre": "industry",
-      "score": 56.0,
+      "score": 53.0,
       "breakdown": {
         "base": 50.0,
         "genre_bonus": 0.0,
         "source_bonus": 0.0,
-        "freshness": 6.0
+        "freshness": 3.0
       },
-      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/03/apple_chips.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.740836125969%2C100%2C78.518327748063&amp;w=1200",
-      "published": "2026-07-12T12:27:06-04:00",
+      "thumbnail": "",
+      "published": "2026-07-12T23:57:14+00:00",
       "_is_video": false,
       "_summary_clean": ""
     },
@@ -94,90 +136,6 @@
       "source": "Simon Willison's Weblog",
       "category": "AI研究者ブログ",
       "genre": "industry",
-      "score": 56.0,
-      "breakdown": {
-        "base": 50.0,
-        "genre_bonus": 0.0,
-        "source_bonus": 0.0,
-        "freshness": 6.0
-      },
-      "thumbnail": "",
-      "published": "2026-07-12T23:46:52+00:00",
-      "_is_video": false,
-      "_summary_clean": ""
-    },
-    {
-      "hash": "64fd83c14720fd16",
-      "title": "Fable gets another bump",
-      "orig_title": "Fable gets another bump",
-      "summary": "",
-      "url": "https://simonwillison.net/2026/Jul/12/bump/#atom-everything",
-      "source": "Simon Willison's Weblog",
-      "category": "AI研究者ブログ",
-      "genre": "industry",
-      "score": 56.0,
-      "breakdown": {
-        "base": 50.0,
-        "genre_bonus": 0.0,
-        "source_bonus": 0.0,
-        "freshness": 6.0
-      },
-      "thumbnail": "",
-      "published": "2026-07-12T21:20:07+00:00",
-      "_is_video": false,
-      "_summary_clean": ""
-    },
-    {
-      "hash": "0925b484aecfd339",
-      "title": "sqlite-utils 4.1.1",
-      "orig_title": "sqlite-utils 4.1.1",
-      "summary": "",
-      "url": "https://simonwillison.net/2026/Jul/12/sqlite-utils/#atom-everything",
-      "source": "Simon Willison's Weblog",
-      "category": "AI研究者ブログ",
-      "genre": "industry",
-      "score": 56.0,
-      "breakdown": {
-        "base": 50.0,
-        "genre_bonus": 0.0,
-        "source_bonus": 0.0,
-        "freshness": 6.0
-      },
-      "thumbnail": "",
-      "published": "2026-07-12T20:55:30+00:00",
-      "_is_video": false,
-      "_summary_clean": ""
-    },
-    {
-      "hash": "62707073283177cc",
-      "title": "GPT-5.6 Solの所感 / まさかのGrok4.5が本命か / メリルでAI改革中",
-      "orig_title": "GPT-5.6 Solの所感 / まさかのGrok4.5が本命か / メリルでAI改革中",
-      "summary": "",
-      "url": "https://www.youtube.com/watch?v=JBFyywoiNH4",
-      "source": "ウェブ職TV",
-      "category": "AI動画(日本語)",
-      "genre": "industry",
-      "score": 56.0,
-      "breakdown": {
-        "base": 50.0,
-        "genre_bonus": 0.0,
-        "source_bonus": 0.0,
-        "freshness": 6.0
-      },
-      "thumbnail": "https://img.youtube.com/vi/JBFyywoiNH4/hqdefault.jpg",
-      "published": "2026-07-12T15:08:56+00:00",
-      "_is_video": true,
-      "_summary_clean": ""
-    },
-    {
-      "hash": "9f56a925492527ad",
-      "title": "The fight against AI data centers is just beginning",
-      "orig_title": "The fight against AI data centers is just beginning",
-      "summary": "",
-      "url": "https://www.theverge.com/column/963346/ai-data-centers-fight",
-      "source": "The Verge AI",
-      "category": "AIニュース",
-      "genre": "industry",
       "score": 53.0,
       "breakdown": {
         "base": 50.0,
@@ -185,17 +143,17 @@
         "source_bonus": 0.0,
         "freshness": 3.0
       },
-      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/gettyimages-2282688394.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.729057198914%2C100%2C78.541885602173&amp;w=1200",
-      "published": "2026-07-12T08:00:00-04:00",
+      "thumbnail": "",
+      "published": "2026-07-12T23:46:52+00:00",
       "_is_video": false,
       "_summary_clean": ""
     },
     {
-      "hash": "3f2af22915835960",
-      "title": "Copilot『Cowork』が凄く良い！実務で使えるAIエージェントだった【徹底解説&AI活用事例まとめ】",
-      "orig_title": "Copilot『Cowork』が凄く良い！実務で使えるAIエージェントだった【徹底解説&AI活用事例まとめ】",
+      "hash": "6f9d8c5e57e7e78c",
+      "title": "【凄い！】Claude CodeでHP制作会社を作って”AI社員”を完全自律で働かせてみた",
+      "orig_title": "【凄い！】Claude CodeでHP制作会社を作って”AI社員”を完全自律で働かせてみた",
       "summary": "",
-      "url": "https://www.youtube.com/watch?v=OOr-LSvWEt8",
+      "url": "https://www.youtube.com/watch?v=JS3faFnEFnU",
       "source": "KEITO AI&WEB",
       "category": "AI動画(日本語)",
       "genre": "industry",
@@ -206,9 +164,51 @@
         "source_bonus": 0.0,
         "freshness": 3.0
       },
-      "thumbnail": "https://img.youtube.com/vi/OOr-LSvWEt8/hqdefault.jpg",
-      "published": "2026-07-12T10:00:20+00:00",
+      "thumbnail": "https://img.youtube.com/vi/JS3faFnEFnU/hqdefault.jpg",
+      "published": "2026-07-13T10:00:11+00:00",
       "_is_video": true,
+      "_summary_clean": ""
+    },
+    {
+      "hash": "f698c1e54a872936",
+      "title": "What Anthropic’s latest AI discovery does—and doesn’t—show",
+      "orig_title": "What Anthropic’s latest AI discovery does—and doesn’t—show",
+      "summary": "",
+      "url": "https://www.technologyreview.com/2026/07/13/1140343/what-anthropics-latest-ai-discovery-does-and-doesnt-show/",
+      "source": "MIT Technology Review AI",
+      "category": "AIニュース",
+      "genre": "industry",
+      "score": 50.0,
+      "breakdown": {
+        "base": 50.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 0.0
+      },
+      "thumbnail": "https://wp.technologyreview.com/wp-content/uploads/2026/07/thinking2.jpg?resize=1200,600",
+      "published": "Mon, 13 Jul 2026 18:00:00 +0000",
+      "_is_video": false,
+      "_summary_clean": ""
+    },
+    {
+      "hash": "1d272877e3aa0854",
+      "title": "Apple sues OpenAI after ex-engineer allegedly used bug to steal trade secrets",
+      "orig_title": "Apple sues OpenAI after ex-engineer allegedly used bug to steal trade secrets",
+      "summary": "",
+      "url": "https://arstechnica.com/tech-policy/2026/07/apple-sues-openai-after-ex-engineer-allegedly-used-bug-to-steal-trade-secrets/",
+      "source": "Ars Technica AI",
+      "category": "AIニュース",
+      "genre": "industry",
+      "score": 50.0,
+      "breakdown": {
+        "base": 50.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 0.0
+      },
+      "thumbnail": "https://cdn.arstechnica.net/wp-content/uploads/2026/07/GettyImages-2255514431-1024x648.jpg",
+      "published": "Mon, 13 Jul 2026 19:17:51 +0000",
+      "_is_video": false,
       "_summary_clean": ""
     }
   ]

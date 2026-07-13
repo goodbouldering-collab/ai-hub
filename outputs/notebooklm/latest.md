@@ -1,99 +1,165 @@
 # AIハブ 2026-07-13
 
-> 生成日時: 2026-07-13 02:50:37
-> 新着: 11件 / 継続: 7件 / 合計: 18件
+> 生成日時: 2026-07-13 22:44:51
+> 新着: 21件 / 継続: 7件 / 合計: 28件
 
 ---
 
 ## 🆕 新着 (前回取得以降)
 
-### カテゴリ: AI動画(日本語) (1件)
+### カテゴリ: AIニュース (5件)
 
-### [ウェブ職TV] 会社の中でAIをどう活用するのか / おもしろいAI動画を教えてほしい / 博多ホテル配信
-- URL: https://www.youtube.com/watch?v=k_cTiY1Qnig
-- 取得: 2026-07-13 02:50:33
-- 公開: 2026-07-13T02:06:13+00:00
-- 原文抜粋: ▼動画内で紹介した講座はこちら！ https://touchai.jp/?utm_source=k_cTiY1Qnig&amp;utm_medium=webshokutv&amp;utm_campaign=20260713  ▼Claude Code短期集中合宿 8月21(金)〜23日(日) https://touchai.jp/claude-code-camp?utm_source=k_cTiY1Qnig&amp;utm_medium=webshokutv&amp;utm_campaign=20260713  ---- ●株式会社メリルが提供するAI関連商品  ▼なかじを、あなたの会社のAI...
+### [The Verge AI] Waze is getting a bunch of new AI-powered features
+- URL: https://www.theverge.com/transportation/964132/waze-gemini-ai-voice-commands-less-chatty
+- 取得: 2026-07-13 22:44:45
+- 公開: 2026-07-13T05:00:00-04:00
+- 原文抜粋: Waze is getting an AI makeover. Google is integrating its flagship AI assistant, Gemini, into the driving app with the goal of letting users personalize their trips a little more. Of the four new updates, only two are being described as involving Gemini. Waze says its updating its conversation repor...
 
-### カテゴリ: AI国内 (3件)
+### [MIT Technology Review AI] What Anthropic’s latest AI discovery does—and doesn’t—show
+- URL: https://www.technologyreview.com/2026/07/13/1140343/what-anthropics-latest-ai-discovery-does-and-doesnt-show/
+- 取得: 2026-07-13 22:44:45
+- 公開: Mon, 13 Jul 2026 18:00:00 +0000
+- 原文抜粋: This story originally appeared in The Algorithm, our weekly newsletter on AI. To get stories like this in your inbox first, sign up here. Anthropic—currently the world’s most valuable AI company, with a nearly $1 trillion valuation—has a reputation for publishing strange and heady research. It’s loo...
 
-### [ITmedia AI+] 3D CADから組立工程／手順書を作成、設計と製造をつなぐAI活用機能
-- URL: https://monoist.itmedia.co.jp/mn/articles/2607/13/news010.html
-- 取得: 2026-07-13 02:49:55
-- 公開: Mon, 13 Jul 2026 09:00:00 +0900
-- 原文抜粋: Sceneは、製造業向け統合ワークスペース「Scene Workspace」に、3D CADデータから組立工程や組立手順書を作成するAI活用機能をβ機能として搭載した。デンソーの工機部と共同開発したもので、設計、生産技術、製造の連携を1つの基盤でつなぐ。
+### [Ars Technica AI] Apple sues OpenAI after ex-engineer allegedly used bug to steal trade secrets
+- URL: https://arstechnica.com/tech-policy/2026/07/apple-sues-openai-after-ex-engineer-allegedly-used-bug-to-steal-trade-secrets/
+- 取得: 2026-07-13 22:44:45
+- 公開: Mon, 13 Jul 2026 19:17:51 +0000
+- 原文抜粋: OpenAI accused of conspiring with former Apple employees to steal trade secrets.
 
-### [ITmedia AI+] 「足りないのはCOBOL人材じゃない」　日立が語る、AI時代のシステム刷新における“人”の役割
-- URL: https://www.itmedia.co.jp/enterprise/articles/2607/13/news001.html
-- 取得: 2026-07-13 02:49:55
-- 公開: Mon, 13 Jul 2026 08:00:00 +0900
-- 原文抜粋: 従来は人海戦術に頼っていた領域にAIが入り込み、さまざまな課題が解消しつつある。レガシーシステムの刷新もそのうちの一つだ。しかし、AIをシステム刷新プロジェクトで積極的に活用している日立製作所（以下、日立）は、「人間の力がこれまで以上に重要になる」と語る。AI時代のシステム刷新で人間が果たす役割を探る。
+### [Ars Technica AI] Now, defenders are embracing the prompt injection, too
+- URL: https://arstechnica.com/security/2026/07/now-defenders-are-embracing-the-prompt-injection-too/
+- 取得: 2026-07-13 22:44:45
+- 公開: Mon, 13 Jul 2026 15:06:34 +0000
+- 原文抜粋: "Context bombing" tricks hacking agents into shutting down before they can do harm.
 
-### [ITmedia AI+] Anthropic、「Fable 5」の無償アクセスと「Claude Code」利用上限50％増を7月19日まで延長
-- URL: https://www.itmedia.co.jp/aiplus/article/2607/13/2000000185/
-- 取得: 2026-07-13 02:49:55
-- 公開: Mon, 13 Jul 2026 07:25:21 +0900
-- 原文抜粋: Anthropicは、「Claude Fable 5」を有料プランで追加費用なく使えるキャンペーンと、AIコーディング支援ツール「Claude Code」の週間利用上限を50％引き上げる措置を、いずれも米太平洋時間の7月19日まで延長すると発表した。Fable 5の無償アクセスは7月12日で終了する予定だったが、期限直前に再び1週間延長された形だ。
+### [Ars Technica AI] Simulating everything, sort of: The promise and limits of world models
+- URL: https://arstechnica.com/ai/2026/07/simulating-everything-sort-of-the-promise-and-limits-of-world-models/
+- 取得: 2026-07-13 22:44:45
+- 公開: Mon, 13 Jul 2026 11:00:51 +0000
+- 原文抜粋: Experts explain how they work, what they can do, and what's still unsettled.
 
-### カテゴリ: AI研究者ブログ (3件)
+### カテゴリ: AI動画(日本語) (2件)
 
-### [Simon Willison's Weblog] Directly Responsible Individuals (DRI)
-- URL: https://simonwillison.net/2026/Jul/12/directly-responsible-individuals/#atom-everything
-- 取得: 2026-07-13 02:49:55
-- 公開: 2026-07-12T23:57:14+00:00
-- 原文抜粋: <p><strong><a href="https://handbook.gitlab.com/handbook/people-group/directly-responsible-individuals/">Directly Responsible Individuals (DRI)</a></strong></p> I went looking for a definition of "Directly Responsible Individuals" and the best I found was in the GitLab handbook. Apparently the term ...
+### [KEITO AI&WEB] 【凄い！】Claude CodeでHP制作会社を作って”AI社員”を完全自律で働かせてみた
+- URL: https://www.youtube.com/watch?v=JS3faFnEFnU
+- 取得: 2026-07-13 22:44:48
+- 公開: 2026-07-13T10:00:11+00:00
+- 原文抜粋: Claude CodeでAI社員のみの会社を作ってみた！凄いので是非みてください！  ★【YouTube20万人突破記念】感謝企画最終日★ 4日間連続でお届けしてきた感謝企画も、いよいよ最終日！ 第四弾は、豪華2大特典 「【図解解説】Claude Code超入門」 「Fable5活用事例50選」を全員配布します🎁 Claude Codeをこれから始めたい方にも、Fable5の具体的な活用方法を知りたい方にも、参考にしていただける内容です！ 受け取りは下記のLINEからお願いします！ https://web.aixlabo.com/line/open/9b0REhUEp0eG?mtid=xLnu...
 
-### [Simon Willison's Weblog] shot-scraper 1.11
-- URL: https://simonwillison.net/2026/Jul/12/shot-scraper/#atom-everything
-- 取得: 2026-07-13 02:49:55
-- 公開: 2026-07-12T23:46:52+00:00
-- 原文抜粋: <p><strong>Release:</strong> <a href="https://github.com/simonw/shot-scraper/releases/tag/1.11">shot-scraper 1.11</a></p>         <p>Some minor improvements, mainly around command option consistency and making the <code>server:</code> mechanism <a href="https://shot-scraper.datasette.io/en/stable/mu...
+### [AI収益化ラボ] 【AIで検証】自動で働くCodexに3万円が稼げる方法を支持した結果...
+- URL: https://www.youtube.com/watch?v=88yAPtEyvFA
+- 取得: 2026-07-13 22:44:48
+- 公開: 2026-07-13T11:12:52+00:00
+- 原文抜粋: ▼動画内で紹介したプレゼントの受け取りは以下の公式LINEから https://liff.line.me/2006805073-rn36NG8b/landing?follow=%40933hyolt&amp;lp=A2eQg6&amp;liff_id=2006805073-rn36NG8b  ▼プレゼントの受け取り方法 ① LINE登録後に送信される配信をタップ ② アンケートに回答（1度登録されたメールアドレスでは2度と受け取れません） ③ 届いだNotionをブックマーク or 保存 ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ 【奥山のX】 最新のAIの使い方・AIで稼ぐ方法を発信中！ ...
 
-### [Simon Willison's Weblog] sqlite-utils 4.1.1
-- URL: https://simonwillison.net/2026/Jul/12/sqlite-utils/#atom-everything
-- 取得: 2026-07-13 02:49:55
-- 公開: 2026-07-12T20:55:30+00:00
-- 原文抜粋: <p><strong>Release:</strong> <a href="https://github.com/simonw/sqlite-utils/releases/tag/4.1.1">sqlite-utils 4.1.1</a></p>         <p>Mainly a fix for an edge case that regular Claude chat spotted while <a href="https://claude.ai/share/564b187d-d126-47ea-9b59-07c16ade0b70">experimenting with the 4....
+### カテゴリ: AI国内 (9件)
 
-### カテゴリ: SNS動向 (4件)
+### [ITmedia AI+] 「We Must Act Now」　AIによる急激な変革に著名経済学者やIT重鎮が警鐘
+- URL: https://www.itmedia.co.jp/aiplus/article/2607/14/2000000188/
+- 取得: 2026-07-13 22:44:46
+- 公開: Tue, 14 Jul 2026 07:04:56 +0900
+- 原文抜粋: AIによる経済変革への備えを訴える声明「We Must Act Now」が、ノーベル賞受賞者16人を含む200人以上の経済学者やAI研究者の署名付きで公開された。スタンフォード大学の研究者らが取りまとめたもので、AIは産業革命を上回る規模の経済変革をはるかに短期間で引き起こす可能性があるとし、政策立案者や技術リーダーに制度構築を急ぐよう求めている。
 
-### [Social Media Today] Instagram will charge for AI access
-- URL: https://www.socialmediatoday.com/news/instagram-will-charge-for-ai-access/825021/
-- 取得: 2026-07-13 02:50:31
-- 公開: Sun, 12 Jul 2026 20:04:50 -0400
-- 原文抜粋: <p>In a weekly Q&amp;A, Chief Adam Mosseri said artificial intelligence models &ldquo;are very expensive to run,&rdquo; forcing the company to &ldquo;either throttle people or ask them to pay.&rdquo;</p>
+### [ITmedia AI+] “純国産の政府AI”稼働へ　NTTらのモデル採用　「先陣を切る」――松本デジ相が語った意欲
+- URL: https://www.itmedia.co.jp/business/articles/2607/14/news034.html
+- 取得: 2026-07-13 22:44:46
+- 公開: Tue, 14 Jul 2026 07:00:00 +0900
+- 原文抜粋: デジタル庁の政府AI「源内」で、国産AIモデルと国産クラウドを活用した“純国産の政府AI”が稼働する。松本大臣は「先陣を切る取り組みになる」と述べた。
 
-### [Social Media Today] TikTok launches AI literacy measures
-- URL: https://www.socialmediatoday.com/news/tiktok-launches-ai-literacy-measures/825020/
-- 取得: 2026-07-13 02:50:31
-- 公開: Sun, 12 Jul 2026 18:35:49 -0400
-- 原文抜粋: <p>The app created a guide for spotting artificial intelligence usage and is about to introduce a learning hub designed to teach practical detection skills.</p>
+### [ITmedia AI+] OpenAIのブラウザ「ChatGPT Atlas」終了へ　公開から1年足らずで
+- URL: https://www.itmedia.co.jp/news/articles/2607/13/news090.html
+- 取得: 2026-07-13 22:44:46
+- 公開: Mon, 13 Jul 2026 14:20:00 +0900
+- 原文抜粋: 米OpenAIがAIブラウザ「ChatGPT Atlas」の停止日を2026年8月9日と案内し、データの移行手順を公開した。移行先には新しいChatGPTデスクトップアプリとChrome拡張機能を挙げている。
 
-### [Social Media Today] EU Commission preliminarily finds Meta apps addictive
-- URL: https://www.socialmediatoday.com/news/eu-commission-preliminarily-finds-meta-apps-addictive/825018/
-- 取得: 2026-07-13 02:50:31
-- 公開: Sun, 12 Jul 2026 18:16:30 -0400
-- 原文抜粋: <figure><div><img src="https://imgproxy.divecdn.com/IPuNkiRgMjmxFZYtAbn9SJZwWUrtr6mCb51ekt2hBrA/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9HZXR0eUltYWdlcy0xNzU0MDk3NjcuanBn.webp" /></div></figure><p>The design of Instagram and Facebook violates the Digital Services Act, accor...
+### [ITmedia AI+] GMOグループ、AI時代に「エンジニア含む組織体制見直し」　熊谷代表が「AI変革最高責任者」に
+- URL: https://www.itmedia.co.jp/news/articles/2607/13/news093.html
+- 取得: 2026-07-13 22:44:46
+- 公開: Mon, 13 Jul 2026 14:02:00 +0900
+- 原文抜粋: 熊谷正寿代表が「グループCAIO」に。「エンジニアを含む組織体制を見直し、AIナイズされた組織へと変革する」
 
-### [Social Media Today] Meta removes Instagram’s AI remix option
-- URL: https://www.socialmediatoday.com/news/meta-removes-instagrams-ai-remix-option/825017/
-- 取得: 2026-07-13 02:50:31
-- 公開: Sun, 12 Jul 2026 17:58:02 -0400
-- 原文抜粋: <p>Only two days after launch, the company disabled a feature that allowed users to integrate other people&rsquo;s content into artificial intelligence-generated images.&nbsp;</p>
+### [ITmedia AI+] アニメ特化動画生成AI「AnimeGen」無償公開、商用利用も可　国内AIベンチャーAIdeaLab
+- URL: https://www.itmedia.co.jp/aiplus/article/2607/13/2000000187/
+- 取得: 2026-07-13 22:44:46
+- 公開: Mon, 13 Jul 2026 13:17:01 +0900
+- 原文抜粋: AI開発企業のAIdeaLabは、アニメに特化した動画生成AIモデル「AnimeGen」（アニメジェン）を公開した。ライセンスは商用利用もできる「Apache-2.0」。
+
+### [ITmedia AI+] 「ChatGPT Work」「Codex」の5時間制限枠を一時解除　「GPT-5.6 Sol」の処理効率も改良へ
+- URL: https://www.itmedia.co.jp/aiplus/article/2607/13/2000000186/
+- 取得: 2026-07-13 22:44:46
+- 公開: Mon, 13 Jul 2026 13:06:08 +0900
+- 原文抜粋: 米OpenAIは、デスクトップ向けAIツール「ChatGPT Work」や、付随するAIコーディングエージェント「Codex」に設定されている5時間の利用制限枠を一時的に解除すると発表した。
+
+### [ITmedia AI+] エージェントによる業務自動化をどう実現？　「Microsoft Build 2026」で発表された多数の新技術
+- URL: https://atmarkit.itmedia.co.jp/ait/articles/2607/13/news034.html
+- 取得: 2026-07-13 22:44:46
+- 公開: Mon, 13 Jul 2026 13:00:00 +0900
+- 原文抜粋: Microsoftは開発者向けイベント「Microsoft Build 2026」で、エージェント基盤からモデル、開発端末、量子コンピューティングまで多数の新技術を発表した。
+
+### [ITmedia AI+] 人に残る「クリエイティブな仕事」とは？　Adobeの“人×AI”の取り組みから探る
+- URL: https://www.itmedia.co.jp/enterprise/articles/2607/13/news061.html
+- 取得: 2026-07-13 22:44:46
+- 公開: Mon, 13 Jul 2026 12:20:00 +0900
+- 原文抜粋: 広告分野では制作業務に生成AIが広範囲で利用されるようになり、クリエイターやデザイナーの仕事が一部で奪われつつある。「われわれはAIが全てを決める世界を目指しているのではない」と語るAdobeの新たな取り組みから、クリエイティブ業務における人とAIの関係を考察する。
+
+### [ITmedia AI+] 「GPT-Liveが“まるで人間”」ってホンマ？　出汁を「でじる」、トーストを「素焼き」て言うてたけど……
+- URL: https://www.itmedia.co.jp/news/articles/2607/13/news068.html
+- 取得: 2026-07-13 22:44:46
+- 公開: Mon, 13 Jul 2026 11:59:00 +0900
+- 原文抜粋: AIは、何も塗らないトーストを「素焼き」と呼び、出汁を「でじる」と言い出した。
+
+### カテゴリ: AI研究者ブログ (2件)
+
+### [Simon Willison's Weblog] DOOMQL
+- URL: https://simonwillison.net/2026/Jul/13/doomql/#atom-everything
+- 取得: 2026-07-13 22:44:45
+- 公開: 2026-07-13T22:34:41+00:00
+- 原文抜粋: <p><strong><a href="https://github.com/petergpt/doomql">DOOMQL</a></strong></p> Peter Gostev built this using GPT-5.6 Sol. This is a <em>lot</em> of fun: </p> <blockquote> <p>DOOMQL started with a deliberately unreasonable question: what if SQLite were the game engine, not merely the place where a g...
+
+### [Simon Willison's Weblog] datasette code-frequency chart on GitHub
+- URL: https://simonwillison.net/2026/Jul/13/datasette-code-frequency/#atom-everything
+- 取得: 2026-07-13 22:44:45
+- 公開: 2026-07-13T21:45:27+00:00
+- 原文抜粋: <p><strong><a href="https://github.com/simonw/datasette/graphs/code-frequency">datasette code-frequency chart on GitHub</a></strong></p> Out of curiosity I decided to see if I could find a useful illustration of the impact of coding agents and Opus 4.5 class models on my own output. The best I've fo...
+
+### カテゴリ: SNS公式 (1件)
+
+### [Meta Newsroom] Teachers and Local Businesses Win as Meta Expands Louisiana Data Center
+- URL: https://about.fb.com/news/2026/07/teachers-local-businesses-win-as-meta-expands-louisiana-data-center/
+- 取得: 2026-07-13 22:44:47
+- 公開: Mon, 13 Jul 2026 09:30:24 +0000
+- 原文抜粋: <div><img alt="" class="attachment-large size-large wp-post-image" height="501" src="https://about.fb.com/wp-content/uploads/2026/07/Teachers-and-Local-Businesses-Win-as-Meta-Expands-Louisiana-Data-Center-_Thumbnail.gif?fit=890%2C501" style="margin-bottom: 15px;" width="890" /></div> <p>We're expand...
+
+### カテゴリ: SNS運用 (2件)
+
+### [Buffer Blog] The Buffer Plugin for TRMNL Is Here, and We're Giving Some Devices Away
+- URL: https://buffer.com/resources/buffer-trmnl-case-study/
+- 取得: 2026-07-13 22:44:48
+- 公開: Mon, 13 Jul 2026 15:11:21 GMT
+- 原文抜粋: How a personal plugin for an e-ink desk display became an official TRMNL integration, and why we're giving away devices to celebrate.
+
+### [Buffer Blog] I Built a Workflow That Reads My Community's Slack and Writes a Week of Posts in My Voice
+- URL: https://buffer.com/resources/i-built-a-workflow-that-reads-my-communitys-slack-and-writes-a-week-of-posts-in-my-voice/
+- 取得: 2026-07-13 22:44:48
+- 公開: Mon, 13 Jul 2026 13:34:49 GMT
+- 原文抜粋: My community asks 80 questions a week in Slack. I built a pipeline that turns the best ones into a week of posts in my voice, using the Buffer API.
 
 ---
 
 ## 📚 継続ソース (参照用・一覧のみ)
 
-### AIニュース (3件)
-- [The Verge AI] Lorde says Ray-Ban Meta AI glasses are ‘not sexy’ — https://www.theverge.com/ai-artificial-intelligence/964539/lorde-says-ray-ban-meta-ai-glasses-are-not-sexy
-- [The Verge AI] Apple’s failed self-driving car program left a legacy of powerful AI chips — https://www.theverge.com/tech/964519/apple-silicon-self-driving-car-ai-m7-ultra
-- [The Verge AI] The fight against AI data centers is just beginning — https://www.theverge.com/column/963346/ai-data-centers-fight
+### AI動画(日本語) (1件)
+- [ウェブ職TV] 会社の中でAIをどう活用するのか / おもしろいAI動画を教えてほしい / 博多ホテル配信 — https://www.youtube.com/watch?v=k_cTiY1Qnig
 
-### AI動画(日本語) (3件)
-- [ウェブ職TV] GPT-5.6 Solの所感 / まさかのGrok4.5が本命か / メリルでAI改革中 — https://www.youtube.com/watch?v=JBFyywoiNH4
-- [KEITO AI&WEB] Copilot『Cowork』が凄く良い！実務で使えるAIエージェントだった【徹底解説&AI活用事例まとめ】 — https://www.youtube.com/watch?v=OOr-LSvWEt8
-- [AI収益化ラボ] 【9割が知らない】復活したハイスペックAIのFable5で月100万稼ぐ方法を教えます — https://www.youtube.com/watch?v=W2uGGZa_KIw
+### AI国内 (3件)
+- [ITmedia AI+] Claude、利用制限を全リセット　競合「GPT-5.6」公開と同日……OpenAI幹部「ビビってるね」 — https://www.itmedia.co.jp/aiplus/article/2607/10/2000000179/
+- [ITmedia AI+] 3D CADから組立工程／手順書を作成、設計と製造をつなぐAI活用機能 — https://monoist.itmedia.co.jp/mn/articles/2607/13/news010.html
+- [ITmedia AI+] 「足りないのはCOBOL人材じゃない」　日立が語る、AI時代のシステム刷新における“人”の役割 — https://www.itmedia.co.jp/enterprise/articles/2607/13/news001.html
 
-### AI研究者ブログ (1件)
-- [Simon Willison's Weblog] Fable gets another bump — https://simonwillison.net/2026/Jul/12/bump/#atom-everything
+### AI研究者ブログ (2件)
+- [Simon Willison's Weblog] Directly Responsible Individuals (DRI) — https://simonwillison.net/2026/Jul/12/directly-responsible-individuals/#atom-everything
+- [Simon Willison's Weblog] shot-scraper 1.11 — https://simonwillison.net/2026/Jul/12/shot-scraper/#atom-everything
+
+### SNS動向 (1件)
+- [Social Media Today] Instagram will charge for AI access — https://www.socialmediatoday.com/news/instagram-will-charge-for-ai-access/825021/

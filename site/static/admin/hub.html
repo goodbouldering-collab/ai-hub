@@ -384,7 +384,9 @@
       </div>
       <span class="mobile-nav-label">記事・発信</span>
       <div class="mobile-link-list">
-        <a href="/admin/blog"><span class="mobile-link-title">ブログ管理</span><small>AI記事生成と公開</small></a>
+        <a href="/admin/apps/blog/"><span class="mobile-link-title">ブログ App Server</span><small>SEO・MEO・LLMO記事制作</small></a>
+        <a href="/admin/apps/reel/"><span class="mobile-link-title">リール App Server</span><small>縦型動画と投稿文制作</small></a>
+        <a href="/admin/blog"><span class="mobile-link-title">公開ブログ管理</span><small>既存記事の編集と公開</small></a>
         <a href="/admin/sns-post"><span class="mobile-link-title">SNS投稿</span><small>X・Threads投稿</small></a>
       </div>
       <span class="mobile-nav-label">分析・相談</span>
@@ -414,7 +416,7 @@
       <p class="lead">記事を書く、SNSを出す、数字を見る、相談する、運用資料を整える。必要な作業だけを開けるように、管理画面の入口を分離しました。</p>
     </div>
     <div class="status-strip" aria-label="管理区分">
-      <div><b>発信</b><span>ブログとSNS投稿</span></div>
+      <div><b>制作</b><span>ブログとリール</span></div>
       <div><b>改善</b><span>SNS分析と相談</span></div>
       <div><b>運用</b><span>OPSと公開確認</span></div>
     </div>
@@ -428,27 +430,27 @@
       </div>
     </div>
     <div class="card-grid">
+      <a class="admin-card" href="/admin/apps/blog/">
+        <span class="card-kicker">BLOG APP SERVER <span class="card-mark">01</span></span>
+        <span>
+          <strong>ブログ App Server</strong>
+          <p>SEO・MEO・LLMO調査から、タイトル3案、H2構成、一次情報を使った本文、各画像、実表示プレビューまで進めます。</p>
+        </span>
+        <em>開く</em>
+      </a>
+      <a class="admin-card" href="/admin/apps/reel/">
+        <span class="card-kicker">REEL APP SERVER <span class="card-mark">02</span></span>
+        <span>
+          <strong>リール App Server</strong>
+          <p>企画3案、承認素材、9:16動画、中央5テキスト、Instagram・Threads文、投稿前プレビューを作ります。</p>
+        </span>
+        <em>開く</em>
+      </a>
       <a class="admin-card" href="/admin/blog">
-        <span class="card-kicker">ARTICLE <span class="card-mark">01</span></span>
+        <span class="card-kicker">PUBLISH <span class="card-mark">03</span></span>
         <span>
-          <strong>ブログ管理</strong>
-          <p>AIで記事案を作り、編集して公開します。</p>
-        </span>
-        <em>開く</em>
-      </a>
-      <a class="admin-card" href="/admin/sns-post">
-        <span class="card-kicker">SOCIAL <span class="card-mark">02</span></span>
-        <span>
-          <strong>SNS投稿</strong>
-          <p>X・Threads向けの投稿文を整えます。</p>
-        </span>
-        <em>開く</em>
-      </a>
-      <a class="admin-card" href="/admin/gubble-sns">
-        <span class="card-kicker">ANALYTICS <span class="card-mark">03</span></span>
-        <span>
-          <strong>SNS分析</strong>
-          <p>反応を見て、次の投稿や改善点を決めます。</p>
+          <strong>公開ブログ管理</strong>
+          <p>既存の記事を編集し、AI相談サイトへ公開します。</p>
         </span>
         <em>開く</em>
       </a>
@@ -463,27 +465,27 @@
       </div>
     </div>
     <div class="card-grid">
+      <a class="admin-card" href="/admin/sns-post">
+        <span class="card-kicker">SOCIAL <span class="card-mark">04</span></span>
+        <span>
+          <strong>SNS投稿</strong>
+          <p>X・Threads向けの投稿文を整えます。</p>
+        </span>
+        <em>開く</em>
+      </a>
+      <a class="admin-card" href="/admin/gubble-sns">
+        <span class="card-kicker">ANALYTICS <span class="card-mark">05</span></span>
+        <span>
+          <strong>SNS分析</strong>
+          <p>反応を見て、次の投稿や改善点を決めます。</p>
+        </span>
+        <em>開く</em>
+      </a>
       <a class="admin-card" href="/admin/chat">
-        <span class="card-kicker">CHAT <span class="card-mark">04</span></span>
+        <span class="card-kicker">CHAT <span class="card-mark">06</span></span>
         <span>
           <strong>AI相談</strong>
           <p>現場メモや改善案を相談します。</p>
-        </span>
-        <em>開く</em>
-      </a>
-      <a class="admin-card" href="/ops">
-        <span class="card-kicker">OPS <span class="card-mark">05</span></span>
-        <span>
-          <strong>OPS</strong>
-          <p>運用資料、プロンプト、経営メモを扱います。</p>
-        </span>
-        <em>開く</em>
-      </a>
-      <a class="admin-card" href="/">
-        <span class="card-kicker">PUBLIC <span class="card-mark">06</span></span>
-        <span>
-          <strong>公開トップ</strong>
-          <p>受講導線と公開表示を確認します。</p>
         </span>
         <em>開く</em>
       </a>
@@ -498,9 +500,9 @@
       </div>
     </div>
     <div class="compact-list">
+      <a href="/ops"><span>OPS</span><span>→</span></a>
+      <a href="/"><span>公開トップ</span><span>→</span></a>
       <a href="/blog/index.html"><span>公開ブログ</span><span>→</span></a>
-      <a href="/watch/index.html"><span>AI Watch</span><span>→</span></a>
-      <a href="/lectures/index.html"><span>受講資料</span><span>→</span></a>
       <a href="/admin/logout"><span>ログアウト</span><span>→</span></a>
     </div>
     <p class="note">重いデータ取得は管理ハブでは行いません。必要なページだけを開いて、現場作業に集中できる構成にしています。</p>

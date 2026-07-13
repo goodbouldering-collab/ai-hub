@@ -91,13 +91,12 @@ function sendLoginPage(
   <style>
     :root {
       color-scheme: light;
-      --ink: #071426;
-      --muted: #536173;
-      --line: rgba(7, 22, 43, .14);
-      --teal: #0B5C74;
-      --green: #0E876F;
+      --ink: #0A1728;
+      --muted: #526174;
+      --line: #CBD9E8;
+      --blue: #075FC8;
       --paper: #ffffff;
-      --wash: #F5FAFB;
+      --wash: #F5F9FD;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
     }
     * { box-sizing: border-box; }
@@ -108,32 +107,28 @@ function sendLoginPage(
       place-items: center;
       padding: 24px;
       color: var(--ink);
-      background:
-        radial-gradient(circle at top left, rgba(14, 135, 111, .12), transparent 34%),
-        linear-gradient(135deg, #F7FCFD, #EEF7F6 54%, #F8FBFF);
+      background: linear-gradient(180deg, #FFFFFF 0%, #EAF6FF 100%);
     }
     main {
       width: min(420px, 100%);
       padding: 28px;
       border: 1px solid var(--line);
-      border-radius: 10px;
-      background: rgba(255, 255, 255, .94);
-      box-shadow: 0 24px 60px rgba(7, 22, 43, .16);
+      border-radius: 14px;
+      background: #FFFFFF;
+      box-shadow: 0 24px 60px rgba(7, 54, 105, .13);
     }
     .brand {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      min-width: 48px;
-      height: 48px;
-      margin-bottom: 18px;
-      padding: 0 10px;
-      border-radius: 8px;
-      color: #fff;
-      background: linear-gradient(135deg, var(--teal), var(--green));
+      gap: 5px;
+      margin-bottom: 20px;
+      color: var(--ink);
+      background: transparent;
+      font-size: 23px;
       font-weight: 900;
-      letter-spacing: 0;
+      letter-spacing: -.02em;
     }
+    .brand strong { color: var(--blue); }
     h1 {
       margin: 0;
       font-size: 24px;
@@ -165,9 +160,9 @@ function sendLoginPage(
       outline: none;
     }
     input:focus {
-      border-color: var(--teal);
+      border-color: var(--blue);
       background: var(--paper);
-      box-shadow: 0 0 0 4px rgba(11, 92, 116, .13);
+      box-shadow: 0 0 0 4px rgba(7, 95, 200, .13);
     }
     button {
       width: 100%;
@@ -176,11 +171,11 @@ function sendLoginPage(
       border: 0;
       border-radius: 8px;
       color: #fff;
-      background: linear-gradient(135deg, var(--teal), var(--green));
+      background: var(--blue);
       font-size: 15px;
       font-weight: 900;
       cursor: pointer;
-      box-shadow: 0 14px 34px rgba(11, 92, 116, .22);
+      box-shadow: 0 14px 34px rgba(7, 95, 200, .22);
     }
     .error {
       margin: 0 0 14px;
@@ -201,7 +196,7 @@ function sendLoginPage(
 </head>
 <body>
   <main>
-    <div class="brand">AI</div>
+    <div class="brand"><strong>AI相談</strong><span>彦根</span></div>
     <h1>管理画面ログイン</h1>
     <p>ユーザー名は不要です。管理用パスワードだけ入力してください。</p>
     ${error ? `<div class="error">${escapeHtml(error)}</div>` : ""}

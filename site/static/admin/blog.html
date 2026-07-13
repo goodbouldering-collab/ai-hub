@@ -89,7 +89,7 @@
   }
   .admin-subnav a:hover { color:#1d4ed8; background:#eff6ff; border-color:#bfdbfe; }
   .topbar { margin-bottom:20px; }
-  .topbar, #admin-menu, #panel-content-apps, #panel-status, #panel-blog-parent, #panel-blog-list, #panel-edit { scroll-margin-top:96px; }
+  .topbar, #admin-menu, #panel-status, #panel-blog-parent, #panel-blog-list, #panel-edit { scroll-margin-top:96px; }
   .topbar h1 {
     font-size:24px; font-weight:800; letter-spacing:-.01em; color:var(--text);
     display:inline-flex; align-items:center; gap:10px;
@@ -313,7 +313,7 @@
     .admin-menu-group:last-child { border-bottom:none; }
     .admin-menu-head { align-items:flex-start; flex-direction:column; }
     .admin-menu-primary { width:100%; }
-    .panel, .topbar, #admin-menu, #panel-content-apps, #panel-status, #panel-blog-parent, #panel-blog-list, #panel-edit { scroll-margin-top:156px; }
+    .panel, .topbar, #admin-menu, #panel-status, #panel-blog-parent, #panel-blog-list, #panel-edit { scroll-margin-top:156px; }
   }
 </style>
 <link rel="stylesheet" href="/admin/admin-common.css">
@@ -328,19 +328,13 @@
     </a>
     <nav class="site-nav admin-slide-nav" aria-label="管理ページメニュー">
       <div class="admin-scroll-menu" aria-label="管理作業順メニュー">
-        <a class="admin-scroll-link" href="/admin">管理ハブ</a>
+        <a class="admin-scroll-link" href="/admin">管理トップ</a>
         <a class="admin-scroll-link" href="/admin/blog">ブログ管理</a>
-        <a class="admin-scroll-link" href="#panel-content-apps">Blog / Reel</a>
-        <a class="admin-scroll-link" href="/admin/blog#panel-status">接続確認</a>
-        <a class="admin-scroll-link" href="/admin/blog#panel-blog-parent">ブログ設定</a>
-        <a class="admin-scroll-link" href="/admin/blog#panel-blog-list">記事一覧</a>
-        <a class="admin-scroll-link" href="/admin/blog#theme">記事生成</a>
-        <a class="admin-scroll-link" href="/admin/blog#panel-edit">編集・公開</a>
+        <a class="admin-scroll-link" href="/admin/apps/reel/">リール制作</a>
         <a class="admin-scroll-link" href="/admin/sns-post">SNS投稿</a>
         <a class="admin-scroll-link" href="/admin/gubble-sns">SNS分析</a>
         <a class="admin-scroll-link" href="/admin/chat">AI相談</a>
-        <a class="admin-scroll-link" href="/ops">OPS</a>
-        <a class="admin-scroll-link logout-scroll-link" href="/admin/logout">ログアウト</a>
+        <a class="admin-scroll-link admin-nav-cta" href="/">公開ページ</a>
       </div>
     </nav>
     <button class="mobile-toggle" id="mobile-toggle" aria-label="メニュー" aria-controls="mobile-nav" aria-expanded="false" type="button">
@@ -356,7 +350,7 @@
       <span class="mobile-nav-label">記事・発信</span>
       <div class="mobile-link-list">
         <a href="/admin/blog"><span class="mobile-link-title">ブログ管理</span><small>記事生成と公開</small></a>
-        <a href="#panel-content-apps"><span class="mobile-link-title">Blog / Reel App Server</span><small>深掘り記事と縦型動画を作る</small></a>
+        <a href="/admin/apps/reel/"><span class="mobile-link-title">リール制作</span><small>動画と投稿文を作る</small></a>
         <a href="/admin/sns-post"><span class="mobile-link-title">SNS投稿</span><small>X・Threads投稿を準備</small></a>
       </div>
       <span class="mobile-nav-label">分析・相談</span>
@@ -480,21 +474,6 @@
       <p>本文、画像、表示設定を整えてブログ配下に公開します。</p>
       <em>編集欄へ移動 →</em>
     </a>
-  </div>
-
-  <div class="panel" id="panel-content-apps">
-    <div class="admin-menu-head">
-      <div>
-        <h2>ブログ・リール Studio</h2>
-        <p>このAI Hub管理画面の中で、AI Hubの事業情報に固定して記事・画像・Instagramリール・投稿文を作成します。</p>
-      </div>
-      <span class="badge ok">AI Hub設定済み</span>
-    </div>
-    <div class="row" style="margin-top:14px;">
-      <a class="admin-menu-primary" href="/admin/apps/blog">このサイト内のブログ Studioを開く</a>
-      <a class="admin-menu-primary" href="/admin/apps/reel">このサイト内のリール Studioを開く</a>
-    </div>
-    <small>生成後はこの管理画面へ戻り、文章・画像・公開設定を確認してから反映してください。</small>
   </div>
 
   <div class="panel" id="panel-status">

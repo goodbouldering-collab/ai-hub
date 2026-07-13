@@ -122,8 +122,6 @@ function isAdminPageRequest(req: VercelReq): boolean {
     return [
       "/admin",
       "/api/admin",
-      "/admin/apps/blog",
-      "/api/admin/apps/blog",
       "/admin/apps/reel",
       "/api/admin/apps/reel",
       "/admin/chat",

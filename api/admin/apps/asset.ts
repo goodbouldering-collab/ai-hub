@@ -3,7 +3,6 @@ import { join } from "node:path";
 import { withAdmin } from "../../_lib/http.js";
 
 const CONTENT_TYPES: Record<string, string> = {
-  "blog.js": "text/javascript; charset=utf-8",
   "reel.js": "text/javascript; charset=utf-8",
   "studio-core.js": "text/javascript; charset=utf-8",
   "styles.css": "text/css; charset=utf-8",

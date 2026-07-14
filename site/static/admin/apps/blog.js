@@ -224,7 +224,7 @@ async function makePlan() {
     renderTitlePlan();
     showStep(3);
   } catch (error) { toast(error.message); }
-  finally { button.disabled = false; button.textContent = "2. タイトル候補を3つ作る"; }
+  finally { button.disabled = false; button.textContent = "2. タイトル候補を5つ作る"; }
 }
 
 function renderTitlePlan() {
@@ -233,6 +233,7 @@ function renderTitlePlan() {
     <article class="choice-card editable-choice">
       <label class="choice-select"><input type="radio" name="title-option" value="${index}">候補 ${index + 1} を選ぶ</label>
       <label>タイトル<input data-title-field="title" data-index="${index}" value="${escapeHtml(item.title)}"></label>
+      <div class="title-context"><b>${escapeHtml(item.editorialAngle)}</b><span>対象：${escapeHtml(item.audience)}</span><span>悩み：${escapeHtml(item.problem)}</span><span>顧客メリット：${escapeHtml(item.customerBenefit)}</span><span>事業との接点：${escapeHtml(item.businessFit)}</span><span>次の行動：${escapeHtml(item.cta)}</span></div>
       <label>狙い<textarea data-title-field="reason" data-index="${index}" rows="2">${escapeHtml(item.reason)}</textarea></label>
       <small>${escapeHtml(item.primaryKeyword)} × ${escapeHtml(item.localKeyword)}</small>
     </article>`).join("");

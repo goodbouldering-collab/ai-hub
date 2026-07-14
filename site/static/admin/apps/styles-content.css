@@ -42,6 +42,10 @@
 .trend-source-list small { color: var(--muted); font-weight: 500; line-height: 1.5; }
 .trend-media { margin: 10px 0 0; font-size: 11px; line-height: 1.7; }
 .trend-card .select-trend { justify-self: end; }
+.skill-contract { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; margin: 0 0 14px; padding: 12px 14px; border: 1px solid #b9d8ce; border-radius: 12px; background: #f2faf7; color: #234b40; }
+.skill-contract span { color: #4b665f; font-size: 12px; }
+.title-context { display: grid; gap: 5px; margin: 2px 0; padding: 10px; border-radius: 10px; background: #f7f8f6; color: #4f5d58; font-size: 11px; line-height: 1.5; }
+.title-context b { color: var(--green); font-size: 12px; }
 .editable-fields { display: grid; gap: 14px; margin-top: 18px; }
 .editable-fields fieldset { display: grid; gap: 12px; margin: 0; padding: 16px; border: 1px solid var(--line); border-radius: 14px; }
 .editable-fields legend { padding: 0 8px; color: var(--green); font-size: 12px; font-weight: 800; }

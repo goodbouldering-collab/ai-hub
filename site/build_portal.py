@@ -12402,18 +12402,30 @@ def _render_header_focused() -> str:
         "<span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span></span></a>"
         "<nav class='site-nav' aria-label='メインナビ'>"
         "<a class='nav-link nav-essential' href='#ai-agent-course'>AIエージェント講習</a>"
-        "<a class='nav-link nav-essential' href='#all-works'>すべての実績</a>"
+        "<a class='nav-link nav-essential' href='/programming-map.html'>AIコーディング</a>"
         "<a class='nav-link nav-essential' href='#lectures'>受講資料</a>"
-        "<a class='nav-link nav-essential' href='#blog'>ブログ</a><a class='nav-link nav-essential' href='/admin'>管理</a>"
-        "<a class='nav-cta' href='#ai-agent-course'>講習を見る</a></nav>"
+        "<div class='menu-wrap'><button class='menu-toggle' id='menu-toggle' aria-haspopup='menu' aria-expanded='false'>全メニュー"
+        "<svg class='chev' width='14' height='14' viewBox='0 0 20 20' fill='none' aria-hidden='true'><path d='M5 8l5 5 5-5' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg></button>"
+        "<div class='menu-drop' id='menu-drop' role='menu'>"
+        "<span class='menu-drop-label'>制作・発信</span>"
+        "<a href='#all-works'>すべての実績</a>"
+        "<a href='#blog'>ブログ</a><a href='/watch/index.html'>AI Watch</a>"
+        "<span class='menu-drop-label'>案内・確認</span>"
+        "<a href='#speaker'>講師紹介</a><a href='#flow'>進め方</a><a href='#faq'>FAQ</a><a href='/'>ホーム</a>"
+        "<a href='/admin'>管理画面</a></div></div>"
+        "<a class='nav-cta' href='#contact'>無料相談</a></nav>"
         "<button class='mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'>"
         "<svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button>"
-        "</div><div class='mobile-nav' id='mobile-nav'><div class='mobile-nav-panel'>"
-        "<a class='login-btn-mobile' href='#ai-agent-course'>AIエージェント講習を見る</a>"
-        "<div class='mobile-link-grid'><a href='#ai-agent-course'>AIエージェント講習</a>"
-        "<a href='#all-works'>すべての実績</a><a href='#lectures'>受講資料</a>"
-        "<a href='#blog'>ブログ</a><a href='#contact'>相談</a><a href='#faq'>FAQ</a>"
-        "<a class='mobile-admin-link' href='/admin'>管理</a></div>"
+        "</div><div class='mobile-nav' id='mobile-nav'><div class='mobile-nav-panel mobile-nav-panel--public'>"
+        "<a class='login-btn-mobile' href='#contact'>無料相談</a>"
+        "<a class='mobile-main-link' href='#ai-agent-course'>AIエージェント講習</a>"
+        "<span class='mobile-nav-label'>講習・資料</span><div class='mobile-link-grid'>"
+        "<a href='/programming-map.html'>AIコーディング</a><a href='#lectures'>受講資料</a><a href='#blog'>ブログ</a></div>"
+        "<span class='mobile-nav-label'>制作・発信</span><div class='mobile-link-grid'>"
+        "<a href='#all-works'>すべての実績</a><a href='/watch/index.html'>AI Watch</a></div>"
+        "<span class='mobile-nav-label'>案内・確認</span><div class='mobile-link-grid'>"
+        "<a href='#speaker'>講師紹介</a><a href='#flow'>進め方</a><a href='#faq'>FAQ</a><a href='/'>ホーム</a></div>"
+        "<a class='mobile-admin-link' href='/admin'>管理画面</a>"
         "</div></div></header>"
     )
 
@@ -12467,10 +12479,6 @@ def _render_focused_main() -> str:
         "<a class='focus-btn secondary' href='/blog/2026-07-14-ai-agent-course-codex-claude-code.html'>講座の考え方をブログで読む</a></div></div>",
         "<aside class='focus-ai-course-side' aria-label='AIエージェント講習の概要'><div class='focus-course-fact'><small>時間</small><strong>120分</strong></div>",
         "<div class='focus-course-fact'><small>対象</small><strong>初心者OK</strong></div><div class='focus-course-fact'><small>形式</small><strong>対面・オンライン</strong></div></aside></div></section>",
-        "<section class='focus-block' id='all-works'><div class='focus-section-head'><small>ALL WORKS</small><h2>すべての実績</h2></div>",
-        "<p class='focus-section-lead'>講習で扱う考え方を、地域交流、福祉、店舗、EC、予約、業務システムで実際に使った支援例です。</p><div class='focus-content-shell'>",
-        _render_works_section(),
-        "</div><div class='focus-content-actions'><a class='focus-btn secondary' href='#contact'>似た課題を相談する</a></div></section>",
         "<section class='focus-block soft' id='lectures'><div class='focus-section-head'><small>LEARNING MATERIALS</small><h2>受講資料</h2></div>",
         "<p class='focus-section-lead'>講習前の予習と、受講後に仕事へ戻るための復習資料です。AIの基本からCodex・Claude Code実践まで見返せます。</p>",
         _render_lectures_section(),
@@ -12481,11 +12489,15 @@ def _render_focused_main() -> str:
         "<div class='focus-content-actions'><a class='focus-btn secondary' href='/blog/index.html'>ブログを一覧で読む</a></div></section>",
         "<section class='focus-block soft' id='speaker'><div class='focus-split'><img class='speaker-painting' src='/img/speaker-portrait-painting.webp' alt='AI相談 彦根 講師 由井辰美の絵画調ポートレート' loading='lazy'>",
         "<div><small class='outcome-num'>INSTRUCTOR</small><h2>9つの事業でAIエージェントを使う講師</h2><p>理想論ではなく、告知、予約、事務、サイト運営で実際に任せている仕事を題材にします。成果物の確認と、次も続けられる手順づくりまで一緒に進めます。</p><a class='focus-btn secondary' href='#contact'>彦根で相談する</a></div></div></section>",
-        "<section class='focus-block' id='flow'><div class='focus-section-head'><small>HOW IT WORKS</small><h2>講習から、仕事で使うまで</h2></div><div class='focus-flow'>",
+        "<section class='focus-block' id='all-works'><div class='focus-section-head'><small>ALL WORKS</small><h2>すべての実績</h2></div>",
+        "<p class='focus-section-lead'>講習で扱う考え方を、地域交流、福祉、店舗、EC、予約、業務システムで実際に使った支援例です。</p><div class='focus-content-shell'>",
+        _render_works_section(),
+        "</div><div class='focus-content-actions'><a class='focus-btn secondary' href='#contact'>似た課題を相談する</a></div></section>",
+        "<section class='focus-block soft' id='flow'><div class='focus-section-head'><small>HOW IT WORKS</small><h2>講習から、仕事で使うまで</h2></div><div class='focus-flow'>",
         "<article class='focus-step'><b>01</b><h3>持ち込む</h3><p>止まっている仕事や、繰り返している作業を持ち込みます。</p></article>",
         "<article class='focus-step'><b>02</b><h3>一緒に動かす</h3><p>AIエージェントへの依頼、確認、修正をその場で実践します。</p></article>",
         "<article class='focus-step'><b>03</b><h3>手順に残す</h3><p>成果物と次回の進め方を保存し、自分の仕事へ戻します。</p></article></div></section>",
-        "<section class='focus-block soft' id='faq'><div class='focus-section-head'><small>FAQ</small><h2>よくある質問</h2></div><div class='focus-faq'>",
+        "<section class='focus-block' id='faq'><div class='focus-section-head'><small>FAQ</small><h2>よくある質問</h2></div><div class='focus-faq'>",
         "<details><summary>AIエージェント講習では何を作りますか？</summary><p>告知文、資料、調査メモ、集計、業務ツール、サイト改善など、実際の仕事から1つ選び、使える成果物と次回手順まで作ります。</p></details>",
         "<details><summary>AIがまったく初めてでも大丈夫ですか？</summary><p>大丈夫です。専門用語ではなく、普段の仕事と困りごとから始めます。</p></details>",
         "<details><summary>パソコンを持ち込めますか？</summary><p>はい。可能なら普段使っているPCと、直したい資料やページをお持ちください。</p></details>",

@@ -82,7 +82,7 @@ AIの本質は**自動化と繰り返し**。手順を減らすことで、ゴ�
 ## 参考リンク
 
 - [AIハブ トップページ](../index.html) — 毎朝の AI ニュース要約
-- [AIコーディング講習 120分](../programming-map.html) — AI活用に必要な用語と仕組みを段階的に
+- [AIエージェント講習 120分](../programming-map.html) — CodexとClaude Codeを仕事で使う手順を段階的に
 - [講師紹介](../speaker.html) — 支援内容と考え方の全体像
 
 ---

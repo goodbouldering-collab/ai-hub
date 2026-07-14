@@ -218,9 +218,9 @@ def _build_jsonld_website() -> str:
             "streetAddress": "岡町12番地",
             "addressCountry": "JP",
         },
-        "description": "滋賀県彦根市を拠点に、中小事業者・地域団体・個人事業者向けのAI相談、生成AI講習、Codex実践会、Claude Code併用、画像生成、AIコーディング講習、受講資料公開、実例紹介、Web/業務システム制作、補助金を使ったAI導入支援を行う。9事業を実際に回す現役オーナーが、相談から講習、実装、公開、運用定着まで伴走する。",
+        "description": "滋賀県彦根市を拠点に、中小事業者・地域団体・個人事業者向けのAI相談、AIエージェント講習、Codex・Claude Code実践、画像生成、受講資料公開、実例紹介、Web/業務システム制作、補助金を使ったAI導入支援を行う。9事業を実際に回す現役オーナーが、相談から講習、実装、公開、運用定着まで伴走する。",
         "knowsAbout": [
-            "AI相談", "生成AI講習", "ChatGPT", "Claude Code", "Codex", "画像生成", "AIコーディング講習",
+            "AI相談", "AIエージェント講習", "ChatGPT", "Claude Code", "Codex", "画像生成", "AI業務改善",
             "LLMO（AI検索最適化）", "SEO", "MEO", "YouTube SEO", "Reels導線",
             "業務自動化", "AI導入補助金", "デジタル化補助金", "中小企業DX",
         ],
@@ -252,7 +252,7 @@ def _build_jsonld_website() -> str:
 
     codex_prep_title = "Codex準備会 60分"
     codex_practice_title = "Codex実践会 120分"
-    ai_coding_title = "AIコーディング講習 120分"
+    ai_coding_title = "AIエージェント講習 120分"
     free_consult_title = "AI無料相談 入口整理"
     consult_title = "AI個別相談 しっかり60分"
     support_title = "AI伴走支援 いっしょに導入"
@@ -261,7 +261,7 @@ def _build_jsonld_website() -> str:
     plans = [
         (codex_prep_title, "Codex準備会 導入と習得の流れに沿って、ChatGPTログイン、作業フォルダ選定、秘密情報を入れない権限設計、最初の依頼、差分確認、ブラウザ表示確認、独立レビュー、AGENTS.md、公式アップデート確認先までを60分で整える準備講習。", "2200", "2200", "Course"),
         (codex_practice_title, "Codex実践会で持ち込み課題を進め、Claude Codeとの使い分け、ページ、資料、コード、画像生成プロンプト、動画台本などの成果物を120分で作る実践講習。", "5500", "5500", "Course"),
-        (ai_coding_title, "Codex導入、Claude Code併用、画像生成、AI時代の本物のエンジニア像、レベルマップ、プログラミング基礎、設計、データ、運用、セキュリティを1本で学ぶAIコーディング講習。AIの成果物を判断し、説明し、仕事に入れるための作業設計と確認の型を120分で身につける。", "11000", "11000", "Course"),
+        (ai_coding_title, "CodexとClaude Codeを使い、仕事を分けて頼む、結果を確かめる、修正する、繰り返せる手順として残すAIエージェント講習。調査、資料、告知、業務改善、Web制作を題材に、AIの成果物を判断して仕事に入れる型を120分で身につける。", "11000", "11000", "Course"),
         (free_consult_title, "来店またはオンラインで、AI導入の入口を整理する無料相談。講習や伴走の前に、今の課題と次の一手を確認する。", "0", "0", "BusinessCoaching"),
         (consult_title, "AIの使い方、役割分担、指示書、確認体制、運用導線を60分で整理する個別相談。", "5500", "5500", "BusinessCoaching"),
         (support_title, "HP公開から事務自動化・経理・マーケまで6ヶ月で一気に定着。技術的な難所は講師が代行・支援。滋賀・彦根の補助金で負担1/3以下に。", "100000", "100000", "Service"),
@@ -317,7 +317,7 @@ def _build_jsonld_website() -> str:
         "@type": "BreadcrumbList",
         "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": "ホーム", "item": SITE_URL + "/"},
-            {"@type": "ListItem", "position": 2, "name": "受講プラン", "item": SITE_URL + "/#packages"},
+            {"@type": "ListItem", "position": 2, "name": "AIエージェント講習", "item": SITE_URL + "/#ai-agent-course"},
             {"@type": "ListItem", "position": 3, "name": "講師紹介", "item": SITE_URL + "/#speaker"},
             {"@type": "ListItem", "position": 4, "name": "受講資料", "item": SITE_URL + "/#lectures"},
             {"@type": "ListItem", "position": 5, "name": "FAQ", "item": SITE_URL + "/#faq"},
@@ -9850,8 +9850,8 @@ HEADER_JS = """
         level_id: 'intermediate'
       },
       implementation: {
-        badge: 'AIコーディング講習', title: '基礎から公開前チェックまで学ぶ',
-        name: 'AIコーディング講習 120分',
+        badge: 'AIエージェント講習', title: '仕事の分解から成果確認まで学ぶ',
+        name: 'AIエージェント講習 120分',
         desc: 'Codex導入、Claude Code併用、画像生成、AI時代の本物のエンジニア像、レベルマップ、設計・データ・運用・セキュリティ、差分確認までを体系的に学ぶ講習です。',
         level_id: 'implementation'
       },
@@ -10308,7 +10308,7 @@ def _render_hero() -> str:
             "index": "02",
             "title": "AI講習",
             "sub": "目的別に迷わせない",
-            "desc": "無料相談、Codex準備会、実践会、AIコーディング講習を目的別に並べます。",
+            "desc": "無料相談、Codex準備会、実践会、AIエージェント講習を目的別に並べます。",
             "cta": "受講プランを見る",
             "href": "#packages",
             "x": "64%",
@@ -10780,7 +10780,7 @@ def _render_path_selector() -> str:
         (
             "講習を選びたい人",
             "AI講習と資料を並べて見る",
-            "無料相談、準備会、実践会、AIコーディング講習を目的と到達点で確認できます。",
+            "無料相談、準備会、実践会、AIエージェント講習を目的と到達点で確認できます。",
             "講習導線を見る",
             "#packages",
             "相談 / 講習 / 資料",
@@ -10827,7 +10827,7 @@ def _render_choice_lens() -> str:
         ),
         (
             "CodexやClaude Codeで、自分の資料やページを作りたい",
-            "Codex実践会 / AIコーディング講習",
+            "Codex実践会 / AIエージェント講習",
             "持ち込み課題を成果物にし、差分確認と公開前チェックまで練習します。",
         ),
         (
@@ -10978,7 +10978,7 @@ def _render_lesson_bridge() -> str:
         "<article class='lesson-track-card ai'>"
         "<span class='lesson-track-label'>AI講習</span>"
         "<h3>相談から実践へ</h3>"
-        "<p>AIを何に使うかを無料相談で整理し、準備会、実践会、AIコーディング講習へ進めます。</p>"
+        "<p>AIを何に使うかを無料相談で整理し、準備会、実践会、AIエージェント講習へ進めます。</p>"
         "<div class='lesson-track-list'>"
         "<span><b>相</b>無料相談で課題を切り分け</span>"
         "<span><b>60</b>準備会で使える状態にする</span>"
@@ -11096,7 +11096,7 @@ def _render_courses_packages() -> str:
     """講習・相談プランのカード一覧。"""
     codex_prep_title = "Codex準備会 60分"
     codex_practice_title = "Codex実践会 120分"
-    ai_coding_title = "AIコーディング講習 120分"
+    ai_coding_title = "AIエージェント講習 120分"
     seminar_url = "https://goodbouldering.com/?pid=188553378"
     free_consult_title = "AI無料相談 入口整理"
     consult_title = "AI個別相談 しっかり60分"
@@ -11224,7 +11224,7 @@ def _render_courses_packages() -> str:
         },
         {
             "icon": "▧",
-            "cat": "AIコーディング講習",
+            "cat": "AIエージェント講習",
             "level": "実装",
             "level_id": "implementation",
             "title": ai_coding_title,
@@ -11240,14 +11240,14 @@ def _render_courses_packages() -> str:
             "fit": ["AIの成果物を判断して直せるようになりたい", "LP、資料、画像、フォーム、業務画面を作りたい", "Codex実践会より体系的に学びたい"],
             "req_title": "このプランで使う受講資料",
             "requirements": [
-                "AIコーディング講習ページをもとに、Codex、Claude Code、画像生成、本物のエンジニア像、専門用語、実装、確認、公開を通しで学ぶ",
+                "AIエージェント講習ページをもとに、Codex、Claude Code、仕事の分解、依頼、確認、修正、成果物の保存を通しで学ぶ",
                 "受講後は小さな制作物を作り、説明できない変更を公開前に止める判断まで練習する",
             ],
-            "verify": "予約サイトでは「【AIコーディング講習 120分】AI時代の専門技術を伝授」を選んでください。",
+            "verify": "予約ページでは120分のAIエージェント講習を選んでください。",
             "url": AI_CODING_BOOK_URL,
-            "cta": "AIコーディング講習を予約する",
+            "cta": "AIエージェント講習を予約する",
             "material_url": "/programming-map.html",
-            "material_cta": "AIコーディング講習の受講資料を見る",
+            "material_cta": "AIエージェント講習の受講資料を見る",
             "variant": "featured",
         },
     ]
@@ -11325,7 +11325,7 @@ def _render_courses_packages() -> str:
         "<p class='packages-note fade-up d4'>"
         "<strong>Codex講習:</strong> レベルは経験年数ではなく理解度で分けます。準備会はログイン、フォルダ選択、最初の依頼、差分確認、独立レビュー、公式更新確認まで60分2,200円、実践会はClaude Codeとの使い分けや画像生成も含めた成果物作成まで120分5,500円です。"
         "Codexの申込リンクは1つに統一し、申込時に「準備会」または「実践会」をオプション選択します。各カードから関連する受講資料へ進めます。"
-        "<br><strong>AIコーディング講習:</strong> Codex導入、Claude Code併用、画像生成、AI時代の本物のエンジニア像、レベルマップ、設計・データ・運用・セキュリティ、実装、公開までを120分11,000円で扱う総合講習です。専用のSquare予約メニューから申し込めます。"
+        "<br><strong>AIエージェント講習:</strong> CodexとClaude Codeを使い、仕事の分解、依頼、確認、修正、成果物と手順の保存までを120分11,000円で扱う実践講習です。専用の予約ページから申し込めます。"
         "<br><strong>無料相談:</strong> AI無料相談は、講習・伴走・制作のどれから始めるかを無料で整理する入口です。しっかり60分のAI個別相談は、AIの使い方、指示書、確認体制、運用導線まで整理します。"
         "<br><strong>月額支払い:</strong> AI伴走支援の月額決済はStripe Checkoutで受け付け、申込後に初回範囲と日程を確認します。"
         "<br><strong>補助金:</strong> 講習と伴走支援は、滋賀県・彦根市のデジタル化/AI導入系補助金と組み合わせて相談できます。"
@@ -11342,13 +11342,13 @@ def _render_footer(today: str) -> str:
         "<div class='footer-grid'>"
         "<div class='footer-brand'>"
         "<div class='footer-logo'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span></div>"
-        "<p class='footer-tagline'>滋賀・彦根の中小事業者向けに、AI相談・生成AI講習・Codex準備会/実践会・AIコーディング講習・受講資料・Web集客支援を行う"
+        "<p class='footer-tagline'>滋賀・彦根の中小事業者向けに、AI相談・AIエージェント講習・Codex準備会/実践会・受講資料・Web集客支援を行う"
         "資料センター型の相談サイト。9事業を実際に回しながら、現場に居着くAIを一緒に作ります。</p>"
         "<a class='footer-cta' href='#contact'>無料相談する</a>"
         "</div>"
         "<nav class='footer-nav' aria-label='フッターナビ'>"
         "<span class='footer-nav-head'>メニュー</span>"
-        "<a href='#packages'>受講プラン</a>"
+        "<a href='#ai-agent-course'>AIエージェント講習</a>"
         "<a href='#flow'>進め方</a>"
         "<a href='#speaker'>講師紹介</a>"
         "<a href='#lectures'>受講資料</a>"
@@ -11369,11 +11369,11 @@ def _render_footer(today: str) -> str:
 
 
 def _render_sticky_cta() -> str:
-    """モバイルで常時追従する個別相談バー（スクロール中もCVできる）。"""
+    """モバイルで常時追従するAIエージェント講習バー。"""
     return (
         "<div class='sticky-cta' id='sticky-cta' aria-hidden='false'>"
-        "<div class='sticky-cta-text'><strong>AI無料相談で入口整理</strong><span>講習・資料・集客まで確認</span></div>"
-        "<a class='sticky-cta-btn' href='#contact'>無料相談</a>"
+        "<div class='sticky-cta-text'><strong>AIエージェント講習</strong><span>Codex・Claude Code実践</span></div>"
+        "<a class='sticky-cta-btn' href='#ai-agent-course'>講習を見る</a>"
         "</div>"
     )
 
@@ -11395,7 +11395,7 @@ def _render_explore() -> str:
     ※ SNSポータル(AI Watch /watch/)は管理ページ(/admin)へ移行したため公開側には出さない。"""
     cards = [
         ("📚", "受講資料",
-         "AI業務活用・SNSアルゴリズム・LLMO（AI検索最適化）の講習で使う資料。AIコーディング講習も。",
+         "AI業務活用・SNSアルゴリズム・LLMO（AI検索最適化）の講習で使う資料。AIエージェント講習も。",
          "/lectures/index.html", "資料を見る"),
         ("📝", "ブログ",
          "相談、講習、SNS、AI活用の考え方をあとから見返せる記事として整理します。",
@@ -11516,9 +11516,9 @@ FAQ_QA = [
     ("彦根・滋賀でAIの講習や相談はできますか？",
      "はい。滋賀県彦根市を拠点に、彦根・湖東・東近江を中心とした対面のAI講習・個別相談を行っています。京都・大阪・名古屋までは出張可、リモートなら全国対応します。"),
     ("Codex準備会とCodex実践会はどう違いますか？",
-     "レベルは理解度で分けます。Codex準備会は60分2,200円で、ログイン、作業フォルダ選択、秘密情報を入れない権限設計、最初の小さな依頼、差分確認、ブラウザ表示確認、独立レビュー、AGENTS.md、公式アップデート確認先までを整えます。Codex実践会は120分5,500円で、Claude Codeとの使い分け、ページ、資料、コード、画像生成プロンプト、動画台本、運用マニュアルなどの成果物作成まで進めます。AIコーディング講習は120分11,000円で、Codex導入、Claude Code併用、画像生成、本物のエンジニア像、レベルマップ、専門用語、設計・データ・運用・セキュリティ、実装ループ、公開前確認までを体系的に扱います。"),
-    ("AIコーディング講習では何を学びますか？",
-     "Codexを、相談、実装、確認、公開を一緒に進める作業者として使うための総合講習です。Claude Codeとの役割分担、画像生成の依頼と採用判断、AI時代の本物のエンジニア像、AIオペレーターからアーキテクトまでのレベルマップ、目的理解、設計、データ、運用、セキュリティを扱います。専門用語は省かず、HTML/CSS/JavaScript/API/DB/Git、認証、認可、Cloudflare、DNS、CDN、WAF、SQLインジェクション、負荷試験などを、AIの成果物を判断する地図として学びます。依頼文、差分確認、ブラウザ表示、独立レビュー、本番URL確認までを120分で通します。料金は11,000円で、専用のSquare予約メニューから申し込めます。"),
+     "レベルは理解度で分けます。Codex準備会は60分2,200円で、ログイン、作業フォルダ選択、秘密情報を入れない権限設計、最初の小さな依頼、差分確認、ブラウザ表示確認、独立レビュー、AGENTS.md、公式アップデート確認先までを整えます。Codex実践会は120分5,500円で、Claude Codeとの使い分け、ページ、資料、コード、画像生成プロンプト、動画台本、運用マニュアルなどの成果物作成まで進めます。AIエージェント講習は120分11,000円で、仕事の分解、依頼、確認、修正、成果物と手順の保存までを体系的に扱います。"),
+    ("AIエージェント講習では何を学びますか？",
+     "CodexとClaude Codeを、調査、資料、告知、業務改善、Web制作を一緒に進める作業者として使う講習です。仕事の分け方、伝わる依頼、差分・根拠・画面の確認、修正指示、成果物と次回手順の保存までを120分で通します。料金は11,000円で、専用の予約ページから申し込めます。"),
     ("受講資料はあとから見返せますか？",
      "はい。受講で使った資料、プロンプト、実例、動画、スライドは資料センターとして整理し、あとから復習できるようにします。受講前に内容を確認したい方も、受講資料ページから雰囲気を見られます。"),
     ("Reels や YouTube の集客にも使えますか？",
@@ -11526,7 +11526,7 @@ FAQ_QA = [
     ("LLMO やAI検索に強いサイトにできますか？",
      "できます。地域名、講師の一次経験、料金、対応範囲、実例、FAQ、構造化データを整理し、AIが回答に引用しやすい形で公開します。大量の自動生成ではなく、講習と実例に基づく一次情報を重視します。"),
     ("料金はどれくらいですか？",
-     "AI無料相談の入口整理は無料、Codex準備会60分は2,200円、Codex実践会120分は5,500円、AIコーディング講習120分は11,000円、AI個別相談 しっかり60分は5,500円です。AI伴走支援 いっしょに導入は月額10万円×6ヶ月が目安で、月額決済はStripe Checkoutで行います。LP制作は1本18〜30万円が目安。多くは補助金併用を前提に組みます。"),
+     "AI無料相談の入口整理は無料、Codex準備会60分は2,200円、Codex実践会120分は5,500円、AIエージェント講習120分は11,000円、AI個別相談 しっかり60分は5,500円です。AI伴走支援 いっしょに導入は月額10万円×6ヶ月が目安で、月額決済はStripe Checkoutで行います。LP制作は1本18〜30万円が目安。多くは補助金併用を前提に組みます。"),
     ("補助金は使えますか？滋賀の事業者でも対象ですか？",
      "講習・伴走パックは「デジタル化・AI導入補助金」や滋賀県・彦根市の補助金の対象になります。補助率は小規模事業者で最大4/5、実質負担が1/3以下になるケースが多いです。申請からツール選定・実装・定着まで一気通貫で支援します。"),
     ("パソコンやスマホが苦手ですが、大丈夫ですか？",
@@ -11745,12 +11745,12 @@ def _render_works_section() -> str:
 
 
 def _render_lectures_section() -> str:
-    """受講資料セクション。最新の受講資料を先頭にし、AIコーディング講習 120分は独立資料として残す。"""
+    """受講資料セクション。最新の受講資料を先頭にし、AIエージェント講習 120分は独立資料として残す。"""
     pmap_card = {
-        "title": "AIコーディング講習 120分",
+        "title": "AIエージェント講習 120分",
         "icon": "🧭",
         "date": "2026-06-06",
-        "summary": "Codex導入、Claude Code併用、画像生成、AI時代の本物のエンジニア像、レベルマップ、設計・データ・運用・セキュリティ、実装、公開までを段階的に学ぶ講習LP。",
+        "summary": "CodexとClaude Codeを使い、仕事の分解、依頼、確認、修正、成果物と次回手順の保存までを段階的に学ぶAIエージェント講習。",
         "href": "/programming-map.html",
     }
     lecs = list(_load_all_lectures()) + [pmap_card]
@@ -12249,6 +12249,25 @@ body::before { display: none !important; }
 .outcome-item p { margin:0; color:var(--focus-muted); line-height:1.7; font-size:14px; }
 .focus-block { padding:82px max(30px,calc((100vw - 1320px)/2)); }
 .focus-block.soft { background:var(--focus-surface); }
+.focus-block.main-course {
+  padding-top:72px;
+  padding-bottom:72px;
+  background:linear-gradient(145deg,#eef7ff 0%,#fff 48%,#f4fbff 100%);
+  border-top:1px solid rgba(7,95,200,.16);
+  border-bottom:1px solid rgba(7,95,200,.16);
+}
+.main-course .focus-section-head small {
+  width:max-content;
+  margin:0 auto;
+  padding:7px 12px;
+  color:#fff;
+  background:var(--focus-blue);
+  border-radius:999px;
+}
+.main-course .focus-ai-course {
+  border-color:rgba(7,95,200,.34);
+  box-shadow:0 26px 64px rgba(7,54,105,.14);
+}
 .path-grid { max-width:1320px; margin:auto; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; }
 .path-card-new { display:flex; flex-direction:column; min-height:360px; padding:30px; border:1.5px solid var(--focus-line); border-radius:14px; background:#fff; text-decoration:none; color:inherit; transition:transform .2s,border-color .2s,box-shadow .2s; }
 .path-card-new:hover { transform:translateY(-5px); border-color:var(--focus-blue); box-shadow:0 20px 50px rgba(10,40,80,.12); }
@@ -12382,17 +12401,18 @@ def _render_header_focused() -> str:
         "<a class='site-logo' href='/' aria-label='AI相談 彦根 トップへ'>"
         "<span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span></span></a>"
         "<nav class='site-nav' aria-label='メインナビ'>"
+        "<a class='nav-link nav-essential' href='#ai-agent-course'>AIエージェント講習</a>"
         "<a class='nav-link nav-essential' href='#all-works'>すべての実績</a>"
-        "<a class='nav-link nav-essential' href='#lectures'>受講資料</a><a class='nav-link nav-essential' href='#ai-coding'>AIコーディング講習</a>"
+        "<a class='nav-link nav-essential' href='#lectures'>受講資料</a>"
         "<a class='nav-link nav-essential' href='#blog'>ブログ</a><a class='nav-link nav-essential' href='/admin'>管理</a>"
-        "<a class='nav-cta' href='#contact'>まず相談する</a></nav>"
+        "<a class='nav-cta' href='#ai-agent-course'>講習を見る</a></nav>"
         "<button class='mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'>"
         "<svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button>"
         "</div><div class='mobile-nav' id='mobile-nav'><div class='mobile-nav-panel'>"
-        "<a class='login-btn-mobile' href='#contact'>まず相談する</a>"
-        "<div class='mobile-link-grid'><a href='#all-works'>すべての実績</a>"
-        "<a href='#lectures'>受講資料</a><a href='#ai-coding'>AIコーディング講習</a>"
-        "<a href='#blog'>ブログ</a><a href='#courses'>講習・相談</a><a href='#faq'>FAQ</a>"
+        "<a class='login-btn-mobile' href='#ai-agent-course'>AIエージェント講習を見る</a>"
+        "<div class='mobile-link-grid'><a href='#ai-agent-course'>AIエージェント講習</a>"
+        "<a href='#all-works'>すべての実績</a><a href='#lectures'>受講資料</a>"
+        "<a href='#blog'>ブログ</a><a href='#contact'>相談</a><a href='#faq'>FAQ</a>"
         "<a class='mobile-admin-link' href='/admin'>管理</a></div>"
         "</div></div></header>"
     )
@@ -12401,12 +12421,12 @@ def _render_header_focused() -> str:
 def _render_hero_focused() -> str:
     return (
         "<section class='focus-hero' id='top'>"
-        "<div class='focus-hero-copy fade-up'><p class='focus-kicker'>学ぶ。作る。地域で使う。</p>"
-        "<h1 class='focus-title'>AIを、<br><span class='focus-title-line'><strong>仕事で使える形に。</strong></span></h1>"
-        "<p class='focus-lead'>彦根の現場で作った実績、受講資料、AIコーディング講習、ブログをひとつに集めました。</p>"
-        "<div class='focus-actions'><a class='focus-btn primary' href='#all-works'>すべての実績を見る</a>"
-        "<a class='focus-btn secondary' href='#ai-coding'>AIコーディング講習</a></div>"
-        "<ul class='focus-trust'><li>地域・福祉・教育</li><li>初心者OK</li><li>相談から本番確認まで</li></ul></div>"
+        "<div class='focus-hero-copy fade-up'><p class='focus-kicker'>Codex + Claude Code 実践</p>"
+        "<h1 class='focus-title'>AIエージェントを、<br><span class='focus-title-line'><strong>仕事の仲間に。</strong></span></h1>"
+        "<p class='focus-lead'>調査、資料、告知、業務改善、Web制作を、AIに頼むだけで終わらせず、確認して仕事で使える形まで進める講習です。</p>"
+        "<div class='focus-actions'><a class='focus-btn primary' href='#ai-agent-course'>AIエージェント講習を見る</a>"
+        "<a class='focus-btn secondary' href='#contact'>まず相談する</a></div>"
+        "<ul class='focus-trust'><li>初心者OK</li><li>持ち込み課題OK</li><li>対面・オンライン対応</li></ul></div>"
         "<div class='focus-hero-visual'><img src='/img/hero-ai-consult-hikone.png' alt='彦根で仕事を持ち寄り、AIを学ぶ少人数講習' fetchpriority='high' decoding='async'></div>"
         "</section>"
     )
@@ -12431,62 +12451,44 @@ def _render_focused_blog_content() -> str:
 def _render_focused_main() -> str:
     free_consult = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/AW5O5XSBHLEHYUBHLZUGFKYE"
     seminar = "https://goodbouldering.com/?pid=188553378"
-    works_count = len([p for p in _load_portfolio() if str(p.get("status") or "") == "live"])
-    lecture_count = len(_load_all_lectures()) + 1
-    blog_count = len(_load_recent_blog_posts(limit=100))
 
     parts = [
-        "<section class='focus-hub' id='hub'><div class='focus-hub-head'><div><small>EXPLORE AI HUB</small><h2>AIハブの中身</h2></div>"
-        "<p>相談だけでなく、作ったもの、学べる資料、講習、実践記録から自由に入れます。</p></div><div class='focus-hub-grid'>",
-        f"<a class='focus-hub-card' href='#all-works'><small>ALL WORKS</small><h3>すべての実績</h3><p>地域、福祉、店舗、業務改善で実際に公開・運用している制作物。</p><span class='focus-hub-meta'><strong>{works_count}</strong><span>件の実績</span></span></a>",
-        f"<a class='focus-hub-card' href='#lectures'><small>MATERIALS</small><h3>受講資料</h3><p>AIの基本からCodex実践まで、講習後も見返せる公開資料。</p><span class='focus-hub-meta'><strong>{lecture_count}</strong><span>件の資料</span></span></a>",
-        "<a class='focus-hub-card' href='#ai-coding'><small>AI CODING</small><h3>AIコーディング講習</h3><p>作りたいものを題材に、確認・修正・公開まで身につける実践講習。</p><span class='focus-hub-meta'><strong>120</strong><span>分の実践</span></span></a>",
-        f"<a class='focus-hub-card' href='#blog'><small>BLOG</small><h3>ブログ</h3><p>AI活用と業務改善の成功、失敗、修正を残した実践記録。</p><span class='focus-hub-meta'><strong>{blog_count}</strong><span>本の記事</span></span></a>",
-        "</div></section>",
+        "<section class='focus-block main-course' id='ai-agent-course'><div class='focus-section-head'><small>MAIN COURSE</small><h2>AIエージェント講習</h2></div>",
+        "<p class='focus-section-lead'>CodexとClaude Codeを使い、仕事を分けて頼む、結果を確かめる、修正する、次も使える手順として残すところまで実践します。</p>",
+        "<div class='focus-ai-course'><div class='focus-ai-course-main'><h3>自分の仕事を、AIエージェントと前に進める。</h3>",
+        "<p>告知、資料、調査、集計、業務ツール、サイト改善など、普段の課題を持ち込み、その場で使える成果物と繰り返せる手順を作ります。</p>",
+        "<figure class='focus-venue-mini'><img src='/img/gubboru-cafe-ai-course-painting.webp' alt='AIエージェント講習の対面会場 グッぼるカフェの店内' loading='lazy' decoding='async'>",
+        "<figcaption><small>OFFLINE VENUE</small><h4>対面受講は、グッぼるカフェ</h4><p>彦根の大きなテーブルで、普段のPCと課題を持ち寄る少人数講習です。</p></figcaption></figure>",
+        "<ul class='focus-ai-checks'><li>Codex・Claude Codeの安全な準備</li><li>仕事の分解と伝わる依頼</li><li>差分・根拠・画面の確認</li><li>成果物と次回手順の保存</li></ul>",
+        "<div class='focus-content-actions'>",
+        f"<a class='focus-btn primary' href='{seminar}' target='_blank' rel='noopener'>AIエージェント講習を予約する</a>",
+        "<a class='focus-btn secondary' href='/programming-map.html'>講習内容を詳しく見る</a></div></div>",
+        "<aside class='focus-ai-course-side' aria-label='AIエージェント講習の概要'><div class='focus-course-fact'><small>時間</small><strong>120分</strong></div>",
+        "<div class='focus-course-fact'><small>対象</small><strong>初心者OK</strong></div><div class='focus-course-fact'><small>形式</small><strong>対面・オンライン</strong></div></aside></div></section>",
         "<section class='focus-block' id='all-works'><div class='focus-section-head'><small>ALL WORKS</small><h2>すべての実績</h2></div>",
-        "<p class='focus-section-lead'>地域交流、福祉、店舗、EC、予約、業務システム。現場の悩みを、公開して使えるWebサービスや運用の仕組みに変えた実績です。</p><div class='focus-content-shell'>",
+        "<p class='focus-section-lead'>講習で扱う考え方を、地域交流、福祉、店舗、EC、予約、業務システムで実際に使った支援例です。</p><div class='focus-content-shell'>",
         _render_works_section(),
         "</div><div class='focus-content-actions'><a class='focus-btn secondary' href='#contact'>似た課題を相談する</a></div></section>",
         "<section class='focus-block soft' id='lectures'><div class='focus-section-head'><small>LEARNING MATERIALS</small><h2>受講資料</h2></div>",
-        "<p class='focus-section-lead'>AIが分からない、学び直しが不安、講習後に忘れそう。初めての考え方からCodex実践まで、あとから見返せる資料として公開しています。</p>",
+        "<p class='focus-section-lead'>講習前の予習と、受講後に仕事へ戻るための復習資料です。AIの基本からCodex・Claude Code実践まで見返せます。</p>",
         _render_lectures_section(),
         "<div class='focus-content-actions'><a class='focus-btn secondary' href='/lectures/index.html'>受講資料を一覧で見る</a></div></section>",
-        "<section class='focus-block' id='ai-coding'><div class='focus-section-head'><small>AI CODING COURSE</small><h2>AIコーディング講習</h2></div>",
-        "<p class='focus-section-lead'>コード経験よりも、作りたいものがあることから始めます。AIに任せきらず、確認し、直し、安全に公開するところまでを身につけます。</p>",
-        "<div class='focus-ai-course'><div class='focus-ai-course-main'><h3>自分の仕事で、動くものを作る。</h3>",
-        "<p>告知ページ、業務ツール、集計、資料、予約導線など、持ち込み課題を題材にCodexとClaude Codeの使い分けを実践します。</p>",
-        "<figure class='focus-venue-mini'><img src='/img/gubboru-cafe-ai-course-painting.webp' alt='AI講習の対面会場 グッぼるカフェの店内' loading='lazy' decoding='async'>",
-        "<figcaption><small>OFFLINE VENUE</small><h4>対面受講は、グッぼるカフェ</h4><p>彦根の大きなテーブルで、普段のPCと課題を持ち寄る少人数講習です。</p></figcaption></figure>",
-        "<ul class='focus-ai-checks'><li>Codexの導入と安全な権限設定</li><li>Claude Codeとの使い分け</li><li>差分・表示・スマホ幅の確認</li><li>本番公開と次の改善手順</li></ul>",
-        "<div class='focus-content-actions'><a class='focus-btn primary' href='/programming-map.html'>講習内容を詳しく見る</a>",
-        f"<a class='focus-btn secondary' href='{seminar}' target='_blank' rel='noopener'>講習を予約する</a></div></div>",
-        "<aside class='focus-ai-course-side' aria-label='講習の概要'><div class='focus-course-fact'><small>時間</small><strong>120分</strong></div>",
-        "<div class='focus-course-fact'><small>対象</small><strong>初心者OK</strong></div><div class='focus-course-fact'><small>形式</small><strong>対面・オンライン</strong></div></aside></div></section>",
-        "<section class='focus-block soft' id='blog'><div class='focus-section-head'><small>PRACTICAL BLOG</small><h2>ブログ</h2></div>",
-        "<p class='focus-section-lead'>AI活用、AIコーディング、業務改善で試したことを、成功だけでなく失敗と修正も含めて残しています。SNSや講習の続きとして読めます。</p>",
+        "<section class='focus-block' id='blog'><div class='focus-section-head'><small>PRACTICAL BLOG</small><h2>ブログ</h2></div>",
+        "<p class='focus-section-lead'>AIエージェント活用と業務改善で試したことを、成功だけでなく失敗と修正も含めて残しています。</p>",
         _render_focused_blog_content(),
         "<div class='focus-content-actions'><a class='focus-btn secondary' href='/blog/index.html'>ブログを一覧で読む</a></div></section>",
-        "<section class='focus-outcomes' id='outcomes'><div class='focus-section-head'><small>WHAT YOU MAKE</small><h2>AIで、今日できること</h2></div><div class='outcome-grid'>",
-        "<article class='outcome-item'><span class='outcome-num'>01 / SNS</span><h3>SNS告知</h3><p>画像と文章を一気に作り、投稿まで迷わない。</p></article>",
-        "<article class='outcome-item'><span class='outcome-num'>02 / OFFICE</span><h3>面倒な事務</h3><p>集計・要約・定型文を、繰り返せる手順に。</p></article>",
-        "<article class='outcome-item'><span class='outcome-num'>03 / CODE</span><h3>AIコーディング</h3><p>作りたいものを、確認しながら動く形に。</p></article>",
-        "<article class='outcome-item'><span class='outcome-num'>04 / WEB</span><h3>サイト改善</h3><p>WordPressの悩みも、残すものから一緒に整理。</p></article></div></section>",
-        "<section class='focus-block' id='courses'><div class='focus-section-head'><small>THREE PATHS</small><h2>選べる3つの入口</h2></div><div class='path-grid'>",
-        f"<a class='path-card-new' href='{free_consult}' target='_blank' rel='noopener'><img class='path-card-visual' src='/img/course-path-beginner.webp' alt='仕事の困りごとをAIで整理するイメージ' loading='lazy'><span class='path-index'>01</span><h3>はじめてのAI</h3><p>何から始めるか分からない方へ。仕事の困りごとから始めます。</p><ul><li>初心者OK</li><li>対面でも安心</li><li>初回相談は無料</li></ul><span>相談して入口を決める →</span></a>",
-        f"<a class='path-card-new' href='{seminar}' target='_blank' rel='noopener'><img class='path-card-visual' src='/img/course-path-coding.webp' alt='AIと一緒にコードを確認して公開するイメージ' loading='lazy'><span class='path-index'>02</span><h3>AIコーディング</h3><p>02 AI準備実践(Codex ClaudeCode)</p><ul><li>Codex実践</li><li>Claude Code併用</li><li>個別サポート</li></ul><span>講習を選ぶ →</span></a>",
-        "<a class='path-card-new' href='#contact'><img class='path-card-visual' src='/img/course-path-workflow.webp' alt='複雑なサイトと事務を一つの仕組みに整えるイメージ' loading='lazy'><span class='path-index'>03</span><h3>サイト・業務改善</h3><p>更新に追われるサイトや重い事務を、成果につながる仕組みへ。</p><ul><li>WordPress移行相談</li><li>業務の自動化</li><li>本番確認まで</li></ul><span>改善を相談する →</span></a></div></section>",
-        "<section class='focus-block soft'><div class='focus-split'><img class='speaker-painting' src='/img/speaker-portrait-painting.webp' alt='AI相談 彦根 講師 由井辰美の絵画調ポートレート' loading='lazy'>",
-        "<div><small class='outcome-num'>INSTRUCTOR</small><h2>9つの事業を動かす現場から教える</h2><p>理想論ではなく、告知、予約、事務、サイト運営で実際に使った方法を扱います。相談、実装、スマホ確認、本番URLの確認まで一緒に進めます。</p><a class='focus-btn secondary' href='#contact'>彦根で相談する</a></div></div></section>",
-        "<section class='focus-block' id='flow'><div class='focus-section-head'><small>HOW IT WORKS</small><h2>相談から、今日の成果まで</h2></div><div class='focus-flow'>",
-        "<article class='focus-step'><b>01</b><h3>相談する</h3><p>やりたいこと、困っている作業をそのまま聞きます。</p></article>",
-        "<article class='focus-step'><b>02</b><h3>決める</h3><p>講習・相談・改善の中から、最短の進め方を選びます。</p></article>",
-        "<article class='focus-step'><b>03</b><h3>作る</h3><p>持ち帰って使える成果物と、次回の手順を残します。</p></article></div></section>",
+        "<section class='focus-block soft' id='speaker'><div class='focus-split'><img class='speaker-painting' src='/img/speaker-portrait-painting.webp' alt='AI相談 彦根 講師 由井辰美の絵画調ポートレート' loading='lazy'>",
+        "<div><small class='outcome-num'>INSTRUCTOR</small><h2>9つの事業でAIエージェントを使う講師</h2><p>理想論ではなく、告知、予約、事務、サイト運営で実際に任せている仕事を題材にします。成果物の確認と、次も続けられる手順づくりまで一緒に進めます。</p><a class='focus-btn secondary' href='#contact'>彦根で相談する</a></div></div></section>",
+        "<section class='focus-block' id='flow'><div class='focus-section-head'><small>HOW IT WORKS</small><h2>講習から、仕事で使うまで</h2></div><div class='focus-flow'>",
+        "<article class='focus-step'><b>01</b><h3>持ち込む</h3><p>止まっている仕事や、繰り返している作業を持ち込みます。</p></article>",
+        "<article class='focus-step'><b>02</b><h3>一緒に動かす</h3><p>AIエージェントへの依頼、確認、修正をその場で実践します。</p></article>",
+        "<article class='focus-step'><b>03</b><h3>手順に残す</h3><p>成果物と次回の進め方を保存し、自分の仕事へ戻します。</p></article></div></section>",
         "<section class='focus-block soft' id='faq'><div class='focus-section-head'><small>FAQ</small><h2>よくある質問</h2></div><div class='focus-faq'>",
+        "<details><summary>AIエージェント講習では何を作りますか？</summary><p>告知文、資料、調査メモ、集計、業務ツール、サイト改善など、実際の仕事から1つ選び、使える成果物と次回手順まで作ります。</p></details>",
         "<details><summary>AIがまったく初めてでも大丈夫ですか？</summary><p>大丈夫です。専門用語ではなく、普段の仕事と困りごとから始めます。</p></details>",
         "<details><summary>パソコンを持ち込めますか？</summary><p>はい。可能なら普段使っているPCと、直したい資料やページをお持ちください。</p></details>",
-        "<details><summary>オンラインでも受講できますか？</summary><p>対面・オンラインの両方に対応しています。彦根市内は訪問も相談できます。</p></details>",
-        "<details><summary>WordPressからの移行も相談できますか？</summary><p>はい。残す記事、URL、フォーム、SEOを整理してから、移行の必要性を判断します。</p></details></div></section>",
-        "<section class='focus-contact' id='contact'><div class='focus-contact-inner'><div><h2>まず、やりたいことを聞かせてください。</h2><p>講習を売る前に、今の仕事に合う入口を一緒に整理します。</p></div>",
+        "<details><summary>オンラインでも受講できますか？</summary><p>対面・オンラインの両方に対応しています。彦根市内は訪問も相談できます。</p></details></div></section>",
+        "<section class='focus-contact' id='contact'><div class='focus-contact-inner'><div><h2>AIエージェントに任せたい仕事を聞かせてください。</h2><p>講習前に、今の仕事に合う題材と進め方を一緒に整理できます。</p></div>",
         f"<a class='focus-btn' href='{free_consult}' target='_blank' rel='noopener'>無料相談の日程を選ぶ</a></div></section>",
     ]
     return "".join(parts)
@@ -12495,7 +12497,7 @@ def _render_focused_main() -> str:
 def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     today = datetime.now().strftime("%Y-%m-%d")
     title = SITE_BRAND
-    desc = "AI相談は、彦根・滋賀の中小事業者向けAI相談・生成AI講習・ホームページ制作ポータルです。Codex、Claude Code、画像生成、店舗LP、企業サイト、EC、講習サイト、管理画面、SNS改善導線まで、実例を見せながら相談できます。"
+    desc = "AI相談は、彦根・滋賀でCodexとClaude Codeを仕事に生かすAIエージェント講習を行っています。調査、資料、告知、業務改善、Web制作を題材に、依頼、確認、修正、成果物と手順の保存まで実践できます。"
 
     parts: list[str] = []
     parts.append("<!doctype html><html lang='ja'><head><meta charset='utf-8'>" + FAVICON_HEAD_HTML)
@@ -12555,7 +12557,7 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append("<section class='block' id='packages'>")
     parts.append("<p class='section-heading fade-up'>AI LESSON COCKPIT</p>")
     parts.append("<h2 class='section-title packages-title fade-up d1'>複数のAI講習を、一画面で選ぶ</h2>")
-    parts.append("<p class='section-sub fade-up d2'>AI無料相談、伴走支援、Codex準備会、Codex実践会、AIコーディング講習を、目的と到達点で比較できます。</p>")
+    parts.append("<p class='section-sub fade-up d2'>AI無料相談、伴走支援、Codex準備会、Codex実践会、AIエージェント講習を、目的と到達点で比較できます。</p>")
     parts.append(_render_courses_packages())
     parts.append("</section>")
 
@@ -12652,12 +12654,12 @@ def main(dry_run: bool = False) -> int:
         print(f"  agents_status 生成スキップ: {e}")
 
     recent_lectures = _load_recent_lectures(limit=3)
-    # AIコーディング講習 120分は受講資料カードとして残すが、最新資料を先頭にする
+    # AIエージェント講習 120分は受講資料カードとして残すが、最新資料を先頭にする
     pmap_card = {
-        "title": "AIコーディング講習 120分",
+        "title": "AIエージェント講習 120分",
         "icon": "🧭",
         "date": "2026-06-06",
-        "summary": "Codex導入、Claude Code併用、画像生成、AI時代の本物のエンジニア像、レベルマップ、設計・データ・運用・セキュリティ、実装、公開までを段階的に学ぶ講習LP。",
+        "summary": "CodexとClaude Codeを使い、仕事の分解、依頼、確認、修正、成果物と次回手順の保存までを段階的に学ぶAIエージェント講習。",
         "href": "/programming-map.html",
     }
     recent_lectures = list(recent_lectures) + [pmap_card]

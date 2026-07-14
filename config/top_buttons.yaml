@@ -55,7 +55,7 @@ top_buttons:
   enabled: true
 - id: pmap
   group: 教材資料
-  label: AIコーディング講習
+  label: AIエージェント講習
   icon: 🗺
   href: programming-map.html
   kind: link

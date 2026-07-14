@@ -65,7 +65,7 @@ DEFAULT_TOP_BUTTONS = [
     {"id": "profile",         "group": "講師",         "label": "人物メモ",           "icon": "📜", "href": "speaker.html",          "kind": "link",   "enabled": False},
     {"id": "portfolio",       "group": "資料",         "label": "運営メモ",           "icon": "🧭", "href": "index.html#flow",       "kind": "link",   "enabled": False},
     {"id": "lectures",        "group": "教材資料",     "label": "受講資料",           "icon": "📝", "href": "lectures/index.html",   "kind": "link",   "enabled": True},
-    # AIコーディング講習は lectures index の中にリンクとして掲載するためトップナビからは外す
+    # AIエージェント講習は lectures index の中にリンクとして掲載するためトップナビからは外す
     {"id": "archive",         "group": "アーカイブ",   "label": "過去ログ",           "icon": "📚", "href": "archive.html",          "kind": "link",   "enabled": True},
     {"id": "run",             "group": "操作",         "label": "巡回実行",           "icon": "🔄", "href": "",                      "kind": "action", "action_id": "run", "enabled": True},
 ]
@@ -141,8 +141,8 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
     # TOP(_render_header) と同じく、固定メニューは主要導線だけにする。
     # 詳細な章移動は各ページ内の目次レールへ分離し、ヘッダーを1段に保つ。
     parts.append(f"<a class='nav-link nav-essential' href='{safe_home}'>ホーム</a>")
-    parts.append("<a class='nav-link nav-essential' href='/#packages'>講習</a>")
-    parts.append("<a class='nav-link nav-essential' href='/#web-showcase'>制作</a>")
+    parts.append("<a class='nav-link nav-essential' href='/#ai-agent-course'>AIエージェント講習</a>")
+    parts.append("<a class='nav-link nav-essential' href='/#all-works'>実績</a>")
     parts.append("<a class='nav-link nav-essential' href='/blog/index.html'>ブログ</a>")
     parts.append("<a class='nav-link nav-essential' href='/#lectures'>資料</a>")
     parts.append("<a class='nav-link nav-essential' href='/#faq'>FAQ</a>")
@@ -162,8 +162,8 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
         "<span class='mobile-nav-label'>ホームメニュー</span>"
         "<div class='mobile-link-list'>"
         "<a href='/'><span class='mobile-link-title'>ホーム</span><small>最初に戻る</small></a>"
-        "<a href='/#packages'><span class='mobile-link-title'>講習</span><small>AI講習を選ぶ</small></a>"
-        "<a href='/#web-showcase'><span class='mobile-link-title'>制作</span><small>HP制作と運用を見る</small></a>"
+        "<a href='/#ai-agent-course'><span class='mobile-link-title'>AIエージェント講習</span><small>Codex・Claude Code実践を見る</small></a>"
+        "<a href='/#all-works'><span class='mobile-link-title'>実績</span><small>支援例と制作例を見る</small></a>"
         "<a href='/blog/index.html'><span class='mobile-link-title'>ブログ</span><small>実践知を読む</small></a>"
         "<a href='/#lectures'><span class='mobile-link-title'>資料</span><small>復習と手順を見る</small></a>"
         "<a href='/#speaker'><span class='mobile-link-title'>講師</span><small>誰が支援するか</small></a>"
@@ -2346,7 +2346,7 @@ def _render_lecture_overview(title: str, meta: dict, body_html: str, toc: list[t
         parts.append(f"<p class='lecture-shell-desc'>{html.escape(title)} の目次・本文・関連形式をまとめています。</p>")
     parts.append("</div>")
     parts.append("<div class='lecture-shell-actions'>")
-    parts.append("<a class='lecture-home-link' href='../#packages'>受講プラン</a>")
+    parts.append("<a class='lecture-home-link' href='../#ai-agent-course'>AIエージェント講習</a>")
     parts.append("<a class='lecture-home-link' href='./index.html'>受講資料ホーム</a>")
     parts.append("</div>")
     parts.append("</div>")
@@ -2355,7 +2355,7 @@ def _render_lecture_overview(title: str, meta: dict, body_html: str, toc: list[t
     parts.append(_render_feature_chips(flags, show_missing=False, css_prefix="lecture"))
     parts.append("</div>")
 
-    jumps: list[tuple[str, str]] = [("受講資料ホーム", "./index.html"), ("受講プラン", "../#packages")]
+    jumps: list[tuple[str, str]] = [("受講資料ホーム", "./index.html"), ("AIエージェント講習", "../#ai-agent-course")]
     if flags.get("toc"):
         jumps.append(("目次", "#lecture-toc"))
     video_anchor = _find_toc_anchor(toc, "動画", "動画版")
@@ -2646,7 +2646,7 @@ def _render_teaching_home(sections: list[dict]) -> str:
         "受講前は内容確認、受講中は投影資料、受講後は本文とチェック項目へ進めます。</p>"
     )
     parts.append("<div class='tr-home-actions'>")
-    parts.append("<a href='../#packages'>受講プランを見る</a>")
+    parts.append("<a href='../#ai-agent-course'>AIエージェント講習を見る</a>")
     if featured_href:
         parts.append(f"<a href='{html.escape(featured_href, quote=True)}'>Codex実践会から見る</a>")
     if first_section_id:
@@ -3145,7 +3145,7 @@ def _patch_programming_map_nav(pmap_file: Path) -> None:
     text = pmap_file.read_text(encoding="utf-8")
     # 共通ナビ HTML（pmap を current として）
     common_nav = render_top_nav(path_prefix="./", current_id="pmap", include_run=False)
-    # ページ内目次バー（AIコーディング講習 専用 — sticky とは別）
+    # ページ内目次バー（AIエージェント講習 専用 — sticky とは別）
     chapter_toc = (
         "<nav class='pm-chapter-toc' aria-label='ページ内目次'>"
         "<span class='pm-toc-label'>AI CODING</span>"
@@ -3184,7 +3184,7 @@ def _patch_programming_map_nav(pmap_file: Path) -> None:
         "<style id='pm-chapter-toc-css'>"
         # ---- 共通トップヘッダー/ナビ（index.html 等と同一・正本 CSS から抽出） ----
         + common_nav_css
-        # ページ内目次バー（AIコーディング講習 専用：fixed top-nav の真下に1段で吸着）
+        # ページ内目次バー（AIエージェント講習 専用：fixed top-nav の真下に1段で吸着）
         + "html{scroll-padding-top:118px;}"
         "[id]{scroll-margin-top:118px;}"
         ".pm-chapter-toc{position:sticky;top:66px;z-index:40;"

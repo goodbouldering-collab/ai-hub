@@ -111,4 +111,4 @@ NotebookLMは、あなたが指定した資料（画像、YouTube動画、テキ
 
 - [講師紹介](../speaker.html) — 支援内容と考え方の全体像
 - [AIハブ トップページ](../index.html) — 相談、講習、資料への入口
-- [AIコーディング講習 120分](../programming-map.html) — AI活用に必要な用語と仕組みの体系整理
+- [AIエージェント講習 120分](../programming-map.html) — CodexとClaude Codeを仕事で使う手順の体系整理

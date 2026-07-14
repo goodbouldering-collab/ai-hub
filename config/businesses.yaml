@@ -32,12 +32,12 @@ businesses:
 - id: climbhero
   name: ClimbHero
   tagline: クライミング動画共有・グローバル
-  url: https://project-02ceb497.pages.dev
+  url: https://climbhero.vercel.app
   icon: 🎬
   color: purple
   status: live
   kind: business
-  description: 登る動画をランキングで競うクライミング特化アプリ。Cloudflare Pages 上で稼働。
+  description: 登る動画をランキングで競うクライミング特化アプリ。Vercelを正規公開先とし、CloudflareはAPI基盤として運用。
 
 - id: business21-match
   name: 派遣マッチ

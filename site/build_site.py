@@ -2390,7 +2390,7 @@ def _render_lecture_overview(title: str, meta: dict, body_html: str, toc: list[t
 
 def _build_jsonld(kind: str, meta: dict, title: str, page_url: str) -> str:
     """BlogPosting / Person / WebSite の JSON-LD を生成。"""
-    if kind == "lecture":
+    if kind in ("lecture", "blog"):
         doc = {
             "@context": "https://schema.org",
             "@type": "BlogPosting",
@@ -2409,6 +2409,9 @@ def _build_jsonld(kind: str, meta: dict, title: str, page_url: str) -> str:
                 "cssSelector": ["h1", ".content-wrap p:first-of-type"],
             },
         }
+        image_url = str(meta.get("image") or "").strip()
+        if image_url:
+            doc["image"] = image_url if image_url.startswith(("http://", "https://")) else SITE_URL + image_url
         return json.dumps(doc, ensure_ascii=False)
     if kind == "speaker":
         avatar_url = str(meta.get("avatar_url") or "/img/speaker.webp")
@@ -2435,16 +2438,22 @@ def _build_jsonld(kind: str, meta: dict, title: str, page_url: str) -> str:
     return ""
 
 
-def _build_ogp(title: str, description: str, page_url: str, kind: str = "article") -> str:
+def _build_ogp(title: str, description: str, page_url: str, kind: str = "article", image_url: str = "") -> str:
     desc = description or title
-    return "".join([
+    parts = [
         f"<meta property='og:title' content='{html.escape(title, quote=True)}'>",
         f"<meta property='og:description' content='{html.escape(desc, quote=True)}'>",
         f"<meta property='og:url' content='{html.escape(page_url, quote=True)}'>",
         f"<meta property='og:type' content='{html.escape(kind, quote=True)}'>",
         "<meta property='og:site_name' content='AI相談'>",
-        "<meta name='twitter:card' content='summary'>",
-    ])
+    ]
+    if image_url:
+        absolute_image_url = image_url if image_url.startswith(("http://", "https://")) else SITE_URL + image_url
+        parts.append(f"<meta property='og:image' content='{html.escape(absolute_image_url, quote=True)}'>")
+        parts.append("<meta name='twitter:card' content='summary_large_image'>")
+    else:
+        parts.append("<meta name='twitter:card' content='summary'>")
+    return "".join(parts)
 
 
 def _inject_heading_ids(body_html: str) -> tuple[str, list[tuple[str, str]]]:
@@ -2487,10 +2496,11 @@ def render_content_page(title: str, meta: dict, body_html: str, nav_html: str, p
     desc = str(meta.get("summary") or "")
     if desc:
         parts.append(f"<meta name='description' content='{html.escape(desc, quote=True)}'>")
+    image_url = str(meta.get("image") or "").strip()
     parts.append(f"<link rel='canonical' href='{html.escape(page_url, quote=True)}'>")
-    parts.append(_build_ogp(title, desc, page_url, "article" if kind in ("lecture", "speaker", "blog") else "website"))
+    parts.append(_build_ogp(title, desc, page_url, "article" if kind in ("lecture", "speaker", "blog") else "website", image_url))
     if kind:
-        jsonld_kind = "website" if kind == "portfolio" else kind
+        jsonld_kind = "website" if kind in ("portfolio", "blog_index") else kind
         ld = _build_jsonld(jsonld_kind, meta, title, page_url)
         if ld:
             parts.append(f"<script type='application/ld+json'>{ld}</script>")
@@ -2513,6 +2523,15 @@ def render_content_page(title: str, meta: dict, body_html: str, nav_html: str, p
         parts.append("<div class='speaker-meta'>" + "".join(sub_bits) + "</div>")
     parts.append("</header>")
     parts.append("<div class='content-wrap'>")
+    if kind == "blog" and meta.get("hero_image") and image_url:
+        image_alt = html.escape(str(meta.get("image_alt") or title), quote=True)
+        image_caption = html.escape(str(meta.get("image_caption") or ""))
+        parts.append(
+            "<figure class='article-hero'>"
+            f"<img src='{html.escape(image_url, quote=True)}' alt='{image_alt}' fetchpriority='high' decoding='async'>"
+            + (f"<figcaption>{image_caption}</figcaption>" if image_caption else "")
+            + "</figure>"
+        )
     if kind == "lecture":
         parts.append(_render_lecture_overview(title, meta, body_html, toc))
     # TOC: h2 が 3 個以上あれば出す
@@ -2832,7 +2851,7 @@ def build_blog() -> int:
     if items:
         parts = [
             "<div class='tr-section'>",
-            "<p>AIハブのブログです。講習・制作・AI活用の現場から、実際に使える視点を残していきます。</p>",
+            "<p>AI相談のブログです。AIエージェント講座・制作・業務改善の現場から、実際に使える視点を残していきます。</p>",
             "<div class='tr-grid'>",
         ]
         for item in items:
@@ -2852,11 +2871,11 @@ def build_blog() -> int:
         (out_dir / "index.html").write_text(
             render_content_page(
                 "ブログ",
-                {"summary": "AIハブのブログ一覧。Codex、Claude Code、生成AI活用、AIコーディングの実践記録。"},
+                {"summary": "AI相談のブログ一覧。Codex、Claude Code、AIエージェント講座、生成AI活用、業務改善の実践記録。"},
                 "".join(parts),
                 nav,
                 page_path="blog/index.html",
-                kind="blog",
+                kind="blog_index",
             ),
             encoding="utf-8",
         )

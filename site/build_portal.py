@@ -11870,7 +11870,7 @@ def _render_blog_teaser() -> str:
             "<div class='blog-card-body'>"
             "<div class='blog-card-meta'><span>BLOG INDEX</span></div>"
             "<h3>ブログ一覧</h3>"
-            "<p>AIハブの実践記録を一覧で確認できます。新しい記事を追加すると、このトップにも自動で並びます。</p>"
+            "<p>AI相談の実践記録を一覧で確認できます。新しい記事を追加すると、このトップにも自動で並びます。</p>"
             "<span class='blog-card-more'>一覧を見る</span>"
             "</div>"
             "</a>"
@@ -12425,6 +12425,7 @@ def _render_hero_focused() -> str:
         "<h1 class='focus-title'>AIエージェントを、<br><span class='focus-title-line'><strong>仕事の仲間に。</strong></span></h1>"
         "<p class='focus-lead'>調査、資料、告知、業務改善、Web制作を、AIに頼むだけで終わらせず、確認して仕事で使える形まで進める講習です。</p>"
         "<div class='focus-actions'><a class='focus-btn primary' href='#ai-agent-course'>AIエージェント講習を見る</a>"
+        "<a class='focus-btn secondary' href='/blog/2026-07-14-ai-agent-course-codex-claude-code.html'>講座を始めた理由を読む</a>"
         "<a class='focus-btn secondary' href='#contact'>まず相談する</a></div>"
         "<ul class='focus-trust'><li>初心者OK</li><li>持ち込み課題OK</li><li>対面・オンライン対応</li></ul></div>"
         "<div class='focus-hero-visual'><img src='/img/hero-ai-consult-hikone.png' alt='彦根で仕事を持ち寄り、AIを学ぶ少人数講習' fetchpriority='high' decoding='async'></div>"
@@ -12462,7 +12463,8 @@ def _render_focused_main() -> str:
         "<ul class='focus-ai-checks'><li>Codex・Claude Codeの安全な準備</li><li>仕事の分解と伝わる依頼</li><li>差分・根拠・画面の確認</li><li>成果物と次回手順の保存</li></ul>",
         "<div class='focus-content-actions'>",
         f"<a class='focus-btn primary' href='{seminar}' target='_blank' rel='noopener'>AIエージェント講習を予約する</a>",
-        "<a class='focus-btn secondary' href='/programming-map.html'>講習内容を詳しく見る</a></div></div>",
+        "<a class='focus-btn secondary' href='/programming-map.html'>講習内容を詳しく見る</a>",
+        "<a class='focus-btn secondary' href='/blog/2026-07-14-ai-agent-course-codex-claude-code.html'>講座の考え方をブログで読む</a></div></div>",
         "<aside class='focus-ai-course-side' aria-label='AIエージェント講習の概要'><div class='focus-course-fact'><small>時間</small><strong>120分</strong></div>",
         "<div class='focus-course-fact'><small>対象</small><strong>初心者OK</strong></div><div class='focus-course-fact'><small>形式</small><strong>対面・オンライン</strong></div></aside></div></section>",
         "<section class='focus-block' id='all-works'><div class='focus-section-head'><small>ALL WORKS</small><h2>すべての実績</h2></div>",

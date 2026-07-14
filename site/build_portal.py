@@ -116,7 +116,7 @@ SITE_LEGACY_NAME = "AIハブ"
 OWNER_SUBTITLE = "クライミング歴30年・9事業を回す滋賀のAI講師"
 OWNER_TAGLINE = "AIを聞いて終わりにせず、講習・実例・資料で仕事に入れる"
 CONSULT_BOOK_URL = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/AW5O5XSBHLEHYUBHLZUGFKYE"
-AI_CODING_BOOK_URL = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/S7GERYVDIPRV76DKXCC3WJWH"
+AI_AGENT_COURSE_URL = "https://goodbouldering.com/?pid=188553378"
 MONTHLY_SUPPORT_CHECKOUT_URL = "/api/stripe/monthly-support"
 
 
@@ -290,8 +290,8 @@ def _build_jsonld_website() -> str:
             "offers": offer,
         }
         if name == ai_coding_title:
-            offer["url"] = AI_CODING_BOOK_URL
-            service["url"] = AI_CODING_BOOK_URL
+            offer["url"] = AI_AGENT_COURSE_URL
+            service["url"] = AI_AGENT_COURSE_URL
         if name == free_consult_title:
             offer["url"] = CONSULT_BOOK_URL
             service["url"] = CONSULT_BOOK_URL
@@ -11097,7 +11097,7 @@ def _render_courses_packages() -> str:
     codex_prep_title = "Codex準備会 60分"
     codex_practice_title = "Codex実践会 120分"
     ai_coding_title = "AIエージェント講習 120分"
-    seminar_url = "https://goodbouldering.com/?pid=188553378"
+    seminar_url = AI_AGENT_COURSE_URL
     free_consult_title = "AI無料相談 入口整理"
     consult_title = "AI個別相談 しっかり60分"
     support_title = "AI伴走支援 いっしょに導入"
@@ -11244,7 +11244,7 @@ def _render_courses_packages() -> str:
                 "受講後は小さな制作物を作り、説明できない変更を公開前に止める判断まで練習する",
             ],
             "verify": "予約ページでは120分のAIエージェント講習を選んでください。",
-            "url": AI_CODING_BOOK_URL,
+            "url": AI_AGENT_COURSE_URL,
             "cta": "AIエージェント講習を予約する",
             "material_url": "/programming-map.html",
             "material_cta": "AIエージェント講習の受講資料を見る",
@@ -12268,6 +12268,15 @@ body::before { display: none !important; }
   border-color:rgba(7,95,200,.34);
   box-shadow:0 26px 64px rgba(7,54,105,.14);
 }
+.focus-course-catalog {
+  max-width:1320px;
+  margin:64px auto 0;
+  padding-top:54px;
+  border-top:1px solid rgba(7,95,200,.18);
+}
+.focus-course-catalog .focus-section-head { margin-bottom:28px; }
+.focus-course-catalog .packages-grid { text-align:left; }
+.focus-course-catalog .packages-note { margin-left:auto; margin-right:auto; }
 .path-grid { max-width:1320px; margin:auto; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; }
 .path-card-new { display:flex; flex-direction:column; min-height:360px; padding:30px; border:1.5px solid var(--focus-line); border-radius:14px; background:#fff; text-decoration:none; color:inherit; transition:transform .2s,border-color .2s,box-shadow .2s; }
 .path-card-new:hover { transform:translateY(-5px); border-color:var(--focus-blue); box-shadow:0 20px 50px rgba(10,40,80,.12); }
@@ -12391,6 +12400,7 @@ body::before { display: none !important; }
   .focus-ai-course-side { grid-template-columns:1fr; padding:26px 22px; }
   .focus-course-fact { padding:0 0 16px; border-right:0; border-bottom:1px solid rgba(255,255,255,.25); }
   .focus-course-fact:last-child { padding-bottom:0; border-bottom:0; }
+  .focus-course-catalog { margin-top:46px; padding-top:42px; }
 }
 """
 
@@ -12401,7 +12411,7 @@ def _render_header_focused() -> str:
         "<a class='site-logo' href='/' aria-label='AI相談 彦根 トップへ'>"
         "<span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span></span></a>"
         "<nav class='site-nav' aria-label='メインナビ'>"
-        "<a class='nav-link nav-essential' href='#ai-agent-course'>AIエージェント講習</a>"
+        "<a class='nav-link nav-essential' href='#ai-agent-course'>講習・相談</a>"
         "<a class='nav-link nav-essential' href='/programming-map.html'>AIコーディング</a>"
         "<a class='nav-link nav-essential' href='#lectures'>受講資料</a>"
         "<div class='menu-wrap'><button class='menu-toggle' id='menu-toggle' aria-haspopup='menu' aria-expanded='false'>全メニュー"
@@ -12418,7 +12428,7 @@ def _render_header_focused() -> str:
         "<svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button>"
         "</div><div class='mobile-nav' id='mobile-nav'><div class='mobile-nav-panel mobile-nav-panel--public'>"
         "<a class='login-btn-mobile' href='#contact'>無料相談</a>"
-        "<a class='mobile-main-link' href='#ai-agent-course'>AIエージェント講習</a>"
+        "<a class='mobile-main-link' href='#ai-agent-course'>講習・相談</a>"
         "<span class='mobile-nav-label'>講習・資料</span><div class='mobile-link-grid'>"
         "<a href='/programming-map.html'>AIコーディング</a><a href='#lectures'>受講資料</a><a href='#blog'>ブログ</a></div>"
         "<span class='mobile-nav-label'>制作・発信</span><div class='mobile-link-grid'>"
@@ -12463,7 +12473,7 @@ def _render_focused_blog_content() -> str:
 
 def _render_focused_main() -> str:
     free_consult = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/AW5O5XSBHLEHYUBHLZUGFKYE"
-    seminar = "https://goodbouldering.com/?pid=188553378"
+    seminar = AI_AGENT_COURSE_URL
 
     parts = [
         "<section class='focus-block main-course' id='ai-agent-course'><div class='focus-section-head'><small>MAIN COURSE</small><h2>AIエージェント講習</h2></div>",
@@ -12478,7 +12488,11 @@ def _render_focused_main() -> str:
         "<a class='focus-btn secondary' href='/programming-map.html'>講習内容を詳しく見る</a>",
         "<a class='focus-btn secondary' href='/blog/2026-07-14-ai-agent-course-codex-claude-code.html'>講座の考え方をブログで読む</a></div></div>",
         "<aside class='focus-ai-course-side' aria-label='AIエージェント講習の概要'><div class='focus-course-fact'><small>時間</small><strong>120分</strong></div>",
-        "<div class='focus-course-fact'><small>対象</small><strong>初心者OK</strong></div><div class='focus-course-fact'><small>形式</small><strong>対面・オンライン</strong></div></aside></div></section>",
+        "<div class='focus-course-fact'><small>対象</small><strong>初心者OK</strong></div><div class='focus-course-fact'><small>形式</small><strong>対面・オンライン</strong></div></aside></div>",
+        "<div class='focus-course-catalog' id='packages'><div class='focus-section-head'><small>ALL COURSES</small><h2>すべての講習・相談</h2></div>",
+        "<p class='focus-section-lead'>まず話したい方から、仕事への導入、Codexの準備・実践、AIエージェント講習まで、目的と到達点で比較できます。</p>",
+        _render_courses_packages(),
+        "</div></section>",
         "<section class='focus-block soft' id='lectures'><div class='focus-section-head'><small>LEARNING MATERIALS</small><h2>受講資料</h2></div>",
         "<p class='focus-section-lead'>講習前の予習と、受講後に仕事へ戻るための復習資料です。AIの基本からCodex・Claude Code実践まで見返せます。</p>",
         _render_lectures_section(),
@@ -12540,6 +12554,7 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append(_render_footer(today))
     parts.append("</div>")
     parts.append(_render_sticky_cta())
+    parts.append(_render_diagnose_modal())
     parts.append(HEADER_JS)
     parts.append("</body></html>")
     return "".join(parts)

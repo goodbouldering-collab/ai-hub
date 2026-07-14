@@ -11334,6 +11334,71 @@ def _render_courses_packages() -> str:
     return "".join(parts)
 
 
+def _render_compact_course_cards() -> str:
+    """主役のAIエージェント講習に続けて置く、省スペースの申込カード。"""
+    items = [
+        {
+            "cat": "無料相談",
+            "title": "AI無料相談",
+            "price": "無料",
+            "duration": "初回",
+            "desc": "講習・伴走・制作のどこから始めるかを整理します。",
+            "url": CONSULT_BOOK_URL,
+            "cta": "無料相談を予約",
+        },
+        {
+            "cat": "個別相談",
+            "title": "AI個別相談",
+            "price": "5,500円",
+            "duration": "60分",
+            "desc": "仕事に合うAIの使い方と、確認・運用の手順を整理します。",
+            "url": "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/TO3XHZT6XP3OM4QBDYMW7TZP",
+            "cta": "個別相談を予約",
+        },
+        {
+            "cat": "6ヶ月伴走",
+            "title": "AI伴走支援",
+            "price": "月額10万円",
+            "duration": "6ヶ月",
+            "desc": "HP・事務・AI導入を、仕事に定着するところまで支援します。",
+            "url": MONTHLY_SUPPORT_CHECKOUT_URL,
+            "cta": "伴走支援を申し込む",
+        },
+        {
+            "cat": "Codex講習",
+            "title": "Codex準備会",
+            "price": "2,200円",
+            "duration": "60分",
+            "desc": "ログイン、権限、最初の依頼と確認手順を揃えます。",
+            "url": AI_AGENT_COURSE_URL,
+            "cta": "準備会を予約",
+        },
+        {
+            "cat": "Codex講習",
+            "title": "Codex実践会",
+            "price": "5,500円",
+            "duration": "120分",
+            "desc": "持ち込み課題を、仕事で使える成果物に仕上げます。",
+            "url": AI_AGENT_COURSE_URL,
+            "cta": "実践会を予約",
+        },
+    ]
+    cards = []
+    for item in items:
+        is_ext = item["url"].startswith("http")
+        target_attr = " target='_blank' rel='noopener'" if is_ext else ""
+        cards.append(
+            "<article class='compact-course-card'>"
+            f"<small>{html.escape(item['cat'])}</small>"
+            f"<h3>{html.escape(item['title'])}</h3>"
+            f"<div class='compact-course-meta'><strong>{html.escape(item['price'])}</strong><span>{html.escape(item['duration'])}</span></div>"
+            f"<p>{html.escape(item['desc'])}</p>"
+            f"<a href='{html.escape(item['url'], quote=True)}'{target_attr}>{html.escape(item['cta'])} →</a>"
+            "</article>"
+        )
+    return "<div class='compact-course-grid' id='packages'>" + "".join(cards) + "</div>"
+
+
 def _render_footer(today: str) -> str:
     """リッチフッター: 屋号+一言 / ナビ / NAP(ローカルSEOの住所明示) / CTA。"""
     year = today[:4]
@@ -12250,8 +12315,8 @@ body::before { display: none !important; }
 .focus-block { padding:82px max(30px,calc((100vw - 1320px)/2)); }
 .focus-block.soft { background:var(--focus-surface); }
 .focus-block.main-course {
-  padding-top:72px;
-  padding-bottom:72px;
+  padding-top:48px;
+  padding-bottom:50px;
   background:linear-gradient(145deg,#eef7ff 0%,#fff 48%,#f4fbff 100%);
   border-top:1px solid rgba(7,95,200,.16);
   border-bottom:1px solid rgba(7,95,200,.16);
@@ -12266,17 +12331,41 @@ body::before { display: none !important; }
 }
 .main-course .focus-ai-course {
   border-color:rgba(7,95,200,.34);
-  box-shadow:0 26px 64px rgba(7,54,105,.14);
+  box-shadow:0 18px 42px rgba(7,54,105,.12);
 }
-.focus-course-catalog {
+.main-course > .focus-section-head { margin-bottom:18px; }
+.main-course > .focus-section-lead { margin-bottom:20px; }
+.compact-course-grid {
   max-width:1320px;
-  margin:64px auto 0;
-  padding-top:54px;
-  border-top:1px solid rgba(7,95,200,.18);
+  margin:14px auto 0;
+  padding:0 !important;
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:10px;
+  text-align:left;
 }
-.focus-course-catalog .focus-section-head { margin-bottom:28px; }
-.focus-course-catalog .packages-grid { text-align:left; }
-.focus-course-catalog .packages-note { margin-left:auto; margin-right:auto; }
+.compact-course-card {
+  min-width:0;
+  min-height:208px;
+  display:flex;
+  flex-direction:column;
+  padding:16px;
+  background:#fff;
+  border:1px solid rgba(7,95,200,.2);
+  border-radius:12px;
+  box-shadow:0 10px 26px rgba(7,54,105,.06);
+}
+.compact-course-card small { color:var(--focus-blue); font-size:10px; font-weight:900; letter-spacing:.08em; }
+.compact-course-card h3 { margin:7px 0 8px; font-size:19px; line-height:1.3; letter-spacing:-.025em; }
+.compact-course-meta { display:flex; align-items:baseline; gap:8px; }
+.compact-course-meta strong { color:var(--focus-ink); font-size:18px; }
+.compact-course-meta span { color:var(--focus-muted); font-size:11px; font-weight:800; }
+.compact-course-card p { margin:9px 0 12px; color:var(--focus-muted); font-size:12px; line-height:1.55; }
+.compact-course-card > a { min-height:38px; display:flex; align-items:center; justify-content:center; margin-top:auto; padding:7px 10px; color:#fff; background:var(--focus-blue); border-radius:7px; font-size:12px; font-weight:900; text-align:center; text-decoration:none; }
+.compact-course-card > a:hover { background:var(--focus-blue-dark); }
+.course-quick-actions { max-width:1320px; margin:12px auto 0; display:flex; align-items:center; justify-content:flex-end; gap:14px; }
+.compact-diagnose { padding:0; color:var(--focus-blue); background:transparent; border:0; font-size:12px; font-weight:900; text-decoration:underline; text-underline-offset:3px; cursor:pointer; }
+.course-quick-actions a { color:var(--focus-muted); font-size:12px; font-weight:800; }
 .path-grid { max-width:1320px; margin:auto; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; }
 .path-card-new { display:flex; flex-direction:column; min-height:360px; padding:30px; border:1.5px solid var(--focus-line); border-radius:14px; background:#fff; text-decoration:none; color:inherit; transition:transform .2s,border-color .2s,box-shadow .2s; }
 .path-card-new:hover { transform:translateY(-5px); border-color:var(--focus-blue); box-shadow:0 20px 50px rgba(10,40,80,.12); }
@@ -12335,23 +12424,28 @@ body::before { display: none !important; }
 .focus-block .pf-sum,
 .focus-block .pf-host,
 .focus-block .blog-card p { color:var(--focus-muted) !important; }
-.focus-ai-course { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:minmax(0,1.4fr) minmax(280px,.6fr); border:1px solid var(--focus-line); border-radius:16px; overflow:hidden; background:#fff; box-shadow:0 18px 46px rgba(10,40,80,.09); }
-.focus-ai-course-main { padding:38px; }
-.focus-ai-course-main h3 { margin:0; font-size:clamp(27px,3vw,40px); letter-spacing:-.035em; }
-.focus-ai-course-main > p { margin:16px 0 0; color:var(--focus-muted); line-height:1.85; }
-.focus-venue-mini { display:grid; grid-template-columns:180px minmax(0,1fr); gap:18px; align-items:center; margin:24px 0 0; padding:12px; border:1px solid rgba(7,95,200,.16); border-radius:12px; background:var(--focus-surface); }
-.focus-venue-mini img { display:block; width:100%; aspect-ratio:16/10; object-fit:cover; border-radius:9px; }
-.focus-venue-mini figcaption { min-width:0; }
-.focus-venue-mini small { display:block; color:var(--focus-blue); font-size:10px; font-weight:900; letter-spacing:.12em; }
-.focus-venue-mini h4 { margin:5px 0 4px; color:var(--focus-ink); font-size:18px; line-height:1.45; }
-.focus-venue-mini p { margin:0; color:var(--focus-muted); font-size:13px; line-height:1.7; }
-.focus-ai-checks { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px 18px; margin:26px 0 0; padding:0; list-style:none; color:#24344a; font-size:14px; font-weight:750; }
+.focus-ai-course { max-width:1320px; margin:0 auto; display:grid; grid-template-columns:minmax(0,1fr) 300px; border:1px solid var(--focus-line); border-radius:14px; overflow:hidden; background:#fff; box-shadow:0 16px 38px rgba(10,40,80,.08); }
+.focus-ai-course-main { padding:18px 22px 16px; }
+.focus-ai-course-main h3 { margin:0; font-size:clamp(24px,2.2vw,30px); letter-spacing:-.035em; }
+.focus-ai-course-main > p { margin:6px 0 0; color:var(--focus-muted); font-size:13px; line-height:1.5; }
+.focus-primary-label { display:inline-flex; margin-bottom:8px; padding:4px 9px; color:var(--focus-blue); background:var(--focus-cyan); border-radius:999px; font-size:10px; font-weight:900; letter-spacing:.08em; }
+.focus-venue-mini { grid-column:1/-1; display:flex; align-items:center; gap:9px; margin:0; padding:6px 12px; border-top:1px solid rgba(7,95,200,.16); background:var(--focus-surface); }
+.focus-venue-mini img { display:block; width:52px; height:34px; object-fit:cover; border-radius:6px; }
+.focus-venue-mini figcaption { min-width:0; display:flex; align-items:baseline; gap:9px; flex-wrap:wrap; }
+.focus-venue-mini small { color:var(--focus-blue); font-size:9px; font-weight:900; letter-spacing:.1em; }
+.focus-venue-mini h4 { margin:0; color:var(--focus-ink); font-size:12px; line-height:1.4; }
+.focus-venue-mini p { margin:0; color:var(--focus-muted); font-size:11px; line-height:1.45; }
+.focus-ai-checks { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; margin:10px 0 0; padding:0; list-style:none; color:#24344a; font-size:11.5px; font-weight:750; }
 .focus-ai-checks li::before { content:"✓"; margin-right:8px; color:var(--focus-blue); font-weight:900; }
-.focus-ai-course-side { display:flex; flex-direction:column; justify-content:center; gap:20px; padding:34px; background:linear-gradient(155deg,var(--focus-blue-dark),var(--focus-blue)); color:#fff; }
-.focus-course-fact { padding-bottom:18px; border-bottom:1px solid rgba(255,255,255,.25); }
-.focus-course-fact:last-child { padding-bottom:0; border-bottom:0; }
+.focus-ai-course .focus-content-actions { justify-content:flex-start; gap:14px; margin:12px 0 0; }
+.focus-ai-course .focus-content-actions .focus-btn { min-height:38px; padding:0 15px; font-size:12px; }
+.focus-ai-course .focus-content-actions .focus-btn.secondary { min-height:auto; padding:4px 0; border:0; background:transparent; box-shadow:none; }
+.focus-ai-course-side { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); align-content:center; gap:0; padding:14px; background:linear-gradient(155deg,var(--focus-blue-dark),var(--focus-blue)); color:#fff; }
+.focus-course-fact { min-width:0; padding:10px; border-right:1px solid rgba(255,255,255,.22); border-bottom:1px solid rgba(255,255,255,.22); }
+.focus-course-fact:nth-child(2n) { border-right:0; }
+.focus-course-fact:nth-last-child(-n+2) { border-bottom:0; }
 .focus-course-fact small { display:block; color:rgba(255,255,255,.72); font-size:11px; font-weight:850; letter-spacing:.12em; }
-.focus-course-fact strong { display:block; margin-top:6px; font-size:22px; }
+.focus-course-fact strong { display:block; margin-top:5px; font-size:17px; line-height:1.35; }
 .focus-blog-carousel { max-width:1320px; margin:0 auto; }
 .sticky-cta { background:#fff !important; color:var(--focus-ink) !important; border-color:var(--focus-line) !important; }
 @media (max-width: 900px) {
@@ -12364,9 +12458,12 @@ body::before { display: none !important; }
   .focus-split { grid-template-columns:1fr; max-width:680px; }
   .focus-split img { max-width:360px; }
   .focus-ai-course { grid-template-columns:1fr; max-width:680px; }
-  .focus-ai-course-side { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); }
-  .focus-course-fact { padding:0 12px 0 0; border-bottom:0; border-right:1px solid rgba(255,255,255,.25); }
+  .focus-ai-course-side { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); }
+  .focus-course-fact { border-right:1px solid rgba(255,255,255,.22); border-bottom:0; }
+  .focus-course-fact:nth-child(2n) { border-right:1px solid rgba(255,255,255,.22); }
   .focus-course-fact:last-child { border-right:0; }
+  .compact-course-grid { grid-template-columns:repeat(3,minmax(0,1fr)); max-width:680px; }
+  .course-quick-actions { max-width:680px; }
   .focus-hub-head { align-items:flex-start; flex-direction:column; }
   .focus-hub-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
 }
@@ -12392,15 +12489,34 @@ body::before { display: none !important; }
   .focus-contact-inner { align-items:flex-start; flex-direction:column; }
   .focus-contact .focus-btn { width:100%; }
   .focus-section-lead { margin-top:-14px; font-size:14px; text-align:left; }
-  .focus-ai-course-main { padding:26px 22px; }
-  .focus-venue-mini { grid-template-columns:112px minmax(0,1fr); gap:12px; padding:10px; }
-  .focus-venue-mini h4 { font-size:15px; }
-  .focus-venue-mini p { font-size:11.5px; line-height:1.55; }
-  .focus-ai-checks { grid-template-columns:1fr; }
-  .focus-ai-course-side { grid-template-columns:1fr; padding:26px 22px; }
-  .focus-course-fact { padding:0 0 16px; border-right:0; border-bottom:1px solid rgba(255,255,255,.25); }
-  .focus-course-fact:last-child { padding-bottom:0; border-bottom:0; }
-  .focus-course-catalog { margin-top:46px; padding-top:42px; }
+  .main-course { padding-top:40px !important; padding-bottom:42px !important; }
+  .focus-ai-course-main { padding:16px; }
+  .focus-ai-course-main h3 { font-size:22px; line-height:1.35; }
+  .focus-ai-course-main > p { display:none; }
+  .focus-ai-checks { grid-template-columns:repeat(2,minmax(0,1fr)); gap:5px 8px; margin-top:10px; font-size:10.5px; }
+  .focus-ai-checks li:nth-child(3) { display:none; }
+  .focus-ai-course .focus-content-actions { align-items:center; gap:8px; margin-top:10px; }
+  .focus-ai-course .focus-content-actions .focus-btn.primary { width:100%; }
+  .focus-ai-course .focus-content-actions .focus-btn.secondary { display:none; }
+  .focus-ai-course-side { grid-template-columns:repeat(4,minmax(0,1fr)); padding:8px; }
+  .focus-course-fact { padding:6px 4px; border-right:1px solid rgba(255,255,255,.22); border-bottom:0; text-align:center; }
+  .focus-course-fact:nth-child(2n) { border-right:1px solid rgba(255,255,255,.22); }
+  .focus-course-fact:last-child { border-right:0; }
+  .focus-course-fact small { font-size:8px; }
+  .focus-course-fact strong { font-size:11px; }
+  .focus-venue-mini { padding:6px 9px; }
+  .focus-venue-mini img { width:40px; height:28px; }
+  .focus-venue-mini h4 { font-size:10.5px; }
+  .focus-venue-mini p { display:none; }
+  .compact-course-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+  .compact-course-card { min-height:140px; padding:10px; }
+  .compact-course-card h3 { font-size:15px; }
+  .compact-course-card p { display:none; }
+  .compact-course-meta { display:block; }
+  .compact-course-meta strong { display:block; font-size:15px; }
+  .compact-course-meta span { font-size:10px; }
+  .compact-course-card > a { min-height:32px; padding:5px; font-size:10px; }
+  .course-quick-actions { align-items:flex-end; justify-content:space-between; }
 }
 """
 
@@ -12476,23 +12592,20 @@ def _render_focused_main() -> str:
     seminar = AI_AGENT_COURSE_URL
 
     parts = [
-        "<section class='focus-block main-course' id='ai-agent-course'><div class='focus-section-head'><small>MAIN COURSE</small><h2>AIエージェント講習</h2></div>",
-        "<p class='focus-section-lead'>CodexとClaude Codeを使い、仕事を分けて頼む、結果を確かめる、修正する、次も使える手順として残すところまで実践します。</p>",
-        "<div class='focus-ai-course'><div class='focus-ai-course-main'><h3>自分の仕事を、AIエージェントと前に進める。</h3>",
+        "<section class='focus-block main-course' id='ai-agent-course'><div class='focus-section-head'><small>COURSES</small><h2>AIエージェント講習</h2></div>",
+        "<p class='focus-section-lead'>CodexとClaude Codeで、仕事の分解、依頼、確認、修正、手順化まで実践します。</p>",
+        "<div class='focus-ai-course'><div class='focus-ai-course-main'><span class='focus-primary-label'>おすすめコース</span><h3>仕事を、AIエージェントと前に進める。</h3>",
         "<p>告知、資料、調査、集計、業務ツール、サイト改善など、普段の課題を持ち込み、その場で使える成果物と繰り返せる手順を作ります。</p>",
-        "<figure class='focus-venue-mini'><img src='/img/gubboru-cafe-ai-course-painting.webp' alt='AIエージェント講習の対面会場 グッぼるカフェの店内' loading='lazy' decoding='async'>",
-        "<figcaption><small>OFFLINE VENUE</small><h4>対面受講は、グッぼるカフェ</h4><p>彦根の大きなテーブルで、普段のPCと課題を持ち寄る少人数講習です。</p></figcaption></figure>",
         "<ul class='focus-ai-checks'><li>Codex・Claude Codeの安全な準備</li><li>仕事の分解と伝わる依頼</li><li>差分・根拠・画面の確認</li><li>成果物と次回手順の保存</li></ul>",
         "<div class='focus-content-actions'>",
         f"<a class='focus-btn primary' href='{seminar}' target='_blank' rel='noopener'>AIエージェント講習を予約する</a>",
-        "<a class='focus-btn secondary' href='/programming-map.html'>講習内容を詳しく見る</a>",
-        "<a class='focus-btn secondary' href='/blog/2026-07-14-ai-agent-course-codex-claude-code.html'>講座の考え方をブログで読む</a></div></div>",
-        "<aside class='focus-ai-course-side' aria-label='AIエージェント講習の概要'><div class='focus-course-fact'><small>時間</small><strong>120分</strong></div>",
-        "<div class='focus-course-fact'><small>対象</small><strong>初心者OK</strong></div><div class='focus-course-fact'><small>形式</small><strong>対面・オンライン</strong></div></aside></div>",
-        "<div class='focus-course-catalog' id='packages'><div class='focus-section-head'><small>ALL COURSES</small><h2>すべての講習・相談</h2></div>",
-        "<p class='focus-section-lead'>まず話したい方から、仕事への導入、Codexの準備・実践、AIエージェント講習まで、目的と到達点で比較できます。</p>",
-        _render_courses_packages(),
-        "</div></section>",
+        "<a class='focus-btn secondary' href='/programming-map.html'>詳しい講習内容を見る</a></div></div>",
+        "<aside class='focus-ai-course-side' aria-label='AIエージェント講習の概要'><div class='focus-course-fact'><small>料金</small><strong>11,000円</strong></div><div class='focus-course-fact'><small>時間</small><strong>120分</strong></div>",
+        "<div class='focus-course-fact'><small>対象</small><strong>初心者OK</strong></div><div class='focus-course-fact'><small>形式</small><strong>対面・オンライン</strong></div></aside>",
+        "<figure class='focus-venue-mini'><img src='/img/gubboru-cafe-ai-course-painting.webp' alt='AIエージェント講習の対面会場 グッぼるカフェの店内' loading='lazy' decoding='async'>",
+        "<figcaption><small>VENUE</small><h4>対面会場：グッぼるカフェ（彦根）</h4><p>普段のPCと課題を持ち寄る少人数講習です。</p></figcaption></figure></div>",
+        _render_compact_course_cards(),
+        "<div class='course-quick-actions'><button type='button' class='compact-diagnose diagnose-open'>迷ったら60秒診断</button><a href='#lectures'>受講資料から選ぶ →</a></div></section>",
         "<section class='focus-block soft' id='lectures'><div class='focus-section-head'><small>LEARNING MATERIALS</small><h2>受講資料</h2></div>",
         "<p class='focus-section-lead'>講習前の予習と、受講後に仕事へ戻るための復習資料です。AIの基本からCodex・Claude Code実践まで見返せます。</p>",
         _render_lectures_section(),

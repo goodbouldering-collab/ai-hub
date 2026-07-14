@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-13T22:45:13Z",
+  "generated_at": "2026-07-14T22:47:41Z",
   "recent_works": [
     {
       "date": "2026-07-12",
@@ -91,14 +91,10 @@
   "per_business_recent": [
     {
       "business": "seo",
-      "count": 2
+      "count": 1
     }
   ],
   "daily_histogram": [
-    {
-      "date": "2026-06-30",
-      "count": 0
-    },
     {
       "date": "2026-07-01",
       "count": 0
@@ -150,12 +146,16 @@
     {
       "date": "2026-07-13",
       "count": 0
+    },
+    {
+      "date": "2026-07-14",
+      "count": 0
     }
   ],
   "cma_apps": [],
   "totals": {
     "consul_work_total": 131,
-    "recent_7d_total": 2,
+    "recent_7d_total": 1,
     "tasks_open_total": 4
   }
 }

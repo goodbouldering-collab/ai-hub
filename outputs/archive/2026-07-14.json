@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/03/STK155_OPEN_AI_4_CVirginia_D.png?quality=90&amp;strip=all&amp;crop=0%2C10.742221417566%2C100%2C78.515557164868&amp;w=1200",
-      "published": "2026-07-14T17:26:32-04:00"
+      "published": "2026-07-14T17:26:32-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "ea213c7f25d4a92a",
@@ -37,7 +39,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://static.simonwillison.net/static/2026/pedalican-card.jpg",
-      "published": "2026-07-14T22:29:45+00:00"
+      "published": "2026-07-14T22:29:45+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "bb6773bc3b8e2143",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/05/STK262_GROK_B_B.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-14T15:25:00-04:00"
+      "published": "2026-07-14T15:25:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "11bb7191310d69dd",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/23951354/STK043_VRG_Illo_N_Barclay_2_Meta.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-14T13:18:11-04:00"
+      "published": "2026-07-14T13:18:11-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "ebb17cf15f02d7a2",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/New-Google-Images-1.png?quality=90&amp;strip=all&amp;crop=0%2C3.4613147178592%2C100%2C93.077370564282&amp;w=1200",
-      "published": "2026-07-14T12:00:00-04:00"
+      "published": "2026-07-14T12:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "0ed9a655b6f7301c",
@@ -113,7 +123,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/Talk-to-Spotify.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-14T11:47:36-04:00"
+      "published": "2026-07-14T11:47:36-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "69721c85aebfd528",
@@ -132,7 +144,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/STK201_SAM_ALTMAN_CVIRGINIA2D.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-14T10:01:07-04:00"
+      "published": "2026-07-14T10:01:07-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "2700bac7915ae456",
@@ -151,7 +165,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/01/gettyimages-2194484502.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-14T07:43:29-04:00"
+      "published": "2026-07-14T07:43:29-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "f802e3af5f3c08df",
@@ -170,7 +186,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-07-14T19:44:11+00:00"
+      "published": "2026-07-14T19:44:11+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "faa9d7ad839a0818",
@@ -189,7 +207,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-07-14T18:04:23+00:00"
+      "published": "2026-07-14T18:04:23+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

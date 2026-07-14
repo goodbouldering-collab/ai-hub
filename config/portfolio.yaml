@@ -19,10 +19,10 @@ portfolio:
   - Supabase
   summary: 彦根市の異業種交流会。登録・イベント・紹介のプラットフォーム
   since: 2025-03
+  thumbnail: /img/portfolio/minanowa.jpg
   source: vercel
   source_id: prj_zVxZrMg0XkvuRqoWi9tr3iBXJNZm
   source_project: minanowa
-  thumbnail: /img/portfolio/minanowa.jpg
 - name: グッぼる 本店
   slug: goodbouldering
   url: https://goodbouldering.com
@@ -48,10 +48,10 @@ portfolio:
   - Payload CMS
   summary: 彦根・長浜の美肌脱毛、ホワイトニング、セルフケア情報を届ける店舗サイト
   since: 2025-05
+  thumbnail: /img/portfolio/notesthe.jpg
   source: vercel
   source_id: prj_8OLhLggQwGL6Yr8713W0POerpYpj
   source_project: notesthe
-  thumbnail: /img/portfolio/notesthe.jpg
 - name: プロギングジャパン
   slug: plogging-japan
   url: https://plogging.jp
@@ -88,27 +88,28 @@ portfolio:
   - Supabase
   summary: 滋賀県彦根市の工務店サイト
   since: 2019-04
+  thumbnail: /img/portfolio/n-design.jpg
   source: vercel
   source_id: prj_r8V98vvsvSbRH7474KMWguViQBqf
   source_project: n-design
-  thumbnail: /img/portfolio/n-design.jpg
 - name: ClimbHero
   slug: climbhero
-  url: https://project-02ceb497.pages.dev
+  url: https://climbhero.vercel.app
   aliases:
-  - https://climbhero.vercel.app
+  - https://project-02ceb497.pages.dev
   status: live
-  category: 動画アプリ
+  category: Webサービス
   tech:
-  - Cloudflare Pages
-  - Workers
-  - D1
-  summary: 世界中のクライミング動画を発見・共有し、ランキングと多言語表示で学べるプラットフォーム
-  since: 2025-02
+  - Vite
+  - Hono
+  - Vercel
+  - Cloudflare D1
+  summary: 世界のクライミング動画とニュースを多言語で見つけ、学びと交流につなげるプラットフォーム
+  since: 2026-07
+  thumbnail: /img/portfolio/climbhero.jpg
   source: vercel
   source_id: prj_okdRDHfHVXPAl4Ae4MzsMvR29w1e
   source_project: climbhero
-  thumbnail: /img/portfolio/climbhero.jpg
 - name: 協同組合ビジネス21
   slug: business21
   url: https://business21.vercel.app
@@ -123,10 +124,10 @@ portfolio:
   - Supabase
   summary: 外国人材の受入れ、技能実習、特定技能、育成就労を支援する監理団体サイト
   since: 2024-11
+  thumbnail: /img/portfolio/business21.jpg
   source: vercel
   source_id: prj_lFs3tIEXi0GQeLQtAoIN1O6rAxpA
   source_project: business21
-  thumbnail: /img/portfolio/business21.jpg
 - name: カラッと＋
   slug: karatto-plus
   url: https://karatto.life
@@ -153,10 +154,10 @@ portfolio:
   - Supabase
   summary: 彦根の相続、空き家、土地、家族会議を地域の不動産会社が整理する相談サイト
   since: 2026-05
+  thumbnail: /img/portfolio/trust.jpg
   source: vercel
   source_id: prj_WgcnPJcTCdjo7iwneQjkZ30p7tPi
   source_project: trusthikone
-  thumbnail: /img/portfolio/trust.jpg
 - name: AI相談
   slug: ai-hub
   url: https://ai-hub-jp.vercel.app
@@ -170,10 +171,10 @@ portfolio:
   - GitHub Actions
   summary: 彦根・滋賀のAI導入相談、生成AI講習、受講資料、実践ブログを集約
   since: 2025-04
+  thumbnail: /img/portfolio/ai-hub.jpg
   source: vercel
   source_id: prj_e7vh73eF0KZpm8C49esnILvHO98o
   source_project: ai-hub
-  thumbnail: /img/portfolio/ai-hub.jpg
 - name: 今心
   slug: imagokoro
   url: https://readdy.link/share/042372463c05d7076e5a1b8d3ee28e0e
@@ -279,10 +280,10 @@ portfolio:
   - AI
   summary: 既存サイトをAI診断し、SEO・MEO・AI検索の改善点と費用、次の支援先を比較
   since: 2026-07
+  thumbnail: /img/portfolio/rebuildmatch.jpg
   source: vercel
   source_id: prj_1cpMt5bEHXFvu12ci2cQJFe7CpiO
   source_project: rebuildmatch
-  thumbnail: /img/portfolio/rebuildmatch.jpg
 - name: PROFIT彦根
   slug: profit-hikone
   url: https://profit-hikone.vercel.app
@@ -294,10 +295,10 @@ portfolio:
   - Square
   summary: トレーナー予約、事前決済、24時間利用、Golf Plusレッスンをまとめたフィットネスサイト
   since: 2026-06
+  thumbnail: /img/portfolio/profit-hikone.jpg
   source: vercel
   source_id: prj_hzCKMgDmtUp8zCnRqidRbdtoeG5c
   source_project: profit-hikone
-  thumbnail: /img/portfolio/profit-hikone.jpg
 - name: 巡波 JUNPA
   slug: junpa
   url: https://yomogihikone.vercel.app
@@ -308,10 +309,10 @@ portfolio:
   - Square
   summary: 彦根の黄土よもぎ蒸し、足裏、二の腕・肩まわりケアを案内する予約制サロンサイト
   since: 2026-07
+  thumbnail: /img/portfolio/junpa.jpg
   source: vercel
   source_id: prj_IvdOoTzGKRUtOmKBBNQ1hBqLuYAa
   source_project: yomogihikone
-  thumbnail: /img/portfolio/junpa.jpg
 - name: ハイロックス 本郷泰司
   slug: hyrox-hongo
   url: https://hyrox-zeta.vercel.app
@@ -322,10 +323,10 @@ portfolio:
   - Static Site
   summary: 本郷泰司のHYROX挑戦、ブログ、SNS、協賛相談をまとめた公式サイト
   since: 2026-06
+  thumbnail: /img/portfolio/hyrox-hongo.jpg
   source: vercel
   source_id: prj_KBrKdZ7GMgenLAuGQpkEAJPbTHl9
   source_project: hyrox-hongo
-  thumbnail: /img/portfolio/hyrox-hongo.jpg
 - name: NOKOSU
   slug: nokosu
   url: https://nokosu-ten.vercel.app
@@ -335,10 +336,10 @@ portfolio:
   - Vercel
   summary: 相続や解体で失われる家の記憶を、訪問撮影とアルバム・動画で残す彦根発のサービス
   since: 2026-07
+  thumbnail: /img/portfolio/nokosu.jpg
   source: vercel
   source_id: prj_ng8J2BHHXkSOgUcgsmB1ASymamAG
   source_project: nokosu
-  thumbnail: /img/portfolio/nokosu.jpg
 - name: 山仁ポータル
   slug: yamani
   url: https://yamani.vercel.app
@@ -351,10 +352,10 @@ portfolio:
   - JavaScript
   summary: 法人見積、再注文、納期相談、SDS・品質資料、社内管理の入口をまとめた取引先向けポータル
   since: 2026-06
+  thumbnail: /img/portfolio/yamani.jpg
   source: vercel
   source_id: prj_PEURyGvqRU72zAj4DEaW5nOzmVCi
   source_project: yamani
-  thumbnail: /img/portfolio/yamani.jpg
 - name: クライミングシューズの選び方 PRO
   slug: climbing-shoe-search
   url: https://shoes.goodbouldering.com
@@ -368,10 +369,10 @@ portfolio:
   - カラーミーショップ
   summary: 足型と用途からクライミングシューズを診断し、購入までつなぐ検索サイト
   since: 2026-07
+  thumbnail: /img/portfolio/climbing-shoe-search.jpg
   source: vercel
   source_id: prj_pIKB7UDMncvhIsuyg1mVS52nllq3
   source_project: climbing-shoe-search
-  thumbnail: /img/portfolio/climbing-shoe-search.jpg
 - name: ファディー彦根 AI健康管理
   slug: fadie
   url: https://fadie-v2.vercel.app
@@ -382,10 +383,10 @@ portfolio:
   - Gemini
   summary: 食事・運動・睡眠・体調の記録からAIコーチが助言し、スタッフ支援につなぐアプリ
   since: 2026-07
+  thumbnail: /img/portfolio/fadie.jpg
   source: vercel
   source_id: prj_ipW2tSduDUDtmrRyv3bgaTz6hRGF
   source_project: fadie-v2
-  thumbnail: /img/portfolio/fadie.jpg
 - name: アンバサダーROI分析
   slug: ambassador-roi
   url: https://ambassador-ashen.vercel.app
@@ -396,7 +397,7 @@ portfolio:
   - JavaScript
   summary: AI影響力スコアとROI可視化、契約テンプレートでアンバサダー施策を支援
   since: 2026-07
+  thumbnail: /img/portfolio/ambassador-roi.jpg
   source: vercel
   source_id: prj_qChatogWSLwrW7uB6V0xuARXdPSS
   source_project: ambassador
-  thumbnail: /img/portfolio/ambassador-roi.jpg

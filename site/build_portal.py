@@ -237,7 +237,7 @@ def _build_jsonld_website() -> str:
         "image": SITE_URL + "/img/speaker-portrait-v2.webp",
         "worksFor": {"@id": org_id},
         "knowsAbout": ["生成AI", "クライミング", "店舗経営", "マーケティング", "補助金活用"],
-        "description": "クライミング歴30年。ボルダリングカフェ「グッぼる」をはじめ9事業を経営しながら、滋賀・彦根の中小事業者にAI相談、生成AI講習、Codex実践会、SNS/LLMO導線づくりを教える。経営者でありコードを書く実装者でもある二重性が強み。",
+        "description": "クライミング歴30年。ボルダリングカフェ「グッぼる」をはじめ9事業を経営しながら、滋賀・彦根の中小事業者にAI相談、AIエージェント講習、SNS/LLMO導線づくりを教える。経営者でありコードを書く実装者でもある二重性が強み。",
     }
 
     website = {
@@ -250,8 +250,6 @@ def _build_jsonld_website() -> str:
         "description": "滋賀・彦根の中小事業者向けAI相談、講習募集、受講資料、実例、講師紹介、AI/SNS/LLMO情報の資料センター。",
     }
 
-    codex_prep_title = "Codex準備会 60分"
-    codex_practice_title = "Codex実践会 120分"
     ai_coding_title = "AIエージェント講習 120分"
     free_consult_title = "AI無料相談 入口整理"
     consult_title = "AI個別相談 しっかり60分"
@@ -259,8 +257,6 @@ def _build_jsonld_website() -> str:
 
     # 受講プランを Service + Offer として構造化（_render_packages の items と整合）
     plans = [
-        (codex_prep_title, "Codex準備会 導入と習得の流れに沿って、ChatGPTログイン、作業フォルダ選定、秘密情報を入れない権限設計、最初の依頼、差分確認、ブラウザ表示確認、独立レビュー、AGENTS.md、公式アップデート確認先までを60分で整える準備講習。", "2200", "2200", "Course"),
-        (codex_practice_title, "Codex実践会で持ち込み課題を進め、Claude Codeとの使い分け、ページ、資料、コード、画像生成プロンプト、動画台本などの成果物を120分で作る実践講習。", "5500", "5500", "Course"),
         (ai_coding_title, "CodexとClaude Codeを使い、仕事を分けて頼む、結果を確かめる、修正する、繰り返せる手順として残すAIエージェント講習。調査、資料、告知、業務改善、Web制作を題材に、AIの成果物を判断して仕事に入れる型を120分で身につける。", "11000", "11000", "Course"),
         (free_consult_title, "来店またはオンラインで、AI導入の入口を整理する無料相談。講習や伴走の前に、今の課題と次の一手を確認する。", "0", "0", "BusinessCoaching"),
         (consult_title, "AIの使い方、役割分担、指示書、確認体制、運用導線を60分で整理する個別相談。", "5500", "5500", "BusinessCoaching"),
@@ -9809,44 +9805,44 @@ HEADER_JS = """
     try { localStorage.removeItem('aihub-theme'); } catch(e) {}
   })();
 
-  // ---- AIレベル診断 (4段階: 初級/中級/実装/上級。ヒーロー第1問から起動)
+  // ---- AIレベル診断 (4段階: 入口/相談/実装/伴走。ヒーロー第1問から起動)
   (function(){
     var modal = document.getElementById('diagnoseModal');
     if (!modal) return;
     var body = modal.querySelector('.diagnose-body');
 
-    // 各設問の選択肢にレベルスコアを持たせ、合計で初級/中級/上級を判定
+    // 各設問の選択肢にレベルスコアを持たせ、合計で入口/相談/実装/伴走を判定
     var QUESTIONS = [
-      { q: 'Codex の理解度はどの段階ですか？', a: [
-        { label: 'インストールから確認したい', lv: 'beginner' },
-        { label: '基本は触れるので成果物を作りたい', lv: 'intermediate' },
-        { label: 'コードの基礎から公開まで学びたい', lv: 'implementation' },
-        { label: 'エージェント組織まで作りたい', lv: 'advanced' },
+      { q: 'AIを仕事で使う段階はどこですか？', a: [
+        { label: '初めてなので相談から始めたい', lv: 'beginner' },
+        { label: '自分の仕事での使い方を整理したい', lv: 'intermediate' },
+        { label: '成果物を作り、確認まで学びたい', lv: 'implementation' },
+        { label: '社内や店舗の運用まで整えたい', lv: 'advanced' },
       ]},
       { q: '当日いちばん進めたいことは？', a: [
-        { label: 'PCとモバイルの準備を整えたい', lv: 'beginner' },
-        { label: 'ページや資料などを完成させたい', lv: 'intermediate' },
+        { label: '悩みと次の一手を整理したい', lv: 'beginner' },
+        { label: '指示文や確認手順を相談したい', lv: 'intermediate' },
         { label: 'AIの成果物を読んで直せるようにしたい', lv: 'implementation' },
-        { label: 'AIの役割分担と運用設計を作りたい', lv: 'advanced' },
+        { label: 'AIの役割分担と継続運用を作りたい', lv: 'advanced' },
       ]},
       { q: 'どのスパンで取り組みたい？', a: [
-        { label: 'まず60分2,200円で準備したい', lv: 'beginner' },
-        { label: '120分5,500円で成果物を作りたい', lv: 'intermediate' },
+        { label: 'まず無料で入口を相談したい', lv: 'beginner' },
+        { label: '60分5,500円で個別に整理したい', lv: 'intermediate' },
         { label: '120分11,000円で体系的に実装を学びたい', lv: 'implementation' },
-        { label: '相談から伴走まで設計したい', lv: 'advanced' },
+        { label: '6ヶ月かけて仕事に定着させたい', lv: 'advanced' },
       ]},
     ];
     var RESULT = {
       beginner: {
-        badge: 'Codex準備会', title: 'インストールからモバイルまで整える',
-        name: 'Codex準備会 60分',
-        desc: 'インストール、ログイン、作業フォルダ、最初の依頼、差分確認、モバイル確認までを2,200円で整えます。',
+        badge: '無料相談', title: '悩みと次の一手を整理する',
+        name: 'AI無料相談 入口整理',
+        desc: '今の課題を聞き、講習・個別相談・伴走支援のどこから始めるかを一緒に決めます。',
         level_id: 'beginner'
       },
       intermediate: {
-        badge: 'Codex実践会', title: '成果物をその場で作る',
-        name: 'Codex実践会 120分',
-        desc: 'ページ、資料、コード、動画台本など、持ち込み課題を成果物として形にする少人数講習です。',
+        badge: '個別相談', title: '仕事に合う使い方を整理する',
+        name: 'AI個別相談 しっかり60分',
+        desc: 'AIの使い方、指示書、確認体制、運用導線を60分で具体的に整理します。',
         level_id: 'intermediate'
       },
       implementation: {
@@ -9856,9 +9852,9 @@ HEADER_JS = """
         level_id: 'implementation'
       },
       advanced: {
-        badge: '相談', title: '個別相談で整理する',
-        name: 'AI個別相談 しっかり60分',
-        desc: 'AIの使い方、指示書、確認体制、運用導線を60分でしっかり整理します。',
+        badge: '伴走支援', title: 'AIを仕事に定着させる',
+        name: 'AI伴走支援 いっしょに導入',
+        desc: 'HP、事務、AI導入、経理、集客を6ヶ月で継続運用できる形に整えます。',
         level_id: 'advanced'
       }
     };
@@ -10308,7 +10304,7 @@ def _render_hero() -> str:
             "index": "02",
             "title": "AI講習",
             "sub": "目的別に迷わせない",
-            "desc": "無料相談、Codex準備会、実践会、AIエージェント講習を目的別に並べます。",
+            "desc": "無料相談、個別相談、AIエージェント講習、伴走支援を目的別に並べます。",
             "cta": "受講プランを見る",
             "href": "#packages",
             "x": "64%",
@@ -10780,16 +10776,16 @@ def _render_path_selector() -> str:
         (
             "講習を選びたい人",
             "AI講習と資料を並べて見る",
-            "無料相談、準備会、実践会、AIエージェント講習を目的と到達点で確認できます。",
+            "無料相談、個別相談、AIエージェント講習、伴走支援を目的と到達点で確認できます。",
             "講習導線を見る",
             "#packages",
             "相談 / 講習 / 資料",
-            "次に: 相談・準備会・実践会へ",
+            "次に: 相談・講習・伴走支援へ",
         ),
         (
             "プランを選びたい人",
             "受講プランを比べる",
-            "無料相談、Codex準備、実践会、伴走支援を、料金と到達点で比べられます。",
+            "無料相談、個別相談、AIエージェント講習、伴走支援を、料金と到達点で比べられます。",
             "受講プランを見る",
             "#packages",
             "相談 / 60分 / 120分",
@@ -10827,7 +10823,7 @@ def _render_choice_lens() -> str:
         ),
         (
             "CodexやClaude Codeで、自分の資料やページを作りたい",
-            "Codex実践会 / AIエージェント講習",
+            "AIエージェント講習",
             "持ち込み課題を成果物にし、差分確認と公開前チェックまで練習します。",
         ),
         (
@@ -10916,7 +10912,7 @@ def _render_lesson_bridge() -> str:
             "AI講習",
             "#0877C6",
             "ChatGPT、Codex、Claude Code、画像生成を、仕事の文章、資料、広報、サイト改善に接続します。",
-            [("01", "無料相談で整理"), ("02", "準備会で導入"), ("03", "実践会で成果物化")],
+            [("01", "無料相談で整理"), ("02", "個別相談で具体化"), ("03", "講習で実践")],
         ),
         (
             "material",
@@ -10968,7 +10964,7 @@ def _render_lesson_bridge() -> str:
         "<div class='lesson-bridge-copy'>"
         "<span class='lesson-bridge-kicker'>AI LESSON / MATERIAL</span>"
         "<h3>AI講習と資料を、迷わず選ぶ。</h3>"
-        "<p>講習を受ける前、受けた後、仕事に使う段階で、押すべき場所が変わります。無料相談、準備会、実践会、受講資料を目的別に並べます。</p>"
+        "<p>講習を受ける前、受けた後、仕事に使う段階で、押すべき場所が変わります。無料相談、個別相談、AIエージェント講習、受講資料を目的別に並べます。</p>"
         "<div class='lesson-tabs'>"
         f"<div class='lesson-tab-controls' role='tablist' aria-label='AI講習と受講資料の切り替え'>{''.join(tab_buttons)}</div>"
         f"{''.join(tab_panels)}"
@@ -10978,11 +10974,11 @@ def _render_lesson_bridge() -> str:
         "<article class='lesson-track-card ai'>"
         "<span class='lesson-track-label'>AI講習</span>"
         "<h3>相談から実践へ</h3>"
-        "<p>AIを何に使うかを無料相談で整理し、準備会、実践会、AIエージェント講習へ進めます。</p>"
+        "<p>AIを何に使うかを無料相談で整理し、個別相談またはAIエージェント講習へ進めます。</p>"
         "<div class='lesson-track-list'>"
         "<span><b>相</b>無料相談で課題を切り分け</span>"
-        "<span><b>60</b>準備会で使える状態にする</span>"
-        "<span><b>120</b>実践会で成果物を作る</span>"
+        "<span><b>60</b>個別相談で使い方を整理</span>"
+        "<span><b>120</b>AIエージェント講習で実践</span>"
         "</div>"
         "</article>"
         "<article class='lesson-track-card material'>"
@@ -11094,10 +11090,7 @@ def _render_services() -> str:
 
 def _render_courses_packages() -> str:
     """講習・相談プランのカード一覧。"""
-    codex_prep_title = "Codex準備会 60分"
-    codex_practice_title = "Codex実践会 120分"
     ai_coding_title = "AIエージェント講習 120分"
-    seminar_url = AI_AGENT_COURSE_URL
     free_consult_title = "AI無料相談 入口整理"
     consult_title = "AI個別相談 しっかり60分"
     support_title = "AI伴走支援 いっしょに導入"
@@ -11126,8 +11119,8 @@ def _render_courses_packages() -> str:
         {
             "icon": "?",
             "cat": "相談",
-            "level": "上級",
-            "level_id": "advanced",
+            "level": "相談",
+            "level_id": "intermediate",
             "title": consult_title,
             "price": "5,500円",
             "duration": "60分",
@@ -11167,62 +11160,6 @@ def _render_courses_packages() -> str:
             "variant": "wide",
         },
         {
-            "icon": "⌘",
-            "cat": "Codex講習",
-            "level": "準備",
-            "level_id": "beginner",
-            "title": codex_prep_title,
-            "price": "2,200円",
-            "duration": "60分 / 少人数",
-            "subsidy": False,
-            "desc": "Codexを安全に使い始めるため、ログイン、作業フォルダ、最初の依頼、確認手順を60分で揃えます。",
-            "content": [
-                "ChatGPTログイン、Codex起動、PC/モバイルの表示を確認",
-                "作業フォルダ、権限、秘密情報を入れないルールを設定",
-                "最初の依頼文、差分、ブラウザ表示、独立レビューを練習",
-            ],
-            "fit": ["開いた後に何を頼むか迷っている", "権限や秘密情報の扱いを安全にしたい", "小さな成果物を作って実践へ進みたい"],
-            "req_title": "持ち帰れる形",
-            "requirements": [
-                "AGENTS.md、公式アップデート確認先、説明→候補→編集前確認の依頼テンプレ",
-                "差分、リンク、画像、文字サイズを見て採用判断する確認手順",
-            ],
-            "verify": "到達点は小さな成果物を1つ作り、差分を読める状態です。申込時に「Codex準備会」を選択してください。",
-            "url": seminar_url,
-            "cta": "Codexメニューで準備会を選ぶ",
-            "material_url": "/lectures/2026-06-codex-app-onboarding.html",
-            "material_cta": "Codex準備会の受講資料を見る",
-            "variant": "featured",
-        },
-        {
-            "icon": "▣",
-            "cat": "Codex講習",
-            "level": "実践",
-            "level_id": "intermediate",
-            "title": codex_practice_title,
-            "price": "5,500円",
-            "duration": "120分 / 少人数",
-            "subsidy": True,
-            "desc": "持ち込み課題をCodexで分解し、Claude Codeとの使い分け、ページ、資料、コード、画像生成プロンプト、動画台本、運用マニュアルを成果物にします。",
-            "content": [
-                "作りたいもの、直したいページ、既存資料を要件に分解",
-                "ページ、資料、コード、画像生成プロンプト、動画台本、運用マニュアルを制作",
-                "修正指示、差分、表示確認、次回使えるテンプレ化まで実施",
-            ],
-            "fit": ["持ち込み課題を成果物にしたい", "講習中に公開物や資料、画像を作りたい", "CodexとClaude Codeの使い方を実務で定着させたい"],
-            "req_title": "当日の進め方",
-            "requirements": [
-                "要件整理、依頼文、差分確認、修正指示を一緒に実行",
-                "完成物を確認し、画像生成やレビューも含めて次回使える作業テンプレとして保存",
-            ],
-            "verify": "申込リンクは準備会と同じです。申込時に「Codex実践会」をオプション選択してください。",
-            "url": seminar_url,
-            "cta": "Codexメニューで実践会を選ぶ",
-            "material_url": "/lectures/2026-06-codex-app-practice.html",
-            "material_cta": "Codex実践会の受講資料を見る",
-            "variant": "featured",
-        },
-        {
             "icon": "▧",
             "cat": "AIエージェント講習",
             "level": "実装",
@@ -11237,7 +11174,7 @@ def _render_courses_packages() -> str:
                 "HTML/CSS/JS/API/DB/GitをAIの成果物を読むための専門用語として学ぶ",
                 "依頼文、差分、ブラウザ確認、独立レビュー、画像生成、本番確認を実行する",
             ],
-            "fit": ["AIの成果物を判断して直せるようになりたい", "LP、資料、画像、フォーム、業務画面を作りたい", "Codex実践会より体系的に学びたい"],
+            "fit": ["AIの成果物を判断して直せるようになりたい", "LP、資料、画像、フォーム、業務画面を作りたい", "仕事の分解から公開前確認まで体系的に学びたい"],
             "req_title": "このプランで使う受講資料",
             "requirements": [
                 "AIエージェント講習ページをもとに、Codex、Claude Code、仕事の分解、依頼、確認、修正、成果物の保存を通しで学ぶ",
@@ -11316,16 +11253,14 @@ def _render_courses_packages() -> str:
     parts.append(
         "<div class='packages-cta-row fade-up d4'>"
         "<button type='button' class='btn btn-diagnose diagnose-open'>"
-        "60秒診断｜準備・実践・実装・個別相談のどれ？"
+        "60秒診断｜無料相談・個別相談・講習・伴走のどれ？"
         "</button>"
         "<span class='packages-cta-hint'>3つの質問に答えるだけ。いまの状態に合う入口をその場で提案します。</span>"
         "</div>"
     )
     parts.append(
         "<p class='packages-note fade-up d4'>"
-        "<strong>Codex講習:</strong> レベルは経験年数ではなく理解度で分けます。準備会はログイン、フォルダ選択、最初の依頼、差分確認、独立レビュー、公式更新確認まで60分2,200円、実践会はClaude Codeとの使い分けや画像生成も含めた成果物作成まで120分5,500円です。"
-        "Codexの申込リンクは1つに統一し、申込時に「準備会」または「実践会」をオプション選択します。各カードから関連する受講資料へ進めます。"
-        "<br><strong>AIエージェント講習:</strong> CodexとClaude Codeを使い、仕事の分解、依頼、確認、修正、成果物と手順の保存までを120分11,000円で扱う実践講習です。専用の予約ページから申し込めます。"
+        "<strong>AIエージェント講習:</strong> CodexとClaude Codeを使い、仕事の分解、依頼、確認、修正、成果物と手順の保存までを120分11,000円で扱う実践講習です。専用の予約ページから申し込めます。"
         "<br><strong>無料相談:</strong> AI無料相談は、講習・伴走・制作のどれから始めるかを無料で整理する入口です。しっかり60分のAI個別相談は、AIの使い方、指示書、確認体制、運用導線まで整理します。"
         "<br><strong>月額支払い:</strong> AI伴走支援の月額決済はStripe Checkoutで受け付け、申込後に初回範囲と日程を確認します。"
         "<br><strong>補助金:</strong> 講習と伴走支援は、滋賀県・彦根市のデジタル化/AI導入系補助金と組み合わせて相談できます。"
@@ -11364,24 +11299,6 @@ def _render_compact_course_cards() -> str:
             "url": MONTHLY_SUPPORT_CHECKOUT_URL,
             "cta": "伴走支援を申し込む",
         },
-        {
-            "cat": "Codex講習",
-            "title": "Codex準備会",
-            "price": "2,200円",
-            "duration": "60分",
-            "desc": "ログイン、権限、最初の依頼と確認手順を揃えます。",
-            "url": AI_AGENT_COURSE_URL,
-            "cta": "準備会を予約",
-        },
-        {
-            "cat": "Codex講習",
-            "title": "Codex実践会",
-            "price": "5,500円",
-            "duration": "120分",
-            "desc": "持ち込み課題を、仕事で使える成果物に仕上げます。",
-            "url": AI_AGENT_COURSE_URL,
-            "cta": "実践会を予約",
-        },
     ]
     cards = []
     for item in items:
@@ -11407,7 +11324,7 @@ def _render_footer(today: str) -> str:
         "<div class='footer-grid'>"
         "<div class='footer-brand'>"
         "<div class='footer-logo'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span></div>"
-        "<p class='footer-tagline'>滋賀・彦根の中小事業者向けに、AI相談・AIエージェント講習・Codex準備会/実践会・受講資料・Web集客支援を行う"
+        "<p class='footer-tagline'>滋賀・彦根の中小事業者向けに、AI相談・AIエージェント講習・受講資料・Web集客支援を行う"
         "資料センター型の相談サイト。9事業を実際に回しながら、現場に居着くAIを一緒に作ります。</p>"
         "<a class='footer-cta' href='#contact'>無料相談する</a>"
         "</div>"
@@ -11580,8 +11497,6 @@ def _render_growth_plan_section() -> str:
 FAQ_QA = [
     ("彦根・滋賀でAIの講習や相談はできますか？",
      "はい。滋賀県彦根市を拠点に、彦根・湖東・東近江を中心とした対面のAI講習・個別相談を行っています。京都・大阪・名古屋までは出張可、リモートなら全国対応します。"),
-    ("Codex準備会とCodex実践会はどう違いますか？",
-     "レベルは理解度で分けます。Codex準備会は60分2,200円で、ログイン、作業フォルダ選択、秘密情報を入れない権限設計、最初の小さな依頼、差分確認、ブラウザ表示確認、独立レビュー、AGENTS.md、公式アップデート確認先までを整えます。Codex実践会は120分5,500円で、Claude Codeとの使い分け、ページ、資料、コード、画像生成プロンプト、動画台本、運用マニュアルなどの成果物作成まで進めます。AIエージェント講習は120分11,000円で、仕事の分解、依頼、確認、修正、成果物と手順の保存までを体系的に扱います。"),
     ("AIエージェント講習では何を学びますか？",
      "CodexとClaude Codeを、調査、資料、告知、業務改善、Web制作を一緒に進める作業者として使う講習です。仕事の分け方、伝わる依頼、差分・根拠・画面の確認、修正指示、成果物と次回手順の保存までを120分で通します。料金は11,000円で、専用の予約ページから申し込めます。"),
     ("受講資料はあとから見返せますか？",
@@ -11591,7 +11506,7 @@ FAQ_QA = [
     ("LLMO やAI検索に強いサイトにできますか？",
      "できます。地域名、講師の一次経験、料金、対応範囲、実例、FAQ、構造化データを整理し、AIが回答に引用しやすい形で公開します。大量の自動生成ではなく、講習と実例に基づく一次情報を重視します。"),
     ("料金はどれくらいですか？",
-     "AI無料相談の入口整理は無料、Codex準備会60分は2,200円、Codex実践会120分は5,500円、AIエージェント講習120分は11,000円、AI個別相談 しっかり60分は5,500円です。AI伴走支援 いっしょに導入は月額10万円×6ヶ月が目安で、月額決済はStripe Checkoutで行います。LP制作は1本18〜30万円が目安。多くは補助金併用を前提に組みます。"),
+     "AI無料相談の入口整理は無料、AIエージェント講習120分は11,000円、AI個別相談 しっかり60分は5,500円です。AI伴走支援 いっしょに導入は月額10万円×6ヶ月が目安で、月額決済はStripe Checkoutで行います。LP制作は1本18〜30万円が目安。多くは補助金併用を前提に組みます。"),
     ("補助金は使えますか？滋賀の事業者でも対象ですか？",
      "講習・伴走パックは「デジタル化・AI導入補助金」や滋賀県・彦根市の補助金の対象になります。補助率は小規模事業者で最大4/5、実質負担が1/3以下になるケースが多いです。申請からツール選定・実装・定着まで一気通貫で支援します。"),
     ("パソコンやスマホが苦手ですが、大丈夫ですか？",
@@ -12699,7 +12614,7 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append("<section class='block' id='packages'>")
     parts.append("<p class='section-heading fade-up'>AI LESSON COCKPIT</p>")
     parts.append("<h2 class='section-title packages-title fade-up d1'>複数のAI講習を、一画面で選ぶ</h2>")
-    parts.append("<p class='section-sub fade-up d2'>AI無料相談、伴走支援、Codex準備会、Codex実践会、AIエージェント講習を、目的と到達点で比較できます。</p>")
+    parts.append("<p class='section-sub fade-up d2'>AI無料相談、個別相談、AIエージェント講習、伴走支援を、目的と到達点で比較できます。</p>")
     parts.append(_render_courses_packages())
     parts.append("</section>")
 

@@ -2650,9 +2650,7 @@ def _render_teaching_home(sections: list[dict]) -> str:
             if flags.get(key):
                 feature_counts[key] += 1
 
-    featured = next((it for it in items if it.get("featured")), None)
-    if not featured:
-        featured = next((it for it in items if "Codex実践" in str(it.get("title", ""))), items[0] if items else {})
+    featured = next((it for it in items if it.get("featured")), items[0] if items else {})
     featured_href = _resolve_lecture_href(str(featured.get("href", ""))) if featured else ""
     first_section_id = _teaching_section_id(sections[0]) if sections else ""
     parts: list[str] = []
@@ -2660,14 +2658,14 @@ def _render_teaching_home(sections: list[dict]) -> str:
     parts.append("<div>")
     parts.append("<h2>受講資料ホーム</h2>")
     parts.append(
-        "<p>「Codex実践会 120分 構築と応用」の形式を基準に、各資料を目次、本文、動画、"
+        "<p>各資料を目次、本文、動画、"
         "ナレーション、スライド、PDF、チェックの観点で探せるようにまとめた入口です。"
         "受講前は内容確認、受講中は投影資料、受講後は本文とチェック項目へ進めます。</p>"
     )
     parts.append("<div class='tr-home-actions'>")
     parts.append("<a href='../#ai-agent-course'>AIエージェント講習を見る</a>")
     if featured_href:
-        parts.append(f"<a href='{html.escape(featured_href, quote=True)}'>Codex実践会から見る</a>")
+        parts.append(f"<a href='{html.escape(featured_href, quote=True)}'>おすすめ資料を見る</a>")
     if first_section_id:
         parts.append(f"<a href='#sec-{html.escape(first_section_id, quote=True)}'>全資料を見る</a>")
     parts.append("</div>")
@@ -2709,7 +2707,7 @@ def _render_teaching_index(sections: list[dict]) -> str:
     parts.append(_render_teaching_home(sections))
     parts.append(
         "<p class='tr-intro'>まず受講資料本体を開き、必要に応じて投影用スライドや補助資料へ進む。"
-        "内容を確認したら受講プランへ戻り、準備会・実践会・個別相談のどれで進めるかを選べます。</p>"
+        "内容を確認したら受講プランへ戻り、AIエージェント講習・個別相談・伴走支援のどれで進めるかを選べます。</p>"
     )
     rendered_any = False
     for sec in sections:
@@ -2793,7 +2791,7 @@ def build_lectures() -> int:
             "summary": str(meta.get("summary", "")),
             "date": str(meta.get("date", "")),
             "features": features,
-            "featured": f.stem == "2026-06-codex-app-practice",
+            "featured": f.stem == "2026-06-ai-agent-rag-design",
         })
         count += 1
 

@@ -224,7 +224,7 @@ async function makePlan() {
     renderTitlePlan();
     showStep(3);
   } catch (error) { toast(error.message); }
-  finally { button.disabled = false; button.textContent = "2. タイトル候補を5つ作る"; }
+  finally { button.disabled = false; button.textContent = "2. タイトル候補を3つ作る"; }
 }
 
 function renderTitlePlan() {

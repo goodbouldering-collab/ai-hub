@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25362103/STK262_GROK_XAI__A.png?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-15T17:33:20-04:00"
+      "published": "2026-07-15T17:33:20-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "f4cdcecf55aac553",
@@ -37,7 +39,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/Screenshot-2026-07-14-at-3.55.09-PM.png?quality=90&amp;strip=all&amp;crop=10.258176757133%2C0%2C79.483646485734%2C100&amp;w=1200",
-      "published": "2026-07-15T16:00:00-04:00"
+      "published": "2026-07-15T16:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "ce021975923cf8ff",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25383554/STK467_AI_MUSIC_CVirginia_B.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-15T13:48:01-04:00"
+      "published": "2026-07-15T13:48:01-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "f75d91388d38231b",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/Supply-Co-Page_Brand.png?quality=90&amp;strip=all&amp;crop=0.42240779401531%2C0%2C99.155184411969%2C100&amp;w=1200",
-      "published": "2026-07-15T12:00:00-04:00"
+      "published": "2026-07-15T12:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "0308e3666e6b9fe7",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-07-15T14:21:54+00:00"
+      "published": "2026-07-15T14:21:54+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "690291f1e028f3e9",
@@ -113,7 +123,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/mu46dw01jY8/hqdefault.jpg",
-      "published": "2026-07-15T11:17:01+00:00"
+      "published": "2026-07-15T11:17:01+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "49f81bd51097ce75",
@@ -132,7 +144,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/_fUjNuciJGg/hqdefault.jpg",
-      "published": "2026-07-15T04:37:03+00:00"
+      "published": "2026-07-15T04:37:03+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "2e2c3536c0032081",
@@ -151,7 +165,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/pxoMk0ilVUk/hqdefault.jpg",
-      "published": "2026-07-15T10:00:08+00:00"
+      "published": "2026-07-15T10:00:08+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "3d19b95bd105619c",
@@ -170,7 +186,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://images.ctfassets.net/kftzwdyauwt9/C8LVPcOuyeD3G5OalCrVN/16094efa3ff169506c97c14ec2b71f8a/Frame.png?w=1600&amp;h=900&amp;fit=fill",
-      "published": "Wed, 15 Jul 2026 12:00:00 GMT"
+      "published": "Wed, 15 Jul 2026 12:00:00 GMT",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "c77c5e5020ccca4b",
@@ -189,7 +207,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://images.ctfassets.net/kftzwdyauwt9/3ACfFRKDhuNzU4isOGxHRv/26f7f9bded23de64ea183a9ec19904c5/SEO_Card.png?w=1600&amp;h=900&amp;fit=fill",
-      "published": "Wed, 15 Jul 2026 10:00:00 GMT"
+      "published": "Wed, 15 Jul 2026 10:00:00 GMT",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

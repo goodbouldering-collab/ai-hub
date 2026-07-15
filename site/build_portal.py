@@ -11280,6 +11280,8 @@ def _render_compact_course_cards() -> str:
         {
             "cat": "メイン講習",
             "title": "AIエージェント講習",
+            "image": "/img/blog-ai-agent-course-section-2-20260714.webp",
+            "image_alt": "AIエージェントと人が仕事を分担し、成果物を確認する流れ",
             "price": "5,500円",
             "duration": "120分",
             "desc": "仕事の分解、依頼、確認、修正、次回も使える手順化まで実践します。",
@@ -11290,6 +11292,8 @@ def _render_compact_course_cards() -> str:
         {
             "cat": "個別相談",
             "title": "AI個別相談",
+            "image": "/img/course-path-beginner.webp",
+            "image_alt": "相談しながら仕事の課題とAIの使い方を整理する様子",
             "price": "5,500円",
             "duration": "60分",
             "desc": "仕事に合うAIの使い方と、確認・運用の手順を整理します。",
@@ -11299,6 +11303,8 @@ def _render_compact_course_cards() -> str:
         {
             "cat": "6ヶ月伴走",
             "title": "AI伴走支援",
+            "image": "/img/course-path-workflow.webp",
+            "image_alt": "複雑な業務をAIで整理し、続けられる仕組みに変える様子",
             "price": "月額10万円",
             "duration": "6ヶ月",
             "desc": "HP・事務・AI導入を、仕事に定着するところまで支援します。",
@@ -11308,6 +11314,8 @@ def _render_compact_course_cards() -> str:
         {
             "cat": "実装講習",
             "title": "AIコーディング講習",
+            "image": "/img/course-path-coding.webp",
+            "image_alt": "AIとコードを確認しながらWebサイトを安全に公開する様子",
             "price": "11,000円",
             "duration": "120分",
             "desc": "AIが作ったコードを読み、直し、確認して公開するところまで体系的に学びます。",
@@ -11323,6 +11331,7 @@ def _render_compact_course_cards() -> str:
         cards.append(
             f"<article class='compact-course-card{main_cls}'>"
             f"<small>{html.escape(item['cat'])}</small>"
+            f"<img class='compact-course-visual' src='{html.escape(item['image'], quote=True)}' alt='{html.escape(item['image_alt'], quote=True)}' loading='lazy' decoding='async'>"
             f"<h3>{html.escape(item['title'])}</h3>"
             f"<div class='compact-course-meta'><strong>{html.escape(item['price'])}</strong><span>{html.escape(item['duration'])}</span></div>"
             f"<p>{html.escape(item['desc'])}</p>"
@@ -12360,6 +12369,16 @@ header.site-header:hover {
   background:var(--focus-blue);
 }
 .compact-course-card small { color:var(--focus-blue); font-size:10px; font-weight:900; letter-spacing:.08em; }
+.compact-course-visual {
+  display:block;
+  width:100%;
+  height:86px;
+  margin:9px 0 11px;
+  object-fit:cover;
+  object-position:center;
+  border-radius:7px;
+  background:#eef7ff;
+}
 .compact-course-card h3 { margin:7px 0 8px; font-size:19px; line-height:1.3; letter-spacing:-.025em; }
 .compact-course-meta { display:flex; align-items:baseline; gap:8px; }
 .compact-course-meta strong { color:var(--focus-ink); font-size:18px; }
@@ -12484,6 +12503,7 @@ header.site-header:hover {
   .compact-course-card,
   .compact-course-card:first-child { min-height:0; padding:18px 0; border-left:0; border-top:1px solid rgba(7,95,200,.14); }
   .compact-course-card:first-child { border-top:0; }
+  .compact-course-visual { height:104px; }
   .compact-course-card h3 { font-size:18px; }
   .course-quick-actions { align-items:flex-end; justify-content:space-between; }
 }

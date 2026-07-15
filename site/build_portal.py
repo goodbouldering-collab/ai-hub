@@ -313,7 +313,7 @@ def _build_jsonld_website() -> str:
         "@type": "BreadcrumbList",
         "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": "ホーム", "item": SITE_URL + "/"},
-            {"@type": "ListItem", "position": 2, "name": "AIエージェント講習", "item": SITE_URL + "/#ai-agent-course"},
+            {"@type": "ListItem", "position": 2, "name": "講習・相談コース", "item": SITE_URL + "/#packages"},
             {"@type": "ListItem", "position": 3, "name": "講師紹介", "item": SITE_URL + "/#speaker"},
             {"@type": "ListItem", "position": 4, "name": "受講資料", "item": SITE_URL + "/#lectures"},
             {"@type": "ListItem", "position": 5, "name": "FAQ", "item": SITE_URL + "/#faq"},
@@ -11270,7 +11270,7 @@ def _render_courses_packages() -> str:
 
 
 def _render_compact_course_cards() -> str:
-    """主役のAIエージェント講習に続けて置く、省スペースの申込カード。"""
+    """講習・相談の全コースを同じ扱いで並べる申込カード。"""
     items = [
         {
             "cat": "無料相談",
@@ -11289,6 +11289,15 @@ def _render_compact_course_cards() -> str:
             "desc": "仕事に合うAIの使い方と、確認・運用の手順を整理します。",
             "url": "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/TO3XHZT6XP3OM4QBDYMW7TZP",
             "cta": "個別相談を予約",
+        },
+        {
+            "cat": "実践講習",
+            "title": "AIエージェント講習",
+            "price": "11,000円",
+            "duration": "120分",
+            "desc": "仕事の分解、依頼、確認、修正、次回も使える手順化まで実践します。",
+            "url": AI_AGENT_COURSE_URL,
+            "cta": "講習を予約",
         },
         {
             "cat": "6ヶ月伴走",
@@ -11313,7 +11322,7 @@ def _render_compact_course_cards() -> str:
             f"<a href='{html.escape(item['url'], quote=True)}'{target_attr}>{html.escape(item['cta'])} →</a>"
             "</article>"
         )
-    return "<div class='compact-course-grid' id='packages'>" + "".join(cards) + "</div>"
+    return "<div class='compact-course-grid'>" + "".join(cards) + "</div>"
 
 
 def _render_footer(today: str) -> str:
@@ -11330,7 +11339,7 @@ def _render_footer(today: str) -> str:
         "</div>"
         "<nav class='footer-nav' aria-label='フッターナビ'>"
         "<span class='footer-nav-head'>メニュー</span>"
-        "<a href='#ai-agent-course'>AIエージェント講習</a>"
+        "<a href='#packages'>講習・相談</a>"
         "<a href='#flow'>進め方</a>"
         "<a href='#speaker'>講師紹介</a>"
         "<a href='#lectures'>受講資料</a>"
@@ -11351,11 +11360,11 @@ def _render_footer(today: str) -> str:
 
 
 def _render_sticky_cta() -> str:
-    """モバイルで常時追従するAIエージェント講習バー。"""
+    """モバイルで常時追従する講習・相談コース案内。"""
     return (
         "<div class='sticky-cta' id='sticky-cta' aria-hidden='false'>"
-        "<div class='sticky-cta-text'><strong>AIエージェント講習</strong><span>Codex・Claude Code実践</span></div>"
-        "<a class='sticky-cta-btn' href='#ai-agent-course'>講習を見る</a>"
+        "<div class='sticky-cta-text'><strong>講習・相談コース</strong><span>相談・講習・伴走支援</span></div>"
+        "<a class='sticky-cta-btn' href='#packages'>コースを見る</a>"
         "</div>"
     )
 
@@ -12244,19 +12253,31 @@ body::before { display: none !important; }
   background:var(--focus-blue);
   border-radius:999px;
 }
-.main-course .focus-ai-course {
-  border-color:rgba(7,95,200,.34);
-  box-shadow:0 18px 42px rgba(7,54,105,.12);
-}
 .main-course > .focus-section-head { margin-bottom:18px; }
 .main-course > .focus-section-lead { margin-bottom:20px; }
+.course-venue-common {
+  max-width:1320px;
+  margin:0 auto 18px;
+  display:grid;
+  grid-template-columns:112px minmax(0,1fr);
+  align-items:center;
+  gap:16px;
+  padding:12px;
+  border:1px solid rgba(7,95,200,.2);
+  border-radius:12px;
+  background:var(--focus-surface);
+}
+.course-venue-common img { display:block; width:100%; aspect-ratio:16/10; object-fit:cover; border-radius:8px; }
+.course-venue-common small { display:block; color:var(--focus-blue); font-size:10px; font-weight:900; letter-spacing:.1em; }
+.course-venue-common h3 { margin:4px 0 3px; color:var(--focus-ink); font-size:17px; line-height:1.4; }
+.course-venue-common p { margin:0; color:var(--focus-muted); font-size:12px; line-height:1.6; }
 .compact-course-grid {
   max-width:1320px;
-  margin:14px auto 0;
+  margin:0 auto;
   padding:0 !important;
   display:grid;
-  grid-template-columns:repeat(5,minmax(0,1fr));
-  gap:10px;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:14px;
   text-align:left;
 }
 .compact-course-card {
@@ -12339,28 +12360,6 @@ body::before { display: none !important; }
 .focus-block .pf-sum,
 .focus-block .pf-host,
 .focus-block .blog-card p { color:var(--focus-muted) !important; }
-.focus-ai-course { max-width:1320px; margin:0 auto; display:grid; grid-template-columns:minmax(0,1fr) 300px; border:1px solid var(--focus-line); border-radius:14px; overflow:hidden; background:#fff; box-shadow:0 16px 38px rgba(10,40,80,.08); }
-.focus-ai-course-main { padding:18px 22px 16px; }
-.focus-ai-course-main h3 { margin:0; font-size:clamp(24px,2.2vw,30px); letter-spacing:-.035em; }
-.focus-ai-course-main > p { margin:6px 0 0; color:var(--focus-muted); font-size:13px; line-height:1.5; }
-.focus-primary-label { display:inline-flex; margin-bottom:8px; padding:4px 9px; color:var(--focus-blue); background:var(--focus-cyan); border-radius:999px; font-size:10px; font-weight:900; letter-spacing:.08em; }
-.focus-venue-mini { grid-column:1/-1; display:flex; align-items:center; gap:9px; margin:0; padding:6px 12px; border-top:1px solid rgba(7,95,200,.16); background:var(--focus-surface); }
-.focus-venue-mini img { display:block; width:52px; height:34px; object-fit:cover; border-radius:6px; }
-.focus-venue-mini figcaption { min-width:0; display:flex; align-items:baseline; gap:9px; flex-wrap:wrap; }
-.focus-venue-mini small { color:var(--focus-blue); font-size:9px; font-weight:900; letter-spacing:.1em; }
-.focus-venue-mini h4 { margin:0; color:var(--focus-ink); font-size:12px; line-height:1.4; }
-.focus-venue-mini p { margin:0; color:var(--focus-muted); font-size:11px; line-height:1.45; }
-.focus-ai-checks { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; margin:10px 0 0; padding:0; list-style:none; color:#24344a; font-size:11.5px; font-weight:750; }
-.focus-ai-checks li::before { content:"✓"; margin-right:8px; color:var(--focus-blue); font-weight:900; }
-.focus-ai-course .focus-content-actions { justify-content:flex-start; gap:14px; margin:12px 0 0; }
-.focus-ai-course .focus-content-actions .focus-btn { min-height:38px; padding:0 15px; font-size:12px; }
-.focus-ai-course .focus-content-actions .focus-btn.secondary { min-height:auto; padding:4px 0; border:0; background:transparent; box-shadow:none; }
-.focus-ai-course-side { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); align-content:center; gap:0; padding:14px; background:linear-gradient(155deg,var(--focus-blue-dark),var(--focus-blue)); color:#fff; }
-.focus-course-fact { min-width:0; padding:10px; border-right:1px solid rgba(255,255,255,.22); border-bottom:1px solid rgba(255,255,255,.22); }
-.focus-course-fact:nth-child(2n) { border-right:0; }
-.focus-course-fact:nth-last-child(-n+2) { border-bottom:0; }
-.focus-course-fact small { display:block; color:rgba(255,255,255,.72); font-size:11px; font-weight:850; letter-spacing:.12em; }
-.focus-course-fact strong { display:block; margin-top:5px; font-size:17px; line-height:1.35; }
 .focus-blog-carousel { max-width:1320px; margin:0 auto; }
 .sticky-cta { background:#fff !important; color:var(--focus-ink) !important; border-color:var(--focus-line) !important; }
 @media (max-width: 900px) {
@@ -12372,13 +12371,8 @@ body::before { display: none !important; }
   .path-grid,.focus-proof-grid { grid-template-columns:1fr; max-width:680px; }
   .focus-split { grid-template-columns:1fr; max-width:680px; }
   .focus-split img { max-width:360px; }
-  .focus-ai-course { grid-template-columns:1fr; max-width:680px; }
-  .focus-ai-course-side { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); }
-  .focus-course-fact { border-right:1px solid rgba(255,255,255,.22); border-bottom:0; }
-  .focus-course-fact:nth-child(2n) { border-right:1px solid rgba(255,255,255,.22); }
-  .focus-course-fact:last-child { border-right:0; }
-  .compact-course-grid { grid-template-columns:repeat(3,minmax(0,1fr)); max-width:680px; }
-  .course-quick-actions { max-width:680px; }
+  .course-venue-common,.compact-course-grid,.course-quick-actions { max-width:680px; }
+  .compact-course-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .focus-hub-head { align-items:flex-start; flex-direction:column; }
   .focus-hub-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
 }
@@ -12405,32 +12399,12 @@ body::before { display: none !important; }
   .focus-contact .focus-btn { width:100%; }
   .focus-section-lead { margin-top:-14px; font-size:14px; text-align:left; }
   .main-course { padding-top:40px !important; padding-bottom:42px !important; }
-  .focus-ai-course-main { padding:16px; }
-  .focus-ai-course-main h3 { font-size:22px; line-height:1.35; }
-  .focus-ai-course-main > p { display:none; }
-  .focus-ai-checks { grid-template-columns:repeat(2,minmax(0,1fr)); gap:5px 8px; margin-top:10px; font-size:10.5px; }
-  .focus-ai-checks li:nth-child(3) { display:none; }
-  .focus-ai-course .focus-content-actions { align-items:center; gap:8px; margin-top:10px; }
-  .focus-ai-course .focus-content-actions .focus-btn.primary { width:100%; }
-  .focus-ai-course .focus-content-actions .focus-btn.secondary { display:none; }
-  .focus-ai-course-side { grid-template-columns:repeat(4,minmax(0,1fr)); padding:8px; }
-  .focus-course-fact { padding:6px 4px; border-right:1px solid rgba(255,255,255,.22); border-bottom:0; text-align:center; }
-  .focus-course-fact:nth-child(2n) { border-right:1px solid rgba(255,255,255,.22); }
-  .focus-course-fact:last-child { border-right:0; }
-  .focus-course-fact small { font-size:8px; }
-  .focus-course-fact strong { font-size:11px; }
-  .focus-venue-mini { padding:6px 9px; }
-  .focus-venue-mini img { width:40px; height:28px; }
-  .focus-venue-mini h4 { font-size:10.5px; }
-  .focus-venue-mini p { display:none; }
-  .compact-course-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
-  .compact-course-card { min-height:140px; padding:10px; }
-  .compact-course-card h3 { font-size:15px; }
-  .compact-course-card p { display:none; }
-  .compact-course-meta { display:block; }
-  .compact-course-meta strong { display:block; font-size:15px; }
-  .compact-course-meta span { font-size:10px; }
-  .compact-course-card > a { min-height:32px; padding:5px; font-size:10px; }
+  .course-venue-common { grid-template-columns:72px minmax(0,1fr); gap:10px; padding:10px; }
+  .course-venue-common h3 { font-size:14px; }
+  .course-venue-common p { font-size:11px; }
+  .compact-course-grid { grid-template-columns:1fr; gap:10px; }
+  .compact-course-card { min-height:0; padding:14px; }
+  .compact-course-card h3 { font-size:18px; }
   .course-quick-actions { align-items:flex-end; justify-content:space-between; }
 }
 """
@@ -12442,7 +12416,7 @@ def _render_header_focused() -> str:
         "<a class='site-logo' href='/' aria-label='AI相談 彦根 トップへ'>"
         "<span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span></span></a>"
         "<nav class='site-nav' aria-label='メインナビ'>"
-        "<a class='nav-link nav-essential' href='#ai-agent-course'>講習・相談</a>"
+        "<a class='nav-link nav-essential' href='#packages'>講習・相談</a>"
         "<a class='nav-link nav-essential' href='/programming-map.html'>AIコーディング</a>"
         "<a class='nav-link nav-essential' href='#lectures'>受講資料</a>"
         "<div class='menu-wrap'><button class='menu-toggle' id='menu-toggle' aria-haspopup='menu' aria-expanded='false'>全メニュー"
@@ -12459,7 +12433,7 @@ def _render_header_focused() -> str:
         "<svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button>"
         "</div><div class='mobile-nav' id='mobile-nav'><div class='mobile-nav-panel mobile-nav-panel--public'>"
         "<a class='login-btn-mobile' href='#contact'>無料相談</a>"
-        "<a class='mobile-main-link' href='#ai-agent-course'>講習・相談</a>"
+        "<a class='mobile-main-link' href='#packages'>講習・相談</a>"
         "<span class='mobile-nav-label'>講習・資料</span><div class='mobile-link-grid'>"
         "<a href='/programming-map.html'>AIコーディング</a><a href='#lectures'>受講資料</a><a href='#blog'>ブログ</a></div>"
         "<span class='mobile-nav-label'>制作・発信</span><div class='mobile-link-grid'>"
@@ -12477,7 +12451,7 @@ def _render_hero_focused() -> str:
         "<div class='focus-hero-copy fade-up'><p class='focus-kicker'>Codex + Claude Code 実践</p>"
         "<h1 class='focus-title'>AIエージェントを、<br><span class='focus-title-line'><strong>仕事の仲間に。</strong></span></h1>"
         "<p class='focus-lead'>調査、資料、告知、業務改善、Web制作を、AIに頼むだけで終わらせず、確認して仕事で使える形まで進める講習です。</p>"
-        "<div class='focus-actions'><a class='focus-btn primary' href='#ai-agent-course'>AIエージェント講習を見る</a>"
+        "<div class='focus-actions'><a class='focus-btn primary' href='#packages'>講習・相談コースを見る</a>"
         "<a class='focus-btn secondary' href='/blog/2026-07-14-ai-agent-course-codex-claude-code.html'>講座を始めた理由を読む</a>"
         "<a class='focus-btn secondary' href='#contact'>まず相談する</a></div>"
         "<ul class='focus-trust'><li>初心者OK</li><li>持ち込み課題OK</li><li>対面・オンライン対応</li></ul></div>"
@@ -12504,21 +12478,13 @@ def _render_focused_blog_content() -> str:
 
 def _render_focused_main() -> str:
     free_consult = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/AW5O5XSBHLEHYUBHLZUGFKYE"
-    seminar = AI_AGENT_COURSE_URL
 
     parts = [
-        "<section class='focus-block main-course' id='ai-agent-course'><div class='focus-section-head'><small>COURSES</small><h2>AIエージェント講習</h2></div>",
-        "<p class='focus-section-lead'>CodexとClaude Codeで、仕事の分解、依頼、確認、修正、手順化まで実践します。</p>",
-        "<div class='focus-ai-course'><div class='focus-ai-course-main'><span class='focus-primary-label'>おすすめコース</span><h3>仕事を、AIエージェントと前に進める。</h3>",
-        "<p>告知、資料、調査、集計、業務ツール、サイト改善など、普段の課題を持ち込み、その場で使える成果物と繰り返せる手順を作ります。</p>",
-        "<ul class='focus-ai-checks'><li>Codex・Claude Codeの安全な準備</li><li>仕事の分解と伝わる依頼</li><li>差分・根拠・画面の確認</li><li>成果物と次回手順の保存</li></ul>",
-        "<div class='focus-content-actions'>",
-        f"<a class='focus-btn primary' href='{seminar}' target='_blank' rel='noopener'>AIエージェント講習を予約する</a>",
-        "<a class='focus-btn secondary' href='/programming-map.html'>詳しい講習内容を見る</a></div></div>",
-        "<aside class='focus-ai-course-side' aria-label='AIエージェント講習の概要'><div class='focus-course-fact'><small>料金</small><strong>11,000円</strong></div><div class='focus-course-fact'><small>時間</small><strong>120分</strong></div>",
-        "<div class='focus-course-fact'><small>対象</small><strong>初心者OK</strong></div><div class='focus-course-fact'><small>形式</small><strong>対面・オンライン</strong></div></aside>",
-        "<figure class='focus-venue-mini'><img src='/img/gubboru-cafe-ai-course-painting.webp' alt='AIエージェント講習の対面会場 グッぼるカフェの店内' loading='lazy' decoding='async'>",
-        "<figcaption><small>VENUE</small><h4>対面会場：グッぼるカフェ（彦根）</h4><p>普段のPCと課題を持ち寄る少人数講習です。</p></figcaption></figure></div>",
+        "<section class='focus-block main-course' id='packages'><div class='focus-section-head'><small>COURSES</small><h2>講習・相談コース</h2></div>",
+        "<p class='focus-section-lead'>無料相談、個別相談、AIエージェント講習、伴走支援を、目的・時間・料金で同じ基準から選べます。</p>",
+        "<aside class='course-venue-common' aria-label='講習・相談コース共通の開催場所'>",
+        "<img src='/img/gubboru-cafe-ai-course-painting.webp' alt='講習・相談の対面会場 グッぼるカフェの店内' loading='lazy' decoding='async'>",
+        "<div><small>COMMON VENUE</small><h3>開催場所：グッぼるカフェ（彦根）</h3><p>対面は普段のPCと課題を持ち寄って実施します。オンライン受講・相談にも対応します。</p></div></aside>",
         _render_compact_course_cards(),
         "<div class='course-quick-actions'><button type='button' class='compact-diagnose diagnose-open'>迷ったら60秒診断</button><a href='#lectures'>受講資料から選ぶ →</a></div></section>",
         "<section class='focus-block soft' id='lectures'><div class='focus-section-head'><small>LEARNING MATERIALS</small><h2>受講資料</h2></div>",

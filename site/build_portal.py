@@ -12319,13 +12319,13 @@ header.site-header:hover {
 .main-course > .focus-section-head { margin-bottom:18px; }
 .main-course > .focus-section-lead { margin-bottom:20px; }
 .course-venue-common {
-  max-width:1400px;
-  margin:18px auto 0;
+  max-width:860px;
+  margin:24px auto 0;
   display:grid;
-  grid-template-columns:112px minmax(0,1fr);
+  grid-template-columns:128px minmax(0,1fr);
   align-items:center;
-  gap:16px;
-  padding:16px 0 0;
+  gap:18px;
+  padding:18px 0 0;
   border:0;
   border-top:1px solid rgba(7,95,200,.16);
   border-radius:0;
@@ -12335,6 +12335,17 @@ header.site-header:hover {
 .course-venue-common small { display:block; color:var(--focus-blue); font-size:10px; font-weight:900; letter-spacing:.1em; }
 .course-venue-common h3 { margin:4px 0 3px; color:var(--focus-ink); font-size:17px; line-height:1.4; }
 .course-venue-common p { margin:0; color:var(--focus-muted); font-size:12px; line-height:1.6; }
+.course-venue-map {
+  grid-column:1 / -1;
+  overflow:hidden;
+  margin-top:2px;
+  border:1px solid rgba(7,95,200,.16);
+  border-radius:10px;
+  background:#fff;
+}
+.course-venue-map iframe { display:block; width:100%; height:220px; border:0; }
+.course-venue-map-link { grid-column:1 / -1; margin:-6px 0 0; text-align:center; }
+.course-venue-map-link a { color:var(--focus-blue); font-size:12px; font-weight:900; text-underline-offset:3px; }
 .compact-course-grid {
   max-width:1400px;
   margin:0 auto;
@@ -12496,9 +12507,11 @@ header.site-header:hover {
   .focus-contact .focus-btn { width:100%; }
   .focus-section-lead { margin-top:-14px; font-size:14px; text-align:left; }
   .main-course { padding-top:40px !important; padding-bottom:42px !important; }
-  .course-venue-common { grid-template-columns:72px minmax(0,1fr); gap:10px; padding:14px 0 0; }
+  .course-venue-common { grid-template-columns:72px minmax(0,1fr); gap:10px; margin-top:22px; padding:14px 0 0; }
   .course-venue-common h3 { font-size:14px; }
   .course-venue-common p { font-size:11px; }
+  .course-venue-map { margin-top:4px; }
+  .course-venue-map iframe { height:220px; }
   .compact-course-grid { grid-template-columns:1fr; gap:0; }
   .compact-course-card,
   .compact-course-card:first-child { min-height:0; padding:18px 0; border-left:0; border-top:1px solid rgba(7,95,200,.14); }
@@ -12585,7 +12598,9 @@ def _render_focused_main() -> str:
         _render_compact_course_cards(),
         "<aside class='course-venue-common' aria-label='講習・相談コース共通の開催場所'>",
         "<img src='/img/gubboru-cafe-ai-course-painting.webp' alt='講習・相談の対面会場 グッぼるカフェの店内' loading='lazy' decoding='async'>",
-        "<div><small>COMMON VENUE</small><h3>開催場所：グッぼるカフェ（彦根）</h3><p>対面は普段のPCと課題を持ち寄って実施します。オンライン受講・相談にも対応します。</p></div></aside>",
+        "<div><small>COMMON VENUE</small><h3>開催場所：グッぼるカフェ（彦根）</h3><p>対面は普段のPCと課題を持ち寄って実施します。オンライン受講・相談にも対応します。</p></div>",
+        "<div class='course-venue-map'><iframe src='https://www.google.com/maps?q=%E3%82%B0%E3%83%83%E3%81%BC%E3%82%8B%E3%82%AB%E3%83%95%E3%82%A7%20%E6%BB%8B%E8%B3%80%E7%9C%8C%E5%BD%A6%E6%A0%B9%E5%B8%82%E5%B2%A1%E7%94%BA12&amp;output=embed' title='グッぼるカフェ周辺のGoogleマップ' loading='lazy' referrerpolicy='no-referrer-when-downgrade' allowfullscreen></iframe></div>",
+        "<p class='course-venue-map-link'><a href='https://www.google.com/maps/search/?api=1&amp;query=%E3%82%B0%E3%83%83%E3%81%BC%E3%82%8B%E3%82%AB%E3%83%95%E3%82%A7%20%E6%BB%8B%E8%B3%80%E7%9C%8C%E5%BD%A6%E6%A0%B9%E5%B8%82%E5%B2%A1%E7%94%BA12' target='_blank' rel='noopener'>Googleマップで開く →</a></p></aside>",
         "<div class='course-quick-actions'><button type='button' class='compact-diagnose diagnose-open'>迷ったら60秒診断</button><a href='#lectures'>受講資料から選ぶ →</a></div></section>",
         "<section class='focus-block soft' id='lectures'><div class='focus-section-head'><small>LEARNING MATERIALS</small><h2>受講資料</h2></div>",
         "<p class='focus-section-lead'>講習前の予習と、受講後に仕事へ戻るための復習資料です。AIの基本からCodex・Claude Code実践まで見返せます。</p>",

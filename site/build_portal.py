@@ -11287,6 +11287,8 @@ def _render_compact_course_cards() -> str:
             "desc": "仕事の分解、依頼、確認、修正、次回も使える手順化まで実践します。",
             "url": AI_AGENT_COURSE_URL,
             "cta": "講習を予約",
+            "material_url": "/programming-map.html",
+            "material_cta": "AIエージェント講習の受講資料を見る",
             "main": True,
         },
         {
@@ -11299,6 +11301,8 @@ def _render_compact_course_cards() -> str:
             "desc": "仕事に合うAIの使い方と、確認・運用の手順を整理します。",
             "url": "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/TO3XHZT6XP3OM4QBDYMW7TZP",
             "cta": "個別相談を予約",
+            "material_url": "/lectures/2026-06-ai-tsukaikonaseru-hito.html",
+            "material_cta": "AI活用の整理資料を見る",
         },
         {
             "cat": "6ヶ月伴走",
@@ -11310,6 +11314,8 @@ def _render_compact_course_cards() -> str:
             "desc": "HP・事務・AI導入を、仕事に定着するところまで支援します。",
             "url": MONTHLY_SUPPORT_CHECKOUT_URL,
             "cta": "伴走支援を申し込む",
+            "material_url": "/lectures/2026-06-ai-agent-rag-design.html",
+            "material_cta": "AI導入・RAG設計の資料を見る",
         },
         {
             "cat": "実装講習",
@@ -11321,12 +11327,16 @@ def _render_compact_course_cards() -> str:
             "desc": "AIが作ったコードを読み、直し、確認して公開するところまで体系的に学びます。",
             "url": AI_CODING_BOOK_URL,
             "cta": "AIコーディングを予約",
+            "material_url": "/lectures/2026-05-claude-code-features.html",
+            "material_cta": "Claude Codeの実践資料を見る",
         },
     ]
     cards = []
     for item in items:
         is_ext = item["url"].startswith("http")
         target_attr = " target='_blank' rel='noopener'" if is_ext else ""
+        material_is_ext = item["material_url"].startswith("http")
+        material_target_attr = " target='_blank' rel='noopener'" if material_is_ext else ""
         main_cls = " compact-course-card--main" if item.get("main") else ""
         cards.append(
             f"<article class='compact-course-card{main_cls}'>"
@@ -11336,6 +11346,7 @@ def _render_compact_course_cards() -> str:
             f"<div class='compact-course-meta'><strong>{html.escape(item['price'])}</strong><span>{html.escape(item['duration'])}</span></div>"
             f"<p>{html.escape(item['desc'])}</p>"
             f"<a href='{html.escape(item['url'], quote=True)}'{target_attr}>{html.escape(item['cta'])} →</a>"
+            f"<a class='compact-course-material' href='{html.escape(item['material_url'], quote=True)}'{material_target_attr}>{html.escape(item['material_cta'])} →</a>"
             "</article>"
         )
     return "<div class='compact-course-grid'>" + "".join(cards) + "</div>"
@@ -12397,6 +12408,8 @@ header.site-header:hover {
 .compact-course-card p { margin:9px 0 12px; color:var(--focus-muted); font-size:12px; line-height:1.55; }
 .compact-course-card > a { min-height:38px; display:flex; align-items:center; justify-content:center; margin-top:auto; padding:7px 10px; color:#fff; background:var(--focus-blue); border-radius:7px; font-size:12px; font-weight:900; text-align:center; text-decoration:none; }
 .compact-course-card > a:hover { background:var(--focus-blue-dark); }
+.compact-course-card > a.compact-course-material { min-height:auto; margin:10px 0 0; padding:0; color:var(--focus-blue); background:transparent; border-radius:0; font-size:11px; line-height:1.5; text-decoration:underline; text-underline-offset:3px; }
+.compact-course-card > a.compact-course-material:hover { color:var(--focus-blue-dark); background:transparent; }
 .course-quick-actions { max-width:1400px; margin:12px auto 0; display:flex; align-items:center; justify-content:flex-end; gap:14px; }
 .compact-diagnose { padding:0; color:var(--focus-blue); background:transparent; border:0; font-size:12px; font-weight:900; text-decoration:underline; text-underline-offset:3px; cursor:pointer; }
 .course-quick-actions a { color:var(--focus-muted); font-size:12px; font-weight:800; }

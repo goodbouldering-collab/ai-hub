@@ -124,7 +124,7 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
         by_group[g].append(b)
 
     # トップポータルの fixed ヘッダーと同じ構造にして全ページの UI を統一する。
-    # 公開ページのメニューは利用者向けを主軸にしつつ、管理画面への入口だけを固定メニューに置く。
+    # 公開ページのメニューは利用者向けを主軸にしつつ、会員ログインだけを固定メニューに置く。
     home_href = _resolve_nav_href("index.html", path_prefix)
     safe_home = html.escape(home_href, quote=True) if home_href else "/"
 
@@ -146,9 +146,9 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
     parts.append("<a class='nav-link nav-essential' href='/blog/index.html'>ブログ</a>")
     parts.append("<a class='nav-link nav-essential' href='/#lectures'>資料</a>")
     parts.append("<a class='nav-link nav-essential' href='/#faq'>FAQ</a>")
-    parts.append("<a class='nav-link nav-admin' href='/admin'>管理画面</a>")
     parts.append("</nav>")
     parts.append(
+        "<a class='header-member-login' href='/admin'>会員ログイン</a>"
         "<a class='nav-cta' href='/#contact'>個別相談</a>"
         "</div>"
         "</header>"
@@ -169,7 +169,6 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
         "<a href='/#speaker'><span class='mobile-link-title'>講師</span><small>誰が支援するか</small></a>"
         "<a href='/#faq'><span class='mobile-link-title'>FAQ</span><small>不安を先に解消</small></a>"
         "<a href='/#contact'><span class='mobile-link-title'>相談</span><small>予約へ進む</small></a>"
-        "<a class='mobile-admin-link' href='/admin'><span class='mobile-link-title'>管理画面</span><small>記事、SNS、OPSを管理</small></a>"
         "</div>"
         "</div>"
         "</div>"
@@ -462,6 +461,29 @@ header.site-header.scrolled {
   box-shadow: 0 6px 22px rgba(40,84,197,.22), inset 0 1px 0 rgba(255,255,255,.25);
   white-space: nowrap;
 }
+.header-member-login {
+  min-height: 38px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  padding: 0 13px;
+  border: 1.5px solid #075FC8;
+  border-radius: 8px;
+  background: #fff;
+  color: #075FC8;
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.header-member-login:hover,
+.header-member-login:focus-visible {
+  background: #075FC8;
+  color: #fff;
+  outline: none;
+}
 .site-header .login-btn {
   display: inline-flex; align-items: center; gap: 6px;
   padding: 9px 18px; border-radius: 999px;
@@ -710,8 +732,15 @@ nav.top-nav .nav-admin:focus-visible {
     display: none;
   }
   .site-logo {
-    max-width: calc(100% - 58px);
+    max-width: calc(100% - 168px);
     overflow: hidden;
+  }
+  .header-member-login {
+    min-height: 36px;
+    margin-left: auto;
+    margin-right: 46px;
+    padding: 0 9px;
+    font-size: 12px;
   }
   .mobile-toggle {
     display: inline-flex;

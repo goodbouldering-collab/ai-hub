@@ -9656,9 +9656,9 @@ def _render_header() -> str:
         "<a class='nav-link nav-essential' href='/blog/index.html'>ブログ</a>"
         "<a class='nav-link nav-essential' href='#lectures'>資料</a>"
         "<a class='nav-link nav-essential' href='#faq'>FAQ</a>"
-        "<a class='nav-link nav-admin' href='/admin'>管理画面</a>"
         "<a class='nav-cta' href='#contact'>無料相談</a>"
         "</nav>"
+        "<a class='header-member-login' href='/admin'>会員ログイン</a>"
         "<button class='mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'>"
         "<svg width='20' height='20' viewBox='0 0 24 24' fill='none'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg>"
         "</button>"
@@ -9675,7 +9675,6 @@ def _render_header() -> str:
         "<a href='#speaker'><span class='mobile-link-title'>講師</span><small>誰が支援するか</small></a>"
         "<a href='#faq'><span class='mobile-link-title'>FAQ</span><small>不安を先に解消</small></a>"
         "<a href='#contact'><span class='mobile-link-title'>無料相談</span><small>初回の入口整理を予約</small></a>"
-        "<a class='mobile-admin-link' href='/admin'><span class='mobile-link-title'>管理画面</span><small>記事、SNS、OPSを管理</small></a>"
         "</div>"
         "</div>"
         "</div>"
@@ -12226,6 +12225,31 @@ header.site-header:hover {
   background: transparent !important;
 }
 .site-nav .nav-cta { background: var(--focus-blue) !important; background-image: none !important; border-radius: 8px !important; padding: 12px 20px !important; box-shadow: 0 10px 24px rgba(7,95,200,.18) !important; }
+.header-member-login {
+  min-height: 40px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  padding: 0 14px;
+  border: 1.5px solid var(--focus-blue);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--focus-blue);
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background .2s, color .2s, transform .2s;
+}
+.header-member-login:hover,
+.header-member-login:focus-visible {
+  background: var(--focus-blue);
+  color: #fff;
+  outline: none;
+  transform: translateY(-1px);
+}
 .focus-hero { min-height: 540px; display: grid; grid-template-columns: minmax(0,.95fr) minmax(520px,1.05fr); background: #fff; }
 .focus-hero-copy { display: flex; flex-direction: column; justify-content: center; padding: 58px clamp(30px,5vw,86px) 58px max(18px,calc((100vw - 1400px)/2)); }
 .focus-kicker { margin: 0 0 18px; color: var(--focus-ink); font-size: clamp(20px,2vw,30px); font-weight: 900; letter-spacing: -.03em; }
@@ -12409,6 +12433,13 @@ header.site-header:hover {
 .focus-blog-carousel { max-width:1400px; margin:0 auto; }
 .sticky-cta { background:#fff !important; color:var(--focus-ink) !important; border-color:var(--focus-line) !important; }
 @media (max-width: 900px) {
+  .header-member-login {
+    min-height: 36px;
+    margin-left: auto;
+    padding: 0 10px;
+    font-size: 12px;
+  }
+  .mobile-toggle { flex: 0 0 auto; }
   .focus-hero { grid-template-columns:1fr; min-height:0; }
   .focus-hero-copy { padding:58px 24px 38px; }
   .focus-title { font-size:clamp(44px,11vw,66px); }
@@ -12424,7 +12455,7 @@ header.site-header:hover {
 }
 @media (max-width: 680px) {
   .container { padding:64px 0 0 !important; }
-  .site-header-inner { min-height:64px; padding:8px 14px !important; }
+  .site-header-inner { min-height:64px; padding:8px 14px !important; gap:8px !important; }
   .wordmark { font-size:19px !important; }
   .focus-hero-copy { padding:42px 16px 30px; }
   .focus-kicker { font-size:18px; }
@@ -12476,8 +12507,9 @@ def _render_header_focused() -> str:
         "<a href='#blog'>ブログ</a><a href='/watch/index.html'>AI Watch</a>"
         "<span class='menu-drop-label'>案内・確認</span>"
         "<a href='#speaker'>講師紹介</a><a href='#flow'>進め方</a><a href='#faq'>FAQ</a><a href='/'>ホーム</a>"
-        "<a href='/admin'>管理画面</a></div></div>"
+        "</div></div>"
         "<a class='nav-cta' href='#contact'>無料相談</a></nav>"
+        "<a class='header-member-login' href='/admin'>会員ログイン</a>"
         "<button class='mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'>"
         "<svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button>"
         "</div><div class='mobile-nav' id='mobile-nav'><div class='mobile-nav-panel mobile-nav-panel--public'>"
@@ -12489,7 +12521,6 @@ def _render_header_focused() -> str:
         "<a href='#all-works'>AI実績</a><a href='/watch/index.html'>AI Watch</a></div>"
         "<span class='mobile-nav-label'>案内・確認</span><div class='mobile-link-grid'>"
         "<a href='#speaker'>講師紹介</a><a href='#flow'>進め方</a><a href='#faq'>FAQ</a><a href='/'>ホーム</a></div>"
-        "<a class='mobile-admin-link' href='/admin'>管理画面</a>"
         "</div></div></header>"
     )
 

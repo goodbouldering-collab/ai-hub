@@ -86,10 +86,10 @@ top_buttons:
   enabled: true
 - id: admin
   group: 操作
-  label: 管理ログイン
+  label: 会員ログイン
   icon: 🔐
   href: /admin
   kind: link
-  # ヘッダー右端の独立 .login-btn と重複するので非表示。リンクは render_top_nav が
-  # ヘッダー右側に常時生成する。
+  # ヘッダーの独立 .header-member-login と重複するので非表示。リンクは render_top_nav が
+  # 固定ヘッダーに常時生成する。
   enabled: false

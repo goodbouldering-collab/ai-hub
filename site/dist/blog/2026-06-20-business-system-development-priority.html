@@ -124,6 +124,29 @@ header.site-header.scrolled {
   box-shadow: 0 6px 22px rgba(40,84,197,.22), inset 0 1px 0 rgba(255,255,255,.25);
   white-space: nowrap;
 }
+.header-member-login {
+  min-height: 38px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  padding: 0 13px;
+  border: 1.5px solid #075FC8;
+  border-radius: 8px;
+  background: #fff;
+  color: #075FC8;
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.header-member-login:hover,
+.header-member-login:focus-visible {
+  background: #075FC8;
+  color: #fff;
+  outline: none;
+}
 .site-header .login-btn {
   display: inline-flex; align-items: center; gap: 6px;
   padding: 9px 18px; border-radius: 999px;
@@ -372,8 +395,15 @@ nav.top-nav .nav-admin:focus-visible {
     display: none;
   }
   .site-logo {
-    max-width: calc(100% - 58px);
+    max-width: calc(100% - 168px);
     overflow: hidden;
+  }
+  .header-member-login {
+    min-height: 36px;
+    margin-left: auto;
+    margin-right: 46px;
+    padding: 0 9px;
+    font-size: 12px;
   }
   .mobile-toggle {
     display: inline-flex;
@@ -10530,7 +10560,7 @@ section.block::before {
   }
 })();
 </script>
-<header class='site-header scrolled' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span><span class='site-logo-by'>滋賀・彦根</span></a><nav class='site-nav top-nav' aria-label='サイトナビ'><a class='nav-link nav-essential' href='../index.html'>ホーム</a><a class='nav-link nav-essential' href='/#ai-agent-course'>AIエージェント講習</a><a class='nav-link nav-essential' href='/#all-works'>実績</a><a class='nav-link nav-essential' href='/blog/index.html'>ブログ</a><a class='nav-link nav-essential' href='/#lectures'>資料</a><a class='nav-link nav-essential' href='/#faq'>FAQ</a><a class='nav-link nav-admin' href='/admin'>管理画面</a></nav><a class='nav-cta' href='/#contact'>個別相談</a></div></header><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'><svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button><div class='mobile-nav generated-mobile-nav' id='mobile-nav'><div class='mobile-nav-panel mobile-nav-panel--public'><span class='mobile-nav-label'>ホームメニュー</span><div class='mobile-link-list'><a href='/'><span class='mobile-link-title'>ホーム</span><small>最初に戻る</small></a><a href='/#ai-agent-course'><span class='mobile-link-title'>AIエージェント講習</span><small>Codex・Claude Code実践を見る</small></a><a href='/#all-works'><span class='mobile-link-title'>実績</span><small>支援例と制作例を見る</small></a><a href='/blog/index.html'><span class='mobile-link-title'>ブログ</span><small>実践知を読む</small></a><a href='/#lectures'><span class='mobile-link-title'>資料</span><small>復習と手順を見る</small></a><a href='/#speaker'><span class='mobile-link-title'>講師</span><small>誰が支援するか</small></a><a href='/#faq'><span class='mobile-link-title'>FAQ</span><small>不安を先に解消</small></a><a href='/#contact'><span class='mobile-link-title'>相談</span><small>予約へ進む</small></a><a class='mobile-admin-link' href='/admin'><span class='mobile-link-title'>管理画面</span><small>記事、SNS、OPSを管理</small></a></div></div></div><script>(function(){var b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav');if(!b||!n)return;function close(){n.classList.remove('open');b.setAttribute('aria-expanded','false');}b.addEventListener('click',function(e){e.stopPropagation();var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});})();</script><header><h1>業務システム開発の優先順位：EC・AI活用で先に固めるべき8項目</h1><div class='speaker-meta'><span class='role'>ブログ / 業務システム設計</span><span>📅 2026-06-20</span><span>由井 辰美 / AIハブ</span></div></header><div class='content-wrap'><div class='content-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#業務システム開発は-kubernetesよりデータ設計から始める'>業務システム開発は、Kubernetesよりデータ設計から始める</a></li><li><a href='#3人の顧客視点で見ると-改善点は3つに絞られる'>3人の顧客視点で見ると、改善点は3つに絞られる</a></li><li><a href='#ci-cdとコスト最適化は-開発後ではなく運用設計として入れる'>CI/CDとコスト最適化は、開発後ではなく運用設計として入れる</a></li><li><a href='#iac・マイクロサービス・kubernetesは-後から速く移れる状態を作る'>IaC・マイクロサービス・Kubernetesは、後から速く移れる状態を作る</a></li><li><a href='#aiハブで相談するときは-優先順位をチェックリストに落とす'>AIハブで相談するときは、優先順位をチェックリストに落とす</a></li></ol></div><p>Facebookに「私の優先順位」として、ECや業務システム寄りの開発では <strong>データ設計、認証、クラウド設計、CI/CD、コスト最適化、IaC、マイクロサービス、Kubernetes</strong> の順で考える、という投稿をしました。</p>
+<header class='site-header scrolled' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span><span class='site-logo-by'>滋賀・彦根</span></a><nav class='site-nav top-nav' aria-label='サイトナビ'><a class='nav-link nav-essential' href='../index.html'>ホーム</a><a class='nav-link nav-essential' href='/#ai-agent-course'>AIエージェント講習</a><a class='nav-link nav-essential' href='/#all-works'>実績</a><a class='nav-link nav-essential' href='/blog/index.html'>ブログ</a><a class='nav-link nav-essential' href='/#lectures'>資料</a><a class='nav-link nav-essential' href='/#faq'>FAQ</a></nav><a class='header-member-login' href='/admin'>会員ログイン</a><a class='nav-cta' href='/#contact'>個別相談</a></div></header><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'><svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button><div class='mobile-nav generated-mobile-nav' id='mobile-nav'><div class='mobile-nav-panel mobile-nav-panel--public'><span class='mobile-nav-label'>ホームメニュー</span><div class='mobile-link-list'><a href='/'><span class='mobile-link-title'>ホーム</span><small>最初に戻る</small></a><a href='/#ai-agent-course'><span class='mobile-link-title'>AIエージェント講習</span><small>Codex・Claude Code実践を見る</small></a><a href='/#all-works'><span class='mobile-link-title'>実績</span><small>支援例と制作例を見る</small></a><a href='/blog/index.html'><span class='mobile-link-title'>ブログ</span><small>実践知を読む</small></a><a href='/#lectures'><span class='mobile-link-title'>資料</span><small>復習と手順を見る</small></a><a href='/#speaker'><span class='mobile-link-title'>講師</span><small>誰が支援するか</small></a><a href='/#faq'><span class='mobile-link-title'>FAQ</span><small>不安を先に解消</small></a><a href='/#contact'><span class='mobile-link-title'>相談</span><small>予約へ進む</small></a></div></div></div><script>(function(){var b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav');if(!b||!n)return;function close(){n.classList.remove('open');b.setAttribute('aria-expanded','false');}b.addEventListener('click',function(e){e.stopPropagation();var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});})();</script><header><h1>業務システム開発の優先順位：EC・AI活用で先に固めるべき8項目</h1><div class='speaker-meta'><span class='role'>ブログ / 業務システム設計</span><span>📅 2026-06-20</span><span>由井 辰美 / AIハブ</span></div></header><div class='content-wrap'><div class='content-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#業務システム開発は-kubernetesよりデータ設計から始める'>業務システム開発は、Kubernetesよりデータ設計から始める</a></li><li><a href='#3人の顧客視点で見ると-改善点は3つに絞られる'>3人の顧客視点で見ると、改善点は3つに絞られる</a></li><li><a href='#ci-cdとコスト最適化は-開発後ではなく運用設計として入れる'>CI/CDとコスト最適化は、開発後ではなく運用設計として入れる</a></li><li><a href='#iac・マイクロサービス・kubernetesは-後から速く移れる状態を作る'>IaC・マイクロサービス・Kubernetesは、後から速く移れる状態を作る</a></li><li><a href='#aiハブで相談するときは-優先順位をチェックリストに落とす'>AIハブで相談するときは、優先順位をチェックリストに落とす</a></li></ol></div><p>Facebookに「私の優先順位」として、ECや業務システム寄りの開発では <strong>データ設計、認証、クラウド設計、CI/CD、コスト最適化、IaC、マイクロサービス、Kubernetes</strong> の順で考える、という投稿をしました。</p>
 <p>この順番は、単なる技術スタックの好みではありません。業務システム開発で失敗しやすいのは、最初から高度な技術を使うことではなく、売上、顧客、在庫、権限、運用費、障害対応の前提が曖昧なまま作り始めることです。</p>
 <p>この記事では、Facebook投稿をそのまま転載せず、SEOで検索されやすい「業務システム開発の優先順位」「EC システム設計」「データ設計 認証 クラウド設計」という観点に整理し直します。さらに、顧客になりそうな3タイプの視点で改善点を絞り込み、導入相談につながる形に落とし込みます。</p>
 <h2 id='業務システム開発は-kubernetesよりデータ設計から始める'>業務システム開発は、Kubernetesよりデータ設計から始める</h2>

@@ -313,16 +313,16 @@ portfolio:
   source: vercel
   source_id: prj_IvdOoTzGKRUtOmKBBNQ1hBqLuYAa
   source_project: yomogihikone
-- name: ハイロックス 本郷泰司
+- name: ハイロックス本郷
   slug: hyrox-hongo
   url: https://hyrox-zeta.vercel.app
   status: live
-  category: 挑戦・メディア
+  category: アスリート・スポンサーサイト
   tech:
+  - JavaScript
   - Vercel
-  - Static Site
-  summary: 本郷泰司のHYROX挑戦、ブログ、SNS、協賛相談をまとめた公式サイト
-  since: 2026-06
+  summary: HYROXに挑戦する本郷泰司の活動、協賛情報、大会ルールを伝える公式サイト
+  since: 2026-07
   thumbnail: /img/portfolio/hyrox-hongo.jpg
   source: vercel
   source_id: prj_KBrKdZ7GMgenLAuGQpkEAJPbTHl9

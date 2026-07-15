@@ -117,6 +117,7 @@ OWNER_SUBTITLE = "クライミング歴30年・9事業を回す滋賀のAI講師
 OWNER_TAGLINE = "AIを聞いて終わりにせず、講習・実例・資料で仕事に入れる"
 CONSULT_BOOK_URL = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/AW5O5XSBHLEHYUBHLZUGFKYE"
 AI_AGENT_COURSE_URL = "https://goodbouldering.com/?pid=188553378"
+AI_CODING_BOOK_URL = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/S7GERYVDIPRV76DKXCC3WJWH"
 MONTHLY_SUPPORT_CHECKOUT_URL = "/api/stripe/monthly-support"
 
 
@@ -250,17 +251,19 @@ def _build_jsonld_website() -> str:
         "description": "滋賀・彦根の中小事業者向けAI相談、講習募集、受講資料、実例、講師紹介、AI/SNS/LLMO情報の資料センター。",
     }
 
-    ai_coding_title = "AIエージェント講習 120分"
+    ai_agent_title = "AIエージェント講習 120分"
+    ai_coding_title = "AIコーディング講習 120分"
     free_consult_title = "AI無料相談 入口整理"
     consult_title = "AI個別相談 しっかり60分"
     support_title = "AI伴走支援 いっしょに導入"
 
     # 受講プランを Service + Offer として構造化（_render_packages の items と整合）
     plans = [
-        (ai_coding_title, "CodexとClaude Codeを使い、仕事を分けて頼む、結果を確かめる、修正する、繰り返せる手順として残すAIエージェント講習。調査、資料、告知、業務改善、Web制作を題材に、AIの成果物を判断して仕事に入れる型を120分で身につける。", "11000", "11000", "Course"),
+        (ai_agent_title, "CodexとClaude Codeを使い、仕事を分けて頼む、結果を確かめる、修正する、繰り返せる手順として残すAIエージェント講習。調査、資料、告知、業務改善、Web制作を題材に、AIの成果物を判断して仕事に入れる型を120分で身につける。", "5500", "5500", "Course"),
         (free_consult_title, "来店またはオンラインで、AI導入の入口を整理する無料相談。講習や伴走の前に、今の課題と次の一手を確認する。", "0", "0", "BusinessCoaching"),
         (consult_title, "AIの使い方、役割分担、指示書、確認体制、運用導線を60分で整理する個別相談。", "5500", "5500", "BusinessCoaching"),
         (support_title, "HP公開から事務自動化・経理・マーケまで6ヶ月で一気に定着。技術的な難所は講師が代行・支援。滋賀・彦根の補助金で負担1/3以下に。", "100000", "100000", "Service"),
+        (ai_coding_title, "Codex導入、Claude Code併用、画像生成、プログラミング基礎、設計、データ、運用、セキュリティを1本で学ぶAIコーディング講習。AIの成果物を判断し、説明し、仕事に入れるための作業設計と確認の型を120分で身につける。", "11000", "11000", "Course"),
     ]
     services = []
     for name, desc, lo, hi, stype in plans:
@@ -285,9 +288,12 @@ def _build_jsonld_website() -> str:
             "areaServed": {"@type": "AdministrativeArea", "name": "滋賀県"},
             "offers": offer,
         }
-        if name == ai_coding_title:
+        if name == ai_agent_title:
             offer["url"] = AI_AGENT_COURSE_URL
             service["url"] = AI_AGENT_COURSE_URL
+        if name == ai_coding_title:
+            offer["url"] = AI_CODING_BOOK_URL
+            service["url"] = AI_CODING_BOOK_URL
         if name == free_consult_title:
             offer["url"] = CONSULT_BOOK_URL
             service["url"] = CONSULT_BOOK_URL
@@ -9828,7 +9834,7 @@ HEADER_JS = """
       { q: 'どのスパンで取り組みたい？', a: [
         { label: 'まず無料で入口を相談したい', lv: 'beginner' },
         { label: '60分5,500円で個別に整理したい', lv: 'intermediate' },
-        { label: '120分11,000円で体系的に実装を学びたい', lv: 'implementation' },
+        { label: '120分5,500円で体系的に実装を学びたい', lv: 'implementation' },
         { label: '6ヶ月かけて仕事に定着させたい', lv: 'advanced' },
       ]},
     ];
@@ -11165,7 +11171,7 @@ def _render_courses_packages() -> str:
             "level": "実装",
             "level_id": "implementation",
             "title": ai_coding_title,
-            "price": "11,000円",
+            "price": "5,500円",
             "duration": "120分 / 少人数",
             "subsidy": False,
             "desc": "Codex導入、Claude Code併用、画像生成、AI時代の本物のエンジニア像、レベルマップ、プログラミング基礎、設計・データ・運用・セキュリティ、実装、公開までを1本で学ぶ総合講習です。",
@@ -11260,7 +11266,7 @@ def _render_courses_packages() -> str:
     )
     parts.append(
         "<p class='packages-note fade-up d4'>"
-        "<strong>AIエージェント講習:</strong> CodexとClaude Codeを使い、仕事の分解、依頼、確認、修正、成果物と手順の保存までを120分11,000円で扱う実践講習です。専用の予約ページから申し込めます。"
+        "<strong>AIエージェント講習:</strong> CodexとClaude Codeを使い、仕事の分解、依頼、確認、修正、成果物と手順の保存までを120分5,500円で扱う実践講習です。専用の予約ページから申し込めます。"
         "<br><strong>無料相談:</strong> AI無料相談は、講習・伴走・制作のどれから始めるかを無料で整理する入口です。しっかり60分のAI個別相談は、AIの使い方、指示書、確認体制、運用導線まで整理します。"
         "<br><strong>月額支払い:</strong> AI伴走支援の月額決済はStripe Checkoutで受け付け、申込後に初回範囲と日程を確認します。"
         "<br><strong>補助金:</strong> 講習と伴走支援は、滋賀県・彦根市のデジタル化/AI導入系補助金と組み合わせて相談できます。"
@@ -11270,16 +11276,17 @@ def _render_courses_packages() -> str:
 
 
 def _render_compact_course_cards() -> str:
-    """講習・相談の全コースを同じ扱いで並べる申込カード。"""
+    """メイン講習を先頭にし、講習・相談の全コースを並べる申込カード。"""
     items = [
         {
-            "cat": "無料相談",
-            "title": "AI無料相談",
-            "price": "無料",
-            "duration": "初回",
-            "desc": "講習・伴走・制作のどこから始めるかを整理します。",
-            "url": CONSULT_BOOK_URL,
-            "cta": "無料相談を予約",
+            "cat": "メイン講習",
+            "title": "AIエージェント講習",
+            "price": "5,500円",
+            "duration": "120分",
+            "desc": "仕事の分解、依頼、確認、修正、次回も使える手順化まで実践します。",
+            "url": AI_AGENT_COURSE_URL,
+            "cta": "講習を予約",
+            "main": True,
         },
         {
             "cat": "個別相談",
@@ -11291,15 +11298,6 @@ def _render_compact_course_cards() -> str:
             "cta": "個別相談を予約",
         },
         {
-            "cat": "実践講習",
-            "title": "AIエージェント講習",
-            "price": "11,000円",
-            "duration": "120分",
-            "desc": "仕事の分解、依頼、確認、修正、次回も使える手順化まで実践します。",
-            "url": AI_AGENT_COURSE_URL,
-            "cta": "講習を予約",
-        },
-        {
             "cat": "6ヶ月伴走",
             "title": "AI伴走支援",
             "price": "月額10万円",
@@ -11308,13 +11306,23 @@ def _render_compact_course_cards() -> str:
             "url": MONTHLY_SUPPORT_CHECKOUT_URL,
             "cta": "伴走支援を申し込む",
         },
+        {
+            "cat": "実装講習",
+            "title": "AIコーディング講習",
+            "price": "11,000円",
+            "duration": "120分",
+            "desc": "AIが作ったコードを読み、直し、確認して公開するところまで体系的に学びます。",
+            "url": AI_CODING_BOOK_URL,
+            "cta": "AIコーディングを予約",
+        },
     ]
     cards = []
     for item in items:
         is_ext = item["url"].startswith("http")
         target_attr = " target='_blank' rel='noopener'" if is_ext else ""
+        main_cls = " compact-course-card--main" if item.get("main") else ""
         cards.append(
-            "<article class='compact-course-card'>"
+            f"<article class='compact-course-card{main_cls}'>"
             f"<small>{html.escape(item['cat'])}</small>"
             f"<h3>{html.escape(item['title'])}</h3>"
             f"<div class='compact-course-meta'><strong>{html.escape(item['price'])}</strong><span>{html.escape(item['duration'])}</span></div>"
@@ -11507,7 +11515,7 @@ FAQ_QA = [
     ("彦根・滋賀でAIの講習や相談はできますか？",
      "はい。滋賀県彦根市を拠点に、彦根・湖東・東近江を中心とした対面のAI講習・個別相談を行っています。京都・大阪・名古屋までは出張可、リモートなら全国対応します。"),
     ("AIエージェント講習では何を学びますか？",
-     "CodexとClaude Codeを、調査、資料、告知、業務改善、Web制作を一緒に進める作業者として使う講習です。仕事の分け方、伝わる依頼、差分・根拠・画面の確認、修正指示、成果物と次回手順の保存までを120分で通します。料金は11,000円で、専用の予約ページから申し込めます。"),
+     "CodexとClaude Codeを、調査、資料、告知、業務改善、Web制作を一緒に進める作業者として使う講習です。仕事の分け方、伝わる依頼、差分・根拠・画面の確認、修正指示、成果物と次回手順の保存までを120分で通します。料金は5,500円で、専用の予約ページから申し込めます。"),
     ("受講資料はあとから見返せますか？",
      "はい。受講で使った資料、プロンプト、実例、動画、スライドは資料センターとして整理し、あとから復習できるようにします。受講前に内容を確認したい方も、受講資料ページから雰囲気を見られます。"),
     ("Reels や YouTube の集客にも使えますか？",
@@ -11515,7 +11523,7 @@ FAQ_QA = [
     ("LLMO やAI検索に強いサイトにできますか？",
      "できます。地域名、講師の一次経験、料金、対応範囲、実例、FAQ、構造化データを整理し、AIが回答に引用しやすい形で公開します。大量の自動生成ではなく、講習と実例に基づく一次情報を重視します。"),
     ("料金はどれくらいですか？",
-     "AI無料相談の入口整理は無料、AIエージェント講習120分は11,000円、AI個別相談 しっかり60分は5,500円です。AI伴走支援 いっしょに導入は月額10万円×6ヶ月が目安で、月額決済はStripe Checkoutで行います。LP制作は1本18〜30万円が目安。多くは補助金併用を前提に組みます。"),
+     "AI無料相談の入口整理は無料、AIエージェント講習120分は5,500円、AI個別相談 しっかり60分は5,500円です。AI伴走支援 いっしょに導入は月額10万円×6ヶ月が目安で、月額決済はStripe Checkoutで行います。LP制作は1本18〜30万円が目安。多くは補助金併用を前提に組みます。"),
     ("補助金は使えますか？滋賀の事業者でも対象ですか？",
      "講習・伴走パックは「デジタル化・AI導入補助金」や滋賀県・彦根市の補助金の対象になります。補助率は小規模事業者で最大4/5、実質負担が1/3以下になるケースが多いです。申請からツール選定・実装・定着まで一気通貫で支援します。"),
     ("パソコンやスマホが苦手ですが、大丈夫ですか？",
@@ -12257,7 +12265,7 @@ body::before { display: none !important; }
 .main-course > .focus-section-lead { margin-bottom:20px; }
 .course-venue-common {
   max-width:1320px;
-  margin:0 auto 18px;
+  margin:18px auto 0;
   display:grid;
   grid-template-columns:112px minmax(0,1fr);
   align-items:center;
@@ -12290,6 +12298,18 @@ body::before { display: none !important; }
   border:1px solid rgba(7,95,200,.2);
   border-radius:12px;
   box-shadow:0 10px 26px rgba(7,54,105,.06);
+}
+.compact-course-card--main {
+  position:relative;
+  border-color:var(--focus-blue);
+  box-shadow:0 12px 30px rgba(7,95,200,.14);
+}
+.compact-course-card--main::before {
+  content:"";
+  position:absolute;
+  inset:0 0 auto;
+  height:4px;
+  background:var(--focus-blue);
 }
 .compact-course-card small { color:var(--focus-blue); font-size:10px; font-weight:900; letter-spacing:.08em; }
 .compact-course-card h3 { margin:7px 0 8px; font-size:19px; line-height:1.3; letter-spacing:-.025em; }
@@ -12324,6 +12344,8 @@ body::before { display: none !important; }
 .focus-split .speaker-painting { aspect-ratio:1/1; object-position:center; background:#fffaf0; box-shadow:0 18px 46px rgba(10,40,80,.10); }
 .focus-split h2 { margin:0 0 18px; font-size:clamp(30px,3vw,46px); line-height:1.25; }
 .focus-split p { color:var(--focus-muted); font-size:16px; line-height:1.9; }
+.focus-flow-visual { width:min(100%,520px); margin:-8px auto 30px; overflow:hidden; border:1px solid var(--focus-line); border-radius:12px; background:#fff; box-shadow:0 10px 28px rgba(10,40,80,.08); }
+.focus-flow-visual img { display:block; width:100%; aspect-ratio:16/7; object-fit:cover; }
 .focus-flow { max-width:1100px; margin:auto; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:0; }
 .focus-step { position:relative; padding:24px 34px; border-left:1px solid var(--focus-line); }
 .focus-step:last-child { border-right:1px solid var(--focus-line); }
@@ -12393,6 +12415,7 @@ body::before { display: none !important; }
   .focus-hub-card { min-height:180px; }
   .outcome-grid { grid-template-columns:1fr; }
   .outcome-item { min-height:0; }
+  .focus-flow-visual { margin-bottom:20px; }
   .focus-flow { grid-template-columns:1fr; }
   .focus-step,.focus-step:last-child { border:0; border-top:1px solid var(--focus-line); padding:22px 0; }
   .focus-contact-inner { align-items:flex-start; flex-direction:column; }
@@ -12423,7 +12446,7 @@ def _render_header_focused() -> str:
         "<svg class='chev' width='14' height='14' viewBox='0 0 20 20' fill='none' aria-hidden='true'><path d='M5 8l5 5 5-5' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg></button>"
         "<div class='menu-drop' id='menu-drop' role='menu'>"
         "<span class='menu-drop-label'>制作・発信</span>"
-        "<a href='#all-works'>すべての実績</a>"
+        "<a href='#all-works'>AI実績</a>"
         "<a href='#blog'>ブログ</a><a href='/watch/index.html'>AI Watch</a>"
         "<span class='menu-drop-label'>案内・確認</span>"
         "<a href='#speaker'>講師紹介</a><a href='#flow'>進め方</a><a href='#faq'>FAQ</a><a href='/'>ホーム</a>"
@@ -12437,7 +12460,7 @@ def _render_header_focused() -> str:
         "<span class='mobile-nav-label'>講習・資料</span><div class='mobile-link-grid'>"
         "<a href='/programming-map.html'>AIコーディング</a><a href='#lectures'>受講資料</a><a href='#blog'>ブログ</a></div>"
         "<span class='mobile-nav-label'>制作・発信</span><div class='mobile-link-grid'>"
-        "<a href='#all-works'>すべての実績</a><a href='/watch/index.html'>AI Watch</a></div>"
+        "<a href='#all-works'>AI実績</a><a href='/watch/index.html'>AI Watch</a></div>"
         "<span class='mobile-nav-label'>案内・確認</span><div class='mobile-link-grid'>"
         "<a href='#speaker'>講師紹介</a><a href='#flow'>進め方</a><a href='#faq'>FAQ</a><a href='/'>ホーム</a></div>"
         "<a class='mobile-admin-link' href='/admin'>管理画面</a>"
@@ -12481,11 +12504,11 @@ def _render_focused_main() -> str:
 
     parts = [
         "<section class='focus-block main-course' id='packages'><div class='focus-section-head'><small>COURSES</small><h2>講習・相談コース</h2></div>",
-        "<p class='focus-section-lead'>無料相談、個別相談、AIエージェント講習、伴走支援を、目的・時間・料金で同じ基準から選べます。</p>",
+        "<p class='focus-section-lead'>メインのAIエージェント講習を先頭に、個別相談、伴走支援、AIコーディング講習を目的・時間・料金から選べます。</p>",
+        _render_compact_course_cards(),
         "<aside class='course-venue-common' aria-label='講習・相談コース共通の開催場所'>",
         "<img src='/img/gubboru-cafe-ai-course-painting.webp' alt='講習・相談の対面会場 グッぼるカフェの店内' loading='lazy' decoding='async'>",
         "<div><small>COMMON VENUE</small><h3>開催場所：グッぼるカフェ（彦根）</h3><p>対面は普段のPCと課題を持ち寄って実施します。オンライン受講・相談にも対応します。</p></div></aside>",
-        _render_compact_course_cards(),
         "<div class='course-quick-actions'><button type='button' class='compact-diagnose diagnose-open'>迷ったら60秒診断</button><a href='#lectures'>受講資料から選ぶ →</a></div></section>",
         "<section class='focus-block soft' id='lectures'><div class='focus-section-head'><small>LEARNING MATERIALS</small><h2>受講資料</h2></div>",
         "<p class='focus-section-lead'>講習前の予習と、受講後に仕事へ戻るための復習資料です。AIの基本からCodex・Claude Code実践まで見返せます。</p>",
@@ -12497,11 +12520,12 @@ def _render_focused_main() -> str:
         "<div class='focus-content-actions'><a class='focus-btn secondary' href='/blog/index.html'>ブログを一覧で読む</a></div></section>",
         "<section class='focus-block soft' id='speaker'><div class='focus-split'><img class='speaker-painting' src='/img/speaker-portrait-painting.webp' alt='AI相談 彦根 講師 由井辰美の絵画調ポートレート' loading='lazy'>",
         "<div><small class='outcome-num'>INSTRUCTOR</small><h2>9つの事業でAIエージェントを使う講師</h2><p>理想論ではなく、告知、予約、事務、サイト運営で実際に任せている仕事を題材にします。成果物の確認と、次も続けられる手順づくりまで一緒に進めます。</p><a class='focus-btn secondary' href='#contact'>彦根で相談する</a></div></div></section>",
-        "<section class='focus-block' id='all-works'><div class='focus-section-head'><small>ALL WORKS</small><h2>すべての実績</h2></div>",
+        "<section class='focus-block' id='all-works'><div class='focus-section-head'><small>AI WORKS</small><h2>AI実績</h2></div>",
         "<p class='focus-section-lead'>講習で扱う考え方を、地域交流、福祉、店舗、EC、予約、業務システムで実際に使った支援例です。</p><div class='focus-content-shell'>",
         _render_works_section(),
         "</div><div class='focus-content-actions'><a class='focus-btn secondary' href='#contact'>似た課題を相談する</a></div></section>",
-        "<section class='focus-block soft' id='flow'><div class='focus-section-head'><small>HOW IT WORKS</small><h2>講習から、仕事で使うまで</h2></div><div class='focus-flow'>",
+        "<section class='focus-block soft' id='flow'><div class='focus-section-head'><small>HOW IT WORKS</small><h2>講習から、仕事で使うまで</h2></div>",
+        "<figure class='focus-flow-visual'><img src='/img/blog-ai-agent-course-section-1-20260714.webp' alt='相談、確認、修正、保存を循環させるAIエージェント講習の流れ' loading='lazy' decoding='async'></figure><div class='focus-flow'>",
         "<article class='focus-step'><b>01</b><h3>持ち込む</h3><p>止まっている仕事や、繰り返している作業を持ち込みます。</p></article>",
         "<article class='focus-step'><b>02</b><h3>一緒に動かす</h3><p>AIエージェントへの依頼、確認、修正をその場で実践します。</p></article>",
         "<article class='focus-step'><b>03</b><h3>手順に残す</h3><p>成果物と次回の進め方を保存し、自分の仕事へ戻します。</p></article></div></section>",

@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://static.simonwillison.net/static/2026/kimi-3-pelican.jpg",
-      "published": "2026-07-16T20:19:30+00:00"
+      "published": "2026-07-16T20:19:30+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "4964f349ea673ece",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/gettyimages-2283395662.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.727373918039%2C100%2C78.545252163922&amp;w=1200",
-      "published": "2026-07-16T13:58:37-04:00"
+      "published": "2026-07-16T13:58:37-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "b177da08daffe86b",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/gemininotebook.png?quality=90&amp;strip=all&amp;crop=0%2C3.479841264548%2C100%2C93.040317470904&amp;w=1200",
-      "published": "2026-07-16T12:00:00-04:00"
+      "published": "2026-07-16T12:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "c26523bd4cc884f8",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/STKB364_CLAUDE_2_C_96d15c.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-16T09:00:00-04:00"
+      "published": "2026-07-16T09:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "00c4fe663dbb859d",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/STK450_EU_E-2-1.jpg?quality=90&amp;strip=all&amp;crop=0%2C9.9676601489831%2C100%2C80.064679702034&amp;w=1200",
-      "published": "2026-07-16T08:06:51-04:00"
+      "published": "2026-07-16T08:06:51-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "25ac6c58279d0d07",
@@ -113,7 +123,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/268595_AI_policing_STILL_CVirginia0.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-16T07:00:00-04:00"
+      "published": "2026-07-16T07:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "0e9341a39884a7ff",
@@ -132,7 +144,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-07-16T17:45:59+00:00"
+      "published": "2026-07-16T17:45:59+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "c100323f7493cc73",
@@ -151,7 +165,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://static.simonwillison.net/static/2026/inkling-pelican.jpg",
-      "published": "2026-07-16T15:35:25+00:00"
+      "published": "2026-07-16T15:35:25+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "4b7ee7ef72010505",
@@ -170,7 +186,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-07-16T13:26:10+00:00"
+      "published": "2026-07-16T13:26:10+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "04ecf19726888383",
@@ -189,7 +207,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/wyeOW5FaVMo/hqdefault.jpg",
-      "published": "2026-07-16T15:26:10+00:00"
+      "published": "2026-07-16T15:26:10+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     }
   ]
 }

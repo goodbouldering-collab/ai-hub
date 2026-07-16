@@ -959,6 +959,38 @@ footer {
   color: var(--muted);
   font-size: 12.5px !important;
 }
+.tr-section-collapsible > summary {
+  list-style: none;
+  cursor: pointer;
+  border-radius: 14px;
+}
+.tr-section-collapsible > summary::-webkit-details-marker { display: none; }
+.tr-section-collapsible > summary .tr-section-head {
+  margin-bottom: 10px;
+  padding-right: 44px !important;
+  position: relative;
+}
+.tr-section-collapsible > summary .tr-section-head::after {
+  content: "+";
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  width: 25px;
+  height: 25px;
+  display: grid;
+  place-items: center;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid var(--glass-border);
+  color: var(--primary);
+  font-size: 17px;
+}
+.tr-section-collapsible[open] > summary .tr-section-head::after { content: "−"; }
+.tr-section-collapsible > summary:focus-visible {
+  outline: 3px solid rgba(37,99,235,.28);
+  outline-offset: 3px;
+}
 .tr-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -1108,6 +1140,25 @@ footer {
   font-size: 12px;
   line-height: 1.55;
 }
+.tr-format-flow {
+  margin: 18px 0 26px;
+  padding: 13px 16px;
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  background: #fff;
+  color: var(--text-soft);
+  font-size: 14px;
+  font-weight: 850;
+  line-height: 1.7;
+  text-align: center;
+}
+.tr-format-flow small {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 11.5px;
+  font-weight: 600;
+}
 .tr-card .tr-meta {
   row-gap: 7px;
 }
@@ -1158,145 +1209,205 @@ footer {
   border: 1px solid rgba(37,99,235,.2);
   font-weight: 900;
 }
+.lecture-page .content-wrap.lecture-content {
+  width: 100%;
+  max-width: 920px;
+  margin-right: auto;
+  margin-left: auto;
+  line-height: 1.9;
+}
+.lecture-content p,
+.lecture-content ul,
+.lecture-content ol {
+  font-size: 16px;
+  line-height: 1.9;
+}
+.lecture-content h3 {
+  font-size: 18px;
+  line-height: 1.55;
+  margin-top: 1.8em;
+}
+.lecture-content a,
+.lecture-content code {
+  overflow-wrap: anywhere;
+}
+.lecture-table-scroll {
+  width: 100%;
+  max-width: 100%;
+  margin: 18px 0 28px;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  -webkit-overflow-scrolling: touch;
+}
+.lecture-table-scroll:focus-visible {
+  outline: 3px solid rgba(37,99,235,.28);
+  outline-offset: 3px;
+}
+.lecture-table-scroll table {
+  width: 100%;
+  min-width: 620px;
+  margin: 0 !important;
+  border: 0 !important;
+  border-collapse: collapse;
+}
+.lecture-content table:not([class]) th,
+.lecture-content table:not([class]) td {
+  padding: 11px 13px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+.lecture-content table:not([class]) th {
+  background: #eef5ff;
+  color: var(--text);
+  font-weight: 800;
+}
 .lecture-shell {
   margin: 0 0 22px;
-  padding: 18px;
+  padding: clamp(18px, 3vw, 24px);
   border: 1px solid rgba(37,99,235,.16);
   border-radius: 16px;
   background:
     radial-gradient(circle at 100% 0%, rgba(15,139,141,.10), transparent 28%),
     linear-gradient(135deg, #f8fbff 0%, #fff 55%, #f6fef9 100%);
 }
-.lecture-shell-head {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 14px;
-  align-items: start;
-}
 .lecture-shell-title {
-  font-size: 18px;
+  font-size: 19px;
   font-weight: 900;
   color: var(--text);
   line-height: 1.4;
 }
 .lecture-shell-desc {
-  margin: 5px 0 0 !important;
+  margin: 6px 0 0 !important;
   color: var(--text-soft) !important;
-  font-size: 13.5px !important;
-  line-height: 1.7 !important;
+  font-size: 16px !important;
+  line-height: 1.85 !important;
+}
+.lecture-shell-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 8px;
+  margin: 16px 0 0;
+}
+.lecture-meta-item {
+  padding: 10px 12px;
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  background: rgba(255,255,255,.84);
+}
+.lecture-meta-item span {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .06em;
+}
+.lecture-meta-item b {
+  display: block;
+  margin-top: 3px;
+  color: var(--text);
+  font-size: 13.5px;
+  line-height: 1.55;
 }
 .lecture-shell-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  justify-content: flex-end;
+  margin-top: 16px;
 }
-.lecture-home-link {
+.lecture-shell-link {
   display: inline-flex;
   align-items: center;
-  min-height: 34px;
-  padding: 7px 12px;
-  border-radius: 999px;
+  justify-content: center;
+  min-height: 40px;
+  padding: 9px 14px;
+  border-radius: 10px;
   background: #fff;
   border: 1px solid rgba(37,99,235,.22) !important;
   color: var(--primary) !important;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 800;
   text-decoration: none !important;
 }
-.lecture-format-strip {
+.lecture-shell-link.primary {
+  background: var(--primary);
+  color: #fff !important;
+  border-color: var(--primary) !important;
+}
+.lecture-course-nav {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(130px, auto) minmax(0, 1fr);
+  gap: 10px;
+  margin-top: 40px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+.lecture-course-nav-item {
   display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-  margin-top: 14px;
-}
-.lecture-format-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 5px 9px;
-  border-radius: 999px;
-  border: 1px solid var(--glass-border);
-  background: #fff;
-  color: var(--text-soft);
-  font-size: 11.5px;
-  font-weight: 800;
-  line-height: 1.2;
-}
-.lecture-format-chip small {
-  color: inherit;
-  opacity: .72;
-  font-size: 10px;
-  font-weight: 800;
-}
-.lecture-format-chip.on {
-  background: rgba(37,99,235,.10);
-  border-color: rgba(37,99,235,.22);
-  color: #1d4fd6;
-}
-.lecture-format-chip.missing {
-  color: var(--muted);
-  background: rgba(148,163,184,.10);
-}
-.lecture-jump {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 14px;
-}
-.lecture-jump a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 32px;
-  padding: 7px 11px;
-  border-radius: 10px;
+  min-width: 0;
+  min-height: 74px;
+  flex-direction: column;
+  justify-content: center;
+  padding: 11px 13px;
   border: 1px solid var(--glass-border) !important;
-  background: rgba(255,255,255,.82);
-  color: var(--text-soft) !important;
-  font-size: 12px;
-  font-weight: 800;
+  border-radius: 12px;
+  background: #fff;
+  color: var(--text) !important;
   text-decoration: none !important;
 }
-.lecture-jump a:hover {
-  color: var(--primary) !important;
-  border-color: rgba(37,99,235,.30) !important;
+.lecture-course-nav-item.next { text-align: right; }
+.lecture-course-nav-item.index { text-align: center; }
+.lecture-course-nav-item span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
 }
-.lecture-outline-preview {
-  margin: 14px 0 0;
-  padding: 12px 14px;
-  border-radius: 12px;
-  background: rgba(255,255,255,.78);
-  border: 1px solid var(--glass-border);
-}
-.lecture-outline-preview b {
+.lecture-course-nav-item b {
   display: block;
-  color: var(--text);
-  font-size: 12.5px;
-  margin-bottom: 6px;
+  margin-top: 4px;
+  overflow: hidden;
+  font-size: 13px;
+  line-height: 1.5;
+  text-overflow: ellipsis;
 }
-.lecture-outline-preview ol {
-  columns: 2;
-  column-gap: 22px;
-  margin: 0 0 0 1.2em !important;
-  font-size: 12.5px !important;
-}
-.lecture-outline-preview li {
-  break-inside: avoid;
+.lecture-course-nav-item.disabled {
+  opacity: .55;
+  background: #f8fafc;
 }
 .content-toc {
   scroll-margin-top: 92px;
 }
 @media (max-width: 760px) {
   .tr-home,
-  .lecture-shell-head,
   .tr-featured {
     grid-template-columns: 1fr;
   }
   .tr-format-grid {
     grid-template-columns: 1fr;
   }
-  .lecture-outline-preview ol {
-    columns: 1;
+  .lecture-course-nav {
+    grid-template-columns: 1fr;
+  }
+  .lecture-course-nav-item.next,
+  .lecture-course-nav-item.index {
+    text-align: left;
+  }
+}
+@media (max-width: 640px) {
+  .lecture-page .content-wrap.lecture-content {
+    padding: 24px 18px;
+  }
+  .lecture-content p,
+  .lecture-content ul,
+  .lecture-content ol {
+    font-size: 16px;
+  }
+  .lecture-shell-actions {
+    display: grid;
+    grid-template-columns: 1fr;
   }
 }
 
@@ -10923,7 +11034,7 @@ header.site-header:hover {
   }
 })();
 </script>
-<header class='site-header scrolled' id='site-header' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html' aria-label='AI相談 彦根 トップへ'><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span></span></a><nav class='site-nav' aria-label='メインナビ'><a class='nav-link nav-essential' href='/#packages'>講習・相談</a><a class='nav-link nav-essential' href='/programming-map.html'>AIコーディング</a><a class='nav-link nav-essential' href='/#lectures'>受講資料</a><div class='menu-wrap'><button class='menu-toggle' id='menu-toggle' aria-haspopup='menu' aria-expanded='false'>全メニュー<svg class='chev' width='14' height='14' viewBox='0 0 20 20' fill='none' aria-hidden='true'><path d='M5 8l5 5 5-5' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg></button><div class='menu-drop' id='menu-drop' role='menu'><span class='menu-drop-label'>制作・発信</span><a href='/#all-works'>AI実績</a><a href='/#blog'>ブログ</a><a href='/watch/index.html'>AI Watch</a><span class='menu-drop-label'>案内・確認</span><a href='/#speaker'>講師紹介</a><a href='/#flow'>進め方</a><a href='/#faq'>FAQ</a><a href='../index.html'>ホーム</a></div></div><a class='nav-cta' href='/#contact'>無料相談</a></nav><a class='header-member-login' href='/admin'>会員ログイン</a><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'><svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button></div><div class='mobile-nav generated-mobile-nav' id='mobile-nav'><div class='mobile-nav-panel mobile-nav-panel--public'><a class='login-btn-mobile' href='/#contact'>無料相談</a><a class='mobile-main-link' href='/#packages'>講習・相談</a><span class='mobile-nav-label'>講習・資料</span><div class='mobile-link-grid'><a href='/programming-map.html'>AIコーディング</a><a href='/#lectures'>受講資料</a><a href='/#blog'>ブログ</a></div><span class='mobile-nav-label'>制作・発信</span><div class='mobile-link-grid'><a href='/#all-works'>AI実績</a><a href='/watch/index.html'>AI Watch</a></div><span class='mobile-nav-label'>案内・確認</span><div class='mobile-link-grid'><a href='/#speaker'>講師紹介</a><a href='/#flow'>進め方</a><a href='/#faq'>FAQ</a><a href='../index.html'>ホーム</a></div></div></div></header><script>(function(){var t=document.getElementById('menu-toggle'),d=document.getElementById('menu-drop'),b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav');function closeDrop(){if(!d||!t)return;d.classList.remove('open');t.setAttribute('aria-expanded','false');}function closeMobile(){if(!n||!b)return;n.classList.remove('open');b.setAttribute('aria-expanded','false');}if(t&&d){t.addEventListener('click',function(e){e.stopPropagation();var o=d.classList.toggle('open');t.setAttribute('aria-expanded',o?'true':'false');});document.addEventListener('click',function(e){if(!d.contains(e.target)&&!t.contains(e.target))closeDrop();});}if(b&&n){b.addEventListener('click',function(e){e.stopPropagation();var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMobile);});}document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDrop();closeMobile();}});})();</script><header><h1>クラウドAIエージェント時代のRAG設計</h1><div class='speaker-meta'><span class='role'>ブログ / RAG設計・AIエージェント</span><span>📅 2026-06-18</span><span>由井 辰美 / AIハブ</span></div></header><div class='content-wrap'><div class='content-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#ragは-ai専用の資料棚'>RAGは「AI専用の資料棚」</a></li><li><a href='#大事なのは-どの順番で見に行くか'>大事なのは「どの順番で見に行くか」</a></li><li><a href='#ec・交流会・ブログでは見る順番が変わる'>EC・交流会・ブログでは見る順番が変わる</a></li><li><a href='#最後に-人間が確認する場所を決める'>最後に、人間が確認する場所を決める</a></li></ol></div><figure>
+<header class='site-header scrolled' id='site-header' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html' aria-label='AI相談 彦根 トップへ'><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span></span></a><nav class='site-nav' aria-label='メインナビ'><a class='nav-link nav-essential' href='/#packages'>講習・相談</a><a class='nav-link nav-essential' href='/programming-map.html'>AIコーディング</a><a class='nav-link nav-essential' href='/#lectures'>受講資料</a><div class='menu-wrap'><button class='menu-toggle' id='menu-toggle' aria-haspopup='menu' aria-expanded='false'>全メニュー<svg class='chev' width='14' height='14' viewBox='0 0 20 20' fill='none' aria-hidden='true'><path d='M5 8l5 5 5-5' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg></button><div class='menu-drop' id='menu-drop' role='menu'><span class='menu-drop-label'>制作・発信</span><a href='/#all-works'>AI実績</a><a href='/#blog'>ブログ</a><a href='/watch/index.html'>AI Watch</a><span class='menu-drop-label'>案内・確認</span><a href='/#speaker'>講師紹介</a><a href='/#flow'>進め方</a><a href='/#faq'>FAQ</a><a href='../index.html'>ホーム</a></div></div><a class='nav-cta' href='/#contact'>無料相談</a></nav><a class='header-member-login' href='/admin'>会員ログイン</a><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'><svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button></div><div class='mobile-nav generated-mobile-nav' id='mobile-nav'><div class='mobile-nav-panel mobile-nav-panel--public'><a class='login-btn-mobile' href='/#contact'>無料相談</a><a class='mobile-main-link' href='/#packages'>講習・相談</a><span class='mobile-nav-label'>講習・資料</span><div class='mobile-link-grid'><a href='/programming-map.html'>AIコーディング</a><a href='/#lectures'>受講資料</a><a href='/#blog'>ブログ</a></div><span class='mobile-nav-label'>制作・発信</span><div class='mobile-link-grid'><a href='/#all-works'>AI実績</a><a href='/watch/index.html'>AI Watch</a></div><span class='mobile-nav-label'>案内・確認</span><div class='mobile-link-grid'><a href='/#speaker'>講師紹介</a><a href='/#flow'>進め方</a><a href='/#faq'>FAQ</a><a href='../index.html'>ホーム</a></div></div></div></header><script>(function(){var t=document.getElementById('menu-toggle'),d=document.getElementById('menu-drop'),b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav');function closeDrop(){if(!d||!t)return;d.classList.remove('open');t.setAttribute('aria-expanded','false');}function closeMobile(){if(!n||!b)return;n.classList.remove('open');b.setAttribute('aria-expanded','false');}if(t&&d){t.addEventListener('click',function(e){e.stopPropagation();var o=d.classList.toggle('open');t.setAttribute('aria-expanded',o?'true':'false');});document.addEventListener('click',function(e){if(!d.contains(e.target)&&!t.contains(e.target))closeDrop();});}if(b&&n){b.addEventListener('click',function(e){e.stopPropagation();var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMobile);});}document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDrop();closeMobile();}});})();</script><main id='main-content'><header><h1>クラウドAIエージェント時代のRAG設計</h1><div class='speaker-meta'><span class='role'>ブログ / RAG設計・AIエージェント</span><span>📅 2026-06-18</span><span>由井 辰美 / AIハブ</span></div></header><div class='content-wrap'><div class='content-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#ragは-ai専用の資料棚'>RAGは「AI専用の資料棚」</a></li><li><a href='#大事なのは-どの順番で見に行くか'>大事なのは「どの順番で見に行くか」</a></li><li><a href='#ec・交流会・ブログでは見る順番が変わる'>EC・交流会・ブログでは見る順番が変わる</a></li><li><a href='#最後に-人間が確認する場所を決める'>最後に、人間が確認する場所を決める</a></li></ol></div><figure>
   <img src="/img/blog-rag-daily-agent-20260618.svg" alt="クラウドAIエージェントが毎日、売上、問い合わせ、レビュー、競合情報を確認する図解" loading="eager" decoding="async">
   <figcaption>クラウドAIエージェントは、一度の質問よりも、毎日の確認と提案で力を発揮する。</figcaption>
 </figure>
@@ -11051,7 +11162,7 @@ SEO
 <li><a href="https://cloud.google.com/use-cases/retrieval-augmented-generation">Google Cloud: What is Retrieval-Augmented Generation (RAG)?</a></li>
 <li><a href="https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview">Microsoft Learn: Retrieval-augmented generation in Azure AI Search</a></li>
 <li><a href="https://www.ibm.com/think/topics/retrieval-augmented-generation">IBM Think: What is retrieval augmented generation?</a></li>
-</ul></div><footer>AI相談 / Generated by Claude</footer><button class='back-to-top' id='backTop' aria-label='トップへ戻る'>↑</button><script>(function(){var b=document.getElementById('backTop');if(!b)return;window.addEventListener('scroll',function(){b.classList.toggle('show',window.scrollY>400);});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script><script>
+</ul></div></main><footer>AI相談 / Generated by Claude</footer><button class='back-to-top' id='backTop' aria-label='トップへ戻る'>↑</button><script>(function(){var b=document.getElementById('backTop');if(!b)return;window.addEventListener('scroll',function(){b.classList.toggle('show',window.scrollY>400);});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script><script>
 (function(){
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var sel = '.tr-card, .pf-card, .profile-stat, .profile-tech-card, .sns-card, article, .content-toc, .tr-section, .profile-tl-item, .profile-app-card, .profile-biz-card';

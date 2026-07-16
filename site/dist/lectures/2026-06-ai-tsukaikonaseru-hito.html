@@ -1,4 +1,4 @@
-<!doctype html><html lang='ja'><head><meta charset='utf-8'><link rel='icon' type='image/svg+xml' href='/favicon.svg'><link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png'><link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png'><link rel='shortcut icon' href='/favicon.ico'><link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png'><link rel='manifest' href='/site.webmanifest'><link rel='mask-icon' href='/favicon.svg' color='#0EA5E9'><meta name='theme-color' content='#F7FBFF'><meta name='viewport' content='width=device-width,initial-scale=1'><title>AIを仕事で使える人になる — 5つの実践 | AI相談</title><meta name='description' content='目的を決める、材料を渡す、完成形を伝える、直す、人が確認する。AIを仕事に入れる5つの手順を、依頼文の例と一緒に学ぶ。'><link rel='canonical' href='https://ai-hub-jp.vercel.app/lectures/2026-06-ai-tsukaikonaseru-hito.html'><meta property='og:title' content='AIを仕事で使える人になる — 5つの実践'><meta property='og:description' content='目的を決める、材料を渡す、完成形を伝える、直す、人が確認する。AIを仕事に入れる5つの手順を、依頼文の例と一緒に学ぶ。'><meta property='og:url' content='https://ai-hub-jp.vercel.app/lectures/2026-06-ai-tsukaikonaseru-hito.html'><meta property='og:type' content='article'><meta property='og:site_name' content='AI相談'><meta name='twitter:card' content='summary'><script type='application/ld+json'>{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "AIを仕事で使える人になる — 5つの実践", "datePublished": "2026-06-16", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://ai-hub-jp.vercel.app/lectures/2026-06-ai-tsukaikonaseru-hito.html"}, "author": {"@type": "Person", "name": "由井 辰美"}, "publisher": {"@type": "Organization", "name": "AI相談", "url": "https://ai-hub-jp.vercel.app"}, "description": "目的を決める、材料を渡す、完成形を伝える、直す、人が確認する。AIを仕事に入れる5つの手順を、依頼文の例と一緒に学ぶ。", "speakable": {"@type": "SpeakableSpecification", "cssSelector": ["h1", ".content-wrap p:first-of-type"]}}</script><style>
+<!doctype html><html lang='ja'><head><meta charset='utf-8'><link rel='icon' type='image/svg+xml' href='/favicon.svg'><link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png'><link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png'><link rel='shortcut icon' href='/favicon.ico'><link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png'><link rel='manifest' href='/site.webmanifest'><link rel='mask-icon' href='/favicon.svg' color='#0EA5E9'><meta name='theme-color' content='#F7FBFF'><meta name='viewport' content='width=device-width,initial-scale=1'><title>AIを仕事で使える人になる — 旧資料のご案内 | AI相談</title><meta name='description' content='この旧資料の内容は、15分で実践できる「毎週の仕事を1つ、AIで楽にする」へ統合しました。'><link rel='canonical' href='https://ai-hub-jp.vercel.app/lectures/2026-06-ai-tsukaikonaseru-hito.html'><meta property='og:title' content='AIを仕事で使える人になる — 旧資料のご案内'><meta property='og:description' content='この旧資料の内容は、15分で実践できる「毎週の仕事を1つ、AIで楽にする」へ統合しました。'><meta property='og:url' content='https://ai-hub-jp.vercel.app/lectures/2026-06-ai-tsukaikonaseru-hito.html'><meta property='og:type' content='article'><meta property='og:site_name' content='AI相談'><meta name='twitter:card' content='summary'><script type='application/ld+json'>{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "AIを仕事で使える人になる — 旧資料のご案内", "datePublished": "2026-06-16", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://ai-hub-jp.vercel.app/lectures/2026-06-ai-tsukaikonaseru-hito.html"}, "author": {"@type": "Person", "name": "由井 辰美"}, "publisher": {"@type": "Organization", "name": "AI相談", "url": "https://ai-hub-jp.vercel.app"}, "description": "この旧資料の内容は、15分で実践できる「毎週の仕事を1つ、AIで楽にする」へ統合しました。", "speakable": {"@type": "SpeakableSpecification", "cssSelector": ["h1", ".content-wrap p:first-of-type"]}}</script><style>
 :root {
   --bg-base:#f8fafc;
   --bg-white:#ffffff;
@@ -959,6 +959,38 @@ footer {
   color: var(--muted);
   font-size: 12.5px !important;
 }
+.tr-section-collapsible > summary {
+  list-style: none;
+  cursor: pointer;
+  border-radius: 14px;
+}
+.tr-section-collapsible > summary::-webkit-details-marker { display: none; }
+.tr-section-collapsible > summary .tr-section-head {
+  margin-bottom: 10px;
+  padding-right: 44px !important;
+  position: relative;
+}
+.tr-section-collapsible > summary .tr-section-head::after {
+  content: "+";
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  width: 25px;
+  height: 25px;
+  display: grid;
+  place-items: center;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid var(--glass-border);
+  color: var(--primary);
+  font-size: 17px;
+}
+.tr-section-collapsible[open] > summary .tr-section-head::after { content: "−"; }
+.tr-section-collapsible > summary:focus-visible {
+  outline: 3px solid rgba(37,99,235,.28);
+  outline-offset: 3px;
+}
 .tr-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -1108,6 +1140,25 @@ footer {
   font-size: 12px;
   line-height: 1.55;
 }
+.tr-format-flow {
+  margin: 18px 0 26px;
+  padding: 13px 16px;
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  background: #fff;
+  color: var(--text-soft);
+  font-size: 14px;
+  font-weight: 850;
+  line-height: 1.7;
+  text-align: center;
+}
+.tr-format-flow small {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 11.5px;
+  font-weight: 600;
+}
 .tr-card .tr-meta {
   row-gap: 7px;
 }
@@ -1158,145 +1209,205 @@ footer {
   border: 1px solid rgba(37,99,235,.2);
   font-weight: 900;
 }
+.lecture-page .content-wrap.lecture-content {
+  width: 100%;
+  max-width: 920px;
+  margin-right: auto;
+  margin-left: auto;
+  line-height: 1.9;
+}
+.lecture-content p,
+.lecture-content ul,
+.lecture-content ol {
+  font-size: 16px;
+  line-height: 1.9;
+}
+.lecture-content h3 {
+  font-size: 18px;
+  line-height: 1.55;
+  margin-top: 1.8em;
+}
+.lecture-content a,
+.lecture-content code {
+  overflow-wrap: anywhere;
+}
+.lecture-table-scroll {
+  width: 100%;
+  max-width: 100%;
+  margin: 18px 0 28px;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  -webkit-overflow-scrolling: touch;
+}
+.lecture-table-scroll:focus-visible {
+  outline: 3px solid rgba(37,99,235,.28);
+  outline-offset: 3px;
+}
+.lecture-table-scroll table {
+  width: 100%;
+  min-width: 620px;
+  margin: 0 !important;
+  border: 0 !important;
+  border-collapse: collapse;
+}
+.lecture-content table:not([class]) th,
+.lecture-content table:not([class]) td {
+  padding: 11px 13px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+.lecture-content table:not([class]) th {
+  background: #eef5ff;
+  color: var(--text);
+  font-weight: 800;
+}
 .lecture-shell {
   margin: 0 0 22px;
-  padding: 18px;
+  padding: clamp(18px, 3vw, 24px);
   border: 1px solid rgba(37,99,235,.16);
   border-radius: 16px;
   background:
     radial-gradient(circle at 100% 0%, rgba(15,139,141,.10), transparent 28%),
     linear-gradient(135deg, #f8fbff 0%, #fff 55%, #f6fef9 100%);
 }
-.lecture-shell-head {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 14px;
-  align-items: start;
-}
 .lecture-shell-title {
-  font-size: 18px;
+  font-size: 19px;
   font-weight: 900;
   color: var(--text);
   line-height: 1.4;
 }
 .lecture-shell-desc {
-  margin: 5px 0 0 !important;
+  margin: 6px 0 0 !important;
   color: var(--text-soft) !important;
-  font-size: 13.5px !important;
-  line-height: 1.7 !important;
+  font-size: 16px !important;
+  line-height: 1.85 !important;
+}
+.lecture-shell-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 8px;
+  margin: 16px 0 0;
+}
+.lecture-meta-item {
+  padding: 10px 12px;
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  background: rgba(255,255,255,.84);
+}
+.lecture-meta-item span {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .06em;
+}
+.lecture-meta-item b {
+  display: block;
+  margin-top: 3px;
+  color: var(--text);
+  font-size: 13.5px;
+  line-height: 1.55;
 }
 .lecture-shell-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  justify-content: flex-end;
+  margin-top: 16px;
 }
-.lecture-home-link {
+.lecture-shell-link {
   display: inline-flex;
   align-items: center;
-  min-height: 34px;
-  padding: 7px 12px;
-  border-radius: 999px;
+  justify-content: center;
+  min-height: 40px;
+  padding: 9px 14px;
+  border-radius: 10px;
   background: #fff;
   border: 1px solid rgba(37,99,235,.22) !important;
   color: var(--primary) !important;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 800;
   text-decoration: none !important;
 }
-.lecture-format-strip {
+.lecture-shell-link.primary {
+  background: var(--primary);
+  color: #fff !important;
+  border-color: var(--primary) !important;
+}
+.lecture-course-nav {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(130px, auto) minmax(0, 1fr);
+  gap: 10px;
+  margin-top: 40px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+.lecture-course-nav-item {
   display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-  margin-top: 14px;
-}
-.lecture-format-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 5px 9px;
-  border-radius: 999px;
-  border: 1px solid var(--glass-border);
-  background: #fff;
-  color: var(--text-soft);
-  font-size: 11.5px;
-  font-weight: 800;
-  line-height: 1.2;
-}
-.lecture-format-chip small {
-  color: inherit;
-  opacity: .72;
-  font-size: 10px;
-  font-weight: 800;
-}
-.lecture-format-chip.on {
-  background: rgba(37,99,235,.10);
-  border-color: rgba(37,99,235,.22);
-  color: #1d4fd6;
-}
-.lecture-format-chip.missing {
-  color: var(--muted);
-  background: rgba(148,163,184,.10);
-}
-.lecture-jump {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 14px;
-}
-.lecture-jump a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 32px;
-  padding: 7px 11px;
-  border-radius: 10px;
+  min-width: 0;
+  min-height: 74px;
+  flex-direction: column;
+  justify-content: center;
+  padding: 11px 13px;
   border: 1px solid var(--glass-border) !important;
-  background: rgba(255,255,255,.82);
-  color: var(--text-soft) !important;
-  font-size: 12px;
-  font-weight: 800;
+  border-radius: 12px;
+  background: #fff;
+  color: var(--text) !important;
   text-decoration: none !important;
 }
-.lecture-jump a:hover {
-  color: var(--primary) !important;
-  border-color: rgba(37,99,235,.30) !important;
+.lecture-course-nav-item.next { text-align: right; }
+.lecture-course-nav-item.index { text-align: center; }
+.lecture-course-nav-item span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
 }
-.lecture-outline-preview {
-  margin: 14px 0 0;
-  padding: 12px 14px;
-  border-radius: 12px;
-  background: rgba(255,255,255,.78);
-  border: 1px solid var(--glass-border);
-}
-.lecture-outline-preview b {
+.lecture-course-nav-item b {
   display: block;
-  color: var(--text);
-  font-size: 12.5px;
-  margin-bottom: 6px;
+  margin-top: 4px;
+  overflow: hidden;
+  font-size: 13px;
+  line-height: 1.5;
+  text-overflow: ellipsis;
 }
-.lecture-outline-preview ol {
-  columns: 2;
-  column-gap: 22px;
-  margin: 0 0 0 1.2em !important;
-  font-size: 12.5px !important;
-}
-.lecture-outline-preview li {
-  break-inside: avoid;
+.lecture-course-nav-item.disabled {
+  opacity: .55;
+  background: #f8fafc;
 }
 .content-toc {
   scroll-margin-top: 92px;
 }
 @media (max-width: 760px) {
   .tr-home,
-  .lecture-shell-head,
   .tr-featured {
     grid-template-columns: 1fr;
   }
   .tr-format-grid {
     grid-template-columns: 1fr;
   }
-  .lecture-outline-preview ol {
-    columns: 1;
+  .lecture-course-nav {
+    grid-template-columns: 1fr;
+  }
+  .lecture-course-nav-item.next,
+  .lecture-course-nav-item.index {
+    text-align: left;
+  }
+}
+@media (max-width: 640px) {
+  .lecture-page .content-wrap.lecture-content {
+    padding: 24px 18px;
+  }
+  .lecture-content p,
+  .lecture-content ul,
+  .lecture-content ol {
+    font-size: 16px;
+  }
+  .lecture-shell-actions {
+    display: grid;
+    grid-template-columns: 1fr;
   }
 }
 
@@ -10906,7 +11017,7 @@ header.site-header:hover {
     font-size: 11.5px !important;
   }
 }
-</style></head><body><div class='container'>
+</style></head><body class='lecture-page'><div class='container'>
 <script>
 (function(){
   function reveal(){
@@ -10923,277 +11034,52 @@ header.site-header:hover {
   }
 })();
 </script>
-<header class='site-header scrolled' id='site-header' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html' aria-label='AI相談 彦根 トップへ'><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span></span></a><nav class='site-nav' aria-label='メインナビ'><a class='nav-link nav-essential' href='/#packages'>講習・相談</a><a class='nav-link nav-essential' href='/programming-map.html'>AIコーディング</a><a class='nav-link nav-essential nav-current' href='/#lectures' aria-current='page'>受講資料</a><div class='menu-wrap'><button class='menu-toggle' id='menu-toggle' aria-haspopup='menu' aria-expanded='false'>全メニュー<svg class='chev' width='14' height='14' viewBox='0 0 20 20' fill='none' aria-hidden='true'><path d='M5 8l5 5 5-5' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg></button><div class='menu-drop' id='menu-drop' role='menu'><span class='menu-drop-label'>制作・発信</span><a href='/#all-works'>AI実績</a><a href='/#blog'>ブログ</a><a href='/watch/index.html'>AI Watch</a><span class='menu-drop-label'>案内・確認</span><a href='/#speaker'>講師紹介</a><a href='/#flow'>進め方</a><a href='/#faq'>FAQ</a><a href='../index.html'>ホーム</a></div></div><a class='nav-cta' href='/#contact'>無料相談</a></nav><a class='header-member-login' href='/admin'>会員ログイン</a><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'><svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button></div><div class='mobile-nav generated-mobile-nav' id='mobile-nav'><div class='mobile-nav-panel mobile-nav-panel--public'><a class='login-btn-mobile' href='/#contact'>無料相談</a><a class='mobile-main-link' href='/#packages'>講習・相談</a><span class='mobile-nav-label'>講習・資料</span><div class='mobile-link-grid'><a href='/programming-map.html'>AIコーディング</a><a href='/#lectures'>受講資料</a><a href='/#blog'>ブログ</a></div><span class='mobile-nav-label'>制作・発信</span><div class='mobile-link-grid'><a href='/#all-works'>AI実績</a><a href='/watch/index.html'>AI Watch</a></div><span class='mobile-nav-label'>案内・確認</span><div class='mobile-link-grid'><a href='/#speaker'>講師紹介</a><a href='/#flow'>進め方</a><a href='/#faq'>FAQ</a><a href='../index.html'>ホーム</a></div></div></div></header><script>(function(){var t=document.getElementById('menu-toggle'),d=document.getElementById('menu-drop'),b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav');function closeDrop(){if(!d||!t)return;d.classList.remove('open');t.setAttribute('aria-expanded','false');}function closeMobile(){if(!n||!b)return;n.classList.remove('open');b.setAttribute('aria-expanded','false');}if(t&&d){t.addEventListener('click',function(e){e.stopPropagation();var o=d.classList.toggle('open');t.setAttribute('aria-expanded',o?'true':'false');});document.addEventListener('click',function(e){if(!d.contains(e.target)&&!t.contains(e.target))closeDrop();});}if(b&&n){b.addEventListener('click',function(e){e.stopPropagation();var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMobile);});}document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDrop();closeMobile();}});})();</script><header><h1>AIを仕事で使える人になる — 5つの実践</h1><div class='speaker-meta'><span class='role'>SEOブログ / AI活用</span><span>📅 2026-06-16</span><span>由井 辰美 / AI相談</span></div></header><div class='content-wrap'><section class='lecture-shell' aria-label='この資料の読み方'><div class='lecture-shell-head'><div><div class='lecture-shell-title'>この資料の読み方</div><p class='lecture-shell-desc'>目的を決める、材料を渡す、完成形を伝える、直す、人が確認する。AIを仕事に入れる5つの手順を、依頼文の例と一緒に学ぶ。</p></div><div class='lecture-shell-actions'><a class='lecture-home-link' href='../programming-map.html'>AIエージェント講習</a><a class='lecture-home-link' href='./index.html'>受講資料ホーム</a></div></div><div class='lecture-format-strip'><span class='lecture-format-chip on'>本文<small>あり</small></span><span class='lecture-format-chip on'>目次<small>あり</small></span><span class='lecture-format-chip on'>チェック<small>あり</small></span></div><div class='lecture-jump'><a href='./index.html'>受講資料ホーム</a><a href='../programming-map.html'>AIエージェント講習</a><a href='#lecture-toc'>目次</a></div><div class='lecture-outline-preview'><b>この資料の流れ</b><ol><li>この資料でわかること</li><li>まず結論</li><li>順番に理解する本文</li><li>具体例 / やってみる</li><li>振り返り / 次の一歩</li></ol></div></section><div class='content-toc' id='lecture-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#この資料でわかること'>この資料でわかること</a></li><li><a href='#まず結論'>まず結論</a></li><li><a href='#順番に理解する本文'>順番に理解する本文</a></li><li><a href='#具体例-やってみる'>具体例 / やってみる</a></li><li><a href='#振り返り-次の一歩'>振り返り / 次の一歩</a></li></ol></div><style>
-.ai-use{--ink:#102033;--soft:#405166;--muted:#6b7280;--line:#d8e2ee;--blue:#2563eb;--green:#15803d;--red:#b42318;--amber:#b7791f;color:var(--ink)}.ai-use *{box-sizing:border-box}
-.ai-use-hero{display:grid;grid-template-columns:1.05fr .95fr;gap:22px;align-items:center;margin:4px 0 26px;padding:22px;border:1px solid var(--line);border-radius:8px;background:linear-gradient(135deg,#f8fbff,#fff 48%,#f2fbf6)}.ai-use-hero p{font-size:16px;line-height:1.9;color:var(--soft);margin:0 0 12px}.ai-use-hero strong{color:var(--ink)}.ai-use-hero img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:7px;border:1px solid var(--line);display:block}
-.ai-use-note{border:1px solid var(--line);border-left:5px solid var(--blue);background:#f8fbff;border-radius:8px;padding:16px 18px;margin:18px 0 26px;color:var(--soft);line-height:1.85}.ai-use-note b{color:var(--ink)}
-.ai-use-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:18px 0 28px}.ai-use-card{border:1px solid var(--line);border-top:5px solid var(--blue);border-radius:8px;background:#fff;padding:18px}.ai-use-card.bad{border-top-color:var(--red)}.ai-use-card.good{border-top-color:var(--green)}.ai-use-card.amber{border-top-color:var(--amber)}.ai-use-card h3{font-size:20px;line-height:1.4;margin:0 0 10px}.ai-use-card p,.ai-use-card li{font-size:14.5px;line-height:1.8;color:var(--soft)}
-.ai-use-table{width:100%;border-collapse:collapse;margin:16px 0 28px;border:1px solid var(--line);font-size:14px;background:#fff}.ai-use-table th{background:#172033;color:#fff;text-align:left;padding:12px 14px}.ai-use-table td{border-top:1px solid var(--line);padding:12px 14px;vertical-align:top;line-height:1.75;color:var(--soft)}.ai-use-table td:first-child{font-weight:800;color:var(--ink)}
-.ai-use-steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:16px 0 28px;counter-reset:step}.ai-use-step{border:1px solid var(--line);border-top:5px solid var(--blue);border-radius:8px;background:#fff;padding:14px;min-height:145px}.ai-use-step:before{counter-increment:step;content:counter(step);display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--blue);color:#fff;font-weight:900;margin-bottom:9px}.ai-use-step b{display:block;margin-bottom:5px}.ai-use-step span{font-size:13.5px;line-height:1.65;color:var(--soft)}
-.ai-use-example{background:#101827;color:#e5edf7;border-radius:8px;padding:18px 20px;margin:14px 0 28px;line-height:1.8;font-size:14px;white-space:pre-wrap}.ai-use-check{list-style:none;margin:16px 0 28px;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.ai-use-check li{border:1px solid var(--line);border-radius:8px;padding:12px 13px 12px 38px;position:relative;background:#fff;color:var(--soft);line-height:1.65;font-size:14px}.ai-use-check li:before{content:"□";position:absolute;left:13px;top:9px;color:var(--blue);font-size:20px;font-weight:900}
-.ai-use-cta{background:linear-gradient(135deg,#172033,#2458d4);color:#fff;border-radius:8px;padding:22px;margin:24px 0 30px}.ai-use-cta h2,.ai-use-cta h3{color:#fff;margin-top:0}.ai-use-cta p{color:#fff;line-height:1.85}.ai-use-cta a{display:inline-flex;margin:6px 8px 0 0;padding:10px 14px;border-radius:7px;background:#fff;color:#172033;text-decoration:none;font-weight:800}.ai-use-sources{font-size:13px;color:var(--muted);line-height:1.75}
-@media(max-width:900px){.ai-use-hero,.ai-use-grid,.ai-use-steps,.ai-use-check{grid-template-columns:1fr}.ai-use-hero{padding:18px}}
-</style>
-
-<div class="ai-use">
-<div class="ai-use-hero">
-<div>
-<p><strong>AIを使いこなす人は、難しい呪文を知っている人ではありません。</strong></p>
-<p>「何を良くしたいか」を決め、必要な材料を渡し、出てきた案を直し、最後に人が確かめる人です。</p>
-</div>
-<img src="../img/hero-codex-claude-imagegen-20260616.png" alt="Codex、Claude Code、画像生成を使ってAI活用を仕事に取り入れるイメージ" loading="eager" decoding="async">
-</div>
-<h2 id='この資料でわかること'>この資料でわかること</h2>
+<header class='site-header scrolled' id='site-header' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html' aria-label='AI相談 彦根 トップへ'><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span></span></a><nav class='site-nav' aria-label='メインナビ'><a class='nav-link nav-essential' href='/#packages'>講習・相談</a><a class='nav-link nav-essential' href='/programming-map.html'>AIコーディング</a><a class='nav-link nav-essential nav-current' href='/lectures/index.html' aria-current='page'>受講資料</a><div class='menu-wrap'><button class='menu-toggle' id='menu-toggle' aria-haspopup='menu' aria-expanded='false'>全メニュー<svg class='chev' width='14' height='14' viewBox='0 0 20 20' fill='none' aria-hidden='true'><path d='M5 8l5 5 5-5' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg></button><div class='menu-drop' id='menu-drop' role='menu'><span class='menu-drop-label'>制作・発信</span><a href='/#all-works'>AI実績</a><a href='/#blog'>ブログ</a><a href='/watch/index.html'>AI Watch</a><span class='menu-drop-label'>案内・確認</span><a href='/#speaker'>講師紹介</a><a href='/#flow'>進め方</a><a href='/#faq'>FAQ</a><a href='../index.html'>ホーム</a></div></div><a class='nav-cta' href='/#contact'>無料相談</a></nav><a class='header-member-login' href='/admin'>会員ログイン</a><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'><svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button></div><div class='mobile-nav generated-mobile-nav' id='mobile-nav'><div class='mobile-nav-panel mobile-nav-panel--public'><a class='login-btn-mobile' href='/#contact'>無料相談</a><a class='mobile-main-link' href='/#packages'>講習・相談</a><span class='mobile-nav-label'>講習・資料</span><div class='mobile-link-grid'><a href='/programming-map.html'>AIコーディング</a><a href='/lectures/index.html'>受講資料</a><a href='/#blog'>ブログ</a></div><span class='mobile-nav-label'>制作・発信</span><div class='mobile-link-grid'><a href='/#all-works'>AI実績</a><a href='/watch/index.html'>AI Watch</a></div><span class='mobile-nav-label'>案内・確認</span><div class='mobile-link-grid'><a href='/#speaker'>講師紹介</a><a href='/#flow'>進め方</a><a href='/#faq'>FAQ</a><a href='../index.html'>ホーム</a></div></div></div></header><script>(function(){var t=document.getElementById('menu-toggle'),d=document.getElementById('menu-drop'),b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav');function closeDrop(){if(!d||!t)return;d.classList.remove('open');t.setAttribute('aria-expanded','false');}function closeMobile(){if(!n||!b)return;n.classList.remove('open');b.setAttribute('aria-expanded','false');}if(t&&d){t.addEventListener('click',function(e){e.stopPropagation();var o=d.classList.toggle('open');t.setAttribute('aria-expanded',o?'true':'false');});document.addEventListener('click',function(e){if(!d.contains(e.target)&&!t.contains(e.target))closeDrop();});}if(b&&n){b.addEventListener('click',function(e){e.stopPropagation();var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMobile);});}document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDrop();closeMobile();}});})();</script><main id='main-content'><header><h1>AIを仕事で使える人になる — 旧資料のご案内</h1><div class='speaker-meta'><span class='role'>入門</span><span>目安 1分</span></div></header><div class='content-wrap lecture-content' id='lecture-body'><section class='lecture-shell' aria-label='この資料の読み方'><div class='lecture-shell-title'>この資料の読み方</div><p class='lecture-shell-desc'>この旧資料の内容は、15分で実践できる「毎週の仕事を1つ、AIで楽にする」へ統合しました。</p><div class='lecture-shell-meta'><div class='lecture-meta-item'><span>対象</span><b>以前のURLを保存している人</b></div><div class='lecture-meta-item'><span>ゴール</span><b>自分の経験に合う新しい入門資料または実践資料へ移動できる</b></div></div><div class='lecture-shell-actions'><a class='lecture-shell-link primary' href='#lecture-toc'>目次を見る</a><a class='lecture-shell-link' href='./index.html'>受講資料一覧</a><a class='lecture-shell-link' href='../programming-map.html'>AIエージェント講習</a></div></section><div class='content-toc' id='lecture-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#この資料は誰向けか'>この資料は誰向けか</a></li><li><a href='#今日できるようになること'>今日できるようになること</a></li><li><a href='#まず結論'>まず結論</a></li><li><a href='#順番に理解する本文'>順番に理解する本文</a></li><li><a href='#具体例-やってみる'>具体例 / やってみる</a></li><li><a href='#できたかチェック'>できたかチェック</a></li><li><a href='#次に読む資料'>次に読む資料</a></li><li><a href='#用語・出典'>用語・出典</a></li></ol></div><h2 id='この資料は誰向けか'>この資料は誰向けか</h2>
+<p>以前の「AIを仕事で使える人になる — 5つの実践」を保存している人向けの案内です。</p>
 <ul>
-<li>AIへの頼み方を5つの手順で整理できる</li>
-<li>「何かいい感じに」から、仕事で使える依頼へ変えられる</li>
-<li>ChatGPT、画像生成、Codexなどの役割を分けられる</li>
-<li>AIの答えを安全に確認するポイントがわかる</li>
-<li>今日試す小さな仕事を1つ選べる</li>
+<li><strong>所要時間:</strong> 1分</li>
+<li><strong>このURLの役割:</strong> 古いブックマークやリンクを切らず、新しい受講資料へ案内する</li>
 </ul>
-<div class="ai-use-note">
-<b>対象:</b> AIを仕事で使いたい個人事業主、中小企業、店舗、学校、福祉施設、広報・事務・制作担当者向けです。専門知識がなくても進められます。
-</div>
-<h2 id='まず結論'>まず結論</h2>
-<p>AIを使いこなす基本は、次の5つです。</p>
-<div class="ai-use-steps">
-<div class="ai-use-step"><b>目的</b><span>何を、どの状態まで良くしたいか決める。</span></div>
-<div class="ai-use-step"><b>材料</b><span>AIが判断するための文章、数字、写真、URLなどを渡す。</span></div>
-<div class="ai-use-step"><b>形式</b><span>表、投稿文、手順書など、受け取り方を決める。</span></div>
-<div class="ai-use-step"><b>修正</b><span>1回目を下書きとして、足りない点を直す。</span></div>
-<div class="ai-use-step"><b>確認</b><span>数字、個人情報、公開表現を人が確かめる。</span></div>
-</div>
-<div class="ai-use-grid">
-<div class="ai-use-card bad">
-<h3>うまくいきにくい頼み方</h3>
-<p>「売上を増やして」「集客して」「いい文章を書いて」のように、目的も材料も決まっていない。</p>
-</div>
-<div class="ai-use-card good">
-<h3>仕事につながる頼み方</h3>
-<p>「誰の、どの悩みを、いつまでに、どう変えたいか」を伝え、使う材料と完成形を指定する。</p>
-</div>
-</div>
-<h2 id='順番に理解する本文'>順番に理解する本文</h2>
-<h3>1. 目的を1文と数字で決める</h3>
-<p>AIは目的を決める道具ではありません。決めた目的に向かって、調査、文章、画像、コード、資料を作る道具です。</p>
-<p>まず「今」と「目標」を書きます。数字がない仕事は、状態の変化でも構いません。</p>
-<table class="ai-use-table">
-<thead>
-<tr>
-<th>曖昧な依頼</th>
-<th>具体的な依頼</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>集客したい</td>
-<td>整体院の問い合わせを月20件から40件にしたい。Google検索、Instagram、紹介の順に改善案を出して。</td>
-</tr>
-<tr>
-<td>効率化したい</td>
-<td>30分かかる見積作成を5分にしたい。入力表と確認チェックリストを作って。</td>
-</tr>
-<tr>
-<td>サイトを作りたい</td>
-<td>彦根の小さな店舗向けに、スマホで予約まで進める1ページを作りたい。</td>
-</tr>
-</tbody>
-</table>
-<h3>2. 判断に必要な材料を渡す</h3>
-<p>一般的な答えしか返ってこない時は、AIの性能より材料不足を疑います。</p>
-<ul>
-<li>商品やサービスの内容、価格、対象者</li>
-<li>現在の数字、困っている作業、目標期限</li>
-<li>過去の投稿、写真、表、既存文章、URL</li>
-<li>コードなら、該当ファイル、エラー文、再現手順、期待する動作</li>
-<li>守るルール、使ってはいけない情報</li>
-</ul>
-<p>個人情報、顧客情報、社外秘は、利用するAIと社内ルールを確認してから扱います。</p>
-<h3>3. 完成形を先に決める</h3>
-<p>「考えて」だけでは長い説明になりがちです。使う場面まで伝えます。</p>
-<table class="ai-use-table">
-<thead>
-<tr>
-<th>使う場面</th>
-<th>頼む形式</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>SNS告知</td>
-<td>Instagram用10枚、本文、ハッシュタグの順</td>
-</tr>
-<tr>
-<td>会議</td>
-<td>決定事項、担当、期限、未決事項の表</td>
-</tr>
-<tr>
-<td>業務改善</td>
-<td>優先順位、所要時間、担当、確認方法の表</td>
-</tr>
-<tr>
-<td>Web修正</td>
-<td>変更ファイル、確認結果、残った課題の一覧</td>
-</tr>
-</tbody>
-</table>
-<h3>4. 1回目の答えを直す</h3>
-<p>AIの1回目の答えは完成品ではなく、たたき台です。難しい指示は要りません。</p>
-<div class="ai-use-example">・長いので半分にしてください。
-・専門用語を使わず、中学生にもわかる言葉にしてください。
-・彦根の小規模店舗で、明日できる例を3つ追加してください。
-・根拠となる数字と、確認する画面を追加してください。
-・公開前に人が確認する箇所を「要確認」と書いてください。</div>
-<h3>5. 人が確認して、仕事の流れに戻す</h3>
-<p>AIの回答には、間違い、古い情報、権利や個人情報の問題が混ざることがあります。</p>
-<p>公開や実行の前に、次を人が確認します。</p>
+<h2 id='今日できるようになること'>今日できるようになること</h2>
 <ol>
-<li>数字、日付、料金、法律、商品仕様は正しいか</li>
-<li>個人情報、顧客情報、社外秘が入っていないか</li>
-<li>著作権や利用条件に問題がないか</li>
-<li>読む人に誤解や不利益を与えないか</li>
-<li>SNS投稿、見積、よくある質問（FAQ）、手順書など、実際の仕事に戻せるか</li>
+<li>初めてAIを使う人向けの10分入門へ進める</li>
+<li>毎週の仕事へAIを入れる15分実践へ進める</li>
+<li>重複した旧資料を読み直さず、現在の学習順を選べる</li>
 </ol>
-<h3>補足1. 道具は仕事に合わせて選ぶ</h3>
-<table class="ai-use-table">
-<thead>
-<tr>
-<th>道具</th>
-<th>初心者向けの使い分け</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ChatGPT</td>
-<td>考えの整理、文章、議事録、FAQ、メール、SNS投稿。</td>
-</tr>
-<tr>
-<td>画像生成</td>
-<td>ブログ画像、SNS素材、チラシやページの見た目の案。</td>
-</tr>
-<tr>
-<td>Codex</td>
-<td>フォルダを読み、Webサイトやコードを直し、テストや表示確認まで進める。</td>
-</tr>
-<tr>
-<td>Claude Code</td>
-<td>長い仕様や既存コードの整理、設計相談、別視点のレビュー。</td>
-</tr>
-<tr>
-<td>Cursor</td>
-<td>エディタで開いているコードの小さな修正や説明。</td>
-</tr>
-</tbody>
-</table>
-<p>道具の数より、「どの仕事を、どの材料で、どこまで任せるか」が大切です。</p>
-<h3>補足2. 調査結果は、条件と一緒に読む</h3>
-<p>公開研究では、AIで作業が速くなる例がある一方、得意でない仕事では正確さが落ちたり、熟練者の作業時間が増えたりする例もあります。</p>
-<div class="ai-use-note">
-顧客サポートの研究では生産性が約13.8%上がった一方、METRの2025年実験では、対象となった熟練OSS開発者の完了時間が19%増えました。数字だけを一般化せず、「誰が、どの仕事で、どんな条件で使ったか」を確認します。
-</div>
-<p>結論は「AIなら必ず速い」ではありません。得意な作業を選び、出力を確かめ、仕事の流れを整えることが必要です。</p>
+<h2 id='まず結論'>まず結論</h2>
+<p>この資料の内容は、次の2本へ整理して統合しました。</p>
+<ul>
+<li>初めてAIへ頼む人: <a href="./2026-04-ai-kihon.html">はじめてのAI — 困りごとを1つ、下書きにする</a></li>
+<li>仕事で1回試した人: <a href="./2026-04-ai-kangaekata.html">毎週の仕事を1つ、AIで楽にする — 15分実践</a></li>
+</ul>
+<p>現在のおすすめは、2本目の15分実践です。</p>
+<h2 id='順番に理解する本文'>順番に理解する本文</h2>
+<p>旧資料では、目的、材料、完成形、修正、人の確認に加え、道具の比較や研究数値も一度に説明していました。</p>
+<p>現在は、初心者が迷わないように役割を分けています。</p>
+<ol>
+<li>10分入門で、AIへの最初の頼み方を試す</li>
+<li>15分実践で、毎週の仕事に使える記入式の手順を作る</li>
+</ol>
+<p>道具の名前を覚えることより、「何をAIへ任せ、何を人が確認するか」を先に学びます。</p>
 <h2 id='具体例-やってみる'>具体例 / やってみる</h2>
-<h3>例: Instagramの問い合わせを増やす</h3>
-<div class="ai-use-example">あなたは地域店舗の広報担当です。
-
-目的:
-現在フォロワー1,200人、月の問い合わせは8件です。
-3か月で問い合わせを月15件にしたいです。
-
-対象:
-彦根周辺の30代女性で、肩こり・腰痛に悩む人です。
-
-材料:
-過去に反応が良かった投稿3本と、今月の空き日程を使ってください。
-
-出力:
-1. 投稿テーマ10本
-2. 各投稿の最初の一文
-3. 予約につなげる一言
-4. 公開前に確認する点</div>
-<h3>自分の仕事で使う依頼テンプレート</h3>
-<div class="ai-use-example">あなたは私の業務改善パートナーです。
-
-目的:
-今の課題は「【課題】」です。
-現在は「【今の状態】」、目標は「【目標】」です。
-
-材料:
-・商品やサービス: 【内容】
-・対象者: 【誰向け】
-・困っていること: 【悩み】
-・使える素材: 【写真、URL、文章、表、コードなど】
-
-条件:
-・初心者にわかる短い言葉を使う
-・明日できる行動に分ける
-・確認が必要な箇所は「要確認」と書く
-
-出力:
-1. まず結論
-2. 優先順位つきの改善案
-3. すぐ使える文章またはチェックリスト
-4. 次にAIへ頼む一言</div>
-<h3>最初に試す仕事を1つ選ぶ</h3>
+<p>次のどちらかを選んでください。</p>
 <ul>
-<li>メールや案内文の下書き</li>
-<li>会議メモの整理</li>
-<li>SNS投稿のたたき台</li>
-<li>よくある質問の一覧化</li>
-<li>見積や申込で使う確認表</li>
-<li>既存ページのわかりにくい文章の修正</li>
+<li>AIへ案内文をまだ頼んだことがない → <a href="./2026-04-ai-kihon.html">10分入門から始める</a></li>
+<li>案内文や会議メモを1回以上作ったことがある → <a href="./2026-04-ai-kangaekata.html">15分実践へ進む</a></li>
 </ul>
-<p>失敗しても困らない、小さな仕事から始めます。</p>
-<h2 id='振り返り-次の一歩'>振り返り / 次の一歩</h2>
-<ul class="ai-use-check">
-<li>目的を1文で言える</li>
-<li>今と目標を数字か状態で書いた</li>
-<li>必要な材料を渡した</li>
-<li>誰向けかを決めた</li>
-<li>出力形式を指定した</li>
-<li>1回目の答えに修正を出した</li>
-<li>事実と公開表現を人が確認した</li>
-<li>良かった依頼文を保存した</li>
-</ul>
-<div class="ai-use-grid">
-<div class="ai-use-card">
-<h3>1. 相談する</h3>
-<p>仕事のどこにAIを使うかを整理する。</p>
-</div>
-<div class="ai-use-card good">
-<h3>2. 小さく試す</h3>
-<p>実際の文章、資料、作業を1つだけ改善する。</p>
-</div>
-<div class="ai-use-card amber">
-<h3>3. 続けられる形にする</h3>
-<p>良い依頼文、確認手順、成果物の置き場を残す。</p>
-</div>
-</div>
-<div class="ai-use-cta">
-<h3>AIを「知っている」から、仕事で使える状態へ</h3>
-<p>AI相談では課題整理から、講習では実際の仕事を使った練習から、実装支援ではWebや業務の仕組みづくりまで進めます。</p>
-<a href="/#contact">無料でAI活用を相談する</a>
-<a href="/#packages">AI講習の内容を見る</a>
-<a href="/#lectures">受講資料を見る</a>
-</div>
-<h3>参考リンク</h3>
-<div class="ai-use-sources">
+<h2 id='できたかチェック'>できたかチェック</h2>
 <ul>
-<li><a href="https://www.microsoft.com/en-us/worklab/work-trend-index/ai-at-work-is-here-now-comes-the-hard-part" target="_blank" rel="noopener">Microsoft / LinkedIn: 2024 Work Trend Index</a></li>
-<li><a href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai" target="_blank" rel="noopener">McKinsey: The state of AI in 2025</a></li>
-<li><a href="https://www.rand.org/pubs/research_reports/RRA2680-1.html" target="_blank" rel="noopener">RAND: AIプロジェクトの失敗要因</a></li>
-<li><a href="https://arxiv.org/abs/2304.11771" target="_blank" rel="noopener">Generative AI at Work</a></li>
-<li><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4573321" target="_blank" rel="noopener">BCG / Harvard / MIT: Jagged Technological Frontier</a></li>
-<li><a href="https://arxiv.org/abs/2302.06590" target="_blank" rel="noopener">GitHub Copilot生産性実験</a></li>
-<li><a href="https://arxiv.org/abs/2507.09089" target="_blank" rel="noopener">METR: 熟練開発者とAIの実験</a></li>
-<li><a href="https://survey.stackoverflow.co/2025/ai" target="_blank" rel="noopener">Stack Overflow Developer Survey 2025: AI</a></li>
-<li><a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" target="_blank" rel="noopener">Google Search Central: Helpful content</a></li>
-<li><a href="https://www.digital.go.jp/resources/generalitve-ai-guidebook" target="_blank" rel="noopener">デジタル庁: 生成AIリスク対策ガイドブック</a></li>
-<li><a href="https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/20240419_report.html" target="_blank" rel="noopener">経済産業省: AI事業者ガイドライン</a></li>
-<li><a href="https://openai.com/codex/" target="_blank" rel="noopener">OpenAI: Codex</a></li>
+<li>[ ] 自分に合う資料を選んだ</li>
+<li>[ ] 選んだ資料のリンクを開いた</li>
 </ul>
-</div>
-</div></div><footer>AI相談 / Generated by Claude</footer><button class='back-to-top' id='backTop' aria-label='トップへ戻る'>↑</button><script>(function(){var b=document.getElementById('backTop');if(!b)return;window.addEventListener('scroll',function(){b.classList.toggle('show',window.scrollY>400);});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script><script>
+<h2 id='次に読む資料'>次に読む資料</h2>
+<p><a href="./2026-04-ai-kangaekata.html">毎週の仕事を1つ、AIで楽にする — 15分実践</a></p>
+<p>目的、材料、完成形、修正、確認の5項目を記入し、次回も使える依頼文を作ります。</p>
+<h2 id='用語・出典'>用語・出典</h2>
+<ul>
+<li><strong>旧資料:</strong> 内容を削除したのではなく、重複を減らすため新しい資料へ統合したページです。</li>
+<li>外部の研究数値や道具比較は、この案内ページでは扱いません。</li>
+</ul><nav class='lecture-course-nav' aria-label='同じコースの前後資料'><span class='lecture-course-nav-item previous disabled' aria-disabled='true'><span>前の資料</span><b>このコースの先頭です</b></span><a class='lecture-course-nav-item index' href='./index.html'><span>一覧</span><b>受講資料一覧</b></a><span class='lecture-course-nav-item next disabled' aria-disabled='true'><span>次の資料</span><b>このコースの最後です</b></span></nav></div></main><footer>AI相談 / Generated by Claude</footer><button class='back-to-top' id='backTop' aria-label='トップへ戻る'>↑</button><script>(function(){var b=document.getElementById('backTop');if(!b)return;window.addEventListener('scroll',function(){b.classList.toggle('show',window.scrollY>400);});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script><script>
 (function(){
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var sel = '.tr-card, .pf-card, .profile-stat, .profile-tech-card, .sns-card, article, .content-toc, .tr-section, .profile-tl-item, .profile-app-card, .profile-biz-card';

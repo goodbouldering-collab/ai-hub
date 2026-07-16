@@ -1,4 +1,4 @@
-<!doctype html><html lang='ja'><head><meta charset='utf-8'><link rel='icon' type='image/svg+xml' href='/favicon.svg'><link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png'><link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png'><link rel='shortcut icon' href='/favicon.ico'><link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png'><link rel='manifest' href='/site.webmanifest'><link rel='mask-icon' href='/favicon.svg' color='#0EA5E9'><meta name='theme-color' content='#F7FBFF'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Claude Codeでできること — 2026年版 | AI相談</title><meta name='description' content='Claude Codeの新しい機能から、作業を裏で進める、操作範囲を決める、機能を追加するなど、仕事で役立つものを目的別に整理。'><link rel='canonical' href='https://ai-hub-jp.vercel.app/lectures/2026-05-claude-code-features.html'><meta property='og:title' content='Claude Codeでできること — 2026年版'><meta property='og:description' content='Claude Codeの新しい機能から、作業を裏で進める、操作範囲を決める、機能を追加するなど、仕事で役立つものを目的別に整理。'><meta property='og:url' content='https://ai-hub-jp.vercel.app/lectures/2026-05-claude-code-features.html'><meta property='og:type' content='article'><meta property='og:site_name' content='AI相談'><meta name='twitter:card' content='summary'><script type='application/ld+json'>{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Claude Codeでできること — 2026年版", "datePublished": "2026-05-21", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://ai-hub-jp.vercel.app/lectures/2026-05-claude-code-features.html"}, "author": {"@type": "Person", "name": "由井 辰美"}, "publisher": {"@type": "Organization", "name": "AI相談", "url": "https://ai-hub-jp.vercel.app"}, "description": "Claude Codeの新しい機能から、作業を裏で進める、操作範囲を決める、機能を追加するなど、仕事で役立つものを目的別に整理。", "speakable": {"@type": "SpeakableSpecification", "cssSelector": ["h1", ".content-wrap p:first-of-type"]}}</script><style>
+<!doctype html><html lang='ja'><head><meta charset='utf-8'><link rel='icon' type='image/svg+xml' href='/favicon.svg'><link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png'><link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png'><link rel='shortcut icon' href='/favicon.ico'><link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png'><link rel='manifest' href='/site.webmanifest'><link rel='mask-icon' href='/favicon.svg' color='#0EA5E9'><meta name='theme-color' content='#F7FBFF'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Claude Codeに小さな修正を任せる — 安全な始め方 | AI相談</title><meta name='description' content='Claude Codeへ小さな修正を1件だけ頼み、変更前の確認、差分確認、テスト、結果の報告までを安全な順番で進めます。'><link rel='canonical' href='https://ai-hub-jp.vercel.app/lectures/2026-05-claude-code-features.html'><meta property='og:title' content='Claude Codeに小さな修正を任せる — 安全な始め方'><meta property='og:description' content='Claude Codeへ小さな修正を1件だけ頼み、変更前の確認、差分確認、テスト、結果の報告までを安全な順番で進めます。'><meta property='og:url' content='https://ai-hub-jp.vercel.app/lectures/2026-05-claude-code-features.html'><meta property='og:type' content='article'><meta property='og:site_name' content='AI相談'><meta name='twitter:card' content='summary'><script type='application/ld+json'>{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Claude Codeに小さな修正を任せる — 安全な始め方", "datePublished": "2026-05-21", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://ai-hub-jp.vercel.app/lectures/2026-05-claude-code-features.html"}, "author": {"@type": "Person", "name": "由井 辰美"}, "publisher": {"@type": "Organization", "name": "AI相談", "url": "https://ai-hub-jp.vercel.app"}, "description": "Claude Codeへ小さな修正を1件だけ頼み、変更前の確認、差分確認、テスト、結果の報告までを安全な順番で進めます。", "speakable": {"@type": "SpeakableSpecification", "cssSelector": ["h1", ".content-wrap p:first-of-type"]}}</script><style>
 :root {
   --bg-base:#f8fafc;
   --bg-white:#ffffff;
@@ -959,6 +959,38 @@ footer {
   color: var(--muted);
   font-size: 12.5px !important;
 }
+.tr-section-collapsible > summary {
+  list-style: none;
+  cursor: pointer;
+  border-radius: 14px;
+}
+.tr-section-collapsible > summary::-webkit-details-marker { display: none; }
+.tr-section-collapsible > summary .tr-section-head {
+  margin-bottom: 10px;
+  padding-right: 44px !important;
+  position: relative;
+}
+.tr-section-collapsible > summary .tr-section-head::after {
+  content: "+";
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  width: 25px;
+  height: 25px;
+  display: grid;
+  place-items: center;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid var(--glass-border);
+  color: var(--primary);
+  font-size: 17px;
+}
+.tr-section-collapsible[open] > summary .tr-section-head::after { content: "−"; }
+.tr-section-collapsible > summary:focus-visible {
+  outline: 3px solid rgba(37,99,235,.28);
+  outline-offset: 3px;
+}
 .tr-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -1108,6 +1140,25 @@ footer {
   font-size: 12px;
   line-height: 1.55;
 }
+.tr-format-flow {
+  margin: 18px 0 26px;
+  padding: 13px 16px;
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  background: #fff;
+  color: var(--text-soft);
+  font-size: 14px;
+  font-weight: 850;
+  line-height: 1.7;
+  text-align: center;
+}
+.tr-format-flow small {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 11.5px;
+  font-weight: 600;
+}
 .tr-card .tr-meta {
   row-gap: 7px;
 }
@@ -1158,145 +1209,205 @@ footer {
   border: 1px solid rgba(37,99,235,.2);
   font-weight: 900;
 }
+.lecture-page .content-wrap.lecture-content {
+  width: 100%;
+  max-width: 920px;
+  margin-right: auto;
+  margin-left: auto;
+  line-height: 1.9;
+}
+.lecture-content p,
+.lecture-content ul,
+.lecture-content ol {
+  font-size: 16px;
+  line-height: 1.9;
+}
+.lecture-content h3 {
+  font-size: 18px;
+  line-height: 1.55;
+  margin-top: 1.8em;
+}
+.lecture-content a,
+.lecture-content code {
+  overflow-wrap: anywhere;
+}
+.lecture-table-scroll {
+  width: 100%;
+  max-width: 100%;
+  margin: 18px 0 28px;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  -webkit-overflow-scrolling: touch;
+}
+.lecture-table-scroll:focus-visible {
+  outline: 3px solid rgba(37,99,235,.28);
+  outline-offset: 3px;
+}
+.lecture-table-scroll table {
+  width: 100%;
+  min-width: 620px;
+  margin: 0 !important;
+  border: 0 !important;
+  border-collapse: collapse;
+}
+.lecture-content table:not([class]) th,
+.lecture-content table:not([class]) td {
+  padding: 11px 13px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+.lecture-content table:not([class]) th {
+  background: #eef5ff;
+  color: var(--text);
+  font-weight: 800;
+}
 .lecture-shell {
   margin: 0 0 22px;
-  padding: 18px;
+  padding: clamp(18px, 3vw, 24px);
   border: 1px solid rgba(37,99,235,.16);
   border-radius: 16px;
   background:
     radial-gradient(circle at 100% 0%, rgba(15,139,141,.10), transparent 28%),
     linear-gradient(135deg, #f8fbff 0%, #fff 55%, #f6fef9 100%);
 }
-.lecture-shell-head {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 14px;
-  align-items: start;
-}
 .lecture-shell-title {
-  font-size: 18px;
+  font-size: 19px;
   font-weight: 900;
   color: var(--text);
   line-height: 1.4;
 }
 .lecture-shell-desc {
-  margin: 5px 0 0 !important;
+  margin: 6px 0 0 !important;
   color: var(--text-soft) !important;
-  font-size: 13.5px !important;
-  line-height: 1.7 !important;
+  font-size: 16px !important;
+  line-height: 1.85 !important;
+}
+.lecture-shell-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 8px;
+  margin: 16px 0 0;
+}
+.lecture-meta-item {
+  padding: 10px 12px;
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  background: rgba(255,255,255,.84);
+}
+.lecture-meta-item span {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .06em;
+}
+.lecture-meta-item b {
+  display: block;
+  margin-top: 3px;
+  color: var(--text);
+  font-size: 13.5px;
+  line-height: 1.55;
 }
 .lecture-shell-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  justify-content: flex-end;
+  margin-top: 16px;
 }
-.lecture-home-link {
+.lecture-shell-link {
   display: inline-flex;
   align-items: center;
-  min-height: 34px;
-  padding: 7px 12px;
-  border-radius: 999px;
+  justify-content: center;
+  min-height: 40px;
+  padding: 9px 14px;
+  border-radius: 10px;
   background: #fff;
   border: 1px solid rgba(37,99,235,.22) !important;
   color: var(--primary) !important;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 800;
   text-decoration: none !important;
 }
-.lecture-format-strip {
+.lecture-shell-link.primary {
+  background: var(--primary);
+  color: #fff !important;
+  border-color: var(--primary) !important;
+}
+.lecture-course-nav {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(130px, auto) minmax(0, 1fr);
+  gap: 10px;
+  margin-top: 40px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+.lecture-course-nav-item {
   display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-  margin-top: 14px;
-}
-.lecture-format-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 5px 9px;
-  border-radius: 999px;
-  border: 1px solid var(--glass-border);
-  background: #fff;
-  color: var(--text-soft);
-  font-size: 11.5px;
-  font-weight: 800;
-  line-height: 1.2;
-}
-.lecture-format-chip small {
-  color: inherit;
-  opacity: .72;
-  font-size: 10px;
-  font-weight: 800;
-}
-.lecture-format-chip.on {
-  background: rgba(37,99,235,.10);
-  border-color: rgba(37,99,235,.22);
-  color: #1d4fd6;
-}
-.lecture-format-chip.missing {
-  color: var(--muted);
-  background: rgba(148,163,184,.10);
-}
-.lecture-jump {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 14px;
-}
-.lecture-jump a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 32px;
-  padding: 7px 11px;
-  border-radius: 10px;
+  min-width: 0;
+  min-height: 74px;
+  flex-direction: column;
+  justify-content: center;
+  padding: 11px 13px;
   border: 1px solid var(--glass-border) !important;
-  background: rgba(255,255,255,.82);
-  color: var(--text-soft) !important;
-  font-size: 12px;
-  font-weight: 800;
+  border-radius: 12px;
+  background: #fff;
+  color: var(--text) !important;
   text-decoration: none !important;
 }
-.lecture-jump a:hover {
-  color: var(--primary) !important;
-  border-color: rgba(37,99,235,.30) !important;
+.lecture-course-nav-item.next { text-align: right; }
+.lecture-course-nav-item.index { text-align: center; }
+.lecture-course-nav-item span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
 }
-.lecture-outline-preview {
-  margin: 14px 0 0;
-  padding: 12px 14px;
-  border-radius: 12px;
-  background: rgba(255,255,255,.78);
-  border: 1px solid var(--glass-border);
-}
-.lecture-outline-preview b {
+.lecture-course-nav-item b {
   display: block;
-  color: var(--text);
-  font-size: 12.5px;
-  margin-bottom: 6px;
+  margin-top: 4px;
+  overflow: hidden;
+  font-size: 13px;
+  line-height: 1.5;
+  text-overflow: ellipsis;
 }
-.lecture-outline-preview ol {
-  columns: 2;
-  column-gap: 22px;
-  margin: 0 0 0 1.2em !important;
-  font-size: 12.5px !important;
-}
-.lecture-outline-preview li {
-  break-inside: avoid;
+.lecture-course-nav-item.disabled {
+  opacity: .55;
+  background: #f8fafc;
 }
 .content-toc {
   scroll-margin-top: 92px;
 }
 @media (max-width: 760px) {
   .tr-home,
-  .lecture-shell-head,
   .tr-featured {
     grid-template-columns: 1fr;
   }
   .tr-format-grid {
     grid-template-columns: 1fr;
   }
-  .lecture-outline-preview ol {
-    columns: 1;
+  .lecture-course-nav {
+    grid-template-columns: 1fr;
+  }
+  .lecture-course-nav-item.next,
+  .lecture-course-nav-item.index {
+    text-align: left;
+  }
+}
+@media (max-width: 640px) {
+  .lecture-page .content-wrap.lecture-content {
+    padding: 24px 18px;
+  }
+  .lecture-content p,
+  .lecture-content ul,
+  .lecture-content ol {
+    font-size: 16px;
+  }
+  .lecture-shell-actions {
+    display: grid;
+    grid-template-columns: 1fr;
   }
 }
 
@@ -10906,7 +11017,7 @@ header.site-header:hover {
     font-size: 11.5px !important;
   }
 }
-</style></head><body><div class='container'>
+</style></head><body class='lecture-page'><div class='container'>
 <script>
 (function(){
   function reveal(){
@@ -10923,273 +11034,256 @@ header.site-header:hover {
   }
 })();
 </script>
-<header class='site-header scrolled' id='site-header' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html' aria-label='AI相談 彦根 トップへ'><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span></span></a><nav class='site-nav' aria-label='メインナビ'><a class='nav-link nav-essential' href='/#packages'>講習・相談</a><a class='nav-link nav-essential' href='/programming-map.html'>AIコーディング</a><a class='nav-link nav-essential nav-current' href='/#lectures' aria-current='page'>受講資料</a><div class='menu-wrap'><button class='menu-toggle' id='menu-toggle' aria-haspopup='menu' aria-expanded='false'>全メニュー<svg class='chev' width='14' height='14' viewBox='0 0 20 20' fill='none' aria-hidden='true'><path d='M5 8l5 5 5-5' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg></button><div class='menu-drop' id='menu-drop' role='menu'><span class='menu-drop-label'>制作・発信</span><a href='/#all-works'>AI実績</a><a href='/#blog'>ブログ</a><a href='/watch/index.html'>AI Watch</a><span class='menu-drop-label'>案内・確認</span><a href='/#speaker'>講師紹介</a><a href='/#flow'>進め方</a><a href='/#faq'>FAQ</a><a href='../index.html'>ホーム</a></div></div><a class='nav-cta' href='/#contact'>無料相談</a></nav><a class='header-member-login' href='/admin'>会員ログイン</a><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'><svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button></div><div class='mobile-nav generated-mobile-nav' id='mobile-nav'><div class='mobile-nav-panel mobile-nav-panel--public'><a class='login-btn-mobile' href='/#contact'>無料相談</a><a class='mobile-main-link' href='/#packages'>講習・相談</a><span class='mobile-nav-label'>講習・資料</span><div class='mobile-link-grid'><a href='/programming-map.html'>AIコーディング</a><a href='/#lectures'>受講資料</a><a href='/#blog'>ブログ</a></div><span class='mobile-nav-label'>制作・発信</span><div class='mobile-link-grid'><a href='/#all-works'>AI実績</a><a href='/watch/index.html'>AI Watch</a></div><span class='mobile-nav-label'>案内・確認</span><div class='mobile-link-grid'><a href='/#speaker'>講師紹介</a><a href='/#flow'>進め方</a><a href='/#faq'>FAQ</a><a href='../index.html'>ホーム</a></div></div></div></header><script>(function(){var t=document.getElementById('menu-toggle'),d=document.getElementById('menu-drop'),b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav');function closeDrop(){if(!d||!t)return;d.classList.remove('open');t.setAttribute('aria-expanded','false');}function closeMobile(){if(!n||!b)return;n.classList.remove('open');b.setAttribute('aria-expanded','false');}if(t&&d){t.addEventListener('click',function(e){e.stopPropagation();var o=d.classList.toggle('open');t.setAttribute('aria-expanded',o?'true':'false');});document.addEventListener('click',function(e){if(!d.contains(e.target)&&!t.contains(e.target))closeDrop();});}if(b&&n){b.addEventListener('click',function(e){e.stopPropagation();var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMobile);});}document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDrop();closeMobile();}});})();</script><header><h1>Claude Codeでできること — 2026年版</h1><div class='speaker-meta'><span class='role'>開発メモ / インフォグラフィック</span><span>📅 2026-05-21</span><span>由井 辰美 / AI相談</span></div></header><div class='content-wrap'><section class='lecture-shell' aria-label='この資料の読み方'><div class='lecture-shell-head'><div><div class='lecture-shell-title'>この資料の読み方</div><p class='lecture-shell-desc'>Claude Codeの新しい機能から、作業を裏で進める、操作範囲を決める、機能を追加するなど、仕事で役立つものを目的別に整理。</p></div><div class='lecture-shell-actions'><a class='lecture-home-link' href='../programming-map.html'>AIエージェント講習</a><a class='lecture-home-link' href='./index.html'>受講資料ホーム</a></div></div><div class='lecture-format-strip'><span class='lecture-format-chip on'>本文<small>あり</small></span><span class='lecture-format-chip on'>目次<small>あり</small></span></div><div class='lecture-jump'><a href='./index.html'>受講資料ホーム</a><a href='../programming-map.html'>AIエージェント講習</a><a href='#lecture-toc'>目次</a></div><div class='lecture-outline-preview'><b>この資料の流れ</b><ol><li>この資料でわかること</li><li>まず結論</li><li>順番に理解する本文</li><li>具体例 / やってみる</li><li>振り返り / 次の一歩</li></ol></div></section><div class='content-toc' id='lecture-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#この資料でわかること'>この資料でわかること</a></li><li><a href='#まず結論'>まず結論</a></li><li><a href='#順番に理解する本文'>順番に理解する本文</a></li><li><a href='#具体例-やってみる'>具体例 / やってみる</a></li><li><a href='#振り返り-次の一歩'>振り返り / 次の一歩</a></li></ol></div><h2 id='この資料でわかること'>この資料でわかること</h2>
-<p>Claude Codeは、ターミナルからAIに開発作業を頼むためのツールです。ターミナルとは、文字でコマンドを入力してPCを操作する画面です。</p>
-<p>この資料では、2026年1月から5月までに追加された機能のうち、実際の開発の進め方を変えた14項目を整理します。</p>
+<header class='site-header scrolled' id='site-header' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html' aria-label='AI相談 彦根 トップへ'><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span></span></a><nav class='site-nav' aria-label='メインナビ'><a class='nav-link nav-essential' href='/#packages'>講習・相談</a><a class='nav-link nav-essential' href='/programming-map.html'>AIコーディング</a><a class='nav-link nav-essential nav-current' href='/lectures/index.html' aria-current='page'>受講資料</a><div class='menu-wrap'><button class='menu-toggle' id='menu-toggle' aria-haspopup='menu' aria-expanded='false'>全メニュー<svg class='chev' width='14' height='14' viewBox='0 0 20 20' fill='none' aria-hidden='true'><path d='M5 8l5 5 5-5' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg></button><div class='menu-drop' id='menu-drop' role='menu'><span class='menu-drop-label'>制作・発信</span><a href='/#all-works'>AI実績</a><a href='/#blog'>ブログ</a><a href='/watch/index.html'>AI Watch</a><span class='menu-drop-label'>案内・確認</span><a href='/#speaker'>講師紹介</a><a href='/#flow'>進め方</a><a href='/#faq'>FAQ</a><a href='../index.html'>ホーム</a></div></div><a class='nav-cta' href='/#contact'>無料相談</a></nav><a class='header-member-login' href='/admin'>会員ログイン</a><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'><svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button></div><div class='mobile-nav generated-mobile-nav' id='mobile-nav'><div class='mobile-nav-panel mobile-nav-panel--public'><a class='login-btn-mobile' href='/#contact'>無料相談</a><a class='mobile-main-link' href='/#packages'>講習・相談</a><span class='mobile-nav-label'>講習・資料</span><div class='mobile-link-grid'><a href='/programming-map.html'>AIコーディング</a><a href='/lectures/index.html'>受講資料</a><a href='/#blog'>ブログ</a></div><span class='mobile-nav-label'>制作・発信</span><div class='mobile-link-grid'><a href='/#all-works'>AI実績</a><a href='/watch/index.html'>AI Watch</a></div><span class='mobile-nav-label'>案内・確認</span><div class='mobile-link-grid'><a href='/#speaker'>講師紹介</a><a href='/#flow'>進め方</a><a href='/#faq'>FAQ</a><a href='../index.html'>ホーム</a></div></div></div></header><script>(function(){var t=document.getElementById('menu-toggle'),d=document.getElementById('menu-drop'),b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav');function closeDrop(){if(!d||!t)return;d.classList.remove('open');t.setAttribute('aria-expanded','false');}function closeMobile(){if(!n||!b)return;n.classList.remove('open');b.setAttribute('aria-expanded','false');}if(t&&d){t.addEventListener('click',function(e){e.stopPropagation();var o=d.classList.toggle('open');t.setAttribute('aria-expanded',o?'true':'false');});document.addEventListener('click',function(e){if(!d.contains(e.target)&&!t.contains(e.target))closeDrop();});}if(b&&n){b.addEventListener('click',function(e){e.stopPropagation();var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMobile);});}document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDrop();closeMobile();}});})();</script><main id='main-content'><header><h1>Claude Codeに小さな修正を任せる — 安全な始め方</h1><div class='speaker-meta'><span class='role'>入門</span><span>目安 15分</span></div></header><div class='content-wrap lecture-content' id='lecture-body'><section class='lecture-shell' aria-label='この資料の読み方'><div class='lecture-shell-title'>この資料の読み方</div><p class='lecture-shell-desc'>Claude Codeへ小さな修正を1件だけ頼み、変更前の確認、差分確認、テスト、結果の報告までを安全な順番で進めます。</p><div class='lecture-shell-meta'><div class='lecture-meta-item'><span>対象</span><b>Claude Codeを初めて使う人、または小さな修正から安全に試したい人</b></div><div class='lecture-meta-item'><span>ゴール</span><b>対象と完了条件を決め、1件の修正、差分確認、テスト、報告までを順番に進められる</b></div><div class='lecture-meta-item'><span>コース内順</span><b>1番目</b></div></div><div class='lecture-shell-actions'><a class='lecture-shell-link primary' href='#lecture-toc'>目次を見る</a><a class='lecture-shell-link' href='./index.html'>受講資料一覧</a><a class='lecture-shell-link' href='../programming-map.html'>AIエージェント講習</a></div></section><div class='content-toc' id='lecture-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#この資料は誰向けか'>この資料は誰向けか</a></li><li><a href='#今日できるようになること'>今日できるようになること</a></li><li><a href='#まず結論'>まず結論</a></li><li><a href='#順番に理解する本文'>順番に理解する本文</a></li><li><a href='#具体例-やってみる'>具体例 / やってみる</a></li><li><a href='#できたかチェック'>できたかチェック</a></li><li><a href='#次に読む資料'>次に読む資料</a></li><li><a href='#用語・出典'>用語・出典</a></li></ol></div><h2 id='この資料は誰向けか'>この資料は誰向けか</h2>
+<p>この資料は、Claude Codeを使ってみたいものの、次のような不安がある人向けです。</p>
 <ul>
-<li>複数の作業を同時に進め、まとめて確認する方法</li>
-<li>AIに許可する操作と、禁止する操作の分け方</li>
-<li>難しい作業だけ、AIの考える量を増やす方法</li>
-<li>プラグイン、Windows、作業場所の分離に関する変更</li>
-<li>よく使うコマンドと設定</li>
+<li>どのフォルダやファイルを触るのか分からない</li>
+<li>頼んでいない場所まで変わるのが心配</li>
+<li>修正後に、何を確認すればよいか分からない</li>
+<li>テストという言葉は聞くが、自分の作業で何をすればよいか分からない</li>
+<li>AIから「完了しました」と言われても、本当に終わったか判断できない</li>
 </ul>
-<p>公式の変更履歴（changelog）と週次まとめ（code.claude.com）で確認できた内容だけを載せています。試していない伝聞や、名称を確認できないものは除外しています。</p>
-<blockquote>
-<p>Week番号は2026年の週です。W13は3月下旬、W20は5月中旬にあたります。</p>
-</blockquote>
+<p>最初から大きな機能を作りません。今回は、ボタンの文言修正や説明文の追記など、<strong>結果を自分の目で確認できる小さな修正を1件だけ</strong>扱います。</p>
+<h2 id='今日できるようになること'>今日できるようになること</h2>
+<ul>
+<li>Claude Codeを使う前の前提を確認できる</li>
+<li>変更前の状態をAIに説明させられる</li>
+<li>修正内容を1件に絞って頼める</li>
+<li>変更前と変更後の差分を確認できる</li>
+<li>プロジェクトに合ったテストを実行できる</li>
+<li>変更内容、確認結果、未確認事項を報告させられる</li>
+</ul>
 <h2 id='まず結論'>まず結論</h2>
-<p>この時期の大きな変化は、Claude Codeに一つずつ作業を頼む使い方から、<strong>複数の作業を裏で動かし、人がまとめて監督する使い方</strong>へ進んだことです。</p>
-<p>最初は、次の3つの目的だけ押さえます。具体的なコマンドは、そのあとで確認します。</p>
+<p>Claude Codeへ安全に修正を任せる基本は、次の6段階です。</p>
 <ol>
-<li>長い作業を、今の画面とは別に進める</li>
-<li>複数の作業が「作業中・入力待ち・完了」のどこかを見る</li>
-<li>「何ができたら完了か」を先に決める</li>
+<li>対象と前提を決める</li>
+<li>変更前を確認する</li>
+<li>修正を1件だけ頼む</li>
+<li>差分を確認する</li>
+<li>テストする</li>
+<li>結果を報告してもらう</li>
 </ol>
-<p>この3つに、安全な操作と禁止する操作のルールを加えます。</p>
-<table>
-<thead>
-<tr>
-<th>項目</th>
-<th>内容</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>対象期間</td>
-<td>2026年1月〜5月</td>
-</tr>
-<tr>
-<td>採り上げた機能</td>
-<td>14項目</td>
-</tr>
-<tr>
-<td>既定モデル</td>
-<td>Opus 4.7（Max / Team）</td>
-</tr>
-<tr>
-<td>週次上限</td>
-<td>2026年5月13日〜7月13日に+50%</td>
-</tr>
-</tbody>
-</table>
+<p>大事なのは、AIへ「全部いい感じに直して」と頼まないことです。対象、変更内容、触らない範囲、完了条件を短く伝えます。</p>
+<blockquote>
+<p>Claude Codeが修正できることと、その修正を公開してよいことは別です。最初の練習では、公開、本番反映、外部サービスへの送信、データ削除は頼みません。</p>
+</blockquote>
 <h2 id='順番に理解する本文'>順番に理解する本文</h2>
-<h3>1. 作業を裏で進める</h3>
-<p>バックグラウンドとは、今見ている会話とは別に、作業を裏で動かすことです。</p>
-<table>
+<h3>1. 対象と前提を決める</h3>
+<p>作業を始める前に、次の5点を確認します。</p>
+<div class='lecture-table-scroll' role='region' aria-label='表（横にスクロールできます）' tabindex='0'><table>
 <thead>
 <tr>
-<th>機能</th>
-<th>何ができるか</th>
-<th>使い方</th>
+<th>確認すること</th>
+<th>例</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>バックグラウンドセッション</td>
-<td>ターミナルを開いたまま見張らずに作業を続ける</td>
-<td>新しく始めるときは<code>claude --bg</code>、会話中は<code>/bg</code></td>
+<td>作業する場所</td>
+<td>対象プロジェクトのフォルダ</td>
 </tr>
 <tr>
-<td>作業一覧画面（Agent View）</td>
-<td>全セッションの状態を一つの画面で見る</td>
-<td><code>claude agents</code>。スラッシュは付けない</td>
+<td>直したいもの</td>
+<td>予約ボタンの表示文言</td>
 </tr>
 <tr>
-<td><code>/goal</code></td>
-<td>完了条件を満たすまで、会話の区切りをまたいで進める</td>
-<td><code>/goal &lt;完了条件&gt;</code></td>
+<td>触らないもの</td>
+<td>リンク先、色、配置、ほかのページ</td>
 </tr>
 <tr>
-<td>監視機能（Monitor）</td>
-<td>裏で動く作業の記録や変化を会話に取り込む</td>
-<td>何度も手動確認せず、変化を受け取る</td>
+<td>完了条件</td>
+<td>指定した1か所だけ新しい文言になる</td>
+</tr>
+<tr>
+<td>確認方法</td>
+<td>既存テストとローカル画面</td>
 </tr>
 </tbody>
-</table>
-<p>セッションとは、一つの作業を進める会話のまとまりです。</p>
-<p><code>claude agents</code>では、各セッションが「作業中」「入力待ち」「完了」のどれかを一覧で確認できます。その場で作業を割り当てる、途中を見る、画面につなぐ・外すといった操作もできます。公式画面では、それぞれdispatch、peek、attach / detachと表示されます。</p>
-<p><code>/goal</code>は、経過時間、会話の回数、AIの利用量（トークン）を表示します。「テストが全部通るまで」のように完了条件を渡すと、夜間に続ける作業にも使えます。</p>
-<p>バックグラウンドセッションは、2026年第1四半期から改善され、W15に<code>claude --bg</code>として確定しました。単独で使うより、Agent View、<code>/goal</code>、Monitorと組み合わせると状況を把握しやすくなります。</p>
-<h3>2. 許可する操作と禁止する操作を分ける</h3>
-<p>Auto Modeは、安全と判断された操作を自動で許可し、危険な操作を止める権限モードです。W13に研究プレビューとして登場し、選択中のAIとは別の判定用モデルが、操作を許可できるか裏で確認します。</p>
-<p>これにより、「すべて許可する」と「毎回、人が確認する」の中間を選べます。</p>
-<table>
+</table></div>
+<p>さらに、次の前提を整えます。</p>
+<ul>
+<li>元へ戻せるように、Gitまたはバックアップがある</li>
+<li>パスワード、APIキー、個人情報を依頼文へ貼らない</li>
+<li>本番データを直接変更する作業ではない</li>
+<li>プロジェクトのREADMEや手順書を確認できる</li>
+<li>自分に変更の権限がある</li>
+</ul>
+<h3>2. Claude Codeを起動する</h3>
+<p>ターミナルで対象プロジェクトのフォルダを開きます。必要なら、先にバージョンを確認します。</p>
+<pre><code class="language-text">claude --version
+</code></pre>
+<p>Claude Codeを始める基本のコマンドは次のとおりです。</p>
+<pre><code class="language-text">claude
+</code></pre>
+<p>起動できたら、すぐに修正を頼まず、現在の場所と対象を確認します。</p>
+<h3>3. 変更前の状態を確認する</h3>
+<p>最初の依頼では、まだ編集させません。</p>
+<pre><code class="language-text">まだファイルを変更しないでください。
+
+次の内容を確認して、短く報告してください。
+1. 今いるプロジェクトの目的
+2. 予約ボタンが書かれているファイル
+3. 現在の表示文言とリンク先
+4. この修正に関係するテストや確認方法
+5. 変更すると影響しそうな範囲
+</code></pre>
+<p>報告を読み、対象ファイルと現在の表示が自分の想定と合っているか確認します。違っていたら、この段階で止めて質問します。</p>
+<h3>4. 修正を1件だけ頼む</h3>
+<p>対象が分かったら、1件の依頼を出します。</p>
+<pre><code class="language-text">目的:
+予約ボタンの意味を初めての人にも分かりやすくする。
+
+対象:
+先ほど確認した予約ボタン1か所。
+
+変更:
+表示文言を「予約する」から「無料相談の日程を選ぶ」へ変える。
+
+触らない範囲:
+リンク先、色、配置、ほかのボタン、ほかのページは変更しない。
+
+完了条件:
+対象の1か所だけ文言が変わり、リンク先と見た目は変わっていない。
+
+確認:
+変更後に差分を示し、既存の確認方法を実行する。
+公開、コミット、プッシュはしない。
+</code></pre>
+<p>対象、変更、触らない範囲、完了条件がそろっていると、意図しない変更を見つけやすくなります。</p>
+<h3>5. 差分を確認する</h3>
+<p>差分とは、変更前と変更後の違いです。Claude Codeの「完了しました」という文章だけで判断せず、実際に変わったファイルと行を見ます。</p>
+<p>確認するのは次の4点です。</p>
+<ol>
+<li>変更されたファイルは予定どおりか</li>
+<li>変更は頼んだ1件だけか</li>
+<li>リンク先、数値、名前などを誤って変えていないか</li>
+<li>パスワードや個人情報が追加されていないか</li>
+</ol>
+<p>Gitを使っているプロジェクトでは、Claude Codeに「変更したファイルと差分を見せてください」と頼めます。自分で確認する場合は、プロジェクトの運用に合った差分表示を使います。</p>
+<h3>6. テストする</h3>
+<p>テストは、変更後も必要な動きが保たれているかを確かめる作業です。コマンドを推測せず、README、開発手順、既存の設定から確認します。</p>
+<p>Claude Codeには、次のように頼みます。</p>
+<pre><code class="language-text">このプロジェクトで既に使われている確認方法を調べてください。
+新しいテスト方法は勝手に追加せず、既存の方法を実行してください。
+
+実行できない場合は、理由と、人が代わりに確認する項目を報告してください。
+</code></pre>
+<p>Webページの文言修正なら、少なくとも次を確認します。</p>
+<ul>
+<li>ページが表示できる</li>
+<li>新しい文言が表示される</li>
+<li>リンク先が変わっていない</li>
+<li>PC幅とスマホ幅で文字が切れていない</li>
+<li>既存のリンク検査やビルドが通る</li>
+</ul>
+<h3>7. 結果を報告してもらう</h3>
+<p>最後の報告は、次の形にそろえます。</p>
+<pre><code class="language-text">次の4項目で報告してください。
+
+1. 変更したファイル
+2. 変更内容
+3. 実行したテストと結果
+4. 実行できなかった確認、残っている注意点
+</code></pre>
+<p>「成功しました」だけでは足りません。実行した確認と、まだ確認していないことを分けます。</p>
+<h2 id='具体例-やってみる'>具体例 / やってみる</h2>
+<h3>練習: 説明文の誤字を1か所だけ直す</h3>
+<p>自分のプロジェクトで、結果を見て判断できる小さな誤字を1つ選びます。次の依頼文を使ってください。</p>
+<pre><code class="language-text">このプロジェクト内の説明文にある誤字を1か所だけ直します。
+
+まず編集せず、対象ファイル、現在の文章、表示されるページ、
+既存の確認方法を報告してください。
+
+私が対象を確認したあと、指定した誤字だけを修正してください。
+ほかの言い回し、レイアウト、リンク、画像は変更しないでください。
+
+修正後は、変更ファイルと差分を示し、
+プロジェクトに既にある確認方法を実行してください。
+
+コミット、プッシュ、公開はしないでください。
+</code></pre>
+<p>次の順番で進めます。</p>
+<ol>
+<li>変更前の報告を読む</li>
+<li>対象が合っていると確認する</li>
+<li>1件だけ修正させる</li>
+<li>差分を見る</li>
+<li>テスト結果を見る</li>
+<li>自分の目で表示を確認する</li>
+</ol>
+<h2 id='できたかチェック'>できたかチェック</h2>
+<ul>
+<li>[ ] 作業するプロジェクトを確認した</li>
+<li>[ ] 元へ戻す方法を確認した</li>
+<li>[ ] パスワードや個人情報を依頼へ入れていない</li>
+<li>[ ] 変更前に対象ファイルと現在の状態を確認した</li>
+<li>[ ] 修正内容を1件に絞った</li>
+<li>[ ] 触らない範囲を書いた</li>
+<li>[ ] 完了条件を書いた</li>
+<li>[ ] 変更されたファイルと差分を確認した</li>
+<li>[ ] 既存のテストまたは確認方法を実行した</li>
+<li>[ ] 未確認事項を報告に残した</li>
+<li>[ ] 公開、コミット、プッシュを勝手に実行させていない</li>
+</ul>
+<h2 id='次に読む資料'>次に読む資料</h2>
+<ul>
+<li><a href="../programming-map.html">AIエージェント講習 120分</a> — 依頼、確認、修正、安全な公開までの全体像を学ぶ</li>
+<li><a href="./index.html">受講資料の一覧</a> — 自分の目的に合う次の資料を選ぶ</li>
+</ul>
+<h2 id='用語・出典'>用語・出典</h2>
+<h3>用語</h3>
+<ul>
+<li><strong>Claude Code</strong>: プロジェクトのファイルを読み、編集し、コマンドを実行できる開発支援ツール</li>
+<li><strong>ターミナル</strong>: 文字でコマンドを入力してPCを操作する画面</li>
+<li><strong>差分</strong>: 変更前と変更後の違い</li>
+<li><strong>テスト</strong>: 変更後も必要な動きが保たれているかを確認する作業</li>
+<li><strong>Git</strong>: ファイルの変更履歴を記録し、前の状態へ戻しやすくする仕組み</li>
+</ul>
+<h3>必要になってから確認するコマンド</h3>
+<p>最初の小さな修正で、すべてを使う必要はありません。今日はバージョン確認と起動だけで十分です。</p>
+<div class='lecture-table-scroll' role='region' aria-label='表（横にスクロールできます）' tabindex='0'><table>
 <thead>
 <tr>
-<th>設定</th>
+<th>コマンド</th>
 <th>役割</th>
+<th>使う時期</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>auto</code></td>
-<td>安全と判断された操作を自動で許可し、危険な操作を止める</td>
+<td><code>claude --version</code></td>
+<td>インストールされている版を確認する</td>
+<td>起動できない時や資料と表示が違う時</td>
 </tr>
 <tr>
-<td><code>autoMode.hard_deny</code></td>
-<td>絶対に実行させない操作を配列で指定する</td>
-</tr>
-<tr>
-<td><code>dontAsk</code></td>
-<td>事前に許可した操作だけを通す</td>
-</tr>
-</tbody>
-</table>
-<p><code>autoMode.hard_deny</code>には、<code>rm -rf</code>や本番データベースへの書き込みなど、実行させたくない操作を指定できます。</p>
-<h3>3. 難しい作業だけ、考える量を増やす</h3>
-<p>W16に、Max / Team PremiumでOpus 4.7が既定モデルになりました。同じ時期に<code>/effort</code>がスライダーになり、最上位の<code>xhigh</code>が追加されました。</p>
-<ul>
-<li>難しい作業では<code>/effort xhigh</code>を使う</li>
-<li>定型作業では考える量を控えめにする</li>
-<li><code>${CLAUDE_EFFORT}</code>を使うと、追加機能やコマンド処理から現在の設定値を読める</li>
-</ul>
-<p>一つのセッションの中でも、作業の難しさに合わせて考える量を変えられます。</p>
-<h3>4. 計画と繰り返し作業を分ける</h3>
-<p>W15には、Ultraplanと<code>/loop</code>も登場しました。</p>
-<ul>
-<li><strong>Ultraplan</strong>：クラウドで計画の下書きを作り、Webで確認してから、手元またはリモート環境で実行する</li>
-<li><strong><code>/loop &lt;間隔&gt;</code></strong>：決めた間隔で作業を繰り返す。間隔を省略すると、自分のペースで常駐する</li>
-</ul>
-<p>設計を確認してから実装へ進む作業と、定期的に繰り返す作業を分けて扱えます。</p>
-<h3>5. プラグインで機能を追加する</h3>
-<p>W19時点では、<code>/plugin</code>から公式マーケットプレイスを開けます。コマンド名は複数形ではなく、単数の<code>/plugin</code>です。</p>
-<ul>
-<li>Discoverタブから<code>claude-plugins-official</code>を確認する</li>
-<li>2026年5月時点で公式101本、コミュニティを含めると1,000本を超える</li>
-<li><code>.zip</code>ファイルやURLからも読み込める</li>
-</ul>
-<h3>6. Windowsと作業場所の違いに対応する</h3>
-<p>W13からW19には、作業環境に関する変更も入りました。</p>
-<ul>
-<li><strong>PowerShellネイティブ対応</strong>：WindowsでGit Bashを必須にせず使える</li>
-<li><strong>Computer use in CLI</strong>：文字で操作する画面（CLI）から、ボタンで操作する画面（GUI）を動かして確認する研究プレビュー</li>
-<li><strong><code>worktree.bgIsolation</code></strong>：バックグラウンド作業を分離したworktreeで行うか、今の作業コピーを直接編集するかを選ぶ</li>
-</ul>
-<p>CLIは、文字のコマンドで操作する画面です。GUIは、ボタンや画面をクリックして操作する方式です。worktreeは、同じリポジトリの作業場所を分けるGitの仕組みです。</p>
-<h3>7. 追加された順番を確認する</h3>
-<table>
-<thead>
-<tr>
-<th>時期</th>
-<th>主な変更</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>W13・3月下旬</td>
-<td>Auto Mode（<code>auto</code>、研究プレビュー）、Windows PowerShellネイティブ対応</td>
-</tr>
-<tr>
-<td>W14・3月末〜4月頭</td>
-<td>Computer use in CLI（研究プレビュー）</td>
-</tr>
-<tr>
-<td>W15・4月上旬</td>
-<td><code>claude --bg</code>、Ultraplan、Monitorツール、<code>/loop</code></td>
-</tr>
-<tr>
-<td>W16・4月中旬</td>
-<td>Opus 4.7の既定化、<code>/effort</code>のスライダー化、<code>xhigh</code>追加</td>
-</tr>
-<tr>
-<td>W19・5月頭</td>
-<td><code>autoMode.hard_deny</code>、プラグインの<code>.zip</code>・URL読み込み、<code>worktree.bgIsolation</code></td>
-</tr>
-<tr>
-<td>W20・5月中旬</td>
-<td>Agent View（<code>claude agents</code>）、<code>/goal</code></td>
-</tr>
-<tr>
-<td>5月13日</td>
-<td>週次上限+50%。7月13日までの期間限定</td>
-</tr>
-</tbody>
-</table>
-<h3>8. コマンドを目的別に選ぶ</h3>
-<table>
-<thead>
-<tr>
-<th>コマンド / 設定</th>
-<th>用途</th>
-<th>時期</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>claude --bg</code> / <code>/bg</code></td>
-<td>バックグラウンドで作業を走らせる</td>
-<td>W15</td>
+<td><code>claude</code></td>
+<td>対象フォルダでClaude Codeを始める</td>
+<td>小さな修正を試す時</td>
 </tr>
 <tr>
 <td><code>claude agents</code></td>
-<td>全セッションを一つの画面で監視・操作する</td>
-<td>W20</td>
+<td>複数のバックグラウンドセッションを一覧で見る</td>
+<td>1件の修正に慣れたあと</td>
 </tr>
 <tr>
-<td><code>/goal &lt;条件&gt;</code></td>
-<td>完了条件まで作業を続ける</td>
-<td>W20</td>
+<td><code>/goal</code></td>
+<td>完了条件を設定し、その条件まで作業を続ける</td>
+<td>完了条件を自分で判断できるようになったあと</td>
 </tr>
 <tr>
-<td><code>auto</code>モード</td>
-<td>安全な操作は自動で許可し、危険な操作は止める</td>
-<td>W13</td>
-</tr>
-<tr>
-<td><code>autoMode.hard_deny</code></td>
-<td>無条件で止める操作を指定する</td>
-<td>W19</td>
-</tr>
-<tr>
-<td><code>/effort xhigh</code></td>
-<td>AIが考える量を最大にする</td>
-<td>W16</td>
-</tr>
-<tr>
-<td><code>/loop &lt;間隔&gt;</code></td>
-<td>定期・常駐作業を動かす</td>
-<td>W15</td>
-</tr>
-<tr>
-<td><code>/plugin</code></td>
-<td>公式マーケットプレイスを見て導入する</td>
-<td>W19</td>
-</tr>
-<tr>
-<td><code>worktree.bgIsolation</code></td>
-<td>バックグラウンド作業の分離方法を選ぶ</td>
-<td>W19</td>
+<td><code>/loop</code></td>
+<td>同じ確認を一定間隔で繰り返す</td>
+<td>定期確認が本当に必要になったあと</td>
 </tr>
 </tbody>
-</table>
-<p>週次上限は、2026年5月13日から7月13日まで50%増量されました。対象はPro、Max、Team、シート制Enterpriseで、無料枠は対象外でした。</p>
-<h2 id='具体例-やってみる'>具体例 / やってみる</h2>
-<p>「テストが全部通るまで修正する」という作業を例にします。</p>
-<ol>
-<li>完了条件を「テストが全部通るまで」と決める</li>
-<li><code>/goal &lt;完了条件&gt;</code>で条件を渡す</li>
-<li><code>claude --bg</code>または<code>/bg</code>で裏の作業として進める</li>
-<li><code>claude agents</code>で「作業中」「入力待ち」「完了」を見る</li>
-<li>Monitorでログや出来事を会話に取り込む</li>
-<li>Auto Modeを使い、実行させたくない操作は<code>autoMode.hard_deny</code>で止める</li>
-</ol>
-<p>この組み合わせにより、作業を任せたまま放置するのではなく、完了条件と安全ルールを決めて監督できます。</p>
-<h2 id='振り返り-次の一歩'>振り返り / 次の一歩</h2>
+</table></div>
+<p>コマンドや機能は更新されます。使う直前に公式資料で現在の説明を確認してください。</p>
+<h3>公式資料</h3>
 <ul>
-<li>まずは<code>claude --bg</code>、<code>claude agents</code>、<code>/goal</code>の役割を分けて覚える</li>
-<li>次に、Auto Modeと<code>autoMode.hard_deny</code>で安全ルールを決める</li>
-<li>難しい作業だけ<code>/effort xhigh</code>を使う</li>
-<li>定期作業は<code>/loop</code>、機能追加は<code>/plugin</code>を確認する</li>
-</ul>
-<p>すべてを一度に使う必要はありません。最初は、今の開発で繰り返している作業を一つ選び、完了条件を書いてから試します。</p>
-<h3>出典</h3>
-<p>Claude Code公式changelog / What's new（週次ダイジェスト、code.claude.com）、Anthropic Engineering（Auto Mode）、Claude Code Plugin Marketplace（anthropics/claude-plugins-official）。</p>
-<h3>関連リンク</h3>
-<ul>
-<li><a href="../index.html">AI相談 トップ</a></li>
-<li><a href="./2026-04-ai-kihon.html">受講資料 入門 #01</a></li>
-<li><a href="../speaker.html">講師紹介</a></li>
-</ul></div><footer>AI相談 / Generated by Claude</footer><button class='back-to-top' id='backTop' aria-label='トップへ戻る'>↑</button><script>(function(){var b=document.getElementById('backTop');if(!b)return;window.addEventListener('scroll',function(){b.classList.toggle('show',window.scrollY>400);});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script><script>
+<li><a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code公式changelog</a></li>
+<li><a href="https://code.claude.com/docs/en/overview">Claude Code公式ドキュメント: Overview</a></li>
+<li><a href="https://code.claude.com/docs/en/cli-reference">Claude Code公式ドキュメント: CLI reference</a></li>
+</ul><nav class='lecture-course-nav' aria-label='同じコースの前後資料'><span class='lecture-course-nav-item previous disabled' aria-disabled='true'><span>前の資料</span><b>このコースの先頭です</b></span><a class='lecture-course-nav-item index' href='./index.html'><span>一覧</span><b>受講資料一覧</b></a><span class='lecture-course-nav-item next disabled' aria-disabled='true'><span>次の資料</span><b>このコースの最後です</b></span></nav></div></main><footer>AI相談 / Generated by Claude</footer><button class='back-to-top' id='backTop' aria-label='トップへ戻る'>↑</button><script>(function(){var b=document.getElementById('backTop');if(!b)return;window.addEventListener('scroll',function(){b.classList.toggle('show',window.scrollY>400);});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script><script>
 (function(){
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var sel = '.tr-card, .pf-card, .profile-stat, .profile-tech-card, .sns-card, article, .content-toc, .tr-section, .profile-tl-item, .profile-app-card, .profile-biz-card';

@@ -1,4 +1,4 @@
-<!doctype html><html lang='ja'><head><meta charset='utf-8'><link rel='icon' type='image/svg+xml' href='/favicon.svg'><link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png'><link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png'><link rel='shortcut icon' href='/favicon.ico'><link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png'><link rel='manifest' href='/site.webmanifest'><link rel='mask-icon' href='/favicon.svg' color='#0EA5E9'><meta name='theme-color' content='#F7FBFF'><meta name='viewport' content='width=device-width,initial-scale=1'><title>AIに自社資料を正しい順番で読ませる方法 — RAG入門 | AI相談</title><meta name='description' content='RAGとは、AIが自社資料を探してから答える仕組み。どの資料から見るか、何を人が確認するかを、ECと交流会の例で学ぶ。'><link rel='canonical' href='https://ai-hub-jp.vercel.app/lectures/2026-06-ai-agent-rag-design.html'><meta property='og:title' content='AIに自社資料を正しい順番で読ませる方法 — RAG入門'><meta property='og:description' content='RAGとは、AIが自社資料を探してから答える仕組み。どの資料から見るか、何を人が確認するかを、ECと交流会の例で学ぶ。'><meta property='og:url' content='https://ai-hub-jp.vercel.app/lectures/2026-06-ai-agent-rag-design.html'><meta property='og:type' content='article'><meta property='og:site_name' content='AI相談'><meta name='twitter:card' content='summary'><script type='application/ld+json'>{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "AIに自社資料を正しい順番で読ませる方法 — RAG入門", "datePublished": "2026-06-17", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://ai-hub-jp.vercel.app/lectures/2026-06-ai-agent-rag-design.html"}, "author": {"@type": "Person", "name": "由井 辰美"}, "publisher": {"@type": "Organization", "name": "AI相談", "url": "https://ai-hub-jp.vercel.app"}, "description": "RAGとは、AIが自社資料を探してから答える仕組み。どの資料から見るか、何を人が確認するかを、ECと交流会の例で学ぶ。", "speakable": {"@type": "SpeakableSpecification", "cssSelector": ["h1", ".content-wrap p:first-of-type"]}}</script><style>
+<!doctype html><html lang='ja'><head><meta charset='utf-8'><link rel='icon' type='image/svg+xml' href='/favicon.svg'><link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png'><link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png'><link rel='shortcut icon' href='/favicon.ico'><link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png'><link rel='manifest' href='/site.webmanifest'><link rel='mask-icon' href='/favicon.svg' color='#0EA5E9'><meta name='theme-color' content='#F7FBFF'><meta name='viewport' content='width=device-width,initial-scale=1'><title>AIに自社資料を探して答えてもらう — RAG入門 | AI相談</title><meta name='description' content='RAGとは、AIが質問に関係する箇所を資料から探し、根拠と一緒に答える仕組みです。公開可能な交流会FAQを例に、資料の選び方、更新日、閲覧権限、出典表示、人の確認を学びます。'><link rel='canonical' href='https://ai-hub-jp.vercel.app/lectures/2026-06-ai-agent-rag-design.html'><meta property='og:title' content='AIに自社資料を探して答えてもらう — RAG入門'><meta property='og:description' content='RAGとは、AIが質問に関係する箇所を資料から探し、根拠と一緒に答える仕組みです。公開可能な交流会FAQを例に、資料の選び方、更新日、閲覧権限、出典表示、人の確認を学びます。'><meta property='og:url' content='https://ai-hub-jp.vercel.app/lectures/2026-06-ai-agent-rag-design.html'><meta property='og:type' content='article'><meta property='og:site_name' content='AI相談'><meta name='twitter:card' content='summary'><script type='application/ld+json'>{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "AIに自社資料を探して答えてもらう — RAG入門", "datePublished": "2026-06-17", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://ai-hub-jp.vercel.app/lectures/2026-06-ai-agent-rag-design.html"}, "author": {"@type": "Person", "name": "由井 辰美"}, "publisher": {"@type": "Organization", "name": "AI相談", "url": "https://ai-hub-jp.vercel.app"}, "description": "RAGとは、AIが質問に関係する箇所を資料から探し、根拠と一緒に答える仕組みです。公開可能な交流会FAQを例に、資料の選び方、更新日、閲覧権限、出典表示、人の確認を学びます。", "speakable": {"@type": "SpeakableSpecification", "cssSelector": ["h1", ".content-wrap p:first-of-type"]}}</script><style>
 :root {
   --bg-base:#f8fafc;
   --bg-white:#ffffff;
@@ -959,6 +959,38 @@ footer {
   color: var(--muted);
   font-size: 12.5px !important;
 }
+.tr-section-collapsible > summary {
+  list-style: none;
+  cursor: pointer;
+  border-radius: 14px;
+}
+.tr-section-collapsible > summary::-webkit-details-marker { display: none; }
+.tr-section-collapsible > summary .tr-section-head {
+  margin-bottom: 10px;
+  padding-right: 44px !important;
+  position: relative;
+}
+.tr-section-collapsible > summary .tr-section-head::after {
+  content: "+";
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  width: 25px;
+  height: 25px;
+  display: grid;
+  place-items: center;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid var(--glass-border);
+  color: var(--primary);
+  font-size: 17px;
+}
+.tr-section-collapsible[open] > summary .tr-section-head::after { content: "−"; }
+.tr-section-collapsible > summary:focus-visible {
+  outline: 3px solid rgba(37,99,235,.28);
+  outline-offset: 3px;
+}
 .tr-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -1108,6 +1140,25 @@ footer {
   font-size: 12px;
   line-height: 1.55;
 }
+.tr-format-flow {
+  margin: 18px 0 26px;
+  padding: 13px 16px;
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  background: #fff;
+  color: var(--text-soft);
+  font-size: 14px;
+  font-weight: 850;
+  line-height: 1.7;
+  text-align: center;
+}
+.tr-format-flow small {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 11.5px;
+  font-weight: 600;
+}
 .tr-card .tr-meta {
   row-gap: 7px;
 }
@@ -1158,145 +1209,205 @@ footer {
   border: 1px solid rgba(37,99,235,.2);
   font-weight: 900;
 }
+.lecture-page .content-wrap.lecture-content {
+  width: 100%;
+  max-width: 920px;
+  margin-right: auto;
+  margin-left: auto;
+  line-height: 1.9;
+}
+.lecture-content p,
+.lecture-content ul,
+.lecture-content ol {
+  font-size: 16px;
+  line-height: 1.9;
+}
+.lecture-content h3 {
+  font-size: 18px;
+  line-height: 1.55;
+  margin-top: 1.8em;
+}
+.lecture-content a,
+.lecture-content code {
+  overflow-wrap: anywhere;
+}
+.lecture-table-scroll {
+  width: 100%;
+  max-width: 100%;
+  margin: 18px 0 28px;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  -webkit-overflow-scrolling: touch;
+}
+.lecture-table-scroll:focus-visible {
+  outline: 3px solid rgba(37,99,235,.28);
+  outline-offset: 3px;
+}
+.lecture-table-scroll table {
+  width: 100%;
+  min-width: 620px;
+  margin: 0 !important;
+  border: 0 !important;
+  border-collapse: collapse;
+}
+.lecture-content table:not([class]) th,
+.lecture-content table:not([class]) td {
+  padding: 11px 13px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+.lecture-content table:not([class]) th {
+  background: #eef5ff;
+  color: var(--text);
+  font-weight: 800;
+}
 .lecture-shell {
   margin: 0 0 22px;
-  padding: 18px;
+  padding: clamp(18px, 3vw, 24px);
   border: 1px solid rgba(37,99,235,.16);
   border-radius: 16px;
   background:
     radial-gradient(circle at 100% 0%, rgba(15,139,141,.10), transparent 28%),
     linear-gradient(135deg, #f8fbff 0%, #fff 55%, #f6fef9 100%);
 }
-.lecture-shell-head {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 14px;
-  align-items: start;
-}
 .lecture-shell-title {
-  font-size: 18px;
+  font-size: 19px;
   font-weight: 900;
   color: var(--text);
   line-height: 1.4;
 }
 .lecture-shell-desc {
-  margin: 5px 0 0 !important;
+  margin: 6px 0 0 !important;
   color: var(--text-soft) !important;
-  font-size: 13.5px !important;
-  line-height: 1.7 !important;
+  font-size: 16px !important;
+  line-height: 1.85 !important;
+}
+.lecture-shell-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 8px;
+  margin: 16px 0 0;
+}
+.lecture-meta-item {
+  padding: 10px 12px;
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  background: rgba(255,255,255,.84);
+}
+.lecture-meta-item span {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .06em;
+}
+.lecture-meta-item b {
+  display: block;
+  margin-top: 3px;
+  color: var(--text);
+  font-size: 13.5px;
+  line-height: 1.55;
 }
 .lecture-shell-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  justify-content: flex-end;
+  margin-top: 16px;
 }
-.lecture-home-link {
+.lecture-shell-link {
   display: inline-flex;
   align-items: center;
-  min-height: 34px;
-  padding: 7px 12px;
-  border-radius: 999px;
+  justify-content: center;
+  min-height: 40px;
+  padding: 9px 14px;
+  border-radius: 10px;
   background: #fff;
   border: 1px solid rgba(37,99,235,.22) !important;
   color: var(--primary) !important;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 800;
   text-decoration: none !important;
 }
-.lecture-format-strip {
+.lecture-shell-link.primary {
+  background: var(--primary);
+  color: #fff !important;
+  border-color: var(--primary) !important;
+}
+.lecture-course-nav {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(130px, auto) minmax(0, 1fr);
+  gap: 10px;
+  margin-top: 40px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+.lecture-course-nav-item {
   display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-  margin-top: 14px;
-}
-.lecture-format-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 5px 9px;
-  border-radius: 999px;
-  border: 1px solid var(--glass-border);
-  background: #fff;
-  color: var(--text-soft);
-  font-size: 11.5px;
-  font-weight: 800;
-  line-height: 1.2;
-}
-.lecture-format-chip small {
-  color: inherit;
-  opacity: .72;
-  font-size: 10px;
-  font-weight: 800;
-}
-.lecture-format-chip.on {
-  background: rgba(37,99,235,.10);
-  border-color: rgba(37,99,235,.22);
-  color: #1d4fd6;
-}
-.lecture-format-chip.missing {
-  color: var(--muted);
-  background: rgba(148,163,184,.10);
-}
-.lecture-jump {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 14px;
-}
-.lecture-jump a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 32px;
-  padding: 7px 11px;
-  border-radius: 10px;
+  min-width: 0;
+  min-height: 74px;
+  flex-direction: column;
+  justify-content: center;
+  padding: 11px 13px;
   border: 1px solid var(--glass-border) !important;
-  background: rgba(255,255,255,.82);
-  color: var(--text-soft) !important;
-  font-size: 12px;
-  font-weight: 800;
+  border-radius: 12px;
+  background: #fff;
+  color: var(--text) !important;
   text-decoration: none !important;
 }
-.lecture-jump a:hover {
-  color: var(--primary) !important;
-  border-color: rgba(37,99,235,.30) !important;
+.lecture-course-nav-item.next { text-align: right; }
+.lecture-course-nav-item.index { text-align: center; }
+.lecture-course-nav-item span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
 }
-.lecture-outline-preview {
-  margin: 14px 0 0;
-  padding: 12px 14px;
-  border-radius: 12px;
-  background: rgba(255,255,255,.78);
-  border: 1px solid var(--glass-border);
-}
-.lecture-outline-preview b {
+.lecture-course-nav-item b {
   display: block;
-  color: var(--text);
-  font-size: 12.5px;
-  margin-bottom: 6px;
+  margin-top: 4px;
+  overflow: hidden;
+  font-size: 13px;
+  line-height: 1.5;
+  text-overflow: ellipsis;
 }
-.lecture-outline-preview ol {
-  columns: 2;
-  column-gap: 22px;
-  margin: 0 0 0 1.2em !important;
-  font-size: 12.5px !important;
-}
-.lecture-outline-preview li {
-  break-inside: avoid;
+.lecture-course-nav-item.disabled {
+  opacity: .55;
+  background: #f8fafc;
 }
 .content-toc {
   scroll-margin-top: 92px;
 }
 @media (max-width: 760px) {
   .tr-home,
-  .lecture-shell-head,
   .tr-featured {
     grid-template-columns: 1fr;
   }
   .tr-format-grid {
     grid-template-columns: 1fr;
   }
-  .lecture-outline-preview ol {
-    columns: 1;
+  .lecture-course-nav {
+    grid-template-columns: 1fr;
+  }
+  .lecture-course-nav-item.next,
+  .lecture-course-nav-item.index {
+    text-align: left;
+  }
+}
+@media (max-width: 640px) {
+  .lecture-page .content-wrap.lecture-content {
+    padding: 24px 18px;
+  }
+  .lecture-content p,
+  .lecture-content ul,
+  .lecture-content ol {
+    font-size: 16px;
+  }
+  .lecture-shell-actions {
+    display: grid;
+    grid-template-columns: 1fr;
   }
 }
 
@@ -10906,7 +11017,7 @@ header.site-header:hover {
     font-size: 11.5px !important;
   }
 }
-</style></head><body><div class='container'>
+</style></head><body class='lecture-page'><div class='container'>
 <script>
 (function(){
   function reveal(){
@@ -10923,226 +11034,232 @@ header.site-header:hover {
   }
 })();
 </script>
-<header class='site-header scrolled' id='site-header' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html' aria-label='AI相談 彦根 トップへ'><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span></span></a><nav class='site-nav' aria-label='メインナビ'><a class='nav-link nav-essential' href='/#packages'>講習・相談</a><a class='nav-link nav-essential' href='/programming-map.html'>AIコーディング</a><a class='nav-link nav-essential nav-current' href='/#lectures' aria-current='page'>受講資料</a><div class='menu-wrap'><button class='menu-toggle' id='menu-toggle' aria-haspopup='menu' aria-expanded='false'>全メニュー<svg class='chev' width='14' height='14' viewBox='0 0 20 20' fill='none' aria-hidden='true'><path d='M5 8l5 5 5-5' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg></button><div class='menu-drop' id='menu-drop' role='menu'><span class='menu-drop-label'>制作・発信</span><a href='/#all-works'>AI実績</a><a href='/#blog'>ブログ</a><a href='/watch/index.html'>AI Watch</a><span class='menu-drop-label'>案内・確認</span><a href='/#speaker'>講師紹介</a><a href='/#flow'>進め方</a><a href='/#faq'>FAQ</a><a href='../index.html'>ホーム</a></div></div><a class='nav-cta' href='/#contact'>無料相談</a></nav><a class='header-member-login' href='/admin'>会員ログイン</a><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'><svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button></div><div class='mobile-nav generated-mobile-nav' id='mobile-nav'><div class='mobile-nav-panel mobile-nav-panel--public'><a class='login-btn-mobile' href='/#contact'>無料相談</a><a class='mobile-main-link' href='/#packages'>講習・相談</a><span class='mobile-nav-label'>講習・資料</span><div class='mobile-link-grid'><a href='/programming-map.html'>AIコーディング</a><a href='/#lectures'>受講資料</a><a href='/#blog'>ブログ</a></div><span class='mobile-nav-label'>制作・発信</span><div class='mobile-link-grid'><a href='/#all-works'>AI実績</a><a href='/watch/index.html'>AI Watch</a></div><span class='mobile-nav-label'>案内・確認</span><div class='mobile-link-grid'><a href='/#speaker'>講師紹介</a><a href='/#flow'>進め方</a><a href='/#faq'>FAQ</a><a href='../index.html'>ホーム</a></div></div></div></header><script>(function(){var t=document.getElementById('menu-toggle'),d=document.getElementById('menu-drop'),b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav');function closeDrop(){if(!d||!t)return;d.classList.remove('open');t.setAttribute('aria-expanded','false');}function closeMobile(){if(!n||!b)return;n.classList.remove('open');b.setAttribute('aria-expanded','false');}if(t&&d){t.addEventListener('click',function(e){e.stopPropagation();var o=d.classList.toggle('open');t.setAttribute('aria-expanded',o?'true':'false');});document.addEventListener('click',function(e){if(!d.contains(e.target)&&!t.contains(e.target))closeDrop();});}if(b&&n){b.addEventListener('click',function(e){e.stopPropagation();var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMobile);});}document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDrop();closeMobile();}});})();</script><header><h1>AIに自社資料を正しい順番で読ませる方法 — RAG入門</h1><div class='speaker-meta'><span class='role'>SEOブログ / RAG設計・AIエージェント</span><span>📅 2026-06-17</span><span>由井 辰美 / AI相談</span></div></header><div class='content-wrap'><section class='lecture-shell' aria-label='この資料の読み方'><div class='lecture-shell-head'><div><div class='lecture-shell-title'>この資料の読み方</div><p class='lecture-shell-desc'>RAGとは、AIが自社資料を探してから答える仕組み。どの資料から見るか、何を人が確認するかを、ECと交流会の例で学ぶ。</p></div><div class='lecture-shell-actions'><a class='lecture-home-link' href='../programming-map.html'>AIエージェント講習</a><a class='lecture-home-link' href='./index.html'>受講資料ホーム</a></div></div><div class='lecture-format-strip'><span class='lecture-format-chip on'>本文<small>あり</small></span><span class='lecture-format-chip on'>目次<small>あり</small></span></div><div class='lecture-jump'><a href='./index.html'>受講資料ホーム</a><a href='../programming-map.html'>AIエージェント講習</a><a href='#lecture-toc'>目次</a></div><div class='lecture-outline-preview'><b>この資料の流れ</b><ol><li>この資料でわかること</li><li>まず結論</li><li>順番に理解する本文</li><li>具体例 / やってみる</li><li>振り返り / 次の一歩</li></ol></div></section><div class='content-toc' id='lecture-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#この資料でわかること'>この資料でわかること</a></li><li><a href='#まず結論'>まず結論</a></li><li><a href='#順番に理解する本文'>順番に理解する本文</a></li><li><a href='#具体例-やってみる'>具体例 / やってみる</a></li><li><a href='#振り返り-次の一歩'>振り返り / 次の一歩</a></li></ol></div><style>
-.rag-post{--ink:#102033;--soft:#405166;--muted:#6b7280;--line:#d8e2ee;--blue:#2563eb;--green:#15803d;--amber:#b7791f;--red:#b42318;color:var(--ink)}
-.rag-post *{box-sizing:border-box}.rag-hero{display:grid;grid-template-columns:1.08fr .92fr;gap:22px;align-items:center;margin:4px 0 28px;padding:22px;border:1px solid var(--line);border-radius:8px;background:linear-gradient(135deg,#f8fbff,#fff 52%,#f2fbf6)}
-.rag-hero p{font-size:16px;line-height:1.9;color:var(--soft);margin:0 0 12px}.rag-hero strong{color:var(--ink)}.rag-hero img,.rag-visual img{display:block;width:100%;border:1px solid var(--line);border-radius:8px;background:#fff}.rag-hero img{aspect-ratio:16/10;object-fit:cover}
-.rag-note,.rag-quote{border:1px solid var(--line);border-left:5px solid var(--blue);border-radius:8px;background:#f8fbff;padding:16px 18px;margin:16px 0 26px;line-height:1.85;color:var(--soft)}.rag-quote{font-size:18px;font-weight:800;color:var(--ink);background:#fff}.rag-note b{color:var(--ink)}
-.rag-visual{margin:12px 0 24px}.rag-visual figcaption{font-size:13px;line-height:1.7;color:var(--muted);margin-top:8px}.rag-flow,.rag-prompt{background:#101827;color:#e5edf7;border-radius:8px;padding:18px 20px;margin:14px 0 26px;line-height:1.85;font-size:14px;white-space:pre-wrap}
-.rag-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:16px 0 28px}.rag-card{border:1px solid var(--line);border-top:5px solid var(--blue);border-radius:8px;background:#fff;padding:18px}.rag-card.green{border-top-color:var(--green)}.rag-card.amber{border-top-color:var(--amber)}.rag-card.red{border-top-color:var(--red)}.rag-card h3{font-size:20px;margin:0 0 9px}.rag-card p,.rag-card li{font-size:14.5px;line-height:1.8;color:var(--soft)}
-.rag-table{width:100%;border-collapse:collapse;margin:16px 0 28px;border:1px solid var(--line);font-size:14px;background:#fff}.rag-table th{background:#172033;color:#fff;text-align:left;padding:12px 14px}.rag-table td{border-top:1px solid var(--line);padding:12px 14px;vertical-align:top;line-height:1.75;color:var(--soft)}.rag-table td:first-child{font-weight:800;color:var(--ink)}
-.rag-check{list-style:none;margin:16px 0 28px;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.rag-check li{border:1px solid var(--line);border-radius:8px;padding:12px 13px 12px 38px;position:relative;background:#fff;color:var(--soft);line-height:1.65;font-size:14px}.rag-check li:before{content:"□";position:absolute;left:13px;top:10px;color:var(--blue);font-size:20px;font-weight:900}
-.rag-cta{background:linear-gradient(135deg,#172033,#2458d4);color:#fff;border-radius:8px;padding:22px;margin:24px 0 30px}.rag-cta h2,.rag-cta h3{color:#fff;margin-top:0}.rag-cta p{color:#fff;line-height:1.85}.rag-cta a{display:inline-flex;margin:6px 8px 0 0;padding:10px 14px;border-radius:7px;background:#fff;color:#172033;text-decoration:none;font-weight:800}.rag-sources{font-size:13px;color:var(--muted);line-height:1.75}
-@media(max-width:900px){.rag-hero,.rag-grid,.rag-check{grid-template-columns:1fr}.rag-hero{padding:18px}}
-</style>
-
-<div class="rag-post">
-<div class="rag-hero">
-<div>
-<p><strong>RAGは、AIが仕事に必要な資料を探せるようにする仕組みです。</strong></p>
-<p>難しいシステムから考える必要はありません。最初に決めるのは「何を見せるか」「どの順番で見るか」「最後に人が何を確認するか」の3つです。</p>
-</div>
-<img src="./assets/rag-library-agent.svg" alt="RAGをAI専用の資料棚として整理し、AIエージェントが必要な情報を探す図解" loading="eager" decoding="async">
-</div>
-<h2 id='この資料でわかること'>この資料でわかること</h2>
+<header class='site-header scrolled' id='site-header' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html' aria-label='AI相談 彦根 トップへ'><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span></span></a><nav class='site-nav' aria-label='メインナビ'><a class='nav-link nav-essential' href='/#packages'>講習・相談</a><a class='nav-link nav-essential' href='/programming-map.html'>AIコーディング</a><a class='nav-link nav-essential nav-current' href='/lectures/index.html' aria-current='page'>受講資料</a><div class='menu-wrap'><button class='menu-toggle' id='menu-toggle' aria-haspopup='menu' aria-expanded='false'>全メニュー<svg class='chev' width='14' height='14' viewBox='0 0 20 20' fill='none' aria-hidden='true'><path d='M5 8l5 5 5-5' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg></button><div class='menu-drop' id='menu-drop' role='menu'><span class='menu-drop-label'>制作・発信</span><a href='/#all-works'>AI実績</a><a href='/#blog'>ブログ</a><a href='/watch/index.html'>AI Watch</a><span class='menu-drop-label'>案内・確認</span><a href='/#speaker'>講師紹介</a><a href='/#flow'>進め方</a><a href='/#faq'>FAQ</a><a href='../index.html'>ホーム</a></div></div><a class='nav-cta' href='/#contact'>無料相談</a></nav><a class='header-member-login' href='/admin'>会員ログイン</a><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'><svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button></div><div class='mobile-nav generated-mobile-nav' id='mobile-nav'><div class='mobile-nav-panel mobile-nav-panel--public'><a class='login-btn-mobile' href='/#contact'>無料相談</a><a class='mobile-main-link' href='/#packages'>講習・相談</a><span class='mobile-nav-label'>講習・資料</span><div class='mobile-link-grid'><a href='/programming-map.html'>AIコーディング</a><a href='/lectures/index.html'>受講資料</a><a href='/#blog'>ブログ</a></div><span class='mobile-nav-label'>制作・発信</span><div class='mobile-link-grid'><a href='/#all-works'>AI実績</a><a href='/watch/index.html'>AI Watch</a></div><span class='mobile-nav-label'>案内・確認</span><div class='mobile-link-grid'><a href='/#speaker'>講師紹介</a><a href='/#flow'>進め方</a><a href='/#faq'>FAQ</a><a href='../index.html'>ホーム</a></div></div></div></header><script>(function(){var t=document.getElementById('menu-toggle'),d=document.getElementById('menu-drop'),b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav');function closeDrop(){if(!d||!t)return;d.classList.remove('open');t.setAttribute('aria-expanded','false');}function closeMobile(){if(!n||!b)return;n.classList.remove('open');b.setAttribute('aria-expanded','false');}if(t&&d){t.addEventListener('click',function(e){e.stopPropagation();var o=d.classList.toggle('open');t.setAttribute('aria-expanded',o?'true':'false');});document.addEventListener('click',function(e){if(!d.contains(e.target)&&!t.contains(e.target))closeDrop();});}if(b&&n){b.addEventListener('click',function(e){e.stopPropagation();var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMobile);});}document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDrop();closeMobile();}});})();</script><main id='main-content'><header><h1>AIに自社資料を探して答えてもらう — RAG入門</h1><div class='speaker-meta'><span class='role'>入門</span><span>目安 15分</span></div></header><div class='content-wrap lecture-content' id='lecture-body'><section class='lecture-shell' aria-label='この資料の読み方'><div class='lecture-shell-title'>この資料の読み方</div><p class='lecture-shell-desc'>RAGとは、AIが質問に関係する箇所を資料から探し、根拠と一緒に答える仕組みです。公開可能な交流会FAQを例に、資料の選び方、更新日、閲覧権限、出典表示、人の確認を学びます。</p><div class='lecture-shell-meta'><div class='lecture-meta-item'><span>対象</span><b>交流会や地域団体で、公開できるFAQをAIの回答に使いたい人</b></div><div class='lecture-meta-item'><span>ゴール</span><b>AIが質問に関係する箇所を探し、出典と一緒に答えるための資料の整え方を決められる</b></div><div class='lecture-meta-item'><span>コース内順</span><b>1番目</b></div></div><div class='lecture-shell-actions'><a class='lecture-shell-link primary' href='#lecture-toc'>目次を見る</a><a class='lecture-shell-link' href='./index.html'>受講資料一覧</a><a class='lecture-shell-link' href='../programming-map.html'>AIエージェント講習</a></div></section><div class='content-toc' id='lecture-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#この資料は誰向けか'>この資料は誰向けか</a></li><li><a href='#今日できるようになること'>今日できるようになること</a></li><li><a href='#まず結論'>まず結論</a></li><li><a href='#順番に理解する本文'>順番に理解する本文</a></li><li><a href='#具体例-やってみる'>具体例 / やってみる</a></li><li><a href='#できたかチェック'>できたかチェック</a></li><li><a href='#次に読む資料'>次に読む資料</a></li><li><a href='#用語・出典'>用語・出典</a></li></ol></div><h2 id='この資料は誰向けか'>この資料は誰向けか</h2>
+<p>この資料は、交流会、地域団体、学校、福祉施設、店舗などで、次のような悩みがある人向けです。</p>
 <ul>
-<li>RAGという言葉を、仕事の言葉で説明できる</li>
-<li>AIに渡す資料と、見る順番を決められる</li>
-<li>ネットショップ（EC）、問い合わせ、交流会など、業務ごとに順番を変えられる</li>
-<li>AIに任せる部分と、人が確認する部分を分けられる</li>
-<li>自分の仕事で小さなRAG設計を書き始められる</li>
+<li>同じ質問へ何度も答えている</li>
+<li>AIにFAQを読ませたいが、何を渡せばよいか分からない</li>
+<li>古い案内や内部資料を答えに混ぜたくない</li>
+<li>AIの回答に、根拠となる資料名や更新日を付けたい</li>
+<li>分からないことを、AIに推測で答えさせたくない</li>
 </ul>
-<div class="rag-note">
-<b>対象:</b> ChatGPTは使っているものの、自社資料、顧客情報、売上データ、商品情報、問い合わせ履歴をどう活用すればよいか迷っている事業者向けです。
-</div>
+<p>今回は、個人情報を含まない<strong>公開可能な交流会FAQ</strong>だけを使います。参加者名簿、電話番号、個別相談の記録、運営者だけが見るメモは対象にしません。</p>
+<h2 id='今日できるようになること'>今日できるようになること</h2>
+<ul>
+<li>RAGを、難しい専門用語を使わずに説明できる</li>
+<li>AIに探してもらう資料を選べる</li>
+<li>資料へ更新日と閲覧権限を付けられる</li>
+<li>回答に出典を表示する形を決められる</li>
+<li>資料に答えがないときのルールを決められる</li>
+<li>公開前に人が確認する項目を整理できる</li>
+</ul>
 <h2 id='まず結論'>まず結論</h2>
-<blockquote class="rag-quote">RAGは「AI専用の資料棚」です。良いRAG設計は、資料の量ではなく、AIが見る順番と人の確認場所まで決まっています。</blockquote>
-<div class="rag-grid">
-<div class="rag-card">
-<h3>AIに任せる</h3>
-<p>資料を探す、数字の変化を見つける、原因候補や下書きを出す。</p>
-</div>
-<div class="rag-card green">
-<h3>人が決める</h3>
-<p>価格変更、広告出稿、顧客への連絡、文章の公開など、影響が大きい判断を確認する。</p>
-</div>
-</div>
+<p>RAGは、<strong>AIが質問に関係する箇所を資料から探し、その箇所を根拠にして答える仕組み</strong>です。</p>
+<p>AIへ資料を大量に渡すことが目的ではありません。大事なのは、次の6点です。</p>
+<ol>
+<li>使ってよい資料を選ぶ</li>
+<li>資料の更新日を付ける</li>
+<li>公開・内部・機密の閲覧権限を分ける</li>
+<li>回答に資料名やURLを付ける</li>
+<li>答えが見つからなければ「分からない」と答える</li>
+<li>公開前に人が確認する</li>
+</ol>
+<blockquote>
+<p>RAGを使っても、元の資料が古い、間違っている、閲覧権限が不適切である場合は、良い回答になりません。最初に資料を整えることが必要です。</p>
+</blockquote>
 <h2 id='順番に理解する本文'>順番に理解する本文</h2>
-<h3>1. RAGは、AIが資料を探してから答える仕組み</h3>
-<p>RAGは「Retrieval-Augmented Generation」の略です。日本語では、AIが外部の資料を検索し、その内容を使って回答する仕組み、と考えれば十分です。</p>
-<p>たとえば、次の資料をAIが探せるようにします。</p>
-<ul>
-<li>商品情報、在庫、売上表</li>
-<li>マニュアル、議事録、過去の対応記録</li>
-<li>顧客の相談内容、よくある質問</li>
-<li>過去の記事、レビュー、イベント記録</li>
-</ul>
-<p>資料をただ集めるだけでは足りません。古い資料や関係のない資料まで混ざると、AIも迷います。</p>
-<h3>2. 先に「見る順番」を決める</h3>
-<figure class="rag-visual">
-<img src="./assets/rag-search-order.svg" alt="AIが売上、利益率、在庫、レビュー、SEOの順番で確認するRAG設計の図解" loading="lazy" decoding="async">
-<figcaption>同じ資料でも、先に見るものが違えば、提案も変わります。</figcaption>
-</figure>
-<p>「売上が落ちた理由を調べる」なら、いきなり販促案を作らせません。まず数字と現場の状態を確認します。</p>
-<div class="rag-flow">売上を見る
-↓
-利益率を見る
-↓
-在庫を見る
-↓
-レビューを見る
-↓
-競合を見る
-↓
-改善案を出す</div>
-<p>この順番が決まっていると、AIは雰囲気ではなく、確認した情報をもとに提案できます。</p>
-<h3>3. 業務が変われば、見る順番も変える</h3>
-<figure class="rag-visual">
-<img src="./assets/rag-business-flow.svg" alt="ECと交流会でAIが見るべき情報の順番が違うことを示す図解" loading="lazy" decoding="async">
-<figcaption>正解は1つではありません。実際の仕事の流れに合わせます。</figcaption>
-</figure>
-<p>SEOは検索結果で見つけてもらう工夫、FAQはよくある質問、内部リンクは同じWebサイト内の関連記事へ案内するリンクです。</p>
-<table class="rag-table">
+<h3>1. 質問に関係する箇所を探してから答える</h3>
+<p>通常のAIは、会話の中にある情報や、学習時に得た一般的な知識を使って答えます。RAGでは、その前に指定された資料の中を探します。</p>
+<p>たとえば「初めてでも交流会に参加できますか」という質問なら、AIは公開FAQや開催案内から、初参加者について書かれた箇所を探します。見つけた文章を根拠に回答を作り、資料名やURLも表示します。</p>
+<p>資料に書かれていない場合は、推測で補いません。「公開資料からは分かりません。運営者へ確認してください」と答えます。</p>
+<h3>2. 使ってよい資料だけを選ぶ</h3>
+<p>交流会の公開FAQで使いやすい資料は、次のようなものです。</p>
+<div class='lecture-table-scroll' role='region' aria-label='表（横にスクロールできます）' tabindex='0'><table>
 <thead>
 <tr>
-<th>業務</th>
-<th>AIが見る順番</th>
-<th>最後に出すもの</th>
+<th>使う資料</th>
+<th>含める内容</th>
+<th>注意点</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>ネットショップ（EC）</td>
-<td>売上 → 利益率 → 在庫 → レビュー → SEO</td>
-<td>推す商品、直す商品ページ、止める広告</td>
+<td>開催案内</td>
+<td>日時、会場、対象者、申込方法</td>
+<td>終了した開催回と混ぜない</td>
 </tr>
 <tr>
-<td>問い合わせ</td>
-<td>相談内容 → 顧客区分 → 過去対応 → FAQ</td>
-<td>返信案、確認事項、担当者への引き継ぎ</td>
+<td>公開FAQ</td>
+<td>服装、持ち物、初参加、キャンセル</td>
+<td>回答した日と更新日を分ける</td>
 </tr>
 <tr>
-<td>交流会</td>
-<td>参加者 → 業種 → 悩み → 紹介先 → 次回連絡</td>
-<td>紹介候補、会話テーマ、フォロー予定</td>
+<td>会場案内</td>
+<td>住所、交通手段、駐車場</td>
+<td>会場変更を反映する</td>
 </tr>
 <tr>
-<td>ブログ</td>
-<td>検索語 → 顧客の悩み → 商品 → 過去記事 → 競合</td>
-<td>記事テーマ、見出し、内部リンク</td>
+<td>参加ルール</td>
+<td>営業行為、撮影、迷惑行為への対応</td>
+<td>公開できる範囲だけ載せる</td>
+</tr>
+<tr>
+<td>公式申込ページ</td>
+<td>受付状況、料金、締切</td>
+<td>最新のページを出典にする</td>
 </tr>
 </tbody>
-</table>
-<h3>4. 毎日の確認をAIに任せる</h3>
-<figure class="rag-visual">
-<img src="./assets/rag-daily-agent.svg" alt="クラウドAIエージェントが売上、問い合わせ、レビュー、競合を毎日確認する図解" loading="lazy" decoding="async">
-<figcaption>AIエージェントは、決めた順番で同じ確認を続ける時に力を発揮します。</figcaption>
-</figure>
-<p>AIエージェントとは、指示された仕事を複数の手順に分けて進めるAIです。毎朝、売上、問い合わせ、レビュー、在庫を確認させることもできます。</p>
-<p>良い報告は「問題があります」で終わりません。</p>
-<div class="rag-grid">
-<div class="rag-card red">
-<h3>在庫</h3>
-<p>この商品は売れていますが、在庫が少ないため、広告を増やす前に仕入れ確認が必要です。</p>
-</div>
-<div class="rag-card green">
-<h3>販促</h3>
-<p>利益率とレビューが良いため、今週はこの商品を優先して紹介できます。</p>
-</div>
-<div class="rag-card amber">
-<h3>記事</h3>
-<p>検索されている言葉と問い合わせ内容が重なるため、このテーマの記事が有効です。</p>
-</div>
-<div class="rag-card">
-<h3>顧客対応</h3>
-<p>前回の相談が未解決です。今日中に人が内容を確認し、連絡してください。</p>
-</div>
-</div>
-<h3>5. 重要な判断は人が確認する</h3>
-<figure class="rag-visual">
-<img src="./assets/rag-human-gate.svg" alt="業務分解、資料整理、順番決定、自動化範囲、人間確認範囲の5ステップ図解" loading="lazy" decoding="async">
-<figcaption>AIが下調べと下書きを担当し、影響が大きい判断は人が確認します。</figcaption>
-</figure>
-<p>AIにすべてを決めさせる必要はありません。次の作業は、人の確認を残します。</p>
+</table></div>
+<p>次の情報は、公開FAQ用のRAGには入れません。</p>
 <ul>
-<li>価格、契約、支払いに関わる変更</li>
-<li>広告の出稿や予算変更</li>
-<li>顧客への連絡、個人情報の利用</li>
-<li>Web、SNS、メールなど外部への公開</li>
+<li>参加者名簿</li>
+<li>電話番号やメールアドレス</li>
+<li>個別相談の内容</li>
+<li>紹介先や取引先に関する内部メモ</li>
+<li>未公開の料金や開催計画</li>
+<li>運営者だけが使うパスワードや管理情報</li>
 </ul>
-<h2 id='具体例-やってみる'>具体例 / やってみる</h2>
-<h3>5つの項目を1枚に書く</h3>
-<table class="rag-table">
+<h3>3. 更新日を付ける</h3>
+<p>AIは、古い案内と新しい案内の違いを自動で正しく判断できるとは限りません。各資料に、少なくとも次の情報を付けます。</p>
+<div class='lecture-table-scroll' role='region' aria-label='表（横にスクロールできます）' tabindex='0'><table>
 <thead>
 <tr>
 <th>項目</th>
-<th>ECの記入例</th>
+<th>記入例</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>1. 調べる仕事</td>
-<td>売上低下の原因を確認する</td>
+<td>資料名</td>
+<td>交流会FAQ_公開版</td>
 </tr>
 <tr>
-<td>2. 使う資料</td>
-<td>売上表、利益率、在庫、レビュー、競合、過去施策</td>
+<td>更新日</td>
+<td>2026-07-01</td>
 </tr>
 <tr>
-<td>3. 見る順番</td>
-<td>売上 → 利益率 → 在庫 → レビュー → 競合</td>
+<td>公開範囲</td>
+<td>公開</td>
 </tr>
 <tr>
-<td>4. AIに任せる</td>
-<td>毎朝の確認、異常の通知、改善案の下書き</td>
+<td>出典</td>
+<td>公式申込ページ、運営者確認</td>
 </tr>
 <tr>
-<td>5. 人が確認する</td>
-<td>価格変更、広告出稿、顧客連絡、公開文章</td>
+<td>確認者</td>
+<td>運営担当者</td>
 </tr>
 </tbody>
-</table>
-<h3>そのまま使える依頼文</h3>
-<div class="rag-prompt">あなたはEC運営の分析担当です。
-
-毎朝、売上、利益率、在庫、レビュー、競合の順に確認してください。
-異常があれば、次の3つを出してください。
-1. 原因の候補
-2. 人が確認する画面や数字
-3. 今日できる改善案
-
-価格変更、広告出稿、顧客連絡、文章公開は自動で実行せず、「人の確認が必要」と分けてください。</div>
-<p>最初は1つの業務だけで試します。資料の不足や順番の間違いが見つかったら、焦らず直します。</p>
-<h2 id='振り返り-次の一歩'>振り返り / 次の一歩</h2>
-<figure class="rag-visual">
-<img src="./assets/rag-next-step.svg" alt="AIに何を聞くかから、AIにどう考えてもらうかへ変わる流れの図解" loading="lazy" decoding="async">
-<figcaption>質問の工夫だけでなく、資料、順番、確認方法を整えることが次の一歩です。</figcaption>
-</figure>
-<ul class="rag-check">
-<li>AIに任せたい仕事を1つに絞った</li>
-<li>使う資料を5種類以内で選んだ</li>
-<li>AIが見る順番を矢印で書いた</li>
-<li>AIが出す報告の形を決めた</li>
-<li>人が確認する判断を決めた</li>
-<li>まず1週間試し、結果を見直す</li>
-</ul>
-<div class="rag-cta">
-<h3>自分の仕事で、最初のRAG設計を作る</h3>
-<p>難しいシステムを入れる前に、対象業務、使う資料、見る順番、人が確認する場所を一緒に整理します。</p>
-<a href="/#contact">無料でAI活用を相談する</a>
-<a href="/#packages">受講プランを見る</a>
-<a href="/#lectures">受講資料を見る</a>
-</div>
-<h3>参考リンク</h3>
-<div class="rag-sources">
+</table></div>
+<p>同じ内容の古い資料は、検索対象から外すか、「過去資料」と明記します。</p>
+<h3>4. 閲覧権限を分ける</h3>
+<p>資料は、内容によって3つに分けます。</p>
 <ul>
-<li><a href="https://aws.amazon.com/what-is/retrieval-augmented-generation/" target="_blank" rel="noopener">AWS: What is RAG?</a></li>
-<li><a href="https://cloud.google.com/use-cases/retrieval-augmented-generation" target="_blank" rel="noopener">Google Cloud: Retrieval-Augmented Generation</a></li>
-<li><a href="https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview" target="_blank" rel="noopener">Microsoft Learn: RAG overview</a></li>
-<li><a href="https://www.ibm.com/think/topics/retrieval-augmented-generation" target="_blank" rel="noopener">IBM Think: What is RAG?</a></li>
+<li><strong>公開</strong>: Webサイトや申込ページで、誰でも見てよい情報</li>
+<li><strong>内部</strong>: スタッフだけで共有する手順や連絡事項</li>
+<li><strong>機密</strong>: 個人情報、契約、支払い、パスワードなど</li>
 </ul>
-</div>
-</div></div><footer>AI相談 / Generated by Claude</footer><button class='back-to-top' id='backTop' aria-label='トップへ戻る'>↑</button><script>(function(){var b=document.getElementById('backTop');if(!b)return;window.addEventListener('scroll',function(){b.classList.toggle('show',window.scrollY>400);});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script><script>
+<p>公開向けの回答には、公開資料だけを使います。内部資料や機密資料を同じ検索対象に入れないことが基本です。</p>
+<h3>5. 出典と更新日を回答に付ける</h3>
+<p>回答だけでは、利用者も運営者も正しさを確認できません。回答の形を先に決めます。</p>
+<pre><code class="language-text">回答:
+初参加について、公開FAQに書かれている内容を案内します。
+
+出典:
+- 交流会FAQ_公開版
+- 公式申込ページ: [URL]
+
+更新日:
+2026-07-01
+
+確認が必要なこと:
+最新の受付状況は申込ページで確認してください。
+</code></pre>
+<h3>6. 分からないときは、分からないと答える</h3>
+<p>資料にない質問へ無理に答えると、誤案内につながります。次のルールをAIへ伝えます。</p>
+<ul>
+<li>資料に書かれていることだけを答える</li>
+<li>関係する箇所が見つからない場合は推測しない</li>
+<li>資料どうしで内容が違う場合は、違いを示して人の確認を求める</li>
+<li>更新日が古い場合は、そのことを回答に書く</li>
+<li>個人情報を求められても表示しない</li>
+</ul>
+<h3>7. 最後は人が確認する</h3>
+<p>公開前に人が確認するのは、次の項目です。</p>
+<ul>
+<li>質問に合った回答になっているか</li>
+<li>出典に書かれている内容と一致しているか</li>
+<li>更新日が古くないか</li>
+<li>個人情報や内部情報が入っていないか</li>
+<li>料金、申込期限、会場など重要な情報が正しいか</li>
+<li>分からないことを推測していないか</li>
+</ul>
+<h2 id='具体例-やってみる'>具体例 / やってみる</h2>
+<h3>1. 公開FAQ用の資料を3つ選ぶ</h3>
+<p>まずは、次のような公開資料を3つ以内で選びます。</p>
+<ol>
+<li><code>交流会FAQ_公開版.md</code></li>
+<li><code>開催案内_公開版.md</code></li>
+<li>公式申込ページ</li>
+</ol>
+<p>各資料に「更新日」「公開範囲」「出典」を付けてください。</p>
+<h3>2. AIへの依頼文を書く</h3>
+<pre><code class="language-text">あなたは交流会の公開FAQ案内担当です。
+
+次の公開資料だけを参照してください。
+- 交流会FAQ_公開版
+- 開催案内_公開版
+- 公式申込ページ
+
+質問に関係する箇所を探し、その内容を使って答えてください。
+回答には「出典」と「更新日」を付けてください。
+
+資料に答えがない場合は、推測せず、
+「公開資料からは分かりません。運営者へ確認してください」
+と答えてください。
+
+資料どうしの内容が違う場合や更新日が古い場合は、
+回答を確定せず「人の確認が必要」と表示してください。
+
+個人情報、内部資料、機密情報は使わないでください。
+</code></pre>
+<h3>3. 3種類の質問で試す</h3>
+<p>次の3種類を試すと、ルールが機能しているか確認できます。</p>
+<ol>
+<li>資料に答えがある質問</li>
+<li>資料に答えがない質問</li>
+<li>古い資料と新しい資料で答えが違う質問</li>
+</ol>
+<p>3番目でAIが勝手に新旧を決めず、人の確認を求めれば成功です。</p>
+<h2 id='できたかチェック'>できたかチェック</h2>
+<ul>
+<li>[ ] RAGを「質問に関係する箇所を探し、根拠と一緒に答える仕組み」と説明できる</li>
+<li>[ ] 公開FAQに使う資料を3つ以内で選んだ</li>
+<li>[ ] 各資料に更新日を付けた</li>
+<li>[ ] 公開・内部・機密を分けた</li>
+<li>[ ] 回答に出典を付ける形を決めた</li>
+<li>[ ] 資料にない質問では「分からない」と答えるルールを入れた</li>
+<li>[ ] 内容が食い違う場合は人へ確認するようにした</li>
+<li>[ ] 公開前に人が確認する項目を決めた</li>
+</ul>
+<h2 id='次に読む資料'>次に読む資料</h2>
+<ul>
+<li><a href="../programming-map.html">AIエージェント講習 120分</a> — 資料を使った依頼、確認、修正、安全な公開までの全体像を学ぶ</li>
+<li><a href="./index.html">受講資料の一覧</a> — 自分の目的に合う次の資料を選ぶ</li>
+</ul>
+<h2 id='用語・出典'>用語・出典</h2>
+<ul>
+<li><strong>RAG</strong>: Retrieval-Augmented Generationの略。質問に関係する情報を外部資料から検索し、その情報を使って回答を作る方法</li>
+<li><strong>検索対象</strong>: AIが答えを作る前に探す資料の範囲</li>
+<li><strong>出典</strong>: 回答の根拠にした資料名、ページ、URLなど</li>
+<li><strong>更新日</strong>: 資料の内容を最後に確認または変更した日</li>
+<li><strong>閲覧権限</strong>: その資料を誰が見てよいかを決める区分</li>
+</ul>
+<p>参考:</p>
+<ul>
+<li><a href="https://aws.amazon.com/what-is/retrieval-augmented-generation/">AWS: What is Retrieval-Augmented Generation?</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview">Microsoft Learn: Retrieval-augmented generation and indexes</a></li>
+</ul><nav class='lecture-course-nav' aria-label='同じコースの前後資料'><span class='lecture-course-nav-item previous disabled' aria-disabled='true'><span>前の資料</span><b>このコースの先頭です</b></span><a class='lecture-course-nav-item index' href='./index.html'><span>一覧</span><b>受講資料一覧</b></a><span class='lecture-course-nav-item next disabled' aria-disabled='true'><span>次の資料</span><b>このコースの最後です</b></span></nav></div></main><footer>AI相談 / Generated by Claude</footer><button class='back-to-top' id='backTop' aria-label='トップへ戻る'>↑</button><script>(function(){var b=document.getElementById('backTop');if(!b)return;window.addEventListener('scroll',function(){b.classList.toggle('show',window.scrollY>400);});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script><script>
 (function(){
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var sel = '.tr-card, .pf-card, .profile-stat, .profile-tech-card, .sns-card, article, .content-toc, .tr-section, .profile-tl-item, .profile-app-card, .profile-biz-card';

@@ -113,6 +113,7 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
     pmap_current = " aria-current='page'" if current_id == "pmap" else ""
     lecture_class = "nav-link nav-essential nav-current" if current_id == "lectures" else "nav-link nav-essential"
     lecture_current = " aria-current='page'" if current_id == "lectures" else ""
+    lecture_href = "/lectures/index.html" if current_id == "lectures" else "/#lectures"
     run_action = (
         "<button class='header-run-action' id='run-btn' type='button'>巡回実行</button>"
         "<span class='run-status' id='run-status' aria-live='polite'></span>"
@@ -127,7 +128,7 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
         "<nav class='site-nav' aria-label='メインナビ'>"
         "<a class='nav-link nav-essential' href='/#packages'>講習・相談</a>"
         f"<a class='{pmap_class}' href='/programming-map.html'{pmap_current}>AIコーディング</a>"
-        f"<a class='{lecture_class}' href='/#lectures'{lecture_current}>受講資料</a>"
+        f"<a class='{lecture_class}' href='{lecture_href}'{lecture_current}>受講資料</a>"
         "<div class='menu-wrap'><button class='menu-toggle' id='menu-toggle' aria-haspopup='menu' aria-expanded='false'>全メニュー"
         "<svg class='chev' width='14' height='14' viewBox='0 0 20 20' fill='none' aria-hidden='true'><path d='M5 8l5 5 5-5' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg></button>"
         "<div class='menu-drop' id='menu-drop' role='menu'>"
@@ -149,7 +150,7 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
         "<a class='login-btn-mobile' href='/#contact'>無料相談</a>"
         "<a class='mobile-main-link' href='/#packages'>講習・相談</a>"
         "<span class='mobile-nav-label'>講習・資料</span><div class='mobile-link-grid'>"
-        "<a href='/programming-map.html'>AIコーディング</a><a href='/#lectures'>受講資料</a><a href='/#blog'>ブログ</a></div>"
+        f"<a href='/programming-map.html'>AIコーディング</a><a href='{lecture_href}'>受講資料</a><a href='/#blog'>ブログ</a></div>"
         "<span class='mobile-nav-label'>制作・発信</span><div class='mobile-link-grid'>"
         "<a href='/#all-works'>AI実績</a><a href='/watch/index.html'>AI Watch</a></div>"
         "<span class='mobile-nav-label'>案内・確認</span><div class='mobile-link-grid'>"
@@ -1554,6 +1555,38 @@ CONTENT_CSS = """
   color: var(--muted);
   font-size: 12.5px !important;
 }
+.tr-section-collapsible > summary {
+  list-style: none;
+  cursor: pointer;
+  border-radius: 14px;
+}
+.tr-section-collapsible > summary::-webkit-details-marker { display: none; }
+.tr-section-collapsible > summary .tr-section-head {
+  margin-bottom: 10px;
+  padding-right: 44px !important;
+  position: relative;
+}
+.tr-section-collapsible > summary .tr-section-head::after {
+  content: "+";
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  width: 25px;
+  height: 25px;
+  display: grid;
+  place-items: center;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid var(--glass-border);
+  color: var(--primary);
+  font-size: 17px;
+}
+.tr-section-collapsible[open] > summary .tr-section-head::after { content: "−"; }
+.tr-section-collapsible > summary:focus-visible {
+  outline: 3px solid rgba(37,99,235,.28);
+  outline-offset: 3px;
+}
 .tr-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -1703,6 +1736,25 @@ CONTENT_CSS = """
   font-size: 12px;
   line-height: 1.55;
 }
+.tr-format-flow {
+  margin: 18px 0 26px;
+  padding: 13px 16px;
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  background: #fff;
+  color: var(--text-soft);
+  font-size: 14px;
+  font-weight: 850;
+  line-height: 1.7;
+  text-align: center;
+}
+.tr-format-flow small {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 11.5px;
+  font-weight: 600;
+}
 .tr-card .tr-meta {
   row-gap: 7px;
 }
@@ -1753,145 +1805,205 @@ CONTENT_CSS = """
   border: 1px solid rgba(37,99,235,.2);
   font-weight: 900;
 }
+.lecture-page .content-wrap.lecture-content {
+  width: 100%;
+  max-width: 920px;
+  margin-right: auto;
+  margin-left: auto;
+  line-height: 1.9;
+}
+.lecture-content p,
+.lecture-content ul,
+.lecture-content ol {
+  font-size: 16px;
+  line-height: 1.9;
+}
+.lecture-content h3 {
+  font-size: 18px;
+  line-height: 1.55;
+  margin-top: 1.8em;
+}
+.lecture-content a,
+.lecture-content code {
+  overflow-wrap: anywhere;
+}
+.lecture-table-scroll {
+  width: 100%;
+  max-width: 100%;
+  margin: 18px 0 28px;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  -webkit-overflow-scrolling: touch;
+}
+.lecture-table-scroll:focus-visible {
+  outline: 3px solid rgba(37,99,235,.28);
+  outline-offset: 3px;
+}
+.lecture-table-scroll table {
+  width: 100%;
+  min-width: 620px;
+  margin: 0 !important;
+  border: 0 !important;
+  border-collapse: collapse;
+}
+.lecture-content table:not([class]) th,
+.lecture-content table:not([class]) td {
+  padding: 11px 13px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+.lecture-content table:not([class]) th {
+  background: #eef5ff;
+  color: var(--text);
+  font-weight: 800;
+}
 .lecture-shell {
   margin: 0 0 22px;
-  padding: 18px;
+  padding: clamp(18px, 3vw, 24px);
   border: 1px solid rgba(37,99,235,.16);
   border-radius: 16px;
   background:
     radial-gradient(circle at 100% 0%, rgba(15,139,141,.10), transparent 28%),
     linear-gradient(135deg, #f8fbff 0%, #fff 55%, #f6fef9 100%);
 }
-.lecture-shell-head {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 14px;
-  align-items: start;
-}
 .lecture-shell-title {
-  font-size: 18px;
+  font-size: 19px;
   font-weight: 900;
   color: var(--text);
   line-height: 1.4;
 }
 .lecture-shell-desc {
-  margin: 5px 0 0 !important;
+  margin: 6px 0 0 !important;
   color: var(--text-soft) !important;
-  font-size: 13.5px !important;
-  line-height: 1.7 !important;
+  font-size: 16px !important;
+  line-height: 1.85 !important;
+}
+.lecture-shell-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 8px;
+  margin: 16px 0 0;
+}
+.lecture-meta-item {
+  padding: 10px 12px;
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  background: rgba(255,255,255,.84);
+}
+.lecture-meta-item span {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .06em;
+}
+.lecture-meta-item b {
+  display: block;
+  margin-top: 3px;
+  color: var(--text);
+  font-size: 13.5px;
+  line-height: 1.55;
 }
 .lecture-shell-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  justify-content: flex-end;
+  margin-top: 16px;
 }
-.lecture-home-link {
+.lecture-shell-link {
   display: inline-flex;
   align-items: center;
-  min-height: 34px;
-  padding: 7px 12px;
-  border-radius: 999px;
+  justify-content: center;
+  min-height: 40px;
+  padding: 9px 14px;
+  border-radius: 10px;
   background: #fff;
   border: 1px solid rgba(37,99,235,.22) !important;
   color: var(--primary) !important;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 800;
   text-decoration: none !important;
 }
-.lecture-format-strip {
+.lecture-shell-link.primary {
+  background: var(--primary);
+  color: #fff !important;
+  border-color: var(--primary) !important;
+}
+.lecture-course-nav {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(130px, auto) minmax(0, 1fr);
+  gap: 10px;
+  margin-top: 40px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+.lecture-course-nav-item {
   display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-  margin-top: 14px;
-}
-.lecture-format-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 5px 9px;
-  border-radius: 999px;
-  border: 1px solid var(--glass-border);
-  background: #fff;
-  color: var(--text-soft);
-  font-size: 11.5px;
-  font-weight: 800;
-  line-height: 1.2;
-}
-.lecture-format-chip small {
-  color: inherit;
-  opacity: .72;
-  font-size: 10px;
-  font-weight: 800;
-}
-.lecture-format-chip.on {
-  background: rgba(37,99,235,.10);
-  border-color: rgba(37,99,235,.22);
-  color: #1d4fd6;
-}
-.lecture-format-chip.missing {
-  color: var(--muted);
-  background: rgba(148,163,184,.10);
-}
-.lecture-jump {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 14px;
-}
-.lecture-jump a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 32px;
-  padding: 7px 11px;
-  border-radius: 10px;
+  min-width: 0;
+  min-height: 74px;
+  flex-direction: column;
+  justify-content: center;
+  padding: 11px 13px;
   border: 1px solid var(--glass-border) !important;
-  background: rgba(255,255,255,.82);
-  color: var(--text-soft) !important;
-  font-size: 12px;
-  font-weight: 800;
+  border-radius: 12px;
+  background: #fff;
+  color: var(--text) !important;
   text-decoration: none !important;
 }
-.lecture-jump a:hover {
-  color: var(--primary) !important;
-  border-color: rgba(37,99,235,.30) !important;
+.lecture-course-nav-item.next { text-align: right; }
+.lecture-course-nav-item.index { text-align: center; }
+.lecture-course-nav-item span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
 }
-.lecture-outline-preview {
-  margin: 14px 0 0;
-  padding: 12px 14px;
-  border-radius: 12px;
-  background: rgba(255,255,255,.78);
-  border: 1px solid var(--glass-border);
-}
-.lecture-outline-preview b {
+.lecture-course-nav-item b {
   display: block;
-  color: var(--text);
-  font-size: 12.5px;
-  margin-bottom: 6px;
+  margin-top: 4px;
+  overflow: hidden;
+  font-size: 13px;
+  line-height: 1.5;
+  text-overflow: ellipsis;
 }
-.lecture-outline-preview ol {
-  columns: 2;
-  column-gap: 22px;
-  margin: 0 0 0 1.2em !important;
-  font-size: 12.5px !important;
-}
-.lecture-outline-preview li {
-  break-inside: avoid;
+.lecture-course-nav-item.disabled {
+  opacity: .55;
+  background: #f8fafc;
 }
 .content-toc {
   scroll-margin-top: 92px;
 }
 @media (max-width: 760px) {
   .tr-home,
-  .lecture-shell-head,
   .tr-featured {
     grid-template-columns: 1fr;
   }
   .tr-format-grid {
     grid-template-columns: 1fr;
   }
-  .lecture-outline-preview ol {
-    columns: 1;
+  .lecture-course-nav {
+    grid-template-columns: 1fr;
+  }
+  .lecture-course-nav-item.next,
+  .lecture-course-nav-item.index {
+    text-align: left;
+  }
+}
+@media (max-width: 640px) {
+  .lecture-page .content-wrap.lecture-content {
+    padding: 24px 18px;
+  }
+  .lecture-content p,
+  .lecture-content ul,
+  .lecture-content ol {
+    font-size: 16px;
+  }
+  .lecture-shell-actions {
+    display: grid;
+    grid-template-columns: 1fr;
   }
 }
 
@@ -2604,6 +2716,7 @@ _SECTION_HEADING_RE = re.compile(
 )
 _HTML_ID_ATTR_RE = re.compile(r"\sid=(['\"])(.*?)\1", re.I | re.S)
 _SLUG_NON_ALNUM = re.compile(r"[^0-9A-Za-z぀-ヿ一-鿿\-]+")
+_LECTURE_TABLE_TAG_RE = re.compile(r"</?table\b[^>]*>", re.I | re.S)
 
 LECTURE_FORMATS = [
     ("toc", "目次"),
@@ -2620,6 +2733,44 @@ def _plain_text_from_html(markup: str) -> str:
     text = re.sub(r"<script[\s\S]*?</script>", " ", text, flags=re.I)
     text = re.sub(r"<[^>]+>", " ", text)
     return html.unescape(re.sub(r"\s+", " ", text)).strip()
+
+
+def _frontmatter_text(value) -> str:
+    """Optional lecture metadata to one readable line without requiring new fields."""
+    if value is None:
+        return ""
+    if isinstance(value, (list, tuple)):
+        return "、".join(str(item).strip() for item in value if str(item).strip())
+    return str(value).strip()
+
+
+def _wrap_lecture_tables(markup: str) -> str:
+    """Keep wide lecture tables inside the reading column on small screens."""
+    parts: list[str] = []
+    depth = 0
+    cursor = 0
+    for match in _LECTURE_TABLE_TAG_RE.finditer(markup):
+        tag = match.group(0)
+        is_closing = tag.lstrip().startswith("</")
+        if not is_closing and depth == 0:
+            parts.append(markup[cursor:match.start()])
+            parts.append(
+                "<div class='lecture-table-scroll' role='region' "
+                "aria-label='表（横にスクロールできます）' tabindex='0'>"
+            )
+            cursor = match.start()
+        if is_closing:
+            depth = max(0, depth - 1)
+            if depth == 0:
+                parts.append(markup[cursor:match.end()])
+                parts.append("</div>")
+                cursor = match.end()
+        else:
+            depth += 1
+    if cursor == 0:
+        return markup
+    parts.append(markup[cursor:])
+    return "".join(parts)
 
 
 def _heading_match_parts(m: re.Match) -> tuple[str, str, str]:
@@ -2710,59 +2861,76 @@ def _render_feature_chips(flags: dict[str, bool], *, show_missing: bool = False,
     return "".join(parts)
 
 
-def _render_lecture_overview(title: str, meta: dict, body_html: str, toc: list[tuple[str, str]]) -> str:
-    flags = _lecture_feature_flags(body_html, toc)
-    desc = str(meta.get("summary") or "")
-    parts: list[str] = []
-    parts.append("<section class='lecture-shell' aria-label='この資料の読み方'>")
-    parts.append("<div class='lecture-shell-head'>")
-    parts.append("<div>")
-    parts.append("<div class='lecture-shell-title'>この資料の読み方</div>")
+def _render_lecture_overview(title: str, meta: dict, toc: list[tuple[str, str]]) -> str:
+    desc = _frontmatter_text(meta.get("summary"))
+    audience = _frontmatter_text(meta.get("audience"))
+    goal = _frontmatter_text(meta.get("goal"))
+    course_order = meta.get("course_order")
+    meta_rows: list[tuple[str, str]] = []
+    if audience:
+        meta_rows.append(("対象", audience))
+    if goal:
+        meta_rows.append(("ゴール", goal))
+    if course_order:
+        meta_rows.append(("コース内順", f"{course_order}番目"))
+
+    parts: list[str] = [
+        "<section class='lecture-shell' aria-label='この資料の読み方'>",
+        "<div class='lecture-shell-title'>この資料の読み方</div>",
+    ]
     if desc:
         parts.append(f"<p class='lecture-shell-desc'>{html.escape(desc)}</p>")
     else:
-        parts.append(f"<p class='lecture-shell-desc'>{html.escape(title)} の目次・本文・関連形式をまとめています。</p>")
-    parts.append("</div>")
+        parts.append(f"<p class='lecture-shell-desc'>{html.escape(title)}を、結論から順番に学びます。</p>")
+    if meta_rows:
+        parts.append("<div class='lecture-shell-meta'>")
+        for label, value in meta_rows:
+            parts.append(
+                "<div class='lecture-meta-item'>"
+                f"<span>{html.escape(label)}</span><b>{html.escape(value)}</b></div>"
+            )
+        parts.append("</div>")
+
+    if len(toc) >= 3:
+        toc_href = "#lecture-toc"
+    elif toc:
+        toc_href = f"#{html.escape(toc[0][0], quote=True)}"
+    else:
+        toc_href = "#lecture-body"
+    toc_label = "目次を見る" if len(toc) >= 3 else "本文を読む"
     parts.append("<div class='lecture-shell-actions'>")
-    parts.append("<a class='lecture-home-link' href='../programming-map.html'>AIエージェント講習</a>")
-    parts.append("<a class='lecture-home-link' href='./index.html'>受講資料ホーム</a>")
-    parts.append("</div>")
-    parts.append("</div>")
-    parts.append("<div class='lecture-format-strip'>")
-    parts.append("<span class='lecture-format-chip on'>本文<small>あり</small></span>")
-    parts.append(_render_feature_chips(flags, show_missing=False, css_prefix="lecture"))
-    parts.append("</div>")
+    parts.append(f"<a class='lecture-shell-link primary' href='{toc_href}'>{toc_label}</a>")
+    parts.append("<a class='lecture-shell-link' href='./index.html'>受講資料一覧</a>")
+    parts.append("<a class='lecture-shell-link' href='../programming-map.html'>AIエージェント講習</a>")
+    parts.append("</div></section>")
+    return "".join(parts)
 
-    jumps: list[tuple[str, str]] = [("受講資料ホーム", "./index.html"), ("AIエージェント講習", "../programming-map.html")]
-    if flags.get("toc"):
-        jumps.append(("目次", "#lecture-toc"))
-    video_anchor = _find_toc_anchor(toc, "動画", "動画版")
-    if flags.get("video") and video_anchor:
-        jumps.append(("動画へ", video_anchor))
-    narration_anchor = _find_toc_anchor(toc, "ナレーション", "台本", "収録")
-    if flags.get("narration") and narration_anchor:
-        jumps.append(("台本へ", narration_anchor))
-    slide_anchor = _find_toc_anchor(toc, "スライド", "スライド版", "第I部", "第II部")
-    if flags.get("slides") and slide_anchor:
-        jumps.append(("スライドへ", slide_anchor))
-    check_anchor = _find_toc_anchor(toc, "チェック", "宿題", "進行メモ")
-    if flags.get("check") and check_anchor:
-        jumps.append(("確認へ", check_anchor))
-    source_anchor = _find_toc_anchor(toc, "出典", "参考", "確認先", "アップデート")
-    if flags.get("sources") and source_anchor:
-        jumps.append(("出典へ", source_anchor))
-    parts.append("<div class='lecture-jump'>")
-    for label, href in jumps:
-        parts.append(f"<a href='{html.escape(href, quote=True)}'>{html.escape(label)}</a>")
-    parts.append("</div>")
 
-    preview_toc = [(slug, text) for slug, text in toc if text != title][:6]
-    if preview_toc:
-        parts.append("<div class='lecture-outline-preview'><b>この資料の流れ</b><ol>")
-        for _slug, text in preview_toc:
-            parts.append(f"<li>{html.escape(text)}</li>")
-        parts.append("</ol></div>")
-    parts.append("</section>")
+def _render_lecture_course_nav(neighbors: dict | None) -> str:
+    if neighbors is None:
+        return ""
+
+    def render_item(label: str, item: dict | None, css_class: str, fallback: str) -> str:
+        if item:
+            href = html.escape(str(item.get("href") or ""), quote=True)
+            title = html.escape(str(item.get("title") or ""))
+            return (
+                f"<a class='lecture-course-nav-item {css_class}' href='{href}'>"
+                f"<span>{label}</span><b>{title}</b></a>"
+            )
+        return (
+            f"<span class='lecture-course-nav-item {css_class} disabled' aria-disabled='true'>"
+            f"<span>{label}</span><b>{fallback}</b></span>"
+        )
+
+    parts = ["<nav class='lecture-course-nav' aria-label='同じコースの前後資料'>"]
+    parts.append(render_item("前の資料", neighbors.get("previous"), "previous", "このコースの先頭です"))
+    parts.append(
+        "<a class='lecture-course-nav-item index' href='./index.html'>"
+        "<span>一覧</span><b>受講資料一覧</b></a>"
+    )
+    parts.append(render_item("次の資料", neighbors.get("next"), "next", "このコースの最後です"))
+    parts.append("</nav>")
     return "".join(parts)
 
 
@@ -2864,8 +3032,18 @@ def _inject_heading_ids(body_html: str) -> tuple[str, list[tuple[str, str]]]:
     return new_html, toc
 
 
-def render_content_page(title: str, meta: dict, body_html: str, nav_html: str, page_path: str = "", kind: str = "") -> str:
+def render_content_page(
+    title: str,
+    meta: dict,
+    body_html: str,
+    nav_html: str,
+    page_path: str = "",
+    kind: str = "",
+    lecture_neighbors: dict | None = None,
+) -> str:
     body_html, toc = _inject_heading_ids(body_html)
+    if kind == "lecture":
+        body_html = _wrap_lecture_tables(body_html)
     page_url = f"{SITE_URL}/{page_path.lstrip('/')}" if page_path else SITE_URL
     parts: list[str] = []
     parts.append("<!doctype html><html lang='ja'><head><meta charset='utf-8'>" + FAVICON_HEAD_HTML)
@@ -2882,25 +3060,35 @@ def render_content_page(title: str, meta: dict, body_html: str, nav_html: str, p
         ld = _build_jsonld(jsonld_kind, meta, title, page_url)
         if ld:
             parts.append(f"<script type='application/ld+json'>{ld}</script>")
-    parts.append(f"<style>{MASTER_CONTENT_CSS}</style></head><body><div class='container'>")
+    body_class = " class='lecture-page'" if kind == "lecture" else ""
+    parts.append(f"<style>{MASTER_CONTENT_CSS}</style></head><body{body_class}><div class='container'>")
     parts.append(ADMIN_BUTTON_HTML)
     parts.append(nav_html)
+    parts.append("<main id='main-content'>")
     parts.append("<header>")
     parts.append(f"<h1>{html.escape(title)}</h1>")
     sub_bits: list[str] = []
-    if meta.get("role"):
-        sub_bits.append(f"<span class='role'>{html.escape(str(meta['role']))}</span>")
-    if meta.get("date"):
-        sub_bits.append(f"<span>📅 {html.escape(str(meta['date']))}</span>")
-    if meta.get("gen_by"):
-        sub_bits.append(f"<span>{html.escape(str(meta['gen_by']))}</span>")
-    if meta.get("profile_url"):
-        url = html.escape(str(meta["profile_url"]), quote=True)
-        sub_bits.append(f"<a href='{url}' target='_blank' rel='noopener'>プロフィール</a>")
+    if kind == "lecture":
+        if meta.get("level"):
+            sub_bits.append(f"<span class='role'>{html.escape(str(meta['level']))}</span>")
+        if meta.get("duration"):
+            sub_bits.append(f"<span>目安 {html.escape(str(meta['duration']))}</span>")
+    else:
+        if meta.get("role"):
+            sub_bits.append(f"<span class='role'>{html.escape(str(meta['role']))}</span>")
+        if meta.get("date"):
+            sub_bits.append(f"<span>📅 {html.escape(str(meta['date']))}</span>")
+        if meta.get("gen_by"):
+            sub_bits.append(f"<span>{html.escape(str(meta['gen_by']))}</span>")
+        if meta.get("profile_url"):
+            url = html.escape(str(meta["profile_url"]), quote=True)
+            sub_bits.append(f"<a href='{url}' target='_blank' rel='noopener'>プロフィール</a>")
     if sub_bits:
         parts.append("<div class='speaker-meta'>" + "".join(sub_bits) + "</div>")
     parts.append("</header>")
-    parts.append("<div class='content-wrap'>")
+    content_class = "content-wrap lecture-content" if kind == "lecture" else "content-wrap"
+    content_id = " id='lecture-body'" if kind == "lecture" else ""
+    parts.append(f"<div class='{content_class}'{content_id}>")
     if kind == "blog" and meta.get("hero_image") and image_url:
         image_alt = html.escape(str(meta.get("image_alt") or title), quote=True)
         image_caption = html.escape(str(meta.get("image_caption") or ""))
@@ -2911,7 +3099,7 @@ def render_content_page(title: str, meta: dict, body_html: str, nav_html: str, p
             + "</figure>"
         )
     if kind == "lecture":
-        parts.append(_render_lecture_overview(title, meta, body_html, toc))
+        parts.append(_render_lecture_overview(title, meta, toc))
     # TOC: h2 が 3 個以上あれば出す
     if len(toc) >= 3:
         toc_id = " id='lecture-toc'" if kind == "lecture" else ""
@@ -2920,7 +3108,10 @@ def render_content_page(title: str, meta: dict, body_html: str, nav_html: str, p
             parts.append(f"<li><a href='#{slug}'>{html.escape(text)}</a></li>")
         parts.append("</ol></div>")
     parts.append(body_html)
+    if kind == "lecture":
+        parts.append(_render_lecture_course_nav(lecture_neighbors))
     parts.append("</div>")
+    parts.append("</main>")
     parts.append("<footer>AI相談 / Generated by Claude</footer>")
     parts.append("<button class='back-to-top' id='backTop' aria-label='トップへ戻る'>↑</button>")
     parts.append("<script>(function(){var b=document.getElementById('backTop');if(!b)return;window.addEventListener('scroll',function(){b.classList.toggle('show',window.scrollY>400);});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script>")
@@ -3005,6 +3196,7 @@ def _load_teaching_sections(lecture_md_items: list[dict]) -> list[dict]:
                                 "name": group.get("name") or key,
                                 "icon": group.get("icon") or "📝",
                                 "description": group.get("description") or "",
+                                "collapsed": bool(group.get("collapsed", sec.get("collapsed", False))),
                                 "items": group_items,
                             })
                         other_items = [
@@ -3017,6 +3209,7 @@ def _load_teaching_sections(lecture_md_items: list[dict]) -> list[dict]:
                                 "name": "その他の資料",
                                 "icon": "📎",
                                 "description": "目的が決まっているときに選ぶ追加資料です。",
+                                "collapsed": bool(sec.get("collapsed", False)),
                                 "items": other_items,
                             })
                     else:
@@ -3056,12 +3249,6 @@ def _render_teaching_home(sections: list[dict]) -> str:
         sec for sec in sections
         if any(isinstance(item, dict) and item.get("source") == "lectures-md" for item in (sec.get("items") or []))
     ]
-    feature_counts: dict[str, int] = {key: 0 for key, _label in LECTURE_FORMATS}
-    for item in items:
-        flags = _teaching_item_features(item)
-        for key, _label in LECTURE_FORMATS:
-            if flags.get(key):
-                feature_counts[key] += 1
 
     featured = next((it for it in items if it.get("recommended")), None)
     if not featured:
@@ -3075,7 +3262,7 @@ def _render_teaching_home(sections: list[dict]) -> str:
     parts.append(
         "<p>全部を上から読む必要はありません。AIが初めての人、仕事で使いたい人、"
         "AIと一緒に作りたい人、クライミングを学びたい人の4つに分けました。"
-        "迷ったら「AIの基本」から始めてください。</p>"
+        "迷ったら「はじめてのAI」から始めてください。</p>"
     )
     parts.append("<div class='tr-home-actions'>")
     parts.append("<a href='../programming-map.html'>AIエージェント講習を見る</a>")
@@ -3101,17 +3288,12 @@ def _render_teaching_home(sections: list[dict]) -> str:
             parts.append(f"<span>{summary}</span>")
         parts.append("</div><span class='arrow'>→</span></a>")
 
-    parts.append("<div class='tr-format-grid' aria-label='全資料の共通構成'>")
-    format_notes = [
-        ("1. わかること", "最初に、誰向けで何を持ち帰る資料かを確認する。"),
-        ("2. まず結論", "難しい説明の前に、いちばん大事な考えをつかむ。"),
-        ("3. 順番に理解", "必要な言葉を、使う場面と一緒に覚える。"),
-        ("4. やってみる", "身近な例、操作、チェックで理解を確かめる。"),
-        ("5. 次の一歩", "振り返り、宿題、次に読む資料を決める。"),
-    ]
-    for label, note in format_notes:
-        parts.append(f"<div class='tr-format'><b>{html.escape(label)}</b><span>{html.escape(note)}</span></div>")
-    parts.append("</div>")
+    parts.append(
+        "<div class='tr-format-flow' aria-label='全資料の共通構成'>"
+        "対象 → 結論 → 手順 → 練習 → 確認"
+        "<small>どの資料も、誰向けかを確かめてから、試して次の行動を決める順番です。</small>"
+        "</div>"
+    )
     return "".join(parts)
 
 
@@ -3119,10 +3301,6 @@ def _render_teaching_index(sections: list[dict]) -> str:
     """セクション付きのカード式ディレクトリを描画。"""
     parts: list[str] = []
     parts.append(_render_teaching_home(sections))
-    parts.append(
-        "<p class='tr-intro'>目的に合う見出しから1本だけ選んでください。各資料は「わかること → 結論 → 説明 → 例 → 次の一歩」の順で読めます。"
-        "さらに詳しく知りたいときだけ、同じグループの次の資料や投影資料へ進みます。</p>"
-    )
     rendered_any = False
     for sec in sections:
         items = sec.get("items") or []
@@ -3133,12 +3311,18 @@ def _render_teaching_index(sections: list[dict]) -> str:
         icon = html.escape(str(sec.get("icon", "")))
         desc = html.escape(str(sec.get("description", "")))
         sec_id = _teaching_section_id(sec)
-        parts.append(f"<section class='tr-section' id='sec-{sec_id}'>")
-        parts.append(
+        collapsed = bool(sec.get("collapsed", False))
+        heading_html = (
             f"<h2 class='tr-section-head'><span class='tr-section-icon'>{icon}</span>"
             f"<span class='tr-section-name'>{name}</span>"
             f"<span class='tr-section-count'>{len(items)} 件</span></h2>"
         )
+        if collapsed:
+            parts.append(f"<details class='tr-section tr-section-collapsible' id='sec-{sec_id}'>")
+            parts.append(f"<summary>{heading_html}</summary>")
+        else:
+            parts.append(f"<section class='tr-section' id='sec-{sec_id}'>")
+            parts.append(heading_html)
         if desc:
             parts.append(f"<p class='tr-section-desc'>{desc}</p>")
         parts.append("<div class='tr-grid'>")
@@ -3149,7 +3333,9 @@ def _render_teaching_index(sections: list[dict]) -> str:
             summary = html.escape(str(it.get("summary", "")))
             date = html.escape(str(it.get("date", "")))
             level = html.escape(str(it.get("level", "")))
-            learning_order = it.get("learning_order")
+            course_order = it.get("course_order")
+            duration = html.escape(_frontmatter_text(it.get("duration")))
+            is_lecture_md = it.get("source") == "lectures-md"
             ext = _is_external_url(href_raw)
             href = _resolve_lecture_href(href_raw)
             attrs = f" target='_blank' rel='noopener'" if ext else ""
@@ -3160,22 +3346,29 @@ def _render_teaching_index(sections: list[dict]) -> str:
             parts.append(
                 f"<div class='tr-title'>{(iicon + ' ') if iicon else ''}{title}</div>"
             )
-            if date:
+            if date and not is_lecture_md:
                 parts.append(f"<div class='tr-date'>📅 {date}</div>")
             if summary:
                 parts.append(f"<div class='tr-sum'>{summary}</div>")
             meta_bits = [chip] if chip else []
-            if learning_order:
-                meta_bits.append(f"<span class='tr-chip format on'>読む順 {html.escape(str(learning_order))}</span>")
-            if level:
-                meta_bits.append(f"<span class='tr-chip format'>{level}</span>")
-            if features.get("body"):
-                meta_bits.append("<span class='tr-chip format on'>本文</span>")
-            meta_bits.append(_render_feature_chips(features, show_missing=False, css_prefix="tr"))
+            if is_lecture_md:
+                if course_order:
+                    meta_bits.append(
+                        f"<span class='tr-chip format on'>コース内順 {html.escape(str(course_order))}</span>"
+                    )
+                if level:
+                    meta_bits.append(f"<span class='tr-chip format'>{level}</span>")
+                if duration:
+                    meta_bits.append(f"<span class='tr-chip format'>{duration}</span>")
+            else:
+                if features.get("body"):
+                    meta_bits.append("<span class='tr-chip format on'>本文</span>")
+                meta_bits.append(_render_feature_chips(features, show_missing=False, css_prefix="tr"))
             if meta_bits:
                 parts.append(f"<div class='tr-meta'>{''.join(meta_bits)}</div>")
             parts.append("</a>")
-        parts.append("</div></section>")
+        parts.append("</div>")
+        parts.append("</details>" if collapsed else "</section>")
     if not rendered_any:
         parts.append("<p class='empty'>まだ資料が登録されていません。</p>")
     return "".join(parts)
@@ -3189,36 +3382,109 @@ def build_lectures() -> int:
     md = _load_markdown()
     out_dir = DIST / "lectures"
     out_dir.mkdir(parents=True, exist_ok=True)
-    count = 0
-    lecture_md_items: list[dict] = []
+
+    def learning_order(meta: dict) -> int:
+        try:
+            return int(meta.get("learning_order") or 999)
+        except (TypeError, ValueError):
+            return 999
+
+    # First pass: read every source. listed:false only affects discovery; its
+    # individual URL remains buildable for direct links and archived handouts.
+    lecture_records: list[dict] = []
     for f in sorted(LECTURES_DIR.glob("*.md"), reverse=True):
         raw = f.read_text(encoding="utf-8")
         meta, body = _parse_frontmatter(raw)
         body_html = md.markdown(body, extensions=["extra", "sane_lists"])
-        title = meta.get("title") or f.stem
+        title = str(meta.get("title") or f.stem)
         toc_for_item = _collect_h2_toc(body_html)
         features = _lecture_feature_flags(body_html, toc_for_item)
-        nav = render_top_nav(path_prefix="../", current_id="lectures", include_run=False)
-        (out_dir / f"{f.stem}.html").write_text(
-            render_content_page(title, meta, body_html, nav, page_path=f"lectures/{f.stem}.html", kind="lecture"),
-            encoding="utf-8",
-        )
-        lecture_md_items.append({
+        lecture_records.append({
             "id": f.stem,
+            "file": f,
             "title": title,
+            "meta": meta,
+            "body_html": body_html,
+            "toc": toc_for_item,
+            "features": features,
+            "category": str(meta.get("category") or "other"),
+            "learning_order": learning_order(meta),
+            "listed": meta.get("listed", True) is not False,
+        })
+
+    listed_records = sorted(
+        (record for record in lecture_records if record["listed"]),
+        key=lambda record: (record["learning_order"], record["title"]),
+    )
+
+    # Second pass preparation: course order and neighbours are scoped to one
+    # category, so an AI lesson never links automatically into climbing, etc.
+    records_by_category: dict[str, list[dict]] = {}
+    for record in listed_records:
+        records_by_category.setdefault(record["category"], []).append(record)
+
+    course_order_by_id: dict[str, int] = {}
+    neighbors_by_id: dict[str, dict] = {}
+    for category_records in records_by_category.values():
+        category_records.sort(key=lambda record: (record["learning_order"], record["title"]))
+        for index, record in enumerate(category_records):
+            record_id = str(record["id"])
+            course_order_by_id[record_id] = index + 1
+
+            def neighbor_payload(neighbor: dict | None) -> dict | None:
+                if not neighbor:
+                    return None
+                return {
+                    "title": str(neighbor["title"]),
+                    "href": f"./{neighbor['id']}.html",
+                }
+
+            neighbors_by_id[record_id] = {
+                "previous": neighbor_payload(category_records[index - 1] if index > 0 else None),
+                "next": neighbor_payload(category_records[index + 1] if index + 1 < len(category_records) else None),
+            }
+
+    lecture_md_items: list[dict] = []
+    for record in listed_records:
+        meta = record["meta"]
+        record_id = str(record["id"])
+        lecture_md_items.append({
+            "id": record_id,
+            "title": record["title"],
             "icon": "📝",
-            "href": f"./{f.stem}.html",
+            "href": f"./{record_id}.html",
             "summary": str(meta.get("summary", "")),
             "date": str(meta.get("date", "")),
-            "category": str(meta.get("category", "other")),
-            "learning_order": int(meta.get("learning_order") or 999),
+            "category": record["category"],
+            "learning_order": record["learning_order"],
+            "course_order": course_order_by_id.get(record_id),
             "level": str(meta.get("level", "")),
+            "duration": _frontmatter_text(meta.get("duration") or meta.get("reading_time")),
             "recommended": bool(meta.get("recommended", False)),
             "source": "lectures-md",
-            "features": features,
+            "features": record["features"],
             "featured": bool(meta.get("featured", False)),
         })
-        count += 1
+
+    # Second pass output: render every page, including unlisted sources.
+    for record in lecture_records:
+        record_id = str(record["id"])
+        page_meta = dict(record["meta"])
+        if record_id in course_order_by_id:
+            page_meta["course_order"] = course_order_by_id[record_id]
+        nav = render_top_nav(path_prefix="../", current_id="lectures", include_run=False)
+        (out_dir / f"{record_id}.html").write_text(
+            render_content_page(
+                record["title"],
+                page_meta,
+                record["body_html"],
+                nav,
+                page_path=f"lectures/{record_id}.html",
+                kind="lecture",
+                lecture_neighbors=neighbors_by_id.get(record_id, {"previous": None, "next": None}),
+            ),
+            encoding="utf-8",
+        )
 
     lecture_md_items.sort(key=lambda item: (int(item.get("learning_order") or 999), str(item.get("title") or "")))
 
@@ -3242,7 +3508,7 @@ def build_lectures() -> int:
             render_content_page("受講資料の一覧", {"summary": "AI相談の受講資料を、目的と読む順番で選べる一覧"}, body_html, nav, page_path="lectures/index.html"),
             encoding="utf-8",
         )
-    return count
+    return len(lecture_records)
 
 
 def build_blog() -> int:
@@ -3688,8 +3954,14 @@ def build_sitemap_and_robots() -> None:
         add("lectures/index.html", 0.7)
     lec_dir = DIST / "lectures"
     if lec_dir.exists():
+        hidden_lecture_slugs: set[str] = set()
+        if LECTURES_DIR.exists():
+            for source in LECTURES_DIR.glob("*.md"):
+                meta, _body = _parse_frontmatter(source.read_text(encoding="utf-8"))
+                if meta.get("listed") is False:
+                    hidden_lecture_slugs.add(source.stem)
         for lp in sorted(lec_dir.glob("*.html")):
-            if lp.name == "index.html":
+            if lp.name == "index.html" or lp.stem in hidden_lecture_slugs:
                 continue
             add(f"lectures/{lp.name}", 0.8)
     # blog

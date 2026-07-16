@@ -1,209 +1,218 @@
 ---
-title: "AIに自社資料を正しい順番で読ませる方法 — RAG入門"
+title: "AIに自社資料を探して答えてもらう — RAG入門"
 date: 2026-06-17
-role: "SEOブログ / RAG設計・AIエージェント"
+role: 受講資料
 gen_by: "由井 辰美 / AI相談"
-summary: "RAGとは、AIが自社資料を探してから答える仕組み。どの資料から見るか、何を人が確認するかを、ECと交流会の例で学ぶ。"
+summary: "RAGとは、AIが質問に関係する箇所を資料から探し、根拠と一緒に答える仕組みです。公開可能な交流会FAQを例に、資料の選び方、更新日、閲覧権限、出典表示、人の確認を学びます。"
+audience: "交流会や地域団体で、公開できるFAQをAIの回答に使いたい人"
+duration: "15分"
+goal: "AIが質問に関係する箇所を探し、出典と一緒に答えるための資料の整え方を決められる"
 category: ai-work
-learning_order: 4
-level: 応用
+learning_order: 1
+level: 入門
 ---
 
-<style>
-.rag-post{--ink:#102033;--soft:#405166;--muted:#6b7280;--line:#d8e2ee;--blue:#2563eb;--green:#15803d;--amber:#b7791f;--red:#b42318;color:var(--ink)}
-.rag-post *{box-sizing:border-box}.rag-hero{display:grid;grid-template-columns:1.08fr .92fr;gap:22px;align-items:center;margin:4px 0 28px;padding:22px;border:1px solid var(--line);border-radius:8px;background:linear-gradient(135deg,#f8fbff,#fff 52%,#f2fbf6)}
-.rag-hero p{font-size:16px;line-height:1.9;color:var(--soft);margin:0 0 12px}.rag-hero strong{color:var(--ink)}.rag-hero img,.rag-visual img{display:block;width:100%;border:1px solid var(--line);border-radius:8px;background:#fff}.rag-hero img{aspect-ratio:16/10;object-fit:cover}
-.rag-note,.rag-quote{border:1px solid var(--line);border-left:5px solid var(--blue);border-radius:8px;background:#f8fbff;padding:16px 18px;margin:16px 0 26px;line-height:1.85;color:var(--soft)}.rag-quote{font-size:18px;font-weight:800;color:var(--ink);background:#fff}.rag-note b{color:var(--ink)}
-.rag-visual{margin:12px 0 24px}.rag-visual figcaption{font-size:13px;line-height:1.7;color:var(--muted);margin-top:8px}.rag-flow,.rag-prompt{background:#101827;color:#e5edf7;border-radius:8px;padding:18px 20px;margin:14px 0 26px;line-height:1.85;font-size:14px;white-space:pre-wrap}
-.rag-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:16px 0 28px}.rag-card{border:1px solid var(--line);border-top:5px solid var(--blue);border-radius:8px;background:#fff;padding:18px}.rag-card.green{border-top-color:var(--green)}.rag-card.amber{border-top-color:var(--amber)}.rag-card.red{border-top-color:var(--red)}.rag-card h3{font-size:20px;margin:0 0 9px}.rag-card p,.rag-card li{font-size:14.5px;line-height:1.8;color:var(--soft)}
-.rag-table{width:100%;border-collapse:collapse;margin:16px 0 28px;border:1px solid var(--line);font-size:14px;background:#fff}.rag-table th{background:#172033;color:#fff;text-align:left;padding:12px 14px}.rag-table td{border-top:1px solid var(--line);padding:12px 14px;vertical-align:top;line-height:1.75;color:var(--soft)}.rag-table td:first-child{font-weight:800;color:var(--ink)}
-.rag-check{list-style:none;margin:16px 0 28px;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.rag-check li{border:1px solid var(--line);border-radius:8px;padding:12px 13px 12px 38px;position:relative;background:#fff;color:var(--soft);line-height:1.65;font-size:14px}.rag-check li:before{content:"□";position:absolute;left:13px;top:10px;color:var(--blue);font-size:20px;font-weight:900}
-.rag-cta{background:linear-gradient(135deg,#172033,#2458d4);color:#fff;border-radius:8px;padding:22px;margin:24px 0 30px}.rag-cta h2,.rag-cta h3{color:#fff;margin-top:0}.rag-cta p{color:#fff;line-height:1.85}.rag-cta a{display:inline-flex;margin:6px 8px 0 0;padding:10px 14px;border-radius:7px;background:#fff;color:#172033;text-decoration:none;font-weight:800}.rag-sources{font-size:13px;color:var(--muted);line-height:1.75}
-@media(max-width:900px){.rag-hero,.rag-grid,.rag-check{grid-template-columns:1fr}.rag-hero{padding:18px}}
-</style>
+## この資料は誰向けか
 
-<div class="rag-post" markdown="1">
+この資料は、交流会、地域団体、学校、福祉施設、店舗などで、次のような悩みがある人向けです。
 
-<div class="rag-hero">
-<div>
-<p><strong>RAGは、AIが仕事に必要な資料を探せるようにする仕組みです。</strong></p>
-<p>難しいシステムから考える必要はありません。最初に決めるのは「何を見せるか」「どの順番で見るか」「最後に人が何を確認するか」の3つです。</p>
-</div>
-<img src="./assets/rag-library-agent.svg" alt="RAGをAI専用の資料棚として整理し、AIエージェントが必要な情報を探す図解" loading="eager" decoding="async">
-</div>
+- 同じ質問へ何度も答えている
+- AIにFAQを読ませたいが、何を渡せばよいか分からない
+- 古い案内や内部資料を答えに混ぜたくない
+- AIの回答に、根拠となる資料名や更新日を付けたい
+- 分からないことを、AIに推測で答えさせたくない
 
-## この資料でわかること
+今回は、個人情報を含まない**公開可能な交流会FAQ**だけを使います。参加者名簿、電話番号、個別相談の記録、運営者だけが見るメモは対象にしません。
 
-- RAGという言葉を、仕事の言葉で説明できる
-- AIに渡す資料と、見る順番を決められる
-- ネットショップ（EC）、問い合わせ、交流会など、業務ごとに順番を変えられる
-- AIに任せる部分と、人が確認する部分を分けられる
-- 自分の仕事で小さなRAG設計を書き始められる
+## 今日できるようになること
 
-<div class="rag-note">
-<b>対象:</b> ChatGPTは使っているものの、自社資料、顧客情報、売上データ、商品情報、問い合わせ履歴をどう活用すればよいか迷っている事業者向けです。
-</div>
+- RAGを、難しい専門用語を使わずに説明できる
+- AIに探してもらう資料を選べる
+- 資料へ更新日と閲覧権限を付けられる
+- 回答に出典を表示する形を決められる
+- 資料に答えがないときのルールを決められる
+- 公開前に人が確認する項目を整理できる
 
 ## まず結論
 
-<blockquote class="rag-quote">RAGは「AI専用の資料棚」です。良いRAG設計は、資料の量ではなく、AIが見る順番と人の確認場所まで決まっています。</blockquote>
+RAGは、**AIが質問に関係する箇所を資料から探し、その箇所を根拠にして答える仕組み**です。
 
-<div class="rag-grid">
-<div class="rag-card"><h3>AIに任せる</h3><p>資料を探す、数字の変化を見つける、原因候補や下書きを出す。</p></div>
-<div class="rag-card green"><h3>人が決める</h3><p>価格変更、広告出稿、顧客への連絡、文章の公開など、影響が大きい判断を確認する。</p></div>
-</div>
+AIへ資料を大量に渡すことが目的ではありません。大事なのは、次の6点です。
+
+1. 使ってよい資料を選ぶ
+2. 資料の更新日を付ける
+3. 公開・内部・機密の閲覧権限を分ける
+4. 回答に資料名やURLを付ける
+5. 答えが見つからなければ「分からない」と答える
+6. 公開前に人が確認する
+
+> RAGを使っても、元の資料が古い、間違っている、閲覧権限が不適切である場合は、良い回答になりません。最初に資料を整えることが必要です。
 
 ## 順番に理解する本文
 
-### 1. RAGは、AIが資料を探してから答える仕組み
+### 1. 質問に関係する箇所を探してから答える
 
-RAGは「Retrieval-Augmented Generation」の略です。日本語では、AIが外部の資料を検索し、その内容を使って回答する仕組み、と考えれば十分です。
+通常のAIは、会話の中にある情報や、学習時に得た一般的な知識を使って答えます。RAGでは、その前に指定された資料の中を探します。
 
-たとえば、次の資料をAIが探せるようにします。
+たとえば「初めてでも交流会に参加できますか」という質問なら、AIは公開FAQや開催案内から、初参加者について書かれた箇所を探します。見つけた文章を根拠に回答を作り、資料名やURLも表示します。
 
-- 商品情報、在庫、売上表
-- マニュアル、議事録、過去の対応記録
-- 顧客の相談内容、よくある質問
-- 過去の記事、レビュー、イベント記録
+資料に書かれていない場合は、推測で補いません。「公開資料からは分かりません。運営者へ確認してください」と答えます。
 
-資料をただ集めるだけでは足りません。古い資料や関係のない資料まで混ざると、AIも迷います。
+### 2. 使ってよい資料だけを選ぶ
 
-### 2. 先に「見る順番」を決める
+交流会の公開FAQで使いやすい資料は、次のようなものです。
 
-<figure class="rag-visual">
-<img src="./assets/rag-search-order.svg" alt="AIが売上、利益率、在庫、レビュー、SEOの順番で確認するRAG設計の図解" loading="lazy" decoding="async">
-<figcaption>同じ資料でも、先に見るものが違えば、提案も変わります。</figcaption>
-</figure>
+| 使う資料 | 含める内容 | 注意点 |
+|---|---|---|
+| 開催案内 | 日時、会場、対象者、申込方法 | 終了した開催回と混ぜない |
+| 公開FAQ | 服装、持ち物、初参加、キャンセル | 回答した日と更新日を分ける |
+| 会場案内 | 住所、交通手段、駐車場 | 会場変更を反映する |
+| 参加ルール | 営業行為、撮影、迷惑行為への対応 | 公開できる範囲だけ載せる |
+| 公式申込ページ | 受付状況、料金、締切 | 最新のページを出典にする |
 
-「売上が落ちた理由を調べる」なら、いきなり販促案を作らせません。まず数字と現場の状態を確認します。
+次の情報は、公開FAQ用のRAGには入れません。
 
-<div class="rag-flow">売上を見る
-↓
-利益率を見る
-↓
-在庫を見る
-↓
-レビューを見る
-↓
-競合を見る
-↓
-改善案を出す</div>
+- 参加者名簿
+- 電話番号やメールアドレス
+- 個別相談の内容
+- 紹介先や取引先に関する内部メモ
+- 未公開の料金や開催計画
+- 運営者だけが使うパスワードや管理情報
 
-この順番が決まっていると、AIは雰囲気ではなく、確認した情報をもとに提案できます。
+### 3. 更新日を付ける
 
-### 3. 業務が変われば、見る順番も変える
+AIは、古い案内と新しい案内の違いを自動で正しく判断できるとは限りません。各資料に、少なくとも次の情報を付けます。
 
-<figure class="rag-visual">
-<img src="./assets/rag-business-flow.svg" alt="ECと交流会でAIが見るべき情報の順番が違うことを示す図解" loading="lazy" decoding="async">
-<figcaption>正解は1つではありません。実際の仕事の流れに合わせます。</figcaption>
-</figure>
+| 項目 | 記入例 |
+|---|---|
+| 資料名 | 交流会FAQ_公開版 |
+| 更新日 | 2026-07-01 |
+| 公開範囲 | 公開 |
+| 出典 | 公式申込ページ、運営者確認 |
+| 確認者 | 運営担当者 |
 
-SEOは検索結果で見つけてもらう工夫、FAQはよくある質問、内部リンクは同じWebサイト内の関連記事へ案内するリンクです。
+同じ内容の古い資料は、検索対象から外すか、「過去資料」と明記します。
 
-<table class="rag-table">
-<thead><tr><th>業務</th><th>AIが見る順番</th><th>最後に出すもの</th></tr></thead>
-<tbody>
-<tr><td>ネットショップ（EC）</td><td>売上 → 利益率 → 在庫 → レビュー → SEO</td><td>推す商品、直す商品ページ、止める広告</td></tr>
-<tr><td>問い合わせ</td><td>相談内容 → 顧客区分 → 過去対応 → FAQ</td><td>返信案、確認事項、担当者への引き継ぎ</td></tr>
-<tr><td>交流会</td><td>参加者 → 業種 → 悩み → 紹介先 → 次回連絡</td><td>紹介候補、会話テーマ、フォロー予定</td></tr>
-<tr><td>ブログ</td><td>検索語 → 顧客の悩み → 商品 → 過去記事 → 競合</td><td>記事テーマ、見出し、内部リンク</td></tr>
-</tbody>
-</table>
+### 4. 閲覧権限を分ける
 
-### 4. 毎日の確認をAIに任せる
+資料は、内容によって3つに分けます。
 
-<figure class="rag-visual">
-<img src="./assets/rag-daily-agent.svg" alt="クラウドAIエージェントが売上、問い合わせ、レビュー、競合を毎日確認する図解" loading="lazy" decoding="async">
-<figcaption>AIエージェントは、決めた順番で同じ確認を続ける時に力を発揮します。</figcaption>
-</figure>
+- **公開**: Webサイトや申込ページで、誰でも見てよい情報
+- **内部**: スタッフだけで共有する手順や連絡事項
+- **機密**: 個人情報、契約、支払い、パスワードなど
 
-AIエージェントとは、指示された仕事を複数の手順に分けて進めるAIです。毎朝、売上、問い合わせ、レビュー、在庫を確認させることもできます。
+公開向けの回答には、公開資料だけを使います。内部資料や機密資料を同じ検索対象に入れないことが基本です。
 
-良い報告は「問題があります」で終わりません。
+### 5. 出典と更新日を回答に付ける
 
-<div class="rag-grid">
-<div class="rag-card red"><h3>在庫</h3><p>この商品は売れていますが、在庫が少ないため、広告を増やす前に仕入れ確認が必要です。</p></div>
-<div class="rag-card green"><h3>販促</h3><p>利益率とレビューが良いため、今週はこの商品を優先して紹介できます。</p></div>
-<div class="rag-card amber"><h3>記事</h3><p>検索されている言葉と問い合わせ内容が重なるため、このテーマの記事が有効です。</p></div>
-<div class="rag-card"><h3>顧客対応</h3><p>前回の相談が未解決です。今日中に人が内容を確認し、連絡してください。</p></div>
-</div>
+回答だけでは、利用者も運営者も正しさを確認できません。回答の形を先に決めます。
 
-### 5. 重要な判断は人が確認する
+```text
+回答:
+初参加について、公開FAQに書かれている内容を案内します。
 
-<figure class="rag-visual">
-<img src="./assets/rag-human-gate.svg" alt="業務分解、資料整理、順番決定、自動化範囲、人間確認範囲の5ステップ図解" loading="lazy" decoding="async">
-<figcaption>AIが下調べと下書きを担当し、影響が大きい判断は人が確認します。</figcaption>
-</figure>
+出典:
+- 交流会FAQ_公開版
+- 公式申込ページ: [URL]
 
-AIにすべてを決めさせる必要はありません。次の作業は、人の確認を残します。
+更新日:
+2026-07-01
 
-- 価格、契約、支払いに関わる変更
-- 広告の出稿や予算変更
-- 顧客への連絡、個人情報の利用
-- Web、SNS、メールなど外部への公開
+確認が必要なこと:
+最新の受付状況は申込ページで確認してください。
+```
+
+### 6. 分からないときは、分からないと答える
+
+資料にない質問へ無理に答えると、誤案内につながります。次のルールをAIへ伝えます。
+
+- 資料に書かれていることだけを答える
+- 関係する箇所が見つからない場合は推測しない
+- 資料どうしで内容が違う場合は、違いを示して人の確認を求める
+- 更新日が古い場合は、そのことを回答に書く
+- 個人情報を求められても表示しない
+
+### 7. 最後は人が確認する
+
+公開前に人が確認するのは、次の項目です。
+
+- 質問に合った回答になっているか
+- 出典に書かれている内容と一致しているか
+- 更新日が古くないか
+- 個人情報や内部情報が入っていないか
+- 料金、申込期限、会場など重要な情報が正しいか
+- 分からないことを推測していないか
 
 ## 具体例 / やってみる
 
-### 5つの項目を1枚に書く
+### 1. 公開FAQ用の資料を3つ選ぶ
 
-<table class="rag-table">
-<thead><tr><th>項目</th><th>ECの記入例</th></tr></thead>
-<tbody>
-<tr><td>1. 調べる仕事</td><td>売上低下の原因を確認する</td></tr>
-<tr><td>2. 使う資料</td><td>売上表、利益率、在庫、レビュー、競合、過去施策</td></tr>
-<tr><td>3. 見る順番</td><td>売上 → 利益率 → 在庫 → レビュー → 競合</td></tr>
-<tr><td>4. AIに任せる</td><td>毎朝の確認、異常の通知、改善案の下書き</td></tr>
-<tr><td>5. 人が確認する</td><td>価格変更、広告出稿、顧客連絡、公開文章</td></tr>
-</tbody>
-</table>
+まずは、次のような公開資料を3つ以内で選びます。
 
-### そのまま使える依頼文
+1. `交流会FAQ_公開版.md`
+2. `開催案内_公開版.md`
+3. 公式申込ページ
 
-<div class="rag-prompt">あなたはEC運営の分析担当です。
+各資料に「更新日」「公開範囲」「出典」を付けてください。
 
-毎朝、売上、利益率、在庫、レビュー、競合の順に確認してください。
-異常があれば、次の3つを出してください。
-1. 原因の候補
-2. 人が確認する画面や数字
-3. 今日できる改善案
+### 2. AIへの依頼文を書く
 
-価格変更、広告出稿、顧客連絡、文章公開は自動で実行せず、「人の確認が必要」と分けてください。</div>
+```text
+あなたは交流会の公開FAQ案内担当です。
 
-最初は1つの業務だけで試します。資料の不足や順番の間違いが見つかったら、焦らず直します。
+次の公開資料だけを参照してください。
+- 交流会FAQ_公開版
+- 開催案内_公開版
+- 公式申込ページ
 
-## 振り返り / 次の一歩
+質問に関係する箇所を探し、その内容を使って答えてください。
+回答には「出典」と「更新日」を付けてください。
 
-<figure class="rag-visual">
-<img src="./assets/rag-next-step.svg" alt="AIに何を聞くかから、AIにどう考えてもらうかへ変わる流れの図解" loading="lazy" decoding="async">
-<figcaption>質問の工夫だけでなく、資料、順番、確認方法を整えることが次の一歩です。</figcaption>
-</figure>
+資料に答えがない場合は、推測せず、
+「公開資料からは分かりません。運営者へ確認してください」
+と答えてください。
 
-<ul class="rag-check">
-<li>AIに任せたい仕事を1つに絞った</li>
-<li>使う資料を5種類以内で選んだ</li>
-<li>AIが見る順番を矢印で書いた</li>
-<li>AIが出す報告の形を決めた</li>
-<li>人が確認する判断を決めた</li>
-<li>まず1週間試し、結果を見直す</li>
-</ul>
+資料どうしの内容が違う場合や更新日が古い場合は、
+回答を確定せず「人の確認が必要」と表示してください。
 
-<div class="rag-cta">
-<h3>自分の仕事で、最初のRAG設計を作る</h3>
-<p>難しいシステムを入れる前に、対象業務、使う資料、見る順番、人が確認する場所を一緒に整理します。</p>
-<a href="/#contact">無料でAI活用を相談する</a>
-<a href="/#packages">受講プランを見る</a>
-<a href="/#lectures">受講資料を見る</a>
-</div>
+個人情報、内部資料、機密情報は使わないでください。
+```
 
-### 参考リンク
+### 3. 3種類の質問で試す
 
-<div class="rag-sources">
-<ul>
-<li><a href="https://aws.amazon.com/what-is/retrieval-augmented-generation/" target="_blank" rel="noopener">AWS: What is RAG?</a></li>
-<li><a href="https://cloud.google.com/use-cases/retrieval-augmented-generation" target="_blank" rel="noopener">Google Cloud: Retrieval-Augmented Generation</a></li>
-<li><a href="https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview" target="_blank" rel="noopener">Microsoft Learn: RAG overview</a></li>
-<li><a href="https://www.ibm.com/think/topics/retrieval-augmented-generation" target="_blank" rel="noopener">IBM Think: What is RAG?</a></li>
-</ul>
-</div>
+次の3種類を試すと、ルールが機能しているか確認できます。
 
-</div>
+1. 資料に答えがある質問
+2. 資料に答えがない質問
+3. 古い資料と新しい資料で答えが違う質問
+
+3番目でAIが勝手に新旧を決めず、人の確認を求めれば成功です。
+
+## できたかチェック
+
+- [ ] RAGを「質問に関係する箇所を探し、根拠と一緒に答える仕組み」と説明できる
+- [ ] 公開FAQに使う資料を3つ以内で選んだ
+- [ ] 各資料に更新日を付けた
+- [ ] 公開・内部・機密を分けた
+- [ ] 回答に出典を付ける形を決めた
+- [ ] 資料にない質問では「分からない」と答えるルールを入れた
+- [ ] 内容が食い違う場合は人へ確認するようにした
+- [ ] 公開前に人が確認する項目を決めた
+
+## 次に読む資料
+
+- [AIエージェント講習 120分](../programming-map.html) — 資料を使った依頼、確認、修正、安全な公開までの全体像を学ぶ
+- [受講資料の一覧](./index.html) — 自分の目的に合う次の資料を選ぶ
+
+## 用語・出典
+
+- **RAG**: Retrieval-Augmented Generationの略。質問に関係する情報を外部資料から検索し、その情報を使って回答を作る方法
+- **検索対象**: AIが答えを作る前に探す資料の範囲
+- **出典**: 回答の根拠にした資料名、ページ、URLなど
+- **更新日**: 資料の内容を最後に確認または変更した日
+- **閲覧権限**: その資料を誰が見てよいかを決める区分
+
+参考:
+
+- [AWS: What is Retrieval-Augmented Generation?](https://aws.amazon.com/what-is/retrieval-augmented-generation/)
+- [Microsoft Learn: Retrieval-augmented generation and indexes](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview)

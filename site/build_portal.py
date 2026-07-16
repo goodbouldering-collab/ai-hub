@@ -345,7 +345,7 @@ def _load_recent_lectures(limit: int = 3) -> list[dict]:
     if not LECTURES_DIR.exists():
         return []
     items: list[dict] = []
-    for f in sorted(LECTURES_DIR.glob("*.md"), reverse=True)[:limit]:
+    for f in sorted(LECTURES_DIR.glob("*.md"), reverse=True):
         raw = f.read_text(encoding="utf-8")
         meta: dict = {}
         if raw.startswith("---"):
@@ -355,12 +355,16 @@ def _load_recent_lectures(limit: int = 3) -> list[dict]:
                 meta = yaml.safe_load(fm) or {}
             except Exception:
                 pass
+        if meta.get("listed") is False:
+            continue
         items.append({
             "slug": f.stem,
             "title": str(meta.get("title") or f.stem),
             "date": str(meta.get("date") or ""),
             "summary": str(meta.get("summary") or ""),
         })
+        if len(items) >= limit:
+            break
     return items
 
 
@@ -426,7 +430,7 @@ def _load_portfolio() -> list[dict]:
 
 
 def _load_all_lectures() -> list[dict]:
-    """受講資料を全件（学ぶ順）。LP の受講資料セクション用。"""
+    """公開対象の受講資料を読み込み、LP の入口カード用に返す。"""
     if not LECTURES_DIR.exists():
         return []
     items: list[dict] = []
@@ -439,14 +443,19 @@ def _load_all_lectures() -> list[dict]:
                 meta = yaml.safe_load(raw[3:end].strip()) or {}
             except Exception:
                 pass
+        if meta.get("listed") is False:
+            continue
         items.append({
             "slug": f.stem,
             "title": str(meta.get("title") or f.stem),
             "date": str(meta.get("date") or ""),
             "summary": str(meta.get("summary") or ""),
             "learning_order": int(meta.get("learning_order") or 999),
+            "category": str(meta.get("category") or "other"),
+            "level": str(meta.get("level") or ""),
+            "duration": str(meta.get("duration") or ""),
         })
-    return sorted(items, key=lambda item: (int(item.get("learning_order") or 999), str(item.get("title") or "")))
+    return sorted(items, key=lambda item: (str(item.get("category") or ""), int(item.get("learning_order") or 999), str(item.get("title") or "")))
 
 
 PORTAL_CSS = """
@@ -11302,8 +11311,8 @@ def _render_compact_course_cards() -> str:
             "desc": "仕事に合うAIの使い方と、確認・運用の手順を整理します。",
             "url": "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/TO3XHZT6XP3OM4QBDYMW7TZP",
             "cta": "個別相談を予約",
-            "material_url": "/lectures/2026-06-ai-tsukaikonaseru-hito.html",
-            "material_cta": "AI活用の整理資料を見る",
+            "material_url": "/lectures/2026-04-ai-kangaekata.html",
+            "material_cta": "15分のAI実践ワークを見る",
         },
         {
             "cat": "6ヶ月伴走",
@@ -11762,16 +11771,33 @@ def _render_works_section() -> str:
 
 
 def _render_lectures_section() -> str:
-    """受講資料セクション。基礎から学ぶ順に並べ、AIエージェント講習は最後の実践資料にする。"""
+    """LPでは全件を並べず、目的別の入口だけを見せる。"""
     pmap_card = {
         "title": "AIエージェント講習 120分",
         "icon": "🧭",
         "date": "2026-06-06",
         "summary": "初めての人が、CodexやClaude Codeへの頼み方、確認、修正、安全な公開までを順番に学ぶAIエージェント講習。",
-        "learning_order": 7,
+        "category": "ai-build",
+        "level": "実践",
+        "duration": "120分",
+        "route_label": "AIと作る",
         "href": "/programming-map.html",
     }
-    lecs = list(_load_all_lectures()) + [pmap_card]
+    all_lectures = list(_load_all_lectures())
+    route_labels = {
+        "ai-start": "AIが初めて",
+        "ai-work": "自社資料を使う",
+        "climbing": "クライミング",
+    }
+    lecs: list[dict] = []
+    for category in ("ai-start", "ai-work"):
+        first = next((item for item in all_lectures if item.get("category") == category), None)
+        if first:
+            lecs.append({**first, "route_label": route_labels[category]})
+    lecs.append(pmap_card)
+    climbing = next((item for item in all_lectures if item.get("category") == "climbing"), None)
+    if climbing:
+        lecs.append({**climbing, "route_label": route_labels["climbing"]})
     parts: list[str] = []
     parts.append("<div class='lecture-grid'>")
     for lec in lecs:
@@ -12185,11 +12211,15 @@ def _render_lecture_card(lec: dict) -> str:
     href_raw = lec.get("href") or f"/lectures/{lec.get('slug', '')}.html"
     href = html.escape(href_raw, quote=True)
     icon = html.escape(lec.get("icon", ""))
-    learning_order = lec.get("learning_order")
+    route_label = html.escape(str(lec.get("route_label") or ""))
+    level = html.escape(str(lec.get("level") or ""))
+    duration = html.escape(str(lec.get("duration") or ""))
     icon_html = f"<span class='lecture-icon'>{icon}</span>" if icon else ""
-    order_label = f"読む順 {html.escape(str(learning_order))}" if learning_order else ""
-    date_label = f"📅 {date}" if date else ""
-    meta_label = " · ".join(part for part in (order_label, date_label) if part)
+    route_meta = f"{route_label}向け" if route_label else ""
+    duration_meta = f"目安 {duration}" if duration else ""
+    meta_label = " · ".join(part for part in (route_meta, level, duration_meta) if part)
+    if not meta_label and date:
+        meta_label = f"📅 {date}"
     date_html = f"<div class='lecture-date'>{meta_label}</div>" if meta_label else ""
     summary_html = f"<div class='lecture-summary'>{summary}</div>" if summary else ""
     return (
@@ -12622,7 +12652,7 @@ def _render_focused_main() -> str:
         "<p class='course-venue-map-link'><a href='https://www.google.com/maps/search/?api=1&amp;query=%E3%82%B0%E3%83%83%E3%81%BC%E3%82%8B%E3%82%AB%E3%83%95%E3%82%A7%20%E6%BB%8B%E8%B3%80%E7%9C%8C%E5%BD%A6%E6%A0%B9%E5%B8%82%E5%B2%A1%E7%94%BA12' target='_blank' rel='noopener'>Googleマップで開く →</a></p></aside>",
         "<div class='course-quick-actions'><button type='button' class='compact-diagnose diagnose-open'>迷ったら60秒診断</button><a href='#lectures'>受講資料から選ぶ →</a></div></section>",
         "<section class='focus-block soft' id='lectures'><div class='focus-section-head'><small>LEARNING MATERIALS</small><h2>受講資料</h2></div>",
-        "<p class='focus-section-lead'>講習前の予習と、受講後に仕事へ戻るための復習資料です。AIの基本からCodex・Claude Code実践まで見返せます。</p>",
+        "<p class='focus-section-lead'>全部を並べず、目的別の4つの入口に整理しました。迷ったら「AIが初めて」から始め、必要なときだけ一覧へ進めます。</p>",
         _render_lectures_section(),
         "<div class='focus-content-actions'><a class='focus-btn secondary' href='/lectures/index.html'>受講資料を一覧で見る</a></div></section>",
         "<section class='focus-block' id='blog'><div class='focus-section-head'><small>PRACTICAL BLOG</small><h2>ブログ</h2></div>",

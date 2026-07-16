@@ -10543,6 +10543,369 @@ section.block::before {
     text-transform: uppercase !important;
   }
 }
+
+/* ---- トップページと同じ公開ヘッダー UI / UX ---- */
+html { scroll-padding-top: 92px !important; }
+[id] { scroll-margin-top: 92px !important; }
+header.site-header,
+header.site-header.scrolled,
+header.site-header:hover {
+  position: fixed !important;
+  inset: 0 0 auto 0 !important;
+  z-index: 50 !important;
+  min-height: 74px !important;
+  margin: 0 !important;
+  background: rgba(255,255,255,.97) !important;
+  border: 0 !important;
+  border-bottom: 1px solid rgba(10,23,40,.08) !important;
+  box-shadow: 0 8px 24px rgba(10,23,40,.045) !important;
+  backdrop-filter: blur(18px) saturate(145%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(145%) !important;
+}
+.site-header-inner {
+  width: min(100%, 1400px) !important;
+  max-width: 1400px !important;
+  min-height: 74px !important;
+  margin: 0 auto !important;
+  padding: 10px 18px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 14px !important;
+}
+.site-logo {
+  min-width: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  flex: 0 0 auto !important;
+  gap: 4px !important;
+  color: #0a1728 !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+}
+.brand-mark,
+.wordmark .word-en,
+.site-logo-by { display: none !important; }
+.wordmark {
+  display: inline-flex !important;
+  align-items: baseline !important;
+  gap: 5px !important;
+  color: #0a1728 !important;
+  font-size: 23px !important;
+  font-weight: 900 !important;
+  letter-spacing: -.03em !important;
+  line-height: 1 !important;
+}
+.wordmark .word-ai { color: #075fc8 !important; }
+.wordmark .word-hub { color: #0a1728 !important; }
+.site-nav {
+  position: static !important;
+  inset: auto !important;
+  z-index: auto !important;
+  min-width: 0 !important;
+  display: flex !important;
+  flex: 1 1 auto !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  flex-wrap: nowrap !important;
+  gap: 18px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+.site-nav a.nav-link,
+.site-nav .menu-toggle {
+  min-height: 42px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px !important;
+  padding: 10px 3px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: #0a1728 !important;
+  font: inherit !important;
+  font-size: 14px !important;
+  font-weight: 850 !important;
+  line-height: 1.2 !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  cursor: pointer !important;
+}
+.site-nav a.nav-link:hover,
+.site-nav a.nav-link:focus-visible,
+.site-nav .menu-toggle:hover,
+.site-nav .menu-toggle:focus-visible,
+.site-nav .menu-toggle[aria-expanded="true"] {
+  color: #075fc8 !important;
+  background: transparent !important;
+  outline: none !important;
+}
+.site-nav a.nav-current,
+.site-nav a.nav-current:hover,
+.site-nav a.nav-current:focus-visible {
+  color: #075fc8 !important;
+  box-shadow: inset 0 -3px 0 #075fc8 !important;
+}
+.site-nav .menu-wrap { position: relative !important; }
+.site-nav .menu-toggle .chev { transition: transform .2s ease; }
+.site-nav .menu-toggle[aria-expanded="true"] .chev { transform: rotate(180deg); }
+.site-nav .menu-drop {
+  position: absolute !important;
+  top: calc(100% + 10px) !important;
+  right: 0 !important;
+  z-index: 80 !important;
+  min-width: 240px !important;
+  max-height: calc(100vh - 94px) !important;
+  display: none !important;
+  padding: 8px !important;
+  overflow-y: auto !important;
+  background: #fff !important;
+  border: 1px solid rgba(10,23,40,.13) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 22px 52px rgba(10,23,40,.14) !important;
+}
+.site-nav .menu-drop.open { display: block !important; }
+.site-nav .menu-drop-label {
+  display: block !important;
+  padding: 8px 12px 4px !important;
+  color: #526174 !important;
+  font-size: 10px !important;
+  font-weight: 900 !important;
+  letter-spacing: .12em !important;
+  text-transform: uppercase !important;
+}
+.site-nav .menu-drop a {
+  display: block !important;
+  padding: 9px 12px !important;
+  border-radius: 8px !important;
+  color: #0a1728 !important;
+  font-size: 13px !important;
+  font-weight: 750 !important;
+  text-decoration: none !important;
+}
+.site-nav .menu-drop a:hover,
+.site-nav .menu-drop a:focus-visible {
+  color: #075fc8 !important;
+  background: #f2f7fd !important;
+  outline: none !important;
+}
+.site-nav .nav-cta {
+  min-height: 42px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 18px !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  background: #075fc8 !important;
+  background-image: none !important;
+  color: #fff !important;
+  font-size: 13px !important;
+  font-weight: 900 !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  box-shadow: 0 10px 24px rgba(7,95,200,.18) !important;
+}
+.site-nav .nav-cta:hover,
+.site-nav .nav-cta:focus-visible {
+  background: #064895 !important;
+  transform: translateY(-1px) !important;
+  outline: none !important;
+}
+.header-member-login {
+  min-height: 40px !important;
+  display: inline-flex !important;
+  flex: 0 0 auto !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 14px !important;
+  border: 1.5px solid #075fc8 !important;
+  border-radius: 8px !important;
+  background: #fff !important;
+  color: #075fc8 !important;
+  font-size: 13px !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+}
+.header-member-login:hover,
+.header-member-login:focus-visible {
+  background: #075fc8 !important;
+  color: #fff !important;
+  outline: none !important;
+}
+.header-run-action {
+  min-height: 40px !important;
+  display: inline-flex !important;
+  flex: 0 0 auto !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 13px !important;
+  border: 1px solid rgba(10,23,40,.14) !important;
+  border-radius: 8px !important;
+  background: #fff !important;
+  color: #0a1728 !important;
+  font: inherit !important;
+  font-size: 12px !important;
+  font-weight: 900 !important;
+  white-space: nowrap !important;
+  cursor: pointer !important;
+}
+.header-run-action:hover,
+.header-run-action:focus-visible {
+  color: #075fc8 !important;
+  border-color: #075fc8 !important;
+  outline: none !important;
+}
+.run-status:empty { display: none !important; }
+.mobile-toggle,
+.generated-mobile-toggle {
+  position: static !important;
+  inset: auto !important;
+  width: 42px !important;
+  height: 42px !important;
+  display: none !important;
+  flex: 0 0 auto !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: #0a1728 !important;
+  box-shadow: none !important;
+  cursor: pointer !important;
+}
+.mobile-toggle:hover,
+.mobile-toggle:focus-visible,
+.generated-mobile-toggle:hover,
+.generated-mobile-toggle:focus-visible {
+  color: #075fc8 !important;
+  background: transparent !important;
+  outline: none !important;
+}
+.mobile-nav,
+.generated-mobile-nav {
+  position: fixed !important;
+  inset: 74px 0 auto !important;
+  z-index: 70 !important;
+  max-height: calc(100dvh - 74px) !important;
+  display: none !important;
+  padding: 10px max(16px, env(safe-area-inset-left)) calc(18px + env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-right)) !important;
+  overflow-y: auto !important;
+  overscroll-behavior: contain !important;
+  background: rgba(255,255,255,.985) !important;
+  border-top: 1px solid rgba(10,23,40,.10) !important;
+  box-shadow: 0 18px 34px rgba(10,23,40,.12) !important;
+}
+.mobile-nav.open,
+.generated-mobile-nav.open { display: block !important; }
+.mobile-nav-panel--public,
+.mobile-nav-panel {
+  width: min(100%, 640px) !important;
+  margin: 0 auto !important;
+  display: grid !important;
+  gap: 8px !important;
+}
+.mobile-link-grid {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 0 !important;
+}
+.mobile-nav a,
+.mobile-nav .login-btn-mobile,
+.mobile-nav .mobile-main-link {
+  min-height: 42px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  padding: 9px 4px !important;
+  border: 0 !important;
+  border-bottom: 1px solid rgba(10,23,40,.09) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: #0a1728 !important;
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  line-height: 1.3 !important;
+  text-align: left !important;
+  text-decoration: none !important;
+  box-shadow: none !important;
+}
+.mobile-nav .login-btn-mobile {
+  justify-content: center !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  background: #075fc8 !important;
+  color: #fff !important;
+}
+.mobile-nav .mobile-main-link {
+  color: #075fc8 !important;
+  font-weight: 900 !important;
+}
+.mobile-nav a:hover,
+.mobile-nav a:focus-visible {
+  color: #075fc8 !important;
+  background: #f5f9fd !important;
+  outline: none !important;
+}
+.mobile-nav .mobile-nav-label {
+  display: block !important;
+  padding: 8px 4px 2px !important;
+  color: #526174 !important;
+  font-size: 10px !important;
+  font-weight: 900 !important;
+  letter-spacing: .10em !important;
+  line-height: 1.2 !important;
+  text-align: left !important;
+  text-transform: uppercase !important;
+}
+@media (max-width: 900px) {
+  html { scroll-padding-top: 82px !important; }
+  [id] { scroll-margin-top: 82px !important; }
+  header.site-header,
+  header.site-header.scrolled,
+  header.site-header:hover { min-height: 64px !important; }
+  .site-header-inner {
+    min-height: 64px !important;
+    padding: 8px 14px !important;
+    gap: 8px !important;
+  }
+  .site-nav { display: none !important; }
+  .header-run-action,
+  .run-status { display: none !important; }
+  .header-member-login {
+    min-height: 36px !important;
+    margin-left: auto !important;
+    padding: 0 10px !important;
+    font-size: 12px !important;
+  }
+  .mobile-toggle,
+  .generated-mobile-toggle { display: inline-flex !important; }
+  .mobile-nav,
+  .generated-mobile-nav {
+    inset: 64px 0 auto !important;
+    max-height: calc(100dvh - 64px) !important;
+  }
+}
+@media (max-width: 520px) {
+  .wordmark { font-size: 19px !important; }
+  .header-member-login {
+    min-height: 34px !important;
+    padding: 0 9px !important;
+    font-size: 11.5px !important;
+  }
+}
 </style></head><body><div class='container'>
 <script>
 (function(){
@@ -10560,7 +10923,7 @@ section.block::before {
   }
 })();
 </script>
-<header class='site-header scrolled' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span><span class='site-logo-by'>滋賀・彦根</span></a><nav class='site-nav top-nav' aria-label='サイトナビ'><a class='nav-link nav-essential' href='../index.html'>ホーム</a><a class='nav-link nav-essential' href='/programming-map.html'>AIエージェント講習</a><a class='nav-link nav-essential' href='/#all-works'>実績</a><a class='nav-link nav-essential' href='/blog/index.html'>ブログ</a><a class='nav-link nav-essential' href='/#lectures'>資料</a><a class='nav-link nav-essential' href='/#faq'>FAQ</a></nav><a class='header-member-login' href='/admin'>会員ログイン</a><a class='nav-cta' href='/#contact'>個別相談</a></div></header><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'><svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button><div class='mobile-nav generated-mobile-nav' id='mobile-nav'><div class='mobile-nav-panel mobile-nav-panel--public'><span class='mobile-nav-label'>ホームメニュー</span><div class='mobile-link-list'><a href='/'><span class='mobile-link-title'>ホーム</span><small>最初に戻る</small></a><a href='/programming-map.html'><span class='mobile-link-title'>AIエージェント講習</span><small>Codex・Claude Code実践を見る</small></a><a href='/#all-works'><span class='mobile-link-title'>実績</span><small>支援例と制作例を見る</small></a><a href='/blog/index.html'><span class='mobile-link-title'>ブログ</span><small>実践知を読む</small></a><a href='/#lectures'><span class='mobile-link-title'>資料</span><small>復習と手順を見る</small></a><a href='/#speaker'><span class='mobile-link-title'>講師</span><small>誰が支援するか</small></a><a href='/#faq'><span class='mobile-link-title'>FAQ</span><small>不安を先に解消</small></a><a href='/#contact'><span class='mobile-link-title'>相談</span><small>予約へ進む</small></a></div></div></div><script>(function(){var b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav');if(!b||!n)return;function close(){n.classList.remove('open');b.setAttribute('aria-expanded','false');}b.addEventListener('click',function(e){e.stopPropagation();var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});})();</script><header><h1>受講資料の一覧</h1></header><div class='content-wrap'><div class='content-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#受講資料は-目的別に選べます'>受講資料は、目的別に選べます</a></li><li><a href='#1-aiを初めて学ぶ-2-件'>🌱 1. AIを初めて学ぶ 2 件</a></li><li><a href='#2-aiを仕事で使う-2-件'>🧰 2. AIを仕事で使う 2 件</a></li><li><a href='#3-aiと一緒に作る-1-件'>🛠️ 3. AIと一緒に作る 1 件</a></li><li><a href='#4-クライミングを学ぶ-1-件'>🧗 4. クライミングを学ぶ 1 件</a></li><li><a href='#実践講習・投影資料-3-件'>📚 実践講習・投影資料 3 件</a></li></ol></div><section class='tr-home' aria-label='受講資料ホーム'><div><h2 id='受講資料は-目的別に選べます'>受講資料は、目的別に選べます</h2><p>全部を上から読む必要はありません。AIが初めての人、仕事で使いたい人、AIと一緒に作りたい人、クライミングを学びたい人の4つに分けました。迷ったら「AIの基本」から始めてください。</p><div class='tr-home-actions'><a href='../programming-map.html'>AIエージェント講習を見る</a><a href='./2026-04-ai-kihon.html'>最初の1本を読む</a><a href='#sec-1-aiを初めて学ぶ'>全資料を見る</a></div></div><div class='tr-home-panel'><div class='tr-home-stat'><b>6</b><span>受講資料</span></div><div class='tr-home-stat'><b>4</b><span>目的別の学び方</span></div><div class='tr-home-stat'><b>5</b><span>全資料でそろえた説明順</span></div></div></section><a class='tr-featured' href='./2026-04-ai-kihon.html'><div><b>迷ったら最初に読む: AIの基本を知る — 入門講習</b><span>AIに何ができるか、困りごとをどう伝えるか、答えをどう保存して仕事に生かすかを、身近な例で学ぶ最初の資料。</span></div><span class='arrow'>→</span></a><div class='tr-format-grid' aria-label='全資料の共通構成'><div class='tr-format'><b>1. わかること</b><span>最初に、誰向けで何を持ち帰る資料かを確認する。</span></div><div class='tr-format'><b>2. まず結論</b><span>難しい説明の前に、いちばん大事な考えをつかむ。</span></div><div class='tr-format'><b>3. 順番に理解</b><span>必要な言葉を、使う場面と一緒に覚える。</span></div><div class='tr-format'><b>4. やってみる</b><span>身近な例、操作、チェックで理解を確かめる。</span></div><div class='tr-format'><b>5. 次の一歩</b><span>振り返り、宿題、次に読む資料を決める。</span></div></div><p class='tr-intro'>目的に合う見出しから1本だけ選んでください。各資料は「わかること → 結論 → 説明 → 例 → 次の一歩」の順で読めます。さらに詳しく知りたいときだけ、同じグループの次の資料や投影資料へ進みます。</p><section class='tr-section' id='sec-1-aiを初めて学ぶ'><h2 class='tr-section-head' id='1-aiを初めて学ぶ-2-件'><span class='tr-section-icon'>🌱</span><span class='tr-section-name'>1. AIを初めて学ぶ</span><span class='tr-section-count'>2 件</span></h2><p class='tr-section-desc'>AIがよく分からない人向け。難しい機能より先に、考え方と頼み方を身につける</p><div class='tr-grid'><a class='tr-card' href='./2026-04-ai-kihon.html'><div class='tr-title'>📝 AIの基本を知る — 入門講習</div><div class='tr-date'>📅 2026-04-22</div><div class='tr-sum'>AIに何ができるか、困りごとをどう伝えるか、答えをどう保存して仕事に生かすかを、身近な例で学ぶ最初の資料。</div><div class='tr-meta'><span class='tr-chip format on'>読む順 1</span><span class='tr-chip format'>入門</span><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span></div></a><a class='tr-card' href='./2026-04-ai-kangaekata.html'><div class='tr-title'>📝 AIを仕事になじませる考え方 — 入門講習</div><div class='tr-date'>📅 2026-04-22</div><div class='tr-sum'>目標の伝え方、作業の減らし方、道具の選び方、発信への使い方を、仕事の流れに沿って学ぶ入門資料。</div><div class='tr-meta'><span class='tr-chip format on'>読む順 2</span><span class='tr-chip format'>入門</span><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span></div></a></div></section><section class='tr-section' id='sec-2-aiを仕事で使う'><h2 class='tr-section-head' id='2-aiを仕事で使う-2-件'><span class='tr-section-icon'>🧰</span><span class='tr-section-name'>2. AIを仕事で使う</span><span class='tr-section-count'>2 件</span></h2><p class='tr-section-desc'>事務、集客、情報整理、業務改善で成果を出すための使い方を学ぶ</p><div class='tr-grid'><a class='tr-card' href='./2026-06-ai-tsukaikonaseru-hito.html'><div class='tr-title'>📝 AIを仕事で使える人になる — 5つの実践</div><div class='tr-date'>📅 2026-06-16</div><div class='tr-sum'>目的を決める、材料を渡す、完成形を伝える、直す、人が確認する。AIを仕事に入れる5つの手順を、依頼文の例と一緒に学ぶ。</div><div class='tr-meta'><span class='tr-chip format on'>読む順 3</span><span class='tr-chip format'>入門</span><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span><span class='tr-chip format on'>チェック</span></div></a><a class='tr-card' href='./2026-06-ai-agent-rag-design.html'><div class='tr-title'>📝 AIに自社資料を正しい順番で読ませる方法 — RAG入門</div><div class='tr-date'>📅 2026-06-17</div><div class='tr-sum'>RAGとは、AIが自社資料を探してから答える仕組み。どの資料から見るか、何を人が確認するかを、ECと交流会の例で学ぶ。</div><div class='tr-meta'><span class='tr-chip format on'>読む順 4</span><span class='tr-chip format'>応用</span><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span></div></a></div></section><section class='tr-section' id='sec-3-aiと一緒に作る'><h2 class='tr-section-head' id='3-aiと一緒に作る-1-件'><span class='tr-section-icon'>🛠️</span><span class='tr-section-name'>3. AIと一緒に作る</span><span class='tr-section-count'>1 件</span></h2><p class='tr-section-desc'>CodexやClaude Codeなどを使い、準備、制作、確認を安全な順番で学ぶ</p><div class='tr-grid'><a class='tr-card' href='./2026-05-claude-code-features.html'><div class='tr-title'>📝 Claude Codeでできること — 2026年版</div><div class='tr-date'>📅 2026-05-21</div><div class='tr-sum'>Claude Codeの新しい機能から、作業を裏で進める、操作範囲を決める、機能を追加するなど、仕事で役立つものを目的別に整理。</div><div class='tr-meta'><span class='tr-chip format on'>読む順 5</span><span class='tr-chip format'>応用</span><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span></div></a></div></section><section class='tr-section' id='sec-4-クライミングを学ぶ'><h2 class='tr-section-head' id='4-クライミングを学ぶ-1-件'><span class='tr-section-icon'>🧗</span><span class='tr-section-name'>4. クライミングを学ぶ</span><span class='tr-section-count'>1 件</span></h2><p class='tr-section-desc'>クライミングの背景や歴史を、講習や地域活動で説明するための資料</p><div class='tr-grid'><a class='tr-card' href='./2026-05-climbing-history.html'><div class='tr-title'>📝 クライミングの歴史 — 参考資料</div><div class='tr-date'>📅 2026-05-23</div><div class='tr-sum'>クライミングが約240年かけて広がった流れを、世界史と日本史の2本のスライドで学ぶ初心者向け資料。</div><div class='tr-meta'><span class='tr-chip format on'>読む順 6</span><span class='tr-chip format'>入門</span><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span><span class='tr-chip format on'>ナレーション</span><span class='tr-chip format on'>スライド</span><span class='tr-chip format on'>PDF</span></div></a></div></section><section class='tr-section' id='sec-実践講習・投影資料'><h2 class='tr-section-head' id='実践講習・投影資料-3-件'><span class='tr-section-icon'>📚</span><span class='tr-section-name'>実践講習・投影資料</span><span class='tr-section-count'>3 件</span></h2><p class='tr-section-desc'>講習で画面共有するときや、もっと詳しく学びたいときに使う資料</p><div class='tr-grid'><a class='tr-card' href='../programming-map.html'><div class='tr-title'>🧭 AIエージェント講習 120分</div><div class='tr-date'>📅 2026-06-06</div><div class='tr-sum'>初めての人が、CodexやClaude Codeへの頼み方、確認、修正、安全な公開までを順番に学ぶAIエージェント講習。</div><div class='tr-meta'><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span><span class='tr-chip format on'>スライド</span><span class='tr-chip format on'>チェック</span></div></a><a class='tr-card' href='../slides/climbing-history-1.html'><div class='tr-title'>🧗 クライミングの歴史 I（世界史編）</div><div class='tr-date'>📅 2026-05-23</div><div class='tr-sum'>1786年モンブランから種目の分化、パタゴニア／ノースフェイス誕生秘話、五輪採用まで。初心者向け講習スライド（投影用HTML）</div><div class='tr-meta'><span class='tr-chip format on'>スライド</span></div></a><a class='tr-card' href='../slides/climbing-history-2.html'><div class='tr-title'>🧗 クライミングの歴史 II（日本史・ぐっぼる編）</div><div class='tr-date'>📅 2026-05-23</div><div class='tr-sum'>日本のクライミング独立史、ジムの爆発的普及、世界に挑んだ日本人、そして「ぐっぼる」がジム＋ショップ＋カフェである理由。投影用HTML</div><div class='tr-meta'><span class='tr-chip format on'>スライド</span></div></a></div></section></div><footer>AI相談 / Generated by Claude</footer><button class='back-to-top' id='backTop' aria-label='トップへ戻る'>↑</button><script>(function(){var b=document.getElementById('backTop');if(!b)return;window.addEventListener('scroll',function(){b.classList.toggle('show',window.scrollY>400);});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script><script>
+<header class='site-header scrolled' id='site-header' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html' aria-label='AI相談 彦根 トップへ'><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span></span></a><nav class='site-nav' aria-label='メインナビ'><a class='nav-link nav-essential' href='/#packages'>講習・相談</a><a class='nav-link nav-essential' href='/programming-map.html'>AIコーディング</a><a class='nav-link nav-essential nav-current' href='/#lectures' aria-current='page'>受講資料</a><div class='menu-wrap'><button class='menu-toggle' id='menu-toggle' aria-haspopup='menu' aria-expanded='false'>全メニュー<svg class='chev' width='14' height='14' viewBox='0 0 20 20' fill='none' aria-hidden='true'><path d='M5 8l5 5 5-5' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg></button><div class='menu-drop' id='menu-drop' role='menu'><span class='menu-drop-label'>制作・発信</span><a href='/#all-works'>AI実績</a><a href='/#blog'>ブログ</a><a href='/watch/index.html'>AI Watch</a><span class='menu-drop-label'>案内・確認</span><a href='/#speaker'>講師紹介</a><a href='/#flow'>進め方</a><a href='/#faq'>FAQ</a><a href='../index.html'>ホーム</a></div></div><a class='nav-cta' href='/#contact'>無料相談</a></nav><a class='header-member-login' href='/admin'>会員ログイン</a><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'><svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button></div><div class='mobile-nav generated-mobile-nav' id='mobile-nav'><div class='mobile-nav-panel mobile-nav-panel--public'><a class='login-btn-mobile' href='/#contact'>無料相談</a><a class='mobile-main-link' href='/#packages'>講習・相談</a><span class='mobile-nav-label'>講習・資料</span><div class='mobile-link-grid'><a href='/programming-map.html'>AIコーディング</a><a href='/#lectures'>受講資料</a><a href='/#blog'>ブログ</a></div><span class='mobile-nav-label'>制作・発信</span><div class='mobile-link-grid'><a href='/#all-works'>AI実績</a><a href='/watch/index.html'>AI Watch</a></div><span class='mobile-nav-label'>案内・確認</span><div class='mobile-link-grid'><a href='/#speaker'>講師紹介</a><a href='/#flow'>進め方</a><a href='/#faq'>FAQ</a><a href='../index.html'>ホーム</a></div></div></div></header><script>(function(){var t=document.getElementById('menu-toggle'),d=document.getElementById('menu-drop'),b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav');function closeDrop(){if(!d||!t)return;d.classList.remove('open');t.setAttribute('aria-expanded','false');}function closeMobile(){if(!n||!b)return;n.classList.remove('open');b.setAttribute('aria-expanded','false');}if(t&&d){t.addEventListener('click',function(e){e.stopPropagation();var o=d.classList.toggle('open');t.setAttribute('aria-expanded',o?'true':'false');});document.addEventListener('click',function(e){if(!d.contains(e.target)&&!t.contains(e.target))closeDrop();});}if(b&&n){b.addEventListener('click',function(e){e.stopPropagation();var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMobile);});}document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDrop();closeMobile();}});})();</script><header><h1>受講資料の一覧</h1></header><div class='content-wrap'><div class='content-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#受講資料は-目的別に選べます'>受講資料は、目的別に選べます</a></li><li><a href='#1-aiを初めて学ぶ-2-件'>🌱 1. AIを初めて学ぶ 2 件</a></li><li><a href='#2-aiを仕事で使う-2-件'>🧰 2. AIを仕事で使う 2 件</a></li><li><a href='#3-aiと一緒に作る-1-件'>🛠️ 3. AIと一緒に作る 1 件</a></li><li><a href='#4-クライミングを学ぶ-1-件'>🧗 4. クライミングを学ぶ 1 件</a></li><li><a href='#実践講習・投影資料-3-件'>📚 実践講習・投影資料 3 件</a></li></ol></div><section class='tr-home' aria-label='受講資料ホーム'><div><h2 id='受講資料は-目的別に選べます'>受講資料は、目的別に選べます</h2><p>全部を上から読む必要はありません。AIが初めての人、仕事で使いたい人、AIと一緒に作りたい人、クライミングを学びたい人の4つに分けました。迷ったら「AIの基本」から始めてください。</p><div class='tr-home-actions'><a href='../programming-map.html'>AIエージェント講習を見る</a><a href='./2026-04-ai-kihon.html'>最初の1本を読む</a><a href='#sec-1-aiを初めて学ぶ'>全資料を見る</a></div></div><div class='tr-home-panel'><div class='tr-home-stat'><b>6</b><span>受講資料</span></div><div class='tr-home-stat'><b>4</b><span>目的別の学び方</span></div><div class='tr-home-stat'><b>5</b><span>全資料でそろえた説明順</span></div></div></section><a class='tr-featured' href='./2026-04-ai-kihon.html'><div><b>迷ったら最初に読む: AIの基本を知る — 入門講習</b><span>AIに何ができるか、困りごとをどう伝えるか、答えをどう保存して仕事に生かすかを、身近な例で学ぶ最初の資料。</span></div><span class='arrow'>→</span></a><div class='tr-format-grid' aria-label='全資料の共通構成'><div class='tr-format'><b>1. わかること</b><span>最初に、誰向けで何を持ち帰る資料かを確認する。</span></div><div class='tr-format'><b>2. まず結論</b><span>難しい説明の前に、いちばん大事な考えをつかむ。</span></div><div class='tr-format'><b>3. 順番に理解</b><span>必要な言葉を、使う場面と一緒に覚える。</span></div><div class='tr-format'><b>4. やってみる</b><span>身近な例、操作、チェックで理解を確かめる。</span></div><div class='tr-format'><b>5. 次の一歩</b><span>振り返り、宿題、次に読む資料を決める。</span></div></div><p class='tr-intro'>目的に合う見出しから1本だけ選んでください。各資料は「わかること → 結論 → 説明 → 例 → 次の一歩」の順で読めます。さらに詳しく知りたいときだけ、同じグループの次の資料や投影資料へ進みます。</p><section class='tr-section' id='sec-1-aiを初めて学ぶ'><h2 class='tr-section-head' id='1-aiを初めて学ぶ-2-件'><span class='tr-section-icon'>🌱</span><span class='tr-section-name'>1. AIを初めて学ぶ</span><span class='tr-section-count'>2 件</span></h2><p class='tr-section-desc'>AIがよく分からない人向け。難しい機能より先に、考え方と頼み方を身につける</p><div class='tr-grid'><a class='tr-card' href='./2026-04-ai-kihon.html'><div class='tr-title'>📝 AIの基本を知る — 入門講習</div><div class='tr-date'>📅 2026-04-22</div><div class='tr-sum'>AIに何ができるか、困りごとをどう伝えるか、答えをどう保存して仕事に生かすかを、身近な例で学ぶ最初の資料。</div><div class='tr-meta'><span class='tr-chip format on'>読む順 1</span><span class='tr-chip format'>入門</span><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span></div></a><a class='tr-card' href='./2026-04-ai-kangaekata.html'><div class='tr-title'>📝 AIを仕事になじませる考え方 — 入門講習</div><div class='tr-date'>📅 2026-04-22</div><div class='tr-sum'>目標の伝え方、作業の減らし方、道具の選び方、発信への使い方を、仕事の流れに沿って学ぶ入門資料。</div><div class='tr-meta'><span class='tr-chip format on'>読む順 2</span><span class='tr-chip format'>入門</span><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span></div></a></div></section><section class='tr-section' id='sec-2-aiを仕事で使う'><h2 class='tr-section-head' id='2-aiを仕事で使う-2-件'><span class='tr-section-icon'>🧰</span><span class='tr-section-name'>2. AIを仕事で使う</span><span class='tr-section-count'>2 件</span></h2><p class='tr-section-desc'>事務、集客、情報整理、業務改善で成果を出すための使い方を学ぶ</p><div class='tr-grid'><a class='tr-card' href='./2026-06-ai-tsukaikonaseru-hito.html'><div class='tr-title'>📝 AIを仕事で使える人になる — 5つの実践</div><div class='tr-date'>📅 2026-06-16</div><div class='tr-sum'>目的を決める、材料を渡す、完成形を伝える、直す、人が確認する。AIを仕事に入れる5つの手順を、依頼文の例と一緒に学ぶ。</div><div class='tr-meta'><span class='tr-chip format on'>読む順 3</span><span class='tr-chip format'>入門</span><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span><span class='tr-chip format on'>チェック</span></div></a><a class='tr-card' href='./2026-06-ai-agent-rag-design.html'><div class='tr-title'>📝 AIに自社資料を正しい順番で読ませる方法 — RAG入門</div><div class='tr-date'>📅 2026-06-17</div><div class='tr-sum'>RAGとは、AIが自社資料を探してから答える仕組み。どの資料から見るか、何を人が確認するかを、ECと交流会の例で学ぶ。</div><div class='tr-meta'><span class='tr-chip format on'>読む順 4</span><span class='tr-chip format'>応用</span><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span></div></a></div></section><section class='tr-section' id='sec-3-aiと一緒に作る'><h2 class='tr-section-head' id='3-aiと一緒に作る-1-件'><span class='tr-section-icon'>🛠️</span><span class='tr-section-name'>3. AIと一緒に作る</span><span class='tr-section-count'>1 件</span></h2><p class='tr-section-desc'>CodexやClaude Codeなどを使い、準備、制作、確認を安全な順番で学ぶ</p><div class='tr-grid'><a class='tr-card' href='./2026-05-claude-code-features.html'><div class='tr-title'>📝 Claude Codeでできること — 2026年版</div><div class='tr-date'>📅 2026-05-21</div><div class='tr-sum'>Claude Codeの新しい機能から、作業を裏で進める、操作範囲を決める、機能を追加するなど、仕事で役立つものを目的別に整理。</div><div class='tr-meta'><span class='tr-chip format on'>読む順 5</span><span class='tr-chip format'>応用</span><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span></div></a></div></section><section class='tr-section' id='sec-4-クライミングを学ぶ'><h2 class='tr-section-head' id='4-クライミングを学ぶ-1-件'><span class='tr-section-icon'>🧗</span><span class='tr-section-name'>4. クライミングを学ぶ</span><span class='tr-section-count'>1 件</span></h2><p class='tr-section-desc'>クライミングの背景や歴史を、講習や地域活動で説明するための資料</p><div class='tr-grid'><a class='tr-card' href='./2026-05-climbing-history.html'><div class='tr-title'>📝 クライミングの歴史 — 参考資料</div><div class='tr-date'>📅 2026-05-23</div><div class='tr-sum'>クライミングが約240年かけて広がった流れを、世界史と日本史の2本のスライドで学ぶ初心者向け資料。</div><div class='tr-meta'><span class='tr-chip format on'>読む順 6</span><span class='tr-chip format'>入門</span><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span><span class='tr-chip format on'>ナレーション</span><span class='tr-chip format on'>スライド</span><span class='tr-chip format on'>PDF</span></div></a></div></section><section class='tr-section' id='sec-実践講習・投影資料'><h2 class='tr-section-head' id='実践講習・投影資料-3-件'><span class='tr-section-icon'>📚</span><span class='tr-section-name'>実践講習・投影資料</span><span class='tr-section-count'>3 件</span></h2><p class='tr-section-desc'>講習で画面共有するときや、もっと詳しく学びたいときに使う資料</p><div class='tr-grid'><a class='tr-card' href='../programming-map.html'><div class='tr-title'>🧭 AIエージェント講習 120分</div><div class='tr-date'>📅 2026-06-06</div><div class='tr-sum'>初めての人が、CodexやClaude Codeへの頼み方、確認、修正、安全な公開までを順番に学ぶAIエージェント講習。</div><div class='tr-meta'><span class='tr-chip format on'>本文</span><span class='tr-chip format on'>目次</span><span class='tr-chip format on'>スライド</span><span class='tr-chip format on'>チェック</span></div></a><a class='tr-card' href='../slides/climbing-history-1.html'><div class='tr-title'>🧗 クライミングの歴史 I（世界史編）</div><div class='tr-date'>📅 2026-05-23</div><div class='tr-sum'>1786年モンブランから種目の分化、パタゴニア／ノースフェイス誕生秘話、五輪採用まで。初心者向け講習スライド（投影用HTML）</div><div class='tr-meta'><span class='tr-chip format on'>スライド</span></div></a><a class='tr-card' href='../slides/climbing-history-2.html'><div class='tr-title'>🧗 クライミングの歴史 II（日本史・ぐっぼる編）</div><div class='tr-date'>📅 2026-05-23</div><div class='tr-sum'>日本のクライミング独立史、ジムの爆発的普及、世界に挑んだ日本人、そして「ぐっぼる」がジム＋ショップ＋カフェである理由。投影用HTML</div><div class='tr-meta'><span class='tr-chip format on'>スライド</span></div></a></div></section></div><footer>AI相談 / Generated by Claude</footer><button class='back-to-top' id='backTop' aria-label='トップへ戻る'>↑</button><script>(function(){var b=document.getElementById('backTop');if(!b)return;window.addEventListener('scroll',function(){b.classList.toggle('show',window.scrollY>400);});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script><script>
 (function(){
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var sel = '.tr-card, .pf-card, .profile-stat, .profile-tech-card, .sns-card, article, .content-toc, .tr-section, .profile-tl-item, .profile-app-card, .profile-biz-card';

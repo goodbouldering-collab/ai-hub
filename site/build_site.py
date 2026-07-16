@@ -100,87 +100,70 @@ def _resolve_nav_href(href: str, path_prefix: str) -> str:
 
 def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
                    include_run: bool = True) -> str:
-    """全ページ共通のトップナビを config/top_buttons.yaml から生成。
+    """トップページと同じ公開ヘッダーを生成する。
 
     path_prefix: 呼び出しページから見た dist ルートへのプレフィックス。
                  dist/ 直下のページは "./"、dist/lectures/* のような子ページは "../"。
-    current_id:  現在ページの id。一致するボタンはハイライト表示し、リンクではなく強調表示にする。
-    include_run: 巡回実行ボタンを出すかどうか（index トップだけ True、サブページは False）。
+    current_id:  現在ページの id。主要メニューと一致すると現在地を表示する。
+    include_run: 既存呼び出しとの互換用。公開ヘッダーでは使用しない。
     """
-    buttons = load_top_buttons()
-
-    # group ごとに分配（出現順を保つ）
-    grouped: list[tuple[str, list[dict]]] = []
-    by_group: dict[str, list[dict]] = {}
-    for b in buttons:
-        if not b.get("enabled", True):
-            continue
-        if b.get("kind") == "action" and (b.get("action_id") or b.get("id")) == "run" and not include_run:
-            continue
-        g = str(b.get("group") or "その他")
-        if g not in by_group:
-            by_group[g] = []
-            grouped.append((g, by_group[g]))
-        by_group[g].append(b)
-
-    # トップポータルの fixed ヘッダーと同じ構造にして全ページの UI を統一する。
-    # 公開ページのメニューは利用者向けを主軸にしつつ、会員ログインだけを固定メニューに置く。
     home_href = _resolve_nav_href("index.html", path_prefix)
     safe_home = html.escape(home_href, quote=True) if home_href else "/"
+    pmap_class = "nav-link nav-essential nav-current" if current_id == "pmap" else "nav-link nav-essential"
+    pmap_current = " aria-current='page'" if current_id == "pmap" else ""
+    lecture_class = "nav-link nav-essential nav-current" if current_id == "lectures" else "nav-link nav-essential"
+    lecture_current = " aria-current='page'" if current_id == "lectures" else ""
+    run_action = (
+        "<button class='header-run-action' id='run-btn' type='button'>巡回実行</button>"
+        "<span class='run-status' id='run-status' aria-live='polite'></span>"
+        if include_run else ""
+    )
 
     parts: list[str] = [
-        "<header class='site-header scrolled' aria-label='サイトヘッダー'>"
+        "<header class='site-header scrolled' id='site-header' aria-label='サイトヘッダー'>"
         "<div class='site-header-inner'>"
-        f"<a class='site-logo' href='{safe_home}'>"
-        "<span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span>"
-        "<span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span>"
-        "<span class='site-logo-by'>滋賀・彦根</span>"
-        "</a>"
-        "<nav class='site-nav top-nav' aria-label='サイトナビ'>"
-    ]
-    # TOP(_render_header) と同じく、固定メニューは主要導線だけにする。
-    # 詳細な章移動は各ページ内の目次レールへ分離し、ヘッダーを1段に保つ。
-    parts.append(f"<a class='nav-link nav-essential' href='{safe_home}'>ホーム</a>")
-    parts.append("<a class='nav-link nav-essential' href='/programming-map.html'>AIエージェント講習</a>")
-    parts.append("<a class='nav-link nav-essential' href='/#all-works'>実績</a>")
-    parts.append("<a class='nav-link nav-essential' href='/blog/index.html'>ブログ</a>")
-    parts.append("<a class='nav-link nav-essential' href='/#lectures'>資料</a>")
-    parts.append("<a class='nav-link nav-essential' href='/#faq'>FAQ</a>")
-    parts.append("</nav>")
-    parts.append(
+        f"<a class='site-logo' href='{safe_home}' aria-label='AI相談 彦根 トップへ'>"
+        "<span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span></span></a>"
+        "<nav class='site-nav' aria-label='メインナビ'>"
+        "<a class='nav-link nav-essential' href='/#packages'>講習・相談</a>"
+        f"<a class='{pmap_class}' href='/programming-map.html'{pmap_current}>AIコーディング</a>"
+        f"<a class='{lecture_class}' href='/#lectures'{lecture_current}>受講資料</a>"
+        "<div class='menu-wrap'><button class='menu-toggle' id='menu-toggle' aria-haspopup='menu' aria-expanded='false'>全メニュー"
+        "<svg class='chev' width='14' height='14' viewBox='0 0 20 20' fill='none' aria-hidden='true'><path d='M5 8l5 5 5-5' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg></button>"
+        "<div class='menu-drop' id='menu-drop' role='menu'>"
+        "<span class='menu-drop-label'>制作・発信</span>"
+        "<a href='/#all-works'>AI実績</a><a href='/#blog'>ブログ</a><a href='/watch/index.html'>AI Watch</a>"
+        "<span class='menu-drop-label'>案内・確認</span>"
+        f"<a href='/#speaker'>講師紹介</a><a href='/#flow'>進め方</a><a href='/#faq'>FAQ</a><a href='{safe_home}'>ホーム</a>"
+        "</div></div>"
+        "<a class='nav-cta' href='/#contact'>無料相談</a>"
+        "</nav>"
         "<a class='header-member-login' href='/admin'>会員ログイン</a>"
-        "<a class='nav-cta' href='/#contact'>個別相談</a>"
-        "</div>"
-        "</header>"
-    )
-    parts.append(
+        f"{run_action}"
         "<button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'>"
         "<svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg>"
         "</button>"
+        "</div>"
         "<div class='mobile-nav generated-mobile-nav' id='mobile-nav'>"
         "<div class='mobile-nav-panel mobile-nav-panel--public'>"
-        "<span class='mobile-nav-label'>ホームメニュー</span>"
-        "<div class='mobile-link-list'>"
-        "<a href='/'><span class='mobile-link-title'>ホーム</span><small>最初に戻る</small></a>"
-        "<a href='/programming-map.html'><span class='mobile-link-title'>AIエージェント講習</span><small>Codex・Claude Code実践を見る</small></a>"
-        "<a href='/#all-works'><span class='mobile-link-title'>実績</span><small>支援例と制作例を見る</small></a>"
-        "<a href='/blog/index.html'><span class='mobile-link-title'>ブログ</span><small>実践知を読む</small></a>"
-        "<a href='/#lectures'><span class='mobile-link-title'>資料</span><small>復習と手順を見る</small></a>"
-        "<a href='/#speaker'><span class='mobile-link-title'>講師</span><small>誰が支援するか</small></a>"
-        "<a href='/#faq'><span class='mobile-link-title'>FAQ</span><small>不安を先に解消</small></a>"
-        "<a href='/#contact'><span class='mobile-link-title'>相談</span><small>予約へ進む</small></a>"
-        "</div>"
-        "</div>"
-        "</div>"
+        "<a class='login-btn-mobile' href='/#contact'>無料相談</a>"
+        "<a class='mobile-main-link' href='/#packages'>講習・相談</a>"
+        "<span class='mobile-nav-label'>講習・資料</span><div class='mobile-link-grid'>"
+        "<a href='/programming-map.html'>AIコーディング</a><a href='/#lectures'>受講資料</a><a href='/#blog'>ブログ</a></div>"
+        "<span class='mobile-nav-label'>制作・発信</span><div class='mobile-link-grid'>"
+        "<a href='/#all-works'>AI実績</a><a href='/watch/index.html'>AI Watch</a></div>"
+        "<span class='mobile-nav-label'>案内・確認</span><div class='mobile-link-grid'>"
+        f"<a href='/#speaker'>講師紹介</a><a href='/#flow'>進め方</a><a href='/#faq'>FAQ</a><a href='{safe_home}'>ホーム</a></div>"
+        "</div></div></header>"
         "<script>(function(){"
-        "var b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav');"
-        "if(!b||!n)return;"
-        "function close(){n.classList.remove('open');b.setAttribute('aria-expanded','false');}"
-        "b.addEventListener('click',function(e){e.stopPropagation();var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});"
-        "n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});"
-        "document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});"
+        "var t=document.getElementById('menu-toggle'),d=document.getElementById('menu-drop'),b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav');"
+        "function closeDrop(){if(!d||!t)return;d.classList.remove('open');t.setAttribute('aria-expanded','false');}"
+        "function closeMobile(){if(!n||!b)return;n.classList.remove('open');b.setAttribute('aria-expanded','false');}"
+        "if(t&&d){t.addEventListener('click',function(e){e.stopPropagation();var o=d.classList.toggle('open');t.setAttribute('aria-expanded',o?'true':'false');});document.addEventListener('click',function(e){if(!d.contains(e.target)&&!t.contains(e.target))closeDrop();});}"
+        "if(b&&n){b.addEventListener('click',function(e){e.stopPropagation();var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMobile);});}"
+        "document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDrop();closeMobile();}});"
         "})();</script>"
-    )
+    ]
     return "".join(parts)
 
 
@@ -2219,12 +2202,378 @@ def _portal_css() -> str:
         return ""
 
 
+GENERATED_PUBLIC_HEADER_CSS = r"""
+/* ---- トップページと同じ公開ヘッダー UI / UX ---- */
+html { scroll-padding-top: 92px !important; }
+[id] { scroll-margin-top: 92px !important; }
+header.site-header,
+header.site-header.scrolled,
+header.site-header:hover {
+  position: fixed !important;
+  inset: 0 0 auto 0 !important;
+  z-index: 50 !important;
+  min-height: 74px !important;
+  margin: 0 !important;
+  background: rgba(255,255,255,.97) !important;
+  border: 0 !important;
+  border-bottom: 1px solid rgba(10,23,40,.08) !important;
+  box-shadow: 0 8px 24px rgba(10,23,40,.045) !important;
+  backdrop-filter: blur(18px) saturate(145%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(145%) !important;
+}
+.site-header-inner {
+  width: min(100%, 1400px) !important;
+  max-width: 1400px !important;
+  min-height: 74px !important;
+  margin: 0 auto !important;
+  padding: 10px 18px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 14px !important;
+}
+.site-logo {
+  min-width: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  flex: 0 0 auto !important;
+  gap: 4px !important;
+  color: #0a1728 !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+}
+.brand-mark,
+.wordmark .word-en,
+.site-logo-by { display: none !important; }
+.wordmark {
+  display: inline-flex !important;
+  align-items: baseline !important;
+  gap: 5px !important;
+  color: #0a1728 !important;
+  font-size: 23px !important;
+  font-weight: 900 !important;
+  letter-spacing: -.03em !important;
+  line-height: 1 !important;
+}
+.wordmark .word-ai { color: #075fc8 !important; }
+.wordmark .word-hub { color: #0a1728 !important; }
+.site-nav {
+  position: static !important;
+  inset: auto !important;
+  z-index: auto !important;
+  min-width: 0 !important;
+  display: flex !important;
+  flex: 1 1 auto !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  flex-wrap: nowrap !important;
+  gap: 18px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+.site-nav a.nav-link,
+.site-nav .menu-toggle {
+  min-height: 42px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px !important;
+  padding: 10px 3px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: #0a1728 !important;
+  font: inherit !important;
+  font-size: 14px !important;
+  font-weight: 850 !important;
+  line-height: 1.2 !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  cursor: pointer !important;
+}
+.site-nav a.nav-link:hover,
+.site-nav a.nav-link:focus-visible,
+.site-nav .menu-toggle:hover,
+.site-nav .menu-toggle:focus-visible,
+.site-nav .menu-toggle[aria-expanded="true"] {
+  color: #075fc8 !important;
+  background: transparent !important;
+  outline: none !important;
+}
+.site-nav a.nav-current,
+.site-nav a.nav-current:hover,
+.site-nav a.nav-current:focus-visible {
+  color: #075fc8 !important;
+  box-shadow: inset 0 -3px 0 #075fc8 !important;
+}
+.site-nav .menu-wrap { position: relative !important; }
+.site-nav .menu-toggle .chev { transition: transform .2s ease; }
+.site-nav .menu-toggle[aria-expanded="true"] .chev { transform: rotate(180deg); }
+.site-nav .menu-drop {
+  position: absolute !important;
+  top: calc(100% + 10px) !important;
+  right: 0 !important;
+  z-index: 80 !important;
+  min-width: 240px !important;
+  max-height: calc(100vh - 94px) !important;
+  display: none !important;
+  padding: 8px !important;
+  overflow-y: auto !important;
+  background: #fff !important;
+  border: 1px solid rgba(10,23,40,.13) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 22px 52px rgba(10,23,40,.14) !important;
+}
+.site-nav .menu-drop.open { display: block !important; }
+.site-nav .menu-drop-label {
+  display: block !important;
+  padding: 8px 12px 4px !important;
+  color: #526174 !important;
+  font-size: 10px !important;
+  font-weight: 900 !important;
+  letter-spacing: .12em !important;
+  text-transform: uppercase !important;
+}
+.site-nav .menu-drop a {
+  display: block !important;
+  padding: 9px 12px !important;
+  border-radius: 8px !important;
+  color: #0a1728 !important;
+  font-size: 13px !important;
+  font-weight: 750 !important;
+  text-decoration: none !important;
+}
+.site-nav .menu-drop a:hover,
+.site-nav .menu-drop a:focus-visible {
+  color: #075fc8 !important;
+  background: #f2f7fd !important;
+  outline: none !important;
+}
+.site-nav .nav-cta {
+  min-height: 42px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 18px !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  background: #075fc8 !important;
+  background-image: none !important;
+  color: #fff !important;
+  font-size: 13px !important;
+  font-weight: 900 !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  box-shadow: 0 10px 24px rgba(7,95,200,.18) !important;
+}
+.site-nav .nav-cta:hover,
+.site-nav .nav-cta:focus-visible {
+  background: #064895 !important;
+  transform: translateY(-1px) !important;
+  outline: none !important;
+}
+.header-member-login {
+  min-height: 40px !important;
+  display: inline-flex !important;
+  flex: 0 0 auto !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 14px !important;
+  border: 1.5px solid #075fc8 !important;
+  border-radius: 8px !important;
+  background: #fff !important;
+  color: #075fc8 !important;
+  font-size: 13px !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+}
+.header-member-login:hover,
+.header-member-login:focus-visible {
+  background: #075fc8 !important;
+  color: #fff !important;
+  outline: none !important;
+}
+.header-run-action {
+  min-height: 40px !important;
+  display: inline-flex !important;
+  flex: 0 0 auto !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 13px !important;
+  border: 1px solid rgba(10,23,40,.14) !important;
+  border-radius: 8px !important;
+  background: #fff !important;
+  color: #0a1728 !important;
+  font: inherit !important;
+  font-size: 12px !important;
+  font-weight: 900 !important;
+  white-space: nowrap !important;
+  cursor: pointer !important;
+}
+.header-run-action:hover,
+.header-run-action:focus-visible {
+  color: #075fc8 !important;
+  border-color: #075fc8 !important;
+  outline: none !important;
+}
+.run-status:empty { display: none !important; }
+.mobile-toggle,
+.generated-mobile-toggle {
+  position: static !important;
+  inset: auto !important;
+  width: 42px !important;
+  height: 42px !important;
+  display: none !important;
+  flex: 0 0 auto !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: #0a1728 !important;
+  box-shadow: none !important;
+  cursor: pointer !important;
+}
+.mobile-toggle:hover,
+.mobile-toggle:focus-visible,
+.generated-mobile-toggle:hover,
+.generated-mobile-toggle:focus-visible {
+  color: #075fc8 !important;
+  background: transparent !important;
+  outline: none !important;
+}
+.mobile-nav,
+.generated-mobile-nav {
+  position: fixed !important;
+  inset: 74px 0 auto !important;
+  z-index: 70 !important;
+  max-height: calc(100dvh - 74px) !important;
+  display: none !important;
+  padding: 10px max(16px, env(safe-area-inset-left)) calc(18px + env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-right)) !important;
+  overflow-y: auto !important;
+  overscroll-behavior: contain !important;
+  background: rgba(255,255,255,.985) !important;
+  border-top: 1px solid rgba(10,23,40,.10) !important;
+  box-shadow: 0 18px 34px rgba(10,23,40,.12) !important;
+}
+.mobile-nav.open,
+.generated-mobile-nav.open { display: block !important; }
+.mobile-nav-panel--public,
+.mobile-nav-panel {
+  width: min(100%, 640px) !important;
+  margin: 0 auto !important;
+  display: grid !important;
+  gap: 8px !important;
+}
+.mobile-link-grid {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 0 !important;
+}
+.mobile-nav a,
+.mobile-nav .login-btn-mobile,
+.mobile-nav .mobile-main-link {
+  min-height: 42px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  padding: 9px 4px !important;
+  border: 0 !important;
+  border-bottom: 1px solid rgba(10,23,40,.09) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: #0a1728 !important;
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  line-height: 1.3 !important;
+  text-align: left !important;
+  text-decoration: none !important;
+  box-shadow: none !important;
+}
+.mobile-nav .login-btn-mobile {
+  justify-content: center !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  background: #075fc8 !important;
+  color: #fff !important;
+}
+.mobile-nav .mobile-main-link {
+  color: #075fc8 !important;
+  font-weight: 900 !important;
+}
+.mobile-nav a:hover,
+.mobile-nav a:focus-visible {
+  color: #075fc8 !important;
+  background: #f5f9fd !important;
+  outline: none !important;
+}
+.mobile-nav .mobile-nav-label {
+  display: block !important;
+  padding: 8px 4px 2px !important;
+  color: #526174 !important;
+  font-size: 10px !important;
+  font-weight: 900 !important;
+  letter-spacing: .10em !important;
+  line-height: 1.2 !important;
+  text-align: left !important;
+  text-transform: uppercase !important;
+}
+@media (max-width: 900px) {
+  html { scroll-padding-top: 82px !important; }
+  [id] { scroll-margin-top: 82px !important; }
+  header.site-header,
+  header.site-header.scrolled,
+  header.site-header:hover { min-height: 64px !important; }
+  .site-header-inner {
+    min-height: 64px !important;
+    padding: 8px 14px !important;
+    gap: 8px !important;
+  }
+  .site-nav { display: none !important; }
+  .header-run-action,
+  .run-status { display: none !important; }
+  .header-member-login {
+    min-height: 36px !important;
+    margin-left: auto !important;
+    padding: 0 10px !important;
+    font-size: 12px !important;
+  }
+  .mobile-toggle,
+  .generated-mobile-toggle { display: inline-flex !important; }
+  .mobile-nav,
+  .generated-mobile-nav {
+    inset: 64px 0 auto !important;
+    max-height: calc(100dvh - 64px) !important;
+  }
+}
+@media (max-width: 520px) {
+  .wordmark { font-size: 19px !important; }
+  .header-member-login {
+    min-height: 34px !important;
+    padding: 0 9px !important;
+    font-size: 11.5px !important;
+  }
+}
+"""
+
+
 # 全ページ共通のマスタCSS。build_site 固有 CSS を土台に、PORTAL_CSS を
 # 後置して後勝ちにすることで、共通セレクタ(body/.container/.site-header 等)を
 # トップ(LP)と完全一致させる。watch/lectures 固有の .thumb/.genre-tabs 等は
 # PORTAL に無いため前置の CSS 側で生き残る（破綻しない）。
-MASTER_CSS = CSS + _portal_css()
-MASTER_CONTENT_CSS = CSS + CONTENT_CSS + _portal_css()
+MASTER_CSS = CSS + _portal_css() + GENERATED_PUBLIC_HEADER_CSS
+MASTER_CONTENT_CSS = CSS + CONTENT_CSS + _portal_css() + GENERATED_PUBLIC_HEADER_CSS
 
 
 def _load_markdown():
@@ -3235,7 +3584,7 @@ def copy_static() -> None:
 def _patch_programming_map_nav(pmap_file: Path) -> None:
     """programming-map.html の <nav class="top-nav">...</nav> ブロックを
     全ページ共通の render_top_nav() 出力で置換し、
-    章立て (#part-1〜#sec-line) はページ内目次バーに分離する。"""
+    章立て (#part-1〜#sec-line) はヒーロー後のページ内目次バーに分離する。"""
     import re as _re
     text = pmap_file.read_text(encoding="utf-8")
     # 共通ナビ HTML（pmap を current として）
@@ -3258,62 +3607,58 @@ def _patch_programming_map_nav(pmap_file: Path) -> None:
         "<a href='#sec-line'>10 4つの演習</a>"
         "</nav>"
     )
-    # 共通トップヘッダー/ナビの CSS を、正本 CSS 定数からマーカーで切り出して注入する。
-    # static の programming-map.html は <style> に header.site-header / nav.top-nav を
-    # 持たないため、これを入れないと共通ナビのマークアップだけ付いて無スタイルになる
-    # （= PORTAL_CSS 未定義クラス再発バグ。2026-05-19 修正）。
-    # 文字列スライスで CSS 定数を参照するので、正本が変われば自動追従し二重管理にならない。
-    _NAV_CSS_START = "/* ---- 共通トップヘッダー（fixed・N デザイン風 white/blur）---- */"
-    _NAV_CSS_END = ".run-status.running { color:#b45309; }"
-    _s = CSS.find(_NAV_CSS_START)
-    _e = CSS.find(_NAV_CSS_END)
-    if _s == -1 or _e == -1:
-        # 正本側のマーカーが変わったら気付けるよう明示的に失敗させる
-        raise RuntimeError(
-            "programming-map nav CSS マーカーが CSS 定数内に見つからない"
-            "（build_site.py の共通ヘッダー/ナビ CSS のコメントを変更した可能性）"
-        )
-    common_nav_css = CSS[_s : _e + len(_NAV_CSS_END)]
-    # ページ内目次バーの CSS をまとめる
+    # トップページと同じ公開ヘッダー専用CSSだけを注入する。
+    # 講習本文の .top-nav とはクラスを共有せず、ページ固有CSSとの衝突を防ぐ。
+    common_nav_css = GENERATED_PUBLIC_HEADER_CSS
+    # ページ内目次はヘッダーと役割を分け、本文用の細いレールとして残す。
     chapter_css = (
         "<style id='pm-chapter-toc-css'>"
-        # ---- 共通トップヘッダー/ナビ（index.html 等と同一・正本 CSS から抽出） ----
+        # ---- トップページと同じ公開ヘッダー ----
         + common_nav_css
-        # ページ内目次バー（AIエージェント講習 専用：fixed top-nav の真下に1段で吸着）
-        + "html{scroll-padding-top:118px;}"
-        "[id]{scroll-margin-top:118px;}"
-        ".pm-chapter-toc{position:sticky;top:66px;z-index:40;"
-        "max-width:min(1160px,calc(100vw - 20px));"
-        "display:flex;flex-wrap:nowrap;align-items:center;gap:6px;"
-        "margin:0 auto 18px;padding:7px 10px;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;"
-        "background:rgba(255,255,255,.82);border:1px solid rgba(16,24,39,.12);"
-        "border-radius:8px;backdrop-filter:blur(18px) saturate(160%);"
-        "-webkit-backdrop-filter:blur(18px) saturate(160%);"
-        "box-shadow:0 10px 28px rgba(16,24,39,.08),inset 0 1px 0 rgba(255,255,255,.82);}"
-        ".pm-chapter-toc .pm-toc-label{font-size:10.5px;font-weight:800;letter-spacing:.14em;"
-        "color:#2357e5;text-transform:uppercase;padding-right:4px;white-space:nowrap;}"
-        ".pm-chapter-toc a{display:inline-flex;align-items:center;gap:3px;padding:5px 11px;"
-        "flex:0 0 auto;border-radius:8px;background:rgba(255,255,255,.78);border:1px solid rgba(16,24,39,.12);"
-        "color:#3a475d;text-decoration:none;font-size:11.5px;font-weight:700;line-height:1.3;"
-        "white-space:nowrap;transition:all .2s;}"
-        ".pm-chapter-toc a:hover{background:rgba(255,255,255,.95);color:#2357e5;"
-        "border-color:rgba(6,167,216,.34);transform:translateY(-1px);}"
-        "@media (max-width:640px){"
-        "html{scroll-padding-top:108px;}[id]{scroll-margin-top:108px;}"
-        ".pm-chapter-toc{padding:6px 8px;gap:5px;top:60px;max-width:calc(100vw - 12px);}"
-        ".pm-chapter-toc a{padding:5px 10px;font-size:11px;}}"
+        + "html{scroll-padding-top:128px!important;}"
+        "[id]{scroll-margin-top:128px!important;}"
+        ".pm-chapter-toc{position:sticky;top:74px;z-index:40;width:100%;max-width:none;min-height:46px;"
+        "display:flex;flex-wrap:nowrap;align-items:center;gap:18px;margin:0 0 18px;"
+        "padding:0 max(14px,calc((100vw - 1400px)/2 + 18px));overflow-x:auto;overflow-y:hidden;"
+        "scrollbar-width:none;scroll-snap-type:x proximity;background:rgba(255,255,255,.97);"
+        "border:0;border-bottom:1px solid rgba(10,23,40,.10);border-radius:0;"
+        "box-shadow:0 8px 18px rgba(10,23,40,.04);backdrop-filter:blur(16px);"
+        "-webkit-backdrop-filter:blur(16px);}"
+        ".pm-chapter-toc::-webkit-scrollbar{display:none;}"
+        ".pm-chapter-toc .pm-toc-label{flex:0 0 auto;padding:0 4px 0 0;color:#075fc8;"
+        "font-size:10.5px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;}"
+        ".pm-chapter-toc a{min-height:46px;display:inline-flex;align-items:center;flex:0 0 auto;"
+        "padding:2px 0 0;border:0;border-bottom:3px solid transparent;border-radius:0;background:transparent;"
+        "color:#526174;text-decoration:none;font-size:11.5px;font-weight:800;line-height:1.25;"
+        "white-space:nowrap;scroll-snap-align:start;transition:color .18s,border-color .18s;}"
+        ".pm-chapter-toc a:hover,.pm-chapter-toc a:focus-visible{color:#075fc8;"
+        "border-bottom-color:#075fc8;outline:none;}"
+        "@media (max-width:900px){"
+        "html{scroll-padding-top:116px!important;}[id]{scroll-margin-top:116px!important;}"
+        ".pm-chapter-toc{top:64px;min-height:44px;gap:16px;padding:0 12px;}"
+        ".pm-chapter-toc a{min-height:44px;font-size:11px;}"
+        ".pm-chapter-toc .pm-toc-label{font-size:10px;}}"
         "</style>"
     )
-    # 既存の <nav class="top-nav" aria-label="サイトナビゲーション">...</nav> を置換
+    # 既存のグローバルナビはトップページ共通ヘッダーだけに置換する。
     new_text, n = _re.subn(
         r'<nav class="top-nav" aria-label="サイトナビゲーション">.*?</nav>',
-        common_nav + "\n" + chapter_toc,
+        common_nav,
         text,
         count=1,
         flags=_re.DOTALL,
     )
     if n == 0:
         return
+    # 詳細目次はヒーローの後ろへ置き、ファーストビューをトップページと同じ一段ヘッダーにする。
+    new_text, toc_n = _re.subn(
+        r'</header>\s*<main>',
+        lambda _m: "</header>\n" + chapter_toc + "\n<main>",
+        new_text,
+        count=1,
+    )
+    if toc_n == 0:
+        raise RuntimeError("programming-map のヒーロー後にページ内目次を配置できませんでした")
     # CSS を </head> 直前に注入（既に注入済みなら何もしない）
     if "id='pm-chapter-toc-css'" not in new_text and "id=\"pm-chapter-toc-css\"" not in new_text:
         new_text = new_text.replace("</head>", chapter_css + "</head>", 1)

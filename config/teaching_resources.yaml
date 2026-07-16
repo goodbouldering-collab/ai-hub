@@ -22,19 +22,34 @@
 sections:
 
 - name: 受講資料
-  icon: 📝
-  description: まず開く受講資料本体。本文、目次、動画、スライド、チェック項目がある資料はここから確認する
   source: lectures-md
-  items: []
+  group_by: category
+  groups:
+  - key: ai-start
+    name: 1. AIを初めて学ぶ
+    icon: 🌱
+    description: AIがよく分からない人向け。難しい機能より先に、考え方と頼み方を身につける
+  - key: ai-work
+    name: 2. AIを仕事で使う
+    icon: 🧰
+    description: 事務、集客、情報整理、業務改善で成果を出すための使い方を学ぶ
+  - key: ai-build
+    name: 3. AIと一緒に作る
+    icon: 🛠️
+    description: CodexやClaude Codeなどを使い、準備、制作、確認を安全な順番で学ぶ
+  - key: climbing
+    name: 4. クライミングを学ぶ
+    icon: 🧗
+    description: クライミングの背景や歴史を、講習や地域活動で説明するための資料
 
-- name: 補助・投影資料
+- name: 実践講習・投影資料
   icon: 📚
-  description: 講習中の画面共有、短時間説明、追加学習に使う資料
+  description: 講習で画面共有するときや、もっと詳しく学びたいときに使う資料
   items:
   - title: AIエージェント講習 120分
     icon: 🧭
     href: programming-map.html
-    summary: CodexとClaude Codeを使い、仕事の分解、依頼、確認、修正、成果物と次回手順の保存までを段階的に学ぶAIエージェント講習。
+    summary: 初めての人が、CodexやClaude Codeへの頼み方、確認、修正、安全な公開までを順番に学ぶAIエージェント講習。
     date: 2026-06-06
     features:
       body: true
@@ -58,5 +73,5 @@ sections:
 
 - name: 外部リソース
   icon: 🌐
-  description: 公式ドキュメント・参考リンク（追加する場合はここへ）
+  description: 公式情報を直接確認したいときに使う参考リンク
   items: []

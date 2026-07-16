@@ -141,7 +141,7 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
     # TOP(_render_header) と同じく、固定メニューは主要導線だけにする。
     # 詳細な章移動は各ページ内の目次レールへ分離し、ヘッダーを1段に保つ。
     parts.append(f"<a class='nav-link nav-essential' href='{safe_home}'>ホーム</a>")
-    parts.append("<a class='nav-link nav-essential' href='/#ai-agent-course'>AIエージェント講習</a>")
+    parts.append("<a class='nav-link nav-essential' href='/programming-map.html'>AIエージェント講習</a>")
     parts.append("<a class='nav-link nav-essential' href='/#all-works'>実績</a>")
     parts.append("<a class='nav-link nav-essential' href='/blog/index.html'>ブログ</a>")
     parts.append("<a class='nav-link nav-essential' href='/#lectures'>資料</a>")
@@ -162,7 +162,7 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
         "<span class='mobile-nav-label'>ホームメニュー</span>"
         "<div class='mobile-link-list'>"
         "<a href='/'><span class='mobile-link-title'>ホーム</span><small>最初に戻る</small></a>"
-        "<a href='/#ai-agent-course'><span class='mobile-link-title'>AIエージェント講習</span><small>Codex・Claude Code実践を見る</small></a>"
+        "<a href='/programming-map.html'><span class='mobile-link-title'>AIエージェント講習</span><small>Codex・Claude Code実践を見る</small></a>"
         "<a href='/#all-works'><span class='mobile-link-title'>実績</span><small>支援例と制作例を見る</small></a>"
         "<a href='/blog/index.html'><span class='mobile-link-title'>ブログ</span><small>実践知を読む</small></a>"
         "<a href='/#lectures'><span class='mobile-link-title'>資料</span><small>復習と手順を見る</small></a>"
@@ -1696,7 +1696,7 @@ CONTENT_CSS = """
 }
 .tr-format-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 8px;
   margin: 18px 0 26px;
 }
@@ -2365,17 +2365,17 @@ def _render_lecture_overview(title: str, meta: dict, body_html: str, toc: list[t
     flags = _lecture_feature_flags(body_html, toc)
     desc = str(meta.get("summary") or "")
     parts: list[str] = []
-    parts.append("<section class='lecture-shell' aria-label='この資料の入口'>")
+    parts.append("<section class='lecture-shell' aria-label='この資料の読み方'>")
     parts.append("<div class='lecture-shell-head'>")
     parts.append("<div>")
-    parts.append("<div class='lecture-shell-title'>この資料の入口</div>")
+    parts.append("<div class='lecture-shell-title'>この資料の読み方</div>")
     if desc:
         parts.append(f"<p class='lecture-shell-desc'>{html.escape(desc)}</p>")
     else:
         parts.append(f"<p class='lecture-shell-desc'>{html.escape(title)} の目次・本文・関連形式をまとめています。</p>")
     parts.append("</div>")
     parts.append("<div class='lecture-shell-actions'>")
-    parts.append("<a class='lecture-home-link' href='../#ai-agent-course'>AIエージェント講習</a>")
+    parts.append("<a class='lecture-home-link' href='../programming-map.html'>AIエージェント講習</a>")
     parts.append("<a class='lecture-home-link' href='./index.html'>受講資料ホーム</a>")
     parts.append("</div>")
     parts.append("</div>")
@@ -2384,7 +2384,7 @@ def _render_lecture_overview(title: str, meta: dict, body_html: str, toc: list[t
     parts.append(_render_feature_chips(flags, show_missing=False, css_prefix="lecture"))
     parts.append("</div>")
 
-    jumps: list[tuple[str, str]] = [("受講資料ホーム", "./index.html"), ("AIエージェント講習", "../#ai-agent-course")]
+    jumps: list[tuple[str, str]] = [("受講資料ホーム", "./index.html"), ("AIエージェント講習", "../programming-map.html")]
     if flags.get("toc"):
         jumps.append(("目次", "#lecture-toc"))
     video_anchor = _find_toc_anchor(toc, "動画", "動画版")
@@ -2640,11 +2640,42 @@ def _load_teaching_sections(lecture_md_items: list[dict]) -> list[dict]:
             resolved: list[dict] = []
             for sec in sections:
                 if sec.get("source") == "lectures-md":
-                    sec_copy = {k: v for k, v in sec.items() if k != "source"}
-                    # YAML 側に追加 items があれば結合（lectures-md + 手動アイテム）
-                    extra_items = sec.get("items") or []
-                    sec_copy["items"] = list(lecture_md_items) + extra_items
-                    resolved.append(sec_copy)
+                    if sec.get("group_by") == "category":
+                        grouped_ids: set[str] = set()
+                        for group in sec.get("groups") or []:
+                            key = str(group.get("key") or "")
+                            group_items = [
+                                item for item in lecture_md_items
+                                if str(item.get("category") or "other") == key
+                            ]
+                            group_items.sort(key=lambda item: (int(item.get("learning_order") or 999), str(item.get("title") or "")))
+                            if not group_items:
+                                continue
+                            grouped_ids.update(str(item.get("id") or "") for item in group_items)
+                            resolved.append({
+                                "name": group.get("name") or key,
+                                "icon": group.get("icon") or "📝",
+                                "description": group.get("description") or "",
+                                "items": group_items,
+                            })
+                        other_items = [
+                            item for item in lecture_md_items
+                            if str(item.get("id") or "") not in grouped_ids
+                        ]
+                        if other_items:
+                            other_items.sort(key=lambda item: (int(item.get("learning_order") or 999), str(item.get("title") or "")))
+                            resolved.append({
+                                "name": "その他の資料",
+                                "icon": "📎",
+                                "description": "目的が決まっているときに選ぶ追加資料です。",
+                                "items": other_items,
+                            })
+                    else:
+                        sec_copy = {k: v for k, v in sec.items() if k != "source"}
+                        # YAML 側に追加 items があれば結合（lectures-md + 手動アイテム）
+                        extra_items = sec.get("items") or []
+                        sec_copy["items"] = list(lecture_md_items) + extra_items
+                        resolved.append(sec_copy)
                 else:
                     resolved.append(sec)
             return resolved
@@ -2671,7 +2702,11 @@ def _teaching_section_id(section: dict) -> str:
 
 def _render_teaching_home(sections: list[dict]) -> str:
     items = _flatten_teaching_items(sections)
-    primary_items = [item for item in (sections[0].get("items") if sections else []) or [] if isinstance(item, dict)]
+    primary_items = [item for item in items if item.get("source") == "lectures-md"]
+    learning_sections = [
+        sec for sec in sections
+        if any(isinstance(item, dict) and item.get("source") == "lectures-md" for item in (sec.get("items") or []))
+    ]
     feature_counts: dict[str, int] = {key: 0 for key, _label in LECTURE_FORMATS}
     for item in items:
         flags = _teaching_item_features(item)
@@ -2679,30 +2714,32 @@ def _render_teaching_home(sections: list[dict]) -> str:
             if flags.get(key):
                 feature_counts[key] += 1
 
-    featured = next((it for it in items if it.get("featured")), items[0] if items else {})
+    featured = next((it for it in items if it.get("recommended")), None)
+    if not featured:
+        featured = next((it for it in items if it.get("id") == "2026-04-ai-kihon"), items[0] if items else {})
     featured_href = _resolve_lecture_href(str(featured.get("href", ""))) if featured else ""
     first_section_id = _teaching_section_id(sections[0]) if sections else ""
     parts: list[str] = []
     parts.append("<section class='tr-home' aria-label='受講資料ホーム'>")
     parts.append("<div>")
-    parts.append("<h2>受講資料ホーム</h2>")
+    parts.append("<h2>受講資料は、目的別に選べます</h2>")
     parts.append(
-        "<p>各資料を目次、本文、動画、"
-        "ナレーション、スライド、PDF、チェックの観点で探せるようにまとめた入口です。"
-        "受講前は内容確認、受講中は投影資料、受講後は本文とチェック項目へ進めます。</p>"
+        "<p>全部を上から読む必要はありません。AIが初めての人、仕事で使いたい人、"
+        "AIと一緒に作りたい人、クライミングを学びたい人の4つに分けました。"
+        "迷ったら「AIの基本」から始めてください。</p>"
     )
     parts.append("<div class='tr-home-actions'>")
-    parts.append("<a href='../#ai-agent-course'>AIエージェント講習を見る</a>")
+    parts.append("<a href='../programming-map.html'>AIエージェント講習を見る</a>")
     if featured_href:
-        parts.append(f"<a href='{html.escape(featured_href, quote=True)}'>おすすめ資料を見る</a>")
+        parts.append(f"<a href='{html.escape(featured_href, quote=True)}'>最初の1本を読む</a>")
     if first_section_id:
         parts.append(f"<a href='#sec-{html.escape(first_section_id, quote=True)}'>全資料を見る</a>")
     parts.append("</div>")
     parts.append("</div>")
     parts.append("<div class='tr-home-panel'>")
-    parts.append(f"<div class='tr-home-stat'><b>{len(primary_items)}</b><span>受講資料本体</span></div>")
-    parts.append(f"<div class='tr-home-stat'><b>{max(len(items) - len(primary_items), 0)}</b><span>補助・投影資料</span></div>")
-    parts.append(f"<div class='tr-home-stat'><b>{feature_counts.get('video', 0)}</b><span>動画付き</span></div>")
+    parts.append(f"<div class='tr-home-stat'><b>{len(primary_items)}</b><span>受講資料</span></div>")
+    parts.append(f"<div class='tr-home-stat'><b>{len(learning_sections)}</b><span>目的別の学び方</span></div>")
+    parts.append("<div class='tr-home-stat'><b>5</b><span>全資料でそろえた説明順</span></div>")
     parts.append("</div></section>")
 
     if featured:
@@ -2710,19 +2747,18 @@ def _render_teaching_home(sections: list[dict]) -> str:
         summary = html.escape(str(featured.get("summary", "")))
         parts.append(f"<a class='tr-featured' href='{html.escape(featured_href, quote=True)}'>")
         parts.append("<div>")
-        parts.append(f"<b>基準フォーマット: {title}</b>")
+        parts.append(f"<b>迷ったら最初に読む: {title}</b>")
         if summary:
             parts.append(f"<span>{summary}</span>")
         parts.append("</div><span class='arrow'>→</span></a>")
 
-    parts.append("<div class='tr-format-grid' aria-label='共通フォーマット'>")
+    parts.append("<div class='tr-format-grid' aria-label='全資料の共通構成'>")
     format_notes = [
-        ("目次", "最初に流れを確認し、必要な章へ移動する。"),
-        ("動画・ナレーション", "講師の説明順で見せる資料や収録台本を確認する。"),
-        ("スライド式説明", "投影、画面共有、短時間説明に使う。"),
-        ("本文", "復習、引用、手順確認のための読み物として使う。"),
-        ("PDF・配布物", "印刷、配布、別ページ資料がある場合に使う。"),
-        ("チェック", "宿題、運用確認、公開前レビューに使う。"),
+        ("1. わかること", "最初に、誰向けで何を持ち帰る資料かを確認する。"),
+        ("2. まず結論", "難しい説明の前に、いちばん大事な考えをつかむ。"),
+        ("3. 順番に理解", "必要な言葉を、使う場面と一緒に覚える。"),
+        ("4. やってみる", "身近な例、操作、チェックで理解を確かめる。"),
+        ("5. 次の一歩", "振り返り、宿題、次に読む資料を決める。"),
     ]
     for label, note in format_notes:
         parts.append(f"<div class='tr-format'><b>{html.escape(label)}</b><span>{html.escape(note)}</span></div>")
@@ -2735,8 +2771,8 @@ def _render_teaching_index(sections: list[dict]) -> str:
     parts: list[str] = []
     parts.append(_render_teaching_home(sections))
     parts.append(
-        "<p class='tr-intro'>まず受講資料本体を開き、必要に応じて投影用スライドや補助資料へ進む。"
-        "内容を確認したら受講プランへ戻り、AIエージェント講習・個別相談・伴走支援のどれで進めるかを選べます。</p>"
+        "<p class='tr-intro'>目的に合う見出しから1本だけ選んでください。各資料は「わかること → 結論 → 説明 → 例 → 次の一歩」の順で読めます。"
+        "さらに詳しく知りたいときだけ、同じグループの次の資料や投影資料へ進みます。</p>"
     )
     rendered_any = False
     for sec in sections:
@@ -2763,6 +2799,8 @@ def _render_teaching_index(sections: list[dict]) -> str:
             href_raw = str(it.get("href", ""))
             summary = html.escape(str(it.get("summary", "")))
             date = html.escape(str(it.get("date", "")))
+            level = html.escape(str(it.get("level", "")))
+            learning_order = it.get("learning_order")
             ext = _is_external_url(href_raw)
             href = _resolve_lecture_href(href_raw)
             attrs = f" target='_blank' rel='noopener'" if ext else ""
@@ -2778,6 +2816,10 @@ def _render_teaching_index(sections: list[dict]) -> str:
             if summary:
                 parts.append(f"<div class='tr-sum'>{summary}</div>")
             meta_bits = [chip] if chip else []
+            if learning_order:
+                meta_bits.append(f"<span class='tr-chip format on'>読む順 {html.escape(str(learning_order))}</span>")
+            if level:
+                meta_bits.append(f"<span class='tr-chip format'>{level}</span>")
             if features.get("body"):
                 meta_bits.append("<span class='tr-chip format on'>本文</span>")
             meta_bits.append(_render_feature_chips(features, show_missing=False, css_prefix="tr"))
@@ -2819,10 +2861,17 @@ def build_lectures() -> int:
             "href": f"./{f.stem}.html",
             "summary": str(meta.get("summary", "")),
             "date": str(meta.get("date", "")),
+            "category": str(meta.get("category", "other")),
+            "learning_order": int(meta.get("learning_order") or 999),
+            "level": str(meta.get("level", "")),
+            "recommended": bool(meta.get("recommended", False)),
+            "source": "lectures-md",
             "features": features,
-            "featured": f.stem == "2026-06-ai-agent-rag-design",
+            "featured": bool(meta.get("featured", False)),
         })
         count += 1
+
+    lecture_md_items.sort(key=lambda item: (int(item.get("learning_order") or 999), str(item.get("title") or "")))
 
     assets_src = LECTURES_DIR / "assets"
     assets_dst = out_dir / "assets"
@@ -2841,7 +2890,7 @@ def build_lectures() -> int:
         body_html = _render_teaching_index(sections)
         nav = render_top_nav(path_prefix="../", current_id="lectures", include_run=False)
         (out_dir / "index.html").write_text(
-            render_content_page("受講資料 ディレクトリ", {"summary": "AI相談の受講資料・補助教材・外部リソースのディレクトリ"}, body_html, nav, page_path="lectures/index.html"),
+            render_content_page("受講資料の一覧", {"summary": "AI相談の受講資料を、目的と読む順番で選べる一覧"}, body_html, nav, page_path="lectures/index.html"),
             encoding="utf-8",
         )
     return count
@@ -3196,17 +3245,17 @@ def _patch_programming_map_nav(pmap_file: Path) -> None:
         "<nav class='pm-chapter-toc' aria-label='ページ内目次'>"
         "<span class='pm-toc-label'>AI CODING</span>"
         "<a href='#top'>全体</a>"
-        "<a href='#pm-real-pro'>00 本物のプロ</a>"
-        "<a href='#pm-level-map'>01 レベル</a>"
-        "<a href='#pm-pro-check'>02 説明力</a>"
-        "<a href='#pm-modern-ai'>03 AI全体像</a>"
-        "<a href='#part-1'>04 価値と入口</a>"
-        "<a href='#part-2'>05 基礎</a>"
-        "<a href='#part-3'>06 実装</a>"
-        "<a href='#part-4'>07 公開</a>"
-        "<a href='#sec-cms'>08 応用制作</a>"
-        "<a href='#sec-ccode'>09 実務運用</a>"
-        "<a href='#sec-line'>10 総合演習</a>"
+        "<a href='#pm-real-pro'>00 最初の考え方</a>"
+        "<a href='#pm-level-map'>01 成長レベル</a>"
+        "<a href='#pm-pro-check'>02 説明チェック</a>"
+        "<a href='#pm-modern-ai'>03 道具の役割</a>"
+        "<a href='#part-1'>04 学ぶ5段階</a>"
+        "<a href='#part-2'>05 基本の言葉</a>"
+        "<a href='#part-3'>06 作って確認</a>"
+        "<a href='#part-4'>07 安全に公開</a>"
+        "<a href='#sec-cms'>08 仕事への応用</a>"
+        "<a href='#sec-ccode'>09 公式情報</a>"
+        "<a href='#sec-line'>10 4つの演習</a>"
         "</nav>"
     )
     # 共通トップヘッダー/ナビの CSS を、正本 CSS 定数からマーカーで切り出して注入する。

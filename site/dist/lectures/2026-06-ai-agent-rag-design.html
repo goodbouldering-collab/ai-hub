@@ -1,4 +1,4 @@
-<!doctype html><html lang='ja'><head><meta charset='utf-8'><link rel='icon' type='image/svg+xml' href='/favicon.svg'><link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png'><link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png'><link rel='shortcut icon' href='/favicon.ico'><link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png'><link rel='manifest' href='/site.webmanifest'><link rel='mask-icon' href='/favicon.svg' color='#0EA5E9'><meta name='theme-color' content='#F7FBFF'><meta name='viewport' content='width=device-width,initial-scale=1'><title>クラウドAIエージェント時代のRAG設計｜AIにどの順番で考えてもらうか | AI相談</title><meta name='description' content='クラウドAIエージェントが毎日の業務を判断する時代に必要なRAG設計を、AI専用の資料棚、見る順番、EC・交流会の例、人間が確認する範囲までわかりやすく整理。'><link rel='canonical' href='https://ai-hub-jp.vercel.app/lectures/2026-06-ai-agent-rag-design.html'><meta property='og:title' content='クラウドAIエージェント時代のRAG設計｜AIにどの順番で考えてもらうか'><meta property='og:description' content='クラウドAIエージェントが毎日の業務を判断する時代に必要なRAG設計を、AI専用の資料棚、見る順番、EC・交流会の例、人間が確認する範囲までわかりやすく整理。'><meta property='og:url' content='https://ai-hub-jp.vercel.app/lectures/2026-06-ai-agent-rag-design.html'><meta property='og:type' content='article'><meta property='og:site_name' content='AI相談'><meta name='twitter:card' content='summary'><script type='application/ld+json'>{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "クラウドAIエージェント時代のRAG設計｜AIにどの順番で考えてもらうか", "datePublished": "2026-06-17", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://ai-hub-jp.vercel.app/lectures/2026-06-ai-agent-rag-design.html"}, "author": {"@type": "Person", "name": "由井 辰美"}, "publisher": {"@type": "Organization", "name": "AI相談", "url": "https://ai-hub-jp.vercel.app"}, "description": "クラウドAIエージェントが毎日の業務を判断する時代に必要なRAG設計を、AI専用の資料棚、見る順番、EC・交流会の例、人間が確認する範囲までわかりやすく整理。", "speakable": {"@type": "SpeakableSpecification", "cssSelector": ["h1", ".content-wrap p:first-of-type"]}}</script><style>
+<!doctype html><html lang='ja'><head><meta charset='utf-8'><link rel='icon' type='image/svg+xml' href='/favicon.svg'><link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png'><link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png'><link rel='shortcut icon' href='/favicon.ico'><link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png'><link rel='manifest' href='/site.webmanifest'><link rel='mask-icon' href='/favicon.svg' color='#0EA5E9'><meta name='theme-color' content='#F7FBFF'><meta name='viewport' content='width=device-width,initial-scale=1'><title>AIに自社資料を正しい順番で読ませる方法 — RAG入門 | AI相談</title><meta name='description' content='RAGとは、AIが自社資料を探してから答える仕組み。どの資料から見るか、何を人が確認するかを、ECと交流会の例で学ぶ。'><link rel='canonical' href='https://ai-hub-jp.vercel.app/lectures/2026-06-ai-agent-rag-design.html'><meta property='og:title' content='AIに自社資料を正しい順番で読ませる方法 — RAG入門'><meta property='og:description' content='RAGとは、AIが自社資料を探してから答える仕組み。どの資料から見るか、何を人が確認するかを、ECと交流会の例で学ぶ。'><meta property='og:url' content='https://ai-hub-jp.vercel.app/lectures/2026-06-ai-agent-rag-design.html'><meta property='og:type' content='article'><meta property='og:site_name' content='AI相談'><meta name='twitter:card' content='summary'><script type='application/ld+json'>{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "AIに自社資料を正しい順番で読ませる方法 — RAG入門", "datePublished": "2026-06-17", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://ai-hub-jp.vercel.app/lectures/2026-06-ai-agent-rag-design.html"}, "author": {"@type": "Person", "name": "由井 辰美"}, "publisher": {"@type": "Organization", "name": "AI相談", "url": "https://ai-hub-jp.vercel.app"}, "description": "RAGとは、AIが自社資料を探してから答える仕組み。どの資料から見るか、何を人が確認するかを、ECと交流会の例で学ぶ。", "speakable": {"@type": "SpeakableSpecification", "cssSelector": ["h1", ".content-wrap p:first-of-type"]}}</script><style>
 :root {
   --bg-base:#f8fafc;
   --bg-white:#ffffff;
@@ -1084,7 +1084,7 @@ footer {
 }
 .tr-format-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 8px;
   margin: 18px 0 26px;
 }
@@ -10560,91 +10560,68 @@ section.block::before {
   }
 })();
 </script>
-<header class='site-header scrolled' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span><span class='site-logo-by'>滋賀・彦根</span></a><nav class='site-nav top-nav' aria-label='サイトナビ'><a class='nav-link nav-essential' href='../index.html'>ホーム</a><a class='nav-link nav-essential' href='/#ai-agent-course'>AIエージェント講習</a><a class='nav-link nav-essential' href='/#all-works'>実績</a><a class='nav-link nav-essential' href='/blog/index.html'>ブログ</a><a class='nav-link nav-essential' href='/#lectures'>資料</a><a class='nav-link nav-essential' href='/#faq'>FAQ</a></nav><a class='header-member-login' href='/admin'>会員ログイン</a><a class='nav-cta' href='/#contact'>個別相談</a></div></header><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'><svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button><div class='mobile-nav generated-mobile-nav' id='mobile-nav'><div class='mobile-nav-panel mobile-nav-panel--public'><span class='mobile-nav-label'>ホームメニュー</span><div class='mobile-link-list'><a href='/'><span class='mobile-link-title'>ホーム</span><small>最初に戻る</small></a><a href='/#ai-agent-course'><span class='mobile-link-title'>AIエージェント講習</span><small>Codex・Claude Code実践を見る</small></a><a href='/#all-works'><span class='mobile-link-title'>実績</span><small>支援例と制作例を見る</small></a><a href='/blog/index.html'><span class='mobile-link-title'>ブログ</span><small>実践知を読む</small></a><a href='/#lectures'><span class='mobile-link-title'>資料</span><small>復習と手順を見る</small></a><a href='/#speaker'><span class='mobile-link-title'>講師</span><small>誰が支援するか</small></a><a href='/#faq'><span class='mobile-link-title'>FAQ</span><small>不安を先に解消</small></a><a href='/#contact'><span class='mobile-link-title'>相談</span><small>予約へ進む</small></a></div></div></div><script>(function(){var b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav');if(!b||!n)return;function close(){n.classList.remove('open');b.setAttribute('aria-expanded','false');}b.addEventListener('click',function(e){e.stopPropagation();var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});})();</script><header><h1>クラウドAIエージェント時代のRAG設計｜AIにどの順番で考えてもらうか</h1><div class='speaker-meta'><span class='role'>SEOブログ / RAG設計・AIエージェント</span><span>📅 2026-06-17</span><span>由井 辰美 / AIハブ</span></div></header><div class='content-wrap'><section class='lecture-shell' aria-label='この資料の入口'><div class='lecture-shell-head'><div><div class='lecture-shell-title'>この資料の入口</div><p class='lecture-shell-desc'>クラウドAIエージェントが毎日の業務を判断する時代に必要なRAG設計を、AI専用の資料棚、見る順番、EC・交流会の例、人間が確認する範囲までわかりやすく整理。</p></div><div class='lecture-shell-actions'><a class='lecture-home-link' href='../#ai-agent-course'>AIエージェント講習</a><a class='lecture-home-link' href='./index.html'>受講資料ホーム</a></div></div><div class='lecture-format-strip'><span class='lecture-format-chip on'>本文<small>あり</small></span><span class='lecture-format-chip on'>目次<small>あり</small></span></div><div class='lecture-jump'><a href='./index.html'>受講資料ホーム</a><a href='../#ai-agent-course'>AIエージェント講習</a><a href='#lecture-toc'>目次</a><a href='#出典・参考リンク'>出典へ</a></div><div class='lecture-outline-preview'><b>この資料の流れ</b><ol><li>RAGは「AI専用の資料棚」</li><li>大事なのは資料の量ではなく、見る順番</li><li>ECと交流会では、見る順番が変わる</li><li>クラウドAIエージェントは、毎日同じ確認を続ける</li><li>RAG設計の第一歩は5つだけ</li><li>これからは「AIにどう考えてもらうか」が差になる</li></ol></div></section><div class='content-toc' id='lecture-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#ragは-ai専用の資料棚'>RAGは「AI専用の資料棚」</a></li><li><a href='#大事なのは資料の量ではなく-見る順番'>大事なのは資料の量ではなく、見る順番</a></li><li><a href='#ecと交流会では-見る順番が変わる'>ECと交流会では、見る順番が変わる</a></li><li><a href='#クラウドaiエージェントは-毎日同じ確認を続ける'>クラウドAIエージェントは、毎日同じ確認を続ける</a></li><li><a href='#rag設計の第一歩は5つだけ'>RAG設計の第一歩は5つだけ</a></li><li><a href='#これからは-aiにどう考えてもらうか-が差になる'>これからは「AIにどう考えてもらうか」が差になる</a></li><li><a href='#出典・参考リンク'>出典・参考リンク</a></li></ol></div><style>
-.rag-post{--ink:#102033;--soft:#405166;--muted:#6b7280;--line:#d8e2ee;--blue:#2563eb;--green:#15803d;--amber:#b7791f;--red:#b42318;--wash:#f6f9fc;color:var(--ink);}
-.rag-post *{box-sizing:border-box;}
-.rag-hero{display:grid;grid-template-columns:1.08fr .92fr;gap:22px;align-items:center;margin:4px 0 28px;padding:22px;border:1px solid var(--line);border-radius:8px;background:linear-gradient(135deg,#f8fbff 0%,#ffffff 52%,#f2fbf6 100%);}
-.rag-hero p{font-size:16px;line-height:1.9;color:var(--soft);margin:0 0 12px;}
-.rag-hero strong{color:var(--ink);}
-.rag-hero img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:7px;border:1px solid rgba(16,32,51,.12);display:block;background:#fff;}
-.rag-opening{margin:0 0 18px;padding:16px 18px;border-left:5px solid var(--blue);border-radius:8px;background:#f8fbff;color:var(--ink);font-size:18px;line-height:1.8;font-weight:800;}
-.rag-note{border-left:5px solid var(--green);background:#f7fbf8;border-radius:8px;padding:16px 18px;margin:18px 0 26px;color:var(--soft);line-height:1.9;}
-.rag-note b{color:var(--ink);}
-.rag-visual{margin:10px 0 24px;}
-.rag-visual img{display:block;width:100%;border:1px solid var(--line);border-radius:8px;background:#fff;box-shadow:0 16px 44px rgba(15,23,42,.08);}
-.rag-visual figcaption{font-size:13px;line-height:1.7;color:var(--muted);margin-top:8px;}
-.rag-quote{margin:18px 0 24px;padding:18px 20px;border:1px solid var(--line);border-left:5px solid var(--blue);border-radius:8px;background:#fff;color:var(--ink);font-size:18px;line-height:1.8;font-weight:800;}
-.rag-quote p{margin:.15em 0;color:var(--ink);}
-.rag-flow{background:#101827;color:#e5edf7;border-radius:8px;padding:18px 20px;margin:14px 0 26px;line-height:1.85;font-size:14px;white-space:pre-wrap;}
-.rag-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:16px 0 28px;}
-.rag-card{border:1px solid var(--line);border-radius:8px;background:#fff;padding:18px;border-top:5px solid var(--blue);}
-.rag-card.green{border-top-color:var(--green);}
-.rag-card.amber{border-top-color:var(--amber);}
-.rag-card.red{border-top-color:var(--red);}
-.rag-card h3{font-size:20px;line-height:1.4;margin:0 0 10px;color:var(--ink);}
-.rag-card p,.rag-card li{font-size:14.5px;line-height:1.85;color:var(--soft);}
-.rag-card ul{margin:8px 0 0;padding-left:1.15em;}
-.rag-table{width:100%;border-collapse:collapse;margin:16px 0 28px;border:1px solid var(--line);border-radius:8px;overflow:hidden;font-size:14px;background:#fff;}
-.rag-table th{background:#172033;color:#fff;text-align:left;padding:12px 14px;}
-.rag-table td{border-top:1px solid var(--line);padding:12px 14px;vertical-align:top;line-height:1.75;color:var(--soft);}
-.rag-table td:first-child{font-weight:800;color:var(--ink);white-space:nowrap;}
-.rag-check{list-style:none;margin:16px 0 28px;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;}
-.rag-check li{border:1px solid var(--line);border-radius:8px;padding:12px 13px 12px 38px;position:relative;background:#fff;color:var(--soft);line-height:1.65;font-size:14px;}
-.rag-check li:before{content:"";position:absolute;left:13px;top:16px;width:14px;height:14px;border:2px solid var(--blue);border-radius:3px;background:#f8fbff;}
-.rag-cta{background:linear-gradient(135deg,#172033,#2458d4);color:#fff;border-radius:8px;padding:22px;margin:24px 0 30px;}
-.rag-cta h2,.rag-cta h3{color:#fff;margin-top:0;}
-.rag-cta p{color:rgba(255,255,255,.92);line-height:1.85;}
-.rag-cta a{display:inline-flex;align-items:center;justify-content:center;margin:6px 8px 0 0;padding:10px 14px;border-radius:7px;background:#fff;color:#172033;text-decoration:none;font-weight:800;}
-.rag-sources{font-size:13px;color:var(--muted);line-height:1.75;}
-@media(max-width:900px){.rag-hero,.rag-grid,.rag-check{grid-template-columns:1fr}.rag-hero{padding:18px}.rag-table td:first-child{white-space:normal}}
+<header class='site-header scrolled' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span><span class='site-logo-by'>滋賀・彦根</span></a><nav class='site-nav top-nav' aria-label='サイトナビ'><a class='nav-link nav-essential' href='../index.html'>ホーム</a><a class='nav-link nav-essential' href='/programming-map.html'>AIエージェント講習</a><a class='nav-link nav-essential' href='/#all-works'>実績</a><a class='nav-link nav-essential' href='/blog/index.html'>ブログ</a><a class='nav-link nav-essential' href='/#lectures'>資料</a><a class='nav-link nav-essential' href='/#faq'>FAQ</a></nav><a class='header-member-login' href='/admin'>会員ログイン</a><a class='nav-cta' href='/#contact'>個別相談</a></div></header><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'><svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button><div class='mobile-nav generated-mobile-nav' id='mobile-nav'><div class='mobile-nav-panel mobile-nav-panel--public'><span class='mobile-nav-label'>ホームメニュー</span><div class='mobile-link-list'><a href='/'><span class='mobile-link-title'>ホーム</span><small>最初に戻る</small></a><a href='/programming-map.html'><span class='mobile-link-title'>AIエージェント講習</span><small>Codex・Claude Code実践を見る</small></a><a href='/#all-works'><span class='mobile-link-title'>実績</span><small>支援例と制作例を見る</small></a><a href='/blog/index.html'><span class='mobile-link-title'>ブログ</span><small>実践知を読む</small></a><a href='/#lectures'><span class='mobile-link-title'>資料</span><small>復習と手順を見る</small></a><a href='/#speaker'><span class='mobile-link-title'>講師</span><small>誰が支援するか</small></a><a href='/#faq'><span class='mobile-link-title'>FAQ</span><small>不安を先に解消</small></a><a href='/#contact'><span class='mobile-link-title'>相談</span><small>予約へ進む</small></a></div></div></div><script>(function(){var b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav');if(!b||!n)return;function close(){n.classList.remove('open');b.setAttribute('aria-expanded','false');}b.addEventListener('click',function(e){e.stopPropagation();var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});})();</script><header><h1>AIに自社資料を正しい順番で読ませる方法 — RAG入門</h1><div class='speaker-meta'><span class='role'>SEOブログ / RAG設計・AIエージェント</span><span>📅 2026-06-17</span><span>由井 辰美 / AI相談</span></div></header><div class='content-wrap'><section class='lecture-shell' aria-label='この資料の読み方'><div class='lecture-shell-head'><div><div class='lecture-shell-title'>この資料の読み方</div><p class='lecture-shell-desc'>RAGとは、AIが自社資料を探してから答える仕組み。どの資料から見るか、何を人が確認するかを、ECと交流会の例で学ぶ。</p></div><div class='lecture-shell-actions'><a class='lecture-home-link' href='../programming-map.html'>AIエージェント講習</a><a class='lecture-home-link' href='./index.html'>受講資料ホーム</a></div></div><div class='lecture-format-strip'><span class='lecture-format-chip on'>本文<small>あり</small></span><span class='lecture-format-chip on'>目次<small>あり</small></span></div><div class='lecture-jump'><a href='./index.html'>受講資料ホーム</a><a href='../programming-map.html'>AIエージェント講習</a><a href='#lecture-toc'>目次</a></div><div class='lecture-outline-preview'><b>この資料の流れ</b><ol><li>この資料でわかること</li><li>まず結論</li><li>順番に理解する本文</li><li>具体例 / やってみる</li><li>振り返り / 次の一歩</li></ol></div></section><div class='content-toc' id='lecture-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#この資料でわかること'>この資料でわかること</a></li><li><a href='#まず結論'>まず結論</a></li><li><a href='#順番に理解する本文'>順番に理解する本文</a></li><li><a href='#具体例-やってみる'>具体例 / やってみる</a></li><li><a href='#振り返り-次の一歩'>振り返り / 次の一歩</a></li></ol></div><style>
+.rag-post{--ink:#102033;--soft:#405166;--muted:#6b7280;--line:#d8e2ee;--blue:#2563eb;--green:#15803d;--amber:#b7791f;--red:#b42318;color:var(--ink)}
+.rag-post *{box-sizing:border-box}.rag-hero{display:grid;grid-template-columns:1.08fr .92fr;gap:22px;align-items:center;margin:4px 0 28px;padding:22px;border:1px solid var(--line);border-radius:8px;background:linear-gradient(135deg,#f8fbff,#fff 52%,#f2fbf6)}
+.rag-hero p{font-size:16px;line-height:1.9;color:var(--soft);margin:0 0 12px}.rag-hero strong{color:var(--ink)}.rag-hero img,.rag-visual img{display:block;width:100%;border:1px solid var(--line);border-radius:8px;background:#fff}.rag-hero img{aspect-ratio:16/10;object-fit:cover}
+.rag-note,.rag-quote{border:1px solid var(--line);border-left:5px solid var(--blue);border-radius:8px;background:#f8fbff;padding:16px 18px;margin:16px 0 26px;line-height:1.85;color:var(--soft)}.rag-quote{font-size:18px;font-weight:800;color:var(--ink);background:#fff}.rag-note b{color:var(--ink)}
+.rag-visual{margin:12px 0 24px}.rag-visual figcaption{font-size:13px;line-height:1.7;color:var(--muted);margin-top:8px}.rag-flow,.rag-prompt{background:#101827;color:#e5edf7;border-radius:8px;padding:18px 20px;margin:14px 0 26px;line-height:1.85;font-size:14px;white-space:pre-wrap}
+.rag-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:16px 0 28px}.rag-card{border:1px solid var(--line);border-top:5px solid var(--blue);border-radius:8px;background:#fff;padding:18px}.rag-card.green{border-top-color:var(--green)}.rag-card.amber{border-top-color:var(--amber)}.rag-card.red{border-top-color:var(--red)}.rag-card h3{font-size:20px;margin:0 0 9px}.rag-card p,.rag-card li{font-size:14.5px;line-height:1.8;color:var(--soft)}
+.rag-table{width:100%;border-collapse:collapse;margin:16px 0 28px;border:1px solid var(--line);font-size:14px;background:#fff}.rag-table th{background:#172033;color:#fff;text-align:left;padding:12px 14px}.rag-table td{border-top:1px solid var(--line);padding:12px 14px;vertical-align:top;line-height:1.75;color:var(--soft)}.rag-table td:first-child{font-weight:800;color:var(--ink)}
+.rag-check{list-style:none;margin:16px 0 28px;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.rag-check li{border:1px solid var(--line);border-radius:8px;padding:12px 13px 12px 38px;position:relative;background:#fff;color:var(--soft);line-height:1.65;font-size:14px}.rag-check li:before{content:"□";position:absolute;left:13px;top:10px;color:var(--blue);font-size:20px;font-weight:900}
+.rag-cta{background:linear-gradient(135deg,#172033,#2458d4);color:#fff;border-radius:8px;padding:22px;margin:24px 0 30px}.rag-cta h2,.rag-cta h3{color:#fff;margin-top:0}.rag-cta p{color:#fff;line-height:1.85}.rag-cta a{display:inline-flex;margin:6px 8px 0 0;padding:10px 14px;border-radius:7px;background:#fff;color:#172033;text-decoration:none;font-weight:800}.rag-sources{font-size:13px;color:var(--muted);line-height:1.75}
+@media(max-width:900px){.rag-hero,.rag-grid,.rag-check{grid-template-columns:1fr}.rag-hero{padding:18px}}
 </style>
 
 <div class="rag-post">
-<blockquote class="rag-opening">＼皆さん、クラウドAIエージェント向けにRAGを設計していますか？／</blockquote>
 <div class="rag-hero">
 <div>
-<p><strong>AIは「質問するもの」から、「仕事を任せるもの」へ変わりつつあります。</strong></p>
-<p>その時に大切になるのがRAGです。RAGはむずかしい技術名に聞こえますが、仕事で考えるなら「AIが必要な資料を探しに行ける仕組み」と捉えるとわかりやすくなります。</p>
-<p>ただし、資料を大量に入れるだけではAIは賢くなりません。どの資料を、どの順番で見に行くか。ここまで決めておくことが、クラウドAIエージェント時代のRAG設計です。</p>
+<p><strong>RAGは、AIが仕事に必要な資料を探せるようにする仕組みです。</strong></p>
+<p>難しいシステムから考える必要はありません。最初に決めるのは「何を見せるか」「どの順番で見るか」「最後に人が何を確認するか」の3つです。</p>
 </div>
 <img src="./assets/rag-library-agent.svg" alt="RAGをAI専用の資料棚として整理し、AIエージェントが必要な情報を探す図解" loading="eager" decoding="async">
 </div>
+<h2 id='この資料でわかること'>この資料でわかること</h2>
+<ul>
+<li>RAGという言葉を、仕事の言葉で説明できる</li>
+<li>AIに渡す資料と、見る順番を決められる</li>
+<li>ネットショップ（EC）、問い合わせ、交流会など、業務ごとに順番を変えられる</li>
+<li>AIに任せる部分と、人が確認する部分を分けられる</li>
+<li>自分の仕事で小さなRAG設計を書き始められる</li>
+</ul>
 <div class="rag-note">
-<b>この記事の対象:</b> ChatGPTや生成AIは使い始めたが、自社資料、顧客情報、売上データ、商品情報、問い合わせ履歴をAIにどう渡せばよいかわからない事業者向けです。RAGを技術用語としてではなく、仕事の設計として整理します。
+<b>対象:</b> ChatGPTは使っているものの、自社資料、顧客情報、売上データ、商品情報、問い合わせ履歴をどう活用すればよいか迷っている事業者向けです。
 </div>
-<h2 id='ragは-ai専用の資料棚'>RAGは「AI専用の資料棚」</h2>
-<figure class="rag-visual">
-<img src="./assets/rag-library-agent.svg" alt="PDF、マニュアル、売上、顧客情報をAIが探せる資料棚として整理した図解" loading="lazy" decoding="async">
-<figcaption>RAGは、AIが外部の資料やデータを取りに行き、それをもとに回答するための仕組みです。</figcaption>
-</figure>
-<p>RAGとは、Retrieval-Augmented Generationの略です。公式資料では、LLMの回答を外部の知識ベース、検索、データベース、社内資料などで補強する考え方として説明されています。</p>
-<p>仕事の言葉にすると、RAGは次のように言えます。</p>
-<blockquote class="rag-quote">
-<p>「AI専用の資料棚」</p>
-</blockquote>
-<p>PDF、議事録、マニュアル、商品情報、顧客情報、売上データ、レビュー、過去のブログ、問い合わせ履歴。こうした資料を、AIが必要な時に探しに行ける状態にしておく。</p>
-<p>これがRAGの出発点です。</p>
-<p>ただし、ここで大切なのは「全部入れること」ではありません。図書館に100万冊の本があっても、どの棚を探せばよいかわからなければ役に立たないのと同じです。</p>
-<p>RAGは、AIに資料を渡すだけの仕組みではありません。AIが迷わず仕事に使えるよう、資料の置き方と見に行く順番を整える仕組みです。</p>
-<h2 id='大事なのは資料の量ではなく-見る順番'>大事なのは資料の量ではなく、見る順番</h2>
+<h2 id='まず結論'>まず結論</h2>
+<blockquote class="rag-quote">RAGは「AI専用の資料棚」です。良いRAG設計は、資料の量ではなく、AIが見る順番と人の確認場所まで決まっています。</blockquote>
+<div class="rag-grid">
+<div class="rag-card">
+<h3>AIに任せる</h3>
+<p>資料を探す、数字の変化を見つける、原因候補や下書きを出す。</p>
+</div>
+<div class="rag-card green">
+<h3>人が決める</h3>
+<p>価格変更、広告出稿、顧客への連絡、文章の公開など、影響が大きい判断を確認する。</p>
+</div>
+</div>
+<h2 id='順番に理解する本文'>順番に理解する本文</h2>
+<h3>1. RAGは、AIが資料を探してから答える仕組み</h3>
+<p>RAGは「Retrieval-Augmented Generation」の略です。日本語では、AIが外部の資料を検索し、その内容を使って回答する仕組み、と考えれば十分です。</p>
+<p>たとえば、次の資料をAIが探せるようにします。</p>
+<ul>
+<li>商品情報、在庫、売上表</li>
+<li>マニュアル、議事録、過去の対応記録</li>
+<li>顧客の相談内容、よくある質問</li>
+<li>過去の記事、レビュー、イベント記録</li>
+</ul>
+<p>資料をただ集めるだけでは足りません。古い資料や関係のない資料まで混ざると、AIも迷います。</p>
+<h3>2. 先に「見る順番」を決める</h3>
 <figure class="rag-visual">
 <img src="./assets/rag-search-order.svg" alt="AIが売上、利益率、在庫、レビュー、SEOの順番で確認するRAG設計の図解" loading="lazy" decoding="async">
-<figcaption>資料が多いほど、AIには「まず何を見るか」の設計が必要になります。</figcaption>
+<figcaption>同じ資料でも、先に見るものが違えば、提案も変わります。</figcaption>
 </figure>
-<p>多くの人は「資料を入れればAIは賢くなる」と考えます。</p>
-<p>実はそうではありません。</p>
-<p>AIが毎回ちがう資料を見たり、重要度の低い情報から読んだりすると、答えもぼやけます。クラウドAIエージェントに仕事を任せるなら、次の問いを先に決めておく必要があります。</p>
-<blockquote class="rag-quote">
-<p>RAGは図書館。</p>
-<p>クラウドAIエージェントは司書。</p>
-<p>RAG設計とは、「どの情報を、どの順番で見に行くか」を決めること。</p>
-</blockquote>
-<p>たとえば「売上が落ちた理由を見て」とAIに任せるなら、いきなりブログ案を出しても意味がありません。</p>
-<p>先に売上を見る。次に利益率を見る。次に在庫を見る。レビューを見る。競合を見る。最後に改善案を出す。</p>
-<p>この順番があるから、AIの提案は仕事に使える形になります。</p>
-<div class="rag-flow">売上が落ちたら
-
-売上データを見る
+<p>「売上が落ちた理由を調べる」なら、いきなり販促案を作らせません。まず数字と現場の状態を確認します。</p>
+<div class="rag-flow">売上を見る
 ↓
 利益率を見る
 ↓
@@ -10655,189 +10632,151 @@ section.block::before {
 競合を見る
 ↓
 改善案を出す</div>
-<p>この流れを決めておくだけでも、立派なRAG設計です。</p>
-<h2 id='ecと交流会では-見る順番が変わる'>ECと交流会では、見る順番が変わる</h2>
+<p>この順番が決まっていると、AIは雰囲気ではなく、確認した情報をもとに提案できます。</p>
+<h3>3. 業務が変われば、見る順番も変える</h3>
 <figure class="rag-visual">
 <img src="./assets/rag-business-flow.svg" alt="ECと交流会でAIが見るべき情報の順番が違うことを示す図解" loading="lazy" decoding="async">
-<figcaption>RAG設計は業種ごとに変わります。正解は一つではなく、仕事の流れに合わせます。</figcaption>
+<figcaption>正解は1つではありません。実際の仕事の流れに合わせます。</figcaption>
 </figure>
-<p>RAG設計は、業務ごとに違います。</p>
-<p>ECなら、AIに見てほしい順番は次のようになるかもしれません。</p>
-<div class="rag-flow">売上
-↓
-利益率
-↓
-在庫
-↓
-レビュー
-↓
-SEO</div>
-<p>売れていても利益率が低ければ推しすぎてはいけません。在庫が少なければ広告を強める前に仕入れを見ます。レビューが荒れていれば、商品ページより先に品質や説明を直します。</p>
-<p>一方で、交流会なら順番は変わります。</p>
-<div class="rag-flow">参加者
-↓
-業種
-↓
-課題
-↓
-紹介先</div>
-<p>ここでは「誰が来たか」だけでは足りません。その人が何に困っているか、誰とつなぐと価値が出るか、次にどんな連絡をすべきかが重要になります。</p>
-<p>同じRAGでも、ECと交流会では資料棚も司書の動きも変わります。だからこそ、最初に業務を分解することが必要です。</p>
+<p>SEOは検索結果で見つけてもらう工夫、FAQはよくある質問、内部リンクは同じWebサイト内の関連記事へ案内するリンクです。</p>
 <table class="rag-table">
 <thead>
 <tr>
 <th>業務</th>
-<th>AIに見てほしい順番</th>
-<th>出したい提案</th>
+<th>AIが見る順番</th>
+<th>最後に出すもの</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>EC</td>
-<td>売上、利益率、在庫、レビュー、SEO</td>
-<td>今週推す商品、修正する商品ページ、止める広告</td>
+<td>ネットショップ（EC）</td>
+<td>売上 → 利益率 → 在庫 → レビュー → SEO</td>
+<td>推す商品、直す商品ページ、止める広告</td>
 </tr>
 <tr>
-<td>問い合わせ対応</td>
-<td>問い合わせ内容、顧客区分、過去対応、FAQ、次の案内</td>
-<td>返信文、確認事項、担当者への引き継ぎ</td>
+<td>問い合わせ</td>
+<td>相談内容 → 顧客区分 → 過去対応 → FAQ</td>
+<td>返信案、確認事項、担当者への引き継ぎ</td>
 </tr>
 <tr>
 <td>交流会</td>
-<td>参加者、業種、課題、紹介先、フォロー予定</td>
-<td>紹介候補、会話テーマ、次回連絡</td>
+<td>参加者 → 業種 → 悩み → 紹介先 → 次回連絡</td>
+<td>紹介候補、会話テーマ、フォロー予定</td>
 </tr>
 <tr>
-<td>ブログ運用</td>
-<td>検索語、商品、顧客の悩み、過去記事、競合</td>
-<td>書くべき記事、見出し、内部リンク</td>
+<td>ブログ</td>
+<td>検索語 → 顧客の悩み → 商品 → 過去記事 → 競合</td>
+<td>記事テーマ、見出し、内部リンク</td>
 </tr>
 </tbody>
 </table>
-<h2 id='クラウドaiエージェントは-毎日同じ確認を続ける'>クラウドAIエージェントは、毎日同じ確認を続ける</h2>
+<h3>4. 毎日の確認をAIに任せる</h3>
 <figure class="rag-visual">
 <img src="./assets/rag-daily-agent.svg" alt="クラウドAIエージェントが売上、問い合わせ、レビュー、競合を毎日確認する図解" loading="lazy" decoding="async">
-<figcaption>クラウドAIエージェントは、一度の質問よりも、毎日の確認と提案で力を発揮します。</figcaption>
+<figcaption>AIエージェントは、決めた順番で同じ確認を続ける時に力を発揮します。</figcaption>
 </figure>
-<p>これからのクラウドAIエージェントは、毎日同じ確認を自動で行うようになります。</p>
-<ul>
-<li>売上を確認する</li>
-<li>問い合わせを確認する</li>
-<li>レビューを確認する</li>
-<li>競合を確認する</li>
-<li>在庫や利益率の異常を見る</li>
-<li>次に出す投稿やブログ案を出す</li>
-</ul>
-<p>この時、RAG設計がないとAIは迷子になります。</p>
-<p>情報は大量にあるのに、何を優先して見るべきかわからない。古い資料を見てしまう。売上より先に雰囲気だけで提案してしまう。重要な顧客情報を見落としてしまう。</p>
-<p>逆にRAG設計ができていると、AIは次のような提案を出しやすくなります。</p>
+<p>AIエージェントとは、指示された仕事を複数の手順に分けて進めるAIです。毎朝、売上、問い合わせ、レビュー、在庫を確認させることもできます。</p>
+<p>良い報告は「問題があります」で終わりません。</p>
 <div class="rag-grid">
-<div class="rag-card">
-<h3>在庫の警告</h3>
-<p>「この商品は売れていますが、在庫が危険です。広告を強める前に仕入れを確認してください。」</p>
+<div class="rag-card red">
+<h3>在庫</h3>
+<p>この商品は売れていますが、在庫が少ないため、広告を増やす前に仕入れ確認が必要です。</p>
 </div>
 <div class="rag-card green">
-<h3>販促の提案</h3>
-<p>「今週は利益率が高く、レビューも良いこの商品を推してください。」</p>
+<h3>販促</h3>
+<p>利益率とレビューが良いため、今週はこの商品を優先して紹介できます。</p>
 </div>
 <div class="rag-card amber">
-<h3>記事の提案</h3>
-<p>「検索需要と問い合わせ内容が重なっているので、このテーマでブログを書くべきです。」</p>
+<h3>記事</h3>
+<p>検索されている言葉と問い合わせ内容が重なるため、このテーマの記事が有効です。</p>
 </div>
-<div class="rag-card red">
+<div class="rag-card">
 <h3>顧客対応</h3>
-<p>「この顧客は前回の課題が未解決です。今日中に連絡した方が良いです。」</p>
+<p>前回の相談が未解決です。今日中に人が内容を確認し、連絡してください。</p>
 </div>
 </div>
-<p>AIに仕事を任せるとは、何でも自由に考えさせることではありません。見る資料、見る順番、判断基準、人間が確認する場所を決めておくことです。</p>
-<h2 id='rag設計の第一歩は5つだけ'>RAG設計の第一歩は5つだけ</h2>
+<h3>5. 重要な判断は人が確認する</h3>
 <figure class="rag-visual">
 <img src="./assets/rag-human-gate.svg" alt="業務分解、資料整理、順番決定、自動化範囲、人間確認範囲の5ステップ図解" loading="lazy" decoding="async">
-<figcaption>最初から大きなシステムにしなくても、5つの整理だけでRAG設計は始められます。</figcaption>
+<figcaption>AIが下調べと下書きを担当し、影響が大きい判断は人が確認します。</figcaption>
 </figure>
-<p>RAG設計の第一歩は、とてもシンプルです。</p>
-<ul class="rag-check">
-<li>業務を分解する</li>
-<li>使う資料を整理する</li>
-<li>判断する順番を決める</li>
-<li>自動化する範囲を決める</li>
-<li>人間が確認する範囲を決める</li>
+<p>AIにすべてを決めさせる必要はありません。次の作業は、人の確認を残します。</p>
+<ul>
+<li>価格、契約、支払いに関わる変更</li>
+<li>広告の出稿や予算変更</li>
+<li>顧客への連絡、個人情報の利用</li>
+<li>Web、SNS、メールなど外部への公開</li>
 </ul>
-<p>この5つが決まると、AIに任せる作業が具体的になります。</p>
-<p>たとえば「売上が落ちたら」という業務なら、RAG設計は次のように書けます。</p>
+<h2 id='具体例-やってみる'>具体例 / やってみる</h2>
+<h3>5つの項目を1枚に書く</h3>
 <table class="rag-table">
 <thead>
 <tr>
-<th>設計項目</th>
-<th>決めること</th>
+<th>項目</th>
+<th>ECの記入例</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>業務</td>
-<td>売上低下の原因確認と改善案づくり</td>
+<td>1. 調べる仕事</td>
+<td>売上低下の原因を確認する</td>
 </tr>
 <tr>
-<td>資料</td>
+<td>2. 使う資料</td>
 <td>売上表、利益率、在庫、レビュー、競合、過去施策</td>
 </tr>
 <tr>
-<td>順番</td>
-<td>売上、利益率、在庫、レビュー、競合、改善案</td>
+<td>3. 見る順番</td>
+<td>売上 → 利益率 → 在庫 → レビュー → 競合</td>
 </tr>
 <tr>
-<td>自動化</td>
+<td>4. AIに任せる</td>
 <td>毎朝の確認、異常の通知、改善案の下書き</td>
 </tr>
 <tr>
-<td>人間確認</td>
+<td>5. 人が確認する</td>
 <td>価格変更、広告出稿、顧客連絡、公開文章</td>
 </tr>
 </tbody>
 </table>
-<p>ここまで決まっていれば、AIへの依頼はかなり具体的になります。</p>
-<div class="rag-flow">あなたはEC運営の分析担当です。
-毎朝、売上、利益率、在庫、レビュー、競合の順番で確認してください。
-異常があれば、原因候補、確認すべき画面、今日の改善案を出してください。
-価格変更、広告出稿、顧客連絡は人間確認が必要として分けてください。</div>
-<p>これはプロンプトの工夫だけではありません。業務そのものをAIが動ける形にする設計です。</p>
-<h2 id='これからは-aiにどう考えてもらうか-が差になる'>これからは「AIにどう考えてもらうか」が差になる</h2>
+<h3>そのまま使える依頼文</h3>
+<div class="rag-prompt">あなたはEC運営の分析担当です。
+
+毎朝、売上、利益率、在庫、レビュー、競合の順に確認してください。
+異常があれば、次の3つを出してください。
+1. 原因の候補
+2. 人が確認する画面や数字
+3. 今日できる改善案
+
+価格変更、広告出稿、顧客連絡、文章公開は自動で実行せず、「人の確認が必要」と分けてください。</div>
+<p>最初は1つの業務だけで試します。資料の不足や順番の間違いが見つかったら、焦らず直します。</p>
+<h2 id='振り返り-次の一歩'>振り返り / 次の一歩</h2>
 <figure class="rag-visual">
 <img src="./assets/rag-next-step.svg" alt="AIに何を聞くかから、AIにどう考えてもらうかへ変わる流れの図解" loading="lazy" decoding="async">
-<figcaption>AI活用の差は、使う回数よりも、自社の知識と成功パターンを整理できているかに出ます。</figcaption>
+<figcaption>質問の工夫だけでなく、資料、順番、確認方法を整えることが次の一歩です。</figcaption>
 </figure>
-<p>これからは、AIに何を聞くかだけでは足りません。</p>
-<p>AIにどのように考えてもらうか。</p>
-<p>その設計力が企業の差になります。</p>
-<p>AI時代の競争力は、どれだけAIを使うかではなく、どれだけ自社の知識や成功パターンを整理し、AIが活用できる形にしているかに移っていきます。</p>
-<p>RAG設計とは、大企業だけの難しいシステムではありません。</p>
-<p>小さな会社でも、店舗でも、個人事業でも始められます。</p>
-<ul>
-<li>よく使う資料を集める</li>
-<li>判断に使う順番を決める</li>
-<li>うまくいった対応を残す</li>
-<li>AIに任せる範囲を決める</li>
-<li>最後に人間が見る場所を決める</li>
+<ul class="rag-check">
+<li>AIに任せたい仕事を1つに絞った</li>
+<li>使う資料を5種類以内で選んだ</li>
+<li>AIが見る順番を矢印で書いた</li>
+<li>AIが出す報告の形を決めた</li>
+<li>人が確認する判断を決めた</li>
+<li>まず1週間試し、結果を見直す</li>
 </ul>
-<p>この積み重ねが、クラウドAIエージェントをただのチャット相手から、毎日の仕事を助ける相棒へ変えていきます。</p>
 <div class="rag-cta">
-<h3>RAG設計を、自社の仕事で考える</h3>
-<p>AIに資料を入れる前に、どの業務を分解し、どの資料を見せ、どの順番で判断させるかを一緒に整理します。AI相談、AIエージェント講習、サイト改善まで、実際の業務を題材に進めます。</p>
+<h3>自分の仕事で、最初のRAG設計を作る</h3>
+<p>難しいシステムを入れる前に、対象業務、使う資料、見る順番、人が確認する場所を一緒に整理します。</p>
 <a href="/#contact">無料でAI活用を相談する</a>
 <a href="/#packages">受講プランを見る</a>
 <a href="/#lectures">受講資料を見る</a>
 </div>
-<h2 id='出典・参考リンク'>出典・参考リンク</h2>
-<figure class="rag-visual">
-<img src="./assets/rag-next-step.svg" alt="RAG設計を次の行動につなげる図解" loading="lazy" decoding="async">
-<figcaption>この記事は2026年6月17日時点の公式資料を確認し、AIハブの投稿用に仕事の言葉へ置き換えて構成しています。</figcaption>
-</figure>
+<h3>参考リンク</h3>
 <div class="rag-sources">
 <ul>
-<li><a href="https://aws.amazon.com/what-is/retrieval-augmented-generation/" target="_blank" rel="noopener">AWS: What is RAG? Retrieval-Augmented Generation explained</a></li>
-<li><a href="https://cloud.google.com/use-cases/retrieval-augmented-generation" target="_blank" rel="noopener">Google Cloud: What is Retrieval-Augmented Generation (RAG)?</a></li>
-<li><a href="https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview" target="_blank" rel="noopener">Microsoft Learn: Retrieval-augmented generation in Azure AI Search</a></li>
-<li><a href="https://www.ibm.com/think/topics/retrieval-augmented-generation" target="_blank" rel="noopener">IBM Think: What is retrieval augmented generation?</a></li>
+<li><a href="https://aws.amazon.com/what-is/retrieval-augmented-generation/" target="_blank" rel="noopener">AWS: What is RAG?</a></li>
+<li><a href="https://cloud.google.com/use-cases/retrieval-augmented-generation" target="_blank" rel="noopener">Google Cloud: Retrieval-Augmented Generation</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview" target="_blank" rel="noopener">Microsoft Learn: RAG overview</a></li>
+<li><a href="https://www.ibm.com/think/topics/retrieval-augmented-generation" target="_blank" rel="noopener">IBM Think: What is RAG?</a></li>
 </ul>
 </div>
 </div></div><footer>AI相談 / Generated by Claude</footer><button class='back-to-top' id='backTop' aria-label='トップへ戻る'>↑</button><script>(function(){var b=document.getElementById('backTop');if(!b)return;window.addEventListener('scroll',function(){b.classList.toggle('show',window.scrollY>400);});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script><script>

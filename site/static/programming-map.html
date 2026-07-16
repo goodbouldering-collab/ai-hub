@@ -11,7 +11,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#f7f9fc">
-<meta name="description" content="CodexとClaude Codeを使い、仕事の分解、依頼、確認、修正、成果物と手順の保存までを段階的に学ぶ、彦根のAIエージェント講習。">
+<meta name="description" content="AI初心者が、CodexとClaude Codeへの頼み方、確認、修正、安全な公開までを順番に学べる、彦根のAIエージェント講習。">
 <title>AIエージェント講習｜Codex・Claude Code実践 | AI相談</title>
 <style>
   :root {
@@ -216,13 +216,14 @@
     margin: 18px 0 0;
     max-width: 850px;
     color: var(--ink);
-    font-size: clamp(42px, 6.1vw, 78px);
+    font-size: clamp(42px, 4.4vw, 62px);
     line-height: 1.02;
     letter-spacing: 0;
   }
 
   h1 .mobile-line {
-    display: inline;
+    display: block;
+    white-space: nowrap;
   }
 
   .hero-lead {
@@ -565,7 +566,8 @@
   }
 
   .level-main p,
-  .level-tools {
+  .level-tools,
+  .level-scope {
     margin: 0;
     color: var(--text-soft);
     font-size: 13.5px;
@@ -588,6 +590,26 @@
     font-size: 12px;
     font-weight: 800;
     overflow-wrap: anywhere;
+  }
+
+  .level-scope {
+    display: grid;
+    gap: 6px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .level-scope li {
+    padding: 8px 10px;
+    border-radius: 7px;
+    background: rgba(255,255,255,.78);
+    border: 1px solid rgba(20,32,51,.10);
+    font-size: 12.5px;
+    overflow-wrap: anywhere;
+  }
+
+  .level-scope b {
+    color: var(--ink);
   }
 
   .level-card.level-5 .level-num { background: linear-gradient(135deg, #6c5ce7, #2357e5); }
@@ -1205,6 +1227,7 @@
     .power-grid {
       grid-template-columns: 1fr;
     }
+    .system-visual { display: none; }
     .pyramid-step { grid-template-columns: 1fr; }
     .stage-tabs { grid-template-columns: 1fr; }
     .line-dock {
@@ -1216,10 +1239,10 @@
     }
     .visual-caption { grid-template-columns: 1fr; }
     h1 {
-      font-size: clamp(34px, 10.6vw, 44px);
-      line-height: 1.08;
-      overflow-wrap: anywhere;
-      word-break: break-all;
+      font-size: clamp(31px, 9vw, 38px);
+      line-height: 1.12;
+      overflow-wrap: normal;
+      word-break: keep-all;
     }
     h1 .mobile-line { display: block; }
   }
@@ -1234,7 +1257,7 @@
     }
   }
 
-  /* AI Hub shared command rail: keep the course map usable before scrolling. */
+  /* AI相談の共通ナビゲーション。スクロール前から講習内を移動できるようにする。 */
   html { scroll-padding-top: 74px; }
 
   .top-nav {
@@ -1288,7 +1311,7 @@
     }
   }
 
-  /* Shared solid menu surface, aligned with AI Hub public/admin chrome. */
+  /* AI相談の公開画面・管理画面と同じ、読みやすいメニュー背景を使う。 */
   .top-nav {
     background: #FFFFFF !important;
     border-bottom: 1px solid rgba(7,20,38,.18) !important;
@@ -1316,18 +1339,18 @@
 <body>
 
 <nav class="top-nav" aria-label="サイトナビゲーション">
-  <a href="./index.html">AIハブ</a>
+  <a href="./index.html">AI相談</a>
   <a href="./#packages">受講プラン</a>
   <a href="./#contact">個別相談</a>
   <a href="./lectures/index.html">受講資料</a>
-  <a class="nav-current" href="#top">実装講習</a>
-  <a href="#pm-real-pro">本物のプロ</a>
-  <a href="#pm-level-map">レベル</a>
-  <a href="#pm-pro-check">説明力</a>
-  <a href="#pm-modern-ai">全体像</a>
-  <a href="#part-2">基礎</a>
-  <a href="#part-3">実装</a>
-  <a href="#sec-ccode">公式更新</a>
+  <a class="nav-current" href="#top">入門地図</a>
+  <a href="#pm-real-pro">最初の考え方</a>
+  <a href="#pm-level-map">成長レベル</a>
+  <a href="#pm-pro-check">説明チェック</a>
+  <a href="#pm-modern-ai">道具の役割</a>
+  <a href="#part-2">基本の言葉</a>
+  <a href="#part-3">作って確認</a>
+  <a href="#sec-ccode">公式情報</a>
   <a href="#sec-line">演習</a>
 </nav>
 
@@ -1335,18 +1358,18 @@
   <div class="course-shell">
     <div class="hero-grid">
       <div>
-        <span class="kicker">AI Agent Course / Codex + Claude Code</span>
+        <span class="kicker">AIエージェント講習 / Codex + Claude Code</span>
         <h1><span class="mobile-line">AIエージェントを、</span><span class="mobile-line">仕事で使える</span><span class="mobile-line">力へ。</span></h1>
         <p class="hero-lead">
-          結論はシンプルです。「作れた人」ではなく、「なぜそう作ったかを説明できる人」が残ります。AIやエージェントにコードを書かせても構いません。ただし、目的、設計、データ、運用、セキュリティ、コストを自分の言葉で説明できなければ、仕事では使えません。
+          <b>対象:</b> AIに興味はあるけれど、プログラミング用語や公開作業に不安がある人。コードを全部暗記する資料ではありません。AIに頼み、結果を確かめ、安全に公開するまでの道順を学びます。
         </p>
         <p class="value-copy">
-          この講習は、専門用語を削って簡単に見せるものではありません。<b>必要な用語は残し、意味と使いどころを横に置く</b>ことで、AIが作ったものを判断し、直し、仕事に入れる力を育てます。
+          <b>ゴール:</b> 「何を作りたいか」をAIに伝え、変更点を見て、画面を確認し、公開してよいか判断できること。AIエージェントとは、頼まれた仕事をいくつかの手順に分けて進めるAIです。専門用語は、最初に日常の言葉へ置き換えて説明します。
         </p>
         <div class="hero-actions" aria-label="主要導線">
-          <a class="btn primary" href="#pm-real-pro">本物のプロの条件へ</a>
-          <a class="btn" href="#pm-level-map">レベルマップを見る</a>
-          <a class="btn dark" href="#sec-ccode">Codex公式更新へ</a>
+          <a class="btn primary" href="#pm-real-pro">最初から順に読む</a>
+          <a class="btn" href="#pm-level-map">成長レベルを見る</a>
+          <a class="btn dark" href="#sec-line">演習を見る</a>
         </div>
       </div>
       <div class="hero-visual glass" aria-label="AIエージェント講習のビジュアル">
@@ -1380,11 +1403,11 @@
       </div>
     </div>
 
-    <div class="quick-grid" aria-label="講習で身につける領域">
-      <a class="quick-card glass" href="#pm-real-pro"><b>01 本物のプロ</b><span>コードを貼る人ではなく、選んだ理由を説明できる人になる。</span></a>
-      <a class="quick-card glass" href="#pm-level-map"><b>02 レベルマップ</b><span>AIオペレーターからアーキテクトまでの差を知る。</span></a>
-      <a class="quick-card glass" href="#part-2"><b>03 基礎語彙</b><span>HTML/CSS/JS/API/DB/Gitを仕事の流れで覚える。</span></a>
-      <a class="quick-card glass" href="#part-3"><b>04 実装と確認</b><span>依頼、差分、表示確認、レビューを1セットにする。</span></a>
+    <div class="quick-grid" aria-label="この資料を読む順序">
+      <a class="quick-card glass" href="#pm-real-pro"><b>1. 全体像（00）</b><span>「AIで作る」と「仕事で使える」の違いを知る。</span></a>
+      <a class="quick-card glass" href="#pm-level-map"><b>2. 現在地（01〜03）</b><span>成長レベル、説明する力、道具の役割を順に見る。</span></a>
+      <a class="quick-card glass" href="#part-1"><b>3. 学び方（04〜06）</b><span>5段階の学び方、基本の言葉、作って確認する流れを知る。</span></a>
+      <a class="quick-card glass" href="#part-4"><b>4. 仕事で使う（07〜10）</b><span>安全な公開、仕事への応用、公式情報、演習へ進む。</span></a>
     </div>
   </div>
 </header>
@@ -1394,39 +1417,40 @@
     <div class="course-shell">
       <div class="section-head">
         <div>
-          <span class="section-label">00 / Real Professional</span>
-          <h2>AIが作れる時代ほど、説明できる人の価値が上がる</h2>
-          <p>AIツールで画面やコードは速く作れます。しかし仕事で問われるのは、なぜその技術を選び、壊れた時にどう戻し、誰の責任で運用するかです。ここを説明できる人が、本物のエンジニアです。</p>
+          <span class="section-label">00 / 最初の考え方</span>
+          <h2>「AIで作れた」と「仕事で使える」は別です</h2>
+          <p><b>知ること:</b> AIは制作を速くしますが、目的を決めたり、間違いに気づいたり、公開後の責任を取ったりはできません。だから人が確認できる範囲を少しずつ広げます。</p>
         </div>
-        <a class="btn" href="#pm-level-map">レベルマップへ</a>
+        <a class="btn" href="#pm-level-map">次: 自分の現在地へ</a>
       </div>
 
       <div class="truth-grid">
         <article class="warning-panel">
-          <h3>レベルが評価できない場所で活躍しても、いつか表に出ます。</h3>
-          <p>AIで一度動いても、次の質問に答えられないと「たまたま動いているだけ」になります。</p>
+          <h3>なぜ確認する力が必要なのか</h3>
+          <p>一度画面が表示されても、利用者が増えたり、設定が変わったりすると問題が出ます。仕事で使う前に、次の4点を説明できるか確認します。</p>
           <ul class="question-list">
-            <li>Cloudflare、DNS、CDN、WAFは、それぞれ何のために使うのか。</li>
-            <li>バックアップ、認証、認可、権限管理はどこで守るのか。</li>
-            <li>SQLインジェクション対策、負荷試験、監視、障害対応はどう確認するのか。</li>
-            <li>コスト、パフォーマンス、スケーラビリティは誰が見て、いつ見直すのか。</li>
+            <li><b>届け方:</b> URLをつなぐDNS、表示を速くするCDN、攻撃を防ぐWAFなどを、何のために使うか。</li>
+            <li><b>守り方:</b> 本人確認をする「認証」と、その人ができる操作を決める「認可」をどこで行うか。</li>
+            <li><b>直し方:</b> 記録を見る「ログ・監視」、元へ戻す「バックアップ・ロールバック」を用意しているか。</li>
+            <li><b>続け方:</b> 料金、表示速度、利用者が増えた時の対応を、誰がいつ見直すか。</li>
           </ul>
-          <div class="plain-note">AIが書いたコードを貼っただけではプロではありません。設計、データ、運用、セキュリティ、目的理解まで説明できることが重要です。</div>
+          <div class="plain-note"><b>例:</b> 問い合わせフォームなら、送信できるかだけでなく「どこに保存されるか」「誰が見られるか」「届かなかった時にどう気づくか」まで考えます。</div>
         </article>
 
         <article class="pyramid-card glass">
-          <h3>AI時代のエンジニアに求められる土台</h3>
-          <p>下の層ほど入口です。上に行くほど価値、難易度、責任範囲が大きくなります。</p>
-          <div class="pyramid-steps" aria-label="AI時代のエンジニアに求められる土台">
-            <div class="pyramid-step level-high"><b>目的理解・課題解決</b><span>ビジネス視点、要件、価値創造。何のために作るかを決める。</span></div>
-            <div class="pyramid-step"><b>設計・データ・運用</b><span>セキュリティ、パフォーマンス、コスト、継続改善を設計する。</span></div>
-            <div class="pyramid-step"><b>インフラ・ミドルウェア</b><span>クラウド、データベース、ネットワーク、監視、バックアップを扱う。</span></div>
-            <div class="pyramid-step"><b>プログラミング・開発</b><span>言語、フレームワーク、API、Git、テストで実装を読めるようにする。</span></div>
-            <div class="pyramid-step"><b>AIツール活用力</b><span>ChatGPT、Claude、Codex、Cursorなどを道具として使う。</span></div>
+          <h3>仕事で使う前に、5つの範囲を確認する</h3>
+          <p>これは次の「Level 0〜5」とは別の確認表です。どのレベルでも、自分が担当する範囲を説明します。</p>
+          <div class="pyramid-steps" aria-label="仕事で確認する5つの範囲">
+            <div class="pyramid-step"><b>1. 目的</b><span>誰のどんな悩みを、どう良くするか。</span></div>
+            <div class="pyramid-step"><b>2. 変更</b><span>AIがどこを変え、人が何を確認したか。</span></div>
+            <div class="pyramid-step"><b>3. 公開</b><span>どのURLや場所で、誰が使える状態にするか。</span></div>
+            <div class="pyramid-step"><b>4. 安全と復旧</b><span>情報をどう守り、問題が出たらどう戻すか。</span></div>
+            <div class="pyramid-step level-high"><b>5. 運用</b><span>誰が、いつ、料金や改善点を見直すか。</span></div>
           </div>
-          <div class="pyramid-scale"><span>入口: AIはあくまで道具</span><span>上位: 価値・難易度・責任範囲が高い</span></div>
+          <div class="pyramid-scale"><span>作る前: 目的を決める</span><span>公開後: 続け方を決める</span></div>
         </article>
       </div>
+      <div class="plain-note" style="margin-top:14px;"><b>確認:</b> 今の自分は「頼める・変更を読める・公開できる・運用できる・目的を決められる」のどこまで説明できるか、1つ選んでください。</div>
     </div>
   </section>
 
@@ -1434,75 +1458,88 @@
     <div class="course-shell">
       <div class="section-head">
         <div>
-          <span class="section-label">01 / Engineer Level Map</span>
+          <span class="section-label">01 / 成長レベル</span>
           <h2>エンジニアのレベルは、使うツールではなく任せられる範囲で見る</h2>
-          <p>AIが普及すると、レベル0から2までは短期間で届きやすくなります。差が出るのは、運用、障害、セキュリティ、データ、コストまで説明して任せられるかです。</p>
+          <p><b>知ること:</b> 同じAIツールを使っていても、任せられる仕事の広さは違います。下のレベル0から、成長する順に見てください。上へ進むほど、確認・公開・運用・全体判断が加わります。</p>
         </div>
-        <a class="btn" href="#pm-pro-check">説明チェックへ</a>
+        <a class="btn" href="#pm-pro-check">次: 説明チェックへ</a>
       </div>
 
       <div class="level-map" aria-label="エンジニアレベルマップ">
-        <article class="level-card level-5 glass">
-          <div class="level-num"><span>Level</span><strong>5</strong></div>
+        <article class="level-card level-0 glass">
+          <div class="level-num"><span>Level</span><strong>0</strong></div>
           <div class="level-main">
-            <h3>アーキテクト</h3>
-            <p>企業全体の設計ができる。複数サービス、組織、コスト、運用責任まで含めて判断する。</p>
+            <h3>AIを使って形にする</h3>
+            <p>文章や指示を入力し、AIに画面やコードのたたき台を作ってもらう入口です。まずは小さな成果物から始めます。</p>
           </div>
-          <ul class="level-tools">
-            <li>マイクロサービス</li><li>Kubernetes</li><li>Zero Trust</li><li>CI/CD</li><li>IaC</li><li>クラウド設計</li><li>データ設計</li><li>コスト最適化</li>
-          </ul>
-        </article>
-        <article class="level-card level-4 glass">
-          <div class="level-num"><span>Level</span><strong>4</strong></div>
-          <div class="level-main">
-            <h3>シニアエンジニア</h3>
-            <p>システム全体を任せられる。設計、認証認可、負荷分散、監視、障害対応を扱う。</p>
-          </div>
-          <ul class="level-tools">
-            <li>システム設計</li><li>認証・認可</li><li>負荷分散</li><li>監視</li><li>障害対応</li><li>バックアップ</li><li>セキュリティ設計</li>
-          </ul>
-        </article>
-        <article class="level-card level-3 glass">
-          <div class="level-num"><span>Level</span><strong>3</strong></div>
-          <div class="level-main">
-            <h3>プロエンジニア</h3>
-            <p>本番運用できるシステムを作れる。開発だけでなく、サーバー、DB、デプロイまで見る。</p>
-          </div>
-          <ul class="level-tools">
-            <li>Linux</li><li>Docker</li><li>Nginx</li><li>GitHub Actions</li><li>PostgreSQL</li><li>MySQL</li><li>Redis</li><li>AWS</li><li>Cloudflare</li>
-          </ul>
-        </article>
-        <article class="level-card level-2 glass">
-          <div class="level-num"><span>Level</span><strong>2</strong></div>
-          <div class="level-main">
-            <h3>ジュニアエンジニア</h3>
-            <p>AIが書いたコードでも、読んで修正・改善できる。Webの基本構造を説明できる。</p>
-          </div>
-          <ul class="level-tools">
-            <li>HTML</li><li>CSS</li><li>JavaScript</li><li>Git</li><li>GitHub</li><li>REST API</li><li>JSON</li>
+          <ul class="level-scope">
+            <li><b>任せられる仕事:</b> 文章や1画面のたたき台を作る</li>
+            <li><b>自分で確認:</b> 目的と内容が合っているか見る</li>
+            <li><b>次の一歩:</b> 小さな成果物を1つ完成させる</li>
           </ul>
         </article>
         <article class="level-card level-1 glass">
           <div class="level-num"><span>Level</span><strong>1</strong></div>
           <div class="level-main">
-            <h3>ノーコード制作者</h3>
-            <p>ノーコードで業務改善できる。既存サービスをつないで小さな自動化を作る。</p>
+            <h3>既存サービスを組み合わせる</h3>
+            <p>ノーコード（ほとんどコードを書かない制作方法）で、サイト更新や小さな自動化を作ります。</p>
           </div>
-          <ul class="level-tools">
-            <li>Shopify</li><li>WordPress</li><li>Make</li><li>n8n</li><li>Zapier</li><li>Airtable</li><li>Notion</li>
+          <ul class="level-scope">
+            <li><b>任せられる仕事:</b> 既存サービスの設定や小さな自動化</li>
+            <li><b>自分で確認:</b> 保存、通知、公開が正しく動くか試す</li>
+            <li><b>次の一歩:</b> 作業手順と元へ戻す方法を残す</li>
           </ul>
         </article>
-        <article class="level-card level-0 glass">
-          <div class="level-num"><span>Level</span><strong>0</strong></div>
+        <article class="level-card level-2 glass">
+          <div class="level-num"><span>Level</span><strong>2</strong></div>
           <div class="level-main">
-            <h3>AIオペレーター</h3>
-            <p>AIツールを使って作れる。ここは入口であり、実務では確認と説明の力が必要になる。</p>
+            <h3>AIの変更を読んで直す</h3>
+            <p>Webページの基本構造を説明し、AIが書いたコードを読み、必要な場所を修正・改善できます。</p>
           </div>
-          <ul class="level-tools">
-            <li>ChatGPT</li><li>Claude</li><li>Codex</li><li>Cursor</li><li>Gemini</li><li>Copilot</li>
+          <ul class="level-scope">
+            <li><b>任せられる仕事:</b> AIが書いたコードを読み、必要な場所を直す</li>
+            <li><b>自分で確認:</b> 変更前後、リンク、画面、動作を比べる</li>
+            <li><b>次の一歩:</b> 情報の受け渡しと保存を学ぶ</li>
+          </ul>
+        </article>
+        <article class="level-card level-3 glass">
+          <div class="level-num"><span>Level</span><strong>3</strong></div>
+          <div class="level-main">
+            <h3>公開後まで運用する</h3>
+            <p>利用者が使う本番環境へ安全に公開し、サーバー、DB、更新作業、障害時の復旧まで見ます。</p>
+          </div>
+          <ul class="level-scope">
+            <li><b>任せられる仕事:</b> 本番公開と日々の運用を続ける</li>
+            <li><b>自分で確認:</b> 記録、バックアップ、復旧方法を見る</li>
+            <li><b>次の一歩:</b> 監視と権限のルールを整える</li>
+          </ul>
+        </article>
+        <article class="level-card level-4 glass">
+          <div class="level-num"><span>Level</span><strong>4</strong></div>
+          <div class="level-main">
+            <h3>システム全体を任せられる</h3>
+            <p>安全なログイン、アクセス集中への対応、監視、バックアップ、障害対応を含めて設計します。</p>
+          </div>
+          <ul class="level-scope">
+            <li><b>任せられる仕事:</b> 複数の画面、データ、安全性をまとめて設計する</li>
+            <li><b>自分で確認:</b> 利用者増加、障害、料金への備えを見る</li>
+            <li><b>次の一歩:</b> 設計理由を文書にし、チームで共有する</li>
+          </ul>
+        </article>
+        <article class="level-card level-5 glass">
+          <div class="level-num"><span>Level</span><strong>5</strong></div>
+          <div class="level-main">
+            <h3>事業と組織を含めて設計する</h3>
+            <p>アーキテクト（全体設計の責任者）として、複数サービス、組織、データ、料金、運用責任まで判断します。</p>
+          </div>
+          <ul class="level-scope">
+            <li><b>任せられる仕事:</b> 事業、組織、複数サービスを含む全体判断</li>
+            <li><b>自分で確認:</b> 優先順位、責任、データ、料金を見直す</li>
+            <li><b>次の一歩:</b> チームを育て、改善を続ける仕組みを作る</li>
           </ul>
         </article>
       </div>
+      <div class="plain-note" style="margin-top:14px;"><b>例と確認:</b> AIで申込用ページ（LP）のたたき台を作れればレベル0。自分で直せればレベル2。公開後の監視や復旧まで担えればレベル3以上です。今できるレベルと、次に増やしたい1つを決めましょう。</div>
     </div>
   </section>
 
@@ -1510,57 +1547,57 @@
     <div class="course-shell">
       <div class="section-head">
         <div>
-          <span class="section-label">02 / Explainable Skill</span>
-          <h2>本物のプロは、作ったものを説明できます</h2>
-          <p>説明できるとは、専門用語を避けることではありません。専門用語を使いながら、相手が判断できる言葉に置き換えられることです。</p>
+          <span class="section-label">02 / 説明チェック</span>
+          <h2>作ったものを、相手が判断できる言葉で説明する</h2>
+          <p><b>知ること:</b> 技術名をたくさん言えることより、「なぜ必要か」「問題が起きたらどうするか」を利用者や事業者に説明できることが大切です。</p>
         </div>
-        <a class="btn" href="#pm-modern-ai">AI全体像へ</a>
+        <a class="btn" href="#pm-modern-ai">次: 道具の役割へ</a>
       </div>
 
-      <div class="explain-grid" aria-label="本物のプロが説明できること">
-        <article class="explain-card glass"><b>なぜその技術を選んだのか</b><span>目的、要件、制約に対して、Cloudflare、AWS、Supabase、Vercelなどを選ぶ理由を説明できる。</span></article>
-        <article class="explain-card glass"><b>他の選択肢は何か</b><span>代替案のメリット、デメリット、将来の乗り換えやすさを比較できる。</span></article>
-        <article class="explain-card glass"><b>壊れたらどう復旧するか</b><span>バックアップ、ログ、監視、ロールバック、障害対応手順を事前に考えられる。</span></article>
-        <article class="explain-card glass"><b>セキュリティリスクは何か</b><span>認証、認可、権限管理、SQLインジェクション、秘密情報、WAFの役割を説明できる。</span></article>
-        <article class="explain-card glass"><b>運用コストはいくらか</b><span>初期費用だけでなく、API利用料、サーバー費、保守工数、監視、障害対応の費用を見積もれる。</span></article>
-        <article class="explain-card glass"><b>10万人来ても耐えられるか</b><span>CDN、キャッシュ、負荷分散、DB設計、スケーラビリティ、負荷試験を考えられる。</span></article>
+      <div class="explain-grid" aria-label="仕事で説明する6つの確認項目">
+        <article class="explain-card glass"><b>1. なぜこれを選んだか</b><span>例: VercelはWebサイトを公開しやすい、Supabaseはデータ保存とログイン機能をまとめやすい、というように目的と結びつける。</span></article>
+        <article class="explain-card glass"><b>2. 他の方法と何が違うか</b><span>料金、使いやすさ、得意なこと、将来の乗り換えやすさを比べる。1つのサービスを絶対の正解にしない。</span></article>
+        <article class="explain-card glass"><b>3. 壊れた時にどう戻すか</b><span>ログ（動作の記録）で原因を探し、バックアップから戻すか、ロールバック（前の版へ戻す）を行う。</span></article>
+        <article class="explain-card glass"><b>4. 誰の情報をどう守るか</b><span>認証、認可、権限、秘密情報を確認する。SQLインジェクションは、入力欄からDBを不正操作する攻撃。</span></article>
+        <article class="explain-card glass"><b>5. 毎月いくらかかるか</b><span>初期費用だけでなく、AIやAPIの利用料、サーバー費、保守時間、監視や障害対応も含めて考える。</span></article>
+        <article class="explain-card glass"><b>6. 利用者が増えても動くか</b><span>CDNやキャッシュで表示を軽くし、負荷分散で処理を分ける。負荷試験は、多人数の利用を想定した動作確認。</span></article>
       </div>
 
       <div class="pro-compare" style="margin-top:14px;">
         <article class="compare-card bad">
-          <h3>プロではない人</h3>
+          <h3>まだ確認が必要な状態</h3>
           <ul>
-            <li>「AIが書いたコードを貼りました」で止まる。</li>
-            <li>仕組みを理解していない。</li>
-            <li>質問に答えられない。</li>
-            <li>壊れたら直せない。</li>
-            <li>セキュリティ、運用、コストを考えられない。</li>
+            <li>「AIが作りました」だけで説明が終わる。</li>
+            <li>変更した場所と理由が分からない。</li>
+            <li>本番のURLや保存先を確認していない。</li>
+            <li>問題が起きた時の戻し方が決まっていない。</li>
+            <li>安全性、毎月の料金、運用担当が決まっていない。</li>
           </ul>
         </article>
         <article class="compare-card good">
-          <h3>本物のプロ</h3>
+          <h3>仕事で任せられる状態</h3>
           <ul>
-            <li>目的から設計、開発、運用、セキュリティまで責任を持てる。</li>
-            <li>全体を理解して説明できる。</li>
-            <li>最適な設計を選べる。</li>
-            <li>障害に強いシステムを作れる。</li>
-            <li>コストとパフォーマンスを最適化できる。</li>
+            <li>誰のどんな悩みを解決するか言える。</li>
+            <li>AIが変えた場所と採用した理由を説明できる。</li>
+            <li>表示、操作、データ、安全性を確認できる。</li>
+            <li>問題を見つける方法と元へ戻す手順がある。</li>
+            <li>公開後の担当、料金、改善方法を決めている。</li>
           </ul>
         </article>
       </div>
 
-      <div class="power-grid" style="margin-top:14px;" aria-label="これからの時代に必要な5つの力">
-        <article class="power-card glass"><b>1. 目的理解力</b><span>ビジネス課題を正しく理解し、作るべきものと作らないものを分ける力。</span></article>
-        <article class="power-card glass"><b>2. 設計力</b><span>最適なアーキテクチャ、データの流れ、権限、公開方法を組み立てる力。</span></article>
-        <article class="power-card glass"><b>3. データ設計力</b><span>データの構造、価値、保存場所、更新方法、分析しやすさを設計する力。</span></article>
-        <article class="power-card glass"><b>4. 運用・改善力</b><span>安定運用、ログ確認、障害対応、継続改善、利用者の声の反映を続ける力。</span></article>
-        <article class="power-card glass"><b>5. セキュリティ意識</b><span>リスクを見抜き、認証、権限、秘密情報、攻撃対策を守る力。</span></article>
-        <article class="power-card glass"><b>AIは最強の相棒</b><span>ただし、操るのは本物のエンジニアです。知識、経験、データ、目的が価値を決めます。</span></article>
+      <div class="power-grid" style="margin-top:14px;" aria-label="仕事で育てる5つの力">
+        <article class="power-card glass"><b>1. 目的を決める</b><span>誰の何を良くするかを決め、作らなくてよいものも見分ける。</span></article>
+        <article class="power-card glass"><b>2. 作り方を組み立てる</b><span>画面、データ、権限、公開方法をつなぐ。これを設計と呼ぶ。</span></article>
+        <article class="power-card glass"><b>3. データを整える</b><span>何を、どこに、どんな形で保存し、誰が更新するかを決める。</span></article>
+        <article class="power-card glass"><b>4. 使いながら直す</b><span>記録を見て、問題に対応し、利用者の声を次の改善へつなげる。</span></article>
+        <article class="power-card glass"><b>5. 安全を守る</b><span>ログイン、操作できる範囲、秘密情報、攻撃への対策を確認する。</span></article>
+        <article class="power-card glass"><b>AIに任せ、人が決める</b><span>AIは速い制作担当です。採用するか、公開するか、責任を持てるかは人が判断します。</span></article>
       </div>
 
       <div class="final-equation">
-        <b>知識 × 経験 × データ × 目的 = 圧倒的な価値</b>
-        <span>AIを使うほど、人間側の説明力、判断力、責任範囲がはっきり見えます。</span>
+        <b>目的 × 確認 × 改善 = 仕事で使える成果</b>
+        <span><b>確認:</b> 作ったものについて、上の6項目を1分ずつ説明できますか。説明できない項目が、次に学ぶ場所です。</span>
       </div>
     </div>
   </section>
@@ -1569,11 +1606,11 @@
     <div class="course-shell">
       <div class="section-head">
         <div>
-          <span class="section-label">03 / Orientation</span>
-          <h2>まず「AIがどこで働くか」を整理する</h2>
-          <p>AIコーディングで混乱する原因は、AIの性能よりも作業場所の混線です。相談、実装、確認、公開の役割を分けると、初心者でも安全に学習を進められます。</p>
+          <span class="section-label">03 / 道具の役割</span>
+          <h2>4つの道具を、相談・制作・記録・確認で使い分ける</h2>
+          <p><b>知ること:</b> AIコーディングとは、AIにコードを書かせるだけではありません。相談する場所、ファイルを変える場所、変更を記録する場所、完成画面を見る場所を分けます。</p>
         </div>
-        <a class="btn" href="#part-1">価値と入口へ</a>
+        <a class="btn" href="#part-1">次: 学ぶ5段階へ</a>
       </div>
 
       <div class="overview-grid">
@@ -1601,10 +1638,10 @@
             </svg>
           </div>
           <div class="role-grid" aria-label="道具の役割">
-            <div class="role-card"><span class="tag">Talk</span><h3>ChatGPT</h3><p>目的、説明、講習文、依頼文、判断材料を整理する相談役。</p></div>
-            <div class="role-card"><span class="tag">Build</span><h3>Codex</h3><p>フォルダを持ち、ファイル編集、コマンド実行、差分確認まで進める共同作業者。</p></div>
-            <div class="role-card"><span class="tag">Desk</span><h3>VS Code / Git</h3><p>作業対象、変更履歴、戻し方、レビュー対象を見える化する作業机。</p></div>
-            <div class="role-card"><span class="tag">View</span><h3>Browser</h3><p>見た目、リンク、フォーム、スマホ表示を自分の目で確かめる検査場所。</p></div>
+            <div class="role-card"><span class="tag">相談</span><h3>ChatGPT</h3><p>作る目的、文章、AIへの頼み方を整理します。まず「誰の何を良くしたいか」を言葉にする場所です。</p></div>
+            <div class="role-card"><span class="tag">制作</span><h3>Codex</h3><p>指定したフォルダのファイルを編集し、動作確認まで進めるAIです。触ってよい範囲を伝えて使います。</p></div>
+            <div class="role-card"><span class="tag">記録</span><h3>VS Code / Git</h3><p>VS Codeはファイルを見る作業机。Gitは変更前後を記録し、必要なら元へ戻す仕組みです。</p></div>
+            <div class="role-card"><span class="tag">確認</span><h3>ブラウザ</h3><p>実際のページを開き、文字、リンク、フォーム、スマホ表示を利用者の目線で確かめます。</p></div>
           </div>
         </div>
 
@@ -1612,20 +1649,21 @@
           <p class="progress-title">学習進捗</p>
           <div class="progress-meter" aria-hidden="true"><span id="courseProgress"></span></div>
           <nav class="progress-list" aria-label="講習セクション">
-            <a href="#pm-real-pro" data-watch="pm-real-pro">00 <span>本物のプロ</span></a>
-            <a href="#pm-level-map" data-watch="pm-level-map">01 <span>レベル</span></a>
-            <a href="#pm-pro-check" data-watch="pm-pro-check">02 <span>説明力</span></a>
-            <a href="#pm-modern-ai" data-watch="pm-modern-ai">03 <span>AI全体像</span></a>
-            <a href="#part-1" data-watch="part-1">04 <span>価値と入口</span></a>
-            <a href="#part-2" data-watch="part-2">05 <span>基礎語彙</span></a>
-            <a href="#part-3" data-watch="part-3">06 <span>実装</span></a>
-            <a href="#part-4" data-watch="part-4">07 <span>公開</span></a>
-            <a href="#sec-cms" data-watch="sec-cms">08 <span>応用制作</span></a>
-            <a href="#sec-ccode" data-watch="sec-ccode">09 <span>Codex公式</span></a>
-            <a href="#sec-line" data-watch="sec-line">10 <span>演習</span></a>
+            <a href="#pm-real-pro" data-watch="pm-real-pro">00 <span>最初の考え方</span></a>
+            <a href="#pm-level-map" data-watch="pm-level-map">01 <span>成長レベル</span></a>
+            <a href="#pm-pro-check" data-watch="pm-pro-check">02 <span>説明チェック</span></a>
+            <a href="#pm-modern-ai" data-watch="pm-modern-ai">03 <span>道具の役割</span></a>
+            <a href="#part-1" data-watch="part-1">04 <span>学ぶ5段階</span></a>
+            <a href="#part-2" data-watch="part-2">05 <span>基本の言葉</span></a>
+            <a href="#part-3" data-watch="part-3">06 <span>作って確認</span></a>
+            <a href="#part-4" data-watch="part-4">07 <span>安全に公開</span></a>
+            <a href="#sec-cms" data-watch="sec-cms">08 <span>仕事への応用</span></a>
+            <a href="#sec-ccode" data-watch="sec-ccode">09 <span>公式情報</span></a>
+            <a href="#sec-line" data-watch="sec-line">10 <span>4つの演習</span></a>
           </nav>
         </aside>
       </div>
+      <div class="plain-note" style="margin-top:14px;"><b>例と確認:</b> 「ChatGPTで相談 → Codexで編集 → Gitで変更を見る → ブラウザで確認」の順を、自分の言葉で言えれば次へ進めます。</div>
     </div>
   </section>
 
@@ -1633,11 +1671,11 @@
     <div class="course-shell">
       <div class="section-head">
         <div>
-          <span class="section-label">04 / Value and Entry</span>
-          <h2>高い価値は、コード暗記ではなく作業設計にある</h2>
-          <p>AIコーディングを使いこなす人は、完璧なコードを書ける人ではありません。何を任せるか、何を確認するか、どこで止めるかを決められる人です。</p>
+          <span class="section-label">04 / 学ぶ5段階</span>
+          <h2>入口から応用まで、1段階ずつ進める</h2>
+          <p><b>知ること:</b> ここでの5段階は、この資料を学ぶ順番です。前のLevel 0〜5は仕事で任せられる範囲なので、別のものとして見ます。「作業場所を知る → 言葉を知る → 小さく作る → 公開する → 仕事へ広げる」の順に進みます。</p>
         </div>
-        <a class="btn" href="#part-2">基礎語彙へ</a>
+        <a class="btn" href="#part-2">次: 基本の言葉へ</a>
       </div>
 
       <div class="stage-console glass">
@@ -1650,57 +1688,58 @@
         </div>
         <div class="stage-body">
           <article id="stage-entry" class="stage-panel active" role="tabpanel">
-            <span class="mini-label">First 30 minutes</span>
-            <h3>作業場を迷子にしない</h3>
-            <p>フォルダ、GitHub、本番URL、管理画面、資料ファイルを分けて見ます。ここが整うだけで、AIへの依頼と確認が一気に安定します。</p>
+            <span class="mini-label">1. 入口</span>
+            <h3>どこを変える作業か確認する</h3>
+            <p>フォルダ、GitHub、本番URL、管理画面、資料ファイルを区別します。場所を取り違えないことが、安全なAI利用の最初の一歩です。</p>
             <div class="stage-meta">
-              <div><b>Goal</b><span>AIが触る範囲を自分で把握する。</span></div>
-              <div><b>Check</b><span><code>git status</code> とブラウザ表示を見る。</span></div>
-              <div><b>Avoid</b><span>秘密情報や本番DBを最初から触らない。</span></div>
+              <div><b>目標</b><span>AIが触る範囲を自分で把握する。</span></div>
+              <div><b>例</b><span><code>git status</code> で変更中のファイルを見る。</span></div>
+              <div><b>確認</b><span>秘密情報や本番DBを最初から触らない。</span></div>
             </div>
           </article>
           <article id="stage-words" class="stage-panel" role="tabpanel">
-            <span class="mini-label">Programming words</span>
-            <h3>AIに任せるための語彙を持つ</h3>
-            <p>HTMLは構造、CSSは見た目、JavaScriptは動き、APIとDBは情報の出入口。これだけで修正依頼の精度が上がります。</p>
+            <span class="mini-label">2. 言葉</span>
+            <h3>直したい場所を言葉にする</h3>
+            <p>HTMLは内容の骨組み、CSSは見た目、JavaScriptは動き、APIとDBは情報の受け渡しと保存です。分けて言えると依頼が伝わります。</p>
             <div class="stage-meta">
-              <div><b>Goal</b><span>不具合がどの層で起きているか言える。</span></div>
-              <div><b>Check</b><span>画面、コンソール、差分を分けて見る。</span></div>
-              <div><b>Avoid</b><span>用語だけ暗記して実物を見ない。</span></div>
+              <div><b>目標</b><span>問題が内容・見た目・動きのどこか言える。</span></div>
+              <div><b>例</b><span>色の変更なら「CSSを確認して」と頼む。</span></div>
+              <div><b>確認</b><span>用語だけでなく実際の画面と結びつける。</span></div>
             </div>
           </article>
           <article id="stage-build" class="stage-panel" role="tabpanel">
-            <span class="mini-label">Build loop</span>
+            <span class="mini-label">3. 制作</span>
             <h3>小さく頼み、見て、直す</h3>
-            <p>1画面、1セクション、1フォームのように単位を切ります。AIには完了条件と確認方法を同時に渡します。</p>
+            <p>1画面、1つのまとまり、1フォームのように作業を分けます。AIには「どこを」「どうする」「何を確認する」を一緒に伝えます。</p>
             <div class="stage-meta">
-              <div><b>Goal</b><span>依頼を作業単位に分解する。</span></div>
-              <div><b>Check</b><span>変更差分、ブラウザ、主要リンク。</span></div>
-              <div><b>Avoid</b><span>大きな一括変更をそのまま採用しない。</span></div>
+              <div><b>目標</b><span>依頼を小さな作業に分ける。</span></div>
+              <div><b>例</b><span>「申込ボタンの文だけ変える」と頼む。</span></div>
+              <div><b>確認</b><span>大きな一括変更をそのまま採用しない。</span></div>
             </div>
           </article>
           <article id="stage-ops" class="stage-panel" role="tabpanel">
-            <span class="mini-label">Publish and Ops</span>
-            <h3>公開して壊さない</h3>
-            <p>Vercel、Git、環境変数、SEO、レビューをつなげます。本番URLを取り違えないことが公開作業の第一条件です。</p>
+            <span class="mini-label">4. 公開</span>
+            <h3>公開してからも直せる状態にする</h3>
+            <p>Vercel（Webサイトを公開するサービス）、Git、環境変数、検索で見つけてもらう工夫（SEO）、レビューをつなげます。本番URLを取り違えないことが第一条件です。</p>
             <div class="stage-meta">
-              <div><b>Goal</b><span>公開前に止める判断を持つ。</span></div>
-              <div><b>Check</b><span>ビルド、リンク、スマホ、差分。</span></div>
-              <div><b>Avoid</b><span>pushだけで本番完了と言わない。</span></div>
+              <div><b>目標</b><span>公開してよいか自分で判断する。</span></div>
+              <div><b>例</b><span>本番URLをスマホでも開いて確認する。</span></div>
+              <div><b>確認</b><span>pushだけで公開完了と判断しない。</span></div>
             </div>
           </article>
           <article id="stage-apply" class="stage-panel" role="tabpanel">
-            <span class="mini-label">Applied production</span>
+            <span class="mini-label">5. 応用</span>
             <h3>LP、資料、動画、業務画面へ広げる</h3>
-            <p>コードの外側も同じです。要件を整理し、AIに初稿を任せ、人が品質と公開可否を判断します。</p>
+            <p>LP（申込用の紹介ページ）、資料、動画、業務画面も進め方は同じです。目的を整理し、AIに初稿を任せ、人が品質を決めます。</p>
             <div class="stage-meta">
-              <div><b>Goal</b><span>AI制作を業務フローに接続する。</span></div>
-              <div><b>Check</b><span>文章、権利、画像、公開範囲。</span></div>
-              <div><b>Avoid</b><span>素材や文章の責任をAIに丸投げしない。</span></div>
+              <div><b>目標</b><span>AI制作を日々の仕事につなげる。</span></div>
+              <div><b>例</b><span>講座案内をWeb、SNS、資料へ展開する。</span></div>
+              <div><b>確認</b><span>文章、権利、画像、公開範囲を人が見る。</span></div>
             </div>
           </article>
         </div>
       </div>
+      <div class="plain-note" style="margin-top:14px;"><b>確認:</b> 5つのタブを順に開き、今できる段階を1つ、次に練習する段階を1つ決めてください。</div>
     </div>
   </section>
 
@@ -1708,26 +1747,27 @@
     <div class="course-shell">
       <div class="section-head">
         <div>
-          <span class="section-label">05 / Programming Basics</span>
-          <h2>プログラミングは、AIの出力を読めるようにする地図</h2>
-          <p>全部を手書きできる必要はありません。ただし、AIがどの層を触ったか分からないと、修正も公開判断もできません。</p>
+          <span class="section-label">05 / 基本の言葉</span>
+          <h2>まず「内容・見た目・動き・データ・履歴・設定」を分ける</h2>
+          <p><b>知ること:</b> コードを全部手書きできなくても大丈夫です。AIが何を変えたか判断するために、6つの役割だけ先に覚えます。</p>
         </div>
-        <a class="btn" href="#part-3">実装ループへ</a>
+        <a class="btn" href="#part-3">次: 作って確認へ</a>
       </div>
 
       <div class="split">
         <div class="stack-grid">
-          <article class="stack-card glass"><span class="tag">Structure</span><h3>HTML</h3><p>見出し、段落、リンク、画像、フォーム。AIに「カードを追加して」と頼むと、まずこの構造が変わります。</p></article>
-          <article class="stack-card glass"><span class="tag">Visual</span><h3>CSS</h3><p>余白、色、レイアウト、スマホ対応、グラス表現。見た目の違和感はCSSの言葉で直します。</p></article>
-          <article class="stack-card glass"><span class="tag">Motion</span><h3>JavaScript</h3><p>タブ、検索、保存、フォーム送信、表示切替。インタラクティブな表示はここで作ります。</p></article>
-          <article class="stack-card glass"><span class="tag">Data</span><h3>API / DB</h3><p>問い合わせ、記事、ユーザー、商品、在庫。画面に出る情報の出入口を扱います。</p></article>
-          <article class="stack-card glass"><span class="tag">History</span><h3>Git</h3><p>変更履歴、差分、戻し方、別案比較。AIに任せるほどGitを見る力が必要です。</p></article>
-          <article class="stack-card glass"><span class="tag">Config</span><h3>Markdown / YAML</h3><p>教材、カード一覧、設定ファイル。AIに編集させやすく、人も読みやすい入口です。</p></article>
+          <article class="stack-card glass"><span class="tag">内容</span><h3>HTML</h3><p>ページの骨組みです。見出し、文章、リンク、画像、フォームを置きます。例: 「紹介カードを1枚追加する」。</p></article>
+          <article class="stack-card glass"><span class="tag">見た目</span><h3>CSS</h3><p>色、文字サイズ、余白、並び方、スマホ表示を決めます。例: 「ボタンを青くし、指で押しやすくする」。</p></article>
+          <article class="stack-card glass"><span class="tag">動き</span><h3>JavaScript</h3><p>クリック後の表示、検索、保存、フォーム送信などを動かします。例: 「メニューを押すと開く」。</p></article>
+          <article class="stack-card glass"><span class="tag">データ</span><h3>API / DB</h3><p>APIは情報を受け渡す窓口、DB（データベース）は情報を保存する棚です。例: 申込内容を送り、保存する。</p></article>
+          <article class="stack-card glass"><span class="tag">履歴</span><h3>Git</h3><p>いつ、何を変えたか記録する仕組みです。diff（差分）で変更前後を比べ、問題があれば前の版へ戻します。</p></article>
+          <article class="stack-card glass"><span class="tag">設定</span><h3>Markdown / YAML</h3><p>Markdownは見出し付き文章、YAMLは項目を並べる設定形式です。教材やカード一覧を人にもAIにも読みやすくします。</p></article>
         </div>
         <figure class="line-image glass">
           <img src="./img/hero-ai-lesson-line.png" alt="AI講習の線画スタイルイメージ">
         </figure>
       </div>
+      <div class="plain-note" style="margin-top:14px;"><b>確認:</b> 「文章を変えるならHTML」「色ならCSS」「クリック後の動きならJavaScript」と言い分けられるか試してください。</div>
     </div>
   </section>
 
@@ -1735,26 +1775,28 @@
     <div class="course-shell">
       <div class="section-head">
         <div>
-          <span class="section-label">06 / Build Loop</span>
-          <h2>実装は、依頼文と確認方法をセットにする</h2>
-          <p>AIに頼む時は、作業対象、完了条件、触ってはいけない範囲、確認方法を同時に渡します。</p>
+          <span class="section-label">06 / 作って確認</span>
+          <h2>AIへの依頼は「場所・変更・条件・確認」の4点で伝える</h2>
+          <p><b>知ること:</b> 「いい感じに直して」では、必要以上の場所が変わることがあります。頼み方と確認方法を先に決めると、初心者でも変更を管理しやすくなります。</p>
         </div>
-        <a class="btn" href="#part-4">公開へ</a>
+        <a class="btn" href="#part-4">次: 安全な公開へ</a>
       </div>
 
       <div class="loop-grid">
         <article class="loop-card dark glass">
-          <span class="tag">Prompt</span>
-          <h3>良い依頼の型</h3>
-          <p>「この部分だけ」「この条件で」「最後にこれを確認して」と書くと、AIは作業単位で動きやすくなります。</p>
-          <div class="prompt-box">このフォルダで、講習LPの基礎セクションだけを見直してください。
-文章の意味は変えず、初心者が順番に学べる構成へ整理してください。
-変更後にブラウザ表示、主要リンク、差分を確認してください。</div>
+          <span class="tag">1. 依頼</span>
+          <h3>4点を入れた依頼の例</h3>
+          <p>場所、変更内容、守る条件、最後の確認を、短い文で順に書きます。</p>
+          <div class="prompt-box">場所: このフォルダの講習ページだけを変更してください。
+変更: 基礎の章を、初心者が順に読める文章へ整理してください。
+条件: リンク、ID、共通メニューは変えないでください。
+確認: 変更差分、PCとスマホの表示、主要リンクを確認してください。</div>
         </article>
-        <article class="loop-card glass"><span class="tag">Diff</span><h3>差分で採用判断する</h3><p>AIの返事ではなく、実際にどのファイルが変わったかを見ます。関係ない変更、秘密情報、意図しない削除を止めます。</p></article>
-        <article class="loop-card glass"><span class="tag">View</span><h3>ブラウザで見る</h3><p>文字のはみ出し、スマホ崩れ、タブやフォームの動き、リンク切れを確認します。見た目の品質は実画面でしか分かりません。</p></article>
-        <article class="loop-card glass"><span class="tag">Review</span><h3>独立レビューを挟む</h3><p>公開前は、褒めてもらうより止めるべき点を探します。バグ、表示崩れ、誤情報、権利、秘密情報を重大度順に見ます。</p></article>
+        <article class="loop-card glass"><span class="tag">2. 差分</span><h3>実際に変わった場所を見る</h3><p>AIの報告だけでなく、Gitのdiff（変更前後の比較）を見ます。関係ないファイル、秘密情報、意図しない削除がないか確認します。</p></article>
+        <article class="loop-card glass"><span class="tag">3. 画面</span><h3>利用者と同じように操作する</h3><p>PCとスマホで開き、文字のはみ出し、リンク、メニュー、タブ、フォーム送信を実際に試します。</p></article>
+        <article class="loop-card glass"><span class="tag">4. 見直し</span><h3>公開前に別の目で確認する</h3><p>バグ、表示崩れ、誤情報、著作権、秘密情報を順に探します。独立レビューとは、制作担当とは別の視点で見ることです。</p></article>
       </div>
+      <div class="plain-note" style="margin-top:14px;"><b>確認:</b> 次の依頼に「場所・変更・条件・確認」の4点が入っていますか。1つでも抜けたら、実行前に書き足します。</div>
     </div>
   </section>
 
@@ -1762,24 +1804,25 @@
     <div class="course-shell">
       <div class="section-head">
         <div>
-          <span class="section-label">07 / Publish and Ops</span>
-          <h2>公開運用は、作った後の品質管理</h2>
-          <p>公開して終わりではありません。URL、ビルド、環境変数、SEO、ログ、問い合わせまでを見て、仕事で使える状態にします。</p>
+          <span class="section-label">07 / 安全に公開</span>
+          <h2>公開は「本番で見る・秘密を守る・戻し方を持つ」まで</h2>
+          <p><b>知ること:</b> push（変更を共有先へ送ること）だけでは公開完了ではありません。本番URLで見て、利用者が使えることを確認して初めて完了です。</p>
         </div>
-        <a class="btn" href="#sec-cms">応用制作へ</a>
+        <a class="btn" href="#sec-cms">次: 仕事への応用へ</a>
       </div>
 
       <div class="check-row" aria-label="公開前チェック">
-        <button type="button" class="check-btn">本番URLとPreview URLを取り違えていない</button>
-        <button type="button" class="check-btn">ビルド、主要リンク、スマホ表示を確認した</button>
-        <button type="button" class="check-btn">APIキーや.envを公開していない</button>
-        <button type="button" class="check-btn">公開後の修正手順を説明できる</button>
+        <button type="button" class="check-btn">本番URLと、確認用のPreview URLを取り違えていない</button>
+        <button type="button" class="check-btn">ビルド、主要リンク、PC・スマホ表示を確認した</button>
+        <button type="button" class="check-btn">APIキーや、秘密の設定を入れるファイル（.env）を公開していない</button>
+        <button type="button" class="check-btn">問題が出た時の修正・復旧手順を説明できる</button>
       </div>
 
       <div class="loop-grid" style="margin-top:14px;">
-        <article class="loop-card glass"><span class="tag">Vercel</span><h3>本番へ届ける</h3><p>push、ビルド、Production URL、Preview URL、環境変数を分けます。公開確認は必ず本番URLで行います。</p></article>
-        <article class="loop-card glass"><span class="tag">Security</span><h3>危険な変更を止める</h3><p>認証、DB書き込み、決済、管理画面、秘密情報は確認モーダルや権限設計とセットで扱います。</p></article>
+        <article class="loop-card glass"><span class="tag">公開</span><h3>Vercelで本番へ届ける</h3><p>ビルドは、公開できる形にファイルをまとめる処理です。Productionは本番、Previewは確認用。環境変数は、公開コードに直接書かない設定値です。</p></article>
+        <article class="loop-card glass"><span class="tag">安全</span><h3>影響の大きい操作は止まって確認する</h3><p>ログイン、DBへの書き込み、決済、管理画面、秘密情報は、確認画面と権限設定を用意します。迷ったまま本番を変えません。</p></article>
       </div>
+      <div class="plain-note" style="margin-top:14px;"><b>例と確認:</b> 上の4つのボタンを実際に押し、すべて確認済みにできる時だけ「本番公開完了」と伝えます。</div>
     </div>
   </section>
 
@@ -1787,19 +1830,20 @@
     <div class="course-shell">
       <div class="section-head">
         <div>
-          <span class="section-label">08 / Applied Production</span>
-          <h2>AIコーディングは、LP・教材・動画・業務画面に広がる</h2>
-          <p>コードの講習で終わらせず、文章、画像、プレゼン、SNS、CMS、管理画面へ広げます。共通するのは、構造化してAIに任せ、人が確認して公開する流れです。</p>
+          <span class="section-label">08 / 仕事への応用</span>
+          <h2>Web、資料、発信、事務作業でも進め方は同じ</h2>
+          <p><b>知ること:</b> 「目的を決める → 材料を整理する → AIに初稿を頼む → 人が確認する → 公開後に直す」という流れは、コード以外にも使えます。</p>
         </div>
-        <a class="btn" href="#sec-ccode">Codex公式更新へ</a>
+        <a class="btn" href="#sec-ccode">次: 公式情報の見方へ</a>
       </div>
 
       <div class="loop-grid">
-        <article class="loop-card glass"><span class="tag">LP</span><h3>見せる成果物</h3><p>ヒーロー、カード、FAQ、CTA、フォームを作りながら、HTML/CSS/JSの基礎をまとめて学びます。</p></article>
-        <article class="loop-card glass"><span class="tag">Materials</span><h3>受講資料をコードで管理</h3><p>Markdown、HTML、スライド、PDFを同じリポジトリで扱うと、更新履歴と再構成が楽になります。</p></article>
-        <article class="loop-card glass"><span class="tag">Creative</span><h3>画像と線画を制作に入れる</h3><p>説明図、線画、OGP、SNS素材、動画台本までAIに初稿を任せ、デザインの統一感は人が整えます。</p></article>
-        <article class="loop-card glass"><span class="tag">Business</span><h3>業務画面へ接続する</h3><p>フォーム、顧客管理、在庫、記事、問い合わせ。AI制作を日常業務の中に入れる段階です。</p></article>
+        <article class="loop-card glass"><span class="tag">Web</span><h3>申込用ページを作る</h3><p>LPは、講座や商品の申込につなげる1枚の紹介ページ。見出し、よくある質問、CTA（次の行動を促すボタン）、フォームを順に作ります。</p></article>
+        <article class="loop-card glass"><span class="tag">資料</span><h3>受講資料を更新しやすくする</h3><p>Markdown、HTML、スライド、PDFを同じ場所で管理すると、変更履歴が残り、講座ごとの並べ替えや再利用がしやすくなります。</p></article>
+        <article class="loop-card glass"><span class="tag">発信</span><h3>1つの内容を媒体ごとに作り替える</h3><p>講座の実例を、説明図、Web記事、SNS画像、動画台本へ展開します。AIに初稿を頼み、事実、権利、言葉づかいは人が整えます。</p></article>
+        <article class="loop-card glass"><span class="tag">業務</span><h3>日々の事務作業につなぐ</h3><p>フォーム、顧客管理、在庫、記事、問い合わせをつなぎます。CMSは、専門知識がなくてもWeb内容を更新するための管理画面です。</p></article>
       </div>
+      <div class="plain-note" style="margin-top:14px;"><b>例と確認:</b> 自分の仕事から繰り返し作っているものを1つ選び、「材料・AIに任せる部分・人が確認する部分」を分けて書いてください。</div>
     </div>
   </section>
 
@@ -1807,9 +1851,9 @@
     <div class="course-shell">
       <div class="section-head">
         <div>
-          <span class="section-label">09 / Codex Official Updates</span>
-          <h2>Codexの最新機能は、受講内容と直結している</h2>
-          <p>OpenAI公式発表では、Codexは単なるコード生成ではなく、複数エージェント、アプリ、IDE/CLI、ロール別プラグイン、Sites、annotationsへ広がっています。講習では、この流れを実務で使える順番に落とし込みます。</p>
+          <span class="section-label">09 / 公式情報</span>
+          <h2>必要な人だけ、Codexの公式情報を確認する</h2>
+          <p>ここからは参考資料です。初心者は読み飛ばして演習へ進めます。詳しく調べたいときは、情報のまとめ記事ではなくOpenAIの公式発表を開きます。</p>
         </div>
         <a class="btn" href="#sec-line">演習へ</a>
       </div>
@@ -1818,22 +1862,22 @@
         <a class="official-card glass" href="https://openai.com/index/codex-for-every-role-tool-workflow/" target="_blank" rel="noopener">
           <span class="date">2026-06-02 / OpenAI</span>
           <h3>Codex for every role, tool, and workflow</h3>
-          <p>ロール別プラグイン、Sites、annotations、非エンジニア活用の広がり。AIコーディングを業務全体へ広げる根拠リンク。</p>
+          <p>職種別の追加機能、Webページ作成、修正箇所へのメモなど、AI開発を仕事全体へ広げる発表です。</p>
         </a>
         <a class="official-card glass" href="https://openai.com/index/introducing-the-codex-app/" target="_blank" rel="noopener">
           <span class="date">2026-02-02 / OpenAI</span>
           <h3>Introducing the Codex app</h3>
-          <p>複数エージェント管理、CLI/IDE/クラウドとの連携、Skills、Automations、クラウドデプロイまでの導線。</p>
+          <p>複数のAI作業を一覧で管理し、編集画面やクラウドとつなぎ、よく使う手順を再利用するCodexアプリの発表です。</p>
         </a>
         <a class="official-card glass" href="https://openai.com/index/introducing-upgrades-to-codex/" target="_blank" rel="noopener">
           <span class="date">2025-09-15 / OpenAI</span>
           <h3>Introducing upgrades to Codex</h3>
-          <p>IDE拡張、GitHub連携、PRレビューなど、日常開発ワークフローへCodexを近づける公式アップデート。</p>
+          <p>コードの編集画面、GitHub、変更提案の確認をつなぎ、日々の開発で使いやすくした更新です。</p>
         </a>
         <a class="official-card glass" href="https://openai.com/index/introducing-codex/" target="_blank" rel="noopener">
           <span class="date">2025-05-16 / OpenAI</span>
           <h3>Introducing Codex</h3>
-          <p>クラウド上のサンドボックスで複数タスクを並行し、機能追加、バグ修正、PR提案まで行うCodexの基礎発表。</p>
+          <p>クラウド上の分離された安全な作業場所で、機能追加、問題修正、変更案の作成を進めるCodexの最初の発表です。</p>
         </a>
       </div>
     </div>
@@ -1843,9 +1887,9 @@
     <div class="course-shell">
       <div class="section-head">
         <div>
-          <span class="section-label">10 / Exercises</span>
+          <span class="section-label">10 / 4つの演習</span>
           <h2>だんだん作れるようになる総合演習</h2>
-          <p>1回で全部を作るのではなく、成果物を小さく積み上げます。各演習は講習中に投影しやすく、通常閲覧では折りたたんで読めます。</p>
+          <p>1回で全部を作るのではなく、4つの演習を小さく積み上げます。演習カードはいつでも見られ、詳しい講習メモだけを下で折りたたんで確認できます。</p>
         </div>
         <a class="btn" href="#top">先頭へ戻る</a>
       </div>
@@ -1884,11 +1928,11 @@
 <footer class="footer-cta">
   <div class="course-shell">
     <h2>AIエージェントは、頼むだけでなく、確認して任せられる人の技術です。</h2>
-    <p>この講習は、AI時代の本物のエンジニア像、レベルマップ、プログラミング基礎、実装、公開、AI応用制作を1本にまとめた総合LPです。専門用語は省かず、判断に必要な意味と確認方法まで一緒に扱います。</p>
+    <p>この講習は、AIへの頼み方、成長レベル、基本の言葉、確認、安全な公開を1本にまとめています。専門用語は日常の言葉に置き換え、詳しい公式情報は参考章に分けています。</p>
     <div class="hero-actions">
-      <a class="btn primary" href="#pm-real-pro">もう一度本物のプロから見る</a>
+      <a class="btn primary" href="#pm-real-pro">最初から読み直す</a>
       <a class="btn" href="./#packages">受講プランへ戻る</a>
-      <a class="btn" href="./index.html">AIハブへ戻る</a>
+      <a class="btn" href="./index.html">AI相談へ戻る</a>
     </div>
   </div>
 </footer>

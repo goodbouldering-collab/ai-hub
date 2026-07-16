@@ -1,201 +1,177 @@
 ---
-title: Claude Code 2026 棚卸し — 開発フローを変えた機能だけ
+title: Claude Codeでできること — 2026年版
 date: 2026-05-21
 role: 開発メモ / インフォグラフィック
-gen_by: 由井 辰美 / AIハブ
-summary: 2026年1月〜5月のClaude Codeリリースから「実際に手元の開発フローが変わった」機能だけを、タイムライン・カテゴリカード・コマンド早見表のインフォグラフィックで一望する。コマンド名・設定キー・出荷時期(Week番号)は公式 changelog / What's new で裏取り済み。
+gen_by: 由井 辰美 / AI相談
+summary: Claude Codeの新しい機能から、作業を裏で進める、操作範囲を決める、機能を追加するなど、仕事で役立つものを目的別に整理。
+category: ai-build
+learning_order: 5
+level: 応用
 ---
 
-<style>
-.cc-info{--ink:var(--text,#0f172a);--soft:var(--text-soft,#334155);--mut:var(--muted,#64748b);--ln:var(--line,#e2e8f0);--pri:var(--primary,#2563eb);--pribg:var(--primary-bg,#eff6ff);--em:var(--emerald,#10b981);--am:var(--amber,#f59e0b);--pk:var(--pink,#ec4899);font-feature-settings:"palt";}
-.cc-info *{box-sizing:border-box;}
-.cc-note{background:var(--pribg);border:1px solid var(--ln);border-left:4px solid var(--pri);border-radius:12px;padding:14px 18px;font-size:14px;color:var(--soft);line-height:1.8;margin:8px 0 28px;}
-.cc-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:0 0 36px;}
-.cc-stat{background:var(--bg-white,#fff);border:1px solid var(--ln);border-radius:16px;padding:18px 16px;text-align:center;box-shadow:0 8px 28px rgba(15,23,42,.06);}
-.cc-stat b{display:block;font-size:30px;line-height:1.1;color:var(--pri);font-weight:800;letter-spacing:-.02em;}
-.cc-stat span{display:block;margin-top:6px;font-size:12px;color:var(--mut);font-weight:600;letter-spacing:.03em;}
-.cc-h{font-size:13px;font-weight:800;letter-spacing:.14em;color:var(--mut);text-transform:uppercase;margin:40px 0 16px;display:flex;align-items:center;gap:10px;}
-.cc-h::after{content:"";flex:1;height:1px;background:var(--ln);}
-.cc-time{position:relative;margin:0 0 8px;padding-left:26px;}
-.cc-time::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--pri),var(--pk));}
-.cc-row{position:relative;padding:10px 0 16px;}
-.cc-row::before{content:"";position:absolute;left:-23px;top:14px;width:12px;height:12px;border-radius:50%;background:var(--bg-white,#fff);border:3px solid var(--pri);}
-.cc-wk{display:inline-block;font-size:11px;font-weight:800;color:#fff;background:var(--pri);border-radius:999px;padding:2px 10px;letter-spacing:.04em;}
-.cc-when{font-size:12px;color:var(--mut);margin-left:8px;}
-.cc-row p{margin:6px 0 0;font-size:14px;color:var(--soft);line-height:1.7;}
-.cc-row code{background:var(--pribg);color:var(--pri);padding:1px 6px;border-radius:6px;font-size:13px;font-weight:600;}
-.cc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
-.cc-card{background:var(--bg-white,#fff);border:1px solid var(--ln);border-radius:16px;padding:20px;box-shadow:0 8px 28px rgba(15,23,42,.05);border-top:4px solid var(--accent,var(--pri));}
-.cc-card.em{--accent:var(--em);} .cc-card.am{--accent:var(--am);} .cc-card.pk{--accent:var(--pk);} .cc-card.pri{--accent:var(--pri);}
-.cc-card h4{margin:0 0 4px;font-size:17px;color:var(--ink);font-weight:800;}
-.cc-card .sub{font-size:12px;color:var(--mut);margin:0 0 12px;font-weight:600;}
-.cc-card ul{margin:0;padding:0;list-style:none;}
-.cc-card li{padding:8px 0;border-top:1px dashed var(--ln);font-size:13.5px;color:var(--soft);line-height:1.65;}
-.cc-card li:first-child{border-top:none;}
-.cc-card code{background:#0f172a;color:#e2e8f0;padding:2px 7px;border-radius:6px;font-size:12.5px;font-weight:600;white-space:nowrap;}
-.cc-card .tag{display:inline-block;font-size:10px;font-weight:800;color:var(--accent,var(--pri));background:color-mix(in srgb,var(--accent,var(--pri)) 12%,transparent);border-radius:999px;padding:1px 8px;margin-left:6px;letter-spacing:.04em;vertical-align:1px;}
-.cc-cheat{width:100%;border-collapse:collapse;font-size:13px;margin:4px 0;background:var(--bg-white,#fff);border:1px solid var(--ln);border-radius:14px;overflow:hidden;}
-.cc-cheat th{background:#0f172a;color:#fff;text-align:left;padding:11px 14px;font-size:12px;letter-spacing:.05em;}
-.cc-cheat td{padding:10px 14px;border-top:1px solid var(--ln);color:var(--soft);vertical-align:top;}
-.cc-cheat td code{background:var(--pribg);color:var(--pri);padding:2px 7px;border-radius:6px;font-weight:700;font-size:12.5px;white-space:nowrap;}
-.cc-cheat tr:nth-child(even) td{background:#f8fafc;}
-.cc-flag{background:linear-gradient(135deg,var(--pri),var(--pk));color:#fff;border-radius:18px;padding:24px 26px;margin:36px 0 12px;box-shadow:0 16px 44px rgba(37,99,235,.28);}
-.cc-flag b{font-size:22px;font-weight:800;display:block;margin-bottom:8px;letter-spacing:-.01em;}
-.cc-flag p{margin:0;font-size:14px;line-height:1.8;opacity:.96;}
-.cc-flag .big{font-size:34px;font-weight:900;}
-.cc-src{font-size:12px;color:var(--mut);line-height:1.8;border-top:1px solid var(--ln);margin-top:34px;padding-top:16px;}
-@media(max-width:680px){.cc-stats{grid-template-columns:repeat(2,1fr);}.cc-grid{grid-template-columns:1fr;}.cc-stat b{font-size:24px;}}
-</style>
+## この資料でわかること
 
-<div class="cc-info">
+Claude Codeは、ターミナルからAIに開発作業を頼むためのツールです。ターミナルとは、文字でコマンドを入力してPCを操作する画面です。
 
-<div class="cc-note">公式 changelog と週次ダイジェスト（code.claude.com）を引いて確認した内容だけを載せている。試していない伝聞や、名前があやしいものは落とした。ここのコマンド名・設定キーはそのまま打って動く前提。<b>Week番号</b>は2026年の週（W13≒3月下旬 〜 W20≒5月中旬）。</div>
+この資料では、2026年1月から5月までに追加された機能のうち、実際の開発の進め方を変えた14項目を整理します。
 
-<div class="cc-stats">
-<div class="cc-stat"><b>Jan→May</b><span>対象期間</span></div>
-<div class="cc-stat"><b>14</b><span>採り上げた機能</span></div>
-<div class="cc-stat"><b>+50%</b><span>週次上限 (〜7/13)</span></div>
-<div class="cc-stat"><b>Opus 4.7</b><span>既定モデル (Max/Team)</span></div>
-</div>
+- 複数の作業を同時に進め、まとめて確認する方法
+- AIに許可する操作と、禁止する操作の分け方
+- 難しい作業だけ、AIの考える量を増やす方法
+- プラグイン、Windows、作業場所の分離に関する変更
+- よく使うコマンドと設定
 
-<div class="cc-h">⏱ タイムライン — 何がいつ来たか</div>
-<div class="cc-time">
-<div class="cc-row"><span class="cc-wk">W13</span><span class="cc-when">3月下旬</span><p><b>Auto Mode</b>（<code>auto</code> 権限モード, 研究プレビュー）/ Windows <b>PowerShell ネイティブ対応</b></p></div>
-<div class="cc-row"><span class="cc-wk">W14</span><span class="cc-when">3月末〜4月頭</span><p><b>Computer use in CLI</b>（研究プレビュー）— GUI をクリックして変更を検証</p></div>
-<div class="cc-row"><span class="cc-wk">W15</span><span class="cc-when">4月上旬</span><p><b>バックグラウンドセッション</b> <code>claude --bg</code> 確定 / <b>Ultraplan</b> / <b>Monitor</b> ツール / <code>/loop</code></p></div>
-<div class="cc-row"><span class="cc-wk">W16</span><span class="cc-when">4月中旬</span><p><b>Opus 4.7</b> 既定化 / <code>/effort</code> スライダー化・最上位 <code>xhigh</code> 追加</p></div>
-<div class="cc-row"><span class="cc-wk">W19</span><span class="cc-when">5月頭</span><p><code>autoMode.hard_deny</code> / プラグイン <code>.zip</code>・URL 読み込み / <code>worktree.bgIsolation</code></p></div>
-<div class="cc-row"><span class="cc-wk">W20</span><span class="cc-when">5月中旬</span><p><b>Agent View</b> <code>claude agents</code> / <code>/goal</code> 自走ループ</p></div>
-<div class="cc-row"><span class="cc-wk">5/13</span><span class="cc-when">5月中旬</span><p><b>週次上限 +50%</b>（〜7/13 の期間限定）</p></div>
-</div>
+公式の変更履歴（changelog）と週次まとめ（code.claude.com）で確認できた内容だけを載せています。試していない伝聞や、名称を確認できないものは除外しています。
 
-<div class="cc-h">🧩 並列運用が「前提」になった三点セット</div>
-<div class="cc-grid">
-<div class="cc-card pri">
-<h4>バックグラウンドセッション<span class="tag">W15</span></h4>
-<p class="sub">ターミナルを開きっぱなしにしない</p>
-<ul>
-<li><code>claude --bg</code> で投入、会話中は <code>/bg</code></li>
-<li>監督プロセスが裏で面倒を見る方式（Q1から育って4月に確定）</li>
-<li>単独だと「投げっぱなし」。下の2つとセットで初めて効く</li>
-</ul>
-</div>
-<div class="cc-card pri">
-<h4>Agent View<span class="tag">W20</span></h4>
-<p class="sub">全セッションを1画面で監視</p>
-<ul>
-<li><code>claude agents</code>（スラッシュ無し）で起動</li>
-<li>状態（作業中 / 入力待ち / 完了）を一覧表示</li>
-<li>その場で dispatch・peek・attach/detach。並列の最大の苦痛を解消</li>
-</ul>
-</div>
-<div class="cc-card pri">
-<h4>/goal 自走ループ<span class="tag">W20</span></h4>
-<p class="sub">完了条件を渡して放流する</p>
-<ul>
-<li><code>/goal &lt;完了条件&gt;</code> が満たされるまでターン跨ぎで継続</li>
-<li>経過時間・ターン数・トークン数がライブ表示</li>
-<li>「テストが全部通るまで」を条件にした夜間バッチ的開発の核</li>
-</ul>
-</div>
-<div class="cc-card pri">
-<h4>Monitor ツール<span class="tag">W15</span></h4>
-<p class="sub">裏のイベントを会話に流し込む</p>
-<ul>
-<li>バックグラウンドのログ・プロセスをリアルタイム取り込み</li>
-<li><code>--bg</code> の様子を <code>sleep</code> ポーリングせず拾える</li>
-</ul>
-</div>
-</div>
+> Week番号は2026年の週です。W13は3月下旬、W20は5月中旬にあたります。
 
-<div class="cc-h">🔐 権限まわり — 「全許可」と「全確認」の間</div>
-<div class="cc-grid">
-<div class="cc-card em">
-<h4>Auto Mode<span class="tag">W13</span></h4>
-<p class="sub">安全は自動承認・危険はブロック</p>
-<ul>
-<li>権限モード <code>auto</code>（研究プレビュー）</li>
-<li>分類モデル（Sonnet 4.6）が裏で判定</li>
-<li>「全YOLO許可」の恐怖と「毎回Enter」の苦行の中間</li>
-</ul>
-</div>
-<div class="cc-card em">
-<h4>hard_deny / dontAsk<span class="tag">W19</span></h4>
-<p class="sub">絶対に触らせない操作の保険</p>
-<ul>
-<li><code>autoMode.hard_deny</code> 配列で無条件ブロック</li>
-<li><code>rm -rf</code>・本番DB書き込み等を機械的に止める</li>
-<li>全部を事前許可リストでしか通さない <code>dontAsk</code> も別途</li>
-</ul>
-</div>
-</div>
+## まず結論
 
-<div class="cc-h">⚡ 効かせどころ & クラウド往復</div>
-<div class="cc-grid">
-<div class="cc-card am">
-<h4>Opus 4.7 + /effort<span class="tag">W16</span></h4>
-<p class="sub">推論の出し入れ</p>
-<ul>
-<li>Max/Team Premium で Opus 4.7 が既定</li>
-<li><code>/effort</code> がスライダー化、最上位 <code>xhigh</code> 追加</li>
-<li><code>${CLAUDE_EFFORT}</code> で skill/bash から現在値が読める</li>
-<li>難所だけ <code>xhigh</code>、定型は控えめ、と1セッション内で出し入れ</li>
-</ul>
-</div>
-<div class="cc-card am">
-<h4>Ultraplan + /loop<span class="tag">W15</span></h4>
-<p class="sub">設計と実装の場所を分ける</p>
-<ul>
-<li><b>Ultraplan</b>: クラウドで計画下書き → Webでレビュー → 手元/リモートで実行</li>
-<li><code>/loop &lt;間隔&gt;</code>: 定期タスク。間隔省略で自己ペース常駐</li>
-</ul>
-</div>
-</div>
+この時期の大きな変化は、Claude Codeに一つずつ作業を頼む使い方から、**複数の作業を裏で動かし、人がまとめて監督する使い方**へ進んだことです。
 
-<div class="cc-h">🛠 プラグイン & 環境</div>
-<div class="cc-grid">
-<div class="cc-card pk">
-<h4>公式マーケットプレイス<span class="tag">W19</span></h4>
-<p class="sub">拡張は公式内で完結させる</p>
-<ul>
-<li><code>/plugin</code>（<b>単数</b>）で Discover タブ → <code>claude-plugins-official</code></li>
-<li>5月時点で公式101本、コミュニティ含め1,000本超</li>
-<li><code>.zip</code> アーカイブ・URL からの読み込みにも対応</li>
-</ul>
-</div>
-<div class="cc-card pk">
-<h4>環境まわり<span class="tag">W13–W19</span></h4>
-<p class="sub">OS差・隔離の制御</p>
-<ul>
-<li><b>PowerShell ネイティブ</b>: Windows で Git Bash 必須でなくなった</li>
-<li><b>Computer use in CLI</b>: GUI 操作で変更を検証（研究プレビュー）</li>
-<li><code>worktree.bgIsolation</code>: 隔離 worktree か作業コピー直編集かを選択</li>
-</ul>
-</div>
-</div>
+最初は、次の3つの目的だけ押さえます。具体的なコマンドは、そのあとで確認します。
 
-<div class="cc-h">📋 コマンド早見表</div>
-<table class="cc-cheat">
-<tr><th>コマンド / 設定</th><th>用途</th><th>時期</th></tr>
-<tr><td><code>claude --bg</code> / <code>/bg</code></td><td>バックグラウンドでタスクを走らせる</td><td>W15</td></tr>
-<tr><td><code>claude agents</code></td><td>全セッションを1画面で監視・操作</td><td>W20</td></tr>
-<tr><td><code>/goal &lt;条件&gt;</code></td><td>完了条件まで自走</td><td>W20</td></tr>
-<tr><td><code>auto</code> モード</td><td>安全は自動承認・危険はブロック</td><td>W13</td></tr>
-<tr><td><code>autoMode.hard_deny</code></td><td>無条件で蹴る固いルール</td><td>W19</td></tr>
-<tr><td><code>/effort xhigh</code></td><td>推論を最大に効かせる</td><td>W16</td></tr>
-<tr><td><code>/loop &lt;間隔&gt;</code></td><td>定期/常駐タスク</td><td>W15</td></tr>
-<tr><td><code>/plugin</code></td><td>公式マーケットプレイス閲覧・導入</td><td>W19</td></tr>
-<tr><td><code>worktree.bgIsolation</code></td><td>バックグラウンドの隔離方式を選択</td><td>W19</td></tr>
-</table>
+1. 長い作業を、今の画面とは別に進める
+2. 複数の作業が「作業中・入力待ち・完了」のどこかを見る
+3. 「何ができたら完了か」を先に決める
 
-<div class="cc-flag">
-<b>今が回し時</b>
-<p><span class="big">+50%</span> — 週次上限が <b>5月13日</b> から <b>7月13日まで</b> 増量（Pro / Max / Team / シート制 Enterprise 対象、無料枠は対象外。SpaceX との計算資源契約が背景という報道）。<br><br><code style="background:rgba(255,255,255,.2);padding:2px 7px;border-radius:6px;">--bg</code> + <code style="background:rgba(255,255,255,.2);padding:2px 7px;border-radius:6px;">/goal</code> + <b>Auto Mode</b> が揃って「放流して自走させる」開発がやっと成立した時期に、上限が1.5倍。フル回転させるなら今。</p>
-</div>
+この3つに、安全な操作と禁止する操作のルールを加えます。
 
-<div class="cc-src">
-出典: Claude Code 公式 changelog / What's new（週次ダイジェスト, code.claude.com）、Anthropic Engineering（Auto Mode）、Claude Code Plugin Marketplace（anthropics/claude-plugins-official）、週次上限拡大の各報道。<br>
-関連: <a href="../index.html">AIハブ トップ</a> ・ <a href="./2026-04-ai-kihon.html">受講資料 入門 #01</a> ・ <a href="../speaker.html">講師紹介</a>
-</div>
+| 項目 | 内容 |
+|---|---|
+| 対象期間 | 2026年1月〜5月 |
+| 採り上げた機能 | 14項目 |
+| 既定モデル | Opus 4.7（Max / Team） |
+| 週次上限 | 2026年5月13日〜7月13日に+50% |
 
-</div>
+## 順番に理解する本文
+
+### 1. 作業を裏で進める
+
+バックグラウンドとは、今見ている会話とは別に、作業を裏で動かすことです。
+
+| 機能 | 何ができるか | 使い方 |
+|---|---|---|
+| バックグラウンドセッション | ターミナルを開いたまま見張らずに作業を続ける | 新しく始めるときは`claude --bg`、会話中は`/bg` |
+| 作業一覧画面（Agent View） | 全セッションの状態を一つの画面で見る | `claude agents`。スラッシュは付けない |
+| `/goal` | 完了条件を満たすまで、会話の区切りをまたいで進める | `/goal <完了条件>` |
+| 監視機能（Monitor） | 裏で動く作業の記録や変化を会話に取り込む | 何度も手動確認せず、変化を受け取る |
+
+セッションとは、一つの作業を進める会話のまとまりです。
+
+`claude agents`では、各セッションが「作業中」「入力待ち」「完了」のどれかを一覧で確認できます。その場で作業を割り当てる、途中を見る、画面につなぐ・外すといった操作もできます。公式画面では、それぞれdispatch、peek、attach / detachと表示されます。
+
+`/goal`は、経過時間、会話の回数、AIの利用量（トークン）を表示します。「テストが全部通るまで」のように完了条件を渡すと、夜間に続ける作業にも使えます。
+
+バックグラウンドセッションは、2026年第1四半期から改善され、W15に`claude --bg`として確定しました。単独で使うより、Agent View、`/goal`、Monitorと組み合わせると状況を把握しやすくなります。
+
+### 2. 許可する操作と禁止する操作を分ける
+
+Auto Modeは、安全と判断された操作を自動で許可し、危険な操作を止める権限モードです。W13に研究プレビューとして登場し、選択中のAIとは別の判定用モデルが、操作を許可できるか裏で確認します。
+
+これにより、「すべて許可する」と「毎回、人が確認する」の中間を選べます。
+
+| 設定 | 役割 |
+|---|---|
+| `auto` | 安全と判断された操作を自動で許可し、危険な操作を止める |
+| `autoMode.hard_deny` | 絶対に実行させない操作を配列で指定する |
+| `dontAsk` | 事前に許可した操作だけを通す |
+
+`autoMode.hard_deny`には、`rm -rf`や本番データベースへの書き込みなど、実行させたくない操作を指定できます。
+
+### 3. 難しい作業だけ、考える量を増やす
+
+W16に、Max / Team PremiumでOpus 4.7が既定モデルになりました。同じ時期に`/effort`がスライダーになり、最上位の`xhigh`が追加されました。
+
+- 難しい作業では`/effort xhigh`を使う
+- 定型作業では考える量を控えめにする
+- `${CLAUDE_EFFORT}`を使うと、追加機能やコマンド処理から現在の設定値を読める
+
+一つのセッションの中でも、作業の難しさに合わせて考える量を変えられます。
+
+### 4. 計画と繰り返し作業を分ける
+
+W15には、Ultraplanと`/loop`も登場しました。
+
+- **Ultraplan**：クラウドで計画の下書きを作り、Webで確認してから、手元またはリモート環境で実行する
+- **`/loop <間隔>`**：決めた間隔で作業を繰り返す。間隔を省略すると、自分のペースで常駐する
+
+設計を確認してから実装へ進む作業と、定期的に繰り返す作業を分けて扱えます。
+
+### 5. プラグインで機能を追加する
+
+W19時点では、`/plugin`から公式マーケットプレイスを開けます。コマンド名は複数形ではなく、単数の`/plugin`です。
+
+- Discoverタブから`claude-plugins-official`を確認する
+- 2026年5月時点で公式101本、コミュニティを含めると1,000本を超える
+- `.zip`ファイルやURLからも読み込める
+
+### 6. Windowsと作業場所の違いに対応する
+
+W13からW19には、作業環境に関する変更も入りました。
+
+- **PowerShellネイティブ対応**：WindowsでGit Bashを必須にせず使える
+- **Computer use in CLI**：文字で操作する画面（CLI）から、ボタンで操作する画面（GUI）を動かして確認する研究プレビュー
+- **`worktree.bgIsolation`**：バックグラウンド作業を分離したworktreeで行うか、今の作業コピーを直接編集するかを選ぶ
+
+CLIは、文字のコマンドで操作する画面です。GUIは、ボタンや画面をクリックして操作する方式です。worktreeは、同じリポジトリの作業場所を分けるGitの仕組みです。
+
+### 7. 追加された順番を確認する
+
+| 時期 | 主な変更 |
+|---|---|
+| W13・3月下旬 | Auto Mode（`auto`、研究プレビュー）、Windows PowerShellネイティブ対応 |
+| W14・3月末〜4月頭 | Computer use in CLI（研究プレビュー） |
+| W15・4月上旬 | `claude --bg`、Ultraplan、Monitorツール、`/loop` |
+| W16・4月中旬 | Opus 4.7の既定化、`/effort`のスライダー化、`xhigh`追加 |
+| W19・5月頭 | `autoMode.hard_deny`、プラグインの`.zip`・URL読み込み、`worktree.bgIsolation` |
+| W20・5月中旬 | Agent View（`claude agents`）、`/goal` |
+| 5月13日 | 週次上限+50%。7月13日までの期間限定 |
+
+### 8. コマンドを目的別に選ぶ
+
+| コマンド / 設定 | 用途 | 時期 |
+|---|---|---|
+| `claude --bg` / `/bg` | バックグラウンドで作業を走らせる | W15 |
+| `claude agents` | 全セッションを一つの画面で監視・操作する | W20 |
+| `/goal <条件>` | 完了条件まで作業を続ける | W20 |
+| `auto`モード | 安全な操作は自動で許可し、危険な操作は止める | W13 |
+| `autoMode.hard_deny` | 無条件で止める操作を指定する | W19 |
+| `/effort xhigh` | AIが考える量を最大にする | W16 |
+| `/loop <間隔>` | 定期・常駐作業を動かす | W15 |
+| `/plugin` | 公式マーケットプレイスを見て導入する | W19 |
+| `worktree.bgIsolation` | バックグラウンド作業の分離方法を選ぶ | W19 |
+
+週次上限は、2026年5月13日から7月13日まで50%増量されました。対象はPro、Max、Team、シート制Enterpriseで、無料枠は対象外でした。
+
+## 具体例 / やってみる
+
+「テストが全部通るまで修正する」という作業を例にします。
+
+1. 完了条件を「テストが全部通るまで」と決める
+2. `/goal <完了条件>`で条件を渡す
+3. `claude --bg`または`/bg`で裏の作業として進める
+4. `claude agents`で「作業中」「入力待ち」「完了」を見る
+5. Monitorでログや出来事を会話に取り込む
+6. Auto Modeを使い、実行させたくない操作は`autoMode.hard_deny`で止める
+
+この組み合わせにより、作業を任せたまま放置するのではなく、完了条件と安全ルールを決めて監督できます。
+
+## 振り返り / 次の一歩
+
+- まずは`claude --bg`、`claude agents`、`/goal`の役割を分けて覚える
+- 次に、Auto Modeと`autoMode.hard_deny`で安全ルールを決める
+- 難しい作業だけ`/effort xhigh`を使う
+- 定期作業は`/loop`、機能追加は`/plugin`を確認する
+
+すべてを一度に使う必要はありません。最初は、今の開発で繰り返している作業を一つ選び、完了条件を書いてから試します。
+
+### 出典
+
+Claude Code公式changelog / What's new（週次ダイジェスト、code.claude.com）、Anthropic Engineering（Auto Mode）、Claude Code Plugin Marketplace（anthropics/claude-plugins-official）。
+
+### 関連リンク
+
+- [AI相談 トップ](../index.html)
+- [受講資料 入門 #01](./2026-04-ai-kihon.html)
+- [講師紹介](../speaker.html)

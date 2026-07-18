@@ -11771,7 +11771,7 @@ def _render_works_section() -> str:
 
 
 def _render_lectures_section() -> str:
-    """LPでは全件を並べず、目的別の入口だけを見せる。"""
+    """公開中の受講資料をLPでもすべて見せる。"""
     pmap_card = {
         "title": "AIエージェント講習 120分",
         "icon": "🧭",
@@ -11787,17 +11787,24 @@ def _render_lectures_section() -> str:
     route_labels = {
         "ai-start": "AIが初めて",
         "ai-work": "自社資料を使う",
+        "ai-build": "AIと作る",
         "climbing": "クライミング",
     }
     lecs: list[dict] = []
-    for category in ("ai-start", "ai-work"):
-        first = next((item for item in all_lectures if item.get("category") == category), None)
-        if first:
-            lecs.append({**first, "route_label": route_labels[category]})
-    lecs.append(pmap_card)
-    climbing = next((item for item in all_lectures if item.get("category") == "climbing"), None)
-    if climbing:
-        lecs.append({**climbing, "route_label": route_labels["climbing"]})
+    pmap_added = False
+    category_order = {category: index for index, category in enumerate(("ai-start", "ai-work", "ai-build", "climbing"))}
+    ordered_lectures = sorted(
+        all_lectures,
+        key=lambda item: (category_order.get(str(item.get("category") or ""), 99), int(item.get("order") or 999)),
+    )
+    for item in ordered_lectures:
+        category = str(item.get("category") or "")
+        if category == "ai-build" and not pmap_added:
+            lecs.append(pmap_card)
+            pmap_added = True
+        lecs.append({**item, "route_label": route_labels.get(category, "受講資料")})
+    if not pmap_added:
+        lecs.append(pmap_card)
     parts: list[str] = []
     parts.append("<div class='lecture-grid'>")
     for lec in lecs:
@@ -12306,10 +12313,13 @@ header.site-header:hover {
   outline: none;
   transform: translateY(-1px);
 }
-.focus-hero { min-height: 540px; display: grid; grid-template-columns: minmax(0,.95fr) minmax(520px,1.05fr); background: #fff; }
-.focus-hero-copy { display: flex; flex-direction: column; justify-content: center; padding: 58px clamp(30px,5vw,86px) 58px max(18px,calc((100vw - 1400px)/2)); }
+.focus-hero { position:relative; isolation:isolate; min-height:620px; display:grid; grid-template-columns:1fr; overflow:hidden; background:#fff; }
+.focus-hero::before { content:""; position:absolute; inset:0; z-index:-2; background:url('/img/hero-ai-consult-hikone.png') center right/cover no-repeat; transform:scale(1.01); }
+.focus-hero::after { content:""; position:absolute; inset:0; z-index:-1; background:linear-gradient(90deg,rgba(255,255,255,.99) 0%,rgba(255,255,255,.96) 37%,rgba(255,255,255,.64) 54%,rgba(255,255,255,.10) 78%); }
+.focus-hero-copy { position:relative; z-index:1; width:min(760px,59vw); display:flex; flex-direction:column; justify-content:center; padding:58px clamp(30px,5vw,86px) 58px max(18px,calc((100vw - 1400px)/2)); }
 .focus-kicker { margin: 0 0 18px; color: var(--focus-ink); font-size: clamp(20px,2vw,30px); font-weight: 900; letter-spacing: -.03em; }
-.focus-title { margin: 0; max-width: 620px; color: #050b14; font-size: clamp(50px,4.7vw,68px); line-height: 1.08; letter-spacing: -.055em; }
+.focus-title { margin:0; max-width:620px; color:#050b14; font-size:clamp(48px,4.45vw,64px); line-height:1.08; letter-spacing:-.055em; }
+.focus-title-first { display:inline-block; white-space:nowrap; }
 .focus-title strong { color: var(--focus-blue); position: relative; white-space: nowrap; }
 .focus-title-line { display:inline-block; white-space:nowrap; }
 .focus-title strong::after { content:""; position:absolute; left:0; right:0; bottom:-7px; height:4px; background:var(--focus-blue); transform:rotate(-1.5deg); }
@@ -12320,8 +12330,6 @@ header.site-header:hover {
 .focus-btn.primary { background: var(--focus-blue); color: #fff; box-shadow: 0 12px 28px rgba(7,95,200,.2); }
 .focus-btn.secondary { background: #fff; color: var(--focus-blue); }
 .focus-trust { display:flex; gap:16px; margin:24px 0 0; padding:0; list-style:none; color:var(--focus-muted); font-size:12.5px; font-weight:750; flex-wrap:wrap; }
-.focus-hero-visual { position: relative; min-height: 540px; overflow: hidden; background: #eaf2f8; }
-.focus-hero-visual img { width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
 .focus-hub { padding:52px max(18px,calc((100vw - 1400px)/2)) 66px; background:#fff; border-top:1px solid var(--focus-line); }
 .focus-hub-head { max-width:1400px; margin:0 auto 24px; display:flex; align-items:end; justify-content:space-between; gap:24px; }
 .focus-hub-head small { color:var(--focus-blue); font-size:12px; font-weight:900; letter-spacing:.14em; }
@@ -12471,14 +12479,13 @@ header.site-header:hover {
 .focus-split .speaker-painting { aspect-ratio:1/1; object-position:center; background:#fffaf0; box-shadow:0 18px 46px rgba(10,40,80,.10); }
 .focus-split h2 { margin:0 0 18px; font-size:clamp(30px,3vw,46px); line-height:1.25; }
 .focus-split p { color:var(--focus-muted); font-size:16px; line-height:1.9; }
-.focus-flow-visual { width:min(100%,520px); margin:-8px auto 30px; overflow:hidden; border:0; border-radius:10px; background:#fff; box-shadow:0 10px 28px rgba(10,40,80,.07); }
-.focus-flow-visual img { display:block; width:100%; aspect-ratio:16/7; object-fit:cover; }
-.focus-flow { max-width:1100px; margin:auto; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:0; }
-.focus-step { position:relative; padding:24px 34px; border-left:1px solid var(--focus-line); }
-.focus-step:last-child { border-right:1px solid var(--focus-line); }
+.focus-flow { max-width:1100px; margin:auto; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px; }
+.focus-step { position:relative; padding:14px 14px 24px; overflow:hidden; border:1px solid var(--focus-line); border-radius:14px; background:#fff; box-shadow:0 12px 30px rgba(10,40,80,.06); }
+.focus-step-visual { display:block; width:100%; margin-bottom:18px; aspect-ratio:4/3; object-fit:cover; border-radius:9px; background:#f2f7fb; }
 .focus-step b { color:var(--focus-blue); font-size:28px; }
-.focus-step h3 { margin:8px 0; font-size:21px; }
-.focus-step p { margin:0; color:var(--focus-muted); line-height:1.7; font-size:14px; }
+.focus-step h3 { margin:8px 10px; font-size:21px; }
+.focus-step b,.focus-step p { margin-left:10px; margin-right:10px; }
+.focus-step p { margin-top:0; margin-bottom:0; color:var(--focus-muted); line-height:1.7; font-size:14px; }
 .focus-faq { max-width:940px; margin:auto; }
 .focus-faq details { border-bottom:1px solid var(--focus-line); padding:20px 0; }
 .focus-faq summary { cursor:pointer; font-weight:850; font-size:16px; }
@@ -12519,10 +12526,11 @@ header.site-header:hover {
     font-size: 12px;
   }
   .mobile-toggle { flex: 0 0 auto; }
-  .focus-hero { grid-template-columns:1fr; min-height:0; }
-  .focus-hero-copy { padding:58px 24px 38px; }
-  .focus-title { font-size:clamp(44px,11vw,66px); }
-  .focus-hero-visual { min-height:360px; }
+  .focus-hero { min-height:760px; }
+  .focus-hero::before { background-position:center bottom; background-size:auto 46%; }
+  .focus-hero::after { background:linear-gradient(180deg,#fff 0%,rgba(255,255,255,.98) 52%,rgba(255,255,255,.70) 70%,rgba(255,255,255,.08) 100%); }
+  .focus-hero-copy { width:100%; justify-content:flex-start; padding:58px 24px 310px; }
+  .focus-title { font-size:clamp(42px,10.5vw,62px); }
   .outcome-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .path-grid,.focus-proof-grid { grid-template-columns:1fr; max-width:680px; }
   .focus-split { grid-template-columns:1fr; max-width:680px; }
@@ -12536,22 +12544,23 @@ header.site-header:hover {
   .container { padding:64px 0 0 !important; }
   .site-header-inner { min-height:64px; padding:8px 14px !important; gap:8px !important; }
   .wordmark { font-size:19px !important; }
-  .focus-hero-copy { padding:42px 16px 30px; }
+  .focus-hero { min-height:0; }
+  .focus-hero::before { background-size:auto 34%; }
+  .focus-hero::after { background:linear-gradient(180deg,#fff 0%,rgba(255,255,255,.99) 64%,rgba(255,255,255,.72) 78%,rgba(255,255,255,.12) 100%); }
+  .focus-hero-copy { padding:42px 16px 235px; }
   .focus-kicker { font-size:18px; }
-  .focus-title { font-size:clamp(40px,12vw,54px); }
+  .focus-title { font-size:clamp(32px,9.7vw,44px); }
   .focus-title-line { white-space:normal; }
   .focus-title strong { white-space:normal; }
   .focus-actions { display:grid; grid-template-columns:1fr; }
   .focus-btn { width:100%; }
-  .focus-hero-visual { min-height:300px; }
   .focus-outcomes,.focus-block,.focus-hub { padding:48px 14px; }
   .focus-hub-grid { grid-template-columns:1fr; }
   .focus-hub-card { min-height:180px; }
   .outcome-grid { grid-template-columns:1fr; }
   .outcome-item { min-height:0; }
-  .focus-flow-visual { margin-bottom:20px; }
   .focus-flow { grid-template-columns:1fr; }
-  .focus-step,.focus-step:last-child { border:0; border-top:1px solid var(--focus-line); padding:22px 0; }
+  .focus-step { padding:12px 12px 22px; }
   .focus-contact-inner { align-items:flex-start; flex-direction:column; }
   .focus-contact .focus-btn { width:100%; }
   .focus-section-lead { margin-top:-14px; font-size:14px; text-align:left; }
@@ -12611,13 +12620,12 @@ def _render_hero_focused() -> str:
     return (
         "<section class='focus-hero' id='top'>"
         "<div class='focus-hero-copy fade-up'><p class='focus-kicker'>Codex + Claude Code 実践</p>"
-        "<h1 class='focus-title'>AIエージェントを、<br><span class='focus-title-line'><strong>仕事の仲間に。</strong></span></h1>"
+        "<h1 class='focus-title'><span class='focus-title-first'>AIエージェントを、</span><br><span class='focus-title-line'><strong>仕事の仲間に。</strong></span></h1>"
         "<p class='focus-lead'>調査、資料、告知、業務改善、Web制作を、AIに頼むだけで終わらせず、確認して仕事で使える形まで進める講習です。</p>"
         "<div class='focus-actions'><a class='focus-btn primary' href='#packages'>講習・相談コースを見る</a>"
         "<a class='focus-btn secondary' href='/blog/2026-07-14-ai-agent-course-codex-claude-code.html'>講座を始めた理由を読む</a>"
         "<a class='focus-btn secondary' href='#contact'>まず相談する</a></div>"
         "<ul class='focus-trust'><li>初心者OK</li><li>持ち込み課題OK</li><li>対面・オンライン対応</li></ul></div>"
-        "<div class='focus-hero-visual'><img src='/img/hero-ai-consult-hikone.png' alt='彦根で仕事を持ち寄り、AIを学ぶ少人数講習' fetchpriority='high' decoding='async'></div>"
         "</section>"
     )
 
@@ -12652,24 +12660,24 @@ def _render_focused_main() -> str:
         "<p class='course-venue-map-link'><a href='https://www.google.com/maps/search/?api=1&amp;query=%E3%82%B0%E3%83%83%E3%81%BC%E3%82%8B%E3%82%AB%E3%83%95%E3%82%A7%20%E6%BB%8B%E8%B3%80%E7%9C%8C%E5%BD%A6%E6%A0%B9%E5%B8%82%E5%B2%A1%E7%94%BA12' target='_blank' rel='noopener'>Googleマップで開く →</a></p></aside>",
         "<div class='course-quick-actions'><button type='button' class='compact-diagnose diagnose-open'>迷ったら60秒診断</button><a href='#lectures'>受講資料から選ぶ →</a></div></section>",
         "<section class='focus-block soft' id='lectures'><div class='focus-section-head'><small>LEARNING MATERIALS</small><h2>受講資料</h2></div>",
-        "<p class='focus-section-lead'>全部を並べず、目的別の4つの入口に整理しました。迷ったら「AIが初めて」から始め、必要なときだけ一覧へ進めます。</p>",
+        "<p class='focus-section-lead'>公開中の受講資料をすべて表示しています。迷ったら「AIが初めて」から順に選べます。</p>",
         _render_lectures_section(),
         "<div class='focus-content-actions'><a class='focus-btn secondary' href='/lectures/index.html'>受講資料を一覧で見る</a></div></section>",
         "<section class='focus-block' id='blog'><div class='focus-section-head'><small>PRACTICAL BLOG</small><h2>ブログ</h2></div>",
         "<p class='focus-section-lead'>AIエージェント活用と業務改善で試したことを、成功だけでなく失敗と修正も含めて残しています。</p>",
         _render_focused_blog_content(),
         "<div class='focus-content-actions'><a class='focus-btn secondary' href='/blog/index.html'>ブログを一覧で読む</a></div></section>",
-        "<section class='focus-block soft' id='speaker'><div class='focus-split'><img class='speaker-painting' src='/img/speaker-portrait-painting.webp' alt='AI相談 彦根 講師 由井辰美の絵画調ポートレート' loading='lazy'>",
+        "<section class='focus-block soft' id='speaker'><div class='focus-split'><img class='speaker-painting' src='/img/speaker-portrait-classroom-20260719.webp' alt='彦根のAI講座教室にいるAI相談講師 由井辰美の絵画調ポートレート' loading='lazy' decoding='async'>",
         "<div><small class='outcome-num'>INSTRUCTOR</small><h2>9つの事業でAIエージェントを使う講師</h2><p>理想論ではなく、告知、予約、事務、サイト運営で実際に任せている仕事を題材にします。成果物の確認と、次も続けられる手順づくりまで一緒に進めます。</p><a class='focus-btn secondary' href='#contact'>彦根で相談する</a></div></div></section>",
         "<section class='focus-block' id='all-works'><div class='focus-section-head'><small>AI WORKS</small><h2>AI実績</h2></div>",
         "<p class='focus-section-lead'>講習で扱う考え方を、地域交流、福祉、店舗、EC、予約、業務システムで実際に使った支援例です。</p><div class='focus-content-shell'>",
         _render_works_section(),
         "</div><div class='focus-content-actions'><a class='focus-btn secondary' href='#contact'>似た課題を相談する</a></div></section>",
         "<section class='focus-block soft' id='flow'><div class='focus-section-head'><small>HOW IT WORKS</small><h2>講習から、仕事で使うまで</h2></div>",
-        "<figure class='focus-flow-visual'><img src='/img/blog-ai-agent-course-section-1-20260714.webp' alt='相談、確認、修正、保存を循環させるAIエージェント講習の流れ' loading='lazy' decoding='async'></figure><div class='focus-flow'>",
-        "<article class='focus-step'><b>01</b><h3>持ち込む</h3><p>止まっている仕事や、繰り返している作業を持ち込みます。</p></article>",
-        "<article class='focus-step'><b>02</b><h3>一緒に動かす</h3><p>AIエージェントへの依頼、確認、修正をその場で実践します。</p></article>",
-        "<article class='focus-step'><b>03</b><h3>手順に残す</h3><p>成果物と次回の進め方を保存し、自分の仕事へ戻します。</p></article></div></section>",
+        "<div class='focus-flow'>",
+        "<article class='focus-step'><img class='focus-step-visual' src='/img/flow-step-bring-20260719.webp' alt='仕事の資料とパソコンを講習へ持ち込むイメージ' loading='lazy' decoding='async'><b>01</b><h3>持ち込む</h3><p>止まっている仕事や、繰り返している作業を持ち込みます。</p></article>",
+        "<article class='focus-step'><img class='focus-step-visual' src='/img/flow-step-build-20260719.webp' alt='講師と受講者がパソコンを見ながら一緒に作業するイメージ' loading='lazy' decoding='async'><b>02</b><h3>一緒に動かす</h3><p>AIエージェントへの依頼、確認、修正をその場で実践します。</p></article>",
+        "<article class='focus-step'><img class='focus-step-visual' src='/img/flow-step-save-20260719.webp' alt='確認済みの手順を資料として保存するイメージ' loading='lazy' decoding='async'><b>03</b><h3>手順に残す</h3><p>成果物と次回の進め方を保存し、自分の仕事へ戻します。</p></article></div></section>",
         "<section class='focus-block' id='faq'><div class='focus-section-head'><small>FAQ</small><h2>よくある質問</h2></div><div class='focus-faq'>",
         "<details><summary>AIエージェント講習では何を作りますか？</summary><p>告知文、資料、調査メモ、集計、業務ツール、サイト改善など、実際の仕事から1つ選び、使える成果物と次回手順まで作ります。</p></details>",
         "<details><summary>AIがまったく初めてでも大丈夫ですか？</summary><p>大丈夫です。専門用語ではなく、普段の仕事と困りごとから始めます。</p></details>",

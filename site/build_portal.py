@@ -11403,7 +11403,7 @@ def _render_tuesday_build_hour_cards() -> str:
         {
             "cat": "OPEN Q&A",
             "title": "自由質問・交流",
-            "image": "/img/flow-step-build-20260719.webp",
+            "image": "/img/blog-ai-agent-course-section-3-20260714.webp",
             "image_alt": "参加者同士でAIの質問や実践例を共有するイメージ",
             "time": "21:40",
             "duration": "20分",

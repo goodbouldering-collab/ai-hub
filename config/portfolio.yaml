@@ -33,7 +33,7 @@ display_order:
 - ai-hub
 
 portfolio:
-- name: みんなのWA
+- name: みんなのWA 異業種交流会
   slug: minanowa
   url: https://minnanowa.net
   aliases:
@@ -102,7 +102,7 @@ portfolio:
   summary: インド伝統の煮出しチャイをそのまま日本へ
   since: 2023-07
   thumbnail: /img/portfolio/moksha-chai.jpg
-- name: N-デザイン 新しい工務店
+- name: N-デザイン 新時代の工務店
   slug: n-design
   url: https://n-design.work
   aliases:

@@ -88,7 +88,7 @@ vercel:
       include: true
       match_slug: minanowa
       slug: minanowa
-      name: みんなのWA
+      name: みんなのWA 異業種交流会
       canonical_url: https://minnanowa.net
       category: コミュニティ
       tech: [Vercel, Supabase]
@@ -99,7 +99,7 @@ vercel:
       include: true
       match_slug: n-design
       slug: n-design
-      name: N-デザイン 新しい工務店
+      name: N-デザイン 新時代の工務店
       canonical_url: https://n-design.work
       category: 企業サイト
       tech: [Next.js, Vercel, Supabase]

@@ -92,7 +92,7 @@ portfolio:
   summary: ゴミ拾いランニング(Plogging)の日本公式ショップ
   since: 2020-04
   thumbnail: /img/portfolio/plogging-japan.jpg
-- name: モクシャチャイ
+- name: モクシャチャイ ECサイト
   slug: moksha-chai
   url: https://mokshajapan.jp
   status: live
@@ -102,7 +102,7 @@ portfolio:
   summary: インド伝統の煮出しチャイをそのまま日本へ
   since: 2023-07
   thumbnail: /img/portfolio/moksha-chai.jpg
-- name: N-デザイン
+- name: N-デザイン 新しい工務店
   slug: n-design
   url: https://n-design.work
   aliases:
@@ -121,7 +121,7 @@ portfolio:
   source: vercel
   source_id: prj_r8V98vvsvSbRH7474KMWguViQBqf
   source_project: n-design
-- name: ClimbHero
+- name: ClimbHero クライミング動画サロン
   slug: climbhero
   url: https://climbhero.vercel.app
   aliases:
@@ -157,7 +157,7 @@ portfolio:
   source: vercel
   source_id: prj_lFs3tIEXi0GQeLQtAoIN1O6rAxpA
   source_project: business21
-- name: カラッと＋ 乾燥消臭ECサイト
+- name: カラッと ECサイト乾燥消臭
   slug: karatto-plus
   url: https://karatto.life
   aliases:
@@ -342,7 +342,7 @@ portfolio:
   source: vercel
   source_id: prj_IvdOoTzGKRUtOmKBBNQ1hBqLuYAa
   source_project: yomogihikone
-- name: ハイロックス
+- name: HYROX スポーツプロ支援
   slug: hyrox-hongo
   url: https://hyrox-zeta.vercel.app
   status: live
@@ -369,7 +369,7 @@ portfolio:
   source: vercel
   source_id: prj_ng8J2BHHXkSOgUcgsmB1ASymamAG
   source_project: nokosu
-- name: 製造業ポータル
+- name: 事業ポータル 受注製造営業管理
   slug: yamani
   url: https://yamani.vercel.app
   aliases:

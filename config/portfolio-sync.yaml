@@ -47,7 +47,7 @@ vercel:
       include: true
       match_slug: climbhero
       slug: climbhero
-      name: ClimbHero
+      name: ClimbHero クライミング動画サロン
       canonical_url: https://project-02ceb497.pages.dev
       category: 動画アプリ
       tech: [Cloudflare Pages, Workers, D1]
@@ -77,7 +77,7 @@ vercel:
     hyrox-hongo:
       include: true
       slug: hyrox-hongo
-      name: ハイロックス 本郷泰司
+      name: HYROX スポーツプロ支援
       canonical_url: https://hyrox-zeta.vercel.app
       category: 挑戦・メディア
       tech: [Vercel, Static Site]
@@ -99,7 +99,7 @@ vercel:
       include: true
       match_slug: n-design
       slug: n-design
-      name: N-デザイン
+      name: N-デザイン 新しい工務店
       canonical_url: https://n-design.work
       category: 企業サイト
       tech: [Next.js, Vercel, Supabase]
@@ -161,7 +161,7 @@ vercel:
     yamani:
       include: true
       slug: yamani
-      name: 山仁ポータル
+      name: 事業ポータル 受注製造営業管理
       canonical_url: https://yamani.vercel.app
       category: 業務ポータル
       tech: [Vercel, JavaScript]

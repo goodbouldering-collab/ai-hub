@@ -11362,6 +11362,65 @@ def _render_compact_course_cards() -> str:
     return "<div class='compact-course-grid'>" + "".join(cards) + "</div>"
 
 
+def _render_seven_day_course_cards() -> str:
+    """集客検証用の7日間ミニ講座を、現行の講座カードと同じ見た目で並べる。"""
+    items = [
+        {
+            "cat": "7日間・仮メニュー",
+            "title": "はじめてのAI仕事術",
+            "image": "/img/course-path-beginner.webp",
+            "image_alt": "AIが初めての人が仕事の困りごとと使い方を整理する様子",
+            "result": "AIへの頼み方3本と、毎日の仕事で使う場面の一覧を作ります。",
+            "cta": "この講座を相談",
+        },
+        {
+            "cat": "7日間・仮メニュー",
+            "title": "SNS集客・告知づくり",
+            "image": "/img/blog-ai-agent-course-section-4-20260714.webp",
+            "image_alt": "AIでSNSの投稿文と告知素材を作る流れ",
+            "result": "SNS投稿5本、告知画像1枚、1週間の投稿カレンダーを作ります。",
+            "cta": "集客の悩みを相談",
+        },
+        {
+            "cat": "7日間・仮メニュー",
+            "title": "事務作業らくらくAI",
+            "image": "/img/course-path-workflow.webp",
+            "image_alt": "複雑な事務作業をAIで整理して続けられる手順に変える様子",
+            "result": "返信・会議メモ・報告用の文書テンプレ3本と確認手順を作ります。",
+            "cta": "事務改善を相談",
+        },
+        {
+            "cat": "7日間・仮メニュー",
+            "title": "AI動画・ショート制作",
+            "image": "/img/blog-ai-agent-course-section-3-20260714.webp",
+            "image_alt": "AIを使って短い動画の台本と素材を制作する様子",
+            "result": "15〜30秒の動画1本、投稿文、次回も使える台本の型を作ります。",
+            "cta": "動画づくりを相談",
+        },
+        {
+            "cat": "7日間・仮メニュー",
+            "title": "AIコーディング入門",
+            "image": "/img/course-path-coding.webp",
+            "image_alt": "AIが作ったコードを確認しながら安全に公開する様子",
+            "result": "小さなページや業務ツール1つを、変更確認から公開まで進めます。",
+            "cta": "作りたいものを相談",
+        },
+    ]
+    cards = []
+    for item in items:
+        cards.append(
+            "<article class='compact-course-card'>"
+            f"<small>{html.escape(item['cat'])}</small>"
+            f"<img class='compact-course-visual' src='{html.escape(item['image'], quote=True)}' alt='{html.escape(item['image_alt'], quote=True)}' loading='lazy' decoding='async'>"
+            f"<h3>{html.escape(item['title'])}</h3>"
+            "<div class='compact-course-meta'><strong>内容相談</strong><span>1日15分 × 7日</span></div>"
+            f"<p>{html.escape(item['result'])}</p>"
+            f"<a href='{html.escape(CONSULT_BOOK_URL, quote=True)}' target='_blank' rel='noopener'>{html.escape(item['cta'])} →</a>"
+            "</article>"
+        )
+    return "<div class='compact-course-grid compact-course-grid--seven-day'>" + "".join(cards) + "</div>"
+
+
 def _render_footer(today: str) -> str:
     """リッチフッター: 屋号+一言 / ナビ / NAP(ローカルSEOの住所明示) / CTA。"""
     year = today[:4]
@@ -12410,6 +12469,7 @@ header.site-header:hover {
   gap:0;
   text-align:left;
 }
+.compact-course-grid--seven-day { grid-template-columns:repeat(5,minmax(0,1fr)); }
 .compact-course-card {
   min-width:0;
   min-height:208px;
@@ -12537,6 +12597,7 @@ header.site-header:hover {
   .focus-split img { max-width:360px; }
   .course-venue-common,.compact-course-grid,.course-quick-actions { max-width:680px; }
   .compact-course-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .compact-course-grid--seven-day .compact-course-card:nth-child(odd) { border-left:0; }
   .focus-hub-head { align-items:flex-start; flex-direction:column; }
   .focus-hub-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
 }
@@ -12659,6 +12720,10 @@ def _render_focused_main() -> str:
         "<div class='course-venue-map'><iframe src='https://www.google.com/maps?q=%E3%82%B0%E3%83%83%E3%81%BC%E3%82%8B%E3%82%AB%E3%83%95%E3%82%A7%20%E6%BB%8B%E8%B3%80%E7%9C%8C%E5%BD%A6%E6%A0%B9%E5%B8%82%E5%B2%A1%E7%94%BA12&amp;output=embed' title='グッぼるカフェ周辺のGoogleマップ' loading='lazy' referrerpolicy='no-referrer-when-downgrade' allowfullscreen></iframe></div>",
         "<p class='course-venue-map-link'><a href='https://www.google.com/maps/search/?api=1&amp;query=%E3%82%B0%E3%83%83%E3%81%BC%E3%82%8B%E3%82%AB%E3%83%95%E3%82%A7%20%E6%BB%8B%E8%B3%80%E7%9C%8C%E5%BD%A6%E6%A0%B9%E5%B8%82%E5%B2%A1%E7%94%BA12' target='_blank' rel='noopener'>Googleマップで開く →</a></p></aside>",
         "<div class='course-quick-actions'><button type='button' class='compact-diagnose diagnose-open'>迷ったら60秒診断</button><a href='#lectures'>受講資料から選ぶ →</a></div></section>",
+        "<section class='focus-block' id='seven-day-courses'><div class='focus-section-head'><small>7-DAY MINI COURSES</small><h2>1日15分の7日間ミニ講座</h2></div>",
+        "<p class='focus-section-lead'>忙しい方向けに、告知・事務・動画・AIコーディングを7日間で試せる仮メニューを追加しました。7日後に仕事で使える成果物を1つ残します。</p>",
+        _render_seven_day_course_cards(),
+        "<p class='focus-section-lead'>現在は集客検証用の仮メニューです。進め方、日程、料金、対面・オンラインの組み合わせは初回無料相談で調整します。</p></section>",
         "<section class='focus-block soft' id='lectures'><div class='focus-section-head'><small>LEARNING MATERIALS</small><h2>受講資料</h2></div>",
         "<p class='focus-section-lead'>公開中の受講資料をすべて表示しています。迷ったら「AIが初めて」から順に選べます。</p>",
         _render_lectures_section(),
@@ -12682,7 +12747,8 @@ def _render_focused_main() -> str:
         "<details><summary>AIエージェント講習では何を作りますか？</summary><p>告知文、資料、調査メモ、集計、業務ツール、サイト改善など、実際の仕事から1つ選び、使える成果物と次回手順まで作ります。</p></details>",
         "<details><summary>AIがまったく初めてでも大丈夫ですか？</summary><p>大丈夫です。専門用語ではなく、普段の仕事と困りごとから始めます。</p></details>",
         "<details><summary>パソコンを持ち込めますか？</summary><p>はい。可能なら普段使っているPCと、直したい資料やページをお持ちください。</p></details>",
-        "<details><summary>オンラインでも受講できますか？</summary><p>対面・オンラインの両方に対応しています。彦根市内は訪問も相談できます。</p></details></div></section>",
+        "<details><summary>オンラインでも受講できますか？</summary><p>対面・オンラインの両方に対応しています。彦根市内は訪問も相談できます。</p></details>",
+        "<details><summary>7日間ミニ講座は、もう申し込めますか？</summary><p>現在は集客検証用の仮メニューです。初回無料相談で希望する内容、日程、進め方を伺い、個別に対応できる形をご案内します。</p></details></div></section>",
         "<section class='focus-contact' id='contact'><div class='focus-contact-inner'><div><h2>AIエージェントに任せたい仕事を聞かせてください。</h2><p>講習前に、今の仕事に合う題材と進め方を一緒に整理できます。</p></div>",
         f"<a class='focus-btn' href='{free_consult}' target='_blank' rel='noopener'>無料相談の日程を選ぶ</a></div></section>",
     ]

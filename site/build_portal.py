@@ -9708,6 +9708,7 @@ HEADER_JS = """
   var drop = document.getElementById('menu-drop');
   var mobileToggle = document.getElementById('mobile-toggle');
   var mobileNav = document.getElementById('mobile-nav');
+  var mobileToggleText = mobileToggle ? mobileToggle.querySelector('.mobile-toggle-text') : null;
 
   function onScroll(){
     if (window.scrollY > 20) header.classList.add('scrolled');
@@ -9736,16 +9737,24 @@ HEADER_JS = """
     });
   }
 
+  function setMobileMenu(open) {
+    if (!mobileToggle || !mobileNav) return;
+    mobileNav.classList.toggle('open', open);
+    mobileToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    mobileToggle.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+    if (mobileToggleText) mobileToggleText.textContent = open ? '閉じる' : 'メニュー';
+    document.body.classList.toggle('mobile-menu-open', open);
+  }
+
   if (mobileToggle && mobileNav) {
     mobileToggle.addEventListener('click', function(){
-      var open = mobileNav.classList.toggle('open');
-      mobileToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      setMobileMenu(!mobileNav.classList.contains('open'));
     });
     mobileNav.querySelectorAll('a').forEach(function(a){
-      a.addEventListener('click', function(){
-        mobileNav.classList.remove('open');
-        mobileToggle.setAttribute('aria-expanded', 'false');
-      });
+      a.addEventListener('click', function(){ setMobileMenu(false); });
+    });
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape') setMobileMenu(false);
     });
   }
 
@@ -12641,6 +12650,161 @@ header.site-header:hover {
   .compact-course-card h3 { font-size:18px; }
   .course-quick-actions { align-items:flex-end; justify-content:space-between; }
 }
+
+/* ---- Conventional public mobile drawer, 2026-07-19 ---- */
+@media (max-width: 900px) {
+  body.mobile-menu-open { overflow: hidden !important; }
+  .header-member-login { display: none !important; }
+  .mobile-toggle {
+    width: auto !important;
+    min-width: 94px !important;
+    height: 44px !important;
+    padding: 0 12px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    border: 1px solid rgba(10,23,40,.22) !important;
+    border-radius: 8px !important;
+    background: #fff !important;
+    color: var(--focus-ink) !important;
+    box-shadow: 0 6px 16px rgba(10,23,40,.08) !important;
+  }
+  .mobile-toggle:hover,
+  .mobile-toggle:focus-visible,
+  .mobile-toggle[aria-expanded="true"] {
+    background: #f1f7ff !important;
+    color: var(--focus-blue) !important;
+    border-color: rgba(7,95,200,.36) !important;
+    outline: none !important;
+  }
+  .mobile-toggle > svg { display: none !important; }
+  .mobile-toggle-icon {
+    width: 22px;
+    height: 18px;
+    display: grid;
+    align-content: space-between;
+  }
+  .mobile-toggle-icon span {
+    width: 22px;
+    height: 2px;
+    display: block;
+    border-radius: 999px;
+    background: currentColor;
+    transition: transform .2s ease, opacity .2s ease;
+    transform-origin: center;
+  }
+  .mobile-toggle[aria-expanded="true"] .mobile-toggle-icon span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  .mobile-toggle[aria-expanded="true"] .mobile-toggle-icon span:nth-child(2) { opacity: 0; }
+  .mobile-toggle[aria-expanded="true"] .mobile-toggle-icon span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+  .mobile-toggle-text { font-size: 13px; font-weight: 900; line-height: 1; }
+  .mobile-nav {
+    position: fixed !important;
+    inset: 74px 0 0 !important;
+    max-height: none !important;
+    padding: 0 !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain;
+    background: #fff !important;
+    border-top: 1px solid rgba(10,23,40,.12) !important;
+    box-shadow: 0 18px 34px rgba(10,23,40,.12) !important;
+  }
+  .mobile-nav-panel--public {
+    width: min(100%, 640px) !important;
+    min-height: 100%;
+    margin: 0 auto !important;
+    padding: 0 18px calc(28px + env(safe-area-inset-bottom)) !important;
+    display: block !important;
+    background: #fff !important;
+    color: var(--focus-ink) !important;
+    box-shadow: none !important;
+  }
+  .mobile-nav-panel--public .mobile-nav-head {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    min-height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 2px;
+    background: rgba(255,255,255,.98);
+    border-bottom: 1px solid rgba(10,23,40,.12);
+  }
+  .mobile-nav-heading { display: grid; gap: 2px; }
+  .mobile-nav-heading small {
+    color: var(--focus-blue);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .12em;
+    line-height: 1.2;
+  }
+  .mobile-nav-heading strong { color: var(--focus-ink); font-size: 18px; line-height: 1.2; }
+  .mobile-public-links { display: grid; }
+  .mobile-nav-panel--public .mobile-public-links a {
+    min-height: 50px;
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 12px 4px !important;
+    border: 0 !important;
+    border-bottom: 1px solid rgba(10,23,40,.10) !important;
+    border-radius: 0 !important;
+    background: #fff !important;
+    color: var(--focus-ink) !important;
+    box-shadow: none !important;
+    text-align: left !important;
+    text-decoration: none !important;
+    font-size: 15px !important;
+    font-weight: 800 !important;
+  }
+  .mobile-nav-panel--public .mobile-public-links a:hover,
+  .mobile-nav-panel--public .mobile-public-links a:focus-visible {
+    padding-left: 10px !important;
+    background: #f6f9fd !important;
+    color: var(--focus-blue) !important;
+    outline: none !important;
+  }
+  .mobile-nav-panel--public .mobile-public-link--cta { color: var(--focus-blue) !important; }
+  .mobile-link-arrow { flex: 0 0 auto; color: #718096; font-size: 22px; font-weight: 500; line-height: 1; }
+  .mobile-nav-admin {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 2px solid rgba(10,23,40,.13);
+  }
+  .mobile-nav-panel--public .mobile-nav-admin .mobile-nav-label {
+    display: block;
+    padding: 0 2px 8px !important;
+    color: #66758a !important;
+    font-size: 10px !important;
+    font-weight: 900 !important;
+    letter-spacing: .12em !important;
+    text-align: left !important;
+  }
+  .mobile-nav-panel--public .mobile-admin-link {
+    min-height: 60px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 14px !important;
+    padding: 10px 14px !important;
+    border: 1px solid rgba(10,23,40,.16) !important;
+    border-radius: 8px !important;
+    background: #f7f9fc !important;
+    color: var(--focus-ink) !important;
+    box-shadow: none !important;
+    text-align: left !important;
+    text-decoration: none !important;
+  }
+  .mobile-admin-link-copy { display: grid; gap: 2px; }
+  .mobile-admin-link-copy strong { font-size: 14px; line-height: 1.2; }
+  .mobile-admin-link-copy small { display: block !important; color: #66758a; font-size: 11px; font-weight: 700; line-height: 1.3; }
+}
+@media (max-width: 680px) {
+  .mobile-nav { inset: 64px 0 0 !important; }
+}
 """
 
 
@@ -12658,23 +12822,31 @@ def _render_header_focused() -> str:
         "<div class='menu-drop' id='menu-drop' role='menu'>"
         "<span class='menu-drop-label'>制作・発信</span>"
         "<a href='#all-works'>実績サイト</a>"
-        "<a href='#blog'>ブログ</a><a href='/watch/index.html'>AI Watch</a>"
+        "<a href='#blog'>ブログ</a>"
         "<span class='menu-drop-label'>案内・確認</span>"
         "<a href='#speaker'>講師紹介</a><a href='#flow'>進め方</a><a href='#faq'>FAQ</a><a href='/'>ホーム</a>"
+        "<span class='menu-drop-label'>管理</span><a class='admin-drop-link' href='/admin'>管理ページ</a>"
         "</div></div>"
         "<a class='nav-cta' href='#contact'>無料相談</a></nav>"
-        "<a class='header-member-login' href='/admin'>会員ログイン</a>"
-        "<button class='mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'>"
-        "<svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button>"
+        "<button class='mobile-toggle' id='mobile-toggle' type='button' aria-label='メニューを開く' aria-controls='mobile-nav' aria-expanded='false'>"
+        "<span class='mobile-toggle-icon' aria-hidden='true'><span></span><span></span><span></span></span>"
+        "<span class='mobile-toggle-text'>メニュー</span></button>"
         "</div><div class='mobile-nav' id='mobile-nav'><div class='mobile-nav-panel mobile-nav-panel--public'>"
-        "<a class='login-btn-mobile' href='#contact'>無料相談</a>"
-        "<a class='mobile-main-link' href='#packages'>講習・相談</a>"
-        "<span class='mobile-nav-label'>講習・資料</span><div class='mobile-link-grid'>"
-        "<a href='/programming-map.html'>AIコーディング</a><a href='#lectures'>受講資料</a><a href='#blog'>ブログ</a></div>"
-        "<span class='mobile-nav-label'>制作・発信</span><div class='mobile-link-grid'>"
-        "<a href='#all-works'>実績サイト</a><a href='/watch/index.html'>AI Watch</a></div>"
-        "<span class='mobile-nav-label'>案内・確認</span><div class='mobile-link-grid'>"
-        "<a href='#speaker'>講師紹介</a><a href='#flow'>進め方</a><a href='#faq'>FAQ</a><a href='/'>ホーム</a></div>"
+        "<div class='mobile-nav-head'><div class='mobile-nav-heading'><small>PUBLIC MENU</small><strong>メニュー</strong></div></div>"
+        "<nav class='mobile-public-links' aria-label='公開ページメニュー'>"
+        "<a href='/'><span>ホーム</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
+        "<a href='#packages'><span>講習・相談</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
+        "<a href='/programming-map.html'><span>AIコーディング</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
+        "<a href='#lectures'><span>受講資料</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
+        "<a href='#all-works'><span>実績サイト</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
+        "<a href='#blog'><span>ブログ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
+        "<a href='#speaker'><span>講師紹介</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
+        "<a href='#flow'><span>進め方</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
+        "<a href='#faq'><span>よくある質問</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
+        "<a class='mobile-public-link--cta' href='#contact'><span>無料相談</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
+        "</nav><div class='mobile-nav-admin'><span class='mobile-nav-label'>管理</span>"
+        "<a class='mobile-admin-link' href='/admin'><span class='mobile-admin-link-copy'><strong>管理ページ</strong><small>運営者ログイン</small></span>"
+        "<span class='mobile-link-arrow' aria-hidden='true'>›</span></a></div>"
         "</div></div></header>"
     )
 

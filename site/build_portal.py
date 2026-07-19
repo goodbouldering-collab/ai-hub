@@ -423,7 +423,15 @@ def _load_portfolio() -> list[dict]:
         return []
     try:
         data = yaml.safe_load(PORTFOLIO_YAML.read_text(encoding="utf-8")) or {}
-        return data.get("portfolio") or []
+        items = data.get("portfolio") or []
+        display_order = [str(slug) for slug in (data.get("display_order") or [])]
+        if not display_order:
+            return items
+        rank = {slug: index for index, slug in enumerate(display_order)}
+        return sorted(
+            items,
+            key=lambda item: rank.get(str(item.get("slug") or ""), len(rank)),
+        )
     except Exception as e:
         print(f"[!] portfolio.yaml load error: {e}")
         return []

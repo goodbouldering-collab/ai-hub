@@ -3,6 +3,35 @@
 # 同名・同slug・同URL・同Vercel project IDは1件へ統合し、旧URLは aliases に残す。
 # status: live の項目だけが公開トップ「すべての実績」に表示される。
 
+# 公開トップで、利用者が事業分野を追いやすい順に並べる。
+display_order:
+- goodbouldering
+- notesthe
+- business21
+- trust
+- profit-hikone
+- t3-c
+- junpa
+- minanowa
+- n-design
+- yamani
+- nokosu
+- plogging-japan
+- karatto-plus
+- moksha-chai
+- hyrox-hongo
+- climbhero
+- climbing-shoe-search
+- fadie
+- rebuildmatch
+- llmo-shindan
+- soneki-app
+- ambassador-roi
+- ambassador-planning
+- moglog-fadie
+- rieru-seikotsu
+- ai-hub
+
 portfolio:
 - name: みんなのWA
   slug: minanowa
@@ -23,7 +52,7 @@ portfolio:
   source: vercel
   source_id: prj_zVxZrMg0XkvuRqoWi9tr3iBXJNZm
   source_project: minanowa
-- name: グッぼる 本店
+- name: グッぼる ボルダリングカフェ
   slug: goodbouldering
   url: https://goodbouldering.com
   status: live
@@ -34,7 +63,7 @@ portfolio:
   summary: ボルダリングカフェの本店サイト(商品・ブログ・予約)
   since: 2014-01
   thumbnail: /img/portfolio/goodbouldering.jpg
-- name: Notエステ
+- name: Notエステ 美肌脱毛ホワイトニング
   slug: notesthe
   url: https://notesthe.com
   aliases:
@@ -110,7 +139,7 @@ portfolio:
   source: vercel
   source_id: prj_okdRDHfHVXPAl4Ae4MzsMvR29w1e
   source_project: climbhero
-- name: 協同組合ビジネス21
+- name: 外国人材受け入れ
   slug: business21
   url: https://business21.vercel.app
   aliases:
@@ -141,7 +170,7 @@ portfolio:
   summary: カラッとヒーローの Shopify ストア
   since: 2025-01
   thumbnail: /img/portfolio/karatto-plus.jpg
-- name: トラスト
+- name: 不動産相続
   slug: trust
   url: https://trusthikone.vercel.app
   aliases:
@@ -199,7 +228,7 @@ portfolio:
   tech:
   - Genspark
   summary: マーケ基礎 → 1億到達までの考え方を1枚で
-- name: T3-C
+- name: パーソナルジム
   slug: t3-c
   url: https://bavosruo.gensparkspace.com/
   status: live
@@ -284,7 +313,7 @@ portfolio:
   source: vercel
   source_id: prj_1cpMt5bEHXFvu12ci2cQJFe7CpiO
   source_project: rebuildmatch
-- name: PROFIT彦根
+- name: エグゼグティブゴルフ
   slug: profit-hikone
   url: https://profit-hikone.vercel.app
   status: live
@@ -313,7 +342,7 @@ portfolio:
   source: vercel
   source_id: prj_IvdOoTzGKRUtOmKBBNQ1hBqLuYAa
   source_project: yomogihikone
-- name: ハイロックス本郷
+- name: ハイロックス
   slug: hyrox-hongo
   url: https://hyrox-zeta.vercel.app
   status: live

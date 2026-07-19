@@ -12587,8 +12587,8 @@ header.site-header:hover {
   }
   .mobile-toggle { flex: 0 0 auto; }
   .focus-hero { min-height:760px; }
-  .focus-hero::before { background-position:center bottom; background-size:auto 46%; }
-  .focus-hero::after { background:linear-gradient(180deg,#fff 0%,rgba(255,255,255,.98) 52%,rgba(255,255,255,.70) 70%,rgba(255,255,255,.08) 100%); }
+  .focus-hero::before { background-position:55% center; background-size:cover; }
+  .focus-hero::after { background:linear-gradient(180deg,rgba(255,255,255,.84) 0%,rgba(255,255,255,.80) 56%,rgba(255,255,255,.34) 100%); }
   .focus-hero-copy { width:100%; justify-content:flex-start; padding:58px 24px 310px; }
   .focus-title { font-size:clamp(42px,10.5vw,62px); }
   .outcome-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
@@ -12606,8 +12606,8 @@ header.site-header:hover {
   .site-header-inner { min-height:64px; padding:8px 14px !important; gap:8px !important; }
   .wordmark { font-size:19px !important; }
   .focus-hero { min-height:0; }
-  .focus-hero::before { background-size:auto 34%; }
-  .focus-hero::after { background:linear-gradient(180deg,#fff 0%,rgba(255,255,255,.99) 64%,rgba(255,255,255,.72) 78%,rgba(255,255,255,.12) 100%); }
+  .focus-hero::before { background-position:55% center; background-size:cover; }
+  .focus-hero::after { background:linear-gradient(180deg,rgba(255,255,255,.88) 0%,rgba(255,255,255,.82) 66%,rgba(255,255,255,.38) 100%); }
   .focus-hero-copy { padding:42px 16px 235px; }
   .focus-kicker { font-size:18px; }
   .focus-title { font-size:clamp(32px,9.7vw,44px); }

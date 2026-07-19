@@ -36,7 +36,7 @@ vercel:
       include: true
       match_slug: business21-match
       slug: business21
-      name: 協同組合ビジネス21
+      name: 技能実習・育成就労
       canonical_url: https://business21.vercel.app
       category: 企業・支援機関
       tech: [Next.js, Vercel, Supabase]

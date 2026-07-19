@@ -139,7 +139,7 @@ portfolio:
   source: vercel
   source_id: prj_okdRDHfHVXPAl4Ae4MzsMvR29w1e
   source_project: climbhero
-- name: 外国人材受け入れ
+- name: 技能実習・育成就労
   slug: business21
   url: https://business21.vercel.app
   aliases:

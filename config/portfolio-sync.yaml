@@ -36,7 +36,7 @@ vercel:
       include: true
       match_slug: business21-match
       slug: business21
-      name: 技能実習・育成就労
+      name: 外国人受け入れ事業 育成就労
       canonical_url: https://business21.vercel.app
       category: 企業・支援機関
       tech: [Next.js, Vercel, Supabase]
@@ -130,7 +130,7 @@ vercel:
     profit-hikone:
       include: true
       slug: profit-hikone
-      name: PROFIT彦根
+      name: エグゼクティブゴルフ シミュレーター
       canonical_url: https://profit-hikone.vercel.app
       category: 店舗・予約
       tech: [Vite, Vercel, Square]
@@ -151,7 +151,7 @@ vercel:
       include: true
       match_slug: trust
       slug: trust
-      name: トラスト
+      name: 相続相談 まちの不動産
       canonical_url: https://trusthikone.vercel.app
       category: 企業・地域相談
       tech: [Next.js, Vercel, Supabase]
@@ -161,7 +161,7 @@ vercel:
     yamani:
       include: true
       slug: yamani
-      name: 事業ポータル 受注製造営業管理
+      name: 老舗工場ポータル MRP営業管理
       canonical_url: https://yamani.vercel.app
       category: 業務ポータル
       tech: [Vercel, JavaScript]
@@ -171,7 +171,7 @@ vercel:
     yomogihikone:
       include: true
       slug: junpa
-      name: 巡波 JUNPA
+      name: 巡波Junpa ねむり蒸し
       canonical_url: https://yomogihikone.vercel.app
       category: サロン・予約
       tech: [Vercel, Square]

@@ -139,7 +139,7 @@ portfolio:
   source: vercel
   source_id: prj_okdRDHfHVXPAl4Ae4MzsMvR29w1e
   source_project: climbhero
-- name: 技能実習・育成就労
+- name: 外国人受け入れ事業 育成就労
   slug: business21
   url: https://business21.vercel.app
   aliases:
@@ -170,7 +170,7 @@ portfolio:
   summary: カラッとヒーローの Shopify ストア
   since: 2025-01
   thumbnail: /img/portfolio/karatto-plus.jpg
-- name: 不動産相続
+- name: 相続相談 まちの不動産
   slug: trust
   url: https://trusthikone.vercel.app
   aliases:
@@ -228,7 +228,7 @@ portfolio:
   tech:
   - Genspark
   summary: マーケ基礎 → 1億到達までの考え方を1枚で
-- name: パーソナルジム
+- name: パーソナルジム ストレッチ
   slug: t3-c
   url: https://bavosruo.gensparkspace.com/
   status: live
@@ -313,7 +313,7 @@ portfolio:
   source: vercel
   source_id: prj_1cpMt5bEHXFvu12ci2cQJFe7CpiO
   source_project: rebuildmatch
-- name: エグゼグティブゴルフ
+- name: エグゼクティブゴルフ シミュレーター
   slug: profit-hikone
   url: https://profit-hikone.vercel.app
   status: live
@@ -328,7 +328,7 @@ portfolio:
   source: vercel
   source_id: prj_hzCKMgDmtUp8zCnRqidRbdtoeG5c
   source_project: profit-hikone
-- name: 巡波 JUNPA
+- name: 巡波Junpa ねむり蒸し
   slug: junpa
   url: https://yomogihikone.vercel.app
   status: live
@@ -369,7 +369,7 @@ portfolio:
   source: vercel
   source_id: prj_ng8J2BHHXkSOgUcgsmB1ASymamAG
   source_project: nokosu
-- name: 事業ポータル 受注製造営業管理
+- name: 老舗工場ポータル MRP営業管理
   slug: yamani
   url: https://yamani.vercel.app
   aliases:

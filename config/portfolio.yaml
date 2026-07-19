@@ -6,6 +6,7 @@
 # 公開トップで、利用者が事業分野を追いやすい順に並べる。
 display_order:
 - goodbouldering
+- goodbouldering-youtube
 - notesthe
 - business21
 - trust
@@ -63,6 +64,15 @@ portfolio:
   summary: ボルダリングカフェの本店サイト(商品・ブログ・予約)
   since: 2014-01
   thumbnail: /img/portfolio/goodbouldering.jpg
+- name: グッぼる ボルダリングCafe YouTube
+  slug: goodbouldering-youtube
+  url: https://www.youtube.com/channel/UC5qERffAPg96HP43OPUHPTw
+  status: live
+  category: YouTubeチャンネル
+  tech:
+  - YouTube
+  - 動画運用
+  summary: ボルダリングの技術・道具・ジムの現場情報を動画で届ける公式チャンネル
 - name: Notエステ 美肌脱毛ホワイトニング
   slug: notesthe
   url: https://notesthe.com

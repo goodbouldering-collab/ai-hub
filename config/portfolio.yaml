@@ -3,36 +3,6 @@
 # 同名・同slug・同URL・同Vercel project IDは1件へ統合し、旧URLは aliases に残す。
 # status: live の項目だけが公開トップ「すべての実績」に表示される。
 
-# 公開トップで、利用者が事業分野を追いやすい順に並べる。
-display_order:
-- goodbouldering
-- goodbouldering-youtube
-- notesthe
-- business21
-- trust
-- profit-hikone
-- t3-c
-- junpa
-- minanowa
-- n-design
-- yamani
-- nokosu
-- plogging-japan
-- karatto-plus
-- moksha-chai
-- hyrox-hongo
-- climbhero
-- climbing-shoe-search
-- fadie
-- rebuildmatch
-- llmo-shindan
-- soneki-app
-- ambassador-roi
-- ambassador-planning
-- moglog-fadie
-- rieru-seikotsu
-- ai-hub
-
 portfolio:
 - name: みんなのWA 異業種交流会
   slug: minanowa
@@ -73,6 +43,7 @@ portfolio:
   - YouTube
   - 動画運用
   summary: ボルダリングの技術・道具・ジムの現場情報を動画で届ける公式チャンネル
+  thumbnail: /img/portfolio/goodbouldering-youtube.jpg
 - name: Notエステ 美肌脱毛ホワイトニング
   slug: notesthe
   url: https://notesthe.com
@@ -224,6 +195,7 @@ portfolio:
   - AI制作
   summary: スポーツ後・仕事終わりの休息に寄り添う、低刺激な睡眠導入チャンネル。企画・制作・配信改善を一体運用
   since: 2026-07
+  thumbnail: /img/portfolio/oyasumi-sekkei-lab.jpg
 - name: 今心
   slug: imagokoro
   url: https://readdy.link/share/042372463c05d7076e5a1b8d3ee28e0e

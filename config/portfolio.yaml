@@ -81,7 +81,7 @@ portfolio:
   source: vercel
   source_id: prj_8OLhLggQwGL6Yr8713W0POerpYpj
   source_project: notesthe
-- name: プロギングジャパン
+- name: プロギング ゴミ拾いジョギング
   slug: plogging-japan
   url: https://plogging.jp
   status: live
@@ -157,7 +157,7 @@ portfolio:
   source: vercel
   source_id: prj_lFs3tIEXi0GQeLQtAoIN1O6rAxpA
   source_project: business21
-- name: カラッと＋
+- name: カラッと＋ 乾燥消臭ECサイト
   slug: karatto-plus
   url: https://karatto.life
   aliases:
@@ -187,7 +187,7 @@ portfolio:
   source: vercel
   source_id: prj_WgcnPJcTCdjo7iwneQjkZ30p7tPi
   source_project: trusthikone
-- name: AI相談
+- name: AI相談彦根 AIエージェント導入
   slug: ai-hub
   url: https://ai-hub-jp.vercel.app
   aliases:
@@ -273,7 +273,7 @@ portfolio:
   - Genspark
   summary: AIフィットネスの食事記録アプリ
   thumbnail: /img/portfolio/moglog-fadie.jpg
-- name: りーる整骨院 提案
+- name: りーる整骨院 サイト提案
   slug: rieru-seikotsu
   url: https://page.gensparksite.com/docs_agent/ae984fea-d97f-4b5a-98c9-8011a693338b/8bbe382c-e37d-4d34-8096-bac941888769/70e67802-89c1-443e-a8fc-4a3e8be3f27b.html
   status: live
@@ -356,7 +356,7 @@ portfolio:
   source: vercel
   source_id: prj_KBrKdZ7GMgenLAuGQpkEAJPbTHl9
   source_project: hyrox-hongo
-- name: NOKOSU
+- name: NOKOSU 相続アルバム
   slug: nokosu
   url: https://nokosu-ten.vercel.app
   status: live
@@ -369,7 +369,7 @@ portfolio:
   source: vercel
   source_id: prj_ng8J2BHHXkSOgUcgsmB1ASymamAG
   source_project: nokosu
-- name: 山仁ポータル
+- name: 製造業ポータル
   slug: yamani
   url: https://yamani.vercel.app
   aliases:

@@ -216,7 +216,7 @@ def _build_jsonld_website() -> str:
             "postalCode": "522-0043",
             "addressRegion": "滋賀県",
             "addressLocality": "彦根市",
-            "streetAddress": "岡町12番地",
+            "streetAddress": "小泉町34-8",
             "addressCountry": "JP",
         },
         "description": "滋賀県彦根市を拠点に、中小事業者・地域団体・個人事業者向けのAI相談、AIエージェント講習、Codex・Claude Code実践、画像生成、受講資料公開、実例紹介、Web/業務システム制作、補助金を使ったAI導入支援を行う。9事業を実際に回す現役オーナーが、相談から講習、実装、公開、運用定着まで伴走する。",
@@ -11453,7 +11453,7 @@ def _render_footer(today: str) -> str:
         "<span class='footer-nav-head'>運営</span>"
         "<p>AI相談（彦根 / クライミングコンサル）</p>"
         "<p>代表 由井 辰美</p>"
-        "<p>〒522-0043<br>滋賀県彦根市岡町12番地</p>"
+        "<p>〒522-0043<br>滋賀県彦根市小泉町34-8<br>ビバシティ前</p>"
         f"<p><a href='mailto:{OWNER_EMAIL}'>{OWNER_EMAIL}</a></p>"
         "<p class='footer-area'>対応: 彦根・湖東・滋賀県全域 / 出張・オンライン全国</p>"
         "</div>"
@@ -12663,7 +12663,7 @@ def _render_header_focused() -> str:
         "<svg class='chev' width='14' height='14' viewBox='0 0 20 20' fill='none' aria-hidden='true'><path d='M5 8l5 5 5-5' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg></button>"
         "<div class='menu-drop' id='menu-drop' role='menu'>"
         "<span class='menu-drop-label'>制作・発信</span>"
-        "<a href='#all-works'>AI実績</a>"
+        "<a href='#all-works'>実績サイト</a>"
         "<a href='#blog'>ブログ</a><a href='/watch/index.html'>AI Watch</a>"
         "<span class='menu-drop-label'>案内・確認</span>"
         "<a href='#speaker'>講師紹介</a><a href='#flow'>進め方</a><a href='#faq'>FAQ</a><a href='/'>ホーム</a>"
@@ -12678,7 +12678,7 @@ def _render_header_focused() -> str:
         "<span class='mobile-nav-label'>講習・資料</span><div class='mobile-link-grid'>"
         "<a href='/programming-map.html'>AIコーディング</a><a href='#lectures'>受講資料</a><a href='#blog'>ブログ</a></div>"
         "<span class='mobile-nav-label'>制作・発信</span><div class='mobile-link-grid'>"
-        "<a href='#all-works'>AI実績</a><a href='/watch/index.html'>AI Watch</a></div>"
+        "<a href='#all-works'>実績サイト</a><a href='/watch/index.html'>AI Watch</a></div>"
         "<span class='mobile-nav-label'>案内・確認</span><div class='mobile-link-grid'>"
         "<a href='#speaker'>講師紹介</a><a href='#flow'>進め方</a><a href='#faq'>FAQ</a><a href='/'>ホーム</a></div>"
         "</div></div></header>"
@@ -12742,15 +12742,15 @@ def _render_focused_main() -> str:
         "<div class='focus-content-actions'><a class='focus-btn secondary' href='/blog/index.html'>ブログを一覧で読む</a></div></section>",
         "<section class='focus-block soft' id='speaker'><div class='focus-split'><img class='speaker-painting' src='/img/speaker-portrait-gubboru-cafe-20260719.webp' alt='グッぼるカフェで少人数のAI講習を行うAI相談講師 由井辰美の絵画調ポートレート' loading='lazy' decoding='async'>",
         "<div><small class='outcome-num'>INSTRUCTOR</small><h2>9つの事業でAIエージェントを使う講師</h2><p>理想論ではなく、告知、予約、事務、サイト運営で実際に任せている仕事を題材にします。成果物の確認と、次も続けられる手順づくりまで一緒に進めます。</p><a class='focus-btn secondary' href='#contact'>彦根で相談する</a></div></div></section>",
-        "<section class='focus-block' id='all-works'><div class='focus-section-head'><small>AI WORKS</small><h2>AI実績</h2></div>",
+        "<section class='focus-block' id='all-works'><div class='focus-section-head'><small>AI WORKS</small><h2>実績サイト</h2></div>",
         "<p class='focus-section-lead'>講習で扱う考え方を、地域交流、福祉、店舗、EC、予約、業務システムで実際に使った支援例です。</p><div class='focus-content-shell'>",
         _render_works_section(),
         "</div><div class='focus-content-actions'><a class='focus-btn secondary' href='#contact'>似た課題を相談する</a></div></section>",
         "<section class='focus-block soft' id='flow'><div class='focus-section-head'><small>HOW IT WORKS</small><h2>講習から、仕事で使うまで</h2></div>",
         "<div class='focus-flow'>",
-        "<article class='focus-step'><img class='focus-step-visual' src='/img/flow-step-bring-20260719.webp' alt='仕事の資料とパソコンを講習へ持ち込むイメージ' loading='lazy' decoding='async'><b>01</b><h3>持ち込む</h3><p>止まっている仕事や、繰り返している作業を持ち込みます。</p></article>",
-        "<article class='focus-step'><img class='focus-step-visual' src='/img/flow-step-build-20260719.webp' alt='講師と受講者がパソコンを見ながら一緒に作業するイメージ' loading='lazy' decoding='async'><b>02</b><h3>一緒に動かす</h3><p>AIエージェントへの依頼、確認、修正をその場で実践します。</p></article>",
-        "<article class='focus-step'><img class='focus-step-visual' src='/img/flow-step-save-20260719.webp' alt='確認済みの手順を資料として保存するイメージ' loading='lazy' decoding='async'><b>03</b><h3>手順に残す</h3><p>成果物と次回の進め方を保存し、自分の仕事へ戻します。</p></article></div></section>",
+        "<article class='focus-step'><img class='focus-step-visual' src='/img/flow-step-bring-20260719.webp' alt='仕事の資料とパソコンを講習へ持ち込むイメージ' loading='lazy' decoding='async'><b>01</b><h3>持ち込む</h3><p>止まっている仕事や、繰り返している作業と、普段使っているPCを持ち込みます。</p></article>",
+        "<article class='focus-step'><img class='focus-step-visual' src='/img/flow-step-build-20260719.webp' alt='講師と受講者がパソコンを見ながら一緒に作業するイメージ' loading='lazy' decoding='async'><b>02</b><h3>一緒に動かす</h3><p>実際の仕事でAIエージェントを動かし、依頼、確認、修正までその場で実践します。</p></article>",
+        "<article class='focus-step'><img class='focus-step-visual' src='/img/flow-step-save-20260719.webp' alt='確認済みの手順を資料として保存するイメージ' loading='lazy' decoding='async'><b>03</b><h3>手順に残す</h3><p>成果物と次回の進め方を保存し、自分の仕事へ戻します。受講後もLINEで質問できます。</p></article></div></section>",
         "<section class='focus-block' id='faq'><div class='focus-section-head'><small>FAQ</small><h2>よくある質問</h2></div><div class='focus-faq'>",
         "<details><summary>AIエージェント講習では何を作りますか？</summary><p>告知文、資料、調査メモ、集計、業務ツール、サイト改善など、実際の仕事から1つ選び、使える成果物と次回手順まで作ります。</p></details>",
         "<details><summary>AIがまったく初めてでも大丈夫ですか？</summary><p>大丈夫です。専門用語ではなく、普段の仕事と困りごとから始めます。</p></details>",

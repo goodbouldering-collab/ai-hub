@@ -10080,6 +10080,73 @@ HEADER_JS = """
     });
   })();
 
+  // 公開ヒーロー: サロン・講習・個別相談の入口をその場で切り替える
+  (function(){
+    var hero = document.querySelector('[data-interactive-hero]');
+    if (!hero) return;
+    var tabs = Array.prototype.slice.call(hero.querySelectorAll('.hero-path-tab'));
+    var index = hero.querySelector('.hero-path-index');
+    var kicker = hero.querySelector('.hero-path-kicker');
+    var title = hero.querySelector('.hero-path-title');
+    var desc = hero.querySelector('.hero-path-desc');
+    var meta = hero.querySelector('.hero-path-meta');
+    var cta = hero.querySelector('.hero-path-cta');
+    if (!tabs.length || !index || !kicker || !title || !desc || !meta || !cta) return;
+
+    function select(tab){
+      tabs.forEach(function(btn){
+        var active = btn === tab;
+        btn.classList.toggle('is-active', active);
+        btn.setAttribute('aria-selected', active ? 'true' : 'false');
+        btn.setAttribute('tabindex', active ? '0' : '-1');
+      });
+      index.textContent = tab.getAttribute('data-index') || '';
+      kicker.textContent = tab.getAttribute('data-kicker') || '';
+      title.textContent = tab.getAttribute('data-title') || '';
+      desc.textContent = tab.getAttribute('data-desc') || '';
+      meta.innerHTML = '';
+      (tab.getAttribute('data-meta') || '').split('|').filter(Boolean).forEach(function(value){
+        var chip = document.createElement('span');
+        chip.textContent = value;
+        meta.appendChild(chip);
+      });
+      cta.firstChild.nodeValue = (tab.getAttribute('data-cta') || '詳しく見る') + ' ';
+      cta.setAttribute('href', tab.getAttribute('data-href') || '#contact');
+      var external = /^https?:/.test(cta.getAttribute('href'));
+      if (external) {
+        cta.setAttribute('target', '_blank');
+        cta.setAttribute('rel', 'noopener');
+      } else {
+        cta.removeAttribute('target');
+        cta.removeAttribute('rel');
+      }
+    }
+
+    tabs.forEach(function(tab){
+      tab.addEventListener('click', function(){ select(tab); });
+      tab.addEventListener('keydown', function(event){
+        if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
+        event.preventDefault();
+        var current = tabs.indexOf(tab);
+        var next = event.key === 'ArrowRight' ? (current + 1) % tabs.length : (current - 1 + tabs.length) % tabs.length;
+        tabs[next].focus();
+        select(tabs[next]);
+      });
+    });
+
+    if (!prefersReduced) {
+      hero.addEventListener('pointermove', function(event){
+        var rect = hero.getBoundingClientRect();
+        hero.style.setProperty('--hero-x', Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width)).toFixed(3));
+        hero.style.setProperty('--hero-y', Math.max(0, Math.min(1, (event.clientY - rect.top) / rect.height)).toFixed(3));
+      }, { passive:true });
+      hero.addEventListener('pointerleave', function(){
+        hero.style.setProperty('--hero-x', '.72');
+        hero.style.setProperty('--hero-y', '.28');
+      });
+    }
+  })();
+
   // ヒーローのサービス地図: ホットスポット選択 + 背景の軽い奥行き
   (function(){
     var hero = document.querySelector('[data-hero-atlas]');
@@ -12501,23 +12568,128 @@ header.site-header:hover {
   outline: none;
   transform: translateY(-1px);
 }
-.focus-hero { position:relative; isolation:isolate; min-height:620px; display:grid; grid-template-columns:1fr; overflow:hidden; background:#fff; }
-.focus-hero::before { content:""; position:absolute; inset:0; z-index:-2; background:url('/img/hero-ai-consult-hikone.png') center right/cover no-repeat; transform:scale(1.01); }
-.focus-hero::after { content:""; position:absolute; inset:0; z-index:-1; background:linear-gradient(90deg,rgba(255,255,255,.99) 0%,rgba(255,255,255,.96) 37%,rgba(255,255,255,.64) 54%,rgba(255,255,255,.10) 78%); }
-.focus-hero-copy { position:relative; z-index:1; width:min(760px,59vw); display:flex; flex-direction:column; justify-content:center; padding:58px clamp(30px,5vw,86px) 58px max(18px,calc((100vw - 1400px)/2)); }
-.focus-kicker { margin: 0 0 18px; color: var(--focus-ink); font-size: clamp(20px,2vw,30px); font-weight: 900; letter-spacing: -.03em; }
-.focus-title { margin:0; max-width:620px; color:#050b14; font-size:clamp(48px,4.45vw,64px); line-height:1.08; letter-spacing:-.055em; }
+.focus-hero {
+  --hero-x:.72;
+  --hero-y:.28;
+  position:relative;
+  isolation:isolate;
+  min-height:690px;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at calc(var(--hero-x) * 100%) calc(var(--hero-y) * 100%),rgba(43,200,189,.22),transparent 29%),
+    linear-gradient(135deg,#f5fbff 0%,#fff 44%,#eefaf7 100%);
+}
+.focus-hero::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  background-image:linear-gradient(rgba(7,95,200,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(7,95,200,.055) 1px,transparent 1px);
+  background-size:38px 38px;
+  mask-image:linear-gradient(90deg,#000 0%,rgba(0,0,0,.6) 56%,transparent 100%);
+}
+.focus-hero::after {
+  content:"";
+  position:absolute;
+  inset:auto -7% -32% auto;
+  z-index:-1;
+  width:min(760px,58vw);
+  aspect-ratio:1;
+  border-radius:50%;
+  background:url('/img/hero-ai-consult-hikone.png') center/cover no-repeat;
+  opacity:.11;
+  filter:saturate(.8) contrast(1.05);
+}
+.hero-orb { position:absolute; z-index:-1; border-radius:50%; filter:blur(2px); pointer-events:none; }
+.hero-orb-one { width:240px; height:240px; top:-90px; left:42%; background:rgba(7,95,200,.09); animation:hero-float 9s ease-in-out infinite; }
+.hero-orb-two { width:160px; height:160px; right:5%; bottom:-55px; background:rgba(42,203,173,.15); animation:hero-float 11s ease-in-out -3s infinite reverse; }
+@keyframes hero-float { 0%,100%{ transform:translate3d(0,0,0) } 50%{ transform:translate3d(18px,22px,0) } }
+.focus-hero-shell { width:min(1400px,100%); min-height:690px; margin:0 auto; padding:68px 28px; display:grid; grid-template-columns:minmax(0,1.02fr) minmax(430px,.98fr); align-items:center; gap:clamp(38px,5vw,76px); }
+.focus-hero-copy { position:relative; z-index:1; min-width:0; display:flex; flex-direction:column; justify-content:center; }
+.hero-salon-launch {
+  width:min(590px,100%);
+  min-height:64px;
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  gap:13px;
+  margin:0 0 25px;
+  padding:10px 13px 10px 11px;
+  color:var(--focus-ink);
+  background:rgba(255,255,255,.84);
+  border:1px solid rgba(7,95,200,.2);
+  border-radius:16px;
+  box-shadow:0 15px 42px rgba(10,62,112,.1);
+  text-decoration:none;
+  backdrop-filter:blur(16px);
+  transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease;
+}
+.hero-salon-launch:hover,.hero-salon-launch:focus-visible { transform:translateY(-3px); border-color:var(--focus-blue); box-shadow:0 20px 50px rgba(7,95,200,.16); outline:none; }
+.hero-salon-live { display:inline-flex; align-items:center; gap:6px; padding:7px 9px; color:#fff; background:#e2394f; border-radius:999px; font:900 10px/1 Inter,sans-serif; letter-spacing:.08em; }
+.hero-salon-live i { width:7px; height:7px; border-radius:50%; background:#fff; box-shadow:0 0 0 0 rgba(255,255,255,.7); animation:hero-pulse 1.8s infinite; }
+@keyframes hero-pulse { 70%{ box-shadow:0 0 0 7px rgba(255,255,255,0) } 100%{ box-shadow:0 0 0 0 rgba(255,255,255,0) } }
+.hero-salon-copy { min-width:0; display:flex; flex-direction:column; gap:2px; }
+.hero-salon-copy strong { font-size:15px; line-height:1.3; }
+.hero-salon-copy small { color:var(--focus-muted); font-size:11px; font-weight:750; }
+.hero-salon-launch > b { color:var(--focus-blue); font-size:12px; white-space:nowrap; }
+.focus-kicker { margin:0 0 12px; color:var(--focus-blue); font:900 13px/1.4 Inter,'Noto Sans JP',sans-serif; letter-spacing:.09em; text-transform:uppercase; }
+.focus-title { margin:0; max-width:680px; color:#050b14; font-size:clamp(48px,4.45vw,66px); line-height:1.06; letter-spacing:-.055em; }
 .focus-title-first { display:inline-block; white-space:nowrap; }
 .focus-title strong { color: var(--focus-blue); position: relative; white-space: nowrap; }
 .focus-title-line { display:inline-block; white-space:nowrap; }
 .focus-title strong::after { content:""; position:absolute; left:0; right:0; bottom:-7px; height:4px; background:var(--focus-blue); transform:rotate(-1.5deg); }
-.focus-lead { max-width: 540px; margin: 28px 0 0; color: #24344a; font-size: clamp(16px,1.35vw,20px); line-height: 1.8; font-weight: 650; }
-.focus-actions { display: flex; gap: 14px; margin-top: 32px; flex-wrap: wrap; }
+.focus-lead { max-width:600px; margin:27px 0 0; color:#24344a; font-size:clamp(16px,1.3vw,19px); line-height:1.85; font-weight:650; }
+.focus-actions { display:flex; align-items:center; gap:13px; margin-top:30px; flex-wrap:wrap; }
 .focus-btn { min-height: 54px; display: inline-flex; align-items: center; justify-content: center; padding: 0 28px; border-radius: 8px; border: 1.5px solid var(--focus-blue); font-weight: 900; text-decoration: none; transition: transform .2s, box-shadow .2s; }
 .focus-btn:hover { transform: translateY(-2px); }
 .focus-btn.primary { background: var(--focus-blue); color: #fff; box-shadow: 0 12px 28px rgba(7,95,200,.2); }
 .focus-btn.secondary { background: #fff; color: var(--focus-blue); }
-.focus-trust { display:flex; gap:16px; margin:24px 0 0; padding:0; list-style:none; color:var(--focus-muted); font-size:12.5px; font-weight:750; flex-wrap:wrap; }
+.hero-line-cta { gap:9px; }
+.hero-text-link { display:inline-flex; align-items:center; gap:5px; padding:12px 3px; color:var(--focus-ink); font-size:13px; font-weight:900; text-decoration:none; border-bottom:1px solid rgba(7,95,200,.25); }
+.hero-text-link:hover { color:var(--focus-blue); }
+.focus-trust { display:flex; gap:16px; margin:22px 0 0; padding:0; list-style:none; color:var(--focus-muted); font-size:12.5px; font-weight:750; flex-wrap:wrap; }
+.focus-trust li::before { content:"✓"; margin-right:6px; color:#0a9c7d; font-weight:950; }
+.hero-pathfinder {
+  position:relative;
+  z-index:2;
+  min-width:0;
+  padding:24px;
+  color:#fff;
+  background:linear-gradient(145deg,rgba(5,26,53,.97),rgba(8,67,100,.95));
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:26px;
+  box-shadow:0 34px 80px rgba(5,32,65,.27);
+  transform:perspective(1100px) rotateX(calc((.5 - var(--hero-y)) * 4deg)) rotateY(calc((var(--hero-x) - .5) * 5deg));
+  transform-style:preserve-3d;
+  transition:transform .25s ease,box-shadow .25s ease;
+}
+.hero-pathfinder::before { content:""; position:absolute; inset:0; border-radius:inherit; background:radial-gradient(circle at calc(var(--hero-x) * 100%) calc(var(--hero-y) * 100%),rgba(67,222,201,.22),transparent 34%); pointer-events:none; }
+.hero-pathfinder-head { position:relative; display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:19px; }
+.hero-pathfinder-head > span { display:inline-flex; align-items:center; gap:8px; color:#8ff5df; font:900 11px/1 Inter,sans-serif; letter-spacing:.13em; }
+.hero-pathfinder-head i { width:8px; height:8px; border-radius:50%; background:#51e0bd; box-shadow:0 0 18px #51e0bd; }
+.hero-pathfinder-head small { color:rgba(255,255,255,.66); font-size:11px; }
+.hero-path-tabs { position:relative; display:grid; grid-template-columns:repeat(3,1fr); gap:7px; padding:5px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.1); border-radius:13px; }
+.hero-path-tab { min-height:42px; padding:7px 9px; color:rgba(255,255,255,.68); background:transparent; border:0; border-radius:9px; font:850 12px/1.3 'Noto Sans JP',sans-serif; cursor:pointer; transition:background .2s,color .2s,transform .2s; }
+.hero-path-tab:hover { color:#fff; }
+.hero-path-tab.is-active { color:#062840; background:#fff; box-shadow:0 7px 22px rgba(0,0,0,.18); transform:translateY(-1px); }
+.hero-path-tab:focus-visible { outline:2px solid #8ff5df; outline-offset:2px; }
+.hero-path-output { position:relative; min-height:316px; display:flex; flex-direction:column; padding:28px 4px 5px; }
+.hero-path-output-top { display:flex; align-items:baseline; justify-content:space-between; gap:14px; }
+.hero-path-index { color:#8ff5df; font:900 38px/1 Inter,sans-serif; letter-spacing:-.06em; }
+.hero-path-kicker { color:rgba(255,255,255,.6); font:800 10px/1 Inter,sans-serif; letter-spacing:.14em; }
+.hero-path-title { max-width:480px; margin:17px 0 10px; color:#fff; font-size:clamp(25px,2.2vw,36px); line-height:1.3; letter-spacing:-.04em; }
+.hero-path-desc { margin:0; color:rgba(255,255,255,.75); font-size:13px; line-height:1.8; }
+.hero-path-meta { display:flex; flex-wrap:wrap; gap:7px; margin:18px 0 22px; }
+.hero-path-meta span { padding:6px 9px; color:#dffaf4; background:rgba(81,224,189,.1); border:1px solid rgba(143,245,223,.2); border-radius:999px; font-size:10.5px; font-weight:800; }
+.hero-path-cta { min-height:50px; display:flex; align-items:center; justify-content:space-between; gap:18px; margin-top:auto; padding:0 17px; color:#052840; background:#8ff5df; border-radius:11px; font-size:13px; font-weight:950; text-decoration:none; transition:background .2s,transform .2s; }
+.hero-path-cta:hover { background:#fff; transform:translateY(-2px); }
+.hero-live-flow { position:relative; display:grid; grid-template-columns:auto 1fr auto 1fr auto 1fr auto; align-items:center; gap:7px; margin-top:18px; padding-top:18px; border-top:1px solid rgba(255,255,255,.12); }
+.hero-live-flow span { display:grid; gap:3px; color:rgba(255,255,255,.62); font-size:9px; line-height:1.2; white-space:nowrap; }
+.hero-live-flow b { color:#fff; font:850 10px/1 Inter,sans-serif; }
+.hero-live-flow i { height:1px; overflow:hidden; background:rgba(255,255,255,.18); }
+.hero-live-flow i::after { content:""; display:block; width:42%; height:100%; background:#8ff5df; animation:hero-flow 2.6s linear infinite; }
+@keyframes hero-flow { from{ transform:translateX(-130%) } to{ transform:translateX(340%) } }
+@media (prefers-reduced-motion:reduce) { .hero-orb,.hero-salon-live i,.hero-live-flow i::after { animation:none !important; } .hero-pathfinder { transform:none !important; } }
 .focus-hub { padding:52px max(18px,calc((100vw - 1400px)/2)) 66px; background:#fff; border-top:1px solid var(--focus-line); }
 .focus-hub-head { max-width:1400px; margin:0 auto 24px; display:flex; align-items:end; justify-content:space-between; gap:24px; }
 .focus-hub-head small { color:var(--focus-blue); font-size:12px; font-weight:900; letter-spacing:.14em; }
@@ -12781,10 +12953,11 @@ header.site-header:hover {
     font-size: 12px;
   }
   .mobile-toggle { flex: 0 0 auto; }
-  .focus-hero { min-height:760px; }
-  .focus-hero::before { background-position:55% center; background-size:cover; }
-  .focus-hero::after { background:linear-gradient(180deg,rgba(255,255,255,.84) 0%,rgba(255,255,255,.80) 56%,rgba(255,255,255,.34) 100%); }
-  .focus-hero-copy { width:100%; justify-content:flex-start; padding:58px 24px 310px; }
+  .focus-hero { min-height:0; }
+  .focus-hero::after { width:760px; right:-30%; bottom:-12%; }
+  .focus-hero-shell { min-height:0; padding:54px 24px 62px; grid-template-columns:1fr; gap:42px; }
+  .focus-hero-copy { width:100%; max-width:760px; padding:0; }
+  .hero-pathfinder { width:min(680px,100%); transform:none; }
   .focus-title { font-size:clamp(42px,10.5vw,62px); }
   .outcome-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .path-grid,.focus-proof-grid { grid-template-columns:1fr; max-width:680px; }
@@ -12801,16 +12974,30 @@ header.site-header:hover {
   .container { padding:64px 0 0 !important; }
   .site-header-inner { min-height:64px; padding:8px 14px !important; gap:8px !important; }
   .wordmark { font-size:19px !important; }
-  .focus-hero { min-height:0; }
-  .focus-hero::before { background-position:55% center; background-size:cover; }
-  .focus-hero::after { background:linear-gradient(180deg,rgba(255,255,255,.88) 0%,rgba(255,255,255,.82) 66%,rgba(255,255,255,.38) 100%); }
-  .focus-hero-copy { padding:42px 16px 235px; }
-  .focus-kicker { font-size:18px; }
+  .focus-hero::before { mask-image:linear-gradient(180deg,#000 0%,transparent 90%); }
+  .focus-hero::after { width:520px; right:-55%; bottom:8%; opacity:.08; }
+  .focus-hero-shell { padding:28px 14px 46px; gap:28px; }
+  .focus-hero-copy { padding:0; }
+  .hero-salon-launch { grid-template-columns:auto 1fr; gap:9px; margin-bottom:24px; border-radius:13px; }
+  .hero-salon-launch > b { grid-column:2; margin-top:-2px; }
+  .hero-salon-copy strong { font-size:13px; }
+  .hero-salon-copy small { font-size:10px; }
+  .focus-kicker { font-size:11px; }
   .focus-title { font-size:clamp(32px,9.7vw,44px); }
   .focus-title-line { white-space:normal; }
   .focus-title strong { white-space:normal; }
   .focus-actions { display:grid; grid-template-columns:1fr; }
   .focus-btn { width:100%; }
+  .hero-text-link { width:max-content; justify-self:center; }
+  .focus-trust { gap:10px 14px; margin-top:18px; font-size:11.5px; }
+  .hero-pathfinder { padding:16px; border-radius:19px; }
+  .hero-pathfinder-head { align-items:flex-start; flex-direction:column; gap:6px; margin-bottom:14px; }
+  .hero-path-output { min-height:335px; padding-top:23px; }
+  .hero-path-title { font-size:26px; }
+  .hero-path-desc { font-size:12.5px; }
+  .hero-live-flow { grid-template-columns:repeat(4,1fr); gap:4px; }
+  .hero-live-flow i { display:none; }
+  .hero-live-flow span { white-space:normal; }
   .focus-outcomes,.focus-block,.focus-hub { padding:48px 14px; }
   .focus-hub-grid { grid-template-columns:1fr; }
   .focus-hub-card { min-height:180px; }
@@ -13035,14 +13222,35 @@ def _render_header_focused() -> str:
 
 def _render_hero_focused() -> str:
     return (
-        "<section class='focus-hero' id='top'>"
-        "<div class='focus-hero-copy fade-up'><p class='focus-kicker'>Codex + Claude Code 実践</p>"
+        "<section class='focus-hero' id='top' data-interactive-hero>"
+        "<div class='hero-orb hero-orb-one' aria-hidden='true'></div><div class='hero-orb hero-orb-two' aria-hidden='true'></div>"
+        "<div class='focus-hero-shell'>"
+        "<div class='focus-hero-copy fade-up'>"
+        f"<a class='hero-salon-launch' href='{html.escape(GUBBLE_LINE_URL, quote=True)}' target='_blank' rel='noopener'>"
+        "<span class='hero-salon-live'><i aria-hidden='true'></i>NEW</span><span class='hero-salon-copy'><strong>AIサロンを始めました</strong><small>毎週火曜 21:00・LINE開催</small></span><b>参加する <span aria-hidden='true'>→</span></b></a>"
+        "<p class='focus-kicker'>Codex + Claude Code 実践</p>"
         "<h1 class='focus-title'><span class='focus-title-first'>AIエージェントを、</span><br><span class='focus-title-line'><strong>仕事の仲間に。</strong></span></h1>"
-        "<p class='focus-lead'>調査、資料、告知、業務改善、Web制作を、AIに頼むだけで終わらせず、確認して仕事で使える形まで進める講習です。</p>"
-        "<div class='focus-actions'><a class='focus-btn primary' href='#packages'>講習・相談コースを見る</a>"
-        "<a class='focus-btn secondary' href='/blog/2026-07-14-ai-agent-course-codex-claude-code.html'>講座を始めた理由を読む</a>"
-        "<a class='focus-btn secondary' href='#contact'>まず相談する</a></div>"
-        "<ul class='focus-trust'><li>初心者OK</li><li>持ち込み課題OK</li><li>対面・オンライン対応</li></ul></div>"
+        "<p class='focus-lead'>毎週のAIサロンと実践講習で、調査・告知・事務・Web制作を、仕事で使える形まで一緒に動かします。</p>"
+        "<div class='focus-actions'>"
+        f"<a class='focus-btn primary hero-line-cta' href='{html.escape(GUBBLE_LINE_URL, quote=True)}' target='_blank' rel='noopener'>AIサロンに参加する <span aria-hidden='true'>↗</span></a>"
+        "<a class='focus-btn secondary' href='#packages'>講習を見る</a><a class='hero-text-link' href='#contact'>個別相談 <span aria-hidden='true'>→</span></a></div>"
+        "<ul class='focus-trust'><li>AI初心者OK</li><li>聞くだけOK</li><li>途中参加OK</li></ul></div>"
+        "<aside class='hero-pathfinder fade-up d2' aria-label='AI相談の入口を選ぶ'>"
+        "<div class='hero-pathfinder-head'><span><i aria-hidden='true'></i>LIVE GUIDE</span><small>気になる入口を選んでください</small></div>"
+        "<div class='hero-path-tabs' role='tablist' aria-label='参加方法'>"
+        f"<button type='button' class='hero-path-tab is-active' role='tab' aria-selected='true' data-hero-path='salon' data-index='01' data-kicker='AI SALON' data-title='毎週火曜21時、まず話して試す' data-desc='10分ミニ講座、実際の仕事をAIで動かす実践、自由質問と交流。聞くだけでも参加できます。' data-meta='毎週火曜 21:00|LINE開催|途中参加OK' data-cta='LINEで参加する' data-href='{html.escape(GUBBLE_LINE_URL, quote=True)}'>サロン</button>"
+        "<button type='button' class='hero-path-tab' role='tab' aria-selected='false' tabindex='-1' data-hero-path='course' data-index='02' data-kicker='PRACTICAL COURSE' data-title='自分の仕事を持ち込み、手順まで残す' data-desc='AIへの依頼、確認、修正をその場で実践。成果物と次回も使える手順を持ち帰ります。' data-meta='120分|彦根・オンライン|初心者OK' data-cta='講習を見る' data-href='#packages'>講習</button>"
+        "<button type='button' class='hero-path-tab' role='tab' aria-selected='false' tabindex='-1' data-hero-path='consult' data-index='03' data-kicker='PRIVATE CONSULT' data-title='何から始めるか、60分で整理する' data-desc='告知、事務、サイト、AI導入の悩みを聞き、最初に動かす仕事と安全な進め方を決めます。' data-meta='60分|対面・オンライン|持ち込み相談' data-cta='個別相談を見る' data-href='#contact'>個別相談</button>"
+        "</div>"
+        "<div class='hero-path-output' aria-live='polite'>"
+        "<div class='hero-path-output-top'><span class='hero-path-index'>01</span><small class='hero-path-kicker'>AI SALON</small></div>"
+        "<h2 class='hero-path-title'>毎週火曜21時、まず話して試す</h2>"
+        "<p class='hero-path-desc'>10分ミニ講座、実際の仕事をAIで動かす実践、自由質問と交流。聞くだけでも参加できます。</p>"
+        "<div class='hero-path-meta'><span>毎週火曜 21:00</span><span>LINE開催</span><span>途中参加OK</span></div>"
+        f"<a class='hero-path-cta' href='{html.escape(GUBBLE_LINE_URL, quote=True)}' target='_blank' rel='noopener'>LINEで参加する <span aria-hidden='true'>→</span></a>"
+        "</div>"
+        "<div class='hero-live-flow' aria-label='AIサロンの進行'><span><b>21:00</b>持ち寄る</span><i></i><span><b>21:05</b>ミニ講座</span><i></i><span><b>21:15</b>実践</span><i></i><span><b>21:40</b>質問・交流</span></div>"
+        "</aside></div>"
         "</section>"
     )
 

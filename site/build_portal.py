@@ -10080,71 +10080,19 @@ HEADER_JS = """
     });
   })();
 
-  // 公開ヒーロー: サロン・講習・個別相談の入口をその場で切り替える
+  // 公開ヒーロー: カーソル位置に合わせて背景の光だけを穏やかに動かす
   (function(){
-    var hero = document.querySelector('[data-interactive-hero]');
-    if (!hero) return;
-    var tabs = Array.prototype.slice.call(hero.querySelectorAll('.hero-path-tab'));
-    var index = hero.querySelector('.hero-path-index');
-    var kicker = hero.querySelector('.hero-path-kicker');
-    var title = hero.querySelector('.hero-path-title');
-    var desc = hero.querySelector('.hero-path-desc');
-    var meta = hero.querySelector('.hero-path-meta');
-    var cta = hero.querySelector('.hero-path-cta');
-    if (!tabs.length || !index || !kicker || !title || !desc || !meta || !cta) return;
-
-    function select(tab){
-      tabs.forEach(function(btn){
-        var active = btn === tab;
-        btn.classList.toggle('is-active', active);
-        btn.setAttribute('aria-selected', active ? 'true' : 'false');
-        btn.setAttribute('tabindex', active ? '0' : '-1');
-      });
-      index.textContent = tab.getAttribute('data-index') || '';
-      kicker.textContent = tab.getAttribute('data-kicker') || '';
-      title.textContent = tab.getAttribute('data-title') || '';
-      desc.textContent = tab.getAttribute('data-desc') || '';
-      meta.innerHTML = '';
-      (tab.getAttribute('data-meta') || '').split('|').filter(Boolean).forEach(function(value){
-        var chip = document.createElement('span');
-        chip.textContent = value;
-        meta.appendChild(chip);
-      });
-      cta.firstChild.nodeValue = (tab.getAttribute('data-cta') || '詳しく見る') + ' ';
-      cta.setAttribute('href', tab.getAttribute('data-href') || '#contact');
-      var external = /^https?:/.test(cta.getAttribute('href'));
-      if (external) {
-        cta.setAttribute('target', '_blank');
-        cta.setAttribute('rel', 'noopener');
-      } else {
-        cta.removeAttribute('target');
-        cta.removeAttribute('rel');
-      }
-    }
-
-    tabs.forEach(function(tab){
-      tab.addEventListener('click', function(){ select(tab); });
-      tab.addEventListener('keydown', function(event){
-        if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
-        event.preventDefault();
-        var current = tabs.indexOf(tab);
-        var next = event.key === 'ArrowRight' ? (current + 1) % tabs.length : (current - 1 + tabs.length) % tabs.length;
-        tabs[next].focus();
-        select(tabs[next]);
-      });
+    var featuredHero = document.querySelector('[data-interactive-hero]');
+    if (!featuredHero || prefersReduced) return;
+    featuredHero.addEventListener('pointermove', function(event){
+      var rect = featuredHero.getBoundingClientRect();
+      featuredHero.style.setProperty('--hero-x', Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width)).toFixed(3));
+      featuredHero.style.setProperty('--hero-y', Math.max(0, Math.min(1, (event.clientY - rect.top) / rect.height)).toFixed(3));
+    }, { passive:true });
+    featuredHero.addEventListener('pointerleave', function(){
+      featuredHero.style.setProperty('--hero-x', '.72');
+      featuredHero.style.setProperty('--hero-y', '.28');
     });
-
-    if (!prefersReduced) {
-      hero.addEventListener('pointermove', function(event){
-        var rect = hero.getBoundingClientRect();
-        hero.style.setProperty('--hero-x', Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width)).toFixed(3));
-        hero.style.setProperty('--hero-y', Math.max(0, Math.min(1, (event.clientY - rect.top) / rect.height)).toFixed(3));
-      }, { passive:true });
-      hero.addEventListener('pointerleave', function(){
-        hero.style.setProperty('--hero-x', '.72');
-        hero.style.setProperty('--hero-y', '.28');
-      });
-    }
   })();
 
   // ヒーローのサービス地図: ホットスポット選択 + 背景の軽い奥行き
@@ -12573,7 +12521,7 @@ header.site-header:hover {
   --hero-y:.28;
   position:relative;
   isolation:isolate;
-  min-height:690px;
+  min-height:650px;
   overflow:hidden;
   background:
     radial-gradient(circle at calc(var(--hero-x) * 100%) calc(var(--hero-y) * 100%),rgba(43,200,189,.22),transparent 29%),
@@ -12593,18 +12541,18 @@ header.site-header:hover {
   position:absolute;
   inset:auto -7% -32% auto;
   z-index:-1;
-  width:min(760px,58vw);
+  width:min(860px,62vw);
   aspect-ratio:1;
   border-radius:50%;
   background:url('/img/hero-ai-consult-hikone.png') center/cover no-repeat;
-  opacity:.11;
+  opacity:.16;
   filter:saturate(.8) contrast(1.05);
 }
 .hero-orb { position:absolute; z-index:-1; border-radius:50%; filter:blur(2px); pointer-events:none; }
 .hero-orb-one { width:240px; height:240px; top:-90px; left:42%; background:rgba(7,95,200,.09); animation:hero-float 9s ease-in-out infinite; }
 .hero-orb-two { width:160px; height:160px; right:5%; bottom:-55px; background:rgba(42,203,173,.15); animation:hero-float 11s ease-in-out -3s infinite reverse; }
 @keyframes hero-float { 0%,100%{ transform:translate3d(0,0,0) } 50%{ transform:translate3d(18px,22px,0) } }
-.focus-hero-shell { width:min(1400px,100%); min-height:690px; margin:0 auto; padding:68px 28px; display:grid; grid-template-columns:minmax(0,1.02fr) minmax(430px,.98fr); align-items:center; gap:clamp(38px,5vw,76px); }
+.focus-hero-shell { width:min(1400px,100%); min-height:650px; margin:0 auto; padding:68px 28px; display:grid; grid-template-columns:minmax(0,760px); justify-content:start; align-items:center; }
 .focus-hero-copy { position:relative; z-index:1; min-width:0; display:flex; flex-direction:column; justify-content:center; }
 .hero-salon-launch {
   width:min(590px,100%);
@@ -12649,47 +12597,7 @@ header.site-header:hover {
 .hero-text-link:hover { color:var(--focus-blue); }
 .focus-trust { display:flex; gap:16px; margin:22px 0 0; padding:0; list-style:none; color:var(--focus-muted); font-size:12.5px; font-weight:750; flex-wrap:wrap; }
 .focus-trust li::before { content:"✓"; margin-right:6px; color:#0a9c7d; font-weight:950; }
-.hero-pathfinder {
-  position:relative;
-  z-index:2;
-  min-width:0;
-  padding:24px;
-  color:#fff;
-  background:linear-gradient(145deg,rgba(5,26,53,.97),rgba(8,67,100,.95));
-  border:1px solid rgba(255,255,255,.18);
-  border-radius:26px;
-  box-shadow:0 34px 80px rgba(5,32,65,.27);
-  transform:perspective(1100px) rotateX(calc((.5 - var(--hero-y)) * 4deg)) rotateY(calc((var(--hero-x) - .5) * 5deg));
-  transform-style:preserve-3d;
-  transition:transform .25s ease,box-shadow .25s ease;
-}
-.hero-pathfinder::before { content:""; position:absolute; inset:0; border-radius:inherit; background:radial-gradient(circle at calc(var(--hero-x) * 100%) calc(var(--hero-y) * 100%),rgba(67,222,201,.22),transparent 34%); pointer-events:none; }
-.hero-pathfinder-head { position:relative; display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:19px; }
-.hero-pathfinder-head > span { display:inline-flex; align-items:center; gap:8px; color:#8ff5df; font:900 11px/1 Inter,sans-serif; letter-spacing:.13em; }
-.hero-pathfinder-head i { width:8px; height:8px; border-radius:50%; background:#51e0bd; box-shadow:0 0 18px #51e0bd; }
-.hero-pathfinder-head small { color:rgba(255,255,255,.66); font-size:11px; }
-.hero-path-tabs { position:relative; display:grid; grid-template-columns:repeat(3,1fr); gap:7px; padding:5px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.1); border-radius:13px; }
-.hero-path-tab { min-height:42px; padding:7px 9px; color:rgba(255,255,255,.68); background:transparent; border:0; border-radius:9px; font:850 12px/1.3 'Noto Sans JP',sans-serif; cursor:pointer; transition:background .2s,color .2s,transform .2s; }
-.hero-path-tab:hover { color:#fff; }
-.hero-path-tab.is-active { color:#062840; background:#fff; box-shadow:0 7px 22px rgba(0,0,0,.18); transform:translateY(-1px); }
-.hero-path-tab:focus-visible { outline:2px solid #8ff5df; outline-offset:2px; }
-.hero-path-output { position:relative; min-height:316px; display:flex; flex-direction:column; padding:28px 4px 5px; }
-.hero-path-output-top { display:flex; align-items:baseline; justify-content:space-between; gap:14px; }
-.hero-path-index { color:#8ff5df; font:900 38px/1 Inter,sans-serif; letter-spacing:-.06em; }
-.hero-path-kicker { color:rgba(255,255,255,.6); font:800 10px/1 Inter,sans-serif; letter-spacing:.14em; }
-.hero-path-title { max-width:480px; margin:17px 0 10px; color:#fff; font-size:clamp(25px,2.2vw,36px); line-height:1.3; letter-spacing:-.04em; }
-.hero-path-desc { margin:0; color:rgba(255,255,255,.75); font-size:13px; line-height:1.8; }
-.hero-path-meta { display:flex; flex-wrap:wrap; gap:7px; margin:18px 0 22px; }
-.hero-path-meta span { padding:6px 9px; color:#dffaf4; background:rgba(81,224,189,.1); border:1px solid rgba(143,245,223,.2); border-radius:999px; font-size:10.5px; font-weight:800; }
-.hero-path-cta { min-height:50px; display:flex; align-items:center; justify-content:space-between; gap:18px; margin-top:auto; padding:0 17px; color:#052840; background:#8ff5df; border-radius:11px; font-size:13px; font-weight:950; text-decoration:none; transition:background .2s,transform .2s; }
-.hero-path-cta:hover { background:#fff; transform:translateY(-2px); }
-.hero-live-flow { position:relative; display:grid; grid-template-columns:auto 1fr auto 1fr auto 1fr auto; align-items:center; gap:7px; margin-top:18px; padding-top:18px; border-top:1px solid rgba(255,255,255,.12); }
-.hero-live-flow span { display:grid; gap:3px; color:rgba(255,255,255,.62); font-size:9px; line-height:1.2; white-space:nowrap; }
-.hero-live-flow b { color:#fff; font:850 10px/1 Inter,sans-serif; }
-.hero-live-flow i { height:1px; overflow:hidden; background:rgba(255,255,255,.18); }
-.hero-live-flow i::after { content:""; display:block; width:42%; height:100%; background:#8ff5df; animation:hero-flow 2.6s linear infinite; }
-@keyframes hero-flow { from{ transform:translateX(-130%) } to{ transform:translateX(340%) } }
-@media (prefers-reduced-motion:reduce) { .hero-orb,.hero-salon-live i,.hero-live-flow i::after { animation:none !important; } .hero-pathfinder { transform:none !important; } }
+@media (prefers-reduced-motion:reduce) { .hero-orb,.hero-salon-live i { animation:none !important; } }
 .focus-hub { padding:52px max(18px,calc((100vw - 1400px)/2)) 66px; background:#fff; border-top:1px solid var(--focus-line); }
 .focus-hub-head { max-width:1400px; margin:0 auto 24px; display:flex; align-items:end; justify-content:space-between; gap:24px; }
 .focus-hub-head small { color:var(--focus-blue); font-size:12px; font-weight:900; letter-spacing:.14em; }
@@ -12957,7 +12865,6 @@ header.site-header:hover {
   .focus-hero::after { width:760px; right:-30%; bottom:-12%; }
   .focus-hero-shell { min-height:0; padding:54px 24px 62px; grid-template-columns:1fr; gap:42px; }
   .focus-hero-copy { width:100%; max-width:760px; padding:0; }
-  .hero-pathfinder { width:min(680px,100%); transform:none; }
   .focus-title { font-size:clamp(42px,10.5vw,62px); }
   .outcome-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .path-grid,.focus-proof-grid { grid-template-columns:1fr; max-width:680px; }
@@ -12990,14 +12897,6 @@ header.site-header:hover {
   .focus-btn { width:100%; }
   .hero-text-link { width:max-content; justify-self:center; }
   .focus-trust { gap:10px 14px; margin-top:18px; font-size:11.5px; }
-  .hero-pathfinder { padding:16px; border-radius:19px; }
-  .hero-pathfinder-head { align-items:flex-start; flex-direction:column; gap:6px; margin-bottom:14px; }
-  .hero-path-output { min-height:335px; padding-top:23px; }
-  .hero-path-title { font-size:26px; }
-  .hero-path-desc { font-size:12.5px; }
-  .hero-live-flow { grid-template-columns:repeat(4,1fr); gap:4px; }
-  .hero-live-flow i { display:none; }
-  .hero-live-flow span { white-space:normal; }
   .focus-outcomes,.focus-block,.focus-hub { padding:48px 14px; }
   .focus-hub-grid { grid-template-columns:1fr; }
   .focus-hub-card { min-height:180px; }
@@ -13235,22 +13134,7 @@ def _render_hero_focused() -> str:
         f"<a class='focus-btn primary hero-line-cta' href='{html.escape(GUBBLE_LINE_URL, quote=True)}' target='_blank' rel='noopener'>AIサロンに参加する <span aria-hidden='true'>↗</span></a>"
         "<a class='focus-btn secondary' href='#packages'>講習を見る</a><a class='hero-text-link' href='#contact'>個別相談 <span aria-hidden='true'>→</span></a></div>"
         "<ul class='focus-trust'><li>AI初心者OK</li><li>聞くだけOK</li><li>途中参加OK</li></ul></div>"
-        "<aside class='hero-pathfinder fade-up d2' aria-label='AI相談の入口を選ぶ'>"
-        "<div class='hero-pathfinder-head'><span><i aria-hidden='true'></i>LIVE GUIDE</span><small>気になる入口を選んでください</small></div>"
-        "<div class='hero-path-tabs' role='tablist' aria-label='参加方法'>"
-        f"<button type='button' class='hero-path-tab is-active' role='tab' aria-selected='true' data-hero-path='salon' data-index='01' data-kicker='AI SALON' data-title='毎週火曜21時、まず話して試す' data-desc='10分ミニ講座、実際の仕事をAIで動かす実践、自由質問と交流。聞くだけでも参加できます。' data-meta='毎週火曜 21:00|LINE開催|途中参加OK' data-cta='LINEで参加する' data-href='{html.escape(GUBBLE_LINE_URL, quote=True)}'>サロン</button>"
-        "<button type='button' class='hero-path-tab' role='tab' aria-selected='false' tabindex='-1' data-hero-path='course' data-index='02' data-kicker='PRACTICAL COURSE' data-title='自分の仕事を持ち込み、手順まで残す' data-desc='AIへの依頼、確認、修正をその場で実践。成果物と次回も使える手順を持ち帰ります。' data-meta='120分|彦根・オンライン|初心者OK' data-cta='講習を見る' data-href='#packages'>講習</button>"
-        "<button type='button' class='hero-path-tab' role='tab' aria-selected='false' tabindex='-1' data-hero-path='consult' data-index='03' data-kicker='PRIVATE CONSULT' data-title='何から始めるか、60分で整理する' data-desc='告知、事務、サイト、AI導入の悩みを聞き、最初に動かす仕事と安全な進め方を決めます。' data-meta='60分|対面・オンライン|持ち込み相談' data-cta='個別相談を見る' data-href='#contact'>個別相談</button>"
         "</div>"
-        "<div class='hero-path-output' aria-live='polite'>"
-        "<div class='hero-path-output-top'><span class='hero-path-index'>01</span><small class='hero-path-kicker'>AI SALON</small></div>"
-        "<h2 class='hero-path-title'>毎週火曜21時、まず話して試す</h2>"
-        "<p class='hero-path-desc'>10分ミニ講座、実際の仕事をAIで動かす実践、自由質問と交流。聞くだけでも参加できます。</p>"
-        "<div class='hero-path-meta'><span>毎週火曜 21:00</span><span>LINE開催</span><span>途中参加OK</span></div>"
-        f"<a class='hero-path-cta' href='{html.escape(GUBBLE_LINE_URL, quote=True)}' target='_blank' rel='noopener'>LINEで参加する <span aria-hidden='true'>→</span></a>"
-        "</div>"
-        "<div class='hero-live-flow' aria-label='AIサロンの進行'><span><b>21:00</b>持ち寄る</span><i></i><span><b>21:05</b>ミニ講座</span><i></i><span><b>21:15</b>実践</span><i></i><span><b>21:40</b>質問・交流</span></div>"
-        "</aside></div>"
         "</section>"
     )
 

@@ -11380,7 +11380,7 @@ def _render_compact_course_cards() -> str:
 
 
 def _render_tuesday_build_hour_cards() -> str:
-    """毎週火曜21時のAIビルドアワーを、1時間の流れが分かるカードで案内する。"""
+    """毎週火曜21時のAIサロンを、1時間の流れが分かるカードで案内する。"""
     items = [
         {
             "cat": "CHECK IN",
@@ -12884,8 +12884,8 @@ def _render_focused_main() -> str:
         "<div class='course-venue-map'><iframe src='https://www.google.com/maps?q=%E3%82%B0%E3%83%83%E3%81%BC%E3%82%8B%E3%82%AB%E3%83%95%E3%82%A7%20%E6%BB%8B%E8%B3%80%E7%9C%8C%E5%BD%A6%E6%A0%B9%E5%B8%82%E5%B2%A1%E7%94%BA12&amp;output=embed' title='グッぼるカフェ周辺のGoogleマップ' loading='lazy' referrerpolicy='no-referrer-when-downgrade' allowfullscreen></iframe></div>",
         "<p class='course-venue-map-link'><a href='https://www.google.com/maps/search/?api=1&amp;query=%E3%82%B0%E3%83%83%E3%81%BC%E3%82%8B%E3%82%AB%E3%83%95%E3%82%A7%20%E6%BB%8B%E8%B3%80%E7%9C%8C%E5%BD%A6%E6%A0%B9%E5%B8%82%E5%B2%A1%E7%94%BA12' target='_blank' rel='noopener'>Googleマップで開く →</a></p></aside>",
         "<div class='course-quick-actions'><button type='button' class='compact-diagnose diagnose-open'>迷ったら60秒診断</button><a href='#lectures'>受講資料から選ぶ →</a></div></section>",
-        "<section class='focus-block' id='seven-day-courses'><div class='focus-section-head'><small>TUESDAY AI BUILD HOUR</small><h2>火曜21時のAIビルドアワー</h2></div>",
-        "<p class='focus-section-lead'>毎週火曜21時、LINEで開催。10分のミニ講座、自由質問、実際の仕事をAIで動かす実践、参加者同士の交流を行います。聞くだけ・途中参加も歓迎です。</p>",
+        "<section class='focus-block' id='seven-day-courses'><div class='focus-section-head'><small>TUESDAY AIsalon</small><h2>AIサロン</h2></div>",
+        "<p class='focus-section-lead'>毎週火曜21時、LINE開催。10分ミニ講座、自由質問、仕事をAIで動かす実践、参加者同士の交流を行なっています。聞くだけ・途中参加も歓迎。</p>",
         _render_tuesday_build_hour_cards(),
         "<p class='focus-section-lead'>終了後は、AIが要点を下書きし、講師が確認した「火曜AIノート」を共有します。顧客情報や機密事項を含む内容は公開せず、個別相談で扱います。</p>",
         f"<div class='focus-content-actions'><a class='focus-btn' href='{html.escape(GUBBLE_LINE_URL, quote=True)}' target='_blank' rel='noopener'>LINEで今週の案内を受け取る</a></div></section>",
@@ -12913,7 +12913,7 @@ def _render_focused_main() -> str:
         "<details><summary>AIがまったく初めてでも大丈夫ですか？</summary><p>大丈夫です。専門用語ではなく、普段の仕事と困りごとから始めます。</p></details>",
         "<details><summary>パソコンを持ち込めますか？</summary><p>はい。可能なら普段使っているPCと、直したい資料やページをお持ちください。</p></details>",
         "<details><summary>オンラインでも受講できますか？</summary><p>対面・オンラインの両方に対応しています。彦根市内は訪問も相談できます。</p></details>",
-        "<details><summary>火曜AIビルドアワーは、誰でも参加できますか？</summary><p>はい。AIが初めての方も、聞くだけ・途中参加も歓迎です。毎週火曜21時に開催し、事前質問と参加案内はLINEで受け付けます。</p></details></div></section>",
+        "<details><summary>AIサロンは、誰でも参加できますか？</summary><p>はい。AIが初めての方も、聞くだけ・途中参加も歓迎です。毎週火曜21時に開催し、事前質問と参加案内はLINEで受け付けます。</p></details></div></section>",
         "<section class='focus-contact' id='contact'><div class='focus-contact-inner'><div><h2>AIエージェントに任せたい仕事を聞かせてください。</h2><p>講習前に、今の仕事に合う題材と進め方を一緒に整理できます。</p></div>",
         f"<a class='focus-btn' href='{free_consult}' target='_blank' rel='noopener'>無料相談の日程を選ぶ</a></div></section>",
     ]

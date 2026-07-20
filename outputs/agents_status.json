@@ -1,6 +1,13 @@
 {
-  "generated_at": "2026-07-20T02:58:35Z",
+  "generated_at": "2026-07-20T22:46:30Z",
   "recent_works": [
+    {
+      "date": "2026-07-19",
+      "filename": "2026-07-19-seo-weekly-digest.md",
+      "title": "SEO週次ダイジェスト（2026-07-19）",
+      "business": "seo",
+      "path": "/ops?file=2026-07-19-seo-weekly-digest.md#sec-docs"
+    },
     {
       "date": "2026-07-12",
       "filename": "2026-07-12-seo-weekly-digest.md",
@@ -49,13 +56,6 @@
       "title": "SEO週次ダイジェスト（2026-06-08）",
       "business": "seo",
       "path": "/ops?file=2026-06-08-seo-weekly-digest.md#sec-docs"
-    },
-    {
-      "date": "2026-06-05",
-      "filename": "2026-06-05-gubble-sns-automation-prep.md",
-      "title": "グッぼる SNS自動化 準備書",
-      "business": "gubble",
-      "path": "/ops?file=2026-06-05-gubble-sns-automation-prep.md#sec-docs"
     }
   ],
   "tasks_open": [
@@ -88,7 +88,12 @@
       "path": "/ops?file=2026-05-28-ai-shindan-matching-design-system.md#sec-docs"
     }
   ],
-  "per_business_recent": [],
+  "per_business_recent": [
+    {
+      "business": "seo",
+      "count": 1
+    }
+  ],
   "daily_histogram": [
     {
       "date": "2026-07-07",
@@ -140,7 +145,7 @@
     },
     {
       "date": "2026-07-19",
-      "count": 0
+      "count": 1
     },
     {
       "date": "2026-07-20",
@@ -149,8 +154,8 @@
   ],
   "cma_apps": [],
   "totals": {
-    "consul_work_total": 131,
-    "recent_7d_total": 0,
+    "consul_work_total": 132,
+    "recent_7d_total": 1,
     "tasks_open_total": 4
   }
 }

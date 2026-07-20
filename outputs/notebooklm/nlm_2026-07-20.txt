@@ -2,9 +2,44 @@
 
 ## AIニュース
 
-### I hate that I don’t hate this song made with Suno
-I would never go so far as to say there's no place for AI in music (I'm a fan of Holly Herndon, after all). But I generally find music made with generative AI to be offensively boring, especially the ...
-出典: https://www.theverge.com/entertainment/967678/1010benja-semiramis-dream-suno-ai-music
+### Here are the 30,000 songs Sony is suing Udio&#8217;s AI music generator over
+Sony Music Entertainment has filed another lawsuit against Udio, accusing the AI music generator of infringing the copyright of more than 30,000 of its songs, ranging from Elvis Presley's Hound Dog to...
+出典: https://www.theverge.com/tech/968375/sony-udio-lawsuit-songs-ai-copyright
+
+### SpaceX in your index fund, explained
+Index funds are touted as one of the safest ways to invest. Rather than picking and choosing individual stocks, index funds let you bet on the market as a whole. So what happens when a company like Sp...
+出典: https://www.theverge.com/business/968257/spacex-in-your-index-fund-explained
+
+### Adobe’s ‘natural look’ camera app embraces generative AI
+Adobe's experimental camera app has taken an unexpected turn. After Project Indigo was launched last year to provide a "more natural (SLR-like) look" for iPhone photography, the Indigo camera app is n...
+出典: https://www.theverge.com/tech/967791/adobe-indigo-camera-app-ai-playground-update
+
+### China delivers a one-two punch to America’s AI dominance
+China's leading AI companies are ramping up the pressure on Silicon Valley, as Moonshot and Alibaba unveiled models they claim can go toe-to-toe with the best from OpenAI and Anthropic at a fraction o...
+出典: https://www.theverge.com/ai-artificial-intelligence/967781/chinese-ai-models-open-source-moonshot-kimi-k3-alibaba-qwen
+
+### China’s AI models have Trump’s AI world at war with itself
+This story originally appeared in The Algorithm, our weekly newsletter on AI. To get stories like this in your inbox first,&#160;sign up here. Over the weekend, several current and former advisors to ...
+出典: https://www.technologyreview.com/2026/07/20/1140675/chinas-ai-models-have-trumps-ai-world-at-war-with-itself/
+
+### AI is more likely than humans to form biases when hiring
+The next time you apply for a job, AI may screen your résumé before any human sees it. But there’s good reason to question whether AI will judge you fairly. Researchers already know that LLMs pick up ...
+出典: https://www.technologyreview.com/2026/07/20/1140655/ai-biases-hiring-humans/
+
+### Firefighting drones in the works as wildfires plague US nearly year-round
+California and XPRIZE competition tests whether drones can stop wildfires early.
+出典: https://arstechnica.com/ai/2026/07/firefighting-drones-in-the-works-as-wildfires-plague-us-nearly-year-round/
+
+### Beyond grep: The case for a context-rich AI coding harness
+Augment Code's Vinay Perneti talks models, harnesses, and context.
+出典: https://arstechnica.com/ai/2026/07/beyond-grep-the-case-for-a-context-rich-ai-coding-harness/
+
+
+## AI公式
+
+### Safety and alignment in an era of long-horizon models
+OpenAI shares lessons from deploying long-running AI models, highlighting new safety risks, observed failures, and improved safeguards through iterative deployment.
+出典: https://openai.com/index/safety-alignment-long-horizon-models
 
 
 ## AI動画(日本語)
@@ -13,47 +48,58 @@ I would never go so far as to say there's no place for AI in music (I'm a fan of
 ▼Claude Code短期集中合宿 in 大阪 8月21日(金)〜23日(日)、2泊3日でClaude Code漬け。自分の業務を持ち込んで「動くもの」と一緒に持ち帰る合宿です。これから始める方も参加できます。 https://touchai.jp/claude-code-camp?utm_source=I0Xs_Wa2_MQ&amp;utm_medium=webshokutv&amp;utm_...
 出典: https://www.youtube.com/watch?v=T3IVF2hPw94
 
-### 中国AIの勢い止まらず！Kimi K3に続いてFable5級AI、Qwen3.8がオープンウェイトで登場！
-▼Claude Code短期集中合宿 in 大阪 8月21日(金)〜23日(日)、2泊3日でClaude Code漬け。自分の業務を持ち込んで「動くもの」と一緒に持ち帰る合宿です。これから始める方も参加できます。 https://touchai.jp/claude-code-camp?utm_source=I0Xs_Wa2_MQ&amp;utm_medium=webshokutv&amp;utm_...
-出典: https://www.youtube.com/watch?v=I0Xs_Wa2_MQ
+### Gemini Sparkを完全解説！今すぐ使えるAI活用10選！
+Gemini Sparkが日本語版が登場したので完全解説！今すぐ使えるAI活用をまとめました。  ★公式LINEは下記 LINE：https://lin.ee/1krnxOu  ★プロセボ｜AIコミュニティ AI活用を実際に操作しながら学ぶワークショップ型AIスクール。 参加申し込みはこちら → https://procevo.biz/  ★Substack（メルマガ）は下記から購読 https:...
+出典: https://www.youtube.com/watch?v=nW9WlFU_DUw
 
-### Kimi K3フィーバー！ / Fable5がサブスク利用継続可能に！
-▼Claude Code短期集中合宿 8月21(金)〜23日(日) https://touchai.jp/claude-code-camp?utm_source=_fUjNuciJGg&amp;utm_medium=webshokutv&amp;utm_campaign=20260718  ▼動画内で紹介した講座はこちら！ https://touchai.jp/?utm_source=_fUjNu...
-出典: https://www.youtube.com/watch?v=ENove3izyJM
-
-### 【閲覧注意】大人向け動画をAIで作って稼いだら大変なことになった【Grok / xAI / AI副業】
-▼動画内で紹介したプレゼントの受け取りは以下の公式LINEから https://liff.line.me/2006805073-rn36NG8b/landing?follow=%40933hyolt&amp;lp=CTmx3Z&amp;liff_id=2006805073-rn36NG8b  ▼プレゼントの受け取り方法 ① LINE登録後に送信される配信をタップ ② アンケートに回答（1度登録され...
-出典: https://www.youtube.com/watch?v=tgs_BFgoupk
+### 【AIで検証】寝る前に自動で働くCodexに100万再生のショート動画作ってと指示した結果
+▼動画内で紹介したプレゼントの受け取りは以下の公式LINEから https://liff.line.me/2006805073-rn36NG8b/landing?follow=%40933hyolt&amp;lp=8royfx&amp;liff_id=2006805073-rn36NG8b  AIエージェント×SNS自動化 3daysブートキャンプの詳細はコチラから▼ https://utage-...
+出典: https://www.youtube.com/watch?v=m8C8ket94yo
 
 
 ## AI国内
+
+### 中外製薬「社員1人にAIエージェント10体」作戦で成果倍増を目指す、AI使いこなし術
+製薬はコストも高く成功率も低い苛烈な業界だ。一方で、AIの活用により費用を1200億から半減、成功率を10倍にできるという試算もある。中外製薬はそのような業界の中で、AIにより2030年に研究開発の成果を倍増するという計画を掲げた。その秘策とは。
+出典: https://kn.itmedia.co.jp/kn/articles/2607/10/news007.html
+
+### NTT、ソフトバンク、サカナAI――国産AI開発「成功組」の“ある共通点”
+NTTやソフトバンク、サカナAIなどの「AI開発に成功した企業」には“ある共通点”がある。彼らはどのような技術を活用し、AI開発を成し遂げたのか。
+出典: https://www.itmedia.co.jp/business/articles/2607/21/news036.html
+
+### 「AIに期待」65％も「明確な成果」16％、製造業の多くがPoC止まりの理由は
+primeNumberが「AI・データ活用実態調査 2026」を公開した。AIへの高い期待に対し、明確な成果を得た企業は16.4％にとどまる。成果を左右する原因や、製造業でPoC止まりが多発する構造的課題を同社に聞いた。
+出典: https://monoist.itmedia.co.jp/mn/articles/2607/21/news048.html
 
 ### Hugging FaceにAI主導のサイバー攻撃　防御もAIで対抗するも、商用モデルは解析拒否で「GLM」採用
 Hugging Faceは、自律型AIエージェントによる本番インフラへの侵入を検知、対処したと発表した。一部の内部データセットと複数の資格情報への不正アクセスを確認した。ログ解析には当初商用AIを使ったが、安全ガードレールに阻まれたため、最終的にオープンウェイトモデル「GLM 5.2」を自社インフラで実行して解析した。
 出典: https://www.itmedia.co.jp/news/articles/2607/20/news010.html
 
 
+## AI業界
+
+### Introducing Cosmos 3 Edge
+
+出典: https://huggingface.co/blog/nvidia/cosmos3edge
+
+
 ## AI研究者ブログ
 
-### AI Mania Is Eviscerating Global Decision-Making
-<p><strong><a href="https://ludic.mataroa.blog/blog/ai-mania-is-eviscerating-global-decision-making/">AI Mania Is Eviscerating Global Decision-Making</a></strong></p> Here's an entertaining perspectiv...
-出典: https://simonwillison.net/2026/Jul/19/ai-mania/#atom-everything
+### Reverse-engineering is cheap now
+<p>I keep hearing anecdotes from people who used coding agents to reverse-engineer and automate devices in their homes.</p> <p>I think this is an interesting illustration of the impact of the reduced ...
+出典: https://simonwillison.net/2026/Jul/20/cheap-reverse-engineering/#atom-everything
 
-### Claude Code uses Bun written in Rust now
-<p>In <a href="https://bun.com/blog/bun-in-rust">Rewriting Bun in Rust</a> Jarred Sumner made the following claim:</p> <blockquote> <p>Claude Code v2.1.181 (released June 17th) and later use the Rust ...
-出典: https://simonwillison.net/2026/Jul/19/claude-code-in-bun-in-rust/#atom-everything
+### Who’s Afraid of Chinese Models?
+<p><strong><a href="https://stratechery.com/2026/whos-afraid-of-chinese-models/">Who’s Afraid of Chinese Models?</a></strong></p> Interesting proposal from Ben Thompson that both addresses the hypocri...
+出典: https://simonwillison.net/2026/Jul/20/afraid-of-chinese-models/#atom-everything
+
+### Quoting Sam Altman
+<blockquote cite="https://twitter.com/techemails/status/2078854346683678927"><p>We have been having extensive discussions around open source strategy. We will discuss it more at our next board meeting...
+出典: https://simonwillison.net/2026/Jul/20/sam-altman/#atom-everything
 
 
-## SNS動向
+## SNS運用
 
-### How TikTok Shop is changing innovation for food and beverage brands
-<figure><div><img src="https://imgproxy.divecdn.com/ZorP87vgYG1dPIDiH8jwNRbvM6Er0ZA4kzQG3N5bhJQ/g:nowe:0:32/c:2500:1412/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9HZXR0eUltYWdlcy0yM...
-出典: https://www.socialmediatoday.com/news/big-food-companies-tik-tok-shop/825253/
-
-### TikTok report explores creative AI optimization for brands
-<p>Relevance is more important than how much output a company creates, according to a recent study done in partnership with Warc.</p>
-出典: https://www.socialmediatoday.com/news/tiktok-report-explores-creative-ai-optimization-for-brands/825239/
-
-### YouTube offers tips on working with Shorts videos
-<p>The platform&rsquo;s Culture and Entertainment Editor Julia Lee Harter outlined best practices for using interactive features and building community engagement.</p>
-出典: https://www.socialmediatoday.com/news/youtube-offers-tips-on-working-with-shorts-videos/825096/
+### The Best Time to Post on TikTok in 2026: New Data from 7M Posts
+We analyzed 7.1 million TikTok posts to find the best time to post on TikTok in 2026. Here's what the data says — plus how to find your own best times.
+出典: https://buffer.com/resources/best-time-to-post-on-tiktok/

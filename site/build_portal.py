@@ -11305,18 +11305,19 @@ def _render_compact_course_cards() -> str:
     """メイン講習を先頭にし、講習・相談の全コースを並べる申込カード。"""
     items = [
         {
-            "cat": "メイン講習",
+            "cat": "基本講習",
             "title": "AIエージェント講習",
             "image": "/img/blog-ai-agent-course-section-2-20260714.webp",
             "image_alt": "AIエージェントと人が仕事を分担し、成果物を確認する流れ",
             "price": "5,500円",
             "duration": "120分",
-            "desc": "仕事の分解、依頼、確認、修正、次回も使える手順化まで実践します。",
+            "desc": "AIを仕事で使うための一番基本の講習。仕事の分解、依頼、確認、修正、次回も使える手順化まで実践します。",
             "url": AI_AGENT_COURSE_URL,
-            "cta": "講習を予約",
+            "cta": "まずこの講習を予約",
             "material_url": "/programming-map.html",
             "material_cta": "AIエージェント講習の受講資料を見る",
             "main": True,
+            "recommended": "一番基本・おすすめ",
         },
         {
             "cat": "個別相談",
@@ -11365,8 +11366,14 @@ def _render_compact_course_cards() -> str:
         material_is_ext = item["material_url"].startswith("http")
         material_target_attr = " target='_blank' rel='noopener'" if material_is_ext else ""
         main_cls = " compact-course-card--main" if item.get("main") else ""
+        recommended = str(item.get("recommended") or "")
+        recommended_html = (
+            f"<strong class='compact-course-recommend'>{html.escape(recommended)}</strong>"
+            if recommended else ""
+        )
         cards.append(
             f"<article class='compact-course-card{main_cls}'>"
+            f"{recommended_html}"
             f"<small>{html.escape(item['cat'])}</small>"
             f"<img class='compact-course-visual' src='{html.escape(item['image'], quote=True)}' alt='{html.escape(item['image_alt'], quote=True)}' loading='lazy' decoding='async'>"
             f"<h3>{html.escape(item['title'])}</h3>"
@@ -12496,7 +12503,8 @@ header.site-header:hover {
 .compact-course-card:first-child { border-left:0; }
 .compact-course-card--main {
   position:relative;
-  box-shadow:none;
+  background:linear-gradient(180deg,#f4f9ff 0%,#fff 72%);
+  box-shadow:inset 0 0 0 2px rgba(7,95,200,.25),0 12px 28px rgba(7,95,200,.12);
 }
 .compact-course-card--main::before {
   content:"";
@@ -12504,6 +12512,18 @@ header.site-header:hover {
   inset:0 0 auto;
   height:4px;
   background:var(--focus-blue);
+}
+.compact-course-recommend {
+  align-self:flex-start;
+  margin:0 0 9px;
+  padding:5px 10px;
+  color:#fff;
+  background:var(--focus-blue);
+  border-radius:999px;
+  font-size:11px;
+  line-height:1.2;
+  font-weight:900;
+  letter-spacing:.04em;
 }
 .compact-course-card small { color:var(--focus-blue); font-size:10px; font-weight:900; letter-spacing:.08em; }
 .compact-course-visual {
@@ -12876,7 +12896,7 @@ def _render_focused_main() -> str:
 
     parts = [
         "<section class='focus-block main-course' id='packages'><div class='focus-section-head'><small>COURSES</small><h2>講習・相談コース</h2></div>",
-        "<p class='focus-section-lead'>メインのAIエージェント講習を先頭に、個別相談、伴走支援、AIコーディング講習を目的・時間・料金から選べます。</p>",
+        "<p class='focus-section-lead'><strong>迷ったら、まずはAIエージェント講習が一番基本でおすすめです。</strong><br>個別相談、伴走支援、AIコーディング講習も、目的・時間・料金から選べます。</p>",
         _render_compact_course_cards(),
         "<aside class='course-venue-common' aria-label='講習・相談コース共通の開催場所'>",
         "<img src='/img/gubboru-cafe-ai-course-painting.webp' alt='講習・相談の対面会場 グッぼるカフェの店内' loading='lazy' decoding='async'>",

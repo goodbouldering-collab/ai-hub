@@ -4,6 +4,8 @@ date: 2026-04-22
 role: 受講資料
 gen_by: 由井 辰美 / AI相談
 summary: 困りごと、ほしい形、守る条件を伝え、AIが作った下書きを人が確認するまでを10分で学ぶ最初の資料。
+image: /lectures/assets/covers/2026-04-ai-kihon.png
+image_alt: AIで目的、アイデア、保存資料をつなぐ明るい学習机のイラスト
 audience: AIを初めて仕事や地域活動に取り入れる人
 duration: 10分
 goal: 影響の小さい仕事を1つ選び、AIへ頼み、人が確認して使える

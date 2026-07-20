@@ -4,6 +4,8 @@ date: 2026-05-23
 role: 受講資料
 gen_by: 由井 辰美 / ぐっぼる
 summary: 登山から岩登り、ジム、競技、地域の交流へ広がった流れを、世界と日本の2つに分けて学ぶ初心者向け資料。
+image: /lectures/assets/covers/2026-05-climbing-history.png
+image_alt: 初期の登山から岩登り、現代のボルダリングジムへ続くクライミング史のイラスト
 category: climbing
 learning_order: 1
 level: 入門

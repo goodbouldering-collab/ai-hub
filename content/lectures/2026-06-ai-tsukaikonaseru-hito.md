@@ -4,6 +4,8 @@ date: 2026-06-16
 role: 受講資料
 gen_by: 由井 辰美 / AI相談
 summary: この旧資料の内容は、15分で実践できる「毎週の仕事を1つ、AIで楽にする」へ統合しました。
+image: /lectures/assets/covers/2026-06-ai-tsukaikonaseru-hito.png
+image_alt: 目的、材料、完成形、修正、人の確認というAI活用5手順のイラスト
 audience: 以前のURLを保存している人
 duration: 1分
 goal: 自分の経験に合う新しい入門資料または実践資料へ移動できる

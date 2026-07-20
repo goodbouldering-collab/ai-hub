@@ -4,6 +4,8 @@ date: 2026-05-21
 role: 受講資料
 gen_by: "由井 辰美 / AI相談"
 summary: "Claude Codeへ小さな修正を1件だけ頼み、変更前の確認、差分確認、テスト、結果の報告までを安全な順番で進めます。"
+image: /lectures/assets/covers/2026-05-claude-code-features.png
+image_alt: 安全な操作範囲と並列作業、再利用機能を整理した開発ワークスペースのイラスト
 audience: "Claude Codeを初めて使う人、または小さな修正から安全に試したい人"
 duration: "15分"
 goal: "対象と完了条件を決め、1件の修正、差分確認、テスト、報告までを順番に進められる"

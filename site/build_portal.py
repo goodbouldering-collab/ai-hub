@@ -458,6 +458,8 @@ def _load_all_lectures() -> list[dict]:
             "title": str(meta.get("title") or f.stem),
             "date": str(meta.get("date") or ""),
             "summary": str(meta.get("summary") or ""),
+            "image": str(meta.get("image") or ""),
+            "image_alt": str(meta.get("image_alt") or ""),
             "learning_order": int(meta.get("learning_order") or 999),
             "category": str(meta.get("category") or "other"),
             "level": str(meta.get("level") or ""),
@@ -2085,13 +2087,23 @@ section.block + section.block { border-top: 1px solid var(--line); }
   display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px;
 }
 .lecture-card {
-  display: flex; flex-direction: column; gap: 6px;
-  padding: 20px; border-radius: var(--radius-sm);
+  display: flex; flex-direction: column; gap: 0;
+  padding: 0; border-radius: var(--radius-sm); overflow: hidden;
   background: var(--bg-white); border: 1px solid var(--line);
   text-decoration: none; color: inherit;
   box-shadow: var(--shadow-card);
   transition: transform .2s, border-color .2s, box-shadow .2s;
 }
+.lecture-card-media {
+  display: block; width: 100%; aspect-ratio: 1200 / 630; overflow: hidden;
+  background: #edf4fb; border-bottom: 1px solid var(--line);
+}
+.lecture-card-media img {
+  display: block; width: 100%; height: 100%; object-fit: cover;
+  transition: transform .35s ease;
+}
+.lecture-card:hover .lecture-card-media img { transform: scale(1.025); }
+.lecture-card-body { display: flex; flex: 1; flex-direction: column; gap: 6px; padding: 18px 20px 20px; }
 .lecture-card:hover { transform: translateY(-3px); border-color: rgba(40,84,197,.26); box-shadow: var(--shadow-card-hover); }
 .lecture-title { font-size: 14.5px; font-weight: 800; color: var(--primary); line-height: 1.4; }
 .lecture-date { font-size: 11.5px; color: var(--muted); font-weight: 600; }
@@ -12383,6 +12395,8 @@ def _render_lecture_card(lec: dict) -> str:
     href_raw = lec.get("href") or f"/lectures/{lec.get('slug', '')}.html"
     href = html.escape(href_raw, quote=True)
     icon = html.escape(lec.get("icon", ""))
+    image_path = str(lec.get("image") or "").strip()
+    image_alt = html.escape(str(lec.get("image_alt") or lec.get("title") or ""), quote=True)
     route_label = html.escape(str(lec.get("route_label") or ""))
     level = html.escape(str(lec.get("level") or ""))
     duration = html.escape(str(lec.get("duration") or ""))
@@ -12394,10 +12408,19 @@ def _render_lecture_card(lec: dict) -> str:
         meta_label = f"📅 {date}"
     date_html = f"<div class='lecture-date'>{meta_label}</div>" if meta_label else ""
     summary_html = f"<div class='lecture-summary'>{summary}</div>" if summary else ""
+    media_html = ""
+    if image_path:
+        media_html = (
+            "<span class='lecture-card-media'>"
+            f"<img src='{html.escape(image_path, quote=True)}' alt='{image_alt}' "
+            "width='1200' height='630' loading='lazy' decoding='async'>"
+            "</span>"
+        )
     return (
         f"<a class='lecture-card' href='{href}'>"
-        f"<div class='lecture-title'>{icon_html}{title}</div>"
-        f"{date_html}{summary_html}</a>"
+        f"{media_html}<div class='lecture-card-body'>"
+        f"<span class='lecture-title'>{icon_html}{title}</span>"
+        f"{date_html}{summary_html}</div></a>"
     )
 
 

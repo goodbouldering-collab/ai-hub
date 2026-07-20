@@ -4,6 +4,8 @@ date: 2026-06-17
 role: 受講資料
 gen_by: "由井 辰美 / AI相談"
 summary: "RAGとは、AIが質問に関係する箇所を資料から探し、根拠と一緒に答える仕組みです。公開可能な交流会FAQを例に、資料の選び方、更新日、閲覧権限、出典表示、人の確認を学びます。"
+image: /lectures/assets/covers/2026-06-ai-agent-rag-design.png
+image_alt: 自社資料を検索してAIが回答を作り、人が確認するRAGの流れのイラスト
 audience: "交流会や地域団体で、公開できるFAQをAIの回答に使いたい人"
 duration: "15分"
 goal: "AIが質問に関係する箇所を探し、出典と一緒に答えるための資料の整え方を決められる"

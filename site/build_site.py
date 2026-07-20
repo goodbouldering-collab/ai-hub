@@ -1602,8 +1602,8 @@ CONTENT_CSS = """
   gap: 14px;
 }
 .tr-card {
-  display: flex; flex-direction: column; gap: 6px;
-  padding: 16px 18px;
+  display: flex; flex-direction: column; gap: 0;
+  padding: 0;
   background: #fff;
   border: 1px solid var(--glass-border);
   border-radius: 14px;
@@ -1612,6 +1612,30 @@ CONTENT_CSS = """
   transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
   border-bottom: 1px solid var(--glass-border) !important;
   min-height: 112px;
+  overflow: hidden;
+}
+.tr-card-media {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1200 / 630;
+  overflow: hidden;
+  background: #edf4fb;
+  border-bottom: 1px solid var(--glass-border);
+}
+.tr-card-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .35s ease;
+}
+.tr-card:hover .tr-card-media img { transform: scale(1.025); }
+.tr-card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px 18px;
 }
 .tr-card:hover {
   transform: translateY(-3px);
@@ -1813,6 +1837,29 @@ CONTENT_CSS = """
   color: var(--primary);
   border: 1px solid rgba(37,99,235,.2);
   font-weight: 900;
+}
+.lecture-cover {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto 24px;
+  overflow: hidden;
+  border: 1px solid rgba(37,99,235,.16);
+  border-radius: 20px;
+  background: #edf4fb;
+  box-shadow: 0 24px 64px rgba(15,23,42,.12);
+}
+.lecture-cover img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1200 / 630;
+  object-fit: cover;
+}
+@media (max-width: 680px) {
+  .lecture-cover {
+    width: calc(100% - 24px);
+    margin-bottom: 18px;
+    border-radius: 14px;
+  }
 }
 .lecture-page .content-wrap.lecture-content {
   width: 100%;
@@ -3095,9 +3142,93 @@ def _render_lecture_course_nav(neighbors: dict | None) -> str:
     return "".join(parts)
 
 
+def _absolute_asset_url(value: str) -> str:
+    asset = str(value or "").strip()
+    if not asset:
+        return ""
+    if asset.startswith(("http://", "https://")):
+        return asset
+    return SITE_URL + "/" + asset.lstrip("/")
+
+
 def _build_jsonld(kind: str, meta: dict, title: str, page_url: str) -> str:
-    """BlogPosting / Person / WebSite の JSON-LD を生成。"""
-    if kind in ("lecture", "blog"):
+    """公開ページの内容に合わせた JSON-LD を生成。"""
+    if kind == "lecture":
+        description = str(meta.get("summary") or title)
+        published = str(meta.get("date") or datetime.now().strftime("%Y-%m-%d"))
+        modified = str(meta.get("date_modified") or published)
+        image_url = _absolute_asset_url(str(meta.get("image") or ""))
+        resource_id = page_url + "#learning-resource"
+        webpage_id = page_url + "#webpage"
+        image_id = page_url + "#primaryimage"
+        organization_id = SITE_URL + "/#organization"
+        person_id = SITE_URL + "/speaker.html#person"
+        graph: list[dict] = [
+            {"@type": "Organization", "@id": organization_id, "name": "AI相談", "url": SITE_URL},
+            {"@type": "Person", "@id": person_id, "name": "由井 辰美", "url": SITE_URL + "/speaker.html"},
+        ]
+        if image_url:
+            graph.append({
+                "@type": "ImageObject",
+                "@id": image_id,
+                "url": image_url,
+                "contentUrl": image_url,
+                "width": 1200,
+                "height": 630,
+                "caption": str(meta.get("image_alt") or title),
+            })
+        webpage: dict = {
+            "@type": "WebPage",
+            "@id": webpage_id,
+            "url": page_url,
+            "name": title,
+            "description": description,
+            "inLanguage": "ja-JP",
+            "datePublished": published,
+            "dateModified": modified,
+            "isPartOf": {"@id": SITE_URL + "/#website"},
+            "breadcrumb": {"@id": page_url + "#breadcrumb"},
+            "mainEntity": {"@id": resource_id},
+        }
+        if image_url:
+            webpage["primaryImageOfPage"] = {"@id": image_id}
+        graph.append(webpage)
+        resource: dict = {
+            "@type": ["LearningResource", "Article"],
+            "@id": resource_id,
+            "url": page_url,
+            "mainEntityOfPage": {"@id": webpage_id},
+            "name": title,
+            "headline": title,
+            "description": description,
+            "inLanguage": "ja-JP",
+            "datePublished": published,
+            "dateModified": modified,
+            "author": {"@id": person_id},
+            "publisher": {"@id": organization_id},
+            "learningResourceType": "受講資料",
+            "educationalLevel": str(meta.get("level") or "一般"),
+            "about": str(meta.get("category") or "AI活用"),
+            "isAccessibleForFree": True,
+            "speakable": {
+                "@type": "SpeakableSpecification",
+                "cssSelector": ["h1", ".lecture-shell-desc", ".lecture-content p:first-of-type"],
+            },
+        }
+        if image_url:
+            resource["image"] = {"@id": image_id}
+        graph.append(resource)
+        graph.append({
+            "@type": "BreadcrumbList",
+            "@id": page_url + "#breadcrumb",
+            "itemListElement": [
+                {"@type": "ListItem", "position": 1, "name": "ホーム", "item": SITE_URL + "/"},
+                {"@type": "ListItem", "position": 2, "name": "受講資料", "item": SITE_URL + "/lectures/index.html"},
+                {"@type": "ListItem", "position": 3, "name": title, "item": page_url},
+            ],
+        })
+        return json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False)
+    if kind == "blog":
         doc = {
             "@context": "https://schema.org",
             "@type": "BlogPosting",
@@ -3118,7 +3249,7 @@ def _build_jsonld(kind: str, meta: dict, title: str, page_url: str) -> str:
         }
         image_url = str(meta.get("image") or "").strip()
         if image_url:
-            doc["image"] = image_url if image_url.startswith(("http://", "https://")) else SITE_URL + image_url
+            doc["image"] = _absolute_asset_url(image_url)
         return json.dumps(doc, ensure_ascii=False)
     if kind == "speaker":
         avatar_url = str(meta.get("avatar_url") or "/img/speaker.webp")
@@ -3145,7 +3276,16 @@ def _build_jsonld(kind: str, meta: dict, title: str, page_url: str) -> str:
     return ""
 
 
-def _build_ogp(title: str, description: str, page_url: str, kind: str = "article", image_url: str = "") -> str:
+def _build_ogp(
+    title: str,
+    description: str,
+    page_url: str,
+    kind: str = "article",
+    image_url: str = "",
+    image_alt: str = "",
+    published_time: str = "",
+    rich_image: bool = False,
+) -> str:
     desc = description or title
     parts = [
         f"<meta property='og:title' content='{html.escape(title, quote=True)}'>",
@@ -3154,12 +3294,48 @@ def _build_ogp(title: str, description: str, page_url: str, kind: str = "article
         f"<meta property='og:type' content='{html.escape(kind, quote=True)}'>",
         "<meta property='og:site_name' content='AI相談'>",
     ]
+    if rich_image:
+        parts.extend([
+            "<meta property='og:locale' content='ja_JP'>",
+            f"<meta name='twitter:title' content='{html.escape(title, quote=True)}'>",
+            f"<meta name='twitter:description' content='{html.escape(desc, quote=True)}'>",
+        ])
     if image_url:
-        absolute_image_url = image_url if image_url.startswith(("http://", "https://")) else SITE_URL + image_url
-        parts.append(f"<meta property='og:image' content='{html.escape(absolute_image_url, quote=True)}'>")
-        parts.append("<meta name='twitter:card' content='summary_large_image'>")
+        absolute_image_url = _absolute_asset_url(image_url)
+        safe_image = html.escape(absolute_image_url, quote=True)
+        safe_alt = html.escape(image_alt or title, quote=True)
+        if not rich_image:
+            parts.extend([
+                f"<meta property='og:image' content='{safe_image}'>",
+                "<meta name='twitter:card' content='summary_large_image'>",
+            ])
+            return "".join(parts)
+        image_path = absolute_image_url.lower().split("?", 1)[0]
+        image_type = next((mime for suffix, mime in {
+            ".png": "image/png",
+            ".jpg": "image/jpeg",
+            ".jpeg": "image/jpeg",
+            ".webp": "image/webp",
+            ".gif": "image/gif",
+        }.items() if image_path.endswith(suffix)), "")
+        image_meta = [
+            f"<meta property='og:image' content='{safe_image}'>",
+            f"<meta property='og:image:secure_url' content='{safe_image}'>",
+            f"<meta property='og:image:alt' content='{safe_alt}'>",
+            "<meta name='twitter:card' content='summary_large_image'>",
+            f"<meta name='twitter:image' content='{safe_image}'>",
+            f"<meta name='twitter:image:alt' content='{safe_alt}'>",
+        ]
+        if image_type:
+            image_meta.insert(2, f"<meta property='og:image:type' content='{image_type}'>")
+        if "/lectures/assets/covers/" in image_path:
+            image_meta.insert(3, "<meta property='og:image:width' content='1200'>")
+            image_meta.insert(4, "<meta property='og:image:height' content='630'>")
+        parts.extend(image_meta)
     else:
         parts.append("<meta name='twitter:card' content='summary'>")
+    if rich_image and kind == "article" and published_time:
+        parts.append(f"<meta property='article:published_time' content='{html.escape(published_time, quote=True)}'>")
     return "".join(parts)
 
 
@@ -3214,8 +3390,18 @@ def render_content_page(
     if desc:
         parts.append(f"<meta name='description' content='{html.escape(desc, quote=True)}'>")
     image_url = str(meta.get("image") or "").strip()
+    image_alt = str(meta.get("image_alt") or title).strip()
     parts.append(f"<link rel='canonical' href='{html.escape(page_url, quote=True)}'>")
-    parts.append(_build_ogp(title, desc, page_url, "article" if kind in ("lecture", "speaker", "blog") else "website", image_url))
+    parts.append(_build_ogp(
+        title,
+        desc,
+        page_url,
+        "article" if kind in ("lecture", "speaker", "blog") else "website",
+        image_url,
+        image_alt,
+        str(meta.get("date") or ""),
+        kind == "lecture" or page_path.startswith("lectures/"),
+    ))
     if kind:
         jsonld_kind = "website" if kind in ("portfolio", "blog_index") else kind
         ld = _build_jsonld(jsonld_kind, meta, title, page_url)
@@ -3247,6 +3433,13 @@ def render_content_page(
     if sub_bits:
         parts.append("<div class='speaker-meta'>" + "".join(sub_bits) + "</div>")
     parts.append("</header>")
+    if kind == "lecture" and image_url:
+        parts.append(
+            "<figure class='lecture-cover'>"
+            f"<img src='{html.escape(image_url, quote=True)}' alt='{html.escape(image_alt, quote=True)}' "
+            "width='1200' height='630' fetchpriority='high' decoding='async'>"
+            "</figure>"
+        )
     content_class = "content-wrap lecture-content" if kind == "lecture" else "content-wrap"
     content_id = " id='lecture-body'" if kind == "lecture" else ""
     parts.append(f"<div class='{content_class}'{content_id}>")
@@ -3492,6 +3685,8 @@ def _render_teaching_index(sections: list[dict]) -> str:
             iicon = html.escape(str(it.get("icon", "")))
             href_raw = str(it.get("href", ""))
             summary = html.escape(str(it.get("summary", "")))
+            image_path = str(it.get("image", "")).strip()
+            image_alt = html.escape(str(it.get("image_alt") or it.get("title") or ""), quote=True)
             date = html.escape(str(it.get("date", "")))
             level = html.escape(str(it.get("level", "")))
             course_order = it.get("course_order")
@@ -3504,6 +3699,14 @@ def _render_teaching_index(sections: list[dict]) -> str:
             chip = "<span class='tr-chip ext'>外部</span>" if ext else ""
             features = _teaching_item_features(it)
             parts.append(f"<a class='tr-card' href='{safe_href}'{attrs}>")
+            if image_path:
+                parts.append(
+                    "<span class='tr-card-media'>"
+                    f"<img src='{html.escape(image_path, quote=True)}' alt='{image_alt}' "
+                    "width='1200' height='630' loading='lazy' decoding='async'>"
+                    "</span>"
+                )
+            parts.append("<div class='tr-card-body'>")
             parts.append(
                 f"<div class='tr-title'>{(iicon + ' ') if iicon else ''}{title}</div>"
             )
@@ -3527,7 +3730,7 @@ def _render_teaching_index(sections: list[dict]) -> str:
                 meta_bits.append(_render_feature_chips(features, show_missing=False, css_prefix="tr"))
             if meta_bits:
                 parts.append(f"<div class='tr-meta'>{''.join(meta_bits)}</div>")
-            parts.append("</a>")
+            parts.append("</div></a>")
         parts.append("</div>")
         parts.append("</details>" if collapsed else "</section>")
     if not rendered_any:
@@ -3615,6 +3818,8 @@ def build_lectures() -> int:
             "icon": "📝",
             "href": f"./{record_id}.html",
             "summary": str(meta.get("summary", "")),
+            "image": str(meta.get("image", "")),
+            "image_alt": str(meta.get("image_alt", "")),
             "date": str(meta.get("date", "")),
             "category": record["category"],
             "learning_order": record["learning_order"],
@@ -3665,8 +3870,13 @@ def build_lectures() -> int:
     if sections:
         body_html = _render_teaching_index(sections)
         nav = render_top_nav(path_prefix="../", current_id="lectures", include_run=False)
+        index_meta = {"summary": "AI相談の受講資料を、目的と読む順番で選べる一覧"}
+        first_with_image = next((item for item in lecture_md_items if item.get("image")), None)
+        if first_with_image:
+            index_meta["image"] = str(first_with_image.get("image") or "")
+            index_meta["image_alt"] = str(first_with_image.get("image_alt") or "受講資料のイメージ")
         (out_dir / "index.html").write_text(
-            render_content_page("受講資料の一覧", {"summary": "AI相談の受講資料を、目的と読む順番で選べる一覧"}, body_html, nav, page_path="lectures/index.html"),
+            render_content_page("受講資料の一覧", index_meta, body_html, nav, page_path="lectures/index.html"),
             encoding="utf-8",
         )
     return len(lecture_records)
@@ -4163,8 +4373,6 @@ def build_sitemap_and_robots() -> None:
         f"Sitemap: {SITE_URL}/sitemap.xml\n",
         encoding="utf-8",
     )
-
-
 
 
 def build_slides() -> int:

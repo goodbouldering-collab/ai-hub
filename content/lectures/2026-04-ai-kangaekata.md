@@ -4,6 +4,8 @@ date: 2026-04-22
 role: 受講資料
 gen_by: 由井 辰美 / AI相談
 summary: くり返す仕事を1つ選び、目的、材料、完成形、修正、確認の5項目を書いて、次回も使える手順にする記入式の実践資料。
+image: /lectures/assets/covers/2026-04-ai-kangaekata.png
+image_alt: 目標設定から作業整理、道具選び、発信までをつなぐ仕事の流れのイラスト
 audience: AIへ簡単な依頼をしたことがあり、毎週の仕事を少し楽にしたい人
 duration: 15分
 goal: くり返す仕事を1つ選び、AIへ任せる範囲と人が確認する範囲を記入できる

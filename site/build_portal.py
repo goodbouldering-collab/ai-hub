@@ -9995,9 +9995,76 @@ HEADER_JS = """
       wrap.querySelectorAll('.pf-arrow').forEach(function(btn){
         btn.addEventListener('click', function(){
           var dir = parseInt(btn.getAttribute('data-dir'), 10) || 1;
+          if (track.classList.contains('salon-timeline')) {
+            var cards = Array.prototype.slice.call(track.querySelectorAll('.salon-timeline-card'));
+            if (!cards.length) return;
+            var nearest = 0;
+            var best = Infinity;
+            cards.forEach(function(card, index){
+              var left = card.getBoundingClientRect().left - track.getBoundingClientRect().left + track.scrollLeft;
+              var distance = Math.abs(left - track.scrollLeft);
+              if (distance < best) { best = distance; nearest = index; }
+            });
+            var target = Math.max(0, Math.min(cards.length - 1, nearest + dir));
+            var targetLeft = cards[target].getBoundingClientRect().left - track.getBoundingClientRect().left + track.scrollLeft;
+            track.scrollTo({ left: targetLeft, behavior: 'smooth' });
+            return;
+          }
           track.scrollBy({ left: dir * Math.round(track.clientWidth * 0.8), behavior: 'smooth' });
         });
       });
+    });
+  })();
+
+  // AIサロン時系列: スワイプ位置をSTEP表示・ドット・カード強調へ同期
+  (function(){
+    document.querySelectorAll('[data-salon-timeline]').forEach(function(wrap){
+      var track = wrap.querySelector('.salon-timeline');
+      var cards = Array.prototype.slice.call(wrap.querySelectorAll('.salon-timeline-card'));
+      var dots = Array.prototype.slice.call(wrap.querySelectorAll('[data-salon-go]'));
+      var status = wrap.querySelector('.salon-timeline-status');
+      if (!track || !cards.length) return;
+      var ticking = false;
+
+      function cardLeft(card){
+        return card.getBoundingClientRect().left - track.getBoundingClientRect().left + track.scrollLeft;
+      }
+      function currentIndex(){
+        var nearest = 0;
+        var best = Infinity;
+        cards.forEach(function(card, index){
+          var distance = Math.abs(cardLeft(card) - track.scrollLeft);
+          if (distance < best) { best = distance; nearest = index; }
+        });
+        return nearest;
+      }
+      function update(){
+        var active = currentIndex();
+        cards.forEach(function(card, index){ card.classList.toggle('is-active', index === active); });
+        dots.forEach(function(dot, index){
+          if (index === active) dot.setAttribute('aria-current', 'step');
+          else dot.removeAttribute('aria-current');
+        });
+        if (status) status.textContent = (active + 1) + ' / ' + cards.length;
+        ticking = false;
+      }
+      function go(index){
+        var target = Math.max(0, Math.min(cards.length - 1, index));
+        track.scrollTo({ left: cardLeft(cards[target]), behavior: 'smooth' });
+      }
+
+      track.addEventListener('scroll', function(){
+        if (!ticking) { ticking = true; window.requestAnimationFrame(update); }
+      }, { passive: true });
+      track.addEventListener('keydown', function(event){
+        if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+        event.preventDefault();
+        go(currentIndex() + (event.key === 'ArrowRight' ? 1 : -1));
+      });
+      dots.forEach(function(dot){
+        dot.addEventListener('click', function(){ go(parseInt(dot.getAttribute('data-salon-go'), 10) || 0); });
+      });
+      update();
     });
   })();
 
@@ -11427,17 +11494,37 @@ def _render_tuesday_build_hour_cards() -> str:
         },
     ]
     cards = []
-    for item in items:
+    for index, item in enumerate(items):
+        step = index + 1
         cards.append(
-            "<article class='compact-course-card'>"
-            f"<small>{html.escape(item['cat'])}</small>"
+            f"<article class='compact-course-card salon-timeline-card{' is-active' if index == 0 else ''}' role='listitem' data-salon-step='{index}'>"
+            "<div class='salon-timeline-card-head'>"
+            f"<span>STEP {step:02d}</span><small>{html.escape(item['cat'])}</small>"
+            "</div>"
             f"<img class='compact-course-visual' src='{html.escape(item['image'], quote=True)}' alt='{html.escape(item['image_alt'], quote=True)}' loading='lazy' decoding='async'>"
             f"<h3>{html.escape(item['title'])}</h3>"
             f"<div class='compact-course-meta'><strong>{html.escape(item['time'])}</strong><span>{html.escape(item['duration'])}</span></div>"
             f"<p>{html.escape(item['result'])}</p>"
             "</article>"
         )
-    return "<div class='compact-course-grid compact-course-grid--build-hour'>" + "".join(cards) + "</div>"
+    dots = "".join(
+        f"<button type='button' data-salon-go='{index}' aria-label='STEP {index + 1}を表示'"
+        + (" aria-current='step'" if index == 0 else "")
+        + "></button>"
+        for index in range(len(items))
+    )
+    return (
+        "<div class='pf-carousel-wrap salon-timeline-wrap' data-salon-timeline>"
+        "<button type='button' class='pf-arrow pf-prev' aria-label='前の時間へ' aria-controls='salon-timeline' data-dir='-1'>‹</button>"
+        "<div class='pf-carousel salon-timeline' id='salon-timeline' role='list' tabindex='0' aria-label='AIサロンの時系列'>"
+        + "".join(cards)
+        + "</div>"
+        "<button type='button' class='pf-arrow pf-next' aria-label='次の時間へ' aria-controls='salon-timeline' data-dir='1'>›</button>"
+        "<div class='salon-timeline-nav'><div class='salon-timeline-dots' aria-label='時系列の表示位置'>"
+        + dots
+        + "</div><span class='salon-timeline-status' aria-live='polite'>1 / 4</span>"
+        "<span class='salon-swipe-hint'>横にスワイプして流れを見る →</span></div></div>"
+    )
 
 
 def _render_footer(today: str) -> str:
@@ -12545,6 +12632,60 @@ header.site-header:hover {
 .compact-course-card > a:hover { background:var(--focus-blue-dark); }
 .compact-course-card > a.compact-course-material { min-height:auto; margin:10px 0 0; padding:0; color:var(--focus-blue); background:transparent; border-radius:0; font-size:11px; line-height:1.5; text-decoration:underline; text-underline-offset:3px; }
 .compact-course-card > a.compact-course-material:hover { color:var(--focus-blue-dark); background:transparent; }
+.salon-timeline-wrap {
+  max-width:1180px !important;
+  margin:0 auto !important;
+  padding:0 48px 4px;
+  overflow:visible;
+}
+.salon-timeline {
+  display:grid !important;
+  grid-auto-flow:column;
+  grid-auto-columns:calc((100% - 22px)/2) !important;
+  gap:22px !important;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;
+  scrollbar-width:none;
+  overscroll-behavior-inline:contain;
+  -webkit-overflow-scrolling:touch;
+  padding:8px 2px 20px;
+}
+.salon-timeline::-webkit-scrollbar { display:none; }
+.salon-timeline-card,
+.salon-timeline-card:first-child {
+  min-height:338px;
+  scroll-snap-align:start;
+  scroll-snap-stop:always;
+  padding:18px;
+  overflow:hidden;
+  border:1px solid var(--focus-line);
+  border-radius:16px;
+  background:#fff;
+  box-shadow:0 12px 30px rgba(10,40,80,.07);
+  opacity:.78;
+  transform:translateY(5px) scale(.985);
+  transition:opacity .24s ease,transform .24s ease,box-shadow .24s ease,border-color .24s ease;
+}
+.salon-timeline-card.is-active {
+  border-color:rgba(7,95,200,.34);
+  box-shadow:0 18px 42px rgba(7,95,200,.13);
+  opacity:1;
+  transform:none;
+}
+.salon-timeline-card-head { display:flex; align-items:center; justify-content:space-between; gap:14px; }
+.salon-timeline-card-head span { color:var(--focus-ink); font-size:12px; font-weight:950; letter-spacing:.08em; }
+.salon-timeline-card-head small { margin-left:auto; }
+.salon-timeline-card .compact-course-visual { height:126px; }
+.salon-timeline-card .compact-course-meta strong { font-size:25px; }
+.salon-timeline-card .compact-course-meta span { padding:3px 8px; border-radius:999px; background:#eef7ff; color:var(--focus-blue); }
+.salon-timeline-nav { display:flex; align-items:center; justify-content:center; gap:12px; min-height:26px; margin:2px auto 0; }
+.salon-timeline-dots { display:flex; align-items:center; gap:7px; }
+.salon-timeline-dots button { width:9px; height:9px; padding:0; border:0; border-radius:999px; background:#c7d7e8; cursor:pointer; transition:width .2s ease,background .2s ease; }
+.salon-timeline-dots button[aria-current="step"] { width:26px; background:var(--focus-blue); }
+.salon-timeline-status { min-width:34px; color:var(--focus-muted); font-size:11px; font-weight:850; }
+.salon-swipe-hint { color:var(--focus-muted); font-size:11px; font-weight:750; }
+.salon-timeline-wrap .pf-arrow { top:45%; }
 .course-quick-actions { max-width:1400px; margin:12px auto 0; display:flex; align-items:center; justify-content:flex-end; gap:14px; }
 .compact-diagnose { padding:0; color:var(--focus-blue); background:transparent; border:0; font-size:12px; font-weight:900; text-decoration:underline; text-underline-offset:3px; cursor:pointer; }
 .course-quick-actions a { color:var(--focus-muted); font-size:12px; font-weight:800; }
@@ -12628,7 +12769,8 @@ header.site-header:hover {
   .focus-split img { max-width:360px; }
   .course-venue-common,.compact-course-grid,.course-quick-actions { max-width:680px; }
   .compact-course-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
-  .compact-course-grid--build-hour .compact-course-card:nth-child(odd) { border-left:0; }
+  .salon-timeline-wrap { max-width:680px !important; }
+  .salon-timeline { grid-auto-columns:76% !important; }
   .focus-hub-head { align-items:flex-start; flex-direction:column; }
   .focus-hub-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
 }
@@ -12668,6 +12810,13 @@ header.site-header:hover {
   .compact-course-card:first-child { border-top:0; }
   .compact-course-visual { height:104px; }
   .compact-course-card h3 { font-size:18px; }
+  .salon-timeline-wrap { width:100%; padding:0; }
+  .salon-timeline { grid-auto-columns:88% !important; gap:12px !important; padding:6px 1px 16px; }
+  .salon-timeline-card,
+  .salon-timeline-card:first-child { min-height:342px; padding:16px; border:1px solid var(--focus-line); border-radius:14px; }
+  .salon-timeline-card .compact-course-visual { height:128px; }
+  .salon-timeline-nav { justify-content:flex-start; flex-wrap:wrap; gap:9px; }
+  .salon-swipe-hint { width:100%; }
   .course-quick-actions { align-items:flex-end; justify-content:space-between; }
 }
 

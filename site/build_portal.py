@@ -11611,7 +11611,7 @@ def _render_explore() -> str:
     return "".join(parts)
 
 
-GUBBLE_LINE_URL = "https://lin.ee/14YxIC6"
+GUBBLE_LINE_URL = "https://line.me/ti/g/LR5YxDV6qD"
 # 無料相談の予約導線（Squareの相談サービスID）。無料相談CTAの最終到達先をここに一本化。
 
 

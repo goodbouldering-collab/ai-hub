@@ -12460,6 +12460,8 @@ FOCUSED_PORTAL_CSS = r"""
   --focus-blue: #5367d9;
   --focus-blue-dark: #3f4fab;
   --focus-cyan: #eef1ff;
+  --focus-lavender: #f1efff;
+  --focus-violet: #7a67d8;
   --focus-ink: #172033;
   --focus-muted: #627089;
   --focus-line: #d9deee;
@@ -12625,6 +12627,45 @@ header.site-header:hover {
 .focus-hero .focus-trust { color:var(--focus-muted); }
 .focus-hero .focus-trust li::before { color:var(--focus-blue); }
 @media (prefers-reduced-motion:reduce) { .hero-orb,.hero-salon-live i { animation:none !important; } }
+.focus-advantage {
+  position:relative;
+  overflow:hidden;
+  padding:38px max(18px,calc((100vw - 1400px)/2));
+  color:#fff;
+  background:linear-gradient(118deg,#35428f 0%,#5367d9 55%,#7566cf 100%);
+}
+.focus-advantage::after {
+  content:"";
+  position:absolute;
+  width:420px;
+  aspect-ratio:1;
+  right:-120px;
+  top:-220px;
+  border:1px solid rgba(255,255,255,.20);
+  border-radius:50%;
+  box-shadow:0 0 0 48px rgba(255,255,255,.035),0 0 0 96px rgba(255,255,255,.025);
+}
+.focus-advantage-inner {
+  position:relative;
+  z-index:1;
+  max-width:1400px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:220px minmax(0,1fr) auto;
+  align-items:center;
+  gap:42px;
+}
+.focus-advantage-number { display:flex; align-items:flex-end; gap:8px; }
+.focus-advantage-number strong { font:900 clamp(62px,7vw,104px)/.82 Inter,sans-serif; letter-spacing:-.075em; }
+.focus-advantage-number span { padding-bottom:9px; font-size:13px; font-weight:900; letter-spacing:.08em; white-space:nowrap; }
+.focus-advantage-copy small { display:block; margin-bottom:8px; color:#d8dcff; font:900 11px/1.3 Inter,sans-serif; letter-spacing:.16em; }
+.focus-advantage-copy h2 { margin:0; color:#fff; font-size:clamp(25px,2.5vw,38px); line-height:1.25; letter-spacing:-.04em; }
+.focus-advantage-copy p { max-width:760px; margin:10px 0 0; color:rgba(255,255,255,.82); font-size:14px; line-height:1.75; }
+.focus-advantage-pillars { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+.focus-advantage-pillars span { padding:7px 11px; border:1px solid rgba(255,255,255,.18); border-radius:999px; background:rgba(255,255,255,.08); font-size:11px; font-weight:850; }
+.focus-advantage-pillars b { margin-right:6px; color:#d8dcff; }
+.focus-advantage-link { min-height:46px; display:inline-flex; align-items:center; justify-content:center; padding:0 18px; border:1px solid rgba(255,255,255,.56); border-radius:9px; color:#fff; font-size:13px; font-weight:900; text-decoration:none; white-space:nowrap; }
+.focus-advantage-link:hover { background:#fff; color:var(--focus-blue-dark); }
 .focus-hub { padding:52px max(18px,calc((100vw - 1400px)/2)) 66px; background:#fff; border-top:1px solid var(--focus-line); }
 .focus-hub-head { max-width:1400px; margin:0 auto 24px; display:flex; align-items:end; justify-content:space-between; gap:24px; }
 .focus-hub-head small { color:var(--focus-blue); font-size:12px; font-weight:900; letter-spacing:.14em; }
@@ -12652,11 +12693,11 @@ header.site-header:hover {
 .focus-block { padding:72px max(18px,calc((100vw - 1400px)/2)); }
 .focus-block.soft { background:var(--focus-surface); }
 .focus-block.main-course {
-  padding-top:48px;
-  padding-bottom:50px;
-  background:linear-gradient(145deg,#eef7ff 0%,#fff 48%,#f4fbff 100%);
-  border-top:1px solid rgba(7,95,200,.16);
-  border-bottom:1px solid rgba(7,95,200,.16);
+  padding-top:64px;
+  padding-bottom:64px;
+  background:linear-gradient(145deg,#f4f3ff 0%,#fff 48%,#f5f7ff 100%);
+  border-top:1px solid rgba(83,103,217,.14);
+  border-bottom:1px solid rgba(83,103,217,.14);
 }
 .main-course .focus-section-head small {
   width:max-content;
@@ -12701,27 +12742,28 @@ header.site-header:hover {
   margin:0 auto;
   padding:0 !important;
   display:grid;
-  grid-template-columns:repeat(5,minmax(0,1fr));
-  gap:0;
+  grid-template-columns:repeat(12,minmax(0,1fr));
+  gap:14px;
   text-align:left;
 }
 .compact-course-card {
+  grid-column:span 2;
   min-width:0;
-  min-height:208px;
+  min-height:360px;
   display:flex;
   flex-direction:column;
-  padding:18px 20px;
-  background:transparent;
-  border:0;
-  border-left:1px solid rgba(7,95,200,.14);
-  border-radius:0;
-  box-shadow:none;
+  padding:18px;
+  background:rgba(255,255,255,.94);
+  border:1px solid var(--focus-line);
+  border-radius:16px;
+  box-shadow:0 10px 28px rgba(42,53,105,.06);
 }
-.compact-course-card:first-child { border-left:0; }
+.compact-course-card:first-child { grid-column:span 4; }
 .compact-course-card--main {
   position:relative;
-  background:linear-gradient(180deg,#f4f9ff 0%,#fff 72%);
-  box-shadow:inset 0 0 0 2px rgba(7,95,200,.25),0 12px 28px rgba(7,95,200,.12);
+  background:linear-gradient(145deg,#f0f1ff 0%,#fff 70%);
+  border-color:rgba(83,103,217,.36);
+  box-shadow:0 18px 42px rgba(63,79,171,.13);
 }
 .compact-course-card--main::before {
   content:"";
@@ -12746,13 +12788,14 @@ header.site-header:hover {
 .compact-course-visual {
   display:block;
   width:100%;
-  height:86px;
+  height:104px;
   margin:9px 0 11px;
   object-fit:cover;
   object-position:center;
-  border-radius:7px;
-  background:#eef7ff;
+  border-radius:10px;
+  background:#eef1ff;
 }
+.compact-course-card:first-child .compact-course-visual { height:138px; }
 .compact-course-card h3 { margin:7px 0 8px; font-size:19px; line-height:1.3; letter-spacing:-.025em; }
 .compact-course-meta { display:flex; align-items:baseline; gap:8px; }
 .compact-course-meta strong { color:var(--focus-ink); font-size:18px; }
@@ -12762,6 +12805,28 @@ header.site-header:hover {
 .compact-course-card > a:hover { background:var(--focus-blue-dark); }
 .compact-course-card > a.compact-course-material { min-height:auto; margin:10px 0 0; padding:0; color:var(--focus-blue); background:transparent; border-radius:0; font-size:11px; line-height:1.5; text-decoration:underline; text-underline-offset:3px; }
 .compact-course-card > a.compact-course-material:hover { color:var(--focus-blue-dark); background:transparent; }
+.salon-section {
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(145deg,#f4f1ff 0%,#fff 48%,#eef2ff 100%);
+  border-top:1px solid rgba(83,103,217,.14);
+  border-bottom:1px solid rgba(83,103,217,.14);
+}
+.salon-section::before {
+  content:"";
+  position:absolute;
+  width:420px;
+  aspect-ratio:1;
+  left:-250px;
+  top:130px;
+  border-radius:50%;
+  background:rgba(122,103,216,.08);
+}
+.salon-facts { max-width:920px; margin:0 auto 26px; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; }
+.salon-fact { padding:14px 16px; border:1px solid rgba(83,103,217,.16); border-radius:12px; background:rgba(255,255,255,.76); text-align:center; }
+.salon-fact small { display:block; color:var(--focus-muted); font-size:10px; font-weight:900; letter-spacing:.1em; }
+.salon-fact strong { display:block; margin-top:5px; color:var(--focus-ink); font-size:15px; }
+.salon-note { max-width:880px; margin:20px auto 0; color:var(--focus-muted); font-size:12px; line-height:1.8; text-align:center; }
 .salon-timeline-wrap {
   max-width:1180px !important;
   margin:0 auto !important;
@@ -12771,8 +12836,8 @@ header.site-header:hover {
 .salon-timeline {
   display:grid !important;
   grid-auto-flow:column;
-  grid-auto-columns:calc((100% - 22px)/2) !important;
-  gap:22px !important;
+  grid-auto-columns:calc((100% - 36px)/3) !important;
+  gap:18px !important;
   overflow-x:auto;
   scroll-snap-type:x mandatory;
   scroll-behavior:smooth;
@@ -12784,6 +12849,7 @@ header.site-header:hover {
 .salon-timeline::-webkit-scrollbar { display:none; }
 .salon-timeline-card,
 .salon-timeline-card:first-child {
+  grid-column:auto;
   min-height:338px;
   scroll-snap-align:start;
   scroll-snap-stop:always;
@@ -12793,13 +12859,13 @@ header.site-header:hover {
   border-radius:16px;
   background:#fff;
   box-shadow:0 12px 30px rgba(10,40,80,.07);
-  opacity:.78;
-  transform:translateY(5px) scale(.985);
+  opacity:1;
+  transform:none;
   transition:opacity .24s ease,transform .24s ease,box-shadow .24s ease,border-color .24s ease;
 }
 .salon-timeline-card.is-active {
-  border-color:rgba(7,95,200,.34);
-  box-shadow:0 18px 42px rgba(7,95,200,.13);
+  border-color:rgba(83,103,217,.44);
+  box-shadow:0 18px 42px rgba(63,79,171,.13);
   opacity:1;
   transform:none;
 }
@@ -12897,7 +12963,11 @@ header.site-header:hover {
   .focus-split { grid-template-columns:1fr; max-width:680px; }
   .focus-split img { max-width:360px; }
   .course-venue-common,.compact-course-grid,.course-quick-actions { max-width:680px; }
+  .focus-advantage-inner { grid-template-columns:170px minmax(0,1fr); gap:28px; }
+  .focus-advantage-link { grid-column:1 / -1; width:max-content; }
   .compact-course-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .compact-course-card,.compact-course-card:first-child { grid-column:span 1; }
+  .compact-course-card:first-child { grid-column:1 / -1; }
   .salon-timeline-wrap { max-width:680px !important; }
   .salon-timeline { grid-auto-columns:76% !important; }
   .focus-hub-head { align-items:flex-start; flex-direction:column; }
@@ -12929,6 +12999,12 @@ header.site-header:hover {
   .hero-text-link { width:max-content; justify-self:center; }
   .focus-trust { gap:10px 14px; margin-top:18px; font-size:11.5px; }
   .focus-outcomes,.focus-block,.focus-hub { padding:48px 14px; }
+  .focus-advantage { padding:32px 14px 36px; }
+  .focus-advantage-inner { grid-template-columns:1fr; gap:20px; }
+  .focus-advantage-number strong { font-size:74px; }
+  .focus-advantage-number span { padding-bottom:7px; }
+  .focus-advantage-copy h2 { font-size:26px; }
+  .focus-advantage-link { grid-column:auto; width:100%; }
   .focus-hub-grid { grid-template-columns:1fr; }
   .focus-hub-card { min-height:180px; }
   .outcome-grid { grid-template-columns:1fr; }
@@ -12944,11 +13020,11 @@ header.site-header:hover {
   .course-venue-common p { font-size:11px; }
   .course-venue-map { margin-top:4px; }
   .course-venue-map iframe { height:220px; }
-  .compact-course-grid { grid-template-columns:1fr; gap:0; }
+  .compact-course-grid { grid-template-columns:1fr; gap:12px; }
   .compact-course-card,
-  .compact-course-card:first-child { min-height:0; padding:18px 0; border-left:0; border-top:1px solid rgba(7,95,200,.14); }
-  .compact-course-card:first-child { border-top:0; }
-  .compact-course-visual { height:104px; }
+  .compact-course-card:first-child { grid-column:auto; min-height:0; padding:17px; border:1px solid var(--focus-line); border-radius:14px; }
+  .compact-course-card:first-child { border-color:rgba(83,103,217,.36); }
+  .compact-course-visual,.compact-course-card:first-child .compact-course-visual { height:132px; }
   .compact-course-card h3 { font-size:18px; }
   .salon-timeline-wrap { width:100%; padding:0; }
   .salon-timeline { grid-auto-columns:88% !important; gap:12px !important; padding:6px 1px 16px; }
@@ -12956,6 +13032,9 @@ header.site-header:hover {
   .salon-timeline-card:first-child { min-height:342px; padding:16px; border:1px solid var(--focus-line); border-radius:14px; }
   .salon-timeline-card .compact-course-visual { height:128px; }
   .salon-timeline-nav { justify-content:flex-start; flex-wrap:wrap; gap:9px; }
+  .salon-facts { grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+  .salon-fact { padding:12px 9px; }
+  .salon-note { text-align:left; }
   .course-quick-actions { align-items:flex-end; justify-content:space-between; }
 }
 
@@ -13187,6 +13266,12 @@ def _render_focused_main() -> str:
     free_consult = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/AW5O5XSBHLEHYUBHLZUGFKYE"
 
     parts = [
+        "<section class='focus-advantage' id='advantage' aria-labelledby='advantage-title'><div class='focus-advantage-inner'>",
+        "<div class='focus-advantage-number' aria-hidden='true'><strong>6%</strong><span>を目指す</span></div>",
+        "<div class='focus-advantage-copy'><small>AI AGENT ADVANTAGE</small><h2 id='advantage-title'>AIエージェントで、<br>どの分野でもトップ6%を目指す。</h2>",
+        "<p>今、AIエージェントを実務に入れ、どの分野でも先行者になる事業展開を、一緒に始めませんか。</p>",
+        "<div class='focus-advantage-pillars'><span><b>01</b>速く試す</span><span><b>02</b>人が確認する</span><span><b>03</b>仕組みに残す</span></div></div>",
+        "<a class='focus-advantage-link' href='#packages'>実践方法を見る →</a></div></section>",
         "<section class='focus-block main-course' id='packages'><div class='focus-section-head'><small>COURSES</small><h2>講習・相談コース</h2></div>",
         "<p class='focus-section-lead'><strong>迷ったら、まずはAIエージェント講習が一番基本でおすすめです。</strong><br>個別相談、無料オンラインサロン、伴走支援、AIコーディング講習も、目的・時間・料金から選べます。</p>",
         _render_compact_course_cards(),
@@ -13196,6 +13281,12 @@ def _render_focused_main() -> str:
         "<div class='course-venue-map'><iframe src='https://www.google.com/maps?q=%E3%82%B0%E3%83%83%E3%81%BC%E3%82%8B%E3%82%AB%E3%83%95%E3%82%A7%20%E6%BB%8B%E8%B3%80%E7%9C%8C%E5%BD%A6%E6%A0%B9%E5%B8%82%E5%B2%A1%E7%94%BA12&amp;output=embed' title='グッぼるカフェ周辺のGoogleマップ' loading='lazy' referrerpolicy='no-referrer-when-downgrade' allowfullscreen></iframe></div>",
         "<p class='course-venue-map-link'><a href='https://www.google.com/maps/search/?api=1&amp;query=%E3%82%B0%E3%83%83%E3%81%BC%E3%82%8B%E3%82%AB%E3%83%95%E3%82%A7%20%E6%BB%8B%E8%B3%80%E7%9C%8C%E5%BD%A6%E6%A0%B9%E5%B8%82%E5%B2%A1%E7%94%BA12' target='_blank' rel='noopener'>Googleマップで開く →</a></p></aside>",
         "<div class='course-quick-actions'><button type='button' class='compact-diagnose diagnose-open'>迷ったら60秒診断</button><a href='#lectures'>受講資料から選ぶ →</a></div></section>",
+        "<section class='focus-block salon-section' id='seven-day-courses'><div class='focus-section-head'><small>EVERY TUESDAY · LINE</small><h2>AIオンラインサロン</h2></div>",
+        "<p class='focus-section-lead'>毎週火曜21時、LINE開催。10分ミニ講座、自由質問、仕事をAIで動かす実践、参加者同士の交流を行なっています。聞くだけ・途中参加も歓迎です。</p>",
+        "<div class='salon-facts'><div class='salon-fact'><small>WHEN</small><strong>毎週火曜 21:00</strong></div><div class='salon-fact'><small>PLACE</small><strong>LINE</strong></div><div class='salon-fact'><small>FEE</small><strong>無料</strong></div><div class='salon-fact'><small>STYLE</small><strong>聞くだけOK</strong></div></div>",
+        _render_tuesday_build_hour_cards(),
+        "<p class='salon-note'>終了後は、AIが要点を下書きし、講師が確認した「火曜AIノート」を共有します。顧客情報や機密事項を含む内容は公開せず、個別相談で扱います。</p>",
+        f"<div class='focus-content-actions'><a class='focus-btn primary' href='{GUBBLE_LINE_URL}' target='_blank' rel='noopener'>LINEで今週の案内を受け取る</a></div></section>",
         "<section class='focus-block soft' id='lectures'><div class='focus-section-head'><small>LEARNING MATERIALS</small><h2>受講資料</h2></div>",
         "<p class='focus-section-lead'>公開中の受講資料をすべて表示しています。迷ったら「AIが初めて」から順に選べます。</p>",
         _render_lectures_section(),

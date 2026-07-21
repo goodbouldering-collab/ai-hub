@@ -3484,3 +3484,169 @@ body.ops-page .mobile-nav {
     grid-template-columns: 1fr !important;
   }
 }
+
+/* ---- AI相談 unified editorial admin, 2026-07-22 ---- */
+:root {
+  --admin-public-blue: #5367D9;
+  --admin-public-blue-dark: #3F4FAB;
+  --admin-public-ink: #172033;
+  --admin-public-muted: #627089;
+  --admin-public-line: #D9DEEE;
+  --admin-public-surface: #F7F8FC;
+  --admin-accent: #5367D9;
+  --admin-teal: #7A67D8;
+  --admin-lime: #AAB4F3;
+  --primary: #5367D9;
+  --primary-soft: #7A67D8;
+  --primary-bg: #EEF1FF;
+  --accent: #5367D9;
+  --accent2: #7A67D8;
+  --cyan: #5367D9;
+  --teal: #7A67D8;
+  --green: #6675D1;
+  --admin-cta-bg: linear-gradient(118deg,#3F4FAB,#5367D9 60%,#7566CF);
+}
+
+body.admin-page {
+  background:
+    radial-gradient(circle at 12% 3%, rgba(122,103,216,.10), transparent 28%),
+    linear-gradient(180deg,#FFFFFF 0%,#F7F8FC 52%,#FFFFFF 100%) !important;
+  color:var(--admin-public-ink) !important;
+}
+
+body.admin-page .site-header,
+body.admin-page header.site-header,
+body.ops-page .site-header,
+body.ops-page header.site-header {
+  background:#FFFFFF !important;
+  border-bottom:1px solid rgba(23,32,51,.09) !important;
+  box-shadow:0 8px 28px rgba(42,53,105,.07) !important;
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+}
+
+body.admin-page .wordmark .word-ai,
+body.admin-page .site-logo .word-ai,
+body.ops-page .wordmark .word-ai,
+body.ops-page .site-logo .word-ai { color:#5367D9 !important; }
+
+body.admin-page:not(.admin-hub-page) .container,
+body.admin-page:not(.admin-hub-page) .app-shell,
+body.admin-page:not(.admin-hub-page) .shell {
+  padding-top:24px !important;
+}
+
+body.admin-page .topbar,
+body.admin-page header.topbar,
+body.admin-page .topbar.glass {
+  margin-bottom:24px !important;
+  padding:8px 0 24px !important;
+  border-bottom-color:var(--admin-public-line) !important;
+  background:transparent !important;
+}
+
+body.admin-page .topbar h1,
+body.admin-page header.topbar h1 { color:var(--admin-public-ink) !important; }
+body.admin-page .topbar .dot,
+body.admin-page .logo-fallback { background:#5367D9 !important; }
+body.admin-page .topbar .dot {
+  width:9px !important;
+  height:9px !important;
+  background:#5367D9 !important;
+  box-shadow:none !important;
+}
+body.admin-page .topbar h1 .dot { box-shadow:none !important; }
+
+body.admin-page .panel,
+body.admin-page .quickflow-card,
+body.admin-page .draft,
+body.admin-page .chat-log,
+body.admin-page .composer,
+body.admin-page .platform-card,
+body.admin-page .glass,
+body.admin-page .card,
+body.admin-page section.card,
+body.admin-page .pcard,
+body.admin-page .metric-card,
+body.admin-page .admin-menu-panel,
+body.admin-page .intake-panel,
+body.admin-page .board,
+body.admin-page .column,
+body.admin-page .chart-panel,
+body.admin-page .stat-card,
+body.admin-page .kpi-card {
+  border-color:var(--admin-public-line) !important;
+  border-radius:16px !important;
+  background:#FFFFFF !important;
+  box-shadow:0 12px 32px rgba(42,53,105,.065) !important;
+}
+
+body.admin-page .admin-menu-head,
+body.admin-page .intake-head {
+  background:linear-gradient(118deg,#3F4FAB,#5367D9 60%,#7566CF) !important;
+  color:#FFFFFF !important;
+}
+
+body.admin-page .admin-menu-head h2,
+body.admin-page .admin-menu-head p,
+body.admin-page .admin-menu-head strong,
+body.admin-page .admin-menu-head small,
+body.admin-page .intake-head h2,
+body.admin-page .intake-head p,
+body.admin-page .intake-head strong,
+body.admin-page .intake-head small { color:#FFFFFF !important; }
+
+body.admin-page .admin-link-icon,
+body.admin-page .platform-icon,
+body.admin-page .badge {
+  background:#EEF1FF !important;
+  color:#5367D9 !important;
+}
+
+body.admin-page input:focus,
+body.admin-page textarea:focus,
+body.admin-page select:focus {
+  border-color:#5367D9 !important;
+  box-shadow:0 0 0 3px rgba(83,103,217,.14) !important;
+}
+
+body.admin-page button.primary,
+body.admin-page .btn.primary,
+body.admin-page .primary-btn,
+body.admin-page button[type="submit"],
+body.admin-page .admin-menu-primary {
+  border-color:#5367D9 !important;
+  background:#5367D9 !important;
+  color:#FFFFFF !important;
+  box-shadow:0 10px 24px rgba(83,103,217,.19) !important;
+}
+
+body.admin-page .admin-scroll-link:hover,
+body.admin-page .admin-scroll-link:focus-visible,
+body.admin-page .admin-scroll-link.is-current,
+body.admin-page .admin-scroll-link[aria-current="page"],
+body.admin-page .mobile-toggle:hover,
+body.admin-page .mobile-toggle:focus-visible {
+  background:#EEF1FF !important;
+  color:#5367D9 !important;
+  border-color:rgba(83,103,217,.30) !important;
+}
+
+body.admin-page .mobile-link-list a:hover,
+body.admin-page .mobile-link-list a:focus-visible,
+body.admin-page .mobile-nav .logout-mobile-link:hover,
+body.admin-page .mobile-nav .logout-mobile-link:focus-visible {
+  background:#F4F3FF !important;
+  color:#5367D9 !important;
+}
+
+body.admin-page .admin-fish-dot,
+body.admin-page .admin-fish-dot.red { fill:#5367D9 !important; stroke:#5367D9 !important; }
+body.admin-page .admin-fish-dot.cyan { fill:#7A67D8 !important; stroke:#7A67D8 !important; }
+body.admin-page .admin-fish-dot.green { fill:#AAB4F3 !important; stroke:#AAB4F3 !important; }
+
+@media (max-width:900px) {
+  body.admin-page:not(.admin-hub-page) .container,
+  body.admin-page:not(.admin-hub-page) .app-shell,
+  body.admin-page:not(.admin-hub-page) .shell { padding:18px 16px 52px !important; }
+}

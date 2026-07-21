@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/Screenshot-2026-07-21-at-12.22.06-PM.png?quality=90&amp;strip=all&amp;crop=0%2C2.6087741469579%2C100%2C94.782451706084&amp;w=1200",
-      "published": "2026-07-21T18:06:43-04:00"
+      "published": "2026-07-21T18:06:43-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "c93ce2a26800769d",
@@ -37,7 +39,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/gettyimages-2284560499.jpg?quality=90&amp;strip=all&amp;crop=0%2C4.2558898069678%2C100%2C78.524215886627&amp;w=1200",
-      "published": "2026-07-21T17:48:54-04:00"
+      "published": "2026-07-21T17:48:54-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "12fdaa3c49ea0b8f",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/STKB391_SUBSTACK_A.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.728364100735%2C100%2C78.54327179853&amp;w=1200",
-      "published": "2026-07-21T15:22:28-04:00"
+      "published": "2026-07-21T15:22:28-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "ca9c749186d3d258",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/03/STK269_ANTHROPIC_2_A.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-21T12:53:37-04:00"
+      "published": "2026-07-21T12:53:37-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "42219e91e62714e3",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/01/STK255_Google_Gemini_D.jpg?quality=90&amp;strip=all&amp;crop=0%2C9.9676601489831%2C100%2C80.064679702034&amp;w=1200",
-      "published": "2026-07-21T11:00:00-04:00"
+      "published": "2026-07-21T11:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "797c1c636cb12038",
@@ -113,7 +123,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/Halliday-G2-Lifestyle-Book.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.752527414113%2C100%2C78.494945171774&amp;w=1200",
-      "published": "2026-07-21T09:00:00-04:00"
+      "published": "2026-07-21T09:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "6aac101204120759",
@@ -132,7 +144,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/gettyimages-2286280160.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.83178126478%2C100%2C78.336437470441&amp;w=1200",
-      "published": "2026-07-21T07:08:56-04:00"
+      "published": "2026-07-21T07:08:56-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "1028583e78f2342a",
@@ -151,7 +165,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-07-21T14:22:27+00:00"
+      "published": "2026-07-21T14:22:27+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "2258d34eee1bdeed",
@@ -170,7 +186,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/uU5Gv2h8-9g/maxresdefault.jpg",
-      "published": "2026-07-21T12:54:02+00:00"
+      "published": "2026-07-21T12:54:02+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "d46240eb34aad1bf",
@@ -189,7 +207,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/75GfzgkJGWo/hqdefault.jpg",
-      "published": "2026-07-21T10:00:10+00:00"
+      "published": "2026-07-21T10:00:10+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     }
   ]
 }

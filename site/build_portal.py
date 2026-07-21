@@ -11549,8 +11549,7 @@ def _render_tuesday_build_hour_cards() -> str:
         "<button type='button' class='pf-arrow pf-next' aria-label='次の時間へ' aria-controls='salon-timeline' data-dir='1'>›</button>"
         "<div class='salon-timeline-nav'><div class='salon-timeline-dots' aria-label='時系列の表示位置'>"
         + dots
-        + "</div><span class='salon-timeline-status' aria-live='polite'>1 / 4</span>"
-        "<span class='salon-swipe-hint'>横にスワイプして流れを見る →</span></div></div>"
+        + "</div><span class='salon-timeline-status' aria-live='polite'>1 / 4</span></div></div>"
     )
 
 
@@ -12799,7 +12798,6 @@ header.site-header:hover {
 .salon-timeline-dots button { width:9px; height:9px; padding:0; border:0; border-radius:999px; background:#c7d7e8; cursor:pointer; transition:width .2s ease,background .2s ease; }
 .salon-timeline-dots button[aria-current="step"] { width:26px; background:var(--focus-blue); }
 .salon-timeline-status { min-width:34px; color:var(--focus-muted); font-size:11px; font-weight:850; }
-.salon-swipe-hint { color:var(--focus-muted); font-size:11px; font-weight:750; }
 .salon-timeline-wrap .pf-arrow { top:45%; }
 .course-quick-actions { max-width:1400px; margin:12px auto 0; display:flex; align-items:center; justify-content:flex-end; gap:14px; }
 .compact-diagnose { padding:0; color:var(--focus-blue); background:transparent; border:0; font-size:12px; font-weight:900; text-decoration:underline; text-underline-offset:3px; cursor:pointer; }
@@ -12942,7 +12940,6 @@ header.site-header:hover {
   .salon-timeline-card:first-child { min-height:342px; padding:16px; border:1px solid var(--focus-line); border-radius:14px; }
   .salon-timeline-card .compact-course-visual { height:128px; }
   .salon-timeline-nav { justify-content:flex-start; flex-wrap:wrap; gap:9px; }
-  .salon-swipe-hint { width:100%; }
   .course-quick-actions { align-items:flex-end; justify-content:space-between; }
 }
 

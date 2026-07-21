@@ -9152,6 +9152,9 @@ section.block::before {
   --focus-muted: #627089;
   --focus-line: #d9deee;
   --focus-surface: #f7f8fc;
+  --focus-shell-x: max(18px, calc((100vw - 1400px) / 2));
+  --focus-footer-y: clamp(36px, 5vw, 48px);
+  --focus-footer-gap: clamp(24px, 3vw, 32px);
 }
 html { scroll-behavior: smooth; }
 body { background: #fff !important; color: var(--focus-ink) !important; }
@@ -9631,6 +9634,19 @@ header.site-header:hover {
 .focus-block .blog-card p { color:var(--focus-muted) !important; }
 .focus-blog-carousel { max-width:1400px; margin:0 auto; }
 .sticky-cta { background:#fff !important; color:var(--focus-ink) !important; border-color:var(--focus-line) !important; }
+/* Standardized footer rhythm, 2026-07-22 */
+footer.site-footer {
+  margin-top:0;
+  padding:var(--focus-footer-y) var(--focus-shell-x) calc(16px + env(safe-area-inset-bottom));
+}
+.footer-grid {
+  width:100%;
+  grid-template-columns:minmax(0,1.6fr) minmax(0,1fr) minmax(0,1.2fr);
+  gap:var(--focus-footer-gap);
+  margin-bottom:var(--focus-footer-gap);
+}
+.footer-grid > * { min-width:0; }
+.footer-nap a { overflow-wrap:anywhere; }
 @media (max-width: 900px) {
   .header-member-login {
     min-height: 36px;
@@ -9658,8 +9674,16 @@ header.site-header:hover {
   .salon-timeline { grid-auto-columns:76% !important; }
   .focus-hub-head { align-items:flex-start; flex-direction:column; }
   .focus-hub-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .footer-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .footer-brand { grid-column:1 / -1; }
+  .footer-tagline { max-width:620px; }
 }
 @media (max-width: 680px) {
+  :root {
+    --focus-shell-x:14px;
+    --focus-footer-y:36px;
+    --focus-footer-gap:24px;
+  }
   .container { padding:64px 0 0 !important; }
   .site-header-inner { min-height:64px; padding:8px 14px !important; gap:8px !important; }
   .wordmark { font-size:19px !important; }
@@ -9679,6 +9703,8 @@ header.site-header:hover {
   .focus-kicker { font-size:11px; }
   .focus-title { font-size:clamp(32px,9.7vw,44px); }
   .focus-title-line { white-space:normal; }
+  .footer-grid { grid-template-columns:1fr; }
+  .footer-brand { grid-column:auto; }
   .focus-title strong { white-space:normal; }
   .focus-actions { display:grid; grid-template-columns:1fr; }
   .focus-btn { width:100%; }

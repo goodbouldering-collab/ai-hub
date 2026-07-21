@@ -11427,6 +11427,17 @@ def _render_compact_course_cards() -> str:
             "material_cta": "15分のAI実践ワークを見る",
         },
         {
+            "cat": "無料コミュニティ",
+            "title": "AIオンラインサロン",
+            "image": "/img/blog-ai-agent-course-section-4-20260714.webp",
+            "image_alt": "毎週火曜にLINEでAIの使い方を学び質問できるオンラインサロン",
+            "price": "無料",
+            "duration": "毎週火曜 21:00",
+            "desc": "10分ミニ講座、自由質問、仕事での実践例をLINEで共有します。聞くだけ・途中参加も歓迎です。",
+            "url": GUBBLE_LINE_URL,
+            "cta": "LINEで参加する",
+        },
+        {
             "cat": "6ヶ月伴走",
             "title": "AI伴走支援",
             "image": "/img/course-path-workflow.webp",
@@ -11457,8 +11468,13 @@ def _render_compact_course_cards() -> str:
     for item in items:
         is_ext = item["url"].startswith("http")
         target_attr = " target='_blank' rel='noopener'" if is_ext else ""
-        material_is_ext = item["material_url"].startswith("http")
+        material_url = str(item.get("material_url") or "")
+        material_is_ext = material_url.startswith("http")
         material_target_attr = " target='_blank' rel='noopener'" if material_is_ext else ""
+        material_html = (
+            f"<a class='compact-course-material' href='{html.escape(material_url, quote=True)}'{material_target_attr}>{html.escape(item['material_cta'])} →</a>"
+            if material_url else ""
+        )
         main_cls = " compact-course-card--main" if item.get("main") else ""
         recommended = str(item.get("recommended") or "")
         recommended_html = (
@@ -11474,7 +11490,7 @@ def _render_compact_course_cards() -> str:
             f"<div class='compact-course-meta'><strong>{html.escape(item['price'])}</strong><span>{html.escape(item['duration'])}</span></div>"
             f"<p>{html.escape(item['desc'])}</p>"
             f"<a href='{html.escape(item['url'], quote=True)}'{target_attr}>{html.escape(item['cta'])} →</a>"
-            f"<a class='compact-course-material' href='{html.escape(item['material_url'], quote=True)}'{material_target_attr}>{html.escape(item['material_cta'])} →</a>"
+            f"{material_html}"
             "</article>"
         )
     return "<div class='compact-course-grid'>" + "".join(cards) + "</div>"
@@ -12439,15 +12455,15 @@ def _render_lecture_card(lec: dict) -> str:
 
 
 FOCUSED_PORTAL_CSS = r"""
-/* ---- Consultation-first redesign, selected direction 02, 2026-07-12 ---- */
+/* ---- Consultation-first redesign, light editorial direction, 2026-07-22 ---- */
 :root {
-  --focus-blue: #075fc8;
-  --focus-blue-dark: #064895;
-  --focus-cyan: #dff4ff;
-  --focus-ink: #0a1728;
-  --focus-muted: #526174;
-  --focus-line: #cbd9e8;
-  --focus-surface: #f5f9fd;
+  --focus-blue: #5367d9;
+  --focus-blue-dark: #3f4fab;
+  --focus-cyan: #eef1ff;
+  --focus-ink: #172033;
+  --focus-muted: #627089;
+  --focus-line: #d9deee;
+  --focus-surface: #f7f8fc;
 }
 html { scroll-behavior: smooth; }
 body { background: #fff !important; color: var(--focus-ink) !important; }
@@ -12523,18 +12539,18 @@ header.site-header:hover {
   min-height:650px;
   overflow:hidden;
   background:
-    linear-gradient(100deg,rgba(3,25,63,.97) 0%,rgba(5,74,157,.93) 47%,rgba(6,89,147,.72) 67%,rgba(5,116,105,.48) 100%),
-    url('/img/hero-ai-consult-hikone.png') 64% center/cover no-repeat;
-  background-color:#064a9a;
+    linear-gradient(96deg,rgba(249,250,255,.99) 0%,rgba(249,250,255,.96) 46%,rgba(249,250,255,.68) 66%,rgba(249,250,255,.20) 100%),
+    url('/img/hero-ai-consult-hikone.png') 66% center/cover no-repeat;
+  background-color:#f6f7fc;
 }
 .focus-hero::before {
   content:"";
   position:absolute;
   inset:0;
   z-index:-2;
-  background-image:linear-gradient(rgba(255,255,255,.085) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.085) 1px,transparent 1px);
+  background-image:linear-gradient(rgba(83,103,217,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(83,103,217,.055) 1px,transparent 1px);
   background-size:38px 38px;
-  mask-image:linear-gradient(90deg,#000 0%,rgba(0,0,0,.6) 56%,transparent 100%);
+  mask-image:linear-gradient(90deg,#000 0%,rgba(0,0,0,.5) 56%,transparent 100%);
 }
 .focus-hero::after {
   content:"";
@@ -12544,13 +12560,13 @@ header.site-header:hover {
   width:min(860px,62vw);
   aspect-ratio:1;
   border-radius:50%;
-  background:radial-gradient(circle,rgba(143,242,220,.3) 0%,rgba(143,242,220,.08) 44%,transparent 72%);
-  opacity:.9;
+  background:radial-gradient(circle,rgba(164,174,244,.32) 0%,rgba(164,174,244,.10) 44%,transparent 72%);
+  opacity:.72;
   filter:blur(3px);
 }
 .hero-orb { position:absolute; z-index:-1; border-radius:50%; filter:blur(2px); pointer-events:none; }
-.hero-orb-one { width:240px; height:240px; top:-90px; left:42%; background:rgba(7,95,200,.09); animation:hero-float 9s ease-in-out infinite; }
-.hero-orb-two { width:160px; height:160px; right:5%; bottom:-55px; background:rgba(42,203,173,.15); animation:hero-float 11s ease-in-out -3s infinite reverse; }
+.hero-orb-one { width:240px; height:240px; top:-90px; left:42%; background:rgba(83,103,217,.10); animation:hero-float 9s ease-in-out infinite; }
+.hero-orb-two { width:160px; height:160px; right:5%; bottom:-55px; background:rgba(232,182,218,.16); animation:hero-float 11s ease-in-out -3s infinite reverse; }
 @keyframes hero-float { 0%,100%{ transform:translate3d(0,0,0) } 50%{ transform:translate3d(18px,22px,0) } }
 .focus-hero-shell { width:min(1400px,100%); min-height:650px; margin:0 auto; padding:68px 28px; display:grid; grid-template-columns:minmax(0,760px); justify-content:start; align-items:center; }
 .focus-hero-copy { position:relative; z-index:1; min-width:0; display:flex; flex-direction:column; justify-content:center; }
@@ -12596,18 +12612,18 @@ header.site-header:hover {
 .hero-text-link { display:inline-flex; align-items:center; gap:5px; padding:12px 3px; color:var(--focus-ink); font-size:13px; font-weight:900; text-decoration:none; border-bottom:1px solid rgba(7,95,200,.25); }
 .hero-text-link:hover { color:var(--focus-blue); }
 .focus-trust { display:flex; gap:16px; margin:22px 0 0; padding:0; list-style:none; color:var(--focus-muted); font-size:12.5px; font-weight:750; flex-wrap:wrap; }
-.focus-trust li::before { content:"✓"; margin-right:6px; color:#0a9c7d; font-weight:950; }
-.focus-hero .focus-kicker { color:#a9ffe8; }
-.focus-hero .focus-title { color:#fff; text-shadow:0 3px 24px rgba(0,18,48,.34); }
-.focus-hero .focus-title strong { color:#a9ffe8; }
-.focus-hero .focus-title strong::after { background:#d7ff5e; }
-.focus-hero .focus-lead { color:rgba(255,255,255,.94); text-shadow:0 2px 16px rgba(0,20,48,.3); }
-.focus-hero .focus-btn.primary { color:#052f68; background:#d7ff5e; border-color:#d7ff5e; box-shadow:0 14px 32px rgba(0,25,67,.3); }
-.focus-hero .focus-btn.secondary { color:#fff; background:rgba(3,32,77,.34); border-color:rgba(255,255,255,.82); }
-.focus-hero .hero-text-link { color:#fff; border-bottom-color:rgba(255,255,255,.52); }
-.focus-hero .hero-text-link:hover { color:#d7ff5e; }
-.focus-hero .focus-trust { color:rgba(255,255,255,.9); }
-.focus-hero .focus-trust li::before { color:#d7ff5e; }
+.focus-trust li::before { content:"✓"; margin-right:6px; color:var(--focus-blue); font-weight:950; }
+.focus-hero .focus-kicker { color:var(--focus-blue); }
+.focus-hero .focus-title { color:var(--focus-ink); text-shadow:none; }
+.focus-hero .focus-title strong { color:var(--focus-blue); }
+.focus-hero .focus-title strong::after { background:#b9c3ff; }
+.focus-hero .focus-lead { color:var(--focus-muted); text-shadow:none; }
+.focus-hero .focus-btn.primary { color:#fff; background:var(--focus-blue); border-color:var(--focus-blue); box-shadow:0 14px 32px rgba(83,103,217,.22); }
+.focus-hero .focus-btn.secondary { color:var(--focus-blue); background:rgba(255,255,255,.88); border-color:rgba(83,103,217,.36); }
+.focus-hero .hero-text-link { color:var(--focus-ink); border-bottom-color:rgba(83,103,217,.32); }
+.focus-hero .hero-text-link:hover { color:var(--focus-blue); }
+.focus-hero .focus-trust { color:var(--focus-muted); }
+.focus-hero .focus-trust li::before { color:var(--focus-blue); }
 @media (prefers-reduced-motion:reduce) { .hero-orb,.hero-salon-live i { animation:none !important; } }
 .focus-hub { padding:52px max(18px,calc((100vw - 1400px)/2)) 66px; background:#fff; border-top:1px solid var(--focus-line); }
 .focus-hub-head { max-width:1400px; margin:0 auto 24px; display:flex; align-items:end; justify-content:space-between; gap:24px; }
@@ -12685,7 +12701,7 @@ header.site-header:hover {
   margin:0 auto;
   padding:0 !important;
   display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
+  grid-template-columns:repeat(5,minmax(0,1fr));
   gap:0;
   text-align:left;
 }
@@ -12894,7 +12910,7 @@ header.site-header:hover {
   .focus-hero::before { mask-image:linear-gradient(180deg,#000 0%,transparent 90%); }
   .focus-hero {
     background:
-      linear-gradient(180deg,rgba(3,25,63,.95) 0%,rgba(5,74,157,.92) 58%,rgba(5,104,111,.88) 100%),
+      linear-gradient(180deg,rgba(249,250,255,.98) 0%,rgba(249,250,255,.94) 58%,rgba(249,250,255,.90) 100%),
       url('/img/hero-ai-consult-hikone.png') 64% center/cover no-repeat;
   }
   .focus-hero::after { width:520px; right:-55%; bottom:8%; opacity:.45; }
@@ -13139,15 +13155,13 @@ def _render_hero_focused() -> str:
         "<div class='hero-orb hero-orb-one' aria-hidden='true'></div><div class='hero-orb hero-orb-two' aria-hidden='true'></div>"
         "<div class='focus-hero-shell'>"
         "<div class='focus-hero-copy fade-up'>"
-        f"<a class='hero-salon-launch' href='{html.escape(GUBBLE_LINE_URL, quote=True)}' target='_blank' rel='noopener'>"
-        "<span class='hero-salon-live'><i aria-hidden='true'></i>NEW</span><span class='hero-salon-copy'><strong>AIオンラインサロンを始めました</strong><small>毎週火曜 21:00・LINE開催</small></span><b>参加する <span aria-hidden='true'>→</span></b></a>"
         "<p class='focus-kicker'>Codex + Claude Code 実践</p>"
         "<h1 class='focus-title'><span class='focus-title-first'>AIエージェントを、</span><br><span class='focus-title-line'><strong>仕事の仲間に。</strong></span></h1>"
-        "<p class='focus-lead'>毎週のAIオンラインサロンと実践講習で、調査・告知・事務・Web制作を、仕事で使える形まで一緒に動かします。</p>"
+        "<p class='focus-lead'>実践講習と個別相談で、調査・告知・事務・Web制作を、仕事で使える形まで一緒に動かします。</p>"
         "<div class='focus-actions'>"
-        f"<a class='focus-btn primary hero-line-cta' href='{html.escape(GUBBLE_LINE_URL, quote=True)}' target='_blank' rel='noopener'>AIオンラインサロンに参加する <span aria-hidden='true'>↗</span></a>"
-        "<a class='focus-btn secondary' href='#packages'>講習を見る</a><a class='hero-text-link' href='#contact'>個別相談 <span aria-hidden='true'>→</span></a></div>"
-        "<ul class='focus-trust'><li>AI初心者OK</li><li>聞くだけOK</li><li>途中参加OK</li></ul></div>"
+        "<a class='focus-btn primary' href='#packages'>講習・相談を見る</a>"
+        "<a class='focus-btn secondary' href='#contact'>無料相談する</a><a class='hero-text-link' href='/lectures/index.html'>受講資料 <span aria-hidden='true'>→</span></a></div>"
+        "<ul class='focus-trust'><li>AI初心者OK</li><li>対面・オンライン対応</li><li>仕事を持ち込める</li></ul></div>"
         "</div>"
         "</section>"
     )
@@ -13174,7 +13188,7 @@ def _render_focused_main() -> str:
 
     parts = [
         "<section class='focus-block main-course' id='packages'><div class='focus-section-head'><small>COURSES</small><h2>講習・相談コース</h2></div>",
-        "<p class='focus-section-lead'><strong>迷ったら、まずはAIエージェント講習が一番基本でおすすめです。</strong><br>個別相談、伴走支援、AIコーディング講習も、目的・時間・料金から選べます。</p>",
+        "<p class='focus-section-lead'><strong>迷ったら、まずはAIエージェント講習が一番基本でおすすめです。</strong><br>個別相談、無料オンラインサロン、伴走支援、AIコーディング講習も、目的・時間・料金から選べます。</p>",
         _render_compact_course_cards(),
         "<aside class='course-venue-common' aria-label='講習・相談コース共通の開催場所'>",
         "<img src='/img/gubboru-cafe-ai-course-painting.webp' alt='講習・相談の対面会場 グッぼるカフェの店内' loading='lazy' decoding='async'>",
@@ -13182,11 +13196,6 @@ def _render_focused_main() -> str:
         "<div class='course-venue-map'><iframe src='https://www.google.com/maps?q=%E3%82%B0%E3%83%83%E3%81%BC%E3%82%8B%E3%82%AB%E3%83%95%E3%82%A7%20%E6%BB%8B%E8%B3%80%E7%9C%8C%E5%BD%A6%E6%A0%B9%E5%B8%82%E5%B2%A1%E7%94%BA12&amp;output=embed' title='グッぼるカフェ周辺のGoogleマップ' loading='lazy' referrerpolicy='no-referrer-when-downgrade' allowfullscreen></iframe></div>",
         "<p class='course-venue-map-link'><a href='https://www.google.com/maps/search/?api=1&amp;query=%E3%82%B0%E3%83%83%E3%81%BC%E3%82%8B%E3%82%AB%E3%83%95%E3%82%A7%20%E6%BB%8B%E8%B3%80%E7%9C%8C%E5%BD%A6%E6%A0%B9%E5%B8%82%E5%B2%A1%E7%94%BA12' target='_blank' rel='noopener'>Googleマップで開く →</a></p></aside>",
         "<div class='course-quick-actions'><button type='button' class='compact-diagnose diagnose-open'>迷ったら60秒診断</button><a href='#lectures'>受講資料から選ぶ →</a></div></section>",
-        "<section class='focus-block' id='seven-day-courses'><div class='focus-section-head'><small>TUESDAY AI ONLINE SALON</small><h2>AIオンラインサロン</h2></div>",
-        "<p class='focus-section-lead'>毎週火曜21時、LINE開催。10分ミニ講座、自由質問、仕事をAIで動かす実践、参加者同士の交流を行なっています。聞くだけ・途中参加も歓迎。</p>",
-        _render_tuesday_build_hour_cards(),
-        "<p class='focus-section-lead'>終了後は、AIが要点を下書きし、講師が確認した「火曜AIノート」を共有します。顧客情報や機密事項を含む内容は公開せず、個別相談で扱います。</p>",
-        f"<div class='focus-content-actions'><a class='focus-btn' href='{html.escape(GUBBLE_LINE_URL, quote=True)}' target='_blank' rel='noopener'>LINEで今週の案内を受け取る</a></div></section>",
         "<section class='focus-block soft' id='lectures'><div class='focus-section-head'><small>LEARNING MATERIALS</small><h2>受講資料</h2></div>",
         "<p class='focus-section-lead'>公開中の受講資料をすべて表示しています。迷ったら「AIが初めて」から順に選べます。</p>",
         _render_lectures_section(),

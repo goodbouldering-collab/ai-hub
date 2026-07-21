@@ -10028,7 +10028,7 @@ HEADER_JS = """
     });
   })();
 
-  // AIサロン時系列: スワイプ位置をSTEP表示・ドット・カード強調へ同期
+  // AIオンラインサロン時系列: スワイプ位置をSTEP表示・ドット・カード強調へ同期
   (function(){
     document.querySelectorAll('[data-salon-timeline]').forEach(function(wrap){
       var track = wrap.querySelector('.salon-timeline');
@@ -11481,7 +11481,7 @@ def _render_compact_course_cards() -> str:
 
 
 def _render_tuesday_build_hour_cards() -> str:
-    """毎週火曜21時のAIサロンを、1時間の流れが分かるカードで案内する。"""
+    """毎週火曜21時のAIオンラインサロンを、1時間の流れが分かるカードで案内する。"""
     items = [
         {
             "cat": "CHECK IN",
@@ -11543,7 +11543,7 @@ def _render_tuesday_build_hour_cards() -> str:
     return (
         "<div class='pf-carousel-wrap salon-timeline-wrap' data-salon-timeline>"
         "<button type='button' class='pf-arrow pf-prev' aria-label='前の時間へ' aria-controls='salon-timeline' data-dir='-1'>‹</button>"
-        "<div class='pf-carousel salon-timeline' id='salon-timeline' role='list' tabindex='0' aria-label='AIサロンの時系列'>"
+        "<div class='pf-carousel salon-timeline' id='salon-timeline' role='list' tabindex='0' aria-label='AIオンラインサロンの時系列'>"
         + "".join(cards)
         + "</div>"
         "<button type='button' class='pf-arrow pf-next' aria-label='次の時間へ' aria-controls='salon-timeline' data-dir='1'>›</button>"
@@ -12524,15 +12524,16 @@ header.site-header:hover {
   min-height:650px;
   overflow:hidden;
   background:
-    radial-gradient(circle at calc(var(--hero-x) * 100%) calc(var(--hero-y) * 100%),rgba(43,200,189,.22),transparent 29%),
-    linear-gradient(135deg,#f5fbff 0%,#fff 44%,#eefaf7 100%);
+    linear-gradient(100deg,rgba(3,25,63,.97) 0%,rgba(5,74,157,.93) 47%,rgba(6,89,147,.72) 67%,rgba(5,116,105,.48) 100%),
+    url('/img/hero-ai-consult-hikone.png') 64% center/cover no-repeat;
+  background-color:#064a9a;
 }
 .focus-hero::before {
   content:"";
   position:absolute;
   inset:0;
   z-index:-2;
-  background-image:linear-gradient(rgba(7,95,200,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(7,95,200,.055) 1px,transparent 1px);
+  background-image:linear-gradient(rgba(255,255,255,.085) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.085) 1px,transparent 1px);
   background-size:38px 38px;
   mask-image:linear-gradient(90deg,#000 0%,rgba(0,0,0,.6) 56%,transparent 100%);
 }
@@ -12544,9 +12545,9 @@ header.site-header:hover {
   width:min(860px,62vw);
   aspect-ratio:1;
   border-radius:50%;
-  background:url('/img/hero-ai-consult-hikone.png') center/cover no-repeat;
-  opacity:.16;
-  filter:saturate(.8) contrast(1.05);
+  background:radial-gradient(circle,rgba(143,242,220,.3) 0%,rgba(143,242,220,.08) 44%,transparent 72%);
+  opacity:.9;
+  filter:blur(3px);
 }
 .hero-orb { position:absolute; z-index:-1; border-radius:50%; filter:blur(2px); pointer-events:none; }
 .hero-orb-one { width:240px; height:240px; top:-90px; left:42%; background:rgba(7,95,200,.09); animation:hero-float 9s ease-in-out infinite; }
@@ -12597,6 +12598,17 @@ header.site-header:hover {
 .hero-text-link:hover { color:var(--focus-blue); }
 .focus-trust { display:flex; gap:16px; margin:22px 0 0; padding:0; list-style:none; color:var(--focus-muted); font-size:12.5px; font-weight:750; flex-wrap:wrap; }
 .focus-trust li::before { content:"✓"; margin-right:6px; color:#0a9c7d; font-weight:950; }
+.focus-hero .focus-kicker { color:#a9ffe8; }
+.focus-hero .focus-title { color:#fff; text-shadow:0 3px 24px rgba(0,18,48,.34); }
+.focus-hero .focus-title strong { color:#a9ffe8; }
+.focus-hero .focus-title strong::after { background:#d7ff5e; }
+.focus-hero .focus-lead { color:rgba(255,255,255,.94); text-shadow:0 2px 16px rgba(0,20,48,.3); }
+.focus-hero .focus-btn.primary { color:#052f68; background:#d7ff5e; border-color:#d7ff5e; box-shadow:0 14px 32px rgba(0,25,67,.3); }
+.focus-hero .focus-btn.secondary { color:#fff; background:rgba(3,32,77,.34); border-color:rgba(255,255,255,.82); }
+.focus-hero .hero-text-link { color:#fff; border-bottom-color:rgba(255,255,255,.52); }
+.focus-hero .hero-text-link:hover { color:#d7ff5e; }
+.focus-hero .focus-trust { color:rgba(255,255,255,.9); }
+.focus-hero .focus-trust li::before { color:#d7ff5e; }
 @media (prefers-reduced-motion:reduce) { .hero-orb,.hero-salon-live i { animation:none !important; } }
 .focus-hub { padding:52px max(18px,calc((100vw - 1400px)/2)) 66px; background:#fff; border-top:1px solid var(--focus-line); }
 .focus-hub-head { max-width:1400px; margin:0 auto 24px; display:flex; align-items:end; justify-content:space-between; gap:24px; }
@@ -12882,7 +12894,12 @@ header.site-header:hover {
   .site-header-inner { min-height:64px; padding:8px 14px !important; gap:8px !important; }
   .wordmark { font-size:19px !important; }
   .focus-hero::before { mask-image:linear-gradient(180deg,#000 0%,transparent 90%); }
-  .focus-hero::after { width:520px; right:-55%; bottom:8%; opacity:.08; }
+  .focus-hero {
+    background:
+      linear-gradient(180deg,rgba(3,25,63,.95) 0%,rgba(5,74,157,.92) 58%,rgba(5,104,111,.88) 100%),
+      url('/img/hero-ai-consult-hikone.png') 64% center/cover no-repeat;
+  }
+  .focus-hero::after { width:520px; right:-55%; bottom:8%; opacity:.45; }
   .focus-hero-shell { padding:28px 14px 46px; gap:28px; }
   .focus-hero-copy { padding:0; }
   .hero-salon-launch { grid-template-columns:auto 1fr; gap:9px; margin-bottom:24px; border-radius:13px; }
@@ -13126,12 +13143,12 @@ def _render_hero_focused() -> str:
         "<div class='focus-hero-shell'>"
         "<div class='focus-hero-copy fade-up'>"
         f"<a class='hero-salon-launch' href='{html.escape(GUBBLE_LINE_URL, quote=True)}' target='_blank' rel='noopener'>"
-        "<span class='hero-salon-live'><i aria-hidden='true'></i>NEW</span><span class='hero-salon-copy'><strong>AIサロンを始めました</strong><small>毎週火曜 21:00・LINE開催</small></span><b>参加する <span aria-hidden='true'>→</span></b></a>"
+        "<span class='hero-salon-live'><i aria-hidden='true'></i>NEW</span><span class='hero-salon-copy'><strong>AIオンラインサロンを始めました</strong><small>毎週火曜 21:00・LINE開催</small></span><b>参加する <span aria-hidden='true'>→</span></b></a>"
         "<p class='focus-kicker'>Codex + Claude Code 実践</p>"
         "<h1 class='focus-title'><span class='focus-title-first'>AIエージェントを、</span><br><span class='focus-title-line'><strong>仕事の仲間に。</strong></span></h1>"
-        "<p class='focus-lead'>毎週のAIサロンと実践講習で、調査・告知・事務・Web制作を、仕事で使える形まで一緒に動かします。</p>"
+        "<p class='focus-lead'>毎週のAIオンラインサロンと実践講習で、調査・告知・事務・Web制作を、仕事で使える形まで一緒に動かします。</p>"
         "<div class='focus-actions'>"
-        f"<a class='focus-btn primary hero-line-cta' href='{html.escape(GUBBLE_LINE_URL, quote=True)}' target='_blank' rel='noopener'>AIサロンに参加する <span aria-hidden='true'>↗</span></a>"
+        f"<a class='focus-btn primary hero-line-cta' href='{html.escape(GUBBLE_LINE_URL, quote=True)}' target='_blank' rel='noopener'>AIオンラインサロンに参加する <span aria-hidden='true'>↗</span></a>"
         "<a class='focus-btn secondary' href='#packages'>講習を見る</a><a class='hero-text-link' href='#contact'>個別相談 <span aria-hidden='true'>→</span></a></div>"
         "<ul class='focus-trust'><li>AI初心者OK</li><li>聞くだけOK</li><li>途中参加OK</li></ul></div>"
         "</div>"
@@ -13168,7 +13185,7 @@ def _render_focused_main() -> str:
         "<div class='course-venue-map'><iframe src='https://www.google.com/maps?q=%E3%82%B0%E3%83%83%E3%81%BC%E3%82%8B%E3%82%AB%E3%83%95%E3%82%A7%20%E6%BB%8B%E8%B3%80%E7%9C%8C%E5%BD%A6%E6%A0%B9%E5%B8%82%E5%B2%A1%E7%94%BA12&amp;output=embed' title='グッぼるカフェ周辺のGoogleマップ' loading='lazy' referrerpolicy='no-referrer-when-downgrade' allowfullscreen></iframe></div>",
         "<p class='course-venue-map-link'><a href='https://www.google.com/maps/search/?api=1&amp;query=%E3%82%B0%E3%83%83%E3%81%BC%E3%82%8B%E3%82%AB%E3%83%95%E3%82%A7%20%E6%BB%8B%E8%B3%80%E7%9C%8C%E5%BD%A6%E6%A0%B9%E5%B8%82%E5%B2%A1%E7%94%BA12' target='_blank' rel='noopener'>Googleマップで開く →</a></p></aside>",
         "<div class='course-quick-actions'><button type='button' class='compact-diagnose diagnose-open'>迷ったら60秒診断</button><a href='#lectures'>受講資料から選ぶ →</a></div></section>",
-        "<section class='focus-block' id='seven-day-courses'><div class='focus-section-head'><small>TUESDAY AIsalon</small><h2>AIサロン</h2></div>",
+        "<section class='focus-block' id='seven-day-courses'><div class='focus-section-head'><small>TUESDAY AI ONLINE SALON</small><h2>AIオンラインサロン</h2></div>",
         "<p class='focus-section-lead'>毎週火曜21時、LINE開催。10分ミニ講座、自由質問、仕事をAIで動かす実践、参加者同士の交流を行なっています。聞くだけ・途中参加も歓迎。</p>",
         _render_tuesday_build_hour_cards(),
         "<p class='focus-section-lead'>終了後は、AIが要点を下書きし、講師が確認した「火曜AIノート」を共有します。顧客情報や機密事項を含む内容は公開せず、個別相談で扱います。</p>",
@@ -13197,7 +13214,7 @@ def _render_focused_main() -> str:
         "<details><summary>AIがまったく初めてでも大丈夫ですか？</summary><p>大丈夫です。専門用語ではなく、普段の仕事と困りごとから始めます。</p></details>",
         "<details><summary>パソコンを持ち込めますか？</summary><p>はい。可能なら普段使っているPCと、直したい資料やページをお持ちください。</p></details>",
         "<details><summary>オンラインでも受講できますか？</summary><p>対面・オンラインの両方に対応しています。彦根市内は訪問も相談できます。</p></details>",
-        "<details><summary>AIサロンは、誰でも参加できますか？</summary><p>はい。AIが初めての方も、聞くだけ・途中参加も歓迎です。毎週火曜21時に開催し、事前質問と参加案内はLINEで受け付けます。</p></details></div></section>",
+        "<details><summary>AIオンラインサロンは、誰でも参加できますか？</summary><p>はい。AIが初めての方も、聞くだけ・途中参加も歓迎です。毎週火曜21時に開催し、事前質問と参加案内はLINEで受け付けます。</p></details></div></section>",
         "<section class='focus-contact' id='contact'><div class='focus-contact-inner'><div><h2>AIエージェントに任せたい仕事を聞かせてください。</h2><p>講習前に、今の仕事に合う題材と進め方を一緒に整理できます。</p></div>",
         f"<a class='focus-btn' href='{free_consult}' target='_blank' rel='noopener'>無料相談の日程を選ぶ</a></div></section>",
     ]

@@ -114,7 +114,7 @@ OWNER_EMAIL = "goodbouldering@gmail.com"
 SITE_BRAND = "AI相談"
 SITE_LEGACY_NAME = "AIハブ"
 OWNER_SUBTITLE = "クライミング歴30年・9事業を回す滋賀のAI講師"
-OWNER_TAGLINE = "AIを聞いて終わりにせず、講習・実例・資料で仕事に入れる"
+OWNER_TAGLINE = "AIの今と、次の一手がわかる。"
 CONSULT_BOOK_URL = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/AW5O5XSBHLEHYUBHLZUGFKYE"
 AI_AGENT_COURSE_URL = "https://goodbouldering.com/?pid=188553378"
 AI_CODING_BOOK_URL = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/S7GERYVDIPRV76DKXCC3WJWH"
@@ -190,7 +190,7 @@ def _build_ogp(title: str, description: str, page_url: str, *, image: str | None
 
 def _build_jsonld_website() -> str:
     """TOP の構造化データを @graph で一括出力。
-    LocalBusiness(地域シグナル) / Person(異色の権威) / WebSite / Service×5(価格付き Offer) /
+    LocalBusiness(地域シグナル) / Person(異色の権威) / WebSite / Service×6(価格付き Offer) /
     FAQPage(一次情報) / BreadcrumbList を相互参照させ、SEO・LLMO 両面の引用源にする。"""
     org_id = SITE_URL + "/#business"
     person_id = SITE_URL + "/#yui"
@@ -219,9 +219,9 @@ def _build_jsonld_website() -> str:
             "streetAddress": "小泉町34-8",
             "addressCountry": "JP",
         },
-        "description": "滋賀県彦根市を拠点に、中小事業者・地域団体・個人事業者向けのAI相談、AIエージェント講習、Codex・Claude Code実践、画像生成、受講資料公開、実例紹介、Web/業務システム制作、補助金を使ったAI導入支援を行う。9事業を実際に回す現役オーナーが、相談から講習、実装、公開、運用定着まで伴走する。",
+        "description": "滋賀県彦根市を拠点に、中小事業者・地域団体・個人事業者向けのAI相談、AIエージェント講習、毎週無料のAIオンラインサロン、Codex・Claude Code実践、画像生成、受講資料公開、実例紹介、Web/業務システム制作、補助金を使ったAI導入支援を行う。9事業を実際に回す現役オーナーが、相談から講習、実装、公開、運用定着まで伴走する。",
         "knowsAbout": [
-            "AI相談", "AIエージェント講習", "ChatGPT", "Claude Code", "Codex", "画像生成", "AI業務改善",
+            "AI相談", "AIエージェント講習", "AIオンラインサロン", "ChatGPT", "Claude Code", "Codex", "画像生成", "AI業務改善",
             "LLMO（AI検索最適化）", "SEO", "MEO", "YouTube SEO", "Reels導線",
             "業務自動化", "AI導入補助金", "デジタル化補助金", "中小企業DX",
         ],
@@ -248,13 +248,14 @@ def _build_jsonld_website() -> str:
         "url": SITE_URL,
         "inLanguage": "ja",
         "publisher": {"@id": org_id},
-        "description": "滋賀・彦根の中小事業者向けAI相談、講習募集、受講資料、実例、講師紹介、AI/SNS/LLMO情報の資料センター。",
+        "description": "滋賀・彦根の中小事業者向けAI相談、AIエージェント講習、無料オンラインサロン、受講資料、実例、講師紹介の資料センター。増え続けるAI情報から、仕事に使えるものと今やることを整理する。",
     }
 
     ai_agent_title = "AIエージェント講習 120分"
     ai_coding_title = "AIコーディング講習 120分"
     free_consult_title = "AI無料相談 入口整理"
     consult_title = "AI個別相談 しっかり60分"
+    salon_title = "AIオンラインサロン"
     support_title = "AI伴走支援 いっしょに導入"
 
     # 受講プランを Service + Offer として構造化（_render_packages の items と整合）
@@ -262,6 +263,7 @@ def _build_jsonld_website() -> str:
         (ai_agent_title, "CodexとClaude Codeを使い、仕事を分けて頼む、結果を確かめる、修正する、繰り返せる手順として残すAIエージェント講習。調査、資料、告知、業務改善、Web制作を題材に、AIの成果物を判断して仕事に入れる型を120分で身につける。", "5500", "5500", "Course"),
         (free_consult_title, "来店またはオンラインで、AI導入の入口を整理する無料相談。講習や伴走の前に、今の課題と次の一手を確認する。", "0", "0", "BusinessCoaching"),
         (consult_title, "AIの使い方、役割分担、指示書、確認体制、運用導線を60分で整理する個別相談。", "5500", "5500", "BusinessCoaching"),
+        (salon_title, "毎週火曜21時にLINEで開く無料のAIオンラインサロン。日々増えるAIの新しい発表から重要な変化を選び、仕事に使えるか、今何を試すかを一緒に整理する。聞くだけ・途中参加も歓迎。", "0", "0", "CommunityService"),
         (support_title, "HP公開から事務自動化・経理・マーケまで6ヶ月で一気に定着。技術的な難所は講師が代行・支援。滋賀・彦根の補助金で負担1/3以下に。", "100000", "100000", "Service"),
         (ai_coding_title, "Codex導入、Claude Code併用、画像生成、プログラミング基礎、設計、データ、運用、セキュリティを1本で学ぶAIコーディング講習。AIの成果物を判断し、説明し、仕事に入れるための作業設計と確認の型を120分で身につける。", "11000", "11000", "Course"),
     ]
@@ -297,6 +299,9 @@ def _build_jsonld_website() -> str:
         if name == free_consult_title:
             offer["url"] = CONSULT_BOOK_URL
             service["url"] = CONSULT_BOOK_URL
+        if name == salon_title:
+            offer["url"] = GUBBLE_LINE_URL
+            service["url"] = GUBBLE_LINE_URL
         if name == support_title:
             offer["url"] = SITE_URL + MONTHLY_SUPPORT_CHECKOUT_URL
             service["url"] = SITE_URL + MONTHLY_SUPPORT_CHECKOUT_URL
@@ -11456,10 +11461,10 @@ def _render_compact_course_cards() -> str:
             "cat": "無料コミュニティ",
             "title": "AIオンラインサロン",
             "image": "/img/blog-ai-agent-course-section-4-20260714.webp",
-            "image_alt": "毎週火曜にLINEオープンチャットのライブトークでAIを学び質問するオンラインサロン",
+            "image_alt": "毎週火曜にLINEオープンチャットのライブトークでAIの今と次の一手を整理するオンラインサロン",
             "price": "無料",
             "duration": "毎週火曜 21:00",
-            "desc": "LINEオープンチャットの「ライブトーク」で開催。案内をタップして聞くだけで参加でき、話したいときは挙手できます。",
+            "desc": "日々増えるAI情報を短く整理し、仕事に使えるか、今何を試すかを一緒に考えます。聞くだけでもOKです。",
             "url": GUBBLE_LINE_URL,
             "cta": "LINEで会場案内を受け取る",
             "badge": "ライブトーク開催",
@@ -11532,25 +11537,25 @@ def _render_tuesday_build_hour_cards() -> str:
     """毎週火曜21時のAIオンラインサロンを、1時間の流れが分かるカードで案内する。"""
     items = [
         {
-            "cat": "CHECK IN",
-            "title": "困りごとを持ち寄る",
+            "cat": "LATEST",
+            "title": "今週の変化を知る",
             "image": "/img/course-path-beginner.webp",
-            "image_alt": "仕事終わりにAIの困りごとを持ち寄る参加者のイメージ",
+            "image_alt": "今週のAIの変化と仕事の困りごとを確認する参加者のイメージ",
             "time": "21:00",
             "duration": "5分",
-            "result": "今週止まっている仕事や、AIに聞いてみたいことを気軽に共有します。",
+            "result": "日々の新しい発表と参加者の困りごとから、今週見るべき要点を短く共有します。",
         },
         {
-            "cat": "MINI BUILD",
-            "title": "10分ミニ講座",
+            "cat": "FILTER",
+            "title": "使えるかを見極める",
             "image": "/img/blog-ai-agent-course-section-4-20260714.webp",
-            "image_alt": "AIを仕事で使う短い実践講座のイメージ",
+            "image_alt": "新しいAI情報が仕事に使えるかを見極める短い実践講座のイメージ",
             "time": "21:05",
             "duration": "10分",
-            "result": "告知、資料、事務、動画、AIコーディングから、今週すぐ使えるひと技を紹介します。",
+            "result": "今すぐ使えるもの、今は待つもの、これから役立つものを、実例で分けます。",
         },
         {
-            "cat": "WORK CLINIC",
+            "cat": "PRACTICE",
             "title": "実際の仕事をAIで動かす",
             "image": "/img/course-path-workflow.webp",
             "image_alt": "参加者の実際の仕事をAIで整理して動かすイメージ",
@@ -11559,13 +11564,13 @@ def _render_tuesday_build_hour_cards() -> str:
             "result": "事前質問から1件を選び、AIへの依頼、確認、修正まで画面を見ながら一緒に進めます。",
         },
         {
-            "cat": "OPEN Q&A",
-            "title": "自由質問・交流",
+            "cat": "NEXT STEP",
+            "title": "次にやることを決める",
             "image": "/img/blog-ai-agent-course-section-3-20260714.webp",
-            "image_alt": "参加者同士でAIの質問や実践例を共有するイメージ",
+            "image_alt": "参加者同士でAIの質問を共有し、次に試すことを決めるイメージ",
             "time": "21:40",
             "duration": "20分",
-            "result": "自由質問と実践例の共有を行い、最後に来週までの小さな一歩を決めます。聞くだけ、途中参加も歓迎です。",
+            "result": "自由質問で迷いをほどき、来週までに試す小さな一歩を決めます。聞くだけでも大丈夫です。",
         },
     ]
     cards = []
@@ -11609,8 +11614,8 @@ def _render_footer(today: str) -> str:
         "<div class='footer-grid'>"
         "<div class='footer-brand'>"
         "<div class='footer-logo'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span></div>"
-        "<p class='footer-tagline'>滋賀・彦根の中小事業者向けに、AI相談・AIエージェント講習・受講資料・Web集客支援を行う"
-        "資料センター型の相談サイト。9事業を実際に回しながら、現場に居着くAIを一緒に作ります。</p>"
+        "<p class='footer-tagline'>滋賀・彦根の中小事業者向けに、AI相談・AIエージェント講習・無料オンラインサロン・受講資料・Web集客支援を行う"
+        "資料センター型の相談サイト。増え続けるAI情報を、仕事で使える次の一手に変えます。</p>"
         "<a class='footer-cta' href='#contact'>無料相談する</a>"
         "</div>"
         "<nav class='footer-nav' aria-label='フッターナビ'>"
@@ -11785,6 +11790,8 @@ FAQ_QA = [
      "はい。滋賀県彦根市を拠点に、彦根・湖東・東近江を中心とした対面のAI講習・個別相談を行っています。京都・大阪・名古屋までは出張可、リモートなら全国対応します。"),
     ("AIエージェント講習では何を学びますか？",
      "CodexとClaude Codeを、調査、資料、告知、業務改善、Web制作を一緒に進める作業者として使う講習です。仕事の分け方、伝わる依頼、差分・根拠・画面の確認、修正指示、成果物と次回手順の保存までを120分で通します。料金は5,500円で、専用の予約ページから申し込めます。"),
+    ("AIオンラインサロンでは、何がわかりますか？",
+     "日々増えるAIの新しい発表から、仕事に関係する重要な変化を選び、使えるか、今何を試すかを毎週一緒に整理します。全部を自分で追わなくても、聞くだけで要点と次の一歩がわかります。毎週火曜21時、LINEのライブトークで無料開催し、途中参加も歓迎です。"),
     ("受講資料はあとから見返せますか？",
      "はい。受講で使った資料、プロンプト、実例、動画、スライドは資料センターとして整理し、あとから復習できるようにします。受講前に内容を確認したい方も、受講資料ページから雰囲気を見られます。"),
     ("Reels や YouTube の集客にも使えますか？",
@@ -13191,6 +13198,7 @@ footer.site-footer {
   .salon-timeline-nav { justify-content:flex-start; flex-wrap:wrap; gap:9px; }
   .salon-facts { grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
   .salon-fact { padding:12px 9px; }
+  .salon-fact:nth-child(2) strong { font-size:12px; white-space:nowrap; }
   .salon-live-guide { grid-template-columns:1fr; gap:18px; padding:17px; border-radius:16px; }
   .salon-live-figure { width:min(100%,420px); margin:0 auto; }
   .salon-live-guide h3 { font-size:20px; }
@@ -13399,7 +13407,7 @@ def _render_hero_focused() -> str:
         "<div class='focus-hero-copy fade-up'>"
         "<p class='focus-kicker'>Codex + Claude Code 実践</p>"
         "<h1 class='focus-title'><span class='focus-title-first'>AIエージェントを、</span><br><span class='focus-title-line'><strong>仕事の仲間に。</strong></span></h1>"
-        "<p class='focus-lead'>実践講習と個別相談で、調査・告知・事務・Web制作を、仕事で使える形まで一緒に動かします。</p>"
+        "<p class='focus-lead'>実践講習・個別相談・無料オンラインサロンで、AIの変化を、仕事で使える次の一手に変えます。</p>"
         "<div class='focus-actions'>"
         "<a class='focus-btn primary' href='#packages'>講習・相談を見る</a>"
         "<a class='focus-btn secondary' href='#contact'>無料相談する</a><a class='hero-text-link' href='/lectures/index.html'>受講資料 <span aria-hidden='true'>→</span></a></div>"
@@ -13436,7 +13444,7 @@ def _render_focused_main() -> str:
         "<div class='focus-advantage-pillars'><span><b>01</b>速く試す</span><span><b>02</b>人が確認する</span><span><b>03</b>仕組みに残す</span></div></div>",
         "<a class='focus-advantage-link' href='#packages'>実践方法を見る →</a></div></section>",
         "<section class='focus-block main-course' id='packages'><div class='focus-section-head'><small>COURSES</small><h2>講習・相談コース</h2></div>",
-        "<p class='focus-section-lead'><strong>迷ったら、まずはAIエージェント講習が一番基本でおすすめです。</strong><br>個別相談、無料オンラインサロン、伴走支援、AIコーディング講習も、目的・時間・料金から選べます。</p>",
+        "<p class='focus-section-lead'><strong>迷ったら、まずはAIエージェント講習が一番基本でおすすめです。</strong><br>最新情報を追い続けず「今やること」を知りたい方は、無料オンラインサロンへ。個別相談、伴走支援、AIコーディング講習も選べます。</p>",
         _render_compact_course_cards(),
         "<aside class='course-venue-common' aria-label='講習・相談コース共通の開催場所'>",
         "<img src='/img/gubboru-cafe-ai-course-painting.webp' alt='講習・相談の対面会場 グッぼるカフェの店内' loading='lazy' decoding='async'>",
@@ -13444,13 +13452,13 @@ def _render_focused_main() -> str:
         "<div class='course-venue-map'><iframe src='https://www.google.com/maps?q=%E3%82%B0%E3%83%83%E3%81%BC%E3%82%8B%E3%82%AB%E3%83%95%E3%82%A7%20%E6%BB%8B%E8%B3%80%E7%9C%8C%E5%BD%A6%E6%A0%B9%E5%B8%82%E5%B2%A1%E7%94%BA12&amp;output=embed' title='グッぼるカフェ周辺のGoogleマップ' loading='lazy' referrerpolicy='no-referrer-when-downgrade' allowfullscreen></iframe></div>",
         "<p class='course-venue-map-link'><a href='https://www.google.com/maps/search/?api=1&amp;query=%E3%82%B0%E3%83%83%E3%81%BC%E3%82%8B%E3%82%AB%E3%83%95%E3%82%A7%20%E6%BB%8B%E8%B3%80%E7%9C%8C%E5%BD%A6%E6%A0%B9%E5%B8%82%E5%B2%A1%E7%94%BA12' target='_blank' rel='noopener'>Googleマップで開く →</a></p></aside>",
         "<div class='course-quick-actions'><button type='button' class='compact-diagnose diagnose-open'>迷ったら60秒診断</button><a href='#lectures'>受講資料から選ぶ →</a></div></section>",
-        "<section class='focus-block salon-section' id='seven-day-courses'><div class='focus-section-head'><small>EVERY TUESDAY · LIVE TALK</small><h2>AIオンラインサロン</h2></div>",
-        "<p class='focus-section-lead'><strong>毎週火曜21時、LINEオープンチャットの「ライブトーク」で開催します。</strong><br>10分ミニ講座、自由質問、仕事をAIで動かす実践を、聞くだけ・途中参加でも楽しめます。</p>",
+        "<section class='focus-block salon-section' id='seven-day-courses' aria-label='AIオンラインサロン'><div class='focus-section-head'><small>AI ONLINE SALON · EVERY TUESDAY</small><h2>AIの今と、次の一手がわかる。</h2></div>",
+        "<p class='focus-section-lead'><strong>AIは変わり続けます。</strong><br>新しい発表を全部追わなくても、仕事に使えるか、今何を試すかを、毎週火曜のライブトークで一緒に整理できます。</p>",
         "<div class='salon-facts'><div class='salon-fact'><small>WHEN</small><strong>毎週火曜 21:00</strong></div><div class='salon-fact'><small>PLACE</small><strong>LINEオープンチャット</strong></div><div class='salon-fact'><small>FEE</small><strong>無料</strong></div><div class='salon-fact'><small>STYLE</small><strong>ライブトーク</strong></div></div>",
         _render_live_talk_guide(),
         _render_tuesday_build_hour_cards(),
-        "<p class='salon-note'>終了後は、AIが要点を下書きし、講師が確認した「火曜AIノート」を共有します。顧客情報や機密事項を含む内容は公開せず、個別相談で扱います。</p>",
-        f"<div class='focus-content-actions'><a class='focus-btn primary' href='{GUBBLE_LINE_URL}' target='_blank' rel='noopener'>LINEで今週の案内を受け取る</a></div></section>",
+        "<p class='salon-note'>終了後は、重要な変化・仕事での使い方・今週の一歩を、講師確認済みの「火曜AIノート」で共有します。参加できない週も要点を追えます。顧客情報や機密事項は公開せず、個別相談で扱います。</p>",
+        f"<div class='focus-content-actions'><a class='focus-btn primary' href='{GUBBLE_LINE_URL}' target='_blank' rel='noopener'>LINEで今週の要点を受け取る</a></div></section>",
         "<section class='focus-block soft' id='lectures'><div class='focus-section-head'><small>LEARNING MATERIALS</small><h2>受講資料</h2></div>",
         "<p class='focus-section-lead'>公開中の受講資料をすべて表示しています。迷ったら「AIが初めて」から順に選べます。</p>",
         _render_lectures_section(),
@@ -13475,7 +13483,7 @@ def _render_focused_main() -> str:
         "<details><summary>AIがまったく初めてでも大丈夫ですか？</summary><p>大丈夫です。専門用語ではなく、普段の仕事と困りごとから始めます。</p></details>",
         "<details><summary>受講にパソコンは必要ですか？</summary><p>はい。WindowsまたはMacのパソコンを必ずお持ちください。直したい資料やページもあれば、あわせてお持ちください。</p></details>",
         "<details><summary>オンラインでも受講できますか？</summary><p>対面・オンラインの両方に対応しています。彦根市内は訪問も相談できます。</p></details>",
-        "<details><summary>AIオンラインサロンは、誰でも参加できますか？</summary><p>はい。AIが初めての方も、聞くだけ・途中参加も歓迎です。毎週火曜21時、LINEで受け取る案内からオープンチャット内の「ライブトーク」を開き、リスナーとしてマイクOFFで参加できます。</p></details></div></section>",
+        "<details><summary>AIオンラインサロンでは、何がわかりますか？</summary><p>新しいAIの発表を並べるだけでなく、仕事に使えるか、今何を試すかまで一緒に整理します。全部を自分で追わなくても、聞くだけで要点と次の一歩がわかります。毎週火曜21時、LINEのライブトークで無料開催し、途中参加も歓迎です。</p></details></div></section>",
         "<section class='focus-contact' id='contact'><div class='focus-contact-inner'><div><h2>AIエージェントに任せたい仕事を聞かせてください。</h2><p>講習前に、今の仕事に合う題材と進め方を一緒に整理できます。</p></div>",
         f"<a class='focus-btn' href='{free_consult}' target='_blank' rel='noopener'>無料相談の日程を選ぶ</a></div></section>",
     ]
@@ -13485,7 +13493,7 @@ def _render_focused_main() -> str:
 def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     today = datetime.now().strftime("%Y-%m-%d")
     title = SITE_BRAND
-    desc = "AI相談は、彦根・滋賀でCodexとClaude Codeを仕事に生かすAIエージェント講習を行っています。調査、資料、告知、業務改善、Web制作を題材に、依頼、確認、修正、成果物と手順の保存まで実践できます。"
+    desc = "AI相談は、彦根・滋賀でAIエージェント講習と無料オンラインサロンを開催しています。増え続けるAI情報から仕事に使えるものを選び、今やることを整理。CodexやClaude Codeで実践まで進めます。"
 
     parts: list[str] = []
     parts.append("<!doctype html><html lang='ja'><head><meta charset='utf-8'>" + FAVICON_HEAD_HTML)

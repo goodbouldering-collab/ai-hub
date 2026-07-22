@@ -53,11 +53,11 @@ portfolio:
   status: live
   category: 店舗サイト
   tech:
-  - Next.js
-  - Vercel
-  - Payload CMS
-  summary: 彦根・長浜の美肌脱毛、ホワイトニング、セルフケア情報を届ける店舗サイト
-  since: 2025-05
+  - WordPress
+  - Yoast SEO
+  - JSON-LD
+  summary: 彦根の脱毛・美肌・歯のホワイトニングを月額制と都度払いで選べる店舗サイト
+  since: 2026-07
   thumbnail: /img/portfolio/notesthe.jpg
   source: vercel
   source_id: prj_8OLhLggQwGL6Yr8713W0POerpYpj

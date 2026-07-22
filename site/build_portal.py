@@ -300,8 +300,8 @@ def _build_jsonld_website() -> str:
             offer["url"] = CONSULT_BOOK_URL
             service["url"] = CONSULT_BOOK_URL
         if name == salon_title:
-            offer["url"] = GUBBLE_LINE_URL
-            service["url"] = GUBBLE_LINE_URL
+            offer["url"] = AI_SALON_OPENCHAT_URL
+            service["url"] = AI_SALON_OPENCHAT_URL
         if name == support_title:
             offer["url"] = SITE_URL + MONTHLY_SUPPORT_CHECKOUT_URL
             service["url"] = SITE_URL + MONTHLY_SUPPORT_CHECKOUT_URL
@@ -11465,7 +11465,7 @@ def _render_compact_course_cards() -> str:
             "price": "無料",
             "duration": "毎週火曜 21:00",
             "desc": "新機能と一流の活用事例を短く整理し、仕事で次に試すことを一緒に決めます。聞くだけでもOKです。",
-            "url": GUBBLE_LINE_URL,
+            "url": AI_SALON_OPENCHAT_URL,
             "cta": "LINEで会場案内を受け取る",
             "badge": "ライブトーク開催",
         },
@@ -11694,8 +11694,8 @@ def _render_explore() -> str:
     return "".join(parts)
 
 
-# ライブトーク会場の直リンクではなく、毎週の会場案内を受け取る既存LINE窓口。
-GUBBLE_LINE_URL = "https://line.me/ti/g/LR5YxDV6qD"
+# AIオンラインサロン「AI相談 彦根」のLINEオープンチャット招待URL。
+AI_SALON_OPENCHAT_URL = "https://line.me/ti/g2/T_YcE93W4-AhKBYQM_eOKJ4wRrjLE9NbZpPMWA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default"
 # 無料相談の予約導線（Squareの相談サービスID）。無料相談CTAの最終到達先をここに一本化。
 
 
@@ -13578,7 +13578,7 @@ def _render_focused_main() -> str:
         _render_live_talk_guide(),
         _render_tuesday_build_hour_cards(),
         "<p class='salon-note'>終了後は、重要な変化・仕事での使い方・今週の一歩を、講師確認済みの「火曜AIノート」で共有します。参加できない週も要点を追えます。顧客情報や機密事項は公開せず、個別相談で扱います。</p>",
-        f"<div class='focus-content-actions'><a class='focus-btn primary' href='{GUBBLE_LINE_URL}' target='_blank' rel='noopener'>LINEで今週の要点を受け取る</a></div></section>",
+        f"<div class='focus-content-actions'><a class='focus-btn primary' href='{html.escape(AI_SALON_OPENCHAT_URL, quote=True)}' target='_blank' rel='noopener'>LINEで今週の要点を受け取る</a></div></section>",
         "<section class='focus-block soft' id='lectures'><div class='focus-section-head'><small>LEARNING MATERIALS</small><h2>受講資料</h2></div>",
         "<p class='focus-section-lead'>公開中の受講資料をすべて表示しています。迷ったら「AIが初めて」から順に選べます。</p>",
         _render_lectures_section(),

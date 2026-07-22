@@ -13296,12 +13296,17 @@ footer.site-footer {
   .compact-course-title-row { gap:7px; }
   .compact-course-card .compact-course-title-row h3 { font-size:18px; }
   .compact-course-title-row .compact-course-badge { padding:4px 8px; font-size:9px; }
-  .salon-intro { grid-template-columns:1fr; gap:18px; margin-bottom:18px; padding:20px; border-radius:18px; }
-  .salon-intro h2 { font-size:32px; }
-  .salon-intro-tagline { font-size:18px; }
-  .salon-intro-summary { font-size:12.5px; }
-  .salon-value-list { gap:8px; }
-  .salon-value { padding:10px 11px; }
+  .salon-intro { grid-template-columns:1fr; gap:12px; margin-bottom:18px; padding:16px; border-radius:16px; }
+  .salon-intro-kicker { padding:6px 9px; font-size:10px; }
+  .salon-intro h2 { margin-top:10px; font-size:29px; }
+  .salon-intro-tagline { margin-top:8px; font-size:17px; }
+  .salon-intro-summary { margin-top:6px; font-size:12.5px; line-height:1.6; }
+  .salon-value-list { gap:0; overflow:hidden; border:1px solid rgba(83,103,217,.14); border-radius:12px; background:#fff; }
+  .salon-value { grid-template-columns:28px minmax(0,1fr); gap:8px; padding:8px 10px; border:0; border-radius:0; background:transparent; }
+  .salon-value + .salon-value { border-top:1px solid rgba(83,103,217,.14); }
+  .salon-value > b { width:28px; height:28px; border-radius:8px; font-size:9px; }
+  .salon-value small { display:inline; margin:0 6px 0 0; font-size:7.5px; letter-spacing:.06em; }
+  .salon-value strong { display:inline; font-size:12.5px; line-height:1.3; }
   .salon-timeline-wrap { width:100%; padding:0; }
   .salon-timeline { grid-auto-columns:88% !important; gap:12px !important; padding:6px 1px 16px; }
   .salon-timeline-card,
@@ -13568,7 +13573,7 @@ def _render_focused_main() -> str:
         "<span class='salon-intro-kicker'><i aria-hidden='true'></i>無料・毎週火曜 21:00</span>",
         "<h2 id='salon-title'>AIオンラインサロン</h2>",
         "<p class='salon-intro-tagline'>AIの最新を、仕事の次の一手に。</p>",
-        "<p class='salon-intro-summary'>新機能も、一流の活用事例も。全部を追わなくても、今の仕事で何を試すかまで短く整理できます。</p></div>",
+        "<p class='salon-intro-summary'>全部を追わず、新機能と一流の活用事例から、今試すことを短く整理します。</p></div>",
         "<div class='salon-value-list' role='list' aria-label='サロンで得られること'>",
         "<div class='salon-value' role='listitem'><b>01</b><div><small>UPDATE</small><strong>新機能を毎週知る</strong></div></div>",
         "<div class='salon-value' role='listitem'><b>02</b><div><small>BEST PRACTICE</small><strong>一流の活用事例を聞く</strong></div></div>",

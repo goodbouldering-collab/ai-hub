@@ -12674,45 +12674,32 @@ header.site-header:hover {
 .focus-hero .focus-trust { color:var(--focus-muted); }
 .focus-hero .focus-trust li::before { color:var(--focus-blue); }
 @media (prefers-reduced-motion:reduce) { .hero-orb,.hero-salon-live i { animation:none !important; } }
-.focus-advantage {
-  position:relative;
-  overflow:hidden;
-  padding:38px max(18px,calc((100vw - 1400px)/2));
-  color:#fff;
-  background:linear-gradient(118deg,#35428f 0%,#5367d9 55%,#7566cf 100%);
-}
-.focus-advantage::after {
-  content:"";
-  position:absolute;
-  width:420px;
-  aspect-ratio:1;
-  right:-120px;
-  top:-220px;
-  border:1px solid rgba(255,255,255,.20);
-  border-radius:50%;
-  box-shadow:0 0 0 48px rgba(255,255,255,.035),0 0 0 96px rgba(255,255,255,.025);
-}
-.focus-advantage-inner {
-  position:relative;
-  z-index:1;
-  max-width:1400px;
-  margin:0 auto;
+.hero-advantage {
+  width:min(650px,100%);
   display:grid;
-  grid-template-columns:220px minmax(0,1fr) auto;
+  grid-template-columns:104px minmax(0,1fr);
+  grid-template-areas:"number copy" "pillars pillars";
   align-items:center;
-  gap:42px;
+  gap:9px 18px;
+  margin:24px 0 0;
+  padding:14px 16px 13px;
+  color:var(--focus-ink);
+  background:linear-gradient(120deg,rgba(255,255,255,.94),rgba(241,244,255,.84));
+  border:1px solid rgba(83,103,217,.25);
+  border-left:4px solid var(--focus-blue);
+  border-radius:16px;
+  box-shadow:0 15px 38px rgba(31,49,107,.10);
+  backdrop-filter:blur(14px);
 }
-.focus-advantage-number { display:flex; align-items:flex-end; gap:8px; }
-.focus-advantage-number strong { font:900 clamp(62px,7vw,104px)/.82 Inter,sans-serif; letter-spacing:-.075em; }
-.focus-advantage-number span { padding-bottom:9px; font-size:13px; font-weight:900; letter-spacing:.08em; white-space:nowrap; }
-.focus-advantage-copy small { display:block; margin-bottom:8px; color:#d8dcff; font:900 11px/1.3 Inter,sans-serif; letter-spacing:.16em; }
-.focus-advantage-copy h2 { margin:0; color:#fff; font-size:clamp(25px,2.5vw,38px); line-height:1.25; letter-spacing:-.04em; }
-.focus-advantage-copy p { max-width:760px; margin:10px 0 0; color:rgba(255,255,255,.82); font-size:14px; line-height:1.75; }
-.focus-advantage-pillars { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
-.focus-advantage-pillars span { padding:7px 11px; border:1px solid rgba(255,255,255,.18); border-radius:999px; background:rgba(255,255,255,.08); font-size:11px; font-weight:850; }
-.focus-advantage-pillars b { margin-right:6px; color:#d8dcff; }
-.focus-advantage-link { min-height:46px; display:inline-flex; align-items:center; justify-content:center; padding:0 18px; border:1px solid rgba(255,255,255,.56); border-radius:9px; color:#fff; font-size:13px; font-weight:900; text-decoration:none; white-space:nowrap; }
-.focus-advantage-link:hover { background:#fff; color:var(--focus-blue-dark); }
+.hero-advantage-number { grid-area:number; display:block; color:var(--focus-blue); }
+.hero-advantage-number strong { display:block; font:900 clamp(44px,4.2vw,60px)/.82 Inter,sans-serif; letter-spacing:-.075em; }
+.hero-advantage-number span { display:block; padding-top:5px; font-size:10px; font-weight:900; letter-spacing:.06em; white-space:nowrap; }
+.hero-advantage-copy { grid-area:copy; min-width:0; }
+.hero-advantage-copy small { display:block; margin-bottom:3px; color:var(--focus-blue); font:900 9px/1.3 Inter,sans-serif; letter-spacing:.14em; }
+.hero-advantage-copy p { margin:0; font-size:clamp(15px,1.5vw,18px); font-weight:900; line-height:1.45; letter-spacing:-.02em; }
+.hero-advantage-pillars { grid-area:pillars; display:flex; flex-wrap:wrap; gap:6px; margin:0; padding:0 0 0 122px; list-style:none; }
+.hero-advantage-pillars li { padding:5px 9px; color:var(--focus-ink); background:rgba(83,103,217,.08); border-radius:999px; font-size:10px; font-weight:850; }
+.hero-advantage-pillars b { margin-right:4px; color:var(--focus-blue); }
 .focus-hub { padding:52px max(18px,calc((100vw - 1400px)/2)) 66px; background:#fff; border-top:1px solid var(--focus-line); }
 .focus-hub-head { max-width:1400px; margin:0 auto 24px; display:flex; align-items:end; justify-content:space-between; gap:24px; }
 .focus-hub-head small { color:var(--focus-blue); font-size:12px; font-weight:900; letter-spacing:.14em; }
@@ -13233,8 +13220,6 @@ footer.site-footer {
   .focus-split { grid-template-columns:1fr; max-width:680px; }
   .focus-split img { max-width:360px; }
   .course-venue-common,.compact-course-grid,.course-quick-actions { max-width:680px; }
-  .focus-advantage-inner { grid-template-columns:170px minmax(0,1fr); gap:28px; }
-  .focus-advantage-link { grid-column:1 / -1; width:max-content; }
   .compact-course-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .compact-course-card,.compact-course-card:first-child { grid-column:span 1; }
   .compact-course-card:first-child { grid-column:1 / -1; }
@@ -13279,12 +13264,14 @@ footer.site-footer {
   .hero-text-link { width:max-content; justify-self:center; }
   .focus-trust { gap:10px 14px; margin-top:18px; font-size:11.5px; }
   .focus-outcomes,.focus-block,.focus-hub { padding:48px 14px; }
-  .focus-advantage { padding:32px 14px 36px; }
-  .focus-advantage-inner { grid-template-columns:1fr; gap:20px; }
-  .focus-advantage-number strong { font-size:74px; }
-  .focus-advantage-number span { padding-bottom:7px; }
-  .focus-advantage-copy h2 { font-size:26px; }
-  .focus-advantage-link { grid-column:auto; width:100%; }
+  .hero-advantage { grid-template-columns:76px minmax(0,1fr); gap:9px 10px; margin-top:18px; padding:12px; border-radius:14px; }
+  .hero-advantage-number { display:block; }
+  .hero-advantage-number strong { display:block; font-size:46px; }
+  .hero-advantage-number span { display:block; padding:4px 0 0; font-size:9px; }
+  .hero-advantage-copy small { font-size:8.5px; }
+  .hero-advantage-copy p { font-size:13.5px; }
+  .hero-advantage-pillars { grid-column:1 / -1; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); padding:0; }
+  .hero-advantage-pillars li { min-width:0; padding:6px 3px; font-size:9px; text-align:center; }
   .focus-hub-grid { grid-template-columns:1fr; }
   .focus-hub-card { min-height:180px; }
   .outcome-grid { grid-template-columns:1fr; }
@@ -13532,7 +13519,12 @@ def _render_hero_focused() -> str:
         "<div class='focus-hero-copy fade-up'>"
         "<p class='focus-kicker'>Codex + Claude Code 実践</p>"
         "<h1 class='focus-title'><span class='focus-title-first'>AIエージェントを、</span><br><span class='focus-title-line'><strong>仕事の仲間に。</strong></span></h1>"
-        "<p class='focus-lead'>実践講習・個別相談・無料オンラインサロンで、AIの変化を、仕事で使える次の一手に変えます。</p>"
+        "<aside class='hero-advantage' id='advantage' aria-labelledby='hero-advantage-title'>"
+        "<div class='hero-advantage-number' aria-hidden='true'><strong>6%</strong><span>を目指す</span></div>"
+        "<div class='hero-advantage-copy'><small>AI AGENT ADVANTAGE</small><p id='hero-advantage-title'>AIエージェントで、どの分野でもトップ6%を目指す。</p></div>"
+        "<ul class='hero-advantage-pillars' aria-label='AIエージェント実践の3原則'><li><b>01</b>速く試す</li><li><b>02</b>人が確認する</li><li><b>03</b>仕組みに残す</li></ul>"
+        "</aside>"
+        "<p class='focus-lead'>実践講習・個別相談・無料オンラインサロンで、AIを実務に入れ、使い続けられる形まで支援します。</p>"
         "<div class='focus-actions'>"
         "<a class='focus-btn primary' href='#packages'>講習・相談を見る</a>"
         "<a class='focus-btn secondary' href='#contact'>無料相談する</a><a class='hero-text-link' href='/lectures/index.html'>受講資料 <span aria-hidden='true'>→</span></a></div>"
@@ -13562,12 +13554,6 @@ def _render_focused_main() -> str:
     free_consult = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/AW5O5XSBHLEHYUBHLZUGFKYE"
 
     parts = [
-        "<section class='focus-advantage' id='advantage' aria-labelledby='advantage-title'><div class='focus-advantage-inner'>",
-        "<div class='focus-advantage-number' aria-hidden='true'><strong>6%</strong><span>を目指す</span></div>",
-        "<div class='focus-advantage-copy'><small>AI AGENT ADVANTAGE</small><h2 id='advantage-title'>AIエージェントで、<br>どの分野でもトップ6%を目指す。</h2>",
-        "<p>今、AIエージェントを実務に入れ、どの分野でも先行者になる事業展開を、一緒に始めませんか。</p>",
-        "<div class='focus-advantage-pillars'><span><b>01</b>速く試す</span><span><b>02</b>人が確認する</span><span><b>03</b>仕組みに残す</span></div></div>",
-        "<a class='focus-advantage-link' href='#packages'>実践方法を見る →</a></div></section>",
         "<section class='focus-block main-course' id='packages'><div class='focus-section-head'><small>COURSES</small><h2>講習・相談コース</h2></div>",
         "<p class='focus-section-lead'><strong>迷ったら、まずはAIエージェント講習が一番基本でおすすめです。</strong><br>最新情報を追い続けず「今やること」を知りたい方は、無料オンラインサロンへ。個別相談、伴走支援、AIコーディング講習も選べます。</p>",
         _render_compact_course_cards(),

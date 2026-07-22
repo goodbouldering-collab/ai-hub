@@ -3907,6 +3907,7 @@ def build_blog() -> int:
             "date": str(meta.get("date") or ""),
             "summary": str(meta.get("summary") or ""),
             "image": str(meta.get("image") or ""),
+            "image_alt": str(meta.get("image_alt") or title),
         })
         count += 1
 
@@ -3921,13 +3922,23 @@ def build_blog() -> int:
             safe_title = html.escape(item["title"])
             safe_date = html.escape(item["date"])
             safe_summary = html.escape(item["summary"])
+            image_path = str(item.get("image") or "").strip()
+            image_alt = html.escape(str(item.get("image_alt") or item["title"]), quote=True)
             parts.append(f"<a class='tr-card' href='{safe_href}'>")
+            if image_path:
+                parts.append(
+                    "<span class='tr-card-media'>"
+                    f"<img src='{html.escape(image_path, quote=True)}' alt='{image_alt}' "
+                    "width='1200' height='630' loading='lazy' decoding='async'>"
+                    "</span>"
+                )
+            parts.append("<div class='tr-card-body'>")
             parts.append(f"<div class='tr-title'>{safe_title}</div>")
             if safe_date:
                 parts.append(f"<div class='tr-date'>{safe_date}</div>")
             if safe_summary:
                 parts.append(f"<div class='tr-sum'>{safe_summary}</div>")
-            parts.append("</a>")
+            parts.append("</div></a>")
         parts.append("</div></div>")
         nav = render_top_nav(path_prefix="../", current_id="blog", include_run=False)
         (out_dir / "index.html").write_text(

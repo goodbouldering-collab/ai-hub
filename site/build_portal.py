@@ -263,7 +263,7 @@ def _build_jsonld_website() -> str:
         (ai_agent_title, "CodexとClaude Codeを使い、仕事を分けて頼む、結果を確かめる、修正する、繰り返せる手順として残すAIエージェント講習。調査、資料、告知、業務改善、Web制作を題材に、AIの成果物を判断して仕事に入れる型を120分で身につける。", "5500", "5500", "Course"),
         (free_consult_title, "来店またはオンラインで、AI導入の入口を整理する無料相談。講習や伴走の前に、今の課題と次の一手を確認する。", "0", "0", "BusinessCoaching"),
         (consult_title, "AIの使い方、役割分担、指示書、確認体制、運用導線を60分で整理する個別相談。", "5500", "5500", "BusinessCoaching"),
-        (salon_title, "毎週火曜21時にLINEで開く無料のAIオンラインサロン。日々増えるAIの新しい発表から重要な変化を選び、仕事に使えるか、今何を試すかを一緒に整理する。聞くだけ・途中参加も歓迎。", "0", "0", "CommunityService"),
+        (salon_title, "毎週火曜21時にLINEで開く無料のAIオンラインサロン。日々増えるAIの新機能や重要発表、一流の活用事例から、仕事に使えるものと今試すことを一緒に整理する。聞くだけ・途中参加も歓迎。", "0", "0", "CommunityService"),
         (support_title, "HP公開から事務自動化・経理・マーケまで6ヶ月で一気に定着。技術的な難所は講師が代行・支援。滋賀・彦根の補助金で負担1/3以下に。", "100000", "100000", "Service"),
         (ai_coding_title, "Codex導入、Claude Code併用、画像生成、プログラミング基礎、設計、データ、運用、セキュリティを1本で学ぶAIコーディング講習。AIの成果物を判断し、説明し、仕事に入れるための作業設計と確認の型を120分で身につける。", "11000", "11000", "Course"),
     ]
@@ -11464,7 +11464,7 @@ def _render_compact_course_cards() -> str:
             "image_alt": "毎週火曜にLINEオープンチャットのライブトークでAIの今と次の一手を整理するオンラインサロン",
             "price": "無料",
             "duration": "毎週火曜 21:00",
-            "desc": "日々増えるAI情報を短く整理し、仕事に使えるか、今何を試すかを一緒に考えます。聞くだけでもOKです。",
+            "desc": "新機能と一流の活用事例を短く整理し、仕事で次に試すことを一緒に決めます。聞くだけでもOKです。",
             "url": GUBBLE_LINE_URL,
             "cta": "LINEで会場案内を受け取る",
             "badge": "ライブトーク開催",
@@ -11492,13 +11492,17 @@ def _render_compact_course_cards() -> str:
             f"<span class='compact-course-badge'><i aria-hidden='true'></i>{html.escape(badge)}</span>"
             if badge else ""
         )
+        title_html = (
+            "<div class='compact-course-title-row'>"
+            f"<h3>{html.escape(item['title'])}</h3>{badge_html}</div>"
+            if badge else f"<h3>{html.escape(item['title'])}</h3>"
+        )
         cards.append(
             f"<article class='compact-course-card{main_cls}'>"
             f"{recommended_html}"
-            f"{badge_html}"
             f"<small>{html.escape(item['cat'])}</small>"
             f"<img class='compact-course-visual' src='{html.escape(item['image'], quote=True)}' alt='{html.escape(item['image_alt'], quote=True)}' loading='lazy' decoding='async'>"
-            f"<h3>{html.escape(item['title'])}</h3>"
+            f"{title_html}"
             f"<div class='compact-course-meta'><strong>{html.escape(item['price'])}</strong><span>{html.escape(item['duration'])}</span></div>"
             f"<p>{html.escape(item['desc'])}</p>"
             f"<a href='{html.escape(item['url'], quote=True)}'{target_attr}>{html.escape(item['cta'])} →</a>"
@@ -11791,7 +11795,7 @@ FAQ_QA = [
     ("AIエージェント講習では何を学びますか？",
      "CodexとClaude Codeを、調査、資料、告知、業務改善、Web制作を一緒に進める作業者として使う講習です。仕事の分け方、伝わる依頼、差分・根拠・画面の確認、修正指示、成果物と次回手順の保存までを120分で通します。料金は5,500円で、専用の予約ページから申し込めます。"),
     ("AIオンラインサロンでは、何がわかりますか？",
-     "日々増えるAIの新しい発表から、仕事に関係する重要な変化を選び、使えるか、今何を試すかを毎週一緒に整理します。全部を自分で追わなくても、聞くだけで要点と次の一歩がわかります。毎週火曜21時、LINEのライブトークで無料開催し、途中参加も歓迎です。"),
+     "日々増えるAIの新機能や重要発表と、一流の活用事例から、仕事に関係する変化を選び、今何を試すかを毎週一緒に整理します。全部を自分で追わなくても、聞くだけで要点と次の一歩がわかります。毎週火曜21時、LINEのライブトークで無料開催し、途中参加も歓迎です。"),
     ("受講資料はあとから見返せますか？",
      "はい。受講で使った資料、プロンプト、実例、動画、スライドは資料センターとして整理し、あとから復習できるようにします。受講前に内容を確認したい方も、受講資料ページから雰囲気を見られます。"),
     ("Reels や YouTube の集客にも使えますか？",
@@ -12850,6 +12854,22 @@ header.site-header:hover {
   background:#e2394f;
   box-shadow:0 0 0 4px rgba(226,57,79,.10);
 }
+.compact-course-title-row {
+  display:flex;
+  align-items:center;
+  gap:6px;
+  flex-wrap:nowrap;
+  margin:7px 0 8px;
+}
+.compact-course-title-row .compact-course-badge {
+  flex:0 0 auto;
+  gap:3px;
+  margin:0;
+  padding:3px 4px;
+  font-size:7.5px;
+  white-space:nowrap;
+}
+.compact-course-title-row .compact-course-badge i { width:5px; height:5px; box-shadow:0 0 0 3px rgba(226,57,79,.10); }
 .compact-course-card small { color:var(--focus-blue); font-size:10px; font-weight:900; letter-spacing:.08em; }
 .compact-course-visual {
   display:block;
@@ -12863,6 +12883,13 @@ header.site-header:hover {
 }
 .compact-course-card:first-child .compact-course-visual { height:138px; }
 .compact-course-card h3 { margin:7px 0 8px; font-size:19px; line-height:1.3; letter-spacing:-.025em; }
+.compact-course-card .compact-course-title-row h3 {
+  flex:1 1 auto;
+  min-width:0;
+  margin:0;
+  font-size:16px;
+  line-height:1.25;
+}
 .compact-course-meta { display:flex; align-items:baseline; gap:8px; }
 .compact-course-meta strong { color:var(--focus-ink); font-size:18px; }
 .compact-course-meta span { color:var(--focus-muted); font-size:11px; font-weight:800; }
@@ -12887,6 +12914,95 @@ header.site-header:hover {
   top:130px;
   border-radius:50%;
   background:rgba(122,103,216,.08);
+}
+.salon-intro {
+  position:relative;
+  z-index:1;
+  max-width:980px;
+  margin:0 auto 24px;
+  display:grid;
+  grid-template-columns:minmax(0,1.08fr) minmax(300px,.92fr);
+  gap:34px;
+  align-items:center;
+  padding:30px;
+  border:1px solid rgba(83,103,217,.20);
+  border-radius:22px;
+  background:linear-gradient(135deg,rgba(255,255,255,.97),rgba(245,248,255,.93));
+  box-shadow:0 18px 54px rgba(38,54,112,.08);
+}
+.salon-intro-kicker {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:7px 11px;
+  color:var(--focus-blue);
+  background:#edf5ff;
+  border:1px solid rgba(7,95,200,.16);
+  border-radius:999px;
+  font:900 11px/1.2 Inter,"Noto Sans JP",sans-serif;
+  letter-spacing:.04em;
+}
+.salon-intro-kicker i {
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#e2394f;
+  box-shadow:0 0 0 5px rgba(226,57,79,.10);
+}
+.salon-intro h2 {
+  margin:15px 0 0;
+  color:var(--focus-ink);
+  font-size:clamp(34px,4vw,52px);
+  line-height:1.08;
+  letter-spacing:-.055em;
+}
+.salon-intro-tagline {
+  margin:13px 0 0;
+  color:var(--focus-blue);
+  font-size:clamp(18px,2vw,24px);
+  line-height:1.4;
+  font-weight:900;
+  letter-spacing:-.025em;
+}
+.salon-intro-summary {
+  margin:10px 0 0;
+  color:var(--focus-muted);
+  font-size:13px;
+  line-height:1.75;
+}
+.salon-value-list { display:grid; gap:10px; }
+.salon-value {
+  display:grid;
+  grid-template-columns:40px minmax(0,1fr);
+  gap:12px;
+  align-items:center;
+  padding:12px 14px;
+  border:1px solid rgba(83,103,217,.14);
+  border-radius:14px;
+  background:#fff;
+}
+.salon-value > b {
+  display:grid;
+  place-items:center;
+  width:40px;
+  height:40px;
+  color:#fff;
+  background:var(--focus-blue);
+  border-radius:12px;
+  font:900 11px/1 Inter,sans-serif;
+}
+.salon-value small {
+  display:block;
+  margin-bottom:3px;
+  color:var(--focus-blue);
+  font:900 9px/1.2 Inter,sans-serif;
+  letter-spacing:.11em;
+}
+.salon-value strong {
+  display:block;
+  color:var(--focus-ink);
+  font-size:14px;
+  line-height:1.35;
 }
 .salon-facts { max-width:920px; margin:0 auto 26px; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; }
 .salon-fact { padding:14px 16px; border:1px solid rgba(83,103,217,.16); border-radius:12px; background:rgba(255,255,255,.76); text-align:center; }
@@ -13190,6 +13306,15 @@ footer.site-footer {
   .compact-course-card:first-child { border-color:rgba(83,103,217,.36); }
   .compact-course-visual,.compact-course-card:first-child .compact-course-visual { height:132px; }
   .compact-course-card h3 { font-size:18px; }
+  .compact-course-title-row { gap:7px; }
+  .compact-course-card .compact-course-title-row h3 { font-size:18px; }
+  .compact-course-title-row .compact-course-badge { padding:4px 8px; font-size:9px; }
+  .salon-intro { grid-template-columns:1fr; gap:18px; margin-bottom:18px; padding:20px; border-radius:18px; }
+  .salon-intro h2 { font-size:32px; }
+  .salon-intro-tagline { font-size:18px; }
+  .salon-intro-summary { font-size:12.5px; }
+  .salon-value-list { gap:8px; }
+  .salon-value { padding:10px 11px; }
   .salon-timeline-wrap { width:100%; padding:0; }
   .salon-timeline { grid-auto-columns:88% !important; gap:12px !important; padding:6px 1px 16px; }
   .salon-timeline-card,
@@ -13452,8 +13577,17 @@ def _render_focused_main() -> str:
         "<div class='course-venue-map'><iframe src='https://www.google.com/maps?q=%E3%82%B0%E3%83%83%E3%81%BC%E3%82%8B%E3%82%AB%E3%83%95%E3%82%A7%20%E6%BB%8B%E8%B3%80%E7%9C%8C%E5%BD%A6%E6%A0%B9%E5%B8%82%E5%B2%A1%E7%94%BA12&amp;output=embed' title='グッぼるカフェ周辺のGoogleマップ' loading='lazy' referrerpolicy='no-referrer-when-downgrade' allowfullscreen></iframe></div>",
         "<p class='course-venue-map-link'><a href='https://www.google.com/maps/search/?api=1&amp;query=%E3%82%B0%E3%83%83%E3%81%BC%E3%82%8B%E3%82%AB%E3%83%95%E3%82%A7%20%E6%BB%8B%E8%B3%80%E7%9C%8C%E5%BD%A6%E6%A0%B9%E5%B8%82%E5%B2%A1%E7%94%BA12' target='_blank' rel='noopener'>Googleマップで開く →</a></p></aside>",
         "<div class='course-quick-actions'><button type='button' class='compact-diagnose diagnose-open'>迷ったら60秒診断</button><a href='#lectures'>受講資料から選ぶ →</a></div></section>",
-        "<section class='focus-block salon-section' id='seven-day-courses' aria-label='AIオンラインサロン'><div class='focus-section-head'><small>AI ONLINE SALON · EVERY TUESDAY</small><h2>AIの今と、次の一手がわかる。</h2></div>",
-        "<p class='focus-section-lead'><strong>AIは変わり続けます。</strong><br>新しい発表を全部追わなくても、仕事に使えるか、今何を試すかを、毎週火曜のライブトークで一緒に整理できます。</p>",
+        "<section class='focus-block salon-section' id='seven-day-courses' aria-labelledby='salon-title'>",
+        "<div class='salon-intro'><div class='salon-intro-copy'>",
+        "<span class='salon-intro-kicker'><i aria-hidden='true'></i>無料・毎週火曜 21:00</span>",
+        "<h2 id='salon-title'>AIオンラインサロン</h2>",
+        "<p class='salon-intro-tagline'>AIの最新を、仕事の次の一手に。</p>",
+        "<p class='salon-intro-summary'>新機能も、一流の活用事例も。全部を追わなくても、今の仕事で何を試すかまで短く整理できます。</p></div>",
+        "<div class='salon-value-list' role='list' aria-label='サロンで得られること'>",
+        "<div class='salon-value' role='listitem'><b>01</b><div><small>UPDATE</small><strong>新機能を毎週知る</strong></div></div>",
+        "<div class='salon-value' role='listitem'><b>02</b><div><small>BEST PRACTICE</small><strong>一流の活用事例を聞く</strong></div></div>",
+        "<div class='salon-value' role='listitem'><b>03</b><div><small>NEXT ACTION</small><strong>次に試すことを決める</strong></div></div>",
+        "</div></div>",
         "<div class='salon-facts'><div class='salon-fact'><small>WHEN</small><strong>毎週火曜 21:00</strong></div><div class='salon-fact'><small>PLACE</small><strong>LINEオープンチャット</strong></div><div class='salon-fact'><small>FEE</small><strong>無料</strong></div><div class='salon-fact'><small>STYLE</small><strong>ライブトーク</strong></div></div>",
         _render_live_talk_guide(),
         _render_tuesday_build_hour_cards(),
@@ -13483,7 +13617,7 @@ def _render_focused_main() -> str:
         "<details><summary>AIがまったく初めてでも大丈夫ですか？</summary><p>大丈夫です。専門用語ではなく、普段の仕事と困りごとから始めます。</p></details>",
         "<details><summary>受講にパソコンは必要ですか？</summary><p>はい。WindowsまたはMacのパソコンを必ずお持ちください。直したい資料やページもあれば、あわせてお持ちください。</p></details>",
         "<details><summary>オンラインでも受講できますか？</summary><p>対面・オンラインの両方に対応しています。彦根市内は訪問も相談できます。</p></details>",
-        "<details><summary>AIオンラインサロンでは、何がわかりますか？</summary><p>新しいAIの発表を並べるだけでなく、仕事に使えるか、今何を試すかまで一緒に整理します。全部を自分で追わなくても、聞くだけで要点と次の一歩がわかります。毎週火曜21時、LINEのライブトークで無料開催し、途中参加も歓迎です。</p></details></div></section>",
+        "<details><summary>AIオンラインサロンでは、何がわかりますか？</summary><p>新機能や重要発表、一流の活用事例を並べるだけでなく、仕事に使えるか、今何を試すかまで一緒に整理します。全部を自分で追わなくても、聞くだけで要点と次の一歩がわかります。毎週火曜21時、LINEのライブトークで無料開催し、途中参加も歓迎です。</p></details></div></section>",
         "<section class='focus-contact' id='contact'><div class='focus-contact-inner'><div><h2>AIエージェントに任せたい仕事を聞かせてください。</h2><p>講習前に、今の仕事に合う題材と進め方を一緒に整理できます。</p></div>",
         f"<a class='focus-btn' href='{free_consult}' target='_blank' rel='noopener'>無料相談の日程を選ぶ</a></div></section>",
     ]

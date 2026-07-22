@@ -12991,10 +12991,34 @@ header.site-header:hover {
   font-size:14px;
   line-height:1.35;
 }
-.salon-facts { max-width:920px; margin:0 auto 26px; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; }
-.salon-fact { padding:14px 16px; border:1px solid rgba(83,103,217,.16); border-radius:12px; background:rgba(255,255,255,.76); text-align:center; }
-.salon-fact small { display:block; color:var(--focus-muted); font-size:10px; font-weight:900; letter-spacing:.1em; }
-.salon-fact strong { display:block; margin-top:5px; color:var(--focus-ink); font-size:15px; }
+.salon-facts {
+  max-width:720px;
+  margin:0 auto 20px;
+  display:grid;
+  grid-template-columns:1.45fr .7fr .6fr 1fr;
+  gap:0;
+  overflow:hidden;
+  border:1px solid rgba(83,103,217,.18);
+  border-radius:999px;
+  background:rgba(255,255,255,.74);
+}
+.salon-fact {
+  min-width:0;
+  min-height:42px;
+  padding:8px 14px;
+  border:0;
+  border-right:1px solid rgba(83,103,217,.14);
+  border-radius:0;
+  background:transparent;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  text-align:center;
+}
+.salon-fact:last-child { border-right:0; }
+.salon-fact small { display:inline; flex:0 0 auto; color:var(--focus-muted); font-size:9px; font-weight:900; letter-spacing:.08em; }
+.salon-fact strong { display:inline; min-width:0; margin:0; color:var(--focus-ink); font-size:13px; line-height:1.2; white-space:nowrap; }
 .salon-live-guide {
   position:relative;
   z-index:1;
@@ -13313,9 +13337,11 @@ footer.site-footer {
   .salon-timeline-card:first-child { min-height:342px; padding:16px; border:1px solid var(--focus-line); border-radius:14px; }
   .salon-timeline-card .compact-course-visual { height:128px; }
   .salon-timeline-nav { justify-content:flex-start; flex-wrap:wrap; gap:9px; }
-  .salon-facts { grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
-  .salon-fact { padding:12px 9px; }
-  .salon-fact:nth-child(2) strong { font-size:12px; white-space:nowrap; }
+  .salon-facts { grid-template-columns:1.45fr .7fr .6fr 1fr; gap:0; margin-bottom:18px; border-radius:14px; }
+  .salon-fact { min-height:48px; padding:7px 3px; flex-direction:column; gap:2px; }
+  .salon-fact small { font-size:8px; letter-spacing:.05em; }
+  .salon-fact strong { font-size:11px; line-height:1.15; }
+  .salon-fact:first-child strong { font-size:10.5px; }
   .salon-live-guide { grid-template-columns:1fr; gap:18px; padding:17px; border-radius:16px; }
   .salon-live-figure { width:min(100%,420px); margin:0 auto; }
   .salon-live-guide h3 { font-size:20px; }
@@ -13579,7 +13605,7 @@ def _render_focused_main() -> str:
         "<div class='salon-value' role='listitem'><b>02</b><div><small>BEST PRACTICE</small><strong>一流の活用事例を聞く</strong></div></div>",
         "<div class='salon-value' role='listitem'><b>03</b><div><small>NEXT ACTION</small><strong>次に試すことを決める</strong></div></div>",
         "</div></div>",
-        "<div class='salon-facts'><div class='salon-fact'><small>WHEN</small><strong>毎週火曜 21:00</strong></div><div class='salon-fact'><small>PLACE</small><strong>LINEオープンチャット</strong></div><div class='salon-fact'><small>FEE</small><strong>無料</strong></div><div class='salon-fact'><small>STYLE</small><strong>ライブトーク</strong></div></div>",
+        "<div class='salon-facts' role='list' aria-label='AIオンラインサロン開催情報'><div class='salon-fact' role='listitem'><small>WHEN</small><strong>毎週火曜 21:00</strong></div><div class='salon-fact' role='listitem'><small>PLACE</small><strong>LINE</strong></div><div class='salon-fact' role='listitem'><small>FEE</small><strong>無料</strong></div><div class='salon-fact' role='listitem'><small>STYLE</small><strong>聞くだけOK</strong></div></div>",
         _render_live_talk_guide(),
         _render_tuesday_build_hour_cards(),
         "<p class='salon-note'>終了後は、重要な変化・仕事での使い方・今週の一歩を、講師確認済みの「火曜AIノート」で共有します。参加できない週も要点を追えます。顧客情報や機密事項は公開せず、個別相談で扱います。</p>",

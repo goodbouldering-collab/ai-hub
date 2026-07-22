@@ -11427,17 +11427,6 @@ def _render_compact_course_cards() -> str:
             "material_cta": "15分のAI実践ワークを見る",
         },
         {
-            "cat": "無料コミュニティ",
-            "title": "AIオンラインサロン",
-            "image": "/img/blog-ai-agent-course-section-4-20260714.webp",
-            "image_alt": "毎週火曜にLINEでAIの使い方を学び質問できるオンラインサロン",
-            "price": "無料",
-            "duration": "毎週火曜 21:00",
-            "desc": "10分ミニ講座、自由質問、仕事での実践例をLINEで共有します。聞くだけ・途中参加も歓迎です。",
-            "url": GUBBLE_LINE_URL,
-            "cta": "LINEで参加する",
-        },
-        {
             "cat": "6ヶ月伴走",
             "title": "AI伴走支援",
             "image": "/img/course-path-workflow.webp",
@@ -11463,6 +11452,18 @@ def _render_compact_course_cards() -> str:
             "material_url": "/lectures/2026-05-claude-code-features.html",
             "material_cta": "Claude Codeの実践資料を見る",
         },
+        {
+            "cat": "無料コミュニティ",
+            "title": "AIオンラインサロン",
+            "image": "/img/blog-ai-agent-course-section-4-20260714.webp",
+            "image_alt": "毎週火曜にLINEオープンチャットのライブトークでAIを学び質問するオンラインサロン",
+            "price": "無料",
+            "duration": "毎週火曜 21:00",
+            "desc": "LINEオープンチャットの「ライブトーク」で開催。案内をタップして聞くだけで参加でき、話したいときは挙手できます。",
+            "url": GUBBLE_LINE_URL,
+            "cta": "LINEで会場案内を受け取る",
+            "badge": "ライブトーク開催",
+        },
     ]
     cards = []
     for item in items:
@@ -11481,9 +11482,15 @@ def _render_compact_course_cards() -> str:
             f"<strong class='compact-course-recommend'>{html.escape(recommended)}</strong>"
             if recommended else ""
         )
+        badge = str(item.get("badge") or "")
+        badge_html = (
+            f"<span class='compact-course-badge'><i aria-hidden='true'></i>{html.escape(badge)}</span>"
+            if badge else ""
+        )
         cards.append(
             f"<article class='compact-course-card{main_cls}'>"
             f"{recommended_html}"
+            f"{badge_html}"
             f"<small>{html.escape(item['cat'])}</small>"
             f"<img class='compact-course-visual' src='{html.escape(item['image'], quote=True)}' alt='{html.escape(item['image_alt'], quote=True)}' loading='lazy' decoding='async'>"
             f"<h3>{html.escape(item['title'])}</h3>"
@@ -11494,6 +11501,31 @@ def _render_compact_course_cards() -> str:
             "</article>"
         )
     return "<div class='compact-course-grid'>" + "".join(cards) + "</div>"
+
+
+def _render_live_talk_guide() -> str:
+    """LINEオープンチャットのライブトーク参加方法を、図と3手順で案内する。"""
+    return (
+        "<aside class='salon-live-guide' aria-labelledby='salon-live-guide-title'>"
+        "<figure class='salon-live-figure'>"
+        "<img src='/img/ai-salon-live-talk-guide-20260722.svg' "
+        "alt='LINEオープンチャットでライブトークを開き、リスナーとして参加し、話すときだけ挙手する流れ' "
+        "width='640' height='480' loading='lazy' decoding='async'>"
+        "<figcaption>画面の案内から、マイクOFFで参加できます</figcaption>"
+        "</figure>"
+        "<div class='salon-live-guide-copy'>"
+        "<span class='salon-live-badge'><i aria-hidden='true'></i>LINE LIVE TALK</span>"
+        "<h3 id='salon-live-guide-title'>3ステップで、まずは聞くだけ参加</h3>"
+        "<p>通常のLINE通話ではなく、オープンチャット内の音声機能です。最初はマイクOFFのリスナーで参加できます。</p>"
+        "<ol class='salon-live-steps'>"
+        "<li><b>01</b><span><strong>会場案内を開く</strong>火曜21時、LINEに届く案内からライブトーク会場を開きます。</span></li>"
+        "<li><b>02</b><span><strong>リスナーとして参加</strong>「リスナーとして参加」→「OK」。そのまま聞き始められます。</span></li>"
+        "<li><b>03</b><span><strong>話すときだけ挙手</strong>手のひらボタンで挙手し、承認後にマイクをオンにします。</span></li>"
+        "</ol>"
+        "<div class='salon-live-guide-foot'><span>聞くだけ・途中参加・途中退出OK</span>"
+        "<a href='https://help.line.me/line?contentId=20024812&amp;lang=ja' target='_blank' rel='noopener'>LINE公式の操作説明 ↗</a></div>"
+        "</div></aside>"
+    )
 
 
 def _render_tuesday_build_hour_cards() -> str:
@@ -11653,6 +11685,7 @@ def _render_explore() -> str:
     return "".join(parts)
 
 
+# ライブトーク会場の直リンクではなく、毎週の会場案内を受け取る既存LINE窓口。
 GUBBLE_LINE_URL = "https://line.me/ti/g/LR5YxDV6qD"
 # 無料相談の予約導線（Squareの相談サービスID）。無料相談CTAの最終到達先をここに一本化。
 
@@ -12787,6 +12820,29 @@ header.site-header:hover {
   font-weight:900;
   letter-spacing:.04em;
 }
+.compact-course-badge {
+  align-self:flex-start;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  margin:0 0 9px;
+  padding:5px 9px;
+  color:var(--focus-blue);
+  background:#edf5ff;
+  border:1px solid rgba(7,95,200,.18);
+  border-radius:999px;
+  font-size:10px;
+  line-height:1.2;
+  font-weight:900;
+  letter-spacing:.04em;
+}
+.compact-course-badge i {
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#e2394f;
+  box-shadow:0 0 0 4px rgba(226,57,79,.10);
+}
 .compact-course-card small { color:var(--focus-blue); font-size:10px; font-weight:900; letter-spacing:.08em; }
 .compact-course-visual {
   display:block;
@@ -12829,6 +12885,81 @@ header.site-header:hover {
 .salon-fact { padding:14px 16px; border:1px solid rgba(83,103,217,.16); border-radius:12px; background:rgba(255,255,255,.76); text-align:center; }
 .salon-fact small { display:block; color:var(--focus-muted); font-size:10px; font-weight:900; letter-spacing:.1em; }
 .salon-fact strong { display:block; margin-top:5px; color:var(--focus-ink); font-size:15px; }
+.salon-live-guide {
+  position:relative;
+  z-index:1;
+  max-width:980px;
+  margin:0 auto 34px;
+  display:grid;
+  grid-template-columns:minmax(280px,.86fr) minmax(0,1.14fr);
+  gap:28px;
+  align-items:center;
+  padding:28px;
+  border:1px solid rgba(83,103,217,.20);
+  border-radius:20px;
+  background:rgba(255,255,255,.90);
+  box-shadow:0 18px 44px rgba(42,53,105,.09);
+}
+.salon-live-figure { margin:0; }
+.salon-live-figure img {
+  display:block;
+  width:100%;
+  height:auto;
+  border-radius:16px;
+  background:#eef3ff;
+}
+.salon-live-figure figcaption {
+  margin-top:8px;
+  color:var(--focus-muted);
+  font-size:10px;
+  line-height:1.5;
+  text-align:center;
+}
+.salon-live-guide-copy { min-width:0; }
+.salon-live-badge {
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  margin-bottom:10px;
+  color:var(--focus-blue);
+  font:900 10px/1.2 Inter,sans-serif;
+  letter-spacing:.11em;
+}
+.salon-live-badge i {
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#e2394f;
+  box-shadow:0 0 0 5px rgba(226,57,79,.10);
+}
+.salon-live-guide h3 { margin:0; color:var(--focus-ink); font-size:clamp(20px,2vw,27px); line-height:1.35; }
+.salon-live-guide-copy > p { margin:10px 0 0; color:var(--focus-muted); font-size:13px; line-height:1.75; }
+.salon-live-steps { margin:18px 0 0; padding:0; display:grid; gap:9px; list-style:none; }
+.salon-live-steps li {
+  display:grid;
+  grid-template-columns:38px minmax(0,1fr);
+  gap:10px;
+  align-items:start;
+  padding:11px 12px;
+  border:1px solid rgba(83,103,217,.13);
+  border-radius:12px;
+  background:#f8faff;
+}
+.salon-live-steps b {
+  display:grid;
+  place-items:center;
+  width:38px;
+  height:38px;
+  color:#fff;
+  background:var(--focus-blue);
+  border-radius:11px;
+  font:900 11px/1 Inter,sans-serif;
+}
+.salon-live-steps span { color:var(--focus-muted); font-size:11.5px; line-height:1.55; }
+.salon-live-steps strong { display:block; margin:1px 0 2px; color:var(--focus-ink); font-size:13px; }
+.salon-live-guide-foot { margin-top:13px; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+.salon-live-guide-foot span { color:var(--focus-ink); font-size:11px; font-weight:850; }
+.salon-live-guide-foot a { color:var(--focus-blue); font-size:11px; font-weight:850; text-underline-offset:3px; }
 .salon-note { max-width:880px; margin:20px auto 0; color:var(--focus-muted); font-size:12px; line-height:1.8; text-align:center; }
 .salon-timeline-wrap {
   max-width:1180px !important;
@@ -13060,6 +13191,12 @@ footer.site-footer {
   .salon-timeline-nav { justify-content:flex-start; flex-wrap:wrap; gap:9px; }
   .salon-facts { grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
   .salon-fact { padding:12px 9px; }
+  .salon-live-guide { grid-template-columns:1fr; gap:18px; padding:17px; border-radius:16px; }
+  .salon-live-figure { width:min(100%,420px); margin:0 auto; }
+  .salon-live-guide h3 { font-size:20px; }
+  .salon-live-guide-copy > p { font-size:12px; }
+  .salon-live-steps li { padding:10px; }
+  .salon-live-guide-foot { align-items:flex-start; flex-direction:column; gap:6px; }
   .salon-note { text-align:left; }
   .course-quick-actions { align-items:flex-end; justify-content:space-between; }
 }
@@ -13307,9 +13444,10 @@ def _render_focused_main() -> str:
         "<div class='course-venue-map'><iframe src='https://www.google.com/maps?q=%E3%82%B0%E3%83%83%E3%81%BC%E3%82%8B%E3%82%AB%E3%83%95%E3%82%A7%20%E6%BB%8B%E8%B3%80%E7%9C%8C%E5%BD%A6%E6%A0%B9%E5%B8%82%E5%B2%A1%E7%94%BA12&amp;output=embed' title='グッぼるカフェ周辺のGoogleマップ' loading='lazy' referrerpolicy='no-referrer-when-downgrade' allowfullscreen></iframe></div>",
         "<p class='course-venue-map-link'><a href='https://www.google.com/maps/search/?api=1&amp;query=%E3%82%B0%E3%83%83%E3%81%BC%E3%82%8B%E3%82%AB%E3%83%95%E3%82%A7%20%E6%BB%8B%E8%B3%80%E7%9C%8C%E5%BD%A6%E6%A0%B9%E5%B8%82%E5%B2%A1%E7%94%BA12' target='_blank' rel='noopener'>Googleマップで開く →</a></p></aside>",
         "<div class='course-quick-actions'><button type='button' class='compact-diagnose diagnose-open'>迷ったら60秒診断</button><a href='#lectures'>受講資料から選ぶ →</a></div></section>",
-        "<section class='focus-block salon-section' id='seven-day-courses'><div class='focus-section-head'><small>EVERY TUESDAY · LINE</small><h2>AIオンラインサロン</h2></div>",
-        "<p class='focus-section-lead'>毎週火曜21時、LINE開催。10分ミニ講座、自由質問、仕事をAIで動かす実践、参加者同士の交流を行なっています。聞くだけ・途中参加も歓迎です。</p>",
-        "<div class='salon-facts'><div class='salon-fact'><small>WHEN</small><strong>毎週火曜 21:00</strong></div><div class='salon-fact'><small>PLACE</small><strong>LINE</strong></div><div class='salon-fact'><small>FEE</small><strong>無料</strong></div><div class='salon-fact'><small>STYLE</small><strong>聞くだけOK</strong></div></div>",
+        "<section class='focus-block salon-section' id='seven-day-courses'><div class='focus-section-head'><small>EVERY TUESDAY · LIVE TALK</small><h2>AIオンラインサロン</h2></div>",
+        "<p class='focus-section-lead'><strong>毎週火曜21時、LINEオープンチャットの「ライブトーク」で開催します。</strong><br>10分ミニ講座、自由質問、仕事をAIで動かす実践を、聞くだけ・途中参加でも楽しめます。</p>",
+        "<div class='salon-facts'><div class='salon-fact'><small>WHEN</small><strong>毎週火曜 21:00</strong></div><div class='salon-fact'><small>PLACE</small><strong>LINEオープンチャット</strong></div><div class='salon-fact'><small>FEE</small><strong>無料</strong></div><div class='salon-fact'><small>STYLE</small><strong>ライブトーク</strong></div></div>",
+        _render_live_talk_guide(),
         _render_tuesday_build_hour_cards(),
         "<p class='salon-note'>終了後は、AIが要点を下書きし、講師が確認した「火曜AIノート」を共有します。顧客情報や機密事項を含む内容は公開せず、個別相談で扱います。</p>",
         f"<div class='focus-content-actions'><a class='focus-btn primary' href='{GUBBLE_LINE_URL}' target='_blank' rel='noopener'>LINEで今週の案内を受け取る</a></div></section>",
@@ -13337,7 +13475,7 @@ def _render_focused_main() -> str:
         "<details><summary>AIがまったく初めてでも大丈夫ですか？</summary><p>大丈夫です。専門用語ではなく、普段の仕事と困りごとから始めます。</p></details>",
         "<details><summary>受講にパソコンは必要ですか？</summary><p>はい。WindowsまたはMacのパソコンを必ずお持ちください。直したい資料やページもあれば、あわせてお持ちください。</p></details>",
         "<details><summary>オンラインでも受講できますか？</summary><p>対面・オンラインの両方に対応しています。彦根市内は訪問も相談できます。</p></details>",
-        "<details><summary>AIオンラインサロンは、誰でも参加できますか？</summary><p>はい。AIが初めての方も、聞くだけ・途中参加も歓迎です。毎週火曜21時に開催し、事前質問と参加案内はLINEで受け付けます。</p></details></div></section>",
+        "<details><summary>AIオンラインサロンは、誰でも参加できますか？</summary><p>はい。AIが初めての方も、聞くだけ・途中参加も歓迎です。毎週火曜21時、LINEで受け取る案内からオープンチャット内の「ライブトーク」を開き、リスナーとしてマイクOFFで参加できます。</p></details></div></section>",
         "<section class='focus-contact' id='contact'><div class='focus-contact-inner'><div><h2>AIエージェントに任せたい仕事を聞かせてください。</h2><p>講習前に、今の仕事に合う題材と進め方を一緒に整理できます。</p></div>",
         f"<a class='focus-btn' href='{free_consult}' target='_blank' rel='noopener'>無料相談の日程を選ぶ</a></div></section>",
     ]

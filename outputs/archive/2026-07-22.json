@@ -18,7 +18,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/samsung-google-gentle-monster-warby-parker-ai-glasses-08.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.741906587151%2C100%2C78.516186825698&amp;w=1200",
-      "published": "2026-07-22T12:35:34-04:00"
+      "published": "2026-07-22T12:35:34-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "2dc9bc155374d422",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/03/acastro_STK081_amd_02.jpg.webp?quality=90&amp;strip=all&amp;crop=0,10.654292878952,100,78.691414242097",
-      "published": "2026-07-22T10:44:27-04:00"
+      "published": "2026-07-22T10:44:27-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "c4d3e6f98e2a6580",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/Meta-Content-Seal-AI-detector.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-22T07:00:00-04:00"
+      "published": "2026-07-22T07:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "a90a3e66512a1f64",
@@ -75,7 +81,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/STKS528_DATA_CENTERS_B.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-22T06:12:13-04:00"
+      "published": "2026-07-22T06:12:13-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "a16581c64e95dd9f",
@@ -94,7 +102,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/vX6cEKRnVmc/hqdefault.jpg",
-      "published": "2026-07-22T10:00:21+00:00"
+      "published": "2026-07-22T10:00:21+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "6bd2434e19dc9a4b",
@@ -113,7 +123,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://images.ctfassets.net/kftzwdyauwt9/2E055Vw112vq9W8h2im5nw/2e610c07e7da2a38a0a77c37ffa562d0/effingham_county_16x9.png?w=1600&amp;h=900&amp;fit=fill",
-      "published": "Wed, 22 Jul 2026 13:00:00 GMT"
+      "published": "Wed, 22 Jul 2026 13:00:00 GMT",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "9f3c907bceb6632b",
@@ -132,7 +144,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://images.ctfassets.net/kftzwdyauwt9/4KPHlygXSOVWJHJlSNVU1N/574f3d3fc5309307943d657bd5000a20/how_news_orgs_use_AI_16x9.png?w=1600&amp;h=900&amp;fit=fill",
-      "published": "Wed, 22 Jul 2026 13:00:00 GMT"
+      "published": "Wed, 22 Jul 2026 13:00:00 GMT",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "03496205e0fb52ea",
@@ -151,7 +165,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://images.ctfassets.net/kftzwdyauwt9/1K8j5BSz7X2YIZ2ngRc3eQ/946b006a4a440f14cef8bf20d6920e65/Advancing_the_next_era_of_national_science_16x9.png?w=1600&amp;h=900&amp;fit=fill",
-      "published": "Wed, 22 Jul 2026 12:00:00 GMT"
+      "published": "Wed, 22 Jul 2026 12:00:00 GMT",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "60b8fa717964caff",
@@ -170,7 +186,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://images.ctfassets.net/kftzwdyauwt9/6jXxdGYMc8oC9wCBbM59tD/47cd3218b63b068cf3ec2f63b79d5256/OpenAI_Presence_16x9.png?w=1600&amp;h=900&amp;fit=fill",
-      "published": "Wed, 22 Jul 2026 05:30:00 GMT"
+      "published": "Wed, 22 Jul 2026 05:30:00 GMT",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "f954619f834ad27c",
@@ -189,7 +207,9 @@
         "freshness": 0.0
       },
       "thumbnail": "",
-      "published": "Wed, 22 Jul 2026 13:38:54 +0000"
+      "published": "Wed, 22 Jul 2026 13:38:54 +0000",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

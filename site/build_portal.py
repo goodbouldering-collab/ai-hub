@@ -12694,7 +12694,7 @@ header.site-header:hover {
 .hero-advantage-number strong {
   display:block;
   color:var(--focus-blue);
-  background:linear-gradient(135deg,var(--focus-blue) 8%,#91a0ff 92%);
+  background:linear-gradient(135deg,var(--focus-blue) 8%,#7d8ff5 92%);
   background-clip:text;
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
@@ -13276,7 +13276,7 @@ footer.site-footer {
   .hero-text-link { width:max-content; justify-self:center; }
   .focus-trust { gap:10px 14px; margin-top:18px; font-size:11.5px; }
   .focus-outcomes,.focus-block,.focus-hub { padding:48px 14px; }
-  .hero-advantage { grid-template-columns:clamp(96px,24vw,118px) minmax(0,1fr); grid-template-areas:"number copy" "pillars pillars"; gap:12px; margin-top:20px; padding:0; }
+  .hero-advantage { grid-template-columns:clamp(108px,27vw,140px) minmax(0,1fr); grid-template-areas:"number copy" "pillars pillars"; gap:12px; margin-top:20px; padding:0; }
   .hero-advantage-number { display:block; }
   .hero-advantage-number strong { display:block; font-size:clamp(72px,18.5vw,90px); }
   .hero-advantage-number span { display:block; margin-top:7px; padding:0; font-size:9px; }

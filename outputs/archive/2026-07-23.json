@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/07/8A0A3921.jpeg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-23T17:15:06-04:00"
+      "published": "2026-07-23T17:15:06-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "c29757f06920a707",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/Claude-Voice-2-3-up.png?quality=90&amp;strip=all&amp;crop=0%2C3.4613147178592%2C100%2C93.077370564282&amp;w=1200",
-      "published": "2026-07-23T15:00:00-04:00"
+      "published": "2026-07-23T15:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "a8724b55445a70f4",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/STK326_PATREON_D.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-23T14:20:30-04:00"
+      "published": "2026-07-23T14:20:30-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "94ae12874d9169b5",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/chatgpt-health-launch.webp?quality=90&amp;strip=all&amp;crop=0%2C3.4613147178592%2C100%2C93.077370564282&amp;w=1200",
-      "published": "2026-07-23T13:00:00-04:00"
+      "published": "2026-07-23T13:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "4ac7568dd32af161",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/02/STK_414_AI_C-1.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-23T10:13:35-04:00"
+      "published": "2026-07-23T10:13:35-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "da9dd8d4e133ab6e",
@@ -113,7 +123,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/DCD_0724_OpenAI_suit.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-23T10:00:00-04:00"
+      "published": "2026-07-23T10:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "7b9a480e4766927d",
@@ -132,7 +144,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/gettyimages-2286058283.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-23T08:00:00-04:00"
+      "published": "2026-07-23T08:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "28dac560c16c6917",
@@ -151,7 +165,9 @@
         "freshness": 3.0
       },
       "thumbnail": "",
-      "published": "2026-07-23T04:50:36+00:00"
+      "published": "2026-07-23T04:50:36+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "3279a8b568e49d74",
@@ -170,7 +186,9 @@
         "freshness": 3.0
       },
       "thumbnail": "",
-      "published": "2026-07-22T23:59:01+00:00"
+      "published": "2026-07-22T23:59:01+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "19d278ca9aea7efe",
@@ -189,7 +207,9 @@
         "freshness": 3.0
       },
       "thumbnail": "",
-      "published": "2026-07-22T23:51:33+00:00"
+      "published": "2026-07-22T23:51:33+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

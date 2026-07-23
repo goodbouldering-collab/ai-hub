@@ -11467,6 +11467,8 @@ def _render_compact_course_cards() -> str:
             "desc": "新機能と一流の活用事例を短く整理し、仕事で次に試すことを一緒に決めます。聞くだけでもOKです。",
             "url": AI_SALON_OPENCHAT_URL,
             "cta": "LINEで会場案内を受け取る",
+            "material_url": "/lectures/2026-07-ai-online-salon-practice.html",
+            "material_cta": "AIオンラインサロンの受講資料を見る",
             "badge": "ライブトーク開催",
         },
     ]
@@ -11524,15 +11526,18 @@ def _render_live_talk_guide() -> str:
         "</figure>"
         "<div class='salon-live-guide-copy'>"
         "<span class='salon-live-badge'><i aria-hidden='true'></i>LINE LIVE TALK</span>"
-        "<h3 id='salon-live-guide-title'>3ステップで、まずは聞くだけ参加</h3>"
-        "<p>通常のLINE通話ではなく、オープンチャット内の音声機能です。最初はマイクOFFのリスナーで参加できます。</p>"
+        "<h3 id='salon-live-guide-title'>声で確かめ、聞くだけでも学べるライブトーク</h3>"
+        "<p>通常のLINE通話ではなく、講師が開くオープンチャット内の音声セッションです。まずはマイクOFFで聞き、話したいときだけ挙手して参加できます。</p>"
+        "<ul class='salon-live-benefits' aria-label='ライブトークの良さ'>"
+        "<li>迷いをその場で確認</li><li>一人の事例を全員で学ぶ</li><li>挙手と承認で安心して発言</li>"
+        "</ul>"
         "<ol class='salon-live-steps'>"
         "<li><b>01</b><span><strong>会場案内を開く</strong>火曜21時、LINEに届く案内からライブトーク会場を開きます。</span></li>"
         "<li><b>02</b><span><strong>リスナーとして参加</strong>「リスナーとして参加」→「OK」。そのまま聞き始められます。</span></li>"
         "<li><b>03</b><span><strong>話すときだけ挙手</strong>手のひらボタンで挙手し、承認後にマイクをオンにします。</span></li>"
         "</ol>"
         "<div class='salon-live-guide-foot'><span>聞くだけ・途中参加・途中退出OK</span>"
-        "<a href='https://help.line.me/line?contentId=20024812&amp;lang=ja' target='_blank' rel='noopener'>LINE公式の操作説明 ↗</a></div>"
+        "<a href='https://openchat-jp.line.me/topic/livetalk_release' target='_blank' rel='noopener'>LINE公式のライブトーク案内 ↗</a></div>"
         "</div></aside>"
     )
 
@@ -12039,11 +12044,12 @@ def _render_lectures_section() -> str:
         "ai-start": "AIが初めて",
         "ai-work": "自社資料を使う",
         "ai-build": "AIと作る",
-        "climbing": "クライミング",
+        "ai-salon": "サロンで実践",
+        "climbing": "AI講座例",
     }
     lecs: list[dict] = []
     pmap_added = False
-    category_order = {category: index for index, category in enumerate(("ai-start", "ai-work", "ai-build", "climbing"))}
+    category_order = {category: index for index, category in enumerate(("ai-start", "ai-work", "ai-build", "ai-salon", "climbing"))}
     ordered_lectures = sorted(
         all_lectures,
         key=lambda item: (category_order.get(str(item.get("category") or ""), 99), int(item.get("order") or 999)),
@@ -13085,6 +13091,9 @@ header.site-header:hover {
 }
 .salon-live-guide h3 { margin:0; color:var(--focus-ink); font-size:clamp(20px,2vw,27px); line-height:1.35; }
 .salon-live-guide-copy > p { margin:10px 0 0; color:var(--focus-muted); font-size:13px; line-height:1.75; }
+.salon-live-benefits { display:flex; flex-wrap:wrap; gap:7px 14px; margin:12px 0 0; padding:0; list-style:none; }
+.salon-live-benefits li { color:var(--focus-ink); font-size:11px; font-weight:850; }
+.salon-live-benefits li::before { content:"✓"; margin-right:5px; color:var(--focus-blue); font-weight:950; }
 .salon-live-steps { margin:18px 0 0; padding:0; display:grid; gap:9px; list-style:none; }
 .salon-live-steps li {
   display:grid;

@@ -37,10 +37,14 @@ sections:
     name: 3. AIと一緒に作る
     icon: 🛠️
     description: Claude CodeやCodexへ、小さな修正を安全な順番で頼む方法を学ぶ
+  - key: ai-salon
+    name: 4. オンラインサロンで実践する
+    icon: 🎙️
+    description: 自分の成果を持ち寄り、講師と会員の声で確かめ、次の一手を決める
   - key: climbing
-    name: 4. クライミングを学ぶ
+    name: 5. AIで作った講座例
     icon: 🧗
-    description: 山、岩、ジム、競技へ広がった流れを、初心者へ説明するための資料
+    description: クライミングの歴史を題材に、AIで構成・資料化し、講師が確認した講座例です
 
 - name: 講師用・詳しく学ぶ資料
   icon: 📚

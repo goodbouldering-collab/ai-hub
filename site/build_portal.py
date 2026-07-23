@@ -12922,6 +12922,9 @@ header.site-header:hover {
   margin:0 auto 24px;
   display:grid;
   grid-template-columns:minmax(0,1.08fr) minmax(300px,.92fr);
+  grid-template-areas:
+    "copy values"
+    "facts facts";
   gap:34px;
   align-items:center;
   padding:30px;
@@ -12930,6 +12933,7 @@ header.site-header:hover {
   background:linear-gradient(135deg,rgba(255,255,255,.97),rgba(245,248,255,.93));
   box-shadow:0 18px 54px rgba(38,54,112,.08);
 }
+.salon-intro-copy { grid-area:copy; }
 .salon-intro-kicker {
   display:inline-flex;
   align-items:center;
@@ -12970,26 +12974,34 @@ header.site-header:hover {
   font-size:13px;
   line-height:1.75;
 }
-.salon-value-list { display:grid; gap:10px; }
+.salon-value-list {
+  grid-area:values;
+  display:grid;
+  gap:0;
+  align-self:stretch;
+  border-top:1px solid rgba(83,103,217,.16);
+  border-bottom:1px solid rgba(83,103,217,.16);
+}
 .salon-value {
   display:grid;
-  grid-template-columns:40px minmax(0,1fr);
+  grid-template-columns:34px minmax(0,1fr);
   gap:12px;
   align-items:center;
-  padding:12px 14px;
-  border:1px solid rgba(83,103,217,.14);
-  border-radius:14px;
-  background:#fff;
+  padding:13px 2px;
+  border:0;
+  border-radius:0;
+  background:transparent;
 }
+.salon-value + .salon-value { border-top:1px solid rgba(83,103,217,.14); }
 .salon-value > b {
-  display:grid;
-  place-items:center;
-  width:40px;
-  height:40px;
-  color:#fff;
-  background:var(--focus-blue);
-  border-radius:12px;
-  font:900 11px/1 Inter,sans-serif;
+  display:block;
+  width:auto;
+  height:auto;
+  color:var(--focus-blue);
+  background:transparent;
+  border-radius:0;
+  font:900 18px/1 Inter,sans-serif;
+  letter-spacing:-.04em;
 }
 .salon-value small {
   display:block;
@@ -13004,8 +13016,24 @@ header.site-header:hover {
   font-size:14px;
   line-height:1.35;
 }
-.salon-facts { max-width:920px; margin:0 auto 26px; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; }
-.salon-fact { padding:14px 16px; border:1px solid rgba(83,103,217,.16); border-radius:12px; background:rgba(255,255,255,.76); text-align:center; }
+.salon-facts {
+  grid-area:facts;
+  width:100%;
+  max-width:none;
+  margin:-8px 0 0;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:0;
+  border-top:1px solid rgba(83,103,217,.18);
+}
+.salon-fact {
+  padding:17px 18px 0;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  text-align:left;
+}
+.salon-fact + .salon-fact { border-left:1px solid rgba(83,103,217,.14); }
 .salon-fact small { display:block; color:var(--focus-muted); font-size:10px; font-weight:900; letter-spacing:.1em; }
 .salon-fact strong { display:block; margin-top:5px; color:var(--focus-ink); font-size:15px; }
 .salon-live-guide {
@@ -13244,6 +13272,13 @@ footer.site-footer {
   .footer-brand { grid-column:1 / -1; }
   .footer-tagline { max-width:620px; }
 }
+@media (max-width: 760px) {
+  .salon-intro {
+    grid-template-columns:1fr;
+    grid-template-areas:"copy" "values" "facts";
+    gap:18px;
+  }
+}
 @media (max-width: 680px) {
   :root {
     --focus-shell-x:14px;
@@ -13283,6 +13318,7 @@ footer.site-footer {
   .hero-advantage-number span { display:block; margin-top:7px; padding:0; font-size:9px; }
   .hero-advantage-copy small { font-size:8px; }
   .hero-advantage-copy p { font-size:clamp(15px,4.1vw,18px); line-height:1.3; }
+  .hero-advantage-copy p span { display:block; }
   .hero-advantage-pillars { grid-column:1 / -1; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); padding:0; }
   .hero-advantage-pillars li { min-width:0; padding:0 4px; font-size:9px; text-align:center; }
   .hero-advantage-pillars li + li::before { left:-4px; }
@@ -13310,15 +13346,22 @@ footer.site-footer {
   .compact-course-title-row { gap:7px; }
   .compact-course-card .compact-course-title-row h3 { font-size:18px; }
   .compact-course-title-row .compact-course-badge { padding:4px 8px; font-size:9px; }
-  .salon-intro { grid-template-columns:1fr; gap:12px; margin-bottom:18px; padding:16px; border-radius:16px; }
+  .salon-intro {
+    grid-template-columns:1fr;
+    grid-template-areas:"copy" "values" "facts";
+    gap:18px;
+    margin-bottom:18px;
+    padding:16px;
+    border-radius:16px;
+  }
   .salon-intro-kicker { padding:6px 9px; font-size:10px; }
   .salon-intro h2 { margin-top:10px; font-size:29px; }
   .salon-intro-tagline { margin-top:8px; font-size:17px; }
   .salon-intro-summary { margin-top:6px; font-size:12.5px; line-height:1.6; }
-  .salon-value-list { gap:0; overflow:hidden; border:1px solid rgba(83,103,217,.14); border-radius:12px; background:#fff; }
-  .salon-value { grid-template-columns:28px minmax(0,1fr); gap:8px; padding:8px 10px; border:0; border-radius:0; background:transparent; }
+  .salon-value-list { gap:0; overflow:visible; border-width:1px 0; border-radius:0; background:transparent; }
+  .salon-value { grid-template-columns:28px minmax(0,1fr); gap:8px; padding:10px 2px; border:0; border-radius:0; background:transparent; }
   .salon-value + .salon-value { border-top:1px solid rgba(83,103,217,.14); }
-  .salon-value > b { width:28px; height:28px; border-radius:8px; font-size:9px; }
+  .salon-value > b { width:auto; height:auto; border-radius:0; font-size:15px; }
   .salon-value small { display:inline; margin:0 6px 0 0; font-size:7.5px; letter-spacing:.06em; }
   .salon-value strong { display:inline; font-size:12.5px; line-height:1.3; }
   .salon-timeline-wrap { width:100%; padding:0; }
@@ -13327,8 +13370,11 @@ footer.site-footer {
   .salon-timeline-card:first-child { min-height:342px; padding:16px; border:1px solid var(--focus-line); border-radius:14px; }
   .salon-timeline-card .compact-course-visual { height:128px; }
   .salon-timeline-nav { justify-content:flex-start; flex-wrap:wrap; gap:9px; }
-  .salon-facts { grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
-  .salon-fact { padding:12px 9px; }
+  .salon-facts { grid-template-columns:repeat(2,minmax(0,1fr)); gap:0; margin:0; }
+  .salon-fact { padding:12px 10px 4px 2px; }
+  .salon-fact + .salon-fact { border-left:0; }
+  .salon-fact:nth-child(even) { padding-left:12px; border-left:1px solid rgba(83,103,217,.14); }
+  .salon-fact:nth-child(n+3) { margin-top:10px; padding-top:12px; border-top:1px solid rgba(83,103,217,.14); }
   .salon-fact:nth-child(2) strong { font-size:12px; white-space:nowrap; }
   .salon-live-guide { grid-template-columns:1fr; gap:18px; padding:17px; border-radius:16px; }
   .salon-live-figure { width:min(100%,420px); margin:0 auto; }
@@ -13540,7 +13586,7 @@ def _render_hero_focused() -> str:
         "<h1 class='focus-title'><span class='focus-title-first'>AIエージェントを、</span><br><span class='focus-title-line'><strong>仕事の仲間に。</strong></span></h1>"
         "<aside class='hero-advantage' id='advantage' aria-labelledby='hero-advantage-title'>"
         "<div class='hero-advantage-number' aria-hidden='true'><strong>6%</strong><span>AIで成果を出す目標</span></div>"
-        "<div class='hero-advantage-copy'><small>同じ分野の100人中、上位6人を目指す</small><p id='hero-advantage-title'>AIを知るだけで終わらず、仕事の成果に変える。</p></div>"
+        "<div class='hero-advantage-copy'><small>同じ分野の100人中、上位6人を目指す</small><p id='hero-advantage-title'><span>AIで何ができるか。</span><span>自分は何がしたいか。</span><span>仕事の成果につなげる。</span></p></div>"
         "<ul class='hero-advantage-pillars' aria-label='AI活用を成果に変える3原則'><li><b>01</b>まず試す</li><li><b>02</b>人が確かめる</li><li><b>03</b>仕組みにする</li></ul>"
         "</aside>"
         "<p class='focus-lead'>実践講習・個別相談・有料オンラインサロンで、AIを実務に入れ、使い続けられる形まで支援します。</p>"
@@ -13592,8 +13638,8 @@ def _render_focused_main() -> str:
         "<div class='salon-value' role='listitem'><b>01</b><div><small>UPDATE</small><strong>新機能を毎週知る</strong></div></div>",
         "<div class='salon-value' role='listitem'><b>02</b><div><small>BEST PRACTICE</small><strong>一流の活用事例を聞く</strong></div></div>",
         "<div class='salon-value' role='listitem'><b>03</b><div><small>NEXT ACTION</small><strong>次に試すことを決める</strong></div></div>",
-        "</div></div>",
-        "<div class='salon-facts'><div class='salon-fact'><small>WHEN</small><strong>毎週火曜 21:00</strong></div><div class='salon-fact'><small>PLACE</small><strong>LINEオープンチャット</strong></div><div class='salon-fact'><small>FEE</small><strong>有料</strong></div><div class='salon-fact'><small>STYLE</small><strong>ライブトーク</strong></div></div>",
+        "</div>",
+        "<div class='salon-facts'><div class='salon-fact'><small>WHEN</small><strong>毎週火曜 21:00</strong></div><div class='salon-fact'><small>PLACE</small><strong>LINEオープンチャット</strong></div><div class='salon-fact'><small>MATERIALS</small><strong>資料配布</strong></div><div class='salon-fact'><small>STYLE</small><strong>ライブトーク</strong></div></div></div>",
         _render_live_talk_guide(),
         _render_tuesday_build_hour_cards(),
         "<p class='salon-note'>終了後は、重要な変化・仕事での使い方・今週の一歩を、講師確認済みの「火曜AIノート」で共有します。参加できない週も要点を追えます。顧客情報や機密事項は公開せず、個別相談で扱います。</p>",

@@ -113,7 +113,8 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
     pmap_current = " aria-current='page'" if current_id == "pmap" else ""
     lecture_class = "nav-link nav-essential nav-current" if current_id == "lectures" else "nav-link nav-essential"
     lecture_current = " aria-current='page'" if current_id == "lectures" else ""
-    lecture_href = "/lectures/index.html" if current_id == "lectures" else "/#lectures"
+    blog_class = "nav-link nav-essential nav-current" if current_id == "blog" else "nav-link nav-essential"
+    blog_current = " aria-current='page'" if current_id == "blog" else ""
     run_action = (
         "<button class='header-run-action' id='run-btn' type='button'>巡回実行</button>"
         "<span class='run-status' id='run-status' aria-live='polite'></span>"
@@ -126,19 +127,13 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
         f"<a class='site-logo' href='{safe_home}' aria-label='AI相談 彦根 トップへ'>"
         "<span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span></span></a>"
         "<nav class='site-nav' aria-label='メインナビ'>"
-        "<a class='nav-link nav-essential' href='/#packages'>講習・相談</a>"
-        f"<a class='{pmap_class}' href='/programming-map.html'{pmap_current}>AIコーディング</a>"
-        f"<a class='{lecture_class}' href='{lecture_href}'{lecture_current}>受講資料</a>"
-        "<div class='menu-wrap'><button class='menu-toggle' id='menu-toggle' aria-haspopup='menu' aria-expanded='false'>全メニュー"
-        "<svg class='chev' width='14' height='14' viewBox='0 0 20 20' fill='none' aria-hidden='true'><path d='M5 8l5 5 5-5' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg></button>"
-        "<div class='menu-drop' id='menu-drop' role='menu'>"
-        "<span class='menu-drop-label'>制作・発信</span>"
-        "<a href='/#all-works'>実績サイト</a><a href='/#blog'>ブログ</a>"
-        "<span class='menu-drop-label'>案内・確認</span>"
-        f"<a href='/#speaker'>講師紹介</a><a href='/#flow'>進め方</a><a href='/#faq'>FAQ</a><a href='{safe_home}'>ホーム</a>"
-        "<span class='menu-drop-label'>管理</span><a class='admin-drop-link' href='/admin'>管理ページ</a>"
-        "</div></div>"
-        "<a class='nav-cta' href='/#contact'>無料相談</a>"
+        "<a class='nav-link nav-essential' href='/'>ホーム</a>"
+        f"<a class='{pmap_class}' href='/programming-map.html'{pmap_current}>AIエージェント講習</a>"
+        "<a class='nav-link nav-essential' href='/#all-works'>実績</a>"
+        f"<a class='{blog_class}' href='/blog/index.html'{blog_current}>ブログ</a>"
+        f"<a class='{lecture_class}' href='/#lectures'{lecture_current}>資料</a>"
+        "<a class='nav-link nav-essential' href='/#faq'>FAQ</a>"
+        "<a class='nav-cta' href='/#contact'>個別相談</a>"
         "</nav>"
         f"{run_action}"
         "<button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' type='button' aria-label='メニューを開く' aria-controls='mobile-nav' aria-expanded='false'>"
@@ -150,28 +145,23 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
         "<div class='mobile-nav-panel mobile-nav-panel--public'>"
         "<div class='mobile-nav-head'><div class='mobile-nav-heading'><small>PUBLIC MENU</small><strong>メニュー</strong></div></div>"
         "<nav class='mobile-public-links' aria-label='公開ページメニュー'>"
-        f"<a href='{safe_home}'><span>ホーム</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
-        "<a href='/#packages'><span>講習・相談</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
-        "<a href='/programming-map.html'><span>AIコーディング</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
-        f"<a href='{lecture_href}'><span>受講資料</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
-        "<a href='/#all-works'><span>実績サイト</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
-        "<a href='/#blog'><span>ブログ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
-        "<a href='/#speaker'><span>講師紹介</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
-        "<a href='/#flow'><span>進め方</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
-        "<a href='/#faq'><span>よくある質問</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
-        "<a class='mobile-public-link--cta' href='/#contact'><span>無料相談</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
+        "<a href='/'><span>ホーム</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
+        "<a href='/programming-map.html'><span>AIエージェント講習</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
+        "<a href='/#all-works'><span>実績</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
+        "<a href='/blog/index.html'><span>ブログ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
+        "<a href='/#lectures'><span>資料</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
+        "<a href='/#faq'><span>FAQ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
+        "<a class='mobile-public-link--cta' href='/#contact'><span>個別相談</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
         "</nav><div class='mobile-nav-admin'><span class='mobile-nav-label'>管理</span>"
         "<a class='mobile-admin-link' href='/admin'><span class='mobile-admin-link-copy'><strong>管理ページ</strong><small>運営者ログイン</small></span>"
         "<span class='mobile-link-arrow' aria-hidden='true'>›</span></a></div>"
         "</div></div></header>"
         "<script>(function(){"
-        "var t=document.getElementById('menu-toggle'),d=document.getElementById('menu-drop'),b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav'),x=b?b.querySelector('.mobile-toggle-text'):null;"
-        "function closeDrop(){if(!d||!t)return;d.classList.remove('open');t.setAttribute('aria-expanded','false');}"
+        "var b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav'),x=b?b.querySelector('.mobile-toggle-text'):null;"
         "function setMobile(o){if(!n||!b)return;n.classList.toggle('open',o);b.setAttribute('aria-expanded',o?'true':'false');b.setAttribute('aria-label',o?'メニューを閉じる':'メニューを開く');if(x)x.textContent=o?'閉じる':'メニュー';document.body.classList.toggle('mobile-menu-open',o);}"
         "function closeMobile(){setMobile(false);}"
-        "if(t&&d){t.addEventListener('click',function(e){e.stopPropagation();var o=d.classList.toggle('open');t.setAttribute('aria-expanded',o?'true':'false');});document.addEventListener('click',function(e){if(!d.contains(e.target)&&!t.contains(e.target))closeDrop();});}"
         "if(b&&n){b.addEventListener('click',function(e){e.stopPropagation();setMobile(!n.classList.contains('open'));});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMobile);});}"
-        "document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDrop();closeMobile();}});"
+        "document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobile();});"
         "})();</script>"
     ]
     return "".join(parts)
@@ -2377,6 +2367,8 @@ html { scroll-padding-top: 92px !important; }
 header.site-header,
 header.site-header.scrolled,
 header.site-header:hover {
+  --focus-blue: #5367d9;
+  --focus-ink: #172033;
   position: fixed !important;
   inset: 0 0 auto 0 !important;
   z-index: 50 !important;
@@ -2398,7 +2390,7 @@ header.site-header:hover {
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
-  gap: 14px !important;
+  gap: 12px !important;
 }
 .site-logo {
   min-width: 0 !important;
@@ -2423,7 +2415,7 @@ header.site-header:hover {
   letter-spacing: -.03em !important;
   line-height: 1 !important;
 }
-.wordmark .word-ai { color: #075fc8 !important; }
+.wordmark .word-ai { color: var(--focus-blue) !important; }
 .wordmark .word-hub { color: #0a1728 !important; }
 .site-nav {
   position: static !important;
@@ -2437,11 +2429,11 @@ header.site-header:hover {
   flex-wrap: nowrap !important;
   gap: 18px !important;
   margin: 0 !important;
-  padding: 0 !important;
+  padding: 3px !important;
   overflow: visible !important;
   background: transparent !important;
   border: 0 !important;
-  border-radius: 0 !important;
+  border-radius: 8px !important;
   box-shadow: none !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
@@ -2467,6 +2459,20 @@ header.site-header:hover {
   white-space: nowrap !important;
   cursor: pointer !important;
 }
+header.site-header .site-nav a.nav-link.nav-essential[href] {
+  min-height: 45px !important;
+  padding: 10px 3px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: var(--focus-ink) !important;
+  box-shadow: none !important;
+}
+header.site-header .site-nav a.nav-link.nav-essential[href]:hover,
+header.site-header .site-nav a.nav-link.nav-essential[href]:focus-visible {
+  background: transparent !important;
+  color: var(--focus-blue) !important;
+}
 .site-nav a.nav-link:hover,
 .site-nav a.nav-link:focus-visible,
 .site-nav .menu-toggle:hover,
@@ -2479,8 +2485,14 @@ header.site-header:hover {
 .site-nav a.nav-current,
 .site-nav a.nav-current:hover,
 .site-nav a.nav-current:focus-visible {
-  color: #075fc8 !important;
-  box-shadow: inset 0 -3px 0 #075fc8 !important;
+  color: var(--focus-blue) !important;
+  box-shadow: inset 0 -3px 0 var(--focus-blue) !important;
+}
+header.site-header .site-nav a.nav-link.nav-essential.nav-current[href],
+header.site-header .site-nav a.nav-link.nav-essential.nav-current[href]:hover,
+header.site-header .site-nav a.nav-link.nav-essential.nav-current[href]:focus-visible {
+  color: var(--focus-blue) !important;
+  box-shadow: inset 0 -3px 0 var(--focus-blue) !important;
 }
 .site-nav .menu-wrap { position: relative !important; }
 .site-nav .menu-toggle .chev { transition: transform .2s ease; }
@@ -2526,14 +2538,14 @@ header.site-header:hover {
   outline: none !important;
 }
 .site-nav .nav-cta {
-  min-height: 42px !important;
+  min-height: 50px !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  padding: 0 18px !important;
-  border: 0 !important;
+  padding: 12px 20px !important;
+  border: 1px solid transparent !important;
   border-radius: 8px !important;
-  background: #075fc8 !important;
+  background: var(--focus-blue) !important;
   background-image: none !important;
   color: #fff !important;
   font-size: 13px !important;

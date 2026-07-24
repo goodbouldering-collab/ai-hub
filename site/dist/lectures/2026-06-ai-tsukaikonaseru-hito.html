@@ -10718,6 +10718,8 @@ html { scroll-padding-top: 92px !important; }
 header.site-header,
 header.site-header.scrolled,
 header.site-header:hover {
+  --focus-blue: #5367d9;
+  --focus-ink: #172033;
   position: fixed !important;
   inset: 0 0 auto 0 !important;
   z-index: 50 !important;
@@ -10739,7 +10741,7 @@ header.site-header:hover {
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
-  gap: 14px !important;
+  gap: 12px !important;
 }
 .site-logo {
   min-width: 0 !important;
@@ -10764,7 +10766,7 @@ header.site-header:hover {
   letter-spacing: -.03em !important;
   line-height: 1 !important;
 }
-.wordmark .word-ai { color: #075fc8 !important; }
+.wordmark .word-ai { color: var(--focus-blue) !important; }
 .wordmark .word-hub { color: #0a1728 !important; }
 .site-nav {
   position: static !important;
@@ -10778,11 +10780,11 @@ header.site-header:hover {
   flex-wrap: nowrap !important;
   gap: 18px !important;
   margin: 0 !important;
-  padding: 0 !important;
+  padding: 3px !important;
   overflow: visible !important;
   background: transparent !important;
   border: 0 !important;
-  border-radius: 0 !important;
+  border-radius: 8px !important;
   box-shadow: none !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
@@ -10808,6 +10810,20 @@ header.site-header:hover {
   white-space: nowrap !important;
   cursor: pointer !important;
 }
+header.site-header .site-nav a.nav-link.nav-essential[href] {
+  min-height: 45px !important;
+  padding: 10px 3px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: var(--focus-ink) !important;
+  box-shadow: none !important;
+}
+header.site-header .site-nav a.nav-link.nav-essential[href]:hover,
+header.site-header .site-nav a.nav-link.nav-essential[href]:focus-visible {
+  background: transparent !important;
+  color: var(--focus-blue) !important;
+}
 .site-nav a.nav-link:hover,
 .site-nav a.nav-link:focus-visible,
 .site-nav .menu-toggle:hover,
@@ -10820,8 +10836,14 @@ header.site-header:hover {
 .site-nav a.nav-current,
 .site-nav a.nav-current:hover,
 .site-nav a.nav-current:focus-visible {
-  color: #075fc8 !important;
-  box-shadow: inset 0 -3px 0 #075fc8 !important;
+  color: var(--focus-blue) !important;
+  box-shadow: inset 0 -3px 0 var(--focus-blue) !important;
+}
+header.site-header .site-nav a.nav-link.nav-essential.nav-current[href],
+header.site-header .site-nav a.nav-link.nav-essential.nav-current[href]:hover,
+header.site-header .site-nav a.nav-link.nav-essential.nav-current[href]:focus-visible {
+  color: var(--focus-blue) !important;
+  box-shadow: inset 0 -3px 0 var(--focus-blue) !important;
 }
 .site-nav .menu-wrap { position: relative !important; }
 .site-nav .menu-toggle .chev { transition: transform .2s ease; }
@@ -10867,14 +10889,14 @@ header.site-header:hover {
   outline: none !important;
 }
 .site-nav .nav-cta {
-  min-height: 42px !important;
+  min-height: 50px !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  padding: 0 18px !important;
-  border: 0 !important;
+  padding: 12px 20px !important;
+  border: 1px solid transparent !important;
   border-radius: 8px !important;
-  background: #075fc8 !important;
+  background: var(--focus-blue) !important;
   background-image: none !important;
   color: #fff !important;
   font-size: 13px !important;
@@ -11243,7 +11265,7 @@ header.site-header:hover {
   }
 })();
 </script>
-<header class='site-header scrolled' id='site-header' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html' aria-label='AI相談 彦根 トップへ'><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span></span></a><nav class='site-nav' aria-label='メインナビ'><a class='nav-link nav-essential' href='/#packages'>講習・相談</a><a class='nav-link nav-essential' href='/programming-map.html'>AIコーディング</a><a class='nav-link nav-essential nav-current' href='/lectures/index.html' aria-current='page'>受講資料</a><div class='menu-wrap'><button class='menu-toggle' id='menu-toggle' aria-haspopup='menu' aria-expanded='false'>全メニュー<svg class='chev' width='14' height='14' viewBox='0 0 20 20' fill='none' aria-hidden='true'><path d='M5 8l5 5 5-5' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg></button><div class='menu-drop' id='menu-drop' role='menu'><span class='menu-drop-label'>制作・発信</span><a href='/#all-works'>実績サイト</a><a href='/#blog'>ブログ</a><span class='menu-drop-label'>案内・確認</span><a href='/#speaker'>講師紹介</a><a href='/#flow'>進め方</a><a href='/#faq'>FAQ</a><a href='../index.html'>ホーム</a><span class='menu-drop-label'>管理</span><a class='admin-drop-link' href='/admin'>管理ページ</a></div></div><a class='nav-cta' href='/#contact'>無料相談</a></nav><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' type='button' aria-label='メニューを開く' aria-controls='mobile-nav' aria-expanded='false'><span class='mobile-toggle-icon' aria-hidden='true'><span></span><span></span><span></span></span><span class='mobile-toggle-text'>メニュー</span></button></div><div class='mobile-nav generated-mobile-nav' id='mobile-nav'><div class='mobile-nav-panel mobile-nav-panel--public'><div class='mobile-nav-head'><div class='mobile-nav-heading'><small>PUBLIC MENU</small><strong>メニュー</strong></div></div><nav class='mobile-public-links' aria-label='公開ページメニュー'><a href='../index.html'><span>ホーム</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#packages'><span>講習・相談</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/programming-map.html'><span>AIコーディング</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/lectures/index.html'><span>受講資料</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#all-works'><span>実績サイト</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#blog'><span>ブログ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#speaker'><span>講師紹介</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#flow'><span>進め方</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#faq'><span>よくある質問</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a class='mobile-public-link--cta' href='/#contact'><span>無料相談</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a></nav><div class='mobile-nav-admin'><span class='mobile-nav-label'>管理</span><a class='mobile-admin-link' href='/admin'><span class='mobile-admin-link-copy'><strong>管理ページ</strong><small>運営者ログイン</small></span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a></div></div></div></header><script>(function(){var t=document.getElementById('menu-toggle'),d=document.getElementById('menu-drop'),b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav'),x=b?b.querySelector('.mobile-toggle-text'):null;function closeDrop(){if(!d||!t)return;d.classList.remove('open');t.setAttribute('aria-expanded','false');}function setMobile(o){if(!n||!b)return;n.classList.toggle('open',o);b.setAttribute('aria-expanded',o?'true':'false');b.setAttribute('aria-label',o?'メニューを閉じる':'メニューを開く');if(x)x.textContent=o?'閉じる':'メニュー';document.body.classList.toggle('mobile-menu-open',o);}function closeMobile(){setMobile(false);}if(t&&d){t.addEventListener('click',function(e){e.stopPropagation();var o=d.classList.toggle('open');t.setAttribute('aria-expanded',o?'true':'false');});document.addEventListener('click',function(e){if(!d.contains(e.target)&&!t.contains(e.target))closeDrop();});}if(b&&n){b.addEventListener('click',function(e){e.stopPropagation();setMobile(!n.classList.contains('open'));});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMobile);});}document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDrop();closeMobile();}});})();</script><main id='main-content'><header><h1>AIを仕事で使える人になる — 旧資料のご案内</h1><div class='speaker-meta'><span class='role'>入門</span><span>目安 1分</span></div></header><figure class='lecture-cover'><img src='/lectures/assets/covers/2026-06-ai-tsukaikonaseru-hito.png' alt='目的、材料、完成形、修正、人の確認というAI活用5手順のイラスト' width='1200' height='630' fetchpriority='high' decoding='async'></figure><div class='content-wrap lecture-content' id='lecture-body'><section class='lecture-shell' aria-label='この資料の読み方'><div class='lecture-shell-title'>この資料の読み方</div><p class='lecture-shell-desc'>この旧資料の内容は、15分で実践できる「毎週の仕事を1つ、AIで楽にする」へ統合しました。</p><div class='lecture-shell-meta'><div class='lecture-meta-item'><span>対象</span><b>以前のURLを保存している人</b></div><div class='lecture-meta-item'><span>ゴール</span><b>自分の経験に合う新しい入門資料または実践資料へ移動できる</b></div></div><div class='lecture-shell-actions'><a class='lecture-shell-link primary' href='#lecture-toc'>目次を見る</a><a class='lecture-shell-link' href='./index.html'>受講資料一覧</a><a class='lecture-shell-link' href='../programming-map.html'>AIエージェント講習</a></div></section><div class='content-toc' id='lecture-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#この資料は誰向けか'>この資料は誰向けか</a></li><li><a href='#今日できるようになること'>今日できるようになること</a></li><li><a href='#まず結論'>まず結論</a></li><li><a href='#順番に理解する本文'>順番に理解する本文</a></li><li><a href='#具体例-やってみる'>具体例 / やってみる</a></li><li><a href='#できたかチェック'>できたかチェック</a></li><li><a href='#次に読む資料'>次に読む資料</a></li><li><a href='#用語・出典'>用語・出典</a></li></ol></div><h2 id='この資料は誰向けか'>この資料は誰向けか</h2>
+<header class='site-header scrolled' id='site-header' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html' aria-label='AI相談 彦根 トップへ'><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span></span></a><nav class='site-nav' aria-label='メインナビ'><a class='nav-link nav-essential' href='/'>ホーム</a><a class='nav-link nav-essential' href='/programming-map.html'>AIエージェント講習</a><a class='nav-link nav-essential' href='/#all-works'>実績</a><a class='nav-link nav-essential' href='/blog/index.html'>ブログ</a><a class='nav-link nav-essential nav-current' href='/#lectures' aria-current='page'>資料</a><a class='nav-link nav-essential' href='/#faq'>FAQ</a><a class='nav-cta' href='/#contact'>個別相談</a></nav><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' type='button' aria-label='メニューを開く' aria-controls='mobile-nav' aria-expanded='false'><span class='mobile-toggle-icon' aria-hidden='true'><span></span><span></span><span></span></span><span class='mobile-toggle-text'>メニュー</span></button></div><div class='mobile-nav generated-mobile-nav' id='mobile-nav'><div class='mobile-nav-panel mobile-nav-panel--public'><div class='mobile-nav-head'><div class='mobile-nav-heading'><small>PUBLIC MENU</small><strong>メニュー</strong></div></div><nav class='mobile-public-links' aria-label='公開ページメニュー'><a href='/'><span>ホーム</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/programming-map.html'><span>AIエージェント講習</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#all-works'><span>実績</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/blog/index.html'><span>ブログ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#lectures'><span>資料</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#faq'><span>FAQ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a class='mobile-public-link--cta' href='/#contact'><span>個別相談</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a></nav><div class='mobile-nav-admin'><span class='mobile-nav-label'>管理</span><a class='mobile-admin-link' href='/admin'><span class='mobile-admin-link-copy'><strong>管理ページ</strong><small>運営者ログイン</small></span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a></div></div></div></header><script>(function(){var b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav'),x=b?b.querySelector('.mobile-toggle-text'):null;function setMobile(o){if(!n||!b)return;n.classList.toggle('open',o);b.setAttribute('aria-expanded',o?'true':'false');b.setAttribute('aria-label',o?'メニューを閉じる':'メニューを開く');if(x)x.textContent=o?'閉じる':'メニュー';document.body.classList.toggle('mobile-menu-open',o);}function closeMobile(){setMobile(false);}if(b&&n){b.addEventListener('click',function(e){e.stopPropagation();setMobile(!n.classList.contains('open'));});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMobile);});}document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobile();});})();</script><main id='main-content'><header><h1>AIを仕事で使える人になる — 旧資料のご案内</h1><div class='speaker-meta'><span class='role'>入門</span><span>目安 1分</span></div></header><figure class='lecture-cover'><img src='/lectures/assets/covers/2026-06-ai-tsukaikonaseru-hito.png' alt='目的、材料、完成形、修正、人の確認というAI活用5手順のイラスト' width='1200' height='630' fetchpriority='high' decoding='async'></figure><div class='content-wrap lecture-content' id='lecture-body'><section class='lecture-shell' aria-label='この資料の読み方'><div class='lecture-shell-title'>この資料の読み方</div><p class='lecture-shell-desc'>この旧資料の内容は、15分で実践できる「毎週の仕事を1つ、AIで楽にする」へ統合しました。</p><div class='lecture-shell-meta'><div class='lecture-meta-item'><span>対象</span><b>以前のURLを保存している人</b></div><div class='lecture-meta-item'><span>ゴール</span><b>自分の経験に合う新しい入門資料または実践資料へ移動できる</b></div></div><div class='lecture-shell-actions'><a class='lecture-shell-link primary' href='#lecture-toc'>目次を見る</a><a class='lecture-shell-link' href='./index.html'>受講資料一覧</a><a class='lecture-shell-link' href='../programming-map.html'>AIエージェント講習</a></div></section><div class='content-toc' id='lecture-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#この資料は誰向けか'>この資料は誰向けか</a></li><li><a href='#今日できるようになること'>今日できるようになること</a></li><li><a href='#まず結論'>まず結論</a></li><li><a href='#順番に理解する本文'>順番に理解する本文</a></li><li><a href='#具体例-やってみる'>具体例 / やってみる</a></li><li><a href='#できたかチェック'>できたかチェック</a></li><li><a href='#次に読む資料'>次に読む資料</a></li><li><a href='#用語・出典'>用語・出典</a></li></ol></div><h2 id='この資料は誰向けか'>この資料は誰向けか</h2>
 <p>以前の「AIを仕事で使える人になる — 5つの実践」を保存している人向けの案内です。</p>
 <ul>
 <li><strong>所要時間:</strong> 1分</li>

@@ -1462,6 +1462,8 @@ html { scroll-padding-top: 92px !important; }
 header.site-header,
 header.site-header.scrolled,
 header.site-header:hover {
+  --focus-blue: #5367d9;
+  --focus-ink: #172033;
   position: fixed !important;
   inset: 0 0 auto 0 !important;
   z-index: 50 !important;
@@ -1483,7 +1485,7 @@ header.site-header:hover {
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
-  gap: 14px !important;
+  gap: 12px !important;
 }
 .site-logo {
   min-width: 0 !important;
@@ -1508,7 +1510,7 @@ header.site-header:hover {
   letter-spacing: -.03em !important;
   line-height: 1 !important;
 }
-.wordmark .word-ai { color: #075fc8 !important; }
+.wordmark .word-ai { color: var(--focus-blue) !important; }
 .wordmark .word-hub { color: #0a1728 !important; }
 .site-nav {
   position: static !important;
@@ -1522,11 +1524,11 @@ header.site-header:hover {
   flex-wrap: nowrap !important;
   gap: 18px !important;
   margin: 0 !important;
-  padding: 0 !important;
+  padding: 3px !important;
   overflow: visible !important;
   background: transparent !important;
   border: 0 !important;
-  border-radius: 0 !important;
+  border-radius: 8px !important;
   box-shadow: none !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
@@ -1552,6 +1554,20 @@ header.site-header:hover {
   white-space: nowrap !important;
   cursor: pointer !important;
 }
+header.site-header .site-nav a.nav-link.nav-essential[href] {
+  min-height: 45px !important;
+  padding: 10px 3px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: var(--focus-ink) !important;
+  box-shadow: none !important;
+}
+header.site-header .site-nav a.nav-link.nav-essential[href]:hover,
+header.site-header .site-nav a.nav-link.nav-essential[href]:focus-visible {
+  background: transparent !important;
+  color: var(--focus-blue) !important;
+}
 .site-nav a.nav-link:hover,
 .site-nav a.nav-link:focus-visible,
 .site-nav .menu-toggle:hover,
@@ -1564,8 +1580,14 @@ header.site-header:hover {
 .site-nav a.nav-current,
 .site-nav a.nav-current:hover,
 .site-nav a.nav-current:focus-visible {
-  color: #075fc8 !important;
-  box-shadow: inset 0 -3px 0 #075fc8 !important;
+  color: var(--focus-blue) !important;
+  box-shadow: inset 0 -3px 0 var(--focus-blue) !important;
+}
+header.site-header .site-nav a.nav-link.nav-essential.nav-current[href],
+header.site-header .site-nav a.nav-link.nav-essential.nav-current[href]:hover,
+header.site-header .site-nav a.nav-link.nav-essential.nav-current[href]:focus-visible {
+  color: var(--focus-blue) !important;
+  box-shadow: inset 0 -3px 0 var(--focus-blue) !important;
 }
 .site-nav .menu-wrap { position: relative !important; }
 .site-nav .menu-toggle .chev { transition: transform .2s ease; }
@@ -1611,14 +1633,14 @@ header.site-header:hover {
   outline: none !important;
 }
 .site-nav .nav-cta {
-  min-height: 42px !important;
+  min-height: 50px !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  padding: 0 18px !important;
-  border: 0 !important;
+  padding: 12px 20px !important;
+  border: 1px solid transparent !important;
   border-radius: 8px !important;
-  background: #075fc8 !important;
+  background: var(--focus-blue) !important;
   background-image: none !important;
   color: #fff !important;
   font-size: 13px !important;
@@ -1973,7 +1995,7 @@ header.site-header:hover {
 html{scroll-padding-top:128px!important;}[id]{scroll-margin-top:128px!important;}.pm-chapter-toc{position:sticky;top:74px;z-index:40;width:100%;max-width:none;min-height:46px;display:flex;flex-wrap:nowrap;align-items:center;gap:18px;margin:0 0 18px;padding:0 max(14px,calc((100vw - 1400px)/2 + 18px));overflow-x:auto;overflow-y:hidden;scrollbar-width:none;scroll-snap-type:x proximity;background:rgba(255,255,255,.97);border:0;border-bottom:1px solid rgba(10,23,40,.10);border-radius:0;box-shadow:0 8px 18px rgba(10,23,40,.04);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);}.pm-chapter-toc::-webkit-scrollbar{display:none;}.pm-chapter-toc .pm-toc-label{flex:0 0 auto;padding:0 4px 0 0;color:#075fc8;font-size:10.5px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;}.pm-chapter-toc a{min-height:46px;display:inline-flex;align-items:center;flex:0 0 auto;padding:2px 0 0;border:0;border-bottom:3px solid transparent;border-radius:0;background:transparent;color:#526174;text-decoration:none;font-size:11.5px;font-weight:800;line-height:1.25;white-space:nowrap;scroll-snap-align:start;transition:color .18s,border-color .18s;}.pm-chapter-toc a:hover,.pm-chapter-toc a:focus-visible{color:#075fc8;border-bottom-color:#075fc8;outline:none;}@media (max-width:900px){html{scroll-padding-top:116px!important;}[id]{scroll-margin-top:116px!important;}.pm-chapter-toc{top:64px;min-height:44px;gap:16px;padding:0 12px;}.pm-chapter-toc a{min-height:44px;font-size:11px;}.pm-chapter-toc .pm-toc-label{font-size:10px;}}</style></head>
 <body>
 
-<header class='site-header scrolled' id='site-header' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='./index.html' aria-label='AI相談 彦根 トップへ'><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span></span></a><nav class='site-nav' aria-label='メインナビ'><a class='nav-link nav-essential' href='/#packages'>講習・相談</a><a class='nav-link nav-essential nav-current' href='/programming-map.html' aria-current='page'>AIコーディング</a><a class='nav-link nav-essential' href='/#lectures'>受講資料</a><div class='menu-wrap'><button class='menu-toggle' id='menu-toggle' aria-haspopup='menu' aria-expanded='false'>全メニュー<svg class='chev' width='14' height='14' viewBox='0 0 20 20' fill='none' aria-hidden='true'><path d='M5 8l5 5 5-5' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg></button><div class='menu-drop' id='menu-drop' role='menu'><span class='menu-drop-label'>制作・発信</span><a href='/#all-works'>実績サイト</a><a href='/#blog'>ブログ</a><span class='menu-drop-label'>案内・確認</span><a href='/#speaker'>講師紹介</a><a href='/#flow'>進め方</a><a href='/#faq'>FAQ</a><a href='./index.html'>ホーム</a><span class='menu-drop-label'>管理</span><a class='admin-drop-link' href='/admin'>管理ページ</a></div></div><a class='nav-cta' href='/#contact'>無料相談</a></nav><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' type='button' aria-label='メニューを開く' aria-controls='mobile-nav' aria-expanded='false'><span class='mobile-toggle-icon' aria-hidden='true'><span></span><span></span><span></span></span><span class='mobile-toggle-text'>メニュー</span></button></div><div class='mobile-nav generated-mobile-nav' id='mobile-nav'><div class='mobile-nav-panel mobile-nav-panel--public'><div class='mobile-nav-head'><div class='mobile-nav-heading'><small>PUBLIC MENU</small><strong>メニュー</strong></div></div><nav class='mobile-public-links' aria-label='公開ページメニュー'><a href='./index.html'><span>ホーム</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#packages'><span>講習・相談</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/programming-map.html'><span>AIコーディング</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#lectures'><span>受講資料</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#all-works'><span>実績サイト</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#blog'><span>ブログ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#speaker'><span>講師紹介</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#flow'><span>進め方</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#faq'><span>よくある質問</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a class='mobile-public-link--cta' href='/#contact'><span>無料相談</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a></nav><div class='mobile-nav-admin'><span class='mobile-nav-label'>管理</span><a class='mobile-admin-link' href='/admin'><span class='mobile-admin-link-copy'><strong>管理ページ</strong><small>運営者ログイン</small></span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a></div></div></div></header><script>(function(){var t=document.getElementById('menu-toggle'),d=document.getElementById('menu-drop'),b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav'),x=b?b.querySelector('.mobile-toggle-text'):null;function closeDrop(){if(!d||!t)return;d.classList.remove('open');t.setAttribute('aria-expanded','false');}function setMobile(o){if(!n||!b)return;n.classList.toggle('open',o);b.setAttribute('aria-expanded',o?'true':'false');b.setAttribute('aria-label',o?'メニューを閉じる':'メニューを開く');if(x)x.textContent=o?'閉じる':'メニュー';document.body.classList.toggle('mobile-menu-open',o);}function closeMobile(){setMobile(false);}if(t&&d){t.addEventListener('click',function(e){e.stopPropagation();var o=d.classList.toggle('open');t.setAttribute('aria-expanded',o?'true':'false');});document.addEventListener('click',function(e){if(!d.contains(e.target)&&!t.contains(e.target))closeDrop();});}if(b&&n){b.addEventListener('click',function(e){e.stopPropagation();setMobile(!n.classList.contains('open'));});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMobile);});}document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDrop();closeMobile();}});})();</script>
+<header class='site-header scrolled' id='site-header' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='./index.html' aria-label='AI相談 彦根 トップへ'><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span></span></a><nav class='site-nav' aria-label='メインナビ'><a class='nav-link nav-essential' href='/'>ホーム</a><a class='nav-link nav-essential nav-current' href='/programming-map.html' aria-current='page'>AIエージェント講習</a><a class='nav-link nav-essential' href='/#all-works'>実績</a><a class='nav-link nav-essential' href='/blog/index.html'>ブログ</a><a class='nav-link nav-essential' href='/#lectures'>資料</a><a class='nav-link nav-essential' href='/#faq'>FAQ</a><a class='nav-cta' href='/#contact'>個別相談</a></nav><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' type='button' aria-label='メニューを開く' aria-controls='mobile-nav' aria-expanded='false'><span class='mobile-toggle-icon' aria-hidden='true'><span></span><span></span><span></span></span><span class='mobile-toggle-text'>メニュー</span></button></div><div class='mobile-nav generated-mobile-nav' id='mobile-nav'><div class='mobile-nav-panel mobile-nav-panel--public'><div class='mobile-nav-head'><div class='mobile-nav-heading'><small>PUBLIC MENU</small><strong>メニュー</strong></div></div><nav class='mobile-public-links' aria-label='公開ページメニュー'><a href='/'><span>ホーム</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/programming-map.html'><span>AIエージェント講習</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#all-works'><span>実績</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/blog/index.html'><span>ブログ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#lectures'><span>資料</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#faq'><span>FAQ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a class='mobile-public-link--cta' href='/#contact'><span>個別相談</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a></nav><div class='mobile-nav-admin'><span class='mobile-nav-label'>管理</span><a class='mobile-admin-link' href='/admin'><span class='mobile-admin-link-copy'><strong>管理ページ</strong><small>運営者ログイン</small></span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a></div></div></div></header><script>(function(){var b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav'),x=b?b.querySelector('.mobile-toggle-text'):null;function setMobile(o){if(!n||!b)return;n.classList.toggle('open',o);b.setAttribute('aria-expanded',o?'true':'false');b.setAttribute('aria-label',o?'メニューを閉じる':'メニューを開く');if(x)x.textContent=o?'閉じる':'メニュー';document.body.classList.toggle('mobile-menu-open',o);}function closeMobile(){setMobile(false);}if(b&&n){b.addEventListener('click',function(e){e.stopPropagation();setMobile(!n.classList.contains('open'));});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMobile);});}document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobile();});})();</script>
 
 <header id="top" class="hero-band">
   <div class="course-shell">

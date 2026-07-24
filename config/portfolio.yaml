@@ -425,3 +425,18 @@ portfolio:
   source: vercel
   source_id: prj_qChatogWSLwrW7uB6V0xuARXdPSS
   source_project: ambassador
+- name: TRUST GOLF LAB HIKONE
+  slug: trust-golf-lab-hikone
+  url: https://trust-golf-lab-hikone.goodbouldering.chatgpt.site
+  status: live
+  category: 企業サイト
+  tech:
+  - Next.js
+  - Codex Sites
+  - Square
+  - LINE
+  - SwitchBot
+  summary: 彦根で上級者向け24時間会員制データゴルフクラブの体験予約・会員・入室運営を一体化するサイト
+  since: 2026-07
+  source: site-published-hook
+  thumbnail: /img/portfolio/trust-golf-lab-hikone.jpg

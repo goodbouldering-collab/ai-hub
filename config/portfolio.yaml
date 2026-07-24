@@ -363,18 +363,19 @@ portfolio:
   source: vercel
   source_id: prj_ng8J2BHHXkSOgUcgsmB1ASymamAG
   source_project: nokosu
-- name: 老舗工場ポータル MRP営業管理
+- name: 山仁ポータル
   slug: yamani
   url: https://yamani.vercel.app
   aliases:
   - https://ymani.vercel.app
   status: live
-  category: 業務ポータル
+  category: 企業サイト
   tech:
-  - Vercel
+  - HTML
   - JavaScript
-  summary: 法人見積、再注文、納期相談、SDS・品質資料、社内管理の入口をまとめた取引先向けポータル
-  since: 2026-06
+  - Vercel
+  summary: 法人見積、再注文、資料確認、職場環境相談を迷わず進める取引先向けポータル
+  since: 2026-07
   thumbnail: /img/portfolio/yamani.jpg
   source: vercel
   source_id: prj_PEURyGvqRU72zAj4DEaW5nOzmVCi

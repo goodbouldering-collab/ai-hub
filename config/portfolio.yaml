@@ -438,5 +438,20 @@ portfolio:
   - SwitchBot
   summary: 彦根で上級者向け24時間会員制データゴルフクラブの体験予約・会員・入室運営を一体化するサイト
   since: 2026-07
-  source: site-published-hook
   thumbnail: /img/portfolio/trust-golf-lab-hikone.jpg
+  source: site-published-hook
+- name: 株式会社アド・寿
+  slug: ad-kotobuki-hikone
+  url: https://ad-kotobuki-hikone.goodbouldering.chatgpt.site
+  status: live
+  category: 企業サイト
+  tech:
+  - React
+  - Vite
+  - Codex Sites
+  - D1
+  - R2
+  summary: 彦根・湖東・湖北の広告相談、見積り、入稿、求人・ブログ運用を一つにした地域広告会社サイト
+  since: 2026-07
+  source: site-published-hook
+  thumbnail: /img/portfolio/ad-kotobuki-hikone.jpg

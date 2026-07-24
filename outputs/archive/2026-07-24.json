@@ -18,7 +18,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/STK414_AI_CHATBOT_E-1.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-24T15:06:58-04:00"
+      "published": "2026-07-24T15:06:58-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "8abd753803f47702",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/VRG_VST_20260724_Site.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-24T13:29:48-04:00"
+      "published": "2026-07-24T13:29:48-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "a2ce0ab0bd179a9d",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/STKB364_CLAUDE_D.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-24T13:00:00-04:00"
+      "published": "2026-07-24T13:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "4811ff9f60b3b0fd",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/04_Trending.jpg?quality=90&amp;strip=all&amp;crop=0%2C4.9744178812656%2C100%2C60.121795706945&amp;w=1200",
-      "published": "2026-07-24T13:00:00-04:00"
+      "published": "2026-07-24T13:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "f6ce606f5ae1e185",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/Petridish_illo.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-24T10:43:55-04:00"
+      "published": "2026-07-24T10:43:55-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "0487f96b1c07ad4b",
@@ -113,7 +123,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/jmyPuoMIbkc/hqdefault.jpg",
-      "published": "2026-07-24T10:00:00+00:00"
+      "published": "2026-07-24T10:00:00+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "b3b0502ab8201890",
@@ -132,7 +144,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/6aecT-dQ4f4/hqdefault.jpg",
-      "published": "2026-07-24T10:00:23+00:00"
+      "published": "2026-07-24T10:00:23+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "aeb8fe6734f9a771",
@@ -151,7 +165,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://cdn.arstechnica.net/wp-content/uploads/2026/07/GettyImages-1004669768-1152x648-1784927041.jpg",
-      "published": "Fri, 24 Jul 2026 21:25:15 +0000"
+      "published": "Fri, 24 Jul 2026 21:25:15 +0000",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "ef34bb1162ee10d2",
@@ -170,7 +186,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://cdn.arstechnica.net/wp-content/uploads/2026/07/opus-5-1152x648.jpg",
-      "published": "Fri, 24 Jul 2026 21:05:51 +0000"
+      "published": "Fri, 24 Jul 2026 21:05:51 +0000",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "52418c9d74d4f5ae",
@@ -189,7 +207,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://cdn.arstechnica.net/wp-content/uploads/2026/07/GettyImages-2239702658-1152x648.jpg",
-      "published": "Fri, 24 Jul 2026 17:31:26 +0000"
+      "published": "Fri, 24 Jul 2026 17:31:26 +0000",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

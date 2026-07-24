@@ -4,6 +4,7 @@ date: 2026-07-24
 role: ブログ兼説明資料 / Codex・Git初心者向け
 gen_by: 由井 辰美 / AI相談
 summary: CodexのLocal、Worktree、sandbox、branch、stage、commit、push、pull request、deployの違いを、町のパン屋さんのたとえと実務フローでやさしく整理します。
+image: /img/blog-codex-worktree-guide-hero-20260724.webp
 audience: Gitの言葉が多く、Codexでどの作業場所を選べばよいか迷う地域事業者、講座受講者、非エンジニア
 duration: 10分
 goal: 作業の大きさと現在のGit状態から、LocalかWorktreeかを選び、公開までの現在地を説明できる
@@ -16,6 +17,10 @@ goal: 作業の大きさと現在のGit状態から、LocalかWorktreeかを選�
 .codex-git-guide h3{margin-top:2rem}
 .codex-git-guide p,.codex-git-guide li{line-height:1.85}
 .codex-git-guide .lead{font-size:1.12rem;color:var(--cg-soft)}
+.codex-git-guide .guide-figure{width:min(100%,960px);margin:1rem auto 2rem}
+.codex-git-guide .guide-figure img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border:1px solid #dbe4ed;border-radius:18px;background:#f6f9fc;box-shadow:0 14px 36px rgba(23,32,51,.1)}
+.codex-git-guide .guide-figure figcaption{margin:.7rem auto 0;color:var(--cg-soft);font-size:.88rem;line-height:1.65;text-align:center}
+.codex-git-guide .guide-hero{margin-top:0}
 .codex-git-guide .conclusion{margin:1.4rem 0;padding:1.25rem 1.4rem;border-left:6px solid var(--cg-blue);background:var(--cg-blue-soft);border-radius:8px}
 .codex-git-guide .conclusion strong{display:block;font-size:1.25rem;margin-bottom:.45rem}
 .codex-git-guide .analogy-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:1.2rem 0 1.8rem}
@@ -62,6 +67,11 @@ goal: 作業の大きさと現在のGit状態から、LocalかWorktreeかを選�
 
 <div class="codex-git-guide" markdown="1">
 
+<figure class="guide-figure guide-hero">
+  <img src="/img/blog-codex-worktree-guide-hero-20260724.webp" alt="いつもの厨房、試作厨房、記録、確認、配送、店頭公開をつないだCodexとGitの流れ" loading="eager" decoding="async">
+  <figcaption>作業場所を選び、記録し、確認してから本番へ届ける。全体の順番はパン作りと同じです。</figcaption>
+</figure>
+
 「LocalとWorktreeは何が違うの？」「ブランチを作ったら保存されたの？」「コミットしたら公開されたの？」。
 
 Codexで仕事を始めると、似た言葉が一度に出てきます。難しいのは操作より、**それぞれが何を分けているのか**です。
@@ -73,7 +83,12 @@ Codexで仕事を始めると、似た言葉が一度に出てきます。難し
 Local / Worktreeは作業場所、sandboxは安全柵、Gitは記録、Pull Requestは公開前の相談、Deployはお客様に見せる公開作業です。
 </div>
 
-## まず、町のパン屋さんで考える
+## 町のパン屋さんで、役割の違いをつかむ
+
+<figure class="guide-figure">
+  <img src="/img/blog-codex-worktree-guide-section-1-spaces-20260724.webp" alt="通常の厨房と安全枠で分けた試作厨房を使い分けるイメージ" loading="lazy" decoding="async">
+  <figcaption>Localはいつもの厨房、Worktreeは別の試作厨房、Sandboxは作業範囲を守る安全枠です。</figcaption>
+</figure>
 
 新しいパンを作る仕事で考えてみます。
 
@@ -90,7 +105,7 @@ Local / Worktreeは作業場所、sandboxは安全柵、Gitは記録、Pull Requ
 
 つまり、コミットしても、プッシュしても、Pull Requestを作っても、まだお客様には見えていません。
 
-## 利用図：Codexの作業開始から本番公開まで
+### 利用図：Codexの作業開始から本番公開まで
 
 <div class="flow" role="img" aria-label="CodexでLocalまたはWorktreeを選び、sandboxの中で作業し、branch、commit、push、pull request、merge、deploy、本番確認へ進む流れ">
   <div class="flow-start">依頼する前に、作業の大きさと今のGit状態を見る</div>
@@ -120,7 +135,7 @@ Local / Worktreeは作業場所、sandboxは安全柵、Gitは記録、Pull Requ
 
 この図の重要点は、**LocalとWorktreeは最初に選ぶ作業場所で、その後のGitの流れは同じ**ということです。
 
-## 似ている言葉を、何を分ける機能かで整理する
+### 似ている言葉を、何を分ける機能かで整理する
 
 | 用語 | 何を分ける？ | やさしい意味 | これだけでは起きないこと |
 |---|---|---|---|
@@ -136,15 +151,15 @@ Local / Worktreeは作業場所、sandboxは安全柵、Gitは記録、Pull Requ
 | Deploy | 公開反映 | 実行環境やWebへ成果物を置く | 正しく表示された保証にはならない |
 | 本番確認 | 完了確認 | 実際のURL・画面・APIで確かめる | ここを飛ばすと「公開したつもり」になる |
 
-## 一番混同しやすい4組
+### 一番混同しやすい4組
 
-### 1. LocalとSandboxは別
+#### 1. LocalとSandboxは別
 
 Localは「どのフォルダで作業するか」です。Sandboxは「その作業中にどこまで触ってよいか」です。
 
 LocalでもWorktreeでも、Sandboxは使われます。たとえば「このプロジェクト内は編集できるが、別事業のフォルダや外部ネットワークは確認が必要」という安全枠を作れます。
 
-### 2. WorktreeとBranchは別
+#### 2. WorktreeとBranchは別
 
 Worktreeは**実際の別フォルダ**です。Branchは**変更履歴につける名前**です。
 
@@ -152,19 +167,24 @@ Codexが作るWorktreeは、最初はBranchへつながっていない `detached
 
 同じBranchをLocalとWorktreeの両方で同時に開くことはできません。Gitが「どちらの作業場が正しいBranchなのか」を決められなくなるためです。
 
-### 3. CommitとPushは別
+#### 3. CommitとPushは別
 
 Commitは自分のPC内の履歴です。Pushは、その履歴をGitHubへ送る操作です。
 
 たとえるなら、Commitは厨房の試作ノートへ記録すること。Pushは、そのノートの写しを本部へ送ることです。
 
-### 4. MergeとDeployは別
+#### 4. MergeとDeployは別
 
 MergeはGitの履歴をmainへ採用すること。Deployは採用した成果物を実際のWeb環境へ置くことです。
 
 VercelなどとGitHubを連携している場合は、mainへのMergeをきっかけに自動Deployされます。ただし、処理の失敗や古いキャッシュもあるため、最後は本番URLで確認します。
 
-## LocalかWorktreeか、5問で決める
+## LocalかWorktreeかを、5問と3つの実例で決める
+
+<figure class="guide-figure">
+  <img src="/img/blog-codex-worktree-guide-section-2-choose-20260724.webp" alt="小さな修正は通常の厨房、大きな別案は試作厨房を選び、ローカル・プレビュー・本番を段階確認するイメージ" loading="lazy" decoding="async">
+  <figcaption>変更の大きさだけでなく、今の作業場がきれいか、別作業と混ざらないかで選びます。</figcaption>
+</figure>
 
 <div class="decision">
 <ol>
@@ -178,7 +198,7 @@ VercelなどとGitHubを連携している場合は、mainへのMergeをきっ�
 
 迷った時の標準は、**小さくてきれいな作業場ならLocal、混ざりそうならWorktree**です。
 
-## 状態表示は「ローカル・プレビュー・本番」の3つに分ける
+### 状態表示は「ローカル・プレビュー・本番」の3つに分ける
 
 <div class="state-list">
   <div class="state local"><b>ローカル</b>自分のPCだけ。例：<code>http://localhost:3000</code></div>
@@ -194,7 +214,7 @@ VercelなどとGitHubを連携している場合は、mainへのMergeをきっ�
 - プレビュー：Pull Requestの確認用URLで動作確認済み
 - 本番：Merge・Deploy後、正式URLで画面と主要機能を確認済み
 
-## 実例1：案内文の誤字を1か所直す
+### 実例1：案内文の誤字を1か所直す
 
 <div class="case">
 <b>おすすめ：Local</b>
@@ -204,7 +224,7 @@ Localがきれいで、対象ファイルが1つなら、いつものフォル�
 
 Localに別作業の未コミット変更があるなら、誤字修正でもWorktreeへ分けたほうが安全です。変更の大きさだけでなく、**今の作業場がきれいか**で判断します。
 
-## 実例2：トップページを別案で作り直す
+### 実例2：トップページを別案で作り直す
 
 <div class="case">
 <b>おすすめ：Worktree</b>
@@ -214,7 +234,7 @@ Localに別作業の未コミット変更があるなら、誤字修正でもWor
 
 別案が不採用でも、いつものLocalはそのままです。これがWorktreeの大きな利点です。
 
-## 実例3：AI相談の資料を追加する
+### 実例3：AI相談の資料を追加する
 
 このAI相談サイトでは、GitHubの `main` とVercel本番がつながっています。資料追加の安全な流れは次の通りです。
 
@@ -240,9 +260,16 @@ https://ai-hub-jp.vercel.app の対象ページを確認</code></pre>
 
 ここで大切なのは、Pull Requestを作った時点では「公開候補」、Preview URLは「確認用」、本番URLを確認して初めて「公開完了」と言うことです。
 
-## Codex画面での基本操作
+## CodexとGitの基本操作を、一本道で覚える
 
-### Worktreeで始める
+<figure class="guide-figure">
+  <img src="/img/blog-codex-worktree-guide-section-3-flow-20260724.webp" alt="パソコンで変更し、対象を選び、履歴に残し、GitHubへ送り、Pull Requestで確認する流れ" loading="lazy" decoding="async">
+  <figcaption>編集、Stage、Commit、Push、Pull Requestは、それぞれ役割が違う連続した工程です。</figcaption>
+</figure>
+
+### Codex画面での基本操作
+
+#### Worktreeで始める
 
 1. 新しいCodexタスクを作る
 2. 入力欄の下で **Worktree** を選ぶ
@@ -254,7 +281,7 @@ https://ai-hub-jp.vercel.app の対象ページを確認</code></pre>
 
 いつものIDEや開発サーバーで確認したい時は、**Hand off** でWorktreeからLocalへ移します。
 
-### Localで始める
+#### Localで始める
 
 1. 最初に `git status` で作業中の変更を確認する
 2. 今回の変更と混ざらないことを確かめる
@@ -262,7 +289,7 @@ https://ai-hub-jp.vercel.app の対象ページを確認</code></pre>
 4. 小さく変更し、差分・テスト・画面を確認する
 5. Stage、Commit、Push、Pull Requestへ進む
 
-## コマンドで見るとこうなる
+### コマンドで見るとこうなる
 
 Codex画面だけでも操作できます。裏側を知りたい人向けの最小例です。
 
@@ -285,9 +312,9 @@ gh pr create
 
 Deployの方法はプロジェクトごとに違います。GitHubとVercelが連携していれば、BranchのPushでPreview、mainへのMergeでProduction Deployとなる構成が一般的です。
 
-## そのまま使えるCodex依頼文
+### そのまま使えるCodex依頼文
 
-### 安全な作業場所を選ばせる
+#### 安全な作業場所を選ばせる
 
 <pre class="prompt"><code>このリポジトリのGit状態を最初に確認してください。
 今回の作業と関係ない未コミット変更がある場合は、触らずに、
@@ -301,21 +328,28 @@ Deployの方法はプロジェクトごとに違います。GitHubとVercelが�
 Commit、Push、Pull Request、Deployは同じ意味として扱わないでください。
 外部公開や本番変更の前には確認を求めてください。</code></pre>
 
-### Pull Requestまで頼む
+#### Pull Requestまで頼む
 
 <pre class="prompt"><code>この変更を専用Branchで実装し、差分、テスト、PC幅、スマホ幅を確認してください。
 関係ない変更は含めないでください。
 確認後にCommitとPushを行い、変更内容と確認方法が分かるPull Requestを作ってください。
 本番へのMergeとDeployはまだ行わないでください。</code></pre>
 
-### 本番公開まで頼む
+#### 本番公開まで頼む
 
 <pre class="prompt"><code>承認済みのPull Requestを本番へ反映してください。
 Merge、Deploy、正式な本番URLでの確認まで進めてください。
 完了報告には、推測ではない本番URL、確認したページまたはAPI、
 未完了があれば理由と次の1手を書いてください。</code></pre>
 
-## よくある勘違い
+## 勘違いを避け、人に説明して本番確認する
+
+<figure class="guide-figure">
+  <img src="/img/blog-codex-worktree-guide-section-4-verify-20260724.webp" alt="変更を人と確認し、パソコンとスマートフォンで表示を確かめ、本番の店頭公開まで確認するイメージ" loading="lazy" decoding="async">
+  <figcaption>公開候補を人と確認し、本番URLをPCとスマホで開いて、正しく見えて初めて完了です。</figcaption>
+</figure>
+
+### よくある勘違い
 
 | 勘違い | 正しくは |
 |---|---|
@@ -328,13 +362,13 @@ Merge、Deploy、正式な本番URLでの確認まで進めてください。
 | Deploy成功なら確認不要 | 正しいページ、データ、権限、表示を本番で確かめる |
 | Sandboxがあるから内容も正しい | Sandboxは行動範囲の柵。内容の品質は差分・テスト・人の確認が必要 |
 
-## 人に説明する60秒台本
+### 人に説明する60秒台本
 
 <div class="one-minute">
 CodexのLocalは「いつもの厨房」、Worktreeは「別の試作厨房」です。Sandboxは、どちらの厨房でもCodexが触ってよい範囲を決める安全柵です。Branchは新作につける名前札、Commitは日付入りの試作記録、Pushは記録をGitHubへ送ることです。Pull Requestは本店へ採用する前の試食会、Mergeは公式レシピへの採用、Deployは実際に店頭へ並べることです。だから、CommitやPull Requestではまだ公開されていません。最後に本番URLを開いて確認して、初めて完了です。
 </div>
 
-## 最低限の確認リスト
+### 最低限の確認リスト
 
 - [ ] 今のLocalに、別作業の未コミット変更がないか見た
 - [ ] 小さな作業はLocal、混ざりそうな作業はWorktreeにした
@@ -346,7 +380,7 @@ CodexのLocalは「いつもの厨房」、Worktreeは「別の試作厨房」�
 - [ ] 本番では正式URLと主要機能を実際に確認した
 - [ ] 公開・課金・DB変更・外部送信は承認後に行った
 
-## 公式情報
+### 公式情報
 
 - [Codex Worktrees](https://learn.chatgpt.com/docs/environments/git-worktrees)
 - [Codex Sandbox](https://learn.chatgpt.com/docs/sandboxing)

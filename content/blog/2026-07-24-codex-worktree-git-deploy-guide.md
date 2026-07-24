@@ -1,392 +1,164 @@
 ---
-title: "CodexのWorktreeが3分でわかる：ローカル・Git・ブランチ・PR・デプロイの使い分け"
+title: "CodexのWorktree入門：いつもの場所と別の場所"
 date: 2026-07-24
 role: ブログ兼説明資料 / Codex・Git初心者向け
 gen_by: 由井 辰美 / AI相談
-summary: CodexのLocal、Worktree、sandbox、branch、stage、commit、push、pull request、deployの違いを、町のパン屋さんのたとえと実務フローでやさしく整理します。
-image: /img/blog-codex-worktree-guide-hero-20260724.webp
-audience: Gitの言葉が多く、Codexでどの作業場所を選べばよいか迷う地域事業者、講座受講者、非エンジニア
-duration: 10分
-goal: 作業の大きさと現在のGit状態から、LocalかWorktreeかを選び、公開までの現在地を説明できる
+summary: CodexのLocal、Worktree、Git、Pull Request、Deployの役割を、町のパン屋さんにたとえて簡単に説明します。
+image: /img/blog-codex-worktree-guide-hero-labels-v2-20260724.webp
+audience: Codexを使いたいが、Gitの言葉が難しいと感じる地域事業者、講座受講者、非エンジニア
+duration: 5分
+goal: LocalとWorktreeを使い分け、作業中・確認中・公開済みの違いを説明できる
 ---
 
 <style>
-.codex-git-guide{--cg-blue:#2563eb;--cg-blue-soft:#eff6ff;--cg-green:#15803d;--cg-green-soft:#f0fdf4;--cg-orange:#c2410c;--cg-orange-soft:#fff7ed;--cg-purple:#7e22ce;--cg-purple-soft:#faf5ff;--cg-ink:#172033;--cg-soft:#475569;--cg-line:#cbd5e1;color:var(--cg-ink)}
-.codex-git-guide *{box-sizing:border-box}
-.codex-git-guide h2{margin-top:2.6rem}
-.codex-git-guide h3{margin-top:2rem}
-.codex-git-guide p,.codex-git-guide li{line-height:1.85}
-.codex-git-guide .lead{font-size:1.12rem;color:var(--cg-soft)}
-.codex-git-guide .guide-figure{width:min(100%,960px);margin:1rem auto 2rem}
-.codex-git-guide .guide-figure img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border:1px solid #dbe4ed;border-radius:18px;background:#f6f9fc;box-shadow:0 14px 36px rgba(23,32,51,.1)}
-.codex-git-guide .guide-figure figcaption{margin:.7rem auto 0;color:var(--cg-soft);font-size:.88rem;line-height:1.65;text-align:center}
-.codex-git-guide .guide-hero{margin-top:0}
-.codex-git-guide .conclusion{margin:1.4rem 0;padding:1.25rem 1.4rem;border-left:6px solid var(--cg-blue);background:var(--cg-blue-soft);border-radius:8px}
-.codex-git-guide .conclusion strong{display:block;font-size:1.25rem;margin-bottom:.45rem}
-.codex-git-guide .analogy-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:1.2rem 0 1.8rem}
-.codex-git-guide .analogy-card{border:1px solid var(--cg-line);border-radius:10px;padding:1rem;background:#fff}
-.codex-git-guide .analogy-card b{display:block;margin-bottom:.35rem}
-.codex-git-guide .analogy-card span{color:var(--cg-soft);font-size:.94rem;line-height:1.7}
-.codex-git-guide .flow{margin:1.4rem 0 1.8rem;padding:1rem;border:1px solid var(--cg-line);border-radius:12px;background:#f8fafc}
-.codex-git-guide .flow-start{padding:.8rem 1rem;text-align:center;background:var(--cg-ink);color:#fff;border-radius:8px;font-weight:700}
-.codex-git-guide .flow-choice{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
-.codex-git-guide .flow-lane{padding:1rem;border:2px solid var(--cg-blue);border-radius:10px;background:#fff}
-.codex-git-guide .flow-lane.worktree{border-color:var(--cg-purple)}
-.codex-git-guide .flow-lane b{display:block;font-size:1.05rem;margin-bottom:.3rem}
-.codex-git-guide .flow-lane span{color:var(--cg-soft);font-size:.92rem;line-height:1.65}
-.codex-git-guide .flow-arrow{text-align:center;font-size:1.4rem;color:var(--cg-soft);line-height:1}
-.codex-git-guide .flow-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:12px}
-.codex-git-guide .flow-step{min-height:108px;padding:.85rem;border:1px solid var(--cg-line);border-radius:9px;background:#fff}
-.codex-git-guide .flow-step b{display:block;margin-bottom:.25rem}
-.codex-git-guide .flow-step span{font-size:.88rem;line-height:1.55;color:var(--cg-soft)}
-.codex-git-guide .flow-step.public{border-color:var(--cg-green);background:var(--cg-green-soft)}
-.codex-git-guide table{width:100%;border-collapse:collapse;margin:1rem 0 1.8rem;font-size:.94rem}
-.codex-git-guide th{padding:.75rem;text-align:left;background:var(--cg-ink);color:#fff}
-.codex-git-guide td{padding:.75rem;border-bottom:1px solid var(--cg-line);vertical-align:top;line-height:1.7}
-.codex-git-guide td:first-child{font-weight:700;white-space:nowrap}
-.codex-git-guide .decision{margin:1rem 0 1.8rem;padding:1.1rem 1.3rem;background:var(--cg-orange-soft);border:1px solid #fdba74;border-radius:10px}
-.codex-git-guide .case{margin:1rem 0;padding:1rem 1.15rem;border:1px solid var(--cg-line);border-radius:10px;background:#fff}
-.codex-git-guide .case b{color:var(--cg-blue)}
-.codex-git-guide pre{padding:1rem 1.1rem;overflow:auto;border-radius:10px;background:#0f172a;color:#e2e8f0;line-height:1.7}
-.codex-git-guide .state-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:1rem 0 1.8rem}
-.codex-git-guide .state{padding:1rem;border-radius:10px;border:1px solid var(--cg-line);background:#fff}
-.codex-git-guide .state b{display:block;margin-bottom:.3rem}
-.codex-git-guide .state.local{border-top:5px solid var(--cg-orange)}
-.codex-git-guide .state.preview{border-top:5px solid var(--cg-purple)}
-.codex-git-guide .state.production{border-top:5px solid var(--cg-green)}
-.codex-git-guide .prompt{white-space:pre-wrap}
-.codex-git-guide .one-minute{margin:1rem 0 1.8rem;padding:1.2rem 1.3rem;border:2px dashed var(--cg-blue);border-radius:10px;background:#fff}
-@media(max-width:780px){
-  .codex-git-guide .analogy-grid,.codex-git-guide .state-list{grid-template-columns:1fr}
-  .codex-git-guide .flow-choice{grid-template-columns:1fr}
-  .codex-git-guide .flow-steps{grid-template-columns:1fr 1fr}
-  .codex-git-guide td:first-child{white-space:normal}
+.simple-codex-guide{--sc-blue:#2563eb;--sc-teal:#0f8f8a;--sc-green:#4f8f27;--sc-orange:#d97706;--sc-purple:#7c3aed;--sc-ink:#172033;--sc-soft:#526071;--sc-line:#dbe4ed;color:var(--sc-ink)}
+.simple-codex-guide *{box-sizing:border-box}
+.simple-codex-guide h2{margin-top:2.8rem}
+.simple-codex-guide h3{margin-top:2rem}
+.simple-codex-guide p,.simple-codex-guide li{line-height:1.85}
+.simple-codex-guide .guide-figure{width:min(100%,960px);margin:1rem auto 2rem}
+.simple-codex-guide .guide-figure img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border:1px solid var(--sc-line);border-radius:18px;background:#f7fbff;box-shadow:0 14px 36px rgba(23,32,51,.1)}
+.simple-codex-guide .guide-figure figcaption{margin:.7rem auto 0;color:var(--sc-soft);font-size:.9rem;line-height:1.65;text-align:center}
+.simple-codex-guide .guide-hero{margin-top:0}
+.simple-codex-guide .first-message{margin:1.4rem 0;padding:1.25rem 1.4rem;border-left:6px solid var(--sc-blue);background:#eff6ff;border-radius:10px}
+.simple-codex-guide .first-message strong{display:block;font-size:1.25rem;margin-bottom:.45rem}
+.simple-codex-guide .role-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:1.2rem 0 1.8rem}
+.simple-codex-guide .role-card{padding:1rem;border:1px solid var(--sc-line);border-radius:12px;background:#fff}
+.simple-codex-guide .role-card b{display:block;margin-bottom:.35rem;color:var(--sc-blue)}
+.simple-codex-guide .role-card span{display:block;color:var(--sc-soft);font-size:.92rem;line-height:1.65}
+.simple-codex-guide .choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:1.2rem 0 1.8rem}
+.simple-codex-guide .choice-card{padding:1.2rem;border:2px solid var(--sc-blue);border-radius:14px;background:#fff}
+.simple-codex-guide .choice-card.worktree{border-color:var(--sc-teal)}
+.simple-codex-guide .choice-card b{display:block;font-size:1.12rem;margin-bottom:.5rem}
+.simple-codex-guide .choice-card ul{margin:.5rem 0 0;padding-left:1.25rem}
+.simple-codex-guide .rule{margin:1rem 0 1.8rem;padding:1rem 1.2rem;border-radius:12px;background:#fff7ed;border:1px solid #fdba74}
+.simple-codex-guide .journey{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px;margin:1.2rem 0 1.8rem}
+.simple-codex-guide .journey-step{padding:1rem .8rem;border:1px solid var(--sc-line);border-radius:12px;background:#fff;text-align:center}
+.simple-codex-guide .journey-step b{display:block;margin-bottom:.35rem}
+.simple-codex-guide .journey-step span{font-size:.88rem;line-height:1.55;color:var(--sc-soft)}
+.simple-codex-guide .state-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:1rem 0 1.8rem}
+.simple-codex-guide .state{padding:1rem;border-radius:12px;border:1px solid var(--sc-line);background:#fff}
+.simple-codex-guide .state b{display:block;margin-bottom:.3rem}
+.simple-codex-guide .state.local{border-top:5px solid var(--sc-orange)}
+.simple-codex-guide .state.preview{border-top:5px solid var(--sc-purple)}
+.simple-codex-guide .state.production{border-top:5px solid var(--sc-green)}
+.simple-codex-guide .one-minute{margin:1rem 0 1.8rem;padding:1.2rem 1.3rem;border:2px dashed var(--sc-blue);border-radius:12px;background:#fff}
+@media(max-width:800px){
+  .simple-codex-guide .role-grid{grid-template-columns:1fr 1fr}
+  .simple-codex-guide .journey{grid-template-columns:1fr 1fr}
 }
-@media(max-width:480px){.codex-git-guide .flow-steps{grid-template-columns:1fr}}
+@media(max-width:560px){
+  .simple-codex-guide .role-grid,.simple-codex-guide .choice-grid,.simple-codex-guide .journey,.simple-codex-guide .state-list{grid-template-columns:1fr}
+}
 </style>
 
-<div class="codex-git-guide" markdown="1">
+<div class="simple-codex-guide" markdown="1">
 
 <figure class="guide-figure guide-hero">
-  <img src="/img/blog-codex-worktree-guide-hero-20260724.webp" alt="いつもの厨房、試作厨房、記録、確認、配送、店頭公開をつないだCodexとGitの流れ" loading="eager" decoding="async">
-  <figcaption>作業場所を選び、記録し、確認してから本番へ届ける。全体の順番はパン作りと同じです。</figcaption>
+  <img src="/img/blog-codex-worktree-guide-hero-labels-v2-20260724.webp" alt="作業する、記録する、相談する、公開するというCodexの仕事の流れ" loading="eager" decoding="async">
+  <figcaption>Codexの仕事は、作る、記録する、相談する、公開する、という順番です。</figcaption>
 </figure>
 
-「LocalとWorktreeは何が違うの？」「ブランチを作ったら保存されたの？」「コミットしたら公開されたの？」。
+Codexを使うと、Local、Worktree、Commit、Pull Requestなど、似た言葉がたくさん出てきます。
 
-Codexで仕事を始めると、似た言葉が一度に出てきます。難しいのは操作より、**それぞれが何を分けているのか**です。
+全部を一度に覚える必要はありません。まずは、**どこで作るか、どう記録するか、いつ公開されるか**だけ分かれば十分です。
 
-このページでは、町のパン屋さんにたとえて、作業開始から本番公開までを一本につなげます。
-
-<div class="conclusion">
-<strong>最初に覚えるのは「場所・安全・記録・相談・公開」の5つだけ</strong>
-Local / Worktreeは作業場所、sandboxは安全柵、Gitは記録、Pull Requestは公開前の相談、Deployはお客様に見せる公開作業です。
+<div class="first-message">
+<strong>最初に覚えるのは5つだけ</strong>
+作業場所、安全柵、記録、相談、公開。この5つに分けると、Gitの言葉が整理できます。
 </div>
 
-## 町のパン屋さんで、役割の違いをつかむ
+## まず、5つの役割だけ覚える
 
 <figure class="guide-figure">
-  <img src="/img/blog-codex-worktree-guide-section-1-spaces-20260724.webp" alt="通常の厨房と安全枠で分けた試作厨房を使い分けるイメージ" loading="lazy" decoding="async">
-  <figcaption>Localはいつもの厨房、Worktreeは別の試作厨房、Sandboxは作業範囲を守る安全枠です。</figcaption>
+  <img src="/img/blog-codex-worktree-guide-spaces-labels-v2-20260724.webp" alt="Localはいつもの場所、Worktreeは別の場所、Sandboxは安全柵という説明図" loading="lazy" decoding="async">
+  <figcaption>LocalとWorktreeは作業場所、SandboxはCodexが触ってよい範囲を決める安全柵です。</figcaption>
 </figure>
 
-新しいパンを作る仕事で考えてみます。
+町のパン屋さんで考えると、役割は次の5つです。
 
-<div class="analogy-grid">
-  <div class="analogy-card"><b>Local＝いつもの厨房</b><span>普段使っているプロジェクトフォルダを、そのまま編集します。</span></div>
-  <div class="analogy-card"><b>Worktree＝別に借りた試作厨房</b><span>同じ店の材料とレシピを使いながら、別案を邪魔せず作れます。</span></div>
-  <div class="analogy-card"><b>Sandbox＝厨房の安全柵</b><span>入ってよい場所、触ってよい道具、外へ出てよい範囲を決めます。</span></div>
-  <div class="analogy-card"><b>Branch＝「夏の新作」札</b><span>どの改善案を進めているか分かる名前を付けます。</span></div>
-  <div class="analogy-card"><b>Commit＝日付入りの試作記録</b><span>その時点の変更を、説明つきで後から戻れる形に残します。</span></div>
-  <div class="analogy-card"><b>Pull Request＝試食会</b><span>公式メニューへ入れる前に、変更点を見せて相談・確認します。</span></div>
+<div class="role-grid">
+  <div class="role-card"><b>作業場所</b><span>LocalまたはWorktreeで作ります。</span></div>
+  <div class="role-card"><b>安全柵</b><span>Sandboxが触ってよい範囲を守ります。</span></div>
+  <div class="role-card"><b>記録</b><span>Commitで変更を残します。</span></div>
+  <div class="role-card"><b>相談</b><span>Pull Requestで変更を見せます。</span></div>
+  <div class="role-card"><b>公開</b><span>MergeとDeployで本番へ出します。</span></div>
 </div>
 
-最後に、採用したレシピを本店のメニューへ入れるのが**Merge**、実際に店頭へ並べるのが**Deploy**です。
+パン屋さんにたとえると、Localは**いつもの厨房**、Worktreeは**別に借りた試作厨房**です。
 
-つまり、コミットしても、プッシュしても、Pull Requestを作っても、まだお客様には見えていません。
+Commitは試作ノートへの記録、Pull Requestは試食会、Deployは店頭へ並べる作業です。
 
-### 利用図：Codexの作業開始から本番公開まで
+大切なのは、**Commitしただけでは公開されない**ということです。
 
-<div class="flow" role="img" aria-label="CodexでLocalまたはWorktreeを選び、sandboxの中で作業し、branch、commit、push、pull request、merge、deploy、本番確認へ進む流れ">
-  <div class="flow-start">依頼する前に、作業の大きさと今のGit状態を見る</div>
-  <div class="flow-arrow">↓</div>
-  <div class="flow-choice">
-    <div class="flow-lane">
-      <b>Localを選ぶ</b>
-      <span>小さな変更・作業中の変更がない・いつもの環境ですぐ確認したい</span>
-    </div>
-    <div class="flow-lane worktree">
-      <b>Worktreeを選ぶ</b>
-      <span>大きな変更・別案・並行作業・Localに未コミット変更がある</span>
-    </div>
+## LocalとWorktreeは、こう選ぶ
+
+<figure class="guide-figure">
+  <img src="/img/blog-codex-worktree-guide-choose-labels-v2-20260724.webp" alt="小さな修正はLocal、別案や並行作業はWorktreeを選ぶ説明図" loading="lazy" decoding="async">
+  <figcaption>小さく単独の修正ならLocal、別案や他の仕事と混ざりそうならWorktreeが安心です。</figcaption>
+</figure>
+
+<div class="choice-grid">
+  <div class="choice-card">
+    <b>Localが向いている時</b>
+    <ul>
+      <li>誤字やリンクを1か所直す</li>
+      <li>今の作業場に別の変更がない</li>
+      <li>いつもの環境ですぐ確認したい</li>
+    </ul>
   </div>
-  <div class="flow-arrow">↓ どちらもPC内で動き、sandboxの安全範囲がかかる ↓</div>
-  <div class="flow-steps">
-    <div class="flow-step"><b>1. Branch</b><span>この変更専用の名前札</span></div>
-    <div class="flow-step"><b>2. 編集・テスト</b><span>ファイルを直し、ローカル画面で確認</span></div>
-    <div class="flow-step"><b>3. Stage</b><span>今回の記録へ入れる変更だけ選ぶ</span></div>
-    <div class="flow-step"><b>4. Commit</b><span>説明つきの復元地点を作る</span></div>
-    <div class="flow-step"><b>5. Push</b><span>BranchとCommitをGitHubへ送る</span></div>
-    <div class="flow-step"><b>6. Pull Request</b><span>変更を見せ、相談・レビューする</span></div>
-    <div class="flow-step"><b>7. Merge</b><span>確認済みの変更をmainへ合流</span></div>
-    <div class="flow-step public"><b>8. Deploy・本番確認</b><span>公開し、本番URLで結果を確かめる</span></div>
+  <div class="choice-card worktree">
+    <b>Worktreeが向いている時</b>
+    <ul>
+      <li>トップページを別案で作る</li>
+      <li>ほかの作業も同時に進んでいる</li>
+      <li>今の作業場に未保存の変更がある</li>
+    </ul>
   </div>
 </div>
 
-この図の重要点は、**LocalとWorktreeは最初に選ぶ作業場所で、その後のGitの流れは同じ**ということです。
-
-### 似ている言葉を、何を分ける機能かで整理する
-
-| 用語 | 何を分ける？ | やさしい意味 | これだけでは起きないこと |
-|---|---|---|---|
-| Local | 作業場所 | いつものプロジェクトフォルダ | 自動では保存・公開されない |
-| Worktree | 作業場所 | 同じGitリポジトリから作る別の作業場 | バックアップや公開にはならない |
-| Sandbox | 権限・安全範囲 | Codexが触ってよい場所の柵 | コードの間違いまでは防げない |
-| Branch | 変更の系列 | 1つの改善案につける名前 | ファイルのコピー場所そのものではない |
-| Stage | 次の記録範囲 | コミットへ入れる変更を選ぶ | まだ履歴には残らない |
-| Commit | 履歴 | 説明つきの保存地点 | GitHubにも本番にも自動では届かない |
-| Push | 送信 | ローカルの履歴をGitHubへ送る | mainへの採用や本番公開ではない |
-| Pull Request | 相談・レビュー | この変更をmainへ入れてよいか確認する場 | 作っただけでは採用されない |
-| Merge | 採用 | 変更をmainへ合流する | デプロイ設定がなければ公開されない |
-| Deploy | 公開反映 | 実行環境やWebへ成果物を置く | 正しく表示された保証にはならない |
-| 本番確認 | 完了確認 | 実際のURL・画面・APIで確かめる | ここを飛ばすと「公開したつもり」になる |
-
-### 一番混同しやすい4組
-
-#### 1. LocalとSandboxは別
-
-Localは「どのフォルダで作業するか」です。Sandboxは「その作業中にどこまで触ってよいか」です。
-
-LocalでもWorktreeでも、Sandboxは使われます。たとえば「このプロジェクト内は編集できるが、別事業のフォルダや外部ネットワークは確認が必要」という安全枠を作れます。
-
-#### 2. WorktreeとBranchは別
-
-Worktreeは**実際の別フォルダ**です。Branchは**変更履歴につける名前**です。
-
-Codexが作るWorktreeは、最初はBranchへつながっていない `detached HEAD` の状態になることがあります。作業を残してPushやPull Requestへ進むなら、Codex画面の「Create branch here」などでBranchを作ります。
-
-同じBranchをLocalとWorktreeの両方で同時に開くことはできません。Gitが「どちらの作業場が正しいBranchなのか」を決められなくなるためです。
-
-#### 3. CommitとPushは別
-
-Commitは自分のPC内の履歴です。Pushは、その履歴をGitHubへ送る操作です。
-
-たとえるなら、Commitは厨房の試作ノートへ記録すること。Pushは、そのノートの写しを本部へ送ることです。
-
-#### 4. MergeとDeployは別
-
-MergeはGitの履歴をmainへ採用すること。Deployは採用した成果物を実際のWeb環境へ置くことです。
-
-VercelなどとGitHubを連携している場合は、mainへのMergeをきっかけに自動Deployされます。ただし、処理の失敗や古いキャッシュもあるため、最後は本番URLで確認します。
-
-## LocalかWorktreeかを、5問と3つの実例で決める
-
-<figure class="guide-figure">
-  <img src="/img/blog-codex-worktree-guide-section-2-choose-20260724.webp" alt="小さな修正は通常の厨房、大きな別案は試作厨房を選び、ローカル・プレビュー・本番を段階確認するイメージ" loading="lazy" decoding="async">
-  <figcaption>変更の大きさだけでなく、今の作業場がきれいか、別作業と混ざらないかで選びます。</figcaption>
-</figure>
-
-<div class="decision">
-<ol>
-  <li>Gitリポジトリですか？ <strong>いいえ → Local。</strong> WorktreeはGitがないと使えません。</li>
-  <li>Localに未コミットの変更がありますか？ <strong>はい → Worktree。</strong> 別の仕事を混ぜないようにします。</li>
-  <li>同時に別の変更を進めますか？ <strong>はい → Worktree。</strong></li>
-  <li>変更が1ファイル程度で、すぐ戻せますか？ <strong>はい → Localでも十分。</strong></li>
-  <li>いつもの開発サーバーやPC固有の設定でしか確認できませんか？ <strong>はい → Local、またはWorktreeからLocalへHandoff。</strong></li>
-</ol>
+<div class="rule">
+<strong>迷った時の決め方：</strong>小さく、ほかの仕事と混ざらないならLocal。少しでも混ざりそうならWorktree。
 </div>
 
-迷った時の標準は、**小さくてきれいな作業場ならLocal、混ざりそうならWorktree**です。
+Branchは、作業につける**名前札**です。Worktreeという別の作業場に「トップページ改善」などの名前札をつける、と考えると分かりやすくなります。
 
-### 状態表示は「ローカル・プレビュー・本番」の3つに分ける
+## 公開までは、この順番
+
+<figure class="guide-figure">
+  <img src="/img/blog-codex-worktree-guide-flow-labels-v2-20260724.webp" alt="作る、選ぶ、記録、送る、公開という作業の流れ" loading="lazy" decoding="async">
+  <figcaption>難しい操作名より、今どの段階にいるかを意識することが大切です。</figcaption>
+</figure>
+
+<div class="journey">
+  <div class="journey-step"><b>1. 作る</b><span>LocalかWorktreeで変更します。</span></div>
+  <div class="journey-step"><b>2. 選ぶ</b><span>今回残す変更だけ選びます。</span></div>
+  <div class="journey-step"><b>3. 記録</b><span>Commitで履歴に残します。</span></div>
+  <div class="journey-step"><b>4. 送る</b><span>GitHubへ送り、Pull Requestで確認します。</span></div>
+  <div class="journey-step"><b>5. 公開</b><span>Merge、Deploy、本番確認まで進めます。</span></div>
+</div>
+
+完了した場所は、次の3つに分けて伝えます。
 
 <div class="state-list">
-  <div class="state local"><b>ローカル</b>自分のPCだけ。例：<code>http://localhost:3000</code></div>
-  <div class="state preview"><b>プレビュー</b>確認用URL。関係者に見せられるが、本番とは別。</div>
-  <div class="state production"><b>本番</b>利用者が使う正式URL。実際に開いて確認して初めて完了。</div>
+  <div class="state local"><b>ローカル</b>自分のPCで確認できた状態。</div>
+  <div class="state preview"><b>プレビュー</b>関係者が確認できる公開前の状態。</div>
+  <div class="state production"><b>本番</b>正式URLで利用者が見られる状態。</div>
 </div>
 
-「ビルド成功」「コミット済み」「Push済み」「プレビュー確認済み」は、すべて本番確認前の状態です。
+CommitやPull Requestは、まだ公開途中です。Deployが終わり、**正式な本番URLを実際に開いて確認した時点**で公開完了です。
 
-完了報告では、次のように言い分けます。
-
-- ローカル：ビルドと画面確認まで完了
-- プレビュー：Pull Requestの確認用URLで動作確認済み
-- 本番：Merge・Deploy後、正式URLで画面と主要機能を確認済み
-
-### 実例1：案内文の誤字を1か所直す
-
-<div class="case">
-<b>おすすめ：Local</b>
-
-Localがきれいで、対象ファイルが1つなら、いつものフォルダで直します。差分を確認し、必要なテストをしてCommitします。チーム運用ならPushとPull Requestへ進みます。
-</div>
-
-Localに別作業の未コミット変更があるなら、誤字修正でもWorktreeへ分けたほうが安全です。変更の大きさだけでなく、**今の作業場がきれいか**で判断します。
-
-### 実例2：トップページを別案で作り直す
-
-<div class="case">
-<b>おすすめ：Worktree</b>
-
-本線を壊さず、専用Worktreeと専用Branchで進めます。ローカル表示、PC幅、スマホ幅、リンク、フォームを確認してからPushします。Pull RequestのプレビューURLを関係者へ見せ、採用後にMergeします。
-</div>
-
-別案が不採用でも、いつものLocalはそのままです。これがWorktreeの大きな利点です。
-
-### 実例3：AI相談の資料を追加する
-
-このAI相談サイトでは、GitHubの `main` とVercel本番がつながっています。資料追加の安全な流れは次の通りです。
-
-<pre><code>最新の origin/main
-  ↓
-資料追加専用 Worktree
-  ↓
-codex/add-codex-worktree-guide Branch
-  ↓
-content/blog に原稿を追加
-  ↓
-ローカルビルド・リンク・PC/スマホ確認
-  ↓
-Commit → Push → Pull Request
-  ↓
-Preview URLで確認
-  ↓ CEO承認
-Merge
-  ↓
-VercelへProduction Deploy
-  ↓
-https://ai-hub-jp.vercel.app の対象ページを確認</code></pre>
-
-ここで大切なのは、Pull Requestを作った時点では「公開候補」、Preview URLは「確認用」、本番URLを確認して初めて「公開完了」と言うことです。
-
-## CodexとGitの基本操作を、一本道で覚える
-
-<figure class="guide-figure">
-  <img src="/img/blog-codex-worktree-guide-section-3-flow-20260724.webp" alt="パソコンで変更し、対象を選び、履歴に残し、GitHubへ送り、Pull Requestで確認する流れ" loading="lazy" decoding="async">
-  <figcaption>編集、Stage、Commit、Push、Pull Requestは、それぞれ役割が違う連続した工程です。</figcaption>
-</figure>
-
-### Codex画面での基本操作
-
-#### Worktreeで始める
-
-1. 新しいCodexタスクを作る
-2. 入力欄の下で **Worktree** を選ぶ
-3. 開始元のBranchを選ぶ。通常は最新の `main`
-4. 作業を依頼する
-5. 残す変更なら **Create branch here** でBranchを作る
-6. 差分とテスト結果を確認する
-7. Commit、Push、Pull Requestへ進む
-
-いつものIDEや開発サーバーで確認したい時は、**Hand off** でWorktreeからLocalへ移します。
-
-#### Localで始める
-
-1. 最初に `git status` で作業中の変更を確認する
-2. 今回の変更と混ざらないことを確かめる
-3. 必要なら専用Branchを作る
-4. 小さく変更し、差分・テスト・画面を確認する
-5. Stage、Commit、Push、Pull Requestへ進む
-
-### コマンドで見るとこうなる
-
-Codex画面だけでも操作できます。裏側を知りたい人向けの最小例です。
-
-```powershell
-# 今の状態を見る
-git status
-
-# 最新のmainを開始点に、別の作業場とBranchを作る
-git fetch origin main
-git worktree add -b codex/new-guide C:\tmp\new-guide origin/main
-
-# 今回の変更だけ選び、履歴に残す
-git add content/blog/new-guide.md
-git commit -m "docs: add Codex worktree guide"
-
-# GitHubへ送り、Pull Requestを作る
-git push -u origin codex/new-guide
-gh pr create
-```
-
-Deployの方法はプロジェクトごとに違います。GitHubとVercelが連携していれば、BranchのPushでPreview、mainへのMergeでProduction Deployとなる構成が一般的です。
-
-### そのまま使えるCodex依頼文
-
-#### 安全な作業場所を選ばせる
-
-<pre class="prompt"><code>このリポジトリのGit状態を最初に確認してください。
-今回の作業と関係ない未コミット変更がある場合は、触らずに、
-最新のorigin/mainを開始点とする専用Worktreeと専用Branchで進めてください。
-
-完了時は次を分けて報告してください。
-1. ローカルで確認したこと
-2. プレビューで確認したこと
-3. 本番で確認したこと
-
-Commit、Push、Pull Request、Deployは同じ意味として扱わないでください。
-外部公開や本番変更の前には確認を求めてください。</code></pre>
-
-#### Pull Requestまで頼む
-
-<pre class="prompt"><code>この変更を専用Branchで実装し、差分、テスト、PC幅、スマホ幅を確認してください。
-関係ない変更は含めないでください。
-確認後にCommitとPushを行い、変更内容と確認方法が分かるPull Requestを作ってください。
-本番へのMergeとDeployはまだ行わないでください。</code></pre>
-
-#### 本番公開まで頼む
-
-<pre class="prompt"><code>承認済みのPull Requestを本番へ反映してください。
-Merge、Deploy、正式な本番URLでの確認まで進めてください。
-完了報告には、推測ではない本番URL、確認したページまたはAPI、
-未完了があれば理由と次の1手を書いてください。</code></pre>
-
-## 勘違いを避け、人に説明して本番確認する
-
-<figure class="guide-figure">
-  <img src="/img/blog-codex-worktree-guide-section-4-verify-20260724.webp" alt="変更を人と確認し、パソコンとスマートフォンで表示を確かめ、本番の店頭公開まで確認するイメージ" loading="lazy" decoding="async">
-  <figcaption>公開候補を人と確認し、本番URLをPCとスマホで開いて、正しく見えて初めて完了です。</figcaption>
-</figure>
-
-### よくある勘違い
-
-| 勘違い | 正しくは |
-|---|---|
-| Worktreeなら絶対安全 | 作業は分かれるが、削除や外部操作の安全はSandbox・権限・確認が担当 |
-| Branchを作れば保存完了 | Commitして初めて履歴になる |
-| CommitすればGitHubにある | Pushするまでは基本的に自分のPC内 |
-| Pushすれば本番に出る | Branch設定やCI/CD構成による |
-| Pull Requestを作れば採用済み | まだ提案・確認中 |
-| Previewが動けば公開完了 | 本番URLは別。Merge後のProductionを確認する |
-| Deploy成功なら確認不要 | 正しいページ、データ、権限、表示を本番で確かめる |
-| Sandboxがあるから内容も正しい | Sandboxは行動範囲の柵。内容の品質は差分・テスト・人の確認が必要 |
-
-### 人に説明する60秒台本
+### 人に説明するなら
 
 <div class="one-minute">
-CodexのLocalは「いつもの厨房」、Worktreeは「別の試作厨房」です。Sandboxは、どちらの厨房でもCodexが触ってよい範囲を決める安全柵です。Branchは新作につける名前札、Commitは日付入りの試作記録、Pushは記録をGitHubへ送ることです。Pull Requestは本店へ採用する前の試食会、Mergeは公式レシピへの採用、Deployは実際に店頭へ並べることです。だから、CommitやPull Requestではまだ公開されていません。最後に本番URLを開いて確認して、初めて完了です。
+Localはいつもの作業場所、Worktreeは別の作業場所です。Sandboxは安全柵、Commitは記録、Pull Requestは公開前の相談です。MergeとDeployで本番へ出し、正式URLを確認して完了です。
 </div>
 
-### 最低限の確認リスト
+### 最後に確認すること
 
-- [ ] 今のLocalに、別作業の未コミット変更がないか見た
-- [ ] 小さな作業はLocal、混ざりそうな作業はWorktreeにした
-- [ ] 今回専用のBranch名を付けた
-- [ ] Stageへ関係ない変更を入れていない
-- [ ] Commitメッセージで「何を変えたか」が分かる
-- [ ] Push、Pull Request、Merge、Deployを別々に確認した
-- [ ] ローカル・プレビュー・本番を言い分けた
-- [ ] 本番では正式URLと主要機能を実際に確認した
-- [ ] 公開・課金・DB変更・外部送信は承認後に行った
-
-### 公式情報
-
-- [Codex Worktrees](https://learn.chatgpt.com/docs/environments/git-worktrees)
-- [Codex Sandbox](https://learn.chatgpt.com/docs/sandboxing)
-- [Codex environments](https://learn.chatgpt.com/docs/environments/modes)
-- [Git worktree公式ドキュメント](https://git-scm.com/docs/git-worktree)
-- [GitHub: Pull Requestとは](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests)
-- [Vercel: Preview Deploymentの共有](https://vercel.com/docs/deployments/sharing-deployments)
+- 今の作業はLocalとWorktreeのどちらが安全か
+- Commit、Pull Request、公開を同じ意味にしていないか
+- 今はローカル、プレビュー、本番のどこにいるか
+- 本番URLを実際に開いて確認したか
 
 </div>

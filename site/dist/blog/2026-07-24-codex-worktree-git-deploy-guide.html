@@ -1,4 +1,4 @@
-<!doctype html><html lang='ja'><head><meta charset='utf-8'><link rel='icon' type='image/svg+xml' href='/favicon.svg'><link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png'><link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png'><link rel='shortcut icon' href='/favicon.ico'><link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png'><link rel='manifest' href='/site.webmanifest'><link rel='mask-icon' href='/favicon.svg' color='#0EA5E9'><meta name='theme-color' content='#F7FBFF'><meta name='viewport' content='width=device-width,initial-scale=1'><title>CodexのWorktree入門：いつもの場所と別の場所 | AI相談</title><meta name='description' content='CodexのLocal、Worktree、Git、Pull Request、Deployの役割を、町のパン屋さんにたとえて簡単に説明します。'><link rel='canonical' href='https://ai-hub-jp.vercel.app/blog/2026-07-24-codex-worktree-git-deploy-guide.html'><meta property='og:title' content='CodexのWorktree入門：いつもの場所と別の場所'><meta property='og:description' content='CodexのLocal、Worktree、Git、Pull Request、Deployの役割を、町のパン屋さんにたとえて簡単に説明します。'><meta property='og:url' content='https://ai-hub-jp.vercel.app/blog/2026-07-24-codex-worktree-git-deploy-guide.html'><meta property='og:type' content='article'><meta property='og:site_name' content='AI相談'><meta property='og:image' content='https://ai-hub-jp.vercel.app/img/blog-codex-worktree-guide-hero-labels-v2-20260724.webp'><meta name='twitter:card' content='summary_large_image'><script type='application/ld+json'>{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "CodexのWorktree入門：いつもの場所と別の場所", "datePublished": "2026-07-24", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://ai-hub-jp.vercel.app/blog/2026-07-24-codex-worktree-git-deploy-guide.html"}, "author": {"@type": "Person", "name": "由井 辰美"}, "publisher": {"@type": "Organization", "name": "AI相談", "url": "https://ai-hub-jp.vercel.app"}, "description": "CodexのLocal、Worktree、Git、Pull Request、Deployの役割を、町のパン屋さんにたとえて簡単に説明します。", "speakable": {"@type": "SpeakableSpecification", "cssSelector": ["h1", ".content-wrap p:first-of-type"]}, "image": "https://ai-hub-jp.vercel.app/img/blog-codex-worktree-guide-hero-labels-v2-20260724.webp"}</script><style>
+<!doctype html><html lang='ja'><head><meta charset='utf-8'><link rel='icon' type='image/svg+xml' href='/favicon.svg'><link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png'><link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png'><link rel='shortcut icon' href='/favicon.ico'><link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png'><link rel='manifest' href='/site.webmanifest'><link rel='mask-icon' href='/favicon.svg' color='#0EA5E9'><meta name='theme-color' content='#F7FBFF'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Codexで安全に直して公開する：Worktree・Git・PRの役割 | AI相談</title><meta name='description' content='Codexでサイトを直して公開するまでを、作業場所・記録・確認・公開の4段階に分けてやさしく説明します。'><link rel='canonical' href='https://ai-hub-jp.vercel.app/blog/2026-07-24-codex-worktree-git-deploy-guide.html'><meta property='og:title' content='Codexで安全に直して公開する：Worktree・Git・PRの役割'><meta property='og:description' content='Codexでサイトを直して公開するまでを、作業場所・記録・確認・公開の4段階に分けてやさしく説明します。'><meta property='og:url' content='https://ai-hub-jp.vercel.app/blog/2026-07-24-codex-worktree-git-deploy-guide.html'><meta property='og:type' content='article'><meta property='og:site_name' content='AI相談'><meta property='og:image' content='https://ai-hub-jp.vercel.app/img/blog-codex-safe-publish-hero-20260725.webp'><meta name='twitter:card' content='summary_large_image'><script type='application/ld+json'>{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Codexで安全に直して公開する：Worktree・Git・PRの役割", "datePublished": "2026-07-24", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://ai-hub-jp.vercel.app/blog/2026-07-24-codex-worktree-git-deploy-guide.html"}, "author": {"@type": "Person", "name": "由井 辰美"}, "publisher": {"@type": "Organization", "name": "AI相談", "url": "https://ai-hub-jp.vercel.app"}, "description": "Codexでサイトを直して公開するまでを、作業場所・記録・確認・公開の4段階に分けてやさしく説明します。", "speakable": {"@type": "SpeakableSpecification", "cssSelector": ["h1", ".content-wrap p:first-of-type"]}, "image": "https://ai-hub-jp.vercel.app/img/blog-codex-safe-publish-hero-20260725.webp"}</script><style>
 :root {
   --bg-base:#f8fafc;
   --bg-white:#ffffff;
@@ -11265,7 +11265,7 @@ header.site-header .site-nav a.nav-link.nav-essential.nav-current[href]:focus-vi
   }
 })();
 </script>
-<header class='site-header scrolled' id='site-header' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html' aria-label='AI相談 彦根 トップへ'><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span></span></a><nav class='site-nav' aria-label='メインナビ'><a class='nav-link nav-essential' href='/'>ホーム</a><a class='nav-link nav-essential' href='/programming-map.html'>AIエージェント講習</a><a class='nav-link nav-essential' href='/#all-works'>実績</a><a class='nav-link nav-essential nav-current' href='/blog/index.html' aria-current='page'>ブログ</a><a class='nav-link nav-essential' href='/#lectures'>資料</a><a class='nav-link nav-essential' href='/#faq'>FAQ</a><a class='nav-cta' href='/#contact'>個別相談</a></nav><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' type='button' aria-label='メニューを開く' aria-controls='mobile-nav' aria-expanded='false'><span class='mobile-toggle-icon' aria-hidden='true'><span></span><span></span><span></span></span><span class='mobile-toggle-text'>メニュー</span></button></div><div class='mobile-nav generated-mobile-nav' id='mobile-nav'><div class='mobile-nav-panel mobile-nav-panel--public'><div class='mobile-nav-head'><div class='mobile-nav-heading'><small>PUBLIC MENU</small><strong>メニュー</strong></div></div><nav class='mobile-public-links' aria-label='公開ページメニュー'><a href='/'><span>ホーム</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/programming-map.html'><span>AIエージェント講習</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#all-works'><span>実績</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/blog/index.html'><span>ブログ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#lectures'><span>資料</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#faq'><span>FAQ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a class='mobile-public-link--cta' href='/#contact'><span>個別相談</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a></nav><div class='mobile-nav-admin'><span class='mobile-nav-label'>管理</span><a class='mobile-admin-link' href='/admin'><span class='mobile-admin-link-copy'><strong>管理ページ</strong><small>運営者ログイン</small></span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a></div></div></div></header><script>(function(){var b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav'),x=b?b.querySelector('.mobile-toggle-text'):null;function setMobile(o){if(!n||!b)return;n.classList.toggle('open',o);b.setAttribute('aria-expanded',o?'true':'false');b.setAttribute('aria-label',o?'メニューを閉じる':'メニューを開く');if(x)x.textContent=o?'閉じる':'メニュー';document.body.classList.toggle('mobile-menu-open',o);}function closeMobile(){setMobile(false);}if(b&&n){b.addEventListener('click',function(e){e.stopPropagation();setMobile(!n.classList.contains('open'));});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMobile);});}document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobile();});})();</script><main id='main-content'><header><h1>CodexのWorktree入門：いつもの場所と別の場所</h1><div class='speaker-meta'><span class='role'>ブログ兼説明資料 / Codex・Git初心者向け</span><span>📅 2026-07-24</span><span>由井 辰美 / AI相談</span></div></header><div class='content-wrap'><div class='content-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#まず-5つの役割だけ覚える'>まず、5つの役割だけ覚える</a></li><li><a href='#localとworktreeは-こう選ぶ'>LocalとWorktreeは、こう選ぶ</a></li><li><a href='#公開までは-この順番'>公開までは、この順番</a></li></ol></div><style>
+<header class='site-header scrolled' id='site-header' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html' aria-label='AI相談 彦根 トップへ'><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span></span></a><nav class='site-nav' aria-label='メインナビ'><a class='nav-link nav-essential' href='/'>ホーム</a><a class='nav-link nav-essential' href='/programming-map.html'>AIエージェント講習</a><a class='nav-link nav-essential' href='/#all-works'>実績</a><a class='nav-link nav-essential nav-current' href='/blog/index.html' aria-current='page'>ブログ</a><a class='nav-link nav-essential' href='/#lectures'>資料</a><a class='nav-link nav-essential' href='/#faq'>FAQ</a><a class='nav-cta' href='/#contact'>個別相談</a></nav><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' type='button' aria-label='メニューを開く' aria-controls='mobile-nav' aria-expanded='false'><span class='mobile-toggle-icon' aria-hidden='true'><span></span><span></span><span></span></span><span class='mobile-toggle-text'>メニュー</span></button></div><div class='mobile-nav generated-mobile-nav' id='mobile-nav'><div class='mobile-nav-panel mobile-nav-panel--public'><div class='mobile-nav-head'><div class='mobile-nav-heading'><small>PUBLIC MENU</small><strong>メニュー</strong></div></div><nav class='mobile-public-links' aria-label='公開ページメニュー'><a href='/'><span>ホーム</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/programming-map.html'><span>AIエージェント講習</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#all-works'><span>実績</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/blog/index.html'><span>ブログ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#lectures'><span>資料</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#faq'><span>FAQ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a class='mobile-public-link--cta' href='/#contact'><span>個別相談</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a></nav><div class='mobile-nav-admin'><span class='mobile-nav-label'>管理</span><a class='mobile-admin-link' href='/admin'><span class='mobile-admin-link-copy'><strong>管理ページ</strong><small>運営者ログイン</small></span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a></div></div></div></header><script>(function(){var b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav'),x=b?b.querySelector('.mobile-toggle-text'):null;function setMobile(o){if(!n||!b)return;n.classList.toggle('open',o);b.setAttribute('aria-expanded',o?'true':'false');b.setAttribute('aria-label',o?'メニューを閉じる':'メニューを開く');if(x)x.textContent=o?'閉じる':'メニュー';document.body.classList.toggle('mobile-menu-open',o);}function closeMobile(){setMobile(false);}if(b&&n){b.addEventListener('click',function(e){e.stopPropagation();setMobile(!n.classList.contains('open'));});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMobile);});}document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobile();});})();</script><main id='main-content'><header><h1>Codexで安全に直して公開する：Worktree・Git・PRの役割</h1><div class='speaker-meta'><span class='role'>ブログ兼説明資料 / Codex・Git初心者向け</span><span>📅 2026-07-24</span><span>由井 辰美 / AI相談</span></div></header><div class='content-wrap'><div class='content-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#まず-全体の流れを見る'>まず、全体の流れを見る</a></li><li><a href='#localとworktreeは-こう選ぶ'>LocalとWorktreeは、こう選ぶ</a></li><li><a href='#公開は-本番urlを確認して完了'>公開は、本番URLを確認して完了</a></li></ol></div><style>
 .simple-codex-guide{--sc-blue:#2563eb;--sc-teal:#0f8f8a;--sc-green:#4f8f27;--sc-orange:#d97706;--sc-purple:#7c3aed;--sc-ink:#172033;--sc-soft:#526071;--sc-line:#dbe4ed;color:var(--sc-ink)}
 .simple-codex-guide *{box-sizing:border-box}
 .simple-codex-guide h2{margin-top:2.8rem}
@@ -11277,7 +11277,7 @@ header.site-header .site-nav a.nav-link.nav-essential.nav-current[href]:focus-vi
 .simple-codex-guide .guide-hero{margin-top:0}
 .simple-codex-guide .first-message{margin:1.4rem 0;padding:1.25rem 1.4rem;border-left:6px solid var(--sc-blue);background:#eff6ff;border-radius:10px}
 .simple-codex-guide .first-message strong{display:block;font-size:1.25rem;margin-bottom:.45rem}
-.simple-codex-guide .role-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:1.2rem 0 1.8rem}
+.simple-codex-guide .role-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:1.2rem 0 1.8rem}
 .simple-codex-guide .role-card{padding:1rem;border:1px solid var(--sc-line);border-radius:12px;background:#fff}
 .simple-codex-guide .role-card b{display:block;margin-bottom:.35rem;color:var(--sc-blue)}
 .simple-codex-guide .role-card span{display:block;color:var(--sc-soft);font-size:.92rem;line-height:1.65}
@@ -11309,87 +11309,77 @@ header.site-header .site-nav a.nav-link.nav-essential.nav-current[href]:focus-vi
 
 <div class="simple-codex-guide">
 <figure class="guide-figure guide-hero">
-  <img src="/img/blog-codex-worktree-guide-hero-labels-v2-20260724.webp" alt="作業する、記録する、相談する、公開するというCodexの仕事の流れ" loading="eager" decoding="async">
-  <figcaption>Codexの仕事は、作る、記録する、相談する、公開する、という順番です。</figcaption>
+  <img src="/img/blog-codex-safe-publish-hero-20260725.webp" alt="作業、記録、確認、公開というCodexの流れ" loading="eager" decoding="async">
+  <figcaption>Codexの作業は「作業・記録・確認・公開」の4段階です。</figcaption>
 </figure>
-<p>Codexを使うと、Local、Worktree、Commit、Pull Requestなど、似た言葉がたくさん出てきます。</p>
-<p>全部を一度に覚える必要はありません。まずは、<strong>どこで作るか、どう記録するか、いつ公開されるか</strong>だけ分かれば十分です。</p>
+<p>Codexでサイトを直す時、言葉の多さに戸惑うことがあります。</p>
+<p>でも、最初から全部を覚える必要はありません。大切なのは、<strong>作業する場所を選び、変更を記録し、確認してから公開すること</strong>です。</p>
 <div class="first-message">
-<strong>最初に覚えるのは5つだけ</strong>
-作業場所、安全柵、記録、相談、公開。この5つに分けると、Gitの言葉が整理できます。
+<strong>結論：Worktreeは、今の作業を守りながら別の修正をする場所です。</strong>
+Gitは変更を記録し、Pull Requestは公開前に確認し、Deployで利用者に届けます。
 </div>
-<h2 id='まず-5つの役割だけ覚える'>まず、5つの役割だけ覚える</h2>
+<h2 id='まず-全体の流れを見る'>まず、全体の流れを見る</h2>
 <figure class="guide-figure">
-  <img src="/img/blog-codex-worktree-guide-spaces-labels-v2-20260724.webp" alt="Localはいつもの場所、Worktreeは別の場所、Sandboxは安全柵という説明図" loading="lazy" decoding="async">
-  <figcaption>LocalとWorktreeは作業場所、SandboxはCodexが触ってよい範囲を決める安全柵です。</figcaption>
+  <img src="/img/blog-codex-safe-publish-flow-20260725.webp" alt="作る、分ける、記録、確認、公開の5段階" loading="lazy" decoding="async">
+  <figcaption>今どの段階にいるかが分かれば、専門用語を全部覚えなくても進められます。</figcaption>
 </figure>
-<p>町のパン屋さんで考えると、役割は次の5つです。</p>
+<p>役割は、次のように分けると簡単です。</p>
 <div class="role-grid">
-<div class="role-card"><b>作業場所</b><span>LocalまたはWorktreeで作ります。</span></div>
-<div class="role-card"><b>安全柵</b><span>Sandboxが触ってよい範囲を守ります。</span></div>
-<div class="role-card"><b>記録</b><span>Commitで変更を残します。</span></div>
-<div class="role-card"><b>相談</b><span>Pull Requestで変更を見せます。</span></div>
-<div class="role-card"><b>公開</b><span>MergeとDeployで本番へ出します。</span></div>
+<div class="role-card"><b>Local・Worktree</b><span>どこで作業するかを決めます。</span></div>
+<div class="role-card"><b>Branch・Commit</b><span>何を直したか、記録を残します。</span></div>
+<div class="role-card"><b>Pull Request</b><span>公開する前に変更内容を確認します。</span></div>
+<div class="role-card"><b>Merge・Deploy</b><span>確認した変更を本番へ届けます。</span></div>
 </div>
-<p>パン屋さんにたとえると、Localは<strong>いつもの厨房</strong>、Worktreeは<strong>別に借りた試作厨房</strong>です。</p>
-<p>Commitは試作ノートへの記録、Pull Requestは試食会、Deployは店頭へ並べる作業です。</p>
-<p>大切なのは、<strong>Commitしただけでは公開されない</strong>ということです。</p>
+<p>Sandboxは、Codexが触ってよい範囲を決める<strong>安全のための枠</strong>です。作業場所そのものではありません。</p>
 <h2 id='localとworktreeは-こう選ぶ'>LocalとWorktreeは、こう選ぶ</h2>
 <figure class="guide-figure">
-  <img src="/img/blog-codex-worktree-guide-choose-labels-v2-20260724.webp" alt="小さな修正はLocal、別案や並行作業はWorktreeを選ぶ説明図" loading="lazy" decoding="async">
-  <figcaption>小さく単独の修正ならLocal、別案や他の仕事と混ざりそうならWorktreeが安心です。</figcaption>
+  <img src="/img/blog-codex-safe-publish-worktree-20260725.webp" alt="小さな修正はLocal、作業を分ける時はWorktreeという比較" loading="lazy" decoding="async">
+  <figcaption>修正の大きさよりも、ほかの作業と混ざるかどうかで選びます。</figcaption>
 </figure>
 <div class="choice-grid">
 <div class="choice-card">
-    <b>Localが向いている時</b>
+    <b>Localでよい時</b>
     <ul>
       <li>誤字やリンクを1か所直す</li>
-      <li>今の作業場に別の変更がない</li>
-      <li>いつもの環境ですぐ確認したい</li>
+      <li>ほかの作業をしていない</li>
+      <li>今ある変更と混ざる心配がない</li>
     </ul>
   </div>
 <div class="choice-card worktree">
-    <b>Worktreeが向いている時</b>
+    <b>Worktreeが安心な時</b>
     <ul>
-      <li>トップページを別案で作る</li>
-      <li>ほかの作業も同時に進んでいる</li>
-      <li>今の作業場に未保存の変更がある</li>
+      <li>別の案を試したい</li>
+      <li>ほかの修正も同時に進んでいる</li>
+      <li>今の作業をそのまま残したい</li>
     </ul>
   </div>
 </div>
 <div class="rule">
-<strong>迷った時の決め方：</strong>小さく、ほかの仕事と混ざらないならLocal。少しでも混ざりそうならWorktree。
+<strong>迷った時：</strong>ほかの作業と混ざらないならLocal。混ざりそうならWorktree。
 </div>
-<p>Branchは、作業につける<strong>名前札</strong>です。Worktreeという別の作業場に「トップページ改善」などの名前札をつける、と考えると分かりやすくなります。</p>
-<h2 id='公開までは-この順番'>公開までは、この順番</h2>
+<p>Branchは、分けた作業につける<strong>名前</strong>です。Commitは、その作業の<strong>保存記録</strong>です。</p>
+<h2 id='公開は-本番urlを確認して完了'>公開は、本番URLを確認して完了</h2>
 <figure class="guide-figure">
-  <img src="/img/blog-codex-worktree-guide-flow-labels-v2-20260724.webp" alt="作る、選ぶ、記録、送る、公開という作業の流れ" loading="lazy" decoding="async">
-  <figcaption>難しい操作名より、今どの段階にいるかを意識することが大切です。</figcaption>
+  <img src="/img/blog-codex-safe-publish-release-20260725.webp" alt="ローカル、プレビュー、本番の3段階" loading="lazy" decoding="async">
+  <figcaption>CommitやPull Requestは途中の段階です。本番サイトの確認までが公開作業です。</figcaption>
 </figure>
-<div class="journey">
-<div class="journey-step"><b>1. 作る</b><span>LocalかWorktreeで変更します。</span></div>
-<div class="journey-step"><b>2. 選ぶ</b><span>今回残す変更だけ選びます。</span></div>
-<div class="journey-step"><b>3. 記録</b><span>Commitで履歴に残します。</span></div>
-<div class="journey-step"><b>4. 送る</b><span>GitHubへ送り、Pull Requestで確認します。</span></div>
-<div class="journey-step"><b>5. 公開</b><span>Merge、Deploy、本番確認まで進めます。</span></div>
-</div>
-<p>完了した場所は、次の3つに分けて伝えます。</p>
+<p>作業の状態は、3つに分けて伝えます。</p>
 <div class="state-list">
 <div class="state local"><b>ローカル</b>自分のPCで確認できた状態。</div>
 <div class="state preview"><b>プレビュー</b>関係者が確認できる公開前の状態。</div>
 <div class="state production"><b>本番</b>正式URLで利用者が見られる状態。</div>
 </div>
-<p>CommitやPull Requestは、まだ公開途中です。Deployが終わり、<strong>正式な本番URLを実際に開いて確認した時点</strong>で公開完了です。</p>
-<h3>人に説明するなら</h3>
+<p>Commitは記録、Pull Requestは公開前の確認です。どちらも、まだ本番公開ではありません。</p>
+<p>Pull RequestをMergeし、Deployが終わり、<strong>正式な本番URLを実際に開いて確認した時点</strong>で完了です。</p>
 <div class="one-minute">
-Localはいつもの作業場所、Worktreeは別の作業場所です。Sandboxは安全柵、Commitは記録、Pull Requestは公開前の相談です。MergeとDeployで本番へ出し、正式URLを確認して完了です。
+<strong>ひとことで説明すると：</strong><br>
+Worktreeは作業を分ける場所、Gitは変更の記録、Pull Requestは公開前の確認、Deployは本番公開です。
 </div>
-<h3>最後に確認すること</h3>
+<p>最後に、次の3つだけ確認してください。</p>
 <ul>
-<li>今の作業はLocalとWorktreeのどちらが安全か</li>
-<li>Commit、Pull Request、公開を同じ意味にしていないか</li>
-<li>今はローカル、プレビュー、本番のどこにいるか</li>
-<li>本番URLを実際に開いて確認したか</li>
+<li>ほかの作業と混ざりそうなら、Worktreeを使ったか</li>
+<li>Pull Requestで、公開する変更を確認したか</li>
+<li>本番URLを開き、表示を確認したか</li>
 </ul>
 </div></div></main><footer>AI相談 / Generated by Claude</footer><button class='back-to-top' id='backTop' aria-label='トップへ戻る'>↑</button><script>(function(){var b=document.getElementById('backTop');if(!b)return;window.addEventListener('scroll',function(){b.classList.toggle('show',window.scrollY>400);});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script><script>
 (function(){

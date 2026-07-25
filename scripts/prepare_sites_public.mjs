@@ -18,6 +18,7 @@ export const MAX_STATIC_ASSET_BYTES = 25 * 1024 * 1024;
 export const EXCLUDED_TOP_LEVEL_PATHS = new Set([
   "admin",
   "api",
+  "img",
   "media",
   "ops",
   "videos",

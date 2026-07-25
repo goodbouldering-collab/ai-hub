@@ -12,6 +12,7 @@ const EXACT_LEGACY_PATHS = new Set([
 const LEGACY_PATH_PREFIXES = [
   "/api",
   "/admin",
+  "/img",
   "/ops",
   "/watch",
   "/media",

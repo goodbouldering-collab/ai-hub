@@ -33,6 +33,7 @@ npm run test:worker
 
 - `admin/`
 - `api/`
+- `img/`
 - `ops/`
 - `watch/`
 - `media/`
@@ -50,6 +51,7 @@ npm run test:worker
 
 - `/api/**`
 - `/admin**`
+- `/img/**`
 - `/ops**`
 - `/watch**`
 - `/media/**`

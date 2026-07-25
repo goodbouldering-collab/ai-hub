@@ -47,7 +47,7 @@ test("copies static routes and excludes proxied paths", async () => {
     "excluded-video",
   );
 
-  for (const directory of ["admin", "api", "media", "ops", "videos", "watch"]) {
+  for (const directory of ["admin", "api", "img", "media", "ops", "videos", "watch"]) {
     await writeFixture(repoRoot, `${directory}/private.txt`, directory);
   }
 
@@ -58,7 +58,7 @@ test("copies static routes and excludes proxied paths", async () => {
   const result = await prepareSitesPublic({ repoRoot });
 
   assert.equal(result.copiedFileCount, 4);
-  assert.equal(result.excludedPathCount, 7);
+  assert.equal(result.excludedPathCount, 8);
   assert.equal(
     await readFile(path.join(repoRoot, "public", "index.html"), "utf8"),
     "<h1>AI相談</h1>",
@@ -106,7 +106,11 @@ test("check mode validates without replacing public", async () => {
 test("oversized included assets fail before public is replaced", async () => {
   const repoRoot = await createTemporaryRepo();
   await writeFixture(repoRoot, "index.html", "index");
-  const oversizedAsset = await writeFixture(repoRoot, "img/too-large.bin", "");
+  const oversizedAsset = await writeFixture(
+    repoRoot,
+    "lectures/assets/too-large.bin",
+    "",
+  );
   await truncate(oversizedAsset, MAX_STATIC_ASSET_BYTES + 1);
 
   const existingPublicFile = path.join(repoRoot, "public", "keep.txt");

@@ -13600,7 +13600,7 @@ def _render_hero_focused() -> str:
         "<h1 class='focus-title'><span class='focus-title-first'>AIエージェントを、</span><br><span class='focus-title-line'><strong>仕事の仲間に。</strong></span></h1>"
         "<aside class='hero-advantage' id='advantage' aria-labelledby='hero-advantage-title'>"
         "<div class='hero-advantage-number' aria-hidden='true'><strong>6%</strong><span>AI導入率</span></div>"
-        "<div class='hero-advantage-copy'><small>導入率は、わずか6%</small><p id='hero-advantage-title'><span>AIは、経験を</span><span><strong>100倍</strong>にするツール。</span><span>今、導入すべき。</span></p></div>"
+        "<div class='hero-advantage-copy'><small>導入率は、わずか6%</small><p id='hero-advantage-title'><span>AIなら経験を</span><span><strong>100倍</strong>にできる。</span><span>2時間で人生が変わる。</span></p></div>"
         "<ul class='hero-advantage-pillars' aria-label='AI導入を成果に変える3ステップ'><li><b>01</b>経験を活かす</li><li><b>02</b>仕事を速める</li><li><b>03</b>成果に変える</li></ul>"
         "</aside>"
         "<p class='focus-lead'>実践講習・個別相談・有料オンラインサロンで、AIを実務に入れ、使い続けられる形まで支援します。</p>"

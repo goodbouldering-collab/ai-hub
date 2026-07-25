@@ -4,6 +4,7 @@ import {
   AI_SALON_ITEM_NAME,
   publicOrigin,
   requiredSquareEnv,
+  salonPlanVariationId,
   salonPriceYen,
   squareJson,
 } from "../_lib/square.js";
@@ -30,6 +31,7 @@ export default async function handler(req: VercelReq, res: VercelRes) {
     }
 
     const locationId = requiredSquareEnv("SQUARE_LOCATION_ID");
+    const planVariationId = salonPlanVariationId();
     const origin = publicOrigin(req);
     const payload = {
       idempotency_key: randomUUID(),
@@ -41,11 +43,12 @@ export default async function handler(req: VercelReq, res: VercelRes) {
       },
       checkout_options: {
         redirect_url: `${origin}/api/square/ai-salon-access`,
+        subscription_plan_id: planVariationId,
         allow_tipping: false,
         ask_for_shipping_address: false,
         custom_fields: [{ title: "LINEオープンチャット参加名" }],
       },
-      payment_note: "AI相談 AIオンラインサロン参加費",
+      payment_note: "AI相談 AIオンラインサロン月額参加費",
     };
     const result = await squareJson<PaymentLinkResponse>(
       "/v2/online-checkout/payment-links",
@@ -94,11 +97,11 @@ button:hover{background:#064ca1}.note{margin:11px 0 0;font-size:11px;text-align:
 a{color:#075fc8;font-weight:800}
 </style></head><body><main>
 <small>SQUARE PAYMENT</small><h1>AIオンラインサロン</h1>
-<div class="price">¥${priceYen.toLocaleString("ja-JP")} <span>税込</span></div>
-<p>Squareの安全な決済画面でお支払い後、LINEオープンチャットの参加案内を表示します。</p>
+<div class="price">月額 ¥${priceYen.toLocaleString("ja-JP")} <span>税込</span></div>
+<p>Squareの安全な決済画面で月額プランをお申し込み後、LINEオープンチャットの参加案内を表示します。</p>
 <ol><li><b>1</b><span>Squareで決済</span></li><li><b>2</b><span>LINEで参加申請</span></li><li><b>3</b><span>決済名を確認して参加承認</span></li></ol>
 <form method="post"><button type="submit">Squareの決済画面へ</button></form>
-<p class="note">決済前にLINEの招待URLは表示されません。</p>
+<p class="note">毎月自動更新です。決済前にLINEの招待URLは表示されません。</p>
 <p><a href="/#seven-day-courses">← サロン案内へ戻る</a></p>
 </main></body></html>`);
 }

@@ -268,7 +268,7 @@ def _build_jsonld_website() -> str:
         (ai_agent_title, "CodexとClaude Codeを使い、仕事を分けて頼む、結果を確かめる、修正する、繰り返せる手順として残すAIエージェント講習。調査、資料、告知、業務改善、Web制作を題材に、AIの成果物を判断して仕事に入れる型を120分で身につける。", "5500", "5500", "Course"),
         (free_consult_title, "来店またはオンラインで、AI導入の入口を整理する無料相談。講習や伴走の前に、今の課題と次の一手を確認する。", "0", "0", "BusinessCoaching"),
         (consult_title, "AIの使い方、役割分担、指示書、確認体制、運用導線を60分で整理する個別相談。", "5500", "5500", "BusinessCoaching"),
-        (salon_title, "毎週火曜21時、LINEで開く有料サロン。AIの変化を60分で整理し、今週やることを決める。", None, None, "CommunityService"),
+        (salon_title, "月額2,200円（税込）。毎週火曜21時、LINEでAIの変化を60分で整理し、今週やることを決める。", "2200", "2200", "CommunityService"),
         (support_title, "HP公開から事務自動化・経理・マーケまで6ヶ月で一気に定着。技術的な難所は講師が代行・支援。滋賀・彦根の補助金で負担1/3以下に。", "100000", "100000", "Service"),
         (ai_coding_title, "Codex導入、Claude Code併用、画像生成、プログラミング基礎、設計、データ、運用、セキュリティを1本で学ぶAIコーディング講習。AIの成果物を判断し、説明し、仕事に入れるための作業設計と確認の型を120分で身につける。", "11000", "11000", "Course"),
     ]
@@ -11467,7 +11467,7 @@ def _render_compact_course_cards() -> str:
             "title": "AIオンラインサロン",
             "image": "/img/blog-ai-agent-course-section-4-20260714.webp",
             "image_alt": "毎週火曜にLINEオープンチャットのライブトークでAIの今と次の一手を整理するオンラインサロン",
-            "price": "Square決済",
+            "price": "月額2,200円（税込）",
             "duration": "毎週火曜 21:00",
             "desc": "AIの変化を短く整理し、仕事で次に試すことを決めます。聞くだけでも参加できます。",
             "url": AI_SALON_CHECKOUT_URL,
@@ -11803,7 +11803,7 @@ FAQ_QA = [
     ("AIエージェント講習では何を学びますか？",
      "CodexとClaude Codeを、調査、資料、告知、業務改善、Web制作を一緒に進める作業者として使う講習です。仕事の分け方、伝わる依頼、差分・根拠・画面の確認、修正指示、成果物と次回手順の保存までを120分で通します。料金は5,500円で、専用の予約ページから申し込めます。"),
     ("AIオンラインサロンでは、何がわかりますか？",
-     "毎週火曜21時、LINEライブトークでAIの変化を60分で整理し、今週やることを決めます。聞くだけでも参加できます。"),
+     "月額2,200円（税込）。毎週火曜21時、LINEライブトークでAIの変化を60分で整理し、今週やることを決めます。聞くだけでも参加できます。"),
     ("受講資料はあとから見返せますか？",
      "はい。受講で使った資料、プロンプト、実例、動画、スライドは資料センターとして整理し、あとから復習できるようにします。受講前に内容を確認したい方も、受講資料ページから雰囲気を見られます。"),
     ("Reels や YouTube の集客にも使えますか？",
@@ -13768,9 +13768,9 @@ def _render_compact_salon() -> str:
         "</div>"
         "<aside class='salon-purchase' aria-labelledby='salon-purchase-title'>"
         "<small>SQUARE PAYMENT</small>"
-        "<h3 id='salon-purchase-title'>決済後にLINEへ</h3>"
+        "<h3 id='salon-purchase-title'>月額2,200円・決済後にLINEへ</h3>"
         "<ol class='salon-purchase-flow'>"
-        "<li><b>1</b><span><strong>Squareで決済</strong>安全な決済画面へ進みます</span></li>"
+        "<li><b>1</b><span><strong>Squareで月額決済</strong>毎月2,200円（税込）です</span></li>"
         "<li><b>2</b><span><strong>LINEで参加申請</strong>決済後に招待URLを表示します</span></li>"
         "<li><b>3</b><span><strong>確認して承認</strong>決済名と照合してメンバーを調整します</span></li>"
         "</ol>"
@@ -13786,7 +13786,7 @@ def _render_focused_main() -> str:
 
     parts = [
         "<section class='focus-block main-course' id='packages'><div class='focus-section-head'><small>COURSES</small><h2>講習・相談コース</h2></div>",
-        "<p class='focus-section-lead'><strong>迷ったら、まずはAIエージェント講習が一番基本でおすすめです。</strong><br>最新情報を追い続けず「今やること」を知りたい方は、有料オンラインサロンへ。個別相談、伴走支援、AIコーディング講習も選べます。</p>",
+        "<p class='focus-section-lead'><strong>迷ったら、まずはAIエージェント講習が一番基本でおすすめです。</strong><br>最新情報を追い続けず「今やること」を知りたい方は、月額2,200円のオンラインサロンへ。個別相談、伴走支援、AIコーディング講習も選べます。</p>",
         _render_compact_course_cards(),
         "<aside class='course-venue-common' aria-label='講習・相談コース共通の開催場所'>",
         "<img src='/img/gubboru-cafe-ai-course-painting.webp' alt='講習・相談の対面会場 グッぼるカフェの店内' loading='lazy' decoding='async'>",
@@ -13819,7 +13819,7 @@ def _render_focused_main() -> str:
         "<details><summary>AIがまったく初めてでも大丈夫ですか？</summary><p>大丈夫です。専門用語ではなく、普段の仕事と困りごとから始めます。</p></details>",
         "<details><summary>受講にパソコンは必要ですか？</summary><p>はい。WindowsまたはMacのパソコンを必ずお持ちください。直したい資料やページもあれば、あわせてお持ちください。</p></details>",
         "<details><summary>オンラインでも受講できますか？</summary><p>対面・オンラインの両方に対応しています。彦根市内は訪問も相談できます。</p></details>",
-        "<details><summary>AIオンラインサロンでは、何がわかりますか？</summary><p>毎週火曜21時、LINEライブトークでAIの変化を60分で整理し、今週やることを決めます。聞くだけでも参加できます。</p></details></div></section>",
+        "<details><summary>AIオンラインサロンでは、何がわかりますか？</summary><p>月額2,200円（税込）。毎週火曜21時、LINEライブトークでAIの変化を60分で整理し、今週やることを決めます。聞くだけでも参加できます。</p></details></div></section>",
         "<section class='focus-contact' id='contact'><div class='focus-contact-inner'><div><h2>AIエージェントに任せたい仕事を聞かせてください。</h2><p>講習前に、今の仕事に合う題材と進め方を一緒に整理できます。</p></div>",
         f"<a class='focus-btn' href='{free_consult}' target='_blank' rel='noopener'>無料相談の日程を選ぶ</a></div></section>",
     ]

@@ -7,8 +7,8 @@
 ## 公開導線
 
 1. サイトの「Squareで決済して参加」
-2. AI相談内の確認画面
-3. Squareの決済画面
+2. AI相談内の月額2,200円（税込）確認画面
+3. Squareの月額課金決済画面
 4. 決済完了をSquare Orders APIで照合
 5. LINEオープンチャットの招待URLを表示
 6. 管理者が決済名と参加申請を照合して承認
@@ -21,9 +21,18 @@
 - `SQUARE_LOCATION_ID`
 - `SQUARE_AI_SALON_PRICE_YEN`
 - `SQUARE_AI_SALON_ITEM_NAME=AIオンラインサロン`
+- `SQUARE_AI_SALON_PLAN_VARIATION_ID`
 - `AI_SALON_OPENCHAT_URL`
 
-金額は推測で設定しない。代表者が確定した税込金額を `SQUARE_AI_SALON_PRICE_YEN` に円の整数で登録する。
+現在の確定料金は月額2,200円（税込）。`SQUARE_AI_SALON_PRICE_YEN=2200` を設定し、
+`SQUARE_AI_SALON_PLAN_VARIATION_ID` にはSquareカタログで作成した月額プランの
+バリエーションIDを設定する。
+
+Squareカタログの初期設定は、環境変数を読み込んでから次を実行する。
+
+```powershell
+python scripts/setup_ai_salon_square.py --apply
+```
 
 ## LINEオープンチャットの設定
 
@@ -31,13 +40,15 @@
 2. 質問を「Square決済時に入力した名前を入力してください」にする。
 3. Square注文の購入者名・カスタム項目と参加申請の回答を照合する。
 4. 一致した人だけ承認する。
-5. 返金・退会が発生した場合は、Square注文とLINEメンバーを確認して手動で調整する。
+5. 毎月、Squareの有効なサブスクリプションとLINEメンバーを照合する。
+6. 解約・支払い停止・返金が発生した場合は、対象者をLINEから手動で調整する。
 
 LINEオープンチャットには、外部決済と会員状態を自動同期する公開APIがないため、最終承認と退会処理は管理者が行う。
 
 ## 実装ファイル
 
-- `api/square/ai-salon-checkout.ts`: Square決済リンクの作成
+- `api/square/ai-salon-checkout.ts`: Square月額課金リンクの作成
 - `api/square/ai-salon-access.ts`: 決済済み注文の照合とLINE案内
 - `api/_lib/square.ts`: Square API共通処理
+- `scripts/setup_ai_salon_square.py`: 月額プランの重複防止付き初期作成
 - `site/build_portal.py`: 短いサロン説明と購入導線

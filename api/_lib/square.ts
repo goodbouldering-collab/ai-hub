@@ -27,6 +27,10 @@ export function salonPriceYen(): number {
   return amount;
 }
 
+export function salonPlanVariationId(): string {
+  return requiredSquareEnv("SQUARE_AI_SALON_PLAN_VARIATION_ID");
+}
+
 export function salonOpenChatUrl(): string {
   const raw = requiredSquareEnv("AI_SALON_OPENCHAT_URL");
   let url: URL;

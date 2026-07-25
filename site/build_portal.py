@@ -12713,6 +12713,7 @@ header.site-header:hover {
 .hero-advantage-copy { grid-area:copy; min-width:0; }
 .hero-advantage-copy small { display:block; margin:0 0 6px; color:var(--focus-blue); font:900 10px/1.3 Inter,sans-serif; letter-spacing:.18em; }
 .hero-advantage-copy p { max-width:460px; margin:0; font-size:clamp(18px,1.8vw,24px); font-weight:900; line-height:1.28; letter-spacing:-.04em; text-wrap:balance; }
+.hero-advantage-copy p strong { color:var(--focus-blue); font-size:1.12em; font-weight:950; }
 .hero-advantage-pillars { grid-area:pillars; display:flex; flex-wrap:wrap; gap:0; margin:0; padding:0; list-style:none; }
 .hero-advantage-pillars li { position:relative; padding:0 15px; color:var(--focus-ink); background:none; border:0; border-radius:0; font-size:11px; font-weight:850; line-height:1.4; white-space:nowrap; }
 .hero-advantage-pillars li:first-child { padding-left:0; }
@@ -13594,9 +13595,9 @@ def _render_hero_focused() -> str:
         "<p class='focus-kicker'>Codex + Claude Code 実践</p>"
         "<h1 class='focus-title'><span class='focus-title-first'>AIエージェントを、</span><br><span class='focus-title-line'><strong>仕事の仲間に。</strong></span></h1>"
         "<aside class='hero-advantage' id='advantage' aria-labelledby='hero-advantage-title'>"
-        "<div class='hero-advantage-number' aria-hidden='true'><strong>6%</strong><span>AIで成果を出す目標</span></div>"
-        "<div class='hero-advantage-copy'><small>同じ分野の100人中、上位6人を目指す</small><p id='hero-advantage-title'><span>AIで何ができるか。</span><span>自分は何がしたいか。</span><span>仕事の成果につなげる。</span></p></div>"
-        "<ul class='hero-advantage-pillars' aria-label='AI活用を成果に変える3原則'><li><b>01</b>まず試す</li><li><b>02</b>人が確かめる</li><li><b>03</b>仕組みにする</li></ul>"
+        "<div class='hero-advantage-number' aria-hidden='true'><strong>6%</strong><span>AI導入率</span></div>"
+        "<div class='hero-advantage-copy'><small>導入率は、わずか6%</small><p id='hero-advantage-title'><span>AIは、経験を</span><span><strong>100倍</strong>にするツール。</span><span>今、導入すべき。</span></p></div>"
+        "<ul class='hero-advantage-pillars' aria-label='AI導入を成果に変える3ステップ'><li><b>01</b>経験を活かす</li><li><b>02</b>仕事を速める</li><li><b>03</b>成果に変える</li></ul>"
         "</aside>"
         "<p class='focus-lead'>実践講習・個別相談・有料オンラインサロンで、AIを実務に入れ、使い続けられる形まで支援します。</p>"
         "<div class='focus-actions'>"

@@ -7,6 +7,10 @@ __pycache__/
 data/history.db-journal
 data/_migrate_*
 site/dist/
+public/
+dist/
+.next/
+.vinext/
 .wrangler/
 node_modules/
 .playwright-browsers/

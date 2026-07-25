@@ -18,6 +18,7 @@ import os
 import sys
 from datetime import datetime
 from pathlib import Path
+from urllib.parse import urlparse
 
 try:
     import yaml
@@ -119,7 +120,38 @@ CONSULT_BOOK_URL = "https://book.squareup.com/appointments/zymaszkc9pdwq2/locati
 AI_AGENT_COURSE_URL = "https://goodbouldering.com/?pid=188553378"
 AI_CODING_BOOK_URL = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/S7GERYVDIPRV76DKXCC3WJWH"
 MONTHLY_SUPPORT_CHECKOUT_URL = "/api/stripe/monthly-support"
-AI_SALON_CHECKOUT_URL = "/api/stripe/ai-salon"
+
+
+def _official_line_membership_url(raw_url: str) -> str:
+    """Return only an HTTPS URL hosted on LINE's official membership domains."""
+    candidate = raw_url.strip()
+    if not candidate or any(char.isspace() for char in candidate):
+        return ""
+    try:
+        parsed = urlparse(candidate)
+        port = parsed.port
+    except ValueError:
+        return ""
+    hostname = (parsed.hostname or "").lower().rstrip(".")
+    is_official_line = (
+        hostname == "line.me"
+        or hostname.endswith(".line.me")
+        or hostname == "manager.line.biz"
+    )
+    if (
+        parsed.scheme != "https"
+        or port not in {None, 443}
+        or not is_official_line
+        or parsed.username
+        or parsed.password
+    ):
+        return ""
+    return candidate
+
+
+AI_SALON_LINE_MEMBERSHIP_URL = _official_line_membership_url(
+    os.environ.get("AI_SALON_LINE_MEMBERSHIP_URL", "")
+)
 
 
 COLOR_MAP = {
@@ -220,7 +252,7 @@ def _build_jsonld_website() -> str:
             "streetAddress": "小泉町34-8",
             "addressCountry": "JP",
         },
-        "description": "滋賀県彦根市を拠点に、中小事業者・地域団体・個人事業者向けのAI相談、AIエージェント講習、毎週開催する有料のAIオンラインサロン、Codex・Claude Code実践、画像生成、受講資料公開、実例紹介、Web/業務システム制作、補助金を使ったAI導入支援を行う。9事業を実際に回す現役オーナーが、相談から講習、実装、公開、運用定着まで伴走する。",
+        "description": "滋賀県彦根市を拠点に、中小事業者・地域団体・個人事業者向けのAI相談、AIエージェント講習、月額2,200円のAIオンラインサロン、Codex・Claude Code実践、画像生成、受講資料公開、実例紹介、Web/業務システム制作、補助金を使ったAI導入支援を行う。9事業を実際に回す現役オーナーが、相談から講習、実装、公開、運用定着まで伴走する。",
         "knowsAbout": [
             "AI相談", "AIエージェント講習", "AIオンラインサロン", "ChatGPT", "Claude Code", "Codex", "画像生成", "AI業務改善",
             "LLMO（AI検索最適化）", "SEO", "MEO", "YouTube SEO", "Reels導線",
@@ -249,7 +281,7 @@ def _build_jsonld_website() -> str:
         "url": SITE_URL,
         "inLanguage": "ja",
         "publisher": {"@id": org_id},
-        "description": "滋賀・彦根の中小事業者向けAI相談、AIエージェント講習、有料オンラインサロン、受講資料、実例、講師紹介の資料センター。増え続けるAI情報から、仕事に使えるものと今やることを整理する。",
+        "description": "滋賀・彦根の中小事業者向けAI相談、AIエージェント講習、月額2,200円のAIオンラインサロン、受講資料、実例、講師紹介の資料センター。増え続けるAI情報から、仕事に使えるものと今やることを整理する。",
     }
 
     ai_agent_title = "AIエージェント講習 120分"
@@ -264,7 +296,7 @@ def _build_jsonld_website() -> str:
         (ai_agent_title, "CodexとClaude Codeを使い、仕事を分けて頼む、結果を確かめる、修正する、繰り返せる手順として残すAIエージェント講習。調査、資料、告知、業務改善、Web制作を題材に、AIの成果物を判断して仕事に入れる型を120分で身につける。", "5500", "5500", "Course"),
         (free_consult_title, "来店またはオンラインで、AI導入の入口を整理する無料相談。講習や伴走の前に、今の課題と次の一手を確認する。", "0", "0", "BusinessCoaching"),
         (consult_title, "AIの使い方、役割分担、指示書、確認体制、運用導線を60分で整理する個別相談。", "5500", "5500", "BusinessCoaching"),
-        (salon_title, "毎週火曜21時にLINEで開く有料のAIオンラインサロン。日々増えるAIの新機能や重要発表、一流の活用事例から、仕事に使えるものと今試すことを一緒に整理する。聞くだけ・途中参加も歓迎。", None, None, "CommunityService"),
+        (salon_title, "月額2,200円（税込）、毎週火曜21時にLINEライブトークで開くAIオンラインサロン。日々増えるAIの新機能や重要発表、一流の活用事例から、仕事に使えるものと今試すことを一緒に整理する。聞くだけ・途中参加も歓迎。月額決済とメンバーの入退会はLINEメンバーシップで管理する。", "2200", "2200", "CommunityService"),
         (support_title, "HP公開から事務自動化・経理・マーケまで6ヶ月で一気に定着。技術的な難所は講師が代行・支援。滋賀・彦根の補助金で負担1/3以下に。", "100000", "100000", "Service"),
         (ai_coding_title, "Codex導入、Claude Code併用、画像生成、プログラミング基礎、設計、データ、運用、セキュリティを1本で学ぶAIコーディング講習。AIの成果物を判断し、説明し、仕事に入れるための作業設計と確認の型を120分で身につける。", "11000", "11000", "Course"),
     ]
@@ -294,6 +326,14 @@ def _build_jsonld_website() -> str:
             service["offers"] = offer
         if name == salon_title:
             service["url"] = SITE_URL + "/#seven-day-courses"
+            offer["priceSpecification"] = {
+                "@type": "UnitPriceSpecification",
+                "price": "2200",
+                "priceCurrency": "JPY",
+                "valueAddedTaxIncluded": True,
+                "billingDuration": "P1M",
+                "unitText": "月",
+            }
         if name == ai_agent_title:
             offer["url"] = AI_AGENT_COURSE_URL
             service["url"] = AI_AGENT_COURSE_URL
@@ -9693,6 +9733,7 @@ def _render_header() -> str:
         "<a class='nav-link nav-essential' href='#lectures'>資料</a>"
         "<a class='nav-link nav-essential' href='#faq'>FAQ</a>"
         "<a class='nav-cta' href='#contact'>無料相談</a>"
+        "<a class='nav-link nav-essential nav-salon' href='#seven-day-courses'>サロン</a>"
         "</nav>"
         "<a class='header-member-login' href='/admin'>会員ログイン</a>"
         "<button class='mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'>"
@@ -9711,6 +9752,7 @@ def _render_header() -> str:
         "<a href='#speaker'><span class='mobile-link-title'>講師</span><small>誰が支援するか</small></a>"
         "<a href='#faq'><span class='mobile-link-title'>FAQ</span><small>不安を先に解消</small></a>"
         "<a href='#contact'><span class='mobile-link-title'>無料相談</span><small>初回の入口整理を予約</small></a>"
+        "<a href='#seven-day-courses'><span class='mobile-link-title'>AIオンラインサロン</span><small>月額2,200円・毎週火曜21時</small></a>"
         "</div>"
         "</div>"
         "</div>"
@@ -11459,16 +11501,16 @@ def _render_compact_course_cards() -> str:
             "material_cta": "Claude Codeの実践資料を見る",
         },
         {
-            "cat": "有料コミュニティ",
+            "cat": "LINEメンバーシップ",
             "title": "AIオンラインサロン",
             "image": "/img/blog-ai-agent-course-section-4-20260714.webp",
-            "image_alt": "毎週火曜にLINEオープンチャットのライブトークでAIの今と次の一手を整理するオンラインサロン",
-            "price": "有料",
+            "image_alt": "毎週火曜にLINEライブトークでAIの今と次の一手を整理するオンラインサロン",
+            "price": "月額2,200円（税込）",
             "duration": "毎週火曜 21:00",
-            "desc": "新機能と一流の活用事例を短く整理し、仕事で次に試すことを一緒に決めます。聞くだけでもOKです。",
-            "url": AI_SALON_CHECKOUT_URL,
-            "cta": "有料登録して参加する",
-            "post": True,
+            "desc": "LINEライブトークで、仕事で次に試すことを一緒に決めます。聞くだけOK。月額決済と入退会はLINEメンバーシップで管理します。",
+            "url": AI_SALON_LINE_MEMBERSHIP_URL,
+            "cta": "LINEで月額登録する",
+            "unavailable": not bool(AI_SALON_LINE_MEMBERSHIP_URL),
             "material_url": "#seven-day-courses",
             "material_cta": "サロンの内容・参加方法を見る",
             "badge": "ライブトーク開催",
@@ -11501,7 +11543,11 @@ def _render_compact_course_cards() -> str:
             f"<h3>{html.escape(item['title'])}</h3>{badge_html}</div>"
             if badge else f"<h3>{html.escape(item['title'])}</h3>"
         )
-        if item.get("post"):
+        if item.get("unavailable"):
+            main_action_html = (
+                "<span class='compact-course-unavailable' aria-disabled='true'>受付準備中</span>"
+            )
+        elif item.get("post"):
             main_action_html = (
                 f"<form class='compact-course-checkout' method='post' action='{html.escape(item['url'], quote=True)}'>"
                 f"<button type='submit'>{html.escape(item['cta'])} →</button></form>"
@@ -11526,12 +11572,12 @@ def _render_compact_course_cards() -> str:
 
 
 def _render_live_talk_guide() -> str:
-    """LINEオープンチャットのライブトーク参加方法を、短い図解と3手順で案内する。"""
+    """LINEライブトークへの参加方法を、短い図解と3手順で案内する。"""
     return (
         "<div class='salon-participation' aria-labelledby='salon-live-guide-title'>"
         "<figure class='salon-live-figure'>"
         "<img src='/img/ai-salon-live-talk-guide-20260722.svg' "
-        "alt='LINEオープンチャットでライブトークを開き、リスナーとして参加し、話すときだけ挙手する流れ' "
+        "alt='LINEライブトークにリスナーとして参加し、話すときだけ挙手する流れ' "
         "width='640' height='480' loading='lazy' decoding='async'>"
         "<figcaption>マイクOFFで参加できます</figcaption>"
         "</figure>"
@@ -11539,13 +11585,34 @@ def _render_live_talk_guide() -> str:
         "<span class='salon-live-badge'><i aria-hidden='true'></i>LINE LIVE TALK</span>"
         "<h3 id='salon-live-guide-title'>聞くだけOK。話すときだけ挙手</h3>"
         "<ol class='salon-live-steps'>"
-        "<li><b>01</b><span><strong>LINE招待を開く</strong><small>決済完了後に表示</small></span></li>"
-        "<li><b>02</b><span><strong>リスナー参加</strong><small>そのまま聞き始める</small></span></li>"
-        "<li><b>03</b><span><strong>話すときだけ挙手</strong><small>承認後にマイクON</small></span></li>"
+        "<li><b>01</b><span><strong>LINEで月額登録</strong><small>決済・入退会を管理</small></span></li>"
+        "<li><b>02</b><span><strong>火曜21時に入室</strong><small>ライブトークを開く</small></span></li>"
+        "<li><b>03</b><span><strong>聞くだけ／挙手</strong><small>話すときだけマイクON</small></span></li>"
         "</ol>"
         "<div class='salon-live-guide-foot'><span>マイクOFF・途中参加・途中退出OK</span>"
-        "<a href='https://openchat-jp.line.me/topic/livetalk_release' target='_blank' rel='noopener'>ライブトークとは ↗</a></div>"
+        "<span>月額決済と入退会はLINEメンバーシップで管理</span></div>"
         "</div></div>"
+    )
+
+
+def _render_salon_membership_cta() -> str:
+    """Render the LINE membership link, or a non-clickable safe pending state."""
+    if AI_SALON_LINE_MEMBERSHIP_URL:
+        safe_url = html.escape(AI_SALON_LINE_MEMBERSHIP_URL, quote=True)
+        action = (
+            f"<a class='focus-btn primary' href='{safe_url}' target='_blank' rel='noopener'>"
+            "LINEで月額登録する →</a>"
+        )
+        note = "月額決済とメンバーの入退会はLINEメンバーシップで管理します"
+    else:
+        action = (
+            "<span class='focus-btn primary salon-register-unavailable' aria-disabled='true'>"
+            "受付準備中</span>"
+        )
+        note = "LINEメンバーシップの登録ページを準備しています"
+    return (
+        "<div class='salon-register-form'>"
+        f"{action}<small>{html.escape(note)}</small></div>"
     )
 
 
@@ -11574,7 +11641,7 @@ def _render_footer(today: str) -> str:
         "<div class='footer-grid'>"
         "<div class='footer-brand'>"
         "<div class='footer-logo'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span></div>"
-        "<p class='footer-tagline'>滋賀・彦根の中小事業者向けに、AI相談・AIエージェント講習・有料オンラインサロン・受講資料・Web集客支援を行う"
+        "<p class='footer-tagline'>滋賀・彦根の中小事業者向けに、AI相談・AIエージェント講習・月額2,200円のAIオンラインサロン・受講資料・Web集客支援を行う"
         "資料センター型の相談サイト。増え続けるAI情報を、仕事で使える次の一手に変えます。</p>"
         "<a class='footer-cta' href='#contact'>無料相談する</a>"
         "</div>"
@@ -11585,6 +11652,7 @@ def _render_footer(today: str) -> str:
         "<a href='#speaker'>講師紹介</a>"
         "<a href='#lectures'>受講資料</a>"
         "<a href='#faq'>よくある質問</a>"
+        "<a href='#seven-day-courses'>AIオンラインサロン</a>"
         "</nav>"
         "<div class='footer-nap'>"
         "<span class='footer-nav-head'>運営</span>"
@@ -11749,7 +11817,7 @@ FAQ_QA = [
     ("AIエージェント講習では何を学びますか？",
      "CodexとClaude Codeを、調査、資料、告知、業務改善、Web制作を一緒に進める作業者として使う講習です。仕事の分け方、伝わる依頼、差分・根拠・画面の確認、修正指示、成果物と次回手順の保存までを120分で通します。料金は5,500円で、専用の予約ページから申し込めます。"),
     ("AIオンラインサロンでは、何がわかりますか？",
-     "日々増えるAIの新機能や重要発表と、一流の活用事例から、仕事に関係する変化を選び、今何を試すかを毎週一緒に整理します。全部を自分で追わなくても、聞くだけで要点と次の一歩がわかります。毎週火曜21時、LINEのライブトークで開催する有料オンラインサロンです。途中参加も歓迎です。"),
+     "日々増えるAIの新機能や重要発表と、一流の活用事例から、仕事に関係する変化を選び、今何を試すかを毎週一緒に整理します。全部を自分で追わなくても、聞くだけで要点と次の一歩がわかります。月額2,200円（税込）、毎週火曜21時にLINEライブトークで開催します。月額決済とメンバーの入退会はLINEメンバーシップで管理します。"),
     ("受講資料はあとから見返せますか？",
      "はい。受講で使った資料、プロンプト、実例、動画、スライドは資料センターとして整理し、あとから復習できるようにします。受講前に内容を確認したい方も、受講資料ページから雰囲気を見られます。"),
     ("Reels や YouTube の集客にも使えますか？",
@@ -11757,7 +11825,7 @@ FAQ_QA = [
     ("LLMO やAI検索に強いサイトにできますか？",
      "できます。地域名、講師の一次経験、料金、対応範囲、実例、FAQ、構造化データを整理し、AIが回答に引用しやすい形で公開します。大量の自動生成ではなく、講習と実例に基づく一次情報を重視します。"),
     ("料金はどれくらいですか？",
-     "AI無料相談の入口整理は無料、AIエージェント講習120分は5,500円、AI個別相談 しっかり60分は5,500円です。AI伴走支援 いっしょに導入は月額10万円×6ヶ月が目安で、月額決済はStripe Checkoutで行います。LP制作は1本18〜30万円が目安。多くは補助金併用を前提に組みます。"),
+     "AI無料相談の入口整理は無料、AIエージェント講習120分は5,500円、AI個別相談 しっかり60分は5,500円、AIオンラインサロンは月額2,200円（税込）です。AI伴走支援 いっしょに導入は月額10万円×6ヶ月が目安で、月額決済はStripe Checkoutで行います。LP制作は1本18〜30万円が目安。多くは補助金併用を前提に組みます。"),
     ("補助金は使えますか？滋賀の事業者でも対象ですか？",
      "講習・伴走パックは「デジタル化・AI導入補助金」や滋賀県・彦根市の補助金の対象になります。補助率は小規模事業者で最大4/5、実質負担が1/3以下になるケースが多いです。申請からツール選定・実装・定着まで一気通貫で支援します。"),
     ("パソコンやスマホが苦手ですが、大丈夫ですか？",
@@ -12859,6 +12927,21 @@ header.site-header:hover {
 .compact-course-card > a:hover { background:var(--focus-blue-dark); }
 .compact-course-card > a.compact-course-material { min-height:auto; margin:10px 0 0; padding:0; color:var(--focus-blue); background:transparent; border-radius:0; font-size:11px; line-height:1.5; text-decoration:underline; text-underline-offset:3px; }
 .compact-course-card > a.compact-course-material:hover { color:var(--focus-blue-dark); background:transparent; }
+.compact-course-unavailable {
+  min-height:38px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-top:auto;
+  padding:7px 10px;
+  color:#6b7586;
+  background:#e9edf4;
+  border:1px solid #d7dee9;
+  border-radius:7px;
+  font-size:12px;
+  font-weight:900;
+  text-align:center;
+}
 .salon-section {
   position:relative;
   overflow:hidden;
@@ -13616,8 +13699,19 @@ footer.site-footer {
 .salon-register-form .focus-btn {
   width:100%;
   min-height:44px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   border:0;
+  text-decoration:none;
   cursor:pointer;
+}
+.salon-register-form .salon-register-unavailable {
+  color:#6b7586;
+  background:#e9edf4;
+  border:1px solid #d7dee9;
+  box-shadow:none;
+  cursor:default;
 }
 .salon-register-form small {
   display:block;
@@ -13942,7 +14036,8 @@ def _render_header_focused() -> str:
         "<a class='nav-link nav-essential' href='/blog/index.html'>ブログ</a>"
         "<a class='nav-link nav-essential' href='/#lectures'>資料</a>"
         "<a class='nav-link nav-essential' href='/#faq'>FAQ</a>"
-        "<a class='nav-cta' href='/#contact'>個別相談</a></nav>"
+        "<a class='nav-cta' href='/#contact'>個別相談</a>"
+        "<a class='nav-link nav-essential nav-salon' href='/#seven-day-courses'>サロン</a></nav>"
         "<button class='mobile-toggle' id='mobile-toggle' type='button' aria-label='メニューを開く' aria-controls='mobile-nav' aria-expanded='false'>"
         "<span class='mobile-toggle-icon' aria-hidden='true'><span></span><span></span><span></span></span>"
         "<span class='mobile-toggle-text'>メニュー</span></button>"
@@ -13956,6 +14051,7 @@ def _render_header_focused() -> str:
         "<a href='/#lectures'><span>資料</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
         "<a href='/#faq'><span>FAQ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
         "<a class='mobile-public-link--cta' href='/#contact'><span>個別相談</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
+        "<a href='/#seven-day-courses'><span>AIオンラインサロン</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
         "</nav><div class='mobile-nav-admin'><span class='mobile-nav-label'>管理</span>"
         "<a class='mobile-admin-link' href='/admin'><span class='mobile-admin-link-copy'><strong>管理ページ</strong><small>運営者ログイン</small></span>"
         "<span class='mobile-link-arrow' aria-hidden='true'>›</span></a></div>"
@@ -13976,7 +14072,7 @@ def _render_hero_focused() -> str:
         "<div class='hero-advantage-copy'><small><strong>利用率6%</strong><span>始めるなら今。</span></small><p id='hero-advantage-title'><span class='hero-advantage-equation'><strong>経験</strong><span>×</span><strong>AI</strong></span><span class='hero-advantage-outcome'>で、仕事を一歩先へ。</span></p></div>"
         "<ul class='hero-advantage-pillars' aria-label='AI活用を成果に変える3原則'><li><b>01</b>まず試す</li><li><b>02</b>人が確かめる</li><li><b>03</b>仕組みにする</li></ul>"
         "</aside>"
-        "<p class='focus-lead'>実践講習・個別相談・有料オンラインサロンで、AIを実務に入れ、使い続けられる形まで支援します。</p>"
+        "<p class='focus-lead'>実践講習・個別相談・月額2,200円のAIオンラインサロンで、AIを実務に入れ、使い続けられる形まで支援します。</p>"
         "<div class='focus-actions'>"
         "<a class='focus-btn primary' href='#packages'>講習・相談を見る</a>"
         "<a class='focus-btn secondary' href='#contact'>無料相談する</a><a class='hero-text-link' href='/lectures/index.html'>受講資料 <span aria-hidden='true'>→</span></a></div>"
@@ -14007,7 +14103,7 @@ def _render_focused_main() -> str:
 
     parts = [
         "<section class='focus-block main-course' id='packages'><div class='focus-section-head'><small>COURSES</small><h2>講習・相談コース</h2></div>",
-        "<p class='focus-section-lead'><strong>迷ったら、まずはAIエージェント講習が一番基本でおすすめです。</strong><br>最新情報を追い続けず「今やること」を知りたい方は、有料オンラインサロンへ。個別相談、伴走支援、AIコーディング講習も選べます。</p>",
+        "<p class='focus-section-lead'><strong>迷ったら、まずはAIエージェント講習が一番基本でおすすめです。</strong><br>最新情報を追い続けず「今やること」を知りたい方は、月額2,200円のAIオンラインサロンへ。個別相談、伴走支援、AIコーディング講習も選べます。</p>",
         _render_compact_course_cards(),
         "<aside class='course-venue-common' aria-label='講習・相談コース共通の開催場所'>",
         "<img src='/img/gubboru-cafe-ai-course-painting.webp' alt='講習・相談の対面会場 グッぼるカフェの店内' loading='lazy' decoding='async'>",
@@ -14017,7 +14113,7 @@ def _render_focused_main() -> str:
         "<div class='course-quick-actions'><button type='button' class='compact-diagnose diagnose-open'>迷ったら60秒診断</button><a href='#lectures'>受講資料から選ぶ →</a></div></section>",
         "<section class='focus-block salon-section' id='seven-day-courses' aria-labelledby='salon-title'>",
         "<div class='salon-panel'><div class='salon-intro'><div class='salon-intro-copy'>",
-        "<span class='salon-intro-kicker'><i aria-hidden='true'></i>有料・毎週火曜 21:00</span>",
+        "<span class='salon-intro-kicker'><i aria-hidden='true'></i>月額2,200円（税込）・毎週火曜21:00</span>",
         "<h2 id='salon-title'>AIオンラインサロン</h2>",
         "<p class='salon-intro-tagline'>AIの最新を、仕事の次の一手に。</p>",
         "<p class='salon-intro-summary'>全部を追わず、新機能と一流の活用事例から、今試すことを短く整理します。</p></div>",
@@ -14026,12 +14122,13 @@ def _render_focused_main() -> str:
         "<div class='salon-value' role='listitem'><b>02</b><div><small>BEST PRACTICE</small><strong>一流の活用事例を聞く</strong></div></div>",
         "<div class='salon-value' role='listitem'><b>03</b><div><small>NEXT ACTION</small><strong>次に試すことを決める</strong></div></div>",
         "</div></div>",
-        "<div class='salon-facts' aria-label='開催情報'><div class='salon-fact'><small>WHEN</small><strong>火曜 21:00</strong></div><div class='salon-fact'><small>PLACE</small><strong>LINE</strong></div><div class='salon-fact'><small>FEE</small><strong>有料</strong></div><div class='salon-fact'><small>STYLE</small><strong>聞くだけOK</strong></div></div>",
+        "<div class='salon-facts' aria-label='開催情報'><div class='salon-fact'><small>WHEN</small><strong>火曜21:00</strong></div><div class='salon-fact'><small>PLACE</small><strong>LINEライブ</strong></div><div class='salon-fact'><small>FEE</small><strong>月2,200円</strong></div><div class='salon-fact'><small>STYLE</small><strong>聞くだけOK</strong></div></div>",
         _render_live_talk_guide(),
         "<div class='salon-session-head'><small>60 MINUTES</small><h3>火曜21時の流れ</h3></div>",
         _render_salon_run_strip(),
         "<div class='salon-register-row'><p class='salon-note'><strong>参加できない週も安心。</strong>終了後は、講師確認済みの「火曜AIノート」で重要な変化と次の一歩を共有します。</p>",
-        f"<form class='salon-register-form' method='post' action='{html.escape(AI_SALON_CHECKOUT_URL, quote=True)}'><button class='focus-btn primary' type='submit'>有料登録して参加する →</button><small>Stripe決済完了後にLINE招待を表示</small></form></div></div></section>",
+        _render_salon_membership_cta(),
+        "</div></div></section>",
         "<section class='focus-block soft' id='lectures'><div class='focus-section-head'><small>LEARNING MATERIALS</small><h2>受講資料</h2></div>",
         "<p class='focus-section-lead'>公開中の受講資料をすべて表示しています。迷ったら「AIが初めて」から順に選べます。</p>",
         _render_lectures_section(),
@@ -14056,7 +14153,7 @@ def _render_focused_main() -> str:
         "<details><summary>AIがまったく初めてでも大丈夫ですか？</summary><p>大丈夫です。専門用語ではなく、普段の仕事と困りごとから始めます。</p></details>",
         "<details><summary>受講にパソコンは必要ですか？</summary><p>はい。WindowsまたはMacのパソコンを必ずお持ちください。直したい資料やページもあれば、あわせてお持ちください。</p></details>",
         "<details><summary>オンラインでも受講できますか？</summary><p>対面・オンラインの両方に対応しています。彦根市内は訪問も相談できます。</p></details>",
-        "<details><summary>AIオンラインサロンでは、何がわかりますか？</summary><p>新機能や重要発表、一流の活用事例を並べるだけでなく、仕事に使えるか、今何を試すかまで一緒に整理します。全部を自分で追わなくても、聞くだけで要点と次の一歩がわかります。毎週火曜21時、LINEのライブトークで開催する有料オンラインサロンです。途中参加も歓迎です。</p></details></div></section>",
+        "<details><summary>AIオンラインサロンでは、何がわかりますか？</summary><p>新機能や重要発表、一流の活用事例を並べるだけでなく、仕事に使えるか、今何を試すかまで一緒に整理します。全部を自分で追わなくても、聞くだけで要点と次の一歩がわかります。月額2,200円（税込）、毎週火曜21時にLINEライブトークで開催します。月額決済とメンバーの入退会はLINEメンバーシップで管理します。</p></details></div></section>",
         "<section class='focus-contact' id='contact'><div class='focus-contact-inner'><div><h2>AIエージェントに任せたい仕事を聞かせてください。</h2><p>講習前に、今の仕事に合う題材と進め方を一緒に整理できます。</p></div>",
         f"<a class='focus-btn' href='{free_consult}' target='_blank' rel='noopener'>無料相談の日程を選ぶ</a></div></section>",
     ]
@@ -14066,7 +14163,7 @@ def _render_focused_main() -> str:
 def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     today = datetime.now().strftime("%Y-%m-%d")
     title = SITE_BRAND
-    desc = "AI相談は、彦根・滋賀でAIエージェント講習と有料オンラインサロンを開催しています。増え続けるAI情報から仕事に使えるものを選び、今やることを整理。CodexやClaude Codeで実践まで進めます。"
+    desc = "AI相談は、彦根・滋賀でAIエージェント講習と月額2,200円のAIオンラインサロンを開催しています。増え続けるAI情報から仕事に使えるものを選び、今やることを整理。CodexやClaude Codeで実践まで進めます。"
 
     parts: list[str] = []
     parts.append("<!doctype html><html lang='ja'><head><meta charset='utf-8'>" + FAVICON_HEAD_HTML)

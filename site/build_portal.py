@@ -13790,14 +13790,14 @@ footer.site-footer {
     display:block;
     margin:3px 0 2px;
     overflow:hidden;
-    font-size:6px;
+    font-size:8px;
     text-overflow:ellipsis;
     white-space:nowrap;
   }
   .salon-panel .salon-value strong {
     display:block;
-    font-size:9.5px;
-    line-height:1.3;
+    font-size:11px;
+    line-height:1.35;
   }
   .salon-panel .salon-facts {
     grid-template-columns:repeat(4,minmax(0,1fr));
@@ -13814,10 +13814,10 @@ footer.site-footer {
     border-top:0;
   }
   .salon-panel .salon-fact small {
-    font-size:6.5px;
+    font-size:8px;
   }
   .salon-panel .salon-fact strong {
-    font-size:9.5px;
+    font-size:11px;
   }
   .salon-participation {
     grid-template-columns:98px minmax(0,1fr);
@@ -13830,7 +13830,7 @@ footer.site-footer {
     display:none;
   }
   .salon-participation .salon-live-badge {
-    font-size:7px;
+    font-size:8px;
   }
   .salon-participation h3 {
     font-size:14px;
@@ -13851,10 +13851,10 @@ footer.site-footer {
     font-size:8px;
   }
   .salon-participation .salon-live-steps strong {
-    font-size:9.5px;
+    font-size:11px;
   }
   .salon-participation .salon-live-steps small {
-    font-size:7.5px;
+    font-size:9px;
   }
   .salon-participation .salon-live-guide-foot {
     align-items:flex-start;
@@ -13863,7 +13863,7 @@ footer.site-footer {
   }
   .salon-participation .salon-live-guide-foot span,
   .salon-participation .salon-live-guide-foot a {
-    font-size:7.5px;
+    font-size:9px;
   }
   .salon-session-head {
     margin-top:11px;
@@ -13879,7 +13879,7 @@ footer.site-footer {
     font-size:11px;
   }
   .salon-run-cell strong {
-    font-size:9.5px;
+    font-size:11px;
   }
   .salon-register-row {
     grid-template-columns:1fr;

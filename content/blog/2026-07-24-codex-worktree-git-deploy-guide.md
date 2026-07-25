@@ -4,7 +4,7 @@ date: 2026-07-24
 role: ブログ兼説明資料 / Codex・Git初心者向け
 gen_by: 由井 辰美 / AI相談
 summary: Codexでサイトを直して公開するまでを、作業場所・記録・確認・公開の4段階に分けてやさしく説明します。
-image: /img/blog-codex-safe-publish-hero-20260725.webp
+image: /img/blog-codex-guide-roles-explainer-v2-20260725.webp
 audience: Codexを使いたいが、Gitの言葉が難しいと感じる地域事業者、講座受講者、非エンジニア
 duration: 4分
 goal: LocalとWorktreeを選び、Commit、Pull Request、Deployの違いを説明できる
@@ -55,8 +55,8 @@ goal: LocalとWorktreeを選び、Commit、Pull Request、Deployの違いを説�
 <div class="simple-codex-guide" markdown="1">
 
 <figure class="guide-figure guide-hero">
-  <img src="/img/blog-codex-safe-publish-hero-20260725.webp" alt="作業、記録、確認、公開というCodexの流れ" loading="eager" decoding="async">
-  <figcaption>Codexの作業は「作業・記録・確認・公開」の4段階です。</figcaption>
+  <img src="/img/blog-codex-guide-roles-explainer-v2-20260725.webp" alt="Worktreeは作業を分ける、Commitは変更を保存する、Pull Requestは公開前に確認する、Deployは本番へ反映するという役割の図解" loading="eager" decoding="async">
+  <figcaption>4つの用語を「何をするものか」で分けた図です。</figcaption>
 </figure>
 
 Codexでサイトを直す時、言葉の多さに戸惑うことがあります。
@@ -71,8 +71,8 @@ Gitは変更を記録し、Pull Requestは公開前に確認し、Deployで利�
 ## まず、全体の流れを見る
 
 <figure class="guide-figure">
-  <img src="/img/blog-codex-safe-publish-flow-20260725.webp" alt="作る、分ける、記録、確認、公開の5段階" loading="lazy" decoding="async">
-  <figcaption>今どの段階にいるかが分かれば、専門用語を全部覚えなくても進められます。</figcaption>
+  <img src="/img/blog-codex-guide-flow-explainer-v2-20260725.webp" alt="Worktreeで作業を分け、サイトを直し、Commitで変更を残し、Pull Requestで確認し、Deployで本番へ出す5段階の図解" loading="lazy" decoding="async">
+  <figcaption>作業を分けてから本番へ出すまでを、5つの行動で確認できます。</figcaption>
 </figure>
 
 役割は、次のように分けると簡単です。
@@ -89,8 +89,8 @@ Sandboxは、Codexが触ってよい範囲を決める**安全のための枠**�
 ## LocalとWorktreeは、こう選ぶ
 
 <figure class="guide-figure">
-  <img src="/img/blog-codex-safe-publish-worktree-20260725.webp" alt="小さな修正はLocal、作業を分ける時はWorktreeという比較" loading="lazy" decoding="async">
-  <figcaption>修正の大きさよりも、ほかの作業と混ざるかどうかで選びます。</figcaption>
+  <img src="/img/blog-codex-guide-local-worktree-explainer-v2-20260725.webp" alt="Localは今の作業場所で小さな修正向け、Worktreeは別の作業場所で並行作業や今の変更を守る時に使うという比較図" loading="lazy" decoding="async">
+  <figcaption>ほかの作業と混ざりそうなら、Worktreeを選びます。</figcaption>
 </figure>
 
 <div class="choice-grid">
@@ -121,8 +121,8 @@ Branchは、分けた作業につける**名前**です。Commitは、その作�
 ## 公開は、本番URLを確認して完了
 
 <figure class="guide-figure">
-  <img src="/img/blog-codex-safe-publish-release-20260725.webp" alt="ローカル、プレビュー、本番の3段階" loading="lazy" decoding="async">
-  <figcaption>CommitやPull Requestは途中の段階です。本番サイトの確認までが公開作業です。</figcaption>
+  <img src="/img/blog-codex-guide-release-explainer-v2-20260725.webp" alt="ローカルは自分のPCだけ、プレビューは関係者が確認、本番は利用者に公開される状態で、本番URLを開いて完了という図解" loading="lazy" decoding="async">
+  <figcaption>本番URLを実際に開き、利用者向けの表示を確認して完了です。</figcaption>
 </figure>
 
 作業の状態は、3つに分けて伝えます。

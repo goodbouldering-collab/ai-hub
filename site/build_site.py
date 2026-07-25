@@ -269,14 +269,18 @@ def is_video(item: dict) -> bool:
 # 全ページ共通の favicon (HEAD に注入)
 # SVGを正本にし、Apple/iPhone向けはPNGの apple-touch-icon を明示する
 FAVICON_HEAD_HTML = (
-    "<link rel='icon' type='image/svg+xml' href='/favicon.svg'>"
-    "<link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png'>"
-    "<link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png'>"
-    "<link rel='shortcut icon' href='/favicon.ico'>"
-    "<link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png'>"
-    "<link rel='manifest' href='/site.webmanifest'>"
-    "<link rel='mask-icon' href='/favicon.svg' color='#0EA5E9'>"
-    "<meta name='theme-color' content='#F7FBFF'>"
+    "<link rel='icon' type='image/svg+xml' href='/favicon-20260725.svg'>"
+    "<link rel='icon' type='image/png' sizes='32x32' href='/favicon-20260725-32x32.png'>"
+    "<link rel='icon' type='image/png' sizes='16x16' href='/favicon-20260725-16x16.png'>"
+    "<link rel='shortcut icon' href='/favicon-20260725.ico'>"
+    "<link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon-20260725.png'>"
+    "<link rel='manifest' href='/site-20260725.webmanifest'>"
+    "<link rel='mask-icon' href='/favicon-20260725.svg' color='#5367D9'>"
+    "<meta name='application-name' content='AI相談'>"
+    "<meta name='apple-mobile-web-app-title' content='AI相談'>"
+    "<meta name='apple-mobile-web-app-capable' content='yes'>"
+    "<meta name='mobile-web-app-capable' content='yes'>"
+    "<meta name='theme-color' content='#172033'>"
 )
 
 # top_buttons の中で `localhost_only: true` のリンクは

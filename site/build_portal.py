@@ -119,6 +119,7 @@ CONSULT_BOOK_URL = "https://book.squareup.com/appointments/zymaszkc9pdwq2/locati
 AI_AGENT_COURSE_URL = "https://goodbouldering.com/?pid=188553378"
 AI_CODING_BOOK_URL = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/S7GERYVDIPRV76DKXCC3WJWH"
 MONTHLY_SUPPORT_CHECKOUT_URL = "/api/stripe/monthly-support"
+AI_SALON_CHECKOUT_URL = "/api/square/ai-salon-checkout"
 
 
 COLOR_MAP = {
@@ -267,7 +268,7 @@ def _build_jsonld_website() -> str:
         (ai_agent_title, "CodexとClaude Codeを使い、仕事を分けて頼む、結果を確かめる、修正する、繰り返せる手順として残すAIエージェント講習。調査、資料、告知、業務改善、Web制作を題材に、AIの成果物を判断して仕事に入れる型を120分で身につける。", "5500", "5500", "Course"),
         (free_consult_title, "来店またはオンラインで、AI導入の入口を整理する無料相談。講習や伴走の前に、今の課題と次の一手を確認する。", "0", "0", "BusinessCoaching"),
         (consult_title, "AIの使い方、役割分担、指示書、確認体制、運用導線を60分で整理する個別相談。", "5500", "5500", "BusinessCoaching"),
-        (salon_title, "毎週火曜21時にLINEで開く有料のAIオンラインサロン。日々増えるAIの新機能や重要発表、一流の活用事例から、仕事に使えるものと今試すことを一緒に整理する。聞くだけ・途中参加も歓迎。", None, None, "CommunityService"),
+        (salon_title, "毎週火曜21時、LINEで開く有料サロン。AIの変化を60分で整理し、今週やることを決める。", None, None, "CommunityService"),
         (support_title, "HP公開から事務自動化・経理・マーケまで6ヶ月で一気に定着。技術的な難所は講師が代行・支援。滋賀・彦根の補助金で負担1/3以下に。", "100000", "100000", "Service"),
         (ai_coding_title, "Codex導入、Claude Code併用、画像生成、プログラミング基礎、設計、データ、運用、セキュリティを1本で学ぶAIコーディング講習。AIの成果物を判断し、説明し、仕事に入れるための作業設計と確認の型を120分で身につける。", "11000", "11000", "Course"),
     ]
@@ -296,7 +297,7 @@ def _build_jsonld_website() -> str:
                 }
             service["offers"] = offer
         if name == salon_title:
-            service["url"] = AI_SALON_OPENCHAT_URL
+            service["url"] = SITE_URL + AI_SALON_CHECKOUT_URL
         if name == ai_agent_title:
             offer["url"] = AI_AGENT_COURSE_URL
             service["url"] = AI_AGENT_COURSE_URL
@@ -11466,13 +11467,13 @@ def _render_compact_course_cards() -> str:
             "title": "AIオンラインサロン",
             "image": "/img/blog-ai-agent-course-section-4-20260714.webp",
             "image_alt": "毎週火曜にLINEオープンチャットのライブトークでAIの今と次の一手を整理するオンラインサロン",
-            "price": "有料",
+            "price": "Square決済",
             "duration": "毎週火曜 21:00",
-            "desc": "新機能と一流の活用事例を短く整理し、仕事で次に試すことを一緒に決めます。聞くだけでもOKです。",
-            "url": AI_SALON_OPENCHAT_URL,
-            "cta": "LINEで会場案内を受け取る",
+            "desc": "AIの変化を短く整理し、仕事で次に試すことを決めます。聞くだけでも参加できます。",
+            "url": AI_SALON_CHECKOUT_URL,
+            "cta": "Squareで決済して参加",
             "material_url": "/lectures/2026-07-ai-online-salon-practice.html",
-            "material_cta": "AIオンラインサロンの受講資料を見る",
+            "material_cta": "内容を見る",
             "badge": "ライブトーク開催",
         },
     ]
@@ -11703,8 +11704,6 @@ def _render_explore() -> str:
     return "".join(parts)
 
 
-# AIオンラインサロン「AI相談 彦根」のLINEオープンチャット招待URL。
-AI_SALON_OPENCHAT_URL = "https://line.me/ti/g2/T_YcE93W4-AhKBYQM_eOKJ4wRrjLE9NbZpPMWA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default"
 # 無料相談の予約導線（Squareの相談サービスID）。無料相談CTAの最終到達先をここに一本化。
 
 
@@ -11804,7 +11803,7 @@ FAQ_QA = [
     ("AIエージェント講習では何を学びますか？",
      "CodexとClaude Codeを、調査、資料、告知、業務改善、Web制作を一緒に進める作業者として使う講習です。仕事の分け方、伝わる依頼、差分・根拠・画面の確認、修正指示、成果物と次回手順の保存までを120分で通します。料金は5,500円で、専用の予約ページから申し込めます。"),
     ("AIオンラインサロンでは、何がわかりますか？",
-     "日々増えるAIの新機能や重要発表と、一流の活用事例から、仕事に関係する変化を選び、今何を試すかを毎週一緒に整理します。全部を自分で追わなくても、聞くだけで要点と次の一歩がわかります。毎週火曜21時、LINEのライブトークで開催する有料オンラインサロンです。途中参加も歓迎です。"),
+     "毎週火曜21時、LINEライブトークでAIの変化を60分で整理し、今週やることを決めます。聞くだけでも参加できます。"),
     ("受講資料はあとから見返せますか？",
      "はい。受講で使った資料、プロンプト、実例、動画、スライドは資料センターとして整理し、あとから復習できるようにします。受講前に内容を確認したい方も、受講資料ページから雰囲気を見られます。"),
     ("Reels や YouTube の集客にも使えますか？",
@@ -13180,6 +13179,117 @@ header.site-header:hover {
 .salon-timeline-dots button[aria-current="step"] { width:26px; background:var(--focus-blue); }
 .salon-timeline-status { min-width:34px; color:var(--focus-muted); font-size:11px; font-weight:850; }
 .salon-timeline-wrap .pf-arrow { top:45%; }
+.salon-compact {
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(145deg,#f4f1ff 0%,#fff 52%,#eef5ff 100%);
+  border-top:1px solid rgba(83,103,217,.14);
+  border-bottom:1px solid rgba(83,103,217,.14);
+}
+.salon-compact-shell {
+  position:relative;
+  z-index:1;
+  width:min(1040px,100%);
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:minmax(0,1.12fr) minmax(320px,.88fr);
+  gap:24px;
+  align-items:stretch;
+}
+.salon-compact-copy,
+.salon-purchase {
+  padding:30px;
+  border:1px solid rgba(83,103,217,.18);
+  border-radius:20px;
+  background:rgba(255,255,255,.94);
+  box-shadow:0 18px 46px rgba(42,53,105,.08);
+}
+.salon-compact-kicker {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  color:var(--focus-blue);
+  font-size:11px;
+  font-weight:900;
+}
+.salon-compact-kicker i {
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#e2394f;
+  box-shadow:0 0 0 5px rgba(226,57,79,.10);
+}
+.salon-compact h2 {
+  margin:14px 0 0;
+  color:var(--focus-ink);
+  font-size:clamp(34px,4vw,50px);
+  line-height:1.08;
+  letter-spacing:-.05em;
+}
+.salon-compact-lead {
+  margin:14px 0 0;
+  color:#24344a;
+  font-size:17px;
+  line-height:1.65;
+  font-weight:800;
+}
+.salon-compact-points {
+  margin:24px 0 0;
+  padding:0;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  border-top:1px solid rgba(83,103,217,.14);
+  border-bottom:1px solid rgba(83,103,217,.14);
+  list-style:none;
+}
+.salon-compact-points li { padding:14px 12px; }
+.salon-compact-points li + li { border-left:1px solid rgba(83,103,217,.14); }
+.salon-compact-points strong,
+.salon-compact-points span { display:block; }
+.salon-compact-points strong { color:var(--focus-blue); font-size:13px; }
+.salon-compact-points span { margin-top:4px; color:var(--focus-muted); font-size:11px; line-height:1.45; }
+.salon-material-link {
+  display:inline-flex;
+  margin-top:18px;
+  color:var(--focus-blue);
+  font-size:12px;
+  font-weight:900;
+  text-underline-offset:3px;
+}
+.salon-purchase { background:#071c38; border-color:#071c38; color:#fff; }
+.salon-purchase > small { color:#9dc7ff; font:900 10px/1.2 Inter,sans-serif; letter-spacing:.12em; }
+.salon-purchase h3 { margin:9px 0 0; color:#fff; font-size:25px; line-height:1.3; }
+.salon-purchase-flow { margin:19px 0 0; padding:0; display:grid; gap:11px; list-style:none; }
+.salon-purchase-flow li { display:grid; grid-template-columns:30px minmax(0,1fr); gap:10px; align-items:start; }
+.salon-purchase-flow b {
+  display:grid;
+  place-items:center;
+  width:30px;
+  height:30px;
+  border-radius:9px;
+  color:#071c38;
+  background:#fff;
+  font-size:11px;
+}
+.salon-purchase-flow span { color:#b9cbe0; font-size:11px; line-height:1.45; }
+.salon-purchase-flow strong { display:block; margin-bottom:2px; color:#fff; font-size:13px; }
+.salon-purchase-cta {
+  min-height:50px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-top:20px;
+  padding:0 18px;
+  border-radius:9px;
+  color:#071c38;
+  background:#fff;
+  font-size:13px;
+  font-weight:950;
+  text-align:center;
+  text-decoration:none;
+}
+.salon-purchase-cta:hover { background:#e9f3ff; }
+.salon-purchase > p { margin:10px 0 0; color:#9fb3c9; font-size:10px; line-height:1.5; text-align:center; }
 .course-quick-actions { max-width:1400px; margin:12px auto 0; display:flex; align-items:center; justify-content:flex-end; gap:14px; }
 .compact-diagnose { padding:0; color:var(--focus-blue); background:transparent; border:0; font-size:12px; font-weight:900; text-decoration:underline; text-underline-offset:3px; cursor:pointer; }
 .course-quick-actions a { color:var(--focus-muted); font-size:12px; font-weight:800; }
@@ -13292,6 +13402,7 @@ footer.site-footer {
     grid-template-areas:"copy" "values" "facts";
     gap:18px;
   }
+  .salon-compact-shell { grid-template-columns:1fr; }
 }
 @media (max-width: 680px) {
   :root {
@@ -13397,6 +13508,16 @@ footer.site-footer {
   .salon-live-steps li { padding:10px; }
   .salon-live-guide-foot { align-items:flex-start; flex-direction:column; gap:6px; }
   .salon-note { text-align:left; }
+  .salon-compact { padding-top:42px !important; padding-bottom:42px !important; }
+  .salon-compact-shell { gap:12px; }
+  .salon-compact-copy,
+  .salon-purchase { padding:18px; border-radius:15px; }
+  .salon-compact h2 { margin-top:10px; font-size:30px; }
+  .salon-compact-lead { margin-top:9px; font-size:14px; }
+  .salon-compact-points { margin-top:18px; }
+  .salon-compact-points li { padding:11px 7px; }
+  .salon-compact-points span { font-size:10px; }
+  .salon-purchase h3 { font-size:21px; }
   .course-quick-actions { align-items:flex-end; justify-content:space-between; }
 }
 
@@ -13629,6 +13750,37 @@ def _render_focused_blog_content() -> str:
     )
 
 
+def _render_compact_salon() -> str:
+    """AIオンラインサロンの価値・開催情報・参加手順を1つの短いカードに集約する。"""
+    return (
+        "<section class='focus-block salon-compact' id='seven-day-courses' aria-labelledby='salon-title'>"
+        "<div class='salon-compact-shell'>"
+        "<div class='salon-compact-copy'>"
+        "<span class='salon-compact-kicker'><i aria-hidden='true'></i>毎週火曜 21:00・LINEライブトーク</span>"
+        "<h2 id='salon-title'>AIオンラインサロン</h2>"
+        "<p class='salon-compact-lead'>AIの変化を60分で整理し、今週やることを決めます。</p>"
+        "<ul class='salon-compact-points' aria-label='サロンでできること'>"
+        "<li><strong>知る</strong><span>今週の新機能</span></li>"
+        "<li><strong>相談</strong><span>聞くだけでもOK</span></li>"
+        "<li><strong>残す</strong><span>確認済み資料を共有</span></li>"
+        "</ul>"
+        "<a class='salon-material-link' href='/lectures/2026-07-ai-online-salon-practice.html'>内容を見る →</a>"
+        "</div>"
+        "<aside class='salon-purchase' aria-labelledby='salon-purchase-title'>"
+        "<small>SQUARE PAYMENT</small>"
+        "<h3 id='salon-purchase-title'>決済後にLINEへ</h3>"
+        "<ol class='salon-purchase-flow'>"
+        "<li><b>1</b><span><strong>Squareで決済</strong>安全な決済画面へ進みます</span></li>"
+        "<li><b>2</b><span><strong>LINEで参加申請</strong>決済後に招待URLを表示します</span></li>"
+        "<li><b>3</b><span><strong>確認して承認</strong>決済名と照合してメンバーを調整します</span></li>"
+        "</ol>"
+        f"<a class='salon-purchase-cta' href='{html.escape(AI_SALON_CHECKOUT_URL, quote=True)}'>Squareで決済して参加</a>"
+        "<p>LINEの招待URLは、決済前のページには表示しません。</p>"
+        "</aside>"
+        "</div></section>"
+    )
+
+
 def _render_focused_main() -> str:
     free_consult = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/AW5O5XSBHLEHYUBHLZUGFKYE"
 
@@ -13642,22 +13794,7 @@ def _render_focused_main() -> str:
         "<div class='course-venue-map'><iframe src='https://www.google.com/maps?q=%E3%82%B0%E3%83%83%E3%81%BC%E3%82%8B%E3%82%AB%E3%83%95%E3%82%A7%20%E6%BB%8B%E8%B3%80%E7%9C%8C%E5%BD%A6%E6%A0%B9%E5%B8%82%E5%B2%A1%E7%94%BA12&amp;output=embed' title='グッぼるカフェ周辺のGoogleマップ' loading='lazy' referrerpolicy='no-referrer-when-downgrade' allowfullscreen></iframe></div>",
         "<p class='course-venue-map-link'><a href='https://www.google.com/maps/search/?api=1&amp;query=%E3%82%B0%E3%83%83%E3%81%BC%E3%82%8B%E3%82%AB%E3%83%95%E3%82%A7%20%E6%BB%8B%E8%B3%80%E7%9C%8C%E5%BD%A6%E6%A0%B9%E5%B8%82%E5%B2%A1%E7%94%BA12' target='_blank' rel='noopener'>Googleマップで開く →</a></p></aside>",
         "<div class='course-quick-actions'><button type='button' class='compact-diagnose diagnose-open'>迷ったら60秒診断</button><a href='#lectures'>受講資料から選ぶ →</a></div></section>",
-        "<section class='focus-block salon-section' id='seven-day-courses' aria-labelledby='salon-title'>",
-        "<div class='salon-intro'><div class='salon-intro-copy'>",
-        "<span class='salon-intro-kicker'><i aria-hidden='true'></i>有料・毎週火曜 21:00</span>",
-        "<h2 id='salon-title'>AIオンラインサロン</h2>",
-        "<p class='salon-intro-tagline'>AIの最新を、仕事の次の一手に。</p>",
-        "<p class='salon-intro-summary'>全部を追わず、新機能と一流の活用事例から、今試すことを短く整理します。</p></div>",
-        "<div class='salon-value-list' role='list' aria-label='サロンで得られること'>",
-        "<div class='salon-value' role='listitem'><b>01</b><div><small>UPDATE</small><strong>新機能を毎週知る</strong></div></div>",
-        "<div class='salon-value' role='listitem'><b>02</b><div><small>BEST PRACTICE</small><strong>一流の活用事例を聞く</strong></div></div>",
-        "<div class='salon-value' role='listitem'><b>03</b><div><small>NEXT ACTION</small><strong>次に試すことを決める</strong></div></div>",
-        "</div>",
-        "<div class='salon-facts'><div class='salon-fact'><small>WHEN</small><strong>毎週火曜 21:00</strong></div><div class='salon-fact'><small>PLACE</small><strong>LINEオープンチャット</strong></div><div class='salon-fact'><small>MATERIALS</small><strong>資料配布</strong></div><div class='salon-fact'><small>STYLE</small><strong>ライブトーク</strong></div></div></div>",
-        _render_live_talk_guide(),
-        _render_tuesday_build_hour_cards(),
-        "<p class='salon-note'>終了後は、重要な変化・仕事での使い方・今週の一歩を、講師確認済みの「火曜AIノート」で共有します。参加できない週も要点を追えます。顧客情報や機密事項は公開せず、個別相談で扱います。</p>",
-        f"<div class='focus-content-actions'><a class='focus-btn primary' href='{html.escape(AI_SALON_OPENCHAT_URL, quote=True)}' target='_blank' rel='noopener'>LINEで今週の要点を受け取る</a></div></section>",
+        _render_compact_salon(),
         "<section class='focus-block soft' id='lectures'><div class='focus-section-head'><small>LEARNING MATERIALS</small><h2>受講資料</h2></div>",
         "<p class='focus-section-lead'>公開中の受講資料をすべて表示しています。迷ったら「AIが初めて」から順に選べます。</p>",
         _render_lectures_section(),
@@ -13682,7 +13819,7 @@ def _render_focused_main() -> str:
         "<details><summary>AIがまったく初めてでも大丈夫ですか？</summary><p>大丈夫です。専門用語ではなく、普段の仕事と困りごとから始めます。</p></details>",
         "<details><summary>受講にパソコンは必要ですか？</summary><p>はい。WindowsまたはMacのパソコンを必ずお持ちください。直したい資料やページもあれば、あわせてお持ちください。</p></details>",
         "<details><summary>オンラインでも受講できますか？</summary><p>対面・オンラインの両方に対応しています。彦根市内は訪問も相談できます。</p></details>",
-        "<details><summary>AIオンラインサロンでは、何がわかりますか？</summary><p>新機能や重要発表、一流の活用事例を並べるだけでなく、仕事に使えるか、今何を試すかまで一緒に整理します。全部を自分で追わなくても、聞くだけで要点と次の一歩がわかります。毎週火曜21時、LINEのライブトークで開催する有料オンラインサロンです。途中参加も歓迎です。</p></details></div></section>",
+        "<details><summary>AIオンラインサロンでは、何がわかりますか？</summary><p>毎週火曜21時、LINEライブトークでAIの変化を60分で整理し、今週やることを決めます。聞くだけでも参加できます。</p></details></div></section>",
         "<section class='focus-contact' id='contact'><div class='focus-contact-inner'><div><h2>AIエージェントに任せたい仕事を聞かせてください。</h2><p>講習前に、今の仕事に合う題材と進め方を一緒に整理できます。</p></div>",
         f"<a class='focus-btn' href='{free_consult}' target='_blank' rel='noopener'>無料相談の日程を選ぶ</a></div></section>",
     ]

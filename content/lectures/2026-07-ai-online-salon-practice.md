@@ -251,7 +251,7 @@ Codexや他のAIへ何を頼んだか:
 ## 次の導線
 
 - [AIオンラインサロンの案内へ戻る](../index.html#seven-day-courses)
-- [LINEオープンチャット「AI相談 彦根」へ参加する](https://line.me/ti/g2/T_YcE93W4-AhKBYQM_eOKJ4wRrjLE9NbZpPMWA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default)
+- [Squareで決済して参加する](/api/square/ai-salon-checkout)
 - [受講資料の一覧](./index.html)
 - [AIエージェント講習 120分](../programming-map.html)
 

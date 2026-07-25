@@ -51,7 +51,10 @@ test("worker proxies legacy APIs without changing method or raw body", async () 
     const response = await worker.fetch(
       new Request("https://ai-sodan.example/api/stripe/webhook?test=1", {
         body: '{"raw":true}',
-        headers: { "content-type": "application/json" },
+        headers: {
+          "content-type": "application/json",
+          "oai-sites-authorization": "Bearer private-sites-token",
+        },
         method: "POST",
       }),
       undefined,
@@ -68,6 +71,10 @@ test("worker proxies legacy APIs without changing method or raw body", async () 
     assert.equal(
       upstreamRequest.headers.get("x-forwarded-host"),
       "ai-sodan.example",
+    );
+    assert.equal(
+      upstreamRequest.headers.get("oai-sites-authorization"),
+      null,
     );
     assert.equal(response.headers.get("cache-control"), "private, no-store, no-cache, must-revalidate, max-age=0");
     assert.equal(

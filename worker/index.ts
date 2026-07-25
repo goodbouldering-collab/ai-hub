@@ -70,6 +70,9 @@ async function proxyToLegacy(
   const hasBody = request.method !== "GET" && request.method !== "HEAD";
   const upstreamBody = hasBody ? await request.arrayBuffer() : undefined;
   const upstreamHeaders = new Headers(request.headers);
+  // Sites owner-only verification is only for the Sites edge. Never forward
+  // its bypass credential to the legacy Vercel origin.
+  upstreamHeaders.delete("oai-sites-authorization");
   upstreamHeaders.set("x-forwarded-host", incomingUrl.host);
   upstreamHeaders.set("x-forwarded-proto", incomingUrl.protocol.slice(0, -1));
   const upstreamRequest = new Request(upstreamUrl, {

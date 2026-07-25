@@ -12773,9 +12773,14 @@ header.site-header:hover {
 }
 .hero-advantage-number span { display:block; margin-top:9px; padding:0; font-size:10px; font-weight:900; line-height:1; letter-spacing:.15em; white-space:nowrap; }
 .hero-advantage-copy { grid-area:copy; min-width:0; }
-.hero-advantage-copy small { display:block; margin:0 0 6px; color:var(--focus-blue); font:900 10px/1.3 Inter,sans-serif; letter-spacing:.18em; }
-.hero-advantage-copy p { max-width:460px; margin:0; font-size:clamp(18px,1.8vw,24px); font-weight:900; line-height:1.28; letter-spacing:-.04em; text-wrap:balance; }
-.hero-advantage-copy p strong { color:var(--focus-blue); font-size:1.12em; font-weight:950; }
+.hero-advantage-copy small { display:flex; align-items:center; flex-wrap:wrap; gap:5px 8px; margin:0 0 7px; color:var(--focus-blue); font:900 10px/1.3 Inter,sans-serif; letter-spacing:.08em; }
+.hero-advantage-copy small strong { display:inline-flex; align-items:center; min-height:22px; padding:3px 8px; color:var(--focus-blue); background:rgba(83,103,217,.09); border:1px solid rgba(83,103,217,.18); border-radius:999px; font:inherit; letter-spacing:.08em; }
+.hero-advantage-copy small span { color:var(--focus-ink); letter-spacing:.03em; }
+.hero-advantage-copy p { max-width:500px; display:flex; align-items:baseline; flex-wrap:wrap; gap:2px 8px; margin:0; font-size:clamp(18px,1.8vw,24px); font-weight:900; line-height:1.28; letter-spacing:-.04em; text-wrap:balance; }
+.hero-advantage-equation { display:inline-flex; align-items:center; gap:7px; color:var(--focus-blue); font-size:1.12em; white-space:nowrap; }
+.hero-advantage-equation strong { font-weight:950; }
+.hero-advantage-equation span { color:#8996e9; font-size:.72em; font-weight:900; letter-spacing:0; }
+.hero-advantage-outcome { color:var(--focus-ink); white-space:nowrap; }
 .hero-advantage-pillars { grid-area:pillars; display:flex; flex-wrap:wrap; gap:0; margin:0; padding:0; list-style:none; }
 .hero-advantage-pillars li { position:relative; padding:0 15px; color:var(--focus-ink); background:none; border:0; border-radius:0; font-size:11px; font-weight:850; line-height:1.4; white-space:nowrap; }
 .hero-advantage-pillars li:first-child { padding-left:0; }
@@ -13444,9 +13449,13 @@ footer.site-footer {
   .hero-advantage-number { display:block; }
   .hero-advantage-number strong { display:block; font-size:clamp(72px,18.5vw,90px); }
   .hero-advantage-number span { display:block; margin-top:7px; padding:0; font-size:9px; }
-  .hero-advantage-copy small { font-size:8px; }
-  .hero-advantage-copy p { font-size:clamp(15px,4.1vw,18px); line-height:1.3; }
-  .hero-advantage-copy p span { display:block; }
+  .hero-advantage-copy small { gap:4px; margin-bottom:5px; font-size:8px; line-height:1.2; }
+  .hero-advantage-copy small strong { min-height:18px; padding:2px 5px; }
+  .hero-advantage-copy p { display:block; font-size:clamp(15px,4.1vw,18px); line-height:1.3; }
+  .hero-advantage-copy p > span { display:block; }
+  .hero-advantage-equation { margin-bottom:2px; font-size:1.12em; }
+  .hero-advantage-equation span { display:inline; }
+  .hero-advantage-outcome { white-space:normal; }
   .hero-advantage-pillars { grid-column:1 / -1; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); padding:0; }
   .hero-advantage-pillars li { min-width:0; padding:0 4px; font-size:9px; text-align:center; }
   .hero-advantage-pillars li + li::before { left:-4px; }
@@ -13713,9 +13722,9 @@ def _render_hero_focused() -> str:
         "<p class='focus-kicker'>彦根・滋賀の中小事業者向け</p>"
         "<h1 class='focus-title'><span class='focus-title-first'>AIエージェントを、</span><br><span class='focus-title-line'><strong>強力なスタッフに。</strong></span></h1>"
         "<aside class='hero-advantage' id='advantage' aria-labelledby='hero-advantage-title'>"
-        "<div class='hero-advantage-number' aria-hidden='true'><strong>6%</strong><span>導入率はまだ少ない</span></div>"
-        "<div class='hero-advantage-copy'><p id='hero-advantage-title'><span>あなたの経験が</span><span><strong>100倍</strong>になる。</span><span>2時間で仕事が変わる。</span></p></div>"
-        "<ul class='hero-advantage-pillars' aria-label='AI導入を成果に変える3ステップ'><li><b>01</b>経験を活かす</li><li><b>02</b>仕事を速める</li><li><b>03</b>成果に変える</li></ul>"
+        "<div class='hero-advantage-number' aria-label='AI利用率 6パーセント'><strong>6%</strong><span>AI利用率</span></div>"
+        "<div class='hero-advantage-copy'><small><strong>利用率6%</strong><span>始めるなら今。</span></small><p id='hero-advantage-title'><span class='hero-advantage-equation'><strong>経験</strong><span>×</span><strong>AI</strong></span><span class='hero-advantage-outcome'>で、仕事を一歩先へ。</span></p></div>"
+        "<ul class='hero-advantage-pillars' aria-label='AI活用を成果に変える3原則'><li><b>01</b>まず試す</li><li><b>02</b>人が確かめる</li><li><b>03</b>仕組みにする</li></ul>"
         "</aside>"
         "<p class='focus-lead'>告知・事務・集客に追われる方へ。実践講習・個別相談・有料オンラインサロンで、AIエージェントを実務に入れ、使い続けられる形まで支援します。</p>"
         "<div class='focus-actions'>"

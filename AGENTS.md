@@ -158,6 +158,13 @@ FastAPI ベースの**ローカル専用** UI。記事収集ジョブの状態�
 | `COLORME_LIVE_TEMPLATE_ID` | 既定 1064 |
 | `ANTHROPIC_API_KEY` | 記事案生成 |
 | `OPENAI_API_KEY` | DALL-E 3 画像生成 |
+| `STRIPE_SECRET_KEY` | Stripe Checkout共通のサーバー秘密鍵 |
+| `STRIPE_WEBHOOK_SECRET` | `/api/stripe/webhook` の署名検証 |
+| `STRIPE_MONTHLY_SUPPORT_PRICE_ID` | AI伴走支援のrecurring Price ID |
+| `STRIPE_SUPPORT_TERM_MONTHS` | AI伴走支援の契約月数。既定 `6` |
+| `STRIPE_AI_SALON_PRICE_ID` | AIオンラインサロンのrecurring Price ID |
+| `AI_SALON_LINE_INVITE_URL` | 決済確認後だけ表示するLINE招待URL。ソースへ直書きせず、本番切替前に旧URLからローテーションする |
+| `AIHUB_SITE_URL` | Checkoutの戻り先となる公開URL |
 | `SUPABASE_URL` / `SUPABASE_SERVICE_ROLE_KEY` | 画像アップロード先 |
 | `SUPABASE_BUCKET` | 既定 `ai-hub-public` (public=true で作成済) |
 

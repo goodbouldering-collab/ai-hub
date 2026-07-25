@@ -119,6 +119,7 @@ CONSULT_BOOK_URL = "https://book.squareup.com/appointments/zymaszkc9pdwq2/locati
 AI_AGENT_COURSE_URL = "https://goodbouldering.com/?pid=188553378"
 AI_CODING_BOOK_URL = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/S7GERYVDIPRV76DKXCC3WJWH"
 MONTHLY_SUPPORT_CHECKOUT_URL = "/api/stripe/monthly-support"
+AI_SALON_CHECKOUT_URL = "/api/stripe/ai-salon"
 
 
 COLOR_MAP = {
@@ -292,7 +293,7 @@ def _build_jsonld_website() -> str:
                 }
             service["offers"] = offer
         if name == salon_title:
-            service["url"] = AI_SALON_OPENCHAT_URL
+            service["url"] = SITE_URL + "/#seven-day-courses"
         if name == ai_agent_title:
             offer["url"] = AI_AGENT_COURSE_URL
             service["url"] = AI_AGENT_COURSE_URL
@@ -11465,10 +11466,11 @@ def _render_compact_course_cards() -> str:
             "price": "有料",
             "duration": "毎週火曜 21:00",
             "desc": "新機能と一流の活用事例を短く整理し、仕事で次に試すことを一緒に決めます。聞くだけでもOKです。",
-            "url": AI_SALON_OPENCHAT_URL,
-            "cta": "LINEで会場案内を受け取る",
-            "material_url": "/lectures/2026-07-ai-online-salon-practice.html",
-            "material_cta": "AIオンラインサロンの受講資料を見る",
+            "url": AI_SALON_CHECKOUT_URL,
+            "cta": "有料登録して参加する",
+            "post": True,
+            "material_url": "#seven-day-courses",
+            "material_cta": "サロンの内容・参加方法を見る",
             "badge": "ライブトーク開催",
         },
     ]
@@ -11499,6 +11501,15 @@ def _render_compact_course_cards() -> str:
             f"<h3>{html.escape(item['title'])}</h3>{badge_html}</div>"
             if badge else f"<h3>{html.escape(item['title'])}</h3>"
         )
+        if item.get("post"):
+            main_action_html = (
+                f"<form class='compact-course-checkout' method='post' action='{html.escape(item['url'], quote=True)}'>"
+                f"<button type='submit'>{html.escape(item['cta'])} →</button></form>"
+            )
+        else:
+            main_action_html = (
+                f"<a href='{html.escape(item['url'], quote=True)}'{target_attr}>{html.escape(item['cta'])} →</a>"
+            )
         cards.append(
             f"<article class='compact-course-card{main_cls}'>"
             f"{recommended_html}"
@@ -11507,7 +11518,7 @@ def _render_compact_course_cards() -> str:
             f"{title_html}"
             f"<div class='compact-course-meta'><strong>{html.escape(item['price'])}</strong><span>{html.escape(item['duration'])}</span></div>"
             f"<p>{html.escape(item['desc'])}</p>"
-            f"<a href='{html.escape(item['url'], quote=True)}'{target_attr}>{html.escape(item['cta'])} →</a>"
+            f"{main_action_html}"
             f"{material_html}"
             "</article>"
         )
@@ -11515,104 +11526,44 @@ def _render_compact_course_cards() -> str:
 
 
 def _render_live_talk_guide() -> str:
-    """LINEオープンチャットのライブトーク参加方法を、図と3手順で案内する。"""
+    """LINEオープンチャットのライブトーク参加方法を、短い図解と3手順で案内する。"""
     return (
-        "<aside class='salon-live-guide' aria-labelledby='salon-live-guide-title'>"
+        "<div class='salon-participation' aria-labelledby='salon-live-guide-title'>"
         "<figure class='salon-live-figure'>"
         "<img src='/img/ai-salon-live-talk-guide-20260722.svg' "
         "alt='LINEオープンチャットでライブトークを開き、リスナーとして参加し、話すときだけ挙手する流れ' "
         "width='640' height='480' loading='lazy' decoding='async'>"
-        "<figcaption>画面の案内から、マイクOFFで参加できます</figcaption>"
+        "<figcaption>マイクOFFで参加できます</figcaption>"
         "</figure>"
         "<div class='salon-live-guide-copy'>"
         "<span class='salon-live-badge'><i aria-hidden='true'></i>LINE LIVE TALK</span>"
-        "<h3 id='salon-live-guide-title'>声で確かめ、聞くだけでも学べるライブトーク</h3>"
-        "<p>通常のLINE通話ではなく、講師が開くオープンチャット内の音声セッションです。まずはマイクOFFで聞き、話したいときだけ挙手して参加できます。</p>"
-        "<ul class='salon-live-benefits' aria-label='ライブトークの良さ'>"
-        "<li>迷いをその場で確認</li><li>一人の事例を全員で学ぶ</li><li>挙手と承認で安心して発言</li>"
-        "</ul>"
+        "<h3 id='salon-live-guide-title'>聞くだけOK。話すときだけ挙手</h3>"
         "<ol class='salon-live-steps'>"
-        "<li><b>01</b><span><strong>会場案内を開く</strong>火曜21時、LINEに届く案内からライブトーク会場を開きます。</span></li>"
-        "<li><b>02</b><span><strong>リスナーとして参加</strong>「リスナーとして参加」→「OK」。そのまま聞き始められます。</span></li>"
-        "<li><b>03</b><span><strong>話すときだけ挙手</strong>手のひらボタンで挙手し、承認後にマイクをオンにします。</span></li>"
+        "<li><b>01</b><span><strong>LINE招待を開く</strong><small>決済完了後に表示</small></span></li>"
+        "<li><b>02</b><span><strong>リスナー参加</strong><small>そのまま聞き始める</small></span></li>"
+        "<li><b>03</b><span><strong>話すときだけ挙手</strong><small>承認後にマイクON</small></span></li>"
         "</ol>"
-        "<div class='salon-live-guide-foot'><span>聞くだけ・途中参加・途中退出OK</span>"
-        "<a href='https://openchat-jp.line.me/topic/livetalk_release' target='_blank' rel='noopener'>LINE公式のライブトーク案内 ↗</a></div>"
-        "</div></aside>"
+        "<div class='salon-live-guide-foot'><span>マイクOFF・途中参加・途中退出OK</span>"
+        "<a href='https://openchat-jp.line.me/topic/livetalk_release' target='_blank' rel='noopener'>ライブトークとは ↗</a></div>"
+        "</div></div>"
     )
 
 
-def _render_tuesday_build_hour_cards() -> str:
-    """毎週火曜21時のAIオンラインサロンを、1時間の流れが分かるカードで案内する。"""
+def _render_salon_run_strip() -> str:
+    """毎週火曜21時の1時間を、短い4セルの進行表で案内する。"""
     items = [
-        {
-            "cat": "LATEST",
-            "title": "今週の変化を知る",
-            "image": "/img/course-path-beginner.webp",
-            "image_alt": "今週のAIの変化と仕事の困りごとを確認する参加者のイメージ",
-            "time": "21:00",
-            "duration": "5分",
-            "result": "日々の新しい発表と参加者の困りごとから、今週見るべき要点を短く共有します。",
-        },
-        {
-            "cat": "FILTER",
-            "title": "使えるかを見極める",
-            "image": "/img/blog-ai-agent-course-section-4-20260714.webp",
-            "image_alt": "新しいAI情報が仕事に使えるかを見極める短い実践講座のイメージ",
-            "time": "21:05",
-            "duration": "10分",
-            "result": "今すぐ使えるもの、今は待つもの、これから役立つものを、実例で分けます。",
-        },
-        {
-            "cat": "PRACTICE",
-            "title": "実際の仕事をAIで動かす",
-            "image": "/img/course-path-workflow.webp",
-            "image_alt": "参加者の実際の仕事をAIで整理して動かすイメージ",
-            "time": "21:15",
-            "duration": "25分",
-            "result": "事前質問から1件を選び、AIへの依頼、確認、修正まで画面を見ながら一緒に進めます。",
-        },
-        {
-            "cat": "NEXT STEP",
-            "title": "次にやることを決める",
-            "image": "/img/blog-ai-agent-course-section-3-20260714.webp",
-            "image_alt": "参加者同士でAIの質問を共有し、次に試すことを決めるイメージ",
-            "time": "21:40",
-            "duration": "20分",
-            "result": "自由質問で迷いをほどき、来週までに試す小さな一歩を決めます。聞くだけでも大丈夫です。",
-        },
+        ("21:00", "UPDATE", "今週の変化"),
+        ("21:05", "FILTER", "使えるか判断"),
+        ("21:15", "PRACTICE", "仕事で実践"),
+        ("21:40", "NEXT", "次の一歩"),
     ]
-    cards = []
-    for index, item in enumerate(items):
-        step = index + 1
-        cards.append(
-            f"<article class='compact-course-card salon-timeline-card{' is-active' if index == 0 else ''}' role='listitem' data-salon-step='{index}'>"
-            "<div class='salon-timeline-card-head'>"
-            f"<span>STEP {step:02d}</span><small>{html.escape(item['cat'])}</small>"
-            "</div>"
-            f"<img class='compact-course-visual' src='{html.escape(item['image'], quote=True)}' alt='{html.escape(item['image_alt'], quote=True)}' loading='lazy' decoding='async'>"
-            f"<h3>{html.escape(item['title'])}</h3>"
-            f"<div class='compact-course-meta'><strong>{html.escape(item['time'])}</strong><span>{html.escape(item['duration'])}</span></div>"
-            f"<p>{html.escape(item['result'])}</p>"
-            "</article>"
-        )
-    dots = "".join(
-        f"<button type='button' data-salon-go='{index}' aria-label='STEP {index + 1}を表示'"
-        + (" aria-current='step'" if index == 0 else "")
-        + "></button>"
-        for index in range(len(items))
+    cells = "".join(
+        "<div class='salon-run-cell' role='listitem'>"
+        f"<time>{html.escape(time)}</time><small>{html.escape(label)}</small><strong>{html.escape(title)}</strong>"
+        "</div>"
+        for time, label, title in items
     )
-    return (
-        "<div class='pf-carousel-wrap salon-timeline-wrap' data-salon-timeline>"
-        "<button type='button' class='pf-arrow pf-prev' aria-label='前の時間へ' aria-controls='salon-timeline' data-dir='-1'>‹</button>"
-        "<div class='pf-carousel salon-timeline' id='salon-timeline' role='list' tabindex='0' aria-label='AIオンラインサロンの時系列'>"
-        + "".join(cards)
-        + "</div>"
-        "<button type='button' class='pf-arrow pf-next' aria-label='次の時間へ' aria-controls='salon-timeline' data-dir='1'>›</button>"
-        "<div class='salon-timeline-nav'><div class='salon-timeline-dots' aria-label='時系列の表示位置'>"
-        + dots
-        + "</div><span class='salon-timeline-status' aria-live='polite'>1 / 4</span></div></div>"
-    )
+    return f"<div class='salon-run-strip' role='list' aria-label='毎週火曜の進行'>{cells}</div>"
 
 
 def _render_footer(today: str) -> str:
@@ -11699,8 +11650,6 @@ def _render_explore() -> str:
     return "".join(parts)
 
 
-# AIオンラインサロン「AI相談 彦根」のLINEオープンチャット招待URL。
-AI_SALON_OPENCHAT_URL = "https://line.me/ti/g2/T_YcE93W4-AhKBYQM_eOKJ4wRrjLE9NbZpPMWA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default"
 # 無料相談の予約導線（Squareの相談サービスID）。無料相談CTAの最終到達先をここに一本化。
 
 
@@ -13405,6 +13354,425 @@ footer.site-footer {
   .course-quick-actions { align-items:flex-end; justify-content:space-between; }
 }
 
+/* ---- Compact, payment-gated AI salon panel, 2026-07-25 ---- */
+.compact-course-checkout {
+  width:100%;
+  margin-top:auto;
+}
+.compact-course-checkout button {
+  width:100%;
+  min-height:38px;
+  padding:7px 10px;
+  color:#fff;
+  background:var(--focus-blue);
+  border:0;
+  border-radius:7px;
+  font:900 12px/1.4 Inter,"Noto Sans JP",sans-serif;
+  text-align:center;
+  cursor:pointer;
+}
+.compact-course-checkout button:hover,
+.compact-course-checkout button:focus-visible {
+  background:var(--focus-blue-dark);
+  outline:3px solid rgba(83,103,217,.18);
+  outline-offset:2px;
+}
+.salon-section {
+  padding-top:40px !important;
+  padding-bottom:40px !important;
+  background:linear-gradient(145deg,#f4f1ff 0%,#fff 50%,#eef2ff 100%);
+}
+.salon-section::before {
+  width:360px;
+  left:-230px;
+  top:70px;
+}
+.salon-panel {
+  position:relative;
+  z-index:1;
+  max-width:980px;
+  margin:0 auto;
+  padding:24px;
+  border:1px solid rgba(83,103,217,.20);
+  border-radius:22px;
+  background:rgba(255,255,255,.95);
+  box-shadow:0 18px 54px rgba(38,54,112,.09);
+}
+.salon-panel .salon-intro {
+  max-width:none;
+  margin:0;
+  padding:0;
+  grid-template-columns:minmax(0,1.1fr) minmax(290px,.9fr);
+  grid-template-areas:"copy values";
+  gap:24px;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+}
+.salon-panel .salon-intro h2 {
+  margin-top:10px;
+  font-size:clamp(30px,3.2vw,40px);
+}
+.salon-panel .salon-intro-tagline {
+  margin-top:8px;
+  font-size:clamp(17px,1.8vw,21px);
+}
+.salon-panel .salon-intro-summary {
+  margin-top:6px;
+  font-size:12px;
+  line-height:1.65;
+}
+.salon-panel .salon-value-list {
+  display:grid;
+  grid-template-columns:1fr;
+  gap:6px;
+  align-self:center;
+  border:0;
+}
+.salon-panel .salon-value {
+  grid-template-columns:28px minmax(0,1fr);
+  gap:8px;
+  padding:8px 10px;
+  border:1px solid rgba(83,103,217,.12);
+  border-radius:10px;
+  background:#f7f9ff;
+}
+.salon-panel .salon-value + .salon-value { border-top:1px solid rgba(83,103,217,.12); }
+.salon-panel .salon-value > b { font-size:14px; }
+.salon-panel .salon-value small {
+  display:inline;
+  margin:0 6px 0 0;
+  font-size:7px;
+}
+.salon-panel .salon-value strong {
+  display:inline;
+  font-size:11.5px;
+}
+.salon-panel .salon-facts {
+  width:100%;
+  margin:16px 0 0;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  overflow:hidden;
+  border:1px solid rgba(83,103,217,.15);
+  border-radius:13px;
+  background:#f8faff;
+}
+.salon-panel .salon-fact {
+  padding:9px 12px;
+  text-align:center;
+}
+.salon-panel .salon-fact + .salon-fact { border-left:1px solid rgba(83,103,217,.13); }
+.salon-panel .salon-fact small { font-size:8px; }
+.salon-panel .salon-fact strong {
+  margin-top:3px;
+  font-size:12.5px;
+  white-space:nowrap;
+}
+.salon-participation {
+  margin-top:16px;
+  display:grid;
+  grid-template-columns:180px minmax(0,1fr);
+  gap:18px;
+  align-items:center;
+  padding:14px;
+  border:1px solid rgba(83,103,217,.14);
+  border-radius:15px;
+  background:linear-gradient(135deg,#fff,#f7f9ff);
+}
+.salon-participation .salon-live-figure { margin:0; }
+.salon-participation .salon-live-figure img {
+  width:100%;
+  aspect-ratio:4/3;
+  object-fit:contain;
+  border-radius:11px;
+}
+.salon-participation .salon-live-figure figcaption {
+  margin-top:4px;
+  font-size:8.5px;
+}
+.salon-participation .salon-live-badge {
+  margin-bottom:5px;
+  font-size:8px;
+}
+.salon-participation h3 {
+  margin:0;
+  color:var(--focus-ink);
+  font-size:18px;
+  line-height:1.35;
+}
+.salon-participation .salon-live-steps {
+  margin:10px 0 0;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:7px;
+}
+.salon-participation .salon-live-steps li {
+  grid-template-columns:26px minmax(0,1fr);
+  gap:7px;
+  align-items:center;
+  min-width:0;
+  padding:7px;
+  border-radius:9px;
+}
+.salon-participation .salon-live-steps b {
+  width:26px;
+  height:26px;
+  border-radius:8px;
+  font-size:9px;
+}
+.salon-participation .salon-live-steps strong {
+  margin:0;
+  font-size:10.5px;
+  line-height:1.25;
+}
+.salon-participation .salon-live-steps small {
+  display:block;
+  margin-top:2px;
+  color:var(--focus-muted);
+  font-size:8.5px;
+  line-height:1.25;
+}
+.salon-participation .salon-live-guide-foot {
+  margin-top:8px;
+  gap:8px;
+}
+.salon-participation .salon-live-guide-foot span,
+.salon-participation .salon-live-guide-foot a {
+  font-size:9px;
+}
+.salon-session-head {
+  margin-top:15px;
+  display:flex;
+  align-items:baseline;
+  gap:9px;
+}
+.salon-session-head small {
+  color:var(--focus-blue);
+  font:900 8px/1 Inter,sans-serif;
+  letter-spacing:.11em;
+}
+.salon-session-head h3 {
+  margin:0;
+  color:var(--focus-ink);
+  font-size:15px;
+}
+.salon-run-strip {
+  margin-top:7px;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:7px;
+}
+.salon-run-cell {
+  min-width:0;
+  padding:9px 10px;
+  border:1px solid rgba(83,103,217,.13);
+  border-radius:10px;
+  background:#f8faff;
+}
+.salon-run-cell time {
+  display:block;
+  color:var(--focus-blue);
+  font:900 13px/1 Inter,sans-serif;
+}
+.salon-run-cell small {
+  display:block;
+  margin-top:4px;
+  color:var(--focus-muted);
+  font:900 7px/1 Inter,sans-serif;
+  letter-spacing:.08em;
+}
+.salon-run-cell strong {
+  display:block;
+  margin-top:4px;
+  color:var(--focus-ink);
+  font-size:10.5px;
+  line-height:1.25;
+}
+.salon-register-row {
+  margin-top:16px;
+  padding-top:14px;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(240px,280px);
+  gap:20px;
+  align-items:center;
+  border-top:1px solid rgba(83,103,217,.15);
+}
+.salon-register-row .salon-note {
+  max-width:none;
+  margin:0;
+  font-size:10.5px;
+  line-height:1.65;
+  text-align:left;
+}
+.salon-register-row .salon-note strong {
+  display:block;
+  color:var(--focus-ink);
+  font-size:12px;
+}
+.salon-register-form {
+  width:100%;
+  text-align:center;
+}
+.salon-register-form .focus-btn {
+  width:100%;
+  min-height:44px;
+  border:0;
+  cursor:pointer;
+}
+.salon-register-form small {
+  display:block;
+  margin-top:6px;
+  color:var(--focus-muted);
+  font-size:8.5px;
+}
+@media (max-width:720px) {
+  .salon-section {
+    padding:28px 14px !important;
+  }
+  .salon-panel {
+    padding:14px;
+    border-radius:16px;
+  }
+  .salon-panel .salon-intro {
+    grid-template-columns:1fr;
+    grid-template-areas:"copy" "values";
+    gap:12px;
+  }
+  .salon-panel .salon-intro-kicker {
+    padding:5px 8px;
+    font-size:9px;
+  }
+  .salon-panel .salon-intro h2 {
+    margin-top:8px;
+    font-size:27px;
+  }
+  .salon-panel .salon-intro-tagline {
+    margin-top:6px;
+    font-size:16px;
+  }
+  .salon-panel .salon-intro-summary {
+    font-size:11.5px;
+    line-height:1.55;
+  }
+  .salon-panel .salon-value-list {
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:5px;
+  }
+  .salon-panel .salon-value {
+    display:block;
+    min-width:0;
+    padding:7px 4px;
+    text-align:center;
+  }
+  .salon-panel .salon-value > b {
+    font-size:12px;
+  }
+  .salon-panel .salon-value small {
+    display:block;
+    margin:3px 0 2px;
+    overflow:hidden;
+    font-size:6px;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+  .salon-panel .salon-value strong {
+    display:block;
+    font-size:9.5px;
+    line-height:1.3;
+  }
+  .salon-panel .salon-facts {
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    margin-top:11px;
+  }
+  .salon-panel .salon-fact {
+    padding:8px 2px;
+  }
+  .salon-panel .salon-fact + .salon-fact {
+    border-left:1px solid rgba(83,103,217,.13);
+  }
+  .salon-panel .salon-fact:nth-child(n+3) {
+    margin-top:0;
+    border-top:0;
+  }
+  .salon-panel .salon-fact small {
+    font-size:6.5px;
+  }
+  .salon-panel .salon-fact strong {
+    font-size:9.5px;
+  }
+  .salon-participation {
+    grid-template-columns:98px minmax(0,1fr);
+    gap:9px;
+    margin-top:11px;
+    padding:9px;
+    border-radius:12px;
+  }
+  .salon-participation .salon-live-figure figcaption {
+    display:none;
+  }
+  .salon-participation .salon-live-badge {
+    font-size:7px;
+  }
+  .salon-participation h3 {
+    font-size:14px;
+  }
+  .salon-participation .salon-live-steps {
+    grid-template-columns:1fr;
+    gap:4px;
+    margin-top:6px;
+  }
+  .salon-participation .salon-live-steps li {
+    grid-template-columns:22px minmax(0,1fr);
+    gap:6px;
+    padding:4px 5px;
+  }
+  .salon-participation .salon-live-steps b {
+    width:22px;
+    height:22px;
+    font-size:8px;
+  }
+  .salon-participation .salon-live-steps strong {
+    font-size:9.5px;
+  }
+  .salon-participation .salon-live-steps small {
+    font-size:7.5px;
+  }
+  .salon-participation .salon-live-guide-foot {
+    align-items:flex-start;
+    flex-direction:column;
+    gap:3px;
+  }
+  .salon-participation .salon-live-guide-foot span,
+  .salon-participation .salon-live-guide-foot a {
+    font-size:7.5px;
+  }
+  .salon-session-head {
+    margin-top:11px;
+  }
+  .salon-run-strip {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:5px;
+  }
+  .salon-run-cell {
+    padding:7px 8px;
+  }
+  .salon-run-cell time {
+    font-size:11px;
+  }
+  .salon-run-cell strong {
+    font-size:9.5px;
+  }
+  .salon-register-row {
+    grid-template-columns:1fr;
+    gap:10px;
+    margin-top:12px;
+    padding-top:11px;
+  }
+  .salon-register-form .focus-btn {
+    min-height:46px;
+  }
+}
+
 /* ---- Conventional public mobile drawer, 2026-07-19 ---- */
 @media (max-width: 900px) {
   body.mobile-menu-open { overflow: hidden !important; }
@@ -13648,7 +14016,7 @@ def _render_focused_main() -> str:
         "<p class='course-venue-map-link'><a href='https://www.google.com/maps/search/?api=1&amp;query=%E3%82%B0%E3%83%83%E3%81%BC%E3%82%8B%E3%82%AB%E3%83%95%E3%82%A7%20%E6%BB%8B%E8%B3%80%E7%9C%8C%E5%BD%A6%E6%A0%B9%E5%B8%82%E5%B2%A1%E7%94%BA12' target='_blank' rel='noopener'>Googleマップで開く →</a></p></aside>",
         "<div class='course-quick-actions'><button type='button' class='compact-diagnose diagnose-open'>迷ったら60秒診断</button><a href='#lectures'>受講資料から選ぶ →</a></div></section>",
         "<section class='focus-block salon-section' id='seven-day-courses' aria-labelledby='salon-title'>",
-        "<div class='salon-intro'><div class='salon-intro-copy'>",
+        "<div class='salon-panel'><div class='salon-intro'><div class='salon-intro-copy'>",
         "<span class='salon-intro-kicker'><i aria-hidden='true'></i>有料・毎週火曜 21:00</span>",
         "<h2 id='salon-title'>AIオンラインサロン</h2>",
         "<p class='salon-intro-tagline'>AIの最新を、仕事の次の一手に。</p>",
@@ -13657,12 +14025,13 @@ def _render_focused_main() -> str:
         "<div class='salon-value' role='listitem'><b>01</b><div><small>UPDATE</small><strong>新機能を毎週知る</strong></div></div>",
         "<div class='salon-value' role='listitem'><b>02</b><div><small>BEST PRACTICE</small><strong>一流の活用事例を聞く</strong></div></div>",
         "<div class='salon-value' role='listitem'><b>03</b><div><small>NEXT ACTION</small><strong>次に試すことを決める</strong></div></div>",
-        "</div>",
-        "<div class='salon-facts'><div class='salon-fact'><small>WHEN</small><strong>毎週火曜 21:00</strong></div><div class='salon-fact'><small>PLACE</small><strong>LINEオープンチャット</strong></div><div class='salon-fact'><small>MATERIALS</small><strong>資料配布</strong></div><div class='salon-fact'><small>STYLE</small><strong>ライブトーク</strong></div></div></div>",
+        "</div></div>",
+        "<div class='salon-facts' aria-label='開催情報'><div class='salon-fact'><small>WHEN</small><strong>火曜 21:00</strong></div><div class='salon-fact'><small>PLACE</small><strong>LINE</strong></div><div class='salon-fact'><small>FEE</small><strong>有料</strong></div><div class='salon-fact'><small>STYLE</small><strong>聞くだけOK</strong></div></div>",
         _render_live_talk_guide(),
-        _render_tuesday_build_hour_cards(),
-        "<p class='salon-note'>終了後は、重要な変化・仕事での使い方・今週の一歩を、講師確認済みの「火曜AIノート」で共有します。参加できない週も要点を追えます。顧客情報や機密事項は公開せず、個別相談で扱います。</p>",
-        f"<div class='focus-content-actions'><a class='focus-btn primary' href='{html.escape(AI_SALON_OPENCHAT_URL, quote=True)}' target='_blank' rel='noopener'>LINEで今週の要点を受け取る</a></div></section>",
+        "<div class='salon-session-head'><small>60 MINUTES</small><h3>火曜21時の流れ</h3></div>",
+        _render_salon_run_strip(),
+        "<div class='salon-register-row'><p class='salon-note'><strong>参加できない週も安心。</strong>終了後は、講師確認済みの「火曜AIノート」で重要な変化と次の一歩を共有します。</p>",
+        f"<form class='salon-register-form' method='post' action='{html.escape(AI_SALON_CHECKOUT_URL, quote=True)}'><button class='focus-btn primary' type='submit'>有料登録して参加する →</button><small>Stripe決済完了後にLINE招待を表示</small></form></div></div></section>",
         "<section class='focus-block soft' id='lectures'><div class='focus-section-head'><small>LEARNING MATERIALS</small><h2>受講資料</h2></div>",
         "<p class='focus-section-lead'>公開中の受講資料をすべて表示しています。迷ったら「AIが初めて」から順に選べます。</p>",
         _render_lectures_section(),

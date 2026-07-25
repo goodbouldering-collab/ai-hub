@@ -3,7 +3,7 @@ title: "ChatGPT SitesとVercel、どちらを選ぶ？GitHubを残す安全な�
 date: 2026-07-25
 role: ブログ / AI初心者・地域事業者・個人事業主向け
 gen_by: 由井 辰美 / AI相談
-summary: ChatGPT SitesとVercelの違いを、料金、GitHub、データベース、引継ぎ、独自ドメインからやさしく比較。Worktree、Commit、確認、公開の流れを残したまま、小さく試す方法を説明します。
+summary: ChatGPT SitesとVercelの違いを、料金、GitHub、データベース、引継ぎ、独自ドメインからやさしく比較。Sitesだけで使う手順と、GitHubを原本に残す手順を分けて説明します。
 image: /img/blog-sites-vs-vercel-hero-20260725.webp
 hero_image: true
 image_alt: ChatGPT SitesとVercelの公開方法を比べ、GitHubを残した安全な移行経路を選ぶイメージ
@@ -20,7 +20,7 @@ Sitesを知ると、こうした疑問が出てきます。難しそうに見え
 
 > **Sitesは、AIと相談しながら素早く作って公開するのが得意です。Vercelは、GitHubやデータベースと組み合わせ、本番のWebアプリを細かく管理するのが得意です。**
 
-そして、Sitesへ移るからといって、GitHubやCommitを捨てる必要はありません。公開先だけを変え、安全な開発手順はそのまま残せます。
+そして、SitesではGitHubの操作を省くことも、GitHubを正式な原本として残すこともできます。同じなのは「記録して、確認してから公開する」という考え方です。実際に押すボタンや手順は同じではありません。
 
 ## Sitesは公開を簡単にし、Vercelは運用を細かく管理できる
 
@@ -48,42 +48,40 @@ Sitesは現在パブリックベータです。有料プラン内で利用でき
 
 VercelはHobbyが月額0ドル、Proが月額20ドルからです。ただし、Vercel自身もHobbyを個人・非商用向け、Proを仕事や事業向けと案内しています。料金だけでなく、何を公開するかで判断する必要があります。
 
-## SitesでもWorktree・Commit・確認・公開の安全手順は残せる
+## Sitesでは操作が変わるが、記録・確認・公開の考え方は同じ
 
 <figure>
-  <img src="/img/blog-sites-vs-vercel-section-2-workflow-20260725.webp" alt="Worktreeで作業を分け、Commitで変更を記録し、保存バージョンまたはPull Requestで確認してからSitesへ公開する流れ" loading="lazy" decoding="async">
-  <figcaption>SitesではPull Requestが必須ではありませんが、作業を分け、記録し、確認してから公開する基本は同じです。</figcaption>
+  <img src="/img/blog-sites-vs-vercel-section-2-workflow-corrected-20260725.webp" alt="Sitesだけで運用する手順と、GitHubを原本に残して運用する手順を上下に分けた比較図" loading="lazy" decoding="async">
+  <figcaption>SitesだけならWorktree・Commit・Pull Requestは日常操作に出ません。GitHubを原本に残す場合は、これまでの手順を続けられます。</figcaption>
 </figure>
 
 ここは、いちばん誤解しやすいところです。
 
-Sitesへ移っても、次の4段階は変わりません。
+最初に見ていただいた「Worktree → Commit → Pull Request → Deploy」は、GitとGitHubを使う開発の流れです。**Sitesだけで作成・修正する場合に、この4つを毎回自分で操作するわけではありません。**
 
-1. **作業を分ける**
-   ほかの修正と混ざりそうならWorktreeを使います。
+変わらないのは操作名ではなく、次の考え方です。
+
+1. **変更を分ける**
+   Sitesだけなら、AIへ一つずつ修正を頼みます。GitHubを使うならWorktreeで作業を分けます。
 
 2. **変更を記録する**
-   Commitで、何を直したか残します。
+   Sitesだけなら保存バージョン、GitHubを使うならCommitで記録します。
 
 3. **公開前に確認する**
-   GitHubを使うならPull Request、Sitesでは保存したバージョンを確認します。
+   Sitesだけなら保存したバージョン、GitHubを使うならPull RequestやPreviewで確認します。
 
 4. **本番へ公開する**
-   最後の公開先が、VercelまたはSitesになります。
+   確認後にSitesへ公開します。Vercelを使う場合は、mainへの反映後にVercelが自動公開します。
 
-OpenAIの公式ガイドでは、ローカルのソースから作ったSitesの保存バージョンは、使用したGitコミットと関連づけられます。つまり、**SitesだからGitの記録が消えるわけではありません。**
+実際の流れは、次のように分かれます。
 
-一方で、Pull RequestはSitesの必須手順ではありません。一人で小さなページを直すなら、Commit後にSitesでバージョンを保存し、内容を確認してから公開できます。
+| 運用方法 | 日常の流れ | Worktree・Commit・Pull Request |
+|---|---|---|
+| Sitesだけで運用 | AIに変更を依頼 → バージョンを保存 → 内容を確認 → Sitesへ公開 | 自分で毎回操作する必要はない |
+| GitHubを原本に残してSitesへ公開 | Worktree → Commit → Pull Request → Sites用バージョンを保存 → 公開 | これまでどおり使える |
+| GitHubからVercelへ公開 | Worktree → Commit → Pull Request → mainへ反映 → Vercelが自動公開 | これまでどおり使う |
 
-複数人で確認する場合や、GitHubを正式な原本として残す場合は、これまでどおりPull Requestを使って構いません。
-
-```text
-小さなSites運用
-Worktree → Commit → 保存バージョン確認 → Sitesへ公開
-
-GitHubも残す運用
-Worktree → Commit → Pull Request → Sitesへ公開
-```
+CodexがローカルのプロジェクトからSitesへ公開するときは、裏側で検証済みソースをGitのCommitと結びつけて保存します。ただし、これは**利用者が毎回GitHubのPull Request画面を操作する**という意味ではありません。
 
 なお、Sitesでは公開して発行されたURLはすべて本番公開です。確認だけしたいときは、すぐ公開せず、先にバージョンを保存して確認します。
 

@@ -11422,6 +11422,15 @@ def _render_compact_course_cards() -> str:
             "material_cta": "AIエージェント講習の受講資料を見る",
             "main": True,
             "recommended": "一番基本・おすすめ",
+            "details_lead": "この講習で得られること",
+            "details": [
+                ("実際の仕事を1つ完成へ", "告知文、資料、調査、集計、業務ツール、サイト改善など、今の課題を題材に使える成果物まで進めます。"),
+                ("AIへの頼み方が身につく", "目的、材料、完成形、守る条件を整理し、AIが迷わず動ける依頼の型を実践します。"),
+                ("結果を自分で確認できる", "根拠、差分、画面、誤りを確かめ、AIの答えをそのまま使わず判断する力を養います。"),
+                ("修正の伝え方まで練習", "思った結果と違うときに、どこをどう直すかを具体的に伝え、完成度を上げます。"),
+                ("次回も使える手順が残る", "うまくいった依頼文、確認項目、修正内容を保存し、一度きりで終わらない仕事の手順にします。"),
+                ("参加方法", "予約ページから日時を選び、WindowsまたはMacのPCと、実際に進めたい資料や課題をお持ちください。対面・オンラインに対応します。"),
+            ],
         },
         {
             "cat": "個別相談",
@@ -11435,6 +11444,15 @@ def _render_compact_course_cards() -> str:
             "cta": "個別相談を予約",
             "material_url": "/lectures/2026-04-ai-kangaekata.html",
             "material_cta": "15分のAI実践ワークを見る",
+            "details_lead": "相談すると整理できること",
+            "details": [
+                ("最初にやる仕事が決まる", "「AIで何ができるか」からではなく、時間を取られている仕事を整理し、効果が出やすい1つを選びます。"),
+                ("道具選びで迷わなくなる", "ChatGPT、Codex、Claude Codeなどを目的に合わせて比べ、今は不要な契約や機能も切り分けます。"),
+                ("安全に使う範囲が分かる", "顧客情報、社内資料、公開前データなど、AIへ渡してよいものと人が確認する部分を整理します。"),
+                ("自分向けの進め方が残る", "講習、伴走、制作、自分で試す方法から、予算と時間に合う次の一手を具体化します。"),
+                ("こんな方におすすめ", "AIが分からない、事務作業が重い、告知が続かない、社内へどう導入するか決められない方に向いています。"),
+                ("参加方法", "予約ページから60分の日時を選び、困っている仕事や使っている資料をそのままお持ちください。対面・オンラインに対応します。"),
+            ],
         },
         {
             "cat": "6ヶ月伴走",
@@ -11448,6 +11466,16 @@ def _render_compact_course_cards() -> str:
             "cta": "伴走支援を申し込む",
             "material_url": "/lectures/2026-06-ai-agent-rag-design.html",
             "material_cta": "AI導入・RAG設計の資料を見る",
+            "details_lead": "6ヶ月伴走で得られること",
+            "details": [
+                ("業務の優先順位を整理", "HP更新、集客、事務、情報共有の中から、効果と緊急度を見て着手順を決めます。"),
+                ("提案だけでなく実装まで", "文章や画像の作成だけで終わらず、Webページ、フォーム、業務画面、自動化を実際に動く形へ進めます。"),
+                ("小さく試して毎月改善", "最初から大きな仕組みにせず、現場で使い、反応と数字を見ながら無理なく育てます。"),
+                ("社内に手順と資産が残る", "担当者が変わっても続けられるように、確認項目、運用ルール、資料、次回手順を整理します。"),
+                ("経営者の作業時間を減らす", "毎回の告知、転記、集計、返信など、判断が不要な繰り返し作業を減らす仕組みを作ります。"),
+                ("公開後まで一緒に確認", "PC・スマホ表示、申込導線、公開URLを確認し、作っただけで使われない状態を防ぎます。"),
+                ("参加方法", "申込後に初回面談で対象業務、優先順位、6ヶ月の範囲と日程を確認してから開始します。"),
+            ],
         },
         {
             "cat": "実装講習",
@@ -11461,6 +11489,16 @@ def _render_compact_course_cards() -> str:
             "cta": "AIコーディングを予約",
             "material_url": "/lectures/2026-05-claude-code-features.html",
             "material_cta": "Claude Codeの実践資料を見る",
+            "details_lead": "この講習で身につくこと",
+            "details": [
+                ("小さくても動くものを作る", "自社ページ、申込フォーム、集計画面、業務ツールなど、目的に合う題材を実際に動かします。"),
+                ("AIが変えた場所を読める", "CodexやClaude Codeの変更差分を確認し、何が変わったか、意図どおりかを判断できるようにします。"),
+                ("安全な任せ方が分かる", "操作範囲、秘密情報、権限、外部サービスへの接続を整理し、AIに任せすぎない進め方を学びます。"),
+                ("エラーを直す順番が分かる", "表示、ログ、テスト結果から原因を絞り、修正してもう一度確認する流れを体験します。"),
+                ("公開前の確認ができる", "PC・スマホ表示、リンク、入力、エラーを確認し、公開後は本番URLで動作を確かめます。"),
+                ("再利用できる開発資産が残る", "コードだけでなく、目的、設定、確認方法、次の修正が追える形で保存します。"),
+                ("参加方法", "予約ページから日時を選び、WindowsまたはMacのPCと、作りたいものや直したいページをお持ちください。"),
+            ],
         },
         {
             "cat": "有料コミュニティ",
@@ -11475,10 +11513,16 @@ def _render_compact_course_cards() -> str:
             "material_url": "/lectures/2026-07-ai-online-salon-practice.html",
             "material_cta": "内容を見る",
             "badge": "ライブトーク開催",
+            "details_lead": "このサロンに参加するメリット",
             "details": [
-                ("毎週火曜 21:00", "LINEライブトーク。聞くだけ・途中参加もOK"),
-                ("月額2,200円（税込）", "Squareで決済。毎月自動更新"),
-                ("決済後にLINEへ", "招待URLを表示し、決済名を確認して参加承認"),
+                ("AI情報を全部追わなくていい", "増え続ける新機能や発表から、地域事業や日々の仕事に関係する変化だけを短く整理します。"),
+                ("今やる・待つを判断できる", "新しいから飛びつくのではなく、今すぐ試すもの、様子を見るもの、使わないものを実例で分けます。"),
+                ("実際の仕事で確かめられる", "参加者の告知、資料、事務、Web改善などを題材に、AIへの依頼、確認、修正まで画面を見ながら進めます。"),
+                ("ほかの人の事例も学びになる", "自分とは違う業種の困りごとや改善例から、自分の仕事へ応用できるヒントを持ち帰れます。"),
+                ("その場で質問できる", "一人で調べ続けず、分からない点や導入の迷いを質問し、次に試す小さな一歩を決められます。"),
+                ("忙しい週は聞くだけでOK", "LINEライブトークはマイクOFF、途中参加、途中退出に対応。発言したいときだけ挙手できます。"),
+                ("終了後も要点を見返せる", "講師が内容を確認した「火曜AIノート」で、重要点と次の行動を振り返れます。"),
+                ("参加方法", "Squareで月額2,200円を決済後、表示される招待URLからLINEへ進みます。毎週火曜21時の案内から参加できます。"),
             ],
         },
     ]
@@ -11513,6 +11557,7 @@ def _render_compact_course_cards() -> str:
         details = item.get("details") or []
         details_html = ""
         if details:
+            details_lead = html.escape(str(item.get("details_lead") or "このコースで得られること"))
             detail_rows = "".join(
                 "<li>"
                 f"<strong>{html.escape(str(label))}</strong>"
@@ -11522,7 +11567,8 @@ def _render_compact_course_cards() -> str:
             )
             details_html = (
                 "<details class='compact-course-details'>"
-                "<summary>内容・参加方法を見る</summary>"
+                "<summary>メリット・内容・参加方法を見る</summary>"
+                f"<p class='compact-course-details-lead'>{details_lead}</p>"
                 f"<ul>{detail_rows}</ul>"
                 "</details>"
             )
@@ -12952,6 +12998,13 @@ header.site-header:hover {
   transition:transform .2s ease;
 }
 .compact-course-details[open] summary::after { transform:rotate(45deg); }
+.compact-course-details-lead {
+  margin:4px 0 10px !important;
+  color:var(--focus-ink) !important;
+  font-size:11px !important;
+  font-weight:900;
+  line-height:1.5 !important;
+}
 .compact-course-details ul {
   margin:3px 0 0;
   padding:0;
@@ -12960,9 +13013,19 @@ header.site-header:hover {
   list-style:none;
 }
 .compact-course-details li {
+  position:relative;
   display:grid;
   gap:1px;
-  padding:0;
+  padding:0 0 0 18px;
+}
+.compact-course-details li::before {
+  content:"✓";
+  position:absolute;
+  top:0;
+  left:0;
+  color:var(--focus-blue);
+  font-size:11px;
+  font-weight:1000;
 }
 .compact-course-details strong { color:var(--focus-ink); font-size:11px; }
 .compact-course-details span { color:var(--focus-muted); font-size:10.5px; line-height:1.45; }

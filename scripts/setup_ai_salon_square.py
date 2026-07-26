@@ -13,6 +13,7 @@ Optional:
 from __future__ import annotations
 
 import argparse
+import copy
 import json
 import os
 import sys
@@ -187,6 +188,58 @@ def create_variation(plan_id: str, price_yen: int) -> dict[str, Any]:
     return body["catalog_object"]
 
 
+def repair_names(plan_id: str, variation_id: str, price_yen: int) -> None:
+    """Repair only the Japanese names after verifying the billing contract."""
+    body = square_request("GET", f"/v2/catalog/object/{plan_id}")
+    plan = body.get("object") or {}
+    if plan.get("type") != "SUBSCRIPTION_PLAN" or plan.get("is_deleted"):
+        raise RuntimeError("The requested active Square subscription plan was not found.")
+
+    updated_plan = copy.deepcopy(plan)
+    plan_data = updated_plan.get("subscription_plan_data") or {}
+    variations = plan_data.get("subscription_plan_variations") or []
+    matches = [variation for variation in variations if variation.get("id") == variation_id]
+    if len(matches) != 1:
+        raise RuntimeError("The expected plan variation was not found in the plan.")
+
+    variation = matches[0]
+    cadence, amount = variation_price(variation)
+    money = (
+        (((variation.get("subscription_plan_variation_data") or {}).get("phases") or [{}])[0]
+        .get("pricing") or {})
+        .get("price_money") or {}
+    )
+    if (cadence, amount, money.get("currency")) != ("MONTHLY", price_yen, "JPY"):
+        raise RuntimeError("Refusing to repair names because the billing contract changed.")
+
+    plan_data["name"] = PLAN_NAME
+    variation["subscription_plan_variation_data"]["name"] = VARIATION_NAME
+    square_request(
+        "POST",
+        "/v2/catalog/object",
+        {
+            "idempotency_key": str(uuid.uuid4()),
+            "object": updated_plan,
+        },
+    )
+
+    verified = square_request("GET", f"/v2/catalog/object/{plan_id}").get("object") or {}
+    verified_data = verified.get("subscription_plan_data") or {}
+    verified_variations = verified_data.get("subscription_plan_variations") or []
+    verified_variation = next(
+        (item for item in verified_variations if item.get("id") == variation_id),
+        None,
+    )
+    if (
+        verified_data.get("name") != PLAN_NAME
+        or not verified_variation
+        or (verified_variation.get("subscription_plan_variation_data") or {}).get("name")
+        != VARIATION_NAME
+        or variation_price(verified_variation) != ("MONTHLY", price_yen)
+    ):
+        raise RuntimeError("Square accepted the update but the catalog verification failed.")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -194,12 +247,24 @@ def main() -> int:
         action="store_true",
         help="Create missing Square catalog objects. Default is a read-only check.",
     )
+    parser.add_argument(
+        "--repair-names",
+        action="store_true",
+        help="Repair only the plan and variation names after verifying monthly 2,200 JPY.",
+    )
+    parser.add_argument("--plan-id", default="")
+    parser.add_argument("--variation-id", default="")
     args = parser.parse_args()
 
     price_yen = int(os.getenv("SQUARE_AI_SALON_PRICE_YEN", "2200"))
     if price_yen != 2200:
         raise RuntimeError("This release is fixed to monthly 2,200 JPY.")
     required_env("SQUARE_LOCATION_ID")
+
+    if args.repair_names:
+        if not args.plan_id or not args.variation_id:
+            raise RuntimeError("--plan-id and --variation-id are required for name repair.")
+        repair_names(args.plan_id, args.variation_id, price_yen)
 
     objects = list_subscription_objects()
     plan = find_exact_plan(objects)

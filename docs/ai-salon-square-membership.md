@@ -20,13 +20,13 @@
 - `SQUARE_VERSION=2026-05-20`
 - `SQUARE_LOCATION_ID`
 - `SQUARE_AI_SALON_PRICE_YEN`
-- `SQUARE_AI_SALON_ITEM_NAME=AIオンラインサロン`
 - `SQUARE_AI_SALON_PLAN_VARIATION_ID`
 - `AI_SALON_OPENCHAT_URL`
 
 現在の確定料金は月額2,200円（税込）。`SQUARE_AI_SALON_PRICE_YEN=2200` を設定し、
 `SQUARE_AI_SALON_PLAN_VARIATION_ID` にはSquareカタログで作成した月額プランの
-バリエーションIDを設定する。
+バリエーションIDを設定する。購入画面の商品名「AIオンラインサロン」は、
+シェル経由の文字化けを避けるためUTF-8のソースコード内で固定する。
 
 Squareカタログの初期設定は、環境変数を読み込んでから次を実行する。
 
@@ -50,5 +50,5 @@ LINEオープンチャットには、外部決済と会員状態を自動同期�
 - `api/square/ai-salon-checkout.ts`: Square月額課金リンクの作成
 - `api/square/ai-salon-access.ts`: 決済済み注文の照合とLINE案内
 - `api/_lib/square.ts`: Square API共通処理
-- `scripts/setup_ai_salon_square.py`: 月額プランの重複防止付き初期作成
-- `site/build_portal.py`: 短いサロン説明と購入導線
+- `scripts/setup_ai_salon_square.py`: 月額プランの重複防止付き初期作成・名称修復
+- `site/build_portal.py`: 上側コースカードに集約した開閉式説明と購入導線

@@ -1,7 +1,8 @@
 import type { VercelReq } from "./auth.js";
 
-export const AI_SALON_ITEM_NAME =
-  process.env.SQUARE_AI_SALON_ITEM_NAME || "AIオンラインサロン";
+// Keep the customer-facing Japanese name in the UTF-8 source. Passing it through
+// shell-managed environment variables can corrupt the text before it reaches Square.
+export const AI_SALON_ITEM_NAME = "AIオンラインサロン";
 
 export function publicOrigin(req: VercelReq): string {
   const configured =

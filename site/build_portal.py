@@ -11475,6 +11475,11 @@ def _render_compact_course_cards() -> str:
             "material_url": "/lectures/2026-07-ai-online-salon-practice.html",
             "material_cta": "内容を見る",
             "badge": "ライブトーク開催",
+            "details": [
+                ("毎週火曜 21:00", "LINEライブトーク。聞くだけ・途中参加もOK"),
+                ("月額2,200円（税込）", "Squareで決済。毎月自動更新"),
+                ("決済後にLINEへ", "招待URLを表示し、決済名を確認して参加承認"),
+            ],
         },
     ]
     cards = []
@@ -11489,6 +11494,7 @@ def _render_compact_course_cards() -> str:
             if material_url else ""
         )
         main_cls = " compact-course-card--main" if item.get("main") else ""
+        anchor_attr = " id='seven-day-courses'" if item["title"] == "AIオンラインサロン" else ""
         recommended = str(item.get("recommended") or "")
         recommended_html = (
             f"<strong class='compact-course-recommend'>{html.escape(recommended)}</strong>"
@@ -11504,14 +11510,31 @@ def _render_compact_course_cards() -> str:
             f"<h3>{html.escape(item['title'])}</h3>{badge_html}</div>"
             if badge else f"<h3>{html.escape(item['title'])}</h3>"
         )
+        details = item.get("details") or []
+        details_html = ""
+        if details:
+            detail_rows = "".join(
+                "<li>"
+                f"<strong>{html.escape(str(label))}</strong>"
+                f"<span>{html.escape(str(description))}</span>"
+                "</li>"
+                for label, description in details
+            )
+            details_html = (
+                "<details class='compact-course-details'>"
+                "<summary>内容・参加方法を見る</summary>"
+                f"<ul>{detail_rows}</ul>"
+                "</details>"
+            )
         cards.append(
-            f"<article class='compact-course-card{main_cls}'>"
+            f"<article class='compact-course-card{main_cls}'{anchor_attr}>"
             f"{recommended_html}"
             f"<small>{html.escape(item['cat'])}</small>"
             f"<img class='compact-course-visual' src='{html.escape(item['image'], quote=True)}' alt='{html.escape(item['image_alt'], quote=True)}' loading='lazy' decoding='async'>"
             f"{title_html}"
             f"<div class='compact-course-meta'><strong>{html.escape(item['price'])}</strong><span>{html.escape(item['duration'])}</span></div>"
             f"<p>{html.escape(item['desc'])}</p>"
+            f"{details_html}"
             f"<a href='{html.escape(item['url'], quote=True)}'{target_attr}>{html.escape(item['cta'])} →</a>"
             f"{material_html}"
             "</article>"
@@ -12904,6 +12927,45 @@ header.site-header:hover {
 .compact-course-meta strong { color:var(--focus-ink); font-size:18px; }
 .compact-course-meta span { color:var(--focus-muted); font-size:11px; font-weight:800; }
 .compact-course-card p { margin:9px 0 12px; color:var(--focus-muted); font-size:12px; line-height:1.55; }
+.compact-course-details {
+  margin:0 0 14px;
+  color:var(--focus-ink);
+  font-size:11px;
+}
+.compact-course-details summary {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  padding:7px 0;
+  color:var(--focus-blue);
+  font-weight:900;
+  cursor:pointer;
+  list-style:none;
+}
+.compact-course-details summary::-webkit-details-marker { display:none; }
+.compact-course-details summary::after {
+  content:"+";
+  flex:0 0 auto;
+  font-size:17px;
+  line-height:1;
+  transition:transform .2s ease;
+}
+.compact-course-details[open] summary::after { transform:rotate(45deg); }
+.compact-course-details ul {
+  margin:3px 0 0;
+  padding:0;
+  display:grid;
+  gap:8px;
+  list-style:none;
+}
+.compact-course-details li {
+  display:grid;
+  gap:1px;
+  padding:0;
+}
+.compact-course-details strong { color:var(--focus-ink); font-size:11px; }
+.compact-course-details span { color:var(--focus-muted); font-size:10.5px; line-height:1.45; }
 .compact-course-card > a { min-height:38px; display:flex; align-items:center; justify-content:center; margin-top:auto; padding:7px 10px; color:#fff; background:var(--focus-blue); border-radius:7px; font-size:12px; font-weight:900; text-align:center; text-decoration:none; }
 .compact-course-card > a:hover { background:var(--focus-blue-dark); }
 .compact-course-card > a.compact-course-material { min-height:auto; margin:10px 0 0; padding:0; color:var(--focus-blue); background:transparent; border-radius:0; font-size:11px; line-height:1.5; text-decoration:underline; text-underline-offset:3px; }
@@ -13179,117 +13241,6 @@ header.site-header:hover {
 .salon-timeline-dots button[aria-current="step"] { width:26px; background:var(--focus-blue); }
 .salon-timeline-status { min-width:34px; color:var(--focus-muted); font-size:11px; font-weight:850; }
 .salon-timeline-wrap .pf-arrow { top:45%; }
-.salon-compact {
-  position:relative;
-  overflow:hidden;
-  background:linear-gradient(145deg,#f4f1ff 0%,#fff 52%,#eef5ff 100%);
-  border-top:1px solid rgba(83,103,217,.14);
-  border-bottom:1px solid rgba(83,103,217,.14);
-}
-.salon-compact-shell {
-  position:relative;
-  z-index:1;
-  width:min(1040px,100%);
-  margin:0 auto;
-  display:grid;
-  grid-template-columns:minmax(0,1.12fr) minmax(320px,.88fr);
-  gap:24px;
-  align-items:stretch;
-}
-.salon-compact-copy,
-.salon-purchase {
-  padding:30px;
-  border:1px solid rgba(83,103,217,.18);
-  border-radius:20px;
-  background:rgba(255,255,255,.94);
-  box-shadow:0 18px 46px rgba(42,53,105,.08);
-}
-.salon-compact-kicker {
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  color:var(--focus-blue);
-  font-size:11px;
-  font-weight:900;
-}
-.salon-compact-kicker i {
-  width:8px;
-  height:8px;
-  border-radius:50%;
-  background:#e2394f;
-  box-shadow:0 0 0 5px rgba(226,57,79,.10);
-}
-.salon-compact h2 {
-  margin:14px 0 0;
-  color:var(--focus-ink);
-  font-size:clamp(34px,4vw,50px);
-  line-height:1.08;
-  letter-spacing:-.05em;
-}
-.salon-compact-lead {
-  margin:14px 0 0;
-  color:#24344a;
-  font-size:17px;
-  line-height:1.65;
-  font-weight:800;
-}
-.salon-compact-points {
-  margin:24px 0 0;
-  padding:0;
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  border-top:1px solid rgba(83,103,217,.14);
-  border-bottom:1px solid rgba(83,103,217,.14);
-  list-style:none;
-}
-.salon-compact-points li { padding:14px 12px; }
-.salon-compact-points li + li { border-left:1px solid rgba(83,103,217,.14); }
-.salon-compact-points strong,
-.salon-compact-points span { display:block; }
-.salon-compact-points strong { color:var(--focus-blue); font-size:13px; }
-.salon-compact-points span { margin-top:4px; color:var(--focus-muted); font-size:11px; line-height:1.45; }
-.salon-material-link {
-  display:inline-flex;
-  margin-top:18px;
-  color:var(--focus-blue);
-  font-size:12px;
-  font-weight:900;
-  text-underline-offset:3px;
-}
-.salon-purchase { background:#071c38; border-color:#071c38; color:#fff; }
-.salon-purchase > small { color:#9dc7ff; font:900 10px/1.2 Inter,sans-serif; letter-spacing:.12em; }
-.salon-purchase h3 { margin:9px 0 0; color:#fff; font-size:25px; line-height:1.3; }
-.salon-purchase-flow { margin:19px 0 0; padding:0; display:grid; gap:11px; list-style:none; }
-.salon-purchase-flow li { display:grid; grid-template-columns:30px minmax(0,1fr); gap:10px; align-items:start; }
-.salon-purchase-flow b {
-  display:grid;
-  place-items:center;
-  width:30px;
-  height:30px;
-  border-radius:9px;
-  color:#071c38;
-  background:#fff;
-  font-size:11px;
-}
-.salon-purchase-flow span { color:#b9cbe0; font-size:11px; line-height:1.45; }
-.salon-purchase-flow strong { display:block; margin-bottom:2px; color:#fff; font-size:13px; }
-.salon-purchase-cta {
-  min-height:50px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin-top:20px;
-  padding:0 18px;
-  border-radius:9px;
-  color:#071c38;
-  background:#fff;
-  font-size:13px;
-  font-weight:950;
-  text-align:center;
-  text-decoration:none;
-}
-.salon-purchase-cta:hover { background:#e9f3ff; }
-.salon-purchase > p { margin:10px 0 0; color:#9fb3c9; font-size:10px; line-height:1.5; text-align:center; }
 .course-quick-actions { max-width:1400px; margin:12px auto 0; display:flex; align-items:center; justify-content:flex-end; gap:14px; }
 .compact-diagnose { padding:0; color:var(--focus-blue); background:transparent; border:0; font-size:12px; font-weight:900; text-decoration:underline; text-underline-offset:3px; cursor:pointer; }
 .course-quick-actions a { color:var(--focus-muted); font-size:12px; font-weight:800; }
@@ -13402,7 +13353,6 @@ footer.site-footer {
     grid-template-areas:"copy" "values" "facts";
     gap:18px;
   }
-  .salon-compact-shell { grid-template-columns:1fr; }
 }
 @media (max-width: 680px) {
   :root {
@@ -13508,16 +13458,6 @@ footer.site-footer {
   .salon-live-steps li { padding:10px; }
   .salon-live-guide-foot { align-items:flex-start; flex-direction:column; gap:6px; }
   .salon-note { text-align:left; }
-  .salon-compact { padding-top:42px !important; padding-bottom:42px !important; }
-  .salon-compact-shell { gap:12px; }
-  .salon-compact-copy,
-  .salon-purchase { padding:18px; border-radius:15px; }
-  .salon-compact h2 { margin-top:10px; font-size:30px; }
-  .salon-compact-lead { margin-top:9px; font-size:14px; }
-  .salon-compact-points { margin-top:18px; }
-  .salon-compact-points li { padding:11px 7px; }
-  .salon-compact-points span { font-size:10px; }
-  .salon-purchase h3 { font-size:21px; }
   .course-quick-actions { align-items:flex-end; justify-content:space-between; }
 }
 
@@ -13750,37 +13690,6 @@ def _render_focused_blog_content() -> str:
     )
 
 
-def _render_compact_salon() -> str:
-    """AIオンラインサロンの価値・開催情報・参加手順を1つの短いカードに集約する。"""
-    return (
-        "<section class='focus-block salon-compact' id='seven-day-courses' aria-labelledby='salon-title'>"
-        "<div class='salon-compact-shell'>"
-        "<div class='salon-compact-copy'>"
-        "<span class='salon-compact-kicker'><i aria-hidden='true'></i>毎週火曜 21:00・LINEライブトーク</span>"
-        "<h2 id='salon-title'>AIオンラインサロン</h2>"
-        "<p class='salon-compact-lead'>AIの変化を60分で整理し、今週やることを決めます。</p>"
-        "<ul class='salon-compact-points' aria-label='サロンでできること'>"
-        "<li><strong>知る</strong><span>今週の新機能</span></li>"
-        "<li><strong>相談</strong><span>聞くだけでもOK</span></li>"
-        "<li><strong>残す</strong><span>確認済み資料を共有</span></li>"
-        "</ul>"
-        "<a class='salon-material-link' href='/lectures/2026-07-ai-online-salon-practice.html'>内容を見る →</a>"
-        "</div>"
-        "<aside class='salon-purchase' aria-labelledby='salon-purchase-title'>"
-        "<small>SQUARE PAYMENT</small>"
-        "<h3 id='salon-purchase-title'>月額2,200円・決済後にLINEへ</h3>"
-        "<ol class='salon-purchase-flow'>"
-        "<li><b>1</b><span><strong>Squareで月額決済</strong>毎月2,200円（税込）です</span></li>"
-        "<li><b>2</b><span><strong>LINEで参加申請</strong>決済後に招待URLを表示します</span></li>"
-        "<li><b>3</b><span><strong>確認して承認</strong>決済名と照合してメンバーを調整します</span></li>"
-        "</ol>"
-        f"<a class='salon-purchase-cta' href='{html.escape(AI_SALON_CHECKOUT_URL, quote=True)}'>Squareで決済して参加</a>"
-        "<p>LINEの招待URLは、決済前のページには表示しません。</p>"
-        "</aside>"
-        "</div></section>"
-    )
-
-
 def _render_focused_main() -> str:
     free_consult = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/AW5O5XSBHLEHYUBHLZUGFKYE"
 
@@ -13794,7 +13703,6 @@ def _render_focused_main() -> str:
         "<div class='course-venue-map'><iframe src='https://www.google.com/maps?q=%E3%82%B0%E3%83%83%E3%81%BC%E3%82%8B%E3%82%AB%E3%83%95%E3%82%A7%20%E6%BB%8B%E8%B3%80%E7%9C%8C%E5%BD%A6%E6%A0%B9%E5%B8%82%E5%B2%A1%E7%94%BA12&amp;output=embed' title='グッぼるカフェ周辺のGoogleマップ' loading='lazy' referrerpolicy='no-referrer-when-downgrade' allowfullscreen></iframe></div>",
         "<p class='course-venue-map-link'><a href='https://www.google.com/maps/search/?api=1&amp;query=%E3%82%B0%E3%83%83%E3%81%BC%E3%82%8B%E3%82%AB%E3%83%95%E3%82%A7%20%E6%BB%8B%E8%B3%80%E7%9C%8C%E5%BD%A6%E6%A0%B9%E5%B8%82%E5%B2%A1%E7%94%BA12' target='_blank' rel='noopener'>Googleマップで開く →</a></p></aside>",
         "<div class='course-quick-actions'><button type='button' class='compact-diagnose diagnose-open'>迷ったら60秒診断</button><a href='#lectures'>受講資料から選ぶ →</a></div></section>",
-        _render_compact_salon(),
         "<section class='focus-block soft' id='lectures'><div class='focus-section-head'><small>LEARNING MATERIALS</small><h2>受講資料</h2></div>",
         "<p class='focus-section-lead'>公開中の受講資料をすべて表示しています。迷ったら「AIが初めて」から順に選べます。</p>",
         _render_lectures_section(),

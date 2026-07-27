@@ -113,6 +113,7 @@ OWNER_NAME = "由井 辰美"
 OWNER_EMAIL = "goodbouldering@gmail.com"
 SITE_BRAND = "AI相談"
 SITE_LEGACY_NAME = "AIハブ"
+SITE_BROWSER_TITLE = "AI相談｜彦根・滋賀の生成AI講習・AIエージェント導入支援"
 OWNER_SUBTITLE = "クライミング歴30年・9事業を回す滋賀のAI講師"
 OWNER_TAGLINE = "AIの今と、次の一手がわかる。"
 CONSULT_BOOK_URL = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/AW5O5XSBHLEHYUBHLZUGFKYE"
@@ -194,9 +195,11 @@ def _build_ogp(title: str, description: str, page_url: str, *, image: str | None
 
 
 def _build_jsonld_website() -> str:
-    """TOP の構造化データを @graph で一括出力。
-    LocalBusiness(地域シグナル) / Person(異色の権威) / WebSite / Service×6(価格付き Offer) /
-    FAQPage(一次情報) / BreadcrumbList を相互参照させ、SEO・LLMO 両面の引用源にする。"""
+    """TOPで表示している事業・講師・サービス情報だけを@graphで出力する。
+
+    FAQのリッチリザルト対応終了後はFAQPageを検索施策として出力せず、
+    現在の集約トップに表示されていない旧セクションのデータも含めない。
+    """
     org_id = SITE_URL + "/#business"
     person_id = SITE_URL + "/#yui"
     web_id = SITE_URL + "/#website"
@@ -312,19 +315,6 @@ def _build_jsonld_website() -> str:
             service["url"] = SITE_URL + MONTHLY_SUPPORT_CHECKOUT_URL
         services.append(service)
 
-    faq = {
-        "@type": "FAQPage",
-        "@id": SITE_URL + "/#faq",
-        "mainEntity": [
-            {
-                "@type": "Question",
-                "name": q,
-                "acceptedAnswer": {"@type": "Answer", "text": a},
-            }
-            for q, a in FAQ_QA
-        ],
-    }
-
     breadcrumb = {
         "@type": "BreadcrumbList",
         "itemListElement": [
@@ -336,7 +326,7 @@ def _build_jsonld_website() -> str:
         ],
     }
 
-    graph = {"@context": "https://schema.org", "@graph": [local_business, person, website, *services, faq, breadcrumb]}
+    graph = {"@context": "https://schema.org", "@graph": [local_business, person, website, *services, breadcrumb]}
     return json.dumps(graph, ensure_ascii=False)
 
 
@@ -11864,8 +11854,8 @@ def _render_growth_plan_section() -> str:
     return "".join(parts)
 
 
-# FAQ は本文表示と FAQPage 構造化データの両方で使う（一次情報＝LLMO引用源）。
-# 地域・お悩み・補助金の検索意図を素の質問形で網羅する。
+# 旧レイアウト用のFAQ素材。現在の集約トップでは、画面に出す質問だけを
+# _render_focused_main で管理し、FAQPage構造化データは出力しない。
 FAQ_QA = [
     ("彦根・滋賀でAIの講習や相談はできますか？",
      "はい。滋賀県彦根市を拠点に、彦根・湖東・東近江を中心とした対面のAI講習・個別相談を行っています。京都・大阪・名古屋までは出張可、リモートなら全国対応します。"),
@@ -13720,16 +13710,16 @@ def _render_hero_focused() -> str:
         "<div class='hero-orb hero-orb-one' aria-hidden='true'></div><div class='hero-orb hero-orb-two' aria-hidden='true'></div>"
         "<div class='focus-hero-shell'>"
         "<div class='focus-hero-copy fade-up'>"
-        "<p class='focus-kicker'>Codex + Claude Code 実践</p>"
+        "<p class='focus-kicker'>彦根・滋賀の中小事業者向け</p>"
         "<h1 class='focus-title'><span class='focus-title-first'>AIエージェントを、</span><br><span class='focus-title-line'><strong>強力なスタッフに。</strong></span></h1>"
         "<aside class='hero-advantage' id='advantage' aria-labelledby='hero-advantage-title'>"
         "<div class='hero-advantage-number' aria-hidden='true'><strong>6%</strong><span>導入率はまだ少ない</span></div>"
         "<div class='hero-advantage-copy'><p id='hero-advantage-title'><span>あなたの経験が</span><span><strong>100倍</strong>になる。</span><span>2時間で仕事が変わる。</span></p></div>"
         "<ul class='hero-advantage-pillars' aria-label='AI導入を成果に変える3ステップ'><li><b>01</b>経験を活かす</li><li><b>02</b>仕事を速める</li><li><b>03</b>成果に変える</li></ul>"
         "</aside>"
-        "<p class='focus-lead'>実践講習・個別相談・有料オンラインサロンで、AIを実務に入れ、使い続けられる形まで支援します。</p>"
+        "<p class='focus-lead'>告知・事務・集客に追われる方へ。実践講習・個別相談・有料オンラインサロンで、AIエージェントを実務に入れ、使い続けられる形まで支援します。</p>"
         "<div class='focus-actions'>"
-        "<a class='focus-btn primary' href='#packages'>講習・相談を見る</a>"
+        "<a class='focus-btn primary' href='#packages'>講習・個別相談を見る</a>"
         "<a class='focus-btn secondary' href='#contact'>無料相談する</a><a class='hero-text-link' href='/lectures/index.html'>受講資料 <span aria-hidden='true'>→</span></a></div>"
         "<ul class='focus-trust'><li>AI初心者OK</li><li>対面・オンライン対応</li><li>仕事を持ち込める</li></ul></div>"
         "</div>"
@@ -13799,7 +13789,7 @@ def _render_focused_main() -> str:
 
 def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     today = datetime.now().strftime("%Y-%m-%d")
-    title = SITE_BRAND
+    title = SITE_BROWSER_TITLE
     desc = "AI相談は、彦根・滋賀でAIエージェント講習と有料オンラインサロンを開催しています。増え続けるAI情報から仕事に使えるものを選び、今やることを整理。CodexやClaude Codeで実践まで進めます。"
 
     parts: list[str] = []
@@ -13815,7 +13805,6 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append(f"<link rel='canonical' href='{html.escape(SITE_URL + '/', quote=True)}'>")
     parts.append(_build_ogp(title, desc, SITE_URL + "/"))
     parts.append(f"<script type='application/ld+json'>{_build_jsonld_website()}</script>")
-    parts.append(f"<script type='application/ld+json' id='business-compass-jsonld'>{_build_business_compass_jsonld()}</script>")
     parts.append(f"<style>{PORTAL_CSS}{BLOG_TEASER_CSS}{FOCUSED_PORTAL_CSS}</style>")
     parts.append("</head><body>")
 

@@ -192,6 +192,28 @@ function sendLoginPage(
       color: #6A7688;
       font-size: 12px;
     }
+    .back-link {
+      min-height: 44px;
+      margin-top: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+    .back-link:hover,
+    .back-link:focus-visible {
+      border-color: var(--blue);
+      color: var(--blue);
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(7, 95, 200, .1);
+    }
   </style>
 </head>
 <body>
@@ -206,6 +228,7 @@ function sendLoginPage(
       <input id="password" name="password" type="password" autocomplete="current-password" required autofocus>
       <button type="submit">ログイン</button>
     </form>
+    <a class="back-link" href="/">← 公開ページへ戻る</a>
     <p class="note">ログイン状態はこの端末のブラウザにだけ保存されます。</p>
   </main>
 </body>

@@ -35,6 +35,7 @@
     { "source": "/admin/gubble-sns", "destination": "/api/admin/gubble-sns" },
     { "source": "/admin/gubble-sns/", "destination": "/api/admin/gubble-sns" },
     { "source": "/admin/admin-common.css", "destination": "/api/admin/common-css" },
+    { "source": "/admin/admin-menu.js", "destination": "/api/admin/menu-js" },
     { "source": "/admin/sns-metrics.js", "destination": "/api/admin/gubble-sns-metrics" },
     { "source": "/ops", "destination": "/api/ops" },
     { "source": "/ops/", "destination": "/api/ops" },

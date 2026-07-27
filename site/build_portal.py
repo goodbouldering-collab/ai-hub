@@ -13721,7 +13721,7 @@ def _render_hero_focused() -> str:
         "<div class='focus-hero-shell'>"
         "<div class='focus-hero-copy fade-up'>"
         "<p class='focus-kicker'>Codex + Claude Code 実践</p>"
-        "<h1 class='focus-title'><span class='focus-title-first'>AIエージェントが、</span><br><span class='focus-title-line'><strong>強力なスタッフになる。</strong></span></h1>"
+        "<h1 class='focus-title'><span class='focus-title-first'>AIエージェントを、</span><br><span class='focus-title-line'><strong>強力なスタッフに。</strong></span></h1>"
         "<aside class='hero-advantage' id='advantage' aria-labelledby='hero-advantage-title'>"
         "<div class='hero-advantage-number' aria-hidden='true'><strong>6%</strong><span>導入率はまだ少ない</span></div>"
         "<div class='hero-advantage-copy'><p id='hero-advantage-title'><span>あなたの経験が</span><span><strong>100倍</strong>になる。</span><span>2時間で仕事が変わる。</span></p></div>"

@@ -1,6 +1,13 @@
 {
-  "generated_at": "2026-07-27T02:57:29Z",
+  "generated_at": "2026-07-27T22:52:26Z",
   "recent_works": [
+    {
+      "date": "2026-07-27",
+      "filename": "2026-07-27-seo-weekly-digest.md",
+      "title": "SEO週次ダイジェスト（2026-07-27）",
+      "business": "seo",
+      "path": "/ops?file=2026-07-27-seo-weekly-digest.md#sec-docs"
+    },
     {
       "date": "2026-07-19",
       "filename": "2026-07-19-seo-weekly-digest.md",
@@ -49,13 +56,6 @@
       "title": "論点: AIハブ管理ダッシュボードを「毎朝の経営判断画面」に作り替える評価軸と改善ループ",
       "business": "AIハブ",
       "path": "/ops?file=2026-06-10-ai-hub-advisor-admin-dashboard-improvement-loop.md#sec-docs"
-    },
-    {
-      "date": "2026-06-08",
-      "filename": "2026-06-08-seo-weekly-digest.md",
-      "title": "SEO週次ダイジェスト（2026-06-08）",
-      "business": "seo",
-      "path": "/ops?file=2026-06-08-seo-weekly-digest.md#sec-docs"
     }
   ],
   "tasks_open": [
@@ -88,7 +88,12 @@
       "path": "/ops?file=2026-05-28-ai-shindan-matching-design-system.md#sec-docs"
     }
   ],
-  "per_business_recent": [],
+  "per_business_recent": [
+    {
+      "business": "seo",
+      "count": 1
+    }
+  ],
   "daily_histogram": [
     {
       "date": "2026-07-14",
@@ -144,13 +149,13 @@
     },
     {
       "date": "2026-07-27",
-      "count": 0
+      "count": 1
     }
   ],
   "cma_apps": [],
   "totals": {
-    "consul_work_total": 132,
-    "recent_7d_total": 0,
+    "consul_work_total": 133,
+    "recent_7d_total": 1,
     "tasks_open_total": 4
   }
 }

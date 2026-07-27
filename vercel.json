@@ -20,6 +20,8 @@
     { "source": "/admin/", "destination": "/api/admin" },
     { "source": "/admin/blog", "destination": "/api/admin/blog" },
     { "source": "/admin/blog/", "destination": "/api/admin/blog" },
+    { "source": "/admin/blog/:section", "destination": "/api/admin/blog" },
+    { "source": "/admin/blog/:section/", "destination": "/api/admin/blog" },
     { "source": "/admin/apps/reel", "destination": "/api/admin/apps/reel" },
     { "source": "/admin/apps/reel/", "destination": "/api/admin/apps/reel" },
     { "source": "/admin/apps/reel.html", "destination": "/api/admin/apps/reel" },

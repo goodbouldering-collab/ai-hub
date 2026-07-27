@@ -135,6 +135,102 @@
     display:inline-flex; margin-top:10px;
     color:var(--primary); font-style:normal; font-size:12px; font-weight:850;
   }
+  .blog-page-nav {
+    position:sticky; top:72px; z-index:20;
+    display:flex; align-items:center; gap:8px;
+    margin:0 0 20px; padding:10px;
+    overflow-x:auto; scrollbar-width:thin;
+    border:1px solid var(--line); border-radius:16px;
+    background:rgba(255,255,255,.96);
+    box-shadow:0 12px 34px rgba(15,23,42,.10);
+    backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+  }
+  .blog-page-nav a {
+    flex:0 0 auto; min-height:42px;
+    display:inline-flex; align-items:center; gap:8px;
+    padding:0 14px; border:1px solid transparent; border-radius:10px;
+    color:var(--text-soft); font-size:13px; font-weight:800;
+    text-decoration:none; white-space:nowrap;
+  }
+  .blog-page-nav a:hover,
+  .blog-page-nav a:focus-visible {
+    color:var(--primary); background:var(--primary-bg);
+    border-color:#bfdbfe; outline:none;
+  }
+  .blog-page-nav a[aria-current="page"] {
+    color:#fff; background:var(--primary); border-color:var(--primary);
+    box-shadow:0 8px 20px rgba(37,99,235,.25);
+  }
+  .blog-page-nav .page-number {
+    display:grid; place-items:center; width:22px; height:22px;
+    border-radius:7px; background:rgba(100,116,139,.12);
+    font-size:10px; letter-spacing:.04em;
+  }
+  .blog-page-nav a[aria-current="page"] .page-number {
+    background:rgba(255,255,255,.20);
+  }
+  [data-blog-section] { display:none; }
+  [data-blog-section].is-active-section { display:block; }
+  .blog-overview-grid {
+    display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:14px;
+  }
+  .blog-overview-card {
+    display:flex; min-height:190px; flex-direction:column;
+    padding:20px; border:1px solid var(--line); border-radius:16px;
+    background:linear-gradient(160deg,#fff 0%,#f8fbff 100%);
+    color:inherit; text-decoration:none;
+    box-shadow:0 8px 24px rgba(15,23,42,.06);
+    transition:transform .18s,border-color .18s,box-shadow .18s;
+  }
+  .blog-overview-card:hover,
+  .blog-overview-card:focus-visible {
+    transform:translateY(-2px); border-color:#93c5fd;
+    box-shadow:0 16px 34px rgba(15,23,42,.11); outline:none;
+  }
+  .blog-overview-card .step {
+    color:var(--primary); font-size:11px; font-weight:900; letter-spacing:.12em;
+  }
+  .blog-overview-card strong { margin:12px 0 8px; font-size:18px; }
+  .blog-overview-card p { color:var(--text-soft); font-size:13px; line-height:1.7; }
+  .blog-overview-card em {
+    margin-top:auto; padding-top:16px;
+    color:var(--primary); font-size:12px; font-style:normal; font-weight:850;
+  }
+  .page-actions {
+    display:flex; align-items:center; justify-content:space-between;
+    gap:10px; margin-top:18px; flex-wrap:wrap;
+  }
+  a.button-link {
+    display:inline-flex; align-items:center; justify-content:center;
+    min-height:40px; padding:0 18px; border:1px solid var(--line);
+    border-radius:999px; background:#fff; color:var(--text-soft);
+    font-size:12.5px; font-weight:800; text-decoration:none;
+  }
+  a.button-link.primary {
+    color:#fff; background:var(--primary); border-color:var(--primary);
+    box-shadow:0 6px 16px rgba(37,99,235,.28);
+  }
+  .publish-summary {
+    display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px; margin:0 0 18px;
+  }
+  .publish-summary div {
+    min-width:0; padding:14px;
+    border:1px solid var(--line); border-radius:12px; background:#f8fafc;
+  }
+  .publish-summary dt {
+    color:var(--muted); font-size:11px; font-weight:800; letter-spacing:.06em;
+  }
+  .publish-summary dd {
+    margin-top:5px; color:var(--text); font-size:13px; font-weight:750;
+    overflow-wrap:anywhere;
+  }
+  .publish-warning {
+    margin:0 0 16px; padding:14px 16px;
+    border-left:4px solid var(--amber); border-radius:10px;
+    background:#fffbeb; color:#78350f; font-size:13px;
+  }
   .sub { color:var(--muted); font-size:13px; margin-bottom:6px; }
   .panel {
     background:var(--bg-white); border:1px solid var(--line);
@@ -248,6 +344,18 @@
 
   @media (max-width:760px) {
     .quickflow { grid-template-columns:1fr; }
+    .blog-page-nav {
+      top:64px; margin-left:-4px; margin-right:-4px; border-radius:12px;
+    }
+    .blog-overview-grid { grid-template-columns:1fr; }
+    .blog-overview-card { min-height:150px; }
+    .publish-summary { grid-template-columns:1fr; }
+    #panel-publish .row {
+      flex-direction:column; align-items:stretch;
+    }
+    #panel-publish .row > * {
+      width:100% !important; max-width:100%; white-space:normal;
+    }
   }
 
   /* === Admin menu === */
@@ -374,16 +482,16 @@
 <div class="container">
   <div class="topbar">
     <div>
-      <h1><span class="dot"></span>AI相談 ブログ管理</h1>
-      <p class="sub">ブログ記事の生成・編集・公開だけに絞った軽量画面</p>
-      <p class="topbar-lead">公開トップ用のデータベース一覧や運用ダッシュボードは読み込みません。ページを開いた直後は軽くし、必要なときだけブログ配下の記事一覧を取得します。</p>
+      <h1><span class="dot"></span><span id="blog-page-title">AI相談 ブログ管理</span></h1>
+      <p class="sub" id="blog-page-subtitle">ブログ作業を、機能ごとのページで切り替えます。</p>
+      <p class="topbar-lead" id="blog-page-lead">必要な機能だけを開けるため、長い管理画面をスクロールせずに作業できます。</p>
     </div>
   </div>
 
   <section class="admin-fish-hero" aria-label="AI魚線画モーション">
     <div class="admin-fish-copy">
-      <strong>記事作成だけを、迷わず前へ進める</strong>
-      <span>ブログ親IDを固定し、AIで下書きを作り、必要な記事だけ編集して公開します。SNS、OPS、公開トップのDB確認はこの画面から外しました。</span>
+      <strong id="blog-page-hero-title">記事作成だけを、迷わず前へ進める</strong>
+      <span id="blog-page-hero-copy">設定、一覧、生成、編集、公開を独立したページに分け、必要な作業だけに集中できます。</span>
     </div>
     <div class="admin-fish-motion" aria-hidden="true">
       <svg viewBox="0 0 520 260" role="img" aria-label="魚の線画がゆっくり描かれるAIモーション">
@@ -401,87 +509,38 @@
     </div>
   </section>
 
-  <details class="panel admin-menu-panel admin-command-menu" id="admin-menu" open>
-    <summary class="admin-menu-head">
-      <span class="admin-menu-trigger" aria-hidden="true">☰</span>
-      <span class="admin-menu-title">
-        <strong>ブログだけの管理メニュー</strong>
-        <small>重い一覧取得は自動実行しません。ブログIDを保存し、必要な操作だけ押してください。</small>
-      </span>
-      <span class="admin-menu-state">開閉</span>
-    </summary>
-    <div class="admin-menu-grid admin-menu-grid-2">
-      <section class="admin-menu-group" aria-label="ブログ作業">
-        <h3>ブログ作業</h3>
-        <a class="admin-link" href="#panel-status">
-          <span class="admin-link-icon">✍️</span>
-          <span><strong>接続確認</strong><small>必要なAPIキーの状態だけ確認</small></span>
-          <span class="admin-link-action">移動</span>
-        </a>
-        <a class="admin-link" href="#panel-blog-parent">
-          <span class="admin-link-icon">🧭</span>
-          <span><strong>ブログ設定</strong><small>親グループIDを保存</small></span>
-          <span class="admin-link-action">移動</span>
-        </a>
-        <a class="admin-link" href="#panel-blog-list">
-          <span class="admin-link-icon">📚</span>
-          <span><strong>記事一覧</strong><small>必要な時だけ取得</small></span>
-          <span class="admin-link-action">移動</span>
-        </a>
-        <a class="admin-link" href="#theme">
-          <span class="admin-link-icon">🤖</span>
-          <span><strong>AI記事生成</strong><small>下書きから公開へ</small></span>
-          <span class="admin-link-action">移動</span>
-        </a>
-      </section>
-      <section class="admin-menu-group" aria-label="確認">
-        <h3>確認</h3>
-        <a class="admin-link" href="/blog/index.html">
-          <span class="admin-link-icon">📝</span>
-          <span><strong>公開ブログ</strong><small>公開済み記事一覧を確認</small></span>
-          <span class="admin-link-action">開く</span>
-        </a>
-        <a class="admin-link" href="/">
-          <span class="admin-link-icon">🏠</span>
-          <span><strong>公開トップ</strong><small>トップページと同じ見た目を確認</small></span>
-          <span class="admin-link-action">開く</span>
-        </a>
-        <a class="admin-link" href="/admin/logout">
-          <span class="admin-link-icon">↪</span>
-          <span><strong>ログアウト</strong><small>管理画面から退出</small></span>
-          <span class="admin-link-action">実行</span>
-        </a>
-      </section>
+  <nav class="blog-page-nav" aria-label="ブログ管理ページ切り替え">
+    <a href="/admin/blog" data-blog-nav="overview"><span class="page-number">00</span>全体</a>
+    <a href="/admin/blog/status" data-blog-nav="status"><span class="page-number">01</span>接続</a>
+    <a href="/admin/blog/settings" data-blog-nav="settings"><span class="page-number">02</span>設定</a>
+    <a href="/admin/blog/articles" data-blog-nav="articles"><span class="page-number">03</span>記事一覧</a>
+    <a href="/admin/blog/generate" data-blog-nav="generate"><span class="page-number">04</span>AI生成</a>
+    <a href="/admin/blog/editor" data-blog-nav="editor"><span class="page-number">05</span>編集・画像</a>
+    <a href="/admin/blog/publish" data-blog-nav="publish"><span class="page-number">06</span>公開</a>
+  </nav>
+
+  <section class="panel" data-blog-section="overview" aria-labelledby="blog-overview-title">
+    <h2 id="blog-overview-title">ブログ管理の機能別ページ</h2>
+    <div class="blog-overview-grid">
+      <a class="blog-overview-card" href="/admin/blog/status"><span class="step">01 / CHECK</span><strong>接続状態</strong><p>カラーミー、AI、画像保存先の設定状況を確認します。</p><em>接続ページを開く →</em></a>
+      <a class="blog-overview-card" href="/admin/blog/settings"><span class="step">02 / SETUP</span><strong>ブログ設定</strong><p>ブログ親グループIDをこのブラウザに保存します。</p><em>設定ページを開く →</em></a>
+      <a class="blog-overview-card" href="/admin/blog/articles"><span class="step">03 / ARTICLES</span><strong>記事一覧</strong><p>既存記事の編集と表示順の変更を行います。</p><em>記事一覧を開く →</em></a>
+      <a class="blog-overview-card" href="/admin/blog/generate"><span class="step">04 / GENERATE</span><strong>AI記事生成</strong><p>テーマから複数の下書きを作り、採用案を選びます。</p><em>AI生成を開く →</em></a>
+      <a class="blog-overview-card" href="/admin/blog/editor"><span class="step">05 / EDIT</span><strong>編集・画像</strong><p>本文を整え、AI修正と画像生成を行います。</p><em>編集ページを開く →</em></a>
+      <a class="blog-overview-card" href="/admin/blog/publish"><span class="step">06 / PUBLISH</span><strong>公開</strong><p>最終内容を確認し、グループ更新と公開を実行します。</p><em>公開ページを開く →</em></a>
     </div>
-  </details>
+  </section>
 
-  <div class="quickflow" aria-label="最短操作">
-    <a class="quickflow-card" href="#panel-blog-parent">
-      <span>STEP 1</span>
-      <strong>ブログIDを保存</strong>
-      <p>公開トップの親グループ一覧は読みません。ブログ親グループIDだけを保存して使います。</p>
-      <em>ブログ設定へ移動 →</em>
-    </a>
-    <a class="quickflow-card" href="#theme">
-      <span>STEP 2</span>
-      <strong>AIで記事案を作る</strong>
-      <p>テーマを入れて候補を作り、採用案を編集欄へ送ります。</p>
-      <em>記事生成へ移動 →</em>
-    </a>
-    <a class="quickflow-card" href="#panel-edit">
-      <span>STEP 3</span>
-      <strong>編集して公開</strong>
-      <p>本文、画像、表示設定を整えてブログ配下に公開します。</p>
-      <em>編集欄へ移動 →</em>
-    </a>
-  </div>
-
-  <div class="panel" id="panel-status">
+  <div class="panel" id="panel-status" data-blog-section="status">
     <h2>① 接続状態</h2>
     <div id="status-area">確認中…</div>
+    <div class="page-actions">
+      <a class="button-link" href="/admin/blog">全体へ戻る</a>
+      <a class="button-link primary" href="/admin/blog/settings">次へ：ブログ設定</a>
+    </div>
   </div>
 
-  <div class="panel" id="panel-blog-parent">
+  <div class="panel" id="panel-blog-parent" data-blog-section="settings">
     <h2>② ブログ設定</h2>
     <p class="muted">トップレベルのグループ一覧は自動取得しません。ブログ親グループIDだけを保存して、記事一覧・作成・公開に使います。</p>
     <label for="blog-parent-id">ブログ親グループID</label>
@@ -491,9 +550,13 @@
       <span id="blog-parent-status" class="badge muted">未設定</span>
     </div>
     <small>※ 初回だけブログ親IDを入力してください。保存後はこのブラウザに記憶します。</small>
+    <div class="page-actions">
+      <a class="button-link" href="/admin/blog/status">前へ：接続</a>
+      <a class="button-link primary" href="/admin/blog/articles">次へ：記事一覧</a>
+    </div>
   </div>
 
-  <div class="panel" id="panel-blog-list">
+  <div class="panel" id="panel-blog-list" data-blog-section="articles">
     <h2>③ ブログ記事一覧（必要な時だけ取得）</h2>
     <div class="row">
       <button id="btn-load-children">ブログ記事一覧を読み込む</button>
@@ -502,9 +565,13 @@
     </div>
     <ul class="sortable" id="children-list"></ul>
     <small>※ ここで初めてブログ配下のグループを取得します。ドラッグして順序変更 →「並び替えを保存」で sort 値を一括更新。</small>
+    <div class="page-actions">
+      <a class="button-link" href="/admin/blog/settings">前へ：設定</a>
+      <a class="button-link primary" href="/admin/blog/generate">次へ：AI生成</a>
+    </div>
   </div>
 
-  <div class="panel">
+  <div class="panel" data-blog-section="generate">
     <h2>④ テーマからAI記事案を生成</h2>
     <label for="theme">テーマ</label>
     <input type="text" id="theme" placeholder="例: 春の岩場シーズン到来 / La Sportiva 新作シューズ徹底比較">
@@ -515,10 +582,14 @@
       <span id="gen-status" class="badge muted">待機中</span>
     </div>
     <div id="drafts"></div>
+    <div class="page-actions">
+      <a class="button-link" href="/admin/blog/articles">前へ：記事一覧</a>
+      <a class="button-link primary" href="/admin/blog/editor">下書きを編集する</a>
+    </div>
   </div>
 
-  <div class="panel" id="panel-edit" style="display:none;">
-    <h2>⑤ 採用案の編集 + 画像生成 + 公開</h2>
+  <div class="panel" id="panel-edit" data-blog-section="editor">
+    <h2>⑤ 採用案の編集・画像生成</h2>
     <label for="edit-title">グループ名（=タイトル）</label>
     <input type="text" id="edit-title">
 
@@ -564,8 +635,24 @@
       <div><small id="img-url-text"></small></div>
       <input type="text" id="image-url" aria-label="画像URL" placeholder="または画像 URL を直接入力" style="margin-top:6px;">
     </div>
+    <div class="page-actions">
+      <a class="button-link" href="/admin/blog/generate">前へ：AI生成</a>
+      <a class="button-link primary" href="/admin/blog/publish" id="btn-review-publish">次へ：公開確認</a>
+    </div>
+  </div>
 
-    <hr>
+  <div class="panel" id="panel-publish" data-blog-section="publish">
+    <h2>⑥ 投稿・公開</h2>
+    <p class="publish-warning">ここから先は外部サービスを書き換えます。タイトル、公開日、グループID、本文、画像を確認してから実行してください。</p>
+    <dl class="publish-summary" aria-label="公開内容の確認">
+      <div><dt>タイトル</dt><dd id="publish-summary-title">未入力</dd></div>
+      <div><dt>公開日</dt><dd id="publish-summary-date">未入力</dd></div>
+      <div><dt>グループID</dt><dd id="publish-summary-group">新規作成</dd></div>
+      <div><dt>画像</dt><dd id="publish-summary-image">未設定</dd></div>
+      <div><dt>本文</dt><dd id="publish-summary-content">未入力</dd></div>
+      <div><dt>親グループID</dt><dd id="publish-summary-parent">未設定</dd></div>
+    </dl>
+
     <label for="edit-display-state">表示設定（カラーミーグループの display_state）</label>
     <select id="edit-display-state">
       <option value="hidden">しない (hidden) ※公開後に「表示する」へ</option>
@@ -573,7 +660,7 @@
     </select>
 
     <hr>
-    <h2 style="margin-top:14px;">⑥ 投稿（グループ作成 or 更新）</h2>
+    <h3 style="margin-top:14px;">グループ作成または更新</h3>
     <div class="row">
       <button id="btn-create-group" class="primary">📁 投稿（ブログ親グループ配下の最上部 sort=0 / ID 入力時は更新）</button>
       <span id="group-status" class="badge muted">未作成</span>
@@ -594,6 +681,10 @@
       <button id="btn-copy-live-url" style="margin-left:8px; padding:4px 10px; font-size:11px;">📋 コピー</button>
     </div>
     <pre class="log" id="publish-log">操作ログ…</pre>
+    <div class="page-actions">
+      <a class="button-link" href="/admin/blog/editor">前へ：編集・画像</a>
+      <a class="button-link" href="/blog/index.html" target="_blank" rel="noopener">公開ブログを確認</a>
+    </div>
   </div>
 </div>
 
@@ -620,6 +711,83 @@
 </script>
 <script>
 const $ = (id) => document.getElementById(id);
+const BLOG_PAGE_CONFIG = {
+  overview: {
+    title: "AI相談 ブログ管理",
+    subtitle: "ブログ作業を、機能ごとのページで切り替えます。",
+    lead: "必要な機能だけを開けるため、長い管理画面をスクロールせずに作業できます。",
+    heroTitle: "記事作成だけを、迷わず前へ進める",
+    heroCopy: "設定、一覧、生成、編集、公開を独立したページに分け、必要な作業だけに集中できます。",
+  },
+  status: {
+    title: "ブログ管理｜接続状態",
+    subtitle: "記事作成に必要な外部サービスの設定を確認します。",
+    lead: "未設定がある場合は、記事生成や画像生成、公開へ進む前に環境変数を整えてください。",
+    heroTitle: "最初に、使える機能を確認",
+    heroCopy: "カラーミー、文章生成、画像生成、画像保存先の状態をひと目で確認します。",
+  },
+  settings: {
+    title: "ブログ管理｜ブログ設定",
+    subtitle: "記事を置く親グループIDを保存します。",
+    lead: "この設定はブラウザに保存され、記事一覧、グループ作成、公開時に共通利用されます。",
+    heroTitle: "公開先を、先に固定する",
+    heroCopy: "毎回探し直さずに済むよう、ブログ親グループIDを一度だけ保存します。",
+  },
+  articles: {
+    title: "ブログ管理｜記事一覧",
+    subtitle: "既存記事の編集と表示順変更を行います。",
+    lead: "一覧は必要なときだけ取得します。編集を押すと内容を読み込み、編集ページへ移動します。",
+    heroTitle: "既存記事を、すぐ見つけて直す",
+    heroCopy: "記事の状態と順番を確認し、選んだ記事だけを編集ページへ引き継ぎます。",
+  },
+  generate: {
+    title: "ブログ管理｜AI記事生成",
+    subtitle: "テーマから複数の下書きを作ります。",
+    lead: "採用した案はブラウザ内に一時保存され、編集・画像ページへそのまま引き継がれます。",
+    heroTitle: "一つのテーマから、選べる下書きを",
+    heroCopy: "候補を比較してから採用し、次の編集作業へスムーズに進めます。",
+  },
+  editor: {
+    title: "ブログ管理｜編集・画像",
+    subtitle: "本文を整え、AI修正と画像生成を行います。",
+    lead: "編集内容は同じブラウザのセッションに自動保存され、公開ページへ移動しても保持されます。",
+    heroTitle: "本文と画像を、公開できる形に整える",
+    heroCopy: "ライブプレビューを見ながら修正し、公開前の完成度を上げます。",
+  },
+  publish: {
+    title: "ブログ管理｜公開",
+    subtitle: "内容を確認し、グループ更新と本番公開を実行します。",
+    lead: "公開操作は外部サービスを書き換えます。確認欄と操作ログを見ながら進めてください。",
+    heroTitle: "最後に確認してから、公開する",
+    heroCopy: "編集内容を引き継ぎ、グループ作成・更新と公開・取り消しをこのページに集約します。",
+  },
+};
+
+function getBlogPage() {
+  const parts = window.location.pathname.replace(/\/+$/, "").split("/").filter(Boolean);
+  const blogIndex = parts.indexOf("blog");
+  const candidate = blogIndex >= 0 ? parts[blogIndex + 1] : "";
+  return Object.prototype.hasOwnProperty.call(BLOG_PAGE_CONFIG, candidate) ? candidate : "overview";
+}
+
+const activeBlogPage = getBlogPage();
+document.body.dataset.blogPage = activeBlogPage;
+document.querySelectorAll("[data-blog-section]").forEach((section) => {
+  section.classList.toggle("is-active-section", section.dataset.blogSection.split(/\s+/).includes(activeBlogPage));
+});
+document.querySelectorAll("[data-blog-nav]").forEach((link) => {
+  if (link.dataset.blogNav === activeBlogPage) link.setAttribute("aria-current", "page");
+  else link.removeAttribute("aria-current");
+});
+document.querySelectorAll('.admin-scroll-link[href="/admin/blog"]').forEach((link) => link.classList.add("is-current"));
+const pageCopy = BLOG_PAGE_CONFIG[activeBlogPage];
+$("blog-page-title").textContent = pageCopy.title;
+$("blog-page-subtitle").textContent = pageCopy.subtitle;
+$("blog-page-lead").textContent = pageCopy.lead;
+$("blog-page-hero-title").textContent = pageCopy.heroTitle;
+$("blog-page-hero-copy").textContent = pageCopy.heroCopy;
+document.title = `${pageCopy.title}｜AI相談`;
+
 (() => {
   const header = $("site-header");
   const scrollMenu = document.querySelector(".admin-scroll-menu");
@@ -685,6 +853,66 @@ async function api(path, opts = {}) {
 
 // === ブログ親グループ ID（トップレベルDB一覧は読まない）
 const BLOG_PARENT_KEY = "aih.blogParentId";
+const BLOG_DRAFTS_KEY = "aih.blogDrafts.v1";
+const BLOG_EDITOR_KEY = "aih.blogEditor.v1";
+const BLOG_EDITOR_FIELDS = [
+  "edit-title", "edit-html", "edit-date", "img-prompt", "image-url",
+  "edit-display-state", "group-id", "revise-instruction",
+];
+
+function saveEditorState() {
+  const state = {};
+  BLOG_EDITOR_FIELDS.forEach((id) => { state[id] = $(id)?.value || ""; });
+  state.createdGroupId = createdGroupId || "";
+  const liveUrl = $("live-url-link")?.getAttribute("href") || "";
+  state.liveUrl = /^https?:\/\//i.test(liveUrl) ? liveUrl : "";
+  sessionStorage.setItem(BLOG_EDITOR_KEY, JSON.stringify(state));
+  renderPublishSummary();
+}
+
+function restoreEditorState() {
+  let state = null;
+  try { state = JSON.parse(sessionStorage.getItem(BLOG_EDITOR_KEY) || "null"); } catch {}
+  if (!state) {
+    if (!$("edit-date").value) $("edit-date").valueAsDate = new Date();
+    renderEditorPreview();
+    renderPublishSummary();
+    return;
+  }
+  BLOG_EDITOR_FIELDS.forEach((id) => {
+    if ($(id) && typeof state[id] === "string") $(id).value = state[id];
+  });
+  createdGroupId = state.createdGroupId || null;
+  const imageUrl = $("image-url").value.trim();
+  if (imageUrl) {
+    $("img-preview").src = imageUrl;
+    $("img-preview").style.display = "block";
+    $("img-url-text").textContent = imageUrl;
+  }
+  if (state.liveUrl) {
+    $("live-url-link").href = state.liveUrl;
+    $("live-url-link").textContent = state.liveUrl;
+    $("live-url-area").style.display = "block";
+  }
+  renderEditorPreview();
+  renderPublishSummary();
+}
+
+function renderPublishSummary() {
+  if (!$("publish-summary-title")) return;
+  const title = $("edit-title").value.trim();
+  const html = $("edit-html").value.trim();
+  const date = $("edit-date").value;
+  const groupId = $("group-id").value.trim() || String(createdGroupId || "");
+  const imageUrl = $("image-url").value.trim();
+  const parentId = String($("blog-parent-id").value || localStorage.getItem(BLOG_PARENT_KEY) || "").trim();
+  $("publish-summary-title").textContent = title || "未入力";
+  $("publish-summary-date").textContent = date || "未入力";
+  $("publish-summary-group").textContent = groupId ? `#${groupId}` : "新規作成";
+  $("publish-summary-image").textContent = imageUrl || "未設定";
+  $("publish-summary-content").textContent = html ? `${html.replace(/<[^>]+>/g, "").trim().length}文字` : "未入力";
+  $("publish-summary-parent").textContent = parentId ? `#${parentId}` : "未設定";
+}
 
 function setBlogParentStatus(text, cls = "muted") {
   $("blog-parent-status").className = `badge ${cls}`;
@@ -709,6 +937,7 @@ function saveBlogParentId() {
   $("children-status").className = "badge muted";
   $("children-status").textContent = "未取得";
   $("btn-save-order").disabled = true;
+  renderPublishSummary();
   return id;
 }
 
@@ -774,18 +1003,28 @@ function renderChildren(list) {
     const gid = b.dataset.edit;
     $("group-id").value = gid;
     $("edit-title").value = b.dataset.name;
-    $("panel-edit").style.display = "block";
-    $("panel-edit").scrollIntoView({behavior:"smooth"});
     // 既存グループの本文 (expl) をロード
     try {
       const got = await api(`/api/admin/groups?id=${encodeURIComponent(gid)}`);
       $("edit-html").value = got?.expl || "";
-      if (got?.image_url) { $("image-url").value = got.image_url; }
-      if (got?.display_state) { $("edit-display-state").value = got.display_state; }
+      $("image-url").value = got?.image_url || "";
+      $("img-preview").style.display = got?.image_url ? "block" : "none";
+      $("img-preview").src = got?.image_url || "";
+      $("img-url-text").textContent = got?.image_url || "";
+      $("edit-display-state").value = got?.display_state || "hidden";
+      $("edit-date").valueAsDate = new Date();
+      $("revise-instruction").value = "";
+      $("live-url-link").href = "#";
+      $("live-url-link").textContent = "";
+      $("live-url-area").style.display = "none";
+      createdGroupId = gid;
       renderEditorPreview();
+      saveEditorState();
       log(`グループ #${gid} の本文を読み込みました`);
+      window.location.assign("/admin/blog/editor");
     } catch (e) {
       log(`グループ #${gid} の読み込み失敗: ${e.message}`);
+      alert(`記事の読み込みに失敗しました: ${e.message}`);
     }
   }));
 }
@@ -834,6 +1073,7 @@ $("btn-save-order").addEventListener("click", async () => {
 
 // === AI 記事生成
 let drafts = [];
+try { drafts = JSON.parse(sessionStorage.getItem(BLOG_DRAFTS_KEY) || "[]"); } catch { drafts = []; }
 $("btn-generate").addEventListener("click", async () => {
   const theme = $("theme").value.trim();
   const count = Number($("count").value) || 3;
@@ -845,6 +1085,7 @@ $("btn-generate").addEventListener("click", async () => {
       method: "POST", body: JSON.stringify({ theme, count }),
     });
     drafts = out.drafts || [];
+    sessionStorage.setItem(BLOG_DRAFTS_KEY, JSON.stringify(drafts));
     renderDrafts();
     $("gen-status").className = "badge ok";
     $("gen-status").textContent = `${drafts.length}案 生成完了`;
@@ -883,11 +1124,25 @@ function renderDrafts() {
       $("edit-html").value = d.html;
       $("edit-date").valueAsDate = new Date();
       $("img-prompt").value = `${d.title} のイメージ写真。商品やシーンを連想させる写真風画像。`;
-      $("panel-edit").style.display = "block";
-      $("panel-edit").scrollIntoView({ behavior: "smooth" });
+      $("image-url").value = "";
+      $("img-preview").src = "";
+      $("img-preview").style.display = "none";
+      $("img-url-text").textContent = "";
+      $("edit-display-state").value = "hidden";
+      $("revise-instruction").value = "";
+      $("live-url-link").href = "#";
+      $("live-url-link").textContent = "";
+      $("live-url-area").style.display = "none";
       renderEditorPreview();
+      saveEditorState();
+      window.location.assign("/admin/blog/editor");
     });
   });
+}
+if (drafts.length) {
+  renderDrafts();
+  $("gen-status").className = "badge ok";
+  $("gen-status").textContent = `${drafts.length}案 保存済み`;
 }
 
 $("btn-revise").addEventListener("click", async () => {
@@ -902,6 +1157,8 @@ $("btn-revise").addEventListener("click", async () => {
     });
     $("edit-title").value = out.title;
     $("edit-html").value = out.html;
+    renderEditorPreview();
+    saveEditorState();
     log("修正完了");
   } catch (e) {
     log("修正失敗: " + e.message);
@@ -925,6 +1182,7 @@ $("btn-image").addEventListener("click", async () => {
     $("img-preview").src = out.url; $("img-preview").style.display = "block";
     $("img-url-text").textContent = out.url;
     $("img-status").className = "badge ok"; $("img-status").textContent = "生成完了";
+    saveEditorState();
   } catch (e) {
     $("img-status").className = "badge err"; $("img-status").textContent = "失敗: " + e.message;
   } finally {
@@ -955,6 +1213,7 @@ $("btn-create-group").addEventListener("click", async () => {
       $("group-status").className = "badge ok";
       $("group-status").textContent = "更新完了 ID=" + existingId;
       log("グループ更新 OK id=" + existingId);
+      saveEditorState();
       loadChildren();
     } catch (e) {
       $("group-status").className = "badge err"; $("group-status").textContent = "失敗: " + e.message;
@@ -974,6 +1233,7 @@ $("btn-create-group").addEventListener("click", async () => {
     $("group-status").className = "badge ok";
     $("group-status").textContent = "作成完了 ID=" + createdGroupId;
     log("グループ作成 OK id=" + createdGroupId + " (parent=" + parent_group_id + ", sort=0)");
+    saveEditorState();
     loadChildren(); // 一覧も更新
   } catch (e) {
     $("group-status").className = "badge err"; $("group-status").textContent = "失敗: " + e.message;
@@ -1002,6 +1262,7 @@ async function publish(target) {
       $("live-url-link").textContent = out.liveUrl;
       $("live-url-area").style.display = "block";
       log(`[${target}] 完成URL: ${out.liveUrl}`);
+      saveEditorState();
     }
     if (target === "live") {
       try {
@@ -1035,6 +1296,7 @@ $("btn-unpublish-live").addEventListener("click", async () => {
     });
     log("[live] 削除完了 + display_state=hidden");
     $("live-url-area").style.display = "none";
+    saveEditorState();
   } catch (e) {
     log("[live] 削除失敗: " + e.message);
   }
@@ -1107,8 +1369,17 @@ function renderEditorPreview() {
   }
   preview.innerHTML = (title ? `<h2>${escapeHtml(title)}</h2>` : "") + html;
 }
-$("edit-html").addEventListener("input", renderEditorPreview);
-$("edit-title").addEventListener("input", renderEditorPreview);
+BLOG_EDITOR_FIELDS.forEach((id) => {
+  const field = $(id);
+  if (!field) return;
+  field.addEventListener("input", () => {
+    if (id === "edit-html" || id === "edit-title") renderEditorPreview();
+    saveEditorState();
+  });
+  field.addEventListener("change", saveEditorState);
+});
+$("btn-review-publish").addEventListener("click", saveEditorState);
+restoreEditorState();
 </script>
 </body>
 </html>

@@ -3637,7 +3637,7 @@ def _render_teaching_home(sections: list[dict]) -> str:
     parts.append("<h2>受講資料は、目的別に選べます</h2>")
     parts.append(
         "<p>全部を上から読む必要はありません。AIを仕事で使い始める人、自社資料を使いたい人、"
-        "AIと一緒に作りたい人、オンラインサロンで実践したい人、AIで作った講座例の5つに分けました。"
+        "AIと一緒に作りたい人、オンラインサロンで実践したい人、AIの資料作成例の5つに分けました。"
         "迷ったら「AIエージェント講習 120分」から始めてください。</p>"
     )
     parts.append("<div class='tr-home-actions'>")

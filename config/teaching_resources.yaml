@@ -42,9 +42,9 @@ sections:
     icon: 🎙️
     description: 自分の成果を持ち寄り、講師と会員の声で確かめ、次の一手を決める
   - key: climbing
-    name: 5. AIで作った講座例
+    name: 5. AIの資料作成例
     icon: 🧗
-    description: クライミングの歴史を題材に、AIで構成・資料化し、講師が確認した講座例です
+    description: 1つの題材を、AIの作成支援と人の確認でWeb資料・図版・スライド・PDFへ展開した完成例
 
 - name: 講師用・詳しく学ぶ資料
   icon: 📚

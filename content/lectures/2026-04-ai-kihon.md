@@ -288,6 +288,7 @@ AIの「完了しました」という報告だけで完了にしません。文
 - [AIエージェント講習を予約する](https://goodbouldering.com/?pid=188553378)
 - [講習・相談プランの一覧へ戻る](../index.html#packages)
 - [AIエージェント講習の紹介記事を読む](../blog/2026-07-14-ai-agent-course-codex-claude-code.html)
+- [AIで作った資料の完成例を見る](./2026-05-climbing-history.html)
 - [15分で、毎週の仕事をAIで楽にする](./2026-04-ai-kangaekata.html)
 - [コード・Git・公開を学ぶAIコーディング講習](../programming-map.html)
 

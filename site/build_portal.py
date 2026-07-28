@@ -12068,7 +12068,7 @@ def _render_lectures_section() -> str:
         "ai-work": "自社資料を使う",
         "ai-build": "AIと作る",
         "ai-salon": "サロンで実践",
-        "climbing": "AI講座例",
+        "climbing": "AI資料作成例",
     }
     lecs: list[dict] = []
     pmap_added = False
@@ -12504,7 +12504,7 @@ def _render_lecture_card(lec: dict) -> str:
     level = html.escape(str(lec.get("level") or ""))
     duration = html.escape(str(lec.get("duration") or ""))
     icon_html = f"<span class='lecture-icon'>{icon}</span>" if icon else ""
-    route_meta = f"{route_label}向け" if route_label else ""
+    route_meta = route_label if route_label == "AI資料作成例" else (f"{route_label}向け" if route_label else "")
     duration_meta = f"目安 {duration}" if duration else ""
     meta_label = " · ".join(part for part in (route_meta, level, duration_meta) if part)
     if not meta_label and date:

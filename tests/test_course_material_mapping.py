@@ -84,6 +84,18 @@ class CourseMaterialMappingTest(unittest.TestCase):
             self.article_html,
         )
 
+    def test_quick_diagnosis_describes_the_agent_course(self) -> None:
+        self.assertIn(
+            "実際の仕事を1つ選び、目的と材料を依頼カードに整理。"
+            "AIに任せ、人が確認・修正し、次回も使える手順として残す120分の実践講習です。",
+            self.index_html,
+        )
+        self.assertNotIn(
+            "name: 'AIエージェント講習 120分',\n"
+            "        desc: 'Codex導入、Claude Code併用",
+            self.index_html,
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

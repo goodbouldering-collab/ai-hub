@@ -58,9 +58,10 @@ npm run test:worker
 - `/videos/**`
 - `/lectures/assets/codex-app-onboarding.webm`
 
-これにより、Vercel固有の管理API、Stripe Webhook、定期収集、大容量動画を止めずに
+これにより、Vercel固有の管理API、Square／Stripeの決済API、定期収集、大容量動画を止めずに
 公開面からSitesへ移行できます。完全移行は各APIをWorkers互換へ移してから行います。
 
-サロンの公開CTAはビルド時の `AI_SALON_LINE_MEMBERSHIP_URL` を使います。未設定、
-非HTTPS、またはLINE公式ドメイン以外の場合は「受付準備中」となり、古い通常
-OpenChat招待URLは公開しません。
+サロンの公開CTAは `/api/square/ai-salon-checkout` へPOSTし、Sites Workerから
+Vercel本番のSquare APIへ中継します。Squareが月額2,200円の定期課金を作成し、
+決済確認済みの `/api/square/ai-salon-access` だけがLINE招待URLを返します。
+静的HTMLへOpenChat招待URLを埋め込まないでください。

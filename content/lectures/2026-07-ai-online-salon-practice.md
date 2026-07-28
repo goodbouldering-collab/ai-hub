@@ -251,6 +251,7 @@ Codexや他のAIへ何を頼んだか:
 ## 次の導線
 
 - [AIオンラインサロンの内容・有料登録・LINE参加方法を見る](../index.html#seven-day-courses)
+- [Squareで月額2,200円の参加手続きを始める](../../api/square/ai-salon-checkout)
 - [受講資料の一覧](./index.html)
 - [AIエージェント講習 120分](../programming-map.html)
 

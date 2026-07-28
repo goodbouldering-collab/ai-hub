@@ -33,7 +33,7 @@ test("worker serves the generated homepage at the root URL", async () => {
   assert.match(await response.text(), /月額2,200円/);
 });
 
-test("worker proxies legacy APIs without changing method or raw body", async () => {
+test("worker proxies Square checkout without changing method or raw body", async () => {
   const originalFetch = globalThis.fetch;
   let upstreamRequest;
   globalThis.fetch = async (request) => {
@@ -49,7 +49,7 @@ test("worker proxies legacy APIs without changing method or raw body", async () 
 
   try {
     const response = await worker.fetch(
-      new Request("https://ai-sodan.example/api/stripe/webhook?test=1", {
+      new Request("https://ai-sodan.example/api/square/ai-salon-checkout?test=1", {
         body: '{"raw":true}',
         headers: {
           "content-type": "application/json",
@@ -64,7 +64,7 @@ test("worker proxies legacy APIs without changing method or raw body", async () 
     assert.equal(response.status, 202);
     assert.equal(
       upstreamRequest.url,
-      "https://ai-hub-jp.vercel.app/api/stripe/webhook?test=1",
+      "https://ai-hub-jp.vercel.app/api/square/ai-salon-checkout?test=1",
     );
     assert.equal(upstreamRequest.method, "POST");
     assert.equal(await upstreamRequest.text(), '{"raw":true}');

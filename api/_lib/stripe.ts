@@ -5,7 +5,6 @@ import type { VercelReq } from "./auth.js";
 export const STRIPE_API_VERSION =
   process.env.STRIPE_API_VERSION || "2026-05-27.dahlia";
 export const MONTHLY_SUPPORT_PLAN = "monthly-support";
-export const AI_SALON_PLAN = "ai-salon";
 export const STRIPE_API_BASE = "https://api.stripe.com/v1";
 
 export function requiredStripeEnv(name: string): string {
@@ -61,36 +60,6 @@ export async function stripePost(
       status: response.status,
       detail: body,
       publicMessage: "Stripe checkout could not be started.",
-    });
-  }
-  return body;
-}
-
-export async function stripeGet(
-  path: string,
-  params: URLSearchParams = new URLSearchParams(),
-): Promise<any> {
-  const secret = requiredStripeEnv("STRIPE_SECRET_KEY");
-  const url = new URL(`${STRIPE_API_BASE}${path}`);
-  params.forEach((value, key) => url.searchParams.append(key, value));
-
-  const response = await fetch(url, {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${secret}`,
-      "Stripe-Version": STRIPE_API_VERSION,
-    },
-  });
-
-  const text = await response.text();
-  const body = parseJson(text);
-  if (!response.ok) {
-    const message =
-      body?.error?.message || `Stripe API request failed (${response.status})`;
-    throw Object.assign(new Error(message), {
-      status: response.status,
-      detail: body,
-      publicMessage: "Stripe payment status could not be verified.",
     });
   }
   return body;

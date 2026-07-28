@@ -18,7 +18,6 @@ import os
 import sys
 from datetime import datetime
 from pathlib import Path
-from urllib.parse import urlparse
 
 try:
     import yaml
@@ -120,38 +119,7 @@ CONSULT_BOOK_URL = "https://book.squareup.com/appointments/zymaszkc9pdwq2/locati
 AI_AGENT_COURSE_URL = "https://goodbouldering.com/?pid=188553378"
 AI_CODING_BOOK_URL = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/S7GERYVDIPRV76DKXCC3WJWH"
 MONTHLY_SUPPORT_CHECKOUT_URL = "/api/stripe/monthly-support"
-
-
-def _official_line_membership_url(raw_url: str) -> str:
-    """Return only an HTTPS URL hosted on LINE's official membership domains."""
-    candidate = raw_url.strip()
-    if not candidate or any(char.isspace() for char in candidate):
-        return ""
-    try:
-        parsed = urlparse(candidate)
-        port = parsed.port
-    except ValueError:
-        return ""
-    hostname = (parsed.hostname or "").lower().rstrip(".")
-    is_official_line = (
-        hostname == "line.me"
-        or hostname.endswith(".line.me")
-        or hostname == "manager.line.biz"
-    )
-    if (
-        parsed.scheme != "https"
-        or port not in {None, 443}
-        or not is_official_line
-        or parsed.username
-        or parsed.password
-    ):
-        return ""
-    return candidate
-
-
-AI_SALON_LINE_MEMBERSHIP_URL = _official_line_membership_url(
-    os.environ.get("AI_SALON_LINE_MEMBERSHIP_URL", "")
-)
+AI_SALON_CHECKOUT_URL = "/api/square/ai-salon-checkout"
 
 
 COLOR_MAP = {
@@ -296,7 +264,7 @@ def _build_jsonld_website() -> str:
         (ai_agent_title, "CodexとClaude Codeを使い、仕事を分けて頼む、結果を確かめる、修正する、繰り返せる手順として残すAIエージェント講習。調査、資料、告知、業務改善、Web制作を題材に、AIの成果物を判断して仕事に入れる型を120分で身につける。", "5500", "5500", "Course"),
         (free_consult_title, "来店またはオンラインで、AI導入の入口を整理する無料相談。講習や伴走の前に、今の課題と次の一手を確認する。", "0", "0", "BusinessCoaching"),
         (consult_title, "AIの使い方、役割分担、指示書、確認体制、運用導線を60分で整理する個別相談。", "5500", "5500", "BusinessCoaching"),
-        (salon_title, "月額2,200円（税込）、毎週火曜21時にLINEライブトークで開くAIオンラインサロン。日々増えるAIの新機能や重要発表、一流の活用事例から、仕事に使えるものと今試すことを一緒に整理する。聞くだけ・途中参加も歓迎。月額決済とメンバーの入退会はLINEメンバーシップで管理する。", "2200", "2200", "CommunityService"),
+        (salon_title, "月額2,200円（税込）、毎週火曜21時にLINEライブトークで開くAIオンラインサロン。日々増えるAIの新機能や重要発表、一流の活用事例から、仕事に使えるものと今試すことを一緒に整理する。聞くだけ・途中参加も歓迎。月額決済はSquareで毎月自動更新し、決済確認後にLINE参加案内を表示する。", "2200", "2200", "CommunityService"),
         (support_title, "HP公開から事務自動化・経理・マーケまで6ヶ月で一気に定着。技術的な難所は講師が代行・支援。滋賀・彦根の補助金で負担1/3以下に。", "100000", "100000", "Service"),
         (ai_coding_title, "Codex導入、Claude Code併用、画像生成、プログラミング基礎、設計、データ、運用、セキュリティを1本で学ぶAIコーディング講習。AIの成果物を判断し、説明し、仕事に入れるための作業設計と確認の型を120分で身につける。", "11000", "11000", "Course"),
     ]
@@ -325,7 +293,8 @@ def _build_jsonld_website() -> str:
                 }
             service["offers"] = offer
         if name == salon_title:
-            service["url"] = SITE_URL + "/#seven-day-courses"
+            service["url"] = SITE_URL + AI_SALON_CHECKOUT_URL
+            offer["url"] = SITE_URL + AI_SALON_CHECKOUT_URL
             offer["priceSpecification"] = {
                 "@type": "UnitPriceSpecification",
                 "price": "2200",
@@ -11501,16 +11470,16 @@ def _render_compact_course_cards() -> str:
             "material_cta": "Claude Codeの実践資料を見る",
         },
         {
-            "cat": "LINEメンバーシップ",
+            "cat": "SQUARE MONTHLY",
             "title": "AIオンラインサロン",
             "image": "/img/blog-ai-agent-course-section-4-20260714.webp",
             "image_alt": "毎週火曜にLINEライブトークでAIの今と次の一手を整理するオンラインサロン",
             "price": "月額2,200円（税込）",
             "duration": "毎週火曜 21:00",
-            "desc": "LINEライブトークで、仕事で次に試すことを一緒に決めます。聞くだけOK。月額決済と入退会はLINEメンバーシップで管理します。",
-            "url": AI_SALON_LINE_MEMBERSHIP_URL,
-            "cta": "LINEで月額登録する",
-            "unavailable": not bool(AI_SALON_LINE_MEMBERSHIP_URL),
+            "desc": "Squareで月額決済後、LINEライブトークの参加案内を表示します。仕事で次に試すことを一緒に決めます。聞くだけOK。",
+            "url": AI_SALON_CHECKOUT_URL,
+            "cta": "Squareで決済して参加",
+            "post": True,
             "material_url": "#seven-day-courses",
             "material_cta": "サロンの内容・参加方法を見る",
             "badge": "ライブトーク開催",
@@ -11585,34 +11554,23 @@ def _render_live_talk_guide() -> str:
         "<span class='salon-live-badge'><i aria-hidden='true'></i>LINE LIVE TALK</span>"
         "<h3 id='salon-live-guide-title'>聞くだけOK。話すときだけ挙手</h3>"
         "<ol class='salon-live-steps'>"
-        "<li><b>01</b><span><strong>LINEで月額登録</strong><small>決済・入退会を管理</small></span></li>"
+        "<li><b>01</b><span><strong>Squareで月額決済</strong><small>月額2,200円・毎月自動更新</small></span></li>"
         "<li><b>02</b><span><strong>火曜21時に入室</strong><small>ライブトークを開く</small></span></li>"
         "<li><b>03</b><span><strong>聞くだけ／挙手</strong><small>話すときだけマイクON</small></span></li>"
         "</ol>"
         "<div class='salon-live-guide-foot'><span>マイクOFF・途中参加・途中退出OK</span>"
-        "<span>月額決済と入退会はLINEメンバーシップで管理</span></div>"
+        "<span>決済確認後にLINE参加案内を表示</span></div>"
         "</div></div>"
     )
 
 
-def _render_salon_membership_cta() -> str:
-    """Render the LINE membership link, or a non-clickable safe pending state."""
-    if AI_SALON_LINE_MEMBERSHIP_URL:
-        safe_url = html.escape(AI_SALON_LINE_MEMBERSHIP_URL, quote=True)
-        action = (
-            f"<a class='focus-btn primary' href='{safe_url}' target='_blank' rel='noopener'>"
-            "LINEで月額登録する →</a>"
-        )
-        note = "月額決済とメンバーの入退会はLINEメンバーシップで管理します"
-    else:
-        action = (
-            "<span class='focus-btn primary salon-register-unavailable' aria-disabled='true'>"
-            "受付準備中</span>"
-        )
-        note = "LINEメンバーシップの登録ページを準備しています"
+def _render_salon_square_cta() -> str:
+    """Start Square's hosted monthly checkout without exposing the LINE invite URL."""
     return (
-        "<div class='salon-register-form'>"
-        f"{action}<small>{html.escape(note)}</small></div>"
+        f"<form class='salon-register-form' method='post' action='{AI_SALON_CHECKOUT_URL}'>"
+        "<button class='focus-btn primary' type='submit'>Squareで決済して参加 →</button>"
+        "<small>月額2,200円（税込）・毎月自動更新。決済確認後にLINE参加案内を表示します</small>"
+        "</form>"
     )
 
 
@@ -11817,7 +11775,7 @@ FAQ_QA = [
     ("AIエージェント講習では何を学びますか？",
      "CodexとClaude Codeを、調査、資料、告知、業務改善、Web制作を一緒に進める作業者として使う講習です。仕事の分け方、伝わる依頼、差分・根拠・画面の確認、修正指示、成果物と次回手順の保存までを120分で通します。料金は5,500円で、専用の予約ページから申し込めます。"),
     ("AIオンラインサロンでは、何がわかりますか？",
-     "日々増えるAIの新機能や重要発表と、一流の活用事例から、仕事に関係する変化を選び、今何を試すかを毎週一緒に整理します。全部を自分で追わなくても、聞くだけで要点と次の一歩がわかります。月額2,200円（税込）、毎週火曜21時にLINEライブトークで開催します。月額決済とメンバーの入退会はLINEメンバーシップで管理します。"),
+     "日々増えるAIの新機能や重要発表と、一流の活用事例から、仕事に関係する変化を選び、今何を試すかを毎週一緒に整理します。全部を自分で追わなくても、聞くだけで要点と次の一歩がわかります。月額2,200円（税込）、毎週火曜21時にLINEライブトークで開催します。月額決済はSquareで毎月自動更新し、決済確認後にLINE参加案内を表示します。"),
     ("受講資料はあとから見返せますか？",
      "はい。受講で使った資料、プロンプト、実例、動画、スライドは資料センターとして整理し、あとから復習できるようにします。受講前に内容を確認したい方も、受講資料ページから雰囲気を見られます。"),
     ("Reels や YouTube の集客にも使えますか？",
@@ -14127,7 +14085,7 @@ def _render_focused_main() -> str:
         "<div class='salon-session-head'><small>60 MINUTES</small><h3>火曜21時の流れ</h3></div>",
         _render_salon_run_strip(),
         "<div class='salon-register-row'><p class='salon-note'><strong>参加できない週も安心。</strong>終了後は、講師確認済みの「火曜AIノート」で重要な変化と次の一歩を共有します。</p>",
-        _render_salon_membership_cta(),
+        _render_salon_square_cta(),
         "</div></div></section>",
         "<section class='focus-block soft' id='lectures'><div class='focus-section-head'><small>LEARNING MATERIALS</small><h2>受講資料</h2></div>",
         "<p class='focus-section-lead'>公開中の受講資料をすべて表示しています。迷ったら「AIが初めて」から順に選べます。</p>",
@@ -14153,7 +14111,7 @@ def _render_focused_main() -> str:
         "<details><summary>AIがまったく初めてでも大丈夫ですか？</summary><p>大丈夫です。専門用語ではなく、普段の仕事と困りごとから始めます。</p></details>",
         "<details><summary>受講にパソコンは必要ですか？</summary><p>はい。WindowsまたはMacのパソコンを必ずお持ちください。直したい資料やページもあれば、あわせてお持ちください。</p></details>",
         "<details><summary>オンラインでも受講できますか？</summary><p>対面・オンラインの両方に対応しています。彦根市内は訪問も相談できます。</p></details>",
-        "<details><summary>AIオンラインサロンでは、何がわかりますか？</summary><p>新機能や重要発表、一流の活用事例を並べるだけでなく、仕事に使えるか、今何を試すかまで一緒に整理します。全部を自分で追わなくても、聞くだけで要点と次の一歩がわかります。月額2,200円（税込）、毎週火曜21時にLINEライブトークで開催します。月額決済とメンバーの入退会はLINEメンバーシップで管理します。</p></details></div></section>",
+        "<details><summary>AIオンラインサロンでは、何がわかりますか？</summary><p>新機能や重要発表、一流の活用事例を並べるだけでなく、仕事に使えるか、今何を試すかまで一緒に整理します。全部を自分で追わなくても、聞くだけで要点と次の一歩がわかります。月額2,200円（税込）、毎週火曜21時にLINEライブトークで開催します。月額決済はSquareで毎月自動更新し、決済確認後にLINE参加案内を表示します。</p></details></div></section>",
         "<section class='focus-contact' id='contact'><div class='focus-contact-inner'><div><h2>AIエージェントに任せたい仕事を聞かせてください。</h2><p>講習前に、今の仕事に合う題材と進め方を一緒に整理できます。</p></div>",
         f"<a class='focus-btn' href='{free_consult}' target='_blank' rel='noopener'>無料相談の日程を選ぶ</a></div></section>",
     ]

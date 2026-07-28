@@ -10,10 +10,12 @@ export default withAdmin({ method: "GET" }, async ({ res }) => {
       hasAnthropic: Boolean(process.env.ANTHROPIC_API_KEY),
       hasOpenAI: Boolean(process.env.OPENAI_API_KEY),
       hasStripe: Boolean(process.env.STRIPE_SECRET_KEY && process.env.STRIPE_WEBHOOK_SECRET),
-      hasAiSalonStripe: Boolean(
-        process.env.STRIPE_SECRET_KEY &&
-          process.env.STRIPE_AI_SALON_PRICE_ID &&
-          process.env.AI_SALON_LINE_INVITE_URL,
+      hasAiSalonSquare: Boolean(
+        process.env.SQUARE_ACCESS_TOKEN &&
+          process.env.SQUARE_LOCATION_ID &&
+          process.env.SQUARE_AI_SALON_PRICE_YEN &&
+          process.env.SQUARE_AI_SALON_PLAN_VARIATION_ID &&
+          process.env.AI_SALON_OPENCHAT_URL,
       ),
       hasSupabase: Boolean(process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY),
     },

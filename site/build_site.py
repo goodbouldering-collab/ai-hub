@@ -65,7 +65,7 @@ DEFAULT_TOP_BUTTONS = [
     {"id": "profile",         "group": "講師",         "label": "人物メモ",           "icon": "📜", "href": "speaker.html",          "kind": "link",   "enabled": False},
     {"id": "portfolio",       "group": "資料",         "label": "運営メモ",           "icon": "🧭", "href": "index.html#flow",       "kind": "link",   "enabled": False},
     {"id": "lectures",        "group": "教材資料",     "label": "受講資料",           "icon": "📝", "href": "lectures/index.html",   "kind": "link",   "enabled": True},
-    # AIエージェント講習は lectures index の中にリンクとして掲載するためトップナビからは外す
+    {"id": "agent_course",    "group": "教材資料",     "label": "AIエージェント講習", "icon": "🤖", "href": "lectures/2026-04-ai-kihon.html", "kind": "link", "enabled": True},
     {"id": "archive",         "group": "アーカイブ",   "label": "過去ログ",           "icon": "📚", "href": "archive.html",          "kind": "link",   "enabled": True},
     {"id": "run",             "group": "操作",         "label": "巡回実行",           "icon": "🔄", "href": "",                      "kind": "action", "action_id": "run", "enabled": True},
 ]
@@ -109,8 +109,8 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
     """
     home_href = _resolve_nav_href("index.html", path_prefix)
     safe_home = html.escape(home_href, quote=True) if home_href else "/"
-    pmap_class = "nav-link nav-essential nav-current" if current_id == "pmap" else "nav-link nav-essential"
-    pmap_current = " aria-current='page'" if current_id == "pmap" else ""
+    agent_class = "nav-link nav-essential nav-current" if current_id == "agent-course" else "nav-link nav-essential"
+    agent_current = " aria-current='page'" if current_id == "agent-course" else ""
     lecture_class = "nav-link nav-essential nav-current" if current_id == "lectures" else "nav-link nav-essential"
     lecture_current = " aria-current='page'" if current_id == "lectures" else ""
     blog_class = "nav-link nav-essential nav-current" if current_id == "blog" else "nav-link nav-essential"
@@ -128,7 +128,7 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
         "<span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span></span></a>"
         "<nav class='site-nav' aria-label='メインナビ'>"
         "<a class='nav-link nav-essential' href='/'>ホーム</a>"
-        f"<a class='{pmap_class}' href='/programming-map.html'{pmap_current}>AIコーディング講習</a>"
+        f"<a class='{agent_class}' href='/lectures/2026-04-ai-kihon.html'{agent_current}>AIエージェント講習</a>"
         "<a class='nav-link nav-essential' href='/#all-works'>実績</a>"
         f"<a class='{blog_class}' href='/blog/index.html'{blog_current}>ブログ</a>"
         f"<a class='{lecture_class}' href='/#lectures'{lecture_current}>資料</a>"
@@ -146,7 +146,7 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
         "<div class='mobile-nav-head'><div class='mobile-nav-heading'><small>PUBLIC MENU</small><strong>メニュー</strong></div></div>"
         "<nav class='mobile-public-links' aria-label='公開ページメニュー'>"
         "<a href='/'><span>ホーム</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
-        "<a href='/programming-map.html'><span>AIコーディング講習</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
+        f"<a href='/lectures/2026-04-ai-kihon.html'{agent_current}><span>AIエージェント講習</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
         "<a href='/#all-works'><span>実績</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
         "<a href='/blog/index.html'><span>ブログ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
         "<a href='/#lectures'><span>資料</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
@@ -690,7 +690,7 @@ nav.top-nav .nav-admin:focus-visible {
   border-color: transparent;
 }
 .mobile-nav .mobile-main-link,
-.mobile-nav a[href="/programming-map.html"] {
+.mobile-nav a[href="/lectures/2026-04-ai-kihon.html"] {
   background: rgba(14,165,198,.10);
   color: #075E67;
 }
@@ -2753,6 +2753,12 @@ header.site-header .site-nav a.nav-link.nav-essential.nav-current[href]:focus-vi
 /* Public pages use one conventional drawer. Admin screens keep admin-common.css. */
 @media (max-width: 900px) {
   body.mobile-menu-open { overflow: hidden !important; }
+  body.mobile-menu-open header.site-header,
+  body.mobile-menu-open header.site-header.scrolled {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    transition: none !important;
+  }
   .header-member-login { display: none !important; }
   .mobile-toggle.generated-mobile-toggle {
     width: auto !important;
@@ -3630,14 +3636,14 @@ def _render_teaching_home(sections: list[dict]) -> str:
     parts.append("<div>")
     parts.append("<h2>受講資料は、目的別に選べます</h2>")
     parts.append(
-        "<p>全部を上から読む必要はありません。AIが初めての人、仕事で使いたい人、"
+        "<p>全部を上から読む必要はありません。AIを仕事で使い始める人、自社資料を使いたい人、"
         "AIと一緒に作りたい人、オンラインサロンで実践したい人、AIで作った講座例の5つに分けました。"
-        "迷ったら「はじめてのAI」から始めてください。</p>"
+        "迷ったら「AIエージェント講習 120分」から始めてください。</p>"
     )
     parts.append("<div class='tr-home-actions'>")
-    parts.append("<a href='../programming-map.html'>AIコーディング講習を見る</a>")
     if featured_href:
-        parts.append(f"<a href='{html.escape(featured_href, quote=True)}'>最初の1本を読む</a>")
+        parts.append(f"<a href='{html.escape(featured_href, quote=True)}'>AIエージェント講習を見る</a>")
+    parts.append("<a href='../programming-map.html'>AIコーディング講習を見る</a>")
     if first_section_id:
         parts.append(f"<a href='#sec-{html.escape(first_section_id, quote=True)}'>全資料を見る</a>")
     parts.append("</div>")
@@ -3854,7 +3860,8 @@ def build_lectures() -> int:
         page_meta = dict(record["meta"])
         if record_id in course_order_by_id:
             page_meta["course_order"] = course_order_by_id[record_id]
-        nav = render_top_nav(path_prefix="../", current_id="lectures", include_run=False)
+        nav_current = "agent-course" if record_id == "2026-04-ai-kihon" else "lectures"
+        nav = render_top_nav(path_prefix="../", current_id=nav_current, include_run=False)
         (out_dir / f"{record_id}.html").write_text(
             render_content_page(
                 record["title"],
@@ -4251,8 +4258,8 @@ def _patch_programming_map_nav(pmap_file: Path) -> None:
     章立て (#part-1〜#sec-line) はヒーロー後のページ内目次バーに分離する。"""
     import re as _re
     text = pmap_file.read_text(encoding="utf-8")
-    # 共通ナビ HTML（pmap を current として）
-    common_nav = render_top_nav(path_prefix="./", current_id="pmap", include_run=False)
+    # AIコーディング講習は共通ナビの主項目ではないため、現在地の強調は付けない。
+    common_nav = render_top_nav(path_prefix="./", current_id=None, include_run=False)
     # ページ内目次バー（AIコーディング講習専用 — sticky とは別）
     chapter_toc = (
         "<nav class='pm-chapter-toc' aria-label='ページ内目次'>"

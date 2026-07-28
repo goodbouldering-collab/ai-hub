@@ -26,9 +26,9 @@ sections:
   group_by: category
   groups:
   - key: ai-start
-    name: 1. AIが初めての人
+    name: 1. AIを仕事で使い始める
     icon: 🌱
-    description: 最初の1本と実践ワークの2本だけで、頼み方と確認の基本を身につける
+    description: AIエージェント講習と15分実践で、頼む・確かめる・残す仕事の型を身につける
   - key: ai-work
     name: 2. 自社資料をAIで使う
     icon: 🧰

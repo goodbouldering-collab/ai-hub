@@ -5914,7 +5914,7 @@ body {
   white-space: nowrap;
 }
 
-.site-nav a.nav-link[href="/programming-map.html"] {
+.site-nav a.nav-link[href="/lectures/2026-04-ai-kihon.html"] {
   color: #075E67 !important;
   background: rgba(14,165,198,.10) !important;
   border-color: rgba(14,165,198,.20) !important;
@@ -6081,7 +6081,7 @@ button:focus-visible {
     font-weight: 750 !important;
   }
 
-  .mobile-nav a[href="/programming-map.html"] {
+  .mobile-nav a[href="/lectures/2026-04-ai-kihon.html"] {
     color: #075E67 !important;
     font-weight: 900 !important;
   }
@@ -6176,7 +6176,7 @@ PORTAL_CSS += """
 }
 
 .mobile-nav .mobile-main-link,
-.mobile-nav a[href="/programming-map.html"] {
+.mobile-nav a[href="/lectures/2026-04-ai-kihon.html"] {
   background: rgba(14,165,198,.10) !important;
   color: #075E67 !important;
   font-weight: 900 !important;
@@ -6656,8 +6656,8 @@ nav.top-nav .nav-link.nav-essential[href="/#lectures"],
 .site-nav a.nav-link.nav-essential[href="#lesson-bridge"],
 .site-nav a.nav-link.nav-essential[href="/#lesson-bridge"],
 nav.top-nav .nav-link.nav-essential[href="/#lesson-bridge"],
-.site-nav a.nav-link[href="/programming-map.html"],
-nav.top-nav .nav-link[href="/programming-map.html"] {
+.site-nav a.nav-link[href="/lectures/2026-04-ai-kihon.html"],
+nav.top-nav .nav-link[href="/lectures/2026-04-ai-kihon.html"] {
   background: rgba(14,165,198,.10) !important;
   color: #075E67 !important;
   border-color: rgba(14,165,198,.24) !important;
@@ -6742,7 +6742,7 @@ nav.top-nav .nav-link.nav-essential[href="/#lesson-bridge"] {
 }
 
 .mobile-nav .mobile-main-link,
-.mobile-nav a[href="/programming-map.html"] {
+.mobile-nav a[href="/lectures/2026-04-ai-kihon.html"] {
   background: rgba(14,165,198,.10) !important;
   color: #075E67 !important;
   border-color: rgba(14,165,198,.24) !important;
@@ -11418,8 +11418,8 @@ def _render_compact_course_cards() -> str:
             "desc": "AIを仕事で使うための一番基本の講習。仕事の分解、依頼、確認、修正、次回も使える手順化まで実践します。",
             "url": AI_AGENT_COURSE_URL,
             "cta": "まずこの講習を予約",
-            "material_url": "/blog/2026-07-14-ai-agent-course-codex-claude-code.html",
-            "material_cta": "AIエージェント講習の内容を見る",
+            "material_url": "/lectures/2026-04-ai-kihon.html",
+            "material_cta": "AIエージェント講習の受講資料を見る",
             "main": True,
             "recommended": "一番基本・おすすめ",
             "details_lead": "この講習で得られること",
@@ -12568,7 +12568,7 @@ header.site-header:hover {
 .site-nav a.nav-link { padding: 10px 2px !important; color: var(--focus-ink) !important; background: transparent !important; border: 0 !important; font-size: 14px !important; }
 .site-nav a.nav-link:hover { color: var(--focus-blue) !important; }
 .site-nav a.nav-link.nav-essential[href],
-.site-nav a.nav-link[href="/programming-map.html"],
+.site-nav a.nav-link[href="/lectures/2026-04-ai-kihon.html"],
 .site-nav .menu-toggle {
   padding: 10px 3px !important;
   color: var(--focus-ink) !important;
@@ -12578,7 +12578,7 @@ header.site-header:hover {
   box-shadow: none !important;
 }
 .site-nav a.nav-link.nav-essential[href]:hover,
-.site-nav a.nav-link[href="/programming-map.html"]:hover,
+.site-nav a.nav-link[href="/lectures/2026-04-ai-kihon.html"]:hover,
 .site-nav .menu-toggle:hover {
   color: var(--focus-blue) !important;
   background: transparent !important;
@@ -14067,7 +14067,7 @@ def _render_header_focused() -> str:
         "<span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span></span></a>"
         "<nav class='site-nav' aria-label='メインナビ'>"
         "<a class='nav-link nav-essential' href='/'>ホーム</a>"
-        "<a class='nav-link nav-essential' href='/programming-map.html'>AIコーディング講習</a>"
+        "<a class='nav-link nav-essential' href='/lectures/2026-04-ai-kihon.html'>AIエージェント講習</a>"
         "<a class='nav-link nav-essential' href='/#all-works'>実績</a>"
         "<a class='nav-link nav-essential' href='/blog/index.html'>ブログ</a>"
         "<a class='nav-link nav-essential' href='/#lectures'>資料</a>"
@@ -14081,7 +14081,7 @@ def _render_header_focused() -> str:
         "<div class='mobile-nav-head'><div class='mobile-nav-heading'><small>PUBLIC MENU</small><strong>メニュー</strong></div></div>"
         "<nav class='mobile-public-links' aria-label='公開ページメニュー'>"
         "<a href='/'><span>ホーム</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
-        "<a href='/programming-map.html'><span>AIコーディング講習</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
+        "<a href='/lectures/2026-04-ai-kihon.html'><span>AIエージェント講習</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
         "<a href='/#all-works'><span>実績</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
         "<a href='/blog/index.html'><span>ブログ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
         "<a href='/#lectures'><span>資料</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"

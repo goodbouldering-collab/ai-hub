@@ -53,11 +53,11 @@ top_buttons:
   href: lectures/index.html
   kind: link
   enabled: true
-- id: pmap
+- id: agent_course
   group: 教材資料
-  label: AIコーディング講習
-  icon: 🗺
-  href: programming-map.html
+  label: AIエージェント講習
+  icon: 🤖
+  href: lectures/2026-04-ai-kihon.html
   kind: link
   enabled: true
 

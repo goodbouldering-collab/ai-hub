@@ -188,7 +188,7 @@ DEFAULT_TOP_BUTTONS = [
     {"id": "portfolio",       "label": "実績",               "icon": "🏆", "href": "./portfolio.html",          "kind": "link",   "enabled": True},
     {"id": "lectures",        "label": "受講資料",           "icon": "📝", "href": "./lectures/index.html",     "kind": "link",   "enabled": True},
     {"id": "archive",         "label": "過去ログ",           "icon": "📚", "href": "./archive.html",            "kind": "link",   "enabled": True},
-    {"id": "programming_map", "label": "AIコーディング講習", "icon": "📘", "href": "./programming-map.html",    "kind": "link",   "enabled": True},
+    {"id": "agent_course",    "label": "AIエージェント講習", "icon": "🤖", "href": "./lectures/2026-04-ai-kihon.html", "kind": "link", "enabled": True},
     {"id": "run",             "label": "巡回実行",           "icon": "🔄", "href": "",                          "kind": "action", "action_id": "run", "enabled": True},
     {"id": "admin",           "label": "管理",               "icon": "⚙️", "href": "/admin",                    "kind": "link",   "enabled": True, "localhost_only": True},
 ]

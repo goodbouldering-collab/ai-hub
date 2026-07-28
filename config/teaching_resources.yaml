@@ -26,23 +26,19 @@ sections:
   group_by: category
   groups:
   - key: ai-start
-    name: 1. AIを仕事で使い始める
+    name: 1. AIエージェント講習とCodex初級
     icon: 🌱
-    description: AIエージェント講習と15分実践で、頼む・確かめる・残す仕事の型を身につける
+    description: AIエージェント講習120分の中で、Codexへ小さく頼む・確かめる・残す仕事の型を実践する
   - key: ai-work
     name: 2. 自社資料をAIで使う
     icon: 🧰
     description: AIに必要な資料を探してもらい、根拠と一緒に答えてもらう方法を学ぶ
-  - key: ai-build
-    name: 3. AIと一緒に作る
-    icon: 🛠️
-    description: Claude CodeやCodexへ、小さな修正を安全な順番で頼む方法を学ぶ
   - key: ai-salon
-    name: 4. オンラインサロンで実践する
+    name: 3. オンラインサロンで実践する
     icon: 🎙️
     description: 自分の成果を持ち寄り、講師と会員の声で確かめ、次の一手を決める
   - key: climbing
-    name: 5. AIの資料作成例
+    name: 4. AIの資料作成例
     icon: 🧗
     description: 1つの題材を、AIの作成支援と人の確認でWeb資料・図版・スライド・PDFへ展開した完成例
 

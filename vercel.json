@@ -8,6 +8,11 @@
     }
   },
   "redirects": [
+    {
+      "source": "/lectures/2026-05-claude-code-features.html",
+      "destination": "/lectures/2026-04-ai-kihon.html#codex-beginner",
+      "permanent": true
+    },
     { "source": "/admin/docs", "destination": "/ops", "permanent": false },
     { "source": "/admin/docs/", "destination": "/ops", "permanent": false }
   ],

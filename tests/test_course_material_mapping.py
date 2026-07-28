@@ -29,11 +29,13 @@ class CourseMaterialMappingTest(unittest.TestCase):
 
     def test_ai_agent_material_is_the_canonical_beginner_course(self) -> None:
         self.assertIn(
-            "<title>AIエージェント講習 120分 — 頼む・確かめる・残す | AI相談</title>",
+            "<title>AIエージェント講習 120分 — Codexで頼む・確かめる・残す | AI相談</title>",
             self.agent_html,
         )
         self.assertIn("目安 120分", self.agent_html)
         self.assertIn("AIエージェント依頼カード", self.agent_html)
+        self.assertIn('<h2 id="codex-beginner">', self.agent_html)
+        self.assertIn("Codex初級：安全な作業場所を選ぶ", self.agent_html)
         self.assertIn("https://goodbouldering.com/?pid=188553378", self.agent_html)
         self.assertNotIn("はじめてのAI — 困りごとを1つ、下書きにする", self.agent_html)
 
@@ -86,8 +88,8 @@ class CourseMaterialMappingTest(unittest.TestCase):
 
     def test_quick_diagnosis_describes_the_agent_course(self) -> None:
         self.assertIn(
-            "実際の仕事を1つ選び、目的と材料を依頼カードに整理。"
-            "AIに任せ、人が確認・修正し、次回も使える手順として残す120分の実践講習です。",
+            "実際の仕事を1つ選び、Codexへ小さく頼み、変更点を人が確認・修正し、"
+            "次回も使える手順として残す120分の初級実践です。",
             self.index_html,
         )
         self.assertNotIn(

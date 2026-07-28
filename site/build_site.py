@@ -128,7 +128,7 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
         "<span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span></span></a>"
         "<nav class='site-nav' aria-label='メインナビ'>"
         "<a class='nav-link nav-essential' href='/'>ホーム</a>"
-        f"<a class='{pmap_class}' href='/programming-map.html'{pmap_current}>AIエージェント講習</a>"
+        f"<a class='{pmap_class}' href='/programming-map.html'{pmap_current}>AIコーディング講習</a>"
         "<a class='nav-link nav-essential' href='/#all-works'>実績</a>"
         f"<a class='{blog_class}' href='/blog/index.html'{blog_current}>ブログ</a>"
         f"<a class='{lecture_class}' href='/#lectures'{lecture_current}>資料</a>"
@@ -146,7 +146,7 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
         "<div class='mobile-nav-head'><div class='mobile-nav-heading'><small>PUBLIC MENU</small><strong>メニュー</strong></div></div>"
         "<nav class='mobile-public-links' aria-label='公開ページメニュー'>"
         "<a href='/'><span>ホーム</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
-        "<a href='/programming-map.html'><span>AIエージェント講習</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
+        "<a href='/programming-map.html'><span>AIコーディング講習</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
         "<a href='/#all-works'><span>実績</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
         "<a href='/blog/index.html'><span>ブログ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
         "<a href='/#lectures'><span>資料</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
@@ -3125,7 +3125,7 @@ def _render_lecture_overview(title: str, meta: dict, toc: list[tuple[str, str]])
     parts.append("<div class='lecture-shell-actions'>")
     parts.append(f"<a class='lecture-shell-link primary' href='{toc_href}'>{toc_label}</a>")
     parts.append("<a class='lecture-shell-link' href='./index.html'>受講資料一覧</a>")
-    parts.append("<a class='lecture-shell-link' href='../programming-map.html'>AIエージェント講習</a>")
+    parts.append("<a class='lecture-shell-link' href='../programming-map.html'>AIコーディング講習</a>")
     parts.append("</div></section>")
     return "".join(parts)
 
@@ -3635,7 +3635,7 @@ def _render_teaching_home(sections: list[dict]) -> str:
         "迷ったら「はじめてのAI」から始めてください。</p>"
     )
     parts.append("<div class='tr-home-actions'>")
-    parts.append("<a href='../programming-map.html'>AIエージェント講習を見る</a>")
+    parts.append("<a href='../programming-map.html'>AIコーディング講習を見る</a>")
     if featured_href:
         parts.append(f"<a href='{html.escape(featured_href, quote=True)}'>最初の1本を読む</a>")
     if first_section_id:
@@ -4253,7 +4253,7 @@ def _patch_programming_map_nav(pmap_file: Path) -> None:
     text = pmap_file.read_text(encoding="utf-8")
     # 共通ナビ HTML（pmap を current として）
     common_nav = render_top_nav(path_prefix="./", current_id="pmap", include_run=False)
-    # ページ内目次バー（AIエージェント講習 専用 — sticky とは別）
+    # ページ内目次バー（AIコーディング講習専用 — sticky とは別）
     chapter_toc = (
         "<nav class='pm-chapter-toc' aria-label='ページ内目次'>"
         "<span class='pm-toc-label'>AI CODING</span>"

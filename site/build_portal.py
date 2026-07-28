@@ -11226,7 +11226,7 @@ def _render_services() -> str:
 
 def _render_courses_packages() -> str:
     """講習・相談プランのカード一覧。"""
-    ai_coding_title = "AIエージェント講習 120分"
+    ai_coding_title = "AIコーディング講習 120分"
     free_consult_title = "AI無料相談 入口整理"
     consult_title = "AI個別相談 しっかり60分"
     support_title = "AI伴走支援 いっしょに導入"
@@ -11297,11 +11297,11 @@ def _render_courses_packages() -> str:
         },
         {
             "icon": "▧",
-            "cat": "AIエージェント講習",
+            "cat": "AIコーディング講習",
             "level": "実装",
             "level_id": "implementation",
             "title": ai_coding_title,
-            "price": "5,500円",
+            "price": "11,000円",
             "duration": "120分 / 少人数",
             "subsidy": False,
             "desc": "Codex導入、Claude Code併用、画像生成、AI時代の本物のエンジニア像、レベルマップ、プログラミング基礎、設計・データ・運用・セキュリティ、実装、公開までを1本で学ぶ総合講習です。",
@@ -11313,14 +11313,14 @@ def _render_courses_packages() -> str:
             "fit": ["AIの成果物を判断して直せるようになりたい", "LP、資料、画像、フォーム、業務画面を作りたい", "仕事の分解から公開前確認まで体系的に学びたい"],
             "req_title": "このプランで使う受講資料",
             "requirements": [
-                "AIエージェント講習ページをもとに、Codex、Claude Code、仕事の分解、依頼、確認、修正、成果物の保存を通しで学ぶ",
+                "AIコーディング講習ページをもとに、Codex、Claude Code、仕事の分解、依頼、確認、修正、成果物の保存を通しで学ぶ",
                 "受講後は小さな制作物を作り、説明できない変更を公開前に止める判断まで練習する",
             ],
-            "verify": "予約ページでは120分のAIエージェント講習を選んでください。",
-            "url": AI_AGENT_COURSE_URL,
-            "cta": "AIエージェント講習を予約する",
+            "verify": "予約ページでは120分のAIコーディング講習を選んでください。",
+            "url": AI_CODING_BOOK_URL,
+            "cta": "AIコーディング講習を予約する",
             "material_url": "/programming-map.html",
-            "material_cta": "AIエージェント講習の受講資料を見る",
+            "material_cta": "AIコーディング講習の受講資料を見る",
             "variant": "featured",
         },
     ]
@@ -11396,7 +11396,7 @@ def _render_courses_packages() -> str:
     )
     parts.append(
         "<p class='packages-note fade-up d4'>"
-        "<strong>AIエージェント講習:</strong> CodexとClaude Codeを使い、仕事の分解、依頼、確認、修正、成果物と手順の保存までを120分5,500円で扱う実践講習です。専用の予約ページから申し込めます。"
+        "<strong>AIコーディング講習:</strong> CodexとClaude Codeを使い、コードの読解、修正、画面確認、安全な公開までを120分11,000円で扱う実装講習です。専用の予約ページから申し込めます。"
         "<br><strong>無料相談:</strong> AI無料相談は、講習・伴走・制作のどれから始めるかを無料で整理する入口です。しっかり60分のAI個別相談は、AIの使い方、指示書、確認体制、運用導線まで整理します。"
         "<br><strong>月額支払い:</strong> AI伴走支援の月額決済はStripe Checkoutで受け付け、申込後に初回範囲と日程を確認します。"
         "<br><strong>補助金:</strong> 講習と伴走支援は、滋賀県・彦根市のデジタル化/AI導入系補助金と組み合わせて相談できます。"
@@ -11418,8 +11418,8 @@ def _render_compact_course_cards() -> str:
             "desc": "AIを仕事で使うための一番基本の講習。仕事の分解、依頼、確認、修正、次回も使える手順化まで実践します。",
             "url": AI_AGENT_COURSE_URL,
             "cta": "まずこの講習を予約",
-            "material_url": "/programming-map.html",
-            "material_cta": "AIエージェント講習の受講資料を見る",
+            "material_url": "/blog/2026-07-14-ai-agent-course-codex-claude-code.html",
+            "material_cta": "AIエージェント講習の内容を見る",
             "main": True,
             "recommended": "一番基本・おすすめ",
             "details_lead": "この講習で得られること",
@@ -11487,8 +11487,8 @@ def _render_compact_course_cards() -> str:
             "desc": "AIが作ったコードを読み、直し、確認して公開するところまで体系的に学びます。",
             "url": AI_CODING_BOOK_URL,
             "cta": "AIコーディングを予約",
-            "material_url": "/lectures/2026-05-claude-code-features.html",
-            "material_cta": "Claude Codeの実践資料を見る",
+            "material_url": "/programming-map.html",
+            "material_cta": "AIコーディング講習の受講資料を見る",
             "details_lead": "この講習で身につくこと",
             "details": [
                 ("小さくても動くものを作る", "自社ページ、申込フォーム、集計画面、業務ツールなど、目的に合う題材を実際に動かします。"),
@@ -12052,10 +12052,10 @@ def _render_works_section() -> str:
 def _render_lectures_section() -> str:
     """公開中の受講資料をLPでもすべて見せる。"""
     pmap_card = {
-        "title": "AIエージェント講習 120分",
+        "title": "AIコーディング講習 120分",
         "icon": "🧭",
         "date": "2026-06-06",
-        "summary": "初めての人が、CodexやClaude Codeへの頼み方、確認、修正、安全な公開までを順番に学ぶAIエージェント講習。",
+        "summary": "初めての人が、CodexやClaude Codeを使った実装、変更確認、修正、安全な公開までを順番に学ぶAIコーディング講習。",
         "category": "ai-build",
         "level": "実践",
         "duration": "120分",
@@ -14067,7 +14067,7 @@ def _render_header_focused() -> str:
         "<span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span></span></a>"
         "<nav class='site-nav' aria-label='メインナビ'>"
         "<a class='nav-link nav-essential' href='/'>ホーム</a>"
-        "<a class='nav-link nav-essential' href='/programming-map.html'>AIエージェント講習</a>"
+        "<a class='nav-link nav-essential' href='/programming-map.html'>AIコーディング講習</a>"
         "<a class='nav-link nav-essential' href='/#all-works'>実績</a>"
         "<a class='nav-link nav-essential' href='/blog/index.html'>ブログ</a>"
         "<a class='nav-link nav-essential' href='/#lectures'>資料</a>"
@@ -14081,7 +14081,7 @@ def _render_header_focused() -> str:
         "<div class='mobile-nav-head'><div class='mobile-nav-heading'><small>PUBLIC MENU</small><strong>メニュー</strong></div></div>"
         "<nav class='mobile-public-links' aria-label='公開ページメニュー'>"
         "<a href='/'><span>ホーム</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
-        "<a href='/programming-map.html'><span>AIエージェント講習</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
+        "<a href='/programming-map.html'><span>AIコーディング講習</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
         "<a href='/#all-works'><span>実績</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
         "<a href='/blog/index.html'><span>ブログ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
         "<a href='/#lectures'><span>資料</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
@@ -14355,12 +14355,12 @@ def main(dry_run: bool = False) -> int:
         print(f"  agents_status 生成スキップ: {e}")
 
     recent_lectures = _load_recent_lectures(limit=3)
-    # AIエージェント講習 120分は受講資料カードとして残すが、最新資料を先頭にする
+    # AIコーディング講習 120分は受講資料カードとして残すが、最新資料を先頭にする
     pmap_card = {
-        "title": "AIエージェント講習 120分",
+        "title": "AIコーディング講習 120分",
         "icon": "🧭",
         "date": "2026-06-06",
-        "summary": "CodexとClaude Codeを使い、仕事の分解、依頼、確認、修正、成果物と次回手順の保存までを段階的に学ぶAIエージェント講習。",
+        "summary": "CodexとClaude Codeを使い、実装、変更確認、修正、安全な公開までを段階的に学ぶAIコーディング講習。",
         "href": "/programming-map.html",
     }
     recent_lectures = list(recent_lectures) + [pmap_card]

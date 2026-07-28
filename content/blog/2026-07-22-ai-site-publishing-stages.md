@@ -186,7 +186,7 @@ Cloudflare Workersは、世界各地に近い場所で処理を動かしやす�
 <div class="publishing-cta">
   <strong>AI相談では「作る」だけでなく、どこまで公開してよいか、本番へ進む準備ができているかまで一緒に整理します。</strong>
   <p>地域事業者、学校、福祉施設、個人事業主の方が、今ある資料や止まっている業務を持ち込み、小さな公開から安全な運用へ進める形にします。</p>
-  <p><a href="/#contact">AI相談へ相談する</a> ・ <a href="/programming-map.html">AI・プログラミング講座を見る</a></p>
+  <p><a href="/#contact">AI相談へ相談する</a> ・ <a href="/programming-map.html">AIコーディング講習を見る</a></p>
 </div>
 
 ### 参考にした公式情報

@@ -253,7 +253,7 @@ Codexや他のAIへ何を頼んだか:
 - [AIオンラインサロンの案内へ戻る](../index.html#seven-day-courses)
 - [Squareで決済して参加する](/api/square/ai-salon-checkout)
 - [受講資料の一覧](./index.html)
-- [AIエージェント講習 120分](../programming-map.html)
+- [AIコーディング講習 120分](../programming-map.html)
 
 ## 用語・公式情報
 

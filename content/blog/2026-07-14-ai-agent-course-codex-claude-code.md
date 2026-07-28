@@ -152,7 +152,7 @@ Codexの音声入力とUSB-Cの外部マイクを使うと、思いついた条�
 <div class="ai-agent-course-cta">
   <strong>最初の一歩は、「AIを勉強する」ではなく「任せたい仕事を一つ決める」ことです。</strong>
   <p>彦根の対面講座またはオンラインで、Codex・Claude Codeを使い、実行、確認、修正、保存まで一緒に進めます。</p>
-  <p><a href="https://goodbouldering.com/?pid=188553378" target="_blank" rel="noopener">AIエージェント講座を予約する</a> ／ <a href="/#contact">まず無料相談で題材を整理する</a> ／ <a href="/programming-map.html">講座内容を詳しく見る</a></p>
+  <p><a href="https://goodbouldering.com/?pid=188553378" target="_blank" rel="noopener">AIエージェント講座を予約する</a> ／ <a href="/#contact">まず無料相談で題材を整理する</a> ／ <a href="/programming-map.html">AIコーディング講習の資料を見る</a></p>
 </div>
 
 ### 参考資料

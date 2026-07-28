@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "",
-      "published": "2026-07-28T22:45:37+00:00"
+      "published": "2026-07-28T22:45:37+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "14c7b099b2b1fe3d",
@@ -37,7 +39,9 @@
         "freshness": 10.0
       },
       "thumbnail": "",
-      "published": "2026-07-28T22:05:55+00:00"
+      "published": "2026-07-28T22:05:55+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "04c6a364ba8c9561",
@@ -56,7 +60,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://static.simonwillison.net/static/2026/uv-diff.webp",
-      "published": "2026-07-28T21:51:38+00:00"
+      "published": "2026-07-28T21:51:38+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "d31af1cb58f0fbb2",
@@ -75,7 +81,9 @@
         "freshness": 10.0
       },
       "thumbnail": "",
-      "published": "2026-07-28T21:28:54+00:00"
+      "published": "2026-07-28T21:28:54+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "e9d522bd4389d249",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25362061/STK_414_AI_CHATBOT_R2_CVirginia_D.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-28T15:46:43-04:00"
+      "published": "2026-07-28T15:46:43-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "93c2daa308e714a2",
@@ -113,7 +123,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/STKS501_STOCKS_CVIRGINIA_A.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-28T15:33:03-04:00"
+      "published": "2026-07-28T15:33:03-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "97886a288c6bb34a",
@@ -132,7 +144,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25472503/STK271_PERPLEXITY_C.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-28T08:30:00-04:00"
+      "published": "2026-07-28T08:30:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "8e402f3dc5f04f95",
@@ -151,7 +165,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/11/RING.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-28T08:00:00-04:00"
+      "published": "2026-07-28T08:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "7060a0e36530353d",
@@ -170,7 +186,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/dplfq5hYDno/hqdefault.jpg",
-      "published": "2026-07-28T11:00:36+00:00"
+      "published": "2026-07-28T11:00:36+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "4a2467b495a7fd9d",
@@ -189,7 +207,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/06/STK419_DEEPFAKE_CVIRGINIA_F.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-28T05:07:14-04:00"
+      "published": "2026-07-28T05:07:14-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

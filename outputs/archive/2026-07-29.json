@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/02/STK259_MICROSOFT_COPILOT_3__D.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-29T18:17:38-04:00"
+      "published": "2026-07-29T18:17:38-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "460902bd2b5a8b8f",
@@ -37,7 +39,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25546252/STK169_Mark_Zuckerburg_CVIRGINIA_D.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-29T17:48:07-04:00"
+      "published": "2026-07-29T17:48:07-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "1637a6592a48d17a",
@@ -56,7 +60,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/STK022_ELON_MUSK_CVIRGINIA4_I.jpg?quality=90&amp;strip=all&amp;crop=0%2C9.9676601489831%2C100%2C80.064679702034&amp;w=1200",
-      "published": "2026-07-29T17:06:52-04:00"
+      "published": "2026-07-29T17:06:52-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "72e6db0862897bcf",
@@ -75,7 +81,9 @@
         "freshness": 10.0
       },
       "thumbnail": "",
-      "published": "2026-07-29T21:15:21+00:00"
+      "published": "2026-07-29T21:15:21+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "fef2bf0b3a146544",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/gettyimages-2182154299.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.752607989199%2C100%2C78.494784021602&amp;w=1200",
-      "published": "2026-07-29T14:15:02-04:00"
+      "published": "2026-07-29T14:15:02-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "fcd73e7d84785282",
@@ -113,7 +123,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/268669_The_artists_suing_AI_companies_AParkin.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-29T08:00:00-04:00"
+      "published": "2026-07-29T08:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "ae6c444ef7faed63",
@@ -132,7 +144,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/akrales_220309_4977_0232.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-29T07:54:29-04:00"
+      "published": "2026-07-29T07:54:29-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "07ee37a20041c1bf",
@@ -151,7 +165,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/STK485_STK414_AI_SAFETY_B.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-29T07:00:00-04:00"
+      "published": "2026-07-29T07:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "237dbca639ae7976",
@@ -170,7 +186,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-07-29T18:43:03+00:00"
+      "published": "2026-07-29T18:43:03+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "81ffaeb59ade3918",
@@ -189,7 +207,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-07-29T18:18:15+00:00"
+      "published": "2026-07-29T18:18:15+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

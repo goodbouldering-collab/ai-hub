@@ -134,6 +134,7 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
         f"<a class='{lecture_class}' href='/#lectures'{lecture_current}>資料</a>"
         "<a class='nav-link nav-essential' href='/#faq'>FAQ</a>"
         "<a class='nav-cta' href='/#contact'>個別相談</a>"
+        "<a class='nav-link nav-essential nav-salon' href='/#seven-day-courses'>サロン</a>"
         "</nav>"
         f"{run_action}"
         "<button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' type='button' aria-label='メニューを開く' aria-controls='mobile-nav' aria-expanded='false'>"
@@ -141,7 +142,7 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
         "<span class='mobile-toggle-text'>メニュー</span>"
         "</button>"
         "</div>"
-        "<div class='mobile-nav generated-mobile-nav' id='mobile-nav'>"
+        "<div class='mobile-nav generated-mobile-nav' id='mobile-nav' aria-hidden='true'>"
         "<div class='mobile-nav-panel mobile-nav-panel--public'>"
         "<div class='mobile-nav-head'><div class='mobile-nav-heading'><small>PUBLIC MENU</small><strong>メニュー</strong></div></div>"
         "<nav class='mobile-public-links' aria-label='公開ページメニュー'>"
@@ -152,16 +153,19 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
         "<a href='/#lectures'><span>資料</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
         "<a href='/#faq'><span>FAQ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
         "<a class='mobile-public-link--cta' href='/#contact'><span>個別相談</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
+        "<a href='/#seven-day-courses'><span>AIオンラインサロン</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
         "</nav><div class='mobile-nav-admin'><span class='mobile-nav-label'>管理</span>"
         "<a class='mobile-admin-link' href='/admin'><span class='mobile-admin-link-copy'><strong>管理ページ</strong><small>運営者ログイン</small></span>"
         "<span class='mobile-link-arrow' aria-hidden='true'>›</span></a></div>"
         "</div></div></header>"
         "<script>(function(){"
-        "var b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav'),x=b?b.querySelector('.mobile-toggle-text'):null;"
-        "function setMobile(o){if(!n||!b)return;n.classList.toggle('open',o);b.setAttribute('aria-expanded',o?'true':'false');b.setAttribute('aria-label',o?'メニューを閉じる':'メニューを開く');if(x)x.textContent=o?'閉じる':'メニュー';document.body.classList.toggle('mobile-menu-open',o);}"
+        "var b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav'),x=b?b.querySelector('.mobile-toggle-text'):null,m=window.matchMedia('(min-width: 901px)');"
+        "function setMobile(o){if(!n||!b)return;if(!o&&(n.contains(document.activeElement)||document.activeElement===b)){var f=m.matches?document.querySelector('.site-logo'):b;if(f)f.focus({preventScroll:true});}n.classList.toggle('open',o);n.setAttribute('aria-hidden',o?'false':'true');b.setAttribute('aria-expanded',o?'true':'false');b.setAttribute('aria-label',o?'メニューを閉じる':'メニューを開く');if(x)x.textContent=o?'閉じる':'メニュー';document.body.classList.toggle('mobile-menu-open',o);}"
         "function closeMobile(){setMobile(false);}"
-        "if(b&&n){b.addEventListener('click',function(e){e.stopPropagation();setMobile(!n.classList.contains('open'));});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMobile);});}"
-        "document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobile();});"
+        "function closeMobileAtDesktop(e){if(e.matches)closeMobile();}"
+        "if(b&&n){b.addEventListener('click',function(e){e.stopPropagation();setMobile(!n.classList.contains('open'));});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMobile);});n.addEventListener('click',function(e){if(e.target===n)closeMobile();});}"
+        "if(m.addEventListener)m.addEventListener('change',closeMobileAtDesktop);else if(m.addListener)m.addListener(closeMobileAtDesktop);"
+        "document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeMobile();return;}if(e.key!=='Tab'||!n||!n.classList.contains('open'))return;var a=[b].concat(Array.prototype.slice.call(n.querySelectorAll('a[href]'))),f=a[0],l=a[a.length-1];if(e.shiftKey&&document.activeElement===f){e.preventDefault();l.focus();}else if(!e.shiftKey&&document.activeElement===l){e.preventDefault();f.focus();}});"
         "})();</script>"
     ]
     return "".join(parts)
@@ -2808,21 +2812,40 @@ header.site-header .site-nav a.nav-link.nav-essential.nav-current[href]:focus-vi
     inset: 64px 0 0 !important;
     max-height: none !important;
     padding: 0 !important;
-    overflow-y: auto !important;
+    display: block !important;
+    overflow: hidden !important;
     overscroll-behavior: contain !important;
-    background: #fff !important;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    background: rgba(10,23,40,.38) !important;
     border-top: 1px solid rgba(10,23,40,.12) !important;
-    box-shadow: 0 18px 34px rgba(10,23,40,.12) !important;
+    box-shadow: none !important;
+    transition: opacity .24s ease, visibility 0s linear .32s;
+  }
+  .generated-mobile-nav.open {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity .24s ease;
   }
   .generated-mobile-nav .mobile-nav-panel--public {
-    width: min(100%, 640px) !important;
+    width: min(88vw, 380px) !important;
+    height: 100%;
     min-height: 100%;
-    margin: 0 auto !important;
+    margin: 0 0 0 auto !important;
     padding: 0 18px calc(28px + env(safe-area-inset-bottom)) !important;
     display: block !important;
+    overflow-y: auto;
+    overscroll-behavior: contain;
     background: #fff !important;
     color: #0a1728 !important;
-    box-shadow: none !important;
+    box-shadow: -22px 0 52px rgba(10,23,40,.20) !important;
+    transform: translateX(100%);
+    transition: transform .32s cubic-bezier(.22,1,.36,1);
+  }
+  .generated-mobile-nav.open .mobile-nav-panel--public {
+    transform: translateX(0);
   }
   .generated-mobile-nav .mobile-nav-head {
     position: sticky;
@@ -2906,6 +2929,18 @@ header.site-header .site-nav a.nav-link.nav-essential.nav-current[href]:focus-vi
   .generated-mobile-nav .mobile-admin-link-copy { display: grid; gap: 2px; }
   .generated-mobile-nav .mobile-admin-link-copy strong { font-size: 14px; line-height: 1.2; }
   .generated-mobile-nav .mobile-admin-link-copy small { display: block !important; color: #66758a; font-size: 11px; font-weight: 700; line-height: 1.3; }
+}
+@media (max-width: 900px) and (prefers-reduced-motion: reduce) {
+  .generated-mobile-nav,
+  .generated-mobile-nav .mobile-nav-panel--public {
+    transition: none !important;
+  }
+}
+@media (min-width: 901px) {
+  .generated-mobile-nav,
+  .generated-mobile-nav.open {
+    display: none !important;
+  }
 }
 """
 

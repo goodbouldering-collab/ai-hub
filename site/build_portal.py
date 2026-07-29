@@ -9761,7 +9761,14 @@ HEADER_JS = """
 
   function setMobileMenu(open) {
     if (!mobileToggle || !mobileNav) return;
+    if (!open && (mobileNav.contains(document.activeElement) || document.activeElement === mobileToggle)) {
+      var focusTarget = window.matchMedia('(min-width: 901px)').matches
+        ? document.querySelector('.site-logo')
+        : mobileToggle;
+      if (focusTarget) focusTarget.focus({ preventScroll: true });
+    }
     mobileNav.classList.toggle('open', open);
+    mobileNav.setAttribute('aria-hidden', open ? 'false' : 'true');
     mobileToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     mobileToggle.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
     if (mobileToggleText) mobileToggleText.textContent = open ? '閉じる' : 'メニュー';
@@ -9769,14 +9776,42 @@ HEADER_JS = """
   }
 
   if (mobileToggle && mobileNav) {
+    var desktopMenuQuery = window.matchMedia('(min-width: 901px)');
     mobileToggle.addEventListener('click', function(){
       setMobileMenu(!mobileNav.classList.contains('open'));
     });
     mobileNav.querySelectorAll('a').forEach(function(a){
       a.addEventListener('click', function(){ setMobileMenu(false); });
     });
+    mobileNav.addEventListener('click', function(e){
+      if (e.target === mobileNav) setMobileMenu(false);
+    });
+    function closeMobileAtDesktop(e) {
+      if (e.matches) setMobileMenu(false);
+    }
+    if (desktopMenuQuery.addEventListener) {
+      desktopMenuQuery.addEventListener('change', closeMobileAtDesktop);
+    } else if (desktopMenuQuery.addListener) {
+      desktopMenuQuery.addListener(closeMobileAtDesktop);
+    }
     document.addEventListener('keydown', function(e){
-      if (e.key === 'Escape') setMobileMenu(false);
+      if (e.key === 'Escape') {
+        setMobileMenu(false);
+        return;
+      }
+      if (e.key !== 'Tab' || !mobileNav.classList.contains('open')) return;
+      var focusable = [mobileToggle].concat(
+        Array.prototype.slice.call(mobileNav.querySelectorAll('a[href]'))
+      );
+      var first = focusable[0];
+      var last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
     });
   }
 
@@ -13955,21 +13990,40 @@ footer.site-footer {
     inset: 74px 0 0 !important;
     max-height: none !important;
     padding: 0 !important;
-    overflow-y: auto !important;
+    display: block !important;
+    overflow: hidden !important;
     overscroll-behavior: contain;
-    background: #fff !important;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    background: rgba(10,23,40,.38) !important;
     border-top: 1px solid rgba(10,23,40,.12) !important;
-    box-shadow: 0 18px 34px rgba(10,23,40,.12) !important;
+    box-shadow: none !important;
+    transition: opacity .24s ease, visibility 0s linear .32s;
+  }
+  .mobile-nav.open {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity .24s ease;
   }
   .mobile-nav-panel--public {
-    width: min(100%, 640px) !important;
+    width: min(88vw, 380px) !important;
+    height: 100%;
     min-height: 100%;
-    margin: 0 auto !important;
+    margin: 0 0 0 auto !important;
     padding: 0 18px calc(28px + env(safe-area-inset-bottom)) !important;
     display: block !important;
+    overflow-y: auto;
+    overscroll-behavior: contain;
     background: #fff !important;
     color: var(--focus-ink) !important;
-    box-shadow: none !important;
+    box-shadow: -22px 0 52px rgba(10,23,40,.20) !important;
+    transform: translateX(100%);
+    transition: transform .32s cubic-bezier(.22,1,.36,1);
+  }
+  .mobile-nav.open .mobile-nav-panel--public {
+    transform: translateX(0);
   }
   .mobile-nav-panel--public .mobile-nav-head {
     position: sticky;
@@ -14057,6 +14111,18 @@ footer.site-footer {
 @media (max-width: 680px) {
   .mobile-nav { inset: 64px 0 0 !important; }
 }
+@media (max-width: 900px) and (prefers-reduced-motion: reduce) {
+  .mobile-nav,
+  .mobile-nav-panel--public {
+    transition: none !important;
+  }
+}
+@media (min-width: 901px) {
+  .mobile-nav,
+  .mobile-nav.open {
+    display: none !important;
+  }
+}
 """
 
 
@@ -14077,7 +14143,7 @@ def _render_header_focused() -> str:
         "<button class='mobile-toggle' id='mobile-toggle' type='button' aria-label='メニューを開く' aria-controls='mobile-nav' aria-expanded='false'>"
         "<span class='mobile-toggle-icon' aria-hidden='true'><span></span><span></span><span></span></span>"
         "<span class='mobile-toggle-text'>メニュー</span></button>"
-        "</div><div class='mobile-nav' id='mobile-nav'><div class='mobile-nav-panel mobile-nav-panel--public'>"
+        "</div><div class='mobile-nav' id='mobile-nav' aria-hidden='true'><div class='mobile-nav-panel mobile-nav-panel--public'>"
         "<div class='mobile-nav-head'><div class='mobile-nav-heading'><small>PUBLIC MENU</small><strong>メニュー</strong></div></div>"
         "<nav class='mobile-public-links' aria-label='公開ページメニュー'>"
         "<a href='/'><span>ホーム</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"

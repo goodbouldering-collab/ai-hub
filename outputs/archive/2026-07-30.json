@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/gettyimages-2280563832.jpg?quality=90&amp;strip=all&amp;crop=0%2C14.099795843272%2C100%2C71.800408313456&amp;w=1200",
-      "published": "2026-07-30T18:29:45-04:00"
+      "published": "2026-07-30T18:29:45-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "af3b330d8816c2ff",
@@ -37,7 +39,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/STKS522_AGI_B.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-07-30T16:46:25-04:00"
+      "published": "2026-07-30T16:46:25-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "a1a2e350e46654dd",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/1785424232227.jpeg?quality=90&amp;strip=all&amp;crop=0,13.767459555427,100,72.465080889147",
-      "published": "2026-07-30T14:43:26-04:00"
+      "published": "2026-07-30T14:43:26-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "882f1ca638a9252b",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/gemini-robotics-2-shelf.png?quality=90&amp;strip=all&amp;crop=0%2C18.038475587483%2C100%2C63.923048825033&amp;w=1200",
-      "published": "2026-07-30T13:18:45-04:00"
+      "published": "2026-07-30T13:18:45-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "4b4f4352b3ef32c2",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25777487/millennial_explorer_a_comp_v004.png?quality=90&amp;strip=all&amp;crop=0%2C3.4578967768132%2C100%2C93.084206446374&amp;w=1200",
-      "published": "2026-07-30T12:33:32-04:00"
+      "published": "2026-07-30T12:33:32-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "2bf98d7f8abb7656",
@@ -113,7 +123,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-07-30T18:25:26+00:00"
+      "published": "2026-07-30T18:25:26+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "1022b8d2b88d8514",
@@ -132,7 +144,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/4SmS6KvGTNc/hqdefault.jpg",
-      "published": "2026-07-30T08:57:49+00:00"
+      "published": "2026-07-30T08:57:49+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "ca3956b2ec8d0c11",
@@ -151,7 +165,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/jYRo0OuY2Dk/hqdefault.jpg",
-      "published": "2026-07-30T10:00:16+00:00"
+      "published": "2026-07-30T10:00:16+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "5a37e1b9ddd3acea",
@@ -170,7 +186,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://images.ctfassets.net/kftzwdyauwt9/3YlohIkWAmTKqtreNc2Qwt/1ba93da6a8cb574aa0b299277874dbac/Frame__3_.png?w=1600&amp;h=900&amp;fit=fill",
-      "published": "Thu, 30 Jul 2026 10:00:00 GMT"
+      "published": "Thu, 30 Jul 2026 10:00:00 GMT",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "cc6c4781edba4a85",
@@ -189,7 +207,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini-robotics-2__blog__cover.width-1300.png",
-      "published": "Thu, 30 Jul 2026 15:00:59 +0000"
+      "published": "Thu, 30 Jul 2026 15:00:59 +0000",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

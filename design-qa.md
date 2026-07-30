@@ -67,3 +67,49 @@
 対象範囲に未解決のP0 / P1 / P2はない。内容省略、横スクロール、文字の重なり、画像の歪み、CTAのはみ出しは確認されなかった。
 
 final result: passed
+
+---
+
+# Design QA — AIコーディング講習カード・教材図解
+
+- source visual truth:
+  - ユーザー注釈: 受講資料カード「AIコーディング講習 120分」へ、他カードと同じ画像枠を追加
+  - ユーザー注釈: 教材本文の各H2直下へ内容に対応する画像を生成・配置し、全体を分かりやすく再構成
+  - `C:\Users\yui\.codex\visualizations\2026\07\22\019f8743-9c47-7ac3-89d9-245798ea7829\coding-lecture-20260730\homepage-before.png`
+  - `C:\Users\yui\.codex\visualizations\2026\07\22\019f8743-9c47-7ac3-89d9-245798ea7829\coding-lecture-20260730\material-before.png`
+- implementation screenshots:
+  - `homepage-after-906.png`
+  - `homepage-after-390.png`
+  - `material-after-top-906.png`
+  - `material-after-top-390.png`
+  - `material-after-section-00-906.png`
+  - `material-after-section-06-906.png`
+  - `material-after-section-00-390.png`
+  - `material-mobile-menu-open.png`
+- comparison inputs:
+  - `homepage-comparison.png`
+  - `material-comparison.png`
+  - `section-images-contact.png`
+- viewport and density: 906 × 794、390 × 844 CSS px、DPR 約1
+- state: 受講資料一覧の対象カード、教材トップ、00章、06章、モバイルメニュー開閉
+
+## Full-view comparison evidence
+
+受講資料一覧では、画像のなかった6番目のカードへ既存の講習カバーを追加し、3列グリッドの高さ、画像比率、本文開始位置をほかのカードと統一した。教材トップは、汎用写真から同じ講習カバーへ変更し、教材カード、教材ページ、OGP、構造化データで同一画像を共有した。
+
+教材本文では、11個すべてのH2直後に内容別の図解を配置した。画像は1200 × 800pxのWebPで統一し、目的、成長段階、説明、道具、学習段階、構成要素、依頼、公開、仕事への応用、公式情報、総合演習をそれぞれ視覚化した。配色は既存カードに合わせ、生成画像11枚の合計を約0.8MBに最適化した。
+
+## Focused region comparison evidence
+
+- カード: 1448 × 1086pxの既存講習カバーがPC・390pxの両方で読み込まれ、altを保持。
+- 教材トップ: 見出し、対象、ゴール、3つのCTA、講習カバーの順に情報を読める。
+- 各章: H2 → 図解 → キャプション → 本文の順を11章すべてで統一。
+- 画像: 11枚すべて遅延読み込み後に `naturalWidth=1200`、`naturalHeight=800`。
+- モバイル: 横はみ出し0。カード幅332px、教材本文幅376.4px。
+- メニュー: `aria-expanded=true/false`、`aria-hidden=false/true`、開いた状態でbodyスクロール固定を確認。
+
+## Findings
+
+対象範囲に未解決のP0 / P1 / P2はない。画像欠落、H2と図解の分離、横スクロール、画像の歪み、メニュー不動作は確認されなかった。Googleマップ由来のdebugログ1件を除き、ブラウザerrorは0件。
+
+final result: passed

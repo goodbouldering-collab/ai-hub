@@ -12095,6 +12095,8 @@ def _render_lectures_section() -> str:
         "level": "実践",
         "duration": "120分",
         "route_label": "AIと作る",
+        "image": "/img/course-path-coding.webp",
+        "image_alt": "AIが変更したコードを人が確認し、安全にWebサイトを公開するAIコーディング講習",
         "href": "/programming-map.html",
     }
     all_lectures = list(_load_all_lectures())
@@ -14457,6 +14459,8 @@ def main(dry_run: bool = False) -> int:
         "icon": "🧭",
         "date": "2026-06-06",
         "summary": "CodexとClaude Codeを使い、実装、変更確認、修正、安全な公開までを段階的に学ぶAIコーディング講習。",
+        "image": "/img/course-path-coding.webp",
+        "image_alt": "AIが変更したコードを人が確認し、安全にWebサイトを公開するAIコーディング講習",
         "href": "/programming-map.html",
     }
     recent_lectures = list(recent_lectures) + [pmap_card]

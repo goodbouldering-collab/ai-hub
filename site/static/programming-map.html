@@ -12,7 +12,50 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#f7f9fc">
 <meta name="description" content="AI初心者が、CodexとClaude Codeを使った実装、変更確認、修正、安全な公開までを順番に学べる、彦根のAIコーディング講習。">
+<link rel="canonical" href="https://ai-hub-jp.vercel.app/programming-map.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="AI相談 彦根">
+<meta property="og:title" content="AIコーディング講習｜Codex・Claude Code実践">
+<meta property="og:description" content="CodexやClaude Codeに頼み、変更を確かめ、安全に公開するまでを図解で学ぶ120分のAIコーディング講習。">
+<meta property="og:url" content="https://ai-hub-jp.vercel.app/programming-map.html">
+<meta property="og:image" content="https://ai-hub-jp.vercel.app/img/course-path-coding.webp">
+<meta property="og:image:secure_url" content="https://ai-hub-jp.vercel.app/img/course-path-coding.webp">
+<meta property="og:image:type" content="image/webp">
+<meta property="og:image:width" content="1448">
+<meta property="og:image:height" content="1086">
+<meta property="og:image:alt" content="AIが変更したコードを人が確認し、安全にWebサイトを公開するAIコーディング講習">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AIコーディング講習｜Codex・Claude Code実践">
+<meta name="twitter:description" content="AIに頼む、変更を見る、画面を確かめる、安全に公開する流れを初心者向けに図解します。">
+<meta name="twitter:image" content="https://ai-hub-jp.vercel.app/img/course-path-coding.webp">
+<meta name="twitter:image:alt" content="AIが変更したコードを人が確認し、安全にWebサイトを公開するAIコーディング講習">
 <title>AIコーディング講習｜Codex・Claude Code実践 | AI相談</title>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "AIコーディング講習｜Codex・Claude Code実践",
+  "description": "AI初心者が、CodexやClaude Codeに頼み、変更を確かめ、安全に公開するまでを図解で学ぶ120分の講習資料。",
+  "url": "https://ai-hub-jp.vercel.app/programming-map.html",
+  "inLanguage": "ja",
+  "timeRequired": "PT120M",
+  "educationalLevel": "初心者向け",
+  "learningResourceType": "講習資料",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://ai-hub-jp.vercel.app/img/course-path-coding.webp",
+    "contentUrl": "https://ai-hub-jp.vercel.app/img/course-path-coding.webp",
+    "caption": "AIが変更したコードを人が確認し、安全にWebサイトを公開するAIコーディング講習",
+    "width": 1448,
+    "height": 1086
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "AI相談 彦根",
+    "url": "https://ai-hub-jp.vercel.app/"
+  }
+}
+</script>
 <style>
   :root {
     --ink: #0b1020;
@@ -183,43 +226,27 @@
 
   .hero-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 34px;
-    align-items: stretch;
+    grid-template-columns: minmax(0, 1.02fr) minmax(360px, .78fr);
+    gap: clamp(24px, 4vw, 52px);
+    align-items: center;
   }
 
   .hero-grid > div:first-child {
-    display: grid;
-    grid-template-columns: minmax(380px, .78fr) minmax(500px, 1.22fr);
-    column-gap: clamp(32px, 5vw, 72px);
-    align-items: start;
+    display: block;
     width: 100%;
   }
 
-  .hero-grid .kicker { grid-column: 1 / -1; }
-
-  .hero-grid h1 {
-    grid-column: 1;
-    grid-row: 2 / 5;
-  }
-
   .hero-grid .hero-lead {
-    grid-column: 2;
-    grid-row: 2;
-    max-width: none;
+    max-width: 720px;
     margin-top: 20px;
   }
 
   .hero-grid .value-copy {
-    grid-column: 2;
-    grid-row: 3;
-    max-width: none;
+    max-width: 720px;
     margin-top: 18px;
   }
 
   .hero-grid .hero-actions {
-    grid-column: 2;
-    grid-row: 4;
     margin-top: 18px;
   }
 
@@ -304,17 +331,17 @@
     position: relative;
     width: 100%;
     min-height: 0;
-    border-radius: 12px;
+    border-radius: 18px;
     overflow: hidden;
     display: grid;
-    grid-template-rows: minmax(360px, 1fr) auto;
+    grid-template-rows: auto auto;
     box-shadow: 0 24px 64px rgba(11,16,32,.14), inset 0 1px 0 rgba(255,255,255,.84);
   }
 
   .hero-image {
     position: relative;
-    height: clamp(420px, 54vw, 720px);
-    min-height: 420px;
+    aspect-ratio: 4 / 3;
+    min-height: 0;
     overflow: hidden;
   }
 
@@ -322,9 +349,9 @@
     display: block;
     width: 100%;
     height: 100%;
-    min-height: 420px;
+    min-height: 0;
     object-fit: cover;
-    object-position: center 48%;
+    object-position: center 45%;
     filter: saturate(1.02) contrast(1.03);
   }
 
@@ -826,6 +853,35 @@
     font-size: 16px;
   }
 
+  .pm-section-figure {
+    width: min(100%, 760px);
+    margin: 18px 0 14px;
+    overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid rgba(20,32,51,.12);
+    background: #fffdf8;
+    box-shadow: 0 14px 34px rgba(11,16,32,.09);
+  }
+
+  .pm-section-figure img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    object-position: center;
+    background: #fffdf8;
+  }
+
+  .pm-section-figure figcaption {
+    padding: 10px 13px 11px;
+    border-top: 1px solid rgba(20,32,51,.10);
+    color: var(--text-soft);
+    background: rgba(255,253,248,.96);
+    font-size: 12px;
+    font-weight: 750;
+    line-height: 1.55;
+  }
+
   .overview-grid {
     display: grid;
     grid-template-columns: minmax(0, .98fr) minmax(300px, .62fr);
@@ -845,6 +901,10 @@
       linear-gradient(135deg, rgba(255,255,255,.92), rgba(241,248,255,.84)),
       var(--paper-strong);
     box-shadow: inset 0 1px 0 rgba(255,255,255,.86);
+  }
+
+  .overview-grid .system-visual {
+    display: none;
   }
 
   .system-visual svg {
@@ -1125,6 +1185,14 @@
     filter: saturate(.96) contrast(1.04);
   }
 
+  .split-wide {
+    grid-template-columns: 1fr;
+  }
+
+  .split-wide .stack-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   details {
     background: var(--glass);
     border: 1px solid var(--line);
@@ -1251,6 +1319,9 @@
     .power-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+    .split-wide .stack-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
     .level-card {
       grid-template-columns: 72px minmax(0, 1fr);
       gap: 14px;
@@ -1325,6 +1396,9 @@
     .power-grid {
       grid-template-columns: 1fr;
     }
+    .split-wide .stack-grid {
+      grid-template-columns: 1fr;
+    }
     .system-visual { display: none; }
     .pyramid-step { grid-template-columns: 1fr; }
     .stage-tabs { grid-template-columns: 1fr; }
@@ -1337,14 +1411,27 @@
       padding: 8px;
     }
     .hero-image {
-      height: clamp(360px, 110vw, 430px);
-      min-height: 360px;
+      height: auto;
+      min-height: 0;
+      aspect-ratio: 16 / 9;
     }
-    .hero-image img { min-height: 360px; }
+    .hero-image img {
+      min-height: 0;
+      object-position: center 43%;
+    }
     .visual-caption { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .visual-caption span {
       padding: 10px 5px;
       font-size: 10.5px;
+    }
+    .pm-section-figure {
+      width: 100%;
+      margin-top: 14px;
+      border-radius: 12px;
+    }
+    .pm-section-figure figcaption {
+      padding: 9px 10px 10px;
+      font-size: 11px;
     }
     .level-card {
       grid-template-columns: 62px minmax(0, 1fr);
@@ -1494,26 +1581,9 @@
       </div>
       <div class="hero-visual glass" aria-label="AIコーディング講習のビジュアル">
         <div class="hero-image">
-          <img src="./img/hero-ai-hub-studio.png" alt="AI相談と制作、受講資料を整理するスタジオイメージ">
-          <div class="line-dock" aria-hidden="true">
-            <svg viewBox="0 0 320 190" fill="none">
-              <rect x="10" y="12" width="88" height="54" rx="8" stroke="#8bdcff" stroke-width="2"/>
-              <rect x="118" y="12" width="88" height="54" rx="8" stroke="#c8ff5f" stroke-width="2"/>
-              <rect x="222" y="12" width="88" height="54" rx="8" stroke="#ffb3a8" stroke-width="2"/>
-              <path class="draw-line" d="M98 39H118M206 39H222" stroke="#142033" stroke-width="2"/>
-              <text x="27" y="45" fill="#142033" font-size="14">相談</text>
-              <text x="135" y="45" fill="#142033" font-size="14">実装</text>
-              <text x="239" y="45" fill="#142033" font-size="14">確認</text>
-              <path class="draw-line" d="M54 66C54 120 266 120 266 66" stroke="#8bdcff" stroke-width="2"/>
-              <circle cx="54" cy="126" r="22" stroke="#c8ff5f" stroke-width="2"/>
-              <circle cx="160" cy="140" r="26" stroke="#8bdcff" stroke-width="2"/>
-              <circle cx="266" cy="126" r="22" stroke="#ffb3a8" stroke-width="2"/>
-              <path d="M78 126H134M186 140H242" stroke="#435169" stroke-opacity=".72" stroke-width="2"/>
-              <text x="36" y="131" fill="#142033" font-size="12">Git</text>
-              <text x="141" y="145" fill="#142033" font-size="12">Browser</text>
-              <text x="249" y="131" fill="#142033" font-size="12">Deploy</text>
-            </svg>
-          </div>
+          <img src="./img/course-path-coding.webp"
+               alt="AIが変更したコードを人が確認し、安全にWebサイトを公開するAIコーディング講習"
+               width="1448" height="1086" fetchpriority="high" decoding="async">
         </div>
         <div class="visual-caption">
           <span>AIに任せる</span>
@@ -1524,10 +1594,10 @@
     </div>
 
     <div class="quick-grid" aria-label="この資料を読む順序">
-      <a class="quick-card glass" href="#pm-real-pro"><b>1. 全体像（00）</b><span>「AIで作る」と「仕事で使える」の違いを知る。</span></a>
-      <a class="quick-card glass" href="#pm-level-map"><b>2. 現在地（01〜03）</b><span>成長レベル、説明する力、道具の役割を順に見る。</span></a>
-      <a class="quick-card glass" href="#part-1"><b>3. 学び方（04〜06）</b><span>5段階の学び方、基本の言葉、作って確認する流れを知る。</span></a>
-      <a class="quick-card glass" href="#part-4"><b>4. 仕事で使う（07〜10）</b><span>安全な公開、仕事への応用、公式情報、演習へ進む。</span></a>
+      <a class="quick-card glass" href="#pm-real-pro"><b>1. 全体像をつかむ</b><span>AIに任せる範囲と、人が確かめる範囲を分けます。</span></a>
+      <a class="quick-card glass" href="#pm-level-map"><b>2. 自分の現在地を知る</b><span>成長レベル、説明する力、道具の役割を確認します。</span></a>
+      <a class="quick-card glass" href="#part-1"><b>3. 小さく作って公開する</b><span>基本の言葉、AIへの頼み方、安全な公開を順に学びます。</span></a>
+      <a class="quick-card glass" href="#sec-cms"><b>4. 仕事と演習へ広げる</b><span>Web・資料・発信・事務へ応用し、4つの演習で定着させます。</span></a>
     </div>
   </div>
 </header>
@@ -1539,6 +1609,12 @@
         <div>
           <span class="section-label">00 / 最初の考え方</span>
           <h2>「AIで作れた」と「仕事で使える」は別です</h2>
+          <figure class="pm-section-figure">
+            <img src="./img/ai-coding-00-work-ready.webp"
+                 alt="AIが作った画面を、人が目的・変更・公開・安全・運用の順に確認する図"
+                 width="1200" height="800" loading="lazy" decoding="async">
+            <figcaption>AIは作る。人は、目的・変更・公開・安全・運用を確かめます。</figcaption>
+          </figure>
           <p><b>知ること:</b> AIは制作を速くしますが、目的を決めたり、間違いに気づいたり、公開後の責任を取ったりはできません。だから人が確認できる範囲を少しずつ広げます。</p>
         </div>
         <a class="btn" href="#pm-level-map">次: 自分の現在地へ</a>
@@ -1580,6 +1656,12 @@
         <div>
           <span class="section-label">01 / 成長レベル</span>
           <h2>エンジニアのレベルは、使うツールではなく任せられる範囲で見る</h2>
+          <figure class="pm-section-figure">
+            <img src="./img/ai-coding-01-level-map.webp"
+                 alt="小さなAI成果物から事業設計まで、任せられる範囲が段階的に広がる図"
+                 width="1200" height="800" loading="lazy" decoding="async">
+            <figcaption>できることを一段ずつ増やし、任せられる範囲を広げます。</figcaption>
+          </figure>
           <p><b>知ること:</b> 同じAIツールを使っていても、任せられる仕事の広さは違います。目標となるレベル5から、入口のレベル0へ逆順に並べました。まず全体像を見てから、今の自分に近い位置まで下りてください。</p>
         </div>
         <a class="btn" href="#pm-pro-check">次: 説明チェックへ</a>
@@ -1669,6 +1751,12 @@
         <div>
           <span class="section-label">02 / 説明チェック</span>
           <h2>作ったものを、相手が判断できる言葉で説明する</h2>
+          <figure class="pm-section-figure">
+            <img src="./img/ai-coding-02-explain.webp"
+                 alt="事業者と制作者が、選定理由・安全・費用・復旧などを一緒に確認する図"
+                 width="1200" height="800" loading="lazy" decoding="async">
+            <figcaption>相手が判断できるよう、理由・安全・費用・復旧まで説明します。</figcaption>
+          </figure>
           <p><b>知ること:</b> 技術名をたくさん言えることより、「なぜ必要か」「問題が起きたらどうするか」を利用者や事業者に説明できることが大切です。</p>
         </div>
         <a class="btn" href="#pm-modern-ai">次: 道具の役割へ</a>
@@ -1728,6 +1816,12 @@
         <div>
           <span class="section-label">03 / 道具の役割</span>
           <h2>4つの道具を、相談・制作・記録・確認で使い分ける</h2>
+          <figure class="pm-section-figure">
+            <img src="./img/ai-coding-03-tools.webp"
+                 alt="相談、AIコーディング、変更履歴、ブラウザ確認の4つの役割をつなぐ図"
+                 width="1200" height="800" loading="lazy" decoding="async">
+            <figcaption>相談・制作・記録・確認を、役割の違う道具でつなぎます。</figcaption>
+          </figure>
           <p><b>知ること:</b> AIコーディングとは、AIにコードを書かせるだけではありません。相談する場所、ファイルを変える場所、変更を記録する場所、完成画面を見る場所を分けます。</p>
         </div>
         <a class="btn" href="#part-1">次: 学ぶ5段階へ</a>
@@ -1793,6 +1887,12 @@
         <div>
           <span class="section-label">04 / 学ぶ5段階</span>
           <h2>入口から応用まで、1段階ずつ進める</h2>
+          <figure class="pm-section-figure">
+            <img src="./img/ai-coding-04-learning-path.webp"
+                 alt="目的を決め、必要な言葉を知り、AIで作り、確認し、仕事へ広げる5段階の図"
+                 width="1200" height="800" loading="lazy" decoding="async">
+            <figcaption>目的を決め、必要な言葉を知り、小さく作り、確かめ、仕事へ広げます。</figcaption>
+          </figure>
           <p><b>知ること:</b> ここでの5段階は、この資料を学ぶ順番です。前のLevel 0〜5は仕事で任せられる範囲なので、別のものとして見ます。「作業場所を知る → 言葉を知る → 小さく作る → 公開する → 仕事へ広げる」の順に進みます。</p>
         </div>
         <a class="btn" href="#part-2">次: 基本の言葉へ</a>
@@ -1869,12 +1969,18 @@
         <div>
           <span class="section-label">05 / 基本の言葉</span>
           <h2>まず「内容・見た目・動き・データ・履歴・設定」を分ける</h2>
+          <figure class="pm-section-figure">
+            <img src="./img/ai-coding-05-components.webp"
+                 alt="1つのWebページを内容、見た目、動き、データ、履歴、設定に分けて考える図"
+                 width="1200" height="800" loading="lazy" decoding="async">
+            <figcaption>Webページは、内容・見た目・動き・データ・履歴・設定に分けて考えます。</figcaption>
+          </figure>
           <p><b>知ること:</b> コードを全部手書きできなくても大丈夫です。AIが何を変えたか判断するために、6つの役割だけ先に覚えます。</p>
         </div>
         <a class="btn" href="#part-3">次: 作って確認へ</a>
       </div>
 
-      <div class="split">
+      <div class="split split-wide">
         <div class="stack-grid">
           <article class="stack-card glass"><span class="tag">内容</span><h3>HTML</h3><p>ページの骨組みです。見出し、文章、リンク、画像、フォームを置きます。例: 「紹介カードを1枚追加する」。</p></article>
           <article class="stack-card glass"><span class="tag">見た目</span><h3>CSS</h3><p>色、文字サイズ、余白、並び方、スマホ表示を決めます。例: 「ボタンを青くし、指で押しやすくする」。</p></article>
@@ -1883,9 +1989,6 @@
           <article class="stack-card glass"><span class="tag">履歴</span><h3>Git</h3><p>いつ、何を変えたか記録する仕組みです。diff（差分）で変更前後を比べ、問題があれば前の版へ戻します。</p></article>
           <article class="stack-card glass"><span class="tag">設定</span><h3>Markdown / YAML</h3><p>Markdownは見出し付き文章、YAMLは項目を並べる設定形式です。教材やカード一覧を人にもAIにも読みやすくします。</p></article>
         </div>
-        <figure class="line-image glass">
-          <img src="./img/hero-ai-lesson-line.png" alt="AI講習の線画スタイルイメージ">
-        </figure>
       </div>
       <div class="plain-note" style="margin-top:14px;"><b>確認:</b> 「文章を変えるならHTML」「色ならCSS」「クリック後の動きならJavaScript」と言い分けられるか試してください。</div>
     </div>
@@ -1897,6 +2000,12 @@
         <div>
           <span class="section-label">06 / 作って確認</span>
           <h2>AIへの依頼は「場所・変更・条件・確認」の4点で伝える</h2>
+          <figure class="pm-section-figure">
+            <img src="./img/ai-coding-06-request-loop.webp"
+                 alt="場所・変更・条件・確認をAIへ伝え、差分と画面を見ながら直す循環の図"
+                 width="1200" height="800" loading="lazy" decoding="async">
+            <figcaption>場所・変更・条件・確認を伝え、差分と画面を見ながら直します。</figcaption>
+          </figure>
           <p><b>知ること:</b> 「いい感じに直して」では、必要以上の場所が変わることがあります。頼み方と確認方法を先に決めると、初心者でも変更を管理しやすくなります。</p>
         </div>
         <a class="btn" href="#part-4">次: 安全な公開へ</a>
@@ -1926,6 +2035,12 @@
         <div>
           <span class="section-label">07 / 安全に公開</span>
           <h2>公開は「本番で見る・秘密を守る・戻し方を持つ」まで</h2>
+          <figure class="pm-section-figure">
+            <img src="./img/ai-coding-07-safe-publish.webp"
+                 alt="手元、確認用、本番の順に進み、秘密を守り問題時に前の版へ戻す図"
+                 width="1200" height="800" loading="lazy" decoding="async">
+            <figcaption>手元から確認用、本番の順に進み、秘密と戻し方を守ります。</figcaption>
+          </figure>
           <p><b>知ること:</b> push（変更を共有先へ送ること）だけでは公開完了ではありません。本番URLで見て、利用者が使えることを確認して初めて完了です。</p>
         </div>
         <a class="btn" href="#sec-cms">次: 仕事への応用へ</a>
@@ -1952,6 +2067,12 @@
         <div>
           <span class="section-label">08 / 仕事への応用</span>
           <h2>Web、資料、発信、事務作業でも進め方は同じ</h2>
+          <figure class="pm-section-figure">
+            <img src="./img/ai-coding-08-work-applications.webp"
+                 alt="AIと人の共通作業をWeb、資料、発信、事務へ展開する図"
+                 width="1200" height="800" loading="lazy" decoding="async">
+            <figcaption>同じ進め方を、Web・資料・発信・事務へ展開できます。</figcaption>
+          </figure>
           <p><b>知ること:</b> 「目的を決める → 材料を整理する → AIに初稿を頼む → 人が確認する → 公開後に直す」という流れは、コード以外にも使えます。</p>
         </div>
         <a class="btn" href="#sec-ccode">次: 公式情報の見方へ</a>
@@ -1973,6 +2094,12 @@
         <div>
           <span class="section-label">09 / 公式情報</span>
           <h2>必要な人だけ、Codexの公式情報を確認する</h2>
+          <figure class="pm-section-figure">
+            <img src="./img/ai-coding-09-official-info.webp"
+                 alt="公式発表、公式資料、更新履歴から必要な情報だけを実践用ノートへ整理する図"
+                 width="1200" height="800" loading="lazy" decoding="async">
+            <figcaption>必要な時だけ、公式発表・公式資料・更新履歴を確認します。</figcaption>
+          </figure>
           <p>ここからは参考資料です。初心者は読み飛ばして演習へ進めます。詳しく調べたいときは、情報のまとめ記事ではなくOpenAIの公式発表を開きます。</p>
         </div>
         <a class="btn" href="#sec-line">演習へ</a>
@@ -2009,6 +2136,12 @@
         <div>
           <span class="section-label">10 / 4つの演習</span>
           <h2>だんだん作れるようになる総合演習</h2>
+          <figure class="pm-section-figure">
+            <img src="./img/ai-coding-10-exercises.webp"
+                 alt="プロフィールページ、受講資料、問い合わせフォーム、公開レビューへ進む4つの演習の図"
+                 width="1200" height="800" loading="lazy" decoding="async">
+            <figcaption>小さな成果物から、公開とレビューまで段階的に練習します。</figcaption>
+          </figure>
           <p>1回で全部を作るのではなく、4つの演習を小さく積み上げます。演習カードはいつでも見られ、詳しい講習メモだけを下で折りたたんで確認できます。</p>
         </div>
         <a class="btn" href="#top">先頭へ戻る</a>

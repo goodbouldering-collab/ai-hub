@@ -11657,23 +11657,6 @@ def _render_live_talk_guide() -> str:
     )
 
 
-def _render_salon_run_strip() -> str:
-    """毎週火曜21時の1時間を、短い4セルの進行表で案内する。"""
-    items = [
-        ("21:00", "UPDATE", "今週の変化"),
-        ("21:05", "FILTER", "使えるか判断"),
-        ("21:15", "PRACTICE", "仕事で実践"),
-        ("21:40", "NEXT", "次の一歩"),
-    ]
-    cells = "".join(
-        "<div class='salon-run-cell' role='listitem'>"
-        f"<time>{html.escape(time)}</time><small>{html.escape(label)}</small><strong>{html.escape(title)}</strong>"
-        "</div>"
-        for time, label, title in items
-    )
-    return f"<div class='salon-run-strip' role='list' aria-label='毎週火曜の進行'>{cells}</div>"
-
-
 def _render_footer(today: str) -> str:
     """リッチフッター: 屋号+一言 / ナビ / NAP(ローカルSEOの住所明示) / CTA。"""
     year = today[:4]
@@ -13772,6 +13755,13 @@ footer.site-footer {
   align-items:center;
   border-top:1px solid rgba(83,103,217,.15);
 }
+.salon-register-row--solo {
+  grid-template-columns:1fr;
+}
+.salon-register-row--solo .salon-register-form {
+  max-width:560px;
+  margin-inline:auto;
+}
 .salon-register-row .salon-note {
   max-width:none;
   margin:0;
@@ -14258,9 +14248,7 @@ def _render_focused_main() -> str:
         "</div></div>",
         "<div class='salon-facts' aria-label='開催情報'><div class='salon-fact'><small>WHEN</small><strong>火曜21:00</strong></div><div class='salon-fact'><small>PLACE</small><strong>LINEライブ</strong></div><div class='salon-fact'><small>FEE</small><strong>月2,200円</strong></div><div class='salon-fact'><small>STYLE</small><strong>聞くだけOK</strong></div></div>",
         _render_live_talk_guide(),
-        "<div class='salon-session-head'><small>60 MINUTES</small><h3>火曜21時の流れ</h3></div>",
-        _render_salon_run_strip(),
-        "<div class='salon-register-row'><p class='salon-note'><strong>参加できない週も安心。</strong>終了後は、講師確認済みの「火曜AIノート」で重要な変化と次の一歩を共有します。</p>",
+        "<div class='salon-register-row salon-register-row--solo'>",
         f"<form class='salon-register-form' method='post' action='{html.escape(AI_SALON_CHECKOUT_URL, quote=True)}'><button class='focus-btn primary' type='submit'>Squareで決済して参加 →</button><small>月額2,200円（税込）・毎月自動更新。決済確認後にLINE参加案内を表示します</small></form></div></div></section>",
         "<section class='focus-block soft' id='lectures'><div class='focus-section-head'><small>LEARNING MATERIALS</small><h2>受講資料</h2></div>",
         "<p class='focus-section-lead'>公開中の受講資料をすべて表示しています。迷ったら「AIが初めて」から順に選べます。</p>",

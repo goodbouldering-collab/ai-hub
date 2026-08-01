@@ -1,4 +1,4 @@
-<!doctype html><html lang='ja'><head><meta charset='utf-8'><link rel='icon' type='image/svg+xml' href='/favicon-20260725.svg'><link rel='icon' type='image/png' sizes='32x32' href='/favicon-20260725-32x32.png'><link rel='icon' type='image/png' sizes='16x16' href='/favicon-20260725-16x16.png'><link rel='shortcut icon' href='/favicon-20260725.ico'><link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon-20260725.png'><link rel='manifest' href='/site-20260725.webmanifest'><link rel='mask-icon' href='/favicon-20260725.svg' color='#5367D9'><meta name='application-name' content='AI相談'><meta name='apple-mobile-web-app-title' content='AI相談'><meta name='apple-mobile-web-app-capable' content='yes'><meta name='mobile-web-app-capable' content='yes'><meta name='theme-color' content='#172033'><meta name='viewport' content='width=device-width,initial-scale=1'><title>ブログ | AI相談</title><meta name='description' content='AI相談のブログ一覧。Codex、Claude Code、AIエージェント講座、生成AI活用、業務改善の実践記録。'><link rel='canonical' href='https://ai-hub-jp.vercel.app/blog/index.html'><meta property='og:title' content='ブログ'><meta property='og:description' content='AI相談のブログ一覧。Codex、Claude Code、AIエージェント講座、生成AI活用、業務改善の実践記録。'><meta property='og:url' content='https://ai-hub-jp.vercel.app/blog/index.html'><meta property='og:type' content='website'><meta property='og:site_name' content='AI相談'><meta name='twitter:card' content='summary'><script type='application/ld+json'>{"@context": "https://schema.org", "@type": "WebSite", "name": "AI相談", "url": "https://ai-hub-jp.vercel.app", "description": "AI情報とSNSアルゴリズム動向を毎朝要約して届ける静的サイト"}</script><style>
+<!doctype html><html lang='ja'><head><meta charset='utf-8'><link rel='icon' type='image/svg+xml' href='/favicon-20260725.svg'><link rel='icon' type='image/png' sizes='32x32' href='/favicon-20260725-32x32.png'><link rel='icon' type='image/png' sizes='16x16' href='/favicon-20260725-16x16.png'><link rel='shortcut icon' href='/favicon-20260725.ico'><link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon-20260725.png'><link rel='manifest' href='/site-20260725.webmanifest'><link rel='mask-icon' href='/favicon-20260725.svg' color='#5367D9'><meta name='application-name' content='AI相談'><meta name='apple-mobile-web-app-title' content='AI相談'><meta name='apple-mobile-web-app-capable' content='yes'><meta name='mobile-web-app-capable' content='yes'><meta name='theme-color' content='#172033'><meta name='viewport' content='width=device-width,initial-scale=1'><title>「個人情報はAIに一切入力禁止」は正しい？ ChatGPT・Copilot・Codexを止めずに守る7つの境界線 | AI相談</title><meta name='description' content='個人情報をAIへ入れた瞬間に一般公開や情報漏えいになるわけではありません。一方で、顧客DB、認証情報、本番環境をAIへ無条件に渡してよいわけでもありません。ChatGPT、Copilot、Codexを製品名で判断せず、データ、契約、保存、接続、権限の境界で安全に使い分ける方法を解説します。'><link rel='canonical' href='https://ai-hub-jp.vercel.app/blog/2026-08-01-ai-personal-data-boundary.html'><meta property='og:title' content='「個人情報はAIに一切入力禁止」は正しい？ ChatGPT・Copilot・Codexを止めずに守る7つの境界線'><meta property='og:description' content='個人情報をAIへ入れた瞬間に一般公開や情報漏えいになるわけではありません。一方で、顧客DB、認証情報、本番環境をAIへ無条件に渡してよいわけでもありません。ChatGPT、Copilot、Codexを製品名で判断せず、データ、契約、保存、接続、権限の境界で安全に使い分ける方法を解説します。'><meta property='og:url' content='https://ai-hub-jp.vercel.app/blog/2026-08-01-ai-personal-data-boundary.html'><meta property='og:type' content='article'><meta property='og:site_name' content='AI相談'><meta property='og:image' content='https://ai-hub-jp.vercel.app/img/blog-ai-data-boundary-hero-20260801.webp'><meta name='twitter:card' content='summary_large_image'><script type='application/ld+json'>{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "「個人情報はAIに一切入力禁止」は正しい？ ChatGPT・Copilot・Codexを止めずに守る7つの境界線", "datePublished": "2026-08-01", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://ai-hub-jp.vercel.app/blog/2026-08-01-ai-personal-data-boundary.html"}, "author": {"@type": "Person", "name": "由井 辰美"}, "publisher": {"@type": "Organization", "name": "AI相談", "url": "https://ai-hub-jp.vercel.app"}, "description": "個人情報をAIへ入れた瞬間に一般公開や情報漏えいになるわけではありません。一方で、顧客DB、認証情報、本番環境をAIへ無条件に渡してよいわけでもありません。ChatGPT、Copilot、Codexを製品名で判断せず、データ、契約、保存、接続、権限の境界で安全に使い分ける方法を解説します。", "speakable": {"@type": "SpeakableSpecification", "cssSelector": ["h1", ".content-wrap p:first-of-type"]}, "image": "https://ai-hub-jp.vercel.app/img/blog-ai-data-boundary-hero-20260801.webp"}</script><style>
 :root {
   --bg-base:#f8fafc;
   --bg-white:#ffffff;
@@ -11302,7 +11302,236 @@ header.site-header .site-nav a.nav-link.nav-essential.nav-current[href]:focus-vi
   }
 })();
 </script>
-<header class='site-header scrolled' id='site-header' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html' aria-label='AI相談 彦根 トップへ'><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span></span></a><nav class='site-nav' aria-label='メインナビ'><a class='nav-link nav-essential' href='/'>ホーム</a><a class='nav-link nav-essential' href='/lectures/2026-04-ai-kihon.html'>AIエージェント講習</a><a class='nav-link nav-essential' href='/#all-works'>実績</a><a class='nav-link nav-essential nav-current' href='/blog/index.html' aria-current='page'>ブログ</a><a class='nav-link nav-essential' href='/#lectures'>資料</a><a class='nav-link nav-essential' href='/#faq'>FAQ</a><a class='nav-cta' href='/#contact'>個別相談</a><a class='nav-link nav-essential nav-salon' href='/#seven-day-courses'>サロン</a></nav><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' type='button' aria-label='メニューを開く' aria-controls='mobile-nav' aria-expanded='false'><span class='mobile-toggle-icon' aria-hidden='true'><span></span><span></span><span></span></span><span class='mobile-toggle-text'>メニュー</span></button></div><div class='mobile-nav generated-mobile-nav' id='mobile-nav' aria-hidden='true'><div class='mobile-nav-panel mobile-nav-panel--public'><div class='mobile-nav-head'><div class='mobile-nav-heading'><small>PUBLIC MENU</small><strong>メニュー</strong></div></div><nav class='mobile-public-links' aria-label='公開ページメニュー'><a href='/'><span>ホーム</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/lectures/2026-04-ai-kihon.html'><span>AIエージェント講習</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#all-works'><span>実績</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/blog/index.html'><span>ブログ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#lectures'><span>資料</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#faq'><span>FAQ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a class='mobile-public-link--cta' href='/#contact'><span>個別相談</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#seven-day-courses'><span>AIオンラインサロン</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a></nav><div class='mobile-nav-admin'><span class='mobile-nav-label'>管理</span><a class='mobile-admin-link' href='/admin'><span class='mobile-admin-link-copy'><strong>管理ページ</strong><small>運営者ログイン</small></span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a></div></div></div></header><script>(function(){var b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav'),x=b?b.querySelector('.mobile-toggle-text'):null,m=window.matchMedia('(min-width: 901px)');function setMobile(o){if(!n||!b)return;if(!o&&(n.contains(document.activeElement)||document.activeElement===b)){var f=m.matches?document.querySelector('.site-logo'):b;if(f)f.focus({preventScroll:true});}n.classList.toggle('open',o);n.setAttribute('aria-hidden',o?'false':'true');b.setAttribute('aria-expanded',o?'true':'false');b.setAttribute('aria-label',o?'メニューを閉じる':'メニューを開く');if(x)x.textContent=o?'閉じる':'メニュー';document.body.classList.toggle('mobile-menu-open',o);}function closeMobile(){setMobile(false);}function closeMobileAtDesktop(e){if(e.matches)closeMobile();}if(b&&n){b.addEventListener('click',function(e){e.stopPropagation();setMobile(!n.classList.contains('open'));});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMobile);});n.addEventListener('click',function(e){if(e.target===n)closeMobile();});}if(m.addEventListener)m.addEventListener('change',closeMobileAtDesktop);else if(m.addListener)m.addListener(closeMobileAtDesktop);document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeMobile();return;}if(e.key!=='Tab'||!n||!n.classList.contains('open'))return;var a=[b].concat(Array.prototype.slice.call(n.querySelectorAll('a[href]'))),f=a[0],l=a[a.length-1];if(e.shiftKey&&document.activeElement===f){e.preventDefault();l.focus();}else if(!e.shiftKey&&document.activeElement===l){e.preventDefault();f.focus();}});})();</script><main id='main-content'><header><h1>ブログ</h1></header><div class='content-wrap'><div class='tr-section'><p>AI相談のブログです。AIエージェント講座・制作・業務改善の現場から、実際に使える視点を残していきます。</p><div class='tr-grid'><a class='tr-card' href='./2026-08-01-ai-personal-data-boundary.html'><span class='tr-card-media'><img src='/img/blog-ai-data-boundary-hero-20260801.webp' alt='過剰な全面禁止と管理されたAI活用の間で、データの流れと権限を確認する職員' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title'>「個人情報はAIに一切入力禁止」は正しい？ ChatGPT・Copilot・Codexを止めずに守る7つの境界線</div><div class='tr-date'>2026-08-01</div><div class='tr-sum'>個人情報をAIへ入れた瞬間に一般公開や情報漏えいになるわけではありません。一方で、顧客DB、認証情報、本番環境をAIへ無条件に渡してよいわけでもありません。ChatGPT、Copilot、Codexを製品名で判断せず、データ、契約、保存、接続、権限の境界で安全に使い分ける方法を解説します。</div></div></a><a class='tr-card' href='./2026-07-31-chat-work-codex-usage-guide.html'><span class='tr-card-media'><img src='/img/blog-codex-story-hero-20260731.jpg' alt='朝の事務所で締切時計を見ながらChat・Work・Codexの使い分けを考える地域事業者' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title'>朝8時45分、告知はまだ白紙。Codex「1回5〜45クレジット」をムダにしないAIの使い分け</div><div class='tr-date'>2026-07-31</div><div class='tr-sum'>昼までに地域交流会の告知を完成させたい架空の物語から、Codexの使用量を数字で解説。同じ10万入力＋1万出力でもLuna 4、Terra 10、Sol 20クレジットになる理由と、Chat・Work・Codexの使い分けを紹介します。</div></div></a><a class='tr-card' href='./2026-07-27-codex-remote-ssh-rdp.html'><span class='tr-card-media'><img src='/img/blog-codex-remote-hero-20260727.png' alt='外出先から自宅PCのCodexを安全に動かす方法｜Remote SSH・Remote・RDPの使い分け' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title'>外出先から自宅PCのCodexを安全に動かす方法｜Remote SSH・Remote・RDPの使い分け</div><div class='tr-date'>2026-07-27</div><div class='tr-sum'>外出先のノートPCから自宅の高性能PCにあるCodex開発環境を使うために、Remote SSH・Codex Remote・Windowsリモートデスクトップの違い、設定手順、つながらないときの確認順を公式情報に基づいて整理します。</div></div></a><a class='tr-card' href='./2026-07-25-sites-vs-vercel-safe-migration.html'><span class='tr-card-media'><img src='/img/blog-sites-vs-vercel-hero-20260725.webp' alt='ChatGPT SitesとVercelの公開方法を比べ、GitHubを残した安全な移行経路を選ぶイメージ' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title'>ChatGPT SitesとVercel、どちらを選ぶ？GitHubを残す安全な移行ガイド</div><div class='tr-date'>2026-07-25</div><div class='tr-sum'>ChatGPT SitesとVercelの違いを、料金、GitHub、データベース、引継ぎ、独自ドメインからやさしく比較。Sitesだけで使う手順と、GitHubを原本に残す手順を分けて説明します。</div></div></a><a class='tr-card' href='./2026-07-24-codex-worktree-git-deploy-guide.html'><span class='tr-card-media'><img src='/img/blog-codex-guide-roles-explainer-v2-20260725.webp' alt='Codexで安全に直して公開する：Worktree・Git・PRの役割' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title'>Codexで安全に直して公開する：Worktree・Git・PRの役割</div><div class='tr-date'>2026-07-24</div><div class='tr-sum'>Codexでサイトを直して公開するまでを、作業場所・記録・確認・公開の4段階に分けてやさしく説明します。</div></div></a><a class='tr-card' href='./2026-07-22-ai-site-publishing-stages.html'><span class='tr-card-media'><img src='/img/blog-ai-site-publishing-hero-20260722.png' alt='AIで作ったサイトの公開先としてCodex Sites、VercelとSupabase、Cloudflareを比較するスライド' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title'>AIで作ったサイトはどこにアップする？初心者向け「とりあえず公開・仮稼働・本番稼働」の違い</div><div class='tr-date'>2026-07-22</div><div class='tr-sum'>AIで作ったページをCodex Sites、Vercel＋Supabase、Cloudflareのどこへ公開すべきかを、性能・使いやすさ・将来性と「とりあえず公開・仮稼働・本番稼働」の違いからやさしく整理します。</div></div></a><a class='tr-card' href='./2026-07-14-ai-agent-course-codex-claude-code.html'><span class='tr-card-media'><img src='/img/blog-ai-agent-course-hero-20260714.webp' alt='AIエージェント講座で音声から要望を伝え、人が実行結果を確認して仕事に残す流れ' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title'>AIエージェント講座を彦根で始めました｜Codex・Claude Codeを「答えるAI」から「実行する相棒」へ</div><div class='tr-date'>2026-07-14</div><div class='tr-sum'>彦根・滋賀の地域事業者、学校、福祉施設、個人事業主、若い挑戦者に向けて、CodexとClaude Codeを同じ「AIエージェント」として学び、仕事の分解、依頼、実行、確認、修正、再利用まで身につける新講座を詳しく紹介します。</div></div></a><a class='tr-card' href='./2026-06-29-ai-consult-hikone-practical-ai-course.html'><span class='tr-card-media'><img src='/media/ai-consult-hikone-20260629/ai-consult-hikone-poster.png' alt='AI相談 彦根の実践AI講座：2時間から6時間で、AIを仕事に入れる理由' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title'>AI相談 彦根の実践AI講座：2時間から6時間で、AIを仕事に入れる理由</div><div class='tr-date'>2026-06-29</div><div class='tr-sum'>彦根・滋賀の地域事業者、学校、福祉、個人事業主に向けて、なぜAI講座を行うのか、CodexやAIエージェントの考え方をどう事業に入れるのか、低コストで成果物を残す講座設計を整理します。</div></div></a><a class='tr-card' href='./2026-06-20-business-system-development-priority.html'><span class='tr-card-media'><img src='/img/blog-business-system-priority-section-01-foundation-20260620.jpg' alt='業務システム開発の優先順位：EC・AI活用で先に固めるべき8項目' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title'>業務システム開発の優先順位：EC・AI活用で先に固めるべき8項目</div><div class='tr-date'>2026-06-20</div><div class='tr-sum'>Facebook投稿「私の優先順位」をもとに、ECや業務システム開発でデータ設計、認証、クラウド設計、CI/CD、コスト最適化、IaC、マイクロサービス、Kubernetesをどう並べるべきかを整理しました。</div></div></a><a class='tr-card' href='./2026-06-18-real-engineer-ai-era.html'><span class='tr-card-media'><img src='/img/blog-real-engineer-ai-era-20260618.jpg' alt='AI時代、本物のエンジニアとは？作れる人より説明できる人が残る' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title'>AI時代、本物のエンジニアとは？作れる人より説明できる人が残る</div><div class='tr-date'>2026-06-18</div><div class='tr-sum'>AIにECサイトやアプリを作らせられる時代に、仕事として評価されるのは「なぜそう作ったのか」「どう守るのか」を説明できる力です。</div></div></a><a class='tr-card' href='./2026-06-18-cloud-ai-agent-rag-design.html'><span class='tr-card-media'><img src='/img/blog-rag-daily-agent-20260618.svg' alt='クラウドAIエージェント時代のRAG設計' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title'>クラウドAIエージェント時代のRAG設計</div><div class='tr-date'>2026-06-18</div><div class='tr-sum'>AIに資料を入れるだけではなく、どの情報をどの順番で見てもらうかを設計する。プロから初心者まで、RAGを仕事で使うための考え方を整理する。</div></div></a><a class='tr-card' href='./2026-06-18-ai-agent-output-curation.html'><span class='tr-card-media'><img src='/img/blog-ai-agent-output-section-1-20260618.svg' alt='AI時代、やる気がなくても成果物は増える。だから最後に勝つのは編集できる人' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title'>AI時代、やる気がなくても成果物は増える。だから最後に勝つのは編集できる人</div><div class='tr-date'>2026-06-18</div><div class='tr-sum'>Facebook投稿「AI時代、やる気がなくても成果物は増える」をもとに、AIエージェントが成果物を量産する時代に人間が担う編集、選別、目的設計の価値を整理する。</div></div></a><a class='tr-card' href='./2026-06-17-codex-ai-world.html'><span class='tr-card-media'><img src='/img/blog-codex-ai-world-hero-20260617.png' alt='Codexが開いた、AI活動の最前線' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title'>Codexが開いた、AI活動の最前線</div><div class='tr-date'>2026-06-17</div><div class='tr-sum'>AIハブ初のブログ。Codexを、IDE、Claude Code、画像生成、モバイル音声、プラグイン連携まで含めたAI活動の統合UIとして分析する。</div></div></a></div></div></div></main><footer>AI相談 / 由井 辰美</footer><button class='back-to-top' id='backTop' aria-label='トップへ戻る'>↑</button><script>(function(){var b=document.getElementById('backTop');if(!b)return;window.addEventListener('scroll',function(){b.classList.toggle('show',window.scrollY>400);});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script><script>
+<header class='site-header scrolled' id='site-header' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html' aria-label='AI相談 彦根 トップへ'><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span></span></a><nav class='site-nav' aria-label='メインナビ'><a class='nav-link nav-essential' href='/'>ホーム</a><a class='nav-link nav-essential' href='/lectures/2026-04-ai-kihon.html'>AIエージェント講習</a><a class='nav-link nav-essential' href='/#all-works'>実績</a><a class='nav-link nav-essential nav-current' href='/blog/index.html' aria-current='page'>ブログ</a><a class='nav-link nav-essential' href='/#lectures'>資料</a><a class='nav-link nav-essential' href='/#faq'>FAQ</a><a class='nav-cta' href='/#contact'>個別相談</a><a class='nav-link nav-essential nav-salon' href='/#seven-day-courses'>サロン</a></nav><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' type='button' aria-label='メニューを開く' aria-controls='mobile-nav' aria-expanded='false'><span class='mobile-toggle-icon' aria-hidden='true'><span></span><span></span><span></span></span><span class='mobile-toggle-text'>メニュー</span></button></div><div class='mobile-nav generated-mobile-nav' id='mobile-nav' aria-hidden='true'><div class='mobile-nav-panel mobile-nav-panel--public'><div class='mobile-nav-head'><div class='mobile-nav-heading'><small>PUBLIC MENU</small><strong>メニュー</strong></div></div><nav class='mobile-public-links' aria-label='公開ページメニュー'><a href='/'><span>ホーム</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/lectures/2026-04-ai-kihon.html'><span>AIエージェント講習</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#all-works'><span>実績</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/blog/index.html'><span>ブログ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#lectures'><span>資料</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#faq'><span>FAQ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a class='mobile-public-link--cta' href='/#contact'><span>個別相談</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#seven-day-courses'><span>AIオンラインサロン</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a></nav><div class='mobile-nav-admin'><span class='mobile-nav-label'>管理</span><a class='mobile-admin-link' href='/admin'><span class='mobile-admin-link-copy'><strong>管理ページ</strong><small>運営者ログイン</small></span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a></div></div></div></header><script>(function(){var b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav'),x=b?b.querySelector('.mobile-toggle-text'):null,m=window.matchMedia('(min-width: 901px)');function setMobile(o){if(!n||!b)return;if(!o&&(n.contains(document.activeElement)||document.activeElement===b)){var f=m.matches?document.querySelector('.site-logo'):b;if(f)f.focus({preventScroll:true});}n.classList.toggle('open',o);n.setAttribute('aria-hidden',o?'false':'true');b.setAttribute('aria-expanded',o?'true':'false');b.setAttribute('aria-label',o?'メニューを閉じる':'メニューを開く');if(x)x.textContent=o?'閉じる':'メニュー';document.body.classList.toggle('mobile-menu-open',o);}function closeMobile(){setMobile(false);}function closeMobileAtDesktop(e){if(e.matches)closeMobile();}if(b&&n){b.addEventListener('click',function(e){e.stopPropagation();setMobile(!n.classList.contains('open'));});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMobile);});n.addEventListener('click',function(e){if(e.target===n)closeMobile();});}if(m.addEventListener)m.addEventListener('change',closeMobileAtDesktop);else if(m.addListener)m.addListener(closeMobileAtDesktop);document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeMobile();return;}if(e.key!=='Tab'||!n||!n.classList.contains('open'))return;var a=[b].concat(Array.prototype.slice.call(n.querySelectorAll('a[href]'))),f=a[0],l=a[a.length-1];if(e.shiftKey&&document.activeElement===f){e.preventDefault();l.focus();}else if(!e.shiftKey&&document.activeElement===l){e.preventDefault();f.focus();}});})();</script><main id='main-content'><header><h1>「個人情報はAIに一切入力禁止」は正しい？ ChatGPT・Copilot・Codexを止めずに守る7つの境界線</h1><div class='speaker-meta'><span class='role'>ブログ / AI活用・情報セキュリティ</span><span>📅 2026-08-01</span><span>由井辰美 / AI相談</span></div></header><div class='content-wrap'><div class='content-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#個人情報はaiに一切入力禁止-には正しい部分と過剰な部分がある'>「個人情報はAIに一切入力禁止」には正しい部分と過剰な部分がある</a></li><li><a href='#aiへの入力は直ちに一般公開や漏えいではなく-送信先と利用条件で評価が変わる'>AIへの入力は直ちに一般公開や漏えいではなく、送信先と利用条件で評価が変わる</a></li><li><a href='#コード生成・自社db保存・本番db接続・顧客db送信は別のリスクである'>コード生成・自社DB保存・本番DB接続・顧客DB送信は別のリスクである</a></li><li><a href='#企業は全面禁止ではなく-データ分類と利用条件でai活用を管理できる'>企業は全面禁止ではなく、データ分類と利用条件でAI活用を管理できる</a></li></ol></div><style>
+.ai-data-guide{--ad-blue:#285f78;--ad-navy:#173042;--ad-teal:#1e8c83;--ad-orange:#e4834a;--ad-red:#c84b4b;--ad-ink:#17232c;--ad-soft:#53646e;--ad-line:#d8e3e7;color:var(--ad-ink)}
+.ai-data-guide *{box-sizing:border-box}
+.ai-data-guide p,.ai-data-guide li{line-height:1.9}
+.ai-data-guide h2{margin-top:3rem;line-height:1.45}
+.ai-data-guide h3{margin-top:2.1rem}
+.ai-data-guide .guide-figure{width:min(100%,1100px);margin:1rem auto 2rem}
+.ai-data-guide .guide-figure img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border:1px solid var(--ad-line);border-radius:18px;background:#f4f8f9;box-shadow:0 14px 36px rgba(23,48,66,.12)}
+.ai-data-guide .guide-figure figcaption{margin:.7rem auto 0;color:var(--ad-soft);font-size:.9rem;line-height:1.65;text-align:center}
+.ai-data-guide .guide-hero{margin-top:0}
+.ai-data-guide .story{margin:1.3rem 0 1.8rem;padding:1.2rem 1.35rem;border-left:6px solid var(--ad-orange);border-radius:12px;background:#fff8ef}
+.ai-data-guide .answer{margin:1.4rem 0 2rem;padding:1.25rem 1.4rem;border-radius:15px;background:#eaf6f5}
+.ai-data-guide .answer strong{display:block;margin-bottom:.45rem;color:var(--ad-navy);font-size:1.18rem}
+.ai-data-guide .quick-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.85rem;margin:1.4rem 0 2rem}
+.ai-data-guide .quick-card{padding:1rem 1.1rem;border:1px solid var(--ad-line);border-radius:14px;background:#fff}
+.ai-data-guide .quick-card b{display:block;margin-bottom:.35rem;color:var(--ad-blue)}
+.ai-data-guide .quick-card.is-stop{border-top:5px solid var(--ad-red)}
+.ai-data-guide .quick-card.is-go{border-top:5px solid var(--ad-teal)}
+.ai-data-guide .simple-table{display:block;width:100%;margin:1.2rem 0 2rem;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.ai-data-guide table{min-width:740px}
+.ai-data-guide th{white-space:nowrap}
+.ai-data-guide .boundary-list{counter-reset:boundary;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem;padding:0;list-style:none}
+.ai-data-guide .boundary-list li{position:relative;padding:1rem 1rem 1rem 3.1rem;border:1px solid var(--ad-line);border-radius:13px;background:#fff}
+.ai-data-guide .boundary-list li:before{counter-increment:boundary;content:counter(boundary);position:absolute;left:1rem;top:1rem;width:1.55rem;height:1.55rem;border-radius:50%;background:var(--ad-blue);color:#fff;font-weight:800;line-height:1.55rem;text-align:center}
+.ai-data-guide .levels{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.7rem;margin:1.3rem 0 2rem}
+.ai-data-guide .level{padding:1rem;border-radius:14px;color:#17232c}
+.ai-data-guide .level b{display:block;margin-bottom:.4rem;font-size:1.08rem}
+.ai-data-guide .green{background:#e5f6ec;border:1px solid #9bd4ae}.ai-data-guide .yellow{background:#fff7cf;border:1px solid #e7ce6c}.ai-data-guide .orange{background:#fff0e3;border:1px solid #e7ad79}.ai-data-guide .red{background:#fdeaea;border:1px solid #df9b9b}
+.ai-data-guide .checklist{margin:1.3rem 0 2rem;padding:1.2rem 1.35rem;border-radius:15px;background:#f0f5f7}
+.ai-data-guide .checklist li{margin:.35rem 0}
+.ai-data-guide .warning{margin:1.3rem 0 1.8rem;padding:1.15rem 1.3rem;border:1px solid #ecc7c7;border-radius:14px;background:#fff4f4}
+.ai-data-guide .cta{margin:2.5rem 0 1rem;padding:1.4rem;border-radius:16px;background:var(--ad-navy);color:#fff}
+.ai-data-guide .cta p{color:#e6f0f4}.ai-data-guide .cta a{display:inline-block;margin-top:.35rem;padding:.75rem 1rem;border-radius:999px;background:#fff;color:var(--ad-navy);font-weight:800;text-decoration:none}
+.ai-data-guide .note{color:var(--ad-soft);font-size:.9rem}
+@media(max-width:800px){.ai-data-guide .levels{grid-template-columns:repeat(2,minmax(0,1fr))}.ai-data-guide .boundary-list{grid-template-columns:1fr}.ai-data-guide .guide-figure img{border-radius:12px}}
+@media(max-width:540px){.ai-data-guide .quick-grid,.ai-data-guide .levels{grid-template-columns:1fr}.ai-data-guide .story,.ai-data-guide .answer,.ai-data-guide .checklist,.ai-data-guide .warning,.ai-data-guide .cta{padding:1rem}}
+</style>
+
+<div class="ai-data-guide">
+<figure class="guide-figure guide-hero">
+  <img src="/img/blog-ai-data-boundary-hero-20260801.webp" alt="過剰な全面禁止と管理されたAI活用の間で、データの流れと権限を確認する職員" loading="eager" decoding="async">
+  <figcaption>安全は「AIだから禁止」「有名製品だから安全」では決まりません。データの種類、契約、保存、接続先、権限を一つずつ確認することで決まります。</figcaption>
+</figure>
+<p>「お客様の名前が一文字でも入っていたら、AIは一切禁止です。ただし、Windowsに最初から入っているCopilotなら使って構いません」</p>
+<p>ある地域企業の会議で、こんなルールが決まったとします。問い合わせ50件の傾向をまとめたい若手職員は、氏名を消して会社契約のAIへ渡すことも止められ、数時間かけて手作業を選びました。別の職員は締切に間に合わず、管理されていない個人アカウントを自宅で使いました。</p>
+<p>その一方で、開発担当者は「会社公認のAIだから大丈夫」と、本番データベースの接続情報と書き込み権限をAIエージェントへ渡していました。</p>
+<div class="story">
+※これは特定企業の実話ではなく、複数の相談で起こり得る問題を組み合わせた架空の場面です。大事なのは、氏名を除いた問い合わせ要約と、本番DBを自由に操作できるエージェントを、同じ「AI利用」として扱っている点です。
+</div>
+<p>この記事の結論は、<strong>個人情報をAIへ入力しただけで、直ちにインターネットへ一般公開されたり、必ず「情報漏えい」になったりするわけではない</strong>、です。しかし、だから何を入れてもよい、という意味でもありません。入力は外部サービスへの送信になり得ます。利用目的、契約、学習利用、保存、接続先、操作権限によっては、法令・契約・社内規程違反や実際の漏えいにつながります。</p>
+<div class="answer">
+<strong>本当に必要なのは、全面禁止ではなく「境界線」です。</strong>
+AIの製品名ではなく、①何を、②どの契約の環境へ、③何の目的で、④どれだけ保存し、⑤どこへ接続し、⑥何を実行できる状態で渡すのかを確認します。
+</div>
+<div class="quick-grid">
+<div class="quick-card is-stop"><b>誤解1</b>AIへ入力した瞬間、世界中に公開される。</div>
+<div class="quick-card is-go"><b>実際</b>通常は一般公開ではない。ただし外部送信、保存、事業者側の利用は評価が必要。</div>
+<div class="quick-card is-stop"><b>誤解2</b>学習に使われなければ、保存も人の閲覧も一切ない。</div>
+<div class="quick-card is-go"><b>実際</b>学習、サービス保持、不正利用監視、監査ログは別々の条件。</div>
+<div class="quick-card is-stop"><b>誤解3</b>WindowsのCopilotなら無条件で会社利用に安全。</div>
+<div class="quick-card is-go"><b>実際</b>個人向けか、Entra IDで保護された会社向け環境かで条件が違う。</div>
+<div class="quick-card is-stop"><b>誤解4</b>AIが作ったコードで顧客情報をDB保存すると、必ずAI会社へ漏れる。</div>
+<div class="quick-card is-go"><b>実際</b>生成時と実行時は別。実行時の送信先、ログ、権限、脆弱性を調べる。</div>
+</div>
+<h2 id='個人情報はaiに一切入力禁止-には正しい部分と過剰な部分がある'>「個人情報はAIに一切入力禁止」には正しい部分と過剰な部分がある</h2>
+<figure class="guide-figure">
+  <img src="/img/blog-ai-data-boundary-rule-20260801.webp" alt="全面禁止で止まる経路と、確認・承認を通して安全にAIを使う経路の比較" loading="lazy" decoding="async">
+  <figcaption>守るべき対象を決めずに全員を止めると、危険な利用と有用な利用の違いが見えなくなります。</figcaption>
+</figure>
+<p>一律禁止には、正しい出発点があります。無料の個人アカウントへ顧客名簿を貼り付けたり、認証情報をチャットへ書いたりしてよいはずがありません。医療・福祉・教育相談の記録、マイナンバー、決済情報、大量の顧客DB、未公開の契約や技術情報は、失敗したときの影響が大きいデータです。利用サービスと管理方法が決まっていない段階で止めるのは妥当です。</p>
+<p>問題は、<strong>「個人情報」という一語で、危険度の違う行為を全部同じにすること</strong>です。</p>
+<ul>
+<li>公開済みのイベント案内を読みやすくする</li>
+<li>氏名と連絡先を除いた20件の問い合わせから傾向を出す</li>
+<li>会社契約の環境で、権限を限定して社内文書を検索する</li>
+<li>無料の個人アカウントへ顧客名簿を丸ごと貼る</li>
+<li>AIエージェントへ本番DBの管理者権限を渡す</li>
+</ul>
+<p>これらは同じ「AIへの入力」ではありません。全て禁止にすると、最初の三つまで失います。一方で「会社公認のAIなら全部よい」とすると、最後の二つを見逃します。</p>
+<p>日本の個人情報保護委員会も、生成AIへの個人データ入力を一律に「即漏えい」とは説明していません。事業者が本人同意なく個人データを入力する場合、提供者がそのデータを機械学習に利用しないことなどを十分確認するよう注意を促しています。つまり問われるのは、<strong>利用目的と提供先での取扱い</strong>です。<a href="https://www.ppc.go.jp/news/careful_information/230602_AI_utilize_alert/">個人情報保護委員会の注意喚起</a>を、単なる「AI禁止のお知らせ」と読むのは正確ではありません。</p>
+<p>また、禁止だけで業務上の必要が消えるわけではありません。2024年のMicrosoftの世界調査では、職場でAIを使う人の78%が自分で用意したAIツールを持ち込んでいると回答しました。2026年のGartner Japanも、単純な禁止・遮断より、利用の可視化、評価、承認、統制を勧めています。これらはベンダー調査であり、全面禁止が必ず事故を増やすという因果関係の証明ではありません。ただ、<strong>見えない利用を管理するには「禁止」の一語では足りない</strong>ことを示しています。<a href="https://www.microsoft.com/en-us/worklab/work-trend-index/ai-at-work-is-here-now-comes-the-hard-part">Microsoft Work Trend Index</a>、<a href="https://www.gartner.co.jp/ja/newsroom/press-releases/pr-20260618-aibs-shadow-ai">Gartner Japan</a></p>
+<h2 id='aiへの入力は直ちに一般公開や漏えいではなく-送信先と利用条件で評価が変わる'>AIへの入力は直ちに一般公開や漏えいではなく、送信先と利用条件で評価が変わる</h2>
+<figure class="guide-figure">
+  <img src="/img/blog-ai-data-boundary-flow-20260801.webp" alt="データがAIへ届くまでに七つの確認ゲートを通る流れ" loading="lazy" decoding="async">
+  <figcaption>「入力したか」だけでなく、送信の前後にある7つの境界を見ると判断が具体的になります。</figcaption>
+</figure>
+<p>まず、似ている言葉を分けます。</p>
+<ul>
+<li><strong>一般公開</strong>: 不特定多数が見られる状態にすること</li>
+<li><strong>外部送信</strong>: 組織の端末や管理領域から外の事業者へデータを送ること</li>
+<li><strong>第三者提供・委託</strong>: 個人情報保護法上の要件に沿って個別に判断する概念</li>
+<li><strong>漏えい等</strong>: 本来アクセスできない相手に個人データが渡る、失われる、壊されるなどの事象</li>
+</ul>
+<p>クラウドAIへの入力は通常、一般公開ボタンを押すことではありません。しかし外部送信になり得ます。契約や目的によっては、第三者提供か委託か、外国での取扱いはどうかという確認も必要です。そして設定ミス、誤共有、攻撃、障害があれば実際の漏えいへ進む可能性があります。</p>
+<p>安全性は、次の7つの境界で見ます。</p>
+<ol class="boundary-list">
+<li><strong>目的と権限</strong><br>本人への説明や社内の利用目的の範囲か。入力する担当者に権限があるか。</li>
+<li><strong>データの質と量</strong><br>氏名だけか、病歴・相談内容・決済情報か。1件か、全顧客か。特定できない形に減らせるか。</li>
+<li><strong>アカウントと契約</strong><br>個人向け無料版か、会社が審査・契約・管理する環境か。委託条件やデータ処理契約はあるか。</li>
+<li><strong>学習と再利用</strong><br>入力がモデル訓練やサービス改善に使われるか。既定値とオプトアウトは何か。</li>
+<li><strong>保存と人のアクセス</strong><br>履歴、監視ログ、監査ログ、削除までの期間はどうか。管理者や委託先がアクセスし得るか。</li>
+<li><strong>接続先</strong><br>検索、プラグイン、MCP、クラウドストレージなど、別事業者へデータが渡る機能を使うか。</li>
+<li><strong>実行できる操作</strong><br>回答するだけか。メール送信、ファイル公開、DB更新、削除まで自動実行できるか。</li>
+</ol>
+<p>たとえばOpenAIは、ChatGPT Business、Enterprise、Edu、APIの業務データを既定でモデル訓練に使わないと説明しています。しかし、これは「何も保存されない」「接続した外部サービスも同じ条件」「誤設定が起きない」という意味ではありません。APIには通常、不正利用監視のためのログ保持があり、適格な利用者向けにZero Data Retention等の別条件があります。コネクター先には、そのサービス独自の保持・権限・監査があります。<a href="https://learn.chatgpt.com/docs/enterprise/work-admin-faq#how-does-chatgpt-work-support-enterprise-privacy-and-data-commitments">OpenAIの企業向けプライバシー説明</a>、<a href="https://developers.openai.com/api/docs/guides/your-data">OpenAI APIのデータ管理</a>、<a href="https://learn.chatgpt.com/docs/enterprise/apps-and-connectors#understand-data-flow-and-security">アプリとコネクターのデータフロー</a></p>
+<p>Microsoftも同じです。WindowsのCopilotアプリには個人向け利用があります。一方、組織のEntra IDで利用するMicrosoft 365 Copilot Chatには、企業向けデータ保護があります。後者は基盤モデルの訓練にプロンプトや回答を使わない一方、監査やeDiscoveryのために記録が保持される場合があります。さらにSharePointやOneDriveの既存権限を尊重するため、もともとの過剰共有はAIにも見える範囲を広げます。<strong>「Windowsに入っているから安全」ではなく、サインイン中のアカウント、契約、管理設定、既存権限を見る</strong>のが正解です。<a href="https://learn.microsoft.com/en-us/windows/client-management/manage-windows-copilot">WindowsでのCopilot管理</a>、<a href="https://learn.microsoft.com/en-ca/copilot/privacy-and-protections">Microsoft 365 Copilotのプライバシー</a>、<a href="https://learn.microsoft.com/en-us/microsoft-365/copilot/security-microsoft-365-copilot">Microsoft 365 Copilotのセキュリティ</a></p>
+<p>なお、一般公開でなくても事故は起こります。OpenAIは2023年、障害により一部ユーザーのチャットタイトルなどが別ユーザーに表示された事例を公表しています。サービス提供者の対策は重要ですが、ゼロリスクではありません。入力を最小化する理由はここにもあります。<a href="https://openai.com/index/march-20-chatgpt-outage/">OpenAIの障害報告</a></p>
+<h2 id='コード生成・自社db保存・本番db接続・顧客db送信は別のリスクである'>コード生成・自社DB保存・本番DB接続・顧客DB送信は別のリスクである</h2>
+<figure class="guide-figure">
+  <img src="/img/blog-ai-data-boundary-database-20260801.webp" alt="コード生成、自社DB保存、機密リポジトリ送信、本番DB接続の四つの経路" loading="lazy" decoding="async">
+  <figcaption>コードを作る場面と、完成したシステムが動く場面を分けると、AI固有のリスクと通常のシステムリスクを整理できます。</figcaption>
+</figure>
+<p>ここは、AIチャット以上に誤解されやすい部分です。</p>
+<p><strong>AIにコードを書かせたこと</strong>と、<strong>完成したプログラムが顧客情報を処理すること</strong>は別です。AIがダミーデータを使って予約システムのコードを書き、そのシステムが実行時に会社の承認済みDBへ顧客情報を保存するだけなら、顧客情報が自動的にAI提供者へ送られるわけではありません。問題は、生成コードに脆弱性がないか、不要なログを残していないか、外部APIや解析サービスへ送信していないか、DBのアクセス制御が正しいかです。これはAI固有の問題というより、通常のシステム開発でも必要な確認です。</p>
+<p>一方、Codexのようなエージェントへ本番DBの接続情報を渡し、ネットワーク接続と読書き・削除権限まで与えると、危険度は急に上がります。誤った指示、悪意あるWebページやREADMEに仕込まれたプロンプトインジェクション、生成したコマンドの誤りによって、データの持ち出し・変更・削除が起こり得るからです。</p>
+<div class="simple-table">
+<table>
+<thead>
+<tr>
+<th>場面</th>
+<th>AI提供者が実データを見るか</th>
+<th>主な危険</th>
+<th>基本判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>スキーマとダミーデータだけでコード生成</td>
+<td>原則見ない。送ったスキーマ自体は見る</td>
+<td>機密構造の露出、脆弱な生成コード</td>
+<td><strong>低〜中</strong>。機密名を減らし、レビューとテスト</td>
+</tr>
+<tr>
+<td>AI生成アプリが実行時に自社の承認済みDBへ保存</td>
+<td>AI機能へ別送信しない限り見ない</td>
+<td>認証不備、SQL注入、ログ、バックアップ、外部解析</td>
+<td><strong>通常のシステムリスク</strong>。設計・実装・運用を監査</td>
+</tr>
+<tr>
+<td><code>.env</code>、顧客ログ、DBダンプを含むリポジトリをクラウドAIへ送信</td>
+<td>見る可能性が高い</td>
+<td>秘密鍵・個人データの外部送信、保持</td>
+<td><strong>高</strong>。送らない。秘密を除去し鍵を失効・再発行</td>
+</tr>
+<tr>
+<td>AIエージェントが本番DBを直接読書き</td>
+<td>処理経路と設定次第</td>
+<td>過剰取得、誤更新、削除、持ち出し</td>
+<td><strong>高〜重大</strong>。原則分離、読取専用、行・列制限、人の承認</td>
+</tr>
+<tr>
+<td>顧客DB全体を外部AI APIへ送って分類</td>
+<td>明確に見る</td>
+<td>大量外部送信、契約・目的・保持・国外処理</td>
+<td><strong>重大</strong>。専用設計、法務・セキュリティ審査、最小化</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>OWASPは、AIエージェントの「過剰な代理権限」を主要リスクとして挙げ、必要な機能・権限・自律性を最小化し、影響の大きい操作は人が承認するよう勧めています。英国NCSCの安全なAI開発指針も、外部API、機密データ、最小権限、プロンプトインジェクションを設計段階から扱うよう求めています。<a href="https://genai.owasp.org/llmrisk/llm062025-excessive-agency/">OWASP Excessive Agency</a>、<a href="https://www.ncsc.gov.uk/collection/guidelines-secure-ai-system-development/guidelines/secure-design">NCSC Secure design</a></p>
+<p>Codexなどでは、作業フォルダだけ書き込み可、ネットワークは既定で遮断、範囲外操作は承認を求める、といったサンドボックスが防波堤になります。ただし、利用形態や設定で条件は変わります。<strong>「ローカルで動かしたから安全」でも「クラウドだから危険」でもなく、モデルへ渡る文脈、ファイル範囲、ネットワーク、秘密情報、実行権限を確認</strong>してください。</p>
+<p>過去にはSamsungの従業員が機密ソースコード等をChatGPTへ入力したと報じられました。これは「別ユーザーがそのコードを検索できた」と確認された事件ではなく、許可されていない外部サービスへ機密を送ったこと自体が問題になった事例です。ここでも、一般公開と無断外部送信を混同しないことが重要です。<a href="https://news.bloomberglaw.com/tech-and-telecom-law/samsung-bans-staffs-ai-use-after-spotting-chatgpt-data-leak-2">Bloomberg Lawの報道</a></p>
+<h2 id='企業は全面禁止ではなく-データ分類と利用条件でai活用を管理できる'>企業は全面禁止ではなく、データ分類と利用条件でAI活用を管理できる</h2>
+<figure class="guide-figure">
+  <img src="/img/blog-ai-data-boundary-controls-20260801.webp" alt="地域企業、学校、福祉施設の職員が資料を四色に分類する様子" loading="lazy" decoding="async">
+  <figcaption>現場で続くルールは、法律用語の長文より「この色なら、どこまでできるか」を一目で判断できます。</figcaption>
+</figure>
+<p>100ページの規程を最初に作る必要はありません。まずは次の4色をA4一枚にしてください。</p>
+<div class="levels">
+<div class="level green"><b>緑：公開情報</b>公開済みWeb、チラシ、商品説明。承認済みAIで利用可。著作権と正確性は確認。</div>
+<div class="level yellow"><b>黄：社内・非識別情報</b>社内手順、氏名等を除いた問い合わせ。必要最小限にし、会社契約の環境だけで利用。</div>
+<div class="level orange"><b>橙：顧客・機密</b>氏名、連絡先、契約、未公開情報。目的、契約、学習、保持、管理者、接続先を確認し、承認制。</div>
+<div class="level red"><b>赤：制限情報</b>医療福祉、マイナンバー、認証情報、秘密鍵、全顧客DB。一般チャット禁止。専用設計と法務・安全審査。</div>
+</div>
+<p>「匿名化すれば大丈夫」と安易に考えるのも危険です。氏名を消しても、勤務先、希少な病気、日時、自由記述を組み合わせれば本人を推測できることがあります。仮名加工情報と匿名加工情報は法律上も同じではありません。まず、AIが答えるために不要な列・行・文章を削る<strong>データ最小化</strong>を行い、それでも必要な場合だけ承認済み環境を使います。<a href="https://www.ppc.go.jp/all_faq_index/faq1-q14-1/">個人情報保護委員会のFAQ</a></p>
+<h3>入力前90秒チェック</h3>
+<div class="checklist">
+<ol>
+<li>これは公開・社内・顧客機密・制限情報のどれか</li>
+<li>氏名、連絡先、自由記述、不要な行や列を消せないか</li>
+<li>個人アカウントではなく、会社が承認・管理するアカウントか</li>
+<li>学習利用、保存期間、削除、管理者アクセスを確認したか</li>
+<li>検索、プラグイン、MCP、ストレージなど別の接続先はないか</li>
+<li>AIは回答だけか、メール送信・公開・DB更新・削除までできるか</li>
+<li>失敗時に「誰が、何を、どこへ送ったか」を追えるか</li>
+</ol>
+</div>
+<h3>会社が最初に整える6項目</h3>
+<ol>
+<li><strong>承認済みアカウント一覧</strong>：製品名だけでなく、プラン、組織ID、管理者を記載</li>
+<li><strong>四色データ分類</strong>：具体例を自社業務の言葉で書く</li>
+<li><strong>最小権限</strong>：本番DB、メール、共有フォルダは読取専用から開始</li>
+<li><strong>人の承認</strong>：公開、送信、更新、削除、支払いは自動確定させない</li>
+<li><strong>ログと削除</strong>：誰が何を使ったか確認でき、不要データを消せる状態にする</li>
+<li><strong>相談・事故窓口</strong>：隠さず早く報告できる一つの連絡先を決める</li>
+</ol>
+<div class="warning">
+<strong>もし誤って入力したら</strong><br>
+まず利用を止め、サービス名、アカウント、日時、入力データ、共有先、履歴・保持設定を記録します。共有リンクやトークンを無効化し、社内のセキュリティ・法務・個人情報保護担当と提供者へ連絡します。証拠となる履歴を慌てて消す前に、調査に必要な記録を保全してください。個人情報保護委員会への報告・本人通知は、要配慮情報、財産被害、不正目的、件数などの法定類型を含め個別に判断します。「AIへ誤入力した全件が自動的に報告対象」とも、「学習オフだから何もしなくてよい」とも決めつけないでください。[漏えい等報告の案内](https://www.ppc.go.jp/news/kaiseihou_feature/roueitouhoukoku_gimuka/)
+</div>
+<p>セキュリティは、仕事を止めるための壁ではありません。守るべきものを見分け、安心して前へ進むためのガードレールです。</p>
+<p>「個人情報があるからAI禁止」から、<strong>「このデータを、この契約と権限なら、ここまで使える」</strong>へ。地域企業、学校、福祉施設のように人手と時間が限られる現場ほど、この切り替えでAIの価値と安全を両立できます。</p>
+<h3>よくある質問</h3>
+<p><strong>Q. 顧客の名前を1件入力しただけで、違法ですか？</strong></p>
+<p>入力だけで一律に違法とは決まりません。利用目的、本人同意の要否、委託・第三者提供の関係、提供者側の利用、契約、外国での取扱いなどで判断します。社内規程や顧客との契約違反になる場合もあります。迷う場合は入力せず、個人情報保護担当や専門家へ確認してください。</p>
+<p><strong>Q. ChatGPTの「学習に使わない」を選べば顧客情報を入れてよいですか？</strong></p>
+<p>それだけでは足りません。学習利用と保存、監視ログ、共有、コネクター、会社の承認は別です。まずデータを減らし、会社が契約・管理する環境を使います。</p>
+<p><strong>Q. Microsoft 365 Copilotなら顧客情報を扱えますか？</strong></p>
+<p>組織アカウントと企業向け保護は重要な条件ですが、何でも無条件に扱えるわけではありません。既存のSharePoint権限、保持、DLP、監査、接続機能、社内の利用目的を確認します。</p>
+<p><strong>Q. 顧客DBをAI分析したい場合は全面的に諦めるべきですか？</strong></p>
+<p>いいえ。まず集計・匿名化・仮名化・列削除で目的を達成できるか試します。実データが必要なら、専用API、保持制御、アクセス制御、処理契約、閉じたネットワークなどを設計し、法務・セキュリティ審査を通します。一般チャットへDB全体を貼る方法は選びません。</p>
+<div class="cta">
+<strong>AI相談では、現場の業務を見ながら「使えるAIルール」をA4一枚に整理します。</strong>
+<p>地域事業者、学校、福祉施設、個人事業主向けに、禁止事項だけでなく、問い合わせ要約、資料作成、コーディングなどをどの条件なら進められるかを一緒に決めます。</p>
+<a href="/#contact">AI活用と情報管理を相談する</a>
+</div>
+<h3>参考にした主な資料</h3>
+<ul>
+<li><a href="https://www.ppc.go.jp/news/careful_information/230602_AI_utilize_alert/">個人情報保護委員会: 生成AIサービスの利用に関する注意喚起等</a></li>
+<li><a href="https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/20260331_report.html">経済産業省: AI事業者ガイドライン第1.2版</a></li>
+<li><a href="https://learn.chatgpt.com/docs/enterprise/work-admin-faq#how-does-chatgpt-work-support-enterprise-privacy-and-data-commitments">OpenAI: Enterprise privacy and data commitments</a></li>
+<li><a href="https://developers.openai.com/api/docs/guides/your-data">OpenAI API: Your data</a></li>
+<li><a href="https://learn.microsoft.com/en-ca/copilot/privacy-and-protections">Microsoft: Privacy and protections in Microsoft 365 Copilot</a></li>
+<li><a href="https://learn.microsoft.com/en-us/microsoft-365/copilot/security-microsoft-365-copilot">Microsoft: Data, Privacy, and Security for Microsoft 365 Copilot</a></li>
+<li><a href="https://genai.owasp.org/llmrisk/llm062025-excessive-agency/">OWASP: Excessive Agency</a></li>
+<li><a href="https://www.ncsc.gov.uk/collection/guidelines-secure-ai-system-development/introduction">NCSC: Guidelines for secure AI system development</a></li>
+<li><a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf">NIST: Generative AI Profile</a></li>
+</ul>
+<p class="note">この記事は2026年8月1日時点の公開情報を基にした一般的な解説で、個別案件の法的助言ではありません。法令上の用語と日常語は範囲が異なります。製品仕様、保持期間、管理機能、法令・ガイドラインは変わるため、導入時点の契約と公式文書を確認してください。</p>
+</div></div></main><footer>AI相談 / 由井 辰美</footer><button class='back-to-top' id='backTop' aria-label='トップへ戻る'>↑</button><script>(function(){var b=document.getElementById('backTop');if(!b)return;window.addEventListener('scroll',function(){b.classList.toggle('show',window.scrollY>400);});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script><script>
 (function(){
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var sel = '.tr-card, .pf-card, .profile-stat, .profile-tech-card, .sns-card, article, .content-toc, .tr-section, .profile-tl-item, .profile-app-card, .profile-biz-card';

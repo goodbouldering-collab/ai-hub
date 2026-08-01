@@ -26,8 +26,12 @@ class RenderedSalonTest(unittest.TestCase):
             self.html,
             re.DOTALL,
         )
-        self.assertEqual(len(cards), 4)
-        self.assertFalse(any(">AIオンラインサロン</h3>" in card for card in cards))
+        self.assertEqual(len(cards), 5)
+        salon_cards = [card for card in cards if ">AIオンラインサロン</h3>" in card]
+        self.assertEqual(len(salon_cards), 1)
+        self.assertIn("href='#seven-day-courses'", salon_cards[0])
+        self.assertIn("class='course-menu-unified'", self.html)
+        self.assertIn("aria-label='講習・相談の全5メニュー'", self.html)
         self.assertEqual(self.html.count("id='seven-day-courses'"), 1)
         salon_start = self.html.index("id='seven-day-courses'")
         salon_end = self.html.index("</section>", salon_start)

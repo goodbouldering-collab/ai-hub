@@ -11547,6 +11547,21 @@ def _render_compact_course_cards() -> str:
                 ("参加方法", "予約ページから日時を選び、WindowsまたはMacのPCと、作りたいものや直したいページをお持ちください。"),
             ],
         },
+        {
+            "cat": "月額サロン",
+            "title": "AIオンラインサロン",
+            "image": "/img/blog-ai-agent-course-section-4-20260714.webp",
+            "image_alt": "毎週火曜にLINEライブトークでAIの今と次の一手を整理するオンラインサロン",
+            "price": "月額2,200円",
+            "duration": "毎週火曜21時",
+            "desc": "AIの新機能と活用事例を60分で整理し、今週やることを決めます。聞くだけでも参加できます。",
+            "url": "#seven-day-courses",
+            "cta": "サロンの全内容を見る",
+            "material_url": "/lectures/2026-07-ai-online-salon-practice.html",
+            "material_cta": "オンラインサロン受講資料を見る",
+            "badge": "毎週ライブ",
+            "salon": True,
+        },
     ]
     cards = []
     for item in items:
@@ -11560,7 +11575,8 @@ def _render_compact_course_cards() -> str:
             if material_url else ""
         )
         main_cls = " compact-course-card--main" if item.get("main") else ""
-        anchor_attr = ""
+        salon_cls = " compact-course-card--salon" if item.get("salon") else ""
+        anchor_attr = " id='salon-menu-card'" if item.get("salon") else ""
         recommended = str(item.get("recommended") or "")
         recommended_html = (
             f"<strong class='compact-course-recommend'>{html.escape(recommended)}</strong>"
@@ -11604,7 +11620,7 @@ def _render_compact_course_cards() -> str:
                 f"<a href='{html.escape(item['url'], quote=True)}'{target_attr}>{html.escape(item['cta'])} →</a>"
             )
         cards.append(
-            f"<article class='compact-course-card{main_cls}'{anchor_attr}>"
+            f"<article class='compact-course-card{main_cls}{salon_cls}'{anchor_attr}>"
             f"{recommended_html}"
             f"<small>{html.escape(item['cat'])}</small>"
             f"<img class='compact-course-visual' src='{html.escape(item['image'], quote=True)}' alt='{html.escape(item['image_alt'], quote=True)}' loading='lazy' decoding='async'>"
@@ -11665,7 +11681,7 @@ def _render_salon_menu() -> str:
     return (
         "<section class='salon-section salon-section--integrated' id='seven-day-courses' aria-labelledby='salon-title'>"
         "<div class='salon-panel'>"
-        "<div class='salon-eyebrow-row'><small>SQUARE MONTHLY</small>"
+        "<div class='salon-eyebrow-row'><small>MENU 05 · SQUARE MONTHLY</small>"
         "<span class='compact-course-badge'><i aria-hidden='true'></i>ライブトーク開催</span></div>"
         "<div class='salon-intro salon-intro--fused'>"
         "<figure class='salon-main-visual'><img src='/img/blog-ai-agent-course-section-4-20260714.webp' "
@@ -12886,16 +12902,17 @@ header.site-header:hover {
   padding:0 !important;
   display:grid;
   grid-template-columns:repeat(12,minmax(0,1fr));
+  align-items:start;
   gap:14px;
   text-align:left;
 }
 .compact-course-card {
   grid-column:span 2;
   min-width:0;
-  min-height:360px;
+  min-height:0;
   display:flex;
   flex-direction:column;
-  padding:18px;
+  padding:15px;
   background:rgba(255,255,255,.94);
   border:1px solid var(--focus-line);
   border-radius:16px;
@@ -12914,6 +12931,10 @@ header.site-header:hover {
   inset:0 0 auto;
   height:4px;
   background:var(--focus-blue);
+}
+.compact-course-card--salon {
+  background:linear-gradient(145deg,#f5f7ff 0%,#fff 74%);
+  border-color:rgba(83,103,217,.30);
 }
 .compact-course-recommend {
   align-self:flex-start;
@@ -12970,14 +12991,14 @@ header.site-header:hover {
 .compact-course-visual {
   display:block;
   width:100%;
-  height:104px;
-  margin:9px 0 11px;
+  height:90px;
+  margin:8px 0 9px;
   object-fit:cover;
   object-position:center;
   border-radius:10px;
   background:#eef1ff;
 }
-.compact-course-card:first-child .compact-course-visual { height:138px; }
+.compact-course-card:first-child .compact-course-visual { height:112px; }
 .compact-course-card h3 { margin:7px 0 8px; font-size:19px; line-height:1.3; letter-spacing:-.025em; }
 .compact-course-card .compact-course-title-row h3 {
   flex:1 1 auto;
@@ -12989,9 +13010,9 @@ header.site-header:hover {
 .compact-course-meta { display:flex; align-items:baseline; gap:8px; }
 .compact-course-meta strong { color:var(--focus-ink); font-size:18px; }
 .compact-course-meta span { color:var(--focus-muted); font-size:11px; font-weight:800; }
-.compact-course-card p { margin:9px 0 12px; color:var(--focus-muted); font-size:12px; line-height:1.55; }
+.compact-course-card p { margin:8px 0 9px; color:var(--focus-muted); font-size:12px; line-height:1.5; }
 .compact-course-details {
-  margin:0 0 14px;
+  margin:0 0 8px;
   color:var(--focus-ink);
   font-size:11px;
 }
@@ -13046,9 +13067,9 @@ header.site-header:hover {
 }
 .compact-course-details strong { color:var(--focus-ink); font-size:11px; }
 .compact-course-details span { color:var(--focus-muted); font-size:10.5px; line-height:1.45; }
-.compact-course-card > a { min-height:38px; display:flex; align-items:center; justify-content:center; margin-top:auto; padding:7px 10px; color:#fff; background:var(--focus-blue); border-radius:7px; font-size:12px; font-weight:900; text-align:center; text-decoration:none; }
+.compact-course-card > a { min-height:36px; display:flex; align-items:center; justify-content:center; margin-top:4px; padding:7px 10px; color:#fff; background:var(--focus-blue); border-radius:7px; font-size:12px; font-weight:900; text-align:center; text-decoration:none; }
 .compact-course-card > a:hover { background:var(--focus-blue-dark); }
-.compact-course-card > a.compact-course-material { min-height:auto; margin:10px 0 0; padding:0; color:var(--focus-blue); background:transparent; border-radius:0; font-size:11px; line-height:1.5; text-decoration:underline; text-underline-offset:3px; }
+.compact-course-card > a.compact-course-material { min-height:auto; margin:7px 0 0; padding:0; color:var(--focus-blue); background:transparent; border-radius:0; font-size:11px; line-height:1.5; text-decoration:underline; text-underline-offset:3px; }
 .compact-course-card > a.compact-course-material:hover { color:var(--focus-blue-dark); background:transparent; }
 .salon-section {
   position:relative;
@@ -13831,9 +13852,34 @@ footer.site-footer {
   color:var(--focus-muted);
   font-size:9.5px;
 }
-.main-course > .salon-section--integrated {
+.course-menu-unified {
   max-width:1400px;
-  margin:18px auto 0;
+  margin:0 auto;
+  padding:14px;
+  border:1px solid rgba(83,103,217,.18);
+  border-radius:22px;
+  background:linear-gradient(180deg,rgba(245,247,255,.92),rgba(255,255,255,.98));
+  box-shadow:0 18px 48px rgba(38,54,112,.07);
+}
+.course-menu-unified-head {
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:14px;
+  margin:0 2px 12px;
+}
+.course-menu-unified-head strong {
+  color:var(--focus-ink);
+  font-size:14px;
+}
+.course-menu-unified-head span {
+  color:var(--focus-muted);
+  font-size:11px;
+  font-weight:700;
+}
+.course-menu-unified > .salon-section--integrated {
+  max-width:none;
+  margin:14px auto 0;
   padding:0 !important;
   overflow:visible;
   border:0;
@@ -13959,6 +14005,30 @@ footer.site-footer {
 }
 .salon-benefit strong { color:var(--focus-ink); font-size:12px; }
 .salon-benefit span { color:var(--focus-muted); font-size:11px; line-height:1.55; }
+@media (max-width:1100px) {
+  .course-menu-unified { max-width:900px; }
+  .compact-course-grid {
+    max-width:none;
+    grid-template-columns:none;
+    grid-auto-flow:column;
+    grid-auto-columns:minmax(260px,38vw);
+    align-items:start;
+    gap:12px;
+    overflow-x:auto;
+    overscroll-behavior-inline:contain;
+    scroll-snap-type:x mandatory;
+    scrollbar-width:thin;
+    scrollbar-color:rgba(83,103,217,.45) transparent;
+    padding-bottom:10px !important;
+  }
+  .compact-course-card,
+  .compact-course-card:first-child {
+    grid-column:auto;
+    min-height:0;
+    scroll-snap-align:start;
+  }
+  .compact-course-card:first-child .compact-course-visual { height:100px; }
+}
 @media (max-width:1000px) {
   .salon-panel .salon-intro.salon-intro--fused {
     grid-template-columns:180px minmax(0,1fr);
@@ -13973,6 +14043,23 @@ footer.site-footer {
   }
 }
 @media (max-width:720px) {
+  .course-menu-unified {
+    margin:0;
+    padding:10px;
+    border-radius:18px;
+  }
+  .course-menu-unified-head {
+    align-items:flex-start;
+    flex-direction:column;
+    gap:3px;
+    margin:2px 2px 10px;
+  }
+  .compact-course-grid {
+    grid-template-columns:none;
+    grid-auto-flow:column;
+    grid-auto-columns:minmax(270px,86vw);
+    gap:10px;
+  }
   .salon-section {
     padding:22px 10px !important;
   }
@@ -14423,8 +14510,11 @@ def _render_focused_main() -> str:
     parts = [
         "<section class='focus-block main-course' id='packages'><div class='focus-section-head'><small>COURSES</small><h2>講習・相談コース</h2></div>",
         "<p class='focus-section-lead'><strong>迷ったら、まずはAIエージェント講習が一番基本でおすすめです。</strong><br>最新情報を追い続けず「今やること」を知りたい方は、月額2,200円のオンラインサロンへ。個別相談、伴走支援、AIコーディング講習も選べます。</p>",
+        "<div class='course-menu-unified' aria-label='講習・相談の全5メニュー'>",
+        "<div class='course-menu-unified-head'><strong>全5メニュー</strong><span>カードを選ぶと、予約・資料・詳しい内容を確認できます</span></div>",
         _render_compact_course_cards(),
         _render_salon_menu(),
+        "</div>",
         "<aside class='course-venue-common' aria-label='講習・相談コース共通の開催場所'>",
         "<img src='/img/gubboru-cafe-ai-course-painting.webp' alt='講習・相談の対面会場 グッぼるカフェの店内' loading='lazy' decoding='async'>",
         "<div><small>COMMON VENUE</small><h3>開催場所：グッぼるカフェ（彦根）</h3><p>対面は普段のPCと課題を持ち寄って実施します。オンライン受講・相談にも対応します。</p></div>",

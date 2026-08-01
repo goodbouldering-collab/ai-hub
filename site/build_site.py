@@ -2375,6 +2375,11 @@ ARTICLE_VIDEO_CSS = """
 
 ARTICLE_VIDEO_FULLSCREEN_JS = """<script>
 (() => {
+  const isMobileDevice = () =>
+    navigator.userAgentData?.mobile === true ||
+    /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+
   const enterFullscreen = (video) => {
     if (document.fullscreenElement || document.webkitFullscreenElement || video.webkitDisplayingFullscreen) return;
 
@@ -2395,10 +2400,13 @@ ARTICLE_VIDEO_FULLSCREEN_JS = """<script>
     }
   };
 
-  document.querySelectorAll('video[data-fullscreen-on-play="true"]').forEach((video) => {
+  document.querySelectorAll("video[data-fullscreen-on-play]").forEach((video) => {
     if (video.dataset.fullscreenBound === "true") return;
     video.dataset.fullscreenBound = "true";
-    video.addEventListener("play", () => enterFullscreen(video));
+    video.addEventListener("play", () => {
+      if (video.dataset.fullscreenOnPlay === "mobile" && !isMobileDevice()) return;
+      enterFullscreen(video);
+    });
   });
 })();
 </script>"""
@@ -3567,10 +3575,18 @@ def render_content_page(
         video_label = str(meta.get("video_label") or f"{title}の解説動画").strip()
         video_caption = str(meta.get("video_caption") or "").strip()
         video_orientation = str(meta.get("video_orientation") or "landscape").strip().lower()
-        video_fullscreen_on_play = bool(meta.get("video_fullscreen_on_play"))
+        video_fullscreen_value = meta.get("video_fullscreen_on_play")
+        if video_fullscreen_value is True:
+            video_fullscreen_mode = "always"
+        else:
+            video_fullscreen_mode = str(video_fullscreen_value or "").strip().lower()
+        if video_fullscreen_mode not in {"always", "mobile"}:
+            video_fullscreen_mode = ""
         video_class = "article-video article-video--portrait" if video_orientation == "portrait" else "article-video"
         poster_attr = f" poster='{html.escape(video_poster, quote=True)}'" if video_poster else ""
-        fullscreen_attr = " data-fullscreen-on-play='true'" if video_fullscreen_on_play else ""
+        fullscreen_attr = (
+            f" data-fullscreen-on-play='{video_fullscreen_mode}'" if video_fullscreen_mode else ""
+        )
         parts.append(f"<style>{ARTICLE_VIDEO_CSS}</style>")
         parts.append(
             f"<figure class='{video_class}'>"
@@ -3581,7 +3597,7 @@ def render_content_page(
             + (f"<figcaption>{html.escape(video_caption)}</figcaption>" if video_caption else "")
             + "</figure>"
         )
-        if video_fullscreen_on_play:
+        if video_fullscreen_mode:
             parts.append(ARTICLE_VIDEO_FULLSCREEN_JS)
     if kind == "blog" and meta.get("hero_image") and image_url:
         image_alt = html.escape(str(meta.get("image_alt") or title), quote=True)

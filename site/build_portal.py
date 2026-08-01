@@ -11535,32 +11535,6 @@ def _render_compact_course_cards() -> str:
                 ("参加方法", "予約ページから日時を選び、WindowsまたはMacのPCと、作りたいものや直したいページをお持ちください。"),
             ],
         },
-        {
-            "cat": "SQUARE MONTHLY",
-            "title": "AIオンラインサロン",
-            "image": "/img/blog-ai-agent-course-section-4-20260714.webp",
-            "image_alt": "毎週火曜にLINEライブトークでAIの今と次の一手を整理するオンラインサロン",
-            "price": "月額2,200円（税込）",
-            "duration": "毎週火曜 21:00",
-            "desc": "Squareで月額決済後、LINEライブトークの参加案内を表示します。仕事で次に試すことを一緒に決めます。聞くだけOK。",
-            "url": AI_SALON_CHECKOUT_URL,
-            "cta": "Squareで決済して参加",
-            "post": True,
-            "material_url": "#seven-day-courses",
-            "material_cta": "サロンの内容・参加方法を見る",
-            "badge": "ライブトーク開催",
-            "details_lead": "このサロンに参加するメリット",
-            "details": [
-                ("AI情報を全部追わなくていい", "増え続ける新機能や発表から、地域事業や日々の仕事に関係する変化だけを短く整理します。"),
-                ("今やる・待つを判断できる", "新しいから飛びつくのではなく、今すぐ試すもの、様子を見るもの、使わないものを実例で分けます。"),
-                ("実際の仕事で確かめられる", "参加者の告知、資料、事務、Web改善などを題材に、AIへの依頼、確認、修正まで画面を見ながら進めます。"),
-                ("ほかの人の事例も学びになる", "自分とは違う業種の困りごとや改善例から、自分の仕事へ応用できるヒントを持ち帰れます。"),
-                ("その場で質問できる", "一人で調べ続けず、分からない点や導入の迷いを質問し、次に試す小さな一歩を決められます。"),
-                ("忙しい週は聞くだけでOK", "LINEライブトークはマイクOFF、途中参加、途中退出に対応。発言したいときだけ挙手できます。"),
-                ("終了後も要点を見返せる", "講師が内容を確認した「火曜AIノート」で、重要点と次の行動を振り返れます。"),
-                ("参加方法", "Squareで月額2,200円を決済後、表示される招待URLからLINEへ進みます。毎週火曜21時の案内から参加できます。"),
-            ],
-        },
     ]
     cards = []
     for item in items:
@@ -11654,6 +11628,56 @@ def _render_live_talk_guide() -> str:
         "<div class='salon-live-guide-foot'><span>マイクOFF・途中参加・途中退出OK</span>"
         "<span>決済確認後にLINE参加案内を表示</span></div>"
         "</div></div>"
+    )
+
+
+def _render_salon_menu() -> str:
+    """上下に分かれていたサロン案内を、講習メニュー内の1パネルへ統合する。"""
+    benefits = [
+        ("AI情報を全部追わなくていい", "増え続ける新機能や発表から、地域事業や日々の仕事に関係する変化だけを短く整理します。"),
+        ("今やる・待つを判断できる", "新しいから飛びつくのではなく、今すぐ試すもの、様子を見るもの、使わないものを実例で分けます。"),
+        ("実際の仕事で確かめられる", "参加者の告知、資料、事務、Web改善などを題材に、AIへの依頼、確認、修正まで画面を見ながら進めます。"),
+        ("ほかの人の事例も学びになる", "自分とは違う業種の困りごとや改善例から、自分の仕事へ応用できるヒントを持ち帰れます。"),
+        ("その場で質問できる", "一人で調べ続けず、分からない点や導入の迷いを質問し、次に試す小さな一歩を決められます。"),
+        ("忙しい週は聞くだけでOK", "LINEライブトークはマイクOFF、途中参加、途中退出に対応。発言したいときだけ挙手できます。"),
+        ("終了後も要点を見返せる", "講師が内容を確認した「火曜AIノート」で、重要点と次の行動を振り返れます。"),
+        ("参加方法", "Squareで月額2,200円を決済後、表示される招待URLからLINEへ進みます。毎週火曜21時の案内から参加できます。"),
+    ]
+    benefit_rows = "".join(
+        "<li class='salon-benefit'>"
+        f"<strong>{html.escape(title)}</strong>"
+        f"<span>{html.escape(description)}</span>"
+        "</li>"
+        for title, description in benefits
+    )
+    return (
+        "<section class='salon-section salon-section--integrated' id='seven-day-courses' aria-labelledby='salon-title'>"
+        "<div class='salon-panel'>"
+        "<div class='salon-eyebrow-row'><small>SQUARE MONTHLY</small>"
+        "<span class='compact-course-badge'><i aria-hidden='true'></i>ライブトーク開催</span></div>"
+        "<div class='salon-intro salon-intro--fused'>"
+        "<figure class='salon-main-visual'><img src='/img/blog-ai-agent-course-section-4-20260714.webp' "
+        "alt='毎週火曜にLINEライブトークでAIの今と次の一手を整理するオンラインサロン' "
+        "loading='lazy' decoding='async'><figcaption>仕事で次に試すことを、一緒に決める60分</figcaption></figure>"
+        "<div class='salon-intro-copy'>"
+        "<span class='salon-intro-kicker'><i aria-hidden='true'></i>月額2,200円（税込）・毎週火曜21:00</span>"
+        "<h2 id='salon-title'>AIオンラインサロン</h2>"
+        "<p class='salon-intro-tagline'>AIの最新を、仕事の次の一手に。</p>"
+        "<p class='salon-intro-summary'>全部を追わず、新機能と一流の活用事例から、今試すことを短く整理します。</p>"
+        "<p class='salon-intro-description'>Squareで月額決済後、LINEライブトークの参加案内を表示します。仕事で次に試すことを一緒に決めます。聞くだけOK。</p></div>"
+        "<div class='salon-value-list' role='list' aria-label='サロンで得られること'>"
+        "<div class='salon-value' role='listitem'><b>01</b><div><small>UPDATE</small><strong>新機能を毎週知る</strong></div></div>"
+        "<div class='salon-value' role='listitem'><b>02</b><div><small>BEST PRACTICE</small><strong>一流の活用事例を聞く</strong></div></div>"
+        "<div class='salon-value' role='listitem'><b>03</b><div><small>NEXT ACTION</small><strong>次に試すことを決める</strong></div></div>"
+        "</div></div>"
+        "<div class='salon-facts' aria-label='開催情報'><div class='salon-fact'><small>WHEN</small><strong>火曜21:00</strong></div><div class='salon-fact'><small>PLACE</small><strong>LINEライブ</strong></div><div class='salon-fact'><small>FEE</small><strong>月2,200円</strong></div><div class='salon-fact'><small>STYLE</small><strong>聞くだけOK</strong></div></div>"
+        "<details class='salon-all-details' id='salon-details'><summary>8つのメリット・内容・参加方法を見る</summary>"
+        "<p>このサロンに参加するメリット</p><ul>"
+        f"{benefit_rows}</ul></details>"
+        f"{_render_live_talk_guide()}"
+        "<div class='salon-register-row salon-register-row--solo'>"
+        f"<form class='salon-register-form' method='post' action='{html.escape(AI_SALON_CHECKOUT_URL, quote=True)}'><button class='focus-btn primary' type='submit'>Squareで決済して参加 →</button><small>月額2,200円（税込）・毎月自動更新。決済確認後にLINE参加案内を表示します</small></form></div>"
+        "</div></section>"
     )
 
 
@@ -13790,6 +13814,147 @@ footer.site-footer {
   color:var(--focus-muted);
   font-size:9.5px;
 }
+.main-course > .salon-section--integrated {
+  max-width:1400px;
+  margin:18px auto 0;
+  padding:0 !important;
+  overflow:visible;
+  border:0;
+  background:transparent;
+}
+.salon-section--integrated .salon-panel {
+  max-width:none;
+  border-color:rgba(83,103,217,.28);
+  box-shadow:0 18px 44px rgba(38,54,112,.10);
+}
+.salon-eyebrow-row {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:12px;
+}
+.salon-eyebrow-row > small {
+  color:var(--focus-blue);
+  font:900 10px/1 Inter,sans-serif;
+  letter-spacing:.12em;
+}
+.salon-eyebrow-row .compact-course-badge { margin:0; }
+.salon-panel .salon-intro.salon-intro--fused {
+  grid-template-columns:minmax(200px,.62fr) minmax(300px,1fr) minmax(250px,.72fr);
+  grid-template-areas:"media copy values";
+  align-items:stretch;
+}
+.salon-main-visual {
+  grid-area:media;
+  min-width:0;
+  margin:0;
+  overflow:hidden;
+  border:1px solid rgba(83,103,217,.14);
+  border-radius:12px;
+  background:#eef1ff;
+}
+.salon-main-visual img {
+  width:100%;
+  height:100%;
+  min-height:210px;
+  display:block;
+  object-fit:cover;
+}
+.salon-main-visual figcaption {
+  position:absolute;
+  width:1px;
+  height:1px;
+  padding:0;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  white-space:nowrap;
+  border:0;
+}
+.salon-intro-description {
+  margin:9px 0 0;
+  color:var(--focus-muted);
+  font-size:12px;
+  line-height:1.6;
+}
+.salon-all-details {
+  margin-top:12px;
+  overflow:hidden;
+  border:1px solid rgba(83,103,217,.16);
+  border-radius:12px;
+  background:#fbfcff;
+}
+.salon-all-details summary {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:12px 14px;
+  color:var(--focus-blue);
+  font-size:12px;
+  font-weight:900;
+  line-height:1.45;
+  cursor:pointer;
+  list-style:none;
+}
+.salon-all-details summary::-webkit-details-marker { display:none; }
+.salon-all-details summary::after {
+  content:"+";
+  flex:0 0 auto;
+  font-size:20px;
+  line-height:1;
+  transition:transform .2s ease;
+}
+.salon-all-details[open] summary {
+  border-bottom:1px solid rgba(83,103,217,.13);
+  background:#f5f7ff;
+}
+.salon-all-details[open] summary::after { transform:rotate(45deg); }
+.salon-all-details > p {
+  margin:12px 14px 0;
+  color:var(--focus-ink);
+  font-size:12px;
+  font-weight:900;
+}
+.salon-all-details ul {
+  margin:0;
+  padding:12px 14px 14px;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px 18px;
+  list-style:none;
+}
+.salon-benefit {
+  position:relative;
+  min-width:0;
+  display:grid;
+  gap:2px;
+  padding-left:20px;
+}
+.salon-benefit::before {
+  content:"✓";
+  position:absolute;
+  left:0;
+  top:0;
+  color:var(--focus-blue);
+  font-size:12px;
+  font-weight:1000;
+}
+.salon-benefit strong { color:var(--focus-ink); font-size:12px; }
+.salon-benefit span { color:var(--focus-muted); font-size:11px; line-height:1.55; }
+@media (max-width:1000px) {
+  .salon-panel .salon-intro.salon-intro--fused {
+    grid-template-columns:180px minmax(0,1fr);
+    grid-template-areas:"media copy" "values values";
+  }
+  .salon-panel .salon-intro--fused .salon-value-list {
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+  .salon-panel .salon-intro--fused .salon-value + .salon-value {
+    border-top:0;
+    border-left:1px solid rgba(83,103,217,.13);
+  }
+}
 @media (max-width:720px) {
   .salon-section {
     padding:22px 10px !important;
@@ -13802,6 +13967,15 @@ footer.site-footer {
     grid-template-columns:1fr;
     grid-template-areas:"copy" "values";
     gap:9px;
+  }
+  .salon-panel .salon-intro.salon-intro--fused {
+    grid-template-columns:1fr;
+    grid-template-areas:"media" "copy" "values";
+  }
+  .salon-main-visual img {
+    height:auto;
+    min-height:0;
+    aspect-ratio:16/9;
   }
   .salon-panel .salon-intro-kicker {
     padding:5px 8px;
@@ -13952,6 +14126,10 @@ footer.site-footer {
   .salon-register-form .focus-btn {
     min-height:44px;
   }
+  .salon-all-details ul { grid-template-columns:1fr; }
+  .salon-all-details summary { padding:11px 12px; font-size:11.5px; }
+  .salon-benefit strong { font-size:11.5px; }
+  .salon-benefit span { font-size:10.5px; }
 }
 @media (max-width:340px) {
   .hero-advantage-pillars li { padding:0; font-size:11px; }
@@ -14229,27 +14407,13 @@ def _render_focused_main() -> str:
         "<section class='focus-block main-course' id='packages'><div class='focus-section-head'><small>COURSES</small><h2>講習・相談コース</h2></div>",
         "<p class='focus-section-lead'><strong>迷ったら、まずはAIエージェント講習が一番基本でおすすめです。</strong><br>最新情報を追い続けず「今やること」を知りたい方は、月額2,200円のオンラインサロンへ。個別相談、伴走支援、AIコーディング講習も選べます。</p>",
         _render_compact_course_cards(),
+        _render_salon_menu(),
         "<aside class='course-venue-common' aria-label='講習・相談コース共通の開催場所'>",
         "<img src='/img/gubboru-cafe-ai-course-painting.webp' alt='講習・相談の対面会場 グッぼるカフェの店内' loading='lazy' decoding='async'>",
         "<div><small>COMMON VENUE</small><h3>開催場所：グッぼるカフェ（彦根）</h3><p>対面は普段のPCと課題を持ち寄って実施します。オンライン受講・相談にも対応します。</p></div>",
         "<div class='course-venue-map'><iframe src='https://www.google.com/maps?q=%E3%82%B0%E3%83%83%E3%81%BC%E3%82%8B%E3%82%AB%E3%83%95%E3%82%A7%20%E6%BB%8B%E8%B3%80%E7%9C%8C%E5%BD%A6%E6%A0%B9%E5%B8%82%E5%B2%A1%E7%94%BA12&amp;output=embed' title='グッぼるカフェ周辺のGoogleマップ' loading='lazy' referrerpolicy='no-referrer-when-downgrade' allowfullscreen></iframe></div>",
         "<p class='course-venue-map-link'><a href='https://www.google.com/maps/search/?api=1&amp;query=%E3%82%B0%E3%83%83%E3%81%BC%E3%82%8B%E3%82%AB%E3%83%95%E3%82%A7%20%E6%BB%8B%E8%B3%80%E7%9C%8C%E5%BD%A6%E6%A0%B9%E5%B8%82%E5%B2%A1%E7%94%BA12' target='_blank' rel='noopener'>Googleマップで開く →</a></p></aside>",
         "<div class='course-quick-actions'><button type='button' class='compact-diagnose diagnose-open'>迷ったら60秒診断</button><a href='#lectures'>受講資料から選ぶ →</a></div></section>",
-        "<section class='focus-block salon-section' id='seven-day-courses' aria-labelledby='salon-title'>",
-        "<div class='salon-panel'><div class='salon-intro'><div class='salon-intro-copy'>",
-        "<span class='salon-intro-kicker'><i aria-hidden='true'></i>月額2,200円（税込）・毎週火曜21:00</span>",
-        "<h2 id='salon-title'>AIオンラインサロン</h2>",
-        "<p class='salon-intro-tagline'>AIの最新を、仕事の次の一手に。</p>",
-        "<p class='salon-intro-summary'>全部を追わず、新機能と一流の活用事例から、今試すことを短く整理します。</p></div>",
-        "<div class='salon-value-list' role='list' aria-label='サロンで得られること'>",
-        "<div class='salon-value' role='listitem'><b>01</b><div><small>UPDATE</small><strong>新機能を毎週知る</strong></div></div>",
-        "<div class='salon-value' role='listitem'><b>02</b><div><small>BEST PRACTICE</small><strong>一流の活用事例を聞く</strong></div></div>",
-        "<div class='salon-value' role='listitem'><b>03</b><div><small>NEXT ACTION</small><strong>次に試すことを決める</strong></div></div>",
-        "</div></div>",
-        "<div class='salon-facts' aria-label='開催情報'><div class='salon-fact'><small>WHEN</small><strong>火曜21:00</strong></div><div class='salon-fact'><small>PLACE</small><strong>LINEライブ</strong></div><div class='salon-fact'><small>FEE</small><strong>月2,200円</strong></div><div class='salon-fact'><small>STYLE</small><strong>聞くだけOK</strong></div></div>",
-        _render_live_talk_guide(),
-        "<div class='salon-register-row salon-register-row--solo'>",
-        f"<form class='salon-register-form' method='post' action='{html.escape(AI_SALON_CHECKOUT_URL, quote=True)}'><button class='focus-btn primary' type='submit'>Squareで決済して参加 →</button><small>月額2,200円（税込）・毎月自動更新。決済確認後にLINE参加案内を表示します</small></form></div></div></section>",
         "<section class='focus-block soft' id='lectures'><div class='focus-section-head'><small>LEARNING MATERIALS</small><h2>受講資料</h2></div>",
         "<p class='focus-section-lead'>公開中の受講資料をすべて表示しています。迷ったら「AIが初めて」から順に選べます。</p>",
         _render_lectures_section(),

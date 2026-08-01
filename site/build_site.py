@@ -2342,6 +2342,37 @@ CONTENT_CSS = """
 }
 """
 
+ARTICLE_VIDEO_CSS = """
+.content-wrap .article-video {
+  width: min(100%, 960px);
+  margin: 0 auto 26px;
+  text-align: center;
+}
+.content-wrap .article-video--portrait {
+  width: min(100%, 420px);
+}
+.content-wrap .article-video video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: #173042;
+  box-shadow: 0 18px 42px rgba(23,48,66,.20);
+}
+.content-wrap .article-video--portrait video {
+  aspect-ratio: 9 / 16;
+}
+.content-wrap .article-video figcaption {
+  text-align: center;
+}
+@media (max-width: 540px) {
+  .content-wrap .article-video video { border-radius: 14px; }
+}
+"""
+
 
 def _redirect_html(a, t):
     d = "https://ai-hub-jp.vercel.app/#" + a
@@ -3500,6 +3531,24 @@ def render_content_page(
     content_class = "content-wrap lecture-content" if kind == "lecture" else "content-wrap"
     content_id = " id='lecture-body'" if kind == "lecture" else ""
     parts.append(f"<div class='{content_class}'{content_id}>")
+    video_url = str(meta.get("video") or "").strip()
+    if kind == "blog" and video_url:
+        video_poster = str(meta.get("video_poster") or "").strip()
+        video_label = str(meta.get("video_label") or f"{title}の解説動画").strip()
+        video_caption = str(meta.get("video_caption") or "").strip()
+        video_orientation = str(meta.get("video_orientation") or "landscape").strip().lower()
+        video_class = "article-video article-video--portrait" if video_orientation == "portrait" else "article-video"
+        poster_attr = f" poster='{html.escape(video_poster, quote=True)}'" if video_poster else ""
+        parts.append(f"<style>{ARTICLE_VIDEO_CSS}</style>")
+        parts.append(
+            f"<figure class='{video_class}'>"
+            f"<video controls playsinline preload='metadata'{poster_attr} aria-label='{html.escape(video_label, quote=True)}'>"
+            f"<source src='{html.escape(video_url, quote=True)}' type='video/mp4'>"
+            f"お使いのブラウザは動画再生に対応していません。<a href='{html.escape(video_url, quote=True)}'>動画ファイルを開く</a>"
+            "</video>"
+            + (f"<figcaption>{html.escape(video_caption)}</figcaption>" if video_caption else "")
+            + "</figure>"
+        )
     if kind == "blog" and meta.get("hero_image") and image_url:
         image_alt = html.escape(str(meta.get("image_alt") or title), quote=True)
         image_caption = html.escape(str(meta.get("image_caption") or ""))

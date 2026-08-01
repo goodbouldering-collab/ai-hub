@@ -9,7 +9,7 @@ image_alt: 過剰な全面禁止と管理されたAI活用の間で、データ�
 video: /video/blog-ai-data-boundary-20260802.mp4
 video_poster: /img/blog-ai-data-boundary-video-cover-20260802.png
 video_orientation: portrait
-video_fullscreen_on_play: true
+video_fullscreen_on_play: mobile
 video_label: 個人情報をAIへ入力するときの7つの境界線を15秒で紹介する動画
 video_caption: 15秒で要点を確認できます。個人情報は一律禁止ではなく、データ・契約・保存・接続・権限の境界で判断します（音声なし）。
 audience: 生成AIの社内ルールを作る経営者・管理職、地域事業者、学校・福祉施設、大学生、個人事業主

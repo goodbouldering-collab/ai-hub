@@ -2373,6 +2373,36 @@ ARTICLE_VIDEO_CSS = """
 }
 """
 
+ARTICLE_VIDEO_FULLSCREEN_JS = """<script>
+(() => {
+  const enterFullscreen = (video) => {
+    if (document.fullscreenElement || document.webkitFullscreenElement || video.webkitDisplayingFullscreen) return;
+
+    if (typeof video.requestFullscreen === "function") {
+      try {
+        const request = video.requestFullscreen();
+        if (request && typeof request.catch === "function") request.catch(() => {});
+        return;
+      } catch (_) {
+        // Safari の動画専用 API へフォールバックする。
+      }
+    }
+
+    if (typeof video.webkitEnterFullscreen === "function") {
+      try { video.webkitEnterFullscreen(); } catch (_) {}
+    } else if (typeof video.webkitRequestFullscreen === "function") {
+      try { video.webkitRequestFullscreen(); } catch (_) {}
+    }
+  };
+
+  document.querySelectorAll('video[data-fullscreen-on-play="true"]').forEach((video) => {
+    if (video.dataset.fullscreenBound === "true") return;
+    video.dataset.fullscreenBound = "true";
+    video.addEventListener("play", () => enterFullscreen(video));
+  });
+})();
+</script>"""
+
 
 def _redirect_html(a, t):
     d = "https://ai-hub-jp.vercel.app/#" + a
@@ -3537,18 +3567,22 @@ def render_content_page(
         video_label = str(meta.get("video_label") or f"{title}の解説動画").strip()
         video_caption = str(meta.get("video_caption") or "").strip()
         video_orientation = str(meta.get("video_orientation") or "landscape").strip().lower()
+        video_fullscreen_on_play = bool(meta.get("video_fullscreen_on_play"))
         video_class = "article-video article-video--portrait" if video_orientation == "portrait" else "article-video"
         poster_attr = f" poster='{html.escape(video_poster, quote=True)}'" if video_poster else ""
+        fullscreen_attr = " data-fullscreen-on-play='true'" if video_fullscreen_on_play else ""
         parts.append(f"<style>{ARTICLE_VIDEO_CSS}</style>")
         parts.append(
             f"<figure class='{video_class}'>"
-            f"<video controls playsinline preload='metadata'{poster_attr} aria-label='{html.escape(video_label, quote=True)}'>"
+            f"<video controls playsinline preload='metadata'{poster_attr}{fullscreen_attr} aria-label='{html.escape(video_label, quote=True)}'>"
             f"<source src='{html.escape(video_url, quote=True)}' type='video/mp4'>"
             f"お使いのブラウザは動画再生に対応していません。<a href='{html.escape(video_url, quote=True)}'>動画ファイルを開く</a>"
             "</video>"
             + (f"<figcaption>{html.escape(video_caption)}</figcaption>" if video_caption else "")
             + "</figure>"
         )
+        if video_fullscreen_on_play:
+            parts.append(ARTICLE_VIDEO_FULLSCREEN_JS)
     if kind == "blog" and meta.get("hero_image") and image_url:
         image_alt = html.escape(str(meta.get("image_alt") or title), quote=True)
         image_caption = html.escape(str(meta.get("image_caption") or ""))

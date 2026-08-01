@@ -3355,6 +3355,15 @@ section.block + section.block { border-top: 1px solid var(--line); }
 .lecture-grid {
   display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px;
 }
+.lecture-carousel-wrap {
+  margin-top: 8px;
+}
+.pf-carousel.lecture-carousel {
+  grid-auto-columns: minmax(260px, 300px);
+}
+.pf-carousel.lecture-carousel > .lecture-card {
+  scroll-snap-align: start;
+}
 .lecture-card {
   display: flex; flex-direction: column; gap: 0;
   padding: 0; border-radius: var(--radius-sm); overflow: hidden;
@@ -3394,6 +3403,9 @@ section.block + section.block { border-top: 1px solid var(--line); }
 @media (max-width: 720px) {
   .speaker-intro-grid { grid-template-columns: 1fr; gap: 24px; text-align: center; }
   .speaker-intro-grid .profile-avatar { margin: 0 auto; }
+}
+@media (max-width: 760px) {
+  .pf-carousel.lecture-carousel { grid-auto-columns: 78%; }
 }
 /* 講師ビジュアル（本人写真を自然な丸いポートレートとして表示） */
 .speaker-art {
@@ -11331,7 +11343,35 @@ header.site-header .site-nav a.nav-link.nav-essential.nav-current[href]:focus-vi
 @media (max-width: 540px) {
   .content-wrap .article-video video { border-radius: 14px; }
 }
-</style><figure class='article-video article-video--portrait'><video controls playsinline preload='metadata' poster='/img/blog-ai-data-boundary-video-cover-20260802.png' aria-label='個人情報をAIへ入力するときの7つの境界線を15秒で紹介する動画'><source src='/video/blog-ai-data-boundary-20260802.mp4' type='video/mp4'>お使いのブラウザは動画再生に対応していません。<a href='/video/blog-ai-data-boundary-20260802.mp4'>動画ファイルを開く</a></video><figcaption>15秒で要点を確認できます。個人情報は一律禁止ではなく、データ・契約・保存・接続・権限の境界で判断します（音声なし）。</figcaption></figure><div class='content-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#個人情報はaiに一切入力禁止-には正しい部分と過剰な部分がある'>「個人情報はAIに一切入力禁止」には正しい部分と過剰な部分がある</a></li><li><a href='#aiへの入力は直ちに一般公開や漏えいではなく-送信先と利用条件で評価が変わる'>AIへの入力は直ちに一般公開や漏えいではなく、送信先と利用条件で評価が変わる</a></li><li><a href='#コード生成・自社db保存・本番db接続・顧客db送信は別のリスクである'>コード生成・自社DB保存・本番DB接続・顧客DB送信は別のリスクである</a></li><li><a href='#企業は全面禁止ではなく-データ分類と利用条件でai活用を管理できる'>企業は全面禁止ではなく、データ分類と利用条件でAI活用を管理できる</a></li></ol></div><style>
+</style><figure class='article-video article-video--portrait'><video controls playsinline preload='metadata' poster='/img/blog-ai-data-boundary-video-cover-20260802.png' data-fullscreen-on-play='true' aria-label='個人情報をAIへ入力するときの7つの境界線を15秒で紹介する動画'><source src='/video/blog-ai-data-boundary-20260802.mp4' type='video/mp4'>お使いのブラウザは動画再生に対応していません。<a href='/video/blog-ai-data-boundary-20260802.mp4'>動画ファイルを開く</a></video><figcaption>15秒で要点を確認できます。個人情報は一律禁止ではなく、データ・契約・保存・接続・権限の境界で判断します（音声なし）。</figcaption></figure><script>
+(() => {
+  const enterFullscreen = (video) => {
+    if (document.fullscreenElement || document.webkitFullscreenElement || video.webkitDisplayingFullscreen) return;
+
+    if (typeof video.requestFullscreen === "function") {
+      try {
+        const request = video.requestFullscreen();
+        if (request && typeof request.catch === "function") request.catch(() => {});
+        return;
+      } catch (_) {
+        // Safari の動画専用 API へフォールバックする。
+      }
+    }
+
+    if (typeof video.webkitEnterFullscreen === "function") {
+      try { video.webkitEnterFullscreen(); } catch (_) {}
+    } else if (typeof video.webkitRequestFullscreen === "function") {
+      try { video.webkitRequestFullscreen(); } catch (_) {}
+    }
+  };
+
+  document.querySelectorAll('video[data-fullscreen-on-play="true"]').forEach((video) => {
+    if (video.dataset.fullscreenBound === "true") return;
+    video.dataset.fullscreenBound = "true";
+    video.addEventListener("play", () => enterFullscreen(video));
+  });
+})();
+</script><div class='content-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#個人情報はaiに一切入力禁止-には正しい部分と過剰な部分がある'>「個人情報はAIに一切入力禁止」には正しい部分と過剰な部分がある</a></li><li><a href='#aiへの入力は直ちに一般公開や漏えいではなく-送信先と利用条件で評価が変わる'>AIへの入力は直ちに一般公開や漏えいではなく、送信先と利用条件で評価が変わる</a></li><li><a href='#コード生成・自社db保存・本番db接続・顧客db送信は別のリスクである'>コード生成・自社DB保存・本番DB接続・顧客DB送信は別のリスクである</a></li><li><a href='#企業は全面禁止ではなく-データ分類と利用条件でai活用を管理できる'>企業は全面禁止ではなく、データ分類と利用条件でAI活用を管理できる</a></li></ol></div><style>
 .ai-data-guide{--ad-blue:#285f78;--ad-navy:#173042;--ad-teal:#1e8c83;--ad-orange:#e4834a;--ad-red:#c84b4b;--ad-ink:#17232c;--ad-soft:#53646e;--ad-line:#d8e3e7;color:var(--ad-ink)}
 .ai-data-guide *{box-sizing:border-box}
 .ai-data-guide p,.ai-data-guide li{line-height:1.9}

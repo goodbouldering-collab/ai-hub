@@ -11556,7 +11556,7 @@ def _render_compact_course_cards() -> str:
             "duration": "毎週火曜21時",
             "desc": "AIの新機能と活用事例を60分で整理し、今週やることを決めます。聞くだけでも参加できます。",
             "url": "#seven-day-courses",
-            "cta": "サロンの全内容を見る",
+            "cta": "料金・参加方法を見る",
             "material_url": "/lectures/2026-07-ai-online-salon-practice.html",
             "material_cta": "オンラインサロン受講資料を見る",
             "badge": "毎週ライブ",
@@ -11681,7 +11681,17 @@ def _render_salon_menu() -> str:
     return (
         "<section class='salon-section salon-section--integrated' id='seven-day-courses' aria-labelledby='salon-title'>"
         "<div class='salon-panel'>"
-        "<div class='salon-eyebrow-row'><small>MENU 05 · SQUARE MONTHLY</small>"
+        "<div class='salon-simple-head'>"
+        "<div class='salon-simple-copy'><small>MENU 05</small>"
+        "<h2 id='salon-title'>AIオンラインサロン</h2>"
+        "<p>毎週火曜21:00 · LINEライブ · 聞くだけOK</p></div>"
+        "<div class='salon-simple-price'><small>月額・税込</small><strong>2,200円</strong></div>"
+        f"<form class='salon-register-form salon-simple-form' method='post' action='{html.escape(AI_SALON_CHECKOUT_URL, quote=True)}'><button class='focus-btn primary' type='submit'>Squareで決済して参加 →</button></form>"
+        "</div>"
+        "<p class='salon-simple-note'>毎月自動更新 · 決済確認後にLINE参加案内を表示します</p>"
+        "<details class='salon-all-details salon-all-details--complete' id='salon-details'><summary>8つのメリット・内容・参加方法を見る</summary>"
+        "<div class='salon-details-complete'>"
+        "<div class='salon-eyebrow-row'><small>SQUARE MONTHLY</small>"
         "<span class='compact-course-badge'><i aria-hidden='true'></i>ライブトーク開催</span></div>"
         "<div class='salon-intro salon-intro--fused'>"
         "<figure class='salon-main-visual'><img src='/img/blog-ai-agent-course-section-4-20260714.webp' "
@@ -11689,7 +11699,7 @@ def _render_salon_menu() -> str:
         "loading='lazy' decoding='async'><figcaption>仕事で次に試すことを、一緒に決める60分</figcaption></figure>"
         "<div class='salon-intro-copy'>"
         "<span class='salon-intro-kicker'><i aria-hidden='true'></i>月額2,200円（税込）・毎週火曜21:00</span>"
-        "<h2 id='salon-title'>AIオンラインサロン</h2>"
+        "<h3 class='salon-detail-title'>AIオンラインサロン</h3>"
         "<p class='salon-intro-tagline'>AIの最新を、仕事の次の一手に。</p>"
         "<p class='salon-intro-summary'>全部を追わず、新機能と一流の活用事例から、今試すことを短く整理します。</p>"
         "<p class='salon-intro-description'>Squareで月額決済後、LINEライブトークの参加案内を表示します。仕事で次に試すことを一緒に決めます。聞くだけOK。</p></div>"
@@ -11699,12 +11709,12 @@ def _render_salon_menu() -> str:
         "<div class='salon-value' role='listitem'><b>03</b><div><small>NEXT ACTION</small><strong>次に試すことを決める</strong></div></div>"
         "</div></div>"
         "<div class='salon-facts' aria-label='開催情報'><div class='salon-fact'><small>WHEN</small><strong>火曜21:00</strong></div><div class='salon-fact'><small>PLACE</small><strong>LINEライブ</strong></div><div class='salon-fact'><small>FEE</small><strong>月2,200円</strong></div><div class='salon-fact'><small>STYLE</small><strong>聞くだけOK</strong></div></div>"
-        "<details class='salon-all-details' id='salon-details'><summary>8つのメリット・内容・参加方法を見る</summary>"
-        "<p>このサロンに参加するメリット</p><ul>"
-        f"{benefit_rows}</ul></details>"
+        "<p class='salon-benefits-title'>このサロンに参加するメリット</p><ul>"
+        f"{benefit_rows}</ul>"
         f"{_render_live_talk_guide()}"
-        "<div class='salon-register-row salon-register-row--solo'>"
-        f"<form class='salon-register-form' method='post' action='{html.escape(AI_SALON_CHECKOUT_URL, quote=True)}'><button class='focus-btn primary' type='submit'>Squareで決済して参加 →</button><small>月額2,200円（税込）・毎月自動更新。決済確認後にLINE参加案内を表示します</small></form></div>"
+        "<a class='salon-details-back-to-checkout' href='#salon-title'>Squareで決済して参加 →</a>"
+        "<p class='salon-details-renewal'>月額2,200円（税込）・毎月自動更新。決済確認後にLINE参加案内を表示します</p>"
+        "</div></details>"
         "</div></section>"
     )
 
@@ -13890,6 +13900,103 @@ footer.site-footer {
   border-color:rgba(83,103,217,.28);
   box-shadow:0 18px 44px rgba(38,54,112,.10);
 }
+#seven-day-courses .salon-panel {
+  padding:16px 18px;
+}
+.salon-simple-head {
+  display:grid;
+  grid-template-columns:minmax(260px,1fr) auto minmax(230px,320px);
+  gap:16px;
+  align-items:center;
+}
+.salon-simple-copy > small {
+  color:var(--focus-blue);
+  font:900 9px/1 Inter,sans-serif;
+  letter-spacing:.12em;
+}
+.salon-simple-copy h2 {
+  margin:5px 0 0;
+  color:var(--focus-ink);
+  font-size:clamp(22px,2.3vw,30px);
+  line-height:1.2;
+}
+.salon-simple-copy p {
+  margin:5px 0 0;
+  color:var(--focus-muted);
+  font-size:12px;
+  font-weight:800;
+}
+.salon-simple-price {
+  min-width:110px;
+  text-align:right;
+}
+.salon-simple-price small {
+  display:block;
+  color:var(--focus-muted);
+  font-size:9px;
+  font-weight:800;
+}
+.salon-simple-price strong {
+  display:block;
+  margin-top:2px;
+  color:var(--focus-ink);
+  font-size:22px;
+  line-height:1.15;
+}
+.salon-simple-form .focus-btn {
+  min-height:44px;
+  padding-inline:8px;
+  font-size:11px;
+  white-space:nowrap;
+}
+.salon-simple-note {
+  margin:7px 0 0;
+  color:var(--focus-muted);
+  font-size:9.5px;
+  text-align:right;
+}
+.salon-all-details--complete {
+  margin-top:10px;
+}
+.salon-details-complete {
+  padding:14px;
+}
+.salon-all-details--complete .salon-intro {
+  margin:0;
+}
+.salon-detail-title {
+  margin:8px 0 0;
+  color:var(--focus-ink);
+  font-size:22px;
+  line-height:1.25;
+}
+.salon-benefits-title {
+  margin:12px 0 0;
+  color:var(--focus-ink);
+  font-size:12px;
+  font-weight:900;
+}
+.salon-details-back-to-checkout {
+  min-height:40px;
+  max-width:420px;
+  margin:12px auto 0;
+  padding:8px 14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  background:var(--focus-blue);
+  border-radius:8px;
+  font-size:12px;
+  font-weight:900;
+  text-decoration:none;
+}
+.salon-details-renewal {
+  margin:6px 0 0;
+  color:var(--focus-muted);
+  font-size:9.5px;
+  text-align:center;
+}
 .salon-eyebrow-row {
   display:flex;
   align-items:center;
@@ -14066,6 +14173,34 @@ footer.site-footer {
   .salon-panel {
     padding:12px;
     border-radius:14px;
+  }
+  .salon-simple-head {
+    grid-template-columns:minmax(0,1fr) minmax(150px,.9fr);
+    gap:10px;
+  }
+  .salon-simple-copy {
+    grid-column:1 / -1;
+  }
+  .salon-simple-copy h2 {
+    font-size:22px;
+  }
+  .salon-simple-copy p {
+    font-size:11px;
+  }
+  .salon-simple-price {
+    min-width:0;
+    text-align:left;
+  }
+  .salon-simple-price strong {
+    font-size:20px;
+  }
+  .salon-simple-note {
+    font-size:9px;
+    line-height:1.45;
+    text-align:left;
+  }
+  .salon-details-complete {
+    padding:10px;
   }
   .salon-panel .salon-intro {
     grid-template-columns:1fr;

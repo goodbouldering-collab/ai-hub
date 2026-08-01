@@ -22,10 +22,15 @@ class SalonContentContractTests(unittest.TestCase):
 
     def test_every_reader_facing_detail_remains_in_the_panel(self) -> None:
         expected_in_order = (
+            "SQUARE MONTHLY",
+            "ライブトーク開催",
+            "毎週火曜にLINEライブトークでAIの今と次の一手を整理するオンラインサロン",
+            "仕事で次に試すことを、一緒に決める60分",
             "月額2,200円（税込）・毎週火曜21:00",
             "AIオンラインサロン",
             "AIの最新を、仕事の次の一手に。",
             "全部を追わず、新機能と一流の活用事例から、今試すことを短く整理します。",
+            "Squareで月額決済後、LINEライブトークの参加案内を表示します。仕事で次に試すことを一緒に決めます。聞くだけOK。",
             "UPDATE",
             "新機能を毎週知る",
             "BEST PRACTICE",
@@ -40,6 +45,24 @@ class SalonContentContractTests(unittest.TestCase):
             "月2,200円",
             "STYLE",
             "聞くだけOK",
+            "8つのメリット・内容・参加方法を見る",
+            "このサロンに参加するメリット",
+            "AI情報を全部追わなくていい",
+            "増え続ける新機能や発表から、地域事業や日々の仕事に関係する変化だけを短く整理します。",
+            "今やる・待つを判断できる",
+            "新しいから飛びつくのではなく、今すぐ試すもの、様子を見るもの、使わないものを実例で分けます。",
+            "実際の仕事で確かめられる",
+            "参加者の告知、資料、事務、Web改善などを題材に、AIへの依頼、確認、修正まで画面を見ながら進めます。",
+            "ほかの人の事例も学びになる",
+            "自分とは違う業種の困りごとや改善例から、自分の仕事へ応用できるヒントを持ち帰れます。",
+            "その場で質問できる",
+            "一人で調べ続けず、分からない点や導入の迷いを質問し、次に試す小さな一歩を決められます。",
+            "忙しい週は聞くだけでOK",
+            "LINEライブトークはマイクOFF、途中参加、途中退出に対応。発言したいときだけ挙手できます。",
+            "終了後も要点を見返せる",
+            "講師が内容を確認した「火曜AIノート」で、重要点と次の行動を振り返れます。",
+            "参加方法",
+            "Squareで月額2,200円を決済後、表示される招待URLからLINEへ進みます。毎週火曜21時の案内から参加できます。",
             "マイクOFFで参加できます",
             "LINE LIVE TALK",
             "聞くだけOK。話すときだけ挙手",
@@ -51,18 +74,6 @@ class SalonContentContractTests(unittest.TestCase):
             "話すときだけマイクON",
             "マイクOFF・途中参加・途中退出OK",
             "決済確認後にLINE参加案内を表示",
-            "60 MINUTES",
-            "火曜21時の流れ",
-            "21:00",
-            "今週の変化",
-            "21:05",
-            "使えるか判断",
-            "21:15",
-            "仕事で実践",
-            "21:40",
-            "次の一歩",
-            "参加できない週も安心。",
-            "火曜AIノート",
             "Squareで決済して参加",
             "月額2,200円（税込）・毎月自動更新。決済確認後にLINE参加案内を表示します",
         )
@@ -76,10 +87,14 @@ class SalonContentContractTests(unittest.TestCase):
     def test_structured_detail_counts_and_checkout_contract_remain_intact(self) -> None:
         self.assertEqual(self.panel.count("class='salon-value'"), 3)
         self.assertEqual(self.panel.count("class='salon-fact'"), 4)
-        self.assertEqual(self.panel.count("class='salon-run-cell'"), 4)
+        self.assertEqual(self.panel.count("class='salon-benefit'"), 8)
         self.assertEqual(self.panel.count("<li><b>"), 3)
         self.assertIn("method='post'", self.panel)
         self.assertIn("action='/api/square/ai-salon-checkout'", self.panel)
+        self.assertIn(
+            "src='/img/blog-ai-agent-course-section-4-20260714.webp'",
+            self.panel,
+        )
         self.assertIn(
             "src='/img/ai-salon-live-talk-guide-20260722.svg'",
             self.panel,

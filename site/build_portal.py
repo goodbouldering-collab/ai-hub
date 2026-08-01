@@ -2094,6 +2094,15 @@ section.block + section.block { border-top: 1px solid var(--line); }
 .lecture-grid {
   display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px;
 }
+.lecture-carousel-wrap {
+  margin-top: 8px;
+}
+.pf-carousel.lecture-carousel {
+  grid-auto-columns: minmax(260px, 300px);
+}
+.pf-carousel.lecture-carousel > .lecture-card {
+  scroll-snap-align: start;
+}
 .lecture-card {
   display: flex; flex-direction: column; gap: 0;
   padding: 0; border-radius: var(--radius-sm); overflow: hidden;
@@ -2133,6 +2142,9 @@ section.block + section.block { border-top: 1px solid var(--line); }
 @media (max-width: 720px) {
   .speaker-intro-grid { grid-template-columns: 1fr; gap: 24px; text-align: center; }
   .speaker-intro-grid .profile-avatar { margin: 0 auto; }
+}
+@media (max-width: 760px) {
+  .pf-carousel.lecture-carousel { grid-auto-columns: 78%; }
 }
 /* 講師ビジュアル（本人写真を自然な丸いポートレートとして表示） */
 .speaker-art {
@@ -12129,11 +12141,16 @@ def _render_lectures_section() -> str:
         lecs.append({**item, "route_label": route_labels.get(category, "受講資料")})
     if not pmap_added:
         lecs.append(pmap_card)
-    parts: list[str] = []
-    parts.append("<div class='lecture-grid'>")
+    parts: list[str] = [
+        "<div class='pf-carousel-wrap lecture-carousel-wrap'>"
+        "<button type='button' class='pf-arrow pf-prev' aria-label='前の受講資料へ' data-dir='-1'>‹</button>"
+        "<div class='pf-carousel lecture-carousel' id='lecture-carousel' role='region' aria-label='受講資料カード' tabindex='0'>"
+    ]
     for lec in lecs:
         parts.append(_render_lecture_card(lec))
-    parts.append("</div>")
+    parts.append("</div>")  # .pf-carousel
+    parts.append("<button type='button' class='pf-arrow pf-next' aria-label='次の受講資料へ' data-dir='1'>›</button>")
+    parts.append("</div>")  # .pf-carousel-wrap
     return "".join(parts)
 
 

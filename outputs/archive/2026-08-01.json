@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "",
-      "published": "2026-08-01T22:29:44+00:00"
+      "published": "2026-08-01T22:29:44+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "0a7e193bf580ac89",
@@ -37,7 +39,9 @@
         "freshness": 10.0
       },
       "thumbnail": "",
-      "published": "2026-08-01T21:23:56+00:00"
+      "published": "2026-08-01T21:23:56+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "a011d8cc7062b56f",
@@ -56,7 +60,9 @@
         "freshness": 10.0
       },
       "thumbnail": "",
-      "published": "2026-08-01T20:34:49+00:00"
+      "published": "2026-08-01T20:34:49+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "25ac484fead62100",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/artworks-WsdIgVXV8NOV-0-t1080x1080.jpg?quality=90&amp;strip=all&amp;crop=0,23.821989528796,100,52.356020942408",
-      "published": "2026-08-01T14:20:00-04:00"
+      "published": "2026-08-01T14:20:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "f696a7cf585ac163",
@@ -94,7 +102,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://static.simonwillison.net/static/2026/deepseek-flash-chart.webp",
-      "published": "2026-07-31T23:59:44+00:00"
+      "published": "2026-07-31T23:59:44+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "4065ae9ef3d9b058",
@@ -113,7 +123,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://raw.githubusercontent.com/simonw/til/refs/heads/main/llms/claude-add-custom-connector-dialog.webp",
-      "published": "2026-07-31T23:13:22+00:00"
+      "published": "2026-07-31T23:13:22+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "db1b04cad8f46c9f",
@@ -132,7 +144,9 @@
         "freshness": 3.0
       },
       "thumbnail": "",
-      "published": "2026-07-31T23:03:47+00:00"
+      "published": "2026-07-31T23:03:47+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "c038a9eeab1dba2a",
@@ -151,7 +165,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/Emd8ZOQ9DTY/hqdefault.jpg",
-      "published": "2026-08-01T10:15:43+00:00"
+      "published": "2026-08-01T10:15:43+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "7838e1d1d42dbfaf",
@@ -170,7 +186,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/NjXzO-b_ceg/hqdefault.jpg",
-      "published": "2026-08-01T09:00:01+00:00"
+      "published": "2026-08-01T09:00:01+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "444d4b6e8798798b",
@@ -189,7 +207,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://images.ctfassets.net/kftzwdyauwt9/5RUlCTeEvzWYd2DDpdcNgh/f38e144bf6f5911074b1939c1528ed2b/Frame__4_.png?w=1600&amp;h=900&amp;fit=fill",
-      "published": "Sat, 01 Aug 2026 00:00:00 GMT"
+      "published": "Sat, 01 Aug 2026 00:00:00 GMT",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

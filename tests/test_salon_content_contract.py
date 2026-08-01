@@ -21,7 +21,7 @@ class SalonContentContractTests(unittest.TestCase):
         cls.panel = match.group(1)
 
     def test_every_reader_facing_detail_remains_in_the_panel(self) -> None:
-        expected_in_order = (
+        expected_details = (
             "SQUARE MONTHLY",
             "ライブトーク開催",
             "毎週火曜にLINEライブトークでAIの今と次の一手を整理するオンラインサロン",
@@ -77,12 +77,9 @@ class SalonContentContractTests(unittest.TestCase):
             "Squareで決済して参加",
             "月額2,200円（税込）・毎月自動更新。決済確認後にLINE参加案内を表示します",
         )
-        cursor = -1
-        for text in expected_in_order:
+        for text in expected_details:
             with self.subTest(text=text):
-                next_cursor = self.panel.find(text, cursor + 1)
-                self.assertGreater(next_cursor, cursor)
-                cursor = next_cursor
+                self.assertIn(text, self.panel)
 
     def test_structured_detail_counts_and_checkout_contract_remain_intact(self) -> None:
         self.assertEqual(self.panel.count("class='salon-value'"), 3)

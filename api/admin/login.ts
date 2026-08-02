@@ -87,7 +87,7 @@ function sendLoginPage(
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <title>AI相談</title>
+  <title>AI相談｜一歩踏み出す人のAI講習・実践支援【彦根・滋賀】</title>
   <style>
     :root {
       color-scheme: light;

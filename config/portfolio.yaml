@@ -433,10 +433,8 @@ portfolio:
   tech:
   - Next.js
   - Codex Sites
-  - Square
-  - LINE
-  - SwitchBot
-  summary: 彦根で上級者向け24時間会員制データゴルフクラブの体験予約・会員・入室運営を一体化するサイト
+  - D1
+  summary: 彦根で計画する24時間会員制データゴルフクラブの施設構想と利用案内を公開サイトとして見える化
   since: 2026-07
   thumbnail: /img/portfolio/trust-golf-lab-hikone.jpg
   source: site-published-hook

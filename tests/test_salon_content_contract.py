@@ -26,7 +26,8 @@ class SalonContentContractTests(unittest.TestCase):
             "ライブトーク開催",
             "毎週火曜にLINEライブトークでAIの今と次の一手を整理するオンラインサロン",
             "仕事で次に試すことを、一緒に決める60分",
-            "月額2,200円（税込）・毎週火曜21:00",
+            "月額2,200円（税込）",
+            "毎週火曜21:00",
             "AIオンラインサロン",
             "AIの最新を、仕事の次の一手に。",
             "全部を追わず、新機能と一流の活用事例から、今試すことを短く整理します。",
@@ -89,6 +90,7 @@ class SalonContentContractTests(unittest.TestCase):
         self.assertEqual(self.panel.count("<li><b>"), 3)
         self.assertIn("method='post'", self.panel)
         self.assertIn("action='/api/square/ai-salon-checkout'", self.panel)
+        self.assertIn("class='compact-course-checkout salon-card-checkout'", self.panel)
         self.assertIn(
             "class='compact-course-material salon-material-link' href='/lectures/2026-07-ai-online-salon-practice.html'",
             self.panel,

@@ -11468,7 +11468,6 @@ def _render_compact_course_cards() -> str:
             "material_url": "/lectures/2026-04-ai-kihon.html",
             "material_cta": "AIエージェント講習の受講資料を見る",
             "main": True,
-            "recommended": "一番基本・おすすめ",
             "details_lead": "この講習で得られること",
             "details": [
                 ("実際の仕事を1つ完成へ", "告知文、資料、調査、集計、業務ツール、サイト改善など、今の課題を題材に使える成果物まで進めます。"),
@@ -11560,11 +11559,6 @@ def _render_compact_course_cards() -> str:
             if material_url else ""
         )
         main_cls = " compact-course-card--main" if item.get("main") else ""
-        recommended = str(item.get("recommended") or "")
-        recommended_html = (
-            f"<strong class='compact-course-recommend'>{html.escape(recommended)}</strong>"
-            if recommended else ""
-        )
         title_html = f"<h3>{html.escape(item['title'])}</h3>"
         details = item.get("details") or []
         details_html = ""
@@ -11595,7 +11589,6 @@ def _render_compact_course_cards() -> str:
             )
         cards.append(
             f"<article class='compact-course-card{main_cls}'>"
-            f"{recommended_html}"
             f"<small>{html.escape(item['cat'])}</small>"
             f"<img class='compact-course-visual' src='{html.escape(item['image'], quote=True)}' alt='{html.escape(item['image_alt'], quote=True)}' loading='lazy' decoding='async'>"
             f"{title_html}"
@@ -12880,7 +12873,7 @@ header.site-header:hover {
   padding:0 !important;
   display:grid;
   grid-template-columns:repeat(5,minmax(0,1fr));
-  align-items:start;
+  align-items:stretch;
   gap:14px;
   text-align:left;
 }
@@ -12909,18 +12902,6 @@ header.site-header:hover {
   inset:0 0 auto;
   height:4px;
   background:var(--focus-blue);
-}
-.compact-course-recommend {
-  align-self:flex-start;
-  margin:0 0 9px;
-  padding:5px 10px;
-  color:#fff;
-  background:var(--focus-blue);
-  border-radius:999px;
-  font-size:11px;
-  line-height:1.2;
-  font-weight:900;
-  letter-spacing:.04em;
 }
 .compact-course-badge {
   align-self:flex-start;
@@ -14041,7 +14022,7 @@ footer.site-footer {
   .compact-course-grid {
     max-width:none;
     grid-template-columns:repeat(2,minmax(0,1fr));
-    align-items:start;
+    align-items:stretch;
     gap:12px;
   }
   .compact-course-card,

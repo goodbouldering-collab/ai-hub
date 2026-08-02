@@ -95,11 +95,16 @@ class RenderedSalonTest(unittest.TestCase):
         assert tablet is not None
         assert mobile is not None
         self.assertIn("grid-template-columns:repeat(2,minmax(0,1fr))", tablet.group(1))
+        self.assertIn("align-items:stretch", tablet.group(1))
         self.assertIn("grid-template-columns:1fr", mobile.group(1))
         for declarations in (tablet.group(1), mobile.group(1)):
             self.assertNotIn("grid-auto-flow:column", declarations)
             self.assertNotIn("overflow-x:auto", declarations)
             self.assertNotIn("scroll-snap-type", declarations)
+
+    def test_course_cards_have_no_recommendation_badge(self) -> None:
+        self.assertNotIn("一番基本・おすすめ", self.html)
+        self.assertNotIn("compact-course-recommend", self.html)
 
 
 if __name__ == "__main__":

@@ -49,6 +49,14 @@ export function salonOpenChatUrl(): string {
   return url.toString();
 }
 
+export function salonOpenChatPassword(): string {
+  const password = requiredSquareEnv("AI_SALON_OPENCHAT_PASSWORD");
+  if (!/^[0-9]{4,8}$/.test(password)) {
+    throw configError("AI_SALON_OPENCHAT_PASSWORD must be 4 to 8 digits.");
+  }
+  return password;
+}
+
 export async function squareJson<T>(
   path: string,
   init: RequestInit = {},

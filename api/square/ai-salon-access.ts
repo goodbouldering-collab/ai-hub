@@ -2,6 +2,7 @@ import type { VercelReq, VercelRes } from "../_lib/auth.js";
 import {
   AI_SALON_ITEM_NAME,
   requiredSquareEnv,
+  salonOpenChatPassword,
   salonOpenChatUrl,
   salonPriceYen,
   squareJson,
@@ -56,7 +57,7 @@ export default async function handler(req: VercelReq, res: VercelRes) {
       );
     }
 
-    return renderAccess(res, salonOpenChatUrl());
+    return renderAccess(res, salonOpenChatUrl(), salonOpenChatPassword());
   } catch (error: any) {
     return renderError(
       res,
@@ -66,7 +67,11 @@ export default async function handler(req: VercelReq, res: VercelRes) {
   }
 }
 
-function renderAccess(res: VercelRes, openChatUrl: string) {
+function renderAccess(
+  res: VercelRes,
+  openChatUrl: string,
+  participationPassword: string,
+) {
   res.statusCode = 200;
   res.setHeader("Cache-Control", "private, no-store, max-age=0");
   res.setHeader("Content-Type", "text/html; charset=utf-8");
@@ -82,10 +87,17 @@ main{width:min(560px,100%);padding:32px;border:1px solid #dbe4ef;border-radius:2
 .ok{display:grid;place-items:center;width:54px;height:54px;border-radius:50%;color:#fff;background:#16a56a;font-size:25px;font-weight:950}
 h1{margin:18px 0 0;font-size:clamp(28px,7vw,40px);letter-spacing:-.04em}p{color:#52657a;line-height:1.75}
 a.cta{min-height:54px;display:flex;align-items:center;justify-content:center;margin-top:22px;border-radius:10px;color:#fff;background:#06c755;font-size:15px;font-weight:950;text-decoration:none}
-a.cta:hover{background:#05a847}.note{padding:14px;border-radius:10px;background:#f0f7ff;color:#24344a;font-size:12px}
+a.cta:hover{background:#05a847}.password-box{margin-top:22px;padding:18px;border:1px solid #b8e7ca;border-radius:14px;background:#effaf3;text-align:center}
+.password-label{margin:0;color:#166534;font-size:13px;font-weight:900}.password-value{display:block;margin-top:7px;color:#071c38;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:clamp(30px,10vw,42px);font-weight:950;letter-spacing:.18em;line-height:1.2;user-select:all}
+.password-help{margin:8px 0 0;color:#52657a;font-size:12px;line-height:1.6}.note{padding:14px;border-radius:10px;background:#f0f7ff;color:#24344a;font-size:12px}
 </style></head><body><main>
 <div class="ok">✓</div><h1>決済を確認しました</h1>
 <p>Square決済時に入力した名前で、LINEオープンチャットの参加申請を送ってください。管理者が決済名と照合して承認します。</p>
+<section class="password-box" aria-labelledby="line-password-label">
+<p class="password-label" id="line-password-label">LINE参加パスワード</p>
+<strong class="password-value">${escapeHtml(participationPassword)}</strong>
+<p class="password-help">LINEの参加画面で入力してください。</p>
+</section>
 <a class="cta" href="${escapeHtml(openChatUrl)}" rel="noreferrer noopener">LINEオープンチャットへ進む</a>
 <p class="note">招待URLの共有はお控えください。決済を確認できない参加申請は承認されません。</p>
 </main></body></html>`);

@@ -19,6 +19,7 @@ class RenderedSalonTest(unittest.TestCase):
         self.assertEqual(self.html.count("action='/api/square/ai-salon-checkout'"), 1)
         self.assertNotIn("/api/stripe/ai-salon", self.html)
         self.assertNotRegex(self.html, r"https://(?:line\.me|lin\.ee)/")
+        self.assertNotIn("LINE参加パスワード", self.html)
 
     def test_salon_is_one_complete_menu_before_the_venue_map(self) -> None:
         cards = re.findall(

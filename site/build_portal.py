@@ -12617,15 +12617,17 @@ def _render_lecture_card(lec: dict) -> str:
 FOCUSED_PORTAL_CSS = r"""
 /* ---- Consultation-first redesign, light editorial direction, 2026-07-22 ---- */
 :root {
-  --focus-blue: #5367d9;
-  --focus-blue-dark: #3f4fab;
-  --focus-cyan: #eef1ff;
-  --focus-lavender: #f1efff;
-  --focus-violet: #7a67d8;
-  --focus-ink: #172033;
-  --focus-muted: #627089;
-  --focus-line: #d9deee;
-  --focus-surface: #f7f8fc;
+  --focus-blue: #5a6de4;
+  --focus-blue-dark: #4352b8;
+  --focus-cyan: #f0f4ff;
+  --focus-lavender: #f4f2ff;
+  --focus-violet: #766bd4;
+  --focus-peach: #f3c6b5;
+  --focus-ivory: #fffdfa;
+  --focus-ink: #101b31;
+  --focus-muted: #5f6c82;
+  --focus-line: #e3e6f0;
+  --focus-surface: #faf9ff;
   --focus-shell-x: max(18px, calc((100vw - 1400px) / 2));
   --focus-footer-y: clamp(36px, 5vw, 48px);
   --focus-footer-gap: clamp(24px, 3vw, 32px);
@@ -14562,6 +14564,275 @@ footer.site-footer {
     display: none !important;
   }
 }
+
+/* ---- Soft editorial minimal system, selected concept 1, 2026-08-02 ---- */
+body {
+  background:var(--focus-ivory) !important;
+  color:var(--focus-ink) !important;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+header.site-header,
+header.site-header.scrolled,
+header.site-header:hover {
+  background:rgba(255,253,250,.97) !important;
+  border-bottom:1px solid rgba(16,27,49,.07) !important;
+  box-shadow:0 10px 30px rgba(30,39,75,.045) !important;
+}
+.site-header-inner { max-width:1440px !important; }
+.wordmark { letter-spacing:-.045em !important; }
+.site-nav .nav-cta {
+  border-radius:11px !important;
+  box-shadow:0 9px 22px rgba(75,91,192,.16) !important;
+}
+.focus-hero {
+  min-height:690px;
+  background-color:var(--focus-ivory);
+  background-image:url('/img/ai-consult-soft-editorial-bg-20260802.webp');
+  background-position:center;
+  background-size:cover;
+}
+.focus-hero::before,
+.focus-hero::after,
+.hero-orb { display:none !important; }
+.focus-hero-shell {
+  width:min(1440px,100%);
+  min-height:744px;
+  padding:28px 0 28px 40px;
+  grid-template-columns:minmax(0,650px) minmax(480px,1fr);
+  gap:34px;
+  align-items:center;
+}
+.focus-hero-copy { padding:4px 0; }
+.focus-hero-media {
+  min-width:0;
+  min-height:688px;
+  align-self:stretch;
+  margin:0;
+  overflow:hidden;
+  border:1px solid rgba(90,109,228,.12);
+  border-right:0;
+  border-radius:112px 0 0 30px;
+  background:#f5f3ef;
+  box-shadow:0 24px 58px rgba(34,44,83,.10);
+}
+.focus-hero-media img {
+  width:100%;
+  height:100%;
+  min-height:688px;
+  display:block;
+  object-fit:cover;
+  object-position:86% center;
+  filter:saturate(.93) contrast(1.025) brightness(1.025);
+  transform:scale(1.18);
+  transform-origin:center;
+}
+.focus-hero-media figcaption {
+  position:absolute;
+  width:1px;
+  height:1px;
+  padding:0;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  white-space:nowrap;
+  border:0;
+}
+.focus-kicker {
+  margin-bottom:18px;
+  color:var(--focus-blue);
+  letter-spacing:.08em;
+}
+.focus-title {
+  max-width:650px;
+  font-size:clamp(52px,4.8vw,72px);
+  line-height:1.08;
+  letter-spacing:-.06em;
+}
+.focus-title strong {
+  text-decoration-line:underline;
+  text-decoration-color:#c8cdff;
+  text-decoration-thickness:4px;
+  text-underline-offset:11px;
+}
+.focus-title strong::after { display:none; }
+.hero-advantage { margin-top:30px; gap:13px 22px; }
+.hero-advantage-number strong {
+  color:var(--focus-blue);
+  background:none;
+  -webkit-text-fill-color:currentColor;
+  filter:none;
+}
+.hero-advantage-copy small strong {
+  color:var(--focus-blue);
+  background:#f1f2ff;
+  border-color:#dfe2ff;
+}
+.focus-lead {
+  max-width:610px;
+  margin-top:29px;
+  color:var(--focus-muted);
+  line-height:1.9;
+}
+.focus-btn {
+  border-radius:11px;
+  transition:transform .2s ease,box-shadow .2s ease,background .2s ease;
+}
+.focus-hero .focus-btn.primary {
+  box-shadow:0 12px 25px rgba(75,91,192,.18);
+}
+.focus-hero .focus-btn.secondary {
+  background:rgba(255,255,255,.92);
+  border-color:#d8dcf8;
+}
+.focus-trust { gap:0; color:var(--focus-muted); }
+.focus-trust li {
+  margin-right:18px;
+  padding-left:10px;
+  border-left:2px solid #cbd0ff;
+}
+.focus-trust li::before { display:none; }
+.focus-section-head small,
+.focus-hub-head small {
+  color:var(--focus-blue);
+  letter-spacing:.13em;
+}
+.focus-section-head h2,
+.focus-hub-head h2 { color:var(--focus-ink); }
+.focus-block { background:var(--focus-ivory); }
+.focus-block.soft { background:var(--focus-surface); }
+.focus-outcomes {
+  background:#f1f3ff;
+  border-block:1px solid var(--focus-line);
+}
+.focus-block.main-course {
+  background-color:var(--focus-ivory);
+  background-image:url('/img/ai-consult-soft-editorial-bg-20260802.webp');
+  background-position:center bottom;
+  background-size:cover;
+  border-color:var(--focus-line);
+}
+.main-course .focus-section-head small {
+  color:var(--focus-blue);
+  background:#eff1ff;
+  border:1px solid #dfe2ff;
+}
+.course-menu-unified {
+  padding:16px;
+  border-color:rgba(90,109,228,.14);
+  border-radius:26px;
+  background:rgba(255,255,255,.90);
+  box-shadow:0 16px 42px rgba(52,62,104,.055);
+}
+.compact-course-card,
+.path-card-new,
+.focus-step,
+.focus-proof,
+.outcome-item,
+.salon-panel {
+  border-color:var(--focus-line);
+  border-radius:18px;
+  background:#fff;
+  box-shadow:0 10px 28px rgba(42,50,88,.045);
+}
+.compact-course-card--main,
+.compact-course-card--salon {
+  background:#f8f8ff;
+  border-color:#d9ddfb;
+  box-shadow:0 15px 34px rgba(68,79,148,.08);
+}
+.compact-course-card--main::before { display:none; }
+.compact-course-card > a,
+.salon-details-back-to-checkout {
+  border-radius:10px;
+  box-shadow:0 8px 18px rgba(75,91,192,.13);
+}
+.compact-course-visual,
+.salon-main-visual,
+.focus-step-visual,
+.speaker-painting,
+.focus-proof img,
+.lecture-card img,
+.blog-card img,
+.pf-card img {
+  overflow:hidden;
+  border-radius:16px;
+}
+.compact-course-visual img,
+.salon-main-visual img,
+.focus-step-visual,
+.speaker-painting,
+.focus-proof img,
+.lecture-card img,
+.blog-card img,
+.pf-card img {
+  filter:saturate(.93) contrast(1.025) brightness(1.02);
+}
+.focus-block .pf-card,
+.focus-block .lecture-card,
+.focus-block .blog-card {
+  border:1px solid var(--focus-line) !important;
+  border-radius:18px !important;
+  box-shadow:0 10px 26px rgba(42,50,88,.045) !important;
+}
+.focus-block .pf-card:hover,
+.focus-block .lecture-card:hover,
+.focus-block .blog-card:hover {
+  border-color:#d6daf4 !important;
+  box-shadow:0 16px 34px rgba(42,50,88,.075) !important;
+}
+.focus-contact {
+  background:var(--focus-blue);
+  border-top:1px solid rgba(255,255,255,.18);
+}
+.focus-contact .focus-btn { border-radius:11px; }
+footer { background:#111a2e !important; }
+
+@media (max-width:1100px) {
+  .focus-hero-shell {
+    padding-left:24px;
+    grid-template-columns:minmax(0,1.12fr) minmax(380px,.88fr);
+    gap:26px;
+  }
+  .focus-hero-media { min-height:540px; border-radius:84px 0 0 26px; }
+  .focus-hero-media img { min-height:540px; }
+  .focus-title { font-size:clamp(48px,5.7vw,64px); }
+}
+@media (max-width:900px) {
+  .focus-hero { min-height:0; }
+  .focus-hero-shell {
+    min-height:0;
+    padding:24px 20px 54px;
+    grid-template-columns:1fr;
+    gap:30px;
+  }
+  .focus-hero-media {
+    order:-1;
+    min-height:270px;
+    border:1px solid rgba(90,109,228,.12);
+    border-radius:32px;
+  }
+  .focus-hero-media img { min-height:270px; object-position:69% center; transform:none; }
+  .focus-hero-copy { max-width:760px; }
+  .course-menu-unified { border-radius:22px; }
+}
+@media (max-width:680px) {
+  .container { padding-top:64px !important; }
+  .focus-hero-shell { padding:14px 14px 42px; gap:24px; }
+  .focus-hero-media { min-height:205px; border-radius:24px; }
+  .focus-hero-media img { min-height:205px; }
+  .focus-kicker { margin-bottom:11px; font-size:11px; }
+  .focus-title { font-size:clamp(38px,11.6vw,48px); line-height:1.08; }
+  .focus-title strong { text-decoration-thickness:3px; text-underline-offset:8px; }
+  .hero-advantage { margin-top:24px; }
+  .focus-lead { margin-top:22px; font-size:15px; line-height:1.82; }
+  .focus-actions { margin-top:24px; }
+  .focus-btn { border-radius:10px; }
+  .focus-trust li { margin:0 12px 8px 0; padding-left:8px; }
+  .main-course .focus-section-head small { padding:6px 11px; }
+  .course-menu-unified { padding:10px; border-radius:18px; }
+  .mobile-toggle { border-radius:12px !important; }
+  .mobile-nav-panel--public { background:var(--focus-ivory) !important; }
+}
 """
 
 
@@ -14603,7 +14874,6 @@ def _render_header_focused() -> str:
 def _render_hero_focused() -> str:
     return (
         "<section class='focus-hero' id='top' data-interactive-hero>"
-        "<div class='hero-orb hero-orb-one' aria-hidden='true'></div><div class='hero-orb hero-orb-two' aria-hidden='true'></div>"
         "<div class='focus-hero-shell'>"
         "<div class='focus-hero-copy fade-up'>"
         "<p class='focus-kicker'>彦根・滋賀の中小事業者向け</p>"
@@ -14618,6 +14888,8 @@ def _render_hero_focused() -> str:
         "<a class='focus-btn primary' href='#packages'>講習・個別相談を見る</a>"
         "<a class='focus-btn secondary' href='#contact'>無料相談する</a><a class='hero-text-link' href='/lectures/index.html'>受講資料 <span aria-hidden='true'>→</span></a></div>"
         "<ul class='focus-trust'><li>AI初心者OK</li><li>対面・オンライン対応</li><li>仕事を持ち込める</li></ul></div>"
+        "<figure class='focus-hero-media fade-up d2'><img src='/img/hero-ai-consult-hikone.png' alt='彦根の事業者が講師と一緒にAIエージェントを仕事へ取り入れる様子' width='1672' height='941' fetchpriority='high' decoding='async'>"
+        "<figcaption>彦根の事業者と行う、仕事を持ち込めるAI実践講習</figcaption></figure>"
         "</div>"
         "</section>"
     )

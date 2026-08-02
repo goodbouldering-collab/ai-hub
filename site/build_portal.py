@@ -11547,21 +11547,6 @@ def _render_compact_course_cards() -> str:
                 ("参加方法", "予約ページから日時を選び、WindowsまたはMacのPCと、作りたいものや直したいページをお持ちください。"),
             ],
         },
-        {
-            "cat": "月額サロン",
-            "title": "AIオンラインサロン",
-            "image": "/img/blog-ai-agent-course-section-4-20260714.webp",
-            "image_alt": "毎週火曜にLINEライブトークでAIの今と次の一手を整理するオンラインサロン",
-            "price": "月額2,200円",
-            "duration": "毎週火曜21時",
-            "desc": "AIの新機能と活用事例を60分で整理し、今週やることを決めます。聞くだけでも参加できます。",
-            "url": "#seven-day-courses",
-            "cta": "料金・参加方法を見る",
-            "material_url": "/lectures/2026-07-ai-online-salon-practice.html",
-            "material_cta": "オンラインサロン受講資料を見る",
-            "badge": "毎週ライブ",
-            "salon": True,
-        },
     ]
     cards = []
     for item in items:
@@ -11575,23 +11560,12 @@ def _render_compact_course_cards() -> str:
             if material_url else ""
         )
         main_cls = " compact-course-card--main" if item.get("main") else ""
-        salon_cls = " compact-course-card--salon" if item.get("salon") else ""
-        anchor_attr = " id='salon-menu-card'" if item.get("salon") else ""
         recommended = str(item.get("recommended") or "")
         recommended_html = (
             f"<strong class='compact-course-recommend'>{html.escape(recommended)}</strong>"
             if recommended else ""
         )
-        badge = str(item.get("badge") or "")
-        badge_html = (
-            f"<span class='compact-course-badge'><i aria-hidden='true'></i>{html.escape(badge)}</span>"
-            if badge else ""
-        )
-        title_html = (
-            "<div class='compact-course-title-row'>"
-            f"<h3>{html.escape(item['title'])}</h3>{badge_html}</div>"
-            if badge else f"<h3>{html.escape(item['title'])}</h3>"
-        )
+        title_html = f"<h3>{html.escape(item['title'])}</h3>"
         details = item.get("details") or []
         details_html = ""
         if details:
@@ -11620,7 +11594,7 @@ def _render_compact_course_cards() -> str:
                 f"<a href='{html.escape(item['url'], quote=True)}'{target_attr}>{html.escape(item['cta'])} →</a>"
             )
         cards.append(
-            f"<article class='compact-course-card{main_cls}{salon_cls}'{anchor_attr}>"
+            f"<article class='compact-course-card{main_cls}'>"
             f"{recommended_html}"
             f"<small>{html.escape(item['cat'])}</small>"
             f"<img class='compact-course-visual' src='{html.escape(item['image'], quote=True)}' alt='{html.escape(item['image_alt'], quote=True)}' loading='lazy' decoding='async'>"
@@ -11689,6 +11663,7 @@ def _render_salon_menu() -> str:
         f"<form class='salon-register-form salon-simple-form' method='post' action='{html.escape(AI_SALON_CHECKOUT_URL, quote=True)}'><button class='focus-btn primary' type='submit'>Squareで決済して参加 →</button></form>"
         "</div>"
         "<p class='salon-simple-note'>毎月自動更新 · 決済確認後にLINE参加案内を表示します</p>"
+        "<p class='salon-material-row'><a class='compact-course-material salon-material-link' href='/lectures/2026-07-ai-online-salon-practice.html'>オンラインサロン受講資料を見る →</a></p>"
         "<details class='salon-all-details salon-all-details--complete' id='salon-details'><summary>8つのメリット・内容・参加方法を見る</summary>"
         "<div class='salon-details-complete'>"
         "<div class='salon-eyebrow-row'><small>SQUARE MONTHLY</small>"
@@ -12911,13 +12886,13 @@ header.site-header:hover {
   margin:0 auto;
   padding:0 !important;
   display:grid;
-  grid-template-columns:repeat(12,minmax(0,1fr));
+  grid-template-columns:repeat(5,minmax(0,1fr));
   align-items:start;
   gap:14px;
   text-align:left;
 }
 .compact-course-card {
-  grid-column:span 2;
+  grid-column:span 1;
   min-width:0;
   min-height:0;
   display:flex;
@@ -12928,7 +12903,7 @@ header.site-header:hover {
   border-radius:16px;
   box-shadow:0 10px 28px rgba(42,53,105,.06);
 }
-.compact-course-card:first-child { grid-column:span 4; }
+.compact-course-card:first-child { grid-column:span 2; }
 .compact-course-card--main {
   position:relative;
   background:linear-gradient(145deg,#f0f1ff 0%,#fff 70%);
@@ -12941,10 +12916,6 @@ header.site-header:hover {
   inset:0 0 auto;
   height:4px;
   background:var(--focus-blue);
-}
-.compact-course-card--salon {
-  background:linear-gradient(145deg,#f5f7ff 0%,#fff 74%);
-  border-color:rgba(83,103,217,.30);
 }
 .compact-course-recommend {
   align-self:flex-start;
@@ -13955,6 +13926,19 @@ footer.site-footer {
   font-size:9.5px;
   text-align:right;
 }
+.salon-material-row {
+  margin:5px 0 0;
+  text-align:right;
+}
+.salon-material-link {
+  color:var(--focus-blue);
+  font-size:11px;
+  font-weight:900;
+  line-height:1.5;
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+.salon-material-link:hover { color:var(--focus-blue-dark); }
 .salon-all-details--complete {
   margin-top:10px;
 }
@@ -14199,6 +14183,7 @@ footer.site-footer {
     line-height:1.45;
     text-align:left;
   }
+  .salon-material-row { text-align:left; }
   .salon-details-complete {
     padding:10px;
   }
@@ -14646,7 +14631,7 @@ def _render_focused_main() -> str:
         "<section class='focus-block main-course' id='packages'><div class='focus-section-head'><small>COURSES</small><h2>講習・相談コース</h2></div>",
         "<p class='focus-section-lead'><strong>迷ったら、まずはAIエージェント講習が一番基本でおすすめです。</strong><br>最新情報を追い続けず「今やること」を知りたい方は、月額2,200円のオンラインサロンへ。個別相談、伴走支援、AIコーディング講習も選べます。</p>",
         "<div class='course-menu-unified' aria-label='講習・相談の全5メニュー'>",
-        "<div class='course-menu-unified-head'><strong>全5メニュー</strong><span>カードを選ぶと、予約・資料・詳しい内容を確認できます</span></div>",
+        "<div class='course-menu-unified-head'><strong>全5メニュー</strong><span>上の4カードと下のオンラインサロンから選べます</span></div>",
         _render_compact_course_cards(),
         _render_salon_menu(),
         "</div>",

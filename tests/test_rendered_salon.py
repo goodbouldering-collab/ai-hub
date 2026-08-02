@@ -27,12 +27,14 @@ class RenderedSalonTest(unittest.TestCase):
             self.html,
             re.DOTALL,
         )
-        self.assertEqual(len(cards), 5)
+        self.assertEqual(len(cards), 4)
         salon_cards = [card for card in cards if ">AIオンラインサロン</h3>" in card]
-        self.assertEqual(len(salon_cards), 1)
-        self.assertIn("href='#seven-day-courses'", salon_cards[0])
+        self.assertEqual(len(salon_cards), 0)
+        self.assertNotIn("compact-course-card--salon", self.html)
+        self.assertNotIn("id='salon-menu-card'", self.html)
         self.assertIn("class='course-menu-unified'", self.html)
         self.assertIn("aria-label='講習・相談の全5メニュー'", self.html)
+        self.assertIn("上の4カードと下のオンラインサロンから選べます", self.html)
         self.assertIn("<div class='salon-panel'>", self.html)
         self.assertIn("class='salon-simple-head'", self.html)
         self.assertIn("class='salon-all-details salon-all-details--complete'", self.html)
@@ -51,6 +53,11 @@ class RenderedSalonTest(unittest.TestCase):
         self.assertLess(salon_start, salon_end)
         self.assertLess(salon_end, venue_map)
         self.assertIn("8つのメリット・内容・参加方法を見る", self.html)
+        self.assertIn(
+            "class='compact-course-material salon-material-link' href='/lectures/2026-07-ai-online-salon-practice.html'",
+            self.html,
+        )
+        self.assertIn("オンラインサロン受講資料を見る", self.html)
         self.assertIn("LINEライブ", self.html)
         self.assertIn("聞くだけOK", self.html)
 

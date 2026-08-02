@@ -74,6 +74,7 @@ class SalonContentContractTests(unittest.TestCase):
             "話すときだけマイクON",
             "マイクOFF・途中参加・途中退出OK",
             "決済確認後にLINE参加案内を表示",
+            "オンラインサロン受講資料を見る",
             "Squareで決済して参加",
             "月額2,200円（税込）・毎月自動更新。決済確認後にLINE参加案内を表示します",
         )
@@ -88,6 +89,10 @@ class SalonContentContractTests(unittest.TestCase):
         self.assertEqual(self.panel.count("<li><b>"), 3)
         self.assertIn("method='post'", self.panel)
         self.assertIn("action='/api/square/ai-salon-checkout'", self.panel)
+        self.assertIn(
+            "class='compact-course-material salon-material-link' href='/lectures/2026-07-ai-online-salon-practice.html'",
+            self.panel,
+        )
         self.assertIn(
             "src='/img/blog-ai-agent-course-section-4-20260714.webp'",
             self.panel,

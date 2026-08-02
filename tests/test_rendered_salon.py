@@ -77,6 +77,30 @@ class RenderedSalonTest(unittest.TestCase):
         assert nav is not None
         self.assertGreater(nav.group(1).rfind("サロン"), nav.group(1).rfind("個別相談"))
 
+    def test_course_cards_stack_without_horizontal_flip(self) -> None:
+        tablet = re.search(
+            r"@media \(max-width:1100px\).*?"
+            r"\.compact-course-grid\s*\{([^}]*)\}",
+            self.html,
+            re.DOTALL,
+        )
+        mobile = re.search(
+            r"@media \(max-width:720px\).*?"
+            r"\.compact-course-grid\s*\{([^}]*)\}",
+            self.html,
+            re.DOTALL,
+        )
+        self.assertIsNotNone(tablet)
+        self.assertIsNotNone(mobile)
+        assert tablet is not None
+        assert mobile is not None
+        self.assertIn("grid-template-columns:repeat(2,minmax(0,1fr))", tablet.group(1))
+        self.assertIn("grid-template-columns:1fr", mobile.group(1))
+        for declarations in (tablet.group(1), mobile.group(1)):
+            self.assertNotIn("grid-auto-flow:column", declarations)
+            self.assertNotIn("overflow-x:auto", declarations)
+            self.assertNotIn("scroll-snap-type", declarations)
+
 
 if __name__ == "__main__":
     unittest.main()

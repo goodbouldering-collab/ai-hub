@@ -1,6 +1,13 @@
 {
-  "generated_at": "2026-08-03T02:49:55Z",
+  "generated_at": "2026-08-03T22:52:29Z",
   "recent_works": [
+    {
+      "date": "2026-08-02",
+      "filename": "2026-08-02-seo-weekly-digest.md",
+      "title": "SEO週次ダイジェスト（2026-08-02）",
+      "business": "seo",
+      "path": "/ops?file=2026-08-02-seo-weekly-digest.md#sec-docs"
+    },
     {
       "date": "2026-07-27",
       "filename": "2026-07-27-seo-weekly-digest.md",
@@ -49,13 +56,6 @@
       "title": "SEO週次ダイジェスト（2026-06-15）",
       "business": "seo",
       "path": "/ops?file=2026-06-15-seo-weekly-digest.md#sec-docs"
-    },
-    {
-      "date": "2026-06-10",
-      "filename": "2026-06-10-ai-hub-advisor-admin-dashboard-improvement-loop.md",
-      "title": "論点: AIハブ管理ダッシュボードを「毎朝の経営判断画面」に作り替える評価軸と改善ループ",
-      "business": "AIハブ",
-      "path": "/ops?file=2026-06-10-ai-hub-advisor-admin-dashboard-improvement-loop.md#sec-docs"
     }
   ],
   "tasks_open": [
@@ -91,7 +91,7 @@
   "per_business_recent": [
     {
       "business": "seo",
-      "count": 1
+      "count": 2
     }
   ],
   "daily_histogram": [
@@ -145,7 +145,7 @@
     },
     {
       "date": "2026-08-02",
-      "count": 0
+      "count": 1
     },
     {
       "date": "2026-08-03",
@@ -154,8 +154,8 @@
   ],
   "cma_apps": [],
   "totals": {
-    "consul_work_total": 133,
-    "recent_7d_total": 1,
+    "consul_work_total": 134,
+    "recent_7d_total": 2,
     "tasks_open_total": 4
   }
 }

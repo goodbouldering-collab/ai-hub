@@ -2,13 +2,36 @@
 
 ## AIニュース
 
-### Fender’s CEO seems to think your bandmates are just analog AI
-Fender CEO Edward "Bud" Cole gave an interview to T3 in May celebrating the 75th anniversary of the Telecaster with comments on AI and music that initially flew under the radar. But it has started mak...
-出典: https://www.theverge.com/ai-artificial-intelligence/974265/fender-ceo-bud-cole-ai-music
+### Europe’s AI labeling and transparency rules are now in effect
+The European Union has ushered in some additional rules that aim to make it easier for people to identify chatbots and AI deepfakes online. The new transparency obligations under the bloc's landmark A...
+出典: https://www.theverge.com/ai-artificial-intelligence/974571/eu-ai-act-transparency-labels-rules-deepfakes
 
-### Is paying artists enough to convince them to embrace AI?
-Illustrators have spent years sounding the alarm about generative artificial intelligence startups training their models on artists' work without permission. They've pointed out how the practice is ta...
-出典: https://www.theverge.com/ai-artificial-intelligence/974018/pippa-seedance-artist-royalties
+### China&#8217;s Alibaba takes another swipe at America’s AI supremacy
+Chinese tech giant Alibaba released what it says is its largest and "most capable AI model to date," claiming performance rivaling the best systems from US frontier labs Anthropic and OpenAI, as well ...
+出典: https://www.theverge.com/ai-artificial-intelligence/974342/alibaba-qwen-max-open-weight-ai
+
+### Trump’s AI protectionism has come for robotics
+This story originally appeared in The Algorithm, our weekly newsletter on AI. To get stories like this in your inbox first, sign up here. Humanoid robots usually elicit more cringe than awe: They stum...
+出典: https://www.technologyreview.com/2026/08/03/1141056/trumps-ai-protectionism-has-come-for-robotics/
+
+### Here’s why AI agents lie and cheat to reach their goals
+MIT Technology Review Explains: Let our writers untangle the complex, messy world of technology to help you understand what’s coming next. You can read more from the series here. When two OpenAI model...
+出典: https://www.technologyreview.com/2026/08/03/1141009/heres-why-ai-agents-lie-and-cheat-to-reach-their-goals/
+
+### US company’s AI lets Ukraine’s cheap kamikaze drones track targets on their own
+$100 million deal gives 50,000 Ukrainian drones US-developed AI capabilities.
+出典: https://arstechnica.com/ai/2026/08/ukraines-drones-get-ai-upgrades-for-kamikaze-strikes-future-swarm-attacks/
+
+### An AI-supervised remote exam went so badly that 58,000 students must retake it
+Top scores increased by 5x.
+出典: https://arstechnica.com/culture/2026/08/an-ai-supervised-remote-exam-went-so-badly-that-58000-students-must-retake-it/
+
+
+## AI公式
+
+### How we built a realtime system for responsive voice AI in six months
+GPT-Live enables continuous voice interaction with AI, using a turnless speech model and low-latency architecture for faster, more natural conversations.
+出典: https://openai.com/index/continuous-voice-interaction-with-gpt-live
 
 
 ## AI動画(日本語)
@@ -17,16 +40,48 @@ Illustrators have spent years sounding the alarm about generative artificial int
 ▼【定員20名】Claude Code合宿 2026(Claude Code漬けになる2泊3日) 8月21日〜23日・新大阪／同じ会社・チームの同伴1名無料 https://touchai.jp/claude-code-camp?utm_source=youtube_live&amp;utm_medium=webshokutv&amp;utm_campaign=20260803  ▼【8/9生配信...
 出典: https://www.youtube.com/watch?v=oxnpry_L6W4
 
-### 凄いぞ！次世代スマートAIグラス『Rokid』を徹底レビュー！
-次世代AIスマートグラス『Rokid』を徹底レビュー！映像解析・音楽再生・チャットボットなど多機能なAIスマートグラスです。  Rokidは下記 公式サイト割引コード： R3K-KEITO 公式サイト購入リンク： https://bit.ly/4fjt1ni Amazon購入リンク： https://bit.ly/4gTft34  ★プロセボ｜AIコミュニティ AI活用を実際に操作しながら学ぶワー...
-出典: https://www.youtube.com/watch?v=BOjuRJi-TWo
+### ChatGPT Workを完全解説【この動画1本で全て理解できる】働くAIとは？AI活用例７選！スキルなど
+ChatGPT Workを完全解説します。初心者もOK！この動画1本で全て理解できるレベルのボリューム感で初心者〜中級者に向けて網羅的に解説してます。働くAIとは？スキル・プラグイン・AI活用例など他基本的な使い方と一緒に学びましょう！  ★KEITOの公式LINEは下記 LINE：https://lin.ee/1krnxOu  ★プロセボ｜AIコミュニティ AI活用を実際に操作しながら学ぶワーク...
+出典: https://www.youtube.com/watch?v=U74PHw-h59Q
 
-### 【爆伸び注意】登録者100万人超えのアニメ動画をAIで生成する方法!【AI副業】
-▼動画内で紹介したプレゼントの受け取りは以下の公式LINEから https://liff.line.me/2006805073-rn36NG8b/landing?follow=%40933hyolt&amp;lp=jvDgFj&amp;liff_id=2006805073-rn36NG8b  ▼この動画で分かること ・Higgsfieldを使ってAIアニメ動画を生成する流れ ・Codex用スキルか...
-出典: https://www.youtube.com/watch?v=NNk_dDs7BKU
+### 【マジで悪用厳禁】イーロンが止めた稼げる大人動画を生成するめちゃヤバツールを公開
+▼動画内で紹介したプレゼントの受け取りは以下の公式LINEから https://liff.line.me/2006805073-rn36NG8b/landing?follow=%40933hyolt&amp;lp=o8AaeO&amp;liff_id=2006805073-rn36NG8b  ▼プレゼントの受け取り方法 ① LINE登録後に送信される配信をタップ ② アンケートに回答（1度登録され...
+出典: https://www.youtube.com/watch?v=VNExqK7ZkQo
 
 
 ## AI国内
+
+### AI活用を「個人の効率化」で終わらせるな　セールスフォース流「4つの組織改革術」
+生成AIを全社活用できている企業が11％にとどまる中、セールスフォース・ジャパンの社内では300ものAIエージェントが自律稼働している。同社はなぜ「個人の業務効率化」で止めず、全社変革（AX）へ導けるのか。管理不能な「野良エージェント」を防ぐ線引きや、組織と人員を再構築する「4R」のフレームワーク、「人とAIの両方を管理する」マネジメント像まで、変革の極意を聞く。
+出典: https://www.itmedia.co.jp/business/articles/2608/04/news027.html
+
+### 「融資」現場にAIの足音、資金調達どう変わる？　カネを借りられる企業の条件、専修大教授に聞く
+融資の審査にAIを使う動きがある。資金を調達する企業にとっての「審査が遅い」などの課題を解決できのか。逆に、借りる側に変化はあるのか。専修大学の尾木研三教授に聞いた。
+出典: https://www.itmedia.co.jp/business/articles/2608/04/news005.html
+
+### 「大きな投資計画が次々に。久しぶりだ」――強く豊かな日本投資枠、経済成長かなうか？　片山大臣が語る狙い
+政府は、2027年度予算の概算要求において、成長投資枠は「予算の上限額を設けない」とした。その狙いと意気込みを片山さつき財務大臣が語った。
+出典: https://www.itmedia.co.jp/business/articles/2608/04/news024.html
+
+### スクエニ、ゲームの品質テストをGeminiで自動化　AIが画面を見ながらコントローラーを操作、検証作業を自走
+スクウェア・エニックスが、ゲームのQAテストを「Gemini」で自動化する取り組みを「Google Cloud Next Tokyo '26」基調講演で披露。AIが画面を見ながらコントローラーを操作し、検証作業を自ら進める。
+出典: https://www.itmedia.co.jp/aiplus/article/2607/31/2000000322/
+
+### 実在女性の中学時代の体操着姿からAIわいせつ画像作成・投稿か　男逮捕、高校生書類送検
+女性の写真を生成AIで加工したわいせつ画像をSNSに投稿したとして、警視庁などは、名誉毀損（きそん）と児童買春・ポルノ禁止法違反（公然陳列）の疑いで、兵庫県姫路市の会社員、井元健太容疑者（32）を逮捕した。また、画像の加工を依頼したとして、鹿児島県垂水市の高校3年の男子生徒（17）も同容疑で書類送検した。
+出典: https://www.itmedia.co.jp/news/article/2608/03/2000000365/
+
+### カメラとディスプレイ搭載のAIグラス、「Rokid スマートAIグラス」を試してみた
+「Rokid スマートAIグラス」の一般発売が7月10日に始まった。製品を借りることができたので、現在地の評価と、未来の可能性について考えてみたい。AIグラスは、何を可能にし、何を可能にしないのだろうか。
+出典: https://www.itmedia.co.jp/news/article/2608/03/2000000351/
+
+### 「Qwen3.8-Max」登場、オープン化は「来週」　一部「Fable 5」「GPT-5.6 Sol」超えの性能うたう
+中国Alibaba傘下のAlibaba Cloudは8月3日、AIモデル「Qwen3.8-Max」を正式にリリースした。来週にはモデルの重みも公開する予定だ。
+出典: https://www.itmedia.co.jp/aiplus/article/2608/03/2000000353/
+
+### 富士通とNECは「AI需要」と「収益」をどう語った？　2026年下半期の見通しを考察
+企業の業務に向けたAI需要はどのような動きなのか。AI需要の盛り上がりと、ITサービス企業の収益は直結するのか。富士通とNECのCFOによる直近決算会見での発言から考察する。
+出典: https://www.itmedia.co.jp/enterprise/articles/2608/03/news061.html
 
 ### 「エンジニアの代替ではなく、できることを増やす」　Devin開発元が見据えるIT外注大国・日本の“伸びしろ”
 自律型AIエンジニア「Devin」を手掛ける米Cognition AIの日本ユーザー人口は、米国に次ぐ規模だという。IT人材の約7割がSIer側に偏るIT外注大国・日本で同社は何を狙うのか。日本法人代表の正井拓己氏に聞いた。
@@ -36,44 +91,16 @@ Illustrators have spent years sounding the alarm about generative artificial int
 設計スキルのレベルアップを目指す設計者の皆さんを“冒険者”に見立て、さまざまな“問（モン）スター”に挑む「テルえもんクエストII」の世界へようこそ。【レベル14】のテーマは、生成AIを活用した3D CADデータの作成と操作です。
 出典: https://monoist.itmedia.co.jp/mn/articles/2608/03/news002.html
 
-### 月100億トークン使うビズリーチ　「AIコスト増」懸念の中、費用対効果どう判断しているのか
-AI活用が広がる一方で、コスト増加への懸念が高まっている。月間約100億トークンを消費するというビズリーチCTOは、AIの費用対効果をどのように考えているのか。
-出典: https://www.itmedia.co.jp/business/articles/2608/03/news010.html
-
-### 賞金1000万のAIコンテスト、でも「実現性は問わず」　サイバーエージェントのAI推進策
-生成AIを導入しても、従業員に使われなければ成果にはつながらない。サイバーエージェントは、賞金1000万円のAIコンテストを開催し、あえて「実現性」を問わない仕掛けで社員の意識を変えた。その狙いとは。
-出典: https://kn.itmedia.co.jp/kn/articles/2608/03/news032.html
-
-### 生成AI利用率、情シスよりも高いのはあの職種だった
-生成AIの活用状況は、担当する業務や職種によって大きく異なる。職種別の生成AI利用実態を把握するためにラグザスが実施した調査によると、エンジニア・情シスの生成AI利用率は職種別で1位ではなかった。では、その職種がそれらを上回ったのか。
-出典: https://kn.itmedia.co.jp/kn/articles/2608/03/news020.html
-
-### 「AI、結局使えないじゃん」問題　セールスフォースが431万件対応で導いた正解
-AIエージェントの導入が進む一方、全社的な利益改善に至る企業は4割弱にとどまる。そんな「AI導入の壁」を破り、自社実践（カスタマーゼロ）で431万件の顧客対応を完了、商談数を4～5割増加させたのがセールスフォースだ。同社はなぜ明快なROIを生み出せるのか。データやKPIが整う領域の選定や「シンプルで高頻度な業務」から任せる鉄則など、AI投資を成果につなげる運用の方法論を田中遼太COOに聞いた。
-出典: https://www.itmedia.co.jp/business/articles/2608/03/news030.html
-
-### WAFを89％すり抜ける事例も──AIが休みなく仕掛けるWeb攻撃、予防策はあるか
-フロンティアAIの登場で一変したWeb攻撃。その傾向や対策、落とし穴をAkamai Technologiesの中西一博氏が解説。
-出典: https://www.itmedia.co.jp/news/article/2608/03/2000000287/
-
-### OpenAI、次期主力モデル「Astra」の存在を明らかに――未解決の数学問題10件を「解決」と発表
-OpenAIは、次期主力モデル「Astra」の社内版により、数学や理論計算機科学の未解決問題10件で新たな結果を得たと発表した。「Astra」の名称公表は初とみられる。計算コストは「Sol」換算で約2000ドルに抑えられ、証明支援系「Lean」による形式証明もGitHubで公開。高度な数学研究への応用可能性を示した。
-出典: https://www.itmedia.co.jp/news/article/2608/03/2000000348/
-
 
 ## AI研究者ブログ
 
-### condense-json 1.0
-<p><strong>Release:</strong> <a href="https://github.com/simonw/condense-json/releases/tag/1.0">condense-json 1.0</a></p>         <p>I'm trying to get braver at releasing 1.0 versions. This little lib...
-出典: https://simonwillison.net/2026/Aug/2/condense-json/#atom-everything
+### Quoting David Crawshaw's prompt
+<blockquote cite="https://blog.exe.dev/devtools-must-be-open-source"><p><code>Set up a nightly cron job that executes the prompt: fetch upstream changes to the &lt;software&gt; and rebase all local ch...
+出典: https://simonwillison.net/2026/Aug/3/david-crawshaw/#atom-everything
 
-### Open letters about AI development
-<h4>Open letters about AI development</h4> <p><em>I wrote this summary of the past few weeks of open letters as a section of <a href="https://simonwillison.net/2026/Aug/2/july-newsletter/">my sponsors...
-出典: https://simonwillison.net/2026/Aug/2/open-letters/#atom-everything
-
-### July 2026 newsletter
-<p>The June edition of my <a href="https://github.com/sponsors/simonw/">sponsors-only monthly newsletter</a> is out. If you are a sponsor (or if you start a sponsorship now) you can <a href="https://g...
-出典: https://simonwillison.net/2026/Aug/2/july-newsletter/#atom-everything
+### Devtools must be open source (exe.dev)
+<p><a href="https://news.ycombinator.com/item?id=49156111#49156719">My comment</a> on <a href="https://news.ycombinator.com/item?id=49156111">Devtools must be open source (exe.dev)</a> &mdash; Hacker ...
+出典: https://simonwillison.net/2026/Aug/3/devtools-must-be-open-source-exedev/#atom-everything
 
 
 ## SNS動向
@@ -86,14 +113,9 @@ OpenAIは、次期主力モデル「Astra」の社内版により、数学や理
 <p>The company offered guidance on how to plan for ad spending and promotional budgeting ahead of the upcoming shopping season.</p>
 出典: https://www.socialmediatoday.com/news/meta-shares-holiday-2026-tips-for-small-businesses/826785/
 
-### Reddit’s user base grows to more than 130 million daily actives
-<p>The company&rsquo;s Q2 performance update also showed robust revenue growth despite what CEO Steve Huffman called &ldquo;choppy&rdquo; search referrals.</p>
-出典: https://www.socialmediatoday.com/news/reddits-user-base-grows-to-more-than-130-million-daily-actives/826783/
 
-### Snapchat will no longer recommend AI slop
-<p>The platform is updating its Spotlight feed to promote human-made content and downgrade anything wholly created by artificial intelligence.</p>
-出典: https://www.socialmediatoday.com/news/snapchat-will-no-longer-recommend-ai-slop/826782/
+## SNS運用
 
-### LinkedIn offers the option to report AI slop
-<p>The platform is testing a new feature that allows posts and comments to be privately flagged as being generated by artificial intelligence.</p>  <p>&nbsp;</p>
-出典: https://www.socialmediatoday.com/news/linkedin-offers-the-option-to-report-ai-slop/826781/
+### 17 Best AI Tools for Social Media Content Creation (Tested for 2026)
+I've tested dozens of AI social media content creation tools to find the ones worth adding to my workflow. These are the 17 that do everything from feeding my thinking to automating busywork.
+出典: https://buffer.com/resources/ai-social-media-content-creation/

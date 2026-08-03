@@ -2,11 +2,11 @@
   "date": "2026-08-03",
   "items": [
     {
-      "hash": "7b708d5ca6948258",
-      "title": "Fender’s CEO seems to think your bandmates are just analog AI",
-      "orig_title": "Fender’s CEO seems to think your bandmates are just analog AI",
+      "hash": "69f8e231cb9ae50d",
+      "title": "Europe’s AI labeling and transparency rules are now in effect",
+      "orig_title": "Europe’s AI labeling and transparency rules are now in effect",
       "summary": "",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/974265/fender-ceo-bud-cole-ai-music",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/974571/eu-ai-act-transparency-labels-rules-deepfakes",
       "source": "The Verge AI",
       "category": "AIニュース",
       "genre": "industry",
@@ -17,15 +17,34 @@
         "source_bonus": 0.0,
         "freshness": 6.0
       },
-      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/gettyimages-1259130896.jpg?quality=90&amp;strip=all&amp;crop=0%2C9.9724610532046%2C100%2C80.055077893591&amp;w=1200",
-      "published": "2026-08-02T15:36:08-04:00"
+      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/EU-AI-label-icons-hero.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
+      "published": "2026-08-03T13:38:45-04:00"
     },
     {
-      "hash": "e2398f7b9ea55802",
-      "title": "condense-json 1.0",
-      "orig_title": "condense-json 1.0",
+      "hash": "131a40df897467b4",
+      "title": "China&#8217;s Alibaba takes another swipe at America’s AI supremacy",
+      "orig_title": "China&#8217;s Alibaba takes another swipe at America’s AI supremacy",
       "summary": "",
-      "url": "https://simonwillison.net/2026/Aug/2/condense-json/#atom-everything",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/974342/alibaba-qwen-max-open-weight-ai",
+      "source": "The Verge AI",
+      "category": "AIニュース",
+      "genre": "industry",
+      "score": 56.0,
+      "breakdown": {
+        "base": 50.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 6.0
+      },
+      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/gettyimages-2266883826.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.737892056687%2C100%2C78.524215886627&amp;w=1200",
+      "published": "2026-08-03T07:01:11-04:00"
+    },
+    {
+      "hash": "dfb8d53606b5225e",
+      "title": "Quoting David Crawshaw's prompt",
+      "orig_title": "Quoting David Crawshaw's prompt",
+      "summary": "",
+      "url": "https://simonwillison.net/2026/Aug/3/david-crawshaw/#atom-everything",
       "source": "Simon Willison's Weblog",
       "category": "AI研究者ブログ",
       "genre": "industry",
@@ -37,7 +56,26 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-08-02T22:19:59+00:00"
+      "published": "2026-08-03T16:15:27+00:00"
+    },
+    {
+      "hash": "cf3b6c1aecab93c3",
+      "title": "Devtools must be open source (exe.dev)",
+      "orig_title": "Devtools must be open source (exe.dev)",
+      "summary": "",
+      "url": "https://simonwillison.net/2026/Aug/3/devtools-must-be-open-source-exedev/#atom-everything",
+      "source": "Simon Willison's Weblog",
+      "category": "AI研究者ブログ",
+      "genre": "industry",
+      "score": 56.0,
+      "breakdown": {
+        "base": 50.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 6.0
+      },
+      "thumbnail": "",
+      "published": "2026-08-03T15:30:38+00:00"
     },
     {
       "hash": "1b6fb99b4f9f9128",
@@ -56,71 +94,33 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/oxnpry_L6W4/hqdefault.jpg",
-      "published": "2026-08-02T21:41:58+00:00"
+      "published": "2026-08-03T11:51:57+00:00"
     },
     {
-      "hash": "40c8410b03c6318f",
-      "title": "Is paying artists enough to convince them to embrace AI?",
-      "orig_title": "Is paying artists enough to convince them to embrace AI?",
+      "hash": "c5378400de6e22f9",
+      "title": "【マジで悪用厳禁】イーロンが止めた稼げる大人動画を生成するめちゃヤバツールを公開",
+      "orig_title": "【マジで悪用厳禁】イーロンが止めた稼げる大人動画を生成するめちゃヤバツールを公開",
       "summary": "",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/974018/pippa-seedance-artist-royalties",
-      "source": "The Verge AI",
-      "category": "AIニュース",
+      "url": "https://www.youtube.com/watch?v=VNExqK7ZkQo",
+      "source": "AI収益化ラボ",
+      "category": "AI動画(日本語)",
       "genre": "industry",
-      "score": 53.0,
+      "score": 56.0,
       "breakdown": {
         "base": 50.0,
         "genre_bonus": 0.0,
         "source_bonus": 0.0,
-        "freshness": 3.0
+        "freshness": 6.0
       },
-      "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/Screenshot-2026-07-31-at-4.11.25-PM.png?quality=90&amp;strip=all&amp;crop=2.6881256103516%2C4.7093735253803%2C97.311874389648%2C90.581252949239&amp;w=1200",
-      "published": "2026-08-02T09:00:00-04:00"
+      "thumbnail": "https://img.youtube.com/vi/VNExqK7ZkQo/hqdefault.jpg",
+      "published": "2026-08-03T13:20:08+00:00"
     },
     {
-      "hash": "e9279fb5f88b6aef",
-      "title": "Open letters about AI development",
-      "orig_title": "Open letters about AI development",
+      "hash": "5afc497e90af109b",
+      "title": "ChatGPT Workを完全解説【この動画1本で全て理解できる】働くAIとは？AI活用例７選！スキルなど",
+      "orig_title": "ChatGPT Workを完全解説【この動画1本で全て理解できる】働くAIとは？AI活用例７選！スキルなど",
       "summary": "",
-      "url": "https://simonwillison.net/2026/Aug/2/open-letters/#atom-everything",
-      "source": "Simon Willison's Weblog",
-      "category": "AI研究者ブログ",
-      "genre": "industry",
-      "score": 53.0,
-      "breakdown": {
-        "base": 50.0,
-        "genre_bonus": 0.0,
-        "source_bonus": 0.0,
-        "freshness": 3.0
-      },
-      "thumbnail": "",
-      "published": "2026-08-02T04:16:52+00:00"
-    },
-    {
-      "hash": "7fd516b869940ba5",
-      "title": "July 2026 newsletter",
-      "orig_title": "July 2026 newsletter",
-      "summary": "",
-      "url": "https://simonwillison.net/2026/Aug/2/july-newsletter/#atom-everything",
-      "source": "Simon Willison's Weblog",
-      "category": "AI研究者ブログ",
-      "genre": "industry",
-      "score": 53.0,
-      "breakdown": {
-        "base": 50.0,
-        "genre_bonus": 0.0,
-        "source_bonus": 0.0,
-        "freshness": 3.0
-      },
-      "thumbnail": "",
-      "published": "2026-08-02T04:12:41+00:00"
-    },
-    {
-      "hash": "3dd4494c7ef03518",
-      "title": "凄いぞ！次世代スマートAIグラス『Rokid』を徹底レビュー！",
-      "orig_title": "凄いぞ！次世代スマートAIグラス『Rokid』を徹底レビュー！",
-      "summary": "",
-      "url": "https://www.youtube.com/watch?v=BOjuRJi-TWo",
+      "url": "https://www.youtube.com/watch?v=U74PHw-h59Q",
       "source": "KEITO AI&WEB",
       "category": "AI動画(日本語)",
       "genre": "industry",
@@ -131,36 +131,17 @@
         "source_bonus": 0.0,
         "freshness": 3.0
       },
-      "thumbnail": "https://img.youtube.com/vi/BOjuRJi-TWo/hqdefault.jpg",
-      "published": "2026-08-02T10:00:02+00:00"
+      "thumbnail": "https://img.youtube.com/vi/U74PHw-h59Q/hqdefault.jpg",
+      "published": "2026-08-03T10:00:13+00:00"
     },
     {
-      "hash": "73556ce66e21fdd2",
-      "title": "【爆伸び注意】登録者100万人超えのアニメ動画をAIで生成する方法!【AI副業】",
-      "orig_title": "【爆伸び注意】登録者100万人超えのアニメ動画をAIで生成する方法!【AI副業】",
+      "hash": "a4b1b5bbf4bc63f0",
+      "title": "How we built a realtime system for responsive voice AI in six months",
+      "orig_title": "How we built a realtime system for responsive voice AI in six months",
       "summary": "",
-      "url": "https://www.youtube.com/watch?v=NNk_dDs7BKU",
-      "source": "AI収益化ラボ",
-      "category": "AI動画(日本語)",
-      "genre": "industry",
-      "score": 53.0,
-      "breakdown": {
-        "base": 50.0,
-        "genre_bonus": 0.0,
-        "source_bonus": 0.0,
-        "freshness": 3.0
-      },
-      "thumbnail": "https://img.youtube.com/vi/NNk_dDs7BKU/hqdefault.jpg",
-      "published": "2026-08-02T10:00:14+00:00"
-    },
-    {
-      "hash": "4173a66aaf0d4a4a",
-      "title": "「エンジニアの代替ではなく、できることを増やす」　Devin開発元が見据えるIT外注大国・日本の“伸びしろ”",
-      "orig_title": "「エンジニアの代替ではなく、できることを増やす」　Devin開発元が見据えるIT外注大国・日本の“伸びしろ”",
-      "summary": "",
-      "url": "https://www.itmedia.co.jp/aiplus/article/2608/03/2000000350/",
-      "source": "ITmedia AI+",
-      "category": "AI国内",
+      "url": "https://openai.com/index/continuous-voice-interaction-with-gpt-live",
+      "source": "OpenAI Blog",
+      "category": "AI公式",
       "genre": "industry",
       "score": 50.0,
       "breakdown": {
@@ -169,17 +150,17 @@
         "source_bonus": 0.0,
         "freshness": 0.0
       },
-      "thumbnail": "https://www.itmedia.co.jp/aiplus/article/ogp/2608/03/2000000350/10001729/2048",
-      "published": "Mon, 03 Aug 2026 10:57:26 +0900"
+      "thumbnail": "https://images.ctfassets.net/kftzwdyauwt9/yTlvMCvVXsIfkU2OOi99f/157c83857ebe75544195add9e1f75039/gpt-live-responsive-seo-card.png?w=1600&amp;h=900&amp;fit=fill",
+      "published": "Mon, 03 Aug 2026 07:00:00 GMT"
     },
     {
-      "hash": "0c1ea7ae4e3020b8",
-      "title": "【レベル14】生成AIを味方に、3D CADを使いこなそう！",
-      "orig_title": "【レベル14】生成AIを味方に、3D CADを使いこなそう！",
+      "hash": "f0d44799052be9a0",
+      "title": "Trump’s AI protectionism has come for robotics",
+      "orig_title": "Trump’s AI protectionism has come for robotics",
       "summary": "",
-      "url": "https://monoist.itmedia.co.jp/mn/articles/2608/03/news002.html",
-      "source": "ITmedia AI+",
-      "category": "AI国内",
+      "url": "https://www.technologyreview.com/2026/08/03/1141056/trumps-ai-protectionism-has-come-for-robotics/",
+      "source": "MIT Technology Review AI",
+      "category": "AIニュース",
       "genre": "industry",
       "score": 50.0,
       "breakdown": {
@@ -188,8 +169,27 @@
         "source_bonus": 0.0,
         "freshness": 0.0
       },
-      "thumbnail": "https://image.itmedia.co.jp/mn/articles/2608/03/cover_news002.jpg",
-      "published": "Mon, 03 Aug 2026 08:00:00 +0900"
+      "thumbnail": "https://wp.technologyreview.com/wp-content/uploads/2026/08/AP26206077599738.jpg?resize=1200,600",
+      "published": "Mon, 03 Aug 2026 18:43:30 +0000"
+    },
+    {
+      "hash": "072271787c6c36ed",
+      "title": "Here’s why AI agents lie and cheat to reach their goals",
+      "orig_title": "Here’s why AI agents lie and cheat to reach their goals",
+      "summary": "",
+      "url": "https://www.technologyreview.com/2026/08/03/1141009/heres-why-ai-agents-lie-and-cheat-to-reach-their-goals/",
+      "source": "MIT Technology Review AI",
+      "category": "AIニュース",
+      "genre": "industry",
+      "score": 50.0,
+      "breakdown": {
+        "base": 50.0,
+        "genre_bonus": 0.0,
+        "source_bonus": 0.0,
+        "freshness": 0.0
+      },
+      "thumbnail": "https://wp.technologyreview.com/wp-content/uploads/2026/07/paperclips3.jpg?resize=1200,600",
+      "published": "Mon, 03 Aug 2026 08:30:05 +0000"
     }
   ]
 }

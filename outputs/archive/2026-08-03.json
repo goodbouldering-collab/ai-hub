@@ -18,7 +18,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/gettyimages-1259130896.jpg?quality=90&amp;strip=all&amp;crop=0%2C9.9724610532046%2C100%2C80.055077893591&amp;w=1200",
-      "published": "2026-08-02T15:36:08-04:00"
+      "published": "2026-08-02T15:36:08-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "e2398f7b9ea55802",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-08-02T22:19:59+00:00"
+      "published": "2026-08-02T22:19:59+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "1b6fb99b4f9f9128",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/oxnpry_L6W4/hqdefault.jpg",
-      "published": "2026-08-02T21:41:58+00:00"
+      "published": "2026-08-02T21:41:58+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "40c8410b03c6318f",
@@ -75,7 +81,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/Screenshot-2026-07-31-at-4.11.25-PM.png?quality=90&amp;strip=all&amp;crop=2.6881256103516%2C4.7093735253803%2C97.311874389648%2C90.581252949239&amp;w=1200",
-      "published": "2026-08-02T09:00:00-04:00"
+      "published": "2026-08-02T09:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "e9279fb5f88b6aef",
@@ -94,7 +102,9 @@
         "freshness": 3.0
       },
       "thumbnail": "",
-      "published": "2026-08-02T04:16:52+00:00"
+      "published": "2026-08-02T04:16:52+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "7fd516b869940ba5",
@@ -113,7 +123,9 @@
         "freshness": 3.0
       },
       "thumbnail": "",
-      "published": "2026-08-02T04:12:41+00:00"
+      "published": "2026-08-02T04:12:41+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "3dd4494c7ef03518",
@@ -132,7 +144,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/BOjuRJi-TWo/hqdefault.jpg",
-      "published": "2026-08-02T10:00:02+00:00"
+      "published": "2026-08-02T10:00:02+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "73556ce66e21fdd2",
@@ -151,7 +165,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/NNk_dDs7BKU/hqdefault.jpg",
-      "published": "2026-08-02T10:00:14+00:00"
+      "published": "2026-08-02T10:00:14+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "4173a66aaf0d4a4a",
@@ -170,7 +186,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://www.itmedia.co.jp/aiplus/article/ogp/2608/03/2000000350/10001729/2048",
-      "published": "Mon, 03 Aug 2026 10:57:26 +0900"
+      "published": "Mon, 03 Aug 2026 10:57:26 +0900",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "0c1ea7ae4e3020b8",
@@ -189,7 +207,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://image.itmedia.co.jp/mn/articles/2608/03/cover_news002.jpg",
-      "published": "Mon, 03 Aug 2026 08:00:00 +0900"
+      "published": "Mon, 03 Aug 2026 08:00:00 +0900",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

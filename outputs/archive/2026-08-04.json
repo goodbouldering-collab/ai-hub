@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/24002467/acastro_STK081_amd_02.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-08-04T16:57:49-04:00"
+      "published": "2026-08-04T16:57:49-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "9e65a13b5299128a",
@@ -37,7 +39,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/gettyimages-2286629860.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.754013220586%2C100%2C78.491973558828&amp;w=1200",
-      "published": "2026-08-04T16:47:55-04:00"
+      "published": "2026-08-04T16:47:55-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "0e93685cefc27e25",
@@ -56,7 +60,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://img.youtube.com/vi/3Cs6Gs_BoJ0/hqdefault.jpg",
-      "published": "2026-08-04T21:00:12+00:00"
+      "published": "2026-08-04T21:00:12+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "232d731482dcbadb",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/Screenshot-2026-08-04-at-2.13.49-PM.png?quality=90&amp;strip=all&amp;crop=0,32.674640384805,100,34.650719230389",
-      "published": "2026-08-04T13:46:41-04:00"
+      "published": "2026-08-04T13:46:41-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "d1625f9fa687b895",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/gettyimages-2253306515.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.754336667151%2C100%2C78.491326665699&amp;w=1200",
-      "published": "2026-08-04T13:33:46-04:00"
+      "published": "2026-08-04T13:33:46-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "e38c94a3f97dd1cc",
@@ -113,7 +123,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/STKS528_DATA_CENTERS2_C.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-08-04T11:33:21-04:00"
+      "published": "2026-08-04T11:33:21-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "a627bb72fe14f420",
@@ -132,7 +144,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/STK201_SAM_ALTMAN_CVIRGINIA2D.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-08-04T07:27:55-04:00"
+      "published": "2026-08-04T07:27:55-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "d0d86b37e70f70d3",
@@ -151,7 +165,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://static.simonwillison.net/static/2026/skunk.jpg",
-      "published": "2026-08-04T19:10:09+00:00"
+      "published": "2026-08-04T19:10:09+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "b2c9db080451f053",
@@ -170,7 +186,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/Verge-RedditBrands_V1-Final.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-08-04T06:00:00-04:00"
+      "published": "2026-08-04T06:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "77196e2e2c3f7c55",
@@ -189,7 +207,9 @@
         "freshness": 3.0
       },
       "thumbnail": "",
-      "published": "2026-08-04T00:42:45+00:00"
+      "published": "2026-08-04T00:42:45+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

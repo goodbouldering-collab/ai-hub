@@ -14,6 +14,8 @@ ARTICLE_PATH = ROOT / "content" / "blog" / "2026-08-06-ai-work-design-future.md"
 FINAL_TITLE = "AI時代にデザインは不要になるのか？ むしろ必要になる「経験」と「仕事をデザインする力」"
 APPROVED_AUTHORSHIP_NOTE = "AIを思考整理の補助に使い、運営者自身の経験と考えをもとに丁寧にまとめた記事です。"
 ARTICLE_BODY_SHA256 = "1d5651056547a7beb4b5c1c2625be3abe33af4663f71d6678b08eb829fd9e2f6"
+ARTICLE_HERO_IMAGE = "/img/blog-ai-work-design-hero-20260806.webp"
+ARTICLE_HERO_IMAGE_ALT = "AIが生み出した多くの案を、チームが目的、優先順位、責任に分けて一つの方向へ整理する様子"
 SPEC = importlib.util.spec_from_file_location("build_site", BUILDER_PATH)
 assert SPEC and SPEC.loader
 builder = importlib.util.module_from_spec(SPEC)
@@ -90,6 +92,20 @@ class BlogAuthorshipNoteTest(unittest.TestCase):
             actual,
             ARTICLE_BODY_SHA256,
             "Article body checksum changed: review unintended body, H2, image, or slug edits.",
+        )
+
+    def test_article_hero_image_metadata_prevents_unintended_asset_changes(self) -> None:
+        meta, _ = load_article()
+
+        self.assertEqual(
+            meta["image"],
+            ARTICLE_HERO_IMAGE,
+            "Article hero image changed: preserve the approved image asset path.",
+        )
+        self.assertEqual(
+            meta["image_alt"],
+            ARTICLE_HERO_IMAGE_ALT,
+            "Article hero image alt changed: preserve the approved accessible description.",
         )
 
 

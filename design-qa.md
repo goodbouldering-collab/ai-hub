@@ -1,115 +1,55 @@
-# Design QA — ヒーロー文字拡大・AIオンラインサロン洗練
+# Design QA — Clear Sky Rose（選択案3）
 
-- source visual truth:
-  - ユーザー注釈: ヒーローの「経験×AI」、`AI利用率`、安心項目の文字拡大
-  - ユーザー注釈: `#seven-day-courses .salon-panel` を、内容を省略せず洗練
-  - `C:\Users\yui\.codex\visualizations\2026\07\22\019f8743-9c47-7ac3-89d9-245798ea7829\hero-text-size-20260730\before-906x992.png`
-  - `C:\Users\yui\.codex\visualizations\2026\07\22\019f8743-9c47-7ac3-89d9-245798ea7829\hero-text-size-20260730\before-390x844.png`
-  - `C:\Users\yui\.codex\visualizations\2026\07\22\019f8743-9c47-7ac3-89d9-245798ea7829\hero-text-size-20260730\before-salon-906x794.png`
-  - `C:\Users\yui\.codex\visualizations\2026\07\22\019f8743-9c47-7ac3-89d9-245798ea7829\hero-text-size-20260730\before-salon-390x844.png`
-- implementation screenshots:
-  - `C:\Users\yui\.codex\visualizations\2026\07\22\019f8743-9c47-7ac3-89d9-245798ea7829\hero-text-size-20260730\after-906x992.png`
-  - `C:\Users\yui\.codex\visualizations\2026\07\22\019f8743-9c47-7ac3-89d9-245798ea7829\hero-text-size-20260730\after-390x844.png`
-  - `C:\Users\yui\.codex\visualizations\2026\07\22\019f8743-9c47-7ac3-89d9-245798ea7829\hero-text-size-20260730\after-salon-906x794.png`
-  - `C:\Users\yui\.codex\visualizations\2026\07\22\019f8743-9c47-7ac3-89d9-245798ea7829\hero-text-size-20260730\after-salon-390x844.png`
-- comparison inputs:
-  - `compare-hero-906-scaled.png`
-  - `compare-hero-390.png`
-  - `compare-salon-906-scaled.png`
-  - `compare-salon-390.png`
-- viewport and density: 906 × 992、906 × 794、390 × 844 CSS px、DPR 約1
-- state: 公開トップ先頭、サロンアンカー到達、モバイルメニュー閉／開／サロン選択後
+## Source visual truth
 
-## Full-view comparison evidence
+- 選択案: Clear Sky Rose / option 3
+- 参照画像: `C:\Users\yui\.codex\generated_images\019fbe2d-1765-76b3-9b4d-a54e69b0877b\exec-e084f524-3a80-4738-a55c-5f2e38595dbd.png`
+- 参照画像サイズ: 1672 × 941 px
+- 守る条件: 公開ページのレイアウト、文章、文字サイズ、画像、セクション順は変更しない。変更対象は色、面、罫線、影、小さなアクセントのみ。
+- 管理画面の追加条件: 大きな管理トップ案内を廃止し、固定メニューを日常作業、ハンバーガーを補助項目に分ける。
 
-ヒーローは画像、見出し、本文、CTA、位置関係を維持し、注釈対象だけを拡大した。PCでは `AI利用率` 13px、補足13px、主文22px、3原則14px、安心項目15px。390pxでは順に12px、11px、約18.7px、12px、14pxとなり、すべて横はみ出し0。
+## Implementation screenshots
 
-サロンは全コピー、図解、4つの開催情報、3つの参加手順、4つの時刻、欠席週の説明、Square CTA、自動更新・LINE案内を保持した。重複していた個別カード背景と角丸を、1枚の外枠と細い区切り線へ整理した。パネル高は906px幅で約697pxから613px、390px幅で約898pxから815pxへ短縮した。
+- 公開ページ PC 1440 × 1024: `C:\Users\yui\AppData\Local\Temp\ai-consult-clear-sky-public-pc.png`
+- 公開ページ iPhone 390 × 844: `C:\Users\yui\AppData\Local\Temp\ai-consult-clear-sky-public-mobile.png`
+- 管理画面 PC 1440 × 1024（補助メニュー展開）: `C:\Users\yui\AppData\Local\Temp\ai-consult-clear-sky-admin-pc.png`
+- 管理画面 iPhone 390 × 844（補助メニュー展開）: `C:\Users\yui\AppData\Local\Temp\ai-consult-clear-sky-admin-mobile.png`
+- 実装合成: `C:\Users\yui\.codex\visualizations\2026\08\01\019fbe2d-1765-76b3-9b4d-a54e69b0877b\clear-sky-rose-20260806\implementation-composite.png`
 
-## Focused region comparison evidence
+## Combined comparison input
 
-- ヒーロー: `経験×AI` と3原則の視線移動が明確になり、背景画像やCTAとの衝突なし。
-- `AI利用率`: 大きな6%との関連を保ったまま、ラベル単体でも読める大きさへ変更。
-- 安心項目: 390pxでは自然な2行、906pxでは1行を維持。
-- サロン上段: 左の価値提案、右の3価値をフラットな情報階層へ整理。
-- 開催情報: WHEN / PLACE / FEE / STYLE は横1列を維持。
-- 参加方法: 図解と3手順を1ブロックにまとめ、図解キャプションもモバイルで表示。
-- 60分の流れ: 4つのカードを1本の進行表へ整理。
-- モバイルの `BEST PRACTICE`: ellipsisを廃止し、全文表示。
+- 選択案と実装を同じ画像へ合成: `C:\Users\yui\.codex\visualizations\2026\08\01\019fbe2d-1765-76b3-9b4d-a54e69b0877b\clear-sky-rose-20260806\target-vs-implementation.png`
+- 比較状態: 公開トップ、公開モバイルメニュー開閉、管理トップ、管理補助メニュー展開。
+- 密度: ブラウザ標準 DPR。CSS viewport は 1440 × 1024 と 390 × 844。
 
-## Required fidelity surfaces
+## Visual comparison
 
-- Typography: 注釈対象を拡大。サロン本文は縮小で詰めず、主要本文11〜15px、補助ラベル9px以上を確保。
-- Copy: `.salon-panel` 内の全表示文言、画像、フォーム、POST先を回帰テストで固定。
-- Spacing rhythm: 外枠、区切り線、余白の3段階に整理し、カードの重なり感を削減。
-- Color: 既存の青、白、濃紺、薄い罫線だけを使用。
-- Image quality: 既存SVGを維持し、縦横比を変更していない。
-- Responsive: 320 / 360 / 390 / 720 / 900 / 906 / 1280pxでページ、ヒーロー、サロンの横はみ出し0。
+- 公開ページは淡い青白背景、青い主CTA、薄紫の選択面、ローズの小アクセントを選択案へ合わせた。
+- ヒーロー、講習カード、オンラインサロン、講師、実績の画像URLと表示構造は維持した。
+- コピー、見出し、CTA、カード順、セクション順、文字サイズは変更していない。
+- 管理画面は同じ青・薄紫・ローズのトークンへ統一し、旧赤色の選択状態を青へ置換した。
+- 選択案の管理ダッシュボード内容は概念用。実装はユーザー指定どおり、実際のブログ管理を `/admin` の先頭画面にした。
 
 ## Comparison history
 
-1. P2: ヒーロー補助文字が8〜12.5pxで小さかった。PC13〜22px、モバイル11〜約18.7pxへ拡大して解消。
-2. P2: サロン内で複数の枠、背景、角丸が同じ強さで重なっていた。フラットな区切り線へ統合して解消。
-3. P2: モバイルの `BEST PRACTICE` がellipsisで省略される可能性があった。省略指定を解除して解消。
-4. P2: 320px幅でヒーロー3原則に8pxの内部はみ出しがあった。11pxの最小幅専用調整で0に解消。
+1. P2: 既存の管理CSSが `--admin-accent: #E60012` を本文スコープで再定義していた。本文スコープのトークンと選択タブ、ドットを Clear Sky Rose で上書きして解消。
+2. P2: 既存の高詳細度ルールがPCのハンバーガーを隠していた。共通ヘッダー配下の高詳細度ルールへ統一して解消。
+3. P2: iPhone幅で固定メニュー2段目と本文が18px重なった。本文上余白を 114px に合わせ、見出し開始位置を 132px にして解消。
+4. P3: 管理共通CSSのブラウザキャッシュが旧配色を保持する可能性があった。全管理ページのCSS参照へバージョンを付けて解消。
 
 ## Primary interactions tested
 
-- 390px: メニューを開くと右側パネルが `translateX(100%)` から0へ移動。
-- `aria-expanded=true`、`aria-hidden=false`、bodyスクロール固定を確認。
-- AIオンラインサロンが公開メニュー最下段にあることを確認。
-- サロン選択後に `#seven-day-courses` へ移動し、メニューが閉じることを確認。
-- 906px以上: 通常ナビ表示、モバイルトグル非表示。
-- ブラウザ console warning / error: 0件。
+- 公開ページ iPhone: 「メニューを開く」1件を確認し、開閉後 `aria-expanded=true`、公開メニュー9項目を確認。
+- 管理画面 PC / iPhone: 固定メニューに「ブログ管理・リール制作・SNS投稿・SNS分析・AI相談」の5項目を確認。
+- 管理画面 PC / iPhone: 補助メニューに「OPS・公開ページ・ログアウト」の3項目だけを確認。日常作業5項目との重複なし。
+- `/admin` は大きな管理トップ案内を表示せず、ブログ管理画面を表示。
+- 公開ページと管理画面の横はみ出しなし。
+- ヒーロー、オンラインサロン、講師、実績の表示対象画像は読込失敗0件。
+- ブラウザ console error: 0件。
 
 ## Findings
 
-対象範囲に未解決のP0 / P1 / P2はない。内容省略、横スクロール、文字の重なり、画像の歪み、CTAのはみ出しは確認されなかった。
-
-final result: passed
-
----
-
-# Design QA — AIコーディング講習カード・教材図解
-
-- source visual truth:
-  - ユーザー注釈: 受講資料カード「AIコーディング講習 120分」へ、他カードと同じ画像枠を追加
-  - ユーザー注釈: 教材本文の各H2直下へ内容に対応する画像を生成・配置し、全体を分かりやすく再構成
-  - `C:\Users\yui\.codex\visualizations\2026\07\22\019f8743-9c47-7ac3-89d9-245798ea7829\coding-lecture-20260730\homepage-before.png`
-  - `C:\Users\yui\.codex\visualizations\2026\07\22\019f8743-9c47-7ac3-89d9-245798ea7829\coding-lecture-20260730\material-before.png`
-- implementation screenshots:
-  - `homepage-after-906.png`
-  - `homepage-after-390.png`
-  - `material-after-top-906.png`
-  - `material-after-top-390.png`
-  - `material-after-section-00-906.png`
-  - `material-after-section-06-906.png`
-  - `material-after-section-00-390.png`
-  - `material-mobile-menu-open.png`
-- comparison inputs:
-  - `homepage-comparison.png`
-  - `material-comparison.png`
-  - `section-images-contact.png`
-- viewport and density: 906 × 794、390 × 844 CSS px、DPR 約1
-- state: 受講資料一覧の対象カード、教材トップ、00章、06章、モバイルメニュー開閉
-
-## Full-view comparison evidence
-
-受講資料一覧では、画像のなかった6番目のカードへ既存の講習カバーを追加し、3列グリッドの高さ、画像比率、本文開始位置をほかのカードと統一した。教材トップは、汎用写真から同じ講習カバーへ変更し、教材カード、教材ページ、OGP、構造化データで同一画像を共有した。
-
-教材本文では、11個すべてのH2直後に内容別の図解を配置した。画像は1200 × 800pxのWebPで統一し、目的、成長段階、説明、道具、学習段階、構成要素、依頼、公開、仕事への応用、公式情報、総合演習をそれぞれ視覚化した。配色は既存カードに合わせ、生成画像11枚の合計を約0.8MBに最適化した。
-
-## Focused region comparison evidence
-
-- カード: 1448 × 1086pxの既存講習カバーがPC・390pxの両方で読み込まれ、altを保持。
-- 教材トップ: 見出し、対象、ゴール、3つのCTA、講習カバーの順に情報を読める。
-- 各章: H2 → 図解 → キャプション → 本文の順を11章すべてで統一。
-- 画像: 11枚すべて遅延読み込み後に `naturalWidth=1200`、`naturalHeight=800`。
-- モバイル: 横はみ出し0。カード幅332px、教材本文幅376.4px。
-- メニュー: `aria-expanded=true/false`、`aria-hidden=false/true`、開いた状態でbodyスクロール固定を確認。
-
-## Findings
-
-対象範囲に未解決のP0 / P1 / P2はない。画像欠落、H2と図解の分離、横スクロール、画像の歪み、メニュー不動作は確認されなかった。Googleマップ由来のdebugログ1件を除き、ブラウザerrorは0件。
+- 未解決の P0 / P1 / P2 はなし。
+- 選択案との差は、ユーザー指定に沿って管理画面を架空の集計ダッシュボードではなく実作業画面にした点のみ。
 
 final result: passed

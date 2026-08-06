@@ -1,21 +1,23 @@
 (() => {
-  const items = [
-    { href: "/admin", label: "管理トップ", description: "管理ページを選ぶ", group: "管理" },
-    { href: "/admin/blog", label: "ブログ管理", description: "記事の作成・編集・公開", group: "作成" },
-    { href: "/admin/apps/reel/", label: "リール制作", description: "動画と投稿文を作る", group: "作成" },
-    { href: "/admin/sns-post", label: "SNS投稿", description: "SNS投稿を準備する", group: "作成" },
-    { href: "/admin/gubble-sns", label: "SNS分析", description: "反応と改善点を見る", group: "分析・運用" },
-    { href: "/admin/chat", label: "AI相談", description: "運用メモを相談する", group: "分析・運用" },
-    { href: "/ops", label: "OPS", description: "資料とプロンプトを見る", group: "分析・運用" },
-    { href: "/", label: "公開ページ", description: "公開中の表示を確認する", group: "確認", kind: "public" },
-    { href: "/admin/logout", label: "ログアウト", description: "管理画面から退出する", group: "確認", kind: "logout" },
+  const primaryItems = [
+    { href: "/admin/blog", label: "ブログ管理", description: "記事の作成・編集・公開" },
+    { href: "/admin/apps/reel/", label: "リール制作", description: "動画と投稿文を作る" },
+    { href: "/admin/sns-post", label: "SNS投稿", description: "SNS投稿を準備する" },
+    { href: "/admin/gubble-sns", label: "SNS分析", description: "反応と改善点を見る" },
+    { href: "/admin/chat", label: "AI相談", description: "運用メモを相談する" },
+  ];
+
+  const secondaryItems = [
+    { href: "/ops", label: "OPS", description: "資料とプロンプトを見る", group: "運用" },
+    { href: "/", label: "公開ページ", description: "公開中の表示を確認する", group: "サイト", kind: "public" },
+    { href: "/admin/logout", label: "ログアウト", description: "管理画面から退出する", group: "アカウント", kind: "logout" },
   ];
 
   const normalizedPath = window.location.pathname.replace(/\/+$/, "") || "/";
 
   function isCurrent(href) {
     const normalizedHref = href.replace(/\/+$/, "") || "/";
-    if (normalizedHref === "/admin") return normalizedPath === "/admin";
+    if (normalizedPath === "/admin" && normalizedHref === "/admin/blog") return true;
     if (normalizedHref === "/" || normalizedHref === "/admin/logout") return false;
     return normalizedPath === normalizedHref || normalizedPath.startsWith(`${normalizedHref}/`);
   }
@@ -37,13 +39,13 @@
   }
 
   function desktopMenuMarkup() {
-    return items.map((item) => linkMarkup(item)).join("");
+    return primaryItems.map((item) => linkMarkup(item)).join("");
   }
 
-  function mobileMenuMarkup() {
-    const groups = [...new Set(items.map((item) => item.group))];
+  function secondaryMenuMarkup() {
+    const groups = [...new Set(secondaryItems.map((item) => item.group))];
     return groups.map((group) => {
-      const links = items
+      const links = secondaryItems
         .filter((item) => item.group === group)
         .map((item) => linkMarkup(item, true))
         .join("");
@@ -61,12 +63,12 @@
         <nav class="site-nav admin-slide-nav" aria-label="管理ページ固定メニュー">
           <div class="admin-scroll-menu">${desktopMenuMarkup()}</div>
         </nav>
-        <button class="mobile-toggle" id="mobile-toggle" aria-label="管理メニューを開く" aria-controls="mobile-nav" aria-expanded="false" type="button">
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="補助メニューを開く" aria-controls="mobile-nav" aria-expanded="false" type="button">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         </button>
       </div>
       <div class="mobile-nav" id="mobile-nav" hidden>
-        <div class="mobile-nav-panel mobile-nav-panel--admin">${mobileMenuMarkup()}</div>
+        <div class="mobile-nav-panel mobile-nav-panel--admin">${secondaryMenuMarkup()}</div>
       </div>`;
   }
 
@@ -87,7 +89,7 @@
 
   function setMenuOpen(open) {
     toggle.setAttribute("aria-expanded", String(open));
-    toggle.setAttribute("aria-label", open ? "管理メニューを閉じる" : "管理メニューを開く");
+    toggle.setAttribute("aria-label", open ? "補助メニューを閉じる" : "補助メニューを開く");
     panel.hidden = !open;
     panel.classList.toggle("open", open);
     document.body.classList.toggle("admin-shared-menu-open", open);

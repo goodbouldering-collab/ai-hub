@@ -3,8 +3,10 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import subprocess
 import unittest
 
+from PIL import Image
 import yaml
 
 
@@ -16,6 +18,13 @@ APPROVED_AUTHORSHIP_NOTE = "AIを思考整理の補助に使い、運営者自�
 ARTICLE_BODY_SHA256 = "1d5651056547a7beb4b5c1c2625be3abe33af4663f71d6678b08eb829fd9e2f6"
 ARTICLE_HERO_IMAGE = "/img/blog-ai-work-design-hero-20260806.webp"
 ARTICLE_HERO_IMAGE_ALT = "AIが生み出した多くの案を、チームが目的、優先順位、責任に分けて一つの方向へ整理する様子"
+ARTICLE_IMAGE_SHA256 = {
+    "/img/blog-ai-work-design-hero-20260806.webp": "9272401fd416b6aa79f639b5c612db44a7d6f71fbdc77f200bab9ead2a31bb0b",
+    "/img/blog-ai-work-design-speed-20260806.webp": "5f75e67c3f96f514b5a77eaf23474149f562e8678dfcd62ce7431ddfb885a7d9",
+    "/img/blog-ai-work-design-system-20260806.webp": "ad3fbd4f9bea514b7a73ea4c747e1972e71737912208e9a1ddb4c45f0c150ab1",
+    "/img/blog-ai-work-design-experience-20260806.webp": "0de5d77048546638eec258b6e5c709ab1025d4c602597b4b53e1d6a872160935",
+    "/img/blog-ai-work-design-three-lanes-20260806.webp": "07af19a77327c18e5a558052d48e893e937192ee7b4e4dcf37924aa2a2c3c662",
+}
 SPEC = importlib.util.spec_from_file_location("build_site", BUILDER_PATH)
 assert SPEC and SPEC.loader
 builder = importlib.util.module_from_spec(SPEC)
@@ -25,6 +34,20 @@ SPEC.loader.exec_module(builder)
 def load_article() -> tuple[dict, str]:
     frontmatter, body = ARTICLE_PATH.read_text(encoding="utf-8").split("---", 2)[1:]
     return yaml.safe_load(frontmatter), body.lstrip("\r\n")
+
+
+def render_article() -> str:
+    meta, body = load_article()
+    markdown = builder._load_markdown()
+    body_html = markdown.markdown(body, extensions=["extra", "sane_lists", "attr_list"])
+    return builder.render_content_page(
+        meta["title"],
+        meta,
+        body_html,
+        "<nav></nav>",
+        page_path="blog/2026-08-06-ai-work-design-future.html",
+        kind="blog",
+    )
 
 
 class BlogAuthorshipNoteTest(unittest.TestCase):
@@ -107,6 +130,52 @@ class BlogAuthorshipNoteTest(unittest.TestCase):
             ARTICLE_HERO_IMAGE_ALT,
             "Article hero image alt changed: preserve the approved accessible description.",
         )
+
+    def test_rendered_article_keeps_approved_title_note_video_hero_body_order(self) -> None:
+        page = render_article()
+        markers = [
+            f"<h1>{FINAL_TITLE}</h1>",
+            "class='blog-authorship-note'",
+            "class='article-video article-video--portrait'",
+            'src="/img/blog-ai-work-design-hero-20260806.webp"',
+            "<p>AIで資料も、Webサイトも、業務アプリも、驚くほど早く形になります。",
+        ]
+
+        positions = [page.index(marker) for marker in markers]
+
+        self.assertEqual(positions, sorted(positions))
+
+    def test_every_blog_img_reference_exists_and_is_git_tracked(self) -> None:
+        missing: list[str] = []
+        untracked: list[str] = []
+        for article in sorted((ROOT / "content" / "blog").glob("*.md")):
+            references = sorted(set(re.findall(r"/img/[A-Za-z0-9_.-]+", article.read_text(encoding="utf-8"))))
+            for reference in references:
+                asset = ROOT / "site" / "static" / reference.lstrip("/")
+                if not asset.is_file():
+                    missing.append(f"{article.name}: {reference}")
+                    continue
+                relative = asset.relative_to(ROOT).as_posix()
+                tracked = subprocess.run(
+                    ["git", "ls-files", "--error-unmatch", "--", relative],
+                    cwd=ROOT,
+                    capture_output=True,
+                    text=True,
+                )
+                if tracked.returncode != 0:
+                    untracked.append(relative)
+
+        self.assertEqual(missing, [], "Missing /img/ assets:\n" + "\n".join(missing))
+        self.assertEqual(untracked, [], "Untracked /img/ assets:\n" + "\n".join(untracked))
+
+    def test_approved_article_webp_assets_keep_format_dimensions_and_hashes(self) -> None:
+        for reference, expected_sha256 in ARTICLE_IMAGE_SHA256.items():
+            asset = ROOT / "site" / "static" / reference.lstrip("/")
+            self.assertTrue(asset.is_file(), reference)
+            self.assertEqual(hashlib.sha256(asset.read_bytes()).hexdigest(), expected_sha256, reference)
+            with Image.open(asset) as image:
+                self.assertEqual(image.format, "WEBP", reference)
+                self.assertEqual(image.size, (1672, 941), reference)
 
 
 if __name__ == "__main__":

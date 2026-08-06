@@ -4,6 +4,8 @@
 
 **Goal:** AI相談の記事を、タイトル直下の制作注釈と約29秒の女性ナレーション・BGM付きReelで完成させ、同じ安全な制作ルールを全事業向けMyBlogへ標準化する。
 
+> 実行状態メモ（2026-08-07）: 以下のチェックボックスは実装時の計画構造を保持する履歴であり、完了判定の正ではない。現行状態は `.superpowers/sdd/2026-08-06-ai-work-design-blog-reel-myblog/final-review-fix-report.md`、Reelの `qa.json` / `posting-manifest.json`、およびGitコミットを正とする。
+
 **Architecture:** 記事の制作注釈はMarkdown本文ではなくfrontmatterの`authorship_note`として保持し、AI相談の静的レンダラーがブログヘッダー直後に描画する。Reelは各場面の`text`・`narration`・`duration`を単一の`BEATS`構造に集約し、同じデータから映像、音声、BGM、QA、投稿セットを生成する。全事業向けの恒久ルールはインストール済み`myblog`スキルとそのエージェントメタデータに追加する。
 
 **Tech Stack:** Python 3.12、unittest、Markdown静的サイトビルド、Pillow、edge-tts、FFmpeg、JSON、YAML

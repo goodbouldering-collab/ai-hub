@@ -11,6 +11,8 @@
 - 目標音量: -16 LUFS
 - 同期: 0.0秒、5.4秒、9.4秒、14.0秒、18.2秒、23.2秒
 - BGM: background-music.wav（Python標準ライブラリで合成、92 BPM、ナレーション中は約6dBダッキング）
+- 音声実測: narration -18.80 dBFS / music gain -13.10 dB / ducked BGM -49.30 dBFS / measured ducking 6.20 dB / voice lead 30.50 dB
+- 権利根拠: `self-generated/no external samples`
 
 ## 台本
 

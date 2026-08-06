@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import importlib.util
+import hashlib
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -55,6 +57,69 @@ class ReelContractTest(unittest.TestCase):
         self.assertGreaterEqual(reduction, 5.0)
         self.assertLessEqual(reduction, 7.0)
 
+    def test_generated_audio_qa_records_measured_levels_rights_and_threshold_results(self) -> None:
+        qa = json.loads(MODULE_PATH.with_name("qa.json").read_text(encoding="utf-8"))
+        manifest = json.loads(MODULE_PATH.with_name("posting-manifest.json").read_text(encoding="utf-8"))
+        measured = qa["audio_measurements"]
+
+        self.assertEqual(measured["measurement_method"], "ffmpeg_volumedetect_rms_dbfs")
+        self.assertEqual(measured["rights_basis"], "self-generated/no external samples")
+        self.assertAlmostEqual(measured["music_input_gain_db"], -13.1, places=1)
+        self.assertGreaterEqual(
+            measured["measured_ducking_db"],
+            measured["thresholds"]["minimum_ducking_db"],
+        )
+        self.assertGreaterEqual(
+            measured["narration_over_ducked_bgm_db"],
+            measured["thresholds"]["minimum_narration_over_bgm_db"],
+        )
+        self.assertLessEqual(
+            measured["ducked_bgm_mean_dbfs"],
+            measured["thresholds"]["maximum_ducked_bgm_mean_dbfs"],
+        )
+        self.assertTrue(all(measured["checks"].values()))
+        self.assertEqual(manifest["reel"]["audio"]["measured_qa"], measured)
+
+        fresh = self.module.measure_audio_qa(
+            MODULE_PATH.with_name("narration.m4a"),
+            MODULE_PATH.with_name("background-music.wav"),
+            MODULE_PATH.with_name("music-bed.wav"),
+            MODULE_PATH.with_name("ducked-background-music.wav"),
+            qa["narration"]["beats"],
+        )
+        for key in (
+            "narration_mean_dbfs",
+            "music_source_mean_dbfs",
+            "music_bed_mean_dbfs",
+            "ducked_bgm_mean_dbfs",
+            "music_input_gain_db",
+            "measured_ducking_db",
+            "narration_over_ducked_bgm_db",
+        ):
+            self.assertAlmostEqual(fresh[key], measured[key], places=2, msg=key)
+
+    def test_generated_package_matches_site_assets_and_all_machine_checks_pass(self) -> None:
+        qa = json.loads(MODULE_PATH.with_name("qa.json").read_text(encoding="utf-8"))
+        reel_root = MODULE_PATH.parent
+        repo_root = self.module.REPO
+
+        pairs = (
+            (reel_root / "reel.mp4", repo_root / "site/static/video/blog-ai-work-design-future-20260806.mp4"),
+            (reel_root / "cover.png", repo_root / "site/static/img/blog-ai-work-design-reel-cover-20260806.png"),
+        )
+        for package_asset, site_asset in pairs:
+            self.assertTrue(package_asset.is_file(), package_asset)
+            self.assertTrue(site_asset.is_file(), site_asset)
+            self.assertEqual(
+                hashlib.sha256(package_asset.read_bytes()).hexdigest(),
+                hashlib.sha256(site_asset.read_bytes()).hexdigest(),
+                package_asset.name,
+            )
+
+        self.assertEqual(qa["scene_count"], 6)
+        self.assertAlmostEqual(qa["duration_seconds"], 28.8, places=2)
+        self.assertTrue(all(qa["checks"].values()))
+
     def test_review_metadata_is_consistent_in_every_generated_text_asset(self) -> None:
         expected_title = "AI時代にデザインは不要になるのか？ むしろ必要になる「経験」と「仕事をデザインする力」"
         expected_review_state = "約28.8秒 / 6場面 / review_ready_waiting_final_approval / 未投稿"
@@ -62,10 +127,15 @@ class ReelContractTest(unittest.TestCase):
         self.assertEqual(self.module.review_metadata_line(), expected_review_state)
 
         original_root = self.module.ROOT
+        audio_measurements = json.loads(MODULE_PATH.with_name("qa.json").read_text(encoding="utf-8"))[
+            "audio_measurements"
+        ]
         with tempfile.TemporaryDirectory() as temporary_directory:
             self.module.ROOT = Path(temporary_directory)
             try:
-                self.module.write_text_assets({"checks": {}})
+                self.module.write_text_assets(
+                    {"checks": {}, "audio_measurements": audio_measurements}
+                )
                 for filename in (
                     "README.md",
                     "captions.md",

@@ -9,5 +9,7 @@
 - 既存のAI相談向けリール資産の読みやすい型を継承し、内容紹介を加えた約29秒／6場面へ更新した。
 - 音声は `Microsoft Nanami Neural（日本語・女性）`。親しみやすさと信頼感を保ち、通常速度で画面中央の全文を読む。
 - BGMは外部音源やサンプルを使わずPython標準ライブラリだけで合成し、ナレーション中は約6dBダッキングする。
+- FFmpeg `volumedetect` で生成済みナレーション、原BGM、入力ゲイン後bed、duck後BGMのナレーション区間RMSを実測する。今回の結果は narration -18.80 dBFS / music gain -13.10 dB / ducked BGM -49.30 dBFS / measured ducking 6.20 dB / voice lead 30.50 dB。
+- 権利根拠は `self-generated/no external samples`。閾値判定は `qa.json` と `posting-manifest.json` に同値で保存する。
 - 難しいAI用語から入らず、「作るのは速いが決められない」という身近な悩みから始めた。
 - ロボット、サイバー空間、別事業の配色・写真・ロゴは使っていない。

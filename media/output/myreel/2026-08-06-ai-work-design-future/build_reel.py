@@ -41,6 +41,15 @@ VOICE_VOLUME = "+0%"
 MUSIC_DUCKING_DB = 6
 MUSIC_SIDECHAIN_THRESHOLD = 0.015
 MUSIC_SIDECHAIN_RATIO = 1.4
+MUSIC_BED_GAIN = 0.22
+MUSIC_RIGHTS_BASIS = "self-generated/no external samples"
+AUDIO_QA_THRESHOLDS = {
+    "minimum_music_gain_reduction_db": 10.0,
+    "minimum_ducking_db": 5.0,
+    "maximum_ducking_db": 8.0,
+    "minimum_narration_over_bgm_db": 8.0,
+    "maximum_ducked_bgm_mean_dbfs": -30.0,
+}
 
 COLORS = {
     "blue": "#4F6FD8",
@@ -174,6 +183,91 @@ def estimated_ducking_db(sidechain_level_db: float) -> float:
     threshold_db = 20.0 * math.log10(MUSIC_SIDECHAIN_THRESHOLD)
     level_above_threshold = max(0.0, sidechain_level_db - threshold_db)
     return level_above_threshold * (1.0 - 1.0 / MUSIC_SIDECHAIN_RATIO)
+
+
+def _narration_intervals(voice_timings: list[dict[str, object]]) -> list[tuple[float, float]]:
+    intervals: list[tuple[float, float]] = []
+    for start, timing in zip(scene_starts(), voice_timings):
+        spoken_duration = float(timing["trimmed_duration_seconds"])
+        interval_start = round(start + 0.02, 3)
+        interval_end = round(min(start + float(timing["scene_duration_seconds"]), interval_start + spoken_duration), 3)
+        if interval_end > interval_start:
+            intervals.append((interval_start, interval_end))
+    return intervals
+
+
+def _ffmpeg_mean_dbfs(path: Path, intervals: list[tuple[float, float]]) -> float:
+    ffmpeg = locate_ffmpeg()
+    command = [str(ffmpeg), "-hide_banner", "-i", str(path)]
+    if intervals:
+        filters: list[str] = []
+        labels: list[str] = []
+        for index, (start, end) in enumerate(intervals):
+            label = f"segment{index}"
+            filters.append(
+                f"[0:a]atrim=start={start:.3f}:end={end:.3f},asetpts=PTS-STARTPTS[{label}]"
+            )
+            labels.append(f"[{label}]")
+        filters.append(
+            "".join(labels)
+            + f"concat=n={len(labels)}:v=0:a=1,volumedetect[measured]"
+        )
+        command.extend(["-filter_complex", ";".join(filters), "-map", "[measured]"])
+    else:
+        command.extend(["-af", "volumedetect"])
+    command.extend(["-f", "null", "NUL"])
+    result = subprocess.run(command, capture_output=True, text=True)
+    if result.returncode != 0:
+        raise RuntimeError(f"FFmpeg audio measurement failed for {path}: {result.stderr}")
+    match = re.search(r"mean_volume:\s*(-?(?:\d+(?:\.\d+)?|inf))\s*dB", result.stderr, re.I)
+    if not match or match.group(1).lower() == "-inf":
+        raise RuntimeError(f"Could not measure a finite mean volume for {path}")
+    return float(match.group(1))
+
+
+def measure_audio_qa(
+    narration: Path,
+    music_source: Path,
+    music_bed: Path,
+    ducked_music: Path,
+    voice_timings: list[dict[str, object]],
+) -> dict[str, object]:
+    intervals = _narration_intervals(voice_timings)
+    narration_mean = _ffmpeg_mean_dbfs(narration, intervals)
+    music_source_mean = _ffmpeg_mean_dbfs(music_source, intervals)
+    music_bed_mean = _ffmpeg_mean_dbfs(music_bed, intervals)
+    ducked_mean = _ffmpeg_mean_dbfs(ducked_music, intervals)
+    music_input_gain = round(music_bed_mean - music_source_mean, 2)
+    measured_ducking = round(music_bed_mean - ducked_mean, 2)
+    narration_over_bgm = round(narration_mean - ducked_mean, 2)
+    thresholds = dict(AUDIO_QA_THRESHOLDS)
+    checks = {
+        "self_generated_rights": MUSIC_RIGHTS_BASIS == "self-generated/no external samples",
+        "music_gain_is_low": -music_input_gain >= thresholds["minimum_music_gain_reduction_db"],
+        "ducking_meets_minimum": measured_ducking >= thresholds["minimum_ducking_db"],
+        "ducking_not_excessive": measured_ducking <= thresholds["maximum_ducking_db"],
+        "narration_is_primary": narration_over_bgm >= thresholds["minimum_narration_over_bgm_db"],
+        "ducked_bgm_is_light": ducked_mean <= thresholds["maximum_ducked_bgm_mean_dbfs"],
+    }
+    return {
+        "measurement_method": "ffmpeg_volumedetect_rms_dbfs",
+        "measurement_scope": "generated narration-active intervals",
+        "analysis_intervals_seconds": [
+            {"start": start, "end": end} for start, end in intervals
+        ],
+        "rights_basis": MUSIC_RIGHTS_BASIS,
+        "source": "Python standard-library synthesis at 48 kHz stereo",
+        "external_samples": False,
+        "narration_mean_dbfs": round(narration_mean, 2),
+        "music_source_mean_dbfs": round(music_source_mean, 2),
+        "music_bed_mean_dbfs": round(music_bed_mean, 2),
+        "ducked_bgm_mean_dbfs": round(ducked_mean, 2),
+        "music_input_gain_db": music_input_gain,
+        "measured_ducking_db": measured_ducking,
+        "narration_over_ducked_bgm_db": narration_over_bgm,
+        "thresholds": thresholds,
+        "checks": checks,
+    }
 
 
 def hex_rgba(value: str, alpha: int = 255) -> tuple[int, int, int, int]:
@@ -528,6 +622,68 @@ def create_background_music() -> Path:
     return output
 
 
+def create_music_mix_tracks(narration: Path, background_music: Path) -> tuple[Path, Path]:
+    ffmpeg = locate_ffmpeg()
+    music_bed = ROOT / "music-bed.wav"
+    ducked_music = ROOT / "ducked-background-music.wav"
+    subprocess.run(
+        [
+            str(ffmpeg),
+            "-y",
+            "-hide_banner",
+            "-loglevel",
+            "error",
+            "-i",
+            str(background_music),
+            "-af",
+            f"volume={MUSIC_BED_GAIN}",
+            "-t",
+            str(TOTAL_SECONDS),
+            "-ar",
+            "48000",
+            "-ac",
+            "2",
+            "-c:a",
+            "pcm_s16le",
+            str(music_bed),
+        ],
+        check=True,
+    )
+    subprocess.run(
+        [
+            str(ffmpeg),
+            "-y",
+            "-hide_banner",
+            "-loglevel",
+            "error",
+            "-i",
+            str(music_bed),
+            "-i",
+            str(narration),
+            "-filter_complex",
+            (
+                "[0:a][1:a]"
+                f"sidechaincompress=threshold={MUSIC_SIDECHAIN_THRESHOLD}:ratio={MUSIC_SIDECHAIN_RATIO}:"
+                "attack=20:release=350,"
+                f"atrim=end={TOTAL_SECONDS}[ducked]"
+            ),
+            "-map",
+            "[ducked]",
+            "-t",
+            str(TOTAL_SECONDS),
+            "-ar",
+            "48000",
+            "-ac",
+            "2",
+            "-c:a",
+            "pcm_s16le",
+            str(ducked_music),
+        ],
+        check=True,
+    )
+    return music_bed, ducked_music
+
+
 def concatenate_voice(clips: list[Path]) -> Path:
     ffmpeg = locate_ffmpeg()
     output = ROOT / "narration.m4a"
@@ -569,7 +725,7 @@ def concatenate_voice(clips: list[Path]) -> Path:
     return output
 
 
-def mix_voice(video_only: Path, narration: Path, background_music: Path) -> Path:
+def mix_voice(video_only: Path, narration: Path, ducked_music: Path) -> Path:
     ffmpeg = locate_ffmpeg()
     output = ROOT / "reel.mp4"
     command = [
@@ -583,15 +739,10 @@ def mix_voice(video_only: Path, narration: Path, background_music: Path) -> Path
         "-i",
         str(narration),
         "-i",
-        str(background_music),
+        str(ducked_music),
         "-filter_complex",
         (
-            "[1:a]asplit=2[narration_sidechain][narration_mix];"
-            "[2:a]volume=0.22[music_bed];"
-            "[music_bed][narration_sidechain]"
-            f"sidechaincompress=threshold={MUSIC_SIDECHAIN_THRESHOLD}:ratio={MUSIC_SIDECHAIN_RATIO}:"
-            "attack=20:release=350[ducked_music];"
-            "[ducked_music][narration_mix]"
+            "[2:a][1:a]"
             "amix=inputs=2:weights='1 1':normalize=0:duration=longest,"
             f"atrim=end={TOTAL_SECONDS},alimiter=limit=0.95[outa]"
         ),
@@ -689,7 +840,11 @@ def make_story_preview() -> Path:
     return output
 
 
-def inspect_video(video: Path, voice_timings: list[dict[str, object]]) -> dict[str, object]:
+def inspect_video(
+    video: Path,
+    voice_timings: list[dict[str, object]],
+    audio_measurements: dict[str, object],
+) -> dict[str, object]:
     ffmpeg = locate_ffmpeg()
     result = subprocess.run([str(ffmpeg), "-hide_banner", "-i", str(video), "-f", "null", "NUL"], capture_output=True, text=True)
     details = result.stderr
@@ -733,13 +888,18 @@ def inspect_video(video: Path, voice_timings: list[dict[str, object]]) -> dict[s
             "target_loudness_lufs": -16,
             "beats": voice_timings,
         },
+        "audio_measurements": audio_measurements,
         "background_music": {
             "file": "background-music.wav",
+            "music_bed_file": "music-bed.wav",
+            "ducked_file": "ducked-background-music.wav",
             "sample_rate_hz": 48000,
             "channels": 2,
             "tempo_bpm": 92,
             "music_ducking_db": MUSIC_DUCKING_DB,
+            "music_input_gain": MUSIC_BED_GAIN,
             "source": "python_standard_library_synthesis",
+            "rights_basis": MUSIC_RIGHTS_BASIS,
             "external_samples": False,
             "present": (ROOT / "background-music.wav").exists(),
         },
@@ -768,6 +928,9 @@ def inspect_video(video: Path, voice_timings: list[dict[str, object]]) -> dict[s
         ),
         "narration_normal_speed": VOICE_RATE == "+0%" and all(timing["tempo_multiplier"] == 1.0 for timing in voice_timings),
         "background_music_present": (ROOT / "background-music.wav").exists(),
+        "music_bed_present": (ROOT / "music-bed.wav").exists(),
+        "ducked_music_present": (ROOT / "ducked-background-music.wav").exists(),
+        "audio_measurements_pass": all(audio_measurements["checks"].values()),
         "publication_blocked": True,
     }
     return detected
@@ -785,6 +948,14 @@ def write_text_assets(qa: dict[str, object]) -> None:
     sync_points = "、".join(f"{start:.1f}秒" for start in scene_starts())
     metadata_line = review_metadata_line()
     qa_record = {**qa, "article_title": ARTICLE_TITLE, "reel_metadata": review_metadata()}
+    audio_qa = qa_record["audio_measurements"]
+    audio_summary = (
+        f"narration {audio_qa['narration_mean_dbfs']:.2f} dBFS / "
+        f"music gain {audio_qa['music_input_gain_db']:.2f} dB / "
+        f"ducked BGM {audio_qa['ducked_bgm_mean_dbfs']:.2f} dBFS / "
+        f"measured ducking {audio_qa['measured_ducking_db']:.2f} dB / "
+        f"voice lead {audio_qa['narration_over_ducked_bgm_db']:.2f} dB"
+    )
     (ROOT / "narration.md").write_text(
         f"""# {ARTICLE_TITLE}｜女性ナレーション
 
@@ -799,6 +970,8 @@ def write_text_assets(qa: dict[str, object]) -> None:
 - 目標音量: -16 LUFS
 - 同期: {sync_points}
 - BGM: background-music.wav（Python標準ライブラリで合成、92 BPM、ナレーション中は約6dBダッキング）
+- 音声実測: {audio_summary}
+- 権利根拠: `{audio_qa['rights_basis']}`
 
 ## 台本
 
@@ -875,6 +1048,8 @@ Reelレビュー状態: {metadata_line}
 - 既存のAI相談向けリール資産の読みやすい型を継承し、内容紹介を加えた約29秒／6場面へ更新した。
 - 音声は `{VOICE_LABEL}`。親しみやすさと信頼感を保ち、通常速度で画面中央の全文を読む。
 - BGMは外部音源やサンプルを使わずPython標準ライブラリだけで合成し、ナレーション中は約6dBダッキングする。
+- FFmpeg `volumedetect` で生成済みナレーション、原BGM、入力ゲイン後bed、duck後BGMのナレーション区間RMSを実測する。今回の結果は {audio_summary}。
+- 権利根拠は `{audio_qa['rights_basis']}`。閾値判定は `qa.json` と `posting-manifest.json` に同値で保存する。
 - 難しいAI用語から入らず、「作るのは速いが決められない」という身近な悩みから始めた。
 - ロボット、サイバー空間、別事業の配色・写真・ロゴは使っていない。
 """,
@@ -912,7 +1087,10 @@ Reelレビュー状態: {metadata_line}
                 "script": [beat["narration"] for beat in BEATS],
                 "speed_up": False,
                 "background_music_file": "background-music.wav",
+                "music_bed_file": "music-bed.wav",
+                "ducked_background_music_file": "ducked-background-music.wav",
                 "music_ducking_db": MUSIC_DUCKING_DB,
+                "measured_qa": audio_qa,
             },
             "status": "blocked_until_final_approval_and_verified_blog_url",
         },
@@ -964,6 +1142,8 @@ Reelレビュー状態: {metadata_line}
 - `reel.mp4`: 1080×1920、約28.8秒、30fps、H.264、日本語女性ナレーション・オリジナルBGM付き
 - `narration.m4a`: 6場面に同期した通常速度のナレーション音声
 - `background-music.wav`: 48kHzステレオ、92 BPMの軽量な自動合成BGM
+- `music-bed.wav`: 原BGMへ入力ゲインを適用したダッキング前の比較用音源
+- `ducked-background-music.wav`: 生成済みナレーションをsidechainにした実際のダッキング後BGM
 - `narration.md`: 声の設定、同期位置、読み上げ台本
 - `voice/`: 場面ごとの音声原本
 - `cover.png`: リール表紙
@@ -974,7 +1154,7 @@ Reelレビュー状態: {metadata_line}
 - `story.md`: リール公開後に使うストーリー一式
 - `tone.md`: ブランド調査とデザイン根拠
 - `posting-manifest.json`: 公開順序と承認状態
-- `qa.json`: 動画仕様の機械検証
+- `qa.json`: 動画仕様と実測音声dB、入力ゲイン、ダッキング量、声/BGM差、権利根拠、閾値合否の機械検証
 - `source/`: 記事と共通の生成画像
 - `frames/`: 動画の6場面
 
@@ -985,6 +1165,8 @@ Reelレビュー状態: {metadata_line}
 ```
 
 生成後も自動投稿はしない。ブログの本番URLを確認し、完成一式の最終承認を得てからInstagramへ直接投稿する。リール公開後、ストーリーとブランドコメントは2回目の承認後に投稿する。Threadsは使用しない。
+
+音声QAはFFmpeg `volumedetect` で、生成済みナレーションと3段階のBGM（原音／gain後bed／duck後）を同じナレーション実音区間で測る。`music_input_gain_db` は原音からbedへの実測差、`measured_ducking_db` はbedからduck後への実測差、`narration_over_ducked_bgm_db` は声がduck後BGMを何dB上回るかを表す。今回の実測は {audio_summary}、権利根拠は `{audio_qa['rights_basis']}`。全閾値は `qa.json` の `audio_measurements.thresholds` と `checks` を正とする。
 """,
         encoding="utf-8",
     )
@@ -1032,12 +1214,22 @@ def main() -> None:
     normalized_voice, voice_timings = normalize_voice_clips(raw_voice)
     narration = concatenate_voice(normalized_voice)
     background_music = create_background_music()
-    video = mix_voice(video_only, narration, background_music)
+    music_bed, ducked_music = create_music_mix_tracks(narration, background_music)
+    audio_measurements = measure_audio_qa(
+        narration,
+        background_music,
+        music_bed,
+        ducked_music,
+        voice_timings,
+    )
+    if not all(audio_measurements["checks"].values()):
+        raise RuntimeError(f"Audio QA failed: {audio_measurements}")
+    video = mix_voice(video_only, narration, ducked_music)
     cover = make_cover(frames)
     make_storyboard(frames)
     make_preview_gif(frames)
     make_story_preview()
-    qa = inspect_video(video, voice_timings)
+    qa = inspect_video(video, voice_timings, audio_measurements)
     checks = qa["checks"]
     if not all(checks.values()):
         raise RuntimeError(f"Video QA failed: {checks}")

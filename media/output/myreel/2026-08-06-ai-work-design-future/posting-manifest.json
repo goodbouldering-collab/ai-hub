@@ -133,7 +133,64 @@
       ],
       "speed_up": false,
       "background_music_file": "background-music.wav",
-      "music_ducking_db": 6
+      "music_bed_file": "music-bed.wav",
+      "ducked_background_music_file": "ducked-background-music.wav",
+      "music_ducking_db": 6,
+      "measured_qa": {
+        "measurement_method": "ffmpeg_volumedetect_rms_dbfs",
+        "measurement_scope": "generated narration-active intervals",
+        "analysis_intervals_seconds": [
+          {
+            "start": 0.02,
+            "end": 5.3
+          },
+          {
+            "start": 5.42,
+            "end": 8.69
+          },
+          {
+            "start": 9.42,
+            "end": 12.78
+          },
+          {
+            "start": 14.02,
+            "end": 17.6
+          },
+          {
+            "start": 18.22,
+            "end": 21.68
+          },
+          {
+            "start": 23.22,
+            "end": 27.07
+          }
+        ],
+        "rights_basis": "self-generated/no external samples",
+        "source": "Python standard-library synthesis at 48 kHz stereo",
+        "external_samples": false,
+        "narration_mean_dbfs": -18.8,
+        "music_source_mean_dbfs": -30.0,
+        "music_bed_mean_dbfs": -43.1,
+        "ducked_bgm_mean_dbfs": -49.3,
+        "music_input_gain_db": -13.1,
+        "measured_ducking_db": 6.2,
+        "narration_over_ducked_bgm_db": 30.5,
+        "thresholds": {
+          "minimum_music_gain_reduction_db": 10.0,
+          "minimum_ducking_db": 5.0,
+          "maximum_ducking_db": 8.0,
+          "minimum_narration_over_bgm_db": 8.0,
+          "maximum_ducked_bgm_mean_dbfs": -30.0
+        },
+        "checks": {
+          "self_generated_rights": true,
+          "music_gain_is_low": true,
+          "ducking_meets_minimum": true,
+          "ducking_not_excessive": true,
+          "narration_is_primary": true,
+          "ducked_bgm_is_light": true
+        }
+      }
     },
     "status": "blocked_until_final_approval_and_verified_blog_url"
   },
@@ -312,13 +369,72 @@
         }
       ]
     },
+    "audio_measurements": {
+      "measurement_method": "ffmpeg_volumedetect_rms_dbfs",
+      "measurement_scope": "generated narration-active intervals",
+      "analysis_intervals_seconds": [
+        {
+          "start": 0.02,
+          "end": 5.3
+        },
+        {
+          "start": 5.42,
+          "end": 8.69
+        },
+        {
+          "start": 9.42,
+          "end": 12.78
+        },
+        {
+          "start": 14.02,
+          "end": 17.6
+        },
+        {
+          "start": 18.22,
+          "end": 21.68
+        },
+        {
+          "start": 23.22,
+          "end": 27.07
+        }
+      ],
+      "rights_basis": "self-generated/no external samples",
+      "source": "Python standard-library synthesis at 48 kHz stereo",
+      "external_samples": false,
+      "narration_mean_dbfs": -18.8,
+      "music_source_mean_dbfs": -30.0,
+      "music_bed_mean_dbfs": -43.1,
+      "ducked_bgm_mean_dbfs": -49.3,
+      "music_input_gain_db": -13.1,
+      "measured_ducking_db": 6.2,
+      "narration_over_ducked_bgm_db": 30.5,
+      "thresholds": {
+        "minimum_music_gain_reduction_db": 10.0,
+        "minimum_ducking_db": 5.0,
+        "maximum_ducking_db": 8.0,
+        "minimum_narration_over_bgm_db": 8.0,
+        "maximum_ducked_bgm_mean_dbfs": -30.0
+      },
+      "checks": {
+        "self_generated_rights": true,
+        "music_gain_is_low": true,
+        "ducking_meets_minimum": true,
+        "ducking_not_excessive": true,
+        "narration_is_primary": true,
+        "ducked_bgm_is_light": true
+      }
+    },
     "background_music": {
       "file": "background-music.wav",
+      "music_bed_file": "music-bed.wav",
+      "ducked_file": "ducked-background-music.wav",
       "sample_rate_hz": 48000,
       "channels": 2,
       "tempo_bpm": 92,
       "music_ducking_db": 6,
+      "music_input_gain": 0.22,
       "source": "python_standard_library_synthesis",
+      "rights_basis": "self-generated/no external samples",
       "external_samples": false,
       "present": true
     },
@@ -327,9 +443,9 @@
       "instagram_posted": false,
       "draft_created": false
     },
-    "file_bytes": 2053275,
+    "file_bytes": 2044854,
     "stream_evidence": "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(progressive), 1080x1920, 384 kb/s, 30 fps, 30 tbr, 15360 tbn (default)",
-    "audio_evidence": "Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 190 kb/s (default)",
+    "audio_evidence": "Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 188 kb/s (default)",
     "checks": {
       "portrait_1080x1920": true,
       "duration_about_28_8_seconds": true,
@@ -344,6 +460,9 @@
       "text_narration_aligned": true,
       "narration_normal_speed": true,
       "background_music_present": true,
+      "music_bed_present": true,
+      "ducked_music_present": true,
+      "audio_measurements_pass": true,
       "publication_blocked": true
     }
   }

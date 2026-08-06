@@ -1,4 +1,4 @@
-<!doctype html><html lang='ja'><head><meta charset='utf-8'><link rel='icon' type='image/svg+xml' href='/favicon-20260725.svg'><link rel='icon' type='image/png' sizes='32x32' href='/favicon-20260725-32x32.png'><link rel='icon' type='image/png' sizes='16x16' href='/favicon-20260725-16x16.png'><link rel='shortcut icon' href='/favicon-20260725.ico'><link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon-20260725.png'><link rel='manifest' href='/site-20260725.webmanifest'><link rel='mask-icon' href='/favicon-20260725.svg' color='#5367D9'><meta name='application-name' content='AI相談'><meta name='apple-mobile-web-app-title' content='AI相談'><meta name='apple-mobile-web-app-capable' content='yes'><meta name='mobile-web-app-capable' content='yes'><meta name='theme-color' content='#172033'><meta name='viewport' content='width=device-width,initial-scale=1'><title>業務システム開発の優先順位：EC・AI活用で先に固めるべき8項目 | AI相談</title><meta name='description' content='Facebook投稿「私の優先順位」をもとに、ECや業務システム開発でデータ設計、認証、クラウド設計、CI/CD、コスト最適化、IaC、マイクロサービス、Kubernetesをどう並べるべきかを整理しました。'><link rel='canonical' href='https://ai-hub-jp.vercel.app/blog/2026-06-20-business-system-development-priority.html'><meta property='og:title' content='業務システム開発の優先順位：EC・AI活用で先に固めるべき8項目'><meta property='og:description' content='Facebook投稿「私の優先順位」をもとに、ECや業務システム開発でデータ設計、認証、クラウド設計、CI/CD、コスト最適化、IaC、マイクロサービス、Kubernetesをどう並べるべきかを整理しました。'><meta property='og:url' content='https://ai-hub-jp.vercel.app/blog/2026-06-20-business-system-development-priority.html'><meta property='og:type' content='article'><meta property='og:site_name' content='AI相談'><meta property='og:image' content='https://ai-hub-jp.vercel.app/img/blog-business-system-priority-section-01-foundation-20260620.jpg'><meta name='twitter:card' content='summary_large_image'><script type='application/ld+json'>{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "業務システム開発の優先順位：EC・AI活用で先に固めるべき8項目", "datePublished": "2026-06-20", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://ai-hub-jp.vercel.app/blog/2026-06-20-business-system-development-priority.html"}, "author": {"@type": "Person", "name": "由井 辰美"}, "publisher": {"@type": "Organization", "name": "AI相談", "url": "https://ai-hub-jp.vercel.app"}, "description": "Facebook投稿「私の優先順位」をもとに、ECや業務システム開発でデータ設計、認証、クラウド設計、CI/CD、コスト最適化、IaC、マイクロサービス、Kubernetesをどう並べるべきかを整理しました。", "speakable": {"@type": "SpeakableSpecification", "cssSelector": ["h1", ".content-wrap p:first-of-type"]}, "image": "https://ai-hub-jp.vercel.app/img/blog-business-system-priority-section-01-foundation-20260620.jpg"}</script><style>
+<!doctype html><html lang='ja'><head><meta charset='utf-8'><link rel='icon' type='image/svg+xml' href='/favicon-20260725.svg'><link rel='icon' type='image/png' sizes='32x32' href='/favicon-20260725-32x32.png'><link rel='icon' type='image/png' sizes='16x16' href='/favicon-20260725-16x16.png'><link rel='shortcut icon' href='/favicon-20260725.ico'><link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon-20260725.png'><link rel='manifest' href='/site-20260725.webmanifest'><link rel='mask-icon' href='/favicon-20260725.svg' color='#5367D9'><meta name='application-name' content='AI相談'><meta name='apple-mobile-web-app-title' content='AI相談'><meta name='apple-mobile-web-app-capable' content='yes'><meta name='mobile-web-app-capable' content='yes'><meta name='theme-color' content='#172033'><meta name='viewport' content='width=device-width,initial-scale=1'><title>AIで仕事は速くなったのに、なぜ決められない？ AIとデザインの未来を「ワークデザイン」で考える | AI相談</title><meta name='description' content='AIで資料、Webサイト、業務アプリは短時間で形になります。それでも目的、優先順位、最後の判断は自動では決まりません。デザイン職だけでなく、地域事業者、学校、福祉、個人事業主、プロジェクトリーダーにも共通する「仕事そのものを設計する力」を、明日使える3つの役割に分けて解説します。'><link rel='canonical' href='https://ai-hub-jp.vercel.app/blog/2026-08-06-ai-work-design-future.html'><meta property='og:title' content='AIで仕事は速くなったのに、なぜ決められない？ AIとデザインの未来を「ワークデザイン」で考える'><meta property='og:description' content='AIで資料、Webサイト、業務アプリは短時間で形になります。それでも目的、優先順位、最後の判断は自動では決まりません。デザイン職だけでなく、地域事業者、学校、福祉、個人事業主、プロジェクトリーダーにも共通する「仕事そのものを設計する力」を、明日使える3つの役割に分けて解説します。'><meta property='og:url' content='https://ai-hub-jp.vercel.app/blog/2026-08-06-ai-work-design-future.html'><meta property='og:type' content='article'><meta property='og:site_name' content='AI相談'><meta property='og:image' content='https://ai-hub-jp.vercel.app/img/blog-ai-work-design-hero-20260806.webp'><meta name='twitter:card' content='summary_large_image'><script type='application/ld+json'>{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "AIで仕事は速くなったのに、なぜ決められない？ AIとデザインの未来を「ワークデザイン」で考える", "datePublished": "2026-08-06", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://ai-hub-jp.vercel.app/blog/2026-08-06-ai-work-design-future.html"}, "author": {"@type": "Person", "name": "由井 辰美"}, "publisher": {"@type": "Organization", "name": "AI相談", "url": "https://ai-hub-jp.vercel.app"}, "description": "AIで資料、Webサイト、業務アプリは短時間で形になります。それでも目的、優先順位、最後の判断は自動では決まりません。デザイン職だけでなく、地域事業者、学校、福祉、個人事業主、プロジェクトリーダーにも共通する「仕事そのものを設計する力」を、明日使える3つの役割に分けて解説します。", "speakable": {"@type": "SpeakableSpecification", "cssSelector": ["h1", ".content-wrap p:first-of-type"]}, "image": "https://ai-hub-jp.vercel.app/img/blog-ai-work-design-hero-20260806.webp"}</script><style>
 :root {
   --bg-base:#f8fafc;
   --bg-white:#ffffff;
@@ -11399,83 +11399,223 @@ header.site-header:hover {
   }
 })();
 </script>
-<header class='site-header scrolled' id='site-header' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html' aria-label='AI相談 彦根 トップへ'><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span></span></a><nav class='site-nav' aria-label='メインナビ'><a class='nav-link nav-essential' href='/'>ホーム</a><a class='nav-link nav-essential' href='/lectures/2026-04-ai-kihon.html'>AIエージェント講習</a><a class='nav-link nav-essential' href='/#all-works'>実績</a><a class='nav-link nav-essential nav-current' href='/blog/index.html' aria-current='page'>ブログ</a><a class='nav-link nav-essential' href='/#lectures'>資料</a><a class='nav-link nav-essential' href='/#faq'>FAQ</a><a class='nav-cta' href='/#contact'>個別相談</a><a class='nav-link nav-essential nav-salon' href='/#seven-day-courses'>サロン</a></nav><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' type='button' aria-label='メニューを開く' aria-controls='mobile-nav' aria-expanded='false'><span class='mobile-toggle-icon' aria-hidden='true'><span></span><span></span><span></span></span><span class='mobile-toggle-text'>メニュー</span></button></div><div class='mobile-nav generated-mobile-nav' id='mobile-nav' aria-hidden='true'><div class='mobile-nav-panel mobile-nav-panel--public'><div class='mobile-nav-head'><div class='mobile-nav-heading'><small>PUBLIC MENU</small><strong>メニュー</strong></div></div><nav class='mobile-public-links' aria-label='公開ページメニュー'><a href='/'><span>ホーム</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/lectures/2026-04-ai-kihon.html'><span>AIエージェント講習</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#all-works'><span>実績</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/blog/index.html'><span>ブログ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#lectures'><span>資料</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#faq'><span>FAQ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a class='mobile-public-link--cta' href='/#contact'><span>個別相談</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#seven-day-courses'><span>AIオンラインサロン</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a></nav><div class='mobile-nav-admin'><span class='mobile-nav-label'>管理</span><a class='mobile-admin-link' href='/admin'><span class='mobile-admin-link-copy'><strong>管理ページ</strong><small>運営者ログイン</small></span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a></div></div></div></header><script>(function(){var b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav'),x=b?b.querySelector('.mobile-toggle-text'):null,m=window.matchMedia('(min-width: 901px)');function setMobile(o){if(!n||!b)return;if(!o&&(n.contains(document.activeElement)||document.activeElement===b)){var f=m.matches?document.querySelector('.site-logo'):b;if(f)f.focus({preventScroll:true});}n.classList.toggle('open',o);n.setAttribute('aria-hidden',o?'false':'true');b.setAttribute('aria-expanded',o?'true':'false');b.setAttribute('aria-label',o?'メニューを閉じる':'メニューを開く');if(x)x.textContent=o?'閉じる':'メニュー';document.body.classList.toggle('mobile-menu-open',o);}function closeMobile(){setMobile(false);}function closeMobileAtDesktop(e){if(e.matches)closeMobile();}if(b&&n){b.addEventListener('click',function(e){e.stopPropagation();setMobile(!n.classList.contains('open'));});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMobile);});n.addEventListener('click',function(e){if(e.target===n)closeMobile();});}if(m.addEventListener)m.addEventListener('change',closeMobileAtDesktop);else if(m.addListener)m.addListener(closeMobileAtDesktop);document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeMobile();return;}if(e.key!=='Tab'||!n||!n.classList.contains('open'))return;var a=[b].concat(Array.prototype.slice.call(n.querySelectorAll('a[href]'))),f=a[0],l=a[a.length-1];if(e.shiftKey&&document.activeElement===f){e.preventDefault();l.focus();}else if(!e.shiftKey&&document.activeElement===l){e.preventDefault();f.focus();}});})();</script><main id='main-content'><header><h1>業務システム開発の優先順位：EC・AI活用で先に固めるべき8項目</h1><div class='speaker-meta'><span class='role'>ブログ / 業務システム設計</span><span>📅 2026-06-20</span><span>由井 辰美 / AIハブ</span></div></header><div class='content-wrap'><div class='content-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#業務システム開発は-kubernetesよりデータ設計から始める'>業務システム開発は、Kubernetesよりデータ設計から始める</a></li><li><a href='#3人の顧客視点で見ると-改善点は3つに絞られる'>3人の顧客視点で見ると、改善点は3つに絞られる</a></li><li><a href='#ci-cdとコスト最適化は-開発後ではなく運用設計として入れる'>CI/CDとコスト最適化は、開発後ではなく運用設計として入れる</a></li><li><a href='#iac・マイクロサービス・kubernetesは-後から速く移れる状態を作る'>IaC・マイクロサービス・Kubernetesは、後から速く移れる状態を作る</a></li><li><a href='#aiハブで相談するときは-優先順位をチェックリストに落とす'>AIハブで相談するときは、優先順位をチェックリストに落とす</a></li></ol></div><p>Facebookに「私の優先順位」として、ECや業務システム寄りの開発では <strong>データ設計、認証、クラウド設計、CI/CD、コスト最適化、IaC、マイクロサービス、Kubernetes</strong> の順で考える、という投稿をしました。</p>
-<p>この順番は、単なる技術スタックの好みではありません。業務システム開発で失敗しやすいのは、最初から高度な技術を使うことではなく、売上、顧客、在庫、権限、運用費、障害対応の前提が曖昧なまま作り始めることです。</p>
-<p>この記事では、Facebook投稿をそのまま転載せず、SEOで検索されやすい「業務システム開発の優先順位」「EC システム設計」「データ設計 認証 クラウド設計」という観点に整理し直します。さらに、顧客になりそうな3タイプの視点で改善点を絞り込み、導入相談につながる形に落とし込みます。</p>
-<h2 id='業務システム開発は-kubernetesよりデータ設計から始める'>業務システム開発は、Kubernetesよりデータ設計から始める</h2>
-<figure>
-  <img src="/img/blog-business-system-priority-section-01-foundation-20260620.jpg" alt="ECと業務システム開発でデータ設計、認証、クラウド設計を土台にする構成図" loading="eager" decoding="async">
-  <figcaption>業務システムの優先順位は、派手な技術よりもデータ、権限、運用基盤の順番で決まります。</figcaption>
-</figure>
+<header class='site-header scrolled' id='site-header' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html' aria-label='AI相談 彦根 トップへ'><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span></span></a><nav class='site-nav' aria-label='メインナビ'><a class='nav-link nav-essential' href='/'>ホーム</a><a class='nav-link nav-essential' href='/lectures/2026-04-ai-kihon.html'>AIエージェント講習</a><a class='nav-link nav-essential' href='/#all-works'>実績</a><a class='nav-link nav-essential nav-current' href='/blog/index.html' aria-current='page'>ブログ</a><a class='nav-link nav-essential' href='/#lectures'>資料</a><a class='nav-link nav-essential' href='/#faq'>FAQ</a><a class='nav-cta' href='/#contact'>個別相談</a><a class='nav-link nav-essential nav-salon' href='/#seven-day-courses'>サロン</a></nav><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' type='button' aria-label='メニューを開く' aria-controls='mobile-nav' aria-expanded='false'><span class='mobile-toggle-icon' aria-hidden='true'><span></span><span></span><span></span></span><span class='mobile-toggle-text'>メニュー</span></button></div><div class='mobile-nav generated-mobile-nav' id='mobile-nav' aria-hidden='true'><div class='mobile-nav-panel mobile-nav-panel--public'><div class='mobile-nav-head'><div class='mobile-nav-heading'><small>PUBLIC MENU</small><strong>メニュー</strong></div></div><nav class='mobile-public-links' aria-label='公開ページメニュー'><a href='/'><span>ホーム</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/lectures/2026-04-ai-kihon.html'><span>AIエージェント講習</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#all-works'><span>実績</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/blog/index.html'><span>ブログ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#lectures'><span>資料</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#faq'><span>FAQ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a class='mobile-public-link--cta' href='/#contact'><span>個別相談</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#seven-day-courses'><span>AIオンラインサロン</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a></nav><div class='mobile-nav-admin'><span class='mobile-nav-label'>管理</span><a class='mobile-admin-link' href='/admin'><span class='mobile-admin-link-copy'><strong>管理ページ</strong><small>運営者ログイン</small></span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a></div></div></div></header><script>(function(){var b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav'),x=b?b.querySelector('.mobile-toggle-text'):null,m=window.matchMedia('(min-width: 901px)');function setMobile(o){if(!n||!b)return;if(!o&&(n.contains(document.activeElement)||document.activeElement===b)){var f=m.matches?document.querySelector('.site-logo'):b;if(f)f.focus({preventScroll:true});}n.classList.toggle('open',o);n.setAttribute('aria-hidden',o?'false':'true');b.setAttribute('aria-expanded',o?'true':'false');b.setAttribute('aria-label',o?'メニューを閉じる':'メニューを開く');if(x)x.textContent=o?'閉じる':'メニュー';document.body.classList.toggle('mobile-menu-open',o);}function closeMobile(){setMobile(false);}function closeMobileAtDesktop(e){if(e.matches)closeMobile();}if(b&&n){b.addEventListener('click',function(e){e.stopPropagation();setMobile(!n.classList.contains('open'));});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMobile);});n.addEventListener('click',function(e){if(e.target===n)closeMobile();});}if(m.addEventListener)m.addEventListener('change',closeMobileAtDesktop);else if(m.addListener)m.addListener(closeMobileAtDesktop);document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeMobile();return;}if(e.key!=='Tab'||!n||!n.classList.contains('open'))return;var a=[b].concat(Array.prototype.slice.call(n.querySelectorAll('a[href]'))),f=a[0],l=a[a.length-1];if(e.shiftKey&&document.activeElement===f){e.preventDefault();l.focus();}else if(!e.shiftKey&&document.activeElement===l){e.preventDefault();f.focus();}});})();</script><main id='main-content'><header><h1>AIで仕事は速くなったのに、なぜ決められない？ AIとデザインの未来を「ワークデザイン」で考える</h1><div class='speaker-meta'><span class='role'>ブログ / AI活用・ワークデザイン</span><span>📅 2026-08-06</span><span>由井辰美 / AI相談</span></div></header><aside class='blog-authorship-note' role='note'><span class='blog-authorship-note__label'>この記事について</span><p>この記事は、AIを起点に、現場で使いながら課題の整理と答えをもとに一緒にまとめた記事です。</p></aside><div class='content-wrap'><style>
+.content-wrap .article-video {
+  width: min(100%, 960px);
+  margin: 0 auto 26px;
+  text-align: center;
+}
+.content-wrap .article-video--portrait {
+  width: min(100%, 420px);
+}
+.content-wrap .article-video video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: #173042;
+  box-shadow: 0 18px 42px rgba(23,48,66,.20);
+}
+.content-wrap .article-video--portrait video {
+  aspect-ratio: 9 / 16;
+}
+.content-wrap .article-video figcaption {
+  text-align: center;
+}
+@media (max-width: 540px) {
+  .content-wrap .article-video video { border-radius: 14px; }
+}
+</style><figure class='article-video article-video--portrait'><video controls playsinline preload='metadata' poster='/img/blog-ai-work-design-reel-cover-20260806.png' data-fullscreen-on-play='mobile' aria-label='AI時代のワークデザインを女性ナレーション付き15秒で整理する動画'><source src='/video/blog-ai-work-design-future-20260806.mp4' type='video/mp4'>お使いのブラウザは動画再生に対応していません。<a href='/video/blog-ai-work-design-future-20260806.mp4'>動画ファイルを開く</a></video><figcaption>作る、決める、確かめる。AIと人の役割を3つに分ける、日本語女性ナレーション付き15秒リールです。</figcaption></figure><script>
+(() => {
+  const isMobileDevice = () =>
+    navigator.userAgentData?.mobile === true ||
+    /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
 
-<p>業務システム開発で最初に決めるべきことは、「どの技術を使うか」ではなく「どの情報を、誰が、どの状態で扱うか」です。</p>
-<p>ECなら、商品、SKU、在庫、注文、決済、配送、顧客、問い合わせ、返品がつながります。業務システムなら、案件、見積、契約、請求、入金、作業履歴、担当者、承認履歴がつながります。このつながりを曖昧にしたまま開発すると、後から管理画面、CSV、会計連携、権限管理、検索条件のすべてが苦しくなります。</p>
-<p>だから優先順位の1番目はデータ設計です。次に、誰がどこまで見てよいかを決める認証と権限設計。そこまで見えた後で、クラウド設計、CI/CD、コスト最適化を並べます。</p>
-<p>Kubernetesやマイクロサービスは重要です。ただし、最初から主役にすると、事業側の問題が残ったまま技術だけが重くなります。小規模から中規模のECや業務改善では、まず正しいデータの持ち方と安全なアクセス制御を固めるほうが、売上にも運用にも効きます。</p>
-<h2 id='3人の顧客視点で見ると-改善点は3つに絞られる'>3人の顧客視点で見ると、改善点は3つに絞られる</h2>
-<figure>
-  <img src="/img/blog-business-system-priority-section-02-customers-20260620.jpg" alt="EC運営者、業務責任者、経営者がシステム開発計画を見直している様子" loading="lazy" decoding="async">
-  <figcaption>技術の優先順位は、顧客が何で困るかを通すと実務の言葉に変わります。</figcaption>
-</figure>
+  const enterFullscreen = (video) => {
+    if (document.fullscreenElement || document.webkitFullscreenElement || video.webkitDisplayingFullscreen) return;
 
-<p>記事化する前に、顧客になりそうな3タイプのエージェントに読ませる前提で、改善点を絞りました。</p>
-<p>1人目は、EC運営者です。この人が気にするのは、商品登録、在庫、注文処理、配送連携、顧客対応が止まらないことです。改善点は、技術用語だけでなく「日々の運用がどこで楽になるか」を明確にすることでした。</p>
-<p>2人目は、業務改善を任された現場責任者です。この人が知りたいのは、紙、Excel、LINE、メールで散らばった情報をどう整理し、誰が更新し、どこで承認するかです。改善点は、データ設計を「テーブル設計」ではなく「現場の判断を迷わせない設計」として説明することでした。</p>
-<p>3人目は、小さな会社の経営者です。この人が気にするのは、初期費用、月額費用、セキュリティ、担当者が辞めた後も運用できるかです。改善点は、クラウド設計やIaCを「エンジニア向けの高度な話」ではなく「再現性と保守性の保険」として伝えることでした。</p>
-<p>この3つを反映すると、業務システム開発の優先順位は次のように言い換えられます。</p>
-<ul>
-<li>データ設計: 売上、在庫、請求、顧客対応があとで崩れない土台</li>
-<li>認証・権限: 担当者、管理者、外部パートナーが安全に使える境界線</li>
-<li>クラウド設計: 障害、バックアップ、アクセス増加に耐える置き場所</li>
-<li>CI/CD: 修正を怖がらずに出せる更新手順</li>
-<li>コスト最適化: 使っていない機能や過剰構成を増やさない管理</li>
-<li>IaC: 同じ環境を再現できる保守の仕組み</li>
-<li>マイクロサービス: 分ける意味が出てから分ける拡張設計</li>
-<li>Kubernetes: 運用体制と負荷が揃った後で効く選択肢</li>
+    if (typeof video.requestFullscreen === "function") {
+      try {
+        const request = video.requestFullscreen();
+        if (request && typeof request.catch === "function") request.catch(() => {});
+        return;
+      } catch (_) {
+        // Safari の動画専用 API へフォールバックする。
+      }
+    }
+
+    if (typeof video.webkitEnterFullscreen === "function") {
+      try { video.webkitEnterFullscreen(); } catch (_) {}
+    } else if (typeof video.webkitRequestFullscreen === "function") {
+      try { video.webkitRequestFullscreen(); } catch (_) {}
+    }
+  };
+
+  document.querySelectorAll("video[data-fullscreen-on-play]").forEach((video) => {
+    if (video.dataset.fullscreenBound === "true") return;
+    video.dataset.fullscreenBound = "true";
+    video.addEventListener("play", () => {
+      if (video.dataset.fullscreenOnPlay === "mobile" && !isMobileDevice()) return;
+      enterFullscreen(video);
+    });
+  });
+})();
+</script><div class='content-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#aiで制作は速くなっても-目的と判断は自動では決まらない'>AIで制作は速くなっても、目的と判断は自動では決まらない</a></li><li><a href='#デザインは見た目ではなく-成果へつなぐ仕事の設計である'>デザインは見た目ではなく、成果へつなぐ仕事の設計である</a></li><li><a href='#aiは初心者を助け-経験者の判断も増幅する'>AIは初心者を助け、経験者の判断も増幅する</a></li><li><a href='#明日からは-aiに任せる・人が決める・結果を確かめる-を分ける'>明日からは「AIに任せる・人が決める・結果を確かめる」を分ける</a></li></ol></div><style>
+.ai-work-design{--awd-blue:#4f6fd8;--awd-deep:#3e58b8;--awd-lilac:#9184d8;--awd-rose:#e88ea0;--awd-rose-soft:#fff0f3;--awd-sky:#f8fbff;--awd-ink:#172033;--awd-muted:#6b7891;--awd-line:#dce4f2;color:var(--awd-ink)}
+.ai-work-design *{box-sizing:border-box}
+.ai-work-design p,.ai-work-design li{line-height:1.9}
+.ai-work-design h2{margin-top:3.2rem;line-height:1.45}
+.ai-work-design h3{margin-top:2.1rem;line-height:1.55}
+.ai-work-design .article-figure{width:min(100%,1100px);margin:1rem auto 2rem}
+.ai-work-design .article-figure img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border:1px solid var(--awd-line);border-radius:20px;background:var(--awd-sky);box-shadow:0 16px 40px rgba(62,88,184,.12)}
+.ai-work-design .article-figure figcaption{margin:.7rem auto 0;color:var(--awd-muted);font-size:.9rem;line-height:1.65;text-align:center}
+.ai-work-design .article-hero{margin-top:0}
+.ai-work-design .lead-answer{margin:1.4rem 0 2rem;padding:1.25rem 1.4rem;border:1px solid #d7d1f4;border-left:6px solid var(--awd-lilac);border-radius:16px;background:#f5f3ff}
+.ai-work-design .lead-answer strong{display:block;margin-bottom:.45rem;color:var(--awd-deep);font-size:1.16rem}
+.ai-work-design .field-note{margin:1.4rem 0 2rem;padding:1.25rem 1.4rem;border-radius:16px;background:var(--awd-rose-soft);border:1px solid #f6cbd4}
+.ai-work-design .field-note b{color:#a9475d}
+.ai-work-design .outcome-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.9rem;margin:1.4rem 0 2rem}
+.ai-work-design .outcome-card{padding:1.1rem 1.15rem;border:1px solid var(--awd-line);border-radius:15px;background:#fff}
+.ai-work-design .outcome-card b{display:block;margin-bottom:.4rem;color:var(--awd-deep)}
+.ai-work-design .outcome-card span{color:var(--awd-muted)}
+.ai-work-design .role-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.85rem;margin:1.5rem 0 2rem}
+.ai-work-design .role-card{position:relative;padding:1.2rem 1.1rem 1.1rem;border-radius:16px;background:#fff;border:1px solid var(--awd-line);overflow:hidden}
+.ai-work-design .role-card:before{content:"";position:absolute;inset:0 0 auto;height:6px;background:var(--role-color,var(--awd-blue))}
+.ai-work-design .role-card b{display:block;margin:.3rem 0 .45rem;color:var(--awd-ink);font-size:1.08rem}
+.ai-work-design .role-card p{margin:0;color:var(--awd-muted);font-size:.95rem}
+.ai-work-design .role-card.ai{--role-color:var(--awd-blue)}
+.ai-work-design .role-card.human{--role-color:var(--awd-rose)}
+.ai-work-design .role-card.check{--role-color:var(--awd-lilac)}
+.ai-work-design .example-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem;margin:1.3rem 0 2rem;padding:0;list-style:none}
+.ai-work-design .example-list li{padding:1rem 1.05rem;border-radius:14px;background:var(--awd-sky);border:1px solid var(--awd-line)}
+.ai-work-design .example-list b{color:var(--awd-deep)}
+.ai-work-design .tomorrow{margin:1.3rem 0 2rem;padding:1.3rem 1.4rem;border-radius:18px;background:linear-gradient(135deg,#eef3ff 0%,#fff0f3 100%);border:1px solid #d8e0f4}
+.ai-work-design .tomorrow ol{margin-bottom:0}
+.ai-work-design .warning{margin:1.4rem 0 2rem;padding:1.15rem 1.3rem;border-radius:14px;background:#fffaf0;border:1px solid #ead9a6}
+.ai-work-design .cta{margin:2.6rem 0 1.2rem;padding:1.5rem;border-radius:18px;background:var(--awd-deep);color:#fff}
+.ai-work-design .cta p{color:#edf1ff}
+.ai-work-design .cta a{display:inline-block;margin-top:.35rem;padding:.78rem 1.05rem;border-radius:999px;background:#fff;color:var(--awd-deep);font-weight:800;text-decoration:none}
+.ai-work-design .note{color:var(--awd-muted);font-size:.9rem}
+@media(max-width:800px){.ai-work-design .role-grid{grid-template-columns:1fr}.ai-work-design .article-figure img{border-radius:14px}}
+@media(max-width:560px){.ai-work-design .outcome-grid,.ai-work-design .example-list{grid-template-columns:1fr}.ai-work-design .lead-answer,.ai-work-design .field-note,.ai-work-design .tomorrow,.ai-work-design .warning,.ai-work-design .cta{padding:1.05rem}.ai-work-design h2{margin-top:2.7rem}}
+</style>
+
+<div class="ai-work-design">
+<figure class="article-figure article-hero">
+  <img src="/img/blog-ai-work-design-hero-20260806.webp" alt="AIが生み出した多くの案を、チームが目的、優先順位、責任に分けて一つの方向へ整理する様子" loading="eager" decoding="async">
+  <figcaption>AIが増やすのは選択肢。どれを選び、誰のために届けるかを決めるのは、仕事を設計する人です。</figcaption>
+</figure>
+<p>AIで資料も、Webサイトも、業務アプリも、驚くほど早く形になります。それなのに、会議やプロジェクトが前へ進まないことがあります。</p>
+<p>止まる場所は、制作ではありません。</p>
+<p>「誰の、どんな困りごとを解くのか」「どの案を選ぶのか」「失敗したとき、誰が直すのか」という<strong>目的と判断</strong>です。</p>
+<p>一見すると、これは「AIが進化すればデザイナーはいらなくなるのか」という話に見えます。しかし、同じ変化は、会社のツールを作る人、プロジェクトを導く人、学校や福祉の業務を整える人、個人で仕事を回す人にも起きています。</p>
+<p>私はこれを、見た目のデザインではなく、<strong>仕事そのものを組み立てる「ワークデザイン」</strong>の変化だと考えています。</p>
+<div class="lead-answer">
+<strong>先に結論：人の役割は「作る人」から消えるのではなく、「目的を決め、仕事を分け、結果に責任を持つ人」へ広がります。</strong>
+AIは制作を速めます。人は目的、優先順位、現場の事情、検証、最後の責任を受け持ちます。この分け方ができると、AIは脅威ではなく、可処分時間を増やす道具になります。
+</div>
+<h2 id='aiで制作は速くなっても-目的と判断は自動では決まらない'>AIで制作は速くなっても、目的と判断は自動では決まらない</h2>
+<figure class="article-figure">
+  <img src="/img/blog-ai-work-design-speed-20260806.webp" alt="多くの提案が短時間で届く一方、進む方向を人が判断する分岐点" loading="lazy" decoding="async">
+  <figcaption>制作の待ち時間が短くなるほど、判断待ちの時間が見えやすくなります。</figcaption>
+</figure>
+<p>私自身、AIを使った開発や制作で、以前なら1か月単位で考えていた作業が、2時間ほどで初稿まで進むことがあります。設計案、文章、画面、フロー図まで、一気に並びます。</p>
+<p>ところが、その後に「どの方向を採用するか」を決めるため、2日、3日と考えることがあります。</p>
+<p>これはAIが遅いからではありません。<strong>作る時間が短くなり、これまで制作工程に隠れていた判断の重さが見えるようになった</strong>からです。</p>
+<div class="field-note">
+<b>これは統計ではなく、私の現場での実感です。</b><br>
+「1か月が2時間」はAIの性能を競う数字ではありません。初稿が速くても、目的、採用判断、公開責任まで自動で終わるわけではない、という失敗と修正から得た学びです。
+</div>
+<p>AIは「A案もB案もC案もあります」と提案できます。しかし、地域のお客さまに分かりやすいのはどれか、先生や福祉職員が続けられる運用はどれか、予算と時間の中で何を捨てるかは、現場を知る人が決めます。</p>
+<p>国際労働機関（ILO）の2025年更新も、生成AIの影響を受ける仕事の多くは、丸ごとなくなるより<strong>仕事内容が変わる可能性のほうが高い</strong>と整理しています。だから、「AIに奪われるか」だけを見るより、「自分の判断をどこへ残すか」を考えるほうが実務的です。</p>
+<h2 id='デザインは見た目ではなく-成果へつなぐ仕事の設計である'>デザインは見た目ではなく、成果へつなぐ仕事の設計である</h2>
+<figure class="article-figure">
+  <img src="/img/blog-ai-work-design-system-20260806.webp" alt="顧客の困りごとから人、道具、業務の流れ、成果までをチームで整理する様子" loading="lazy" decoding="async">
+  <figcaption>作るものから考えるのではなく、相手の困りごとと届けたい変化から逆算します。</figcaption>
+</figure>
+<p>お客さまが欲しいのは、ロゴそのものでも、アプリそのものでもありません。</p>
+<p>欲しいのは、「告知が伝わる」「事務作業が減る」「申し込みやすくなる」「学ぶ人が迷わない」といった<strong>生活や仕事の変化</strong>です。</p>
+<p>Design CouncilのDouble Diamondも、デザインを、課題を広く見つけ、何を解くかを定め、複数案を試し、届けるまでの過程として示しています。装飾はその一部にすぎません。</p>
+<div class="outcome-grid">
+<div class="outcome-card"><b>地域事業者</b><span>「チラシを作る」ではなく、初めての人が安心して申し込める流れを作る。</span></div>
+<div class="outcome-card"><b>学校・講座</b><span>「資料を作る」ではなく、学び直しが不安な人でも次の一歩が分かる授業を作る。</span></div>
+<div class="outcome-card"><b>福祉の現場</b><span>「記録アプリを入れる」ではなく、記録時間を減らし、利用者と向き合う時間を増やす。</span></div>
+<div class="outcome-card"><b>個人事業主</b><span>「SNSを自動化する」ではなく、無理なく続けながら必要な人へ活動を知らせる。</span></div>
+</div>
+<p>この意味では、デザイナー、経営者、プロジェクトリーダー、エンジニア、マーケターの役割は近づいていきます。全員が「何を作るか」より先に、「どんな変化を作るか」を考えるからです。</p>
+<p>IPAが2026年4月に改訂したデジタルスキル標準でも、AI時代の変革を進める役割として、目的と提供価値、関係者、仕組みをつなぐビジネスアーキテクトやデザイナーの役割が見直されています。技術は手段です。仕事の設計がなければ、便利な道具を増やしても現場は楽になりません。</p>
+<h2 id='aiは初心者を助け-経験者の判断も増幅する'>AIは初心者を助け、経験者の判断も増幅する</h2>
+<figure class="article-figure">
+  <img src="/img/blog-ai-work-design-experience-20260806.webp" alt="経験の浅い人と経験者がAIの案を見ながら、優先順位とリスクを一緒に確認する様子" loading="lazy" decoding="async">
+  <figcaption>AIで初速を上げ、経験で文脈と危険を読み、結果から次の改善を学びます。</figcaption>
+</figure>
+<p>AIがあると、経験は不要になるのでしょうか。私は、そうは考えていません。</p>
+<p>カスタマーサポート担当者5,172人を調べた『The Quarterly Journal of Economics』の研究では、AI支援により平均15％の生産性向上が報告され、特に経験の浅い担当者で効果が大きくなりました。AIが、熟練者の対応パターンを、経験の浅い人にも使いやすくしたためです。</p>
+<p>ただし、これは1社・1職種の研究です。あらゆる仕事が15％速くなるという意味ではありません。また、その仕組みでも、人が最終的な対応権限を持っていました。</p>
+<p>ここから学べるのは、「初心者か経験者か」の勝負ではなく、役割の組み合わせです。</p>
+<ul class="example-list">
+<li><b>経験の浅い人</b><br>AIでたたき台を早く作り、先輩や利用者の反応から、判断の理由を学ぶ。</li>
+<li><b>経験のある人</b><br>過去の失敗、相手の事情、見落としやすい危険をAIへ渡し、案の質を上げる。</li>
+<li><b>リーダー</b><br>採用基準とやめる基準を先に決め、案が増えても迷走しないようにする。</li>
+<li><b>チーム</b><br>結果を記録し、「なぜ選んだか」を次の人が使える知識として残す。</li>
 </ul>
-<h2 id='ci-cdとコスト最適化は-開発後ではなく運用設計として入れる'>CI/CDとコスト最適化は、開発後ではなく運用設計として入れる</h2>
-<figure>
-  <img src="/img/blog-business-system-priority-section-03-operations-20260620.jpg" alt="CI/CDとコスト最適化で安全に業務システムを運用するイメージ" loading="lazy" decoding="async">
-  <figcaption>更新手順と費用管理は、公開後に考えるものではなく、最初から運用の設計に入れます。</figcaption>
+<p>AIは経験を消すのではなく、<strong>経験を言葉にして、チームへ渡せる人の影響を広げる道具</strong>になります。同時に、AIの答えを信じるだけでは経験になりません。現場で試し、結果を見て、焦らず直す。その繰り返しが必要です。</p>
+<h2 id='明日からは-aiに任せる・人が決める・結果を確かめる-を分ける'>明日からは「AIに任せる・人が決める・結果を確かめる」を分ける</h2>
+<figure class="article-figure">
+  <img src="/img/blog-ai-work-design-three-lanes-20260806.webp" alt="AIに任せる、人が決める、結果を確かめるの三つの流れが一つの成果へ合流する図" loading="lazy" decoding="async">
+  <figcaption>一つの仕事を三つに分けるだけで、AIの速さと人の責任を同時に扱えます。</figcaption>
 </figure>
-
-<p>業務システムは、作って終わりではありません。むしろ公開してから、商品項目を増やす、帳票を変える、権限を増やす、CSVを追加する、外部サービスと連携する、という変更が続きます。</p>
-<p>そのため、CI/CDはエンジニアの便利機能ではなく、事業を止めずに改善するための仕組みです。テスト、レビュー、ステージング、デプロイ、ロールバックが整っていれば、小さな修正を怖がらずに出せます。</p>
-<p>同じくらい大事なのがコスト最適化です。クラウドは便利ですが、ログ、画像、バックアップ、API、サーバーレス関数、外部SaaSが積み上がると、気づかないうちに月額費用が膨らみます。最初から「どの費用を誰が見るか」「どこからが見直しラインか」を決めておくと、使いながら改善できます。</p>
-<p>SEO的に言えば、「業務システム 開発 費用」「EC システム 保守費用」と検索する人は、技術名よりも失敗しない進め方を探しています。だからこそ、記事ではCI/CDとコスト最適化をセットで扱う必要があります。</p>
-<h2 id='iac・マイクロサービス・kubernetesは-後から速く移れる状態を作る'>IaC・マイクロサービス・Kubernetesは、後から速く移れる状態を作る</h2>
-<figure>
-  <img src="/img/blog-business-system-priority-section-04-scale-20260620.jpg" alt="小さな業務システムからマイクロサービスとKubernetesへ段階的に拡張する道筋" loading="lazy" decoding="async">
-  <figcaption>拡張技術は最初に全部入れるのではなく、必要になった時に移れる道を残しておきます。</figcaption>
-</figure>
-
-<p>IaC、マイクロサービス、Kubernetesを軽く見ているわけではありません。むしろ、事業が伸びた時に効く強い選択肢です。</p>
-<p>ただ、最初の段階で優先順位を間違えると、運用人数に対して構成だけが複雑になります。小さなECや社内業務システムなら、最初は単純な構成で十分なことも多いです。大事なのは、後から分けられるように境界を意識しておくことです。</p>
-<p>たとえば、注文、在庫、顧客、請求、通知、分析を最初から完全にマイクロサービス化する必要はありません。しかし、それぞれの責務が混ざりすぎないようにデータと処理を整理しておけば、負荷や組織が大きくなった時に分割しやすくなります。</p>
-<p>IaCも同じです。最初から巨大な構成管理にする必要はありませんが、本番環境、ステージング環境、環境変数、ストレージ、権限、バックアップの再現性は早めに意識したほうがいい。担当者が変わっても復旧できる状態は、会社にとって保険になります。</p>
-<h2 id='aiハブで相談するときは-優先順位をチェックリストに落とす'>AIハブで相談するときは、優先順位をチェックリストに落とす</h2>
-<figure>
-  <img src="/img/blog-business-system-priority-section-05-aihub-20260620.jpg" alt="SNS投稿をSEO記事、顧客視点、実装チェックリストへ展開するAIハブの流れ" loading="lazy" decoding="async">
-  <figcaption>AIハブでは、SNSの着想をそのまま記事にせず、顧客視点と実装判断へ変換します。</figcaption>
-</figure>
-
-<p>AIハブで業務システムやEC改善の相談を受けるときは、最初から「何を作るか」だけを聞きません。次の順番で確認します。</p>
+<p>難しい変革計画から始める必要はありません。明日やる仕事を一つ選び、A4一枚を三つに分けてください。</p>
+<div class="role-grid">
+<div class="role-card ai"><b>1. AIに任せる</b><p>検索、整理、初稿、比較表、画像案、コード案など、速く繰り返せる制作。</p></div>
+<div class="role-card human"><b>2. 人が決める</b><p>目的、対象者、優先順位、予算、公開可否、相手への配慮、最後の責任。</p></div>
+<div class="role-card check"><b>3. 結果を確かめる</b><p>事実、動作、安全性、読みやすさ、現場で続くか、相手に変化が起きたか。</p></div>
+</div>
+<p>例えば、交流会の告知なら、AIに見出しと投稿案を作らせます。人は「初参加の人の不安を減らす」という目的と、日時、料金、表現を確認します。公開後は、申込み数だけでなく、質問が減ったか、当日迷う人がいなかったかも見ます。</p>
+<p>業務アプリなら、AIに画面案やコードを書かせます。人は、誰が使うか、どの情報を扱うか、権限と例外時の対応を決めます。最後にPCとスマートフォンで動かし、本当に作業時間や入力ミスが減ったかを確かめます。</p>
+<div class="tomorrow">
+<h3>15分で作る「ワークデザインメモ」</h3>
+<ol>
+<li>明日、繰り返す仕事を一つ書く。</li>
+<li>その仕事で助けたい人と、増やしたい時間を一文で書く。</li>
+<li>AIに任せる制作を三つまで選ぶ。</li>
+<li>人が決めることを、担当者名と一緒に書く。</li>
+<li>結果を確かめる日時と方法を一つ決める。</li>
+</ol>
+</div>
+<div class="warning">
+<strong>公開、送信、課金、契約、顧客データの更新は、便利さだけで自動化しないでください。</strong><br>
+影響が外部へ出る操作ほど、人の最終確認、取り消し方法、記録を残します。「何でもAIへ」ではなく、「どこまでなら安心して任せられるか」を設計することもワークデザインです。
+</div>
+<p>AI時代に必要なのは、すべてを自分で作る力でも、すべてをAIへ任せる勇気でもありません。</p>
+<p><strong>作る、決める、確かめるを分け、AIと人を一つの仕事として整える力</strong>です。</p>
+<p>それができれば、AIで生まれた時間を、相手と話すこと、教えること、支えること、次の挑戦を考えることへ戻せます。仕事を速くする目的は、仕事を増やすことではなく、人の自由度を増やすことです。</p>
+<h3>よくある質問</h3>
+<p><strong>Q. AIが進化すると、デザイナーは不要になりますか？</strong></p>
+<p>制作だけを役割にすると、AIへ移る工程は増えます。一方で、課題を見つけ、相手の期待を整理し、どの案を届けるか決める役割は残ります。デザイナーの仕事が消えると断定するより、見た目の制作から、認識と仕事の設計へ役割が広がると捉えるほうが現状に合います。</p>
+<p><strong>Q. AIを使うと、若い人が経験を積めなくなりませんか？</strong></p>
+<p>AIの答えをそのまま出すだけでは、判断経験は増えません。たたき台を速く作り、「なぜ直したか」「結果はどうだったか」を先輩や利用者と振り返る仕組みを組み合わせます。AIで練習回数を増やし、現場の反応で学ぶ設計が大切です。</p>
+<p><strong>Q. 小さな会社や個人でもワークデザインはできますか？</strong></p>
+<p>できます。組織図や大きなDX計画は不要です。まず、時間がかかっている仕事を一つだけ選び、AIに任せる部分、人が決める部分、確認方法を一枚に書いてください。小さく試し、毎週一つずつ直すほうが続きます。</p>
+<div class="cta">
+<strong>AI相談では、実際の仕事を一つ持ち寄り、続けられる「ワークデザインメモ」へ一緒に整理します。</strong>
+<p>地域事業者、学校、福祉施設、個人事業主の方へ。告知、資料づくり、事務作業、顧客対応、業務アプリ開発など、いま重い仕事から始められます。AIツールの説明だけで終わらず、誰を助け、何を任せ、誰が決め、どう確かめるかまで具体化します。</p>
+<a href="/#contact">自分の仕事の分け方を相談する</a>
+</div>
+<h3>参考にした主な資料</h3>
 <ul>
-<li>どの業務を減らしたいのか</li>
-<li>どのデータが売上や顧客対応に直結しているのか</li>
-<li>誰が閲覧、編集、承認、削除できるべきか</li>
-<li>今の運用はExcel、紙、メール、LINE、既存SaaSのどこに分散しているのか</li>
-<li>月額費用はどこまで許容できるのか</li>
-<li>公開後、誰が更新と確認を続けるのか</li>
-<li>将来、外部連携やAIエージェント化をどこまで見込むのか</li>
+<li><a href="https://www.designcouncil.org.uk/resources/the-double-diamond/">Design Council: The Double Diamond</a></li>
+<li><a href="https://www.ipa.go.jp/pressrelease/2026/press20260416.html">IPA: デジタルスキル標準 ver.2.0</a></li>
+<li><a href="https://www.ipa.go.jp/jinzai/skill-standard/dss/column/businessarchitect_column01.html">IPA: ビジネスアーキテクトの実践</a></li>
+<li><a href="https://www.ilo.org/publications/generative-ai-and-jobs-2025-update">ILO: Generative AI and Jobs — A 2025 update</a></li>
+<li><a href="https://academic.oup.com/qje/article/140/2/889/7990658">The Quarterly Journal of Economics: Generative AI at Work</a></li>
 </ul>
-<p>この確認を通すと、データ設計、認証、クラウド設計、CI/CD、コスト最適化、IaC、マイクロサービス、Kubernetesの順番が、ただの技術論ではなくなります。自社の業務にとって、どこから投資すべきかが見えるようになります。</p>
-<p>AIを使えば、記事も設計案も画面案も早く作れます。ただし、早く作れる時代だからこそ、優先順位を間違えると早く迷子になります。ECや業務システム開発では、まずデータ、権限、運用、費用を固める。拡張技術は、その土台の上に置く。</p>
-<p>この順番で考えることが、AI時代の業務システム開発で失敗しない一番現実的な近道です。</p>
-<h3>元投稿</h3>
-<ul>
-<li><a href="https://www.facebook.com/share/p/1JsqLpPWrx/?mibextid=wwXIfr">Facebook投稿: 私の優先順位</a></li>
-</ul></div></main><footer>AI相談 / 由井 辰美</footer><button class='back-to-top' id='backTop' aria-label='トップへ戻る'>↑</button><script>(function(){var b=document.getElementById('backTop');if(!b)return;window.addEventListener('scroll',function(){b.classList.toggle('show',window.scrollY>400);});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script><script>
+<p class="note">この記事は2026年8月6日時点の公開情報と、AI相談の運営現場で得た経験を基にしています。研究の数値は対象となった職種・組織の条件に左右されます。AI製品、制度、働き方は変化するため、導入時は最新の公式情報と、自分の現場での小さな検証を確認してください。</p>
+</div></div></main><footer>AI相談 / 由井 辰美</footer><button class='back-to-top' id='backTop' aria-label='トップへ戻る'>↑</button><script>(function(){var b=document.getElementById('backTop');if(!b)return;window.addEventListener('scroll',function(){b.classList.toggle('show',window.scrollY>400);});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script><script>
 (function(){
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var sel = '.tr-card, .pf-card, .profile-stat, .profile-tech-card, .sns-card, article, .content-toc, .tr-section, .profile-tl-item, .profile-app-card, .profile-biz-card';

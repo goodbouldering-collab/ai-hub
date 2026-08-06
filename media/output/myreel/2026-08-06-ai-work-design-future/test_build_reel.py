@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -53,6 +54,33 @@ class ReelContractTest(unittest.TestCase):
         reduction = self.module.estimated_ducking_db(-16.0)
         self.assertGreaterEqual(reduction, 5.0)
         self.assertLessEqual(reduction, 7.0)
+
+    def test_review_metadata_is_consistent_in_every_generated_text_asset(self) -> None:
+        expected_title = "AI時代にデザインは不要になるのか？ むしろ必要になる「経験」と「仕事をデザインする力」"
+        expected_review_state = "約28.8秒 / 6場面 / review_ready_waiting_final_approval / 未投稿"
+        self.assertEqual(self.module.ARTICLE_TITLE, expected_title)
+        self.assertEqual(self.module.review_metadata_line(), expected_review_state)
+
+        original_root = self.module.ROOT
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            self.module.ROOT = Path(temporary_directory)
+            try:
+                self.module.write_text_assets({"checks": {}})
+                for filename in (
+                    "README.md",
+                    "captions.md",
+                    "narration.md",
+                    "pre-post-confirmation.md",
+                    "posting-manifest.json",
+                    "qa.json",
+                    "story.md",
+                    "review.html",
+                ):
+                    generated = (self.module.ROOT / filename).read_text(encoding="utf-8")
+                    self.assertIn(expected_title, generated, filename)
+                    self.assertIn(expected_review_state, generated, filename)
+            finally:
+                self.module.ROOT = original_root
 
 
 if __name__ == "__main__":

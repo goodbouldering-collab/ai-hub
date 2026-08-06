@@ -1,4 +1,8 @@
-# 女性ナレーション
+# AI時代にデザインは不要になるのか？ むしろ必要になる「経験」と「仕事をデザインする力」｜女性ナレーション
+
+## Reelメタデータ
+
+約28.8秒 / 6場面 / review_ready_waiting_final_approval / 未投稿
 
 - 声: Microsoft Nanami Neural（日本語・女性）
 - 言語: 日本語（ja-JP）

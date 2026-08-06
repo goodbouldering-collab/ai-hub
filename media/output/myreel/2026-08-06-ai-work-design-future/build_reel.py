@@ -30,6 +30,9 @@ FPS = 30
 
 BLOG_URL = "https://ai-hub-jp.vercel.app/blog/2026-08-06-ai-work-design-future.html"
 ACCOUNT = "@climbingconsul"
+ARTICLE_TITLE = "AI時代にデザインは不要になるのか？ むしろ必要になる「経験」と「仕事をデザインする力」"
+REVIEW_STATE = "review_ready_waiting_final_approval"
+PUBLICATION_STATE = "未投稿"
 VOICE_ID = "ja-JP-NanamiNeural"
 VOICE_LABEL = "Microsoft Nanami Neural（日本語・女性）"
 VOICE_RATE = "+0%"
@@ -138,6 +141,23 @@ def scene_starts() -> list[float]:
         starts.append(round(elapsed, 3))
         elapsed += float(beat["duration_seconds"])
     return starts
+
+
+def review_metadata_line() -> str:
+    return f"約{TOTAL_SECONDS:.1f}秒 / {len(BEATS)}場面 / {REVIEW_STATE} / {PUBLICATION_STATE}"
+
+
+def review_metadata() -> dict[str, object]:
+    return {
+        "article_title": ARTICLE_TITLE,
+        "duration_seconds": TOTAL_SECONDS,
+        "duration_label": f"約{TOTAL_SECONDS:.1f}秒",
+        "scene_count": len(BEATS),
+        "scene_label": f"{len(BEATS)}場面",
+        "review_state": REVIEW_STATE,
+        "publication_state": PUBLICATION_STATE,
+        "summary": review_metadata_line(),
+    }
 
 
 def spoken_words(text: str) -> str:
@@ -680,6 +700,8 @@ def inspect_video(video: Path, voice_timings: list[dict[str, object]]) -> dict[s
     stream_line = next((line.strip() for line in details.splitlines() if "Video:" in line), "")
     audio_line = next((line.strip() for line in details.splitlines() if "Audio:" in line), "")
     detected = {
+        "article_title": ARTICLE_TITLE,
+        "reel_metadata": review_metadata(),
         "width": 1080 if "1080x1920" in stream_line else None,
         "height": 1920 if "1080x1920" in stream_line else None,
         "duration_seconds": duration,
@@ -761,8 +783,14 @@ def write_text_assets(qa: dict[str, object]) -> None:
         for index, beat in enumerate(BEATS)
     )
     sync_points = "、".join(f"{start:.1f}秒" for start in scene_starts())
+    metadata_line = review_metadata_line()
+    qa_record = {**qa, "article_title": ARTICLE_TITLE, "reel_metadata": review_metadata()}
     (ROOT / "narration.md").write_text(
-        f"""# 女性ナレーション
+        f"""# {ARTICLE_TITLE}｜女性ナレーション
+
+## Reelメタデータ
+
+{metadata_line}
 
 - 声: {VOICE_LABEL}
 - 言語: 日本語（ja-JP）
@@ -781,9 +809,10 @@ def write_text_assets(qa: dict[str, object]) -> None:
         encoding="utf-8",
     )
     (ROOT / "captions.md").write_text(
-        f"""# リール投稿文
+        f"""# {ARTICLE_TITLE}｜リール投稿文
 
 投稿先: `{ACCOUNT}`
+Reelレビュー状態: {metadata_line}
 状態: 最終承認待ち（Instagram未投稿）
 
 ## 画面内テキスト（6場面）
@@ -813,9 +842,10 @@ def write_text_assets(qa: dict[str, object]) -> None:
         encoding="utf-8",
     )
     (ROOT / "story.md").write_text(
-        f"""# ストーリー投稿セット
+        f"""# {ARTICLE_TITLE}｜ストーリー投稿セット
 
-状態: リール公開後の2回目承認待ち
+Reelレビュー状態: {metadata_line}
+状態: リール公開後の2回目承認待ち（Instagram未投稿）
 
 ## 本文
 
@@ -852,7 +882,10 @@ def write_text_assets(qa: dict[str, object]) -> None:
     )
     manifest = {
         "campaign": "2026-08-06-ai-work-design-future",
-        "status": "review_ready_waiting_final_approval",
+        "article_title": ARTICLE_TITLE,
+        "reel_metadata": review_metadata(),
+        "status": REVIEW_STATE,
+        "publication_state": PUBLICATION_STATE,
         "account": ACCOUNT,
         "platform": "Instagram",
         "surfaces": ["Reels", "Stories"],
@@ -863,6 +896,8 @@ def write_text_assets(qa: dict[str, object]) -> None:
             "status": "planned_unverified_until_production",
         },
         "reel": {
+            "title": ARTICLE_TITLE,
+            "review_metadata": review_metadata(),
             "file": "reel.mp4",
             "cover": "cover.png",
             "duration_seconds": TOTAL_SECONDS,
@@ -893,13 +928,14 @@ def write_text_assets(qa: dict[str, object]) -> None:
             "copy": BRAND_COMMENT,
             "status": "blocked_until_reel_is_public_and_second_approval",
         },
-        "qa": qa,
+        "qa": qa_record,
     }
     (ROOT / "posting-manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    (ROOT / "qa.json").write_text(json.dumps(qa, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (ROOT / "qa.json").write_text(json.dumps(qa_record, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     (ROOT / "pre-post-confirmation.md").write_text(
-        f"""# 投稿直前確認
+        f"""# {ARTICLE_TITLE}｜投稿直前確認
 
+Reelレビュー状態: {metadata_line}
 状態: 未承認・未投稿
 
 - [ ] 完成動画、6つの画面文、キャプション、ストーリー、コメントをユーザーが最終承認した
@@ -916,10 +952,11 @@ def write_text_assets(qa: dict[str, object]) -> None:
         encoding="utf-8",
     )
     (ROOT / "README.md").write_text(
-        f"""# AIとデザインの未来｜Instagramリール
+        f"""# {ARTICLE_TITLE}｜Instagramリール
 
 作成日: 2026-08-06
 投稿先: `{ACCOUNT}`
+Reelレビュー状態: {metadata_line}
 状態: 最終承認待ち（未投稿）
 
 ## 内容
@@ -957,9 +994,9 @@ def write_text_assets(qa: dict[str, object]) -> None:
     (ROOT / "review.html").write_text(
         f"""<!doctype html>
 <html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AIとデザインの未来｜リール確認</title>
+<title>{ARTICLE_TITLE}｜リール確認</title>
 <style>body{{margin:0;background:#f8fbff;color:#172033;font-family:'Yu Gothic UI','Meiryo',sans-serif}}main{{width:min(1080px,92vw);margin:40px auto 80px}}h1{{font-size:clamp(28px,5vw,52px)}}.note{{padding:16px 20px;border-left:6px solid #e88ea0;background:#fff0f3;border-radius:14px}}.grid{{display:grid;grid-template-columns:minmax(280px,430px) 1fr;gap:28px;align-items:start;margin-top:28px}}video,img{{max-width:100%;border-radius:20px;box-shadow:0 16px 40px rgba(62,88,184,.14)}}section{{padding:24px;background:#fff;border:1px solid #dce4f2;border-radius:18px;margin-bottom:18px;line-height:1.8}}pre{{white-space:pre-wrap;font:inherit}}@media(max-width:800px){{.grid{{grid-template-columns:1fr}}}}</style></head>
-<body><main><h1>AIとデザインの未来｜リール確認</h1><p class="note">投稿先 {ACCOUNT}／状態: 最終承認待ち・未投稿</p><img src="storyboard.png" alt="6場面の一覧">
+<body><main><h1>{ARTICLE_TITLE}｜リール確認</h1><p class="note">投稿先 {ACCOUNT}／Reelレビュー状態: {metadata_line}／状態: 最終承認待ち・未投稿</p><img src="storyboard.png" alt="6場面の一覧">
 <div class="grid"><video controls muted playsinline poster="cover.png"><source src="reel.mp4" type="video/mp4"></video><div>
 <section><h2>ストーリー見本</h2><img src="story-preview.png" alt="ストーリーとリンクスタンプの配置見本"></section>
 <section><h2>キャプション</h2><p>{safe_caption}</p></section>

@@ -1,4 +1,15 @@
 {
+  "article_title": "AI時代にデザインは不要になるのか？ むしろ必要になる「経験」と「仕事をデザインする力」",
+  "reel_metadata": {
+    "article_title": "AI時代にデザインは不要になるのか？ むしろ必要になる「経験」と「仕事をデザインする力」",
+    "duration_seconds": 28.8,
+    "duration_label": "約28.8秒",
+    "scene_count": 6,
+    "scene_label": "6場面",
+    "review_state": "review_ready_waiting_final_approval",
+    "publication_state": "未投稿",
+    "summary": "約28.8秒 / 6場面 / review_ready_waiting_final_approval / 未投稿"
+  },
   "width": 1080,
   "height": 1920,
   "duration_seconds": 28.8,
@@ -165,9 +176,9 @@
     "instagram_posted": false,
     "draft_created": false
   },
-  "file_bytes": 2058707,
+  "file_bytes": 2053275,
   "stream_evidence": "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(progressive), 1080x1920, 384 kb/s, 30 fps, 30 tbr, 15360 tbn (default)",
-  "audio_evidence": "Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 191 kb/s (default)",
+  "audio_evidence": "Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 190 kb/s (default)",
   "checks": {
     "portrait_1080x1920": true,
     "duration_about_28_8_seconds": true,

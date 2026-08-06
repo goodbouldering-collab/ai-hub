@@ -1,7 +1,8 @@
-# AIとデザインの未来｜Instagramリール
+# AI時代にデザインは不要になるのか？ むしろ必要になる「経験」と「仕事をデザインする力」｜Instagramリール
 
 作成日: 2026-08-06
 投稿先: `@climbingconsul`
+Reelレビュー状態: 約28.8秒 / 6場面 / review_ready_waiting_final_approval / 未投稿
 状態: 最終承認待ち（未投稿）
 
 ## 内容

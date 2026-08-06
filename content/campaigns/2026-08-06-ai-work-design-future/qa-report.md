@@ -4,9 +4,9 @@
 
 Reel: 約28.8秒 / 6場面
 
-レビュー状態: `review_ready_waiting_final_approval`
+レビュー状態: `site_deployed_verified`
 
-公開状態: `未投稿`
+公開状態: `Vercel公開済み／Instagram未投稿`
 
 ## 記事
 
@@ -51,9 +51,9 @@ Reel: 約28.8秒 / 6場面
 
 ## 本番
 
-- [ ] Vercelデプロイ成功
-- [ ] 本番記事URL HTTP 200
-- [ ] 本番PC／iPhone表示
+- [x] Vercelデプロイ成功: `dpl_EEYR5MHTbbWGDcFcoKJHjxGedexQ`
+- [x] 本番記事URL HTTP 200: `https://ai-hub-jp.vercel.app/blog/2026-08-06-ai-work-design-future.html`
+- [x] 本番PC 1440×1000／iPhone 390×844表示、横はみ出し0、画像5点・動画読み込み成功
 - [ ] Instagram投稿先 `@climbingconsul`
 - [ ] リール公開URL
 - [ ] 2回目承認後のストーリー／ブランドコメント

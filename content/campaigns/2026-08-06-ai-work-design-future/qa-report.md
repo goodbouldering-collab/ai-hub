@@ -44,6 +44,10 @@ Reel: 約28.8秒 / 6場面
 - [x] Reel `test_build_reel.py -v`: 8件成功
 - [x] TypeScript `tsc --noEmit`: 成功
 - [x] `git diff --check`: 成功
+- [x] 2026-08-07 顧客目線の追記を本文・編集方針・ファクトチェックへ反映
+- [x] 追記後のPC幅 1440×1000／iPhone幅 390×844で横はみ出し0
+- [x] 追記後も画像5点は `naturalWidth: 1672`、動画は `readyState: 4`
+- [x] 追記後のブラウザコンソールにエラー・警告なし
 
 ## 本番
 

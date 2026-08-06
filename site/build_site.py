@@ -1304,6 +1304,36 @@ TEACHING_YAML = ROOT / "config" / "teaching_resources.yaml"
 BLOG_DIR = ROOT / "content" / "blog"
 
 CONTENT_CSS = """
+.blog-authorship-note {
+  width: min(100%, 920px);
+  margin: 0 auto 26px;
+  padding: 16px 20px;
+  border: 1px solid rgba(37,99,235,.18);
+  border-radius: 16px;
+  background: var(--primary-bg);
+  color: var(--text);
+}
+.blog-authorship-note__label {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .06em;
+}
+.blog-authorship-note p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 14px;
+  line-height: 1.75;
+}
+@media (max-width: 540px) {
+  .blog-authorship-note {
+    margin-bottom: 18px;
+    padding: 13px 14px;
+    border-radius: 12px;
+  }
+}
 .content-wrap {
   background: var(--bg-white);
   border: 1px solid var(--line);
@@ -3550,6 +3580,19 @@ def _inject_heading_ids(body_html: str) -> tuple[str, list[tuple[str, str]]]:
     return new_html, toc
 
 
+def _render_blog_authorship_note(meta: dict, kind: str) -> str:
+    if kind != "blog":
+        return ""
+    note = str(meta.get("authorship_note") or "").strip()
+    if not note:
+        return ""
+    return (
+        "<aside class='blog-authorship-note' role='note'>"
+        "<span class='blog-authorship-note__label'>この記事について</span>"
+        f"<p>{html.escape(note)}</p></aside>"
+    )
+
+
 def render_content_page(
     title: str,
     meta: dict,
@@ -3614,6 +3657,7 @@ def render_content_page(
     if sub_bits:
         parts.append("<div class='speaker-meta'>" + "".join(sub_bits) + "</div>")
     parts.append("</header>")
+    parts.append(_render_blog_authorship_note(meta, kind))
     if kind == "lecture" and image_url:
         parts.append(
             "<figure class='lecture-cover'>"

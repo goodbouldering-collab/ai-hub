@@ -1,0 +1,260 @@
+{
+  "article_title": "AI時代にデザインは不要になるのか？ むしろ必要になる「経験」と「仕事をデザインする力」",
+  "reel_metadata": {
+    "article_title": "AI時代にデザインは不要になるのか？ むしろ必要になる「経験」と「仕事をデザインする力」",
+    "duration_seconds": 28.8,
+    "duration_label": "約28.8秒",
+    "scene_count": 6,
+    "scene_label": "6場面",
+    "review_state": "review_ready_waiting_final_approval",
+    "publication_state": "未投稿",
+    "summary": "約28.8秒 / 6場面 / review_ready_waiting_final_approval / 未投稿"
+  },
+  "width": 1080,
+  "height": 1920,
+  "duration_seconds": 28.8,
+  "fps": 30,
+  "codec": "h264",
+  "pixel_format": "yuv420p",
+  "audio": "present",
+  "audio_codec": "aac",
+  "audio_sample_rate_hz": 48000,
+  "scene_count": 6,
+  "scene_starts_seconds": [
+    0.0,
+    5.4,
+    9.4,
+    14.0,
+    18.2,
+    23.2
+  ],
+  "duration_contract_seconds": 28.8,
+  "text_narration_mapping": [
+    {
+      "scene": 1,
+      "label": "AI時代の問い",
+      "text": [
+        "AI時代に、デザインは",
+        "不要になるのか？",
+        "仕事設計の視点から考えます。"
+      ],
+      "narration": "AI時代に、デザインは不要になるのか？ 仕事設計の視点から考えます。",
+      "words_aligned": true
+    },
+    {
+      "scene": 2,
+      "label": "速さのあとに残る仕事",
+      "text": [
+        "AIで仕事が",
+        "速くなったのに",
+        "なぜ決められない？"
+      ],
+      "narration": "AIで仕事が、速くなったのに、なぜ決められない？",
+      "words_aligned": true
+    },
+    {
+      "scene": 3,
+      "label": "制作はAIへ",
+      "text": [
+        "AIが得意なのは",
+        "作る・並べる",
+        "選択肢を増やす"
+      ],
+      "narration": "AIが得意なのは、作る、並べる、選択肢を増やす",
+      "words_aligned": true
+    },
+    {
+      "scene": 4,
+      "label": "判断と責任は人へ",
+      "text": [
+        "人が担うのは",
+        "目的・優先順位",
+        "最後の責任"
+      ],
+      "narration": "人が担うのは、目的、優先順位、最後の責任",
+      "words_aligned": true
+    },
+    {
+      "scene": 5,
+      "label": "すべての職種に共通",
+      "text": [
+        "これはデザインだけでなく",
+        "すべての仕事の",
+        "ワークデザイン"
+      ],
+      "narration": "これはデザインだけでなく、すべての仕事の、ワークデザイン",
+      "words_aligned": true
+    },
+    {
+      "scene": 6,
+      "label": "続きはAI相談のブログへ",
+      "text": [
+        "任せる・決める・確かめる",
+        "3つに分けて",
+        "明日から使おう"
+      ],
+      "narration": "任せる、決める、確かめる、3つに分けて、明日から使おう",
+      "words_aligned": true
+    }
+  ],
+  "narration": {
+    "language": "ja-JP",
+    "voice_id": "ja-JP-NanamiNeural",
+    "voice_label": "Microsoft Nanami Neural（日本語・女性）",
+    "rate": "+0%",
+    "pitch": "+0Hz",
+    "target_loudness_lufs": -16,
+    "beats": [
+      {
+        "beat": 1,
+        "text": "AI時代に、デザインは不要になるのか？ 仕事設計の視点から考えます。",
+        "raw_duration_seconds": 6.41,
+        "trimmed_duration_seconds": 5.28,
+        "tempo_multiplier": 1.0,
+        "scene_duration_seconds": 5.4,
+        "normalized_duration_seconds": 5.37
+      },
+      {
+        "beat": 2,
+        "text": "AIで仕事が、速くなったのに、なぜ決められない？",
+        "raw_duration_seconds": 4.39,
+        "trimmed_duration_seconds": 3.27,
+        "tempo_multiplier": 1.0,
+        "scene_duration_seconds": 4.0,
+        "normalized_duration_seconds": 3.96
+      },
+      {
+        "beat": 3,
+        "text": "AIが得意なのは、作る、並べる、選択肢を増やす",
+        "raw_duration_seconds": 4.49,
+        "trimmed_duration_seconds": 3.36,
+        "tempo_multiplier": 1.0,
+        "scene_duration_seconds": 4.6,
+        "normalized_duration_seconds": 4.55
+      },
+      {
+        "beat": 4,
+        "text": "人が担うのは、目的、優先順位、最後の責任",
+        "raw_duration_seconds": 4.7,
+        "trimmed_duration_seconds": 3.58,
+        "tempo_multiplier": 1.0,
+        "scene_duration_seconds": 4.2,
+        "normalized_duration_seconds": 4.17
+      },
+      {
+        "beat": 5,
+        "text": "これはデザインだけでなく、すべての仕事の、ワークデザイン",
+        "raw_duration_seconds": 4.54,
+        "trimmed_duration_seconds": 3.46,
+        "tempo_multiplier": 1.0,
+        "scene_duration_seconds": 5.0,
+        "normalized_duration_seconds": 4.96
+      },
+      {
+        "beat": 6,
+        "text": "任せる、決める、確かめる、3つに分けて、明日から使おう",
+        "raw_duration_seconds": 4.97,
+        "trimmed_duration_seconds": 3.85,
+        "tempo_multiplier": 1.0,
+        "scene_duration_seconds": 5.6,
+        "normalized_duration_seconds": 5.54
+      }
+    ]
+  },
+  "audio_measurements": {
+    "measurement_method": "ffmpeg_volumedetect_rms_dbfs",
+    "measurement_scope": "generated narration-active intervals",
+    "analysis_intervals_seconds": [
+      {
+        "start": 0.02,
+        "end": 5.3
+      },
+      {
+        "start": 5.42,
+        "end": 8.69
+      },
+      {
+        "start": 9.42,
+        "end": 12.78
+      },
+      {
+        "start": 14.02,
+        "end": 17.6
+      },
+      {
+        "start": 18.22,
+        "end": 21.68
+      },
+      {
+        "start": 23.22,
+        "end": 27.07
+      }
+    ],
+    "rights_basis": "self-generated/no external samples",
+    "source": "Python standard-library synthesis at 48 kHz stereo",
+    "external_samples": false,
+    "narration_mean_dbfs": -18.8,
+    "music_source_mean_dbfs": -30.0,
+    "music_bed_mean_dbfs": -43.1,
+    "ducked_bgm_mean_dbfs": -49.3,
+    "music_input_gain_db": -13.1,
+    "measured_ducking_db": 6.2,
+    "narration_over_ducked_bgm_db": 30.5,
+    "thresholds": {
+      "minimum_music_gain_reduction_db": 10.0,
+      "minimum_ducking_db": 5.0,
+      "maximum_ducking_db": 8.0,
+      "minimum_narration_over_bgm_db": 8.0,
+      "maximum_ducked_bgm_mean_dbfs": -30.0
+    },
+    "checks": {
+      "self_generated_rights": true,
+      "music_gain_is_low": true,
+      "ducking_meets_minimum": true,
+      "ducking_not_excessive": true,
+      "narration_is_primary": true,
+      "ducked_bgm_is_light": true
+    }
+  },
+  "background_music": {
+    "file": "background-music.wav",
+    "music_bed_file": "music-bed.wav",
+    "ducked_file": "ducked-background-music.wav",
+    "sample_rate_hz": 48000,
+    "channels": 2,
+    "tempo_bpm": 92,
+    "music_ducking_db": 6,
+    "music_input_gain": 0.22,
+    "source": "python_standard_library_synthesis",
+    "rights_basis": "self-generated/no external samples",
+    "external_samples": false,
+    "present": true
+  },
+  "publication": {
+    "status": "blocked_until_final_approval_and_verified_blog_url",
+    "instagram_posted": false,
+    "draft_created": false
+  },
+  "file_bytes": 2044854,
+  "stream_evidence": "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(progressive), 1080x1920, 384 kb/s, 30 fps, 30 tbr, 15360 tbn (default)",
+  "audio_evidence": "Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 188 kb/s (default)",
+  "checks": {
+    "portrait_1080x1920": true,
+    "duration_about_28_8_seconds": true,
+    "fps_30": true,
+    "codec_h264": true,
+    "pixel_format_yuv420p": true,
+    "audio_present": true,
+    "audio_codec_aac": true,
+    "audio_sample_rate_48000": true,
+    "six_scenes": true,
+    "max_three_lines": true,
+    "text_narration_aligned": true,
+    "narration_normal_speed": true,
+    "background_music_present": true,
+    "music_bed_present": true,
+    "ducked_music_present": true,
+    "audio_measurements_pass": true,
+    "publication_blocked": true
+  }
+}

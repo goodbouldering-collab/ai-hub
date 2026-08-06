@@ -12578,21 +12578,24 @@ def _render_lecture_card(lec: dict) -> str:
 FOCUSED_PORTAL_CSS = r"""
 /* ---- Consultation-first redesign, light editorial direction, 2026-07-22 ---- */
 :root {
-  --focus-blue: #5367d9;
-  --focus-blue-dark: #3f4fab;
-  --focus-cyan: #eef1ff;
-  --focus-lavender: #f1efff;
-  --focus-violet: #7a67d8;
+  --focus-blue: #4f6fd8;
+  --focus-blue-dark: #3e58b8;
+  --focus-cyan: #e9efff;
+  --focus-lavender: #f1eeff;
+  --focus-violet: #9184d8;
+  --focus-rose: #e88ea0;
+  --focus-rose-soft: #fff0f3;
   --focus-ink: #172033;
-  --focus-muted: #627089;
-  --focus-line: #d9deee;
-  --focus-surface: #f7f8fc;
+  --focus-muted: #6b7891;
+  --focus-line: #dce4f2;
+  --focus-line-strong: #b9c7db;
+  --focus-surface: #f8fbff;
   --focus-shell-x: max(18px, calc((100vw - 1400px) / 2));
   --focus-footer-y: clamp(36px, 5vw, 48px);
   --focus-footer-gap: clamp(24px, 3vw, 32px);
 }
 html { scroll-behavior: smooth; }
-body { background: #fff !important; color: var(--focus-ink) !important; }
+body { background: #f8fbff !important; color: var(--focus-ink) !important; }
 body::before { display: none !important; }
 .container {
   max-width: none !important;
@@ -14436,6 +14439,89 @@ footer.site-footer {
   .mobile-nav.open {
     display: none !important;
   }
+}
+
+/* ---- Clear Sky Rose palette, selected 2026-08-03 ----
+   Color and surface changes only. Layout, type sizes, copy, and imagery stay unchanged. */
+header.site-header,
+header.site-header.scrolled,
+header.site-header:hover {
+  border-bottom: 1px solid rgba(79,111,216,.10) !important;
+  box-shadow: 0 8px 24px rgba(39,60,104,.06) !important;
+}
+.site-nav .nav-cta,
+.focus-btn.primary,
+.compact-course-card > a,
+.compact-course-checkout button,
+.salon-register-form .focus-btn,
+.focus-contact {
+  background: var(--focus-blue) !important;
+  background-image: none !important;
+}
+.site-nav .nav-cta:hover,
+.site-nav .nav-cta:focus-visible,
+.compact-course-card > a:hover,
+.compact-course-checkout button:hover,
+.compact-course-checkout button:focus-visible {
+  background: var(--focus-blue-dark) !important;
+}
+.hero-advantage-copy small strong,
+.site-nav .menu-drop a:hover,
+.site-nav .menu-drop a:focus-visible,
+.mobile-toggle:hover,
+.mobile-toggle:focus-visible,
+.mobile-toggle[aria-expanded="true"] {
+  background: var(--focus-lavender) !important;
+}
+.compact-course-badge,
+.salon-intro-kicker {
+  background: var(--focus-rose-soft) !important;
+  border-color: rgba(232,142,160,.34) !important;
+}
+.compact-course-badge i,
+.salon-intro-kicker i,
+.salon-live-badge i {
+  background: var(--focus-rose) !important;
+  box-shadow: 0 0 0 4px rgba(232,142,160,.13) !important;
+}
+.compact-course-card,
+.salon-panel,
+.salon-live-guide,
+.salon-timeline-card,
+.path-card-new,
+.focus-proof,
+.course-menu-unified,
+.salon-all-details,
+.salon-participation {
+  border-color: var(--focus-line) !important;
+  box-shadow: 0 8px 24px rgba(39,60,104,.08) !important;
+}
+.compact-course-card:hover,
+.path-card-new:hover,
+.focus-hub-card:hover,
+.salon-timeline-card.is-active {
+  border-color: rgba(79,111,216,.38) !important;
+  box-shadow: 0 14px 34px rgba(79,111,216,.13) !important;
+}
+.salon-section,
+.focus-block.soft,
+.course-menu-unified {
+  background-color: var(--focus-surface) !important;
+}
+.salon-all-details,
+.salon-participation,
+.salon-live-steps li {
+  background: #f8fbff !important;
+}
+.focus-hero .focus-title strong::after {
+  background: #cbd4fa !important;
+}
+.focus-btn:focus-visible,
+.compact-course-checkout button:focus-visible,
+.mobile-toggle:focus-visible,
+a:focus-visible,
+button:focus-visible {
+  outline-color: rgba(79,111,216,.28) !important;
 }
 """
 

@@ -2444,7 +2444,7 @@ html { scroll-padding-top: 92px !important; }
 header.site-header,
 header.site-header.scrolled,
 header.site-header:hover {
-  --focus-blue: #5367d9;
+  --focus-blue: #4f6fd8;
   --focus-ink: #172033;
   position: fixed !important;
   inset: 0 0 auto 0 !important;
@@ -3010,6 +3010,61 @@ header.site-header .site-nav a.nav-link.nav-essential.nav-current[href]:focus-vi
   .generated-mobile-nav.open {
     display: none !important;
   }
+}
+
+/* Clear Sky Rose shared public-page palette. Structure and sizing stay unchanged. */
+header.site-header,
+header.site-header.scrolled,
+header.site-header:hover {
+  --focus-blue: #4f6fd8;
+  --focus-blue-dark: #3e58b8;
+  --focus-soft: #e9efff;
+  --focus-lilac: #f1eeff;
+  --focus-line: #dce4f2;
+  border-bottom-color: rgba(79,111,216,.10) !important;
+  box-shadow: 0 8px 24px rgba(39,60,104,.06) !important;
+}
+.wordmark .word-ai,
+.site-nav a.nav-link:hover,
+.site-nav a.nav-link:focus-visible,
+.site-nav .menu-toggle:hover,
+.site-nav .menu-toggle:focus-visible,
+.site-nav .menu-toggle[aria-expanded="true"],
+.header-member-login,
+.header-run-action:hover,
+.header-run-action:focus-visible,
+.mobile-nav .mobile-main-link,
+.generated-mobile-nav .mobile-main-link,
+.mobile-nav a:hover,
+.mobile-nav a:focus-visible,
+.generated-mobile-nav a:hover,
+.generated-mobile-nav a:focus-visible {
+  color: var(--focus-blue) !important;
+}
+.site-nav .nav-cta,
+.mobile-nav .login-btn-mobile,
+.generated-mobile-nav .login-btn-mobile,
+.header-member-login:hover,
+.header-member-login:focus-visible {
+  background: var(--focus-blue) !important;
+  border-color: var(--focus-blue) !important;
+}
+.site-nav .nav-cta:hover,
+.site-nav .nav-cta:focus-visible {
+  background: var(--focus-blue-dark) !important;
+}
+.site-nav .menu-drop {
+  border-color: var(--focus-line) !important;
+  box-shadow: 0 14px 34px rgba(39,60,104,.13) !important;
+}
+.site-nav .menu-drop a:hover,
+.site-nav .menu-drop a:focus-visible,
+.mobile-toggle:hover,
+.mobile-toggle:focus-visible,
+.generated-mobile-toggle:hover,
+.generated-mobile-toggle:focus-visible {
+  background: var(--focus-lilac) !important;
+  color: var(--focus-blue) !important;
 }
 """
 

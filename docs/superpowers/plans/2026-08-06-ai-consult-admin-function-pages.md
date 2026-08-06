@@ -33,8 +33,6 @@ AI相談の管理機能を、管理入口からそれぞれ独立したURLへ到
 ## File Structure
 
 ```text
-tests/
-  test_admin_function_pages.py                 # 新規: 管理導線・rewrite・認証入口の回帰契約
 api/admin/
   index.ts                                     # 必要時のみ: /admin が hub.html を返す入口
 site/static/admin/
@@ -48,22 +46,17 @@ docs/superpowers/plans/
 
 ## Implementation Steps
 
-### 1. 管理導線の回帰契約を先に追加する
+### 1. 実ルーティングを基準に管理導線を検証する
 
 **Files:**
-- Create: `tests/test_admin_function_pages.py`
+- Verify: `api/admin/index.ts`, `site/static/admin/hub.html`, `site/static/admin/admin-menu.js`, `site/static/admin/blog.html`, `vercel.json`
 
-1. `unittest` の既存テスト構成に合わせ、リポジトリルートを基準に各静的ソースをUTF-8で読むテストを作る。
-2. `api/admin/index.ts` が `withAdmin` を利用し、`site/static/admin/hub.html` を読むことを検証する。旧来の `index.html` を返す実装を許容しない。
-3. `vercel.json` の `rewrites` に、次のURLと対応APIが揃うことを検証する。
-   - `/admin`, `/admin/blog`, `/admin/blog/:section`
-   - `/admin/apps/reel`, `/admin/chat`, `/admin/sns-post`, `/admin/gubble-sns`
-   - `/ops`
-4. `vercel.json` の `redirects` に `/admin/docs` と `/admin/docs/` から `/ops` への一時redirectがあることを検証する。
-5. `admin-menu.js` のメニュー項目から、作業入口・ブログ・リール・SNS投稿・SNS分析・AI相談・OPS・公開ページ・ログアウトを抽出して検証する。`/admin/status` が項目にないことも検証する。
-6. `hub.html` の作業カードが、ブログ・リール・SNS投稿・SNS分析・AI相談・OPSへ直接リンクし、`/admin/status` へリンクしないことを検証する。
-7. `blog.html` が `status`、`settings`、`articles`、`generate`、`editor`、`publish` の6つのサブパスと基点 `/admin/blog` を扱い、工程間の一時保存に `sessionStorage` を使うことを検証する。
-8. まず `python -m unittest tests.test_admin_function_pages` を実行する。このベースブランチでは既存実装の性質を固定するため、初回から成功することを期待する。失敗した場合は次の手順で原因に対応する。
+1. `api/admin/index.ts` が `withAdmin` を通し、`hub.html` を返すことを確認する。旧来の `index.html` を入口に戻さない。
+2. ログイン済みブラウザで `/admin` を開き、作業入口カードと共通メニューに、ブログ・リール・SNS投稿・SNS分析・AI相談・OPS・公開ページ・ログアウトがあることを確認する。
+3. `/admin/blog` と `status`、`settings`、`articles`、`generate`、`editor`、`publish` の6サブパスを直接開き、URLごとに該当工程の見出しが表示されることを確認する。
+4. `/admin/apps/reel/`、`/admin/sns-post`、`/admin/gubble-sns`、`/admin/chat`、`/ops` を直接開き、管理メニューを維持したまま目的の画面が表示されることを確認する。
+5. `/admin/status` が共通メニューと入口カードに出ないこと、`/admin/docs` と `/admin/docs/` が `/ops` へ一時redirectされることを確認する。
+6. 390px幅でメニューを開閉し、全リンクに到達でき、横スクロールが発生しないことを確認する。
 
 ### 2. 契約違反がある場合だけ、最小の画面・ルーティング修正を行う
 
@@ -74,17 +67,16 @@ docs/superpowers/plans/
 - Modify: `site/static/admin/blog.html`
 - Modify: `vercel.json`
 
-1. `/admin` の入口が旧モノリシックHTMLを返していた場合、`api/admin/index.ts` を `hub.html` のみを返すように修正し、`withAdmin` は削除しない。
+1. 実ルーティング確認で `/admin` の入口が旧モノリシックHTMLを返していた場合、`api/admin/index.ts` を `hub.html` のみを返すように修正し、`withAdmin` は削除しない。
 2. 共通メニューのURLが不足している、または `/admin/status` を含んでいる場合、`admin-menu.js` の `items` だけを修正する。各ページ固有のヘッダーを複製しない。
 3. 入口カードに集計または全体状況が残る場合、`hub.html` から該当UI・リンクを削除し、既存の直接作業リンクを残す。
 4. ブログ工程URLが欠ける場合、`blog.html` のパス解決と表示切替を補正し、入力中データの保持先は `sessionStorage` のままにする。
 5. URLが404または認証されない場合だけ、`vercel.json` の既存rewriteを補正する。新しい公開APIや認証回避rewriteを追加しない。
-6. 変更のたびに `python -m unittest tests.test_admin_function_pages` を実行し、すべて成功するまで進める。
+6. 変更のたびに既存の全Pythonテスト、TypeScript型検査、実ルーティング確認を実行し、すべて成功するまで進める。
 
 ### 3. リポジトリの回帰検証と静的品質確認を行う
 
 **Files:**
-- Verify: `tests/test_admin_function_pages.py`
 - Verify: `api/admin/index.ts`, `site/static/admin/hub.html`, `site/static/admin/admin-menu.js`, `site/static/admin/blog.html`, `vercel.json`
 
 1. `python -m unittest discover -s tests -p 'test_*.py'` を実行する。
@@ -113,22 +105,22 @@ docs/superpowers/plans/
 2. 明確なコミットメッセージでcommitし、現在の作業ブランチをpushする。
 3. リポジトリの通常のデプロイ手順で、同じcommitをVercel本番 `https://ai-hub-jp.vercel.app` に反映する。環境変数の変更や認証情報の出力はしない。
 4. 本番で `/admin`、ブログ7URL、リール、SNS投稿、SNS分析、AI相談、OPSの主要到達性を確認する。認証画面が表示される経路は、認証保護されていることを成功条件とする。
-5. 本番の公開トップページに回帰がないこと、`/api/dashboard` と `/api/google-calendar` が200であること、代表画像が200であることを確認する。
+5. 本番の公開トップページに回帰がないこと、代表画像が200であることを確認する。実行司令室専用APIは、AI相談の検証対象に含めない。
 6. 報告では、ローカル検証済み・commit/push済み・本番反映済みを分けて記載し、未実行項目があれば理由を明記する。
 
 ## Verification Checklist
 
-- `python -m unittest tests.test_admin_function_pages`
 - `python -m unittest discover -s tests -p 'test_*.py'`
 - `npx.cmd tsc --noEmit`
 - `npm.cmd test`（スクリプト未定義なら、その結果を記録）
 - `git diff --check`
 - PC幅と390px幅のブラウザ確認
-- Vercel本番の認証境界・主要管理URL・公開API・代表画像の確認
+- Vercel本番の認証境界・主要管理URL・公開トップ・代表画像の確認
 
 ## Self-Review
 
 - 設計書に定義した全URL、共通メニュー、ブログ7工程、全体状況を入口に戻さない条件を計画に含めた。
 - 既存実装が設計を満たす場合に重複改修しない判断と、差分が出た場合の編集対象を明記した。
+- 静的文字列だけを検査するテストは追加せず、認証済み実ルーティングとブラウザ表示で管理導線を確認する方針にした。
 - 顧客データ、外部投稿、決済、認証回避を追加しない制約を各工程に反映した。
 - 未確定の実装指示を含めていない。

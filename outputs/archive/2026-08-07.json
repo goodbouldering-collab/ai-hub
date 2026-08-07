@@ -18,7 +18,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/24958946/1421761326.jpg?quality=90&amp;strip=all&amp;crop=21.6%2C28.565551073632%2C78.4%2C61.586077147559&amp;w=1200",
-      "published": "2026-08-06T16:55:39-04:00"
+      "published": "2026-08-06T16:55:39-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "c27c54db3415654d",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/09/STKB368_SUNO_C.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-08-06T13:39:43-04:00"
+      "published": "2026-08-06T13:39:43-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "3fb6339bc39b5018",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/02/STK155_OPEN_AI_4_CVirginia_A.png?quality=90&amp;strip=all&amp;crop=0%2C10.742221417566%2C100%2C78.515557164868&amp;w=1200",
-      "published": "2026-08-06T13:00:00-04:00"
+      "published": "2026-08-06T13:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "4b652d5b6749db64",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/softbank-ohio-data-center.jpg?quality=90&amp;strip=all&amp;crop=0%2C3.4383212962771%2C100%2C93.123357407446&amp;w=1200",
-      "published": "2026-08-06T10:30:00-04:00"
+      "published": "2026-08-06T10:30:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "bf651080ded54546",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/VRG_DCD_0730.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-08-06T10:00:00-04:00"
+      "published": "2026-08-06T10:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "6a06ddfc5d5eacc9",
@@ -113,7 +123,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-08-06T18:24:34+00:00"
+      "published": "2026-08-06T18:24:34+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "f034a0ddf758c5aa",
@@ -132,7 +144,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-08-06T18:22:07+00:00"
+      "published": "2026-08-06T18:22:07+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "151ae9870cfef2c8",
@@ -151,7 +165,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-08-06T18:04:39+00:00"
+      "published": "2026-08-06T18:04:39+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "43656ebc488e2c10",
@@ -170,7 +186,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/gettyimages-2276578156.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.752607989199%2C100%2C78.494784021602&amp;w=1200",
-      "published": "2026-08-06T09:26:42-04:00"
+      "published": "2026-08-06T09:26:42-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "0cad9fa09df0f76e",
@@ -189,7 +207,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/VRG_Spiralism_Lead.png?quality=90&amp;strip=all&amp;crop=0%2C10.610820244328%2C100%2C78.778359511344&amp;w=1200",
-      "published": "2026-08-06T09:00:00-04:00"
+      "published": "2026-08-06T09:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

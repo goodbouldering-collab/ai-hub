@@ -11555,7 +11555,10 @@ def _render_compact_course_cards() -> str:
         material_is_ext = material_url.startswith("http")
         material_target_attr = " target='_blank' rel='noopener'" if material_is_ext else ""
         material_html = (
-            f"<a class='compact-course-material' href='{html.escape(material_url, quote=True)}'{material_target_attr}>{html.escape(item['material_cta'])} →</a>"
+            "<p class='compact-course-material-row'>"
+            f"<a class='compact-course-material' href='{html.escape(material_url, quote=True)}'{material_target_attr}>"
+            f"{html.escape(item['material_cta'])} →</a>"
+            "</p>"
             if material_url else ""
         )
         main_cls = " compact-course-card--main" if item.get("main") else ""
@@ -13027,8 +13030,9 @@ header.site-header:hover {
 .compact-course-details span { color:var(--focus-muted); font-size:10.5px; line-height:1.45; }
 .compact-course-card > a { min-height:36px; display:flex; align-items:center; justify-content:center; margin-top:4px; padding:7px 10px; color:#fff; background:var(--focus-blue); border-radius:7px; font-size:12px; font-weight:900; text-align:center; text-decoration:none; }
 .compact-course-card > a:hover { background:var(--focus-blue-dark); }
-.compact-course-card > a.compact-course-material { min-height:auto; margin:7px 0 0; padding:0; color:var(--focus-blue); background:transparent; border-radius:0; font-size:11px; line-height:1.5; text-decoration:underline; text-underline-offset:3px; }
-.compact-course-card > a.compact-course-material:hover { color:var(--focus-blue-dark); background:transparent; }
+.compact-course-material-row { margin:7px 0 0; }
+.compact-course-card .compact-course-material { display:inline; padding:0; color:var(--focus-blue); background:transparent; border-radius:0; font-size:11px; font-weight:800; line-height:1.5; text-decoration:underline; text-underline-offset:3px; }
+.compact-course-card .compact-course-material:hover { color:var(--focus-blue-dark); background:transparent; }
 .salon-section {
   position:relative;
   overflow:hidden;

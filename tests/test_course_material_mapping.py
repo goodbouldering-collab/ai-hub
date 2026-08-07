@@ -79,6 +79,16 @@ class CourseMaterialMappingTest(unittest.TestCase):
             "href='/blog/2026-07-14-ai-agent-course-codex-claude-code.html'",
             agent_card,
         )
+        self.assertIn(
+            "<p class='compact-course-material-row'><a class='compact-course-material' "
+            "href='/lectures/2026-04-ai-kihon.html'>AIエージェント講習の受講資料を見る →</a></p>",
+            agent_card,
+        )
+        self.assertIn(".compact-course-material-row {", self.index_html)
+        self.assertNotIn(
+            "</a><a class='compact-course-material' href='/lectures/2026-04-ai-kihon.html'>",
+            agent_card,
+        )
 
     def test_agent_article_links_to_the_course_material(self) -> None:
         self.assertIn(

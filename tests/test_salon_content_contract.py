@@ -29,8 +29,7 @@ class SalonContentContractTests(unittest.TestCase):
             "月額2,200円（税込）",
             "毎週火曜21:00",
             "AIオンラインサロン",
-            "AIの最新を、仕事の次の一手に。",
-            "全部を追わず、新機能と一流の活用事例から、今試すことを短く整理します。",
+            "AIの最新も疑問もその場で解決できる。",
             "Squareで月額決済後、LINEライブトークの参加案内を表示します。仕事で次に試すことを一緒に決めます。聞くだけOK。",
             "UPDATE",
             "新機能を毎週知る",
@@ -82,6 +81,10 @@ class SalonContentContractTests(unittest.TestCase):
         for text in expected_details:
             with self.subTest(text=text):
                 self.assertIn(text, self.panel)
+        self.assertNotIn(
+            "全部を追わず、新機能と一流の活用事例から、今試すことを短く整理します。",
+            self.panel,
+        )
 
     def test_structured_detail_counts_and_checkout_contract_remain_intact(self) -> None:
         self.assertEqual(self.panel.count("class='salon-value'"), 3)

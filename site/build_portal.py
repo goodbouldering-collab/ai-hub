@@ -11661,8 +11661,7 @@ def _render_salon_menu() -> str:
         "<small class='salon-card-category'>月額サロン</small>"
         "<h2 class='salon-detail-title' id='salon-title'>AIオンラインサロン</h2>"
         "<div class='compact-course-meta salon-card-meta'><strong>月額2,200円（税込）</strong><span>毎週火曜21:00</span></div>"
-        "<p class='salon-intro-tagline'>AIの最新を、仕事の次の一手に。</p>"
-        "<p class='salon-intro-summary'>全部を追わず、新機能と一流の活用事例から、今試すことを短く整理します。</p>"
+        "<p class='salon-intro-tagline'>AIの最新も疑問もその場で解決できる。</p>"
         "<p class='salon-intro-description'>Squareで月額決済後、LINEライブトークの参加案内を表示します。仕事で次に試すことを一緒に決めます。聞くだけOK。</p></div>"
         "<div class='salon-value-list' role='list' aria-label='サロンで得られること'>"
         "<div class='salon-value' role='listitem'><b>01</b><div><small>UPDATE</small><strong>新機能を毎週知る</strong></div></div>"
@@ -11676,8 +11675,8 @@ def _render_salon_menu() -> str:
         f"{benefit_rows}</ul>"
         f"{_render_live_talk_guide()}"
         "</div></details>"
-        f"<form class='compact-course-checkout salon-card-checkout' method='post' action='{html.escape(AI_SALON_CHECKOUT_URL, quote=True)}'><button type='submit'>Squareで決済して参加 →</button></form>"
         "<p class='salon-simple-note'>月額2,200円（税込）・毎月自動更新。決済確認後にLINE参加案内を表示します</p>"
+        f"<form class='compact-course-checkout salon-card-checkout' method='post' action='{html.escape(AI_SALON_CHECKOUT_URL, quote=True)}'><button type='submit'>Squareで決済して参加 →</button></form>"
         "<p class='salon-material-row'><a class='compact-course-material salon-material-link' href='/lectures/2026-07-ai-online-salon-practice.html'>オンラインサロン受講資料を見る →</a></p>"
         "</div></section>"
     )
@@ -13103,12 +13102,6 @@ header.site-header:hover {
   font-weight:900;
   letter-spacing:-.025em;
 }
-.salon-intro-summary {
-  margin:10px 0 0;
-  color:var(--focus-muted);
-  font-size:13px;
-  line-height:1.75;
-}
 .salon-value-list {
   grid-area:values;
   display:grid;
@@ -13499,7 +13492,6 @@ footer.site-footer {
   .salon-intro-kicker { padding:6px 9px; font-size:10px; }
   .salon-intro h2 { margin-top:10px; font-size:29px; }
   .salon-intro-tagline { margin-top:8px; font-size:17px; }
-  .salon-intro-summary { margin-top:6px; font-size:12.5px; line-height:1.6; }
   .salon-value-list { gap:0; overflow:visible; border-width:1px 0; border-radius:0; background:transparent; }
   .salon-value { grid-template-columns:28px minmax(0,1fr); gap:8px; padding:10px 2px; border:0; border-radius:0; background:transparent; }
   .salon-value + .salon-value { border-top:1px solid rgba(83,103,217,.14); }
@@ -13588,11 +13580,6 @@ footer.site-footer {
 .salon-panel .salon-intro-tagline {
   margin-top:8px;
   font-size:clamp(17px,1.8vw,21px);
-}
-.salon-panel .salon-intro-summary {
-  margin-top:6px;
-  font-size:13px;
-  line-height:1.55;
 }
 .salon-panel .salon-value-list {
   display:grid;
@@ -13872,7 +13859,7 @@ footer.site-footer {
   margin:12px auto 0;
 }
 .salon-simple-note {
-  margin:7px 0 0;
+  margin:12px 0 7px;
   color:var(--focus-muted);
   font-size:9.5px;
   text-align:center;
@@ -14109,10 +14096,6 @@ footer.site-footer {
   .salon-panel .salon-intro-tagline {
     margin-top:6px;
     font-size:15px;
-  }
-  .salon-panel .salon-intro-summary {
-    font-size:12px;
-    line-height:1.5;
   }
   .salon-panel .salon-value-list {
     grid-template-columns:repeat(3,minmax(0,1fr));

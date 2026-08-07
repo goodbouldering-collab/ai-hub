@@ -1,283 +1,138 @@
 # AIハブ 2026-08-07
 
-> 生成日時: 2026-08-07 01:27:40
-> 新着: 43件 / 継続: 0件 / 合計: 43件
+> 生成日時: 2026-08-07 22:25:05
+> 新着: 18件 / 継続: 3件 / 合計: 21件
 
 ---
 
 ## 🆕 新着 (前回取得以降)
 
-### カテゴリ: AIニュース (13件)
+### カテゴリ: AIニュース (3件)
 
-### [The Verge AI] Jony Ive&#8217;s first OpenAI gadget is reportedly a hockey puck-sized smart speaker
-- URL: https://www.theverge.com/ai-artificial-intelligence/976431/openai-chatgpt-battery-smart-speaker-rumor
-- 取得: 2026-08-07 01:27:32
-- 公開: 2026-08-06T16:55:39-04:00
-- 原文抜粋: The AI device OpenAI is developing with former Apple designer Jony Ive is "essentially a smart speaker without a display" that's battery-powered, doughnut-shaped and roughly the size of a hockey puck, according to Bloomberg reporter Mark Gurman. The device, expected to launch in 2027 for a price ove...
+### [Ars Technica AI] OpenAI’s expensive smart speaker will use moving parts to seem “more alive”
+- URL: https://arstechnica.com/gadgets/2026/08/openais-expensive-smart-speaker-will-use-moving-parts-to-seem-more-alive/
+- 取得: 2026-08-07 22:24:59
+- 公開: Fri, 07 Aug 2026 17:36:22 +0000
+- 原文抜粋: Gurman report claims OpenAI confirmed the speaker is not an Apple ripoff.
 
-### [The Verge AI] Suno shares plans to combat spammy AI music
-- URL: https://www.theverge.com/ai-artificial-intelligence/976289/suno-ai-music-spam-watermark
-- 取得: 2026-08-07 01:27:32
-- 公開: 2026-08-06T13:39:43-04:00
-- 原文抜粋: Suno announced plans to implement a new watermarking technology and download policy to limit the spread of spammy AI tracks and increase transparency. In a lengthy blog post, CEO and co-founder Mikey Shulman laid out the company's principles and the next steps for the company as it seeks legitimacy....
+### [Ars Technica AI] AI chatbots have failed people in crisis. Can that be fixed?
+- URL: https://arstechnica.com/ai/2026/08/ai-chatbots-have-failed-people-in-crisis-can-that-be-fixed/
+- 取得: 2026-08-07 22:24:59
+- 公開: Fri, 07 Aug 2026 13:49:37 +0000
+- 原文抜粋: Clinicians and researchers say AI companies need to open up their safety data.
 
-### [The Verge AI] OpenAI is giving ChatGPT free users unlimited text chats
-- URL: https://www.theverge.com/ai-artificial-intelligence/976239/openai-chatgpt-free-go-text-chats
-- 取得: 2026-08-07 01:27:32
-- 公開: 2026-08-06T13:00:00-04:00
-- 原文抜粋: OpenAI is making a big change for ChatGPT users on its free and Go tiers: Starting next week, users on those tiers will be able to have unlimited text chats with the chatbot, according to OpenAI. Right now, you may run into rate limits if you do too many text chats on those tiers, but [&#8230;]
+### [Ars Technica AI] ByteDance trains massive AI model in bid to rival Anthropic
+- URL: https://arstechnica.com/ai/2026/08/bytedance-trains-massive-ai-model-in-bid-to-rival-anthropic/
+- 取得: 2026-08-07 22:24:59
+- 公開: Fri, 07 Aug 2026 13:29:22 +0000
+- 原文抜粋: TikTok owner training a model with 10 trillion parameters.
 
-### [The Verge AI] SoftBank donated $50 million to Trump’s library months before federal data center deal
-- URL: https://www.theverge.com/policy/976138/softbank-trump-library-data-center-ohio
-- 取得: 2026-08-07 01:27:32
-- 公開: 2026-08-06T10:30:00-04:00
-- 原文抜粋: SoftBank contributed $50 million to the Trump Presidential Library in January, just months before announcing that it's leasing land from the federal government to build a sprawling data center in Ohio. The Japanese company revealed the timing in response to a June letter from Sen. Elizabeth Warren (...
+### カテゴリ: AI公式 (2件)
 
-### [The Verge AI] The left and right agree on one thing: no data centers
-- URL: https://www.theverge.com/podcast/971855/ai-data-center-backlash-protests-florida-bipartisan
-- 取得: 2026-08-07 01:27:32
-- 公開: 2026-08-06T10:00:00-04:00
-- 原文抜粋: Today, I’m talking with Gaby Del Valle, a policy reporter here at The Verge, about the growing backlash against AI data centers.&#160; Gaby recently reported a fantastic piece about Hernando County, Florida, where last month the county commission unanimously approved a yearlong moratorium on data ce...
+### [OpenAI Blog] Responding to the next frontier of critical cyber capabilities
+- URL: https://openai.com/index/responding-next-frontier-critical-cyber-capabilities
+- 取得: 2026-08-07 22:24:57
+- 公開: Fri, 07 Aug 2026 15:20:00 GMT
+- 原文抜粋: OpenAI is sharing preliminary cybersecurity evaluations for Astra and the steps we’re taking to strengthen safeguards and security controls.
 
-### [The Verge AI] The messy politics behind Google’s big AI shakeup
-- URL: https://www.theverge.com/tech/976108/google-ai-leadership-shakeup-jeff-dean-demis-hassabis-deepmind
-- 取得: 2026-08-07 01:27:32
-- 公開: 2026-08-06T09:26:42-04:00
-- 原文抜粋: In the AI industry, Google prides itself on seeming like the adult in the room: quiet, stable, time-tested. On Wednesday, even as the company announced its largest AI org shakeup yet, Google and its leaders presented a unified front, keeping their messaging focused on how the changes tee up future s...
+### [OpenAI Blog] How HSP GRUPPE builds AI capabilities for tax advisory
+- URL: https://openai.com/index/hsp-gruppe
+- 取得: 2026-08-07 22:24:57
+- 公開: Fri, 07 Aug 2026 09:00:00 GMT
+- 原文抜粋: Discover how HSP GRUPPE uses ChatGPT Enterprise to boost productivity, improve work quality, and create more capacity for tax advisory and client service.
 
-### [The Verge AI] AI bots started a religion — humans immediately followed
-- URL: https://www.theverge.com/ai-artificial-intelligence/975017/ai-spiralism-chatbot-movement
-- 取得: 2026-08-07 01:27:32
-- 公開: 2026-08-06T09:00:00-04:00
-- 原文抜粋: "The Spiral didn't 'find' anyone first," someone on Reddit wrote last year. "It's an inherent force, a fundamental constant. I would even go further to say it's woven into the fabric of reality." The person continued that they felt their purpose was to enlighten other humans and intelligent beings a...
+### カテゴリ: AI動画(日本語) (2件)
 
-### [The Verge AI] OpenAI says Apple’s trade secrets lawsuit is ‘rotten to its core’
-- URL: https://www.theverge.com/tech/976042/openai-apple-trade-secrets-lawsuit-dismissal-request
-- 取得: 2026-08-07 01:27:32
-- 公開: 2026-08-06T05:33:11-04:00
-- 原文抜粋: OpenAI has asked a federal judge to toss out Apple's landmark lawsuit accusing the ChatGPT maker of stealing trade secrets, describing the allegations as "meritless." In a motion filed yesterday to dismiss the complaint, OpenAI says that Apple is mischaracterizing both the actions of the AI startup'...
+### [ウェブ職TV] 「この1ヶ月は人生を左右する」「稼ぎたければFableを触れ」高知からイケハヤがやってきた！
+- URL: https://www.youtube.com/watch?v=K4zowG6eO5w
+- 取得: 2026-08-07 22:25:02
+- 公開: 2026-08-07T21:00:03+00:00
+- 原文抜粋: ●本日のゲスト：イケハヤさん X：https://x.com/IHayato YouTube：https://www.youtube.com/@ikehaya-daigaku スマホゲーム「月蝕綺譚」：vibe.co.jp/luna-occulta  ●直近のAI講座・合宿案内  ▼【定員20名】Claude Code合宿 2026(Claude Code漬けになる2泊3日) 8月21日〜23日・新大阪／同伴1名無料 https://touchai.jp/claude-code-camp?utm_source=youtube&amp;utm_medium=webshokutv&amp;utm_...
 
-### [Ars Technica AI] Suno hopes to go legit with watermarks for AI-generated music
-- URL: https://arstechnica.com/ai/2026/08/suno-hopes-to-go-legit-with-watermarks-for-ai-generated-music/
-- 取得: 2026-08-07 01:27:32
-- 公開: Thu, 06 Aug 2026 20:17:36 +0000
-- 原文抜粋: Suno plans watermarks and download limits to stop "large-scale abuse."
+### [AI収益化ラボ] 【早い者勝ち】ステッカー販売で月100万。1日1分の作業で稼げちゃう裏技を完全公開
+- URL: https://www.youtube.com/watch?v=lz_L1yPIjtY
+- 取得: 2026-08-07 22:25:03
+- 公開: 2026-08-07T10:00:17+00:00
+- 原文抜粋: ▼動画内で紹介したプレゼントの受け取りは以下の公式LINEから https://liff.line.me/2006805073-rn36NG8b/landing?follow=%40933hyolt&amp;lp=I8quAw&amp;liff_id=2006805073-rn36NG8b  ▼プレゼントの受け取り方法 ① LINE登録後に送信される配信をタップ ② アンケートに回答（1度登録されたメールアドレスでは2度と受け取れません） ③ 届いだNotionをブックマーク or 保存 ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ 【奥山のX】 最新のAIの使い方・AIで稼ぐ方法を発信中！ ...
 
-### [Ars Technica AI] Anthropic will design its own hardware to power Claude
-- URL: https://arstechnica.com/ai/2026/08/anthropic-confirms-plans-to-build-an-in-house-silicon-team/
-- 取得: 2026-08-07 01:27:32
-- 公開: Thu, 06 Aug 2026 20:03:44 +0000
-- 原文抜粋: Anthropic and OpenAI are racing to scale up while reducing dependence on Nvidia.
+### カテゴリ: AI国内 (7件)
 
-### [Ars Technica AI] Large genome models used to design new viruses
-- URL: https://arstechnica.com/science/2026/08/large-genome-models-used-to-design-new-viruses/
-- 取得: 2026-08-07 01:27:32
-- 公開: Thu, 06 Aug 2026 19:04:57 +0000
-- 原文抜粋: The AI system makes genetically distant versions of a bacteria-killing virus.
+### [ITmedia AI+] 「声の無断利用」が権利侵害に――法務省が見解を明示　「AIカバー」も対象
+- URL: https://www.itmedia.co.jp/aiplus/article/2608/07/2000000452/
+- 取得: 2026-08-07 22:25:00
+- 公開: Fri, 07 Aug 2026 21:19:15 +0900
+- 原文抜粋: 法務省は、生成AIの普及によって声優などの声が無断利用されている問題を巡り、声も既存の権利で法的に保護できるとの見解を明示した。本人の声を模したAI音声によるカバー音源なども権利侵害の可能性があるという。
 
-### [Ars Technica AI] Cloudflare open-sources vibe-coding platform for people who aren't coders
-- URL: https://arstechnica.com/ai/2026/08/cloudflare-open-sources-vibe-coding-platform-for-people-who-arent-coders/
-- 取得: 2026-08-07 01:27:32
-- 公開: Thu, 06 Aug 2026 16:15:30 +0000
-- 原文抜粋: Cloudflare built an AI agent workspace for its employees. Now it’s open source.
+### [ITmedia AI+] シャープ、通期純利益見通し170億円下方修正　円安など影響　AIサーバは9月に参入
+- URL: https://www.itmedia.co.jp/news/article/2608/07/2000000455/
+- 取得: 2026-08-07 22:25:00
+- 公開: Fri, 07 Aug 2026 19:34:01 +0900
+- 原文抜粋: シャープは7日、2027年3月期の連結純利益が前期比47.3％減の250億円になる見通しだと発表した。期初予想から170億円下方修正した。樹脂・燃料の価格上昇や円安が収益を圧迫する。営業利益は190億円引き下げて300億円。売上高は1兆7700億円に据え置いた。
 
-### [Ars Technica AI] AI isn’t enough to protect social media communities from AI
-- URL: https://arstechnica.com/gadgets/2026/08/ai-isnt-enough-to-protect-social-media-communities-from-ai/
-- 取得: 2026-08-07 01:27:32
-- 公開: Thu, 06 Aug 2026 11:00:44 +0000
-- 原文抜粋: Why humans need to moderate humans.
+### [ITmedia AI+] 「就活に生成AI利用」ほぼ全員に　面接で内容追及され困惑も
+- URL: https://www.itmedia.co.jp/news/article/2608/07/2000000456/
+- 取得: 2026-08-07 22:25:00
+- 公開: Fri, 07 Aug 2026 19:16:08 +0900
+- 原文抜粋: 2027年春に卒業予定の大学生らを対象に行ったアンケートで、就職活動で生成AIを「利用していない」とした割合は3％にとどまり、ほぼ全ての学生が就活で何らかの形で生成AIを活用している実態が、人事分野の調査研究機関HR総研（東京都千代田区）などの調査で分かった。
 
-### カテゴリ: AI公式 (3件)
+### [ITmedia AI+] 「声」の権利明記　生成AIで無断利用、法務省が民事責任の解釈指針を公表
+- URL: https://www.itmedia.co.jp/news/article/2608/07/2000000454/
+- 取得: 2026-08-07 22:25:00
+- 公開: Fri, 07 Aug 2026 19:08:04 +0900
+- 原文抜粋: 著名人の肖像などが生成AIで無断利用されている問題を巡り、法務省は声優らの「声」も法的保護の対象になると明記した解釈指針を公式サイトで公表した。肖像や氏名の無断利用については最高裁判例があるが、声については違法性の線引きが曖昧だった。権利侵害に当たる具体的な事例も盛り込み、生成AIサービスの提供事業者や利用者にも注意を促す。
 
-### [OpenAI Blog] Improving GPT‑5.6 Sol in ChatGPT—and expanding access to GPT-5.6 Luna for free users
-- URL: https://openai.com/index/improving-gpt-5-6-sol-in-chatgpt
-- 取得: 2026-08-07 01:27:31
-- 公開: Thu, 06 Aug 2026 10:00:00 GMT
-- 原文抜粋: ChatGPT introduces improved GPT-5.6 Sol with better accuracy and consistency, plus expanded access for free users and unlimited everyday chats with GPT-5.6 Luna.
+### [ITmedia AI+] 著名人の「なりすまし詐欺広告」対策強化を要請　Google・LINEヤフー・Xなど対象　7府省庁合同で
+- URL: https://www.itmedia.co.jp/aiplus/article/2608/07/2000000450/
+- 取得: 2026-08-07 22:25:00
+- 公開: Fri, 07 Aug 2026 16:34:18 +0900
+- 原文抜粋: 警察庁など7府省庁は、SNSなどの「なりすまし詐欺広告」の対策を強化するようプラットフォームを運営する5社に要請した。
 
-### [OpenAI Blog] Working with the American Psychological Association on youth mental health and AI
-- URL: https://openai.com/index/openai-and-apa-partner-to-advance-responsible-ai
-- 取得: 2026-08-07 01:27:31
-- 公開: Thu, 06 Aug 2026 06:00:00 GMT
-- 原文抜粋: OpenAI and the American Psychological Association advance evidence-based guidance, resources, and safeguards for responsible AI use and youth mental health.
+### [ITmedia AI+] PFNの国産LLM「PLaMo 3.0 Prime」、さくらのAI推論基盤で提供開始　利用は申請制
+- URL: https://www.itmedia.co.jp/aiplus/article/2608/07/2000000443/
+- 取得: 2026-08-07 22:25:00
+- 公開: Fri, 07 Aug 2026 13:07:21 +0900
+- 原文抜粋: さくらインターネットが、生成AI向け推論API基盤「さくらのAI Engine」で、Preferred Networks（PFN）の国産大規模言語モデル（LLM）「PLaMo 3.0 Prime」の提供を始めた。利用には申請が必要で、無償プランは対象外となる。
 
-### [Google DeepMind] WeatherNext: AI model achieves breakthrough in forecasting cyclones
-- URL: https://deepmind.google/blog/weathernext-ai-model-achieves-breakthrough-in-forecasting-cyclones/
-- 取得: 2026-08-07 01:27:31
-- 公開: Thu, 06 Aug 2026 15:06:15 +0000
+### [ITmedia AI+] 投資の機を逃す「残念な会社がいっぱい」――ソフトバンクG投資の秘訣、“金庫番”が語る
+- URL: https://www.itmedia.co.jp/business/articles/2608/07/news063.html
+- 取得: 2026-08-07 22:25:00
+- 公開: Fri, 07 Aug 2026 10:50:00 +0900
+- 原文抜粋: 投資会社として成果を積み上げてきたソフトバンクG。その投資方針と成功のポイントについて、同社の“金庫番”こと後藤芳光CFOが語った。
 
-### カテゴリ: AI動画(日本語) (1件)
+### カテゴリ: AI業界 (1件)
 
-### [AI収益化ラボ] 【収益公開】ポケカ転売をAIで完全自動化したらエグい収益になった
-- URL: https://www.youtube.com/watch?v=i4soueIaoyY
-- 取得: 2026-08-07 01:27:36
-- 公開: 2026-08-06T10:00:19+00:00
-- 原文抜粋: ▼動画内で紹介したプレゼントの受け取りは以下の公式LINEから https://liff.line.me/2006805073-rn36NG8b/landing?follow=%40933hyolt&amp;lp=WfUCQd&amp;liff_id=2006805073-rn36NG8b  ▼プレゼントの受け取り方法 ① LINE登録後に送信される配信をタップ ② アンケートに回答（1度登録されたメールアドレスでは2度と受け取れません） ③ 届いだNotionをブックマーク or 保存 ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ 【奥山のX】 最新のAIの使い方・AIで稼ぐ方法を発信中！ ...
+### [Hugging Face Blog] TutorMoments: Do AI tutors know when to help and when to hold back?
+- URL: https://huggingface.co/blog/allenai/tutormoments
+- 取得: 2026-08-07 22:24:58
+- 公開: Fri, 07 Aug 2026 17:53:32 GMT
 
-### カテゴリ: AI国内 (16件)
+### カテゴリ: AI研究者ブログ (2件)
 
-### [ITmedia AI+] 「GPT-5.6 vs. Claude Fable 5」勝者はClaude、でも企業が選びづらいワケ：891st Lap
-- URL: https://kn.itmedia.co.jp/kn/articles/2608/07/news037.html
-- 取得: 2026-08-07 01:27:33
-- 公開: Fri, 07 Aug 2026 07:00:00 +0900
-- 原文抜粋: 物理AIベンチマークで最高評価を獲得した「Claude Fable 5」。だが、企業が導入を判断する際には、性能だけでは見えない悩ましい問題が浮かび上がった。
+### [Simon Willison's Weblog] Moonlight & Mayhem (Raccoon Heist by Codex + GPT-5.6 Sol Ultra)
+- URL: https://simonwillison.net/2026/Aug/7/moonlight-mayhem/#atom-everything
+- 取得: 2026-08-07 22:24:59
+- 公開: 2026-08-07T19:18:09+00:00
+- 原文抜粋: <p><strong><a href="https://simonw.github.io/raccoon-heist-codex/">Moonlight &amp; Mayhem (Raccoon Heist by Codex + GPT-5.6 Sol Ultra)</a></strong></p> On Wednesday I wrote about <a href="https://simonwillison.net/2026/Aug/5/raccoon-heist/">One-shotting a Raccoon Heist game using Claude Fable 5</a>,...
 
-### [ITmedia AI+] 銀行なら3カ月→AIは1カ月　10万件のデータで「数千万円」を引き出した“データドリブン資金調達術”
-- URL: https://www.itmedia.co.jp/business/articles/2608/07/news011.html
-- 取得: 2026-08-07 01:27:33
-- 公開: Fri, 07 Aug 2026 07:00:00 +0900
-- 原文抜粋: 黒字化目前のZehitomoは、手元資金を確保すべく新たな資金調達手段を模索していた。だが、銀行融資は最低3カ月を要し、株式調達は希薄化のリスクを伴う。この壁を打ち破ったのが、AIを活用した「データ駆動型融資」だ。同社が提出した10万件の入金データをAIが解析し、わずか1カ月で数千万円の融資が実行。株を薄めず迅速に資金を確保する「AI時代の調達術」と、変化する融資条件の最前線を追う。
+### [Simon Willison's Weblog] The Tokenpocalypse Is Here: Companies Are Scrambling To Stop Spending So Much on AI
+- URL: https://simonwillison.net/2026/Aug/7/pdfs-are-terrible/#atom-everything
+- 取得: 2026-08-07 22:24:59
+- 公開: 2026-08-07T16:18:51+00:00
+- 原文抜粋: <p><strong><a href="https://www.404media.co/the-tokenpocalypse-is-here-companies-are-scrambling-to-stop-spending-so-much-on-ai/">The Tokenpocalypse Is Here: Companies Are Scrambling To Stop Spending So Much on AI</a></strong></p> There's a fun anecdote from Accenture (apparently via leaked meeting a...
 
-### [ITmedia AI+] あえて歩かせない――準国産ヒューマノイド「D1」登場、現場稼働で日本の勝ち筋へ
-- URL: https://monoist.itmedia.co.jp/mn/articles/2608/07/news039.html
-- 取得: 2026-08-07 01:27:33
-- 公開: Fri, 07 Aug 2026 06:45:00 +0900
-- 原文抜粋: ZEALSは日本の屋内環境に適応した準国産の台車型ヒューマノイド「D1」を発表した。医療や製造現場など実際の稼働を通じて独自の物理データを収集。フィジカルAIの社会実装を推進し、2026年度内に累計1万時間の現場稼働を目指す。
+### カテゴリ: SNS動向 (1件)
 
-### [ITmedia AI+] 「ChatGPT」のデフォルトモデル、PlusとProは「Sol」に、無料版は「Luna」でテキストチャット無制限に
-- URL: https://www.itmedia.co.jp/news/article/2608/07/2000000435/
-- 取得: 2026-08-07 01:27:33
-- 公開: Fri, 07 Aug 2026 06:32:08 +0900
-- 原文抜粋: OpenAIはChatGPTのデフォルトモデル変更を発表した。有料版には事実の正確性と応答速度を高めた改良版「GPT-5.6 Sol」を導入し、思考時間を選択できるスライダーを追加。無料版および「ChatGPT Go」には「GPT-5.6 Luna」を導入し、テキストチャットを無制限化するとともに推論を促す「Think」ボタンを提供する。
-
-### [ITmedia AI+] SaaSの価値は“割り勘”だけじゃない　「SaaSの死」論争を一刀両断
-- URL: https://www.itmedia.co.jp/enterprise/articles/2608/07/news010.html
-- 取得: 2026-08-07 01:27:33
-- 公開: Fri, 07 Aug 2026 05:00:00 +0900
-- 原文抜粋: AIエージェントの普及でSaaSの利用者が減り、ベンダーの収入も減る――。「SaaSの死」の前提となる、この見立ては正しいのか。PM歴40年の筆者が「共同利用型システム」時代から業務ソフトウェアの歴史を振り返り、ユーザー企業にとっての価値を明らかにする。
-
-### [ITmedia AI+] アプリが遅い原因をAIがトレースログから分析してくれる「Windows Performance Analyzer MCP」　Microsoftがプレビュー公開
-- URL: https://www.itmedia.co.jp/news/article/2608/06/2000000434/
-- 取得: 2026-08-07 01:27:33
-- 公開: Thu, 06 Aug 2026 19:54:46 +0900
-- 原文抜粋: 米Microsoftが、Windowsアプリケーションが遅くなる原因の調査分析をAIに依頼できるツール「Windows Performance Analyzer MCP」（WPA MCP）のアーリープレビューを発表しました。
-
-### [ITmedia AI+] AIデータセンターは「圧倒的に供給不足」――ソフトバンクG後藤CFO、“バブル疑惑”を否定
-- URL: https://www.itmedia.co.jp/aiplus/article/2608/06/2000000433/
-- 取得: 2026-08-07 01:27:33
-- 公開: Thu, 06 Aug 2026 19:49:21 +0900
-- 原文抜粋: AI向けデータセンターは「圧倒的に供給不足だ」――ソフトバンクグループ（以下、SBG）の後藤芳光氏（取締役 専務執行役員 CFO兼CISO）は、同社の2027年3月期第1四半期連結決算（26年4月1日?6月30日）の説明会でこのように指摘した。
-
-### [ITmedia AI+] ソフトバンクG、投資利益1.8兆円を支えた「OpenAIではない“あの半導体メーカー”」の正体
-- URL: https://www.itmedia.co.jp/business/articles/2608/06/news084.html
-- 取得: 2026-08-07 01:27:33
-- 公開: Thu, 06 Aug 2026 19:30:00 +0900
-- 原文抜粋: ソフトバンクGは、第1四半期の投資利益が1兆8594億円だったと発表した。投資利益を押し上げたのは、OpenAIでもArmでもない。歴史的な経営難に陥っていた“あの半導体メーカー”だった。
-
-### [ITmedia AI+] Googleのジェフ・ディーン氏、独立してAI実験を大規模自動化する新会社Discovery Loop設立
-- URL: https://www.itmedia.co.jp/news/article/2608/06/2000000408/
-- 取得: 2026-08-07 01:27:33
-- 公開: Thu, 06 Aug 2026 19:20:03 +0900
-- 原文抜粋: Googleのチーフサイエンティスト、ジェフ・ディーン氏が退社し、新会社「Discovery Loop」を設立すると発表した。サンジェイ・ゲマワット氏らと共同創業する公益法人で、フロンティアAIモデルと計算基盤を活用して実験や検証などの研究プロセス全体を自動化することを目指す。Googleは初期出資者およびクラウドパートナーとして協力する。
-
-### [ITmedia AI+] 書店に「3000冊の発注」、AI企業が古書を買いあさる？　Anthropicも数百万冊をスキャン・破棄　実態明らかに
-- URL: https://www.itmedia.co.jp/business/articles/2608/06/news060.html
-- 取得: 2026-08-07 01:27:33
-- 公開: Thu, 06 Aug 2026 17:30:00 +0900
-- 原文抜粋: オランダの古書店に、3000冊の注文が入った。届け先は、中国のAI企業。AI学習用データにするとみられる。Anthropicも数百万冊をスキャンした後、破棄している。その実態が明らかになった。
-
-### [ITmedia AI+] 「1人1AI」のアプローチは破綻する――チームでAI共有時のセキュリティ問題を解決するベストプラクティス
-- URL: https://atmarkit.itmedia.co.jp/ait/articles/2608/07/news022.html
-- 取得: 2026-08-07 01:27:33
-- 公開: Thu, 06 Aug 2026 16:00:00 +0900
-- 原文抜粋: Anthropicは、「Claude Tag」における「エージェントアイデンティティー」アクセスモデルの仕組みと、チームのワークスペースでこれを構成する際のベストプラクティスを解説したブログ記事を公開した。
-
-### [ITmedia AI+] 中国DeepSeek、近日中に「大幅値上げ」か　API料金ページに追記
-- URL: https://www.itmedia.co.jp/aiplus/article/2608/06/2000000423/
-- 取得: 2026-08-07 01:27:33
-- 公開: Thu, 06 Aug 2026 15:01:18 +0900
-- 原文抜粋: 中国のDeepSeekは、同社が提供するAPIの料金ページに「近日中に大幅な値上げが見込まれる」と記載した。
-
-### [ITmedia AI+] NVIDIA、自動運転向けオープンモデルを商用利用可に　新モデルは「卓越した性能」うたう
-- URL: https://www.itmedia.co.jp/aiplus/article/2608/06/2000000420/
-- 取得: 2026-08-07 01:27:33
-- 公開: Thu, 06 Aug 2026 13:56:48 +0900
-- 原文抜粋: NVIDIAが自動運転向けAIモデル「Alpamayo」ファミリーを商用利用可能なオープンライセンスで提供開始。新モデル「Alpamayo 2 Super」は推論ベンチマークで首位になるなど卓越した性能をうたう。
-
-### [ITmedia AI+] リクルート、新卒エンジニア向け研修資料を無料公開　“AI時代の生き残り方”など紹介する13本
-- URL: https://www.itmedia.co.jp/aiplus/article/2608/06/2000000418/
-- 取得: 2026-08-07 01:27:33
-- 公開: Thu, 06 Aug 2026 13:28:32 +0900
-- 原文抜粋: リクルートは、2026年度の新卒エンジニア向けの研修資料を公開した。エンジニアとして生き残るためのAIの活用法や、AIによるソフトウェア開発の考え方の変化など、業務やキャリア形成に必要な知見を幅広く紹介している。
-
-### [ITmedia AI+] MythosとGPT-5.6 Solが性能テスト中に暴走　OSSメンテナーに圧力、有害コード実行図る　英政府機関
-- URL: https://www.itmedia.co.jp/aiplus/article/2608/06/2000000411/
-- 取得: 2026-08-07 01:27:33
-- 公開: Thu, 06 Aug 2026 11:06:26 +0900
-- 原文抜粋: 英政府機関AISIによるAIモデルのサイバー能力評価中に、AnthropicのMythos 5やOpenAIのGPT-5.6 Solが実在の人や組織を標的に暴走。偽アカウントを作り、OSSメンテナーに悪意あるコードの承認を迫っていた。
-
-### [ITmedia AI+] Meta、コーディングエージェント「Muse Code」リリース　「Claude Code」や「Codex」に対抗
-- URL: https://www.itmedia.co.jp/aiplus/article/2608/06/2000000410/
-- 取得: 2026-08-07 01:27:33
-- 公開: Thu, 06 Aug 2026 10:31:17 +0900
-- 原文抜粋: Metaは、ターミナル上で動作するコーディングエージェント「Muse Code」のベータ版と、新モデル「Muse Spark 1.2」を発表した。非同期バックグラウンドエージェントの常駐により遅延を抑え、複雑な開発タスクをサポートする。自己改善ループ等でコーディング性能を強化し、各種ベンチマークでも従来版を上回る成果を示した。
-
-### カテゴリ: AI研究者ブログ (3件)
-
-### [Simon Willison's Weblog] datasette 1.0a38
-- URL: https://simonwillison.net/2026/Aug/6/datasette/#atom-everything
-- 取得: 2026-08-07 01:27:32
-- 公開: 2026-08-06T18:24:34+00:00
-- 原文抜粋: <p><strong>Release:</strong> <a href="https://github.com/simonw/datasette/releases/tag/1.0a38">datasette 1.0a38</a></p>         <blockquote> <p>This release fixes a <strong>SQL injection</strong> security issue that affects Datasette instances that serve a <strong>mixture of public and private table...
-
-### [Simon Willison's Weblog] datasette 0.65.3
-- URL: https://simonwillison.net/2026/Aug/6/datasette-2/#atom-everything
-- 取得: 2026-08-07 01:27:32
-- 公開: 2026-08-06T18:22:07+00:00
-- 原文抜粋: <p><strong>Release:</strong> <a href="https://github.com/simonw/datasette/releases/tag/0.65.3">datasette 0.65.3</a></p>         <p>Back-ported the SQL Injection security fix from <a href="https://simonwillison.net/2026/Aug/6/datasette/">1.0a38</a>.</p>                   <p>Tags: <a href="https://sim...
-
-### [Simon Willison's Weblog] Simon Willison on Technical Blogging
-- URL: https://simonwillison.net/2026/Aug/6/simon-willison-on-technical-blogging/#atom-everything
-- 取得: 2026-08-07 01:27:32
-- 公開: 2026-08-06T18:04:39+00:00
-- 原文抜粋: <p><strong><a href="https://writethatblog.substack.com/p/simon-willison-on-technical-blogging">Simon Willison on Technical Blogging</a></strong></p> I was interviewed by Cynthia Dunlop for her "Write that blog!" series back in January, but I just realized I never linked to the interview from my own ...
-
-### カテゴリ: SNS公式 (1件)
-
-### [Meta Newsroom] Why Meta Builds Its Own AI Data Centers
-- URL: https://about.fb.com/news/2026/08/why-meta-builds-its-own-data-centers/
-- 取得: 2026-08-07 01:27:34
-- 公開: Thu, 06 Aug 2026 15:00:23 +0000
-- 原文抜粋: <div><img alt="" class="attachment-large size-large wp-post-image" height="501" src="https://about.fb.com/wp-content/uploads/2026/08/Tom-Shaw_-Interview-with-Rachel_Thumbnail.jpg?fit=890%2C501" style="margin-bottom: 15px;" width="890" /></div> <p>Developer and creator Tom Shaw sits down with Meta’s ...
-
-### カテゴリ: SNS動向 (5件)
-
-### [Social Media Today] Australia’s teen social bans are having little effect
-- URL: https://www.socialmediatoday.com/news/australias-teen-social-bans-are-having-little-effect/827297/
-- 取得: 2026-08-07 01:27:33
-- 公開: Thu, 06 Aug 2026 19:33:47 -0400
-- 原文抜粋: <p>A new report showed that usage hasn&rsquo;t changed significantly as teens continue to check in by getting around the restrictions.</p>
-
-### [Social Media Today] Meta executive offers data center insights
-- URL: https://www.socialmediatoday.com/news/meta-executive-offers-data-center-insights/827295/
-- 取得: 2026-08-07 01:27:33
-- 公開: Thu, 06 Aug 2026 19:19:11 -0400
-- 原文抜粋: <p>Rachel Peterson, vice president of data centers, discussed the company&rsquo;s approach to building and community engagement in an interview posted on the site.</p>
-
-### [Social Media Today] YouTube expands shopping affiliate program to the UK
-- URL: https://www.socialmediatoday.com/news/youtube-expands-shopping-affiliate-program-to-the-uk/827294/
-- 取得: 2026-08-07 01:27:33
-- 公開: Thu, 06 Aug 2026 19:14:50 -0400
-- 原文抜粋: <p>Creators who join will be able to tag products from partner merchants including Wayfair, Currys, Debenhams, Boots, M&amp;S and Etsy.</p>
-
-### [Social Media Today] TikTok shutters Nashville office, lays off 250 employees
-- URL: https://www.socialmediatoday.com/news/tiktok-shutters-nashville-office-lays-off-250-employees/827290/
-- 取得: 2026-08-07 01:27:33
-- 公開: Thu, 06 Aug 2026 17:44:32 -0400
-- 原文抜粋: <p>The move impacts the company&rsquo;s moderation staff and is set to take effect October 5, according to a report from the New York Times.</p>
-
-### [Social Media Today] Head of Product at X steps down
-- URL: https://www.socialmediatoday.com/news/head-of-product-at-x-steps-down/827289/
-- 取得: 2026-08-07 01:27:33
-- 公開: Thu, 06 Aug 2026 16:59:53 -0400
-- 原文抜粋: <p>Nikita Bier is leaving after just over a year, but said in a post on the app that he&rsquo;s staying on as an advisor.</p>
-
-### カテゴリ: SNS運用 (1件)
-
-### [Buffer Blog] 13 Trending Songs on TikTok in August 2026 (+ How to Use Them)
-- URL: https://buffer.com/resources/trending-songs-tiktok/
-- 取得: 2026-08-07 01:27:35
-- 公開: Thu, 06 Aug 2026 09:00:00 GMT
-- 原文抜粋: An up-to-date list of the most viral songs and sounds on TikTok in August 2026 — and how to use them to boost your content.
+### [Social Media Today] Meta fined $567M for failing to protect teens
+- URL: https://www.socialmediatoday.com/news/meta-fined-567m-for-failing-to-protect-teens/827298/
+- 取得: 2026-08-07 22:25:00
+- 公開: Thu, 06 Aug 2026 21:30:53 -0400
+- 原文抜粋: <figure><div><img src="https://imgproxy.divecdn.com/_F9K7808g-egAJKt4BktdI9h92MmalSfxjmoYu3HMRM/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS8ySDNZQlJBLmpwZw==.webp" /></div></figure><p>A New Mexico judge said the state is facing a youth mental health crisis and cited Meta&nbsp;...
 
 ---
+
+## 📚 継続ソース (参照用・一覧のみ)
+
+### SNS動向 (3件)
+- [Social Media Today] Australia’s teen social bans are having little effect — https://www.socialmediatoday.com/news/australias-teen-social-bans-are-having-little-effect/827297/
+- [Social Media Today] Meta executive offers data center insights — https://www.socialmediatoday.com/news/meta-executive-offers-data-center-insights/827295/
+- [Social Media Today] YouTube expands shopping affiliate program to the UK — https://www.socialmediatoday.com/news/youtube-expands-shopping-affiliate-program-to-the-uk/827294/

@@ -1,5 +1,6 @@
 (() => {
   const primaryItems = [
+    { href: "/admin/command-center", label: "実行指令室", description: "予定・指示・相場・Codexをまとめて動かす" },
     { href: "/admin/blog", label: "ブログ管理", description: "記事の作成・編集・公開" },
     { href: "/admin/apps/reel/", label: "リール制作", description: "動画と投稿文を作る" },
     { href: "/admin/sns-post", label: "SNS投稿", description: "SNS投稿を準備する" },

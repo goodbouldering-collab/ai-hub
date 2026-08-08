@@ -40,9 +40,10 @@ class Hero60SecondDiagnosisTests(unittest.TestCase):
         )
         self.assertRegex(
             self.hero_html,
-            re.escape(INDIVIDUAL_CONSULT_URL)
-            + r"' target='_blank' rel='noopener'>AI個別相談の日程を選ぶ</a>",
+            re.escape(AI_AGENT_COURSE_URL)
+            + r"' target='_blank' rel='noopener'>AIエージェント講習を見る</a>",
         )
+        self.assertNotIn("AI個別相談の日程を選ぶ", self.hero_html)
 
     def test_hero_copy_makes_the_customer_problem_clear(self):
         self.assertIn(

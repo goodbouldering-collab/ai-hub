@@ -14583,7 +14583,7 @@ def _render_hero_focused() -> str:
         "<div class='hero-diagnose-cta'><span class='hero-diagnose-eyebrow'>何から始めるか、1分で見える。</span>"
         "<a class='focus-btn primary hero-diagnose-button diagnose-open' href='#packages'>迷ったら60秒診断をはじめる →</a>"
         "<small>3問で完了。結果を見てから、予約するか決められます。</small></div>"
-        f"<a class='focus-btn secondary' href='{INDIVIDUAL_CONSULT_BOOK_URL}' target='_blank' rel='noopener'>AI個別相談の日程を選ぶ</a>"
+        f"<a class='focus-btn secondary' href='{AI_AGENT_COURSE_URL}' target='_blank' rel='noopener'>AIエージェント講習を見る</a>"
         "<a class='hero-text-link' href='/lectures/index.html'>受講資料 <span aria-hidden='true'>→</span></a></div>"
         "<ul class='focus-trust'><li>AI初心者OK</li><li>対面・オンライン対応</li><li>仕事を持ち込める</li></ul></div>"
         "</div>"

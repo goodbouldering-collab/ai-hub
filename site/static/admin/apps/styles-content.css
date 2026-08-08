@@ -274,8 +274,8 @@
   .entry-guide-context,.entry-starter-grid { grid-template-columns: 1fr; }
   .entry-guide-chips { display: grid; }
   .entry-guide-chips button { width: 100%; border-radius: 10px; }
-  .studio-tabs { top: 63px; min-height: 48px; padding: 8px 12px; }
-  .studio-tabs button,.studio-tabs a { flex: 1; padding: 8px 5px; font-size: 11px; text-align: center; }
+  .studio-tabs { top: 63px; min-height: 48px; max-width: 100%; padding: 8px 12px; overflow-x: auto; overscroll-behavior-inline: contain; }
+  .studio-tabs button,.studio-tabs a { min-width: 92px; flex: 0 0 auto; padding: 8px 10px; font-size: 11px; text-align: center; }
   .api-key-panel { grid-template-columns: 1fr; padding: 16px 12px; }
   .api-key-controls { grid-template-columns: 1fr; }
   .api-key-controls .actions { display: grid; grid-template-columns: 1fr 1fr; }

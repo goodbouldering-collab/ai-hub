@@ -221,6 +221,30 @@ body[data-app="blog"] .score-disclaimer {
 }
 
 @media(max-width:720px) {
+  body[data-app="blog"] .topbar {
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  body[data-app="blog"] .topbar > div:first-child {
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
+  body[data-app="blog"] .topbar h1,
+  body[data-app="blog"] .server-state {
+    overflow-wrap: anywhere;
+  }
+
+  body[data-app="blog"] .server-state {
+    min-width: 116px;
+    max-width: 46%;
+    flex: 0 1 148px;
+    line-height: 1.35;
+    text-align: center;
+    white-space: normal;
+  }
+
   body[data-app="blog"] .workspace {
     display: block;
   }

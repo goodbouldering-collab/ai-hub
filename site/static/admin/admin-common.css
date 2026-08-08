@@ -4333,6 +4333,7 @@ body.admin-shared-menu-active .admin-shared-header .mobile-nav .mobile-link-list
     inset: var(--admin-shared-menu-height) 0 auto 0 !important;
     z-index: 298 !important;
     width: 100% !important;
+    max-width: none !important;
     height: var(--admin-shared-quick-height) !important;
     display: block !important;
     overflow: hidden !important;
@@ -4341,8 +4342,12 @@ body.admin-shared-menu-active .admin-shared-header .mobile-nav .mobile-link-list
     box-shadow: 0 8px 18px rgba(39,60,104,.045) !important;
   }
 
+  body.admin-page .admin-shared-header .admin-scroll-menu,
+  body.ops-page .admin-shared-header .admin-scroll-menu,
   .admin-shared-header .admin-scroll-menu {
+    width: 100% !important;
     height: var(--admin-shared-quick-height) !important;
+    box-sizing: border-box !important;
     padding: 6px 14px !important;
     justify-content: flex-start !important;
     gap: 6px !important;

@@ -96,15 +96,13 @@ class CourseMaterialMappingTest(unittest.TestCase):
             self.article_html,
         )
 
-    def test_quick_diagnosis_describes_the_agent_course(self) -> None:
+    def test_quick_diagnosis_routes_work_problem_results_to_course_selection(self) -> None:
         self.assertIn(
-            "実際の仕事を1つ選び、Codexへ小さく頼み、変更点を人が確認・修正し、"
-            "次回も使える手順として残す120分の初級実践です。",
+            "告知・集客の型を一つ作る",
             self.index_html,
         )
-        self.assertNotIn(
-            "name: 'AIエージェント講習 120分',\n"
-            "        desc: 'Codex導入、Claude Code併用",
+        self.assertIn(
+            'href="#packages" data-close-diag>講習・相談コースを見る</a>',
             self.index_html,
         )
 

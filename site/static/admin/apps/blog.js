@@ -1,8 +1,10 @@
-import { $, $$, api, bindApiKeyPanel, configureStudioShell, escapeHtml, loadProfiles, refreshHealth, requireSession, STUDIO_CONFIG, toast } from "./studio-core.js";
+import { $, $$, api, bindApiKeyPanel, configureStudioShell, escapeHtml, handoffToAdmin, loadProfiles, refreshHealth, requireSession, STUDIO_CONFIG, toast } from "./studio-core.js";
 
 const state = {
   profiles: [],
   profile: null,
+  entryStarter: null,
+  storyTemplateActive: false,
   trendDiscovery: null,
   selectedTrend: null,
   research: null,
@@ -16,6 +18,14 @@ const state = {
 const today = () => new Date().toISOString().slice(0, 10);
 const lines = (value) => String(value || "").split(/\r?\n/).map((item) => item.trim()).filter(Boolean);
 const paragraphHtml = (value) => escapeHtml(value || "").replace(/\n/g, "<br>");
+
+function ownerStoryValue() {
+  return lines($("#owner-story").value).filter((line) => {
+    if (line.startsWith("【実話メモ")) return false;
+    if (line.startsWith("思い出す場面：")) return false;
+    return !/[：:]$/.test(line);
+  }).join("\n");
+}
 const safeUrl = (value) => {
   try {
     const url = new URL(value);
@@ -30,9 +40,11 @@ function payload() {
     profileId: $("#profile").value,
     topic: $("#topic").value.trim(),
     audience: $("#audience").value.trim(),
-    ownerStory: $("#owner-story").value.trim(),
+    ownerStory: ownerStoryValue(),
     officialUrls: lines($("#official-urls").value),
     cta: $("#cta").value.trim(),
+    entryGuide: state.profile?.entryGuide || null,
+    entryStarter: state.entryStarter,
     selectedTrend: state.selectedTrend
   };
 }
@@ -57,6 +69,41 @@ function showStep(step) {
     item.classList.toggle("done", value < step);
   });
   document.querySelector(`[data-step="${step}"]`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function enableEmbeddedAutoHeight() {
+  if (!STUDIO_CONFIG.embedded || window.parent === window) return;
+
+  let frameRequest = 0;
+  const reportHeight = () => {
+    frameRequest = 0;
+    const height = Math.max(
+      document.body?.scrollHeight || 0,
+      document.documentElement.scrollHeight,
+      document.body?.offsetHeight || 0,
+      document.documentElement.offsetHeight
+    );
+    const messageType = STUDIO_CONFIG.handoffMessageType === "junpa:content-studio-handoff"
+      ? "junpa:content-studio-resize"
+      : "content-studio:resize";
+    window.parent.postMessage({ type: messageType, kind: "blog", height }, window.location.origin);
+  };
+  const scheduleHeightReport = () => {
+    if (frameRequest) return;
+    frameRequest = window.requestAnimationFrame(reportHeight);
+  };
+
+  if ("ResizeObserver" in window) {
+    const observer = new ResizeObserver(scheduleHeightReport);
+    observer.observe(document.documentElement);
+    if (document.body) observer.observe(document.body);
+  } else {
+    window.setInterval(scheduleHeightReport, 500);
+  }
+
+  window.addEventListener("load", scheduleHeightReport);
+  window.addEventListener("resize", scheduleHeightReport);
+  scheduleHeightReport();
 }
 
 function resetWorkflow({ keepDiscovery = false } = {}) {
@@ -93,18 +140,76 @@ function resetWorkflow({ keepDiscovery = false } = {}) {
   showStep(1);
 }
 
+function storyTemplate(starter) {
+  const questions = state.profile?.entryGuide?.storyQuestions || [];
+  return [
+    "【実話メモ｜分かるところだけ書いてください】",
+    `思い出す場面：${starter?.storyQuestion || questions[0] || "最近、実際に起きた場面は？"}`,
+    "実際に聞かれた言葉：",
+    "その場で困っていたこと：",
+    "最初に試したこと：",
+    "うまくいかなかった点：",
+    "修正したこと：",
+    "確認できた変化：",
+    "時期・場所・確認できる数字："
+  ].join("\n");
+}
+
+function applyTopicStarter(starter, { silent = false } = {}) {
+  if (!starter) return;
+  state.entryStarter = starter;
+  $("#topic").value = starter.topic || starter.searchQuery || "";
+  $("#audience").value = state.profile?.audience || "";
+  if (state.storyTemplateActive || !$("#owner-story").value.trim()) {
+    $("#owner-story").value = storyTemplate(starter);
+    state.storyTemplateActive = true;
+  }
+  $$("[data-entry-starter]").forEach((button) => {
+    const selected = button.dataset.entryStarter === starter.id;
+    button.classList.toggle("selected", selected);
+    button.setAttribute("aria-pressed", String(selected));
+  });
+  if (!silent) toast("入口の仮説を入力しました。テーマと実話メモは自由に直せます。");
+}
+
+function renderEntryGuide() {
+  const guide = state.profile?.entryGuide;
+  if (!guide) return;
+  $("#entry-guide-status").textContent = guide.hypothesisLabel || "";
+  $("#entry-guide-audience").textContent = guide.customerSnapshot || state.profile.audience || "";
+  $("#entry-guide-season").innerHTML = `<strong>${escapeHtml(guide.season?.label || "今月")}</strong>${escapeHtml(guide.season?.topic || "")}`;
+  $("#entry-guide-searches").innerHTML = (guide.searchQueries || []).map((query, index) =>
+    `<button type="button" data-entry-search="${index}">${escapeHtml(query)}</button>`
+  ).join("");
+  $("#entry-topic-starters").innerHTML = (guide.topicStarters || []).map((starter, index) => `
+    <button type="button" data-entry-starter="${escapeHtml(starter.id)}" data-entry-index="${index}" aria-pressed="false">
+      <span>${escapeHtml(starter.label)}</span>
+      <b>${escapeHtml(starter.topic)}</b>
+      <small>検索入口：${escapeHtml(starter.searchQuery)}</small>
+    </button>`).join("");
+  $("#entry-story-questions").innerHTML = (guide.storyQuestions || []).map((question) => `<li>${escapeHtml(question)}</li>`).join("");
+}
+
 function applyProfile({ reset = false } = {}) {
   state.profile = state.profiles.find((item) => item.id === $("#profile").value) || null;
   if (!state.profile) return;
+  document.documentElement.dataset.business = state.profile.id;
+  document.body.dataset.business = state.profile.id;
+  const brandName = $("#studio-brand-name");
+  const brandHeading = $("#studio-brand-heading");
+  if (brandName) brandName.textContent = state.profile.name;
+  if (brandHeading) brandHeading.textContent = `${state.profile.name} ブログ編集`;
   if (reset) {
     resetWorkflow();
-    $("#topic").value = "";
-    $("#owner-story").value = "";
+    state.entryStarter = null;
+    state.storyTemplateActive = false;
     $("#blog-final-prompt").value = "";
   }
   $("#audience").value = state.profile.audience || "";
   $("#cta").value = state.profile.defaultCta || "";
   $("#official-urls").value = (state.profile.sourceUrls || []).join("\n");
+  renderEntryGuide();
+  if (!$("#topic").value.trim() || reset) applyTopicStarter(state.profile.entryGuide?.topicStarters?.[0], { silent: true });
 }
 
 async function initialize() {
@@ -136,7 +241,7 @@ async function discoverTrends() {
     toast(error.message);
   } finally {
     button.disabled = false;
-    button.textContent = "国内トレンドからネタを探す";
+    button.textContent = "この顧客像で国内トレンドを調査";
   }
 }
 
@@ -311,17 +416,207 @@ function ensureDraftShape(draft = {}) {
   };
 }
 
-async function makeDraft({ refine = false } = {}) {
+const clampScore = (value) => Math.max(0, Math.min(100, Math.round(value)));
+
+function textBigrams(value = "") {
+  const text = String(value).normalize("NFKC").toLowerCase().replace(/[\s、。・｜|/／:：!?！？「」『』（）()[\]【】<>＜＞\-—_]/g, "");
+  const items = new Set();
+  for (let index = 0; index < text.length - 1; index += 1) items.add(text.slice(index, index + 2));
+  return items;
+}
+
+function overlapScore(source, target) {
+  const sourceItems = textBigrams(source);
+  if (!sourceItems.size) return 0;
+  const targetItems = textBigrams(target);
+  return [...sourceItems].filter((item) => targetItems.has(item)).length / sourceItems.size;
+}
+
+function finalQualityEvaluation() {
+  if (!state.draft) return { overall: 0, metrics: [], priorities: [] };
+  const draft = state.draft;
+  const sections = draft.sections || [];
+  const faq = draft.faq || [];
+  const references = (draft.references || []).filter((item) => safeUrl(item.url));
+  const sourceCount = state.research?.sources?.length || 0;
+  const researchLength = String(state.research?.report || "").length;
+  const ownerStory = ownerStoryValue();
+  const topic = $("#topic").value.trim();
+  const area = String(state.profile?.area || "");
+  const profileName = String(state.profile?.name || "");
+  const mainText = [
+    draft.intro,
+    ...sections.flatMap((section) => [section.heading, section.body]),
+    draft.conclusion,
+    draft.cta,
+    ...faq.flatMap((item) => [item.question, item.answer])
+  ].join("\n");
+  const searchText = [draft.finalTitle, draft.metaTitle, draft.metaDescription, draft.intro, ...sections.map((item) => item.heading)].join("\n");
+  const fullText = [searchText, mainText].join("\n");
+  const headingsInRange = sections.filter((section) => section.heading.length >= 6 && section.heading.length <= 34).length;
+  const substantialSections = sections.filter((section) => section.body.length >= 140).length;
+  const completeFaq = faq.filter((item) => item.question.length >= 6 && item.answer.length >= 45).length;
+  const referenceClaims = references.filter((item) => item.claim?.trim()).length;
+  const factCheckCount = draft.factChecks?.length || 0;
+  const actionWords = (draft.cta.match(/予約|相談|確認|選ぶ|試す|問い合わせ|申し込/g) || []).length;
+  const localWords = (fullText.match(/地域|来店|予約|店舗|教室|施設|相談/g) || []).length;
+  const firsthandWords = (fullText.match(/実際|お客様|利用者|現場|失敗|変え|修正|確認|会話/g) || []).length;
+  const cautionWords = (fullText.match(/医療|断定|個人差|体調|中止|相談|無理をしない/g) || []).length;
+  const unsafeClaims = [...new Set(fullText.match(/治る|完治|治療できる|必ず改善|免疫力が上がる|毒素を排出|病気を防ぐ/g) || [])];
+  const intentOverlap = overlapScore(topic, searchText);
+  const titleOverlap = overlapScore(draft.finalTitle, [draft.intro, ...sections.map((item) => item.heading), draft.conclusion].join("\n"));
+  const storyOverlap = ownerStory ? overlapScore(ownerStory, mainText) : 0;
+
+  const metrics = [
+    {
+      id: "llmo",
+      label: "LLMO・AI回答適性",
+      weight: 16,
+      score: clampScore(
+        (researchLength >= 500 ? 15 : researchLength >= 200 ? 9 : 3) +
+        (draft.intro.length >= 80 && draft.intro.length <= 420 ? 20 : 10) +
+        (completeFaq >= 2 ? 20 : completeFaq * 8) +
+        (sections.length >= 3 && sections.length <= 5 ? 15 : 7) +
+        (references.length >= 3 ? 15 : references.length * 5) +
+        (draft.metaDescription.length >= 60 && draft.metaDescription.length <= 180 ? 10 : 4) + 5
+      ),
+      reason: `調査${researchLength}字・FAQ${completeFaq}件・出典${references.length}件を、AIが回答へ抜き出しやすい形か確認。`,
+      action: "導入で結論を先に示し、具体的な質問と短い回答、根拠URLを増やす。"
+    },
+    {
+      id: "seo",
+      label: "SEO・検索意図",
+      weight: 13,
+      score: clampScore(
+        intentOverlap * 50 +
+        (draft.metaTitle.length >= 18 && draft.metaTitle.length <= 48 ? 15 : 7) +
+        (draft.metaDescription.length >= 60 && draft.metaDescription.length <= 180 ? 15 : 7) +
+        (draft.finalTitle.length >= 16 && draft.finalTitle.length <= 48 ? 10 : 5) +
+        (draft.excerpt.length >= 45 && draft.excerpt.length <= 180 ? 10 : 5)
+      ),
+      reason: `入力テーマとタイトル・導入・H2の一致度を${Math.round(intentOverlap * 100)}%として点検。`,
+      action: "読者が検索する言葉を、タイトル・導入・主要H2へ自然に揃える。"
+    },
+    {
+      id: "meo",
+      label: "MEO・地域性",
+      weight: 10,
+      score: clampScore(
+        (area && fullText.includes(area) ? 30 : 8) +
+        (profileName && fullText.includes(profileName) ? 20 : 8) +
+        (payload().officialUrls.length ? 15 : 5) +
+        (actionWords ? 20 : 7) +
+        Math.min(15, localWords * 3)
+      ),
+      reason: `地域名「${area || "未設定"}」・事業名・利用行動・公式URLのつながりを確認。`,
+      action: "地域名、事業名、対象者、相談・予約までの具体的な流れを本文とCTAへ入れる。"
+    },
+    {
+      id: "evidence",
+      label: "根拠・信頼性",
+      weight: 13,
+      score: clampScore(
+        Math.min(44, references.length * 11) +
+        (references.length ? Math.round((referenceClaims / references.length) * 20) : 0) +
+        Math.min(20, factCheckCount * 5) +
+        (sourceCount >= 3 ? 16 : sourceCount * 5)
+      ),
+      reason: `調査ソース${sourceCount}件・記事出典${references.length}件・事実確認${factCheckCount}件を評価。`,
+      action: "主張ごとに一次情報を対応させ、公開前の確認項目と注意点を明記する。"
+    },
+    {
+      id: "firsthand",
+      label: "一次情報・独自性",
+      weight: 11,
+      score: clampScore(
+        (ownerStory.length >= 80 ? 40 : ownerStory.length >= 30 ? 25 : ownerStory.length ? 12 : 0) +
+        Math.min(30, storyOverlap * 45) +
+        Math.min(30, firsthandWords * 5)
+      ),
+      reason: `実話メモ${ownerStory.length}字・本文への反映度${Math.round(storyOverlap * 100)}%を確認。`,
+      action: "実際の会話、失敗と修正、現場の順番、確認済み数字を本人の言葉で足す。"
+    },
+    {
+      id: "readability",
+      label: "構成・読みやすさ",
+      weight: 10,
+      score: clampScore(
+        (sections.length >= 3 && sections.length <= 5 ? 20 : 10) +
+        (sections.length ? Math.round((substantialSections / sections.length) * 25) : 0) +
+        (sections.length ? Math.round((headingsInRange / sections.length) * 15) : 0) +
+        (draft.intro.length >= 70 && draft.intro.length <= 320 ? 15 : 7) +
+        (draft.conclusion.length >= 60 ? 15 : 7) +
+        (completeFaq >= 2 ? 10 : completeFaq * 4)
+      ),
+      reason: `H2 ${sections.length}本・十分な本文${substantialSections}本・完成FAQ${completeFaq}件を点検。`,
+      action: "悩み→判断材料→現場例→次の一歩の順にし、長い段落を短く分ける。"
+    },
+    {
+      id: "safety",
+      label: "安全表現・正確性",
+      weight: 10,
+      score: clampScore(85 + Math.min(15, cautionWords * 3) - unsafeClaims.length * 28),
+      reason: unsafeClaims.length
+        ? `断定を避けたい表現を${unsafeClaims.length}件検出: ${unsafeClaims.join("、")}`
+        : `強い断定は未検出。注意・配慮の表現を${cautionWords}件確認。`,
+      action: "効果を断定せず、条件・例外・必要時の専門家相談を具体的にする。"
+    },
+    {
+      id: "action",
+      label: "読者の行動導線",
+      weight: 9,
+      score: clampScore(
+        (draft.cta.length >= 18 ? 30 : 12) +
+        Math.min(30, actionWords * 10) +
+        ($("#audience").value.trim().length >= 20 ? 20 : 8) +
+        (completeFaq >= 2 ? 20 : completeFaq * 8)
+      ),
+      reason: `CTA ${draft.cta.length}字・行動語${actionWords}件・不安解消FAQ${completeFaq}件を確認。`,
+      action: "誰が、何を確認し、どの予約・相談・申込方法へ進むかを一つに絞る。"
+    },
+    {
+      id: "alignment",
+      label: "タイトル・本文整合",
+      weight: 8,
+      score: clampScore(
+        titleOverlap * 60 +
+        (draft.titleReviewReason.length >= 30 ? 20 : 8) +
+        (draft.finalTitle.length >= 16 && draft.finalTitle.length <= 48 ? 20 : 10)
+      ),
+      reason: `最終タイトルと導入・H2・まとめの一致度を${Math.round(titleOverlap * 100)}%として確認。`,
+      action: "本文完成後の中心メッセージに合わせ、タイトルかH2のどちらかを再調整する。"
+    }
+  ];
+  const totalWeight = metrics.reduce((sum, item) => sum + item.weight, 0);
+  const overall = clampScore(metrics.reduce((sum, item) => sum + item.score * item.weight, 0) / totalWeight);
+  const priorities = [...metrics].sort((left, right) => left.score - right.score).slice(0, 3);
+  return { overall, metrics, priorities, evaluatedAt: new Date().toISOString() };
+}
+
+function renderFinalEvaluation() {
+  const evaluation = finalQualityEvaluation();
+  const overallLabel = evaluation.overall >= 85 ? "公開前チェック良好" : evaluation.overall >= 70 ? "改善すると強くなる" : "再構成を推奨";
+  $("#overall-score").innerHTML = `<strong>${evaluation.overall}</strong><span>/ 100<br>${overallLabel}</span>`;
+  $("#quality-score-grid").innerHTML = evaluation.metrics.map((metric) => `
+    <article class="score-card">
+      <header><h3>${escapeHtml(metric.label)}</h3><strong>${metric.score}</strong></header>
+      <div class="score-meter" role="progressbar" aria-label="${escapeHtml(metric.label)}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${metric.score}"><i style="--score:${metric.score}%"></i></div>
+      <p>${escapeHtml(metric.reason)}</p><small>改善案: ${escapeHtml(metric.action)}</small>
+    </article>`).join("");
+  $("#priority-improvements").innerHTML = evaluation.priorities.map((metric) => `<li><b>${escapeHtml(metric.label)} ${metric.score}点:</b> ${escapeHtml(metric.action)}</li>`).join("");
+}
+
+async function makeDraft({ refine = false, trigger = null } = {}) {
   const outline = refine ? state.selectedOutline : selectedOutline();
   if (!outline) return toast("H2構成を1つ選んでください");
   state.selectedOutline = structuredClone(outline);
   const selectedTitle = $("#selected-title").value.trim();
-  const button = refine ? $("#refine-draft") : $("#make-draft");
+  const button = trigger || (refine ? $("#refine-draft") : $("#make-draft"));
   const original = button.textContent;
   button.disabled = true;
   button.textContent = refine ? "本文へ再適用中…" : "本文を生成中…";
   try {
-    const result = await api("/api/blog/draft", {
+    const started = await api("/api/blog/draft", {
       method: "POST",
       body: JSON.stringify({
         ...payload(), report: state.research?.report || "", sources: state.research?.sources || [],
@@ -329,6 +624,8 @@ async function makeDraft({ refine = false } = {}) {
         ...(refine ? { currentDraft: state.draft } : {})
       })
     });
+    const result = started.draft ? started : await pollDraft(started.id, refine, button);
+    result.draft.references = state.research?.sources || [];
     state.draft = ensureDraftShape(result.draft);
     state.images = { hero: null, sections: state.draft.sections.map(() => null) };
     renderTitleReview();
@@ -338,6 +635,20 @@ async function makeDraft({ refine = false } = {}) {
     if (refine) toast("最終プロンプトを本文へ反映しました。画像は本文確定後に再生成してください。");
   } catch (error) { toast(error.message); }
   finally { button.disabled = false; button.textContent = original; }
+}
+
+async function pollDraft(id, revised, button) {
+  if (!id) throw new Error("記事生成ジョブを開始できませんでした。");
+  for (let attempt = 0; attempt < 120; attempt += 1) {
+    await new Promise((resolve) => setTimeout(resolve, 5000));
+    const result = await api(`/api/blog/draft-status?id=${encodeURIComponent(id)}&profileId=${encodeURIComponent(state.profile.id)}&revised=${revised ? "1" : "0"}`);
+    button.textContent = `本文を生成中… ${result.status}`;
+    if (result.complete && result.draft) return result;
+    if (["failed", "cancelled", "incomplete"].includes(result.status)) {
+      throw new Error(result.error?.message || `記事生成が${result.status}になりました。`);
+    }
+  }
+  throw new Error("記事生成に時間がかかっています。少し待ってから再試行してください。");
 }
 
 function renderTitleReview() {
@@ -434,6 +745,7 @@ function renderArticle() {
     <div class="article-cta"><b>次の一歩</b><p contenteditable="true" data-preview-field="cta">${paragraphHtml(draft.cta)}</p></div>
     <section class="article-faq"><h2>よくある質問</h2>${draft.faq.map((item, index) => `<h3 contenteditable="true" data-preview-faq-field="question" data-index="${index}">Q. ${escapeHtml(item.question)}</h3><p contenteditable="true" data-preview-faq-field="answer" data-index="${index}">${paragraphHtml(item.answer)}</p>`).join("")}</section>
     ${refs.length ? `<section class="article-references"><h2>参考情報</h2><ol>${refs.map((item) => `<li><a href="${escapeHtml(safeUrl(item.url))}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.title || item.url)}</a>${item.claim ? `<small>${escapeHtml(item.claim)}</small>` : ""}</li>`).join("")}</ol></section>` : ""}`;
+  renderFinalEvaluation();
 }
 
 async function generateImages() {
@@ -516,20 +828,20 @@ function packageData() {
     selectedOutline: state.selectedOutline,
     finalPrompt: $("#blog-final-prompt").value.trim(),
     draft: state.draft,
+    qualityEvaluation: finalQualityEvaluation(),
     images: state.images
   };
 }
 
 function handoffBlogDraft() {
-  if (!STUDIO_CONFIG.localAdmin) return toast("下書きの受け渡しは各サイトの管理画面版で使用してください");
+  if (!STUDIO_CONFIG.localAdmin) return toast("記事の受け渡しは各サイトの管理画面版で使用してください");
   if (!state.draft) return toast("先に記事を作成してください");
   try {
     const key = `contentStudioDraft:${state.profile.id}`;
-    localStorage.setItem(key, JSON.stringify(packageData()));
-    toast("管理画面へ下書きを渡しました");
-    window.location.assign(STUDIO_CONFIG.adminUrl);
+    handoffToAdmin("blog", packageData(), key);
+    toast("管理画面へ記事を渡しました");
   } catch (error) {
-    toast(`下書きを渡せませんでした: ${error.message}`);
+    toast(`記事を渡せませんでした: ${error.message}`);
   }
 }
 
@@ -583,6 +895,31 @@ async function saveBlogPackage() {
 }
 
 $("#profile").addEventListener("change", () => applyProfile({ reset: true }));
+$("#entry-guide").addEventListener("click", (event) => {
+  const starterButton = event.target.closest("[data-entry-starter]");
+  if (starterButton) {
+    const starter = state.profile?.entryGuide?.topicStarters?.[Number(starterButton.dataset.entryIndex)];
+    return applyTopicStarter(starter);
+  }
+  const searchButton = event.target.closest("[data-entry-search]");
+  if (!searchButton) return;
+  const searchQuery = state.profile?.entryGuide?.searchQueries?.[Number(searchButton.dataset.entrySearch)];
+  if (!searchQuery) return;
+  state.entryStarter = {
+    id: "search",
+    label: "検索の入口から",
+    topic: searchQuery,
+    searchQuery,
+    storyQuestion: state.profile?.entryGuide?.storyQuestions?.[0] || ""
+  };
+  $("#topic").value = searchQuery;
+  $$("[data-entry-starter]").forEach((button) => {
+    button.classList.remove("selected");
+    button.setAttribute("aria-pressed", "false");
+  });
+  toast("検索の入口をテーマ欄へ入れました。ライブ調査で実際の傾向を確認してください。");
+});
+$("#owner-story").addEventListener("input", () => { state.storyTemplateActive = false; });
 $("#discover-trends").addEventListener("click", discoverTrends);
 $("#start-research").addEventListener("click", startResearch);
 $("#make-plan").addEventListener("click", makePlan);
@@ -594,15 +931,25 @@ $("#save-blog-package").addEventListener("click", saveBlogPackage);
 $("#handoff-blog-draft").addEventListener("click", handoffBlogDraft);
 $("#show-preview").addEventListener("click", () => {
   if (!state.draft) return toast("先に記事を作成してください");
+  renderFinalEvaluation();
   showStep(5);
-  $(".workspace").classList.add("preview-mode");
   $("#back-editor").hidden = false;
-  window.scrollTo({ top: 0, behavior: "smooth" });
 });
 $("#back-editor").addEventListener("click", () => {
-  $(".workspace").classList.remove("preview-mode");
   $("#back-editor").hidden = true;
   showStep(4);
+});
+$("#return-outline").addEventListener("click", () => {
+  $("#back-editor").hidden = true;
+  showStep(3);
+  toast("タイトルとH2構成を選び直せます。現在の記事は再生成するまで保持されます");
+});
+$("#apply-restructure").addEventListener("click", async () => {
+  const instruction = $("#restructure-prompt").value.trim();
+  if (!instruction) return toast("変えたい点や構成の順番を入力してください");
+  const currentPrompt = $("#blog-final-prompt").value.trim();
+  $("#blog-final-prompt").value = [currentPrompt, `公開前評価を踏まえた再構成指示: ${instruction}`].filter(Boolean).join("\n");
+  await makeDraft({ refine: true, trigger: $("#apply-restructure") });
 });
 $("#preview-desktop").addEventListener("click", () => $(".preview-column").classList.remove("mobile-preview"));
 $("#preview-mobile").addEventListener("click", () => $(".preview-column").classList.add("mobile-preview"));
@@ -615,6 +962,13 @@ $("#trend-options").addEventListener("click", (event) => {
   const idea = state.trendDiscovery?.ideas?.[Number(button.dataset.trendIndex)];
   if (!idea) return;
   state.selectedTrend = idea;
+  state.entryStarter = {
+    id: "live-trend",
+    label: "ライブ国内トレンドから",
+    topic: idea.topic,
+    searchQuery: idea.topic,
+    storyQuestion: state.profile?.entryGuide?.storyQuestions?.[0] || ""
+  };
   $("#topic").value = idea.topic;
   $("#audience").value = idea.audience || state.profile.audience || "";
   $$('[data-trend-card]').forEach((card) => card.classList.toggle("selected", card.dataset.trendCard === button.dataset.trendIndex));
@@ -662,6 +1016,7 @@ $("#article-preview").addEventListener("input", (event) => {
     const cleanValue = target.dataset.previewFaqField === "question" ? value.replace(/^Q\.\s*/, "") : value;
     state.draft.faq[Number(target.dataset.index)][target.dataset.previewFaqField] = cleanValue;
   }
+  renderFinalEvaluation();
 });
 $("#blog-final-prompt").addEventListener("input", () => {
   if (!state.draft) return;
@@ -671,4 +1026,5 @@ $("#blog-final-prompt").addEventListener("input", () => {
 });
 
 configureStudioShell();
+enableEmbeddedAutoHeight();
 initialize().catch((error) => { $("#server-state").textContent = "接続エラー"; toast(error.message); });

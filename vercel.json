@@ -9,28 +9,22 @@
   },
   "redirects": [
     {
-      "source": "/lectures/2026-05-claude-code-features.html",
-      "destination": "/lectures/2026-04-ai-kihon.html#codex-beginner",
-      "permanent": true
+      "source": "/admin/blog",
+      "destination": "/admin?view=apps",
+      "permanent": false
+    },
+    {
+      "source": "/admin/blog/",
+      "destination": "/admin?view=apps",
+      "permanent": false
     },
     { "source": "/admin/docs", "destination": "/ops", "permanent": false },
     { "source": "/admin/docs/", "destination": "/ops", "permanent": false }
   ],
   "rewrites": [
-    { "source": "/admin/login", "destination": "/api/admin/login" },
-    { "source": "/admin/login/", "destination": "/api/admin/login" },
-    { "source": "/admin/logout", "destination": "/api/admin/logout" },
-    { "source": "/admin/logout/", "destination": "/api/admin/logout" },
+    { "source": "/admin/apps/:asset", "destination": "/api/admin/apps?asset=:asset" },
     { "source": "/admin", "destination": "/api/admin" },
     { "source": "/admin/", "destination": "/api/admin" },
-    { "source": "/admin/blog", "destination": "/api/admin/blog" },
-    { "source": "/admin/blog/", "destination": "/api/admin/blog" },
-    { "source": "/admin/blog/:section", "destination": "/api/admin/blog" },
-    { "source": "/admin/blog/:section/", "destination": "/api/admin/blog" },
-    { "source": "/admin/apps/reel", "destination": "/api/admin/apps/reel" },
-    { "source": "/admin/apps/reel/", "destination": "/api/admin/apps/reel" },
-    { "source": "/admin/apps/reel.html", "destination": "/api/admin/apps/reel" },
-    { "source": "/admin/apps/:asset", "destination": "/api/admin/apps/asset?file=:asset" },
     { "source": "/admin/chat", "destination": "/api/admin/chat" },
     { "source": "/admin/chat/", "destination": "/api/admin/chat" },
     { "source": "/admin/status", "destination": "/api/admin/status" },
@@ -40,7 +34,6 @@
     { "source": "/admin/gubble-sns", "destination": "/api/admin/gubble-sns" },
     { "source": "/admin/gubble-sns/", "destination": "/api/admin/gubble-sns" },
     { "source": "/admin/admin-common.css", "destination": "/api/admin/common-css" },
-    { "source": "/admin/admin-menu.js", "destination": "/api/admin/menu-js" },
     { "source": "/admin/sns-metrics.js", "destination": "/api/admin/gubble-sns-metrics" },
     { "source": "/ops", "destination": "/api/ops" },
     { "source": "/ops/", "destination": "/api/ops" },
@@ -50,8 +43,5 @@
     { "source": "/ops/doc/", "destination": "/api/ops/doc" },
     { "source": "/watch", "destination": "/watch/index.html" },
     { "source": "/watch/", "destination": "/watch/index.html" }
-  ],
-  "crons": [
-    { "path": "/api/cron/speed-monitor-watchdog", "schedule": "0 */3 * * *" }
   ]
 }

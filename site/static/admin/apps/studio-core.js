@@ -1,4 +1,5 @@
 const API_KEY_STORAGE = "contentStudioOpenAIKey";
+let sharedServerKeyConfigured = false;
 const rawStudioConfig = window.CONTENT_STUDIO_CONFIG && typeof window.CONTENT_STUDIO_CONFIG === "object"
   ? window.CONTENT_STUDIO_CONFIG
   : {};
@@ -8,6 +9,8 @@ export const STUDIO_CONFIG = Object.freeze({
   apiBase,
   profileId: String(rawStudioConfig.profileId || "").trim(),
   localAdmin: rawStudioConfig.localAdmin === true,
+  embedded: new URLSearchParams(window.location.search).get("embedded") === "1",
+  handoffMessageType: String(rawStudioConfig.handoffMessageType || "content-studio:handoff").trim(),
   adminUrl: String(rawStudioConfig.adminUrl || "/admin").trim() || "/admin"
 });
 
@@ -76,8 +79,9 @@ export async function apiBlob(path, options = {}) {
 
 function keySummary(key) {
   if (key) return "入力済み・検証済み";
+  if (sharedServerKeyConfigured) return "全事業共通キーを使用中";
   return STUDIO_CONFIG.localAdmin
-    ? "未入力（共有サーバーのAPIキーは使用しません）"
+    ? "共通キー未設定（必要な場合のみこのタブで設定）"
     : "未入力（サーバー設定またはデモを使用）";
 }
 
@@ -130,17 +134,23 @@ export function bindApiKeyPanel(onChanged) {
 
 export function renderHealth(health) {
   const byok = Boolean(getSessionApiKey());
+  sharedServerKeyConfigured = Boolean(health.openaiConfigured);
   const live = health.mode === "live" || byok;
   const badge = $("#server-state");
   if (badge) {
-    badge.textContent = live ? (byok ? "実API接続・このタブのキー" : "実API接続") : "デモモード";
+    badge.textContent = live
+      ? (byok ? "実API接続・このタブのキー" : (sharedServerKeyConfigured ? "実API接続・全事業共通キー" : "実API接続"))
+      : "デモモード";
     badge.classList.toggle("mock", !live);
   }
+  const keyPanel = $(".api-key-panel");
+  if (keyPanel) keyPanel.hidden = sharedServerKeyConfigured && !byok;
+  updateKeyStatus();
   const notice = $("#mode-notice");
   if (notice) {
     notice.hidden = live;
     notice.textContent = STUDIO_CONFIG.localAdmin
-      ? "現在はデモモードです。下のAPIキーを検証すると、このタブだけで最新調査・文章・画像・動画生成を使えます。共有サーバー側のAPIキーは使用しません。"
+      ? "現在はデモモードです。共通キーの設定を確認するか、下のAPIキーを検証すると、このタブだけで最新調査・文章・画像・動画生成を使えます。"
       : "現在はデモモードです。下のAPIキーを検証してこのタブだけで使うか、サーバー側のAPIキーを設定すると、最新調査・文章・画像・動画生成が有効になります。";
   }
 }
@@ -184,6 +194,23 @@ export async function requireSession(onAuthenticated) {
   return false;
 }
 
+export function handoffToAdmin(kind, payload, storageKey) {
+  if (!STUDIO_CONFIG.localAdmin) throw new Error("管理画面版でのみ記事を受け渡せます。");
+  if (storageKey) localStorage.setItem(storageKey, JSON.stringify(payload));
+
+  if (STUDIO_CONFIG.embedded && window.parent !== window) {
+    window.parent.postMessage({
+      type: "content-studio:handoff",
+      kind,
+      payload
+    }, window.location.origin);
+    return "embedded";
+  }
+
+  window.location.assign(STUDIO_CONFIG.adminUrl);
+  return "redirect";
+}
+
 export async function loadProfiles(select) {
   const result = await api("/api/profiles");
   let profiles = result.profiles;
@@ -209,11 +236,14 @@ export function configureStudioShell() {
   const blog = $("#studio-nav-blog");
   const reel = $("#studio-nav-reel");
   const back = $("#studio-nav-back");
+  const navigation = document.querySelector(".studio-tabs");
   if (blog) blog.href = STUDIO_CONFIG.localAdmin ? "./blog.html" : "/blog";
   if (reel) reel.href = STUDIO_CONFIG.localAdmin ? "./reel.html" : "/reel";
   if (back) {
     back.href = STUDIO_CONFIG.localAdmin ? STUDIO_CONFIG.adminUrl : "/studio";
     back.textContent = STUDIO_CONFIG.localAdmin ? "管理画面へ戻る" : "入口";
   }
+  if (navigation) navigation.hidden = STUDIO_CONFIG.localAdmin && STUDIO_CONFIG.embedded;
   document.documentElement.dataset.contentStudioMode = STUDIO_CONFIG.localAdmin ? "local-admin" : "shared-preview";
+  document.documentElement.dataset.contentStudioEmbedded = String(STUDIO_CONFIG.embedded);
 }

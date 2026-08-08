@@ -1,16 +1,15 @@
 <!doctype html>
-<html lang="ja">
+<html lang="ja" data-business="ai-hub">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <title>AI相談｜一歩踏み出す人のAI講習・実践支援【彦根・滋賀】</title>
+  <title>ブログ App Server</title>
   <link rel="stylesheet" href="./styles.css">
   <link rel="stylesheet" href="./styles-content.css">
-  <link rel="stylesheet" href="/admin/admin-common.css?v=20260803-clear-sky-rose-2">
-  <script src="/admin/admin-menu.js" defer></script>
+  <link rel="stylesheet" href="./styles-brand.css">
 </head>
-<body data-app="blog">
+<body data-app="blog" data-business="ai-hub">
   <div class="login-gate" id="login-gate" hidden>
     <form class="login-card" id="login-form">
       <span class="eyebrow">BLOG APP SERVER</span><h1>管理画面へログイン</h1>
@@ -21,7 +20,7 @@
   </div>
 
   <header class="topbar">
-    <div><span class="eyebrow">BLOG APP SERVER</span><h1>事業別ブログ制作</h1></div>
+    <div><span class="eyebrow" id="studio-brand-name">AI Hub</span><h1 id="studio-brand-heading">AI Hub ブログ編集</h1></div>
     <div class="server-state" id="server-state">接続確認中</div>
   </header>
   <nav class="studio-tabs" aria-label="制作画面">
@@ -29,7 +28,7 @@
   </nav>
 
   <section class="api-key-panel" aria-labelledby="api-key-heading">
-    <div><span class="eyebrow">API KEY</span><h2 id="api-key-heading">OpenAI APIキー設定</h2><p>このタブを閉じるまでだけ保持し、生成APIへの通信時に使用します。サーバーやファイルには保存しません。</p></div>
+    <div><span class="eyebrow">API KEY</span><h2 id="api-key-heading">OpenAI APIキー設定</h2><p>通常は全事業共通キーを使用します。個別に切り替える場合だけ、このタブ専用キーを設定してください。</p></div>
     <div class="api-key-controls"><label>OpenAI APIキー<input id="api-key-input" type="password" autocomplete="off" spellcheck="false" placeholder="sk-... または sk-proj-..."></label><div class="actions"><button class="secondary" id="clear-api-key" type="button" hidden>削除</button><button class="primary" id="save-api-key" type="button">このタブで使用</button></div><span class="api-key-status" id="api-key-status"></span></div>
   </section>
 
@@ -41,13 +40,36 @@
       <div class="notice" id="mode-notice" hidden></div>
       <section class="panel" data-step="1">
         <div class="panel-head"><span>STEP 1</span><h2>誰に、何を、実話で伝えるか</h2></div>
+        <section class="entry-guide" id="entry-guide" aria-labelledby="entry-guide-heading">
+          <div class="entry-guide-head">
+            <div><span class="eyebrow">STARTING HINTS</span><h3 id="entry-guide-heading">最初の一案を、顧客像・季節・検索意図から入れてあります</h3><p id="entry-guide-status"></p></div>
+            <button class="secondary" id="discover-trends" type="button">この顧客像で国内トレンドを調査</button>
+          </div>
+          <div class="entry-guide-context">
+            <article><b>誰に</b><p id="entry-guide-audience"></p></article>
+            <article><b>今の季節</b><p id="entry-guide-season"></p></article>
+          </div>
+          <div class="entry-guide-block">
+            <b>検索の入口</b>
+            <div class="entry-guide-chips" id="entry-guide-searches"></div>
+          </div>
+          <div class="entry-guide-block">
+            <b>何を伝えるか</b>
+            <div class="entry-starter-grid" id="entry-topic-starters"></div>
+          </div>
+          <div class="entry-guide-block">
+            <b>実話を思い出す質問</b>
+            <ul class="entry-story-questions" id="entry-story-questions"></ul>
+            <p class="entry-guide-note">質問票は自動で実話メモ欄へ入ります。空欄を埋めるための作り話は生成しません。</p>
+          </div>
+        </section>
         <div class="form-grid">
-          <label>事業<select id="profile"></select></label><label>今回のテーマ・検索語<input id="topic" placeholder="例：AIで請求書作業を減らしたい"></label>
+          <label>事業<select id="profile"></select></label><label>今回のテーマ・検索語<input id="topic" placeholder="入口の仮説を編集できます"></label>
           <label class="wide">主な読者<input id="audience"></label><label class="wide">事業者本人の言葉・実話メモ<textarea id="owner-story" rows="6" placeholder="実際の会話、失敗、修正、場所、確認済み数字など。入力のない実績はAIが作りません。"></textarea></label>
           <label class="wide">追加の公式URL（1行1件）<textarea id="official-urls" rows="3"></textarea></label><label class="wide">記事後の行動<input id="cta"></label>
         </div>
         <section class="trend-discovery" aria-labelledby="trend-discovery-heading">
-          <div class="trend-discovery-head"><div><span class="eyebrow">DOMESTIC TREND DISCOVERY</span><h3 id="trend-discovery-heading">テーマ未定なら、国内で話題のソースから探す</h3><p>直近性・国内での複数報道や一次情報・全国性を基に、事業との接点があるネタを推定話題度順で並べます。</p></div><button class="secondary" id="discover-trends" type="button">国内トレンドからネタを探す</button></div>
+          <div class="trend-discovery-head"><div><span class="eyebrow">DOMESTIC TREND DISCOVERY</span><h3 id="trend-discovery-heading">ライブ調査結果</h3><p>直近性・国内での複数報道や一次情報・全国性を基に、事業との接点があるネタを推定話題度順で並べます。</p></div></div>
           <div class="trend-status" id="trend-status" hidden></div>
           <div class="trend-results" id="trend-results" hidden><div class="trend-method" id="trend-method"></div><div class="trend-grid" id="trend-options"></div><div class="plan-notes" id="trend-warnings"></div></div>
         </section>
@@ -58,7 +80,7 @@
       </section>
       <section class="panel" data-step="3" hidden>
         <div class="panel-head"><span>STEP 3</span><h2>タイトルを選び、そのタイトルからH2を作る</h2></div>
-        <div class="skill-contract"><b>my-blog ＋ my-post-v2 適用中</b><span>国内ニュースの深掘り調査と事業プロフィールから、切り口の異なる3案を作ります。</span></div>
+        <div class="skill-contract"><b>myblog ＋ my-post 適用中</b><span>顧客像、季節、国内ニュース、実話メモを分けて調査し、切り口の異なる3案を作ります。</span></div>
         <h3 class="choice-heading">タイトル候補 3案</h3>
         <div class="choice-grid" id="title-options"></div>
         <label class="editable-title">選んだタイトルを編集<input id="selected-title" placeholder="候補を選ぶと入力されます"></label>
@@ -72,14 +94,27 @@
         </div>
       </section>
       <section class="panel" data-step="4" hidden>
-        <div class="panel-head"><span>STEP 4</span><h2>全テキストを整え、最終タイトルに合わせて画像を生成する</h2></div><div class="title-review" id="title-review"></div><div class="editable-fields" id="blog-edit-fields"></div><div class="actions split"><button class="secondary" id="refine-draft">最終プロンプトを本文へ再適用</button><button class="secondary" id="generate-images">タイトル下・各H2画像を生成</button><button class="primary" id="show-preview">5. 実際の表示で確認</button><button class="secondary" id="save-blog-package">事業フォルダへ下書き保存</button><button class="primary local-admin-action" id="handoff-blog-draft" type="button">管理画面へ下書きを渡す</button></div><div class="image-status" id="image-status"></div>
+        <div class="panel-head"><span>STEP 4</span><h2>全テキストを整え、最終タイトルに合わせて画像を生成する</h2></div><div class="title-review" id="title-review"></div><div class="editable-fields" id="blog-edit-fields"></div><div class="actions split"><button class="secondary" id="refine-draft">最終プロンプトを本文へ再適用</button><button class="secondary" id="generate-images">タイトル下・各H2画像を生成</button><button class="primary" id="show-preview">5. 実際の表示で確認</button><button class="secondary" id="save-blog-package">事業フォルダへ保存</button><button class="primary local-admin-action" id="handoff-blog-draft" type="button">管理画面へ記事を渡す</button></div><div class="image-status" id="image-status"></div>
       </section>
     </section>
-    <section class="preview-column" aria-label="記事プレビュー">
-      <div class="preview-toolbar"><span>実表示プレビュー</span><div><button id="preview-desktop">PC</button><button id="preview-mobile">スマホ</button><button id="back-editor" hidden>編集に戻る</button><button id="copy-html">HTML</button><button id="download-json">JSON</button></div></div>
+    <section class="preview-column" data-step="5" aria-label="記事の出来上がりを最終チェック" hidden>
+      <div class="preview-toolbar"><span><b>STEP 5</b> 記事の出来上がりを最終チェック</span><div><button id="preview-desktop">PC</button><button id="preview-mobile">スマホ</button><button id="back-editor" hidden>編集に戻る</button><button id="copy-html">HTML</button><button id="download-json">JSON</button></div></div>
       <article class="article-preview" id="article-preview"><div class="empty-preview"><b>ここに記事が表示されます</b><p>左の手順で、調査・選択・記事生成を進めてください。</p></div></article>
+      <section class="final-evaluation" id="final-evaluation" aria-labelledby="final-evaluation-heading">
+        <div class="final-evaluation-head">
+          <div><span class="eyebrow">FINAL QUALITY CHECK</span><h2 id="final-evaluation-heading">LLMO調査結果を多角的に点数化</h2><p>調査結果・構成・本文・出典を、公開前の目安として100点満点で確認します。</p></div>
+          <div class="overall-score" id="overall-score" aria-live="polite"></div>
+        </div>
+        <div class="score-grid" id="quality-score-grid"></div>
+        <div class="priority-improvements"><h3>優先して直す点</h3><ol id="priority-improvements"></ol></div>
+        <div class="restructure-box">
+          <label>気に入らない点・変えたい構成<textarea id="restructure-prompt" rows="4" placeholder="例：専門的すぎるので、初めて利用する人の不安→判断材料→利用の流れ→相談の順に組み直す"></textarea></label>
+          <div class="actions"><button class="secondary" id="return-outline" type="button">タイトル・H2選択へ戻る</button><button class="primary" id="apply-restructure" type="button">この指示で記事を再構成</button></div>
+        </div>
+        <p class="score-disclaimer">この点数は検索順位やAI回答への引用を保証するものではありません。公開前の抜け漏れを見つけるための自動点検です。</p>
+      </section>
     </section>
   </main>
-  <div class="toast" id="toast" role="status" aria-live="polite"></div><script>window.CONTENT_STUDIO_CONFIG={"apiBase":"https://business-content-app-server.vercel.app","profileId":"ai-hub","localAdmin":true,"adminUrl":"/admin/blog","publicBase":"/admin/apps"};</script><script type="module" src="./blog.js"></script>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div><script>window.CONTENT_STUDIO_CONFIG={"apiBase":"https://business-content-app-server.vercel.app","profileId":"ai-hub","localAdmin":true,"adminUrl":"/admin/blog","publicBase":"/admin/apps","handoffMessageType":"content-studio:handoff"};</script><script type="module" src="./blog.js"></script>
 </body>
 </html>

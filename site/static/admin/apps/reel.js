@@ -1,4 +1,4 @@
-import { $, api, apiBlob, bindApiKeyPanel, configureStudioShell, escapeHtml, loadProfiles, refreshHealth, requireSession, STUDIO_CONFIG, toast } from "./studio-core.js";
+import { $, api, apiBlob, bindApiKeyPanel, configureStudioShell, escapeHtml, handoffToAdmin, loadProfiles, refreshHealth, requireSession, STUDIO_CONFIG, toast } from "./studio-core.js";
 
 const state = {
   profiles: [],
@@ -607,9 +607,8 @@ function handoffReelDraft() {
   if (!state.draft) return toast("先にリール投稿プレビューを作成してください");
   try {
     const key = `contentStudioReelDraft:${state.profile.id}`;
-    localStorage.setItem(key, JSON.stringify(packageData()));
+    handoffToAdmin("reel", packageData(), key);
     toast("管理画面へリール下書きを渡しました");
-    window.location.assign(STUDIO_CONFIG.adminUrl);
   } catch (error) {
     toast(`リール下書きを渡せませんでした: ${error.message}`);
   }

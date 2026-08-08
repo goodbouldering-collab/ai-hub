@@ -1,0 +1,705 @@
+/*
+ * Business design layer for the existing Blog Studio.
+ * The workflow and each site's local styles-content.css stay intact; this file
+ * only maps the public brand's colors, type, radii and surfaces onto the editor.
+ */
+:root {
+  --brand-primary: #176b4d;
+  --brand-primary-fill: var(--brand-primary);
+  --brand-on-primary: #ffffff;
+  --brand-accent: #d8863b;
+  --brand-bg: #eef2ef;
+  --brand-surface: #ffffff;
+  --brand-surface-strong: #fbfcfb;
+  --brand-soft: #edf7f2;
+  --brand-preview-bg: #dde3df;
+  --brand-ink: #17211d;
+  --brand-muted: #66716b;
+  --brand-line: #d8dfda;
+  --brand-focus: rgba(23, 107, 77, 0.24);
+  --brand-note-bg: #fff2df;
+  --brand-note-ink: #754719;
+  --brand-font: "Noto Sans JP", "Yu Gothic UI", sans-serif;
+  --brand-display-font: var(--brand-font);
+  --brand-radius: 18px;
+  --brand-control-radius: 10px;
+  --brand-button-radius: 10px;
+  --brand-shadow: 0 12px 34px rgba(20, 37, 30, 0.09);
+  --brand-rail: var(--brand-primary-fill);
+}
+
+/* AI Hub: bright white, strong blue, restrained 8px geometry. */
+html[data-business="ai-hub"] {
+  --brand-primary: #075fc8;
+  --brand-primary-fill: #075fc8;
+  --brand-accent: #0ea5c6;
+  --brand-bg: #f7fafc;
+  --brand-surface: #ffffff;
+  --brand-surface-strong: #ffffff;
+  --brand-soft: #eef5fb;
+  --brand-preview-bg: #eaf1f7;
+  --brand-ink: #071426;
+  --brand-muted: #536276;
+  --brand-line: #cbd9e8;
+  --brand-focus: rgba(7, 95, 200, 0.24);
+  --brand-note-bg: #fff7d6;
+  --brand-note-ink: #6f5310;
+  --brand-font: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
+  --brand-display-font: var(--brand-font);
+  --brand-radius: 8px;
+  --brand-control-radius: 8px;
+  --brand-button-radius: 8px;
+  --brand-shadow: 0 12px 30px rgba(7, 20, 38, 0.08);
+  --brand-rail: linear-gradient(90deg, #075fc8, #0ea5c6);
+}
+
+/* N-design: the public hero's dark brown, gold and LINE green. */
+html[data-business="n-design"] {
+  --brand-primary: #f59e0b;
+  --brand-primary-fill: linear-gradient(90deg, #fbbf24, #f59e0b);
+  --brand-on-primary: #1a1005;
+  --brand-accent: #10b981;
+  --brand-bg: #1a1410;
+  --brand-surface: #241b15;
+  --brand-surface-strong: #2d221a;
+  --brand-soft: #33261b;
+  --brand-preview-bg: #140f0c;
+  --brand-ink: #fffaf0;
+  --brand-muted: #d2c3ae;
+  --brand-line: rgba(255, 250, 240, 0.18);
+  --brand-focus: rgba(245, 158, 11, 0.32);
+  --brand-note-bg: #3b2b16;
+  --brand-note-ink: #ffd76f;
+  --brand-font: "Noto Sans JP", "Yu Gothic", sans-serif;
+  --brand-display-font: var(--brand-font);
+  --brand-radius: 18px;
+  --brand-control-radius: 12px;
+  --brand-button-radius: 999px;
+  --brand-shadow: 0 18px 44px rgba(0, 0, 0, 0.28);
+  --brand-rail: linear-gradient(90deg, #fbbf24, #f59e0b, #10b981);
+}
+
+/* Notエステ: teal, deep green and Shippori Mincho. */
+html[data-business="notesthe"] {
+  --brand-primary: #14756f;
+  --brand-primary-fill: #14756f;
+  --brand-accent: #d8aa60;
+  --brand-bg: #f6f8f7;
+  --brand-surface: #ffffff;
+  --brand-surface-strong: #ffffff;
+  --brand-soft: #eaf4f1;
+  --brand-preview-bg: #ddebe7;
+  --brand-ink: #16211f;
+  --brand-muted: #61706b;
+  --brand-line: #d5e2de;
+  --brand-focus: rgba(20, 117, 111, 0.24);
+  --brand-note-bg: #fbf4e8;
+  --brand-note-ink: #765a2f;
+  --brand-font: "Noto Sans JP", "Yu Gothic", sans-serif;
+  --brand-display-font: "Shippori Mincho", "Yu Mincho", "Hiragino Mincho ProN", serif;
+  --brand-radius: 18px;
+  --brand-control-radius: 8px;
+  --brand-button-radius: 999px;
+  --brand-shadow: 0 16px 38px rgba(7, 21, 19, 0.11);
+  --brand-rail: linear-gradient(90deg, #14756f, #d8aa60);
+}
+
+/* Trust: slate UI, rose action color and the public site's four-color rail. */
+html[data-business="trust"] {
+  --brand-primary: #f43f5e;
+  --brand-primary-fill: #f43f5e;
+  --brand-accent: #f59e0b;
+  --brand-bg: #f8fafc;
+  --brand-surface: #ffffff;
+  --brand-surface-strong: #ffffff;
+  --brand-soft: #fff1f2;
+  --brand-preview-bg: #e9edf2;
+  --brand-ink: #0f172a;
+  --brand-muted: #64748b;
+  --brand-line: #d7dde6;
+  --brand-focus: rgba(244, 63, 94, 0.22);
+  --brand-note-bg: #fff7ed;
+  --brand-note-ink: #8a4a16;
+  --brand-font: "Noto Sans JP", system-ui, sans-serif;
+  --brand-display-font: "Yu Mincho", "Hiragino Mincho ProN", serif;
+  --brand-radius: 12px;
+  --brand-control-radius: 8px;
+  --brand-button-radius: 8px;
+  --brand-shadow: 0 14px 34px rgba(15, 23, 42, 0.1);
+  --brand-rail: linear-gradient(90deg, #3b82f6, #22c55e, #f59e0b, #f43f5e);
+}
+
+/* PROFIT: forest green, neutral fitness surfaces and acid-lime detail. */
+html[data-business="profit"] {
+  --brand-primary: #086947;
+  --brand-primary-fill: #086947;
+  --brand-accent: #c9ff4f;
+  --brand-bg: #f5f7f2;
+  --brand-surface: #ffffff;
+  --brand-surface-strong: #f8faf6;
+  --brand-soft: #eaf0e8;
+  --brand-preview-bg: #dfe8df;
+  --brand-ink: #101711;
+  --brand-muted: #607166;
+  --brand-line: #cbd8cf;
+  --brand-focus: rgba(8, 105, 71, 0.24);
+  --brand-note-bg: #efffd3;
+  --brand-note-ink: #365b16;
+  --brand-font: Inter, "Noto Sans JP", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --brand-display-font: var(--brand-font);
+  --brand-radius: 8px;
+  --brand-control-radius: 8px;
+  --brand-button-radius: 8px;
+  --brand-shadow: 0 12px 30px rgba(6, 63, 50, 0.1);
+  --brand-rail: linear-gradient(90deg, #086947, #c9ff4f);
+}
+
+/* みんなのWA: warm amber, cream and community green. */
+html[data-business="minnanowa"] {
+  --brand-primary: #b45309;
+  --brand-primary-fill: linear-gradient(135deg, #b45309, #f59e0b);
+  --brand-accent: #059669;
+  --brand-bg: #fff7ed;
+  --brand-surface: #ffffff;
+  --brand-surface-strong: #fffaf4;
+  --brand-soft: #ffedd5;
+  --brand-preview-bg: #f8e5c8;
+  --brand-ink: #1a202c;
+  --brand-muted: #5a6577;
+  --brand-line: rgba(180, 83, 9, 0.2);
+  --brand-focus: rgba(217, 119, 6, 0.26);
+  --brand-note-bg: #fef3c7;
+  --brand-note-ink: #7c2d12;
+  --brand-font: "Noto Sans JP", "Yu Gothic", sans-serif;
+  --brand-display-font: var(--brand-font);
+  --brand-radius: 16px;
+  --brand-control-radius: 12px;
+  --brand-button-radius: 12px;
+  --brand-shadow: 0 16px 38px rgba(180, 83, 9, 0.11);
+  --brand-rail: linear-gradient(90deg, #b45309, #f59e0b, #059669);
+}
+
+/* 巡波 JUNPA: warm cream, forest ink, brick accent and Mincho display. */
+html[data-business="junpa"] {
+  --brand-primary: #27352f;
+  --brand-primary-fill: #27352f;
+  --brand-accent: #934f40;
+  --brand-bg: #fbf7f0;
+  --brand-surface: #fffdf8;
+  --brand-surface-strong: #ffffff;
+  --brand-soft: #f1e7dc;
+  --brand-preview-bg: #e9ddd0;
+  --brand-ink: #27352f;
+  --brand-muted: #5f6d66;
+  --brand-line: rgba(23, 61, 57, 0.18);
+  --brand-focus: rgba(147, 79, 64, 0.24);
+  --brand-note-bg: #f2e2d7;
+  --brand-note-ink: #743d32;
+  --brand-font: "Yu Gothic", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+  --brand-display-font: "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", serif;
+  --brand-radius: 26px;
+  --brand-control-radius: 12px;
+  --brand-button-radius: 999px;
+  --brand-shadow: 0 18px 44px rgba(55, 42, 32, 0.12);
+  --brand-rail: linear-gradient(90deg, #27352f, #934f40);
+}
+
+/* HYROX Hongo: black, neon yellow and compact athletic geometry. */
+html[data-business="hyrox-hongo"] {
+  --brand-primary: #eaff22;
+  --brand-primary-fill: #eaff22;
+  --brand-on-primary: #080b09;
+  --brand-accent: #f4ff86;
+  --brand-bg: #080b09;
+  --brand-surface: #0d110e;
+  --brand-surface-strong: #121713;
+  --brand-soft: #171d18;
+  --brand-preview-bg: #050705;
+  --brand-ink: #f7f8f1;
+  --brand-muted: #b6c0b8;
+  --brand-line: rgba(255, 255, 255, 0.16);
+  --brand-focus: rgba(234, 255, 34, 0.3);
+  --brand-note-bg: #262d11;
+  --brand-note-ink: #efff62;
+  --brand-font: Inter, "Helvetica Neue", Arial, "Noto Sans JP", "Yu Gothic", sans-serif;
+  --brand-display-font: var(--brand-font);
+  --brand-radius: 16px;
+  --brand-control-radius: 12px;
+  --brand-button-radius: 999px;
+  --brand-shadow: 0 18px 46px rgba(0, 0, 0, 0.38);
+  --brand-rail: #eaff22;
+}
+
+/* Business21: deep navy, cyan and blue-violet gradient. */
+html[data-business="business21"] {
+  --brand-primary: #22d3ee;
+  --brand-primary-fill: linear-gradient(135deg, #0891b2, #4f46e5);
+  --brand-on-primary: #ffffff;
+  --brand-accent: #818cf8;
+  --brand-bg: #0b1630;
+  --brand-surface: #0f1c39;
+  --brand-surface-strong: #14264b;
+  --brand-soft: #132445;
+  --brand-preview-bg: #081126;
+  --brand-ink: #ffffff;
+  --brand-muted: rgba(255, 255, 255, 0.72);
+  --brand-line: rgba(255, 255, 255, 0.18);
+  --brand-focus: rgba(34, 211, 238, 0.28);
+  --brand-note-bg: #172c52;
+  --brand-note-ink: #a5f3fc;
+  --brand-font: ui-sans-serif, system-ui, "Noto Sans JP", sans-serif;
+  --brand-display-font: var(--brand-font);
+  --brand-radius: 16px;
+  --brand-control-radius: 12px;
+  --brand-button-radius: 12px;
+  --brand-shadow: 0 18px 48px rgba(0, 0, 0, 0.3);
+  --brand-rail: linear-gradient(90deg, #22d3ee, #4f46e5, #f59e0b);
+}
+
+/* ClimbHero: off-white editorial surface, black ink and red-orange action. */
+html[data-business="climbhero"] {
+  --brand-primary: #e43e24;
+  --brand-primary-fill: #e43e24;
+  --brand-accent: #171411;
+  --brand-bg: #fafaf7;
+  --brand-surface: #ffffff;
+  --brand-surface-strong: #fffefa;
+  --brand-soft: #f5f1ea;
+  --brand-preview-bg: #ebe7df;
+  --brand-ink: #171411;
+  --brand-muted: #53626a;
+  --brand-line: rgba(23, 20, 17, 0.14);
+  --brand-focus: rgba(228, 62, 36, 0.24);
+  --brand-note-bg: #fef3eb;
+  --brand-note-ink: #9f2d19;
+  --brand-font: Inter, "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", "Yu Gothic", sans-serif;
+  --brand-display-font: var(--brand-font);
+  --brand-radius: 8px;
+  --brand-control-radius: 8px;
+  --brand-button-radius: 6px;
+  --brand-shadow: 0 12px 30px rgba(23, 20, 17, 0.09);
+  --brand-rail: linear-gradient(90deg, #e43e24, #171411);
+}
+
+/* Rebuild Match: the live match page's forest green, lime and cream. */
+html[data-business="rebuild-match"] {
+  --brand-primary: #116b55;
+  --brand-primary-fill: #116b55;
+  --brand-accent: #dff36b;
+  --brand-bg: #f7f6ef;
+  --brand-surface: #ffffff;
+  --brand-surface-strong: #ffffff;
+  --brand-soft: #edf5f1;
+  --brand-preview-bg: #e1e9e4;
+  --brand-ink: #14201d;
+  --brand-muted: #56635f;
+  --brand-line: #dce4df;
+  --brand-focus: rgba(17, 107, 85, 0.24);
+  --brand-note-bg: #f4f9c9;
+  --brand-note-ink: #42520f;
+  --brand-font: "Noto Sans JP", "Yu Gothic", sans-serif;
+  --brand-display-font: var(--brand-font);
+  --brand-radius: 20px;
+  --brand-control-radius: 12px;
+  --brand-button-radius: 12px;
+  --brand-shadow: 0 18px 44px rgba(20, 32, 29, 0.11);
+  --brand-rail: linear-gradient(90deg, #116b55, #dff36b);
+}
+
+html[data-business] {
+  color: var(--brand-ink);
+  background: var(--brand-bg);
+  font-family: var(--brand-font);
+}
+
+body[data-app="blog"] {
+  min-height: 100vh;
+  color: var(--brand-ink);
+  background: var(--brand-bg);
+  font-family: var(--brand-font);
+  --ink: var(--brand-ink);
+  --muted: var(--brand-muted);
+  --line: var(--brand-line);
+  --green: var(--brand-primary);
+  --pale: var(--brand-soft);
+  --accent: var(--brand-accent);
+}
+
+body[data-app="blog"] .topbar {
+  isolation: isolate;
+  color: var(--brand-ink);
+  background: var(--brand-surface);
+  border-color: var(--brand-line);
+}
+
+body[data-app="blog"] .topbar::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: -1;
+  height: 3px;
+  background: var(--brand-rail);
+}
+
+body[data-app="blog"] .topbar h1 {
+  color: var(--brand-ink);
+  font-family: var(--brand-display-font);
+}
+
+body[data-app="blog"] .studio-tabs,
+body[data-app="blog"] .api-key-panel {
+  color: var(--brand-ink);
+  background: var(--brand-surface);
+  border-color: var(--brand-line);
+}
+
+body[data-app="blog"] .api-key-panel {
+  background: var(--brand-soft);
+}
+
+body[data-app="blog"] .steps,
+body[data-app="blog"] .editor-column {
+  color: var(--brand-ink);
+  background: var(--brand-bg);
+  border-color: var(--brand-line);
+}
+
+body[data-app="blog"] .panel,
+body[data-app="blog"] .final-evaluation,
+body[data-app="blog"] .article-preview,
+body[data-app="blog"] .login-card {
+  color: var(--brand-ink);
+  background: var(--brand-surface);
+  border-color: var(--brand-line);
+  border-radius: var(--brand-radius);
+  box-shadow: var(--brand-shadow);
+}
+
+body[data-app="blog"] .preview-column {
+  color: var(--brand-ink);
+  background: var(--brand-preview-bg);
+  border-color: var(--brand-line);
+}
+
+body[data-app="blog"] .entry-guide,
+body[data-app="blog"] .trend-discovery,
+body[data-app="blog"] .skill-contract,
+body[data-app="blog"] .progress,
+body[data-app="blog"] .priority-improvements,
+body[data-app="blog"] .restructure-box,
+body[data-app="blog"] .reference-editor,
+body[data-app="blog"] .title-context,
+body[data-app="blog"] .trend-card details,
+body[data-app="blog"] .reel-approval {
+  color: var(--brand-ink);
+  background: var(--brand-soft);
+  border-color: var(--brand-line);
+}
+
+body[data-app="blog"] .entry-guide-context article,
+body[data-app="blog"] .entry-story-questions,
+body[data-app="blog"] .entry-guide-chips button,
+body[data-app="blog"] .entry-starter-grid button,
+body[data-app="blog"] .trend-card,
+body[data-app="blog"] .choice-card,
+body[data-app="blog"] .outline-card,
+body[data-app="blog"] .score-card,
+body[data-app="blog"] .preview-toolbar button,
+body[data-app="blog"] .studio-tabs a,
+body[data-app="blog"] .studio-tabs button {
+  color: var(--brand-ink);
+  background: var(--brand-surface-strong);
+  border-color: var(--brand-line);
+}
+
+body[data-app="blog"] input,
+body[data-app="blog"] textarea,
+body[data-app="blog"] select {
+  color: var(--brand-ink);
+  background: var(--brand-surface-strong);
+  border-color: var(--brand-line);
+  border-radius: var(--brand-control-radius);
+}
+
+body[data-app="blog"] select option {
+  color: var(--brand-ink);
+  background: var(--brand-surface);
+}
+
+body[data-app="blog"] input:focus,
+body[data-app="blog"] textarea:focus,
+body[data-app="blog"] select:focus,
+body[data-app="blog"] [contenteditable="true"]:focus {
+  border-color: var(--brand-primary);
+  outline-color: var(--brand-focus);
+  background: var(--brand-surface-strong);
+}
+
+body[data-app="blog"] .actions button,
+body[data-app="blog"] .preview-toolbar button,
+body[data-app="blog"] .entry-guide-head button,
+body[data-app="blog"] .trend-card button,
+body[data-app="blog"] .api-key-controls button {
+  border-radius: var(--brand-button-radius);
+}
+
+body[data-app="blog"] .primary,
+body[data-app="blog"] .studio-tabs a.active,
+body[data-app="blog"] .studio-tabs button.active {
+  color: var(--brand-on-primary);
+  background: var(--brand-primary-fill);
+  border-color: transparent;
+}
+
+body[data-app="blog"] .secondary {
+  color: var(--brand-ink);
+  background: var(--brand-soft);
+}
+
+body[data-app="blog"] .steps li.active {
+  color: var(--brand-ink);
+  background: var(--brand-surface);
+}
+
+body[data-app="blog"] .steps b {
+  color: var(--brand-ink);
+  background: var(--brand-surface-strong);
+  border-color: var(--brand-line);
+}
+
+body[data-app="blog"] .steps li.active b,
+body[data-app="blog"] .steps li.done b {
+  color: var(--brand-on-primary);
+  background: var(--brand-primary-fill);
+  border-color: transparent;
+}
+
+body[data-app="blog"] .article-preview h1,
+body[data-app="blog"] .article-preview h2 {
+  color: var(--brand-ink);
+  font-family: var(--brand-display-font);
+}
+
+body[data-app="blog"] .article-preview .image-placeholder,
+body[data-app="blog"] .article-hero,
+body[data-app="blog"] .section-image {
+  color: var(--brand-muted);
+  background: var(--brand-soft);
+}
+
+body[data-app="blog"] .article-cta {
+  color: var(--brand-ink);
+  background: var(--brand-soft);
+  border-left-color: var(--brand-primary);
+}
+
+body[data-app="blog"] .overall-score {
+  color: var(--brand-primary);
+  background: var(--brand-soft);
+  border-radius: var(--brand-radius);
+}
+
+body[data-app="blog"] .score-meter {
+  background: var(--brand-line);
+}
+
+body[data-app="blog"] .score-meter i {
+  background: linear-gradient(90deg, var(--brand-accent), var(--brand-primary));
+}
+
+body[data-app="blog"] .score-card p,
+body[data-app="blog"] .entry-guide-chips button,
+body[data-app="blog"] .skill-contract {
+  color: var(--brand-ink);
+}
+
+body[data-app="blog"] .notice,
+body[data-app="blog"] .server-state.mock,
+body[data-app="blog"] .trend-rank em {
+  color: var(--brand-note-ink);
+  background: var(--brand-note-bg);
+}
+
+body[data-app="blog"] .entry-guide-note,
+body[data-app="blog"] .entry-guide-season strong,
+body[data-app="blog"] .plan-notes,
+body[data-app="blog"] .api-key-status {
+  color: var(--brand-note-ink);
+}
+
+body[data-app="blog"] .server-state {
+  color: var(--brand-primary);
+  background: var(--brand-soft);
+}
+
+body[data-app="blog"] .toast {
+  color: var(--brand-on-primary);
+  background: var(--brand-primary-fill);
+  border-radius: var(--brand-button-radius);
+}
+
+body[data-app="blog"] .login-gate {
+  background: rgba(5, 10, 9, 0.82);
+}
+
+/*
+ * JUNPA intentionally keeps its older local styles-content.css. The current
+ * entry guide did not exist in that file, so its layout fallback lives here
+ * instead of replacing the site's established CSS.
+ */
+html[data-business="junpa"] body[data-app="blog"] .entry-guide {
+  display: grid;
+  gap: 16px;
+  margin: 0 0 18px;
+  padding: 20px;
+  border: 1px solid var(--brand-line);
+  border-radius: 22px;
+  background: var(--brand-soft);
+}
+
+html[data-business="junpa"] body[data-app="blog"] .entry-guide-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+html[data-business="junpa"] body[data-app="blog"] .entry-guide-head h3 {
+  margin: 5px 0 4px;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+html[data-business="junpa"] body[data-app="blog"] .entry-guide-head p {
+  margin: 0;
+  color: var(--brand-muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+html[data-business="junpa"] body[data-app="blog"] .entry-guide-head button {
+  flex: none;
+  padding: 11px 14px;
+  border: 0;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+html[data-business="junpa"] body[data-app="blog"] .entry-guide-context {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+html[data-business="junpa"] body[data-app="blog"] .entry-guide-context article {
+  padding: 13px 14px;
+  border: 1px solid var(--brand-line);
+  border-radius: 16px;
+}
+
+html[data-business="junpa"] body[data-app="blog"] .entry-guide-context b,
+html[data-business="junpa"] body[data-app="blog"] .entry-guide-block > b {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--brand-primary);
+  font-size: 11px;
+}
+
+html[data-business="junpa"] body[data-app="blog"] .entry-guide-context p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+html[data-business="junpa"] body[data-app="blog"] .entry-guide-block {
+  display: grid;
+  gap: 8px;
+}
+
+html[data-business="junpa"] body[data-app="blog"] .entry-guide-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+html[data-business="junpa"] body[data-app="blog"] .entry-guide-chips button {
+  max-width: 100%;
+  padding: 8px 11px;
+  border: 1px solid var(--brand-line);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.4;
+  cursor: pointer;
+  text-align: left;
+}
+
+html[data-business="junpa"] body[data-app="blog"] .entry-starter-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+html[data-business="junpa"] body[data-app="blog"] .entry-starter-grid button {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+  padding: 13px;
+  border: 1px solid var(--brand-line);
+  border-radius: 16px;
+  cursor: pointer;
+  text-align: left;
+}
+
+html[data-business="junpa"] body[data-app="blog"] .entry-starter-grid span {
+  color: var(--brand-accent);
+  font-size: 11px;
+  font-weight: 900;
+}
+
+html[data-business="junpa"] body[data-app="blog"] .entry-starter-grid b {
+  overflow-wrap: anywhere;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+html[data-business="junpa"] body[data-app="blog"] .entry-starter-grid small {
+  color: var(--brand-muted);
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+html[data-business="junpa"] body[data-app="blog"] .entry-story-questions {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 12px 12px 12px 30px;
+  border-radius: 16px;
+}
+
+html[data-business="junpa"] body[data-app="blog"] .entry-story-questions li,
+html[data-business="junpa"] body[data-app="blog"] .entry-guide-note {
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+html[data-business="junpa"] body[data-app="blog"] .entry-guide-note {
+  margin: 0;
+  color: var(--brand-note-ink);
+}
+
+@media (max-width: 720px) {
+  body[data-app="blog"] .steps {
+    background: var(--brand-surface);
+  }
+
+  html[data-business="junpa"] body[data-app="blog"] .entry-guide-head {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  html[data-business="junpa"] body[data-app="blog"] .entry-guide-context,
+  html[data-business="junpa"] body[data-app="blog"] .entry-starter-grid {
+    grid-template-columns: 1fr;
+  }
+}

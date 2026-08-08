@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+<link rel="icon" type="image/svg+xml" href="/favicon-20260719.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-20260719-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-20260719-16x16.png">
+<link rel="shortcut icon" href="/favicon-20260719.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-20260719.png">
+<link rel="manifest" href="/site-20260719.webmanifest">
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI相談｜一歩踏み出す人のAI講習・実践支援【彦根・滋賀】</title>
+<title>AI相談</title>
 <meta name="robots" content="noindex,nofollow">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -147,83 +154,36 @@
     .admin-subnav { padding:0 24px 14px; }
   }
 </style>
-<link rel="stylesheet" href="/admin/admin-common.css?v=20260803-clear-sky-rose-2">
-<script src="/admin/admin-menu.js" defer></script>
+<link rel="stylesheet" href="/admin/admin-common.css">
 </head>
-<body class="admin-page admin-theme-dark admin-page-form admin-fixed-menu-page">
-<header class="site-header scrolled" id="site-header">
+<body class="admin-page admin-theme-light admin-page-form">
+<header class="site-header" id="site-header">
   <div class="site-header-inner">
-    <a class="site-logo" href="/" aria-label="AI相談 トップへ">
+    <a class="site-logo" href="/" aria-label="AI相談 公開ページへ">
       <span class="brand-mark" aria-hidden="true"><span class="brand-a">AI</span><span class="brand-ha">相</span></span>
       <span class="wordmark"><span class="word-ai">AI相談</span><span class="word-hub">彦根</span><span class="word-en">AI CONSULT</span></span>
-      <span class="site-logo-by">滋賀・彦根</span>
+      <span class="site-logo-by">管理画面</span>
     </a>
-    <nav class="site-nav admin-slide-nav" aria-label="管理ページメニュー">
-      <div class="admin-scroll-menu" aria-label="管理作業順メニュー">
-        <a class="admin-scroll-link" href="/admin">管理トップ</a>
-        <a class="admin-scroll-link" href="/admin/blog">ブログ管理</a>
-        <a class="admin-scroll-link" href="/admin/apps/reel/">リール制作</a>
-        <a class="admin-scroll-link" href="/admin/sns-post">SNS投稿</a>
-        <a class="admin-scroll-link" href="/admin/gubble-sns">SNS分析</a>
-        <a class="admin-scroll-link" href="/admin/chat">AI相談</a>
-        <a class="admin-scroll-link admin-nav-cta" href="/">公開ページ</a>
-      </div>
+    <nav class="site-nav" aria-label="公開ページナビ">
+      <a class="nav-link" href="/">ホーム</a>
+      <a class="nav-link" href="/#courses">講習</a>
+      <a class="nav-link" href="/lectures/index.html">資料</a>
+      <a class="nav-link" href="/blog/index.html">ブログ</a>
+      <a class="nav-link" href="/portfolio.html">実績</a>
+      <a class="login-btn" href="/admin" aria-current="page">管理</a>
     </nav>
-    <button class="mobile-toggle" id="mobile-toggle" aria-label="メニュー" aria-controls="mobile-nav" aria-expanded="false" type="button">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-    </button>
   </div>
-  <div class="mobile-nav" id="mobile-nav">
-    <div class="mobile-nav-panel mobile-nav-panel--admin">
-      <span class="mobile-nav-label">管理ハブ</span>
-      <div class="mobile-link-list">
-        <a href="/admin"><span class="mobile-link-title">管理ハブ</span><small>管理ページを選ぶ</small></a>
-      </div>
-      <span class="mobile-nav-label">記事・発信</span>
-      <div class="mobile-link-list">
-        <a href="/admin/blog"><span class="mobile-link-title">ブログ管理</span><small>記事生成と公開</small></a>
-        <a href="/admin/apps/reel/"><span class="mobile-link-title">リール制作</span><small>動画と投稿文を作る</small></a>
-        <a href="/admin/sns-post"><span class="mobile-link-title">SNS投稿</span><small>X・Threads投稿を準備</small></a>
-      </div>
-      <span class="mobile-nav-label">分析・相談</span>
-      <div class="mobile-link-list">
-        <a href="/admin/gubble-sns"><span class="mobile-link-title">SNS分析</span><small>反応と改善を見る</small></a>
-        <a href="/admin/chat"><span class="mobile-link-title">AI相談</span><small>運用メモを相談する</small></a>
-      </div>
-      <span class="mobile-nav-label">運用・確認</span>
-      <div class="mobile-link-list">
-        <a href="/ops"><span class="mobile-link-title">OPS</span><small>運用資料とプロンプト</small></a>
-        <a href="/"><span class="mobile-link-title">公開トップ</span><small>受講導線を確認</small></a>
-        <a href="/blog/index.html"><span class="mobile-link-title">公開ブログ</span><small>記事一覧を確認</small></a>
-      </div>
-      <span class="mobile-nav-label">セッション</span>
-      <div class="mobile-link-list">
-        <a class="logout-mobile-link" href="/admin/logout"><span class="mobile-link-title">ログアウト</span><small>管理画面から退出</small></a>
-      </div>
-    </div>
-  </div>
+  <nav class="admin-subnav" aria-label="管理メニュー">
+    <a href="/admin#admin-menu">ハブ</a>
+    <a href="/admin#panel-status">記事</a>
+    <a href="/admin#panel-dashboard">今週</a>
+    <a href="/admin/gubble-sns">分析</a>
+    <a href="/admin/sns-post" aria-current="page">投稿</a>
+    <a href="/admin/chat">AI</a>
+    <a href="/ops">OPS</a>
+  </nav>
 </header>
 <div class="container">
-  <section class="admin-fish-hero" aria-label="AI魚線画モーション">
-    <div class="admin-fish-copy">
-      <strong>AIの流れを、管理画面でも同じ線で見る</strong>
-      <span>トップページと同じ魚線画モーションを管理側にも置き、SNS下書き・投稿・確認をひとつの流れとして扱います。</span>
-    </div>
-    <div class="admin-fish-motion" aria-hidden="true">
-      <svg viewBox="0 0 520 260" role="img" aria-label="魚の線画がゆっくり描かれるAIモーション">
-        <path class="admin-fish-flow" d="M22 132 C88 96 168 88 246 126 S394 170 498 112"/>
-        <path class="admin-fish-flow" d="M34 170 C116 206 230 206 326 160 S426 112 504 146"/>
-        <path class="admin-fish-outline" d="M72 134 C150 72 272 76 362 134 C272 194 150 198 72 134 Z"/>
-        <path class="admin-fish-tail" d="M360 134 L456 82 C426 124 426 144 456 186 Z"/>
-        <path class="admin-fish-spine" d="M126 134 C188 114 262 116 334 134"/>
-        <path class="admin-fish-circuit" d="M154 116 V88 H216 V112 M214 154 V184 H282 V150 M246 104 V78 H306"/>
-        <circle class="admin-fish-dot red" cx="300" cy="116" r="6"/>
-        <circle class="admin-fish-dot cyan" cx="216" cy="88" r="5"/>
-        <circle class="admin-fish-dot green" cx="282" cy="184" r="5"/>
-        <circle class="admin-fish-dot" cx="132" cy="132" r="5"/>
-      </svg>
-    </div>
-  </section>
   <a href="/admin" class="back-link">← 管理画面に戻る</a>
   <h1>📣 SNS 一括投稿</h1>
   <p class="sub">X (Twitter) と Threads に同時投稿。設定済みの SNS だけに送信されます。</p>
@@ -291,23 +251,55 @@
 
 <script>
 (function(){
-  var button = document.getElementById("mobile-toggle");
-  var nav = document.getElementById("mobile-nav");
-  if (!button || !nav) return;
-  function closeMenu(){
-    nav.classList.remove("open");
+  function initAdminMobileNav(){
+    var header = document.querySelector(".site-header");
+    if (!header || header.querySelector(".admin-mobile-toggle")) return;
+    var headerInner = header.querySelector(".site-header-inner") || header;
+    var publicNav = header.querySelector(".site-nav");
+    var adminNav = header.querySelector(".admin-subnav");
+    var button = document.createElement("button");
+    button.type = "button";
+    button.className = "admin-mobile-toggle";
+    button.setAttribute("aria-label", "Menu");
+    button.setAttribute("aria-controls", "admin-mobile-panel");
     button.setAttribute("aria-expanded", "false");
+    button.innerHTML = "<svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg>";
+    headerInner.appendChild(button);
+    var panel = document.createElement("div");
+    panel.className = "admin-mobile-panel";
+    panel.id = "admin-mobile-panel";
+    panel.hidden = true;
+    function addSection(label, source){
+      if (!source) return;
+      var section = document.createElement("div");
+      section.className = "admin-mobile-section";
+      var title = document.createElement("span");
+      title.className = "admin-mobile-section-title";
+      title.textContent = label;
+      section.appendChild(title);
+      Array.prototype.forEach.call(source.querySelectorAll("a"), function(link){
+        var a = link.cloneNode(true);
+        a.removeAttribute("style");
+        section.appendChild(a);
+      });
+      if (section.querySelector("a")) panel.appendChild(section);
+    }
+    addSection("PUBLIC", publicNav);
+    addSection("ADMIN", adminNav);
+    if (!panel.querySelector("a")) return;
+    header.appendChild(panel);
+    function setOpen(open){
+      panel.hidden = !open;
+      panel.classList.toggle("is-open", open);
+      button.setAttribute("aria-expanded", open ? "true" : "false");
+      document.body.classList.toggle("admin-mobile-menu-open", open);
+    }
+    button.addEventListener("click", function(){ setOpen(panel.hidden); });
+    panel.addEventListener("click", function(e){ if (e.target.closest("a")) setOpen(false); });
+    document.addEventListener("keydown", function(e){ if (e.key === "Escape") setOpen(false); });
   }
-  button.addEventListener("click", function(){
-    var open = nav.classList.toggle("open");
-    button.setAttribute("aria-expanded", open ? "true" : "false");
-  });
-  nav.querySelectorAll("a").forEach(function(link){
-    link.addEventListener("click", closeMenu);
-  });
-  document.addEventListener("keydown", function(event){
-    if (event.key === "Escape") closeMenu();
-  });
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", initAdminMobileNav);
+  else initAdminMobileNav();
 })();
 </script>
 <script>

@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+<link rel="icon" type="image/svg+xml" href="/favicon-20260719.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-20260719-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-20260719-16x16.png">
+<link rel="shortcut icon" href="/favicon-20260719.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-20260719.png">
+<link rel="manifest" href="/site-20260719.webmanifest">
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI相談｜一歩踏み出す人のAI講習・実践支援【彦根・滋賀】</title>
+<title>AI相談</title>
 <meta name="robots" content="noindex,nofollow">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -89,7 +96,7 @@
   }
   .admin-subnav a:hover { color:#1d4ed8; background:#eff6ff; border-color:#bfdbfe; }
   .topbar { margin-bottom:20px; }
-  .topbar, #admin-menu, #panel-status, #panel-blog-parent, #panel-blog-list, #panel-edit { scroll-margin-top:96px; }
+  .topbar, #admin-menu, #panel-dashboard, #panel-status { scroll-margin-top:96px; }
   .topbar h1 {
     font-size:24px; font-weight:800; letter-spacing:-.01em; color:var(--text);
     display:inline-flex; align-items:center; gap:10px;
@@ -104,21 +111,9 @@
     gap:12px; margin:18px 0 20px;
   }
   .quickflow-card {
-    display:block;
     padding:16px; border-radius:14px;
     background:#fff; border:1px solid var(--line);
-    border-top:4px solid rgba(37,99,235,.18);
     box-shadow:0 8px 24px rgba(15,23,42,.06);
-    color:inherit; text-decoration:none;
-    transition:transform .18s, border-color .18s, box-shadow .18s, background .18s;
-  }
-  .quickflow-card:hover,
-  .quickflow-card:focus-visible {
-    transform:translateY(-2px);
-    border-color:#93c5fd;
-    background:#f8fbff;
-    box-shadow:0 14px 30px rgba(15,23,42,.10);
-    outline:none;
   }
   .quickflow-card span {
     display:inline-flex; padding:4px 10px; margin-bottom:10px;
@@ -130,10 +125,6 @@
   }
   .quickflow-card p {
     color:var(--text-soft); font-size:13px; line-height:1.65;
-  }
-  .quickflow-card em {
-    display:inline-flex; margin-top:10px;
-    color:var(--primary); font-style:normal; font-size:12px; font-weight:850;
   }
   .sub { color:var(--muted); font-size:13px; margin-bottom:6px; }
   .panel {
@@ -211,6 +202,20 @@
   .draft .preview { background:#f8fafc; color:var(--text); padding:14px;
     border-radius:10px; max-height:280px; overflow:auto; margin:8px 0; font-size:13px; border:1px solid var(--line); }
   .draft .preview h2 { font-size:16px; color:var(--text); margin:10px 0 6px; }
+  .title-candidate-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; margin-top:12px; }
+  .title-candidate { display:grid; grid-template-columns:28px minmax(0,1fr); gap:8px; align-items:start; text-align:left; }
+  .title-candidate span { display:grid; place-items:center; width:24px; height:24px; border-radius:50%; background:#dbeafe; color:#1d4ed8; font-size:11px; font-weight:800; }
+  .generation-meta { display:grid; gap:10px; margin:12px 0; }
+  .generation-meta > div { padding:12px; border:1px solid var(--line); border-radius:10px; background:#f8fafc; }
+  .generation-meta strong { display:block; margin-bottom:5px; font-size:12px; }
+  .generation-meta p, .generation-meta li { color:var(--text-soft); font-size:12px; }
+  .image-prompt-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+  .image-prompt-grid label:first-child { grid-column:1 / -1; }
+  .image-prompt-grid textarea { min-height:92px; }
+  @media (max-width:760px) {
+    .title-candidate-grid, .image-prompt-grid { grid-template-columns:1fr; }
+    .image-prompt-grid label:first-child { grid-column:auto; }
+  }
   .badge { display:inline-block; padding:3px 10px; border-radius:999px;
     font-size:10.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; }
   .badge.ok { background:rgba(16,185,129,.12); color:#047857; border:1px solid rgba(16,185,129,.30); }
@@ -246,8 +251,199 @@
   .gname{ flex:1 1 auto; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-weight:600; }
   .gstate { font-size:10px; }
 
+  /* === Dashboard panel === */
+  .dash-summary {
+    display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px;
+  }
+  .dash-summary .pill {
+    padding:7px 14px; border-radius:999px;
+    background: var(--primary-bg);
+    border:1px solid rgba(37,99,235,.20);
+    font-size:12.5px; font-weight:700; color:var(--text-soft);
+  }
+  .dash-summary .pill .c { color: var(--primary); margin-left:6px; font-weight:800; }
+  .dash-summary .pill.muted { background:#f1f5f9; border-color: var(--line); color:var(--muted); }
+
+  .dash-cols { display:grid; grid-template-columns: 1fr 1fr; gap:16px; }
+  @media (max-width: 720px) { .dash-cols { grid-template-columns:1fr; } }
+
+  .dash-col h3 { font-size:12px; font-weight:800; letter-spacing:.10em; color:var(--muted); margin-bottom:10px; text-transform:uppercase; }
+  .dash-list { list-style:none; padding:0; margin:0; max-height: 320px; overflow-y:auto; }
+  .dash-list li {
+    padding:10px 12px; margin:5px 0;
+    background: #fff;
+    border:1px solid var(--line);
+    border-radius:10px;
+    font-size:13px; line-height:1.55;
+    transition: border-color .2s, background .2s;
+  }
+  .dash-list li:hover { border-color: rgba(37,99,235,.30); background: var(--primary-bg); }
+  .dash-list li.muted { color: var(--muted); background:#f8fafc; }
+  .dash-list li.muted:hover { background:#f8fafc; }
+  .dash-list li a { color: var(--text); text-decoration:none; font-weight:600; }
+  .dash-list li a:hover { color: var(--primary); }
+  .dash-list .row-meta { display:flex; gap:8px; align-items:center; margin-bottom:4px; font-size:10.5px; }
+  .dash-list .row-meta .biz { padding:2px 9px; border-radius:999px; background:rgba(37,99,235,.10); color:var(--primary); font-weight:700; }
+  .dash-list .row-meta .date { color: var(--muted); font-family:'SFMono-Regular',monospace; }
+  .dash-cma { margin-top:16px; }
+  .dash-cma summary { cursor:pointer; font-size:13px; color:var(--text-soft); padding:8px 0; font-weight:600; }
+  .dash-cma summary:hover { color: var(--primary); }
+  .dash-meta { color:var(--muted); font-size:11px; text-align:right; margin-top:10px; font-family:'SFMono-Regular',monospace; }
+
+  /* === First-view operation pulse === */
+  .ops-pulse {
+    display:grid; grid-template-columns:repeat(3, minmax(0, 1fr));
+    gap:12px; margin-bottom:18px;
+  }
+  .ops-pulse-card {
+    min-height:88px; padding:16px; border-radius:8px;
+    background:#fff; border:1px solid var(--line);
+    box-shadow:0 8px 26px rgba(15,23,42,.06);
+  }
+  .ops-pulse-card strong {
+    display:block; font-size:26px; line-height:1; letter-spacing:-.02em;
+    color:var(--text); margin:8px 0 4px;
+  }
+  .ops-pulse-card span {
+    display:block; font-size:11px; font-weight:800; color:var(--muted);
+    letter-spacing:.10em;
+  }
+  .ops-pulse-card small { display:block; line-height:1.35; }
+  .ops-pulse-card.alert {
+    border-color:rgba(239,68,68,.40); background:#fff7f7;
+  }
+  .ops-pulse-card.alert strong { color:#b91c1c; font-size:18px; }
   @media (max-width:760px) {
+    .ops-pulse { grid-template-columns:1fr; }
     .quickflow { grid-template-columns:1fr; }
+  }
+
+  /* === Homepage intake === */
+  .intake-panel {
+    padding:0;
+    overflow:hidden;
+  }
+  .intake-head {
+    display:grid;
+    grid-template-columns:minmax(0, 1fr) auto;
+    gap:16px;
+    align-items:center;
+    padding:18px 20px;
+    background:linear-gradient(135deg,#0f172a 0%,#1e3a8a 100%);
+    color:#fff;
+  }
+  .intake-head h2 {
+    margin:0 0 4px;
+    color:#fff;
+    font-size:16px;
+    letter-spacing:0;
+    text-transform:none;
+  }
+  .intake-head p {
+    margin:0;
+    color:rgba(255,255,255,.76);
+    font-size:12.5px;
+  }
+  .intake-body {
+    padding:18px 20px 20px;
+  }
+  .intake-url-row {
+    display:grid;
+    grid-template-columns:minmax(0, 1fr) auto;
+    gap:10px;
+    align-items:center;
+  }
+  .intake-options {
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 14px;
+    margin-top:10px;
+    color:var(--muted);
+    font-size:12px;
+  }
+  .intake-options label {
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    margin:0;
+    color:var(--muted);
+    font-weight:700;
+  }
+  .intake-options input {
+    width:auto;
+  }
+  .intake-result {
+    margin-top:14px;
+    border:1px solid var(--line);
+    border-radius:12px;
+    background:#f8fafc;
+    overflow:hidden;
+  }
+  .intake-result[hidden] { display:none; }
+  .intake-result-head {
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    padding:12px 14px;
+    border-bottom:1px solid var(--line);
+    background:#fff;
+  }
+  .intake-result-title {
+    font-size:14px;
+    font-weight:850;
+    color:var(--text);
+  }
+  .intake-result-url {
+    display:block;
+    margin-top:2px;
+    color:var(--muted);
+    font-size:11px;
+    word-break:break-all;
+  }
+  .intake-result-body {
+    display:grid;
+    grid-template-columns:minmax(0, 1.2fr) minmax(260px, .8fr);
+    gap:12px;
+    padding:12px 14px;
+  }
+  .intake-result-body p {
+    color:var(--text-soft);
+    font-size:12.5px;
+  }
+  .intake-chip-list {
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    margin-top:8px;
+  }
+  .intake-chip {
+    display:inline-flex;
+    align-items:center;
+    min-height:24px;
+    padding:0 9px;
+    border-radius:999px;
+    background:#fff;
+    border:1px solid var(--line);
+    color:var(--text-soft);
+    font-size:11px;
+    font-weight:800;
+    text-decoration:none;
+  }
+  .intake-result-actions {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+    gap:8px;
+  }
+  @media (max-width:760px) {
+    .intake-head,
+    .intake-url-row,
+    .intake-result-body {
+      grid-template-columns:1fr;
+    }
+    .intake-result-actions {
+      justify-content:flex-start;
+    }
   }
 
   /* === Admin menu === */
@@ -258,6 +454,10 @@
   }
   .admin-menu-head h2 {
     margin:0; color:#fff; letter-spacing:.08em;
+  }
+  .admin-menu-head p {
+    margin:6px 0 0; color:rgba(255,255,255,.78);
+    font-size:13px; line-height:1.55;
   }
   .admin-menu-primary {
     display:inline-flex; align-items:center; justify-content:center;
@@ -313,234 +513,406 @@
     .admin-menu-group:last-child { border-bottom:none; }
     .admin-menu-head { align-items:flex-start; flex-direction:column; }
     .admin-menu-primary { width:100%; }
-    .panel, .topbar, #admin-menu, #panel-status, #panel-blog-parent, #panel-blog-list, #panel-edit { scroll-margin-top:156px; }
+    .panel, .topbar, #admin-menu, #panel-dashboard, #panel-content-apps, #panel-status { scroll-margin-top:156px; }
+  }
+  /* Consultation-first admin shell, aligned with the public site (2026-07-12) */
+  :root { --primary:#075fc8; --primary-soft:#2d7fdf; --primary-bg:#eaf4ff; --text:#0a1728; --line:#cbd9e8; }
+  body { background:#f5f9fd; padding:0 24px 48px; }
+  header.site-header, header.site-header.scrolled {
+    background:rgba(255,255,255,.98); border-bottom:1px solid rgba(10,23,40,.1);
+    box-shadow:0 8px 30px rgba(10,23,40,.06);
+  }
+  .site-header-inner { min-height:72px; }
+  .brand-mark, .wordmark .word-en { display:none; }
+  .wordmark { font-size:22px; gap:5px; }
+  .wordmark .word-ai { color:var(--primary); }
+  .site-logo-by { padding-left:10px; border-left:1px solid var(--line); }
+  .site-nav { border:0; background:transparent; box-shadow:none; }
+  .site-nav a.nav-link { border:0; background:transparent; }
+  .site-nav .login-btn { background:var(--primary); }
+  .admin-subnav { padding-bottom:10px; gap:4px; }
+  .admin-subnav a { border:0; background:transparent; }
+  .admin-subnav a[aria-current="page"] { background:var(--primary-bg); color:var(--primary); }
+  .container { max-width:1180px; padding-top:132px; }
+  .topbar { padding:28px 0 4px; }
+  .topbar h1 { font-size:clamp(28px,3vw,40px); letter-spacing:-.04em; }
+  .topbar-lead { max-width:680px; }
+  .quickflow { gap:16px; }
+  .quickflow-card { border-radius:12px; border-color:var(--line); box-shadow:0 10px 28px rgba(10,42,80,.06); }
+  .quickflow-card:first-child { border-top:4px solid var(--primary); }
+  .panel, .ops-pulse-card { border-radius:12px !important; border-color:var(--line) !important; box-shadow:0 10px 30px rgba(10,42,80,.06) !important; }
+  .admin-menu-panel { padding:0; overflow:hidden; }
+  .admin-menu-head { padding:22px 24px; background:#fff; border-bottom:1px solid var(--line); }
+  .admin-menu-grid { grid-template-columns:1fr; }
+  .admin-menu-group { border-right:0; padding:22px 24px; }
+  .admin-menu-group:nth-child(n+2) { display:none; }
+  .admin-menu-group:first-child { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+  .admin-menu-group:first-child h3 { grid-column:1/-1; }
+  .admin-link { min-height:88px; align-items:flex-start; padding:16px; border:1px solid var(--line); border-radius:10px; background:#fff; }
+  .admin-link.is-priority { border-color:#a7c9ef; background:#f6fbff; }
+  .admin-link-icon { display:none; }
+  .admin-link-action { align-self:center; }
+  #panel-site-intake { margin-top:18px; }
+  @media (max-width:900px) {
+    body { padding:0 16px 36px; }
+    .container { padding-top:174px; }
+    .site-header-inner { align-items:center; flex-direction:row; }
+    .site-nav { display:none; }
+    .admin-subnav { padding:0 16px 12px; }
+    .quickflow { grid-template-columns:1fr; }
+    .admin-menu-group:first-child { grid-template-columns:1fr; }
   }
 </style>
-<link rel="stylesheet" href="/admin/admin-common.css?v=20260803-clear-sky-rose-2">
-<script src="/admin/admin-menu.js" defer></script>
+<link rel="stylesheet" href="/admin/admin-common.css">
 <style>
-  /* Unified editorial shell, 2026-07-22 */
-  :root { --primary:#5367d9; --primary-soft:#7a67d8; --primary-bg:#eef1ff; --text:#172033; --line:#d9deee; }
-  body.admin-page { background:#f7f8fc !important; color:#172033 !important; }
+  /* Final shell overrides must follow admin-common.css. */
+  body.admin-page { background:#f5f9fd !important; color:#0a1728 !important; }
   body.admin-page header.site-header { background:rgba(255,255,255,.98) !important; border-bottom:1px solid rgba(10,23,40,.1) !important; box-shadow:0 8px 30px rgba(10,23,40,.06) !important; }
-  body.admin-page .brand-mark { display:none !important; }
-  body.admin-page .wordmark { font-size:22px !important; gap:5px !important; }
-  body.admin-page .wordmark .word-ai { color:#5367d9 !important; }
-  body.admin-page .wordmark .word-en { display:none !important; }
-  body.admin-page .site-logo-by { padding-left:10px; border-left:1px solid #cbd9e8; }
-  body.admin-page .admin-scroll-menu { background:transparent !important; border-color:#cbd9e8 !important; box-shadow:none !important; }
-  body.admin-page .admin-scroll-link { border-radius:7px !important; }
-  body.admin-page .admin-scroll-link:hover { background:#eef1ff !important; color:#5367d9 !important; }
-  body.admin-page .panel, body.admin-page .quickflow-card { border-radius:12px !important; border-color:#cbd9e8 !important; box-shadow:0 10px 30px rgba(10,42,80,.06) !important; }
-  body.admin-page .topbar h1 { letter-spacing:-.035em; }
-  body.admin-page .admin-fish-hero { border-color:#d9deee !important; background:#fff !important; box-shadow:0 14px 36px rgba(42,53,105,.07) !important; }
-  body.admin-page .admin-menu-head { background:linear-gradient(118deg,#3f4fab,#5367d9 60%,#7566cf) !important; }
-  body.admin-page button.primary, body.admin-page .admin-menu-primary { border-radius:8px !important; }
+  body.admin-page .brand-mark, body.admin-page .wordmark .word-en { display:none !important; }
+  body.admin-page .wordmark .word-ai { color:#075fc8 !important; }
+  body.admin-page .site-nav { background:transparent !important; border:0 !important; box-shadow:none !important; }
+  body.admin-page .site-nav a.nav-link { background:transparent !important; border:0 !important; color:#0a1728 !important; }
+  body.admin-page .site-nav .login-btn { background:#075fc8 !important; }
+  body.admin-page .panel, body.admin-page .ops-pulse-card { border-radius:12px !important; border-color:#cbd9e8 !important; box-shadow:0 10px 30px rgba(10,42,80,.06) !important; }
+  body.admin-page .admin-menu-grid { grid-template-columns:1fr !important; }
+  body.admin-page .admin-menu-group:nth-child(n+2) { display:none !important; }
+  body.admin-page .admin-menu-group:first-child { display:grid !important; grid-template-columns:repeat(3,minmax(0,1fr)) !important; gap:12px !important; border-right:0 !important; }
+  body.admin-page .admin-menu-group:first-child h3 { grid-column:1/-1; }
+  body.admin-page .admin-menu-group:first-child > a:nth-of-type(n+4) { display:none !important; }
+  body.admin-page .admin-link { border:1px solid #cbd9e8 !important; background:#fff !important; border-radius:10px !important; min-height:88px; }
+  body.admin-page .admin-link.is-priority { border-color:#a7c9ef !important; background:#f6fbff !important; }
+  body.admin-page .admin-link-icon { display:none !important; }
+  @media (max-width:900px) {
+    body.admin-page .admin-menu-group:first-child { grid-template-columns:1fr !important; }
+    body.admin-page .quickflow { grid-template-columns:1fr !important; }
+  }
+  body.admin-page .site-nav,
+  body.admin-page .admin-subnav { display:none !important; }
+  body.admin-page .site-header-inner {
+    min-height:58px !important;
+    flex-direction:row !important;
+    align-items:center !important;
+  }
+  body.admin-page .admin-mobile-toggle {
+    position:static !important;
+    display:grid !important;
+    place-items:center;
+    flex:0 0 42px;
+    width:42px;
+    height:42px;
+    margin-left:auto;
+    border:1px solid #cbd9e8;
+    border-radius:10px;
+    background:#fff;
+    color:#0a1728;
+    font-size:28px;
+    font-weight:900;
+    line-height:1;
+  }
+  body.admin-page .container { padding-top:76px !important; }
+  body.admin-page [data-admin-view][hidden] { display:none !important; }
+  body.admin-page .admin-mobile-panel {
+    top:58px !important;
+    max-height:calc(100vh - 70px);
+    overflow:auto;
+  }
 </style>
 </head>
-<body class="admin-page admin-theme-light admin-fixed-menu-page">
+<body class="admin-page admin-theme-light">
 <header class="site-header scrolled" id="site-header">
   <div class="site-header-inner">
-    <a class="site-logo" href="/" aria-label="AI相談 トップへ">
+    <a class="site-logo" href="/" aria-label="AI相談 公開ページへ">
       <span class="brand-mark" aria-hidden="true"><span class="brand-a">AI</span><span class="brand-ha">相</span></span>
       <span class="wordmark"><span class="word-ai">AI相談</span><span class="word-hub">彦根</span><span class="word-en">AI CONSULT</span></span>
-      <span class="site-logo-by">滋賀・彦根</span>
+      <span class="site-logo-by">管理画面</span>
     </a>
-    <nav class="site-nav admin-slide-nav" aria-label="管理ページメニュー">
-      <div class="admin-scroll-menu" aria-label="管理作業順メニュー">
-        <a class="admin-scroll-link" href="/admin">管理トップ</a>
-        <a class="admin-scroll-link" href="/admin/blog">ブログ管理</a>
-        <a class="admin-scroll-link" href="/admin/apps/reel/">リール制作</a>
-        <a class="admin-scroll-link" href="/admin/sns-post">SNS投稿</a>
-        <a class="admin-scroll-link" href="/admin/gubble-sns">SNS分析</a>
-        <a class="admin-scroll-link" href="/admin/chat">AI相談</a>
-        <a class="admin-scroll-link admin-nav-cta" href="/">公開ページ</a>
-      </div>
+    <nav class="site-nav" aria-label="公開ページナビ">
+      <a class="nav-link" href="/">ホーム</a>
+      <a class="nav-link" href="/#courses">講習</a>
+      <a class="nav-link" href="/lectures/index.html">資料</a>
+      <a class="nav-link" href="/blog/index.html">ブログ</a>
+      <a class="nav-link" href="/portfolio.html">実績</a>
+      <a class="login-btn" href="/admin" aria-current="page">管理</a>
     </nav>
-    <button class="mobile-toggle" id="mobile-toggle" aria-label="メニュー" aria-controls="mobile-nav" aria-expanded="false" type="button">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-    </button>
   </div>
-  <div class="mobile-nav" id="mobile-nav">
-    <div class="mobile-nav-panel mobile-nav-panel--admin">
-      <span class="mobile-nav-label">管理ハブ</span>
-      <div class="mobile-link-list">
-        <a href="/admin"><span class="mobile-link-title">管理ハブ</span><small>管理ページを選ぶ</small></a>
-      </div>
-      <span class="mobile-nav-label">記事・発信</span>
-      <div class="mobile-link-list">
-        <a href="/admin/blog"><span class="mobile-link-title">ブログ管理</span><small>記事生成と公開</small></a>
-        <a href="/admin/apps/reel/"><span class="mobile-link-title">リール制作</span><small>動画と投稿文を作る</small></a>
-        <a href="/admin/sns-post"><span class="mobile-link-title">SNS投稿</span><small>X・Threads投稿を準備</small></a>
-      </div>
-      <span class="mobile-nav-label">分析・相談</span>
-      <div class="mobile-link-list">
-        <a href="/admin/gubble-sns"><span class="mobile-link-title">SNS分析</span><small>反応と改善を見る</small></a>
-        <a href="/admin/chat"><span class="mobile-link-title">AI相談</span><small>運用メモを相談する</small></a>
-      </div>
-      <span class="mobile-nav-label">運用・確認</span>
-      <div class="mobile-link-list">
-        <a href="/ops"><span class="mobile-link-title">OPS</span><small>運用資料とプロンプト</small></a>
-        <a href="/"><span class="mobile-link-title">公開トップ</span><small>受講導線を確認</small></a>
-        <a href="/blog/index.html"><span class="mobile-link-title">公開ブログ</span><small>記事一覧を確認</small></a>
-      </div>
-      <span class="mobile-nav-label">セッション</span>
-      <div class="mobile-link-list">
-        <a class="logout-mobile-link" href="/admin/logout"><span class="mobile-link-title">ログアウト</span><small>管理画面から退出</small></a>
-      </div>
-    </div>
-  </div>
+  <nav class="admin-subnav" aria-label="管理メニュー">
+    <a href="/admin?view=overview" data-admin-view-link="overview" aria-current="page">ホーム</a>
+    <a href="/admin?view=intake" data-admin-view-link="intake">URL入力</a>
+    <a href="/admin?view=article" data-admin-view-link="article">記事生成</a>
+    <a href="/admin?view=apps" data-admin-view-link="apps">Blog / Reel</a>
+    <a href="/admin?view=dashboard" data-admin-view-link="dashboard">今週</a>
+    <a href="/admin/gubble-sns">SNS分析</a>
+    <a href="/admin/sns-post">SNS投稿</a>
+    <a href="/admin/chat">社内AI</a>
+    <a href="/ops">OPS</a>
+  </nav>
 </header>
 <div class="container">
-  <div class="topbar">
+  <div class="topbar" data-admin-view="overview">
     <div>
-      <h1><span class="dot"></span>AI相談 ブログ管理</h1>
-      <p class="sub">ブログ記事の生成・編集・公開だけに絞った軽量画面</p>
-      <p class="topbar-lead">公開トップ用のデータベース一覧や運用ダッシュボードは読み込みません。ページを開いた直後は軽くし、必要なときだけブログ配下の記事一覧を取得します。</p>
+      <h1>今日の仕事を、迷わず進める。</h1>
+      <p class="sub">AI相談 彦根｜運用ワークスペース</p>
+      <p class="topbar-lead">状態を確認して、記事を作る。必要なときだけSNSや運用画面へ進めます。</p>
     </div>
   </div>
 
-  <section class="admin-fish-hero" aria-label="AI魚線画モーション">
-    <div class="admin-fish-copy">
-      <strong>記事作成だけを、迷わず前へ進める</strong>
-      <span>ブログ親IDを固定し、AIで下書きを作り、必要な記事だけ編集して公開します。SNS、OPS、公開トップのDB確認はこの画面から外しました。</span>
-    </div>
-    <div class="admin-fish-motion" aria-hidden="true">
-      <svg viewBox="0 0 520 260" role="img" aria-label="魚の線画がゆっくり描かれるAIモーション">
-        <path class="admin-fish-flow" d="M22 132 C88 96 168 88 246 126 S394 170 498 112"/>
-        <path class="admin-fish-flow" d="M34 170 C116 206 230 206 326 160 S426 112 504 146"/>
-        <path class="admin-fish-outline" d="M72 134 C150 72 272 76 362 134 C272 194 150 198 72 134 Z"/>
-        <path class="admin-fish-tail" d="M360 134 L456 82 C426 124 426 144 456 186 Z"/>
-        <path class="admin-fish-spine" d="M126 134 C188 114 262 116 334 134"/>
-        <path class="admin-fish-circuit" d="M154 116 V88 H216 V112 M214 154 V184 H282 V150 M246 104 V78 H306"/>
-        <circle class="admin-fish-dot red" cx="300" cy="116" r="6"/>
-        <circle class="admin-fish-dot cyan" cx="216" cy="88" r="5"/>
-        <circle class="admin-fish-dot green" cx="282" cy="184" r="5"/>
-        <circle class="admin-fish-dot" cx="132" cy="132" r="5"/>
-      </svg>
-    </div>
-  </section>
-
-  <details class="panel admin-menu-panel admin-command-menu" id="admin-menu" open>
-    <summary class="admin-menu-head">
-      <span class="admin-menu-trigger" aria-hidden="true">☰</span>
-      <span class="admin-menu-title">
-        <strong>ブログだけの管理メニュー</strong>
-        <small>重い一覧取得は自動実行しません。ブログIDを保存し、必要な操作だけ押してください。</small>
-      </span>
-      <span class="admin-menu-state">開閉</span>
-    </summary>
-    <div class="admin-menu-grid admin-menu-grid-2">
-      <section class="admin-menu-group" aria-label="ブログ作業">
-        <h3>ブログ作業</h3>
-        <a class="admin-link" href="#panel-status">
-          <span class="admin-link-icon">✍️</span>
-          <span><strong>接続確認</strong><small>必要なAPIキーの状態だけ確認</small></span>
-          <span class="admin-link-action">移動</span>
-        </a>
-        <a class="admin-link" href="#panel-blog-parent">
-          <span class="admin-link-icon">🧭</span>
-          <span><strong>ブログ設定</strong><small>親グループIDを保存</small></span>
-          <span class="admin-link-action">移動</span>
-        </a>
-        <a class="admin-link" href="#panel-blog-list">
-          <span class="admin-link-icon">📚</span>
-          <span><strong>記事一覧</strong><small>必要な時だけ取得</small></span>
-          <span class="admin-link-action">移動</span>
-        </a>
-        <a class="admin-link" href="#theme">
-          <span class="admin-link-icon">🤖</span>
-          <span><strong>AI記事生成</strong><small>下書きから公開へ</small></span>
-          <span class="admin-link-action">移動</span>
-        </a>
-      </section>
-      <section class="admin-menu-group" aria-label="確認">
-        <h3>確認</h3>
-        <a class="admin-link" href="/blog/index.html">
-          <span class="admin-link-icon">📝</span>
-          <span><strong>公開ブログ</strong><small>公開済み記事一覧を確認</small></span>
-          <span class="admin-link-action">開く</span>
-        </a>
-        <a class="admin-link" href="/">
-          <span class="admin-link-icon">🏠</span>
-          <span><strong>公開トップ</strong><small>トップページと同じ見た目を確認</small></span>
-          <span class="admin-link-action">開く</span>
-        </a>
-        <a class="admin-link" href="/admin/logout">
-          <span class="admin-link-icon">↪</span>
-          <span><strong>ログアウト</strong><small>管理画面から退出</small></span>
-          <span class="admin-link-action">実行</span>
-        </a>
-      </section>
-    </div>
-  </details>
-
-  <div class="quickflow" aria-label="最短操作">
-    <a class="quickflow-card" href="#panel-blog-parent">
+  <div class="quickflow" data-admin-view="overview" aria-label="最短操作">
+    <div class="quickflow-card">
       <span>STEP 1</span>
-      <strong>ブログIDを保存</strong>
-      <p>公開トップの親グループ一覧は読みません。ブログ親グループIDだけを保存して使います。</p>
-      <em>ブログ設定へ移動 →</em>
-    </a>
-    <a class="quickflow-card" href="#theme">
+      <strong>状態を確認</strong>
+      <p>APIと環境変数を確認し、止まっている原因を先に外します。</p>
+    </div>
+    <div class="quickflow-card">
       <span>STEP 2</span>
-      <strong>AIで記事案を作る</strong>
-      <p>テーマを入れて候補を作り、採用案を編集欄へ送ります。</p>
-      <em>記事生成へ移動 →</em>
-    </a>
-    <a class="quickflow-card" href="#panel-edit">
+      <strong>記事を作る</strong>
+      <p>対象を選び、文章と画像を作って内容を確認します。</p>
+    </div>
+    <div class="quickflow-card">
       <span>STEP 3</span>
-      <strong>編集して公開</strong>
-      <p>本文、画像、表示設定を整えてブログ配下に公開します。</p>
-      <em>編集欄へ移動 →</em>
-    </a>
+      <strong>発信する</strong>
+      <p>公開した内容をSNSへ展開し、反応を次の改善に使います。</p>
+    </div>
   </div>
 
-  <div class="panel" id="panel-status">
+  <div class="ops-pulse" id="ops-pulse" data-admin-view="overview" aria-label="運用サマリー">
+    <div class="ops-pulse-card">
+      <span>直近7日</span>
+      <strong id="pulse-recent">--</strong>
+      <small>成果・作業ログ</small>
+    </div>
+    <div class="ops-pulse-card">
+      <span>未対応</span>
+      <strong id="pulse-open">--</strong>
+      <small>要確認タスク</small>
+    </div>
+    <div class="ops-pulse-card" id="pulse-health-card">
+      <span>接続状態</span>
+      <strong id="pulse-health">確認中</strong>
+      <small id="pulse-health-note">API確認中</small>
+    </div>
+  </div>
+
+  <div class="panel intake-panel" id="panel-site-intake" data-admin-view="intake">
+    <div class="intake-head">
+      <div>
+        <h2>ホームページURLから管理入力を作る</h2>
+        <p>外部提供用の初期セットアップ。公式サイトを読むだけで、記事テーマ・下書き・画像プロンプト・SNS分析設定の候補を作ります。</p>
+      </div>
+      <span class="badge ok" id="site-intake-badge">新規</span>
+    </div>
+    <div class="intake-body">
+      <div class="intake-url-row">
+        <input type="url" id="site-intake-url" placeholder="https://example.com">
+        <button type="button" class="primary" id="btn-site-intake">URLを読み取る</button>
+      </div>
+      <div class="intake-options" aria-label="反映先">
+        <label><input type="checkbox" id="site-intake-fill-article" checked> 記事入力に反映</label>
+        <label><input type="checkbox" id="site-intake-fill-image" checked> 画像プロンプトに反映</label>
+        <label><input type="checkbox" id="site-intake-fill-dashboard" checked> SNS分析設定を保存</label>
+        <label><input type="checkbox" id="site-intake-overwrite"> 既存入力も上書き</label>
+      </div>
+      <div class="intake-result" id="site-intake-result" hidden></div>
+    </div>
+  </div>
+
+  <div class="panel admin-menu-panel" id="admin-menu" data-admin-view="overview">
+    <div class="admin-menu-head">
+      <div>
+        <h2>主要な作業</h2>
+        <p>普段使う入口だけを表示しています。資料と監視画面は各機能の中から開けます。</p>
+      </div>
+      <a class="admin-menu-primary" href="/">公開TOPを見る</a>
+    </div>
+    <div class="admin-menu-grid">
+      <section class="admin-menu-group" aria-label="今日やる">
+        <h3>今日使う3つ</h3>
+        <a class="admin-link is-priority" href="/admin?view=article">
+          <span class="admin-link-icon">✍️</span>
+          <span><strong>接続と記事生成</strong><small>生成・編集・公開</small></span>
+          <span class="admin-link-action">移動</span>
+        </a>
+        <a class="admin-link is-priority" href="/admin/gubble-sns">
+          <span class="admin-link-icon">📊</span>
+          <span><strong>SNS分析</strong><small>YouTube / SNS / GA4 / GSC</small></span>
+          <span class="admin-link-action">開く</span>
+        </a>
+        <a class="admin-link is-priority" href="/admin/sns-post">
+          <span class="admin-link-icon">📣</span>
+          <span><strong>SNS一括投稿</strong><small>X / Threads</small></span>
+          <span class="admin-link-action">開く</span>
+        </a>
+        <a class="admin-link" href="/admin/chat">
+          <span class="admin-link-icon">🤖</span>
+          <span><strong>社内エージェント</strong><small>相談・指示・下書き</small></span>
+          <span class="admin-link-action">開く</span>
+        </a>
+        <a class="admin-link" href="/ops">
+          <span class="admin-link-icon">⚙️</span>
+          <span><strong>運用本部 OPS</strong><small>資料・台帳・運用確認</small></span>
+          <span class="admin-link-action">開く</span>
+        </a>
+        <a class="admin-link" href="/admin?view=dashboard">
+          <span class="admin-link-icon">⭐</span>
+          <span><strong>今週の動き</strong><small>タスク・成果物</small></span>
+          <span class="admin-link-action">移動</span>
+        </a>
+      </section>
+      <section class="admin-menu-group" aria-label="公開確認">
+        <h3>公開確認</h3>
+        <a class="admin-link" href="/">
+          <span class="admin-link-icon">🌐</span>
+          <span><strong>公開トップ</strong><small>AI相談 本体</small></span>
+          <span class="admin-link-action">開く</span>
+        </a>
+        <a class="admin-link" href="/#packages">
+          <span class="admin-link-icon">🎓</span>
+          <span><strong>受講プラン</strong><small>講座・相談メニュー</small></span>
+          <span class="admin-link-action">移動</span>
+        </a>
+        <a class="admin-link" href="/#speaker">
+          <span class="admin-link-icon">🎤</span>
+          <span><strong>講師紹介</strong><small>由井辰美プロフィール</small></span>
+          <span class="admin-link-action">移動</span>
+        </a>
+        <a class="admin-link" href="/#lectures">
+          <span class="admin-link-icon">📝</span>
+          <span><strong>受講資料</strong><small>公開教材・講座LP</small></span>
+          <span class="admin-link-action">移動</span>
+        </a>
+        <a class="admin-link" href="/#flow">
+          <span class="admin-link-icon">🛠</span>
+          <span><strong>ご依頼の流れ</strong><small>相談から公開まで</small></span>
+          <span class="admin-link-action">移動</span>
+        </a>
+        <a class="admin-link" href="/#faq">
+          <span class="admin-link-icon">❔</span>
+          <span><strong>FAQ</strong><small>受講前の不安解消</small></span>
+          <span class="admin-link-action">移動</span>
+        </a>
+      </section>
+      <section class="admin-menu-group" aria-label="運用と監視">
+        <h3>資料 / 監視</h3>
+        <a class="admin-link" href="/watch/index.html">
+          <span class="admin-link-icon">📡</span>
+          <span><strong>AI Watch</strong><small>自動収集ニュース</small></span>
+          <span class="admin-link-action">開く</span>
+        </a>
+        <a class="admin-link" href="/watch/archive.html">
+          <span class="admin-link-icon">📚</span>
+          <span><strong>過去ログ</strong><small>日次アーカイブ</small></span>
+          <span class="admin-link-action">開く</span>
+        </a>
+        <a class="admin-link" href="/portfolio.html">
+          <span class="admin-link-icon">🏆</span>
+          <span><strong>実績詳細</strong><small>ポートフォリオ一覧</small></span>
+          <span class="admin-link-action">開く</span>
+        </a>
+        <a class="admin-link" href="/programming-map.html">
+          <span class="admin-link-icon">🧭</span>
+          <span><strong>AIコーディング講習</strong><small>講習用マップ</small></span>
+          <span class="admin-link-action">開く</span>
+        </a>
+        <a class="admin-link" href="/#works">
+          <span class="admin-link-icon">🧩</span>
+          <span><strong>制作実績</strong><small>公開ページの実績一覧</small></span>
+          <span class="admin-link-action">移動</span>
+        </a>
+        <a class="admin-link" href="/#growth">
+          <span class="admin-link-icon">📈</span>
+          <span><strong>集客施策</strong><small>SNS / SEO / LLMO</small></span>
+          <span class="admin-link-action">移動</span>
+        </a>
+      </section>
+    </div>
+  </div>
+
+  <div class="panel" id="panel-dashboard" data-admin-view="dashboard">
+    <h2>⭐ 今週の動き（事業別 / 直近 7 日）</h2>
+    <div id="dashboard-summary" class="dash-summary">読み込み中…</div>
+    <div class="dash-cols">
+      <div class="dash-col">
+        <h3>📌 未対応・要確認タスク</h3>
+        <ul id="dash-tasks" class="dash-list"><li class="muted">読み込み中…</li></ul>
+      </div>
+      <div class="dash-col">
+        <h3>📝 最近の成果物</h3>
+        <ul id="dash-works" class="dash-list"><li class="muted">読み込み中…</li></ul>
+      </div>
+    </div>
+    <details class="dash-cma">
+      <summary>📡 CMA（Managed Agents）実行履歴を見る</summary>
+      <ul id="dash-cma" class="dash-list"><li class="muted">読み込み中…</li></ul>
+    </details>
+    <p class="dash-meta" id="dash-meta"></p>
+  </div>
+
+  <div class="panel" id="panel-content-apps" data-admin-view="apps">
+    <div class="admin-menu-head">
+      <div>
+        <h2>ブログ・リール App Server</h2>
+        <p>事業の一次情報とトレンドを調査し、SEO・MEO・LLMO記事、画像、Instagramリール、投稿文を作成します。</p>
+      </div>
+      <span class="badge ok">AI Hub設定済み</span>
+    </div>
+    <div class="row" style="margin-top:14px;">
+      <a class="admin-menu-primary" href="/admin/apps/blog.html" target="_blank" rel="noopener noreferrer">Blog App Serverを開く</a>
+      <a class="admin-menu-primary" href="/admin/apps/reel.html" target="_blank" rel="noopener noreferrer">Reel App Serverを開く</a>
+    </div>
+    <small>生成後はこの管理画面へ戻り、すべての文章・画像・公開設定を確認してから反映してください。</small>
+  </div>
+
+  <div class="panel" id="panel-status" data-admin-view="article">
     <h2>① 接続状態</h2>
     <div id="status-area">確認中…</div>
   </div>
 
-  <div class="panel" id="panel-blog-parent">
-    <h2>② ブログ設定</h2>
-    <p class="muted">トップレベルのグループ一覧は自動取得しません。ブログ親グループIDだけを保存して、記事一覧・作成・公開に使います。</p>
-    <label for="blog-parent-id">ブログ親グループID</label>
+  <div class="panel" data-admin-view="article">
+    <h2>② 対象親グループ</h2>
+    <label for="parent-select">親グループ（記事を表示したいページ）</label>
     <div class="row">
-      <input type="number" id="blog-parent-id" class="grow" min="1" inputmode="numeric" placeholder="例: 123456">
-      <button id="btn-save-blog-parent" class="primary">保存</button>
-      <span id="blog-parent-status" class="badge muted">未設定</span>
+      <select id="parent-select" class="grow"><option value="">（読み込み中…）</option></select>
+      <button id="btn-load-parents">親グループ再読込</button>
     </div>
-    <small>※ 初回だけブログ親IDを入力してください。保存後はこのブラウザに記憶します。</small>
+    <small>※ 親グループは parent_group_id=null のトップレベルのみ表示</small>
   </div>
 
-  <div class="panel" id="panel-blog-list">
-    <h2>③ ブログ記事一覧（必要な時だけ取得）</h2>
+  <div class="panel" data-admin-view="article">
+    <h2>③ 配下グループ一覧（並び替え・編集）</h2>
     <div class="row">
-      <button id="btn-load-children">ブログ記事一覧を読み込む</button>
+      <button id="btn-load-children">読み込み</button>
       <button id="btn-save-order" class="primary" disabled>並び替えを保存</button>
-      <span id="children-status" class="badge muted">未取得</span>
+      <span id="children-status" class="badge muted">親未選択</span>
     </div>
     <ul class="sortable" id="children-list"></ul>
-    <small>※ ここで初めてブログ配下のグループを取得します。ドラッグして順序変更 →「並び替えを保存」で sort 値を一括更新。</small>
+    <small>※ ドラッグして順序変更 → 「並び替えを保存」で sort 値を一括更新</small>
   </div>
 
-  <div class="panel">
-    <h2>④ テーマからAI記事案を生成</h2>
+  <div class="panel" data-admin-view="article">
+    <h2>④ テーマからタイトル候補を10件生成</h2>
     <label for="theme">テーマ</label>
     <input type="text" id="theme" placeholder="例: 春の岩場シーズン到来 / La Sportiva 新作シューズ徹底比較">
     <div class="row" style="margin-top:8px;">
-      <label for="count" style="margin:0;">案数</label>
-      <input type="number" id="count" value="3" min="1" max="5" style="width:80px;">
-      <button class="primary" id="btn-generate">🤖 案を生成</button>
+      <button class="primary" id="btn-generate">タイトル候補を10件出す</button>
       <span id="gen-status" class="badge muted">待機中</span>
     </div>
     <div id="drafts"></div>
   </div>
 
-  <div class="panel" id="panel-edit" style="display:none;">
-    <h2>⑤ 採用案の編集 + 画像生成 + 公開</h2>
+  <div class="panel" id="panel-edit" data-admin-view="article" style="display:none;">
+    <h2>⑤ タイトル編集 + 本文・画像指示生成</h2>
     <label for="edit-title">グループ名（=タイトル）</label>
     <input type="text" id="edit-title">
+    <div class="row" style="margin-top:8px;">
+      <button class="primary" id="btn-generate-article">選んだタイトルから記事を生成</button>
+      <span id="article-status" class="badge muted">タイトル選択待ち</span>
+    </div>
+
+    <div class="generation-meta" id="generation-meta" style="display:none;">
+      <div><strong>H2見出し（4件）</strong><ol id="generated-h2"></ol></div>
+      <div><strong>要約</strong><p id="generated-summary"></p></div>
+      <div><strong>CTA</strong><p id="generated-cta"></p></div>
+      <div><strong>SNS / note / YouTube 展開</strong><ul id="generated-repurpose"></ul></div>
+    </div>
 
     <label for="edit-html">本文 HTML（左：ソース / 右：ライブプレビュー）</label>
     <div class="editor-wrap">
@@ -573,9 +945,15 @@
     <input type="date" id="edit-date">
 
     <hr>
-    <label for="img-prompt">グループ画像 — DALL-E プロンプト</label>
-    <div class="row">
-      <input type="text" id="img-prompt" class="grow" placeholder="例: クライミングシューズが棚に並ぶショップの写真風イメージ">
+    <label>画像生成プロンプト（トップ1枚 + H2直下4枚）</label>
+    <div class="image-prompt-grid">
+      <label for="img-prompt">トップ画像<textarea id="img-prompt" placeholder="記事全体を表すトップ画像"></textarea></label>
+      <label for="img-prompt-h2-1">H2画像1<textarea id="img-prompt-h2-1"></textarea></label>
+      <label for="img-prompt-h2-2">H2画像2<textarea id="img-prompt-h2-2"></textarea></label>
+      <label for="img-prompt-h2-3">H2画像3<textarea id="img-prompt-h2-3"></textarea></label>
+      <label for="img-prompt-h2-4">H2画像4<textarea id="img-prompt-h2-4"></textarea></label>
+    </div>
+    <div class="row" style="margin-top:8px;">
       <button id="btn-image">🎨 画像を生成</button>
       <span id="img-status" class="badge muted">未生成</span>
     </div>
@@ -595,7 +973,7 @@
     <hr>
     <h2 style="margin-top:14px;">⑥ 投稿（グループ作成 or 更新）</h2>
     <div class="row">
-      <button id="btn-create-group" class="primary">📁 投稿（ブログ親グループ配下の最上部 sort=0 / ID 入力時は更新）</button>
+      <button id="btn-create-group" class="primary">📁 投稿（選択親グループ配下の最上部 sort=0 / ID 入力時は更新）</button>
       <span id="group-status" class="badge muted">未作成</span>
       <input type="text" id="group-id" aria-label="既存グループID" placeholder="既存グループID（編集時に自動入力）" style="width:160px;">
     </div>
@@ -603,7 +981,7 @@
       <button id="btn-publish-live" class="primary">🚀 公開（product_list に書込）</button>
       <button id="btn-unpublish-live" class="danger">🗑 公開取り消し</button>
     </div>
-    <small>※ 記事はブログ親グループのページ表示時のみ Smarty 条件で出ます。</small>
+    <small>※ 記事は対象親グループのページ表示時のみ Smarty 条件で出る</small>
     <div id="live-url-area" style="display:none; margin-top:12px; padding:12px;
       background:rgba(126,235,163,.08); border:1px solid rgba(126,235,163,.4);
       border-radius:10px;">
@@ -619,53 +997,75 @@
 
 <script>
 (function(){
-  var button = document.getElementById("mobile-toggle");
-  var nav = document.getElementById("mobile-nav");
-  if (!button || !nav) return;
-  function closeMenu(){
-    nav.classList.remove("open");
-    button.setAttribute("aria-expanded", "false");
+  function initAdminPageView(){
+    var allowed = ["overview", "intake", "article", "apps", "dashboard"];
+    var requested = new URLSearchParams(window.location.search).get("view") || "overview";
+    var active = allowed.indexOf(requested) >= 0 ? requested : "overview";
+    document.querySelectorAll("[data-admin-view]").forEach(function(section){
+      section.hidden = section.getAttribute("data-admin-view") !== active;
+    });
+    document.querySelectorAll("[data-admin-view-link]").forEach(function(link){
+      if (link.getAttribute("data-admin-view-link") === active) link.setAttribute("aria-current", "page");
+      else link.removeAttribute("aria-current");
+    });
   }
-  button.addEventListener("click", function(){
-    var open = nav.classList.toggle("open");
-    button.setAttribute("aria-expanded", open ? "true" : "false");
-  });
-  nav.querySelectorAll("a").forEach(function(link){
-    link.addEventListener("click", closeMenu);
-  });
-  document.addEventListener("keydown", function(event){
-    if (event.key === "Escape") closeMenu();
-  });
+  function initAdminMobileNav(){
+    var header = document.querySelector(".site-header");
+    if (!header || header.querySelector(".admin-mobile-toggle")) return;
+    var headerInner = header.querySelector(".site-header-inner") || header;
+    var publicNav = header.querySelector(".site-nav");
+    var adminNav = header.querySelector(".admin-subnav");
+    var button = document.createElement("button");
+    button.type = "button";
+    button.className = "admin-mobile-toggle";
+    button.setAttribute("aria-label", "管理メニュー");
+    button.setAttribute("aria-controls", "admin-mobile-panel");
+    button.setAttribute("aria-expanded", "false");
+    button.textContent = "…";
+    headerInner.appendChild(button);
+    var panel = document.createElement("div");
+    panel.className = "admin-mobile-panel";
+    panel.id = "admin-mobile-panel";
+    panel.hidden = true;
+    function addSection(label, source){
+      if (!source) return;
+      var section = document.createElement("div");
+      section.className = "admin-mobile-section";
+      var title = document.createElement("span");
+      title.className = "admin-mobile-section-title";
+      title.textContent = label;
+      section.appendChild(title);
+      Array.prototype.forEach.call(source.querySelectorAll("a"), function(link){
+        var a = link.cloneNode(true);
+        a.removeAttribute("style");
+        section.appendChild(a);
+      });
+      if (section.querySelector("a")) panel.appendChild(section);
+    }
+    addSection("PUBLIC", publicNav);
+    addSection("ADMIN", adminNav);
+    if (!panel.querySelector("a")) return;
+    header.appendChild(panel);
+    function setOpen(open){
+      panel.hidden = !open;
+      panel.classList.toggle("is-open", open);
+      button.setAttribute("aria-expanded", open ? "true" : "false");
+      document.body.classList.toggle("admin-mobile-menu-open", open);
+    }
+    button.addEventListener("click", function(){ setOpen(panel.hidden); });
+    panel.addEventListener("click", function(e){ if (e.target.closest("a")) setOpen(false); });
+    document.addEventListener("keydown", function(e){ if (e.key === "Escape") setOpen(false); });
+  }
+  function initAdminShell(){
+    initAdminPageView();
+    initAdminMobileNav();
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", initAdminShell);
+  else initAdminShell();
 })();
 </script>
 <script>
 const $ = (id) => document.getElementById(id);
-(() => {
-  const header = $("site-header");
-  const scrollMenu = document.querySelector(".admin-scroll-menu");
-
-  function setScrolled() {
-    if (!header) return;
-    header.classList.toggle("scrolled", window.scrollY > 20);
-  }
-
-  if (scrollMenu) {
-    scrollMenu.addEventListener("wheel", (event) => {
-      if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
-      event.preventDefault();
-      scrollMenu.scrollLeft += event.deltaY;
-    }, { passive: false });
-    scrollMenu.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        scrollMenu.querySelectorAll("a").forEach((item) => item.classList.remove("is-current"));
-        link.classList.add("is-current");
-      });
-    });
-  }
-
-  window.addEventListener("scroll", setScrolled, { passive: true });
-  setScrolled();
-})();
 const log = (msg) => {
   const el = $("publish-log");
   el.textContent += "\n" + new Date().toISOString().slice(11,19) + " " + msg;
@@ -686,6 +1086,176 @@ async function api(path, opts = {}) {
   return json;
 }
 
+// === ホームページURLから初期入力
+let lastSiteIntake = null;
+
+function canWriteField(id, overwrite) {
+  const node = $(id);
+  if (!node) return false;
+  return overwrite || !String(node.value || "").trim();
+}
+
+function setFieldIfAllowed(id, value, overwrite) {
+  const node = $(id);
+  if (!node || !value || !canWriteField(id, overwrite)) return false;
+  node.value = value;
+  node.dispatchEvent(new Event("input", { bubbles: true }));
+  return true;
+}
+
+function applySiteIntake(data, options = {}) {
+  const overwrite = Boolean(options.overwrite);
+  let changed = 0;
+
+  if (options.article) {
+    if (setFieldIfAllowed("theme", data.suggestions?.theme || "", overwrite)) changed++;
+    if (setFieldIfAllowed("edit-title", data.suggestions?.title || data.siteName || data.title || "", overwrite)) changed++;
+    if (setFieldIfAllowed("edit-html", data.suggestions?.articleHtml || "", overwrite)) changed++;
+    if (canWriteField("edit-date", overwrite)) {
+      $("edit-date").value = new Date().toISOString().slice(0, 10);
+      changed++;
+    }
+    $("panel-edit").style.display = "block";
+    renderEditorPreview();
+  }
+
+  if (options.image) {
+    if (setFieldIfAllowed("img-prompt", data.suggestions?.imagePrompt || "", overwrite)) changed++;
+    if (setFieldIfAllowed("image-url", data.imageUrl || "", overwrite)) {
+      $("img-preview").src = data.imageUrl;
+      $("img-preview").style.display = "block";
+      $("img-url-text").textContent = data.imageUrl;
+      changed++;
+    }
+  }
+
+  if (options.dashboard) {
+    saveDashboardIntakeConfig(data.suggestions?.dashboardConfig || {});
+    changed++;
+  }
+
+  $("site-intake-badge").className = "badge ok";
+  $("site-intake-badge").textContent = `${changed}項目反映`;
+  log(`ホームページ取込: ${data.finalUrl} / ${changed}項目反映`);
+}
+
+function saveDashboardIntakeConfig(config) {
+  const key = "gubble.youtube.dashboard.config.v2";
+  let current = {};
+  try { current = JSON.parse(localStorage.getItem(key) || "{}") || {}; } catch {}
+  const next = {
+    ...current,
+    channelInput: config.channelInput || current.channelInput || "",
+    refreshSeconds: current.refreshSeconds || 60,
+    videoLimit: current.videoLimit || 6,
+    accounts: mergeAccounts(current.accounts || {}, config.accounts || {}),
+    socials: current.socials || {},
+  };
+  localStorage.setItem(key, JSON.stringify(next));
+
+  const legacyKey = "sns.crossmedia.dashboard.config.v1";
+  let legacy = {};
+  try { legacy = JSON.parse(localStorage.getItem(legacyKey) || "{}") || {}; } catch {}
+  const simpleAccounts = {};
+  Object.entries(next.accounts || {}).forEach(([platform, account]) => {
+    simpleAccounts[platform] = account.account || account.username || account.pageId || account.siteUrl || account.propertyId || account.source || "";
+  });
+  localStorage.setItem(legacyKey, JSON.stringify({
+    ...legacy,
+    channel: next.channelInput || legacy.channel || "",
+    refreshSeconds: legacy.refreshSeconds || 60,
+    accounts: { ...(legacy.accounts || {}), ...simpleAccounts },
+  }));
+}
+
+function mergeAccounts(current, incoming) {
+  const out = { ...current };
+  Object.entries(incoming || {}).forEach(([platform, fields]) => {
+    out[platform] = { ...(out[platform] || {}) };
+    Object.entries(fields || {}).forEach(([key, value]) => {
+      if (value && !out[platform][key]) out[platform][key] = value;
+    });
+  });
+  return out;
+}
+
+function renderSiteIntakeResult(data) {
+  const result = $("site-intake-result");
+  const socials = (data.socialLinks || []).slice(0, 10);
+  const contacts = [...(data.emails || []), ...(data.phones || [])].slice(0, 5);
+  const chips = [
+    ...socials.map((link) => `<a class="intake-chip" href="${escapeAttr(link.url)}" target="_blank" rel="noopener">${escapeHtml(platformLabel(link.platform, link.handle))}</a>`),
+    ...contacts.map((value) => `<span class="intake-chip">${escapeHtml(value)}</span>`),
+  ].join("");
+  result.hidden = false;
+  result.innerHTML = `
+    <div class="intake-result-head">
+      <div>
+        <div class="intake-result-title">${escapeHtml(data.siteName || data.title || "取得結果")}</div>
+        <a class="intake-result-url" href="${escapeAttr(data.finalUrl)}" target="_blank" rel="noopener">${escapeHtml(data.finalUrl)}</a>
+      </div>
+      <span class="badge ok">取得完了</span>
+    </div>
+    <div class="intake-result-body">
+      <div>
+        <p>${escapeHtml(data.description || "description は見つかりませんでした。")}</p>
+        <div class="intake-chip-list">${chips || '<span class="intake-chip">SNSリンクなし</span>'}</div>
+      </div>
+      <div class="intake-result-actions">
+        <button type="button" id="btn-site-intake-apply">この内容を反映</button>
+        <a class="admin-menu-primary" href="/admin/gubble-sns">SNS分析を開く</a>
+      </div>
+    </div>
+  `;
+  $("btn-site-intake-apply").addEventListener("click", () => applySiteIntake(data, readSiteIntakeOptions()));
+}
+
+function readSiteIntakeOptions() {
+  return {
+    article: $("site-intake-fill-article").checked,
+    image: $("site-intake-fill-image").checked,
+    dashboard: $("site-intake-fill-dashboard").checked,
+    overwrite: $("site-intake-overwrite").checked,
+  };
+}
+
+function platformLabel(platform, handle) {
+  const names = { youtube:"YouTube", instagram:"Instagram", threads:"Threads", facebook:"Facebook", x:"X", tiktok:"TikTok", note:"note", line:"LINE", linkedin:"LinkedIn" };
+  return `${names[platform] || platform}${handle ? ` / ${handle}` : ""}`;
+}
+
+$("btn-site-intake").addEventListener("click", async () => {
+  const url = $("site-intake-url").value.trim();
+  if (!url) { alert("ホームページURLを入力してください"); return; }
+  $("btn-site-intake").disabled = true;
+  $("site-intake-badge").className = "badge muted";
+  $("site-intake-badge").textContent = "取得中";
+  $("site-intake-result").hidden = true;
+  try {
+    const data = await api("/api/admin/site-intake", {
+      method: "POST",
+      body: JSON.stringify({ url }),
+    });
+    lastSiteIntake = data;
+    renderSiteIntakeResult(data);
+    applySiteIntake(data, readSiteIntakeOptions());
+  } catch (e) {
+    $("site-intake-badge").className = "badge err";
+    $("site-intake-badge").textContent = "失敗";
+    $("site-intake-result").hidden = false;
+    $("site-intake-result").innerHTML = `<div class="intake-result-head"><div class="intake-result-title">取得できませんでした</div><span class="badge err">ERROR</span></div><div class="intake-result-body"><p>${escapeHtml(e.message)}</p></div>`;
+  } finally {
+    $("btn-site-intake").disabled = false;
+  }
+});
+
+$("site-intake-url").addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    $("btn-site-intake").click();
+  }
+});
+
 // === 接続確認
 (async () => {
   try {
@@ -703,60 +1273,135 @@ async function api(path, opts = {}) {
   }
 })();
 
-// === ブログ親グループ ID（トップレベルDB一覧は読まない）
-const BLOG_PARENT_KEY = "aih.blogParentId";
+// === ダッシュボード読み込み
+(async () => {
+  try {
+    const d = await api("/api/admin/status");
+    // サマリ pill
+    const sum = $("dashboard-summary");
+    const totals = d.totals || {};
+    const pills = [];
+    pills.push(`<span class="pill">直近7日<span class="c">${totals.recent_7d_total ?? 0}</span>件</span>`);
+    pills.push(`<span class="pill">未対応<span class="c">${totals.tasks_open_total ?? 0}</span>件</span>`);
+    pills.push(`<span class="pill muted">consul/work 全体 ${totals.consul_work_total ?? 0}件</span>`);
+    (d.per_business_recent || []).slice(0, 6).forEach(b => {
+      pills.push(`<span class="pill">${escapeHtml(b.business || '')}<span class="c">${b.count}</span></span>`);
+    });
+    sum.innerHTML = pills.join(" ");
 
-function setBlogParentStatus(text, cls = "muted") {
-  $("blog-parent-status").className = `badge ${cls}`;
-  $("blog-parent-status").textContent = text;
-}
+    // タスク
+    const taskUl = $("dash-tasks");
+    if ((d.tasks_open || []).length === 0) {
+      taskUl.innerHTML = '<li class="muted">未対応タスクは見つかりませんでした</li>';
+    } else {
+      taskUl.innerHTML = d.tasks_open.map(t => `
+        <li>
+          <div class="row-meta">
+            ${t.business ? `<span class="biz">${escapeHtml(t.business)}</span>` : ''}
+            <span class="date">${escapeHtml(t.date || '')}</span>
+          </div>
+          <a href="${escapeAttr(t.path || '#')}">${escapeHtml(t.snippet || '')}</a>
+        </li>
+      `).join("");
+    }
 
-function getParentId() {
-  const id = String($("blog-parent-id").value || "").trim();
-  return /^\d+$/.test(id) ? id : "";
-}
+    // 最近の成果物
+    const workUl = $("dash-works");
+    if ((d.recent_works || []).length === 0) {
+      workUl.innerHTML = '<li class="muted">記録なし</li>';
+    } else {
+      workUl.innerHTML = d.recent_works.map(w => `
+        <li>
+          <div class="row-meta">
+            ${w.business ? `<span class="biz">${escapeHtml(w.business)}</span>` : ''}
+            <span class="date">${escapeHtml(w.date || '')}</span>
+          </div>
+          <a href="${escapeAttr(w.path || '#')}">${escapeHtml(w.title || '')}</a>
+        </li>
+      `).join("");
+    }
 
-function saveBlogParentId() {
-  const id = getParentId();
-  if (!/^\d+$/.test(id)) {
-    setBlogParentStatus("数字で入力", "err");
-    return "";
+    // CMA
+    const cmaUl = $("dash-cma");
+    if ((d.cma_apps || []).length === 0) {
+      cmaUl.innerHTML = '<li class="muted">CMA 実行履歴は読めませんでした（agents_system/INDEX.md）</li>';
+    } else {
+      cmaUl.innerHTML = d.cma_apps.map(c => `
+        <li>
+          <div class="row-meta">
+            <span class="date">${escapeHtml(c.last_run || '')}</span>
+            <span style="color:var(--muted);">${escapeHtml(c.kind || '')}</span>
+          </div>
+          <strong>${escapeHtml(c.name || '')}</strong> — ${escapeHtml(c.status || '')}
+        </li>
+      `).join("");
+    }
+
+    if (d.generated_at) {
+      $("dash-meta").textContent = `更新: ${d.generated_at}`;
+    }
+    $("pulse-recent").textContent = `${totals.recent_7d_total ?? 0}`;
+    $("pulse-open").textContent = `${totals.tasks_open_total ?? 0}`;
+    $("pulse-health").textContent = "OK";
+    $("pulse-health-note").textContent = "管理API応答あり";
+  } catch (e) {
+    $("dashboard-summary").innerHTML = `<span class="badge err">ダッシュボード読み込み失敗: ${e.message}</span>`;
+    $("dash-tasks").innerHTML = '';
+    $("dash-works").innerHTML = '';
+    $("dash-cma").innerHTML = '';
+    $("pulse-recent").textContent = "--";
+    $("pulse-open").textContent = "--";
+    $("pulse-health").textContent = "接続異常";
+    $("pulse-health-note").textContent = e.message;
+    $("pulse-health-card").classList.add("alert");
   }
-  localStorage.setItem(BLOG_PARENT_KEY, id);
-  localStorage.setItem("aih.parentId", id);
-  setBlogParentStatus(`保存済み #${id}`, "ok");
+})();
+
+// === 親グループ ロード（デフォルトは「ブログ」）
+async function loadParents() {
+  $("parent-select").innerHTML = '<option value="">（読み込み中…）</option>';
+  try {
+    const out = await api("/api/admin/groups?top=1");
+    const list = out.groups || [];
+    let cur = localStorage.getItem("aih.parentId") || "";
+    // localStorage に保存がなければ name に「ブログ」を含むグループをデフォルト選択
+    if (!cur) {
+      const blog = list.find(g => /ブログ|blog/i.test(g.name || ""));
+      if (blog) {
+        cur = String(blog.id);
+        localStorage.setItem("aih.parentId", cur);
+      }
+    }
+    $("parent-select").innerHTML =
+      '<option value="">— 選択してください —</option>' +
+      list.map(g => `<option value="${g.id}" ${String(g.id)===cur?'selected':''}>#${g.id} ${escapeHtml(g.name)} (${g.display_state})</option>`).join("");
+    // ブログを既定にして即・子一覧を読み込む
+    if (cur && $("parent-select").value === cur) {
+      loadChildren().catch(() => {});
+    }
+  } catch (e) {
+    $("parent-select").innerHTML = `<option value="">エラー: ${e.message}</option>`;
+  }
+}
+$("btn-load-parents").addEventListener("click", loadParents);
+loadParents();
+
+$("parent-select").addEventListener("change", () => {
+  const v = $("parent-select").value;
+  if (v) localStorage.setItem("aih.parentId", v);
   $("children-list").innerHTML = "";
   $("children-status").className = "badge muted";
-  $("children-status").textContent = "未取得";
+  $("children-status").textContent = v ? "未取得" : "親未選択";
   $("btn-save-order").disabled = true;
-  return id;
-}
-
-function initBlogParentId() {
-  const saved = localStorage.getItem(BLOG_PARENT_KEY) || localStorage.getItem("aih.parentId") || "";
-  if (saved) {
-    $("blog-parent-id").value = saved;
-    setBlogParentStatus(`保存済み #${saved}`, "ok");
-  } else {
-    setBlogParentStatus("未設定", "muted");
-  }
-}
-
-$("btn-save-blog-parent").addEventListener("click", saveBlogParentId);
-$("blog-parent-id").addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    e.preventDefault();
-    saveBlogParentId();
-  }
 });
-initBlogParentId();
 
 // === 子グループロード + ドラッグ並び替え
 let originalOrder = [];
+function getParentId() { return $("parent-select").value; }
 
 async function loadChildren() {
-  const pid = saveBlogParentId();
-  if (!pid) { alert("先にブログ親グループIDを保存してください"); return; }
+  const pid = getParentId();
+  if (!pid) { alert("先に親グループを選択してください"); return; }
   $("children-status").className = "badge muted"; $("children-status").textContent = "取得中…";
   try {
     const out = await api(`/api/admin/groups?parent=${pid}`);
@@ -852,22 +1497,22 @@ $("btn-save-order").addEventListener("click", async () => {
   }
 });
 
-// === AI 記事生成
-let drafts = [];
+// === AI ブログ生成
+let titleCandidates = [];
+let generationResult = null;
 $("btn-generate").addEventListener("click", async () => {
   const theme = $("theme").value.trim();
-  const count = Number($("count").value) || 3;
   if (!theme) { alert("テーマを入力してください"); return; }
   $("gen-status").className = "badge muted"; $("gen-status").textContent = "生成中…";
   $("btn-generate").disabled = true;
   try {
     const out = await api("/api/admin/generate-articles", {
-      method: "POST", body: JSON.stringify({ theme, count }),
+      method: "POST", body: JSON.stringify({ theme, mode: "title-candidates" }),
     });
-    drafts = out.drafts || [];
+    titleCandidates = out.title_candidates || [];
     renderDrafts();
     $("gen-status").className = "badge ok";
-    $("gen-status").textContent = `${drafts.length}案 生成完了`;
+    $("gen-status").textContent = `${titleCandidates.length}件 生成完了`;
   } catch (e) {
     $("gen-status").className = "badge err";
     $("gen-status").textContent = "失敗: " + e.message;
@@ -878,37 +1523,73 @@ $("btn-generate").addEventListener("click", async () => {
 
 function renderDrafts() {
   const area = $("drafts");
-  area.innerHTML = "";
-  drafts.forEach((d, i) => {
-    const div = document.createElement("div");
-    div.className = "draft";
-    div.innerHTML = `
-      <h3>案 ${i+1}: ${escapeHtml(d.title)}</h3>
-      <small>${escapeHtml(d.summary)}</small>
-      <div class="preview"><h2>${escapeHtml(d.title)}</h2>${d.html}</div>
-      <button data-pick="${i}" class="primary">この案を採用</button>
-    `;
-    area.appendChild(div);
-  });
+  area.innerHTML = `<div class="title-candidate-grid">${titleCandidates.map((title, i) => `
+    <button type="button" class="title-candidate" data-pick="${i}">
+      <span>${i + 1}</span><strong>${escapeHtml(title)}</strong>
+    </button>`).join("")}</div>`;
   area.querySelectorAll("button[data-pick]").forEach(btn => {
     btn.addEventListener("click", () => {
       const i = Number(btn.dataset.pick);
-      const d = drafts[i];
+      const title = titleCandidates[i];
       // AI 案採用時は「新規グループ作成モード」に切り替え（既存ID をクリア）
       $("group-id").value = "";
       createdGroupId = null;
       $("group-status").className = "badge muted";
       $("group-status").textContent = "未作成";
-      $("edit-title").value = d.title;
-      $("edit-html").value = d.html;
+      $("edit-title").value = title;
+      $("edit-html").value = "";
       $("edit-date").valueAsDate = new Date();
-      $("img-prompt").value = `${d.title} のイメージ写真。商品やシーンを連想させる写真風画像。`;
+      $("article-status").className = "badge muted";
+      $("article-status").textContent = "タイトル編集後に記事生成";
+      $("generation-meta").style.display = "none";
       $("panel-edit").style.display = "block";
       $("panel-edit").scrollIntoView({ behavior: "smooth" });
       renderEditorPreview();
     });
   });
 }
+
+$("btn-generate-article").addEventListener("click", async () => {
+  const theme = $("theme").value.trim();
+  const selectedTitle = $("edit-title").value.trim();
+  if (!selectedTitle) { alert("タイトルを選ぶか入力してください"); return; }
+  $("btn-generate-article").disabled = true;
+  $("article-status").className = "badge muted";
+  $("article-status").textContent = "本文生成中…";
+  try {
+    generationResult = await api("/api/admin/generate-articles", {
+      method: "POST",
+      body: JSON.stringify({
+        mode: "article",
+        theme,
+        selected_title: selectedTitle,
+        title_candidates: titleCandidates,
+      }),
+    });
+    $("edit-title").value = generationResult.editable_title || selectedTitle;
+    $("edit-html").value = generationResult.article_body || "";
+    $("generated-h2").innerHTML = (generationResult.h2_headings || []).map((heading) => `<li>${escapeHtml(heading)}</li>`).join("");
+    $("generated-summary").textContent = generationResult.summary || "";
+    $("generated-cta").textContent = generationResult.cta || "";
+    const ideas = generationResult.repurpose_ideas || {};
+    $("generated-repurpose").innerHTML = `<li>SNS: ${escapeHtml(ideas.sns || "")}</li><li>note: ${escapeHtml(ideas.note || "")}</li><li>YouTube: ${escapeHtml(ideas.youtube || "")}</li>`;
+    const prompts = generationResult.image_prompts || {};
+    $("img-prompt").value = prompts.hero || "";
+    $("img-prompt-h2-1").value = prompts.h2_1 || "";
+    $("img-prompt-h2-2").value = prompts.h2_2 || "";
+    $("img-prompt-h2-3").value = prompts.h2_3 || "";
+    $("img-prompt-h2-4").value = prompts.h2_4 || "";
+    $("generation-meta").style.display = "grid";
+    $("article-status").className = "badge ok";
+    $("article-status").textContent = "H2 4件・画像指示5件 生成完了";
+    renderEditorPreview();
+  } catch (e) {
+    $("article-status").className = "badge err";
+    $("article-status").textContent = "失敗: " + e.message;
+  } finally {
+    $("btn-generate-article").disabled = false;
+  }
+});
 
 $("btn-revise").addEventListener("click", async () => {
   const title = $("edit-title").value.trim();
@@ -960,7 +1641,7 @@ $("btn-create-group").addEventListener("click", async () => {
   const expl = $("edit-html").value;
   const parent_group_id = getParentId();
   const existingId = ($("group-id").value || "").trim();
-  if (!parent_group_id) { alert("先にブログ親グループIDを保存してください"); return; }
+  if (!parent_group_id) { alert("先に対象親グループを選択してください"); return; }
   if (!name) { alert("グループ名(=タイトル)を入力"); return; }
 
   // 既存グループ ID が入っているなら PUT で更新、空なら POST で「選択親配下の最上部」に新規作成
@@ -1007,7 +1688,7 @@ async function publish(target) {
   const title = $("edit-title").value.trim();
   const html = $("edit-html").value.trim();
   const publishedAt = $("edit-date").value;
-  if (!parentGroupId) { alert("ブログ親グループIDが未設定です"); return; }
+  if (!parentGroupId) { alert("対象親グループ未選択"); return; }
   if (!groupId) { alert("先にグループ作成 or グループID入力"); return; }
   if (!title || !html || !publishedAt) { alert("タイトル/本文/公開日 必須"); return; }
   log(`[${target}] 公開開始 parent=${parentGroupId} group=${groupId}`);
@@ -1040,7 +1721,7 @@ async function publish(target) {
 }
 
 $("btn-publish-live").addEventListener("click", () => {
-  if (!confirm("ブログ親グループのページに記事を公開します。よろしいですか？")) return;
+  if (!confirm("対象親グループのページに記事を公開します。よろしいですか？")) return;
   publish("live");
 });
 

@@ -18,7 +18,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/STKS528_DATA_CENTERS2_A.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-08-08T13:53:34-04:00"
+      "published": "2026-08-08T13:53:34-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "39d8d3adb50d0a09",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-08-08T14:06:41+00:00"
+      "published": "2026-08-08T14:06:41+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "c953abf6d6b054e8",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/EnwgVC5hVnc/hqdefault.jpg",
-      "published": "2026-08-08T11:00:05+00:00"
+      "published": "2026-08-08T11:00:05+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "f789aea5c31f00dc",
@@ -75,7 +81,9 @@
         "freshness": 3.0
       },
       "thumbnail": "",
-      "published": "2026-08-08T00:10:40+00:00"
+      "published": "2026-08-08T00:10:40+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "69a0849d491aefc4",
@@ -94,7 +102,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/87DyyMV0kCY/maxresdefault.jpg",
-      "published": "2026-08-07T23:55:58+00:00"
+      "published": "2026-08-07T23:55:58+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "c97ae7d5a9e2266b",
@@ -113,7 +123,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/Gx8K5uzXsfw/hqdefault.jpg",
-      "published": "2026-08-08T10:10:09+00:00"
+      "published": "2026-08-08T10:10:09+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "9f7055b13c3c6ff2",
@@ -132,7 +144,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/6oIS3tQJUDs/hqdefault.jpg",
-      "published": "2026-08-08T10:00:26+00:00"
+      "published": "2026-08-08T10:00:26+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "9a6b594b19969acd",
@@ -151,7 +165,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/cehtaE2YCxc/hqdefault.jpg",
-      "published": "2026-08-08T09:00:20+00:00"
+      "published": "2026-08-08T09:00:20+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "f5fb818858cd7463",
@@ -170,7 +186,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://cdn.arstechnica.net/wp-content/uploads/2023/12/hurricane-1152x648.jpg",
-      "published": "Sat, 08 Aug 2026 11:05:50 +0000"
+      "published": "Sat, 08 Aug 2026 11:05:50 +0000",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "8e19f658b47f67a7",
@@ -189,7 +207,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://image.itmedia.co.jp/ait/articles/2608/08/cover_news011.jpg",
-      "published": "Sat, 08 Aug 2026 13:00:00 +0900"
+      "published": "Sat, 08 Aug 2026 13:00:00 +0900",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

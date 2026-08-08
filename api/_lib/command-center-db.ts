@@ -361,3 +361,14 @@ export async function upsertCommandCenterSnapshot(
     },
   };
 }
+
+export async function countCommandCenterRows(requestedOwnerId?: string): Promise<Record<CommandCenterTable, number>> {
+  const currentOwner = ownerId(requestedOwnerId);
+  const names: CommandCenterTable[] = ["projects", "tasks", "directives", "directive_executions", "trades", "trade_plans"];
+  const entries = await Promise.all(names.map(async (name) => {
+    const result = await table(name).select("*", { count: "exact", head: true }).eq("owner_id", currentOwner);
+    checkError(result.error, `${name} count`);
+    return [name, Number(result.count || 0)] as const;
+  }));
+  return Object.fromEntries(entries) as Record<CommandCenterTable, number>;
+}

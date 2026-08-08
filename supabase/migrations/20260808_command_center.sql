@@ -133,3 +133,39 @@ alter default privileges in schema command_center
   revoke all on tables from anon, authenticated, public;
 alter default privileges in schema command_center
   grant all on tables to service_role;
+
+-- PC Codex bridge state is short-lived and contains no customer data.
+create table if not exists command_center.relay_state (
+  id text primary key,
+  heartbeat_at timestamptz not null default now(),
+  pair_hash text not null default '',
+  pair_expires_at timestamptz,
+  pair_used_at timestamptz,
+  bridge_json jsonb not null default '{}'::jsonb,
+  failed_attempts integer not null default 0,
+  attempt_reset_at timestamptz
+);
+create table if not exists command_center.relay_requests (
+  id text primary key,
+  session_id text not null,
+  method text not null,
+  path text not null,
+  body_json jsonb not null default '{}'::jsonb,
+  status text not null default 'pending',
+  status_code integer not null default 0,
+  response_json jsonb not null default '{}'::jsonb,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now(),
+  expires_at timestamptz not null
+);
+create table if not exists command_center.relay_nonces (
+  nonce text primary key,
+  expires_at timestamptz not null
+);
+create index if not exists command_center_relay_requests_status_idx
+  on command_center.relay_requests(status, updated_at);
+alter table command_center.relay_state enable row level security;
+alter table command_center.relay_requests enable row level security;
+alter table command_center.relay_nonces enable row level security;
+revoke all privileges on command_center.relay_state, command_center.relay_requests, command_center.relay_nonces from anon, authenticated, public;
+grant all privileges on command_center.relay_state, command_center.relay_requests, command_center.relay_nonces to service_role;

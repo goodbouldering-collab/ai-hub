@@ -68,11 +68,8 @@ class Hero60SecondDiagnosisTests(unittest.TestCase):
     def test_diagnosis_results_use_purpose_specific_booking_actions(self):
         self.assertNotIn("data-focus-level", self.index_html)
         self.assertNotIn("この講座を見る →", self.index_html)
-        self.assertIn(
-            "start: {\n"
-            "        badge: '最初の一歩', title: 'まずは、任せたい仕事を一つ決める',",
-            self.index_html,
-        )
+        self.assertIn("start: {", self.index_html)
+        self.assertIn("bookingLabel: 'AI個別相談を予約する'", self.index_html)
         self.assertIn(
             "bookingUrl: '" + INDIVIDUAL_CONSULT_URL + "'",
             self.index_html,

@@ -116,7 +116,8 @@ SITE_LEGACY_NAME = "AIハブ"
 SITE_BROWSER_TITLE = "AI相談｜一歩踏み出す人のAI講習・実践支援【彦根・滋賀】"
 OWNER_SUBTITLE = "クライミング歴30年・9事業を回す滋賀のAI講師"
 OWNER_TAGLINE = "AIの今と、次の一手がわかる。"
-CONSULT_BOOK_URL = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/AW5O5XSBHLEHYUBHLZUGFKYE"
+INDIVIDUAL_CONSULT_BOOK_URL = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/TO3XHZT6XP3OM4QBDYMW7TZP"
+DIAGNOSIS_FREE_CONSULT_BOOK_URL = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/AW5O5XSBHLEHYUBHLZUGFKYE"
 AI_AGENT_COURSE_URL = "https://goodbouldering.com/?pid=188553378"
 AI_CODING_BOOK_URL = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/S7GERYVDIPRV76DKXCC3WJWH"
 MONTHLY_SUPPORT_CHECKOUT_URL = "/api/stripe/monthly-support"
@@ -261,7 +262,6 @@ def _build_jsonld_website() -> str:
 
     ai_agent_title = "AIエージェント講習 120分"
     ai_coding_title = "AIコーディング講習 120分"
-    free_consult_title = "AI無料相談 入口整理"
     consult_title = "AI個別相談 しっかり60分"
     salon_title = "AIオンラインサロン"
     support_title = "AI伴走支援 いっしょに導入"
@@ -269,7 +269,6 @@ def _build_jsonld_website() -> str:
     # 受講プランを Service + Offer として構造化（_render_packages の items と整合）
     plans = [
         (ai_agent_title, "Codexを使い、仕事を小さく分けて頼む、変更点を確かめる、必要なら直す、次回も使える手順として残すAIエージェント講習。資料、告知、業務改善、Web制作を題材に、人が判断しながら成果物を完成させる型を120分で身につける。", "5500", "5500", "Course"),
-        (free_consult_title, "来店またはオンラインで、AI導入の入口を整理する無料相談。講習や伴走の前に、今の課題と次の一手を確認する。", "0", "0", "BusinessCoaching"),
         (consult_title, "AIの使い方、役割分担、指示書、確認体制、運用導線を60分で整理する個別相談。", "5500", "5500", "BusinessCoaching"),
         (salon_title, "月額2,200円（税込）。毎週火曜21時、LINEでAIの変化を60分で整理し、今週やることを決める。", "2200", "2200", "CommunityService"),
         (support_title, "HP公開から事務自動化・経理・マーケまで6ヶ月で一気に定着。技術的な難所は講師が代行・支援。滋賀・彦根の補助金で負担1/3以下に。", "100000", "100000", "Service"),
@@ -315,9 +314,9 @@ def _build_jsonld_website() -> str:
         if name == ai_coding_title:
             offer["url"] = AI_CODING_BOOK_URL
             service["url"] = AI_CODING_BOOK_URL
-        if name == free_consult_title:
-            offer["url"] = CONSULT_BOOK_URL
-            service["url"] = CONSULT_BOOK_URL
+        if name == consult_title:
+            offer["url"] = INDIVIDUAL_CONSULT_BOOK_URL
+            service["url"] = INDIVIDUAL_CONSULT_BOOK_URL
         if name == support_title:
             offer["url"] = SITE_URL + MONTHLY_SUPPORT_CHECKOUT_URL
             service["url"] = SITE_URL + MONTHLY_SUPPORT_CHECKOUT_URL
@@ -1928,6 +1927,7 @@ section.block + section.block { border-top: 1px solid var(--line); }
 .diag-result-lv { font-size: 14px; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
 .diag-result-name { font-family: var(--serif); font-size: 26px; font-weight: 900; color: var(--text); margin: 6px 0; line-height: 1.3; overflow-wrap: anywhere; }
 .diag-result-desc { font-size: 14px; line-height: 1.8; color: var(--text-soft); margin: 0 0 18px; }
+.diag-result-meta { color: var(--primary); font-size: 13px; font-weight: 800; margin: -8px 0 16px; }
 .diag-result .btn { display: flex; width: 100%; justify-content: center; margin-bottom: 8px; }
 .diag-result .btn { display: inline-flex; }
 .diag-restart { display: block; margin: 14px auto 0; border: none; background: none; color: var(--muted); font-size: 12.5px; text-decoration: underline; cursor: pointer; }
@@ -9927,33 +9927,53 @@ HEADER_JS = """
         { label: '関係者と進め方を決めたい', key: 'flow' },
       ]},
       { q: '最初の一歩は、どう進めたい？', a: [
-        { label: '無料相談で入口を整理したい', key: 'start' },
+        { label: '無料相談で入口を整理したい', key: 'free' },
         { label: '講習で作りながら学びたい', key: 'promotion' },
-        { label: '対面・オンラインで相談したい', key: 'office' },
+        { label: '個別相談で課題を整理したい', key: 'office' },
         { label: '長く使える仕組みにしたい', key: 'flow' },
       ]},
     ];
     var RESULT = {
       start: {
-        badge: '最初の一歩', title: 'まずは、任せたい仕事を一つ決める',
-        desc: '今の課題を聞き、AIに頼む最初の仕事と進め方を一緒に整理します。'
+        badge: '個別相談', title: 'まずは、任せたい仕事を一つ決める',
+        desc: '今の課題を聞き、AIに頼む最初の仕事と進め方を一緒に整理します。',
+        bookingMeta: '60分・5,500円',
+        bookingLabel: 'AI個別相談を予約する',
+        bookingUrl: '__INDIVIDUAL_CONSULT_BOOK_URL__'
       },
       promotion: {
         badge: '告知・集客', title: '告知・集客の型を一つ作る',
-        desc: '誰に何を伝えるかを決め、投稿文・画像・次回の告知手順まで形にします。'
+        desc: '誰に何を伝えるかを決め、投稿文・画像・次回の告知手順まで形にします。',
+        bookingMeta: '120分・5,500円',
+        bookingLabel: 'AIエージェント講習を予約する',
+        bookingUrl: '__AI_AGENT_COURSE_URL__'
       },
       office: {
         badge: '業務改善', title: '重い事務を一つ軽くする',
-        desc: '返信、要約、報告、引き継ぎなどから一つ選び、確認できる手順にします。'
+        desc: '返信、要約、報告、引き継ぎなどから一つ選び、確認できる手順にします。',
+        bookingMeta: '60分・5,500円',
+        bookingLabel: 'AI個別相談を予約する',
+        bookingUrl: '__INDIVIDUAL_CONSULT_BOOK_URL__'
       },
       flow: {
         badge: '仕組みづくり', title: 'サイト・業務改善の道筋を決める',
-        desc: '予約、問い合わせ、更新、業務の流れを整理し、残すものと直す順番を決めます。'
+        desc: '予約、問い合わせ、更新、業務の流れを整理し、残すものと直す順番を決めます。',
+        bookingMeta: '60分・5,500円',
+        bookingLabel: 'AI個別相談を予約する',
+        bookingUrl: '__INDIVIDUAL_CONSULT_BOOK_URL__'
+      },
+      free: {
+        badge: '診断内限定', title: 'まずは、無料相談で入口を整理する',
+        desc: '診断後に、AIを何に使うかと次の一歩だけを無料で整理します。',
+        bookingMeta: '診断後の入口整理',
+        bookingLabel: '無料相談の日程を選ぶ',
+        bookingUrl: '__DIAGNOSIS_FREE_CONSULT_BOOK_URL__'
       }
     };
     var ORDER = ['start','promotion','office','flow'];
 
-    var step = 0, scores = { start:0, promotion:0, office:0, flow:0 };
+    var step = 0, scores = { start:0, promotion:0, office:0, flow:0, free:0 };
+    var forcedResult = null;
     var lastTrigger = null;
 
     function render(){
@@ -9967,13 +9987,15 @@ HEADER_JS = """
       } else {
         var best = ORDER[0], bestScore = -1;
         ORDER.forEach(function(k){ if (scores[k] >= bestScore) { bestScore = scores[k]; best = k; } });
+        if (forcedResult) best = forcedResult;
         var r = RESULT[best];
         body.innerHTML =
           '<div class="diag-result">' +
           '<div class="diag-result-badge">あなたは ' + r.badge + ' タイプ</div>' +
           '<div class="diag-result-lv">' + r.title + '</div>' +
           '<p class="diag-result-desc">' + r.desc + '</p>' +
-          '<a class="btn btn-primary" href="__CONSULT_BOOK_URL__" target="_blank" rel="noopener" data-close-diag>無料相談の日程を選ぶ</a>' +
+          '<p class="diag-result-meta">' + r.bookingMeta + '</p>' +
+          '<a class="btn btn-primary" href="' + r.bookingUrl + '" target="_blank" rel="noopener" data-close-diag>' + r.bookingLabel + '</a>' +
           '<a class="btn btn-secondary" href="#packages" data-close-diag>講習・相談コースを見る</a>' +
           '<button class="diag-restart" type="button">もう一度診断する</button>' +
           '</div>';
@@ -9981,7 +10003,8 @@ HEADER_JS = """
     }
     function start(){
       step = 0;
-      scores = { start:0, promotion:0, office:0, flow:0 };
+      scores = { start:0, promotion:0, office:0, flow:0, free:0 };
+      forcedResult = null;
       render();
     }
     function open(trigger){
@@ -10006,7 +10029,14 @@ HEADER_JS = """
       if (e.target === modal || e.target.closest('.diagnose-close')) { close(); return; }
       if (e.target.closest('[data-close-diag]')) { close(); return; }
       var opt = e.target.closest('.diag-opt');
-      if (opt) { scores[opt.getAttribute('data-key')]++; step++; render(); return; }
+      if (opt) {
+        var key = opt.getAttribute('data-key');
+        scores[key]++;
+        if (key === 'free') forcedResult = 'free';
+        step++;
+        render();
+        return;
+      }
       if (e.target.closest('.diag-restart')) { start(); }
     });
   })();
@@ -10340,7 +10370,7 @@ HEADER_JS = """
   })();
 })();
 </script>
-""".replace("__CONSULT_BOOK_URL__", CONSULT_BOOK_URL)
+""".replace("__INDIVIDUAL_CONSULT_BOOK_URL__", INDIVIDUAL_CONSULT_BOOK_URL).replace("__AI_AGENT_COURSE_URL__", AI_AGENT_COURSE_URL).replace("__DIAGNOSIS_FREE_CONSULT_BOOK_URL__", DIAGNOSIS_FREE_CONSULT_BOOK_URL)
 
 
 HERO_IMG = "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=70"
@@ -11282,7 +11312,7 @@ def _render_courses_packages() -> str:
                 "補助金、交流会、次回予約の導線を確認",
             ],
             "fit": ["まず話を聞きたい", "講習か伴走か迷う", "来店またはオンラインで相談したい"],
-            "url": CONSULT_BOOK_URL,
+            "url": INDIVIDUAL_CONSULT_BOOK_URL,
             "cta": "無料相談を予約する",
             "material_url": "#lectures",
             "material_cta": "受講資料で選び方を見る",
@@ -11672,7 +11702,7 @@ def _render_footer(today: str) -> str:
         "<div class='footer-logo'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span></div>"
         "<p class='footer-tagline'>滋賀・彦根の中小事業者向けに、AI相談・AIエージェント講習・月額2,200円のAIオンラインサロン・受講資料・Web集客支援を行う"
         "資料センター型の相談サイト。増え続けるAI情報を、仕事で使える次の一手に変えます。</p>"
-        "<a class='footer-cta' href='#contact'>無料相談する</a>"
+        "<a class='footer-cta' href='#contact'>AI個別相談を予約する</a>"
         "</div>"
         "<nav class='footer-nav' aria-label='フッターナビ'>"
         "<span class='footer-nav-head'>メニュー</span>"
@@ -11755,7 +11785,7 @@ def _render_contact_form() -> str:
     """申込導線は「無料相談の予約(Square)」に一本化。相談は対面・Zoom・LINEで実施。"""
     return (
         # 主導線: 日程を選ぶだけで予約完了
-        f"<a class='contact-primary fade-up' href='{CONSULT_BOOK_URL}' target='_blank' rel='noopener'>"
+        f"<a class='contact-primary fade-up' href='{INDIVIDUAL_CONSULT_BOOK_URL}' target='_blank' rel='noopener'>"
         "<span class='cp-ico'>📅</span>"
         "<span class='cp-body'>"
         "<span class='cp-title'>AI無料相談を予約する</span>"
@@ -14553,7 +14583,7 @@ def _render_hero_focused() -> str:
         "<div class='hero-diagnose-cta'><span class='hero-diagnose-eyebrow'>何から始めるか、1分で見える。</span>"
         "<a class='focus-btn primary hero-diagnose-button diagnose-open' href='#packages'>迷ったら60秒診断をはじめる →</a>"
         "<small>3問で完了。結果を見てから、予約するか決められます。</small></div>"
-        f"<a class='focus-btn secondary' href='{CONSULT_BOOK_URL}' target='_blank' rel='noopener'>無料相談の日程を選ぶ</a>"
+        f"<a class='focus-btn secondary' href='{INDIVIDUAL_CONSULT_BOOK_URL}' target='_blank' rel='noopener'>AI個別相談の日程を選ぶ</a>"
         "<a class='hero-text-link' href='/lectures/index.html'>受講資料 <span aria-hidden='true'>→</span></a></div>"
         "<ul class='focus-trust'><li>AI初心者OK</li><li>対面・オンライン対応</li><li>仕事を持ち込める</li></ul></div>"
         "</div>"
@@ -14578,7 +14608,7 @@ def _render_focused_blog_content() -> str:
 
 
 def _render_focused_main() -> str:
-    free_consult = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/AW5O5XSBHLEHYUBHLZUGFKYE"
+    individual_consult = INDIVIDUAL_CONSULT_BOOK_URL
 
     parts = [
         "<section class='focus-block main-course' id='packages'><div class='focus-section-head'><small>COURSES</small><h2>講習・相談コース</h2></div>",
@@ -14620,7 +14650,7 @@ def _render_focused_main() -> str:
         "<details><summary>オンラインでも受講できますか？</summary><p>対面・オンラインの両方に対応しています。彦根市内は訪問も相談できます。</p></details>",
         "<details><summary>AIオンラインサロンでは、何がわかりますか？</summary><p>月額2,200円（税込）。毎週火曜21時、LINEライブトークでAIの変化を60分で整理し、今週やることを決めます。聞くだけでも参加できます。月額決済はSquareで毎月自動更新し、決済確認後にLINE参加案内を表示します。</p></details></div></section>",
         "<section class='focus-contact' id='contact'><div class='focus-contact-inner'><div><h2>AIエージェントに任せたい仕事を聞かせてください。</h2><p>講習前に、今の仕事に合う題材と進め方を一緒に整理できます。</p></div>",
-        f"<a class='focus-btn' href='{free_consult}' target='_blank' rel='noopener'>無料相談の日程を選ぶ</a></div></section>",
+        f"<a class='focus-btn' href='{individual_consult}' target='_blank' rel='noopener'>AI個別相談を予約する（60分・5,500円）</a></div></section>",
     ]
     return "".join(parts)
 

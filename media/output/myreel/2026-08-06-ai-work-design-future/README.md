@@ -2,20 +2,20 @@
 
 作成日: 2026-08-06
 投稿先: `@climbingconsul`
-Reelレビュー状態: 約28.8秒 / 6場面 / review_ready_waiting_final_approval / 未投稿
+Reelレビュー状態: 約25.4秒 / 5場面 / review_ready_waiting_final_approval / 未投稿
 状態: 最終承認待ち（未投稿）
 
 ## 内容
 
-- `reel.mp4`: 1080×1920、約28.8秒、30fps、H.264、日本語女性ナレーション・オリジナルBGM付き
-- `narration.m4a`: 6場面に同期した通常速度のナレーション音声
+- `reel.mp4`: 1080×1920、約25.4秒、30fps、H.264、日本語女性ナレーション・オリジナルBGM付き
+- `narration.m4a`: 5場面に同期した通常速度のナレーション音声
 - `background-music.wav`: 48kHzステレオ、92 BPMの軽量な自動合成BGM
 - `music-bed.wav`: 原BGMへ入力ゲインを適用したダッキング前の比較用音源
 - `ducked-background-music.wav`: 生成済みナレーションをsidechainにした実際のダッキング後BGM
 - `narration.md`: 声の設定、同期位置、読み上げ台本
 - `voice/`: 場面ごとの音声原本
 - `cover.png`: リール表紙
-- `storyboard.png`: 6場面一覧
+- `storyboard.png`: 5場面一覧
 - `preview.gif`: 軽量プレビュー
 - `story-preview.png`: ストーリー画像とリンクスタンプ配置見本
 - `captions.md`: 画面文、キャプション、ストーリー、ブランドコメント
@@ -24,7 +24,7 @@ Reelレビュー状態: 約28.8秒 / 6場面 / review_ready_waiting_final_approv
 - `posting-manifest.json`: 公開順序と承認状態
 - `qa.json`: 動画仕様と実測音声dB、入力ゲイン、ダッキング量、声/BGM差、権利根拠、閾値合否の機械検証
 - `source/`: 記事と共通の生成画像
-- `frames/`: 動画の6場面
+- `frames/`: 動画の5場面
 
 ## 再生成
 
@@ -34,4 +34,4 @@ Reelレビュー状態: 約28.8秒 / 6場面 / review_ready_waiting_final_approv
 
 生成後も自動投稿はしない。ブログの本番URLを確認し、完成一式の最終承認を得てからInstagramへ直接投稿する。リール公開後、ストーリーとブランドコメントは2回目の承認後に投稿する。Threadsは使用しない。
 
-音声QAはFFmpeg `volumedetect` で、生成済みナレーションと3段階のBGM（原音／gain後bed／duck後）を同じナレーション実音区間で測る。`music_input_gain_db` は原音からbedへの実測差、`measured_ducking_db` はbedからduck後への実測差、`narration_over_ducked_bgm_db` は声がduck後BGMを何dB上回るかを表す。今回の実測は narration -18.80 dBFS / music gain -13.10 dB / ducked BGM -49.30 dBFS / measured ducking 6.20 dB / voice lead 30.50 dB、権利根拠は `self-generated/no external samples`。全閾値は `qa.json` の `audio_measurements.thresholds` と `checks` を正とする。
+音声QAはFFmpeg `volumedetect` で、生成済みナレーションと3段階のBGM（原音／gain後bed／duck後）を同じナレーション実音区間で測る。`music_input_gain_db` は原音からbedへの実測差、`measured_ducking_db` はbedからduck後への実測差、`narration_over_ducked_bgm_db` は声がduck後BGMを何dB上回るかを表す。今回の実測は narration -19.00 dBFS / music gain -13.20 dB / ducked BGM -49.30 dBFS / measured ducking 6.10 dB / voice lead 30.30 dB、権利根拠は `self-generated/no external samples`。全閾値は `qa.json` の `audio_measurements.thresholds` と `checks` を正とする。

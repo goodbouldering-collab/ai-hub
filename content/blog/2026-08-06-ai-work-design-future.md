@@ -11,8 +11,8 @@ video: /video/blog-ai-work-design-future-20260806.mp4
 video_poster: /img/blog-ai-work-design-reel-cover-20260806.png
 video_orientation: portrait
 video_fullscreen_on_play: mobile
-video_label: AI時代のワークデザインを約29秒・女性ナレーション・軽いBGMで整理する動画
-video_caption: 作る、決める、確かめる。AIと人の役割を3つに分ける、女性ナレーションと軽いBGMの約29秒リールです。
+video_label: AIでデザイナーの仕事がどう広がるかを約25秒・女性ナレーション・軽いBGMで整理する動画
+video_caption: ロゴ、サイト、資料へ。AIがデザイナーの仕事を広げる理由を、女性ナレーションと軽いBGMで伝える約25秒リールです。
 audience: AIで仕事を速くしたい地域事業者、学校・福祉の現場責任者、個人事業主、デザイナー、エンジニア、プロジェクトリーダー
 duration: 8分
 goal: 実際の仕事を一つ選び、AIに任せる部分、人が決める部分、結果を確かめる部分をA4一枚に整理できるようになる

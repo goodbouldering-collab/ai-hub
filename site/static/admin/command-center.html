@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>実行指令室 | AI相談 管理</title>
+  <link rel="stylesheet" href="/admin/admin-common.css">
+  <link rel="stylesheet" href="/admin/command-center.css">
+</head>
+<body class="admin-page command-center-page" data-view="dashboard">
+  <main class="cc-shell">
+    <header class="cc-hero">
+      <div>
+        <p class="cc-eyebrow">AI相談 / PROTECTED ADMIN</p>
+        <h1>実行指令室</h1>
+        <p class="cc-lede">予定・指示・相場・Codex連携を、保護された独立ページで一つずつ実行します。</p>
+      </div>
+      <div class="cc-hero-meta"><span class="cc-private-badge">管理者専用</span><span id="cc-generated-at">読み込み中</span></div>
+    </header>
+
+    <nav class="cc-local-nav" aria-label="実行指令室ページ">
+      <a href="/admin/command-center" data-view-link="dashboard">指令室</a>
+      <a href="/admin/command-center/calendar" data-view-link="calendar">カレンダー</a>
+      <a href="/admin/command-center/tasks" data-view-link="tasks">タスク</a>
+      <a href="/admin/command-center/businesses" data-view-link="businesses">事業</a>
+      <a href="/admin/command-center/directives" data-view-link="directives">指示</a>
+      <a href="/admin/command-center/studio" data-view-link="studio">Codex連携</a>
+      <a href="/admin/command-center/tools" data-view-link="tools">検証・移行</a>
+      <a href="/admin/command-center/trade" data-view-link="trade">相場羅針盤</a>
+    </nav>
+
+    <div id="cc-live" class="cc-live" role="status" aria-live="polite"></div>
+    <section id="cc-content" class="cc-content" aria-label="実行指令室の内容">
+      <div class="cc-loading">保護されたデータを確認しています…</div>
+    </section>
+  </main>
+  <script src="/admin/admin-menu.js" defer></script>
+  <script src="/admin/command-center.js" defer></script>
+</body>
+</html>

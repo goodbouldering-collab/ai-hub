@@ -128,6 +128,8 @@ function isAdminPageRequest(req: VercelReq): boolean {
       "/api/admin/chat",
       "/admin/gubble-sns",
       "/api/admin/gubble-sns",
+      "/admin/command-center",
+      "/api/admin/command-center",
       "/admin/sns-post",
       "/api/admin/sns-post",
       "/ops",

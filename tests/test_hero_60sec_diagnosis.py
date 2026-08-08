@@ -5,10 +5,15 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 INDEX = ROOT / "site" / "dist" / "index.html"
-BOOKING_URL = (
+INDIVIDUAL_CONSULT_URL = (
+    "https://book.squareup.com/appointments/zymaszkc9pdwq2/"
+    "location/LWJNMP7EAN4GS/services/TO3XHZT6XP3OM4QBDYMW7TZP"
+)
+FREE_CONSULT_URL = (
     "https://book.squareup.com/appointments/zymaszkc9pdwq2/"
     "location/LWJNMP7EAN4GS/services/AW5O5XSBHLEHYUBHLZUGFKYE"
 )
+AI_AGENT_COURSE_URL = "https://goodbouldering.com/?pid=188553378"
 
 
 class Hero60SecondDiagnosisTests(unittest.TestCase):
@@ -35,8 +40,8 @@ class Hero60SecondDiagnosisTests(unittest.TestCase):
         )
         self.assertRegex(
             self.hero_html,
-            re.escape(BOOKING_URL)
-            + r"' target='_blank' rel='noopener'>無料相談の日程を選ぶ</a>",
+            re.escape(INDIVIDUAL_CONSULT_URL)
+            + r"' target='_blank' rel='noopener'>AI個別相談の日程を選ぶ</a>",
         )
 
     def test_hero_copy_makes_the_customer_problem_clear(self):
@@ -60,12 +65,24 @@ class Hero60SecondDiagnosisTests(unittest.TestCase):
             self.index_html,
         )
 
-    def test_diagnosis_results_have_booking_and_course_actions(self):
+    def test_diagnosis_results_use_purpose_specific_booking_actions(self):
         self.assertNotIn("data-focus-level", self.index_html)
         self.assertNotIn("この講座を見る →", self.index_html)
         self.assertIn(
-            BOOKING_URL
-            + "\" target=\"_blank\" rel=\"noopener\" data-close-diag>無料相談の日程を選ぶ</a>",
+            "start: {\n"
+            "        badge: '最初の一歩', title: 'まずは、任せたい仕事を一つ決める',",
+            self.index_html,
+        )
+        self.assertIn(
+            "bookingUrl: '" + INDIVIDUAL_CONSULT_URL + "'",
+            self.index_html,
+        )
+        self.assertIn(
+            "bookingUrl: '" + AI_AGENT_COURSE_URL + "'",
+            self.index_html,
+        )
+        self.assertIn(
+            "bookingUrl: '" + FREE_CONSULT_URL + "'",
             self.index_html,
         )
         self.assertIn(

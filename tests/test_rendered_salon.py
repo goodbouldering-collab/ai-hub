@@ -42,10 +42,13 @@ class RenderedSalonTest(unittest.TestCase):
         visual = self.html.index("class='salon-main-visual'")
         title = self.html.index("id='salon-title'", visual)
         details = self.html.index("class='salon-all-details salon-all-details--complete'", title)
+        note = self.html.index("class='salon-simple-note'", details)
         checkout = self.html.index("class='compact-course-checkout salon-card-checkout'", details)
         material = self.html.index("class='compact-course-material salon-material-link'", checkout)
         self.assertLess(visual, title)
         self.assertLess(title, details)
+        self.assertLess(details, note)
+        self.assertLess(note, checkout)
         self.assertLess(details, checkout)
         self.assertLess(checkout, material)
         self.assertNotIn(" open", self.html[details:self.html.index(">", details)])
@@ -65,7 +68,11 @@ class RenderedSalonTest(unittest.TestCase):
         self.assertIn("聞くだけOK", self.html)
 
     def test_hero_and_menu_order(self) -> None:
-        self.assertIn("利用率6%", self.html)
+        hero_start = self.html.index("class='focus-hero'")
+        hero_end = self.html.index("</section>", hero_start)
+        hero = self.html[hero_start:hero_end]
+        self.assertIn("<strong>相談5,500円/回</strong>", hero)
+        self.assertNotIn("<strong>利用率6%</strong>", hero)
         self.assertIn("始めるなら今。", self.html)
         self.assertIn("hero-advantage-equation", self.html)
         nav = re.search(

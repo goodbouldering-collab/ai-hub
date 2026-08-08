@@ -1911,7 +1911,8 @@ section.block + section.block { border-top: 1px solid var(--line); }
   position: absolute; top: 14px; right: 16px; border: none; background: none;
   font-size: 26px; line-height: 1; color: var(--muted); cursor: pointer;
 }
-.diagnose-head { font-size: 18px; font-weight: 800; color: var(--text); margin-bottom: 16px; }
+.diagnose-head { font-size: 18px; font-weight: 800; color: var(--text); margin-bottom: 6px; }
+.diagnose-intro { margin: 0 34px 16px 0; color: var(--text-soft); font-size: 13px; font-weight: 650; line-height: 1.65; }
 .diag-progress { font-size: 12px; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
 .diag-q { font-size: 17px; font-weight: 800; color: var(--text); margin: 0 0 16px; line-height: 1.5; }
 .diag-opts { display: flex; flex-direction: column; gap: 10px; }
@@ -9906,73 +9907,64 @@ HEADER_JS = """
     try { localStorage.removeItem('aihub-theme'); } catch(e) {}
   })();
 
-  // ---- AIレベル診断 (4段階: 入口/相談/実装/伴走。ヒーロー第1問から起動)
+  // ---- 迷ったら60秒診断（3問で、いまの仕事に合う入口を整理）
   (function(){
     var modal = document.getElementById('diagnoseModal');
     if (!modal) return;
     var body = modal.querySelector('.diagnose-body');
 
-    // 各設問の選択肢にレベルスコアを持たせ、合計で入口/相談/実装/伴走を判定
     var QUESTIONS = [
-      { q: 'AIを仕事で使う段階はどこですか？', a: [
-        { label: '初めてなので相談から始めたい', lv: 'beginner' },
-        { label: '自分の仕事での使い方を整理したい', lv: 'intermediate' },
-        { label: '成果物を作り、確認まで学びたい', lv: 'implementation' },
-        { label: '社内や店舗の運用まで整えたい', lv: 'advanced' },
+      { q: 'いま一番近い悩みは？', a: [
+        { label: 'AIを使う前に、何から頼めるか知りたい', key: 'start' },
+        { label: '告知や集客を、もっと伝わる形にしたい', key: 'promotion' },
+        { label: '事務や返信にかかる時間を減らしたい', key: 'office' },
+        { label: 'サイト・予約・業務の流れを整えたい', key: 'flow' },
       ]},
-      { q: '当日いちばん進めたいことは？', a: [
-        { label: '悩みと次の一手を整理したい', lv: 'beginner' },
-        { label: '指示文や確認手順を相談したい', lv: 'intermediate' },
-        { label: 'AIの成果物を読んで直せるようにしたい', lv: 'implementation' },
-        { label: 'AIの役割分担と継続運用を作りたい', lv: 'advanced' },
+      { q: '今日、どこまで進めたい？', a: [
+        { label: 'まず話して、優先順位を決めたい', key: 'start' },
+        { label: '投稿文や画像などを一つ作りたい', key: 'promotion' },
+        { label: '自分用の手順にして残したい', key: 'office' },
+        { label: '関係者と進め方を決めたい', key: 'flow' },
       ]},
-      { q: 'どのスパンで取り組みたい？', a: [
-        { label: 'まず無料で入口を相談したい', lv: 'beginner' },
-        { label: '60分5,500円で個別に整理したい', lv: 'intermediate' },
-        { label: '120分5,500円で体系的に実装を学びたい', lv: 'implementation' },
-        { label: '6ヶ月かけて仕事に定着させたい', lv: 'advanced' },
+      { q: '最初の一歩は、どう進めたい？', a: [
+        { label: '無料相談で入口を整理したい', key: 'start' },
+        { label: '講習で作りながら学びたい', key: 'promotion' },
+        { label: '対面・オンラインで相談したい', key: 'office' },
+        { label: '長く使える仕組みにしたい', key: 'flow' },
       ]},
     ];
     var RESULT = {
-      beginner: {
-        badge: '無料相談', title: '悩みと次の一手を整理する',
-        name: 'AI無料相談 入口整理',
-        desc: '今の課題を聞き、講習・個別相談・伴走支援のどこから始めるかを一緒に決めます。',
-        level_id: 'beginner'
+      start: {
+        badge: '最初の一歩', title: 'まずは、任せたい仕事を一つ決める',
+        desc: '今の課題を聞き、AIに頼む最初の仕事と進め方を一緒に整理します。'
       },
-      intermediate: {
-        badge: '個別相談', title: '仕事に合う使い方を整理する',
-        name: 'AI個別相談 しっかり60分',
-        desc: 'AIの使い方、指示書、確認体制、運用導線を60分で具体的に整理します。',
-        level_id: 'intermediate'
+      promotion: {
+        badge: '告知・集客', title: '告知・集客の型を一つ作る',
+        desc: '誰に何を伝えるかを決め、投稿文・画像・次回の告知手順まで形にします。'
       },
-      implementation: {
-        badge: 'AIエージェント講習', title: 'Codexで仕事を1つ完成させる',
-        name: 'AIエージェント講習 120分',
-        desc: '実際の仕事を1つ選び、Codexへ小さく頼み、変更点を人が確認・修正し、次回も使える手順として残す120分の初級実践です。',
-        level_id: 'implementation'
+      office: {
+        badge: '業務改善', title: '重い事務を一つ軽くする',
+        desc: '返信、要約、報告、引き継ぎなどから一つ選び、確認できる手順にします。'
       },
-      advanced: {
-        badge: '伴走支援', title: 'AIを仕事に定着させる',
-        name: 'AI伴走支援 いっしょに導入',
-        desc: 'HP、事務、AI導入、経理、集客を6ヶ月で継続運用できる形に整えます。',
-        level_id: 'advanced'
+      flow: {
+        badge: '仕組みづくり', title: 'サイト・業務改善の道筋を決める',
+        desc: '予約、問い合わせ、更新、業務の流れを整理し、残すものと直す順番を決めます。'
       }
     };
-    var ORDER = ['beginner','intermediate','implementation','advanced'];
+    var ORDER = ['start','promotion','office','flow'];
 
-    var step = 0, scores = { beginner:0, intermediate:0, implementation:0, advanced:0 };
+    var step = 0, scores = { start:0, promotion:0, office:0, flow:0 };
+    var lastTrigger = null;
 
     function render(){
       if (step < QUESTIONS.length) {
         var Q = QUESTIONS[step];
         var h = '<div class="diag-progress">STEP ' + (step+1) + ' / ' + QUESTIONS.length + '</div>';
         h += '<h3 class="diag-q">' + Q.q + '</h3><div class="diag-opts">';
-        Q.a.forEach(function(opt){ h += '<button class="diag-opt" data-lv="' + opt.lv + '">' + opt.label + '</button>'; });
+        Q.a.forEach(function(opt){ h += '<button class="diag-opt" type="button" data-key="' + opt.key + '">' + opt.label + '</button>'; });
         h += '</div>';
         body.innerHTML = h;
       } else {
-        // 同点は「より高いレベル」を優先（ORDER後方優先）
         var best = ORDER[0], bestScore = -1;
         ORDER.forEach(function(k){ if (scores[k] >= bestScore) { bestScore = scores[k]; best = k; } });
         var r = RESULT[best];
@@ -9980,46 +9972,42 @@ HEADER_JS = """
           '<div class="diag-result">' +
           '<div class="diag-result-badge">あなたは ' + r.badge + ' タイプ</div>' +
           '<div class="diag-result-lv">' + r.title + '</div>' +
-          '<h3 class="diag-result-name">' + r.name + '</h3>' +
           '<p class="diag-result-desc">' + r.desc + '</p>' +
-          '<a class="btn btn-primary" href="#packages" data-close-diag data-focus-level="' + r.level_id + '">この講座を見る →</a>' +
-          '<a class="btn btn-secondary" href="mailto:goodbouldering@gmail.com" data-close-diag>無料で相談する</a>' +
+          '<a class="btn btn-primary" href="__CONSULT_BOOK_URL__" target="_blank" rel="noopener" data-close-diag>無料相談の日程を選ぶ</a>' +
+          '<a class="btn btn-secondary" href="#packages" data-close-diag>講習・相談コースを見る</a>' +
           '<button class="diag-restart" type="button">もう一度診断する</button>' +
           '</div>';
       }
     }
-    // start(preLv): ヒーロー第1問で選んだレベルを1問目の回答として引き継ぐ
-    function open(preLv){
-      step = 0; scores = { beginner:0, intermediate:0, implementation:0, advanced:0 };
-      if (preLv && scores.hasOwnProperty(preLv)) { scores[preLv]++; step = 1; }
-      render(); modal.classList.add('open');
+    function start(){
+      step = 0;
+      scores = { start:0, promotion:0, office:0, flow:0 };
+      render();
     }
-    function close(){ modal.classList.remove('open'); }
-
-    // PACKAGES の該当レベルをハイライト
-    function focusLevel(lv){
-      var grid = document.querySelector('.packages-grid');
-      if (!grid) return;
-      grid.classList.add('pkg-filter-active');
-      grid.querySelectorAll('.pkg-card').forEach(function(c){
-        var levels = (c.getAttribute('data-level') || '').split(/\\s+/);
-        c.classList.toggle('pkg-match', levels.indexOf(lv) !== -1);
-      });
+    function open(trigger){
+      lastTrigger = trigger || document.activeElement;
+      start();
+      modal.classList.add('open');
+      modal.querySelector('.diagnose-close').focus();
+    }
+    function close(){
+      modal.classList.remove('open');
+      if (lastTrigger && document.contains(lastTrigger)) lastTrigger.focus();
     }
 
-    // 起動口: PACKAGESの診断ボタン + ヒーロー第1問
     document.addEventListener('click', function(e){
       var dOpen = e.target.closest('.diagnose-open');
-      if (dOpen) { open(dOpen.getAttribute('data-prelevel') || null); return; }
+      if (dOpen) { e.preventDefault(); open(dOpen); return; }
+    });
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape' && modal.classList.contains('open')) close();
     });
     modal.addEventListener('click', function(e){
       if (e.target === modal || e.target.closest('.diagnose-close')) { close(); return; }
-      var focusBtn = e.target.closest('[data-focus-level]');
-      if (focusBtn) { focusLevel(focusBtn.getAttribute('data-focus-level')); close(); return; }
       if (e.target.closest('[data-close-diag]')) { close(); return; }
       var opt = e.target.closest('.diag-opt');
-      if (opt) { scores[opt.getAttribute('data-lv')]++; step++; render(); return; }
-      if (e.target.closest('.diag-restart')) { open(); }
+      if (opt) { scores[opt.getAttribute('data-key')]++; step++; render(); return; }
+      if (e.target.closest('.diag-restart')) { start(); }
     });
   })();
 
@@ -10352,7 +10340,7 @@ HEADER_JS = """
   })();
 })();
 </script>
-"""
+""".replace("__CONSULT_BOOK_URL__", CONSULT_BOOK_URL)
 
 
 HERO_IMG = "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=70"
@@ -11434,14 +11422,6 @@ def _render_courses_packages() -> str:
         )
     parts.append("</div>")
     parts.append(
-        "<div class='packages-cta-row fade-up d4'>"
-        "<button type='button' class='btn btn-diagnose diagnose-open'>"
-        "60秒診断｜無料相談・個別相談・講習・伴走のどれ？"
-        "</button>"
-        "<span class='packages-cta-hint'>3つの質問に答えるだけ。いまの状態に合う入口をその場で提案します。</span>"
-        "</div>"
-    )
-    parts.append(
         "<p class='packages-note fade-up d4'>"
         "<strong>AIコーディング講習:</strong> CodexとClaude Codeを使い、コードの読解、修正、画面確認、安全な公開までを120分11,000円で扱う実装講習です。専用の予約ページから申し込めます。"
         "<br><strong>無料相談:</strong> AI無料相談は、講習・伴走・制作のどれから始めるかを無料で整理する入口です。しっかり60分のAI個別相談は、AIの使い方、指示書、確認体制、運用導線まで整理します。"
@@ -11555,7 +11535,10 @@ def _render_compact_course_cards() -> str:
         material_is_ext = material_url.startswith("http")
         material_target_attr = " target='_blank' rel='noopener'" if material_is_ext else ""
         material_html = (
-            f"<a class='compact-course-material' href='{html.escape(material_url, quote=True)}'{material_target_attr}>{html.escape(item['material_cta'])} →</a>"
+            "<p class='compact-course-material-row'>"
+            f"<a class='compact-course-material' href='{html.escape(material_url, quote=True)}'{material_target_attr}>"
+            f"{html.escape(item['material_cta'])} →</a>"
+            "</p>"
             if material_url else ""
         )
         main_cls = " compact-course-card--main" if item.get("main") else ""
@@ -11658,8 +11641,7 @@ def _render_salon_menu() -> str:
         "<small class='salon-card-category'>月額サロン</small>"
         "<h2 class='salon-detail-title' id='salon-title'>AIオンラインサロン</h2>"
         "<div class='compact-course-meta salon-card-meta'><strong>月額2,200円（税込）</strong><span>毎週火曜21:00</span></div>"
-        "<p class='salon-intro-tagline'>AIの最新を、仕事の次の一手に。</p>"
-        "<p class='salon-intro-summary'>全部を追わず、新機能と一流の活用事例から、今試すことを短く整理します。</p>"
+        "<p class='salon-intro-tagline'>AIの最新も疑問もその場で解決できる。</p>"
         "<p class='salon-intro-description'>Squareで月額決済後、LINEライブトークの参加案内を表示します。仕事で次に試すことを一緒に決めます。聞くだけOK。</p></div>"
         "<div class='salon-value-list' role='list' aria-label='サロンで得られること'>"
         "<div class='salon-value' role='listitem'><b>01</b><div><small>UPDATE</small><strong>新機能を毎週知る</strong></div></div>"
@@ -11673,8 +11655,8 @@ def _render_salon_menu() -> str:
         f"{benefit_rows}</ul>"
         f"{_render_live_talk_guide()}"
         "</div></details>"
-        f"<form class='compact-course-checkout salon-card-checkout' method='post' action='{html.escape(AI_SALON_CHECKOUT_URL, quote=True)}'><button type='submit'>Squareで決済して参加 →</button></form>"
         "<p class='salon-simple-note'>月額2,200円（税込）・毎月自動更新。決済確認後にLINE参加案内を表示します</p>"
+        f"<form class='compact-course-checkout salon-card-checkout' method='post' action='{html.escape(AI_SALON_CHECKOUT_URL, quote=True)}'><button type='submit'>Squareで決済して参加 →</button></form>"
         "<p class='salon-material-row'><a class='compact-course-material salon-material-link' href='/lectures/2026-07-ai-online-salon-practice.html'>オンラインサロン受講資料を見る →</a></p>"
         "</div></section>"
     )
@@ -11727,11 +11709,12 @@ def _render_sticky_cta() -> str:
 
 def _render_diagnose_modal() -> str:
     return (
-        "<div class='diagnose-modal' id='diagnoseModal' role='dialog' aria-modal='true' aria-label='コース診断'>"
+        "<div class='diagnose-modal' id='diagnoseModal' role='dialog' aria-modal='true' aria-labelledby='diagnose-title'>"
         "<div class='diagnose-box'>"
         "<button type='button' class='diagnose-close' aria-label='閉じる'>&times;</button>"
-        "<div class='diagnose-head'>🔍 60秒コース診断</div>"
-        "<div class='diagnose-body'></div>"
+        "<div class='diagnose-head' id='diagnose-title'>迷ったら60秒診断</div>"
+        "<p class='diagnose-intro'>いまの仕事に合う入口を、3つの質問で整理します。</p>"
+        "<div class='diagnose-body' aria-live='polite'></div>"
         "</div>"
         "</div>"
     )
@@ -12578,21 +12561,24 @@ def _render_lecture_card(lec: dict) -> str:
 FOCUSED_PORTAL_CSS = r"""
 /* ---- Consultation-first redesign, light editorial direction, 2026-07-22 ---- */
 :root {
-  --focus-blue: #5367d9;
-  --focus-blue-dark: #3f4fab;
-  --focus-cyan: #eef1ff;
-  --focus-lavender: #f1efff;
-  --focus-violet: #7a67d8;
+  --focus-blue: #4f6fd8;
+  --focus-blue-dark: #3e58b8;
+  --focus-cyan: #e9efff;
+  --focus-lavender: #f1eeff;
+  --focus-violet: #9184d8;
+  --focus-rose: #e88ea0;
+  --focus-rose-soft: #fff0f3;
   --focus-ink: #172033;
-  --focus-muted: #627089;
-  --focus-line: #d9deee;
-  --focus-surface: #f7f8fc;
+  --focus-muted: #6b7891;
+  --focus-line: #dce4f2;
+  --focus-line-strong: #b9c7db;
+  --focus-surface: #f8fbff;
   --focus-shell-x: max(18px, calc((100vw - 1400px) / 2));
   --focus-footer-y: clamp(36px, 5vw, 48px);
   --focus-footer-gap: clamp(24px, 3vw, 32px);
 }
 html { scroll-behavior: smooth; }
-body { background: #fff !important; color: var(--focus-ink) !important; }
+body { background: #f8fbff !important; color: var(--focus-ink) !important; }
 body::before { display: none !important; }
 .container {
   max-width: none !important;
@@ -12730,6 +12716,10 @@ header.site-header:hover {
 .focus-title strong::after { content:""; position:absolute; left:0; right:0; bottom:-7px; height:4px; background:var(--focus-blue); transform:rotate(-1.5deg); }
 .focus-lead { max-width:600px; margin:27px 0 0; color:#24344a; font-size:clamp(16px,1.3vw,19px); line-height:1.85; font-weight:650; }
 .focus-actions { display:flex; align-items:center; gap:13px; margin-top:30px; flex-wrap:wrap; }
+.hero-diagnose-cta { display:flex; flex-direction:column; gap:6px; min-width:min(100%,310px); }
+.hero-diagnose-eyebrow { color:var(--focus-blue); font-size:13px; font-weight:900; line-height:1.35; }
+.hero-diagnose-cta small { color:var(--focus-muted); font-size:12px; font-weight:700; line-height:1.5; }
+.hero-diagnose-button { cursor:pointer; }
 .focus-btn { min-height: 54px; display: inline-flex; align-items: center; justify-content: center; padding: 0 28px; border-radius: 8px; border: 1.5px solid var(--focus-blue); font-weight: 900; text-decoration: none; transition: transform .2s, box-shadow .2s; }
 .focus-btn:hover { transform: translateY(-2px); }
 .focus-btn.primary { background: var(--focus-blue); color: #fff; box-shadow: 0 12px 28px rgba(7,95,200,.2); }
@@ -13024,8 +13014,9 @@ header.site-header:hover {
 .compact-course-details span { color:var(--focus-muted); font-size:10.5px; line-height:1.45; }
 .compact-course-card > a { min-height:36px; display:flex; align-items:center; justify-content:center; margin-top:4px; padding:7px 10px; color:#fff; background:var(--focus-blue); border-radius:7px; font-size:12px; font-weight:900; text-align:center; text-decoration:none; }
 .compact-course-card > a:hover { background:var(--focus-blue-dark); }
-.compact-course-card > a.compact-course-material { min-height:auto; margin:7px 0 0; padding:0; color:var(--focus-blue); background:transparent; border-radius:0; font-size:11px; line-height:1.5; text-decoration:underline; text-underline-offset:3px; }
-.compact-course-card > a.compact-course-material:hover { color:var(--focus-blue-dark); background:transparent; }
+.compact-course-material-row { margin:7px 0 0; text-align:center; }
+.compact-course-card .compact-course-material { display:inline; padding:0; color:var(--focus-blue); background:transparent; border-radius:0; font-size:11px; font-weight:800; line-height:1.5; text-decoration:underline; text-underline-offset:3px; }
+.compact-course-card .compact-course-material:hover { color:var(--focus-blue-dark); background:transparent; }
 .salon-section {
   position:relative;
   overflow:hidden;
@@ -13095,12 +13086,6 @@ header.site-header:hover {
   line-height:1.4;
   font-weight:900;
   letter-spacing:-.025em;
-}
-.salon-intro-summary {
-  margin:10px 0 0;
-  color:var(--focus-muted);
-  font-size:13px;
-  line-height:1.75;
 }
 .salon-value-list {
   grid-area:values;
@@ -13439,6 +13424,8 @@ footer.site-footer {
   .footer-brand { grid-column:auto; }
   .focus-title strong { white-space:normal; }
   .focus-actions { display:grid; grid-template-columns:1fr; }
+  .hero-diagnose-cta { width:100%; }
+  .hero-diagnose-cta .focus-btn { width:100%; }
   .focus-btn { width:100%; }
   .hero-text-link { width:max-content; justify-self:center; }
   .focus-trust { gap:8px 12px; margin-top:18px; font-size:14px; line-height:1.5; }
@@ -13492,7 +13479,6 @@ footer.site-footer {
   .salon-intro-kicker { padding:6px 9px; font-size:10px; }
   .salon-intro h2 { margin-top:10px; font-size:29px; }
   .salon-intro-tagline { margin-top:8px; font-size:17px; }
-  .salon-intro-summary { margin-top:6px; font-size:12.5px; line-height:1.6; }
   .salon-value-list { gap:0; overflow:visible; border-width:1px 0; border-radius:0; background:transparent; }
   .salon-value { grid-template-columns:28px minmax(0,1fr); gap:8px; padding:10px 2px; border:0; border-radius:0; background:transparent; }
   .salon-value + .salon-value { border-top:1px solid rgba(83,103,217,.14); }
@@ -13581,11 +13567,6 @@ footer.site-footer {
 .salon-panel .salon-intro-tagline {
   margin-top:8px;
   font-size:clamp(17px,1.8vw,21px);
-}
-.salon-panel .salon-intro-summary {
-  margin-top:6px;
-  font-size:13px;
-  line-height:1.55;
 }
 .salon-panel .salon-value-list {
   display:grid;
@@ -13865,7 +13846,7 @@ footer.site-footer {
   margin:12px auto 0;
 }
 .salon-simple-note {
-  margin:7px 0 0;
+  margin:12px 0 7px;
   color:var(--focus-muted);
   font-size:9.5px;
   text-align:center;
@@ -14102,10 +14083,6 @@ footer.site-footer {
   .salon-panel .salon-intro-tagline {
     margin-top:6px;
     font-size:15px;
-  }
-  .salon-panel .salon-intro-summary {
-    font-size:12px;
-    line-height:1.5;
   }
   .salon-panel .salon-value-list {
     grid-template-columns:repeat(3,minmax(0,1fr));
@@ -14437,6 +14414,89 @@ footer.site-footer {
     display: none !important;
   }
 }
+
+/* ---- Clear Sky Rose palette, selected 2026-08-03 ----
+   Color and surface changes only. Layout, type sizes, copy, and imagery stay unchanged. */
+header.site-header,
+header.site-header.scrolled,
+header.site-header:hover {
+  border-bottom: 1px solid rgba(79,111,216,.10) !important;
+  box-shadow: 0 8px 24px rgba(39,60,104,.06) !important;
+}
+.site-nav .nav-cta,
+.focus-btn.primary,
+.compact-course-card > a,
+.compact-course-checkout button,
+.salon-register-form .focus-btn,
+.focus-contact {
+  background: var(--focus-blue) !important;
+  background-image: none !important;
+}
+.site-nav .nav-cta:hover,
+.site-nav .nav-cta:focus-visible,
+.compact-course-card > a:hover,
+.compact-course-checkout button:hover,
+.compact-course-checkout button:focus-visible {
+  background: var(--focus-blue-dark) !important;
+}
+.hero-advantage-copy small strong,
+.site-nav .menu-drop a:hover,
+.site-nav .menu-drop a:focus-visible,
+.mobile-toggle:hover,
+.mobile-toggle:focus-visible,
+.mobile-toggle[aria-expanded="true"] {
+  background: var(--focus-lavender) !important;
+}
+.compact-course-badge,
+.salon-intro-kicker {
+  background: var(--focus-rose-soft) !important;
+  border-color: rgba(232,142,160,.34) !important;
+}
+.compact-course-badge i,
+.salon-intro-kicker i,
+.salon-live-badge i {
+  background: var(--focus-rose) !important;
+  box-shadow: 0 0 0 4px rgba(232,142,160,.13) !important;
+}
+.compact-course-card,
+.salon-panel,
+.salon-live-guide,
+.salon-timeline-card,
+.path-card-new,
+.focus-proof,
+.course-menu-unified,
+.salon-all-details,
+.salon-participation {
+  border-color: var(--focus-line) !important;
+  box-shadow: 0 8px 24px rgba(39,60,104,.08) !important;
+}
+.compact-course-card:hover,
+.path-card-new:hover,
+.focus-hub-card:hover,
+.salon-timeline-card.is-active {
+  border-color: rgba(79,111,216,.38) !important;
+  box-shadow: 0 14px 34px rgba(79,111,216,.13) !important;
+}
+.salon-section,
+.focus-block.soft,
+.course-menu-unified {
+  background-color: var(--focus-surface) !important;
+}
+.salon-all-details,
+.salon-participation,
+.salon-live-steps li {
+  background: #f8fbff !important;
+}
+.focus-hero .focus-title strong::after {
+  background: #cbd4fa !important;
+}
+.focus-btn:focus-visible,
+.compact-course-checkout button:focus-visible,
+.mobile-toggle:focus-visible,
+a:focus-visible,
+button:focus-visible {
+  outline-color: rgba(79,111,216,.28) !important;
+}
 """
 
 
@@ -14485,13 +14545,16 @@ def _render_hero_focused() -> str:
         "<h1 class='focus-title'><span class='focus-title-first'>AIエージェントを、</span><br><span class='focus-title-line'><strong>強力なスタッフに。</strong></span></h1>"
         "<aside class='hero-advantage' id='advantage' aria-labelledby='hero-advantage-title'>"
         "<div class='hero-advantage-number' aria-label='AI利用率 6パーセント'><strong>6%</strong><span>AI利用率</span></div>"
-        "<div class='hero-advantage-copy'><small><strong>利用率6%</strong><span>始めるなら今。</span></small><p id='hero-advantage-title'><span class='hero-advantage-equation'><strong>経験</strong><span>×</span><strong>AI</strong></span><span class='hero-advantage-outcome'>で、仕事を一歩先へ。</span></p></div>"
+        "<div class='hero-advantage-copy'><small><strong>相談5,500円/回</strong><span>始めるなら今。</span></small><p id='hero-advantage-title'><span class='hero-advantage-equation'><strong>経験</strong><span>×</span><strong>AI</strong></span><span class='hero-advantage-outcome'>で、仕事を一歩先へ。</span></p></div>"
         "<ul class='hero-advantage-pillars' aria-label='AI活用を成果に変える3原則'><li><b>01</b>まず試す</li><li><b>02</b>人が確かめる</li><li><b>03</b>仕組みにする</li></ul>"
         "</aside>"
-        "<p class='focus-lead'>告知・事務・集客に追われる方へ。実践講習・個別相談・有料オンラインサロンで、AIエージェントを実務に入れ、使い続けられる形まで支援します。</p>"
+        "<p class='focus-lead'>告知・事務・集客に追われる方へ。AIが気になるけれど、何から始めるか迷う方へ。3つの質問で、いまの仕事に合う次の一歩を提案します。</p>"
         "<div class='focus-actions'>"
-        "<a class='focus-btn primary' href='#packages'>講習・個別相談を見る</a>"
-        "<a class='focus-btn secondary' href='#contact'>無料相談する</a><a class='hero-text-link' href='/lectures/index.html'>受講資料 <span aria-hidden='true'>→</span></a></div>"
+        "<div class='hero-diagnose-cta'><span class='hero-diagnose-eyebrow'>何から始めるか、1分で見える。</span>"
+        "<a class='focus-btn primary hero-diagnose-button diagnose-open' href='#packages'>迷ったら60秒診断をはじめる →</a>"
+        "<small>3問で完了。結果を見てから、予約するか決められます。</small></div>"
+        f"<a class='focus-btn secondary' href='{CONSULT_BOOK_URL}' target='_blank' rel='noopener'>無料相談の日程を選ぶ</a>"
+        "<a class='hero-text-link' href='/lectures/index.html'>受講資料 <span aria-hidden='true'>→</span></a></div>"
         "<ul class='focus-trust'><li>AI初心者OK</li><li>対面・オンライン対応</li><li>仕事を持ち込める</li></ul></div>"
         "</div>"
         "</section>"
@@ -14530,7 +14593,7 @@ def _render_focused_main() -> str:
         "<div><small>COMMON VENUE</small><h3>開催場所：グッぼるカフェ（彦根）</h3><p>対面は普段のPCと課題を持ち寄って実施します。オンライン受講・相談にも対応します。</p></div>",
         "<div class='course-venue-map'><iframe src='https://www.google.com/maps?q=%E3%82%B0%E3%83%83%E3%81%BC%E3%82%8B%E3%82%AB%E3%83%95%E3%82%A7%20%E6%BB%8B%E8%B3%80%E7%9C%8C%E5%BD%A6%E6%A0%B9%E5%B8%82%E5%B2%A1%E7%94%BA12&amp;output=embed' title='グッぼるカフェ周辺のGoogleマップ' loading='lazy' referrerpolicy='no-referrer-when-downgrade' allowfullscreen></iframe></div>",
         "<p class='course-venue-map-link'><a href='https://www.google.com/maps/search/?api=1&amp;query=%E3%82%B0%E3%83%83%E3%81%BC%E3%82%8B%E3%82%AB%E3%83%95%E3%82%A7%20%E6%BB%8B%E8%B3%80%E7%9C%8C%E5%BD%A6%E6%A0%B9%E5%B8%82%E5%B2%A1%E7%94%BA12' target='_blank' rel='noopener'>Googleマップで開く →</a></p></aside>",
-        "<div class='course-quick-actions'><button type='button' class='compact-diagnose diagnose-open'>迷ったら60秒診断</button><a href='#lectures'>受講資料から選ぶ →</a></div></section>",
+        "<div class='course-quick-actions'><a href='#lectures'>受講資料から選ぶ →</a></div></section>",
         "<section class='focus-block soft' id='lectures'><div class='focus-section-head'><small>LEARNING MATERIALS</small><h2>受講資料</h2></div>",
         "<p class='focus-section-lead'>公開中の受講資料をすべて表示しています。迷ったら「AIが初めて」から順に選べます。</p>",
         _render_lectures_section(),

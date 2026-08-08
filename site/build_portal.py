@@ -13014,7 +13014,7 @@ header.site-header:hover {
 .compact-course-details span { color:var(--focus-muted); font-size:10.5px; line-height:1.45; }
 .compact-course-card > a { min-height:36px; display:flex; align-items:center; justify-content:center; margin-top:4px; padding:7px 10px; color:#fff; background:var(--focus-blue); border-radius:7px; font-size:12px; font-weight:900; text-align:center; text-decoration:none; }
 .compact-course-card > a:hover { background:var(--focus-blue-dark); }
-.compact-course-material-row { margin:7px 0 0; }
+.compact-course-material-row { margin:7px 0 0; text-align:center; }
 .compact-course-card .compact-course-material { display:inline; padding:0; color:var(--focus-blue); background:transparent; border-radius:0; font-size:11px; font-weight:800; line-height:1.5; text-decoration:underline; text-underline-offset:3px; }
 .compact-course-card .compact-course-material:hover { color:var(--focus-blue-dark); background:transparent; }
 .salon-section {

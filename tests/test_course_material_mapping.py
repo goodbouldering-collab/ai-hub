@@ -85,6 +85,10 @@ class CourseMaterialMappingTest(unittest.TestCase):
             agent_card,
         )
         self.assertIn(".compact-course-material-row {", self.index_html)
+        self.assertRegex(
+            self.index_html,
+            r"\.compact-course-material-row\s*\{[^}]*text-align:center;",
+        )
         self.assertNotIn(
             "</a><a class='compact-course-material' href='/lectures/2026-04-ai-kihon.html'>",
             agent_card,

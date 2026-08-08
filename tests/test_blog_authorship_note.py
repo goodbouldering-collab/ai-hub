@@ -182,6 +182,62 @@ class BlogAuthorshipNoteTest(unittest.TestCase):
                 self.assertEqual(image.format, "WEBP", reference)
                 self.assertEqual(image.size, (1672, 941), reference)
 
+class VercelSupabaseBoundariesBlogTest(unittest.TestCase):
+    ARTICLE_PATH = ROOT / "content" / "blog" / "2026-08-08-vercel-supabase-d1-r2-boundaries.md"
+    SAFE_AUTHORSHIP_NOTE = "この記事は、AIを整理・編集の補助として使い、運営者が内容を確認・編集しています。"
+    HERO_IMAGE = "/img/blog-sites-d1-r2-supabase-hero-20260808.png"
+
+    @classmethod
+    def load_article(cls) -> tuple[dict, str]:
+        frontmatter, body = cls.ARTICLE_PATH.read_text(encoding="utf-8").split("---", 2)[1:]
+        return yaml.safe_load(frontmatter), body.lstrip("\r\n")
+
+    def test_article_metadata_and_section_assets_are_complete(self) -> None:
+        meta, body = self.load_article()
+
+        self.assertEqual(
+            meta["title"],
+            "Vercelを減らす前に知っておきたい：Supabase AuthとD1・R2をどう分けるか",
+        )
+        self.assertEqual(meta["authorship_note"], self.SAFE_AUTHORSHIP_NOTE)
+        self.assertEqual(meta["image"], self.HERO_IMAGE)
+
+        references = sorted(set(re.findall(r"/img/[A-Za-z0-9_.-]+", body)))
+        self.assertGreaterEqual(len(references), 5)
+        for reference in references:
+            self.assertTrue((ROOT / "site" / "static" / reference.lstrip("/")).is_file(), reference)
+
+        self.assertEqual(body.count('<div class="publishing-table-scroll"'), 3)
+
+    def test_rendered_article_has_one_note_and_blogposting_schema(self) -> None:
+        meta, _ = self.load_article()
+        page = builder.render_content_page(
+            meta["title"],
+            meta,
+            "<p>本文</p>",
+            "<nav></nav>",
+            page_path="blog/2026-08-08-vercel-supabase-d1-r2-boundaries.html",
+            kind="blog",
+        )
+
+        title_index = page.index(f"<h1>{meta['title']}</h1>")
+        note_index = page.index(self.SAFE_AUTHORSHIP_NOTE)
+        content_index = page.index("<div class='content-wrap'>")
+        self.assertLess(title_index, note_index)
+        self.assertLess(note_index, content_index)
+        self.assertEqual(page.count(self.SAFE_AUTHORSHIP_NOTE), 1)
+        self.assertIn("class='blog-authorship-note'", page)
+
+        jsonld_match = re.search(
+            r"<script type='application/ld\+json'>(.*?)</script>", page
+        )
+        self.assertIsNotNone(jsonld_match)
+        jsonld = json.loads(jsonld_match.group(1))
+        self.assertEqual(jsonld["@type"], "BlogPosting")
+        self.assertEqual(jsonld["headline"], meta["title"])
+        self.assertEqual(jsonld["datePublished"], "2026-08-08")
+        self.assertEqual(jsonld["image"], builder.SITE_URL + self.HERO_IMAGE)
+
 
 if __name__ == "__main__":
     unittest.main()

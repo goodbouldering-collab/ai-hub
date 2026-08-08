@@ -6,6 +6,10 @@
   "engines": {
     "node": ">=20"
   },
+  "scripts": {
+    "bridge": "node bridge/bridge.mjs",
+    "bridge:test": "node --test bridge/bridge.test.mjs"
+  },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.27.0",
     "@supabase/supabase-js": "^2.45.0",

@@ -1,0 +1,4 @@
+[
+  { "businessId": "ai-hub", "displayName": "AI相談" },
+  { "businessId": "command-center", "displayName": "実行指令室" }
+]

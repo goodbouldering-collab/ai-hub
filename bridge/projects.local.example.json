@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "projects": {
+    "ai-hub": { "folder": "AI相談" },
+    "command-center": { "folder": "AI相談" }
+  }
+}

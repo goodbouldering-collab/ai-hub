@@ -4,6 +4,7 @@ import asyncio
 import html
 import json
 import math
+import os
 import re
 import shutil
 import struct
@@ -66,50 +67,43 @@ COLORS = {
 
 BEATS = [
     {
-        "label": "AI時代の問い",
-        "text": ["AI時代に、デザインは", "不要になるのか？", "仕事設計の視点から考えます。"],
-        "narration": "AI時代に、デザインは不要になるのか？ 仕事設計の視点から考えます。",
-        "duration_seconds": 5.4,
+        "label": "AIとデザイナー",
+        "text": ["AIでデザイナーは", "いらなくなる？"],
+        "narration": "AIでデザイナーは、いらなくなる？",
+        "duration_seconds": 4.0,
         "image": "blog-ai-work-design-hero-20260806.webp",
         "accent": COLORS["deep"],
     },
     {
-        "label": "速さのあとに残る仕事",
-        "text": ["AIで仕事が", "速くなったのに", "なぜ決められない？"],
-        "narration": "AIで仕事が、速くなったのに、なぜ決められない？",
-        "duration_seconds": 4.0,
-        "image": "blog-ai-work-design-hero-20260806.webp",
-        "accent": COLORS["rose"],
-    },
-    {
-        "label": "制作はAIへ",
-        "text": ["AIが得意なのは", "作る・並べる", "選択肢を増やす"],
-        "narration": "AIが得意なのは、作る、並べる、選択肢を増やす",
-        "duration_seconds": 4.6,
+        "label": "AIが作れるもの",
+        "text": ["AIなら", "ロゴもサイトも", "すぐ作れる"],
+        "narration": "AIなら、ロゴもサイトも、すぐ作れる",
+        "duration_seconds": 4.4,
         "image": "blog-ai-work-design-speed-20260806.webp",
         "accent": COLORS["blue"],
     },
     {
-        "label": "判断と責任は人へ",
-        "text": ["人が担うのは", "目的・優先順位", "最後の責任"],
-        "narration": "人が担うのは、目的、優先順位、最後の責任",
-        "duration_seconds": 4.2,
+        "label": "人の仕事",
+        "text": ["人が担うのは", "お客様の話を聞き", "何を作るか決めること"],
+        "narration": "人が担うのは、お客様の話を聞き、何を作るか決めること",
+        "tts_narration": "ひとがになうのは、お客様の話を聞き、何を作るか決めること",
+        "duration_seconds": 6.0,
         "image": "blog-ai-work-design-system-20260806.webp",
         "accent": COLORS["rose"],
     },
     {
-        "label": "すべての職種に共通",
-        "text": ["これはデザインだけでなく", "すべての仕事の", "ワークデザイン"],
-        "narration": "これはデザインだけでなく、すべての仕事の、ワークデザイン",
-        "duration_seconds": 5.0,
+        "label": "お客様の期待",
+        "text": ["デザインを頼む人は", "サイトや資料も", "まとめて頼みたい"],
+        "narration": "デザインを頼む人は、サイトや資料も、まとめて頼みたい",
+        "duration_seconds": 5.6,
         "image": "blog-ai-work-design-experience-20260806.webp",
         "accent": COLORS["lilac"],
     },
     {
-        "label": "続きはAI相談のブログへ",
-        "text": ["任せる・決める・確かめる", "3つに分けて", "明日から使おう"],
-        "narration": "任せる、決める、確かめる、3つに分けて、明日から使おう",
-        "duration_seconds": 5.6,
+        "label": "デザイナーの武器",
+        "text": ["AIはデザイナーの", "仕事を広げる", "最強の武器になる"],
+        "narration": "AIはデザイナーの、仕事を広げる、最強の武器になる",
+        "duration_seconds": 5.4,
         "image": "blog-ai-work-design-three-lanes-20260806.webp",
         "accent": COLORS["deep"],
     },
@@ -117,30 +111,26 @@ BEATS = [
 
 TOTAL_SECONDS = round(sum(float(beat["duration_seconds"]) for beat in BEATS), 1)
 
-CAPTION = f"""AIで資料もサイトもアプリも、驚くほど早く形になる。
-でも、最後の「どれを選ぶか」で仕事が止まることがあります。
+CAPTION = f"""AIでデザイナーはいらなくなる？
+私は、むしろ仕事が広がると思っています。
 
-私自身、以前なら1か月単位で考えていた作業が2時間ほどで初稿まで進んでも、方向を決めるのに2日、3日かかることがあります。
+AIなら、ロゴもWebサイトも資料も、これまでより早く形にできます。
+でも、お客様の話を聞き、何を作るかを決めるのは人です。
 
-AIが弱いからではありません。
-作る時間が短くなったぶん、目的・優先順位・責任が濃く残るからです。
+デザインを頼める人には、サイトや資料もまとめて相談したい。
+そう考えるお客様は、これから増えていくはずです。
 
-これはデザイナーだけの話ではなく、経営者、プロジェクトリーダー、先生、福祉の現場、個人事業主にも共通する「ワークデザイン」の話です。
+だからAIは、デザイナーの仕事を奪う敵ではありません。
+仕事を広げる、最強の武器になります。
 
-まず一つの仕事を、
-・AIに任せる
-・人が決める
-・結果を確かめる
-の3つに分けてみてください。
-
-詳しい考え方と15分で作れるメモは、AI相談のブログにまとめました。
+詳しい考え方は、AI相談のブログにまとめました。
 {BLOG_URL}
 
-#AI活用 #ワークデザイン #仕事術 #DX #デザイン #プロジェクト管理 #AI相談"""
+#AI活用 #デザイン #Web制作 #資料作成 #仕事術 #AI相談"""
 
-STORY_COPY = "作業は速い。でも、決める仕事は残る。\nAI時代の『ワークデザイン』を約29秒で整理しました。"
+STORY_COPY = "AIでデザイナーはいらなくなる？\n答えは逆。AIは仕事を広げる武器になります。"
 STORY_LINK_LABEL = "詳細はこちら"
-BRAND_COMMENT = "AIに全部任せるより、『任せる・決める・確かめる』を分けると現場で続きます。自分の仕事ならどう分けるか、気軽にDMしてください。"
+BRAND_COMMENT = "ロゴだけでなく、サイトや資料までまとめて相談できると、お客様の手間も減ります。AIを使ったクリエイティブの相談は、気軽にDMしてください。"
 
 
 def scene_starts() -> list[float]:
@@ -177,6 +167,10 @@ def tts_text(text: str) -> str:
     text = re.sub(r"[、・]", "", text)
     text = re.sub(r"[。！？!?]+\s*", "、", text)
     return re.sub(r"\s+", "", text).strip("、")
+
+
+def tts_input(beat: dict[str, object]) -> str:
+    return tts_text(str(beat.get("tts_narration", beat["narration"])))
 
 
 def estimated_ducking_db(sidechain_level_db: float) -> float:
@@ -407,9 +401,13 @@ def create_frame(index: int, beat: dict[str, object]) -> Path:
 
 
 def locate_ffmpeg() -> Path:
-    candidates = [
-        Path("C:/Project/グッぼる/media/output/myreel/2026-07-03-finger-training-reframe/pydeps/imageio_ffmpeg/binaries/ffmpeg-win-x86_64-v7.1.exe"),
-    ]
+    candidates: list[Path] = []
+    configured = os.environ.get("FFMPEG_BINARY")
+    if configured:
+        candidates.append(Path(configured))
+    candidates.append(
+        Path("C:/Project/グッぼる/media/output/myreel/2026-07-03-finger-training-reframe/pydeps/imageio_ffmpeg/binaries/ffmpeg-win-x86_64-v7.1.exe")
+    )
     system = shutil.which("ffmpeg")
     if system:
         candidates.append(Path(system))
@@ -483,7 +481,7 @@ async def generate_voice_raw() -> list[Path]:
     VOICE_DIR.mkdir(parents=True, exist_ok=True)
     outputs: list[Path] = []
     for index, beat in enumerate(BEATS, start=1):
-        text = tts_text(str(beat["narration"]))
+        text = tts_input(beat)
         output = VOICE_DIR / f"beat-{index:02d}-raw.mp3"
         communicate = edge_tts.Communicate(
             text=text,
@@ -569,6 +567,7 @@ def normalize_voice_clips(raw_clips: list[Path]) -> tuple[list[Path], list[dict[
             {
                 "beat": index,
                 "text": text,
+                "tts_input": tts_input(beat),
                 "raw_duration_seconds": round(raw_duration, 2),
                 "trimmed_duration_seconds": round(trimmed_duration, 2),
                 "tempo_multiplier": round(tempo, 3),
@@ -780,7 +779,7 @@ def make_storyboard(frame_paths: list[Path]) -> Path:
     canvas = Image.new("RGB", (1080, 520), hex_rgba(COLORS["sky"])[:3])
     draw = ImageDraw.Draw(canvas)
     title_font = font(34, bold=True)
-    title = "AIとデザインの未来｜約29秒リール（6場面）"
+    title = f"AIとデザインの未来｜約{TOTAL_SECONDS:.0f}秒リール（{len(BEATS)}場面）"
     draw.text((40, 34), title, font=title_font, fill=hex_rgba(COLORS["ink"])[:3])
     for index, path in enumerate(frame_paths):
         image = Image.open(path).convert("RGB").resize((thumb_w, thumb_h), Image.Resampling.LANCZOS)
@@ -822,7 +821,7 @@ def make_story_preview() -> Path:
     draw.rounded_rectangle((100, 390, 979, 884), radius=36, outline=hex_rgba(COLORS["white"]), width=5)
 
     draw.rounded_rectangle((84, 955, 996, 1360), radius=46, fill=hex_rgba(COLORS["white"], 244), outline=hex_rgba(COLORS["line"]), width=2)
-    story_lines = ["作業は速い。", "でも、決める仕事は残る。", "AI時代のワークデザイン"]
+    story_lines = ["AIでデザイナーは", "いらなくなる？", "答えは逆。"]
     draw_centered_lines(draw, story_lines, 1038, 810, COLORS["ink"], line_gap=24)
 
     # Review placeholder. Instagram投稿時は、この位置へネイティブのリンクスタンプを置く。
@@ -914,14 +913,14 @@ def inspect_video(
     }
     detected["checks"] = {
         "portrait_1080x1920": detected["width"] == 1080 and detected["height"] == 1920,
-        "duration_about_28_8_seconds": duration is not None and abs(duration - TOTAL_SECONDS) <= 0.08,
+        "duration_matches_contract": duration is not None and abs(duration - TOTAL_SECONDS) <= 0.08,
         "fps_30": detected["fps"] == 30,
         "codec_h264": detected["codec"] == "h264",
         "pixel_format_yuv420p": detected["pixel_format"] == "yuv420p",
         "audio_present": detected["audio"] == "present",
         "audio_codec_aac": detected["audio_codec"] == "aac",
         "audio_sample_rate_48000": detected["audio_sample_rate_hz"] == 48000,
-        "six_scenes": len(BEATS) == 6,
+        "five_scenes": len(BEATS) == 5,
         "max_three_lines": all(len(beat["text"]) <= 3 for beat in BEATS),
         "text_narration_aligned": all(
             spoken_words("".join(beat["text"])) == spoken_words(str(beat["narration"])) for beat in BEATS
@@ -977,7 +976,7 @@ def write_text_assets(qa: dict[str, object]) -> None:
 
 {voice_script}
 
-各文は画面切替と同時に始まり、速度変更なしで中央テキストを全文読み上げる。句読点と中黒だけを自然な読点として扱い、省略・言い換えはしない。
+各文は画面切替と同時に始まり、速度変更なしで中央テキストを全文読み上げる。第3場面だけ「人」を確実に「ひと」と読むTTS入力を使い、意味の省略・言い換えはしない。
 """,
         encoding="utf-8",
     )
@@ -988,7 +987,7 @@ def write_text_assets(qa: dict[str, object]) -> None:
 Reelレビュー状態: {metadata_line}
 状態: 最終承認待ち（Instagram未投稿）
 
-## 画面内テキスト（6場面）
+## 画面内テキスト（{len(BEATS)}場面）
 
 {on_screen}
 
@@ -1045,12 +1044,12 @@ Reelレビュー状態: {metadata_line}
 - 公式プロフィールの公開文面は、事業、実践、プラグマティズムを率直に伝える調子だった。
 - 公開グリッドは個人・事業の実写が混在し、AI相談として統一された最新ビジュアル体系は確認できなかった。
 - そのためデザインは、AI相談公式サイトの最新Clear Sky Roseを基準にした。
-- 既存のAI相談向けリール資産の読みやすい型を継承し、内容紹介を加えた約29秒／6場面へ更新した。
+- 既存のAI相談向けリール資産の読みやすい型を継承し、デザイナー向けの約{TOTAL_SECONDS:.0f}秒／{len(BEATS)}場面へ更新した。
 - 音声は `{VOICE_LABEL}`。親しみやすさと信頼感を保ち、通常速度で画面中央の全文を読む。
 - BGMは外部音源やサンプルを使わずPython標準ライブラリだけで合成し、ナレーション中は約6dBダッキングする。
 - FFmpeg `volumedetect` で生成済みナレーション、原BGM、入力ゲイン後bed、duck後BGMのナレーション区間RMSを実測する。今回の結果は {audio_summary}。
 - 権利根拠は `{audio_qa['rights_basis']}`。閾値判定は `qa.json` と `posting-manifest.json` に同値で保存する。
-- 難しいAI用語から入らず、「作るのは速いが決められない」という身近な悩みから始めた。
+- 難しいAI用語を避け、「AIでデザイナーはいらなくなる？」という身近な疑問から始めた。
 - ロボット、サイバー空間、別事業の配色・写真・ロゴは使っていない。
 """,
         encoding="utf-8",
@@ -1068,7 +1067,7 @@ Reelレビュー状態: {metadata_line}
         "draft_mode": False,
         "blog": {
             "url": BLOG_URL,
-            "status": "planned_unverified_until_production",
+            "status": "verified_before_reel_publication",
         },
         "reel": {
             "title": ARTICLE_TITLE,
@@ -1085,6 +1084,7 @@ Reelレビュー状態: {metadata_line}
                 "voice_label": VOICE_LABEL,
                 "rate": VOICE_RATE,
                 "script": [beat["narration"] for beat in BEATS],
+                "tts_inputs": [tts_input(beat) for beat in BEATS],
                 "speed_up": False,
                 "background_music_file": "background-music.wav",
                 "music_bed_file": "music-bed.wav",
@@ -1116,11 +1116,11 @@ Reelレビュー状態: {metadata_line}
 Reelレビュー状態: {metadata_line}
 状態: 未承認・未投稿
 
-- [ ] 完成動画、6つの画面文、キャプション、ストーリー、コメントをユーザーが最終承認した
+- [ ] 完成動画、{len(BEATS)}つの画面文、キャプション、ストーリー、コメントをユーザーが最終承認した
 - [ ] 本番ブログURL `{BLOG_URL}` がHTTP 200で表示できる
 - [ ] Chrome上の投稿先が `{ACCOUNT}` と画面表示で確認できる
 - [ ] リールの「シェア」直前に動画、表紙、キャプションを再確認した
-- [ ] 女性ナレーションが6場面の中央テキスト全文と合い、音割れや不自然な切れがない
+- [ ] 女性ナレーションが{len(BEATS)}場面の中央テキスト全文と合い、「人が担う」を「ひとがになう」と読み、音割れや不自然な切れがない
 - [ ] BGMがナレーションを邪魔せず、無音部とナレーション部で自然に音量が変わる
 - [ ] Instagram下書きを使わず、直接投稿する
 - [ ] リール公開URLを取得した
@@ -1139,15 +1139,15 @@ Reelレビュー状態: {metadata_line}
 
 ## 内容
 
-- `reel.mp4`: 1080×1920、約28.8秒、30fps、H.264、日本語女性ナレーション・オリジナルBGM付き
-- `narration.m4a`: 6場面に同期した通常速度のナレーション音声
+- `reel.mp4`: 1080×1920、約{TOTAL_SECONDS:.1f}秒、30fps、H.264、日本語女性ナレーション・オリジナルBGM付き
+- `narration.m4a`: {len(BEATS)}場面に同期した通常速度のナレーション音声
 - `background-music.wav`: 48kHzステレオ、92 BPMの軽量な自動合成BGM
 - `music-bed.wav`: 原BGMへ入力ゲインを適用したダッキング前の比較用音源
 - `ducked-background-music.wav`: 生成済みナレーションをsidechainにした実際のダッキング後BGM
 - `narration.md`: 声の設定、同期位置、読み上げ台本
 - `voice/`: 場面ごとの音声原本
 - `cover.png`: リール表紙
-- `storyboard.png`: 6場面一覧
+- `storyboard.png`: {len(BEATS)}場面一覧
 - `preview.gif`: 軽量プレビュー
 - `story-preview.png`: ストーリー画像とリンクスタンプ配置見本
 - `captions.md`: 画面文、キャプション、ストーリー、ブランドコメント
@@ -1156,7 +1156,7 @@ Reelレビュー状態: {metadata_line}
 - `posting-manifest.json`: 公開順序と承認状態
 - `qa.json`: 動画仕様と実測音声dB、入力ゲイン、ダッキング量、声/BGM差、権利根拠、閾値合否の機械検証
 - `source/`: 記事と共通の生成画像
-- `frames/`: 動画の6場面
+- `frames/`: 動画の{len(BEATS)}場面
 
 ## 再生成
 
@@ -1178,7 +1178,7 @@ Reelレビュー状態: {metadata_line}
 <html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{ARTICLE_TITLE}｜リール確認</title>
 <style>body{{margin:0;background:#f8fbff;color:#172033;font-family:'Yu Gothic UI','Meiryo',sans-serif}}main{{width:min(1080px,92vw);margin:40px auto 80px}}h1{{font-size:clamp(28px,5vw,52px)}}.note{{padding:16px 20px;border-left:6px solid #e88ea0;background:#fff0f3;border-radius:14px}}.grid{{display:grid;grid-template-columns:minmax(280px,430px) 1fr;gap:28px;align-items:start;margin-top:28px}}video,img{{max-width:100%;border-radius:20px;box-shadow:0 16px 40px rgba(62,88,184,.14)}}section{{padding:24px;background:#fff;border:1px solid #dce4f2;border-radius:18px;margin-bottom:18px;line-height:1.8}}pre{{white-space:pre-wrap;font:inherit}}@media(max-width:800px){{.grid{{grid-template-columns:1fr}}}}</style></head>
-<body><main><h1>{ARTICLE_TITLE}｜リール確認</h1><p class="note">投稿先 {ACCOUNT}／Reelレビュー状態: {metadata_line}／状態: 最終承認待ち・未投稿</p><img src="storyboard.png" alt="6場面の一覧">
+<body><main><h1>{ARTICLE_TITLE}｜リール確認</h1><p class="note">投稿先 {ACCOUNT}／Reelレビュー状態: {metadata_line}／状態: 最終承認待ち・未投稿</p><img src="storyboard.png" alt="{len(BEATS)}場面の一覧">
 <div class="grid"><video controls muted playsinline poster="cover.png"><source src="reel.mp4" type="video/mp4"></video><div>
 <section><h2>ストーリー見本</h2><img src="story-preview.png" alt="ストーリーとリンクスタンプの配置見本"></section>
 <section><h2>キャプション</h2><p>{safe_caption}</p></section>
@@ -1192,7 +1192,12 @@ Reelレビュー状態: {metadata_line}
 def copy_inputs() -> None:
     SOURCE_DIR.mkdir(parents=True, exist_ok=True)
     FRAME_DIR.mkdir(parents=True, exist_ok=True)
+    VOICE_DIR.mkdir(parents=True, exist_ok=True)
     BUILD_DIR.mkdir(parents=True, exist_ok=True)
+    for stale_frame in FRAME_DIR.glob("frame-*.png"):
+        stale_frame.unlink()
+    for stale_voice in VOICE_DIR.glob("beat-*-raw.mp3"):
+        stale_voice.unlink()
     for beat in BEATS:
         source = SITE_IMAGE_DIR / str(beat["image"])
         if not source.exists():

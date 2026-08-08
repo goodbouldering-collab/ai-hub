@@ -3,9 +3,11 @@ from __future__ import annotations
 import importlib.util
 import hashlib
 import json
+import os
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 
 MODULE_PATH = Path(__file__).with_name("build_reel.py")
@@ -20,9 +22,17 @@ class ReelContractTest(unittest.TestCase):
         cls.module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(cls.module)
 
-    def test_six_scenes_read_all_center_text_without_time_compression(self) -> None:
-        self.assertEqual(len(self.module.BEATS), 6)
-        self.assertAlmostEqual(sum(beat["duration_seconds"] for beat in self.module.BEATS), 28.8)
+    def test_five_scenes_use_approved_designer_copy_at_normal_speed(self) -> None:
+        expected = [
+            ["AIでデザイナーは", "いらなくなる？"],
+            ["AIなら", "ロゴもサイトも", "すぐ作れる"],
+            ["人が担うのは", "お客様の話を聞き", "何を作るか決めること"],
+            ["デザインを頼む人は", "サイトや資料も", "まとめて頼みたい"],
+            ["AIはデザイナーの", "仕事を広げる", "最強の武器になる"],
+        ]
+        self.assertEqual([beat["text"] for beat in self.module.BEATS], expected)
+        self.assertEqual(len(self.module.BEATS), 5)
+        self.assertAlmostEqual(sum(beat["duration_seconds"] for beat in self.module.BEATS), 25.4)
         for beat in self.module.BEATS:
             self.assertEqual(
                 self.module.spoken_words("".join(beat["text"])),
@@ -34,28 +44,34 @@ class ReelContractTest(unittest.TestCase):
         self.assertTrue(callable(self.module.create_background_music))
         self.assertTrue(all(len(beat["text"]) <= 3 for beat in self.module.BEATS))
 
-    def test_existing_five_center_text_scenes_are_unchanged(self) -> None:
-        self.assertEqual(
-            [beat["text"] for beat in self.module.BEATS[-5:]],
-            [
-                ["AIで仕事が", "速くなったのに", "なぜ決められない？"],
-                ["AIが得意なのは", "作る・並べる", "選択肢を増やす"],
-                ["人が担うのは", "目的・優先順位", "最後の責任"],
-                ["これはデザインだけでなく", "すべての仕事の", "ワークデザイン"],
-                ["任せる・決める・確かめる", "3つに分けて", "明日から使おう"],
-            ],
-        )
+    def test_third_scene_uses_hito_pronunciation_only_for_tts(self) -> None:
+        beat = self.module.BEATS[2]
+        self.assertEqual(beat["text"][0], "人が担うのは")
+        self.assertIn("人が担う", beat["narration"])
+        self.assertTrue(self.module.tts_input(beat).startswith("ひとがになうのは"))
+        self.assertNotIn("にんがになう", self.module.tts_input(beat))
 
     def test_tts_punctuation_keeps_every_word_without_extra_long_pauses(self) -> None:
         narration = self.module.BEATS[0]["narration"]
         tts_text = self.module.tts_text(narration)
-        self.assertEqual(tts_text, "AI時代にデザインは不要になるのか、仕事設計の視点から考えます")
+        self.assertEqual(tts_text, "AIでデザイナーはいらなくなる")
         self.assertEqual(self.module.spoken_words(tts_text), self.module.spoken_words(narration))
 
     def test_sidechain_settings_target_about_six_decibels_of_ducking(self) -> None:
         reduction = self.module.estimated_ducking_db(-16.0)
         self.assertGreaterEqual(reduction, 5.0)
         self.assertLessEqual(reduction, 7.0)
+
+    def test_locate_ffmpeg_prefers_explicit_accessible_binary(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            expected = Path(temporary_directory) / "ffmpeg.exe"
+            expected.write_bytes(b"MZ")
+            with patch.dict(os.environ, {"FFMPEG_BINARY": str(expected)}):
+                try:
+                    actual = self.module.locate_ffmpeg()
+                except OSError as error:
+                    self.fail(f"Explicit FFmpeg should bypass inaccessible fallback paths: {error}")
+            self.assertEqual(actual, expected)
 
     def test_generated_audio_qa_records_measured_levels_rights_and_threshold_results(self) -> None:
         qa = json.loads(MODULE_PATH.with_name("qa.json").read_text(encoding="utf-8"))
@@ -64,7 +80,7 @@ class ReelContractTest(unittest.TestCase):
 
         self.assertEqual(measured["measurement_method"], "ffmpeg_volumedetect_rms_dbfs")
         self.assertEqual(measured["rights_basis"], "self-generated/no external samples")
-        self.assertAlmostEqual(measured["music_input_gain_db"], -13.1, places=1)
+        self.assertAlmostEqual(measured["music_input_gain_db"], -13.15, delta=0.1)
         self.assertGreaterEqual(
             measured["measured_ducking_db"],
             measured["thresholds"]["minimum_ducking_db"],
@@ -116,13 +132,18 @@ class ReelContractTest(unittest.TestCase):
                 package_asset.name,
             )
 
-        self.assertEqual(qa["scene_count"], 6)
-        self.assertAlmostEqual(qa["duration_seconds"], 28.8, places=2)
+        expected_frames = [f"frame-{index:02d}.png" for index in range(1, 6)]
+        expected_voice = [f"beat-{index:02d}-raw.mp3" for index in range(1, 6)]
+        self.assertEqual(sorted(path.name for path in (reel_root / "frames").glob("frame-*.png")), expected_frames)
+        self.assertEqual(sorted(path.name for path in (reel_root / "voice").glob("beat-*-raw.mp3")), expected_voice)
+
+        self.assertEqual(qa["scene_count"], 5)
+        self.assertAlmostEqual(qa["duration_seconds"], 25.4, places=2)
         self.assertTrue(all(qa["checks"].values()))
 
     def test_review_metadata_is_consistent_in_every_generated_text_asset(self) -> None:
         expected_title = "AI時代にデザインは不要になるのか？ むしろ必要になる「経験」と「仕事をデザインする力」"
-        expected_review_state = "約28.8秒 / 6場面 / review_ready_waiting_final_approval / 未投稿"
+        expected_review_state = "約25.4秒 / 5場面 / review_ready_waiting_final_approval / 未投稿"
         self.assertEqual(self.module.ARTICLE_TITLE, expected_title)
         self.assertEqual(self.module.review_metadata_line(), expected_review_state)
 

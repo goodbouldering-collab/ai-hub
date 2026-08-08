@@ -100,9 +100,14 @@ class BlogAuthorshipNoteTest(unittest.TestCase):
 
         self.assertEqual(meta["title"], FINAL_TITLE)
         self.assertEqual(meta["authorship_note"], APPROVED_AUTHORSHIP_NOTE)
-        self.assertIn("約29秒", meta["video_label"])
-        self.assertIn("女性ナレーション", meta["video_label"])
-        self.assertIn("軽いBGM", meta["video_caption"])
+        self.assertEqual(
+            meta["video_label"],
+            "AIでデザイナーの仕事がどう広がるかを約25秒・女性ナレーション・軽いBGMで整理する動画",
+        )
+        self.assertEqual(
+            meta["video_caption"],
+            "ロゴ、サイト、資料へ。AIがデザイナーの仕事を広げる理由を、女性ナレーションと軽いBGMで伝える約25秒リールです。",
+        )
         self.assertIn(f"<title>{FINAL_TITLE} | AI相談</title>", page)
         self.assertIn(f"<meta property='og:title' content='{FINAL_TITLE}'>", page)
         self.assertEqual(jsonld["headline"], FINAL_TITLE)

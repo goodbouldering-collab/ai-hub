@@ -15,7 +15,7 @@ BUILDER_PATH = ROOT / "site" / "build_site.py"
 ARTICLE_PATH = ROOT / "content" / "blog" / "2026-08-06-ai-work-design-future.md"
 BLOG_DIR = ROOT / "content" / "blog"
 FINAL_TITLE = "AI時代にデザインは不要になるのか？ むしろ必要になる「経験」と「仕事をデザインする力」"
-CANONICAL_AUTHORSHIP_NOTE = "この記事は、運営者が独自に考え、思考したものを、AIを使って読みやすくしました。"
+CANONICAL_AUTHORSHIP_NOTE = "※この記事は、運営者が独自に考え思考し、AIで読みやすくしたものです。"
 APPROVED_AUTHORSHIP_NOTE = CANONICAL_AUTHORSHIP_NOTE
 ARTICLE_BODY_SHA256 = "c88fcb045f69a40a8e990e75a77254954368f72ea41151387d9071899ff0f351"
 ARTICLE_HERO_IMAGE = "/img/blog-ai-work-design-hero-20260806.webp"
@@ -53,7 +53,7 @@ def render_article() -> str:
 
 
 class BlogAuthorshipNoteTest(unittest.TestCase):
-    def test_blog_note_is_between_header_and_video(self) -> None:
+    def test_blog_note_is_plain_body_text_between_header_and_video(self) -> None:
         note = "Example authorship note"
         page = builder.render_content_page(
             "Article title",
@@ -66,6 +66,12 @@ class BlogAuthorshipNoteTest(unittest.TestCase):
         self.assertLess(page.index("</header>"), page.index(note))
         self.assertLess(page.index(note), page.index("article-video"))
         self.assertLess(page.index("article-video"), page.index("<p>Body</p>"))
+        self.assertIn(
+            f"</header><p>{note}</p><div class='content-wrap'>",
+            page,
+        )
+        self.assertNotIn("blog-authorship-note", page)
+        self.assertNotIn("この記事について", page)
 
     def test_blog_note_escapes_html(self) -> None:
         page = builder.render_content_page(
@@ -78,6 +84,8 @@ class BlogAuthorshipNoteTest(unittest.TestCase):
 
         self.assertIn("AI &lt; person", page)
         self.assertNotIn("<p>AI < person</p>", page)
+        self.assertIn("<p>AI &lt; person</p>", page)
+        self.assertNotIn("blog-authorship-note", page)
 
     def test_lecture_page_omits_blog_note(self) -> None:
         note = "Lecture pages omit this note"
@@ -155,7 +163,7 @@ class BlogAuthorshipNoteTest(unittest.TestCase):
         page = render_article()
         markers = [
             f"<h1>{FINAL_TITLE}</h1>",
-            "class='blog-authorship-note'",
+            APPROVED_AUTHORSHIP_NOTE,
             "class='article-video article-video--portrait'",
             'src="/img/blog-ai-work-design-hero-20260806.webp"',
             "<p>AIで資料も、Webサイトも、業務アプリも、驚くほど早く形になります。",
@@ -253,7 +261,12 @@ class VercelSupabaseBoundariesBlogTest(unittest.TestCase):
         self.assertLess(title_index, note_index)
         self.assertLess(note_index, content_index)
         self.assertEqual(page.count(self.SAFE_AUTHORSHIP_NOTE), 1)
-        self.assertIn("class='blog-authorship-note'", page)
+        self.assertIn(
+            f"</header><p>{self.SAFE_AUTHORSHIP_NOTE}</p><div class='content-wrap'>",
+            page,
+        )
+        self.assertNotIn("blog-authorship-note", page)
+        self.assertNotIn("この記事について", page)
 
         jsonld_match = re.search(
             r"<script type='application/ld\+json'>(.*?)</script>", page

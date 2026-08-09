@@ -184,6 +184,13 @@ class BlogAuthorshipNoteTest(unittest.TestCase):
 
 class VercelSupabaseBoundariesBlogTest(unittest.TestCase):
     ARTICLE_PATH = ROOT / "content" / "blog" / "2026-08-08-vercel-supabase-d1-r2-boundaries.md"
+    FINAL_TITLE = "ウェブサイト公開から本格稼働へ：AIで作ったWebサービスの5つの置き場所"
+    EXPECTED_HEADINGS = [
+        "本格稼働の出発点は、データと機能を5つに分けること",
+        "データベースは、データ量ではなく権限の複雑さで決める",
+        "公開・軽量処理と、複雑な業務を分けて運用する",
+        "本格稼働へ進むために、6段階で小さく試す",
+    ]
     SAFE_AUTHORSHIP_NOTE = "この記事は、AIを整理・編集の補助として使い、運営者が内容を確認・編集しています。"
     HERO_IMAGE = "/img/blog-sites-d1-r2-supabase-hero-20260808.png"
 
@@ -197,10 +204,15 @@ class VercelSupabaseBoundariesBlogTest(unittest.TestCase):
 
         self.assertEqual(
             meta["title"],
-            "Vercelを減らす前に知っておきたい：Supabase AuthとD1・R2をどう分けるか",
+            self.FINAL_TITLE,
         )
+        self.assertIn("本格稼働", meta["summary"])
+        self.assertIn("5つ", meta["goal"])
         self.assertEqual(meta["authorship_note"], self.SAFE_AUTHORSHIP_NOTE)
         self.assertEqual(meta["image"], self.HERO_IMAGE)
+
+        headings = re.findall(r"^## (.+)$", body, flags=re.MULTILINE)
+        self.assertEqual(headings[:4], self.EXPECTED_HEADINGS)
 
         references = sorted(set(re.findall(r"/img/[A-Za-z0-9_.-]+", body)))
         self.assertGreaterEqual(len(references), 5)

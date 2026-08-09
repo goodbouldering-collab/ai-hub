@@ -11,7 +11,8 @@ test("PC Codex bridge is relocated to AI相談 and targets the protected relay",
   assert.match(bridge, /COMMAND_ROOM_ORIGIN\s*=\s*"https:\/\/ai-hub-jp\.vercel\.app"/);
   assert.match(bridge, /\/api\/admin\/command-center\/relay/);
   assert.doesNotMatch(bridge, /climbing-consult-daily-command\.goodbouldering\.chatgpt\.site/);
-  assert.match(bridge, /delete childEnvironment\.COMMAND_CENTER_SERVICE_TOKEN/);
+  assert.match(bridge, /SAFE_APP_SERVER_ENVIRONMENT_KEYS/);
+  assert.doesNotMatch(bridge, /const childEnvironment = \{ \.\.\.source \}/);
 });
 
 test("bridge base configuration contains no credential material", async () => {

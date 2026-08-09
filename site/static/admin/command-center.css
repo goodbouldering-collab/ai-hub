@@ -67,8 +67,13 @@ body.command-center-page { min-height: 100vh; background: #f8fbff !important; co
 .cc-calendar { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px; }
 .cc-day { min-height: 96px; padding: 11px; border: 1px solid var(--cc-line); border-radius: 10px; background: #fff; }
 .cc-day strong { display: block; font-size: 15px; }
-.cc-day span { display: block; margin-top: 20px; color: var(--cc-muted); font-size: 12px; }
+.cc-day span { display: block; margin-top: 8px; color: var(--cc-muted); font-size: 12px; }
+.cc-day strong + span { margin-top: 20px; }
 .cc-day.is-busy { border-color: rgba(79,111,216,.4); background: #f1f4ff; }
+.cc-day.is-deadline { border-color: rgba(184,79,100,.42); }
+.cc-day.is-busy.is-deadline { background: linear-gradient(135deg, #f1f4ff, #fff3f6); }
+.cc-day .cc-deadline-count { color: var(--cc-rose); font-weight: 800; }
+.cc-deadline-list { margin-top: 14px; }
 .cc-code { padding: 14px; border: 1px dashed var(--cc-line); border-radius: 10px; background: var(--cc-soft); font-size: 20px; letter-spacing: .2em; text-align: center; }
 .cc-kicker { margin: 0 0 7px; color: var(--cc-muted); font-size: 11px; letter-spacing: .08em; font-weight: 800; }
 .cc-copy { white-space: pre-wrap; line-height: 1.65; }

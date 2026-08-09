@@ -7,11 +7,22 @@
   const views = ["dashboard", "calendar", "tasks", "businesses", "directives", "studio", "tools", "trade"];
 
   const esc = (value) => String(value ?? "").replace(/[&<>'"]/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[character]));
-  const today = () => new Date().toISOString().slice(0, 10);
+  const japanDateKey = (value = new Date()) => {
+    const parts = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Tokyo", year: "numeric", month: "2-digit", day: "2-digit" }).formatToParts(value);
+    const part = (type) => parts.find((item) => item.type === type)?.value || "";
+    return `${part("year")}-${part("month")}-${part("day")}`;
+  };
+  const today = () => japanDateKey();
   const addDays = (value, amount) => { const date = new Date(`${value}T00:00:00Z`); date.setUTCDate(date.getUTCDate() + amount); return date.toISOString().slice(0, 10); };
   const setLive = (message, error = false) => { live.textContent = message || ""; live.classList.toggle("is-error", Boolean(error)); };
   const badge = (value, tone = "") => `<span class="cc-badge ${tone ? `cc-badge--${tone}` : ""}">${esc(value)}</span>`;
   const empty = (message) => `<div class="cc-empty">${esc(message)}</div>`;
+  const safeExternalUrl = (value) => {
+    try {
+      const url = new URL(String(value || ""));
+      return url.protocol === "https:" || url.protocol === "http:" ? url.href : "";
+    } catch { return ""; }
+  };
 
   async function fetchJson(url, options = {}) {
     const response = await fetch(url, { credentials: "same-origin", cache: "no-store", ...options, headers: { "Accept": "application/json", ...(options.headers || {}) } });
@@ -46,7 +57,7 @@
 
   function renderBusinesses() {
     const projects = state.dashboard.projects || [];
-    const rows = projects.length ? projects.map((project) => `<tr><td><strong>${esc(project.displayName)}</strong><br><small class="cc-muted">${esc(project.businessId)}</small></td><td>${badge(project.statusLabel || project.status, project.status === "active" ? "ok" : "")}</td><td>${project.productionUrl ? `<a href="${esc(project.productionUrl)}" target="_blank" rel="noreferrer">公開ページ</a>` : "—"}</td><td>${esc(project.lastReviewDate)}</td></tr>`).join("") : `<tr><td colspan="4">${empty("事業データはまだありません")}</td></tr>`;
+    const rows = projects.length ? projects.map((project) => { const productionUrl = safeExternalUrl(project.productionUrl); return `<tr><td><strong>${esc(project.displayName)}</strong><br><small class="cc-muted">${esc(project.businessId)}</small></td><td>${badge(project.statusLabel || project.status, project.status === "active" ? "ok" : "")}</td><td>${productionUrl ? `<a href="${esc(productionUrl)}" target="_blank" rel="noreferrer">公開ページ</a>` : "—"}</td><td>${esc(project.lastReviewDate)}</td></tr>`; }).join("") : `<tr><td colspan="4">${empty("事業データはまだありません")}</td></tr>`;
     content.innerHTML = layout("事業一覧", "事業ごとの状態と公開導線だけを確認します。", `<div class="cc-table-wrap"><table class="cc-table"><thead><tr><th>事業</th><th>状態</th><th>公開URL</th><th>最終確認</th></tr></thead><tbody>${rows}</tbody></table></div>`);
   }
 
@@ -59,8 +70,28 @@
 
   async function renderCalendar() {
     const from = today(); const to = addDays(from, 6);
-    content.innerHTML = layout("カレンダー", "Googleカレンダーは予定名を扱わず、忙しさの件数だけを表示します。", `<form class="cc-actions" id="calendar-form"><label class="cc-field"><span>開始日</span><input class="cc-input" id="calendar-from" type="date" value="${from}"></label><label class="cc-field"><span>終了日</span><input class="cc-input" id="calendar-to" type="date" value="${to}"></label><button class="cc-button cc-button--primary" type="submit">更新</button></form><div id="calendar-result" style="margin-top:14px">読み込み中…</div>`);
-    const load = async (start, end) => { const result = document.getElementById("calendar-result"); result.textContent = "取得中…"; try { const payload = await fetchJson(`/api/admin/command-center/calendar?from=${encodeURIComponent(start)}&to=${encodeURIComponent(end)}`); result.innerHTML = `<p class="cc-muted">${esc(payload.accountLabel)} / ${esc(payload.privacy)} / ${esc(payload.status)}</p><div class="cc-calendar">${(payload.days || []).map((day) => `<div class="cc-day ${day.busyCount ? "is-busy" : ""}"><strong>${esc(day.date.slice(5))}</strong><span>${day.busyCount ? `${esc(day.busyCount)}件 忙しい` : "予定なし"}</span></div>`).join("")}</div>`; } catch (error) { result.innerHTML = empty(error.message); } };
+    content.innerHTML = layout("カレンダー", "Google予定は忙しさの件数だけ、課題は期限とタイトルだけを表示します。", `<form class="cc-actions" id="calendar-form"><label class="cc-field"><span>開始日</span><input class="cc-input" id="calendar-from" type="date" value="${from}"></label><label class="cc-field"><span>終了日</span><input class="cc-input" id="calendar-to" type="date" value="${to}"></label><button class="cc-button cc-button--primary" type="submit">更新</button></form><div id="calendar-result" style="margin-top:14px">読み込み中…</div>`);
+    const load = async (start, end) => {
+      const result = document.getElementById("calendar-result");
+      const deadlinesByDate = new Map();
+      for (const task of state.dashboard?.tasks || []) {
+        if (task.status === "done" || typeof task.dueDate !== "string" || task.dueDate < start || task.dueDate > end) continue;
+        const tasks = deadlinesByDate.get(task.dueDate) || [];
+        tasks.push(task);
+        deadlinesByDate.set(task.dueDate, tasks);
+      }
+      result.textContent = "取得中…";
+      try {
+        const payload = await fetchJson(`/api/admin/command-center/calendar?from=${encodeURIComponent(start)}&to=${encodeURIComponent(end)}`);
+        const days = (payload.days || []).map((day) => {
+          const deadlines = deadlinesByDate.get(day.date) || [];
+          const classes = ["cc-day", day.busyCount ? "is-busy" : "", deadlines.length ? "is-deadline" : ""].filter(Boolean).join(" ");
+          return `<div class="${classes}"><strong>${esc(day.date.slice(5))}</strong><span>${day.busyCount ? `${esc(day.busyCount)}件 忙しい` : "予定なし"}</span>${deadlines.length ? `<span class="cc-deadline-count">期限 ${esc(deadlines.length)}件</span>` : ""}</div>`;
+        }).join("");
+        const deadlineList = [...deadlinesByDate.entries()].sort(([left], [right]) => left.localeCompare(right)).map(([date, tasks]) => `<li><strong>${esc(date)} / 期限 ${esc(tasks.length)}件</strong><span class="cc-muted">${tasks.map((task) => `${esc(task.title)}（${esc(task.status)}）`).join("、")}</span></li>`).join("");
+        result.innerHTML = `<p class="cc-muted">${esc(payload.accountLabel)} / ${esc(payload.privacy)} / ${esc(payload.status)}</p><div class="cc-calendar">${days}</div><section class="cc-card cc-deadline-list"><h3>課題の期限</h3><ul class="cc-list">${deadlineList || `<li class="cc-muted">この期間の課題期限はありません。</li>`}</ul></section>`;
+      } catch (error) { result.innerHTML = empty(error.message); }
+    };
     await load(from, to);
     document.getElementById("calendar-form")?.addEventListener("submit", async (event) => { event.preventDefault(); await load(document.getElementById("calendar-from").value, document.getElementById("calendar-to").value); });
   }

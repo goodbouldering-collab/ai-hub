@@ -148,11 +148,17 @@ function bridgeAuthSecret() {
   }
 }
 
+const SAFE_APP_SERVER_ENVIRONMENT_KEYS = new Set([
+  "ALLUSERSPROFILE", "APPDATA", "CI", "CODEX_HOME", "COMSPEC", "HOME", "HOMEDRIVE", "HOMEPATH",
+  "LANG", "LC_ALL", "LC_CTYPE", "LOCALAPPDATA", "NUMBER_OF_PROCESSORS", "OS", "PATH", "PATHEXT",
+  "PROCESSOR_ARCHITECTURE", "PROCESSOR_IDENTIFIER", "PROCESSOR_LEVEL", "PROCESSOR_REVISION", "PROGRAMDATA",
+  "PROGRAMFILES", "PROGRAMFILES(X86)", "PROGRAMW6432", "PUBLIC", "SHELL", "SYSTEMDRIVE", "SYSTEMROOT",
+  "TEMP", "TERM", "TMP", "TMPDIR", "USERDOMAIN", "USERNAME", "USERPROFILE", "WINDIR",
+  "XDG_CACHE_HOME", "XDG_CONFIG_HOME", "XDG_DATA_HOME", "XDG_RUNTIME_DIR",
+]);
+
 export function appServerChildEnvironment(source = process.env) {
-  const childEnvironment = { ...source };
-  delete childEnvironment.COMMAND_ROOM_BRIDGE_AUTH_SECRET;
-  delete childEnvironment.COMMAND_CENTER_SERVICE_TOKEN;
-  return childEnvironment;
+  return Object.fromEntries(Object.entries(source).filter(([key]) => SAFE_APP_SERVER_ENVIRONMENT_KEYS.has(key.toUpperCase())));
 }
 
 export class OwnerAssertionVerifier {

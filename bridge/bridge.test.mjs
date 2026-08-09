@@ -21,15 +21,21 @@ test("production and loopback origins only are allowed", () => {
   assert.equal(isAllowedOrigin("https://example.com"), false);
 });
 
-test("Codex child process never inherits relay authentication secrets", () => {
+test("Codex child process never inherits relay or application secrets", () => {
   const environment = appServerChildEnvironment({
     PATH: "test-path",
     COMMAND_ROOM_BRIDGE_AUTH_SECRET: "bridge-secret",
     COMMAND_CENTER_SERVICE_TOKEN: "service-secret",
+    SUPABASE_SERVICE_ROLE_KEY: "service-role-secret",
+    ADMIN_PASS: "admin-password",
+    OPENAI_API_KEY: "openai-api-key",
   });
   assert.equal(environment.PATH, "test-path");
   assert.equal(environment.COMMAND_ROOM_BRIDGE_AUTH_SECRET, undefined);
   assert.equal(environment.COMMAND_CENTER_SERVICE_TOKEN, undefined);
+  assert.equal(environment.SUPABASE_SERVICE_ROLE_KEY, undefined);
+  assert.equal(environment.ADMIN_PASS, undefined);
+  assert.equal(environment.OPENAI_API_KEY, undefined);
 });
 
 test("project registry exposes availability without returning paths", () => {

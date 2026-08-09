@@ -13,8 +13,10 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]
 BUILDER_PATH = ROOT / "site" / "build_site.py"
 ARTICLE_PATH = ROOT / "content" / "blog" / "2026-08-06-ai-work-design-future.md"
+BLOG_DIR = ROOT / "content" / "blog"
 FINAL_TITLE = "AI時代にデザインは不要になるのか？ むしろ必要になる「経験」と「仕事をデザインする力」"
-APPROVED_AUTHORSHIP_NOTE = "AIを思考整理の補助に使い、運営者自身の経験と考えをもとに丁寧にまとめた記事です。"
+CANONICAL_AUTHORSHIP_NOTE = "この記事は、運営者が独自に考え、思考したものを、AIを使って読みやすくしました。"
+APPROVED_AUTHORSHIP_NOTE = CANONICAL_AUTHORSHIP_NOTE
 ARTICLE_BODY_SHA256 = "c88fcb045f69a40a8e990e75a77254954368f72ea41151387d9071899ff0f351"
 ARTICLE_HERO_IMAGE = "/img/blog-ai-work-design-hero-20260806.webp"
 ARTICLE_HERO_IMAGE_ALT = "AIが生み出した多くの案を、チームが目的、優先順位、責任に分けて一つの方向へ整理する様子"
@@ -112,6 +114,19 @@ class BlogAuthorshipNoteTest(unittest.TestCase):
         self.assertIn(f"<meta property='og:title' content='{FINAL_TITLE}'>", page)
         self.assertEqual(jsonld["headline"], FINAL_TITLE)
 
+    def test_every_current_blog_source_uses_the_canonical_authorship_note(self) -> None:
+        articles = sorted(BLOG_DIR.glob("*.md"))
+        self.assertGreater(len(articles), 0)
+
+        for article in articles:
+            frontmatter = article.read_text(encoding="utf-8").split("---", 2)[1]
+            meta = yaml.safe_load(frontmatter)
+            self.assertEqual(
+                meta.get("authorship_note"),
+                CANONICAL_AUTHORSHIP_NOTE,
+                article.name,
+            )
+
     def test_article_body_checksum_prevents_unintended_content_changes(self) -> None:
         _, body = load_article()
         actual = hashlib.sha256(body.encode("utf-8")).hexdigest()
@@ -191,7 +206,7 @@ class VercelSupabaseBoundariesBlogTest(unittest.TestCase):
         "公開・軽量処理と、複雑な業務を分けて運用する",
         "本格稼働へ進むために、6段階で小さく試す",
     ]
-    SAFE_AUTHORSHIP_NOTE = "この記事は、AIを整理・編集の補助として使い、運営者が内容を確認・編集しています。"
+    SAFE_AUTHORSHIP_NOTE = CANONICAL_AUTHORSHIP_NOTE
     HERO_IMAGE = "/img/blog-sites-d1-r2-supabase-hero-20260808.png"
 
     @classmethod

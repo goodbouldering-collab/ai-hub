@@ -1,6 +1,7 @@
 ---
 title: "外出先から自宅PCのCodexを安全に動かす方法｜Remote SSH・Remote・RDPの使い分け"
 date: 2026-07-27
+authorship_note: "この記事は、運営者が独自に考え、思考したものを、AIを使って読みやすくしました。"
 role: ブログ / Codex・AI開発環境
 gen_by: 由井辰美 / AI相談
 summary: 外出先のノートPCから自宅の高性能PCにあるCodex開発環境を使うために、Remote SSH・Codex Remote・Windowsリモートデスクトップの違い、設定手順、つながらないときの確認順を公式情報に基づいて整理します。

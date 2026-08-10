@@ -1,0 +1,436 @@
+{
+  "campaign": "2026-08-10-ai-experience-3d-reality",
+  "article_title": "AI時代、経験者が再び強くなる理由",
+  "reel_metadata": {
+    "article_title": "AI時代、経験者が再び強くなる理由",
+    "duration_seconds": 24.7,
+    "duration_label": "約24.7秒",
+    "scene_count": 5,
+    "scene_label": "5場面",
+    "review_state": "review_ready_waiting_final_approval",
+    "publication_state": "未投稿",
+    "summary": "約24.7秒 / 5場面 / review_ready_waiting_final_approval / 未投稿"
+  },
+  "status": "review_ready_waiting_final_approval",
+  "publication_state": "未投稿",
+  "account": "@climbingconsul",
+  "platform": "Instagram",
+  "surfaces": [
+    "Reels",
+    "Stories"
+  ],
+  "excluded_surfaces": [
+    "Threads"
+  ],
+  "draft_mode": false,
+  "blog": {
+    "url": "https://ai-hub-jp.vercel.app/blog/2026-08-09-ai-experience-3d-reality.html",
+    "source_path": "content/blog/2026-08-09-ai-experience-3d-reality.md",
+    "status": "verified_before_reel_publication"
+  },
+  "site_media": {
+    "video_url": "https://ai-hub-jp.vercel.app/media/ai-experience-3d-20260810/reel.mp4",
+    "cover_url": "https://ai-hub-jp.vercel.app/media/ai-experience-3d-20260810/cover.png",
+    "placement": "article-title-note-before-hero",
+    "status": "pending_site_deploy"
+  },
+  "reel": {
+    "title": "AI時代、経験者が再び強くなる理由",
+    "review_metadata": {
+      "article_title": "AI時代、経験者が再び強くなる理由",
+      "duration_seconds": 24.7,
+      "duration_label": "約24.7秒",
+      "scene_count": 5,
+      "scene_label": "5場面",
+      "review_state": "review_ready_waiting_final_approval",
+      "publication_state": "未投稿",
+      "summary": "約24.7秒 / 5場面 / review_ready_waiting_final_approval / 未投稿"
+    },
+    "file": "reel.mp4",
+    "cover": "cover.png",
+    "duration_seconds": 24.7,
+    "beats": [
+      {
+        "label": "記事紹介",
+        "text": [
+          "ブログ",
+          "AI時代、経験者が再び強くなる理由"
+        ],
+        "narration": "ブログ。AI時代、経験者が再び強くなる理由。",
+        "duration_seconds": 5.0,
+        "image": "blog-ai-experience-3d-hero-20260809.png",
+        "accent": "#18566F"
+      },
+      {
+        "label": "仮説",
+        "text": [
+          "AIは",
+          "仮説を速くつくれる"
+        ],
+        "narration": "AIは、仮説を速くつくれる。",
+        "duration_seconds": 4.3,
+        "image": "blog-ai-experience-3d-information-and-reality-20260809.png",
+        "accent": "#1F6E8C"
+      },
+      {
+        "label": "現実",
+        "text": [
+          "現実で試し、",
+          "確かめるのは人間"
+        ],
+        "narration": "現実で試し、確かめるのは人間。",
+        "duration_seconds": 4.8,
+        "image": "blog-ai-experience-3d-reality-check-20260809.png",
+        "accent": "#E2A14B"
+      },
+      {
+        "label": "経験",
+        "text": [
+          "経験は、AIの答えを",
+          "使える形へ直す"
+        ],
+        "narration": "経験は、AIの答えを使える形へ直す。",
+        "duration_seconds": 5.2,
+        "image": "blog-ai-experience-3d-expert-judgment-20260809.png",
+        "accent": "#6FAF98"
+      },
+      {
+        "label": "往復",
+        "text": [
+          "AIと人間と現実",
+          "この往復が仕事を強くする"
+        ],
+        "narration": "AIと人間と現実。この往復が仕事を強くする。",
+        "duration_seconds": 5.4,
+        "image": "blog-ai-experience-3d-loop-20260809.png",
+        "accent": "#18566F"
+      }
+    ],
+    "caption_file": "captions.md",
+    "audio": {
+      "file": "narration.m4a",
+      "language": "ja-JP",
+      "voice_id": "ja-JP-NanamiNeural",
+      "voice_label": "Microsoft Nanami Neural（日本語・女性）",
+      "rate": "+0%",
+      "script": [
+        "ブログ。AI時代、経験者が再び強くなる理由。",
+        "AIは、仮説を速くつくれる。",
+        "現実で試し、確かめるのは人間。",
+        "経験は、AIの答えを使える形へ直す。",
+        "AIと人間と現実。この往復が仕事を強くする。"
+      ],
+      "tts_inputs": [
+        "ブログ、AI時代経験者が再び強くなる理由",
+        "AIは仮説を速くつくれる",
+        "現実で試し確かめるのは人間",
+        "経験はAIの答えを使える形へ直す",
+        "AIと人間と現実、この往復が仕事を強くする"
+      ],
+      "speed_up": false,
+      "background_music_file": "background-music.wav",
+      "music_bed_file": "music-bed.wav",
+      "ducked_background_music_file": "ducked-background-music.wav",
+      "music_ducking_db": 6,
+      "measured_qa": {
+        "measurement_method": "ffmpeg_volumedetect_rms_dbfs",
+        "measurement_scope": "generated narration-active intervals",
+        "analysis_intervals_seconds": [
+          {
+            "start": 0.02,
+            "end": 4.07
+          },
+          {
+            "start": 5.02,
+            "end": 7.28
+          },
+          {
+            "start": 9.32,
+            "end": 11.73
+          },
+          {
+            "start": 14.12,
+            "end": 17.38
+          },
+          {
+            "start": 19.32,
+            "end": 23.52
+          }
+        ],
+        "rights_basis": "self-generated/no external samples",
+        "source": "Python standard-library synthesis at 48 kHz stereo",
+        "external_samples": false,
+        "narration_mean_dbfs": -18.7,
+        "music_source_mean_dbfs": -30.0,
+        "music_bed_mean_dbfs": -43.1,
+        "ducked_bgm_mean_dbfs": -49.2,
+        "music_input_gain_db": -13.1,
+        "measured_ducking_db": 6.1,
+        "narration_over_ducked_bgm_db": 30.5,
+        "thresholds": {
+          "minimum_music_gain_reduction_db": 10.0,
+          "minimum_ducking_db": 5.0,
+          "maximum_ducking_db": 8.0,
+          "minimum_narration_over_bgm_db": 8.0,
+          "maximum_ducked_bgm_mean_dbfs": -30.0
+        },
+        "checks": {
+          "self_generated_rights": true,
+          "music_gain_is_low": true,
+          "ducking_meets_minimum": true,
+          "ducking_not_excessive": true,
+          "narration_is_primary": true,
+          "ducked_bgm_is_light": true
+        }
+      }
+    },
+    "status": "blocked_until_final_approval_and_verified_blog_url"
+  },
+  "story": {
+    "asset": "story-preview.png",
+    "copy": "AIが速くつくる仮説を、現実で確かめるのは人。\n経験がAIの答えを使える形へ直します。",
+    "link": "https://ai-hub-jp.vercel.app/blog/2026-08-09-ai-experience-3d-reality.html",
+    "link_label": "詳細はこちら",
+    "placement": "bottom-center-safe-area",
+    "status": "blocked_until_reel_is_public_and_second_approval"
+  },
+  "brand_comment": {
+    "copy": "AIの答えを、そのまま仕事へ入れる前に一度現場で確かめる。その小さな往復から、一緒に整えていけます。使い方や進め方で迷ったら、気軽にDMしてください。",
+    "status": "blocked_until_reel_is_public_and_second_approval"
+  },
+  "qa": {
+    "article_title": "AI時代、経験者が再び強くなる理由",
+    "reel_metadata": {
+      "article_title": "AI時代、経験者が再び強くなる理由",
+      "duration_seconds": 24.7,
+      "duration_label": "約24.7秒",
+      "scene_count": 5,
+      "scene_label": "5場面",
+      "review_state": "review_ready_waiting_final_approval",
+      "publication_state": "未投稿",
+      "summary": "約24.7秒 / 5場面 / review_ready_waiting_final_approval / 未投稿"
+    },
+    "width": 1080,
+    "height": 1920,
+    "duration_seconds": 24.7,
+    "fps": 30,
+    "codec": "h264",
+    "pixel_format": "yuv420p",
+    "audio": "present",
+    "audio_codec": "aac",
+    "audio_sample_rate_hz": 48000,
+    "scene_count": 5,
+    "scene_starts_seconds": [
+      0.0,
+      5.0,
+      9.3,
+      14.1,
+      19.3
+    ],
+    "duration_contract_seconds": 24.7,
+    "text_narration_mapping": [
+      {
+        "scene": 1,
+        "label": "記事紹介",
+        "text": [
+          "ブログ",
+          "AI時代、経験者が再び強くなる理由"
+        ],
+        "narration": "ブログ。AI時代、経験者が再び強くなる理由。",
+        "words_aligned": true
+      },
+      {
+        "scene": 2,
+        "label": "仮説",
+        "text": [
+          "AIは",
+          "仮説を速くつくれる"
+        ],
+        "narration": "AIは、仮説を速くつくれる。",
+        "words_aligned": true
+      },
+      {
+        "scene": 3,
+        "label": "現実",
+        "text": [
+          "現実で試し、",
+          "確かめるのは人間"
+        ],
+        "narration": "現実で試し、確かめるのは人間。",
+        "words_aligned": true
+      },
+      {
+        "scene": 4,
+        "label": "経験",
+        "text": [
+          "経験は、AIの答えを",
+          "使える形へ直す"
+        ],
+        "narration": "経験は、AIの答えを使える形へ直す。",
+        "words_aligned": true
+      },
+      {
+        "scene": 5,
+        "label": "往復",
+        "text": [
+          "AIと人間と現実",
+          "この往復が仕事を強くする"
+        ],
+        "narration": "AIと人間と現実。この往復が仕事を強くする。",
+        "words_aligned": true
+      }
+    ],
+    "narration": {
+      "language": "ja-JP",
+      "voice_id": "ja-JP-NanamiNeural",
+      "voice_label": "Microsoft Nanami Neural（日本語・女性）",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "target_loudness_lufs": -16,
+      "beats": [
+        {
+          "beat": 1,
+          "text": "ブログ。AI時代、経験者が再び強くなる理由。",
+          "tts_input": "ブログ、AI時代経験者が再び強くなる理由",
+          "raw_duration_seconds": 5.18,
+          "trimmed_duration_seconds": 4.05,
+          "tempo_multiplier": 1.0,
+          "scene_duration_seconds": 5.0,
+          "normalized_duration_seconds": 4.94
+        },
+        {
+          "beat": 2,
+          "text": "AIは、仮説を速くつくれる。",
+          "tts_input": "AIは仮説を速くつくれる",
+          "raw_duration_seconds": 3.38,
+          "trimmed_duration_seconds": 2.26,
+          "tempo_multiplier": 1.0,
+          "scene_duration_seconds": 4.3,
+          "normalized_duration_seconds": 4.29
+        },
+        {
+          "beat": 3,
+          "text": "現実で試し、確かめるのは人間。",
+          "tts_input": "現実で試し確かめるのは人間",
+          "raw_duration_seconds": 3.5,
+          "trimmed_duration_seconds": 2.41,
+          "tempo_multiplier": 1.0,
+          "scene_duration_seconds": 4.8,
+          "normalized_duration_seconds": 4.79
+        },
+        {
+          "beat": 4,
+          "text": "経験は、AIの答えを使える形へ直す。",
+          "tts_input": "経験はAIの答えを使える形へ直す",
+          "raw_duration_seconds": 4.39,
+          "trimmed_duration_seconds": 3.26,
+          "tempo_multiplier": 1.0,
+          "scene_duration_seconds": 5.2,
+          "normalized_duration_seconds": 5.15
+        },
+        {
+          "beat": 5,
+          "text": "AIと人間と現実。この往復が仕事を強くする。",
+          "tts_input": "AIと人間と現実、この往復が仕事を強くする",
+          "raw_duration_seconds": 5.33,
+          "trimmed_duration_seconds": 4.2,
+          "tempo_multiplier": 1.0,
+          "scene_duration_seconds": 5.4,
+          "normalized_duration_seconds": 5.29
+        }
+      ]
+    },
+    "audio_measurements": {
+      "measurement_method": "ffmpeg_volumedetect_rms_dbfs",
+      "measurement_scope": "generated narration-active intervals",
+      "analysis_intervals_seconds": [
+        {
+          "start": 0.02,
+          "end": 4.07
+        },
+        {
+          "start": 5.02,
+          "end": 7.28
+        },
+        {
+          "start": 9.32,
+          "end": 11.73
+        },
+        {
+          "start": 14.12,
+          "end": 17.38
+        },
+        {
+          "start": 19.32,
+          "end": 23.52
+        }
+      ],
+      "rights_basis": "self-generated/no external samples",
+      "source": "Python standard-library synthesis at 48 kHz stereo",
+      "external_samples": false,
+      "narration_mean_dbfs": -18.7,
+      "music_source_mean_dbfs": -30.0,
+      "music_bed_mean_dbfs": -43.1,
+      "ducked_bgm_mean_dbfs": -49.2,
+      "music_input_gain_db": -13.1,
+      "measured_ducking_db": 6.1,
+      "narration_over_ducked_bgm_db": 30.5,
+      "thresholds": {
+        "minimum_music_gain_reduction_db": 10.0,
+        "minimum_ducking_db": 5.0,
+        "maximum_ducking_db": 8.0,
+        "minimum_narration_over_bgm_db": 8.0,
+        "maximum_ducked_bgm_mean_dbfs": -30.0
+      },
+      "checks": {
+        "self_generated_rights": true,
+        "music_gain_is_low": true,
+        "ducking_meets_minimum": true,
+        "ducking_not_excessive": true,
+        "narration_is_primary": true,
+        "ducked_bgm_is_light": true
+      }
+    },
+    "background_music": {
+      "file": "background-music.wav",
+      "music_bed_file": "music-bed.wav",
+      "ducked_file": "ducked-background-music.wav",
+      "sample_rate_hz": 48000,
+      "channels": 2,
+      "tempo_bpm": 92,
+      "music_ducking_db": 6,
+      "music_input_gain": 0.22,
+      "source": "python_standard_library_synthesis",
+      "rights_basis": "self-generated/no external samples",
+      "external_samples": false,
+      "present": true
+    },
+    "publication": {
+      "status": "blocked_until_final_approval_and_verified_blog_url",
+      "instagram_posted": false,
+      "draft_created": false
+    },
+    "file_bytes": 1608683,
+    "stream_evidence": "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(progressive), 1080x1920, 327 kb/s, 30 fps, 30 tbr, 15360 tbn (default)",
+    "audio_evidence": "Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 192 kb/s (default)",
+    "checks": {
+      "portrait_1080x1920": true,
+      "duration_matches_contract": true,
+      "fps_30": true,
+      "codec_h264": true,
+      "pixel_format_yuv420p": true,
+      "audio_present": true,
+      "audio_codec_aac": true,
+      "audio_sample_rate_48000": true,
+      "five_scenes": true,
+      "max_three_lines": true,
+      "text_narration_aligned": true,
+      "narration_normal_speed": true,
+      "background_music_present": true,
+      "music_bed_present": true,
+      "ducked_music_present": true,
+      "audio_measurements_pass": true,
+      "publication_blocked": true
+    }
+  }
+}

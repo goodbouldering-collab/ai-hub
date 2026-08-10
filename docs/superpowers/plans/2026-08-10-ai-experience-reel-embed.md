@@ -39,11 +39,11 @@
 ```python
 def test_five_scenes_match_the_article_and_narration():
     expected = [
-        ["ブログ｜AI時代、経験者が再び強くなる理由"],
+        ["ブログ", "AI時代、経験者が再び強くなる理由"],
         ["AIは", "仮説を速くつくれる"],
         ["現実で試し、", "確かめるのは人間"],
         ["経験は、AIの答えを", "使える形へ直す"],
-        ["AI ⇄ 人間 ⇄ 現実", "この往復が仕事を強くする"],
+        ["AIと人間と現実", "この往復が仕事を強くする"],
     ]
     self.assertEqual([beat["text"] for beat in self.module.BEATS], expected)
     for beat in self.module.BEATS:
@@ -66,11 +66,11 @@ BLOG_URL = "https://ai-hub-jp.vercel.app/blog/2026-08-09-ai-experience-3d-realit
 ACCOUNT = "@climbingconsul"
 ARTICLE_TITLE = "AI時代、経験者が再び強くなる理由"
 BEATS = [
-    {"label": "記事紹介", "text": ["ブログ｜AI時代、経験者が再び強くなる理由"], "narration": "ブログ。AI時代、経験者が再び強くなる理由。", "duration_seconds": 4.6, "image": "blog-ai-experience-3d-hero-20260809.png"},
+    {"label": "記事紹介", "text": ["ブログ", "AI時代、経験者が再び強くなる理由"], "narration": "ブログ。AI時代、経験者が再び強くなる理由。", "duration_seconds": 4.6, "image": "blog-ai-experience-3d-hero-20260809.png"},
     {"label": "仮説", "text": ["AIは", "仮説を速くつくれる"], "narration": "AIは、仮説を速くつくれる。", "duration_seconds": 4.2, "image": "blog-ai-experience-3d-information-and-reality-20260809.png"},
     {"label": "現実", "text": ["現実で試し、", "確かめるのは人間"], "narration": "現実で試し、確かめるのは人間。", "duration_seconds": 4.8, "image": "blog-ai-experience-3d-reality-check-20260809.png"},
     {"label": "経験", "text": ["経験は、AIの答えを", "使える形へ直す"], "narration": "経験は、AIの答えを使える形へ直す。", "duration_seconds": 5.2, "image": "blog-ai-experience-3d-expert-judgment-20260809.png"},
-    {"label": "往復", "text": ["AI ⇄ 人間 ⇄ 現実", "この往復が仕事を強くする"], "narration": "AI、人間、現実。この往復が仕事を強くする。", "duration_seconds": 5.4, "image": "blog-ai-experience-3d-loop-20260809.png"},
+    {"label": "往復", "text": ["AIと人間と現実", "この往復が仕事を強くする"], "narration": "AIと人間と現実。この往復が仕事を強くする。", "duration_seconds": 5.4, "image": "blog-ai-experience-3d-loop-20260809.png"},
 ]
 ```
 

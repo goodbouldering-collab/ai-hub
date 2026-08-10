@@ -1,6 +1,13 @@
 {
-  "generated_at": "2026-08-10T01:49:19Z",
+  "generated_at": "2026-08-10T22:27:04Z",
   "recent_works": [
+    {
+      "date": "2026-08-09",
+      "filename": "2026-08-09-seo-weekly-digest.md",
+      "title": "SEO週次ダイジェスト（2026-08-09）",
+      "business": "seo",
+      "path": "/ops?file=2026-08-09-seo-weekly-digest.md#sec-docs"
+    },
     {
       "date": "2026-08-02",
       "filename": "2026-08-02-seo-weekly-digest.md",
@@ -49,13 +56,6 @@
       "title": "SEO週次ダイジェスト（2026-06-22）",
       "business": "seo",
       "path": "/ops?file=2026-06-22-seo-weekly-digest.md#sec-docs"
-    },
-    {
-      "date": "2026-06-15",
-      "filename": "2026-06-15-seo-weekly-digest.md",
-      "title": "SEO週次ダイジェスト（2026-06-15）",
-      "business": "seo",
-      "path": "/ops?file=2026-06-15-seo-weekly-digest.md#sec-docs"
     }
   ],
   "tasks_open": [
@@ -88,7 +88,12 @@
       "path": "/ops?file=2026-05-28-ai-shindan-matching-design-system.md#sec-docs"
     }
   ],
-  "per_business_recent": [],
+  "per_business_recent": [
+    {
+      "business": "seo",
+      "count": 1
+    }
+  ],
   "daily_histogram": [
     {
       "date": "2026-07-28",
@@ -140,7 +145,7 @@
     },
     {
       "date": "2026-08-09",
-      "count": 0
+      "count": 1
     },
     {
       "date": "2026-08-10",
@@ -149,8 +154,8 @@
   ],
   "cma_apps": [],
   "totals": {
-    "consul_work_total": 134,
-    "recent_7d_total": 0,
+    "consul_work_total": 135,
+    "recent_7d_total": 1,
     "tasks_open_total": 4
   }
 }

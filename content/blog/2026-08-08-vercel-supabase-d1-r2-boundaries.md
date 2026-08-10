@@ -1,186 +1,178 @@
 ---
-title: "ウェブサイト公開から本格稼働へ：AIで作ったWebサービスの5つの置き場所"
-date: 2026-08-08
+title: "サイト公開から本格稼働させるには、データをどこに置くのが正解？──Sites・GitHub＋Vercel＋Supabaseの選び方"
+date: 2026-08-10
 authorship_note: "※この記事は、運営者が自ら考えた内容を、AIを使って読みやすく整えた記事です。"
 role: ブログ / AI活用・Webシステム設計
 gen_by: 由井辰美 / AI相談
-summary: AIで作ったWebサービスを公開後に本格稼働させるとき、公開画面、軽量データ、ファイル、認証・権限、既存の業務サービスをどこに置くかを解説します。データベースの置き場所を、データ量ではなく権限の複雑さと業務上の責任から判断し、小さく安全に運用を広げる順番を、地域事業者や小規模チーム向けに整理します。
-image: /img/blog-sites-d1-r2-supabase-hero-20260808.png
+summary: 仮LPや小さな社内ツールならSites、継続開発や複数PCならGitHub＋Vercel、顧客情報・会計・書類・権限を扱うならGitHub＋Vercel＋Supabase。データ量だけでなく、共有・復旧・バックアップの必要性で選ぶ実務的な基準を整理します。
+image: /img/blog-sites-runtime-data-decision-hero-20260810.png
 hero_image: true
-image_alt: 公開サイト、軽量データ、安全な会員データ、外部サービスを分けてつなぐモジュール型のWebシステム
-image_caption: 速く作るために一つへ集めるのではなく、役割ごとに小さく分けてつなぐ設計です。
+image_alt: Sites、GitHubとVercel、Supabaseを役割別に選ぶための3つの経路を描いた図解
+image_caption: データ量より、共有・復旧・権限・バックアップの必要性で置き場所を決めます。
 audience: AIでサイトや業務ツールを作りたい地域事業者、学校・福祉の現場責任者、個人事業主、小規模チーム
-duration: 9分
-goal: Webサービスを公開後に本格稼働させるため、公開情報、軽量データ、ファイル、認証・権限、外部業務サービスの5つを分け、次に残す基盤と試せる基盤を判断できるようになる
+duration: 8分
+goal: サイトを公開する段階と本格稼働させる段階を分け、データの置き場所と復旧手順を自分で判断できるようになる
 ---
 
-「AIで作ったウェブサイトを公開できた。次は、お知らせ、画像、会員情報、予約をどこに置けばよいだろうか」
+「イベントの案内ページは作れた。でも、申込者や書類を扱い始めたら、どこに置けばよいのだろう」
 
-「最初は一人で管理できても、スタッフや利用者が増えた後に壊れない形にしたい」
+「PCが壊れたとき、別のPCや別のCodexで続きを作れる状態になっているだろうか」
 
-AIでサイトや業務ツールを作れるようになると、公開までは以前より速くなりました。けれど公開はゴールではなく、運用の始まりです。どのデータをどこへ置くかを最初に分けないと、後から認証、権限、費用、引継ぎが絡み合います。
+AIでサイトを作る速度が上がるほど、次に大切になるのがデータの置き場所です。ここで見るべきなのは、データの容量だけではありません。**将来、クローン・共有・復旧・バックアップが必要になるか**です。
 
-ここでいう本格稼働は、最初から大きなシステムを作ることではありません。公開画面、軽い情報、ファイル、人と権限、現実の業務を混ぜず、必要な場所だけを強くすることです。
+結論から言うと、私は次のように分けます。
 
-> **AIで何でも作れる時代だからこそ、何でも一つに入れない。**
-
-公開情報は小さく。ログインと重要な会員・業務データは強く。決済や予約など、現実の業務を動かす情報は、すでに使っている専門サービスを正本として残す。この分け方なら、運用費を見直しながら、修正も速くできます。
-
-<figure>
-  <img src="/img/blog-sites-d1-r2-supabase-hero-20260808.png" alt="公開サイト、軽量データ、安全な会員データ、外部サービスを分けてつなぐモジュール型のWebシステム" loading="eager" decoding="async">
-  <figcaption>「全部を移すか」ではなく、「何をどこまで移すか」を決めることが出発点です。</figcaption>
-</figure>
-
-## 本格稼働の出発点は、データと機能を5つに分けること
-
-<figure>
-  <img src="/img/blog-sites-d1-r2-supabase-system-layers-20260808.png" alt="公開ページ、軽量データ、ファイル、認証、外部業務サービスの5つを分けた構成図" loading="lazy" decoding="async">
-  <figcaption>技術名から始めず、実際に扱うものを5つに分けると判断しやすくなります。</figcaption>
-</figure>
-
-本格稼働へ進むときに大切なのは、どのサービスを採用するかより先に、何を預けるかを分けることです。たとえば、地域の講座やイベントを案内するサイトでも、実際には次の5つが混ざっています。
-
-<div class="publishing-table-scroll" tabindex="0" aria-label="扱うものを5つに分ける一覧。横にスクロールできます。">
+<div class="publishing-table-scroll" tabindex="0" aria-label="用途別に向く構成を示す一覧。横にスクロールできます。">
   <table>
-    <thead><tr><th>分けるもの</th><th>具体例</th><th>まず考える置き場所</th></tr></thead>
+    <thead><tr><th>用途</th><th>向く構成</th><th>判断理由</th></tr></thead>
     <tbody>
-      <tr><td>画面</td><td>サイト、ブログ、管理画面</td><td>Sites / Vercel / Workers</td></tr>
-      <tr><td>小さな情報</td><td>お知らせ、FAQ、イベント一覧、表示設定</td><td>D1 などサイト単位のDB</td></tr>
-      <tr><td>ファイル</td><td>写真、PDF、動画、音声</td><td>R2 などファイル保管先</td></tr>
-      <tr><td>人と権限</td><td>Googleログイン、会員、スタッフ、閲覧範囲</td><td>Supabase Auth + Postgres + RLS</td></tr>
-      <tr><td>現実の業務</td><td>決済、予約、注文、配送、解錠</td><td>Square、EC、予約、IoTなどの専門サービス</td></tr>
+      <tr><td>仮LP、イベント告知、企画の試作</td><td>Sites</td><td>早く形にして、限られた相手へ共有しやすい</td></tr>
+      <tr><td>社内の小さな検索・チェック表・集計画面</td><td>Sites</td><td>データが少なく、ChatGPT利用者だけで閉じるなら扱いやすい</td></tr>
+      <tr><td>他PCや他Codexで開発を続ける可能性がある</td><td>GitHub＋Vercel</td><td>コードをクローンし、同じ環境を再現しやすい</td></tr>
+      <tr><td>顧客情報、売上、在庫、PDF、会員情報を扱う</td><td>GitHub＋Vercel＋Supabase</td><td>認証、DB、Storage、権限、復元を分けて管理できる</td></tr>
+      <tr><td>決済や本番業務を扱う</td><td>GitHub＋Vercel＋Supabase</td><td>Sitesへ無理に寄せず、専門サービスとも安全に連携しやすい</td></tr>
     </tbody>
   </table>
 </div>
 
-D1は、イベント名・開催日・定員のような、表形式の小さな情報を扱う場所です。R2は画像、PDF、動画など、ファイル本体の保管場所です。
-
-たとえば、イベント情報なら、D1には「タイトル・日時・定員・画像のパス」を持たせ、画像そのものはR2のようなファイル保管先へ置く、という分け方になります。
-
-ここで大切なのは、D1とR2を「安いから使う箱」として決めないことです。公開に近い情報を、サイトごとに小さく独立させるための箱として使います。
-
-## データベースは、データ量ではなく権限の複雑さで決める
-
 <figure>
-  <img src="/img/blog-sites-d1-r2-supabase-access-boundary-20260808.png" alt="公開コンテンツと安全な会員データの間に認証と権限の門を置いたイメージ" loading="lazy" decoding="async">
-  <figcaption>ログインがあるだけでD1を避ける必要はありません。ただし、誰がどの行を見られるかが複雑なら、RLSを持つPostgresを残します。</figcaption>
+  <img src="/img/blog-sites-runtime-data-decision-hero-20260810.png" alt="Sites、GitHubとVercel、Supabaseを役割別に選ぶための3つの経路を描いた図解" loading="eager" decoding="async">
+  <figcaption>「何GBあるか」ではなく、「止まったときに何を戻せる必要があるか」から考えます。</figcaption>
 </figure>
 
-データベースの置き場所は、容量の小ささだけで決めません。誰が何を見たり変えたりできるかを、どこで守るかが判断の中心です。Supabase Authは「この人は誰か」を確認する仕組みです。さらにSupabase PostgresのRLS（行レベルセキュリティ）は、「その人が、このデータのどこまで見たり変えたりできるか」をデータベース側で守れます。
-
-たとえば、スタッフ、支店、役割、会員区分が絡み、利用者ごとに見える予約・顧客・売上情報が違う場合です。こうしたデータをD1へ移すと、Supabaseで使っていたRLSが自動で引き継がれるわけではありません。アプリ側でトークン確認と行ごとの権限判定を実装し、テストし続ける必要があります。
-
-そのため判断軸は、次のようになります。
-
-<div class="publishing-table-scroll" tabindex="0" aria-label="データ別の推奨構成一覧。横にスクロールできます。">
-  <table>
-    <thead><tr><th>データの例</th><th>推奨する考え方</th></tr></thead>
-    <tbody>
-      <tr><td>公開FAQ、イベント、ブログ一覧、表示設定</td><td>D1など、サイトごとの軽量DBを検討</td></tr>
-      <tr><td>会員プロフィール、スタッフ所属、支店権限、受講進捗</td><td>Supabase Auth + Postgres + RLSを基本に残す</td></tr>
-      <tr><td>写真、PDF、公開動画</td><td>R2などのファイル保管先を使う</td></tr>
-      <tr><td>カード情報、注文、予約枠、配送、解錠</td><td>専門サービスを正本にする。必要な連携だけを作る</td></tr>
-    </tbody>
-  </table>
-</div>
-
-「小さいデータだからD1」ではありません。
-
-> **権限モデルが単純ならD1を検討し、利用者や権限の関係が複雑ならSupabase PostgresとRLSを残す。**
-
-この基準なら、後でスタッフが増えても、顧客情報が混ざっても、守るべき境界が曖昧になりません。Supabaseの公式ドキュメントでも、ブラウザから到達できるテーブルではRLSを有効にし、Authと組み合わせて行単位の権限を設計することが案内されています。
-
-## 公開・軽量処理と、複雑な業務を分けて運用する
+## 最初の判断軸は「容量」ではなく、共有・復旧・バックアップ
 
 <figure>
-  <img src="/img/blog-sites-d1-r2-supabase-hosting-choice-20260808.png" alt="軽い公開サイトと複雑な業務システムが異なるクラウド経路を選ぶイメージ" loading="lazy" decoding="async">
-  <figcaption>公開ページと複雑なバックエンドは、同じ場所に置く必要がありません。</figcaption>
+  <img src="/img/blog-sites-runtime-decision-criteria-20260810.png" alt="共有、クローン、復旧、バックアップの4つを基準にデータの置き場所を選ぶ図解" loading="lazy" decoding="async">
+  <figcaption>同じ小さなデータでも、誰が使い、止まると何が困るかで必要な構成は変わります。</figcaption>
 </figure>
 
-公開基盤を一本化するか、すべてを移すか、の二択にする必要はありません。
+正解は、すべてを一つのサービスに寄せることではありません。まずは、次の3段階で考えると判断しやすくなります。
 
-公開ページ、キャンペーン、ブログ、イベント一覧、個人情報を保存しない小型ツールなら、ChatGPT SitesやCloudflare Workersを試す候補になります。AIと相談しながら更新しやすく、サイトごとの軽量データを小さく保てるからです。
+- **早く見せたいだけ**なら、Sitesで仮サイトや匿名データの試作をつくる。
+- **続けて直したい**なら、GitHubにコードと手順を残し、Vercelで公開する。
+- **人の情報や日々の業務を預かる**なら、Supabaseの認証・DB・Storageを加え、権限と復元まで設計する。
 
-一方で、次のような処理は、VercelまたはCloudflare Workersのような明確な実行基盤と、Supabaseの認証・DBを残して考える方が安全です。
+たとえば、画像1枚とイベント名だけの案内は、容量が大きくなくても「誰が更新するか」「消えたらどこから戻すか」を決めておく必要があります。反対に、数十MBのAccessファイルでも、顧客・会計・在庫・書類・印刷を支えるなら、容量ではなく業務の重さで考えるべきです。
 
-- StripeやSquareのWebhookを受け、契約・支払い状態を更新する
-- 予約枠、在庫、注文、配送など、二重登録や競合が困る処理を行う
-- 会員、スタッフ、支店、役割をまたぐ権限を管理する
-- 長めのAPI処理、定期実行、外部SaaS連携を安定して運用する
+> **迷ったら、「来月、別のPC・別の人・別のAI開発環境で同じ状態を再現する必要があるか」を先に問います。**
 
-ChatGPT Sitesは、軽量なWeb体験を素早く作り、プレビュー後に公開できる有力な選択肢です。ただし、2026年8月時点ではパブリックベータで、利用上限はアカウント全体にかかり、一部のフレームワーク、バックグラウンド処理、外部DB、ホスティング形態は対象外になりえます。また、Sites本体、D1/R2のデータやファイル保管を含め、データレジデンシーには対応していません。
+「ある」と答えるなら、コードと手順をGitHubへ置く段階です。さらに、顧客や会員ごとに見える情報が違う、書類を保管する、履歴を戻す必要があるなら、Supabaseまで含めて設計します。
 
-したがって、個人情報、顧客情報、決済情報を何でもSites内のD1/R2へ移す前提にはしません。
-
-もう一つ大事なのは、**ChatGPT Sitesで使うD1/R2と、自分のCloudflareアカウントで直接使うD1/R2は、同じ費用体系・運用条件だと決めつけない**ことです。Cloudflareを直接使う場合は、Workers・D1・R2の利用量と上限をCloudflare側で管理します。Sitesを使う場合は、まずSites画面に出るプラン別の上限と対応機能を確認します。
-
-## 本格稼働へ進むために、6段階で小さく試す
+## Sitesは、限定公開の試作・デモに向く
 
 <figure>
-  <img src="/img/blog-sites-d1-r2-supabase-migration-ladder-20260808.png" alt="公開サイトから認証、重要データ、専門サービスへ段階的に進む移行の道筋" loading="lazy" decoding="async">
-  <figcaption>必要な場所だけ一段ずつ足す方が、費用も確認範囲も小さくできます。</figcaption>
+  <img src="/img/blog-sites-runtime-safe-pilot-20260810.png" alt="匿名データだけを使った小さな試作サイトを、限られた利用者に見せる様子を表した図解" loading="lazy" decoding="async">
+  <figcaption>試作の範囲を小さく切れば、現場で確かめるまでの時間を短くできます。</figcaption>
 </figure>
 
-ウェブサイトを公開した後は、最初から一番大きな構成にしません。次の6段階で考えると、現場で判断しやすくなります。
+ChatGPT Sitesは、プロンプトからWebサイトや小さなアプリを作り、ホストして共有できる仕組みです。永続データにはD1、ファイルにはR2を使う構成も選べます。ChatGPTでのサインインを使い、ワークスペース内の人だけに見せる設計もできます。
 
-<div class="publishing-table-scroll" tabindex="0" aria-label="6段階の構成一覧。横にスクロールできます。">
-  <table>
-    <thead><tr><th>段階</th><th>構成</th><th>向くもの</th></tr></thead>
-    <tbody>
-      <tr><td>L0</td><td>静的ホスティング</td><td>会社案内、講座LP、作品紹介</td></tr>
-      <tr><td>L1</td><td>静的ホスティング + 軽量DB/ファイル保管</td><td>お知らせ、イベント、FAQ、公開資料</td></tr>
-      <tr><td>L2</td><td>L1 + Supabase Auth</td><td>ログインで見せ分ける資料や小型ツール</td></tr>
-      <tr><td>L3</td><td>L2 + Supabase Postgres/RLS</td><td>会員、スタッフ、権限、進捗、個人ごとの記録</td></tr>
-      <tr><td>L4</td><td>Vercel / Workers + Supabase</td><td>Webhook、外部API、予約、複雑な業務処理</td></tr>
-      <tr><td>L5</td><td>専門SaaSを正本にする</td><td>決済、EC、POS、予約、配送、IoT</td></tr>
-    </tbody>
-  </table>
-</div>
+ただし、ここは大事です。OpenAI公式ドキュメントでは、**SitesのデプロイURLはすべて本番デプロイ**とされています。保存したバージョンをレビュー候補として残すことはできますが、URLを発行するなら「本番として見られてよい内容か」を確認する必要があります。一般的な本格ステージング環境と同じ感覚で、外部に出す場所ではありません。
 
-L1で十分なサイトなら、L4まで持ち上げない方が、修正も引継ぎも楽になります。逆にL4やL5が必要な仕組みは、無理にD1だけへ寄せない方が安全です。
+また、Sitesはパブリックベータで、利用可否や上限はプラン・地域・ワークスペース設定で変わります。一部のフレームワーク、プライベートネットワーク、DB、バックグラウンドサービス、ホスティング形態には対応しない場合があります。データレジデンシーにも対応していません。決済を動かす用途や、機微な個人情報を扱う基幹業務を寄せる場所にはしません。
 
-最初の実証候補は、止まっても顧客や決済に影響しない公開サイトです。既存のVercel版を残したまま、次の順番で比べます。
+Sitesで安全に小さく試すなら、たとえば次の範囲です。
 
-1. 公開ページを1つだけ複製し、PCとスマホで見た目を確認する
-2. お知らせやイベント一覧だけを軽量DBへ移し、更新のしやすさを確かめる
-3. GitHubの原本、バックアップ、元の公開先を残す
-4. 利用量、更新時間、障害時の戻し方を数週間記録する
-5. 問題がなければ、次の小さなサイトへ同じ型を広げる
+- 匿名データだけを使う受付画面の試作
+- スタッフ向けマニュアル・FAQ
+- 顧客情報を持たない小さな集計ダッシュボード
+- 講座や地域イベントの仮LP、申込前の案内ページ
 
-この順番なら、コスト削減だけでなく、AIへ「どこを直してほしいか」を小さく伝えられます。確認範囲が狭くなるので、修正、引継ぎ、改善の速度も上がります。
+この小さな試作が「顧客データを持つ」「複数人で改修する」「PC移設や復旧が必要になる」段階に達したら、GitHub＋Vercelへ移す。それで十分です。
+
+## GitHub＋Vercelは、複数PCでも開発を続けるための土台
+
+<figure>
+  <img src="/img/blog-sites-runtime-continuity-backup-20260810.png" alt="ノートPC、GitHubのコード保管、Vercelの公開、Supabaseのデータと書類保管を分けた復旧の図解" loading="lazy" decoding="async">
+  <figcaption>コード、公開、データ、秘密情報は役割が違うため、復旧方法も分けて持ちます。</figcaption>
+</figure>
+
+GitHubは、コードと変更履歴を残す場所です。リポジトリをクローンすれば、別のPCにコードと履歴を取り出せます。VercelをGitHubとつなげておけば、ブランチごとのプレビューと、本番ブランチへの反映を分けて公開できます。
+
+この組み合わせは、次のような場面で効きます。
+
+- 自宅PCと事務所PCの両方で続きを作りたい
+- Codex、Claude Code、Cursorなど、複数の開発環境で引き継ぎたい
+- 修正前の状態に戻したい
+- 家族、スタッフ、外部の開発者と安全に共有したい
+
+ただし、GitHubをクローンできても、業務データそのものが戻るわけではありません。PC故障への備えは、構成に関係なく次の4つを分けます。
+
+```text
+GitHub            コード・README・DBマイグレーション
+Vercel            Web公開設定
+Supabase          DB・認証・書類Storage・バックアップ
+安全な保管先       .env・秘密鍵・復旧手順
+```
+
+GitHubへ入れるのは、コードと設定のひな型だけです。顧客DB、Accessファイル、CSV移行データ、PDF、`.env`、秘密鍵はGitHubに入れません。復旧手順のREADMEには「どの順番で環境変数を入れ、DBを復元し、公開を確認するか」を書き、秘密そのものは安全な保管先に分けます。
+
+## 顧客・会計・書類を扱うなら、Supabaseを加えて復元まで運用する
+
+<figure>
+  <img src="/img/blog-sites-runtime-core-system-20260810.png" alt="顧客情報、会計、在庫、PDF、会員情報を権限付きのデータベースと書類保管へ分けた図解" loading="lazy" decoding="async">
+  <figcaption>本格稼働では、保存先だけでなく、誰が見て、誰が戻せるかを決めます。</figcaption>
+</figure>
+
+顧客情報、売上、在庫、会員情報、PDFなどを扱い始めたら、GitHub＋VercelにSupabaseを加えます。ここで重要なのは「Supabaseを入れれば安全」ではありません。認証、テーブルごとのRLS（行レベルセキュリティ）、Storageのアクセス方針、管理者権限、バックアップと復元確認を、業務に合わせて決めることです。
+
+SupabaseのPostgresは、Auth、Storage、Realtimeなどの土台です。公式ドキュメントでは、毎日のDBバックアップと、有料プランでのポイントインタイム復元が案内されています。一方で、Storageに置いたオブジェクトはDBバックアップには含まれません。書類や写真を預かるなら、Storage側の保管・バックアップ・復元確認も別に運用します。
+
+この構成が向くのは、次のような仕事です。
+
+- 会員ごと、スタッフごと、拠点ごとに見えるデータが違う
+- 顧客の連絡先、申込履歴、受講記録、売上・在庫を扱う
+- PDF、同意書、写真などの書類を権限付きで保管する
+- 変更履歴や復元手順を残し、止まったときの対応を決めておきたい
+
+特にStorageは、RLSポリシーを設計しない限りアップロードを許可しない仕組みです。公開バケット、スタッフだけの書類、会員本人だけが見られる書類を混ぜず、用途ごとに分けることが実務では大切です。
+
+## Climbは、容量ではなく基幹業務の要件で選ぶ
+
+<figure>
+  <img src="/img/blog-sites-runtime-climb-core-boundary-20260810.png" alt="顧客、会計、在庫、書類、印刷を扱う基幹業務を、安全なデータ基盤へ置く考え方を表した図解" loading="lazy" decoding="async">
+  <figcaption>基幹業務では、ファイルの大きさより、日々の入力・権限・復元・印刷が止まらないことが重要です。</figcaption>
+</figure>
+
+Climbでは、Access本体が約32MB、移行用データ全体が約246MBでした。容量だけを見ればSitesの候補に見えるかもしれません。しかし実際に扱うのは、顧客情報、会計、在庫、書類、権限、印刷です。選定理由は容量ではなく、業務要件です。
+
+したがって、Climbの基幹は**GitHub＋Vercel＋Supabaseのまま**が適切です。コードと移行手順はGitHub、公開・画面はVercel、顧客データと権限付きの書類保管はSupabaseに分けます。決済、会計、予約など、すでに専門サービスが正本として動いている領域は、無理に置き換えず、必要な連携だけをつくります。
+
+Sitesを使うなら、基幹の代わりではなく、次のような周辺の試作に限ります。
+
+1. 匿名のサンプルデータだけを使った受付画面
+2. スタッフ向けの手順書・FAQ
+3. 顧客情報を持たない小さな集計画面
+4. 講座や地域イベントの仮LP
+
+その試作に顧客データ、複数人の改修、PC移設、復旧手順のどれかが加わったら、GitHub＋Vercelへ移します。さらに権限・書類・会員・業務データが加わったら、Supabaseを正本にして、バックアップから実際に戻せるかまで確認します。
 
 ### よくある質問
 
-**Q. 認証だけを使い、別のDBに会員データを置いてもよいですか？**
+**Q. GitHubをクローンできれば、PC故障には備えられますか？**
 
-できますが、会員ごと・スタッフごとに行単位の閲覧権限が必要なら、Supabase PostgresとRLSを残す方が実装と監査が単純です。D1側へ移すなら、サーバー側でJWT確認と権限判定を設計・検証する責任が増えます。
+コードと履歴には備えられます。しかし、DB、Storageの書類、Vercelの環境変数、`.env`、秘密鍵は別です。少なくとも年に一度ではなく、変更したタイミングごとに「別PCへクローンできるか」「DBを戻せるか」「書類を取り出せるか」を小さく確認します。
 
-**Q. 公開基盤を変えれば、すぐ無料になりますか？**
+**Q. Sitesで永続データを使ってはいけませんか？**
 
-必ずしもそうではありません。ChatGPT Sitesはベータのプラン別上限、CloudflareはWorkers・D1・R2の利用量、Supabaseは認証・DB・ストレージの利用量を、それぞれ確認する必要があります。費用だけでなく、障害時に戻せるか、誰が運用するかまで比べます。
-
-**Q. 決済や予約まで同じ基盤へ移すべきですか？**
-
-おすすめしません。すでにSquare、EC、予約サービスなどが正本として動いているなら、その正本を置き換えず、案内・申込導線・表示・必要な連携だけを作る方が安全です。
+いいえ。SitesではD1やR2を使う構成があります。ただし、デプロイURLは本番として扱われ、対応範囲や上限も変動します。匿名データの試作や限定公開の小さなツールに範囲を切り、重要データや本番業務を抱え込ませない、という使い分けが実務的です。
 
 <div class="publishing-cta">
-  <strong>ウェブサイトを公開した後こそ、「どのサービスを使うか」より先に、「何をどこに置くか」を整理します。</strong>
-  <p>AI相談では、公開情報、会員・権限、ファイル、決済・予約、既存SaaSを分け、本格稼働へ進む構成と移行順序を一緒に設計します。</p>
+  <strong>「何をどこに置くか」を先に決めると、AIで作るサイトは速く、引き継ぎやすくなります。</strong>
+  <p>AI相談では、公開ページ、顧客・会員データ、書類、決済・予約、復旧手順を分け、地域の事業者・学校・福祉の現場で続けられる構成を一緒に整理します。</p>
   <p><a href="/#contact">AI相談へ相談する</a> ・ <a href="/blog/index.html">AI相談のブログ一覧を読む</a></p>
 </div>
 
 ### 参考にした公式情報
 
-- [OpenAI：ChatGPT Sitesの作成・管理と対応範囲](https://help.openai.com/en/articles/20001339-creating-and-managing-chatgpt-sites)
-- [OpenAI：ChatGPTのデータレジデンシーとSitesの対象外範囲](https://help.openai.com/en/articles/9903489-data-residency-and-inference-residency-for-chatgpt)
-- [Supabase：Row Level Security](https://supabase.com/docs/guides/database/postgres/row-level-security)
-- [Supabase：Auth](https://supabase.com/docs/guides/auth)
-- [Cloudflare：D1の料金](https://developers.cloudflare.com/d1/platform/pricing/)
-- [Cloudflare：D1の上限](https://developers.cloudflare.com/d1/platform/limits/)
-- [Cloudflare：R2の料金](https://developers.cloudflare.com/r2/pricing/)
-- [Vercel：料金プラン](https://vercel.com/pricing)
+- [OpenAI：Sites](https://learn.chatgpt.com/docs/sites)
+- [GitHub Docs：Cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
+- [Vercel：Deploying Git Repositories with Vercel](https://vercel.com/docs/git)
+- [Supabase：Database overview](https://supabase.com/docs/guides/database/overview)
+- [Supabase：Storage Access Control](https://supabase.com/docs/guides/storage/security/access-control)
 
-<p class="publishing-note">※機能、上限、料金、対応範囲は2026年8月8日時点で公式情報を確認しています。移行の実行前に、対象サイトの個人情報・決済・権限・現在の契約条件を個別に確認してください。</p>
+<p class="publishing-note">※機能、上限、対応範囲は2026年8月10日時点で公式情報を確認しています。顧客情報・会計・決済・書類を扱う前には、対象業務の権限、契約条件、バックアップ、復元手順を個別に確認してください。</p>
 
 <style>
 html,body{max-width:100%;overflow-x:hidden}

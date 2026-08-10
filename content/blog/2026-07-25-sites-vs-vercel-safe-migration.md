@@ -1,7 +1,7 @@
 ---
 title: "ChatGPT SitesとVercel、どちらを選ぶ？GitHubを残す安全な移行ガイド"
 date: 2026-07-25
-authorship_note: "※この記事は、運営者が独自に考え思考し、AIで読みやすくしたものです。"
+authorship_note: "※この記事は、運営者が自ら考えた内容を、AIを使って読みやすく整えた記事です。"
 role: ブログ / AI初心者・地域事業者・個人事業主向け
 gen_by: 由井 辰美 / AI相談
 summary: ChatGPT SitesとVercelの違いを、料金、GitHub、データベース、引継ぎ、独自ドメインからやさしく比較。Sitesだけで使う手順と、GitHubを原本に残す手順を分けて説明します。

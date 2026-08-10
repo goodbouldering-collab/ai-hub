@@ -1,7 +1,7 @@
 ---
 title: "Codexで安全に直して公開する：Worktree・Git・PRの役割"
 date: 2026-07-24
-authorship_note: "※この記事は、運営者が独自に考え思考し、AIで読みやすくしたものです。"
+authorship_note: "※この記事は、運営者が自ら考えた内容を、AIを使って読みやすく整えた記事です。"
 role: ブログ兼説明資料 / Codex・Git初心者向け
 gen_by: 由井 辰美 / AI相談
 summary: Codexでサイトを直して公開するまでを、作業場所・記録・確認・公開の4段階に分けてやさしく説明します。

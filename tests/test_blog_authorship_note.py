@@ -207,15 +207,16 @@ class BlogAuthorshipNoteTest(unittest.TestCase):
 
 class VercelSupabaseBoundariesBlogTest(unittest.TestCase):
     ARTICLE_PATH = ROOT / "content" / "blog" / "2026-08-08-vercel-supabase-d1-r2-boundaries.md"
-    FINAL_TITLE = "ウェブサイト公開から本格稼働へ：AIで作ったWebサービスの5つの置き場所"
+    FINAL_TITLE = "サイト公開から本格稼働させるには、データをどこに置くのが正解？──Sites・GitHub＋Vercel＋Supabaseの選び方"
     EXPECTED_HEADINGS = [
-        "本格稼働の出発点は、データと機能を5つに分けること",
-        "データベースは、データ量ではなく権限の複雑さで決める",
-        "公開・軽量処理と、複雑な業務を分けて運用する",
-        "本格稼働へ進むために、6段階で小さく試す",
+        "最初の判断軸は「容量」ではなく、共有・復旧・バックアップ",
+        "Sitesは、限定公開の試作・デモに向く",
+        "GitHub＋Vercelは、複数PCでも開発を続けるための土台",
+        "顧客・会計・書類を扱うなら、Supabaseを加えて復元まで運用する",
+        "Climbは、容量ではなく基幹業務の要件で選ぶ",
     ]
     SAFE_AUTHORSHIP_NOTE = CANONICAL_AUTHORSHIP_NOTE
-    HERO_IMAGE = "/img/blog-sites-d1-r2-supabase-hero-20260808.png"
+    HERO_IMAGE = "/img/blog-sites-runtime-data-decision-hero-20260810.png"
 
     @classmethod
     def load_article(cls) -> tuple[dict, str]:
@@ -229,20 +230,20 @@ class VercelSupabaseBoundariesBlogTest(unittest.TestCase):
             meta["title"],
             self.FINAL_TITLE,
         )
-        self.assertIn("本格稼働", meta["summary"])
-        self.assertIn("5つ", meta["goal"])
+        self.assertIn("共有・復旧・バックアップ", meta["summary"])
+        self.assertIn("データの置き場所", meta["goal"])
         self.assertEqual(meta["authorship_note"], self.SAFE_AUTHORSHIP_NOTE)
         self.assertEqual(meta["image"], self.HERO_IMAGE)
 
         headings = re.findall(r"^## (.+)$", body, flags=re.MULTILINE)
-        self.assertEqual(headings[:4], self.EXPECTED_HEADINGS)
+        self.assertEqual(headings, self.EXPECTED_HEADINGS)
 
         references = sorted(set(re.findall(r"/img/[A-Za-z0-9_.-]+", body)))
         self.assertGreaterEqual(len(references), 5)
         for reference in references:
             self.assertTrue((ROOT / "site" / "static" / reference.lstrip("/")).is_file(), reference)
 
-        self.assertEqual(body.count('<div class="publishing-table-scroll"'), 3)
+        self.assertEqual(body.count('<div class="publishing-table-scroll"'), 1)
 
     def test_rendered_article_has_one_note_and_blogposting_schema(self) -> None:
         meta, _ = self.load_article()
@@ -275,7 +276,7 @@ class VercelSupabaseBoundariesBlogTest(unittest.TestCase):
         jsonld = json.loads(jsonld_match.group(1))
         self.assertEqual(jsonld["@type"], "BlogPosting")
         self.assertEqual(jsonld["headline"], meta["title"])
-        self.assertEqual(jsonld["datePublished"], "2026-08-08")
+        self.assertEqual(jsonld["datePublished"], "2026-08-10")
         self.assertEqual(jsonld["image"], builder.SITE_URL + self.HERO_IMAGE)
 
 

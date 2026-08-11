@@ -176,6 +176,23 @@ class CourseTestimonialsTest(unittest.TestCase):
             r"\.course-voices-grid\s*\{[^}]*grid-template-columns:\s*1fr",
         )
 
+    def test_course_voice_copy_uses_high_contrast_existing_tokens(self) -> None:
+        css = portal.FOCUSED_PORTAL_CSS
+
+        expected_colors = {
+            ".course-voices-disclosure": "var(--focus-ink)",
+            ".course-voice-course": "var(--focus-blue-dark)",
+            ".course-voice-card p": "var(--focus-ink)",
+            ".course-voice-card figcaption": "var(--focus-ink)",
+            ".compact-course-voice-link": "var(--focus-blue-dark)",
+        }
+        for selector, color in expected_colors.items():
+            with self.subTest(selector=selector):
+                self.assertRegex(
+                    css,
+                    rf"{re.escape(selector)}\s*\{{[^}}]*color:\s*{re.escape(color)}",
+                )
+
 
 if __name__ == "__main__":
     unittest.main()

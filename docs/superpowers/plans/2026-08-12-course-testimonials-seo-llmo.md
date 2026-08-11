@@ -42,7 +42,7 @@
 - Consumes: `html.escape`、既存の`_render_compact_course_cards() -> str`
 - Later tasks consume: `COURSE_TESTIMONIALS`の`key`、`course_name`、`anchor_id`、`heading`、`testimonials`
 
-- [ ] **Step 1: 失敗するHTML契約テストを書く**
+- [x] **Step 1: 失敗するHTML契約テストを書く**
 
 `tests/test_course_testimonials.py`を次の構造で作る。
 
@@ -96,7 +96,7 @@ class CourseTestimonialsTest(unittest.TestCase):
         self.assertEqual(4, cards.count("このコースを受講した方の感想を見る"))
 ```
 
-- [ ] **Step 2: テストが意図どおり失敗することを確認する**
+- [x] **Step 2: テストが意図どおり失敗することを確認する**
 
 Run:
 
@@ -106,7 +106,7 @@ Run:
 
 Expected: `COURSE_TESTIMONIALS`または`_render_course_testimonials`が未定義でFAIL。
 
-- [ ] **Step 3: 4コース×3件のデータを定義する**
+- [x] **Step 3: 4コース×3件のデータを定義する**
 
 `site/build_portal.py`のコースレンダーより前に、設計書の確定原稿を次のキー構造で追加する。
 
@@ -159,11 +159,11 @@ COURSE_TESTIMONIALS: tuple[dict, ...] = (
 )
 ```
 
-- [ ] **Step 4: 感想セクションとカードアンカーを最小実装する**
+- [x] **Step 4: 感想セクションとカードアンカーを最小実装する**
 
 `_render_course_testimonials()`は`html.escape`を通し、外枠`<section class='course-voices' id='course-voices' aria-labelledby='course-voices-title'>`、4パネル、12の`figure/blockquote/figcaption`を返す。各コースカードのitemへ`voice_anchor`を加え、資料リンクとは別の`.compact-course-voice-row`として「このコースを受講した方の感想を見る →」を出す。
 
-- [ ] **Step 5: HTML契約テストを通す**
+- [x] **Step 5: HTML契約テストを通す**
 
 Run:
 
@@ -173,7 +173,7 @@ Run:
 
 Expected: 3 tests PASS。
 
-- [ ] **Step 6: Task 1をコミットする**
+- [x] **Step 6: Task 1をコミットする**
 
 ```powershell
 git add tests/test_course_testimonials.py site/build_portal.py
@@ -193,7 +193,7 @@ git commit -m "feat: add course testimonial content"
 - Produces: `_testimonial_reviews(course_key: str) -> list[dict]`
 - Produces: `_build_jsonld_website() -> str`内の安定したCourse/Serviceノード
 
-- [ ] **Step 1: 失敗するJSON-LD契約テストを追加する**
+- [x] **Step 1: 失敗するJSON-LD契約テストを追加する**
 
 ```python
     def test_jsonld_links_visible_reviews_to_four_stable_nodes(self) -> None:
@@ -222,13 +222,13 @@ git commit -m "feat: add course testimonial content"
         self.assertNotIn("aggregateRating", payload)
 ```
 
-- [ ] **Step 2: JSON-LDテストの失敗を確認する**
+- [x] **Step 2: JSON-LDテストの失敗を確認する**
 
 Run: `& '.\.venv\Scripts\python.exe' -m unittest tests.test_course_testimonials -v`
 
 Expected: 安定`@id`または`review`が存在せずFAIL。
 
-- [ ] **Step 3: 既存Serviceループを型別ノードへ更新する**
+- [x] **Step 3: 既存Serviceループを型別ノードへ更新する**
 
 AIエージェント講習とAIコーディング講習を`Course`として出力し、`timeRequired: PT2H`、`courseMode: ["onsite", "online"]`、`inLanguage: ja`、`provider`、`offers`、`teaches`、`review`を付ける。AI個別相談とAI伴走支援は`Service`のまま安定`@id`と`review`を付ける。オンラインサロンは既存Serviceのまま変更しない。
 
@@ -243,13 +243,13 @@ AIエージェント講習とAIコーディング講習を`Course`として出�
 }
 ```
 
-- [ ] **Step 4: JSON-LD契約テストを通す**
+- [x] **Step 4: JSON-LD契約テストを通す**
 
 Run: `& '.\.venv\Scripts\python.exe' -m unittest tests.test_course_testimonials -v`
 
 Expected: 全5テストPASS。
 
-- [ ] **Step 5: Task 2をコミットする**
+- [x] **Step 5: Task 2をコミットする**
 
 ```powershell
 git add tests/test_course_testimonials.py site/build_portal.py
@@ -270,7 +270,7 @@ git commit -m "feat: add testimonial course schema"
 - Consumes: `_render_course_testimonials() -> str`
 - Produces: `#course-voices`を含む最終トップHTML
 
-- [ ] **Step 1: 生成HTMLとCSSの失敗テストを追加する**
+- [x] **Step 1: 生成HTMLとCSSの失敗テストを追加する**
 
 ```python
     def test_full_page_places_voices_after_course_menu(self) -> None:
@@ -283,17 +283,17 @@ git commit -m "feat: add testimonial course schema"
         self.assertRegex(page, r"@media \(max-width: 760px\)[\s\S]*?\.course-voices-grid\s*\{\s*grid-template-columns:1fr")
 ```
 
-- [ ] **Step 2: テストがCSS・挿入位置不足で失敗することを確認する**
+- [x] **Step 2: テストがCSS・挿入位置不足で失敗することを確認する**
 
 Run: `& '.\.venv\Scripts\python.exe' -m unittest tests.test_course_testimonials -v`
 
-- [ ] **Step 3: CSSと最終ページ挿入を実装する**
+- [x] **Step 3: CSSと最終ページ挿入を実装する**
 
 `FOCUSED_PORTAL_CSS`へ`.course-voices`、`.course-voices-grid`、`.course-voice-group`、`.course-voice-card`、`.compact-course-voice-row`を追加する。パネルは既存の白背景・青緑CTA・境界色を再利用し、新色を増やさない。アンカー先には`scroll-margin-top: 96px`、PCは2列、760px以下は1列を設定する。
 
 `_render_focused_main()`では`course-menu-unified`を閉じた直後、`course-venue-common`より前へ`_render_course_testimonials()`を挿入する。
 
-- [ ] **Step 4: 生成HTMLを更新する**
+- [x] **Step 4: 生成HTMLを更新する**
 
 Run:
 
@@ -303,7 +303,7 @@ Run:
 
 Expected: `site/dist/index.html`に4グループ、12件、JSON-LDが生成される。
 
-- [ ] **Step 5: 対象テストと既存コーステストを通す**
+- [x] **Step 5: 対象テストと既存コーステストを通す**
 
 ```powershell
 & '.\.venv\Scripts\python.exe' -m unittest tests.test_course_testimonials tests.test_course_material_mapping tests.test_hero_60sec_diagnosis tests.test_hero_text_readability -v
@@ -311,7 +311,7 @@ Expected: `site/dist/index.html`に4グループ、12件、JSON-LDが生成さ�
 
 Expected: 全件PASS。
 
-- [ ] **Step 6: Task 3をコミットする**
+- [x] **Step 6: Task 3をコミットする**
 
 ```powershell
 git add tests/test_course_testimonials.py site/build_portal.py
@@ -331,7 +331,7 @@ git commit -m "feat: publish responsive course testimonials"
 - Consumes: 完成した静的サイト
 - Produces: ローカル検証証跡
 
-- [ ] **Step 1: Pillowを隔離環境だけに追加しPython回帰を実行する**
+- [x] **Step 1: Pillowを隔離環境だけに追加しPython回帰を実行する**
 
 ```powershell
 & '.\.venv\Scripts\python.exe' -m pip install Pillow
@@ -340,7 +340,7 @@ git commit -m "feat: publish responsive course testimonials"
 
 Expected: PythonテストPASS。依存導入は`.venv`内だけで、`requirements.txt`は今回変更しない。
 
-- [ ] **Step 2: Node回帰を実行し既存基準との差分を確認する**
+- [x] **Step 2: Node回帰を実行し既存基準との差分を確認する**
 
 ```powershell
 npm.cmd run bridge:test
@@ -350,15 +350,15 @@ node --test $commandCenterTests
 
 Expected: Bridge 11件PASS。Command Center期限テストの既存1件以外に新しい失敗がない。
 
-- [ ] **Step 3: ローカルサーバーでPC 1440pxを確認する**
+- [x] **Step 3: ローカルサーバーでPC 1440pxを確認する**
 
 `site/dist`をHTTP配信し、トップの4コースカード、各感想リンク、4パネル、12件、予約CTA、会場案内を確認する。本文が読みやすく、2列パネルが不自然に伸びず、リンク先が固定ヘッダーで隠れないことを確認する。
 
-- [ ] **Step 4: iPhone 390pxを確認する**
+- [x] **Step 4: iPhone 390pxを確認する**
 
 感想パネルが1列、カード本文が切れない、横スクロールがない、ハンバーガーメニュー・予約CTA・資料リンクが操作できることを確認する。
 
-- [ ] **Step 5: ブラウザ状態を確認する**
+- [x] **Step 5: ブラウザ状態を確認する**
 
 コンソールエラー0、失敗ネットワーク0、`document.documentElement.scrollWidth === document.documentElement.clientWidth`、全画像`naturalWidth > 0`を確認する。
 
@@ -374,7 +374,7 @@ Expected: Bridge 11件PASS。Command Center期限テストの既存1件以外に
 - Consumes: 検証済みfeature branch
 - Produces: 本番URLと本番検証証跡
 
-- [ ] **Step 1: 最終差分を限定確認する**
+- [x] **Step 1: 最終差分を限定確認する**
 
 ```powershell
 git status --short --branch
@@ -384,7 +384,7 @@ git diff origin/main...HEAD --stat
 
 Expected: 設計書、計画書、`site/build_portal.py`、対象テスト、`site/dist/index.html`だけ。
 
-- [ ] **Step 2: 最新mainへ追随し回帰を再実行する**
+- [x] **Step 2: 最新mainへ追随し回帰を再実行する**
 
 `git fetch origin main`後、競合がなければfeature branchを最新`origin/main`へrebaseする。対象テストとビルドをもう一度実行する。
 

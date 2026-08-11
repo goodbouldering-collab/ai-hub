@@ -12114,26 +12114,17 @@ FAQ_QA = [
 ]
 
 
-# 受講者の声。形式: {"quote": 一言, "who": "彦根市・建設業・50代", "before_after": "見積作成 月4時間→30分"}
-# ★VOICES_ARE_SAMPLE = True の間は「掲載イメージ（実際の声に差し替え予定）」と明示し、虚偽表示を避ける。
-#   CEO が実際の受講者から許諾を得た声に差し替えたら VOICES_ARE_SAMPLE = False にする（注記が消える）。
-VOICES_ARE_SAMPLE = True
+# 旧レイアウト向けの補助データも、公開中の実際の感想から生成する。
+# 表示文と構造化データの出典を COURSE_TESTIMONIALS に一本化し、仮の声が再表示されるのを防ぐ。
+VOICES_ARE_SAMPLE = False
 VOICES: list[dict] = [
     {
-        "quote": "パソコンも苦手な自分が、見積書をAIに作ってもらえるようになりました。何より「これならできる」と思えたのが大きい。",
-        "who": "彦根市・建設業・50代",
-        "before_after": "見積作成 1件40分 → 10分",
-    },
-    {
-        "quote": "毎日の問い合わせ返信が苦痛でしたが、AIが下書きしてくれるので、確認して送るだけ。夜に持ち帰る仕事が減りました。",
-        "who": "東近江市・小売業・40代",
-        "before_after": "問い合わせ対応 1日2時間 → 30分",
-    },
-    {
-        "quote": "「AIなんて大企業のもの」と思っていました。対面でその場で一緒に作ってもらえたので、置いていかれずに済みました。",
-        "who": "彦根市・サービス業・60代",
-        "before_after": "AI利用ゼロ → 毎日活用",
-    },
+        "quote": testimonial["body"],
+        "who": testimonial["author_label"],
+        "before_after": testimonial["title"],
+    }
+    for group in COURSE_TESTIMONIALS
+    for testimonial in group["testimonials"]
 ]
 
 
@@ -13074,6 +13065,100 @@ header.site-header:hover {
 }
 .main-course > .focus-section-head { margin-bottom:18px; }
 .main-course > .focus-section-lead { margin-bottom:20px; }
+.course-voices {
+  max-width:1120px;
+  margin:34px auto 0;
+  padding:30px;
+  scroll-margin-top:96px;
+  border:1px solid var(--focus-line);
+  border-radius:20px;
+  background:#fff;
+}
+.course-voices > .focus-section-head { margin-bottom:10px; }
+.course-voices-disclosure {
+  max-width:760px;
+  margin:0 auto 22px;
+  color:var(--focus-muted);
+  font-size:12px;
+  line-height:1.7;
+  text-align:center;
+}
+.course-voices-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px;
+}
+.course-voice-group {
+  min-width:0;
+  padding:22px;
+  scroll-margin-top:96px;
+  border:1px solid var(--focus-line);
+  border-radius:16px;
+  background:var(--focus-surface);
+}
+.course-voice-course {
+  display:block;
+  margin-bottom:5px;
+  color:var(--focus-blue);
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+.course-voice-group h3 {
+  margin:0 0 16px;
+  color:var(--focus-ink);
+  font-size:19px;
+  line-height:1.45;
+}
+.course-voice-list {
+  display:grid;
+  gap:12px;
+}
+.course-voice-card {
+  margin:0;
+  padding:16px;
+  border-left:3px solid var(--focus-blue);
+  border-radius:0 12px 12px 0;
+  background:#fff;
+}
+.course-voice-card h4 {
+  margin:0 0 8px;
+  color:var(--focus-ink);
+  font-size:14px;
+  line-height:1.55;
+}
+.course-voice-card blockquote { margin:0; }
+.course-voice-card p {
+  margin:0;
+  color:var(--focus-muted);
+  font-size:13px;
+  line-height:1.75;
+}
+.course-voice-card figcaption {
+  margin-top:9px;
+  color:var(--focus-muted);
+  font-size:10px;
+  font-weight:800;
+}
+.compact-course-voice-row { margin:11px 0 0; }
+.compact-course-voice-link {
+  color:var(--focus-blue);
+  font-size:11px;
+  font-weight:900;
+  line-height:1.5;
+  text-decoration:underline;
+  text-decoration-thickness:1px;
+  text-underline-offset:3px;
+}
+.compact-course-voice-link:hover { color:var(--focus-blue-dark); }
+@media (max-width: 760px) {
+  .course-voices-grid { grid-template-columns:1fr; }
+  .course-voices { margin-top:26px; padding:20px 14px; border-radius:16px; }
+  .course-voices-disclosure { margin-bottom:17px; text-align:left; }
+  .course-voice-group { padding:17px 14px; }
+  .course-voice-group h3 { font-size:17px; }
+  .course-voice-card { padding:14px 13px; }
+}
 .course-venue-common {
   max-width:860px;
   margin:24px auto 0;
@@ -14833,6 +14918,7 @@ def _render_focused_main() -> str:
         _render_compact_course_cards(),
         _render_salon_menu(),
         "</div>",
+        _render_course_testimonials(),
         "<aside class='course-venue-common' aria-label='講習・相談コース共通の開催場所'>",
         "<img src='/img/gubboru-cafe-ai-course-painting.webp' alt='講習・相談の対面会場 グッぼるカフェの店内' loading='lazy' decoding='async'>",
         "<div><small>COMMON VENUE</small><h3>開催場所：グッぼるカフェ（彦根）</h3><p>対面は普段のPCと課題を持ち寄って実施します。オンライン受講・相談にも対応します。</p></div>",

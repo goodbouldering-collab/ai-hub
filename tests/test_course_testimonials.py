@@ -1,6 +1,7 @@
 import importlib.util
 import json
 from pathlib import Path
+import re
 import unittest
 
 
@@ -134,6 +135,46 @@ class CourseTestimonialsTest(unittest.TestCase):
 
         self.assertNotIn("reviewRating", payload)
         self.assertNotIn("aggregateRating", payload)
+
+    def test_legacy_voice_helper_reuses_real_testimonials_not_samples(self) -> None:
+        self.assertFalse(portal.VOICES_ARE_SAMPLE)
+        rendered = portal._render_voices()
+
+        self.assertEqual(12, rendered.count("<figure class='voice-card'>"))
+        for _, _, _, _, testimonials in EXPECTED_GROUPS:
+            for title, body in testimonials:
+                self.assertIn(title, rendered)
+                self.assertIn(body, rendered)
+
+    def test_full_page_places_voices_after_courses_and_before_venue(self) -> None:
+        page = portal.render_portal([], [])
+
+        self.assertIn("id='course-voices'", page)
+        self.assertLess(
+            page.index("class='course-menu-unified'"),
+            page.index("id='course-voices'"),
+        )
+        self.assertLess(
+            page.index("id='course-voices'"),
+            page.index("class='course-venue-common'"),
+        )
+
+    def test_course_voice_layout_is_two_columns_and_mobile_one_column(self) -> None:
+        css = portal.FOCUSED_PORTAL_CSS
+
+        self.assertRegex(
+            css,
+            r"\.course-voices-grid\s*\{[^}]*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)",
+        )
+        mobile_block = re.search(
+            r"@media\s*\(max-width:\s*760px\)\s*\{(?P<body>[\s\S]*?)\n\}",
+            css,
+        )
+        self.assertIsNotNone(mobile_block)
+        self.assertRegex(
+            mobile_block.group("body"),
+            r"\.course-voices-grid\s*\{[^}]*grid-template-columns:\s*1fr",
+        )
 
 
 if __name__ == "__main__":

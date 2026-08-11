@@ -1,7 +1,7 @@
 ---
 title: "AI時代、経験者が再び強くなる理由"
 date: 2026-08-09
-authorship_note: "※この記事は、運営者が自ら考えた内容を、AIを使って読みやすく整えた記事です。"
+authorship_note: "※内容は運営者が考え、AIで整えています。"
 video: /media/ai-experience-3d-20260810/reel.mp4
 video_poster: /media/ai-experience-3d-20260810/cover.png
 video_label: AI時代、経験者が再び強くなる理由を約25秒・女性ナレーション・軽いBGMで整理する動画

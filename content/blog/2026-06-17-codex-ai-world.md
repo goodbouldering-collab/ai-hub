@@ -1,7 +1,7 @@
 ---
 title: "Codexが開いた、AI活動の最前線"
 date: 2026-06-17
-authorship_note: "※この記事は、運営者が自ら考えた内容を、AIを使って読みやすく整えた記事です。"
+authorship_note: "※内容は運営者が考え、AIで整えています。"
 role: ブログ / AIコーディング考察
 gen_by: 由井 辰美 / AIハブ
 summary: AIハブ初のブログ。Codexを、IDE、Claude Code、画像生成、モバイル音声、プラグイン連携まで含めたAI活動の統合UIとして分析する。

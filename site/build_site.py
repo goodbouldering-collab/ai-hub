@@ -3550,8 +3550,8 @@ def _inject_heading_ids(body_html: str) -> tuple[str, list[tuple[str, str]]]:
     return new_html, toc
 
 
-def _render_blog_authorship_note(meta: dict, kind: str) -> str:
-    if kind != "blog":
+def _render_authorship_note(meta: dict, kind: str) -> str:
+    if kind not in {"blog", "lecture"}:
         return ""
     note = str(meta.get("authorship_note") or "").strip()
     if not note:
@@ -3623,7 +3623,7 @@ def render_content_page(
     if sub_bits:
         parts.append("<div class='speaker-meta'>" + "".join(sub_bits) + "</div>")
     parts.append("</header>")
-    parts.append(_render_blog_authorship_note(meta, kind))
+    parts.append(_render_authorship_note(meta, kind))
     if kind == "lecture" and image_url:
         parts.append(
             "<figure class='lecture-cover'>"

@@ -1,7 +1,7 @@
 ---
 title: "サイト公開から本格稼働させるには、データをどこに置くのが正解？──Sites・GitHub＋Vercel＋Supabaseの選び方"
 date: 2026-08-10
-authorship_note: "※この記事は、運営者が自ら考えた内容を、AIを使って読みやすく整えた記事です。"
+authorship_note: "※内容は運営者が考え、AIで整えています。"
 role: ブログ / AI活用・Webシステム設計
 gen_by: 由井辰美 / AI相談
 summary: 仮LPや小さな社内ツールならSites、継続開発や複数PCならGitHub＋Vercel、顧客情報・会計・書類・権限を扱うならGitHub＋Vercel＋Supabase。データ量だけでなく、共有・復旧・バックアップの必要性で選ぶ実務的な基準を整理します。

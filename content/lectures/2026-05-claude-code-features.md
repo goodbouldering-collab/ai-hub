@@ -1,6 +1,7 @@
 ---
 title: Codex初級はAIエージェント講習へ統合しました
 date: 2026-05-21
+authorship_note: "※内容は運営者が考え、AIで整えています。"
 date_modified: 2026-07-28
 role: AIエージェント講習 / Codex初級
 gen_by: 由井 辰美 / AI相談

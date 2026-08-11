@@ -1,6 +1,7 @@
 ---
 title: AI資料作成例 — クライミングはどう広がった？
 date: 2026-05-23
+authorship_note: "※内容は運営者が考え、AIで整えています。"
 date_modified: 2026-07-28
 role: AI資料作成例 / 受講資料
 gen_by: AI相談（AI作成支援・由井辰美確認・編集）

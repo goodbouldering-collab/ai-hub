@@ -14,8 +14,9 @@ ROOT = Path(__file__).resolve().parents[1]
 BUILDER_PATH = ROOT / "site" / "build_site.py"
 ARTICLE_PATH = ROOT / "content" / "blog" / "2026-08-06-ai-work-design-future.md"
 BLOG_DIR = ROOT / "content" / "blog"
+LECTURE_DIR = ROOT / "content" / "lectures"
 FINAL_TITLE = "AI時代にデザインは不要になるのか？ むしろ必要になる「経験」と「仕事をデザインする力」"
-CANONICAL_AUTHORSHIP_NOTE = "※この記事は、運営者が自ら考えた内容を、AIを使って読みやすく整えた記事です。"
+CANONICAL_AUTHORSHIP_NOTE = "※内容は運営者が考え、AIで整えています。"
 APPROVED_AUTHORSHIP_NOTE = CANONICAL_AUTHORSHIP_NOTE
 ARTICLE_BODY_SHA256 = "c88fcb045f69a40a8e990e75a77254954368f72ea41151387d9071899ff0f351"
 ARTICLE_HERO_IMAGE = "/img/blog-ai-work-design-hero-20260806.webp"
@@ -87,8 +88,8 @@ class BlogAuthorshipNoteTest(unittest.TestCase):
         self.assertIn("<p>AI &lt; person</p>", page)
         self.assertNotIn("blog-authorship-note", page)
 
-    def test_lecture_page_omits_blog_note(self) -> None:
-        note = "Lecture pages omit this note"
+    def test_lecture_page_renders_note_between_title_and_cover(self) -> None:
+        note = "Lecture authorship note"
         page = builder.render_content_page(
             "Lecture title",
             {"authorship_note": note},
@@ -97,7 +98,10 @@ class BlogAuthorshipNoteTest(unittest.TestCase):
             kind="lecture",
         )
 
-        self.assertNotIn(note, page)
+        self.assertIn(
+            f"</header><p>{note}</p><div class='content-wrap lecture-content'",
+            page,
+        )
 
     def test_article_metadata_uses_the_approved_title_note_and_reel_duration(self) -> None:
         meta, _ = load_article()
@@ -133,6 +137,19 @@ class BlogAuthorshipNoteTest(unittest.TestCase):
                 meta.get("authorship_note"),
                 CANONICAL_AUTHORSHIP_NOTE,
                 article.name,
+            )
+
+    def test_every_current_lecture_source_uses_the_canonical_authorship_note(self) -> None:
+        lectures = sorted(LECTURE_DIR.glob("*.md"))
+        self.assertGreater(len(lectures), 0)
+
+        for lecture in lectures:
+            frontmatter = lecture.read_text(encoding="utf-8").split("---", 2)[1]
+            meta = yaml.safe_load(frontmatter)
+            self.assertEqual(
+                meta.get("authorship_note"),
+                CANONICAL_AUTHORSHIP_NOTE,
+                lecture.name,
             )
 
     def test_article_body_checksum_prevents_unintended_content_changes(self) -> None:

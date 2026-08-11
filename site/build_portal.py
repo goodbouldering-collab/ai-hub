@@ -11462,6 +11462,136 @@ def _render_courses_packages() -> str:
     return "".join(parts)
 
 
+COURSE_TESTIMONIALS: tuple[dict, ...] = (
+    {
+        "key": "ai-agent",
+        "course_name": "AIエージェント講習",
+        "anchor_id": "voice-ai-agent",
+        "heading": "ゼロからでも、AIエージェントが仕事の相棒になった",
+        "testimonials": (
+            {
+                "title": "インストールから、実際に作れるところまで",
+                "body": "インストールから一つずつ説明してもらい、IDEもAIエージェントもゼロから触れました。最後は自分で実際に作れるところまで進めたので、とても分かりやすかったです。",
+                "author_label": "受講者（匿名）",
+            },
+            {
+                "title": "基礎がストーリーでつながり、記憶に残った",
+                "body": "本当に使えるレベルになるには基礎が大事だと、ストーリー仕立てでみっちり教えてもらえました。覚えやすい言い回しも面白く、内容がすっと頭に入りました。",
+                "author_label": "受講者（匿名）",
+            },
+            {
+                "title": "使うほど、手になじむ感覚があった",
+                "body": "エンジニア向けに見えるツールなのに、楽しみながら使えました。使うほど手になじみ、自分の仕事でも続けられそうだと感じました。",
+                "author_label": "受講者（匿名）",
+            },
+        ),
+    },
+    {
+        "key": "ai-consultation",
+        "course_name": "AI個別相談",
+        "anchor_id": "voice-ai-consultation",
+        "heading": "その場で悩みがほどけ、明日から使える形になった",
+        "testimonials": (
+            {
+                "title": "会社の業務を、そのまま相談できた",
+                "body": "会社で使っているツールと実際の業務をそのまま相談でき、疑問点を一つずつ整理しながら、その場で解決策を見つけられたのがよかったです。",
+                "author_label": "受講者（匿名）",
+            },
+            {
+                "title": "「役立ちそう」ではなく、その場で成果が見えた",
+                "body": "これまでAIが実際の業務に役立つと感じたことはありませんでしたが、今回は本当に使える成果を見せてもらえました。作業のスピード感もあり、すぐに導入したいと思いました。",
+                "author_label": "受講者（匿名）",
+            },
+            {
+                "title": "社内に導入できる形まで落とし込めた",
+                "body": "解決策が事業の中で形になっていくのを実感できました。会社へ導入しやすいところまで整理でき、今度は自分がほかの人へ伝えられることも増えたと思います。",
+                "author_label": "受講者（匿名）",
+            },
+        ),
+    },
+    {
+        "key": "ai-support",
+        "course_name": "AI伴走支援",
+        "anchor_id": "voice-ai-support",
+        "heading": "社内の理解が進み、AI導入が動き出した",
+        "testimonials": (
+            {
+                "title": "上司への説明まで支えてもらい、導入が早まった",
+                "body": "会社の上司との話し合いにも入っていただき、新しい提案を分かりやすく説明してもらえたので、社内でのAI導入がとても早く進みました。",
+                "author_label": "受講者（匿名）",
+            },
+            {
+                "title": "自分たちでは見えなかった問題を洗い出せた",
+                "body": "私たちだけでは気づけなかった問題点を見つけてもらい、何から解決するかまで整理できました。社内でAIを活用できる可能性が見えたことがうれしかったです。",
+                "author_label": "受講者（匿名）",
+            },
+            {
+                "title": "明日やることが増えた分、仕事が前へ進み始めた",
+                "body": "YouTubeで見るだけとは違い、目の前で問題が解決していく様子は見ていて気持ちがよかったです。明日からやることは増えましたが、その分、業務がどんどん進む感覚がありました。",
+                "author_label": "受講者（匿名）",
+            },
+        ),
+    },
+    {
+        "key": "ai-coding",
+        "course_name": "AIコーディング講習",
+        "anchor_id": "voice-ai-coding",
+        "heading": "コードを書く人から、AIとチームを動かす人へ",
+        "testimonials": (
+            {
+                "title": "手打ちより、仕様と順序が効率を決めると分かった",
+                "body": "これまではコードを手で打つことに集中していましたが、プロジェクトの目的や仕様書に沿って進めることが、結果的に大きな効率化につながると分かりました。",
+                "author_label": "受講者（匿名）",
+            },
+            {
+                "title": "設計・セキュリティ・公開工程まで見えた",
+                "body": "AIはコードを書くだけでなく、ワークフローやデザイン、必要なデータ、セキュリティ、公開までの順序も提案できると知りました。プロの進め方を一つずつ理解できました。",
+                "author_label": "受講者（匿名）",
+            },
+            {
+                "title": "チーム開発と採用にも使える、新しい進め方だった",
+                "body": "部下と共同作業するときのAI活用フローがとても分かりやすかったです。GitHubやワークツリー、低コストのクラウドサービスも学べて、自動化や費用削減だけでなく、今後の採用にも役立つと感じました。",
+                "author_label": "受講者（匿名）",
+            },
+        ),
+    },
+)
+
+
+def _render_course_testimonials() -> str:
+    parts = [
+        "<section class='course-voices' id='course-voices' aria-labelledby='course-voices-title'>",
+        "<div class='focus-section-head'><small>COURSE VOICES</small>",
+        "<h2 id='course-voices-title'>受講された方の感想</h2></div>",
+        "<p class='course-voices-disclosure'>実際に受講された方の感想を、個人が特定されないよう一部表現を整えて掲載しています。</p>",
+        "<div class='course-voices-grid'>",
+    ]
+    for group in COURSE_TESTIMONIALS:
+        course_name = html.escape(str(group["course_name"]))
+        anchor_id = html.escape(str(group["anchor_id"]), quote=True)
+        heading = html.escape(str(group["heading"]))
+        parts.extend([
+            f"<article class='course-voice-group' id='{anchor_id}'>",
+            f"<p class='course-voice-course'>{course_name}</p>",
+            f"<h3>{heading}</h3>",
+            "<div class='course-voice-list'>",
+        ])
+        for testimonial in group["testimonials"]:
+            title = html.escape(str(testimonial["title"]))
+            body = html.escape(str(testimonial["body"]))
+            author_label = html.escape(str(testimonial["author_label"]))
+            parts.append(
+                "<figure class='course-voice-card'>"
+                f"<h4>{title}</h4>"
+                f"<blockquote><p>「{body}」</p></blockquote>"
+                f"<figcaption>— {author_label}</figcaption>"
+                "</figure>"
+            )
+        parts.append("</div></article>")
+    parts.append("</div></section>")
+    return "".join(parts)
+
+
 def _render_compact_course_cards() -> str:
     """メイン講習を先頭にし、講習・相談の全コースを並べる申込カード。"""
     items = [
@@ -11477,6 +11607,7 @@ def _render_compact_course_cards() -> str:
             "cta": "まずこの講習を予約",
             "material_url": "/lectures/2026-04-ai-kihon.html",
             "material_cta": "AIエージェント講習の受講資料を見る",
+            "voice_anchor": "voice-ai-agent",
             "main": True,
             "details_lead": "この講習で得られること",
             "details": [
@@ -11500,6 +11631,7 @@ def _render_compact_course_cards() -> str:
             "cta": "個別相談を予約",
             "material_url": "/lectures/2026-04-ai-kangaekata.html",
             "material_cta": "15分のAI実践ワークを見る",
+            "voice_anchor": "voice-ai-consultation",
             "details_lead": "相談すると整理できること",
             "details": [
                 ("最初にやる仕事が決まる", "「AIで何ができるか」からではなく、時間を取られている仕事を整理し、効果が出やすい1つを選びます。"),
@@ -11522,6 +11654,7 @@ def _render_compact_course_cards() -> str:
             "cta": "伴走支援を申し込む",
             "material_url": "/lectures/2026-06-ai-agent-rag-design.html",
             "material_cta": "AI導入・RAG設計の資料を見る",
+            "voice_anchor": "voice-ai-support",
             "details_lead": "6ヶ月伴走で得られること",
             "details": [
                 ("業務の優先順位を整理", "HP更新、集客、事務、情報共有の中から、効果と緊急度を見て着手順を決めます。"),
@@ -11545,6 +11678,7 @@ def _render_compact_course_cards() -> str:
             "cta": "AIコーディングを予約",
             "material_url": "/programming-map.html",
             "material_cta": "AIコーディング講習の受講資料を見る",
+            "voice_anchor": "voice-ai-coding",
             "details_lead": "この講習で身につくこと",
             "details": [
                 ("小さくても動くものを作る", "自社ページ、申込フォーム、集計画面、業務ツールなど、目的に合う題材を実際に動かします。"),
@@ -11570,6 +11704,14 @@ def _render_compact_course_cards() -> str:
             f"{html.escape(item['material_cta'])} →</a>"
             "</p>"
             if material_url else ""
+        )
+        voice_anchor = html.escape(str(item["voice_anchor"]), quote=True)
+        voice_html = (
+            "<p class='compact-course-voice-row'>"
+            f"<a class='compact-course-voice-link' href='#{voice_anchor}' "
+            f"aria-label='{html.escape(item['title'], quote=True)}を受講した方の感想を見る'>"
+            "このコースを受講した方の感想を見る →</a>"
+            "</p>"
         )
         main_cls = " compact-course-card--main" if item.get("main") else ""
         title_html = f"<h3>{html.escape(item['title'])}</h3>"
@@ -11610,6 +11752,7 @@ def _render_compact_course_cards() -> str:
             f"{details_html}"
             f"{main_action_html}"
             f"{material_html}"
+            f"{voice_html}"
             "</article>"
         )
     return "<div class='compact-course-grid'>" + "".join(cards) + "</div>"

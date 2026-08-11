@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/02/gemini-live-ai-ad.png?quality=90&amp;strip=all&amp;crop=0%2C2.0352385861162%2C100%2C95.929522827768&amp;w=1200",
-      "published": "2026-08-11T15:41:42-04:00"
+      "published": "2026-08-11T15:41:42-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "d2fb62dc9cc80c4a",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/gettyimages-2151647832.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.664146549656%2C100%2C78.671706900689&amp;w=1200",
-      "published": "2026-08-11T13:50:01-04:00"
+      "published": "2026-08-11T13:50:01-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "29eb9a66d8593131",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/made-by-google-.png?quality=90&amp;strip=all&amp;crop=0%2C8.295721249323%2C100%2C83.408557501354&amp;w=1200",
-      "published": "2026-08-11T13:00:00-04:00"
+      "published": "2026-08-11T13:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "730f56615cad5184",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25626274/247263_iphone_16_pro_AKrales_0368.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-08-11T12:19:15-04:00"
+      "published": "2026-08-11T12:19:15-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "6a866880d7443637",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/03/acastro_STK059_zoom_03.webp?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-08-11T10:45:44-04:00"
+      "published": "2026-08-11T10:45:44-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "ade7218360cf46a2",
@@ -113,7 +123,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/Screenshot-2026-08-10-at-10.31.39-AM.png?quality=90&amp;strip=all&amp;crop=0,9.5560437679216,100,80.887912464157",
-      "published": "2026-08-11T09:27:20-04:00"
+      "published": "2026-08-11T09:27:20-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "bdb262d3b0c79436",
@@ -132,7 +144,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/AI-Personas-Display-2.jpg?quality=90&amp;strip=all&amp;crop=0%2C3.4613147178592%2C100%2C93.077370564282&amp;w=1200",
-      "published": "2026-08-11T09:00:00-04:00"
+      "published": "2026-08-11T09:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "9ff46821bc4ee736",
@@ -151,7 +165,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/08/STKB364_CLAUDE_A.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-08-11T08:22:20-04:00"
+      "published": "2026-08-11T08:22:20-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "7b61a13fda691094",
@@ -170,7 +186,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/268684_OpenAI_claims_to_revolutionize_maths_CVirginia2.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-08-11T07:00:00-04:00"
+      "published": "2026-08-11T07:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "25bb20a37475ff55",
@@ -189,7 +207,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://static.simonwillison.net/static/2026/glimmer-pelican.png",
-      "published": "2026-08-10T23:56:03+00:00"
+      "published": "2026-08-10T23:56:03+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

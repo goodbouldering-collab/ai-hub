@@ -195,6 +195,25 @@ def _build_ogp(title: str, description: str, page_url: str, *, image: str | None
     ])
 
 
+def _testimonial_reviews(course_key: str) -> list[dict]:
+    for group in COURSE_TESTIMONIALS:
+        if group["key"] != course_key:
+            continue
+        return [
+            {
+                "@type": "Review",
+                "name": testimonial["title"],
+                "reviewBody": testimonial["body"],
+                "author": {
+                    "@type": "Person",
+                    "name": testimonial["author_label"],
+                },
+            }
+            for testimonial in group["testimonials"]
+        ]
+    return []
+
+
 def _build_jsonld_website() -> str:
     """TOPで表示している事業・講師・サービス情報だけを@graphで出力する。
 
@@ -274,16 +293,69 @@ def _build_jsonld_website() -> str:
         (support_title, "HP公開から事務自動化・経理・マーケまで6ヶ月で一気に定着。技術的な難所は講師が代行・支援。滋賀・彦根の補助金で負担1/3以下に。", "100000", "100000", "Service"),
         (ai_coding_title, "Codex導入、Claude Code併用、画像生成、プログラミング基礎、設計、データ、運用、セキュリティを1本で学ぶAIコーディング講習。AIの成果物を判断し、説明し、仕事に入れるための作業設計と確認の型を120分で身につける。", "11000", "11000", "Course"),
     ]
+    plan_schema = {
+        ai_agent_title: {
+            "@id": SITE_URL + "/#course-ai-agent",
+            "@type": "Course",
+            "testimonial_key": "ai-agent",
+            "timeRequired": "PT2H",
+            "courseMode": ["onsite", "online"],
+            "inLanguage": "ja",
+            "teaches": [
+                "AIエージェントのインストールと基本操作",
+                "IDEを使ったAIエージェント実践",
+                "依頼、確認、修正、次回手順への保存",
+            ],
+        },
+        consult_title: {
+            "@id": SITE_URL + "/#service-ai-consultation",
+            "@type": "Service",
+            "testimonial_key": "ai-consultation",
+        },
+        support_title: {
+            "@id": SITE_URL + "/#service-ai-support",
+            "@type": "Service",
+            "testimonial_key": "ai-support",
+        },
+        ai_coding_title: {
+            "@id": SITE_URL + "/#course-ai-coding",
+            "@type": "Course",
+            "testimonial_key": "ai-coding",
+            "timeRequired": "PT2H",
+            "courseMode": ["onsite", "online"],
+            "inLanguage": "ja",
+            "teaches": [
+                "AIコーディングの仕様設計と作業順序",
+                "変更差分、データ、セキュリティの確認",
+                "GitHub、worktree、クラウドを使った公開工程",
+            ],
+        },
+    }
     services = []
     for name, desc, lo, hi, stype in plans:
+        schema = plan_schema.get(name, {})
+        node_type = schema.get("@type", "Service")
         service = {
-            "@type": "Service",
-            "serviceType": stype,
+            "@type": node_type,
             "name": name,
             "description": desc,
             "provider": {"@id": org_id},
-            "areaServed": {"@type": "AdministrativeArea", "name": "滋賀県"},
         }
+        if schema.get("@id"):
+            service["@id"] = schema["@id"]
+        if node_type == "Course":
+            service.update({
+                "timeRequired": schema["timeRequired"],
+                "courseMode": schema["courseMode"],
+                "inLanguage": schema["inLanguage"],
+                "teaches": schema["teaches"],
+            })
+        else:
+            service["serviceType"] = stype
+            service["areaServed"] = {"@type": "AdministrativeArea", "name": "滋賀県"}
+        testimonial_key = schema.get("testimonial_key")
+        if testimonial_key:
+            service["review"] = _testimonial_reviews(testimonial_key)
         if lo is not None and hi is not None:
             offer = {
                 "@type": "Offer",

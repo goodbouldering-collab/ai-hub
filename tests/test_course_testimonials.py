@@ -85,6 +85,56 @@ class CourseTestimonialsTest(unittest.TestCase):
             self.assertIn(f"href='#{anchor_id}'", cards)
         self.assertEqual(4, cards.count("このコースを受講した方の感想を見る"))
 
+    def test_jsonld_links_visible_reviews_to_four_stable_nodes(self) -> None:
+        graph = json.loads(portal._build_jsonld_website())["@graph"]
+        nodes = {node.get("@id"): node for node in graph if node.get("@id")}
+        expected_nodes = (
+            (portal.SITE_URL + "/#course-ai-agent", "Course", EXPECTED_GROUPS[0]),
+            (portal.SITE_URL + "/#service-ai-consultation", "Service", EXPECTED_GROUPS[1]),
+            (portal.SITE_URL + "/#service-ai-support", "Service", EXPECTED_GROUPS[2]),
+            (portal.SITE_URL + "/#course-ai-coding", "Course", EXPECTED_GROUPS[3]),
+        )
+
+        for node_id, node_type, expected_group in expected_nodes:
+            self.assertIn(node_id, nodes)
+            node = nodes[node_id]
+            self.assertEqual(node_type, node["@type"])
+            self.assertEqual(expected_group[1], node["name"].removesuffix(" 120分").removesuffix(" しっかり60分").removesuffix(" いっしょに導入"))
+            expected_reviews = expected_group[4]
+            self.assertEqual(3, len(node["review"]))
+            self.assertEqual(
+                [title for title, _ in expected_reviews],
+                [review["name"] for review in node["review"]],
+            )
+            self.assertEqual(
+                [body for _, body in expected_reviews],
+                [review["reviewBody"] for review in node["review"]],
+            )
+            for review in node["review"]:
+                self.assertEqual("Review", review["@type"])
+                self.assertEqual(
+                    {"@type": "Person", "name": "受講者（匿名）"},
+                    review["author"],
+                )
+
+    def test_course_jsonld_describes_duration_mode_language_and_learning(self) -> None:
+        graph = json.loads(portal._build_jsonld_website())["@graph"]
+        courses = [node for node in graph if node.get("@type") == "Course"]
+
+        self.assertEqual(2, len(courses))
+        for course in courses:
+            self.assertEqual("PT2H", course["timeRequired"])
+            self.assertEqual(["onsite", "online"], course["courseMode"])
+            self.assertEqual("ja", course["inLanguage"])
+            self.assertTrue(course["teaches"])
+            self.assertEqual("Offer", course["offers"]["@type"])
+
+    def test_jsonld_does_not_invent_ratings(self) -> None:
+        payload = portal._build_jsonld_website()
+
+        self.assertNotIn("reviewRating", payload)
+        self.assertNotIn("aggregateRating", payload)
+
 
 if __name__ == "__main__":
     unittest.main()

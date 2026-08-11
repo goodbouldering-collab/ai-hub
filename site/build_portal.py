@@ -195,6 +195,25 @@ def _build_ogp(title: str, description: str, page_url: str, *, image: str | None
     ])
 
 
+def _testimonial_reviews(course_key: str) -> list[dict]:
+    for group in COURSE_TESTIMONIALS:
+        if group["key"] != course_key:
+            continue
+        return [
+            {
+                "@type": "Review",
+                "name": testimonial["title"],
+                "reviewBody": testimonial["body"],
+                "author": {
+                    "@type": "Person",
+                    "name": testimonial["author_label"],
+                },
+            }
+            for testimonial in group["testimonials"]
+        ]
+    return []
+
+
 def _build_jsonld_website() -> str:
     """TOPで表示している事業・講師・サービス情報だけを@graphで出力する。
 
@@ -274,16 +293,69 @@ def _build_jsonld_website() -> str:
         (support_title, "HP公開から事務自動化・経理・マーケまで6ヶ月で一気に定着。技術的な難所は講師が代行・支援。滋賀・彦根の補助金で負担1/3以下に。", "100000", "100000", "Service"),
         (ai_coding_title, "Codex導入、Claude Code併用、画像生成、プログラミング基礎、設計、データ、運用、セキュリティを1本で学ぶAIコーディング講習。AIの成果物を判断し、説明し、仕事に入れるための作業設計と確認の型を120分で身につける。", "11000", "11000", "Course"),
     ]
+    plan_schema = {
+        ai_agent_title: {
+            "@id": SITE_URL + "/#course-ai-agent",
+            "@type": "Course",
+            "testimonial_key": "ai-agent",
+            "timeRequired": "PT2H",
+            "courseMode": ["onsite", "online"],
+            "inLanguage": "ja",
+            "teaches": [
+                "AIエージェントのインストールと基本操作",
+                "IDEを使ったAIエージェント実践",
+                "依頼、確認、修正、次回手順への保存",
+            ],
+        },
+        consult_title: {
+            "@id": SITE_URL + "/#service-ai-consultation",
+            "@type": "Service",
+            "testimonial_key": "ai-consultation",
+        },
+        support_title: {
+            "@id": SITE_URL + "/#service-ai-support",
+            "@type": "Service",
+            "testimonial_key": "ai-support",
+        },
+        ai_coding_title: {
+            "@id": SITE_URL + "/#course-ai-coding",
+            "@type": "Course",
+            "testimonial_key": "ai-coding",
+            "timeRequired": "PT2H",
+            "courseMode": ["onsite", "online"],
+            "inLanguage": "ja",
+            "teaches": [
+                "AIコーディングの仕様設計と作業順序",
+                "変更差分、データ、セキュリティの確認",
+                "GitHub、worktree、クラウドを使った公開工程",
+            ],
+        },
+    }
     services = []
     for name, desc, lo, hi, stype in plans:
+        schema = plan_schema.get(name, {})
+        node_type = schema.get("@type", "Service")
         service = {
-            "@type": "Service",
-            "serviceType": stype,
+            "@type": node_type,
             "name": name,
             "description": desc,
             "provider": {"@id": org_id},
-            "areaServed": {"@type": "AdministrativeArea", "name": "滋賀県"},
         }
+        if schema.get("@id"):
+            service["@id"] = schema["@id"]
+        if node_type == "Course":
+            service.update({
+                "timeRequired": schema["timeRequired"],
+                "courseMode": schema["courseMode"],
+                "inLanguage": schema["inLanguage"],
+                "teaches": schema["teaches"],
+            })
+        else:
+            service["serviceType"] = stype
+            service["areaServed"] = {"@type": "AdministrativeArea", "name": "滋賀県"}
+        testimonial_key = schema.get("testimonial_key")
+        if testimonial_key:
+            service["review"] = _testimonial_reviews(testimonial_key)
         if lo is not None and hi is not None:
             offer = {
                 "@type": "Offer",
@@ -11462,6 +11534,136 @@ def _render_courses_packages() -> str:
     return "".join(parts)
 
 
+COURSE_TESTIMONIALS: tuple[dict, ...] = (
+    {
+        "key": "ai-agent",
+        "course_name": "AIエージェント講習",
+        "anchor_id": "voice-ai-agent",
+        "heading": "ゼロからでも、AIエージェントが仕事の相棒になった",
+        "testimonials": (
+            {
+                "title": "インストールから、実際に作れるところまで",
+                "body": "インストールから一つずつ説明してもらい、IDEもAIエージェントもゼロから触れました。最後は自分で実際に作れるところまで進めたので、とても分かりやすかったです。",
+                "author_label": "受講者（匿名）",
+            },
+            {
+                "title": "基礎がストーリーでつながり、記憶に残った",
+                "body": "本当に使えるレベルになるには基礎が大事だと、ストーリー仕立てでみっちり教えてもらえました。覚えやすい言い回しも面白く、内容がすっと頭に入りました。",
+                "author_label": "受講者（匿名）",
+            },
+            {
+                "title": "使うほど、手になじむ感覚があった",
+                "body": "エンジニア向けに見えるツールなのに、楽しみながら使えました。使うほど手になじみ、自分の仕事でも続けられそうだと感じました。",
+                "author_label": "受講者（匿名）",
+            },
+        ),
+    },
+    {
+        "key": "ai-consultation",
+        "course_name": "AI個別相談",
+        "anchor_id": "voice-ai-consultation",
+        "heading": "その場で悩みがほどけ、明日から使える形になった",
+        "testimonials": (
+            {
+                "title": "会社の業務を、そのまま相談できた",
+                "body": "会社で使っているツールと実際の業務をそのまま相談でき、疑問点を一つずつ整理しながら、その場で解決策を見つけられたのがよかったです。",
+                "author_label": "受講者（匿名）",
+            },
+            {
+                "title": "「役立ちそう」ではなく、その場で成果が見えた",
+                "body": "これまでAIが実際の業務に役立つと感じたことはありませんでしたが、今回は本当に使える成果を見せてもらえました。作業のスピード感もあり、すぐに導入したいと思いました。",
+                "author_label": "受講者（匿名）",
+            },
+            {
+                "title": "社内に導入できる形まで落とし込めた",
+                "body": "解決策が事業の中で形になっていくのを実感できました。会社へ導入しやすいところまで整理でき、今度は自分がほかの人へ伝えられることも増えたと思います。",
+                "author_label": "受講者（匿名）",
+            },
+        ),
+    },
+    {
+        "key": "ai-support",
+        "course_name": "AI伴走支援",
+        "anchor_id": "voice-ai-support",
+        "heading": "社内の理解が進み、AI導入が動き出した",
+        "testimonials": (
+            {
+                "title": "上司への説明まで支えてもらい、導入が早まった",
+                "body": "会社の上司との話し合いにも入っていただき、新しい提案を分かりやすく説明してもらえたので、社内でのAI導入がとても早く進みました。",
+                "author_label": "受講者（匿名）",
+            },
+            {
+                "title": "自分たちでは見えなかった問題を洗い出せた",
+                "body": "私たちだけでは気づけなかった問題点を見つけてもらい、何から解決するかまで整理できました。社内でAIを活用できる可能性が見えたことがうれしかったです。",
+                "author_label": "受講者（匿名）",
+            },
+            {
+                "title": "明日やることが増えた分、仕事が前へ進み始めた",
+                "body": "YouTubeで見るだけとは違い、目の前で問題が解決していく様子は見ていて気持ちがよかったです。明日からやることは増えましたが、その分、業務がどんどん進む感覚がありました。",
+                "author_label": "受講者（匿名）",
+            },
+        ),
+    },
+    {
+        "key": "ai-coding",
+        "course_name": "AIコーディング講習",
+        "anchor_id": "voice-ai-coding",
+        "heading": "コードを書く人から、AIとチームを動かす人へ",
+        "testimonials": (
+            {
+                "title": "手打ちより、仕様と順序が効率を決めると分かった",
+                "body": "これまではコードを手で打つことに集中していましたが、プロジェクトの目的や仕様書に沿って進めることが、結果的に大きな効率化につながると分かりました。",
+                "author_label": "受講者（匿名）",
+            },
+            {
+                "title": "設計・セキュリティ・公開工程まで見えた",
+                "body": "AIはコードを書くだけでなく、ワークフローやデザイン、必要なデータ、セキュリティ、公開までの順序も提案できると知りました。プロの進め方を一つずつ理解できました。",
+                "author_label": "受講者（匿名）",
+            },
+            {
+                "title": "チーム開発と採用にも使える、新しい進め方だった",
+                "body": "部下と共同作業するときのAI活用フローがとても分かりやすかったです。GitHubやワークツリー、低コストのクラウドサービスも学べて、自動化や費用削減だけでなく、今後の採用にも役立つと感じました。",
+                "author_label": "受講者（匿名）",
+            },
+        ),
+    },
+)
+
+
+def _render_course_testimonials() -> str:
+    parts = [
+        "<section class='course-voices' id='course-voices' aria-labelledby='course-voices-title'>",
+        "<div class='focus-section-head'><small>COURSE VOICES</small>",
+        "<h2 id='course-voices-title'>受講された方の感想</h2></div>",
+        "<p class='course-voices-disclosure'>実際に受講された方の感想を、個人が特定されないよう一部表現を整えて掲載しています。</p>",
+        "<div class='course-voices-grid'>",
+    ]
+    for group in COURSE_TESTIMONIALS:
+        course_name = html.escape(str(group["course_name"]))
+        anchor_id = html.escape(str(group["anchor_id"]), quote=True)
+        heading = html.escape(str(group["heading"]))
+        parts.extend([
+            f"<article class='course-voice-group' id='{anchor_id}'>",
+            f"<p class='course-voice-course'>{course_name}</p>",
+            f"<h3>{heading}</h3>",
+            "<div class='course-voice-list'>",
+        ])
+        for testimonial in group["testimonials"]:
+            title = html.escape(str(testimonial["title"]))
+            body = html.escape(str(testimonial["body"]))
+            author_label = html.escape(str(testimonial["author_label"]))
+            parts.append(
+                "<figure class='course-voice-card'>"
+                f"<h4>{title}</h4>"
+                f"<blockquote><p>「{body}」</p></blockquote>"
+                f"<figcaption>— {author_label}</figcaption>"
+                "</figure>"
+            )
+        parts.append("</div></article>")
+    parts.append("</div></section>")
+    return "".join(parts)
+
+
 def _render_compact_course_cards() -> str:
     """メイン講習を先頭にし、講習・相談の全コースを並べる申込カード。"""
     items = [
@@ -11477,6 +11679,7 @@ def _render_compact_course_cards() -> str:
             "cta": "まずこの講習を予約",
             "material_url": "/lectures/2026-04-ai-kihon.html",
             "material_cta": "AIエージェント講習の受講資料を見る",
+            "voice_anchor": "voice-ai-agent",
             "main": True,
             "details_lead": "この講習で得られること",
             "details": [
@@ -11500,6 +11703,7 @@ def _render_compact_course_cards() -> str:
             "cta": "個別相談を予約",
             "material_url": "/lectures/2026-04-ai-kangaekata.html",
             "material_cta": "15分のAI実践ワークを見る",
+            "voice_anchor": "voice-ai-consultation",
             "details_lead": "相談すると整理できること",
             "details": [
                 ("最初にやる仕事が決まる", "「AIで何ができるか」からではなく、時間を取られている仕事を整理し、効果が出やすい1つを選びます。"),
@@ -11522,6 +11726,7 @@ def _render_compact_course_cards() -> str:
             "cta": "伴走支援を申し込む",
             "material_url": "/lectures/2026-06-ai-agent-rag-design.html",
             "material_cta": "AI導入・RAG設計の資料を見る",
+            "voice_anchor": "voice-ai-support",
             "details_lead": "6ヶ月伴走で得られること",
             "details": [
                 ("業務の優先順位を整理", "HP更新、集客、事務、情報共有の中から、効果と緊急度を見て着手順を決めます。"),
@@ -11545,6 +11750,7 @@ def _render_compact_course_cards() -> str:
             "cta": "AIコーディングを予約",
             "material_url": "/programming-map.html",
             "material_cta": "AIコーディング講習の受講資料を見る",
+            "voice_anchor": "voice-ai-coding",
             "details_lead": "この講習で身につくこと",
             "details": [
                 ("小さくても動くものを作る", "自社ページ、申込フォーム、集計画面、業務ツールなど、目的に合う題材を実際に動かします。"),
@@ -11570,6 +11776,14 @@ def _render_compact_course_cards() -> str:
             f"{html.escape(item['material_cta'])} →</a>"
             "</p>"
             if material_url else ""
+        )
+        voice_anchor = html.escape(str(item["voice_anchor"]), quote=True)
+        voice_html = (
+            "<p class='compact-course-voice-row'>"
+            f"<a class='compact-course-voice-link' href='#{voice_anchor}' "
+            f"aria-label='{html.escape(item['title'], quote=True)}を受講した方の感想を見る'>"
+            "このコースを受講した方の感想を見る →</a>"
+            "</p>"
         )
         main_cls = " compact-course-card--main" if item.get("main") else ""
         title_html = f"<h3>{html.escape(item['title'])}</h3>"
@@ -11610,6 +11824,7 @@ def _render_compact_course_cards() -> str:
             f"{details_html}"
             f"{main_action_html}"
             f"{material_html}"
+            f"{voice_html}"
             "</article>"
         )
     return "<div class='compact-course-grid'>" + "".join(cards) + "</div>"
@@ -11899,26 +12114,17 @@ FAQ_QA = [
 ]
 
 
-# 受講者の声。形式: {"quote": 一言, "who": "彦根市・建設業・50代", "before_after": "見積作成 月4時間→30分"}
-# ★VOICES_ARE_SAMPLE = True の間は「掲載イメージ（実際の声に差し替え予定）」と明示し、虚偽表示を避ける。
-#   CEO が実際の受講者から許諾を得た声に差し替えたら VOICES_ARE_SAMPLE = False にする（注記が消える）。
-VOICES_ARE_SAMPLE = True
+# 旧レイアウト向けの補助データも、公開中の実際の感想から生成する。
+# 表示文と構造化データの出典を COURSE_TESTIMONIALS に一本化し、仮の声が再表示されるのを防ぐ。
+VOICES_ARE_SAMPLE = False
 VOICES: list[dict] = [
     {
-        "quote": "パソコンも苦手な自分が、見積書をAIに作ってもらえるようになりました。何より「これならできる」と思えたのが大きい。",
-        "who": "彦根市・建設業・50代",
-        "before_after": "見積作成 1件40分 → 10分",
-    },
-    {
-        "quote": "毎日の問い合わせ返信が苦痛でしたが、AIが下書きしてくれるので、確認して送るだけ。夜に持ち帰る仕事が減りました。",
-        "who": "東近江市・小売業・40代",
-        "before_after": "問い合わせ対応 1日2時間 → 30分",
-    },
-    {
-        "quote": "「AIなんて大企業のもの」と思っていました。対面でその場で一緒に作ってもらえたので、置いていかれずに済みました。",
-        "who": "彦根市・サービス業・60代",
-        "before_after": "AI利用ゼロ → 毎日活用",
-    },
+        "quote": testimonial["body"],
+        "who": testimonial["author_label"],
+        "before_after": testimonial["title"],
+    }
+    for group in COURSE_TESTIMONIALS
+    for testimonial in group["testimonials"]
 ]
 
 
@@ -12859,6 +13065,100 @@ header.site-header:hover {
 }
 .main-course > .focus-section-head { margin-bottom:18px; }
 .main-course > .focus-section-lead { margin-bottom:20px; }
+.course-voices {
+  max-width:1120px;
+  margin:34px auto 0;
+  padding:30px;
+  scroll-margin-top:96px;
+  border:1px solid var(--focus-line);
+  border-radius:20px;
+  background:#fff;
+}
+.course-voices > .focus-section-head { margin-bottom:10px; }
+.course-voices-disclosure {
+  max-width:760px;
+  margin:0 auto 22px;
+  color:var(--focus-ink);
+  font-size:13px;
+  line-height:1.7;
+  text-align:center;
+}
+.course-voices-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px;
+}
+.course-voice-group {
+  min-width:0;
+  padding:22px;
+  scroll-margin-top:96px;
+  border:1px solid var(--focus-line);
+  border-radius:16px;
+  background:var(--focus-surface);
+}
+.course-voice-course {
+  display:block;
+  margin-bottom:5px;
+  color:var(--focus-blue-dark);
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+.course-voice-group h3 {
+  margin:0 0 16px;
+  color:var(--focus-ink);
+  font-size:19px;
+  line-height:1.45;
+}
+.course-voice-list {
+  display:grid;
+  gap:12px;
+}
+.course-voice-card {
+  margin:0;
+  padding:16px;
+  border-left:3px solid var(--focus-blue);
+  border-radius:0 12px 12px 0;
+  background:#fff;
+}
+.course-voice-card h4 {
+  margin:0 0 8px;
+  color:var(--focus-ink);
+  font-size:14px;
+  line-height:1.55;
+}
+.course-voice-card blockquote { margin:0; }
+.course-voice-card p {
+  margin:0;
+  color:var(--focus-ink);
+  font-size:13px;
+  line-height:1.75;
+}
+.course-voice-card figcaption {
+  margin-top:9px;
+  color:var(--focus-ink);
+  font-size:12px;
+  font-weight:800;
+}
+.compact-course-voice-row { margin:11px 0 0; }
+.compact-course-voice-link {
+  color:var(--focus-blue-dark);
+  font-size:12px;
+  font-weight:900;
+  line-height:1.5;
+  text-decoration:underline;
+  text-decoration-thickness:1px;
+  text-underline-offset:3px;
+}
+.compact-course-voice-link:hover { color:var(--focus-blue-dark); }
+@media (max-width: 760px) {
+  .course-voices-grid { grid-template-columns:1fr; }
+  .course-voices { margin-top:26px; padding:20px 14px; border-radius:16px; }
+  .course-voices-disclosure { margin-bottom:17px; text-align:left; }
+  .course-voice-group { padding:17px 14px; }
+  .course-voice-group h3 { font-size:17px; }
+  .course-voice-card { padding:14px 13px; }
+}
 .course-venue-common {
   max-width:860px;
   margin:24px auto 0;
@@ -14618,6 +14918,7 @@ def _render_focused_main() -> str:
         _render_compact_course_cards(),
         _render_salon_menu(),
         "</div>",
+        _render_course_testimonials(),
         "<aside class='course-venue-common' aria-label='講習・相談コース共通の開催場所'>",
         "<img src='/img/gubboru-cafe-ai-course-painting.webp' alt='講習・相談の対面会場 グッぼるカフェの店内' loading='lazy' decoding='async'>",
         "<div><small>COMMON VENUE</small><h3>開催場所：グッぼるカフェ（彦根）</h3><p>対面は普段のPCと課題を持ち寄って実施します。オンライン受講・相談にも対応します。</p></div>",

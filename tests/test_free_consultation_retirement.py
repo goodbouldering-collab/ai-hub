@@ -60,27 +60,27 @@ class FreeConsultationRetirementTests(unittest.TestCase):
         self.assertIn(FREE_CONSULT_URL, self.diagnosis_context)
 
     def test_structured_data_lists_only_paid_entry_offers(self) -> None:
-        services = [
+        paid_entries = [
             item
             for item in self.json_ld["@graph"]
-            if item.get("@type") == "Service"
+            if item.get("@type") in ("Course", "Service")
         ]
-        names = {service["name"] for service in services}
+        names = {entry["name"] for entry in paid_entries}
         self.assertNotIn("AI無料相談 入口整理", names)
-        self.assertNotIn("0", [service.get("offers", {}).get("price") for service in services])
+        self.assertNotIn("0", [entry.get("offers", {}).get("price") for entry in paid_entries])
 
         individual = next(
-            service
-            for service in services
-            if service["name"] == "AI個別相談 しっかり60分"
+            entry
+            for entry in paid_entries
+            if entry["name"] == "AI個別相談 しっかり60分"
         )
         self.assertEqual("5500", individual["offers"]["price"])
         self.assertEqual(INDIVIDUAL_CONSULT_URL, individual["offers"]["url"])
 
         agent = next(
-            service
-            for service in services
-            if service["name"] == "AIエージェント講習 120分"
+            entry
+            for entry in paid_entries
+            if entry["name"] == "AIエージェント講習 120分"
         )
         self.assertEqual(AI_AGENT_COURSE_URL, agent["offers"]["url"])
 

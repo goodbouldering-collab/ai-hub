@@ -14,7 +14,7 @@ body.command-center-page { min-height: 100vh; background: #f8fbff !important; co
 .cc-shell { width: min(1240px, calc(100% - 32px)); margin: 0 auto; padding: 96px 0 64px; }
 .cc-hero { display: flex; justify-content: space-between; gap: 24px; align-items: flex-end; padding: 28px; border: 1px solid var(--cc-line); border-radius: 18px; background: linear-gradient(135deg, #172033, #4f6fd8); color: #fff; box-shadow: 0 18px 40px rgba(39,60,104,.14); }
 .cc-eyebrow { margin: 0 0 10px; font-size: 11px; letter-spacing: .14em; font-weight: 800; opacity: .75; }
-.cc-hero h1 { margin: 0; font-size: clamp(28px, 4vw, 46px); letter-spacing: -.04em; }
+body.command-center-page .cc-hero h1 { margin: 0; color: #fff !important; font-size: clamp(28px, 4vw, 46px); letter-spacing: -.04em; }
 .cc-lede { max-width: 56em; margin: 12px 0 0; color: rgba(255,255,255,.82); line-height: 1.75; }
 .cc-hero-meta { display: grid; gap: 8px; justify-items: end; color: rgba(255,255,255,.78); font-size: 12px; white-space: nowrap; }
 .cc-private-badge { display: inline-flex; padding: 7px 11px; border: 1px solid rgba(255,255,255,.35); border-radius: 999px; color: #fff; font-weight: 800; }

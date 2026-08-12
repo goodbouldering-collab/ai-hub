@@ -17,6 +17,8 @@ test("market compass sections are independent protected views with a shared subm
     assert.match(script, new RegExp(`\\b${view.replace("-", "\\-")}\\b`), `${view} renderer`);
   }
   assert.match(html, /cc-market-nav/);
+  assert.doesNotMatch(html, /<details class="cc-market-nav"\s+open>/);
+  assert.match(script, /marketNavigation\.open\s*=\s*window\.innerWidth\s*>\s*640/);
   assert.match(script, /renderMarket/);
   assert.match(script, /renderScreener/);
   assert.match(script, /renderSecurity/);
@@ -51,4 +53,9 @@ test("market compass page routes and BFF routes are explicit before the generic 
     "/api/admin/command-center/security",
     "/api/admin/command-center/market-sources",
   ]) assert.ok(sources.includes(route), route);
+});
+
+test("command center hero keeps readable contrast on its dark gradient", async () => {
+  const css = await readFile(new URL("site/static/admin/command-center.css", root), "utf8");
+  assert.match(css, /body\.command-center-page\s+\.cc-hero\s+h1\s*\{[^}]*color:\s*#fff\s*!important/i);
 });

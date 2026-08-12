@@ -3,6 +3,7 @@
   const view = body.dataset.view || "dashboard";
   const content = document.getElementById("cc-content");
   const live = document.getElementById("cc-live");
+  const marketNavigation = typeof document.querySelector === "function" ? document.querySelector(".cc-market-nav") : null;
   const state = { dashboard: null, market: null, screen: null, security: null, sources: null };
   const dashboardViews = ["dashboard", "calendar", "tasks", "businesses", "directives", "studio", "tools", "trade"];
   const marketViews = ["market", "screener", "security", "trade-plan", "trade-plans", "trades", "market-sources"];
@@ -289,6 +290,7 @@
   }
 
   function setCurrentNav() { document.querySelectorAll("[data-view-link]").forEach((link) => link.classList.toggle("is-current", link.dataset.viewLink === view)); }
+  function setMarketNavigationMode() { if (marketNavigation) marketNavigation.open = window.innerWidth > 640; }
   async function render() {
     setCurrentNav();
     try {
@@ -313,5 +315,7 @@
       document.getElementById("cc-generated-at").textContent = `更新: ${new Date().toLocaleString("ja-JP")}`;
     } catch (error) { content.innerHTML = `<div class="cc-error">${esc(error.message)}</div>`; setLive("保護データを取得できませんでした。", true); }
   }
+  setMarketNavigationMode();
+  if (typeof window.addEventListener === "function") window.addEventListener("resize", setMarketNavigationMode);
   render();
 })();

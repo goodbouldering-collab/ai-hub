@@ -15,7 +15,10 @@ class RenderedSalonTest(unittest.TestCase):
     def test_square_monthly_salon_copy_and_private_line_boundary(self) -> None:
         self.assertIn("月額2,200円（税込）", self.html)
         self.assertIn("毎月自動更新", self.html)
-        self.assertIn("Squareで決済して参加", self.html)
+        self.assertIn("AIオンラインサロン｜近日開始", self.html)
+        self.assertIn("現在は仮運用中", self.html)
+        self.assertIn("登録中の方にはテスト運用へご協力いただいています", self.html)
+        self.assertIn("Squareで決済して仮運用に参加", self.html)
         self.assertEqual(self.html.count("action='/api/square/ai-salon-checkout'"), 1)
         self.assertNotIn("/api/stripe/ai-salon", self.html)
         self.assertNotRegex(self.html, r"https://(?:line\.me|lin\.ee)/")

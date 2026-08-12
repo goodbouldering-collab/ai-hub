@@ -247,7 +247,7 @@ def _build_jsonld_website() -> str:
             "streetAddress": "小泉町34-8",
             "addressCountry": "JP",
         },
-        "description": "滋賀県彦根市を拠点に、中小事業者・地域団体・個人事業者向けのAI相談、AIエージェント講習、毎週開催する有料のAIオンラインサロン、Codex・Claude Code実践、画像生成、受講資料公開、実例紹介、Web/業務システム制作、補助金を使ったAI導入支援を行う。9事業を実際に回す現役オーナーが、相談から講習、実装、公開、運用定着まで伴走する。",
+        "description": "滋賀県彦根市を拠点に、中小事業者・地域団体・個人事業者向けのAI相談、AIエージェント講習、近日開始で現在仮運用中の有料AIオンラインサロン、Codex・Claude Code実践、画像生成、受講資料公開、実例紹介、Web/業務システム制作、補助金を使ったAI導入支援を行う。9事業を実際に回す現役オーナーが、相談から講習、実装、公開、運用定着まで伴走する。",
         "knowsAbout": [
             "AI相談", "AIエージェント講習", "AIオンラインサロン", "ChatGPT", "Claude Code", "Codex", "画像生成", "AI業務改善",
             "LLMO（AI検索最適化）", "SEO", "MEO", "YouTube SEO", "Reels導線",
@@ -276,20 +276,20 @@ def _build_jsonld_website() -> str:
         "url": SITE_URL,
         "inLanguage": "ja",
         "publisher": {"@id": org_id},
-        "description": "滋賀・彦根の中小事業者向けAI相談、AIエージェント講習、有料オンラインサロン、受講資料、実例、講師紹介の資料センター。増え続けるAI情報から、仕事に使えるものと今やることを整理する。",
+        "description": "滋賀・彦根の中小事業者向けAI相談、AIエージェント講習、近日開始・現在仮運用中の有料オンラインサロン、受講資料、実例、講師紹介の資料センター。増え続けるAI情報から、仕事に使えるものと今やることを整理する。",
     }
 
     ai_agent_title = "AIエージェント講習 120分"
     ai_coding_title = "AIコーディング講習 120分"
     consult_title = "AI個別相談 しっかり60分"
-    salon_title = "AIオンラインサロン"
+    salon_title = "AIオンラインサロン｜近日開始"
     support_title = "AI伴走支援 いっしょに導入"
 
     # 受講プランを Service + Offer として構造化（_render_packages の items と整合）
     plans = [
         (ai_agent_title, "Codexを使い、仕事を小さく分けて頼む、変更点を確かめる、必要なら直す、次回も使える手順として残すAIエージェント講習。資料、告知、業務改善、Web制作を題材に、人が判断しながら成果物を完成させる型を120分で身につける。", "5500", "5500", "Course"),
         (consult_title, "AIの使い方、役割分担、指示書、確認体制、運用導線を60分で整理する個別相談。", "5500", "5500", "BusinessCoaching"),
-        (salon_title, "月額2,200円（税込）。毎週火曜21時、LINEでAIの変化を60分で整理し、今週やることを決める。", "2200", "2200", "CommunityService"),
+        (salon_title, "月額2,200円（税込）。正式開始に向けて現在は仮運用中で、登録中の方にはテスト運用へご協力いただいています。Square決済後にLINE参加案内を表示します。", "2200", "2200", "CommunityService"),
         (support_title, "HP公開から事務自動化・経理・マーケまで6ヶ月で一気に定着。技術的な難所は講師が代行・支援。滋賀・彦根の補助金で負担1/3以下に。", "100000", "100000", "Service"),
         (ai_coding_title, "Codex導入、Claude Code併用、画像生成、プログラミング基礎、設計、データ、運用、セキュリティを1本で学ぶAIコーディング講習。AIの成果物を判断し、説明し、仕事に入れるための作業設計と確認の型を120分で身につける。", "11000", "11000", "Course"),
     ]
@@ -11893,17 +11893,17 @@ def _render_salon_menu() -> str:
         "<section class='salon-section salon-section--integrated' id='seven-day-courses' aria-labelledby='salon-title'>"
         "<div class='salon-panel'>"
         "<div class='salon-eyebrow-row salon-card-eyebrow'><small>MENU 05 · SQUARE MONTHLY</small>"
-        "<span class='compact-course-badge'><i aria-hidden='true'></i>ライブトーク開催</span></div>"
+        "<span class='compact-course-badge'><i aria-hidden='true'></i>現在は仮運用中</span></div>"
         "<div class='salon-intro salon-intro--fused salon-card-overview'>"
         "<figure class='salon-main-visual'><img src='/img/blog-ai-agent-course-section-4-20260714.webp' "
         "alt='毎週火曜にLINEライブトークでAIの今と次の一手を整理するオンラインサロン' "
         "loading='lazy' decoding='async'><figcaption>仕事で次に試すことを、一緒に決める60分</figcaption></figure>"
         "<div class='salon-intro-copy'>"
         "<small class='salon-card-category'>月額サロン</small>"
-        "<h2 class='salon-detail-title' id='salon-title'>AIオンラインサロン</h2>"
+        "<h2 class='salon-detail-title' id='salon-title'>AIオンラインサロン｜近日開始</h2>"
         "<div class='compact-course-meta salon-card-meta'><strong>月額2,200円（税込）</strong><span>毎週火曜21:00</span></div>"
         "<p class='salon-intro-tagline'>AIの最新も疑問もその場で解決できる。</p>"
-        "<p class='salon-intro-description'>Squareで月額決済後、LINEライブトークの参加案内を表示します。仕事で次に試すことを一緒に決めます。聞くだけOK。</p></div>"
+        "<p class='salon-intro-description'>正式開始に向けて現在は仮運用中です。登録中の方にはテスト運用へご協力いただいています。Squareで月額決済後、LINEライブトークの参加案内を表示します。</p></div>"
         "<div class='salon-value-list' role='list' aria-label='サロンで得られること'>"
         "<div class='salon-value' role='listitem'><b>01</b><div><small>UPDATE</small><strong>新機能を毎週知る</strong></div></div>"
         "<div class='salon-value' role='listitem'><b>02</b><div><small>BEST PRACTICE</small><strong>一流の活用事例を聞く</strong></div></div>"
@@ -11917,7 +11917,7 @@ def _render_salon_menu() -> str:
         f"{_render_live_talk_guide()}"
         "</div></details>"
         "<p class='salon-simple-note'>月額2,200円（税込）・毎月自動更新。決済確認後にLINE参加案内を表示します</p>"
-        f"<form class='compact-course-checkout salon-card-checkout' method='post' action='{html.escape(AI_SALON_CHECKOUT_URL, quote=True)}'><button type='submit'>Squareで決済して参加 →</button></form>"
+        f"<form class='compact-course-checkout salon-card-checkout' method='post' action='{html.escape(AI_SALON_CHECKOUT_URL, quote=True)}'><button type='submit'>Squareで決済して仮運用に参加 →</button></form>"
         "<p class='salon-material-row'><a class='compact-course-material salon-material-link' href='/lectures/2026-07-ai-online-salon-practice.html'>オンラインサロン受講資料を見る →</a></p>"
         "</div></section>"
     )
@@ -11931,7 +11931,7 @@ def _render_footer(today: str) -> str:
         "<div class='footer-grid'>"
         "<div class='footer-brand'>"
         "<div class='footer-logo'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span></div>"
-        "<p class='footer-tagline'>滋賀・彦根の中小事業者向けに、AI相談・AIエージェント講習・月額2,200円のAIオンラインサロン・受講資料・Web集客支援を行う"
+        "<p class='footer-tagline'>滋賀・彦根の中小事業者向けに、AI相談・AIエージェント講習・近日開始で現在仮運用中の月額2,200円AIオンラインサロン・受講資料・Web集客支援を行う"
         "資料センター型の相談サイト。増え続けるAI情報を、仕事で使える次の一手に変えます。</p>"
         "<a class='footer-cta' href='#contact'>AI個別相談を予約する</a>"
         "</div>"
@@ -12108,7 +12108,7 @@ FAQ_QA = [
     ("AIエージェント講習では何を学びますか？",
      "Codexで実際の仕事を1つ完成させる入門講習です。仕事を小さく分け、伝わる依頼を作り、変更点と画面を確認し、必要なら修正や取り消しを行い、成果物と次回手順を保存するところまで120分で通します。料金は5,500円で、専用の予約ページから申し込めます。"),
     ("AIオンラインサロンでは、何がわかりますか？",
-     "月額2,200円（税込）。毎週火曜21時、LINEライブトークでAIの変化を60分で整理し、今週やることを決めます。聞くだけでも参加できます。月額決済はSquareで毎月自動更新し、決済確認後にLINE参加案内を表示します。"),
+     "AIオンラインサロンは近日開始で、現在は仮運用中です。登録中の方にはテスト運用へご協力いただいています。月額2,200円（税込）で、Square決済は毎月自動更新し、決済確認後にLINE参加案内を表示します。"),
     ("受講資料はあとから見返せますか？",
      "はい。受講で使った資料、プロンプト、実例、動画、スライドは資料センターとして整理し、あとから復習できるようにします。受講前に内容を確認したい方も、受講資料ページから雰囲気を見られます。"),
     ("Reels や YouTube の集客にも使えますか？",
@@ -14882,7 +14882,7 @@ def _render_focused_main() -> str:
 
     parts = [
         "<section class='focus-block main-course' id='packages'><div class='focus-section-head'><small>COURSES</small><h2>講習・相談コース</h2></div>",
-        "<p class='focus-section-lead'><strong>迷ったら、まずはAIエージェント講習が一番基本でおすすめです。</strong><br>最新情報を追い続けず「今やること」を知りたい方は、月額2,200円のオンラインサロンへ。個別相談、伴走支援、AIコーディング講習も選べます。</p>",
+        "<p class='focus-section-lead'><strong>迷ったら、まずはAIエージェント講習が一番基本でおすすめです。</strong><br>最新情報を追い続けず「今やること」を知りたい方は、近日開始・現在仮運用中の月額2,200円オンラインサロンへ。個別相談、伴走支援、AIコーディング講習も選べます。</p>",
         "<div class='course-menu-unified' id='course-voices' aria-label='講習・相談の全5メニュー'>",
         "<div class='course-menu-unified-head'><strong>全5メニュー</strong><span>上の4カードと下のオンラインサロンから選べます</span></div>",
         _render_compact_course_cards(),
@@ -14918,7 +14918,7 @@ def _render_focused_main() -> str:
         "<details><summary>AIがまったく初めてでも大丈夫ですか？</summary><p>大丈夫です。専門用語ではなく、普段の仕事と困りごとから始めます。</p></details>",
         "<details><summary>受講にパソコンは必要ですか？</summary><p>はい。WindowsまたはMacのパソコンを必ずお持ちください。直したい資料やページもあれば、あわせてお持ちください。</p></details>",
         "<details><summary>オンラインでも受講できますか？</summary><p>対面・オンラインの両方に対応しています。彦根市内は訪問も相談できます。</p></details>",
-        "<details><summary>AIオンラインサロンでは、何がわかりますか？</summary><p>月額2,200円（税込）。毎週火曜21時、LINEライブトークでAIの変化を60分で整理し、今週やることを決めます。聞くだけでも参加できます。月額決済はSquareで毎月自動更新し、決済確認後にLINE参加案内を表示します。</p></details></div></section>",
+        "<details><summary>AIオンラインサロンでは、何がわかりますか？</summary><p>AIオンラインサロンは近日開始で、現在は仮運用中です。登録中の方にはテスト運用へご協力いただいています。月額2,200円（税込）で、Square決済は毎月自動更新し、決済確認後にLINE参加案内を表示します。</p></details></div></section>",
         "<section class='focus-contact' id='contact'><div class='focus-contact-inner'><div><h2>AIエージェントに任せたい仕事を聞かせてください。</h2><p>講習前に、今の仕事に合う題材と進め方を一緒に整理できます。</p></div>",
         f"<a class='focus-btn' href='{individual_consult}' target='_blank' rel='noopener'>AI個別相談を予約する（60分・5,500円）</a></div></section>",
     ]
@@ -14928,7 +14928,7 @@ def _render_focused_main() -> str:
 def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     today = datetime.now().strftime("%Y-%m-%d")
     title = SITE_BROWSER_TITLE
-    desc = "AI相談は、彦根・滋賀でAIエージェント講習と有料オンラインサロンを開催しています。増え続けるAI情報から仕事に使えるものを選び、今やることを整理。CodexやClaude Codeで実践まで進めます。"
+    desc = "AI相談は、彦根・滋賀でAIエージェント講習を開催しています。AIオンラインサロンは近日開始・現在仮運用中で、Square決済によるテスト運用参加を受け付けています。CodexやClaude Codeで実践まで進めます。"
 
     parts: list[str] = []
     parts.append("<!doctype html><html lang='ja'><head><meta charset='utf-8'>" + FAVICON_HEAD_HTML)

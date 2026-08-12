@@ -196,7 +196,7 @@ def _build_ogp(title: str, description: str, page_url: str, *, image: str | None
 
 
 def _testimonial_reviews(course_key: str) -> list[dict]:
-    for group in COURSE_TESTIMONIALS:
+    for group in COURSE_TESTIMONIALS + (SALON_TESTIMONIAL_GROUP,):
         if group["key"] != course_key:
             continue
         return [
@@ -311,6 +311,11 @@ def _build_jsonld_website() -> str:
             "@id": SITE_URL + "/#service-ai-consultation",
             "@type": "Service",
             "testimonial_key": "ai-consultation",
+        },
+        salon_title: {
+            "@id": SITE_URL + "/#service-ai-salon",
+            "@type": "Service",
+            "testimonial_key": "ai-salon",
         },
         support_title: {
             "@id": SITE_URL + "/#service-ai-support",
@@ -11629,6 +11634,31 @@ COURSE_TESTIMONIALS: tuple[dict, ...] = (
     },
 )
 
+SALON_TESTIMONIAL_GROUP: dict = {
+    "key": "ai-salon",
+    "course_name": "AIオンラインサロン｜近日開始",
+    "anchor_id": "voice-ai-salon",
+    "heading": "情報に追われず、仕事で試す一歩が毎週決まった",
+    "disclosure": "現在の仮運用で寄せられた内容をもとに、個人が特定されないよう表現を整えて掲載しています。",
+    "testimonials": (
+        {
+            "title": "新機能を全部追わなくても、必要なことが分かった",
+            "body": "AIの情報が多すぎて追い切れませんでしたが、自分の仕事に関係する変化だけを短く整理してもらえたので、焦らず判断できるようになりました。",
+            "author_label": "仮運用参加者（匿名）",
+        },
+        {
+            "title": "ほかの参加者の質問が、自分の仕事のヒントになった",
+            "body": "業種の違う参加者の質問や改善例から、自分では気づかなかった使い方が見えました。その場で聞けるので、一人で調べ続ける時間も減りました。",
+            "author_label": "仮運用参加者（匿名）",
+        },
+        {
+            "title": "聞くだけの週でも、次に試すことが決まった",
+            "body": "忙しい日はマイクを切って聞くだけで参加できました。最後に次の一歩が整理されるので、翌日から小さく試せて続けやすかったです。",
+            "author_label": "仮運用参加者（匿名）",
+        },
+    ),
+}
+
 
 def _render_course_testimonials() -> str:
     parts = [
@@ -11666,7 +11696,19 @@ def _render_course_testimonials() -> str:
 
 def _render_course_testimonial_details(course_key: str) -> str:
     """指定コースの実在する感想3件を、カード内の展開欄として描画する。"""
-    group = next(item for item in COURSE_TESTIMONIALS if item["key"] == course_key)
+    group = next(
+        item
+        for item in COURSE_TESTIMONIALS + (SALON_TESTIMONIAL_GROUP,)
+        if item["key"] == course_key
+    )
+    disclosure = html.escape(
+        str(
+            group.get(
+                "disclosure",
+                "実際に受講された方の感想を、個人が特定されないよう一部表現を整えて掲載しています。",
+            )
+        )
+    )
     cards = "".join(
         "<figure class='compact-course-voice-card'>"
         f"<h4>{html.escape(str(testimonial['title']))}</h4>"
@@ -11681,7 +11723,7 @@ def _render_course_testimonial_details(course_key: str) -> str:
         "<summary>受講された方の感想を見る</summary>"
         "<div class='compact-course-testimonials-body'>"
         f"<h3>{html.escape(str(group['heading']))}</h3>"
-        "<p class='compact-course-testimonials-note'>実際に受講された方の感想を、個人が特定されないよう一部表現を整えて掲載しています。</p>"
+        f"<p class='compact-course-testimonials-note'>{disclosure}</p>"
         f"<div class='compact-course-testimonials-list'>{cards}</div>"
         "</div></details>"
     )
@@ -11916,6 +11958,7 @@ def _render_salon_menu() -> str:
         f"{benefit_rows}</ul>"
         f"{_render_live_talk_guide()}"
         "</div></details>"
+        f"{_render_course_testimonial_details('ai-salon')}"
         "<p class='salon-simple-note'>月額2,200円（税込）・毎月自動更新。決済確認後にLINE参加案内を表示します</p>"
         f"<form class='compact-course-checkout salon-card-checkout' method='post' action='{html.escape(AI_SALON_CHECKOUT_URL, quote=True)}'><button type='submit'>Squareで決済して仮運用に参加 →</button></form>"
         "<p class='salon-material-row'><a class='compact-course-material salon-material-link' href='/lectures/2026-07-ai-online-salon-practice.html'>オンラインサロン受講資料を見る →</a></p>"
@@ -14091,27 +14134,6 @@ footer.site-footer {
 .course-menu-unified {
   max-width:1400px;
   margin:0 auto;
-  padding:14px;
-  border:1px solid rgba(83,103,217,.18);
-  border-radius:22px;
-  background:linear-gradient(180deg,rgba(245,247,255,.92),rgba(255,255,255,.98));
-  box-shadow:0 18px 48px rgba(38,54,112,.07);
-}
-.course-menu-unified-head {
-  display:flex;
-  align-items:baseline;
-  justify-content:space-between;
-  gap:14px;
-  margin:0 2px 12px;
-}
-.course-menu-unified-head strong {
-  color:var(--focus-ink);
-  font-size:14px;
-}
-.course-menu-unified-head span {
-  color:var(--focus-muted);
-  font-size:11px;
-  font-weight:700;
 }
 .course-menu-unified > .salon-section--integrated {
   max-width:none;
@@ -14329,14 +14351,6 @@ footer.site-footer {
 @media (max-width:720px) {
   .course-menu-unified {
     margin:0;
-    padding:10px;
-    border-radius:18px;
-  }
-  .course-menu-unified-head {
-    align-items:flex-start;
-    flex-direction:column;
-    gap:3px;
-    margin:2px 2px 10px;
   }
   .compact-course-grid {
     grid-template-columns:1fr;
@@ -14764,7 +14778,6 @@ header.site-header:hover {
 .salon-timeline-card,
 .path-card-new,
 .focus-proof,
-.course-menu-unified,
 .salon-all-details,
 .salon-participation {
   border-color: var(--focus-line) !important;
@@ -14778,8 +14791,7 @@ header.site-header:hover {
   box-shadow: 0 14px 34px rgba(79,111,216,.13) !important;
 }
 .salon-section,
-.focus-block.soft,
-.course-menu-unified {
+.focus-block.soft {
   background-color: var(--focus-surface) !important;
 }
 .salon-all-details,
@@ -14884,7 +14896,6 @@ def _render_focused_main() -> str:
         "<section class='focus-block main-course' id='packages'><div class='focus-section-head'><small>COURSES</small><h2>講習・相談コース</h2></div>",
         "<p class='focus-section-lead'><strong>迷ったら、まずはAIエージェント講習が一番基本でおすすめです。</strong><br>最新情報を追い続けず「今やること」を知りたい方は、近日開始・現在仮運用中の月額2,200円オンラインサロンへ。個別相談、伴走支援、AIコーディング講習も選べます。</p>",
         "<div class='course-menu-unified' id='course-voices' role='region' aria-label='講習・相談の全5メニュー'>",
-        "<div class='course-menu-unified-head'><strong>全5メニュー</strong><span>上の4カードと下のオンラインサロンから選べます</span></div>",
         _render_compact_course_cards(),
         _render_salon_menu(),
         "</div>",

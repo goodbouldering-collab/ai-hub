@@ -37,7 +37,12 @@ class RenderedSalonTest(unittest.TestCase):
         self.assertNotIn("id='salon-menu-card'", self.html)
         self.assertIn("class='course-menu-unified'", self.html)
         self.assertIn("aria-label='講習・相談の全5メニュー'", self.html)
-        self.assertIn("上の4カードと下のオンラインサロンから選べます", self.html)
+        self.assertNotIn("course-menu-unified-head", self.html)
+        self.assertNotIn("上の4カードと下のオンラインサロンから選べます", self.html)
+        self.assertRegex(
+            self.html,
+            r"class='course-menu-unified'[^>]*>\s*<div class='compact-course-grid'",
+        )
         self.assertIn("<div class='salon-panel'>", self.html)
         self.assertNotIn("class='salon-simple-head'", self.html)
         self.assertIn("class='salon-intro salon-intro--fused salon-card-overview'", self.html)
@@ -69,6 +74,28 @@ class RenderedSalonTest(unittest.TestCase):
         self.assertIn("オンラインサロン受講資料を見る", self.html)
         self.assertIn("LINEライブ", self.html)
         self.assertIn("聞くだけOK", self.html)
+
+    def test_course_menu_has_no_outer_visual_frame(self) -> None:
+        declarations = re.findall(
+            r"\.course-menu-unified\s*\{([^}]*)\}",
+            self.html,
+            re.DOTALL,
+        )
+
+        self.assertGreaterEqual(len(declarations), 1)
+        for rule in declarations:
+            for property_name in (
+                "padding",
+                "border",
+                "border-radius",
+                "background",
+                "box-shadow",
+            ):
+                with self.subTest(property_name=property_name, rule=rule):
+                    self.assertNotRegex(
+                        rule,
+                        rf"(?:^|\s){re.escape(property_name)}\s*:",
+                    )
 
     def test_hero_and_menu_order(self) -> None:
         hero_start = self.html.index("class='focus-hero'")

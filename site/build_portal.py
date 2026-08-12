@@ -11664,6 +11664,29 @@ def _render_course_testimonials() -> str:
     return "".join(parts)
 
 
+def _render_course_testimonial_details(course_key: str) -> str:
+    """指定コースの実在する感想3件を、カード内の展開欄として描画する。"""
+    group = next(item for item in COURSE_TESTIMONIALS if item["key"] == course_key)
+    cards = "".join(
+        "<figure class='compact-course-voice-card'>"
+        f"<h4>{html.escape(str(testimonial['title']))}</h4>"
+        f"<blockquote><p>「{html.escape(str(testimonial['body']))}」</p></blockquote>"
+        f"<figcaption>— {html.escape(str(testimonial['author_label']))}</figcaption>"
+        "</figure>"
+        for testimonial in group["testimonials"]
+    )
+    return (
+        "<details class='compact-course-details compact-course-testimonials' "
+        f"id='{html.escape(str(group['anchor_id']), quote=True)}'>"
+        "<summary>受講された方の感想を見る</summary>"
+        "<div class='compact-course-testimonials-body'>"
+        f"<h3>{html.escape(str(group['heading']))}</h3>"
+        "<p class='compact-course-testimonials-note'>実際に受講された方の感想を、個人が特定されないよう一部表現を整えて掲載しています。</p>"
+        f"<div class='compact-course-testimonials-list'>{cards}</div>"
+        "</div></details>"
+    )
+
+
 def _render_compact_course_cards() -> str:
     """メイン講習を先頭にし、講習・相談の全コースを並べる申込カード。"""
     items = [
@@ -11679,7 +11702,7 @@ def _render_compact_course_cards() -> str:
             "cta": "まずこの講習を予約",
             "material_url": "/lectures/2026-04-ai-kihon.html",
             "material_cta": "AIエージェント講習の受講資料を見る",
-            "voice_anchor": "voice-ai-agent",
+            "testimonial_key": "ai-agent",
             "main": True,
             "details_lead": "この講習で得られること",
             "details": [
@@ -11703,7 +11726,7 @@ def _render_compact_course_cards() -> str:
             "cta": "個別相談を予約",
             "material_url": "/lectures/2026-04-ai-kangaekata.html",
             "material_cta": "15分のAI実践ワークを見る",
-            "voice_anchor": "voice-ai-consultation",
+            "testimonial_key": "ai-consultation",
             "details_lead": "相談すると整理できること",
             "details": [
                 ("最初にやる仕事が決まる", "「AIで何ができるか」からではなく、時間を取られている仕事を整理し、効果が出やすい1つを選びます。"),
@@ -11726,7 +11749,7 @@ def _render_compact_course_cards() -> str:
             "cta": "伴走支援を申し込む",
             "material_url": "/lectures/2026-06-ai-agent-rag-design.html",
             "material_cta": "AI導入・RAG設計の資料を見る",
-            "voice_anchor": "voice-ai-support",
+            "testimonial_key": "ai-support",
             "details_lead": "6ヶ月伴走で得られること",
             "details": [
                 ("業務の優先順位を整理", "HP更新、集客、事務、情報共有の中から、効果と緊急度を見て着手順を決めます。"),
@@ -11750,7 +11773,7 @@ def _render_compact_course_cards() -> str:
             "cta": "AIコーディングを予約",
             "material_url": "/programming-map.html",
             "material_cta": "AIコーディング講習の受講資料を見る",
-            "voice_anchor": "voice-ai-coding",
+            "testimonial_key": "ai-coding",
             "details_lead": "この講習で身につくこと",
             "details": [
                 ("小さくても動くものを作る", "自社ページ、申込フォーム、集計画面、業務ツールなど、目的に合う題材を実際に動かします。"),
@@ -11777,14 +11800,6 @@ def _render_compact_course_cards() -> str:
             "</p>"
             if material_url else ""
         )
-        voice_anchor = html.escape(str(item["voice_anchor"]), quote=True)
-        voice_html = (
-            "<p class='compact-course-voice-row'>"
-            f"<a class='compact-course-voice-link' href='#{voice_anchor}' "
-            f"aria-label='{html.escape(item['title'], quote=True)}を受講した方の感想を見る'>"
-            "このコースを受講した方の感想を見る →</a>"
-            "</p>"
-        )
         main_cls = " compact-course-card--main" if item.get("main") else ""
         title_html = f"<h3>{html.escape(item['title'])}</h3>"
         details = item.get("details") or []
@@ -11805,6 +11820,7 @@ def _render_compact_course_cards() -> str:
                 f"<ul>{detail_rows}</ul>"
                 "</details>"
             )
+        testimonial_html = _render_course_testimonial_details(str(item["testimonial_key"]))
         if item.get("post"):
             main_action_html = (
                 f"<form class='compact-course-checkout' method='post' action='{html.escape(item['url'], quote=True)}'>"
@@ -11822,9 +11838,9 @@ def _render_compact_course_cards() -> str:
             f"<div class='compact-course-meta'><strong>{html.escape(item['price'])}</strong><span>{html.escape(item['duration'])}</span></div>"
             f"<p>{html.escape(item['desc'])}</p>"
             f"{details_html}"
+            f"{testimonial_html}"
             f"{main_action_html}"
             f"{material_html}"
-            f"{voice_html}"
             "</article>"
         )
     return "<div class='compact-course-grid'>" + "".join(cards) + "</div>"
@@ -13065,99 +13081,53 @@ header.site-header:hover {
 }
 .main-course > .focus-section-head { margin-bottom:18px; }
 .main-course > .focus-section-lead { margin-bottom:20px; }
-.course-voices {
-  max-width:1120px;
-  margin:34px auto 0;
-  padding:30px;
+.compact-course-testimonials {
+  margin-top:2px;
   scroll-margin-top:96px;
-  border:1px solid var(--focus-line);
-  border-radius:20px;
-  background:#fff;
 }
-.course-voices > .focus-section-head { margin-bottom:10px; }
-.course-voices-disclosure {
-  max-width:760px;
-  margin:0 auto 22px;
+.compact-course-testimonials-body { padding:0 0 8px; }
+.compact-course-testimonials-body h3 {
+  margin:2px 0 7px;
   color:var(--focus-ink);
-  font-size:13px;
-  line-height:1.7;
-  text-align:center;
-}
-.course-voices-grid {
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:18px;
-}
-.course-voice-group {
-  min-width:0;
-  padding:22px;
-  scroll-margin-top:96px;
-  border:1px solid var(--focus-line);
-  border-radius:16px;
-  background:var(--focus-surface);
-}
-.course-voice-course {
-  display:block;
-  margin-bottom:5px;
-  color:var(--focus-blue-dark);
-  font-size:12px;
-  font-weight:900;
-  letter-spacing:.08em;
-}
-.course-voice-group h3 {
-  margin:0 0 16px;
-  color:var(--focus-ink);
-  font-size:19px;
-  line-height:1.45;
-}
-.course-voice-list {
-  display:grid;
-  gap:12px;
-}
-.course-voice-card {
-  margin:0;
-  padding:16px;
-  border-left:3px solid var(--focus-blue);
-  border-radius:0 12px 12px 0;
-  background:#fff;
-}
-.course-voice-card h4 {
-  margin:0 0 8px;
-  color:var(--focus-ink);
-  font-size:14px;
-  line-height:1.55;
-}
-.course-voice-card blockquote { margin:0; }
-.course-voice-card p {
-  margin:0;
-  color:var(--focus-ink);
-  font-size:13px;
-  line-height:1.75;
-}
-.course-voice-card figcaption {
-  margin-top:9px;
-  color:var(--focus-ink);
-  font-size:12px;
-  font-weight:800;
-}
-.compact-course-voice-row { margin:11px 0 0; }
-.compact-course-voice-link {
-  color:var(--focus-blue-dark);
-  font-size:12px;
-  font-weight:900;
+  font-size:16px;
   line-height:1.5;
-  text-decoration:underline;
-  text-decoration-thickness:1px;
-  text-underline-offset:3px;
 }
-.compact-course-voice-link:hover { color:var(--focus-blue-dark); }
-@media (max-width: 760px) {
-  .course-voices-grid { grid-template-columns:1fr; }
-  .course-voices { margin-top:26px; padding:20px 14px; border-radius:16px; }
-  .course-voices-disclosure { margin-bottom:17px; text-align:left; }
-  .course-voice-group { padding:17px 14px; }
-  .course-voice-group h3 { font-size:17px; }
-  .course-voice-card { padding:14px 13px; }
+.compact-course-testimonials-note {
+  margin:0 0 10px !important;
+  color:var(--focus-muted) !important;
+  font-size:11px !important;
+  line-height:1.6 !important;
+}
+.compact-course-testimonials-list {
+  display:grid;
+  gap:9px;
+}
+.compact-course-voice-card {
+  margin:0;
+  padding:12px;
+  border:1px solid var(--focus-line);
+  border-left:3px solid var(--focus-blue);
+  border-radius:0 10px 10px 0;
+  background:#fff;
+}
+.compact-course-voice-card h4 {
+  margin:0 0 6px;
+  color:var(--focus-blue-dark);
+  font-size:13px;
+  line-height:1.5;
+}
+.compact-course-voice-card blockquote { margin:0; }
+.compact-course-voice-card p {
+  margin:0 !important;
+  color:var(--focus-ink) !important;
+  font-size:12px !important;
+  line-height:1.75 !important;
+}
+.compact-course-voice-card figcaption {
+  margin-top:7px;
+  color:var(--focus-ink);
+  font-size:10px;
+  font-weight:800;
 }
 .course-venue-common {
   max-width:860px;
@@ -14913,12 +14883,11 @@ def _render_focused_main() -> str:
     parts = [
         "<section class='focus-block main-course' id='packages'><div class='focus-section-head'><small>COURSES</small><h2>講習・相談コース</h2></div>",
         "<p class='focus-section-lead'><strong>迷ったら、まずはAIエージェント講習が一番基本でおすすめです。</strong><br>最新情報を追い続けず「今やること」を知りたい方は、月額2,200円のオンラインサロンへ。個別相談、伴走支援、AIコーディング講習も選べます。</p>",
-        "<div class='course-menu-unified' aria-label='講習・相談の全5メニュー'>",
+        "<div class='course-menu-unified' id='course-voices' aria-label='講習・相談の全5メニュー'>",
         "<div class='course-menu-unified-head'><strong>全5メニュー</strong><span>上の4カードと下のオンラインサロンから選べます</span></div>",
         _render_compact_course_cards(),
         _render_salon_menu(),
         "</div>",
-        _render_course_testimonials(),
         "<aside class='course-venue-common' aria-label='講習・相談コース共通の開催場所'>",
         "<img src='/img/gubboru-cafe-ai-course-painting.webp' alt='講習・相談の対面会場 グッぼるカフェの店内' loading='lazy' decoding='async'>",
         "<div><small>COMMON VENUE</small><h3>開催場所：グッぼるカフェ（彦根）</h3><p>対面は普段のPCと課題を持ち寄って実施します。オンライン受講・相談にも対応します。</p></div>",

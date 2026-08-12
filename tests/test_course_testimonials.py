@@ -79,12 +79,29 @@ class CourseTestimonialsTest(unittest.TestCase):
         self.assertEqual(12, rendered.count("<figure class='course-voice-card'>"))
         self.assertEqual(12, rendered.count("受講者（匿名）"))
 
-    def test_every_course_card_links_to_its_matching_voice_group(self) -> None:
+    def test_every_course_card_contains_its_matching_voice_dropdown(self) -> None:
         cards = portal._render_compact_course_cards()
+        rendered_cards = re.findall(
+            r"<article class='compact-course-card[^']*'.*?</article>",
+            cards,
+            re.DOTALL,
+        )
 
-        for _, _, anchor_id, _, _ in EXPECTED_GROUPS:
-            self.assertIn(f"href='#{anchor_id}'", cards)
-        self.assertEqual(4, cards.count("このコースを受講した方の感想を見る"))
+        self.assertEqual(4, len(rendered_cards))
+        for card, expected in zip(rendered_cards, EXPECTED_GROUPS, strict=True):
+            _, _, anchor_id, heading, testimonials = expected
+            self.assertIn(f"id='{anchor_id}'", card)
+            self.assertEqual(1, card.count("受講された方の感想を見る"))
+            self.assertLess(
+                card.index("メリット・内容・参加方法を見る"),
+                card.index("受講された方の感想を見る"),
+            )
+            self.assertIn(heading, card)
+            for title, body in testimonials:
+                self.assertIn(title, card)
+                self.assertIn(body, card)
+        self.assertEqual(12, cards.count("<figure class='compact-course-voice-card'>"))
+        self.assertEqual(12, cards.count("受講者（匿名）"))
 
     def test_jsonld_links_visible_reviews_to_four_stable_nodes(self) -> None:
         graph = json.loads(portal._build_jsonld_website())["@graph"]
@@ -146,45 +163,38 @@ class CourseTestimonialsTest(unittest.TestCase):
                 self.assertIn(title, rendered)
                 self.assertIn(body, rendered)
 
-    def test_full_page_places_voices_after_courses_and_before_venue(self) -> None:
+    def test_full_page_has_no_standalone_voice_section(self) -> None:
         page = portal.render_portal([], [])
 
-        self.assertIn("id='course-voices'", page)
-        self.assertLess(
-            page.index("class='course-menu-unified'"),
-            page.index("id='course-voices'"),
-        )
+        self.assertNotIn("<section class='course-voices'", page)
+        self.assertIn("class='course-menu-unified' id='course-voices'", page)
+        self.assertEqual(4, page.count("受講された方の感想を見る"))
         self.assertLess(
             page.index("id='course-voices'"),
             page.index("class='course-venue-common'"),
         )
 
-    def test_course_voice_layout_is_two_columns_and_mobile_one_column(self) -> None:
+    def test_course_voice_dropdown_uses_a_compact_single_column_list(self) -> None:
         css = portal.FOCUSED_PORTAL_CSS
 
         self.assertRegex(
             css,
-            r"\.course-voices-grid\s*\{[^}]*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)",
+            r"\.compact-course-testimonials-list\s*\{[^}]*display:\s*grid[^}]*gap:",
         )
-        mobile_block = re.search(
-            r"@media\s*\(max-width:\s*760px\)\s*\{(?P<body>[\s\S]*?)\n\}",
+        self.assertNotRegex(
             css,
-        )
-        self.assertIsNotNone(mobile_block)
-        self.assertRegex(
-            mobile_block.group("body"),
-            r"\.course-voices-grid\s*\{[^}]*grid-template-columns:\s*1fr",
+            r"\.compact-course-testimonials-list\s*\{[^}]*grid-template-columns:\s*repeat\(",
         )
 
     def test_course_voice_copy_uses_high_contrast_existing_tokens(self) -> None:
         css = portal.FOCUSED_PORTAL_CSS
 
         expected_colors = {
-            ".course-voices-disclosure": "var(--focus-ink)",
-            ".course-voice-course": "var(--focus-blue-dark)",
-            ".course-voice-card p": "var(--focus-ink)",
-            ".course-voice-card figcaption": "var(--focus-ink)",
-            ".compact-course-voice-link": "var(--focus-blue-dark)",
+            ".compact-course-testimonials-body h3": "var(--focus-ink)",
+            ".compact-course-testimonials-note": "var(--focus-muted)",
+            ".compact-course-voice-card h4": "var(--focus-blue-dark)",
+            ".compact-course-voice-card p": "var(--focus-ink)",
+            ".compact-course-voice-card figcaption": "var(--focus-ink)",
         }
         for selector, color in expected_colors.items():
             with self.subTest(selector=selector):

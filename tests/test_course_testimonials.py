@@ -60,6 +60,27 @@ EXPECTED_GROUPS = (
     ),
 )
 
+EXPECTED_SALON_GROUP = (
+    "ai-salon",
+    "AIオンラインサロン｜近日開始",
+    "voice-ai-salon",
+    "情報に追われず、仕事で試す一歩が毎週決まった",
+    (
+        (
+            "新機能を全部追わなくても、必要なことが分かった",
+            "AIの情報が多すぎて追い切れませんでしたが、自分の仕事に関係する変化だけを短く整理してもらえたので、焦らず判断できるようになりました。",
+        ),
+        (
+            "ほかの参加者の質問が、自分の仕事のヒントになった",
+            "業種の違う参加者の質問や改善例から、自分では気づかなかった使い方が見えました。その場で聞けるので、一人で調べ続ける時間も減りました。",
+        ),
+        (
+            "聞くだけの週でも、次に試すことが決まった",
+            "忙しい日はマイクを切って聞くだけで参加できました。最後に次の一歩が整理されるので、翌日から小さく試せて続けやすかったです。",
+        ),
+    ),
+)
+
 
 class CourseTestimonialsTest(unittest.TestCase):
     def test_renders_four_course_groups_and_twelve_real_reviews(self) -> None:
@@ -103,6 +124,32 @@ class CourseTestimonialsTest(unittest.TestCase):
         self.assertEqual(12, cards.count("<figure class='compact-course-voice-card'>"))
         self.assertEqual(12, cards.count("受講者（匿名）"))
 
+    def test_salon_contains_test_operation_voice_dropdown(self) -> None:
+        salon = portal._render_salon_menu()
+        _, course_name, anchor_id, heading, testimonials = EXPECTED_SALON_GROUP
+
+        self.assertIn(course_name, salon)
+        self.assertIn(f"id='{anchor_id}'", salon)
+        self.assertEqual(1, salon.count("受講された方の感想を見る"))
+        self.assertLess(
+            salon.index("8つのメリット・内容・参加方法を見る"),
+            salon.index("受講された方の感想を見る"),
+        )
+        self.assertLess(
+            salon.index("受講された方の感想を見る"),
+            salon.index("Squareで決済して仮運用に参加"),
+        )
+        self.assertIn(heading, salon)
+        self.assertIn(
+            "現在の仮運用で寄せられた内容をもとに、個人が特定されないよう表現を整えて掲載しています。",
+            salon,
+        )
+        for title, body in testimonials:
+            self.assertIn(title, salon)
+            self.assertIn(body, salon)
+        self.assertEqual(3, salon.count("<figure class='compact-course-voice-card'>"))
+        self.assertEqual(3, salon.count("仮運用参加者（匿名）"))
+
     def test_jsonld_links_visible_reviews_to_four_stable_nodes(self) -> None:
         graph = json.loads(portal._build_jsonld_website())["@graph"]
         nodes = {node.get("@id"): node for node in graph if node.get("@id")}
@@ -134,6 +181,30 @@ class CourseTestimonialsTest(unittest.TestCase):
                     {"@type": "Person", "name": "受講者（匿名）"},
                     review["author"],
                 )
+
+    def test_jsonld_links_salon_reviews_to_stable_service_node(self) -> None:
+        graph = json.loads(portal._build_jsonld_website())["@graph"]
+        nodes = {node.get("@id"): node for node in graph if node.get("@id")}
+        node_id = portal.SITE_URL + "/#service-ai-salon"
+        _, course_name, _, _, testimonials = EXPECTED_SALON_GROUP
+
+        self.assertIn(node_id, nodes)
+        salon = nodes[node_id]
+        self.assertEqual("Service", salon["@type"])
+        self.assertEqual(course_name, salon["name"])
+        self.assertEqual(
+            [title for title, _ in testimonials],
+            [review["name"] for review in salon["review"]],
+        )
+        self.assertEqual(
+            [body for _, body in testimonials],
+            [review["reviewBody"] for review in salon["review"]],
+        )
+        for review in salon["review"]:
+            self.assertEqual(
+                {"@type": "Person", "name": "仮運用参加者（匿名）"},
+                review["author"],
+            )
 
     def test_course_jsonld_describes_duration_mode_language_and_learning(self) -> None:
         graph = json.loads(portal._build_jsonld_website())["@graph"]
@@ -168,7 +239,7 @@ class CourseTestimonialsTest(unittest.TestCase):
 
         self.assertNotIn("<section class='course-voices'", page)
         self.assertIn("class='course-menu-unified' id='course-voices'", page)
-        self.assertEqual(4, page.count("受講された方の感想を見る"))
+        self.assertEqual(5, page.count("受講された方の感想を見る"))
         self.assertLess(
             page.index("id='course-voices'"),
             page.index("class='course-venue-common'"),

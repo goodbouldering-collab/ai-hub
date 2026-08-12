@@ -335,7 +335,7 @@ class CourseTestimonialsTest(unittest.TestCase):
             portal._render_focused_main(),
         )
 
-    def test_mobile_menu_links_to_all_courses_instead_of_one_agent_course(self) -> None:
+    def test_mobile_menu_keeps_the_online_salon_entry(self) -> None:
         page = portal._render_header_focused()
         mobile_menu = re.search(
             r"<nav class='mobile-public-links'[^>]*>(?P<links>.*?)</nav>",
@@ -347,10 +347,40 @@ class CourseTestimonialsTest(unittest.TestCase):
         assert mobile_menu is not None
         links = mobile_menu.group("links")
         self.assertIn(
-            "<a href='/#seven-day-courses'><span>講習・相談コース</span>",
+            "<a href='/#seven-day-courses'><span>AIオンラインサロン</span>",
             links,
         )
-        self.assertNotIn("AIエージェント講習", links)
+
+    def test_mobile_menu_moves_conversion_ctas_to_scroll_dock(self) -> None:
+        header = portal._render_header_focused()
+        mobile_menu = re.search(
+            r"<nav class='mobile-public-links'[^>]*>(?P<links>.*?)</nav>",
+            header,
+            re.DOTALL,
+        )
+
+        self.assertIsNotNone(mobile_menu)
+        assert mobile_menu is not None
+        links = mobile_menu.group("links")
+        self.assertNotIn("mobile-nav-head", header)
+        self.assertNotIn("講習・相談コース", links)
+        self.assertNotIn("個別相談", links)
+
+        sticky_cta = portal._render_sticky_cta()
+        self.assertIn(
+            "<nav class='sticky-cta' id='sticky-cta' aria-label='個別相談とAIエージェント講習の固定CTA'",
+            sticky_cta,
+        )
+        self.assertIn(
+            "class='sticky-cta-btn sticky-cta-btn--consult' "
+            "href='https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/TO3XHZT6XP3OM4QBDYMW7TZP'",
+            sticky_cta,
+        )
+        self.assertIn(
+            "class='sticky-cta-btn sticky-cta-btn--agent' "
+            "href='https://goodbouldering.com/?pid=188553378'",
+            sticky_cta,
+        )
 
     def test_contact_and_footer_copy_keep_readable_contrast(self) -> None:
         css = portal.FOCUSED_PORTAL_CSS

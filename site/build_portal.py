@@ -10137,7 +10137,6 @@ HEADER_JS = """
     var bar = document.getElementById('sticky-cta');
     if (!bar) return;
     var contact = document.getElementById('contact');
-    bar.style.transform = 'translateY(140%)';
     function update(){
       var y = window.scrollY || document.documentElement.scrollTop;
       var show = y > 520;
@@ -10145,7 +10144,9 @@ HEADER_JS = """
         var r = contact.getBoundingClientRect();
         if (r.top < window.innerHeight && r.bottom > 0) show = false; // 問い合わせ表示中は隠す
       }
-      bar.style.transform = show ? 'translateY(0)' : 'translateY(140%)';
+      bar.classList.toggle('is-visible', show);
+      bar.setAttribute('aria-hidden', show ? 'false' : 'true');
+      if ('inert' in bar) bar.inert = !show;
     }
     window.addEventListener('scroll', update, { passive: true });
     update();
@@ -12002,12 +12003,12 @@ def _render_footer(today: str) -> str:
 
 
 def _render_sticky_cta() -> str:
-    """モバイルで常時追従する講習・相談コース案内。"""
+    """モバイルでスクロール後に現れる、個別相談と講習の固定CTA。"""
     return (
-        "<div class='sticky-cta' id='sticky-cta' aria-hidden='false'>"
-        "<div class='sticky-cta-text'><strong>講習・相談コース</strong><span>相談・講習・伴走支援</span></div>"
-        "<a class='sticky-cta-btn' href='#packages'>コースを見る</a>"
-        "</div>"
+        "<nav class='sticky-cta' id='sticky-cta' aria-label='個別相談とAIエージェント講習の固定CTA' aria-hidden='true'>"
+        f"<a class='sticky-cta-btn sticky-cta-btn--consult' href='{INDIVIDUAL_CONSULT_BOOK_URL}' target='_blank' rel='noopener'><span>個別相談</span><small>60分・5,500円</small></a>"
+        f"<a class='sticky-cta-btn sticky-cta-btn--agent' href='{AI_AGENT_COURSE_URL}' target='_blank' rel='noopener'><span>AIエージェント講習</span><small>120分・5,500円</small></a>"
+        "</nav>"
     )
 
 
@@ -14630,28 +14631,6 @@ footer.site-footer {
   .mobile-nav.open .mobile-nav-panel--public {
     transform: translateX(0);
   }
-  .mobile-nav-panel--public .mobile-nav-head {
-    position: sticky;
-    top: 0;
-    z-index: 2;
-    min-height: 68px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    padding: 12px 2px;
-    background: rgba(255,255,255,.98);
-    border-bottom: 1px solid rgba(10,23,40,.12);
-  }
-  .mobile-nav-heading { display: grid; gap: 2px; }
-  .mobile-nav-heading small {
-    color: var(--focus-blue);
-    font-size: 10px;
-    font-weight: 900;
-    letter-spacing: .12em;
-    line-height: 1.2;
-  }
-  .mobile-nav-heading strong { color: var(--focus-ink); font-size: 18px; line-height: 1.2; }
   .mobile-public-links { display: grid; }
   .mobile-nav-panel--public .mobile-public-links a {
     min-height: 50px;
@@ -14802,6 +14781,81 @@ header.site-header:hover {
 .focus-hero .focus-title strong::after {
   background: #cbd4fa !important;
 }
+/* Mobile conversion dock: show two clear booking choices after the hero. */
+.sticky-cta {
+  position: fixed !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  z-index: 90 !important;
+  display: none !important;
+  align-items: stretch !important;
+  gap: 8px !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 8px 12px calc(8px + env(safe-area-inset-bottom)) !important;
+  border: 1px solid var(--focus-line) !important;
+  border-radius: 16px 16px 0 0 !important;
+  background: rgba(255,255,255,.98) !important;
+  box-shadow: 0 -10px 28px rgba(7,20,38,.12) !important;
+  transform: translateY(140%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform .24s ease, opacity .24s ease;
+}
+.sticky-cta.is-visible {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+.sticky-cta-btn {
+  display: flex !important;
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
+  min-height: 50px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+  padding: 8px 6px !important;
+  border: 1px solid rgba(79,111,216,.32) !important;
+  border-radius: 10px !important;
+  background: #f6f8ff !important;
+  color: var(--focus-blue-dark) !important;
+  box-shadow: none !important;
+  font-size: 12px !important;
+  font-weight: 900 !important;
+  line-height: 1.2 !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+}
+.sticky-cta-btn small {
+  color: inherit !important;
+  font-size: 10px !important;
+  font-weight: 750 !important;
+  line-height: 1.2 !important;
+}
+.sticky-cta-btn--agent {
+  border-color: var(--focus-blue) !important;
+  background: var(--focus-blue) !important;
+  color: #fff !important;
+}
+.sticky-cta-btn:hover,
+.sticky-cta-btn:focus-visible {
+  transform: translateY(-1px);
+  filter: brightness(.97);
+  outline: 3px solid rgba(79,111,216,.25) !important;
+  outline-offset: 2px;
+}
+@media (max-width: 760px) {
+  .sticky-cta { display: flex !important; }
+  body { padding-bottom: calc(76px + env(safe-area-inset-bottom)); }
+}
+@media (min-width: 761px) {
+  .sticky-cta { display: none !important; }
+}
 .focus-btn:focus-visible,
 .compact-course-checkout button:focus-visible,
 .mobile-toggle:focus-visible,
@@ -14830,15 +14884,12 @@ def _render_header_focused() -> str:
         "<span class='mobile-toggle-icon' aria-hidden='true'><span></span><span></span><span></span></span>"
         "<span class='mobile-toggle-text'>メニュー</span></button>"
         "</div><div class='mobile-nav' id='mobile-nav' aria-hidden='true'><div class='mobile-nav-panel mobile-nav-panel--public'>"
-        "<div class='mobile-nav-head'><div class='mobile-nav-heading'><small>PUBLIC MENU</small><strong>メニュー</strong></div></div>"
         "<nav class='mobile-public-links' aria-label='公開ページメニュー'>"
         "<a href='/'><span>ホーム</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
-        "<a href='/#seven-day-courses'><span>講習・相談コース</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
         "<a href='/#all-works'><span>実績</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
         "<a href='/blog/index.html'><span>ブログ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
         "<a href='/#lectures'><span>資料</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
         "<a href='/#faq'><span>FAQ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
-        "<a class='mobile-public-link--cta' href='/#contact'><span>個別相談</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
         "<a href='/#seven-day-courses'><span>AIオンラインサロン</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
         "</nav><div class='mobile-nav-admin'><span class='mobile-nav-label'>管理</span>"
         "<a class='mobile-admin-link' href='/admin'><span class='mobile-admin-link-copy'><strong>管理ページ</strong><small>運営者ログイン</small></span>"

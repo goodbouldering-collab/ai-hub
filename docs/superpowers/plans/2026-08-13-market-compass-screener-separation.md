@@ -310,7 +310,7 @@ git commit -m "feat: persist and orchestrate screening runs"
 - `POST /api/v1/screens` body `{ "symbols": ["6857"], "filters": { "overall": ["research_candidate", "watch"] } }`
 - `GET /api/v1/securities/6857`
 - `GET /api/v1/sources/status`
-- `POST /api/cron/refresh` protected by `Authorization: Bearer ${CRON_SECRET}`.
+- `GET /api/cron/refresh` protected by Vercel's `Authorization: Bearer ${CRON_SECRET}` header.
 
 - [ ] **Step 1: Write handler tests for methods, auth, validation, limits, and no-store headers**
 

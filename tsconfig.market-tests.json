@@ -1,0 +1,24 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "noEmit": false,
+    "outDir": ".market-test-dist",
+    "rootDir": ".",
+    "sourceMap": false,
+    "declaration": false
+  },
+  "include": [
+    "api/_lib/auth.ts",
+    "api/_lib/http.ts",
+    "api/_lib/command-center-market.ts",
+    "api/_lib/market-compass-client.ts",
+    "api/admin/command-center-market.ts",
+    "api/admin/command-center-screen.ts",
+    "api/admin/command-center-security.ts",
+    "api/admin/command-center-market-sources.ts",
+    "tests/market-compass-runtime.test.ts"
+  ]
+}
+

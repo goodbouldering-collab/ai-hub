@@ -151,8 +151,8 @@ IR BANKと企業IRページは、出典リンクと最終確認用に使う。�
   - 12項目、3年時系列、総合状態、出典を返す。
 - `GET /api/v1/sources/status`
   - 取得元ごとの最終成功、失敗、遅延、欠損を返す。
-- `POST /api/cron/refresh`
-  - Vercel Cron secretで保護し、保存済み監視銘柄を更新する。
+- `GET /api/cron/refresh`
+  - Vercel Cronが本番URLへGETする現行仕様に合わせ、`Authorization: Bearer ${CRON_SECRET}` で保護し、保存済み監視銘柄を更新する。
 - `GET /api/health`
   - 秘密値を含まない接続状態を返す。
 

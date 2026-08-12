@@ -16,6 +16,13 @@ test("command center routes are protected and independent", async () => {
     "/admin/command-center/studio",
     "/admin/command-center/tools",
     "/admin/command-center/trade",
+    "/admin/command-center/market",
+    "/admin/command-center/screener",
+    "/admin/command-center/security",
+    "/admin/command-center/trade-plan",
+    "/admin/command-center/trade-plans",
+    "/admin/command-center/trades",
+    "/admin/command-center/market-sources",
   ]) assert.ok(sources.includes(route), route);
   assert.equal(sources.includes("/admin/status"), false);
 });

@@ -335,6 +335,23 @@ class CourseTestimonialsTest(unittest.TestCase):
             portal._render_focused_main(),
         )
 
+    def test_mobile_menu_links_to_all_courses_instead_of_one_agent_course(self) -> None:
+        page = portal._render_header_focused()
+        mobile_menu = re.search(
+            r"<nav class='mobile-public-links'[^>]*>(?P<links>.*?)</nav>",
+            page,
+            re.DOTALL,
+        )
+
+        self.assertIsNotNone(mobile_menu)
+        assert mobile_menu is not None
+        links = mobile_menu.group("links")
+        self.assertIn(
+            "<a href='/#seven-day-courses'><span>講習・相談コース</span>",
+            links,
+        )
+        self.assertNotIn("AIエージェント講習", links)
+
     def test_contact_and_footer_copy_keep_readable_contrast(self) -> None:
         css = portal.FOCUSED_PORTAL_CSS
 

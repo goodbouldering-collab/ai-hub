@@ -621,8 +621,8 @@ html, body, .hero, .biz-card, .service-card, .pkg-card, .faq-item, .stat,
   transition: background-color .3s ease, color .3s ease, border-color .3s ease;
 }
 * { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; overflow-x: hidden; }
-html { scroll-behavior: smooth; }
+html, body { margin: 0; padding: 0; overflow-x: clip; overflow-y: visible; }
+html { scroll-behavior: auto; }
 body {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
   color: var(--text);
@@ -12829,7 +12829,7 @@ FOCUSED_PORTAL_CSS = r"""
   --focus-footer-y: clamp(36px, 5vw, 48px);
   --focus-footer-gap: clamp(24px, 3vw, 32px);
 }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: auto; }
 body { background: #f8fbff !important; color: var(--focus-ink) !important; }
 body::before { display: none !important; }
 .container {
@@ -14840,7 +14840,7 @@ def _render_hero_focused() -> str:
         "<section class='focus-hero' id='top' data-interactive-hero>"
         "<div class='hero-orb hero-orb-one' aria-hidden='true'></div><div class='hero-orb hero-orb-two' aria-hidden='true'></div>"
         "<div class='focus-hero-shell'>"
-        "<div class='focus-hero-copy fade-up'>"
+        "<div class='focus-hero-copy'>"
         "<p class='focus-kicker'>彦根・滋賀の中小事業者向け</p>"
         "<h1 class='focus-title'><span class='focus-title-first'>AIエージェントを、</span><br><span class='focus-title-line'><strong>強力なスタッフに。</strong></span></h1>"
         "<aside class='hero-advantage' id='advantage' aria-labelledby='hero-advantage-title'>"

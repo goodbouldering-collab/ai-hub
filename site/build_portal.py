@@ -12813,7 +12813,7 @@ def _render_lecture_card(lec: dict) -> str:
 FOCUSED_PORTAL_CSS = r"""
 /* ---- Consultation-first redesign, light editorial direction, 2026-07-22 ---- */
 :root {
-  --focus-blue: #4f6fd8;
+  --focus-blue: #4261c7;
   --focus-blue-dark: #3e58b8;
   --focus-cyan: #e9efff;
   --focus-lavender: #f1eeff;
@@ -12821,7 +12821,7 @@ FOCUSED_PORTAL_CSS = r"""
   --focus-rose: #e88ea0;
   --focus-rose-soft: #fff0f3;
   --focus-ink: #172033;
-  --focus-muted: #6b7891;
+  --focus-muted: #606d83;
   --focus-line: #dce4f2;
   --focus-line-strong: #b9c7db;
   --focus-surface: #f8fbff;
@@ -13163,7 +13163,7 @@ header.site-header:hover {
   padding:0 !important;
   display:grid;
   grid-template-columns:repeat(5,minmax(0,1fr));
-  align-items:stretch;
+  align-items:start;
   gap:14px;
   text-align:left;
 }
@@ -13621,7 +13621,7 @@ header.site-header:hover {
 .focus-contact { margin:0; padding:56px max(18px,calc((100vw - 1400px)/2)); background:var(--focus-blue); color:#fff; }
 .focus-contact-inner { max-width:1100px; margin:auto; display:flex; align-items:center; justify-content:space-between; gap:36px; }
 .focus-contact h2 { margin:0; font-size:clamp(28px,3vw,44px); }
-.focus-contact p { margin:10px 0 0; color:rgba(255,255,255,.82); }
+.focus-contact p { margin:10px 0 0; color:rgba(255,255,255,.9); }
 .focus-contact .focus-btn { background:#fff; color:var(--focus-blue); border-color:#fff; white-space:nowrap; }
 .focus-resources { max-width:1100px; margin:30px auto 0; padding-top:24px; border-top:1px solid var(--focus-line); display:flex; gap:20px; flex-wrap:wrap; justify-content:center; }
 .focus-resources a { color:var(--focus-muted); font-size:13px; font-weight:750; }
@@ -13658,7 +13658,7 @@ footer.site-footer {
   margin-bottom:var(--focus-footer-gap);
 }
 .footer-grid > * { min-width:0; }
-.footer-nap a { overflow-wrap:anywhere; }
+.footer-nap a { overflow-wrap:anywhere; color:var(--focus-blue-dark); }
 @media (max-width: 900px) {
   .header-member-login {
     min-height: 36px;
@@ -14303,7 +14303,7 @@ footer.site-footer {
   .compact-course-grid {
     max-width:none;
     grid-template-columns:repeat(2,minmax(0,1fr));
-    align-items:stretch;
+    align-items:start;
     gap:12px;
   }
   .compact-course-card,
@@ -14844,7 +14844,7 @@ def _render_hero_focused() -> str:
         "<p class='focus-kicker'>彦根・滋賀の中小事業者向け</p>"
         "<h1 class='focus-title'><span class='focus-title-first'>AIエージェントを、</span><br><span class='focus-title-line'><strong>強力なスタッフに。</strong></span></h1>"
         "<aside class='hero-advantage' id='advantage' aria-labelledby='hero-advantage-title'>"
-        "<div class='hero-advantage-number' aria-label='AI利用率 6パーセント'><strong>6%</strong><span>AI利用率</span></div>"
+        "<div class='hero-advantage-number' role='img' aria-label='AI利用率 6パーセント'><strong>6%</strong><span>AI利用率</span></div>"
         "<div class='hero-advantage-copy'><small><strong>5,500円から</strong><span>始めるなら今。</span></small><p id='hero-advantage-title'><span class='hero-advantage-equation'><strong>経験</strong><span>×</span><strong>AI</strong></span><span class='hero-advantage-outcome'>で、仕事を一歩先へ。</span></p></div>"
         "<ul class='hero-advantage-pillars' aria-label='AI活用を成果に変える3原則'><li><b>01</b>まず試す</li><li><b>02</b>人が確かめる</li><li><b>03</b>仕組みにする</li></ul>"
         "</aside>"
@@ -14883,7 +14883,7 @@ def _render_focused_main() -> str:
     parts = [
         "<section class='focus-block main-course' id='packages'><div class='focus-section-head'><small>COURSES</small><h2>講習・相談コース</h2></div>",
         "<p class='focus-section-lead'><strong>迷ったら、まずはAIエージェント講習が一番基本でおすすめです。</strong><br>最新情報を追い続けず「今やること」を知りたい方は、近日開始・現在仮運用中の月額2,200円オンラインサロンへ。個別相談、伴走支援、AIコーディング講習も選べます。</p>",
-        "<div class='course-menu-unified' id='course-voices' aria-label='講習・相談の全5メニュー'>",
+        "<div class='course-menu-unified' id='course-voices' role='region' aria-label='講習・相談の全5メニュー'>",
         "<div class='course-menu-unified-head'><strong>全5メニュー</strong><span>上の4カードと下のオンラインサロンから選べます</span></div>",
         _render_compact_course_cards(),
         _render_salon_menu(),

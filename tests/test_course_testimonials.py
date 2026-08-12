@@ -186,6 +186,18 @@ class CourseTestimonialsTest(unittest.TestCase):
             r"\.compact-course-testimonials-list\s*\{[^}]*grid-template-columns:\s*repeat\(",
         )
 
+    def test_open_voice_dropdown_does_not_stretch_neighboring_course_cards(self) -> None:
+        css = portal.FOCUSED_PORTAL_CSS
+
+        self.assertNotRegex(
+            css,
+            r"\.compact-course-grid\s*\{[^}]*align-items:\s*stretch",
+        )
+        self.assertGreaterEqual(
+            len(re.findall(r"\.compact-course-grid\s*\{[^}]*align-items:\s*start", css)),
+            2,
+        )
+
     def test_course_voice_copy_uses_high_contrast_existing_tokens(self) -> None:
         css = portal.FOCUSED_PORTAL_CSS
 
@@ -202,6 +214,67 @@ class CourseTestimonialsTest(unittest.TestCase):
                     css,
                     rf"{re.escape(selector)}\s*\{{[^}}]*color:\s*{re.escape(color)}",
                 )
+
+    def test_focus_accent_and_muted_tokens_are_readable_on_light_surfaces(self) -> None:
+        css = portal.FOCUSED_PORTAL_CSS
+        tokens = dict(
+            re.findall(
+                r"--(focus-(?:blue|muted|surface|lavender|rose-soft)):\s*(#[0-9a-fA-F]{6})",
+                css,
+            )
+        )
+
+        def luminance(color: str) -> float:
+            channels = [int(color[index : index + 2], 16) / 255 for index in (1, 3, 5)]
+            linear = [
+                channel / 12.92
+                if channel <= 0.04045
+                else ((channel + 0.055) / 1.055) ** 2.4
+                for channel in channels
+            ]
+            return 0.2126 * linear[0] + 0.7152 * linear[1] + 0.0722 * linear[2]
+
+        def contrast(foreground: str, background: str) -> float:
+            lighter, darker = sorted(
+                (luminance(foreground), luminance(background)), reverse=True
+            )
+            return (lighter + 0.05) / (darker + 0.05)
+
+        for foreground_name in ("focus-blue", "focus-muted"):
+            for background in (
+                "#ffffff",
+                tokens["focus-surface"],
+                tokens["focus-lavender"],
+                tokens["focus-rose-soft"],
+            ):
+                with self.subTest(foreground=foreground_name, background=background):
+                    self.assertGreaterEqual(
+                        contrast(tokens[foreground_name], background),
+                        4.5,
+                    )
+
+    def test_accessible_roles_support_visible_hero_and_course_labels(self) -> None:
+        self.assertIn(
+            "class='hero-advantage-number' role='img' aria-label='AI利用率 6パーセント'",
+            portal._render_hero_focused(),
+        )
+        self.assertIn(
+            "class='course-menu-unified' id='course-voices' role='region' "
+            "aria-label='講習・相談の全5メニュー'",
+            portal._render_focused_main(),
+        )
+
+    def test_contact_and_footer_copy_keep_readable_contrast(self) -> None:
+        css = portal.FOCUSED_PORTAL_CSS
+
+        self.assertRegex(
+            css,
+            r"\.focus-contact p\s*\{[^}]*color:\s*rgba\(255,255,255,\.9\)",
+        )
+        self.assertRegex(
+            css,
+            r"\.footer-nap a\s*\{[^}]*color:\s*var\(--focus-blue-dark\)",
+        )
 
 
 if __name__ == "__main__":

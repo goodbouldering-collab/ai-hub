@@ -18,7 +18,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/02/STK044_VRG_Illo_N_Barclay_1_twitch.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-08-12T13:29:10-04:00"
+      "published": "2026-08-12T13:29:10-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "e1d6d0da1ce34352",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/1583922033086.jpeg?quality=90&amp;strip=all&amp;crop=2.25%2C0%2C95.5%2C100&amp;w=1200",
-      "published": "2026-08-12T11:52:07-04:00"
+      "published": "2026-08-12T11:52:07-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "58558ae5e9e3ba9d",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/Google-Pixel-Watch-5-on-stand.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-08-12T10:00:00-04:00"
+      "published": "2026-08-12T10:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "956c8da777c85955",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/acastro_201217_1777_vaccine_0001.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-08-12T08:09:34-04:00"
+      "published": "2026-08-12T08:09:34-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "60210e93df829a9b",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/Grok-Bot-desktop-and-iOS.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-08-12T07:58:54-04:00"
+      "published": "2026-08-12T07:58:54-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "ba4cbbb905e51c51",
@@ -113,7 +123,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-08-12T15:08:47+00:00"
+      "published": "2026-08-12T15:08:47+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "c22402a23a9d3e76",
@@ -132,7 +144,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/RS_storefronts_3840x2160_8.jpg?quality=90&amp;strip=all&amp;crop=0%2C3.4613147178592%2C100%2C93.077370564282&amp;w=1200",
-      "published": "2026-08-11T20:39:26-04:00"
+      "published": "2026-08-11T20:39:26-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "9b60dd08b8f1d5ca",
@@ -151,7 +165,9 @@
         "freshness": 3.0
       },
       "thumbnail": "",
-      "published": "2026-08-11T23:48:35+00:00"
+      "published": "2026-08-11T23:48:35+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "f38c37d964d2ba9a",
@@ -170,7 +186,9 @@
         "freshness": 3.0
       },
       "thumbnail": "",
-      "published": "2026-08-11T22:40:45+00:00"
+      "published": "2026-08-11T22:40:45+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "360173b4b5860260",
@@ -189,7 +207,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/wpbSXpTgojY/hqdefault.jpg",
-      "published": "2026-08-12T10:00:29+00:00"
+      "published": "2026-08-12T10:00:29+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     }
   ]
 }

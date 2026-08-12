@@ -79,12 +79,29 @@ class CourseTestimonialsTest(unittest.TestCase):
         self.assertEqual(12, rendered.count("<figure class='course-voice-card'>"))
         self.assertEqual(12, rendered.count("受講者（匿名）"))
 
-    def test_every_course_card_links_to_its_matching_voice_group(self) -> None:
+    def test_every_course_card_contains_its_matching_voice_dropdown(self) -> None:
         cards = portal._render_compact_course_cards()
+        rendered_cards = re.findall(
+            r"<article class='compact-course-card[^']*'.*?</article>",
+            cards,
+            re.DOTALL,
+        )
 
-        for _, _, anchor_id, _, _ in EXPECTED_GROUPS:
-            self.assertIn(f"href='#{anchor_id}'", cards)
-        self.assertEqual(4, cards.count("このコースを受講した方の感想を見る"))
+        self.assertEqual(4, len(rendered_cards))
+        for card, expected in zip(rendered_cards, EXPECTED_GROUPS, strict=True):
+            _, _, anchor_id, heading, testimonials = expected
+            self.assertIn(f"id='{anchor_id}'", card)
+            self.assertEqual(1, card.count("受講された方の感想を見る"))
+            self.assertLess(
+                card.index("メリット・内容・参加方法を見る"),
+                card.index("受講された方の感想を見る"),
+            )
+            self.assertIn(heading, card)
+            for title, body in testimonials:
+                self.assertIn(title, card)
+                self.assertIn(body, card)
+        self.assertEqual(12, cards.count("<figure class='compact-course-voice-card'>"))
+        self.assertEqual(12, cards.count("受講者（匿名）"))
 
     def test_jsonld_links_visible_reviews_to_four_stable_nodes(self) -> None:
         graph = json.loads(portal._build_jsonld_website())["@graph"]
@@ -146,45 +163,50 @@ class CourseTestimonialsTest(unittest.TestCase):
                 self.assertIn(title, rendered)
                 self.assertIn(body, rendered)
 
-    def test_full_page_places_voices_after_courses_and_before_venue(self) -> None:
+    def test_full_page_has_no_standalone_voice_section(self) -> None:
         page = portal.render_portal([], [])
 
-        self.assertIn("id='course-voices'", page)
-        self.assertLess(
-            page.index("class='course-menu-unified'"),
-            page.index("id='course-voices'"),
-        )
+        self.assertNotIn("<section class='course-voices'", page)
+        self.assertIn("class='course-menu-unified' id='course-voices'", page)
+        self.assertEqual(4, page.count("受講された方の感想を見る"))
         self.assertLess(
             page.index("id='course-voices'"),
             page.index("class='course-venue-common'"),
         )
 
-    def test_course_voice_layout_is_two_columns_and_mobile_one_column(self) -> None:
+    def test_course_voice_dropdown_uses_a_compact_single_column_list(self) -> None:
         css = portal.FOCUSED_PORTAL_CSS
 
         self.assertRegex(
             css,
-            r"\.course-voices-grid\s*\{[^}]*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)",
+            r"\.compact-course-testimonials-list\s*\{[^}]*display:\s*grid[^}]*gap:",
         )
-        mobile_block = re.search(
-            r"@media\s*\(max-width:\s*760px\)\s*\{(?P<body>[\s\S]*?)\n\}",
+        self.assertNotRegex(
             css,
+            r"\.compact-course-testimonials-list\s*\{[^}]*grid-template-columns:\s*repeat\(",
         )
-        self.assertIsNotNone(mobile_block)
-        self.assertRegex(
-            mobile_block.group("body"),
-            r"\.course-voices-grid\s*\{[^}]*grid-template-columns:\s*1fr",
+
+    def test_open_voice_dropdown_does_not_stretch_neighboring_course_cards(self) -> None:
+        css = portal.FOCUSED_PORTAL_CSS
+
+        self.assertNotRegex(
+            css,
+            r"\.compact-course-grid\s*\{[^}]*align-items:\s*stretch",
+        )
+        self.assertGreaterEqual(
+            len(re.findall(r"\.compact-course-grid\s*\{[^}]*align-items:\s*start", css)),
+            2,
         )
 
     def test_course_voice_copy_uses_high_contrast_existing_tokens(self) -> None:
         css = portal.FOCUSED_PORTAL_CSS
 
         expected_colors = {
-            ".course-voices-disclosure": "var(--focus-ink)",
-            ".course-voice-course": "var(--focus-blue-dark)",
-            ".course-voice-card p": "var(--focus-ink)",
-            ".course-voice-card figcaption": "var(--focus-ink)",
-            ".compact-course-voice-link": "var(--focus-blue-dark)",
+            ".compact-course-testimonials-body h3": "var(--focus-ink)",
+            ".compact-course-testimonials-note": "var(--focus-muted)",
+            ".compact-course-voice-card h4": "var(--focus-blue-dark)",
+            ".compact-course-voice-card p": "var(--focus-ink)",
+            ".compact-course-voice-card figcaption": "var(--focus-ink)",
         }
         for selector, color in expected_colors.items():
             with self.subTest(selector=selector):
@@ -192,6 +214,67 @@ class CourseTestimonialsTest(unittest.TestCase):
                     css,
                     rf"{re.escape(selector)}\s*\{{[^}}]*color:\s*{re.escape(color)}",
                 )
+
+    def test_focus_accent_and_muted_tokens_are_readable_on_light_surfaces(self) -> None:
+        css = portal.FOCUSED_PORTAL_CSS
+        tokens = dict(
+            re.findall(
+                r"--(focus-(?:blue|muted|surface|lavender|rose-soft)):\s*(#[0-9a-fA-F]{6})",
+                css,
+            )
+        )
+
+        def luminance(color: str) -> float:
+            channels = [int(color[index : index + 2], 16) / 255 for index in (1, 3, 5)]
+            linear = [
+                channel / 12.92
+                if channel <= 0.04045
+                else ((channel + 0.055) / 1.055) ** 2.4
+                for channel in channels
+            ]
+            return 0.2126 * linear[0] + 0.7152 * linear[1] + 0.0722 * linear[2]
+
+        def contrast(foreground: str, background: str) -> float:
+            lighter, darker = sorted(
+                (luminance(foreground), luminance(background)), reverse=True
+            )
+            return (lighter + 0.05) / (darker + 0.05)
+
+        for foreground_name in ("focus-blue", "focus-muted"):
+            for background in (
+                "#ffffff",
+                tokens["focus-surface"],
+                tokens["focus-lavender"],
+                tokens["focus-rose-soft"],
+            ):
+                with self.subTest(foreground=foreground_name, background=background):
+                    self.assertGreaterEqual(
+                        contrast(tokens[foreground_name], background),
+                        4.5,
+                    )
+
+    def test_accessible_roles_support_visible_hero_and_course_labels(self) -> None:
+        self.assertIn(
+            "class='hero-advantage-number' role='img' aria-label='AI利用率 6パーセント'",
+            portal._render_hero_focused(),
+        )
+        self.assertIn(
+            "class='course-menu-unified' id='course-voices' role='region' "
+            "aria-label='講習・相談の全5メニュー'",
+            portal._render_focused_main(),
+        )
+
+    def test_contact_and_footer_copy_keep_readable_contrast(self) -> None:
+        css = portal.FOCUSED_PORTAL_CSS
+
+        self.assertRegex(
+            css,
+            r"\.focus-contact p\s*\{[^}]*color:\s*rgba\(255,255,255,\.9\)",
+        )
+        self.assertRegex(
+            css,
+            r"\.footer-nap a\s*\{[^}]*color:\s*var\(--focus-blue-dark\)",
+        )
 
 
 if __name__ == "__main__":

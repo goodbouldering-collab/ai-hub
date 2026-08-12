@@ -247,7 +247,7 @@ def _build_jsonld_website() -> str:
             "streetAddress": "小泉町34-8",
             "addressCountry": "JP",
         },
-        "description": "滋賀県彦根市を拠点に、中小事業者・地域団体・個人事業者向けのAI相談、AIエージェント講習、毎週開催する有料のAIオンラインサロン、Codex・Claude Code実践、画像生成、受講資料公開、実例紹介、Web/業務システム制作、補助金を使ったAI導入支援を行う。9事業を実際に回す現役オーナーが、相談から講習、実装、公開、運用定着まで伴走する。",
+        "description": "滋賀県彦根市を拠点に、中小事業者・地域団体・個人事業者向けのAI相談、AIエージェント講習、近日開始で現在仮運用中の有料AIオンラインサロン、Codex・Claude Code実践、画像生成、受講資料公開、実例紹介、Web/業務システム制作、補助金を使ったAI導入支援を行う。9事業を実際に回す現役オーナーが、相談から講習、実装、公開、運用定着まで伴走する。",
         "knowsAbout": [
             "AI相談", "AIエージェント講習", "AIオンラインサロン", "ChatGPT", "Claude Code", "Codex", "画像生成", "AI業務改善",
             "LLMO（AI検索最適化）", "SEO", "MEO", "YouTube SEO", "Reels導線",
@@ -276,20 +276,20 @@ def _build_jsonld_website() -> str:
         "url": SITE_URL,
         "inLanguage": "ja",
         "publisher": {"@id": org_id},
-        "description": "滋賀・彦根の中小事業者向けAI相談、AIエージェント講習、有料オンラインサロン、受講資料、実例、講師紹介の資料センター。増え続けるAI情報から、仕事に使えるものと今やることを整理する。",
+        "description": "滋賀・彦根の中小事業者向けAI相談、AIエージェント講習、近日開始・現在仮運用中の有料オンラインサロン、受講資料、実例、講師紹介の資料センター。増え続けるAI情報から、仕事に使えるものと今やることを整理する。",
     }
 
     ai_agent_title = "AIエージェント講習 120分"
     ai_coding_title = "AIコーディング講習 120分"
     consult_title = "AI個別相談 しっかり60分"
-    salon_title = "AIオンラインサロン"
+    salon_title = "AIオンラインサロン｜近日開始"
     support_title = "AI伴走支援 いっしょに導入"
 
     # 受講プランを Service + Offer として構造化（_render_packages の items と整合）
     plans = [
         (ai_agent_title, "Codexを使い、仕事を小さく分けて頼む、変更点を確かめる、必要なら直す、次回も使える手順として残すAIエージェント講習。資料、告知、業務改善、Web制作を題材に、人が判断しながら成果物を完成させる型を120分で身につける。", "5500", "5500", "Course"),
         (consult_title, "AIの使い方、役割分担、指示書、確認体制、運用導線を60分で整理する個別相談。", "5500", "5500", "BusinessCoaching"),
-        (salon_title, "月額2,200円（税込）。毎週火曜21時、LINEでAIの変化を60分で整理し、今週やることを決める。", "2200", "2200", "CommunityService"),
+        (salon_title, "月額2,200円（税込）。正式開始に向けて現在は仮運用中で、登録中の方にはテスト運用へご協力いただいています。Square決済後にLINE参加案内を表示します。", "2200", "2200", "CommunityService"),
         (support_title, "HP公開から事務自動化・経理・マーケまで6ヶ月で一気に定着。技術的な難所は講師が代行・支援。滋賀・彦根の補助金で負担1/3以下に。", "100000", "100000", "Service"),
         (ai_coding_title, "Codex導入、Claude Code併用、画像生成、プログラミング基礎、設計、データ、運用、セキュリティを1本で学ぶAIコーディング講習。AIの成果物を判断し、説明し、仕事に入れるための作業設計と確認の型を120分で身につける。", "11000", "11000", "Course"),
     ]
@@ -621,8 +621,8 @@ html, body, .hero, .biz-card, .service-card, .pkg-card, .faq-item, .stat,
   transition: background-color .3s ease, color .3s ease, border-color .3s ease;
 }
 * { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; overflow-x: hidden; }
-html { scroll-behavior: smooth; }
+html, body { margin: 0; padding: 0; overflow-x: clip; overflow-y: visible; }
+html { scroll-behavior: auto; }
 body {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
   color: var(--text);
@@ -11664,6 +11664,29 @@ def _render_course_testimonials() -> str:
     return "".join(parts)
 
 
+def _render_course_testimonial_details(course_key: str) -> str:
+    """指定コースの実在する感想3件を、カード内の展開欄として描画する。"""
+    group = next(item for item in COURSE_TESTIMONIALS if item["key"] == course_key)
+    cards = "".join(
+        "<figure class='compact-course-voice-card'>"
+        f"<h4>{html.escape(str(testimonial['title']))}</h4>"
+        f"<blockquote><p>「{html.escape(str(testimonial['body']))}」</p></blockquote>"
+        f"<figcaption>— {html.escape(str(testimonial['author_label']))}</figcaption>"
+        "</figure>"
+        for testimonial in group["testimonials"]
+    )
+    return (
+        "<details class='compact-course-details compact-course-testimonials' "
+        f"id='{html.escape(str(group['anchor_id']), quote=True)}'>"
+        "<summary>受講された方の感想を見る</summary>"
+        "<div class='compact-course-testimonials-body'>"
+        f"<h3>{html.escape(str(group['heading']))}</h3>"
+        "<p class='compact-course-testimonials-note'>実際に受講された方の感想を、個人が特定されないよう一部表現を整えて掲載しています。</p>"
+        f"<div class='compact-course-testimonials-list'>{cards}</div>"
+        "</div></details>"
+    )
+
+
 def _render_compact_course_cards() -> str:
     """メイン講習を先頭にし、講習・相談の全コースを並べる申込カード。"""
     items = [
@@ -11679,7 +11702,7 @@ def _render_compact_course_cards() -> str:
             "cta": "まずこの講習を予約",
             "material_url": "/lectures/2026-04-ai-kihon.html",
             "material_cta": "AIエージェント講習の受講資料を見る",
-            "voice_anchor": "voice-ai-agent",
+            "testimonial_key": "ai-agent",
             "main": True,
             "details_lead": "この講習で得られること",
             "details": [
@@ -11703,7 +11726,7 @@ def _render_compact_course_cards() -> str:
             "cta": "個別相談を予約",
             "material_url": "/lectures/2026-04-ai-kangaekata.html",
             "material_cta": "15分のAI実践ワークを見る",
-            "voice_anchor": "voice-ai-consultation",
+            "testimonial_key": "ai-consultation",
             "details_lead": "相談すると整理できること",
             "details": [
                 ("最初にやる仕事が決まる", "「AIで何ができるか」からではなく、時間を取られている仕事を整理し、効果が出やすい1つを選びます。"),
@@ -11726,7 +11749,7 @@ def _render_compact_course_cards() -> str:
             "cta": "伴走支援を申し込む",
             "material_url": "/lectures/2026-06-ai-agent-rag-design.html",
             "material_cta": "AI導入・RAG設計の資料を見る",
-            "voice_anchor": "voice-ai-support",
+            "testimonial_key": "ai-support",
             "details_lead": "6ヶ月伴走で得られること",
             "details": [
                 ("業務の優先順位を整理", "HP更新、集客、事務、情報共有の中から、効果と緊急度を見て着手順を決めます。"),
@@ -11750,7 +11773,7 @@ def _render_compact_course_cards() -> str:
             "cta": "AIコーディングを予約",
             "material_url": "/programming-map.html",
             "material_cta": "AIコーディング講習の受講資料を見る",
-            "voice_anchor": "voice-ai-coding",
+            "testimonial_key": "ai-coding",
             "details_lead": "この講習で身につくこと",
             "details": [
                 ("小さくても動くものを作る", "自社ページ、申込フォーム、集計画面、業務ツールなど、目的に合う題材を実際に動かします。"),
@@ -11777,14 +11800,6 @@ def _render_compact_course_cards() -> str:
             "</p>"
             if material_url else ""
         )
-        voice_anchor = html.escape(str(item["voice_anchor"]), quote=True)
-        voice_html = (
-            "<p class='compact-course-voice-row'>"
-            f"<a class='compact-course-voice-link' href='#{voice_anchor}' "
-            f"aria-label='{html.escape(item['title'], quote=True)}を受講した方の感想を見る'>"
-            "このコースを受講した方の感想を見る →</a>"
-            "</p>"
-        )
         main_cls = " compact-course-card--main" if item.get("main") else ""
         title_html = f"<h3>{html.escape(item['title'])}</h3>"
         details = item.get("details") or []
@@ -11805,6 +11820,7 @@ def _render_compact_course_cards() -> str:
                 f"<ul>{detail_rows}</ul>"
                 "</details>"
             )
+        testimonial_html = _render_course_testimonial_details(str(item["testimonial_key"]))
         if item.get("post"):
             main_action_html = (
                 f"<form class='compact-course-checkout' method='post' action='{html.escape(item['url'], quote=True)}'>"
@@ -11822,9 +11838,9 @@ def _render_compact_course_cards() -> str:
             f"<div class='compact-course-meta'><strong>{html.escape(item['price'])}</strong><span>{html.escape(item['duration'])}</span></div>"
             f"<p>{html.escape(item['desc'])}</p>"
             f"{details_html}"
+            f"{testimonial_html}"
             f"{main_action_html}"
             f"{material_html}"
-            f"{voice_html}"
             "</article>"
         )
     return "<div class='compact-course-grid'>" + "".join(cards) + "</div>"
@@ -11877,17 +11893,17 @@ def _render_salon_menu() -> str:
         "<section class='salon-section salon-section--integrated' id='seven-day-courses' aria-labelledby='salon-title'>"
         "<div class='salon-panel'>"
         "<div class='salon-eyebrow-row salon-card-eyebrow'><small>MENU 05 · SQUARE MONTHLY</small>"
-        "<span class='compact-course-badge'><i aria-hidden='true'></i>ライブトーク開催</span></div>"
+        "<span class='compact-course-badge'><i aria-hidden='true'></i>現在は仮運用中</span></div>"
         "<div class='salon-intro salon-intro--fused salon-card-overview'>"
         "<figure class='salon-main-visual'><img src='/img/blog-ai-agent-course-section-4-20260714.webp' "
         "alt='毎週火曜にLINEライブトークでAIの今と次の一手を整理するオンラインサロン' "
         "loading='lazy' decoding='async'><figcaption>仕事で次に試すことを、一緒に決める60分</figcaption></figure>"
         "<div class='salon-intro-copy'>"
         "<small class='salon-card-category'>月額サロン</small>"
-        "<h2 class='salon-detail-title' id='salon-title'>AIオンラインサロン</h2>"
+        "<h2 class='salon-detail-title' id='salon-title'>AIオンラインサロン｜近日開始</h2>"
         "<div class='compact-course-meta salon-card-meta'><strong>月額2,200円（税込）</strong><span>毎週火曜21:00</span></div>"
         "<p class='salon-intro-tagline'>AIの最新も疑問もその場で解決できる。</p>"
-        "<p class='salon-intro-description'>Squareで月額決済後、LINEライブトークの参加案内を表示します。仕事で次に試すことを一緒に決めます。聞くだけOK。</p></div>"
+        "<p class='salon-intro-description'>正式開始に向けて現在は仮運用中です。登録中の方にはテスト運用へご協力いただいています。Squareで月額決済後、LINEライブトークの参加案内を表示します。</p></div>"
         "<div class='salon-value-list' role='list' aria-label='サロンで得られること'>"
         "<div class='salon-value' role='listitem'><b>01</b><div><small>UPDATE</small><strong>新機能を毎週知る</strong></div></div>"
         "<div class='salon-value' role='listitem'><b>02</b><div><small>BEST PRACTICE</small><strong>一流の活用事例を聞く</strong></div></div>"
@@ -11901,7 +11917,7 @@ def _render_salon_menu() -> str:
         f"{_render_live_talk_guide()}"
         "</div></details>"
         "<p class='salon-simple-note'>月額2,200円（税込）・毎月自動更新。決済確認後にLINE参加案内を表示します</p>"
-        f"<form class='compact-course-checkout salon-card-checkout' method='post' action='{html.escape(AI_SALON_CHECKOUT_URL, quote=True)}'><button type='submit'>Squareで決済して参加 →</button></form>"
+        f"<form class='compact-course-checkout salon-card-checkout' method='post' action='{html.escape(AI_SALON_CHECKOUT_URL, quote=True)}'><button type='submit'>Squareで決済して仮運用に参加 →</button></form>"
         "<p class='salon-material-row'><a class='compact-course-material salon-material-link' href='/lectures/2026-07-ai-online-salon-practice.html'>オンラインサロン受講資料を見る →</a></p>"
         "</div></section>"
     )
@@ -11915,7 +11931,7 @@ def _render_footer(today: str) -> str:
         "<div class='footer-grid'>"
         "<div class='footer-brand'>"
         "<div class='footer-logo'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span></div>"
-        "<p class='footer-tagline'>滋賀・彦根の中小事業者向けに、AI相談・AIエージェント講習・月額2,200円のAIオンラインサロン・受講資料・Web集客支援を行う"
+        "<p class='footer-tagline'>滋賀・彦根の中小事業者向けに、AI相談・AIエージェント講習・近日開始で現在仮運用中の月額2,200円AIオンラインサロン・受講資料・Web集客支援を行う"
         "資料センター型の相談サイト。増え続けるAI情報を、仕事で使える次の一手に変えます。</p>"
         "<a class='footer-cta' href='#contact'>AI個別相談を予約する</a>"
         "</div>"
@@ -12092,7 +12108,7 @@ FAQ_QA = [
     ("AIエージェント講習では何を学びますか？",
      "Codexで実際の仕事を1つ完成させる入門講習です。仕事を小さく分け、伝わる依頼を作り、変更点と画面を確認し、必要なら修正や取り消しを行い、成果物と次回手順を保存するところまで120分で通します。料金は5,500円で、専用の予約ページから申し込めます。"),
     ("AIオンラインサロンでは、何がわかりますか？",
-     "月額2,200円（税込）。毎週火曜21時、LINEライブトークでAIの変化を60分で整理し、今週やることを決めます。聞くだけでも参加できます。月額決済はSquareで毎月自動更新し、決済確認後にLINE参加案内を表示します。"),
+     "AIオンラインサロンは近日開始で、現在は仮運用中です。登録中の方にはテスト運用へご協力いただいています。月額2,200円（税込）で、Square決済は毎月自動更新し、決済確認後にLINE参加案内を表示します。"),
     ("受講資料はあとから見返せますか？",
      "はい。受講で使った資料、プロンプト、実例、動画、スライドは資料センターとして整理し、あとから復習できるようにします。受講前に内容を確認したい方も、受講資料ページから雰囲気を見られます。"),
     ("Reels や YouTube の集客にも使えますか？",
@@ -12797,7 +12813,7 @@ def _render_lecture_card(lec: dict) -> str:
 FOCUSED_PORTAL_CSS = r"""
 /* ---- Consultation-first redesign, light editorial direction, 2026-07-22 ---- */
 :root {
-  --focus-blue: #4f6fd8;
+  --focus-blue: #4261c7;
   --focus-blue-dark: #3e58b8;
   --focus-cyan: #e9efff;
   --focus-lavender: #f1eeff;
@@ -12805,7 +12821,7 @@ FOCUSED_PORTAL_CSS = r"""
   --focus-rose: #e88ea0;
   --focus-rose-soft: #fff0f3;
   --focus-ink: #172033;
-  --focus-muted: #6b7891;
+  --focus-muted: #606d83;
   --focus-line: #dce4f2;
   --focus-line-strong: #b9c7db;
   --focus-surface: #f8fbff;
@@ -12813,7 +12829,7 @@ FOCUSED_PORTAL_CSS = r"""
   --focus-footer-y: clamp(36px, 5vw, 48px);
   --focus-footer-gap: clamp(24px, 3vw, 32px);
 }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: auto; }
 body { background: #f8fbff !important; color: var(--focus-ink) !important; }
 body::before { display: none !important; }
 .container {
@@ -13065,99 +13081,53 @@ header.site-header:hover {
 }
 .main-course > .focus-section-head { margin-bottom:18px; }
 .main-course > .focus-section-lead { margin-bottom:20px; }
-.course-voices {
-  max-width:1120px;
-  margin:34px auto 0;
-  padding:30px;
+.compact-course-testimonials {
+  margin-top:2px;
   scroll-margin-top:96px;
-  border:1px solid var(--focus-line);
-  border-radius:20px;
-  background:#fff;
 }
-.course-voices > .focus-section-head { margin-bottom:10px; }
-.course-voices-disclosure {
-  max-width:760px;
-  margin:0 auto 22px;
+.compact-course-testimonials-body { padding:0 0 8px; }
+.compact-course-testimonials-body h3 {
+  margin:2px 0 7px;
   color:var(--focus-ink);
-  font-size:13px;
-  line-height:1.7;
-  text-align:center;
-}
-.course-voices-grid {
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:18px;
-}
-.course-voice-group {
-  min-width:0;
-  padding:22px;
-  scroll-margin-top:96px;
-  border:1px solid var(--focus-line);
-  border-radius:16px;
-  background:var(--focus-surface);
-}
-.course-voice-course {
-  display:block;
-  margin-bottom:5px;
-  color:var(--focus-blue-dark);
-  font-size:12px;
-  font-weight:900;
-  letter-spacing:.08em;
-}
-.course-voice-group h3 {
-  margin:0 0 16px;
-  color:var(--focus-ink);
-  font-size:19px;
-  line-height:1.45;
-}
-.course-voice-list {
-  display:grid;
-  gap:12px;
-}
-.course-voice-card {
-  margin:0;
-  padding:16px;
-  border-left:3px solid var(--focus-blue);
-  border-radius:0 12px 12px 0;
-  background:#fff;
-}
-.course-voice-card h4 {
-  margin:0 0 8px;
-  color:var(--focus-ink);
-  font-size:14px;
-  line-height:1.55;
-}
-.course-voice-card blockquote { margin:0; }
-.course-voice-card p {
-  margin:0;
-  color:var(--focus-ink);
-  font-size:13px;
-  line-height:1.75;
-}
-.course-voice-card figcaption {
-  margin-top:9px;
-  color:var(--focus-ink);
-  font-size:12px;
-  font-weight:800;
-}
-.compact-course-voice-row { margin:11px 0 0; }
-.compact-course-voice-link {
-  color:var(--focus-blue-dark);
-  font-size:12px;
-  font-weight:900;
+  font-size:16px;
   line-height:1.5;
-  text-decoration:underline;
-  text-decoration-thickness:1px;
-  text-underline-offset:3px;
 }
-.compact-course-voice-link:hover { color:var(--focus-blue-dark); }
-@media (max-width: 760px) {
-  .course-voices-grid { grid-template-columns:1fr; }
-  .course-voices { margin-top:26px; padding:20px 14px; border-radius:16px; }
-  .course-voices-disclosure { margin-bottom:17px; text-align:left; }
-  .course-voice-group { padding:17px 14px; }
-  .course-voice-group h3 { font-size:17px; }
-  .course-voice-card { padding:14px 13px; }
+.compact-course-testimonials-note {
+  margin:0 0 10px !important;
+  color:var(--focus-muted) !important;
+  font-size:11px !important;
+  line-height:1.6 !important;
+}
+.compact-course-testimonials-list {
+  display:grid;
+  gap:9px;
+}
+.compact-course-voice-card {
+  margin:0;
+  padding:12px;
+  border:1px solid var(--focus-line);
+  border-left:3px solid var(--focus-blue);
+  border-radius:0 10px 10px 0;
+  background:#fff;
+}
+.compact-course-voice-card h4 {
+  margin:0 0 6px;
+  color:var(--focus-blue-dark);
+  font-size:13px;
+  line-height:1.5;
+}
+.compact-course-voice-card blockquote { margin:0; }
+.compact-course-voice-card p {
+  margin:0 !important;
+  color:var(--focus-ink) !important;
+  font-size:12px !important;
+  line-height:1.75 !important;
+}
+.compact-course-voice-card figcaption {
+  margin-top:7px;
+  color:var(--focus-ink);
+  font-size:10px;
+  font-weight:800;
 }
 .course-venue-common {
   max-width:860px;
@@ -13193,7 +13163,7 @@ header.site-header:hover {
   padding:0 !important;
   display:grid;
   grid-template-columns:repeat(5,minmax(0,1fr));
-  align-items:stretch;
+  align-items:start;
   gap:14px;
   text-align:left;
 }
@@ -13651,7 +13621,7 @@ header.site-header:hover {
 .focus-contact { margin:0; padding:56px max(18px,calc((100vw - 1400px)/2)); background:var(--focus-blue); color:#fff; }
 .focus-contact-inner { max-width:1100px; margin:auto; display:flex; align-items:center; justify-content:space-between; gap:36px; }
 .focus-contact h2 { margin:0; font-size:clamp(28px,3vw,44px); }
-.focus-contact p { margin:10px 0 0; color:rgba(255,255,255,.82); }
+.focus-contact p { margin:10px 0 0; color:rgba(255,255,255,.9); }
 .focus-contact .focus-btn { background:#fff; color:var(--focus-blue); border-color:#fff; white-space:nowrap; }
 .focus-resources { max-width:1100px; margin:30px auto 0; padding-top:24px; border-top:1px solid var(--focus-line); display:flex; gap:20px; flex-wrap:wrap; justify-content:center; }
 .focus-resources a { color:var(--focus-muted); font-size:13px; font-weight:750; }
@@ -13688,7 +13658,7 @@ footer.site-footer {
   margin-bottom:var(--focus-footer-gap);
 }
 .footer-grid > * { min-width:0; }
-.footer-nap a { overflow-wrap:anywhere; }
+.footer-nap a { overflow-wrap:anywhere; color:var(--focus-blue-dark); }
 @media (max-width: 900px) {
   .header-member-login {
     min-height: 36px;
@@ -14333,7 +14303,7 @@ footer.site-footer {
   .compact-course-grid {
     max-width:none;
     grid-template-columns:repeat(2,minmax(0,1fr));
-    align-items:stretch;
+    align-items:start;
     gap:12px;
   }
   .compact-course-card,
@@ -14870,11 +14840,11 @@ def _render_hero_focused() -> str:
         "<section class='focus-hero' id='top' data-interactive-hero>"
         "<div class='hero-orb hero-orb-one' aria-hidden='true'></div><div class='hero-orb hero-orb-two' aria-hidden='true'></div>"
         "<div class='focus-hero-shell'>"
-        "<div class='focus-hero-copy fade-up'>"
+        "<div class='focus-hero-copy'>"
         "<p class='focus-kicker'>彦根・滋賀の中小事業者向け</p>"
         "<h1 class='focus-title'><span class='focus-title-first'>AIエージェントを、</span><br><span class='focus-title-line'><strong>強力なスタッフに。</strong></span></h1>"
         "<aside class='hero-advantage' id='advantage' aria-labelledby='hero-advantage-title'>"
-        "<div class='hero-advantage-number' aria-label='AI利用率 6パーセント'><strong>6%</strong><span>AI利用率</span></div>"
+        "<div class='hero-advantage-number' role='img' aria-label='AI利用率 6パーセント'><strong>6%</strong><span>AI利用率</span></div>"
         "<div class='hero-advantage-copy'><small><strong>5,500円から</strong><span>始めるなら今。</span></small><p id='hero-advantage-title'><span class='hero-advantage-equation'><strong>経験</strong><span>×</span><strong>AI</strong></span><span class='hero-advantage-outcome'>で、仕事を一歩先へ。</span></p></div>"
         "<ul class='hero-advantage-pillars' aria-label='AI活用を成果に変える3原則'><li><b>01</b>まず試す</li><li><b>02</b>人が確かめる</li><li><b>03</b>仕組みにする</li></ul>"
         "</aside>"
@@ -14912,13 +14882,12 @@ def _render_focused_main() -> str:
 
     parts = [
         "<section class='focus-block main-course' id='packages'><div class='focus-section-head'><small>COURSES</small><h2>講習・相談コース</h2></div>",
-        "<p class='focus-section-lead'><strong>迷ったら、まずはAIエージェント講習が一番基本でおすすめです。</strong><br>最新情報を追い続けず「今やること」を知りたい方は、月額2,200円のオンラインサロンへ。個別相談、伴走支援、AIコーディング講習も選べます。</p>",
-        "<div class='course-menu-unified' aria-label='講習・相談の全5メニュー'>",
+        "<p class='focus-section-lead'><strong>迷ったら、まずはAIエージェント講習が一番基本でおすすめです。</strong><br>最新情報を追い続けず「今やること」を知りたい方は、近日開始・現在仮運用中の月額2,200円オンラインサロンへ。個別相談、伴走支援、AIコーディング講習も選べます。</p>",
+        "<div class='course-menu-unified' id='course-voices' role='region' aria-label='講習・相談の全5メニュー'>",
         "<div class='course-menu-unified-head'><strong>全5メニュー</strong><span>上の4カードと下のオンラインサロンから選べます</span></div>",
         _render_compact_course_cards(),
         _render_salon_menu(),
         "</div>",
-        _render_course_testimonials(),
         "<aside class='course-venue-common' aria-label='講習・相談コース共通の開催場所'>",
         "<img src='/img/gubboru-cafe-ai-course-painting.webp' alt='講習・相談の対面会場 グッぼるカフェの店内' loading='lazy' decoding='async'>",
         "<div><small>COMMON VENUE</small><h3>開催場所：グッぼるカフェ（彦根）</h3><p>対面は普段のPCと課題を持ち寄って実施します。オンライン受講・相談にも対応します。</p></div>",
@@ -14949,7 +14918,7 @@ def _render_focused_main() -> str:
         "<details><summary>AIがまったく初めてでも大丈夫ですか？</summary><p>大丈夫です。専門用語ではなく、普段の仕事と困りごとから始めます。</p></details>",
         "<details><summary>受講にパソコンは必要ですか？</summary><p>はい。WindowsまたはMacのパソコンを必ずお持ちください。直したい資料やページもあれば、あわせてお持ちください。</p></details>",
         "<details><summary>オンラインでも受講できますか？</summary><p>対面・オンラインの両方に対応しています。彦根市内は訪問も相談できます。</p></details>",
-        "<details><summary>AIオンラインサロンでは、何がわかりますか？</summary><p>月額2,200円（税込）。毎週火曜21時、LINEライブトークでAIの変化を60分で整理し、今週やることを決めます。聞くだけでも参加できます。月額決済はSquareで毎月自動更新し、決済確認後にLINE参加案内を表示します。</p></details></div></section>",
+        "<details><summary>AIオンラインサロンでは、何がわかりますか？</summary><p>AIオンラインサロンは近日開始で、現在は仮運用中です。登録中の方にはテスト運用へご協力いただいています。月額2,200円（税込）で、Square決済は毎月自動更新し、決済確認後にLINE参加案内を表示します。</p></details></div></section>",
         "<section class='focus-contact' id='contact'><div class='focus-contact-inner'><div><h2>AIエージェントに任せたい仕事を聞かせてください。</h2><p>講習前に、今の仕事に合う題材と進め方を一緒に整理できます。</p></div>",
         f"<a class='focus-btn' href='{individual_consult}' target='_blank' rel='noopener'>AI個別相談を予約する（60分・5,500円）</a></div></section>",
     ]
@@ -14959,7 +14928,7 @@ def _render_focused_main() -> str:
 def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     today = datetime.now().strftime("%Y-%m-%d")
     title = SITE_BROWSER_TITLE
-    desc = "AI相談は、彦根・滋賀でAIエージェント講習と有料オンラインサロンを開催しています。増え続けるAI情報から仕事に使えるものを選び、今やることを整理。CodexやClaude Codeで実践まで進めます。"
+    desc = "AI相談は、彦根・滋賀でAIエージェント講習を開催しています。AIオンラインサロンは近日開始・現在仮運用中で、Square決済によるテスト運用参加を受け付けています。CodexやClaude Codeで実践まで進めます。"
 
     parts: list[str] = []
     parts.append("<!doctype html><html lang='ja'><head><meta charset='utf-8'>" + FAVICON_HEAD_HTML)

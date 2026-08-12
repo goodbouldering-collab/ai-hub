@@ -1,3 +1,5 @@
+import importlib.util
+import json
 import re
 import unittest
 from pathlib import Path
@@ -5,6 +7,11 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 INDEX = ROOT / "site" / "dist" / "index.html"
+MODULE_PATH = ROOT / "site" / "build_portal.py"
+SPEC = importlib.util.spec_from_file_location("salon_content_portal", MODULE_PATH)
+portal = importlib.util.module_from_spec(SPEC)
+assert SPEC.loader is not None
+SPEC.loader.exec_module(portal)
 
 
 class SalonContentContractTests(unittest.TestCase):
@@ -23,14 +30,14 @@ class SalonContentContractTests(unittest.TestCase):
     def test_every_reader_facing_detail_remains_in_the_panel(self) -> None:
         expected_details = (
             "SQUARE MONTHLY",
-            "ライブトーク開催",
+            "現在は仮運用中",
             "毎週火曜にLINEライブトークでAIの今と次の一手を整理するオンラインサロン",
             "仕事で次に試すことを、一緒に決める60分",
             "月額2,200円（税込）",
             "毎週火曜21:00",
-            "AIオンラインサロン",
+            "AIオンラインサロン｜近日開始",
             "AIの最新も疑問もその場で解決できる。",
-            "Squareで月額決済後、LINEライブトークの参加案内を表示します。仕事で次に試すことを一緒に決めます。聞くだけOK。",
+            "正式開始に向けて現在は仮運用中です。登録中の方にはテスト運用へご協力いただいています。Squareで月額決済後、LINEライブトークの参加案内を表示します。",
             "UPDATE",
             "新機能を毎週知る",
             "BEST PRACTICE",
@@ -75,7 +82,7 @@ class SalonContentContractTests(unittest.TestCase):
             "マイクOFF・途中参加・途中退出OK",
             "決済確認後にLINE参加案内を表示",
             "オンラインサロン受講資料を見る",
-            "Squareで決済して参加",
+            "Squareで決済して仮運用に参加",
             "月額2,200円（税込）・毎月自動更新。決済確認後にLINE参加案内を表示します",
         )
         for text in expected_details:
@@ -85,6 +92,25 @@ class SalonContentContractTests(unittest.TestCase):
             "全部を追わず、新機能と一流の活用事例から、今試すことを短く整理します。",
             self.panel,
         )
+
+    def test_structured_data_matches_the_trial_operation_status(self) -> None:
+        graph = json.loads(portal._build_jsonld_website())["@graph"]
+        salon = next(
+            node
+            for node in graph
+            if node.get("name") == "AIオンラインサロン｜近日開始"
+        )
+
+        self.assertEqual("CommunityService", salon["serviceType"])
+        self.assertIn("正式開始に向けて現在は仮運用中", salon["description"])
+        self.assertIn("テスト運用へご協力", salon["description"])
+        self.assertEqual(portal.SITE_URL + portal.AI_SALON_CHECKOUT_URL, salon["url"])
+        self.assertEqual("2200", salon["offers"]["price"])
+        self.assertEqual("P1M", salon["offers"]["priceSpecification"]["billingDuration"])
+
+    def test_page_description_does_not_claim_the_salon_has_formally_started(self) -> None:
+        self.assertIn("AIオンラインサロンは近日開始・現在仮運用中", self.html)
+        self.assertNotIn("有料オンラインサロンを開催しています", self.html)
 
     def test_structured_detail_counts_and_checkout_contract_remain_intact(self) -> None:
         self.assertEqual(self.panel.count("class='salon-value'"), 3)

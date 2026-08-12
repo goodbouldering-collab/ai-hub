@@ -43,10 +43,14 @@
     return primaryItems.map((item) => linkMarkup(item)).join("");
   }
 
-  function secondaryMenuMarkup() {
-    const groups = [...new Set(secondaryItems.map((item) => item.group))];
+  function mobileMenuMarkup() {
+    const menuItems = [
+      ...primaryItems.map((item) => ({ ...item, group: "管理" })),
+      ...secondaryItems,
+    ];
+    const groups = [...new Set(menuItems.map((item) => item.group))];
     return groups.map((group) => {
-      const links = secondaryItems
+      const links = menuItems
         .filter((item) => item.group === group)
         .map((item) => linkMarkup(item, true))
         .join("");
@@ -57,7 +61,7 @@
   function headerMarkup() {
     return `
       <div class="site-header-inner">
-        <a class="site-logo admin-shared-brand" href="/admin" aria-label="AI相談 管理トップへ">
+        <a class="site-logo admin-shared-brand" href="/admin/blog" aria-label="AI相談 管理画面へ">
           <span class="admin-shared-brand-name">AI相談</span>
           <span class="admin-shared-brand-context">管理画面</span>
         </a>
@@ -69,7 +73,7 @@
         </button>
       </div>
       <div class="mobile-nav" id="mobile-nav" hidden>
-        <div class="mobile-nav-panel mobile-nav-panel--admin">${secondaryMenuMarkup()}</div>
+        <div class="mobile-nav-panel mobile-nav-panel--admin">${mobileMenuMarkup()}</div>
       </div>`;
   }
 

@@ -14833,7 +14833,7 @@ def _render_header_focused() -> str:
         "<div class='mobile-nav-head'><div class='mobile-nav-heading'><small>PUBLIC MENU</small><strong>メニュー</strong></div></div>"
         "<nav class='mobile-public-links' aria-label='公開ページメニュー'>"
         "<a href='/'><span>ホーム</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
-        "<a href='/lectures/2026-04-ai-kihon.html'><span>AIエージェント講習</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
+        "<a href='/#seven-day-courses'><span>講習・相談コース</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
         "<a href='/#all-works'><span>実績</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
         "<a href='/blog/index.html'><span>ブログ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
         "<a href='/#lectures'><span>資料</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"

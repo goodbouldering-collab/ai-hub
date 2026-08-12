@@ -38,7 +38,14 @@ async function renderView(view = "calendar", dashboard = {}) {
       return [];
     },
   };
-  const today = new Date().toISOString().slice(0, 10);
+  const dateParts = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Tokyo",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(new Date());
+  const datePart = (type) => dateParts.find((part) => part.type === type)?.value || "";
+  const today = `${datePart("year")}-${datePart("month")}-${datePart("day")}`;
   const source = await readFile(new URL("../site/static/admin/command-center.js", import.meta.url), "utf8");
 
   vm.runInNewContext(source, {

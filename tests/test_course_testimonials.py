@@ -124,15 +124,21 @@ class CourseTestimonialsTest(unittest.TestCase):
         self.assertEqual(12, cards.count("<figure class='compact-course-voice-card'>"))
         self.assertEqual(12, cards.count("受講者（匿名）"))
 
-    def test_salon_contains_test_operation_voice_dropdown(self) -> None:
+    def test_salon_uses_standard_course_details_trigger_before_testimonials(self) -> None:
         salon = portal._render_salon_menu()
         _, course_name, anchor_id, heading, testimonials = EXPECTED_SALON_GROUP
 
         self.assertIn(course_name, salon)
         self.assertIn(f"id='{anchor_id}'", salon)
         self.assertEqual(1, salon.count("受講された方の感想を見る"))
+        self.assertIn(
+            "<details class='compact-course-details salon-all-details--complete' "
+            "id='salon-details'><summary>メリット・内容・参加方法を見る</summary>",
+            salon,
+        )
+        self.assertNotIn("8つのメリット・内容・参加方法を見る", salon)
         self.assertLess(
-            salon.index("8つのメリット・内容・参加方法を見る"),
+            salon.index("メリット・内容・参加方法を見る"),
             salon.index("受講された方の感想を見る"),
         )
         self.assertLess(

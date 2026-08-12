@@ -11952,7 +11952,7 @@ def _render_salon_menu() -> str:
         "<div class='salon-value' role='listitem'><b>02</b><div><small>BEST PRACTICE</small><strong>一流の活用事例を聞く</strong></div></div>"
         "<div class='salon-value' role='listitem'><b>03</b><div><small>NEXT ACTION</small><strong>次に試すことを決める</strong></div></div>"
         "</div></div>"
-        "<details class='salon-all-details salon-all-details--complete' id='salon-details'><summary>8つのメリット・内容・参加方法を見る</summary>"
+        "<details class='compact-course-details salon-all-details--complete' id='salon-details'><summary>メリット・内容・参加方法を見る</summary>"
         "<div class='salon-details-complete'>"
         "<div class='salon-facts' aria-label='開催情報'><div class='salon-fact'><small>WHEN</small><strong>火曜21:00</strong></div><div class='salon-fact'><small>PLACE</small><strong>LINEライブ</strong></div><div class='salon-fact'><small>FEE</small><strong>月2,200円</strong></div><div class='salon-fact'><small>STYLE</small><strong>聞くだけOK</strong></div></div>"
         "<p class='salon-benefits-title'>このサロンに参加するメリット</p><ul>"
@@ -14191,7 +14191,7 @@ footer.site-footer {
   margin-top:10px;
 }
 .salon-details-complete {
-  padding:14px;
+  padding:4px 0 6px;
 }
 .salon-detail-title {
   margin:8px 0 0;
@@ -14256,48 +14256,9 @@ footer.site-footer {
   font-size:12px;
   line-height:1.6;
 }
-.salon-all-details {
-  margin-top:12px;
-  overflow:hidden;
-  border:1px solid rgba(83,103,217,.16);
-  border-radius:12px;
-  background:#fbfcff;
-}
-.salon-all-details summary {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  padding:12px 14px;
-  color:var(--focus-blue);
-  font-size:12px;
-  font-weight:900;
-  line-height:1.45;
-  cursor:pointer;
-  list-style:none;
-}
-.salon-all-details summary::-webkit-details-marker { display:none; }
-.salon-all-details summary::after {
-  content:"+";
-  flex:0 0 auto;
-  font-size:20px;
-  line-height:1;
-  transition:transform .2s ease;
-}
-.salon-all-details[open] summary {
-  border-bottom:1px solid rgba(83,103,217,.13);
-  background:#f5f7ff;
-}
-.salon-all-details[open] summary::after { transform:rotate(45deg); }
-.salon-all-details > p {
-  margin:12px 14px 0;
-  color:var(--focus-ink);
-  font-size:12px;
-  font-weight:900;
-}
-.salon-all-details ul {
+.salon-details-complete > ul {
   margin:0;
-  padding:12px 14px 14px;
+  padding:12px 0 14px;
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
   gap:10px 18px;
@@ -14370,9 +14331,6 @@ footer.site-footer {
     text-align:center;
   }
   .salon-material-row { text-align:center; }
-  .salon-details-complete {
-    padding:10px;
-  }
   .salon-panel .salon-intro {
     grid-template-columns:1fr;
     grid-template-areas:"copy" "values";
@@ -14532,8 +14490,7 @@ footer.site-footer {
   .salon-register-form .focus-btn {
     min-height:44px;
   }
-  .salon-all-details ul { grid-template-columns:1fr; }
-  .salon-all-details summary { padding:11px 12px; font-size:11.5px; }
+  .salon-details-complete > ul { grid-template-columns:1fr; }
   .salon-benefit strong { font-size:11.5px; }
   .salon-benefit span { font-size:10.5px; }
 }
@@ -14757,7 +14714,6 @@ header.site-header:hover {
 .salon-timeline-card,
 .path-card-new,
 .focus-proof,
-.salon-all-details,
 .salon-participation {
   border-color: var(--focus-line) !important;
   box-shadow: 0 8px 24px rgba(39,60,104,.08) !important;
@@ -14773,7 +14729,6 @@ header.site-header:hover {
 .focus-block.soft {
   background-color: var(--focus-surface) !important;
 }
-.salon-all-details,
 .salon-participation,
 .salon-live-steps li {
   background: #f8fbff !important;

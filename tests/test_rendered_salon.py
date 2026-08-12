@@ -46,10 +46,15 @@ class RenderedSalonTest(unittest.TestCase):
         self.assertIn("<div class='salon-panel'>", self.html)
         self.assertNotIn("class='salon-simple-head'", self.html)
         self.assertIn("class='salon-intro salon-intro--fused salon-card-overview'", self.html)
-        self.assertIn("class='salon-all-details salon-all-details--complete'", self.html)
+        self.assertIn(
+            "class='compact-course-details salon-all-details--complete'",
+            self.html,
+        )
         visual = self.html.index("class='salon-main-visual'")
         title = self.html.index("id='salon-title'", visual)
-        details = self.html.index("class='salon-all-details salon-all-details--complete'", title)
+        details = self.html.index(
+            "class='compact-course-details salon-all-details--complete'", title
+        )
         note = self.html.index("class='salon-simple-note'", details)
         checkout = self.html.index("class='compact-course-checkout salon-card-checkout'", details)
         material = self.html.index("class='compact-course-material salon-material-link'", checkout)
@@ -66,7 +71,7 @@ class RenderedSalonTest(unittest.TestCase):
         venue_map = self.html.index("class='course-venue-map'", salon_end)
         self.assertLess(salon_start, salon_end)
         self.assertLess(salon_end, venue_map)
-        self.assertIn("8つのメリット・内容・参加方法を見る", self.html)
+        self.assertIn("メリット・内容・参加方法を見る", self.html)
         self.assertIn(
             "class='compact-course-material salon-material-link' href='/lectures/2026-07-ai-online-salon-practice.html'",
             self.html,

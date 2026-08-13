@@ -1,5 +1,5 @@
 ---
-title: "AI時代、経験者が再び強くなる理由"
+title: "経験が10倍になる？AI時代、経験者が再び強くなる理由"
 date: 2026-08-09
 authorship_note: "※内容は運営者が考え、AIで整えています。"
 video: /media/ai-experience-3d-20260810/reel.mp4

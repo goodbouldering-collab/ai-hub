@@ -12,10 +12,13 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 BUILDER_PATH = ROOT / "site" / "build_site.py"
+PORTAL_PATH = ROOT / "site" / "build_portal.py"
 ARTICLE_PATH = ROOT / "content" / "blog" / "2026-08-06-ai-work-design-future.md"
+EXPERIENCE_ARTICLE_PATH = ROOT / "content" / "blog" / "2026-08-09-ai-experience-3d-reality.md"
 BLOG_DIR = ROOT / "content" / "blog"
 LECTURE_DIR = ROOT / "content" / "lectures"
 FINAL_TITLE = "AI時代にデザインは不要になるのか？ むしろ必要になる「経験」と「仕事をデザインする力」"
+EXPERIENCE_TITLE = "経験が10倍になる？AI時代、経験者が再び強くなる理由"
 CANONICAL_AUTHORSHIP_NOTE = "※内容は運営者が考え、AIで整えています。"
 APPROVED_AUTHORSHIP_NOTE = CANONICAL_AUTHORSHIP_NOTE
 ARTICLE_BODY_SHA256 = "c88fcb045f69a40a8e990e75a77254954368f72ea41151387d9071899ff0f351"
@@ -32,6 +35,10 @@ SPEC = importlib.util.spec_from_file_location("build_site", BUILDER_PATH)
 assert SPEC and SPEC.loader
 builder = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(builder)
+PORTAL_SPEC = importlib.util.spec_from_file_location("build_portal", PORTAL_PATH)
+assert PORTAL_SPEC and PORTAL_SPEC.loader
+portal = importlib.util.module_from_spec(PORTAL_SPEC)
+PORTAL_SPEC.loader.exec_module(portal)
 
 
 def load_article() -> tuple[dict, str]:
@@ -221,6 +228,33 @@ class BlogAuthorshipNoteTest(unittest.TestCase):
             with Image.open(asset) as image:
                 self.assertEqual(image.format, "WEBP", reference)
                 self.assertEqual(image.size, (1672, 941), reference)
+
+
+class ExperienceArticleTitleTest(unittest.TestCase):
+    def test_title_is_shared_by_article_heading_and_search_metadata(self) -> None:
+        frontmatter, _ = EXPERIENCE_ARTICLE_PATH.read_text(encoding="utf-8").split("---", 2)[1:]
+        meta = yaml.safe_load(frontmatter)
+        page = builder.render_content_page(
+            meta["title"],
+            meta,
+            "<p>本文</p>",
+            "<nav></nav>",
+            page_path="blog/2026-08-09-ai-experience-3d-reality.html",
+            kind="blog",
+        )
+        jsonld_match = re.search(
+            r"<script type='application/ld\+json'>(.*?)</script>", page
+        )
+        self.assertIsNotNone(jsonld_match)
+        assert jsonld_match is not None
+        jsonld = json.loads(jsonld_match.group(1))
+
+        self.assertEqual(meta["title"], EXPERIENCE_TITLE)
+        self.assertIn(f"<h3>{EXPERIENCE_TITLE}</h3>", portal._render_blog_teaser())
+        self.assertIn(f"<h1>{EXPERIENCE_TITLE}</h1>", page)
+        self.assertIn(f"<title>{EXPERIENCE_TITLE} | AI相談</title>", page)
+        self.assertIn(f"<meta property='og:title' content='{EXPERIENCE_TITLE}'>", page)
+        self.assertEqual(jsonld["headline"], EXPERIENCE_TITLE)
 
 class VercelSupabaseBoundariesBlogTest(unittest.TestCase):
     ARTICLE_PATH = ROOT / "content" / "blog" / "2026-08-08-vercel-supabase-d1-r2-boundaries.md"

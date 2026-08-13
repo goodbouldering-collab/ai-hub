@@ -18,7 +18,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/gettyimages-2275749204.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.746068936881%2C100%2C78.507862126237&amp;w=1200",
-      "published": "2026-08-13T15:28:39-04:00"
+      "published": "2026-08-13T15:28:39-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "b290c71151657ace",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/Suno_Studio2.0_Press_Hero.jpg?quality=90&amp;strip=all&amp;crop=0%2C3.4613147178592%2C100%2C93.077370564282&amp;w=1200",
-      "published": "2026-08-13T12:00:00-04:00"
+      "published": "2026-08-13T12:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "bcd5fb0f0f52b044",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/CullyHillBadge.jpg?quality=90&amp;strip=all&amp;crop=0%2C0%2C100%2C90.06196263029&amp;w=1200",
-      "published": "2026-08-13T11:30:00-04:00"
+      "published": "2026-08-13T11:30:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "365e0eebad2e8813",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/VRG_DCD_081226.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-08-13T10:10:31-04:00"
+      "published": "2026-08-13T10:10:31-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "b4d553a53a633582",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/IMG_4636.png?quality=90&amp;strip=all&amp;crop=0%2C3.4613147178592%2C100%2C93.077370564282&amp;w=1200",
-      "published": "2026-08-13T09:30:00-04:00"
+      "published": "2026-08-13T09:30:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "13df58856ac841e3",
@@ -113,7 +123,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/vSnQt-ZZ_Lo/hqdefault.jpg",
-      "published": "2026-08-13T17:08:21+00:00"
+      "published": "2026-08-13T17:08:21+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "81ffe515c17d8662",
@@ -132,7 +144,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/vVyScRUufTM/hqdefault.jpg",
-      "published": "2026-08-13T15:37:42+00:00"
+      "published": "2026-08-13T15:37:42+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "544897612c034ebd",
@@ -151,7 +165,9 @@
         "freshness": 3.0
       },
       "thumbnail": "",
-      "published": "2026-08-13T03:03:17+00:00"
+      "published": "2026-08-13T03:03:17+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "3977d1e4e5277ea2",
@@ -170,7 +186,9 @@
         "freshness": 3.0
       },
       "thumbnail": "",
-      "published": "2026-08-12T23:59:23+00:00"
+      "published": "2026-08-12T23:59:23+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "ff497ccd994b77bb",
@@ -189,7 +207,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/SZ2Qy8xcDYY/hqdefault.jpg",
-      "published": "2026-08-13T10:00:24+00:00"
+      "published": "2026-08-13T10:00:24+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     }
   ]
 }

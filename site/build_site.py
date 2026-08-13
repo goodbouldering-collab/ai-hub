@@ -25,6 +25,9 @@ except Exception:
     pass
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from public_navigation import render_desktop_navigation, render_mobile_navigation
+
 TOP10_JSON = ROOT / "outputs" / "top10.json"
 ARCHIVE_DIR = ROOT / "outputs" / "archive"
 GENRES_YAML = ROOT / "config" / "genres.yaml"
@@ -109,12 +112,8 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
     """
     home_href = _resolve_nav_href("index.html", path_prefix)
     safe_home = html.escape(home_href, quote=True) if home_href else "/"
-    agent_class = "nav-link nav-essential nav-current" if current_id == "agent-course" else "nav-link nav-essential"
-    agent_current = " aria-current='page'" if current_id == "agent-course" else ""
-    lecture_class = "nav-link nav-essential nav-current" if current_id == "lectures" else "nav-link nav-essential"
-    lecture_current = " aria-current='page'" if current_id == "lectures" else ""
-    blog_class = "nav-link nav-essential nav-current" if current_id == "blog" else "nav-link nav-essential"
-    blog_current = " aria-current='page'" if current_id == "blog" else ""
+    desktop_navigation = render_desktop_navigation(current_id=current_id)
+    mobile_navigation = render_mobile_navigation(current_id=current_id)
     run_action = (
         "<button class='header-run-action' id='run-btn' type='button'>巡回実行</button>"
         "<span class='run-status' id='run-status' aria-live='polite'></span>"
@@ -126,16 +125,7 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
         "<div class='site-header-inner'>"
         f"<a class='site-logo' href='{safe_home}' aria-label='AI相談 彦根 トップへ'>"
         "<span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span></span></a>"
-        "<nav class='site-nav' aria-label='メインナビ'>"
-        "<a class='nav-link nav-essential' href='/'>ホーム</a>"
-        f"<a class='{agent_class}' href='/lectures/2026-04-ai-kihon.html'{agent_current}>AIエージェント講習</a>"
-        "<a class='nav-link nav-essential' href='/#all-works'>実績</a>"
-        f"<a class='{blog_class}' href='/blog/index.html'{blog_current}>ブログ</a>"
-        f"<a class='{lecture_class}' href='/#lectures'{lecture_current}>資料</a>"
-        "<a class='nav-link nav-essential' href='/#faq'>FAQ</a>"
-        "<a class='nav-cta' href='/#contact'>個別相談</a>"
-        "<a class='nav-link nav-essential nav-salon' href='/#seven-day-courses'>サロン</a>"
-        "</nav>"
+        f"<nav class='site-nav' aria-label='メインナビ'>{desktop_navigation}</nav>"
         f"{run_action}"
         "<button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' type='button' aria-label='メニューを開く' aria-controls='mobile-nav' aria-expanded='false'>"
         "<span class='mobile-toggle-icon' aria-hidden='true'><span></span><span></span><span></span></span>"
@@ -144,19 +134,7 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
         "</div>"
         "<div class='mobile-nav generated-mobile-nav' id='mobile-nav' aria-hidden='true'>"
         "<div class='mobile-nav-panel mobile-nav-panel--public'>"
-        "<div class='mobile-nav-head'><div class='mobile-nav-heading'><small>PUBLIC MENU</small><strong>メニュー</strong></div></div>"
-        "<nav class='mobile-public-links' aria-label='公開ページメニュー'>"
-        "<a href='/'><span>ホーム</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
-        f"<a href='/lectures/2026-04-ai-kihon.html'{agent_current}><span>AIエージェント講習</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
-        "<a href='/#all-works'><span>実績</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
-        "<a href='/blog/index.html'><span>ブログ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
-        "<a href='/#lectures'><span>資料</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
-        "<a href='/#faq'><span>FAQ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
-        "<a class='mobile-public-link--cta' href='/#contact'><span>個別相談</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
-        "<a href='/#seven-day-courses'><span>AIオンラインサロン</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
-        "</nav><div class='mobile-nav-admin'><span class='mobile-nav-label'>管理</span>"
-        "<a class='mobile-admin-link' href='/admin'><span class='mobile-admin-link-copy'><strong>管理ページ</strong><small>運営者ログイン</small></span>"
-        "<span class='mobile-link-arrow' aria-hidden='true'>›</span></a></div>"
+        f"{mobile_navigation}"
         "</div></div></header>"
         "<script>(function(){"
         "var b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav'),x=b?b.querySelector('.mobile-toggle-text'):null,m=window.matchMedia('(min-width: 901px)');"
@@ -2916,28 +2894,6 @@ header.site-header .site-nav a.nav-link.nav-essential.nav-current[href]:focus-vi
   .generated-mobile-nav.open .mobile-nav-panel--public {
     transform: translateX(0);
   }
-  .generated-mobile-nav .mobile-nav-head {
-    position: sticky;
-    top: 0;
-    z-index: 2;
-    min-height: 68px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    padding: 12px 2px;
-    background: rgba(255,255,255,.98);
-    border-bottom: 1px solid rgba(10,23,40,.12);
-  }
-  .generated-mobile-nav .mobile-nav-heading { display: grid; gap: 2px; }
-  .generated-mobile-nav .mobile-nav-heading small {
-    color: #075fc8;
-    font-size: 10px;
-    font-weight: 900;
-    letter-spacing: .12em;
-    line-height: 1.2;
-  }
-  .generated-mobile-nav .mobile-nav-heading strong { color: #0a1728; font-size: 18px; line-height: 1.2; }
   .generated-mobile-nav .mobile-public-links { display: grid; }
   .generated-mobile-nav .mobile-public-links a {
     min-height: 50px !important;

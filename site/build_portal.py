@@ -99,6 +99,9 @@ except Exception:
     pass
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from public_navigation import render_desktop_navigation, render_mobile_navigation
+
 BUSINESSES_YAML = ROOT / "config" / "businesses.yaml"
 PROFILE_YAML = ROOT / "config" / "profile.yaml"
 PORTFOLIO_YAML = ROOT / "config" / "portfolio.yaml"
@@ -14822,33 +14825,18 @@ button:focus-visible {
 
 
 def _render_header_focused() -> str:
+    desktop_navigation = render_desktop_navigation()
+    mobile_navigation = render_mobile_navigation()
     return (
         "<header class='site-header' id='site-header'><div class='site-header-inner'>"
         "<a class='site-logo' href='/' aria-label='AI相談 彦根 トップへ'>"
         "<span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span></span></a>"
-        "<nav class='site-nav' aria-label='メインナビ'>"
-        "<a class='nav-link nav-essential' href='/'>ホーム</a>"
-        "<a class='nav-link nav-essential' href='/lectures/2026-04-ai-kihon.html'>AIエージェント講習</a>"
-        "<a class='nav-link nav-essential' href='/#all-works'>実績</a>"
-        "<a class='nav-link nav-essential' href='/blog/index.html'>ブログ</a>"
-        "<a class='nav-link nav-essential' href='/#lectures'>資料</a>"
-        "<a class='nav-link nav-essential' href='/#faq'>FAQ</a>"
-        "<a class='nav-cta' href='/#contact'>個別相談</a>"
-        "<a class='nav-link nav-essential nav-salon' href='/#seven-day-courses'>サロン</a></nav>"
+        f"<nav class='site-nav' aria-label='メインナビ'>{desktop_navigation}</nav>"
         "<button class='mobile-toggle' id='mobile-toggle' type='button' aria-label='メニューを開く' aria-controls='mobile-nav' aria-expanded='false'>"
         "<span class='mobile-toggle-icon' aria-hidden='true'><span></span><span></span><span></span></span>"
         "<span class='mobile-toggle-text'>メニュー</span></button>"
         "</div><div class='mobile-nav' id='mobile-nav' aria-hidden='true'><div class='mobile-nav-panel mobile-nav-panel--public'>"
-        "<nav class='mobile-public-links' aria-label='公開ページメニュー'>"
-        "<a href='/'><span>ホーム</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
-        "<a href='/#all-works'><span>実績</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
-        "<a href='/blog/index.html'><span>ブログ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
-        "<a href='/#lectures'><span>資料</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
-        "<a href='/#faq'><span>FAQ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
-        "<a href='/#seven-day-courses'><span>AIオンラインサロン</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a>"
-        "</nav><div class='mobile-nav-admin'><span class='mobile-nav-label'>管理</span>"
-        "<a class='mobile-admin-link' href='/admin'><span class='mobile-admin-link-copy'><strong>管理ページ</strong><small>運営者ログイン</small></span>"
-        "<span class='mobile-link-arrow' aria-hidden='true'>›</span></a></div>"
+        f"{mobile_navigation}"
         "</div></div></header>"
     )
 

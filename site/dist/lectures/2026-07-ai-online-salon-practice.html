@@ -701,36 +701,6 @@ footer {
   .thumb { width:100%; height:180px; }
 }
 
-.blog-authorship-note {
-  width: min(100%, 920px);
-  margin: 0 auto 26px;
-  padding: 16px 20px;
-  border: 1px solid rgba(37,99,235,.18);
-  border-radius: 16px;
-  background: var(--primary-bg);
-  color: var(--text);
-}
-.blog-authorship-note__label {
-  display: block;
-  margin-bottom: 4px;
-  color: var(--primary);
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: .06em;
-}
-.blog-authorship-note p {
-  margin: 0;
-  color: var(--text-soft);
-  font-size: 14px;
-  line-height: 1.75;
-}
-@media (max-width: 540px) {
-  .blog-authorship-note {
-    margin-bottom: 18px;
-    padding: 13px 14px;
-    border-radius: 12px;
-  }
-}
 .content-wrap {
   background: var(--bg-white);
   border: 1px solid var(--line);
@@ -1841,8 +1811,8 @@ html, body, .hero, .biz-card, .service-card, .pkg-card, .faq-item, .stat,
   transition: background-color .3s ease, color .3s ease, border-color .3s ease;
 }
 * { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; overflow-x: hidden; }
-html { scroll-behavior: smooth; }
+html, body { margin: 0; padding: 0; overflow-x: clip; overflow-y: visible; }
+html { scroll-behavior: auto; }
 body {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
   color: var(--text);
@@ -11234,28 +11204,6 @@ header.site-header .site-nav a.nav-link.nav-essential.nav-current[href]:focus-vi
   .generated-mobile-nav.open .mobile-nav-panel--public {
     transform: translateX(0);
   }
-  .generated-mobile-nav .mobile-nav-head {
-    position: sticky;
-    top: 0;
-    z-index: 2;
-    min-height: 68px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    padding: 12px 2px;
-    background: rgba(255,255,255,.98);
-    border-bottom: 1px solid rgba(10,23,40,.12);
-  }
-  .generated-mobile-nav .mobile-nav-heading { display: grid; gap: 2px; }
-  .generated-mobile-nav .mobile-nav-heading small {
-    color: #075fc8;
-    font-size: 10px;
-    font-weight: 900;
-    letter-spacing: .12em;
-    line-height: 1.2;
-  }
-  .generated-mobile-nav .mobile-nav-heading strong { color: #0a1728; font-size: 18px; line-height: 1.2; }
   .generated-mobile-nav .mobile-public-links { display: grid; }
   .generated-mobile-nav .mobile-public-links a {
     min-height: 50px !important;
@@ -11401,7 +11349,7 @@ header.site-header:hover {
   }
 })();
 </script>
-<header class='site-header scrolled' id='site-header' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html' aria-label='AI相談 彦根 トップへ'><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span></span></a><nav class='site-nav' aria-label='メインナビ'><a class='nav-link nav-essential' href='/'>ホーム</a><a class='nav-link nav-essential' href='/lectures/2026-04-ai-kihon.html'>AIエージェント講習</a><a class='nav-link nav-essential' href='/#all-works'>実績</a><a class='nav-link nav-essential' href='/blog/index.html'>ブログ</a><a class='nav-link nav-essential nav-current' href='/#lectures' aria-current='page'>資料</a><a class='nav-link nav-essential' href='/#faq'>FAQ</a><a class='nav-cta' href='/#contact'>個別相談</a><a class='nav-link nav-essential nav-salon' href='/#seven-day-courses'>サロン</a></nav><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' type='button' aria-label='メニューを開く' aria-controls='mobile-nav' aria-expanded='false'><span class='mobile-toggle-icon' aria-hidden='true'><span></span><span></span><span></span></span><span class='mobile-toggle-text'>メニュー</span></button></div><div class='mobile-nav generated-mobile-nav' id='mobile-nav' aria-hidden='true'><div class='mobile-nav-panel mobile-nav-panel--public'><div class='mobile-nav-head'><div class='mobile-nav-heading'><small>PUBLIC MENU</small><strong>メニュー</strong></div></div><nav class='mobile-public-links' aria-label='公開ページメニュー'><a href='/'><span>ホーム</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/lectures/2026-04-ai-kihon.html'><span>AIエージェント講習</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#all-works'><span>実績</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/blog/index.html'><span>ブログ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#lectures'><span>資料</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#faq'><span>FAQ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a class='mobile-public-link--cta' href='/#contact'><span>個別相談</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#seven-day-courses'><span>AIオンラインサロン</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a></nav><div class='mobile-nav-admin'><span class='mobile-nav-label'>管理</span><a class='mobile-admin-link' href='/admin'><span class='mobile-admin-link-copy'><strong>管理ページ</strong><small>運営者ログイン</small></span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a></div></div></div></header><script>(function(){var b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav'),x=b?b.querySelector('.mobile-toggle-text'):null,m=window.matchMedia('(min-width: 901px)');function setMobile(o){if(!n||!b)return;if(!o&&(n.contains(document.activeElement)||document.activeElement===b)){var f=m.matches?document.querySelector('.site-logo'):b;if(f)f.focus({preventScroll:true});}n.classList.toggle('open',o);n.setAttribute('aria-hidden',o?'false':'true');b.setAttribute('aria-expanded',o?'true':'false');b.setAttribute('aria-label',o?'メニューを閉じる':'メニューを開く');if(x)x.textContent=o?'閉じる':'メニュー';document.body.classList.toggle('mobile-menu-open',o);}function closeMobile(){setMobile(false);}function closeMobileAtDesktop(e){if(e.matches)closeMobile();}if(b&&n){b.addEventListener('click',function(e){e.stopPropagation();setMobile(!n.classList.contains('open'));});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMobile);});n.addEventListener('click',function(e){if(e.target===n)closeMobile();});}if(m.addEventListener)m.addEventListener('change',closeMobileAtDesktop);else if(m.addListener)m.addListener(closeMobileAtDesktop);document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeMobile();return;}if(e.key!=='Tab'||!n||!n.classList.contains('open'))return;var a=[b].concat(Array.prototype.slice.call(n.querySelectorAll('a[href]'))),f=a[0],l=a[a.length-1];if(e.shiftKey&&document.activeElement===f){e.preventDefault();l.focus();}else if(!e.shiftKey&&document.activeElement===l){e.preventDefault();f.focus();}});})();</script><main id='main-content'><header><h1>AIオンラインサロン受講資料 — 成果を持ち寄り、次の一手へ</h1><div class='speaker-meta'><span class='role'>実践</span><span>目安 20分</span></div></header><figure class='lecture-cover'><img src='/lectures/assets/covers/2026-07-ai-online-salon-practice.png' alt='フォルダーに整理したAIの成果を持ち寄り、講師と会員がライブトークで検証して次の行動を決める流れ' width='1200' height='630' fetchpriority='high' decoding='async'></figure><div class='content-wrap lecture-content' id='lecture-body'><section class='lecture-shell' aria-label='この資料の読み方'><div class='lecture-shell-title'>この資料の読み方</div><p class='lecture-shell-desc'>Codexで仕事と成果物をフォルダーに整理し、毎週のライブトークへ持ち寄ります。講師と会員で良い点・直す点・次の一手を確認し、事業を前へ進めるための実践資料です。</p><div class='lecture-shell-meta'><div class='lecture-meta-item'><span>対象</span><b>AIオンラインサロンの参加者、Codexを仕事で使い始めた事業者、AIの成果を一人で判断することに不安がある人</b></div><div class='lecture-meta-item'><span>ゴール</span><b>今週の成果を安全に持ち寄り、講師と会員の意見から、次の1週間で実行することを1つ決められる</b></div><div class='lecture-meta-item'><span>コース内順</span><b>1番目</b></div></div><div class='lecture-shell-actions'><a class='lecture-shell-link primary' href='#lecture-toc'>目次を見る</a><a class='lecture-shell-link' href='./index.html'>受講資料一覧</a><a class='lecture-shell-link' href='../programming-map.html'>AIコーディング講習</a></div></section><div class='content-toc' id='lecture-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#この受講資料は誰向けか'>この受講資料は誰向けか</a></li><li><a href='#今日できるようになること'>今日できるようになること</a></li><li><a href='#まず結論'>まず結論</a></li><li><a href='#受講前の準備-フォルダーを整える'>受講前の準備 — フォルダーを整える</a></li><li><a href='#ライブトークへ持ち寄るもの'>ライブトークへ持ち寄るもの</a></li><li><a href='#当日の進め方-60分のライブトーク'>当日の進め方 — 60分のライブトーク</a></li><li><a href='#なぜlineオープンチャットなのか'>なぜLINEオープンチャットなのか</a></li><li><a href='#このサロンのメリット'>このサロンのメリット</a></li><li><a href='#安全に参加するためのルール'>安全に参加するためのルール</a></li><li><a href='#受講後に行うこと'>受講後に行うこと</a></li><li><a href='#できたかチェック'>できたかチェック</a></li><li><a href='#次の導線'>次の導線</a></li><li><a href='#用語・公式情報'>用語・公式情報</a></li></ol></div><h2 id='この受講資料は誰向けか'>この受講資料は誰向けか</h2>
+<header class='site-header scrolled' id='site-header' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html' aria-label='AI相談 彦根 トップへ'><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span></span></a><nav class='site-nav' aria-label='メインナビ'><a class='nav-link nav-essential' href='/'>ホーム</a><a class='nav-link nav-essential' href='/#all-works'>実績</a><a class='nav-link nav-essential' href='/blog/index.html'>ブログ</a><a class='nav-link nav-essential nav-current' href='/#lectures' aria-current='page'>資料</a><a class='nav-link nav-essential' href='/#faq'>FAQ</a><a class='nav-link nav-essential nav-salon' href='/#seven-day-courses'>AIオンラインサロン</a><a class='nav-link nav-essential nav-admin' href='/admin'>管理ページ</a></nav><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' type='button' aria-label='メニューを開く' aria-controls='mobile-nav' aria-expanded='false'><span class='mobile-toggle-icon' aria-hidden='true'><span></span><span></span><span></span></span><span class='mobile-toggle-text'>メニュー</span></button></div><div class='mobile-nav generated-mobile-nav' id='mobile-nav' aria-hidden='true'><div class='mobile-nav-panel mobile-nav-panel--public'><nav class='mobile-public-links' aria-label='公開ページメニュー'><a href='/'><span>ホーム</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#all-works'><span>実績</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/blog/index.html'><span>ブログ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#lectures' aria-current='page'><span>資料</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#faq'><span>FAQ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#seven-day-courses'><span>AIオンラインサロン</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a></nav><div class='mobile-nav-admin'><span class='mobile-nav-label'>管理</span><a class='mobile-admin-link' href='/admin'><span class='mobile-admin-link-copy'><strong>管理ページ</strong><small>運営者ログイン</small></span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a></div></div></div></header><script>(function(){var b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav'),x=b?b.querySelector('.mobile-toggle-text'):null,m=window.matchMedia('(min-width: 901px)');function setMobile(o){if(!n||!b)return;if(!o&&(n.contains(document.activeElement)||document.activeElement===b)){var f=m.matches?document.querySelector('.site-logo'):b;if(f)f.focus({preventScroll:true});}n.classList.toggle('open',o);n.setAttribute('aria-hidden',o?'false':'true');b.setAttribute('aria-expanded',o?'true':'false');b.setAttribute('aria-label',o?'メニューを閉じる':'メニューを開く');if(x)x.textContent=o?'閉じる':'メニュー';document.body.classList.toggle('mobile-menu-open',o);}function closeMobile(){setMobile(false);}function closeMobileAtDesktop(e){if(e.matches)closeMobile();}if(b&&n){b.addEventListener('click',function(e){e.stopPropagation();setMobile(!n.classList.contains('open'));});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMobile);});n.addEventListener('click',function(e){if(e.target===n)closeMobile();});}if(m.addEventListener)m.addEventListener('change',closeMobileAtDesktop);else if(m.addListener)m.addListener(closeMobileAtDesktop);document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeMobile();return;}if(e.key!=='Tab'||!n||!n.classList.contains('open'))return;var a=[b].concat(Array.prototype.slice.call(n.querySelectorAll('a[href]'))),f=a[0],l=a[a.length-1];if(e.shiftKey&&document.activeElement===f){e.preventDefault();l.focus();}else if(!e.shiftKey&&document.activeElement===l){e.preventDefault();f.focus();}});})();</script><main id='main-content'><header><h1>AIオンラインサロン受講資料 — 成果を持ち寄り、次の一手へ</h1><div class='speaker-meta'><span class='role'>実践</span><span>目安 20分</span></div></header><p>※内容は運営者が考え、AIで整えています。</p><figure class='lecture-cover'><img src='/lectures/assets/covers/2026-07-ai-online-salon-practice.png' alt='フォルダーに整理したAIの成果を持ち寄り、講師と会員がライブトークで検証して次の行動を決める流れ' width='1200' height='630' fetchpriority='high' decoding='async'></figure><div class='content-wrap lecture-content' id='lecture-body'><section class='lecture-shell' aria-label='この資料の読み方'><div class='lecture-shell-title'>この資料の読み方</div><p class='lecture-shell-desc'>Codexで仕事と成果物をフォルダーに整理し、毎週のライブトークへ持ち寄ります。講師と会員で良い点・直す点・次の一手を確認し、事業を前へ進めるための実践資料です。</p><div class='lecture-shell-meta'><div class='lecture-meta-item'><span>対象</span><b>AIオンラインサロンの参加者、Codexを仕事で使い始めた事業者、AIの成果を一人で判断することに不安がある人</b></div><div class='lecture-meta-item'><span>ゴール</span><b>今週の成果を安全に持ち寄り、講師と会員の意見から、次の1週間で実行することを1つ決められる</b></div><div class='lecture-meta-item'><span>コース内順</span><b>1番目</b></div></div><div class='lecture-shell-actions'><a class='lecture-shell-link primary' href='#lecture-toc'>目次を見る</a><a class='lecture-shell-link' href='./index.html'>受講資料一覧</a><a class='lecture-shell-link' href='../programming-map.html'>AIコーディング講習</a></div></section><div class='content-toc' id='lecture-toc'><div class='toc-label'>🗂 目次</div><ol><li><a href='#この受講資料は誰向けか'>この受講資料は誰向けか</a></li><li><a href='#今日できるようになること'>今日できるようになること</a></li><li><a href='#まず結論'>まず結論</a></li><li><a href='#受講前の準備-フォルダーを整える'>受講前の準備 — フォルダーを整える</a></li><li><a href='#ライブトークへ持ち寄るもの'>ライブトークへ持ち寄るもの</a></li><li><a href='#当日の進め方-60分のライブトーク'>当日の進め方 — 60分のライブトーク</a></li><li><a href='#なぜlineオープンチャットなのか'>なぜLINEオープンチャットなのか</a></li><li><a href='#このサロンのメリット'>このサロンのメリット</a></li><li><a href='#安全に参加するためのルール'>安全に参加するためのルール</a></li><li><a href='#受講後に行うこと'>受講後に行うこと</a></li><li><a href='#できたかチェック'>できたかチェック</a></li><li><a href='#次の導線'>次の導線</a></li><li><a href='#用語・公式情報'>用語・公式情報</a></li></ol></div><h2 id='この受講資料は誰向けか'>この受講資料は誰向けか</h2>
 <p>この資料は、AIオンラインサロンで学びを「聞いて終わり」にせず、仕事の成果へ変えたい人のための受講資料です。</p>
 <ul>
 <li>Codexを使い始めたが、フォルダーや成果物の整理方法が分からない</li>

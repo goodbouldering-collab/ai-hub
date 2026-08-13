@@ -6,8 +6,8 @@
   --cc-line: #dce4f2;
   --cc-soft: #f6f8ff;
   --cc-green: #16846b;
-  --cc-amber: #a86f13;
-  --cc-rose: #b84f64;
+  --cc-amber: #965f0c;
+  --cc-rose: #ad485d;
 }
 
 body.command-center-page { min-height: 100vh; background: #f8fbff !important; color: var(--cc-ink) !important; }

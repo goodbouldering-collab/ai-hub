@@ -5,6 +5,17 @@ import test from "node:test";
 const root = new URL("../", import.meta.url);
 const marketViews = ["market", "screener", "security", "trade-plan", "trade-plans", "trades", "market-sources"];
 
+function relativeLuminance(hex) {
+  const channels = [1, 3, 5].map((index) => Number.parseInt(hex.slice(index, index + 2), 16) / 255);
+  const [red, green, blue] = channels.map((value) => value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4);
+  return 0.2126 * red + 0.7152 * green + 0.0722 * blue;
+}
+
+function contrastRatio(foreground, background) {
+  const luminances = [relativeLuminance(foreground), relativeLuminance(background)].sort((left, right) => right - left);
+  return (luminances[0] + 0.05) / (luminances[1] + 0.05);
+}
+
 test("market compass sections are independent protected views with a shared submenu", async () => {
   const html = await readFile(new URL("site/static/admin/command-center.html", root), "utf8");
   const page = await readFile(new URL("api/admin/command-center-page.ts", root), "utf8");
@@ -58,4 +69,12 @@ test("market compass page routes and BFF routes are explicit before the generic 
 test("command center hero keeps readable contrast on its dark gradient", async () => {
   const css = await readFile(new URL("site/static/admin/command-center.css", root), "utf8");
   assert.match(css, /body\.command-center-page\s+\.cc-hero\s+h1\s*\{[^}]*color:\s*#fff\s*!important/i);
+});
+
+test("command center supporting text meets WCAG AA contrast on its light surfaces", async () => {
+  const css = await readFile(new URL("site/static/admin/command-center.css", root), "utf8");
+  const muted = css.match(/--cc-muted:\s*(#[0-9a-f]{6})/i)?.[1];
+  assert.ok(muted, "--cc-muted must be a six-digit color");
+  assert.ok(contrastRatio(muted, "#ffffff") >= 4.5, `${muted} must reach 4.5:1 on white`);
+  assert.ok(contrastRatio(muted, "#f6f8ff") >= 4.5, `${muted} must reach 4.5:1 on the checklist surface`);
 });

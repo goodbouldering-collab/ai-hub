@@ -4423,3 +4423,84 @@ body.admin-shared-menu-active .admin-shared-header .mobile-nav .mobile-link-list
     top: calc(var(--admin-shared-menu-height) + var(--admin-shared-quick-height)) !important;
   }
 }
+
+/* ---- Unified admin studio shell ---- */
+body[data-app="blog"],
+body[data-app="reel"] {
+  --ink: var(--admin-public-ink);
+  --muted: var(--admin-public-muted);
+  --line: var(--admin-public-line);
+  --green: var(--admin-public-blue);
+  --pale: #EEF2FF;
+  --accent: var(--admin-public-blue);
+  --admin-studio-menu-offset: var(--admin-shared-menu-height);
+  background: #F8FBFF !important;
+  color: var(--admin-public-ink) !important;
+}
+
+body.admin-studio-page.admin-shared-menu-offset {
+  padding-top: var(--admin-studio-menu-offset) !important;
+}
+
+body.admin-studio-page.admin-shared-menu-offset .topbar {
+  position: sticky !important;
+  top: var(--admin-studio-menu-offset) !important;
+  z-index: 20 !important;
+  background: #FFFFFF !important;
+  border-bottom-color: var(--admin-public-line) !important;
+  box-shadow: 0 8px 20px rgba(39,60,104,.05) !important;
+}
+
+body.admin-studio-page.admin-shared-menu-offset .studio-tabs {
+  position: sticky !important;
+  top: calc(var(--admin-studio-menu-offset) + 78px) !important;
+  z-index: 19 !important;
+  background: #F8FBFF !important;
+  border-bottom-color: var(--admin-public-line) !important;
+}
+
+body.admin-studio-page .studio-tabs a {
+  border-color: var(--admin-public-line) !important;
+  background: #FFFFFF !important;
+  color: var(--admin-public-muted) !important;
+}
+
+body.admin-studio-page .studio-tabs a.active,
+body.admin-studio-page .studio-tabs a:hover,
+body.admin-studio-page .studio-tabs a:focus-visible {
+  border-color: var(--admin-public-blue) !important;
+  background: #E9EFFF !important;
+  color: var(--admin-public-blue) !important;
+  outline: none !important;
+}
+
+body.admin-studio-page .studio-tabs a.active {
+  box-shadow: inset 0 0 0 1px var(--admin-public-blue) !important;
+}
+
+body.admin-studio-page .steps ol {
+  top: calc(var(--admin-studio-menu-offset) + 148px) !important;
+}
+
+@media (max-width: 1100px) {
+  body[data-app="blog"],
+  body[data-app="reel"] {
+    --admin-studio-menu-offset: calc(var(--admin-shared-menu-height) + var(--admin-shared-quick-height));
+  }
+}
+
+@media (max-width: 720px) {
+  body.admin-studio-page.admin-shared-menu-offset .topbar,
+  body.admin-studio-page.admin-shared-menu-offset .studio-tabs {
+    position: relative !important;
+    top: auto !important;
+  }
+
+  body.admin-studio-page .steps {
+    top: var(--admin-studio-menu-offset) !important;
+  }
+
+  body.admin-studio-page .steps ol {
+    top: auto !important;
+  }
+}

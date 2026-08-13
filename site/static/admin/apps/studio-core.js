@@ -209,8 +209,8 @@ export function configureStudioShell() {
   const blog = $("#studio-nav-blog");
   const reel = $("#studio-nav-reel");
   const back = $("#studio-nav-back");
-  if (blog) blog.href = STUDIO_CONFIG.localAdmin ? "./blog.html" : "/blog";
-  if (reel) reel.href = STUDIO_CONFIG.localAdmin ? "./reel.html" : "/reel";
+  if (blog) blog.href = STUDIO_CONFIG.localAdmin ? "/admin/apps/blog" : "/blog";
+  if (reel) reel.href = STUDIO_CONFIG.localAdmin ? "/admin/apps/reel" : "/reel";
   if (back) {
     back.href = STUDIO_CONFIG.localAdmin ? STUDIO_CONFIG.adminUrl : "/studio";
     back.textContent = STUDIO_CONFIG.localAdmin ? "管理画面へ戻る" : "入口";

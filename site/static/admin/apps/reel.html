@@ -5,58 +5,25 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
   <title>AI相談｜一歩踏み出す人のAI講習・実践支援【彦根・滋賀】</title>
-  <link rel="stylesheet" href="./styles.css">
-  <link rel="stylesheet" href="./styles-content.css">
+  <link rel="stylesheet" href="/admin/apps/styles.css">
+  <link rel="stylesheet" href="/admin/apps/styles-content.css">
   <link rel="stylesheet" href="/admin/admin-common.css?v=20260803-clear-sky-rose-2">
   <script src="/admin/admin-menu.js" defer></script>
   <style>
-    :root { --ink:#0a1728; --muted:#526174; --line:#cbd9e8; --green:#075fc8; --pale:#eef6ff; --accent:#075fc8; }
-    .public-admin-header { position:sticky; top:0; z-index:90; height:74px; background:rgba(255,255,255,.97); border-bottom:1px solid rgba(10,23,40,.1); box-shadow:0 8px 30px rgba(10,23,40,.08); }
-    .public-admin-header-inner { width:min(100%,1376px); height:74px; margin:auto; padding:10px 28px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
-    .public-admin-logo { display:inline-flex; align-items:baseline; gap:5px; color:var(--ink); font-size:23px; font-weight:900; text-decoration:none; white-space:nowrap; }
-    .public-admin-logo strong { color:var(--green); }
-    .public-admin-nav { display:flex; align-items:center; gap:18px; }
-    .public-admin-nav a { padding:10px 2px; color:var(--ink); font-size:14px; font-weight:800; text-decoration:none; white-space:nowrap; }
-    .public-admin-nav a:hover,.public-admin-nav a:focus-visible { color:var(--green); outline:none; }
-    .public-admin-nav .nav-cta { padding:12px 20px; border-radius:8px; background:var(--green); color:#fff; box-shadow:0 10px 24px rgba(7,95,200,.18); }
-    .public-mobile-toggle { display:none; width:42px; height:42px; padding:0; border:0; background:transparent; color:var(--ink); cursor:pointer; }
-    .public-mobile-nav { display:none; position:absolute; top:64px; inset-inline:0; padding:14px 18px 20px; background:#fff; border-top:1px solid var(--line); box-shadow:0 20px 38px rgba(10,23,40,.14); }
-    .public-mobile-nav.open { display:block; }
-    .public-mobile-grid { width:min(100%,680px); margin:auto; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
-    .public-mobile-grid a { min-height:52px; display:flex; align-items:center; padding:12px 14px; border:1px solid var(--line); border-radius:10px; background:#f5f9fd; color:var(--ink); font-size:13px; font-weight:850; text-decoration:none; }
-    .topbar { position:relative; top:auto; background:#fff; }
-    .studio-tabs { position:relative; top:auto; background:#f5f9fd; }
     .studio-tabs a.active { background:var(--green); border-color:var(--green); }
     .server-state { background:var(--pale); color:var(--green); }
     .api-key-panel { background:#f5f9fd; }
     .primary { background:var(--green); }
-    input:focus,textarea:focus,select:focus { outline-color:rgba(7,95,200,.45); border-color:var(--green); }
-    @media (max-width:900px) {
-      .public-admin-header,.public-admin-header-inner { height:64px; }
-      .public-admin-header-inner { padding:8px 16px; }
-      .public-admin-logo { font-size:19px; }
-      .public-admin-nav { display:none; }
-      .public-mobile-toggle { display:inline-grid; place-items:center; }
-    }
-    @media (max-width:520px) { .public-mobile-grid { grid-template-columns:1fr; } }
+    input:focus,textarea:focus,select:focus { outline-color:rgba(79,111,216,.45); border-color:var(--green); }
   </style>
 </head>
-<body data-app="reel">
-  <header class="public-admin-header">
-    <div class="public-admin-header-inner">
-      <a class="public-admin-logo" href="/" aria-label="AI相談 彦根 トップへ"><strong>AI相談</strong><span>彦根</span></a>
-      <nav class="public-admin-nav" aria-label="管理ページメニュー">
-        <a href="/admin">管理トップ</a><a href="/admin/blog">ブログ管理</a><a href="/admin/apps/reel/" aria-current="page">リール制作</a><a href="/admin/sns-post">SNS投稿</a><a href="/admin/gubble-sns">SNS分析</a><a class="nav-cta" href="/">公開ページ</a>
-      </nav>
-      <button class="public-mobile-toggle" id="public-mobile-toggle" aria-label="メニュー" aria-controls="public-mobile-nav" aria-expanded="false" type="button"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
-    </div>
-    <div class="public-mobile-nav" id="public-mobile-nav"><div class="public-mobile-grid"><a href="/admin">管理トップ</a><a href="/admin/blog">ブログ管理</a><a href="/admin/apps/reel/">リール制作</a><a href="/admin/sns-post">SNS投稿</a><a href="/admin/gubble-sns">SNS分析</a><a href="/">公開ページ</a><a href="/admin/logout">ログアウト</a></div></div>
-  </header>
+<body class="admin-studio-page admin-shared-menu-offset" data-app="reel">
+  <header class="site-header" id="site-header"><div class="site-header-inner"><a class="site-logo" href="/admin">AI相談 <span>管理ホーム</span></a></div></header>
   <div class="login-gate" id="login-gate" hidden>
     <form class="login-card" id="login-form"><span class="eyebrow">REEL APP SERVER</span><h1>管理画面へログイン</h1><p>リール制作専用の管理画面です。</p><label>管理パスワード<input id="studio-password" type="password" autocomplete="current-password" required></label><button class="primary" type="submit">ログイン</button><span class="login-error" id="login-error"></span></form>
   </div>
-  <header class="topbar"><div><span class="eyebrow">REEL STUDIO</span><h1>リール制作</h1></div><div class="server-state" id="server-state">接続確認中</div></header>
-  <nav class="studio-tabs" aria-label="制作画面"><a class="active" id="studio-nav-reel" href="./reel.html">リール制作</a><a id="studio-nav-back" href="/admin">管理画面へ戻る</a></nav>
+  <section class="topbar" aria-label="リール制作の状況"><div><span class="eyebrow">REEL STUDIO</span><h1>リール制作</h1></div><div class="server-state" id="server-state">接続確認中</div></section>
+  <nav class="studio-tabs" aria-label="制作画面"><a id="studio-nav-blog" href="/admin/apps/blog">ブログ</a><a class="active" id="studio-nav-reel" href="/admin/apps/reel">リール</a><a id="studio-nav-back" href="/admin">管理ホーム</a></nav>
   <section class="api-key-panel" aria-labelledby="api-key-heading">
     <div><span class="eyebrow">API KEY</span><h2 id="api-key-heading">OpenAI APIキー設定</h2><p>このタブを閉じるまでだけ保持し、企画・Sora背景動画生成時に使用します。サーバーやファイルには保存しません。</p></div>
     <div class="api-key-controls"><label>OpenAI APIキー<input id="api-key-input" type="password" autocomplete="off" spellcheck="false" placeholder="sk-... または sk-proj-..."></label><div class="actions"><button class="secondary" id="clear-api-key" type="button" hidden>削除</button><button class="primary" id="save-api-key" type="button">このタブで使用</button></div><span class="api-key-status" id="api-key-status"></span></div>
@@ -131,9 +98,6 @@
   </main>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script>window.CONTENT_STUDIO_CONFIG={"apiBase":"https://business-content-app-server.vercel.app","profileId":"ai-hub","localAdmin":true,"adminUrl":"/admin/blog","publicBase":"/admin/apps"};</script>
-  <script type="module" src="./reel.js"></script>
-  <script>
-  (function(){var button=document.getElementById("public-mobile-toggle"),nav=document.getElementById("public-mobile-nav");if(!button||!nav)return;button.addEventListener("click",function(){var open=!nav.classList.contains("open");nav.classList.toggle("open",open);button.setAttribute("aria-expanded",open?"true":"false");});nav.querySelectorAll("a").forEach(function(link){link.addEventListener("click",function(){nav.classList.remove("open");button.setAttribute("aria-expanded","false");});});})();
-  </script>
+  <script type="module" src="/admin/apps/reel.js"></script>
 </body>
 </html>

@@ -2,6 +2,7 @@
   const primaryItems = [
     { href: "/admin/command-center", label: "実行指令室", description: "予定・指示・相場・Codexをまとめて動かす" },
     { href: "/admin/blog", label: "ブログ管理", description: "記事の作成・編集・公開" },
+    { href: "/admin/apps/blog", label: "ブログ制作", description: "調査から記事の下書きを作る" },
     { href: "/admin/apps/reel/", label: "リール制作", description: "動画と投稿文を作る" },
     { href: "/admin/sns-post", label: "SNS投稿", description: "SNS投稿を準備する" },
     { href: "/admin/gubble-sns", label: "SNS分析", description: "反応と改善点を見る" },
@@ -25,7 +26,26 @@
     { href: "/admin/command-center/market-sources", label: "データ収集状況", description: "取得元と欠損を確認する", group: "相場" },
   ];
 
-  const normalizedPath = window.location.pathname.replace(/\/+$/, "") || "/";
+  function canonicalPath(value) {
+    const path = String(value).split(/[?#]/, 1)[0].replace(/\/+$/, "") || "/";
+    const legacyPageAliases = {
+      "/admin/index.html": "/admin",
+      "/admin/hub.html": "/admin",
+      "/admin/blog.html": "/admin/blog",
+      "/admin/chat.html": "/admin/chat",
+      "/admin/sns-post.html": "/admin/sns-post",
+      "/admin/gubble-sns.html": "/admin/gubble-sns",
+      "/admin/sns-cross-media-dashboard.html": "/admin/gubble-sns",
+      "/admin/command-center.html": "/admin/command-center",
+      "/ops/index.html": "/ops",
+    };
+    if (legacyPageAliases[path]) return legacyPageAliases[path];
+    if (path === "/admin/apps/blog.html") return "/admin/apps/blog";
+    if (path === "/admin/apps/reel.html") return "/admin/apps/reel";
+    return path;
+  }
+
+  const normalizedPath = canonicalPath(window.location.pathname);
 
   const childPageLabels = {
     "/admin/command-center/calendar": ["実行指令室", "カレンダー"],
@@ -35,29 +55,49 @@
     "/admin/command-center/studio": ["実行指令室", "Codex連携"],
     "/admin/command-center/tools": ["実行指令室", "検証・移行"],
     "/admin/command-center/trade": ["実行指令室", "相場羅針盤"],
+    "/admin/command-center/market": ["実行指令室", "市場候補"],
+    "/admin/command-center/screener": ["実行指令室", "財務スクリーナー"],
+    "/admin/command-center/security": ["実行指令室", "銘柄詳細"],
+    "/admin/command-center/trade-plan": ["実行指令室", "取引プラン作成"],
+    "/admin/command-center/trade-plans": ["実行指令室", "登録プラン"],
+    "/admin/command-center/trades": ["実行指令室", "取引記録"],
+    "/admin/command-center/market-sources": ["実行指令室", "データ収集状況"],
+    "/admin/blog/status": ["ブログ管理", "接続状態"],
+    "/admin/blog/settings": ["ブログ管理", "設定"],
+    "/admin/blog/articles": ["ブログ管理", "記事一覧"],
+    "/admin/blog/generate": ["ブログ管理", "AI記事生成"],
+    "/admin/blog/editor": ["ブログ管理", "編集・画像"],
+    "/admin/blog/publish": ["ブログ管理", "公開"],
+    "/ops/prompts": ["OPS", "プロンプト"],
+    "/ops/doc": ["OPS", "資料"],
   };
 
   function pageContext() {
     const exact = childPageLabels[normalizedPath];
     if (exact) return exact;
+    if (normalizedPath === "/admin") return [];
     if (normalizedPath === "/admin/command-center") return ["実行指令室"];
-    if (normalizedPath.startsWith("/admin/blog")) return ["ブログ管理"];
+    if (normalizedPath === "/admin/blog") return ["ブログ管理"];
+    if (normalizedPath.startsWith("/admin/blog")) return ["ブログ管理", "作業ページ"];
+    if (normalizedPath.startsWith("/admin/apps/blog")) return ["ブログ制作"];
     if (normalizedPath.startsWith("/admin/apps/reel")) return ["リール制作"];
     if (normalizedPath.startsWith("/admin/sns-post")) return ["SNS投稿"];
     if (normalizedPath.startsWith("/admin/gubble-sns")) return ["SNS分析"];
     if (normalizedPath.startsWith("/admin/chat")) return ["AI相談"];
-    if (normalizedPath.startsWith("/ops")) return ["OPS"];
+    if (normalizedPath === "/ops") return ["OPS"];
+    if (normalizedPath.startsWith("/ops")) return ["OPS", "作業ページ"];
     return ["管理ホーム"];
   }
 
   function contextMarkup() {
     const context = pageContext();
+    if (!context.length) return '<div class="admin-page-context" aria-label="現在地"><strong>管理ホーム</strong></div>';
     const label = context.join(" / ");
     return `<div class="admin-page-context" aria-label="現在地"><a href="/admin" aria-label="管理ホームへ戻る">管理ホーム</a><span aria-hidden="true">/</span><strong>${label}</strong></div>`;
   }
 
   function isCurrent(href) {
-    const normalizedHref = href.replace(/\/+$/, "") || "/";
+    const normalizedHref = canonicalPath(href);
     if (normalizedPath === "/admin" && normalizedHref === "/admin/blog") return true;
     if (normalizedHref === "/" || normalizedHref === "/admin/logout") return false;
     return normalizedPath === normalizedHref || normalizedPath.startsWith(`${normalizedHref}/`);

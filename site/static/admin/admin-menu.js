@@ -27,6 +27,35 @@
 
   const normalizedPath = window.location.pathname.replace(/\/+$/, "") || "/";
 
+  const childPageLabels = {
+    "/admin/command-center/calendar": ["実行指令室", "カレンダー"],
+    "/admin/command-center/tasks": ["実行指令室", "タスク"],
+    "/admin/command-center/businesses": ["実行指令室", "事業"],
+    "/admin/command-center/directives": ["実行指令室", "指示"],
+    "/admin/command-center/studio": ["実行指令室", "Codex連携"],
+    "/admin/command-center/tools": ["実行指令室", "検証・移行"],
+    "/admin/command-center/trade": ["実行指令室", "相場羅針盤"],
+  };
+
+  function pageContext() {
+    const exact = childPageLabels[normalizedPath];
+    if (exact) return exact;
+    if (normalizedPath === "/admin/command-center") return ["実行指令室"];
+    if (normalizedPath.startsWith("/admin/blog")) return ["ブログ管理"];
+    if (normalizedPath.startsWith("/admin/apps/reel")) return ["リール制作"];
+    if (normalizedPath.startsWith("/admin/sns-post")) return ["SNS投稿"];
+    if (normalizedPath.startsWith("/admin/gubble-sns")) return ["SNS分析"];
+    if (normalizedPath.startsWith("/admin/chat")) return ["AI相談"];
+    if (normalizedPath.startsWith("/ops")) return ["OPS"];
+    return ["管理ホーム"];
+  }
+
+  function contextMarkup() {
+    const context = pageContext();
+    const label = context.join(" / ");
+    return `<div class="admin-page-context" aria-label="現在地"><a href="/admin" aria-label="管理ホームへ戻る">管理ホーム</a><span aria-hidden="true">/</span><strong>${label}</strong></div>`;
+  }
+
   function isCurrent(href) {
     const normalizedHref = href.replace(/\/+$/, "") || "/";
     if (normalizedPath === "/admin" && normalizedHref === "/admin/blog") return true;
@@ -73,10 +102,11 @@
   function headerMarkup() {
     return `
       <div class="site-header-inner">
-        <a class="site-logo admin-shared-brand" href="/admin/blog" aria-label="AI相談 管理画面へ">
+        <a class="site-logo admin-shared-brand" href="/admin" aria-label="管理ホームへ戻る">
           <span class="admin-shared-brand-name">AI相談</span>
           <span class="admin-shared-brand-context">管理画面</span>
         </a>
+        ${contextMarkup()}
         <nav class="site-nav admin-slide-nav" aria-label="管理ページ固定メニュー">
           <div class="admin-scroll-menu">${desktopMenuMarkup()}</div>
         </nav>
@@ -97,6 +127,7 @@
   header.className = "site-header admin-shared-header";
   header.id = "site-header";
   header.innerHTML = headerMarkup();
+  document.title = "AI相談｜一歩踏み出す人のAI講習・実践支援【彦根・滋賀】";
   document.body.classList.add("admin-shared-menu-active");
   document.body.dataset.adminMenuReady = "true";
   if (needsOffset) document.body.classList.add("admin-shared-menu-offset");

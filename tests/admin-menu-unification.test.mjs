@@ -42,6 +42,7 @@ function runSharedMenu(pathname = "/admin/sns-post") {
   };
   const body = { classList: classList(), dataset: {}, prepend() {} };
   const document = {
+    title: "子ページ固有のタイトル",
     body,
     querySelector(selector) {
       return selector === "header.site-header, header.public-admin-header" ? header : null;
@@ -52,7 +53,7 @@ function runSharedMenu(pathname = "/admin/sns-post") {
   const window = { location: { pathname }, addEventListener() {} };
 
   vm.runInNewContext(menuSource, { document, window });
-  return { body, header };
+  return { body, header, document };
 }
 
 test("shared admin menu has no top item and gives mobile every management destination", () => {
@@ -65,7 +66,7 @@ test("shared admin menu has no top item and gives mobile every management destin
   assert.equal(body.dataset.adminMenuReady, "true");
   assert.ok(mobilePanel, "shared header must render a mobile panel");
   assert.doesNotMatch(header.innerHTML, /管理トップ|管理ハブ/);
-  assert.match(header.innerHTML, /href="\/admin\/blog"[^>]*aria-label="AI相談 管理画面へ"/);
+  assert.match(header.innerHTML, /href="\/admin"[^>]*aria-label="管理ホームへ戻る"/);
 
   for (const href of [
     "/admin/command-center",
@@ -77,6 +78,15 @@ test("shared admin menu has no top item and gives mobile every management destin
   ]) {
     assert.match(mobilePanel.groups.content, new RegExp(`href="${href.replaceAll("/", "\\/")}"`));
   }
+});
+
+test("nested admin pages show their parent context and a direct way back to the management home", () => {
+  const { header, document } = runSharedMenu("/admin/command-center/calendar");
+
+  assert.match(header.innerHTML, /href="\/admin"[^>]*aria-label="管理ホームへ戻る"/);
+  assert.match(header.innerHTML, /実行指令室\s*\/\s*カレンダー/);
+  assert.match(header.innerHTML, /href="\/admin\/command-center"[^>]*aria-current="page"/);
+  assert.equal(document.title, "AI相談｜一歩踏み出す人のAI講習・実践支援【彦根・滋賀】");
 });
 
 test("every protected admin page loads the one shared fixed-menu runtime", async () => {

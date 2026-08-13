@@ -6,9 +6,9 @@ from typing import Final
 
 
 PUBLIC_NAV_ITEMS: Final[tuple[tuple[str, str, str], ...]] = (
-    ("home", "ホーム", "/"),
+    ("home", "ホーム", "/#top"),
     ("works", "実績", "/#all-works"),
-    ("blog", "ブログ", "/blog/index.html"),
+    ("blog", "ブログ", "/#blog"),
     ("lectures", "資料", "/#lectures"),
     ("faq", "FAQ", "/#faq"),
     ("salon", "AIオンラインサロン", "/#seven-day-courses"),

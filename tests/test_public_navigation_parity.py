@@ -9,9 +9,9 @@ PORTAL_PATH = ROOT / "site" / "build_portal.py"
 SITE_PATH = ROOT / "site" / "build_site.py"
 
 PUBLIC_LINKS = [
-    ("/", "ホーム"),
+    ("/#top", "ホーム"),
     ("/#all-works", "実績"),
-    ("/blog/index.html", "ブログ"),
+    ("/#blog", "ブログ"),
     ("/#lectures", "資料"),
     ("/#faq", "FAQ"),
     ("/#seven-day-courses", "AIオンラインサロン"),
@@ -74,6 +74,19 @@ class PublicNavigationParityTest(unittest.TestCase):
         self.assert_header_has_one_menu_contract(
             site_builder.render_top_nav(path_prefix="../", current_id="blog", include_run=False)
         )
+
+    def test_blog_menu_scrolls_to_the_home_section_while_the_list_cta_keeps_the_archive(self) -> None:
+        """メニューはトップ内へ、ブログ一覧はブログ欄のCTAからだけ開く。"""
+        home_main = portal._render_focused_main()
+        self.assertRegex(
+            home_main,
+            r"<section class='focus-block' id='blog'>.*?"
+            r"href='/blog/index\.html'>ブログを一覧で読む</a></div></section>",
+        )
+
+        header = portal._render_header_focused()
+        self.assertNotIn("/blog/index.html", section(header, "site-nav"))
+        self.assertNotIn("/blog/index.html", section(header, "mobile-public-links"))
 
 
 if __name__ == "__main__":

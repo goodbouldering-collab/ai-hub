@@ -66,9 +66,10 @@ test("market compass page routes and BFF routes are explicit before the generic 
   ]) assert.ok(sources.includes(route), route);
 });
 
-test("command center hero keeps readable contrast on its dark gradient", async () => {
+test("command center does not ship styles for the discarded intro hero", async () => {
   const css = await readFile(new URL("site/static/admin/command-center.css", root), "utf8");
-  assert.match(css, /body\.command-center-page\s+\.cc-hero\s+h1\s*\{[^}]*color:\s*#fff\s*!important/i);
+  assert.doesNotMatch(css, /\.cc-hero\b/);
+  assert.doesNotMatch(css, /\.cc-private-badge\b/);
 });
 
 test("command center supporting text meets WCAG AA contrast on its light surfaces", async () => {

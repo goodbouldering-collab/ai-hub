@@ -39,22 +39,28 @@ class CourseMaterialMappingTest(unittest.TestCase):
         self.assertIn("https://goodbouldering.com/?pid=188553378", self.agent_html)
         self.assertNotIn("はじめてのAI — 困りごとを1つ、下書きにする", self.agent_html)
 
-    def test_shared_navigation_uses_ai_agent_material(self) -> None:
+    def test_agent_course_remains_a_contextual_cta_not_global_navigation(self) -> None:
+        self.assertIn("href='/lectures/2026-04-ai-kihon.html'", self.index_html)
+        self.assertIn('href="/lectures/2026-04-ai-kihon.html"', self.article_html)
         for html in (self.index_html, self.agent_html, self.material_html, self.article_html):
-            self.assertRegex(
+            header = re.search(
+                r"<header\b[^>]*class='[^']*site-header[^']*'[^>]*>.*?</header>",
                 html,
-                r"href=['\"]/lectures/2026-04-ai-kihon\.html['\"][^>]*>AIエージェント講習<",
+                re.DOTALL,
             )
+            self.assertIsNotNone(header)
+            self.assertNotIn("href='/lectures/2026-04-ai-kihon.html'", header.group(0))
 
-    def test_only_agent_material_marks_agent_navigation_current(self) -> None:
-        self.assertRegex(
+    def test_agent_material_has_no_removed_header_item_to_mark_current(self) -> None:
+        header = re.search(
+            r"<header\b[^>]*class='[^']*site-header[^']*'[^>]*>.*?</header>",
             self.agent_html,
-            r"class='nav-link nav-essential nav-current' "
-            r"href='/lectures/2026-04-ai-kihon\.html' aria-current='page'",
+            re.DOTALL,
         )
+        self.assertIsNotNone(header)
         self.assertNotRegex(
-            self.material_html,
-            r"href='/lectures/2026-04-ai-kihon\.html' aria-current='page'",
+            header.group(0),
+            r"href='/lectures/2026-04-ai-kihon\.html'[^>]*aria-current='page'",
         )
 
     def test_course_cards_link_to_the_matching_material(self) -> None:

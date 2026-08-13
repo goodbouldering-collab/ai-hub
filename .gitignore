@@ -9,6 +9,7 @@ data/_migrate_*
 site/dist/
 .wrangler/
 node_modules/
+.market-test-dist/
 .playwright-browsers/
 .vercel/
 _tmp/

@@ -2,7 +2,10 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { withAdmin } from "../_lib/http.js";
 
-const VIEWS = new Set(["dashboard", "calendar", "tasks", "businesses", "directives", "studio", "tools", "trade"]);
+const VIEWS = new Set([
+  "dashboard", "calendar", "tasks", "businesses", "directives", "studio", "tools", "trade",
+  "market", "screener", "security", "trade-plan", "trade-plans", "trades", "market-sources",
+]);
 let cachedHtml: string | null = null;
 
 export default withAdmin({ method: "GET" }, async ({ req, res }) => {

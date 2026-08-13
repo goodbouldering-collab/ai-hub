@@ -7,6 +7,7 @@ const root = new URL("../", import.meta.url);
 const apiFiles = [
   "command-center-data.ts", "command-center-calendar.ts", "command-center-market.ts",
   "command-center-brief.ts", "command-center-rankings.ts", "command-center-migrate.ts", "command-center-relay.ts",
+  "command-center-screen.ts", "command-center-security.ts", "command-center-market-sources.ts",
 ];
 
 test("all command center APIs are admin-gated and private", async () => {

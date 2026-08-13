@@ -8,7 +8,7 @@ test("command center HTML contains the protected independent shell and all views
   const html = await readFile(new URL("site/static/admin/command-center.html", root), "utf8");
   assert.match(html, /noindex/);
   assert.match(html, /data-view="dashboard"/);
-  for (const view of ["calendar", "tasks", "businesses", "directives", "studio", "tools", "trade"]) assert.match(html, new RegExp(`/admin/command-center/${view}`), view);
+  for (const view of ["calendar", "tasks", "businesses", "directives", "studio", "tools", "trade", "market", "screener", "security", "trade-plan", "trade-plans", "trades", "market-sources"]) assert.match(html, new RegExp(`/admin/command-center/${view}`), view);
   assert.match(html, /command-center\.css/);
   assert.match(html, /command-center\.js/);
   assert.doesNotMatch(html, /COMMAND_CENTER_MIGRATION_TOKEN|SUPABASE_SERVICE_ROLE_KEY|climbing-consult-daily-command\.goodbouldering\.chatgpt\.site/);

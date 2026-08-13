@@ -8,7 +8,8 @@
   },
   "scripts": {
     "bridge": "node bridge/bridge.mjs",
-    "bridge:test": "node --test bridge/bridge.test.mjs"
+    "bridge:test": "node --test bridge/bridge.test.mjs",
+    "test:market-compass": "node scripts/run-market-compass-tests.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.27.0",

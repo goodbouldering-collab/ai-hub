@@ -14,6 +14,17 @@
     { href: "/admin/logout", label: "ログアウト", description: "管理画面から退出する", group: "アカウント", kind: "logout" },
   ];
 
+  const marketItems = [
+    { href: "/admin/command-center/trade", label: "相場羅針盤", description: "市場・プラン・記録の統合画面", group: "相場" },
+    { href: "/admin/command-center/market", label: "市場候補", description: "価格と一次候補を見る", group: "相場" },
+    { href: "/admin/command-center/screener", label: "財務スクリーナー", description: "12項目で日本株を絞る", group: "相場" },
+    { href: "/admin/command-center/security?symbol=6857", label: "銘柄詳細", description: "3年推移と出典を見る", group: "相場" },
+    { href: "/admin/command-center/trade-plan", label: "取引プラン作成", description: "根拠と中止条件を残す", group: "相場" },
+    { href: "/admin/command-center/trade-plans", label: "登録プラン", description: "保存済みプランを見る", group: "相場" },
+    { href: "/admin/command-center/trades", label: "取引記録", description: "実行記録と損益を見る", group: "相場" },
+    { href: "/admin/command-center/market-sources", label: "データ収集状況", description: "取得元と欠損を確認する", group: "相場" },
+  ];
+
   const normalizedPath = window.location.pathname.replace(/\/+$/, "") || "/";
 
   function isCurrent(href) {
@@ -46,6 +57,7 @@
   function mobileMenuMarkup() {
     const menuItems = [
       ...primaryItems.map((item) => ({ ...item, group: "管理" })),
+      ...marketItems,
       ...secondaryItems,
     ];
     const groups = [...new Set(menuItems.map((item) => item.group))];

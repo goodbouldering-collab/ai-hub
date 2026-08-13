@@ -4491,23 +4491,43 @@ def _patch_programming_map_nav(pmap_file: Path) -> None:
     pmap_file.write_text(new_text, encoding="utf-8")
 
 
+def build_ai_agent_readiness_page() -> bool:
+    """Build the standalone AI readiness assessment route."""
+    from ai_agent_readiness import render_ai_agent_readiness_page  # noqa: WPS433
+
+    target = DIST / "ai-agent-readiness" / "index.html"
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_text(
+        render_ai_agent_readiness_page(
+            site_url=SITE_URL,
+            nav_html=render_top_nav(path_prefix="../", current_id=None, include_run=False),
+            favicon_html=FAVICON_HEAD_HTML,
+            shared_header_css=GENERATED_PUBLIC_HEADER_CSS,
+        ),
+        encoding="utf-8",
+    )
+    return True
+
+
 def build_sitemap_and_robots() -> None:
     """DIST 内の index.html / speaker.html / programming-map.html / speed-monitor.html / lectures/*.html を
     集めて sitemap.xml と robots.txt を生成。"""
     urls: list[tuple[str, str, float]] = []  # (loc, lastmod, priority)
     today = datetime.now().strftime("%Y-%m-%d")
 
-    def add(path_rel: str, priority: float) -> None:
+    def add(path_rel: str, priority: float, public_path: str | None = None) -> None:
         f = DIST / path_rel
         if not f.exists():
             return
         ts = datetime.fromtimestamp(f.stat().st_mtime).strftime("%Y-%m-%d")
-        urls.append((f"{SITE_URL}/{path_rel.replace(chr(92), '/')}", ts, priority))
+        url_path = public_path or path_rel.replace(chr(92), "/")
+        urls.append((f"{SITE_URL}/{url_path}", ts, priority))
 
     add("index.html", 1.0)
     add("speaker.html", 0.9)
     add("programming-map.html", 0.8)
     add("speed-monitor.html", 0.7)
+    add("ai-agent-readiness/index.html", 0.9, "ai-agent-readiness/")
     # lectures
     lec_idx = DIST / "lectures" / "index.html"
     if lec_idx.exists():
@@ -4678,6 +4698,7 @@ def main() -> int:
         build_profile_page()
         build_slides()
         _build_portal()
+        build_ai_agent_readiness_page()
         build_sitemap_and_robots()
         return 0
 
@@ -4708,6 +4729,7 @@ def main() -> int:
     slides_built = build_slides()
     profile_removed = build_profile_page()
     _build_portal()
+    readiness_built = build_ai_agent_readiness_page()
     build_sitemap_and_robots()
 
     print(
@@ -4717,6 +4739,7 @@ def main() -> int:
         + (f", {blog_built} blog posts" if blog_built else "")
         + (f", {slides_built} slides" if slides_built else "")
         + (", profile.html removed" if profile_removed else "")
+        + (", ai-agent-readiness/index.html" if readiness_built else "")
         + ", sitemap.xml, robots.txt)"
     )
     return 0

@@ -6,7 +6,11 @@ __pycache__/
 !.env.example
 data/history.db-journal
 data/_migrate_*
-site/dist/
+# 生成物は原則除外。ただし、Vercel が site/dist をそのまま配信するため、
+# 独立診断ページは本番成果物も追跡する。
+site/dist/*
+!site/dist/ai-agent-readiness/
+!site/dist/ai-agent-readiness/**
 .wrangler/
 node_modules/
 .market-test-dist/

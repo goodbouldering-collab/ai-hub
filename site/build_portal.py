@@ -14821,6 +14821,57 @@ a:focus-visible,
 button:focus-visible {
   outline-color: rgba(79,111,216,.28) !important;
 }
+.hero-readiness-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 5px 18px;
+  width: min(100%, 760px);
+  margin-top: 22px;
+  padding: 18px 20px;
+  border: 1px solid rgba(79,111,216,.22);
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(255,255,255,.96), rgba(237,241,255,.92));
+  color: #172033;
+  text-decoration: none;
+  box-shadow: 0 16px 38px rgba(45,64,130,.10);
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.hero-readiness-card:hover,
+.hero-readiness-card:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(79,111,216,.58);
+  box-shadow: 0 20px 42px rgba(45,64,130,.16);
+}
+.hero-readiness-card small {
+  grid-column: 1;
+  color: #4f6fd8;
+  font: 800 11px/1.3 "JetBrains Mono", monospace;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.hero-readiness-card strong {
+  grid-column: 1;
+  font-size: clamp(17px, 2vw, 22px);
+  line-height: 1.35;
+}
+.hero-readiness-card span {
+  grid-column: 1;
+  color: #526174;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.55;
+}
+.hero-readiness-card b {
+  grid-column: 2;
+  grid-row: 1 / 4;
+  align-self: center;
+  color: #4f6fd8;
+  font-size: 28px;
+}
+@media (max-width: 560px) {
+  .hero-readiness-card { padding: 16px; gap: 4px 10px; }
+  .hero-readiness-card b { font-size: 22px; }
+}
 """
 
 
@@ -14861,7 +14912,10 @@ def _render_hero_focused() -> str:
         "<small>3問で完了。結果を見てから、予約するか決められます。</small></div>"
         f"<a class='focus-btn secondary' href='{AI_AGENT_COURSE_URL}' target='_blank' rel='noopener'>AIエージェント講習を見る</a>"
         "<a class='hero-text-link' href='/lectures/index.html'>受講資料 <span aria-hidden='true'>→</span></a></div>"
-        "<ul class='focus-trust'><li>AI初心者OK</li><li>対面・オンライン対応</li><li>仕事を持ち込める</li></ul></div>"
+        "<ul class='focus-trust'><li>AI初心者OK</li><li>対面・オンライン対応</li><li>仕事を持ち込める</li></ul>"
+        "<a class='hero-readiness-card' href='/ai-agent-readiness/'><small>AI Agent Readiness Compass</small>"
+        "<strong>AIエージェント実践力を100点で測る</strong><span>20の仕事場面に答えて、5段階の現在地と次の講習がわかります。約4分。</span>"
+        "<b aria-hidden='true'>→</b></a></div>"
         "</div>"
         "</section>"
     )

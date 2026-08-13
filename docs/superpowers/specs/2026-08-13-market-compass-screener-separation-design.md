@@ -1,8 +1,8 @@
 # MARKET COMPASS スクリーナー独立化 設計
 
-**日付:** 2026-08-13  
-**対象本番:** `https://aiclimb.vercel.app/admin/command-center/trade`  
-**新プロジェクト:** `market-compass-screener`  
+**日付:** 2026-08-13
+**対象本番:** `https://aiclimb.vercel.app/admin/command-center/trade`
+**新プロジェクト:** `market-compass-screener`
 **目的:** 相場羅針盤の表示場所を変えず、株式データ収集・財務スクリーニング・出典管理を独立プロジェクトとして開発運用できるようにする。
 
 ## 1. 完了条件

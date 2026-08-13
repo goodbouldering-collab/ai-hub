@@ -11,4 +11,3 @@ const compiled = spawnSync(process.execPath, [compiler, "-p", "tsconfig.market-t
 if (compiled.status !== 0) process.exit(compiled.status ?? 1);
 const tested = spawnSync(process.execPath, ["--test", join(output, "tests", "market-compass-runtime.test.js")], { cwd: root, stdio: "inherit" });
 process.exit(tested.status ?? 1);
-

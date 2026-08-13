@@ -16,6 +16,11 @@ function contrastRatio(foreground, background) {
   return (luminances[0] + 0.05) / (luminances[1] + 0.05);
 }
 
+function lastCustomProperty(css, property) {
+  const matches = [...css.matchAll(new RegExp(`--${property}:\\s*(#[0-9a-f]{6})`, "gi"))];
+  return matches.at(-1)?.[1];
+}
+
 test("market compass sections are independent protected views with a shared submenu", async () => {
   const html = await readFile(new URL("site/static/admin/command-center.html", root), "utf8");
   const page = await readFile(new URL("api/admin/command-center-page.ts", root), "utf8");
@@ -78,4 +83,17 @@ test("command center supporting text meets WCAG AA contrast on its light surface
   assert.ok(muted, "--cc-muted must be a six-digit color");
   assert.ok(contrastRatio(muted, "#ffffff") >= 4.5, `${muted} must reach 4.5:1 on white`);
   assert.ok(contrastRatio(muted, "#f6f8ff") >= 4.5, `${muted} must reach 4.5:1 on the checklist surface`);
+});
+
+test("shared admin muted colors keep WCAG AA contrast after the final cascade", async () => {
+  const css = await readFile(new URL("site/static/admin/admin-common.css", root), "utf8");
+  for (const property of ["admin-muted", "admin-public-muted", "admin-shared-menu-muted"]) {
+    const color = lastCustomProperty(css, property);
+    assert.ok(color, `--${property} must be a six-digit color`);
+    assert.ok(contrastRatio(color, "#ffffff") >= 4.5, `--${property} ${color} must reach 4.5:1 on white`);
+    assert.ok(
+      contrastRatio(color, "#f6f8ff") >= 4.5,
+      `--${property} ${color} must reach 4.5:1 on the checklist surface`,
+    );
+  }
 });

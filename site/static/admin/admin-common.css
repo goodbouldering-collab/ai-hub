@@ -1691,7 +1691,7 @@ body.ops-page {
   --admin-ink: #071426;
   --admin-text: #172235;
   --admin-soft: #4A5B70;
-  --admin-muted: #697789;
+  --admin-muted: #627089;
   --admin-line: rgba(7,20,38,.14);
   --admin-accent: #E60012;
   --admin-cyan: #00A5C8;
@@ -4031,7 +4031,7 @@ body.admin-shared-menu-open {
   --admin-public-blue: #4F6FD8;
   --admin-public-blue-dark: #3E58B8;
   --admin-public-ink: #172033;
-  --admin-public-muted: #6B7891;
+  --admin-public-muted: #627089;
   --admin-public-line: #DCE4F2;
   --admin-public-surface: #F8FBFF;
   --admin-accent: #4F6FD8;
@@ -4055,7 +4055,7 @@ body.admin-shared-menu-open {
   --primary-bg: #E9EFFF;
   --admin-shared-menu-blue: #4F6FD8;
   --admin-shared-menu-ink: #172033;
-  --admin-shared-menu-muted: #6B7891;
+  --admin-shared-menu-muted: #627089;
   --admin-shared-menu-line: #DCE4F2;
   --admin-shared-menu-soft: #F8FBFF;
   --admin-shared-quick-height: 0px;

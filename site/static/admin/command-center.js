@@ -312,7 +312,6 @@
       else if (view === "trade-plans") renderTradePlans();
       else if (view === "trades") renderTrades();
       else if (view === "market-sources") await renderMarketSources();
-      document.getElementById("cc-generated-at").textContent = `更新: ${new Date().toLocaleString("ja-JP")}`;
     } catch (error) { content.innerHTML = `<div class="cc-error">${esc(error.message)}</div>`; setLive("保護データを取得できませんでした。", true); }
   }
   setMarketNavigationMode();

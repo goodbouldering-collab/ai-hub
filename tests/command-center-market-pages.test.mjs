@@ -97,3 +97,18 @@ test("shared admin muted colors keep WCAG AA contrast after the final cascade", 
     );
   }
 });
+
+test("command center status badges meet WCAG AA contrast", async () => {
+  const css = await readFile(new URL("site/static/admin/command-center.css", root), "utf8");
+  for (const [property, background] of [
+    ["cc-amber", "#fff5df"],
+    ["cc-rose", "#fff0f3"],
+  ]) {
+    const color = lastCustomProperty(css, property);
+    assert.ok(color, `--${property} must be a six-digit color`);
+    assert.ok(
+      contrastRatio(color, background) >= 4.5,
+      `--${property} ${color} must reach 4.5:1 on ${background}`,
+    );
+  }
+});

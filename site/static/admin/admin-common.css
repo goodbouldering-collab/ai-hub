@@ -4235,6 +4235,35 @@ body.ops-page header.site-header.admin-shared-header {
   min-height: var(--admin-shared-menu-height) !important;
 }
 
+/* Page-specific dashboards used to regain their own header wrapper sizing.
+   Keep the injected shared menu as the sole fixed-row layout contract. */
+header.site-header.admin-shared-header .site-header-inner {
+  width: min(100%, 1500px) !important;
+  max-width: 1500px !important;
+  height: var(--admin-shared-menu-height) !important;
+  min-height: var(--admin-shared-menu-height) !important;
+  box-sizing: border-box !important;
+  margin: 0 auto !important;
+  padding: 10px 20px !important;
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  grid-template-columns: none !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 18px !important;
+}
+
+header.site-header.admin-shared-header .site-nav.admin-slide-nav {
+  height: 100% !important;
+  min-height: 0 !important;
+  display: flex !important;
+}
+
+header.site-header.admin-shared-header .admin-scroll-menu {
+  height: 100% !important;
+  min-height: 0 !important;
+}
+
 .admin-shared-header .site-nav.admin-slide-nav {
   display: flex !important;
 }
@@ -4431,8 +4460,14 @@ body.admin-shared-menu-active .admin-shared-header .mobile-nav .mobile-link-list
   }
 }
 
+@media (max-width: 1100px) {
+  header.site-header.admin-shared-header .site-header-inner {
+    padding: 8px 14px !important;
+  }
+}
+
 @media (max-width: 720px) {
-  .admin-shared-header .site-nav.admin-slide-nav {
+  header.site-header.admin-shared-header .site-nav.admin-slide-nav {
     display: none !important;
   }
 

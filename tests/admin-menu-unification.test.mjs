@@ -211,3 +211,18 @@ test("tablet admin navigation stays in the shared header's single row", async ()
     "the actual fixed header must use the same height as the single-row navigation and drawer",
   );
 });
+
+test("page-local header styles cannot move the shared menu outside its fixed row", async () => {
+  const css = await readFile(new URL("site/static/admin/admin-common.css", root), "utf8");
+
+  assert.match(
+    css,
+    /header\.site-header\.admin-shared-header \.site-header-inner \{[\s\S]*?height: var\(--admin-shared-menu-height\) !important;[\s\S]*?display: flex !important;/,
+    "a page-level .site-header-inner rule must not restore a taller or grid-based header row",
+  );
+  assert.match(
+    css,
+    /header\.site-header\.admin-shared-header \.site-nav\.admin-slide-nav \{[\s\S]*?height: 100% !important;[\s\S]*?display: flex !important;/,
+    "the shared navigation must always occupy the fixed header row",
+  );
+});

@@ -4427,6 +4427,8 @@ body.admin-shared-menu-active .admin-shared-header .mobile-nav .mobile-link-list
     display: none !important;
   }
 
+  body.admin-page .admin-shared-header .mobile-toggle,
+  body.ops-page .admin-shared-header .mobile-toggle,
   .admin-shared-header .mobile-toggle {
     display: inline-grid !important;
   }

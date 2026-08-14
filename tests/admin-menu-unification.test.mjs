@@ -200,4 +200,9 @@ test("tablet admin navigation stays in the shared header's single row", async ()
     /@media \(max-width: 720px\) \{[\s\S]*?\.admin-shared-header \.site-nav\.admin-slide-nav \{[\s\S]*?display: none !important;[\s\S]*?\.admin-shared-header \.mobile-toggle \{[\s\S]*?display: inline-grid !important;/,
     "only the narrow mobile layout may replace the single row with the shared drawer",
   );
+  assert.match(
+    css,
+    /@media \(max-width: 720px\) \{[\s\S]*?body\.admin-page \.admin-shared-header \.mobile-toggle,\s*body\.ops-page \.admin-shared-header \.mobile-toggle,[\s\S]*?display: inline-grid !important;/,
+    "the narrow mobile drawer must outrank the shared desktop toggle rule",
+  );
 });

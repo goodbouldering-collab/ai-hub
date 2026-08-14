@@ -7,7 +7,7 @@
   <title>AI相談｜一歩踏み出す人のAI講習・実践支援【彦根・滋賀】</title>
   <link rel="stylesheet" href="/admin/apps/styles.css">
   <link rel="stylesheet" href="/admin/apps/styles-content.css">
-  <link rel="stylesheet" href="/admin/admin-common.css?v=20260803-clear-sky-rose-2">
+  <link rel="stylesheet" href="/admin/admin-common.css?v=20260814-studio-command-bar">
   <script src="/admin/admin-menu.js" defer></script>
 </head>
 <body class="admin-studio-page admin-shared-menu-offset" data-app="blog">
@@ -21,17 +21,18 @@
     </form>
   </div>
 
-  <section class="topbar" aria-label="ブログ制作の状況">
-    <div><span class="eyebrow">BLOG APP SERVER</span><h1>事業別ブログ制作</h1></div>
-    <div class="server-state" id="server-state">接続確認中</div>
-  </section>
-  <nav class="studio-tabs" aria-label="制作画面">
-    <a class="active" id="studio-nav-blog" href="/admin/apps/blog">ブログ</a><a id="studio-nav-reel" href="/admin/apps/reel">リール</a><a id="studio-nav-back" href="/admin">管理ホーム</a>
-  </nav>
-
-  <section class="api-key-panel" aria-labelledby="api-key-heading">
-    <div><span class="eyebrow">API KEY</span><h2 id="api-key-heading">OpenAI APIキー設定</h2><p>このタブを閉じるまでだけ保持し、生成APIへの通信時に使用します。サーバーやファイルには保存しません。</p></div>
-    <div class="api-key-controls"><label>OpenAI APIキー<input id="api-key-input" type="password" autocomplete="off" spellcheck="false" placeholder="sk-... または sk-proj-..."></label><div class="actions"><button class="secondary" id="clear-api-key" type="button" hidden>削除</button><button class="primary" id="save-api-key" type="button">このタブで使用</button></div><span class="api-key-status" id="api-key-status"></span></div>
+  <section class="studio-command-bar" aria-label="ブログ制作の操作">
+    <div class="studio-command-context">
+      <span class="eyebrow">BLOG STUDIO</span>
+      <div class="studio-command-heading"><h1>事業別ブログ制作</h1><div class="server-state" id="server-state">接続確認中</div></div>
+      <nav class="studio-command-tabs" aria-label="制作画面">
+        <a class="active" id="studio-nav-blog" href="/admin/apps/blog">ブログ</a><a id="studio-nav-reel" href="/admin/apps/reel">リール</a><a id="studio-nav-back" href="/admin">管理ホーム</a>
+      </nav>
+    </div>
+    <section class="studio-api-form api-key-panel" aria-labelledby="api-key-heading">
+      <div class="studio-api-copy"><span class="eyebrow">API KEY</span><h2 id="api-key-heading">OpenAI APIキー</h2><p>このタブだけで使い、サーバーやファイルには保存しません。</p></div>
+      <div class="api-key-controls"><label>OpenAI APIキー<input id="api-key-input" type="password" autocomplete="off" spellcheck="false" placeholder="sk-... または sk-proj-..."></label><div class="actions"><button class="secondary" id="clear-api-key" type="button" hidden>削除</button><button class="primary" id="save-api-key" type="button">このタブで使用</button></div><span class="api-key-status" id="api-key-status"></span></div>
+    </section>
   </section>
 
   <main class="workspace">

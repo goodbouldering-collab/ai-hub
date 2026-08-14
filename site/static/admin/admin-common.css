@@ -4524,44 +4524,137 @@ body.admin-studio-page.admin-shared-menu-offset {
   padding-top: var(--admin-studio-menu-offset) !important;
 }
 
-body.admin-studio-page.admin-shared-menu-offset .topbar {
-  position: sticky !important;
-  top: var(--admin-studio-menu-offset) !important;
-  z-index: 20 !important;
+body.admin-studio-page .studio-command-bar {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(min-content, 680px) !important;
+  gap: 16px 28px !important;
+  align-items: center !important;
+  padding: 14px max(20px, calc((100vw - 1500px) / 2)) !important;
   background: #FFFFFF !important;
-  border-bottom-color: var(--admin-public-line) !important;
+  border-bottom: 1px solid var(--admin-public-line) !important;
   box-shadow: 0 8px 20px rgba(39,60,104,.05) !important;
 }
 
-body.admin-studio-page.admin-shared-menu-offset .studio-tabs {
-  position: sticky !important;
-  top: calc(var(--admin-studio-menu-offset) + 78px) !important;
-  z-index: 19 !important;
-  background: #F8FBFF !important;
-  border-bottom-color: var(--admin-public-line) !important;
+body.admin-studio-page .studio-command-context {
+  display: grid !important;
+  min-width: 0 !important;
+  gap: 8px !important;
 }
 
-body.admin-studio-page .studio-tabs a {
-  border-color: var(--admin-public-line) !important;
+body.admin-studio-page .studio-command-heading {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+body.admin-studio-page .studio-command-heading h1 {
+  margin: 0 !important;
+  color: var(--admin-public-ink) !important;
+  font-size: 21px !important;
+  line-height: 1.25 !important;
+}
+
+body.admin-studio-page .studio-command-heading .server-state {
+  flex: 0 0 auto !important;
+  margin: 0 !important;
+  border: 1px solid var(--admin-public-line) !important;
+  background: #F8FBFF !important;
+  color: var(--admin-public-blue) !important;
+}
+
+body.admin-studio-page .studio-command-tabs {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  align-items: center !important;
+}
+
+body.admin-studio-page .studio-command-tabs a {
+  min-height: 36px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 14px !important;
+  border: 1px solid var(--admin-public-line) !important;
+  border-radius: 999px !important;
   background: #FFFFFF !important;
   color: var(--admin-public-muted) !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  text-decoration: none !important;
 }
 
-body.admin-studio-page .studio-tabs a.active,
-body.admin-studio-page .studio-tabs a:hover,
-body.admin-studio-page .studio-tabs a:focus-visible {
+body.admin-studio-page .studio-command-tabs a.active,
+body.admin-studio-page .studio-command-tabs a:hover,
+body.admin-studio-page .studio-command-tabs a:focus-visible {
   border-color: var(--admin-public-blue) !important;
   background: #E9EFFF !important;
   color: var(--admin-public-blue) !important;
   outline: none !important;
 }
 
-body.admin-studio-page .studio-tabs a.active {
+body.admin-studio-page .studio-command-tabs a.active {
   box-shadow: inset 0 0 0 1px var(--admin-public-blue) !important;
 }
 
+body.admin-studio-page .studio-api-form {
+  grid-column: 2 !important;
+  justify-self: end !important;
+  width: min(100%, 680px) !important;
+  display: grid !important;
+  grid-template-columns: minmax(122px, 154px) minmax(0, 1fr) !important;
+  gap: 12px !important;
+  align-items: end !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+body.admin-studio-page .studio-api-copy {
+  display: grid !important;
+  gap: 3px !important;
+  align-self: center !important;
+}
+
+body.admin-studio-page .studio-api-form h2 {
+  margin: 0 !important;
+  color: var(--admin-public-ink) !important;
+  font-size: 15px !important;
+  line-height: 1.3 !important;
+}
+
+body.admin-studio-page .studio-api-form p {
+  margin: 0 !important;
+  color: var(--admin-public-muted) !important;
+  font-size: 11px !important;
+  line-height: 1.5 !important;
+}
+
+body.admin-studio-page .studio-api-form .api-key-controls {
+  width: 100% !important;
+  display: grid !important;
+  grid-template-columns: minmax(220px, 1fr) auto !important;
+  gap: 8px 10px !important;
+  align-items: end !important;
+}
+
+body.admin-studio-page .studio-api-form .api-key-controls .actions {
+  margin: 0 !important;
+}
+
+body.admin-studio-page .studio-api-form .api-key-status {
+  grid-column: 1 / -1 !important;
+  min-height: 1.35em !important;
+  align-self: start !important;
+}
+
+body.admin-studio-page .workspace,
+body.admin-studio-page .reel-workspace {
+  min-height: calc(100dvh - var(--admin-studio-menu-offset)) !important;
+}
+
 body.admin-studio-page .steps ol {
-  top: calc(var(--admin-studio-menu-offset) + 148px) !important;
+  top: calc(var(--admin-studio-menu-offset) + 20px) !important;
 }
 
 @media (max-width: 1100px) {
@@ -4569,13 +4662,59 @@ body.admin-studio-page .steps ol {
   body[data-app="reel"] {
     --admin-studio-menu-offset: calc(var(--admin-shared-menu-height) + var(--admin-shared-quick-height));
   }
+
+  body.admin-studio-page .studio-command-bar {
+    grid-template-columns: 1fr !important;
+  }
+
+  body.admin-studio-page .studio-api-form {
+    grid-column: 1 !important;
+    justify-self: stretch !important;
+    width: 100% !important;
+    grid-template-columns: minmax(0, 1fr) minmax(400px, 620px) !important;
+  }
 }
 
 @media (max-width: 720px) {
-  body.admin-studio-page.admin-shared-menu-offset .topbar,
-  body.admin-studio-page.admin-shared-menu-offset .studio-tabs {
-    position: relative !important;
-    top: auto !important;
+  body.admin-studio-page .studio-command-bar {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+    padding: 14px 12px !important;
+  }
+
+  body.admin-studio-page .studio-command-heading {
+    flex-wrap: wrap !important;
+  }
+
+  body.admin-studio-page .studio-command-tabs {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  body.admin-studio-page .studio-command-tabs a {
+    min-width: 0 !important;
+    padding: 0 6px !important;
+    font-size: 12px !important;
+  }
+
+  body.admin-studio-page .studio-api-form {
+    grid-column: 1 !important;
+    justify-self: stretch !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  body.admin-studio-page .studio-api-form .api-key-controls {
+    grid-template-columns: 1fr !important;
+  }
+
+  body.admin-studio-page .studio-api-form .api-key-controls .actions {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  body.admin-studio-page .studio-api-form .api-key-status {
+    grid-column: auto !important;
   }
 
   body.admin-studio-page .steps {

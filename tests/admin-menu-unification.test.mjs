@@ -179,7 +179,33 @@ test("Blog and Reel studios use canonical child routes and the shared UI shell",
   assert.match(studioCore, /"\/admin\/apps\/blog"/);
   assert.match(studioCore, /"\/admin\/apps\/reel"/);
   assert.match(css, /body\[data-app="blog"\],\s*body\[data-app="reel"\]/);
-  assert.match(css, /body\.admin-studio-page\.admin-shared-menu-offset \.studio-tabs/);
+  assert.match(css, /body\.admin-studio-page \.studio-command-bar/);
+});
+
+test("Blog and Reel studios put the API key form first in the shared right-aligned command bar", async () => {
+  for (const page of [
+    "site/static/admin/apps/blog.html",
+    "site/static/admin/apps/reel.html",
+  ]) {
+    const html = await readFile(new URL(page, root), "utf8");
+
+    assert.match(html, /class="studio-command-bar"/);
+    assert.match(html, /class="studio-api-form api-key-panel"/);
+    assert.doesNotMatch(html, /class="topbar"/);
+    assert.doesNotMatch(html, /class="studio-tabs"/);
+  }
+
+  const css = await readFile(new URL("site/static/admin/admin-common.css", root), "utf8");
+  assert.match(
+    css,
+    /body\.admin-studio-page \.studio-command-bar \{[\s\S]*?display: grid !important;[\s\S]*?grid-template-columns: minmax\(0, 1fr\) minmax\(min-content, 680px\) !important;/,
+    "studio pages must share one top command bar instead of retaining independent title and tab rows",
+  );
+  assert.match(
+    css,
+    /body\.admin-studio-page \.studio-api-form \{[\s\S]*?grid-column: 2 !important;[\s\S]*?justify-self: end !important;/,
+    "the API key form must begin in the shared command bar's right-hand position",
+  );
 });
 
 test("tablet admin navigation stays in the shared header's single row", async () => {

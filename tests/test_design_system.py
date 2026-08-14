@@ -41,6 +41,16 @@ class DesignSystemBuildTests(unittest.TestCase):
         finally:
             build_site.DIST = original_dist
 
+    def test_public_checkout_actions_use_the_shared_minimum_tap_size(self):
+        self.assertIn(
+            ".compact-course-checkout button {",
+            build_portal.FOCUSED_PORTAL_CSS,
+        )
+        self.assertIn(
+            "min-height:var(--ai-size-tap,44px);",
+            build_portal.FOCUSED_PORTAL_CSS,
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

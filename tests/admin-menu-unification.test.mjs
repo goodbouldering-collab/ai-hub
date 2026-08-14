@@ -181,3 +181,23 @@ test("Blog and Reel studios use canonical child routes and the shared UI shell",
   assert.match(css, /body\[data-app="blog"\],\s*body\[data-app="reel"\]/);
   assert.match(css, /body\.admin-studio-page\.admin-shared-menu-offset \.studio-tabs/);
 });
+
+test("tablet admin navigation stays in the shared header's single row", async () => {
+  const css = await readFile(new URL("site/static/admin/admin-common.css", root), "utf8");
+
+  assert.doesNotMatch(
+    css,
+    /--admin-shared-quick-height:\s*50px/,
+    "a second fixed quick-navigation row must not be restored",
+  );
+  assert.match(
+    css,
+    /@media \(min-width: 721px\) and \(max-width: 1100px\) \{[\s\S]*?\.admin-shared-header \.site-nav\.admin-slide-nav \{[\s\S]*?position: static !important;[\s\S]*?display: flex !important;/,
+    "tablet navigation must remain inside the header instead of dropping below it",
+  );
+  assert.match(
+    css,
+    /@media \(max-width: 720px\) \{[\s\S]*?\.admin-shared-header \.site-nav\.admin-slide-nav \{[\s\S]*?display: none !important;[\s\S]*?\.admin-shared-header \.mobile-toggle \{[\s\S]*?display: inline-grid !important;/,
+    "only the narrow mobile layout may replace the single row with the shared drawer",
+  );
+});

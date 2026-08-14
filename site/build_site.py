@@ -364,6 +364,7 @@ header { margin-bottom:32px; }
 header h1 {
   margin:0 0 8px;
   font-size:clamp(28px, 4.5vw, 42px);
+  line-height:1.32;
   font-weight:800; letter-spacing:-.015em;
   color: var(--text);
 }
@@ -1325,6 +1326,23 @@ CONTENT_CSS = """
   border-radius: 0 12px 12px 0;
   color: var(--text-soft);
   font-size: 13.5px;
+}
+.content-wrap .article-lead-quote {
+  margin: 0 0 24px;
+  padding: 18px 22px;
+  border-left-width: 5px;
+  background: linear-gradient(135deg, #f8fafc 0%, #f0f7fa 100%);
+  color: var(--text);
+  font-size: clamp(15px, 1.35vw, 17px);
+  font-weight: 600;
+  line-height: 1.85;
+}
+@media (max-width: 640px) {
+  .content-wrap .article-lead-quote {
+    padding: 16px 16px;
+    font-size: 15px;
+    line-height: 1.75;
+  }
 }
 .content-wrap code {
   font-family: ui-monospace, Menlo, Consolas, monospace;
@@ -3590,6 +3608,11 @@ def render_content_page(
     content_class = "content-wrap lecture-content" if kind == "lecture" else "content-wrap"
     content_id = " id='lecture-body'" if kind == "lecture" else ""
     parts.append(f"<div class='{content_class}'{content_id}>")
+    lead_quote = str(meta.get("lead_quote") or "").strip()
+    if kind == "blog" and lead_quote:
+        normalized_lead_quote = lead_quote.replace("\r\n", "\n").replace("\r", "\n")
+        safe_lead_quote = html.escape(normalized_lead_quote).replace("\n", "<br>")
+        parts.append(f"<blockquote class='article-lead-quote'>{safe_lead_quote}</blockquote>")
     video_url = str(meta.get("video") or "").strip()
     if kind == "blog" and video_url:
         video_poster = str(meta.get("video_poster") or "").strip()

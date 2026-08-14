@@ -95,6 +95,45 @@ class BlogAuthorshipNoteTest(unittest.TestCase):
         self.assertIn("<p>AI &lt; person</p>", page)
         self.assertNotIn("blog-authorship-note", page)
 
+    def test_blog_lead_quote_appears_before_hero_and_table_of_contents(self) -> None:
+        page = builder.render_content_page(
+            "Article title",
+            {
+                "authorship_note": CANONICAL_AUTHORSHIP_NOTE,
+                "lead_quote": "First line\nSecond line",
+                "hero_image": True,
+                "image": "/img/example.png",
+            },
+            "<h2>One</h2><p>A</p><h2>Two</h2><p>B</p><h2>Three</h2><p>C</p>",
+            "<nav></nav>",
+            kind="blog",
+        )
+
+        markers = [
+            CANONICAL_AUTHORSHIP_NOTE,
+            "<blockquote class='article-lead-quote'>First line<br>Second line</blockquote>",
+            "<figure class='article-hero'>",
+            "<div class='content-toc'",
+            "<h2 id='one'>One</h2>",
+        ]
+        positions = [page.index(marker) for marker in markers]
+        self.assertEqual(positions, sorted(positions))
+
+    def test_blog_lead_quote_escapes_html(self) -> None:
+        page = builder.render_content_page(
+            "Article title",
+            {"lead_quote": "AI < person"},
+            "<p>Body</p>",
+            "<nav></nav>",
+            kind="blog",
+        )
+
+        self.assertIn(
+            "<blockquote class='article-lead-quote'>AI &lt; person</blockquote>",
+            page,
+        )
+        self.assertNotIn("<blockquote class='article-lead-quote'>AI < person", page)
+
     def test_lecture_page_renders_note_between_title_and_cover(self) -> None:
         note = "Lecture authorship note"
         page = builder.render_content_page(

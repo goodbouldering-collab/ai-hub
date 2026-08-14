@@ -15,8 +15,8 @@ import {
   pickCompatibleModel,
 } from "./bridge.mjs";
 
-test("production and loopback origins only are allowed", () => {
-  assert.equal(isAllowedOrigin("https://ai-hub-jp.vercel.app"), true);
+test("current production and loopback origins only are allowed", () => {
+  assert.equal(isAllowedOrigin("https://aiclimb.vercel.app"), true);
   assert.equal(isAllowedOrigin("http://127.0.0.1:3000"), true);
   assert.equal(isAllowedOrigin("https://example.com"), false);
 });
@@ -73,7 +73,7 @@ function ownerAssertion(secret, payload) {
 
 test("owner assertion is short-lived, origin-bound, and one-use", () => {
   const now = Date.parse("2026-07-24T00:00:00.000Z");
-  const origin = "https://ai-hub-jp.vercel.app";
+  const origin = "https://aiclimb.vercel.app";
   const secret = "test-secret";
   const verifier = new OwnerAssertionVerifier({ secret, now: () => now, ownerEmail: "goodbouldering@gmail.com" });
   const assertion = ownerAssertion(secret, {
@@ -171,7 +171,7 @@ test("HTTP bridge requires origin, pairing capability, and CSRF", async () => {
 
 test("HTTP bridge accepts an owner assertion without exposing the shared secret", async () => {
   const now = Date.parse("2026-07-24T00:00:00.000Z");
-  const origin = "https://ai-hub-jp.vercel.app";
+  const origin = "https://aiclimb.vercel.app";
   const secret = "http-owner-secret";
   const authority = new PairingAuthority({ now: () => now, codeFactory: () => "123456", tokenFactory: (() => { let index = 0; return () => `owner-token-${index++}`; })() });
   const ownerVerifier = new OwnerAssertionVerifier({ secret, now: () => now, ownerEmail: "goodbouldering@gmail.com" });

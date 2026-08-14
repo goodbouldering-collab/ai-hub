@@ -32,7 +32,7 @@
 ### 投稿セット
 
 - 投稿先: `@climbingconsul` のInstagram Reel。
-- Instagram本文の最終行・ストーリーズのリンク先: `https://ai-hub-jp.vercel.app/blog/2026-08-09-ai-experience-3d-reality.html`
+- Instagram本文の最終行・ストーリーズのリンク先: `https://aiclimb.vercel.app/blog/2026-08-09-ai-experience-3d-reality.html`
 - ストーリーズ: 公開済みReelを共有し、リンク表示を `詳細はこちら`、下部中央の安全領域に置く。
 - 店舗コメント: AI相談自身の声として、本文を繰り返さずに相談・DMへの軽い導線を添える。
 - 公開URL、ストーリーズの結果、店舗コメントの結果を `posting-manifest.json` に追記する。

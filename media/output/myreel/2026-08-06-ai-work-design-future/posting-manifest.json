@@ -24,7 +24,7 @@
   ],
   "draft_mode": false,
   "blog": {
-    "url": "https://ai-hub-jp.vercel.app/blog/2026-08-06-ai-work-design-future.html",
+    "url": "https://aiclimb.vercel.app/blog/2026-08-06-ai-work-design-future.html",
     "status": "verified_before_reel_publication"
   },
   "reel": {
@@ -187,7 +187,7 @@
   "story": {
     "asset": "story-preview.png",
     "copy": "AIでデザイナーはいらなくなる？\n答えは逆。AIは仕事を広げる武器になります。",
-    "link": "https://ai-hub-jp.vercel.app/blog/2026-08-06-ai-work-design-future.html",
+    "link": "https://aiclimb.vercel.app/blog/2026-08-06-ai-work-design-future.html",
     "link_label": "詳細はこちら",
     "placement": "bottom-center-safe-area",
     "status": "blocked_until_reel_is_public_and_second_approval"

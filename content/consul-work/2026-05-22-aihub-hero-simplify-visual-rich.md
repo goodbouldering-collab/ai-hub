@@ -4,7 +4,7 @@
 1. ヒーローのテキストが全体に長い → キャッチコピー含め短くキャッチーに
 2. 全体にさらに画像の多い・インタラクティブで洗練されたサイトデザインに
 
-ai-hub commit `df7a90f`。本番 https://ai-hub-jp.vercel.app/ 反映・検証済み。
+ai-hub commit `df7a90f`。本番 https://aiclimb.vercel.app/ 反映・検証済み。
 
 ## ① ヒーロー簡潔化（パターン1の長文版を圧縮）
 

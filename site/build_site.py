@@ -17,7 +17,7 @@ from pathlib import Path
 
 import yaml
 
-SITE_URL = os.environ.get("AIHUB_SITE_URL", os.environ.get("AIWATCH_SITE_URL", "https://ai-hub-jp.vercel.app")).rstrip("/")
+SITE_URL = os.environ.get("AIHUB_SITE_URL", os.environ.get("AIWATCH_SITE_URL", "https://aiclimb.vercel.app")).rstrip("/")
 
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -2391,7 +2391,7 @@ ARTICLE_VIDEO_FULLSCREEN_JS = """<script>
 
 
 def _redirect_html(a, t):
-    d = "https://ai-hub-jp.vercel.app/#" + a
+    d = "https://aiclimb.vercel.app/#" + a
     return ("<!doctype html><html lang='ja'><head><meta charset='utf-8'>"
         "<title>" + t + " | AI相談</title>"
         "<link rel='canonical' href='" + d + "'>"

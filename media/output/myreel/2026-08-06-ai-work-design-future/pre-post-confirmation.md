@@ -4,7 +4,7 @@ Reelレビュー状態: 約25.4秒 / 5場面 / review_ready_waiting_final_approv
 状態: 未承認・未投稿
 
 - [ ] 完成動画、5つの画面文、キャプション、ストーリー、コメントをユーザーが最終承認した
-- [ ] 本番ブログURL `https://ai-hub-jp.vercel.app/blog/2026-08-06-ai-work-design-future.html` がHTTP 200で表示できる
+- [ ] 本番ブログURL `https://aiclimb.vercel.app/blog/2026-08-06-ai-work-design-future.html` がHTTP 200で表示できる
 - [ ] Chrome上の投稿先が `@climbingconsul` と画面表示で確認できる
 - [ ] リールの「シェア」直前に動画、表紙、キャプションを再確認した
 - [ ] 女性ナレーションが5場面の中央テキスト全文と合い、「人が担う」を「ひとがになう」と読み、音割れや不自然な切れがない

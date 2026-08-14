@@ -40,7 +40,7 @@
 ## 新サイト構造（提案・2026-05-11 CEO 確認反映）
 
 ```
-ai-hub-jp.vercel.app
+aiclimb.vercel.app
 ├── /                          ← 【新】CEO ポータル・トップ
 │   ├─ Hero: 由井辰美（写真+肩書+クライミング歴30年）
 │   ├─ 10 事業カード（9事業 + ぐっぼる本店 goodbouldering.com）

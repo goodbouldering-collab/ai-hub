@@ -2,7 +2,7 @@
 
 ## 状況
 
-- 本番 https://ai-hub-jp.vercel.app/ が **404 NOT_FOUND**
+- 本番 https://aiclimb.vercel.app/ が **404 NOT_FOUND**
 - でも `/watch/`、`/admin`、`/admin/docs`、`/lectures/` は **200 で生きている**
 - GitHub `main` には正しい `site/dist/index.html` (5/13 16:38 push) が存在
 - **Vercel が GitHub の最新 commit を反映していない**ことが確定済
@@ -12,7 +12,7 @@
 ### Step 1: Vercel Dashboard を開く
 
 1. https://vercel.com/dashboard にログイン（goodbouldering@gmail.com）
-2. プロジェクト一覧から **`ai-hub-jp`** をクリック
+2. プロジェクト一覧から **`ai-hub`** をクリック
 
 ### Step 2: Deployments タブを見る（最重要）
 
@@ -80,7 +80,7 @@
 → `site/dist` に変更 → 再デプロイ
 
 ### パターン E: 全部正常に見えるのに 404
-→ Settings → Domains で `ai-hub-jp.vercel.app` がどの deployment を指しているか確認
+→ Settings → Domains で `aiclimb.vercel.app` がどの deployment を指しているか確認
 
 ---
 

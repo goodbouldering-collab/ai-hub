@@ -72,11 +72,11 @@ class CodexBeginnerMergeTest(unittest.TestCase):
         fragment = matched[0]["destination"].split("#", 1)[1]
         self.assertRegex(self.agent_html, rf'id=["\']{re.escape(fragment)}["\']')
         self.assertNotIn(
-            "https://ai-hub-jp.vercel.app/lectures/2026-05-claude-code-features.html",
+            "https://aiclimb.vercel.app/lectures/2026-05-claude-code-features.html",
             self.sitemap,
         )
         self.assertIn(
-            "https://ai-hub-jp.vercel.app/lectures/2026-04-ai-kihon.html",
+            "https://aiclimb.vercel.app/lectures/2026-04-ai-kihon.html",
             self.sitemap,
         )
 

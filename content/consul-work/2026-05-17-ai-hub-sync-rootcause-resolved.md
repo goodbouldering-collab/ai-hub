@@ -37,7 +37,7 @@ Vercel・PAT・ワークフロー定義は**一切変更していない**（変�
 | daily.yml は 5/13 で停止 | ❌ 5/12〜5/16 毎日 `success` で完走 |
 | ワークフローが GitHub に自動 disable | ❌ 両方 `active` |
 | `CONSUL_REPO_PAT` 失効 | ❌ PAT 欠落なら exit 1 で fail。全ラン success ＝ PAT 健在 |
-| `ai-hub.vercel.app` が別 Next.js プロジェクト（5/16 R1） | △ 取り違えは事実だが本番は `ai-hub-jp.vercel.app`（[ai-hub.md](ai-hub.md) に正本記録済）。今回問題の主因ではない |
+| `ai-hub.vercel.app` が別 Next.js プロジェクト（5/16 R1） | △ 取り違えは事実だが本番は `aiclimb.vercel.app`（[ai-hub.md](ai-hub.md) に正本記録済）。今回問題の主因ではない |
 
 ## なぜ全員（5/16設計書・Codex・調査途中の Claude）が外したか
 

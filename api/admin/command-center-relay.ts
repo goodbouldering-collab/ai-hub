@@ -84,7 +84,7 @@ const browserHandler = withAdmin({ method: ["GET", "POST"] }, async ({ req, res,
   const stateResult = await relayTable("relay_state").select("*").eq("id", RELAY_ID).maybeSingle();
   const state = stateResult.data;
   if ((req.method || "GET").toUpperCase() === "GET") {
-    const url = new URL(req.url || "/api/admin/command-center/relay", "https://ai-hub-jp.vercel.app");
+    const url = new URL(req.url || "/api/admin/command-center/relay", "https://aiclimb.vercel.app");
     const requestId = url.searchParams.get("requestId");
     if (!requestId) {
       const heartbeatAt = state?.heartbeat_at || null;

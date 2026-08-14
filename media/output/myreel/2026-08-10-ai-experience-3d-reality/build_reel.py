@@ -29,7 +29,7 @@ WIDTH = 1080
 HEIGHT = 1920
 FPS = 30
 
-BLOG_URL = "https://ai-hub-jp.vercel.app/blog/2026-08-09-ai-experience-3d-reality.html"
+BLOG_URL = "https://aiclimb.vercel.app/blog/2026-08-09-ai-experience-3d-reality.html"
 ACCOUNT = "@climbingconsul"
 ARTICLE_TITLE = "AI時代、経験者が再び強くなる理由"
 REVIEW_STATE = "review_ready_waiting_final_approval"
@@ -1071,8 +1071,8 @@ Reelレビュー状態: {metadata_line}
             "status": "verified_before_reel_publication",
         },
         "site_media": {
-            "video_url": "https://ai-hub-jp.vercel.app/media/ai-experience-3d-20260810/reel.mp4",
-            "cover_url": "https://ai-hub-jp.vercel.app/media/ai-experience-3d-20260810/cover.png",
+            "video_url": "https://aiclimb.vercel.app/media/ai-experience-3d-20260810/reel.mp4",
+            "cover_url": "https://aiclimb.vercel.app/media/ai-experience-3d-20260810/cover.png",
             "placement": "article-title-note-before-hero",
             "status": "pending_site_deploy",
         },

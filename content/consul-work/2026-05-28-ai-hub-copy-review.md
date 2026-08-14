@@ -1,6 +1,6 @@
 # AIハブ コピー検証レポート（初心者視点）
 作成: 2026-05-28
-対象: https://ai-hub-jp.vercel.app/
+対象: https://aiclimb.vercel.app/
 
 ---
 

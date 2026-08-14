@@ -254,7 +254,7 @@ Expected: 競合なし。競合した場合は無料相談導線に関わる行�
 git push origin HEAD:main
 ```
 
-確認するURLは `https://ai-hub-jp.vercel.app`。PC幅とiPhone幅で、ヒーロー、60秒診断の5結果、問い合わせ欄、モバイルメニュー、ブログCTAを確認する。外部予約ページは開かず、`href`、`target="_blank"`、文言、横スクロールなしをブラウザーで確認する。
+確認するURLは `https://aiclimb.vercel.app`。PC幅とiPhone幅で、ヒーロー、60秒診断の5結果、問い合わせ欄、モバイルメニュー、ブログCTAを確認する。外部予約ページは開かず、`href`、`target="_blank"`、文言、横スクロールなしをブラウザーで確認する。
 
 - [ ] **Step 6: 最終コミットの状態を確認する**
 

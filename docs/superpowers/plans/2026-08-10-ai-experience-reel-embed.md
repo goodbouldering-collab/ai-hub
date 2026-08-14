@@ -11,7 +11,7 @@
 ## Global Constraints
 
 - 投稿先はAI相談の正式アカウント `@climbingconsul` だけにする。
-- 記事URLは `https://ai-hub-jp.vercel.app/blog/2026-08-09-ai-experience-3d-reality.html` とする。
+- 記事URLは `https://aiclimb.vercel.app/blog/2026-08-09-ai-experience-3d-reality.html` とする。
 - 中央文は5場面・各3行以内、`narration` は中央文を改行・句読点以外で変えない。
 - ナレーションは `ja-JP-NanamiNeural`、速度 `+0%` を保つ。
 - BGMは外部サンプルなしの自作非ボーカル、ナレーション中のダッキングは5〜8dB、声はduck後BGMより8dB以上大きくする。
@@ -62,7 +62,7 @@ Expected: FAIL because the campaign module is not present yet.
 - [ ] **Step 3: 既存の音声QA付きビルダーを複製して最小限差し替える**
 
 ```python
-BLOG_URL = "https://ai-hub-jp.vercel.app/blog/2026-08-09-ai-experience-3d-reality.html"
+BLOG_URL = "https://aiclimb.vercel.app/blog/2026-08-09-ai-experience-3d-reality.html"
 ACCOUNT = "@climbingconsul"
 ARTICLE_TITLE = "AI時代、経験者が再び強くなる理由"
 BEATS = [
@@ -206,7 +206,7 @@ Expected: Vercel READY、記事URL・MP4・coverがHTTP 200、PCと390pxで動�
 ```text
 Account: @climbingconsul
 Video: media/output/myreel/2026-08-10-ai-experience-3d-reality/reel.mp4
-Caption final URL: https://ai-hub-jp.vercel.app/blog/2026-08-09-ai-experience-3d-reality.html
+Caption final URL: https://aiclimb.vercel.app/blog/2026-08-09-ai-experience-3d-reality.html
 ```
 
 Expected: 警告・CAPTCHA・追加認証がなく、最終シェア前でアカウント、動画、本文が一致する。
@@ -224,8 +224,8 @@ Expected: Reel公開URL、Story共有完了、コメント表示を確認する�
   "publication": {
     "instagram_reel_url": "<verified public URL>",
     "account": "@climbingconsul",
-    "article_url": "https://ai-hub-jp.vercel.app/blog/2026-08-09-ai-experience-3d-reality.html",
-    "site_media_url": "https://ai-hub-jp.vercel.app/media/ai-experience-3d-20260810/reel.mp4"
+    "article_url": "https://aiclimb.vercel.app/blog/2026-08-09-ai-experience-3d-reality.html",
+    "site_media_url": "https://aiclimb.vercel.app/media/ai-experience-3d-20260810/reel.mp4"
   }
 }
 ```

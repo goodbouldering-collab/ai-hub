@@ -32,8 +32,8 @@
    - 「User authentication settings」→「Set up」をクリック
    - **App permissions**: `Read and write`（投稿に必要）
    - **Type of App**: `Web App, Automated App or Bot`
-   - **Callback URI**: 使用しないが入力が必須のため `https://ai-hub-jp.vercel.app/callback` などを入れる
-   - **Website URL**: `https://ai-hub-jp.vercel.app`
+   - **Callback URI**: 使用しないが入力が必須のため `https://aiclimb.vercel.app/callback` などを入れる
+   - **Website URL**: `https://aiclimb.vercel.app`
    - 「Save」
 
 4. **キーを取得**
@@ -127,7 +127,7 @@
 
 ## Vercel 環境変数の登録方法
 
-1. Vercel Dashboard → `ai-hub-jp` プロジェクト → 「Settings」→「Environment Variables」
+1. Vercel Dashboard → `ai-hub` プロジェクト → 「Settings」→「Environment Variables」
 2. 上記の変数を1つずつ追加:
    - `Environment`: Production (および必要に応じて Preview)
    - `Value`: 取得したキーをそのまま貼り付け

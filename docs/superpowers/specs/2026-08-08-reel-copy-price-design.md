@@ -70,7 +70,7 @@ Instagramへの公開、ストーリーズ共有、コメント投稿はこの�
 - 全PythonテストとTypeScript検査を実行する。
 - `ffprobe`でReelが1080×1920、H.264、AAC、30fps、音声ありであることを確認する。
 - ストーリーボードと完成動画を目視し、文字切れ、低コントラスト、誤読、音割れを確認する。
-- 本番URL `https://ai-hub-jp.vercel.app/` とブログURLをHTTPとブラウザの両方で確認する。
+- 本番URL `https://aiclimb.vercel.app/` とブログURLをHTTPとブラウザの両方で確認する。
 
 ## 完了条件
 

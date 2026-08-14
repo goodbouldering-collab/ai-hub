@@ -170,7 +170,7 @@ portfolio:
   source_project: trusthikone
 - name: AI相談彦根 AIエージェント導入
   slug: ai-hub
-  url: https://ai-hub-jp.vercel.app
+  url: https://aiclimb.vercel.app
   aliases:
   - https://ai-hub-red-tau.vercel.app
   status: live

@@ -8,7 +8,7 @@ test("PC Codex bridge is relocated to AI相談 and targets the protected relay",
   const bridge = await readFile(new URL("bridge/bridge.mjs", root), "utf8");
   await access(new URL("bridge/contracts.mjs", root));
   await access(new URL(".agents/skills/command-room-executor/SKILL.md", root));
-  assert.match(bridge, /COMMAND_ROOM_ORIGIN\s*=\s*"https:\/\/ai-hub-jp\.vercel\.app"/);
+  assert.match(bridge, /COMMAND_ROOM_ORIGIN\s*=\s*"https:\/\/aiclimb\.vercel\.app"/);
   assert.match(bridge, /\/api\/admin\/command-center\/relay/);
   assert.doesNotMatch(bridge, /climbing-consult-daily-command\.goodbouldering\.chatgpt\.site/);
   assert.match(bridge, /SAFE_APP_SERVER_ENVIRONMENT_KEYS/);

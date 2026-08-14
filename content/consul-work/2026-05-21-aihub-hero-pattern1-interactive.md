@@ -6,7 +6,7 @@
 2. **iPhone（390px）のヒーローはみ出しを修正**
 3. **TOPページのインタラクティブ強化**（タイプライター / ダークモード / 診断チャット）
 
-対象: [ai-hub/site/build_portal.py](ai-hub/site/build_portal.py)（静的ジェネレータ）。本番 https://ai-hub-jp.vercel.app/
+対象: [ai-hub/site/build_portal.py](ai-hub/site/build_portal.py)（静的ジェネレータ）。本番 https://aiclimb.vercel.app/
 
 ## コピー方針（CEO 提供 3 パターンの 1 番目）
 

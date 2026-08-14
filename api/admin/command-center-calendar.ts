@@ -15,7 +15,7 @@ function validDate(value: unknown): value is string {
   return !Number.isNaN(parsed.getTime()) && parsed.toISOString().slice(0, 10) === value;
 }
 function rangeFromRequest(req: { url?: string }) {
-  const url = new URL(req.url || "/api/admin/command-center/calendar", "https://ai-hub-jp.vercel.app");
+  const url = new URL(req.url || "/api/admin/command-center/calendar", "https://aiclimb.vercel.app");
   const from = url.searchParams.get("from");
   const to = url.searchParams.get("to");
   if (!validDate(from) || !validDate(to)) return null;

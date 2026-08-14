@@ -41,7 +41,7 @@ AIと人間と現実を往復すること。
 それが、これからの仕事を強くすると考えています。
 
 詳しい考え方は、AI相談のブログにまとめました。
-https://ai-hub-jp.vercel.app/blog/2026-08-09-ai-experience-3d-reality.html
+https://aiclimb.vercel.app/blog/2026-08-09-ai-experience-3d-reality.html
 
 #AI活用 #生成AI #仕事術 #業務改善 #AI相談 #彦根
 
@@ -50,7 +50,7 @@ https://ai-hub-jp.vercel.app/blog/2026-08-09-ai-experience-3d-reality.html
 AIが速くつくる仮説を、現実で確かめるのは人。
 経験がAIの答えを使える形へ直します。
 
-- リンク先: https://ai-hub-jp.vercel.app/blog/2026-08-09-ai-experience-3d-reality.html
+- リンク先: https://aiclimb.vercel.app/blog/2026-08-09-ai-experience-3d-reality.html
 - リンクラベル: `詳細はこちら`
 - 配置: 画面下部中央のセーフエリア
 

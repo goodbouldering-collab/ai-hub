@@ -31,7 +31,7 @@ export function publicOrigin(req: VercelReq): string {
   const host =
     firstHeader(req.headers["x-forwarded-host"]) ||
     firstHeader(req.headers.host) ||
-    "ai-hub-jp.vercel.app";
+    "aiclimb.vercel.app";
   const proto = firstHeader(req.headers["x-forwarded-proto"]) || "https";
   return `${proto}://${host}`.replace(/\/+$/, "");
 }

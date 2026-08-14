@@ -110,7 +110,7 @@ DIST = ROOT / "site" / "dist"
 LECTURES_DIR = ROOT / "content" / "lectures"
 BLOG_DIR = ROOT / "content" / "blog"
 
-SITE_URL = os.environ.get("AIHUB_SITE_URL", os.environ.get("AIWATCH_SITE_URL", "https://ai-hub-jp.vercel.app")).rstrip("/")
+SITE_URL = os.environ.get("AIHUB_SITE_URL", os.environ.get("AIWATCH_SITE_URL", "https://aiclimb.vercel.app")).rstrip("/")
 
 OWNER_NAME = "由井 辰美"
 OWNER_EMAIL = "goodbouldering@gmail.com"

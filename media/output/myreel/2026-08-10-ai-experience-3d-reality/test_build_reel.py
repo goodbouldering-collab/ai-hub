@@ -27,7 +27,7 @@ class ExperienceRealityReelContractTest(unittest.TestCase):
             ["AIと人間と現実", "この往復が仕事を強くする"],
         ]
 
-        self.assertEqual(self.module.BLOG_URL, "https://ai-hub-jp.vercel.app/blog/2026-08-09-ai-experience-3d-reality.html")
+        self.assertEqual(self.module.BLOG_URL, "https://aiclimb.vercel.app/blog/2026-08-09-ai-experience-3d-reality.html")
         self.assertEqual(self.module.ACCOUNT, "@climbingconsul")
         self.assertEqual(self.module.ARTICLE_TITLE, "AI時代、経験者が再び強くなる理由")
         self.assertEqual([beat["text"] for beat in self.module.BEATS], expected)

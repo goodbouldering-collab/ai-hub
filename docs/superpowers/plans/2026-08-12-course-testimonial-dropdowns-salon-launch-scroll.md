@@ -309,6 +309,6 @@ mainの自動デプロイを待ち、Project ID `prj_e7vh73eF0KZpm8C49esnILvHO98
 
 - [ ] **Step 7: 本番URLを再検証する**
 
-Verify: `https://ai-hub-jp.vercel.app/`
+Verify: `https://aiclimb.vercel.app/`
 
 ローカルと同じPC/iPhone操作、4つの感想、サロン状態、Squareフォームaction、12 Review、横オーバーフロー、縦スクロール、コンソールerrorを確認する。

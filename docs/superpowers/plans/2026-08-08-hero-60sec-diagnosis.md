@@ -336,7 +336,7 @@ git commit -m "feat: route diagnosis results to next actions"
 
 **Interfaces:**
 - Consumes: the completed static renderer and Git-connected Vercel project.
-- Produces: a production https://ai-hub-jp.vercel.app homepage with evidence for desktop, iPhone, diagnosis, and real booking links.
+- Produces: a production https://aiclimb.vercel.app homepage with evidence for desktop, iPhone, diagnosis, and real booking links.
 
 - [ ] **Step 1: Rebuild all static output and run every automated check**
 
@@ -381,7 +381,7 @@ Expected: a fast-forward-compatible main update with no unrelated files. If a re
 
 - [ ] **Step 5: Wait for Vercel and verify production**
 
-After the Git-connected deployment reports READY, inspect https://ai-hub-jp.vercel.app/?v=hero60sec in a browser at 1440px and 390px and repeat the Step 2 checks. Confirm the live HTML contains 「迷ったら60秒診断をはじめる →」 and the real Square booking URL.
+After the Git-connected deployment reports READY, inspect https://aiclimb.vercel.app/?v=hero60sec in a browser at 1440px and 390px and repeat the Step 2 checks. Confirm the live HTML contains 「迷ったら60秒診断をはじめる →」 and the real Square booking URL.
 
 ## Plan Self-Review
 

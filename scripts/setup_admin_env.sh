@@ -12,7 +12,7 @@
 set -euo pipefail
 
 ENV_FILE="${HOME}/.claude/.env"
-PROJECT_ID="prj_e7vh73eF0KZpm8C49esnILvHO98o"  # ai-hub-jp
+PROJECT_ID="prj_e7vh73eF0KZpm8C49esnILvHO98o"  # ai-hub
 TEAM_HINT=""  # 必要なら ?teamId=team_xxx を入れる
 
 if [ ! -f "$ENV_FILE" ]; then
@@ -116,4 +116,4 @@ echo
 echo "[*] 完了。Vercel で再デプロイすると新しい env が反映されます:"
 echo "    curl -X POST -H 'Authorization: Bearer \$VERCEL_TOKEN' \\"
 echo "      'https://api.vercel.com/v13/deployments?forceNew=1' \\"
-echo "      -d '{\"name\":\"ai-hub-jp\",\"project\":\"${PROJECT_ID}\",\"target\":\"production\",\"gitSource\":{\"type\":\"github\",\"ref\":\"main\",\"repo\":\"goodbouldering-collab/ai-hub\"}}'"
+echo "      -d '{\"name\":\"ai-hub\",\"project\":\"${PROJECT_ID}\",\"target\":\"production\",\"gitSource\":{\"type\":\"github\",\"ref\":\"main\",\"repo\":\"goodbouldering-collab/ai-hub\"}}'"

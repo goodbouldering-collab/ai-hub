@@ -398,13 +398,13 @@ PRを作成し、変更範囲と検証結果を記載してmainへマージす�
 
 - [ ] **Step 4: Vercel READYを確認する**
 
-mainのマージコミットに対応するVercel Production Deploymentが`READY`になるまで確認し、推測URLではなく`https://ai-hub-jp.vercel.app`を開く。
+mainのマージコミットに対応するVercel Production Deploymentが`READY`になるまで確認し、推測URLではなく`https://aiclimb.vercel.app`を開く。
 
 - [ ] **Step 5: 本番HTML・JSON-LD・PC/iPhoneを再確認する**
 
 本番で次を確認する。
 
-- `https://ai-hub-jp.vercel.app/#course-voices`が200で表示される。
+- `https://aiclimb.vercel.app/#course-voices`が200で表示される。
 - 4コース、12件、匿名編集注記、4アンカーが存在する。
 - JSON-LDにCourse 2件、Service 2件、Review 12件があり、星評価がない。
 - PC 1440pxとiPhone 390pxでCTA、ナビ、感想、コントラスト、横幅、画像、コンソールが正常。

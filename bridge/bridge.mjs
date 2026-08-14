@@ -12,8 +12,8 @@ const CODEX_SCHEMA_VERSION = "0.145.0-alpha.18";
 const DEFAULT_PORT = 43117;
 const MAX_BODY_BYTES = 64 * 1024;
 const MAX_OUTPUT_CHARS = 120_000;
-const COMMAND_ROOM_ORIGIN = "https://ai-hub-jp.vercel.app";
-const AI_CONSULT_ORIGIN = "https://ai-hub-jp.vercel.app";
+const COMMAND_ROOM_ORIGIN = "https://aiclimb.vercel.app";
+const AI_CONSULT_ORIGIN = "https://aiclimb.vercel.app";
 const terminalStatuses = new Set(["completed", "failed", "interrupted"]);
 const executableModes = new Set(["research", "draft", "implement"]);
 

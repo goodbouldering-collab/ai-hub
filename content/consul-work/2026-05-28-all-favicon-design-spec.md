@@ -528,7 +528,7 @@ magick convert favicon-32x32.png favicon-16x16.png favicon.ico
 | **グッぼる** | `goodbouldering.com`がメインアセット。ホールド形状の単純化度合いのジャッジが必要 | 中（ホールドパスの造形） |
 | **Notエステ** | `notesthe.vercel.app`稼働中。蝶翼パスはやや複雑・Midjourney使用推奨 | 中（翼パス or AI生成） |
 | **ビジネス21** | `business21.vercel.app`稼働中。「21」テキストSVGは実装容易だがアウトライン化が必要 | 中（フォントアウトライン化） |
-| **AIハブ** | `ai-hub-jp.vercel.app`稼働中・CEO向けポータルのトップ表示に直結 | 中（放射状ノードの座標計算） |
+| **AIハブ** | `aiclimb.vercel.app`稼働中・CEO向けポータルのトップ表示に直結 | 中（放射状ノードの座標計算） |
 
 ### ティア3: 次フェーズ（本番デプロイ前または業種が確定後）
 

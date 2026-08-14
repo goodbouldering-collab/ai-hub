@@ -73,7 +73,7 @@
 | **スケジュール (UTC)** | `0 21 * * *` |
 | **JST 実行時刻** | 毎日 06:00 |
 | **用途** | プライベートリポ `consul` を fetch → `ai-hub/content/consul-work/*.md` に上書き → ai-hub に commit + push |
-| **目的** | `https://ai-hub-jp.vercel.app/admin/docs` から経営本部ドキュメントを Basic 認証下で閲覧可能にする |
+| **目的** | `https://aiclimb.vercel.app/admin/docs` から経営本部ドキュメントを Basic 認証下で閲覧可能にする |
 | **手動実行** | `workflow_dispatch` 対応 |
 | **必要 Secret** | `CONSUL_REPO_PAT`（consul プライベートリポへの read 権限を持つ PAT） |
 | **ダッシュボード** | https://github.com/goodbouldering-collab/ai-hub/actions/workflows/sync-consul-docs.yml |

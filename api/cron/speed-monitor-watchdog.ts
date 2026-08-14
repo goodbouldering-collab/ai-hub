@@ -46,7 +46,7 @@ function buildDefaultDataUrl(req: VercelReq): string {
   const host = headerText(req.headers["x-forwarded-host"]) || headerText(req.headers.host);
   if (host) return `${proto}://${host}${DEFAULT_DATA_PATH}`;
   if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}${DEFAULT_DATA_PATH}`;
-  return `https://ai-hub-jp.vercel.app${DEFAULT_DATA_PATH}`;
+  return `https://aiclimb.vercel.app${DEFAULT_DATA_PATH}`;
 }
 
 function latestRow(payload: SpeedPayload): SpeedRow | null {

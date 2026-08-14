@@ -10,7 +10,7 @@ AIが速くつくる仮説を、現実で確かめるのは人。
 
 ## リンクスタンプ
 
-- URL: https://ai-hub-jp.vercel.app/blog/2026-08-09-ai-experience-3d-reality.html
+- URL: https://aiclimb.vercel.app/blog/2026-08-09-ai-experience-3d-reality.html
 - ラベル: `詳細はこちら`
 - 配置: 画面下部中央のセーフエリア
 

@@ -14,7 +14,7 @@ export function publicOrigin(req: VercelReq): string {
   const forwardedProto = firstHeader(req.headers["x-forwarded-proto"]);
   const forwardedHost = firstHeader(req.headers["x-forwarded-host"]);
   const host = forwardedHost || firstHeader(req.headers.host);
-  if (!host) return "https://ai-hub-jp.vercel.app";
+  if (!host) return "https://aiclimb.vercel.app";
   const protocol = forwardedProto || (host.includes("localhost") ? "http" : "https");
   return `${protocol}://${host}`;
 }

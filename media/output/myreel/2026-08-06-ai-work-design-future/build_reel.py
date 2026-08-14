@@ -29,7 +29,7 @@ WIDTH = 1080
 HEIGHT = 1920
 FPS = 30
 
-BLOG_URL = "https://ai-hub-jp.vercel.app/blog/2026-08-06-ai-work-design-future.html"
+BLOG_URL = "https://aiclimb.vercel.app/blog/2026-08-06-ai-work-design-future.html"
 ACCOUNT = "@climbingconsul"
 ARTICLE_TITLE = "AI時代にデザインは不要になるのか？ むしろ必要になる「経験」と「仕事をデザインする力」"
 REVIEW_STATE = "review_ready_waiting_final_approval"

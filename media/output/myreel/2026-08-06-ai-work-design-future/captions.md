@@ -40,7 +40,7 @@ AIなら、ロゴもWebサイトも資料も、これまでより早く形にで
 仕事を広げる、最強の武器になります。
 
 詳しい考え方は、AI相談のブログにまとめました。
-https://ai-hub-jp.vercel.app/blog/2026-08-06-ai-work-design-future.html
+https://aiclimb.vercel.app/blog/2026-08-06-ai-work-design-future.html
 
 #AI活用 #デザイン #Web制作 #資料作成 #仕事術 #AI相談
 
@@ -49,7 +49,7 @@ https://ai-hub-jp.vercel.app/blog/2026-08-06-ai-work-design-future.html
 AIでデザイナーはいらなくなる？
 答えは逆。AIは仕事を広げる武器になります。
 
-- リンク先: https://ai-hub-jp.vercel.app/blog/2026-08-06-ai-work-design-future.html
+- リンク先: https://aiclimb.vercel.app/blog/2026-08-06-ai-work-design-future.html
 - リンクラベル: `詳細はこちら`
 - 配置: 画面下部中央のセーフエリア
 

@@ -4,7 +4,7 @@ CEO依頼:
 - ハンバーガーメニューにあるページをトップにうまくまとめて表示、詳細はリンクでページへ
 - 問い合わせはフォームを作って Resend で climb@goodbouldering.com へ
 
-本番 https://ai-hub-jp.vercel.app/ 反映済み（commit 96ad8fa）。
+本番 https://aiclimb.vercel.app/ 反映済み（commit 96ad8fa）。
 
 ## 実装内容
 

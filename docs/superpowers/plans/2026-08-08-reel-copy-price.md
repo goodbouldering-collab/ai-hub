@@ -300,8 +300,8 @@ Expected: pull request checks pass, the pull request is merged to `main`, and th
 
 Check:
 
-- `https://ai-hub-jp.vercel.app/` contains visible `5,500円から` and not `相談5,500円/回`.
-- `https://ai-hub-jp.vercel.app/blog/2026-08-06-ai-work-design-future.html` loads the revised video.
+- `https://aiclimb.vercel.app/` contains visible `5,500円から` and not `相談5,500円/回`.
+- `https://aiclimb.vercel.app/blog/2026-08-06-ai-work-design-future.html` loads the revised video.
 - PC width and iPhone width show readable navigation, hero price, portrait video, and no horizontal overflow.
 - Browser console has no new errors and the video resource returns 200 with the regenerated file hash.
 

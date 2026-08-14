@@ -16,7 +16,7 @@ vercel:
       match_slug: ai-hub
       slug: ai-hub
       name: AI相談
-      canonical_url: https://ai-hub-jp.vercel.app
+      canonical_url: https://aiclimb.vercel.app
       category: AI相談・講習
       tech: [Vercel, Supabase, GitHub Actions]
       summary: 彦根・滋賀のAI導入相談、生成AI講習、受講資料、実践ブログを集約

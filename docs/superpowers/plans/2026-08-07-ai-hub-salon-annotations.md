@@ -260,7 +260,7 @@ git commit -m "fix: clarify hero consultation price"
 
 **Interfaces:**
 - Consumes: Tasks 1〜3のソース・回帰テスト。
-- Produces: 本番 https://ai-hub-jp.vercel.app/index.html に反映された5点の画面変更と、確認済みの公開URL。
+- Produces: 本番 https://aiclimb.vercel.app/index.html に反映された5点の画面変更と、確認済みの公開URL。
 
 - [ ] **Step 1: 生成物を完全に再構築する**
 
@@ -315,4 +315,4 @@ gh pr create --base main --head codex/salon-annotation-polish-20260807 --title "
 gh pr merge --merge --delete-branch
 ~~~
 
-Vercelのデプロイ成功後、https://ai-hub-jp.vercel.app/index.html を1294px前後と390px前後で再確認し、Step 4の5条件と予約・Square決済・受講資料リンク先を確認する。
+Vercelのデプロイ成功後、https://aiclimb.vercel.app/index.html を1294px前後と390px前後で再確認し、Step 4の5条件と予約・Square決済・受講資料リンク先を確認する。

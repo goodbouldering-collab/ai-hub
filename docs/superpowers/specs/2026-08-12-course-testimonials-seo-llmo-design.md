@@ -114,10 +114,10 @@ PCではコース別パネルを2列、760px以下では1列にする。感想�
 
 既存の`@graph`内で、各対象を安定した`@id`付きノードとして出力する。
 
-- `https://ai-hub-jp.vercel.app/#course-ai-agent`: `Course`
-- `https://ai-hub-jp.vercel.app/#service-ai-consultation`: `Service`
-- `https://ai-hub-jp.vercel.app/#service-ai-support`: `Service`
-- `https://ai-hub-jp.vercel.app/#course-ai-coding`: `Course`
+- `https://aiclimb.vercel.app/#course-ai-agent`: `Course`
+- `https://aiclimb.vercel.app/#service-ai-consultation`: `Service`
+- `https://aiclimb.vercel.app/#service-ai-support`: `Service`
+- `https://aiclimb.vercel.app/#course-ai-coding`: `Course`
 
 AIエージェント講習とAIコーディング講習には`name`、`description`、`provider`、`offers`、`timeRequired`、`courseMode`、`inLanguage`、`teaches`、`review`を持たせる。AI個別相談とAI伴走支援には`name`、`description`、`provider`、`offers`、`areaServed`、`serviceType`、`review`を持たせる。
 
@@ -168,7 +168,7 @@ LLMOのためだけの隠し文章やキーワード列は追加しない。AI�
 5. ローカル表示をPC幅1440pxとiPhone幅390pxで確認する。
 6. 見出し階層、予約CTA、感想アンカー、文字のコントラスト、横スクロール、コンソールエラー、画像表示を確認する。
 7. scoped commitをpushし、VercelがREADYになったことを確認する。
-8. `https://ai-hub-jp.vercel.app/#course-voices`でPC・iPhone表示と本番JSON-LDを再確認する。
+8. `https://aiclimb.vercel.app/#course-voices`でPC・iPhone表示と本番JSON-LDを再確認する。
 
 ## 対象外
 

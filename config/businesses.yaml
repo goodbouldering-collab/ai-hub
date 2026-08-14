@@ -102,7 +102,7 @@ businesses:
 - id: ai-hub
   name: AI相談
   tagline: AI導入相談 + 生成AI講習 + 社内定着支援
-  url: https://ai-hub-jp.vercel.app
+  url: https://aiclimb.vercel.app
   icon: 🤖
   color: cyan
   status: live

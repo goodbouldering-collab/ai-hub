@@ -10,7 +10,7 @@ AIでデザイナーはいらなくなる？
 
 ## リンクスタンプ
 
-- URL: https://ai-hub-jp.vercel.app/blog/2026-08-06-ai-work-design-future.html
+- URL: https://aiclimb.vercel.app/blog/2026-08-06-ai-work-design-future.html
 - ラベル: `詳細はこちら`
 - 配置: 画面下部中央のセーフエリア
 

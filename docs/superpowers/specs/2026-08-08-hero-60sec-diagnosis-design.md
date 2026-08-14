@@ -142,7 +142,7 @@ PCでは診断CTAを最初に置き、予約CTAと資料リンクを同じアク
 2. `site/build_portal.py` を再生成し、追加テストと全 `unittest` を実行する。
 3. ローカルでPC幅（1440px前後）とiPhone幅（390px前後）を確認する。主CTA、診断の3ステップ、結果の2導線、Esc、フォーカス復帰、横スクロールを確認する。
 4. 意図したソース・テスト・生成物だけをコミットし、`main` へpushする。
-5. Vercelの本番 `https://ai-hub-jp.vercel.app` で、同じヒーローコピー・診断・予約URL・PC/iPhone表示を確認する。
+5. Vercelの本番 `https://aiclimb.vercel.app` で、同じヒーローコピー・診断・予約URL・PC/iPhone表示を確認する。
 
 ## 実装しない代替案
 

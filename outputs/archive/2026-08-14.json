@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "",
-      "published": "2026-08-14T21:54:35+00:00"
+      "published": "2026-08-14T21:54:35+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "2a2baf413bfd56a8",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/VRGVSST_0814_SIte.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-08-14T12:54:16-04:00"
+      "published": "2026-08-14T12:54:16-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "2a4124c025be107c",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/02/STK255_Google_Gemini_D.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-08-14T12:39:32-04:00"
+      "published": "2026-08-14T12:39:32-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "e30aa3cdb3dc2194",
@@ -75,7 +81,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/STK071_APPLE_A-1.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-08-14T05:21:17-04:00"
+      "published": "2026-08-14T05:21:17-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "a22ea4db5ced94c7",
@@ -94,7 +102,9 @@
         "freshness": 3.0
       },
       "thumbnail": "",
-      "published": "2026-08-13T23:53:47+00:00"
+      "published": "2026-08-13T23:53:47+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "e4f1973a0c54a4c6",
@@ -113,7 +123,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/PYwDWiccdQ8/hqdefault.jpg",
-      "published": "2026-08-14T10:00:01+00:00"
+      "published": "2026-08-14T10:00:01+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "0973446c644caa91",
@@ -132,7 +144,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://huggingface.co/blog/assets/state-of-open-models-summer-2026/thumbnail.png",
-      "published": "Fri, 14 Aug 2026 00:00:00 GMT"
+      "published": "Fri, 14 Aug 2026 00:00:00 GMT",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "fd16b17a8beabad6",
@@ -151,7 +165,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://cdn.arstechnica.net/wp-content/uploads/2026/08/GettyImages-1793608536-1152x648.jpg",
-      "published": "Fri, 14 Aug 2026 17:26:53 +0000"
+      "published": "Fri, 14 Aug 2026 17:26:53 +0000",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "7c9a9991e9c5ba2a",
@@ -170,7 +186,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://cdn.arstechnica.net/wp-content/uploads/2026/08/GettyImages-2285566787-1152x648.jpg",
-      "published": "Fri, 14 Aug 2026 14:27:14 +0000"
+      "published": "Fri, 14 Aug 2026 14:27:14 +0000",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "1f37486b25243e31",
@@ -189,7 +207,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://www.itmedia.co.jp/aiplus/article/ogp/2608/15/2000000554/10002735/2048",
-      "published": "Sat, 15 Aug 2026 02:26:12 +0900"
+      "published": "Sat, 15 Aug 2026 02:26:12 +0900",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

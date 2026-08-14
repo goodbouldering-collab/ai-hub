@@ -4,7 +4,7 @@
 「TOPはシンプルにエージェントが作り直したものを検証して再度作り直して。エージェントが中心」
 → developer エージェントに新TOPを設計・実装させ、Claude が検証して仕上げる方式。
 
-ai-hub commit `739e4cc`。本番 https://aiclimb.vercel.app/ 反映・検証済み。
+ai-hub commit `739e4cc`。本番 https://ai-hub-jp.vercel.app/ 反映・検証済み。
 
 ## 進め方
 1. `build_portal.py`（2030行）を `build_portal.py.bak-20260522-0021` にバックアップ（`.gitignore` に `*.bak-*` 追加でcommit除外）

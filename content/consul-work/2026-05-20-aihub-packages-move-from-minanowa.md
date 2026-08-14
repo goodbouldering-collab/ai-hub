@@ -3,14 +3,14 @@
 ## 経緯
 
 午前中の作業で「みんなのWAにAI講習・相談・伴走パックの3コースを表示」したが、CEO 確認で **設置先が間違いだった**。
-正しい掲載先は **AIハブ（aiclimb.vercel.app）**。本タスクで:
+正しい掲載先は **AIハブ（ai-hub-jp.vercel.app）**。本タスクで:
 1. みんなのWAの courses 機能を全撤去
 2. 同じ内容を AIハブの TOP に新セクションとして追加
 
 ## 最終状態
 
 ### AIハブ（追加）
-- URL: https://aiclimb.vercel.app/#packages
+- URL: https://ai-hub-jp.vercel.app/#packages
 - セクション名: 「AI講習・相談・伴走パック」（SERVICES の直下、FLOW の直前）
 - 3カード: AI個別相談60分 / AI講習会120分 / AI伴走パック6回
 - 補助金対応バッジ（緑）+ Square予約リンク（青グラデーション CTA）

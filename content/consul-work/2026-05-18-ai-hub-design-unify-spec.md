@@ -5,7 +5,7 @@
 - **発注**: CEO 由井辰美 →「トップページのデザインに全て細部まで合わせて」
 - **CEO 承認状態**: 方針「段階的・見た目優先」を CEO 選択済（実装着手の最終承認は本書提示後に取得）
 - **基準（正本）**: トップページ `index.html` = `site/build_portal.py` の `PORTAL_CSS`
-- **本番URL**: `https://aiclimb.vercel.app/`（変更しない・このまま）
+- **本番URL**: `https://ai-hub-jp.vercel.app/`（変更しない・このまま）
 
 ## 背景：デザインが割れている根本原因
 

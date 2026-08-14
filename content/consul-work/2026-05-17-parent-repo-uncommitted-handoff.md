@@ -56,7 +56,7 @@ ab176a8 agents_system: Vercel 集約版に正常化、cma が再稼働      ← 
 1. まず `git -C C:\VSCode\Project status` を自分の目で確認し、15ファイルの変更が**意図したものか/作業途中か**を判断
 2. 意図した変更なら: 適切な単位で commit → `git pull --rebase origin main`（リモート6日前分を取り込み）→ `git push`
 3. 不要な変更なら: 該当ファイルを `git checkout --` で破棄してから 2 を実施
-4. **Claude の `cec5da1`（CLAUDE.md計画表訂正・ai-hub URL=aiclimb.vercel.app / みんなのWA Render削除済）は残す価値あり**。捨てるなら consul 側の [minanowa.md](../minanowa.md) と [work/2026-05-17-minanowa-render-deletion.md](2026-05-17-minanowa-render-deletion.md) に同じ情報が push 済みなので情報自体は失われない
+4. **Claude の `cec5da1`（CLAUDE.md計画表訂正・ai-hub URL=ai-hub-jp / みんなのWA Render削除済）は残す価値あり**。捨てるなら consul 側の [minanowa.md](../minanowa.md) と [work/2026-05-17-minanowa-render-deletion.md](2026-05-17-minanowa-render-deletion.md) に同じ情報が push 済みなので情報自体は失われない
 
 ## 5. 実害評価
 

@@ -19,10 +19,10 @@
 > 🔴 **5/16 設計書（[2026-05-16-ai-hub-ops-redesign.md](2026-05-16-ai-hub-ops-redesign.md)）の核心結論「3パイプライン停止＋別 Next.js プロジェクト配信」は誤診断だった。**
 > Vercel API（`VERCEL_TOKEN`）で実測した事実:
 > - ai-hub プロジェクト（`prj_e7vh73eF0KZpm8C49esnILvHO98o`）は**正常稼働・毎日デプロイ継続**（直近 2026-05-17 07:37 READY、main から自動）
-> - 正しい本番ドメインは **`aiclimb.vercel.app`**（verified）。`/`=200・`/admin`=**401（Basic 認証が正常動作）**・`/profile.html`=200・`/watch`=200 で**全機能生存**
+> - 正しい本番ドメインは **`ai-hub-jp.vercel.app`**（verified）。`/`=200・`/admin`=**401（Basic 認証が正常動作）**・`/profile.html`=200・`/watch`=200 で**全機能生存**
 > - `ai-hub.vercel.app` は **ai-hub の所有でない別ドメイン**（API で no-access、配下 404）。5/13 にこの誤 URL を「本番」と取り違え、以降ずっと 404 を踏んで「壊れている」と誤診断していた
 > - **結論：R0（Vercel 是正）・R2・R3（パイプライン復旧）は全て不要だった。土台は健全。`/ops` は素直に実装できる**
-> - ai-hub.md の本番 URL 記載は 2026-08-14 に正本（`aiclimb.vercel.app`）へ更新済
+> - ai-hub.md の本番 URL 記載は 2026-05-17 に正本（`ai-hub-jp`）へ是正済
 
 **実行はすべて CEO 承認後**（事業リポ書き込み = consul 鉄則）。
 
@@ -127,7 +127,7 @@ work/*.md は“原文リンク”として持つだけ（全文 HTML 化＝廃�
 |---|---|---|---|---|
 | **1** | ゴミ削除 — **`_tmp/`（48枚）と `data/_migrate_chunk_*.sql`・`_migrate_chunks.json`・`_migrate_dump.json`（8件）のみ**。`outputs/archive` は残す（F1） | 削除 | ai-hub（要 CEO 実行承認） | — |
 | **2** | 「MD 全展開」の実体特定 → **`api/admin/docs/index.ts` が `content/consul-work/*.md` を全部ブラウザ展開しているのが“ややこしい”の本体**。`build_portal.py`（公開トップ）には MD 全展開は無く触らない。`scripts/build_agents_status.py` は既に理想の「要点 JSON 化」（tasks_open / recent_works 等）をしており**そのまま活かす**。step2 は実コード変更を step3 に統合（docs の全展開を `/ops` の「折りたたみ原文ビューア」に置換） | 改造（実体は step3 に統合） | ai-hub（要 CEO） | 1 |
-| **3** | `/ops` ページ実装（§D 改訂版）。①重要タスク（トップ固定）②プロンプト集（画面で追加/編集/複製）③活動ログ ④原文ビューア（折りたたみ）。**正本 URL は `aiclimb.vercel.app/ops`** | 新設 | ai-hub（要 CEO） | 2 |
+| **3** | `/ops` ページ実装（§D 改訂版）。①重要タスク（トップ固定）②プロンプト集（画面で追加/編集/複製）③活動ログ ④原文ビューア（折りたたみ）。**正本 URL は `ai-hub-jp.vercel.app/ops`** | 新設 | ai-hub（要 CEO） | 2 |
 | ~~—~~ | ~~R0 Vercel 是正 / R2 sync 復旧 / R3 daily 復旧~~ | — | — | **不要（5/17 実測で健全と確定）** |
 | **4** | （次フェーズ）Google Calendar 連携 = scheduler スナップショット（F4 で後回し確定） | 新設 | 次回設計 | 3 完了後 |
 

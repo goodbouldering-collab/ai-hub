@@ -103,7 +103,7 @@ git push
   <p>This climbing video aggregation service is on pause as we focus on other projects.</p>
   <p>Will return when the time is right.</p>
   <p><a href="https://goodbouldering.com">→ Visit our climbing gym</a></p>
-  <p><a href="https://aiclimb.vercel.app">→ See our other projects</a></p>
+  <p><a href="https://ai-hub-jp.vercel.app">→ See our other projects</a></p>
 </body>
 </html>
 ```

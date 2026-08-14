@@ -79,7 +79,7 @@
 | ClimbHero | リポから判定不可 | Cloudflare Pages/Workers（CLAUDE.md 記述） | Cloudflare DNS 管理の可能性あり |
 | ファディー | 未設定（再生成中） | Vercel（予定） | — |
 | みんなのWA | minanowa.com | Vercel（2026-04-30 移行済） | リポから判定不可・要レジストラ確認 |
-| ai-hub | aiclimb.vercel.app（本番正本） | Vercel | vercel.app サブドメインのみ（独自ドメイン未設定） |
+| ai-hub | ai-hub-jp.vercel.app（本番正本） | Vercel | vercel.app サブドメインのみ（独自ドメイン未設定） |
 | トラスト | trustagent2015.com（consul/トラスト.md より） | Vercel | リポから判定不可・要レジストラ確認 |
 | consul | — | — | 公開サイトなし（経営本部リポ） |
 
@@ -98,7 +98,7 @@
 - ビジネス21（独自ドメイン名は要 Vercel ダッシュボード確認）
 
 **vercel.app サブドメインのみ / 独自ドメイン未設定**:
-- ai-hub（aiclimb.vercel.app が本番正本）
+- ai-hub（ai-hub-jp.vercel.app が本番正本）
 - ファディー（再生成中・未設定）
 
 **不明（要ダッシュボード確認）**:

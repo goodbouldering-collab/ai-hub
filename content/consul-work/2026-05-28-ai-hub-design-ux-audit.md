@@ -1,6 +1,6 @@
 # 制作物: AIハブ LP UXデザイン改善指示書
 ## 用途
-https://aiclimb.vercel.app/ のLPを、「AIにこれから触れる/興味があるだけの初心者（彦根のIT苦手な社長）」が申し込むまでの障壁を下げる。
+https://ai-hub-jp.vercel.app/ のLPを、「AIにこれから触れる/興味があるだけの初心者（彦根のIT苦手な社長）」が申し込むまでの障壁を下げる。
 
 ---
 
@@ -400,7 +400,7 @@ CSSの変更点:
 
 ## 参照
 
-- 本番 URL: https://aiclimb.vercel.app/
+- 本番 URL: https://ai-hub-jp.vercel.app/
 - ソース: `C:\VSCode\Project\ai-hub\site\build_portal.py`（PORTAL_CSS: L344〜1519、_render_hero: L1948〜2011、_render_courses_packages: L2102〜2200）
 - 事業情報: `C:\VSCode\Project\consul\ai-hub.md`
 - 対象ユーザー: 彦根周辺のIT苦手な中小事業者（社長）、AIを学びに来る初心者

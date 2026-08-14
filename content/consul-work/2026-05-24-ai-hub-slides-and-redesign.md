@@ -64,7 +64,7 @@ CEO 指示「並べ方・見せ方が古い。文字ベースを保ちつつイ�
 2. **Node 20 非推奨**: GitHub Actions が 2026-06-02 に Node 24 強制へ。pages.yml の
    actions バージョン更新がいずれ必要（現時点は動作に影響なし）
 3. **Vercel側のHTMLスライド配信**: build_site.py は GitHub Pages 経路で動く。Vercel 本番
-   （aiclimb.vercel.app）でも HTML スライドを出すなら Vercel ダッシュボードの
+   （ai-hub-jp.vercel.app）でも HTML スライドを出すなら Vercel ダッシュボードの
    buildCommand に Node+Marp 実行の追加が必要（未対応・継続課題）
 4. **グッぼる原本**: スライド原本はグッぼる側に残置（指示どおり）。正本は AIハブに移管済み
 

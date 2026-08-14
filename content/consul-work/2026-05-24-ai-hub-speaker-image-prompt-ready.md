@@ -72,4 +72,4 @@ Midjourney の場合は末尾に追加 → `--ar 4:3 --style raw --q 2 --v 7`
 
 - 未設定時は CSS アート（「由 / CLIMBER × CODER」プレースホルダ）が出る実装（`build_portal.py` の `_render_speaker_section()`）
 - `avatar_url` に値が入ると `<img>` に切り替わる。**URLを入れるだけで反映**される
-- 本番: https://aiclimb.vercel.app （`aiclimb.vercel.app` が正本・`ai-hub.vercel.app` ではない）
+- 本番: https://ai-hub-jp.vercel.app （`ai-hub-jp.vercel.app` が正本・`ai-hub.vercel.app` ではない）

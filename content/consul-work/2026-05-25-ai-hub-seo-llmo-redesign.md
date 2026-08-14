@@ -1,6 +1,6 @@
 # AIハブ SEO/LLMO 特化リデザイン — 実装記録と拡張提案（2026-05-25）
 
-本番: https://aiclimb.vercel.app/ ／ ソース: `C:\VSCode\Project\ai-hub\site\build_portal.py`(TOP) / `build_site.py`(下層)
+本番: https://ai-hub-jp.vercel.app/ ／ ソース: `C:\VSCode\Project\ai-hub\site\build_portal.py`(TOP) / `build_site.py`(下層)
 
 ## 戦略の前提（advisor分析の結論・数字根拠）
 
@@ -17,9 +17,9 @@
 | 構造化データ(JSON-LD) | **ゼロ**（致命傷） | `@graph` で LocalBusiness(ProfessionalService)・Person・WebSite・Service×4(価格付きOffer)・FAQPage・BreadcrumbList を相互参照 |
 | og:image | **無し**（SNS/AI検索でカード画像が出ない） | 専用OGP画像 `/img/ogp.png`(1200×630・Linear系ブランド)を生成・全メタ付与 |
 | twitter:card | summary(小・画像なし) | summary_large_image + title/description/image |
-| robots.txt の Sitemap | **旧GitHub Pages URLを誤指定**（事実上機能せず） | `aiclimb.vercel.app` に修正。/admin /api /ops /watch を Disallow |
+| robots.txt の Sitemap | **旧GitHub Pages URLを誤指定**（事実上機能せず） | `ai-hub-jp.vercel.app` に修正。/admin /api /ops /watch を Disallow |
 | sitemap.xml | 同上の誤URL・watch混入 | 本番URL・公開ページのみ（watchは管理移行で除外） |
-| build_site.py の SITE_URL 既定値 | github.io（誤） | aiclimb.vercel.app（build_portal と統一） |
+| build_site.py の SITE_URL 既定値 | github.io（誤） | ai-hub-jp.vercel.app（build_portal と統一） |
 | 地域シグナル | 弱い | LocalBusiness に住所(彦根市岡町)・areaServed(彦根/湖東/滋賀)・knowsAbout |
 | H1/見出し | デザイン優先でキーワード弱 | 視覚デザイン維持 + `.visually-hidden` で「滋賀・彦根の中小事業者向けAI講習・AI導入支援・補助金サポート」、サブキャッチに「滋賀・彦根のAI講習／AI導入コンサル」 |
 | FAQ | 4問 | 7問に拡張（地域・補助金・人手不足・出張の検索意図を素の質問形で）＝FAQPage構造化の一次情報源 |

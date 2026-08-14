@@ -210,7 +210,7 @@ GET https://ai-hub.vercel.app/ops     → 404（未実装なので想定どお�
 **根本原因（確定）**: `vercel.json` や `withAdmin` 認証コードのバグではない。**`ai-hub.vercel.app` ドメインに、この ai-hub リポとは別の Next.js プロジェクトがデプロイ／ドメイン紐付けされている**（あるいは ai-hub の Vercel プロジェクトが Framework Preset を Next.js と誤検出してビルドし、`site/dist` も `api/` も成果物に含まれていない）。**`site/dist/` 静的配信も `api/**` Functions も、本番にそもそも存在しない。**
 
 - **致命的な含意**: `/ops` を新規実装しても、デプロイ先が別物（または誤ビルド）である限り**同じく 404**。コードを1行書く前に、**Vercel プロジェクトのドメイン紐付け／Framework Preset／Root Directory／Build & Output 設定の是正が先**。これは Vercel ダッシュボード操作であり、コード変更ではない（要 CEO・`VERCEL_TOKEN` 経由の API 確認も可）
-- 補足: [ai-hub.md](ai-hub.md) には本番 URL を `aiclimb.vercel.app`（404）→ `ai-hub.vercel.app`（200）に「訂正」した記録がある（2026-05-13）。だが今回の実測で **`ai-hub.vercel.app` の 200 はトップだけで、配下は全部別物の 404**。つまり「200 だから正常」という当時の判断自体が誤りで、**ドメインが正しい Vercel プロジェクトを指していない**可能性が高い
+- 補足: [ai-hub.md](ai-hub.md) には本番 URL を `ai-hub-jp.vercel.app`（404）→ `ai-hub.vercel.app`（200）に「訂正」した記録がある（2026-05-13）。だが今回の実測で **`ai-hub.vercel.app` の 200 はトップだけで、配下は全部別物の 404**。つまり「200 だから正常」という当時の判断自体が誤りで、**ドメインが正しい Vercel プロジェクトを指していない**可能性が高い
 
 ### Q4: 個人カレンダー（`lossismore`）を AIハブに載せてよいか → **CEO 判断事項（技術調査では決められない）**
 

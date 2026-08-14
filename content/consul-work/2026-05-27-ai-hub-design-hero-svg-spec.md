@@ -2,7 +2,7 @@
 
 ## 用途
 
-- `aiclimb.vercel.app/` トップページ Hero セクションの右カラム画像
+- `ai-hub-jp.vercel.app/` トップページ Hero セクションの右カラム画像
 - 既存の `<img>` or `<div>` 枠をインラインSVGに差し替える
 - 外部デザイナーには渡さない。Claude（実装担当）がこの仕様書でSVGを直接コーディングする
 

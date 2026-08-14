@@ -1,5 +1,6 @@
 import { lookup } from "node:dns/promises";
 import { isIP } from "node:net";
+import { ADMIN_ORIGIN } from "../_lib/admin-origin.js";
 import { ValidationError, withAdmin } from "../_lib/http.js";
 
 const MAX_HTML_BYTES = 512 * 1024;
@@ -72,7 +73,7 @@ async function fetchPublicHtml(url: string, redirectCount = 0): Promise<{ finalU
       signal: controller.signal,
       headers: {
         "accept": "text/html,application/xhtml+xml;q=0.9,*/*;q=0.1",
-        "user-agent": "AIHubSiteIntake/1.0 (+https://ai-hub-jp.vercel.app/admin)",
+        "user-agent": `AIHubSiteIntake/1.0 (+${ADMIN_ORIGIN}/admin)`,
       },
     });
 

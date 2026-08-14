@@ -1,5 +1,6 @@
 import { createHmac } from "node:crypto";
 import type { IncomingMessage, ServerResponse } from "node:http";
+import { adminRequestUrl } from "./admin-origin.js";
 
 export type VercelReq = IncomingMessage & { body?: any; query?: Record<string, string | string[]> };
 export type VercelRes = ServerResponse & {
@@ -101,7 +102,7 @@ function parseCookies(req: VercelReq): Record<string, string> {
 
 function safeNextFromRequest(req: VercelReq): string {
   try {
-    const url = new URL(req.url || "/admin", "https://ai-hub-jp.vercel.app");
+    const url = adminRequestUrl(req.url, "/admin");
     return safeNextPath(url.pathname + url.search);
   } catch {
     return "/admin";
@@ -117,7 +118,7 @@ function wantsHtml(req: VercelReq): boolean {
 function isAdminPageRequest(req: VercelReq): boolean {
   if ((req.method || "GET").toUpperCase() !== "GET") return false;
   try {
-    const url = new URL(req.url || "/admin", "https://ai-hub-jp.vercel.app");
+    const url = adminRequestUrl(req.url, "/admin");
     const path = url.pathname.replace(/\/$/, "") || "/";
     return [
       "/admin",

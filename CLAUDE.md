@@ -102,7 +102,7 @@ FastAPI ベースの**ローカル専用** UI。記事収集ジョブの状態�
 **パスワードログイン付きの Web 管理画面** (Vercel Serverless Functions + 静的 HTML)。
 グッぼる（カラーミー）のグループ追加・AI記事生成・トップページ最上部への記事公開を担う。
 
-- URL: https://ai-hub-jp.vercel.app/admin
+- URL: https://aiclimb.vercel.app/admin
 - 認証: パスワードのみの管理ログイン (`ADMIN_PASS` を Vercel env)
 - API:
   - `/api/admin/ping` 接続/環境変数チェック

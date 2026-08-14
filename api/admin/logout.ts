@@ -1,4 +1,5 @@
 import { clearAdminSessionCookie, safeNextPath, type VercelReq, type VercelRes } from "../_lib/auth.js";
+import { adminRequestUrl } from "../_lib/admin-origin.js";
 
 export default function handler(req: VercelReq, res: VercelRes) {
   const next = getNext(req);
@@ -12,7 +13,7 @@ function getNext(req: VercelReq): string {
   const queryNext = req.query?.next;
   if (queryNext) return safeNextPath(queryNext);
   try {
-    const url = new URL(req.url || "/admin/logout", "https://ai-hub-jp.vercel.app");
+    const url = adminRequestUrl(req.url, "/admin/logout");
     return safeNextPath(url.searchParams.get("next"));
   } catch {
     return "/admin";

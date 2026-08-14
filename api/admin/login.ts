@@ -6,6 +6,7 @@ import {
   type VercelReq,
   type VercelRes,
 } from "../_lib/auth.js";
+import { adminRequestUrl } from "../_lib/admin-origin.js";
 
 export default async function handler(req: VercelReq, res: VercelRes) {
   const method = (req.method || "GET").toUpperCase();
@@ -43,7 +44,7 @@ function getNext(req: VercelReq): string {
   const queryNext = req.query?.next;
   if (queryNext) return safeNextPath(queryNext);
   try {
-    const url = new URL(req.url || "/admin/login", "https://ai-hub-jp.vercel.app");
+    const url = adminRequestUrl(req.url, "/admin/login");
     return safeNextPath(url.searchParams.get("next"));
   } catch {
     return "/admin";

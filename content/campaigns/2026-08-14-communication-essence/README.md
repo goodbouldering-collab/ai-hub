@@ -97,13 +97,14 @@ AIで文章が増えるほど、なぜ伝わらなくなるのか？──MITの
 
 ## 公開状態
 
-- 現在: ローカル記事・画像・近本番プレビュー・PC/iPhone QAまで完了、本番反映作業中
-- 本番公開: 2026-08-14 ユーザー承認済み
+- 現在: 本番公開・PC/iPhone再QA・主要導線確認まで完了
+- 本番公開: 2026-08-14 Vercel Production Ready — https://aiclimb.vercel.app/blog/2026-08-14-communication-essence-ai-consult.html
 - PC確認: 1440×1000、引用→ヒーロー→目次の順序、H2直後の画像4枚、全画像読込、結論、相談導線、固定メニュー、横はみ出しなし、コンソール警告・エラーなし
 - iPhone確認: 390×844、タイトルと引用の可読性、ハンバーガーメニュー開閉、全画像読込、横はみ出しなし、コンソール警告・エラーなし
 - 静的確認: ブログ一覧の先頭表示、トップ新着、BlogPosting JSON-LD、sitemap、画像ファイル、ブログ関連テスト16件
 - プレビュー: [PC](./preview-desktop.png) / [iPhone](./preview-mobile.png)
-- 公開時の再確認: 本番記事、ブログ一覧、トップの新着表示、画像、JSON-LD、sitemap、PC 1440px、iPhone 390px、コンソール、横はみ出し
+- 公開後の再確認: 本番記事、ブログ一覧の先頭、トップの新着先頭、画像5点、BlogPosting JSON-LD、sitemap、PC 1440×1000、iPhone 390×844、モバイルメニュー、コンソール、横はみ出しを確認済み
+- 本番HTTP確認: 記事、ブログ一覧、トップ、ヒーロー画像、sitemap.xml はすべて 200。sitemap.xml 内の記事URLも確認済み
 
 ## 媒体別の再利用案
 

@@ -90,6 +90,11 @@ test("public top and every target admin surface consume the canonical token laye
   assert.match(adminCss, /--admin-public-blue:\s*var\(--ai-color-brand-600/);
   assert.match(studioCss, /--green:var\(--ai-color-brand-600/);
   assert.match(commandCss, /--cc-blue:\s*var\(--ai-color-brand-600/);
+  assert.match(adminCss, /body\.admin-page :where\(button\)[^}]*min-width:\s*var\(--ai-size-tap,\s*44px\)/s);
+  assert.match(commandCss, /\.cc-local-nav a\s*\{[^}]*min-height:\s*var\(--ai-size-tap,\s*44px\)/s);
+  assert.match(commandCss, /\.cc-market-nav summary\s*\{[^}]*min-height:\s*var\(--ai-size-tap,\s*44px\)/s);
+  assert.match(commandCss, /\.cc-button, \.cc-select, \.cc-input, \.cc-textarea\s*\{[^}]*min-height:\s*var\(--ai-size-tap,\s*44px\)/s);
+  assert.match(commandCss, /\.cc-source-link\s*\{[^}]*min-height:\s*var\(--ai-size-tap,\s*44px\)/s);
 });
 
 test("Command Center keeps a page heading while protected data is loading", async () => {

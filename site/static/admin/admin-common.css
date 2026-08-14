@@ -4748,6 +4748,12 @@ body.admin-studio-page :where(button, input, select) {
   min-height: var(--ai-size-tap, 44px);
 }
 
+body.admin-page :where(button),
+body.ops-page :where(button),
+body.admin-studio-page :where(button) {
+  min-width: var(--ai-size-tap, 44px);
+}
+
 @media (prefers-reduced-motion: reduce) {
   body.admin-page *, body.admin-page *::before, body.admin-page *::after,
   body.ops-page *, body.ops-page *::before, body.ops-page *::after,

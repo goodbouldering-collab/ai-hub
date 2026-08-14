@@ -205,4 +205,9 @@ test("tablet admin navigation stays in the shared header's single row", async ()
     /@media \(max-width: 720px\) \{[\s\S]*?body\.admin-page \.admin-shared-header \.mobile-toggle,\s*body\.ops-page \.admin-shared-header \.mobile-toggle,[\s\S]*?display: inline-grid !important;/,
     "the narrow mobile drawer must outrank the shared desktop toggle rule",
   );
+  assert.match(
+    css,
+    /body\.admin-page header\.site-header\.admin-shared-header,\s*body\.ops-page header\.site-header\.admin-shared-header \{[\s\S]*?height: var\(--admin-shared-menu-height\) !important;/,
+    "the actual fixed header must use the same height as the single-row navigation and drawer",
+  );
 });

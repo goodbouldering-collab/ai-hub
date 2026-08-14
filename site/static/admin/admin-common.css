@@ -4226,6 +4226,15 @@ header.site-header.admin-shared-header {
   box-shadow: 0 8px 24px rgba(39,60,104,.06) !important;
 }
 
+/* The legacy admin shell also styles header.site-header at a higher specificity.
+   Keep the actual fixed header tied to the shared menu height at every width so
+   the one-row navigation and the mobile drawer start from the same baseline. */
+body.admin-page header.site-header.admin-shared-header,
+body.ops-page header.site-header.admin-shared-header {
+  height: var(--admin-shared-menu-height) !important;
+  min-height: var(--admin-shared-menu-height) !important;
+}
+
 .admin-shared-header .site-nav.admin-slide-nav {
   display: flex !important;
 }

@@ -4248,6 +4248,7 @@ header.site-header.admin-shared-header .site-header-inner {
   margin: 0 auto !important;
   padding: 10px 20px !important;
   display: flex !important;
+  flex-direction: row !important;
   flex-wrap: nowrap !important;
   grid-template-columns: none !important;
   align-items: center !important;

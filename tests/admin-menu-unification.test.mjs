@@ -217,8 +217,8 @@ test("page-local header styles cannot move the shared menu outside its fixed row
 
   assert.match(
     css,
-    /header\.site-header\.admin-shared-header \.site-header-inner \{[\s\S]*?height: var\(--admin-shared-menu-height\) !important;[\s\S]*?display: flex !important;/,
-    "a page-level .site-header-inner rule must not restore a taller or grid-based header row",
+    /header\.site-header\.admin-shared-header \.site-header-inner \{[\s\S]*?height: var\(--admin-shared-menu-height\) !important;[\s\S]*?display: flex !important;[\s\S]*?flex-direction: row !important;/,
+    "a page-level .site-header-inner rule must not restore a taller, grid-based, or stacked header row",
   );
   assert.match(
     css,

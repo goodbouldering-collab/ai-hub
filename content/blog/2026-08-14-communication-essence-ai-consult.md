@@ -9,6 +9,15 @@ image: /img/blog-communication-essence-hero-20260814.webp
 image_alt: 多くの情報カードを整理し、相手が進める一本の道と一枚のカードへまとめる編集の様子を描いた図解
 image_caption: 伝える人が複雑さを引き受けると、受け取る人には次の一歩が見えます。
 hero_image: true
+video: /media/reels/2026-08-14-communication-essence.mp4
+video_poster: /img/reel-communication-essence-cover-20260814.webp
+video_label: "リール｜伝える技術の本質を約30秒で整理する動画"
+video_caption: "情報を増やすのではなく、相手の次の一歩を軽くする。AI相談の実践と100→10→1を約30秒で伝えるリールです。"
+video_orientation: portrait
+video_fullscreen_on_play: mobile
+blog_index_featured_reel: true
+blog_index_reel_label: "新着リール"
+blog_index_reel_copy: "AIで作れる量が増えても、相手の時間は増えません。100を理解し、10を見せ、最後に次の一歩を一つ残す。その順番を約30秒で。"
 lead_quote: |-
   原稿を読み上げない。
   あなたが描写する姿になれ。視覚を簡潔に保て。

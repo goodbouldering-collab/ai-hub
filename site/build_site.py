@@ -3042,6 +3042,87 @@ header.site-header:hover {
 }
 """
 
+BLOG_FEATURED_REEL_CSS = """
+.blog-reel-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(230px, 330px);
+  gap: clamp(20px, 4vw, 42px);
+  align-items: center;
+  margin: 24px 0 30px;
+  padding: clamp(20px, 4vw, 38px);
+  border: 1px solid rgba(23, 48, 66, .15);
+  border-radius: 24px;
+  background: linear-gradient(135deg, #f7fbfb 0%, #edf6f3 52%, #f7f5ee 100%);
+  box-shadow: 0 14px 34px rgba(23, 48, 66, .10);
+}
+.blog-reel-feature__copy { min-width: 0; }
+.blog-reel-feature__eyebrow {
+  display: inline-flex;
+  margin: 0 0 10px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: #173042;
+  color: #fff;
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .07em;
+}
+.blog-reel-feature h2 {
+  margin: 0;
+  color: #173042;
+  font-size: clamp(1.22rem, 2.7vw, 1.85rem);
+  line-height: 1.48;
+}
+.blog-reel-feature p { margin: 14px 0 0; }
+.blog-reel-feature__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+.blog-reel-feature__actions a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 0 15px;
+  border-radius: 12px;
+  background: #173042;
+  color: #fff;
+  font-weight: 800;
+  text-decoration: none;
+}
+.blog-reel-feature__actions a:hover { background: #24536c; }
+.blog-reel-feature__actions a.blog-reel-feature__instagram {
+  border: 1px solid #173042;
+  background: transparent;
+  color: #173042;
+}
+.blog-reel-feature__media {
+  width: min(100%, 330px);
+  margin: 0 auto;
+}
+.blog-reel-feature__media video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  border: 1px solid rgba(23, 48, 66, .18);
+  border-radius: 18px;
+  background: #173042;
+  box-shadow: 0 16px 36px rgba(23, 48, 66, .18);
+}
+.blog-reel-feature__media figcaption {
+  margin-top: 8px;
+  color: #49616e;
+  font-size: .82rem;
+  text-align: center;
+}
+@media (max-width: 700px) {
+  .blog-reel-feature { grid-template-columns: 1fr; }
+  .blog-reel-feature__media { order: -1; width: min(100%, 300px); }
+  .blog-reel-feature { border-radius: 18px; }
+}
+"""
+
 
 # 全ページ共通のマスタCSS。build_site 固有 CSS を土台に、PORTAL_CSS を
 # 後置して後勝ちにすることで、共通セレクタ(body/.container/.site-header 等)を
@@ -4092,6 +4173,7 @@ def build_blog() -> int:
     out_dir.mkdir(parents=True, exist_ok=True)
     count = 0
     items: list[dict] = []
+    featured_reel: dict | None = None
     for f in sorted(BLOG_DIR.glob("*.md"), reverse=True):
         raw = f.read_text(encoding="utf-8")
         meta, body = _parse_frontmatter(raw)
@@ -4110,14 +4192,59 @@ def build_blog() -> int:
             "image": str(meta.get("image") or ""),
             "image_alt": str(meta.get("image_alt") or title),
         })
+        if featured_reel is None and bool(meta.get("blog_index_featured_reel")):
+            featured_reel = {
+                "slug": f.stem,
+                "title": title,
+                "video": str(meta.get("video") or "").strip(),
+                "poster": str(meta.get("video_poster") or "").strip(),
+                "label": str(meta.get("blog_index_reel_label") or "新着リール").strip(),
+                "copy": str(meta.get("blog_index_reel_copy") or meta.get("summary") or "").strip(),
+                "instagram_url": str(meta.get("instagram_reel_url") or "").strip(),
+            }
         count += 1
 
     if items:
         parts = [
             "<div class='tr-section'>",
             "<p>AI相談のブログです。AIエージェント講座・制作・業務改善の現場から、実際に使える視点を残していきます。</p>",
-            "<div class='tr-grid'>",
         ]
+        if featured_reel and featured_reel["video"]:
+            reel_slug = html.escape(str(featured_reel["slug"]), quote=True)
+            reel_title = html.escape(str(featured_reel["title"]))
+            reel_video = html.escape(str(featured_reel["video"]), quote=True)
+            reel_poster_value = str(featured_reel["poster"])
+            reel_poster = (
+                f" poster='{html.escape(reel_poster_value, quote=True)}'" if reel_poster_value else ""
+            )
+            reel_label = html.escape(str(featured_reel["label"]))
+            reel_copy = html.escape(str(featured_reel["copy"]))
+            parts.extend([
+                f"<style>{BLOG_FEATURED_REEL_CSS}</style>",
+                "<section class='blog-reel-feature' aria-labelledby='blog-featured-reel-title'>",
+                "<div class='blog-reel-feature__copy'>",
+                f"<p class='blog-reel-feature__eyebrow'>{reel_label}</p>",
+                f"<h2 id='blog-featured-reel-title'>{reel_title}</h2>",
+                f"<p>{reel_copy}</p>",
+                "<div class='blog-reel-feature__actions'>",
+                f"<a href='./{reel_slug}.html'>記事を読む</a>",
+            ])
+            instagram_url = str(featured_reel["instagram_url"])
+            if instagram_url.startswith("https://www.instagram.com/reel/"):
+                safe_instagram_url = html.escape(instagram_url, quote=True)
+                parts.append(
+                    f"<a class='blog-reel-feature__instagram' href='{safe_instagram_url}' target='_blank' rel='noopener'>Instagramで見る</a>"
+                )
+            parts.extend([
+                "</div></div>",
+                "<figure class='blog-reel-feature__media'>",
+                f"<video controls playsinline preload='metadata'{reel_poster} aria-label='{reel_title}'>",
+                f"<source src='{reel_video}' type='video/mp4'>",
+                f"お使いのブラウザは動画再生に対応していません。<a href='{reel_video}'>動画ファイルを開く</a>",
+                "</video><figcaption>記事と同じ約30秒リールをここで再生できます。</figcaption>",
+                "</figure></section>",
+            ])
+        parts.append("<div class='tr-grid'>")
         for item in items:
             safe_href = html.escape(f"./{item['slug']}.html", quote=True)
             safe_title = html.escape(item["title"])

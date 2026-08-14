@@ -1,0 +1,174 @@
+{
+  "campaign": "2026-08-14-communication-essence",
+  "articleUrl": "https://aiclimb.vercel.app/blog/2026-08-14-communication-essence-ai-consult.html",
+  "videoPath": "site/static/media/reels/2026-08-14-communication-essence.mp4",
+  "coverPath": "site/static/img/reel-communication-essence-cover-20260814.webp",
+  "voice": {
+    "engine": "edge-tts",
+    "voice": "ja-JP-NanamiNeural",
+    "rate": "-8%"
+  },
+  "bgm": {
+    "type": "original self-made soft pad",
+    "source": "generated in this script",
+    "baseMixVolume": 0.18,
+    "ducking": "sidechaincompress threshold=0.025 ratio=10 attack=20 release=520"
+  },
+  "sceneDurationsSeconds": [
+    4.8,
+    5.56,
+    4.8,
+    6.02,
+    6.19
+  ],
+  "frameChecks": [
+    {
+      "scene": 1,
+      "centerText": [
+        "AI時代の",
+        "伝える技術"
+      ],
+      "centerTextLineCount": 2,
+      "voice": "AI時代の、伝える技術。",
+      "centerTextBox": [
+        318,
+        1022,
+        762,
+        1209
+      ],
+      "centerTextInSafeArea": true,
+      "illustrationBox": [
+        54,
+        242,
+        1026,
+        789
+      ],
+      "illustrationInSafeArea": true,
+      "contentEndsAt": 1237
+    },
+    {
+      "scene": 2,
+      "centerText": [
+        "情報を増やしても",
+        "人の時間は",
+        "増えない"
+      ],
+      "centerTextLineCount": 3,
+      "voice": "情報を増やしても、人の時間は増えない。",
+      "centerTextBox": [
+        234,
+        971,
+        846,
+        1259
+      ],
+      "centerTextInSafeArea": true,
+      "illustrationBox": [
+        54,
+        242,
+        1026,
+        789
+      ],
+      "illustrationInSafeArea": true,
+      "contentEndsAt": 1287
+    },
+    {
+      "scene": 3,
+      "centerText": [
+        "100を理解し",
+        "10を見せる"
+      ],
+      "centerTextLineCount": 2,
+      "voice": "100を理解し、10を見せる。",
+      "centerTextBox": [
+        293,
+        1023,
+        787,
+        1207
+      ],
+      "centerTextInSafeArea": true,
+      "illustrationBox": [
+        54,
+        242,
+        1026,
+        789
+      ],
+      "illustrationInSafeArea": true,
+      "contentEndsAt": 1235
+    },
+    {
+      "scene": 4,
+      "centerText": [
+        "最後に残すのは",
+        "次の一歩",
+        "ただ一つ"
+      ],
+      "centerTextLineCount": 3,
+      "voice": "最後に残すのは、次の一歩、ただ一つ。",
+      "centerTextBox": [
+        272,
+        974,
+        808,
+        1256
+      ],
+      "centerTextInSafeArea": true,
+      "illustrationBox": [
+        54,
+        242,
+        1026,
+        789
+      ],
+      "illustrationInSafeArea": true,
+      "contentEndsAt": 1284
+    },
+    {
+      "scene": 5,
+      "centerText": [
+        "伝えるとは",
+        "相手の次の一歩を",
+        "軽くすることだ"
+      ],
+      "centerTextLineCount": 3,
+      "voice": "伝えるとは、相手の次の一歩を軽くすることだ。",
+      "centerTextBox": [
+        230,
+        972,
+        850,
+        1259
+      ],
+      "centerTextInSafeArea": true,
+      "illustrationBox": [
+        54,
+        242,
+        1026,
+        789
+      ],
+      "illustrationInSafeArea": true,
+      "contentEndsAt": 1287
+    }
+  ],
+  "videoCheck": {
+    "decodeExitCode": 0,
+    "decodeErrors": "",
+    "size": [
+      1080,
+      1920
+    ],
+    "fps": 30.0,
+    "durationSeconds": 27.4,
+    "codec": "h264",
+    "pixelFormat": "yuv420p",
+    "audioStreamPresent": true,
+    "audioCodec": "aac (LC) (mp4a / 0x6134706D)",
+    "bytes": 1428849
+  },
+  "exactlyFiveCenterTexts": true,
+  "allCenterTextsThreeLinesOrLess": true,
+  "allCenterTextsInSafeArea": true,
+  "allIllustrationsInSafeArea": true,
+  "videoDimensionsPass": true,
+  "videoDurationPass": true,
+  "fpsPass": true,
+  "codecPass": true,
+  "pixelFormatPass": true,
+  "audioPresent": true
+}

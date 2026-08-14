@@ -1,0 +1,5 @@
+file 'C:/Project/AI相談/_worktrees/communication-essence-blog-20260814/media/output/myreel/2026-08-14-communication-essence/audio/segment-01.m4a'
+file 'C:/Project/AI相談/_worktrees/communication-essence-blog-20260814/media/output/myreel/2026-08-14-communication-essence/audio/segment-02.m4a'
+file 'C:/Project/AI相談/_worktrees/communication-essence-blog-20260814/media/output/myreel/2026-08-14-communication-essence/audio/segment-03.m4a'
+file 'C:/Project/AI相談/_worktrees/communication-essence-blog-20260814/media/output/myreel/2026-08-14-communication-essence/audio/segment-04.m4a'
+file 'C:/Project/AI相談/_worktrees/communication-essence-blog-20260814/media/output/myreel/2026-08-14-communication-essence/audio/segment-05.m4a'

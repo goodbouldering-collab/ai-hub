@@ -5,3 +5,20 @@
 .preview-column.mobile-preview .article-preview{max-width:390px;padding:34px 22px}
 .preview-column.mobile-preview .preview-toolbar{max-width:390px}
 @media(max-width:720px){.workspace.preview-mode{display:block}.workspace.preview-mode .steps{display:none}.preview-toolbar{align-items:flex-start;gap:8px}.preview-toolbar>div{display:flex;flex-wrap:wrap;justify-content:flex-end}.preview-toolbar button{margin:0 0 6px 6px}}
+
+/* AI相談 Design System v1 semantic bridge. Keep legacy names for app compatibility. */
+:root{--ink:var(--ai-color-ink,#172033);--muted:var(--ai-color-muted,#606d83);--line:var(--ai-color-line,#dce4f2);--green:var(--ai-color-brand-600,#4261c7);--pale:var(--ai-color-brand-50,#f4f6ff);--accent:var(--ai-color-brand-600,#4261c7);font-family:var(--ai-font-sans,"Noto Sans JP",sans-serif);color:var(--ink);background:var(--ai-color-canvas,#f8fbff)}
+body{background:var(--ai-color-canvas,#f8fbff);color:var(--ink)}
+.preview-column{background:var(--ai-color-brand-50,#f4f6ff);border-color:var(--line)}
+.panel{border-radius:var(--ai-radius-card,16px);box-shadow:var(--ai-shadow-sm,0 8px 24px rgba(39,60,104,.08))}
+input,textarea,select{border-color:var(--line);border-radius:var(--ai-radius-control,8px);background:var(--ai-color-surface,#fff)}
+input:focus,textarea:focus,select:focus{border-color:var(--green);outline:3px solid rgba(66,97,199,.24);outline-offset:1px}
+.actions button,.preview-toolbar button{min-height:var(--ai-size-tap,44px);border-radius:var(--ai-radius-control,8px)}
+.primary{background:var(--green);color:var(--ai-color-white,#fff)}
+.secondary{border:1px solid var(--line);background:var(--ai-color-surface-soft,#f4f7fc);color:var(--ink)}
+.server-state{background:var(--ai-color-brand-100,#e9efff);color:var(--ai-color-brand-700,#3e58b8)}
+.server-state.mock,.notice{background:var(--ai-color-warning-soft,#fff4d6);color:var(--ai-color-warning,#805c13)}
+.progress{background:var(--ai-color-surface-soft,#f4f7fc)}
+.toast{background:var(--ai-color-ink,#172033);color:var(--ai-color-white,#fff)}
+@media(max-width:720px){.steps{background:var(--ai-color-canvas,#f8fbff)}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}

@@ -17,5 +17,7 @@ function loadCss(): string {
 
 export default withAdmin({ method: "GET" }, async ({ res }) => {
   res.setHeader("Content-Type", "text/css; charset=utf-8");
+  res.setHeader("Cache-Control", "private, no-store");
+  res.setHeader("X-Content-Type-Options", "nosniff");
   res.status(200).send(loadCss());
 });

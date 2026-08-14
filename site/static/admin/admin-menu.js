@@ -11,6 +11,7 @@
 
   const secondaryItems = [
     { href: "/ops", label: "OPS", description: "資料とプロンプトを見る", group: "運用" },
+    { href: "/design-system/", label: "デザインシステム", description: "共通の色・部品・状態を確認する", group: "運用", kind: "reference" },
     { href: "/", label: "公開ページ", description: "公開中の表示を確認する", group: "サイト", kind: "public" },
     { href: "/admin/logout", label: "ログアウト", description: "管理画面から退出する", group: "アカウント", kind: "logout" },
   ];

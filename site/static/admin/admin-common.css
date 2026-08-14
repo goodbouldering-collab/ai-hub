@@ -1,3 +1,5 @@
+@import url("/design-system/tokens.css");
+
 :root {
   --admin-title: "AI相談";
   --admin-ink: #071426;
@@ -4075,52 +4077,52 @@ body.admin-shared-menu-open {
 
 /* ---- Clear Sky Rose admin system, selected 2026-08-03 ---- */
 :root {
-  --admin-public-blue: #4F6FD8;
-  --admin-public-blue-dark: #3E58B8;
-  --admin-public-ink: #172033;
-  --admin-public-muted: #627089;
-  --admin-public-line: #DCE4F2;
-  --admin-public-surface: #F8FBFF;
-  --admin-accent: #4F6FD8;
-  --admin-teal: #9184D8;
-  --admin-lime: #C7D3FA;
-  --admin-rose: #E88EA0;
-  --admin-rose-soft: #FFF0F3;
-  --admin-lilac-soft: #F1EEFF;
-  --admin-surface: #FFFFFF;
-  --admin-line: #DCE4F2;
-  --admin-line-strong: #B9C7DB;
-  --admin-shadow: 0 8px 24px rgba(39,60,104,.08);
-  --admin-header-bg: #FFFFFF;
-  --admin-header-shadow: 0 8px 24px rgba(39,60,104,.06);
-  --admin-link-bg: #FFFFFF;
-  --admin-link-hover: #F1EEFF;
-  --admin-link-text: #172033;
-  --admin-cta-bg: #4F6FD8;
-  --primary: #4F6FD8;
-  --primary-soft: #9184D8;
-  --primary-bg: #E9EFFF;
-  --admin-shared-menu-blue: #4F6FD8;
-  --admin-shared-menu-ink: #172033;
-  --admin-shared-menu-muted: #627089;
-  --admin-shared-menu-line: #DCE4F2;
-  --admin-shared-menu-soft: #F8FBFF;
+  --admin-public-blue: var(--ai-color-brand-600, #4261C7);
+  --admin-public-blue-dark: var(--ai-color-brand-700, #3E58B8);
+  --admin-public-ink: var(--ai-color-ink, #172033);
+  --admin-public-muted: var(--ai-color-muted, #606D83);
+  --admin-public-line: var(--ai-color-line, #DCE4F2);
+  --admin-public-surface: var(--ai-color-canvas, #F8FBFF);
+  --admin-accent: var(--ai-color-brand-600, #4261C7);
+  --admin-teal: var(--ai-color-accent, #786BBD);
+  --admin-lime: var(--ai-color-brand-200, #CBD4FA);
+  --admin-rose: var(--ai-color-danger, #A23A4C);
+  --admin-rose-soft: var(--ai-color-danger-soft, #FFF0F3);
+  --admin-lilac-soft: var(--ai-color-accent-soft, #F1EEFF);
+  --admin-surface: var(--ai-color-surface, #FFFFFF);
+  --admin-line: var(--ai-color-line, #DCE4F2);
+  --admin-line-strong: var(--ai-color-line-strong, #B9C7DB);
+  --admin-shadow: var(--ai-shadow-sm, 0 8px 24px rgba(39,60,104,.08));
+  --admin-header-bg: var(--ai-color-surface, #FFFFFF);
+  --admin-header-shadow: var(--ai-shadow-sm, 0 8px 24px rgba(39,60,104,.06));
+  --admin-link-bg: var(--ai-color-surface, #FFFFFF);
+  --admin-link-hover: var(--ai-color-accent-soft, #F1EEFF);
+  --admin-link-text: var(--ai-color-ink, #172033);
+  --admin-cta-bg: var(--ai-color-brand-600, #4261C7);
+  --primary: var(--ai-color-brand-600, #4261C7);
+  --primary-soft: var(--ai-color-accent, #786BBD);
+  --primary-bg: var(--ai-color-brand-100, #E9EFFF);
+  --admin-shared-menu-blue: var(--ai-color-brand-600, #4261C7);
+  --admin-shared-menu-ink: var(--ai-color-ink, #172033);
+  --admin-shared-menu-muted: var(--ai-color-muted, #606D83);
+  --admin-shared-menu-line: var(--ai-color-line, #DCE4F2);
+  --admin-shared-menu-soft: var(--ai-color-canvas, #F8FBFF);
   --admin-shared-quick-height: 0px;
 }
 
 body.admin-page,
 body.ops-page {
-  --admin-accent: #4F6FD8 !important;
-  --admin-teal: #9184D8 !important;
-  --admin-lime: #C7D3FA !important;
-  --primary: #4F6FD8 !important;
-  --primary-soft: #9184D8 !important;
-  --primary-bg: #E9EFFF !important;
-  --accent: #4F6FD8 !important;
-  --accent2: #9184D8 !important;
-  --cyan: #4F6FD8 !important;
-  --teal: #9184D8 !important;
-  background: #F8FBFF !important;
+  --admin-accent: var(--ai-color-brand-600, #4261C7) !important;
+  --admin-teal: var(--ai-color-accent, #786BBD) !important;
+  --admin-lime: var(--ai-color-brand-200, #CBD4FA) !important;
+  --primary: var(--ai-color-brand-600, #4261C7) !important;
+  --primary-soft: var(--ai-color-accent, #786BBD) !important;
+  --primary-bg: var(--ai-color-brand-100, #E9EFFF) !important;
+  --accent: var(--ai-color-brand-600, #4261C7) !important;
+  --accent2: var(--ai-color-accent, #786BBD) !important;
+  --cyan: var(--ai-color-brand-600, #4261C7) !important;
+  --teal: var(--ai-color-accent, #786BBD) !important;
+  background: var(--ai-color-canvas, #F8FBFF) !important;
   color: var(--admin-public-ink) !important;
 }
 
@@ -4513,10 +4515,10 @@ body[data-app="reel"] {
   --muted: var(--admin-public-muted);
   --line: var(--admin-public-line);
   --green: var(--admin-public-blue);
-  --pale: #EEF2FF;
+  --pale: var(--ai-color-brand-50, #F4F6FF);
   --accent: var(--admin-public-blue);
   --admin-studio-menu-offset: var(--admin-shared-menu-height);
-  background: #F8FBFF !important;
+  background: var(--ai-color-canvas, #F8FBFF) !important;
   color: var(--admin-public-ink) !important;
 }
 
@@ -4723,5 +4725,35 @@ body.admin-studio-page .steps ol {
 
   body.admin-studio-page .steps ol {
     top: auto !important;
+  }
+}
+
+/* ---- AI相談 semantic accessibility layer, 2026-08-15 ---- */
+body.admin-page,
+body.ops-page,
+body.admin-studio-page {
+  font-family: var(--ai-font-sans, Inter, "Noto Sans JP", sans-serif) !important;
+}
+
+body.admin-page :where(a, button, input, textarea, select, summary):focus-visible,
+body.ops-page :where(a, button, input, textarea, select, summary):focus-visible,
+body.admin-studio-page :where(a, button, input, textarea, select, summary):focus-visible {
+  outline: 3px solid var(--ai-color-focus, #263D91) !important;
+  outline-offset: 3px !important;
+}
+
+body.admin-page :where(button, input, select),
+body.ops-page :where(button, input, select),
+body.admin-studio-page :where(button, input, select) {
+  min-height: var(--ai-size-tap, 44px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.admin-page *, body.admin-page *::before, body.admin-page *::after,
+  body.ops-page *, body.ops-page *::before, body.ops-page *::after,
+  body.admin-studio-page *, body.admin-studio-page *::before, body.admin-studio-page *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
   }
 }

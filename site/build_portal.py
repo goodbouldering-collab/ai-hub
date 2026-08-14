@@ -12860,18 +12860,25 @@ def _render_lecture_card(lec: dict) -> str:
 FOCUSED_PORTAL_CSS = r"""
 /* ---- Consultation-first redesign, light editorial direction, 2026-07-22 ---- */
 :root {
+  /* Static values keep legacy/offline contrast tooling deterministic. */
   --focus-blue: #4261c7;
-  --focus-blue-dark: #3e58b8;
-  --focus-cyan: #e9efff;
   --focus-lavender: #f1eeff;
-  --focus-violet: #9184d8;
-  --focus-rose: #e88ea0;
   --focus-rose-soft: #fff0f3;
-  --focus-ink: #172033;
   --focus-muted: #606d83;
-  --focus-line: #dce4f2;
-  --focus-line-strong: #b9c7db;
   --focus-surface: #f8fbff;
+  /* Runtime values are rebound to the shared semantic design tokens. */
+  --focus-blue: var(--ai-color-brand-600, #4261c7);
+  --focus-blue-dark: var(--ai-color-brand-700, #3e58b8);
+  --focus-cyan: var(--ai-color-brand-100, #e9efff);
+  --focus-lavender: var(--ai-color-accent-soft, #f1eeff);
+  --focus-violet: var(--ai-color-accent, #786bbd);
+  --focus-rose: var(--ai-color-danger, #a23a4c);
+  --focus-rose-soft: var(--ai-color-danger-soft, #fff0f3);
+  --focus-ink: var(--ai-color-ink, #172033);
+  --focus-muted: var(--ai-color-muted, #606d83);
+  --focus-line: var(--ai-color-line, #dce4f2);
+  --focus-line-strong: var(--ai-color-line-strong, #b9c7db);
+  --focus-surface: var(--ai-color-canvas, #f8fbff);
   --focus-shell-x: max(18px, calc((100vw - 1400px) / 2));
   --focus-footer-y: clamp(36px, 5vw, 48px);
   --focus-footer-gap: clamp(24px, 3vw, 32px);
@@ -14872,6 +14879,27 @@ button:focus-visible {
   .hero-readiness-card { padding: 16px; gap: 4px 10px; }
   .hero-readiness-card b { font-size: 22px; }
 }
+.skip-link {
+  position: fixed;
+  inset: 12px auto auto 12px;
+  z-index: 9999;
+  padding: 10px 14px;
+  border-radius: var(--ai-radius-control, 8px);
+  background: var(--focus-ink);
+  color: #fff !important;
+  font-weight: 800;
+  text-decoration: none;
+  transform: translateY(-180%);
+  transition: transform var(--ai-duration-fast, 140ms) ease;
+}
+.skip-link:focus { transform: translateY(0); }
+:where(a, button, input, textarea, select, summary):focus-visible {
+  outline: 3px solid var(--ai-color-focus, #263d91) !important;
+  outline-offset: 3px !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .skip-link { transition: none; }
+}
 """
 
 
@@ -14992,25 +15020,27 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts: list[str] = []
     parts.append("<!doctype html><html lang='ja'><head><meta charset='utf-8'>" + FAVICON_HEAD_HTML)
     parts.append("<meta name='viewport' content='width=device-width,initial-scale=1'>")
-    parts.append("<meta name='theme-color' content='#F7F8FC'>")
+    parts.append("<meta name='theme-color' content='#F8FBFF'>")
     # 案A: 和文明朝の大見出し + monospace ラベル用に Google Fonts を読み込む
     parts.append("<link rel='preconnect' href='https://fonts.googleapis.com'>")
     parts.append("<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>")
     parts.append("<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap'>")
+    parts.append("<link rel='stylesheet' href='/design-system/tokens.css?v=20260815'>")
     parts.append(f"<title>{html.escape(title)}</title>")
     parts.append(f"<meta name='description' content='{html.escape(desc, quote=True)}'>")
     parts.append(f"<link rel='canonical' href='{html.escape(SITE_URL + '/', quote=True)}'>")
     parts.append(_build_ogp(title, desc, SITE_URL + "/"))
     parts.append(f"<script type='application/ld+json'>{_build_jsonld_website()}</script>")
     parts.append(f"<style>{PORTAL_CSS}{BLOG_TEASER_CSS}{FOCUSED_PORTAL_CSS}</style>")
-    parts.append("</head><body>")
+    parts.append("</head><body><a class='skip-link' href='#main-content'>本文へ移動</a>")
 
     parts.append(_render_header_focused())
 
-    parts.append("<div class='container'>")
+    parts.append("<div class='container'><main id='main-content'>")
     parts.append(_render_hero_focused())
 
     parts.append(_render_focused_main())
+    parts.append("</main>")
 
     parts.append(_render_footer(today))
     parts.append("</div>")

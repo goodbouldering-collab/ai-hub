@@ -3654,6 +3654,7 @@ body.admin-page .admin-fish-dot.green { fill:#AAB4F3 !important; stroke:#AAB4F3 
 /* ---- AI相談 shared admin fixed menu, 2026-07-27 ---- */
 :root {
   --admin-shared-menu-height: 74px;
+  --admin-shared-menu-row-height: 54px;
   --admin-shared-menu-blue: #5367D9;
   --admin-shared-menu-ink: #172033;
   --admin-shared-menu-muted: #627089;
@@ -3878,6 +3879,7 @@ body.admin-shared-menu-open {
 @media (max-width: 1100px) {
   :root {
     --admin-shared-menu-height: 64px;
+    --admin-shared-menu-row-height: 48px;
   }
 
   .admin-shared-header,
@@ -4254,8 +4256,9 @@ header.site-header.admin-shared-header .site-header-inner {
 }
 
 header.site-header.admin-shared-header .site-nav.admin-slide-nav {
-  height: 100% !important;
+  height: var(--admin-shared-menu-row-height) !important;
   min-height: 0 !important;
+  align-self: center !important;
   display: flex !important;
 }
 

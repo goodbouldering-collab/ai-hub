@@ -222,7 +222,7 @@ test("page-local header styles cannot move the shared menu outside its fixed row
   );
   assert.match(
     css,
-    /header\.site-header\.admin-shared-header \.site-nav\.admin-slide-nav \{[\s\S]*?height: 100% !important;[\s\S]*?display: flex !important;/,
-    "the shared navigation must always occupy the fixed header row",
+    /header\.site-header\.admin-shared-header \.site-nav\.admin-slide-nav \{[\s\S]*?height: var\(--admin-shared-menu-row-height\) !important;[\s\S]*?display: flex !important;/,
+    "the shared navigation must use a definite row height instead of resolving a percentage against page-local layout",
   );
 });

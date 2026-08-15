@@ -23,13 +23,26 @@ function classList() {
 }
 
 function runSharedMenu(pathname = "/admin/sns-post") {
+  const toggleListeners = new Map();
+  const panelListeners = new Map();
+  const documentListeners = new Map();
+  const groupListeners = new Map();
   const toggle = {
     attributes: new Map(),
-    addEventListener() {},
+    addEventListener(name, handler) { toggleListeners.set(name, handler); },
     setAttribute(name, value) { this.attributes.set(name, value); },
     getAttribute(name) { return this.attributes.get(name) ?? null; },
   };
-  const panel = { hidden: true, classList: classList(), addEventListener() {} };
+  const panel = {
+    hidden: true,
+    classList: classList(),
+    addEventListener(name, handler) { panelListeners.set(name, handler); },
+  };
+  const mobileGroup = {
+    open: true,
+    addEventListener(name, handler) { groupListeners.set(name, handler); },
+    querySelector() { return { focus() {} }; },
+  };
   const header = {
     className: "site-header scrolled",
     id: "site-header",
@@ -40,6 +53,10 @@ function runSharedMenu(pathname = "/admin/sns-post") {
       if (selector === "#mobile-nav") return panel;
       return null;
     },
+    querySelectorAll(selector) {
+      if (selector === ".admin-menu-mobile-group") return [mobileGroup];
+      return [];
+    },
   };
   const body = { classList: classList(), dataset: {}, prepend() {} };
   const document = {
@@ -49,12 +66,19 @@ function runSharedMenu(pathname = "/admin/sns-post") {
       return selector === "header.site-header, header.public-admin-header" ? header : null;
     },
     createElement() { return header; },
-    addEventListener() {},
+    addEventListener(name, handler) { documentListeners.set(name, handler); },
   };
   const window = { location: { pathname }, addEventListener() {} };
 
   vm.runInNewContext(menuSource, { document, window });
-  return { body, header, document };
+  return {
+    body,
+    header,
+    document,
+    mobileGroup,
+    toggle,
+    listeners: { document: documentListeners, panel: panelListeners, toggle: toggleListeners },
+  };
 }
 
 test("shared admin menu has no top item and gives mobile every management destination", () => {
@@ -82,16 +106,59 @@ test("shared admin menu has no top item and gives mobile every management destin
   }
 });
 
+test("shared admin menu groups related work by purpose on desktop and mobile", () => {
+  const { header } = runSharedMenu("/admin/apps/reel");
+  const desktopGroups = header.innerHTML.match(/class="admin-menu-desktop-group/g) ?? [];
+  const mobileGroups = header.innerHTML.match(/class="admin-menu-mobile-group/g) ?? [];
+
+  assert.equal(desktopGroups.length, 5, "the fixed row should show five scannable purpose groups");
+  assert.equal(mobileGroups.length, 5, "the drawer should reuse the same five purpose groups");
+
+  for (const [id, label, summary] of [
+    ["operations", "運営", "予定・指示・資料"],
+    ["publishing", "制作・発信", "記事・動画・SNS"],
+    ["insights", "分析・相談", "反応・改善・相談"],
+    ["market", "相場", "調査・計画・記録"],
+    ["utility", "その他", "確認・設定"],
+  ]) {
+    assert.match(header.innerHTML, new RegExp(`data-menu-group="${id}"`));
+    assert.match(header.innerHTML, new RegExp(`>${label}<`));
+    assert.match(header.innerHTML, new RegExp(summary));
+  }
+
+  assert.match(
+    header.innerHTML,
+    /<details class="admin-menu-mobile-group is-current-group" data-menu-group="publishing" open>/,
+    "the current mobile group should be expanded without exposing every group at once",
+  );
+  assert.match(header.innerHTML, /href="\/admin\/apps\/reel\/"[^>]*aria-current="page"/);
+  assert.match(header.innerHTML, /ブログ管理[\s\S]*記事を編集して公開する/);
+  assert.match(header.innerHTML, /SNS投稿[\s\S]*複数のSNSへ投稿する/);
+});
+
+test("Escape closes the mobile drawer without losing the selected group", () => {
+  const { mobileGroup, toggle, listeners } = runSharedMenu("/admin/apps/reel");
+
+  listeners.toggle.get("click")();
+  assert.equal(toggle.getAttribute("aria-expanded"), "true");
+  assert.equal(mobileGroup.open, true);
+
+  listeners.document.get("keydown")({ key: "Escape" });
+
+  assert.equal(toggle.getAttribute("aria-expanded"), "false");
+  assert.equal(mobileGroup.open, true, "reopening the drawer should retain the user's group context");
+});
+
 test("nested admin pages show their parent context and a direct way back to the management home", () => {
   const cases = [
     ["/admin/command-center/calendar", "実行指令室 / カレンダー", "/admin/command-center"],
-    ["/admin/command-center/market", "実行指令室 / 市場候補", "/admin/command-center"],
-    ["/admin/command-center/screener", "実行指令室 / 財務スクリーナー", "/admin/command-center"],
-    ["/admin/command-center/security", "実行指令室 / 銘柄詳細", "/admin/command-center"],
-    ["/admin/command-center/trade-plan", "実行指令室 / 取引プラン作成", "/admin/command-center"],
-    ["/admin/command-center/trade-plans", "実行指令室 / 登録プラン", "/admin/command-center"],
-    ["/admin/command-center/trades", "実行指令室 / 取引記録", "/admin/command-center"],
-    ["/admin/command-center/market-sources", "実行指令室 / データ収集状況", "/admin/command-center"],
+    ["/admin/command-center/market", "実行指令室 / 市場候補", "/admin/command-center/market"],
+    ["/admin/command-center/screener", "実行指令室 / 財務スクリーナー", "/admin/command-center/screener"],
+    ["/admin/command-center/security", "実行指令室 / 銘柄詳細", "/admin/command-center/security"],
+    ["/admin/command-center/trade-plan", "実行指令室 / 取引プラン作成", "/admin/command-center/trade-plan"],
+    ["/admin/command-center/trade-plans", "実行指令室 / 登録プラン", "/admin/command-center/trade-plans"],
+    ["/admin/command-center/trades", "実行指令室 / 取引記録", "/admin/command-center/trades"],
+    ["/admin/command-center/market-sources", "実行指令室 / データ収集状況", "/admin/command-center/market-sources"],
     ["/admin/command-center.html", "実行指令室", "/admin/command-center"],
     ["/admin/blog", "ブログ管理", "/admin/blog"],
     ["/admin/blog.html", "ブログ管理", "/admin/blog"],
@@ -111,7 +178,7 @@ test("nested admin pages show their parent context and a direct way back to the 
     assert.match(header.innerHTML, new RegExp(`<strong>${expectedContext}</strong>`));
     assert.match(
       header.innerHTML,
-      new RegExp(`href="${currentHref.replaceAll("/", "\\/")}"[^>]*aria-current="page"`),
+      new RegExp(`href="${currentHref.replaceAll("/", "\\/")}(?:\\?[^\"]*)?"[^>]*aria-current="page"`),
     );
     assert.equal(document.title, adminTitle);
   }

@@ -117,6 +117,7 @@ test("shared admin navigation exposes the design reference without adding anothe
       if (selector === "#mobile-nav") return { hidden: true, classList: { toggle() {} }, addEventListener() {} };
       return null;
     },
+    querySelectorAll() { return []; },
   };
   const document = {
     title: "",
@@ -133,6 +134,7 @@ test("shared admin navigation exposes the design reference without adding anothe
   const mobile = header.innerHTML.match(/<div class="mobile-nav-panel mobile-nav-panel--admin">(?<content>[\s\S]*)<\/div>/);
   assert.ok(desktop);
   assert.ok(mobile);
-  assert.doesNotMatch(desktop.groups.content, /デザインシステム/);
+  assert.equal((header.innerHTML.match(/<nav\b/g) ?? []).length, 1);
+  assert.match(desktop.groups.content, /data-menu-group="utility"[\s\S]*href="\/design-system\/"[^>]*>[\s\S]*デザインシステム/);
   assert.match(mobile.groups.content, /href="\/design-system\/"[^>]*>[\s\S]*デザインシステム/);
 });

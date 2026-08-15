@@ -4508,6 +4508,353 @@ body.admin-shared-menu-active .admin-shared-header .mobile-nav .mobile-link-list
   }
 }
 
+/* ---- Grouped admin information architecture, 2026-08-16 ----
+   One menu model is rendered as compact desktop disclosures and mobile
+   accordions. These rules stay inside the injected management header. */
+body.admin-shared-menu-active .admin-shared-header .admin-menu-desktop-group,
+body.admin-shared-menu-active .admin-shared-header .admin-menu-mobile-group,
+body.admin-shared-menu-active .admin-shared-header .admin-menu-subgroup {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+
+body.admin-shared-menu-active .admin-shared-header summary {
+  list-style: none !important;
+}
+
+body.admin-shared-menu-active .admin-shared-header summary::-webkit-details-marker {
+  display: none !important;
+}
+
+body.admin-shared-menu-active .admin-shared-header .admin-menu-group-chevron {
+  flex: 0 0 auto !important;
+  transition: transform 160ms ease !important;
+}
+
+body.admin-shared-menu-active .admin-shared-header details[open] > summary .admin-menu-group-chevron {
+  transform: rotate(180deg) !important;
+}
+
+body.admin-shared-menu-active .admin-shared-header .admin-menu-subgroup-label {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 4px 7px !important;
+  color: var(--admin-shared-menu-muted) !important;
+  font-family: var(--ai-font-sans, Inter, "Noto Sans JP", sans-serif) !important;
+  font-size: 10px !important;
+  font-weight: 900 !important;
+  line-height: 1.2 !important;
+  letter-spacing: .1em !important;
+}
+
+@media (min-width: 721px) {
+  body.admin-shared-menu-active .admin-shared-header .site-nav.admin-slide-nav,
+  body.admin-shared-menu-active .admin-shared-header .admin-scroll-menu {
+    overflow: visible !important;
+  }
+
+  body.admin-shared-menu-active .admin-shared-header .admin-scroll-menu {
+    justify-content: flex-end !important;
+    gap: 5px !important;
+  }
+
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-desktop-group {
+    position: relative !important;
+    flex: 0 0 auto !important;
+    height: 44px !important;
+  }
+
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-group-trigger {
+    min-height: 44px !important;
+    margin: 0 !important;
+    padding: 0 10px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 5px !important;
+    border: 1px solid transparent !important;
+    border-radius: 9px !important;
+    background: transparent !important;
+    color: var(--admin-shared-menu-ink) !important;
+    font-family: var(--ai-font-sans, Inter, "Noto Sans JP", sans-serif) !important;
+    font-size: 12.5px !important;
+    font-weight: 850 !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+    cursor: pointer !important;
+    user-select: none !important;
+  }
+
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-group-trigger:hover,
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-group-trigger:focus-visible,
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-desktop-group[open] > .admin-menu-group-trigger,
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-desktop-group.is-current-group > .admin-menu-group-trigger {
+    border-color: rgba(79,111,216,.24) !important;
+    background: var(--ai-color-brand-100, #E9EFFF) !important;
+    color: var(--admin-shared-menu-blue) !important;
+    outline: none !important;
+  }
+
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-group-trigger:focus-visible {
+    box-shadow: 0 0 0 3px rgba(79,111,216,.2) !important;
+  }
+
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-popover {
+    position: fixed !important;
+    top: calc(var(--admin-shared-menu-height) - 2px) !important;
+    right: max(14px, calc((100vw - 1500px) / 2 + 20px)) !important;
+    z-index: 301 !important;
+    width: min(400px, calc(100vw - 28px)) !important;
+    max-height: calc(100dvh - var(--admin-shared-menu-height) - 14px) !important;
+    padding: 0 !important;
+    overflow-y: auto !important;
+    border: 1px solid var(--admin-shared-menu-line) !important;
+    border-radius: 14px !important;
+    background: var(--ai-color-surface, #FFFFFF) !important;
+    color: var(--admin-shared-menu-ink) !important;
+    box-shadow: 0 22px 54px rgba(39,60,104,.18) !important;
+  }
+
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-popover[data-menu-layout="split"] {
+    width: min(680px, calc(100vw - 28px)) !important;
+  }
+
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-desktop-group:not([open]) > .admin-menu-popover {
+    display: none !important;
+  }
+
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-popover-heading {
+    min-height: 68px !important;
+    padding: 15px 18px 13px !important;
+    display: grid !important;
+    align-content: center !important;
+    gap: 3px !important;
+    border-bottom: 1px solid var(--admin-shared-menu-line) !important;
+    background: linear-gradient(135deg, var(--ai-color-brand-100, #E9EFFF), #F8FAFF) !important;
+  }
+
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-popover-heading strong {
+    color: var(--admin-shared-menu-ink) !important;
+    font-family: var(--ai-font-sans, Inter, "Noto Sans JP", sans-serif) !important;
+    font-size: 15px !important;
+    font-weight: 900 !important;
+    line-height: 1.25 !important;
+  }
+
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-popover-heading small {
+    color: var(--admin-shared-menu-muted) !important;
+    font-family: var(--ai-font-sans, Inter, "Noto Sans JP", sans-serif) !important;
+    font-size: 11.5px !important;
+    font-weight: 650 !important;
+    line-height: 1.4 !important;
+  }
+
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-popover-sections {
+    padding: 12px !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-popover[data-menu-layout="split"] .admin-menu-popover-sections {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-popover-links {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 5px !important;
+  }
+
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-popover .admin-menu-popover-link {
+    width: 100% !important;
+    min-height: 58px !important;
+    height: auto !important;
+    padding: 9px 10px 9px 12px !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    align-items: center !important;
+    justify-content: stretch !important;
+    gap: 12px !important;
+    border: 1px solid transparent !important;
+    border-radius: 9px !important;
+    background: var(--ai-color-surface, #FFFFFF) !important;
+    color: var(--admin-shared-menu-ink) !important;
+    text-align: left !important;
+    white-space: normal !important;
+  }
+
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-popover .admin-menu-popover-link:hover,
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-popover .admin-menu-popover-link:focus-visible,
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-popover .admin-menu-popover-link.is-current,
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-popover .admin-menu-popover-link[aria-current="page"] {
+    border-color: rgba(79,111,216,.22) !important;
+    background: var(--ai-color-brand-100, #E9EFFF) !important;
+    color: var(--admin-shared-menu-blue) !important;
+    outline: none !important;
+  }
+
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-popover .admin-menu-popover-link:focus-visible {
+    box-shadow: 0 0 0 3px rgba(79,111,216,.18) !important;
+  }
+
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-link-copy {
+    min-width: 0 !important;
+    display: grid !important;
+    gap: 2px !important;
+  }
+
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-link-copy strong {
+    color: inherit !important;
+    font-family: inherit !important;
+    font-size: 13px !important;
+    font-weight: 900 !important;
+    line-height: 1.25 !important;
+  }
+
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-link-copy small {
+    color: var(--admin-shared-menu-muted) !important;
+    font-family: inherit !important;
+    font-size: 10.5px !important;
+    font-weight: 650 !important;
+    line-height: 1.35 !important;
+  }
+
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-link-arrow {
+    color: var(--admin-shared-menu-blue) !important;
+    font-size: 15px !important;
+    line-height: 1 !important;
+  }
+
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-popover-link[data-menu-kind="public"] {
+    border-color: var(--admin-shared-menu-blue) !important;
+    background: var(--admin-shared-menu-blue) !important;
+    color: #FFFFFF !important;
+  }
+
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-popover-link[data-menu-kind="public"] small,
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-popover-link[data-menu-kind="public"] .admin-menu-link-arrow {
+    color: rgba(255,255,255,.8) !important;
+  }
+
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-popover-link[data-menu-kind="logout"] {
+    color: var(--admin-shared-menu-muted) !important;
+  }
+}
+
+@media (min-width: 721px) and (max-width: 860px) {
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-group-trigger {
+    padding-inline: 8px !important;
+    font-size: 12px !important;
+  }
+}
+
+@media (max-width: 720px) {
+  body.admin-shared-menu-active .admin-shared-header .mobile-nav-panel {
+    padding: 8px 14px 16px !important;
+    gap: 0 !important;
+  }
+
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-mobile-group {
+    border-bottom: 1px solid var(--admin-shared-menu-line) !important;
+  }
+
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-mobile-group:last-child {
+    border-bottom: 0 !important;
+  }
+
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-mobile-summary {
+    min-height: 60px !important;
+    margin: 0 !important;
+    padding: 9px 4px !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto auto !important;
+    align-items: center !important;
+    gap: 10px !important;
+    border: 0 !important;
+    border-radius: 9px !important;
+    background: transparent !important;
+    color: var(--admin-shared-menu-ink) !important;
+    cursor: pointer !important;
+    user-select: none !important;
+  }
+
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-mobile-summary:hover,
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-mobile-summary:focus-visible,
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-mobile-group[open] > .admin-menu-mobile-summary,
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-mobile-group.is-current-group > .admin-menu-mobile-summary {
+    background: var(--ai-color-brand-100, #E9EFFF) !important;
+    color: var(--admin-shared-menu-blue) !important;
+    outline: none !important;
+  }
+
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-mobile-summary:focus-visible {
+    box-shadow: inset 0 0 0 2px rgba(79,111,216,.34) !important;
+  }
+
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-mobile-copy {
+    min-width: 0 !important;
+    display: grid !important;
+    gap: 3px !important;
+  }
+
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-mobile-copy strong {
+    color: inherit !important;
+    font-family: var(--ai-font-sans, Inter, "Noto Sans JP", sans-serif) !important;
+    font-size: 14px !important;
+    font-weight: 900 !important;
+    line-height: 1.2 !important;
+  }
+
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-mobile-copy small {
+    color: var(--admin-shared-menu-muted) !important;
+    font-family: var(--ai-font-sans, Inter, "Noto Sans JP", sans-serif) !important;
+    font-size: 10.5px !important;
+    font-weight: 650 !important;
+    line-height: 1.35 !important;
+  }
+
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-mobile-count {
+    min-width: 34px !important;
+    padding: 4px 7px !important;
+    border-radius: 999px !important;
+    background: #F2F5FB !important;
+    color: var(--admin-shared-menu-muted) !important;
+    font-family: var(--ai-font-sans, Inter, "Noto Sans JP", sans-serif) !important;
+    font-size: 10px !important;
+    font-weight: 850 !important;
+    line-height: 1 !important;
+    text-align: center !important;
+  }
+
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-mobile-content {
+    padding: 2px 4px 12px !important;
+    display: grid !important;
+    gap: 12px !important;
+  }
+
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-mobile-group:not([open]) > .admin-menu-mobile-content {
+    display: none !important;
+  }
+
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-mobile-content .mobile-link-list {
+    gap: 5px !important;
+  }
+
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-mobile-content .admin-shared-mobile-link {
+    min-height: 54px !important;
+    padding: 9px 11px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.admin-shared-menu-active .admin-shared-header .admin-menu-group-chevron {
+    transition: none !important;
+  }
+}
+
 /* ---- Unified admin studio shell ---- */
 body[data-app="blog"],
 body[data-app="reel"] {

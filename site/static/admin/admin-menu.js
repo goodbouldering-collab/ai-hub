@@ -1,30 +1,82 @@
 (() => {
-  const primaryItems = [
-    { href: "/admin/command-center", label: "実行指令室", description: "予定・指示・相場・Codexをまとめて動かす" },
-    { href: "/admin/blog", label: "ブログ管理", description: "記事の作成・編集・公開" },
-    { href: "/admin/apps/blog", label: "ブログ制作", description: "調査から記事の下書きを作る" },
-    { href: "/admin/apps/reel/", label: "リール制作", description: "動画と投稿文を作る" },
-    { href: "/admin/sns-post", label: "SNS投稿", description: "SNS投稿を準備する" },
-    { href: "/admin/gubble-sns", label: "SNS分析", description: "反応と改善点を見る" },
-    { href: "/admin/chat", label: "AI相談", description: "運用メモを相談する" },
-  ];
-
-  const secondaryItems = [
-    { href: "/ops", label: "OPS", description: "資料とプロンプトを見る", group: "運用" },
-    { href: "/design-system/", label: "デザインシステム", description: "共通の色・部品・状態を確認する", group: "運用", kind: "reference" },
-    { href: "/", label: "公開ページ", description: "公開中の表示を確認する", group: "サイト", kind: "public" },
-    { href: "/admin/logout", label: "ログアウト", description: "管理画面から退出する", group: "アカウント", kind: "logout" },
-  ];
-
-  const marketItems = [
-    { href: "/admin/command-center/trade", label: "相場羅針盤", description: "市場・プラン・記録の統合画面", group: "相場" },
-    { href: "/admin/command-center/market", label: "市場候補", description: "価格と一次候補を見る", group: "相場" },
-    { href: "/admin/command-center/screener", label: "財務スクリーナー", description: "12項目で日本株を絞る", group: "相場" },
-    { href: "/admin/command-center/security?symbol=6857", label: "銘柄詳細", description: "3年推移と出典を見る", group: "相場" },
-    { href: "/admin/command-center/trade-plan", label: "取引プラン作成", description: "根拠と中止条件を残す", group: "相場" },
-    { href: "/admin/command-center/trade-plans", label: "登録プラン", description: "保存済みプランを見る", group: "相場" },
-    { href: "/admin/command-center/trades", label: "取引記録", description: "実行記録と損益を見る", group: "相場" },
-    { href: "/admin/command-center/market-sources", label: "データ収集状況", description: "取得元と欠損を確認する", group: "相場" },
+  const menuGroups = [
+    {
+      id: "operations",
+      label: "運営",
+      summary: "予定・指示・資料",
+      description: "毎日の予定と実行を整える",
+      sections: [{
+        items: [
+          { href: "/admin/command-center", label: "実行指令室", description: "予定・指示・相場・Codexをまとめる" },
+          { href: "/ops", label: "OPS", description: "資料とプロンプトを確認する" },
+        ],
+      }],
+    },
+    {
+      id: "publishing",
+      label: "制作・発信",
+      summary: "記事・動画・SNS",
+      description: "つくる・直す・届ける",
+      sections: [{
+        items: [
+          { href: "/admin/blog", label: "ブログ管理", description: "記事を編集して公開する" },
+          { href: "/admin/apps/blog", label: "ブログ制作", description: "調査から記事の下書きを作る" },
+          { href: "/admin/apps/reel/", label: "リール制作", description: "動画と投稿文を作る" },
+          { href: "/admin/sns-post", label: "SNS投稿", description: "複数のSNSへ投稿する" },
+        ],
+      }],
+    },
+    {
+      id: "insights",
+      label: "分析・相談",
+      summary: "反応・改善・相談",
+      description: "結果を見て次の一手を決める",
+      sections: [{
+        items: [
+          { href: "/admin/gubble-sns", label: "SNS分析", description: "投稿の反応と改善点を見る" },
+          { href: "/admin/chat", label: "AI相談", description: "運用メモや次の行動を相談する" },
+        ],
+      }],
+    },
+    {
+      id: "market",
+      label: "相場",
+      summary: "調査・計画・記録",
+      description: "相場を調べ、判断材料を残す",
+      sections: [
+        {
+          label: "調べる",
+          items: [
+            { href: "/admin/command-center/trade", label: "相場羅針盤", description: "市場・プラン・記録をまとめて見る" },
+            { href: "/admin/command-center/market", label: "市場候補", description: "価格と一次候補を見る" },
+            { href: "/admin/command-center/screener", label: "財務スクリーナー", description: "12項目で日本株を絞る" },
+            { href: "/admin/command-center/security?symbol=6857", label: "銘柄詳細", description: "3年推移と出典を見る" },
+          ],
+        },
+        {
+          label: "計画・記録",
+          items: [
+            { href: "/admin/command-center/trade-plan", label: "取引プラン作成", description: "根拠と中止条件を残す" },
+            { href: "/admin/command-center/trade-plans", label: "登録プラン", description: "保存済みプランを見る" },
+            { href: "/admin/command-center/trades", label: "取引記録", description: "実行記録と損益を見る" },
+            { href: "/admin/command-center/market-sources", label: "データ収集状況", description: "取得元と欠損を確認する" },
+          ],
+        },
+      ],
+    },
+    {
+      id: "utility",
+      label: "その他",
+      summary: "確認・設定",
+      description: "表示確認と管理画面の設定",
+      sections: [{
+        items: [
+          { href: "/design-system/", label: "デザインシステム", description: "共通の色・部品・状態を確認する", kind: "reference" },
+          { href: "/", label: "公開ページ", description: "公開中の表示を確認する", kind: "public" },
+          { href: "/admin/logout", label: "ログアウト", description: "管理画面から退出する", kind: "logout" },
+        ],
+      }],
+    },
   ];
 
   function canonicalPath(value) {
@@ -97,17 +149,25 @@
     return `<div class="admin-page-context" aria-label="現在地"><a href="/admin" aria-label="管理ホームへ戻る">管理ホーム</a><span aria-hidden="true">/</span><strong>${label}</strong></div>`;
   }
 
+  const menuItems = menuGroups.flatMap((group) => group.sections.flatMap((section) => section.items));
+  const activeItemPath = menuItems
+    .map((item) => canonicalPath(item.href))
+    .filter((href) => href !== "/" && href !== "/admin/logout")
+    .filter((href) => normalizedPath === href || normalizedPath.startsWith(`${href}/`))
+    .sort((left, right) => right.length - left.length)[0] || null;
+
   function isCurrent(href) {
-    const normalizedHref = canonicalPath(href);
-    if (normalizedPath === "/admin" && normalizedHref === "/admin/blog") return true;
-    if (normalizedHref === "/" || normalizedHref === "/admin/logout") return false;
-    return normalizedPath === normalizedHref || normalizedPath.startsWith(`${normalizedHref}/`);
+    return canonicalPath(href) === activeItemPath;
+  }
+
+  function isGroupCurrent(group) {
+    return group.sections.some((section) => section.items.some((item) => isCurrent(item.href)));
   }
 
   function linkMarkup(item, mobile = false) {
     const current = isCurrent(item.href);
     const classes = [
-      mobile ? "admin-shared-mobile-link" : "admin-scroll-link",
+      mobile ? "admin-shared-mobile-link" : "admin-scroll-link admin-menu-popover-link",
       current ? "is-current" : "",
       item.kind ? `admin-menu-link--${item.kind}` : "",
     ].filter(Boolean).join(" ");
@@ -117,26 +177,48 @@
     if (mobile) {
       return `<a class="${classes}" href="${item.href}"${currentAttribute}${kindAttribute}><span class="mobile-link-title">${item.label}</span><small>${item.description}</small></a>`;
     }
-    return `<a class="${classes}" href="${item.href}"${currentAttribute}${kindAttribute}>${item.label}</a>`;
+    return `<a class="${classes}" href="${item.href}"${currentAttribute}${kindAttribute}><span class="admin-menu-link-copy"><strong>${item.label}</strong><small>${item.description}</small></span><span class="admin-menu-link-arrow" aria-hidden="true">→</span></a>`;
+  }
+
+  function sectionMarkup(section, mobile) {
+    const label = section.label
+      ? `<span class="admin-menu-subgroup-label">${section.label}</span>`
+      : "";
+    const links = section.items.map((item) => linkMarkup(item, mobile)).join("");
+    return `<section class="admin-menu-subgroup">${label}<div class="${mobile ? "mobile-link-list" : "admin-menu-popover-links"}">${links}</div></section>`;
   }
 
   function desktopMenuMarkup() {
-    return primaryItems.map((item) => linkMarkup(item)).join("");
+    return menuGroups.map((group) => {
+      const current = isGroupCurrent(group);
+      const classes = ["admin-menu-desktop-group", current ? "is-current-group" : ""].filter(Boolean).join(" ");
+      const sections = group.sections.map((section) => sectionMarkup(section, false)).join("");
+      const layout = group.sections.length > 1 ? "split" : "single";
+      return `<details class="${classes}" data-menu-group="${group.id}">
+        <summary class="admin-menu-group-trigger" aria-label="${group.label}メニュー、${group.summary}"><span>${group.label}</span><svg class="admin-menu-group-chevron" width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+        <div class="admin-menu-popover" data-menu-layout="${layout}" role="group" aria-label="${group.label}の項目">
+          <div class="admin-menu-popover-heading"><strong>${group.label}</strong><small>${group.description}</small></div>
+          <div class="admin-menu-popover-sections">${sections}</div>
+        </div>
+      </details>`;
+    }).join("");
   }
 
   function mobileMenuMarkup() {
-    const menuItems = [
-      ...primaryItems.map((item) => ({ ...item, group: "管理" })),
-      ...marketItems,
-      ...secondaryItems,
-    ];
-    const groups = [...new Set(menuItems.map((item) => item.group))];
-    return groups.map((group) => {
-      const links = menuItems
-        .filter((item) => item.group === group)
-        .map((item) => linkMarkup(item, true))
-        .join("");
-      return `<section class="admin-shared-mobile-section"><span class="mobile-nav-label">${group}</span><div class="mobile-link-list">${links}</div></section>`;
+    return menuGroups.map((group) => {
+      const current = isGroupCurrent(group);
+      const classes = ["admin-menu-mobile-group", current ? "is-current-group" : ""].filter(Boolean).join(" ");
+      const open = current ? " open" : "";
+      const count = group.sections.reduce((total, section) => total + section.items.length, 0);
+      const sections = group.sections.map((section) => sectionMarkup(section, true)).join("");
+      return `<details class="${classes}" data-menu-group="${group.id}"${open}>
+        <summary class="admin-menu-mobile-summary">
+          <span class="admin-menu-mobile-copy"><strong>${group.label}</strong><small>${group.summary}</small></span>
+          <span class="admin-menu-mobile-count">${count}件</span>
+          <svg class="admin-menu-group-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="admin-menu-mobile-content">${sections}</div>
+      </details>`;
     }).join("");
   }
 
@@ -151,7 +233,7 @@
         <nav class="site-nav admin-slide-nav" aria-label="管理ページ固定メニュー">
           <div class="admin-scroll-menu">${desktopMenuMarkup()}</div>
         </nav>
-        <button class="mobile-toggle" id="mobile-toggle" aria-label="補助メニューを開く" aria-controls="mobile-nav" aria-expanded="false" type="button">
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="管理メニューを開く" aria-controls="mobile-nav" aria-expanded="false" type="button">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         </button>
       </div>
@@ -175,10 +257,29 @@
 
   const toggle = header.querySelector("#mobile-toggle");
   const panel = header.querySelector("#mobile-nav");
+  const desktopGroups = [...header.querySelectorAll(".admin-menu-desktop-group")];
+  const mobileGroups = [...header.querySelectorAll(".admin-menu-mobile-group")];
+
+  function closeGroups(groups, except = null) {
+    groups.forEach((group) => {
+      if (group !== except) group.open = false;
+    });
+  }
+
+  function keepOneGroupOpen(groups) {
+    groups.forEach((group) => {
+      group.addEventListener("toggle", () => {
+        if (group.open) closeGroups(groups, group);
+      });
+    });
+  }
+
+  keepOneGroupOpen(desktopGroups);
+  keepOneGroupOpen(mobileGroups);
 
   function setMenuOpen(open) {
     toggle.setAttribute("aria-expanded", String(open));
-    toggle.setAttribute("aria-label", open ? "補助メニューを閉じる" : "補助メニューを開く");
+    toggle.setAttribute("aria-label", open ? "管理メニューを閉じる" : "管理メニューを開く");
     panel.hidden = !open;
     panel.classList.toggle("open", open);
     document.body.classList.toggle("admin-shared-menu-open", open);
@@ -192,12 +293,28 @@
     if (event.target.closest("a")) setMenuOpen(false);
   });
 
+  document.addEventListener("click", (event) => {
+    if (!event.target.closest?.(".admin-menu-desktop-group")) closeGroups(desktopGroups);
+  });
+
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") setMenuOpen(false);
+    if (event.key !== "Escape") return;
+    const drawerWasOpen = toggle.getAttribute("aria-expanded") === "true";
+    if (drawerWasOpen) {
+      setMenuOpen(false);
+      toggle.focus?.();
+      return;
+    }
+    const openGroup = desktopGroups.find((group) => group.open);
+    if (openGroup) {
+      openGroup.open = false;
+      openGroup.querySelector("summary")?.focus();
+    }
+    setMenuOpen(false);
   });
 
   window.addEventListener("resize", () => {
-    if (window.innerWidth > 1100) setMenuOpen(false);
+    if (window.innerWidth > 720) setMenuOpen(false);
   });
 
   window.__AI_CONSULT_ADMIN_MENU_READY__ = true;

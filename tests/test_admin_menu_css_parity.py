@@ -17,6 +17,11 @@ MENU_HTML = """<!doctype html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body.legacy-header-transition header.site-header {
+      transition: background .3s, box-shadow .3s, backdrop-filter .3s;
+    }
+  </style>
   __STYLESHEETS__
 </head>
 <body>
@@ -29,8 +34,23 @@ MENU_HTML = """<!doctype html>
       <div class="admin-page-context"><strong>管理ホーム</strong></div>
       <nav class="site-nav admin-slide-nav" aria-label="管理ページ固定メニュー">
         <div class="admin-scroll-menu">
-          <a class="admin-scroll-link" href="/admin/command-center">実行指令室</a>
-          <a class="admin-scroll-link" href="/admin/blog">ブログ管理</a>
+          <details class="admin-menu-desktop-group is-current-group" data-menu-group="content" open>
+            <summary class="admin-menu-group-trigger">
+              制作・発信
+              <span class="admin-menu-group-chevron" aria-hidden="true">⌄</span>
+            </summary>
+            <div class="admin-menu-popover" data-menu-layout="single">
+              <div class="admin-menu-popover-heading"><strong>制作・発信</strong><small>ブログとSNS制作</small></div>
+              <div class="admin-menu-popover-sections">
+                <div class="admin-menu-popover-links">
+                  <a class="admin-menu-popover-link is-current" href="/admin/blog">
+                    <span class="admin-menu-link-copy"><strong>ブログ管理</strong><small>記事の確認と公開</small></span>
+                    <span class="admin-menu-link-arrow" aria-hidden="true">→</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </details>
         </div>
       </nav>
       <button class="mobile-toggle" type="button" aria-label="補助メニューを開く">
@@ -39,15 +59,20 @@ MENU_HTML = """<!doctype html>
     </div>
     <div class="mobile-nav" id="mobile-nav" hidden>
       <div class="mobile-nav-panel mobile-nav-panel--admin">
-        <section class="admin-shared-mobile-section">
-          <span class="mobile-nav-label">管理</span>
-          <div class="mobile-link-list">
-            <a class="admin-shared-mobile-link" href="/admin/command-center">
-              <span class="mobile-link-title">実行指令室</span>
-              <small>予定・指示・相場・Codexをまとめて動かす</small>
-            </a>
+        <details class="admin-menu-mobile-group is-current-group" open>
+          <summary class="admin-menu-mobile-summary">
+            <span class="admin-menu-mobile-copy"><strong>制作・発信</strong><small>ブログとSNS制作</small></span>
+            <span class="admin-menu-mobile-count">1件</span>
+          </summary>
+          <div class="admin-menu-mobile-content">
+            <div class="mobile-link-list">
+              <a class="admin-shared-mobile-link is-current" href="/admin/blog">
+                <span class="mobile-link-title">ブログ管理</span>
+                <small>記事の確認と公開</small>
+              </a>
+            </div>
           </div>
-        </section>
+        </details>
       </div>
     </div>
   </header>
@@ -104,10 +129,12 @@ def _menu_fingerprint(page):
             const styles = getComputedStyle(document.querySelector(selector));
             return Object.fromEntries(properties.map((property) => [property, styles.getPropertyValue(property)]));
           };
+          const desktop = innerWidth > 720;
           return {
             header: read("header.site-header", [
               "position", "height", "min-height", "background-color", "border-bottom-color",
-              "border-bottom-width", "box-shadow", "z-index", "padding"
+              "border-bottom-width", "box-shadow", "z-index", "padding", "transition-property",
+              "transition-duration"
             ]),
             inner: read(".site-header-inner", [
               "display", "flex-direction", "align-items", "justify-content", "gap", "max-width",
@@ -117,32 +144,43 @@ def _menu_fingerprint(page):
               "font-family", "font-size", "font-weight", "line-height", "color", "text-decoration-line"
             ]),
             nav: read(".site-nav", ["display", "align-items", "gap", "height", "overflow-x", "flex-wrap"]),
-            link: read(".admin-scroll-link", [
+            groupTrigger: desktop ? read(".admin-menu-group-trigger", [
+              "display", "height", "min-height", "padding", "gap", "border-radius", "color",
+              "background-color", "font-family", "font-size", "font-weight", "line-height"
+            ]) : null,
+            popover: desktop ? read(".admin-menu-popover", [
+              "display", "position", "top", "right", "width", "max-height", "padding", "overflow-y",
+              "border-radius", "background-color", "box-shadow", "z-index"
+            ]) : null,
+            popoverLink: desktop ? read(".admin-menu-popover-link", [
               "font-family", "font-size", "font-weight", "line-height", "height", "min-height", "padding",
               "border-radius", "color", "background-color"
-            ]),
+            ]) : null,
             toggle: read(".mobile-toggle", [
               "display", "width", "height", "min-width", "min-height", "border-radius", "background-color", "color"
             ]),
-            mobileNav: read(".mobile-nav", [
+            mobileNav: desktop ? null : read(".mobile-nav", [
               "display", "position", "inset", "width", "max-height", "padding", "overflow-y", "background-color",
               "border-radius", "box-shadow"
             ]),
-            mobilePanel: read(".mobile-nav-panel", [
+            mobilePanel: desktop ? null : read(".mobile-nav-panel", [
               "display", "grid-template-columns", "gap", "width", "max-width", "margin", "padding", "background-color"
             ]),
-            mobileLink: read(".admin-shared-mobile-link", [
+            mobileLink: desktop ? null : read(".admin-shared-mobile-link", [
               "display", "min-height", "padding", "gap", "border-color", "border-radius", "background-color",
               "color", "font-family", "text-decoration-line"
             ]),
-            mobileLabel: read(".mobile-nav-label", [
-              "display", "padding", "font-family", "font-size", "font-weight", "line-height", "letter-spacing", "color"
-            ]),
-            mobileTitle: read(".mobile-link-title", [
+            mobileTitle: desktop ? null : read(".mobile-link-title", [
               "display", "font-family", "font-size", "font-weight", "line-height", "color"
             ]),
-            mobileDescription: read(".admin-shared-mobile-link small", [
+            mobileDescription: desktop ? null : read(".admin-shared-mobile-link small", [
               "display", "font-family", "font-size", "font-weight", "line-height", "color"
+            ]),
+            mobileSummary: desktop ? null : read(".admin-menu-mobile-summary", [
+              "display", "min-height", "height", "padding", "color", "background-color"
+            ]),
+            mobileContent: desktop ? null : read(".admin-menu-mobile-content", [
+              "display", "padding", "gap"
             ])
           };
         }"""
@@ -178,9 +216,10 @@ class AdminMenuCssParityTests(unittest.TestCase):
                     fingerprints = {}
                     for body_class in (
                         "admin-page admin-shared-menu-active",
+                        "admin-page admin-shared-menu-active legacy-header-transition",
                         "admin-studio-page admin-shared-menu-active admin-shared-menu-offset",
                         "admin-page command-center-page admin-shared-menu-active admin-shared-menu-offset",
-                        "ops-page admin-shared-menu-active",
+                        "ops-page admin-shared-menu-active legacy-header-transition",
                     ):
                         page = browser.new_page(viewport={"width": width, "height": height})
                         page.route("**/*", lambda route, _request, shell=body_class: _serve_admin_fixture(route, shell))
@@ -203,6 +242,40 @@ class AdminMenuCssParityTests(unittest.TestCase):
                             expected,
                             f"{body_class} diverged from the shared menu at {width}px",
                         )
+            finally:
+                browser.close()
+
+    def test_short_and_long_admin_pages_keep_the_same_fixed_header_alignment(self):
+        """Opening a short admin page must not shift the shared header sideways."""
+        with sync_playwright() as playwright:
+            browser = _launch_chromium(playwright)
+            try:
+                page = browser.new_page(viewport={"width": 1280, "height": 900})
+                body_class = "admin-page admin-shared-menu-active"
+                page.route("**/*", lambda route, _request: _serve_admin_fixture(route, body_class))
+                page.goto("https://local.test/admin/probe", wait_until="load")
+
+                def alignment():
+                    return page.evaluate(
+                        """() => {
+                          const rect = document.querySelector("header.site-header").getBoundingClientRect();
+                          return {
+                            clientWidth: document.documentElement.clientWidth,
+                            gutter: getComputedStyle(document.documentElement).scrollbarGutter,
+                            headerLeft: Math.round(rect.left),
+                            headerRight: Math.round(rect.right),
+                            headerWidth: Math.round(rect.width)
+                          };
+                        }"""
+                    )
+
+                short_page = alignment()
+                self.assertEqual(short_page["gutter"], "stable")
+                page.evaluate("() => { document.body.style.minHeight = '1800px'; }")
+                page.wait_for_timeout(50)
+                long_page = alignment()
+
+                self.assertEqual(long_page, short_page)
             finally:
                 browser.close()
 

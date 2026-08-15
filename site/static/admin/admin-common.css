@@ -4682,6 +4682,11 @@ body.admin-shared-menu-active .admin-shared-header .admin-menu-subgroup-label {
     border-radius: 9px !important;
     background: var(--ai-color-surface, #FFFFFF) !important;
     color: var(--admin-shared-menu-ink) !important;
+    font-family: var(--ai-font-sans, Inter, "Noto Sans JP", sans-serif) !important;
+    font-size: 14px !important;
+    font-weight: 800 !important;
+    line-height: 1 !important;
+    text-decoration: none !important;
     text-align: left !important;
     white-space: normal !important;
   }
@@ -5114,6 +5119,10 @@ body.admin-studio-page :where(button) {
 /* ---- Fixed admin menu component boundary, 2026-08-15 ----
    Page and studio stylesheets may theme their own content, but they must not
    restyle the injected management header or its mobile drawer. */
+html {
+  scrollbar-gutter: stable;
+}
+
 body.admin-shared-menu-active header.site-header.admin-shared-header {
   position: fixed !important;
   inset: 0 0 auto 0 !important;
@@ -5131,6 +5140,7 @@ body.admin-shared-menu-active header.site-header.admin-shared-header {
   box-shadow: var(--ai-shadow-sm, 0 8px 24px rgba(39,60,104,.06)) !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
+  transition: none !important;
   font-family: var(--ai-font-sans, Inter, "Noto Sans JP", sans-serif) !important;
 }
 

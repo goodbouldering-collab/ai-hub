@@ -168,7 +168,7 @@ def _menu_fingerprint(page):
             ]),
             mobileLink: desktop ? null : read(".admin-shared-mobile-link", [
               "display", "min-height", "padding", "gap", "border-color", "border-radius", "background-color",
-              "color", "font-family", "text-decoration-line"
+              "color", "font-family", "font-size", "font-weight", "line-height", "text-decoration-line"
             ]),
             mobileTitle: desktop ? null : read(".mobile-link-title", [
               "display", "font-family", "font-size", "font-weight", "line-height", "color"

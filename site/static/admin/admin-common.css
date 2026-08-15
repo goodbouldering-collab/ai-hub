@@ -5349,6 +5349,9 @@ body.admin-shared-menu-active .admin-shared-header .admin-shared-mobile-link {
   background: var(--ai-color-surface, #FFFFFF) !important;
   color: var(--admin-shared-menu-ink) !important;
   font-family: var(--ai-font-sans, Inter, "Noto Sans JP", sans-serif) !important;
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  line-height: 1.35 !important;
   text-decoration: none !important;
   box-shadow: none !important;
 }

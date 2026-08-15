@@ -451,5 +451,19 @@ portfolio:
   - R2
   summary: 彦根・湖東・湖北の広告相談、見積り、入稿、求人・ブログ運用を一つにした地域広告会社サイト
   since: 2026-07
-  source: site-published-hook
   thumbnail: /img/portfolio/ad-kotobuki-hikone.jpg
+  source: site-published-hook
+- name: Japan Plogging Championship
+  slug: japan-plogging-championship
+  url: https://japan-plogging-championship.vercel.app
+  status: live
+  category: イベントサイト
+  tech:
+  - Next.js
+  - Vercel
+  - Supabase
+  - Stripe
+  summary: 大会情報、参加資格、協賛、参加申込から多人数QR受付までを安全につなぐプロギング大会サイト
+  since: 2026-08
+  source: site-published-hook
+  thumbnail: /img/portfolio/japan-plogging-championship.jpg

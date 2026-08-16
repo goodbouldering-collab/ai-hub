@@ -27,16 +27,20 @@ function runSharedMenu(pathname = "/admin/sns-post") {
   const panelListeners = new Map();
   const documentListeners = new Map();
   const groupListeners = new Map();
+  const toggleText = { textContent: "メニュー" };
   const toggle = {
     attributes: new Map(),
     addEventListener(name, handler) { toggleListeners.set(name, handler); },
     setAttribute(name, value) { this.attributes.set(name, value); },
     getAttribute(name) { return this.attributes.get(name) ?? null; },
+    querySelector(selector) { return selector === ".mobile-toggle-text" ? toggleText : null; },
   };
   const panel = {
     hidden: true,
+    attributes: new Map(),
     classList: classList(),
     addEventListener(name, handler) { panelListeners.set(name, handler); },
+    setAttribute(name, value) { this.attributes.set(name, value); },
   };
   const mobileGroup = {
     open: true,
@@ -77,6 +81,7 @@ function runSharedMenu(pathname = "/admin/sns-post") {
     document,
     mobileGroup,
     toggle,
+    toggleText,
     listeners: { document: documentListeners, panel: panelListeners, toggle: toggleListeners },
   };
 }
@@ -137,15 +142,17 @@ test("shared admin menu groups related work by purpose on desktop and mobile", (
 });
 
 test("Escape closes the mobile drawer without losing the selected group", () => {
-  const { mobileGroup, toggle, listeners } = runSharedMenu("/admin/apps/reel");
+  const { mobileGroup, toggle, toggleText, listeners } = runSharedMenu("/admin/apps/reel");
 
   listeners.toggle.get("click")();
   assert.equal(toggle.getAttribute("aria-expanded"), "true");
+  assert.equal(toggleText.textContent, "閉じる");
   assert.equal(mobileGroup.open, true);
 
   listeners.document.get("keydown")({ key: "Escape" });
 
   assert.equal(toggle.getAttribute("aria-expanded"), "false");
+  assert.equal(toggleText.textContent, "メニュー");
   assert.equal(mobileGroup.open, true, "reopening the drawer should retain the user's group context");
 });
 
@@ -275,8 +282,9 @@ test("Blog and Reel studios put the API key form first in the shared right-align
   );
 });
 
-test("tablet admin navigation stays in the shared header's single row", async () => {
+test("admin navigation follows the public 900px menu switch", async () => {
   const css = await readFile(new URL("site/static/admin/admin-common.css", root), "utf8");
+  const fixedBoundary = css.slice(css.lastIndexOf("/* ---- Fixed admin menu component boundary"));
 
   assert.doesNotMatch(
     css,
@@ -284,25 +292,31 @@ test("tablet admin navigation stays in the shared header's single row", async ()
     "a second fixed quick-navigation row must not be restored",
   );
   assert.match(
-    css,
-    /@media \(min-width: 721px\) and \(max-width: 1100px\) \{[\s\S]*?\.admin-shared-header \.site-nav\.admin-slide-nav \{[\s\S]*?position: static !important;[\s\S]*?display: flex !important;/,
-    "tablet navigation must remain inside the header instead of dropping below it",
+    fixedBoundary,
+    /@media \(max-width: 900px\) \{[\s\S]*?\.admin-shared-header \.site-nav\.admin-slide-nav \{[\s\S]*?display: none !important;[\s\S]*?\.admin-shared-header \.mobile-toggle \{[\s\S]*?display: inline-flex !important;/,
+    "admin must switch to the same hamburger layout as public at 900px",
   );
   assert.match(
-    css,
-    /@media \(max-width: 720px\) \{[\s\S]*?\.admin-shared-header \.site-nav\.admin-slide-nav \{[\s\S]*?display: none !important;[\s\S]*?\.admin-shared-header \.mobile-toggle \{[\s\S]*?display: inline-grid !important;/,
-    "only the narrow mobile layout may replace the single row with the shared drawer",
-  );
-  assert.match(
-    css,
-    /@media \(max-width: 720px\) \{[\s\S]*?body\.admin-page \.admin-shared-header \.mobile-toggle,\s*body\.ops-page \.admin-shared-header \.mobile-toggle,[\s\S]*?display: inline-grid !important;/,
-    "the narrow mobile drawer must outrank the shared desktop toggle rule",
+    fixedBoundary,
+    /\.mobile-toggle \{[\s\S]*?min-width: 94px !important;[\s\S]*?height: 44px !important;[\s\S]*?padding: 0 12px !important;[\s\S]*?gap: 8px !important;/,
+    "the hamburger control must use the public text-button dimensions",
   );
   assert.match(
     css,
     /body\.admin-page header\.site-header\.admin-shared-header,\s*body\.ops-page header\.site-header\.admin-shared-header \{[\s\S]*?height: var\(--admin-shared-menu-height\) !important;/,
     "the actual fixed header must use the same height as the single-row navigation and drawer",
   );
+  assert.match(menuSource, /class="mobile-toggle-icon"[\s\S]*class="mobile-toggle-text">メニュー/);
+  assert.match(menuSource, /window\.innerWidth > 900/);
+});
+
+test("desktop admin navigation uses the public right-aligned header geometry", async () => {
+  const css = await readFile(new URL("site/static/admin/admin-common.css", root), "utf8");
+  const fixedBoundary = css.slice(css.lastIndexOf("/* ---- Fixed admin menu component boundary"));
+
+  assert.match(fixedBoundary, /\.site-header-inner \{[\s\S]*?max-width: 1400px !important;[\s\S]*?padding: 10px 18px !important;[\s\S]*?gap: 12px !important;/);
+  assert.match(fixedBoundary, /\.site-nav\.admin-slide-nav \{[\s\S]*?flex: 0 0 auto !important;[\s\S]*?margin-left: auto !important;/);
+  assert.match(fixedBoundary, /\.admin-scroll-menu \{[\s\S]*?width: auto !important;[\s\S]*?justify-content: flex-end !important;/);
 });
 
 test("page-local header styles cannot move the shared menu outside its fixed row", async () => {

@@ -53,8 +53,9 @@ MENU_HTML = """<!doctype html>
           </details>
         </div>
       </nav>
-      <button class="mobile-toggle" type="button" aria-label="補助メニューを開く">
-        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <button class="mobile-toggle" type="button" aria-label="管理メニューを開く">
+        <span class="mobile-toggle-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span class="mobile-toggle-text">メニュー</span>
       </button>
     </div>
     <div class="mobile-nav" id="mobile-nav" hidden>
@@ -129,7 +130,7 @@ def _menu_fingerprint(page):
             const styles = getComputedStyle(document.querySelector(selector));
             return Object.fromEntries(properties.map((property) => [property, styles.getPropertyValue(property)]));
           };
-          const desktop = innerWidth > 720;
+          const desktop = innerWidth > 900;
           return {
             header: read("header.site-header", [
               "position", "height", "min-height", "background-color", "border-bottom-color",
@@ -212,7 +213,7 @@ class AdminMenuCssParityTests(unittest.TestCase):
         with sync_playwright() as playwright:
             browser = _launch_chromium(playwright)
             try:
-                for width, height in ((1280, 900), (390, 844)):
+                for width, height in ((1280, 900), (820, 900), (390, 844)):
                     fingerprints = {}
                     for body_class in (
                         "admin-page admin-shared-menu-active",
@@ -242,6 +243,112 @@ class AdminMenuCssParityTests(unittest.TestCase):
                             expected,
                             f"{body_class} diverged from the shared menu at {width}px",
                         )
+            finally:
+                browser.close()
+
+    def test_shared_menu_matches_the_public_header_layout_contract(self):
+        """Admin keeps its destinations while matching public header geometry."""
+        with sync_playwright() as playwright:
+            browser = _launch_chromium(playwright)
+            try:
+                body_class = "admin-page admin-shared-menu-active"
+
+                desktop = browser.new_page(viewport={"width": 1280, "height": 900})
+                desktop.route("**/*", lambda route, _request: _serve_admin_fixture(route, body_class))
+                desktop.goto("https://local.test/admin/probe", wait_until="load")
+                desktop_contract = desktop.evaluate(
+                    """() => {
+                      const inner = document.querySelector('.site-header-inner');
+                      const nav = document.querySelector('.admin-slide-nav');
+                      const brand = document.querySelector('.admin-shared-brand');
+                      const innerStyle = getComputedStyle(inner);
+                      const navStyle = getComputedStyle(nav);
+                      const innerRect = inner.getBoundingClientRect();
+                      const navRect = nav.getBoundingClientRect();
+                      const brandRect = brand.getBoundingClientRect();
+                      return {
+                        innerMaxWidth: innerStyle.maxWidth,
+                        innerPadding: innerStyle.padding,
+                        innerGap: innerStyle.gap,
+                        navDisplay: navStyle.display,
+                        navFlex: navStyle.flex,
+                        navRightGap: Math.round(innerRect.right - navRect.right),
+                        navStartsAfterBrand: navRect.left > brandRect.right,
+                        toggleDisplay: getComputedStyle(document.querySelector('.mobile-toggle')).display
+                      };
+                    }"""
+                )
+                self.assertEqual(desktop_contract["innerMaxWidth"], "1400px")
+                self.assertEqual(desktop_contract["innerPadding"], "10px 18px")
+                self.assertEqual(desktop_contract["innerGap"], "12px")
+                self.assertEqual(desktop_contract["navDisplay"], "flex")
+                self.assertEqual(desktop_contract["navFlex"], "0 0 auto")
+                self.assertEqual(desktop_contract["navRightGap"], 18)
+                self.assertTrue(desktop_contract["navStartsAfterBrand"])
+                self.assertEqual(desktop_contract["toggleDisplay"], "none")
+                desktop.close()
+
+                for width, height in ((820, 900), (390, 844)):
+                    mobile = browser.new_page(viewport={"width": width, "height": height})
+                    mobile.route("**/*", lambda route, _request: _serve_admin_fixture(route, body_class))
+                    mobile.goto("https://local.test/admin/probe", wait_until="load")
+                    mobile.evaluate(
+                        """() => {
+                          const drawer = document.querySelector('.mobile-nav');
+                          drawer.hidden = false;
+                          drawer.classList.add('open');
+                          document.body.classList.add('admin-shared-menu-open');
+                        }"""
+                    )
+                    mobile_contract = mobile.evaluate(
+                        """() => {
+                          const read = (selector) => {
+                            const element = document.querySelector(selector);
+                            const style = getComputedStyle(element);
+                            const rect = element.getBoundingClientRect();
+                            return {
+                              display: style.display,
+                              width: style.width,
+                              minWidth: style.minWidth,
+                              height: style.height,
+                              padding: style.padding,
+                              gap: style.gap,
+                              inset: style.inset,
+                              backgroundColor: style.backgroundColor,
+                              boxShadow: style.boxShadow,
+                              left: Math.round(rect.left),
+                              right: Math.round(rect.right)
+                            };
+                          };
+                          return {
+                            headerHeight: Math.round(document.querySelector('.admin-shared-header').getBoundingClientRect().height),
+                            inner: read('.site-header-inner'),
+                            nav: read('.admin-slide-nav'),
+                            toggle: read('.mobile-toggle'),
+                            drawer: read('.mobile-nav'),
+                            panel: read('.mobile-nav-panel--admin'),
+                            clientWidth: document.documentElement.clientWidth,
+                            headerRight: Math.round(document.querySelector('.admin-shared-header').getBoundingClientRect().right),
+                            bodyOverflow: getComputedStyle(document.body).overflow
+                          };
+                        }"""
+                    )
+                    self.assertEqual(mobile_contract["headerHeight"], 64)
+                    self.assertEqual(mobile_contract["inner"]["padding"], "8px 14px")
+                    self.assertEqual(mobile_contract["inner"]["gap"], "8px")
+                    self.assertEqual(mobile_contract["nav"]["display"], "none")
+                    self.assertEqual(mobile_contract["toggle"]["display"], "flex")
+                    self.assertEqual(mobile_contract["toggle"]["minWidth"], "94px")
+                    self.assertEqual(mobile_contract["toggle"]["height"], "44px")
+                    self.assertEqual(mobile_contract["toggle"]["padding"], "0px 12px")
+                    self.assertEqual(mobile_contract["toggle"]["gap"], "8px")
+                    self.assertEqual(mobile_contract["drawer"]["inset"], "64px 0px 0px")
+                    self.assertEqual(mobile_contract["drawer"]["backgroundColor"], "rgba(10, 23, 40, 0.38)")
+                    self.assertGreater(mobile_contract["panel"]["left"], 0)
+                    self.assertEqual(mobile_contract["panel"]["right"], mobile_contract["headerRight"])
+                    self.assertNotEqual(mobile_contract["panel"]["boxShadow"], "none")
+                    self.assertIn("hidden", mobile_contract["bodyOverflow"])
+                    mobile.close()
             finally:
                 browser.close()
 

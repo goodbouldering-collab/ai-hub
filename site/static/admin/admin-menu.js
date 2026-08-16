@@ -234,10 +234,11 @@
           <div class="admin-scroll-menu">${desktopMenuMarkup()}</div>
         </nav>
         <button class="mobile-toggle" id="mobile-toggle" aria-label="管理メニューを開く" aria-controls="mobile-nav" aria-expanded="false" type="button">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span class="mobile-toggle-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span class="mobile-toggle-text">メニュー</span>
         </button>
       </div>
-      <div class="mobile-nav" id="mobile-nav" hidden>
+      <div class="mobile-nav" id="mobile-nav" aria-hidden="true" hidden>
         <div class="mobile-nav-panel mobile-nav-panel--admin">${mobileMenuMarkup()}</div>
       </div>`;
   }
@@ -256,6 +257,7 @@
   if (needsOffset) document.body.classList.add("admin-shared-menu-offset");
 
   const toggle = header.querySelector("#mobile-toggle");
+  const toggleText = toggle.querySelector?.(".mobile-toggle-text");
   const panel = header.querySelector("#mobile-nav");
   const desktopGroups = [...header.querySelectorAll(".admin-menu-desktop-group")];
   const mobileGroups = [...header.querySelectorAll(".admin-menu-mobile-group")];
@@ -280,6 +282,8 @@
   function setMenuOpen(open) {
     toggle.setAttribute("aria-expanded", String(open));
     toggle.setAttribute("aria-label", open ? "管理メニューを閉じる" : "管理メニューを開く");
+    if (toggleText) toggleText.textContent = open ? "閉じる" : "メニュー";
+    panel.setAttribute("aria-hidden", String(!open));
     panel.hidden = !open;
     panel.classList.toggle("open", open);
     document.body.classList.toggle("admin-shared-menu-open", open);
@@ -314,7 +318,7 @@
   });
 
   window.addEventListener("resize", () => {
-    if (window.innerWidth > 720) setMenuOpen(false);
+    if (window.innerWidth > 900) setMenuOpen(false);
   });
 
   window.__AI_CONSULT_ADMIN_MENU_READY__ = true;

@@ -5272,6 +5272,35 @@ body.admin-shared-menu-active .admin-shared-header .admin-scroll-link[aria-curre
   color: var(--admin-shared-menu-blue) !important;
 }
 
+body.admin-shared-menu-active .admin-shared-header .admin-public-page-link {
+  flex: 0 0 auto !important;
+  min-width: 96px !important;
+  min-height: 44px !important;
+  padding: 0 12px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: 1px solid rgba(79,111,216,.40) !important;
+  border-radius: 8px !important;
+  background: #FFFFFF !important;
+  color: var(--admin-shared-menu-blue) !important;
+  font-family: var(--ai-font-sans, Inter, "Noto Sans JP", sans-serif) !important;
+  font-size: 13px !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  box-shadow: 0 4px 12px rgba(79,111,216,.10) !important;
+}
+
+body.admin-shared-menu-active .admin-shared-header .admin-public-page-link:hover,
+body.admin-shared-menu-active .admin-shared-header .admin-public-page-link:focus-visible {
+  border-color: var(--admin-shared-menu-blue) !important;
+  background: var(--admin-shared-menu-blue) !important;
+  color: #FFFFFF !important;
+  outline: none !important;
+}
+
 body.admin-shared-menu-active .admin-shared-header .mobile-toggle {
   flex: 0 0 auto !important;
   width: auto !important;
@@ -5488,7 +5517,7 @@ body.admin-shared-menu-active .admin-shared-header .admin-shared-mobile-link sma
   body.admin-shared-menu-active .admin-shared-header .admin-shared-brand {
     flex: 0 1 auto !important;
     min-width: 0 !important;
-    max-width: calc(100% - 116px) !important;
+    max-width: calc(100% - 212px) !important;
     overflow: hidden !important;
     font-size: 19px !important;
     white-space: nowrap !important;
@@ -5508,6 +5537,14 @@ body.admin-shared-menu-active .admin-shared-header .admin-shared-mobile-link sma
 
   body.admin-shared-menu-active .admin-shared-header .site-nav.admin-slide-nav {
     display: none !important;
+  }
+
+  body.admin-shared-menu-active .admin-shared-header .admin-public-page-link {
+    min-width: 96px !important;
+    min-height: 44px !important;
+    padding: 0 10px !important;
+    display: inline-flex !important;
+    font-size: 12px !important;
   }
 
   body.admin-shared-menu-active .admin-shared-header .mobile-toggle {

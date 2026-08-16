@@ -233,6 +233,7 @@
         <nav class="site-nav admin-slide-nav" aria-label="管理ページ固定メニュー">
           <div class="admin-scroll-menu">${desktopMenuMarkup()}</div>
         </nav>
+        <a class="admin-public-page-link" href="/" aria-label="AI相談の公開ページを見る">公開ページ</a>
         <button class="mobile-toggle" id="mobile-toggle" aria-label="管理メニューを開く" aria-controls="mobile-nav" aria-expanded="false" type="button">
           <span class="mobile-toggle-icon" aria-hidden="true"><span></span><span></span><span></span></span>
           <span class="mobile-toggle-text">メニュー</span>

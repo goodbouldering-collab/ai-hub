@@ -177,6 +177,28 @@ test("shared admin menu groups related work by purpose on desktop and mobile", (
   assert.match(header.innerHTML, /SNS投稿[\s\S]*複数のSNSへ投稿する/);
 });
 
+test("shared fixed header keeps the public page one click away on desktop and mobile", async () => {
+  const { header } = runSharedMenu("/admin/command-center");
+  const css = await readFile(new URL("site/static/admin/admin-common.css", root), "utf8");
+  const fixedBoundary = css.slice(css.lastIndexOf("/* ---- Fixed admin menu component boundary"));
+
+  assert.match(
+    header.innerHTML,
+    /<a class="admin-public-page-link" href="\/" aria-label="AI相談の公開ページを見る">公開ページ<\/a>\s*<button class="mobile-toggle"/,
+    "the fixed header must expose a direct public-page link before the menu button",
+  );
+  assert.match(
+    fixedBoundary,
+    /\.admin-public-page-link \{[\s\S]*?min-height: 44px !important;[\s\S]*?display: inline-flex !important;/,
+    "the direct public-page link must remain a usable fixed-header control",
+  );
+  assert.match(
+    fixedBoundary,
+    /@media \(max-width: 900px\) \{[\s\S]*?\.admin-public-page-link \{[\s\S]*?display: inline-flex !important;/,
+    "the direct public-page link must stay available beside the mobile menu",
+  );
+});
+
 test("Escape closes the mobile drawer without losing the selected group", () => {
   const { mobileGroup, toggle, toggleText, listeners } = runSharedMenu("/admin/apps/reel");
 

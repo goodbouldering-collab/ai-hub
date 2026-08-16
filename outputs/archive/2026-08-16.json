@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/08/STK149_AI_01.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-08-16T17:32:56-04:00"
+      "published": "2026-08-16T17:32:56-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "aab776f97ab4679f",
@@ -37,7 +39,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://static.simonwillison.net/static/2026/qwen-thinking-bicycle-27b.jpg",
-      "published": "2026-08-16T22:00:39+00:00"
+      "published": "2026-08-16T22:00:39+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "480e60bfe75c06ae",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/08/STK155_OPEN_AI_4_CVirginia_C.png?quality=90&amp;strip=all&amp;crop=0%2C10.742221417566%2C100%2C78.515557164868&amp;w=1200",
-      "published": "2026-08-16T10:56:40-04:00"
+      "published": "2026-08-16T10:56:40-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "2397931cdb897556",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/STK485_STK414_AI_SAFETY_A-1.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-08-16T08:00:00-04:00"
+      "published": "2026-08-16T08:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "5084dcdca0990cc3",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-08-16T15:05:36+00:00"
+      "published": "2026-08-16T15:05:36+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "c583c1aec9796c17",
@@ -113,7 +123,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/PRgbNStEFtg/hqdefault.jpg",
-      "published": "2026-08-16T14:46:02+00:00"
+      "published": "2026-08-16T14:46:02+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "550389371bab1f47",
@@ -132,7 +144,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://img.youtube.com/vi/ciGawZypzfA/hqdefault.jpg",
-      "published": "2026-08-16T10:16:08+00:00"
+      "published": "2026-08-16T10:16:08+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "30e29b53d1958d1c",
@@ -151,7 +165,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/WT4UXBdfH4w/hqdefault.jpg",
-      "published": "2026-08-16T04:16:25+00:00"
+      "published": "2026-08-16T04:16:25+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "cd1eec6c314ce0f8",
@@ -170,7 +186,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/ujthDuNics8/hqdefault.jpg",
-      "published": "2026-08-16T10:00:05+00:00"
+      "published": "2026-08-16T10:00:05+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "ccddb06de873b9f2",
@@ -189,7 +207,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://image.itmedia.co.jp/ait/articles/2608/17/cover_news020.jpg",
-      "published": "Mon, 17 Aug 2026 05:00:00 +0900"
+      "published": "Mon, 17 Aug 2026 05:00:00 +0900",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

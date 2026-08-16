@@ -259,6 +259,7 @@
   const toggle = header.querySelector("#mobile-toggle");
   const toggleText = toggle.querySelector?.(".mobile-toggle-text");
   const panel = header.querySelector("#mobile-nav");
+  const brand = header.querySelector(".admin-shared-brand");
   const desktopGroups = [...header.querySelectorAll(".admin-menu-desktop-group")];
   const mobileGroups = [...header.querySelectorAll(".admin-menu-mobile-group")];
 
@@ -279,7 +280,26 @@
   keepOneGroupOpen(desktopGroups);
   keepOneGroupOpen(mobileGroups);
 
-  function setMenuOpen(open) {
+  const drawerFocusableSelector = [
+    "a[href]",
+    "button:not([disabled])",
+    "summary",
+    "input:not([disabled])",
+    "select:not([disabled])",
+    "textarea:not([disabled])",
+    '[tabindex]:not([tabindex="-1"])',
+  ].join(",");
+
+  function drawerFocusables() {
+    return [toggle, ...panel.querySelectorAll(drawerFocusableSelector)].filter((control) => {
+      if (control === toggle) return true;
+      if (control.hidden || control.getAttribute?.("aria-hidden") === "true") return false;
+      return typeof control.getClientRects !== "function" || control.getClientRects().length > 0;
+    });
+  }
+
+  function setMenuOpen(open, { restoreFocus = null } = {}) {
+    const focusWasInDrawer = panel.contains?.(document.activeElement) === true;
     toggle.setAttribute("aria-expanded", String(open));
     toggle.setAttribute("aria-label", open ? "管理メニューを閉じる" : "管理メニューを開く");
     if (toggleText) toggleText.textContent = open ? "閉じる" : "メニュー";
@@ -287,6 +307,9 @@
     panel.hidden = !open;
     panel.classList.toggle("open", open);
     document.body.classList.toggle("admin-shared-menu-open", open);
+
+    const shouldRestoreFocus = !open && (restoreFocus === true || (restoreFocus === null && focusWasInDrawer));
+    if (shouldRestoreFocus) toggle.focus?.();
   }
 
   toggle.addEventListener("click", () => {
@@ -294,7 +317,11 @@
   });
 
   panel.addEventListener("click", (event) => {
-    if (event.target.closest("a")) setMenuOpen(false);
+    if (event.target === panel) {
+      setMenuOpen(false, { restoreFocus: true });
+      return;
+    }
+    if (event.target.closest?.("a")) setMenuOpen(false, { restoreFocus: false });
   });
 
   document.addEventListener("click", (event) => {
@@ -302,11 +329,26 @@
   });
 
   document.addEventListener("keydown", (event) => {
+    const drawerIsOpen = toggle.getAttribute("aria-expanded") === "true";
+    if (event.key === "Tab" && drawerIsOpen) {
+      const focusables = drawerFocusables();
+      const first = focusables[0];
+      const last = focusables.at(-1);
+      const activeIsContained = focusables.includes(document.activeElement);
+
+      if (event.shiftKey && (document.activeElement === first || !activeIsContained)) {
+        event.preventDefault();
+        last?.focus();
+      } else if (!event.shiftKey && (document.activeElement === last || !activeIsContained)) {
+        event.preventDefault();
+        first?.focus();
+      }
+      return;
+    }
+
     if (event.key !== "Escape") return;
-    const drawerWasOpen = toggle.getAttribute("aria-expanded") === "true";
-    if (drawerWasOpen) {
-      setMenuOpen(false);
-      toggle.focus?.();
+    if (drawerIsOpen) {
+      setMenuOpen(false, { restoreFocus: true });
       return;
     }
     const openGroup = desktopGroups.find((group) => group.open);
@@ -318,7 +360,13 @@
   });
 
   window.addEventListener("resize", () => {
-    if (window.innerWidth > 900) setMenuOpen(false);
+    if (window.innerWidth <= 900) return;
+    const menuOwnedFocus =
+      toggle.getAttribute("aria-expanded") === "true" ||
+      document.activeElement === toggle ||
+      panel.contains?.(document.activeElement) === true;
+    setMenuOpen(false, { restoreFocus: false });
+    if (menuOwnedFocus) brand?.focus();
   });
 
   window.__AI_CONSULT_ADMIN_MENU_READY__ = true;

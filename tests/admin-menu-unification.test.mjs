@@ -26,7 +26,10 @@ function runSharedMenu(pathname = "/admin/sns-post") {
   const toggleListeners = new Map();
   const panelListeners = new Map();
   const documentListeners = new Map();
+  const windowListeners = new Map();
   const groupListeners = new Map();
+  const focusHistory = [];
+  let activeElement = null;
   const toggleText = { textContent: "メニュー" };
   const toggle = {
     attributes: new Map(),
@@ -34,6 +37,16 @@ function runSharedMenu(pathname = "/admin/sns-post") {
     setAttribute(name, value) { this.attributes.set(name, value); },
     getAttribute(name) { return this.attributes.get(name) ?? null; },
     querySelector(selector) { return selector === ".mobile-toggle-text" ? toggleText : null; },
+    focus() { activeElement = this; focusHistory.push("toggle"); },
+  };
+  const drawerFirst = {
+    focus() { activeElement = this; focusHistory.push("drawer-first"); },
+    getClientRects() { return [{}]; },
+    closest(selector) { return selector === "a" ? this : null; },
+  };
+  const drawerLast = {
+    focus() { activeElement = this; focusHistory.push("drawer-last"); },
+    getClientRects() { return [{}]; },
   };
   const panel = {
     hidden: true,
@@ -41,11 +54,18 @@ function runSharedMenu(pathname = "/admin/sns-post") {
     classList: classList(),
     addEventListener(name, handler) { panelListeners.set(name, handler); },
     setAttribute(name, value) { this.attributes.set(name, value); },
+    querySelectorAll() { return [drawerFirst, drawerLast]; },
+    contains(element) { return element === drawerFirst || element === drawerLast; },
+    closest() { return null; },
   };
-  const mobileGroup = {
-    open: true,
-    addEventListener(name, handler) { groupListeners.set(name, handler); },
+  const mobileGroups = Array.from({ length: 5 }, (_, index) => ({
+    open: index === 0,
+    addEventListener(name, handler) { groupListeners.set(`${index}:${name}`, handler); },
     querySelector() { return { focus() {} }; },
+  }));
+  const mobileGroup = mobileGroups[0];
+  const brand = {
+    focus() { activeElement = this; focusHistory.push("brand"); },
   };
   const header = {
     className: "site-header scrolled",
@@ -55,10 +75,11 @@ function runSharedMenu(pathname = "/admin/sns-post") {
     querySelector(selector) {
       if (selector === "#mobile-toggle") return toggle;
       if (selector === "#mobile-nav") return panel;
+      if (selector === ".admin-shared-brand") return brand;
       return null;
     },
     querySelectorAll(selector) {
-      if (selector === ".admin-menu-mobile-group") return [mobileGroup];
+      if (selector === ".admin-menu-mobile-group") return mobileGroups;
       return [];
     },
   };
@@ -71,18 +92,33 @@ function runSharedMenu(pathname = "/admin/sns-post") {
     },
     createElement() { return header; },
     addEventListener(name, handler) { documentListeners.set(name, handler); },
+    get activeElement() { return activeElement; },
   };
-  const window = { location: { pathname }, addEventListener() {} };
+  const window = {
+    innerWidth: 390,
+    location: { pathname },
+    addEventListener(name, handler) { windowListeners.set(name, handler); },
+  };
 
   vm.runInNewContext(menuSource, { document, window });
   return {
     body,
+    brand,
     header,
     document,
     mobileGroup,
+    panel,
     toggle,
     toggleText,
-    listeners: { document: documentListeners, panel: panelListeners, toggle: toggleListeners },
+    focusables: { first: drawerFirst, last: drawerLast },
+    focusHistory,
+    window,
+    listeners: {
+      document: documentListeners,
+      panel: panelListeners,
+      toggle: toggleListeners,
+      window: windowListeners,
+    },
   };
 }
 
@@ -154,6 +190,66 @@ test("Escape closes the mobile drawer without losing the selected group", () => 
   assert.equal(toggle.getAttribute("aria-expanded"), "false");
   assert.equal(toggleText.textContent, "メニュー");
   assert.equal(mobileGroup.open, true, "reopening the drawer should retain the user's group context");
+});
+
+test("mobile drawer contains keyboard focus and restores it on every non-navigation close path", () => {
+  const { brand, document, focusables, focusHistory, panel, toggle, listeners, window } =
+    runSharedMenu("/admin/apps/reel");
+  const keydown = listeners.document.get("keydown");
+
+  listeners.toggle.get("click")();
+  assert.equal(toggle.getAttribute("aria-expanded"), "true");
+  assert.equal(panel.attributes.get("aria-hidden"), "false");
+  assert.equal(panel.hidden, false);
+
+  focusables.last.focus();
+  let prevented = false;
+  keydown({ key: "Tab", shiftKey: false, preventDefault() { prevented = true; } });
+  assert.equal(prevented, true, "Tab from the final drawer control must wrap to the menu button");
+  assert.equal(document.activeElement, toggle);
+
+  prevented = false;
+  keydown({ key: "Tab", shiftKey: true, preventDefault() { prevented = true; } });
+  assert.equal(prevented, true, "Shift+Tab from the menu button must wrap to the final drawer control");
+  assert.equal(document.activeElement, focusables.last);
+
+  listeners.panel.get("click")({ target: panel });
+  assert.equal(toggle.getAttribute("aria-expanded"), "false");
+  assert.equal(panel.attributes.get("aria-hidden"), "true");
+  assert.equal(panel.hidden, true);
+  assert.equal(document.activeElement, toggle, "overlay close must return focus to its trigger");
+
+  listeners.toggle.get("click")();
+  focusables.first.focus();
+  keydown({ key: "Escape", shiftKey: false, preventDefault() {} });
+  assert.equal(toggle.getAttribute("aria-expanded"), "false");
+  assert.equal(document.activeElement, toggle, "Escape close must return focus to its trigger");
+
+  listeners.toggle.get("click")();
+  focusables.first.focus();
+  window.innerWidth = 1280;
+  listeners.window.get("resize")();
+  assert.equal(toggle.getAttribute("aria-expanded"), "false");
+  assert.equal(document.activeElement, brand, "desktop resize must move focus to the visible brand link");
+  assert.ok(focusHistory.includes("drawer-first"));
+});
+
+test("mobile drawer links close shared UI state without cancelling navigation", () => {
+  const { body, focusables, panel, toggle, listeners } = runSharedMenu("/admin/apps/reel");
+  listeners.toggle.get("click")();
+  focusables.first.focus();
+  let prevented = false;
+
+  listeners.panel.get("click")({
+    target: focusables.first,
+    preventDefault() { prevented = true; },
+  });
+
+  assert.equal(prevented, false, "the shared menu must leave normal link navigation untouched");
+  assert.equal(toggle.getAttribute("aria-expanded"), "false");
+  assert.equal(panel.attributes.get("aria-hidden"), "true");
+  assert.equal(panel.hidden, true);
+  assert.equal(body.classList.contains("admin-shared-menu-open"), false);
 });
 
 test("nested admin pages show their parent context and a direct way back to the management home", () => {
@@ -307,7 +403,7 @@ test("admin navigation follows the public 900px menu switch", async () => {
     "the actual fixed header must use the same height as the single-row navigation and drawer",
   );
   assert.match(menuSource, /class="mobile-toggle-icon"[\s\S]*class="mobile-toggle-text">メニュー/);
-  assert.match(menuSource, /window\.innerWidth > 900/);
+  assert.match(menuSource, /window\.innerWidth <= 900/);
 });
 
 test("desktop admin navigation uses the public right-aligned header geometry", async () => {

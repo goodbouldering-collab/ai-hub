@@ -14829,76 +14829,106 @@ button:focus-visible {
   outline-color: rgba(79,111,216,.28) !important;
 }
 .readiness-guide {
-  padding: 44px max(18px, calc((100vw - 1180px) / 2));
+  padding: 28px max(18px, calc((100vw - 1180px) / 2));
   background: linear-gradient(135deg, #f5f9ff 0%, #fff 62%, #f4fbfa 100%);
   border-top: 1px solid rgba(79,111,216,.14);
   border-bottom: 1px solid rgba(79,111,216,.14);
 }
 .readiness-guide__inner {
   display: grid;
-  grid-template-columns: minmax(0, .94fr) minmax(0, 1.06fr);
-  gap: clamp(26px, 5vw, 72px);
+  grid-template-columns: minmax(0, 1fr) minmax(300px, .94fr) auto;
+  gap: 22px clamp(22px, 3.5vw, 48px);
   max-width: 1180px;
   margin: 0 auto;
-  align-items: start;
+  align-items: center;
 }
-.readiness-guide__eyebrow,
-.readiness-guide__answers > small {
+.readiness-guide__eyebrow {
   display: block;
-  margin: 0 0 8px;
+  margin: 0 0 4px;
   color: var(--focus-blue);
   font: 900 12px/1.35 Inter, sans-serif;
   letter-spacing: .12em;
 }
-.readiness-guide h2 {
-  max-width: 590px;
+.readiness-guide__title {
   margin: 0;
-  color: var(--focus-ink);
-  font-size: clamp(27px, 3.15vw, 40px);
+  color: var(--focus-blue);
+  font-size: clamp(32px, 3.35vw, 46px);
   font-weight: 950;
-  letter-spacing: -.045em;
-  line-height: 1.32;
+  letter-spacing: -.06em;
+  line-height: 1.16;
 }
-.readiness-guide__intro > p:not(.readiness-guide__eyebrow) {
-  max-width: 590px;
-  margin: 16px 0 0;
+.readiness-guide__summary {
+  max-width: 470px;
+  margin: 7px 0 0;
   color: #30415b;
   font-size: 16px;
-  font-weight: 650;
-  line-height: 1.8;
+  font-weight: 700;
+  line-height: 1.55;
 }
-.readiness-guide__link {
+.readiness-guide__outcomes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  list-style: none;
+  border: 1px solid rgba(79,111,216,.18);
+  border-radius: 14px;
+  background: rgba(255,255,255,.78);
+  box-shadow: 0 10px 24px rgba(32,55,100,.06);
+}
+.readiness-guide__outcomes li {
+  min-width: 0;
+  padding: 12px 13px;
+  color: #53627a;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+.readiness-guide__outcomes li + li { border-left: 1px solid rgba(79,111,216,.15); }
+.readiness-guide__outcomes strong {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--focus-ink);
+  font-size: 14px;
+  font-weight: 900;
+}
+.readiness-guide__cta {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  margin-top: 18px;
-  padding-bottom: 3px;
-  color: var(--focus-blue);
-  border-bottom: 2px solid currentColor;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 13px 18px;
+  color: #fff;
+  border: 2px solid var(--focus-blue);
+  border-radius: 12px;
+  background: var(--focus-blue);
+  box-shadow: 0 8px 18px rgba(43,72,177,.22);
   font-size: 15px;
   font-weight: 900;
+  line-height: 1.2;
   text-decoration: none;
+  white-space: nowrap;
+  transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
 }
-.readiness-guide__link:hover,
-.readiness-guide__link:focus-visible { color: #243a9b; }
-.readiness-guide__link span { font-size: 20px; line-height: 1; }
-.readiness-guide__answers {
-  padding: 22px 24px;
-  border: 1px solid rgba(79,111,216,.18);
-  border-radius: 18px;
-  background: rgba(255,255,255,.82);
-  box-shadow: 0 12px 30px rgba(32,55,100,.07);
+.readiness-guide__cta b { font-size: 20px; line-height: 1; }
+.readiness-guide__cta:hover,
+.readiness-guide__cta:focus-visible {
+  color: #fff;
+  background: #243a9b;
+  border-color: #243a9b;
+  box-shadow: 0 11px 22px rgba(43,72,177,.29);
+  transform: translateY(-1px);
 }
-.readiness-guide__answers > small { margin-bottom: 12px; }
-.readiness-guide__answers ul { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
-.readiness-guide__answers li { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 10px; align-items: start; color: #30415b; font-size: 14px; font-weight: 650; line-height: 1.55; }
-.readiness-guide__answers b { display: grid; place-items: center; width: 28px; height: 28px; color: #fff; border-radius: 50%; background: var(--focus-blue); font: 900 11px/1 Inter, sans-serif; }
-.readiness-guide__answers strong { color: var(--focus-ink); font-weight: 900; }
 @media (max-width: 760px) {
-  .readiness-guide { padding: 36px 18px; }
-  .readiness-guide__inner { grid-template-columns: 1fr; gap: 22px; }
-  .readiness-guide h2 { font-size: clamp(26px, 7vw, 34px); }
-  .readiness-guide__answers { padding: 19px 18px; }
+  .readiness-guide { padding: 25px 18px; }
+  .readiness-guide__inner { grid-template-columns: 1fr; gap: 16px; }
+  .readiness-guide__title { font-size: clamp(31px, 9vw, 39px); }
+  .readiness-guide__summary { margin-top: 6px; font-size: 15px; }
+  .readiness-guide__outcomes li { padding: 10px 8px; font-size: 11px; }
+  .readiness-guide__outcomes strong { font-size: 12px; }
+  .readiness-guide__cta { width: 100%; }
 }
 .skip-link {
   position: fixed;
@@ -14969,16 +14999,17 @@ def _render_hero_focused() -> str:
 
 def _render_readiness_guide() -> str:
     return (
-        "<section class='readiness-guide' aria-labelledby='readiness-guide-title'><div class='readiness-guide__inner'>"
-        "<div class='readiness-guide__intro'><p class='readiness-guide__eyebrow'>AI実践力診断｜10問・約3分</p>"
-        "<h2 id='readiness-guide-title'>AIを仕事で使う前に、何を整えるかがわかる診断です。</h2>"
-        "<p>これは正解を試すテストではありません。目的を決め、頼み、確かめ、安全に任せ、次へ残す。仕事で無理なくAIを使い続けるための5領域を振り返ります。</p>"
-        "<a class='readiness-guide__link' href='/ai-agent-readiness/'>診断の内容を見る（10問・約3分） <span aria-hidden='true'>→</span></a></div>"
-        "<div class='readiness-guide__answers'><small>診断でわかること</small><ul>"
-        "<li><b>01</b><span><strong>いまの実践力</strong><br>100点・5段階で、現在地を整理します。</span></li>"
-        "<li><b>02</b><span><strong>5つの基準</strong><br>目的・頼み方・確認・安全・改善の5領域を見える化します。</span></li>"
-        "<li><b>03</b><span><strong>次の90日</strong><br>まず一つ、仕事で試して整える行動がわかります。</span></li>"
-        "</ul></div></div></section>"
+        "<section class='readiness-guide readiness-guide--compact' aria-labelledby='readiness-guide-title'><div class='readiness-guide__inner'>"
+        "<div class='readiness-guide__intro'><p class='readiness-guide__eyebrow'>10問・約3分</p>"
+        "<h2 id='readiness-guide-title' class='readiness-guide__title'>AI実践力診断</h2>"
+        "<p class='readiness-guide__summary'>10問・約3分で、いまの実践力と次に整える一歩がわかります。</p></div>"
+        "<ul class='readiness-guide__outcomes' aria-label='診断でわかること'>"
+        "<li><strong>100点・5段階</strong><span>現在地を整理</span></li>"
+        "<li><strong>5つの基準</strong><span>整える点を確認</span></li>"
+        "<li><strong>次の90日</strong><span>仕事で試す一歩</span></li>"
+        "</ul>"
+        "<a class='readiness-guide__cta' href='/ai-agent-readiness/' aria-label='AI実践力診断をはじめる。10問・約3分'><span>AI実践力診断をはじめる</span><b aria-hidden='true'>→</b></a>"
+        "</div></section>"
     )
 
 

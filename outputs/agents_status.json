@@ -1,61 +1,61 @@
 {
-  "generated_at": "2026-08-17T01:16:18Z",
+  "generated_at": "2026-08-17T22:14:19Z",
   "recent_works": [
     {
-      "date": "2026-08-09",
-      "filename": "2026-08-09-seo-weekly-digest.md",
-      "title": "SEO週次ダイジェスト（2026-08-09）",
+      "date": "2026-08-17",
+      "filename": "2026-08-17-seo-profit-loop-run.md",
+      "title": "全事業 SEO/MEO/JSON-LD/利益改善ループ（2026-08-17）",
       "business": "seo",
-      "path": "/ops?file=2026-08-09-seo-weekly-digest.md#sec-docs"
+      "path": "/ops?file=2026-08-17-seo-profit-loop-run.md#sec-docs"
     },
     {
-      "date": "2026-08-02",
-      "filename": "2026-08-02-seo-weekly-digest.md",
-      "title": "SEO週次ダイジェスト（2026-08-02）",
+      "date": "2026-08-17",
+      "filename": "2026-08-17-seo-ga4-data-quality.md",
+      "title": "SEO利益判断用 GA4データ品質監査（2026-08-17）",
       "business": "seo",
-      "path": "/ops?file=2026-08-02-seo-weekly-digest.md#sec-docs"
+      "path": "/ops?file=2026-08-17-seo-ga4-data-quality.md#sec-docs"
     },
     {
-      "date": "2026-07-27",
-      "filename": "2026-07-27-seo-weekly-digest.md",
-      "title": "SEO週次ダイジェスト（2026-07-27）",
-      "business": "seo",
-      "path": "/ops?file=2026-07-27-seo-weekly-digest.md#sec-docs"
+      "date": "2026-08-17",
+      "filename": "2026-08-17-rasiku.me-seo-report.md",
+      "title": "rasiku.me SEO自動レポート（2026-08-17）",
+      "business": "rasiku.me",
+      "path": "/ops?file=2026-08-17-rasiku.me-seo-report.md#sec-docs"
     },
     {
-      "date": "2026-07-19",
-      "filename": "2026-07-19-seo-weekly-digest.md",
-      "title": "SEO週次ダイジェスト（2026-07-19）",
-      "business": "seo",
-      "path": "/ops?file=2026-07-19-seo-weekly-digest.md#sec-docs"
+      "date": "2026-08-17",
+      "filename": "2026-08-17-plogging-seo-report.md",
+      "title": "plogging SEO自動レポート（2026-08-17）",
+      "business": "plogging",
+      "path": "/ops?file=2026-08-17-plogging-seo-report.md#sec-docs"
     },
     {
-      "date": "2026-07-12",
-      "filename": "2026-07-12-seo-weekly-digest.md",
-      "title": "SEO週次ダイジェスト（2026-07-12）",
-      "business": "seo",
-      "path": "/ops?file=2026-07-12-seo-weekly-digest.md#sec-docs"
+      "date": "2026-08-17",
+      "filename": "2026-08-17-not-este-seo-report.md",
+      "title": "not-este SEO自動レポート（2026-08-17）",
+      "business": "not",
+      "path": "/ops?file=2026-08-17-not-este-seo-report.md#sec-docs"
     },
     {
-      "date": "2026-07-06",
-      "filename": "2026-07-06-seo-weekly-digest.md",
-      "title": "SEO週次ダイジェスト（2026-07-06）",
-      "business": "seo",
-      "path": "/ops?file=2026-07-06-seo-weekly-digest.md#sec-docs"
+      "date": "2026-08-17",
+      "filename": "2026-08-17-mokshajapan.jp-seo-report.md",
+      "title": "mokshajapan.jp SEO自動レポート（2026-08-17）",
+      "business": "mokshajapan.jp",
+      "path": "/ops?file=2026-08-17-mokshajapan.jp-seo-report.md#sec-docs"
     },
     {
-      "date": "2026-06-29",
-      "filename": "2026-06-29-seo-weekly-digest.md",
-      "title": "SEO週次ダイジェスト（2026-06-29）",
-      "business": "seo",
-      "path": "/ops?file=2026-06-29-seo-weekly-digest.md#sec-docs"
+      "date": "2026-08-17",
+      "filename": "2026-08-17-gubble-url-prefix-seo-report.md",
+      "title": "gubble-url-prefix SEO自動レポート（2026-08-17）",
+      "business": "gubble",
+      "path": "/ops?file=2026-08-17-gubble-url-prefix-seo-report.md#sec-docs"
     },
     {
-      "date": "2026-06-22",
-      "filename": "2026-06-22-seo-weekly-digest.md",
-      "title": "SEO週次ダイジェスト（2026-06-22）",
-      "business": "seo",
-      "path": "/ops?file=2026-06-22-seo-weekly-digest.md#sec-docs"
+      "date": "2026-08-17",
+      "filename": "2026-08-17-gubble-seo-report.md",
+      "title": "gubble SEO自動レポート（2026-08-17）",
+      "business": "gubble",
+      "path": "/ops?file=2026-08-17-gubble-seo-report.md#sec-docs"
     }
   ],
   "tasks_open": [
@@ -88,7 +88,40 @@
       "path": "/ops?file=2026-05-28-ai-shindan-matching-design-system.md#sec-docs"
     }
   ],
-  "per_business_recent": [],
+  "per_business_recent": [
+    {
+      "business": "seo",
+      "count": 3
+    },
+    {
+      "business": "gubble",
+      "count": 2
+    },
+    {
+      "business": "rasiku.me",
+      "count": 1
+    },
+    {
+      "business": "plogging",
+      "count": 1
+    },
+    {
+      "business": "not",
+      "count": 1
+    },
+    {
+      "business": "mokshajapan.jp",
+      "count": 1
+    },
+    {
+      "business": "blog.goodbouldering.com",
+      "count": 1
+    },
+    {
+      "business": "all",
+      "count": 1
+    }
+  ],
   "daily_histogram": [
     {
       "date": "2026-08-04",
@@ -140,17 +173,17 @@
     },
     {
       "date": "2026-08-16",
-      "count": 0
+      "count": 1
     },
     {
       "date": "2026-08-17",
-      "count": 0
+      "count": 10
     }
   ],
   "cma_apps": [],
   "totals": {
-    "consul_work_total": 135,
-    "recent_7d_total": 0,
+    "consul_work_total": 146,
+    "recent_7d_total": 11,
     "tasks_open_total": 4
   }
 }

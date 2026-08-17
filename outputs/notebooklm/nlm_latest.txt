@@ -2,39 +2,82 @@
 
 ## AIニュース
 
-### OpenAI reportedly disbanded its preparedness team
-According to the Financial Times, OpenAI disbanded its preparedness team at the end of last month. The job of the preparedness team was to assess if models posed serious risks and develop ways to miti...
-出典: https://www.theverge.com/ai-artificial-intelligence/980817/openai-disbands-preparedness-team
+### Anthropic explains how Claude&#8217;s invisible text watermarks will work
+Anthropic has clarified how it's planning to apply invisible watermarks to Claude-generated text in order to comply with Europe's AI transparency rules. On Friday, Anthropic announced that Claude's te...
+出典: https://www.theverge.com/ai-artificial-intelligence/980869/anthropic-claude-watermarks-synthid-text-system
 
-### ChatGPT’s Computer History tracks your clicks and keystrokes
-ChatGPT's desktop app on macOS has a new feature called Computer History that turns your actions into training data, learning how you work, suggesting automations, and even picking up tasks you left h...
-出典: https://www.theverge.com/ai-artificial-intelligence/980742/chatgpts-computer-history-tracks-your-clicks-and-keystrokes
+### What Flock’s defenders are missing
+This story originally appeared in The Algorithm, our weekly newsletter on AI. To get stories like this in your inbox first, sign up here. Flock, the police-tech giant known for its network of some 120...
+出典: https://www.technologyreview.com/2026/08/17/1142200/what-flocks-defenders-are-missing/
 
-### Rogue AI aren’t science fiction anymore
-This is The Stepback, a weekly newsletter breaking down one essential story from the tech world. For more on AI safety, follow Robert Hart. The Stepback arrives in our subscribers' inboxes at 8AM ET. ...
-出典: https://www.theverge.com/column/980337/rogue-ai-science-fiction-openai
+### What happens when a kid’s robot best friend dies?
+When Xander first met Moxie, she taught him that when he was anxious, he could calm down by exhaling through his lips so that he buzzed like a bee. They practiced breathing like dragons to manage feel...
+出典: https://www.technologyreview.com/2026/08/17/1141568/moxie-when-kids-robot-best-friend-dies/
+
+### Former SpaceX engineers are building a robotic factory for making steel parts
+“We're not necessarily building in a dogmatic fashion towards full autonomy.”
+出典: https://arstechnica.com/ai/2026/08/former-spacex-engineers-are-building-a-robotic-factory-for-making-steel-parts/
+
+### Hidden Airtag reveals Amazon is trashing rare books to train AI
+Amazon’s team uses a <em>T. rex</em> preparing to devour a book as its logo.
+出典: https://arstechnica.com/tech-policy/2026/08/hidden-airtag-reveals-amazon-is-trashing-rare-books-to-train-ai/
+
+
+## AI公式
+
+### The Defender’s Window
+AI is reshaping cybersecurity for attackers and defenders alike. Learn how OpenAI is strengthening its defenses and what security teams can do now.
+出典: https://openai.com/index/the-defenders-window
+
+### OpenAI joins PORTS-Pike project
+OpenAI joins PORTS-Pike project, expanding community investment and supporting thousands of Southern Ohio jobs
+出典: https://openai.com/index/openai-joins-ports-pike-project
+
+### New policy ideas for the Intelligence Age
+OpenAI funds 14 independent projects exploring new AI policy ideas to expand economic opportunity and strengthen societal resilience in the Intelligence Age.
+出典: https://openai.com/index/new-policy-ideas-for-the-intelligence-age
 
 
 ## AI動画(日本語)
+
+### 非エンジニアの間違ったClaude Codeの使い方。
+●直近のAI講座・合宿案内  ▼【定員20名】Claude Code合宿 2026(Claude Code漬けになる2泊3日) 8月21日〜23日・新大阪／同伴1名無料 https://touchai.jp/claude-code-camp?utm_source=youtube_live&amp;utm_medium=webshokutv&amp;utm_campaign=20260818  ▼【...
+出典: https://www.youtube.com/watch?v=fJ3gQaOMfNc
 
 ### メリルに仕事を頼んだらいくらする？
 ※2026年8月末で新規募集は無期限停止！ ※募集再開は未定 最短30日でWebライターになれるスクール「WWS」 https://wwstd.jp/  ●直近のAI講座・合宿案内  ▼【定員20名】Claude Code合宿 2026(Claude Code漬けになる2泊3日) 8月21日〜23日・新大阪／同伴1名無料 https://touchai.jp/claude-code-camp?ut...
 出典: https://www.youtube.com/watch?v=PRgbNStEFtg
 
-### WWSの新規募集を停止します(今月末で無期限停止)。 /  間違ったClaude Codeの使い方 / 8月17日にCodexセキュリティ対策講座やります！
-※2026年8月末で新規募集は無期限停止！ ※募集再開は未定 最短30日でWebライターになれるスクール「WWS」 https://wwstd.jp/  ●直近のAI講座・合宿案内  ▼【定員20名】Claude Code合宿 2026(Claude Code漬けになる2泊3日) 8月21日〜23日・新大阪／同伴1名無料 https://touchai.jp/claude-code-camp?ut...
-出典: https://www.youtube.com/watch?v=WT4UXBdfH4w
-
-### イケてるな！と思ったAI活用
-
-出典: https://www.youtube.com/shorts/ciGawZypzfA
-
-### ChatGPTの予想、最強に稼げる説。
-▼動画内で紹介したプレゼントの受け取りは以下の公式LINEから https://liff.line.me/2006805073-rn36NG8b/landing?follow=%40933hyolt&amp;lp=yKzrHE&amp;liff_id=2006805073-rn36NG8b  ChatGPTの競輪予想はどこまで当たるのか、8月4日のスポーツニッポン新聞社杯12レースで検証します。 ...
-出典: https://www.youtube.com/watch?v=ujthDuNics8
+### 【無料だからチャンス】月50万余裕で稼げる神ツールTipsを公開
+▼動画内で紹介したプレゼントの受け取りは以下の公式LINEから https://liff.line.me/2006805073-rn36NG8b/landing?follow=%40933hyolt&amp;lp=y38yhN&amp;liff_id=2006805073-rn36NG8b  ▼プレゼントの受け取り方法 ① LINE登録後に送信される配信をタップ ② アンケートに回答（1度登録され...
+出典: https://www.youtube.com/watch?v=cKveZJQguT0
 
 
 ## AI国内
+
+### ChatGPTやClaudeの利用量とコストを一元管理、無料で使える法人向け新サービス　マネーフォワード
+マネーフォワードは、AIサービスの利用量とコストを一元管理できる法人向けサービス「マネーフォワード クラウドAIトークン管理」の提供を始めた。同社サービスの共通ID「マネーフォワードID」を取得すれば無料で使える。
+出典: https://www.itmedia.co.jp/aiplus/article/2608/18/2000000571/
+
+### 「AI進化の裏でモノづくりは30年止まっている」、直列工程を並列化する産業OS
+キャディは次世代版「製造業AIデータプラットフォームCADDi」を発表した。AIと人が共有するデータ／セマンティクス基盤で現場の暗黙知を構造化し、直列工程の並列化でモノづくりの加速を目指す。
+出典: https://monoist.itmedia.co.jp/mn/articles/2608/18/news045.html
+
+### 人型ロボが“人間超え”――助走なしで高さ2mのジャンプ、時速45kmで走行も　中国Unitreeが開発中の新モデルを公開
+ロボット開発企業の中国Unitree Roboticsは、開発中の新型ヒューマノイドのデモ動画を公開した。助走なしで高さ2mのジャンプをしたほか、最高で秒速12.66m（時速45.576km）で走る姿を披露した。
+出典: https://www.itmedia.co.jp/aiplus/article/2608/17/2000000567/
+
+### なぜPFNは「国産AI」をゼロから開発するのか　担当者に聞く“自家製ならではの利点”
+「国産」をうたうAIモデルをゼロから開発するPreferred Networks。なぜフルスクラッチにこだわるのか聞いた。
+出典: https://www.itmedia.co.jp/aiplus/article/2608/17/2000000441/
+
+### 「データがない」「スキルがない」「発想が広がらない」　味の素冷凍食品は“3つのない”をどう解消した？
+マーケティングにAIを活用することで、どのような課題をどう解消できるのか。キーワードは「AIペルソナ」だ。NECのBestMoveを利用する、味の素冷凍食品の事例から探る。
+出典: https://www.itmedia.co.jp/enterprise/articles/2608/17/news071.html
+
+### 「ほんだし」のラベルがAIでぐちゃぐちゃに……　味の素、公式Xの投稿画像について謝罪
+味の素は8月16日、レシピサイト「味の素パーク」の公式Xで14日に投稿した画像について謝罪した。生成AIによる加工のため、商品のラベルや文字の一部が乱れていたという。
+出典: https://www.itmedia.co.jp/aiplus/article/2608/17/2000000564/
 
 ### Hugging Face分析、中国のオープンモデルが台頭　Qwenは派生モデル15万件超
 Hugging Faceは、オープンモデル動向をまとめたレポートを公開した。中国勢が2兆パラメータ超の大規模モデルを相次いで公開するなど台頭する一方、実際のダウンロードの8割以上は10億パラメータ未満の小型モデルが占めた。Alibabaの「Qwen」は派生モデル数でMetaを上回り、開発者コミュニティの事実上の基盤モデルになりつつある。
@@ -52,37 +95,61 @@ AIの普及によってITシステム開発の“垣根”が崩れつつある�
 「RAGを導入すれば業務が変わる」。そう信じて始めたのに、検索精度は上がらず、複雑な権限制御にも阻まれる――。Skyもまた、その壁にぶつかった一社だ。だが同社は「取りあえずRAG」を捨てることで前に進んだ。何でもベクトル化するのをやめたSkyの判断とは。
 出典: https://kn.itmedia.co.jp/kn/articles/2608/17/news010.html
 
-### 「欧州のAI主権」任された“34歳の天才”　パリの新星、AI企業Mistralは「救世主」になれるのか
-欧州のAI主権を担う存在として、AI企業のMistralが注目されている。同社を率いる34歳の“若き天才”は、“救世主”になり得るのか。
-出典: https://www.itmedia.co.jp/business/articles/2608/17/news037.html
 
-### 自治体のコスト削減事例　舞鶴市「脱Windows」で6億円、千代田区Copilotで月2000時間
-他組織がツールを導入した際の効果を知ることは、自社での導入を検討する際の大きな参考となる。中でも自治体における導入例は、組織の公共性もあり、詳細な効果を知ることが可能だ。本ブックレットでは、千代田区のCopilot全庁導入による月2000時間削減や、舞鶴市の脱WindowsからGoogleツール移行による6億円削減の事例を掲載した。
-出典: https://www.itmedia.co.jp/enterprise/articles/2608/17/news028.html
+## AI業界
 
-### 雪印メグミルク、ChatAIや社長AIで社内知見を活用　DX認定取得企業から“DXっぽさ”を探る
-どのような活動をすればDX推進と言えるのか。DXという言葉が普及した現在でも、その答えを一つに定めることは難しい。今回の記事では、経済産業省から「DX認定事業者」の認定を受けた雪印メグミルクの例を参考に、DX推進の具体像を探る。
-出典: https://kn.itmedia.co.jp/kn/articles/2608/17/news030.html
+### Same Cluster, 33 Points More Utilization: What Changed Was the Order
 
-### 【読まれた記事1位】「AI需要で半導体不足」の裏で本当に起きていること――2026年前半まとめ
-AIブームを追い風に、半導体市場の成長が止まらない。今、半導体市場で何が起きているのか。注目記事をまとめた。
-出典: https://www.itmedia.co.jp/business/articles/2608/17/news045.html
-
-### Claude、Codex、Qwen……そのAI用語、どう読む？　読み方クイズ30問
-何となくこう読むものだと思っていたら、実は違っていた。そんな経験はないでしょうか。AI用語にも、意外な読み方をするものや、人によって読み方が分かれるものが少なくありません。その読み方が合っているか、全30問のクイズで確かめてみてください。
-出典: https://atmarkit.itmedia.co.jp/ait/articles/2608/17/news020.html
+出典: https://huggingface.co/blog/Dharma-AI/gpu-management-pt2
 
 
 ## AI研究者ブログ
+
+### We Tracked a Shipment of Rare Books. It Ended at an Amazon AI Training Facility
+<p><strong><a href="https://www.404media.co/we-tracked-a-shipment-of-rare-books-it-ended-at-an-amazon-ai-training-facility/">We Tracked a Shipment of Rare Books. It Ended at an Amazon AI Training Faci...
+出典: https://simonwillison.net/2026/Aug/17/we-tracked-a-shipment-of-rare-books-it-ended-at-an-amazon-ai-tra/
 
 ### Markdown SVG upgrades
 <p>I started building my <a href="https://tools.simonwillison.net/markdown-svg-renderer">markdown-svg-renderer</a> tool <a href="https://tools.simonwillison.net/colophon#markdown-svg-renderer.html">in...
 出典: https://simonwillison.net/2026/Aug/16/markdown-svg-upgrades/
 
-### Qwen 3.8 27B is excellent, but it defaults to wildly overthinking things
-<p>Friday's big release was <a href="https://huggingface.co/Qwen/Qwen3.8-27B">Qwen 3.8 27B</a>, an Apache 2 licensed 27B parameter vision-capable LLM from Alibaba's Qwen research lab. I've been lookin...
-出典: https://simonwillison.net/2026/Aug/16/qwen-38-27b/
 
-### Quoting Dario Amodei
-<blockquote cite="https://twitter.com/darioamodei/status/2088758819304443967"><p>I do agree that the public has a negative view of AI (and that this is a big problem), but I don’t think it is primaril...
-出典: https://simonwillison.net/2026/Aug/16/dario-amodei/
+## SNS公式
+
+### LeBron James launches Official YouTube Channel chronicling his love of golf
+<img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/260616_LRMR_LJ_YouTube_Scotland.max-600x600.format-webp.webp" />LeBron James debuts his official YouTube channel with a Scotla...
+出典: https://blog.youtube/creator-and-artist-stories/lebron-james-youtube-golf-channel-launch/
+
+
+## SNS動向
+
+### New research reveals 75% of LinkedIn AI citations come from individual profiles, not company pages
+<p>Discover what makes LinkedIn content more visible in AI search, based on analysis of 9.5 million citations from Meltwater and LinkedIn.</p>
+出典: https://www.socialmediatoday.com/spons/new-research-reveals-75-of-linkedin-ai-citations-come-from-individual-prof/827232/
+
+### X adds video overlays
+<p>The feature allows iOS users to add text and emojis over clips, bringing the platform&rsquo;s editing capabilities more in line with other social media apps.</p>
+出典: https://www.socialmediatoday.com/news/x-adds-video-overlays/827979/
+
+### TikTok announces 2026 Music on Stage competition
+<p>The second annual competition invites musicians to share their work in the app and compete for professional development opportunities.</p>
+出典: https://www.socialmediatoday.com/news/tiktok-announces-2026-music-on-stage-competition/827983/
+
+### LinkedIn playbook offers tips on effective ad campaigns
+<p>The platform&rsquo;s four-step guide outlines best practices for audience targeting, formatting and measurement.</p>
+出典: https://www.socialmediatoday.com/news/linkedin-playbook-offers-tips-on-effective-ad-campaigns/827982/
+
+### Teen social media bans face barriers to success
+<figure><div><img src="https://imgproxy.divecdn.com/oSJdeIAonant2IkEpvfHyTFJP7VxhKweshlgwQ2P378/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9HZXR0eUltYWdlcy0yMjEwMjU2MzA1LmpwZw==...
+出典: https://www.socialmediatoday.com/news/teen-social-media-bans-face-barriers-to-success/827981/
+
+
+## SNS運用
+
+### I Had 200+ Unread Articles in My List — So I Built a macOS App That Shares Them via Buffer
+I had 200 unread articles and no time to read or write about them. Until I vibe-coded a macOS app that summarizes 10 at a time and queues them using the Buffer API.
+出典: https://buffer.com/resources/reader-chomper/
+
+### The 11 Best Social Media Management Tools in 2026 — Tried + Tested
+The 11 best social media management tools for 2026, tried and tested by a social media marketer + creator — from free creator picks to enterprise platforms, with pricing and who each is for.
+出典: https://buffer.com/resources/best-social-media-management-tools/

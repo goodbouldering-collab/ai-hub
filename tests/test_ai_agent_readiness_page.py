@@ -31,9 +31,10 @@ class AiAgentReadinessPageTests(unittest.TestCase):
             shared_header_css=".site-header{position:fixed}",
         )
 
-    def test_page_has_clickable_bilingual_product_name_and_100_point_promise(self):
+    def test_page_uses_the_short_japanese_product_name_and_100_point_promise(self):
         self.assertIn("AI Agent Readiness Compass", self.html)
-        self.assertIn("AIエージェント実践力診断", self.html)
+        self.assertIn("AI実践力診断", self.html)
+        self.assertNotIn("AIエージェント実践力診断", self.html)
         self.assertIn("あなたはAIに聞く人か、任せて確かめる人か。", self.html)
         self.assertIn("20の仕事場面", self.html)
         self.assertIn("100点", self.html)
@@ -102,12 +103,17 @@ class AiAgentReadinessPageTests(unittest.TestCase):
         finally:
             self.site_builder.DIST = original_dist
 
-    def test_homepage_keeps_quick_diagnosis_and_adds_full_readiness_route(self):
+    def test_homepage_places_a_challenging_readiness_banner_above_hero_actions(self):
         hero = self.portal._render_hero_focused()
         self.assertIn("迷ったら60秒診断をはじめる", hero)
         self.assertIn("href='/ai-agent-readiness/'", hero)
-        self.assertIn("AI Agent Readiness Compass", hero)
+        self.assertIn("AI実践力診断", hero)
+        self.assertIn("AIを「使う人」で終わらない。", hero)
+        self.assertIn("診断に挑戦する", hero)
         self.assertIn("100点", hero)
+        self.assertLess(hero.index("focus-title"), hero.index("hero-readiness-card"))
+        self.assertLess(hero.index("hero-readiness-card"), hero.index("hero-advantage"))
+        self.assertLess(hero.index("hero-readiness-card"), hero.index("focus-actions"))
 
     def test_deployable_readiness_bundle_is_not_ignored(self):
         ignore = (ROOT / ".gitignore").read_text(encoding="utf-8")

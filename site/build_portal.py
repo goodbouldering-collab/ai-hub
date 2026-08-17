@@ -14829,55 +14829,91 @@ button:focus-visible {
   outline-color: rgba(79,111,216,.28) !important;
 }
 .hero-readiness-card {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  gap: 5px 18px;
+  gap: 6px 18px;
   width: min(100%, 760px);
-  margin-top: 22px;
-  padding: 18px 20px;
-  border: 1px solid rgba(79,111,216,.22);
+  margin: 20px 0 22px;
+  padding: 20px 22px;
+  overflow: hidden;
+  border: 2px solid #f5b83d;
   border-radius: 18px;
-  background: linear-gradient(135deg, rgba(255,255,255,.96), rgba(237,241,255,.92));
-  color: #172033;
+  background: linear-gradient(135deg, #172033 0%, #213b92 100%);
+  color: #fff;
   text-decoration: none;
-  box-shadow: 0 16px 38px rgba(45,64,130,.10);
+  box-shadow: 0 18px 40px rgba(23,32,51,.24);
   transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.hero-readiness-card::after {
+  position: absolute;
+  inset: auto -42px -76px auto;
+  width: 180px;
+  height: 180px;
+  border: 1px solid rgba(245,184,61,.58);
+  border-radius: 50%;
+  box-shadow: 0 0 0 22px rgba(245,184,61,.08), 0 0 0 46px rgba(245,184,61,.05);
+  content: "";
+  pointer-events: none;
+}
+.hero-readiness-card > * {
+  position: relative;
+  z-index: 1;
 }
 .hero-readiness-card:hover,
 .hero-readiness-card:focus-visible {
   transform: translateY(-2px);
-  border-color: rgba(79,111,216,.58);
-  box-shadow: 0 20px 42px rgba(45,64,130,.16);
+  border-color: #fff0b3;
+  box-shadow: 0 22px 46px rgba(23,32,51,.32);
 }
 .hero-readiness-card small {
   grid-column: 1;
-  color: #4f6fd8;
+  color: #ffe49a;
   font: 800 11px/1.3 "JetBrains Mono", monospace;
   letter-spacing: .08em;
   text-transform: uppercase;
 }
 .hero-readiness-card strong {
   grid-column: 1;
-  font-size: clamp(17px, 2vw, 22px);
+  font-size: clamp(19px, 2.25vw, 25px);
   line-height: 1.35;
 }
-.hero-readiness-card span {
+.hero-readiness-card__challenge {
   grid-column: 1;
-  color: #526174;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 900;
+  line-height: 1.45;
+}
+.hero-readiness-card__detail {
+  grid-column: 1;
+  color: rgba(255,255,255,.82);
   font-size: 13px;
   font-weight: 700;
   line-height: 1.55;
 }
-.hero-readiness-card b {
+.hero-readiness-card em {
   grid-column: 2;
-  grid-row: 1 / 4;
+  grid-row: 1 / 5;
   align-self: center;
-  color: #4f6fd8;
+  color: #fff;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 900;
+  text-align: right;
+  white-space: nowrap;
+}
+.hero-readiness-card em b {
+  display: block;
+  margin-top: 2px;
+  color: #ffe49a;
   font-size: 28px;
+  line-height: 1;
 }
 @media (max-width: 560px) {
-  .hero-readiness-card { padding: 16px; gap: 4px 10px; }
-  .hero-readiness-card b { font-size: 22px; }
+  .hero-readiness-card { grid-template-columns: minmax(0, 1fr); padding: 18px; gap: 5px; }
+  .hero-readiness-card em { grid-column: 1; grid-row: auto; justify-self: start; margin-top: 4px; text-align: left; }
+  .hero-readiness-card em b { display: inline; margin: 0 0 0 8px; font-size: 22px; }
 }
 .skip-link {
   position: fixed;
@@ -14928,6 +14964,10 @@ def _render_hero_focused() -> str:
         "<div class='focus-hero-copy'>"
         "<p class='focus-kicker'>彦根・滋賀の中小事業者向け</p>"
         "<h1 class='focus-title'><span class='focus-title-first'>AIエージェントを、</span><br><span class='focus-title-line'><strong>強力なスタッフに。</strong></span></h1>"
+        "<a class='hero-readiness-card' href='/ai-agent-readiness/' aria-label='AI実践力診断に挑戦する'><small>AI PRACTICE CHECK · 約4分</small>"
+        "<strong>AI実践力診断</strong><span class='hero-readiness-card__challenge'>AIを「使う人」で終わらない。</span>"
+        "<span class='hero-readiness-card__detail'>20の実務場面で、任せる・確かめる・仕組みにする力を100点で測る。</span>"
+        "<em>診断に挑戦する <b aria-hidden='true'>→</b></em></a>"
         "<aside class='hero-advantage' id='advantage' aria-labelledby='hero-advantage-title'>"
         "<div class='hero-advantage-number' role='img' aria-label='AI利用率 6パーセント'><strong>6%</strong><span>AI利用率</span></div>"
         "<div class='hero-advantage-copy'><small><strong>5,500円から</strong><span>始めるなら今。</span></small><p id='hero-advantage-title'><span class='hero-advantage-equation'><strong>経験</strong><span>×</span><strong>AI</strong></span><span class='hero-advantage-outcome'>で、仕事を一歩先へ。</span></p></div>"
@@ -14940,10 +14980,7 @@ def _render_hero_focused() -> str:
         "<small>3問で完了。結果を見てから、予約するか決められます。</small></div>"
         f"<a class='focus-btn secondary' href='{AI_AGENT_COURSE_URL}' target='_blank' rel='noopener'>AIエージェント講習を見る</a>"
         "<a class='hero-text-link' href='/lectures/index.html'>受講資料 <span aria-hidden='true'>→</span></a></div>"
-        "<ul class='focus-trust'><li>AI初心者OK</li><li>対面・オンライン対応</li><li>仕事を持ち込める</li></ul>"
-        "<a class='hero-readiness-card' href='/ai-agent-readiness/'><small>AI Agent Readiness Compass</small>"
-        "<strong>AIエージェント実践力を100点で測る</strong><span>20の仕事場面に答えて、5段階の現在地と次の講習がわかります。約4分。</span>"
-        "<b aria-hidden='true'>→</b></a></div>"
+        "<ul class='focus-trust'><li>AI初心者OK</li><li>対面・オンライン対応</li><li>仕事を持ち込める</li></ul></div>"
         "</div>"
         "</section>"
     )

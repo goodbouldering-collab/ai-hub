@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T22:10:58Z",
+  "generated_at": "2026-08-17T01:16:18Z",
   "recent_works": [
     {
       "date": "2026-08-09",
@@ -88,17 +88,8 @@
       "path": "/ops?file=2026-05-28-ai-shindan-matching-design-system.md#sec-docs"
     }
   ],
-  "per_business_recent": [
-    {
-      "business": "seo",
-      "count": 1
-    }
-  ],
+  "per_business_recent": [],
   "daily_histogram": [
-    {
-      "date": "2026-08-03",
-      "count": 0
-    },
     {
       "date": "2026-08-04",
       "count": 0
@@ -150,12 +141,16 @@
     {
       "date": "2026-08-16",
       "count": 0
+    },
+    {
+      "date": "2026-08-17",
+      "count": 0
     }
   ],
   "cma_apps": [],
   "totals": {
     "consul_work_total": 135,
-    "recent_7d_total": 1,
+    "recent_7d_total": 0,
     "tasks_open_total": 4
   }
 }

@@ -55,7 +55,7 @@ def render_ai_agent_readiness_page(
     base_url = site_url.rstrip("/")
     canonical_url = f"{base_url}/ai-agent-readiness/"
     description = (
-        "20の仕事場面からAI実践力を100点・5段階で確認し、次の90日で学ぶ内容と講習を見つける無料診断です。"
+        "たった10問・約3分で、AI実践力を100点・5段階で確認し、いまの実力と次に整えることがわかる無料診断です。"
     )
     schema = {
         "@context": "https://schema.org",
@@ -157,15 +157,15 @@ def render_ai_agent_readiness_page(
             "<section class='readiness-hero' aria-labelledby='readiness-title'>",
             "<div class='readiness-shell readiness-hero__grid'>",
             "<div class='readiness-hero__copy'>",
-            "<p class='eyebrow'>FREE SELF-ASSESSMENT · 約4分</p>",
+            "<p class='eyebrow'>FREE SELF-ASSESSMENT · たった10問・約3分</p>",
             "<h1 id='readiness-title'><span>AI Agent Readiness Compass</span>AI実践力診断</h1>",
             "<p class='readiness-hero__lead'>あなたはAIに聞く人か、任せて確かめる人か。</p>",
-            "<p>20の仕事場面に答えると、今の実践力を100点・5段階で可視化。"
-            "時間を取り戻し、仕事の品質を上げるための「次の90日」がわかります。</p>",
+            "<p>たった10問・約3分で、いまの実力と次に整えることを100点・5段階で可視化。"
+            "答えるたびに、任せる・確かめる・残すための基準がわかります。</p>",
             "<div class='readiness-hero__facts' aria-label='診断の特徴'>",
-            "<span><b>20問</b> 実際の行動で回答</span>",
-            "<span><b>100点</b> 8領域を見える化</span>",
-            "<span><b>5段階</b> 次の学びへ接続</span>",
+            "<span><b>10問</b> 実際の行動で回答</span>",
+            "<span><b>100点</b> 5領域を見える化</span>",
+            "<span><b>5段階</b> 次に整えることへ接続</span>",
             "</div>",
             "<a class='button button--primary' href='#assessment-app'>いまのAI実践力を測る</a>",
             "<p class='privacy-note'>回答はこのブラウザ内だけで計算し、サーバーへ送信しません。個人情報の入力も不要です。</p>",
@@ -184,22 +184,24 @@ def render_ai_agent_readiness_page(
             "<div id='assessment-intro' class='assessment-intro'>",
             "<p class='eyebrow'>START FROM EVIDENCE</p>",
             "<h2 id='assessment-heading'>知識ではなく、直近90日の行動で答えてください</h2>",
-            "<p>「知っている」より「試した・確認した・人に展開した」を重く採点します。"
-            "結果は優劣ではなく、次に練習する場所を示すコンパスです。</p>",
+            "<p>10問は、答える前に「仕事でAIを使い続ける基準」を短く学べる構成です。"
+            "「知っている」より「試した・確認した・残した」を重く採点します。</p>",
             "<ul class='assessment-rules'><li>迷ったら、低い方の選択肢を選ぶ</li>"
             "<li>仕事・地域活動・学習の、どの場面を思い浮かべてもよい</li>"
             "<li>高得点でも検証や安全管理が弱い場合は、到達レベルを調整する</li></ul>",
-            "<button id='start-assessment' class='button button--primary' type='button'>20問の診断を始める</button>",
+            "<button id='start-assessment' class='button button--primary' type='button'>10問・約3分の診断を始める</button>",
             "</div>",
             "<form id='assessment-form' class='assessment-form' hidden>",
             "<div class='assessment-progress'>",
-            "<span id='progress-label'>質問 1 / 20</span>",
-            "<progress id='assessment-progress' max='20' value='0'>0 / 20</progress>",
+            "<span id='progress-label'>質問 1 / 10</span>",
+            "<progress id='assessment-progress' max='10' value='0'>0 / 10</progress>",
             "</div>",
             "<p id='assessment-status' class='sr-only' aria-live='polite'></p>",
             "<fieldset id='question-fieldset'>",
             "<legend><span id='question-number'>Question 01</span><strong id='question-prompt'>質問を読み込んでいます</strong></legend>",
             "<p id='question-context' class='question-context'></p>",
+            "<aside id='question-learning' class='question-learning' aria-label='この問いで身につく基準'>"
+            "<span>この問いで身につく基準</span><p id='question-learning-text'></p></aside>",
             "<div id='answer-options' class='answer-options'></div>",
             "</fieldset>",
             "<div class='assessment-navigation'>",
@@ -212,8 +214,8 @@ def render_ai_agent_readiness_page(
             "<div class='result-hero'><p><strong id='result-score'>0</strong><span>/ 100点</span></p>"
             "<div><p id='result-level'></p><p id='result-summary'></p></div></div>",
             "<div id='safety-gate' class='safety-gate' aria-live='polite'></div>",
-            "<div class='result-grid'><section><h3>8領域の現在地</h3><div id='dimension-scores'></div></section>"
-            "<section><h3>今後のAIに備える5指標</h3><p>未来予測ではありません。同じ回答を別の観点で再集計した学習指標で、100点への追加点ではありません。</p>"
+            "<div class='result-grid'><section><h3>5領域の現在地</h3><div id='dimension-scores'></div></section>"
+            "<section><h3>続けて伸ばす5指標</h3><p>未来予測ではありません。同じ回答を別の観点で再集計した学習指標で、100点への追加点ではありません。</p>"
             "<div id='future-scores'></div></section></div>",
             "<section class='next-steps'><h3>次の90日</h3><div id='next-steps'></div></section>",
             "<section id='course-recommendation' class='course-recommendation' aria-label='AI相談の任意の学習サポート'>"
@@ -263,7 +265,8 @@ def render_ai_agent_readiness_page(
             "<div class='assessment-limit'><h3>この診断で証明できないこと</h3>"
             "<p>これは学習用セルフチェックです。心理検査、資格認定、採用・適職判定、法令適合証明、"
             "就職・昇進・収入・成果の保証ではありません。自己申告を含むため、実務力は成果物と第三者レビューでも確認してください。</p>"
-            "<p>各問は0・2・4・5点の同じ配点ですが、領域ごとに設問数は異なります。"
+            "<p>10問は各0・2・4・5点で答え、合計を2倍して100点に換算します。5領域は各2問です。"
+            "実際に表示される合計は偶数です。レベルごとの実回答の範囲は、0〜24 / 26〜44 / 46〜64 / 66〜84 / 86〜100点です。"
             "レベル境界と安全ゲートは学習導線のための独自基準です。統計的に標準化された基準ではありません。"
             "参考機関による認定もありません。</p>"
             "<p>「今後のAI指標」は未来予測ではありません。技術や社会の変化に備えるための学習目標です。"

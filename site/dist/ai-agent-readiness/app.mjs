@@ -13,6 +13,7 @@ const elements = {
   questionNumber: byId('question-number'),
   questionPrompt: byId('question-prompt'),
   questionContext: byId('question-context'),
+  questionLearning: byId('question-learning-text'),
   options: byId('answer-options'),
   previous: byId('previous-question'),
   next: byId('next-question'),
@@ -110,6 +111,7 @@ function renderQuestion({ focus = true } = {}) {
   elements.questionNumber.textContent = `Question ${String(currentIndex + 1).padStart(2, '0')}`;
   elements.questionPrompt.textContent = question.prompt ?? question.title ?? '';
   elements.questionContext.textContent = question.context ?? question.scenario ?? '';
+  elements.questionLearning.textContent = question.learningPoint ?? 'AIを仕事で続けるために、目的・確認・安全・記録を一つずつ整えます。';
   elements.options.replaceChildren(
     ...(question.options ?? []).map((option, optionIndex) => makeAnswerOption(question, option, optionIndex)),
   );

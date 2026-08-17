@@ -31,14 +31,16 @@ class AiAgentReadinessPageTests(unittest.TestCase):
             shared_header_css=".site-header{position:fixed}",
         )
 
-    def test_page_uses_the_short_japanese_product_name_and_100_point_promise(self):
+    def test_page_promises_a_three_minute_ten_question_learning_diagnostic(self):
         self.assertIn("AI Agent Readiness Compass", self.html)
         self.assertIn("AI実践力診断", self.html)
         self.assertNotIn("AIエージェント実践力診断", self.html)
         self.assertIn("あなたはAIに聞く人か、任せて確かめる人か。", self.html)
-        self.assertIn("20の仕事場面", self.html)
+        self.assertIn("たった10問・約3分", self.html)
+        self.assertIn("いまの実力と次に整えること", self.html)
+        self.assertNotIn("20の仕事場面", self.html)
         self.assertIn("100点", self.html)
-        self.assertIn("約4分", self.html)
+        self.assertIn("約3分", self.html)
 
     def test_page_explains_privacy_validity_and_future_indicator_boundaries(self):
         self.assertIn("回答はこのブラウザ内だけで計算", self.html)
@@ -53,6 +55,8 @@ class AiAgentReadinessPageTests(unittest.TestCase):
         self.assertIn("aria-live='polite'", self.html)
         self.assertIn("<progress", self.html)
         self.assertIn("<fieldset", self.html)
+        self.assertIn("id='question-learning'", self.html)
+        self.assertIn("この問いで身につく基準", self.html)
         self.assertIn("type='module' src='/ai-agent-readiness/app.mjs'", self.html)
         self.assertIn("href='/ai-agent-readiness/styles.css'", self.html)
         self.assertIn("<noscript>", self.html)
@@ -79,7 +83,9 @@ class AiAgentReadinessPageTests(unittest.TestCase):
 
     def test_results_disclose_scoring_limits_and_own_service_relationship(self):
         self.assertIn("100点への追加点ではありません", self.html)
-        self.assertIn("領域ごとに設問数は異なります", self.html)
+        self.assertIn("10問は各0・2・4・5点で答え、合計を2倍して100点に換算", self.html)
+        self.assertIn("実際に表示される合計は偶数です", self.html)
+        self.assertIn("0〜24 / 26〜44 / 46〜64 / 66〜84 / 86〜100点", self.html)
         self.assertIn("統計的に標準化された基準ではありません", self.html)
         self.assertIn("AI相談が提供する自社サービス", self.html)
         self.assertIn("購入は任意", self.html)
@@ -103,13 +109,14 @@ class AiAgentReadinessPageTests(unittest.TestCase):
         finally:
             self.site_builder.DIST = original_dist
 
-    def test_homepage_places_a_challenging_readiness_banner_above_hero_actions(self):
+    def test_homepage_places_a_bright_ten_question_readiness_banner_above_hero_actions(self):
         hero = self.portal._render_hero_focused()
         self.assertIn("迷ったら60秒診断をはじめる", hero)
         self.assertIn("href='/ai-agent-readiness/'", hero)
         self.assertIn("AI実践力診断", hero)
-        self.assertIn("AIを「使う人」で終わらない。", hero)
-        self.assertIn("診断に挑戦する", hero)
+        self.assertIn("たった10問・約3分", hero)
+        self.assertIn("いまの実力と、次に整えることが見える。", hero)
+        self.assertIn("3分で現在地を知る", hero)
         self.assertIn("100点", hero)
         self.assertLess(hero.index("focus-title"), hero.index("hero-readiness-card"))
         self.assertLess(hero.index("hero-readiness-card"), hero.index("hero-advantage"))

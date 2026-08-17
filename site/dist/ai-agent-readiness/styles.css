@@ -429,8 +429,35 @@ html {
 }
 
 .question-context {
-  margin-bottom: 26px;
+  margin-bottom: 14px;
   color: var(--readiness-muted);
+}
+
+.question-learning {
+  margin: 0 0 26px;
+  padding: 15px 17px;
+  border: 1px solid #b9dfe0;
+  border-left: 5px solid #e69b24;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #f2fbfa, #fff8e8);
+}
+
+.question-learning span {
+  display: block;
+  margin-bottom: 4px;
+  color: #075e67;
+  font-family: "Inter", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.question-learning p {
+  margin: 0;
+  color: #1d3444;
+  font-size: 0.94rem;
+  font-weight: 700;
+  line-height: 1.65;
 }
 
 .answer-options {

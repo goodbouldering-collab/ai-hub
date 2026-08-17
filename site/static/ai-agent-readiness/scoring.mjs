@@ -1,3 +1,6 @@
+const SCORE_MULTIPLIER = 2;
+const MAX_ANSWER_SCORE = 5;
+
 const makeOptions = (labels) => labels.map((label, index) => ({
   value: [0, 2, 4, 5][index],
   label,
@@ -116,75 +119,48 @@ export const LEVELS = Object.freeze([
 export const DIMENSIONS = Object.freeze([
   Object.freeze({
     id: 'humanPurpose',
-    nameJa: '人間中心・価値設計',
-    name: '人間中心・価値設計',
-    nameEn: 'Human Purpose',
+    nameJa: '目的と人の判断',
+    name: '目的と人の判断',
+    nameEn: 'Purpose & Human Judgment',
     questionIds: Object.freeze(['Q01', 'Q02']),
-    nextAction: '対象業務を一つ選び、時間・品質・人が判断する点を紙1枚に決める。',
-    measure: '着手前後の所要時間と、利用者にとっての改善を1回記録する。',
+    nextAction: '今週、AIで軽くしたい仕事を一つ選び、「誰の何が良くなるか」と人が決める場面を一枚に書く。',
+    measure: 'その仕事を一回試し、かかった時間と利用者・関係者の反応を一行で残す。',
   }),
   Object.freeze({
-    id: 'aiContext',
-    nameJa: 'AI基礎・文脈設計',
-    name: 'AI基礎・文脈設計',
-    nameEn: 'AI & Context Literacy',
-    questionIds: Object.freeze(['Q03', 'Q04', 'Q05']),
-    nextAction: '目的、背景、制約、出力例を含む依頼テンプレートを一つ作る。',
-    measure: '同じ業務で3回使い、追加修正の回数を比べる。',
-  }),
-  Object.freeze({
-    id: 'workflowValue',
-    nameJa: '業務分解・価値測定',
-    name: '業務分解・価値測定',
-    nameEn: 'Workflow & Value',
-    questionIds: Object.freeze(['Q06', 'Q07', 'Q08', 'Q09']),
-    nextAction: '一つの定型業務を入力・判断・作業・確認・保存に分けて手順化する。',
-    measure: '90日で3回実行し、時間、手戻り、品質の変化を残す。',
+    id: 'briefing',
+    nameJa: '頼み方と仕事の分解',
+    name: '頼み方と仕事の分解',
+    nameEn: 'Briefing & Task Design',
+    questionIds: Object.freeze(['Q03', 'Q04']),
+    nextAction: '目的、相手、材料、制約、完成例、終わりの条件を含む依頼テンプレートを一つ作る。',
+    measure: '同じ仕事で三回使い、AIへの追加説明や手戻りが何回減ったかを比べる。',
   }),
   Object.freeze({
     id: 'verification',
-    nameJa: '検証・評価',
-    name: '検証・評価',
-    nameEn: 'Verification & Evaluation',
-    questionIds: Object.freeze(['Q10', 'Q11']),
-    nextAction: 'AIの出力を採用する前の合格条件と確認チェックリストを作る。',
-    measure: '誤りを一件見つけ、原因と再発防止を記録する。',
+    nameJa: '確かめて直す力',
+    name: '確かめて直す力',
+    nameEn: 'Verification & Improvement',
+    questionIds: Object.freeze(['Q05', 'Q06']),
+    nextAction: '一つの成果物に、事実・出典・相手向け表現・完成条件の確認チェックを付ける。',
+    measure: 'AIの誤りか使いにくさを一件見つけ、直した理由と次回の依頼文への反映を残す。',
   }),
   Object.freeze({
     id: 'safety',
-    nameJa: 'データ・権限・安全',
-    name: 'データ・権限・安全',
+    nameJa: '安全に任せる力',
+    name: '安全に任せる力',
     nameEn: 'Data, Permission & Safety',
-    questionIds: Object.freeze(['Q12', 'Q13', 'Q14']),
-    nextAction: '入力禁止情報、許可が必要な操作、停止条件の三つを明文化する。',
-    measure: '実務フロー一つを権限最小化し、復旧手順まで試す。',
+    questionIds: Object.freeze(['Q07', 'Q08']),
+    nextAction: '入力禁止情報、許可が必要な操作、止める・戻す・相談する条件を、小さな仕事一つに決める。',
+    measure: '安全な題材で一度試し、確認者と復旧手順まで含めて振り返る。',
   }),
   Object.freeze({
-    id: 'codingSystems',
-    nameJa: 'コード・システム',
-    name: 'コード・システム',
-    nameEn: 'Coding & Systems',
-    questionIds: Object.freeze(['Q15', 'Q16']),
-    nextAction: '小さな変更をAIと作り、差分確認、テスト、履歴保存まで完了する。',
-    measure: '再現できる成果物を一つ公開またはチーム内共有する。',
-  }),
-  Object.freeze({
-    id: 'agentOperations',
-    nameJa: 'エージェント運用',
-    name: 'エージェント運用',
-    nameEn: 'Agent Operations',
-    questionIds: Object.freeze(['Q17', 'Q18']),
-    nextAction: '完了条件、禁止事項、確認点を決めた小さな仕事をAIへ委任する。',
-    measure: '途中確認と引き継ぎ記録を含む実行を3回行う。',
-  }),
-  Object.freeze({
-    id: 'futureAdaptability',
-    nameJa: '将来適応力',
-    name: '将来適応力',
-    nameEn: 'Future Adaptability',
-    questionIds: Object.freeze(['Q19', 'Q20']),
-    nextAction: '一つの成果物を別のAIでも使える形式に整え、道具を比較する。',
-    measure: '月1回、目的に合うAI・画像・音声・動画・外部ツールを見直す。',
+    id: 'improvement',
+    nameJa: '残して続ける力',
+    name: '残して続ける力',
+    nameEn: 'Repeatable Practice',
+    questionIds: Object.freeze(['Q09', 'Q10']),
+    nextAction: 'うまくいった依頼、確認手順、成果物を次回も使える場所に残し、次の改善を一つ決める。',
+    measure: '一か月後に同じ型を再利用し、時間・品質・手戻りのどれか一つを比べる。',
   }),
 ]);
 
@@ -194,7 +170,7 @@ export const FUTURE_INDICATORS = Object.freeze([
     nameEn: 'Human Oversight',
     nameJa: '人が監督する力',
     name: '人が監督する力',
-    questionIds: Object.freeze(['Q02', 'Q10', 'Q13', 'Q18']),
+    questionIds: Object.freeze(['Q02', 'Q08']),
     description: '承認点、停止条件、説明責任を保ったままAIへ任せる備え',
   }),
   Object.freeze({
@@ -202,31 +178,31 @@ export const FUTURE_INDICATORS = Object.freeze([
     nameEn: 'Evaluation Literacy',
     nameJa: '評価する力',
     name: '評価する力',
-    questionIds: Object.freeze(['Q08', 'Q10', 'Q11']),
-    description: '成功条件、テスト、失敗分析で品質を高める備え',
+    questionIds: Object.freeze(['Q05', 'Q06']),
+    description: '成功条件、確認、失敗分析で品質を高める備え',
   }),
   Object.freeze({
-    id: 'portability',
-    nameEn: 'Portability',
-    nameJa: '成果物を持ち運ぶ力',
-    name: '成果物を持ち運ぶ力',
-    questionIds: Object.freeze(['Q09', 'Q16', 'Q19']),
-    description: 'モデルや製品が変わっても仕様、記録、成果物を生かす備え',
+    id: 'safeOperations',
+    nameEn: 'Safe AI Operations',
+    nameJa: '安全に運用する力',
+    name: '安全に運用する力',
+    questionIds: Object.freeze(['Q07', 'Q08', 'Q10']),
+    description: 'データ・権限・小さな検証から、安全に範囲を広げる備え',
   }),
   Object.freeze({
-    id: 'multimodalTooling',
-    nameEn: 'Tool-using Agent & Multimodal',
-    nameJa: '道具を使うAIと複数メディア',
-    name: '道具を使うAIと複数メディア',
-    questionIds: Object.freeze(['Q15', 'Q17', 'Q20']),
-    description: '文章だけでなく画像、音声、動画、API等を目的で選ぶ備え',
+    id: 'repeatableWorkflow',
+    nameEn: 'Repeatable Workflow',
+    nameJa: '仕事の型を残す力',
+    name: '仕事の型を残す力',
+    questionIds: Object.freeze(['Q03', 'Q04', 'Q09']),
+    description: '頼み方、完成条件、成果物を次回も使える形で残す備え',
   }),
   Object.freeze({
     id: 'valueCreation',
     nameEn: 'Value Creation',
     nameJa: '時間と品質を価値へ変える力',
     name: '時間と品質を価値へ変える力',
-    questionIds: Object.freeze(['Q01', 'Q02', 'Q07', 'Q08']),
+    questionIds: Object.freeze(['Q01', 'Q02', 'Q09']),
     description: '速さだけでなく品質、利用者価値、人の自由度を高める備え',
   }),
 ]);
@@ -235,241 +211,131 @@ const QUESTION_DEFINITIONS = [
   Object.freeze({
     id: 'Q01',
     dimensionId: 'humanPurpose',
-    prompt: 'AIを使う前に、誰のどんな困りごとを減らすか決めていますか？',
-    context: '直近90日の仕事、学習、地域活動を思い出してください。',
+    prompt: 'AIを使う前に、「誰の、どの仕事を、どう良くするか」を一文で決めていますか？',
+    context: '例: 「毎週のイベント告知を30分短くし、初めての人にも迷わない文にする」。',
+    learningPoint: '良いAI活用は、道具選びより先に「誰の何を良くするか」を決めるところから始まります。',
     options: makeOptions([
-      '目的を決めて使った経験はまだない',
-      '困りごとを考え、個人の作業で一度試した',
-      '対象者と改善したい状態を決め、複数回使った',
-      '利用者の反応や成果を測り、使い方を改善した',
+      '何を良くしたいか決めずに、AIを試すことが多い',
+      '困りごとを一つ選び、個人の作業で一度試した',
+      '対象者と良くなる状態を書き、複数回使った',
+      '利用者の反応や時間を測り、使い方をレビューして改善した',
     ]),
   }),
   Object.freeze({
     id: 'Q02',
     dimensionId: 'humanPurpose',
-    prompt: 'AIに任せる部分と、人が責任を持って判断する部分を分けていますか？',
-    context: '速さだけでなく、本人の選択や尊厳を守る判断も含みます。',
+    prompt: 'AIの提案をそのまま出さず、人が決める場面と確認する人を決めていますか？',
+    context: 'たとえば公開、金額、個人への連絡、支援の優先順位は人が最終判断します。',
+    learningPoint: 'AIが速く作れても、責任まで任せないことが信頼を守ります。先に「人が決める点」を決めます。',
     options: makeOptions([
-      '分けて考えたことはまだない',
-      '重要な判断は人が行うよう一度意識した',
-      '承認が必要な場面を手順に書き、繰り返し運用した',
-      '関係者と責任範囲を共有し、レビューや演習結果から改善した',
+      '人が決める場面を分けず、出力をそのまま使うことがある',
+      '重要な判断は人が行うよう、一度意識して使った',
+      '承認が必要な場面と確認者を手順に書き、繰り返し使った',
+      '関係者と責任範囲を共有し、レビュー結果から運用を改善した',
     ]),
   }),
   Object.freeze({
     id: 'Q03',
-    dimensionId: 'aiContext',
-    prompt: 'AIがもっともらしく誤ることや、文脈で答えが変わることを前提に使えますか？',
-    context: '仕組みの暗記ではなく、限界を踏まえた実際の使い方を答えます。',
+    dimensionId: 'briefing',
+    prompt: 'AIへの依頼に、目的・相手・材料・制約・完成例を入れていますか？',
+    context: '長い指示が正解ではありません。相手に伝わる仕事の条件がそろっているかを見ます。',
+    learningPoint: '頼み方は魔法の言葉ではなく、仕事の条件を相手へ渡す技術です。足りない情報ほど手戻りになります。',
     options: makeOptions([
-      'AIの得意不得意を説明できず、確認せず使うことがある',
-      '誤りがあると理解し、重要な出力を一度確認した',
-      '得意不得意に応じて仕事を選び、確認方法を変えている',
-      '周囲にも限界を説明し、用途別の利用基準を改善している',
+      '短い依頼だけで、意図と違う結果を受け取ることが多い',
+      '目的や材料を足して、一度は依頼を改善した',
+      '目的、相手、制約、完成例を含む型を使っている',
+      '依頼テンプレートを共有し、結果を見て型を更新している',
     ]),
   }),
   Object.freeze({
     id: 'Q04',
-    dimensionId: 'aiContext',
-    prompt: '目的、背景、制約、期待する形式をAIへ具体的に渡せますか？',
-    context: '単発の質問ではなく、仕事を進めるための文脈設計です。',
+    dimensionId: 'briefing',
+    prompt: '大きな仕事を、AIに任せる小さな作業と「終わりの条件」に分けていますか？',
+    context: 'いきなり丸投げせず、下書き、整理、確認、公開のように小さく区切ります。',
+    learningPoint: '任せる力は、AIにできることを増やす前に「どこまで終われば成功か」を見える形にする力です。',
     options: makeOptions([
-      '短い質問だけで、必要な情報を整理して渡したことがない',
-      '例を見ながら目的や出力形式を指定して試した',
-      '再利用できる依頼テンプレートで、安定した結果を得ている',
-      '他者も使えるテンプレートを整備し、結果から改善している',
+      '仕事を一括で頼み、何を確認すればよいか迷うことが多い',
+      '一部の作業を小さく分けて、一度試した',
+      '作業ごとの完了条件と確認点を決め、繰り返し使った',
+      '途中確認と引き継ぎまで設計し、手戻りを見て改善している',
     ]),
   }),
   Object.freeze({
     id: 'Q05',
-    dimensionId: 'aiContext',
-    prompt: 'AIの最初の回答を完成品とせず、対話で修正できますか？',
-    context: '不足の指摘、例の追加、別案比較などの行動を見ます。',
+    dimensionId: 'verification',
+    prompt: 'AIの出力を使う前に、事実・出典・計算・相手向け表現を確かめる基準がありますか？',
+    context: '正しさは「AIが言った」では決まりません。仕事に出す前の合格条件を決めます。',
+    learningPoint: '確認はAIを疑うためではなく、相手に安心して渡せる成果物にするための最後の仕事です。',
     options: makeOptions([
-      '最初の回答をそのまま使うか、諦めることが多い',
-      '追加質問や書き直しを一度試した',
-      '評価基準を伝えて複数案を比較し、実務で選んでいる',
-      '修正履歴を残し、他者も再現できる対話手順にしている',
+      '確認の基準がなく、AIの回答をほぼそのまま使うことがある',
+      '気になる部分だけ、自分で一度確認した',
+      '出典や完成条件のチェックリストを使い、毎回確認している',
+      '第三者レビューや安全な演習で基準を試し、更新している',
     ]),
   }),
   Object.freeze({
     id: 'Q06',
-    dimensionId: 'workflowValue',
-    prompt: '大きな仕事を、AIに渡せる小さな作業と人の判断に分けられますか？',
-    context: '入力、調査、作成、確認、承認、保存などに分けます。',
+    dimensionId: 'verification',
+    prompt: '誤りや使いにくさを見つけたとき、原因と直し方を残して次回に生かしていますか？',
+    context: '修正のたびにゼロから考えず、依頼・資料・確認手順のどこを直すかを残します。',
+    learningPoint: '失敗は、原因と直し方を残したときに初めて次回の品質を上げる教材になります。',
     options: makeOptions([
-      '仕事を丸ごと頼み、途中の作業を分けたことがない',
-      '例を見ながら一つの仕事を小さく分けて試した',
-      '複数の仕事で分解し、担当と完了条件を明確にしている',
-      'チームで使える分解手順を整え、結果から更新している',
+      '失敗しても、次の会話では同じ頼み方に戻ることが多い',
+      '一度だけ、指示や資料を直して再試行した',
+      '誤りの理由と修正を記録し、同じ仕事で再利用している',
+      '改善履歴をレビューし、チームや他の仕事にも展開している',
     ]),
   }),
   Object.freeze({
     id: 'Q07',
-    dimensionId: 'workflowValue',
-    prompt: 'うまくいったAI活用を、繰り返せる業務手順にしていますか？',
-    context: 'プロンプトだけでなく入力元、確認、保存先まで含めます。',
+    dimensionId: 'safety',
+    prompt: '顧客・利用者・社内の情報をAIに入れる前に、入力してよい情報と許可が必要な操作を分けていますか？',
+    context: '個人情報、未公開情報、送信・公開・購入などは、便利さより先に扱いを決めます。',
+    learningPoint: '安全は止めるためのルールではなく、安心してAIを使い続けるための土台です。',
     options: makeOptions([
-      'その場限りの利用で、手順を残したことがない',
-      '自分用に手順や入力例を一度残した',
-      '同じ手順を複数回使い、同程度の品質を再現している',
-      '他者へ展開し、時間や品質を見て手順を改善している',
+      '入力してよい情報や操作の範囲を決めていない',
+      '個人情報を避けるなど、基本の注意を一度試した',
+      '入力禁止情報と許可が必要な操作を手順に書いている',
+      '権限を最小にし、関係者と確認して安全な運用を改善している',
     ]),
   }),
   Object.freeze({
     id: 'Q08',
-    dimensionId: 'workflowValue',
-    prompt: 'AI導入の効果を、時間短縮以外の品質や利用者価値でも測っていますか？',
-    context: '誤り、手戻り、満足度、学習成果、余裕時間なども指標です。',
+    dimensionId: 'safety',
+    prompt: 'まず小さな範囲で試し、止める・戻す・相談する条件を決めてから広げていますか？',
+    context: '本番にいきなり広げず、影響の小さい題材で確認し、困ったときの戻り方も決めます。',
+    learningPoint: '小さく試して戻せることは、挑戦を遅くするのでなく、失敗を恐れず前に進める方法です。',
     options: makeOptions([
-      '便利そうという感覚だけで、変化を測ったことがない',
-      '作業時間など一つの変化を一度記録した',
-      '時間と品質の両方を複数回測り、導入判断に使っている',
-      '関係者の価値まで定期評価し、続行や停止を見直している',
+      '試す範囲や止める条件を決めずに、いきなり使うことがある',
+      '影響の小さい題材で、一度試して止めたことがある',
+      '確認者、停止条件、戻す方法を決めてから実行している',
+      '安全な演習と振り返りを行い、復旧手順を更新している',
     ]),
   }),
   Object.freeze({
     id: 'Q09',
-    dimensionId: 'workflowValue',
-    prompt: 'AIが作った成果物と判断の経緯を、後から使える形で残していますか？',
-    context: '仕様、出典、版、決定理由、次の作業が追える状態を見ます。',
+    dimensionId: 'improvement',
+    prompt: 'うまくいった依頼・確認手順・成果物を、次回も使える形で残していますか？',
+    context: '会話の中だけで終わらせず、フォルダ、テンプレート、チェックリストなどに残します。',
+    learningPoint: 'AI活用の差は、一度の成功より「次の自分や仲間が再利用できる形」に残せるかで広がります。',
     options: makeOptions([
-      '会話画面だけに残り、後から探せないことが多い',
-      '重要な成果物をファイルへ保存したことがある',
-      '出典や版と一緒に整理し、別の日にも再利用している',
-      '共通形式でチーム共有し、引き継ぎや監査にも使っている',
+      'うまくいった方法が会話や記憶の中だけに残っている',
+      '成果物や依頼文を一度保存して、次回に使った',
+      'テンプレートと確認手順を整え、繰り返し使っている',
+      '他の人も使える形にし、利用結果からテンプレートを改善している',
     ]),
   }),
   Object.freeze({
     id: 'Q10',
-    dimensionId: 'verification',
-    prompt: 'AIの出力を採用する前に、合格条件と確認方法を決めていますか？',
-    context: '出典照合、計算確認、実画面確認、テストなどを含みます。',
+    dimensionId: 'improvement',
+    prompt: '月に一度、時間・品質・手戻りを振り返り、次に直す一点を決めていますか？',
+    context: '全部を変えようとせず、「次は確認漏れを減らす」など一つだけ改善します。',
+    learningPoint: 'AIの使い方は、一回で完成させず、小さく振り返って直し続けるほど仕事の自由度を増やせます。',
     options: makeOptions([
-      '読みやすければ採用し、決まった確認方法はない',
-      '重要な事実や数字を一度、別の情報で確認した',
-      '用途別チェックリストやテストで毎回確認している',
-      '第三者レビューと失敗記録を使い、合格条件を改善している',
-    ]),
-  }),
-  Object.freeze({
-    id: 'Q11',
-    dimensionId: 'verification',
-    prompt: '失敗しやすい例や例外条件でもAIの仕組みを試していますか？',
-    context: '正常な一例だけでなく、空欄、誤入力、極端な条件も確認します。',
-    options: makeOptions([
-      'うまくいった一例だけで使い始めることが多い',
-      '失敗例や例外を一度試し、修正した',
-      '代表的な正常・異常ケースを毎回テストし記録している',
-      '失敗例や安全な演習結果も共有し、継続的にテストを増やしている',
-    ]),
-  }),
-  Object.freeze({
-    id: 'Q12',
-    dimensionId: 'safety',
-    prompt: '個人情報、機密情報、著作物をAIへ入れる前に扱いを判断できますか？',
-    context: '利用規約、組織ルール、本人同意、匿名化も含みます。',
-    options: makeOptions([
-      '入力してよい情報と禁止情報を区別できていない',
-      '迷う情報を入れず、規約や担当者を一度確認した',
-      '情報区分と匿名化の手順を決め、日常的に守っている',
-      '関係者へ教育し、ルール違反や変更を受けて更新している',
-    ]),
-  }),
-  Object.freeze({
-    id: 'Q13',
-    dimensionId: 'safety',
-    prompt: 'AIへ与えるファイル・外部サービス・更新権限を必要最小限にできますか？',
-    context: '閲覧と書込み、本番と練習、実行前承認を分けます。',
-    options: makeOptions([
-      '求められた権限をそのまま与え、範囲を確認していない',
-      '重要操作の前に人が確認する設定を一度使った',
-      '最小権限、練習環境、承認点を決めて繰り返し運用している',
-      '権限記録を監査し、役割や点検結果に応じて定期更新している',
-    ]),
-  }),
-  Object.freeze({
-    id: 'Q14',
-    dimensionId: 'safety',
-    prompt: 'AIの処理を止め、元に戻し、何が起きたか確認する準備がありますか？',
-    context: '停止条件、バックアップ、復旧、操作記録を見ます。',
-    options: makeOptions([
-      '問題時の停止や復旧方法を決めていない',
-      '保存やバックアップから一度戻したことがある',
-      '停止条件と復旧手順を決め、事前に試している',
-      '操作記録から原因を調べ、演習と手順改善を続けている',
-    ]),
-  }),
-  Object.freeze({
-    id: 'Q15',
-    dimensionId: 'codingSystems',
-    prompt: 'AIと一緒にファイル、コード、データ、外部ツールを扱えますか？',
-    context: 'HTML、表計算、スクリプト、API、データベース等から必要な範囲を見ます。',
-    options: makeOptions([
-      'AIとの文章対話以外はまだ試していない',
-      '手順を見ながらファイルや簡単なコードを一度扱った',
-      '実務用の小さな仕組みを作り、動作を確認して使っている',
-      '複数の道具を安全につなぎ、他者が使える形へ整えている',
-    ]),
-  }),
-  Object.freeze({
-    id: 'Q16',
-    dimensionId: 'codingSystems',
-    prompt: 'AIが変更した内容を比較し、テストし、履歴から戻せますか？',
-    context: 'Git等の名称より、差分・テスト・公開・復旧の実践を重視します。',
-    options: makeOptions([
-      '変更点が分からないまま上書きすることがある',
-      '元ファイルを残し、変更前後を一度比較した',
-      '差分確認、テスト、履歴保存を行ってから反映している',
-      '自動テストと段階公開を整え、安全な復旧演習または実障害から戻せる',
-    ]),
-  }),
-  Object.freeze({
-    id: 'Q17',
-    dimensionId: 'agentOperations',
-    prompt: 'AIエージェントへ、範囲と完了条件を決めた仕事を任せられますか？',
-    context: '自分で全操作する対話ではなく、計画・実行・確認を伴う委任です。',
-    options: makeOptions([
-      'エージェントへ仕事を任せた経験はまだない',
-      '手順を見ながら小さな作業を一度任せた',
-      '目的、禁止事項、完了条件を渡し、結果を検証している',
-      '複数業務へ展開し、成功率や手戻りを見て改善している',
-    ]),
-  }),
-  Object.freeze({
-    id: 'Q18',
-    dimensionId: 'agentOperations',
-    prompt: '長い作業や複数エージェントを、途中確認と引き継ぎで管理できますか？',
-    context: '並列化そのものより、監督、停止、統合、説明責任を見ます。',
-    options: makeOptions([
-      '途中経過を確認せず、最後の出力だけを見ることが多い',
-      '途中で状況を確認し、必要なら止めたことがある',
-      '確認点、担当、成果物を決めて長い作業を完了している',
-      '複数のAIと人の引き継ぎを設計し、運用品質を改善している',
-    ]),
-  }),
-  Object.freeze({
-    id: 'Q19',
-    dimensionId: 'futureAdaptability',
-    prompt: '特定のAI製品が変わっても、成果物と仕事の型を移せますか？',
-    context: '開いたファイル形式、仕様書、プロンプト、出典、履歴を見ます。',
-    options: makeOptions([
-      '成果が一つの会話や製品の中だけに残っている',
-      '重要な成果物を一般的な形式で一度保存した',
-      '別のAIでも使える仕様と資料にし、切替を試している',
-      '複数モデルを目的で選び、移行手順を継続的に更新している',
-    ]),
-  }),
-  Object.freeze({
-    id: 'Q20',
-    dimensionId: 'futureAdaptability',
-    prompt: '文章以外のAIや新しい道具を、流行ではなく目的で選べますか？',
-    context: '画像、音声、動画、検索、API、MCP、ロボット等への備えです。',
-    options: makeOptions([
-      '新しいAIの違いを調べたり試したりしていない',
-      '一つの新機能を安全な題材で試した',
-      '目的、品質、費用、危険性を比べて道具を選んでいる',
-      '定期的に評価し、不要な道具をやめて運用を更新している',
+      '使いっぱなしで、時間や品質の変化を振り返っていない',
+      '一度だけ、良かった点や困った点を振り返った',
+      '時間・品質・手戻りのどれかを見て、次の改善を決めている',
+      '定期レビューを続け、仕事やチームの型を更新している',
     ]),
   }),
 ];
@@ -490,8 +356,10 @@ export function levelForScore(score) {
 
 function scoresForGroups(groups, answers) {
   return groups.map((group) => {
-    const points = group.questionIds.reduce((total, questionId) => total + answers[questionId], 0);
-    const maxPoints = group.questionIds.length * 5;
+    const answerPoints = group.questionIds.reduce((total, questionId) => total + answers[questionId], 0);
+    const maxAnswerPoints = group.questionIds.length * MAX_ANSWER_SCORE;
+    const points = answerPoints * SCORE_MULTIPLIER;
+    const maxPoints = maxAnswerPoints * SCORE_MULTIPLIER;
     return {
       ...group,
       name: group.nameJa,
@@ -499,7 +367,7 @@ function scoresForGroups(groups, answers) {
       maxScore: maxPoints,
       points,
       maxPoints,
-      percent: Math.round((points / maxPoints) * 100),
+      percent: Math.round((answerPoints / maxAnswerPoints) * 100),
     };
   });
 }
@@ -508,21 +376,26 @@ function assessmentGate(dimensionScores, unrestrictedLevel) {
   const byId = Object.fromEntries(dimensionScores.map((dimension) => [dimension.id, dimension]));
   let maxLevel = 5;
   const reasons = [];
+  const priorityDimensionIds = new Set();
 
   if (byId.verification.percent < 50 || byId.safety.percent < 50) {
     maxLevel = 3;
     reasons.push('検証または安全の実践が50%未満のため、まず人の確認と権限管理を整えます。');
+    if (byId.verification.percent < 50) priorityDimensionIds.add('verification');
+    if (byId.safety.percent < 50) priorityDimensionIds.add('safety');
   }
-  if (byId.agentOperations.percent < 60) {
+  if (byId.improvement.percent < 60) {
     maxLevel = Math.min(maxLevel, 4);
-    reasons.push('エージェント運用が60%未満のため、委任・途中確認・復旧を先に練習します。');
+    reasons.push('残して続ける力が60%未満のため、成果物・確認手順・振り返りを先に型にします。');
+    priorityDimensionIds.add('improvement');
   }
   if (unrestrictedLevel.id === 5) {
     const belowOrchestratorThreshold = dimensionScores.filter(({ percent }) => percent < 60);
     if (belowOrchestratorThreshold.length > 0) {
       maxLevel = Math.min(maxLevel, 4);
       const dimensionNames = belowOrchestratorThreshold.map(({ nameJa }) => nameJa).join('・');
-      reasons.push(`Level 5は全8領域60%以上が目安です。${dimensionNames}を先に整えます。`);
+      reasons.push(`Level 5は全5領域60%以上が目安です。${dimensionNames}を先に整えます。`);
+      belowOrchestratorThreshold.forEach(({ id }) => priorityDimensionIds.add(id));
     }
   }
 
@@ -533,11 +406,12 @@ function assessmentGate(dimensionScores, unrestrictedLevel) {
     requirementsMet,
     maxLevel,
     reasons,
+    priorityDimensionIds: [...priorityDimensionIds],
     message: reasons.join(' '),
   };
 }
 
-function makeConsultationData({ rawScore, level, gate, lowestDimension, next90DayTarget, course }) {
+function makeConsultationData({ rawScore, level, gate, next90DayTarget, course }) {
   const data = {
     score: rawScore,
     levelId: level.id,
@@ -574,7 +448,7 @@ export function scoreAssessment(answers = {}) {
   }
 
   const answeredCount = QUESTIONS.length - missingQuestionIds.length;
-  const rawScore = Object.values(validAnswers).reduce((total, value) => total + value, 0);
+  const rawScore = Object.values(validAnswers).reduce((total, value) => total + value, 0) * SCORE_MULTIPLIER;
   if (missingQuestionIds.length > 0) {
     return {
       complete: false,
@@ -590,6 +464,7 @@ export function scoreAssessment(answers = {}) {
       course: null,
       lowestDimension: null,
       lowestDimensions: [],
+      priorityDimensions: [],
       next90DayTarget: null,
       ninetyDayTarget: null,
       consultationData: null,
@@ -608,24 +483,29 @@ export function scoreAssessment(answers = {}) {
   ));
   const lowestDimension = rankedDimensions[0];
   const lowestDimensions = rankedDimensions.filter(({ percent }) => percent === lowestDimension.percent);
-  const selectionNote = lowestDimensions.length > 1
+  const priorityDimensions = rankedDimensions.filter(({ id }) => gate.priorityDimensionIds.includes(id));
+  const nextDimension = priorityDimensions[0] ?? lowestDimension;
+  const tiedPriorityDimensions = priorityDimensions.filter(({ percent }) => percent === nextDimension.percent);
+  const selectionNote = priorityDimensions.length > 0
+    ? `安全ゲート・必須基準の未達のため、「${nextDimension.nameJa}」を最優先に表示しています。対象: ${priorityDimensions.map(({ nameJa }) => nameJa).join('・')}${tiedPriorityDimensions.length > 1 ? `。同率: ${tiedPriorityDimensions.map(({ nameJa }) => nameJa).join('・')}` : ''}`
+    : lowestDimensions.length > 1
     ? `最下位が同率のため、学習の土台となる「${lowestDimension.nameJa}」を先に表示しています。同率: ${lowestDimensions.map(({ nameJa }) => nameJa).join('・')}`
     : '';
-  const next90DayTarget = lowestDimension.percent === 100
+  const next90DayTarget = nextDimension.percent === 100
     ? {
       dimensionId: 'capstone',
-      dimensionName: '全8領域',
+      dimensionName: '全5領域',
       title: '100点を維持・証明する90日',
-      action: '小さなAIエージェント業務を一つ、他者へ引き継げる仕様・権限・評価・復旧手順としてまとめる。',
+      action: '小さなAI業務を一つ、目的・確認・権限・成果物・改善履歴までそろえて、他者へ引き継げる形にする。',
       measure: '第三者レビューと安全な復旧演習を一回行い、改善履歴を残す。',
       selectionNote: '全領域が満点のため、次は自己申告を成果物と第三者レビューで確かめます。',
     }
     : {
-      dimensionId: lowestDimension.id,
-      dimensionName: lowestDimension.nameJa,
-      title: `${lowestDimension.nameJa}を90日で一段上げる`,
-      action: lowestDimension.nextAction,
-      measure: lowestDimension.measure,
+      dimensionId: nextDimension.id,
+      dimensionName: nextDimension.nameJa,
+      title: `${nextDimension.nameJa}を90日で一段上げる`,
+      action: nextDimension.nextAction,
+      measure: nextDimension.measure,
       selectionNote,
     };
   const ninetyDayTarget = {
@@ -639,7 +519,6 @@ export function scoreAssessment(answers = {}) {
     rawScore,
     level,
     gate,
-    lowestDimension,
     next90DayTarget,
     course,
   });
@@ -658,6 +537,7 @@ export function scoreAssessment(answers = {}) {
     course,
     lowestDimension,
     lowestDimensions,
+    priorityDimensions,
     next90DayTarget,
     ninetyDayTarget,
     consultationData,

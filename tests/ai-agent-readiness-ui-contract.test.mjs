@@ -18,6 +18,13 @@ test('assessment UI uses the tested scoring source and all core result actions',
   assert.match(app, /assessment-progress/);
 });
 
+test('each question shows its practical learning criterion before the answer choices', () => {
+  assert.match(renderer, /id='question-learning'/);
+  assert.match(renderer, /この問いで身につく基準/);
+  assert.match(app, /learningPoint/);
+  assert.match(css, /question-learning/);
+});
+
 test('answers remain in memory and are not transmitted or persisted silently', () => {
   assert.doesNotMatch(app, /\blocalStorage\b/);
   assert.doesNotMatch(app, /\bsessionStorage\b/);

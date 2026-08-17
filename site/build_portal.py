@@ -14835,24 +14835,28 @@ button:focus-visible {
   gap: 6px 18px;
   width: min(100%, 760px);
   margin: 20px 0 22px;
-  padding: 20px 22px;
+  min-height: 178px;
+  padding: 24px 26px;
   overflow: hidden;
-  border: 2px solid #f5b83d;
-  border-radius: 18px;
-  background: linear-gradient(135deg, #172033 0%, #213b92 100%);
-  color: #fff;
+  border: 3px solid #ef6f2e;
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 13% 10%, rgba(255,255,255,.88) 0 3px, transparent 4px),
+    radial-gradient(circle at 83% 21%, rgba(255,255,255,.68) 0 5px, transparent 6px),
+    linear-gradient(125deg, #fff7b5 0%, #ffd85d 49%, #ff9a54 100%);
+  color: #17233e;
   text-decoration: none;
-  box-shadow: 0 18px 40px rgba(23,32,51,.24);
+  box-shadow: 0 22px 48px rgba(228,105,32,.29), 0 8px 0 rgba(23,59,160,.12);
   transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
 }
 .hero-readiness-card::after {
   position: absolute;
-  inset: auto -42px -76px auto;
-  width: 180px;
-  height: 180px;
-  border: 1px solid rgba(245,184,61,.58);
+  inset: auto -48px -92px auto;
+  width: 220px;
+  height: 220px;
+  border: 2px solid rgba(22,57,161,.44);
   border-radius: 50%;
-  box-shadow: 0 0 0 22px rgba(245,184,61,.08), 0 0 0 46px rgba(245,184,61,.05);
+  box-shadow: 0 0 0 24px rgba(22,57,161,.11), 0 0 0 52px rgba(255,255,255,.18);
   content: "";
   pointer-events: none;
 }
@@ -14863,40 +14867,54 @@ button:focus-visible {
 .hero-readiness-card:hover,
 .hero-readiness-card:focus-visible {
   transform: translateY(-2px);
-  border-color: #fff0b3;
-  box-shadow: 0 22px 46px rgba(23,32,51,.32);
+  border-color: #143ba1;
+  box-shadow: 0 28px 56px rgba(228,105,32,.34), 0 8px 0 rgba(23,59,160,.18);
 }
 .hero-readiness-card small {
   grid-column: 1;
-  color: #ffe49a;
+  justify-self: start;
+  padding: 4px 9px;
+  border-radius: 999px;
+  color: #fff;
+  background: #143ba1;
   font: 800 11px/1.3 "JetBrains Mono", monospace;
   letter-spacing: .08em;
   text-transform: uppercase;
 }
 .hero-readiness-card strong {
   grid-column: 1;
-  font-size: clamp(19px, 2.25vw, 25px);
-  line-height: 1.35;
+  max-width: 590px;
+  font-size: clamp(26px, 3.35vw, 42px);
+  font-weight: 950;
+  letter-spacing: -.055em;
+  line-height: 1.24;
 }
 .hero-readiness-card__challenge {
   grid-column: 1;
-  color: #fff;
-  font-size: 15px;
+  color: #143ba1;
+  font-size: 16px;
   font-weight: 900;
-  line-height: 1.45;
+  letter-spacing: .04em;
+  line-height: 1.35;
 }
 .hero-readiness-card__detail {
   grid-column: 1;
-  color: rgba(255,255,255,.82);
-  font-size: 13px;
+  max-width: 550px;
+  color: #2d3b52;
+  font-size: 14px;
   font-weight: 700;
-  line-height: 1.55;
+  line-height: 1.5;
 }
 .hero-readiness-card em {
   grid-column: 2;
   grid-row: 1 / 5;
   align-self: center;
+  min-width: 135px;
+  padding: 14px 15px;
+  border-radius: 14px;
   color: #fff;
+  background: #143ba1;
+  box-shadow: 0 10px 0 rgba(13,38,109,.16);
   font-size: 14px;
   font-style: normal;
   font-weight: 900;
@@ -14906,14 +14924,15 @@ button:focus-visible {
 .hero-readiness-card em b {
   display: block;
   margin-top: 2px;
-  color: #ffe49a;
-  font-size: 28px;
+  color: #fff04d;
+  font-size: 31px;
   line-height: 1;
 }
 @media (max-width: 560px) {
-  .hero-readiness-card { grid-template-columns: minmax(0, 1fr); padding: 18px; gap: 5px; }
-  .hero-readiness-card em { grid-column: 1; grid-row: auto; justify-self: start; margin-top: 4px; text-align: left; }
-  .hero-readiness-card em b { display: inline; margin: 0 0 0 8px; font-size: 22px; }
+  .hero-readiness-card { grid-template-columns: minmax(0, 1fr); min-height: 0; padding: 20px; gap: 7px; }
+  .hero-readiness-card strong { font-size: clamp(26px, 8.2vw, 34px); }
+  .hero-readiness-card em { grid-column: 1; grid-row: auto; justify-self: start; margin-top: 6px; text-align: left; }
+  .hero-readiness-card em b { display: inline; margin: 0 0 0 8px; font-size: 24px; }
 }
 .skip-link {
   position: fixed;
@@ -14964,10 +14983,11 @@ def _render_hero_focused() -> str:
         "<div class='focus-hero-copy'>"
         "<p class='focus-kicker'>彦根・滋賀の中小事業者向け</p>"
         "<h1 class='focus-title'><span class='focus-title-first'>AIエージェントを、</span><br><span class='focus-title-line'><strong>強力なスタッフに。</strong></span></h1>"
-        "<a class='hero-readiness-card' href='/ai-agent-readiness/' aria-label='AI実践力診断に挑戦する'><small>AI PRACTICE CHECK · 約4分</small>"
-        "<strong>AI実践力診断</strong><span class='hero-readiness-card__challenge'>AIを「使う人」で終わらない。</span>"
-        "<span class='hero-readiness-card__detail'>20の実務場面で、任せる・確かめる・仕組みにする力を100点で測る。</span>"
-        "<em>診断に挑戦する <b aria-hidden='true'>→</b></em></a>"
+        "<a class='hero-readiness-card' href='/ai-agent-readiness/' aria-label='AI実践力診断で現在地を知る。たった10問・約3分'><small>たった10問・約3分</small>"
+        "<strong>いまの実力と、次に整えることが見える。</strong>"
+        "<span class='hero-readiness-card__challenge'>AI実践力診断</span>"
+        "<span class='hero-readiness-card__detail'>頼む・確かめる・残す。仕事でAIを使い続ける10の基準を100点で見える化し、答えながら気づけます。</span>"
+        "<em>3分で現在地を知る <b aria-hidden='true'>→</b></em></a>"
         "<aside class='hero-advantage' id='advantage' aria-labelledby='hero-advantage-title'>"
         "<div class='hero-advantage-number' role='img' aria-label='AI利用率 6パーセント'><strong>6%</strong><span>AI利用率</span></div>"
         "<div class='hero-advantage-copy'><small><strong>5,500円から</strong><span>始めるなら今。</span></small><p id='hero-advantage-title'><span class='hero-advantage-equation'><strong>経験</strong><span>×</span><strong>AI</strong></span><span class='hero-advantage-outcome'>で、仕事を一歩先へ。</span></p></div>"

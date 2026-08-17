@@ -14828,111 +14828,77 @@ a:focus-visible,
 button:focus-visible {
   outline-color: rgba(79,111,216,.28) !important;
 }
-.hero-readiness-card {
-  position: relative;
+.readiness-guide {
+  padding: 44px max(18px, calc((100vw - 1180px) / 2));
+  background: linear-gradient(135deg, #f5f9ff 0%, #fff 62%, #f4fbfa 100%);
+  border-top: 1px solid rgba(79,111,216,.14);
+  border-bottom: 1px solid rgba(79,111,216,.14);
+}
+.readiness-guide__inner {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 6px 18px;
-  width: min(100%, 760px);
-  margin: 20px 0 22px;
-  min-height: 178px;
-  padding: 24px 26px;
-  overflow: hidden;
-  border: 3px solid #ef6f2e;
-  border-radius: 22px;
-  background:
-    radial-gradient(circle at 13% 10%, rgba(255,255,255,.88) 0 3px, transparent 4px),
-    radial-gradient(circle at 83% 21%, rgba(255,255,255,.68) 0 5px, transparent 6px),
-    linear-gradient(125deg, #fff7b5 0%, #ffd85d 49%, #ff9a54 100%);
-  color: #17233e;
-  text-decoration: none;
-  box-shadow: 0 22px 48px rgba(228,105,32,.29), 0 8px 0 rgba(23,59,160,.12);
-  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+  grid-template-columns: minmax(0, .94fr) minmax(0, 1.06fr);
+  gap: clamp(26px, 5vw, 72px);
+  max-width: 1180px;
+  margin: 0 auto;
+  align-items: start;
 }
-.hero-readiness-card::after {
-  position: absolute;
-  inset: auto -48px -92px auto;
-  width: 220px;
-  height: 220px;
-  border: 2px solid rgba(22,57,161,.44);
-  border-radius: 50%;
-  box-shadow: 0 0 0 24px rgba(22,57,161,.11), 0 0 0 52px rgba(255,255,255,.18);
-  content: "";
-  pointer-events: none;
-}
-.hero-readiness-card > * {
-  position: relative;
-  z-index: 1;
-}
-.hero-readiness-card:hover,
-.hero-readiness-card:focus-visible {
-  transform: translateY(-2px);
-  border-color: #143ba1;
-  box-shadow: 0 28px 56px rgba(228,105,32,.34), 0 8px 0 rgba(23,59,160,.18);
-}
-.hero-readiness-card small {
-  grid-column: 1;
-  justify-self: start;
-  padding: 4px 9px;
-  border-radius: 999px;
-  color: #fff;
-  background: #143ba1;
-  font: 800 11px/1.3 "JetBrains Mono", monospace;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-}
-.hero-readiness-card strong {
-  grid-column: 1;
-  max-width: 590px;
-  font-size: clamp(26px, 3.35vw, 42px);
-  font-weight: 950;
-  letter-spacing: -.055em;
-  line-height: 1.24;
-}
-.hero-readiness-card__challenge {
-  grid-column: 1;
-  color: #143ba1;
-  font-size: 16px;
-  font-weight: 900;
-  letter-spacing: .04em;
-  line-height: 1.35;
-}
-.hero-readiness-card__detail {
-  grid-column: 1;
-  max-width: 550px;
-  color: #2d3b52;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 1.5;
-}
-.hero-readiness-card em {
-  grid-column: 2;
-  grid-row: 1 / 5;
-  align-self: center;
-  min-width: 135px;
-  padding: 14px 15px;
-  border-radius: 14px;
-  color: #fff;
-  background: #143ba1;
-  box-shadow: 0 10px 0 rgba(13,38,109,.16);
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 900;
-  text-align: right;
-  white-space: nowrap;
-}
-.hero-readiness-card em b {
+.readiness-guide__eyebrow,
+.readiness-guide__answers > small {
   display: block;
-  margin-top: 2px;
-  color: #fff04d;
-  font-size: 31px;
-  line-height: 1;
+  margin: 0 0 8px;
+  color: var(--focus-blue);
+  font: 900 12px/1.35 Inter, sans-serif;
+  letter-spacing: .12em;
 }
-@media (max-width: 560px) {
-  .hero-readiness-card { grid-template-columns: minmax(0, 1fr); min-height: 0; padding: 20px; gap: 7px; }
-  .hero-readiness-card strong { font-size: clamp(26px, 8.2vw, 34px); }
-  .hero-readiness-card em { grid-column: 1; grid-row: auto; justify-self: start; margin-top: 6px; text-align: left; }
-  .hero-readiness-card em b { display: inline; margin: 0 0 0 8px; font-size: 24px; }
+.readiness-guide h2 {
+  max-width: 590px;
+  margin: 0;
+  color: var(--focus-ink);
+  font-size: clamp(27px, 3.15vw, 40px);
+  font-weight: 950;
+  letter-spacing: -.045em;
+  line-height: 1.32;
+}
+.readiness-guide__intro > p:not(.readiness-guide__eyebrow) {
+  max-width: 590px;
+  margin: 16px 0 0;
+  color: #30415b;
+  font-size: 16px;
+  font-weight: 650;
+  line-height: 1.8;
+}
+.readiness-guide__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  padding-bottom: 3px;
+  color: var(--focus-blue);
+  border-bottom: 2px solid currentColor;
+  font-size: 15px;
+  font-weight: 900;
+  text-decoration: none;
+}
+.readiness-guide__link:hover,
+.readiness-guide__link:focus-visible { color: #243a9b; }
+.readiness-guide__link span { font-size: 20px; line-height: 1; }
+.readiness-guide__answers {
+  padding: 22px 24px;
+  border: 1px solid rgba(79,111,216,.18);
+  border-radius: 18px;
+  background: rgba(255,255,255,.82);
+  box-shadow: 0 12px 30px rgba(32,55,100,.07);
+}
+.readiness-guide__answers > small { margin-bottom: 12px; }
+.readiness-guide__answers ul { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
+.readiness-guide__answers li { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 10px; align-items: start; color: #30415b; font-size: 14px; font-weight: 650; line-height: 1.55; }
+.readiness-guide__answers b { display: grid; place-items: center; width: 28px; height: 28px; color: #fff; border-radius: 50%; background: var(--focus-blue); font: 900 11px/1 Inter, sans-serif; }
+.readiness-guide__answers strong { color: var(--focus-ink); font-weight: 900; }
+@media (max-width: 760px) {
+  .readiness-guide { padding: 36px 18px; }
+  .readiness-guide__inner { grid-template-columns: 1fr; gap: 22px; }
+  .readiness-guide h2 { font-size: clamp(26px, 7vw, 34px); }
+  .readiness-guide__answers { padding: 19px 18px; }
 }
 .skip-link {
   position: fixed;
@@ -14983,11 +14949,6 @@ def _render_hero_focused() -> str:
         "<div class='focus-hero-copy'>"
         "<p class='focus-kicker'>彦根・滋賀の中小事業者向け</p>"
         "<h1 class='focus-title'><span class='focus-title-first'>AIエージェントを、</span><br><span class='focus-title-line'><strong>強力なスタッフに。</strong></span></h1>"
-        "<a class='hero-readiness-card' href='/ai-agent-readiness/' aria-label='AI実践力診断で現在地を知る。たった10問・約3分'><small>たった10問・約3分</small>"
-        "<strong>いまの実力と、次に整えることが見える。</strong>"
-        "<span class='hero-readiness-card__challenge'>AI実践力診断</span>"
-        "<span class='hero-readiness-card__detail'>頼む・確かめる・残す。仕事でAIを使い続ける10の基準を100点で見える化し、答えながら気づけます。</span>"
-        "<em>3分で現在地を知る <b aria-hidden='true'>→</b></em></a>"
         "<aside class='hero-advantage' id='advantage' aria-labelledby='hero-advantage-title'>"
         "<div class='hero-advantage-number' role='img' aria-label='AI利用率 6パーセント'><strong>6%</strong><span>AI利用率</span></div>"
         "<div class='hero-advantage-copy'><small><strong>5,500円から</strong><span>始めるなら今。</span></small><p id='hero-advantage-title'><span class='hero-advantage-equation'><strong>経験</strong><span>×</span><strong>AI</strong></span><span class='hero-advantage-outcome'>で、仕事を一歩先へ。</span></p></div>"
@@ -15003,6 +14964,21 @@ def _render_hero_focused() -> str:
         "<ul class='focus-trust'><li>AI初心者OK</li><li>対面・オンライン対応</li><li>仕事を持ち込める</li></ul></div>"
         "</div>"
         "</section>"
+    )
+
+
+def _render_readiness_guide() -> str:
+    return (
+        "<section class='readiness-guide' aria-labelledby='readiness-guide-title'><div class='readiness-guide__inner'>"
+        "<div class='readiness-guide__intro'><p class='readiness-guide__eyebrow'>AI実践力診断｜10問・約3分</p>"
+        "<h2 id='readiness-guide-title'>AIを仕事で使う前に、何を整えるかがわかる診断です。</h2>"
+        "<p>これは正解を試すテストではありません。目的を決め、頼み、確かめ、安全に任せ、次へ残す。仕事で無理なくAIを使い続けるための5領域を振り返ります。</p>"
+        "<a class='readiness-guide__link' href='/ai-agent-readiness/'>診断の内容を見る（10問・約3分） <span aria-hidden='true'>→</span></a></div>"
+        "<div class='readiness-guide__answers'><small>診断でわかること</small><ul>"
+        "<li><b>01</b><span><strong>いまの実践力</strong><br>100点・5段階で、現在地を整理します。</span></li>"
+        "<li><b>02</b><span><strong>5つの基準</strong><br>目的・頼み方・確認・安全・改善の5領域を見える化します。</span></li>"
+        "<li><b>03</b><span><strong>次の90日</strong><br>まず一つ、仕事で試して整える行動がわかります。</span></li>"
+        "</ul></div></div></section>"
     )
 
 
@@ -15095,6 +15071,7 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
 
     parts.append("<div class='container'><main id='main-content'>")
     parts.append(_render_hero_focused())
+    parts.append(_render_readiness_guide())
 
     parts.append(_render_focused_main())
     parts.append("</main>")

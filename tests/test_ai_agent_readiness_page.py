@@ -109,18 +109,19 @@ class AiAgentReadinessPageTests(unittest.TestCase):
         finally:
             self.site_builder.DIST = original_dist
 
-    def test_homepage_places_a_bright_ten_question_readiness_banner_above_hero_actions(self):
+    def test_homepage_places_a_quiet_readiness_explainer_after_the_hero(self):
         hero = self.portal._render_hero_focused()
-        self.assertIn("迷ったら60秒診断をはじめる", hero)
-        self.assertIn("href='/ai-agent-readiness/'", hero)
-        self.assertIn("AI実践力診断", hero)
-        self.assertIn("たった10問・約3分", hero)
-        self.assertIn("いまの実力と、次に整えることが見える。", hero)
-        self.assertIn("3分で現在地を知る", hero)
-        self.assertIn("100点", hero)
-        self.assertLess(hero.index("focus-title"), hero.index("hero-readiness-card"))
-        self.assertLess(hero.index("hero-readiness-card"), hero.index("hero-advantage"))
-        self.assertLess(hero.index("hero-readiness-card"), hero.index("focus-actions"))
+        home = self.portal.render_portal([], [])
+
+        self.assertNotIn("hero-readiness-card", hero)
+        self.assertIn("<section class='readiness-guide'", home)
+        self.assertIn("AIを仕事で使う前に、何を整えるかがわかる診断です。", home)
+        self.assertIn("頼み方・確認・安全・改善の5領域", home)
+        self.assertIn("100点・5段階で、現在地を整理します。", home)
+        self.assertIn("診断の内容を見る（10問・約3分）", home)
+        self.assertNotIn("3分で現在地を知る", home)
+        self.assertLess(home.index("<section class='focus-hero'"), home.index("<section class='readiness-guide'"))
+        self.assertLess(home.index("<section class='readiness-guide'"), home.index("<section class='focus-block main-course'"))
 
     def test_deployable_readiness_bundle_is_not_ignored(self):
         ignore = (ROOT / ".gitignore").read_text(encoding="utf-8")

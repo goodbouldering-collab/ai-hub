@@ -7,7 +7,7 @@ consul/work/ に置いているので、毎日 `sync-consul-docs.yml` で **ai-h
 - ジョブは**全部稼働継続**（このハブは報告を集約するだけ・ジョブは止めない）
 - 更新ルール: ジョブが走って結果が出たら、該当行の「最終実行」「結果」を Claude が更新する
 
-最終更新: 2026-08-09
+最終更新: 2026-08-16
 
 ---
 
@@ -20,7 +20,7 @@ consul/work/ に置いているので、毎日 `sync-consul-docs.yml` で **ai-h
 | 3 | ai-hub AIトレンド記事収集 | GH Actions | 毎日07:00+月曜 | （未記録） | — | 台帳#3 |
 | 4 | ai-hub consul docs同期 | GH Actions | 毎日06:00 | （未記録） | — | 台帳#4 |
 | 5 | ビジネス21 Supabaseバックアップ | GH Actions | 毎週月03:00 | （未記録） | — | 台帳#5 |
-| 6 | **consul SEO週次ダイジェスト** | GH Actions | 週1（月曜08:00） | 2026-08-09 | 🔴 goodbouldering +1.1悪化 | 下記 |
+| 6 | **consul SEO週次ダイジェスト** | GH Actions | 週1（月曜08:00） | 2026-08-16 | 🔴 goodbouldering +1.1悪化 | 下記 |
 
 > 「最終実行」が（未記録）のものは、次にそのジョブの結果を確認したタイミングで Claude が埋める。
 > Vercel/GH Actions のジョブは各ダッシュボードが一次情報。ここはその要約を集める二次台帳。
@@ -29,7 +29,7 @@ consul/work/ に置いているので、毎日 `sync-consul-docs.yml` で **ai-h
 
 ## 🔍 SEO週次ダイジェスト（最新）
 
-最新の生データ: [2026-08-09-seo-weekly-digest.md](2026-08-09-seo-weekly-digest.md)
+最新の生データ: [2026-08-16-seo-weekly-digest.md](2026-08-16-seo-weekly-digest.md)
 
 | プロパティ | 平均順位(前→今) | 判定 |
 |---|---|---|

@@ -175,7 +175,11 @@ ADMIN_BUTTON_HTML = """
 """
 
 
-OG_IMAGE_URL = SITE_URL + "/img/hero-codex-claude-imagegen-20260616.png"
+COMMUNICATION_ESSENCE_ARTICLE_PATH = "/blog/2026-08-14-communication-essence-ai-consult.html"
+COMMUNICATION_ESSENCE_IMAGE_PATH = "/img/aiclimb-communication-essence-20260819.jpg"
+OG_IMAGE_URL = SITE_URL + COMMUNICATION_ESSENCE_IMAGE_PATH
+OG_IMAGE_WIDTH = 1254
+OG_IMAGE_HEIGHT = 1254
 
 
 def _build_ogp(title: str, description: str, page_url: str, *, image: str | None = None) -> str:
@@ -188,8 +192,10 @@ def _build_ogp(title: str, description: str, page_url: str, *, image: str | None
         f"<meta property='og:site_name' content='{html.escape(SITE_BRAND, quote=True)}'>",
         "<meta property='og:locale' content='ja_JP'>",
         f"<meta property='og:image' content='{html.escape(img, quote=True)}'>",
-        "<meta property='og:image:width' content='1672'>",
-        "<meta property='og:image:height' content='941'>",
+        f"<meta property='og:image:secure_url' content='{html.escape(img, quote=True)}'>",
+        "<meta property='og:image:type' content='image/jpeg'>",
+        f"<meta property='og:image:width' content='{OG_IMAGE_WIDTH}'>",
+        f"<meta property='og:image:height' content='{OG_IMAGE_HEIGHT}'>",
         f"<meta property='og:image:alt' content='{html.escape(title, quote=True)}'>",
         "<meta name='twitter:card' content='summary_large_image'>",
         f"<meta name='twitter:title' content='{html.escape(title, quote=True)}'>",
@@ -14954,6 +14960,109 @@ button:focus-visible {
 """
 
 
+COMMUNICATION_ESSENCE_FEATURE_CSS = """
+.communication-essence-feature {
+  padding: clamp(28px, 4.6vw, 64px) max(18px, calc((100vw - 1180px) / 2));
+  border-bottom: 1px solid rgba(43,72,177,.14);
+  background:
+    radial-gradient(circle at 86% 12%, rgba(112,205,221,.20), transparent 30%),
+    linear-gradient(135deg, #f3f8ff 0%, #ffffff 58%, #f4fbf9 100%);
+}
+.communication-essence-feature__inner {
+  display: grid;
+  grid-template-columns: minmax(0, .82fr) minmax(300px, .96fr);
+  gap: clamp(24px, 4.5vw, 62px);
+  max-width: 1180px;
+  margin: 0 auto;
+  align-items: center;
+}
+.communication-essence-feature__visual {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(43,72,177,.18);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 18px 42px rgba(31,62,126,.17);
+}
+.communication-essence-feature__visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  transition: transform .25s ease;
+}
+.communication-essence-feature__visual:hover img,
+.communication-essence-feature__visual:focus-visible img { transform: scale(1.018); }
+.communication-essence-feature__copy { min-width: 0; }
+.communication-essence-feature__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  margin: 0 0 12px;
+  padding: 5px 10px;
+  border: 1px solid rgba(43,72,177,.22);
+  border-radius: 999px;
+  background: rgba(255,255,255,.84);
+  color: var(--focus-blue);
+  font: 900 11px/1.2 Inter, sans-serif;
+  letter-spacing: .1em;
+}
+.communication-essence-feature__copy h2 {
+  max-width: 13em;
+  margin: 0;
+  color: var(--focus-ink);
+  font-size: clamp(29px, 3.25vw, 46px);
+  font-weight: 950;
+  letter-spacing: -.055em;
+  line-height: 1.18;
+}
+.communication-essence-feature__copy p:not(.communication-essence-feature__eyebrow) {
+  max-width: 42em;
+  margin: 16px 0 0;
+  color: #40516d;
+  font-size: clamp(15px, 1.4vw, 17px);
+  font-weight: 650;
+  line-height: 1.75;
+}
+.communication-essence-feature__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 52px;
+  margin-top: 22px;
+  padding: 12px 18px;
+  border: 2px solid var(--focus-blue);
+  border-radius: 12px;
+  background: var(--focus-blue);
+  color: #fff;
+  box-shadow: 0 9px 18px rgba(43,72,177,.20);
+  font-size: 15px;
+  font-weight: 900;
+  line-height: 1.2;
+  text-decoration: none;
+  transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+}
+.communication-essence-feature__cta:hover,
+.communication-essence-feature__cta:focus-visible {
+  background: #243a9b;
+  border-color: #243a9b;
+  color: #fff;
+  box-shadow: 0 12px 22px rgba(43,72,177,.28);
+  transform: translateY(-1px);
+}
+@media (max-width: 760px) {
+  .communication-essence-feature { padding: 28px 18px 32px; }
+  .communication-essence-feature__inner { grid-template-columns: minmax(0, 1fr); gap: 22px; }
+  .communication-essence-feature__visual { max-width: 520px; margin: 0 auto; }
+  .communication-essence-feature__copy h2 { max-width: none; }
+  .communication-essence-feature__cta { width: 100%; }
+}
+"""
+
+
 def _render_header_focused() -> str:
     desktop_navigation = render_desktop_navigation()
     mobile_navigation = render_mobile_navigation()
@@ -14994,6 +15103,22 @@ def _render_hero_focused() -> str:
         "<ul class='focus-trust'><li>AI初心者OK</li><li>対面・オンライン対応</li><li>仕事を持ち込める</li></ul></div>"
         "</div>"
         "</section>"
+    )
+
+
+def _render_communication_essence_feature() -> str:
+    return (
+        "<section class='communication-essence-feature' aria-labelledby='communication-essence-feature-title'>"
+        "<div class='communication-essence-feature__inner'>"
+        f"<a class='communication-essence-feature__visual' href='{COMMUNICATION_ESSENCE_ARTICLE_PATH}' aria-label='ブログ「伝える技術の本質」を読む'>"
+        f"<img src='{COMMUNICATION_ESSENCE_IMAGE_PATH}' alt='AI時代だからこそ、伝える技術の本質。理解する、絞り込む、行動につなげるの3段階と、AI相談の対話シーンを描いた告知画像' width='1254' height='1254' fetchpriority='high' decoding='async'>"
+        "</a>"
+        "<div class='communication-essence-feature__copy'>"
+        "<p class='communication-essence-feature__eyebrow'>FEATURED ARTICLE</p>"
+        "<h2 id='communication-essence-feature-title'>伝える技術の本質は、相手の次の一歩を軽くすること。</h2>"
+        "<p>情報をただ渡すのではなく、相手が理解し、絞り込み、行動へ進めるように整える。AI相談で実践している「100を知る・10を見せる・1つを持ち帰る」考え方を、現場の例とともに紹介します。</p>"
+        f"<a class='communication-essence-feature__cta' href='{COMMUNICATION_ESSENCE_ARTICLE_PATH}'>ブログを読む <span aria-hidden='true'>→</span></a>"
+        "</div></div></section>"
     )
 
 
@@ -15095,13 +15220,14 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append(f"<link rel='canonical' href='{html.escape(SITE_URL + '/', quote=True)}'>")
     parts.append(_build_ogp(title, desc, SITE_URL + "/"))
     parts.append(f"<script type='application/ld+json'>{_build_jsonld_website()}</script>")
-    parts.append(f"<style>{PORTAL_CSS}{BLOG_TEASER_CSS}{FOCUSED_PORTAL_CSS}</style>")
+    parts.append(f"<style>{PORTAL_CSS}{BLOG_TEASER_CSS}{FOCUSED_PORTAL_CSS}{COMMUNICATION_ESSENCE_FEATURE_CSS}</style>")
     parts.append("</head><body><a class='skip-link' href='#main-content'>本文へ移動</a>")
 
     parts.append(_render_header_focused())
 
     parts.append("<div class='container'><main id='main-content'>")
     parts.append(_render_hero_focused())
+    parts.append(_render_communication_essence_feature())
     parts.append(_render_readiness_guide())
 
     parts.append(_render_focused_main())

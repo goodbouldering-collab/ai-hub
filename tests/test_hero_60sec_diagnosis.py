@@ -29,8 +29,8 @@ class Hero60SecondDiagnosisTests(unittest.TestCase):
 
     def test_hero_makes_diagnosis_the_primary_next_step(self):
         self.assertIn("彦根・滋賀の中小事業者向け", self.hero_html)
-        self.assertIn("AIエージェントを、", self.hero_html)
-        self.assertIn("強力なスタッフに。", self.hero_html)
+        self.assertIn("AIエージェントで", self.hero_html)
+        self.assertIn("できることを100倍に", self.hero_html)
         self.assertIn("6%", self.hero_html)
         self.assertIn("何から始めるか、1分で見える。", self.hero_html)
         self.assertIn("迷ったら60秒診断をはじめる →", self.hero_html)
@@ -46,6 +46,17 @@ class Hero60SecondDiagnosisTests(unittest.TestCase):
         self.assertNotIn("AI個別相談の日程を選ぶ", self.hero_html)
 
     def test_hero_copy_makes_the_customer_problem_clear(self):
+        self.assertIn("<span>AI利用率</span><strong>6%</strong>", self.hero_html)
+        self.assertIn("<strong>まだまだこれから！</strong>", self.hero_html)
+        self.assertIn("始めるなら今。", self.hero_html)
+        self.assertIn(
+            "<span class='hero-advantage-equation'><strong>AI</strong><span>×</span><strong>経験</strong></span>",
+            self.hero_html,
+        )
+        self.assertIn("思い描けるだけ実現できる！", self.hero_html)
+        self.assertIn("<li><b>01</b>試しに作る</li>", self.hero_html)
+        self.assertIn("<li><b>02</b>素早く修正</li>", self.hero_html)
+        self.assertIn("<li><b>03</b>仕組み化する</li>", self.hero_html)
         self.assertIn(
             "AIが気になるけれど、何から始めるか迷う方へ。3つの質問で、いまの仕事に合う次の一歩を提案します。",
             self.hero_html,

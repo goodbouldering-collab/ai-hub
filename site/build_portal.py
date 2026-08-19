@@ -14921,6 +14921,86 @@ button:focus-visible {
   box-shadow: 0 11px 22px rgba(43,72,177,.29);
   transform: translateY(-1px);
 }
+.seo-llmo-guide {
+  padding: 30px max(18px, calc((100vw - 1180px) / 2));
+  color: #fff;
+  background:
+    radial-gradient(circle at 82% 0, rgba(56,198,201,.22), transparent 34%),
+    linear-gradient(120deg, #0c274c 0%, #123d6c 62%, #126a72 100%);
+  border-bottom: 1px solid rgba(9,34,67,.3);
+}
+.seo-llmo-guide__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(360px, .85fr) auto;
+  gap: 22px clamp(24px, 3.5vw, 48px);
+  max-width: 1180px;
+  margin: 0 auto;
+  align-items: center;
+}
+.seo-llmo-guide__eyebrow {
+  margin: 0 0 5px;
+  color: #73dce0;
+  font: 900 12px/1.35 Inter, sans-serif;
+  letter-spacing: .12em;
+}
+.seo-llmo-guide__title {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(25px, 2.75vw, 38px);
+  font-weight: 950;
+  letter-spacing: -.045em;
+  line-height: 1.22;
+}
+.seo-llmo-guide__summary {
+  max-width: 610px;
+  margin: 8px 0 0;
+  color: #c8d8eb;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.65;
+}
+.seo-llmo-guide__outcomes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  list-style: none;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 14px;
+  background: rgba(255,255,255,.08);
+}
+.seo-llmo-guide__outcomes li {
+  min-width: 0;
+  padding: 12px 11px;
+  color: #c9d8e9;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.seo-llmo-guide__outcomes li + li { border-left: 1px solid rgba(255,255,255,.14); }
+.seo-llmo-guide__outcomes strong { display: block; margin-bottom: 2px; color: #fff; font-size: 12px; font-weight: 900; }
+.seo-llmo-guide__cta {
+  display: inline-flex;
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px 18px;
+  color: #0c274c;
+  border: 2px solid #fff;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 10px 24px rgba(0,0,0,.16);
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.seo-llmo-guide__cta:hover,
+.seo-llmo-guide__cta:focus-visible { color: #0c274c; box-shadow: 0 14px 28px rgba(0,0,0,.23); transform: translateY(-1px); }
 @media (max-width: 760px) {
   .readiness-guide { padding: 25px 18px; }
   .readiness-guide__inner { grid-template-columns: 1fr; gap: 16px; }
@@ -14929,6 +15009,12 @@ button:focus-visible {
   .readiness-guide__outcomes li { padding: 10px 8px; font-size: 11px; }
   .readiness-guide__outcomes strong { font-size: 12px; }
   .readiness-guide__cta { width: 100%; }
+  .seo-llmo-guide { padding: 27px 18px; }
+  .seo-llmo-guide__inner { grid-template-columns: 1fr; gap: 16px; }
+  .seo-llmo-guide__title { font-size: clamp(27px, 8vw, 36px); }
+  .seo-llmo-guide__summary { font-size: 14px; }
+  .seo-llmo-guide__outcomes li { padding: 10px 8px; }
+  .seo-llmo-guide__cta { width: 100%; }
 }
 .skip-link {
   position: fixed;
@@ -14959,7 +15045,7 @@ def _render_header_focused() -> str:
     mobile_navigation = render_mobile_navigation()
     return (
         "<header class='site-header' id='site-header'><div class='site-header-inner'>"
-        "<a class='site-logo' href='/' aria-label='AI相談 彦根 トップへ'>"
+        "<a class='site-logo' href='/' aria-label='AI相談彦根 トップへ'>"
         "<span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span></span></a>"
         f"<nav class='site-nav' aria-label='メインナビ'>{desktop_navigation}</nav>"
         "<button class='mobile-toggle' id='mobile-toggle' type='button' aria-label='メニューを開く' aria-controls='mobile-nav' aria-expanded='false'>"
@@ -15009,6 +15095,23 @@ def _render_readiness_guide() -> str:
         "<li><strong>次の90日</strong><span>仕事で試す一歩</span></li>"
         "</ul>"
         "<a class='readiness-guide__cta' href='/ai-agent-readiness/' aria-label='AI実践力診断をはじめる。10問・約3分'><span>AI実践力診断をはじめる</span><b aria-hidden='true'>→</b></a>"
+        "</div></section>"
+    )
+
+
+def _render_seo_llmo_guide() -> str:
+    return (
+        "<section class='seo-llmo-guide' aria-labelledby='seo-llmo-guide-title'><div class='seo-llmo-guide__inner'>"
+        "<div><p class='seo-llmo-guide__eyebrow'>URLを入れて約1分</p>"
+        "<h2 id='seo-llmo-guide-title' class='seo-llmo-guide__title'>あなたのサイトは、検索とAIに正しく伝わっていますか？</h2>"
+        "<p class='seo-llmo-guide__summary'>公開ページを100点・4領域で確認し、優先して直すことを整理するSEO・LLMO診断です。</p></div>"
+        "<ul class='seo-llmo-guide__outcomes' aria-label='SEO・LLMO診断でわかること'>"
+        "<li><strong>見つける土台</strong><span>クロール・索引</span></li>"
+        "<li><strong>信頼と主体</strong><span>誰のサイトか</span></li>"
+        "<li><strong>次の行動</strong><span>相談・申込導線</span></li>"
+        "</ul>"
+        "<a class='seo-llmo-guide__cta' href='/seo-llmo-diagnosis/' aria-label='SEO・LLMO診断をはじめる。URLを入れて約1分'>"
+        "<span>SEO・LLMO診断をはじめる</span><b aria-hidden='true'>→</b></a>"
         "</div></section>"
     )
 
@@ -15103,6 +15206,7 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append("<div class='container'><main id='main-content'>")
     parts.append(_render_hero_focused())
     parts.append(_render_readiness_guide())
+    parts.append(_render_seo_llmo_guide())
 
     parts.append(_render_focused_main())
     parts.append("</main>")

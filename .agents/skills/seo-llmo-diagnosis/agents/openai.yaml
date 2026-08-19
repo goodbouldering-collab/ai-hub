@@ -1,0 +1,4 @@
+interface:
+  display_name: "SEO・LLMO診断"
+  short_description: "公開サイトの証拠から優先改善を整理します"
+  default_prompt: "Use $seo-llmo-diagnosis to review this fixed public-site readiness report without changing the site."

@@ -2,6 +2,8 @@
 
 AI相談の保護された管理ページ `/admin/command-center/studio` と、このPCだけで動く公式 `codex app-server` をつなぐ機能です。App Server自体は公開インターネットへ置きません。
 
+公開ページ `/seo-llmo-diagnosis/` の技術診断はApp Serverなしで完結します。管理者が同じページから「Codexで深掘りする」を選んだ場合だけ、公開診断レポートを固定 `seo-llmo-diagnosis` Skillへ渡します。自由プロンプト、任意のcwd、Skill path、コマンドはブラウザから渡せません。実行はread-onlyで、サイト修正や公開は行いません。
+
 ## 起動
 
 Windowsでは、AI相談リポジトリのルートで次を実行します。

@@ -11,6 +11,8 @@ data/_migrate_*
 site/dist/*
 !site/dist/ai-agent-readiness/
 !site/dist/ai-agent-readiness/**
+!site/dist/seo-llmo-diagnosis/
+!site/dist/seo-llmo-diagnosis/**
 .wrangler/
 node_modules/
 .market-test-dist/

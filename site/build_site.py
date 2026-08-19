@@ -123,7 +123,7 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
     parts: list[str] = [
         "<header class='site-header scrolled' id='site-header' aria-label='サイトヘッダー'>"
         "<div class='site-header-inner'>"
-        f"<a class='site-logo' href='{safe_home}' aria-label='AI相談 彦根 トップへ'>"
+        f"<a class='site-logo' href='{safe_home}' aria-label='AI相談彦根 トップへ'>"
         "<span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span></span></a>"
         f"<nav class='site-nav' aria-label='メインナビ'>{desktop_navigation}</nav>"
         f"{run_action}"
@@ -4659,6 +4659,24 @@ def build_ai_agent_readiness_page() -> bool:
     return True
 
 
+def build_seo_llmo_diagnosis_page() -> bool:
+    """Build the standalone public SEO and LLMO diagnosis route."""
+    from seo_llmo_diagnosis import render_seo_llmo_diagnosis_page  # noqa: WPS433
+
+    target = DIST / "seo-llmo-diagnosis" / "index.html"
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_text(
+        render_seo_llmo_diagnosis_page(
+            site_url=SITE_URL,
+            nav_html=render_top_nav(path_prefix="../", current_id=None, include_run=False),
+            favicon_html=FAVICON_HEAD_HTML,
+            shared_header_css=GENERATED_PUBLIC_HEADER_CSS,
+        ),
+        encoding="utf-8",
+    )
+    return True
+
+
 def build_sitemap_and_robots() -> None:
     """DIST 内の index.html / speaker.html / programming-map.html / speed-monitor.html / lectures/*.html を
     集めて sitemap.xml と robots.txt を生成。"""
@@ -4678,6 +4696,7 @@ def build_sitemap_and_robots() -> None:
     add("programming-map.html", 0.8)
     add("speed-monitor.html", 0.7)
     add("ai-agent-readiness/index.html", 0.9, "ai-agent-readiness/")
+    add("seo-llmo-diagnosis/index.html", 0.9, "seo-llmo-diagnosis/")
     # lectures
     lec_idx = DIST / "lectures" / "index.html"
     if lec_idx.exists():
@@ -4849,6 +4868,7 @@ def main() -> int:
         build_slides()
         _build_portal()
         build_ai_agent_readiness_page()
+        build_seo_llmo_diagnosis_page()
         build_sitemap_and_robots()
         return 0
 
@@ -4880,6 +4900,7 @@ def main() -> int:
     profile_removed = build_profile_page()
     _build_portal()
     readiness_built = build_ai_agent_readiness_page()
+    seo_llmo_built = build_seo_llmo_diagnosis_page()
     build_sitemap_and_robots()
 
     print(
@@ -4890,6 +4911,7 @@ def main() -> int:
         + (f", {slides_built} slides" if slides_built else "")
         + (", profile.html removed" if profile_removed else "")
         + (", ai-agent-readiness/index.html" if readiness_built else "")
+        + (", seo-llmo-diagnosis/index.html" if seo_llmo_built else "")
         + ", sitemap.xml, robots.txt)"
     )
     return 0

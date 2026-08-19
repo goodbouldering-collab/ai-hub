@@ -2,16 +2,10 @@ import { createHmac, timingSafeEqual } from "node:crypto";
 import { db } from "../_lib/supa.js";
 import { withAdmin } from "../_lib/http.js";
 import type { VercelReq, VercelRes } from "../_lib/auth.js";
+import { isAllowedRelayRequest } from "../../bridge/relay-paths.mjs";
 
 const RELAY_ID = "primary";
 const COOKIE_NAME = "command_center_bridge_session";
-const REQUEST_PATHS = [
-  { method: "POST", pattern: /^\/v1\/runs$/ },
-  { method: "GET", pattern: /^\/v1\/runs\/[A-Za-z0-9_-]+$/ },
-  { method: "POST", pattern: /^\/v1\/runs\/[A-Za-z0-9_-]+\/(?:interrupt|adjust)$/ },
-  { method: "POST", pattern: /^\/v1\/runs\/[A-Za-z0-9_-]+\/approvals\/[^/]+$/ },
-];
-
 function secret(): string { return String(process.env.COMMAND_ROOM_BRIDGE_AUTH_SECRET || "").trim(); }
 function header(req: VercelReq, name: string): string { const value = req.headers[name]; return Array.isArray(value) ? String(value[0] || "") : String(value || ""); }
 function safeEqual(left: string, right: string): boolean { const a = Buffer.from(left); const b = Buffer.from(right); return a.length === b.length && timingSafeEqual(a, b); }
@@ -110,7 +104,7 @@ const browserHandler = withAdmin({ method: ["GET", "POST"] }, async ({ req, res,
   if (body?.action === "request") {
     const current = session(req); if (!current) { json(res, 401, { error: "bridge_pairing_required" }); return; }
     const method = String(body.method || "GET").toUpperCase(); const path = String(body.path || "");
-    if (!REQUEST_PATHS.some((entry) => entry.method === method && entry.pattern.test(path))) { json(res, 403, { error: "relay_path_not_allowed" }); return; }
+    if (!isAllowedRelayRequest(method, path)) { json(res, 403, { error: "relay_path_not_allowed" }); return; }
     const id = crypto.randomUUID(); const created = nowIso();
     const inserted = await relayTable("relay_requests").insert({ id, session_id: current.sid, method, path, body_json: body.body || {}, status: "pending", status_code: 0, response_json: {}, created_at: created, updated_at: created, expires_at: new Date(Date.now() + 60 * 60_000).toISOString() });
     if (inserted.error) { json(res, 500, { error: "relay_request_insert_failed" }); return; }

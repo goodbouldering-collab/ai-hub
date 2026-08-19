@@ -109,7 +109,12 @@ class CourseTestimonialsTest(unittest.TestCase):
         )
 
         self.assertEqual(4, len(rendered_cards))
-        for card, expected in zip(rendered_cards, EXPECTED_GROUPS, strict=True):
+        expected_by_course = {expected[1]: expected for expected in EXPECTED_GROUPS}
+        for card in rendered_cards:
+            title = re.search(r"<h3>(.*?)</h3>", card)
+            self.assertIsNotNone(title)
+            assert title is not None
+            expected = expected_by_course[title.group(1)]
             _, _, anchor_id, heading, testimonials = expected
             self.assertIn(f"id='{anchor_id}'", card)
             self.assertEqual(1, card.count("受講された方の感想を見る"))

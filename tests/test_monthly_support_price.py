@@ -1,6 +1,7 @@
 import importlib.util
 import json
 from pathlib import Path
+import re
 import unittest
 
 
@@ -35,6 +36,20 @@ class MonthlySupportPriceTest(unittest.TestCase):
             portal.SITE_URL + portal.MONTHLY_SUPPORT_CHECKOUT_URL,
             support["offers"]["url"],
         )
+
+    def test_support_card_follows_coding_card_with_the_requested_monthly_terms(self) -> None:
+        cards = re.findall(
+            r"<article class='compact-course-card[^']*'.*?</article>",
+            portal._render_compact_course_cards(),
+            re.DOTALL,
+        )
+        titles = [re.search(r"<h3>(.*?)</h3>", card).group(1) for card in cards]
+        support_index = titles.index("AI伴走支援")
+        coding_index = titles.index("AIコーディング講習")
+
+        self.assertEqual(coding_index + 1, support_index)
+        self.assertIn("月額88,000円", cards[support_index])
+        self.assertIn("6ヶ月", cards[support_index])
 
 
 if __name__ == "__main__":

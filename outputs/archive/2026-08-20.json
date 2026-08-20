@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/Screenshot-2026-08-20-at-5.37.35-PM.png?quality=90&amp;strip=all&amp;crop=0%2C3.2683225395565%2C100%2C93.463354920887&amp;w=1200",
-      "published": "2026-08-20T17:50:22-04:00"
+      "published": "2026-08-20T17:50:22-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "68654734cf86382b",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/STKP221_GREG_BROCKMAN2.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-08-20T11:45:55-04:00"
+      "published": "2026-08-20T11:45:55-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "0491145f3955d854",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/DCD_082026_Site.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-08-20T10:00:00-04:00"
+      "published": "2026-08-20T10:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "13143be61f90f88a",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/23988538/acastro_STK060_slack_04.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-08-20T08:00:00-04:00"
+      "published": "2026-08-20T08:00:00-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "58fe55c4712befdc",
@@ -94,7 +102,9 @@
         "freshness": 3.0
       },
       "thumbnail": "",
-      "published": "2026-08-19T23:16:00+00:00"
+      "published": "2026-08-19T23:16:00+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "f4e079673e4e6392",
@@ -113,7 +123,9 @@
         "freshness": 3.0
       },
       "thumbnail": "",
-      "published": "2026-08-19T22:56:31+00:00"
+      "published": "2026-08-19T22:56:31+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "baf219bacc8543fb",
@@ -132,7 +144,9 @@
         "freshness": 3.0
       },
       "thumbnail": "",
-      "published": "2026-08-19T22:46:07+00:00"
+      "published": "2026-08-19T22:46:07+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "dbc74c80e9588964",
@@ -151,7 +165,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/utC9UKIgS_g/hqdefault.jpg",
-      "published": "2026-08-20T10:00:01+00:00"
+      "published": "2026-08-20T10:00:01+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "1d86ec1801b46141",
@@ -170,7 +186,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://images.ctfassets.net/kftzwdyauwt9/6WlY42vdkXE14U0aa8nt0V/cd49d61e13eca65e29063d298ca8cec8/introducing-ai-futures-seo-ocean-blue-1920x1080.png?w=1600&amp;h=900&amp;fit=fill",
-      "published": "Thu, 20 Aug 2026 07:00:00 GMT"
+      "published": "Thu, 20 Aug 2026 07:00:00 GMT",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "67d18d9479c7b85f",
@@ -189,7 +207,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://images.ctfassets.net/kftzwdyauwt9/7hfd4vHZo2TJaamnedJgMp/6c8bc17d7e3acbee99a8971ad9aac0a2/stampli-seo-16x9-v2-ribbed.png?w=1600&amp;h=900&amp;fit=fill",
-      "published": "Thu, 20 Aug 2026 00:00:00 GMT"
+      "published": "Thu, 20 Aug 2026 00:00:00 GMT",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

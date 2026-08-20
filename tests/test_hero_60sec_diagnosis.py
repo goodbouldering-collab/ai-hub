@@ -27,48 +27,34 @@ class Hero60SecondDiagnosisTests(unittest.TestCase):
             raise AssertionError("Focused hero section was not generated")
         cls.hero_html = hero_match.group(0)
 
-    def test_hero_makes_diagnosis_the_primary_next_step(self):
-        self.assertIn("彦根・滋賀の中小事業者向け", self.hero_html)
-        self.assertIn("AIエージェントで", self.hero_html)
-        self.assertIn("できることを100倍に", self.hero_html)
-        self.assertIn("6%", self.hero_html)
-        self.assertIn("何から始めるか、1分で見える。", self.hero_html)
-        self.assertIn("迷ったら60秒診断をはじめる →", self.hero_html)
-        self.assertIn(
-            "3問で完了。結果を見てから、予約するか決められます。",
-            self.hero_html,
-        )
-        self.assertRegex(
-            self.hero_html,
-            re.escape(AI_AGENT_COURSE_URL)
-            + r"' target='_blank' rel='noopener'>AIエージェント講習を見る</a>",
+    def test_hero_makes_free_consultation_the_primary_next_step(self):
+        self.assertIn("AI相談 × AIアプリサイト", self.hero_html)
+        self.assertIn("相談だけで終わらない。", self.hero_html)
+        self.assertIn("AIで、仕事の仕組みまでつくる。", self.hero_html)
+        self.assertIn("まずは無料相談", self.hero_html)
+        self.assertIn("AIアプリサイトを見る", self.hero_html)
+        self.assertIn(FREE_CONSULT_URL, self.hero_html)
+        self.assertLess(
+            self.hero_html.index("まずは無料相談"),
+            self.hero_html.index("AIアプリサイトを見る"),
         )
         self.assertNotIn("AI個別相談の日程を選ぶ", self.hero_html)
 
     def test_hero_copy_makes_the_customer_problem_clear(self):
-        self.assertIn("<span>AI利用率</span><strong>6%</strong>", self.hero_html)
-        self.assertIn("<strong>まだまだこれから！</strong>", self.hero_html)
-        self.assertIn("始めるなら今。", self.hero_html)
-        self.assertIn(
-            "<span class='hero-advantage-equation'><strong>AI</strong><span>×</span><strong>経験</strong></span>",
-            self.hero_html,
-        )
-        self.assertIn("思い描けば現実になる！", self.hero_html)
-        self.assertIn("<li><b>01</b>試しに作る</li>", self.hero_html)
-        self.assertIn("<li><b>02</b>素早く修正</li>", self.hero_html)
-        self.assertIn("<li><b>03</b>仕組み化する</li>", self.hero_html)
-        self.assertIn(
-            "AIが気になるけれど、何から始めるか迷う方へ。3つの質問で、いまの仕事に合う次の一歩を提案します。",
-            self.hero_html,
-        )
+        self.assertIn("見積もり、予約、顧客管理、シフト、ブログ、問い合わせ対応。", self.hero_html)
+        self.assertIn("その仕事、<br>サイトにやらせませんか？", self.hero_html)
+        self.assertIn("見積もり <b>→ 自動作成</b>", self.hero_html)
+        self.assertIn("予約 <b>→ 自動受付</b>", self.hero_html)
+        self.assertIn("問い合わせ <b>→ AI回答</b>", self.hero_html)
+        self.assertIn("ブログ <b>→ AI下書き</b>", self.hero_html)
+        self.assertIn("シフト <b>→ 自動作成</b>", self.hero_html)
+        self.assertIn("報告書 <b>→ PDF生成</b>", self.hero_html)
 
-    def test_diagnosis_has_accessible_output_and_no_javascript_fallback(self):
+    def test_diagnosis_remains_accessible_without_taking_over_the_hero(self):
         self.assertIn("aria-labelledby='diagnose-title'", self.index_html)
         self.assertIn("aria-live='polite'", self.index_html)
-        self.assertRegex(
-            self.hero_html,
-            r"class='focus-btn primary hero-diagnose-button diagnose-open' href='#packages'",
-        )
+        self.assertNotIn("diagnose-open", self.hero_html)
+        self.assertRegex(self.hero_html, re.escape("class='focus-btn primary' href='" + FREE_CONSULT_URL))
 
     def test_legacy_duplicate_diagnosis_triggers_are_absent(self):
         self.assertNotIn("60秒診断｜無料相談・個別相談・講習・伴走のどれ？", self.index_html)

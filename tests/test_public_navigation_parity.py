@@ -10,6 +10,7 @@ SITE_PATH = ROOT / "site" / "build_site.py"
 
 PUBLIC_LINKS = [
     ("/#top", "ホーム"),
+    ("/ai-app-site/", "AIアプリサイト"),
     ("/#all-works", "実績"),
     ("/#blog", "ブログ"),
     ("/#lectures", "資料"),

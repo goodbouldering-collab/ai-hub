@@ -106,12 +106,13 @@ class RenderedSalonTest(unittest.TestCase):
         hero_start = self.html.index("class='focus-hero'")
         hero_end = self.html.index("</section>", hero_start)
         hero = self.html[hero_start:hero_end]
-        self.assertIn("<strong>まだまだこれから！</strong>", hero)
+        self.assertIn("AI相談 × AIアプリサイト", hero)
+        self.assertIn("相談だけで終わらない。", hero)
+        self.assertIn("AIで、仕事の仕組みまでつくる。", hero)
+        self.assertIn("まずは無料相談", hero)
         self.assertNotIn("<strong>5,500円から</strong>", hero)
         self.assertNotIn("<strong>相談5,500円/回</strong>", hero)
         self.assertNotIn("<strong>利用率6%</strong>", hero)
-        self.assertIn("始めるなら今。", self.html)
-        self.assertIn("hero-advantage-equation", self.html)
         nav = re.search(
             r"<nav class='site-nav'[^>]*>(.*?)</nav>",
             self.html,
@@ -119,7 +120,8 @@ class RenderedSalonTest(unittest.TestCase):
         )
         self.assertIsNotNone(nav)
         assert nav is not None
-        self.assertGreater(nav.group(1).rfind("サロン"), nav.group(1).rfind("個別相談"))
+        self.assertIn("AIアプリサイト", nav.group(1))
+        self.assertGreater(nav.group(1).index("AIアプリサイト"), nav.group(1).index("ホーム"))
 
     def test_course_cards_stack_without_horizontal_flip(self) -> None:
         tablet = re.search(

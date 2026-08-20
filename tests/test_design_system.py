@@ -21,7 +21,8 @@ class DesignSystemBuildTests(unittest.TestCase):
 
         self.assertLess(token_index, inline_style_index)
         self.assertIn("<main", html)
-        self.assertIn("迷ったら60秒診断をはじめる", html)
+        self.assertIn("AI相談 × AIアプリサイト", html)
+        self.assertIn("まずは無料相談", html)
 
     def test_static_build_packages_the_design_reference_and_tokens(self):
         original_dist = build_site.DIST

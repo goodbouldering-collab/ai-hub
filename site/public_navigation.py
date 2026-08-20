@@ -7,6 +7,7 @@ from typing import Final
 
 PUBLIC_NAV_ITEMS: Final[tuple[tuple[str, str, str], ...]] = (
     ("home", "ホーム", "/#top"),
+    ("app-site", "AIアプリサイト", "/ai-app-site/"),
     ("works", "実績", "/#all-works"),
     ("blog", "ブログ", "/#blog"),
     ("lectures", "資料", "/#lectures"),

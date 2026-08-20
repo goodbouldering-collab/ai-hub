@@ -50,9 +50,9 @@ class FreeConsultationRetirementTests(unittest.TestCase):
             raise AssertionError("Homepage JSON-LD was not generated")
         cls.json_ld = json.loads(json_ld_match.group(1))
 
-    def test_free_consultation_is_limited_to_the_diagnosis(self) -> None:
-        self.assertNotIn("無料相談", self.page_without_diagnosis)
-        self.assertNotIn(FREE_CONSULT_URL, self.page_without_diagnosis)
+    def test_free_consultation_is_available_from_the_app_site_funnel(self) -> None:
+        self.assertIn("無料相談", self.page_without_diagnosis)
+        self.assertIn(FREE_CONSULT_URL, self.page_without_diagnosis)
         self.assertNotIn("無料相談", self.remote_blog_html)
         self.assertNotIn(FREE_CONSULT_URL, self.remote_blog_html)
         self.assertIn("無料相談で入口を整理したい", self.diagnosis_context)

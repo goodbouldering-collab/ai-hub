@@ -109,7 +109,7 @@ class SalonContentContractTests(unittest.TestCase):
         self.assertEqual("P1M", salon["offers"]["priceSpecification"]["billingDuration"])
 
     def test_page_description_does_not_claim_the_salon_has_formally_started(self) -> None:
-        self.assertIn("AIオンラインサロンは近日開始・現在仮運用中", self.html)
+        self.assertIn("AIオンラインサロンは近日開始で、現在は仮運用中です。", self.html)
         self.assertNotIn("有料オンラインサロンを開催しています", self.html)
 
     def test_structured_detail_counts_and_checkout_contract_remain_intact(self) -> None:

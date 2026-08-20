@@ -18,6 +18,14 @@ from pathlib import Path
 import yaml
 
 SITE_URL = os.environ.get("AIHUB_SITE_URL", os.environ.get("AIWATCH_SITE_URL", "https://aiclimb.vercel.app")).rstrip("/")
+AI_APP_SITE_ROUTES = (
+    "ai-app-site",
+    "ai-estimate",
+    "ai-inquiry",
+    "ai-reservation",
+    "ai-shift",
+    "ai-blog",
+)
 
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -4677,6 +4685,25 @@ def build_seo_llmo_diagnosis_page() -> bool:
     return True
 
 
+def build_ai_app_site_pages() -> int:
+    """Build the AIアプリサイト flagship page and its solution pages."""
+    from ai_app_site import render_all_ai_app_site_pages  # noqa: WPS433
+    import build_portal  # noqa: WPS433
+
+    pages = render_all_ai_app_site_pages(
+        site_url=SITE_URL,
+        nav_html=render_top_nav(path_prefix="../", current_id="app-site", include_run=False),
+        favicon_html=FAVICON_HEAD_HTML,
+        shared_header_css=GENERATED_PUBLIC_HEADER_CSS,
+        free_consult_url=build_portal.DIAGNOSIS_FREE_CONSULT_BOOK_URL,
+    )
+    for route, document in pages.items():
+        target = DIST / route / "index.html"
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(document, encoding="utf-8")
+    return len(pages)
+
+
 def build_sitemap_and_robots() -> None:
     """DIST 内の index.html / speaker.html / programming-map.html / speed-monitor.html / lectures/*.html を
     集めて sitemap.xml と robots.txt を生成。"""
@@ -4697,6 +4724,8 @@ def build_sitemap_and_robots() -> None:
     add("speed-monitor.html", 0.7)
     add("ai-agent-readiness/index.html", 0.9, "ai-agent-readiness/")
     add("seo-llmo-diagnosis/index.html", 0.9, "seo-llmo-diagnosis/")
+    for route in AI_APP_SITE_ROUTES:
+        add(f"{route}/index.html", 0.9 if route == "ai-app-site" else 0.8, f"{route}/")
     # lectures
     lec_idx = DIST / "lectures" / "index.html"
     if lec_idx.exists():
@@ -4869,6 +4898,7 @@ def main() -> int:
         _build_portal()
         build_ai_agent_readiness_page()
         build_seo_llmo_diagnosis_page()
+        build_ai_app_site_pages()
         build_sitemap_and_robots()
         return 0
 
@@ -4901,6 +4931,7 @@ def main() -> int:
     _build_portal()
     readiness_built = build_ai_agent_readiness_page()
     seo_llmo_built = build_seo_llmo_diagnosis_page()
+    ai_app_site_pages_built = build_ai_app_site_pages()
     build_sitemap_and_robots()
 
     print(
@@ -4912,6 +4943,7 @@ def main() -> int:
         + (", profile.html removed" if profile_removed else "")
         + (", ai-agent-readiness/index.html" if readiness_built else "")
         + (", seo-llmo-diagnosis/index.html" if seo_llmo_built else "")
+        + (f", {ai_app_site_pages_built} AIアプリサイト pages" if ai_app_site_pages_built else "")
         + ", sitemap.xml, robots.txt)"
     )
     return 0

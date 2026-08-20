@@ -105,22 +105,50 @@ class SeoLlmoDiagnosisPageTests(unittest.TestCase):
         finally:
             self.site_builder.DIST = original_dist
 
-    def test_homepage_places_the_seo_question_immediately_after_ai_readiness(self):
+    def test_homepage_places_the_site_diagnosis_immediately_after_ai_readiness(self):
         home = self.portal.render_portal([], [])
         readiness = home.index("<section class='readiness-guide readiness-guide--compact'")
-        seo = home.index("<section class='seo-llmo-guide'")
+        seo = home.index(
+            "<section class='readiness-guide readiness-guide--compact seo-llmo-guide'"
+        )
         main_course = home.index("<section class='focus-block main-course'")
 
         self.assertLess(readiness, seo)
         self.assertLess(seo, main_course)
         self.assertIn("あなたのサイトは、検索とAIに正しく伝わっていますか？", home)
         self.assertIn("href='/seo-llmo-diagnosis/'", home)
-        self.assertIn("SEO・LLMO診断をはじめる", home)
+        self.assertIn("あなたのサイト診断をはじめる", home)
         self.assertIn("aria-label='AI相談彦根 トップへ'", home)
 
         subpage_nav = self.site_builder.render_top_nav(path_prefix="../", include_run=False)
         self.assertIn("aria-label='AI相談彦根 トップへ'", subpage_nav)
         self.assertNotIn("aria-label='AI相談 彦根 トップへ'", subpage_nav)
+
+    def test_homepage_site_diagnosis_reuses_the_readiness_section_format(self):
+        home = self.portal.render_portal([], [])
+        section_marker = (
+            "<section class='readiness-guide readiness-guide--compact seo-llmo-guide'"
+        )
+        self.assertIn(section_marker, home)
+        section_start = home.index(section_marker)
+        section_end = home.index("</section>", section_start)
+        section = home[section_start:section_end]
+
+        self.assertIn("class='readiness-guide__inner'", section)
+        self.assertIn("class='readiness-guide__intro'", section)
+        self.assertIn("class='readiness-guide__outcomes'", section)
+        self.assertIn("class='readiness-guide__cta'", section)
+        self.assertNotIn("seo-llmo-guide__", section)
+        self.assertNotIn(".seo-llmo-guide {", home)
+        self.assertIn(
+            "<h2 id='seo-llmo-guide-title' class='readiness-guide__title'>あなたのサイト診断</h2>",
+            section,
+        )
+        self.assertIn(
+            "あなたのサイトは、検索とAIに正しく伝わっていますか？ 公開ページを100点・4領域で確認し、優先して直すことを整理します。",
+            section,
+        )
+        self.assertIn("あなたのサイト診断をはじめる", section)
 
     def test_deployable_bundle_is_not_ignored(self):
         ignore = (ROOT / ".gitignore").read_text(encoding="utf-8")

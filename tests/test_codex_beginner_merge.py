@@ -49,7 +49,7 @@ class CodexBeginnerMergeTest(unittest.TestCase):
 
     def test_indexes_only_show_the_merged_course(self) -> None:
         self.assertIn("1. AIエージェント講習とCodex初級", self.lecture_index)
-        self.assertIn("<b>6</b><span>受講資料</span>", self.lecture_index)
+        self.assertIn("<b>5</b><span>受講資料</span>", self.lecture_index)
         self.assertIn("<b>4</b><span>目的別の学び方</span>", self.lecture_index)
         for html in (self.lecture_index, self.home):
             self.assertNotIn("/lectures/2026-05-claude-code-features.html", html)

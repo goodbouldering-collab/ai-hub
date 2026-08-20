@@ -279,21 +279,21 @@ def _build_jsonld_website() -> str:
         "url": SITE_URL,
         "inLanguage": "ja",
         "publisher": {"@id": org_id},
-        "description": "滋賀・彦根の中小事業者向けに、AI相談からAIアプリサイトの実装、AIエージェント講習、受講資料、実例、継続改善までをつなぐ実践支援サイト。見積もり、予約、問い合わせ、シフト、ブログなどの手作業を、仕事で使える仕組みに変える。",
+        "description": "滋賀・彦根の中小事業者向けAI相談、AIエージェント講習、近日開始・現在仮運用中の有料オンラインサロン、受講資料、実例、講師紹介の資料センター。増え続けるAI情報から、仕事に使えるものと今やることを整理する。",
     }
 
     ai_agent_title = "AIエージェント講習 120分"
     ai_coding_title = "AIコーディング講習 120分"
     consult_title = "AI個別相談 しっかり60分"
     salon_title = "AIオンラインサロン｜近日開始"
-    support_title = "AI導入伴走支援（6ヶ月プロジェクト）"
+    support_title = "AI伴走支援 いっしょに導入"
 
     # 受講プランを Service + Offer として構造化（_render_packages の items と整合）
     plans = [
         (ai_agent_title, "Codexを使い、仕事を小さく分けて頼む、変更点を確かめる、必要なら直す、次回も使える手順として残すAIエージェント講習。資料、告知、業務改善、Web制作を題材に、人が判断しながら成果物を完成させる型を120分で身につける。", "5500", "5500", "Course"),
         (consult_title, "AIの使い方、役割分担、指示書、確認体制、運用導線を60分で整理する個別相談。", "5500", "5500", "BusinessCoaching"),
         (salon_title, "月額2,200円（税込）。正式開始に向けて現在は仮運用中で、登録中の方にはテスト運用へご協力いただいています。Square決済後にLINE参加案内を表示します。", "2200", "2200", "CommunityService"),
-        (support_title, "複数業務の実装・定着を6ヶ月で進めるAI導入プロジェクト。既存サイト・小さなアプリを継続改善する月額9,800円〜のAIアプリサイト保守・改善とは対象が異なります。", "100000", "100000", "Service"),
+        (support_title, "HP公開から事務自動化・経理・マーケまで6ヶ月で一気に定着。技術的な難所は講師が代行・支援。滋賀・彦根の補助金で負担1/3以下に。", "100000", "100000", "Service"),
         (ai_coding_title, "Codex導入、Claude Code併用、画像生成、プログラミング基礎、設計、データ、運用、セキュリティを1本で学ぶAIコーディング講習。AIの成果物を判断し、説明し、仕事に入れるための作業設計と確認の型を120分で身につける。", "11000", "11000", "Course"),
     ]
     plan_schema = {
@@ -398,8 +398,8 @@ def _build_jsonld_website() -> str:
             offer["url"] = INDIVIDUAL_CONSULT_BOOK_URL
             service["url"] = INDIVIDUAL_CONSULT_BOOK_URL
         if name == support_title:
-            offer["url"] = DIAGNOSIS_FREE_CONSULT_BOOK_URL
-            service["url"] = DIAGNOSIS_FREE_CONSULT_BOOK_URL
+            offer["url"] = SITE_URL + MONTHLY_SUPPORT_CHECKOUT_URL
+            service["url"] = SITE_URL + MONTHLY_SUPPORT_CHECKOUT_URL
         services.append(service)
 
     breadcrumb = {
@@ -11110,8 +11110,8 @@ def _render_choice_lens() -> str:
         ),
         (
             "社内や店舗にAI運用を定着させたい",
-            "AI導入伴走支援（6ヶ月）",
-            "複数業務の導入計画・実装・定着をまとめて扱います。小さなサイトやアプリの保守・改善とは対象を分けます。",
+            "AI伴走支援",
+            "6ヶ月の導入計画、補助金相談、HP・事務・SNSの実装をまとめて扱います。",
         ),
     ]
     parts = [
@@ -11375,7 +11375,7 @@ def _render_courses_packages() -> str:
     ai_coding_title = "AIコーディング講習 120分"
     free_consult_title = "AI無料相談 入口整理"
     consult_title = "AI個別相談 しっかり60分"
-    support_title = "AI導入伴走支援（6ヶ月プロジェクト）"
+    support_title = "AI伴走支援 いっしょに導入"
     items = [
         {
             "icon": "○",
@@ -11393,7 +11393,7 @@ def _render_courses_packages() -> str:
                 "補助金、交流会、次回予約の導線を確認",
             ],
             "fit": ["まず話を聞きたい", "講習か伴走か迷う", "来店またはオンラインで相談したい"],
-            "url": DIAGNOSIS_FREE_CONSULT_BOOK_URL,
+            "url": INDIVIDUAL_CONSULT_BOOK_URL,
             "cta": "無料相談を予約する",
             "material_url": "#lectures",
             "material_cta": "受講資料で選び方を見る",
@@ -11426,17 +11426,17 @@ def _render_courses_packages() -> str:
             "level_id": "advanced",
             "title": support_title,
             "price": "月額 100,000円（税込）× 6ヶ月",
-            "duration": "無料相談から導入計画を設計",
+            "duration": "初回相談予約",
             "subsidy": True,
-            "desc": "複数業務の実装・定着を6ヶ月で進める導入プロジェクトです。9,800円〜/月のAIアプリサイト保守・改善とは対象が異なります。",
+            "desc": "HP公開、事務自動化、AI導入、デザイン内製化、経理、マーケを6ヶ月で定着させます。",
             "content": [
                 "AIホームページ、書類作成、営業効率化を設計",
                 "経理・バックオフィス自動化、専用AIツール作成を支援",
                 "補助金用のカリキュラム案、見積、導入計画まで並走",
             ],
             "fit": ["社内にAI運用を定着させたい", "複数業務をまとめて仕組み化したい", "補助金前提で導入計画を組みたい"],
-            "url": DIAGNOSIS_FREE_CONSULT_BOOK_URL,
-            "cta": "無料相談で導入計画を整理する",
+            "url": MONTHLY_SUPPORT_CHECKOUT_URL,
+            "cta": "Stripeで月額支払いを始める",
             "material_url": "#lectures",
             "material_cta": "受講資料で導入の流れを見る",
             "variant": "wide",
@@ -11536,7 +11536,7 @@ def _render_courses_packages() -> str:
         "<p class='packages-note fade-up d4'>"
         "<strong>AIコーディング講習:</strong> CodexとClaude Codeを使い、コードの読解、修正、画面確認、安全な公開までを120分11,000円で扱う実装講習です。専用の予約ページから申し込めます。"
         "<br><strong>無料相談:</strong> AI無料相談は、講習・伴走・制作のどれから始めるかを無料で整理する入口です。しっかり60分のAI個別相談は、AIの使い方、指示書、確認体制、運用導線まで整理します。"
-        "<br><strong>伴走支援:</strong> AIアプリサイト保守・改善は月額9,800円〜、複数業務のAI導入伴走支援は月額10万円×6ヶ月が目安です。どちらも無料相談で対象範囲と進め方を整理してから見積もります。"
+        "<br><strong>月額支払い:</strong> AI伴走支援の月額決済はStripe Checkoutで受け付け、申込後に初回範囲と日程を確認します。"
         "<br><strong>補助金:</strong> 講習と伴走支援は、滋賀県・彦根市のデジタル化/AI導入系補助金と組み合わせて相談できます。"
         "</p>"
     )
@@ -11592,7 +11592,7 @@ COURSE_TESTIMONIALS: tuple[dict, ...] = (
     },
     {
         "key": "ai-support",
-        "course_name": "AI導入伴走支援（6ヶ月プロジェクト）",
+        "course_name": "AI伴走支援",
         "anchor_id": "voice-ai-support",
         "heading": "社内の理解が進み、AI導入が動き出した",
         "testimonials": (
@@ -11785,14 +11785,14 @@ def _render_compact_course_cards() -> str:
         },
         {
             "cat": "6ヶ月伴走",
-            "title": "AI導入伴走支援（6ヶ月）",
+            "title": "AI伴走支援",
             "image": "/img/course-path-workflow.webp",
             "image_alt": "複雑な業務をAIで整理し、続けられる仕組みに変える様子",
             "price": "月額10万円",
             "duration": "6ヶ月",
-            "desc": "HP・事務・AI導入を、複数業務の導入プロジェクトとして6ヶ月で定着させます。9,800円〜/月のAIアプリサイト保守・改善とは対象が異なります。",
-            "url": DIAGNOSIS_FREE_CONSULT_BOOK_URL,
-            "cta": "無料相談で導入計画を整理する",
+            "desc": "HP・事務・AI導入を、仕事に定着するところまで支援します。",
+            "url": MONTHLY_SUPPORT_CHECKOUT_URL,
+            "cta": "伴走支援を申し込む",
             "material_url": "/lectures/2026-06-ai-agent-rag-design.html",
             "material_cta": "AI導入・RAG設計の資料を見る",
             "testimonial_key": "ai-support",
@@ -11978,8 +11978,9 @@ def _render_footer(today: str) -> str:
         "<div class='footer-grid'>"
         "<div class='footer-brand'>"
         "<div class='footer-logo'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span></div>"
-        "<p class='footer-tagline'>AIを教えるだけではありません。滋賀・彦根の中小事業者の、見積もり・予約・問い合わせ・事務の困りごとを、AI相談から使える仕組みに変えます。</p>"
-        f"<a class='footer-cta' href='{DIAGNOSIS_FREE_CONSULT_BOOK_URL}' target='_blank' rel='noopener'>無料相談で、仕事を整理する</a>"
+        "<p class='footer-tagline'>滋賀・彦根の中小事業者向けに、AI相談・AIエージェント講習・近日開始で現在仮運用中の月額2,200円AIオンラインサロン・受講資料・Web集客支援を行う"
+        "資料センター型の相談サイト。増え続けるAI情報を、仕事で使える次の一手に変えます。</p>"
+        "<a class='footer-cta' href='#contact'>AI個別相談を予約する</a>"
         "</div>"
         "<nav class='footer-nav' aria-label='フッターナビ'>"
         "<span class='footer-nav-head'>メニュー</span>"
@@ -12006,10 +12007,10 @@ def _render_footer(today: str) -> str:
 
 
 def _render_sticky_cta() -> str:
-    """モバイルでスクロール後に現れる、無料相談と講習の固定CTA。"""
+    """モバイルでスクロール後に現れる、個別相談と講習の固定CTA。"""
     return (
-        "<nav class='sticky-cta' id='sticky-cta' aria-label='無料相談とAIエージェント講習の固定CTA' aria-hidden='true'>"
-        f"<a class='sticky-cta-btn sticky-cta-btn--consult' href='{DIAGNOSIS_FREE_CONSULT_BOOK_URL}' target='_blank' rel='noopener'><span>無料相談</span><small>初回・無料</small></a>"
+        "<nav class='sticky-cta' id='sticky-cta' aria-label='個別相談とAIエージェント講習の固定CTA' aria-hidden='true'>"
+        f"<a class='sticky-cta-btn sticky-cta-btn--consult' href='{INDIVIDUAL_CONSULT_BOOK_URL}' target='_blank' rel='noopener'><span>個別相談</span><small>60分・5,500円</small></a>"
         f"<a class='sticky-cta-btn sticky-cta-btn--agent' href='{AI_AGENT_COURSE_URL}' target='_blank' rel='noopener'><span>AIエージェント講習</span><small>120分・5,500円</small></a>"
         "</nav>"
     )
@@ -12063,7 +12064,7 @@ def _render_contact_form() -> str:
     """申込導線は「無料相談の予約(Square)」に一本化。相談は対面・Zoom・LINEで実施。"""
     return (
         # 主導線: 日程を選ぶだけで予約完了
-        f"<a class='contact-primary fade-up' href='{DIAGNOSIS_FREE_CONSULT_BOOK_URL}' target='_blank' rel='noopener'>"
+        f"<a class='contact-primary fade-up' href='{INDIVIDUAL_CONSULT_BOOK_URL}' target='_blank' rel='noopener'>"
         "<span class='cp-ico'>📅</span>"
         "<span class='cp-body'>"
         "<span class='cp-title'>AI無料相談を予約する</span>"
@@ -12163,7 +12164,7 @@ FAQ_QA = [
     ("LLMO やAI検索に強いサイトにできますか？",
      "できます。地域名、講師の一次経験、料金、対応範囲、実例、FAQ、構造化データを整理し、AIが回答に引用しやすい形で公開します。大量の自動生成ではなく、講習と実例に基づく一次情報を重視します。"),
     ("料金はどれくらいですか？",
-     "AI無料相談の入口整理は無料、AI業務診断は11,000円〜、AIアプリサイト Liteは99,000円〜、AIアプリサイトは198,000円〜、AI業務システムは500,000円〜です。既存サイト・小さなアプリの保守・改善は9,800円〜/月、複数業務を6ヶ月で定着させるAI導入伴走支援は月額10万円×6ヶ月が目安です。どちらも無料相談で対象範囲を整理してから見積もります。"),
+     "AI無料相談の入口整理は無料、AIエージェント講習120分は5,500円、AI個別相談 しっかり60分は5,500円です。AI伴走支援 いっしょに導入は月額10万円×6ヶ月が目安で、月額決済はStripe Checkoutで行います。LP制作は1本18〜30万円が目安。多くは補助金併用を前提に組みます。"),
     ("補助金は使えますか？滋賀の事業者でも対象ですか？",
      "講習・伴走パックは「デジタル化・AI導入補助金」や滋賀県・彦根市の補助金の対象になります。補助率は小規模事業者で最大4/5、実質負担が1/3以下になるケースが多いです。申請からツール選定・実装・定着まで一気通貫で支援します。"),
     ("パソコンやスマホが苦手ですが、大丈夫ですか？",
@@ -15041,31 +15042,6 @@ button:focus-visible {
 
 FOCUSED_PORTAL_CSS += r"""
 /* ---- AIアプリサイト: 相談から仕組み化へ進む公開導線, 2026-08-20 ---- */
-.focus-hero-copy--app-site .focus-kicker { color:#1767be; }
-.focus-hero-shell--app-site { grid-template-columns:minmax(0,.94fr) minmax(380px,.76fr); justify-content:stretch; gap:52px; }
-.focus-hero-shell--app-site .focus-hero-copy { max-width:760px; }
-.focus-hero-copy--app-site .focus-title { max-width:760px; font-size:clamp(34px,3.15vw,45px); }
-.focus-hero-copy--app-site .focus-title-first { color:#172c4d; font-size:clamp(31px,4.3vw,55px); }
-.focus-hero-copy--app-site .focus-title-line strong { color:#1767be; }
-.focus-hero-copy--app-site .focus-title-line,
-.focus-hero-copy--app-site .focus-title strong { white-space:normal; }
-.focus-hero-copy--app-site .focus-lead { max-width:780px; }
-.focus-hero-copy--app-site .focus-actions { align-items:center; }
-.focus-hero-copy--app-site .focus-actions .focus-btn.primary { background:#1767be; border-color:#1767be; }
-.focus-hero-copy--app-site .focus-actions .focus-btn.primary:hover,
-.focus-hero-copy--app-site .focus-actions .focus-btn.primary:focus-visible { background:#114f93; border-color:#114f93; }
-.home-app-hero-screen { width:100%; max-width:760px; margin:26px 0 0; padding:14px; border:1px solid #b9d2e9; border-radius:18px; background:#fff; box-shadow:0 18px 42px rgba(22,70,122,.13); }
-.focus-hero-shell--app-site .home-app-hero-screen { align-self:center; justify-self:end; margin:0; }
-.home-app-hero-screen-bar { display:flex; align-items:center; gap:5px; padding:0 2px 11px; border-bottom:1px solid #dbe8f3; }
-.home-app-hero-screen-bar i { width:8px; height:8px; border-radius:999px; background:#9bb3cc; }
-.home-app-hero-screen-bar small { margin-left:6px; color:#5d7390; font-size:10px; font-weight:900; letter-spacing:.1em; }
-.home-app-hero-screen-main { display:flex; min-height:112px; flex-direction:column; justify-content:center; margin-top:12px; padding:18px; border-radius:13px; background:linear-gradient(135deg,#eef7ff,#f2fbf8); }
-.home-app-hero-screen-main small { color:#087972; font-size:10px; font-weight:900; letter-spacing:.1em; }
-.home-app-hero-screen-main b { margin-top:7px; color:#132d4d; font-size:clamp(22px,3.1vw,34px); line-height:1.25; letter-spacing:-.03em; }
-.home-app-hero-screen-main span { margin-top:7px; color:#5b718b; font-size:12px; font-weight:700; }
-.home-app-hero-tasks { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin-top:10px; }
-.home-app-hero-tasks span { min-width:0; padding:9px; border:1px solid #d7e4f0; border-radius:10px; color:#4b617b; font-size:11px; font-weight:750; }
-.home-app-hero-tasks b { display:block; margin-top:3px; color:#1767be; font-size:12px; }
 .home-app-site-guide { position:relative; overflow:hidden; border-top:1px solid #d6e5f1; border-bottom:1px solid #d6e5f1; background:linear-gradient(135deg,#eef7ff 0%,#fbfdff 52%,#edfbf7 100%); }
 .home-app-site-guide::after { position:absolute; right:-120px; bottom:-180px; width:420px; height:420px; border-radius:50%; background:rgba(23,103,190,.09); content:""; }
 .home-app-site-shell { position:relative; z-index:1; width:min(1180px,calc(100% - 48px)); margin:0 auto; padding:58px 0; }
@@ -15101,15 +15077,9 @@ FOCUSED_PORTAL_CSS += r"""
   .site-nav .nav-link { padding-inline:7px !important; font-size:11px !important; }
 }
 @media (max-width:900px) {
-  .focus-hero-shell--app-site { grid-template-columns:1fr; gap:28px; }
-  .focus-hero-shell--app-site .home-app-hero-screen { justify-self:start; }
   .home-app-site-cards { grid-template-columns:repeat(3,minmax(0,1fr)); }
 }
 @media (max-width:640px) {
-  .focus-hero-copy--app-site .focus-title-first { font-size:clamp(30px,8.6vw,43px); }
-  .home-app-hero-screen { margin-top:21px; padding:11px; }
-  .home-app-hero-screen-main { min-height:0; padding:15px; }
-  .home-app-hero-tasks { grid-template-columns:1fr 1fr; }
   .home-app-site-shell { width:min(100% - 30px,560px); padding:43px 0; }
   .home-app-site-head { grid-template-columns:1fr; gap:19px; }
   .home-app-site-cards { grid-template-columns:1fr; gap:9px; margin-top:21px; }
@@ -15143,22 +15113,23 @@ def _render_hero_focused() -> str:
     return (
         "<section class='focus-hero' id='top' data-interactive-hero>"
         "<div class='hero-orb hero-orb-one' aria-hidden='true'></div><div class='hero-orb hero-orb-two' aria-hidden='true'></div>"
-        "<div class='focus-hero-shell focus-hero-shell--app-site'>"
-        "<div class='focus-hero-copy focus-hero-copy--app-site'>"
-        "<p class='focus-kicker'>AI相談 × AIアプリサイト</p>"
-        "<h1 class='focus-title'><span class='focus-title-first'>相談だけで終わらない。</span><br><span class='focus-title-line'><strong>AIで、仕事の仕組みまでつくる。</strong></span></h1>"
-        "<p class='focus-lead'>見積もり、予約、顧客管理、シフト、ブログ、問い合わせ対応。あなたの「これ面倒なんだよね」を、AIとWebアプリで仕組みにします。</p>"
-        "<div class='focus-actions'>"
-        f"<a class='focus-btn primary' href='{DIAGNOSIS_FREE_CONSULT_BOOK_URL}' target='_blank' rel='noopener'>まずは無料相談 <span aria-hidden='true'>→</span></a>"
-        "<a class='focus-btn secondary' href='/ai-app-site/'>AIアプリサイトを見る</a>"
-        "<a class='hero-text-link' href='#packages'>AIを学ぶ講習を見る <span aria-hidden='true'>→</span></a></div>"
-        "<ul class='focus-trust'><li>初回無料</li><li>対面・オンライン対応</li><li>無理な営業なし</li></ul>"
-        "</div>"
-        "<aside class='home-app-hero-screen' aria-label='AIアプリサイトで楽になる仕事の例'>"
-        "<div class='home-app-hero-screen-bar'><i></i><i></i><i></i><small>AI APP SITE</small></div>"
-        "<div class='home-app-hero-screen-main'><small>AI相談から生まれる</small><b>その仕事、<br>サイトにやらせませんか？</b><span>人は確認と、大事な対話へ。</span></div>"
-        "<div class='home-app-hero-tasks'><span>見積もり <b>→ 自動作成</b></span><span>予約 <b>→ 自動受付</b></span><span>問い合わせ <b>→ AI回答</b></span><span>ブログ <b>→ AI下書き</b></span><span>シフト <b>→ 自動作成</b></span><span>報告書 <b>→ PDF生成</b></span></div>"
+        "<div class='focus-hero-shell'>"
+        "<div class='focus-hero-copy'>"
+        "<p class='focus-kicker'>彦根・滋賀の中小事業者向け</p>"
+        "<h1 class='focus-title'><span class='focus-title-first'>AIエージェントで</span><br><span class='focus-title-line'><strong>できることを100倍に</strong></span></h1>"
+        "<aside class='hero-advantage' id='advantage' aria-labelledby='hero-advantage-title'>"
+        "<div class='hero-advantage-number' role='img' aria-label='AI利用率 6パーセント'><span>AI利用率</span><strong>6%</strong></div>"
+        "<div class='hero-advantage-copy'><small><strong>まだまだこれから！</strong><span>始めるなら今。</span></small><p id='hero-advantage-title'><span class='hero-advantage-equation'><strong>AI</strong><span>×</span><strong>経験</strong></span><span class='hero-advantage-outcome'>思い描けば現実になる！</span></p></div>"
+        "<ul class='hero-advantage-pillars' aria-label='AI活用を成果に変える3原則'><li><b>01</b>試しに作る</li><li><b>02</b>素早く修正</li><li><b>03</b>仕組み化する</li></ul>"
         "</aside>"
+        "<p class='focus-lead'>告知・事務・集客に追われる方へ。AIが気になるけれど、何から始めるか迷う方へ。3つの質問で、いまの仕事に合う次の一歩を提案します。</p>"
+        "<div class='focus-actions'>"
+        "<div class='hero-diagnose-cta'><span class='hero-diagnose-eyebrow'>何から始めるか、1分で見える。</span>"
+        "<a class='focus-btn primary hero-diagnose-button diagnose-open' href='#packages'>迷ったら60秒診断をはじめる →</a>"
+        "<small>3問で完了。結果を見てから、予約するか決められます。</small></div>"
+        f"<a class='focus-btn secondary' href='{AI_AGENT_COURSE_URL}' target='_blank' rel='noopener'>AIエージェント講習を見る</a>"
+        "<a class='hero-text-link' href='/lectures/index.html'>受講資料 <span aria-hidden='true'>→</span></a></div>"
+        "<ul class='focus-trust'><li>AI初心者OK</li><li>対面・オンライン対応</li><li>仕事を持ち込める</li></ul></div>"
         "</div>"
         "</section>"
     )
@@ -15243,7 +15214,7 @@ def _render_focused_blog_content() -> str:
 
 
 def _render_focused_main() -> str:
-    free_consult = DIAGNOSIS_FREE_CONSULT_BOOK_URL
+    individual_consult = INDIVIDUAL_CONSULT_BOOK_URL
 
     parts = [
         "<section class='focus-block main-course' id='packages'><div class='focus-section-head'><small>COURSES</small><h2>講習・相談コース</h2></div>",
@@ -15283,8 +15254,8 @@ def _render_focused_main() -> str:
         "<details><summary>受講にパソコンは必要ですか？</summary><p>はい。WindowsまたはMacのパソコンを必ずお持ちください。直したい資料やページもあれば、あわせてお持ちください。</p></details>",
         "<details><summary>オンラインでも受講できますか？</summary><p>対面・オンラインの両方に対応しています。彦根市内は訪問も相談できます。</p></details>",
         "<details><summary>AIオンラインサロンでは、何がわかりますか？</summary><p>AIオンラインサロンは近日開始で、現在は仮運用中です。登録中の方にはテスト運用へご協力いただいています。月額2,200円（税込）で、Square決済は毎月自動更新し、決済確認後にLINE参加案内を表示します。</p></details></div></section>",
-        "<section class='focus-contact' id='contact'><div class='focus-contact-inner'><div><h2>AIに任せたい仕事を、無料相談で聞かせてください。</h2><p>いまの手順を見ながら、講習から始めるか、AIアプリサイトを小さく作るかを一緒に整理します。</p></div>",
-        f"<a class='focus-btn' href='{free_consult}' target='_blank' rel='noopener'>無料相談の日程を見る（初回無料）</a></div></section>",
+        "<section class='focus-contact' id='contact'><div class='focus-contact-inner'><div><h2>AIエージェントに任せたい仕事を聞かせてください。</h2><p>講習前に、今の仕事に合う題材と進め方を一緒に整理できます。</p></div>",
+        f"<a class='focus-btn' href='{individual_consult}' target='_blank' rel='noopener'>AI個別相談を予約する（60分・5,500円）</a></div></section>",
     ]
     return "".join(parts)
 
@@ -15292,7 +15263,7 @@ def _render_focused_main() -> str:
 def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     today = datetime.now().strftime("%Y-%m-%d")
     title = SITE_BROWSER_TITLE
-    desc = "AI相談は、彦根・滋賀でAIの学び、業務相談、AIアプリサイトの実装まで支援します。見積もり、予約、問い合わせ、シフト、ブログの手作業を、無料相談から小さく仕組みに変えます。"
+    desc = "AI相談は、彦根・滋賀でAIエージェント講習を開催しています。AIオンラインサロンは近日開始・現在仮運用中で、Square決済によるテスト運用参加を受け付けています。CodexやClaude Codeで実践まで進めます。"
 
     parts: list[str] = []
     parts.append("<!doctype html><html lang='ja'><head><meta charset='utf-8'>" + FAVICON_HEAD_HTML)

@@ -11,7 +11,7 @@ goal: 無料相談で見せる材料と、最初にAI化する仕事を一つ決
 category: ai-work
 learning_order: 4
 level: 入門
-listed: true
+listed: false
 recommended: true
 ---
 

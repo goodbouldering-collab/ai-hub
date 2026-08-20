@@ -81,13 +81,16 @@ class AiAppSitePagesTests(unittest.TestCase):
         finally:
             self.site_builder.DIST = original_dist
 
-    def test_homepage_leads_with_the_problem_solving_offer_and_free_consultation(self):
+    def test_homepage_keeps_existing_hero_and_adds_app_site_as_a_separate_service(self):
         page = self.portal.render_portal([], [])
 
-        self.assertIn("AI相談 × AIアプリサイト", page)
-        self.assertIn("相談だけで終わらない。", page)
-        self.assertIn("AIで、仕事の仕組みまでつくる。", page)
+        self.assertIn("AIエージェントで", page)
+        self.assertIn("できることを100倍に", page)
+        self.assertIn("迷ったら60秒診断をはじめる", page)
+        self.assertNotIn("相談だけで終わらない。", page)
+        self.assertNotIn("AIで、仕事の仕組みまでつくる。", page)
         self.assertIn("その仕事、サイトにやらせませんか？", page)
+        self.assertEqual(1, page.count("その仕事、サイトにやらせませんか？"))
         self.assertIn("href='/ai-app-site/'", page)
         self.assertIn(self.portal.DIAGNOSIS_FREE_CONSULT_BOOK_URL, page)
         self.assertLess(page.index("<section class='focus-hero'"), page.index("id='ai-app-site'"))
@@ -104,6 +107,11 @@ class AiAppSitePagesTests(unittest.TestCase):
         self.assertIn(">AIアプリサイト</span>", mobile)
 
     def test_free_consultation_sheet_is_built_as_a_public_material(self):
+        source = (ROOT / "content" / "lectures" / "2026-08-ai-app-site-consult-sheet.md").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("listed: false", source)
+
         original_dist = self.site_builder.DIST
         try:
             with tempfile.TemporaryDirectory() as tmp:
@@ -126,16 +134,17 @@ class AiAppSitePagesTests(unittest.TestCase):
         self.assertIn("!site/dist/lectures/2026-08-ai-app-site-consult-sheet.html", gitignore)
         self.assertTrue(public_sheet.exists())
 
-    def test_homepage_distinguishes_app_site_support_from_six_month_project(self):
+    def test_existing_course_and_consultation_offers_are_unchanged(self):
         page = self.portal.render_portal([], [])
 
-        self.assertIn("AIアプリサイト保守・改善", page)
-        self.assertIn("9,800円〜/月", page)
-        self.assertIn("AI導入伴走支援（6ヶ月プロジェクト）", page)
+        self.assertNotIn("AIアプリサイト保守・改善", page)
+        self.assertNotIn("9,800円〜/月", page)
+        self.assertIn("AI伴走支援", page)
         self.assertIn("月額10万円", page)
         self.assertIn("6ヶ月", page)
-        self.assertIn("無料相談で、仕事を整理する", page)
-        self.assertIn(self.portal.DIAGNOSIS_FREE_CONSULT_BOOK_URL, page)
+        self.assertIn("AI個別相談を予約する（60分・5,500円）", page)
+        self.assertIn(self.portal.INDIVIDUAL_CONSULT_BOOK_URL, page)
+        self.assertIn(self.portal.MONTHLY_SUPPORT_CHECKOUT_URL, page)
 
 
 if __name__ == "__main__":

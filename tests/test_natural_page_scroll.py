@@ -29,7 +29,7 @@ class NaturalPageScrollTest(unittest.TestCase):
     def test_hero_is_ready_without_an_entrance_pause(self) -> None:
         hero = portal._render_hero_focused()
 
-        self.assertIn("class='focus-hero-copy focus-hero-copy--app-site'", hero)
+        self.assertIn("class='focus-hero-copy'", hero)
         self.assertNotIn("class='focus-hero-copy fade-up'", hero)
 
     def test_page_does_not_add_wheel_or_touch_scroll_interception(self) -> None:

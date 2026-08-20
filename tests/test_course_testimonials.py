@@ -38,7 +38,7 @@ EXPECTED_GROUPS = (
     ),
     (
         "ai-support",
-        "AI導入伴走支援（6ヶ月プロジェクト）",
+        "AI伴走支援",
         "voice-ai-support",
         "社内の理解が進み、AI導入が動き出した",
         (
@@ -331,9 +331,10 @@ class CourseTestimonialsTest(unittest.TestCase):
                     )
 
     def test_accessible_roles_support_visible_hero_and_course_labels(self) -> None:
-        hero = portal._render_hero_focused()
-        self.assertIn("aria-label='AIアプリサイトで楽になる仕事の例'", hero)
-        self.assertIn("<ul class='focus-trust'>", hero)
+        self.assertIn(
+            "class='hero-advantage-number' role='img' aria-label='AI利用率 6パーセント'",
+            portal._render_hero_focused(),
+        )
         self.assertIn(
             "class='course-menu-unified' id='course-voices' role='region' "
             "aria-label='講習・相談の全5メニュー'",
@@ -373,12 +374,12 @@ class CourseTestimonialsTest(unittest.TestCase):
 
         sticky_cta = portal._render_sticky_cta()
         self.assertIn(
-            "<nav class='sticky-cta' id='sticky-cta' aria-label='無料相談とAIエージェント講習の固定CTA'",
+            "<nav class='sticky-cta' id='sticky-cta' aria-label='個別相談とAIエージェント講習の固定CTA'",
             sticky_cta,
         )
         self.assertIn(
             "class='sticky-cta-btn sticky-cta-btn--consult' "
-            "href='https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/AW5O5XSBHLEHYUBHLZUGFKYE'",
+            "href='https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/TO3XHZT6XP3OM4QBDYMW7TZP'",
             sticky_cta,
         )
         self.assertIn(

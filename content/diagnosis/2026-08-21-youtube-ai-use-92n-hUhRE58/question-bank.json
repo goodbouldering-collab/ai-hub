@@ -1,0 +1,226 @@
+{
+  "schemaVersion": 1,
+  "assetId": "youtube-ai-use-92n-hUhRE58",
+  "status": "draft-for-later-integration",
+  "source": {
+    "type": "youtube",
+    "videoId": "92n-hUhRE58",
+    "url": "https://www.youtube.com/watch?v=92n-hUhRE58",
+    "title": "エンジニアなら、これくらいAI使えないとね。",
+    "channel": "エンジニアファースト",
+    "checkedAt": "2026-08-21",
+    "caption": "ja-auto",
+    "usageNote": "自動生成字幕の固有名詞・数値は診断根拠にせず、行動と運用の論点だけを再編集する。"
+  },
+  "scoring": {
+    "scale": [0, 2, 4, 5],
+    "compatibility": "AI実践力診断の現行回答尺度と互換",
+    "evidenceWindow": "直近90日の実際の行動で答える"
+  },
+  "questions": [
+    {
+      "id": "V01",
+      "axis": "usageDepth",
+      "audiences": ["general", "developer", "organization"],
+      "prompt": "AIはブラウザで答えを聞くだけですか。それとも資料・ファイル・道具を渡して、一連の仕事を任せていますか？",
+      "context": "会話の回数ではなく、下書き、作業、確認、成果物まで実際の仕事がどう変わったかを見ます。",
+      "options": [
+        {"value": 0, "label": "質問や文章作成が中心で、成果物へは自分でコピペしている"},
+        {"value": 2, "label": "資料やファイルを渡し、一つの作業を任せたことがある"},
+        {"value": 4, "label": "複数の作業を任せ、途中と最後を自分で確認している"},
+        {"value": 5, "label": "人・AI・道具の役割を決め、再現できる仕事の流れとして改善している"}
+      ],
+      "currentQuestionOverlap": ["Q03", "Q04"],
+      "recommendedPlacements": ["homepage-teaser", "readiness-implementation-addon", "consultation-intake"],
+      "nextAction": "今週一つの仕事を選び、資料を渡す、成果物を作る、人が確認する、の3段階で試す。",
+      "recommendedCourseIds": ["ai-agent-course", "ai-consult-entry"]
+    },
+    {
+      "id": "V02",
+      "axis": "enablement",
+      "audiences": ["organization", "developer"],
+      "prompt": "使いたいAIが社内規定や端末制限で使えないとき、許可された範囲と代替手段を整理していますか？",
+      "context": "使えないことを個人の努力不足にせず、利用できる製品、入力できる情報、申請先、代替手順を確認します。",
+      "options": [
+        {"value": 0, "label": "制約が分からず、使わないか個人判断で使っている"},
+        {"value": 2, "label": "使える製品や情報の範囲を一度確認した"},
+        {"value": 4, "label": "申請、代替手段、確認者を決めて繰り返し運用している"},
+        {"value": 5, "label": "利用状況と事故のない実績を見ながら、関係者と許可範囲を改善している"}
+      ],
+      "currentQuestionOverlap": ["Q07", "Q08"],
+      "recommendedPlacements": ["readiness-organization-addon", "consultation-intake"],
+      "nextAction": "利用できるAI、入力禁止情報、許可が必要な操作、相談先を一枚に整理する。",
+      "recommendedCourseIds": ["ai-consult-entry", "ai-support"]
+    },
+    {
+      "id": "V03",
+      "axis": "enablement",
+      "audiences": ["organization"],
+      "prompt": "新しいAIツールを配る前に、対象者が価値を体験できる研修や小さな課題を用意していますか？",
+      "context": "道具だけを渡すのでなく、日常の困りごとを一つ軽くする体験から始めます。",
+      "options": [
+        {"value": 0, "label": "ツールを案内しただけで、使い方や題材は各自に任せている"},
+        {"value": 2, "label": "基本操作の説明や小さな体験会を一度行った"},
+        {"value": 4, "label": "職種別の課題と確認方法を用意し、受講後も使えるようにしている"},
+        {"value": 5, "label": "成果物と利用状況を見て研修内容や支援方法を定期的に改善している"}
+      ],
+      "currentQuestionOverlap": [],
+      "recommendedPlacements": ["readiness-organization-addon", "consultation-intake", "plan-mapping"],
+      "nextAction": "一つの職種と一つの仕事に絞り、30分で成果物を作る体験課題を用意する。",
+      "recommendedCourseIds": ["ai-agent-course", "ai-support"]
+    },
+    {
+      "id": "V04",
+      "axis": "safety",
+      "audiences": ["general", "developer", "organization"],
+      "prompt": "個人情報・秘密情報・公開操作を、入力禁止だけでなく権限、確認、停止、復旧まで含めて管理していますか？",
+      "context": "クラウドかローカルかだけで決めず、何を誰がどこまで扱い、問題時にどう止めて戻すかを見ます。",
+      "options": [
+        {"value": 0, "label": "入力や操作の範囲を決めていない"},
+        {"value": 2, "label": "個人情報を避けるなど、基本の注意を一度試した"},
+        {"value": 4, "label": "権限、確認者、停止条件、戻し方を手順にしている"},
+        {"value": 5, "label": "安全な演習とレビューを行い、権限と復旧手順を改善している"}
+      ],
+      "currentQuestionOverlap": ["Q07", "Q08"],
+      "recommendedPlacements": ["consultation-intake"],
+      "nextAction": "一つの業務で、入力禁止情報、許可操作、確認者、停止と復旧を決める。",
+      "recommendedCourseIds": ["ai-consult-entry", "ai-support"]
+    },
+    {
+      "id": "V05",
+      "axis": "value",
+      "audiences": ["organization", "developer"],
+      "prompt": "AI利用料と人の確認時間に対して、短縮時間・品質・売上・利用者価値のどれが増えたか説明できますか？",
+      "context": "動画内の個別の金額ではなく、自分の業務で費用と成果を同じ期間で比べられるかを見ます。",
+      "options": [
+        {"value": 0, "label": "利用料だけを見ており、成果を測っていない"},
+        {"value": 2, "label": "一つの仕事で、時間か品質の変化を一度記録した"},
+        {"value": 4, "label": "利用料と確認時間を含め、毎月同じ指標で比較している"},
+        {"value": 5, "label": "成果とリスクをレビューし、予算上限や使う仕事を継続的に見直している"}
+      ],
+      "currentQuestionOverlap": ["Q01", "Q10"],
+      "recommendedPlacements": ["readiness-organization-addon", "consultation-intake", "plan-mapping"],
+      "nextAction": "一業務について、月額費用、確認時間、短縮時間、品質の変化を一か月だけ記録する。",
+      "recommendedCourseIds": ["ai-consult-entry", "ai-support"]
+    },
+    {
+      "id": "V06",
+      "axis": "value",
+      "audiences": ["general", "organization"],
+      "prompt": "AIで空いた時間を、顧客対応・教育・企画・地域活動など何へ振り向けるか決めていますか？",
+      "context": "作業を速くするだけで終わらず、人の自由度や利用者への価値が増えたかを見ます。",
+      "options": [
+        {"value": 0, "label": "短縮した時間を何に使うか決めていない"},
+        {"value": 2, "label": "空いた時間で増やしたい活動を一つ決めた"},
+        {"value": 4, "label": "実際に時間を振り向け、利用者や仕事への効果を記録している"},
+        {"value": 5, "label": "チームで時間の使い道を共有し、成果と負担を見ながら配分を改善している"}
+      ],
+      "currentQuestionOverlap": ["Q01", "Q09", "Q10"],
+      "recommendedPlacements": ["homepage-teaser", "readiness-organization-addon", "consultation-intake"],
+      "nextAction": "減らしたい作業と、その後に10分増やしたい活動を一組で書く。",
+      "recommendedCourseIds": ["ai-consult-entry", "ai-agent-course"]
+    },
+    {
+      "id": "V07",
+      "axis": "knowledge",
+      "audiences": ["developer", "organization"],
+      "prompt": "プロジェクト固有の目的、禁止事項、完成条件、失敗から得た学びを、次回も使える形で残していますか？",
+      "context": "毎回長く説明するのでなく、AIと人が必要な情報へたどり着ける場所を整えます。",
+      "options": [
+        {"value": 0, "label": "会話や担当者の記憶に頼り、毎回説明し直している"},
+        {"value": 2, "label": "目的や注意点を一つの文書に残したことがある"},
+        {"value": 4, "label": "目的、制約、完成条件、確認手順を必要最小限で更新している"},
+        {"value": 5, "label": "人とAIのフィードバックを承認して取り込み、他の仕事にも再利用している"}
+      ],
+      "currentQuestionOverlap": ["Q03", "Q04", "Q06", "Q09"],
+      "recommendedPlacements": ["readiness-implementation-addon", "consultation-intake"],
+      "nextAction": "一つのプロジェクトに、目的、禁止事項、完成条件、確認方法を15行以内で残す。",
+      "recommendedCourseIds": ["ai-agent-course", "ai-coding"]
+    },
+    {
+      "id": "V08",
+      "axis": "knowledge",
+      "audiences": ["developer", "organization"],
+      "prompt": "過去の指示やルールが、新しいAIの力を必要以上に縛っていないか定期的に見直していますか？",
+      "context": "ルールを全部消すのでなく、必須の境界と古くなった手順を分けます。",
+      "options": [
+        {"value": 0, "label": "一度作った指示やルールを見直していない"},
+        {"value": 2, "label": "不要な指示を一度外したり短くしたりした"},
+        {"value": 4, "label": "モデルや仕事が変わるとき、必須ルールと手順を分けて見直している"},
+        {"value": 5, "label": "変更前後の成果と事故の有無を比べ、最小限のルールへ継続改善している"}
+      ],
+      "currentQuestionOverlap": ["Q06", "Q09", "Q10"],
+      "recommendedPlacements": ["readiness-implementation-addon", "consultation-intake"],
+      "nextAction": "古い指示を、守る境界、作業手順、参考情報に分け、不要な重複を一つ外す。",
+      "recommendedCourseIds": ["ai-coding", "ai-support"]
+    },
+    {
+      "id": "V09",
+      "axis": "knowledge",
+      "audiences": ["general", "developer", "organization"],
+      "prompt": "SNSや動画で見た新しいAI活用法を、出典・自分の仕事との適合・小さな検証で確かめてから取り入れていますか？",
+      "context": "話題だから全部採用するのでなく、公式情報、必要性、安全な試行で選別します。",
+      "options": [
+        {"value": 0, "label": "話題になった方法を、そのまま試したりルールへ追加したりする"},
+        {"value": 2, "label": "出典か公式情報を一度確認した"},
+        {"value": 4, "label": "自分の仕事への必要性を考え、安全な範囲で比較している"},
+        {"value": 5, "label": "採用・不採用の理由と結果を残し、チームの判断基準を改善している"}
+      ],
+      "currentQuestionOverlap": ["Q05", "Q06"],
+      "recommendedPlacements": ["readiness-implementation-addon", "consultation-intake"],
+      "nextAction": "気になる手法を一つ選び、公式情報、期待する効果、試す範囲、採用条件を書く。",
+      "recommendedCourseIds": ["ai-agent-course", "ai-coding"]
+    },
+    {
+      "id": "V10",
+      "axis": "verification",
+      "audiences": ["developer", "organization"],
+      "prompt": "AIに設計や実装を任せる範囲をリスクで分け、必要なところへ人や専門家のレビューを置いていますか？",
+      "context": "文章の下書き、業務ロジック、個人情報、課金、インフラでは、失敗したときの影響が違います。",
+      "options": [
+        {"value": 0, "label": "リスクを分けず、同じ確認方法で任せている"},
+        {"value": 2, "label": "重要な変更だけ、自分か詳しい人が一度確認した"},
+        {"value": 4, "label": "影響度ごとに承認者、テスト、公開条件を決めている"},
+        {"value": 5, "label": "失敗事例とレビュー結果から、委任範囲と確認基準を改善している"}
+      ],
+      "currentQuestionOverlap": ["Q02", "Q05", "Q08"],
+      "recommendedPlacements": ["readiness-implementation-addon", "consultation-intake"],
+      "nextAction": "一つの変更を低・中・高リスクに分け、それぞれの確認者と公開条件を決める。",
+      "recommendedCourseIds": ["ai-coding", "ai-support"]
+    },
+    {
+      "id": "V11",
+      "axis": "verification",
+      "audiences": ["developer"],
+      "prompt": "AIに成果物を作らせる前に利用者の流れを決め、テストと実画面で通ることを確かめていますか？",
+      "context": "コード量ではなく、利用者が目的を達成でき、壊れたときに気づける確認を用意します。",
+      "options": [
+        {"value": 0, "label": "生成された成果物を目で少し見るだけで使っている"},
+        {"value": 2, "label": "主な操作を自分で一度試した"},
+        {"value": 4, "label": "利用者シナリオ、単体テスト、主要画面の確認を毎回行っている"},
+        {"value": 5, "label": "失敗を再現するテストを残し、PC・スマホ・本番まで自動と人で継続確認している"}
+      ],
+      "currentQuestionOverlap": ["Q04", "Q05", "Q06"],
+      "recommendedPlacements": ["readiness-implementation-addon", "consultation-intake", "plan-mapping"],
+      "nextAction": "利用者が行う三つの操作を書き、一つを自動テスト、一つをブラウザで確認する。",
+      "recommendedCourseIds": ["ai-coding"]
+    },
+    {
+      "id": "V12",
+      "axis": "humanJudgment",
+      "audiences": ["general", "developer", "organization"],
+      "prompt": "要約・文章・返信をAIへ任せても、自分で説明する、異論を出す、たとえる、相手と直接話す力を残していますか？",
+      "context": "AIを使わないことが目的ではなく、人にしか担えない判断と関係づくりを意識して使います。",
+      "options": [
+        {"value": 0, "label": "内容を十分理解せず、AIの要約や返信をそのまま使うことがある"},
+        {"value": 2, "label": "送る前に読み、自分の言葉を一つ加えたことがある"},
+        {"value": 4, "label": "理由、異論、相手への配慮を自分で確認し、必要な場面は直接話している"},
+        {"value": 5, "label": "AI利用後も説明力と対話の質を振り返り、任せる範囲を改善している"}
+      ],
+      "currentQuestionOverlap": ["Q02", "Q05"],
+      "recommendedPlacements": ["homepage-teaser", "readiness-organization-addon", "consultation-intake"],
+      "nextAction": "次のAI生成文に、自分の判断理由か相手への一言を必ず一つ加える。",
+      "recommendedCourseIds": ["ai-agent-course", "ai-consult-entry"]
+    }
+  ]
+}

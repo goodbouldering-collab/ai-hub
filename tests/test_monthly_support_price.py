@@ -32,7 +32,7 @@ class MonthlySupportPriceTest(unittest.TestCase):
         self.assertEqual("88000", support["offers"]["price"])
         self.assertEqual("JPY", support["offers"]["priceCurrency"])
         self.assertEqual(
-            portal.SITE_URL + portal.MONTHLY_SUPPORT_CHECKOUT_URL,
+            portal.MONTHLY_SUPPORT_BOOK_URL,
             support["offers"]["url"],
         )
 

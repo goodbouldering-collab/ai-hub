@@ -3389,7 +3389,7 @@ def _render_lecture_overview(title: str, meta: dict, toc: list[tuple[str, str]])
     parts.append("<div class='lecture-shell-actions'>")
     parts.append(f"<a class='lecture-shell-link primary' href='{toc_href}'>{toc_label}</a>")
     parts.append("<a class='lecture-shell-link' href='./index.html'>受講資料一覧</a>")
-    parts.append("<a class='lecture-shell-link' href='../programming-map.html'>AIコーディング講習</a>")
+    parts.append("<a class='lecture-shell-link' href='../programming-map.html'>AIアプリサイト自作講習</a>")
     parts.append("</div></section>")
     return "".join(parts)
 
@@ -3959,7 +3959,7 @@ def _render_teaching_home(sections: list[dict]) -> str:
     parts.append("<div class='tr-home-actions'>")
     if featured_href:
         parts.append(f"<a href='{html.escape(featured_href, quote=True)}'>AIエージェント講習を見る</a>")
-    parts.append("<a href='../programming-map.html'>AIコーディング講習を見る</a>")
+    parts.append("<a href='../programming-map.html'>AIアプリサイト自作講習を見る</a>")
     if first_section_id:
         parts.append(f"<a href='#sec-{html.escape(first_section_id, quote=True)}'>全資料を見る</a>")
     parts.append("</div>")
@@ -4630,9 +4630,9 @@ def _patch_programming_map_nav(pmap_file: Path) -> None:
     章立て (#part-1〜#sec-line) はヒーロー後のページ内目次バーに分離する。"""
     import re as _re
     text = pmap_file.read_text(encoding="utf-8")
-    # AIコーディング講習は共通ナビの主項目ではないため、現在地の強調は付けない。
+    # AIアプリサイト自作講習は共通ナビの主項目ではないため、現在地の強調は付けない。
     common_nav = render_top_nav(path_prefix="./", current_id=None, include_run=False)
-    # ページ内目次バー（AIコーディング講習専用 — sticky とは別）
+    # ページ内目次バー（AIアプリサイト自作講習専用 — sticky とは別）
     chapter_toc = (
         "<nav class='pm-chapter-toc' aria-label='ページ内目次'>"
         "<span class='pm-toc-label'>AI CODING</span>"
@@ -4754,7 +4754,7 @@ def build_ai_app_site_pages() -> int:
         nav_html=render_top_nav(path_prefix="../", current_id="app-site", include_run=False),
         favicon_html=FAVICON_HEAD_HTML,
         shared_header_css=GENERATED_PUBLIC_HEADER_CSS,
-        free_consult_url=build_portal.DIAGNOSIS_FREE_CONSULT_BOOK_URL,
+        selfbuild_book_url=build_portal.AI_APP_SELFBUILD_BOOK_URL,
     )
     for route, document in pages.items():
         target = DIST / route / "index.html"

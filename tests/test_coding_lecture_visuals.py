@@ -38,7 +38,7 @@ class CodingLectureVisualsTest(unittest.TestCase):
             re.DOTALL,
         )
         coding_card = next(
-            (card for card in cards if "AIコーディング講習 120分" in card),
+            (card for card in cards if "AIアプリサイト自作講習・相談 120分" in card),
             "",
         )
         self.assertTrue(coding_card)
@@ -46,7 +46,7 @@ class CodingLectureVisualsTest(unittest.TestCase):
         self.assertIn("class='lecture-card-media'", coding_card)
         self.assertIn("src='/img/course-path-coding.webp'", coding_card)
         self.assertIn(
-            "AIが変更したコードを人が確認し、安全にWebサイトを公開するAIコーディング講習",
+            "AIが変更したコードを人が確認し、AIアプリサイトを自作して公開する講習・相談",
             coding_card,
         )
 

@@ -38,7 +38,7 @@ listed: true
 ---
 ```
 
-`category`は`ai-start`、`ai-work`、`ai-salon`、`climbing`から選びます。AIコーディング講習は独立ページとして扱います。`learning_order`はカテゴリの中での順番です。
+`category`は`ai-start`、`ai-work`、`ai-salon`、`climbing`から選びます。AIアプリサイト自作講習・相談は独立ページとして扱います。`learning_order`はカテゴリの中での順番です。
 
 ### 見出しの順番
 

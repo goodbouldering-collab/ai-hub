@@ -30,13 +30,13 @@ class RenderedSalonTest(unittest.TestCase):
             self.html,
             re.DOTALL,
         )
-        self.assertEqual(len(cards), 4)
+        self.assertEqual(len(cards), 3)
         salon_cards = [card for card in cards if ">AIオンラインサロン</h3>" in card]
         self.assertEqual(len(salon_cards), 0)
         self.assertNotIn("compact-course-card--salon", self.html)
         self.assertNotIn("id='salon-menu-card'", self.html)
         self.assertIn("class='course-menu-unified'", self.html)
-        self.assertIn("aria-label='講習・相談の全5メニュー'", self.html)
+        self.assertIn("aria-label='講習・相談の全4メニュー'", self.html)
         self.assertNotIn("course-menu-unified-head", self.html)
         self.assertNotIn("上の4カードと下のオンラインサロンから選べます", self.html)
         self.assertRegex(

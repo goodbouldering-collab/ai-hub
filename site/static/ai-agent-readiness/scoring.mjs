@@ -31,13 +31,13 @@ export const COURSE_ROUTES = Object.freeze({
   }),
   'ai-coding': Object.freeze({
     id: 'ai-coding',
-    name: 'AIコーディング講習',
-    title: 'AIコーディング講習 120分',
+    name: 'AIアプリサイト自作講習・相談',
+    title: 'AIアプリサイト自作講習・相談 120分',
     price: '11,000円',
     duration: '120分',
-    description: 'Codex等を使い、コード・Git・テスト・公開までを安全に進める力を磨きます。',
-    summary: 'Codex等を使い、コード・Git・テスト・公開までを安全に進める力を磨きます。',
-    cta: 'AIコーディング講習を予約する',
+    description: '作りたい内容を相談し、Codex等を使って自分で作る・直す・確認する・公開する力を磨きます。',
+    summary: '作りたい内容を相談し、Codex等を使って自分で作る・直す・確認する・公開する力を磨きます。',
+    cta: '自作講習・相談を予約する',
     url: 'https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/S7GERYVDIPRV76DKXCC3WJWH',
   }),
   'ai-support': Object.freeze({

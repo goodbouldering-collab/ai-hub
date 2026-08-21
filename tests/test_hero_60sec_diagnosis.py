@@ -5,9 +5,9 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 INDEX = ROOT / "site" / "dist" / "index.html"
-INDIVIDUAL_CONSULT_URL = (
+SELFBUILD_CONSULT_URL = (
     "https://book.squareup.com/appointments/zymaszkc9pdwq2/"
-    "location/LWJNMP7EAN4GS/services/TO3XHZT6XP3OM4QBDYMW7TZP"
+    "location/LWJNMP7EAN4GS/services/S7GERYVDIPRV76DKXCC3WJWH"
 )
 FREE_CONSULT_URL = (
     "https://book.squareup.com/appointments/zymaszkc9pdwq2/"
@@ -81,9 +81,9 @@ class Hero60SecondDiagnosisTests(unittest.TestCase):
         self.assertNotIn("data-focus-level", self.index_html)
         self.assertNotIn("この講座を見る →", self.index_html)
         self.assertIn("start: {", self.index_html)
-        self.assertIn("bookingLabel: 'AI個別相談を予約する'", self.index_html)
+        self.assertIn("bookingLabel: 'AIアプリサイト自作講習・相談を予約する'", self.index_html)
         self.assertIn(
-            "bookingUrl: '" + INDIVIDUAL_CONSULT_URL + "'",
+            "bookingUrl: '" + SELFBUILD_CONSULT_URL + "'",
             self.index_html,
         )
         self.assertIn(

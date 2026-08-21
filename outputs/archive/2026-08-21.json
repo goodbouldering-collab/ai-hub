@@ -18,7 +18,9 @@
         "freshness": 10.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/1785424232227.jpeg?quality=90&amp;strip=all&amp;crop=0,13.767459555427,100,72.465080889147",
-      "published": "2026-08-21T17:25:50-04:00"
+      "published": "2026-08-21T17:25:50-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "3e9b31929f5f9d21",
@@ -37,7 +39,9 @@
         "freshness": 6.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/ai-label_eb9dbb.jpg?quality=90&amp;strip=all&amp;crop=0%2C11.121766626924%2C100%2C77.756466746151&amp;w=1200",
-      "published": "2026-08-21T09:37:52-04:00"
+      "published": "2026-08-21T09:37:52-04:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "2590cd625e139df1",
@@ -56,7 +60,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-08-21T17:16:13+00:00"
+      "published": "2026-08-21T17:16:13+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "fc1f858c3d8f2202",
@@ -75,7 +81,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-08-21T16:58:19+00:00"
+      "published": "2026-08-21T16:58:19+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "83be9b39bf989f72",
@@ -94,7 +102,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-08-21T16:07:32+00:00"
+      "published": "2026-08-21T16:07:32+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "2062f530bc075fe7",
@@ -113,7 +123,9 @@
         "freshness": 6.0
       },
       "thumbnail": "",
-      "published": "2026-08-21T15:06:26+00:00"
+      "published": "2026-08-21T15:06:26+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "339b7329ec202bab",
@@ -132,7 +144,9 @@
         "freshness": 3.0
       },
       "thumbnail": "",
-      "published": "2026-08-20T23:57:32+00:00"
+      "published": "2026-08-20T23:57:32+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "662a853020df047e",
@@ -151,7 +165,9 @@
         "freshness": 3.0
       },
       "thumbnail": "https://img.youtube.com/vi/d7yWcAz9m8w/hqdefault.jpg",
-      "published": "2026-08-21T10:00:15+00:00"
+      "published": "2026-08-21T10:00:15+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "a1c53e652155cbfb",
@@ -170,7 +186,9 @@
         "freshness": 0.0
       },
       "thumbnail": "",
-      "published": "Fri, 21 Aug 2026 11:59:48 +0000"
+      "published": "Fri, 21 Aug 2026 11:59:48 +0000",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "6aae50769be95791",
@@ -189,7 +207,9 @@
         "freshness": 0.0
       },
       "thumbnail": "https://huggingface.co/blog/assets/asr-benchmark-optimization/thumbnail.png",
-      "published": "Fri, 21 Aug 2026 00:00:00 GMT"
+      "published": "Fri, 21 Aug 2026 00:00:00 GMT",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

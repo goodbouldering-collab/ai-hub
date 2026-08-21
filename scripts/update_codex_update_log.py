@@ -290,16 +290,25 @@ def _validate_commands(
     return clean
 
 
-def _validate_confirmation(value: Any, field: str) -> str:
-    confirmation = _plain_text(value, field, maximum=220)
-    unsupported_outcome = re.compile(
-        r"(?:売上|収益|利益|成約|集客|時短|工数|成功|保証|必ず|確実|"
-        r"短縮|削減|向上|倍増|解決します|完了します)|"
-        r"\d+(?:[.,]\d+)?\s*(?:%|％|倍|時間|分|円)"
-    )
-    if unsupported_outcome.search(confirmation):
-        raise ValueError(f"{field}に未検証の成果・時短・保証表現を含められません")
-    return confirmation
+COMMAND_MENTION_PATTERN = re.compile(
+    r"(?<![A-Za-z0-9_./-])"
+    r"(codex(?:[ \t]+(?:--?)?[A-Za-z0-9][A-Za-z0-9._:/=+-]*)+|/[A-Za-z][A-Za-z0-9_-]*)"
+    r"(?![A-Za-z0-9_./=-])"
+)
+
+
+def _visible_command_mentions(value: str) -> set[str]:
+    return {
+        re.sub(r"\s+", " ", match.group(1).strip())
+        for match in COMMAND_MENTION_PATTERN.finditer(value)
+    }
+
+
+def _derived_confirmation(commands: list[str]) -> str:
+    if commands:
+        names = "、".join(f"「{command}」" for command in commands)
+        return f"{names}がOpenAI公式情報に掲載されていることを確認できます。"
+    return "この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。"
 
 
 def _validate_article_body(body: str, meta: dict[str, Any]) -> None:
@@ -361,12 +370,12 @@ def validate_editorial(
             f"features[{index}].source_evidence",
         )
         usage_story = feature.get("usage_story")
-        if not isinstance(usage_story, dict):
+        if not isinstance(usage_story, dict) or set(usage_story) != {"scene", "action"}:
             raise ValueError(f"features[{index}].usage_storyが不正です")
-        confirmation_evidence = _validate_source_evidence(
-            usage_story.get("confirmation_evidence"),
-            source_scope,
-            f"features[{index}].usage_story.confirmation_evidence",
+        commands = _validate_commands(
+            feature.get("commands"),
+            source_evidence,
+            f"features[{index}].commands",
         )
         clean_features.append(
             {
@@ -375,11 +384,7 @@ def validate_editorial(
                     feature.get("what_changed"), f"features[{index}].what_changed", maximum=180
                 ),
                 "how_to": _plain_text(feature.get("how_to"), f"features[{index}].how_to", maximum=180),
-                "commands": _validate_commands(
-                    feature.get("commands"),
-                    source_evidence,
-                    f"features[{index}].commands",
-                ),
+                "commands": commands,
                 "usage_story": {
                     "scene": _plain_text(
                         usage_story.get("scene"),
@@ -391,11 +396,7 @@ def validate_editorial(
                         f"features[{index}].usage_story.action",
                         maximum=220,
                     ),
-                    "confirmation": _validate_confirmation(
-                        usage_story.get("confirmation"),
-                        f"features[{index}].usage_story.confirmation",
-                    ),
-                    "confirmation_evidence": confirmation_evidence,
+                    "confirmation": _derived_confirmation(commands),
                 },
                 "availability": _plain_text(
                     feature.get("availability"), f"features[{index}].availability", maximum=180
@@ -408,6 +409,32 @@ def validate_editorial(
             }
         )
     clean["features"] = clean_features
+
+    verified_commands = {
+        command
+        for feature in clean_features
+        for command in feature["commands"]
+    }
+    visible_fields: list[tuple[str, str]] = [("hook", clean["hook"])]
+    visible_fields.extend(
+        (f"summary[{index}]", value) for index, value in enumerate(clean["summary"])
+    )
+    for index, feature in enumerate(clean_features):
+        visible_fields.extend(
+            [
+                (f"features[{index}].title", feature["title"]),
+                (f"features[{index}].what_changed", feature["what_changed"]),
+                (f"features[{index}].how_to", feature["how_to"]),
+                (f"features[{index}].usage_story.scene", feature["usage_story"]["scene"]),
+                (f"features[{index}].usage_story.action", feature["usage_story"]["action"]),
+                (f"features[{index}].availability", feature["availability"]),
+            ]
+        )
+    for field, value in visible_fields:
+        unverified = _visible_command_mentions(value) - verified_commands
+        if unverified:
+            names = "、".join(sorted(unverified))
+            raise ValueError(f"{field}に未検証のコマンドがあります: {names}")
 
     other_updates = editorial.get("other_updates", [])
     if not isinstance(other_updates, list) or other_updates:
@@ -426,6 +453,12 @@ def validate_editorial(
         raise ValueError("同じ期間の修正ではprevious_archiveを追加しません")
     else:
         clean["previous_archive"] = None
+    if clean["previous_archive"]:
+        for key, value in clean["previous_archive"].items():
+            unverified = _visible_command_mentions(value) - verified_commands
+            if unverified:
+                names = "、".join(sorted(unverified))
+                raise ValueError(f"previous_archive.{key}に未検証のコマンドがあります: {names}")
     return clean
 
 
@@ -635,7 +668,8 @@ SYSTEM_PROMPT = """あなたはAI相談のCodexアップデート記事編集者
 内部実装、細かな不具合修正、ChatGPTだけの変更は選びません。
 短い日本語で、何が変わったか、使い方、身近な利用ストーリー、対象端末や条件を整理してください。
 commandsは、その機能で追加されたCodexコマンドが根拠原文に明記されている場合だけ、バッククォートを外した正確な文字列を0〜3件入れてください。コマンドがなければ空配列にしてください。
-usage_storyは架空の成功談にせず、sceneで身近な困りごと、actionで具体的な操作、confirmationで公式情報から確認できることだけを書いてください。時短率、売上、成果、解決完了、保証を創作しません。confirmation_evidenceにはconfirmationを直接支える英語原文を一字も変えずに入れてください。
+usage_storyは架空の成功談にせず、sceneで身近な困りごと、actionで具体的な操作を書いてください。「確認できること」は検証済みcommandsからシステムが定型生成するため、JSONへ書きません。
+hook、summary、title、what_changed、how_to、usage_story、availabilityでコマンドを書く場合は、commandsに入れた完全一致文字列だけを使ってください。根拠のないコマンド、時短率、売上、成果、解決完了、保証を創作しません。
 source_scopeは根拠が週次情報ならweekly、CLIリリースならcli_releaseを使ってください。
 source_evidenceは選んだsource_scopeから根拠となる英語原文を12〜300文字で一字も変えずに抜き出し、commandsに挙げた全コマンドを必ず含めてください。
 source_urlは同じsource_scopeに実在するMarkdownリンクURLを一字も変えずに使ってください。
@@ -670,8 +704,6 @@ def generate_editorial(
                     "usage_story": {
                         "scene": "誰がどんな場面で困るかを日本語1文",
                         "action": "その場面で行う具体的な操作を日本語1文",
-                        "confirmation": "公式情報から確認できることを日本語1文",
-                        "confirmation_evidence": "confirmationを直接支える公式英語原文",
                     },
                     "availability": "日本語1文",
                     "source_scope": "weekly または cli_release",

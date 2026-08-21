@@ -171,8 +171,6 @@ def next_editorial() -> dict:
                 "usage_story": {
                     "scene": "移動中にサイト修正の進み具合を確認したい。",
                     "action": "スマートフォンで対象タスクを開き、内容を確認する。",
-                    "confirmation": "進行中のCodexタスクをスマートフォンから確認できます。",
-                    "confirmation_evidence": "Review a Codex task from your phone",
                 },
                 "availability": "利用できる端末やプランは公式案内を確認してください。",
                 "source_scope": "weekly",
@@ -187,8 +185,6 @@ def next_editorial() -> dict:
                 "usage_story": {
                     "scene": "学校や施設の担当者へ、公開前の作業内容を見せたい。",
                     "action": "共有画面で機密情報を見直してから共有する。",
-                    "confirmation": "共有する内容を確認してから相手へ案内できます。",
-                    "confirmation_evidence": "Review shared content",
                 },
                 "availability": "共有範囲はアカウント種別で異なります。",
                 "source_scope": "weekly",
@@ -207,21 +203,17 @@ def next_editorial() -> dict:
 def doctor_editorial(
     *,
     command: str = "codex doctor",
-    confirmation: str = "設定や認証、ネットワークなどの診断結果を確認できます。",
-    confirmation_evidence: str = CLI_DOCTOR_EVIDENCE,
 ) -> dict:
     editorial = next_editorial()
     editorial["features"] = [
         {
             "title": "不具合の状態を診断",
             "what_changed": "Codexの設定や接続状態をまとめて確認できます。",
-            "how_to": "困った時にターミナルでコマンドを実行します。",
+            "how_to": "困った時にターミナルでcodex doctorを実行します。",
             "commands": [command],
             "usage_story": {
                 "scene": "学校のネットワークでCodexへ接続できず、原因を伝えにくい。",
-                "action": "担当者がターミナルでコマンドを実行し、診断項目を確認する。",
-                "confirmation": confirmation,
-                "confirmation_evidence": confirmation_evidence,
+                "action": "担当者がcodex doctorを実行し、診断項目を確認する。",
             },
             "availability": "Codex CLI 0.149.0以降が対象です。",
             "source_scope": "cli_release",
@@ -297,33 +289,57 @@ class CodexUpdateLogUpdaterTest(unittest.TestCase):
                 require_archive=False,
             )
 
-    def test_invented_outcome_in_story_confirmation_is_rejected(self) -> None:
+    def test_editorial_cannot_supply_free_form_story_confirmation_fields(self) -> None:
         updater = _load_updater()
         source_block = updater.combine_source_block(SOURCE_CURRENT, CLI_RELEASE_CURRENT)
+        extras = (
+            ("confirmation", "導入後は売上が2倍になります。"),
+            ("confirmation_evidence", "This invented evidence is not official."),
+        )
 
-        with self.assertRaises(ValueError):
-            updater.validate_editorial(
-                doctor_editorial(confirmation="導入後は売上が2倍になります。"),
-                source_block,
-                require_archive=False,
-            )
+        for field, value in extras:
+            with self.subTest(field=field):
+                editorial = doctor_editorial()
+                editorial["features"][0]["usage_story"][field] = value
+                with self.assertRaises(ValueError):
+                    updater.validate_editorial(editorial, source_block, require_archive=False)
 
-    def test_story_confirmation_requires_its_own_exact_official_evidence(self) -> None:
+    def test_story_confirmation_is_derived_instead_of_trusting_editorial_outcome_text(self) -> None:
         updater = _load_updater()
         source_block = updater.combine_source_block(SOURCE_CURRENT, CLI_RELEASE_CURRENT)
+        editorial = doctor_editorial()
 
-        with self.assertRaises(ValueError):
-            updater.validate_editorial(
-                doctor_editorial(confirmation_evidence="This invented evidence is not official."),
-                source_block,
-                require_archive=False,
-            )
+        clean = updater.validate_editorial(editorial, source_block, require_archive=False)
+        rendered = updater.render_current("August 17-21, 2026", "f" * 64, clean)
+
+        self.assertIn(
+            "「codex doctor」がOpenAI公式情報に掲載されていることを確認できます。",
+            rendered,
+        )
+
+    def test_unlisted_command_mentions_in_visible_prose_are_rejected(self) -> None:
+        updater = _load_updater()
+        source_block = updater.combine_source_block(SOURCE_CURRENT, CLI_RELEASE_CURRENT)
+        cases = (
+            ("how_to", "ターミナルでcodex delete-allを実行します。"),
+            ("usage_story.action", "担当者がcodex delete-allを実行します。"),
+        )
+
+        for field, value in cases:
+            with self.subTest(field=field):
+                editorial = doctor_editorial()
+                if field == "how_to":
+                    editorial["features"][0]["how_to"] = value
+                else:
+                    editorial["features"][0]["usage_story"]["action"] = value
+                with self.assertRaises(ValueError):
+                    updater.validate_editorial(editorial, source_block, require_archive=False)
 
     def test_incomplete_usage_story_is_rejected(self) -> None:
         updater = _load_updater()
         source_block = updater.combine_source_block(SOURCE_CURRENT, CLI_RELEASE_CURRENT)
         editorial = doctor_editorial()
-        del editorial["features"][0]["usage_story"]["confirmation"]
+        del editorial["features"][0]["usage_story"]["action"]
 
         with self.assertRaises(ValueError):
             updater.validate_editorial(editorial, source_block, require_archive=False)
@@ -520,8 +536,6 @@ class CodexUpdateLogUpdaterTest(unittest.TestCase):
                     "usage_story": {
                         "scene": "サイト修正を公開する前に、担当者へ内容を見せたい。",
                         "action": "対象スレッドの共有を選び、内容を確認してリンクを渡す。",
-                        "confirmation": "Codexの作業を読み取り専用リンクで共有できます。",
-                        "confirmation_evidence": "Share a read-only snapshot",
                     },
                     "availability": "共有前に機密情報が残っていないか確認してください。",
                     "source_scope": "weekly",
@@ -558,8 +572,6 @@ class CodexUpdateLogUpdaterTest(unittest.TestCase):
                 "usage_story": {
                     "scene": "サイト修正を公開する前に、担当者へ内容を見せたい。",
                     "action": "対象スレッドの共有を選び、内容を確認してリンクを渡す。",
-                    "confirmation": "Codexの作業を読み取り専用リンクで共有できます。",
-                    "confirmation_evidence": "Share a read-only snapshot",
                 },
                 "availability": "共有前に機密情報が残っていないか確認してください。",
                 "source_scope": "weekly",
@@ -599,8 +611,6 @@ class CodexUpdateLogUpdaterTest(unittest.TestCase):
                 "usage_story": {
                     "scene": "地域事業者の作業環境で新しい安定版を試したい。",
                     "action": "公式リリースを確認してから更新内容を一つずつ試す。",
-                    "confirmation": "安定版に追加された改善内容を公式リリースで確認できます。",
-                    "confirmation_evidence": "Added safer remote review and clearer diagnostics",
                 },
                 "availability": "安定版を利用する人が対象です。",
                 "source_scope": "cli_release",
@@ -726,8 +736,6 @@ class CodexUpdateLogUpdaterTest(unittest.TestCase):
                 "usage_story": {
                     "scene": "サイト修正を公開する前に、担当者へ内容を見せたい。",
                     "action": "対象スレッドの共有を選び、内容を確認してリンクを渡す。",
-                    "confirmation": "Codexの作業を読み取り専用リンクで共有できます。",
-                    "confirmation_evidence": "Share a read-only snapshot",
                 },
                 "availability": "共有前に機密情報が残っていないか確認してください。",
                 "source_scope": "weekly",

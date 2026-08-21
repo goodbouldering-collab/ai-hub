@@ -262,14 +262,15 @@ def _validate_source_url(value: Any, source_block: str, field: str) -> str:
 
 def _validate_commands(
     value: Any,
-    source_scope: str,
     source_evidence: str,
     field: str,
 ) -> list[str]:
     if not isinstance(value, list) or len(value) > 3:
         raise ValueError(f"{field}は0〜3件の配列にしてください")
-    normalized_scope = re.sub(r"\s+", " ", source_scope)
-    normalized_evidence = re.sub(r"\s+", " ", source_evidence)
+    official_commands = {
+        re.sub(r"\s+", " ", candidate.strip())
+        for candidate in re.findall(r"`([^`\r\n]+)`", source_evidence)
+    }
     clean: list[str] = []
     for index, item in enumerate(value):
         if not isinstance(item, str):
@@ -281,12 +282,24 @@ def _validate_commands(
             raise ValueError(f"{field}[{index}]はCodexコマンドにしてください")
         if re.search(r"[<>&`\[\]]", command):
             raise ValueError(f"{field}[{index}]に表示用記号を含められません")
-        if command not in normalized_scope or command not in normalized_evidence:
-            raise ValueError(f"{field}[{index}]は根拠原文にあるコマンドと一致する必要があります")
+        if command not in official_commands:
+            raise ValueError(f"{field}[{index}]は根拠原文のコード表記と完全一致する必要があります")
         if command in clean:
             raise ValueError(f"{field}[{index}]が重複しています")
         clean.append(command)
     return clean
+
+
+def _validate_confirmation(value: Any, field: str) -> str:
+    confirmation = _plain_text(value, field, maximum=220)
+    unsupported_outcome = re.compile(
+        r"(?:売上|収益|利益|成約|集客|時短|工数|成功|保証|必ず|確実|"
+        r"短縮|削減|向上|倍増|解決します|完了します)|"
+        r"\d+(?:[.,]\d+)?\s*(?:%|％|倍|時間|分|円)"
+    )
+    if unsupported_outcome.search(confirmation):
+        raise ValueError(f"{field}に未検証の成果・時短・保証表現を含められません")
+    return confirmation
 
 
 def _validate_article_body(body: str, meta: dict[str, Any]) -> None:
@@ -333,7 +346,7 @@ def validate_editorial(
     features = editorial.get("features")
     if not isinstance(features, list) or not 1 <= len(features) <= 4:
         raise ValueError("featuresは1〜4件にしてください")
-    clean_features: list[dict[str, str]] = []
+    clean_features: list[dict[str, Any]] = []
     source_scopes = _source_scopes(source_block)
     for index, feature in enumerate(features):
         if not isinstance(feature, dict):
@@ -350,6 +363,11 @@ def validate_editorial(
         usage_story = feature.get("usage_story")
         if not isinstance(usage_story, dict):
             raise ValueError(f"features[{index}].usage_storyが不正です")
+        confirmation_evidence = _validate_source_evidence(
+            usage_story.get("confirmation_evidence"),
+            source_scope,
+            f"features[{index}].usage_story.confirmation_evidence",
+        )
         clean_features.append(
             {
                 "title": _plain_text(feature.get("title"), f"features[{index}].title", maximum=45),
@@ -359,7 +377,6 @@ def validate_editorial(
                 "how_to": _plain_text(feature.get("how_to"), f"features[{index}].how_to", maximum=180),
                 "commands": _validate_commands(
                     feature.get("commands"),
-                    source_scope,
                     source_evidence,
                     f"features[{index}].commands",
                 ),
@@ -374,11 +391,11 @@ def validate_editorial(
                         f"features[{index}].usage_story.action",
                         maximum=220,
                     ),
-                    "confirmation": _plain_text(
+                    "confirmation": _validate_confirmation(
                         usage_story.get("confirmation"),
                         f"features[{index}].usage_story.confirmation",
-                        maximum=220,
                     ),
+                    "confirmation_evidence": confirmation_evidence,
                 },
                 "availability": _plain_text(
                     feature.get("availability"), f"features[{index}].availability", maximum=180
@@ -618,7 +635,7 @@ SYSTEM_PROMPT = """あなたはAI相談のCodexアップデート記事編集者
 内部実装、細かな不具合修正、ChatGPTだけの変更は選びません。
 短い日本語で、何が変わったか、使い方、身近な利用ストーリー、対象端末や条件を整理してください。
 commandsは、その機能で追加されたCodexコマンドが根拠原文に明記されている場合だけ、バッククォートを外した正確な文字列を0〜3件入れてください。コマンドがなければ空配列にしてください。
-usage_storyは架空の成功談にせず、sceneで身近な困りごと、actionで具体的な操作、confirmationで公式情報から確認できることだけを書いてください。時短率、成果、解決完了を創作しません。
+usage_storyは架空の成功談にせず、sceneで身近な困りごと、actionで具体的な操作、confirmationで公式情報から確認できることだけを書いてください。時短率、売上、成果、解決完了、保証を創作しません。confirmation_evidenceにはconfirmationを直接支える英語原文を一字も変えずに入れてください。
 source_scopeは根拠が週次情報ならweekly、CLIリリースならcli_releaseを使ってください。
 source_evidenceは選んだsource_scopeから根拠となる英語原文を12〜300文字で一字も変えずに抜き出し、commandsに挙げた全コマンドを必ず含めてください。
 source_urlは同じsource_scopeに実在するMarkdownリンクURLを一字も変えずに使ってください。
@@ -654,6 +671,7 @@ def generate_editorial(
                         "scene": "誰がどんな場面で困るかを日本語1文",
                         "action": "その場面で行う具体的な操作を日本語1文",
                         "confirmation": "公式情報から確認できることを日本語1文",
+                        "confirmation_evidence": "confirmationを直接支える公式英語原文",
                     },
                     "availability": "日本語1文",
                     "source_scope": "weekly または cli_release",

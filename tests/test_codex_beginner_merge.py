@@ -33,7 +33,7 @@ class CodexBeginnerMergeTest(unittest.TestCase):
         self.assertIn("60〜70分｜Codex初級：安全な作業場所を選ぶ", self.agent_html)
         self.assertIn("ChatGPTデスクトップアプリへサインイン", self.agent_html)
         self.assertIn("https://learn.chatgpt.com/docs/app", self.agent_html)
-        self.assertIn('"dateModified": "2026-07-28"', self.agent_html)
+        self.assertIn('"dateModified": "2026-08-21"', self.agent_html)
         self.assertNotIn("Claude Codeに小さな修正を任せる", self.agent_html)
         self.assertNotIn("claude --version", self.agent_html)
 

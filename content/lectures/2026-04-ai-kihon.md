@@ -2,11 +2,11 @@
 title: AIエージェント講習 120分 — Codexで頼む・確かめる・残す
 date: 2026-04-22
 authorship_note: "※内容は運営者が考え、AIで整えています。"
-date_modified: 2026-07-28
+date_modified: 2026-08-21
 role: AIエージェント講習 / Codex初級
 gen_by: 由井 辰美 / AI相談
 summary: Codex初心者が、仕事を1つ選び、小さく頼み、変更点を確かめ、次回も使える手順として残すまでを実践する120分講習。
-image: /img/blog-ai-agent-course-hero-20260714.webp
+image: /lectures/assets/covers/2026-04-ai-kihon.png
 image_alt: 彦根の地域事業者がCodexへ仕事を頼み、変更点と成果物を確認する講習の様子
 audience: 地域事業者、学校・講師、福祉施設、個人事業主、地域団体、若い挑戦者
 duration: 120分

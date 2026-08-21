@@ -7,6 +7,8 @@ import tempfile
 import unittest
 from datetime import date, datetime, timedelta, timezone
 
+from PIL import Image
+
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "site"))
@@ -179,8 +181,35 @@ class BlogFreshnessTest(unittest.TestCase):
         meta, body = builder._parse_frontmatter(CODEX_UPDATE_ARTICLE.read_text(encoding="utf-8"))
         self.assertIsInstance(date.fromisoformat(str(meta["date_modified"])), date)
         self.assertIn("常時更新", meta["title"])
-        self.assertGreaterEqual(body.count("**利用例：**"), 1)
-        self.assertIn("https://github.com/openai/codex/releases/tag/", body)
+        self.assertEqual(meta["image"], "/img/blog-codex-update-log-hero-20260821.webp")
+        self.assertTrue(meta["hero_image"])
+        self.assertEqual(body.count("<!-- CODEX_UPDATE_CURRENT:BEGIN -->"), 1)
+        self.assertEqual(body.count("<!-- CODEX_UPDATE_CURRENT:END -->"), 1)
+        self.assertEqual(body.count("<!-- CODEX_UPDATE_ARCHIVE:BEGIN -->"), 1)
+        self.assertEqual(body.count("<!-- CODEX_UPDATE_ARCHIVE:END -->"), 1)
+        self.assertIn("過去のアップデート要約", body)
+        self.assertIn("2026年8月7日｜CLI 0.147.0", body)
+        self.assertNotIn("2026年8月13日｜CLI 0.147.0", body)
+        self.assertIn("https://learn.chatgpt.com/docs/changelog", body)
+        current = body.split("<!-- CODEX_UPDATE_CURRENT:BEGIN -->", 1)[1].split(
+            "<!-- CODEX_UPDATE_CURRENT:END -->", 1
+        )[0]
+        feature_sections = re.split(r"(?m)^## \d+\. ", current)[1:]
+        self.assertGreaterEqual(len(feature_sections), 1)
+        self.assertLessEqual(len(feature_sections), 4)
+        self.assertEqual(current.count("**使い方：**"), len(feature_sections))
+        self.assertEqual(current.count("**利用例：**"), len(feature_sections))
+        for section in feature_sections:
+            self.assertIn("**使い方：**", section)
+            self.assertIn("**利用例：**", section)
+            self.assertRegex(
+                section,
+                r"\[公式情報\]\(https://(?:learn\.chatgpt\.com|developers\.openai\.com|github\.com/openai/)",
+            )
+        image_path = ROOT / "site" / "static" / str(meta["image"]).lstrip("/")
+        with Image.open(image_path) as hero:
+            self.assertEqual(hero.size, (1200, 630))
+            self.assertGreater(hero.width, hero.height)
 
 
 if __name__ == "__main__":

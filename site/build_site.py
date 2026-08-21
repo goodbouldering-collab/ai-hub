@@ -12,7 +12,7 @@ import os
 import re
 import shutil
 import sys
-from datetime import datetime
+from datetime import date, datetime
 from pathlib import Path
 
 import yaml
@@ -35,6 +35,7 @@ except Exception:
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from public_navigation import render_desktop_navigation, render_mobile_navigation
+from blog_freshness import blog_date_label, effective_blog_date, is_new_blog
 
 TOP10_JSON = ROOT / "outputs" / "top10.json"
 ARCHIVE_DIR = ROOT / "outputs" / "archive"
@@ -375,6 +376,34 @@ header h1 {
   line-height:1.32;
   font-weight:800; letter-spacing:-.015em;
   color: var(--text);
+}
+.blog-title-line {
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:8px 10px;
+}
+.blog-title-line h1 { margin-bottom:0; }
+.blog-new-badge {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 auto;
+  min-height:22px;
+  padding:3px 8px;
+  border-radius:999px;
+  background:#b42318;
+  color:#fff;
+  font-size:10px;
+  font-weight:900;
+  line-height:1;
+  letter-spacing:.08em;
+}
+.blog-update-label {
+  color:var(--muted);
+  font-size:12px;
+  font-weight:800;
+  white-space:nowrap;
 }
 header h1 .grad {
   color: var(--primary);
@@ -1650,6 +1679,13 @@ CONTENT_CSS = """
   color: var(--text);
   line-height: 1.4;
 }
+.tr-title-row {
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:8px;
+}
+.tr-title-row .tr-title { min-width:0; }
 .tr-card .tr-date {
   font-size: 11.5px;
   color: var(--muted);
@@ -3473,11 +3509,13 @@ def _build_jsonld(kind: str, meta: dict, title: str, page_url: str) -> str:
         })
         return json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False)
     if kind == "blog":
+        published = str(meta.get("date") or datetime.now().strftime("%Y-%m-%d"))
         doc = {
             "@context": "https://schema.org",
             "@type": "BlogPosting",
             "headline": title,
-            "datePublished": str(meta.get("date") or datetime.now().strftime("%Y-%m-%d")),
+            "datePublished": published,
+            "dateModified": str(meta.get("date_modified") or published),
             "mainEntityOfPage": { "@type": "WebPage", "@id": page_url },
             "author": { "@type": "Person", "name": "由井 辰美" },
             "publisher": {
@@ -3666,7 +3704,18 @@ def render_content_page(
     parts.append(nav_html)
     parts.append("<main id='main-content'>")
     parts.append("<header>")
-    parts.append(f"<h1>{html.escape(title)}</h1>")
+    safe_title = html.escape(title)
+    if kind == "blog" and is_new_blog(meta):
+        update_label = html.escape(blog_date_label(meta))
+        parts.append(
+            "<div class='blog-title-line'>"
+            f"<h1>{safe_title}</h1>"
+            "<span class='blog-new-badge'>NEW</span>"
+            f"<span class='blog-update-label'>{update_label}</span>"
+            "</div>"
+        )
+    else:
+        parts.append(f"<h1>{safe_title}</h1>")
     sub_bits: list[str] = []
     if kind == "lecture":
         if meta.get("level"):
@@ -4196,6 +4245,7 @@ def build_blog() -> int:
             "slug": f.stem,
             "title": title,
             "date": str(meta.get("date") or ""),
+            "date_modified": str(meta.get("date_modified") or ""),
             "summary": str(meta.get("summary") or ""),
             "image": str(meta.get("image") or ""),
             "image_alt": str(meta.get("image_alt") or title),
@@ -4211,6 +4261,8 @@ def build_blog() -> int:
                 "instagram_url": str(meta.get("instagram_reel_url") or "").strip(),
             }
         count += 1
+
+    items.sort(key=lambda item: effective_blog_date(item) or date.min, reverse=True)
 
     if items:
         parts = [
@@ -4258,6 +4310,9 @@ def build_blog() -> int:
             safe_title = html.escape(item["title"])
             safe_date = html.escape(item["date"])
             safe_summary = html.escape(item["summary"])
+            fresh = is_new_blog(item)
+            update_label = html.escape(blog_date_label(item))
+            display_date = update_label if item.get("date_modified") else safe_date
             image_path = str(item.get("image") or "").strip()
             image_alt = html.escape(str(item.get("image_alt") or item["title"]), quote=True)
             parts.append(f"<a class='tr-card' href='{safe_href}'>")
@@ -4269,9 +4324,13 @@ def build_blog() -> int:
                     "</span>"
                 )
             parts.append("<div class='tr-card-body'>")
+            parts.append("<div class='tr-title-row'>")
             parts.append(f"<div class='tr-title'>{safe_title}</div>")
-            if safe_date:
-                parts.append(f"<div class='tr-date'>{safe_date}</div>")
+            if fresh:
+                parts.append("<span class='blog-new-badge'>NEW</span>")
+            parts.append("</div>")
+            if display_date:
+                parts.append(f"<div class='tr-date'>{display_date}</div>")
             if safe_summary:
                 parts.append(f"<div class='tr-sum'>{safe_summary}</div>")
             parts.append("</div></a>")

@@ -16,7 +16,7 @@ import html
 import json
 import os
 import sys
-from datetime import datetime
+from datetime import date, datetime
 from pathlib import Path
 
 try:
@@ -101,6 +101,7 @@ except Exception:
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from public_navigation import render_desktop_navigation, render_mobile_navigation
+from blog_freshness import blog_date_label, effective_blog_date, is_new_blog
 
 BUSINESSES_YAML = ROOT / "config" / "businesses.yaml"
 PROFILE_YAML = ROOT / "config" / "profile.yaml"
@@ -7825,6 +7826,28 @@ BLOG_TEASER_CSS = """
   font-size: 11.5px;
   font-weight: 800;
 }
+.blog-card-title-row {
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:8px;
+}
+.blog-card-title-row h3 { min-width:0; }
+.blog-new-badge {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 auto;
+  min-height:22px;
+  padding:3px 8px;
+  border-radius:999px;
+  background:#b42318;
+  color:#fff;
+  font-size:10px;
+  font-weight:900;
+  line-height:1;
+  letter-spacing:.08em;
+}
 .blog-card h3 {
   margin: 0;
   color: var(--text);
@@ -12482,19 +12505,22 @@ def _load_recent_blog_posts(limit: int = 3) -> list[dict]:
             "slug": f.stem,
             "title": title,
             "date": str(meta.get("date") or ""),
+            "date_modified": str(meta.get("date_modified") or ""),
             "summary": summary,
             "image": str(meta.get("image") or "").strip() or _first_markdown_image(body),
             "href": f"/blog/{f.stem}.html",
         })
-        if len(items) >= limit:
-            break
-    return items
+    items.sort(key=lambda item: effective_blog_date(item) or date.min, reverse=True)
+    return items[:limit]
 
 
 def _render_blog_card(post: dict, *, extra_class: str = "") -> str:
     title = html.escape(str(post.get("title") or "ブログ記事"))
     href = html.escape(str(post.get("href") or "/blog/index.html"), quote=True)
     date = html.escape(str(post.get("date") or ""))
+    update_label = html.escape(blog_date_label(post))
+    display_date = update_label if post.get("date_modified") else date
+    fresh = is_new_blog(post)
     summary = html.escape(str(post.get("summary") or ""))
     image = str(post.get("image") or "").strip()
     cls = "blog-card" + (f" {extra_class}" if extra_class else "")
@@ -12516,8 +12542,11 @@ def _render_blog_card(post: dict, *, extra_class: str = "") -> str:
         f"<a class='{cls}' href='{href}'>"
         f"{media}"
         "<div class='blog-card-body'>"
-        f"<div class='blog-card-meta'><span>{date or 'BLOG'}</span></div>"
+        f"<div class='blog-card-meta'><span>{display_date or 'BLOG'}</span></div>"
+        "<div class='blog-card-title-row'>"
         f"<h3>{title}</h3>"
+        + ("<span class='blog-new-badge'>NEW</span>" if fresh else "")
+        + "</div>"
         + (f"<p>{summary}</p>" if summary else "")
         + "<span class='blog-card-more'>読む</span>"
         "</div>"

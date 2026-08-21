@@ -15087,15 +15087,15 @@ def _render_ai_app_site_home_guide() -> str:
     )
     return (
         "<section class='home-app-site-guide' id='ai-app-site' aria-labelledby='home-app-site-title'><div class='home-app-site-shell'>"
-        "<div class='home-app-site-head'><div><p class='home-app-site-eyebrow'>AI APP SITE · SELF BUILD</p>"
-        "<h2 id='home-app-site-title'>AIアプリサイトを、自分で作れるように。</h2>"
-        "<p>作りたいものを相談し、AIへの頼み方、確認、修正、公開まで一緒に進める個別講習です。</p></div>"
-        "<div class='home-app-site-price'><small>個別講習・相談</small><strong>AIアプリサイト自作<br><b>11,000円</b></strong><span>120分・対面／オンライン</span></div></div>"
+        "<div class='home-app-site-head'><div><p class='home-app-site-eyebrow'>AI APP SITE</p>"
+        "<h2 id='home-app-site-title'>その仕事、サイトにやらせませんか？</h2>"
+        "<p>AI相談から生まれる「AIアプリサイト」。技術ではなく、何が楽になるかから始めます。</p></div>"
+        "<div class='home-app-site-price'><small>まずは小さく試す</small><strong>AIアプリサイト Lite<br><b>99,000円〜</b></strong><span>ホームページ＋便利機能1個</span></div></div>"
         f"<div class='home-app-site-cards'>{cards_html}</div>"
-        "<div class='home-app-site-path'><span>相談する</span><b>→</b><span>小さく作る</span><b>→</b><span>自分で直す</span><b>→</b><span>公開する</span></div>"
+        "<div class='home-app-site-path'><span>無料相談</span><b>→</b><span>小さく作る</span><b>→</b><span>効果を見る</span><b>→</b><span>本格導入</span></div>"
         "<div class='home-app-site-actions'>"
-        f"<a class='home-app-site-btn home-app-site-btn--primary' href='{AI_APP_SELFBUILD_BOOK_URL}' target='_blank' rel='noopener'>自作講習・相談を予約する →</a>"
-        "<a class='home-app-site-btn' href='/ai-app-site/'>自作の進め方を見る</a></div>"
+        f"<a class='home-app-site-btn home-app-site-btn--primary' href='{DIAGNOSIS_FREE_CONSULT_BOOK_URL}' target='_blank' rel='noopener'>無料相談で、まず一つの作業を整理する →</a>"
+        "<a class='home-app-site-btn' href='/ai-app-site/'>料金・進め方を詳しく見る</a></div>"
         "</div></section>"
     )
 

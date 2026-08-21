@@ -79,17 +79,28 @@ class AiAppSitePagesTests(unittest.TestCase):
         finally:
             self.site_builder.DIST = original_dist
 
-    def test_homepage_keeps_existing_hero_and_adds_app_site_as_a_separate_service(self):
+    def test_homepage_app_site_guide_is_ordered_service_while_selfbuild_stays_in_course_menu(self):
         page = self.portal.render_portal([], [])
+        section_start = page.index("<section class='home-app-site-guide' id='ai-app-site'")
+        section_end = page.index("</section>", section_start) + len("</section>")
+        app_site_guide = page[section_start:section_end]
 
         self.assertIn("AIエージェントで", page)
         self.assertIn("できることを100倍に", page)
         self.assertIn("迷ったら60秒診断をはじめる", page)
         self.assertNotIn("相談だけで終わらない。", page)
         self.assertNotIn("AIで、仕事の仕組みまでつくる。", page)
-        self.assertIn("AIアプリサイトを、自分で作れるように。", page)
-        self.assertEqual(1, page.count("AIアプリサイトを、自分で作れるように。"))
-        self.assertIn("href='/ai-app-site/'", page)
+        self.assertIn("AI APP SITE</p>", app_site_guide)
+        self.assertIn("その仕事、サイトにやらせませんか？", app_site_guide)
+        self.assertIn("AIアプリサイト Lite", app_site_guide)
+        self.assertIn("99,000円〜", app_site_guide)
+        self.assertIn("ホームページ＋便利機能1個", app_site_guide)
+        self.assertIn("無料相談で、まず一つの作業を整理する", app_site_guide)
+        self.assertIn(self.portal.DIAGNOSIS_FREE_CONSULT_BOOK_URL, app_site_guide)
+        self.assertNotIn("SELF BUILD", app_site_guide)
+        self.assertNotIn("AIアプリサイト自作", app_site_guide)
+        self.assertNotIn(self.portal.AI_APP_SELFBUILD_BOOK_URL, app_site_guide)
+        self.assertIn("AIアプリサイト自作講習・相談", page)
         self.assertIn(self.portal.AI_APP_SELFBUILD_BOOK_URL, page)
         self.assertLess(page.index("<section class='focus-hero'"), page.index("id='ai-app-site'"))
         self.assertLess(page.index("id='ai-app-site'"), page.index("<section class='readiness-guide readiness-guide--compact'"))

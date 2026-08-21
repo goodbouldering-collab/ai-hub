@@ -162,7 +162,12 @@ def next_editorial() -> dict:
                 "title": "外出先から作業を確認",
                 "what_changed": "進行中のCodexタスクをスマートフォンから確認できます。",
                 "how_to": "Codex Remoteを開き、対象タスクを選びます。",
-                "use_case": "移動中にサイト修正の進み具合を確認し、追加指示を送る。",
+                "commands": [],
+                "usage_story": {
+                    "scene": "移動中にサイト修正の進み具合を確認したい。",
+                    "action": "スマートフォンで対象タスクを開き、内容を確認する。",
+                    "confirmation": "進行中のCodexタスクをスマートフォンから確認できます。",
+                },
                 "availability": "利用できる端末やプランは公式案内を確認してください。",
                 "source_scope": "weekly",
                 "source_evidence": "Review a Codex task from your phone",
@@ -172,7 +177,12 @@ def next_editorial() -> dict:
                 "title": "共有前に内容を確認",
                 "what_changed": "共有するスレッドの確認手順が整理されました。",
                 "how_to": "共有画面で機密情報やファイルパスを見直します。",
-                "use_case": "学校や施設の担当者へ、安全に作業結果を見せる。",
+                "commands": [],
+                "usage_story": {
+                    "scene": "学校や施設の担当者へ、公開前の作業内容を見せたい。",
+                    "action": "共有画面で機密情報を見直してから共有する。",
+                    "confirmation": "共有する内容を確認してから相手へ案内できます。",
+                },
                 "availability": "共有範囲はアカウント種別で異なります。",
                 "source_scope": "weekly",
                 "source_evidence": "Review shared content",
@@ -216,6 +226,103 @@ class FakeResponse:
 
 
 class CodexUpdateLogUpdaterTest(unittest.TestCase):
+    def test_command_and_usage_story_render_as_prominent_structured_blocks(self) -> None:
+        updater = _load_updater()
+        source_block = updater.combine_source_block(SOURCE_CURRENT, CLI_RELEASE_CURRENT)
+        editorial = next_editorial()
+        editorial["features"] = [
+            {
+                "title": "不具合の状態を診断",
+                "what_changed": "Codexの設定や接続状態をまとめて確認できます。",
+                "how_to": "困った時にターミナルでコマンドを実行します。",
+                "use_case": "学校のネットワークで接続できない時に状態を確認する。",
+                "commands": ["codex doctor"],
+                "usage_story": {
+                    "scene": "学校のネットワークでCodexへ接続できず、原因を伝えにくい。",
+                    "action": "担当者がターミナルでコマンドを実行し、診断項目を確認する。",
+                    "confirmation": "設定や認証、ネットワークなどの診断結果を確認できます。",
+                },
+                "availability": "Codex CLI 0.149.0以降が対象です。",
+                "source_scope": "cli_release",
+                "source_evidence": (
+                    "Added `codex agents`, `codex queue`, and expanded `codex doctor` "
+                    "diagnostics for practical task management."
+                ),
+                "source_url": "https://github.com/openai/codex/releases/tag/rust-v0.149.0",
+            }
+        ]
+        editorial["previous_archive"] = None
+
+        clean = updater.validate_editorial(editorial, source_block, require_archive=False)
+        rendered = updater.render_current("August 17-21, 2026", "f" * 64, clean)
+
+        self.assertIn('class="codex-command-callout"', rendered)
+        self.assertIn('<span class="codex-command-callout__label">追加コマンド</span>', rendered)
+        self.assertIn('<code>codex doctor</code>', rendered)
+        self.assertIn('class="codex-use-story"', rendered)
+        labels = ["こんな時", "操作", "確認できること"]
+        positions = [rendered.index(f"<dt>{label}</dt>") for label in labels]
+        self.assertEqual(positions, sorted(positions))
+
+    def test_ungrounded_command_is_rejected_even_when_feature_evidence_is_valid(self) -> None:
+        updater = _load_updater()
+        source_block = updater.combine_source_block(SOURCE_CURRENT, CLI_RELEASE_CURRENT)
+        editorial = next_editorial()
+        editorial["features"] = [
+            {
+                "title": "不具合の状態を診断",
+                "what_changed": "Codexの設定や接続状態をまとめて確認できます。",
+                "how_to": "困った時にターミナルでコマンドを実行します。",
+                "use_case": "学校のネットワークで接続できない時に状態を確認する。",
+                "commands": ["codex delete-all"],
+                "usage_story": {
+                    "scene": "学校のネットワークでCodexへ接続できず、原因を伝えにくい。",
+                    "action": "担当者が案内された操作を試す。",
+                    "confirmation": "診断結果を確認できます。",
+                },
+                "availability": "Codex CLI 0.149.0以降が対象です。",
+                "source_scope": "cli_release",
+                "source_evidence": (
+                    "Added `codex agents`, `codex queue`, and expanded `codex doctor` "
+                    "diagnostics for practical task management."
+                ),
+                "source_url": "https://github.com/openai/codex/releases/tag/rust-v0.149.0",
+            }
+        ]
+        editorial["previous_archive"] = None
+
+        with self.assertRaises(ValueError):
+            updater.validate_editorial(editorial, source_block, require_archive=False)
+
+    def test_incomplete_usage_story_is_rejected(self) -> None:
+        updater = _load_updater()
+        source_block = updater.combine_source_block(SOURCE_CURRENT, CLI_RELEASE_CURRENT)
+        editorial = next_editorial()
+        editorial["features"] = [
+            {
+                "title": "不具合の状態を診断",
+                "what_changed": "Codexの設定や接続状態をまとめて確認できます。",
+                "how_to": "困った時にターミナルでコマンドを実行します。",
+                "use_case": "学校のネットワークで接続できない時に状態を確認する。",
+                "commands": ["codex doctor"],
+                "usage_story": {
+                    "scene": "学校のネットワークでCodexへ接続できず、原因を伝えにくい。",
+                    "action": "担当者がターミナルでコマンドを実行する。",
+                },
+                "availability": "Codex CLI 0.149.0以降が対象です。",
+                "source_scope": "cli_release",
+                "source_evidence": (
+                    "Added `codex agents`, `codex queue`, and expanded `codex doctor` "
+                    "diagnostics for practical task management."
+                ),
+                "source_url": "https://github.com/openai/codex/releases/tag/rust-v0.149.0",
+            }
+        ]
+        editorial["previous_archive"] = None
+
+        with self.assertRaises(ValueError):
+            updater.validate_editorial(editorial, source_block, require_archive=False)
+
     def test_japan_today_does_not_depend_on_system_timezone_data(self) -> None:
         updater = _load_updater()
 
@@ -371,7 +478,10 @@ class CodexUpdateLogUpdaterTest(unittest.TestCase):
             self.assertIn("content_series: codex-update-log", updated)
             self.assertIn('image: "/img/blog-codex-update-log-hero-20260821.webp"', updated)
             self.assertIn("## 1. 外出先から作業を確認", updated)
-            self.assertEqual(updated.count("**利用例：**"), 2)
+            self.assertEqual(updated.count('class="codex-use-story"'), 2)
+            self.assertEqual(updated.count("<dt>こんな時</dt>"), 2)
+            self.assertEqual(updated.count("<dt>操作</dt>"), 2)
+            self.assertEqual(updated.count("<dt>確認できること</dt>"), 2)
             self.assertEqual(updated.count("2026年8月21日｜共有と並行作業"), 1)
             self.assertLess(
                 updated.index("2026年8月21日｜共有と並行作業"),
@@ -401,7 +511,12 @@ class CodexUpdateLogUpdaterTest(unittest.TestCase):
                     "title": "作業内容を安全に共有",
                     "what_changed": "Codexの作業を読み取り専用リンクで共有できます。",
                     "how_to": "デスクトップアプリで対象スレッドの共有を選びます。",
-                    "use_case": "サイト修正を公開前に担当者へ確認してもらう。",
+                    "commands": [],
+                    "usage_story": {
+                        "scene": "サイト修正を公開する前に、担当者へ内容を見せたい。",
+                        "action": "対象スレッドの共有を選び、内容を確認してリンクを渡す。",
+                        "confirmation": "Codexの作業を読み取り専用リンクで共有できます。",
+                    },
                     "availability": "共有前に機密情報が残っていないか確認してください。",
                     "source_scope": "weekly",
                     "source_evidence": "Share a read-only snapshot",
@@ -433,7 +548,12 @@ class CodexUpdateLogUpdaterTest(unittest.TestCase):
                 "title": "作業内容を安全に共有",
                 "what_changed": "Codexの作業を読み取り専用リンクで共有できます。",
                 "how_to": "デスクトップアプリで対象スレッドの共有を選びます。",
-                "use_case": "サイト修正を公開前に担当者へ確認してもらう。",
+                "commands": [],
+                "usage_story": {
+                    "scene": "サイト修正を公開する前に、担当者へ内容を見せたい。",
+                    "action": "対象スレッドの共有を選び、内容を確認してリンクを渡す。",
+                    "confirmation": "Codexの作業を読み取り専用リンクで共有できます。",
+                },
                 "availability": "共有前に機密情報が残っていないか確認してください。",
                 "source_scope": "weekly",
                 "source_evidence": "Share a read-only snapshot",
@@ -468,7 +588,12 @@ class CodexUpdateLogUpdaterTest(unittest.TestCase):
                 "title": "新しいCLI更新を試す",
                 "what_changed": "Codex CLIの安定版に実用的な改善が加わりました。",
                 "how_to": "公式リリースを確認してからCodex CLIを更新します。",
-                "use_case": "地域事業者の作業環境で更新内容を一つずつ試す。",
+                "commands": [],
+                "usage_story": {
+                    "scene": "地域事業者の作業環境で新しい安定版を試したい。",
+                    "action": "公式リリースを確認してから更新内容を一つずつ試す。",
+                    "confirmation": "安定版に追加された改善内容を公式リリースで確認できます。",
+                },
                 "availability": "安定版を利用する人が対象です。",
                 "source_scope": "cli_release",
                 "source_evidence": "Added safer remote review and clearer diagnostics",
@@ -589,7 +714,12 @@ class CodexUpdateLogUpdaterTest(unittest.TestCase):
                 "title": "作業内容を安全に共有",
                 "what_changed": "Codexの作業を読み取り専用リンクで共有できます。",
                 "how_to": "デスクトップアプリで対象スレッドの共有を選びます。",
-                "use_case": "サイト修正を公開前に担当者へ確認してもらう。",
+                "commands": [],
+                "usage_story": {
+                    "scene": "サイト修正を公開する前に、担当者へ内容を見せたい。",
+                    "action": "対象スレッドの共有を選び、内容を確認してリンクを渡す。",
+                    "confirmation": "Codexの作業を読み取り専用リンクで共有できます。",
+                },
                 "availability": "共有前に機密情報が残っていないか確認してください。",
                 "source_scope": "weekly",
                 "source_evidence": "Share a read-only snapshot",

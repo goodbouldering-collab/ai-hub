@@ -198,10 +198,12 @@ class BlogFreshnessTest(unittest.TestCase):
         self.assertGreaterEqual(len(feature_sections), 1)
         self.assertLessEqual(len(feature_sections), 4)
         self.assertEqual(current.count("**使い方：**"), len(feature_sections))
-        self.assertEqual(current.count("**利用例：**"), len(feature_sections))
+        self.assertEqual(current.count('class="codex-use-story"'), len(feature_sections))
         for section in feature_sections:
             self.assertIn("**使い方：**", section)
-            self.assertIn("**利用例：**", section)
+            self.assertIn('class="codex-use-story"', section)
+            self.assertLess(section.index("<dt>こんな時</dt>"), section.index("<dt>操作</dt>"))
+            self.assertLess(section.index("<dt>操作</dt>"), section.index("<dt>確認できること</dt>"))
             self.assertRegex(
                 section,
                 r"\[公式情報\]\(https://(?:learn\.chatgpt\.com|developers\.openai\.com|github\.com/openai/)",

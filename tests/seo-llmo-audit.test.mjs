@@ -164,6 +164,43 @@ test('a redirect is rejected before transport when its DNS resolves to a private
   assert.equal(transportCalls, 1);
 });
 
+test('a redirect response is destroyed before following its Location', async () => {
+  let transportCalls = 0;
+  let redirectResponse;
+  const requestFactory = (_options, onResponse) => {
+    transportCalls += 1;
+    const request = new EventEmitter();
+    request.end = () => {
+      const response = new PassThrough();
+      if (transportCalls === 1) {
+        redirectResponse = response;
+        response.statusCode = 302;
+        response.headers = { location: 'https://next.example/' };
+        onResponse(response);
+        response.write('redirect body that never ends');
+        return;
+      }
+      response.statusCode = 200;
+      response.headers = { 'content-type': 'text/html; charset=utf-8' };
+      onResponse(response);
+      response.end('<html><title>Redirected</title></html>');
+    };
+    request.destroy = (error) => queueMicrotask(() => request.emit('error', error));
+    return request;
+  };
+
+  const result = await requestPublicDocument('https://example.com/', {
+    lookup: async () => [{ address: '93.184.216.34', family: 4 }],
+    requestFactory,
+    deadlineAt: Date.now() + 500,
+  });
+
+  assert.equal(result.finalUrl, 'https://next.example/');
+  assert.equal(result.status, 200);
+  assert.equal(transportCalls, 2);
+  assert.equal(redirectResponse.destroyed, true);
+});
+
 test('a response larger than the configured bound is rejected without returning its body', async () => {
   const requestFactory = (_options, onResponse) => {
     const request = new EventEmitter();

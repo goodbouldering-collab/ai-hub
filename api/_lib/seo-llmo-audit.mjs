@@ -214,7 +214,9 @@ export async function requestPublicDocument(input, options = {}) {
         const status = Number(response.statusCode) || 0;
         const location = response.headers.location;
         if (status >= 300 && status < 400 && location) {
-          response.resume();
+          // The redirect target is all we need. Destroy the old response so an
+          // endless 3xx body cannot keep its socket alive after this request.
+          response.destroy();
           clearTimeout(timer);
           if (redirectsLeft <= 0) {
             fail(new SeoLlmoAuditError('too_many_redirects', 'リダイレクトが多すぎるため診断を停止しました。'));

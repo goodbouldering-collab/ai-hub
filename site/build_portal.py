@@ -11747,26 +11747,28 @@ def _render_compact_course_cards() -> str:
             ],
         },
         {
-            "cat": "個別実装",
-            "title": "AIアプリサイト自作講習・相談",
+            "cat": "個別講習",
+            "title": "AI自作講習",
             "image": "/img/course-path-coding.webp",
             "image_alt": "相談しながらAIアプリサイトを作り、確認して公開する様子",
             "price": "11,000円",
             "duration": "120分",
-            "desc": "相談だけで終わらず、自分で作って直せるようになる。作りたいAIアプリサイトを題材に、公開まで個別に進めます。",
+            "desc": "サイトやアプリを自分で作って直せるようになる。作りたいAIアプリサイトを題材に、公開できるまで個別に進めます。",
             "url": AI_APP_SELFBUILD_BOOK_URL,
-            "cta": "自作講習・相談を予約",
+            "cta": "AI自作講習を予約",
             "material_url": "/programming-map.html",
             "material_cta": "AIアプリサイト自作の受講資料を見る",
             "testimonial_key": "ai-app-selfbuild",
-            "details_lead": "相談から公開までに身につくこと",
+            "details_lead": "制作サービスと同じ流れを、自分で進める",
             "details": [
-                ("作るものを一つに絞る", "見積もり、予約、問い合わせ、集計、ブログなどから、今の仕事に効く一機能を選びます。"),
-                ("AIへの頼み方が分かる", "目的、利用者、完成形、守る条件を整理し、CodexやClaude Codeへ伝わる依頼にします。"),
-                ("変更を自分で確かめる", "差分、画面、リンク、入力、データ、秘密情報を確認し、意図どおりか判断します。"),
-                ("エラーを直す順番が分かる", "表示、ログ、テスト結果から原因を絞り、AIへ修正を頼んでもう一度確認します。"),
-                ("自分で公開まで進める", "PC・スマホ表示を確かめ、GitHubとクラウドを使い、本番URLで動作を確認します。"),
-                ("次も使える資産が残る", "コードだけでなく、目的、依頼文、確認項目、設定、次の修正を追える形で保存します。"),
+                ("課題と完成形を決める", "誰が、どの作業で、何ができれば完成かを整理し、最初に作る一機能へ絞ります。"),
+                ("画面と機能を設計する", "入力、結果、ボタン、利用者の流れを並べ、AIに作らせる前の短い設計図を作ります。"),
+                ("AIへ制作を依頼する", "目的、利用者、完成形、守る条件を整理し、CodexやClaude Codeへ伝わる依頼にします。"),
+                ("変更を自分で確かめる", "差分、画面、リンク、入力、データを確認し、意図どおりの変更か判断します。"),
+                ("直したい点をAIへ伝える", "表示や動きが違うときに、場所、期待する結果、守る条件を伝えて修正します。"),
+                ("公開前の安全確認をする", "PC・スマホ表示、リンク、入力、エラー、秘密情報を確認し、公開してよい状態か判断します。"),
+                ("本番へ公開する", "GitHubとクラウドへ反映し、本番URLで画面と機能が動くところまで個別に進めます。"),
+                ("次も自分で直せる形に残す", "目的、依頼文、確認項目、設定、次の修正を保存し、受講後も続けられる資産にします。"),
                 ("参加方法", "WindowsまたはMacのPCと、作りたいものや直したいページをお持ちください。対面・オンラインに対応します。"),
             ],
         },
@@ -11972,8 +11974,8 @@ def _render_footer(today: str) -> str:
 def _render_sticky_cta() -> str:
     """モバイルでスクロール後に現れる、自作講習・相談と基本講習の固定CTA。"""
     return (
-        "<nav class='sticky-cta' id='sticky-cta' aria-label='AIアプリサイト自作講習・相談とAIエージェント講習の固定CTA' aria-hidden='true'>"
-        f"<a class='sticky-cta-btn sticky-cta-btn--consult' href='{AI_APP_SELFBUILD_BOOK_URL}' target='_blank' rel='noopener'><span>自作講習・相談</span><small>120分・11,000円</small></a>"
+        "<nav class='sticky-cta' id='sticky-cta' aria-label='AI自作講習とAIエージェント講習の固定CTA' aria-hidden='true'>"
+        f"<a class='sticky-cta-btn sticky-cta-btn--consult' href='{AI_APP_SELFBUILD_BOOK_URL}' target='_blank' rel='noopener'><span>AI自作講習</span><small>120分・11,000円</small></a>"
         f"<a class='sticky-cta-btn sticky-cta-btn--agent' href='{AI_AGENT_COURSE_URL}' target='_blank' rel='noopener'><span>AIエージェント講習</span><small>120分・5,500円</small></a>"
         "</nav>"
     )
@@ -14980,28 +14982,24 @@ FOCUSED_PORTAL_CSS += r"""
 /* ---- AIアプリサイト: 相談から仕組み化へ進む公開導線, 2026-08-20 ---- */
 .home-app-site-guide { position:relative; overflow:hidden; border-top:1px solid #d6e5f1; border-bottom:1px solid #d6e5f1; background:linear-gradient(135deg,#eef7ff 0%,#fbfdff 52%,#edfbf7 100%); }
 .home-app-site-guide::after { position:absolute; right:-120px; bottom:-180px; width:420px; height:420px; border-radius:50%; background:rgba(23,103,190,.09); content:""; }
-.home-app-site-shell { position:relative; z-index:1; width:min(1180px,calc(100% - 48px)); margin:0 auto; padding:58px 0; }
-.home-app-site-head { display:grid; grid-template-columns:minmax(0,1fr) minmax(250px,.48fr); gap:34px; align-items:end; }
+.home-app-site-shell { position:relative; z-index:1; width:min(1180px,calc(100% - 48px)); margin:0 auto; padding:46px 0; }
+.home-app-site-head { display:grid; grid-template-columns:minmax(0,1fr) minmax(250px,.48fr); gap:34px; align-items:center; }
 .home-app-site-eyebrow { margin:0 0 10px; color:#1767be; font-size:11px; font-weight:950; letter-spacing:.12em; }
-.home-app-site-head h2 { margin:0; max-width:720px; color:#142d4c; font-size:clamp(30px,4vw,50px); line-height:1.2; letter-spacing:-.035em; }
+.home-app-site-head h2 { margin:0; max-width:720px; color:#142d4c; font-size:clamp(28px,3.4vw,44px); line-height:1.2; letter-spacing:-.035em; }
 .home-app-site-head p { max-width:720px; margin:14px 0 0; color:#526a83; font-size:15px; line-height:1.8; }
 .home-app-site-price { padding:19px; border:1px solid #c5d8eb; border-radius:15px; background:rgba(255,255,255,.88); box-shadow:0 10px 28px rgba(22,70,122,.08); }
 .home-app-site-price small { display:block; color:#087972; font-size:10px; font-weight:900; letter-spacing:.1em; }
 .home-app-site-price strong { display:block; margin-top:7px; color:#132d4d; font-size:17px; line-height:1.45; }
 .home-app-site-price strong b { color:#1767be; font-size:25px; }
 .home-app-site-price span { display:block; margin-top:6px; color:#5d7390; font-size:12px; }
-.home-app-site-cards { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:11px; margin-top:28px; }
-.home-app-site-card { display:flex; min-width:0; min-height:190px; flex-direction:column; padding:17px; border:1px solid #cbddeb; border-radius:15px; background:#fff; color:inherit; text-decoration:none; transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease; }
+.home-app-site-capability-label { margin:20px 0 0; color:#39607c; font-size:11px; font-weight:900; letter-spacing:.08em; }
+.home-app-site-cards { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:8px; margin-top:9px; }
+.home-app-site-card { display:flex; min-width:0; min-height:52px; align-items:center; justify-content:space-between; gap:10px; padding:13px 15px; border:1px solid #cbddeb; border-radius:12px; background:#fff; color:inherit; text-decoration:none; transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease; }
 .home-app-site-card:hover,
 .home-app-site-card:focus-visible { border-color:#1767be; box-shadow:0 13px 28px rgba(23,103,190,.14); transform:translateY(-3px); }
-.home-app-site-card small { display:inline-flex; width:28px; height:28px; align-items:center; justify-content:center; border-radius:8px; background:#e6f1ff; color:#1767be; font-size:10px; font-weight:950; }
-.home-app-site-card h3 { margin:13px 0 0; color:#17304f; font-size:17px; line-height:1.35; }
-.home-app-site-card p { margin:8px 0 0; color:#526a83; font-size:13px; line-height:1.65; }
-.home-app-site-card span { margin-top:auto; padding-top:13px; color:#1767be; font-size:12px; font-weight:900; }
-.home-app-site-path { display:flex; align-items:center; justify-content:center; gap:13px; margin-top:26px; color:#39607c; font-size:13px; font-weight:850; }
-.home-app-site-path span { padding:7px 11px; border:1px solid #c9ddea; border-radius:999px; background:rgba(255,255,255,.76); }
-.home-app-site-path b { color:#087972; }
-.home-app-site-actions { display:flex; flex-wrap:wrap; justify-content:center; gap:11px; margin-top:25px; }
+.home-app-site-card strong { min-width:0; color:#17304f; font-size:14px; line-height:1.35; }
+.home-app-site-card span { flex:0 0 auto; color:#1767be; font-size:14px; font-weight:900; }
+.home-app-site-actions { display:flex; flex-wrap:wrap; justify-content:center; gap:11px; margin-top:18px; }
 .home-app-site-btn { display:inline-flex; min-height:46px; align-items:center; justify-content:center; padding:11px 16px; border:1px solid #1767be; border-radius:11px; background:#fff; color:#1767be; font-size:14px; font-weight:900; text-align:center; text-decoration:none; }
 .home-app-site-btn:hover,
 .home-app-site-btn:focus-visible { background:#e8f3ff; }
@@ -15012,16 +15010,11 @@ FOCUSED_PORTAL_CSS += r"""
   .site-nav { gap:2px !important; }
   .site-nav .nav-link { padding-inline:7px !important; font-size:11px !important; }
 }
-@media (max-width:900px) {
-  .home-app-site-cards { grid-template-columns:repeat(3,minmax(0,1fr)); }
-}
 @media (max-width:640px) {
   .home-app-site-shell { width:min(100% - 30px,560px); padding:43px 0; }
   .home-app-site-head { grid-template-columns:1fr; gap:19px; }
-  .home-app-site-cards { grid-template-columns:1fr; gap:9px; margin-top:21px; }
-  .home-app-site-card { min-height:0; }
-  .home-app-site-path { flex-wrap:wrap; gap:7px; font-size:11px; }
-  .home-app-site-path b { transform:rotate(90deg); }
+  .home-app-site-cards { grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+  .home-app-site-card:last-child:nth-child(odd) { grid-column:1 / -1; }
   .home-app-site-actions { align-items:stretch; flex-direction:column; }
   .home-app-site-btn { width:100%; }
 }
@@ -15073,29 +15066,29 @@ def _render_hero_focused() -> str:
 
 def _render_ai_app_site_home_guide() -> str:
     cards = (
-        ("AI見積もり", "見積もり → 自動作成", "/ai-estimate/"),
-        ("AI問い合わせ", "問い合わせ → AI回答", "/ai-inquiry/"),
-        ("AI予約受付", "予約 → 自動受付", "/ai-reservation/"),
-        ("AIシフト", "シフト → 自動作成", "/ai-shift/"),
-        ("AIブログ", "ブログ → AI下書き", "/ai-blog/"),
+        ("AI見積もり", "/ai-estimate/"),
+        ("AI問い合わせ", "/ai-inquiry/"),
+        ("AI予約受付", "/ai-reservation/"),
+        ("AIシフト", "/ai-shift/"),
+        ("AIブログ", "/ai-blog/"),
     )
     cards_html = "".join(
-        "<a class='home-app-site-card' href='{}'><small>{:02d}</small><h3>{}</h3><p>{}</p><span>できることを見る →</span></a>".format(
-            href, index, title, result
+        "<a class='home-app-site-card' href='{}' aria-label='{}の詳細を見る'><strong>{}</strong><span aria-hidden='true'>→</span></a>".format(
+            href, title, title
         )
-        for index, (title, result, href) in enumerate(cards, start=1)
+        for title, href in cards
     )
     return (
         "<section class='home-app-site-guide' id='ai-app-site' aria-labelledby='home-app-site-title'><div class='home-app-site-shell'>"
-        "<div class='home-app-site-head'><div><p class='home-app-site-eyebrow'>AI APP SITE</p>"
-        "<h2 id='home-app-site-title'>その仕事、サイトにやらせませんか？</h2>"
-        "<p>AI相談から生まれる「AIアプリサイト」。技術ではなく、何が楽になるかから始めます。</p></div>"
-        "<div class='home-app-site-price'><small>まずは小さく試す</small><strong>AIアプリサイト Lite<br><b>99,000円〜</b></strong><span>ホームページ＋便利機能1個</span></div></div>"
+        "<div class='home-app-site-head'><div><p class='home-app-site-eyebrow'>AI APP SITE · DONE FOR YOU</p>"
+        "<h2 id='home-app-site-title'>AIが実行するサイトを、こちらで制作します。</h2>"
+        "<p>AI相談の制作サービスです。見積もり・問い合わせ・予約受付など、仕事を実行するAI機能をサイトに組み込み、相談から公開まで対応します。</p></div>"
+        "<div class='home-app-site-price'><small>制作を任せたい方へ</small><strong>AIアプリサイト制作<br><b>99,000円〜</b></strong><span>ホームページ＋AI機能1つ</span></div></div>"
+        "<p class='home-app-site-capability-label'>今できること</p>"
         f"<div class='home-app-site-cards'>{cards_html}</div>"
-        "<div class='home-app-site-path'><span>無料相談</span><b>→</b><span>小さく作る</span><b>→</b><span>効果を見る</span><b>→</b><span>本格導入</span></div>"
         "<div class='home-app-site-actions'>"
-        f"<a class='home-app-site-btn home-app-site-btn--primary' href='{DIAGNOSIS_FREE_CONSULT_BOOK_URL}' target='_blank' rel='noopener'>無料相談で、まず一つの作業を整理する →</a>"
-        "<a class='home-app-site-btn' href='/ai-app-site/'>料金・進め方を詳しく見る</a></div>"
+        f"<a class='home-app-site-btn home-app-site-btn--primary' href='{DIAGNOSIS_FREE_CONSULT_BOOK_URL}' target='_blank' rel='noopener'>AIアプリサイト制作を無料相談する →</a>"
+        "<a class='home-app-site-btn' href='/ai-app-site/'>制作内容・料金を見る</a></div>"
         "</div></section>"
     )
 
@@ -15104,7 +15097,7 @@ def _render_readiness_guide() -> str:
     return (
         "<section class='readiness-guide readiness-guide--compact' aria-labelledby='readiness-guide-title'><div class='readiness-guide__inner'>"
         "<div class='readiness-guide__intro'><p class='readiness-guide__eyebrow'>10問・約3分</p>"
-        "<h2 id='readiness-guide-title' class='readiness-guide__title'>AI実践力診断</h2>"
+        "<h2 id='readiness-guide-title' class='readiness-guide__title'>あなたのAI実力診断</h2>"
         "<p class='readiness-guide__summary'>10問・約3分で、いまの実践力と次に整える一歩がわかります。</p>"
         "<p class='readiness-guide__prompt'>AIを使っているつもりで、仕事は変わりましたか？</p>"
         "<p class='readiness-guide__meta'><span>100点・5段階</span><span>5つの基準</span><span>次の90日</span></p></div>"
@@ -15113,7 +15106,7 @@ def _render_readiness_guide() -> str:
         "<li><span aria-hidden='true'>?</span><strong>任せた仕事を確かめられるか</strong></li>"
         "<li><span aria-hidden='true'>?</span><strong>うまくいった方法を次にも残せるか</strong></li>"
         "</ul>"
-        "<a class='readiness-guide__cta' href='/ai-agent-readiness/' aria-label='AI実践力診断をはじめる。10問・約3分'><span>AI実践力診断をはじめる</span><b aria-hidden='true'>→</b></a>"
+        "<a class='readiness-guide__cta' href='/ai-agent-readiness/' aria-label='あなたのAI実力診断をはじめる。10問・約3分'><span>あなたのAI実力診断をはじめる</span><b aria-hidden='true'>→</b></a>"
         "</div></section>"
     )
 
@@ -15154,7 +15147,7 @@ def _render_focused_blog_content() -> str:
 def _render_focused_main() -> str:
     parts = [
         "<section class='focus-block main-course' id='packages'><div class='focus-section-head'><small>COURSES</small><h2>講習・相談コース</h2></div>",
-        "<p class='focus-section-lead'><strong>迷ったら、まずはAIエージェント講習が一番基本でおすすめです。</strong><br>AIアプリサイトを自分で作りたい方は、個別の自作講習・相談へ。継続して導入したい方は6ヶ月伴走、最新情報を追いたい方はオンラインサロンを選べます。</p>",
+        "<p class='focus-section-lead'><strong>迷ったら、まずはAIエージェント講習が一番基本でおすすめです。</strong><br>自分でサイトやアプリを作りたい方は「AI自作講習」へ。制作を任せたい方は、上の「AIアプリサイト制作」へ。継続して導入したい方は6ヶ月伴走を選べます。</p>",
         "<div class='course-menu-unified' id='course-voices' role='region' aria-label='講習・相談の全4メニュー'>",
         _render_compact_course_cards(),
         _render_salon_menu(),
@@ -15191,7 +15184,7 @@ def _render_focused_main() -> str:
         "<details><summary>オンラインでも受講できますか？</summary><p>対面・オンラインの両方に対応しています。彦根市内は訪問も相談できます。</p></details>",
         "<details><summary>AIオンラインサロンでは、何がわかりますか？</summary><p>AIオンラインサロンは近日開始で、現在は仮運用中です。登録中の方にはテスト運用へご協力いただいています。月額2,200円（税込）で、Square決済は毎月自動更新し、決済確認後にLINE参加案内を表示します。</p></details></div></section>",
         "<section class='focus-contact' id='contact'><div class='focus-contact-inner'><div><h2>AIエージェントに任せたい仕事を聞かせてください。</h2><p>講習前に、今の仕事に合う題材と進め方を一緒に整理できます。</p></div>",
-        f"<a class='focus-btn' href='{AI_APP_SELFBUILD_BOOK_URL}' target='_blank' rel='noopener'>AIアプリサイト自作講習・相談を予約する（120分・11,000円）</a></div></section>",
+        f"<a class='focus-btn' href='{AI_APP_SELFBUILD_BOOK_URL}' target='_blank' rel='noopener'>AI自作講習を予約する（120分・11,000円）</a></div></section>",
     ]
     return "".join(parts)
 
@@ -15199,7 +15192,7 @@ def _render_focused_main() -> str:
 def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     today = datetime.now().strftime("%Y-%m-%d")
     title = SITE_BROWSER_TITLE
-    desc = "AI相談は、彦根・滋賀でAIエージェント講習とAIアプリサイト自作講習・相談を開催しています。相談、AIへの依頼、確認、修正、公開まで進め、自分で作って直せる状態を目指します。AIオンラインサロンは近日開始・現在仮運用中です。"
+    desc = "AI相談は、彦根・滋賀でAIアプリサイト制作とAI自作講習を提供しています。制作を任せたい方には99,000円から相談・制作・公開まで対応し、自分で作りたい方には個別講習でAIへの依頼、確認、修正、公開まで支援します。AIオンラインサロンは近日開始・現在仮運用中です。"
 
     parts: list[str] = []
     parts.append("<!doctype html><html lang='ja'><head><meta charset='utf-8'>" + FAVICON_HEAD_HTML)

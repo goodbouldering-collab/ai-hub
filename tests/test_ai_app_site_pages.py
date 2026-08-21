@@ -27,7 +27,7 @@ class AiAppSitePagesTests(unittest.TestCase):
 
     def test_builder_creates_the_main_service_page_and_five_solution_pages(self):
         expected_pages = {
-            "ai-app-site": ("AIアプリサイトを、", "自分で作れるように。"),
+            "ai-app-site": ("相談だけで終わらない。", "AIで、仕事の仕組みまでつくる。"),
             "ai-estimate": "AI見積もり",
             "ai-inquiry": "AI問い合わせ",
             "ai-reservation": "AI予約受付",
@@ -48,17 +48,15 @@ class AiAppSitePagesTests(unittest.TestCase):
                     questions = (customer_question,) if isinstance(customer_question, str) else customer_question
                     for question in questions:
                         self.assertIn(question, rendered)
-                    self.assertIn("11,000円", rendered)
-                    self.assertIn(self.portal.AI_APP_SELFBUILD_BOOK_URL, rendered)
+                    self.assertIn("99,000円", rendered)
+                    self.assertIn(self.portal.DIAGNOSIS_FREE_CONSULT_BOOK_URL, rendered)
 
                 flagship = Path(tmp) / "ai-app-site" / "index.html"
                 flagship_html = flagship.read_text(encoding="utf-8") if flagship.exists() else ""
-                self.assertIn("AIアプリサイトを、<br>自分で作れるように。", flagship_html)
-                self.assertIn("11,000円", flagship_html)
-                self.assertIn("120分", flagship_html)
-                self.assertNotIn("99,000円", flagship_html)
-                self.assertNotIn("198,000円", flagship_html)
-                self.assertNotIn("500,000円", flagship_html)
+                self.assertIn("AIアプリサイト Lite", flagship_html)
+                self.assertIn("99,000円〜", flagship_html)
+                self.assertIn('"@type": "Service"', flagship_html)
+                self.assertNotIn("AI APP SITE · SELF BUILD", flagship_html)
         finally:
             self.site_builder.DIST = original_dist
 
@@ -79,7 +77,7 @@ class AiAppSitePagesTests(unittest.TestCase):
         finally:
             self.site_builder.DIST = original_dist
 
-    def test_homepage_app_site_guide_is_ordered_service_while_selfbuild_stays_in_course_menu(self):
+    def test_homepage_separates_ordered_service_from_selfbuild_course(self):
         page = self.portal.render_portal([], [])
         section_start = page.index("<section class='home-app-site-guide' id='ai-app-site'")
         section_end = page.index("</section>", section_start) + len("</section>")
@@ -90,17 +88,25 @@ class AiAppSitePagesTests(unittest.TestCase):
         self.assertIn("迷ったら60秒診断をはじめる", page)
         self.assertNotIn("相談だけで終わらない。", page)
         self.assertNotIn("AIで、仕事の仕組みまでつくる。", page)
-        self.assertIn("AI APP SITE</p>", app_site_guide)
-        self.assertIn("その仕事、サイトにやらせませんか？", app_site_guide)
-        self.assertIn("AIアプリサイト Lite", app_site_guide)
+        self.assertIn("AI APP SITE · DONE FOR YOU", app_site_guide)
+        self.assertIn("AIが実行するサイトを、こちらで制作します。", app_site_guide)
+        self.assertIn("AIアプリサイト制作", app_site_guide)
         self.assertIn("99,000円〜", app_site_guide)
-        self.assertIn("ホームページ＋便利機能1個", app_site_guide)
-        self.assertIn("無料相談で、まず一つの作業を整理する", app_site_guide)
+        self.assertIn("ホームページ＋AI機能1つ", app_site_guide)
+        self.assertIn("仕事を実行するAI機能をサイトに組み込み", app_site_guide)
+        self.assertEqual(5, app_site_guide.count("class='home-app-site-card'"))
+        for feature in ("AI見積もり", "AI問い合わせ", "AI予約受付", "AIシフト", "AIブログ"):
+            self.assertIn(f"<strong>{feature}</strong>", app_site_guide)
+        self.assertNotIn("見積もり → 自動作成", app_site_guide)
+        self.assertNotIn("できることを見る", app_site_guide)
+        self.assertNotIn("home-app-site-path", app_site_guide)
+        self.assertIn("AIアプリサイト制作を無料相談する", app_site_guide)
         self.assertIn(self.portal.DIAGNOSIS_FREE_CONSULT_BOOK_URL, app_site_guide)
         self.assertNotIn("SELF BUILD", app_site_guide)
         self.assertNotIn("AIアプリサイト自作", app_site_guide)
         self.assertNotIn(self.portal.AI_APP_SELFBUILD_BOOK_URL, app_site_guide)
-        self.assertIn("AIアプリサイト自作講習・相談", page)
+        self.assertIn("<h3>AI自作講習</h3>", page)
+        self.assertIn("制作を任せたい方は、上の「AIアプリサイト制作」へ。", page)
         self.assertIn(self.portal.AI_APP_SELFBUILD_BOOK_URL, page)
         self.assertLess(page.index("<section class='focus-hero'"), page.index("id='ai-app-site'"))
         self.assertLess(page.index("id='ai-app-site'"), page.index("<section class='readiness-guide readiness-guide--compact'"))
@@ -149,7 +155,7 @@ class AiAppSitePagesTests(unittest.TestCase):
         self.assertIn("AI伴走支援", page)
         self.assertIn("月額88,000円", page)
         self.assertIn("6ヶ月", page)
-        self.assertIn("AIアプリサイト自作講習・相談を予約する（120分・11,000円）", page)
+        self.assertIn("AI自作講習を予約する（120分・11,000円）", page)
         self.assertNotIn("AI個別相談", page)
         self.assertIn(self.portal.AI_APP_SELFBUILD_BOOK_URL, page)
         self.assertIn(self.portal.MONTHLY_SUPPORT_BOOK_URL, page)

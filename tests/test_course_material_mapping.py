@@ -70,7 +70,7 @@ class CourseMaterialMappingTest(unittest.TestCase):
             self.index_html,
             re.DOTALL,
         )
-        coding_card = next((card for card in cards if ">AIアプリサイト自作講習・相談</h3>" in card), "")
+        coding_card = next((card for card in cards if ">AI自作講習</h3>" in card), "")
         agent_card = next((card for card in cards if ">AIエージェント講習</h3>" in card), "")
         self.assertTrue(coding_card)
         self.assertTrue(agent_card)

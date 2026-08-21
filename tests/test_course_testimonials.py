@@ -365,7 +365,7 @@ class CourseTestimonialsTest(unittest.TestCase):
 
         sticky_cta = portal._render_sticky_cta()
         self.assertIn(
-            "<nav class='sticky-cta' id='sticky-cta' aria-label='AIアプリサイト自作講習・相談とAIエージェント講習の固定CTA'",
+            "<nav class='sticky-cta' id='sticky-cta' aria-label='AI自作講習とAIエージェント講習の固定CTA'",
             sticky_cta,
         )
         self.assertIn(

@@ -4754,7 +4754,7 @@ def build_ai_app_site_pages() -> int:
         nav_html=render_top_nav(path_prefix="../", current_id="app-site", include_run=False),
         favicon_html=FAVICON_HEAD_HTML,
         shared_header_css=GENERATED_PUBLIC_HEADER_CSS,
-        selfbuild_book_url=build_portal.AI_APP_SELFBUILD_BOOK_URL,
+        free_consult_url=build_portal.DIAGNOSIS_FREE_CONSULT_BOOK_URL,
     )
     for route, document in pages.items():
         target = DIST / route / "index.html"

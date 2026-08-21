@@ -1,6 +1,6 @@
 # Dependabot脆弱性修正 実装計画
 
-> **実行日:** 2026-08-22  
+> **実行日:** 2026-08-22
 > **対象:** `goodbouldering-collab/ai-hub` の未解決Dependabotアラート42件
 
 ## 目的

@@ -124,6 +124,10 @@ DIAGNOSIS_FREE_CONSULT_BOOK_URL = "https://book.squareup.com/appointments/zymasz
 AI_AGENT_COURSE_URL = "https://goodbouldering.com/?pid=188553378"
 AI_CODING_BOOK_URL = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/S7GERYVDIPRV76DKXCC3WJWH"
 MONTHLY_SUPPORT_CHECKOUT_URL = "/api/stripe/monthly-support"
+MONTHLY_SUPPORT_PRICE_YEN = 88_000
+MONTHLY_SUPPORT_PRICE_JPY = str(MONTHLY_SUPPORT_PRICE_YEN)
+MONTHLY_SUPPORT_PRICE_LABEL = "月額88,000円"
+MONTHLY_SUPPORT_PRICE_DETAIL = f"{MONTHLY_SUPPORT_PRICE_LABEL}（税込）×6ヶ月"
 AI_SALON_CHECKOUT_URL = "/api/square/ai-salon-checkout"
 
 
@@ -293,7 +297,7 @@ def _build_jsonld_website() -> str:
         (ai_agent_title, "Codexを使い、仕事を小さく分けて頼む、変更点を確かめる、必要なら直す、次回も使える手順として残すAIエージェント講習。資料、告知、業務改善、Web制作を題材に、人が判断しながら成果物を完成させる型を120分で身につける。", "5500", "5500", "Course"),
         (consult_title, "AIの使い方、役割分担、指示書、確認体制、運用導線を60分で整理する個別相談。", "5500", "5500", "BusinessCoaching"),
         (salon_title, "月額2,200円（税込）。正式開始に向けて現在は仮運用中で、登録中の方にはテスト運用へご協力いただいています。Square決済後にLINE参加案内を表示します。", "2200", "2200", "CommunityService"),
-        (support_title, "HP公開から事務自動化・経理・マーケまで6ヶ月で一気に定着。技術的な難所は講師が代行・支援。滋賀・彦根の補助金で負担1/3以下に。", "100000", "100000", "Service"),
+        (support_title, "HP公開から事務自動化・経理・マーケまで6ヶ月で一気に定着。技術的な難所は講師が代行・支援。滋賀・彦根の補助金で負担1/3以下に。", MONTHLY_SUPPORT_PRICE_JPY, MONTHLY_SUPPORT_PRICE_JPY, "Service"),
         (ai_coding_title, "Codex導入、Claude Code併用、画像生成、プログラミング基礎、設計、データ、運用、セキュリティを1本で学ぶAIコーディング講習。AIの成果物を判断し、説明し、仕事に入れるための作業設計と確認の型を120分で身につける。", "11000", "11000", "Course"),
     ]
     plan_schema = {
@@ -11425,7 +11429,7 @@ def _render_courses_packages() -> str:
             "level": "上級",
             "level_id": "advanced",
             "title": support_title,
-            "price": "月額 100,000円（税込）× 6ヶ月",
+            "price": MONTHLY_SUPPORT_PRICE_DETAIL,
             "duration": "初回相談予約",
             "subsidy": True,
             "desc": "HP公開、事務自動化、AI導入、デザイン内製化、経理、マーケを6ヶ月で定着させます。",
@@ -11788,7 +11792,7 @@ def _render_compact_course_cards() -> str:
             "title": "AI伴走支援",
             "image": "/img/course-path-workflow.webp",
             "image_alt": "複雑な業務をAIで整理し、続けられる仕組みに変える様子",
-            "price": "月額10万円",
+            "price": MONTHLY_SUPPORT_PRICE_LABEL,
             "duration": "6ヶ月",
             "desc": "HP・事務・AI導入を、仕事に定着するところまで支援します。",
             "url": MONTHLY_SUPPORT_CHECKOUT_URL,
@@ -12164,7 +12168,7 @@ FAQ_QA = [
     ("LLMO やAI検索に強いサイトにできますか？",
      "できます。地域名、講師の一次経験、料金、対応範囲、実例、FAQ、構造化データを整理し、AIが回答に引用しやすい形で公開します。大量の自動生成ではなく、講習と実例に基づく一次情報を重視します。"),
     ("料金はどれくらいですか？",
-     "AI無料相談の入口整理は無料、AIエージェント講習120分は5,500円、AI個別相談 しっかり60分は5,500円です。AI伴走支援 いっしょに導入は月額10万円×6ヶ月が目安で、月額決済はStripe Checkoutで行います。LP制作は1本18〜30万円が目安。多くは補助金併用を前提に組みます。"),
+     f"AI無料相談の入口整理は無料、AIエージェント講習120分は5,500円、AI個別相談 しっかり60分は5,500円です。AI伴走支援 いっしょに導入は{MONTHLY_SUPPORT_PRICE_LABEL}×6ヶ月が目安で、月額決済はStripe Checkoutで行います。LP制作は1本18〜30万円が目安。多くは補助金併用を前提に組みます。"),
     ("補助金は使えますか？滋賀の事業者でも対象ですか？",
      "講習・伴走パックは「デジタル化・AI導入補助金」や滋賀県・彦根市の補助金の対象になります。補助率は小規模事業者で最大4/5、実質負担が1/3以下になるケースが多いです。申請からツール選定・実装・定着まで一気通貫で支援します。"),
     ("パソコンやスマホが苦手ですが、大丈夫ですか？",

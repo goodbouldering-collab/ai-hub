@@ -140,7 +140,7 @@ class AiAppSitePagesTests(unittest.TestCase):
         self.assertNotIn("AIアプリサイト保守・改善", page)
         self.assertNotIn("9,800円〜/月", page)
         self.assertIn("AI伴走支援", page)
-        self.assertIn("月額10万円", page)
+        self.assertIn("月額88,000円", page)
         self.assertIn("6ヶ月", page)
         self.assertIn("AI個別相談を予約する（60分・5,500円）", page)
         self.assertIn(self.portal.INDIVIDUAL_CONSULT_BOOK_URL, page)

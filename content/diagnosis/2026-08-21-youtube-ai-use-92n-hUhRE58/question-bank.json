@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "assetId": "youtube-ai-use-92n-hUhRE58",
-  "status": "draft-for-later-integration",
+  "status": "integrated-into-public-diagnosis",
   "source": {
     "type": "youtube",
     "videoId": "92n-hUhRE58",
@@ -16,6 +16,14 @@
     "scale": [0, 2, 4, 5],
     "compatibility": "AI実践力診断の現行回答尺度と互換",
     "evidenceWindow": "直近90日の実際の行動で答える"
+  },
+  "integration": {
+    "implementedAt": "2026-08-21",
+    "homepageTeaserQuestionIds": ["V01", "V11", "V07"],
+    "implementationAddonQuestionIds": ["V01", "V07", "V08", "V09", "V10", "V11"],
+    "organizationAddonQuestionIds": ["V02", "V03", "V04", "V05", "V06", "V12"],
+    "scorePolicy": "追加6問は各30点で別採点し、基礎10問の100点には加算しない",
+    "publicRoute": "/ai-agent-readiness/"
   },
   "questions": [
     {

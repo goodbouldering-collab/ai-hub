@@ -2,16 +2,24 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 
 import {
+  ADDON_BANDS,
+  ADDON_TRACKS,
   COURSE_ROUTES,
   DIMENSIONS,
   FUTURE_INDICATORS,
   LEVELS,
   QUESTIONS,
   levelForScore,
+  scoreAddonTrack,
   scoreAssessment,
 } from '../site/static/ai-agent-readiness/scoring.mjs';
 
+import { readFile } from 'node:fs/promises';
+
 const answersAt = (score) => Object.fromEntries(QUESTIONS.map((question) => [question.id, score]));
+const addonAnswersAt = (trackId, score) => Object.fromEntries(
+  ADDON_TRACKS[trackId].questions.map((question) => [question.id, score]),
+);
 
 test('the 10-question diagnostic teaches five essential practices and still totals 100 points', () => {
   assert.equal(QUESTIONS.length, 10);
@@ -163,4 +171,76 @@ test('course routes match live AI consultation offers and avoid direct high-pric
   );
   assert.equal(COURSE_ROUTES['ai-support'].url, '/#packages');
   assert.notEqual(COURSE_ROUTES['ai-support'].url, '/api/stripe/monthly-support');
+});
+
+test('optional implementation and organization diagnostics cover the 12 source questions once', async () => {
+  assert.deepEqual(Object.keys(ADDON_TRACKS), ['implementation', 'organization']);
+  assert.equal(ADDON_TRACKS.implementation.title, '実装編 6問');
+  assert.equal(ADDON_TRACKS.organization.title, '組織導入編 6問');
+  assert.ok(Object.isFrozen(ADDON_TRACKS));
+
+  const questions = Object.values(ADDON_TRACKS).flatMap(({ questions: trackQuestions }) => trackQuestions);
+  assert.equal(questions.length, 12);
+  assert.deepEqual(
+    questions.map(({ id }) => id).sort(),
+    Array.from({ length: 12 }, (_, index) => `V${String(index + 1).padStart(2, '0')}`).sort(),
+  );
+  assert.equal(new Set(questions.map(({ id }) => id)).size, 12);
+  assert.ok(Object.values(ADDON_TRACKS).every(({ questions: trackQuestions }) => trackQuestions.length === 6));
+
+  for (const question of questions) {
+    assert.deepEqual(question.options.map(({ value }) => value), [0, 2, 4, 5], question.id);
+    assert.ok(question.nextAction.length >= 20, question.id);
+    assert.ok(question.recommendedCourseIds.length >= 1, question.id);
+    assert.ok(question.recommendedCourseIds.every((courseId) => COURSE_ROUTES[courseId]), question.id);
+  }
+
+  const source = JSON.parse(await readFile(
+    new URL('../content/diagnosis/2026-08-21-youtube-ai-use-92n-hUhRE58/question-bank.json', import.meta.url),
+    'utf8',
+  ));
+  const sourceById = Object.fromEntries(source.questions.map((question) => [question.id, question]));
+  for (const question of questions) {
+    assert.equal(question.prompt, sourceById[question.id].prompt, question.id);
+    assert.deepEqual(question.options, sourceById[question.id].options, question.id);
+    assert.equal(question.nextAction, sourceById[question.id].nextAction, question.id);
+    assert.deepEqual(question.recommendedCourseIds, sourceById[question.id].recommendedCourseIds, question.id);
+  }
+});
+
+test('optional diagnostic scores 0 to 30 separately and returns concrete next actions and existing courses', () => {
+  assert.equal(ADDON_BANDS.length, 4);
+
+  const minimum = scoreAddonTrack('implementation', addonAnswersAt('implementation', 0));
+  assert.equal(minimum.complete, true);
+  assert.equal(minimum.rawScore, 0);
+  assert.equal(minimum.maxScore, 30);
+  assert.equal(minimum.percent, 0);
+  assert.equal(minimum.lowestQuestions.length, 2);
+  assert.equal(minimum.nextActions.length, 2);
+  assert.ok(minimum.recommendedCourses.every(({ id }) => COURSE_ROUTES[id]));
+
+  const maximum = scoreAddonTrack('organization', addonAnswersAt('organization', 5));
+  assert.equal(maximum.complete, true);
+  assert.equal(maximum.rawScore, 30);
+  assert.equal(maximum.maxScore, 30);
+  assert.equal(maximum.percent, 100);
+  assert.equal(maximum.band.id, 'improve');
+
+  const incomplete = scoreAddonTrack('implementation', { V01: 5 });
+  assert.equal(incomplete.complete, false);
+  assert.equal(incomplete.answeredCount, 1);
+  assert.equal(incomplete.missingQuestionIds.length, 5);
+  assert.equal(incomplete.band, null);
+});
+
+test('optional answers never change the core ten-question 100-point score', () => {
+  const result = scoreAssessment({
+    ...answersAt(5),
+    ...addonAnswersAt('implementation', 0),
+    ...addonAnswersAt('organization', 0),
+  });
+  assert.equal(result.complete, true);
+  assert.equal(result.rawScore, 100);
+  assert.equal(result.totalQuestions, 10);
 });

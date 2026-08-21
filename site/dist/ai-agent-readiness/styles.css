@@ -357,7 +357,8 @@ html {
   padding-left: 1.35em;
 }
 
-.assessment-form fieldset {
+.assessment-form fieldset,
+.addon-form fieldset {
   margin: 0;
   padding: 0;
   border: 0;
@@ -398,22 +399,26 @@ html {
   background: linear-gradient(90deg, var(--readiness-cyan), var(--readiness-teal));
 }
 
-#question-fieldset:focus {
+#question-fieldset:focus,
+#addon-question-fieldset:focus {
   outline: none;
 }
 
-#question-fieldset[aria-invalid="true"] .answer-options {
+#question-fieldset[aria-invalid="true"] .answer-options,
+#addon-question-fieldset[aria-invalid="true"] .answer-options {
   border-color: #b42318;
 }
 
-#question-fieldset legend {
+#question-fieldset legend,
+#addon-question-fieldset legend {
   display: grid;
   width: 100%;
   gap: 10px;
   margin-bottom: 10px;
 }
 
-#question-number {
+#question-number,
+#addon-question-number {
   color: var(--readiness-teal);
   font-family: "Inter", sans-serif;
   font-size: 0.78rem;
@@ -422,7 +427,8 @@ html {
   text-transform: uppercase;
 }
 
-#question-prompt {
+#question-prompt,
+#addon-question-prompt {
   display: block;
   font-size: clamp(1.25rem, 2.7vw, 1.75rem);
   line-height: 1.5;
@@ -797,6 +803,238 @@ html {
   font-weight: 700;
 }
 
+.addon-diagnostic {
+  margin-top: clamp(38px, 7vw, 68px);
+  padding: clamp(22px, 4vw, 36px);
+  border: 1px solid #b9d9d4;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #f3fbf9, #fff 62%, #fff8f2);
+}
+
+.addon-diagnostic__header {
+  max-width: 720px;
+}
+
+.addon-diagnostic__header h3 {
+  margin-bottom: 10px;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+}
+
+.addon-diagnostic__header > p:last-child {
+  margin-bottom: 0;
+  color: var(--readiness-muted);
+}
+
+.addon-track-picker {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.addon-track-card {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  padding: 22px;
+  text-align: left;
+  color: var(--readiness-ink);
+  border: 1px solid #b9d9d4;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 10px 28px rgba(18, 32, 51, 0.07);
+  font: inherit;
+  cursor: pointer;
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.addon-track-card:hover {
+  border-color: var(--readiness-teal);
+  box-shadow: 0 14px 34px rgba(8, 118, 108, 0.14);
+  transform: translateY(-2px);
+}
+
+.addon-track-card__eyebrow {
+  color: var(--readiness-teal-dark);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.addon-track-card strong {
+  font-size: 1.25rem;
+}
+
+.addon-track-card > span:not(.addon-track-card__eyebrow) {
+  color: var(--readiness-muted);
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.addon-track-card b {
+  margin-top: 4px;
+  color: var(--readiness-orange);
+  font-size: 0.88rem;
+}
+
+.addon-form,
+.addon-result {
+  margin-top: 28px;
+  padding-top: 28px;
+  border-top: 1px solid var(--readiness-line);
+}
+
+.addon-result {
+  animation: result-enter 400ms ease both;
+}
+
+.addon-result h4 {
+  margin: 0 0 18px;
+  overflow-wrap: anywhere;
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  line-height: 1.35;
+}
+
+.addon-result h5,
+.addon-result h6 {
+  margin-top: 0;
+  overflow-wrap: anywhere;
+  line-height: 1.4;
+}
+
+.addon-result__score {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  align-items: baseline;
+  margin-bottom: 14px;
+}
+
+.addon-result__score strong {
+  color: var(--readiness-teal-dark);
+  font-family: "Inter", sans-serif;
+  font-size: clamp(3rem, 8vw, 5rem);
+  line-height: 1;
+}
+
+.addon-result__score span {
+  color: var(--readiness-muted);
+  font-weight: 800;
+}
+
+.addon-result__band {
+  margin-bottom: 5px;
+  color: var(--readiness-ink);
+  font-size: 1.2rem;
+  font-weight: 900;
+}
+
+.addon-result__next,
+.addon-result__courses {
+  margin-top: 22px;
+  padding: 20px;
+  border: 1px solid var(--readiness-line);
+  border-radius: 14px;
+  background: #fff;
+}
+
+.addon-result__next h5,
+.addon-result__courses h5 {
+  margin-bottom: 12px;
+  font-size: 1.05rem;
+}
+
+.addon-result__next ol {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+  padding-left: 1.4em;
+}
+
+.addon-result__next li {
+  padding-left: 5px;
+}
+
+.addon-result__next li strong,
+.addon-result__next li span,
+.addon-result__next li small {
+  display: block;
+}
+
+.addon-result__next li strong {
+  color: var(--readiness-teal-dark);
+}
+
+.addon-result__next li small {
+  margin-top: 5px;
+  color: var(--readiness-muted);
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.addon-result__courses > p {
+  margin: -4px 0 16px;
+  color: var(--readiness-muted);
+  font-size: 0.84rem;
+}
+
+.addon-course-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.addon-course-card {
+  display: flex;
+  min-width: 0;
+  padding: 18px;
+  flex-direction: column;
+  border: 1px solid #f0c5ad;
+  border-radius: 12px;
+  background: #fff8f3;
+}
+
+.addon-course-card h6 {
+  margin-bottom: 7px;
+  font-size: 1rem;
+}
+
+.addon-course-card p {
+  color: var(--readiness-muted);
+  font-size: 0.82rem;
+}
+
+.addon-course-card__meta {
+  margin-bottom: 7px;
+  color: #a3451f !important;
+  font-weight: 900;
+}
+
+.addon-course-card .button {
+  width: 100%;
+  margin-top: auto;
+}
+
+.addon-result-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-top: 22px;
+}
+
+.addon-source {
+  margin: 22px 0 0;
+  color: var(--readiness-muted);
+  font-size: 0.78rem;
+  line-height: 1.6;
+}
+
+.addon-source a {
+  color: var(--readiness-teal-dark);
+  font-weight: 700;
+}
+
 .noscript-notice {
   padding: 18px;
   border: 1px solid #f0c5ad;
@@ -1142,6 +1380,8 @@ html {
 
   .result-hero,
   .result-grid,
+  .addon-track-picker,
+  .addon-course-options,
   .video-grid,
   .source-grid {
     grid-template-columns: 1fr;
@@ -1162,7 +1402,8 @@ html {
   }
 
   .course-recommendation .button,
-  .result-actions .button {
+  .result-actions .button,
+  .addon-result-actions .button {
     width: 100%;
   }
 
@@ -1204,6 +1445,16 @@ html {
 
   .assessment-card {
     padding-inline: 14px;
+  }
+
+  .addon-diagnostic {
+    padding-inline: 14px;
+  }
+
+  .addon-track-card,
+  .addon-result__next,
+  .addon-result__courses {
+    padding: 16px;
   }
 
   .answer-option__copy {
@@ -1252,6 +1503,10 @@ html {
   .readiness-cta,
   .readiness-footer,
   .result-actions,
+  .addon-track-picker,
+  .addon-form,
+  .addon-result-actions,
+  .addon-source,
   .copy-status {
     display: none !important;
   }

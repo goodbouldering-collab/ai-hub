@@ -51,6 +51,21 @@ test('the result explains how an equal lowest score was prioritized', () => {
   assert.match(app, /selectionNote/);
 });
 
+test('results offer two optional six-question add-ons without changing the core score', () => {
+  assert.match(app, /ADDON_TRACKS/);
+  assert.match(app, /scoreAddonTrack/);
+  assert.match(app, /data-addon-track/);
+  assert.match(renderer, /id='addon-diagnostic'/);
+  assert.match(renderer, /さらに深く診断（任意）/);
+  assert.match(renderer, /実装編 6問/);
+  assert.match(renderer, /組織導入編 6問/);
+  assert.match(renderer, /10問の100点には加算しません/);
+  assert.match(renderer, /id='addon-progress'/);
+  assert.match(renderer, /id='addon-result'/);
+  assert.match(css, /addon-track-card/);
+  assert.match(css, /addon-result/);
+});
+
 test('styles cover keyboard focus, mobile, reduced motion, printing, and overflow', () => {
   assert.match(css, /:focus-visible/);
   assert.match(css, /@media\s*\([^)]*max-width/);

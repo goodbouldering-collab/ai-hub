@@ -91,6 +91,17 @@ class AiAgentReadinessPageTests(unittest.TestCase):
         self.assertIn("購入は任意", self.html)
         self.assertIn("90日行動は無料でも実践できます", self.html)
 
+    def test_results_offer_optional_implementation_and_organization_addons(self):
+        self.assertIn("id='addon-diagnostic'", self.html)
+        self.assertIn("さらに深く診断（任意）", self.html)
+        self.assertIn("実装編 6問", self.html)
+        self.assertIn("組織導入編 6問", self.html)
+        self.assertIn("10問の100点には加算しません", self.html)
+        self.assertIn("id='addon-progress'", self.html)
+        self.assertIn("id='addon-question-fieldset'", self.html)
+        self.assertIn("id='addon-result'", self.html)
+        self.assertIn("aria-live='polite'", self.html)
+
     def test_builder_writes_standalone_route_and_sitemap_includes_it(self):
         original_dist = self.site_builder.DIST
         try:
@@ -117,6 +128,11 @@ class AiAgentReadinessPageTests(unittest.TestCase):
         self.assertIn("<section class='readiness-guide readiness-guide--compact'", home)
         self.assertIn("<h2 id='readiness-guide-title' class='readiness-guide__title'>AI実践力診断</h2>", home)
         self.assertIn("10問・約3分で、いまの実践力と次に整える一歩がわかります。", home)
+        self.assertIn("AIを使っているつもりで、仕事は変わりましたか？", home)
+        self.assertIn("コピペで止まっていないか", home)
+        self.assertIn("任せた仕事を確かめられるか", home)
+        self.assertIn("うまくいった方法を次にも残せるか", home)
+        self.assertIn("class='readiness-guide__questions'", home)
         self.assertIn("100点・5段階", home)
         self.assertIn("5つの基準", home)
         self.assertIn("次の90日", home)

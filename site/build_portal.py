@@ -14866,6 +14866,54 @@ button:focus-visible {
   font-weight: 700;
   line-height: 1.55;
 }
+.readiness-guide__prompt {
+  margin: 9px 0 0;
+  color: var(--focus-ink);
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 1.45;
+}
+.readiness-guide__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 12px;
+  margin: 9px 0 0;
+  color: #53627a;
+  font-size: 11px;
+  font-weight: 800;
+}
+.readiness-guide__questions {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.readiness-guide__questions li {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  gap: 8px;
+  align-items: center;
+  min-width: 0;
+  padding: 7px 10px;
+  color: #30415b;
+  border: 1px solid rgba(79,111,216,.15);
+  border-radius: 10px;
+  background: rgba(255,255,255,.82);
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+.readiness-guide__questions li span {
+  display: inline-grid;
+  width: 22px;
+  height: 22px;
+  place-items: center;
+  color: #fff;
+  border-radius: 50%;
+  background: var(--focus-blue);
+  font: 900 12px/1 Inter, sans-serif;
+}
 .readiness-guide__outcomes {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -14927,6 +14975,8 @@ button:focus-visible {
   .readiness-guide__inner { grid-template-columns: 1fr; gap: 16px; }
   .readiness-guide__title { font-size: clamp(31px, 9vw, 39px); }
   .readiness-guide__summary { margin-top: 6px; font-size: 15px; }
+  .readiness-guide__prompt { font-size: 13px; }
+  .readiness-guide__questions li { font-size: 12px; }
   .readiness-guide__outcomes li { padding: 10px 8px; font-size: 11px; }
   .readiness-guide__outcomes strong { font-size: 12px; }
   .readiness-guide__cta { width: 100%; }
@@ -15083,11 +15133,13 @@ def _render_readiness_guide() -> str:
         "<section class='readiness-guide readiness-guide--compact' aria-labelledby='readiness-guide-title'><div class='readiness-guide__inner'>"
         "<div class='readiness-guide__intro'><p class='readiness-guide__eyebrow'>10問・約3分</p>"
         "<h2 id='readiness-guide-title' class='readiness-guide__title'>AI実践力診断</h2>"
-        "<p class='readiness-guide__summary'>10問・約3分で、いまの実践力と次に整える一歩がわかります。</p></div>"
-        "<ul class='readiness-guide__outcomes' aria-label='診断でわかること'>"
-        "<li><strong>100点・5段階</strong><span>現在地を整理</span></li>"
-        "<li><strong>5つの基準</strong><span>整える点を確認</span></li>"
-        "<li><strong>次の90日</strong><span>仕事で試す一歩</span></li>"
+        "<p class='readiness-guide__summary'>10問・約3分で、いまの実践力と次に整える一歩がわかります。</p>"
+        "<p class='readiness-guide__prompt'>AIを使っているつもりで、仕事は変わりましたか？</p>"
+        "<p class='readiness-guide__meta'><span>100点・5段階</span><span>5つの基準</span><span>次の90日</span></p></div>"
+        "<ul class='readiness-guide__questions' aria-label='AI活用の3つの疑問'>"
+        "<li><span aria-hidden='true'>?</span><strong>コピペで止まっていないか</strong></li>"
+        "<li><span aria-hidden='true'>?</span><strong>任せた仕事を確かめられるか</strong></li>"
+        "<li><span aria-hidden='true'>?</span><strong>うまくいった方法を次にも残せるか</strong></li>"
         "</ul>"
         "<a class='readiness-guide__cta' href='/ai-agent-readiness/' aria-label='AI実践力診断をはじめる。10問・約3分'><span>AI実践力診断をはじめる</span><b aria-hidden='true'>→</b></a>"
         "</div></section>"

@@ -346,7 +346,315 @@ export const QUESTIONS = Object.freeze(QUESTION_DEFINITIONS.map((question) => Ob
   scenario: question.context,
 })));
 
+export const ADDON_SOURCE = Object.freeze({
+  title: 'エンジニアなら、これくらいAI使えないとね。',
+  url: 'https://www.youtube.com/watch?v=92n-hUhRE58',
+  checkedAt: '2026-08-21',
+  note: '動画の自動生成字幕から、製品名や金額ではなく実務行動の論点だけを再編集しています。',
+});
+
+const freezeAddonQuestion = (question) => Object.freeze({
+  ...question,
+  title: question.prompt,
+  scenario: question.context,
+  options: Object.freeze(question.options.map((option) => Object.freeze({ ...option }))),
+  recommendedCourseIds: Object.freeze([...question.recommendedCourseIds]),
+});
+
+const ADDON_QUESTION_DEFINITIONS = Object.freeze({
+  V01: freezeAddonQuestion({
+    id: 'V01',
+    axis: 'usageDepth',
+    prompt: 'AIはブラウザで答えを聞くだけですか。それとも資料・ファイル・道具を渡して、一連の仕事を任せていますか？',
+    context: '会話の回数ではなく、下書き、作業、確認、成果物まで実際の仕事がどう変わったかを見ます。',
+    options: makeOptions([
+      '質問や文章作成が中心で、成果物へは自分でコピペしている',
+      '資料やファイルを渡し、一つの作業を任せたことがある',
+      '複数の作業を任せ、途中と最後を自分で確認している',
+      '人・AI・道具の役割を決め、再現できる仕事の流れとして改善している',
+    ]),
+    nextAction: '今週一つの仕事を選び、資料を渡す、成果物を作る、人が確認する、の3段階で試す。',
+    recommendedCourseIds: ['ai-agent-course', 'ai-consult-entry'],
+  }),
+  V02: freezeAddonQuestion({
+    id: 'V02',
+    axis: 'enablement',
+    prompt: '使いたいAIが社内規定や端末制限で使えないとき、許可された範囲と代替手段を整理していますか？',
+    context: '使えないことを個人の努力不足にせず、利用できる製品、入力できる情報、申請先、代替手順を確認します。',
+    options: makeOptions([
+      '制約が分からず、使わないか個人判断で使っている',
+      '使える製品や情報の範囲を一度確認した',
+      '申請、代替手段、確認者を決めて繰り返し運用している',
+      '利用状況と事故のない実績を見ながら、関係者と許可範囲を改善している',
+    ]),
+    nextAction: '利用できるAI、入力禁止情報、許可が必要な操作、相談先を一枚に整理する。',
+    recommendedCourseIds: ['ai-consult-entry', 'ai-support'],
+  }),
+  V03: freezeAddonQuestion({
+    id: 'V03',
+    axis: 'enablement',
+    prompt: '新しいAIツールを配る前に、対象者が価値を体験できる研修や小さな課題を用意していますか？',
+    context: '道具だけを渡すのでなく、日常の困りごとを一つ軽くする体験から始めます。',
+    options: makeOptions([
+      'ツールを案内しただけで、使い方や題材は各自に任せている',
+      '基本操作の説明や小さな体験会を一度行った',
+      '職種別の課題と確認方法を用意し、受講後も使えるようにしている',
+      '成果物と利用状況を見て研修内容や支援方法を定期的に改善している',
+    ]),
+    nextAction: '一つの職種と一つの仕事に絞り、30分で成果物を作る体験課題を用意する。',
+    recommendedCourseIds: ['ai-agent-course', 'ai-support'],
+  }),
+  V04: freezeAddonQuestion({
+    id: 'V04',
+    axis: 'safety',
+    prompt: '個人情報・秘密情報・公開操作を、入力禁止だけでなく権限、確認、停止、復旧まで含めて管理していますか？',
+    context: 'クラウドかローカルかだけで決めず、何を誰がどこまで扱い、問題時にどう止めて戻すかを見ます。',
+    options: makeOptions([
+      '入力や操作の範囲を決めていない',
+      '個人情報を避けるなど、基本の注意を一度試した',
+      '権限、確認者、停止条件、戻し方を手順にしている',
+      '安全な演習とレビューを行い、権限と復旧手順を改善している',
+    ]),
+    nextAction: '一つの業務で、入力禁止情報、許可操作、確認者、停止と復旧を決める。',
+    recommendedCourseIds: ['ai-consult-entry', 'ai-support'],
+  }),
+  V05: freezeAddonQuestion({
+    id: 'V05',
+    axis: 'value',
+    prompt: 'AI利用料と人の確認時間に対して、短縮時間・品質・売上・利用者価値のどれが増えたか説明できますか？',
+    context: '動画内の個別の金額ではなく、自分の業務で費用と成果を同じ期間で比べられるかを見ます。',
+    options: makeOptions([
+      '利用料だけを見ており、成果を測っていない',
+      '一つの仕事で、時間か品質の変化を一度記録した',
+      '利用料と確認時間を含め、毎月同じ指標で比較している',
+      '成果とリスクをレビューし、予算上限や使う仕事を継続的に見直している',
+    ]),
+    nextAction: '一業務について、月額費用、確認時間、短縮時間、品質の変化を一か月だけ記録する。',
+    recommendedCourseIds: ['ai-consult-entry', 'ai-support'],
+  }),
+  V06: freezeAddonQuestion({
+    id: 'V06',
+    axis: 'value',
+    prompt: 'AIで空いた時間を、顧客対応・教育・企画・地域活動など何へ振り向けるか決めていますか？',
+    context: '作業を速くするだけで終わらず、人の自由度や利用者への価値が増えたかを見ます。',
+    options: makeOptions([
+      '短縮した時間を何に使うか決めていない',
+      '空いた時間で増やしたい活動を一つ決めた',
+      '実際に時間を振り向け、利用者や仕事への効果を記録している',
+      'チームで時間の使い道を共有し、成果と負担を見ながら配分を改善している',
+    ]),
+    nextAction: '減らしたい作業と、その後に10分増やしたい活動を一組で書く。',
+    recommendedCourseIds: ['ai-consult-entry', 'ai-agent-course'],
+  }),
+  V07: freezeAddonQuestion({
+    id: 'V07',
+    axis: 'knowledge',
+    prompt: 'プロジェクト固有の目的、禁止事項、完成条件、失敗から得た学びを、次回も使える形で残していますか？',
+    context: '毎回長く説明するのでなく、AIと人が必要な情報へたどり着ける場所を整えます。',
+    options: makeOptions([
+      '会話や担当者の記憶に頼り、毎回説明し直している',
+      '目的や注意点を一つの文書に残したことがある',
+      '目的、制約、完成条件、確認手順を必要最小限で更新している',
+      '人とAIのフィードバックを承認して取り込み、他の仕事にも再利用している',
+    ]),
+    nextAction: '一つのプロジェクトに、目的、禁止事項、完成条件、確認方法を15行以内で残す。',
+    recommendedCourseIds: ['ai-agent-course', 'ai-coding'],
+  }),
+  V08: freezeAddonQuestion({
+    id: 'V08',
+    axis: 'knowledge',
+    prompt: '過去の指示やルールが、新しいAIの力を必要以上に縛っていないか定期的に見直していますか？',
+    context: 'ルールを全部消すのでなく、必須の境界と古くなった手順を分けます。',
+    options: makeOptions([
+      '一度作った指示やルールを見直していない',
+      '不要な指示を一度外したり短くしたりした',
+      'モデルや仕事が変わるとき、必須ルールと手順を分けて見直している',
+      '変更前後の成果と事故の有無を比べ、最小限のルールへ継続改善している',
+    ]),
+    nextAction: '古い指示を、守る境界、作業手順、参考情報に分け、不要な重複を一つ外す。',
+    recommendedCourseIds: ['ai-coding', 'ai-support'],
+  }),
+  V09: freezeAddonQuestion({
+    id: 'V09',
+    axis: 'knowledge',
+    prompt: 'SNSや動画で見た新しいAI活用法を、出典・自分の仕事との適合・小さな検証で確かめてから取り入れていますか？',
+    context: '話題だから全部採用するのでなく、公式情報、必要性、安全な試行で選別します。',
+    options: makeOptions([
+      '話題になった方法を、そのまま試したりルールへ追加したりする',
+      '出典か公式情報を一度確認した',
+      '自分の仕事への必要性を考え、安全な範囲で比較している',
+      '採用・不採用の理由と結果を残し、チームの判断基準を改善している',
+    ]),
+    nextAction: '気になる手法を一つ選び、公式情報、期待する効果、試す範囲、採用条件を書く。',
+    recommendedCourseIds: ['ai-agent-course', 'ai-coding'],
+  }),
+  V10: freezeAddonQuestion({
+    id: 'V10',
+    axis: 'verification',
+    prompt: 'AIに設計や実装を任せる範囲をリスクで分け、必要なところへ人や専門家のレビューを置いていますか？',
+    context: '文章の下書き、業務ロジック、個人情報、課金、インフラでは、失敗したときの影響が違います。',
+    options: makeOptions([
+      'リスクを分けず、同じ確認方法で任せている',
+      '重要な変更だけ、自分か詳しい人が一度確認した',
+      '影響度ごとに承認者、テスト、公開条件を決めている',
+      '失敗事例とレビュー結果から、委任範囲と確認基準を改善している',
+    ]),
+    nextAction: '一つの変更を低・中・高リスクに分け、それぞれの確認者と公開条件を決める。',
+    recommendedCourseIds: ['ai-coding', 'ai-support'],
+  }),
+  V11: freezeAddonQuestion({
+    id: 'V11',
+    axis: 'verification',
+    prompt: 'AIに成果物を作らせる前に利用者の流れを決め、テストと実画面で通ることを確かめていますか？',
+    context: 'コード量ではなく、利用者が目的を達成でき、壊れたときに気づける確認を用意します。',
+    options: makeOptions([
+      '生成された成果物を目で少し見るだけで使っている',
+      '主な操作を自分で一度試した',
+      '利用者シナリオ、単体テスト、主要画面の確認を毎回行っている',
+      '失敗を再現するテストを残し、PC・スマホ・本番まで自動と人で継続確認している',
+    ]),
+    nextAction: '利用者が行う三つの操作を書き、一つを自動テスト、一つをブラウザで確認する。',
+    recommendedCourseIds: ['ai-coding'],
+  }),
+  V12: freezeAddonQuestion({
+    id: 'V12',
+    axis: 'humanJudgment',
+    prompt: '要約・文章・返信をAIへ任せても、自分で説明する、異論を出す、たとえる、相手と直接話す力を残していますか？',
+    context: 'AIを使わないことが目的ではなく、人にしか担えない判断と関係づくりを意識して使います。',
+    options: makeOptions([
+      '内容を十分理解せず、AIの要約や返信をそのまま使うことがある',
+      '送る前に読み、自分の言葉を一つ加えたことがある',
+      '理由、異論、相手への配慮を自分で確認し、必要な場面は直接話している',
+      'AI利用後も説明力と対話の質を振り返り、任せる範囲を改善している',
+    ]),
+    nextAction: '次のAI生成文に、自分の判断理由か相手への一言を必ず一つ加える。',
+    recommendedCourseIds: ['ai-agent-course', 'ai-consult-entry'],
+  }),
+});
+
+const makeAddonTrack = ({ questionIds, ...track }) => Object.freeze({
+  ...track,
+  questionIds: Object.freeze([...questionIds]),
+  questions: Object.freeze(questionIds.map((questionId) => ADDON_QUESTION_DEFINITIONS[questionId])),
+});
+
+export const ADDON_TRACKS = Object.freeze({
+  implementation: makeAddonTrack({
+    id: 'implementation',
+    title: '実装編 6問',
+    eyebrow: '作る・任せる・確かめる',
+    description: 'コピペ利用から一歩進み、文脈、ルール、レビュー、テスト、実画面確認までを振り返ります。',
+    questionIds: ['V01', 'V07', 'V08', 'V09', 'V10', 'V11'],
+  }),
+  organization: makeAddonTrack({
+    id: 'organization',
+    title: '組織導入編 6問',
+    eyebrow: '安全に導入し、価値へつなげる',
+    description: '利用制約、研修、安全、費用対効果、空いた時間、人の対話を振り返ります。',
+    questionIds: ['V02', 'V03', 'V04', 'V05', 'V06', 'V12'],
+  }),
+});
+
+export const ADDON_BANDS = Object.freeze([
+  Object.freeze({
+    id: 'start',
+    min: 0,
+    max: 39,
+    title: 'まず一つ試す',
+    description: '広げる前に、影響の小さい仕事を一つ選び、AIへ任せる範囲と人が確認する点を決める段階です。',
+  }),
+  Object.freeze({
+    id: 'shape',
+    min: 40,
+    max: 69,
+    title: '仕事の型を整える',
+    description: '一度の成功を、目的・材料・確認・記録まで含む再現できる手順へ整える段階です。',
+  }),
+  Object.freeze({
+    id: 'verify',
+    min: 70,
+    max: 89,
+    title: '任せて確かめる',
+    description: '任せる範囲を広げながら、品質、安全、利用者の流れを人とテストで確かめる段階です。',
+  }),
+  Object.freeze({
+    id: 'improve',
+    min: 90,
+    max: 100,
+    title: '広げながら改善する',
+    description: '成果とリスクを定期的に振り返り、他の仕事や人にも安全に広げる段階です。',
+  }),
+]);
+
 const ALLOWED_SCORES = new Set([0, 2, 4, 5]);
+
+export function addonBandForPercent(percent) {
+  const numericPercent = Number.isFinite(Number(percent)) ? Number(percent) : 0;
+  const boundedPercent = Math.max(0, Math.min(100, numericPercent));
+  return ADDON_BANDS.find((band) => boundedPercent >= band.min && boundedPercent <= band.max) ?? ADDON_BANDS[0];
+}
+
+export function scoreAddonTrack(trackId, answers = {}) {
+  const track = ADDON_TRACKS[trackId];
+  if (!track) {
+    throw new TypeError(`Unknown add-on track: ${trackId}`);
+  }
+
+  const validAnswers = {};
+  const missingQuestionIds = [];
+  for (const question of track.questions) {
+    const answer = Number(answers[question.id]);
+    if (!ALLOWED_SCORES.has(answer) || answers[question.id] === '' || answers[question.id] == null) {
+      missingQuestionIds.push(question.id);
+      continue;
+    }
+    validAnswers[question.id] = answer;
+  }
+
+  const rawScore = Object.values(validAnswers).reduce((total, score) => total + score, 0);
+  const maxScore = track.questions.length * MAX_ANSWER_SCORE;
+  const answeredCount = track.questions.length - missingQuestionIds.length;
+  if (missingQuestionIds.length > 0) {
+    return {
+      complete: false,
+      track,
+      answeredCount,
+      totalQuestions: track.questions.length,
+      missingQuestionIds,
+      rawScore,
+      maxScore,
+      percent: Math.round((rawScore / maxScore) * 100),
+      band: null,
+      lowestQuestions: [],
+      nextActions: [],
+      recommendedCourses: [],
+    };
+  }
+
+  const percent = Math.round((rawScore / maxScore) * 100);
+  const rankedQuestions = track.questions
+    .map((question, index) => ({ ...question, answer: validAnswers[question.id], trackIndex: index }))
+    .sort((left, right) => left.answer - right.answer || left.trackIndex - right.trackIndex);
+  const lowestQuestions = rankedQuestions.slice(0, 2);
+  const nextActions = lowestQuestions.map(({ id, prompt, nextAction }) => ({ id, prompt, nextAction }));
+  const recommendedCourseIds = [...new Set(lowestQuestions.flatMap(({ recommendedCourseIds: ids }) => ids))].slice(0, 2);
+  const recommendedCourses = recommendedCourseIds.map((courseId) => COURSE_ROUTES[courseId]);
+
+  return {
+    complete: true,
+    track,
+    answeredCount,
+    totalQuestions: track.questions.length,
+    missingQuestionIds,
+    rawScore,
+    maxScore,
+    percent,
+    band: addonBandForPercent(percent),
+    lowestQuestions,
+    nextActions,
+    recommendedCourses,
+  };
+}
 
 export function levelForScore(score) {
   const numericScore = Number.isFinite(Number(score)) ? Number(score) : 0;

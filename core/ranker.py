@@ -6,6 +6,8 @@
               + genre_affinity_bonus (好み学習, 0-40)
               + source_affinity_bonus (好み学習, 0-20)
               + freshness_bonus (0-10)
+              + japan_relevance_bonus (0-33)
+              + codex_relevance_bonus (0-20)
 """
 from __future__ import annotations
 import json
@@ -16,6 +18,8 @@ from .collector import Article
 
 
 TOP_N = 10
+MAX_PER_SOURCE = 2
+JAPAN_CATEGORIES = {"AI国内", "AI動画(日本語)"}
 
 
 def load_preferences(path: Path) -> dict:
@@ -75,6 +79,23 @@ def freshness_bonus(article: Article) -> float:
     return 0.0
 
 
+def _bounded_score(value, *, maximum: float = 100.0) -> float:
+    try:
+        return max(0.0, min(maximum, float(value)))
+    except (TypeError, ValueError):
+        return 0.0
+
+
+def japan_relevance_bonus(article: Article, info: dict) -> float:
+    relevance = _bounded_score(info.get("japan_relevance")) * 0.25
+    domestic_source = 8.0 if article.category in JAPAN_CATEGORIES else 0.0
+    return relevance + domestic_source
+
+
+def codex_relevance_bonus(info: dict) -> float:
+    return _bounded_score(info.get("codex_relevance")) * 0.20
+
+
 def rank_articles(
     articles: list[Article],
     summary_map: dict,
@@ -90,21 +111,42 @@ def rank_articles(
 
     for a in articles:
         info = summary_map.get(a.hash, {})
-        base = float(info.get("score", 50))
+        base = _bounded_score(info.get("score", 50))
         gb = genre_bonus(info.get("genre", ""), prefs)
         sb = source_bonus(a.source, prefs)
         fb = freshness_bonus(a)
-        final = base + gb + sb + fb
+        jb = japan_relevance_bonus(a, info)
+        cb = codex_relevance_bonus(info)
+        final = base + gb + sb + fb + jb + cb
         info["final_score"] = round(final, 1)
         info["breakdown"] = {
             "base": base,
             "genre_bonus": round(gb, 1),
             "source_bonus": round(sb, 1),
             "freshness": round(fb, 1),
+            "japan_relevance": round(jb, 1),
+            "codex_relevance": round(cb, 1),
         }
         summary_map[a.hash] = info
         scored.append((final, a, info))
 
     scored.sort(key=lambda x: x[0], reverse=True)
-    top = [a for _, a, _ in scored[:top_n]]
+    top: list[Article] = []
+    deferred: list[Article] = []
+    source_counts: dict[str, int] = {}
+    for _score, article, _info in scored:
+        if len(top) >= top_n:
+            break
+        source_count = source_counts.get(article.source, 0)
+        if source_count >= MAX_PER_SOURCE:
+            deferred.append(article)
+            continue
+        top.append(article)
+        source_counts[article.source] = source_count + 1
+
+    if len(top) < top_n:
+        for article in deferred:
+            if len(top) >= top_n:
+                break
+            top.append(article)
     return top, summary_map

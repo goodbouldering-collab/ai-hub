@@ -6,11 +6,75 @@ NotebookLM に放り込めるクリーンなテキスト/Markdown を出力す�
 """
 from __future__ import annotations
 import json
-from datetime import datetime
+from datetime import date, datetime
+import os
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 from .collector import Article
+from .daily_news import normalize_daily_ai_news, normalize_daily_ai_news_item
 from .organizer import group_by_category
+
+
+def _japan_today() -> date:
+    return datetime.now(ZoneInfo("Asia/Tokyo")).date()
+
+
+def export_daily_ai_news_snapshot(
+    top_articles: list[Article],
+    summary_map: dict,
+    output_path: Path,
+    *,
+    today: date | None = None,
+) -> Path | None:
+    """Atomically publish ten valid candidates, keeping the last good snapshot on failure."""
+    items: list[dict[str, str]] = []
+    seen_urls: set[str] = set()
+    for article in top_articles:
+        info = summary_map.get(article.hash, {})
+        candidate = {
+            "title": info.get("title_ja") or article.title,
+            "url": article.url,
+            "source": article.source,
+            "published": article.published or article.fetched_at,
+            "kid_summary": info.get("kid_summary", ""),
+            "japan_angle": info.get("japan_angle", ""),
+        }
+        try:
+            clean_candidate = normalize_daily_ai_news_item(candidate)
+        except ValueError:
+            continue
+        if clean_candidate["url"] in seen_urls:
+            continue
+        seen_urls.add(clean_candidate["url"])
+        items.append(clean_candidate)
+        if len(items) == 10:
+            break
+
+    payload = {
+        "date": (today or _japan_today()).isoformat(),
+        "items": items,
+    }
+    try:
+        clean = normalize_daily_ai_news(payload)
+    except ValueError as exc:
+        print(f"[!] 日次AIニュースは前回成功分を維持: {exc}")
+        return None
+
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = output_path.with_name(output_path.name + ".tmp")
+    try:
+        temporary.write_text(
+            json.dumps(clean, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+            newline="\n",
+        )
+        os.replace(temporary, output_path)
+    finally:
+        if temporary.exists():
+            temporary.unlink()
+    print(f"[+] 日次AIニュース公開スナップショット: {output_path}")
+    return output_path
 
 
 def export_top10_json(
@@ -20,7 +84,7 @@ def export_top10_json(
     output_path: Path,
 ) -> Path:
     """build_site.py が読むトップ10のJSON。"""
-    date_str = datetime.now().strftime("%Y-%m-%d")
+    date_str = _japan_today().isoformat()
     items = []
     for a in top_articles:
         info = summary_map.get(a.hash, {})
@@ -29,6 +93,10 @@ def export_top10_json(
             "title": info.get("title_ja") or a.title,
             "orig_title": a.title,
             "summary": info.get("summary", ""),
+            "kid_summary": info.get("kid_summary", ""),
+            "japan_angle": info.get("japan_angle", ""),
+            "japan_relevance": info.get("japan_relevance", 0),
+            "codex_relevance": info.get("codex_relevance", 0),
             "url": a.url,
             "source": a.source,
             "category": a.category,

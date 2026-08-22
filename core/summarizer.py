@@ -23,7 +23,7 @@ SYSTEM_PROMPT = textwrap.dedent(f"""
 与えられた記事リストに対し、以下のJSON配列を返してください。
 
 [
-  {{"index": 0, "title_ja": "日本語の簡潔なタイトル(30文字前後)", "summary": "日本語1文の要約", "genre": "generative_ai", "score": 75}},
+  {{"index": 0, "title_ja": "日本語の簡潔なタイトル(30文字前後)", "summary": "日本語1文の要約", "kid_summary": "小学校高学年にもわかる説明", "japan_angle": "日本の学校・仕事・暮らしとの関係", "genre": "generative_ai", "score": 75, "japan_relevance": 80, "codex_relevance": 90}},
   ...
 ]
 
@@ -41,12 +41,19 @@ score は 0-100 の整数。以下の観点で総合判定:
 - 具体性 (30点): 数字・事例・実行可能な情報があるか
 小さな話題性の薄い記事は 20-40、業界を動かす大ニュースは 80-100
 
+japan_relevance は、日本の学校、地域事業者、個人の仕事や暮らしとの関係の強さを0-100で付ける。
+実測の人気や検索数は与えられていないため「日本で流行している」とは断定せず、関係の強さだけを評価する。
+codex_relevance は、OpenAI Codexそのものなら90-100、他社を含むAIコーディングエージェントなら40-80、無関係なら0とする。
+
 ルール:
 - 元記事が英語でも title_ja と summary は必ず日本語
 - title_ja は原題の意味を保ちつつ自然な日本語にする。固有名詞(OpenAI 等)はそのまま残す
 - summary は60文字以内の1文。何が起きたかだけを端的に書く
+- kid_summary は90文字以内の1文。小学校高学年が家族に説明できる言葉を使い、専門語はその場で言い換える
+- japan_angle は90文字以内の1文。日本の学校、地域のお店、会社、家庭、作り手のどこに関係するかを具体的に書く
 - URL・リンク・ハッシュタグは絶対に含めない
 - 誇張・推測・前置き・自社PR・宣伝文句は書かない
+- 根拠が弱い煽り見出しや宣伝だけの記事はscoreを下げ、公式発表・一次情報・具体的な検証を優先する
 - JSON以外の文字は一切出力しない
 """).strip()
 
@@ -93,6 +100,13 @@ def summarize_batch(client: anthropic.Anthropic, articles: list[Article]) -> lis
         return []
 
 
+def _score_value(value) -> int:
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return 0
+
+
 def summarize_all(articles: list[Article]) -> dict[str, dict]:
     """
     記事ハッシュ -> {"summary": ...} の辞書を返す。
@@ -126,8 +140,18 @@ def summarize_all(articles: list[Article]) -> dict[str, dict]:
             result[a.hash] = {
                 "summary": item.get("summary", ""),
                 "title_ja": item.get("title_ja", ""),
+                "kid_summary": item.get("kid_summary", ""),
+                "japan_angle": item.get("japan_angle", ""),
                 "genre": genre,
                 "score": max(0, min(100, score)),
+                "japan_relevance": max(
+                    0,
+                    min(100, _score_value(item.get("japan_relevance", 0))),
+                ),
+                "codex_relevance": max(
+                    0,
+                    min(100, _score_value(item.get("codex_relevance", 0))),
+                ),
             }
 
     return result

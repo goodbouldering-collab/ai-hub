@@ -1,8 +1,30 @@
 # Codexアップデート記事の自動更新
 
-固定記事 `content/blog/codex-update-log.md` を、OpenAI公式の週次「What's new」に合わせて更新する仕組みです。記事URLと公開日は変えず、実際に内容が変わった日だけ `date_modified` を更新します。
+固定記事 `content/blog/codex-update-log.md` に、毎日のAIニュース10件と、OpenAI公式の変更時だけ更新するCodex解説をまとめる仕組みです。記事URLと初回公開日は変えません。
 
-## 自動実行
+## 3本のフック
+
+| フック | 時刻 | 更新条件 | 記事で変わる場所 |
+|---|---:|---|---|
+| GitHubニュース収集 | 毎日 JST 07:00 | 直近48時間の公開RSSを収集 | AI Watchの収集データ |
+| GitHub Codex公式監視 | 毎日 JST 07:40 | 公式週次情報または安定版CLIのfingerprintが変わった時だけ | Codex解説、`date_modified`、過去要約 |
+| Codex日次編集 | 毎日 JST 08:10 | 有効なニュース10件がそろった時。Codex本文は公式差分がある時だけ | 記事上部の「今日のAIニュース10」と、必要時だけCodex解説 |
+
+GitHub Actionsの共通concurrency group `ai-hub-content-publish` で2本のActionを直列化します。Codex日次編集はアプリのローカル定期タスク `AI相談 毎朝AIニュース10・Codex更新監視`（ID: `ai-ai-10-codex`）です。いずれも外部サービスから通知を受けるイベントWebhookではなく、公式情報を定期確認するポーリング方式です。ローカル定期タスクはPCとCodexアプリが動作している時に実行されます。
+
+## 毎日のAIニュース10
+
+- 主更新: Codexアプリのローカル定期タスク（毎日 JST 08:10）
+- 予備収集: `.github/workflows/daily.yml`（毎日 JST 07:00、外部AI APIを呼ばず公開RSSだけを保存）
+- 取得範囲: 直近48時間（休日などでも10件を確保しやすくするため）
+- 取得元: OpenAI Codex公式安定版リリース、主要AI企業・技術メディア、日本語AI媒体（alpha・beta・rc版は除外）
+- 選定: 新規性・影響・具体性に、日本との関係、Codexとの関係、情報元の偏り防止を加点
+- 表現: 各ニュースを「小学生向け」「日本との関係」の2文で説明
+- 公開データ: `content/daily-ai-news.json`
+
+要約失敗、URL不正、重複などを除外し、次点候補から補います。有効な10件がそろわなければファイルを置換せず、前回の正常版を本番に残します。AIが実測の検索数やSNS反応を取得しているわけではないため、「日本で流行中」とは断定せず、日本の学校・仕事・暮らしとの関係が強い順として扱います。
+
+## Codex公式監視
 
 - Workflow: `.github/workflows/codex-update-log.yml`
 - 実行時刻: 毎日 JST 07:40
@@ -18,7 +40,7 @@
 - `CODEX_UPDATE_ARCHIVE` 内: 直前の内容を1〜2文で要約して先頭へ追加
 - frontmatter: `date_modified`、`source_period`、`source_fingerprint`、`source_release_tag`だけ更新
 
-固定slug、初回公開日、シリーズ名、ヒーロー画像は変更しません。画像は `site/static/img/blog-codex-update-log-hero-20260821.webp` を継続利用します。
+固定slug、初回公開日、シリーズ名、ヒーロー画像は自動更新では変更しません。画像は `site/static/img/blog-codex-update-log-hero-20260822.png` を利用します。
 
 ## 安全策
 
@@ -36,6 +58,8 @@
 - 一時ファイルを検証後、原子的に置換
 - Workflowがcommitするのは固定記事だけ。画像や生成済みHTMLは自動commitしない
 - mainへpush後、Vercel本番に同じfingerprintが出るまで確認
+- 日次ニュースは10件すべてを検証してから原子的に置換し、途中結果を公開しない
+- 1情報元は原則2件までにし、特定メディアだけで上位を埋めない
 
 ## 手動確認
 

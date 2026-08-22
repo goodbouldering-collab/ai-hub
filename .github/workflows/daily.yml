@@ -15,6 +15,10 @@ on:
         type: choice
         options: [diff, full]
 
+concurrency:
+  group: ai-hub-content-publish
+  cancel-in-progress: false
+
 jobs:
   run:
     runs-on: ubuntu-latest
@@ -24,6 +28,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -47,13 +54,11 @@ jobs:
           fi
 
       - name: Run collector
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           if [ "${{ steps.mode.outputs.value }}" = "full" ]; then
-            python run.py --full
+            python run.py --hours 48 --full --no-summary
           else
-            python run.py
+            python run.py --hours 48 --no-summary
           fi
 
       - name: Commit outputs back
@@ -64,11 +69,15 @@ jobs:
           # .gitignore で site/dist/* は除外しつつ index.html だけ tracked にしている。
           # daily 実行で build_portal.py が再生成するので毎日コミット対象に含める。
           git add outputs/ data/history.db site/dist/index.html || true
+          if [ -f content/daily-ai-news.json ]; then
+            git add content/daily-ai-news.json
+          fi
           if git diff --staged --quiet; then
             echo "変更なし"
           else
             git commit -m "chore(ai-hub): daily digest $(date -u +%Y-%m-%d)"
-            git push
+            git pull --rebase origin main
+            git push origin HEAD:main
           fi
 
       # Pages デプロイは .github/workflows/pages.yml 側に分離

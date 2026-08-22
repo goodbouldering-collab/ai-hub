@@ -23,7 +23,13 @@ from dotenv import load_dotenv
 from core.collector import collect_all
 from core.differ import ArticleStore
 from core.summarizer import summarize_all
-from core.exporter import export_diff_report, export_full_source, export_nlm_paste, export_top10_json
+from core.exporter import (
+    export_daily_ai_news_snapshot,
+    export_diff_report,
+    export_full_source,
+    export_nlm_paste,
+    export_top10_json,
+)
 from core.thumbnails import resolve_thumbnails
 from core.ranker import rank_articles
 
@@ -34,6 +40,7 @@ DB = ROOT / "data" / "history.db"
 OUT_NLM = ROOT / "outputs" / "notebooklm"
 OUT_FULL = ROOT / "outputs" / "full"
 OUT_TOP10 = ROOT / "outputs" / "top10.json"
+OUT_DAILY_NEWS = ROOT / "content" / "daily-ai-news.json"
 THUMB_CACHE = ROOT / "data" / "thumb_cache.json"
 PREFS = ROOT / "data" / "preferences.json"
 
@@ -81,7 +88,8 @@ def main():
     print(f"  サムネあり: {len(thumb_map)}/{len(articles)}件")
 
     print("\n[4b/6] ランキング (Top10選定)")
-    top_articles, summary_map = rank_articles(articles, summary_map, PREFS)
+    ranked_candidates, summary_map = rank_articles(articles, summary_map, PREFS, top_n=20)
+    top_articles = ranked_candidates[:10]
     print(f"  Top{len(top_articles)}件を選定")
     for i, a in enumerate(top_articles, 1):
         info = summary_map.get(a.hash, {})
@@ -91,6 +99,7 @@ def main():
     export_nlm_paste(articles, summary_map, OUT_NLM)
     export_diff_report(new_items, existing_items, summary_map, OUT_NLM)
     export_top10_json(top_articles, summary_map, thumb_map, OUT_TOP10)
+    export_daily_ai_news_snapshot(ranked_candidates, summary_map, OUT_DAILY_NEWS)
 
     if args.full:
         print("\n[extra] 全件統合版 (--full)")

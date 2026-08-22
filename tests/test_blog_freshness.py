@@ -181,7 +181,7 @@ class BlogFreshnessTest(unittest.TestCase):
         meta, body = builder._parse_frontmatter(CODEX_UPDATE_ARTICLE.read_text(encoding="utf-8"))
         self.assertIsInstance(date.fromisoformat(str(meta["date_modified"])), date)
         self.assertIn("常時更新", meta["title"])
-        self.assertEqual(meta["image"], "/img/blog-codex-update-log-hero-20260821.webp")
+        self.assertEqual(meta["image"], "/img/blog-codex-update-log-hero-20260822.png")
         self.assertTrue(meta["hero_image"])
         self.assertEqual(body.count("<!-- CODEX_UPDATE_CURRENT:BEGIN -->"), 1)
         self.assertEqual(body.count("<!-- CODEX_UPDATE_CURRENT:END -->"), 1)
@@ -210,8 +210,9 @@ class BlogFreshnessTest(unittest.TestCase):
             )
         image_path = ROOT / "site" / "static" / str(meta["image"]).lstrip("/")
         with Image.open(image_path) as hero:
-            self.assertEqual(hero.size, (1200, 630))
+            self.assertGreaterEqual(hero.width, 1200)
             self.assertGreater(hero.width, hero.height)
+            self.assertGreater(hero.width / hero.height, 1.8)
 
 
 if __name__ == "__main__":

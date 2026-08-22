@@ -5,6 +5,7 @@ sources.yaml の type に応じて取得方法を切り替える。
 """
 from __future__ import annotations
 import hashlib
+import re
 import time
 from dataclasses import dataclass, asdict
 from datetime import datetime, timedelta, timezone
@@ -57,6 +58,12 @@ def fetch_rss(source: dict, max_age_hours: int | None = None) -> list[Article]:
     now = time.strftime("%Y-%m-%d %H:%M:%S")
     limit = source.get("limit", 20)
     cutoff: datetime | None = None
+    exclude_title_pattern = None
+    if source.get("exclude_title_regex"):
+        try:
+            exclude_title_pattern = re.compile(str(source["exclude_title_regex"]))
+        except re.error as exc:
+            print(f"[warn] invalid exclude_title_regex ({source['name']}): {exc}")
     if max_age_hours:
         cutoff = datetime.now(timezone.utc) - timedelta(hours=max_age_hours)
 
@@ -66,6 +73,8 @@ def fetch_rss(source: dict, max_age_hours: int | None = None) -> list[Article]:
         title = getattr(entry, "title", "").strip()
         url = getattr(entry, "link", "").strip()
         if not title or not url:
+            continue
+        if exclude_title_pattern and exclude_title_pattern.search(title):
             continue
 
         entry_dt = _entry_datetime(entry)
@@ -78,7 +87,7 @@ def fetch_rss(source: dict, max_age_hours: int | None = None) -> list[Article]:
             or getattr(entry, "description", "")
             or ""
         ).strip()
-        published = (
+        published = entry_dt.isoformat() if entry_dt else (
             getattr(entry, "published", None)
             or getattr(entry, "updated", None)
             or ""

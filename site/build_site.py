@@ -33,7 +33,9 @@ except Exception:
     pass
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from core.daily_news import load_daily_ai_news, prepend_daily_ai_news
 from public_navigation import render_desktop_navigation, render_mobile_navigation
 from blog_freshness import blog_date_label, effective_blog_date, is_new_blog
 
@@ -1318,6 +1320,7 @@ PORTFOLIO_YAML = ROOT / "config" / "portfolio.yaml"
 PROFILE_YAML = ROOT / "config" / "profile.yaml"
 TEACHING_YAML = ROOT / "config" / "teaching_resources.yaml"
 BLOG_DIR = ROOT / "content" / "blog"
+DAILY_AI_NEWS_JSON = ROOT / "content" / "daily-ai-news.json"
 
 CONTENT_CSS = """
 .content-wrap {
@@ -1480,6 +1483,82 @@ CONTENT_CSS = """
   font-size: 14px;
   line-height: 1.75;
 }
+.content-wrap .daily-ai-news {
+  margin: 0 0 34px;
+  padding: clamp(20px, 4vw, 32px);
+  overflow: hidden;
+  border: 1px solid rgba(37, 99, 235, .18);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 92% 4%, rgba(45, 203, 161, .18), transparent 28%),
+    linear-gradient(145deg, #f7fbff 0%, #f2f8f6 100%);
+  box-shadow: 0 18px 42px rgba(15, 35, 58, .10);
+}
+.content-wrap .daily-ai-news__header { max-width: 720px; }
+.content-wrap .daily-ai-news__eyebrow {
+  margin: 0 0 4px;
+  color: #176b5a;
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: .06em;
+}
+.content-wrap .daily-ai-news h2 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #10243c;
+  font-size: clamp(25px, 4vw, 36px);
+}
+.content-wrap .daily-ai-news__lead { margin: 8px 0 0; font-size: 15px; }
+.content-wrap .daily-ai-news__date { margin: 3px 0 0; color: var(--muted); font-size: 12px; }
+.content-wrap .daily-ai-news__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.content-wrap .daily-ai-news__item {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  gap: 11px;
+  min-width: 0;
+  margin: 0;
+  padding: 16px;
+  border: 1px solid rgba(15, 35, 58, .10);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, .88);
+}
+.content-wrap .daily-ai-news__rank {
+  display: grid;
+  place-items: center;
+  align-self: start;
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  background: #10243c;
+  color: #91f2d5;
+  font-size: 15px;
+  font-weight: 850;
+}
+.content-wrap .daily-ai-news__copy { min-width: 0; }
+.content-wrap .daily-ai-news__copy h3 { margin: 1px 0 8px; font-size: 15px; line-height: 1.5; }
+.content-wrap .daily-ai-news__copy h3 a { overflow-wrap: anywhere; }
+.content-wrap .daily-ai-news__copy p { margin: 5px 0; font-size: 13px; line-height: 1.65; }
+.content-wrap .daily-ai-news__copy strong {
+  display: inline-block;
+  margin-right: 7px;
+  color: #176b5a;
+  font-size: 11px;
+}
+.content-wrap .daily-ai-news__source { color: var(--muted); font-size: 11.5px; }
+.content-wrap .daily-ai-news__action {
+  margin: 18px 0 0;
+  color: #10243c;
+  font-weight: 750;
+}
 @media (max-width: 540px) {
   .content-wrap .codex-command-callout {
     align-items: flex-start;
@@ -1493,6 +1572,10 @@ CONTENT_CSS = """
   .content-wrap .codex-use-story dl { grid-template-columns: 1fr; gap: 3px; }
   .content-wrap .codex-use-story dd { margin: 0 0 9px; }
   .content-wrap .codex-use-story dd:last-child { margin-bottom: 0; }
+  .content-wrap .daily-ai-news { padding: 18px 14px; border-radius: 18px; }
+  .content-wrap .daily-ai-news__list { grid-template-columns: 1fr; }
+  .content-wrap .daily-ai-news__item { grid-template-columns: 32px minmax(0, 1fr); padding: 14px 12px; }
+  .content-wrap .daily-ai-news__rank { width: 32px; height: 32px; border-radius: 10px; }
 }
 .content-wrap strong { color: var(--text); font-weight: 700; }
 .content-wrap img {
@@ -4336,10 +4419,12 @@ def build_blog() -> int:
     count = 0
     items: list[dict] = []
     featured_reel: dict | None = None
+    daily_ai_news = load_daily_ai_news(DAILY_AI_NEWS_JSON)
     for f in sorted(BLOG_DIR.glob("*.md"), reverse=True):
         raw = f.read_text(encoding="utf-8")
         meta, body = _parse_frontmatter(raw)
         body_html = md.markdown(body, extensions=["extra", "sane_lists", "attr_list"])
+        body_html = prepend_daily_ai_news(meta, body_html, daily_ai_news)
         title = str(meta.get("title") or f.stem)
         nav = render_top_nav(path_prefix="../", current_id="blog", include_run=False)
         (out_dir / f"{f.stem}.html").write_text(

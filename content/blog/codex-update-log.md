@@ -6,8 +6,8 @@ content_series: codex-update-log
 source_period: "August 17–21, 2026"
 source_fingerprint: "b3cc9f4347cd95104d81f462b4aacfaf044a35d70d523e8df6b6814f0a993774"
 source_release_tag: "rust-v0.149.0"
-image: "/img/blog-codex-update-log-hero-20260821.webp"
-image_alt: "Codexの更新を仕事へつなぐ知的な観測装置と三つの機能モジュール"
+image: "/img/blog-codex-update-log-hero-20260822.png"
+image_alt: "毎日のAIニュース10件とCodexの変化だけを選び出す和紙のカードと光のプリズム"
 hero_image: true
 authorship_note: "※内容は運営者が考え、AIで整えています。"
 summary: "Codexアップデートから、多くの人に役立つ新機能と使い方だけを選んで追記する常時更新ページです。"

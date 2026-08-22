@@ -10,6 +10,14 @@ sources:
     limit: 15
     enabled: true
 
+  - name: OpenAI Codex Releases
+    type: rss
+    url: https://github.com/openai/codex/releases.atom
+    category: AI公式
+    limit: 15
+    exclude_title_regex: '(?i)(?:^|[-.])(?:alpha|beta|rc)(?:[-.]|$)'
+    enabled: true
+
   - name: Google DeepMind
     type: rss
     url: https://deepmind.google/blog/rss.xml

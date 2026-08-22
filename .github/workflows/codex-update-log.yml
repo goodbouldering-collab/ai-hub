@@ -10,7 +10,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: codex-update-log
+  group: ai-hub-content-publish
   cancel-in-progress: false
 
 jobs:

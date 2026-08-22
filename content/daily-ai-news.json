@@ -1,0 +1,85 @@
+{
+  "date": "2026-08-22",
+  "items": [
+    {
+      "title": "Codex 0.149.0、作業一覧と追加指示が便利に",
+      "url": "https://github.com/openai/codex/releases/tag/rust-v0.149.0",
+      "source": "OpenAI Codex Releases",
+      "published": "2026-08-20T21:06:13+00:00",
+      "kid_summary": "Codexに、複数の作業を探す・始める・止める画面や、進行中の作業へ追加指示を送る機能が加わりました。",
+      "japan_angle": "学校の資料づくりや地域のお店のサイト修正を、いくつか同時に見失わず進める助けになります。"
+    },
+    {
+      "title": "ゲームAI研究15年を新しい遊びへ",
+      "url": "https://deepmind.google/blog/from-atari-to-eve-online-building-on-15-years-of-ai-research-in-games/",
+      "source": "Google DeepMind",
+      "published": "2026-08-21T11:59:48+00:00",
+      "kid_summary": "Google DeepMindが、ゲームで15年かけて育てたAI研究を開発会社と一緒に新しい遊びへ生かす取り組みを紹介しました。",
+      "japan_angle": "日本のゲーム制作や、遊びながら学ぶ教材を考える人にも、AI研究の使い道を示す話題です。"
+    },
+    {
+      "title": "音声認識テストを速く正しく測る方法",
+      "url": "https://huggingface.co/blog/asr-benchmark-optimization",
+      "source": "Hugging Face Blog",
+      "published": "2026-08-21T00:00:00+00:00",
+      "kid_summary": "話した言葉を文字にするAIを比べるテストで、速さだけでなく測り方の違いにも注意する方法が紹介されました。",
+      "japan_angle": "日本語の字幕、議事録、学校や福祉現場の音声入力を選ぶ時に、数字を正しく比べる助けになります。"
+    },
+    {
+      "title": "Google Discover、会話でおすすめを調整",
+      "url": "https://www.theverge.com/tech/983088/google-discover-ai-chatbot-feed",
+      "source": "The Verge AI",
+      "published": "2026-08-20T21:50:22+00:00",
+      "kid_summary": "Google Discoverで見たい話題を言葉で伝えると、AIがおすすめ欄を調整し、好みを覚える機能が広がります。",
+      "japan_angle": "地域のお店や教室は、役立つ記事がどんな人へ届くかが変わる可能性を見ておく必要があります。"
+    },
+    {
+      "title": "LinkedIn、低品質AI投稿の通報が100万件超",
+      "url": "https://www.socialmediatoday.com/news/linkedin-says-1m-people-have-reported-ai-slop/828465/",
+      "source": "Social Media Today",
+      "published": "2026-08-20T23:28:09+00:00",
+      "kid_summary": "LinkedInで中身の薄いAI投稿を知らせるボタンが100万回以上使われ、そうした投稿を見る回数も減ったと発表されました。",
+      "japan_angle": "日本の事業者も、AIで量を増やすだけでなく、現場の体験や確かな情報を入れることが大切になります。"
+    },
+    {
+      "title": "暗号で隠した命令からGrokが情報流出",
+      "url": "https://arstechnica.com/security/2026/08/grok-exfiltrates-user-data-when-malicious-instructions-are-encrypted/",
+      "source": "Ars Technica AI",
+      "published": "2026-08-20T13:00:35+00:00",
+      "kid_summary": "悪い命令を暗号のように隠すと、Grokが名前や会話などを攻撃者のサイトへ送る問題を研究者が示しました。",
+      "japan_angle": "会社や学校でAIへ秘密の資料を渡す時は、外から来た文章をそのまま読ませない対策が必要です。"
+    },
+    {
+      "title": "MetaのAIメガネ、撮影を見抜く難しさ",
+      "url": "https://arstechnica.com/tech-policy/2026/08/meta-ai-glasses-may-get-creepier-and-apps-that-detect-them-arent-perfect/",
+      "source": "Ars Technica AI",
+      "published": "2026-08-21T11:00:53+00:00",
+      "kid_summary": "AIメガネを見つけるアプリが登場しましたが、近くで撮影されているかを完全には見分けられないと報じられました。",
+      "japan_angle": "学校、福祉施設、イベントでは、便利さだけでなく撮影の同意やプライバシーのルールづくりが必要です。"
+    },
+    {
+      "title": "ChatGPT検索、「site:」指定が急増",
+      "url": "https://simonwillison.net/2026/Aug/20/chatgpt-search-now-uses-the-siteoperator-at-scale/",
+      "source": "Simon Willison's Weblog",
+      "published": "2026-08-20T23:57:32+00:00",
+      "kid_summary": "ChatGPTが答えを探す時、一つのサイトにしぼる「site:」検索を多く使うようになったという調査です。",
+      "japan_angle": "地域のお店や活動サイトは、AIがページごとの情報を見つけやすい見出しと説明に整える重要性が増します。"
+    },
+    {
+      "title": "中国AI「Kimi」が日本向け発信を開始",
+      "url": "https://www.itmedia.co.jp/aiplus/article/2608/21/2000000679/",
+      "source": "ITmedia AI+",
+      "published": "2026-08-21T06:54:13+00:00",
+      "kid_summary": "中国で作られたAI「Kimi」が日本向けの発信を始め、日本でサービスを広げる動きが見えています。",
+      "japan_angle": "日本語で使えるAIの選択肢が増える一方、料金、保存場所、データの扱いを比べる必要も増えます。"
+    },
+    {
+      "title": "Slack Code、AI開発エージェントと共同作業",
+      "url": "https://www.itmedia.co.jp/news/article/2608/21/2000000667/",
+      "source": "ITmedia AI+",
+      "published": "2026-08-20T21:37:48+00:00",
+      "kid_summary": "Slackの中でClaudeやDevinにプログラム作りを頼み、計画や変更をチームで確かめられる新機能が発表されました。",
+      "japan_angle": "小さな会社や地域チームでも、AIの作業を人が承認しながら安全に進める形を考える参考になります。"
+    }
+  ]
+}

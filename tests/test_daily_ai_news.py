@@ -7,7 +7,7 @@ from datetime import date
 from pathlib import Path
 
 from core.collector import Article
-from core.exporter import export_daily_ai_news_snapshot
+from core.exporter import _japan_today, export_daily_ai_news_snapshot
 from core.ranker import rank_articles
 from core.daily_news import prepend_daily_ai_news, render_daily_ai_news
 
@@ -102,6 +102,9 @@ class DailyNewsRankingTests(unittest.TestCase):
 
 
 class DailyNewsSnapshotTests(unittest.TestCase):
+    def test_japan_today_does_not_require_an_external_timezone_database(self):
+        self.assertIsInstance(_japan_today(), date)
+
     def test_writes_ten_valid_explanations_with_explicit_japan_date(self):
         articles = [make_article(index, source=f"Source {index}") for index in range(10)]
         summaries = {article.hash: make_summary(index) for index, article in enumerate(articles)}
@@ -246,6 +249,15 @@ class DailyNewsBuildIntegrationTests(unittest.TestCase):
         self.assertEqual(1, codex_page.count("今日のAIニュース10"))
         self.assertLess(codex_page.index("今日のAIニュース10"), codex_page.index("Codex本文"))
         self.assertNotIn("今日のAIニュース10", other_page)
+
+
+class DailyNewsWorkflowTests(unittest.TestCase):
+    def test_daily_workflow_stages_thumbnail_cache_before_rebase(self):
+        workflow = (ROOT / ".github" / "workflows" / "daily.yml").read_text(encoding="utf-8")
+
+        self.assertIn("data/history.db data/thumb_cache.json", workflow)
+        self.assertIn("git restore --worktree -- site/dist", workflow)
+        self.assertIn("git pull --rebase origin main", workflow)
 
 
 if __name__ == "__main__":

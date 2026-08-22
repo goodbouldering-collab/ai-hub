@@ -6,10 +6,9 @@ NotebookLM に放り込めるクリーンなテキスト/Markdown を出力す�
 """
 from __future__ import annotations
 import json
-from datetime import date, datetime
+from datetime import date, datetime, timedelta, timezone
 import os
 from pathlib import Path
-from zoneinfo import ZoneInfo
 
 from .collector import Article
 from .daily_news import normalize_daily_ai_news, normalize_daily_ai_news_item
@@ -17,7 +16,9 @@ from .organizer import group_by_category
 
 
 def _japan_today() -> date:
-    return datetime.now(ZoneInfo("Asia/Tokyo")).date()
+    # JST has no daylight-saving transition, so this works on Windows hosts
+    # that do not ship the IANA time-zone database used by zoneinfo.
+    return datetime.now(timezone(timedelta(hours=9))).date()
 
 
 def export_daily_ai_news_snapshot(

@@ -68,7 +68,7 @@ jobs:
           # site/dist/index.html は CEO ポータルのトップページ。
           # .gitignore で site/dist/* は除外しつつ index.html だけ tracked にしている。
           # daily 実行で build_portal.py が再生成するので毎日コミット対象に含める。
-          git add outputs/ data/history.db site/dist/index.html || true
+          git add outputs/ data/history.db data/thumb_cache.json site/dist/index.html || true
           if [ -f content/daily-ai-news.json ]; then
             git add content/daily-ai-news.json
           fi
@@ -76,6 +76,7 @@ jobs:
             echo "変更なし"
           else
             git commit -m "chore(ai-hub): daily digest $(date -u +%Y-%m-%d)"
+            git restore --worktree -- site/dist
             git pull --rebase origin main
             git push origin HEAD:main
           fi

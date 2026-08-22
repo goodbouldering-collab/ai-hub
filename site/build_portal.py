@@ -15013,8 +15013,7 @@ FOCUSED_PORTAL_CSS += r"""
 @media (max-width:640px) {
   .home-app-site-shell { width:min(100% - 30px,560px); padding:43px 0; }
   .home-app-site-head { grid-template-columns:1fr; gap:19px; }
-  .home-app-site-cards { grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
-  .home-app-site-card:last-child:nth-child(odd) { grid-column:1 / -1; }
+  .home-app-site-cards { grid-template-columns:1fr; gap:8px; }
   .home-app-site-actions { align-items:stretch; flex-direction:column; }
   .home-app-site-btn { width:100%; }
 }

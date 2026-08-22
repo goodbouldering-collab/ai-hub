@@ -3,6 +3,9 @@ from pathlib import Path
 import tempfile
 import unittest
 
+from playwright.sync_api import Error as PlaywrightError
+from playwright.sync_api import sync_playwright
+
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE_BUILDER_PATH = ROOT / "site" / "build_site.py"
@@ -16,6 +19,23 @@ def load_module(name: str, path: Path):
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
+
+
+def launch_chromium(playwright):
+    try:
+        return playwright.chromium.launch()
+    except PlaywrightError as default_error:
+        for executable in (
+            Path("C:/Program Files/Google/Chrome/Application/chrome.exe"),
+            Path("C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"),
+            Path("/usr/bin/google-chrome"),
+            Path("/usr/bin/chromium"),
+            Path("/usr/bin/chromium-browser"),
+            Path("/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"),
+        ):
+            if executable.exists():
+                return playwright.chromium.launch(executable_path=str(executable))
+        raise default_error
 
 
 class AiAppSitePagesTests(unittest.TestCase):
@@ -110,6 +130,31 @@ class AiAppSitePagesTests(unittest.TestCase):
         self.assertIn(self.portal.AI_APP_SELFBUILD_BOOK_URL, page)
         self.assertLess(page.index("<section class='focus-hero'"), page.index("id='ai-app-site'"))
         self.assertLess(page.index("id='ai-app-site'"), page.index("<section class='readiness-guide readiness-guide--compact'"))
+
+    def test_homepage_mobile_feature_links_form_one_vertical_column(self):
+        rendered = self.portal.render_portal([], [])
+
+        with sync_playwright() as playwright:
+            browser = launch_chromium(playwright)
+            try:
+                for width in (604, 390):
+                    with self.subTest(width=width):
+                        page = browser.new_page(viewport={"width": width, "height": 900})
+                        try:
+                            page.set_content(rendered)
+                            cards = page.locator(".home-app-site-card")
+                            boxes = [cards.nth(index).bounding_box() for index in range(cards.count())]
+
+                            self.assertEqual(5, len(boxes))
+                            self.assertTrue(all(box is not None for box in boxes))
+                            self.assertLess(max(box["x"] for box in boxes) - min(box["x"] for box in boxes), 1)
+                            self.assertTrue(
+                                all(upper["y"] < lower["y"] for upper, lower in zip(boxes, boxes[1:]))
+                            )
+                        finally:
+                            page.close()
+            finally:
+                browser.close()
 
     def test_shared_navigation_gives_the_service_its_own_public_entry(self):
         desktop = self.navigation.render_desktop_navigation(current_id="app-site")

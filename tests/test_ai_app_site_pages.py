@@ -99,8 +99,9 @@ class AiAppSitePagesTests(unittest.TestCase):
 
     def test_homepage_separates_ordered_service_from_selfbuild_course(self):
         page = self.portal.render_portal([], [])
-        section_start = page.index("<section class='home-app-site-guide' id='ai-app-site'")
-        section_end = page.index("</section>", section_start) + len("</section>")
+        section_id = page.index("id='ai-app-site'")
+        section_start = page.rfind("<section", 0, section_id)
+        section_end = page.index("</section>", section_id) + len("</section>")
         app_site_guide = page[section_start:section_end]
 
         self.assertIn("AIエージェントで", page)
@@ -109,6 +110,10 @@ class AiAppSitePagesTests(unittest.TestCase):
         self.assertNotIn("相談だけで終わらない。", page)
         self.assertNotIn("AIで、仕事の仕組みまでつくる。", page)
         self.assertIn("AI APP SITE · DONE FOR YOU", app_site_guide)
+        self.assertIn(
+            "<section class='readiness-guide readiness-guide--compact home-app-site-guide' id='ai-app-site'",
+            app_site_guide,
+        )
         self.assertIn("AIアプリが動くサイトを、まるごと制作。", app_site_guide)
         self.assertIn("AIアプリサイト制作", app_site_guide)
         self.assertIn("99,000円〜", app_site_guide)
@@ -118,6 +123,14 @@ class AiAppSitePagesTests(unittest.TestCase):
         self.assertIn("社内で保守・改善・バージョンアップ", app_site_guide)
         self.assertIn("必要な部分だけこちらへ任せる", app_site_guide)
         self.assertIn("自由に選べます", app_site_guide)
+        self.assertIn("class='readiness-guide__inner'", app_site_guide)
+        self.assertIn("class='readiness-guide__intro'", app_site_guide)
+        self.assertIn(
+            "class='readiness-guide__questions home-app-site-capabilities'",
+            app_site_guide,
+        )
+        self.assertIn("class='readiness-guide__actions'", app_site_guide)
+        self.assertEqual(5, app_site_guide.count("<span aria-hidden='true'>?</span>"))
         self.assertEqual(5, app_site_guide.count("class='home-app-site-card'"))
         for feature in ("AI見積もり", "AI問い合わせ", "AI予約受付", "AIシフト", "AIブログ"):
             self.assertIn(f"<strong>{feature}</strong>", app_site_guide)
@@ -152,6 +165,15 @@ class AiAppSitePagesTests(unittest.TestCase):
                             self.assertEqual(5, len(boxes))
                             self.assertTrue(all(box is not None for box in boxes))
                             self.assertLess(max(box["x"] for box in boxes) - min(box["x"] for box in boxes), 1)
+                            self.assertTrue(
+                                all(box["height"] >= 44 for box in boxes),
+                                "5機能はリンク自体に44px以上のタップ領域を持つ",
+                            )
+                            for index, box in enumerate(boxes):
+                                row_box = cards.nth(index).locator("xpath=..").bounding_box()
+                                self.assertIsNotNone(row_box)
+                                self.assertLessEqual(abs(box["width"] - row_box["width"]), 2)
+                                self.assertLessEqual(abs(box["height"] - row_box["height"]), 2)
                             self.assertTrue(
                                 all(upper["y"] < lower["y"] for upper, lower in zip(boxes, boxes[1:]))
                             )

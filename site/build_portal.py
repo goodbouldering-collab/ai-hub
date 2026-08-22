@@ -14910,12 +14910,13 @@ button:focus-visible {
 .readiness-guide > .offer-panel { padding:30px 32px; }
 .readiness-guide__inner {
   display: grid;
-  grid-template-columns: minmax(360px, 1.12fr) minmax(280px, .9fr) auto;
+  grid-template-columns: minmax(340px, 1.08fr) minmax(280px, .9fr) minmax(290px, .84fr);
   gap: 22px clamp(18px, 2vw, 30px);
   max-width: 100%;
   margin: 0 auto;
   align-items: center;
 }
+.readiness-guide__inner > * { min-width:0; }
 .readiness-guide__eyebrow {
   display: block;
   margin: 0 0 4px;
@@ -14987,33 +14988,25 @@ button:focus-visible {
   background: var(--focus-blue);
   font: 900 12px/1 Inter, sans-serif;
 }
-.readiness-guide__outcomes {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  list-style: none;
-  border: 1px solid rgba(79,111,216,.18);
-  border-radius: 14px;
-  background: rgba(255,255,255,.78);
-  box-shadow: 0 10px 24px rgba(32,55,100,.06);
-}
-.readiness-guide__outcomes li {
-  min-width: 0;
-  padding: 12px 13px;
-  color: #53627a;
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 1.45;
-}
-.readiness-guide__outcomes li + li { border-left: 1px solid rgba(79,111,216,.15); }
-.readiness-guide__outcomes strong {
+.readiness-guide__questions li > div { min-width:0; }
+.readiness-guide__questions li > div strong {
   display: block;
-  margin-bottom: 2px;
   color: var(--focus-ink);
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 900;
+}
+.readiness-guide__questions li > div small {
+  display:block;
+  margin-top:1px;
+  color:#53627a;
+  font-size:10px;
+  font-weight:700;
+  line-height:1.35;
+}
+.readiness-guide__actions {
+  display:grid;
+  min-width:0;
+  gap:8px;
 }
 .readiness-guide__cta {
   display: inline-flex;
@@ -15030,8 +15023,8 @@ button:focus-visible {
   font-size: 15px;
   font-weight: 900;
   line-height: 1.2;
+  text-align:center;
   text-decoration: none;
-  white-space: nowrap;
   transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
 }
 .readiness-guide__cta b { font-size: 20px; line-height: 1; }
@@ -15043,20 +15036,31 @@ button:focus-visible {
   box-shadow: 0 11px 22px rgba(43,72,177,.29);
   transform: translateY(-1px);
 }
+.readiness-guide__cta--secondary {
+  color:var(--focus-blue-dark);
+  background:#fff;
+  border-color:rgba(79,111,216,.45);
+  box-shadow:none;
+}
+.readiness-guide__cta--secondary:hover,
+.readiness-guide__cta--secondary:focus-visible {
+  color:var(--focus-blue-dark);
+  background:#edf3ff;
+  border-color:var(--focus-blue);
+  box-shadow:none;
+}
 @media (min-width:761px) and (max-width:1050px) {
   .readiness-guide__inner { grid-template-columns:minmax(0,1fr) minmax(280px,.9fr); }
-  .readiness-guide__cta { grid-column:1 / -1; width:100%; }
+  .readiness-guide__actions { grid-column:1 / -1; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); }
 }
 @media (max-width: 760px) {
   .readiness-guide { padding: 0; }
   .readiness-guide > .offer-panel { padding:24px 18px; }
-  .readiness-guide__inner { grid-template-columns: 1fr; gap: 16px; }
+  .readiness-guide__inner { grid-template-columns: minmax(0, 1fr); gap: 16px; }
   .readiness-guide__title { font-size: clamp(31px, 9vw, 39px); }
   .readiness-guide__summary { margin-top: 6px; font-size: 15px; }
   .readiness-guide__prompt { font-size: 13px; }
   .readiness-guide__questions li { font-size: 12px; }
-  .readiness-guide__outcomes li { padding: 10px 8px; font-size: 11px; }
-  .readiness-guide__outcomes strong { font-size: 12px; }
   .readiness-guide__cta { width: 100%; }
 }
 .skip-link {
@@ -15086,42 +15090,28 @@ FOCUSED_PORTAL_CSS += r"""
 /* ---- AIアプリサイト: 相談から仕組み化へ進む公開導線, 2026-08-20 ---- */
 .home-app-site-guide { position:relative; overflow:hidden; border-top:1px solid #d6e5f1; border-bottom:1px solid #d6e5f1; background:linear-gradient(135deg,#eef7ff 0%,#fbfdff 52%,#edfbf7 100%); }
 .home-app-site-guide::after { position:absolute; right:-120px; bottom:-180px; width:420px; height:420px; border-radius:50%; background:rgba(23,103,190,.09); content:""; }
-.home-app-site-shell { position:relative; z-index:1; width:min(1180px,calc(100% - 48px)); margin:18px auto; padding:34px 32px; }
-.home-app-site-head { display:grid; grid-template-columns:minmax(0,1fr) minmax(250px,.48fr); gap:34px; align-items:center; }
-.home-app-site-eyebrow { margin:0 0 10px; color:#1767be; font-size:11px; font-weight:950; letter-spacing:.12em; }
-.home-app-site-head h2 { margin:0; max-width:720px; color:#142d4c; font-size:clamp(28px,3.4vw,44px); line-height:1.2; letter-spacing:-.035em; }
+.home-app-site-guide > .offer-panel { position:relative; z-index:1; }
+.home-app-site-guide .readiness-guide__title { color:#142d4c; font-size:clamp(31px,2.4vw,36px); letter-spacing:-.05em; }
 .home-app-site-title-line { display:block; white-space:nowrap; }
 .home-app-site-title-narrow-break { display:none; }
-.home-app-site-head p { max-width:720px; margin:14px 0 0; color:#526a83; font-size:15px; line-height:1.8; }
-.home-app-site-price { padding:19px; border:1px solid #c5d8eb; border-radius:15px; background:rgba(255,255,255,.88); box-shadow:0 10px 28px rgba(22,70,122,.08); }
-.home-app-site-price small { display:block; color:#087972; font-size:10px; font-weight:900; letter-spacing:.1em; }
-.home-app-site-price strong { display:block; margin-top:7px; color:#132d4d; font-size:17px; line-height:1.45; }
-.home-app-site-price strong b { color:#1767be; font-size:25px; }
-.home-app-site-price span { display:block; margin-top:6px; color:#5d7390; font-size:12px; }
-.home-app-site-capability-label { margin:20px 0 0; color:#39607c; font-size:11px; font-weight:900; letter-spacing:.08em; }
-.home-app-site-cards { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:8px; margin-top:9px; }
-.home-app-site-card { display:flex; min-width:0; min-height:52px; align-items:center; justify-content:space-between; gap:10px; padding:13px 15px; border:1px solid #cbddeb; border-radius:12px; background:#fff; color:inherit; text-decoration:none; transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease; }
+.home-app-site-guide .readiness-guide__summary { color:#526a83; font-size:14px; line-height:1.65; }
+.home-app-site-price { margin:9px 0 0; }
+.home-app-site-price small { display:block; color:#087972; font-size:10px; font-weight:900; letter-spacing:.08em; }
+.home-app-site-price strong { display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 8px; margin-top:3px; color:#132d4d; font-size:14px; line-height:1.4; }
+.home-app-site-price strong b { color:#1767be; font-size:21px; }
+.home-app-site-price > span { display:block; margin-top:2px; color:#5d7390; font-size:11px; font-weight:800; }
+.home-app-site-capabilities li { position:relative; min-height:44px; }
+.home-app-site-capabilities li > span { position:relative; z-index:1; pointer-events:none; }
+.home-app-site-card { position:absolute; inset:0; display:flex; min-width:0; min-height:44px; width:100%; padding:10px 12px 10px 42px; box-sizing:border-box; align-items:center; justify-content:space-between; gap:8px; color:#17304f; text-decoration:none; }
+.home-app-site-card strong { min-width:0; font-size:12px; line-height:1.35; }
+.home-app-site-card b { flex:0 0 auto; color:#1767be; font-size:14px; transition:transform .18s ease; }
 .home-app-site-card:hover,
-.home-app-site-card:focus-visible { border-color:#1767be; box-shadow:0 13px 28px rgba(23,103,190,.14); transform:translateY(-3px); }
-.home-app-site-card strong { min-width:0; color:#17304f; font-size:14px; line-height:1.35; }
-.home-app-site-card span { flex:0 0 auto; color:#1767be; font-size:14px; font-weight:900; }
-.home-app-site-actions { display:flex; flex-wrap:wrap; justify-content:center; gap:11px; margin-top:18px; }
-.home-app-site-btn { display:inline-flex; min-height:46px; align-items:center; justify-content:center; padding:11px 16px; border:1px solid #1767be; border-radius:11px; background:#fff; color:#1767be; font-size:14px; font-weight:900; text-align:center; text-decoration:none; }
-.home-app-site-btn:hover,
-.home-app-site-btn:focus-visible { background:#e8f3ff; }
-.home-app-site-btn--primary { background:#1767be; color:#fff; box-shadow:0 8px 20px rgba(23,103,190,.22); }
-.home-app-site-btn--primary:hover,
-.home-app-site-btn--primary:focus-visible { background:#114f93; color:#fff; }
+.home-app-site-card:focus-visible { color:#114f93; }
+.home-app-site-card:hover b,
+.home-app-site-card:focus-visible b { transform:translateX(2px); }
 @media (min-width:901px) and (max-width:1210px) {
   .site-nav { gap:2px !important; }
   .site-nav .nav-link { padding-inline:7px !important; font-size:11px !important; }
-}
-@media (max-width:640px) {
-  .home-app-site-shell { width:calc(100% - 28px); margin:14px auto; padding:26px 18px; }
-  .home-app-site-head { grid-template-columns:1fr; gap:19px; }
-  .home-app-site-cards { grid-template-columns:1fr; gap:8px; }
-  .home-app-site-actions { align-items:stretch; flex-direction:column; }
-  .home-app-site-btn { width:100%; }
 }
 @media (max-width:360px) {
   .home-app-site-title-narrow-break { display:block; }
@@ -15181,26 +15171,29 @@ def _render_ai_app_site_home_guide() -> str:
         ("AIブログ", "/ai-blog/"),
     )
     cards_html = "".join(
-        "<a class='home-app-site-card' href='{}' aria-label='{}の詳細を見る'><strong>{}</strong><span aria-hidden='true'>→</span></a>".format(
+        "<li><span aria-hidden='true'>?</span><a class='home-app-site-card' href='{}' aria-label='{}の詳細を見る'>"
+        "<strong>{}</strong><b aria-hidden='true'>→</b></a></li>".format(
             href, title, title
         )
         for title, href in cards
     )
     return (
-        "<section class='home-app-site-guide' id='ai-app-site' aria-labelledby='home-app-site-title'><div class='home-app-site-shell offer-panel'>"
-        "<div class='home-app-site-head'><div><div class='offer-role-row'><div class='offer-role-copy'>"
+        "<section class='readiness-guide readiness-guide--compact home-app-site-guide' id='ai-app-site' aria-labelledby='home-app-site-title'>"
+        "<div class='offer-panel home-app-site-shell'><div class='readiness-guide__inner'>"
+        "<div class='readiness-guide__intro'><div class='offer-role-row'><div class='offer-role-copy'>"
         "<span class='offer-role-badge'>代行</span><span class='offer-role-note'>AI APP SITE · DONE FOR YOU</span></div></div>"
-        "<h2 id='home-app-site-title' aria-label='AIアプリが動くサイトを、まるごと制作。'>"
+        "<h2 id='home-app-site-title' class='readiness-guide__title' aria-label='AIアプリが動くサイトを、まるごと制作。'>"
         "<span class='home-app-site-title-line'>AIアプリが動く<br class='home-app-site-title-narrow-break'>サイトを、</span>"
         "<span class='home-app-site-title-line'>まるごと制作。</span></h2>"
-        "<p>情報を載せるだけのサイトではなく、見積もり・問い合わせ・予約受付などのAIアプリを、すぐ使える形でサイト内に組み込みます。別アプリを増やさず、新規制作・リニューアル・移行まで対応。まずこちらで土台を作り、その後は講習を通じて社内で保守・改善・バージョンアップすることも、必要な部分だけこちらへ任せることも自由に選べます。</p></div>"
-        "<div class='home-app-site-price'><small>制作を任せたい方へ</small><strong>AIアプリサイト制作<br><b>99,000円〜</b></strong><span>ホームページ＋AI機能1つ</span></div></div>"
-        "<p class='home-app-site-capability-label'>今できること</p>"
-        f"<div class='home-app-site-cards'>{cards_html}</div>"
-        "<div class='home-app-site-actions'>"
-        f"<a class='home-app-site-btn home-app-site-btn--primary offer-action' href='{DIAGNOSIS_FREE_CONSULT_BOOK_URL}' target='_blank' rel='noopener'>AIアプリサイト制作を無料相談する →</a>"
-        "<a class='home-app-site-btn offer-action offer-action--secondary' href='/ai-app-site/'>制作内容・料金を見る</a></div>"
-        "</div></section>"
+        "<p class='readiness-guide__summary'>情報を載せるだけのサイトではなく、見積もり・問い合わせ・予約受付などのAIアプリを、すぐ使える形でサイト内に組み込みます。別アプリを増やさず、新規制作・リニューアル・移行まで対応。まずこちらで土台を作り、その後は講習を通じて社内で保守・改善・バージョンアップすることも、必要な部分だけこちらへ任せることも自由に選べます。</p>"
+        "<div class='home-app-site-price'><small>制作を任せたい方へ</small><strong>AIアプリサイト制作 <b>99,000円〜</b></strong><span>ホームページ＋AI機能1つ</span></div></div>"
+        f"<ul class='readiness-guide__questions home-app-site-capabilities' aria-label='サイトに組み込めるAIアプリ'>{cards_html}</ul>"
+        "<div class='readiness-guide__actions'>"
+        f"<a class='readiness-guide__cta offer-action' href='{DIAGNOSIS_FREE_CONSULT_BOOK_URL}' target='_blank' rel='noopener' aria-label='AIアプリサイト制作を無料相談する'>"
+        "<span>AIアプリサイト制作を無料相談する</span><b aria-hidden='true'>→</b></a>"
+        "<a class='readiness-guide__cta readiness-guide__cta--secondary offer-action offer-action--secondary' href='/ai-app-site/'>"
+        "<span>制作内容・料金を見る</span><b aria-hidden='true'>→</b></a></div>"
+        "</div></div></section>"
     )
 
 
@@ -15218,7 +15211,8 @@ def _render_readiness_guide() -> str:
         "<li><span aria-hidden='true'>?</span><strong>任せた仕事を確かめられるか</strong></li>"
         "<li><span aria-hidden='true'>?</span><strong>うまくいった方法を次にも残せるか</strong></li>"
         "</ul>"
-        "<a class='readiness-guide__cta' href='/ai-agent-readiness/' aria-label='あなたのAI実力診断をはじめる。10問・約3分'><span>あなたのAI実力診断をはじめる</span><b aria-hidden='true'>→</b></a>"
+        "<div class='readiness-guide__actions'><a class='readiness-guide__cta' href='/ai-agent-readiness/' aria-label='あなたのAI実力診断をはじめる。10問・約3分'>"
+        "<span>あなたのAI実力診断をはじめる</span><b aria-hidden='true'>→</b></a></div>"
         "</div></div></section>"
     )
 
@@ -15230,13 +15224,13 @@ def _render_seo_llmo_guide() -> str:
         "<span class='offer-role-badge'>診断</span><span class='offer-role-note'>URLを入れて約1分</span></div></div>"
         "<h2 id='seo-llmo-guide-title' class='readiness-guide__title'>あなたのサイト診断</h2>"
         "<p class='readiness-guide__summary'>あなたのサイトは、検索とAIに正しく伝わっていますか？ 公開ページを100点・4領域で確認し、優先して直すことを整理します。</p></div>"
-        "<ul class='readiness-guide__outcomes' aria-label='あなたのサイト診断でわかること'>"
-        "<li><strong>見つける土台</strong><span>クロール・索引</span></li>"
-        "<li><strong>信頼と主体</strong><span>誰のサイトか</span></li>"
-        "<li><strong>次の行動</strong><span>相談・申込導線</span></li>"
+        "<ul class='readiness-guide__questions' aria-label='あなたのサイト診断でわかること'>"
+        "<li><span aria-hidden='true'>?</span><div><strong>見つける土台</strong><small>クロール・索引</small></div></li>"
+        "<li><span aria-hidden='true'>?</span><div><strong>信頼と主体</strong><small>誰のサイトか</small></div></li>"
+        "<li><span aria-hidden='true'>?</span><div><strong>次の行動</strong><small>相談・申込導線</small></div></li>"
         "</ul>"
-        "<a class='readiness-guide__cta' href='/seo-llmo-diagnosis/' aria-label='あなたのサイト診断をはじめる。URLを入れて約1分'>"
-        "<span>あなたのサイト診断をはじめる</span><b aria-hidden='true'>→</b></a>"
+        "<div class='readiness-guide__actions'><a class='readiness-guide__cta' href='/seo-llmo-diagnosis/' aria-label='あなたのサイト診断をはじめる。URLを入れて約1分'>"
+        "<span>あなたのサイト診断をはじめる</span><b aria-hidden='true'>→</b></a></div>"
         "</div></div></section>"
     )
 

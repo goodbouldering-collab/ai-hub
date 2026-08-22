@@ -38,7 +38,7 @@ class FreeConsultationRetirementTests(unittest.TestCase):
         if script_match is None:
             raise AssertionError("Diagnosis script was not generated")
         app_site_match = re.search(
-            r"<section class='home-app-site-guide'.*?</section>",
+            r"<section class='[^']*home-app-site-guide[^']*' id='ai-app-site'.*?</section>",
             cls.index_html,
             re.DOTALL,
         )

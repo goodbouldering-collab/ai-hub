@@ -136,7 +136,21 @@ class SeoLlmoDiagnosisPageTests(unittest.TestCase):
 
         self.assertIn("class='readiness-guide__inner'", section)
         self.assertIn("class='readiness-guide__intro'", section)
-        self.assertIn("class='readiness-guide__outcomes'", section)
+        self.assertIn(
+            "class='readiness-guide__questions' aria-label='あなたのサイト診断でわかること'",
+            section,
+        )
+        self.assertEqual(3, section.count("<span aria-hidden='true'>?</span>"))
+        for title, detail in (
+            ("見つける土台", "クロール・索引"),
+            ("信頼と主体", "誰のサイトか"),
+            ("次の行動", "相談・申込導線"),
+        ):
+            self.assertIn(
+                f"<div><strong>{title}</strong><small>{detail}</small></div>",
+                section,
+            )
+        self.assertIn("class='readiness-guide__actions'", section)
         self.assertIn("class='readiness-guide__cta'", section)
         self.assertNotIn("seo-llmo-guide__", section)
         self.assertNotIn(".seo-llmo-guide {", home)

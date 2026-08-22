@@ -42,20 +42,32 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
         cls.portal = load_module("portal_home_offer_ui_under_test", PORTAL_PATH)
         cls.home = cls.portal.render_portal([], [])
 
-    def test_service_diagnostics_and_courses_share_one_offer_language(self):
-        self.assertIn(
-            "<section class='home-app-site-guide' id='ai-app-site'", self.home
+    def test_service_and_diagnostics_share_one_guide_structure(self):
+        expected_sections = (
+            ("ai-app-site", "home-app-site-guide"),
+            ("readiness-guide-title", "readiness-guide--compact"),
+            ("seo-llmo-guide-title", "seo-llmo-guide"),
         )
-        self.assertIn("class='home-app-site-shell offer-panel'", self.home)
-        self.assertIn(
-            "<section class='readiness-guide readiness-guide--compact'",
-            self.home,
-        )
-        self.assertIn(
-            "<section class='readiness-guide readiness-guide--compact seo-llmo-guide'",
-            self.home,
-        )
-        self.assertGreaterEqual(self.home.count("<div class='offer-panel'>"), 2)
+        for guide_id, modifier in expected_sections:
+            with self.subTest(guide_id=guide_id):
+                id_index = self.home.index(f"id='{guide_id}'")
+                section_start = self.home.rfind("<section", 0, id_index)
+                section_end = self.home.index("</section>", id_index)
+                section = self.home[section_start:section_end]
+
+                self.assertIn("readiness-guide readiness-guide--compact", section)
+                self.assertIn(modifier, section)
+                self.assertIn("class='readiness-guide__inner'", section)
+                self.assertIn("class='readiness-guide__intro'", section)
+                self.assertIn("class='readiness-guide__questions", section)
+                self.assertIn("class='readiness-guide__actions'", section)
+                self.assertIn("class='readiness-guide__cta", section)
+
+        self.assertEqual(3, self.home.count("class='readiness-guide__inner'"))
+        self.assertEqual(3, self.home.count("class='readiness-guide__intro'"))
+        self.assertEqual(3, self.home.count("class='readiness-guide__questions"))
+        self.assertEqual(3, self.home.count("class='readiness-guide__actions'"))
+        self.assertGreaterEqual(self.home.count("offer-panel"), 3)
         self.assertIn("<span class='offer-role-badge'>代行</span>", self.home)
         self.assertEqual(2, self.home.count("<span class='offer-role-badge'>診断</span>"))
         self.assertEqual(3, self.home.count("<span class='offer-role-badge'>学ぶ</span>"))
@@ -66,6 +78,81 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
         self.assertRegex(css, r"\.offer-panel\s*\{[^}]*border-radius:")
         self.assertRegex(css, r"\.offer-role-badge\s*\{[^}]*border-radius:\s*999px")
         self.assertRegex(css, r"\.offer-action\s*\{[^}]*min-height:\s*46px")
+
+    def test_three_guides_share_grid_and_question_row_format(self):
+        with sync_playwright() as playwright:
+            browser = launch_chromium(playwright)
+            try:
+                desktop = browser.new_page(viewport={"width": 1280, "height": 1000})
+                desktop.set_content(self.home)
+                guide_inners = desktop.locator(
+                    "#ai-app-site .readiness-guide__inner, "
+                    "section[aria-labelledby='readiness-guide-title'] .readiness-guide__inner, "
+                    "section[aria-labelledby='seo-llmo-guide-title'] .readiness-guide__inner"
+                )
+                self.assertEqual(3, guide_inners.count())
+                grid_templates = [
+                    guide_inners.nth(index).evaluate(
+                        "element => getComputedStyle(element).gridTemplateColumns"
+                    )
+                    for index in range(guide_inners.count())
+                ]
+                self.assertEqual(1, len(set(grid_templates)))
+
+                question_rows = desktop.locator(
+                    "#ai-app-site .readiness-guide__questions li, "
+                    "section[aria-labelledby='readiness-guide-title'] .readiness-guide__questions li, "
+                    "section[aria-labelledby='seo-llmo-guide-title'] .readiness-guide__questions li"
+                )
+                self.assertEqual(11, question_rows.count())
+                for index in range(question_rows.count()):
+                    row = question_rows.nth(index)
+                    self.assertEqual("grid", row.evaluate("element => getComputedStyle(element).display"))
+                    marker = row.locator(":scope > span").first
+                    marker_box = marker.bounding_box()
+                    self.assertIsNotNone(marker_box)
+                    self.assertLess(abs(marker_box["width"] - marker_box["height"]), 1)
+                    self.assertEqual("?", marker.text_content().strip())
+                desktop.close()
+
+                mobile = browser.new_page(viewport={"width": 375, "height": 1000})
+                mobile.set_content(self.home)
+                mobile_inners = mobile.locator(".readiness-guide__inner")
+                self.assertEqual(3, mobile_inners.count())
+                for index in range(mobile_inners.count()):
+                    inner_box = mobile_inners.nth(index).bounding_box()
+                    panel_box = mobile_inners.nth(index).locator("xpath=..").bounding_box()
+                    self.assertIsNotNone(inner_box)
+                    self.assertIsNotNone(panel_box)
+                    self.assertEqual(
+                        1,
+                        mobile_inners.nth(index).evaluate(
+                            "element => getComputedStyle(element).gridTemplateColumns.split(' ').length"
+                        ),
+                    )
+                    self.assertLessEqual(
+                        inner_box["x"] + inner_box["width"],
+                        panel_box["x"] + panel_box["width"] + 1,
+                        "共通ガイドの内容はiPhone幅でもカード右端から張り出さない",
+                    )
+                    columns = mobile_inners.nth(index).locator(":scope > *")
+                    for column_index in range(columns.count()):
+                        column_box = columns.nth(column_index).bounding_box()
+                        self.assertIsNotNone(column_box)
+                        self.assertLessEqual(
+                            column_box["x"] + column_box["width"],
+                            panel_box["x"] + panel_box["width"] + 1,
+                            "共通ガイドの各列はiPhone幅でもカード右端から張り出さない",
+                        )
+                self.assertLessEqual(
+                    mobile.evaluate(
+                        "document.documentElement.scrollWidth - document.documentElement.clientWidth"
+                    ),
+                    1,
+                )
+                mobile.close()
+            finally:
+                browser.close()
 
     def test_course_cards_show_the_requested_participation_scale(self):
         cards = re.findall(

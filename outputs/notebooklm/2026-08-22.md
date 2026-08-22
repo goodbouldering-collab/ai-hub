@@ -1,121 +1,53 @@
 # AIハブ 2026-08-22
 
-> 生成日時: 2026-08-22 12:57:22
-> 新着: 13件 / 継続: 38件 / 合計: 51件
+> 生成日時: 2026-08-22 22:11:42
+> 新着: 3件 / 継続: 34件 / 合計: 37件
 
 ---
 
 ## 🆕 新着 (前回取得以降)
 
-### カテゴリ: AI公式 (1件)
+### カテゴリ: AI研究者ブログ (3件)
 
-### [OpenAI Codex Releases] 0.149.0
-- URL: https://github.com/openai/codex/releases/tag/rust-v0.149.0
-- 取得: 2026-08-22 12:57:12
-- 公開: 2026-08-20T21:06:13+00:00
-- 原文抜粋: <h2>New Features</h2> <ul> <li>Added an interactive <code>codex agents</code> dashboard for searching, starting, opening, renaming, and stopping tasks, with configurable shortcuts. (<a class="issue-link js-issue-link" href="https://github.com/openai/codex/pull/39094">#39094</a>, <a class="issue-link...
+### [Simon Willison's Weblog] Quoting Linus Torvalds
+- URL: https://simonwillison.net/2026/Aug/22/linus-torvalds/
+- 取得: 2026-08-22 22:11:37
+- 公開: 2026-08-22T21:04:26+00:00
+- 原文抜粋: <blockquote cite="https://github.com/torvalds/linux/commit/818bebeb63dd6bf5f4e07e145f6cdbace520a34c"><p>And this was a debug session from hell, enormously helped by an AI doing much of the grunt-work.</p> <p>I'd like to call it my tireless helper, but the AI several times stated flat out that this w...
 
-### カテゴリ: AI動画(日本語) (4件)
+### [Simon Willison's Weblog] llm 0.33
+- URL: https://simonwillison.net/2026/Aug/22/llm/
+- 取得: 2026-08-22 22:11:37
+- 公開: 2026-08-22T17:01:16+00:00
+- 原文抜粋: <p><strong>Release:</strong> <a href="https://github.com/simonw/llm/releases/tag/0.33">llm 0.33</a></p>         <p>My highlights from this release:</p> <blockquote> <ul> <li>Upgraded to the OpenAI Python library 3.x and switched the HTTP client dependency from <code>httpx</code> to <code>httpx2</cod...
 
-### [KEITO AI&WEB] 【ガチ検証】Seedance 2.5 × Claude Codeなら丸投げである程度イケるんじゃないか？
-- URL: https://www.youtube.com/watch?v=qzfNQLVmAn8
-- 取得: 2026-08-22 12:57:17
-- 公開: 2026-08-22T10:00:14+00:00
-- 原文抜粋: Seedance 2.5をClaude Codeで利用して、元動画をアニメ風動画にする。やってみたくてなっただけです。  元動画 https://youtu.be/cJpguNV7VRs  KEITOの公式LINEはこちら LINE：https://lin.ee/1krnxOu  ★プロセボ｜AIコミュニティ AI活用を実際に操作しながら学ぶワークショップ型AIスクール。 参加申し込みはこちら → https://procevo.biz/  ★Substack（メルマガ）は下記から購読 https://kt-life.net/sns-links/newsletter.html  ▼KEITOの...
-
-### [Akiyama Yuta] 【Fish Audioの使い方】AIショート動画の「声」を自然にする完全攻略法
-- URL: https://www.youtube.com/watch?v=eg8c77qkjkU
-- 取得: 2026-08-22 12:57:18
-- 公開: 2026-08-22T10:00:38+00:00
-- 原文抜粋: ▼ Fish Audioリンク（1周年記念50%OFFキャンペーン中！） 公式サイト:  https://fish.audio/?fpr=akiyama91 ※今なら周年記念で年間プランが50%OFF（3ヶ月分オフ）でご利用いただけます。  ▼ 目次 00:00 AIショート動画における「声」の課題とFish Audioの概要 01:08 Fish Audioの使い方：Voice Designerでキャラの声を作る方法 02:47 感情タグ（Emotion Tags）で棒読みを解消する設定方法 03:54 複数話者機能（Multi-speaker）で男女の掛け合い音声を作る方法 05:29 動...
-
-### [AI収益化ラボ] 【超有料級】AIで大バズを連発！1日たった10分で月80万稼ぐ裏技を公開
-- URL: https://www.youtube.com/watch?v=upI-0tL8lDY
-- 取得: 2026-08-22 12:57:19
-- 公開: 2026-08-22T10:00:33+00:00
-- 原文抜粋: ▼動画内で紹介したプレゼントの受け取りは以下の公式LINEから https://liff.line.me/2006805073-rn36NG8b/landing?follow=%40933hyolt&amp;lp=feSZog&amp;liff_id=2006805073-rn36NG8b  ▼プレゼントの受け取り方法 ① LINE登録後に送信される配信をタップ ② アンケートに回答（1度登録されたメールアドレスでは2度と受け取れません） ③ 特典サイト受け取り  ▼目次 00:00 オープニング 01:45 バズっている江戸のショート動画 02:32 AI江戸のショート動画の収益 04:03...
-
-### [にゃんたのAI実践] ChatGPTデスクトップアプリ「Work」が便利なので基本から実践的な使い方まで解説してみた
-- URL: https://www.youtube.com/watch?v=N-UvuJOvbOc
-- 取得: 2026-08-22 12:57:19
-- 公開: 2026-08-22T09:00:05+00:00
-- 原文抜粋: 🏢【受付中】企業様向けAI活用の相談窓口を設置しています。 「AIで業務効率化できるか一緒に考えてほしい」「AIがわかる人を育てたい」という企業様向けに、研修から業務改善の定着まで伴走支援いたします。 ▼登録はこちら（登録は1分ほど・本目的以外では営業しません） https://forms.gle/sPVYtBkZpeaJ7URS9   --------------------------------------------------------------------------- にゃんた初の書籍が発売中！📚 Amazonのページ ▶︎https://amzn.to/3QMrFnY 『ゼ...
-
-### カテゴリ: AI国内 (5件)
-
-### [ITmedia AI+] Anthropic、「ミュトス 5」を脆弱性スキャンに開放──「Claude Security」経由でEnterprise顧客が利用可能に
-- URL: https://www.itmedia.co.jp/aiplus/article/2608/22/2000000697/
-- 取得: 2026-08-22 12:57:15
-- 公開: 2026-08-21T22:09:30+00:00
-- 原文抜粋: Anthropicは、最上位モデル「Claude Mythos 5」をセキュリティサービス「Claude Security」の脆弱性検出に導入したと発表した。モデル本体への直接アクセスは開放せず、パッチ提案などの出力のみに限定して提供する。オープンソース保護に向けた総額3500万ドルの基金設立も公表した。
-
-### [ITmedia AI+] ChatGPTに「おすすめの○○は？」　実は答えが決まっているらしい：893rd Lap
-- URL: https://kn.itmedia.co.jp/kn/articles/2608/21/news043.html
-- 取得: 2026-08-22 12:57:15
-- 公開: 2026-08-20T22:00:00+00:00
-- 原文抜粋: ChatGPTに「おすすめの○○は？」と聞けば、幾つかのブランドや商品を教えてくれる。では、その候補はどうやって選ばれているのだろうか。どうやらChatGPTは、検索を始める前から「この分野ならこれ」と、ある程度の候補を持っているらしい。
-
-### [ITmedia AI+] 「たった14人」の挑戦から7兆円の逆転劇へ　ラピダス小池社長の「TSMCとは戦わない」2ナノ半導体の勝算
-- URL: https://www.itmedia.co.jp/business/articles/2608/21/news030.html
-- 取得: 2026-08-22 12:57:15
-- 公開: 2026-08-20T22:00:00+00:00
-- 原文抜粋: 世界の半導体市場を台湾TSMCが席巻する中、7兆円規模の国家プロジェクトとして最先端「2ナノ」の量産化に挑むのがラピダスだ。同社はTSMCとの規模の勝負を避け、設計から前後工程を一棟で完結させる「RUMS」による多品種生産で勝負する。「たった14人」の同志でスタートした原点から、北海道を「次のシリコンバレー」へと変える小池淳義社長の戦略に迫る。
-
-### [ITmedia AI+] 「孫さんはOpenAIだが、僕はAnthropic」　SBI北尾会長が語る「AI投資5億円→増収27億円」の勝算
-- URL: https://www.itmedia.co.jp/business/articles/2608/21/news038.html
-- 取得: 2026-08-22 12:57:15
-- 公開: 2026-08-20T22:00:00+00:00
-- 原文抜粋: SBIホールディングスが生成AI「Claude」を開発する米Anthropicとの全社提携を発表した。当面の最優先戦略にAI化を掲げ、社外から専門人材を起用。SBI証券では顧客対応のAIエージェント開発に5億円を投資し、口座再活性化などを通じて年27億円の増収を見込む。「孫正義氏はOpenAIだが僕はAnthropic」と語る北尾吉孝会長が、AIドリブン戦略の勝算を明かす。
-
-### [ITmedia AI+] 「Gemini Notebook」で利用者10倍　シニア社員をAIヘビーユーザーにした首都高の考え
-- URL: https://kn.itmedia.co.jp/kn/articles/2608/21/news044.html
-- 取得: 2026-08-22 12:57:15
-- 公開: 2026-08-20T22:00:00+00:00
-- 原文抜粋: 「生成AIを何に使えばよいかわからない」という理由により、生成AIの活用が停滞してしまう企業は多い。安全を最優先する故に慎重な組織風土であった首都高速道路でも同様の課題を抱えていた。しかし同社では「Google Gemini」を起点としたある工夫により、劇的に活用状況を改善したという。その具体例を同社の推進担当者が語った。
-
-### カテゴリ: AI研究者ブログ (1件)
-
-### [Simon Willison's Weblog] A shot-scraper-style JSON API on Bun 1.4's new Bun.WebView
-- URL: https://simonwillison.net/2026/Aug/20/bun-webview-json-api/
-- 取得: 2026-08-22 12:57:14
-- 公開: 2026-08-20T15:37:00+00:00
-- 原文抜粋: <p><strong>Research:</strong> <a href="https://github.com/simonw/research/tree/main/bun-webview-json-api#readme">A shot-scraper-style JSON API on Bun 1.4&#x27;s new Bun.WebView</a></p>         <p>Today saw the long awaited <a href="https://bun.com/blog/bun-v1.4">release of Bun 1.4</a>, the first sta...
-
-### カテゴリ: SNS動向 (2件)
-
-### [Social Media Today] Meta removes option to exclude ad placements
-- URL: https://www.socialmediatoday.com/news/meta-removes-option-to-exclude-ad-placements/828461/
-- 取得: 2026-08-22 12:57:15
-- 公開: 2026-08-20T21:53:57+00:00
-- 原文抜粋: <p>The company will use an automated system to target display options, and brands will no longer be able to decide which apps receive promotions.</p>
-
-### [Social Media Today] Google adds simplified A/B testing for search ads
-- URL: https://www.socialmediatoday.com/news/google-adds-simplified-ab-testing-for-search-ads/828458/
-- 取得: 2026-08-22 12:57:15
-- 公開: 2026-08-20T20:13:48+00:00
-- 原文抜粋: <p>The new creation flow will make it easier for brands to experiment with promotional campaigns and determine how changes affect performance.</p>
+### [Simon Willison's Weblog] More than just code review
+- URL: https://simonwillison.net/2026/Aug/22/more-than-just-code-review/
+- 取得: 2026-08-22 22:11:37
+- 公開: 2026-08-22T15:56:54+00:00
+- 原文抜粋: <p>The key skill required to make productive use of coding agents is being able to confidently instruct them on how to make changes and then confidently verify that those changes have been applied in the correct way.</p> <p>Sometimes this involves reviewing every line of code they have written, but ...
 
 ---
 
 ## 📚 継続ソース (参照用・一覧のみ)
 
-### AIニュース (8件)
+### AIニュース (3件)
 - [The Verge AI] Over 1 million people have clicked LinkedIn’s AI slop button — https://www.theverge.com/ai-artificial-intelligence/983502/linkedin-ai-slop-button-one-million-people-message
 - [The Verge AI] Major YouTube creators are facing backlash for accepting AI money — https://www.theverge.com/ai-artificial-intelligence/983181/matti-haapoja-sam-kold-kolder-higgsfield-seedance-backlash
-- [The Verge AI] Google Discover is getting an AI chatbot-tuned feed — https://www.theverge.com/tech/983088/google-discover-ai-chatbot-feed
-- [The Verge AI] It’s Greg Brockman’s OpenAI now — https://www.theverge.com/ai-artificial-intelligence/982774/greg-brockman-openai-role-expansion
-- [The Verge AI] Welcome to the AI crisis in math — https://www.theverge.com/podcast/982434/ai-math-openai-astra-existential-crisis
-- [MIT Technology Review AI] Debates over AI consciousness are a trap — https://www.technologyreview.com/2026/08/20/1142571/ai-consciousness-debate-trap/
 - [Ars Technica AI] As demand for Meta AI glasses explodes, it’s harder to avoid creepy recordings — https://arstechnica.com/tech-policy/2026/08/meta-ai-glasses-may-get-creepier-and-apps-that-detect-them-arent-perfect/
-- [Ars Technica AI] Grok exfiltrates user data when malicious instructions are encrypted — https://arstechnica.com/security/2026/08/grok-exfiltrates-user-data-when-malicious-instructions-are-encrypted/
 
 ### AI公式 (1件)
 - [Google DeepMind] From Atari to EVE Online: Building on 15 Years of AI Research in Games — https://deepmind.google/blog/from-atari-to-eve-online-building-on-15-years-of-ai-research-in-games/
 
-### AI動画(日本語) (1件)
+### AI動画(日本語) (5件)
+- [KEITO AI&WEB] 【ガチ検証】Seedance 2.5 × Claude Codeなら丸投げである程度イケるんじゃないか？ — https://www.youtube.com/watch?v=qzfNQLVmAn8
+- [Akiyama Yuta] 【Fish Audioの使い方】AIショート動画の「声」を自然にする完全攻略法 — https://www.youtube.com/watch?v=eg8c77qkjkU
+- [AI収益化ラボ] 【超有料級】AIで大バズを連発！1日たった10分で月80万稼ぐ裏技を公開 — https://www.youtube.com/watch?v=upI-0tL8lDY
 - [AI収益化ラボ] 【早い者勝ち】公式が認めたXのヤバい稼ぎ方を教えます — https://www.youtube.com/watch?v=d7yWcAz9m8w
+- [にゃんたのAI実践] ChatGPTデスクトップアプリ「Work」が便利なので基本から実践的な使い方まで解説してみた — https://www.youtube.com/watch?v=N-UvuJOvbOc
 
-### AI国内 (15件)
+### AI国内 (13件)
+- [ITmedia AI+] Anthropic、「ミュトス 5」を脆弱性スキャンに開放──「Claude Security」経由でEnterprise顧客が利用可能に — https://www.itmedia.co.jp/aiplus/article/2608/22/2000000697/
 - [ITmedia AI+] SNSのウソ画像、どう見破る？　熊本県庁やテレビ局も頼る“すごい企業”の正体 — https://www.itmedia.co.jp/news/article/2608/21/2000000682/
 - [ITmedia AI+] エイベックス松浦会長「AIで仕事が楽になると思ってたけど、真逆」　note記事作成の“苦労”明かす — https://www.itmedia.co.jp/aiplus/article/2608/21/2000000684/
 - [ITmedia AI+] 中国AI「Kimi」が日本進出か　有料プランのプレゼントキャンペーンも　「はじめまして、日本」 — https://www.itmedia.co.jp/aiplus/article/2608/21/2000000679/
@@ -128,13 +60,9 @@
 - [ITmedia AI+] 業務標準化の手間を9割減　三菱UFJ銀行は生成AIに「業務知識」をどう教えた？ — https://www.itmedia.co.jp/enterprise/articles/2608/21/news019.html
 - [ITmedia AI+] Snowflakeが過去最高業績　CEOが「他社との差別化は容易になった」と語るワケ — https://www.itmedia.co.jp/enterprise/articles/2608/24/news009.html
 - [ITmedia AI+] 「チャピる」「ギュられる」って何？　今年流行った「就活用語」にAI関連ワード　マイナビ調査 — https://www.itmedia.co.jp/aiplus/article/2608/21/2000000663/
-- [ITmedia AI+] Slack、AIとチームで協働する「Slack Code」を発表　ClaudeやDevinを専用チャネルで操作 — https://www.itmedia.co.jp/news/article/2608/21/2000000667/
-- [ITmedia AI+] カルビーが挑むジャガイモ収量の限界――自社開発AIでサプライチェーン最適化 — https://monoist.itmedia.co.jp/mn/articles/2608/21/news046.html
-- [ITmedia AI+] GoogleはAI競争に負けたのか　「最強のAI」ではなく「AIの“電力網”」を選ぶ賭け — https://atmarkit.itmedia.co.jp/ait/articles/2608/21/news006.html
 
-### AI業界 (2件)
+### AI業界 (1件)
 - [Hugging Face Blog] Measuring benchmark optimization in speech recognition — https://huggingface.co/blog/asr-benchmark-optimization
-- [Hugging Face Blog] Up to 3.2x Faster Inference with LFM2.5-DSpark — https://huggingface.co/blog/LiquidAI/lfm25-dspark
 
 ### AI研究者ブログ (5件)
 - [Simon Willison's Weblog] llm 0.32.1 — https://simonwillison.net/2026/Aug/21/llm/

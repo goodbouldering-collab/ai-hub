@@ -24,7 +24,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://img.youtube.com/vi/qzfNQLVmAn8/hqdefault.jpg",
-      "published": "2026-08-22T10:00:14+00:00"
+      "published": "2026-08-22T10:00:14+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "9b2cfc97104c34eb",
@@ -49,7 +51,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://img.youtube.com/vi/eg8c77qkjkU/hqdefault.jpg",
-      "published": "2026-08-22T10:00:38+00:00"
+      "published": "2026-08-22T10:00:38+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "43604e70572ea2ea",
@@ -74,7 +78,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://img.youtube.com/vi/upI-0tL8lDY/hqdefault.jpg",
-      "published": "2026-08-22T10:00:33+00:00"
+      "published": "2026-08-22T10:00:33+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "3c04d50650d50843",
@@ -99,7 +105,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://img.youtube.com/vi/N-UvuJOvbOc/hqdefault.jpg",
-      "published": "2026-08-22T09:00:05+00:00"
+      "published": "2026-08-22T09:00:05+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "3ee6f2227d966102",
@@ -124,7 +132,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "",
-      "published": "2026-08-22T21:04:26+00:00"
+      "published": "2026-08-22T21:04:26+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "5a6740ad9a0fc093",
@@ -149,7 +159,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://www.itmedia.co.jp/aiplus/article/ogp/2608/22/2000000697/10003410/2048",
-      "published": "2026-08-21T22:09:30+00:00"
+      "published": "2026-08-21T22:09:30+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "5c7e8c6f104e12e9",
@@ -174,7 +186,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://www.itmedia.co.jp/news/article/ogp/2608/21/2000000682/10003351/2048",
-      "published": "2026-08-21T09:31:35+00:00"
+      "published": "2026-08-21T09:31:35+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "662a853020df047e",
@@ -199,7 +213,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://img.youtube.com/vi/d7yWcAz9m8w/hqdefault.jpg",
-      "published": "2026-08-21T10:00:15+00:00"
+      "published": "2026-08-21T10:00:15+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "5e97921a62cf2588",
@@ -224,7 +240,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "",
-      "published": "2026-08-22T17:01:16+00:00"
+      "published": "2026-08-22T17:01:16+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "a1c53e652155cbfb",
@@ -249,7 +267,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "",
-      "published": "2026-08-21T11:59:48+00:00"
+      "published": "2026-08-21T11:59:48+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

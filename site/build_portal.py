@@ -295,7 +295,7 @@ def _build_jsonld_website() -> str:
     plans = [
         (ai_agent_title, "Codexを使い、仕事を小さく分けて頼む、変更点を確かめる、必要なら直す、次回も使える手順として残すAIエージェント講習。資料、告知、業務改善、Web制作を題材に、人が判断しながら成果物を完成させる型を120分で身につける。", "5500", "5500", "Course"),
         (salon_title, "月額2,200円（税込）。正式開始に向けて現在は仮運用中で、登録中の方にはテスト運用へご協力いただいています。Square決済後にLINE参加案内を表示します。", "2200", "2200", "CommunityService"),
-        (support_title, "HP公開から事務自動化・経理・マーケまで6ヶ月で一気に定着。技術的な難所は講師が代行・支援。滋賀・彦根の補助金で負担1/3以下に。", MONTHLY_SUPPORT_PRICE_JPY, MONTHLY_SUPPORT_PRICE_JPY, "Service"),
+        (support_title, "組織がAIアプリサイトを自作・改善・運用できるまで学ぶ6ヶ月。上の制作サービスで行う課題整理、設計、公開、改善を、組織の担当者がAIと進められる状態を目指す。", MONTHLY_SUPPORT_PRICE_JPY, MONTHLY_SUPPORT_PRICE_JPY, "Service"),
         (selfbuild_title, "作りたいAIアプリサイトを題材に、目的整理、AIへの頼み方、コード確認、修正、安全な公開までを個別に進める講習・相談。相談だけで終わらず、自分で作って直せる状態を120分で目指す。", "11000", "11000", "Course"),
     ]
     plan_schema = {
@@ -11725,6 +11725,7 @@ def _render_compact_course_cards() -> str:
         {
             "cat": "基本講習",
             "title": "AIエージェント講習",
+            "audience": "少数",
             "image": "/img/blog-ai-agent-course-section-2-20260714.webp",
             "image_alt": "AIエージェントと人が仕事を分担し、成果物を確認する流れ",
             "price": "5,500円",
@@ -11735,7 +11736,6 @@ def _render_compact_course_cards() -> str:
             "material_url": "/lectures/2026-04-ai-kihon.html",
             "material_cta": "AIエージェント講習の受講資料を見る",
             "testimonial_key": "ai-agent",
-            "main": True,
             "details_lead": "この講習で得られること",
             "details": [
                 ("実際の仕事を1つ完成へ", "告知文、資料、調査、集計、業務ツール、サイト改善など、今の課題を題材に使える成果物まで進めます。"),
@@ -11749,6 +11749,7 @@ def _render_compact_course_cards() -> str:
         {
             "cat": "個別講習",
             "title": "AI自作講習",
+            "audience": "個別",
             "image": "/img/course-path-coding.webp",
             "image_alt": "相談しながらAIアプリサイトを作り、確認して公開する様子",
             "price": "11,000円",
@@ -11775,20 +11776,21 @@ def _render_compact_course_cards() -> str:
         {
             "cat": "6ヶ月伴走",
             "title": "AI伴走支援",
+            "audience": "組織",
             "image": "/img/course-path-workflow.webp",
             "image_alt": "複雑な業務をAIで整理し、続けられる仕組みに変える様子",
             "price": MONTHLY_SUPPORT_PRICE_LABEL,
             "duration": "6ヶ月",
-            "desc": "HP・事務・AI導入を、仕事に定着するところまで支援します。",
+            "desc": "組織がAIアプリサイトを自作・改善・運用できるまで学ぶ6ヶ月。",
             "url": MONTHLY_SUPPORT_BOOK_URL,
             "cta": "伴走支援を申し込む",
             "material_url": "/lectures/2026-06-ai-agent-rag-design.html",
             "material_cta": "AI導入・RAG設計の資料を見る",
             "testimonial_key": "ai-support",
-            "details_lead": "6ヶ月伴走で得られること",
+            "details_lead": "上の制作代行を、組織の実践力へ変える",
             "details": [
-                ("業務の優先順位を整理", "HP更新、集客、事務、情報共有の中から、効果と緊急度を見て着手順を決めます。"),
-                ("提案だけでなく実装まで", "文章や画像の作成だけで終わらず、Webページ、フォーム、業務画面、自動化を実際に動く形へ進めます。"),
+                ("上のAIアプリサイト制作を自分たちの力へ", "制作サービスで行う課題整理、設計、AIへの制作依頼、確認、公開、改善を、組織の担当者と一緒に繰り返します。"),
+                ("AIアプリサイトを一つ自作", "見積もり、問い合わせ、予約受付、社内検索などから優先度の高い機能を選び、自社の仕事で動く形まで作ります。"),
                 ("小さく試して毎月改善", "最初から大きな仕組みにせず、現場で使い、反応と数字を見ながら無理なく育てます。"),
                 ("社内に手順と資産が残る", "担当者が変わっても続けられるように、確認項目、運用ルール、資料、次回手順を整理します。"),
                 ("経営者の作業時間を減らす", "毎回の告知、転記、集計、返信など、判断が不要な繰り返し作業を減らす仕組みを作ります。"),
@@ -11811,8 +11813,16 @@ def _render_compact_course_cards() -> str:
             "</p>"
             if material_url else ""
         )
-        main_cls = " compact-course-card--main" if item.get("main") else ""
         title_html = f"<h3>{html.escape(item['title'])}</h3>"
+        role_html = (
+            "<div class='offer-role-row offer-role-row--course'>"
+            "<div class='offer-role-copy'><span class='offer-role-badge'>学ぶ</span>"
+            f"<span class='offer-role-note'>{html.escape(item['cat'])}</span></div>"
+            f"<span class='offer-audience' aria-label='受講人数：{html.escape(item['audience'], quote=True)}'>"
+            "<span class='offer-audience-label'>受講人数</span>"
+            f"<strong>{html.escape(item['audience'])}</strong></span>"
+            "</div>"
+        )
         details = item.get("details") or []
         details_html = ""
         if details:
@@ -11835,15 +11845,15 @@ def _render_compact_course_cards() -> str:
         if item.get("post"):
             main_action_html = (
                 f"<form class='compact-course-checkout' method='post' action='{html.escape(item['url'], quote=True)}'>"
-                f"<button type='submit'>{html.escape(item['cta'])} →</button></form>"
+                f"<button class='offer-action compact-course-action' type='submit'>{html.escape(item['cta'])} →</button></form>"
             )
         else:
             main_action_html = (
-                f"<a href='{html.escape(item['url'], quote=True)}'{target_attr}>{html.escape(item['cta'])} →</a>"
+                f"<a class='offer-action compact-course-action' href='{html.escape(item['url'], quote=True)}'{target_attr}>{html.escape(item['cta'])} →</a>"
             )
         cards.append(
-            f"<article class='compact-course-card{main_cls}'>"
-            f"<small>{html.escape(item['cat'])}</small>"
+            "<article class='compact-course-card offer-card'>"
+            f"{role_html}"
             f"<img class='compact-course-visual' src='{html.escape(item['image'], quote=True)}' alt='{html.escape(item['image_alt'], quote=True)}' loading='lazy' decoding='async'>"
             f"{title_html}"
             f"<div class='compact-course-meta'><strong>{html.escape(item['price'])}</strong><span>{html.escape(item['duration'])}</span></div>"
@@ -13183,11 +13193,11 @@ header.site-header:hover {
 .course-venue-map-link { grid-column:1 / -1; margin:-6px 0 0; text-align:center; }
 .course-venue-map-link a { color:var(--focus-blue); font-size:12px; font-weight:900; text-underline-offset:3px; }
 .compact-course-grid {
-  max-width:1400px;
+  max-width:1180px;
   margin:0 auto;
   padding:0 !important;
   display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
+  grid-template-columns:repeat(3,minmax(0,1fr));
   align-items:start;
   gap:14px;
   text-align:left;
@@ -13203,20 +13213,6 @@ header.site-header:hover {
   border:1px solid var(--focus-line);
   border-radius:16px;
   box-shadow:0 10px 28px rgba(42,53,105,.06);
-}
-.compact-course-card:first-child { grid-column:span 2; }
-.compact-course-card--main {
-  position:relative;
-  background:linear-gradient(145deg,#f0f1ff 0%,#fff 70%);
-  border-color:rgba(83,103,217,.36);
-  box-shadow:0 18px 42px rgba(63,79,171,.13);
-}
-.compact-course-card--main::before {
-  content:"";
-  position:absolute;
-  inset:0 0 auto;
-  height:4px;
-  background:var(--focus-blue);
 }
 .compact-course-badge {
   align-self:flex-start;
@@ -13261,14 +13257,14 @@ header.site-header:hover {
 .compact-course-visual {
   display:block;
   width:100%;
-  height:90px;
+  height:auto;
+  aspect-ratio:16/9;
   margin:8px 0 9px;
   object-fit:cover;
   object-position:center;
   border-radius:10px;
   background:#eef1ff;
 }
-.compact-course-card:first-child .compact-course-visual { height:112px; }
 .compact-course-card h3 { margin:7px 0 8px; font-size:19px; line-height:1.3; letter-spacing:-.025em; }
 .compact-course-card .compact-course-title-row h3 {
   flex:1 1 auto;
@@ -13703,8 +13699,7 @@ footer.site-footer {
   .focus-split img { max-width:360px; }
   .course-venue-common,.compact-course-grid,.course-quick-actions { max-width:680px; }
   .compact-course-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
-  .compact-course-card,.compact-course-card:first-child { grid-column:span 1; }
-  .compact-course-card:first-child { grid-column:1 / -1; }
+  .compact-course-card { grid-column:span 1; }
   .salon-timeline-wrap { max-width:680px !important; }
   .salon-timeline { grid-auto-columns:76% !important; }
   .focus-hub-head { align-items:flex-start; flex-direction:column; }
@@ -13785,10 +13780,8 @@ footer.site-footer {
   .course-venue-map { margin-top:4px; }
   .course-venue-map iframe { height:220px; }
   .compact-course-grid { grid-template-columns:1fr; gap:12px; }
-  .compact-course-card,
-  .compact-course-card:first-child { grid-column:auto; min-height:0; padding:17px; border:1px solid var(--focus-line); border-radius:14px; }
-  .compact-course-card:first-child { border-color:rgba(83,103,217,.36); }
-  .compact-course-visual,.compact-course-card:first-child .compact-course-visual { height:132px; }
+  .compact-course-card { grid-column:auto; min-height:0; padding:17px; border:1px solid var(--focus-line); border-radius:14px; }
+  .compact-course-visual { height:auto; }
   .compact-course-card h3 { font-size:18px; }
   .compact-course-title-row { gap:7px; }
   .compact-course-card .compact-course-title-row h3 { font-size:18px; }
@@ -14271,16 +14264,10 @@ footer.site-footer {
     align-items:start;
     gap:12px;
   }
-  .compact-course-card,
   .compact-course-card {
     grid-column:auto;
     min-height:0;
   }
-  .compact-course-card:first-child {
-    grid-column:1 / -1;
-    min-height:0;
-  }
-  .compact-course-card:first-child .compact-course-visual { height:100px; }
 }
 @media (max-width:1000px) {
   .salon-panel .salon-intro.salon-intro--fused {
@@ -14803,17 +14790,105 @@ a:focus-visible,
 button:focus-visible {
   outline-color: rgba(79,111,216,.28) !important;
 }
+.offer-panel {
+  width:min(1180px,calc(100% - 48px));
+  margin:18px auto;
+  overflow:hidden;
+  border:1px solid rgba(79,111,216,.18);
+  border-radius:20px;
+  background:#fff;
+  box-shadow:0 16px 38px rgba(32,55,100,.08);
+}
+.offer-card { border-color:rgba(79,111,216,.18); }
+.offer-role-row {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin:0 0 11px;
+}
+.offer-role-copy { display:flex; min-width:0; align-items:center; gap:8px; }
+.offer-role-badge {
+  display:inline-flex;
+  min-height:25px;
+  align-items:center;
+  justify-content:center;
+  padding:4px 10px;
+  color:#fff;
+  border-radius:999px;
+  background:var(--focus-blue);
+  font-size:10px;
+  font-weight:950;
+  letter-spacing:.08em;
+  line-height:1;
+}
+.offer-role-note {
+  color:var(--focus-blue-dark);
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.08em;
+  line-height:1.35;
+}
+.offer-audience {
+  flex:0 0 auto;
+  display:inline-flex;
+  align-items:baseline;
+  gap:6px;
+  padding:5px 9px;
+  color:var(--focus-blue-dark);
+  border:1px solid rgba(79,111,216,.2);
+  border-radius:9px;
+  background:#f2f5ff;
+}
+.offer-audience-label { font-size:9px; font-weight:800; }
+.offer-audience strong { color:var(--focus-blue-dark); font-size:14px; line-height:1; }
+.offer-action {
+  display:inline-flex;
+  min-height:46px;
+  align-items:center;
+  justify-content:center;
+  padding:11px 16px;
+  color:#fff;
+  border:1px solid var(--focus-blue);
+  border-radius:11px;
+  background:var(--focus-blue);
+  box-shadow:0 8px 20px rgba(43,72,177,.18);
+  font-size:13px;
+  font-weight:900;
+  line-height:1.35;
+  text-align:center;
+  text-decoration:none;
+}
+.offer-action:hover,
+.offer-action:focus-visible { color:#fff; background:var(--focus-blue-dark); border-color:var(--focus-blue-dark); }
+.offer-action--secondary { color:var(--focus-blue-dark); background:#fff; box-shadow:none; }
+.offer-action--secondary:hover,
+.offer-action--secondary:focus-visible { color:var(--focus-blue-dark); background:#edf3ff; }
+.compact-course-card > .compact-course-action,
+.compact-course-checkout > .compact-course-action {
+  width:100%;
+  min-height:46px;
+  margin-top:4px;
+  padding:11px 16px;
+  border-radius:11px;
+  font-size:13px;
+}
+@media (max-width:760px) {
+  .offer-panel { width:calc(100% - 28px); margin:14px auto; border-radius:16px; }
+  .offer-role-row { align-items:flex-start; }
+}
 .readiness-guide {
-  padding: 28px max(18px, calc((100vw - 1180px) / 2));
+  padding: 0;
   background: linear-gradient(135deg, #f5f9ff 0%, #fff 62%, #f4fbfa 100%);
   border-top: 1px solid rgba(79,111,216,.14);
   border-bottom: 1px solid rgba(79,111,216,.14);
 }
+.readiness-guide > .offer-panel { padding:30px 32px; }
 .readiness-guide__inner {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(300px, .94fr) auto;
-  gap: 22px clamp(22px, 3.5vw, 48px);
-  max-width: 1180px;
+  grid-template-columns: minmax(360px, 1.12fr) minmax(280px, .9fr) auto;
+  gap: 22px clamp(18px, 2vw, 30px);
+  max-width: 100%;
   margin: 0 auto;
   align-items: center;
 }
@@ -14827,7 +14902,7 @@ button:focus-visible {
 .readiness-guide__title {
   margin: 0;
   color: var(--focus-blue);
-  font-size: clamp(32px, 3.35vw, 46px);
+  font-size: clamp(31px, 3vw, 40px);
   font-weight: 950;
   letter-spacing: -.06em;
   line-height: 1.16;
@@ -14944,8 +15019,13 @@ button:focus-visible {
   box-shadow: 0 11px 22px rgba(43,72,177,.29);
   transform: translateY(-1px);
 }
+@media (min-width:761px) and (max-width:1050px) {
+  .readiness-guide__inner { grid-template-columns:minmax(0,1fr) minmax(280px,.9fr); }
+  .readiness-guide__cta { grid-column:1 / -1; width:100%; }
+}
 @media (max-width: 760px) {
-  .readiness-guide { padding: 25px 18px; }
+  .readiness-guide { padding: 0; }
+  .readiness-guide > .offer-panel { padding:24px 18px; }
   .readiness-guide__inner { grid-template-columns: 1fr; gap: 16px; }
   .readiness-guide__title { font-size: clamp(31px, 9vw, 39px); }
   .readiness-guide__summary { margin-top: 6px; font-size: 15px; }
@@ -14982,10 +15062,12 @@ FOCUSED_PORTAL_CSS += r"""
 /* ---- AIアプリサイト: 相談から仕組み化へ進む公開導線, 2026-08-20 ---- */
 .home-app-site-guide { position:relative; overflow:hidden; border-top:1px solid #d6e5f1; border-bottom:1px solid #d6e5f1; background:linear-gradient(135deg,#eef7ff 0%,#fbfdff 52%,#edfbf7 100%); }
 .home-app-site-guide::after { position:absolute; right:-120px; bottom:-180px; width:420px; height:420px; border-radius:50%; background:rgba(23,103,190,.09); content:""; }
-.home-app-site-shell { position:relative; z-index:1; width:min(1180px,calc(100% - 48px)); margin:0 auto; padding:46px 0; }
+.home-app-site-shell { position:relative; z-index:1; width:min(1180px,calc(100% - 48px)); margin:18px auto; padding:34px 32px; }
 .home-app-site-head { display:grid; grid-template-columns:minmax(0,1fr) minmax(250px,.48fr); gap:34px; align-items:center; }
 .home-app-site-eyebrow { margin:0 0 10px; color:#1767be; font-size:11px; font-weight:950; letter-spacing:.12em; }
 .home-app-site-head h2 { margin:0; max-width:720px; color:#142d4c; font-size:clamp(28px,3.4vw,44px); line-height:1.2; letter-spacing:-.035em; }
+.home-app-site-title-line { display:block; white-space:nowrap; }
+.home-app-site-title-narrow-break { display:none; }
 .home-app-site-head p { max-width:720px; margin:14px 0 0; color:#526a83; font-size:15px; line-height:1.8; }
 .home-app-site-price { padding:19px; border:1px solid #c5d8eb; border-radius:15px; background:rgba(255,255,255,.88); box-shadow:0 10px 28px rgba(22,70,122,.08); }
 .home-app-site-price small { display:block; color:#087972; font-size:10px; font-weight:900; letter-spacing:.1em; }
@@ -15011,11 +15093,14 @@ FOCUSED_PORTAL_CSS += r"""
   .site-nav .nav-link { padding-inline:7px !important; font-size:11px !important; }
 }
 @media (max-width:640px) {
-  .home-app-site-shell { width:min(100% - 30px,560px); padding:43px 0; }
+  .home-app-site-shell { width:calc(100% - 28px); margin:14px auto; padding:26px 18px; }
   .home-app-site-head { grid-template-columns:1fr; gap:19px; }
   .home-app-site-cards { grid-template-columns:1fr; gap:8px; }
   .home-app-site-actions { align-items:stretch; flex-direction:column; }
   .home-app-site-btn { width:100%; }
+}
+@media (max-width:360px) {
+  .home-app-site-title-narrow-break { display:block; }
 }
 """
 
@@ -15078,26 +15163,30 @@ def _render_ai_app_site_home_guide() -> str:
         for title, href in cards
     )
     return (
-        "<section class='home-app-site-guide' id='ai-app-site' aria-labelledby='home-app-site-title'><div class='home-app-site-shell'>"
-        "<div class='home-app-site-head'><div><p class='home-app-site-eyebrow'>AI APP SITE · DONE FOR YOU</p>"
-        "<h2 id='home-app-site-title'>AIが実行するサイトを、こちらで制作します。</h2>"
-        "<p>AI相談の制作サービスです。見積もり・問い合わせ・予約受付など、仕事を実行するAI機能をサイトに組み込み、相談から公開まで対応します。</p></div>"
+        "<section class='home-app-site-guide' id='ai-app-site' aria-labelledby='home-app-site-title'><div class='home-app-site-shell offer-panel'>"
+        "<div class='home-app-site-head'><div><div class='offer-role-row'><div class='offer-role-copy'>"
+        "<span class='offer-role-badge'>代行</span><span class='offer-role-note'>AI APP SITE · DONE FOR YOU</span></div></div>"
+        "<h2 id='home-app-site-title' aria-label='AIが実行するサイトを、こちらで制作します。'>"
+        "<span class='home-app-site-title-line'>AIが実行する<br class='home-app-site-title-narrow-break'>サイトを、</span>"
+        "<span class='home-app-site-title-line'>こちらで制作<br class='home-app-site-title-narrow-break'>します。</span></h2>"
+        "<p>AI相談の制作サービスです。見積もり・問い合わせ・予約受付など、仕事を実行するAI機能をサイトに組み込み、相談から公開まで対応します。まず制作を任せ、下の講習で自作・改善・運用を学ぶこともできます。</p></div>"
         "<div class='home-app-site-price'><small>制作を任せたい方へ</small><strong>AIアプリサイト制作<br><b>99,000円〜</b></strong><span>ホームページ＋AI機能1つ</span></div></div>"
         "<p class='home-app-site-capability-label'>今できること</p>"
         f"<div class='home-app-site-cards'>{cards_html}</div>"
         "<div class='home-app-site-actions'>"
-        f"<a class='home-app-site-btn home-app-site-btn--primary' href='{DIAGNOSIS_FREE_CONSULT_BOOK_URL}' target='_blank' rel='noopener'>AIアプリサイト制作を無料相談する →</a>"
-        "<a class='home-app-site-btn' href='/ai-app-site/'>制作内容・料金を見る</a></div>"
+        f"<a class='home-app-site-btn home-app-site-btn--primary offer-action' href='{DIAGNOSIS_FREE_CONSULT_BOOK_URL}' target='_blank' rel='noopener'>AIアプリサイト制作を無料相談する →</a>"
+        "<a class='home-app-site-btn offer-action offer-action--secondary' href='/ai-app-site/'>制作内容・料金を見る</a></div>"
         "</div></section>"
     )
 
 
 def _render_readiness_guide() -> str:
     return (
-        "<section class='readiness-guide readiness-guide--compact' aria-labelledby='readiness-guide-title'><div class='readiness-guide__inner'>"
-        "<div class='readiness-guide__intro'><p class='readiness-guide__eyebrow'>10問・約3分</p>"
+        "<section class='readiness-guide readiness-guide--compact' aria-labelledby='readiness-guide-title'><div class='offer-panel'><div class='readiness-guide__inner'>"
+        "<div class='readiness-guide__intro'><div class='offer-role-row'><div class='offer-role-copy'>"
+        "<span class='offer-role-badge'>診断</span><span class='offer-role-note'>10問・約3分</span></div></div>"
         "<h2 id='readiness-guide-title' class='readiness-guide__title'>あなたのAI実力診断</h2>"
-        "<p class='readiness-guide__summary'>10問・約3分で、いまの実践力と次に整える一歩がわかります。</p>"
+        "<p class='readiness-guide__summary'>10問・約3分で、いまの実践力と次に整える一歩がわかります。結果から、少数・個別・組織の受講方法も選べます。</p>"
         "<p class='readiness-guide__prompt'>AIを使っているつもりで、仕事は変わりましたか？</p>"
         "<p class='readiness-guide__meta'><span>100点・5段階</span><span>5つの基準</span><span>次の90日</span></p></div>"
         "<ul class='readiness-guide__questions' aria-label='AI活用の3つの疑問'>"
@@ -15106,14 +15195,15 @@ def _render_readiness_guide() -> str:
         "<li><span aria-hidden='true'>?</span><strong>うまくいった方法を次にも残せるか</strong></li>"
         "</ul>"
         "<a class='readiness-guide__cta' href='/ai-agent-readiness/' aria-label='あなたのAI実力診断をはじめる。10問・約3分'><span>あなたのAI実力診断をはじめる</span><b aria-hidden='true'>→</b></a>"
-        "</div></section>"
+        "</div></div></section>"
     )
 
 
 def _render_seo_llmo_guide() -> str:
     return (
-        "<section class='readiness-guide readiness-guide--compact seo-llmo-guide' aria-labelledby='seo-llmo-guide-title'><div class='readiness-guide__inner'>"
-        "<div class='readiness-guide__intro'><p class='readiness-guide__eyebrow'>URLを入れて約1分</p>"
+        "<section class='readiness-guide readiness-guide--compact seo-llmo-guide' aria-labelledby='seo-llmo-guide-title'><div class='offer-panel'><div class='readiness-guide__inner'>"
+        "<div class='readiness-guide__intro'><div class='offer-role-row'><div class='offer-role-copy'>"
+        "<span class='offer-role-badge'>診断</span><span class='offer-role-note'>URLを入れて約1分</span></div></div>"
         "<h2 id='seo-llmo-guide-title' class='readiness-guide__title'>あなたのサイト診断</h2>"
         "<p class='readiness-guide__summary'>あなたのサイトは、検索とAIに正しく伝わっていますか？ 公開ページを100点・4領域で確認し、優先して直すことを整理します。</p></div>"
         "<ul class='readiness-guide__outcomes' aria-label='あなたのサイト診断でわかること'>"
@@ -15123,7 +15213,7 @@ def _render_seo_llmo_guide() -> str:
         "</ul>"
         "<a class='readiness-guide__cta' href='/seo-llmo-diagnosis/' aria-label='あなたのサイト診断をはじめる。URLを入れて約1分'>"
         "<span>あなたのサイト診断をはじめる</span><b aria-hidden='true'>→</b></a>"
-        "</div></section>"
+        "</div></div></section>"
     )
 
 
@@ -15146,7 +15236,7 @@ def _render_focused_blog_content() -> str:
 def _render_focused_main() -> str:
     parts = [
         "<section class='focus-block main-course' id='packages'><div class='focus-section-head'><small>COURSES</small><h2>講習・相談コース</h2></div>",
-        "<p class='focus-section-lead'><strong>迷ったら、まずはAIエージェント講習が一番基本でおすすめです。</strong><br>自分でサイトやアプリを作りたい方は「AI自作講習」へ。制作を任せたい方は、上の「AIアプリサイト制作」へ。継続して導入したい方は6ヶ月伴走を選べます。</p>",
+        "<p class='focus-section-lead'><strong>制作を任せたい方は、上の「AIアプリサイト制作」へ。学ぶなら、受講人数で選べます。</strong><br>少数で基本を学ぶ、個別で自作する、組織で自作・改善・運用まで身につける。目的に合うコースへ進めます。</p>",
         "<div class='course-menu-unified' id='course-voices' role='region' aria-label='講習・相談の全4メニュー'>",
         _render_compact_course_cards(),
         _render_salon_menu(),

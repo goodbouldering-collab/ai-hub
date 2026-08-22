@@ -1,0 +1,247 @@
+import importlib.util
+from pathlib import Path
+import re
+import unittest
+
+from playwright.sync_api import Error as PlaywrightError
+from playwright.sync_api import sync_playwright
+
+
+ROOT = Path(__file__).resolve().parents[1]
+PORTAL_PATH = ROOT / "site" / "build_portal.py"
+
+
+def load_module(name: str, path: Path):
+    spec = importlib.util.spec_from_file_location(name, path)
+    assert spec and spec.loader
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def launch_chromium(playwright):
+    try:
+        return playwright.chromium.launch()
+    except PlaywrightError as default_error:
+        for executable in (
+            Path("C:/Program Files/Google/Chrome/Application/chrome.exe"),
+            Path("C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"),
+            Path("/usr/bin/google-chrome"),
+            Path("/usr/bin/chromium"),
+            Path("/usr/bin/chromium-browser"),
+            Path("/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"),
+        ):
+            if executable.exists():
+                return playwright.chromium.launch(executable_path=str(executable))
+        raise default_error
+
+
+class HomeOfferUiUnificationTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.portal = load_module("portal_home_offer_ui_under_test", PORTAL_PATH)
+        cls.home = cls.portal.render_portal([], [])
+
+    def test_service_diagnostics_and_courses_share_one_offer_language(self):
+        self.assertIn(
+            "<section class='home-app-site-guide' id='ai-app-site'", self.home
+        )
+        self.assertIn("class='home-app-site-shell offer-panel'", self.home)
+        self.assertIn(
+            "<section class='readiness-guide readiness-guide--compact'",
+            self.home,
+        )
+        self.assertIn(
+            "<section class='readiness-guide readiness-guide--compact seo-llmo-guide'",
+            self.home,
+        )
+        self.assertGreaterEqual(self.home.count("<div class='offer-panel'>"), 2)
+        self.assertIn("<span class='offer-role-badge'>代行</span>", self.home)
+        self.assertEqual(2, self.home.count("<span class='offer-role-badge'>診断</span>"))
+        self.assertEqual(3, self.home.count("<span class='offer-role-badge'>学ぶ</span>"))
+        self.assertEqual(3, self.home.count("class='compact-course-card offer-card'"))
+        self.assertGreaterEqual(self.home.count("offer-action"), 5)
+
+        css = self.portal.FOCUSED_PORTAL_CSS
+        self.assertRegex(css, r"\.offer-panel\s*\{[^}]*border-radius:")
+        self.assertRegex(css, r"\.offer-role-badge\s*\{[^}]*border-radius:\s*999px")
+        self.assertRegex(css, r"\.offer-action\s*\{[^}]*min-height:\s*46px")
+
+    def test_course_cards_show_the_requested_participation_scale(self):
+        cards = re.findall(
+            r"<article class='compact-course-card offer-card'.*?</article>",
+            self.home,
+            re.DOTALL,
+        )
+        self.assertEqual(3, len(cards))
+
+        expected = (
+            ("AIエージェント講習", "少数"),
+            ("AI自作講習", "個別"),
+            ("AI伴走支援", "組織"),
+        )
+        for card, (title, scale) in zip(cards, expected, strict=True):
+            with self.subTest(title=title):
+                self.assertIn(f"<h3>{title}</h3>", card)
+                self.assertIn("<span class='offer-audience-label'>受講人数</span>", card)
+                self.assertIn(f"<strong>{scale}</strong>", card)
+                self.assertLess(card.index("offer-role-row"), card.index("compact-course-visual"))
+                self.assertLess(card.index("compact-course-visual"), card.index(f"<h3>{title}</h3>"))
+
+        support_card = cards[2]
+        self.assertIn(
+            "組織がAIアプリサイトを自作・改善・運用できるまで学ぶ6ヶ月",
+            support_card,
+        )
+        self.assertIn("上のAIアプリサイト制作", support_card)
+
+    def test_three_courses_are_equal_columns_on_desktop_and_stack_on_mobile(self):
+        with sync_playwright() as playwright:
+            browser = launch_chromium(playwright)
+            try:
+                desktop = browser.new_page(viewport={"width": 1280, "height": 900})
+                desktop.set_content(self.home)
+                desktop_cards = desktop.locator(".compact-course-card")
+                desktop_boxes = [
+                    desktop_cards.nth(index).bounding_box()
+                    for index in range(desktop_cards.count())
+                ]
+                self.assertEqual(3, len(desktop_boxes))
+                self.assertTrue(all(box is not None for box in desktop_boxes))
+                self.assertLess(
+                    max(box["width"] for box in desktop_boxes)
+                    - min(box["width"] for box in desktop_boxes),
+                    1,
+                )
+                self.assertLess(
+                    max(box["y"] for box in desktop_boxes)
+                    - min(box["y"] for box in desktop_boxes),
+                    1,
+                )
+                self.assertLessEqual(
+                    desktop.evaluate(
+                        "document.documentElement.scrollWidth - document.documentElement.clientWidth"
+                    ),
+                    1,
+                )
+                for index in range(desktop_cards.count()):
+                    self.assertGreaterEqual(
+                        desktop_cards.nth(index)
+                        .locator(".compact-course-action")
+                        .evaluate("element => parseFloat(getComputedStyle(element).minHeight)"),
+                        46,
+                    )
+                desktop.close()
+
+                mobile = browser.new_page(viewport={"width": 390, "height": 900})
+                mobile.set_content(self.home)
+                mobile_cards = mobile.locator(".compact-course-card")
+                mobile_boxes = [
+                    mobile_cards.nth(index).bounding_box()
+                    for index in range(mobile_cards.count())
+                ]
+                self.assertEqual(3, len(mobile_boxes))
+                self.assertTrue(all(box is not None for box in mobile_boxes))
+                self.assertLess(
+                    max(box["x"] for box in mobile_boxes)
+                    - min(box["x"] for box in mobile_boxes),
+                    1,
+                )
+                self.assertTrue(
+                    all(upper["y"] < lower["y"] for upper, lower in zip(mobile_boxes, mobile_boxes[1:]))
+                )
+                self.assertLessEqual(
+                    mobile.evaluate(
+                        "document.documentElement.scrollWidth - document.documentElement.clientWidth"
+                    ),
+                    1,
+                )
+                mobile.close()
+
+                narrow = browser.new_page(viewport={"width": 320, "height": 900})
+                narrow.set_content(self.home)
+                self.assertLessEqual(
+                    narrow.evaluate(
+                        "document.documentElement.scrollWidth - document.documentElement.clientWidth"
+                    ),
+                    1,
+                )
+                narrow.close()
+            finally:
+                browser.close()
+
+    def test_offer_headings_do_not_leave_one_character_on_a_new_desktop_line(self):
+        self.assertIn(
+            "<span class='home-app-site-title-line'>AIが実行する<br class='home-app-site-title-narrow-break'>サイトを、</span>",
+            self.home,
+        )
+        self.assertIn(
+            "<span class='home-app-site-title-line'>こちらで制作<br class='home-app-site-title-narrow-break'>します。</span>",
+            self.home,
+        )
+
+        with sync_playwright() as playwright:
+            browser = launch_chromium(playwright)
+            try:
+                page = browser.new_page(viewport={"width": 1440, "height": 1000})
+                page.set_content(self.home)
+
+                service_lines = page.locator(
+                    "#home-app-site-title .home-app-site-title-line"
+                )
+                self.assertEqual(2, service_lines.count())
+                for index in range(service_lines.count()):
+                    self.assertEqual(
+                        1,
+                        service_lines.nth(index).evaluate(
+                            """element => {
+                              const range = document.createRange();
+                              range.selectNodeContents(element);
+                              return new Set(
+                                [...range.getClientRects()]
+                                  .filter(rect => rect.width > 0)
+                                  .map(rect => Math.round(rect.top))
+                              ).size;
+                            }"""
+                        ),
+                    )
+
+                for selector in ("#readiness-guide-title", "#seo-llmo-guide-title"):
+                    with self.subTest(selector=selector):
+                        line_count = page.locator(selector).evaluate(
+                            """element => {
+                              const range = document.createRange();
+                              range.selectNodeContents(element);
+                              return new Set(
+                                [...range.getClientRects()]
+                                  .filter(rect => rect.width > 0)
+                                  .map(rect => Math.round(rect.top))
+                              ).size;
+                            }"""
+                        )
+                        self.assertEqual(1, line_count)
+                page.close()
+
+                narrow = browser.new_page(viewport={"width": 320, "height": 900})
+                narrow.set_content(self.home)
+                narrow_line_widths = narrow.locator("#home-app-site-title").evaluate(
+                    """element => {
+                      const range = document.createRange();
+                      range.selectNodeContents(element);
+                      return [...range.getClientRects()]
+                        .filter(rect => rect.width > 0)
+                        .map(rect => rect.width);
+                    }"""
+                )
+                narrow_font_size = narrow.locator("#home-app-site-title").evaluate(
+                    "element => parseFloat(getComputedStyle(element).fontSize)"
+                )
+                self.assertTrue(narrow_line_widths)
+                self.assertGreaterEqual(min(narrow_line_widths), narrow_font_size * 2.5)
+                narrow.close()
+            finally:
+                browser.close()
+
+
+if __name__ == "__main__":
+    unittest.main()

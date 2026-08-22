@@ -171,6 +171,12 @@ test('course routes match live AI consultation offers and avoid direct high-pric
   );
   assert.equal(COURSE_ROUTES['ai-support'].url, '/#packages');
   assert.notEqual(COURSE_ROUTES['ai-support'].url, '/api/stripe/monthly-support');
+  assert.equal(COURSE_ROUTES['ai-support'].price, '月額88,000円');
+  assert.equal(COURSE_ROUTES['ai-support'].duration, '6ヶ月');
+  assert.equal(
+    COURSE_ROUTES['ai-support'].description,
+    '組織がAIアプリサイトを自作・改善・運用できるまで学ぶ6ヶ月。',
+  );
 });
 
 test('optional implementation and organization diagnostics cover the 12 source questions once', async () => {

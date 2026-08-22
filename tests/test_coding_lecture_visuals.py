@@ -3,6 +3,8 @@ import json
 import re
 import unittest
 
+from PIL import Image
+
 
 ROOT = Path(__file__).resolve().parents[1]
 INDEX = ROOT / "site" / "dist" / "index.html"
@@ -23,6 +25,8 @@ SECTION_IMAGES = {
     "必要な人だけ、Codexの公式情報を確認する": "ai-coding-09-official-info.webp",
     "だんだん作れるようになる総合演習": "ai-coding-10-exercises.webp",
 }
+
+COURSE_IMAGES = ("course-path-coding.webp", *SECTION_IMAGES.values())
 
 
 class CodingLectureVisualsTest(unittest.TestCase):
@@ -83,6 +87,52 @@ class CodingLectureVisualsTest(unittest.TestCase):
         self.assertEqual(self.material_html.count("<figcaption>"), 11)
         self.assertEqual(self.material_html.count("</figcaption>"), 11)
         self.assertEqual(self.material_html.count('loading="lazy" decoding="async"'), 11)
+
+    def test_every_programming_map_image_file_and_markup_is_landscape(self) -> None:
+        image_tags = re.findall(r"<img\b[^>]*>", self.material_html, re.DOTALL)
+        self.assertEqual(len(image_tags), len(COURSE_IMAGES))
+
+        for filename in COURSE_IMAGES:
+            with self.subTest(filename=filename):
+                asset = STATIC_IMG / filename
+                self.assertTrue(asset.is_file(), f"画像が見つかりません: {asset}")
+                with Image.open(asset) as image:
+                    natural_width, natural_height = image.size
+                self.assertGreater(
+                    natural_width,
+                    natural_height,
+                    f"{filename}: 元画像を横長にしてください ({natural_width}x{natural_height})",
+                )
+
+                tag = next((item for item in image_tags if filename in item), "")
+                self.assertTrue(tag, f"{filename}: programming-map.html に画像がありません")
+                width_match = re.search(r'\bwidth="(\d+)"', tag)
+                height_match = re.search(r'\bheight="(\d+)"', tag)
+                self.assertIsNotNone(width_match, f"{filename}: width 属性がありません")
+                self.assertIsNotNone(height_match, f"{filename}: height 属性がありません")
+                self.assertGreater(
+                    int(width_match.group(1)),
+                    int(height_match.group(1)),
+                    f"{filename}: HTML上の画像寸法を横長にしてください",
+                )
+
+    def test_section_images_reset_fixed_html_height_before_using_landscape_ratio(self) -> None:
+        rule_match = re.search(
+            r"\.pm-section-figure\s+img\s*\{(?P<body>.*?)\}",
+            self.material_html,
+            re.DOTALL,
+        )
+        self.assertIsNotNone(rule_match)
+        rule_body = rule_match.group("body")
+
+        for filename in SECTION_IMAGES.values():
+            with self.subTest(filename=filename):
+                self.assertRegex(
+                    rule_body,
+                    r"\bheight\s*:\s*auto\s*;",
+                    f"{filename}: HTMLの固定heightを解除しないと、狭い画面で縦長表示になります",
+                )
+                self.assertRegex(rule_body, r"\baspect-ratio\s*:\s*16\s*/\s*9\s*;")
 
     def test_learning_resource_json_ld_uses_the_course_cover(self) -> None:
         match = re.search(

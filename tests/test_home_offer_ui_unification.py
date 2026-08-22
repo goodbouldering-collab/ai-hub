@@ -82,11 +82,16 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
         )
         for card, (title, scale) in zip(cards, expected, strict=True):
             with self.subTest(title=title):
-                self.assertIn(f"<h3>{title}</h3>", card)
+                self.assertIn(
+                    f"<div class='compact-course-heading'><h3>{title}</h3>"
+                    "<span class='offer-audience'",
+                    card,
+                )
                 self.assertIn("<span class='offer-audience-label'>受講人数</span>", card)
                 self.assertIn(f"<strong>{scale}</strong>", card)
                 self.assertLess(card.index("offer-role-row"), card.index("compact-course-visual"))
                 self.assertLess(card.index("compact-course-visual"), card.index(f"<h3>{title}</h3>"))
+                self.assertLess(card.index(f"<h3>{title}</h3>"), card.index("offer-audience"))
 
         support_card = cards[2]
         self.assertIn(
@@ -166,17 +171,39 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
                     ),
                     1,
                 )
+                narrow_headings = narrow.locator(".compact-course-heading")
+                self.assertEqual(3, narrow_headings.count())
+                for index in range(narrow_headings.count()):
+                    self.assertEqual(
+                        "nowrap",
+                        narrow_headings.nth(index).evaluate(
+                            "element => getComputedStyle(element).flexWrap"
+                        ),
+                    )
+                    title_box = narrow_headings.nth(index).locator("h3").bounding_box()
+                    audience_box = narrow_headings.nth(index).locator(".offer-audience").bounding_box()
+                    self.assertIsNotNone(title_box)
+                    self.assertIsNotNone(audience_box)
+                    self.assertLess(
+                        abs(title_box["y"] - audience_box["y"]),
+                        8,
+                        "受講人数は320px幅でも講習名のすぐ横に表示する",
+                    )
                 narrow.close()
             finally:
                 browser.close()
 
     def test_offer_headings_do_not_leave_one_character_on_a_new_desktop_line(self):
         self.assertIn(
-            "<span class='home-app-site-title-line'>AIが実行する<br class='home-app-site-title-narrow-break'>サイトを、</span>",
+            "aria-label='AIアプリが動くサイトを、まるごと制作。'",
             self.home,
         )
         self.assertIn(
-            "<span class='home-app-site-title-line'>こちらで制作<br class='home-app-site-title-narrow-break'>します。</span>",
+            "<span class='home-app-site-title-line'>AIアプリが動く<br class='home-app-site-title-narrow-break'>サイトを、</span>",
+            self.home,
+        )
+        self.assertIn(
+            "<span class='home-app-site-title-line'>まるごと制作。</span>",
             self.home,
         )
 

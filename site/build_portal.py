@@ -11813,15 +11813,19 @@ def _render_compact_course_cards() -> str:
             "</p>"
             if material_url else ""
         )
-        title_html = f"<h3>{html.escape(item['title'])}</h3>"
-        role_html = (
-            "<div class='offer-role-row offer-role-row--course'>"
-            "<div class='offer-role-copy'><span class='offer-role-badge'>学ぶ</span>"
-            f"<span class='offer-role-note'>{html.escape(item['cat'])}</span></div>"
+        audience_html = (
             f"<span class='offer-audience' aria-label='受講人数：{html.escape(item['audience'], quote=True)}'>"
             "<span class='offer-audience-label'>受講人数</span>"
             f"<strong>{html.escape(item['audience'])}</strong></span>"
-            "</div>"
+        )
+        title_html = (
+            "<div class='compact-course-heading'>"
+            f"<h3>{html.escape(item['title'])}</h3>{audience_html}</div>"
+        )
+        role_html = (
+            "<div class='offer-role-row offer-role-row--course'>"
+            "<div class='offer-role-copy'><span class='offer-role-badge'>学ぶ</span>"
+            f"<span class='offer-role-note'>{html.escape(item['cat'])}</span></div></div>"
         )
         details = item.get("details") or []
         details_html = ""
@@ -13266,6 +13270,14 @@ header.site-header:hover {
   background:#eef1ff;
 }
 .compact-course-card h3 { margin:7px 0 8px; font-size:19px; line-height:1.3; letter-spacing:-.025em; }
+.compact-course-heading {
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:7px 0 8px;
+}
+.compact-course-heading h3 { min-width:0; margin:0; }
 .compact-course-card .compact-course-title-row h3 {
   flex:1 1 auto;
   min-width:0;
@@ -14877,6 +14889,18 @@ button:focus-visible {
   .offer-panel { width:calc(100% - 28px); margin:14px auto; border-radius:16px; }
   .offer-role-row { align-items:flex-start; }
 }
+@media (max-width:360px) {
+  .compact-course-heading { flex-wrap:nowrap; gap:5px; }
+  .compact-course-heading h3 {
+    flex:1 1 auto;
+    white-space:nowrap;
+    font-size:16px;
+    letter-spacing:-.04em;
+  }
+  .compact-course-heading .offer-audience { gap:4px; padding:4px 6px; }
+  .compact-course-heading .offer-audience-label { font-size:8px; }
+  .compact-course-heading .offer-audience strong { font-size:12px; }
+}
 .readiness-guide {
   padding: 0;
   background: linear-gradient(135deg, #f5f9ff 0%, #fff 62%, #f4fbfa 100%);
@@ -15166,10 +15190,10 @@ def _render_ai_app_site_home_guide() -> str:
         "<section class='home-app-site-guide' id='ai-app-site' aria-labelledby='home-app-site-title'><div class='home-app-site-shell offer-panel'>"
         "<div class='home-app-site-head'><div><div class='offer-role-row'><div class='offer-role-copy'>"
         "<span class='offer-role-badge'>代行</span><span class='offer-role-note'>AI APP SITE · DONE FOR YOU</span></div></div>"
-        "<h2 id='home-app-site-title' aria-label='AIが実行するサイトを、こちらで制作します。'>"
-        "<span class='home-app-site-title-line'>AIが実行する<br class='home-app-site-title-narrow-break'>サイトを、</span>"
-        "<span class='home-app-site-title-line'>こちらで制作<br class='home-app-site-title-narrow-break'>します。</span></h2>"
-        "<p>AI相談の制作サービスです。見積もり・問い合わせ・予約受付など、仕事を実行するAI機能をサイトに組み込み、相談から公開まで対応します。まず制作を任せ、下の講習で自作・改善・運用を学ぶこともできます。</p></div>"
+        "<h2 id='home-app-site-title' aria-label='AIアプリが動くサイトを、まるごと制作。'>"
+        "<span class='home-app-site-title-line'>AIアプリが動く<br class='home-app-site-title-narrow-break'>サイトを、</span>"
+        "<span class='home-app-site-title-line'>まるごと制作。</span></h2>"
+        "<p>情報を載せるだけのサイトではなく、見積もり・問い合わせ・予約受付などのAIアプリを、すぐ使える形でサイト内に組み込みます。別アプリを増やさず、新規制作・リニューアル・移行まで対応。まずこちらで土台を作り、その後は講習を通じて社内で保守・改善・バージョンアップすることも、必要な部分だけこちらへ任せることも自由に選べます。</p></div>"
         "<div class='home-app-site-price'><small>制作を任せたい方へ</small><strong>AIアプリサイト制作<br><b>99,000円〜</b></strong><span>ホームページ＋AI機能1つ</span></div></div>"
         "<p class='home-app-site-capability-label'>今できること</p>"
         f"<div class='home-app-site-cards'>{cards_html}</div>"

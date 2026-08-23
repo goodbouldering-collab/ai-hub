@@ -88,7 +88,7 @@ function sendLoginPage(
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <title>AIClimb｜AIで仕事を軽くする実践相談・伴走支援【彦根・滋賀】</title>
+  <title>AIclimb｜AIで仕事を軽くする実践相談・伴走支援【彦根・滋賀】</title>
   <style>
     :root {
       color-scheme: light;

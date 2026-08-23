@@ -15,14 +15,14 @@ def load_portal():
     return module
 
 
-class AIClimbBrandTest(unittest.TestCase):
+class AIclimbBrandTest(unittest.TestCase):
     def test_homepage_makes_aiclimb_the_visible_brand_and_keeps_ai_consultation_searchable(self):
         portal = load_portal()
 
         homepage = portal.render_portal([], [])
 
-        self.assertEqual(portal.SITE_BRAND, "AIClimb")
-        self.assertIn("AIClimb（エーアイクライム）", homepage)
+        self.assertEqual(portal.SITE_BRAND, "AIclimb")
+        self.assertIn("AIclimb（エーアイクライム）", homepage)
         self.assertIn("AIで仕事を軽くする実践相談・伴走支援", homepage)
         self.assertIn("AI相談・業務改善・伴走支援", homepage)
         self.assertIn("まずは困っている仕事を相談する", homepage)
@@ -32,7 +32,7 @@ class AIClimbBrandTest(unittest.TestCase):
 
         metadata = portal._build_jsonld_website()
 
-        self.assertIn('"name": "AIClimb"', metadata)
+        self.assertIn('"name": "AIclimb"', metadata)
         self.assertIn('"AI相談"', metadata)
 
 

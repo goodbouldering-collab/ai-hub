@@ -82,9 +82,9 @@ class PublicNavigationParityTest(unittest.TestCase):
             site_builder.render_top_nav(path_prefix="../", current_id="blog", include_run=False),
         ):
             with self.subTest(header=header[:80]):
-                self.assertIn("aria-label='AIClimb（AI相談）トップへ'", header)
+                self.assertIn("aria-label='AIclimb（AI相談）トップへ'", header)
                 self.assertIn(
-                    "<span class='wordmark'><span class='word-ai'>AIClimb</span></span>",
+                    "<span class='wordmark'><span class='word-ai'>AIclimb</span></span>",
                     header,
                 )
                 self.assertNotIn("class='word-hub'", header)

@@ -226,14 +226,14 @@
     return `
       <div class="site-header-inner">
         <a class="site-logo admin-shared-brand" href="/admin" aria-label="管理ホームへ戻る">
-          <span class="admin-shared-brand-name">AIClimb</span>
+          <span class="admin-shared-brand-name">AIclimb</span>
           <span class="admin-shared-brand-context">管理画面</span>
         </a>
         ${contextMarkup()}
         <nav class="site-nav admin-slide-nav" aria-label="管理ページ固定メニュー">
           <div class="admin-scroll-menu">${desktopMenuMarkup()}</div>
         </nav>
-        <a class="admin-public-page-link" href="/" aria-label="AIClimb（AI相談）の公開ページを見る">公開ページ</a>
+        <a class="admin-public-page-link" href="/" aria-label="AIclimb（AI相談）の公開ページを見る">公開ページ</a>
         <button class="mobile-toggle" id="mobile-toggle" aria-label="管理メニューを開く" aria-controls="mobile-nav" aria-expanded="false" type="button">
           <span class="mobile-toggle-icon" aria-hidden="true"><span></span><span></span><span></span></span>
           <span class="mobile-toggle-text">メニュー</span>
@@ -252,7 +252,7 @@
   header.className = "site-header admin-shared-header";
   header.id = "site-header";
   header.innerHTML = headerMarkup();
-  document.title = "AIClimb｜AIで仕事を軽くする実践相談・伴走支援【彦根・滋賀】";
+  document.title = "AIclimb｜AIで仕事を軽くする実践相談・伴走支援【彦根・滋賀】";
   document.body.classList.add("admin-shared-menu-active");
   document.body.dataset.adminMenuReady = "true";
   if (needsOffset) document.body.classList.add("admin-shared-menu-offset");

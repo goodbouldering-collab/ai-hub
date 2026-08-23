@@ -18,7 +18,7 @@ from pathlib import Path
 import yaml
 
 SITE_URL = os.environ.get("AIHUB_SITE_URL", os.environ.get("AIWATCH_SITE_URL", "https://aiclimb.vercel.app")).rstrip("/")
-SITE_BRAND = "AIClimb"
+SITE_BRAND = "AIclimb"
 SITE_SEARCH_NAME = "AI相談"
 AI_APP_SITE_ROUTES = (
     "ai-app-site",
@@ -136,8 +136,8 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
     parts: list[str] = [
         "<header class='site-header scrolled' id='site-header' aria-label='サイトヘッダー'>"
         "<div class='site-header-inner'>"
-        f"<a class='site-logo' href='{safe_home}' aria-label='AIClimb（AI相談）トップへ'>"
-        "<span class='wordmark'><span class='word-ai'>AIClimb</span></span></a>"
+        f"<a class='site-logo' href='{safe_home}' aria-label='AIclimb（AI相談）トップへ'>"
+        "<span class='wordmark'><span class='word-ai'>AIclimb</span></span></a>"
         f"<nav class='site-nav' aria-label='メインナビ'>{desktop_navigation}</nav>"
         f"{run_action}"
         "<button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' type='button' aria-label='メニューを開く' aria-controls='mobile-nav' aria-expanded='false'>"
@@ -271,8 +271,8 @@ FAVICON_HEAD_HTML = (
     "<link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon-20260725.png'>"
     "<link rel='manifest' href='/site-20260725.webmanifest'>"
     "<link rel='mask-icon' href='/favicon-20260725.svg' color='#5367D9'>"
-    "<meta name='application-name' content='AIClimb'>"
-    "<meta name='apple-mobile-web-app-title' content='AIClimb'>"
+    "<meta name='application-name' content='AIclimb'>"
+    "<meta name='apple-mobile-web-app-title' content='AIclimb'>"
     "<meta name='apple-mobile-web-app-capable' content='yes'>"
     "<meta name='mobile-web-app-capable' content='yes'>"
     "<meta name='theme-color' content='#172033'>"
@@ -2645,7 +2645,7 @@ ARTICLE_VIDEO_FULLSCREEN_JS = """<script>
 def _redirect_html(a, t):
     d = "https://aiclimb.vercel.app/#" + a
     return ("<!doctype html><html lang='ja'><head><meta charset='utf-8'>"
-        "<title>" + t + " | AIClimb（AI相談）</title>"
+        "<title>" + t + " | AIclimb（AI相談）</title>"
         "<link rel='canonical' href='" + d + "'>"
         "<meta http-equiv='refresh' content='0; url=" + d + "'>"
         "<meta name='robots' content='noindex,follow'>"
@@ -3766,7 +3766,7 @@ def _build_ogp(
         f"<meta property='og:description' content='{html.escape(desc, quote=True)}'>",
         f"<meta property='og:url' content='{html.escape(page_url, quote=True)}'>",
         f"<meta property='og:type' content='{html.escape(kind, quote=True)}'>",
-        "<meta property='og:site_name' content='AIClimb'>",
+        "<meta property='og:site_name' content='AIclimb'>",
     ]
     if rich_image:
         parts.extend([
@@ -3868,7 +3868,7 @@ def render_content_page(
     parts: list[str] = []
     parts.append("<!doctype html><html lang='ja'><head><meta charset='utf-8'>" + FAVICON_HEAD_HTML)
     parts.append("<meta name='viewport' content='width=device-width,initial-scale=1'>")
-    parts.append(f"<title>{html.escape(title)} | AIClimb（AI相談）</title>")
+    parts.append(f"<title>{html.escape(title)} | AIclimb（AI相談）</title>")
     desc = str(meta.get("summary") or "")
     if desc:
         parts.append(f"<meta name='description' content='{html.escape(desc, quote=True)}'>")

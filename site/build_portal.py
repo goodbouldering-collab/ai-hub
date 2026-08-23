@@ -115,9 +115,9 @@ SITE_URL = os.environ.get("AIHUB_SITE_URL", os.environ.get("AIWATCH_SITE_URL", "
 
 OWNER_NAME = "由井 辰美"
 OWNER_EMAIL = "goodbouldering@gmail.com"
-SITE_BRAND = "AIClimb"
+SITE_BRAND = "AIclimb"
 SITE_LEGACY_NAME = "AI相談"
-SITE_BROWSER_TITLE = "AIClimb｜AIで仕事を軽くする実践相談・伴走支援【彦根・滋賀】"
+SITE_BROWSER_TITLE = "AIclimb｜AIで仕事を軽くする実践相談・伴走支援【彦根・滋賀】"
 OWNER_SUBTITLE = "クライミング歴30年・9事業を回す滋賀のAI講師"
 OWNER_TAGLINE = "AIで仕事と暮らしの負担を軽くする。"
 DIAGNOSIS_FREE_CONSULT_BOOK_URL = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/AW5O5XSBHLEHYUBHLZUGFKYE"
@@ -152,8 +152,8 @@ FAVICON_HEAD_HTML = (
     "<link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon-20260725.png'>"
     "<link rel='manifest' href='/site-20260725.webmanifest'>"
     "<link rel='mask-icon' href='/favicon-20260725.svg' color='#5367D9'>"
-    "<meta name='application-name' content='AIClimb'>"
-    "<meta name='apple-mobile-web-app-title' content='AIClimb'>"
+    "<meta name='application-name' content='AIclimb'>"
+    "<meta name='apple-mobile-web-app-title' content='AIclimb'>"
     "<meta name='apple-mobile-web-app-capable' content='yes'>"
     "<meta name='mobile-web-app-capable' content='yes'>"
     "<meta name='theme-color' content='#172033'>"
@@ -254,7 +254,7 @@ def _build_jsonld_website() -> str:
             "streetAddress": "小泉町34-8",
             "addressCountry": "JP",
         },
-        "description": "滋賀県彦根市を拠点に、地域事業者・学校・福祉施設・個人事業主向けのAI相談、業務改善、講習、Web/業務アプリ制作を行う。AIClimbは、課題を一段ずつ登るように、相談から実装、公開、運用定着まで伴走する実践支援ブランド。",
+        "description": "滋賀県彦根市を拠点に、地域事業者・学校・福祉施設・個人事業主向けのAI相談、業務改善、講習、Web/業務アプリ制作を行う。AIclimbは、課題を一段ずつ登るように、相談から実装、公開、運用定着まで伴走する実践支援ブランド。",
         "knowsAbout": [
             "AI相談", "AIエージェント講習", "AIオンラインサロン", "ChatGPT", "Claude Code", "Codex", "画像生成", "AI業務改善",
             "LLMO（AI検索最適化）", "SEO", "MEO", "YouTube SEO", "Reels導線",
@@ -283,7 +283,7 @@ def _build_jsonld_website() -> str:
         "url": SITE_URL,
         "inLanguage": "ja",
         "publisher": {"@id": org_id},
-        "description": "AIClimbは、彦根・滋賀の事業者のためのAI相談・業務改善・伴走支援。AIで仕事と暮らしの負担を軽くする実践相談、講習、受講資料、実例を届ける。",
+        "description": "AIclimbは、彦根・滋賀の事業者のためのAI相談・業務改善・伴走支援。AIで仕事と暮らしの負担を軽くする実践相談、講習、受講資料、実例を届ける。",
     }
 
     ai_agent_title = "AIエージェント講習 120分"
@@ -15158,8 +15158,8 @@ def _render_header_focused() -> str:
     mobile_navigation = render_mobile_navigation()
     return (
         "<header class='site-header' id='site-header'><div class='site-header-inner'>"
-        "<a class='site-logo' href='/' aria-label='AIClimb（AI相談）トップへ'>"
-        "<span class='wordmark'><span class='word-ai'>AIClimb</span></span></a>"
+        "<a class='site-logo' href='/' aria-label='AIclimb（AI相談）トップへ'>"
+        "<span class='wordmark'><span class='word-ai'>AIclimb</span></span></a>"
         f"<nav class='site-nav' aria-label='メインナビ'>{desktop_navigation}</nav>"
         "<button class='mobile-toggle' id='mobile-toggle' type='button' aria-label='メニューを開く' aria-controls='mobile-nav' aria-expanded='false'>"
         "<span class='mobile-toggle-icon' aria-hidden='true'><span></span><span></span><span></span></span>"
@@ -15176,7 +15176,7 @@ def _render_hero_focused() -> str:
         "<div class='hero-orb hero-orb-one' aria-hidden='true'></div><div class='hero-orb hero-orb-two' aria-hidden='true'></div>"
         "<div class='focus-hero-shell'>"
         "<div class='focus-hero-copy'>"
-        "<p class='focus-kicker'>AIClimb（エーアイクライム）｜彦根・滋賀のAI相談</p>"
+        "<p class='focus-kicker'>AIclimb（エーアイクライム）｜彦根・滋賀のAI相談</p>"
         "<h1 class='focus-title'><span class='focus-title-first'>AIで仕事を軽くする</span><br><span class='focus-title-line'><strong>実践相談・伴走支援</strong></span></h1>"
         "<aside class='hero-advantage' id='advantage' aria-labelledby='hero-advantage-title'>"
         "<div class='hero-advantage-number' role='img' aria-label='AI利用率 6パーセント'><span>AI利用率</span><strong>6%</strong></div>"
@@ -15325,7 +15325,7 @@ def _render_focused_main() -> str:
         "<details><summary>受講にパソコンは必要ですか？</summary><p>はい。WindowsまたはMacのパソコンを必ずお持ちください。直したい資料やページもあれば、あわせてお持ちください。</p></details>",
         "<details><summary>オンラインでも受講できますか？</summary><p>対面・オンラインの両方に対応しています。彦根市内は訪問も相談できます。</p></details>",
         "<details><summary>AIオンラインサロンでは、何がわかりますか？</summary><p>AIオンラインサロンは近日開始で、現在は仮運用中です。登録中の方にはテスト運用へご協力いただいています。月額2,200円（税込）で、Square決済は毎月自動更新し、決済確認後にLINE参加案内を表示します。</p></details></div></section>",
-        "<section class='focus-contact' id='contact'><div class='focus-contact-inner'><div><h2>困っている仕事を聞かせてください。</h2><p>AIClimbのAI相談で、今の仕事に合う題材と進め方を一緒に整理します。</p></div>",
+        "<section class='focus-contact' id='contact'><div class='focus-contact-inner'><div><h2>困っている仕事を聞かせてください。</h2><p>AIclimbのAI相談で、今の仕事に合う題材と進め方を一緒に整理します。</p></div>",
         f"<a class='focus-btn' href='{DIAGNOSIS_FREE_CONSULT_BOOK_URL}' target='_blank' rel='noopener'>まずは困っている仕事を相談する</a></div></section>",
     ]
     return "".join(parts)
@@ -15334,7 +15334,7 @@ def _render_focused_main() -> str:
 def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     today = datetime.now().strftime("%Y-%m-%d")
     title = SITE_BROWSER_TITLE
-    desc = "AIClimbは、彦根・滋賀の事業者のためのAI相談・業務改善・伴走支援です。告知、事務、集客、Web/業務アプリを、相談から実装・公開・運用まで一段ずつ進めます。"
+    desc = "AIclimbは、彦根・滋賀の事業者のためのAI相談・業務改善・伴走支援です。告知、事務、集客、Web/業務アプリを、相談から実装・公開・運用まで一段ずつ進めます。"
 
     parts: list[str] = []
     parts.append("<!doctype html><html lang='ja'><head><meta charset='utf-8'>" + FAVICON_HEAD_HTML)

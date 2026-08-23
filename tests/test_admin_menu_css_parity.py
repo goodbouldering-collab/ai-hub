@@ -28,7 +28,7 @@ MENU_HTML = """<!doctype html>
   <header class="site-header admin-shared-header" id="site-header">
     <div class="site-header-inner">
       <a class="site-logo admin-shared-brand" href="/admin">
-        <span class="admin-shared-brand-name">AIClimb</span>
+        <span class="admin-shared-brand-name">AIclimb</span>
         <span class="admin-shared-brand-context">管理画面</span>
       </a>
       <div class="admin-page-context"><strong>管理ホーム</strong></div>

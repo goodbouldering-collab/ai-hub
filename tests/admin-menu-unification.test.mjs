@@ -5,7 +5,7 @@ import vm from "node:vm";
 
 const root = new URL("../", import.meta.url);
 const menuSource = await readFile(new URL("site/static/admin/admin-menu.js", root), "utf8");
-const adminTitle = "AIClimb｜AIで仕事を軽くする実践相談・伴走支援【彦根・滋賀】";
+const adminTitle = "AIclimb｜AIで仕事を軽くする実践相談・伴走支援【彦根・滋賀】";
 
 function classList() {
   const values = new Set();
@@ -184,7 +184,7 @@ test("shared fixed header keeps the public page one click away on desktop and mo
 
   assert.match(
     header.innerHTML,
-    /<a class="admin-public-page-link" href="\/" aria-label="AIClimb（AI相談）の公開ページを見る">公開ページ<\/a>\s*<button class="mobile-toggle"/,
+    /<a class="admin-public-page-link" href="\/" aria-label="AIclimb（AI相談）の公開ページを見る">公開ページ<\/a>\s*<button class="mobile-toggle"/,
     "the fixed header must expose a direct public-page link before the menu button",
   );
   assert.match(

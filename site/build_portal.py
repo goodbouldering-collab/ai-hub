@@ -14294,6 +14294,34 @@ footer.site-footer {
     border-left:1px solid rgba(83,103,217,.13);
   }
 }
+@media (min-width:721px) and (max-width:1000px) {
+  .salon-panel .salon-intro--fused .salon-value {
+    grid-template-columns:24px minmax(0,1fr);
+    gap:6px;
+    padding:5px 8px;
+  }
+  .salon-panel .salon-intro--fused .salon-value > b {
+    font-size:13px;
+  }
+  .salon-panel .salon-intro--fused .salon-value > div {
+    display:grid;
+    min-width:0;
+    gap:1px;
+  }
+  .salon-panel .salon-intro--fused .salon-value small {
+    display:block;
+    margin:0;
+    font-size:8px;
+    line-height:1;
+    white-space:nowrap;
+  }
+  .salon-panel .salon-intro--fused .salon-value strong {
+    display:block;
+    font-size:11px;
+    line-height:1.2;
+    white-space:nowrap;
+  }
+}
 @media (max-width:720px) {
   .course-menu-unified {
     margin:0;
@@ -14349,7 +14377,7 @@ footer.site-footer {
   .salon-panel .salon-value {
     display:block;
     min-width:0;
-    padding:6px 3px;
+    padding:5px 2px;
     border:0;
     border-radius:0;
     background:transparent;
@@ -14360,20 +14388,21 @@ footer.site-footer {
     border-left:1px solid rgba(83,103,217,.13);
   }
   .salon-panel .salon-value > b {
-    font-size:12px;
+    font-size:11px;
   }
   .salon-panel .salon-value small {
     display:block;
-    margin:3px 0 2px;
+    margin:2px 0 1px;
     overflow:visible;
-    font-size:9px;
+    font-size:7.5px;
+    line-height:1;
     text-overflow:clip;
     white-space:normal;
   }
   .salon-panel .salon-value strong {
     display:block;
-    font-size:11px;
-    line-height:1.35;
+    font-size:9.5px;
+    line-height:1.25;
   }
   .salon-panel .salon-facts {
     grid-template-columns:repeat(4,minmax(0,1fr));

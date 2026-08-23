@@ -354,6 +354,96 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
             finally:
                 browser.close()
 
+    def test_salon_value_strip_is_compact_at_annotation_width(self):
+        with sync_playwright() as playwright:
+            browser = launch_chromium(playwright)
+            try:
+                page = browser.new_page(viewport={"width": 758, "height": 900})
+                page.set_content(self.home)
+
+                strip = page.locator("#seven-day-courses .salon-value-list")
+                values = strip.locator(".salon-value")
+                self.assertEqual(3, values.count())
+
+                strip_box = strip.bounding_box()
+                self.assertIsNotNone(strip_box)
+                self.assertLessEqual(
+                    strip_box["height"],
+                    44,
+                    "3項目の要点行は注釈幅でも周囲のカードと同じ密度に収める",
+                )
+
+                for index in range(values.count()):
+                    with self.subTest(index=index):
+                        value_box = values.nth(index).bounding_box()
+                        self.assertIsNotNone(value_box)
+                        self.assertLessEqual(value_box["height"], 44)
+                        for selector in ("small", "strong"):
+                            line_count = values.nth(index).locator(selector).evaluate(
+                                """element => {
+                                  const range = document.createRange();
+                                  range.selectNodeContents(element);
+                                  return new Set(
+                                    [...range.getClientRects()]
+                                      .filter(rect => rect.width > 0)
+                                      .map(rect => Math.round(rect.top))
+                                  ).size;
+                                }"""
+                            )
+                            self.assertEqual(
+                                1,
+                                line_count,
+                                "英字ラベルと日本語の要点を途中で孤立改行させない",
+                            )
+            finally:
+                browser.close()
+
+    def test_salon_value_strip_stays_compact_on_mobile(self):
+        with sync_playwright() as playwright:
+            browser = launch_chromium(playwright)
+            try:
+                for width in (390, 320):
+                    with self.subTest(width=width):
+                        page = browser.new_page(viewport={"width": width, "height": 900})
+                        page.set_content(self.home)
+
+                        strip = page.locator("#seven-day-courses .salon-value-list")
+                        strip_box = strip.bounding_box()
+                        self.assertIsNotNone(strip_box)
+                        self.assertLessEqual(
+                            strip_box["height"],
+                            62,
+                            "モバイルでも3項目の要点行をコンパクトに保つ",
+                        )
+                        values = strip.locator(".salon-value")
+                        for index in range(values.count()):
+                            action_lines = values.nth(index).locator("strong").evaluate(
+                                """element => {
+                                  const range = document.createRange();
+                                  range.selectNodeContents(element);
+                                  return new Set(
+                                    [...range.getClientRects()]
+                                      .filter(rect => rect.width > 0)
+                                      .map(rect => Math.round(rect.top))
+                                  ).size;
+                                }"""
+                            )
+                            self.assertLessEqual(
+                                action_lines,
+                                2,
+                                "日本語の要点をモバイルで3行以上に分断しない",
+                            )
+                        self.assertLessEqual(
+                            page.evaluate(
+                                "document.documentElement.scrollWidth - "
+                                "document.documentElement.clientWidth"
+                            ),
+                            1,
+                        )
+                        page.close()
+            finally:
+                browser.close()
+
 
 if __name__ == "__main__":
     unittest.main()

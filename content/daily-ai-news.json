@@ -1,85 +1,85 @@
 {
-  "date": "2026-08-23",
+  "date": "2026-08-24",
   "items": [
     {
-      "title": "Anthropic、守る側へClaude Mythos 5を拡大",
-      "url": "https://claude.com/blog/bringing-claude-mythos-5-to-more-defenders",
-      "source": "Anthropic",
-      "published": "2026-08-21",
-      "kid_summary": "Claude Mythos 5を、会社のコンピューターを攻撃から守る人が使える範囲を広げると発表しました。",
-      "japan_angle": "日本の会社や自治体でも、AIによる安全確認を人の判断と組み合わせる時の参考になります。"
+      "title": "OpenAI幹部、続くAIサイバー攻撃への備えを警告",
+      "url": "https://www.theguardian.com/technology/2026/aug/23/openai-cyber-attacks-threat-chris-lehane",
+      "source": "The Guardian",
+      "published": "2026-08-23T10:00:00+02:00",
+      "kid_summary": "OpenAI幹部は、AIによる攻撃が続く時代に備え、安全基準を強める必要があると話しました。",
+      "japan_angle": "日本の学校や小さな会社も、AIの権限を絞り、すぐ止められる仕組みを持つ必要があります。"
     },
     {
-      "title": "Slack Code、AI開発をチームの会話へ",
-      "url": "https://venturebeat.com/orchestration/slack-wants-to-drag-ai-coding-out-of-the-terminal-and-into-the-group-chat",
-      "source": "VentureBeat",
-      "published": "2026-08-20T17:00:00-07:00",
-      "kid_summary": "Slackの会話内で複数のAIに開発を頼み、計画や変更をチームで確認できる機能が発表されました。",
-      "japan_angle": "地域の小さな会社も、CodexなどのAI作業を共有して人が確認する運用を考える材料になります。"
-    },
-    {
-      "title": "Adobe Firefly、音楽・音声・効果音を統合",
-      "url": "https://blog.adobe.com/jp/publish/2026/08/21/cc-adobe-firefly-expands-its-all-in-one-creative-ai-studio-with-studio-quality-sound",
-      "source": "Adobe Blog Japan",
-      "published": "2026-08-21",
-      "kid_summary": "Fireflyで音楽、読み上げ、効果音を作れる機能が正式に使えるようになりました。",
-      "japan_angle": "日本の学校や地域事業者が、動画や教材の音を一つの制作環境で整える選択肢になります。"
-    },
-    {
-      "title": "DeepMind、ゲームAI研究15年を次の開発へ",
-      "url": "https://deepmind.google/blog/from-atari-to-eve-online-building-on-15-years-of-ai-research-in-games/",
-      "source": "Google DeepMind",
-      "published": "2026-08-21T11:59:48+00:00",
-      "kid_summary": "ゲームで15年かけて育てたAI研究を、開発会社と新しい遊びへ生かす取り組みが紹介されました。",
-      "japan_angle": "日本のゲーム制作や、遊びながら学ぶ教材を考える作り手にも関係が強い研究です。"
-    },
-    {
-      "title": "音声認識AI、定番テストの暗記を検証",
-      "url": "https://huggingface.co/blog/asr-benchmark-optimization",
-      "source": "Hugging Face Blog",
-      "published": "2026-08-21T00:00:00+00:00",
-      "kid_summary": "音声認識AIが、聞いた音よりテストの答えを覚えて高い点を出す場合があると確かめました。",
-      "japan_angle": "日本語の字幕や議事録を選ぶ時は、点数だけでなく実際の音声で試す大切さが分かります。"
-    },
-    {
-      "title": "NVIDIA、AI間の引き継ぎを線形変換で高速化",
-      "url": "https://venturebeat.com/technology/nvidia-finds-that-simple-linear-math-can-replace-costly-ai-model-handoffs",
-      "source": "VentureBeat",
-      "published": "2026-08-21T09:33:00-07:00",
-      "kid_summary": "別のAIへ会話の続きを渡す時、簡単な計算で待ち時間を短くする研究をNVIDIAが示しました。",
-      "japan_angle": "複数AIを使う日本の業務アプリで、速さと費用を改善する技術候補になります。"
-    },
-    {
-      "title": "中国AI「Kimi」、日本語公式発信を開始",
-      "url": "https://www.itmedia.co.jp/aiplus/article/2608/21/2000000679/",
+      "title": "OpenAI、GPT-5.6 SolのAPI料金を期間限定で値下げ",
+      "url": "https://www.itmedia.co.jp/aiplus/article/2608/23/2000000700/",
       "source": "ITmedia AI+",
-      "published": "2026-08-21T06:54:13+00:00",
-      "kid_summary": "中国で作られたAI「Kimi」が、日本語の公式アカウントで日本向けの発信を始めました。",
-      "japan_angle": "日本の利用者は、機能だけでなく料金や入力データの扱いも確かめて選ぶ必要があります。"
+      "published": "2026-08-23T06:54:00+09:00",
+      "kid_summary": "GPT-5.6 SolのAPI料金が11月21日まで下がり、Codexのクレジット消費も減ります。",
+      "japan_angle": "日本の事業者や作り手は、高性能AIを使う仕事の費用を見直せる具体的な変更です。"
     },
     {
-      "title": "MetaのAIメガネ、撮影検知にも限界",
-      "url": "https://arstechnica.com/tech-policy/2026/08/meta-ai-glasses-may-get-creepier-and-apps-that-detect-them-arent-perfect/",
-      "source": "Ars Technica",
-      "published": "2026-08-21T11:00:53+00:00",
-      "kid_summary": "AIメガネを見つけるアプリでも、近くで撮影中かを完全には見分けられないと報じられました。",
-      "japan_angle": "学校、福祉施設、地域イベントでは、撮影の同意とプライバシーのルールが必要です。"
+      "title": "AI導入でも生産性向上を感じない経営者が約9割",
+      "url": "https://www.fortune.com/2026/08/22/executives-ai-productivity-layoffs-study/",
+      "source": "Fortune",
+      "published": "2026-08-22T11:11:00-04:00",
+      "kid_summary": "調査では、多くの経営者がAIで仕事の生産性が上がったとまだ感じていないと報告されました。",
+      "japan_angle": "日本の会社も、人を減らす前に研修と現場改善の効果を確かめる材料になります。"
     },
     {
-      "title": "LinkedIn、低品質AI投稿の通報が100万件超",
-      "url": "https://www.socialmediatoday.com/news/linkedin-says-1m-people-have-reported-ai-slop/828465/",
-      "source": "Social Media Today",
-      "published": "2026-08-20T23:28:09+00:00",
-      "kid_summary": "LinkedInで中身の薄いAI投稿を知らせる機能が、2週間で100万回以上使われました。",
-      "japan_angle": "日本の事業者も、AIで量を増やすより現場の経験や確かな情報を入れることが大切です。"
+      "title": "北京の人型ロボット大会、100mと高跳びで記録",
+      "url": "https://apnews.com/article/86cb8e310843151a77057e4cb764b4e2",
+      "source": "Associated Press",
+      "published": "2026-08-22T16:16:14+00:00",
+      "kid_summary": "北京の大会で、人型ロボットが100mや高跳びで人の記録を上回ったと主催者側が発表しました。",
+      "japan_angle": "日本も参加した大会で、身体教育や製造現場とロボットの未来を考える話題です。"
     },
     {
-      "title": "ChatGPT検索、「site:」指定が急増との調査",
-      "url": "https://simonwillison.net/2026/Aug/20/chatgpt-search-now-uses-the-siteoperator-at-scale/",
+      "title": "米政治家、AIデータセンターへの発信が否定的に",
+      "url": "https://www.washingtonpost.com/technology/2026/08/23/most-gop-politicians-now-talk-negatively-about-data-centers-data-shows/",
+      "source": "The Washington Post",
+      "published": "2026-08-23T05:00:00-04:00",
+      "kid_summary": "米政治家の発信を調べると、電気代などを心配してデータセンターに否定的な声が増えました。",
+      "japan_angle": "日本の自治体も、AI施設の雇用効果と電力、水、住民負担を一緒に考える必要があります。"
+    },
+    {
+      "title": "Anthropicの最上位AI、企業は安いモデルを優先",
+      "url": "https://finance.yahoo.com/technology/ai/articles/anthropic-best-ai-model-struggles-082324096.html",
+      "source": "Financial Times via Yahoo Finance",
+      "published": "2026-08-23T04:23:00-04:00",
+      "kid_summary": "企業では、最も高性能なAIより、普段の仕事をこなせる安いAIを選ぶ動きが報じられました。",
+      "japan_angle": "日本の小さな会社も、難しい仕事だけ高性能AIに任せる費用管理の参考になります。"
+    },
+    {
+      "title": "NVIDIA搭載サーバー、15％超の値上げ見込み",
+      "url": "https://www.fortune.com/2026/08/22/nvidia-customers-ai-related-price-hikes-15-percent-vera-rubin-grace-blackwell-chips/",
+      "source": "Fortune / Bloomberg",
+      "published": "2026-08-22T16:27:00-04:00",
+      "kid_summary": "メモリー価格の上昇で、NVIDIAのAIチップを積むサーバーが15％以上高くなると報じられました。",
+      "japan_angle": "日本の開発会社は、AI設備やクラウド費用の見積もりを早めに見直す材料になります。"
+    },
+    {
+      "title": "ハリウッドの作り手、AIへ仕事の技能を教える",
+      "url": "https://www.theguardian.com/technology/2026/aug/22/the-hollywood-creatives-training-ai-to-do-their-jobs",
+      "source": "The Guardian",
+      "published": "2026-08-22T02:00:00-04:00",
+      "kid_summary": "脚本家や監督が、生活費を得るためAIに映画制作の技能を教える仕事をしていると報じられました。",
+      "japan_angle": "日本の作り手も、自分の技能をAIに渡す条件や報酬、権利を考えるきっかけになります。"
+    },
+    {
+      "title": "AI向けコマンドラインツール「llm 0.33」公開",
+      "url": "https://simonwillison.net/2026/Aug/22/llm/",
       "source": "Simon Willison's Weblog",
-      "published": "2026-08-20T23:57:32+00:00",
-      "kid_summary": "追跡調査では、ChatGPT検索が一つのサイトに絞る方法を使う割合が急に増えました。",
-      "japan_angle": "地域のお店や活動サイトは、AIが各ページを探しやすい見出しと説明に整える意味があります。"
+      "published": "2026-08-22T17:01:16+00:00",
+      "kid_summary": "命令画面からAIを使う「llm」0.33が公開され、鍵やテンプレートの扱いが改善しました。",
+      "japan_angle": "日本の開発者は、処理ごとの鍵指定や複数テンプレートの組み合わせを使いやすくなります。"
+    },
+    {
+      "title": "ロボットの費用対効果、3年以内に人手超えとの調査",
+      "url": "https://monoist.itmedia.co.jp/mn/articles/2608/24/news061.html",
+      "source": "MONOist",
+      "published": "2026-08-24T06:30:00+09:00",
+      "kid_summary": "インテルの調査から、ロボットの費用対効果が3年以内に人手を上回るとの見通しが示されました。",
+      "japan_angle": "日本の工場や物流では、技能、安全、運用計画を導入前に整える判断材料になります。"
     }
   ]
 }

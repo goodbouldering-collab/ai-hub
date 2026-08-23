@@ -1,5 +1,5 @@
 ---
-title: "今日のAIニュース10｜Codexアップデートと活用事例【毎朝更新】"
+title: "今日のAIニュース10｜Codex最新アップデートと活用事例"
 date: "2026-08-21"
 date_modified: "2026-08-22"
 content_series: codex-update-log

@@ -104,8 +104,8 @@ class AiAppSitePagesTests(unittest.TestCase):
         section_end = page.index("</section>", section_id) + len("</section>")
         app_site_guide = page[section_start:section_end]
 
-        self.assertIn("AI導入120分", page)
-        self.assertIn("翌日から加速する実感", page)
+        self.assertIn("AI導入120分で", page)
+        self.assertIn("やりたいことが動き出す", page)
         self.assertIn("迷ったら60秒診断をはじめる", page)
         self.assertNotIn("相談だけで終わらない。", page)
         self.assertNotIn("AIで、仕事の仕組みまでつくる。", page)
@@ -119,7 +119,16 @@ class AiAppSitePagesTests(unittest.TestCase):
             "<section class='readiness-guide readiness-guide--compact home-app-site-guide' id='ai-app-site'",
             app_site_guide,
         )
-        self.assertIn("AIアプリが動くサイトを、まるごと制作。", app_site_guide)
+        self.assertIn(
+            "<h2 id='home-app-site-title' class='readiness-guide__title' "
+            "aria-label='AIアプリサイト制作'>"
+            "<span class='home-app-site-title-line'>AIアプリサイト制作</span></h2>",
+            app_site_guide,
+        )
+        self.assertEqual(1, app_site_guide.count("class='home-app-site-title-line'"))
+        self.assertNotIn("AIアプリが動く", app_site_guide)
+        self.assertNotIn("まるごと制作。", app_site_guide)
+        self.assertNotIn("home-app-site-title-narrow-break", app_site_guide)
         self.assertIn("AIアプリサイト制作", app_site_guide)
         self.assertIn("99,000円〜", app_site_guide)
         self.assertIn("ホームページ＋AI機能1つ", app_site_guide)
@@ -159,7 +168,7 @@ class AiAppSitePagesTests(unittest.TestCase):
         with sync_playwright() as playwright:
             browser = launch_chromium(playwright)
             try:
-                for width in (604, 390, 320):
+                for width in (604, 390, 320, 305):
                     with self.subTest(width=width):
                         page = browser.new_page(viewport={"width": width, "height": 900})
                         try:
@@ -170,12 +179,34 @@ class AiAppSitePagesTests(unittest.TestCase):
                             list_box = feature_list.bounding_box()
                             first_title_line = page.locator(".focus-title-first").bounding_box()
                             second_title_line = page.locator(".focus-title-line").bounding_box()
+                            app_title = page.locator("#home-app-site-title")
+                            app_title_line = app_title.locator(".home-app-site-title-line")
+                            app_title_box = app_title.bounding_box()
+                            app_intro_box = page.locator(
+                                ".home-app-site-guide .readiness-guide__intro"
+                            ).bounding_box()
 
                             self.assertEqual(5, len(boxes))
                             self.assertTrue(all(box is not None for box in boxes))
                             self.assertIsNotNone(list_box)
                             self.assertIsNotNone(first_title_line)
                             self.assertIsNotNone(second_title_line)
+                            self.assertEqual(1, app_title_line.count())
+                            self.assertIsNotNone(app_title_box)
+                            self.assertIsNotNone(app_intro_box)
+                            self.assertEqual("AIアプリサイト制作", app_title.text_content())
+                            self.assertLessEqual(
+                                app_title_line.evaluate(
+                                    "element => element.scrollWidth - element.clientWidth"
+                                ),
+                                1,
+                                "サービス見出しを320pxでもカード内に収める",
+                            )
+                            self.assertLessEqual(
+                                app_title_box["x"] + app_title_box["width"],
+                                app_intro_box["x"] + app_intro_box["width"] + 1,
+                                "サービス見出しを説明カラムからはみ出させない",
+                            )
                             self.assertLessEqual(
                                 second_title_line["height"],
                                 first_title_line["height"] * 1.35,
@@ -207,6 +238,40 @@ class AiAppSitePagesTests(unittest.TestCase):
                             )
                         finally:
                             page.close()
+            finally:
+                browser.close()
+
+    def test_homepage_service_title_fits_with_a_reserved_scrollbar_at_320px(self):
+        rendered = self.portal.render_portal([], [])
+
+        with sync_playwright() as playwright:
+            browser = launch_chromium(playwright)
+            try:
+                page = browser.new_page(viewport={"width": 320, "height": 900})
+                try:
+                    page.set_content(rendered)
+                    page.evaluate(
+                        "document.body.style.width = 'calc(100% - 15px)'"
+                    )
+                    title_line = page.locator(
+                        "#home-app-site-title .home-app-site-title-line"
+                    )
+
+                    self.assertEqual(320, page.evaluate("window.innerWidth"))
+                    self.assertAlmostEqual(
+                        305,
+                        page.locator("body").bounding_box()["width"],
+                        delta=1,
+                    )
+                    self.assertLessEqual(
+                        title_line.evaluate(
+                            "element => element.scrollWidth - element.clientWidth"
+                        ),
+                        1,
+                        "スクロールバーを差し引いた有効幅でも見出しを切らない",
+                    )
+                finally:
+                    page.close()
             finally:
                 browser.close()
 

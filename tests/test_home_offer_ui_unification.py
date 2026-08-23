@@ -284,15 +284,11 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
 
     def test_offer_headings_do_not_leave_one_character_on_a_new_desktop_line(self):
         self.assertIn(
-            "aria-label='AIアプリが動くサイトを、まるごと制作。'",
+            "aria-label='AIアプリサイト制作'",
             self.home,
         )
         self.assertIn(
-            "<span class='home-app-site-title-line'>AIアプリが動く<br class='home-app-site-title-narrow-break'>サイトを、</span>",
-            self.home,
-        )
-        self.assertIn(
-            "<span class='home-app-site-title-line'>まるごと制作。</span>",
+            "<span class='home-app-site-title-line'>AIアプリサイト制作</span>",
             self.home,
         )
 
@@ -305,7 +301,7 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
                 service_lines = page.locator(
                     "#home-app-site-title .home-app-site-title-line"
                 )
-                self.assertEqual(2, service_lines.count())
+                self.assertEqual(1, service_lines.count())
                 for index in range(service_lines.count()):
                     self.assertEqual(
                         1,

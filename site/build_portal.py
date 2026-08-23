@@ -15093,7 +15093,6 @@ FOCUSED_PORTAL_CSS += r"""
 .home-app-site-guide > .offer-panel { position:relative; z-index:1; }
 .home-app-site-guide .readiness-guide__title { color:#142d4c; font-size:clamp(31px,2.4vw,36px); letter-spacing:-.05em; }
 .home-app-site-title-line { display:block; white-space:nowrap; }
-.home-app-site-title-narrow-break { display:none; }
 .home-app-site-guide .readiness-guide__summary { color:#526a83; font-size:14px; line-height:1.65; }
 .home-app-site-price { margin:9px 0 0; }
 .home-app-site-price small { display:block; color:#087972; font-size:10px; font-weight:900; letter-spacing:.08em; }
@@ -15122,7 +15121,8 @@ FOCUSED_PORTAL_CSS += r"""
   .home-app-site-card { min-height:52px; padding:8px 8px 8px 34px; }
 }
 @media (max-width:360px) {
-  .home-app-site-title-narrow-break { display:block; }
+  .home-app-site-guide .readiness-guide__title { font-size:clamp(26px,8.5vw,31px); }
+  .home-app-site-title-line { white-space:nowrap; }
 }
 """
 
@@ -15151,10 +15151,10 @@ def _render_hero_focused() -> str:
         "<div class='focus-hero-shell'>"
         "<div class='focus-hero-copy'>"
         "<p class='focus-kicker'>彦根・滋賀の中小事業者向け</p>"
-        "<h1 class='focus-title'><span class='focus-title-first'>AI導入120分</span><br><span class='focus-title-line'><strong>翌日から加速する実感</strong></span></h1>"
+        "<h1 class='focus-title'><span class='focus-title-first'>AI導入120分で</span><br><span class='focus-title-line'><strong>やりたいことが動き出す</strong></span></h1>"
         "<aside class='hero-advantage' id='advantage' aria-labelledby='hero-advantage-title'>"
         "<div class='hero-advantage-number' role='img' aria-label='AI利用率 6パーセント'><span>AI利用率</span><strong>6%</strong></div>"
-        "<div class='hero-advantage-copy'><small><strong>まだまだこれから！</strong><span>始めるなら今。</span></small><p id='hero-advantage-title'><span class='hero-advantage-equation'><strong>AI</strong><span>×</span><strong>経験</strong></span><span class='hero-advantage-outcome'>やりたいことが実現する</span></p></div>"
+        "<div class='hero-advantage-copy'><small><strong>まだまだこれから！</strong><span>始めるなら今。</span></small><p id='hero-advantage-title'><span class='hero-advantage-equation'><strong>AI</strong><span>×</span><strong>経験</strong></span><span class='hero-advantage-outcome'>目的さえあればだれでも使える</span></p></div>"
         "<ul class='hero-advantage-pillars' aria-label='AI活用を成果に変える3原則'><li><b>01</b>試しに作る</li><li><b>02</b>素早く修正</li><li><b>03</b>仕組み化する</li></ul>"
         "</aside>"
         "<p class='focus-lead'>告知・事務・集客に追われる方へ。AIが気になるけれど、何から始めるか迷う方へ。3つの質問で、いまの仕事に合う次の一歩を提案します。</p>"
@@ -15190,9 +15190,8 @@ def _render_ai_app_site_home_guide() -> str:
         "<div class='offer-panel home-app-site-shell'><div class='readiness-guide__inner'>"
         "<div class='readiness-guide__intro'><div class='offer-role-row'><div class='offer-role-copy'>"
         "<span class='offer-role-badge'>代行</span><span class='offer-role-note'>AIアプリサイト</span></div></div>"
-        "<h2 id='home-app-site-title' class='readiness-guide__title' aria-label='AIアプリが動くサイトを、まるごと制作。'>"
-        "<span class='home-app-site-title-line'>AIアプリが動く<br class='home-app-site-title-narrow-break'>サイトを、</span>"
-        "<span class='home-app-site-title-line'>まるごと制作。</span></h2>"
+        "<h2 id='home-app-site-title' class='readiness-guide__title' aria-label='AIアプリサイト制作'>"
+        "<span class='home-app-site-title-line'>AIアプリサイト制作</span></h2>"
         "<p class='readiness-guide__summary'>情報を載せるだけのサイトではなく、見積もり・問い合わせ・予約受付などのAIアプリを、すぐ使える形でサイト内に組み込みます。別アプリを増やさず、新規制作・リニューアル・移行まで対応。まずこちらで土台を作り、その後は講習を通じて社内で保守・改善・バージョンアップすることも、必要な部分だけこちらへ任せることも自由に選べます。</p>"
         "<div class='home-app-site-price'><small>制作を任せたい方へ</small><strong>AIアプリサイト制作 <b>99,000円〜</b></strong><span>ホームページ＋AI機能1つ</span></div></div>"
         f"<ul class='readiness-guide__questions home-app-site-capabilities' aria-label='サイトに組み込めるAIアプリ'>{cards_html}</ul>"

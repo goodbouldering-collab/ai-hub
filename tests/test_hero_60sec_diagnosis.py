@@ -29,8 +29,8 @@ class Hero60SecondDiagnosisTests(unittest.TestCase):
 
     def test_hero_makes_diagnosis_the_primary_next_step(self):
         self.assertIn("彦根・滋賀の中小事業者向け", self.hero_html)
-        self.assertIn("AI導入120分", self.hero_html)
-        self.assertIn("翌日から加速する実感", self.hero_html)
+        self.assertIn("AI導入120分で", self.hero_html)
+        self.assertIn("やりたいことが動き出す", self.hero_html)
         self.assertNotIn("AIエージェントで", self.hero_html)
         self.assertNotIn("できることを100倍に", self.hero_html)
         self.assertIn("6%", self.hero_html)
@@ -55,7 +55,7 @@ class Hero60SecondDiagnosisTests(unittest.TestCase):
             "<span class='hero-advantage-equation'><strong>AI</strong><span>×</span><strong>経験</strong></span>",
             self.hero_html,
         )
-        self.assertIn("やりたいことが実現する", self.hero_html)
+        self.assertIn("目的さえあればだれでも使える", self.hero_html)
         self.assertNotIn("思い描けば現実になる！", self.hero_html)
         self.assertIn("<li><b>01</b>試しに作る</li>", self.hero_html)
         self.assertIn("<li><b>02</b>素早く修正</li>", self.hero_html)

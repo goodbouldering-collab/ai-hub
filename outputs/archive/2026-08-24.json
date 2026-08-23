@@ -24,7 +24,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://image.itmedia.co.jp/mn/articles/2608/24/cover_news061.jpg",
-      "published": "2026-08-23T21:30:00+00:00"
+      "published": "2026-08-23T21:30:00+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "1980eeef866c4ad1",
@@ -49,7 +51,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "",
-      "published": "2026-08-23T20:24:52+00:00"
+      "published": "2026-08-23T20:24:52+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "578ea5bfdecfba19",
@@ -74,7 +78,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "",
-      "published": "2026-08-23T19:55:30+00:00"
+      "published": "2026-08-23T19:55:30+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "6c6a6c4fc54932a6",
@@ -99,7 +105,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://www.itmedia.co.jp/aiplus/article/ogp/2608/23/2000000700/10003422/2048",
-      "published": "2026-08-22T21:54:23+00:00"
+      "published": "2026-08-22T21:54:23+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "4d28952c8e041b15",
@@ -124,7 +132,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://img.youtube.com/vi/qzfNQLVmAn8/hqdefault.jpg",
-      "published": "2026-08-22T10:00:14+00:00"
+      "published": "2026-08-22T10:00:14+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "9b2cfc97104c34eb",
@@ -149,7 +159,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://img.youtube.com/vi/eg8c77qkjkU/hqdefault.jpg",
-      "published": "2026-08-22T10:00:38+00:00"
+      "published": "2026-08-22T10:00:38+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "43604e70572ea2ea",
@@ -174,7 +186,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://img.youtube.com/vi/upI-0tL8lDY/hqdefault.jpg",
-      "published": "2026-08-22T10:00:33+00:00"
+      "published": "2026-08-22T10:00:33+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "3c04d50650d50843",
@@ -199,7 +213,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://img.youtube.com/vi/N-UvuJOvbOc/hqdefault.jpg",
-      "published": "2026-08-22T09:00:05+00:00"
+      "published": "2026-08-22T09:00:05+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "3ee6f2227d966102",
@@ -224,7 +240,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "",
-      "published": "2026-08-22T21:04:26+00:00"
+      "published": "2026-08-22T21:04:26+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "5e97921a62cf2588",
@@ -249,7 +267,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "",
-      "published": "2026-08-22T17:01:16+00:00"
+      "published": "2026-08-22T17:01:16+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

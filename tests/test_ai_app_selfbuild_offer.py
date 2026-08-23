@@ -47,7 +47,7 @@ class AiAppSelfbuildOfferTests(unittest.TestCase):
         )
         selfbuild_card = next(card for card in cards if SELFBUILD_SQUARE_URL in card)
 
-        self.assertEqual(3, len(cards))
+        self.assertEqual(4, len(cards))
         self.assertIn("<h3>AI自作講習</h3>", selfbuild_card)
         self.assertIn("サイトやアプリを自分で作って直せるようになる。", selfbuild_card)
         self.assertIn("公開できるまで個別に進めます。", selfbuild_card)

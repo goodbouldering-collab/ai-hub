@@ -30,20 +30,16 @@ class RenderedSalonTest(unittest.TestCase):
             self.html,
             re.DOTALL,
         )
-        self.assertEqual(len(cards), 3)
-        salon_cards = [card for card in cards if ">AIオンラインサロン</h3>" in card]
-        self.assertEqual(len(salon_cards), 0)
-        self.assertNotIn("compact-course-card--salon", self.html)
-        self.assertNotIn("id='salon-menu-card'", self.html)
+        self.assertEqual(len(cards), 4)
+        salon_cards = [card for card in cards if "AIオンラインサロン｜近日開始" in card]
+        self.assertEqual(len(salon_cards), 1)
+        self.assertIn("compact-course-card--salon", self.html)
         self.assertIn("class='course-menu-unified'", self.html)
         self.assertIn("aria-label='講習・相談の全4メニュー'", self.html)
         self.assertNotIn("course-menu-unified-head", self.html)
         self.assertNotIn("上の4カードと下のオンラインサロンから選べます", self.html)
-        self.assertRegex(
-            self.html,
-            r"class='course-menu-unified'[^>]*>\s*<div class='compact-course-grid'",
-        )
-        self.assertIn("<div class='salon-panel'>", self.html)
+        self.assertRegex(self.html, r"class='course-menu-unified'[^>]*>\s*<div class='compact-course-grid'")
+        self.assertIn("class='compact-course-card offer-card compact-course-card--salon salon-panel'", self.html)
         self.assertNotIn("class='salon-simple-head'", self.html)
         self.assertIn("class='salon-intro salon-intro--fused salon-card-overview'", self.html)
         self.assertIn(
@@ -67,7 +63,7 @@ class RenderedSalonTest(unittest.TestCase):
         self.assertNotIn(" open", self.html[details:self.html.index(">", details)])
         self.assertEqual(self.html.count("id='seven-day-courses'"), 1)
         salon_start = self.html.index("id='seven-day-courses'")
-        salon_end = self.html.index("</section>", salon_start)
+        salon_end = self.html.index("</article>", salon_start)
         venue_map = self.html.index("class='course-venue-map'", salon_end)
         self.assertLess(salon_start, salon_end)
         self.assertLess(salon_end, venue_map)

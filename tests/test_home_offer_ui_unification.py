@@ -189,6 +189,25 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
         )
         self.assertIn("上のAIアプリサイト制作", support_card)
 
+    def test_salon_shares_the_course_card_grid_with_support_and_app_site_follows_courses(self):
+        cards = re.findall(
+            r"<article class='compact-course-card offer-card.*?</article>",
+            self.home,
+            re.DOTALL,
+        )
+        self.assertEqual(4, len(cards))
+
+        support_card = next(card for card in cards if "<h3>AI伴走支援</h3>" in card)
+        salon_card = next(card for card in cards if "AIオンラインサロン｜近日開始" in card)
+        self.assertIn("compact-course-card--salon", salon_card)
+        self.assertLess(self.home.index(support_card), self.home.index(salon_card))
+
+        packages = self.home.index("id='packages'")
+        app_site = self.home.index("id='ai-app-site'")
+        lectures = self.home.index("id='lectures'")
+        self.assertLess(packages, app_site)
+        self.assertLess(app_site, lectures)
+
     def test_three_courses_are_equal_columns_on_desktop_and_stack_on_mobile(self):
         with sync_playwright() as playwright:
             browser = launch_chromium(playwright)
@@ -200,18 +219,16 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
                     desktop_cards.nth(index).bounding_box()
                     for index in range(desktop_cards.count())
                 ]
-                self.assertEqual(3, len(desktop_boxes))
+                self.assertEqual(4, len(desktop_boxes))
                 self.assertTrue(all(box is not None for box in desktop_boxes))
                 self.assertLess(
                     max(box["width"] for box in desktop_boxes)
                     - min(box["width"] for box in desktop_boxes),
                     1,
                 )
-                self.assertLess(
-                    max(box["y"] for box in desktop_boxes)
-                    - min(box["y"] for box in desktop_boxes),
-                    1,
-                )
+                self.assertLess(abs(desktop_boxes[0]["y"] - desktop_boxes[1]["y"]), 1)
+                self.assertLess(abs(desktop_boxes[2]["y"] - desktop_boxes[3]["y"]), 1)
+                self.assertLess(desktop_boxes[1]["y"], desktop_boxes[2]["y"])
                 self.assertLessEqual(
                     desktop.evaluate(
                         "document.documentElement.scrollWidth - document.documentElement.clientWidth"
@@ -234,7 +251,7 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
                     mobile_cards.nth(index).bounding_box()
                     for index in range(mobile_cards.count())
                 ]
-                self.assertEqual(3, len(mobile_boxes))
+                self.assertEqual(4, len(mobile_boxes))
                 self.assertTrue(all(box is not None for box in mobile_boxes))
                 self.assertLess(
                     max(box["x"] for box in mobile_boxes)
@@ -261,7 +278,7 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
                     1,
                 )
                 narrow_headings = narrow.locator(".compact-course-heading")
-                self.assertEqual(3, narrow_headings.count())
+                self.assertEqual(4, narrow_headings.count())
                 for index in range(narrow_headings.count()):
                     self.assertEqual(
                         "nowrap",

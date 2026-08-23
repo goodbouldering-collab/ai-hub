@@ -11868,7 +11868,7 @@ def _render_compact_course_cards() -> str:
             f"{material_html}"
             "</article>"
         )
-    return "<div class='compact-course-grid'>" + "".join(cards) + "</div>"
+    return "<div class='compact-course-grid'>" + "".join(cards) + _render_salon_menu() + "</div>"
 
 
 def _render_live_talk_guide() -> str:
@@ -11915,8 +11915,7 @@ def _render_salon_menu() -> str:
         for title, description in benefits
     )
     return (
-        "<section class='salon-section salon-section--integrated' id='seven-day-courses' aria-labelledby='salon-title'>"
-        "<div class='salon-panel'>"
+        "<article class='compact-course-card offer-card compact-course-card--salon salon-panel' id='seven-day-courses' aria-labelledby='salon-title'>"
         "<div class='salon-eyebrow-row salon-card-eyebrow'><small>MENU 05 · SQUARE MONTHLY</small>"
         "<span class='compact-course-badge'><i aria-hidden='true'></i>現在は仮運用中</span></div>"
         "<div class='salon-intro salon-intro--fused salon-card-overview'>"
@@ -11925,7 +11924,7 @@ def _render_salon_menu() -> str:
         "loading='lazy' decoding='async'><figcaption>仕事で次に試すことを、一緒に決める60分</figcaption></figure>"
         "<div class='salon-intro-copy'>"
         "<small class='salon-card-category'>月額サロン</small>"
-        "<h2 class='salon-detail-title' id='salon-title'>AIオンラインサロン｜近日開始</h2>"
+        "<h3 class='salon-detail-title' id='salon-title'>AIオンラインサロン｜近日開始</h3>"
         "<div class='compact-course-meta salon-card-meta'><strong>月額2,200円（税込）</strong><span>毎週火曜21:00</span></div>"
         "<p class='salon-intro-tagline'>AIの最新も疑問もその場で解決できる。</p>"
         "<p class='salon-intro-description'>正式開始に向けて現在は仮運用中です。登録中の方にはテスト運用へご協力いただいています。Squareで月額決済後、LINEライブトークの参加案内を表示します。</p></div>"
@@ -11945,7 +11944,7 @@ def _render_salon_menu() -> str:
         "<p class='salon-simple-note'>月額2,200円（税込）・毎月自動更新。決済確認後にLINE参加案内を表示します</p>"
         f"<form class='compact-course-checkout salon-card-checkout' method='post' action='{html.escape(AI_SALON_CHECKOUT_URL, quote=True)}'><button type='submit'>Squareで決済して仮運用に参加 →</button></form>"
         "<p class='salon-material-row'><a class='compact-course-material salon-material-link' href='/lectures/2026-07-ai-online-salon-practice.html'>オンラインサロン受講資料を見る →</a></p>"
-        "</div></section>"
+        "</article>"
     )
 
 
@@ -13202,7 +13201,7 @@ header.site-header:hover {
   margin:0 auto;
   padding:0 !important;
   display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
+  grid-template-columns:repeat(2,minmax(0,1fr));
   align-items:start;
   gap:14px;
   text-align:left;
@@ -14123,21 +14122,18 @@ footer.site-footer {
   max-width:1400px;
   margin:0 auto;
 }
-.course-menu-unified > .salon-section--integrated {
+#seven-day-courses.salon-panel {
+  width:100%;
+  box-sizing:border-box;
+  margin:0;
   max-width:none;
-  margin:14px auto 0;
-  padding:0 !important;
-  overflow:visible;
-  border:0;
-  background:transparent;
-}
-.salon-section--integrated .salon-panel {
-  max-width:none;
+  padding:16px 18px;
   border-color:rgba(83,103,217,.28);
   box-shadow:0 18px 44px rgba(38,54,112,.10);
 }
-#seven-day-courses .salon-panel {
-  padding:16px 18px;
+#seven-day-courses.compact-course-card--salon .salon-intro.salon-intro--fused {
+  grid-template-columns:1fr;
+  grid-template-areas:"media" "copy" "values";
 }
 .salon-card-category {
   display:block;
@@ -15296,7 +15292,6 @@ def _render_focused_main() -> str:
         "<p class='focus-section-lead'><strong>制作を任せたい方は、上の「AIアプリサイト制作」へ。学ぶなら、受講人数で選べます。</strong><br>少数で基本を学ぶ、個別で自作する、組織で自作・改善・運用まで身につける。目的に合うコースへ進めます。</p>",
         "<div class='course-menu-unified' id='course-voices' role='region' aria-label='講習・相談の全4メニュー'>",
         _render_compact_course_cards(),
-        _render_salon_menu(),
         "</div>",
         "<aside class='course-venue-common' aria-label='講習・相談コース共通の開催場所'>",
         "<img src='/img/gubboru-cafe-ai-course-painting.webp' alt='講習・相談の対面会場 グッぼるカフェの店内' loading='lazy' decoding='async'>",
@@ -15304,6 +15299,7 @@ def _render_focused_main() -> str:
         "<div class='course-venue-map'><iframe src='https://www.google.com/maps?q=%E3%82%B0%E3%83%83%E3%81%BC%E3%82%8B%E3%82%AB%E3%83%95%E3%82%A7%20%E6%BB%8B%E8%B3%80%E7%9C%8C%E5%BD%A6%E6%A0%B9%E5%B8%82%E5%B2%A1%E7%94%BA12&amp;output=embed' title='グッぼるカフェ周辺のGoogleマップ' loading='lazy' referrerpolicy='no-referrer-when-downgrade' allowfullscreen></iframe></div>",
         "<p class='course-venue-map-link'><a href='https://www.google.com/maps/search/?api=1&amp;query=%E3%82%B0%E3%83%83%E3%81%BC%E3%82%8B%E3%82%AB%E3%83%95%E3%82%A7%20%E6%BB%8B%E8%B3%80%E7%9C%8C%E5%BD%A6%E6%A0%B9%E5%B8%82%E5%B2%A1%E7%94%BA12' target='_blank' rel='noopener'>Googleマップで開く →</a></p></aside>",
         "<div class='course-quick-actions'><a href='#lectures'>受講資料から選ぶ →</a></div></section>",
+        _render_ai_app_site_home_guide(),
         "<section class='focus-block soft' id='lectures'><div class='focus-section-head'><small>LEARNING MATERIALS</small><h2>受講資料</h2></div>",
         "<p class='focus-section-lead'>公開中の受講資料をすべて表示しています。迷ったら「AIが初めて」から順に選べます。</p>",
         _render_lectures_section(),
@@ -15361,7 +15357,6 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
 
     parts.append("<div class='container'><main id='main-content'>")
     parts.append(_render_hero_focused())
-    parts.append(_render_ai_app_site_home_guide())
     parts.append(_render_readiness_guide())
     parts.append(_render_seo_llmo_guide())
 

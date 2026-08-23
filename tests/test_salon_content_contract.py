@@ -19,7 +19,7 @@ class SalonContentContractTests(unittest.TestCase):
     def setUpClass(cls) -> None:
         cls.html = INDEX.read_text(encoding="utf-8")
         match = re.search(
-            r"<div class='salon-panel'>(.*?)</section>",
+            r"<article class='compact-course-card offer-card compact-course-card--salon salon-panel'[^>]*>(.*?)</article>",
             cls.html,
             re.DOTALL,
         )
@@ -109,7 +109,7 @@ class SalonContentContractTests(unittest.TestCase):
         self.assertEqual("P1M", salon["offers"]["priceSpecification"]["billingDuration"])
 
     def test_page_description_does_not_claim_the_salon_has_formally_started(self) -> None:
-        self.assertIn("AIオンラインサロンは近日開始・現在仮運用中", self.html)
+        self.assertIn("AIオンラインサロンは近日開始で、現在は仮運用中", self.html)
         self.assertNotIn("有料オンラインサロンを開催しています", self.html)
 
     def test_structured_detail_counts_and_checkout_contract_remain_intact(self) -> None:

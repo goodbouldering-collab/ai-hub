@@ -104,9 +104,8 @@ class AiAppSitePagesTests(unittest.TestCase):
         section_end = page.index("</section>", section_id) + len("</section>")
         app_site_guide = page[section_start:section_end]
 
-        self.assertIn("AI導入120分で", page)
-        self.assertIn("やりたいことが動き出す", page)
-        self.assertIn("迷ったら60秒診断をはじめる", page)
+        self.assertIn("AIアプリサイト制作", page)
+        self.assertIn("AIアプリサイト制作を無料相談する", page)
         self.assertNotIn("相談だけで終わらない。", page)
         self.assertNotIn("AIで、仕事の仕組みまでつくる。", page)
         self.assertIn(
@@ -160,7 +159,8 @@ class AiAppSitePagesTests(unittest.TestCase):
         self.assertIn("制作を任せたい方は、上の「AIアプリサイト制作」へ。", page)
         self.assertIn(self.portal.AI_APP_SELFBUILD_BOOK_URL, page)
         self.assertLess(page.index("<section class='focus-hero'"), page.index("id='ai-app-site'"))
-        self.assertLess(page.index("id='ai-app-site'"), page.index("<section class='readiness-guide readiness-guide--compact'"))
+        self.assertLess(page.index("id='packages'"), page.index("id='ai-app-site'"))
+        self.assertLess(page.index("id='ai-app-site'"), page.index("id='lectures'"))
 
     def test_homepage_mobile_feature_links_use_two_columns_with_a_balanced_last_row(self):
         rendered = self.portal.render_portal([], [])

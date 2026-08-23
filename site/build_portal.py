@@ -13006,6 +13006,7 @@ header.site-header:hover {
 .focus-title-line { display:inline-block; white-space:nowrap; }
 .focus-title strong::after { content:""; position:absolute; left:0; right:0; bottom:-7px; height:4px; background:var(--focus-blue); transform:rotate(-1.5deg); }
 .focus-lead { max-width:600px; margin:27px 0 0; color:#24344a; font-size:clamp(16px,1.3vw,19px); line-height:1.85; font-weight:650; }
+.focus-delegated-note { max-width:600px; margin:12px 0 0; color:var(--focus-muted); font-size:14px; line-height:1.7; font-weight:650; }
 .focus-actions { display:flex; align-items:center; gap:13px; margin-top:30px; flex-wrap:wrap; }
 .hero-diagnose-cta { display:flex; flex-direction:column; gap:6px; min-width:min(100%,310px); }
 .hero-diagnose-eyebrow { color:var(--focus-blue); font-size:13px; font-weight:900; line-height:1.35; }
@@ -15187,6 +15188,7 @@ def _render_hero_focused() -> str:
         "<ul class='hero-advantage-pillars' aria-label='AI活用を成果に変える3原則'><li><b>01</b>試しに作る</li><li><b>02</b>素早く修正</li><li><b>03</b>仕組み化する</li></ul>"
         "</aside>"
         "<p class='focus-lead'>告知・事務・集客に追われる方へ。AI相談・業務改善・伴走支援で、AIが分からない不安を今日から使える一歩に変えます。</p>"
+        "<p class='focus-delegated-note'>代行作成も対応。自由に変えられるAIサイトへ。</p>"
         "<div class='focus-actions'>"
         "<div class='hero-diagnose-cta'><span class='hero-diagnose-eyebrow'>困りごとから、最初の一歩を決める。</span>"
         "<a class='focus-btn primary' href='#contact'>まずは困っている仕事を相談する</a>"
@@ -15222,6 +15224,7 @@ def _render_ai_app_site_home_guide() -> str:
         "<h2 id='home-app-site-title' class='readiness-guide__title' aria-label='AIアプリサイト制作'>"
         "<span class='home-app-site-title-line'>AIアプリサイト制作</span></h2>"
         "<p class='readiness-guide__summary'>情報を載せるだけのサイトではなく、見積もり・問い合わせ・予約受付などのAIアプリを、すぐ使える形でサイト内に組み込みます。別アプリを増やさず、新規制作・リニューアル・移行まで対応。まずこちらで土台を作り、その後は講習を通じて社内で保守・改善・バージョンアップすることも、必要な部分だけこちらへ任せることも自由に選べます。</p>"
+        "<p class='readiness-guide__summary'><strong>代行作成で、自由に瞬時に変更できるAIサイトへ移行できます。</strong></p>"
         "<div class='home-app-site-price'><small>制作を任せたい方へ</small><strong>AIアプリサイト制作 <b>99,000円〜</b></strong><span>ホームページ＋AI機能1つ</span></div></div>"
         f"<ul class='readiness-guide__questions home-app-site-capabilities' aria-label='サイトに組み込めるAIアプリ'>{cards_html}</ul>"
         "<div class='readiness-guide__actions'>"

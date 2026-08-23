@@ -15113,6 +15113,14 @@ FOCUSED_PORTAL_CSS += r"""
   .site-nav { gap:2px !important; }
   .site-nav .nav-link { padding-inline:7px !important; font-size:11px !important; }
 }
+@media (max-width:760px) {
+  .focus-title-line { font-size:clamp(28px,9vw,44px); white-space:nowrap; }
+  .focus-title-line strong { white-space:nowrap; }
+  .home-app-site-capabilities { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .home-app-site-capabilities li { min-height:52px; }
+  .home-app-site-capabilities li:last-child { grid-column:1 / -1; }
+  .home-app-site-card { min-height:52px; padding:8px 8px 8px 34px; }
+}
 @media (max-width:360px) {
   .home-app-site-title-narrow-break { display:block; }
 }
@@ -15124,8 +15132,8 @@ def _render_header_focused() -> str:
     mobile_navigation = render_mobile_navigation()
     return (
         "<header class='site-header' id='site-header'><div class='site-header-inner'>"
-        "<a class='site-logo' href='/' aria-label='AI相談彦根 トップへ'>"
-        "<span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span></span></a>"
+        "<a class='site-logo' href='/' aria-label='AI相談 トップへ'>"
+        "<span class='wordmark'><span class='word-ai'>AI相談</span></span></a>"
         f"<nav class='site-nav' aria-label='メインナビ'>{desktop_navigation}</nav>"
         "<button class='mobile-toggle' id='mobile-toggle' type='button' aria-label='メニューを開く' aria-controls='mobile-nav' aria-expanded='false'>"
         "<span class='mobile-toggle-icon' aria-hidden='true'><span></span><span></span><span></span></span>"
@@ -15143,10 +15151,10 @@ def _render_hero_focused() -> str:
         "<div class='focus-hero-shell'>"
         "<div class='focus-hero-copy'>"
         "<p class='focus-kicker'>彦根・滋賀の中小事業者向け</p>"
-        "<h1 class='focus-title'><span class='focus-title-first'>AIエージェントで</span><br><span class='focus-title-line'><strong>できることを100倍に</strong></span></h1>"
+        "<h1 class='focus-title'><span class='focus-title-first'>AI導入120分</span><br><span class='focus-title-line'><strong>翌日から加速する実感</strong></span></h1>"
         "<aside class='hero-advantage' id='advantage' aria-labelledby='hero-advantage-title'>"
         "<div class='hero-advantage-number' role='img' aria-label='AI利用率 6パーセント'><span>AI利用率</span><strong>6%</strong></div>"
-        "<div class='hero-advantage-copy'><small><strong>まだまだこれから！</strong><span>始めるなら今。</span></small><p id='hero-advantage-title'><span class='hero-advantage-equation'><strong>AI</strong><span>×</span><strong>経験</strong></span><span class='hero-advantage-outcome'>思い描けば現実になる！</span></p></div>"
+        "<div class='hero-advantage-copy'><small><strong>まだまだこれから！</strong><span>始めるなら今。</span></small><p id='hero-advantage-title'><span class='hero-advantage-equation'><strong>AI</strong><span>×</span><strong>経験</strong></span><span class='hero-advantage-outcome'>やりたいことが実現する</span></p></div>"
         "<ul class='hero-advantage-pillars' aria-label='AI活用を成果に変える3原則'><li><b>01</b>試しに作る</li><li><b>02</b>素早く修正</li><li><b>03</b>仕組み化する</li></ul>"
         "</aside>"
         "<p class='focus-lead'>告知・事務・集客に追われる方へ。AIが気になるけれど、何から始めるか迷う方へ。3つの質問で、いまの仕事に合う次の一歩を提案します。</p>"
@@ -15181,7 +15189,7 @@ def _render_ai_app_site_home_guide() -> str:
         "<section class='readiness-guide readiness-guide--compact home-app-site-guide' id='ai-app-site' aria-labelledby='home-app-site-title'>"
         "<div class='offer-panel home-app-site-shell'><div class='readiness-guide__inner'>"
         "<div class='readiness-guide__intro'><div class='offer-role-row'><div class='offer-role-copy'>"
-        "<span class='offer-role-badge'>代行</span><span class='offer-role-note'>AI APP SITE · DONE FOR YOU</span></div></div>"
+        "<span class='offer-role-badge'>代行</span><span class='offer-role-note'>AIアプリサイト</span></div></div>"
         "<h2 id='home-app-site-title' class='readiness-guide__title' aria-label='AIアプリが動くサイトを、まるごと制作。'>"
         "<span class='home-app-site-title-line'>AIアプリが動く<br class='home-app-site-title-narrow-break'>サイトを、</span>"
         "<span class='home-app-site-title-line'>まるごと制作。</span></h2>"

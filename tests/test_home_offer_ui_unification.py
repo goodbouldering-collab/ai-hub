@@ -69,6 +69,8 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
         self.assertEqual(3, self.home.count("class='readiness-guide__actions'"))
         self.assertGreaterEqual(self.home.count("offer-panel"), 3)
         self.assertIn("<span class='offer-role-badge'>代行</span>", self.home)
+        self.assertIn("<span class='offer-role-note'>AIアプリサイト</span>", self.home)
+        self.assertNotIn("AI APP SITE · DONE FOR YOU", self.home)
         self.assertEqual(2, self.home.count("<span class='offer-role-badge'>診断</span>"))
         self.assertEqual(3, self.home.count("<span class='offer-role-badge'>学ぶ</span>"))
         self.assertEqual(3, self.home.count("class='compact-course-card offer-card'"))

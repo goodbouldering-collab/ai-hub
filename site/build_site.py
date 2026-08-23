@@ -134,8 +134,8 @@ def render_top_nav(*, path_prefix: str = "./", current_id: str | None = None,
     parts: list[str] = [
         "<header class='site-header scrolled' id='site-header' aria-label='サイトヘッダー'>"
         "<div class='site-header-inner'>"
-        f"<a class='site-logo' href='{safe_home}' aria-label='AI相談彦根 トップへ'>"
-        "<span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span></span></a>"
+        f"<a class='site-logo' href='{safe_home}' aria-label='AI相談 トップへ'>"
+        "<span class='wordmark'><span class='word-ai'>AI相談</span></span></a>"
         f"<nav class='site-nav' aria-label='メインナビ'>{desktop_navigation}</nav>"
         f"{run_action}"
         "<button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' type='button' aria-label='メニューを開く' aria-controls='mobile-nav' aria-expanded='false'>"

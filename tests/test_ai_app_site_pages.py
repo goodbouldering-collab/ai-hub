@@ -104,12 +104,17 @@ class AiAppSitePagesTests(unittest.TestCase):
         section_end = page.index("</section>", section_id) + len("</section>")
         app_site_guide = page[section_start:section_end]
 
-        self.assertIn("AIエージェントで", page)
-        self.assertIn("できることを100倍に", page)
+        self.assertIn("AI導入120分", page)
+        self.assertIn("翌日から加速する実感", page)
         self.assertIn("迷ったら60秒診断をはじめる", page)
         self.assertNotIn("相談だけで終わらない。", page)
         self.assertNotIn("AIで、仕事の仕組みまでつくる。", page)
-        self.assertIn("AI APP SITE · DONE FOR YOU", app_site_guide)
+        self.assertIn(
+            "<span class='offer-role-badge'>代行</span>"
+            "<span class='offer-role-note'>AIアプリサイト</span>",
+            app_site_guide,
+        )
+        self.assertNotIn("DONE FOR YOU", app_site_guide)
         self.assertIn(
             "<section class='readiness-guide readiness-guide--compact home-app-site-guide' id='ai-app-site'",
             app_site_guide,
@@ -148,23 +153,41 @@ class AiAppSitePagesTests(unittest.TestCase):
         self.assertLess(page.index("<section class='focus-hero'"), page.index("id='ai-app-site'"))
         self.assertLess(page.index("id='ai-app-site'"), page.index("<section class='readiness-guide readiness-guide--compact'"))
 
-    def test_homepage_mobile_feature_links_form_one_vertical_column(self):
+    def test_homepage_mobile_feature_links_use_two_columns_with_a_balanced_last_row(self):
         rendered = self.portal.render_portal([], [])
 
         with sync_playwright() as playwright:
             browser = launch_chromium(playwright)
             try:
-                for width in (604, 390):
+                for width in (604, 390, 320):
                     with self.subTest(width=width):
                         page = browser.new_page(viewport={"width": width, "height": 900})
                         try:
                             page.set_content(rendered)
+                            feature_list = page.locator(".home-app-site-capabilities")
                             cards = page.locator(".home-app-site-card")
                             boxes = [cards.nth(index).bounding_box() for index in range(cards.count())]
+                            list_box = feature_list.bounding_box()
+                            first_title_line = page.locator(".focus-title-first").bounding_box()
+                            second_title_line = page.locator(".focus-title-line").bounding_box()
 
                             self.assertEqual(5, len(boxes))
                             self.assertTrue(all(box is not None for box in boxes))
-                            self.assertLess(max(box["x"] for box in boxes) - min(box["x"] for box in boxes), 1)
+                            self.assertIsNotNone(list_box)
+                            self.assertIsNotNone(first_title_line)
+                            self.assertIsNotNone(second_title_line)
+                            self.assertLessEqual(
+                                second_title_line["height"],
+                                first_title_line["height"] * 1.35,
+                                "ヒーローの青い見出しは最後の1文字だけを次行へ送らない",
+                            )
+                            self.assertLess(abs(boxes[0]["y"] - boxes[1]["y"]), 2)
+                            self.assertLess(abs(boxes[2]["y"] - boxes[3]["y"]), 2)
+                            self.assertGreater(abs(boxes[0]["x"] - boxes[1]["x"]), 10)
+                            self.assertGreater(abs(boxes[2]["x"] - boxes[3]["x"]), 10)
+                            self.assertLess(boxes[0]["y"], boxes[2]["y"])
+                            self.assertLess(boxes[2]["y"], boxes[4]["y"])
+                            self.assertLessEqual(abs(boxes[4]["width"] - list_box["width"]), 2)
                             self.assertTrue(
                                 all(box["height"] >= 44 for box in boxes),
                                 "5機能はリンク自体に44px以上のタップ領域を持つ",
@@ -174,8 +197,13 @@ class AiAppSitePagesTests(unittest.TestCase):
                                 self.assertIsNotNone(row_box)
                                 self.assertLessEqual(abs(box["width"] - row_box["width"]), 2)
                                 self.assertLessEqual(abs(box["height"] - row_box["height"]), 2)
-                            self.assertTrue(
-                                all(upper["y"] < lower["y"] for upper, lower in zip(boxes, boxes[1:]))
+                            self.assertLessEqual(
+                                page.evaluate(
+                                    "document.documentElement.scrollWidth - "
+                                    "document.documentElement.clientWidth"
+                                ),
+                                1,
+                                "2列化してもモバイルで横スクロールを出さない",
                             )
                         finally:
                             page.close()

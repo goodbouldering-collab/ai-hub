@@ -76,6 +76,19 @@ class PublicNavigationParityTest(unittest.TestCase):
             site_builder.render_top_nav(path_prefix="../", current_id="blog", include_run=False)
         )
 
+    def test_public_headers_use_the_short_ai_consultation_brand(self) -> None:
+        for header in (
+            portal._render_header_focused(),
+            site_builder.render_top_nav(path_prefix="../", current_id="blog", include_run=False),
+        ):
+            with self.subTest(header=header[:80]):
+                self.assertIn("aria-label='AI相談 トップへ'", header)
+                self.assertIn(
+                    "<span class='wordmark'><span class='word-ai'>AI相談</span></span>",
+                    header,
+                )
+                self.assertNotIn("class='word-hub'", header)
+
     def test_blog_menu_scrolls_to_the_home_section_while_the_list_cta_keeps_the_archive(self) -> None:
         """メニューはトップ内へ、ブログ一覧はブログ欄のCTAからだけ開く。"""
         home_main = portal._render_focused_main()

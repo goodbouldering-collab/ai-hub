@@ -168,7 +168,7 @@ portfolio:
   source: vercel
   source_id: prj_WgcnPJcTCdjo7iwneQjkZ30p7tPi
   source_project: trusthikone
-- name: AI相談彦根 AIエージェント導入
+- name: AIClimb（AI相談）彦根 AIエージェント導入
   slug: ai-hub
   url: https://aiclimb.vercel.app
   aliases:

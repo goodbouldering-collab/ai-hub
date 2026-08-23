@@ -168,7 +168,7 @@ class BlogAuthorshipNoteTest(unittest.TestCase):
             meta["video_caption"],
             "ロゴ、サイト、資料へ。AIがデザイナーの仕事を広げる理由を、女性ナレーションと軽いBGMで伝える約25秒リールです。",
         )
-        self.assertIn(f"<title>{FINAL_TITLE} | AI相談</title>", page)
+        self.assertIn(f"<title>{FINAL_TITLE} | AIClimb（AI相談）</title>", page)
         self.assertIn(f"<meta property='og:title' content='{FINAL_TITLE}'>", page)
         self.assertEqual(jsonld["headline"], FINAL_TITLE)
 
@@ -291,7 +291,7 @@ class ExperienceArticleTitleTest(unittest.TestCase):
         self.assertEqual(meta["title"], EXPERIENCE_TITLE)
         self.assertIn(f"<h3>{EXPERIENCE_TITLE}</h3>", portal._render_blog_teaser())
         self.assertIn(f"<h1>{EXPERIENCE_TITLE}</h1>", page)
-        self.assertIn(f"<title>{EXPERIENCE_TITLE} | AI相談</title>", page)
+        self.assertIn(f"<title>{EXPERIENCE_TITLE} | AIClimb（AI相談）</title>", page)
         self.assertIn(f"<meta property='og:title' content='{EXPERIENCE_TITLE}'>", page)
         self.assertEqual(jsonld["headline"], EXPERIENCE_TITLE)
 

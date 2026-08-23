@@ -20,7 +20,7 @@ class CourseMaterialMappingTest(unittest.TestCase):
 
     def test_programming_map_is_ai_app_selfbuild_material(self) -> None:
         self.assertIn(
-            "<title>AIアプリサイト自作講習・相談｜Codex・Claude Code実践 | AI相談</title>",
+            "<title>AIアプリサイト自作講習・相談｜Codex・Claude Code実践 | AIClimb（AI相談）</title>",
             self.material_html,
         )
         self.assertIn("AIアプリサイト自作講習・相談 / Codex + Claude Code", self.material_html)
@@ -30,7 +30,7 @@ class CourseMaterialMappingTest(unittest.TestCase):
 
     def test_ai_agent_material_is_the_canonical_beginner_course(self) -> None:
         self.assertIn(
-            "<title>AIエージェント講習 120分 — Codexで頼む・確かめる・残す | AI相談</title>",
+            "<title>AIエージェント講習 120分 — Codexで頼む・確かめる・残す | AIClimb（AI相談）</title>",
             self.agent_html,
         )
         self.assertIn("目安 120分", self.agent_html)

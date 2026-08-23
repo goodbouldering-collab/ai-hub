@@ -26,7 +26,7 @@ class CodexBeginnerMergeTest(unittest.TestCase):
 
     def test_canonical_agent_course_contains_codex_beginner_anchor(self) -> None:
         self.assertIn(
-            "<title>AIエージェント講習 120分 — Codexで頼む・確かめる・残す | AI相談</title>",
+            "<title>AIエージェント講習 120分 — Codexで頼む・確かめる・残す | AIClimb（AI相談）</title>",
             self.agent_html,
         )
         self.assertRegex(self.agent_html, r'id=["\']codex-beginner["\']')

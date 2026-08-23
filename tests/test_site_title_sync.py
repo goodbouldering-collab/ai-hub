@@ -3,7 +3,7 @@ import unittest
 
 
 ROOT = Path(__file__).resolve().parents[1]
-TITLE = "AI相談｜一歩踏み出す人のAI講習・実践支援【彦根・滋賀】"
+TITLE = "AIClimb｜AIで仕事を軽くする実践相談・伴走支援【彦根・滋賀】"
 
 ADMIN_TITLE_FILES = [
     ROOT / "admin" / "static" / "index.html",
@@ -41,12 +41,12 @@ class SiteTitleSyncTest(unittest.TestCase):
         blog_admin = (ROOT / "site" / "static" / "admin" / "blog.html").read_text(encoding="utf-8")
         self.assertIn(f'document.title = "{TITLE}";', blog_admin)
 
-    def test_short_brand_name_stays_unchanged(self) -> None:
+    def test_short_brand_name_uses_aiclimb(self) -> None:
         index = (ROOT / "site" / "dist" / "index.html").read_text(encoding="utf-8")
 
-        self.assertIn("<meta name='application-name' content='AI相談'>", index)
-        self.assertIn("<meta name='apple-mobile-web-app-title' content='AI相談'>", index)
-        self.assertIn("<meta property='og:site_name' content='AI相談'>", index)
+        self.assertIn("<meta name='application-name' content='AIClimb'>", index)
+        self.assertIn("<meta name='apple-mobile-web-app-title' content='AIClimb'>", index)
+        self.assertIn("<meta property='og:site_name' content='AIClimb'>", index)
 
 
 if __name__ == "__main__":

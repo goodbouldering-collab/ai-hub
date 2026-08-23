@@ -118,11 +118,11 @@ class SeoLlmoDiagnosisPageTests(unittest.TestCase):
         self.assertIn("あなたのサイトは、検索とAIに正しく伝わっていますか？", home)
         self.assertIn("href='/seo-llmo-diagnosis/'", home)
         self.assertIn("あなたのサイト診断をはじめる", home)
-        self.assertIn("aria-label='AI相談 トップへ'", home)
+        self.assertIn("aria-label='AIClimb（AI相談）トップへ'", home)
 
         subpage_nav = self.site_builder.render_top_nav(path_prefix="../", include_run=False)
-        self.assertIn("aria-label='AI相談 トップへ'", subpage_nav)
-        self.assertNotIn("aria-label='AI相談彦根 トップへ'", subpage_nav)
+        self.assertIn("aria-label='AIClimb（AI相談）トップへ'", subpage_nav)
+        self.assertNotIn("aria-label='AIClimb彦根 トップへ'", subpage_nav)
 
     def test_homepage_site_diagnosis_reuses_the_readiness_section_format(self):
         home = self.portal.render_portal([], [])

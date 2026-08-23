@@ -1,7 +1,7 @@
 @import url("/design-system/tokens.css");
 
 :root {
-  --admin-title: "AI相談";
+  --admin-title: "AIClimb";
   --admin-ink: #071426;
   --admin-text: #122033;
   --admin-soft: #405166;
@@ -2392,7 +2392,7 @@ body.ops-page .admin-home-link svg {
 
 body.admin-page .admin-home-link::after,
 body.ops-page .admin-home-link::after {
-  content: "AI相談 / 管理";
+  content: "AIClimb / 管理";
   color: #122033;
   font-size: 13px;
   font-weight: 900;

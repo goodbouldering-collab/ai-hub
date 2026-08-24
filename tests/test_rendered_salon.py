@@ -17,7 +17,6 @@ class RenderedSalonTest(unittest.TestCase):
         self.assertIn("毎月自動更新", self.html)
         self.assertIn("AIオンラインサロン｜近日開始", self.html)
         self.assertIn("現在は仮運用中", self.html)
-        self.assertIn("登録中の方にはテスト運用へご協力いただいています", self.html)
         self.assertIn("Squareで決済して仮運用に参加", self.html)
         self.assertEqual(self.html.count("action='/api/square/ai-salon-checkout'"), 1)
         self.assertNotIn("/api/stripe/ai-salon", self.html)
@@ -38,6 +37,11 @@ class RenderedSalonTest(unittest.TestCase):
         self.assertEqual(cards[-2], salon_cards[0])
         self.assertEqual(cards[-1], app_site_cards[0])
         salon = salon_cards[0]
+        self.assertIn(
+            "<p>正式開始に向けて仮運用中です。Square決済後、毎週火曜21時のLINEライブトークへご案内します。</p>",
+            salon,
+        )
+        self.assertNotIn("登録中の方にはテスト運用へご協力いただいています", salon)
         self.assertIn("class='course-menu-unified'", self.html)
         self.assertIn("aria-label='講習・相談・制作の全6メニュー'", self.html)
         self.assertNotIn("course-menu-unified-head", self.html)

@@ -11699,6 +11699,20 @@ SALON_TESTIMONIAL_GROUP: dict = {
     ),
 }
 
+AI_APP_SITE_TESTIMONIAL_GROUP: dict = {
+    "key": "ai-app-site",
+    "course_name": "AIアプリサイト制作",
+    "anchor_id": "voice-ai-app-site",
+    "heading": "相談から、仕事で使える形まで一緒に進められた",
+    "summary_label": "利用された方の感想を見る",
+    "disclosure": "講習・導入支援を利用された方の確認済みの感想から、AIアプリサイト制作に関係する内容を抜粋して掲載しています。個人が特定されないよう一部表現を整えています。",
+    "testimonials": (
+        COURSE_TESTIMONIALS[1]["testimonials"][0],
+        COURSE_TESTIMONIALS[1]["testimonials"][1],
+        COURSE_TESTIMONIALS[3]["testimonials"][1],
+    ),
+}
+
 
 def _render_course_testimonials() -> str:
     parts = [
@@ -11735,11 +11749,15 @@ def _render_course_testimonials() -> str:
 
 
 def _render_course_testimonial_details(course_key: str) -> str:
-    """指定コースの実在する感想3件を、カード内の展開欄として描画する。"""
+    """指定メニューの確認済み感想3件を、カード内の展開欄として描画する。"""
     group = next(
         item
-        for item in COURSE_TESTIMONIALS + (SALON_TESTIMONIAL_GROUP,)
+        for item in COURSE_TESTIMONIALS
+        + (SALON_TESTIMONIAL_GROUP, AI_APP_SITE_TESTIMONIAL_GROUP)
         if item["key"] == course_key
+    )
+    summary_label = html.escape(
+        str(group.get("summary_label", "受講された方の感想を見る"))
     )
     disclosure = html.escape(
         str(
@@ -11760,7 +11778,7 @@ def _render_course_testimonial_details(course_key: str) -> str:
     return (
         "<details class='compact-course-details compact-course-testimonials' "
         f"id='{html.escape(str(group['anchor_id']), quote=True)}'>"
-        "<summary>受講された方の感想を見る</summary>"
+        f"<summary>{summary_label}</summary>"
         "<div class='compact-course-testimonials-body'>"
         f"<h3>{html.escape(str(group['heading']))}</h3>"
         f"<p class='compact-course-testimonials-note'>{disclosure}</p>"
@@ -11881,7 +11899,7 @@ def _render_compact_course_cards() -> str:
             "image_alt": "毎週火曜にLINEライブトークでAIの今と次の一手を整理するオンラインサロン",
             "price": "月額2,200円（税込）",
             "duration": "毎週火曜21:00",
-            "desc": "正式開始に向けて現在は仮運用中です。登録中の方にはテスト運用へご協力いただいています。Squareで月額決済後、LINEライブトークの参加案内を表示します。月額2,200円（税込）・毎月自動更新。決済確認後にLINE参加案内を表示します。",
+            "desc": "正式開始に向けて仮運用中です。Square決済後、毎週火曜21時のLINEライブトークへご案内します。",
             "url": AI_SALON_CHECKOUT_URL,
             "post": True,
             "cta": "Squareで決済して仮運用に参加",
@@ -11916,6 +11934,7 @@ def _render_compact_course_cards() -> str:
             "desc": "情報を載せるだけのサイトではなく、見積もり・問い合わせ・予約受付などのAIアプリを、すぐ使える形でサイト内に組み込みます。",
             "url": "/ai-app-site/",
             "cta": "制作内容・料金を見る",
+            "testimonial_key": "ai-app-site",
             "details_lead": "制作内容・料金・できること",
             "details": [
                 ("別アプリを増やさず、新規制作・リニューアル・移行まで対応", "今のサイトへの追加にも、新しいサイトづくりにも対応し、必要な機能を一つのサイトへまとめます。"),

@@ -81,6 +81,18 @@ EXPECTED_SALON_GROUP = (
     ),
 )
 
+EXPECTED_APP_SITE_GROUP = (
+    "ai-app-site",
+    "AIアプリサイト制作",
+    "voice-ai-app-site",
+    "相談から、仕事で使える形まで一緒に進められた",
+    (
+        EXPECTED_GROUPS[1][4][0],
+        EXPECTED_GROUPS[1][4][1],
+        EXPECTED_GROUPS[3][4][1],
+    ),
+)
+
 
 class CourseTestimonialsTest(unittest.TestCase):
     def test_renders_four_course_groups_and_twelve_real_reviews(self) -> None:
@@ -100,7 +112,7 @@ class CourseTestimonialsTest(unittest.TestCase):
         self.assertEqual(12, rendered.count("<figure class='course-voice-card'>"))
         self.assertEqual(12, rendered.count("受講者（匿名）"))
 
-    def test_five_learning_cards_keep_their_voice_dropdown_and_service_card_does_not(self) -> None:
+    def test_all_six_cards_keep_their_matching_voice_dropdown(self) -> None:
         cards = portal._render_compact_course_cards()
         rendered_cards = re.findall(
             r"<article class='compact-course-card[^']*'.*?</article>",
@@ -121,10 +133,31 @@ class CourseTestimonialsTest(unittest.TestCase):
             for title, body in testimonials:
                 self.assertIn(title, card)
                 self.assertIn(body, card)
-        self.assertEqual(15, cards.count("<figure class='compact-course-voice-card'>"))
-        self.assertEqual(12, cards.count("受講者（匿名）"))
+        self.assertEqual(18, cards.count("<figure class='compact-course-voice-card'>"))
+        self.assertEqual(15, cards.count("受講者（匿名）"))
         self.assertIn("id='ai-app-site'", rendered_cards[-1])
-        self.assertNotIn("受講された方の感想を見る", rendered_cards[-1])
+        app_site = rendered_cards[-1]
+        _, course_name, anchor_id, heading, testimonials = EXPECTED_APP_SITE_GROUP
+        self.assertIn(course_name, app_site)
+        self.assertIn(f"id='{anchor_id}'", app_site)
+        self.assertEqual(1, app_site.count("利用された方の感想を見る"))
+        self.assertNotIn("受講された方の感想を見る", app_site)
+        self.assertLess(
+            app_site.index("メリット・内容・参加方法を見る"),
+            app_site.index("利用された方の感想を見る"),
+        )
+        self.assertLess(
+            app_site.index("利用された方の感想を見る"),
+            app_site.index("制作内容・料金を見る"),
+        )
+        self.assertIn(heading, app_site)
+        self.assertIn(
+            "講習・導入支援を利用された方の確認済みの感想から、AIアプリサイト制作に関係する内容を抜粋して掲載しています。",
+            app_site,
+        )
+        for title, body in testimonials:
+            self.assertIn(title, app_site)
+            self.assertIn(body, app_site)
 
     def test_salon_uses_standard_course_details_trigger_before_testimonials(self) -> None:
         cards = re.findall(
@@ -253,6 +286,7 @@ class CourseTestimonialsTest(unittest.TestCase):
         self.assertNotIn("<section class='course-voices'", page)
         self.assertIn("class='course-menu-unified' id='course-voices'", page)
         self.assertEqual(5, page.count("受講された方の感想を見る"))
+        self.assertEqual(1, page.count("利用された方の感想を見る"))
         self.assertLess(
             page.index("id='course-voices'"),
             page.index("class='course-venue-common'"),

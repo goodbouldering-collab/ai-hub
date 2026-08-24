@@ -169,7 +169,9 @@ class AiAppSitePagesTests(unittest.TestCase):
                         try:
                             page.set_content(rendered)
                             app_card = page.locator("#ai-app-site")
-                            app_card.locator(".compact-course-details").evaluate(
+                            app_card.locator(
+                                ".compact-course-details:not(.compact-course-testimonials)"
+                            ).evaluate(
                                 "element => { element.open = true; }"
                             )
                             feature_list = app_card.locator(".home-app-site-capabilities")

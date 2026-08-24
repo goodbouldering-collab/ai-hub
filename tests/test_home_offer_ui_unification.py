@@ -234,7 +234,16 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
         self.assertLess(self.home.index(salon_card), self.home.index(app_site_card))
         self.assertEqual(app_site_card, cards[-1])
         self.assertIn("class='compact-course-card offer-card' id='ai-app-site'", app_site_card)
+        self.assertIn("利用された方の感想を見る", app_site_card)
         self.assertNotIn("受講された方の感想を見る", app_site_card)
+        self.assertLess(
+            app_site_card.index("メリット・内容・参加方法を見る"),
+            app_site_card.index("利用された方の感想を見る"),
+        )
+        self.assertLess(
+            app_site_card.index("利用された方の感想を見る"),
+            app_site_card.index("制作内容・料金を見る"),
+        )
 
         packages = self.home.index("id='packages'")
         app_site = self.home.index("id='ai-app-site'")
@@ -243,6 +252,26 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
         self.assertLess(packages, app_site)
         self.assertLess(app_site, venue)
         self.assertLess(app_site, lectures)
+
+    def test_salon_summary_is_as_short_as_the_other_card_summaries(self):
+        cards = re.findall(
+            r"<article class='compact-course-card offer-card.*?</article>",
+            self.home,
+            re.DOTALL,
+        )
+        salon = next(card for card in cards if "id='seven-day-courses'" in card)
+        expected = (
+            "<p>正式開始に向けて仮運用中です。"
+            "Square決済後、毎週火曜21時のLINEライブトークへご案内します。</p>"
+        )
+
+        self.assertIn(expected, salon)
+        self.assertNotIn("登録中の方にはテスト運用へご協力いただいています", salon)
+        self.assertNotIn("月額2,200円（税込）・毎月自動更新", salon)
+        summary = re.search(r"<div class='compact-course-meta'>.*?</div><p>(.*?)</p>", salon)
+        self.assertIsNotNone(summary)
+        assert summary is not None
+        self.assertLessEqual(len(summary.group(1)), 60)
 
     def test_six_cards_are_equal_columns_on_desktop_and_stack_on_mobile(self):
         with sync_playwright() as playwright:

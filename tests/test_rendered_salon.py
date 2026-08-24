@@ -102,7 +102,7 @@ class RenderedSalonTest(unittest.TestCase):
         hero_start = self.html.index("class='focus-hero'")
         hero_end = self.html.index("</section>", hero_start)
         hero = self.html[hero_start:hero_end]
-        self.assertIn("<strong>まだまだこれから！</strong>", hero)
+        self.assertIn("<strong>始めるなら今。</strong><span>まだまだこれから！</span>", hero)
         self.assertNotIn("<strong>5,500円から</strong>", hero)
         self.assertNotIn("<strong>相談5,500円/回</strong>", hero)
         self.assertNotIn("<strong>利用率6%</strong>", hero)

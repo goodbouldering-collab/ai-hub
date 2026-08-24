@@ -49,8 +49,10 @@ class Hero60SecondDiagnosisTests(unittest.TestCase):
 
     def test_hero_copy_makes_the_customer_problem_clear(self):
         self.assertIn("<span>AI利用率</span><strong>6%</strong>", self.hero_html)
-        self.assertIn("<strong>まだまだこれから！</strong>", self.hero_html)
-        self.assertIn("始めるなら今。", self.hero_html)
+        self.assertIn(
+            "<strong>始めるなら今。</strong><span>まだまだこれから！</span>",
+            self.hero_html,
+        )
         self.assertIn(
             "<span class='hero-advantage-equation'><strong>AI</strong><span>×</span><strong>経験</strong></span>",
             self.hero_html,

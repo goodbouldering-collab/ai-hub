@@ -15158,9 +15158,9 @@ FOCUSED_PORTAL_CSS += r"""
 .readiness-guide__inner { gap:14px 20px; }
 .readiness-guide__questions { gap:4px; }
 .readiness-guide__questions li {
-  padding:6px 0 6px 9px;
+  padding:6px 0;
   border:0;
-  border-left:3px solid rgba(79,111,216,.5);
+  border-left:0;
   border-radius:0;
   background:transparent;
 }
@@ -15168,8 +15168,10 @@ FOCUSED_PORTAL_CSS += r"""
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
   gap:1px;
+  margin:18px 0;
   background:var(--focus-line);
 }
+.container main > .readiness-guide { margin:18px 0; }
 .diagnosis-guide-row .readiness-guide { min-width:0; }
 .diagnosis-guide-row .offer-panel { width:min(100% - 40px,560px); }
 .diagnosis-guide-row .readiness-guide__inner {

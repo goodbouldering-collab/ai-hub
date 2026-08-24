@@ -97,6 +97,11 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
         self.assertLess(readiness, seo)
         self.assertNotIn("AIを使っているつもりで、仕事は変わりましたか？", self.home)
 
+    def test_flat_guides_have_breathing_room_without_question_rail(self):
+        css = self.portal.FOCUSED_PORTAL_CSS
+        self.assertIn("margin:18px 0;", css)
+        self.assertIn("border-left:0;", css)
+
     def test_three_guides_share_grid_and_question_row_format(self):
         with sync_playwright() as playwright:
             browser = launch_chromium(playwright)

@@ -180,9 +180,10 @@ class BlogFreshnessTest(unittest.TestCase):
         self.assertEqual(series_articles, [CODEX_UPDATE_ARTICLE])
         meta, body = builder._parse_frontmatter(CODEX_UPDATE_ARTICLE.read_text(encoding="utf-8"))
         self.assertIsInstance(date.fromisoformat(str(meta["date_modified"])), date)
-        self.assertIn("今日のAIニュース10", meta["title"])
-        self.assertIn("Codex最新アップデート", meta["title"])
-        self.assertIn("活用事例", meta["title"])
+        self.assertEqual(
+            meta["title"],
+            "今日のAIニュース10とCodexアップデート",
+        )
         self.assertEqual(meta["image"], "/img/blog-codex-update-log-hero-20260822.png")
         self.assertTrue(meta["hero_image"])
         self.assertEqual(body.count("<!-- CODEX_UPDATE_CURRENT:BEGIN -->"), 1)

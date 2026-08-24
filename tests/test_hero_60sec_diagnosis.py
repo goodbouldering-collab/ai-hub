@@ -57,7 +57,8 @@ class Hero60SecondDiagnosisTests(unittest.TestCase):
             "<span class='hero-advantage-equation'><strong>AI</strong><span>×</span><strong>経験</strong></span>",
             self.hero_html,
         )
-        self.assertIn("目的さえあればだれでも使える", self.hero_html)
+        self.assertIn("「こんなことできたら」がすぐ叶う", self.hero_html)
+        self.assertNotIn("目的さえあればだれでも使える", self.hero_html)
         self.assertNotIn("思い描けば現実になる！", self.hero_html)
         self.assertIn("<li><b>01</b>試しに作る</li>", self.hero_html)
         self.assertIn("<li><b>02</b>素早く修正</li>", self.hero_html)

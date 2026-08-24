@@ -187,10 +187,22 @@ class DailyNewsRenderingTests(unittest.TestCase):
         self.assertEqual(10, rendered.count("class='daily-ai-news__item'"))
         self.assertIn("&lt;script&gt;alert(1)&lt;/script&gt;", rendered)
         self.assertNotIn("<script>alert(1)</script>", rendered)
-        self.assertIn("わかりやすく", rendered)
         self.assertIn("たとえば、使いどころ1です。", rendered)
         self.assertNotIn("小学生向け", rendered)
         self.assertNotIn("日本との関係", rendered)
+
+    def test_fuses_explanation_and_use_example_without_labels(self):
+        rendered = render_daily_ai_news(self.make_payload())
+
+        self.assertEqual(10, rendered.count("class='daily-ai-news__summary'"))
+        self.assertNotIn("<strong>わかりやすく</strong>", rendered)
+        self.assertNotIn("<strong>使う場面</strong>", rendered)
+        self.assertNotIn("class='daily-ai-news__story'", rendered)
+        self.assertIn(
+            "<p class='daily-ai-news__summary'>"
+            "わかりやすい説明1たとえば、使いどころ1です。</p>",
+            rendered,
+        )
 
     def test_invalid_url_fails_closed(self):
         payload = self.make_payload()

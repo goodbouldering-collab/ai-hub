@@ -1549,12 +1549,6 @@ CONTENT_CSS = """
 .content-wrap .daily-ai-news__copy h3 { margin: 1px 0 8px; font-size: 15px; line-height: 1.5; }
 .content-wrap .daily-ai-news__copy h3 a { overflow-wrap: anywhere; }
 .content-wrap .daily-ai-news__copy p { margin: 5px 0; font-size: 13px; line-height: 1.65; }
-.content-wrap .daily-ai-news__copy strong {
-  display: inline-block;
-  margin-right: 7px;
-  color: #176b5a;
-  font-size: 11px;
-}
 .content-wrap .daily-ai-news__source { color: var(--muted); font-size: 11.5px; }
 .content-wrap .daily-ai-news__action {
   margin: 18px 0 0;
@@ -1645,13 +1639,6 @@ CONTENT_CSS = """
 .content-wrap--codex-update .daily-ai-news__copy p {
   font-size: 16px;
   line-height: 1.78;
-}
-.content-wrap--codex-update .daily-ai-news__copy strong {
-  font-size: 13px;
-}
-.content-wrap--codex-update .daily-ai-news__story {
-  padding-top: 8px;
-  border-top: 1px solid rgba(23, 48, 66, .10);
 }
 .content-wrap--codex-update .codex-update-guide {
   margin: 0 0 28px;

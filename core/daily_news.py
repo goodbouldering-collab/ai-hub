@@ -115,8 +115,7 @@ def render_daily_ai_news(payload: dict) -> str:
                 f"<span class='daily-ai-news__rank' aria-hidden='true'>{rank}</span>",
                 "<div class='daily-ai-news__copy'>",
                 f"<h3><a href='{url}' target='_blank' rel='noopener'>{title}</a></h3>",
-                f"<p><strong>わかりやすく</strong>{plain_summary}</p>",
-                f"<p class='daily-ai-news__story'><strong>使う場面</strong>{story_example}</p>",
+                f"<p class='daily-ai-news__summary'>{plain_summary}{story_example}</p>",
                 f"<p class='daily-ai-news__source'>情報元：{source}</p>",
                 "</div></li>",
             ]

@@ -141,11 +141,11 @@ class SeoLlmoDiagnosisPageTests(unittest.TestCase):
         section = home[codex:section_end]
         self.assertIn("class='readiness-guide__inner'", section)
         self.assertIn(
-            "<h2 id='codex-update-guide-title' class='readiness-guide__title'>今日のAIニュースとCodex新機能</h2>",
+            "<h2 id='codex-update-guide-title' class='readiness-guide__title'>今日のAIニュースと新機能活用術</h2>",
             section,
         )
         self.assertIn("href='/blog/codex-update-log.html'", section)
-        self.assertIn("今日のAIニュースとCodex新機能を読む", section)
+        self.assertIn("今日のAIニュースと新機能活用術を読む", section)
 
     def test_homepage_site_diagnosis_reuses_the_readiness_section_format(self):
         home = self.portal.render_portal([], [])

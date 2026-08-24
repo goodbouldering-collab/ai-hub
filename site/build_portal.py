@@ -15340,15 +15340,15 @@ def _render_codex_update_guide() -> str:
         "<section class='readiness-guide readiness-guide--compact codex-update-guide' aria-labelledby='codex-update-guide-title'><div class='offer-panel'><div class='readiness-guide__inner'>"
         "<div class='readiness-guide__intro'><div class='offer-role-row'><div class='offer-role-copy'>"
         "<span class='offer-role-badge'>ブログ</span><span class='offer-role-note'>毎朝更新</span></div></div>"
-        "<h2 id='codex-update-guide-title' class='readiness-guide__title'>今日のAIニュースとCodex新機能</h2>"
+        "<h2 id='codex-update-guide-title' class='readiness-guide__title'>今日のAIニュースと新機能活用術</h2>"
         "<p class='readiness-guide__summary'>直近のAIニュースを10件に絞り、Codexの公式アップデートと一緒に、学校・地域事業・仕事・暮らしとの関係がわかる言葉でまとめます。</p></div>"
         "<ul class='readiness-guide__questions' aria-label='今日のAIニュース10とCodexアップデートでわかること'>"
         "<li><span aria-hidden='true'>?</span><div><strong>AIニュース10</strong><small>重要な動きを厳選</small></div></li>"
         "<li><span aria-hidden='true'>?</span><div><strong>日本との関係</strong><small>学校・店・会社・家庭</small></div></li>"
         "<li><span aria-hidden='true'>?</span><div><strong>Codexアップデート</strong><small>公式情報から解説</small></div></li>"
         "</ul>"
-        "<div class='readiness-guide__actions'><a class='readiness-guide__cta' href='/blog/codex-update-log.html' aria-label='今日のAIニュースとCodex新機能を読む'>"
-        "<span>今日のAIニュースとCodex新機能を読む</span><b aria-hidden='true'>→</b></a></div>"
+        "<div class='readiness-guide__actions'><a class='readiness-guide__cta' href='/blog/codex-update-log.html' aria-label='今日のAIニュースと新機能活用術を読む'>"
+        "<span>今日のAIニュースと新機能活用術を読む</span><b aria-hidden='true'>→</b></a></div>"
         "</div></div></section>"
     )
 

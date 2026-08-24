@@ -350,7 +350,7 @@ def _main_page(
             "<h1>相談だけで終わらない。<br>AIで、仕事の仕組みまでつくる。</h1>",
             f"<p class='app-site-hero__lead'>{_safe(page['lead'])}</p>",
             "<div class='app-site-actions'>",
-            _free_button(free_consult_url, "無料相談で、まず一つの作業を整理する"),
+            _free_button(free_consult_url, "AIアプリサイト制作を無料相談する"),
             "<a class='app-site-button app-site-button--secondary' href='#services'>何をAI化できるか見る</a></div>",
             "<ul class='app-site-trust'><li>初回無料</li><li>対面・オンライン対応</li><li>無理な営業なし</li></ul></div>",
             _service_visual(),

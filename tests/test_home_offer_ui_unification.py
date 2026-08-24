@@ -42,9 +42,8 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
         cls.portal = load_module("portal_home_offer_ui_under_test", PORTAL_PATH)
         cls.home = cls.portal.render_portal([], [])
 
-    def test_service_and_diagnostics_share_one_guide_structure(self):
+    def test_diagnostics_share_one_guide_structure_and_service_uses_a_course_card(self):
         expected_sections = (
-            ("ai-app-site", "home-app-site-guide"),
             ("readiness-guide-title", "readiness-guide--compact"),
             ("seo-llmo-guide-title", "seo-llmo-guide"),
             ("codex-update-guide-title", "codex-update-guide"),
@@ -64,19 +63,20 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
                 self.assertIn("class='readiness-guide__actions'", section)
                 self.assertIn("class='readiness-guide__cta", section)
 
-        self.assertEqual(4, self.home.count("class='readiness-guide__inner'"))
-        self.assertEqual(4, self.home.count("class='readiness-guide__intro'"))
-        self.assertEqual(4, self.home.count("class='readiness-guide__questions"))
-        self.assertEqual(4, self.home.count("class='readiness-guide__actions'"))
-        self.assertGreaterEqual(self.home.count("offer-panel"), 4)
+        self.assertEqual(3, self.home.count("class='readiness-guide__inner'"))
+        self.assertEqual(3, self.home.count("class='readiness-guide__intro'"))
+        self.assertEqual(3, self.home.count("class='readiness-guide__questions"))
+        self.assertEqual(3, self.home.count("class='readiness-guide__actions'"))
+        self.assertGreaterEqual(self.home.count("offer-panel"), 3)
+        self.assertNotIn("home-app-site-guide", self.home)
         self.assertIn("<span class='offer-role-badge'>代行</span>", self.home)
         self.assertIn("<span class='offer-role-note'>AIアプリサイト</span>", self.home)
         self.assertNotIn("AI APP SITE · DONE FOR YOU", self.home)
         self.assertEqual(2, self.home.count("<span class='offer-role-badge'>診断</span>"))
         self.assertEqual(1, self.home.count("<span class='offer-role-badge'>ブログ</span>"))
         self.assertEqual(5, self.home.count("<span class='offer-role-badge'>学ぶ</span>"))
-        self.assertEqual(5, self.home.count("class='compact-course-card offer-card'"))
-        self.assertGreaterEqual(self.home.count("offer-action"), 5)
+        self.assertEqual(6, self.home.count("class='compact-course-card offer-card'"))
+        self.assertGreaterEqual(self.home.count("offer-action"), 6)
 
         css = self.portal.FOCUSED_PORTAL_CSS
         self.assertIn("診断導線を一行にまとめるフラット化", css)
@@ -109,12 +109,11 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
                 desktop = browser.new_page(viewport={"width": 1280, "height": 1000})
                 desktop.set_content(self.home)
                 guide_inners = desktop.locator(
-                    "#ai-app-site .readiness-guide__inner, "
                     "section[aria-labelledby='readiness-guide-title'] .readiness-guide__inner, "
                     "section[aria-labelledby='seo-llmo-guide-title'] .readiness-guide__inner, "
                     "section[aria-labelledby='codex-update-guide-title'] .readiness-guide__inner"
                 )
-                self.assertEqual(4, guide_inners.count())
+                self.assertEqual(3, guide_inners.count())
                 grid_templates = [
                     guide_inners.nth(index).evaluate(
                         "element => getComputedStyle(element).gridTemplateColumns"
@@ -122,16 +121,14 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
                     for index in range(guide_inners.count())
                 ]
                 self.assertEqual(grid_templates[0], grid_templates[1])
-                self.assertEqual(grid_templates[2], grid_templates[3])
                 self.assertNotEqual(grid_templates[0], grid_templates[2])
 
                 question_rows = desktop.locator(
-                    "#ai-app-site .readiness-guide__questions li, "
                     "section[aria-labelledby='readiness-guide-title'] .readiness-guide__questions li, "
                     "section[aria-labelledby='seo-llmo-guide-title'] .readiness-guide__questions li, "
                     "section[aria-labelledby='codex-update-guide-title'] .readiness-guide__questions li"
                 )
-                self.assertEqual(14, question_rows.count())
+                self.assertEqual(9, question_rows.count())
                 for index in range(question_rows.count()):
                     row = question_rows.nth(index)
                     self.assertEqual("grid", row.evaluate("element => getComputedStyle(element).display"))
@@ -145,7 +142,7 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
                 mobile = browser.new_page(viewport={"width": 375, "height": 1000})
                 mobile.set_content(self.home)
                 mobile_inners = mobile.locator(".readiness-guide__inner")
-                self.assertEqual(4, mobile_inners.count())
+                self.assertEqual(3, mobile_inners.count())
                 for index in range(mobile_inners.count()):
                     inner_box = mobile_inners.nth(index).bounding_box()
                     panel_box = mobile_inners.nth(index).locator("xpath=..").bounding_box()
@@ -187,23 +184,23 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
             self.home,
             re.DOTALL,
         )
-        self.assertEqual(5, len(cards))
+        self.assertEqual(6, len(cards))
 
         expected = (
-            ("AIエージェント講習", "少数"),
-            ("AI個別講習", "個別"),
-            ("AIコーディング講習", "個別"),
-            ("AI伴走支援", "組織"),
-            ("AIオンラインサロン｜近日開始", "自由"),
+            ("AIエージェント講習", "受講人数", "少数"),
+            ("AI個別講習", "受講人数", "個別"),
+            ("AIコーディング講習", "受講人数", "個別"),
+            ("AI伴走支援", "受講人数", "組織"),
+            ("AIオンラインサロン｜近日開始", "参加方法", "自由"),
+            ("AIアプリサイト制作", "制作方法", "代行"),
         )
-        for card, (title, scale) in zip(cards, expected, strict=True):
+        for card, (title, audience_label, scale) in zip(cards, expected, strict=True):
             with self.subTest(title=title):
                 self.assertRegex(
                     card,
                     rf"<div class='compact-course-heading'><h3(?: id='[^']+')?>{re.escape(title)}</h3>"
                     r"<span class='offer-audience'",
                 )
-                audience_label = "参加方法" if title.startswith("AIオンラインサロン") else "受講人数"
                 self.assertIn(f"<span class='offer-audience-label'>{audience_label}</span>", card)
                 self.assertIn(f"<strong>{scale}</strong>", card)
                 self.assertLess(card.index("offer-role-row"), card.index("compact-course-visual"))
@@ -215,32 +212,39 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
             "組織がAIアプリサイトを自作・改善・運用できるまで学ぶ6ヶ月",
             support_card,
         )
-        self.assertIn("上のAIアプリサイト制作", support_card)
+        self.assertIn("AIアプリサイト制作カード", support_card)
 
-    def test_salon_shares_the_course_card_grid_with_support_and_app_site_follows_courses(self):
+    def test_app_site_is_the_last_shared_card_after_the_online_salon(self):
         cards = re.findall(
             r"<article class='compact-course-card offer-card.*?</article>",
             self.home,
             re.DOTALL,
         )
-        self.assertEqual(5, len(cards))
+        self.assertEqual(6, len(cards))
 
         support_card = next(card for card in cards if "<h3>AI伴走支援</h3>" in card)
         salon_card = next(card for card in cards if "AIオンラインサロン｜近日開始" in card)
+        app_site_card = next(card for card in cards if "id='ai-app-site'" in card)
         self.assertIn("class='compact-course-card offer-card' id='seven-day-courses'", salon_card)
         self.assertNotIn("compact-course-card--salon", salon_card)
         self.assertIn("class='offer-role-row offer-role-row--course'", salon_card)
         self.assertIn("class='compact-course-heading'", salon_card)
         self.assertIn("class='offer-action compact-course-action'", salon_card)
         self.assertLess(self.home.index(support_card), self.home.index(salon_card))
+        self.assertLess(self.home.index(salon_card), self.home.index(app_site_card))
+        self.assertEqual(app_site_card, cards[-1])
+        self.assertIn("class='compact-course-card offer-card' id='ai-app-site'", app_site_card)
+        self.assertNotIn("受講された方の感想を見る", app_site_card)
 
         packages = self.home.index("id='packages'")
         app_site = self.home.index("id='ai-app-site'")
+        venue = self.home.index("class='course-venue-common'")
         lectures = self.home.index("id='lectures'")
         self.assertLess(packages, app_site)
+        self.assertLess(app_site, venue)
         self.assertLess(app_site, lectures)
 
-    def test_five_courses_are_equal_columns_on_desktop_and_stack_on_mobile(self):
+    def test_six_cards_are_equal_columns_on_desktop_and_stack_on_mobile(self):
         with sync_playwright() as playwright:
             browser = launch_chromium(playwright)
             try:
@@ -251,7 +255,7 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
                     desktop_cards.nth(index).bounding_box()
                     for index in range(desktop_cards.count())
                 ]
-                self.assertEqual(5, len(desktop_boxes))
+                self.assertEqual(6, len(desktop_boxes))
                 self.assertTrue(all(box is not None for box in desktop_boxes))
                 self.assertLess(
                     max(box["width"] for box in desktop_boxes)
@@ -262,6 +266,7 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
                 self.assertLess(abs(desktop_boxes[2]["y"] - desktop_boxes[3]["y"]), 1)
                 self.assertLess(desktop_boxes[1]["y"], desktop_boxes[2]["y"])
                 self.assertLess(desktop_boxes[3]["y"], desktop_boxes[4]["y"])
+                self.assertLess(abs(desktop_boxes[4]["y"] - desktop_boxes[5]["y"]), 1)
                 self.assertLessEqual(
                     desktop.evaluate(
                         "document.documentElement.scrollWidth - document.documentElement.clientWidth"
@@ -284,7 +289,7 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
                     mobile_cards.nth(index).bounding_box()
                     for index in range(mobile_cards.count())
                 ]
-                self.assertEqual(5, len(mobile_boxes))
+                self.assertEqual(6, len(mobile_boxes))
                 self.assertTrue(all(box is not None for box in mobile_boxes))
                 self.assertLess(
                     max(box["x"] for box in mobile_boxes)
@@ -311,7 +316,7 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
                     1,
                 )
                 narrow_headings = narrow.locator(".compact-course-heading")
-                self.assertEqual(5, narrow_headings.count())
+                self.assertEqual(6, narrow_headings.count())
                 for index in range(narrow_headings.count()):
                     self.assertEqual(
                         "nowrap",
@@ -334,11 +339,7 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
 
     def test_offer_headings_do_not_leave_one_character_on_a_new_desktop_line(self):
         self.assertIn(
-            "aria-label='AIアプリサイト制作'",
-            self.home,
-        )
-        self.assertIn(
-            "<span class='home-app-site-title-line'>AIアプリサイト制作</span>",
+            "<h3 id='home-app-site-title'>AIアプリサイト制作</h3>",
             self.home,
         )
 
@@ -348,9 +349,7 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
                 page = browser.new_page(viewport={"width": 1440, "height": 1000})
                 page.set_content(self.home)
 
-                service_lines = page.locator(
-                    "#home-app-site-title .home-app-site-title-line"
-                )
+                service_lines = page.locator("#home-app-site-title")
                 self.assertEqual(1, service_lines.count())
                 for index in range(service_lines.count()):
                     self.assertEqual(

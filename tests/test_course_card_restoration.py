@@ -66,7 +66,7 @@ class CourseCardRestorationTests(unittest.TestCase):
         individual = self.card_named("AI個別講習")
         coding = self.card_named("AIコーディング講習")
 
-        self.assertEqual(5, len(self.cards))
+        self.assertEqual(6, len(self.cards))
         self.assert_individual_course_format(
             individual,
             title="AI個別講習",

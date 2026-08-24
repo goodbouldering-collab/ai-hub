@@ -100,7 +100,7 @@ class CourseTestimonialsTest(unittest.TestCase):
         self.assertEqual(12, rendered.count("<figure class='course-voice-card'>"))
         self.assertEqual(12, rendered.count("受講者（匿名）"))
 
-    def test_every_course_card_contains_its_matching_voice_dropdown(self) -> None:
+    def test_five_learning_cards_keep_their_voice_dropdown_and_service_card_does_not(self) -> None:
         cards = portal._render_compact_course_cards()
         rendered_cards = re.findall(
             r"<article class='compact-course-card[^']*'.*?</article>",
@@ -108,7 +108,7 @@ class CourseTestimonialsTest(unittest.TestCase):
             re.DOTALL,
         )
 
-        self.assertEqual(5, len(rendered_cards))
+        self.assertEqual(6, len(rendered_cards))
         for card, expected in zip(rendered_cards[: len(EXPECTED_GROUPS)], EXPECTED_GROUPS, strict=True):
             _, _, anchor_id, heading, testimonials = expected
             self.assertIn(f"id='{anchor_id}'", card)
@@ -123,6 +123,8 @@ class CourseTestimonialsTest(unittest.TestCase):
                 self.assertIn(body, card)
         self.assertEqual(15, cards.count("<figure class='compact-course-voice-card'>"))
         self.assertEqual(12, cards.count("受講者（匿名）"))
+        self.assertIn("id='ai-app-site'", rendered_cards[-1])
+        self.assertNotIn("受講された方の感想を見る", rendered_cards[-1])
 
     def test_salon_uses_standard_course_details_trigger_before_testimonials(self) -> None:
         cards = re.findall(
@@ -342,7 +344,7 @@ class CourseTestimonialsTest(unittest.TestCase):
         )
         self.assertIn(
             "class='course-menu-unified' id='course-voices' role='region' "
-            "aria-label='講習・相談の全5メニュー'",
+            "aria-label='講習・相談・制作の全6メニュー'",
             portal._render_focused_main(),
         )
 

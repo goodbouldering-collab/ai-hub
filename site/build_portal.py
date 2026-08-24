@@ -11770,7 +11770,7 @@ def _render_course_testimonial_details(course_key: str) -> str:
 
 
 def _render_compact_course_cards() -> str:
-    """メイン講習を先頭にし、講習・相談の全コースを並べる申込カード。"""
+    """メイン講習を先頭にし、講習・相談・制作の全メニューを並べるカード。"""
     items = [
         {
             "cat": "基本講習",
@@ -11859,9 +11859,9 @@ def _render_compact_course_cards() -> str:
             "material_url": "/lectures/2026-06-ai-agent-rag-design.html",
             "material_cta": "AI導入・RAG設計の資料を見る",
             "testimonial_key": "ai-support",
-            "details_lead": "上の制作代行を、組織の実践力へ変える",
+            "details_lead": "AIアプリサイト制作カードを、組織の実践力へ変える",
             "details": [
-                ("上のAIアプリサイト制作を自分たちの力へ", "制作サービスで行う課題整理、設計、AIへの制作依頼、確認、公開、改善を、組織の担当者と一緒に繰り返します。"),
+                ("AIアプリサイト制作カードから自分たちの力へ", "制作サービスで行う課題整理、設計、AIへの制作依頼、確認、公開、改善を、組織の担当者と一緒に繰り返します。"),
                 ("AIアプリサイトを一つ自作", "見積もり、問い合わせ、予約受付、社内検索などから優先度の高い機能を選び、自社の仕事で動く形まで作ります。"),
                 ("小さく試して毎月改善", "最初から大きな仕組みにせず、現場で使い、反応と数字を見ながら無理なく育てます。"),
                 ("社内に手順と資産が残る", "担当者が変わっても続けられるように、確認項目、運用ルール、資料、次回手順を整理します。"),
@@ -11901,6 +11901,30 @@ def _render_compact_course_cards() -> str:
             ],
             "details_extra": _render_live_talk_guide(),
         },
+        {
+            "id": "ai-app-site",
+            "title_id": "home-app-site-title",
+            "role_badge": "代行",
+            "cat": "AIアプリサイト",
+            "title": "AIアプリサイト制作",
+            "audience_label": "制作方法",
+            "audience": "代行",
+            "image": "/img/hero-ai-consult-hikone.png",
+            "image_alt": "事業者と相談しながらAIアプリサイトの制作内容を整理する様子",
+            "price": "99,000円〜",
+            "duration": "ホームページ＋AI機能1つ",
+            "desc": "情報を載せるだけのサイトではなく、見積もり・問い合わせ・予約受付などのAIアプリを、すぐ使える形でサイト内に組み込みます。",
+            "url": "/ai-app-site/",
+            "cta": "制作内容・料金を見る",
+            "details_lead": "制作内容・料金・できること",
+            "details": [
+                ("別アプリを増やさず、新規制作・リニューアル・移行まで対応", "今のサイトへの追加にも、新しいサイトづくりにも対応し、必要な機能を一つのサイトへまとめます。"),
+                ("まずこちらで使える土台を制作", "見積もり、問い合わせ、予約受付など、優先度の高いAI機能を選び、現場ですぐ使える形まで作ります。"),
+                ("制作後も自由に選べる", "講習を通じて社内で保守・改善・バージョンアップすることも、必要な部分だけこちらへ任せることも自由に選べます。"),
+                ("自由に瞬時に変更できるAIサイトへ", "代行作成で、自由に瞬時に変更できるAIサイトへ移行できます。"),
+            ],
+            "details_extra": _render_ai_app_site_feature_links(),
+        },
     ]
     cards = []
     for item in items:
@@ -11928,9 +11952,10 @@ def _render_compact_course_cards() -> str:
             "<div class='compact-course-heading'>"
             f"<h3{title_attr}>{html.escape(item['title'])}</h3>{audience_html}</div>"
         )
+        role_badge = str(item.get("role_badge") or "学ぶ")
         role_html = (
             "<div class='offer-role-row offer-role-row--course'>"
-            "<div class='offer-role-copy'><span class='offer-role-badge'>学ぶ</span>"
+            f"<div class='offer-role-copy'><span class='offer-role-badge'>{html.escape(role_badge)}</span>"
             f"<span class='offer-role-note'>{html.escape(item['cat'])}</span></div></div>"
         )
         details = item.get("details") or []
@@ -11951,7 +11976,10 @@ def _render_compact_course_cards() -> str:
                 f"<ul>{detail_rows}</ul>{item.get('details_extra') or ''}"
                 "</details>"
             )
-        testimonial_html = _render_course_testimonial_details(str(item["testimonial_key"]))
+        testimonial_key = str(item.get("testimonial_key") or "")
+        testimonial_html = (
+            _render_course_testimonial_details(testimonial_key) if testimonial_key else ""
+        )
         if item.get("post"):
             main_action_html = (
                 f"<form class='compact-course-checkout' method='post' action='{html.escape(item['url'], quote=True)}'>"
@@ -15172,21 +15200,27 @@ button:focus-visible {
 """
 
 FOCUSED_PORTAL_CSS += r"""
-/* ---- AIアプリサイト: 相談から仕組み化へ進む公開導線, 2026-08-20 ---- */
-.home-app-site-guide { position:relative; overflow:hidden; border-top:1px solid #d6e5f1; border-bottom:1px solid #d6e5f1; background:linear-gradient(135deg,#eef7ff 0%,#fbfdff 52%,#edfbf7 100%); }
-.home-app-site-guide::after { position:absolute; right:-120px; bottom:-180px; width:420px; height:420px; border-radius:50%; background:rgba(23,103,190,.09); content:""; }
-.home-app-site-guide > .offer-panel { position:relative; z-index:1; }
-.home-app-site-guide .readiness-guide__title { color:#142d4c; font-size:clamp(31px,2.4vw,36px); letter-spacing:-.05em; }
-.home-app-site-title-line { display:block; white-space:nowrap; }
-.home-app-site-guide .readiness-guide__summary { color:#526a83; font-size:14px; line-height:1.65; }
-.home-app-site-price { margin:9px 0 0; }
-.home-app-site-price small { display:block; color:#087972; font-size:10px; font-weight:900; letter-spacing:.08em; }
-.home-app-site-price strong { display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 8px; margin-top:3px; color:#132d4d; font-size:14px; line-height:1.4; }
-.home-app-site-price strong b { color:#1767be; font-size:21px; }
-.home-app-site-price > span { display:block; margin-top:2px; color:#5d7390; font-size:11px; font-weight:800; }
-.home-app-site-capabilities li { position:relative; min-height:44px; }
-.home-app-site-capabilities li > span { position:relative; z-index:1; pointer-events:none; }
-.home-app-site-card { position:absolute; inset:0; display:flex; min-width:0; min-height:44px; width:100%; padding:10px 12px 10px 42px; box-sizing:border-box; align-items:center; justify-content:space-between; gap:8px; color:#17304f; text-decoration:none; }
+/* ---- AIアプリサイト: 講習一覧の共通カードへ統合, 2026-08-25 ---- */
+#ai-app-site .compact-course-meta { flex-wrap:wrap; }
+#ai-app-site .compact-course-meta span { line-height:1.4; }
+.compact-course-details .home-app-site-capabilities {
+  margin:12px 0 0;
+  padding:0;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:6px;
+  list-style:none;
+}
+.compact-course-details .home-app-site-capabilities li {
+  position:relative;
+  min-width:0;
+  min-height:44px;
+  display:block;
+  padding:0;
+}
+.compact-course-details .home-app-site-capabilities li::before { content:none; }
+.compact-course-details .home-app-site-capabilities li:last-child { grid-column:1 / -1; }
+.home-app-site-card { display:flex; min-width:0; min-height:44px; width:100%; padding:8px 10px; box-sizing:border-box; align-items:center; justify-content:space-between; gap:8px; border:1px solid var(--focus-line); border-radius:7px; background:#f7faff; color:#17304f; text-decoration:none; }
 .home-app-site-card strong { min-width:0; font-size:12px; line-height:1.35; }
 .home-app-site-card b { flex:0 0 auto; color:#1767be; font-size:14px; transition:transform .18s ease; }
 .home-app-site-card:hover,
@@ -15200,14 +15234,9 @@ FOCUSED_PORTAL_CSS += r"""
 @media (max-width:760px) {
   .focus-title-line { font-size:clamp(22px,7.2vw,40px); white-space:nowrap; }
   .focus-title-line strong { white-space:nowrap; }
-  .home-app-site-capabilities { grid-template-columns:repeat(2,minmax(0,1fr)); }
-  .home-app-site-capabilities li { min-height:52px; }
-  .home-app-site-capabilities li:last-child { grid-column:1 / -1; }
-  .home-app-site-card { min-height:52px; padding:8px 8px 8px 34px; }
-}
-@media (max-width:360px) {
-  .home-app-site-guide .readiness-guide__title { font-size:clamp(26px,8.5vw,31px); }
-  .home-app-site-title-line { white-space:nowrap; }
+  .compact-course-details .home-app-site-capabilities li,
+  .home-app-site-card { min-height:52px; }
+  .home-app-site-card { padding:8px 9px; }
 }
 """
 
@@ -15335,7 +15364,7 @@ def _render_hero_focused() -> str:
     )
 
 
-def _render_ai_app_site_home_guide() -> str:
+def _render_ai_app_site_feature_links() -> str:
     cards = (
         ("AI見積もり", "/ai-estimate/"),
         ("AI問い合わせ", "/ai-inquiry/"),
@@ -15344,29 +15373,14 @@ def _render_ai_app_site_home_guide() -> str:
         ("AIブログ", "/ai-blog/"),
     )
     cards_html = "".join(
-        "<li><span aria-hidden='true'>?</span><a class='home-app-site-card' href='{}' aria-label='{}の詳細を見る'>"
+        "<li><a class='home-app-site-card' href='{}' aria-label='{}の詳細を見る'>"
         "<strong>{}</strong><b aria-hidden='true'>→</b></a></li>".format(
             href, title, title
         )
         for title, href in cards
     )
     return (
-        "<section class='readiness-guide readiness-guide--compact home-app-site-guide' id='ai-app-site' aria-labelledby='home-app-site-title'>"
-        "<div class='offer-panel home-app-site-shell'><div class='readiness-guide__inner'>"
-        "<div class='readiness-guide__intro'><div class='offer-role-row'><div class='offer-role-copy'>"
-        "<span class='offer-role-badge'>代行</span><span class='offer-role-note'>AIアプリサイト</span></div></div>"
-        "<h2 id='home-app-site-title' class='readiness-guide__title' aria-label='AIアプリサイト制作'>"
-        "<span class='home-app-site-title-line'>AIアプリサイト制作</span></h2>"
-        "<p class='readiness-guide__summary'>情報を載せるだけのサイトではなく、見積もり・問い合わせ・予約受付などのAIアプリを、すぐ使える形でサイト内に組み込みます。別アプリを増やさず、新規制作・リニューアル・移行まで対応。まずこちらで土台を作り、その後は講習を通じて社内で保守・改善・バージョンアップすることも、必要な部分だけこちらへ任せることも自由に選べます。</p>"
-        "<p class='readiness-guide__summary'><strong>代行作成で、自由に瞬時に変更できるAIサイトへ移行できます。</strong></p>"
-        "<div class='home-app-site-price'><small>制作を任せたい方へ</small><strong>AIアプリサイト制作 <b>99,000円〜</b></strong><span>ホームページ＋AI機能1つ</span></div></div>"
-        f"<ul class='readiness-guide__questions home-app-site-capabilities' aria-label='サイトに組み込めるAIアプリ'>{cards_html}</ul>"
-        "<div class='readiness-guide__actions'>"
-        f"<a class='readiness-guide__cta offer-action' href='{DIAGNOSIS_FREE_CONSULT_BOOK_URL}' target='_blank' rel='noopener' aria-label='AIアプリサイト制作を無料相談する'>"
-        "<span>AIアプリサイト制作を無料相談する</span><b aria-hidden='true'>→</b></a>"
-        "<a class='readiness-guide__cta readiness-guide__cta--secondary offer-action offer-action--secondary' href='/ai-app-site/'>"
-        "<span>制作内容・料金を見る</span><b aria-hidden='true'>→</b></a></div>"
-        "</div></div></section>"
+        f"<ul class='home-app-site-capabilities' aria-label='サイトに組み込めるAIアプリ'>{cards_html}</ul>"
     )
 
 
@@ -15444,8 +15458,8 @@ def _render_focused_blog_content() -> str:
 def _render_focused_main() -> str:
     parts = [
         "<section class='focus-block main-course' id='packages'><div class='focus-section-head'><small>COURSES</small><h2>講習・相談コース</h2></div>",
-        "<p class='focus-section-lead'><strong>制作を任せたい方は、上の「AIアプリサイト制作」へ。学ぶなら、受講人数で選べます。</strong><br>少数で基本を学ぶ、個別でAI活用を整理する、個別でコーディングを学ぶ、組織で改善・運用まで身につける。目的に合うコースへ進めます。</p>",
-        "<div class='course-menu-unified' id='course-voices' role='region' aria-label='講習・相談の全5メニュー'>",
+        "<p class='focus-section-lead'><strong>学ぶなら受講人数で、制作を任せるなら「AIアプリサイト制作」で選べます。</strong><br>少数で基本を学ぶ、個別でAI活用やコーディングを整理する、組織で改善・運用まで身につける、AI機能付きサイトの制作を任せる。目的に合うカードへ進めます。</p>",
+        "<div class='course-menu-unified' id='course-voices' role='region' aria-label='講習・相談・制作の全6メニュー'>",
         _render_compact_course_cards(),
         "</div>",
         "<aside class='course-venue-common' aria-label='講習・相談コース共通の開催場所'>",
@@ -15454,7 +15468,6 @@ def _render_focused_main() -> str:
         "<div class='course-venue-map'><iframe src='https://www.google.com/maps?q=%E3%82%B0%E3%83%83%E3%81%BC%E3%82%8B%E3%82%AB%E3%83%95%E3%82%A7%20%E6%BB%8B%E8%B3%80%E7%9C%8C%E5%BD%A6%E6%A0%B9%E5%B8%82%E5%B2%A1%E7%94%BA12&amp;output=embed' title='グッぼるカフェ周辺のGoogleマップ' loading='lazy' referrerpolicy='no-referrer-when-downgrade' allowfullscreen></iframe></div>",
         "<p class='course-venue-map-link'><a href='https://www.google.com/maps/search/?api=1&amp;query=%E3%82%B0%E3%83%83%E3%81%BC%E3%82%8B%E3%82%AB%E3%83%95%E3%82%A7%20%E6%BB%8B%E8%B3%80%E7%9C%8C%E5%BD%A6%E6%A0%B9%E5%B8%82%E5%B2%A1%E7%94%BA12' target='_blank' rel='noopener'>Googleマップで開く →</a></p></aside>",
         "<div class='course-quick-actions'><a href='#lectures'>受講資料から選ぶ →</a></div></section>",
-        _render_ai_app_site_home_guide(),
         "<section class='focus-block soft' id='lectures'><div class='focus-section-head'><small>LEARNING MATERIALS</small><h2>受講資料</h2></div>",
         "<p class='focus-section-lead'>公開中の受講資料をすべて表示しています。迷ったら「AIが初めて」から順に選べます。</p>",
         _render_lectures_section(),

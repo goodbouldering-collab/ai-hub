@@ -1,5 +1,6 @@
 import importlib.util
 from pathlib import Path
+import re
 import tempfile
 import unittest
 
@@ -76,6 +77,8 @@ class AiAppSitePagesTests(unittest.TestCase):
                 self.assertIn("AIアプリサイト Lite", flagship_html)
                 self.assertIn("99,000円〜", flagship_html)
                 self.assertIn('"@type": "Service"', flagship_html)
+                self.assertIn("AIアプリサイト制作を無料相談する", flagship_html)
+                self.assertIn(self.portal.DIAGNOSIS_FREE_CONSULT_BOOK_URL, flagship_html)
                 self.assertNotIn("AI APP SITE · SELF BUILD", flagship_html)
         finally:
             self.site_builder.DIST = original_dist
@@ -97,69 +100,61 @@ class AiAppSitePagesTests(unittest.TestCase):
         finally:
             self.site_builder.DIST = original_dist
 
-    def test_homepage_separates_ordered_service_from_coding_course(self):
+    def test_homepage_places_app_site_service_last_in_the_shared_course_card_grid(self):
         page = self.portal.render_portal([], [])
-        section_id = page.index("id='ai-app-site'")
-        section_start = page.rfind("<section", 0, section_id)
-        section_end = page.index("</section>", section_id) + len("</section>")
-        app_site_guide = page[section_start:section_end]
+        cards = re.findall(
+            r"<article class='compact-course-card offer-card'[^>]*>.*?</article>",
+            page,
+            re.DOTALL,
+        )
+        app_site_card = next(card for card in cards if "id='ai-app-site'" in card)
 
-        self.assertIn("AIアプリサイト制作", page)
-        self.assertIn("AIアプリサイト制作を無料相談する", page)
+        self.assertEqual(6, len(cards))
+        self.assertEqual(app_site_card, cards[-1])
+        self.assertNotIn("home-app-site-guide", page)
+        self.assertNotIn("AIアプリサイト制作を無料相談する", page)
         self.assertNotIn("相談だけで終わらない。", page)
         self.assertNotIn("AIで、仕事の仕組みまでつくる。", page)
         self.assertIn(
             "<span class='offer-role-badge'>代行</span>"
             "<span class='offer-role-note'>AIアプリサイト</span>",
-            app_site_guide,
+            app_site_card,
         )
-        self.assertNotIn("DONE FOR YOU", app_site_guide)
+        self.assertNotIn("DONE FOR YOU", app_site_card)
         self.assertIn(
-            "<section class='readiness-guide readiness-guide--compact home-app-site-guide' id='ai-app-site'",
-            app_site_guide,
+            "<div class='compact-course-heading'><h3 id='home-app-site-title'>AIアプリサイト制作</h3>"
+            "<span class='offer-audience'",
+            app_site_card,
         )
         self.assertIn(
-            "<h2 id='home-app-site-title' class='readiness-guide__title' "
-            "aria-label='AIアプリサイト制作'>"
-            "<span class='home-app-site-title-line'>AIアプリサイト制作</span></h2>",
-            app_site_guide,
+            "<span class='offer-audience-label'>制作方法</span><strong>代行</strong>",
+            app_site_card,
         )
-        self.assertEqual(1, app_site_guide.count("class='home-app-site-title-line'"))
-        self.assertNotIn("AIアプリが動く", app_site_guide)
-        self.assertNotIn("まるごと制作。", app_site_guide)
-        self.assertNotIn("home-app-site-title-narrow-break", app_site_guide)
-        self.assertIn("AIアプリサイト制作", app_site_guide)
-        self.assertIn("99,000円〜", app_site_guide)
-        self.assertIn("ホームページ＋AI機能1つ", app_site_guide)
-        self.assertIn("AIアプリを、すぐ使える形でサイト内に組み込み", app_site_guide)
-        self.assertIn("別アプリを増やさず、新規制作・リニューアル・移行まで対応", app_site_guide)
-        self.assertIn("社内で保守・改善・バージョンアップ", app_site_guide)
-        self.assertIn("必要な部分だけこちらへ任せる", app_site_guide)
-        self.assertIn("自由に選べます", app_site_guide)
-        self.assertIn("class='readiness-guide__inner'", app_site_guide)
-        self.assertIn("class='readiness-guide__intro'", app_site_guide)
-        self.assertIn(
-            "class='readiness-guide__questions home-app-site-capabilities'",
-            app_site_guide,
-        )
-        self.assertIn("class='readiness-guide__actions'", app_site_guide)
-        self.assertEqual(5, app_site_guide.count("<span aria-hidden='true'>?</span>"))
-        self.assertEqual(5, app_site_guide.count("class='home-app-site-card'"))
+        self.assertIn("99,000円〜", app_site_card)
+        self.assertIn("ホームページ＋AI機能1つ", app_site_card)
+        self.assertIn("AIアプリを、すぐ使える形でサイト内に組み込み", app_site_card)
+        self.assertIn("別アプリを増やさず、新規制作・リニューアル・移行まで対応", app_site_card)
+        self.assertIn("社内で保守・改善・バージョンアップ", app_site_card)
+        self.assertIn("必要な部分だけこちらへ任せる", app_site_card)
+        self.assertIn("自由に選べます", app_site_card)
+        self.assertIn("代行作成で、自由に瞬時に変更できるAIサイトへ移行できます。", app_site_card)
+        self.assertIn("class='home-app-site-capabilities'", app_site_card)
+        self.assertEqual(5, app_site_card.count("class='home-app-site-card'"))
         for feature in ("AI見積もり", "AI問い合わせ", "AI予約受付", "AIシフト", "AIブログ"):
-            self.assertIn(f"<strong>{feature}</strong>", app_site_guide)
-        self.assertNotIn("見積もり → 自動作成", app_site_guide)
-        self.assertNotIn("できることを見る", app_site_guide)
-        self.assertNotIn("home-app-site-path", app_site_guide)
-        self.assertIn("AIアプリサイト制作を無料相談する", app_site_guide)
-        self.assertIn(self.portal.DIAGNOSIS_FREE_CONSULT_BOOK_URL, app_site_guide)
-        self.assertNotIn("SELF BUILD", app_site_guide)
-        self.assertNotIn("AIアプリサイト自作", app_site_guide)
-        self.assertNotIn(self.portal.AI_CODING_BOOK_URL, app_site_guide)
+            self.assertIn(f"<strong>{feature}</strong>", app_site_card)
+        self.assertIn("href='/ai-app-site/'", app_site_card)
+        self.assertIn("制作内容・料金を見る", app_site_card)
+        self.assertNotIn(self.portal.DIAGNOSIS_FREE_CONSULT_BOOK_URL, app_site_card)
+        self.assertNotIn("SELF BUILD", app_site_card)
+        self.assertNotIn("AIアプリサイト自作", app_site_card)
+        self.assertNotIn(self.portal.AI_CODING_BOOK_URL, app_site_card)
         self.assertIn("<h3>AIコーディング講習</h3>", page)
-        self.assertIn("制作を任せたい方は、上の「AIアプリサイト制作」へ。", page)
+        self.assertIn("制作を任せるなら「AIアプリサイト制作」", page)
         self.assertIn(self.portal.AI_CODING_BOOK_URL, page)
         self.assertLess(page.index("<section class='focus-hero'"), page.index("id='ai-app-site'"))
         self.assertLess(page.index("id='packages'"), page.index("id='ai-app-site'"))
+        self.assertLess(page.index("id='seven-day-courses'"), page.index("id='ai-app-site'"))
+        self.assertLess(page.index("id='ai-app-site'"), page.index("class='course-venue-common'"))
         self.assertLess(page.index("id='ai-app-site'"), page.index("id='lectures'"))
 
     def test_homepage_mobile_feature_links_use_two_columns_with_a_balanced_last_row(self):
@@ -173,30 +168,30 @@ class AiAppSitePagesTests(unittest.TestCase):
                         page = browser.new_page(viewport={"width": width, "height": 900})
                         try:
                             page.set_content(rendered)
-                            feature_list = page.locator(".home-app-site-capabilities")
-                            cards = page.locator(".home-app-site-card")
+                            app_card = page.locator("#ai-app-site")
+                            app_card.locator(".compact-course-details").evaluate(
+                                "element => { element.open = true; }"
+                            )
+                            feature_list = app_card.locator(".home-app-site-capabilities")
+                            cards = app_card.locator(".home-app-site-card")
                             boxes = [cards.nth(index).bounding_box() for index in range(cards.count())]
                             list_box = feature_list.bounding_box()
                             first_title_line = page.locator(".focus-title-first").bounding_box()
                             second_title_line = page.locator(".focus-title-line").bounding_box()
                             app_title = page.locator("#home-app-site-title")
-                            app_title_line = app_title.locator(".home-app-site-title-line")
                             app_title_box = app_title.bounding_box()
-                            app_intro_box = page.locator(
-                                ".home-app-site-guide .readiness-guide__intro"
-                            ).bounding_box()
+                            app_card_box = app_card.bounding_box()
 
                             self.assertEqual(5, len(boxes))
                             self.assertTrue(all(box is not None for box in boxes))
                             self.assertIsNotNone(list_box)
                             self.assertIsNotNone(first_title_line)
                             self.assertIsNotNone(second_title_line)
-                            self.assertEqual(1, app_title_line.count())
                             self.assertIsNotNone(app_title_box)
-                            self.assertIsNotNone(app_intro_box)
+                            self.assertIsNotNone(app_card_box)
                             self.assertEqual("AIアプリサイト制作", app_title.text_content())
                             self.assertLessEqual(
-                                app_title_line.evaluate(
+                                app_title.evaluate(
                                     "element => element.scrollWidth - element.clientWidth"
                                 ),
                                 1,
@@ -204,8 +199,8 @@ class AiAppSitePagesTests(unittest.TestCase):
                             )
                             self.assertLessEqual(
                                 app_title_box["x"] + app_title_box["width"],
-                                app_intro_box["x"] + app_intro_box["width"] + 1,
-                                "サービス見出しを説明カラムからはみ出させない",
+                                app_card_box["x"] + app_card_box["width"] + 1,
+                                "サービス見出しをカードからはみ出させない",
                             )
                             self.assertLessEqual(
                                 second_title_line["height"],
@@ -253,9 +248,7 @@ class AiAppSitePagesTests(unittest.TestCase):
                     page.evaluate(
                         "document.body.style.width = 'calc(100% - 15px)'"
                     )
-                    title_line = page.locator(
-                        "#home-app-site-title .home-app-site-title-line"
-                    )
+                    title_line = page.locator("#home-app-site-title")
 
                     self.assertEqual(320, page.evaluate("window.innerWidth"))
                     self.assertAlmostEqual(

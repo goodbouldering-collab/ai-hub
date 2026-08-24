@@ -51,7 +51,7 @@ class AiAppSelfbuildOfferTests(unittest.TestCase):
         individual_card = next(card for card in cards if INDIVIDUAL_COURSE_URL in card)
         coding_card = next(card for card in cards if CODING_SQUARE_URL in card)
 
-        self.assertEqual(5, len(cards))
+        self.assertEqual(6, len(cards))
         self.assertIn("<h3>AI個別講習</h3>", individual_card)
         self.assertIn("仕事に合うAIの使い方と、確認・運用の手順を整理します。", individual_card)
         self.assertIn("<h3>AIコーディング講習</h3>", coding_card)

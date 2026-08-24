@@ -24,18 +24,22 @@ class RenderedSalonTest(unittest.TestCase):
         self.assertNotRegex(self.html, r"https://(?:line\.me|lin\.ee)/")
         self.assertNotIn("LINE参加パスワード", self.html)
 
-    def test_salon_is_one_complete_menu_before_the_venue_map(self) -> None:
+    def test_salon_and_app_site_are_complete_last_cards_before_the_venue_map(self) -> None:
         cards = re.findall(
             r"<article class='compact-course-card[^']*'.*?</article>",
             self.html,
             re.DOTALL,
         )
-        self.assertEqual(len(cards), 4)
+        self.assertEqual(len(cards), 6)
         salon_cards = [card for card in cards if "AIオンラインサロン｜近日開始" in card]
+        app_site_cards = [card for card in cards if "id='ai-app-site'" in card]
         self.assertEqual(len(salon_cards), 1)
+        self.assertEqual(len(app_site_cards), 1)
+        self.assertEqual(cards[-2], salon_cards[0])
+        self.assertEqual(cards[-1], app_site_cards[0])
         salon = salon_cards[0]
         self.assertIn("class='course-menu-unified'", self.html)
-        self.assertIn("aria-label='講習・相談の全4メニュー'", self.html)
+        self.assertIn("aria-label='講習・相談・制作の全6メニュー'", self.html)
         self.assertNotIn("course-menu-unified-head", self.html)
         self.assertNotIn("上の4カードと下のオンラインサロンから選べます", self.html)
         self.assertRegex(self.html, r"class='course-menu-unified'[^>]*>\s*<div class='compact-course-grid'")
@@ -69,9 +73,13 @@ class RenderedSalonTest(unittest.TestCase):
         self.assertEqual(self.html.count("id='seven-day-courses'"), 1)
         salon_start = self.html.index("id='seven-day-courses'")
         salon_end = self.html.index("</article>", salon_start)
-        venue_map = self.html.index("class='course-venue-map'", salon_end)
+        app_site_start = self.html.index("id='ai-app-site'", salon_end)
+        app_site_end = self.html.index("</article>", app_site_start)
+        venue_map = self.html.index("class='course-venue-map'", app_site_end)
         self.assertLess(salon_start, salon_end)
-        self.assertLess(salon_end, venue_map)
+        self.assertLess(salon_end, app_site_start)
+        self.assertLess(app_site_start, app_site_end)
+        self.assertLess(app_site_end, venue_map)
         self.assertIn("メリット・内容・参加方法を見る", self.html)
         self.assertIn(
             "class='compact-course-material' href='/lectures/2026-07-ai-online-salon-practice.html'",

@@ -24,7 +24,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://img.youtube.com/vi/dQOhdjHcp0c/hqdefault.jpg",
-      "published": "2026-08-24T15:16:06+00:00"
+      "published": "2026-08-24T15:16:06+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "efe429de05220675",
@@ -49,7 +51,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://img.youtube.com/vi/F4Wl4WbP2vA/hqdefault.jpg",
-      "published": "2026-08-24T11:00:04+00:00"
+      "published": "2026-08-24T11:00:04+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "3a7d8eb19be77850",
@@ -74,7 +78,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://img.youtube.com/vi/bAxEO_3pZJ0/hqdefault.jpg",
-      "published": "2026-08-24T11:00:02+00:00"
+      "published": "2026-08-24T11:00:02+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "79fb61e059914472",
@@ -99,7 +105,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://img.youtube.com/vi/JY8-jADfZgU/hqdefault.jpg",
-      "published": "2026-08-24T10:31:35+00:00"
+      "published": "2026-08-24T10:31:35+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "30a26558c8d9950c",
@@ -124,7 +132,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://www.itmedia.co.jp/aiplus/article/ogp/2608/24/2000000719/10003038/2048",
-      "published": "2026-08-24T08:55:15+00:00"
+      "published": "2026-08-24T08:55:15+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "ef0f1c15b8d4d8ca",
@@ -149,7 +159,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://www.itmedia.co.jp/aiplus/article/ogp/2608/24/2000000723/10003491/2048",
-      "published": "2026-08-24T07:30:16+00:00"
+      "published": "2026-08-24T07:30:16+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "5348f0026f19f895",
@@ -174,7 +186,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://img.youtube.com/vi/9GBa5aBqiEo/hqdefault.jpg",
-      "published": "2026-08-24T03:09:19+00:00"
+      "published": "2026-08-24T03:09:19+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "35c582b5b92ec7c2",
@@ -199,7 +213,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://cdn.arstechnica.net/wp-content/uploads/2026/08/GettyImages-2211086231-1152x648.jpg",
-      "published": "2026-08-24T21:45:53+00:00"
+      "published": "2026-08-24T21:45:53+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "1b655636867e89ab",
@@ -224,7 +240,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://images.ctfassets.net/kftzwdyauwt9/6r1E6E5mcdQEGztu6B1TI6/7e1ab3332eb5440e41cb64ba59c65d2b/OAI_Kiro_Partnership_16x9_SEO_Official_Full_Lockup_3840x2160.png?w=1600&amp;h=900&amp;fit=fill",
-      "published": "2026-08-24T12:00:00+00:00"
+      "published": "2026-08-24T12:00:00+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "fc11055d6a588645",
@@ -249,7 +267,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://wp.technologyreview.com/wp-content/uploads/2026/08/8947cf02-f42b-04bb-03ce-c05c80e44d46.jpg?resize=1200,600",
-      "published": "2026-08-24T14:20:19+00:00"
+      "published": "2026-08-24T14:20:19+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

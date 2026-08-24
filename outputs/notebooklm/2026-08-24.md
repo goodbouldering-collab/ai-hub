@@ -1,115 +1,175 @@
 # AIハブ 2026-08-24
 
-> 生成日時: 2026-08-24 01:17:29
-> 新着: 13件 / 継続: 11件 / 合計: 24件
+> 生成日時: 2026-08-24 22:15:42
+> 新着: 21件 / 継続: 15件 / 合計: 36件
 
 ---
 
 ## 🆕 新着 (前回取得以降)
 
+### カテゴリ: AIニュース (4件)
+
+### [MIT Technology Review AI] How to encourage smarter AI use in the classroom
+- URL: https://www.technologyreview.com/2026/08/24/1142630/ai-school-classroom-policies/
+- 取得: 2026-08-24 22:15:37
+- 公開: 2026-08-24T14:20:19+00:00
+- 原文抜粋: This article is from Making AI Work, MIT Technology Review’s limited-run newsletter examining how to apply LLMs across industries. To receive it in your inbox, sign up here. Chatbots took many schools by surprise upon their release a few years ago. Suddenly, students carried an app in their phones t...
+
+### [MIT Technology Review AI] Kids outlearn AI—and we still don’t know why
+- URL: https://www.technologyreview.com/2026/08/24/1141740/kids-machines-language-learning/
+- 取得: 2026-08-24 22:15:37
+- 公開: 2026-08-24T09:00:00+00:00
+- 原文抜粋: People have been talking to each other for at least 100,000 years, as best we can tell. And in all that time, there has been only one thing in the world that could learn a human language to perfect fluency: a human child.&#160; Now there are two.&#160; Four short years after the release of ChatGPT,&...
+
+### [Ars Technica AI] AI is hitting entry-level jobs hardest, Stanford study finds
+- URL: https://arstechnica.com/ai/2026/08/ai-is-hitting-entry-level-jobs-hardest-stanford-study-finds/
+- 取得: 2026-08-24 22:15:38
+- 公開: 2026-08-24T21:45:53+00:00
+- 原文抜粋: Young employment in AI-impacted fields down 19% compared to more AI-resistant occupations.
+
+### [Ars Technica AI] Nvidia senior manager linked to Supermicro scheme smuggling AI servers to China
+- URL: https://arstechnica.com/tech-policy/2026/08/nvidia-senior-manager-linked-to-supermicro-scheme-smuggling-ai-servers-to-china/
+- 取得: 2026-08-24 22:15:38
+- 公開: 2026-08-24T16:41:45+00:00
+- 原文抜粋: Nvidia worker indicted after Jensen Huang scolded Supermicro for AI server smuggling.
+
 ### カテゴリ: AI公式 (1件)
 
-### [OpenAI Codex Releases] 0.149.1
-- URL: https://github.com/openai/codex/releases/tag/rust-v0.149.1
-- 取得: 2026-08-24 01:17:23
-- 公開: 2026-08-24T00:29:45+00:00
-- 原文抜粋: <h2>Changelog</h2> <p>Full Changelog: <a class="commit-link" href="https://github.com/openai/codex/compare/rust-v0.149.0...rust-v0.149.1"><tt>rust-v0.149.0...rust-v0.149.1</tt></a></p>
+### [OpenAI Blog] Advancing price-performance for developers with GPT‑5.6 in Kiro
+- URL: https://openai.com/index/gpt-5-6-in-kiro
+- 取得: 2026-08-24 22:15:36
+- 公開: 2026-08-24T12:00:00+00:00
+- 原文抜粋: GPT‑5.6 is now available in Kiro, helping developers plan, build, review, and test software with better price-performance.
 
-### カテゴリ: AI動画(日本語) (1件)
+### カテゴリ: AI動画(日本語) (5件)
 
-### [ウェブ職TV] 2泊3日のClaude Code合宿の感想。
-- URL: https://www.youtube.com/watch?v=SGoaNG-A0C4
-- 取得: 2026-08-24 01:17:27
-- 公開: 2026-08-24T00:01:06+00:00
-- 原文抜粋: ※2026年8月末で新規募集は無期限停止！ ※募集再開は未定 最短30日でWebライターになれるスクール「WWS」 https://wwstd.jp/  ●直近のAI講座・合宿案内  ▼【9/25生配信】非エンジニアでもできるClaude Codeセキュリティ対策講座 https://touchai.jp/courses/XUriQw893oq?utm_source=youtube_live&amp;utm_medium=webshokutv&amp;utm_campaign=20260824  ---- ●株式会社メリルが提供するAI関連商品  ▼なかじを、あなたの会社のAI顧問に！ htt...
+### [ウェブ職TV] ホームディレクトリ起動は絶対NG【Claude Code】 #Shorts
+- URL: https://www.youtube.com/shorts/dQOhdjHcp0c
+- 取得: 2026-08-24 22:15:40
+- 公開: 2026-08-24T15:16:06+00:00
+- 原文抜粋: AIにパソコンの中身を全部触らせてませんか？ホームディレクトリでClaude Codeを起動してはいけない理由。 ▼AIセキュリティを体系的に学ぶなら「Touch AI」 https://touchai.jp  ▼本編（フル解説はこちら） ※公開後にURLを追記  #Shorts #ClaudeCode #AI #セキュリティ
 
-### カテゴリ: AI国内 (6件)
+### [ウェブ職TV] 6万人超える資格系YouTuber「まさるの勉強部屋」におすすめのAI資格を聞いてみた！
+- URL: https://www.youtube.com/watch?v=F4Wl4WbP2vA
+- 取得: 2026-08-24 22:15:40
+- 公開: 2026-08-24T11:00:04+00:00
+- 原文抜粋: ●まさるさん YouTube：https://www.youtube.com/@masaru-study X：https://twitter.com/masaru_benkyou  ●直近のAI講座案内  ▼【9/25生配信】非エンジニアでもできるClaude Codeセキュリティ対策講座 https://touchai.jp/courses/XUriQw893oq?utm_source=youtube&amp;utm_medium=webshokutv&amp;utm_campaign=20260824  ---- ●株式会社メリルが提供するAI関連商品  ▼なかじを、あなたの会社のAI顧問...
 
-### [ITmedia AI+] 「非エンジニアに役立つかで価値が決まる」　たった1時間で開発したツール、なぜGitHub史上最速で伸びた？
-- URL: https://www.itmedia.co.jp/enterprise/articles/2608/24/news010.html
-- 取得: 2026-08-24 01:17:25
-- 公開: 2026-08-23T23:00:00+00:00
-- 原文抜粋: WhatsAppからAIエージェントに指示を出す――。個人の趣味から始まったツールは今、Microsoftの製品基盤にまで使われている。「OpenClaw」開発者がSnowflakeのイベントで語った、コーディングエージェントとの向き合い方をまとめた。
+### [KEITO AI&WEB] イーロンマスクが1番を目指すAI『Grok Bot』を解説【Claude Codeとの違いは？】
+- URL: https://www.youtube.com/watch?v=bAxEO_3pZJ0
+- 取得: 2026-08-24 22:15:40
+- 公開: 2026-08-24T11:00:02+00:00
+- 原文抜粋: SpaceXのAIエージェントツールGrok Botを解説。Claude Codeとの違いは何？  KEITOの公式LINEはこちら LINE：https://lin.ee/1krnxOu  Grok Botはこちら https://x.ai/bot  ★プロセボ｜AIコミュニティ AI活用を実際に操作しながら学ぶワークショップ型AIスクール。 参加申し込みはこちら → https://procevo.biz/  ★Substack（メルマガ）は下記から購読 https://kt-life.net/sns-links/newsletter.html  ▼KEITOの著書 ChatGPT むちゃ...
 
-### [ITmedia AI+] 日本企業のAI投資「成果あり」はわずか13％　アクセンチュアが指摘する“人任せ”の限界
-- URL: https://atmarkit.itmedia.co.jp/ait/articles/2608/24/news047.html
-- 取得: 2026-08-24 01:17:25
-- 公開: 2026-08-23T23:00:00+00:00
-- 原文抜粋: アクセンチュアの調査によれば、日本企業の78％がAI投資拡大に意欲を示す一方、全社的な成果を実感する企業は13％にとどまり、世界平均を大きく下回っている。何が足りていないのか。
+### [AI収益化ラボ] 【大チャンス】Codexで記事作成を簡単に自動化する方法はこれです
+- URL: https://www.youtube.com/watch?v=JY8-jADfZgU
+- 取得: 2026-08-24 22:15:41
+- 公開: 2026-08-24T10:31:35+00:00
+- 原文抜粋: ▼動画内で紹介したプレゼントの受け取りは以下の公式LINEから https://liff.line.me/2006805073-rn36NG8b/landing?follow=%40933hyolt&amp;lp=K22i9b&amp;liff_id=2006805073-rn36NG8b  ▼プレゼントの受け取り方法 ① LINE登録後に送信される配信をタップ ② アンケートに回答（1度登録されたメールアドレスでは2度と受け取れません） ③ 特典サイト受け取り ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ 【奥山のX】 最新のAIの使い方・AIで稼ぐ方法を発信中！ フォローをしておくと、最新...
 
-### [ITmedia AI+] 「社内用語」がAI分析を邪魔する……ニトリが“力技”で解決　「赤羽店の寝具の売上高を出して」可能にできたワケ
-- URL: https://www.itmedia.co.jp/business/articles/2608/24/news058.html
-- 取得: 2026-08-24 01:17:25
-- 公開: 2026-08-23T22:10:00+00:00
-- 原文抜粋: AI分析しようにも「社内用語」が壁になる――多くの企業が抱えるこの課題に、ニトリが挑んだ。地道な作業を積み重ねてつかんだのは、誰もが使いやすいデータ分析基盤だった。
+### [AI収益化ラボ] 【悪用厳禁】Pollo AIを越える大人向け動画の稼ぎ方を公開します
+- URL: https://www.youtube.com/watch?v=9GBa5aBqiEo
+- 取得: 2026-08-24 22:15:41
+- 公開: 2026-08-24T03:09:19+00:00
+- 原文抜粋: ▼動画内で紹介したプレゼントの受け取りは以下の公式LINEから https://liff.line.me/2006805073-rn36NG8b/landing?follow=%40933hyolt&amp;lp=SuN1Ya&amp;liff_id=2006805073-rn36NG8b  ▼プレゼントの受け取り方法 ① LINE登録後に送信される配信をタップ ② アンケートに回答（1度登録されたメールアドレスでは2度と受け取れません） ③ 特典サイト受け取り ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ 【奥山のX】 最新のAIの使い方・AIで稼ぐ方法を発信中！ フォローをしておくと、最新...
 
-### [ITmedia AI+] 口コミ増やしたい、でも“AIが書いた感”は抑えめに……カインズ、「自社商品の投稿」促すAI機能どう開発した？
-- URL: https://www.itmedia.co.jp/business/articles/2608/24/news059.html
-- 取得: 2026-08-24 01:17:25
-- 公開: 2026-08-23T22:05:00+00:00
-- 原文抜粋: カインズは、ユーザーによる口コミ投稿の作文をAIでサポートしている。その機能を開発する上で「AI代筆の文章はユーザーの声なのか」という問いに直面。どのように解決したのだろうか。
+### カテゴリ: AI国内 (8件)
 
-### [ITmedia AI+] AIを日常使いに　西尾市役所が取り組む「少人数対話型」生成AI研修の狙い
-- URL: https://kn.itmedia.co.jp/kn/articles/2608/24/news032.html
-- 取得: 2026-08-24 01:17:25
-- 公開: 2026-08-23T22:00:00+00:00
-- 原文抜粋: 愛知県西尾市は、職員の生成AI活用を促す少人数研修を開始した。情報政策課長が年間約100回の講師役を担う。担当業務別の助言や受講後の相談、専用端末による成果物の作成や検証を支え、日常業務への定着と庁内での活用拡大を図る。
+### [ITmedia AI+] 【復旧済み】「Claude」で障害発生中
+- URL: https://www.itmedia.co.jp/aiplus/article/2608/24/2000000719/
+- 取得: 2026-08-24 22:15:38
+- 公開: 2026-08-24T08:55:15+00:00
+- 原文抜粋: 米AnthropicのAIサービス「Claude」「Claude Code」などで障害が発生している。同社のステータスサイトによると、日本時間の8月24日午後2時27分時点でエラーの原因を特定し、修正作業中という。
 
-### [ITmedia AI+] こんなところに野良AIが？　事例で解説、実際にあった2つの発覚パターンと防衛策
-- URL: https://kn.itmedia.co.jp/kn/articles/2608/24/news039.html
-- 取得: 2026-08-24 01:17:25
-- 公開: 2026-08-23T22:00:00+00:00
-- 原文抜粋: 社内の誰がどのAIを使っているのか、正確に把握できている企業は多くない。しかも問題は、たいてい事後に発覚する。約500社の商談分析と複数の実例から、野良AIとの現実的な付き合い方を探る。
+### [ITmedia AI+] なぜいま30Bクラスのオープンモデルが“熱い”のか　「27BパラメータでOpus 4.6超え」も
+- URL: https://www.itmedia.co.jp/aiplus/article/2608/24/2000000723/
+- 取得: 2026-08-24 22:15:38
+- 公開: 2026-08-24T07:30:16+00:00
+- 原文抜粋: MetaとNVIDIA、Alibabaが30Bクラスのオープンモデルを相次ぎ公開し、国産の「LLM-jp-4 33B」も登場した。このサイズのモデルが今“熱い”理由と留意点を考察する。
 
-### カテゴリ: SNS動向 (5件)
+### [ITmedia AI+] AIエージェント活用を阻む“予算の壁”　セールスフォースらの新機能は打開策になり得るか？
+- URL: https://www.itmedia.co.jp/enterprise/articles/2608/24/news075.html
+- 取得: 2026-08-24 22:15:38
+- 公開: 2026-08-24T04:30:00+00:00
+- 原文抜粋: 企業にとってはあらかじめAI利用コストを想定できないと投資が決まらない。そうなると予算が立てられず、ROIの見通しもつかない。そんな企業のAIエージェント活用に立ちはだかる“予算の壁”を打破するにはどうすればよいのか。セールスフォース、IBM、マネーフォワードが提供を開始した最新機能はその打開策となるのか。
 
-### [Social Media Today] Meta glasses face more challenges
-- URL: https://www.socialmediatoday.com/news/meta-glasses-face-more-challenges/828555/
-- 取得: 2026-08-24 01:17:25
-- 公開: 2026-08-23T23:26:22+00:00
-- 原文抜粋: <p>Sales are strong but customer misuse has prompted bans, restrictions and a new market of apps that will alert people when camera-equipped devices are nearby.&nbsp;</p>  <p>&nbsp;</p>
+### [ITmedia AI+] ChatGPT、Gemini、Claude Sonnet 5の“最強”は？　「速度」と「安定性」を実測して比べてみた
+- URL: https://atmarkit.itmedia.co.jp/ait/articles/2608/24/news049.html
+- 取得: 2026-08-24 22:15:38
+- 公開: 2026-08-24T04:00:00+00:00
+- 原文抜粋: 主要なAIチャットサービスの「ChatGPT」「Gemini」「Claude Sonnet 5」の中で、応答速度が一番速いのはどれなのか。時間帯によって速度は変わるのか。測定値はどれだけ安定しているのか。実測を基に検証する。
 
-### [Social Media Today] Instagram stresses the importance of captions
-- URL: https://www.socialmediatoday.com/news/instagram-stresses-the-importance-of-captions/828554/
-- 取得: 2026-08-24 01:17:25
-- 公開: 2026-08-23T21:59:06+00:00
-- 原文抜粋: <p>The platform offered guidance on what makes text compelling and said creators should aim to tell a story or offer useful information.</p>
+### [ITmedia AI+] 生成AIの品質を“AIで測る”――「LLM as a Judge」を機能させる3つの要素
+- URL: https://atmarkit.itmedia.co.jp/ait/articles/2608/24/news048.html
+- 取得: 2026-08-24 22:15:38
+- 公開: 2026-08-24T04:00:00+00:00
+- 原文抜粋: AIの出力を別のAIが評価する手法「LLM as a Judge」。その基礎をdotDataがブログで解説した。AIにAIを評価させながら、その品質を確保するにはどのような手法が有効なのか。
 
-### [Social Media Today] Will Meta be found guilty of driving social media addiction?
-- URL: https://www.socialmediatoday.com/news/will-meta-be-found-guilty-of-driving-social-media-addiction/828553/
-- 取得: 2026-08-24 01:17:25
-- 公開: 2026-08-23T21:50:41+00:00
-- 原文抜粋: <figure><div><img src="https://imgproxy.divecdn.com/mLE5emoxeoUshuQvbDUkbybxS_2MACEdPBJtGf88h28/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9HZXR0eUltYWdlcy0xMzQ5ODAwMTI3X1pISGFqUFouanBn.webp" /></div></figure><p>A high-profile case in the U.S. got underway last week and the co...
+### [ITmedia AI+] AI×設計開発ニュースまとめ（2026年5～6月）
+- URL: https://monoist.itmedia.co.jp/mn/articles/2608/24/news020.html
+- 取得: 2026-08-24 22:15:38
+- 公開: 2026-08-24T03:30:00+00:00
+- 原文抜粋: MONOistに掲載した主要な記事を、読みやすいPDF形式の電子ブックレットに再編集した「エンジニア電子ブックレット」。今回は、設計や解析など製品開発の現場で活用が進みつつあるAI関連のニュースをまとめた「AI×設計開発ニュースまとめ（2026年5～6月）」をお送りします。
 
-### [Social Media Today] X launches MCP server
-- URL: https://www.socialmediatoday.com/news/x-launches-mcp-server/828552/
-- 取得: 2026-08-24 01:17:25
-- 公開: 2026-08-23T21:44:23+00:00
-- 原文抜粋: <p>The system allows advertisers to connect their campaigns to the artificial intelligence tool of their choice and use it to guide their promotions.</p>
+### [ITmedia AI+] Sakana AI、防衛省の「情報分析」をAIで支援　自衛隊の指揮統制システム高度化に続き
+- URL: https://www.itmedia.co.jp/aiplus/article/2608/24/2000000711/
+- 取得: 2026-08-24 22:15:38
+- 公開: 2026-08-24T03:17:22+00:00
+- 原文抜粋: Sakana AIは、防衛省における情報の分析業務を支援するAIの開発に関する契約を締結したと発表した。
 
-### [Social Media Today] YouTube expands Channels experiment
-- URL: https://www.socialmediatoday.com/news/youtube-expands-channels-experiment/828551/
-- 取得: 2026-08-24 01:17:25
+### [ITmedia AI+] Codex、使用量をまたリセットへ　“消費早すぎ”問題に対応
+- URL: https://www.itmedia.co.jp/aiplus/article/2608/24/2000000703/
+- 取得: 2026-08-24 22:15:38
+- 公開: 2026-08-24T00:58:17+00:00
+- 原文抜粋: 一部ユーザーで使用量が想定より早く消費される問題が確認されたことを受けた対応。
+
+### カテゴリ: AI研究者ブログ (2件)
+
+### [Simon Willison's Weblog] llm-anthropic 0.27
+- URL: https://simonwillison.net/2026/Aug/24/llm-anthropic/
+- 取得: 2026-08-24 22:15:38
+- 公開: 2026-08-24T16:27:04+00:00
+- 原文抜粋: <p><strong>Release:</strong> <a href="https://github.com/simonw/llm-anthropic/releases/tag/0.27">llm-anthropic 0.27</a></p>         <p>This release of the Anthropic plugin for <a href="https://llm.datasette.io/">LLM</a> mainly provides compatibility with the recently released <a href="https://github...
+
+### [Simon Willison's Weblog] Your executable is a SQLite database
+- URL: https://simonwillison.net/2026/Aug/24/your-executable-is-a-sqlite-database/
+- 取得: 2026-08-24 22:15:38
+- 公開: 2026-08-24T11:38:15+00:00
+- 原文抜粋: <p><strong><a href="https://fzakaria.com/2026/08/23/your-executable-is-a-sqlite-database">Your executable is a SQLite database</a></strong></p> Farid Zakaria describes a neat Linux pattern for creating a SQLite database file that can be directly used as an executable binary.</p> <p>The trick sets th...
+
+### カテゴリ: SNS動向 (1件)
+
+### [Social Media Today] YouTube expands Stations experiment
+- URL: https://www.socialmediatoday.com/news/youtube-expands-stations-experiment/828551/
+- 取得: 2026-08-24 22:15:39
 - 公開: 2026-08-23T21:40:52+00:00
-- 原文抜粋: <p>The platform is opening up its television-style streaming feature to a new group of musicians, podcasters and media creators but the test pool is still limited.</p>
+- 原文抜粋: <p>The platform is opening up its television-style streaming feature to a new group of musicians, podcasters and media creators, but the test pool is still limited.</p>
 
 ---
 
 ## 📚 継続ソース (参照用・一覧のみ)
 
-### AI動画(日本語) (4件)
-- [KEITO AI&WEB] 【ガチ検証】Seedance 2.5 × Claude Codeなら丸投げである程度イケるんじゃないか？ — https://www.youtube.com/watch?v=qzfNQLVmAn8
-- [Akiyama Yuta] 【Fish Audioの使い方】AIショート動画の「声」を自然にする完全攻略法 — https://www.youtube.com/watch?v=eg8c77qkjkU
-- [AI収益化ラボ] 【超有料級】AIで大バズを連発！1日たった10分で月80万稼ぐ裏技を公開 — https://www.youtube.com/watch?v=upI-0tL8lDY
-- [にゃんたのAI実践] ChatGPTデスクトップアプリ「Work」が便利なので基本から実践的な使い方まで解説してみた — https://www.youtube.com/watch?v=N-UvuJOvbOc
+### AI公式 (1件)
+- [OpenAI Codex Releases] 0.149.1 — https://github.com/openai/codex/releases/tag/rust-v0.149.1
 
-### AI国内 (2件)
+### AI動画(日本語) (1件)
+- [ウェブ職TV] 2泊3日のClaude Code合宿の感想。 — https://www.youtube.com/watch?v=SGoaNG-A0C4
+
+### AI国内 (7件)
+- [ITmedia AI+] 「非エンジニアに役立つかで価値が決まる」　たった1時間で開発したツール、なぜGitHub史上最速で伸びた？ — https://www.itmedia.co.jp/enterprise/articles/2608/24/news010.html
+- [ITmedia AI+] 日本企業のAI投資「成果あり」はわずか13％　アクセンチュアが指摘する“人任せ”の限界 — https://atmarkit.itmedia.co.jp/ait/articles/2608/24/news047.html
+- [ITmedia AI+] 「社内用語」がAI分析を邪魔する……ニトリが“力技”で解決　「赤羽店の寝具の売上高を出して」可能にできたワケ — https://www.itmedia.co.jp/business/articles/2608/24/news058.html
+- [ITmedia AI+] 口コミ増やしたい、でも“AIが書いた感”は抑えめに……カインズ、「自社商品の投稿」促すAI機能どう開発した？ — https://www.itmedia.co.jp/business/articles/2608/24/news059.html
+- [ITmedia AI+] AIを日常使いに　西尾市役所が取り組む「少人数対話型」生成AI研修の狙い — https://kn.itmedia.co.jp/kn/articles/2608/24/news032.html
+- [ITmedia AI+] こんなところに野良AIが？　事例で解説、実際にあった2つの発覚パターンと防衛策 — https://kn.itmedia.co.jp/kn/articles/2608/24/news039.html
 - [ITmedia AI+] ロボットの費用対効果が3年以内に人手を上回る――インテルが調査結果から洞察 — https://monoist.itmedia.co.jp/mn/articles/2608/24/news061.html
-- [ITmedia AI+] OpenAI、「GPT-5.6 Sol」のAPI料金を値下げ　入力20％出力33％安く、11月21日まで — https://www.itmedia.co.jp/aiplus/article/2608/23/2000000700/
 
-### AI研究者ブログ (5件)
+### AI研究者ブログ (2件)
 - [Simon Willison's Weblog] Anthropic’s best AI model struggles to attract users as cheaper tools thrive — https://simonwillison.net/2026/Aug/23/anthropics-best-ai-model-struggles-to-attract-users-as-cheaper-t/
 - [Simon Willison's Weblog] Quoting Drew Breunig — https://simonwillison.net/2026/Aug/23/drew-breunig/
-- [Simon Willison's Weblog] Quoting Linus Torvalds — https://simonwillison.net/2026/Aug/22/linus-torvalds/
-- [Simon Willison's Weblog] llm 0.33 — https://simonwillison.net/2026/Aug/22/llm/
-- [Simon Willison's Weblog] More than just code review — https://simonwillison.net/2026/Aug/22/more-than-just-code-review/
+
+### SNS動向 (4件)
+- [Social Media Today] Meta glasses face more challenges — https://www.socialmediatoday.com/news/meta-glasses-face-more-challenges/828555/
+- [Social Media Today] Instagram stresses the importance of captions — https://www.socialmediatoday.com/news/instagram-stresses-the-importance-of-captions/828554/
+- [Social Media Today] Will Meta be found guilty of driving social media addiction? — https://www.socialmediatoday.com/news/will-meta-be-found-guilty-of-driving-social-media-addiction/828553/
+- [Social Media Today] X launches MCP server — https://www.socialmediatoday.com/news/x-launches-mcp-server/828552/

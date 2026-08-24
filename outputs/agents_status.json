@@ -1,6 +1,13 @@
 {
-  "generated_at": "2026-08-24T01:17:50Z",
+  "generated_at": "2026-08-24T22:16:04Z",
   "recent_works": [
+    {
+      "date": "2026-08-23",
+      "filename": "2026-08-23-seo-weekly-digest.md",
+      "title": "SEO週次ダイジェスト（2026-08-23）",
+      "business": "seo",
+      "path": "/ops?file=2026-08-23-seo-weekly-digest.md#sec-docs"
+    },
     {
       "date": "2026-08-17",
       "filename": "2026-08-17-seo-profit-loop-run.md",
@@ -49,13 +56,6 @@
       "title": "gubble-url-prefix SEO自動レポート（2026-08-17）",
       "business": "gubble",
       "path": "/ops?file=2026-08-17-gubble-url-prefix-seo-report.md#sec-docs"
-    },
-    {
-      "date": "2026-08-17",
-      "filename": "2026-08-17-gubble-seo-report.md",
-      "title": "gubble SEO自動レポート（2026-08-17）",
-      "business": "gubble",
-      "path": "/ops?file=2026-08-17-gubble-seo-report.md#sec-docs"
     }
   ],
   "tasks_open": [
@@ -91,7 +91,7 @@
   "per_business_recent": [
     {
       "business": "seo",
-      "count": 2
+      "count": 3
     },
     {
       "business": "gubble",
@@ -173,7 +173,7 @@
     },
     {
       "date": "2026-08-23",
-      "count": 0
+      "count": 1
     },
     {
       "date": "2026-08-24",
@@ -182,8 +182,8 @@
   ],
   "cma_apps": [],
   "totals": {
-    "consul_work_total": 146,
-    "recent_7d_total": 10,
+    "consul_work_total": 147,
+    "recent_7d_total": 11,
     "tasks_open_total": 4
   }
 }

@@ -1,6 +1,29 @@
 # AIハブ 2026-08-24 (過去24時間・AI+SNSアルゴリズム動向)
 
+## AIニュース
+
+### How to encourage smarter AI use in the classroom
+This article is from Making AI Work, MIT Technology Review’s limited-run newsletter examining how to apply LLMs across industries. To receive it in your inbox, sign up here. Chatbots took many schools...
+出典: https://www.technologyreview.com/2026/08/24/1142630/ai-school-classroom-policies/
+
+### Kids outlearn AI—and we still don’t know why
+People have been talking to each other for at least 100,000 years, as best we can tell. And in all that time, there has been only one thing in the world that could learn a human language to perfect fl...
+出典: https://www.technologyreview.com/2026/08/24/1141740/kids-machines-language-learning/
+
+### AI is hitting entry-level jobs hardest, Stanford study finds
+Young employment in AI-impacted fields down 19% compared to more AI-resistant occupations.
+出典: https://arstechnica.com/ai/2026/08/ai-is-hitting-entry-level-jobs-hardest-stanford-study-finds/
+
+### Nvidia senior manager linked to Supermicro scheme smuggling AI servers to China
+Nvidia worker indicted after Jensen Huang scolded Supermicro for AI server smuggling.
+出典: https://arstechnica.com/tech-policy/2026/08/nvidia-senior-manager-linked-to-supermicro-scheme-smuggling-ai-servers-to-china/
+
+
 ## AI公式
+
+### Advancing price-performance for developers with GPT‑5.6 in Kiro
+GPT‑5.6 is now available in Kiro, helping developers plan, build, review, and test software with better price-performance.
+出典: https://openai.com/index/gpt-5-6-in-kiro
 
 ### 0.149.1
 <h2>Changelog</h2> <p>Full Changelog: <a class="commit-link" href="https://github.com/openai/codex/compare/rust-v0.149.0...rust-v0.149.1"><tt>rust-v0.149.0...rust-v0.149.1</tt></a></p>
@@ -9,28 +32,64 @@
 
 ## AI動画(日本語)
 
+### ホームディレクトリ起動は絶対NG【Claude Code】 #Shorts
+AIにパソコンの中身を全部触らせてませんか？ホームディレクトリでClaude Codeを起動してはいけない理由。 ▼AIセキュリティを体系的に学ぶなら「Touch AI」 https://touchai.jp  ▼本編（フル解説はこちら） ※公開後にURLを追記  #Shorts #ClaudeCode #AI #セキュリティ
+出典: https://www.youtube.com/shorts/dQOhdjHcp0c
+
+### 6万人超える資格系YouTuber「まさるの勉強部屋」におすすめのAI資格を聞いてみた！
+●まさるさん YouTube：https://www.youtube.com/@masaru-study X：https://twitter.com/masaru_benkyou  ●直近のAI講座案内  ▼【9/25生配信】非エンジニアでもできるClaude Codeセキュリティ対策講座 https://touchai.jp/courses/XUriQw893oq?utm_source=yout...
+出典: https://www.youtube.com/watch?v=F4Wl4WbP2vA
+
 ### 2泊3日のClaude Code合宿の感想。
-※2026年8月末で新規募集は無期限停止！ ※募集再開は未定 最短30日でWebライターになれるスクール「WWS」 https://wwstd.jp/  ●直近のAI講座・合宿案内  ▼【9/25生配信】非エンジニアでもできるClaude Codeセキュリティ対策講座 https://touchai.jp/courses/XUriQw893oq?utm_source=youtube_live&am...
+※2026年8月末で新規募集は無期限停止！ ※募集再開は未定 最短30日でWebライターになれるスクール「WWS」 https://wwstd.jp/  非エンジニア向けITリテラシー向上講座(全6回) https://touchai.jp/series/093c37b6-a1aa-43c2-8956-d22a694270a5/enroll?utm_source=youtube_live&amp;...
 出典: https://www.youtube.com/watch?v=SGoaNG-A0C4
 
-### 【ガチ検証】Seedance 2.5 × Claude Codeなら丸投げである程度イケるんじゃないか？
-Seedance 2.5をClaude Codeで利用して、元動画をアニメ風動画にする。やってみたくてなっただけです。  元動画 https://youtu.be/cJpguNV7VRs  KEITOの公式LINEはこちら LINE：https://lin.ee/1krnxOu  ★プロセボ｜AIコミュニティ AI活用を実際に操作しながら学ぶワークショップ型AIスクール。 参加申し込みはこちら →...
-出典: https://www.youtube.com/watch?v=qzfNQLVmAn8
+### イーロンマスクが1番を目指すAI『Grok Bot』を解説【Claude Codeとの違いは？】
+SpaceXのAIエージェントツールGrok Botを解説。Claude Codeとの違いは何？  KEITOの公式LINEはこちら LINE：https://lin.ee/1krnxOu  Grok Botはこちら https://x.ai/bot  ★プロセボ｜AIコミュニティ AI活用を実際に操作しながら学ぶワークショップ型AIスクール。 参加申し込みはこちら → https://proce...
+出典: https://www.youtube.com/watch?v=bAxEO_3pZJ0
 
-### 【Fish Audioの使い方】AIショート動画の「声」を自然にする完全攻略法
-▼ Fish Audioリンク（1周年記念50%OFFキャンペーン中！） 公式サイト:  https://fish.audio/?fpr=akiyama91 ※今なら周年記念で年間プランが50%OFF（3ヶ月分オフ）でご利用いただけます。  ▼ 目次 00:00 AIショート動画における「声」の課題とFish Audioの概要 01:08 Fish Audioの使い方：Voice Designer...
-出典: https://www.youtube.com/watch?v=eg8c77qkjkU
+### 【大チャンス】Codexで記事作成を簡単に自動化する方法はこれです
+▼動画内で紹介したプレゼントの受け取りは以下の公式LINEから https://liff.line.me/2006805073-rn36NG8b/landing?follow=%40933hyolt&amp;lp=K22i9b&amp;liff_id=2006805073-rn36NG8b  ▼プレゼントの受け取り方法 ① LINE登録後に送信される配信をタップ ② アンケートに回答（1度登録され...
+出典: https://www.youtube.com/watch?v=JY8-jADfZgU
 
-### 【超有料級】AIで大バズを連発！1日たった10分で月80万稼ぐ裏技を公開
-▼動画内で紹介したプレゼントの受け取りは以下の公式LINEから https://liff.line.me/2006805073-rn36NG8b/landing?follow=%40933hyolt&amp;lp=feSZog&amp;liff_id=2006805073-rn36NG8b  ▼プレゼントの受け取り方法 ① LINE登録後に送信される配信をタップ ② アンケートに回答（1度登録され...
-出典: https://www.youtube.com/watch?v=upI-0tL8lDY
-
-### ChatGPTデスクトップアプリ「Work」が便利なので基本から実践的な使い方まで解説してみた
-🏢【受付中】企業様向けAI活用の相談窓口を設置しています。 「AIで業務効率化できるか一緒に考えてほしい」「AIがわかる人を育てたい」という企業様向けに、研修から業務改善の定着まで伴走支援いたします。 ▼登録はこちら（登録は1分ほど・本目的以外では営業しません） https://forms.gle/sPVYtBkZpeaJ7URS9   ------------------------------...
-出典: https://www.youtube.com/watch?v=N-UvuJOvbOc
+### 【悪用厳禁】Pollo AIを越える大人向け動画の稼ぎ方を公開します
+▼動画内で紹介したプレゼントの受け取りは以下の公式LINEから https://liff.line.me/2006805073-rn36NG8b/landing?follow=%40933hyolt&amp;lp=SuN1Ya&amp;liff_id=2006805073-rn36NG8b  ▼プレゼントの受け取り方法 ① LINE登録後に送信される配信をタップ ② アンケートに回答（1度登録され...
+出典: https://www.youtube.com/watch?v=9GBa5aBqiEo
 
 
 ## AI国内
+
+### 【復旧済み】「Claude」で障害発生中
+米AnthropicのAIサービス「Claude」「Claude Code」などで障害が発生している。同社のステータスサイトによると、日本時間の8月24日午後2時27分時点でエラーの原因を特定し、修正作業中という。
+出典: https://www.itmedia.co.jp/aiplus/article/2608/24/2000000719/
+
+### なぜいま30Bクラスのオープンモデルが“熱い”のか　「27BパラメータでOpus 4.6超え」も
+MetaとNVIDIA、Alibabaが30Bクラスのオープンモデルを相次ぎ公開し、国産の「LLM-jp-4 33B」も登場した。このサイズのモデルが今“熱い”理由と留意点を考察する。
+出典: https://www.itmedia.co.jp/aiplus/article/2608/24/2000000723/
+
+### AIエージェント活用を阻む“予算の壁”　セールスフォースらの新機能は打開策になり得るか？
+企業にとってはあらかじめAI利用コストを想定できないと投資が決まらない。そうなると予算が立てられず、ROIの見通しもつかない。そんな企業のAIエージェント活用に立ちはだかる“予算の壁”を打破するにはどうすればよいのか。セールスフォース、IBM、マネーフォワードが提供を開始した最新機能はその打開策となるのか。
+出典: https://www.itmedia.co.jp/enterprise/articles/2608/24/news075.html
+
+### ChatGPT、Gemini、Claude Sonnet 5の“最強”は？　「速度」と「安定性」を実測して比べてみた
+主要なAIチャットサービスの「ChatGPT」「Gemini」「Claude Sonnet 5」の中で、応答速度が一番速いのはどれなのか。時間帯によって速度は変わるのか。測定値はどれだけ安定しているのか。実測を基に検証する。
+出典: https://atmarkit.itmedia.co.jp/ait/articles/2608/24/news049.html
+
+### 生成AIの品質を“AIで測る”――「LLM as a Judge」を機能させる3つの要素
+AIの出力を別のAIが評価する手法「LLM as a Judge」。その基礎をdotDataがブログで解説した。AIにAIを評価させながら、その品質を確保するにはどのような手法が有効なのか。
+出典: https://atmarkit.itmedia.co.jp/ait/articles/2608/24/news048.html
+
+### AI×設計開発ニュースまとめ（2026年5～6月）
+MONOistに掲載した主要な記事を、読みやすいPDF形式の電子ブックレットに再編集した「エンジニア電子ブックレット」。今回は、設計や解析など製品開発の現場で活用が進みつつあるAI関連のニュースをまとめた「AI×設計開発ニュースまとめ（2026年5～6月）」をお送りします。
+出典: https://monoist.itmedia.co.jp/mn/articles/2608/24/news020.html
+
+### Sakana AI、防衛省の「情報分析」をAIで支援　自衛隊の指揮統制システム高度化に続き
+Sakana AIは、防衛省における情報の分析業務を支援するAIの開発に関する契約を締結したと発表した。
+出典: https://www.itmedia.co.jp/aiplus/article/2608/24/2000000711/
+
+### Codex、使用量をまたリセットへ　“消費早すぎ”問題に対応
+一部ユーザーで使用量が想定より早く消費される問題が確認されたことを受けた対応。
+出典: https://www.itmedia.co.jp/aiplus/article/2608/24/2000000703/
 
 ### 「非エンジニアに役立つかで価値が決まる」　たった1時間で開発したツール、なぜGitHub史上最速で伸びた？
 WhatsAppからAIエージェントに指示を出す――。個人の趣味から始まったツールは今、Microsoftの製品基盤にまで使われている。「OpenClaw」開発者がSnowflakeのイベントで語った、コーディングエージェントとの向き合い方をまとめた。
@@ -60,12 +119,16 @@ AI分析しようにも「社内用語」が壁になる――多くの企業が
 インテルがロボティクス導入に関する調査結果を発表。同調査では60％が5年以内に自社で多数のロボットを運用すると予想し、67％が2030年までに人間とロボットが協働する労働力の管理体制が整うと回答した一方で、人間とロボットの協働に関する正式な戦略を策定している組織が40％にとどまるなどギャップが存在することが明らかになった。
 出典: https://monoist.itmedia.co.jp/mn/articles/2608/24/news061.html
 
-### OpenAI、「GPT-5.6 Sol」のAPI料金を値下げ　入力20％出力33％安く、11月21日まで
-OpenAIは、フラグシップモデル「GPT-5.6 Sol」のAPI利用料金を期間限定で最大33％引き下げた。入力4ドル、出力20ドルとするプロモーション価格を少なくとも3カ月間適用し、ChatGPT WorkやCodexのクレジット消費量も削減。利用量や支出上限を追跡・制御できる管理機能も告知している。
-出典: https://www.itmedia.co.jp/aiplus/article/2608/23/2000000700/
-
 
 ## AI研究者ブログ
+
+### llm-anthropic 0.27
+<p><strong>Release:</strong> <a href="https://github.com/simonw/llm-anthropic/releases/tag/0.27">llm-anthropic 0.27</a></p>         <p>This release of the Anthropic plugin for <a href="https://llm.dat...
+出典: https://simonwillison.net/2026/Aug/24/llm-anthropic/
+
+### Your executable is a SQLite database
+<p><strong><a href="https://fzakaria.com/2026/08/23/your-executable-is-a-sqlite-database">Your executable is a SQLite database</a></strong></p> Farid Zakaria describes a neat Linux pattern for creatin...
+出典: https://simonwillison.net/2026/Aug/24/your-executable-is-a-sqlite-database/
 
 ### Anthropic’s best AI model struggles to attract users as cheaper tools thrive
 <p><strong><a href="https://www.ft.com/content/5ee49718-c258-4f01-aa32-7e5b76ae5245">Anthropic’s best AI model struggles to attract users as cheaper tools thrive</a></strong></p> A few interesting num...
@@ -75,23 +138,11 @@ OpenAIは、フラグシップモデル「GPT-5.6 Sol」のAPI利用料金を期
 <blockquote cite="https://www.dbreunig.com/2026/08/23/fable-the-end-of-moore-s-law.html"><p>Prior to Fable, it felt silly to waste <em>too</em> much time improving your coding harness or context strat...
 出典: https://simonwillison.net/2026/Aug/23/drew-breunig/
 
-### Quoting Linus Torvalds
-<blockquote cite="https://github.com/torvalds/linux/commit/818bebeb63dd6bf5f4e07e145f6cdbace520a34c"><p>And this was a debug session from hell, enormously helped by an AI doing much of the grunt-work....
-出典: https://simonwillison.net/2026/Aug/22/linus-torvalds/
-
-### llm 0.33
-<p><strong>Release:</strong> <a href="https://github.com/simonw/llm/releases/tag/0.33">llm 0.33</a></p>         <p>My highlights from this release:</p> <blockquote> <ul> <li>Upgraded to the OpenAI Pyt...
-出典: https://simonwillison.net/2026/Aug/22/llm/
-
-### More than just code review
-<p>The key skill required to make productive use of coding agents is being able to confidently instruct them on how to make changes and then confidently verify that those changes have been applied in ...
-出典: https://simonwillison.net/2026/Aug/22/more-than-just-code-review/
-
 
 ## SNS動向
 
 ### Meta glasses face more challenges
-<p>Sales are strong but customer misuse has prompted bans, restrictions and a new market of apps that will alert people when camera-equipped devices are nearby.&nbsp;</p>  <p>&nbsp;</p>
+<p>Sales are strong, but customer misuse has prompted bans, restrictions and a new market of apps that will alert people when camera-equipped devices are nearby.&nbsp;</p>
 出典: https://www.socialmediatoday.com/news/meta-glasses-face-more-challenges/828555/
 
 ### Instagram stresses the importance of captions
@@ -106,6 +157,6 @@ OpenAIは、フラグシップモデル「GPT-5.6 Sol」のAPI利用料金を期
 <p>The system allows advertisers to connect their campaigns to the artificial intelligence tool of their choice and use it to guide their promotions.</p>
 出典: https://www.socialmediatoday.com/news/x-launches-mcp-server/828552/
 
-### YouTube expands Channels experiment
-<p>The platform is opening up its television-style streaming feature to a new group of musicians, podcasters and media creators but the test pool is still limited.</p>
-出典: https://www.socialmediatoday.com/news/youtube-expands-channels-experiment/828551/
+### YouTube expands Stations experiment
+<p>The platform is opening up its television-style streaming feature to a new group of musicians, podcasters and media creators, but the test pool is still limited.</p>
+出典: https://www.socialmediatoday.com/news/youtube-expands-stations-experiment/828551/

@@ -150,8 +150,10 @@ class CourseCardRestorationTests(unittest.TestCase):
             re.DOTALL,
         )
         self.assertIsNotNone(sticky)
-        self.assertIn("AIコーディング講習", sticky.group(0))
-        self.assertIn("120分・11,000円", sticky.group(0))
+        self.assertIn("AI個別講習", sticky.group(0))
+        self.assertIn("60分・5,500円", sticky.group(0))
+        self.assertIn(f"href='{INDIVIDUAL_COURSE_URL}'", sticky.group(0))
+        self.assertNotIn("AIコーディング講習", sticky.group(0))
         self.assertNotIn("AI自作講習", sticky.group(0))
 
     def test_restores_the_ai_coding_course_material_name_and_learning_goal(self) -> None:

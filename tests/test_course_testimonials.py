@@ -379,14 +379,16 @@ class CourseTestimonialsTest(unittest.TestCase):
 
         sticky_cta = portal._render_sticky_cta()
         self.assertIn(
-            "<nav class='sticky-cta' id='sticky-cta' aria-label='AIコーディング講習とAIエージェント講習の固定CTA'",
+            "<nav class='sticky-cta' id='sticky-cta' aria-label='AI個別講習とAIエージェント講習の固定CTA'",
             sticky_cta,
         )
         self.assertIn(
             "class='sticky-cta-btn sticky-cta-btn--consult' "
-            "href='https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/S7GERYVDIPRV76DKXCC3WJWH'",
+            "href='https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/TO3XHZT6XP3OM4QBDYMW7TZP'",
             sticky_cta,
         )
+        self.assertIn("<span>AI個別講習</span><small>60分・5,500円</small>", sticky_cta)
+        self.assertNotIn("AIコーディング講習", sticky_cta)
         self.assertIn(
             "class='sticky-cta-btn sticky-cta-btn--agent' "
             "href='https://goodbouldering.com/?pid=188553378'",

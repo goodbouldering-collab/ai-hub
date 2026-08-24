@@ -12041,10 +12041,10 @@ def _render_footer(today: str) -> str:
 
 
 def _render_sticky_cta() -> str:
-    """モバイルでスクロール後に現れる、コーディング講習と基本講習の固定CTA。"""
+    """モバイルでスクロール後に現れる、個別講習と基本講習の固定CTA。"""
     return (
-        "<nav class='sticky-cta' id='sticky-cta' aria-label='AIコーディング講習とAIエージェント講習の固定CTA' aria-hidden='true'>"
-        f"<a class='sticky-cta-btn sticky-cta-btn--consult' href='{AI_CODING_BOOK_URL}' target='_blank' rel='noopener'><span>AIコーディング講習</span><small>120分・11,000円</small></a>"
+        "<nav class='sticky-cta' id='sticky-cta' aria-label='AI個別講習とAIエージェント講習の固定CTA' aria-hidden='true'>"
+        f"<a class='sticky-cta-btn sticky-cta-btn--consult' href='{INDIVIDUAL_COURSE_BOOK_URL}' target='_blank' rel='noopener'><span>AI個別講習</span><small>60分・5,500円</small></a>"
         f"<a class='sticky-cta-btn sticky-cta-btn--agent' href='{AI_AGENT_COURSE_URL}' target='_blank' rel='noopener'><span>AIエージェント講習</span><small>120分・5,500円</small></a>"
         "</nav>"
     )

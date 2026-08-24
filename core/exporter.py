@@ -38,8 +38,8 @@ def export_daily_ai_news_snapshot(
             "url": article.url,
             "source": article.source,
             "published": article.published or article.fetched_at,
-            "kid_summary": info.get("kid_summary", ""),
-            "japan_angle": info.get("japan_angle", ""),
+            "plain_summary": info.get("plain_summary", ""),
+            "story_example": info.get("story_example", ""),
         }
         try:
             clean_candidate = normalize_daily_ai_news_item(candidate)
@@ -94,8 +94,8 @@ def export_top10_json(
             "title": info.get("title_ja") or a.title,
             "orig_title": a.title,
             "summary": info.get("summary", ""),
-            "kid_summary": info.get("kid_summary", ""),
-            "japan_angle": info.get("japan_angle", ""),
+            "plain_summary": info.get("plain_summary", ""),
+            "story_example": info.get("story_example", ""),
             "japan_relevance": info.get("japan_relevance", 0),
             "codex_relevance": info.get("codex_relevance", 0),
             "url": a.url,

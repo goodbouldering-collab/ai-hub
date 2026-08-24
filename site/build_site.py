@@ -1579,6 +1579,133 @@ CONTENT_CSS = """
   .content-wrap .daily-ai-news__item { grid-template-columns: 32px minmax(0, 1fr); padding: 14px 12px; }
   .content-wrap .daily-ai-news__rank { width: 32px; height: 32px; border-radius: 10px; }
 }
+.codex-update-page .container {
+  max-width: 1280px;
+}
+.codex-update-page main > header {
+  max-width: 1120px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 38px;
+}
+.codex-update-page main > header h1 {
+  font-size: clamp(34px, 4.6vw, 54px);
+  line-height: 1.24;
+}
+.content-wrap--codex-update {
+  max-width: 1120px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  line-height: 1.9;
+}
+.content-wrap--codex-update p,
+.content-wrap--codex-update ul,
+.content-wrap--codex-update ol {
+  font-size: clamp(17px, 1.65vw, 19px);
+  line-height: 1.9;
+}
+.content-wrap--codex-update h2 {
+  margin: 2em 0 .75em;
+  padding: 0 0 12px;
+  border: 0;
+  border-bottom: 1px solid rgba(23, 48, 66, .18);
+  border-radius: 0;
+  background: transparent;
+  font-size: clamp(25px, 3.3vw, 34px);
+}
+.content-wrap--codex-update h3 {
+  font-size: clamp(17px, 2vw, 21px);
+}
+.content-wrap--codex-update .daily-ai-news,
+.content-wrap--codex-update .codex-update-guide {
+  max-width: none;
+}
+.content-wrap--codex-update .daily-ai-news {
+  margin-bottom: 42px;
+  padding: clamp(24px, 4vw, 38px);
+}
+.content-wrap--codex-update .daily-ai-news__lead,
+.content-wrap--codex-update .codex-update-guide__lead {
+  font-size: clamp(18px, 1.8vw, 21px);
+  line-height: 1.85;
+}
+.content-wrap--codex-update .daily-ai-news__date,
+.content-wrap--codex-update .codex-update-guide__date {
+  font-size: 14px;
+}
+.content-wrap--codex-update .daily-ai-news__copy h3 {
+  font-size: clamp(18px, 2vw, 21px);
+  line-height: 1.48;
+}
+.content-wrap--codex-update .daily-ai-news__copy p {
+  font-size: 16px;
+  line-height: 1.78;
+}
+.content-wrap--codex-update .daily-ai-news__copy strong {
+  font-size: 13px;
+}
+.content-wrap--codex-update .daily-ai-news__story {
+  padding-top: 8px;
+  border-top: 1px solid rgba(23, 48, 66, .10);
+}
+.content-wrap--codex-update .codex-update-guide {
+  margin: 0 0 28px;
+  padding: clamp(28px, 5vw, 48px) 0;
+  border-top: 3px solid #2dcba1;
+  border-bottom: 1px solid rgba(23, 48, 66, .16);
+  background: transparent;
+}
+.content-wrap--codex-update .codex-update-guide__header {
+  max-width: 880px;
+}
+.content-wrap--codex-update .codex-update-guide__eyebrow {
+  margin: 0 0 8px;
+  color: #176b5a;
+  font-size: 14px;
+  font-weight: 850;
+  letter-spacing: .06em;
+}
+.content-wrap--codex-update .codex-update-guide .codex-update-guide__title {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #10243c;
+  font-size: clamp(29px, 4vw, 42px);
+}
+.content-wrap--codex-update .codex-update-guide__lead {
+  margin: 14px 0 0;
+  color: #334155;
+}
+.content-wrap--codex-update .codex-update-guide__date {
+  margin: 12px 0 0;
+  color: var(--muted);
+}
+.content-wrap--codex-update .codex-use-story {
+  padding: 22px 24px 24px;
+}
+.content-wrap--codex-update .codex-use-story__title {
+  font-size: 15px;
+}
+.content-wrap--codex-update .codex-use-story dt {
+  font-size: 14px;
+}
+.content-wrap--codex-update .codex-use-story dd {
+  font-size: 16px;
+  line-height: 1.8;
+}
+@media (max-width: 540px) {
+  .codex-update-page .container { padding: 82px 16px 60px; }
+  .content-wrap--codex-update .daily-ai-news { padding: 22px 16px; }
+  .content-wrap--codex-update .codex-update-guide { padding: 30px 0; }
+  .content-wrap--codex-update .daily-ai-news__copy p,
+  .content-wrap--codex-update .codex-use-story dd { font-size: 16px; }
+}
 .content-wrap strong { color: var(--text); font-weight: 700; }
 .content-wrap img {
   display: block;
@@ -3890,7 +4017,12 @@ def render_content_page(
         ld = _build_jsonld(jsonld_kind, meta, title, page_url)
         if ld:
             parts.append(f"<script type='application/ld+json'>{ld}</script>")
-    body_class = " class='lecture-page'" if kind == "lecture" else ""
+    body_classes: list[str] = []
+    if kind == "lecture":
+        body_classes.append("lecture-page")
+    if kind == "blog" and str(meta.get("content_series") or "") == "codex-update-log":
+        body_classes.append("codex-update-page")
+    body_class = f" class='{' '.join(body_classes)}'" if body_classes else ""
     parts.append(f"<style>{MASTER_CONTENT_CSS}</style></head><body{body_class}><div class='container'>")
     parts.append(ADMIN_BUTTON_HTML)
     parts.append(nav_html)
@@ -3936,6 +4068,8 @@ def render_content_page(
             "</figure>"
         )
     content_class = "content-wrap lecture-content" if kind == "lecture" else "content-wrap"
+    if kind == "blog" and str(meta.get("content_series") or "") == "codex-update-log":
+        content_class += " content-wrap--codex-update"
     content_id = " id='lecture-body'" if kind == "lecture" else ""
     parts.append(f"<div class='{content_class}'{content_id}>")
     lead_quote = str(meta.get("lead_quote") or "").strip()

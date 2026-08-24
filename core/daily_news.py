@@ -15,8 +15,8 @@ REQUIRED_ITEM_FIELDS = (
     "url",
     "source",
     "published",
-    "kid_summary",
-    "japan_angle",
+    "plain_summary",
+    "story_example",
 )
 
 
@@ -46,8 +46,8 @@ def normalize_daily_ai_news_item(item: Any) -> dict[str, str]:
         "url": _clean_url(item["url"]),
         "source": _clean_text(item["source"], maximum=100),
         "published": _clean_text(item["published"], maximum=100),
-        "kid_summary": _clean_text(item["kid_summary"], maximum=180),
-        "japan_angle": _clean_text(item["japan_angle"], maximum=180),
+        "plain_summary": _clean_text(item["plain_summary"], maximum=180),
+        "story_example": _clean_text(item["story_example"], maximum=180),
     }
 
 
@@ -97,9 +97,9 @@ def render_daily_ai_news(payload: dict) -> str:
     parts = [
         "<section class='daily-ai-news' aria-labelledby='daily-ai-news-title'>",
         "<div class='daily-ai-news__header'>",
-        "<p class='daily-ai-news__eyebrow'>毎朝更新・日本との関係を優先</p>",
+        "<p class='daily-ai-news__eyebrow'>毎朝更新・仕事の場面から読む</p>",
         "<h2 id='daily-ai-news-title'>今日のAIニュース10</h2>",
-        "<p class='daily-ai-news__lead'>むずかしいAIニュースを、小学生にも伝わる言葉で10件にしぼりました。</p>",
+        "<p class='daily-ai-news__lead'>むずかしいAIニュースを、何が変わるかと「たとえば」の場面で、わかりやすく10件にしぼりました。</p>",
         f"<p class='daily-ai-news__date'><time datetime='{clean['date']}'>{date_label}</time> 時点</p>",
         "</div><ol class='daily-ai-news__list'>",
     ]
@@ -107,16 +107,16 @@ def render_daily_ai_news(payload: dict) -> str:
         title = html.escape(item["title"])
         url = html.escape(item["url"], quote=True)
         source = html.escape(item["source"])
-        kid_summary = html.escape(item["kid_summary"])
-        japan_angle = html.escape(item["japan_angle"])
+        plain_summary = html.escape(item["plain_summary"])
+        story_example = html.escape(item["story_example"])
         parts.extend(
             [
                 "<li class='daily-ai-news__item'>",
                 f"<span class='daily-ai-news__rank' aria-hidden='true'>{rank}</span>",
                 "<div class='daily-ai-news__copy'>",
                 f"<h3><a href='{url}' target='_blank' rel='noopener'>{title}</a></h3>",
-                f"<p><strong>小学生向け</strong>{kid_summary}</p>",
-                f"<p><strong>日本との関係</strong>{japan_angle}</p>",
+                f"<p><strong>わかりやすく</strong>{plain_summary}</p>",
+                f"<p class='daily-ai-news__story'><strong>使う場面</strong>{story_example}</p>",
                 f"<p class='daily-ai-news__source'>情報元：{source}</p>",
                 "</div></li>",
             ]
@@ -124,7 +124,7 @@ def render_daily_ai_news(payload: dict) -> str:
     parts.extend(
         [
             "</ol>",
-            "<p class='daily-ai-news__action'>まずは気になるニュースを1つ選び、元記事を確かめてみてください。</p>",
+            "<p class='daily-ai-news__action'>気になるニュースを1つ選び、「自分ならどこで使うか」を一言で書き出してみてください。</p>",
             "</section>",
         ]
     )

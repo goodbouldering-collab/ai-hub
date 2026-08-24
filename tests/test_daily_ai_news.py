@@ -51,8 +51,8 @@ def make_summary(
     return {
         "title_ja": f"ニュース{index}",
         "summary": f"ニュース{index}の要点です。",
-        "kid_summary": f"小学生にもわかるニュース{index}の説明です。",
-        "japan_angle": f"日本の学校や仕事にも関係する点{index}です。",
+        "plain_summary": f"ニュース{index}をわかりやすく説明します。",
+        "story_example": f"たとえば、ニュース{index}を仕事で試す場面です。",
         "genre": "ai_business",
         "score": score,
         "japan_relevance": japan_relevance,
@@ -105,7 +105,7 @@ class DailyNewsSnapshotTests(unittest.TestCase):
     def test_japan_today_does_not_require_an_external_timezone_database(self):
         self.assertIsInstance(_japan_today(), date)
 
-    def test_writes_ten_valid_explanations_with_explicit_japan_date(self):
+    def test_writes_ten_valid_plain_explanations_and_story_examples(self):
         articles = [make_article(index, source=f"Source {index}") for index in range(10)]
         summaries = {article.hash: make_summary(index) for index, article in enumerate(articles)}
 
@@ -122,13 +122,13 @@ class DailyNewsSnapshotTests(unittest.TestCase):
         self.assertEqual(target, result)
         self.assertEqual("2026-08-22", payload["date"])
         self.assertEqual(10, len(payload["items"]))
-        self.assertEqual("小学生にもわかるニュース0の説明です。", payload["items"][0]["kid_summary"])
-        self.assertEqual("日本の学校や仕事にも関係する点0です。", payload["items"][0]["japan_angle"])
+        self.assertEqual("ニュース0をわかりやすく説明します。", payload["items"][0]["plain_summary"])
+        self.assertEqual("たとえば、ニュース0を仕事で試す場面です。", payload["items"][0]["story_example"])
 
     def test_invalid_run_keeps_last_successful_snapshot(self):
         articles = [make_article(index) for index in range(10)]
         summaries = {article.hash: make_summary(index) for index, article in enumerate(articles)}
-        summaries[articles[4].hash]["kid_summary"] = ""
+        summaries[articles[4].hash]["plain_summary"] = ""
 
         with tempfile.TemporaryDirectory() as tmp:
             target = Path(tmp) / "daily-ai-news.json"
@@ -146,7 +146,7 @@ class DailyNewsSnapshotTests(unittest.TestCase):
     def test_uses_lower_ranked_valid_candidate_when_one_summary_failed(self):
         articles = [make_article(index) for index in range(11)]
         summaries = {article.hash: make_summary(index) for index, article in enumerate(articles)}
-        summaries[articles[2].hash]["kid_summary"] = ""
+        summaries[articles[2].hash]["plain_summary"] = ""
 
         with tempfile.TemporaryDirectory() as tmp:
             target = Path(tmp) / "daily-ai-news.json"
@@ -174,8 +174,8 @@ class DailyNewsRenderingTests(unittest.TestCase):
                     "url": f"https://example.com/news/{index + 1}",
                     "source": f"情報元{index + 1}",
                     "published": "2026-08-22T00:00:00+00:00",
-                    "kid_summary": f"やさしい説明{index + 1}",
-                    "japan_angle": f"日本との関係{index + 1}",
+                    "plain_summary": f"わかりやすい説明{index + 1}",
+                    "story_example": f"たとえば、使いどころ{index + 1}です。",
                 }
             )
         return {"date": "2026-08-22", "items": items}
@@ -187,8 +187,10 @@ class DailyNewsRenderingTests(unittest.TestCase):
         self.assertEqual(10, rendered.count("class='daily-ai-news__item'"))
         self.assertIn("&lt;script&gt;alert(1)&lt;/script&gt;", rendered)
         self.assertNotIn("<script>alert(1)</script>", rendered)
-        self.assertIn("小学生向け", rendered)
-        self.assertIn("日本との関係", rendered)
+        self.assertIn("わかりやすく", rendered)
+        self.assertIn("たとえば、使いどころ1です。", rendered)
+        self.assertNotIn("小学生向け", rendered)
+        self.assertNotIn("日本との関係", rendered)
 
     def test_invalid_url_fails_closed(self):
         payload = self.make_payload()

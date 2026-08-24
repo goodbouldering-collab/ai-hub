@@ -182,7 +182,7 @@ class BlogFreshnessTest(unittest.TestCase):
         self.assertIsInstance(date.fromisoformat(str(meta["date_modified"])), date)
         self.assertEqual(
             meta["title"],
-            "今日のAIニュース10とCodexアップデート",
+            "今日のAIニュースと新機能活用術",
         )
         self.assertEqual(meta["image"], "/img/blog-codex-update-log-hero-20260822.png")
         self.assertTrue(meta["hero_image"])
@@ -216,6 +216,36 @@ class BlogFreshnessTest(unittest.TestCase):
             self.assertGreaterEqual(hero.width, 1200)
             self.assertGreater(hero.width, hero.height)
             self.assertGreater(hero.width / hero.height, 1.8)
+
+    def test_codex_update_article_renders_a_plain_story_format_without_japan_label(self) -> None:
+        raw = CODEX_UPDATE_ARTICLE.read_text(encoding="utf-8")
+        meta, body = builder._parse_frontmatter(raw)
+        markdown = builder._load_markdown()
+        body_html = markdown.markdown(body, extensions=["extra", "sane_lists", "attr_list"])
+        body_html = builder.prepend_daily_ai_news(
+            meta,
+            body_html,
+            builder.load_daily_ai_news(builder.DAILY_AI_NEWS_JSON),
+        )
+        page = builder.render_content_page(
+            str(meta["title"]),
+            meta,
+            body_html,
+            "<nav></nav>",
+            page_path="blog/codex-update-log.html",
+            kind="blog",
+        )
+
+        self.assertIn("<title>今日のAIニュースと新機能活用術 | AIclimb（AI相談）</title>", page)
+        self.assertIn("content-wrap--codex-update", page)
+        self.assertIn("今日のCodex新機能と活用術", page)
+        self.assertIn("たとえば、", page)
+        self.assertNotIn("小学生向け", page)
+        self.assertNotIn("日本との関係", page)
+
+        guide = portal._render_codex_update_guide()
+        self.assertIn("使う場面", guide)
+        self.assertNotIn("日本との関係", guide)
 
 
 if __name__ == "__main__":

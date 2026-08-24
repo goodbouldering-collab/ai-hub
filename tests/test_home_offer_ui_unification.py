@@ -74,8 +74,8 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
         self.assertNotIn("AI APP SITE · DONE FOR YOU", self.home)
         self.assertEqual(2, self.home.count("<span class='offer-role-badge'>診断</span>"))
         self.assertEqual(1, self.home.count("<span class='offer-role-badge'>ブログ</span>"))
-        self.assertEqual(3, self.home.count("<span class='offer-role-badge'>学ぶ</span>"))
-        self.assertEqual(3, self.home.count("class='compact-course-card offer-card'"))
+        self.assertEqual(4, self.home.count("<span class='offer-role-badge'>学ぶ</span>"))
+        self.assertEqual(4, self.home.count("class='compact-course-card offer-card'"))
         self.assertGreaterEqual(self.home.count("offer-action"), 5)
 
         css = self.portal.FOCUSED_PORTAL_CSS
@@ -166,25 +166,27 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
             self.home,
             re.DOTALL,
         )
-        self.assertEqual(3, len(cards))
+        self.assertEqual(4, len(cards))
 
         expected = (
             ("AIエージェント講習", "少数"),
             ("AI自作講習", "個別"),
             ("AI伴走支援", "組織"),
+            ("AIオンラインサロン｜近日開始", "自由"),
         )
         for card, (title, scale) in zip(cards, expected, strict=True):
             with self.subTest(title=title):
-                self.assertIn(
-                    f"<div class='compact-course-heading'><h3>{title}</h3>"
-                    "<span class='offer-audience'",
+                self.assertRegex(
                     card,
+                    rf"<div class='compact-course-heading'><h3(?: id='[^']+')?>{re.escape(title)}</h3>"
+                    r"<span class='offer-audience'",
                 )
-                self.assertIn("<span class='offer-audience-label'>受講人数</span>", card)
+                audience_label = "参加方法" if title.startswith("AIオンラインサロン") else "受講人数"
+                self.assertIn(f"<span class='offer-audience-label'>{audience_label}</span>", card)
                 self.assertIn(f"<strong>{scale}</strong>", card)
                 self.assertLess(card.index("offer-role-row"), card.index("compact-course-visual"))
-                self.assertLess(card.index("compact-course-visual"), card.index(f"<h3>{title}</h3>"))
-                self.assertLess(card.index(f"<h3>{title}</h3>"), card.index("offer-audience"))
+                self.assertLess(card.index("compact-course-visual"), card.index(title))
+                self.assertLess(card.index(title), card.index("offer-audience"))
 
         support_card = cards[2]
         self.assertIn(
@@ -203,7 +205,11 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
 
         support_card = next(card for card in cards if "<h3>AI伴走支援</h3>" in card)
         salon_card = next(card for card in cards if "AIオンラインサロン｜近日開始" in card)
-        self.assertIn("compact-course-card--salon", salon_card)
+        self.assertIn("class='compact-course-card offer-card' id='seven-day-courses'", salon_card)
+        self.assertNotIn("compact-course-card--salon", salon_card)
+        self.assertIn("class='offer-role-row offer-role-row--course'", salon_card)
+        self.assertIn("class='compact-course-heading'", salon_card)
+        self.assertIn("class='offer-action compact-course-action'", salon_card)
         self.assertLess(self.home.index(support_card), self.home.index(salon_card))
 
         packages = self.home.index("id='packages'")
@@ -375,51 +381,34 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
             finally:
                 browser.close()
 
-    def test_salon_value_strip_is_compact_at_annotation_width(self):
+    def test_salon_uses_the_standard_card_format_at_annotation_width(self):
         with sync_playwright() as playwright:
             browser = launch_chromium(playwright)
             try:
                 page = browser.new_page(viewport={"width": 758, "height": 900})
                 page.set_content(self.home)
 
-                strip = page.locator("#seven-day-courses .salon-value-list")
-                values = strip.locator(".salon-value")
-                self.assertEqual(3, values.count())
-
-                strip_box = strip.bounding_box()
-                self.assertIsNotNone(strip_box)
+                salon = page.locator("#seven-day-courses")
+                self.assertEqual("compact-course-card offer-card", salon.get_attribute("class"))
+                for selector in (
+                    ".offer-role-row--course",
+                    ".compact-course-visual",
+                    ".compact-course-heading",
+                    ".compact-course-meta",
+                    ".compact-course-details:not(.compact-course-testimonials)",
+                    ".compact-course-testimonials",
+                    ".compact-course-action",
+                    ".compact-course-material-row",
+                ):
+                    self.assertEqual(1, salon.locator(selector).count())
                 self.assertLessEqual(
-                    strip_box["height"],
-                    44,
-                    "3項目の要点行は注釈幅でも周囲のカードと同じ密度に収める",
+                    page.evaluate("document.documentElement.scrollWidth - document.documentElement.clientWidth"),
+                    1,
                 )
-
-                for index in range(values.count()):
-                    with self.subTest(index=index):
-                        value_box = values.nth(index).bounding_box()
-                        self.assertIsNotNone(value_box)
-                        self.assertLessEqual(value_box["height"], 44)
-                        for selector in ("small", "strong"):
-                            line_count = values.nth(index).locator(selector).evaluate(
-                                """element => {
-                                  const range = document.createRange();
-                                  range.selectNodeContents(element);
-                                  return new Set(
-                                    [...range.getClientRects()]
-                                      .filter(rect => rect.width > 0)
-                                      .map(rect => Math.round(rect.top))
-                                  ).size;
-                                }"""
-                            )
-                            self.assertEqual(
-                                1,
-                                line_count,
-                                "英字ラベルと日本語の要点を途中で孤立改行させない",
-                            )
             finally:
                 browser.close()
 
-    def test_salon_value_strip_stays_compact_on_mobile(self):
+    def test_salon_standard_card_stays_inside_the_mobile_viewport(self):
         with sync_playwright() as playwright:
             browser = launch_chromium(playwright)
             try:
@@ -428,38 +417,55 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
                         page = browser.new_page(viewport={"width": width, "height": 900})
                         page.set_content(self.home)
 
-                        strip = page.locator("#seven-day-courses .salon-value-list")
-                        strip_box = strip.bounding_box()
-                        self.assertIsNotNone(strip_box)
-                        self.assertLessEqual(
-                            strip_box["height"],
-                            62,
-                            "モバイルでも3項目の要点行をコンパクトに保つ",
+                        salon = page.locator("#seven-day-courses")
+                        salon_box = salon.bounding_box()
+                        self.assertIsNotNone(salon_box)
+                        self.assertGreaterEqual(salon_box["x"], -1)
+                        self.assertLessEqual(salon_box["x"] + salon_box["width"], width + 1)
+                        self.assertGreaterEqual(
+                            salon.locator(".compact-course-action").evaluate(
+                                "element => parseFloat(getComputedStyle(element).minHeight)"
+                            ),
+                            46,
                         )
-                        values = strip.locator(".salon-value")
-                        for index in range(values.count()):
-                            action_lines = values.nth(index).locator("strong").evaluate(
-                                """element => {
-                                  const range = document.createRange();
-                                  range.selectNodeContents(element);
-                                  return new Set(
-                                    [...range.getClientRects()]
-                                      .filter(rect => rect.width > 0)
-                                      .map(rect => Math.round(rect.top))
-                                  ).size;
-                                }"""
-                            )
-                            self.assertLessEqual(
-                                action_lines,
-                                2,
-                                "日本語の要点をモバイルで3行以上に分断しない",
-                            )
                         self.assertLessEqual(
                             page.evaluate(
                                 "document.documentElement.scrollWidth - "
                                 "document.documentElement.clientWidth"
                             ),
                             1,
+                        )
+                        page.close()
+            finally:
+                browser.close()
+
+    def test_revised_hero_copy_fits_annotation_and_mobile_widths(self):
+        with sync_playwright() as playwright:
+            browser = launch_chromium(playwright)
+            try:
+                for width in (859, 390):
+                    with self.subTest(width=width):
+                        page = browser.new_page(viewport={"width": width, "height": 900})
+                        page.set_content(self.home)
+                        self.assertLessEqual(
+                            page.evaluate(
+                                "document.documentElement.scrollWidth - "
+                                "document.documentElement.clientWidth"
+                            ),
+                            1,
+                        )
+                        for selector in (
+                            ".focus-title-line",
+                            ".hero-advantage-equation",
+                            ".hero-advantage-outcome",
+                        ):
+                            box = page.locator(selector).bounding_box()
+                            self.assertIsNotNone(box)
+                            self.assertGreaterEqual(box["x"], -1)
+                            self.assertLessEqual(box["x"] + box["width"], width + 1)
+                        self.assertEqual(
+                            0,
+                            page.locator(".hero-advantage-copy small > span").count(),
                         )
                         page.close()
             finally:

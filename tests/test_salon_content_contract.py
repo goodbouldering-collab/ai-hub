@@ -19,7 +19,7 @@ class SalonContentContractTests(unittest.TestCase):
     def setUpClass(cls) -> None:
         cls.html = INDEX.read_text(encoding="utf-8")
         match = re.search(
-            r"<article class='compact-course-card offer-card compact-course-card--salon salon-panel'[^>]*>(.*?)</article>",
+            r"<article class='compact-course-card offer-card' id='seven-day-courses'[^>]*>(.*?)</article>",
             cls.html,
             re.DOTALL,
         )
@@ -29,31 +29,17 @@ class SalonContentContractTests(unittest.TestCase):
 
     def test_every_reader_facing_detail_remains_in_the_panel(self) -> None:
         expected_details = (
-            "SQUARE MONTHLY",
+            "月額サロン",
             "現在は仮運用中",
             "毎週火曜にLINEライブトークでAIの今と次の一手を整理するオンラインサロン",
-            "仕事で次に試すことを、一緒に決める60分",
             "月額2,200円（税込）",
             "毎週火曜21:00",
             "AIオンラインサロン｜近日開始",
-            "AIの最新も疑問もその場で解決できる。",
             "正式開始に向けて現在は仮運用中です。登録中の方にはテスト運用へご協力いただいています。Squareで月額決済後、LINEライブトークの参加案内を表示します。",
-            "UPDATE",
-            "新機能を毎週知る",
-            "BEST PRACTICE",
-            "一流の活用事例を聞く",
-            "NEXT ACTION",
-            "次に試すことを決める",
-            "WHEN",
-            "火曜21:00",
-            "PLACE",
             "LINEライブ",
-            "FEE",
-            "月2,200円",
-            "STYLE",
             "聞くだけOK",
             "メリット・内容・参加方法を見る",
-            "このサロンに参加するメリット",
+            "このサロンで得られること",
             "AI情報を全部追わなくていい",
             "増え続ける新機能や発表から、地域事業や日々の仕事に関係する変化だけを短く整理します。",
             "今やる・待つを判断できる",
@@ -113,15 +99,14 @@ class SalonContentContractTests(unittest.TestCase):
         self.assertNotIn("有料オンラインサロンを開催しています", self.html)
 
     def test_structured_detail_counts_and_checkout_contract_remain_intact(self) -> None:
-        self.assertEqual(self.panel.count("class='salon-value'"), 3)
-        self.assertEqual(self.panel.count("class='salon-fact'"), 4)
-        self.assertEqual(self.panel.count("class='salon-benefit'"), 8)
+        self.assertEqual(self.panel.count("<li><strong>"), 8)
         self.assertEqual(self.panel.count("<li><b>"), 3)
         self.assertIn("method='post'", self.panel)
         self.assertIn("action='/api/square/ai-salon-checkout'", self.panel)
-        self.assertIn("class='compact-course-checkout salon-card-checkout'", self.panel)
+        self.assertIn("class='compact-course-checkout'", self.panel)
+        self.assertIn("class='offer-action compact-course-action'", self.panel)
         self.assertIn(
-            "class='compact-course-material salon-material-link' href='/lectures/2026-07-ai-online-salon-practice.html'",
+            "class='compact-course-material' href='/lectures/2026-07-ai-online-salon-practice.html'",
             self.panel,
         )
         self.assertIn(
@@ -133,19 +118,7 @@ class SalonContentContractTests(unittest.TestCase):
             self.panel,
         )
 
-    def test_mobile_value_labels_are_not_visually_truncated(self) -> None:
-        rule = re.search(
-            r"@media \(max-width:720px\).*?"
-            r"\.salon-panel \.salon-value small\s*\{([^}]*)\}",
-            self.html,
-            re.DOTALL,
-        )
-        self.assertIsNotNone(rule)
-        assert rule is not None
-        declarations = rule.group(1)
-        self.assertIn("overflow:visible", declarations)
-        self.assertIn("text-overflow:clip", declarations)
-        self.assertIn("white-space:normal", declarations)
+    def test_live_talk_guide_remains_readable_on_mobile(self) -> None:
         self.assertRegex(
             self.html,
             re.compile(

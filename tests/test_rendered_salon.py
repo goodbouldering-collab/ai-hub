@@ -33,34 +33,39 @@ class RenderedSalonTest(unittest.TestCase):
         self.assertEqual(len(cards), 4)
         salon_cards = [card for card in cards if "AIオンラインサロン｜近日開始" in card]
         self.assertEqual(len(salon_cards), 1)
-        self.assertIn("compact-course-card--salon", self.html)
+        salon = salon_cards[0]
         self.assertIn("class='course-menu-unified'", self.html)
         self.assertIn("aria-label='講習・相談の全4メニュー'", self.html)
         self.assertNotIn("course-menu-unified-head", self.html)
         self.assertNotIn("上の4カードと下のオンラインサロンから選べます", self.html)
         self.assertRegex(self.html, r"class='course-menu-unified'[^>]*>\s*<div class='compact-course-grid'")
-        self.assertIn("class='compact-course-card offer-card compact-course-card--salon salon-panel'", self.html)
-        self.assertNotIn("class='salon-simple-head'", self.html)
-        self.assertIn("class='salon-intro salon-intro--fused salon-card-overview'", self.html)
-        self.assertIn(
-            "class='compact-course-details salon-all-details--complete'",
-            self.html,
-        )
-        visual = self.html.index("class='salon-main-visual'")
-        title = self.html.index("id='salon-title'", visual)
-        details = self.html.index(
-            "class='compact-course-details salon-all-details--complete'", title
-        )
-        note = self.html.index("class='salon-simple-note'", details)
-        checkout = self.html.index("class='compact-course-checkout salon-card-checkout'", details)
-        material = self.html.index("class='compact-course-material salon-material-link'", checkout)
+        self.assertIn("class='compact-course-card offer-card' id='seven-day-courses'", self.html)
+        self.assertIn("class='offer-role-row offer-role-row--course'", salon)
+        self.assertIn("class='compact-course-visual'", salon)
+        self.assertIn("class='compact-course-heading'", salon)
+        self.assertIn("class='offer-audience'", salon)
+        self.assertIn("class='compact-course-meta'", salon)
+        self.assertIn("class='compact-course-details'", salon)
+        self.assertIn("class='compact-course-checkout'", salon)
+        self.assertIn("class='offer-action compact-course-action'", salon)
+        self.assertIn("class='compact-course-material-row'", salon)
+        self.assertNotIn("compact-course-card--salon", salon)
+        self.assertNotIn("salon-panel", salon)
+        self.assertNotIn("salon-card-overview", salon)
+        self.assertNotIn("salon-main-visual", salon)
+        self.assertNotIn("salon-value-list", salon)
+        visual = salon.index("class='compact-course-visual'")
+        title = salon.index("id='salon-title'", visual)
+        details = salon.index("class='compact-course-details'", title)
+        testimonial = salon.index("compact-course-testimonials", details)
+        checkout = salon.index("class='compact-course-checkout'", testimonial)
+        material = salon.index("class='compact-course-material-row'", checkout)
         self.assertLess(visual, title)
         self.assertLess(title, details)
-        self.assertLess(details, note)
-        self.assertLess(note, checkout)
-        self.assertLess(details, checkout)
+        self.assertLess(details, testimonial)
+        self.assertLess(testimonial, checkout)
         self.assertLess(checkout, material)
-        self.assertNotIn(" open", self.html[details:self.html.index(">", details)])
+        self.assertNotIn(" open", salon[details:salon.index(">", details)])
         self.assertEqual(self.html.count("id='seven-day-courses'"), 1)
         salon_start = self.html.index("id='seven-day-courses'")
         salon_end = self.html.index("</article>", salon_start)
@@ -69,7 +74,7 @@ class RenderedSalonTest(unittest.TestCase):
         self.assertLess(salon_end, venue_map)
         self.assertIn("メリット・内容・参加方法を見る", self.html)
         self.assertIn(
-            "class='compact-course-material salon-material-link' href='/lectures/2026-07-ai-online-salon-practice.html'",
+            "class='compact-course-material' href='/lectures/2026-07-ai-online-salon-practice.html'",
             self.html,
         )
         self.assertIn("オンラインサロン受講資料を見る", self.html)
@@ -102,7 +107,8 @@ class RenderedSalonTest(unittest.TestCase):
         hero_start = self.html.index("class='focus-hero'")
         hero_end = self.html.index("</section>", hero_start)
         hero = self.html[hero_start:hero_end]
-        self.assertIn("<strong>始めるなら今。</strong><span>まだまだこれから！</span>", hero)
+        self.assertIn("<small><strong>始めるなら今。</strong></small>", hero)
+        self.assertNotIn("まだまだこれから！", hero)
         self.assertNotIn("<strong>5,500円から</strong>", hero)
         self.assertNotIn("<strong>相談5,500円/回</strong>", hero)
         self.assertNotIn("<strong>利用率6%</strong>", hero)

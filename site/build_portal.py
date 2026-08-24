@@ -11798,6 +11798,37 @@ def _render_compact_course_cards() -> str:
                 ("参加方法", "申込後に初回面談で対象業務、優先順位、6ヶ月の範囲と日程を確認してから開始します。"),
             ],
         },
+        {
+            "id": "seven-day-courses",
+            "title_id": "salon-title",
+            "cat": "月額サロン｜現在は仮運用中",
+            "title": "AIオンラインサロン｜近日開始",
+            "audience_label": "参加方法",
+            "audience": "自由",
+            "image": "/img/blog-ai-agent-course-section-4-20260714.webp",
+            "image_alt": "毎週火曜にLINEライブトークでAIの今と次の一手を整理するオンラインサロン",
+            "price": "月額2,200円（税込）",
+            "duration": "毎週火曜21:00",
+            "desc": "正式開始に向けて現在は仮運用中です。登録中の方にはテスト運用へご協力いただいています。Squareで月額決済後、LINEライブトークの参加案内を表示します。月額2,200円（税込）・毎月自動更新。決済確認後にLINE参加案内を表示します。",
+            "url": AI_SALON_CHECKOUT_URL,
+            "post": True,
+            "cta": "Squareで決済して仮運用に参加",
+            "material_url": "/lectures/2026-07-ai-online-salon-practice.html",
+            "material_cta": "オンラインサロン受講資料を見る",
+            "testimonial_key": "ai-salon",
+            "details_lead": "このサロンで得られること",
+            "details": [
+                ("AI情報を全部追わなくていい", "増え続ける新機能や発表から、地域事業や日々の仕事に関係する変化だけを短く整理します。"),
+                ("今やる・待つを判断できる", "新しいから飛びつくのではなく、今すぐ試すもの、様子を見るもの、使わないものを実例で分けます。"),
+                ("実際の仕事で確かめられる", "参加者の告知、資料、事務、Web改善などを題材に、AIへの依頼、確認、修正まで画面を見ながら進めます。"),
+                ("ほかの人の事例も学びになる", "自分とは違う業種の困りごとや改善例から、自分の仕事へ応用できるヒントを持ち帰れます。"),
+                ("その場で質問できる", "一人で調べ続けず、分からない点や導入の迷いを質問し、次に試す小さな一歩を決められます。"),
+                ("忙しい週は聞くだけでOK", "LINEライブトークはマイクOFF、途中参加、途中退出に対応。発言したいときだけ挙手できます。"),
+                ("終了後も要点を見返せる", "講師が内容を確認した「火曜AIノート」で、重要点と次の行動を振り返れます。"),
+                ("参加方法", "Squareで月額2,200円を決済後、表示される招待URLからLINEへ進みます。毎週火曜21時の案内から参加できます。"),
+            ],
+            "details_extra": _render_live_talk_guide(),
+        },
     ]
     cards = []
     for item in items:
@@ -11813,14 +11844,17 @@ def _render_compact_course_cards() -> str:
             "</p>"
             if material_url else ""
         )
+        audience_label = str(item.get("audience_label") or "受講人数")
         audience_html = (
-            f"<span class='offer-audience' aria-label='受講人数：{html.escape(item['audience'], quote=True)}'>"
-            "<span class='offer-audience-label'>受講人数</span>"
+            f"<span class='offer-audience' aria-label='{html.escape(audience_label, quote=True)}：{html.escape(item['audience'], quote=True)}'>"
+            f"<span class='offer-audience-label'>{html.escape(audience_label)}</span>"
             f"<strong>{html.escape(item['audience'])}</strong></span>"
         )
+        title_id = str(item.get("title_id") or "")
+        title_attr = f" id='{html.escape(title_id, quote=True)}'" if title_id else ""
         title_html = (
             "<div class='compact-course-heading'>"
-            f"<h3>{html.escape(item['title'])}</h3>{audience_html}</div>"
+            f"<h3{title_attr}>{html.escape(item['title'])}</h3>{audience_html}</div>"
         )
         role_html = (
             "<div class='offer-role-row offer-role-row--course'>"
@@ -11842,7 +11876,7 @@ def _render_compact_course_cards() -> str:
                 "<details class='compact-course-details'>"
                 "<summary>メリット・内容・参加方法を見る</summary>"
                 f"<p class='compact-course-details-lead'>{details_lead}</p>"
-                f"<ul>{detail_rows}</ul>"
+                f"<ul>{detail_rows}</ul>{item.get('details_extra') or ''}"
                 "</details>"
             )
         testimonial_html = _render_course_testimonial_details(str(item["testimonial_key"]))
@@ -11855,8 +11889,11 @@ def _render_compact_course_cards() -> str:
             main_action_html = (
                 f"<a class='offer-action compact-course-action' href='{html.escape(item['url'], quote=True)}'{target_attr}>{html.escape(item['cta'])} →</a>"
             )
+        article_id = str(item.get("id") or "")
+        article_id_attr = f" id='{html.escape(article_id, quote=True)}'" if article_id else ""
+        labelledby_attr = f" aria-labelledby='{html.escape(title_id, quote=True)}'" if title_id else ""
         cards.append(
-            "<article class='compact-course-card offer-card'>"
+            f"<article class='compact-course-card offer-card'{article_id_attr}{labelledby_attr}>"
             f"{role_html}"
             f"<img class='compact-course-visual' src='{html.escape(item['image'], quote=True)}' alt='{html.escape(item['image_alt'], quote=True)}' loading='lazy' decoding='async'>"
             f"{title_html}"
@@ -11868,7 +11905,7 @@ def _render_compact_course_cards() -> str:
             f"{material_html}"
             "</article>"
         )
-    return "<div class='compact-course-grid'>" + "".join(cards) + _render_salon_menu() + "</div>"
+    return "<div class='compact-course-grid'>" + "".join(cards) + "</div>"
 
 
 def _render_live_talk_guide() -> str:
@@ -11892,59 +11929,6 @@ def _render_live_talk_guide() -> str:
         "<div class='salon-live-guide-foot'><span>マイクOFF・途中参加・途中退出OK</span>"
         "<span>決済確認後にLINE参加案内を表示</span></div>"
         "</div></div>"
-    )
-
-
-def _render_salon_menu() -> str:
-    """上下に分かれていたサロン案内を、講習メニュー内の1パネルへ統合する。"""
-    benefits = [
-        ("AI情報を全部追わなくていい", "増え続ける新機能や発表から、地域事業や日々の仕事に関係する変化だけを短く整理します。"),
-        ("今やる・待つを判断できる", "新しいから飛びつくのではなく、今すぐ試すもの、様子を見るもの、使わないものを実例で分けます。"),
-        ("実際の仕事で確かめられる", "参加者の告知、資料、事務、Web改善などを題材に、AIへの依頼、確認、修正まで画面を見ながら進めます。"),
-        ("ほかの人の事例も学びになる", "自分とは違う業種の困りごとや改善例から、自分の仕事へ応用できるヒントを持ち帰れます。"),
-        ("その場で質問できる", "一人で調べ続けず、分からない点や導入の迷いを質問し、次に試す小さな一歩を決められます。"),
-        ("忙しい週は聞くだけでOK", "LINEライブトークはマイクOFF、途中参加、途中退出に対応。発言したいときだけ挙手できます。"),
-        ("終了後も要点を見返せる", "講師が内容を確認した「火曜AIノート」で、重要点と次の行動を振り返れます。"),
-        ("参加方法", "Squareで月額2,200円を決済後、表示される招待URLからLINEへ進みます。毎週火曜21時の案内から参加できます。"),
-    ]
-    benefit_rows = "".join(
-        "<li class='salon-benefit'>"
-        f"<strong>{html.escape(title)}</strong>"
-        f"<span>{html.escape(description)}</span>"
-        "</li>"
-        for title, description in benefits
-    )
-    return (
-        "<article class='compact-course-card offer-card compact-course-card--salon salon-panel' id='seven-day-courses' aria-labelledby='salon-title'>"
-        "<div class='salon-eyebrow-row salon-card-eyebrow'><small>MENU 05 · SQUARE MONTHLY</small>"
-        "<span class='compact-course-badge'><i aria-hidden='true'></i>現在は仮運用中</span></div>"
-        "<div class='salon-intro salon-intro--fused salon-card-overview'>"
-        "<figure class='salon-main-visual'><img src='/img/blog-ai-agent-course-section-4-20260714.webp' "
-        "alt='毎週火曜にLINEライブトークでAIの今と次の一手を整理するオンラインサロン' "
-        "loading='lazy' decoding='async'><figcaption>仕事で次に試すことを、一緒に決める60分</figcaption></figure>"
-        "<div class='salon-intro-copy'>"
-        "<small class='salon-card-category'>月額サロン</small>"
-        "<h3 class='salon-detail-title' id='salon-title'>AIオンラインサロン｜近日開始</h3>"
-        "<div class='compact-course-meta salon-card-meta'><strong>月額2,200円（税込）</strong><span>毎週火曜21:00</span></div>"
-        "<p class='salon-intro-tagline'>AIの最新も疑問もその場で解決できる。</p>"
-        "<p class='salon-intro-description'>正式開始に向けて現在は仮運用中です。登録中の方にはテスト運用へご協力いただいています。Squareで月額決済後、LINEライブトークの参加案内を表示します。</p></div>"
-        "<div class='salon-value-list' role='list' aria-label='サロンで得られること'>"
-        "<div class='salon-value' role='listitem'><b>01</b><div><small>UPDATE</small><strong>新機能を毎週知る</strong></div></div>"
-        "<div class='salon-value' role='listitem'><b>02</b><div><small>BEST PRACTICE</small><strong>一流の活用事例を聞く</strong></div></div>"
-        "<div class='salon-value' role='listitem'><b>03</b><div><small>NEXT ACTION</small><strong>次に試すことを決める</strong></div></div>"
-        "</div></div>"
-        "<details class='compact-course-details salon-all-details--complete' id='salon-details'><summary>メリット・内容・参加方法を見る</summary>"
-        "<div class='salon-details-complete'>"
-        "<div class='salon-facts' aria-label='開催情報'><div class='salon-fact'><small>WHEN</small><strong>火曜21:00</strong></div><div class='salon-fact'><small>PLACE</small><strong>LINEライブ</strong></div><div class='salon-fact'><small>FEE</small><strong>月2,200円</strong></div><div class='salon-fact'><small>STYLE</small><strong>聞くだけOK</strong></div></div>"
-        "<p class='salon-benefits-title'>このサロンに参加するメリット</p><ul>"
-        f"{benefit_rows}</ul>"
-        f"{_render_live_talk_guide()}"
-        "</div></details>"
-        f"{_render_course_testimonial_details('ai-salon')}"
-        "<p class='salon-simple-note'>月額2,200円（税込）・毎月自動更新。決済確認後にLINE参加案内を表示します</p>"
-        f"<form class='compact-course-checkout salon-card-checkout' method='post' action='{html.escape(AI_SALON_CHECKOUT_URL, quote=True)}'><button type='submit'>Squareで決済して仮運用に参加 →</button></form>"
-        "<p class='salon-material-row'><a class='compact-course-material salon-material-link' href='/lectures/2026-07-ai-online-salon-practice.html'>オンラインサロン受講資料を見る →</a></p>"
-        "</article>"
     )
 
 
@@ -15142,7 +15126,7 @@ FOCUSED_PORTAL_CSS += r"""
   .site-nav .nav-link { padding-inline:7px !important; font-size:11px !important; }
 }
 @media (max-width:760px) {
-  .focus-title-line { font-size:clamp(28px,9vw,44px); white-space:nowrap; }
+  .focus-title-line { font-size:clamp(22px,7.2vw,40px); white-space:nowrap; }
   .focus-title-line strong { white-space:nowrap; }
   .home-app-site-capabilities { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .home-app-site-capabilities li { min-height:52px; }
@@ -15180,10 +15164,10 @@ def _render_hero_focused() -> str:
         "<div class='focus-hero-shell'>"
         "<div class='focus-hero-copy'>"
         "<p class='focus-kicker'>AIclimb（エーアイクライム）｜彦根・滋賀のAI相談</p>"
-        "<h1 class='focus-title'><span class='focus-title-first'>使えるAI、教えます。</span><br><span class='focus-title-line'><strong>講習・導入・代行</strong></span></h1>"
+        "<h1 class='focus-title'><span class='focus-title-first'>使えるAI、教えます。</span><br><span class='focus-title-line'><strong>講習・導入支援・制作代行</strong></span></h1>"
         "<aside class='hero-advantage' id='advantage' aria-labelledby='hero-advantage-title'>"
         "<div class='hero-advantage-number' role='img' aria-label='AI利用率 6パーセント'><span>AI利用率</span><strong>6%</strong></div>"
-        "<div class='hero-advantage-copy'><small><strong>始めるなら今。</strong><span>まだまだこれから！</span></small><p id='hero-advantage-title'><span class='hero-advantage-equation'><strong>AI</strong><span>×</span><strong>経験</strong></span><span class='hero-advantage-outcome'>もう高い更新料は不要</span></p></div>"
+        "<div class='hero-advantage-copy'><small><strong>始めるなら今。</strong></small><p id='hero-advantage-title'><span class='hero-advantage-equation'><strong>AI</strong><span>×</span><strong>経験 が役立つ</strong></span><span class='hero-advantage-outcome'>もう高い更新利用料はいらない</span></p></div>"
         "<ul class='hero-advantage-pillars' aria-label='AI活用を成果に変える3原則'><li><b>01</b>試しに作る</li><li><b>02</b>素早く修正</li><li><b>03</b>仕組み化する</li></ul>"
         "</aside>"
         "<p class='focus-lead'>告知・事務・集客に追われる方へ。AI相談・業務改善・伴走支援で、AIが分からない不安を今日から使える一歩に変えます。</p>"

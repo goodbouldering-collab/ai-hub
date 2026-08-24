@@ -49,15 +49,14 @@ class Hero60SecondDiagnosisTests(unittest.TestCase):
 
     def test_hero_copy_makes_the_customer_problem_clear(self):
         self.assertIn("<span>AI利用率</span><strong>6%</strong>", self.hero_html)
+        self.assertIn("<small><strong>始めるなら今。</strong></small>", self.hero_html)
+        self.assertNotIn("まだまだこれから！", self.hero_html)
         self.assertIn(
-            "<strong>始めるなら今。</strong><span>まだまだこれから！</span>",
+            "<span class='hero-advantage-equation'><strong>AI</strong><span>×</span><strong>経験 が役立つ</strong></span>",
             self.hero_html,
         )
-        self.assertIn(
-            "<span class='hero-advantage-equation'><strong>AI</strong><span>×</span><strong>経験</strong></span>",
-            self.hero_html,
-        )
-        self.assertIn("もう高い更新料は不要", self.hero_html)
+        self.assertIn("もう高い更新利用料はいらない", self.hero_html)
+        self.assertIn("講習・導入支援・制作代行", self.hero_html)
         self.assertNotIn("もう高いパッケージは負け組", self.hero_html)
         self.assertNotIn("「こんなことできたら」がすぐ叶う", self.hero_html)
         self.assertNotIn("目的さえあればだれでも使える", self.hero_html)
@@ -66,7 +65,7 @@ class Hero60SecondDiagnosisTests(unittest.TestCase):
         self.assertIn("<li><b>02</b>素早く修正</li>", self.hero_html)
         self.assertIn("<li><b>03</b>仕組み化する</li>", self.hero_html)
         self.assertIn(
-            "AIが気になるけれど、何から始めるか迷う方へ。3つの質問で、いまの仕事に合う次の一歩を提案します。",
+            "告知・事務・集客に追われる方へ。AI相談・業務改善・伴走支援で、AIが分からない不安を今日から使える一歩に変えます。",
             self.hero_html,
         )
 

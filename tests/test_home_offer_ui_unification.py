@@ -79,9 +79,23 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
         self.assertGreaterEqual(self.home.count("offer-action"), 5)
 
         css = self.portal.FOCUSED_PORTAL_CSS
-        self.assertRegex(css, r"\.offer-panel\s*\{[^}]*border-radius:")
+        self.assertIn("診断導線を一行にまとめるフラット化", css)
+        self.assertIn(".diagnosis-guide-row {", css)
+        self.assertIn("grid-template-columns:repeat(2,minmax(0,1fr));", css)
+        self.assertIn(".offer-panel {", css)
+        self.assertIn("border:0 !important;", css)
         self.assertRegex(css, r"\.offer-role-badge\s*\{[^}]*border-radius:\s*999px")
         self.assertRegex(css, r"\.offer-action\s*\{[^}]*min-height:\s*46px")
+
+    def test_diagnostic_guides_are_joined_and_the_redundant_prompt_is_absent(self):
+        self.assertIn("<div class='diagnosis-guide-row' aria-label='仕事とサイトの診断'>", self.home)
+        row_start = self.home.index("<div class='diagnosis-guide-row'")
+        row_end = self.home.index("</div>", row_start)
+        readiness = self.home.index("id='readiness-guide-title'", row_start)
+        seo = self.home.index("id='seo-llmo-guide-title'", row_start)
+        self.assertLess(row_start, readiness)
+        self.assertLess(readiness, seo)
+        self.assertNotIn("AIを使っているつもりで、仕事は変わりましたか？", self.home)
 
     def test_three_guides_share_grid_and_question_row_format(self):
         with sync_playwright() as playwright:
@@ -102,7 +116,9 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
                     )
                     for index in range(guide_inners.count())
                 ]
-                self.assertEqual(1, len(set(grid_templates)))
+                self.assertEqual(grid_templates[0], grid_templates[1])
+                self.assertEqual(grid_templates[2], grid_templates[3])
+                self.assertNotEqual(grid_templates[0], grid_templates[2])
 
                 question_rows = desktop.locator(
                     "#ai-app-site .readiness-guide__questions li, "

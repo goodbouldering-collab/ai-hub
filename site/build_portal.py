@@ -15139,6 +15139,84 @@ FOCUSED_PORTAL_CSS += r"""
 }
 """
 
+FOCUSED_PORTAL_CSS += r"""
+/* ---- 診断導線を一行にまとめるフラット化, 2026-08-24 ---- */
+.focus-block { padding:44px max(16px,calc((100vw - 1400px)/2)); }
+.focus-section-head { margin-bottom:18px; }
+.focus-section-lead { margin-bottom:18px; }
+.offer-panel {
+  width:min(1180px,calc(100% - 32px));
+  margin:0 auto;
+  overflow:visible;
+  border:0 !important;
+  border-radius:0 !important;
+  background:transparent;
+  box-shadow:none !important;
+}
+.readiness-guide { border:0; background:#fff; }
+.readiness-guide > .offer-panel { padding:18px 0; }
+.readiness-guide__inner { gap:14px 20px; }
+.readiness-guide__questions { gap:4px; }
+.readiness-guide__questions li {
+  padding:6px 0 6px 9px;
+  border:0;
+  border-left:3px solid rgba(79,111,216,.5);
+  border-radius:0;
+  background:transparent;
+}
+.diagnosis-guide-row {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:1px;
+  background:var(--focus-line);
+}
+.diagnosis-guide-row .readiness-guide { min-width:0; }
+.diagnosis-guide-row .offer-panel { width:min(100% - 40px,560px); }
+.diagnosis-guide-row .readiness-guide__inner {
+  grid-template-columns:minmax(0,1fr);
+  gap:10px;
+}
+.diagnosis-guide-row .readiness-guide__title { font-size:clamp(27px,2.7vw,36px); }
+.diagnosis-guide-row .readiness-guide__summary { margin-top:4px; font-size:14px; line-height:1.45; }
+.diagnosis-guide-row .readiness-guide__meta { margin-top:5px; }
+.readiness-guide__cta,
+.offer-action,
+.compact-course-card > a,
+.focus-btn.primary,
+.focus-contact .focus-btn,
+.btn-primary,
+.contact-primary {
+  border-radius:0 !important;
+  border-width:2px !important;
+  box-shadow:none !important;
+  font-weight:950 !important;
+}
+.focus-block .pf-card,
+.focus-block .lecture-card,
+.focus-block .blog-card,
+.compact-course-card,
+.salon-panel,
+.salon-live-guide,
+.path-card-new,
+.focus-hub-card,
+.focus-step {
+  border:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+}
+.focus-content-actions { margin-top:18px; }
+@media (max-width:760px) {
+  .focus-block { padding:30px 14px; }
+  .offer-panel { width:calc(100% - 28px); }
+  .readiness-guide > .offer-panel { padding:16px 0; }
+  .diagnosis-guide-row { display:block; background:transparent; }
+  .diagnosis-guide-row .readiness-guide + .readiness-guide { border-top:1px solid var(--focus-line); }
+  .diagnosis-guide-row .offer-panel { width:calc(100% - 28px); }
+  .diagnosis-guide-row .readiness-guide__title { font-size:clamp(27px,8vw,34px); }
+  .readiness-guide__cta { min-height:50px; padding:11px 14px; }
+}
+"""
+
 
 def _render_header_focused() -> str:
     desktop_navigation = render_desktop_navigation()
@@ -15226,7 +15304,6 @@ def _render_readiness_guide() -> str:
         "<span class='offer-role-badge'>診断</span><span class='offer-role-note'>10問・約3分</span></div></div>"
         "<h2 id='readiness-guide-title' class='readiness-guide__title'>あなたのAI実力診断</h2>"
         "<p class='readiness-guide__summary'>10問・約3分で、いまの実践力と次に整える一歩がわかります。結果から、少数・個別・組織の受講方法も選べます。</p>"
-        "<p class='readiness-guide__prompt'>AIを使っているつもりで、仕事は変わりましたか？</p>"
         "<p class='readiness-guide__meta'><span>100点・5段階</span><span>5つの基準</span><span>次の90日</span></p></div>"
         "<ul class='readiness-guide__questions' aria-label='AI活用の3つの疑問'>"
         "<li><span aria-hidden='true'>?</span><strong>コピペで止まっていないか</strong></li>"
@@ -15362,8 +15439,10 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
 
     parts.append("<div class='container'><main id='main-content'>")
     parts.append(_render_hero_focused())
+    parts.append("<div class='diagnosis-guide-row' aria-label='仕事とサイトの診断'>")
     parts.append(_render_readiness_guide())
     parts.append(_render_seo_llmo_guide())
+    parts.append("</div>")
     parts.append(_render_codex_update_guide())
 
     parts.append(_render_focused_main())

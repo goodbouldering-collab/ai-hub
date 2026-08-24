@@ -124,6 +124,29 @@ class SeoLlmoDiagnosisPageTests(unittest.TestCase):
         self.assertIn("aria-label='AIclimb（AI相談）トップへ'", subpage_nav)
         self.assertNotIn("aria-label='AIclimb彦根 トップへ'", subpage_nav)
 
+    def test_homepage_places_the_fixed_codex_blog_guide_below_site_diagnosis(self):
+        home = self.portal.render_portal([], [])
+        seo = home.index(
+            "<section class='readiness-guide readiness-guide--compact seo-llmo-guide'"
+        )
+        codex = home.index(
+            "<section class='readiness-guide readiness-guide--compact codex-update-guide'"
+        )
+        main_course = home.index("<section class='focus-block main-course'")
+
+        self.assertLess(seo, codex)
+        self.assertLess(codex, main_course)
+
+        section_end = home.index("</section>", codex)
+        section = home[codex:section_end]
+        self.assertIn("class='readiness-guide__inner'", section)
+        self.assertIn(
+            "<h2 id='codex-update-guide-title' class='readiness-guide__title'>今日のAIニュース10とCodexアップデート</h2>",
+            section,
+        )
+        self.assertIn("href='/blog/codex-update-log.html'", section)
+        self.assertIn("今日のAIニュース10とCodexアップデートを読む", section)
+
     def test_homepage_site_diagnosis_reuses_the_readiness_section_format(self):
         home = self.portal.render_portal([], [])
         section_marker = (

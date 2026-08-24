@@ -15075,6 +15075,9 @@ button:focus-visible {
   border-color:var(--focus-blue);
   box-shadow:none;
 }
+.codex-update-guide .readiness-guide__title {
+  font-size:clamp(28px,2.6vw,36px);
+}
 @media (min-width:761px) and (max-width:1050px) {
   .readiness-guide__inner { grid-template-columns:minmax(0,1fr) minmax(280px,.9fr); }
   .readiness-guide__actions { grid-column:1 / -1; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); }
@@ -15270,6 +15273,24 @@ def _render_seo_llmo_guide() -> str:
     )
 
 
+def _render_codex_update_guide() -> str:
+    return (
+        "<section class='readiness-guide readiness-guide--compact codex-update-guide' aria-labelledby='codex-update-guide-title'><div class='offer-panel'><div class='readiness-guide__inner'>"
+        "<div class='readiness-guide__intro'><div class='offer-role-row'><div class='offer-role-copy'>"
+        "<span class='offer-role-badge'>ブログ</span><span class='offer-role-note'>毎朝更新</span></div></div>"
+        "<h2 id='codex-update-guide-title' class='readiness-guide__title'>今日のAIニュース10とCodexアップデート</h2>"
+        "<p class='readiness-guide__summary'>直近のAIニュースを10件に絞り、Codexの公式アップデートと一緒に、学校・地域事業・仕事・暮らしとの関係がわかる言葉でまとめます。</p></div>"
+        "<ul class='readiness-guide__questions' aria-label='今日のAIニュース10とCodexアップデートでわかること'>"
+        "<li><span aria-hidden='true'>?</span><div><strong>AIニュース10</strong><small>重要な動きを厳選</small></div></li>"
+        "<li><span aria-hidden='true'>?</span><div><strong>日本との関係</strong><small>学校・店・会社・家庭</small></div></li>"
+        "<li><span aria-hidden='true'>?</span><div><strong>Codexアップデート</strong><small>公式情報から解説</small></div></li>"
+        "</ul>"
+        "<div class='readiness-guide__actions'><a class='readiness-guide__cta' href='/blog/codex-update-log.html' aria-label='今日のAIニュース10とCodexアップデートを読む'>"
+        "<span>今日のAIニュース10とCodexアップデートを読む</span><b aria-hidden='true'>→</b></a></div>"
+        "</div></div></section>"
+    )
+
+
 def _render_focused_blog_content() -> str:
     posts = _load_recent_blog_posts(limit=6)
     if not posts:
@@ -15359,6 +15380,7 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append(_render_hero_focused())
     parts.append(_render_readiness_guide())
     parts.append(_render_seo_llmo_guide())
+    parts.append(_render_codex_update_guide())
 
     parts.append(_render_focused_main())
     parts.append("</main>")

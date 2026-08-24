@@ -47,6 +47,7 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
             ("ai-app-site", "home-app-site-guide"),
             ("readiness-guide-title", "readiness-guide--compact"),
             ("seo-llmo-guide-title", "seo-llmo-guide"),
+            ("codex-update-guide-title", "codex-update-guide"),
         )
         for guide_id, modifier in expected_sections:
             with self.subTest(guide_id=guide_id):
@@ -63,15 +64,16 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
                 self.assertIn("class='readiness-guide__actions'", section)
                 self.assertIn("class='readiness-guide__cta", section)
 
-        self.assertEqual(3, self.home.count("class='readiness-guide__inner'"))
-        self.assertEqual(3, self.home.count("class='readiness-guide__intro'"))
-        self.assertEqual(3, self.home.count("class='readiness-guide__questions"))
-        self.assertEqual(3, self.home.count("class='readiness-guide__actions'"))
-        self.assertGreaterEqual(self.home.count("offer-panel"), 3)
+        self.assertEqual(4, self.home.count("class='readiness-guide__inner'"))
+        self.assertEqual(4, self.home.count("class='readiness-guide__intro'"))
+        self.assertEqual(4, self.home.count("class='readiness-guide__questions"))
+        self.assertEqual(4, self.home.count("class='readiness-guide__actions'"))
+        self.assertGreaterEqual(self.home.count("offer-panel"), 4)
         self.assertIn("<span class='offer-role-badge'>代行</span>", self.home)
         self.assertIn("<span class='offer-role-note'>AIアプリサイト</span>", self.home)
         self.assertNotIn("AI APP SITE · DONE FOR YOU", self.home)
         self.assertEqual(2, self.home.count("<span class='offer-role-badge'>診断</span>"))
+        self.assertEqual(1, self.home.count("<span class='offer-role-badge'>ブログ</span>"))
         self.assertEqual(3, self.home.count("<span class='offer-role-badge'>学ぶ</span>"))
         self.assertEqual(3, self.home.count("class='compact-course-card offer-card'"))
         self.assertGreaterEqual(self.home.count("offer-action"), 5)
@@ -90,9 +92,10 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
                 guide_inners = desktop.locator(
                     "#ai-app-site .readiness-guide__inner, "
                     "section[aria-labelledby='readiness-guide-title'] .readiness-guide__inner, "
-                    "section[aria-labelledby='seo-llmo-guide-title'] .readiness-guide__inner"
+                    "section[aria-labelledby='seo-llmo-guide-title'] .readiness-guide__inner, "
+                    "section[aria-labelledby='codex-update-guide-title'] .readiness-guide__inner"
                 )
-                self.assertEqual(3, guide_inners.count())
+                self.assertEqual(4, guide_inners.count())
                 grid_templates = [
                     guide_inners.nth(index).evaluate(
                         "element => getComputedStyle(element).gridTemplateColumns"
@@ -104,9 +107,10 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
                 question_rows = desktop.locator(
                     "#ai-app-site .readiness-guide__questions li, "
                     "section[aria-labelledby='readiness-guide-title'] .readiness-guide__questions li, "
-                    "section[aria-labelledby='seo-llmo-guide-title'] .readiness-guide__questions li"
+                    "section[aria-labelledby='seo-llmo-guide-title'] .readiness-guide__questions li, "
+                    "section[aria-labelledby='codex-update-guide-title'] .readiness-guide__questions li"
                 )
-                self.assertEqual(11, question_rows.count())
+                self.assertEqual(14, question_rows.count())
                 for index in range(question_rows.count()):
                     row = question_rows.nth(index)
                     self.assertEqual("grid", row.evaluate("element => getComputedStyle(element).display"))
@@ -120,7 +124,7 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
                 mobile = browser.new_page(viewport={"width": 375, "height": 1000})
                 mobile.set_content(self.home)
                 mobile_inners = mobile.locator(".readiness-guide__inner")
-                self.assertEqual(3, mobile_inners.count())
+                self.assertEqual(4, mobile_inners.count())
                 for index in range(mobile_inners.count()):
                     inner_box = mobile_inners.nth(index).bounding_box()
                     panel_box = mobile_inners.nth(index).locator("xpath=..").bounding_box()

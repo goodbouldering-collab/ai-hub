@@ -23,7 +23,11 @@ class AIclimbBrandTest(unittest.TestCase):
 
         self.assertEqual(portal.SITE_BRAND, "AIclimb")
         self.assertIn("AIclimb（エーアイクライム）", homepage)
-        self.assertIn("AIで仕事を軽くする実践相談・伴走支援", homepage)
+        self.assertIn(
+            "<h1 class='focus-title'><span class='focus-title-first'>使えるAI、教えます。</span>"
+            "<br><span class='focus-title-line'><strong>講習・導入・代行</strong></span></h1>",
+            homepage,
+        )
         self.assertIn("AI相談・業務改善・伴走支援", homepage)
         self.assertIn("まずは困っている仕事を相談する", homepage)
 

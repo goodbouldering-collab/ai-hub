@@ -15177,7 +15177,7 @@ def _render_hero_focused() -> str:
         "<div class='focus-hero-shell'>"
         "<div class='focus-hero-copy'>"
         "<p class='focus-kicker'>AIclimb（エーアイクライム）｜彦根・滋賀のAI相談</p>"
-        "<h1 class='focus-title'><span class='focus-title-first'>AIで仕事を軽くする</span><br><span class='focus-title-line'><strong>実践相談・伴走支援</strong></span></h1>"
+        "<h1 class='focus-title'><span class='focus-title-first'>使えるAI、教えます。</span><br><span class='focus-title-line'><strong>講習・導入・代行</strong></span></h1>"
         "<aside class='hero-advantage' id='advantage' aria-labelledby='hero-advantage-title'>"
         "<div class='hero-advantage-number' role='img' aria-label='AI利用率 6パーセント'><span>AI利用率</span><strong>6%</strong></div>"
         "<div class='hero-advantage-copy'><small><strong>始めるなら今。</strong><span>まだまだこれから！</span></small><p id='hero-advantage-title'><span class='hero-advantage-equation'><strong>AI</strong><span>×</span><strong>経験</strong></span><span class='hero-advantage-outcome'>「こんなことできたら」がすぐ叶う</span></p></div>"

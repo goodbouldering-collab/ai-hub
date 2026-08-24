@@ -18,14 +18,14 @@ class CourseMaterialMappingTest(unittest.TestCase):
         cls.agent_html = AGENT_MATERIAL.read_text(encoding="utf-8")
         cls.article_html = AGENT_ARTICLE.read_text(encoding="utf-8")
 
-    def test_programming_map_is_ai_app_selfbuild_material(self) -> None:
+    def test_programming_map_is_ai_coding_material(self) -> None:
         self.assertIn(
-            "<title>AIアプリサイト自作講習・相談｜Codex・Claude Code実践 | AIclimb（AI相談）</title>",
+            "<title>AIコーディング講習｜Codex・Claude Code実践 | AIclimb（AI相談）</title>",
             self.material_html,
         )
-        self.assertIn("AIアプリサイト自作講習・相談 / Codex + Claude Code", self.material_html)
-        self.assertIn("AIアプリサイトを、", self.material_html)
-        self.assertIn("自分で作って", self.material_html)
+        self.assertIn("AIコーディング講習 / Codex + Claude Code", self.material_html)
+        self.assertIn("AIコーディングを、", self.material_html)
+        self.assertIn("仕事で使える", self.material_html)
         self.assertNotIn("AIエージェント講習のビジュアル", self.material_html)
 
     def test_ai_agent_material_is_the_canonical_beginner_course(self) -> None:
@@ -70,12 +70,12 @@ class CourseMaterialMappingTest(unittest.TestCase):
             self.index_html,
             re.DOTALL,
         )
-        coding_card = next((card for card in cards if ">AI自作講習</h3>" in card), "")
+        coding_card = next((card for card in cards if ">AIコーディング講習</h3>" in card), "")
         agent_card = next((card for card in cards if ">AIエージェント講習</h3>" in card), "")
         self.assertTrue(coding_card)
         self.assertTrue(agent_card)
         self.assertIn("href='/programming-map.html'", coding_card)
-        self.assertIn("AIアプリサイト自作の受講資料を見る", coding_card)
+        self.assertIn("AIコーディング講習の受講資料を見る", coding_card)
         self.assertNotIn("href='/programming-map.html'", agent_card)
         self.assertIn(
             "href='/lectures/2026-04-ai-kihon.html'",

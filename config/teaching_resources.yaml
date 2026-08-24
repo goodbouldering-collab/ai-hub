@@ -47,10 +47,10 @@ sections:
   description: 講習で画面共有するときや、本文のあとで詳しく確認するときだけ開く補助資料
   collapsed: true
   items:
-  - title: AIアプリサイト自作講習・相談 120分
+  - title: AIコーディング講習 120分
     icon: 🧭
     href: programming-map.html
-    summary: 作りたい内容の相談から始め、CodexやClaude Codeを使った実装、変更確認、修正、安全な公開までを順番に学ぶ自作講習です。
+    summary: 初めての人が、CodexやClaude Codeを使った実装、変更確認、修正、安全な公開までを順番に学ぶAIコーディング講習。
     date: 2026-06-06
     features:
       body: true

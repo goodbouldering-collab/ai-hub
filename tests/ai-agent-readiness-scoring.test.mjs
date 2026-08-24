@@ -169,6 +169,9 @@ test('course routes match live AI consultation offers and avoid direct high-pric
     COURSE_ROUTES['ai-coding'].url,
     'https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/S7GERYVDIPRV76DKXCC3WJWH',
   );
+  assert.equal(COURSE_ROUTES['ai-coding'].name, 'AIコーディング講習');
+  assert.equal(COURSE_ROUTES['ai-coding'].title, 'AIコーディング講習 120分');
+  assert.equal(COURSE_ROUTES['ai-coding'].cta, 'AIコーディング講習を予約する');
   assert.equal(COURSE_ROUTES['ai-support'].url, '/#packages');
   assert.notEqual(COURSE_ROUTES['ai-support'].url, '/api/stripe/monthly-support');
   assert.equal(COURSE_ROUTES['ai-support'].price, '月額88,000円');

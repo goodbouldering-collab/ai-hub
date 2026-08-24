@@ -122,7 +122,8 @@ OWNER_SUBTITLE = "クライミング歴30年・9事業を回す滋賀のAI講師
 OWNER_TAGLINE = "AIで仕事と暮らしの負担を軽くする。"
 DIAGNOSIS_FREE_CONSULT_BOOK_URL = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/AW5O5XSBHLEHYUBHLZUGFKYE"
 AI_AGENT_COURSE_URL = "https://goodbouldering.com/?pid=188553378"
-AI_APP_SELFBUILD_BOOK_URL = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/S7GERYVDIPRV76DKXCC3WJWH"
+INDIVIDUAL_COURSE_BOOK_URL = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/TO3XHZT6XP3OM4QBDYMW7TZP"
+AI_CODING_BOOK_URL = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/S7GERYVDIPRV76DKXCC3WJWH"
 MONTHLY_SUPPORT_BOOK_URL = "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/V57YTNICA2KV2TN7ENARAVQE"
 MONTHLY_SUPPORT_PRICE_YEN = 88_000
 MONTHLY_SUPPORT_PRICE_JPY = str(MONTHLY_SUPPORT_PRICE_YEN)
@@ -287,16 +288,18 @@ def _build_jsonld_website() -> str:
     }
 
     ai_agent_title = "AIエージェント講習 120分"
-    selfbuild_title = "AIアプリサイト自作講習・相談 120分"
+    individual_course_title = "AI個別講習 60分"
+    ai_coding_title = "AIコーディング講習 120分"
     salon_title = "AIオンラインサロン｜近日開始"
     support_title = "AI伴走支援 いっしょに導入"
 
     # 受講プランを Service + Offer として構造化（_render_packages の items と整合）
     plans = [
         (ai_agent_title, "Codexを使い、仕事を小さく分けて頼む、変更点を確かめる、必要なら直す、次回も使える手順として残すAIエージェント講習。資料、告知、業務改善、Web制作を題材に、人が判断しながら成果物を完成させる型を120分で身につける。", "5500", "5500", "Course"),
+        (individual_course_title, "仕事に合うAIの使い方と、確認・運用の手順を60分で整理する個別講習。", "5500", "5500", "Course"),
         (salon_title, "月額2,200円（税込）。正式開始に向けて現在は仮運用中で、登録中の方にはテスト運用へご協力いただいています。Square決済後にLINE参加案内を表示します。", "2200", "2200", "CommunityService"),
         (support_title, "組織がAIアプリサイトを自作・改善・運用できるまで学ぶ6ヶ月。上の制作サービスで行う課題整理、設計、公開、改善を、組織の担当者がAIと進められる状態を目指す。", MONTHLY_SUPPORT_PRICE_JPY, MONTHLY_SUPPORT_PRICE_JPY, "Service"),
-        (selfbuild_title, "作りたいAIアプリサイトを題材に、目的整理、AIへの頼み方、コード確認、修正、安全な公開までを個別に進める講習・相談。相談だけで終わらず、自分で作って直せる状態を120分で目指す。", "11000", "11000", "Course"),
+        (ai_coding_title, "Codex導入、Claude Code併用、画像生成、プログラミング基礎、設計、データ、運用、セキュリティを1本で学ぶAIコーディング講習。AIの成果物を判断し、説明し、仕事に入れるための作業設計と確認の型を120分で身につける。", "11000", "11000", "Course"),
     ]
     plan_schema = {
         ai_agent_title: {
@@ -312,6 +315,19 @@ def _build_jsonld_website() -> str:
                 "依頼、確認、修正、次回手順への保存",
             ],
         },
+        individual_course_title: {
+            "@id": SITE_URL + "/#course-ai-individual",
+            "@type": "Course",
+            "testimonial_key": "ai-consultation",
+            "timeRequired": "PT1H",
+            "courseMode": ["onsite", "online"],
+            "inLanguage": "ja",
+            "teaches": [
+                "仕事に合うAI活用テーマの選定",
+                "AIツール、データ、人が確認する範囲の整理",
+                "受講後に試す手順と次の一手",
+            ],
+        },
         salon_title: {
             "@id": SITE_URL + "/#service-ai-salon",
             "@type": "Service",
@@ -322,17 +338,17 @@ def _build_jsonld_website() -> str:
             "@type": "Service",
             "testimonial_key": "ai-support",
         },
-        selfbuild_title: {
-            "@id": SITE_URL + "/#course-ai-app-selfbuild",
+        ai_coding_title: {
+            "@id": SITE_URL + "/#course-ai-coding",
             "@type": "Course",
-            "testimonial_key": "ai-app-selfbuild",
+            "testimonial_key": "ai-coding",
             "timeRequired": "PT2H",
             "courseMode": ["onsite", "online"],
             "inLanguage": "ja",
             "teaches": [
-                "AIアプリサイトの目的整理と小さな仕様設計",
-                "AIへの依頼、変更差分、データ、セキュリティの確認",
-                "修正、PC・スマホ確認、GitHubとクラウドを使った公開工程",
+                "AIコーディングの仕様設計と作業順序",
+                "変更差分、データ、セキュリティの確認",
+                "GitHub、worktree、クラウドを使った公開工程",
             ],
         },
     }
@@ -388,9 +404,12 @@ def _build_jsonld_website() -> str:
         if name == ai_agent_title:
             offer["url"] = AI_AGENT_COURSE_URL
             service["url"] = AI_AGENT_COURSE_URL
-        if name == selfbuild_title:
-            offer["url"] = AI_APP_SELFBUILD_BOOK_URL
-            service["url"] = AI_APP_SELFBUILD_BOOK_URL
+        if name == individual_course_title:
+            offer["url"] = INDIVIDUAL_COURSE_BOOK_URL
+            service["url"] = INDIVIDUAL_COURSE_BOOK_URL
+        if name == ai_coding_title:
+            offer["url"] = AI_CODING_BOOK_URL
+            service["url"] = AI_CODING_BOOK_URL
         if name == support_title:
             offer["url"] = MONTHLY_SUPPORT_BOOK_URL
             service["url"] = MONTHLY_SUPPORT_BOOK_URL
@@ -10025,17 +10044,17 @@ HEADER_JS = """
       { q: '最初の一歩は、どう進めたい？', a: [
         { label: '無料相談で入口を整理したい', key: 'free' },
         { label: '講習で作りながら学びたい', key: 'promotion' },
-        { label: '相談しながらAIアプリサイトを作りたい', key: 'office' },
+        { label: '個別講習でAI活用を整理したい', key: 'start' },
         { label: '長く使える仕組みにしたい', key: 'flow' },
       ]},
     ];
     var RESULT = {
       start: {
-        badge: '自作講習・相談', title: 'まずは、作りたいものを一つ決める',
-        desc: '今の課題を聞き、AIアプリサイトで最初に作る一機能と進め方を一緒に整理します。',
-        bookingMeta: '120分・11,000円',
-        bookingLabel: 'AIアプリサイト自作講習・相談を予約する',
-        bookingUrl: '__AI_APP_SELFBUILD_BOOK_URL__'
+        badge: 'AI個別講習', title: 'まずは、AIで軽くする仕事を一つ決める',
+        desc: '今の課題を聞き、仕事に合うAIの使い方と確認・運用の手順を一緒に整理します。',
+        bookingMeta: '60分・5,500円',
+        bookingLabel: 'AI個別講習を予約する',
+        bookingUrl: '__INDIVIDUAL_COURSE_BOOK_URL__'
       },
       promotion: {
         badge: '告知・集客', title: '告知・集客の型を一つ作る',
@@ -10046,17 +10065,17 @@ HEADER_JS = """
       },
       office: {
         badge: '業務改善', title: '重い事務を一つ軽くする',
-        desc: '返信、要約、報告、引き継ぎなどから一つ選び、小さなAIアプリサイトとして作ります。',
+        desc: '返信、要約、報告、引き継ぎなどから一つ選び、AIとコードで動く形にします。',
         bookingMeta: '120分・11,000円',
-        bookingLabel: 'AIアプリサイト自作講習・相談を予約する',
-        bookingUrl: '__AI_APP_SELFBUILD_BOOK_URL__'
+        bookingLabel: 'AIコーディング講習を予約する',
+        bookingUrl: '__AI_CODING_BOOK_URL__'
       },
       flow: {
         badge: '仕組みづくり', title: 'サイト・業務改善の道筋を決める',
-        desc: '予約、問い合わせ、更新の流れを整理し、自分で作って直す順番を決めます。',
+        desc: '予約、問い合わせ、更新の流れを整理し、AIが作ったコードを確認して公開する順番を学びます。',
         bookingMeta: '120分・11,000円',
-        bookingLabel: 'AIアプリサイト自作講習・相談を予約する',
-        bookingUrl: '__AI_APP_SELFBUILD_BOOK_URL__'
+        bookingLabel: 'AIコーディング講習を予約する',
+        bookingUrl: '__AI_CODING_BOOK_URL__'
       },
       free: {
         badge: '診断内限定', title: 'まずは、無料相談で入口を整理する',
@@ -10467,7 +10486,7 @@ HEADER_JS = """
   })();
 })();
 </script>
-""".replace("__AI_APP_SELFBUILD_BOOK_URL__", AI_APP_SELFBUILD_BOOK_URL).replace("__AI_AGENT_COURSE_URL__", AI_AGENT_COURSE_URL).replace("__DIAGNOSIS_FREE_CONSULT_BOOK_URL__", DIAGNOSIS_FREE_CONSULT_BOOK_URL)
+""".replace("__INDIVIDUAL_COURSE_BOOK_URL__", INDIVIDUAL_COURSE_BOOK_URL).replace("__AI_CODING_BOOK_URL__", AI_CODING_BOOK_URL).replace("__AI_AGENT_COURSE_URL__", AI_AGENT_COURSE_URL).replace("__DIAGNOSIS_FREE_CONSULT_BOOK_URL__", DIAGNOSIS_FREE_CONSULT_BOOK_URL)
 
 
 HERO_IMG = "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=70"
@@ -11388,7 +11407,8 @@ def _render_services() -> str:
 
 def _render_courses_packages() -> str:
     """講習・相談プランのカード一覧。"""
-    selfbuild_title = "AIアプリサイト自作講習・相談 120分"
+    individual_course_title = "AI個別講習 60分"
+    ai_coding_title = "AIコーディング講習 120分"
     free_consult_title = "AI無料相談 入口整理"
     support_title = "AI伴走支援 いっしょに導入"
     items = [
@@ -11404,7 +11424,7 @@ def _render_courses_packages() -> str:
             "desc": "来店またはオンラインで、講習・AI導入・補助金の入口を整理します。",
             "content": [
                 "今の課題とAIで試したいことを聞き取り",
-                "基本講習、自作講習・相談、伴走支援の入口を切り分け",
+                "基本講習、個別講習、伴走支援の入口を切り分け",
                 "補助金、交流会、次回予約の導線を確認",
             ],
             "fit": ["まず話を聞きたい", "講習か伴走か迷う", "来店またはオンラインで相談したい"],
@@ -11412,6 +11432,27 @@ def _render_courses_packages() -> str:
             "cta": "無料相談を予約する",
             "material_url": "#lectures",
             "material_cta": "受講資料で選び方を見る",
+        },
+        {
+            "icon": "◎",
+            "cat": "個別講習",
+            "level": "個別",
+            "level_id": "intermediate",
+            "title": individual_course_title,
+            "price": "5,500円",
+            "duration": "60分 / 個別",
+            "subsidy": False,
+            "desc": "仕事に合うAIの使い方と、確認・運用の手順を60分で整理します。",
+            "content": [
+                "時間を取られている仕事から、最初に試す1つを選ぶ",
+                "使うAI、渡してよい情報、人が確認する範囲を整理する",
+                "受講後すぐ試す手順と次の一手を残す",
+            ],
+            "fit": ["AIが分からない", "事務作業が重い", "社内への導入順を決めたい"],
+            "url": INDIVIDUAL_COURSE_BOOK_URL,
+            "cta": "AI個別講習を予約する",
+            "material_url": "/lectures/2026-04-ai-kangaekata.html",
+            "material_cta": "15分のAI実践ワークを見る",
         },
         {
             "icon": "◇",
@@ -11437,30 +11478,30 @@ def _render_courses_packages() -> str:
         },
         {
             "icon": "▧",
-            "cat": "個別実装",
+            "cat": "AIコーディング講習",
             "level": "実装",
             "level_id": "implementation",
-            "title": selfbuild_title,
+            "title": ai_coding_title,
             "price": "11,000円",
-            "duration": "120分 / 少人数",
+            "duration": "120分 / 個別",
             "subsidy": False,
-            "desc": "作りたいAIアプリサイトを題材に、相談、設計、AIへの依頼、確認、修正、公開までを個別に進めます。",
+            "desc": "AIが作ったコードを読み、直し、確認して公開するところまで体系的に学びます。",
             "content": [
-                "作りたい機能と利用者を整理し、小さな仕様へ分ける",
-                "依頼文、差分、データ、セキュリティ、PC・スマホ表示を確認する",
-                "エラーを直し、GitHubとクラウドで公開して本番URLを確かめる",
+                "AIが作ったコードと変更差分を読み、意図どおりか確認する",
+                "データ、権限、秘密情報、PC・スマホ表示を確認する",
+                "エラーを直し、GitHubとクラウドで安全に公開する",
             ],
-            "fit": ["AIアプリサイトを自分で作りたい", "相談しながら最初の一機能を完成させたい", "公開後も自分で確認・修正できるようになりたい"],
+            "fit": ["AIの成果物を判断して直したい", "小さくても動くものを作りたい", "公開前の確認まで体系的に学びたい"],
             "req_title": "このプランで使う受講資料",
             "requirements": [
-                "AIアプリサイトの資料をもとに、仕事の分解、依頼、確認、修正、成果物の保存を通しで学ぶ",
+                "AIコーディング講習ページをもとに、仕事の分解、依頼、確認、修正、成果物の保存を通しで学ぶ",
                 "受講後は小さな制作物を作り、説明できない変更を公開前に止める判断まで練習する",
             ],
             "verify": "予約ページでは120分の講習メニューを選んでください。",
-            "url": AI_APP_SELFBUILD_BOOK_URL,
-            "cta": "AIアプリサイト自作講習・相談を予約する",
+            "url": AI_CODING_BOOK_URL,
+            "cta": "AIコーディング講習を予約する",
             "material_url": "/programming-map.html",
-            "material_cta": "AIアプリサイト自作の受講資料を見る",
+            "material_cta": "AIコーディング講習の受講資料を見る",
             "variant": "featured",
         },
     ]
@@ -11528,7 +11569,8 @@ def _render_courses_packages() -> str:
     parts.append("</div>")
     parts.append(
         "<p class='packages-note fade-up d4'>"
-        "<strong>AIアプリサイト自作講習・相談:</strong> 作りたいものの相談から、AIへの依頼、コード確認、修正、安全な公開までを120分11,000円で個別に進めます。"
+        "<strong>AIコーディング講習:</strong> AIが作ったコードの読解、修正、画面確認、安全な公開までを120分11,000円で個別に進めます。"
+        "<br><strong>AI個別講習:</strong> 仕事に合うAIの使い方と、確認・運用の手順を60分5,500円で整理します。"
         "<br><strong>無料相談:</strong> AI無料相談は、講習・伴走のどちらから始めるかを無料で整理する入口です。"
         "<br><strong>伴走支援:</strong> 6ヶ月伴走は既存のSquare予約ページから初回相談を申し込めます。"
         "<br><strong>補助金:</strong> 講習と伴走支援は、滋賀県・彦根市のデジタル化/AI導入系補助金と組み合わせて相談できます。"
@@ -11562,10 +11604,10 @@ COURSE_TESTIMONIALS: tuple[dict, ...] = (
         ),
     },
     {
-        "key": "ai-app-selfbuild",
-        "course_name": "AIアプリサイト自作講習・相談",
-        "anchor_id": "voice-ai-app-selfbuild",
-        "heading": "相談から公開までつながり、自分で直せる形になった",
+        "key": "ai-consultation",
+        "course_name": "AI個別講習",
+        "anchor_id": "voice-ai-consultation",
+        "heading": "その場で悩みがほどけ、明日から使える形になった",
         "testimonials": (
             {
                 "title": "会社の業務を、そのまま相談できた",
@@ -11582,6 +11624,14 @@ COURSE_TESTIMONIALS: tuple[dict, ...] = (
                 "body": "解決策が事業の中で形になっていくのを実感できました。会社へ導入しやすいところまで整理でき、今度は自分がほかの人へ伝えられることも増えたと思います。",
                 "author_label": "受講者（匿名）",
             },
+        ),
+    },
+    {
+        "key": "ai-coding",
+        "course_name": "AIコーディング講習",
+        "anchor_id": "voice-ai-coding",
+        "heading": "コードを書く人から、AIとチームを動かす人へ",
+        "testimonials": (
             {
                 "title": "手打ちより、仕様と順序が効率を決めると分かった",
                 "body": "これまではコードを手で打つことに集中していましたが、プロジェクトの目的や仕様書に沿って進めることが、結果的に大きな効率化につながると分かりました。",
@@ -11748,29 +11798,51 @@ def _render_compact_course_cards() -> str:
         },
         {
             "cat": "個別講習",
-            "title": "AI自作講習",
+            "title": "AI個別講習",
+            "audience": "個別",
+            "image": "/img/course-path-beginner.webp",
+            "image_alt": "相談しながら仕事の課題とAIの使い方を整理する様子",
+            "price": "5,500円",
+            "duration": "60分",
+            "desc": "仕事に合うAIの使い方と、確認・運用の手順を整理します。",
+            "url": INDIVIDUAL_COURSE_BOOK_URL,
+            "cta": "個別講習を予約",
+            "material_url": "/lectures/2026-04-ai-kangaekata.html",
+            "material_cta": "15分のAI実践ワークを見る",
+            "testimonial_key": "ai-consultation",
+            "details_lead": "相談すると整理できること",
+            "details": [
+                ("最初にやる仕事が決まる", "「AIで何ができるか」からではなく、時間を取られている仕事を整理し、効果が出やすい1つを選びます。"),
+                ("道具選びで迷わなくなる", "ChatGPT、Codex、Claude Codeなどを目的に合わせて比べ、今は不要な契約や機能も切り分けます。"),
+                ("安全に使う範囲が分かる", "顧客情報、社内資料、公開前データなど、AIへ渡してよいものと人が確認する部分を整理します。"),
+                ("自分向けの進め方が残る", "講習、伴走、制作、自分で試す方法から、予算と時間に合う次の一手を具体化します。"),
+                ("こんな方におすすめ", "AIが分からない、事務作業が重い、告知が続かない、社内へどう導入するか決められない方に向いています。"),
+                ("参加方法", "予約ページから60分の日時を選び、困っている仕事や使っている資料をそのままお持ちください。対面・オンラインに対応します。"),
+            ],
+        },
+        {
+            "cat": "実装講習",
+            "title": "AIコーディング講習",
             "audience": "個別",
             "image": "/img/course-path-coding.webp",
-            "image_alt": "相談しながらAIアプリサイトを作り、確認して公開する様子",
+            "image_alt": "AIとコードを確認しながらWebサイトを安全に公開する様子",
             "price": "11,000円",
             "duration": "120分",
-            "desc": "サイトやアプリを自分で作って直せるようになる。作りたいAIアプリサイトを題材に、公開できるまで個別に進めます。",
-            "url": AI_APP_SELFBUILD_BOOK_URL,
-            "cta": "AI自作講習を予約",
+            "desc": "AIが作ったコードを読み、直し、確認して公開するところまで体系的に学びます。",
+            "url": AI_CODING_BOOK_URL,
+            "cta": "AIコーディングを予約",
             "material_url": "/programming-map.html",
-            "material_cta": "AIアプリサイト自作の受講資料を見る",
-            "testimonial_key": "ai-app-selfbuild",
-            "details_lead": "制作サービスと同じ流れを、自分で進める",
+            "material_cta": "AIコーディング講習の受講資料を見る",
+            "testimonial_key": "ai-coding",
+            "details_lead": "この講習で身につくこと",
             "details": [
-                ("課題と完成形を決める", "誰が、どの作業で、何ができれば完成かを整理し、最初に作る一機能へ絞ります。"),
-                ("画面と機能を設計する", "入力、結果、ボタン、利用者の流れを並べ、AIに作らせる前の短い設計図を作ります。"),
-                ("AIへ制作を依頼する", "目的、利用者、完成形、守る条件を整理し、CodexやClaude Codeへ伝わる依頼にします。"),
-                ("変更を自分で確かめる", "差分、画面、リンク、入力、データを確認し、意図どおりの変更か判断します。"),
-                ("直したい点をAIへ伝える", "表示や動きが違うときに、場所、期待する結果、守る条件を伝えて修正します。"),
-                ("公開前の安全確認をする", "PC・スマホ表示、リンク、入力、エラー、秘密情報を確認し、公開してよい状態か判断します。"),
-                ("本番へ公開する", "GitHubとクラウドへ反映し、本番URLで画面と機能が動くところまで個別に進めます。"),
-                ("次も自分で直せる形に残す", "目的、依頼文、確認項目、設定、次の修正を保存し、受講後も続けられる資産にします。"),
-                ("参加方法", "WindowsまたはMacのPCと、作りたいものや直したいページをお持ちください。対面・オンラインに対応します。"),
+                ("小さくても動くものを作る", "自社ページ、申込フォーム、集計画面、業務ツールなど、目的に合う題材を実際に動かします。"),
+                ("AIが変えた場所を読める", "CodexやClaude Codeの変更差分を確認し、何が変わったか、意図どおりかを判断できるようにします。"),
+                ("安全な任せ方が分かる", "操作範囲、秘密情報、権限、外部サービスへの接続を整理し、AIに任せすぎない進め方を学びます。"),
+                ("エラーを直す順番が分かる", "表示、ログ、テスト結果から原因を絞り、修正してもう一度確認する流れを体験します。"),
+                ("公開前の確認ができる", "PC・スマホ表示、リンク、入力、エラーを確認し、公開後は本番URLで動作を確かめます。"),
+                ("再利用できる開発資産が残る", "コードだけでなく、目的、設定、確認方法、次の修正が追える形で保存します。"),
+                ("参加方法", "予約ページから日時を選び、WindowsまたはMacのPCと、作りたいものや直したいページをお持ちください。"),
             ],
         },
         {
@@ -11969,10 +12041,10 @@ def _render_footer(today: str) -> str:
 
 
 def _render_sticky_cta() -> str:
-    """モバイルでスクロール後に現れる、自作講習・相談と基本講習の固定CTA。"""
+    """モバイルでスクロール後に現れる、コーディング講習と基本講習の固定CTA。"""
     return (
-        "<nav class='sticky-cta' id='sticky-cta' aria-label='AI自作講習とAIエージェント講習の固定CTA' aria-hidden='true'>"
-        f"<a class='sticky-cta-btn sticky-cta-btn--consult' href='{AI_APP_SELFBUILD_BOOK_URL}' target='_blank' rel='noopener'><span>AI自作講習</span><small>120分・11,000円</small></a>"
+        "<nav class='sticky-cta' id='sticky-cta' aria-label='AIコーディング講習とAIエージェント講習の固定CTA' aria-hidden='true'>"
+        f"<a class='sticky-cta-btn sticky-cta-btn--consult' href='{AI_CODING_BOOK_URL}' target='_blank' rel='noopener'><span>AIコーディング講習</span><small>120分・11,000円</small></a>"
         f"<a class='sticky-cta-btn sticky-cta-btn--agent' href='{AI_AGENT_COURSE_URL}' target='_blank' rel='noopener'><span>AIエージェント講習</span><small>120分・5,500円</small></a>"
         "</nav>"
     )
@@ -12019,17 +12091,17 @@ def _render_explore() -> str:
     return "".join(parts)
 
 
-# AIアプリサイト自作講習・相談のSquare予約導線へ一本化。
+# AIコーディング講習のSquare予約導線。
 
 
 def _render_contact_form() -> str:
-    """申込導線は「AIアプリサイト自作講習・相談」に一本化。"""
+    """AIコーディング講習の申込導線。"""
     return (
-        f"<a class='contact-primary fade-up' href='{AI_APP_SELFBUILD_BOOK_URL}' target='_blank' rel='noopener'>"
+        f"<a class='contact-primary fade-up' href='{AI_CODING_BOOK_URL}' target='_blank' rel='noopener'>"
         "<span class='cp-ico'>📅</span>"
         "<span class='cp-body'>"
-        "<span class='cp-title'>AIアプリサイト自作講習・相談を予約する</span>"
-        "<span class='cp-desc'>作りたいものを持ち込み、相談、AIへの依頼、確認、修正、公開まで120分で個別に進めます。対面・オンラインに対応します。</span>"
+        "<span class='cp-title'>AIコーディング講習を予約する</span>"
+        "<span class='cp-desc'>作りたいものを持ち込み、AIが作ったコードの確認、修正、安全な公開まで120分で個別に進めます。対面・オンラインに対応します。</span>"
         "</span>"
         "<span class='cp-cta'>日程を選ぶ →</span>"
         "</a>"
@@ -12125,7 +12197,7 @@ FAQ_QA = [
     ("LLMO やAI検索に強いサイトにできますか？",
      "できます。地域名、講師の一次経験、料金、対応範囲、実例、FAQ、構造化データを整理し、AIが回答に引用しやすい形で公開します。大量の自動生成ではなく、講習と実例に基づく一次情報を重視します。"),
     ("料金はどれくらいですか？",
-     f"AI無料相談の入口整理は無料、AIエージェント講習120分は5,500円、AIアプリサイト自作講習・相談120分は11,000円です。AI伴走支援 いっしょに導入は{MONTHLY_SUPPORT_PRICE_LABEL}×6ヶ月が目安で、既存のSquare予約ページから初回相談を申し込めます。"),
+     f"AI無料相談の入口整理は無料、AIエージェント講習120分は5,500円、AI個別講習60分は5,500円、AIコーディング講習120分は11,000円です。AI伴走支援 いっしょに導入は{MONTHLY_SUPPORT_PRICE_LABEL}×6ヶ月が目安です。"),
     ("補助金は使えますか？滋賀の事業者でも対象ですか？",
      "講習・伴走パックは「デジタル化・AI導入補助金」や滋賀県・彦根市の補助金の対象になります。補助率は小規模事業者で最大4/5、実質負担が1/3以下になるケースが多いです。申請からツール選定・実装・定着まで一気通貫で支援します。"),
     ("パソコンやスマホが苦手ですが、大丈夫ですか？",
@@ -12337,16 +12409,16 @@ def _render_works_section() -> str:
 def _render_lectures_section() -> str:
     """公開中の受講資料をLPでもすべて見せる。"""
     pmap_card = {
-        "title": "AIアプリサイト自作講習・相談 120分",
+        "title": "AIコーディング講習 120分",
         "icon": "🧭",
         "date": "2026-06-06",
-        "summary": "作りたいAIアプリサイトを題材に、相談、AIへの依頼、変更確認、修正、安全な公開までを順番に進める個別講習。",
+        "summary": "CodexとClaude Codeを使い、実装、変更確認、修正、安全な公開までを順番に学ぶAIコーディング講習。",
         "category": "ai-build",
         "level": "実践",
         "duration": "120分",
         "route_label": "AIと作る",
         "image": "/img/course-path-coding.webp",
-        "image_alt": "AIが変更したコードを人が確認し、AIアプリサイトを自作して公開する講習・相談",
+        "image_alt": "AIが変更したコードを人が確認し、安全にWebサイトを公開するAIコーディング講習",
         "href": "/programming-map.html",
     }
     all_lectures = list(_load_all_lectures())
@@ -15372,8 +15444,8 @@ def _render_focused_blog_content() -> str:
 def _render_focused_main() -> str:
     parts = [
         "<section class='focus-block main-course' id='packages'><div class='focus-section-head'><small>COURSES</small><h2>講習・相談コース</h2></div>",
-        "<p class='focus-section-lead'><strong>制作を任せたい方は、上の「AIアプリサイト制作」へ。学ぶなら、受講人数で選べます。</strong><br>少数で基本を学ぶ、個別で自作する、組織で自作・改善・運用まで身につける。目的に合うコースへ進めます。</p>",
-        "<div class='course-menu-unified' id='course-voices' role='region' aria-label='講習・相談の全4メニュー'>",
+        "<p class='focus-section-lead'><strong>制作を任せたい方は、上の「AIアプリサイト制作」へ。学ぶなら、受講人数で選べます。</strong><br>少数で基本を学ぶ、個別でAI活用を整理する、個別でコーディングを学ぶ、組織で改善・運用まで身につける。目的に合うコースへ進めます。</p>",
+        "<div class='course-menu-unified' id='course-voices' role='region' aria-label='講習・相談の全5メニュー'>",
         _render_compact_course_cards(),
         "</div>",
         "<aside class='course-venue-common' aria-label='講習・相談コース共通の開催場所'>",
@@ -15417,7 +15489,7 @@ def _render_focused_main() -> str:
 def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     today = datetime.now().strftime("%Y-%m-%d")
     title = SITE_BROWSER_TITLE
-    desc = "AIclimbは、彦根・滋賀の事業者のためのAI相談・業務改善・伴走支援です。告知、事務、集客、Web/業務アプリを、相談から実装・公開・運用まで一段ずつ進めます。"
+    desc = "AIclimbは、彦根・滋賀の事業者のためのAI相談・業務改善・伴走支援です。AI個別講習とAIコーディング講習で、相談から実装・公開・運用まで一段ずつ進めます。"
 
     parts: list[str] = []
     parts.append("<!doctype html><html lang='ja'><head><meta charset='utf-8'>" + FAVICON_HEAD_HTML)
@@ -15581,14 +15653,14 @@ def main(dry_run: bool = False) -> int:
         print(f"  agents_status 生成スキップ: {e}")
 
     recent_lectures = _load_recent_lectures(limit=3)
-    # AIアプリサイト自作講習・相談 120分は受講資料カードとして残すが、最新資料を先頭にする
+    # AIコーディング講習 120分は受講資料カードとして残すが、最新資料を先頭にする
     pmap_card = {
-        "title": "AIアプリサイト自作講習・相談 120分",
+        "title": "AIコーディング講習 120分",
         "icon": "🧭",
         "date": "2026-06-06",
-        "summary": "作りたいAIアプリサイトを題材に、相談、実装、変更確認、修正、安全な公開までを段階的に進める個別講習。",
+        "summary": "CodexとClaude Codeを使い、実装、変更確認、修正、安全な公開までを段階的に学ぶAIコーディング講習。",
         "image": "/img/course-path-coding.webp",
-        "image_alt": "AIが変更したコードを人が確認し、AIアプリサイトを自作して公開する講習・相談",
+        "image_alt": "AIが変更したコードを人が確認し、安全にWebサイトを公開するAIコーディング講習",
         "href": "/programming-map.html",
     }
     recent_lectures = list(recent_lectures) + [pmap_card]

@@ -74,8 +74,8 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
         self.assertNotIn("AI APP SITE · DONE FOR YOU", self.home)
         self.assertEqual(2, self.home.count("<span class='offer-role-badge'>診断</span>"))
         self.assertEqual(1, self.home.count("<span class='offer-role-badge'>ブログ</span>"))
-        self.assertEqual(4, self.home.count("<span class='offer-role-badge'>学ぶ</span>"))
-        self.assertEqual(4, self.home.count("class='compact-course-card offer-card'"))
+        self.assertEqual(5, self.home.count("<span class='offer-role-badge'>学ぶ</span>"))
+        self.assertEqual(5, self.home.count("class='compact-course-card offer-card'"))
         self.assertGreaterEqual(self.home.count("offer-action"), 5)
 
         css = self.portal.FOCUSED_PORTAL_CSS
@@ -187,11 +187,12 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
             self.home,
             re.DOTALL,
         )
-        self.assertEqual(4, len(cards))
+        self.assertEqual(5, len(cards))
 
         expected = (
             ("AIエージェント講習", "少数"),
-            ("AI自作講習", "個別"),
+            ("AI個別講習", "個別"),
+            ("AIコーディング講習", "個別"),
             ("AI伴走支援", "組織"),
             ("AIオンラインサロン｜近日開始", "自由"),
         )
@@ -209,7 +210,7 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
                 self.assertLess(card.index("compact-course-visual"), card.index(title))
                 self.assertLess(card.index(title), card.index("offer-audience"))
 
-        support_card = cards[2]
+        support_card = cards[3]
         self.assertIn(
             "組織がAIアプリサイトを自作・改善・運用できるまで学ぶ6ヶ月",
             support_card,
@@ -222,7 +223,7 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
             self.home,
             re.DOTALL,
         )
-        self.assertEqual(4, len(cards))
+        self.assertEqual(5, len(cards))
 
         support_card = next(card for card in cards if "<h3>AI伴走支援</h3>" in card)
         salon_card = next(card for card in cards if "AIオンラインサロン｜近日開始" in card)
@@ -239,7 +240,7 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
         self.assertLess(packages, app_site)
         self.assertLess(app_site, lectures)
 
-    def test_three_courses_are_equal_columns_on_desktop_and_stack_on_mobile(self):
+    def test_five_courses_are_equal_columns_on_desktop_and_stack_on_mobile(self):
         with sync_playwright() as playwright:
             browser = launch_chromium(playwright)
             try:
@@ -250,7 +251,7 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
                     desktop_cards.nth(index).bounding_box()
                     for index in range(desktop_cards.count())
                 ]
-                self.assertEqual(4, len(desktop_boxes))
+                self.assertEqual(5, len(desktop_boxes))
                 self.assertTrue(all(box is not None for box in desktop_boxes))
                 self.assertLess(
                     max(box["width"] for box in desktop_boxes)
@@ -260,6 +261,7 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
                 self.assertLess(abs(desktop_boxes[0]["y"] - desktop_boxes[1]["y"]), 1)
                 self.assertLess(abs(desktop_boxes[2]["y"] - desktop_boxes[3]["y"]), 1)
                 self.assertLess(desktop_boxes[1]["y"], desktop_boxes[2]["y"])
+                self.assertLess(desktop_boxes[3]["y"], desktop_boxes[4]["y"])
                 self.assertLessEqual(
                     desktop.evaluate(
                         "document.documentElement.scrollWidth - document.documentElement.clientWidth"
@@ -282,7 +284,7 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
                     mobile_cards.nth(index).bounding_box()
                     for index in range(mobile_cards.count())
                 ]
-                self.assertEqual(4, len(mobile_boxes))
+                self.assertEqual(5, len(mobile_boxes))
                 self.assertTrue(all(box is not None for box in mobile_boxes))
                 self.assertLess(
                     max(box["x"] for box in mobile_boxes)
@@ -309,7 +311,7 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
                     1,
                 )
                 narrow_headings = narrow.locator(".compact-course-heading")
-                self.assertEqual(4, narrow_headings.count())
+                self.assertEqual(5, narrow_headings.count())
                 for index in range(narrow_headings.count()):
                     self.assertEqual(
                         "nowrap",

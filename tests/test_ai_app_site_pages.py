@@ -97,7 +97,7 @@ class AiAppSitePagesTests(unittest.TestCase):
         finally:
             self.site_builder.DIST = original_dist
 
-    def test_homepage_separates_ordered_service_from_selfbuild_course(self):
+    def test_homepage_separates_ordered_service_from_coding_course(self):
         page = self.portal.render_portal([], [])
         section_id = page.index("id='ai-app-site'")
         section_start = page.rfind("<section", 0, section_id)
@@ -154,10 +154,10 @@ class AiAppSitePagesTests(unittest.TestCase):
         self.assertIn(self.portal.DIAGNOSIS_FREE_CONSULT_BOOK_URL, app_site_guide)
         self.assertNotIn("SELF BUILD", app_site_guide)
         self.assertNotIn("AIアプリサイト自作", app_site_guide)
-        self.assertNotIn(self.portal.AI_APP_SELFBUILD_BOOK_URL, app_site_guide)
-        self.assertIn("<h3>AI自作講習</h3>", page)
+        self.assertNotIn(self.portal.AI_CODING_BOOK_URL, app_site_guide)
+        self.assertIn("<h3>AIコーディング講習</h3>", page)
         self.assertIn("制作を任せたい方は、上の「AIアプリサイト制作」へ。", page)
-        self.assertIn(self.portal.AI_APP_SELFBUILD_BOOK_URL, page)
+        self.assertIn(self.portal.AI_CODING_BOOK_URL, page)
         self.assertLess(page.index("<section class='focus-hero'"), page.index("id='ai-app-site'"))
         self.assertLess(page.index("id='packages'"), page.index("id='ai-app-site'"))
         self.assertLess(page.index("id='ai-app-site'"), page.index("id='lectures'"))
@@ -285,7 +285,7 @@ class AiAppSitePagesTests(unittest.TestCase):
         self.assertIn("href='/ai-app-site/'", mobile)
         self.assertIn(">AIアプリサイト</span>", mobile)
 
-    def test_selfbuild_preparation_sheet_is_built_as_a_public_material(self):
+    def test_coding_course_preparation_sheet_is_built_as_a_public_material(self):
         source = (ROOT / "content" / "lectures" / "2026-08-ai-app-site-consult-sheet.md").read_text(
             encoding="utf-8"
         )
@@ -298,7 +298,7 @@ class AiAppSitePagesTests(unittest.TestCase):
                 self.site_builder.build_lectures()
                 target = Path(tmp) / "lectures" / "2026-08-ai-app-site-consult-sheet.html"
                 rendered = target.read_text(encoding="utf-8") if target.exists() else ""
-                self.assertIn("AIアプリサイト自作講習・相談 準備シート", rendered)
+                self.assertIn("AIコーディング講習 準備シート", rendered)
                 self.assertIn("いちばん時間がかかる作業", rendered)
                 self.assertIn("自分で試作する", rendered)
         finally:
@@ -313,15 +313,16 @@ class AiAppSitePagesTests(unittest.TestCase):
         self.assertIn("!site/dist/lectures/2026-08-ai-app-site-consult-sheet.html", gitignore)
         self.assertTrue(public_sheet.exists())
 
-    def test_paid_consultation_is_merged_into_the_selfbuild_course(self):
+    def test_individual_and_coding_courses_are_separate_paid_offers(self):
         page = self.portal.render_portal([], [])
 
         self.assertIn("AI伴走支援", page)
         self.assertIn("月額88,000円", page)
         self.assertIn("6ヶ月", page)
-        self.assertIn("AI自作講習を予約する（120分・11,000円）", page)
-        self.assertNotIn("AI個別相談", page)
-        self.assertIn(self.portal.AI_APP_SELFBUILD_BOOK_URL, page)
+        self.assertIn("個別講習を予約 →", page)
+        self.assertIn("AIコーディングを予約 →", page)
+        self.assertIn(self.portal.INDIVIDUAL_COURSE_BOOK_URL, page)
+        self.assertIn(self.portal.AI_CODING_BOOK_URL, page)
         self.assertIn(self.portal.MONTHLY_SUPPORT_BOOK_URL, page)
 
 

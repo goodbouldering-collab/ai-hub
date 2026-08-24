@@ -390,7 +390,7 @@ Webページなら、ページが開く、新しい文言が見える、リン�
 - [講習・相談プランの一覧へ戻る](../index.html#packages)
 - [15分で、毎週の仕事をAIで楽にする](./2026-04-ai-kangaekata.html)
 - [AIで作った資料の完成例を見る](./2026-05-climbing-history.html)
-- [相談から自作・修正・公開まで学ぶAIアプリサイト自作講習](../programming-map.html)
+- [AIが作ったコードの確認・修正・公開まで学ぶAIコーディング講習](../programming-map.html)
 
 ## 用語
 

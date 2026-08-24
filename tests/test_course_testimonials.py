@@ -26,14 +26,22 @@ EXPECTED_GROUPS = (
         ),
     ),
     (
-        "ai-app-selfbuild",
-        "AIアプリサイト自作講習・相談",
-        "voice-ai-app-selfbuild",
-        "相談から公開までつながり、自分で直せる形になった",
+        "ai-consultation",
+        "AI個別講習",
+        "voice-ai-consultation",
+        "その場で悩みがほどけ、明日から使える形になった",
         (
             ("会社の業務を、そのまま相談できた", "会社で使っているツールと実際の業務をそのまま相談でき、疑問点を一つずつ整理しながら、その場で解決策を見つけられたのがよかったです。"),
             ("「役立ちそう」ではなく、その場で成果が見えた", "これまでAIが実際の業務に役立つと感じたことはありませんでしたが、今回は本当に使える成果を見せてもらえました。作業のスピード感もあり、すぐに導入したいと思いました。"),
             ("社内に導入できる形まで落とし込めた", "解決策が事業の中で形になっていくのを実感できました。会社へ導入しやすいところまで整理でき、今度は自分がほかの人へ伝えられることも増えたと思います。"),
+        ),
+    ),
+    (
+        "ai-coding",
+        "AIコーディング講習",
+        "voice-ai-coding",
+        "コードを書く人から、AIとチームを動かす人へ",
+        (
             ("手打ちより、仕様と順序が効率を決めると分かった", "これまではコードを手で打つことに集中していましたが、プロジェクトの目的や仕様書に沿って進めることが、結果的に大きな効率化につながると分かりました。"),
             ("設計・セキュリティ・公開工程まで見えた", "AIはコードを書くだけでなく、ワークフローやデザイン、必要なデータ、セキュリティ、公開までの順序も提案できると知りました。プロの進め方を一つずつ理解できました。"),
             ("チーム開発と採用にも使える、新しい進め方だった", "部下と共同作業するときのAI活用フローがとても分かりやすかったです。GitHubやワークツリー、低コストのクラウドサービスも学べて、自動化や費用削減だけでなく、今後の採用にも役立つと感じました。"),
@@ -75,7 +83,7 @@ EXPECTED_SALON_GROUP = (
 
 
 class CourseTestimonialsTest(unittest.TestCase):
-    def test_renders_three_course_groups_and_twelve_real_reviews(self) -> None:
+    def test_renders_four_course_groups_and_twelve_real_reviews(self) -> None:
         render = getattr(portal, "_render_course_testimonials", None)
         self.assertTrue(callable(render), "感想セクションのレンダー関数が必要です")
         rendered = render()
@@ -100,8 +108,8 @@ class CourseTestimonialsTest(unittest.TestCase):
             re.DOTALL,
         )
 
-        self.assertEqual(3, len(rendered_cards))
-        for card, expected in zip(rendered_cards, EXPECTED_GROUPS, strict=True):
+        self.assertEqual(5, len(rendered_cards))
+        for card, expected in zip(rendered_cards[: len(EXPECTED_GROUPS)], EXPECTED_GROUPS, strict=True):
             _, _, anchor_id, heading, testimonials = expected
             self.assertIn(f"id='{anchor_id}'", card)
             self.assertEqual(1, card.count("受講された方の感想を見る"))
@@ -113,19 +121,23 @@ class CourseTestimonialsTest(unittest.TestCase):
             for title, body in testimonials:
                 self.assertIn(title, card)
                 self.assertIn(body, card)
-        self.assertEqual(12, cards.count("<figure class='compact-course-voice-card'>"))
+        self.assertEqual(15, cards.count("<figure class='compact-course-voice-card'>"))
         self.assertEqual(12, cards.count("受講者（匿名）"))
 
     def test_salon_uses_standard_course_details_trigger_before_testimonials(self) -> None:
-        salon = portal._render_salon_menu()
+        cards = re.findall(
+            r"<article class='compact-course-card[^']*'.*?</article>",
+            portal._render_compact_course_cards(),
+            re.DOTALL,
+        )
+        salon = next(card for card in cards if "AIオンラインサロン｜近日開始" in card)
         _, course_name, anchor_id, heading, testimonials = EXPECTED_SALON_GROUP
 
         self.assertIn(course_name, salon)
         self.assertIn(f"id='{anchor_id}'", salon)
         self.assertEqual(1, salon.count("受講された方の感想を見る"))
         self.assertIn(
-            "<details class='compact-course-details salon-all-details--complete' "
-            "id='salon-details'><summary>メリット・内容・参加方法を見る</summary>",
+            "<details class='compact-course-details'><summary>メリット・内容・参加方法を見る</summary>",
             salon,
         )
         self.assertNotIn("8つのメリット・内容・参加方法を見る", salon)
@@ -148,20 +160,21 @@ class CourseTestimonialsTest(unittest.TestCase):
         self.assertEqual(3, salon.count("<figure class='compact-course-voice-card'>"))
         self.assertEqual(3, salon.count("仮運用参加者（匿名）"))
 
-    def test_jsonld_links_visible_reviews_to_three_stable_nodes(self) -> None:
+    def test_jsonld_links_visible_reviews_to_four_stable_nodes(self) -> None:
         graph = json.loads(portal._build_jsonld_website())["@graph"]
         nodes = {node.get("@id"): node for node in graph if node.get("@id")}
         expected_nodes = (
             (portal.SITE_URL + "/#course-ai-agent", "Course", EXPECTED_GROUPS[0]),
-            (portal.SITE_URL + "/#course-ai-app-selfbuild", "Course", EXPECTED_GROUPS[1]),
-            (portal.SITE_URL + "/#service-ai-support", "Service", EXPECTED_GROUPS[2]),
+            (portal.SITE_URL + "/#course-ai-individual", "Course", EXPECTED_GROUPS[1]),
+            (portal.SITE_URL + "/#course-ai-coding", "Course", EXPECTED_GROUPS[2]),
+            (portal.SITE_URL + "/#service-ai-support", "Service", EXPECTED_GROUPS[3]),
         )
 
         for node_id, node_type, expected_group in expected_nodes:
             self.assertIn(node_id, nodes)
             node = nodes[node_id]
             self.assertEqual(node_type, node["@type"])
-            self.assertEqual(expected_group[1], node["name"].removesuffix(" 120分").removesuffix(" しっかり60分").removesuffix(" いっしょに導入"))
+            self.assertEqual(expected_group[1], node["name"].removesuffix(" 120分").removesuffix(" 60分").removesuffix(" いっしょに導入"))
             expected_reviews = expected_group[4]
             self.assertEqual(len(expected_reviews), len(node["review"]))
             self.assertEqual(
@@ -207,9 +220,10 @@ class CourseTestimonialsTest(unittest.TestCase):
         graph = json.loads(portal._build_jsonld_website())["@graph"]
         courses = [node for node in graph if node.get("@type") == "Course"]
 
-        self.assertEqual(2, len(courses))
+        self.assertEqual(3, len(courses))
         for course in courses:
-            self.assertEqual("PT2H", course["timeRequired"])
+            expected_duration = "PT1H" if course["name"] == "AI個別講習 60分" else "PT2H"
+            self.assertEqual(expected_duration, course["timeRequired"])
             self.assertEqual(["onsite", "online"], course["courseMode"])
             self.assertEqual("ja", course["inLanguage"])
             self.assertTrue(course["teaches"])
@@ -236,7 +250,7 @@ class CourseTestimonialsTest(unittest.TestCase):
 
         self.assertNotIn("<section class='course-voices'", page)
         self.assertIn("class='course-menu-unified' id='course-voices'", page)
-        self.assertEqual(4, page.count("受講された方の感想を見る"))
+        self.assertEqual(5, page.count("受講された方の感想を見る"))
         self.assertLess(
             page.index("id='course-voices'"),
             page.index("class='course-venue-common'"),
@@ -328,7 +342,7 @@ class CourseTestimonialsTest(unittest.TestCase):
         )
         self.assertIn(
             "class='course-menu-unified' id='course-voices' role='region' "
-            "aria-label='講習・相談の全4メニュー'",
+            "aria-label='講習・相談の全5メニュー'",
             portal._render_focused_main(),
         )
 
@@ -365,7 +379,7 @@ class CourseTestimonialsTest(unittest.TestCase):
 
         sticky_cta = portal._render_sticky_cta()
         self.assertIn(
-            "<nav class='sticky-cta' id='sticky-cta' aria-label='AI自作講習とAIエージェント講習の固定CTA'",
+            "<nav class='sticky-cta' id='sticky-cta' aria-label='AIコーディング講習とAIエージェント講習の固定CTA'",
             sticky_cta,
         )
         self.assertIn(

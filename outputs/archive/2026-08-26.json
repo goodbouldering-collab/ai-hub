@@ -25,7 +25,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://image.itmedia.co.jp/mn/articles/2608/26/cover_news048.jpg",
-      "published": "2026-08-25T21:15:00+00:00"
+      "published": "2026-08-25T21:15:00+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "33db83de77b90a67",
@@ -51,7 +53,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://image.itmedia.co.jp/ait/articles/2608/26/cover_news010.jpg",
-      "published": "2026-08-25T20:00:00+00:00"
+      "published": "2026-08-25T20:00:00+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "592da116f7cc3092",
@@ -77,7 +81,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://img.youtube.com/vi/ldcFEwMEZ04/hqdefault.jpg",
-      "published": "2026-08-25T17:08:27+00:00"
+      "published": "2026-08-25T17:08:27+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "93903f41d93b0170",
@@ -103,7 +109,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://img.youtube.com/vi/WpbzQ63yl4s/hqdefault.jpg",
-      "published": "2026-08-25T08:18:48+00:00"
+      "published": "2026-08-25T08:18:48+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "1bc4707b2345b85b",
@@ -129,7 +137,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://img.youtube.com/vi/gCaQy6-fv6M/hqdefault.jpg",
-      "published": "2026-08-25T10:00:11+00:00"
+      "published": "2026-08-25T10:00:11+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "117b7e991d30a5d8",
@@ -155,7 +165,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://cdn.arstechnica.net/wp-content/uploads/2026/08/World-Humanoid-Robot-Games-2026-1152x648.jpg",
-      "published": "2026-08-25T20:59:03+00:00"
+      "published": "2026-08-25T20:59:03+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "94679dc79b356634",
@@ -181,7 +193,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://img.youtube.com/vi/bAxEO_3pZJ0/hqdefault.jpg",
-      "published": "2026-08-24T11:00:02+00:00"
+      "published": "2026-08-24T11:00:02+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "79fb61e059914472",
@@ -207,7 +221,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://img.youtube.com/vi/JY8-jADfZgU/hqdefault.jpg",
-      "published": "2026-08-24T10:31:35+00:00"
+      "published": "2026-08-24T10:31:35+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "6c39ea4ea38053f8",
@@ -233,7 +249,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://cdn-uploads.huggingface.co/production/uploads/65cc2c288ebd392213e58899/XHWV2L_wZsFe3ekksCgvQ.webp",
-      "published": "2026-08-25T15:14:14+00:00"
+      "published": "2026-08-25T15:14:14+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "6faf250dbfa75865",
@@ -259,7 +277,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://cdn-uploads.huggingface.co/production/uploads/668e37fd9c9aa124a3c867e8/2DSE26PMq2hJqKqEDOLIn.png",
-      "published": "2026-08-25T11:39:24+00:00"
+      "published": "2026-08-25T11:39:24+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

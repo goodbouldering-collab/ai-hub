@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-24T22:16:04Z",
+  "generated_at": "2026-08-25T22:16:24Z",
   "recent_works": [
     {
       "date": "2026-08-23",
@@ -91,42 +91,10 @@
   "per_business_recent": [
     {
       "business": "seo",
-      "count": 3
-    },
-    {
-      "business": "gubble",
-      "count": 2
-    },
-    {
-      "business": "rasiku.me",
-      "count": 1
-    },
-    {
-      "business": "plogging",
-      "count": 1
-    },
-    {
-      "business": "not",
-      "count": 1
-    },
-    {
-      "business": "mokshajapan.jp",
-      "count": 1
-    },
-    {
-      "business": "blog.goodbouldering.com",
-      "count": 1
-    },
-    {
-      "business": "all",
       "count": 1
     }
   ],
   "daily_histogram": [
-    {
-      "date": "2026-08-11",
-      "count": 0
-    },
     {
       "date": "2026-08-12",
       "count": 0
@@ -178,12 +146,16 @@
     {
       "date": "2026-08-24",
       "count": 0
+    },
+    {
+      "date": "2026-08-25",
+      "count": 0
     }
   ],
   "cma_apps": [],
   "totals": {
     "consul_work_total": 147,
-    "recent_7d_total": 11,
+    "recent_7d_total": 1,
     "tasks_open_total": 4
   }
 }

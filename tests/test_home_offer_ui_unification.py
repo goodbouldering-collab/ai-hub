@@ -44,11 +44,11 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
 
     def test_diagnostics_share_one_guide_structure_and_service_uses_a_course_card(self):
         expected_sections = (
-            ("readiness-guide-title", "readiness-guide--compact"),
-            ("seo-llmo-guide-title", "seo-llmo-guide"),
-            ("codex-update-guide-title", "codex-update-guide"),
+            ("readiness-guide-title", "readiness-guide--compact", False),
+            ("seo-llmo-guide-title", "seo-llmo-guide", False),
+            ("codex-update-guide-title", "codex-update-guide", True),
         )
-        for guide_id, modifier in expected_sections:
+        for guide_id, modifier, has_questions in expected_sections:
             with self.subTest(guide_id=guide_id):
                 id_index = self.home.index(f"id='{guide_id}'")
                 section_start = self.home.rfind("<section", 0, id_index)
@@ -59,13 +59,16 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
                 self.assertIn(modifier, section)
                 self.assertIn("class='readiness-guide__inner'", section)
                 self.assertIn("class='readiness-guide__intro'", section)
-                self.assertIn("class='readiness-guide__questions", section)
+                if has_questions:
+                    self.assertIn("class='readiness-guide__questions", section)
+                else:
+                    self.assertNotIn("class='readiness-guide__questions", section)
                 self.assertIn("class='readiness-guide__actions'", section)
                 self.assertIn("class='readiness-guide__cta", section)
 
         self.assertEqual(3, self.home.count("class='readiness-guide__inner'"))
         self.assertEqual(3, self.home.count("class='readiness-guide__intro'"))
-        self.assertEqual(3, self.home.count("class='readiness-guide__questions"))
+        self.assertEqual(1, self.home.count("class='readiness-guide__questions"))
         self.assertEqual(3, self.home.count("class='readiness-guide__actions'"))
         self.assertGreaterEqual(self.home.count("offer-panel"), 3)
         self.assertNotIn("home-app-site-guide", self.home)
@@ -97,6 +100,33 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
         self.assertLess(readiness, seo)
         self.assertNotIn("AIを使っているつもりで、仕事は変わりましたか？", self.home)
 
+    def test_diagnostic_details_are_integrated_into_descriptions_without_question_markers(self):
+        def section_for(title_id: str) -> str:
+            title = self.home.index(f"id='{title_id}'")
+            start = self.home.rfind("<section", 0, title)
+            end = self.home.index("</section>", title)
+            return self.home[start:end]
+
+        readiness = section_for("readiness-guide-title")
+        for detail in (
+            "コピペで止まらない",
+            "任せた仕事を確かめられる",
+            "うまくいった方法を残せる",
+        ):
+            self.assertIn(detail, readiness)
+        self.assertNotIn("class='readiness-guide__questions'", readiness)
+        self.assertNotIn("<span aria-hidden='true'>?</span>", readiness)
+        self.assertIn("href='/ai-agent-readiness/'", readiness)
+        self.assertIn("あなたのAI実力診断をはじめる", readiness)
+
+        site = section_for("seo-llmo-guide-title")
+        for detail in ("クロール・索引", "誰のサイトか", "相談・申込導線"):
+            self.assertIn(detail, site)
+        self.assertNotIn("class='readiness-guide__questions'", site)
+        self.assertNotIn("<span aria-hidden='true'>?</span>", site)
+        self.assertIn("href='/seo-llmo-diagnosis/'", site)
+        self.assertIn("あなたのサイト診断をはじめる", site)
+
     def test_flat_guides_have_breathing_room_without_question_rail(self):
         css = self.portal.FOCUSED_PORTAL_CSS
         self.assertIn("margin:18px 0;", css)
@@ -119,17 +149,21 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
         for result in ("100点・5段階", "5つの基準", "次の90日"):
             self.assertIn(result, summary)
         self.assertNotIn("readiness-guide__meta", readiness)
-        self.assertLessEqual(
+        self.assertLess(
             len(summary),
             len(
-                "10問・約3分で、いまの実践力と次に整える一歩がわかります。"
-                "結果から、少数・個別・組織の受講方法も選べます。"
+                "5つの基準で実践力を100点・5段階診断。次の90日の一歩と、"
+                "少数・個別・組織別の受講方法がわかります。"
+                "コピペで止まっていないか"
+                "任せた仕事を確かめられるか"
+                "うまくいった方法を次にも残せるか"
             ),
         )
 
         site = section_for("seo-llmo-guide-title")
         revised = (
             "あなたのサイトは、検索とAIに伝わっていますか？ "
+            "クロール・索引の土台、誰のサイトかという信頼、相談・申込導線を含む"
             "公開ページを100点・4領域で確認し、優先して直すことを整理します。"
         )
         original = (
@@ -137,7 +171,7 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
             "公開ページを100点・4領域で確認し、優先して直すことを整理します。"
         )
         self.assertIn(f"<p class='readiness-guide__summary'>{revised}</p>", site)
-        self.assertLess(len(revised), len(original))
+        self.assertGreater(len(revised), len(original))
         self.assertIn("あなたのサイト診断をはじめる", site)
 
     def test_diagnostic_cards_and_lower_content_align_on_desktop_and_mobile(self):
@@ -157,10 +191,7 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
                             1,
                             "2つの診断カードは同じ高さにする",
                         )
-                        for selector, message in (
-                            (".readiness-guide__questions", "設問リスト"),
-                            (".readiness-guide__actions", "CTA"),
-                        ):
+                        for selector, message in ((".readiness-guide__actions", "CTA"),):
                             boxes = [
                                 cards.nth(index).locator(selector).bounding_box()
                                 for index in range(2)
@@ -185,7 +216,7 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
             finally:
                 browser.close()
 
-    def test_three_guides_share_grid_and_question_row_format(self):
+    def test_three_guides_share_grid_and_only_blog_keeps_question_rows(self):
         with sync_playwright() as playwright:
             browser = launch_chromium(playwright)
             try:
@@ -207,11 +238,9 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
                 self.assertNotEqual(grid_templates[0], grid_templates[2])
 
                 question_rows = desktop.locator(
-                    "section[aria-labelledby='readiness-guide-title'] .readiness-guide__questions li, "
-                    "section[aria-labelledby='seo-llmo-guide-title'] .readiness-guide__questions li, "
                     "section[aria-labelledby='codex-update-guide-title'] .readiness-guide__questions li"
                 )
-                self.assertEqual(9, question_rows.count())
+                self.assertEqual(3, question_rows.count())
                 for index in range(question_rows.count()):
                     row = question_rows.nth(index)
                     self.assertEqual("grid", row.evaluate("element => getComputedStyle(element).display"))

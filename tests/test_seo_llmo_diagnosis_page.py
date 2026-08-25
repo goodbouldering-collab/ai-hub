@@ -159,20 +159,10 @@ class SeoLlmoDiagnosisPageTests(unittest.TestCase):
 
         self.assertIn("class='readiness-guide__inner'", section)
         self.assertIn("class='readiness-guide__intro'", section)
-        self.assertIn(
-            "class='readiness-guide__questions' aria-label='あなたのサイト診断でわかること'",
-            section,
-        )
-        self.assertEqual(3, section.count("<span aria-hidden='true'>?</span>"))
-        for title, detail in (
-            ("見つける土台", "クロール・索引"),
-            ("信頼と主体", "誰のサイトか"),
-            ("次の行動", "相談・申込導線"),
-        ):
-            self.assertIn(
-                f"<div><strong>{title}</strong><small>{detail}</small></div>",
-                section,
-            )
+        self.assertNotIn("class='readiness-guide__questions'", section)
+        self.assertNotIn("<span aria-hidden='true'>?</span>", section)
+        for detail in ("クロール・索引", "誰のサイトか", "相談・申込導線"):
+            self.assertIn(detail, section)
         self.assertIn("class='readiness-guide__actions'", section)
         self.assertIn("class='readiness-guide__cta'", section)
         self.assertNotIn("seo-llmo-guide__", section)
@@ -182,7 +172,7 @@ class SeoLlmoDiagnosisPageTests(unittest.TestCase):
             section,
         )
         self.assertIn(
-            "あなたのサイトは、検索とAIに伝わっていますか？ 公開ページを100点・4領域で確認し、優先して直すことを整理します。",
+            "あなたのサイトは、検索とAIに伝わっていますか？ クロール・索引の土台、誰のサイトかという信頼、相談・申込導線を含む公開ページを100点・4領域で確認し、優先して直すことを整理します。",
             section,
         )
         self.assertIn("あなたのサイト診断をはじめる", section)

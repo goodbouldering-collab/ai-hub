@@ -242,7 +242,11 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
         )
         self.assertLess(
             app_site_card.index("利用された方の感想を見る"),
-            app_site_card.index("制作内容・料金を見る"),
+            app_site_card.index("Squareで制作相談を申し込む"),
+        )
+        self.assertLess(
+            app_site_card.index("Squareで制作相談を申し込む"),
+            app_site_card.index("AIアプリサイト制作の内容・資料を見る"),
         )
 
         packages = self.home.index("id='packages'")

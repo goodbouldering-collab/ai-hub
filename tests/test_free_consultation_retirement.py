@@ -1,3 +1,4 @@
+import importlib.util
 import json
 from pathlib import Path
 import re
@@ -5,7 +6,7 @@ import unittest
 
 
 ROOT = Path(__file__).resolve().parents[1]
-INDEX = ROOT / "site" / "dist" / "index.html"
+PORTAL_PATH = ROOT / "site" / "build_portal.py"
 REMOTE_BLOG = ROOT / "site" / "dist" / "blog" / "2026-07-27-codex-remote-ssh-rdp.html"
 CODING_COURSE_URL = (
     "https://book.squareup.com/appointments/zymaszkc9pdwq2/"
@@ -22,10 +23,19 @@ FREE_CONSULT_URL = (
 AI_AGENT_COURSE_URL = "https://goodbouldering.com/?pid=188553378"
 
 
+def load_module(name: str, path: Path):
+    spec = importlib.util.spec_from_file_location(name, path)
+    assert spec and spec.loader
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
 class FreeConsultationRetirementTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        cls.index_html = INDEX.read_text(encoding="utf-8")
+        portal = load_module("portal_free_consultation_under_test", PORTAL_PATH)
+        cls.index_html = portal.render_portal([], [])
         cls.remote_blog_html = REMOTE_BLOG.read_text(encoding="utf-8")
         modal_match = re.search(
             r"<div class='diagnose-modal'.*?</div></div>",
@@ -42,18 +52,27 @@ class FreeConsultationRetirementTests(unittest.TestCase):
         if script_match is None:
             raise AssertionError("Diagnosis script was not generated")
         app_site_match = re.search(
-            r"<section class='[^']*home-app-site-guide[^']*' id='ai-app-site'.*?</section>",
+            r"<article[^>]*id='ai-app-site'[^>]*>.*?</article>",
             cls.index_html,
             re.DOTALL,
         )
         if app_site_match is None:
-            raise AssertionError("AI app site service section was not generated")
+            raise AssertionError("AI app site course card was not generated")
+        contact_match = re.search(
+            r"<section class='focus-contact' id='contact'>.*?</section>",
+            cls.index_html,
+            re.DOTALL,
+        )
+        if contact_match is None:
+            raise AssertionError("Contact intake section was not generated")
         cls.diagnosis_context = modal_match.group(0) + script_match.group(0)
         cls.app_site_context = app_site_match.group(0)
+        cls.contact_context = contact_match.group(0)
         cls.page_without_diagnosis_or_app_site = (
             cls.index_html.replace(modal_match.group(0), "")
             .replace(script_match.group(0), "")
             .replace(app_site_match.group(0), "")
+            .replace(contact_match.group(0), "")
         )
         json_ld_match = re.search(
             r"<script type='application/ld\+json'>(.*?)</script>",
@@ -69,8 +88,9 @@ class FreeConsultationRetirementTests(unittest.TestCase):
         self.assertNotIn(FREE_CONSULT_URL, self.page_without_diagnosis_or_app_site)
         self.assertNotIn("無料相談", self.remote_blog_html)
         self.assertNotIn(FREE_CONSULT_URL, self.remote_blog_html)
-        self.assertIn("無料相談", self.app_site_context)
+        self.assertIn("Squareで制作相談を申し込む", self.app_site_context)
         self.assertIn(FREE_CONSULT_URL, self.app_site_context)
+        self.assertIn(FREE_CONSULT_URL, self.contact_context)
         self.assertIn("無料相談で入口を整理したい", self.diagnosis_context)
         self.assertIn("free: {", self.diagnosis_context)
         self.assertIn(FREE_CONSULT_URL, self.diagnosis_context)

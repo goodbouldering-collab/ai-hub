@@ -148,7 +148,11 @@ class CourseTestimonialsTest(unittest.TestCase):
         )
         self.assertLess(
             app_site.index("利用された方の感想を見る"),
-            app_site.index("制作内容・料金を見る"),
+            app_site.index("Squareで制作相談を申し込む"),
+        )
+        self.assertLess(
+            app_site.index("Squareで制作相談を申し込む"),
+            app_site.index("AIアプリサイト制作の内容・資料を見る"),
         )
         self.assertIn(heading, app_site)
         self.assertIn(

@@ -12020,8 +12020,10 @@ def _render_compact_course_cards() -> str:
             "price": "99,000円〜",
             "duration": "ホームページ＋AI機能1つ",
             "desc": "情報を載せるだけのサイトではなく、見積もり・問い合わせ・予約受付などのAIアプリを、すぐ使える形でサイト内に組み込みます。",
-            "url": "/ai-app-site/",
-            "cta": "制作内容・料金を見る",
+            "url": DIAGNOSIS_FREE_CONSULT_BOOK_URL,
+            "cta": "Squareで制作相談を申し込む",
+            "material_url": "/lectures/2026-08-ai-app-site-consult-sheet.html",
+            "material_cta": "AIアプリサイト制作の内容・資料を見る",
             "testimonial_key": "ai-app-site",
             "details_lead": "制作内容・料金・できること",
             "details": [

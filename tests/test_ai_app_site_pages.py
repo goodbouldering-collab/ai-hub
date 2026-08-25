@@ -142,9 +142,14 @@ class AiAppSitePagesTests(unittest.TestCase):
         self.assertEqual(5, app_site_card.count("class='home-app-site-card'"))
         for feature in ("AI見積もり", "AI問い合わせ", "AI予約受付", "AIシフト", "AIブログ"):
             self.assertIn(f"<strong>{feature}</strong>", app_site_card)
-        self.assertIn("href='/ai-app-site/'", app_site_card)
-        self.assertIn("制作内容・料金を見る", app_site_card)
-        self.assertNotIn(self.portal.DIAGNOSIS_FREE_CONSULT_BOOK_URL, app_site_card)
+        self.assertIn(self.portal.DIAGNOSIS_FREE_CONSULT_BOOK_URL, app_site_card)
+        self.assertIn("Squareで制作相談を申し込む", app_site_card)
+        self.assertIn(
+            "href='/lectures/2026-08-ai-app-site-consult-sheet.html'",
+            app_site_card,
+        )
+        self.assertIn("AIアプリサイト制作の内容・資料を見る", app_site_card)
+        self.assertNotIn("href='/ai-app-site/'", app_site_card)
         self.assertNotIn("SELF BUILD", app_site_card)
         self.assertNotIn("AIアプリサイト自作", app_site_card)
         self.assertNotIn(self.portal.AI_CODING_BOOK_URL, app_site_card)
@@ -280,11 +285,12 @@ class AiAppSitePagesTests(unittest.TestCase):
         self.assertIn("href='/ai-app-site/'", mobile)
         self.assertIn(">AIアプリサイト</span>", mobile)
 
-    def test_coding_course_preparation_sheet_is_built_as_a_public_material(self):
+    def test_app_site_content_and_preparation_are_built_as_one_public_material(self):
         source = (ROOT / "content" / "lectures" / "2026-08-ai-app-site-consult-sheet.md").read_text(
             encoding="utf-8"
         )
         self.assertIn("listed: false", source)
+        self.assertNotIn(self.portal.DIAGNOSIS_FREE_CONSULT_BOOK_URL, source)
 
         original_dist = self.site_builder.DIST
         try:
@@ -293,9 +299,16 @@ class AiAppSitePagesTests(unittest.TestCase):
                 self.site_builder.build_lectures()
                 target = Path(tmp) / "lectures" / "2026-08-ai-app-site-consult-sheet.html"
                 rendered = target.read_text(encoding="utf-8") if target.exists() else ""
-                self.assertIn("AIコーディング講習 準備シート", rendered)
+                self.assertIn("AIアプリサイト制作｜内容・料金・準備資料", rendered)
+                self.assertIn("相談 → 小さく作る → 効果を見る → 本格導入", rendered)
+                self.assertIn("ホームページ＋AI機能1つ", rendered)
+                self.assertIn("99,000円〜", rendered)
+                for feature in ("AI見積もり", "AI問い合わせ", "AI予約受付", "AIシフト", "AIブログ"):
+                    self.assertIn(feature, rendered)
                 self.assertIn("いちばん時間がかかる作業", rendered)
-                self.assertIn("自分で試作する", rendered)
+                self.assertIn("申込みはトップのカードから", rendered)
+                self.assertIn('href="/#ai-app-site"', rendered)
+                self.assertNotIn(self.portal.DIAGNOSIS_FREE_CONSULT_BOOK_URL, rendered)
         finally:
             self.site_builder.DIST = original_dist
 

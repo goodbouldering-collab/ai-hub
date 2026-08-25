@@ -14,7 +14,7 @@ goal: 制作できる内容と料金の目安を理解し、最初に組み込�
 category: ai-work
 learning_order: 4
 level: 入門
-listed: false
+listed: true
 recommended: true
 ---
 

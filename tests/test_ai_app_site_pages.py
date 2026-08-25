@@ -289,8 +289,16 @@ class AiAppSitePagesTests(unittest.TestCase):
         source = (ROOT / "content" / "lectures" / "2026-08-ai-app-site-consult-sheet.md").read_text(
             encoding="utf-8"
         )
-        self.assertIn("listed: false", source)
+        self.assertIn("listed: true", source)
         self.assertNotIn(self.portal.DIAGNOSIS_FREE_CONSULT_BOOK_URL, source)
+
+        homepage = self.portal.render_portal([], [])
+        self.assertIn(
+            "<a class='lecture-card' "
+            "href='/lectures/2026-08-ai-app-site-consult-sheet.html'>",
+            homepage,
+        )
+        self.assertIn("AIアプリサイト制作｜内容・料金・準備資料", homepage)
 
         original_dist = self.site_builder.DIST
         try:
@@ -299,6 +307,9 @@ class AiAppSitePagesTests(unittest.TestCase):
                 self.site_builder.build_lectures()
                 target = Path(tmp) / "lectures" / "2026-08-ai-app-site-consult-sheet.html"
                 rendered = target.read_text(encoding="utf-8") if target.exists() else ""
+                lecture_index = (Path(tmp) / "lectures" / "index.html").read_text(
+                    encoding="utf-8"
+                )
                 self.assertIn("AIアプリサイト制作｜内容・料金・準備資料", rendered)
                 self.assertIn("相談 → 小さく作る → 効果を見る → 本格導入", rendered)
                 self.assertIn("ホームページ＋AI機能1つ", rendered)
@@ -309,6 +320,11 @@ class AiAppSitePagesTests(unittest.TestCase):
                 self.assertIn("申込みはトップのカードから", rendered)
                 self.assertIn('href="/#ai-app-site"', rendered)
                 self.assertNotIn(self.portal.DIAGNOSIS_FREE_CONSULT_BOOK_URL, rendered)
+                self.assertIn(
+                    "href='./2026-08-ai-app-site-consult-sheet.html'",
+                    lecture_index,
+                )
+                self.assertIn("AIアプリサイト制作｜内容・料金・準備資料", lecture_index)
         finally:
             self.site_builder.DIST = original_dist
 

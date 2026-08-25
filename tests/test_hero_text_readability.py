@@ -1,3 +1,4 @@
+import importlib.util
 import re
 import unittest
 from pathlib import Path
@@ -6,6 +7,14 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "site" / "build_portal.py"
 OUTPUT = ROOT / "site" / "dist" / "index.html"
+
+
+def load_portal():
+    spec = importlib.util.spec_from_file_location("portal_hero_copy", SOURCE)
+    assert spec and spec.loader
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
 
 
 class HeroTextReadabilityTests(unittest.TestCase):
@@ -31,6 +40,12 @@ class HeroTextReadabilityTests(unittest.TestCase):
 
     def test_generated_homepage_keeps_annotated_hero_text_readable(self) -> None:
         self.assert_typography_contract(OUTPUT.read_text(encoding="utf-8"))
+
+    def test_homepage_uses_short_online_availability_copy(self) -> None:
+        homepage = load_portal().render_portal([], [])
+
+        self.assertIn("<li>対面・オンライン可</li>", homepage)
+        self.assertNotIn("<li>対面・オンライン対応</li>", homepage)
 
 
 if __name__ == "__main__":

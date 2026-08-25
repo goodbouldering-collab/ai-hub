@@ -17,6 +17,7 @@ REQUIRED_ITEM_FIELDS = (
     "published",
     "plain_summary",
     "story_example",
+    "japan_attention",
 )
 
 
@@ -37,7 +38,16 @@ def _clean_url(value: Any) -> str:
     return url
 
 
-def normalize_daily_ai_news_item(item: Any) -> dict[str, str]:
+def _clean_score(value: Any) -> int | float:
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        raise ValueError("日本での注目度は数値である必要があります")
+    score = float(value)
+    if not 0 <= score <= 100:
+        raise ValueError("日本での注目度は0から100である必要があります")
+    return int(score) if score.is_integer() else score
+
+
+def normalize_daily_ai_news_item(item: Any) -> dict[str, Any]:
     """Validate one candidate so a failed summary can be skipped safely."""
     if not isinstance(item, dict) or any(field not in item for field in REQUIRED_ITEM_FIELDS):
         raise ValueError("日次ニュース項目の必須フィールドが不足しています")
@@ -48,6 +58,7 @@ def normalize_daily_ai_news_item(item: Any) -> dict[str, str]:
         "published": _clean_text(item["published"], maximum=100),
         "plain_summary": _clean_text(item["plain_summary"], maximum=180),
         "story_example": _clean_text(item["story_example"], maximum=180),
+        "japan_attention": _clean_score(item["japan_attention"]),
     }
 
 
@@ -65,7 +76,7 @@ def normalize_daily_ai_news(payload: Any) -> dict[str, Any]:
     if not isinstance(items, list) or len(items) != 10:
         raise ValueError("日次ニュースは10件必要です")
 
-    clean_items: list[dict[str, str]] = []
+    clean_items: list[dict[str, Any]] = []
     seen_urls: set[str] = set()
     for item in items:
         clean_item = normalize_daily_ai_news_item(item)
@@ -73,6 +84,7 @@ def normalize_daily_ai_news(payload: Any) -> dict[str, Any]:
             raise ValueError("日次ニュースURLが重複しています")
         seen_urls.add(clean_item["url"])
         clean_items.append(clean_item)
+    clean_items.sort(key=lambda item: item["japan_attention"], reverse=True)
     return {"date": date_text, "items": clean_items}
 
 
@@ -99,7 +111,7 @@ def render_daily_ai_news(payload: dict) -> str:
         "<div class='daily-ai-news__header'>",
         "<p class='daily-ai-news__eyebrow'>毎朝更新・仕事の場面から読む</p>",
         "<h2 id='daily-ai-news-title'>今日のAIニュース10</h2>",
-        "<p class='daily-ai-news__lead'>むずかしいAIニュースを、何が変わるかと「たとえば」の場面で、わかりやすく10件にしぼりました。</p>",
+        "<p class='daily-ai-news__lead'>むずかしいAIニュースを、日本での注目度が高い順に、何が変わるかと「たとえば」の場面でわかりやすく10件にしぼりました。</p>",
         f"<p class='daily-ai-news__date'><time datetime='{clean['date']}'>{date_label}</time> 時点</p>",
         "</div><ol class='daily-ai-news__list'>",
     ]

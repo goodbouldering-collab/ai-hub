@@ -200,13 +200,18 @@ class BlogFreshnessTest(unittest.TestCase):
         feature_sections = re.split(r"(?m)^## \d+\. ", current)[1:]
         self.assertGreaterEqual(len(feature_sections), 1)
         self.assertLessEqual(len(feature_sections), 4)
-        self.assertEqual(current.count("**使い方：**"), len(feature_sections))
-        self.assertEqual(current.count('class="codex-use-story"'), len(feature_sections))
+        self.assertNotIn("**使い方：**", current)
+        self.assertNotIn('class="codex-command-callout"', current)
+        self.assertNotIn('class="codex-use-story"', current)
+        self.assertIn("## 4. 困った時に、状況を伝えやすくする｜`codex doctor`", current)
+        self.assertIn(
+            "共有のパソコンでCodexにつながらない時は、ターミナルで"
+            "`codex doctor --summary`を実行します。設定やネットワークの状態が"
+            "まとまって表示されるので、その内容を詳しい人へ見せれば、"
+            "どこを確認すればよいか伝えやすくなります。",
+            current,
+        )
         for section in feature_sections:
-            self.assertIn("**使い方：**", section)
-            self.assertIn('class="codex-use-story"', section)
-            self.assertLess(section.index("<dt>こんな時</dt>"), section.index("<dt>操作</dt>"))
-            self.assertLess(section.index("<dt>操作</dt>"), section.index("<dt>確認できること</dt>"))
             self.assertRegex(
                 section,
                 r"\[公式情報\]\(https://(?:learn\.chatgpt\.com|developers\.openai\.com|github\.com/openai/)",

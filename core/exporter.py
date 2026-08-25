@@ -13,6 +13,7 @@ from pathlib import Path
 from .collector import Article
 from .daily_news import normalize_daily_ai_news, normalize_daily_ai_news_item
 from .organizer import group_by_category
+from .ranker import japan_attention_score
 
 
 def _japan_today() -> date:
@@ -29,9 +30,17 @@ def export_daily_ai_news_snapshot(
     today: date | None = None,
 ) -> Path | None:
     """Atomically publish ten valid candidates, keeping the last good snapshot on failure."""
-    items: list[dict[str, str]] = []
+    items: list[dict[str, object]] = []
     seen_urls: set[str] = set()
-    for article in top_articles:
+    ordered_articles = sorted(
+        top_articles,
+        key=lambda article: (
+            japan_attention_score(summary_map.get(article.hash, {})),
+            summary_map.get(article.hash, {}).get("final_score", 0),
+        ),
+        reverse=True,
+    )
+    for article in ordered_articles:
         info = summary_map.get(article.hash, {})
         candidate = {
             "title": info.get("title_ja") or article.title,
@@ -40,6 +49,10 @@ def export_daily_ai_news_snapshot(
             "published": article.published or article.fetched_at,
             "plain_summary": info.get("plain_summary", ""),
             "story_example": info.get("story_example", ""),
+            "japan_attention": info.get(
+                "japan_attention",
+                japan_attention_score(info),
+            ),
         }
         try:
             clean_candidate = normalize_daily_ai_news_item(candidate)

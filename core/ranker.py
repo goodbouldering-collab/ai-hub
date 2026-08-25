@@ -1,5 +1,7 @@
 """
-全記事から人気・注目度・好み学習を組み合わせてTop10を選ぶ。
+全記事から日本での注目度が高い順にTop10を選ぶ。
+
+日本での注目度が同じ記事は、総合スコアで順番を決める。
 
 スコア計算式:
   final_score = claude_score (0-100)
@@ -92,6 +94,11 @@ def japan_relevance_bonus(article: Article, info: dict) -> float:
     return relevance + domestic_source
 
 
+def japan_attention_score(info: dict) -> float:
+    """Return the bounded editorial estimate used as the primary daily-news order."""
+    return _bounded_score(info.get("japan_relevance"))
+
+
 def codex_relevance_bonus(info: dict) -> float:
     return _bounded_score(info.get("codex_relevance")) * 0.20
 
@@ -107,7 +114,7 @@ def rank_articles(
     Top N 記事リストを返す。
     """
     prefs = load_preferences(prefs_path)
-    scored: list[tuple[float, Article, dict]] = []
+    scored: list[tuple[float, float, Article, dict]] = []
 
     for a in articles:
         info = summary_map.get(a.hash, {})
@@ -117,7 +124,9 @@ def rank_articles(
         fb = freshness_bonus(a)
         jb = japan_relevance_bonus(a, info)
         cb = codex_relevance_bonus(info)
+        japan_attention = japan_attention_score(info)
         final = base + gb + sb + fb + jb + cb
+        info["japan_attention"] = round(japan_attention, 1)
         info["final_score"] = round(final, 1)
         info["breakdown"] = {
             "base": base,
@@ -125,16 +134,17 @@ def rank_articles(
             "source_bonus": round(sb, 1),
             "freshness": round(fb, 1),
             "japan_relevance": round(jb, 1),
+            "japan_attention": round(japan_attention, 1),
             "codex_relevance": round(cb, 1),
         }
         summary_map[a.hash] = info
-        scored.append((final, a, info))
+        scored.append((japan_attention, final, a, info))
 
-    scored.sort(key=lambda x: x[0], reverse=True)
+    scored.sort(key=lambda x: (x[0], x[1]), reverse=True)
     top: list[Article] = []
     deferred: list[Article] = []
     source_counts: dict[str, int] = {}
-    for _score, article, _info in scored:
+    for _attention, _score, article, _info in scored:
         if len(top) >= top_n:
             break
         source_count = source_counts.get(article.source, 0)

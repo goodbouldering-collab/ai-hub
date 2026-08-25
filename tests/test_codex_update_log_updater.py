@@ -254,7 +254,7 @@ class FakeResponse:
 
 
 class CodexUpdateLogUpdaterTest(unittest.TestCase):
-    def test_command_and_usage_story_render_as_prominent_structured_blocks(self) -> None:
+    def test_command_is_in_title_and_story_is_merged_into_plain_explanation(self) -> None:
         updater = _load_updater()
         source_block = updater.combine_source_block(SOURCE_CURRENT, CLI_RELEASE_CURRENT)
         editorial = doctor_editorial()
@@ -262,13 +262,17 @@ class CodexUpdateLogUpdaterTest(unittest.TestCase):
         clean = updater.validate_editorial(editorial, source_block, require_archive=False)
         rendered = updater.render_current("August 17-21, 2026", "f" * 64, clean)
 
-        self.assertIn('class="codex-command-callout"', rendered)
-        self.assertIn('<span class="codex-command-callout__label">追加コマンド</span>', rendered)
-        self.assertIn('<code>codex doctor</code>', rendered)
-        self.assertIn('class="codex-use-story"', rendered)
-        labels = ["こんな時", "操作", "確認できること"]
-        positions = [rendered.index(f"<dt>{label}</dt>") for label in labels]
-        self.assertEqual(positions, sorted(positions))
+        self.assertIn("## 1. 不具合の状態を診断｜`codex doctor`", rendered)
+        self.assertNotIn('class="codex-command-callout"', rendered)
+        self.assertNotIn('class="codex-use-story"', rendered)
+        self.assertNotIn("**使い方：**", rendered)
+        self.assertIn(
+            "Codexの設定や接続状態をまとめて確認できます。たとえば、"
+            "学校のネットワークでCodexへ接続できず、原因を伝えにくい。"
+            "担当者がcodex doctorを実行し、診断項目を確認する。"
+            "「codex doctor」がOpenAI公式情報に掲載されていることを確認できます。",
+            rendered,
+        )
 
     def test_ungrounded_command_is_rejected_even_when_feature_evidence_is_valid(self) -> None:
         updater = _load_updater()
@@ -499,10 +503,10 @@ class CodexUpdateLogUpdaterTest(unittest.TestCase):
             self.assertIn("content_series: codex-update-log", updated)
             self.assertIn('image: "/img/blog-codex-update-log-hero-20260821.webp"', updated)
             self.assertIn("## 1. 外出先から作業を確認", updated)
-            self.assertEqual(updated.count('class="codex-use-story"'), 2)
-            self.assertEqual(updated.count("<dt>こんな時</dt>"), 2)
-            self.assertEqual(updated.count("<dt>操作</dt>"), 2)
-            self.assertEqual(updated.count("<dt>確認できること</dt>"), 2)
+            self.assertNotIn('class="codex-command-callout"', updated)
+            self.assertNotIn('class="codex-use-story"', updated)
+            self.assertNotIn("**使い方：**", updated)
+            self.assertEqual(updated.count("たとえば、"), 2)
             self.assertEqual(updated.count("2026年8月21日｜共有と並行作業"), 1)
             self.assertLess(
                 updated.index("2026年8月21日｜共有と並行作業"),

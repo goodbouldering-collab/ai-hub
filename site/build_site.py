@@ -1394,97 +1394,6 @@ CONTENT_CSS = """
   font-size: .9em;
   color: var(--primary);
 }
-.content-wrap .codex-command-callout {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  margin: 18px 0 20px;
-  padding: 18px 20px;
-  overflow: hidden;
-  border: 1px solid rgba(145, 242, 213, .36);
-  border-radius: 18px;
-  background:
-    radial-gradient(circle at 92% 10%, rgba(145, 242, 213, .20), transparent 32%),
-    linear-gradient(135deg, #10243c 0%, #173042 58%, #215168 100%);
-  box-shadow: 0 16px 34px rgba(16, 36, 60, .20);
-}
-.content-wrap .codex-command-callout::after {
-  content: "";
-  position: absolute;
-  right: -32px;
-  bottom: -56px;
-  width: 140px;
-  height: 140px;
-  border: 1px solid rgba(145, 242, 213, .18);
-  border-radius: 50%;
-  pointer-events: none;
-}
-.content-wrap .codex-command-callout__label {
-  position: relative;
-  z-index: 1;
-  flex: 0 0 auto;
-  color: #91f2d5;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: .12em;
-}
-.content-wrap .codex-command-callout__commands {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 8px;
-  min-width: 0;
-}
-.content-wrap .codex-command-callout code {
-  display: inline-block;
-  max-width: 100%;
-  padding: 7px 11px;
-  border: 1px solid rgba(255, 255, 255, .18);
-  border-radius: 10px;
-  background: rgba(255, 255, 255, .10);
-  color: #fff;
-  font-size: clamp(17px, 2.2vw, 22px);
-  font-weight: 750;
-  line-height: 1.25;
-  overflow-wrap: anywhere;
-}
-.content-wrap .codex-use-story {
-  margin: 18px 0 20px;
-  padding: 18px 20px 20px;
-  border: 1px solid rgba(37, 99, 235, .16);
-  border-radius: 18px;
-  background: linear-gradient(145deg, #f8fbff 0%, #f2f8f6 100%);
-  box-shadow: inset 4px 0 0 #2dcba1;
-}
-.content-wrap .codex-use-story__title {
-  margin: 0 0 12px;
-  color: #173042;
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: .06em;
-}
-.content-wrap .codex-use-story dl {
-  display: grid;
-  grid-template-columns: 116px minmax(0, 1fr);
-  gap: 8px 14px;
-  margin: 0;
-}
-.content-wrap .codex-use-story dt {
-  color: #2563eb;
-  font-size: 12px;
-  font-weight: 800;
-}
-.content-wrap .codex-use-story dd {
-  min-width: 0;
-  margin: 0;
-  color: var(--text-soft);
-  font-size: 14px;
-  line-height: 1.75;
-}
 .content-wrap .daily-ai-news {
   margin: 0 0 34px;
   padding: clamp(20px, 4vw, 32px);
@@ -1556,18 +1465,6 @@ CONTENT_CSS = """
   font-weight: 750;
 }
 @media (max-width: 540px) {
-  .content-wrap .codex-command-callout {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 10px;
-    padding: 16px;
-  }
-  .content-wrap .codex-command-callout__commands { justify-content: flex-start; }
-  .content-wrap .codex-command-callout code { font-size: 17px; }
-  .content-wrap .codex-use-story { padding: 16px; }
-  .content-wrap .codex-use-story dl { grid-template-columns: 1fr; gap: 3px; }
-  .content-wrap .codex-use-story dd { margin: 0 0 9px; }
-  .content-wrap .codex-use-story dd:last-child { margin-bottom: 0; }
   .content-wrap .daily-ai-news { padding: 18px 14px; border-radius: 18px; }
   .content-wrap .daily-ai-news__list { grid-template-columns: 1fr; }
   .content-wrap .daily-ai-news__item { grid-template-columns: 32px minmax(0, 1fr); padding: 14px 12px; }
@@ -1673,25 +1570,11 @@ CONTENT_CSS = """
   margin: 12px 0 0;
   color: var(--muted);
 }
-.content-wrap--codex-update .codex-use-story {
-  padding: 22px 24px 24px;
-}
-.content-wrap--codex-update .codex-use-story__title {
-  font-size: 15px;
-}
-.content-wrap--codex-update .codex-use-story dt {
-  font-size: 14px;
-}
-.content-wrap--codex-update .codex-use-story dd {
-  font-size: 16px;
-  line-height: 1.8;
-}
 @media (max-width: 540px) {
   .codex-update-page .container { padding: 82px 16px 60px; }
   .content-wrap--codex-update .daily-ai-news { padding: 22px 16px; }
   .content-wrap--codex-update .codex-update-guide { padding: 30px 0; }
-  .content-wrap--codex-update .daily-ai-news__copy p,
-  .content-wrap--codex-update .codex-use-story dd { font-size: 16px; }
+  .content-wrap--codex-update .daily-ai-news__copy p { font-size: 16px; }
 }
 .content-wrap strong { color: var(--text); font-weight: 700; }
 .content-wrap img {

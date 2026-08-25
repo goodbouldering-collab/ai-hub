@@ -9,7 +9,6 @@ from __future__ import annotations
 import argparse
 from datetime import date, datetime, timedelta, timezone
 import hashlib
-import html
 import json
 import os
 from pathlib import Path
@@ -475,34 +474,22 @@ def render_current(period: str, fingerprint: str, editorial: dict[str, Any]) -> 
     lines.extend(f"- {item}" for item in editorial["summary"])
 
     for index, feature in enumerate(editorial["features"], start=1):
-        lines.extend(["", f"## {index}. {feature['title']}", "", feature["what_changed"]])
+        command_suffix = ""
         if feature["commands"]:
-            command_html = "".join(
-                f"<code>{html.escape(command)}</code>" for command in feature["commands"]
-            )
-            lines.extend(
-                [
-                    "",
-                    '<aside class="codex-command-callout" aria-label="追加されたコマンド">',
-                    '<span class="codex-command-callout__label">追加コマンド</span>',
-                    f'<div class="codex-command-callout__commands">{command_html}</div>',
-                    "</aside>",
-                ]
+            command_suffix = "｜" + "・".join(
+                f"`{command}`" for command in feature["commands"]
             )
         story = feature["usage_story"]
+        explanation = (
+            f"{feature['what_changed']}たとえば、"
+            f"{story['scene']}{story['action']}{story['confirmation']}"
+        )
         lines.extend(
             [
                 "",
-                f"**使い方：** {feature['how_to']}",
+                f"## {index}. {feature['title']}{command_suffix}",
                 "",
-                '<div class="codex-use-story" role="group" aria-label="利用ストーリー">',
-                '<p class="codex-use-story__title">利用ストーリー</p>',
-                "<dl>",
-                f"<dt>こんな時</dt><dd>{html.escape(story['scene'])}</dd>",
-                f"<dt>操作</dt><dd>{html.escape(story['action'])}</dd>",
-                f"<dt>確認できること</dt><dd>{html.escape(story['confirmation'])}</dd>",
-                "</dl>",
-                "</div>",
+                explanation,
                 "",
                 feature["availability"],
                 "",
@@ -666,9 +653,9 @@ def update_article(
 SYSTEM_PROMPT = """あなたはAI相談のCodexアップデート記事編集者です。
 入力されたOpenAI公式What's newとCodex CLI公式安定版リリースだけを根拠に、一般の仕事・教育・地域活動・制作に役立つCodex機能を1〜4件選びます。
 内部実装、細かな不具合修正、ChatGPTだけの変更は選びません。
-短い日本語で、何が変わったか、使い方、身近な利用ストーリー、対象端末や条件を整理してください。
+短い日本語で、何が変わったか、身近な利用場面と操作、対象端末や条件を整理してください。
 commandsは、その機能で追加されたCodexコマンドが根拠原文に明記されている場合だけ、バッククォートを外した正確な文字列を0〜3件入れてください。コマンドがなければ空配列にしてください。
-usage_storyは架空の成功談にせず、sceneで身近な困りごと、actionで具体的な操作を書いてください。「確認できること」は検証済みcommandsからシステムが定型生成するため、JSONへ書きません。
+what_changedとusage_storyは1つの段落にまとめて表示します。内容を重複させず、usage_storyは架空の成功談にせず、sceneで身近な困りごと、actionで具体的な操作を書いてください。「確認できること」は検証済みcommandsからシステムが定型生成するため、JSONへ書きません。
 hook、summary、title、what_changed、how_to、usage_story、availabilityでコマンドを書く場合は、commandsに入れた完全一致文字列だけを使ってください。根拠のないコマンド、時短率、売上、成果、解決完了、保証を創作しません。
 source_scopeは根拠が週次情報ならweekly、CLIリリースならcli_releaseを使ってください。
 source_evidenceは選んだsource_scopeから根拠となる英語原文を12〜300文字で一字も変えずに抜き出し、commandsに挙げた全コマンドを必ず含めてください。

@@ -33,97 +33,33 @@ action: "使えそうな機能を1つ試す"
 - いくつもの仕事を一覧で管理し、途中でも追加のお願いを送れます。
 - 困った時は診断結果をまとめ、相談しやすい情報にできます。
 
-## 1. 途中経過を、相手と一緒に確認する
+## 1. 途中経過を、相手と一緒に確認する｜`/share`
 
-ローカルCodexの作業を、読み取り専用のスナップショットとして共有できます。完成した画面だけでなく、頼んだ内容と変更の流れも確認しやすくなります。
-
-<aside class="codex-command-callout" aria-label="追加されたコマンド">
-<span class="codex-command-callout__label">追加コマンド</span>
-<div class="codex-command-callout__commands"><code>/share</code></div>
-</aside>
-
-**使い方：** macOS版ChatGPTで対象の会話を開き、「Share」または`/share`を選びます。
-
-<div class="codex-use-story" role="group" aria-label="利用ストーリー">
-<p class="codex-use-story__title">利用ストーリー｜たとえば</p>
-<dl>
-<dt>こんな時</dt><dd>お店のページ修正を頼んだ後、「何を変えたのか、公開前に見たい」と担当者から言われた。</dd>
-<dt>操作</dt><dd>対象の会話で「Share」または<code>/share</code>を選び、共有する範囲を確認してリンクをコピーします。</dd>
-<dt>確認できること</dt><dd>相手はリンクを見るだけで、パソコンやプロジェクトの権限を渡さずに、どこまで進んだかを確認できます。</dd>
-</dl>
-</div>
+お店のページ修正を公開前に担当者へ見せたい時は、macOS版ChatGPTで対象の会話を開き、「Share」または`/share`を選びます。パソコンやプロジェクトの権限を渡さず、頼んだ内容と変更の流れを読み取り専用リンクで確認してもらえます。
 
 全Codexプランが対象です。共有後の会話は自動反映されません。共有前には、機密情報や個人情報が残っていないかを確認してください。
 
 [公式情報](https://learn.chatgpt.com/docs/use-chatgpt#share-a-read-only-snapshot-of-a-codex-thread)
 
-## 2. いくつもの仕事を、迷わず開き直す
+## 2. いくつもの仕事を、迷わず開き直す｜`codex agents`
 
-`codex agents`で、タスクの検索・開始・オープン・名前変更・停止ができます。作業が増えても、前に頼んだ仕事を探し直す時間を減らせます。
-
-<aside class="codex-command-callout" aria-label="追加されたコマンド">
-<span class="codex-command-callout__label">追加コマンド</span>
-<div class="codex-command-callout__commands"><code>codex agents</code></div>
-</aside>
-
-**使い方：** ターミナルで`codex agents`を実行し、対話型ダッシュボードを開きます。
-
-<div class="codex-use-story" role="group" aria-label="利用ストーリー">
-<p class="codex-use-story__title">利用ストーリー｜たとえば</p>
-<dl>
-<dt>こんな時</dt><dd>イベント案内、講座資料、SNS投稿の作業が増え、続きの仕事を探すだけで時間がかかる。</dd>
-<dt>操作</dt><dd>ターミナルで<code>codex agents</code>を実行し、検索して続けたい仕事を開きます。不要な仕事は名前を変えるか停止します。</dd>
-<dt>確認できること</dt><dd>対話型の一覧で、今どの仕事があるかを見渡し、次に開く仕事を選べます。</dd>
-</dl>
-</div>
+イベント案内、講座資料、SNS投稿などの仕事が増えて続きを探しにくい時は、ターミナルで`codex agents`を実行します。仕事の一覧から検索して続きを開き、不要な仕事は名前変更や停止ができます。
 
 Codex CLI 0.149.0以降で使えます。
 
 [公式情報](https://github.com/openai/codex/releases/tag/rust-v0.149.0)
 
-## 3. 頼み忘れを、作業中に追加する
+## 3. 頼み忘れを、作業中に追加する｜`codex queue`
 
-`codex queue`で、既存のローカルまたはリモートの作業へ後から指示を送れます。最初からやり直さず、気づいたことを追加できます。
-
-<aside class="codex-command-callout" aria-label="追加されたコマンド">
-<span class="codex-command-callout__label">追加コマンド</span>
-<div class="codex-command-callout__commands"><code>codex queue</code></div>
-</aside>
-
-**使い方：** 進行中の作業へ追加指示を送りたい時に`codex queue`を使います。
-
-<div class="codex-use-story" role="group" aria-label="利用ストーリー">
-<p class="codex-use-story__title">利用ストーリー｜たとえば</p>
-<dl>
-<dt>こんな時</dt><dd>サイトの公開確認が進んでいる途中で、iPhone幅と横スクロールの確認を頼み忘れたことに気づく。</dd>
-<dt>操作</dt><dd><code>codex queue</code>を使い、進行中の会話へ「iPhone幅と横スクロールも確認して」と追加メッセージを送ります。</dd>
-<dt>確認できること</dt><dd>進んでいる仕事に、追加のお願いを届けられるため、確認漏れを減らせます。</dd>
-</dl>
-</div>
+サイトの公開確認中にiPhone幅の確認を頼み忘れた時は、`codex queue`で進行中の会話へ追加のお願いを送ります。最初からやり直さず、動いている仕事へ確認項目を足せます。
 
 Codex CLI 0.149.0以降で使えます。
 
 [公式情報](https://github.com/openai/codex/releases/tag/rust-v0.149.0)
 
-## 4. 困った時に、状況を伝えやすくする
+## 4. 困った時に、状況を伝えやすくする｜`codex doctor`
 
-`codex doctor`で、設定、認証、ネットワーク、端末の状態をまとめて確認できます。「動かない」だけで終わらせず、何を確かめたかを伝えやすくなります。
-
-<aside class="codex-command-callout" aria-label="追加されたコマンド">
-<span class="codex-command-callout__label">追加コマンド</span>
-<div class="codex-command-callout__commands"><code>codex doctor</code></div>
-</aside>
-
-**使い方：** 接続や起動で困った時に`codex doctor --summary`を実行し、診断結果の要約を確認します。
-
-<div class="codex-use-story" role="group" aria-label="利用ストーリー">
-<p class="codex-use-story__title">利用ストーリー｜たとえば</p>
-<dl>
-<dt>こんな時</dt><dd>共有のパソコンからCodexへ接続できず、詳しい人に何を伝えればよいか分からない。</dd>
-<dt>操作</dt><dd>ターミナルで<code>codex doctor --summary</code>を実行し、表示された診断項目と件数を確認します。</dd>
-<dt>確認できること</dt><dd>インストール、設定、認証、端末、ネットワークなどを一度に確認し、相談する時の手がかりにできます。</dd>
-</dl>
-</div>
+共有のパソコンでCodexにつながらない時は、ターミナルで`codex doctor --summary`を実行します。設定やネットワークの状態がまとまって表示されるので、その内容を詳しい人へ見せれば、どこを確認すればよいか伝えやすくなります。
 
 Codex CLI 0.149.0以降で使えます。診断結果を共有する前に、秘密情報がないか確認してください。
 

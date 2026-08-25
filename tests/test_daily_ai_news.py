@@ -61,6 +61,30 @@ def make_summary(
 
 
 class DailyNewsRankingTests(unittest.TestCase):
+    def test_japan_attention_is_primary_even_when_global_score_is_lower(self):
+        japan_focused = make_article(0, source="国内情報", category="AI国内")
+        globally_scored = make_article(1, source="海外情報", category="AI公式")
+        summaries = {
+            japan_focused.hash: make_summary(0, score=20, japan_relevance=100),
+            globally_scored.hash: make_summary(
+                1,
+                score=100,
+                japan_relevance=5,
+                codex_relevance=100,
+            ),
+        }
+
+        with tempfile.TemporaryDirectory() as tmp:
+            ranked, ranked_summaries = rank_articles(
+                [globally_scored, japan_focused],
+                summaries,
+                Path(tmp) / "preferences.json",
+                top_n=2,
+            )
+
+        self.assertEqual(japan_focused, ranked[0])
+        self.assertEqual(100, ranked_summaries[japan_focused.hash]["japan_attention"])
+
     def test_japan_and_codex_relevance_win_while_one_source_is_capped(self):
         articles = []
         summaries = {}
@@ -125,6 +149,27 @@ class DailyNewsSnapshotTests(unittest.TestCase):
         self.assertEqual("ニュース0をわかりやすく説明します。", payload["items"][0]["plain_summary"])
         self.assertEqual("たとえば、ニュース0を仕事で試す場面です。", payload["items"][0]["story_example"])
 
+    def test_snapshot_is_saved_in_descending_japan_attention_order(self):
+        articles = [make_article(index, source=f"Source {index}") for index in range(10)]
+        summaries = {
+            article.hash: make_summary(index, japan_relevance=index * 10)
+            for index, article in enumerate(articles)
+        }
+
+        with tempfile.TemporaryDirectory() as tmp:
+            target = Path(tmp) / "daily-ai-news.json"
+            export_daily_ai_news_snapshot(
+                articles,
+                summaries,
+                target,
+                today=date(2026, 8, 22),
+            )
+            payload = json.loads(target.read_text(encoding="utf-8"))
+
+        self.assertEqual("ニュース9", payload["items"][0]["title"])
+        attention = [item["japan_attention"] for item in payload["items"]]
+        self.assertEqual(sorted(attention, reverse=True), attention)
+
     def test_invalid_run_keeps_last_successful_snapshot(self):
         articles = [make_article(index) for index in range(10)]
         summaries = {article.hash: make_summary(index) for index, article in enumerate(articles)}
@@ -176,6 +221,7 @@ class DailyNewsRenderingTests(unittest.TestCase):
                     "published": "2026-08-22T00:00:00+00:00",
                     "plain_summary": f"わかりやすい説明{index + 1}",
                     "story_example": f"たとえば、使いどころ{index + 1}です。",
+                    "japan_attention": index * 10,
                 }
             )
         return {"date": "2026-08-22", "items": items}
@@ -203,6 +249,12 @@ class DailyNewsRenderingTests(unittest.TestCase):
             "わかりやすい説明1たとえば、使いどころ1です。</p>",
             rendered,
         )
+
+    def test_renders_highest_japan_attention_first(self):
+        rendered = render_daily_ai_news(self.make_payload())
+
+        self.assertIn("日本での注目度が高い順", rendered)
+        self.assertLess(rendered.index("ニュース10"), rendered.index("&lt;script&gt;"))
 
     def test_invalid_url_fails_closed(self):
         payload = self.make_payload()

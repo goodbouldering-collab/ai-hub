@@ -9945,6 +9945,94 @@ HEADER_JS = """
 
   // ---- Scroll fade-up / counter via IntersectionObserver
   var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // 講習カード: 閉じた状態の同じ行だけを同高にし、詳細を開いたカードは単独で伸ばす。
+  (function(){
+    var grids = Array.prototype.slice.call(document.querySelectorAll('.compact-course-grid'));
+    if (!grids.length) return;
+    var desktopCourses = window.matchMedia('(min-width: 721px)');
+    var pendingFrame = 0;
+
+    function cardsOf(grid){
+      return Array.prototype.slice.call(grid.querySelectorAll(':scope > .compact-course-card'));
+    }
+
+    function clearHeights(cards){
+      cards.forEach(function(card){
+        card.style.minHeight = '';
+        var tail = card.querySelector(':scope > .compact-course-tail');
+        if (tail) tail.style.minHeight = '';
+      });
+    }
+
+    function syncGrid(grid){
+      var cards = cardsOf(grid);
+      if (!desktopCourses.matches) {
+        clearHeights(cards);
+        grid.dataset.courseHeightReady = 'true';
+        return;
+      }
+      if (cards.some(function(card){ return !!card.querySelector('.compact-course-details[open]'); })) {
+        grid.dataset.courseHeightReady = 'true';
+        return;
+      }
+
+      clearHeights(cards);
+      cards.forEach(function(card){ void card.offsetHeight; });
+      for (var index = 0; index < cards.length; index += 2) {
+        var row = cards.slice(index, index + 2);
+        var tails = row.map(function(card){
+          return card.querySelector(':scope > .compact-course-tail');
+        }).filter(Boolean);
+        var tailHeight = Math.ceil(Math.max.apply(null, tails.map(function(tail){
+          return tail.getBoundingClientRect().height;
+        })));
+        tails.forEach(function(tail){ tail.style.minHeight = tailHeight + 'px'; });
+        row.forEach(function(card){ void card.offsetHeight; });
+        var rowHeight = Math.ceil(Math.max.apply(null, row.map(function(card){
+          return card.getBoundingClientRect().height;
+        })));
+        row.forEach(function(card){ card.style.minHeight = rowHeight + 'px'; });
+      }
+      grid.dataset.courseHeightReady = 'true';
+    }
+
+    function scheduleSync(){
+      if (pendingFrame) window.cancelAnimationFrame(pendingFrame);
+      pendingFrame = window.requestAnimationFrame(function(){
+        grids.forEach(syncGrid);
+        pendingFrame = 0;
+      });
+    }
+
+    grids.forEach(function(grid){
+      cardsOf(grid).forEach(function(card){
+        card.querySelectorAll('.compact-course-details').forEach(function(detail){
+          var summary = detail.querySelector(':scope > summary');
+          if (summary) summary.setAttribute('aria-expanded', detail.open ? 'true' : 'false');
+          detail.addEventListener('toggle', function(){
+            if (summary) summary.setAttribute('aria-expanded', detail.open ? 'true' : 'false');
+            card.classList.toggle(
+              'is-expanded',
+              !!card.querySelector('.compact-course-details[open]')
+            );
+            if (!detail.open) scheduleSync();
+          });
+        });
+        card.querySelectorAll('img').forEach(function(image){
+          if (!image.complete) image.addEventListener('load', scheduleSync, { once:true });
+        });
+      });
+    });
+
+    window.addEventListener('resize', scheduleSync, { passive:true });
+    window.addEventListener('load', scheduleSync, { once:true });
+    if (desktopCourses.addEventListener) desktopCourses.addEventListener('change', scheduleSync);
+    else if (desktopCourses.addListener) desktopCourses.addListener(scheduleSync);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(scheduleSync);
+    scheduleSync();
+  })();
+
   if ('IntersectionObserver' in window && !prefersReduced) {
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(en){
@@ -12018,10 +12106,12 @@ def _render_compact_course_cards() -> str:
             f"{title_html}"
             f"<div class='compact-course-meta'><strong>{html.escape(item['price'])}</strong><span>{html.escape(item['duration'])}</span></div>"
             f"<p>{html.escape(item['desc'])}</p>"
+            "<div class='compact-course-tail'>"
             f"{details_html}"
             f"{testimonial_html}"
             f"{main_action_html}"
             f"{material_html}"
+            "</div>"
             "</article>"
         )
     return "<div class='compact-course-grid'>" + "".join(cards) + "</div>"
@@ -15336,6 +15426,71 @@ FOCUSED_PORTAL_CSS += r"""
   .diagnosis-guide-row .offer-panel { width:calc(100% - 28px); }
   .diagnosis-guide-row .readiness-guide__title { font-size:clamp(27px,8vw,34px); }
   .readiness-guide__cta { min-height:50px; padding:11px 14px; }
+}
+
+/* Course cards: keep each desktop row aligned while letting an opened card grow alone. */
+.compact-course-card {
+  position:relative;
+  transition:transform .22s ease, background-color .22s ease, box-shadow .22s ease;
+}
+.compact-course-tail {
+  display:flex;
+  flex-direction:column;
+  margin-top:auto;
+}
+.compact-course-tail > .compact-course-action,
+.compact-course-tail > .compact-course-checkout {
+  width:100%;
+}
+.compact-course-tail > .compact-course-action {
+  min-height:46px;
+  margin-top:4px;
+  padding:11px 16px;
+  font-size:13px;
+}
+.compact-course-details summary {
+  margin:0 -8px;
+  padding:8px;
+  border-radius:8px;
+  transition:color .18s ease, background-color .18s ease, transform .18s ease;
+}
+.compact-course-details summary:hover,
+.compact-course-details summary:focus-visible {
+  color:var(--focus-blue-dark);
+  background:#f1f5ff;
+  transform:translateX(2px);
+}
+.compact-course-details summary:focus-visible {
+  outline:3px solid rgba(79,111,216,.28);
+  outline-offset:2px;
+}
+.compact-course-details[open] > summary {
+  color:var(--focus-blue-dark);
+  background:#eaf0ff;
+}
+.compact-course-details[open] > :not(summary) {
+  animation:course-detail-reveal .24s ease both;
+}
+.compact-course-card:has(.compact-course-details[open]) {
+  background:#fbfcff;
+  box-shadow:0 14px 34px rgba(79,111,216,.13) !important;
+}
+@media (hover:hover) and (pointer:fine) {
+  .compact-course-card:hover {
+    z-index:1;
+    transform:translateY(-3px);
+    background:#fbfcff;
+    box-shadow:0 14px 34px rgba(79,111,216,.13) !important;
+  }
+}
+@keyframes course-detail-reveal {
+  from { opacity:0; transform:translateY(-6px); }
+  to { opacity:1; transform:translateY(0); }
+}
+@media (prefers-reduced-motion:reduce) {
+  .compact-course-card,
+  .compact-course-details summary { transition:none; }
+  .compact-course-details[open] > :not(summary) { animation:none; }
 }
 """
 

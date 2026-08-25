@@ -279,6 +279,9 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
             try:
                 desktop = browser.new_page(viewport={"width": 1280, "height": 900})
                 desktop.set_content(self.home)
+                desktop.wait_for_function(
+                    "document.querySelector('.compact-course-grid')?.dataset.courseHeightReady === 'true'"
+                )
                 desktop_cards = desktop.locator(".compact-course-card")
                 desktop_boxes = [
                     desktop_cards.nth(index).bounding_box()
@@ -296,6 +299,48 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
                 self.assertLess(desktop_boxes[1]["y"], desktop_boxes[2]["y"])
                 self.assertLess(desktop_boxes[3]["y"], desktop_boxes[4]["y"])
                 self.assertLess(abs(desktop_boxes[4]["y"] - desktop_boxes[5]["y"]), 1)
+                for left, right in ((0, 1), (2, 3), (4, 5)):
+                    self.assertLess(
+                        abs(desktop_boxes[left]["height"] - desktop_boxes[right]["height"]),
+                        1,
+                        "同じ行の講習カードは閉じた状態で同じ高さにする",
+                    )
+
+                    left_tail = desktop_cards.nth(left).locator(".compact-course-tail").bounding_box()
+                    right_tail = desktop_cards.nth(right).locator(".compact-course-tail").bounding_box()
+                    self.assertIsNotNone(left_tail)
+                    self.assertIsNotNone(right_tail)
+                    self.assertLess(
+                        abs(left_tail["y"] - right_tail["y"]),
+                        1,
+                        "「メリット・内容」以降は同じ行で下端側の開始位置をそろえる",
+                    )
+
+                first_height = desktop_boxes[0]["height"]
+                neighbor_height = desktop_boxes[1]["height"]
+                first_details = desktop_cards.nth(0).locator(
+                    ".compact-course-details:not(.compact-course-testimonials)"
+                )
+                first_details.locator("summary").click()
+                desktop.wait_for_timeout(300)
+                self.assertTrue(first_details.evaluate("element => element.open"))
+                self.assertGreater(
+                    desktop_cards.nth(0).bounding_box()["height"],
+                    first_height,
+                    "詳細を開いたカードだけ自然に伸びる",
+                )
+                self.assertLess(
+                    abs(desktop_cards.nth(1).bounding_box()["height"] - neighbor_height),
+                    1,
+                    "詳細を開いても隣のカードは伸ばさない",
+                )
+                self.assertNotEqual(
+                    "rgba(0, 0, 0, 0)",
+                    first_details.locator("summary").evaluate(
+                        "element => getComputedStyle(element).backgroundColor"
+                    ),
+                    "開いた項目は背景でも状態が分かるようにする",
+                )
                 self.assertLessEqual(
                     desktop.evaluate(
                         "document.documentElement.scrollWidth - document.documentElement.clientWidth"
@@ -327,6 +372,13 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
                 )
                 self.assertTrue(
                     all(upper["y"] < lower["y"] for upper, lower in zip(mobile_boxes, mobile_boxes[1:]))
+                )
+                self.assertTrue(
+                    all(
+                        mobile_cards.nth(index).evaluate("element => element.style.minHeight === ''")
+                        for index in range(mobile_cards.count())
+                    ),
+                    "1列表示ではカード高を固定しない",
                 )
                 self.assertLessEqual(
                     mobile.evaluate(

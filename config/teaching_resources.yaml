@@ -45,7 +45,6 @@ sections:
 - name: 講師用・詳しく学ぶ資料
   icon: 📚
   description: 講習で画面共有するときや、本文のあとで詳しく確認するときだけ開く補助資料
-  collapsed: true
   items:
   - title: AIコーディング講習 120分
     icon: 🧭

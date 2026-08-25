@@ -139,6 +139,21 @@ class LectureMediaContractTest(unittest.TestCase):
                 )
                 self.assertRegex(rendered, card_pattern)
 
+    def test_instructor_resources_are_always_visible_without_an_accordion(self):
+        """Making the instructor resources collapsible must break the public index contract."""
+        with tempfile.TemporaryDirectory() as tmp:
+            dist = Path(tmp)
+            with patch.object(self.builder, "DIST", dist):
+                self.builder.build_lectures()
+            rendered = (dist / "lectures" / "index.html").read_text(encoding="utf-8")
+
+        instructor_group = re.search(
+            r"<(?P<tag>section|details)\b[^>]*\bid='sec-講師用・詳しく学ぶ資料'",
+            rendered,
+        )
+        self.assertIsNotNone(instructor_group)
+        self.assertEqual("section", instructor_group.group("tag"))
+
     def test_home_lecture_cards_use_the_same_cover_contract(self):
         """The actual home lecture carousel must reuse every listed material's wide cover."""
         rendered = self.portal._render_lectures_section()

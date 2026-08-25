@@ -102,6 +102,89 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
         self.assertIn("margin:18px 0;", css)
         self.assertIn("border-left:0;", css)
 
+    def test_diagnostic_summaries_keep_all_results_without_a_separate_meta_row(self):
+        def section_for(title_id: str) -> str:
+            title = self.home.index(f"id='{title_id}'")
+            start = self.home.rfind("<section", 0, title)
+            end = self.home.index("</section>", title)
+            return self.home[start:end]
+
+        readiness = section_for("readiness-guide-title")
+        readiness_summary = re.search(
+            r"<p class='readiness-guide__summary'>(.*?)</p>", readiness
+        )
+        self.assertIsNotNone(readiness_summary)
+        assert readiness_summary is not None
+        summary = readiness_summary.group(1)
+        for result in ("100点・5段階", "5つの基準", "次の90日"):
+            self.assertIn(result, summary)
+        self.assertNotIn("readiness-guide__meta", readiness)
+        self.assertLessEqual(
+            len(summary),
+            len(
+                "10問・約3分で、いまの実践力と次に整える一歩がわかります。"
+                "結果から、少数・個別・組織の受講方法も選べます。"
+            ),
+        )
+
+        site = section_for("seo-llmo-guide-title")
+        revised = (
+            "あなたのサイトは、検索とAIに伝わっていますか？ "
+            "公開ページを100点・4領域で確認し、優先して直すことを整理します。"
+        )
+        original = (
+            "あなたのサイトは、検索とAIに正しく伝わっていますか？ "
+            "公開ページを100点・4領域で確認し、優先して直すことを整理します。"
+        )
+        self.assertIn(f"<p class='readiness-guide__summary'>{revised}</p>", site)
+        self.assertLess(len(revised), len(original))
+        self.assertIn("あなたのサイト診断をはじめる", site)
+
+    def test_diagnostic_cards_and_lower_content_align_on_desktop_and_mobile(self):
+        with sync_playwright() as playwright:
+            browser = launch_chromium(playwright)
+            try:
+                for width in (1280, 390):
+                    with self.subTest(width=width):
+                        page = browser.new_page(viewport={"width": width, "height": 1000})
+                        page.set_content(self.home)
+                        cards = page.locator(".diagnosis-guide-row > .readiness-guide")
+                        self.assertEqual(2, cards.count())
+                        card_boxes = [cards.nth(index).bounding_box() for index in range(2)]
+                        self.assertTrue(all(box is not None for box in card_boxes))
+                        self.assertLess(
+                            abs(card_boxes[0]["height"] - card_boxes[1]["height"]),
+                            1,
+                            "2つの診断カードは同じ高さにする",
+                        )
+                        for selector, message in (
+                            (".readiness-guide__questions", "設問リスト"),
+                            (".readiness-guide__actions", "CTA"),
+                        ):
+                            boxes = [
+                                cards.nth(index).locator(selector).bounding_box()
+                                for index in range(2)
+                            ]
+                            self.assertTrue(all(box is not None for box in boxes))
+                            self.assertLess(
+                                abs(
+                                    (boxes[0]["y"] - card_boxes[0]["y"])
+                                    - (boxes[1]["y"] - card_boxes[1]["y"])
+                                ),
+                                1,
+                                f"{message}の開始位置をそろえる",
+                            )
+                        self.assertLessEqual(
+                            page.evaluate(
+                                "document.documentElement.scrollWidth - "
+                                "document.documentElement.clientWidth"
+                            ),
+                            1,
+                        )
+                        page.close()
+            finally:
+                browser.close()
+
     def test_three_guides_share_grid_and_question_row_format(self):
         with sync_playwright() as playwright:
             browser = launch_chromium(playwright)

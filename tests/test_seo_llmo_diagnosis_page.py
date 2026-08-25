@@ -115,7 +115,7 @@ class SeoLlmoDiagnosisPageTests(unittest.TestCase):
 
         self.assertLess(readiness, seo)
         self.assertLess(seo, main_course)
-        self.assertIn("あなたのサイトは、検索とAIに正しく伝わっていますか？", home)
+        self.assertIn("あなたのサイトは、検索とAIに伝わっていますか？", home)
         self.assertIn("href='/seo-llmo-diagnosis/'", home)
         self.assertIn("あなたのサイト診断をはじめる", home)
         self.assertIn("aria-label='AIclimb（AI相談）トップへ'", home)
@@ -182,7 +182,7 @@ class SeoLlmoDiagnosisPageTests(unittest.TestCase):
             section,
         )
         self.assertIn(
-            "あなたのサイトは、検索とAIに正しく伝わっていますか？ 公開ページを100点・4領域で確認し、優先して直すことを整理します。",
+            "あなたのサイトは、検索とAIに伝わっていますか？ 公開ページを100点・4領域で確認し、優先して直すことを整理します。",
             section,
         )
         self.assertIn("あなたのサイト診断をはじめる", section)

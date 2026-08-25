@@ -15384,12 +15384,15 @@ FOCUSED_PORTAL_CSS += r"""
   background:var(--focus-line);
 }
 .container main > .readiness-guide { margin:18px 0; }
-.diagnosis-guide-row .readiness-guide { min-width:0; }
-.diagnosis-guide-row .offer-panel { width:min(100% - 40px,560px); }
+.diagnosis-guide-row .readiness-guide { min-width:0; display:flex; }
+.diagnosis-guide-row .offer-panel { display:flex; width:min(100% - 40px,560px); }
 .diagnosis-guide-row .readiness-guide__inner {
+  width:100%;
   grid-template-columns:minmax(0,1fr);
+  grid-template-rows:1fr auto auto;
   gap:10px;
 }
+.diagnosis-guide-row .readiness-guide__questions li { min-height:43px; }
 .diagnosis-guide-row .readiness-guide__title { font-size:clamp(27px,2.7vw,36px); }
 .diagnosis-guide-row .readiness-guide__summary { margin-top:4px; font-size:14px; line-height:1.45; }
 .diagnosis-guide-row .readiness-guide__meta { margin-top:5px; }
@@ -15423,8 +15426,12 @@ FOCUSED_PORTAL_CSS += r"""
   .focus-block { padding:30px 14px; }
   .offer-panel { width:calc(100% - 28px); }
   .readiness-guide > .offer-panel { padding:16px 0; }
-  .diagnosis-guide-row { display:block; background:transparent; }
-  .diagnosis-guide-row .readiness-guide + .readiness-guide { border-top:1px solid var(--focus-line); }
+  .diagnosis-guide-row {
+    display:grid;
+    grid-template-columns:minmax(0,1fr);
+    grid-auto-rows:1fr;
+  }
+  .diagnosis-guide-row .readiness-guide + .readiness-guide { border-top:0; }
   .diagnosis-guide-row .offer-panel { width:calc(100% - 28px); }
   .diagnosis-guide-row .readiness-guide__title { font-size:clamp(27px,8vw,34px); }
   .readiness-guide__cta { min-height:50px; padding:11px 14px; }
@@ -15566,8 +15573,7 @@ def _render_readiness_guide() -> str:
         "<div class='readiness-guide__intro'><div class='offer-role-row'><div class='offer-role-copy'>"
         "<span class='offer-role-badge'>診断</span><span class='offer-role-note'>10問・約3分</span></div></div>"
         "<h2 id='readiness-guide-title' class='readiness-guide__title'>あなたのAI実力診断</h2>"
-        "<p class='readiness-guide__summary'>10問・約3分で、いまの実践力と次に整える一歩がわかります。結果から、少数・個別・組織の受講方法も選べます。</p>"
-        "<p class='readiness-guide__meta'><span>100点・5段階</span><span>5つの基準</span><span>次の90日</span></p></div>"
+        "<p class='readiness-guide__summary'>5つの基準で実践力を100点・5段階診断。次の90日の一歩と、少数・個別・組織別の受講方法がわかります。</p></div>"
         "<ul class='readiness-guide__questions' aria-label='AI活用の3つの疑問'>"
         "<li><span aria-hidden='true'>?</span><strong>コピペで止まっていないか</strong></li>"
         "<li><span aria-hidden='true'>?</span><strong>任せた仕事を確かめられるか</strong></li>"
@@ -15585,7 +15591,7 @@ def _render_seo_llmo_guide() -> str:
         "<div class='readiness-guide__intro'><div class='offer-role-row'><div class='offer-role-copy'>"
         "<span class='offer-role-badge'>診断</span><span class='offer-role-note'>URLを入れて約1分</span></div></div>"
         "<h2 id='seo-llmo-guide-title' class='readiness-guide__title'>あなたのサイト診断</h2>"
-        "<p class='readiness-guide__summary'>あなたのサイトは、検索とAIに正しく伝わっていますか？ 公開ページを100点・4領域で確認し、優先して直すことを整理します。</p></div>"
+        "<p class='readiness-guide__summary'>あなたのサイトは、検索とAIに伝わっていますか？ 公開ページを100点・4領域で確認し、優先して直すことを整理します。</p></div>"
         "<ul class='readiness-guide__questions' aria-label='あなたのサイト診断でわかること'>"
         "<li><span aria-hidden='true'>?</span><div><strong>見つける土台</strong><small>クロール・索引</small></div></li>"
         "<li><span aria-hidden='true'>?</span><div><strong>信頼と主体</strong><small>誰のサイトか</small></div></li>"

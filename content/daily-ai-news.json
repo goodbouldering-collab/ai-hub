@@ -2,20 +2,20 @@
   "date": "2026-08-27",
   "items": [
     {
-      "title": "Meta Glassesが日本発売、Meta AIをボタンで呼び出し",
-      "url": "https://about.fb.com/ja/news/2026/08/meta-glasses-launch-in-japan/",
-      "source": "Meta",
+      "title": "Google Cloud、AIエージェントの料金上限と従量制を追加",
+      "url": "https://cloud.google.com/blog/products/ai-machine-learning/flexible-billing-and-cost-controls-for-agents-on-google-cloud",
+      "source": "Google Cloud",
       "published": "2026-08-26",
-      "kid_summary": "Meta Glassesが日本で発売され、ボタンでMeta AIを呼び出し、写真や動画も手を使わず撮れます。",
-      "japan_angle": "店や学校で使う時は、撮影中を示すLEDと周囲の人への説明を確認してから活用できます。"
+      "kid_summary": "Google Cloudが、AIエージェントの料金を使った分だけ払う仕組みや、月の上限を決める機能を発表しました。",
+      "japan_angle": "学校や小さな会社は、AIの予算上限と利用状況を決め、使いすぎを防ぐ運用づくりの参考にできます。"
     },
     {
-      "title": "Apple、M6搭載Mac miniを発表　AI処理最大4倍",
-      "url": "https://www.apple.com/newsroom/2026/08/apple-unveils-a-more-powerful-mac-mini-featuring-the-all-new-m6-and-m5-pro/",
-      "source": "Apple",
-      "published": "2026-08-25",
-      "kid_summary": "AppleがM6搭載Mac miniを発表し、AI処理を最大4倍速くし、常時動くAI作業にも対応します。",
-      "japan_angle": "日本の作り手や小さな会社には、端末内でAIモデルや自動化を動かす機材選びに関わります。"
+      "title": "宮崎県庁、DeepL Voiceで聴覚障がい職員の会議参加を支援",
+      "url": "https://ai.watch.impress.co.jp/docs/news/2135675.html",
+      "source": "AI Watch",
+      "published": "2026-08-26T12:10:00+09:00",
+      "kid_summary": "宮崎県庁が、会議の日本語をその場で文字にするDeepL Voiceを、聴覚障がいのある職員の支援に使っています。",
+      "japan_angle": "学校や福祉施設でも、専用機材なしのタブレット文字起こしを情報保障の選択肢として検討できます。"
     },
     {
       "title": "政府が生成AI事業者向け知財保護ルールを策定",
@@ -42,20 +42,20 @@
       "japan_angle": "会社や地域活動では案件の前提を引き継げますが、保存内容を設定画面で定期的に見直す必要があります。"
     },
     {
-      "title": "GitHub、LLM評価で誤検知95％減を検証",
-      "url": "https://github.blog/ai-and-ml/llms/how-to-evaluate-llms-before-production/",
-      "source": "GitHub Blog",
+      "title": "GMOペパボ、14社のAIを1つのAPIで使える国産ゲートウェイ開始",
+      "url": "https://pepabo.com/news/press/202608251600/",
+      "source": "GMOペパボ",
       "published": "2026-08-25",
-      "kid_summary": "GitHubは、AI機能を本番へ出す前の評価で、誤警報を95％減らした検証方法を公開しました。",
-      "japan_angle": "業務アプリの作り手は、正しさだけでなく見逃し、費用、速さをテスト項目にして改善を続けられます。"
+      "kid_summary": "GMOペパボが、14社のAIを1つの鍵で切り替え、料金を見ながら使える仕組みを始めました。",
+      "japan_angle": "国内の店や作り手は、日本円の費用表示と予算上限を使い、AIサービスの運用負担を減らせます。"
     },
     {
-      "title": "IBMがエージェント向けGranite 4.2を公開",
-      "url": "https://research.ibm.com/blog/introducing-granite-4-2",
-      "source": "IBM Research",
+      "title": "Apple、M6搭載Mac miniを発表　AI処理最大4倍",
+      "url": "https://www.apple.com/newsroom/2026/08/apple-unveils-a-more-powerful-mac-mini-featuring-the-all-new-m6-and-m5-pro/",
+      "source": "Apple",
       "published": "2026-08-25",
-      "kid_summary": "IBMが、考えて道具を使い仕事を進める公開AIモデルGranite 4.2を3サイズで公開しました。",
-      "japan_angle": "会社や学校は、3サイズから選び、クラウドや自社設備で業務用エージェントを試す選択肢が増えます。"
+      "kid_summary": "AppleがM6搭載Mac miniを発表し、AI処理を最大4倍速くし、常時動くAI作業にも対応します。",
+      "japan_angle": "日本の作り手や小さな会社には、端末内でAIモデルや自動化を動かす機材選びに関わります。"
     },
     {
       "title": "Vercel、AI生成コードを隔離実行するRun SDKを公開",
@@ -66,12 +66,12 @@
       "japan_angle": "地域事業者向けアプリでも、AIに返金や公開を任せる時、人の承認で止める安全設計に生かせます。"
     },
     {
-      "title": "国連と赤十字が自律型兵器の法的規制を要求",
-      "url": "https://www.investing.com/news/world-news/un-and-red-cross-call-for-urgent-rules-on-autonomous-weapons-4874660",
-      "source": "Reuters",
+      "title": "GitHub、LLM評価で誤検知95％減を検証",
+      "url": "https://github.blog/ai-and-ml/llms/how-to-evaluate-llms-before-production/",
+      "source": "GitHub Blog",
       "published": "2026-08-25",
-      "kid_summary": "国連と赤十字が、人の判断なしで人を狙う自律型兵器を法的に規制する交渉を急ぐよう求めました。",
-      "japan_angle": "学校のAI教育では、便利さだけでなく、人命に関わる判断を機械へ任せる責任も話し合えます。"
+      "kid_summary": "GitHubは、AI機能を本番へ出す前の評価で、誤警報を95％減らした検証方法を公開しました。",
+      "japan_angle": "業務アプリの作り手は、正しさだけでなく見逃し、費用、速さをテスト項目にして改善を続けられます。"
     },
     {
       "title": "OpenAI、独自推論チップJalapeñoの実測結果を公開",

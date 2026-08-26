@@ -207,18 +207,16 @@ class BlogFreshnessTest(unittest.TestCase):
         self.assertNotIn("**使い方：**", current)
         self.assertNotIn('class="codex-command-callout"', current)
         self.assertNotIn('class="codex-use-story"', current)
-        self.assertIn("普段のブラウザから頼む", current)
-        self.assertIn("<code>Use your browser</code>", current)
-        self.assertIn("サイトの操作を使う", current)
-        self.assertIn("<code>Site tools (WebMCP)</code>", current)
-        self.assertIn("クラウド作業へ安全にログインする", current)
-        self.assertIn("<code>Web sign-in</code>", current)
-        self.assertIn("レビューを合図に動かす", current)
-        self.assertIn("<code>Event-triggered tasks</code>", current)
+        self.assertIn("別の作業とつなぐ", current)
+        self.assertIn("必要な部分だけコピーする", current)
+        self.assertIn("<code>/copy</code>", current)
+        self.assertIn("作業名を整える", current)
+        self.assertIn("<code>/rename</code>", current)
+        self.assertIn("リンク先をすぐ開く", current)
         self.assertEqual(4, current.count('class="codex-feature-card update-card"'))
         self.assertIn(
-            "地域団体のサイト修正でGitHubのプルリクエストに指摘が届いた時は、"
-            "レビュー内容の要約と修正案の準備を自動で始められます。",
+            "地域イベントの告知ページと申込フォームを別々のCodex作業で進める時は、"
+            "別の作業を参照して内容を確認し、必要なメッセージを送れます。",
             current,
         )
         for section in feature_sections:

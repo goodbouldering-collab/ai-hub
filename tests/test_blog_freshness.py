@@ -250,6 +250,25 @@ class BlogFreshnessTest(unittest.TestCase):
         self.assertIn("使う場面", guide)
         self.assertNotIn("日本との関係", guide)
 
+    def test_codex_update_toc_does_not_add_a_second_number_to_feature_titles(self) -> None:
+        page = builder.render_content_page(
+            "今日のAIニュースと新機能活用術",
+            {"content_series": "codex-update-log"},
+            (
+                "<h2>今日のAIニュース10</h2>"
+                "<h2 class='codex-feature-title'>1. codex queue｜追加で頼む</h2>"
+                "<h2 class='codex-feature-title'>2. codex doctor｜状態を調べる</h2>"
+            ),
+            "<nav></nav>",
+            kind="blog",
+        )
+
+        toc_start = page.index("<div class='content-toc'")
+        toc = page[toc_start : toc_start + 1000]
+        self.assertIn("<ul>", toc)
+        self.assertNotIn("<ol>", toc)
+        self.assertIn("1. codex queue｜追加で頼む", toc)
+
 
 if __name__ == "__main__":
     unittest.main()

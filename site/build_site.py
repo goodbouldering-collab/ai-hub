@@ -1657,14 +1657,17 @@ CONTENT_CSS = """
   text-transform: uppercase;
   margin-bottom: 6px;
 }
-.content-toc ol {
+.content-toc ol,
+.content-toc ul {
   margin: 0;
   padding-left: 1.3em;
   columns: 2;
   column-gap: 28px;
   font-size: 13.5px;
 }
-.content-toc ol li { margin: 2px 0; break-inside: avoid; }
+.content-toc ul { padding-left: 0; list-style: none; }
+.content-toc ol li,
+.content-toc ul li { margin: 2px 0; break-inside: avoid; }
 .content-toc a {
   color: var(--text-soft);
   text-decoration: none;
@@ -1673,7 +1676,8 @@ CONTENT_CSS = """
 }
 .content-toc a:hover { color: var(--primary); border-bottom-color: rgba(37,99,235,.40); }
 @media (max-width: 640px) {
-  .content-toc ol { columns: 1; }
+  .content-toc ol,
+  .content-toc ul { columns: 1; }
 }
 .content-wrap h2[id],
 .content-wrap h3[id] { scroll-margin-top: 20px; }
@@ -4018,10 +4022,17 @@ def render_content_page(
     # TOC: h2 が 3 個以上あれば出す
     if len(toc) >= 3:
         toc_id = " id='lecture-toc'" if kind == "lecture" else ""
-        parts.append(f"<div class='content-toc'{toc_id}><div class='toc-label'>🗂 目次</div><ol>")
+        toc_tag = (
+            "ul"
+            if kind == "blog" and str(meta.get("content_series") or "") == "codex-update-log"
+            else "ol"
+        )
+        parts.append(
+            f"<div class='content-toc'{toc_id}><div class='toc-label'>🗂 目次</div><{toc_tag}>"
+        )
         for slug, text in toc:
             parts.append(f"<li><a href='#{slug}'>{html.escape(text)}</a></li>")
-        parts.append("</ol></div>")
+        parts.append(f"</{toc_tag}></div>")
     parts.append(body_html)
     if kind == "lecture":
         parts.append(_render_lecture_course_nav(lecture_neighbors))

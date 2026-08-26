@@ -15649,7 +15649,7 @@ def _render_focused_main() -> str:
         _render_focused_blog_content(),
         "<div class='focus-content-actions'><a class='focus-btn secondary' href='/blog/index.html'>ブログを一覧で読む</a></div></section>",
         "<section class='focus-block soft' id='speaker'><div class='focus-split'><img class='speaker-painting' src='/img/speaker-portrait-gubboru-cafe-20260719.webp' alt='グッぼるカフェで少人数のAI講習を行うAI相談講師 由井辰美の絵画調ポートレート' loading='lazy' decoding='async'>",
-        "<div><small class='outcome-num'>INSTRUCTOR</small><h2>9つの事業でAIエージェントを使う講師</h2><p>理想論ではなく、告知、予約、事務、サイト運営で実際に任せている仕事を題材にします。成果物の確認と、次も続けられる手順づくりまで一緒に進めます。</p><a class='focus-btn secondary' href='#contact'>彦根で相談する</a></div></div></section>",
+        "<div><small class='outcome-num'>INSTRUCTOR</small><h2>9つの事業でAIエージェントを使う講師</h2><p>理想論ではなく、告知、予約、事務、サイト運営で実際に任せている仕事を題材にします。成果物の確認と、次も続けられる手順づくりまで一緒に進めます。</p><div class='focus-content-actions'><a class='focus-btn secondary' href='/speaker.html'>講師の実績を見る</a><a class='focus-btn secondary' href='#contact'>彦根で相談する</a></div></div></div></section>",
         "<section class='focus-block' id='all-works'><div class='focus-section-head'><small>AI WORKS</small><h2>実績サイト</h2></div>",
         "<p class='focus-section-lead'>講習で扱う考え方を、地域交流、福祉、店舗、EC、予約、業務システムで実際に使った支援例です。</p><div class='focus-content-shell'>",
         _render_works_section(),

@@ -493,11 +493,11 @@ def render_current(period: str, fingerprint: str, editorial: dict[str, Any]) -> 
     for index, feature in enumerate(display_features, start=1):
         if editorial["other_updates"] and index == other_updates_start:
             lines.extend(["", '<p class="codex-update-guide__eyebrow">その他の更新</p>'])
-        command_prefix = ""
+        command_suffix = ""
         if feature["commands"]:
-            command_prefix = "・".join(
+            command_suffix = "｜" + "・".join(
                 f"`{command}`" for command in feature["commands"]
-            ) + "｜"
+            )
         story = feature["usage_story"]
         explanation = (
             f"{feature['what_changed']}たとえば、"
@@ -506,7 +506,7 @@ def render_current(period: str, fingerprint: str, editorial: dict[str, Any]) -> 
         lines.extend(
             [
                 "",
-                f"## {index}. {command_prefix}{feature['title']} {{ .codex-feature-title }}",
+                f"## {index}. {feature['title']}{command_suffix} {{ .codex-feature-title }}",
                 "",
                 explanation,
                 "",

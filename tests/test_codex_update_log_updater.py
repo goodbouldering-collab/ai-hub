@@ -254,7 +254,7 @@ class FakeResponse:
 
 
 class CodexUpdateLogUpdaterTest(unittest.TestCase):
-    def test_command_is_in_title_and_story_is_merged_into_plain_explanation(self) -> None:
+    def test_simple_title_precedes_command_and_story_is_merged_into_plain_explanation(self) -> None:
         updater = _load_updater()
         source_block = updater.combine_source_block(SOURCE_CURRENT, CLI_RELEASE_CURRENT)
         editorial = doctor_editorial()
@@ -262,7 +262,7 @@ class CodexUpdateLogUpdaterTest(unittest.TestCase):
         clean = updater.validate_editorial(editorial, source_block, require_archive=False)
         rendered = updater.render_current("August 17-21, 2026", "f" * 64, clean)
 
-        self.assertIn("## 1. `codex doctor`｜不具合の状態を診断", rendered)
+        self.assertIn("## 1. 不具合の状態を診断｜`codex doctor`", rendered)
         self.assertNotIn('class="codex-command-callout"', rendered)
         self.assertNotIn('class="codex-use-story"', rendered)
         self.assertNotIn("**使い方：**", rendered)
@@ -290,7 +290,28 @@ class CodexUpdateLogUpdaterTest(unittest.TestCase):
 
         self.assertIn('<p class="codex-update-guide__eyebrow">その他の更新</p>', rendered)
         self.assertIn(
-            "## 2. `codex doctor`｜その他の接続診断 { .codex-feature-title }",
+            "## 2. その他の接続診断｜`codex doctor` { .codex-feature-title }",
+            rendered,
+        )
+        self.assertNotIn("## その他の更新", rendered)
+
+    def test_commandless_other_update_uses_the_same_numbered_card_title(self) -> None:
+        updater = _load_updater()
+        source_block = updater.combine_source_block(SOURCE_CURRENT, CLI_RELEASE_CURRENT)
+        editorial = doctor_editorial()
+        editorial["other_updates"] = [
+            {
+                **editorial["features"][0],
+                "title": "その他の画面改善",
+                "commands": [],
+            }
+        ]
+
+        clean = updater.validate_editorial(editorial, source_block, require_archive=False)
+        rendered = updater.render_current("August 17-21, 2026", "f" * 64, clean)
+
+        self.assertIn(
+            "## 2. その他の画面改善 { .codex-feature-title }",
             rendered,
         )
         self.assertNotIn("## その他の更新", rendered)

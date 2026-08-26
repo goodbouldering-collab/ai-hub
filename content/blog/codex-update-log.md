@@ -22,7 +22,7 @@ action: "使えそうな機能を1つ試す"
 <div class="codex-update-guide__header">
 <p class="codex-update-guide__eyebrow">今日のAIニュースを読んだら</p>
 <h2 id="codex-update-guide-title" class="codex-update-guide__title">今日のCodex新機能と活用術</h2>
-<p class="codex-update-guide__lead">ログインが必要なサイトで調べものをしたい時や、メールやレビューが届いた瞬間に次の作業を始めたい時へ。機能名から入り、困りごと、使い方、確認点の順で読めるようにしました。</p>
+<p class="codex-update-guide__lead">ログインが必要なサイトで調べものをしたい時や、メールやレビューが届いた瞬間に次の作業を始めたい時へ。短い日本語タイトルから入り、機能名、困りごと、使い方、確認点の順で読めるようにしました。</p>
 <p class="codex-update-guide__date"><time datetime="2026-08-28">公式情報の確認期間：August 24–28, 2026</time></p>
 </div>
 </section>
@@ -33,7 +33,7 @@ action: "使えそうな機能を1つ試す"
 - Webサイトが用意した操作機能や、クラウドブラウザのログインを仕事へつなげられます。
 - Gmail、Slack、GitHubの対応イベントを合図に、予定した作業を始められます。
 
-## 1. `Use your browser`｜普段のブラウザから頼む { .codex-feature-title }
+## 1. 普段のブラウザから頼む｜`Use your browser` { .codex-feature-title }
 
 たとえば、地域のお店の管理ページをEdgeで確認していて、内容をチェックリストにしたい時は、デスクトップアプリのChatGPT WorkまたはCodexへ開いているタブを渡します。ログイン済みのページをそのまま使い、別のブラウザへ移し直さず作業を頼めます。
 
@@ -41,7 +41,7 @@ Chrome、Edge、Brave、Opera、Vivaldiが対象です。Operaはブラウザ操
 
 [公式情報](https://learn.chatgpt.com/docs/chrome-extension)
 
-## 2. `Site tools (WebMCP)`｜サイトの操作を使う { .codex-feature-title }
+## 2. サイトの操作を使う｜`Site tools (WebMCP)` { .codex-feature-title }
 
 たとえば、学校の共有文書で直したい場所を探し、担当者へコメントを残す時は、デスクトップアプリ内のブラウザでサイトが提供する操作を使います。文章を目で追って探し直さず、対象箇所の検索やコメント追加を頼めます。
 
@@ -49,7 +49,7 @@ Chrome、Edge、Brave、Opera、Vivaldiが対象です。Operaはブラウザ操
 
 [公式情報](https://learn.chatgpt.com/docs/webmcp)
 
-## 3. `Web sign-in`｜クラウド作業へ安全にログインする { .codex-feature-title }
+## 3. クラウド作業へ安全にログインする｜`Web sign-in` { .codex-feature-title }
 
 たとえば、外出先から予約サイトの情報を確認する必要が出た時は、ChatGPT Workのログイン要求に従い、チャット欄ではなく専用のログイン画面へ認証情報を入力します。手元のブラウザプロファイルをクラウドへ接続せず、必要なサイトの作業を続けられます。
 
@@ -57,7 +57,7 @@ Chrome、Edge、Brave、Opera、Vivaldiが対象です。Operaはブラウザ操
 
 [公式情報](https://learn.chatgpt.com/docs/browser?surface=web#web-sign-in-to-a-website)
 
-## 4. `Event-triggered tasks`｜レビューを合図に動かす { .codex-feature-title }
+## 4. レビューを合図に動かす｜`Event-triggered tasks` { .codex-feature-title }
 
 たとえば、地域団体のサイト修正でGitHubのプルリクエストに指摘が届いた時は、レビュー内容の要約と修正案の準備を自動で始められます。決まった時刻を待たず、Gmail、Slack、GitHubの対応イベントをきっかけに作業を動かせます。
 

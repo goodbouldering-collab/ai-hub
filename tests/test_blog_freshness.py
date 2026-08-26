@@ -203,7 +203,10 @@ class BlogFreshnessTest(unittest.TestCase):
         self.assertNotIn("**使い方：**", current)
         self.assertNotIn('class="codex-command-callout"', current)
         self.assertNotIn('class="codex-use-story"', current)
-        self.assertIn("## 4. `Event-triggered tasks`｜レビューを合図に動かす", current)
+        self.assertIn("## 1. 普段のブラウザから頼む｜`Use your browser`", current)
+        self.assertIn("## 2. サイトの操作を使う｜`Site tools (WebMCP)`", current)
+        self.assertIn("## 3. クラウド作業へ安全にログインする｜`Web sign-in`", current)
+        self.assertIn("## 4. レビューを合図に動かす｜`Event-triggered tasks`", current)
         self.assertIn(
             "地域団体のサイト修正でGitHubのプルリクエストに指摘が届いた時は、"
             "レビュー内容の要約と修正案の準備を自動で始められます。",

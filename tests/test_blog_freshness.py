@@ -197,16 +197,25 @@ class BlogFreshnessTest(unittest.TestCase):
         current = body.split("<!-- CODEX_UPDATE_CURRENT:BEGIN -->", 1)[1].split(
             "<!-- CODEX_UPDATE_CURRENT:END -->", 1
         )[0]
-        feature_sections = re.split(r"(?m)^## \d+\. ", current)[1:]
+        feature_sections = re.findall(
+            r'<section class="codex-feature-card update-card".*?</section>',
+            current,
+            flags=re.S,
+        )
         self.assertGreaterEqual(len(feature_sections), 1)
         self.assertLessEqual(len(feature_sections), 4)
         self.assertNotIn("**使い方：**", current)
         self.assertNotIn('class="codex-command-callout"', current)
         self.assertNotIn('class="codex-use-story"', current)
-        self.assertIn("## 1. 普段のブラウザから頼む｜`Use your browser`", current)
-        self.assertIn("## 2. サイトの操作を使う｜`Site tools (WebMCP)`", current)
-        self.assertIn("## 3. クラウド作業へ安全にログインする｜`Web sign-in`", current)
-        self.assertIn("## 4. レビューを合図に動かす｜`Event-triggered tasks`", current)
+        self.assertIn("普段のブラウザから頼む", current)
+        self.assertIn("<code>Use your browser</code>", current)
+        self.assertIn("サイトの操作を使う", current)
+        self.assertIn("<code>Site tools (WebMCP)</code>", current)
+        self.assertIn("クラウド作業へ安全にログインする", current)
+        self.assertIn("<code>Web sign-in</code>", current)
+        self.assertIn("レビューを合図に動かす", current)
+        self.assertIn("<code>Event-triggered tasks</code>", current)
+        self.assertEqual(4, current.count('class="codex-feature-card update-card"'))
         self.assertIn(
             "地域団体のサイト修正でGitHubのプルリクエストに指摘が届いた時は、"
             "レビュー内容の要約と修正案の準備を自動で始められます。",
@@ -215,7 +224,7 @@ class BlogFreshnessTest(unittest.TestCase):
         for section in feature_sections:
             self.assertRegex(
                 section,
-                r"\[公式情報\]\(https://(?:learn\.chatgpt\.com|developers\.openai\.com|github\.com/openai/)",
+                r'<a href="https://(?:learn\.chatgpt\.com|developers\.openai\.com|github\.com/openai/)[^"]*"[^>]*>公式情報</a>',
             )
         image_path = ROOT / "site" / "static" / str(meta["image"]).lstrip("/")
         with Image.open(image_path) as hero:

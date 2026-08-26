@@ -99,7 +99,7 @@ def render_daily_ai_news(payload: dict) -> str:
         "<div class='daily-ai-news__header'>",
         "<p class='daily-ai-news__eyebrow'>毎朝更新・仕事の場面から読む</p>",
         "<h2 id='daily-ai-news-title'>今日のAIニュース10</h2>",
-        "<p class='daily-ai-news__lead'>むずかしいAIニュースを、新しさと影響、日本とのつながりから10件にしぼり、家族へ話せる一文と身近な使い道でまとめました。</p>",
+        "<p class='daily-ai-news__lead'>専門的なAIニュースを、新しさと影響、日本とのつながりから10件にしぼり、身近な使い道でまとめました。</p>",
         f"<p class='daily-ai-news__date'><time datetime='{clean['date']}'>{date_label}</time> 時点</p>",
         "</div><ol class='daily-ai-news__list'>",
     ]
@@ -111,10 +111,14 @@ def render_daily_ai_news(payload: dict) -> str:
         japan_angle = html.escape(item["japan_angle"])
         parts.extend(
             [
-                "<li class='daily-ai-news__item'>",
-                f"<span class='daily-ai-news__rank' aria-hidden='true'>{rank}</span>",
-                "<div class='daily-ai-news__copy'>",
+                "<li class='daily-ai-news__item update-card' data-update-kind='news'>",
+                "<header class='update-card__header'>",
+                f"<span class='daily-ai-news__rank update-card__rank' aria-hidden='true'>{rank}</span>",
+                "<div class='update-card__heading'>",
+                "<p class='update-card__eyebrow'>NEWS</p>",
                 f"<h3><a href='{url}' target='_blank' rel='noopener'>{title}</a></h3>",
+                "</div></header>",
+                "<div class='daily-ai-news__copy update-card__body'>",
                 f"<p class='daily-ai-news__summary'>{kid_summary}</p>",
                 f"<p class='daily-ai-news__japan'>{japan_angle}</p>",
                 f"<p class='daily-ai-news__source'>情報元：{source}</p>",

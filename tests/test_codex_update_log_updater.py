@@ -262,7 +262,11 @@ class CodexUpdateLogUpdaterTest(unittest.TestCase):
         clean = updater.validate_editorial(editorial, source_block, require_archive=False)
         rendered = updater.render_current("August 17-21, 2026", "f" * 64, clean)
 
-        self.assertIn("## 1. 不具合の状態を診断｜`codex doctor`", rendered)
+        self.assertIn(
+            '<span class="visually-hidden">1. </span>不具合の状態を診断'
+            '<span class="codex-feature-command"><code>codex doctor</code></span>',
+            rendered,
+        )
         self.assertNotIn('class="codex-command-callout"', rendered)
         self.assertNotIn('class="codex-use-story"', rendered)
         self.assertNotIn("**使い方：**", rendered)
@@ -290,7 +294,8 @@ class CodexUpdateLogUpdaterTest(unittest.TestCase):
 
         self.assertIn('<p class="codex-update-guide__eyebrow">その他の更新</p>', rendered)
         self.assertIn(
-            "## 2. その他の接続診断｜`codex doctor` { .codex-feature-title }",
+            '<span class="visually-hidden">2. </span>その他の接続診断'
+            '<span class="codex-feature-command"><code>codex doctor</code></span>',
             rendered,
         )
         self.assertNotIn("## その他の更新", rendered)
@@ -311,10 +316,42 @@ class CodexUpdateLogUpdaterTest(unittest.TestCase):
         rendered = updater.render_current("August 17-21, 2026", "f" * 64, clean)
 
         self.assertIn(
-            "## 2. その他の画面改善 { .codex-feature-title }",
+            '<span class="visually-hidden">2. </span>その他の画面改善</h2>',
             rendered,
         )
         self.assertNotIn("## その他の更新", rendered)
+
+    def test_command_and_commandless_updates_share_the_same_card_component(self) -> None:
+        updater = _load_updater()
+        source_block = updater.combine_source_block(SOURCE_CURRENT, CLI_RELEASE_CURRENT)
+        editorial = doctor_editorial()
+        editorial["other_updates"] = [
+            {
+                **editorial["features"][0],
+                "title": "その他の画面改善",
+                "commands": [],
+            }
+        ]
+
+        clean = updater.validate_editorial(editorial, source_block, require_archive=False)
+        rendered = updater.render_current("August 17-21, 2026", "f" * 64, clean)
+
+        self.assertEqual(2, rendered.count('class="codex-feature-card update-card"'))
+        self.assertIn('data-update-index="1"', rendered)
+        self.assertIn('data-update-index="2"', rendered)
+        self.assertIn('<p class="update-card__eyebrow">CODEX</p>', rendered)
+        self.assertIn('<p class="update-card__eyebrow">CODEX · その他</p>', rendered)
+        self.assertIn(
+            '<h2 id="codex-feature-1-title" class="codex-feature-title">'
+            '<span class="visually-hidden">1. </span>不具合の状態を診断'
+            '<span class="codex-feature-command"><code>codex doctor</code></span></h2>',
+            rendered,
+        )
+        self.assertIn(
+            '<h2 id="codex-feature-2-title" class="codex-feature-title">'
+            '<span class="visually-hidden">2. </span>その他の画面改善</h2>',
+            rendered,
+        )
 
     def test_ungrounded_command_is_rejected_even_when_feature_evidence_is_valid(self) -> None:
         updater = _load_updater()
@@ -544,7 +581,10 @@ class CodexUpdateLogUpdaterTest(unittest.TestCase):
             self.assertIn('date: "2026-08-21"', updated)
             self.assertIn("content_series: codex-update-log", updated)
             self.assertIn('image: "/img/blog-codex-update-log-hero-20260821.webp"', updated)
-            self.assertIn("## 1. 外出先から作業を確認", updated)
+            self.assertIn(
+                '<span class="visually-hidden">1. </span>外出先から作業を確認',
+                updated,
+            )
             self.assertNotIn('class="codex-command-callout"', updated)
             self.assertNotIn('class="codex-use-story"', updated)
             self.assertNotIn("**使い方：**", updated)

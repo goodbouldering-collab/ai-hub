@@ -242,7 +242,13 @@ class DailyNewsRenderingTests(unittest.TestCase):
         rendered = render_daily_ai_news(self.make_payload())
 
         self.assertIn("今日のAIニュース10", rendered)
-        self.assertEqual(10, rendered.count("class='daily-ai-news__item'"))
+        self.assertIn(
+            "専門的なAIニュースを、新しさと影響、日本とのつながりから10件にしぼり、身近な使い道でまとめました。",
+            rendered,
+        )
+        self.assertEqual(10, rendered.count("class='daily-ai-news__item update-card'"))
+        self.assertEqual(10, rendered.count("data-update-kind='news'"))
+        self.assertEqual(10, rendered.count("<p class='update-card__eyebrow'>NEWS</p>"))
         self.assertIn("&lt;script&gt;alert(1)&lt;/script&gt;", rendered)
         self.assertNotIn("<script>alert(1)</script>", rendered)
         self.assertIn("日本では使いどころ1につながります。", rendered)

@@ -33,37 +33,57 @@ action: "使えそうな機能を1つ試す"
 - Webサイトが用意した操作機能や、クラウドブラウザのログインを仕事へつなげられます。
 - Gmail、Slack、GitHubの対応イベントを合図に、予定した作業を始められます。
 
-## 1. 普段のブラウザから頼む｜`Use your browser` { .codex-feature-title }
+<section class="codex-feature-card update-card" data-update-kind="codex" data-update-index="1" aria-labelledby="codex-feature-1-title">
+<header class="update-card__header">
+<span class="update-card__rank" aria-hidden="true">1</span>
+<div class="update-card__heading">
+<p class="update-card__eyebrow">CODEX</p>
+<h2 id="codex-feature-1-title" class="codex-feature-title"><span class="visually-hidden">1. </span>普段のブラウザから頼む<span class="codex-feature-command"><code>Use your browser</code></span></h2>
+</div></header>
+<div class="update-card__body">
+<p class="update-card__summary">たとえば、地域のお店の管理ページをEdgeで確認していて、内容をチェックリストにしたい時は、デスクトップアプリのChatGPT WorkまたはCodexへ開いているタブを渡します。ログイン済みのページをそのまま使い、別のブラウザへ移し直さず作業を頼めます。</p>
+<p class="update-card__context">Chrome、Edge、Brave、Opera、Vivaldiが対象です。Operaはブラウザ操作に対応しますが、サイドチャットはありません。利用可否は展開状況とワークスペース設定で異なります。</p>
+<p class="update-card__source"><a href="https://learn.chatgpt.com/docs/chrome-extension" target="_blank" rel="noopener">公式情報</a></p>
+</div></section>
 
-たとえば、地域のお店の管理ページをEdgeで確認していて、内容をチェックリストにしたい時は、デスクトップアプリのChatGPT WorkまたはCodexへ開いているタブを渡します。ログイン済みのページをそのまま使い、別のブラウザへ移し直さず作業を頼めます。
+<section class="codex-feature-card update-card" data-update-kind="codex" data-update-index="2" aria-labelledby="codex-feature-2-title">
+<header class="update-card__header">
+<span class="update-card__rank" aria-hidden="true">2</span>
+<div class="update-card__heading">
+<p class="update-card__eyebrow">CODEX</p>
+<h2 id="codex-feature-2-title" class="codex-feature-title"><span class="visually-hidden">2. </span>サイトの操作を使う<span class="codex-feature-command"><code>Site tools (WebMCP)</code></span></h2>
+</div></header>
+<div class="update-card__body">
+<p class="update-card__summary">たとえば、学校の共有文書で直したい場所を探し、担当者へコメントを残す時は、デスクトップアプリ内のブラウザでサイトが提供する操作を使います。文章を目で追って探し直さず、対象箇所の検索やコメント追加を頼めます。</p>
+<p class="update-card__context">デスクトップアプリを更新し、GPT-5.6 SolまたはGPT-5.6 Terraを使います。GPT-5.6 Luna、Enterprise、Eduでは利用できません。</p>
+<p class="update-card__source"><a href="https://learn.chatgpt.com/docs/webmcp" target="_blank" rel="noopener">公式情報</a></p>
+</div></section>
 
-Chrome、Edge、Brave、Opera、Vivaldiが対象です。Operaはブラウザ操作に対応しますが、サイドチャットはありません。利用可否は展開状況とワークスペース設定で異なります。
+<section class="codex-feature-card update-card" data-update-kind="codex" data-update-index="3" aria-labelledby="codex-feature-3-title">
+<header class="update-card__header">
+<span class="update-card__rank" aria-hidden="true">3</span>
+<div class="update-card__heading">
+<p class="update-card__eyebrow">CODEX</p>
+<h2 id="codex-feature-3-title" class="codex-feature-title"><span class="visually-hidden">3. </span>クラウド作業へ安全にログインする<span class="codex-feature-command"><code>Web sign-in</code></span></h2>
+</div></header>
+<div class="update-card__body">
+<p class="update-card__summary">たとえば、外出先から予約サイトの情報を確認する必要が出た時は、ChatGPT Workのログイン要求に従い、チャット欄ではなく専用のログイン画面へ認証情報を入力します。手元のブラウザプロファイルをクラウドへ接続せず、必要なサイトの作業を続けられます。</p>
+<p class="update-card__context">対象プランのWeb、iOS、Androidで利用できます。EnterpriseとEduでは使えず、利用可否は展開状況とワークスペース設定で異なります。</p>
+<p class="update-card__source"><a href="https://learn.chatgpt.com/docs/browser?surface=web#web-sign-in-to-a-website" target="_blank" rel="noopener">公式情報</a></p>
+</div></section>
 
-[公式情報](https://learn.chatgpt.com/docs/chrome-extension)
-
-## 2. サイトの操作を使う｜`Site tools (WebMCP)` { .codex-feature-title }
-
-たとえば、学校の共有文書で直したい場所を探し、担当者へコメントを残す時は、デスクトップアプリ内のブラウザでサイトが提供する操作を使います。文章を目で追って探し直さず、対象箇所の検索やコメント追加を頼めます。
-
-デスクトップアプリを更新し、GPT-5.6 SolまたはGPT-5.6 Terraを使います。GPT-5.6 Luna、Enterprise、Eduでは利用できません。
-
-[公式情報](https://learn.chatgpt.com/docs/webmcp)
-
-## 3. クラウド作業へ安全にログインする｜`Web sign-in` { .codex-feature-title }
-
-たとえば、外出先から予約サイトの情報を確認する必要が出た時は、ChatGPT Workのログイン要求に従い、チャット欄ではなく専用のログイン画面へ認証情報を入力します。手元のブラウザプロファイルをクラウドへ接続せず、必要なサイトの作業を続けられます。
-
-対象プランのWeb、iOS、Androidで利用できます。EnterpriseとEduでは使えず、利用可否は展開状況とワークスペース設定で異なります。
-
-[公式情報](https://learn.chatgpt.com/docs/browser?surface=web#web-sign-in-to-a-website)
-
-## 4. レビューを合図に動かす｜`Event-triggered tasks` { .codex-feature-title }
-
-たとえば、地域団体のサイト修正でGitHubのプルリクエストに指摘が届いた時は、レビュー内容の要約と修正案の準備を自動で始められます。決まった時刻を待たず、Gmail、Slack、GitHubの対応イベントをきっかけに作業を動かせます。
-
-対象プランのChatGPT Webとモバイルで利用できます。先に対応アプリを接続し、要求されるアクセスを承認します。管理ワークスペースでは管理者が利用可否を設定できます。
-
-[公式情報](https://learn.chatgpt.com/docs/changelog#codex-2026-08-25-event-triggers)
+<section class="codex-feature-card update-card" data-update-kind="codex" data-update-index="4" aria-labelledby="codex-feature-4-title">
+<header class="update-card__header">
+<span class="update-card__rank" aria-hidden="true">4</span>
+<div class="update-card__heading">
+<p class="update-card__eyebrow">CODEX</p>
+<h2 id="codex-feature-4-title" class="codex-feature-title"><span class="visually-hidden">4. </span>レビューを合図に動かす<span class="codex-feature-command"><code>Event-triggered tasks</code></span></h2>
+</div></header>
+<div class="update-card__body">
+<p class="update-card__summary">たとえば、地域団体のサイト修正でGitHubのプルリクエストに指摘が届いた時は、レビュー内容の要約と修正案の準備を自動で始められます。決まった時刻を待たず、Gmail、Slack、GitHubの対応イベントをきっかけに作業を動かせます。</p>
+<p class="update-card__context">対象プランのChatGPT Webとモバイルで利用できます。先に対応アプリを接続し、要求されるアクセスを承認します。管理ワークスペースでは管理者が利用可否を設定できます。</p>
+<p class="update-card__source"><a href="https://learn.chatgpt.com/docs/changelog#codex-2026-08-25-event-triggers" target="_blank" rel="noopener">公式情報</a></p>
+</div></section>
 
 Codex CLIの最新安定版は`rust-v0.149.1`です。今回の公式リリース本文は、0.149.0からの差分リンクのみを案内しています。
 

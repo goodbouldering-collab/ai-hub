@@ -1,6 +1,22 @@
 {
-  "date": "2026-08-26",
+  "date": "2026-08-27",
   "items": [
+    {
+      "title": "Meta Glassesが日本発売、Meta AIをボタンで呼び出し",
+      "url": "https://about.fb.com/ja/news/2026/08/meta-glasses-launch-in-japan/",
+      "source": "Meta",
+      "published": "2026-08-26",
+      "kid_summary": "Meta Glassesが日本で発売され、ボタンでMeta AIを呼び出し、写真や動画も手を使わず撮れます。",
+      "japan_angle": "店や学校で使う時は、撮影中を示すLEDと周囲の人への説明を確認してから活用できます。"
+    },
+    {
+      "title": "Apple、M6搭載Mac miniを発表　AI処理最大4倍",
+      "url": "https://www.apple.com/newsroom/2026/08/apple-unveils-a-more-powerful-mac-mini-featuring-the-all-new-m6-and-m5-pro/",
+      "source": "Apple",
+      "published": "2026-08-25",
+      "kid_summary": "AppleがM6搭載Mac miniを発表し、AI処理を最大4倍速くし、常時動くAI作業にも対応します。",
+      "japan_angle": "日本の作り手や小さな会社には、端末内でAIモデルや自動化を動かす機材選びに関わります。"
+    },
     {
       "title": "政府が生成AI事業者向け知財保護ルールを策定",
       "url": "https://www.itmedia.co.jp/aiplus/article/2608/25/2000000767/",
@@ -64,22 +80,6 @@
       "published": "2026-08-25",
       "kid_summary": "OpenAIが独自推論チップJalapeñoの実測結果を公開し、電力効率と応答速度の向上を示しました。",
       "japan_angle": "すぐ買える製品ではありませんが、日本の利用者にも将来のAI利用料や待ち時間で関わる動きです。"
-    },
-    {
-      "title": "Stability AI、音楽・ゲーム大手参加の7600万ドル調達",
-      "url": "https://stability.ai/news-updates/stability-ai-latest-funding-backed-by-entertainment-industry-biggest-names",
-      "source": "Stability AI",
-      "published": "2026-08-25",
-      "kid_summary": "Stability AIが7600万ドルを調達し、音楽やゲーム大手と創作向けAIの開発を進めます。",
-      "japan_angle": "日本の作り手は、権利者と共同で作る生成AIが増える中、素材の利用条件と権利表示を確認できます。"
-    },
-    {
-      "title": "NVIDIA、Groq 3 LPXを本格生産",
-      "url": "https://nvidianews.nvidia.com/news/nvidia-groq-3-lpx-now-in-full-production-with-world-class-speed-for-agentic-ai",
-      "source": "NVIDIA Newsroom",
-      "published": "2026-08-24",
-      "kid_summary": "NVIDIAがAIの答えを速く作るGroq 3 LPXを本格生産し、Nebiusが最初に採用します。",
-      "japan_angle": "日本の開発会社には、長い処理をするAIサービスの応答時間と基盤選びに関係する技術です。"
     }
   ]
 }

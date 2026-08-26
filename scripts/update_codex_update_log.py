@@ -9,6 +9,7 @@ from __future__ import annotations
 import argparse
 from datetime import date, datetime, timedelta, timezone
 import hashlib
+import html
 import json
 import os
 from pathlib import Path
@@ -493,26 +494,39 @@ def render_current(period: str, fingerprint: str, editorial: dict[str, Any]) -> 
     for index, feature in enumerate(display_features, start=1):
         if editorial["other_updates"] and index == other_updates_start:
             lines.extend(["", '<p class="codex-update-guide__eyebrow">その他の更新</p>'])
-        command_suffix = ""
-        if feature["commands"]:
-            command_suffix = "｜" + "・".join(
-                f"`{command}`" for command in feature["commands"]
-            )
         story = feature["usage_story"]
         explanation = (
             f"{feature['what_changed']}たとえば、"
             f"{story['scene']}{story['action']}{story['confirmation']}"
         )
+        label = "CODEX · その他" if index >= other_updates_start and editorial["other_updates"] else "CODEX"
+        command_badges = "".join(
+            '<span class="codex-feature-command"><code>'
+            + html.escape(command)
+            + "</code></span>"
+            for command in feature["commands"]
+        )
+        feature_id = f"codex-feature-{index}-title"
         lines.extend(
             [
                 "",
-                f"## {index}. {feature['title']}{command_suffix} {{ .codex-feature-title }}",
-                "",
-                explanation,
-                "",
-                feature["availability"],
-                "",
-                f"[公式情報]({feature['source_url']})",
+                '<section class="codex-feature-card update-card" '
+                f'data-update-kind="codex" data-update-index="{index}" aria-labelledby="{feature_id}">',
+                '<header class="update-card__header">',
+                f'<span class="update-card__rank" aria-hidden="true">{index}</span>',
+                '<div class="update-card__heading">',
+                f'<p class="update-card__eyebrow">{label}</p>',
+                f'<h2 id="{feature_id}" class="codex-feature-title">'
+                f'<span class="visually-hidden">{index}. </span>{html.escape(feature["title"])}'
+                f'{command_badges}</h2>',
+                "</div></header>",
+                '<div class="update-card__body">',
+                f'<p class="update-card__summary">{html.escape(explanation)}</p>',
+                f'<p class="update-card__context">{html.escape(feature["availability"])}</p>',
+                '<p class="update-card__source"><a href="'
+                + html.escape(feature["source_url"], quote=True)
+                + '" target="_blank" rel="noopener">公式情報</a></p>',
+                "</div></section>",
             ]
         )
 

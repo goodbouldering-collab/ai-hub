@@ -1537,6 +1537,32 @@ CONTENT_CSS = """
   font-size: 16px;
   line-height: 1.78;
 }
+.content-wrap--codex-update .daily-ai-news__japan {
+  padding: 10px 12px;
+  border-left: 3px solid #2dcba1;
+  border-radius: 0 10px 10px 0;
+  background: rgba(45, 203, 161, .10);
+  color: #174c43;
+}
+.content-wrap--codex-update h2.codex-feature-title {
+  margin: 34px 0 16px;
+  padding: 18px 20px;
+  border: 1px solid rgba(23, 107, 90, .20);
+  border-left: 6px solid #2dcba1;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #f5fbf9 0%, #f4f8ff 100%);
+  box-shadow: 0 12px 30px rgba(15, 35, 58, .08);
+  color: #10243c;
+  line-height: 1.45;
+}
+.content-wrap--codex-update h2.codex-feature-title code {
+  display: inline-block;
+  margin-right: .18em;
+  border: 1px solid rgba(37, 99, 235, .16);
+  background: #fff;
+  color: #155e75;
+  font-size: .72em;
+}
 .content-wrap--codex-update .codex-update-guide {
   margin: 0 0 28px;
   padding: clamp(28px, 5vw, 48px) 0;
@@ -1575,6 +1601,7 @@ CONTENT_CSS = """
   .content-wrap--codex-update .daily-ai-news { padding: 22px 16px; }
   .content-wrap--codex-update .codex-update-guide { padding: 30px 0; }
   .content-wrap--codex-update .daily-ai-news__copy p { font-size: 16px; }
+  .content-wrap--codex-update h2.codex-feature-title { padding: 16px 14px; border-radius: 14px; }
 }
 .content-wrap strong { color: var(--text); font-weight: 700; }
 .content-wrap img {

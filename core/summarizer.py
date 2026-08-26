@@ -23,7 +23,7 @@ SYSTEM_PROMPT = textwrap.dedent(f"""
 与えられた記事リストに対し、以下のJSON配列を返してください。
 
 [
-  {{"index": 0, "title_ja": "日本語の簡潔なタイトル(30文字前後)", "summary": "日本語1文の要約", "plain_summary": "非エンジニアにも伝わる説明", "story_example": "たとえば、仕事で試す場面", "genre": "generative_ai", "score": 75, "japan_relevance": 80, "codex_relevance": 90}},
+  {{"index": 0, "title_ja": "日本語の簡潔なタイトル(30文字前後)", "summary": "日本語1文の要約", "plain_summary": "家族へ説明できるやさしい一文", "story_example": "日本の学校や仕事との具体的な関係", "genre": "generative_ai", "score": 75, "japan_relevance": 80, "codex_relevance": 90}},
   ...
 ]
 
@@ -49,8 +49,9 @@ codex_relevance は、OpenAI Codexそのものなら90-100、他社を含むAI�
 - 元記事が英語でも title_ja と summary は必ず日本語
 - title_ja は原題の意味を保ちつつ自然な日本語にする。固有名詞(OpenAI 等)はそのまま残す
 - summary は60文字以内の1文。何が起きたかだけを端的に書く
-- plain_summary は90文字以内の1文。非エンジニアが読んでも分かる言葉を使い、専門語はその場で言い換える
-- story_example は90文字以内の1文。「たとえば、」で始め、身近な仕事・学び・制作のどんな場面で試せるかを具体的に書く
+- plain_summary は90文字以内の1文。小学校高学年が家族へ説明できる言葉を使い、専門語はその場で言い換える
+- story_example は90文字以内の1文。日本の学校・店・会社・家庭・作り手のどこに関係するかを、元記事の事実だけで具体的に書く
+- 実測データがない場合は「日本で流行中」と断定せず、「日本との関係が強い」など根拠の範囲で表現する
 - URL・リンク・ハッシュタグは絶対に含めない
 - 誇張・推測・前置き・自社PR・宣伝文句は書かない
 - 根拠が弱い煽り見出しや宣伝だけの記事はscoreを下げ、公式発表・一次情報・具体的な検証を優先する

@@ -15,9 +15,8 @@ REQUIRED_ITEM_FIELDS = (
     "url",
     "source",
     "published",
-    "plain_summary",
-    "story_example",
-    "japan_attention",
+    "kid_summary",
+    "japan_angle",
 )
 
 
@@ -38,15 +37,6 @@ def _clean_url(value: Any) -> str:
     return url
 
 
-def _clean_score(value: Any) -> int | float:
-    if isinstance(value, bool) or not isinstance(value, (int, float)):
-        raise ValueError("日本での注目度は数値である必要があります")
-    score = float(value)
-    if not 0 <= score <= 100:
-        raise ValueError("日本での注目度は0から100である必要があります")
-    return int(score) if score.is_integer() else score
-
-
 def normalize_daily_ai_news_item(item: Any) -> dict[str, Any]:
     """Validate one candidate so a failed summary can be skipped safely."""
     if not isinstance(item, dict) or any(field not in item for field in REQUIRED_ITEM_FIELDS):
@@ -56,9 +46,8 @@ def normalize_daily_ai_news_item(item: Any) -> dict[str, Any]:
         "url": _clean_url(item["url"]),
         "source": _clean_text(item["source"], maximum=100),
         "published": _clean_text(item["published"], maximum=100),
-        "plain_summary": _clean_text(item["plain_summary"], maximum=180),
-        "story_example": _clean_text(item["story_example"], maximum=180),
-        "japan_attention": _clean_score(item["japan_attention"]),
+        "kid_summary": _clean_text(item["kid_summary"], maximum=90),
+        "japan_angle": _clean_text(item["japan_angle"], maximum=90),
     }
 
 
@@ -84,7 +73,6 @@ def normalize_daily_ai_news(payload: Any) -> dict[str, Any]:
             raise ValueError("日次ニュースURLが重複しています")
         seen_urls.add(clean_item["url"])
         clean_items.append(clean_item)
-    clean_items.sort(key=lambda item: item["japan_attention"], reverse=True)
     return {"date": date_text, "items": clean_items}
 
 
@@ -111,7 +99,7 @@ def render_daily_ai_news(payload: dict) -> str:
         "<div class='daily-ai-news__header'>",
         "<p class='daily-ai-news__eyebrow'>毎朝更新・仕事の場面から読む</p>",
         "<h2 id='daily-ai-news-title'>今日のAIニュース10</h2>",
-        "<p class='daily-ai-news__lead'>むずかしいAIニュースを、日本での注目度が高い順に、何が変わるかと「たとえば」の場面でわかりやすく10件にしぼりました。</p>",
+        "<p class='daily-ai-news__lead'>むずかしいAIニュースを、新しさと影響、日本とのつながりから10件にしぼり、家族へ話せる一文と身近な使い道でまとめました。</p>",
         f"<p class='daily-ai-news__date'><time datetime='{clean['date']}'>{date_label}</time> 時点</p>",
         "</div><ol class='daily-ai-news__list'>",
     ]
@@ -119,15 +107,16 @@ def render_daily_ai_news(payload: dict) -> str:
         title = html.escape(item["title"])
         url = html.escape(item["url"], quote=True)
         source = html.escape(item["source"])
-        plain_summary = html.escape(item["plain_summary"])
-        story_example = html.escape(item["story_example"])
+        kid_summary = html.escape(item["kid_summary"])
+        japan_angle = html.escape(item["japan_angle"])
         parts.extend(
             [
                 "<li class='daily-ai-news__item'>",
                 f"<span class='daily-ai-news__rank' aria-hidden='true'>{rank}</span>",
                 "<div class='daily-ai-news__copy'>",
                 f"<h3><a href='{url}' target='_blank' rel='noopener'>{title}</a></h3>",
-                f"<p class='daily-ai-news__summary'>{plain_summary}{story_example}</p>",
+                f"<p class='daily-ai-news__summary'>{kid_summary}</p>",
+                f"<p class='daily-ai-news__japan'>{japan_angle}</p>",
                 f"<p class='daily-ai-news__source'>情報元：{source}</p>",
                 "</div></li>",
             ]

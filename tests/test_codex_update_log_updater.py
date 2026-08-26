@@ -262,7 +262,7 @@ class CodexUpdateLogUpdaterTest(unittest.TestCase):
         clean = updater.validate_editorial(editorial, source_block, require_archive=False)
         rendered = updater.render_current("August 17-21, 2026", "f" * 64, clean)
 
-        self.assertIn("## 1. 不具合の状態を診断｜`codex doctor`", rendered)
+        self.assertIn("## 1. `codex doctor`｜不具合の状態を診断", rendered)
         self.assertNotIn('class="codex-command-callout"', rendered)
         self.assertNotIn('class="codex-use-story"', rendered)
         self.assertNotIn("**使い方：**", rendered)
@@ -273,6 +273,27 @@ class CodexUpdateLogUpdaterTest(unittest.TestCase):
             "「codex doctor」がOpenAI公式情報に掲載されていることを確認できます。",
             rendered,
         )
+
+    def test_other_updates_continue_numbering_in_the_same_card_format(self) -> None:
+        updater = _load_updater()
+        source_block = updater.combine_source_block(SOURCE_CURRENT, CLI_RELEASE_CURRENT)
+        editorial = doctor_editorial()
+        editorial["other_updates"] = [
+            {
+                **editorial["features"][0],
+                "title": "その他の接続診断",
+            }
+        ]
+
+        clean = updater.validate_editorial(editorial, source_block, require_archive=False)
+        rendered = updater.render_current("August 17-21, 2026", "f" * 64, clean)
+
+        self.assertIn('<p class="codex-update-guide__eyebrow">その他の更新</p>', rendered)
+        self.assertIn(
+            "## 2. `codex doctor`｜その他の接続診断 { .codex-feature-title }",
+            rendered,
+        )
+        self.assertNotIn("## その他の更新", rendered)
 
     def test_ungrounded_command_is_rejected_even_when_feature_evidence_is_valid(self) -> None:
         updater = _load_updater()

@@ -1,11 +1,11 @@
 ---
 title: "今日のAIニュースと新機能活用術"
 date: "2026-08-21"
-date_modified: "2026-08-25"
+date_modified: "2026-08-26"
 content_series: codex-update-log
-source_period: "August 17–21, 2026"
-source_fingerprint: "b3cc9f4347cd95104d81f462b4aacfaf044a35d70d523e8df6b6814f0a993774"
-source_release_tag: "rust-v0.149.0"
+source_period: "August 24–28, 2026"
+source_fingerprint: "2af26099642a03264bdf4e2653631421305573d4e92be0ff43d492c0b381d6b6"
+source_release_tag: "rust-v0.149.1"
 image: "/img/blog-codex-update-log-hero-20260822.png"
 image_alt: "毎日のAIニュース10件とCodexの変化だけを選び出す和紙のカードと光のプリズム"
 hero_image: true
@@ -17,59 +17,57 @@ action: "使えそうな機能を1つ試す"
 ---
 
 <!-- CODEX_UPDATE_CURRENT:BEGIN -->
-<!-- source-fingerprint: b3cc9f4347cd95104d81f462b4aacfaf044a35d70d523e8df6b6814f0a993774 -->
+<!-- source-fingerprint: 2af26099642a03264bdf4e2653631421305573d4e92be0ff43d492c0b381d6b6 -->
 <section class="codex-update-guide" aria-labelledby="codex-update-guide-title">
 <div class="codex-update-guide__header">
 <p class="codex-update-guide__eyebrow">今日のAIニュースを読んだら</p>
 <h2 id="codex-update-guide-title" class="codex-update-guide__title">今日のCodex新機能と活用術</h2>
-<p class="codex-update-guide__lead">新機能の名前だけでは、仕事がどう変わるのか想像しにくいものです。たとえば、作業の途中で「スマホ表示も確認して」と頼みたい時や、変更の経緯を相手に見せたい時から読めるようにしました。</p>
-<p class="codex-update-guide__date"><time datetime="2026-08-21">公式情報の確認期間：August 17–21, 2026</time></p>
+<p class="codex-update-guide__lead">ログインが必要なサイトで調べものをしたい時や、メールやレビューが届いた瞬間に次の作業を始めたい時へ。機能名から入り、困りごと、使い方、確認点の順で読めるようにしました。</p>
+<p class="codex-update-guide__date"><time datetime="2026-08-28">公式情報の確認期間：August 24–28, 2026</time></p>
 </div>
 </section>
 
 ### 今回の要点
 
-- 作業の経緯を、読み取り専用リンクで相手に見せられます。
-- いくつもの仕事を一覧で管理し、途中でも追加のお願いを送れます。
-- 困った時は診断結果をまとめ、相談しやすい情報にできます。
+- Chromeに加え、Edge、Brave、Opera、Vivaldiでも開いているページを使えます。
+- Webサイトが用意した操作機能や、クラウドブラウザのログインを仕事へつなげられます。
+- Gmail、Slack、GitHubの対応イベントを合図に、予定した作業を始められます。
 
-## 1. 途中経過を、相手と一緒に確認する｜`/share`
+## 1. `Use your browser`｜普段のブラウザから頼む { .codex-feature-title }
 
-お店のページ修正を公開前に担当者へ見せたい時は、macOS版ChatGPTで対象の会話を開き、「Share」または`/share`を選びます。パソコンやプロジェクトの権限を渡さず、頼んだ内容と変更の流れを読み取り専用リンクで確認してもらえます。
+たとえば、地域のお店の管理ページをEdgeで確認していて、内容をチェックリストにしたい時は、デスクトップアプリのChatGPT WorkまたはCodexへ開いているタブを渡します。ログイン済みのページをそのまま使い、別のブラウザへ移し直さず作業を頼めます。
 
-全Codexプランが対象です。共有後の会話は自動反映されません。共有前には、機密情報や個人情報が残っていないかを確認してください。
+Chrome、Edge、Brave、Opera、Vivaldiが対象です。Operaはブラウザ操作に対応しますが、サイドチャットはありません。利用可否は展開状況とワークスペース設定で異なります。
 
-[公式情報](https://learn.chatgpt.com/docs/use-chatgpt#share-a-read-only-snapshot-of-a-codex-thread)
+[公式情報](https://learn.chatgpt.com/docs/chrome-extension)
 
-## 2. いくつもの仕事を、迷わず開き直す｜`codex agents`
+## 2. `Site tools (WebMCP)`｜サイトの操作を使う { .codex-feature-title }
 
-イベント案内、講座資料、SNS投稿などの仕事が増えて続きを探しにくい時は、ターミナルで`codex agents`を実行します。仕事の一覧から検索して続きを開き、不要な仕事は名前変更や停止ができます。
+たとえば、学校の共有文書で直したい場所を探し、担当者へコメントを残す時は、デスクトップアプリ内のブラウザでサイトが提供する操作を使います。文章を目で追って探し直さず、対象箇所の検索やコメント追加を頼めます。
 
-Codex CLI 0.149.0以降で使えます。
+デスクトップアプリを更新し、GPT-5.6 SolまたはGPT-5.6 Terraを使います。GPT-5.6 Luna、Enterprise、Eduでは利用できません。
 
-[公式情報](https://github.com/openai/codex/releases/tag/rust-v0.149.0)
+[公式情報](https://learn.chatgpt.com/docs/webmcp)
 
-## 3. 頼み忘れを、作業中に追加する｜`codex queue`
+## 3. `Web sign-in`｜クラウド作業へ安全にログインする { .codex-feature-title }
 
-サイトの公開確認中にiPhone幅の確認を頼み忘れた時は、`codex queue`で進行中の会話へ追加のお願いを送ります。最初からやり直さず、動いている仕事へ確認項目を足せます。
+たとえば、外出先から予約サイトの情報を確認する必要が出た時は、ChatGPT Workのログイン要求に従い、チャット欄ではなく専用のログイン画面へ認証情報を入力します。手元のブラウザプロファイルをクラウドへ接続せず、必要なサイトの作業を続けられます。
 
-Codex CLI 0.149.0以降で使えます。
+対象プランのWeb、iOS、Androidで利用できます。EnterpriseとEduでは使えず、利用可否は展開状況とワークスペース設定で異なります。
 
-[公式情報](https://github.com/openai/codex/releases/tag/rust-v0.149.0)
+[公式情報](https://learn.chatgpt.com/docs/browser?surface=web#web-sign-in-to-a-website)
 
-## 4. 困った時に、状況を伝えやすくする｜`codex doctor`
+## 4. `Event-triggered tasks`｜レビューを合図に動かす { .codex-feature-title }
 
-共有のパソコンでCodexにつながらない時は、ターミナルで`codex doctor --summary`を実行します。設定やネットワークの状態がまとまって表示されるので、その内容を詳しい人へ見せれば、どこを確認すればよいか伝えやすくなります。
+たとえば、地域団体のサイト修正でGitHubのプルリクエストに指摘が届いた時は、レビュー内容の要約と修正案の準備を自動で始められます。決まった時刻を待たず、Gmail、Slack、GitHubの対応イベントをきっかけに作業を動かせます。
 
-Codex CLI 0.149.0以降で使えます。診断結果を共有する前に、秘密情報がないか確認してください。
+対象プランのChatGPT Webとモバイルで利用できます。先に対応アプリを接続し、要求されるアクセスを承認します。管理ワークスペースでは管理者が利用可否を設定できます。
 
-[公式情報](https://learn.chatgpt.com/docs/developer-commands?surface=cli)
+[公式情報](https://learn.chatgpt.com/docs/changelog#codex-2026-08-25-event-triggers)
 
-## そのほかの更新
+Codex CLIの最新安定版は`rust-v0.149.1`です。今回の公式リリース本文は、0.149.0からの差分リンクのみを案内しています。
 
-- GitLab連携がベータ公開され、IssueやマージリクエストからCodexへ作業を頼めます。
-- ピン留めしたスレッドがデスクトップ版とiOS版で同期されます。
-- macOS版ではApple Messagesを検索し、返信案の作成や送信ができます。初期設定では送信前に内容と宛先の承認が必要です。
+[Codex CLI 0.149.1公式リリース](https://github.com/openai/codex/releases/tag/rust-v0.149.1)
 
 ## 公式情報
 
@@ -80,6 +78,11 @@ Codex CLI 0.149.0以降で使えます。診断結果を共有する前に、秘
 ## 過去のアップデート要約
 
 <!-- CODEX_UPDATE_ARCHIVE:BEGIN -->
+<!-- source-fingerprint: b3cc9f4347cd95104d81f462b4aacfaf044a35d70d523e8df6b6814f0a993774 -->
+### 2026年8月25日｜共有と作業管理
+
+読み取り専用共有、複数作業の一覧、作業中の追加依頼、接続診断が加わり、共同確認とトラブル相談がしやすくなりました。
+
 <!-- source-fingerprint: seed-cli-0.148.0 -->
 ### 2026年8月18日｜CLI 0.148.0
 

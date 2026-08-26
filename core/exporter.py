@@ -47,12 +47,8 @@ def export_daily_ai_news_snapshot(
             "url": article.url,
             "source": article.source,
             "published": article.published or article.fetched_at,
-            "plain_summary": info.get("plain_summary", ""),
-            "story_example": info.get("story_example", ""),
-            "japan_attention": info.get(
-                "japan_attention",
-                japan_attention_score(info),
-            ),
+            "kid_summary": info.get("plain_summary", ""),
+            "japan_angle": info.get("story_example", ""),
         }
         try:
             clean_candidate = normalize_daily_ai_news_item(candidate)

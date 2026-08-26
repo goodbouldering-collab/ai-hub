@@ -1,95 +1,85 @@
 {
-  "date": "2026-08-24",
+  "date": "2026-08-26",
   "items": [
     {
-      "title": "AI導入でも生産性向上を感じない経営者が約9割",
-      "url": "https://www.fortune.com/2026/08/22/executives-ai-productivity-layoffs-study/",
-      "source": "Fortune",
-      "published": "2026-08-22T11:11:00-04:00",
-      "plain_summary": "調査では、多くの経営者がAIで仕事が速くなった実感を、まだ持てていないと報告されました。",
-      "story_example": "たとえば、議事録づくりにAIを入れたら、一週間だけ作業時間を測り、前と後を比べます。",
-      "japan_attention": 96
+      "title": "政府が生成AI事業者向け知財保護ルールを策定",
+      "url": "https://www.itmedia.co.jp/aiplus/article/2608/25/2000000767/",
+      "source": "ITmedia AI＋",
+      "published": "2026-08-25T19:28:00+09:00",
+      "kid_summary": "日本政府が、生成AIの学習情報公開と知的財産の保護を事業者に促す自主ルールを作りました。",
+      "japan_angle": "学校や作り手は、教材や作品がAIに使われたか確認する窓口と説明方針を事前に確かめられます。"
     },
     {
-      "title": "OpenAI、GPT-5.6 SolのAPI料金を期間限定で値下げ",
-      "url": "https://www.itmedia.co.jp/aiplus/article/2608/23/2000000700/",
-      "source": "ITmedia AI+",
-      "published": "2026-08-23T06:54:00+09:00",
-      "plain_summary": "GPT-5.6 SolのAPI料金が11月21日まで下がり、Codexで使う分の費用も抑えやすくなります。",
-      "story_example": "たとえば、毎週同じ集計をAIに頼むなら、料金が下がる間に小さく試し、時間と費用を記録します。",
-      "japan_attention": 93
+      "title": "ChatGPT WorkとCodexが複数ブラウザとWebMCPに対応",
+      "url": "https://learn.chatgpt.com/docs/changelog#codex-2026-08-25-browser",
+      "source": "OpenAI",
+      "published": "2026-08-25",
+      "kid_summary": "ChatGPT WorkとCodexがEdgeなどのブラウザや、Webサイトが用意した操作機能に対応しました。",
+      "japan_angle": "店や学校は、ログイン済みサイトをAIに扱わせる前に、渡す画面と最終確認の範囲を決められます。"
     },
     {
-      "title": "ロボットの費用対効果、3年以内に人手超えとの調査",
-      "url": "https://monoist.itmedia.co.jp/mn/articles/2608/24/news061.html",
-      "source": "MONOist",
-      "published": "2026-08-24T06:30:00+09:00",
-      "plain_summary": "インテルの調査から、ロボットの費用対効果が3年以内に人手を上回るとの見通しが示されました。",
-      "story_example": "たとえば、倉庫にロボットを入れるなら、導入費だけでなく、安全確認や教える時間も予定に入れます。",
-      "japan_attention": 89
+      "title": "Claudeの記憶がチャットとCoworkで共通に",
+      "url": "https://claude.com/blog/claudes-memory-works-everywhere-and-you-decide-whats-in-it",
+      "source": "Anthropic",
+      "published": "2026-08-25",
+      "kid_summary": "Claudeの記憶がチャットとCoworkで共通になり、同じ説明を何度も繰り返す手間が減ります。",
+      "japan_angle": "会社や地域活動では案件の前提を引き継げますが、保存内容を設定画面で定期的に見直す必要があります。"
     },
     {
-      "title": "NVIDIA搭載サーバー、15％超の値上げ見込み",
-      "url": "https://www.fortune.com/2026/08/22/nvidia-customers-ai-related-price-hikes-15-percent-vera-rubin-grace-blackwell-chips/",
-      "source": "Fortune / Bloomberg",
-      "published": "2026-08-22T16:27:00-04:00",
-      "plain_summary": "メモリー価格の上昇で、NVIDIAのAIチップを積むサーバーが15％以上高くなると報じられました。",
-      "story_example": "たとえば、来年のWeb制作費を決める時は、クラウド利用料が上がる可能性も予算に入れます。",
-      "japan_attention": 86
+      "title": "GitHub、LLM評価で誤検知95％減を検証",
+      "url": "https://github.blog/ai-and-ml/llms/how-to-evaluate-llms-before-production/",
+      "source": "GitHub Blog",
+      "published": "2026-08-25",
+      "kid_summary": "GitHubは、AI機能を本番へ出す前の評価で、誤警報を95％減らした検証方法を公開しました。",
+      "japan_angle": "業務アプリの作り手は、正しさだけでなく見逃し、費用、速さをテスト項目にして改善を続けられます。"
     },
     {
-      "title": "OpenAI幹部、続くAIサイバー攻撃への備えを警告",
-      "url": "https://www.theguardian.com/technology/2026/aug/23/openai-cyber-attacks-threat-chris-lehane",
-      "source": "The Guardian",
-      "published": "2026-08-23T10:00:00+02:00",
-      "plain_summary": "OpenAI幹部は、AIを使った攻撃に備え、安全の基準を強める必要があると話しました。",
-      "story_example": "たとえば、予約フォームの修正をAIに頼む時は、渡す権限を絞り、途中で止める方法も先に決めます。",
-      "japan_attention": 83
+      "title": "IBMがエージェント向けGranite 4.2を公開",
+      "url": "https://research.ibm.com/blog/introducing-granite-4-2",
+      "source": "IBM Research",
+      "published": "2026-08-25",
+      "kid_summary": "IBMが、考えて道具を使い仕事を進める公開AIモデルGranite 4.2を3サイズで公開しました。",
+      "japan_angle": "会社や学校は、3サイズから選び、クラウドや自社設備で業務用エージェントを試す選択肢が増えます。"
     },
     {
-      "title": "Anthropicの最上位AI、企業は安いモデルを優先",
-      "url": "https://finance.yahoo.com/technology/ai/articles/anthropic-best-ai-model-struggles-082324096.html",
-      "source": "Financial Times via Yahoo Finance",
-      "published": "2026-08-23T04:23:00-04:00",
-      "plain_summary": "企業では、最も高性能なAIより、普段の仕事をこなせる安いAIを選ぶ動きが報じられました。",
-      "story_example": "たとえば、見積もりの下書きは安いAI、契約の確認は高性能AIに分けると、費用を抑えやすくなります。",
-      "japan_attention": 79
+      "title": "Vercel、AI生成コードを隔離実行するRun SDKを公開",
+      "url": "https://vercel.com/blog/introducing-run",
+      "source": "Vercel",
+      "published": "2026-08-25",
+      "kid_summary": "Vercelが、AIの作ったプログラムをアプリの秘密情報から離して安全に動かす仕組みを公開しました。",
+      "japan_angle": "地域事業者向けアプリでも、AIに返金や公開を任せる時、人の承認で止める安全設計に生かせます。"
     },
     {
-      "title": "米政治家、AIデータセンターへの発信が否定的に",
-      "url": "https://www.washingtonpost.com/technology/2026/08/23/most-gop-politicians-now-talk-negatively-about-data-centers-data-shows/",
-      "source": "The Washington Post",
-      "published": "2026-08-23T05:00:00-04:00",
-      "plain_summary": "米政治家の発信を調べると、電気代などを心配してデータセンターに否定的な声が増えました。",
-      "story_example": "たとえば、大きなAI施設の計画を読む時は、便利さだけでなく、電気や水の使い方も資料で確かめます。",
-      "japan_attention": 74
+      "title": "国連と赤十字が自律型兵器の法的規制を要求",
+      "url": "https://www.investing.com/news/world-news/un-and-red-cross-call-for-urgent-rules-on-autonomous-weapons-4874660",
+      "source": "Reuters",
+      "published": "2026-08-25",
+      "kid_summary": "国連と赤十字が、人の判断なしで人を狙う自律型兵器を法的に規制する交渉を急ぐよう求めました。",
+      "japan_angle": "学校のAI教育では、便利さだけでなく、人命に関わる判断を機械へ任せる責任も話し合えます。"
     },
     {
-      "title": "北京の人型ロボット大会、100mと高跳びで記録",
-      "url": "https://apnews.com/article/86cb8e310843151a77057e4cb764b4e2",
-      "source": "Associated Press",
-      "published": "2026-08-22T16:16:14+00:00",
-      "plain_summary": "北京の大会で、人型ロボットが100mや高跳びで人の記録を上回ったと主催者側が発表しました。",
-      "story_example": "たとえば、施設でロボットを使う前は、速さだけでなく、人の近くで安全に動けるかも確認します。",
-      "japan_attention": 69
+      "title": "OpenAI、独自推論チップJalapeñoの実測結果を公開",
+      "url": "https://openai.com/index/the-full-stack-behind-abundant-intelligence/",
+      "source": "OpenAI",
+      "published": "2026-08-25",
+      "kid_summary": "OpenAIが独自推論チップJalapeñoの実測結果を公開し、電力効率と応答速度の向上を示しました。",
+      "japan_angle": "すぐ買える製品ではありませんが、日本の利用者にも将来のAI利用料や待ち時間で関わる動きです。"
     },
     {
-      "title": "ハリウッドの作り手、AIへ仕事の技能を教える",
-      "url": "https://www.theguardian.com/technology/2026/aug/22/the-hollywood-creatives-training-ai-to-do-their-jobs",
-      "source": "The Guardian",
-      "published": "2026-08-22T02:00:00-04:00",
-      "plain_summary": "脚本家や監督が、生活費を得るためAIに映画制作の技能を教える仕事をしていると報じられました。",
-      "story_example": "たとえば、自分の作品や接客の手順をAIに学ばせる前に、使う範囲、報酬、断れる条件を決めます。",
-      "japan_attention": 64
+      "title": "Stability AI、音楽・ゲーム大手参加の7600万ドル調達",
+      "url": "https://stability.ai/news-updates/stability-ai-latest-funding-backed-by-entertainment-industry-biggest-names",
+      "source": "Stability AI",
+      "published": "2026-08-25",
+      "kid_summary": "Stability AIが7600万ドルを調達し、音楽やゲーム大手と創作向けAIの開発を進めます。",
+      "japan_angle": "日本の作り手は、権利者と共同で作る生成AIが増える中、素材の利用条件と権利表示を確認できます。"
     },
     {
-      "title": "AI向けコマンドラインツール「llm 0.33」公開",
-      "url": "https://simonwillison.net/2026/Aug/22/llm/",
-      "source": "Simon Willison's Weblog",
-      "published": "2026-08-22T17:01:16+00:00",
-      "plain_summary": "命令画面からAIを使う「llm」0.33が公開され、鍵やテンプレートの扱いが改善しました。",
-      "story_example": "たとえば、毎日同じ案内文を整えるなら、テンプレートを用意して、手入力を減らせます。",
-      "japan_attention": 58
+      "title": "NVIDIA、Groq 3 LPXを本格生産",
+      "url": "https://nvidianews.nvidia.com/news/nvidia-groq-3-lpx-now-in-full-production-with-world-class-speed-for-agentic-ai",
+      "source": "NVIDIA Newsroom",
+      "published": "2026-08-24",
+      "kid_summary": "NVIDIAがAIの答えを速く作るGroq 3 LPXを本格生産し、Nebiusが最初に採用します。",
+      "japan_angle": "日本の開発会社には、長い処理をするAIサービスの応答時間と基盤選びに関係する技術です。"
     }
   ]
 }

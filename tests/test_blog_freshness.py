@@ -203,12 +203,10 @@ class BlogFreshnessTest(unittest.TestCase):
         self.assertNotIn("**使い方：**", current)
         self.assertNotIn('class="codex-command-callout"', current)
         self.assertNotIn('class="codex-use-story"', current)
-        self.assertIn("## 4. 困った時に、状況を伝えやすくする｜`codex doctor`", current)
+        self.assertIn("## 4. `Event-triggered tasks`｜レビューを合図に動かす", current)
         self.assertIn(
-            "共有のパソコンでCodexにつながらない時は、ターミナルで"
-            "`codex doctor --summary`を実行します。設定やネットワークの状態が"
-            "まとまって表示されるので、その内容を詳しい人へ見せれば、"
-            "どこを確認すればよいか伝えやすくなります。",
+            "地域団体のサイト修正でGitHubのプルリクエストに指摘が届いた時は、"
+            "レビュー内容の要約と修正案の準備を自動で始められます。",
             current,
         )
         for section in feature_sections:

@@ -1,5 +1,5 @@
 ---
-title: "今日のAIニュースと新機能活用術"
+title: "今日のAIニュースと更新情報"
 date: "2026-08-21"
 date_modified: "2026-08-27"
 content_series: codex-update-log

@@ -182,7 +182,7 @@ class BlogFreshnessTest(unittest.TestCase):
         self.assertIsInstance(date.fromisoformat(str(meta["date_modified"])), date)
         self.assertEqual(
             meta["title"],
-            "今日のAIニュースと新機能活用術",
+            "今日のAIニュースと更新情報",
         )
         self.assertEqual(meta["image"], "/img/blog-codex-update-log-hero-20260822.png")
         self.assertTrue(meta["hero_image"])
@@ -249,7 +249,8 @@ class BlogFreshnessTest(unittest.TestCase):
             kind="blog",
         )
 
-        self.assertIn("<title>今日のAIニュースと新機能活用術 | AIclimb（AI相談）</title>", page)
+        self.assertIn("<title>今日のAIニュースと更新情報 | AIclimb（AI相談）</title>", page)
+        self.assertNotIn("今日のAIニュースと新機能活用術", page)
         self.assertIn("content-wrap--codex-update", page)
         self.assertIn("今日のCodex新機能と活用術", page)
         self.assertIn("たとえば、", page)
@@ -262,7 +263,7 @@ class BlogFreshnessTest(unittest.TestCase):
 
     def test_codex_update_toc_does_not_add_a_second_number_to_feature_titles(self) -> None:
         page = builder.render_content_page(
-            "今日のAIニュースと新機能活用術",
+            "今日のAIニュースと更新情報",
             {"content_series": "codex-update-log"},
             (
                 "<h2>今日のAIニュース10</h2>"

@@ -4211,6 +4211,8 @@ def render_content_page(
     body_classes: list[str] = []
     if kind == "lecture":
         body_classes.append("lecture-page")
+    if kind == "speaker":
+        body_classes.append("speaker-page")
     if kind == "blog" and str(meta.get("content_series") or "") == "codex-update-log":
         body_classes.append("codex-update-page")
     body_class = f" class='{' '.join(body_classes)}'" if body_classes else ""
@@ -4237,7 +4239,7 @@ def render_content_page(
             sub_bits.append(f"<span class='role'>{html.escape(str(meta['level']))}</span>")
         if meta.get("duration"):
             sub_bits.append(f"<span>目安 {html.escape(str(meta['duration']))}</span>")
-    else:
+    elif kind != "speaker":
         if meta.get("role"):
             sub_bits.append(f"<span class='role'>{html.escape(str(meta['role']))}</span>")
         if meta.get("date"):
@@ -4259,6 +4261,8 @@ def render_content_page(
             "</figure>"
         )
     content_class = "content-wrap lecture-content" if kind == "lecture" else "content-wrap"
+    if kind == "speaker":
+        content_class += " speaker-content"
     if kind == "blog" and str(meta.get("content_series") or "") == "codex-update-log":
         content_class += " content-wrap--codex-update"
     content_id = " id='lecture-body'" if kind == "lecture" else ""
@@ -4310,7 +4314,7 @@ def render_content_page(
     if kind == "lecture":
         parts.append(_render_lecture_overview(title, meta, toc))
     # TOC: h2 が 3 個以上あれば出す
-    if len(toc) >= 3:
+    if len(toc) >= 3 and kind != "speaker":
         toc_id = " id='lecture-toc'" if kind == "lecture" else ""
         toc_tag = (
             "ul"
@@ -4336,29 +4340,156 @@ def render_content_page(
     return "".join(parts)
 
 
+def _load_speaker_achievements(meta: dict) -> list[dict]:
+    """講師ページに掲載する公開実績を portfolio.yaml から選ぶ。"""
+    requested = meta.get("achievement_slugs") or []
+    if isinstance(requested, str):
+        requested = [requested]
+    if not requested or not PORTFOLIO_YAML.exists():
+        return []
+    try:
+        data = yaml.safe_load(PORTFOLIO_YAML.read_text(encoding="utf-8")) or {}
+    except Exception as exc:
+        print(f"[!] speaker achievements load error: {exc}")
+        return []
+    portfolio = data.get("portfolio") or []
+    live_by_slug: dict[str, dict] = {}
+    for item in portfolio:
+        if not isinstance(item, dict):
+            continue
+        slug = str(item.get("slug") or "").strip()
+        url = str(item.get("url") or "").strip()
+        if slug and url and str(item.get("status") or "") == "live":
+            live_by_slug[slug] = item
+    selected: list[dict] = []
+    seen: set[str] = set()
+    for raw_slug in requested:
+        slug = str(raw_slug or "").strip()
+        if not slug or slug in seen or slug not in live_by_slug:
+            continue
+        seen.add(slug)
+        selected.append(live_by_slug[slug])
+    return selected
+
+
+def _render_speaker_hero(meta: dict) -> str:
+    speaker_name = html.escape(str(meta.get("name") or "由井 辰美"))
+    speaker_role = html.escape(str(meta.get("role") or "AI講師"))
+    intro = html.escape(str(meta.get("top_intro") or "").strip())
+    avatar_url = str(meta.get("avatar_url") or "").strip()
+    if avatar_url:
+        portrait = (
+            "<div class='speaker-art speaker-art-animated'>"
+            f"<img src='{html.escape(avatar_url, quote=True)}' alt='{speaker_name}の講師写真' "
+            "width='800' height='800' fetchpriority='high' decoding='async'>"
+            "</div>"
+        )
+    else:
+        portrait = (
+            "<div class='speaker-art speaker-art-ph' role='img' "
+            f"aria-label='{speaker_name}の講師プロフィール'><span class='sa-mark'>由</span></div>"
+        )
+    return (
+        "<section class='speaker-page-visual' aria-labelledby='speaker-name'>"
+        "<div class='speaker-page-copy'>"
+        "<p class='speaker-page-kicker'>FIELD-TESTED INSTRUCTOR / HIKONE</p>"
+        f"<p class='speaker-page-name' id='speaker-name'>{speaker_name}</p>"
+        f"<p class='speaker-page-role'>{speaker_role}</p>"
+        f"<p class='speaker-page-lead'>{intro}</p>"
+        "<ul class='speaker-page-trust' aria-label='講師の活動領域'>"
+        "<li>彦根・滋賀</li><li>9事業で実践</li><li>相談から実装・運用まで</li>"
+        "</ul>"
+        "<div class='speaker-page-actions'>"
+        "<a href='#achievements'>公開実績を見る</a>"
+        "<a href='/#packages'>講習・相談コースを見る</a>"
+        "</div>"
+        "<nav class='speaker-page-nav' aria-label='講師ページ内メニュー'>"
+        "<a href='#achievements'>実績</a><a href='#profile'>プロフィール</a>"
+        "<a href='#principles'>講習で伝えること</a><a href='#sns'>SNS</a>"
+        "</nav>"
+        "</div>"
+        f"{portrait}"
+        "</section>"
+    )
+
+
+def _render_speaker_achievements(meta: dict) -> str:
+    items = _load_speaker_achievements(meta)
+    if not items:
+        return ""
+    parts = [
+        "<section class='speaker-achievements' id='achievements' aria-labelledby='achievements-title'>",
+        "<div class='speaker-achievements__head'><div>",
+        "<p class='speaker-achievements__eyebrow'>PUBLIC ACHIEVEMENTS</p>",
+        "<h2 id='achievements-title'>公開中の実績サイト</h2></div>",
+        "<p>地域交流、福祉、店舗、EC、健康管理など、現場の悩みを整理し、実際に使えるページや仕組みにした支援例です。</p></div>",
+        "<div class='speaker-achievement-grid'>",
+    ]
+    for item in items:
+        name = html.escape(str(item.get("name") or "公開実績"))
+        category = html.escape(str(item.get("category") or "実績サイト"))
+        summary = html.escape(str(item.get("summary") or ""))
+        url_raw = str(item.get("url") or "").strip()
+        url = html.escape(url_raw, quote=True)
+        host = html.escape(_host_of(url_raw))
+        thumbnail_raw = str(item.get("thumbnail") or "").strip()
+        if thumbnail_raw:
+            media = (
+                "<div class='speaker-achievement-media'>"
+                f"<img src='{html.escape(thumbnail_raw, quote=True)}' alt='{name}の公開サイト画面' "
+                "width='1200' height='675' loading='lazy' decoding='async'>"
+                "</div>"
+            )
+        else:
+            media = "<div class='speaker-achievement-media'><span class='speaker-achievement-placeholder'>公開サイト</span></div>"
+        parts.extend([
+            f"<a class='speaker-achievement-card' href='{url}' target='_blank' rel='noopener'>",
+            media,
+            "<span class='speaker-achievement-body'>",
+            f"<span class='speaker-achievement-category'>{category}</span>",
+            f"<h3>{name}</h3>",
+            f"<p>{summary}</p>" if summary else "",
+            "<span class='speaker-achievement-linkline'>",
+            f"<span>{host}</span><strong>サイトを見る ↗</strong>",
+            "</span></span></a>",
+        ])
+    parts.extend([
+        "</div>",
+        "<div class='speaker-achievements__actions'>",
+        "<a href='/#all-works'>すべての実績を見る</a>",
+        "<a href='/#contact'>似た課題を相談する</a>",
+        "</div></section>",
+    ])
+    return "".join(parts)
+
+
+def _render_speaker_cta() -> str:
+    return (
+        "<section class='speaker-cta' aria-labelledby='speaker-cta-title'>"
+        "<h2 id='speaker-cta-title'>困っている仕事を、次の実績に。</h2>"
+        "<p>告知、事務、集客、Web制作、AI導入のうち、今いちばん時間を取られている仕事から一緒に整理します。</p>"
+        "<div class='speaker-cta__actions'>"
+        "<a href='/#contact'>困っている仕事を相談する</a>"
+        "<a href='/#packages'>講習・相談コースを見る</a>"
+        "</div></section>"
+    )
+
+
 def build_speaker_page() -> bool:
     if not SPEAKER_MD.exists():
         return False
     md = _load_markdown()
     raw = SPEAKER_MD.read_text(encoding="utf-8")
     meta, body = _parse_frontmatter(raw)
-    body_html = md.markdown(body, extensions=["extra", "sane_lists"])
-    avatar_url = str(meta.get("avatar_url") or "").strip()
-    if avatar_url:
-        speaker_name = html.escape(str(meta.get("name") or "由井 辰美"))
-        speaker_role = html.escape(str(meta.get("role") or "AI講師"))
-        avatar = html.escape(avatar_url, quote=True)
-        body_html = (
-            "<div class='speaker-page-visual'>"
-            "<div class='speaker-page-copy'>"
-            f"<p class='speaker-page-role'>{speaker_role}</p>"
-            "<p>講師本人の写真を、AI講習・制作・運用をまとめて扱うAI相談の顔として掲載しています。</p>"
-            "</div>"
-            "<div class='speaker-art speaker-art-animated'>"
-            f"<img src='{avatar}' alt='{speaker_name} の講師写真' loading='eager' decoding='async'>"
-            "</div>"
-            "</div>"
-        ) + body_html
+    story_html = md.markdown(body, extensions=["extra", "sane_lists"])
+    body_html = (
+        _render_speaker_hero(meta)
+        + _render_speaker_achievements(meta)
+        + "<div class='speaker-page-story'>"
+        + story_html
+        + "</div>"
+        + _render_speaker_cta()
+    )
     title = "講師紹介"
     nav = render_top_nav(path_prefix="./", current_id="speaker", include_run=False)
     html_text = render_content_page(title, meta, body_html, nav, page_path="speaker.html", kind="speaker")

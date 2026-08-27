@@ -1,21 +1,22 @@
 ---
 name: 由井 辰美
 role: AI講師 / マーケター / グッぼる代表
-gen_by: DeepResearch 生成 + 公開情報整理
-profile_url: https://www.genspark.ai/api/code_sandbox_light/preview/598e1ca9-55a0-42ef-94b1-2c2072dee9f3
+summary: 彦根・滋賀でAI講習、業務改善、Web・AI実装を支援する由井辰美の講師紹介。地域交流、福祉、店舗、EC、健康管理の公開実績を確認できます。
 # 講師写真 URL。未設定なら絵文字フォールバック。
 avatar_url: "/img/speaker-portrait-v2.webp"
 top_intro: >
   製造業DXからクライミング事業、AI実装までを経験してきた彦根のAI講師。
   9事業を自ら運営し、Web/SNS/LLMO・業務アプリの実例を使って、AIを仕事に導入し定着させる方法を伝えます。
+achievement_slugs:
+  - minanowa
+  - n-design
+  - business21
+  - notesthe
+  - climbing-shoe-search
+  - fadie
 ---
 
-# 由井 辰美 — AI講師 / AI講習 / 進行メモ
-
-> このページは `content/speaker.md` から自動生成されます。
-> 文言追加は該当セクションの Markdown を編集してビルド（`python site/build_site.py`）するだけ。
-
-## プロフィール
+## プロフィール {#profile}
 
 滋賀県彦根市を拠点に、ボルダリングカフェ「グッぼる」を運営するかたわら、
 AI 活用の啓発・講習・地域コミュニティ運営・複数事業者のマーケティング支援を行う。
@@ -30,7 +31,7 @@ AI講師としての価値は、AIツールの名前を知っていることだ�
 
 > 活動の詳しい背景は、このページでは「現場で何を支援するか」に絞って整理しています。
 
-## 講習で伝える「考え方」
+## 講習で伝える「考え方」 {#principles}
 
 ### 基礎理念
 
@@ -114,11 +115,11 @@ Gemini (Gem指示文 + NLM) → シナリオ (TTP) → 毎日 reel + 週一ブ�
 #### アーリーアダプターである意味
 経験は早い方が良い。取得した知識の積み上げではなく、掛け算になる。特にAIの時代には劇場にもなり得る。なので、早く基礎とベストな考え方を取得することが大切。
 
-## SNS
+## SNS {#sns}
 
 - Instagram: [@moksha_chai（モクシャチャイ）](https://instagram.com/moksha_chai)
 
-## 参考にしているサイト・事例
+## 参考にしているサイト・事例 {#references}
 
 - [高崎ダルマ — concon(株)](https://youtu.be/47qjUejCHbY?si=rik3nRarVOSQL0Me)
 - [生活定点 — ロールモデル](https://seikatsusoken.jp/teiten/)

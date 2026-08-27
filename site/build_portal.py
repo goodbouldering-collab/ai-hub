@@ -2318,6 +2318,316 @@ section.block + section.block { border-top: 1px solid var(--line); }
     text-align: left;
   }
 }
+
+/* ---- 講師ページ: 公開実績を軸にした信頼導線 ---- */
+body.speaker-page {
+  background:
+    radial-gradient(circle at 8% 6%, rgba(79,111,216,.10), transparent 30%),
+    radial-gradient(circle at 92% 18%, rgba(133,108,196,.09), transparent 28%),
+    var(--bg-base);
+}
+.speaker-page main {
+  width: min(100%, 1180px);
+  margin: 0 auto;
+}
+.speaker-page main > header {
+  max-width: 1120px;
+  margin: 0 auto 18px;
+}
+.speaker-page main > header h1 {
+  font-size: clamp(28px, 4vw, 44px);
+  letter-spacing: -.025em;
+}
+.speaker-content {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.speaker-content .speaker-page-visual {
+  grid-template-columns: minmax(0, 1.35fr) minmax(240px, 340px);
+  gap: clamp(28px, 5vw, 64px);
+  margin: 0;
+  padding: clamp(28px, 5vw, 56px);
+  overflow: hidden;
+  border: 1px solid rgba(79,111,216,.18);
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 88% 8%, rgba(255,255,255,.82), transparent 30%),
+    linear-gradient(135deg, #eef4ff 0%, #f5f2ff 54%, #fff 100%);
+  box-shadow: 0 24px 64px rgba(39,60,104,.12);
+}
+.speaker-content .speaker-page-visual .speaker-art {
+  width: min(100%, 320px);
+  border-width: 8px;
+  box-shadow: 0 20px 50px rgba(39,60,104,.18), 0 0 0 1px rgba(79,111,216,.10);
+}
+.speaker-page-kicker {
+  margin: 0 0 12px !important;
+  color: var(--primary) !important;
+  font-size: 12px !important;
+  font-weight: 900;
+  letter-spacing: .12em;
+}
+.speaker-page-name {
+  margin: 0;
+  color: var(--text);
+  font-size: clamp(38px, 6vw, 64px);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -.045em;
+}
+.speaker-page-role {
+  margin: 12px 0 18px !important;
+  color: var(--text) !important;
+  font-size: clamp(16px, 2vw, 20px) !important;
+  font-weight: 800;
+}
+.speaker-page-lead {
+  max-width: 650px;
+  margin: 0 !important;
+  color: var(--text-soft) !important;
+  font-size: 16px !important;
+  line-height: 1.9 !important;
+}
+.speaker-page-trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 22px 0 0 !important;
+  padding: 0 !important;
+  list-style: none;
+}
+.speaker-page-trust li {
+  margin: 0 !important;
+  padding: 6px 11px;
+  border: 1px solid rgba(79,111,216,.18);
+  border-radius: 999px;
+  background: rgba(255,255,255,.72);
+  color: #3e58b8;
+  font-size: 12px;
+  font-weight: 800;
+}
+.speaker-page-actions,
+.speaker-achievements__actions,
+.speaker-cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+.speaker-page-actions a,
+.speaker-achievements__actions a,
+.speaker-cta__actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 0 18px;
+  border: 1px solid var(--line) !important;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--text) !important;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 850;
+}
+.speaker-page-actions a:first-child,
+.speaker-cta__actions a:first-child {
+  border-color: var(--primary) !important;
+  background: var(--primary);
+  color: #fff !important;
+}
+.speaker-page-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 24px;
+}
+.speaker-page-nav a {
+  border-bottom: 0 !important;
+  color: var(--primary) !important;
+  font-size: 12px;
+  font-weight: 850;
+}
+.speaker-achievements {
+  scroll-margin-top: 92px;
+  margin: 32px 0 0;
+  padding: clamp(24px, 4vw, 40px);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 18px 48px rgba(39,60,104,.08);
+}
+.speaker-achievements__head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 420px);
+  gap: 26px;
+  align-items: end;
+  margin-bottom: 24px;
+}
+.speaker-achievements__eyebrow {
+  margin: 0 0 6px !important;
+  color: var(--primary) !important;
+  font-size: 11px !important;
+  font-weight: 900;
+  letter-spacing: .12em;
+}
+.speaker-content .speaker-achievements h2 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-size: clamp(28px, 4vw, 40px);
+  letter-spacing: -.025em;
+}
+.speaker-achievements__head > p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.8;
+}
+.speaker-achievement-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.speaker-achievement-card {
+  display: flex;
+  min-width: 0;
+  overflow: hidden;
+  flex-direction: column;
+  border: 1px solid var(--line) !important;
+  border-radius: 18px;
+  background: #fff;
+  color: inherit !important;
+  text-decoration: none;
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.speaker-achievement-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(79,111,216,.38) !important;
+  box-shadow: 0 16px 36px rgba(39,60,104,.12);
+}
+.speaker-achievement-media {
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: #eef3fa;
+}
+.speaker-content .speaker-achievement-media img {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  object-fit: cover;
+  transition: transform .3s ease;
+}
+.speaker-achievement-card:hover .speaker-achievement-media img { transform: scale(1.025); }
+.speaker-achievement-placeholder {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  color: var(--muted);
+  font-weight: 800;
+}
+.speaker-achievement-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  padding: 17px;
+}
+.speaker-achievement-category {
+  color: var(--primary);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .05em;
+}
+.speaker-content .speaker-achievement-card h3 {
+  margin: 6px 0 8px;
+  color: var(--text);
+  font-size: 17px;
+  line-height: 1.45;
+  letter-spacing: -.01em;
+}
+.speaker-achievement-card p {
+  margin: 0 0 14px;
+  color: var(--text-soft);
+  font-size: 13px;
+  line-height: 1.7;
+}
+.speaker-achievement-linkline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: auto;
+  color: var(--muted);
+  font-size: 11px;
+}
+.speaker-achievement-linkline strong { color: var(--primary); font-size: 12px; }
+.speaker-page-story {
+  max-width: 920px;
+  margin: 34px auto 0;
+  padding: clamp(24px, 4vw, 42px);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 14px 40px rgba(39,60,104,.07);
+}
+.speaker-content .speaker-page-story > h2 {
+  scroll-margin-top: 92px;
+  margin: 1.8em 0 .7em;
+  padding: 0 0 12px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  font-size: clamp(23px, 3vw, 31px);
+}
+.speaker-content .speaker-page-story > h2:first-child { margin-top: 0; }
+.speaker-cta {
+  max-width: 920px;
+  margin: 28px auto 0;
+  padding: clamp(24px, 4vw, 38px);
+  border-radius: 22px;
+  background: linear-gradient(135deg, #24345f, #4f6fd8);
+  color: #fff;
+}
+.speaker-content .speaker-cta h2 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-size: clamp(24px, 3vw, 34px);
+}
+.speaker-cta p { color: rgba(255,255,255,.86); }
+.speaker-cta__actions a { border-color: rgba(255,255,255,.35) !important; }
+.speaker-cta__actions a:not(:first-child) { background: transparent; color: #fff !important; }
+@media (max-width: 860px) {
+  .speaker-content .speaker-page-visual,
+  .speaker-achievements__head { grid-template-columns: 1fr; }
+  .speaker-content .speaker-page-visual .speaker-art { width: min(100%, 280px); }
+  .speaker-achievement-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .speaker-page .container { padding-right: 14px; padding-left: 14px; }
+  .speaker-content .speaker-page-visual { padding: 24px 18px; border-radius: 20px; }
+  .speaker-page-name { font-size: clamp(36px, 12vw, 48px); }
+  .speaker-page-actions a,
+  .speaker-achievements__actions a,
+  .speaker-cta__actions a { width: 100%; }
+  .speaker-achievement-grid { grid-template-columns: minmax(0, 1fr); }
+  .speaker-achievements,
+  .speaker-page-story,
+  .speaker-cta { padding: 22px 16px; border-radius: 18px; }
+  .speaker-achievement-linkline { align-items: flex-start; flex-direction: column; }
+}
 /* CSSプレースホルダ: クライミング×テクノロジーの抽象アート */
 .speaker-art-ph {
   background:
@@ -13835,6 +14145,7 @@ header.site-header:hover {
 .focus-split .speaker-painting { aspect-ratio:1/1; object-position:center; background:#fffaf0; box-shadow:0 18px 46px rgba(10,40,80,.10); }
 .focus-split h2 { margin:0 0 18px; font-size:clamp(30px,3vw,46px); line-height:1.25; }
 .focus-split p { color:var(--focus-muted); font-size:16px; line-height:1.9; }
+.focus-split .focus-content-actions { justify-content:flex-start; margin-right:0; margin-left:0; }
 .focus-flow { max-width:1100px; margin:auto; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px; }
 .focus-step { position:relative; padding:14px 14px 24px; overflow:hidden; border:1px solid var(--focus-line); border-radius:14px; background:#fff; box-shadow:0 12px 30px rgba(10,40,80,.06); }
 .focus-step-visual { display:block; width:100%; margin-bottom:18px; aspect-ratio:4/3; object-fit:cover; border-radius:9px; background:#f2f7fb; }
@@ -15649,7 +15960,7 @@ def _render_focused_main() -> str:
         _render_focused_blog_content(),
         "<div class='focus-content-actions'><a class='focus-btn secondary' href='/blog/index.html'>ブログを一覧で読む</a></div></section>",
         "<section class='focus-block soft' id='speaker'><div class='focus-split'><img class='speaker-painting' src='/img/speaker-portrait-gubboru-cafe-20260719.webp' alt='グッぼるカフェで少人数のAI講習を行うAI相談講師 由井辰美の絵画調ポートレート' loading='lazy' decoding='async'>",
-        "<div><small class='outcome-num'>INSTRUCTOR</small><h2>9つの事業でAIエージェントを使う講師</h2><p>理想論ではなく、告知、予約、事務、サイト運営で実際に任せている仕事を題材にします。成果物の確認と、次も続けられる手順づくりまで一緒に進めます。</p><a class='focus-btn secondary' href='#contact'>彦根で相談する</a></div></div></section>",
+        "<div><small class='outcome-num'>INSTRUCTOR</small><h2>9つの事業でAIエージェントを使う講師</h2><p>理想論ではなく、告知、予約、事務、サイト運営で実際に任せている仕事を題材にします。成果物の確認と、次も続けられる手順づくりまで一緒に進めます。</p><div class='focus-content-actions'><a class='focus-btn secondary' href='/speaker.html#achievements'>講師の実績を見る</a><a class='focus-btn secondary' href='#contact'>彦根で相談する</a></div></div></div></section>",
         "<section class='focus-block' id='all-works'><div class='focus-section-head'><small>AI WORKS</small><h2>実績サイト</h2></div>",
         "<p class='focus-section-lead'>講習で扱う考え方を、地域交流、福祉、店舗、EC、予約、業務システムで実際に使った支援例です。</p><div class='focus-content-shell'>",
         _render_works_section(),

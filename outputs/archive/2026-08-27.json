@@ -25,7 +25,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://www.itmedia.co.jp/news/article/ogp/2608/27/2000000831/10003968/2048",
-      "published": "2026-08-27T01:25:36+00:00"
+      "published": "2026-08-27T01:25:36+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "171c3e4acd7865f9",
@@ -51,7 +53,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://www.itmedia.co.jp/news/article/ogp/2608/27/2000000827/10003947/2048",
-      "published": "2026-08-26T22:00:00+00:00"
+      "published": "2026-08-26T22:00:00+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "40c18c80fe6b817b",
@@ -77,7 +81,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://opengraph.githubassets.com/05311c842348ffc9ead7eab7a3935a6182168c5b089b24aaaa30b78bd8d00720/openai/codex/releases/tag/rust-v0.150.1",
-      "published": "2026-08-27T01:58:35+00:00"
+      "published": "2026-08-27T01:58:35+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "abfcc11403d42aca",
@@ -103,7 +109,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "",
-      "published": "2026-08-26T23:52:58+00:00"
+      "published": "2026-08-26T23:52:58+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "40f280025a02f86e",
@@ -129,7 +137,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "",
-      "published": "2026-08-26T23:51:56+00:00"
+      "published": "2026-08-26T23:51:56+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "2ba5c24289a4ee48",
@@ -155,7 +165,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "",
-      "published": "2026-08-26T23:40:20+00:00"
+      "published": "2026-08-26T23:40:20+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "3efa021e00571a53",
@@ -181,7 +193,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://opengraph.githubassets.com/15b910bc4bfd5d46526b98a8215b74255f089957d43c0b7b2387ef24fd5d96a8/openai/codex/releases/tag/rust-v0.150.0",
-      "published": "2026-08-26T19:39:18+00:00"
+      "published": "2026-08-26T19:39:18+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "04115ce8e7ed1b70",
@@ -207,7 +221,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini_3-5_transcribe.width-1300.jpg",
-      "published": "2026-08-26T17:01:00+00:00"
+      "published": "2026-08-26T17:01:00+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "50498e49febadfbd",
@@ -233,7 +249,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/06/STK083_NVIDIA_2.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-08-26T21:40:53+00:00"
+      "published": "2026-08-26T21:40:53+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "af2d645b6f328baf",
@@ -259,7 +277,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/STK_414_AI_CHATBOT_R2_CVirginia_B.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-08-26T21:36:06+00:00"
+      "published": "2026-08-26T21:36:06+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

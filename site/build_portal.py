@@ -15273,6 +15273,11 @@ button:focus-visible {
 .codex-update-guide .readiness-guide__title {
   font-size:clamp(28px,2.6vw,36px);
 }
+@media (min-width:1051px) {
+  .codex-update-guide .readiness-guide__inner {
+    grid-template-columns:minmax(0,1fr) minmax(290px,.84fr);
+  }
+}
 @media (min-width:761px) and (max-width:1050px) {
   .readiness-guide__inner { grid-template-columns:minmax(0,1fr) minmax(280px,.9fr); }
   .readiness-guide__actions { grid-column:1 / -1; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); }
@@ -15599,12 +15604,7 @@ def _render_codex_update_guide() -> str:
         "<div class='readiness-guide__intro'><div class='offer-role-row'><div class='offer-role-copy'>"
         "<span class='offer-role-badge'>ブログ</span><span class='offer-role-note'>毎朝更新</span></div></div>"
         "<h2 id='codex-update-guide-title' class='readiness-guide__title'>今日のAIニュースと新機能活用術</h2>"
-        "<p class='readiness-guide__summary'>直近のAIニュースを10件に絞り、何が変わるのかと「たとえば」の使う場面を、Codexの公式アップデートと一緒にわかりやすくまとめます。</p></div>"
-        "<ul class='readiness-guide__questions' aria-label='今日のAIニュースと新機能活用術でわかること'>"
-        "<li><span aria-hidden='true'>?</span><div><strong>AIニュース10</strong><small>重要な動きを厳選</small></div></li>"
-        "<li><span aria-hidden='true'>?</span><div><strong>使う場面</strong><small>たとえば仕事なら</small></div></li>"
-        "<li><span aria-hidden='true'>?</span><div><strong>Codex新機能</strong><small>公式情報から活用術へ</small></div></li>"
-        "</ul>"
+        "<p class='readiness-guide__summary'>直近のAIニュースから重要な10件を厳選し、仕事で使う場面を「たとえば」で示し、Codexの公式新機能も活用術まで一緒にわかりやすくまとめます。</p></div>"
         "<div class='readiness-guide__actions'><a class='readiness-guide__cta' href='/blog/codex-update-log.html' aria-label='今日のAIニュースと新機能活用術を読む'>"
         "<span>今日のAIニュースと新機能活用術を読む</span><b aria-hidden='true'>→</b></a></div>"
         "</div></div></section>"

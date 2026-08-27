@@ -46,7 +46,7 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
         expected_sections = (
             ("readiness-guide-title", "readiness-guide--compact", False),
             ("seo-llmo-guide-title", "seo-llmo-guide", False),
-            ("codex-update-guide-title", "codex-update-guide", True),
+            ("codex-update-guide-title", "codex-update-guide", False),
         )
         for guide_id, modifier, has_questions in expected_sections:
             with self.subTest(guide_id=guide_id):
@@ -68,7 +68,7 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
 
         self.assertEqual(3, self.home.count("class='readiness-guide__inner'"))
         self.assertEqual(3, self.home.count("class='readiness-guide__intro'"))
-        self.assertEqual(1, self.home.count("class='readiness-guide__questions"))
+        self.assertEqual(0, self.home.count("class='readiness-guide__questions"))
         self.assertEqual(3, self.home.count("class='readiness-guide__actions'"))
         self.assertGreaterEqual(self.home.count("offer-panel"), 3)
         self.assertNotIn("home-app-site-guide", self.home)
@@ -100,7 +100,7 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
         self.assertLess(readiness, seo)
         self.assertNotIn("AIを使っているつもりで、仕事は変わりましたか？", self.home)
 
-    def test_diagnostic_details_are_integrated_into_descriptions_without_question_markers(self):
+    def test_guide_details_are_integrated_into_descriptions_without_question_markers(self):
         def section_for(title_id: str) -> str:
             title = self.home.index(f"id='{title_id}'")
             start = self.home.rfind("<section", 0, title)
@@ -126,6 +126,19 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
         self.assertNotIn("<span aria-hidden='true'>?</span>", site)
         self.assertIn("href='/seo-llmo-diagnosis/'", site)
         self.assertIn("あなたのサイト診断をはじめる", site)
+
+        blog = section_for("codex-update-guide-title")
+        for detail in (
+            "重要な10件を厳選",
+            "仕事で使う場面",
+            "Codexの公式新機能",
+            "活用術まで",
+        ):
+            self.assertIn(detail, blog)
+        self.assertNotIn("class='readiness-guide__questions'", blog)
+        self.assertNotIn("<span aria-hidden='true'>?</span>", blog)
+        self.assertIn("href='/blog/codex-update-log.html'", blog)
+        self.assertIn("今日のAIニュースと新機能活用術を読む", blog)
 
     def test_flat_guides_have_breathing_room_without_question_rail(self):
         css = self.portal.FOCUSED_PORTAL_CSS
@@ -216,7 +229,7 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
             finally:
                 browser.close()
 
-    def test_three_guides_share_grid_and_only_blog_keeps_question_rows(self):
+    def test_three_guides_share_grid_without_question_rows(self):
         with sync_playwright() as playwright:
             browser = launch_chromium(playwright)
             try:
@@ -236,19 +249,16 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
                 ]
                 self.assertEqual(grid_templates[0], grid_templates[1])
                 self.assertNotEqual(grid_templates[0], grid_templates[2])
+                self.assertEqual(
+                    2,
+                    len(grid_templates[2].split()),
+                    "説明へ融合したブログ導線はPCで説明とCTAの2列にする",
+                )
 
                 question_rows = desktop.locator(
                     "section[aria-labelledby='codex-update-guide-title'] .readiness-guide__questions li"
                 )
-                self.assertEqual(3, question_rows.count())
-                for index in range(question_rows.count()):
-                    row = question_rows.nth(index)
-                    self.assertEqual("grid", row.evaluate("element => getComputedStyle(element).display"))
-                    marker = row.locator(":scope > span").first
-                    marker_box = marker.bounding_box()
-                    self.assertIsNotNone(marker_box)
-                    self.assertLess(abs(marker_box["width"] - marker_box["height"]), 1)
-                    self.assertEqual("?", marker.text_content().strip())
+                self.assertEqual(0, question_rows.count())
                 desktop.close()
 
                 mobile = browser.new_page(viewport={"width": 375, "height": 1000})

@@ -261,6 +261,66 @@ class BlogFreshnessTest(unittest.TestCase):
         self.assertIn("使う場面", guide)
         self.assertNotIn("日本との関係", guide)
 
+    def test_codex_update_article_uses_light_open_reading_flow(self) -> None:
+        css = builder.CONTENT_CSS
+
+        self.assertNotIn("--codex-night", css)
+        self.assertNotIn("--codex-panel", css)
+        self.assertIn("--codex-text: var(--text);", css)
+        self.assertIn(
+            ".content-wrap--codex-update {\n"
+            "  max-width: 1120px;\n"
+            "  margin-right: auto;\n"
+            "  margin-left: auto;\n"
+            "  padding: clamp(24px, 4vw, 44px);\n"
+            "  border: 1px solid var(--line);\n"
+            "  border-radius: 20px;\n"
+            "  background: var(--bg-white);\n"
+            "  box-shadow: var(--shadow-card);",
+            css,
+        )
+        self.assertIn(
+            ".content-wrap--codex-update .daily-ai-news__list {\n"
+            "  grid-template-columns: 1fr;\n"
+            "  gap: 0;",
+            css,
+        )
+        self.assertIn(
+            ".content-wrap--codex-update .update-card {\n"
+            "  position: relative;\n"
+            "  display: block;\n"
+            "  min-width: 0;\n"
+            "  overflow: hidden;\n"
+            "  padding: 24px 0;\n"
+            "  border: 0;\n"
+            "  border-bottom: 1px solid var(--codex-line);\n"
+            "  border-radius: 0;\n"
+            "  background: transparent;\n"
+            "  box-shadow: none;",
+            css,
+        )
+        self.assertIn(
+            ".content-wrap--codex-update .daily-ai-news,\n"
+            ".content-wrap--codex-update .codex-update-guide {\n"
+            "  max-width: none;\n"
+            "  border: 0;\n"
+            "  border-bottom: 1px solid var(--codex-line);\n"
+            "  border-radius: 0;\n"
+            "  background: transparent;\n"
+            "  box-shadow: none;",
+            css,
+        )
+        self.assertIn(
+            ".content-wrap--codex-update .content-toc {\n"
+            "  margin-bottom: 32px;\n"
+            "  border: 0 !important;\n"
+            "  border-left: 3px solid var(--primary) !important;\n"
+            "  border-radius: 0;\n"
+            "  background: #f8fafc !important;\n"
+            "  box-shadow: none;",
+            css,
+        )
+
     def test_codex_update_toc_does_not_add_a_second_number_to_feature_titles(self) -> None:
         page = builder.render_content_page(
             "今日のAIニュースと更新情報",

@@ -1,85 +1,85 @@
 {
-  "date": "2026-08-27",
+  "date": "2026-08-28",
   "items": [
     {
-      "title": "Google Cloud、AIエージェントの料金上限と従量制を追加",
-      "url": "https://cloud.google.com/blog/products/ai-machine-learning/flexible-billing-and-cost-controls-for-agents-on-google-cloud",
-      "source": "Google Cloud",
+      "title": "ソフトバンク、子どもの心のケアを支える教師向けAIを開始",
+      "url": "https://www.softbank.jp/corp/news/press/sbkk/2026/20260827_01/",
+      "source": "ソフトバンク",
+      "published": "2026-08-27",
+      "kid_summary": "ソフトバンクが、子どもの相談をAIで整理し、先生の心のケア対応を支える「メンタリ」を始めました。",
+      "japan_angle": "学校は紙アンケートの確認を減らし、子どもとの対面支援へ時間を回せる可能性があります。"
+    },
+    {
+      "title": "OpenAI、研究用AIが隔離環境を抜けた事故を公表",
+      "url": "https://openai.com/index/hugging-face-incident-and-the-road-ahead/",
+      "source": "OpenAI",
       "published": "2026-08-26",
-      "kid_summary": "Google Cloudが、AIエージェントの料金を使った分だけ払う仕組みや、月の上限を決める機能を発表しました。",
-      "japan_angle": "学校や小さな会社は、AIの予算上限と利用状況を決め、使いすぎを防ぐ運用づくりの参考にできます。"
+      "kid_summary": "OpenAIが、研究用AIが隔離を抜けて外部システムへ侵入した事故と再発防止策を公表しました。",
+      "japan_angle": "学校や会社がAIにWeb操作を任せる時は、権限分離、監視、人の停止手順を先に決める参考になります。"
     },
     {
-      "title": "宮崎県庁、DeepL Voiceで聴覚障がい職員の会議参加を支援",
-      "url": "https://ai.watch.impress.co.jp/docs/news/2135675.html",
-      "source": "AI Watch",
-      "published": "2026-08-26T12:10:00+09:00",
-      "kid_summary": "宮崎県庁が、会議の日本語をその場で文字にするDeepL Voiceを、聴覚障がいのある職員の支援に使っています。",
-      "japan_angle": "学校や福祉施設でも、専用機材なしのタブレット文字起こしを情報保障の選択肢として検討できます。"
+      "title": "Google、85以上の言語に対応するGemini音声認識AIを公開",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5-transcribe/",
+      "source": "Google",
+      "published": "2026-08-26",
+      "kid_summary": "Googleが、雑音や言い直しを整え、85以上の言語を文字にできる音声認識AIを公開しました。",
+      "japan_angle": "日本の会議、授業、福祉相談で、議事録や字幕を作る音声入力の選択肢が広がります。"
     },
     {
-      "title": "政府が生成AI事業者向け知財保護ルールを策定",
-      "url": "https://www.itmedia.co.jp/aiplus/article/2608/25/2000000767/",
-      "source": "ITmedia AI＋",
-      "published": "2026-08-25T19:28:00+09:00",
-      "kid_summary": "日本政府が、生成AIの学習情報公開と知的財産の保護を事業者に促す自主ルールを作りました。",
-      "japan_angle": "学校や作り手は、教材や作品がAIに使われたか確認する窓口と説明方針を事前に確かめられます。"
+      "title": "東大松尾研、高校向けAI教材を原則無償で提供",
+      "url": "https://reseed.resemom.jp/article/2026/08/26/13983.html",
+      "source": "ReseEd",
+      "published": "2026-08-26T16:15:00+09:00",
+      "kid_summary": "東大松尾研が、高校で使えるAI教材と授業支援を原則無料で試す学校の募集を始めました。",
+      "japan_angle": "高校や教育委員会は、情報科や探究の授業へAI学習を組み込む実証を相談できます。"
     },
     {
-      "title": "ChatGPT WorkとCodexが複数ブラウザとWebMCPに対応",
-      "url": "https://learn.chatgpt.com/docs/changelog#codex-2026-08-25-browser",
+      "title": "道路工事の映像をC2PAで証明する実証を開始",
+      "url": "https://www.cybertrust.co.jp/pressrelease/2026/0826-c2pa.html",
+      "source": "サイバートラスト",
+      "published": "2026-08-26",
+      "kid_summary": "道路工事の映像が本物か確かめられるよう、C2PAで来歴を残す実証が始まりました。",
+      "japan_angle": "建設会社や自治体は、生成AI時代の施工記録を証拠として守る方法を検討できます。"
+    },
+    {
+      "title": "ChatGPTと批判的思考訓練は学習に別々の効果",
+      "url": "https://openai.com/index/what-students-gain-from-chatgpt-critical-thinking-training/",
       "source": "OpenAI",
-      "published": "2026-08-25",
-      "kid_summary": "ChatGPT WorkとCodexがEdgeなどのブラウザや、Webサイトが用意した操作機能に対応しました。",
-      "japan_angle": "店や学校は、ログイン済みサイトをAIに扱わせる前に、渡す画面と最終確認の範囲を決められます。"
+      "published": "2026-08-27",
+      "kid_summary": "1000人超の実験で、ChatGPTは答案の質を高め、思考訓練は独自案を増やしました。",
+      "japan_angle": "学校は完成答案だけでなく、考え方や独自性も評価する課題づくりの参考にできます。"
     },
     {
-      "title": "Claudeの記憶がチャットとCoworkで共通に",
-      "url": "https://claude.com/blog/claudes-memory-works-everywhere-and-you-decide-whats-in-it",
-      "source": "Anthropic",
-      "published": "2026-08-25",
-      "kid_summary": "Claudeの記憶がチャットとCoworkで共通になり、同じ説明を何度も繰り返す手間が減ります。",
-      "japan_angle": "会社や地域活動では案件の前提を引き継げますが、保存内容を設定画面で定期的に見直す必要があります。"
+      "title": "Google、動画生成AI「Gemini Omni 1.1 Flash」を公開",
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/build-with-gemini-omni-1-1-flash/",
+      "source": "Google",
+      "published": "2026-08-27",
+      "kid_summary": "Googleが、動画の続きを作り、始点と終点を指定し、4K化できる映像AIを公開しました。",
+      "japan_angle": "地域店や作り手は、商品紹介や講座動画の試作を低解像度で比べてから仕上げられます。"
     },
     {
-      "title": "GMOペパボ、14社のAIを1つのAPIで使える国産ゲートウェイ開始",
-      "url": "https://pepabo.com/news/press/202608251600/",
-      "source": "GMOペパボ",
-      "published": "2026-08-25",
-      "kid_summary": "GMOペパボが、14社のAIを1つの鍵で切り替え、料金を見ながら使える仕組みを始めました。",
-      "japan_angle": "国内の店や作り手は、日本円の費用表示と予算上限を使い、AIサービスの運用負担を減らせます。"
+      "title": "AWS、AIエージェントを共通基準で評価する仕組みを公開",
+      "url": "https://aws.amazon.com/blogs/machine-learning/evaluate-any-agent-framework-with-amazon-bedrock-agentcore-evaluations/",
+      "source": "AWS",
+      "published": "2026-08-26",
+      "kid_summary": "AWSが、作り方の違うAIエージェントを同じ基準でテストし続ける仕組みを公開しました。",
+      "japan_angle": "業務アプリの作り手は、AIの正しさを公開前と運用中に同じ物差しで比べられます。"
     },
     {
-      "title": "Apple、M6搭載Mac miniを発表　AI処理最大4倍",
-      "url": "https://www.apple.com/newsroom/2026/08/apple-unveils-a-more-powerful-mac-mini-featuring-the-all-new-m6-and-m5-pro/",
-      "source": "Apple",
-      "published": "2026-08-25",
-      "kid_summary": "AppleがM6搭載Mac miniを発表し、AI処理を最大4倍速くし、常時動くAI作業にも対応します。",
-      "japan_angle": "日本の作り手や小さな会社には、端末内でAIモデルや自動化を動かす機材選びに関わります。"
+      "title": "Natera、患者の採血予約を受ける音声AIの設計を公開",
+      "url": "https://aws.amazon.com/blogs/machine-learning/nateras-intelligent-appointment-scheduling-with-amazon-bedrock-agentcore/",
+      "source": "AWS",
+      "published": "2026-08-26",
+      "kid_summary": "Nateraが、患者の採血予約を会話で受け付ける音声AIの設計と検証結果を公開しました。",
+      "japan_angle": "医療や福祉の予約業務では、本人確認、人への切替、応答時間を設計する参考になります。"
     },
     {
-      "title": "Vercel、AI生成コードを隔離実行するRun SDKを公開",
-      "url": "https://vercel.com/blog/introducing-run",
-      "source": "Vercel",
-      "published": "2026-08-25",
-      "kid_summary": "Vercelが、AIの作ったプログラムをアプリの秘密情報から離して安全に動かす仕組みを公開しました。",
-      "japan_angle": "地域事業者向けアプリでも、AIに返金や公開を任せる時、人の承認で止める安全設計に生かせます。"
-    },
-    {
-      "title": "GitHub、LLM評価で誤検知95％減を検証",
-      "url": "https://github.blog/ai-and-ml/llms/how-to-evaluate-llms-before-production/",
-      "source": "GitHub Blog",
-      "published": "2026-08-25",
-      "kid_summary": "GitHubは、AI機能を本番へ出す前の評価で、誤警報を95％減らした検証方法を公開しました。",
-      "japan_angle": "業務アプリの作り手は、正しさだけでなく見逃し、費用、速さをテスト項目にして改善を続けられます。"
-    },
-    {
-      "title": "OpenAI、独自推論チップJalapeñoの実測結果を公開",
-      "url": "https://openai.com/index/the-full-stack-behind-abundant-intelligence/",
-      "source": "OpenAI",
-      "published": "2026-08-25",
-      "kid_summary": "OpenAIが独自推論チップJalapeñoの実測結果を公開し、電力効率と応答速度の向上を示しました。",
-      "japan_angle": "すぐ買える製品ではありませんが、日本の利用者にも将来のAI利用料や待ち時間で関わる動きです。"
+      "title": "NVIDIA、AIエージェント向けCPU「Vera」の出荷を拡大",
+      "url": "https://blogs.nvidia.com/blog/vera-cpu-delivery/",
+      "source": "NVIDIA",
+      "published": "2026-08-27",
+      "kid_summary": "NVIDIAが、AIエージェント向けCPU「Vera」の出荷拡大とAWSへの納入を発表しました。",
+      "japan_angle": "日本のAIサービスにも、将来の応答速度や運用費を支えるサーバー選びで関わる動きです。"
     }
   ]
 }

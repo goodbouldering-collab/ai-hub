@@ -138,7 +138,7 @@ class HomeOfferUiUnificationTests(unittest.TestCase):
         self.assertNotIn("class='readiness-guide__questions'", blog)
         self.assertNotIn("<span aria-hidden='true'>?</span>", blog)
         self.assertIn("href='/blog/codex-update-log.html'", blog)
-        self.assertIn("今日のAIニュースと更新情報を読む", blog)
+        self.assertIn("今日のAIニュースとcodexを読む", blog)
         self.assertNotIn("今日のAIニュースと新機能活用術", blog)
 
     def test_flat_guides_have_breathing_room_without_question_rail(self):

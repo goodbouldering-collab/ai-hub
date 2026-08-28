@@ -15914,10 +15914,10 @@ def _render_codex_update_guide() -> str:
         "<section class='readiness-guide readiness-guide--compact codex-update-guide' aria-labelledby='codex-update-guide-title'><div class='offer-panel'><div class='readiness-guide__inner'>"
         "<div class='readiness-guide__intro'><div class='offer-role-row'><div class='offer-role-copy'>"
         "<span class='offer-role-badge'>ブログ</span><span class='offer-role-note'>毎朝更新</span></div></div>"
-        "<h2 id='codex-update-guide-title' class='readiness-guide__title'>今日のAIニュースと更新情報</h2>"
+        "<h2 id='codex-update-guide-title' class='readiness-guide__title'>今日のAIニュースとcodex</h2>"
         "<p class='readiness-guide__summary'>直近のAIニュースから重要な10件を厳選し、仕事で使う場面を「たとえば」で示し、Codexの公式新機能も活用術まで一緒にわかりやすくまとめます。</p></div>"
-        "<div class='readiness-guide__actions'><a class='readiness-guide__cta' href='/blog/codex-update-log.html' aria-label='今日のAIニュースと更新情報を読む'>"
-        "<span>今日のAIニュースと更新情報を読む</span><b aria-hidden='true'>→</b></a></div>"
+        "<div class='readiness-guide__actions'><a class='readiness-guide__cta' href='/blog/codex-update-log.html' aria-label='今日のAIニュースとcodexを読む'>"
+        "<span>今日のAIニュースとcodexを読む</span><b aria-hidden='true'>→</b></a></div>"
         "</div></div></section>"
     )
 

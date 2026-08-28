@@ -26,6 +26,16 @@ ARTICLE = ROOT / "content" / "blog" / "2026-07-25-sites-vs-vercel-safe-migration
 
 
 class SitesCloudflareVercelBlogTest(unittest.TestCase):
+    def test_optimized_title_leads_with_platforms_and_states_github_principle(self) -> None:
+        meta, _ = builder._parse_frontmatter(ARTICLE.read_text(encoding="utf-8"))
+        title = str(meta["title"])
+
+        self.assertTrue(title.startswith("ChatGPT Sites"))
+        self.assertLessEqual(len(title), 50)
+        for term in ("クラウドフレア", "Vercel比較", "サイト公開の極意", "GitHubを残す"):
+            with self.subTest(term=term):
+                self.assertIn(term, title)
+
     def test_rewrite_uses_a_newer_update_date_and_is_new_on_that_day(self) -> None:
         meta, _ = builder._parse_frontmatter(ARTICLE.read_text(encoding="utf-8"))
 

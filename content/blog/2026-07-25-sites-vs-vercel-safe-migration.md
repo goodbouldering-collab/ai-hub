@@ -1,11 +1,11 @@
 ---
-title: "サイト公開は、ChatGPT Sites、クラウドフレア、Vercel、どれがいい？完全比較とGitHubとの関係"
+title: "ChatGPT Sites・クラウドフレア・Vercel比較｜サイト公開の極意はGitHubを残す"
 date: 2026-07-25
 date_modified: 2026-08-28
 authorship_note: "※内容は運営者が考え、AIで整えています。"
 role: ブログ / AI初心者・地域事業者・個人事業主向け
 gen_by: 由井 辰美 / AI相談
-summary: ChatGPT Sites、Cloudflare、Vercelを、作りやすさ、料金、確認URL、データ、独自ドメイン、GitHubとの関係で比較。地域事業者が安全に選び、移行する手順まで解説します。
+summary: ChatGPT Sites、Cloudflare、Vercelを、作りやすさ、料金、確認URL、データ、独自ドメインで比較。GitHubを原本として残し、安全に選び、移行する「サイト公開の極意」を解説します。
 image: /img/blog-sites-cloudflare-vercel-hero-20260828.webp
 hero_image: true
 image_alt: ChatGPT Sites、Cloudflare、Vercelの3つの公開先と、共通の原本になるGitHubを比較するイメージ
@@ -22,7 +22,7 @@ image_caption: 公開先は目的で選び、GitHubは原本と戻り道とし�
 
 > **AIと相談しながら最短で公開するならChatGPT Sites。静的サイトやAPIを世界中へ効率よく配信するならCloudflare。GitHubと連携してWebアプリを継続開発するならVercelが選びやすいです。**
 
-そして、どれを選んでもGitHubは残せます。GitHubは公開先ではなく、サイトのコード、変更履歴、引継ぎに使う「原本」です。
+サイト公開の極意は、公開先を一つに決め打ちすることではありません。目的に合う公開先を選び、GitHubを「原本」と「戻り道」として残すことです。
 
 ## 結論：早さはSites、配信基盤はCloudflare、Webアプリ運用はVercelが選びやすい
 

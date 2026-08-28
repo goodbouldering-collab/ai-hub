@@ -80,6 +80,11 @@ class SeoLlmoDiagnosisPageTests(unittest.TestCase):
         self.assertIn(".audit-context-details", styles)
         self.assertNotIn("grid-template-columns: minmax(0, .92fr) minmax(430px, .78fr)", styles)
 
+    def test_mobile_menu_uses_only_the_shared_header_handler(self):
+        app = APP_PATH.read_text(encoding="utf-8")
+        self.assertNotIn("const mobileToggle =", app)
+        self.assertNotIn("aria-controls=\"generated-mobile-nav\"", app)
+
     def test_results_are_accessible_reusable_and_include_the_owner_only_codex_boundary(self):
         self.assertIn("id='audit-results'", self.html)
         self.assertIn("id='audit-result-title' tabindex='-1'", self.html)

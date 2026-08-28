@@ -217,13 +217,3 @@ codexButton?.addEventListener('click', async () => {
     codexButton.disabled = false;
   }
 });
-
-const mobileToggle = document.querySelector('[aria-controls="generated-mobile-nav"], #mobile-toggle');
-const mobileNav = mobileToggle ? document.getElementById(mobileToggle.getAttribute('aria-controls')) : null;
-mobileToggle?.addEventListener('click', () => {
-  const open = mobileToggle.getAttribute('aria-expanded') !== 'true';
-  mobileToggle.setAttribute('aria-expanded', String(open));
-  mobileToggle.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
-  mobileNav?.setAttribute('aria-hidden', String(!open));
-  mobileNav?.classList.toggle('open', open);
-});

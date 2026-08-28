@@ -105,7 +105,7 @@ test("Command Center keeps a page heading while protected data is loading", asyn
   assert.match(css, /\.cc-visually-hidden\s*\{/);
 });
 
-test("shared admin navigation exposes the design reference without adding another desktop menu row", async () => {
+test("shared admin navigation exposes only the two AIclimb generators in one desktop row", async () => {
   const source = await readFile(new URL("site/static/admin/admin-menu.js", root), "utf8");
   const header = {
     className: "site-header",
@@ -135,6 +135,10 @@ test("shared admin navigation exposes the design reference without adding anothe
   assert.ok(desktop);
   assert.ok(mobile);
   assert.equal((header.innerHTML.match(/<nav\b/g) ?? []).length, 1);
-  assert.match(desktop.groups.content, /data-menu-group="utility"[\s\S]*href="\/design-system\/"[^>]*>[\s\S]*デザインシステム/);
-  assert.match(mobile.groups.content, /href="\/design-system\/"[^>]*>[\s\S]*デザインシステム/);
+  for (const href of ["/admin/apps/blog", "/admin/apps/reel/"]) {
+    const expected = new RegExp(`href="${href.replaceAll("/", "\\/")}"`);
+    assert.match(desktop.groups.content, expected);
+    assert.match(mobile.groups.content, expected);
+  }
+  assert.doesNotMatch(desktop.groups.content, /SNS|相場|デザインシステム|実行指令室/);
 });

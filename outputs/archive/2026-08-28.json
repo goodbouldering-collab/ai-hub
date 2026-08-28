@@ -25,7 +25,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://www.itmedia.co.jp/news/article/ogp/2608/28/2000000897/10004218/2048",
-      "published": "2026-08-28T05:20:45+00:00"
+      "published": "2026-08-28T05:20:45+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "7baed94da1f8e3ee",
@@ -51,7 +53,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://www.itmedia.co.jp/news/article/ogp/2608/28/2000000893/10004203/2048",
-      "published": "2026-08-28T04:25:21+00:00"
+      "published": "2026-08-28T04:25:21+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "199bf815aa630fb0",
@@ -77,7 +81,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/DCD_0617_Fable5.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-08-28T03:14:06+00:00"
+      "published": "2026-08-28T03:14:06+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "095bb0347f07d11a",
@@ -103,7 +109,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/Expert-Intelligence-Hero.png?quality=90&amp;strip=all&amp;crop=0%2C3.4613147178592%2C100%2C93.077370564282&amp;w=1200",
-      "published": "2026-08-27T19:30:00+00:00"
+      "published": "2026-08-27T19:30:00+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "274eadd95d4a483b",
@@ -129,7 +137,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://cdn.arstechnica.net/wp-content/uploads/2026/08/mhsdemo-1152x648.png",
-      "published": "2026-08-27T22:15:43+00:00"
+      "published": "2026-08-27T22:15:43+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "4e89c1d1cd0165ea",
@@ -155,7 +165,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://cdn.arstechnica.net/wp-content/uploads/2026/08/GettyImages-2280412936-1024x648.jpg",
-      "published": "2026-08-27T20:52:31+00:00"
+      "published": "2026-08-27T20:52:31+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "08932e904c1ecc01",
@@ -181,7 +193,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "",
-      "published": "2026-08-27T22:50:25+00:00"
+      "published": "2026-08-27T22:50:25+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "a290168ae8159070",
@@ -207,7 +221,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "",
-      "published": "2026-08-28T00:29:23+00:00"
+      "published": "2026-08-28T00:29:23+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "e33c1b03a3467ffc",
@@ -233,7 +249,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "",
-      "published": "2026-08-27T23:17:01+00:00"
+      "published": "2026-08-27T23:17:01+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "c94a0575728a06a6",
@@ -259,7 +277,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://about.fb.com/wp-content/uploads/2026/08/TOM_LIQUID-COOLING_Header.jpg?w=1200",
-      "published": "2026-08-27T21:44:08+00:00"
+      "published": "2026-08-27T21:44:08+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

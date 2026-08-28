@@ -133,7 +133,7 @@ def render_ai_agent_readiness_page(
             "<!doctype html><html lang='ja'><head><meta charset='utf-8'>",
             favicon_html,
             "<meta name='viewport' content='width=device-width,initial-scale=1'>",
-            "<meta name='theme-color' content='#172033'>",
+            "<meta name='theme-color' content='#f7f9fc'>",
             f"<title>{html.escape(SITE_BROWSER_TITLE)}</title>",
             f"<meta name='description' content='{html.escape(description, quote=True)}'>",
             f"<link rel='canonical' href='{html.escape(canonical_url, quote=True)}'>",
@@ -154,44 +154,16 @@ def render_ai_agent_readiness_page(
             "<a class='skip-link' href='#assessment-app'>診断へ移動</a>",
             nav_html,
             "<main>",
-            "<section class='readiness-hero' aria-labelledby='readiness-title'>",
-            "<div class='readiness-shell readiness-hero__grid'>",
-            "<div class='readiness-hero__copy'>",
-            "<p class='eyebrow'>FREE SELF-ASSESSMENT · たった10問・約3分</p>",
-            "<h1 id='readiness-title'><span>AI Agent Readiness Compass</span>AI実践力診断</h1>",
-            "<p class='readiness-hero__lead'>あなたはAIに聞く人か、任せて確かめる人か。</p>",
-            "<p>たった10問・約3分で、いまの実力と次に整えることを100点・5段階で可視化。"
-            "答えるたびに、任せる・確かめる・残すための基準がわかります。</p>",
-            "<div class='readiness-hero__facts' aria-label='診断の特徴'>",
-            "<span><b>10問</b> 実際の行動で回答</span>",
-            "<span><b>100点</b> 5領域を見える化</span>",
-            "<span><b>5段階</b> 次に整えることへ接続</span>",
-            "</div>",
-            "<a class='button button--primary' href='#assessment-app'>いまのAI実践力を測る</a>",
-            "<p class='privacy-note'>回答はこのブラウザ内だけで計算し、サーバーへ送信しません。個人情報の入力も不要です。</p>",
-            "</div>",
-            "<aside class='readiness-hero__compass' aria-label='5段階の到達イメージ'>",
-            "<p class='eyebrow'>YOUR NEXT POSITION</p>",
-            "<ol><li><b>01</b><span>Explorer<small>AIの入口を見つける</small></span></li>"
-            "<li><b>02</b><span>Guided AI User<small>対話で仕事を整える</small></span></li>"
-            "<li><b>03</b><span>Workflow Builder<small>仕事の型にする</small></span></li>"
-            "<li><b>04</b><span>Agent Operator<small>任せて検証する</small></span></li>"
-            "<li><b>05</b><span>Agent Orchestrator<small>複数AIと仕組みを率いる</small></span></li></ol>",
-            "</aside></div></section>",
-            "<section class='readiness-section readiness-section--assessment'>",
+            "<section class='diagnosis-start readiness-section--assessment' aria-labelledby='assessment-heading'>",
             "<div class='readiness-shell'>",
+            "<header class='diagnosis-start__heading'>",
+            "<p class='eyebrow'>10問・約3分</p>",
+            "<h1 id='assessment-heading'>あなたのAI実力診断</h1>",
+            "<p>考え込まず、直近90日にいちばん近い答えを選んでください。</p>",
+            "<p class='privacy-note'>回答はこのブラウザ内だけで計算し、サーバーへ送信しません。個人情報の入力も不要です。</p>",
+            "</header>",
             "<div id='assessment-app' class='assessment-card' aria-labelledby='assessment-heading'>",
-            "<div id='assessment-intro' class='assessment-intro'>",
-            "<p class='eyebrow'>START FROM EVIDENCE</p>",
-            "<h2 id='assessment-heading'>知識ではなく、直近90日の行動で答えてください</h2>",
-            "<p>10問は、答える前に「仕事でAIを使い続ける基準」を短く学べる構成です。"
-            "「知っている」より「試した・確認した・残した」を重く採点します。</p>",
-            "<ul class='assessment-rules'><li>迷ったら、低い方の選択肢を選ぶ</li>"
-            "<li>仕事・地域活動・学習の、どの場面を思い浮かべてもよい</li>"
-            "<li>高得点でも検証や安全管理が弱い場合は、到達レベルを調整する</li></ul>",
-            "<button id='start-assessment' class='button button--primary' type='button'>10問・約3分の診断を始める</button>",
-            "</div>",
-            "<form id='assessment-form' class='assessment-form' hidden>",
+            "<form id='assessment-form' class='assessment-form'>",
             "<div class='assessment-progress'>",
             "<span id='progress-label'>質問 1 / 10</span>",
             "<progress id='assessment-progress' max='10' value='0'>0 / 10</progress>",
@@ -200,8 +172,6 @@ def render_ai_agent_readiness_page(
             "<fieldset id='question-fieldset'>",
             "<legend><span id='question-number'>Question 01</span><strong id='question-prompt'>質問を読み込んでいます</strong></legend>",
             "<p id='question-context' class='question-context'></p>",
-            "<aside id='question-learning' class='question-learning' aria-label='この問いで身につく基準'>"
-            "<span>この問いで身につく基準</span><p id='question-learning-text'></p></aside>",
             "<div id='answer-options' class='answer-options'></div>",
             "</fieldset>",
             "<div class='assessment-navigation'>",
@@ -267,6 +237,29 @@ def render_ai_agent_readiness_page(
             "<noscript><p class='noscript-notice'>この診断にはJavaScriptが必要です。"
             "JavaScriptを有効にするか、AI相談の無料相談で現在地を一緒に整理してください。</p></noscript>",
             "</div></div></section>",
+            "<div id='readiness-explanations' class='post-diagnosis-content' hidden>",
+            "<section class='readiness-hero' aria-labelledby='readiness-overview-title'>",
+            "<div class='readiness-shell readiness-hero__grid'>",
+            "<div class='readiness-hero__copy'>",
+            "<p class='eyebrow'>診断結果の見方</p>",
+            "<h2 id='readiness-overview-title'><span>AI Agent Readiness Compass</span>AI実践力診断</h2>",
+            "<p class='readiness-hero__lead'>あなたはAIに聞く人か、任せて確かめる人か。</p>",
+            "<p>たった10問・約3分で、いまの実力と次に整えることを100点・5段階で可視化。"
+            "任せる・確かめる・残すための基準として使えます。</p>",
+            "<div class='readiness-hero__facts' aria-label='診断の特徴'>",
+            "<span><b>10問</b> 実際の行動で回答</span>",
+            "<span><b>100点</b> 5領域を見える化</span>",
+            "<span><b>5段階</b> 次に整えることへ接続</span>",
+            "</div>",
+            "</div>",
+            "<aside class='readiness-hero__compass' aria-label='5段階の到達イメージ'>",
+            "<p class='eyebrow'>YOUR NEXT POSITION</p>",
+            "<ol><li><b>01</b><span>Explorer<small>AIの入口を見つける</small></span></li>"
+            "<li><b>02</b><span>Guided AI User<small>対話で仕事を整える</small></span></li>"
+            "<li><b>03</b><span>Workflow Builder<small>仕事の型にする</small></span></li>"
+            "<li><b>04</b><span>Agent Operator<small>任せて検証する</small></span></li>"
+            "<li><b>05</b><span>Agent Orchestrator<small>複数AIと仕組みを率いる</small></span></li></ol>",
+            "</aside></div></section>",
             "<section class='readiness-section readiness-section--mindset' aria-labelledby='mindset-title'>",
             "<div class='readiness-shell split-layout'><div>",
             "<p class='eyebrow'>MORE TIME, BETTER WORK</p><h2 id='mindset-title'>AIは、人を減らすためでなく、人が考える時間を増やすために使う</h2>",
@@ -314,6 +307,7 @@ def render_ai_agent_readiness_page(
             "<h2>点数より、次に何を一緒に作るか。</h2>"
             "<p>診断結果の相談メモを持って、止まっている仕事、重い事務、苦手な告知を整理できます。</p>"
             "<a class='button button--light' href='/#packages'>AI相談の講習・相談を見る</a></div></section>",
+            "</div>",
             "</main>",
             "<footer class='readiness-footer'><div class='readiness-shell'><a href='/'>AI相談トップへ戻る</a>"
             "<p>© AI相談 · AI Agent Readiness Compass</p></div></footer>",

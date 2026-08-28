@@ -3,6 +3,7 @@ const form = document.getElementById('seo-audit-form');
 const status = document.getElementById('audit-form-status');
 const submit = document.getElementById('run-audit');
 const results = document.getElementById('audit-results');
+const explanations = document.getElementById('audit-explanations');
 const codexButton = document.getElementById('run-codex-diagnosis');
 const codexStatus = document.getElementById('codex-diagnosis-status');
 const codexResult = document.getElementById('codex-diagnosis-result');
@@ -73,6 +74,7 @@ function renderReport(report) {
     : '<p class="audit-all-clear">主要な準備項目を確認できました。Search Console、実際の問い合わせ、競合との差を次に確認してください。</p>';
   document.getElementById('audit-check-list').innerHTML = `<ul>${report.checks.map(checkMarkup).join('')}</ul>`;
   results.hidden = false;
+  if (explanations) explanations.hidden = false;
   codexResult.hidden = true;
   codexResult.innerHTML = '';
   codexStatus.textContent = '';
@@ -110,6 +112,8 @@ form?.addEventListener('submit', async (event) => {
       isLocalBusiness: data.get('isLocalBusiness') === 'true',
     },
   };
+  results.hidden = true;
+  if (explanations) explanations.hidden = true;
   setBusy(true);
   status.classList.remove('is-error');
   status.textContent = '公開HTML、robots.txt、sitemap.xmlを確認しています。';

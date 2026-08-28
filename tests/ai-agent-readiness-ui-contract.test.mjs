@@ -18,11 +18,17 @@ test('assessment UI uses the tested scoring source and all core result actions',
   assert.match(app, /assessment-progress/);
 });
 
-test('each question shows its practical learning criterion before the answer choices', () => {
-  assert.match(renderer, /id='question-learning'/);
-  assert.match(renderer, /この問いで身につく基準/);
-  assert.match(app, /learningPoint/);
-  assert.match(css, /question-learning/);
+test('question one is visible immediately and explanations wait until after the result', () => {
+  assert.doesNotMatch(renderer, /id='assessment-intro'/);
+  assert.doesNotMatch(renderer, /id='start-assessment'/);
+  assert.doesNotMatch(renderer, /id='question-learning'/);
+  assert.match(renderer, /id='assessment-form' class='assessment-form'/);
+  assert.match(renderer, /id='readiness-explanations' class='post-diagnosis-content' hidden/);
+  assert.match(app, /renderQuestion\(\{ focus: false \}\);/);
+  assert.match(app, /postDiagnosis\.hidden = false/);
+  assert.doesNotMatch(app, /elements\.start\?\.addEventListener/);
+  assert.match(css, /\.diagnosis-start/);
+  assert.match(css, /color-scheme:\s*light/);
 });
 
 test('answers remain in memory and are not transmitted or persisted silently', () => {

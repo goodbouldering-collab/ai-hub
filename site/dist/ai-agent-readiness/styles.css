@@ -1,4 +1,5 @@
 :root {
+  color-scheme: light;
   --readiness-ink: #122033;
   --readiness-muted: #536172;
   --readiness-paper: #ffffff;
@@ -25,7 +26,7 @@ html {
   min-width: 320px;
   overflow-x: hidden;
   color: var(--readiness-ink);
-  background: var(--readiness-soft);
+  background: #f7f9fc;
   font-family: "Noto Sans JP", "Inter", system-ui, sans-serif;
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
@@ -186,28 +187,50 @@ html {
   outline-offset: 3px;
 }
 
-.readiness-hero {
-  position: relative;
-  isolation: isolate;
-  padding: 156px 0 94px;
-  overflow: hidden;
-  color: #fff;
-  background:
-    radial-gradient(circle at 84% 24%, rgba(50, 205, 186, 0.25), transparent 28%),
-    linear-gradient(128deg, #0b1728 0%, #12394a 55%, #075e67 100%);
+.diagnosis-start {
+  min-height: 100svh;
+  padding: 104px 0 38px;
+  background: #f7f9fc;
 }
 
-.readiness-hero::after {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  opacity: 0.15;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.16) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.16) 1px, transparent 1px);
-  background-size: 72px 72px;
-  mask-image: linear-gradient(90deg, transparent, #000);
+.diagnosis-start__heading {
+  max-width: 780px;
+  margin: 0 auto 14px;
+}
+
+.diagnosis-start__heading .eyebrow {
+  margin-bottom: 5px;
+}
+
+.diagnosis-start__heading h1 {
+  margin-bottom: 5px;
+  color: var(--readiness-ink);
+  font-size: clamp(1.55rem, 3vw, 2.25rem);
+  font-weight: 900;
+}
+
+.diagnosis-start__heading > p:not(.eyebrow, .privacy-note) {
+  margin-bottom: 3px;
+  color: var(--readiness-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.diagnosis-start .privacy-note {
+  margin-top: 4px;
+  color: #617083;
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
+.readiness-hero {
+  position: relative;
+  padding: 76px 0;
+  overflow: hidden;
+  color: var(--readiness-ink);
+  background:
+    radial-gradient(circle at 84% 24%, rgba(14, 136, 164, 0.12), transparent 30%),
+    linear-gradient(135deg, #edf6ff 0%, #ffffff 52%, #eef9f6 100%);
 }
 
 .readiness-hero__grid {
@@ -218,19 +241,19 @@ html {
 }
 
 .readiness-hero .eyebrow {
-  color: #8ee5d2;
+  color: var(--readiness-teal-dark);
 }
 
-.readiness-hero h1 {
+.readiness-hero h2 {
   margin-bottom: 22px;
-  font-size: clamp(2.45rem, 5.3vw, 5rem);
+  font-size: clamp(2rem, 4.5vw, 4rem);
   font-weight: 900;
 }
 
-.readiness-hero h1 span {
+.readiness-hero h2 span {
   display: block;
   margin-bottom: 10px;
-  color: #8ee5d2;
+  color: var(--readiness-teal);
   font-family: "Inter", sans-serif;
   font-size: 0.34em;
   letter-spacing: 0.06em;
@@ -239,12 +262,12 @@ html {
 
 .readiness-hero__copy > p:not(.eyebrow, .privacy-note) {
   max-width: 720px;
-  color: #dcebea;
+  color: var(--readiness-muted);
 }
 
 .readiness-hero__lead {
   margin-bottom: 12px;
-  color: #fff !important;
+  color: var(--readiness-ink) !important;
   font-size: clamp(1.18rem, 2.3vw, 1.55rem);
   font-weight: 800;
 }
@@ -258,31 +281,30 @@ html {
 
 .readiness-hero__facts span {
   padding: 8px 12px;
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  border: 1px solid #cddbd9;
   border-radius: 999px;
-  color: #dcebea;
-  background: rgba(255, 255, 255, 0.08);
+  color: var(--readiness-muted);
+  background: rgba(255, 255, 255, 0.9);
   font-size: 0.82rem;
 }
 
 .readiness-hero__facts b {
-  color: #fff;
+  color: var(--readiness-ink);
 }
 
 .privacy-note {
   max-width: 590px;
   margin: 16px 0 0;
-  color: #bcd3d1;
+  color: var(--readiness-muted);
   font-size: 0.78rem;
 }
 
 .readiness-hero__compass {
   padding: clamp(24px, 4vw, 38px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid #d8e4e3;
   border-radius: var(--readiness-radius);
-  background: rgba(7, 20, 38, 0.55);
-  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.24);
-  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 24px 60px rgba(18, 32, 51, 0.11);
 }
 
 .readiness-hero__compass ol {
@@ -299,7 +321,7 @@ html {
   gap: 14px;
   align-items: center;
   padding: 12px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid #e1e9e8;
 }
 
 .readiness-hero__compass li:last-child {
@@ -307,7 +329,7 @@ html {
 }
 
 .readiness-hero__compass li b {
-  color: #8ee5d2;
+  color: var(--readiness-teal);
   font-family: "Inter", sans-serif;
   font-size: 0.8rem;
 }
@@ -319,42 +341,34 @@ html {
 .readiness-hero__compass small {
   display: block;
   margin-top: 1px;
-  color: #bcd3d1;
+  color: var(--readiness-muted);
   font-size: 0.75rem;
   font-weight: 500;
 }
 
 .readiness-section--assessment {
   position: relative;
-  background: linear-gradient(180deg, #eef6f4, #f8fbfa);
+  background: #f7f9fc;
 }
 
 .assessment-card {
   max-width: 960px;
   margin-inline: auto;
-  padding: clamp(26px, 5vw, 58px);
+  padding: clamp(18px, 3vw, 28px);
   border: 1px solid var(--readiness-line);
-  border-radius: var(--readiness-radius);
+  border-radius: 18px;
   background: var(--readiness-paper);
-  box-shadow: var(--readiness-shadow);
+  box-shadow: 0 16px 42px rgba(18, 32, 51, 0.09);
 }
 
-.assessment-intro {
-  max-width: 760px;
+.assessment-form {
+  max-width: 780px;
   margin-inline: auto;
 }
 
-.assessment-intro h2,
 .result-panel h2 {
   margin-bottom: 18px;
   font-size: clamp(1.65rem, 3.4vw, 2.5rem);
-}
-
-.assessment-rules {
-  display: grid;
-  gap: 10px;
-  margin: 28px 0 34px;
-  padding-left: 1.35em;
 }
 
 .assessment-form fieldset,
@@ -367,9 +381,9 @@ html {
 .assessment-progress {
   display: grid;
   grid-template-columns: auto minmax(120px, 1fr);
-  gap: 20px;
+  gap: 14px;
   align-items: center;
-  margin-bottom: 38px;
+  margin-bottom: 14px;
   color: var(--readiness-muted);
   font-size: 0.82rem;
   font-weight: 800;
@@ -413,8 +427,8 @@ html {
 #addon-question-fieldset legend {
   display: grid;
   width: 100%;
-  gap: 10px;
-  margin-bottom: 10px;
+  gap: 3px;
+  margin-bottom: 4px;
 }
 
 #question-number,
@@ -430,46 +444,21 @@ html {
 #question-prompt,
 #addon-question-prompt {
   display: block;
-  font-size: clamp(1.25rem, 2.7vw, 1.75rem);
-  line-height: 1.5;
+  font-size: clamp(1.15rem, 2.4vw, 1.55rem);
+  line-height: 1.42;
 }
 
 .question-context {
-  margin-bottom: 14px;
+  margin-bottom: 8px;
   color: var(--readiness-muted);
-}
-
-.question-learning {
-  margin: 0 0 26px;
-  padding: 15px 17px;
-  border: 1px solid #b9dfe0;
-  border-left: 5px solid #e69b24;
-  border-radius: 14px;
-  background: linear-gradient(135deg, #f2fbfa, #fff8e8);
-}
-
-.question-learning span {
-  display: block;
-  margin-bottom: 4px;
-  color: #075e67;
-  font-family: "Inter", sans-serif;
-  font-size: 0.72rem;
-  font-weight: 900;
-  letter-spacing: 0.08em;
-}
-
-.question-learning p {
-  margin: 0;
-  color: #1d3444;
-  font-size: 0.94rem;
-  font-weight: 700;
-  line-height: 1.65;
+  font-size: 0.84rem;
+  line-height: 1.5;
 }
 
 .answer-options {
   display: grid;
-  gap: 10px;
-  padding: 4px;
+  gap: 6px;
+  padding: 2px;
   border: 2px solid transparent;
   border-radius: 18px;
 }
@@ -477,11 +466,11 @@ html {
 .answer-option {
   position: relative;
   display: grid;
-  grid-template-columns: 42px minmax(0, 1fr);
-  gap: 15px;
+  grid-template-columns: 36px minmax(0, 1fr);
+  gap: 11px;
   align-items: center;
-  min-height: 64px;
-  padding: 12px 16px;
+  min-height: 50px;
+  padding: 8px 12px;
   border: 1px solid #cad7d5;
   border-radius: 14px;
   color: var(--readiness-ink);
@@ -517,8 +506,8 @@ html {
 .answer-option__marker {
   display: grid;
   place-items: center;
-  width: 38px;
-  height: 38px;
+  width: 32px;
+  height: 32px;
   border: 1px solid #b5c5c3;
   border-radius: 50%;
   color: var(--readiness-muted);
@@ -535,9 +524,9 @@ html {
 }
 
 .answer-option__copy {
-  font-size: 0.96rem;
+  font-size: 0.9rem;
   font-weight: 650;
-  line-height: 1.6;
+  line-height: 1.45;
 }
 
 .assessment-status.is-visible {
@@ -560,7 +549,7 @@ html {
   display: flex;
   justify-content: space-between;
   gap: 12px;
-  margin-top: 32px;
+  margin-top: 14px;
 }
 
 .assessment-navigation .button {
@@ -1276,23 +1265,29 @@ html {
 
 .readiness-cta {
   padding: 70px 0;
-  color: #fff;
+  color: var(--readiness-ink);
   text-align: center;
-  background: linear-gradient(128deg, #0b1728, #075e67);
+  background: linear-gradient(135deg, #edf6ff, #eef9f6);
 }
 
 .readiness-cta .eyebrow {
-  color: #8ee5d2;
+  color: var(--readiness-teal-dark);
 }
 
 .readiness-cta p:not(.eyebrow) {
   max-width: 700px;
   margin-inline: auto;
-  color: #d7e8e5;
+  color: var(--readiness-muted);
 }
 
 .readiness-cta .button {
   margin-top: 14px;
+}
+
+.readiness-cta .button--light {
+  color: #fff;
+  border-color: var(--readiness-teal);
+  background: var(--readiness-teal);
 }
 
 .readiness-footer {
@@ -1354,17 +1349,26 @@ html {
     padding: 64px 0;
   }
 
-  .readiness-hero {
-    padding: 120px 0 68px;
+  .diagnosis-start {
+    min-height: 100svh;
+    padding: 86px 0 24px;
   }
 
-  .readiness-hero h1 {
-    font-size: clamp(2.15rem, 11vw, 3.25rem);
+  .diagnosis-start__heading {
+    margin-bottom: 10px;
+  }
+
+  .readiness-hero {
+    padding: 58px 0;
+  }
+
+  .readiness-hero h2 {
+    font-size: clamp(2rem, 10vw, 3rem);
   }
 
   .assessment-card {
-    padding: 24px 18px;
-    border-radius: 18px;
+    padding: 16px 14px;
+    border-radius: 15px;
   }
 
   .assessment-progress {
@@ -1373,9 +1377,10 @@ html {
   }
 
   .answer-option {
-    grid-template-columns: 38px minmax(0, 1fr);
-    gap: 11px;
-    padding: 12px;
+    grid-template-columns: 34px minmax(0, 1fr);
+    gap: 9px;
+    min-height: 48px;
+    padding: 7px 9px;
   }
 
   .result-hero,
@@ -1434,17 +1439,13 @@ html {
     width: calc(100% - 24px);
   }
 
-  .readiness-hero {
-    padding-top: 108px;
-  }
-
   .readiness-hero__facts span {
     width: 100%;
     border-radius: 10px;
   }
 
   .assessment-card {
-    padding-inline: 14px;
+    padding-inline: 11px;
   }
 
   .addon-diagnostic {
@@ -1458,7 +1459,7 @@ html {
   }
 
   .answer-option__copy {
-    font-size: 0.9rem;
+    font-size: 0.86rem;
   }
 
   .assessment-navigation {
@@ -1495,7 +1496,6 @@ html {
   .readiness-page header,
   .skip-link,
   .readiness-hero,
-  .assessment-intro,
   .assessment-form,
   .readiness-section--mindset,
   #video-library,

@@ -56,6 +56,30 @@ class SeoLlmoDiagnosisPageTests(unittest.TestCase):
         self.assertNotIn("name='cwd'", self.html)
         self.assertNotIn("name='skillPath'", self.html)
 
+    def test_page_starts_with_the_url_diagnosis_and_defers_explanations_until_result(self):
+        form_marker = "id='seo-audit-form'"
+        result_marker = "id='audit-results' class='audit-results' hidden"
+        explanations_marker = (
+            "id='audit-explanations' class='post-diagnosis-content' hidden"
+        )
+
+        self.assertIn("<h1 id='audit-title'>あなたのサイト診断</h1>", self.html)
+        self.assertIn("<details class='audit-context-details'>", self.html)
+        self.assertIn("精度を上げる情報（任意）", self.html)
+        self.assertLess(self.html.index(form_marker), self.html.index(result_marker))
+        self.assertLess(self.html.index(result_marker), self.html.index(explanations_marker))
+
+        app = APP_PATH.read_text(encoding="utf-8")
+        self.assertIn("const explanations = document.getElementById('audit-explanations');", app)
+        self.assertIn("explanations.hidden = false", app)
+
+    def test_initial_url_form_is_compact_at_desktop_and_mobile_widths(self):
+        styles = STYLES_PATH.read_text(encoding="utf-8")
+        self.assertIn(".audit-start", styles)
+        self.assertIn("max-width: 760px;", styles)
+        self.assertIn(".audit-context-details", styles)
+        self.assertNotIn("grid-template-columns: minmax(0, .92fr) minmax(430px, .78fr)", styles)
+
     def test_results_are_accessible_reusable_and_include_the_owner_only_codex_boundary(self):
         self.assertIn("id='audit-results'", self.html)
         self.assertIn("id='audit-result-title' tabindex='-1'", self.html)

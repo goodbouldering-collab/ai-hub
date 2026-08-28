@@ -8,8 +8,6 @@ import {
 const byId = (id) => document.getElementById(id);
 
 const elements = {
-  intro: byId('assessment-intro'),
-  start: byId('start-assessment'),
   form: byId('assessment-form'),
   progressLabel: byId('progress-label'),
   progress: byId('assessment-progress'),
@@ -18,7 +16,6 @@ const elements = {
   questionNumber: byId('question-number'),
   questionPrompt: byId('question-prompt'),
   questionContext: byId('question-context'),
-  questionLearning: byId('question-learning-text'),
   options: byId('answer-options'),
   previous: byId('previous-question'),
   next: byId('next-question'),
@@ -36,6 +33,7 @@ const elements = {
   print: byId('print-result'),
   restart: byId('restart-assessment'),
   copyStatus: byId('copy-status'),
+  postDiagnosis: byId('readiness-explanations'),
   addon: {
     section: byId('addon-diagnostic'),
     picker: byId('addon-track-picker'),
@@ -147,7 +145,6 @@ function renderQuestion({ focus = true } = {}) {
   elements.questionNumber.textContent = `Question ${String(currentIndex + 1).padStart(2, '0')}`;
   elements.questionPrompt.textContent = question.prompt ?? question.title ?? '';
   elements.questionContext.textContent = question.context ?? question.scenario ?? '';
-  elements.questionLearning.textContent = question.learningPoint ?? 'AIを仕事で続けるために、目的・確認・安全・記録を一つずつ整えます。';
   elements.options.replaceChildren(
     ...(question.options ?? []).map((option, optionIndex) => makeAnswerOption(question, option, optionIndex)),
   );
@@ -156,14 +153,6 @@ function renderQuestion({ focus = true } = {}) {
   elements.next.textContent = currentIndex === QUESTIONS.length - 1 ? '結果を見る' : '次へ';
   updateProgress();
   if (focus) focusQuestion();
-}
-
-function startAssessment() {
-  elements.intro.hidden = true;
-  elements.resultPanel.hidden = true;
-  elements.form.hidden = false;
-  currentIndex = 0;
-  renderQuestion();
 }
 
 function renderScoreList(container, scores, className) {
@@ -514,6 +503,7 @@ function renderResult(result) {
 
   elements.form.hidden = true;
   elements.resultPanel.hidden = false;
+  if (elements.postDiagnosis) elements.postDiagnosis.hidden = false;
   elements.copyStatus.textContent = '';
   elements.resultHeading.tabIndex = -1;
   elements.resultHeading.focus({ preventScroll: false });
@@ -607,6 +597,7 @@ function restartAssessment() {
   currentIndex = 0;
   elements.resultPanel.hidden = true;
   elements.form.hidden = false;
+  if (elements.postDiagnosis) elements.postDiagnosis.hidden = true;
   elements.copyStatus.textContent = '';
   resetAddonPicker();
   renderQuestion();
@@ -633,7 +624,6 @@ function loadVideo(button) {
 }
 
 function bindEvents() {
-  elements.start?.addEventListener('click', startAssessment);
   elements.previous?.addEventListener('click', goPrevious);
   elements.next?.addEventListener('click', goNext);
   elements.form?.addEventListener('submit', (event) => {
@@ -662,4 +652,5 @@ function bindEvents() {
 
 if (QUESTIONS.length > 0 && elements.form && elements.resultPanel) {
   bindEvents();
+  renderQuestion({ focus: false });
 }

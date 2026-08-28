@@ -8,6 +8,8 @@ ROOT = Path(__file__).resolve().parents[1]
 RENDERER_PATH = ROOT / "site" / "ai_agent_readiness.py"
 SITE_BUILDER_PATH = ROOT / "site" / "build_site.py"
 PORTAL_PATH = ROOT / "site" / "build_portal.py"
+STYLES_PATH = ROOT / "site" / "static" / "ai-agent-readiness" / "styles.css"
+APP_PATH = ROOT / "site" / "static" / "ai-agent-readiness" / "app.mjs"
 
 
 def load_module(name: str, path: Path):
@@ -55,11 +57,38 @@ class AiAgentReadinessPageTests(unittest.TestCase):
         self.assertIn("aria-live='polite'", self.html)
         self.assertIn("<progress", self.html)
         self.assertIn("<fieldset", self.html)
-        self.assertIn("id='question-learning'", self.html)
-        self.assertIn("この問いで身につく基準", self.html)
         self.assertIn("type='module' src='/ai-agent-readiness/app.mjs'", self.html)
         self.assertIn("href='/ai-agent-readiness/styles.css'", self.html)
         self.assertIn("<noscript>", self.html)
+
+    def test_page_opens_on_question_one_and_reveals_explanations_after_results(self):
+        form_marker = "id='assessment-form' class='assessment-form'"
+        result_marker = "id='result-panel' class='result-panel' hidden"
+        explanations_marker = (
+            "id='readiness-explanations' class='post-diagnosis-content' hidden"
+        )
+
+        self.assertIn("<h1 id='assessment-heading'>あなたのAI実力診断</h1>", self.html)
+        self.assertIn(form_marker, self.html)
+        self.assertNotIn(f"{form_marker} hidden", self.html)
+        self.assertNotIn("id='assessment-intro'", self.html)
+        self.assertNotIn("id='start-assessment'", self.html)
+        self.assertNotIn("id='question-learning'", self.html)
+        self.assertLess(self.html.index(form_marker), self.html.index(result_marker))
+        self.assertLess(self.html.index(result_marker), self.html.index(explanations_marker))
+
+        app = APP_PATH.read_text(encoding="utf-8")
+        self.assertIn("renderQuestion({ focus: false });", app)
+        self.assertIn("postDiagnosis.hidden = false", app)
+        self.assertNotIn("elements.start?.addEventListener", app)
+
+    def test_first_screen_uses_the_public_light_palette_and_compact_question_card(self):
+        styles = STYLES_PATH.read_text(encoding="utf-8")
+        self.assertIn("color-scheme: light;", styles)
+        self.assertIn(".diagnosis-start", styles)
+        self.assertIn("background: #f7f9fc;", styles)
+        self.assertIn("max-width: 780px;", styles)
+        self.assertNotIn("linear-gradient(128deg, #0b1728", styles)
 
     def test_youtube_is_curated_and_loaded_only_after_a_click(self):
         self.assertIn("2gtWv3iib8M", self.html)

@@ -53,6 +53,20 @@ class SitesCloudflareVercelBlogTest(unittest.TestCase):
             with self.subTest(term=term):
                 self.assertIn(term, searchable)
 
+    def test_cloudflare_billing_layers_are_explained_separately(self) -> None:
+        _, body = builder._parse_frontmatter(ARTICLE.read_text(encoding="utf-8"))
+
+        for term in ("Cloudflare Pro", "Workers Paid", "ドメインごと", "アカウント単位", "別契約"):
+            with self.subTest(term=term):
+                self.assertIn(term, body)
+
+    def test_pages_is_not_confused_with_deprecated_workers_sites(self) -> None:
+        _, body = builder._parse_frontmatter(ARTICLE.read_text(encoding="utf-8"))
+
+        for term in ("Cloudflare Pages", "Workers Sites", "旧製品", "非推奨"):
+            with self.subTest(term=term):
+                self.assertIn(term, body)
+
     def test_updated_article_sorts_ahead_of_previous_day(self) -> None:
         meta, _ = builder._parse_frontmatter(ARTICLE.read_text(encoding="utf-8"))
         modified = date.fromisoformat(str(meta["date_modified"]))

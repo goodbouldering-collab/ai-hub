@@ -25,7 +25,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://image.itmedia.co.jp/mn/articles/2608/29/cover_news012.jpg",
-      "published": "2026-08-28T22:00:00+00:00"
+      "published": "2026-08-28T22:00:00+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "ec282243dc673274",
@@ -51,7 +53,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://www.itmedia.co.jp/aiplus/article/ogp/2608/28/2000000919/10004309/2048",
-      "published": "2026-08-28T08:53:41+00:00"
+      "published": "2026-08-28T08:53:41+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "47e074f604016584",
@@ -77,7 +81,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/STKS528_DATA_CENTERS2_C.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-08-28T16:28:40+00:00"
+      "published": "2026-08-28T16:28:40+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "e63274f868750775",
@@ -103,7 +109,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://cdn.arstechnica.net/wp-content/uploads/2026/03/claude-app-1152x648.jpg",
-      "published": "2026-08-28T18:07:55+00:00"
+      "published": "2026-08-28T18:07:55+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "3af77c26bdf73db8",
@@ -129,7 +137,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://cdn.arstechnica.net/wp-content/uploads/2026/08/GettyImages-2235448062-1024x648.jpg",
-      "published": "2026-08-28T15:42:24+00:00"
+      "published": "2026-08-28T15:42:24+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "400d7aaefffca458",
@@ -155,7 +165,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "",
-      "published": "2026-08-28T22:12:02+00:00"
+      "published": "2026-08-28T22:12:02+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "86f8b550171b45ba",
@@ -181,7 +193,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://images.ctfassets.net/kftzwdyauwt9/6RFKP8tysuxOLxVaiCRlu/ac31b03c2aeb6e3da620f2db89c7b6e9/index-our-decision-on-cursor-following-its-acquisition-by-spacex.png?w=1600&amp;h=900&amp;fit=fill",
-      "published": "2026-08-28T06:00:00+00:00"
+      "published": "2026-08-28T06:00:00+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "f69e68b009bb4d56",
@@ -207,7 +221,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://about.fb.com/wp-content/uploads/2025/05/Investment-and-Instant-Payment-Scams_Header.jpg?w=1200",
-      "published": "2026-08-28T09:00:19+00:00"
+      "published": "2026-08-28T09:00:19+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "3f997dc823f5d7d9",
@@ -233,7 +249,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Image_20260827_124027_678.max-1440x810.png",
-      "published": "2026-08-28T13:05:00+00:00"
+      "published": "2026-08-28T13:05:00+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "0b69c0aee3f3baec",
@@ -259,7 +277,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://storage.ghost.io/c/6d/21/6d217297-aa70-41fe-b68d-e29e411dd3ed/content/images/2026/08/build-week.png",
-      "published": "2026-08-28T12:43:05+00:00"
+      "published": "2026-08-28T12:43:05+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

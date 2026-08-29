@@ -457,13 +457,13 @@ portfolio:
   slug: japan-plogging-championship
   url: https://japan-plogging-championship.vercel.app
   status: live
-  category: イベントサイト
+  category: 地域・イベント
   tech:
   - Next.js
   - Vercel
-  - Supabase
-  - Stripe
-  summary: 大会情報、参加資格、協賛、参加申込から多人数QR受付までを安全につなぐプロギング大会サイト
+  - HyperFrames
+  - PowerPoint
+  summary: 企業協賛と社員参加を、競技・環境活動・地域共創の資料と動画から検討できる大会サイト
   since: 2026-08
-  source: site-published-hook
   thumbnail: /img/portfolio/japan-plogging-championship.jpg
+  source: site-published-hook

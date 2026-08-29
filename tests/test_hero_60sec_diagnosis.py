@@ -56,10 +56,11 @@ class Hero60SecondDiagnosisTests(unittest.TestCase):
         self.assertIn("<small><strong>始めるなら今。</strong></small>", self.hero_html)
         self.assertNotIn("まだまだこれから！", self.hero_html)
         self.assertIn(
-            "<span class='hero-advantage-equation'><strong>AI</strong><span>×</span><strong>経験 が役立つ</strong></span>",
+            "<span class='hero-advantage-equation'><strong>AI</strong><span>×</span><strong>経験 = 影響力</strong></span>",
             self.hero_html,
         )
-        self.assertIn("もう高い更新利用料はいらない", self.hero_html)
+        self.assertIn("経験者から学ぶことが大切", self.hero_html)
+        self.assertIn("<li>初心者OK</li>", self.hero_html)
         self.assertIn("講習・導入支援・制作代行", self.hero_html)
         self.assertNotIn("もう高いパッケージは負け組", self.hero_html)
         self.assertNotIn("「こんなことできたら」がすぐ叶う", self.hero_html)

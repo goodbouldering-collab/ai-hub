@@ -15847,7 +15847,7 @@ def _render_hero_focused() -> str:
         "<h1 class='focus-title'><span class='focus-title-first'>使えるAI、教えます。</span><br><span class='focus-title-line'><strong>講習・導入支援・制作代行</strong></span></h1>"
         "<aside class='hero-advantage' id='advantage' aria-labelledby='hero-advantage-title'>"
         "<div class='hero-advantage-number' role='img' aria-label='AI利用率 6パーセント'><span>AI利用率</span><strong>6%</strong></div>"
-        "<div class='hero-advantage-copy'><small><strong>始めるなら今。</strong></small><p id='hero-advantage-title'><span class='hero-advantage-equation'><strong>AI</strong><span>×</span><strong>経験 が役立つ</strong></span><span class='hero-advantage-outcome'>もう高い更新利用料はいらない</span></p></div>"
+        "<div class='hero-advantage-copy'><small><strong>始めるなら今。</strong></small><p id='hero-advantage-title'><span class='hero-advantage-equation'><strong>AI</strong><span>×</span><strong>経験 = 影響力</strong></span><span class='hero-advantage-outcome'>経験者から学ぶことが大切</span></p></div>"
         "<ul class='hero-advantage-pillars' aria-label='AI活用を成果に変える3原則'><li><b>01</b>試しに作る</li><li><b>02</b>素早く修正</li><li><b>03</b>仕組み化する</li></ul>"
         "</aside>"
         "<p class='focus-lead'>告知・事務・集客に追われる方へ。AI相談・業務改善・伴走支援で、AIが分からない不安を今日から使える一歩に変えます。AI対応サイトの代行制作も可能。</p>"
@@ -15857,7 +15857,7 @@ def _render_hero_focused() -> str:
         "<small>相談後に、講習・実装・伴走のどれから始めるかを決められます。</small></div>"
         f"<a class='focus-btn secondary' href='{AI_AGENT_COURSE_URL}' target='_blank' rel='noopener'>AIエージェント講習を見る</a>"
         "<a class='hero-text-link' href='/lectures/index.html'>受講資料 <span aria-hidden='true'>→</span></a></div>"
-        "<ul class='focus-trust'><li>AI初心者OK</li><li>対面・オンライン可</li><li>仕事を持ち込める</li></ul></div>"
+        "<ul class='focus-trust'><li>初心者OK</li><li>対面・オンライン可</li><li>仕事を持ち込める</li></ul></div>"
         "</div>"
         "</section>"
     )

@@ -18,7 +18,7 @@
     },
     "ai-hub": {
       "name": "AIclimb（AI相談）彦根 AIエージェント導入",
-      "url": "https://aiclimb.vercel.app",
+      "url": "https://aiclimb.aiclimb.workers.dev",
       "path": "/img/portfolio/ai-hub.jpg",
       "captured_at": "2026-08-29T15:44:36.030117+00:00",
       "sha256": "609a429a43cd515d1d537d6f551b3144ee693019a379d98e0888ee42320ec50c",

@@ -102,7 +102,7 @@ businesses:
 - id: ai-hub
   name: AIclimb（AI相談）
   tagline: AIで仕事を軽くする実践相談・伴走支援
-  url: https://aiclimb.vercel.app
+  url: https://aiclimb.aiclimb.workers.dev
   icon: 🤖
   color: cyan
   status: live

@@ -57,11 +57,11 @@ class CodingLectureVisualsTest(unittest.TestCase):
     def test_course_cover_is_shared_by_card_hero_and_social_metadata(self) -> None:
         self.assertIn('src="./img/course-path-coding.webp"', self.material_html)
         self.assertIn(
-            '<meta property="og:image" content="https://aiclimb.vercel.app/img/course-path-coding.webp">',
+            '<meta property="og:image" content="https://aiclimb.aiclimb.workers.dev/img/course-path-coding.webp">',
             self.material_html,
         )
         self.assertIn(
-            '<meta name="twitter:image" content="https://aiclimb.vercel.app/img/course-path-coding.webp">',
+            '<meta name="twitter:image" content="https://aiclimb.aiclimb.workers.dev/img/course-path-coding.webp">',
             self.material_html,
         )
         self.assertNotIn("./img/hero-ai-hub-studio.png", self.material_html)
@@ -146,7 +146,7 @@ class CodingLectureVisualsTest(unittest.TestCase):
         self.assertEqual(payload["timeRequired"], "PT120M")
         self.assertEqual(
             payload["image"]["contentUrl"],
-            "https://aiclimb.vercel.app/img/course-path-coding.webp",
+            "https://aiclimb.aiclimb.workers.dev/img/course-path-coding.webp",
         )
 
 

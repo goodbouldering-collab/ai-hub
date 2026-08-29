@@ -17,7 +17,10 @@ from pathlib import Path
 
 import yaml
 
-SITE_URL = os.environ.get("AIHUB_SITE_URL", os.environ.get("AIWATCH_SITE_URL", "https://aiclimb.vercel.app")).rstrip("/")
+SITE_URL = os.environ.get(
+    "AIHUB_SITE_URL",
+    os.environ.get("AIWATCH_SITE_URL", "https://aiclimb.aiclimb.workers.dev"),
+).rstrip("/")
 SITE_BRAND = "AIclimb"
 SITE_SEARCH_NAME = "AI相談"
 AI_APP_SITE_ROUTES = (
@@ -2942,7 +2945,7 @@ ARTICLE_VIDEO_FULLSCREEN_JS = """<script>
 
 
 def _redirect_html(a, t):
-    d = "https://aiclimb.vercel.app/#" + a
+    d = SITE_URL + "/#" + a
     return ("<!doctype html><html lang='ja'><head><meta charset='utf-8'>"
         "<title>" + t + " | AIclimb（AI相談）</title>"
         "<link rel='canonical' href='" + d + "'>"
@@ -5568,10 +5571,21 @@ def _reset_dist() -> None:
     DIST.mkdir(parents=True, exist_ok=True)
 
 
+def write_cloudflare_assets_ignore() -> None:
+    """Keep oversized media out of Workers Static Assets after every rebuild."""
+    (DIST / ".assetsignore").write_text(
+        "# Workers Static Assets are limited to 25 MiB per file.\n"
+        "# The edge Worker redirects this path to the existing Vercel origin.\n"
+        "media/ai-consult-hikone-20260629/ai-consult-hikone-course.webm\n",
+        encoding="utf-8",
+    )
+
+
 def main() -> int:
     _reset_dist()
 
     copy_static()
+    write_cloudflare_assets_ignore()
 
     genres = load_genres()
 

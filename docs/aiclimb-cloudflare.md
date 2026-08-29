@@ -1,4 +1,4 @@
-# AIClimb Cloudflare並行配信
+# AIClimb Cloudflare公開配信
 
 ## 目的
 
@@ -14,7 +14,7 @@
 | `/watch`、`/seo-llmo-diagnosis` | Vercelへ直接移動 | 既存の動的APIと同一originで動作させる |
 | 25MiBを超える講習動画 | Vercelへ直接移動 | Workers Static Assetsの1ファイル上限を超えるため |
 
-Cloudflareの確認URLは `https://aiclimb.aiclimb.workers.dev`。SEO canonical、OG URL、決済の戻り先は、独自ドメインを取得するまで `https://aiclimb.vercel.app` を正本とする。
+公開正本は `https://aiclimb.aiclimb.workers.dev`。SEO canonical、OG URL、sitemapもこのURLへ統一する。管理画面、API、決済処理は安全性を優先し、`https://aiclimb.vercel.app` へ直接移動して実行する。
 
 ## 安全性
 
@@ -40,4 +40,4 @@ npx.cmd wrangler deploy --dry-run
 
 ## ロールバック
 
-正規URLはVercelのままなので、Cloudflare側で問題が起きても利用者向け本番は影響を受けない。Cloudflare確認URLを止める必要がある場合は、直前の正常なWorker Versionへロールバックする。Worker削除は最終手段とし、先にVercel本番の正常性を確認する。
+Cloudflare側で問題が起きた場合は、直前の正常なWorker Versionへロールバックする。緊急時は公開案内をVercel本番へ戻せるが、Worker削除は最終手段とし、先にVercel本番の正常性を確認する。

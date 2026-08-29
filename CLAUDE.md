@@ -7,8 +7,8 @@
 
 - プロジェクト名: **AIハブ / AI Hub**（旧称: AI-watch、AI情報収集、cclimb-intel、ai-info）
 - GitHub: `goodbouldering-collab/ai-hub`
-- **本番ホスティング**: **Vercel**（2026-04-29 集約済）
-- **本番URL**: https://aiclimb.vercel.app
+- **本番ホスティング**: 公開静的サイトは **Cloudflare Workers**、管理画面・APIは **Vercel**
+- **本番URL**: https://aiclimb.aiclimb.workers.dev
 - Vercel Project ID: `prj_e7vh73eF0KZpm8C49esnILvHO98o`
 - GitHub Pages: `https://goodbouldering-collab.github.io/ai-hub/`（参考・残置）
 - Supabase: 既存の共有プロジェクト `zrawhzwtppmlxyhngnju` の `ai_watch.*` スキーマ（旧 `public.ai_watch_*` から移管。テーブル名は履歴互換のため維持。なお `zrawhzwtppmlxyhngnju.ai_watch` は Vercel 移行後ほぼ未使用、次回掃除候補）
@@ -38,12 +38,14 @@
 | `content/lectures/*.md` | 講習資料の編集ソース。ビルドで `lectures/<slug>.html` になる |
 | `content/assets/` | 画像・PDF。`./assets/xxx` で参照 |
 
-## デプロイ構成（**Vercel 集約・2026-04-29 移行済**）
+## デプロイ構成（**Cloudflare公開 + Vercel動的処理**）
 
 - **GitHub Actions `daily.yml`**: JST 07:00 に `run.py` を実行し、`outputs/` と `data/history.db` を main に commit back
 - **GitHub Actions `pages.yml`**: `main` への push で `site/build_site.py` を叩いて GitHub Pages に配布（参考・残置）
-- **Vercel**（**本番**）: `main` push で自動デプロイ、`site/dist/` を静的配信、PR ごとに Preview URL 自動発行
-  - 本番 URL: https://aiclimb.vercel.app
+- **Cloudflare Workers**（**公開正本**）: `site/dist/` をStatic Assetsとして配信
+  - 本番 URL: https://aiclimb.aiclimb.workers.dev
+- **Vercel**（**管理画面・API・決済の実行元**）: `main` push で自動デプロイ、PR ごとに Preview URL 自動発行
+  - 動的処理 URL: https://aiclimb.vercel.app
   - Project ID: `prj_e7vh73eF0KZpm8C49esnILvHO98o`
 - **Supabase**: `ai_watch_articles` テーブルに差分保存（`SUPABASE_URL` / `SUPABASE_SERVICE_ROLE_KEY` が env にあれば書き込む）
 
@@ -53,7 +55,8 @@
 |---|---|---|
 | ~~Render Static Site (`ai-hub`)~~ | 撤収済 | Vercel 集約に伴い廃止 |
 | ~~Cloudflare Worker `ai-hub`~~ | 撤収済（2026-05-05） | `wrangler delete --name ai-hub` 実行済。`wrangler.toml` / `cloudflare-pages.yml` も削除済 |
-| GitHub Pages (`goodbouldering-collab.github.io/ai-hub/`) | 残置 | 参考用・本番は Vercel |
+| Cloudflare Worker `aiclimb` | 公開正本 | 公開静的ファイルを配信。管理画面・API・大容量動画は認証情報を中継せずVercelへ直接移動。URLは `https://aiclimb.aiclimb.workers.dev` |
+| GitHub Pages (`goodbouldering-collab.github.io/ai-hub/`) | 残置 | 参考用 |
 
 ## コマンド
 

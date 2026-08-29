@@ -5,10 +5,10 @@
 
 ## 公開基盤
 
-- 正規URL・管理画面・API: `https://aiclimb.vercel.app`
-- Cloudflare並行配信: `https://aiclimb.aiclimb.workers.dev`
+- 正規URL・公開静的サイト: `https://aiclimb.aiclimb.workers.dev`
+- 管理画面・APIの実行元: `https://aiclimb.vercel.app`
 - Cloudflareは公開静的ファイルだけをエッジ配信する。管理画面、API、決済、25MiBを超える講習動画は、ブラウザを既存Vercelへ直接移動させる。
-- `workers.dev` は移行確認用で、独自ドメイン取得後に正規URLを切り替える。それまではSEO canonicalをVercelに維持する。
+- 独自ドメインを取得するまでは `workers.dev` をSEO canonical・OG URL・sitemapの正本とする。
 
 実装・検証・ロールバック手順は [docs/aiclimb-cloudflare.md](docs/aiclimb-cloudflare.md) を参照。
 

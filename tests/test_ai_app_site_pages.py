@@ -95,7 +95,7 @@ class AiAppSitePagesTests(unittest.TestCase):
                 self.site_builder.build_sitemap_and_robots()
                 sitemap = (Path(tmp) / "sitemap.xml").read_text(encoding="utf-8")
                 for route in ("ai-app-site", "ai-estimate", "ai-inquiry", "ai-reservation", "ai-shift", "ai-blog"):
-                    self.assertIn(f"<loc>https://aiclimb.vercel.app/{route}/</loc>", sitemap)
+                    self.assertIn(f"<loc>https://aiclimb.aiclimb.workers.dev/{route}/</loc>", sitemap)
                     self.assertNotIn(f"/{route}/index.html</loc>", sitemap)
         finally:
             self.site_builder.DIST = original_dist

@@ -1,4 +1,4 @@
-"""Wait until the fixed Codex article fingerprint reaches Vercel production."""
+"""Wait until the fixed Codex article fingerprint reaches Workers production."""
 
 from __future__ import annotations
 
@@ -14,8 +14,8 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 ARTICLE_PATH = ROOT / "content" / "blog" / "codex-update-log.md"
-PRODUCTION_URL = "https://aiclimb.vercel.app/blog/codex-update-log.html"
-PRODUCTION_HOST = "aiclimb.vercel.app"
+PRODUCTION_URL = "https://aiclimb.aiclimb.workers.dev/blog/codex-update-log.html"
+PRODUCTION_HOST = "aiclimb.aiclimb.workers.dev"
 PRODUCTION_PATH = "/blog/codex-update-log.html"
 
 
@@ -89,7 +89,7 @@ def wait_for_production(
         if attempt < attempts:
             sleeper(interval)
 
-    raise RuntimeError(f"Vercel本番へ最新記事が反映されませんでした: {last_status}")
+    raise RuntimeError(f"Workers本番へ最新記事が反映されませんでした: {last_status}")
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -107,7 +107,7 @@ def main(argv: list[str] | None = None) -> int:
         attempts=args.attempts,
         interval=args.interval,
     )
-    print(f"Vercel本番反映を確認しました: {verified_url} ({fingerprint[:12]})")
+    print(f"Workers本番反映を確認しました: {verified_url} ({fingerprint[:12]})")
     return 0
 
 

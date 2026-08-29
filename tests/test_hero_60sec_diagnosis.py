@@ -59,7 +59,7 @@ class Hero60SecondDiagnosisTests(unittest.TestCase):
             "<span class='hero-advantage-equation'><strong>AI</strong><span>×</span><strong>経験 = 影響力</strong></span>",
             self.hero_html,
         )
-        self.assertIn("経験者から学ぶことが大切", self.hero_html)
+        self.assertIn("プロが教える、あなたの知らないAI", self.hero_html)
         self.assertIn("<li>初心者OK</li>", self.hero_html)
         self.assertIn("講習・導入支援・制作代行", self.hero_html)
         self.assertNotIn("もう高いパッケージは負け組", self.hero_html)

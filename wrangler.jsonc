@@ -1,0 +1,40 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "aiclimb",
+  "main": "./worker/index.ts",
+  "compatibility_date": "2026-08-29",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "preview_urls": true,
+  "assets": {
+    "directory": "./site/dist",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "none",
+    "run_worker_first": [
+      "/health",
+      "/api",
+      "/api/*",
+      "/admin",
+      "/admin/*",
+      "/ops",
+      "/ops/*",
+      "/watch",
+      "/watch/*",
+      "/seo-llmo-diagnosis",
+      "/seo-llmo-diagnosis/*",
+      "/lectures/2026-05-claude-code-features.html",
+      "/media/ai-consult-hikone-20260629/ai-consult-hikone-course.webm"
+    ]
+  },
+  "observability": {
+    "enabled": true,
+    "logs": {
+      "enabled": true,
+      "head_sampling_rate": 1
+    },
+    "traces": {
+      "enabled": true,
+      "head_sampling_rate": 0.01
+    }
+  }
+}

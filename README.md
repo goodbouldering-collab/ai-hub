@@ -3,6 +3,15 @@
 「自分のAIをひとつに集める場所」をテーマにした個人ポートフォリオ兼マイページ。
 作品（アプリ集）・講師紹介・講習資料を見せる**フロント面**と、AI/SNS関連情報をRSSから自動収集・要約してNotebookLMに流し込む**バックエンドのパイプライン**を1つのサイトに同居させている。
 
+## 公開基盤
+
+- 正規URL・管理画面・API: `https://aiclimb.vercel.app`
+- Cloudflare並行配信: `https://aiclimb.gb-jp.workers.dev`
+- Cloudflareは公開静的ファイルだけをエッジ配信する。管理画面、API、決済、25MiBを超える講習動画は、ブラウザを既存Vercelへ直接移動させる。
+- `workers.dev` は移行確認用で、独自ドメイン取得後に正規URLを切り替える。それまではSEO canonicalをVercelに維持する。
+
+実装・検証・ロールバック手順は [docs/aiclimb-cloudflare.md](docs/aiclimb-cloudflare.md) を参照。
+
 ## 特徴
 
 - **ポートフォリオ統合**: 作品カードは [config/portfolio.yaml](config/portfolio.yaml) に1ブロック追加するだけ
@@ -31,6 +40,13 @@ python run.py                 # 日次ダイジェスト (diff モード)
 python run.py --full          # 統合版 (NotebookLM 丸ごと投入用) も生成
 python run.py --no-summary    # Claude API を使わずタイトル＋原文抜粋だけ
 python site/build_site.py     # 静的サイトだけ再ビルド (speaker.html / lectures/ 含む)
+```
+
+Cloudflare配信を検証・更新する場合:
+
+```bash
+npm run cloudflare:check
+npm run cloudflare:deploy
 ```
 
 ## 管理画面（ローカル専用）

@@ -1,4 +1,4 @@
-<!doctype html><html lang='ja'><head><meta charset='utf-8'><link rel='icon' type='image/svg+xml' href='/favicon-20260725.svg'><link rel='icon' type='image/png' sizes='32x32' href='/favicon-20260725-32x32.png'><link rel='icon' type='image/png' sizes='16x16' href='/favicon-20260725-16x16.png'><link rel='shortcut icon' href='/favicon-20260725.ico'><link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon-20260725.png'><link rel='manifest' href='/site-20260725.webmanifest'><link rel='mask-icon' href='/favicon-20260725.svg' color='#5367D9'><meta name='application-name' content='AI相談'><meta name='apple-mobile-web-app-title' content='AI相談'><meta name='apple-mobile-web-app-capable' content='yes'><meta name='mobile-web-app-capable' content='yes'><meta name='theme-color' content='#172033'><meta name='viewport' content='width=device-width,initial-scale=1'><title>ブログ | AI相談</title><meta name='description' content='AI相談のブログ一覧。Codex、Claude Code、AIエージェント講座、生成AI活用、業務改善の実践記録。'><link rel='canonical' href='https://aiclimb.vercel.app/blog/index.html'><meta property='og:title' content='ブログ'><meta property='og:description' content='AI相談のブログ一覧。Codex、Claude Code、AIエージェント講座、生成AI活用、業務改善の実践記録。'><meta property='og:url' content='https://aiclimb.vercel.app/blog/index.html'><meta property='og:type' content='website'><meta property='og:site_name' content='AI相談'><meta name='twitter:card' content='summary'><script type='application/ld+json'>{"@context": "https://schema.org", "@type": "WebSite", "name": "AI相談", "url": "https://aiclimb.vercel.app", "description": "AI情報とSNSアルゴリズム動向を毎朝要約して届ける静的サイト"}</script><style>
+<!doctype html><html lang='ja'><head><meta charset='utf-8'><link rel='icon' type='image/svg+xml' href='/favicon-20260725.svg'><link rel='icon' type='image/png' sizes='32x32' href='/favicon-20260725-32x32.png'><link rel='icon' type='image/png' sizes='16x16' href='/favicon-20260725-16x16.png'><link rel='shortcut icon' href='/favicon-20260725.ico'><link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon-20260725.png'><link rel='manifest' href='/site-20260725.webmanifest'><link rel='mask-icon' href='/favicon-20260725.svg' color='#5367D9'><meta name='application-name' content='AIclimb'><meta name='apple-mobile-web-app-title' content='AIclimb'><meta name='apple-mobile-web-app-capable' content='yes'><meta name='mobile-web-app-capable' content='yes'><meta name='theme-color' content='#172033'><meta name='viewport' content='width=device-width,initial-scale=1'><title>ブログ | AIclimb（AI相談）</title><meta name='description' content='AI相談のブログ一覧。Codex、Claude Code、AIエージェント講座、生成AI活用、業務改善の実践記録。'><link rel='canonical' href='https://aiclimb.vercel.app/blog/index.html'><meta property='og:title' content='ブログ'><meta property='og:description' content='AI相談のブログ一覧。Codex、Claude Code、AIエージェント講座、生成AI活用、業務改善の実践記録。'><meta property='og:url' content='https://aiclimb.vercel.app/blog/index.html'><meta property='og:type' content='website'><meta property='og:site_name' content='AIclimb'><meta name='twitter:card' content='summary'><script type='application/ld+json'>{"@context": "https://schema.org", "@type": "WebSite", "name": "AIclimb", "alternateName": "AI相談", "url": "https://aiclimb.vercel.app", "description": "AI情報とSNSアルゴリズム動向を毎朝要約して届ける静的サイト"}</script><style>
 :root {
   --bg-base:#f8fafc;
   --bg-white:#ffffff;
@@ -61,6 +61,34 @@ header h1 {
   line-height:1.32;
   font-weight:800; letter-spacing:-.015em;
   color: var(--text);
+}
+.blog-title-line {
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:8px 10px;
+}
+.blog-title-line h1 { margin-bottom:0; }
+.blog-new-badge {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 auto;
+  min-height:22px;
+  padding:3px 8px;
+  border-radius:999px;
+  background:#b42318;
+  color:#fff;
+  font-size:10px;
+  font-weight:900;
+  line-height:1;
+  letter-spacing:.08em;
+}
+.blog-update-label {
+  color:var(--muted);
+  font-size:12px;
+  font-weight:800;
+  white-space:nowrap;
 }
 header h1 .grad {
   color: var(--primary);
@@ -771,6 +799,486 @@ footer {
   font-size: .9em;
   color: var(--primary);
 }
+.content-wrap .daily-ai-news {
+  margin: 0 0 34px;
+  padding: clamp(20px, 4vw, 32px);
+  overflow: hidden;
+  border: 1px solid rgba(37, 99, 235, .18);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 92% 4%, rgba(45, 203, 161, .18), transparent 28%),
+    linear-gradient(145deg, #f7fbff 0%, #f2f8f6 100%);
+  box-shadow: 0 18px 42px rgba(15, 35, 58, .10);
+}
+.content-wrap .daily-ai-news__header { max-width: 720px; }
+.content-wrap .daily-ai-news__eyebrow {
+  margin: 0 0 4px;
+  color: #176b5a;
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: .06em;
+}
+.content-wrap .daily-ai-news h2 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #10243c;
+  font-size: clamp(25px, 4vw, 36px);
+}
+.content-wrap .daily-ai-news__lead { margin: 8px 0 0; font-size: 15px; }
+.content-wrap .daily-ai-news__date { margin: 3px 0 0; color: var(--muted); font-size: 12px; }
+.content-wrap .daily-ai-news__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.content-wrap .daily-ai-news__item {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  gap: 11px;
+  min-width: 0;
+  margin: 0;
+  padding: 16px;
+  border: 1px solid rgba(15, 35, 58, .10);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, .88);
+}
+.content-wrap .daily-ai-news__rank {
+  display: grid;
+  place-items: center;
+  align-self: start;
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  background: #10243c;
+  color: #91f2d5;
+  font-size: 15px;
+  font-weight: 850;
+}
+.content-wrap .daily-ai-news__copy { min-width: 0; }
+.content-wrap .daily-ai-news__copy h3 { margin: 1px 0 8px; font-size: 15px; line-height: 1.5; }
+.content-wrap .daily-ai-news__copy h3 a { overflow-wrap: anywhere; }
+.content-wrap .daily-ai-news__copy p { margin: 5px 0; font-size: 13px; line-height: 1.65; }
+.content-wrap .daily-ai-news__source { color: var(--muted); font-size: 11.5px; }
+.content-wrap .daily-ai-news__action {
+  margin: 18px 0 0;
+  color: #10243c;
+  font-weight: 750;
+}
+@media (max-width: 540px) {
+  .content-wrap .daily-ai-news { padding: 18px 14px; border-radius: 18px; }
+  .content-wrap .daily-ai-news__list { grid-template-columns: 1fr; }
+  .content-wrap .daily-ai-news__item { grid-template-columns: 32px minmax(0, 1fr); padding: 14px 12px; }
+  .content-wrap .daily-ai-news__rank { width: 32px; height: 32px; border-radius: 10px; }
+}
+body.codex-update-page {
+  --codex-line: var(--line);
+  --codex-text: var(--text);
+  --codex-soft: var(--text-soft);
+  --codex-muted: var(--muted);
+  --codex-cyan: var(--primary);
+  --codex-blue: var(--primary-soft);
+  color: var(--text);
+}
+.codex-update-page .container {
+  max-width: 1280px;
+}
+.codex-update-page main > header {
+  position: relative;
+  max-width: 1120px;
+  margin: 0 auto 24px;
+  padding: 0 0 8px;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.codex-update-page main > header::after {
+  content: none;
+}
+.codex-update-page main > header h1 {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  color: var(--text);
+  font-size: clamp(34px, 4.6vw, 56px);
+  line-height: 1.18;
+  letter-spacing: -.035em;
+}
+.codex-update-page main > header .blog-update-label,
+.codex-update-page main > header .speaker-meta {
+  color: var(--muted);
+}
+.codex-update-page main > header .speaker-meta .role {
+  background: var(--primary-bg);
+  border: 1px solid rgba(37, 99, 235, .18);
+  color: var(--primary);
+}
+.codex-update-page main > p {
+  max-width: 1120px;
+  margin: 0 auto 16px;
+  color: var(--codex-muted);
+  font-size: 12px;
+}
+.content-wrap--codex-update {
+  max-width: 1120px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: clamp(24px, 4vw, 44px);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--bg-white);
+  box-shadow: var(--shadow-card);
+  color: var(--text);
+  line-height: 1.86;
+}
+.content-wrap--codex-update p,
+.content-wrap--codex-update ul,
+.content-wrap--codex-update ol {
+  color: var(--text-soft);
+  font-size: clamp(16px, 1.55vw, 18px);
+  line-height: 1.86;
+}
+.content-wrap--codex-update > h2 {
+  margin: 2.2em 0 .8em;
+  padding: 0 0 14px;
+  border: 0;
+  border-bottom: 1px solid var(--codex-line);
+  border-radius: 0;
+  background: transparent;
+  color: var(--text);
+  font-size: clamp(25px, 3.3vw, 35px);
+  letter-spacing: -.02em;
+}
+.content-wrap--codex-update > h3 {
+  margin: 30px 0 12px;
+  color: var(--primary);
+  font-size: 14px;
+  letter-spacing: .04em;
+}
+.content-wrap--codex-update > ul {
+  margin: 0 0 38px;
+  padding: 0 0 0 1.4em;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+.content-wrap--codex-update > ul li::marker {
+  color: var(--codex-cyan);
+}
+.content-wrap--codex-update a {
+  color: var(--primary);
+  border-bottom-color: rgba(37, 99, 235, .30);
+}
+.content-wrap--codex-update a:hover {
+  color: var(--primary-soft);
+  border-bottom-color: rgba(37, 99, 235, .55);
+}
+.content-wrap--codex-update code {
+  border: 1px solid rgba(37, 99, 235, .15);
+  background: var(--primary-bg);
+  color: var(--primary);
+}
+.content-wrap--codex-update .article-hero {
+  margin: 0 0 36px;
+}
+.content-wrap--codex-update .article-hero img {
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: 0 16px 44px rgba(15, 23, 42, .10);
+}
+.content-wrap--codex-update .content-toc {
+  margin-bottom: 32px;
+  border: 0 !important;
+  border-left: 3px solid var(--primary) !important;
+  border-radius: 0;
+  background: #f8fafc !important;
+  box-shadow: none;
+}
+.content-wrap--codex-update .content-toc .toc-label {
+  color: var(--primary);
+}
+.content-wrap--codex-update .content-toc a {
+  color: var(--text-soft);
+}
+.content-wrap--codex-update .daily-ai-news,
+.content-wrap--codex-update .codex-update-guide {
+  max-width: none;
+  border: 0;
+  border-bottom: 1px solid var(--codex-line);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.content-wrap--codex-update .daily-ai-news {
+  margin-bottom: 42px;
+  padding: 0 0 42px;
+  border-radius: 0;
+}
+.content-wrap--codex-update .daily-ai-news__header,
+.content-wrap--codex-update .codex-update-guide__header {
+  max-width: 850px;
+}
+.content-wrap--codex-update .daily-ai-news__eyebrow,
+.content-wrap--codex-update .codex-update-guide__eyebrow {
+  margin: 0 0 8px;
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .06em;
+}
+.content-wrap--codex-update .daily-ai-news h2,
+.content-wrap--codex-update .codex-update-guide .codex-update-guide__title {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  font-size: clamp(28px, 4vw, 42px);
+  letter-spacing: -.025em;
+}
+.content-wrap--codex-update .daily-ai-news__lead,
+.content-wrap--codex-update .codex-update-guide__lead {
+  margin: 12px 0 0;
+  color: var(--text-soft);
+  font-size: clamp(17px, 1.7vw, 20px);
+  line-height: 1.78;
+}
+.content-wrap--codex-update .daily-ai-news__date,
+.content-wrap--codex-update .codex-update-guide__date {
+  margin: 12px 0 0;
+  color: var(--codex-muted);
+  font-size: 13px;
+}
+.content-wrap--codex-update .daily-ai-news__list {
+  grid-template-columns: 1fr;
+  gap: 0;
+  margin-top: 26px;
+}
+.content-wrap--codex-update .update-card {
+  position: relative;
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  padding: 24px 0;
+  border: 0;
+  border-bottom: 1px solid var(--codex-line);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  transition: none;
+}
+.content-wrap--codex-update .update-card::before {
+  content: none;
+}
+@media (hover: hover) {
+  .content-wrap--codex-update .update-card:hover {
+    transform: none;
+    border-bottom-color: var(--codex-line);
+    box-shadow: none;
+  }
+}
+.content-wrap--codex-update .update-card__header {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: 13px;
+  align-items: start;
+  margin: 0;
+}
+.content-wrap--codex-update .update-card__rank {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--primary-bg);
+  color: var(--primary);
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 15px;
+  font-weight: 800;
+}
+.content-wrap--codex-update .update-card__heading,
+.content-wrap--codex-update .update-card__body {
+  min-width: 0;
+}
+.content-wrap--codex-update .update-card__eyebrow {
+  margin: 0 0 4px;
+  color: var(--codex-muted);
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1.4;
+  letter-spacing: .14em;
+}
+.content-wrap--codex-update .update-card__body {
+  margin: 14px 0 0 55px;
+}
+.content-wrap--codex-update .daily-ai-news__item .update-card__heading h3 {
+  margin: 0;
+  color: var(--text);
+  font-size: clamp(16px, 1.6vw, 19px);
+  line-height: 1.5;
+}
+.content-wrap--codex-update .daily-ai-news__item .update-card__heading h3 a {
+  color: var(--text);
+  border-bottom: 0;
+  overflow-wrap: anywhere;
+}
+.content-wrap--codex-update .daily-ai-news__item .update-card__heading h3 a:hover {
+  color: var(--primary);
+}
+.content-wrap--codex-update .daily-ai-news__copy p,
+.content-wrap--codex-update .update-card__body p {
+  color: var(--text-soft);
+  font-size: 15px;
+  line-height: 1.74;
+}
+.content-wrap--codex-update .daily-ai-news__summary,
+.content-wrap--codex-update .update-card__summary {
+  margin: 0 0 10px;
+}
+.content-wrap--codex-update .daily-ai-news__japan,
+.content-wrap--codex-update .update-card__context {
+  margin: 0;
+  padding: 10px 12px;
+  border: 0;
+  border-left: 3px solid #bfdbfe;
+  border-radius: 0;
+  background: #f8fafc;
+  color: var(--text-soft);
+}
+.content-wrap--codex-update .daily-ai-news__source,
+.content-wrap--codex-update .update-card__source {
+  margin: 12px 0 0;
+  color: var(--codex-muted);
+  font-size: 11px;
+}
+.content-wrap--codex-update .update-card__source a {
+  display: inline;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px dashed rgba(37, 99, 235, .30);
+  border-radius: 0;
+  background: transparent;
+  color: var(--primary);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.content-wrap--codex-update .daily-ai-news__action {
+  margin: 20px 0 0;
+  color: var(--text-soft);
+  font-size: 15px;
+  font-weight: 700;
+}
+.content-wrap--codex-update .codex-update-guide {
+  margin: 0 0 28px;
+  padding: 0 0 34px;
+  border-radius: 0;
+}
+.content-wrap--codex-update .codex-feature-card {
+  margin: 0;
+  padding: 24px 0;
+}
+.content-wrap--codex-update h2.codex-feature-title {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--text);
+  font-size: clamp(21px, 2.5vw, 28px);
+  line-height: 1.42;
+  letter-spacing: -.015em;
+  overflow-wrap: anywhere;
+}
+.content-wrap--codex-update .codex-feature-command {
+  display: inline-flex;
+  max-width: 100%;
+  margin: 5px 0 0 10px;
+  vertical-align: .08em;
+}
+.content-wrap--codex-update h2.codex-feature-title .codex-feature-command code {
+  display: inline-block;
+  max-width: 100%;
+  margin: 0;
+  padding: 4px 9px;
+  border: 1px solid rgba(37, 99, 235, .18);
+  border-radius: 999px;
+  background: var(--primary-bg);
+  color: var(--primary);
+  font-size: .55em;
+  font-weight: 700;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+.content-wrap--codex-update .codex-update-guide__eyebrow + .codex-feature-card {
+  margin-top: 8px;
+}
+.codex-update-page footer {
+  border-top-color: var(--codex-line);
+  color: var(--codex-muted);
+}
+@media (max-width: 700px) {
+  body.codex-update-page { background-attachment: scroll; }
+  .codex-update-page .container { padding: 82px 14px 60px; }
+  .codex-update-page main > header {
+    margin-bottom: 18px;
+    padding: 0 4px 8px;
+    border-radius: 0;
+  }
+  .codex-update-page main > header h1 {
+    font-size: clamp(31px, 10vw, 40px);
+    line-height: 1.2;
+  }
+  .content-wrap--codex-update .daily-ai-news,
+  .content-wrap--codex-update .codex-update-guide {
+    padding: 0 0 32px;
+    border-radius: 0;
+  }
+  .content-wrap--codex-update .daily-ai-news__list {
+    grid-template-columns: 1fr;
+  }
+  .content-wrap--codex-update .update-card {
+    padding: 20px 0;
+    border-radius: 0;
+  }
+  .content-wrap--codex-update .update-card__header {
+    grid-template-columns: 38px minmax(0, 1fr);
+    gap: 11px;
+  }
+  .content-wrap--codex-update .update-card__rank {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+  }
+  .content-wrap--codex-update .update-card__body {
+    margin: 13px 0 0;
+  }
+  .content-wrap--codex-update .daily-ai-news__copy p,
+  .content-wrap--codex-update .update-card__body p {
+    font-size: 15px;
+  }
+  .content-wrap--codex-update .codex-feature-command {
+    display: flex;
+    width: fit-content;
+    margin: 7px 0 0;
+  }
+  .content-wrap--codex-update .update-card__source a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 8px 0;
+  }
+}
 .content-wrap strong { color: var(--text); font-weight: 700; }
 .content-wrap img {
   display: block;
@@ -825,14 +1333,17 @@ footer {
   text-transform: uppercase;
   margin-bottom: 6px;
 }
-.content-toc ol {
+.content-toc ol,
+.content-toc ul {
   margin: 0;
   padding-left: 1.3em;
   columns: 2;
   column-gap: 28px;
   font-size: 13.5px;
 }
-.content-toc ol li { margin: 2px 0; break-inside: avoid; }
+.content-toc ul { padding-left: 0; list-style: none; }
+.content-toc ol li,
+.content-toc ul li { margin: 2px 0; break-inside: avoid; }
 .content-toc a {
   color: var(--text-soft);
   text-decoration: none;
@@ -841,7 +1352,8 @@ footer {
 }
 .content-toc a:hover { color: var(--primary); border-bottom-color: rgba(37,99,235,.40); }
 @media (max-width: 640px) {
-  .content-toc ol { columns: 1; }
+  .content-toc ol,
+  .content-toc ul { columns: 1; }
 }
 .content-wrap h2[id],
 .content-wrap h3[id] { scroll-margin-top: 20px; }
@@ -1061,6 +1573,13 @@ footer {
   color: var(--text);
   line-height: 1.4;
 }
+.tr-title-row {
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:8px;
+}
+.tr-title-row .tr-title { min-width:0; }
 .tr-card .tr-date {
   font-size: 11.5px;
   color: var(--muted);
@@ -3504,6 +4023,316 @@ section.block + section.block { border-top: 1px solid var(--line); }
     padding: 20px;
     text-align: left;
   }
+}
+
+/* ---- 講師ページ: 公開実績を軸にした信頼導線 ---- */
+body.speaker-page {
+  background:
+    radial-gradient(circle at 8% 6%, rgba(79,111,216,.10), transparent 30%),
+    radial-gradient(circle at 92% 18%, rgba(133,108,196,.09), transparent 28%),
+    var(--bg-base);
+}
+.speaker-page main {
+  width: min(100%, 1180px);
+  margin: 0 auto;
+}
+.speaker-page main > header {
+  max-width: 1120px;
+  margin: 0 auto 18px;
+}
+.speaker-page main > header h1 {
+  font-size: clamp(28px, 4vw, 44px);
+  letter-spacing: -.025em;
+}
+.speaker-content {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.speaker-content .speaker-page-visual {
+  grid-template-columns: minmax(0, 1.35fr) minmax(240px, 340px);
+  gap: clamp(28px, 5vw, 64px);
+  margin: 0;
+  padding: clamp(28px, 5vw, 56px);
+  overflow: hidden;
+  border: 1px solid rgba(79,111,216,.18);
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 88% 8%, rgba(255,255,255,.82), transparent 30%),
+    linear-gradient(135deg, #eef4ff 0%, #f5f2ff 54%, #fff 100%);
+  box-shadow: 0 24px 64px rgba(39,60,104,.12);
+}
+.speaker-content .speaker-page-visual .speaker-art {
+  width: min(100%, 320px);
+  border-width: 8px;
+  box-shadow: 0 20px 50px rgba(39,60,104,.18), 0 0 0 1px rgba(79,111,216,.10);
+}
+.speaker-page-kicker {
+  margin: 0 0 12px !important;
+  color: var(--primary) !important;
+  font-size: 12px !important;
+  font-weight: 900;
+  letter-spacing: .12em;
+}
+.speaker-page-name {
+  margin: 0;
+  color: var(--text);
+  font-size: clamp(38px, 6vw, 64px);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -.045em;
+}
+.speaker-page-role {
+  margin: 12px 0 18px !important;
+  color: var(--text) !important;
+  font-size: clamp(16px, 2vw, 20px) !important;
+  font-weight: 800;
+}
+.speaker-page-lead {
+  max-width: 650px;
+  margin: 0 !important;
+  color: var(--text-soft) !important;
+  font-size: 16px !important;
+  line-height: 1.9 !important;
+}
+.speaker-page-trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 22px 0 0 !important;
+  padding: 0 !important;
+  list-style: none;
+}
+.speaker-page-trust li {
+  margin: 0 !important;
+  padding: 6px 11px;
+  border: 1px solid rgba(79,111,216,.18);
+  border-radius: 999px;
+  background: rgba(255,255,255,.72);
+  color: #3e58b8;
+  font-size: 12px;
+  font-weight: 800;
+}
+.speaker-page-actions,
+.speaker-achievements__actions,
+.speaker-cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+.speaker-page-actions a,
+.speaker-achievements__actions a,
+.speaker-cta__actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 0 18px;
+  border: 1px solid var(--line) !important;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--text) !important;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 850;
+}
+.speaker-page-actions a:first-child,
+.speaker-cta__actions a:first-child {
+  border-color: var(--primary) !important;
+  background: var(--primary);
+  color: #fff !important;
+}
+.speaker-page-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 24px;
+}
+.speaker-page-nav a {
+  border-bottom: 0 !important;
+  color: var(--primary) !important;
+  font-size: 12px;
+  font-weight: 850;
+}
+.speaker-achievements {
+  scroll-margin-top: 92px;
+  margin: 32px 0 0;
+  padding: clamp(24px, 4vw, 40px);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 18px 48px rgba(39,60,104,.08);
+}
+.speaker-achievements__head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 420px);
+  gap: 26px;
+  align-items: end;
+  margin-bottom: 24px;
+}
+.speaker-achievements__eyebrow {
+  margin: 0 0 6px !important;
+  color: var(--primary) !important;
+  font-size: 11px !important;
+  font-weight: 900;
+  letter-spacing: .12em;
+}
+.speaker-content .speaker-achievements h2 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-size: clamp(28px, 4vw, 40px);
+  letter-spacing: -.025em;
+}
+.speaker-achievements__head > p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.8;
+}
+.speaker-achievement-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.speaker-achievement-card {
+  display: flex;
+  min-width: 0;
+  overflow: hidden;
+  flex-direction: column;
+  border: 1px solid var(--line) !important;
+  border-radius: 18px;
+  background: #fff;
+  color: inherit !important;
+  text-decoration: none;
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.speaker-achievement-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(79,111,216,.38) !important;
+  box-shadow: 0 16px 36px rgba(39,60,104,.12);
+}
+.speaker-achievement-media {
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: #eef3fa;
+}
+.speaker-content .speaker-achievement-media img {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  object-fit: cover;
+  transition: transform .3s ease;
+}
+.speaker-achievement-card:hover .speaker-achievement-media img { transform: scale(1.025); }
+.speaker-achievement-placeholder {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  color: var(--muted);
+  font-weight: 800;
+}
+.speaker-achievement-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  padding: 17px;
+}
+.speaker-achievement-category {
+  color: var(--primary);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .05em;
+}
+.speaker-content .speaker-achievement-card h3 {
+  margin: 6px 0 8px;
+  color: var(--text);
+  font-size: 17px;
+  line-height: 1.45;
+  letter-spacing: -.01em;
+}
+.speaker-achievement-card p {
+  margin: 0 0 14px;
+  color: var(--text-soft);
+  font-size: 13px;
+  line-height: 1.7;
+}
+.speaker-achievement-linkline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: auto;
+  color: var(--muted);
+  font-size: 11px;
+}
+.speaker-achievement-linkline strong { color: var(--primary); font-size: 12px; }
+.speaker-page-story {
+  max-width: 920px;
+  margin: 34px auto 0;
+  padding: clamp(24px, 4vw, 42px);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 14px 40px rgba(39,60,104,.07);
+}
+.speaker-content .speaker-page-story > h2 {
+  scroll-margin-top: 92px;
+  margin: 1.8em 0 .7em;
+  padding: 0 0 12px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  font-size: clamp(23px, 3vw, 31px);
+}
+.speaker-content .speaker-page-story > h2:first-child { margin-top: 0; }
+.speaker-cta {
+  max-width: 920px;
+  margin: 28px auto 0;
+  padding: clamp(24px, 4vw, 38px);
+  border-radius: 22px;
+  background: linear-gradient(135deg, #24345f, #4f6fd8);
+  color: #fff;
+}
+.speaker-content .speaker-cta h2 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-size: clamp(24px, 3vw, 34px);
+}
+.speaker-cta p { color: rgba(255,255,255,.86); }
+.speaker-cta__actions a { border-color: rgba(255,255,255,.35) !important; }
+.speaker-cta__actions a:not(:first-child) { background: transparent; color: #fff !important; }
+@media (max-width: 860px) {
+  .speaker-content .speaker-page-visual,
+  .speaker-achievements__head { grid-template-columns: 1fr; }
+  .speaker-content .speaker-page-visual .speaker-art { width: min(100%, 280px); }
+  .speaker-achievement-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .speaker-page .container { padding-right: 14px; padding-left: 14px; }
+  .speaker-content .speaker-page-visual { padding: 24px 18px; border-radius: 20px; }
+  .speaker-page-name { font-size: clamp(36px, 12vw, 48px); }
+  .speaker-page-actions a,
+  .speaker-achievements__actions a,
+  .speaker-cta__actions a { width: 100%; }
+  .speaker-achievement-grid { grid-template-columns: minmax(0, 1fr); }
+  .speaker-achievements,
+  .speaker-page-story,
+  .speaker-cta { padding: 22px 16px; border-radius: 18px; }
+  .speaker-achievement-linkline { align-items: flex-start; flex-direction: column; }
 }
 /* CSSプレースホルダ: クライミング×テクノロジーの抽象アート */
 .speaker-art-ph {
@@ -11367,7 +12196,7 @@ header.site-header:hover {
   }
 })();
 </script>
-<header class='site-header scrolled' id='site-header' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html' aria-label='AI相談 トップへ'><span class='wordmark'><span class='word-ai'>AI相談</span></span></a><nav class='site-nav' aria-label='メインナビ'><a class='nav-link nav-essential' href='/#top'>ホーム</a><a class='nav-link nav-essential' href='/ai-app-site/'>AIアプリサイト</a><a class='nav-link nav-essential' href='/#all-works'>実績</a><a class='nav-link nav-essential nav-current' href='/#blog' aria-current='page'>ブログ</a><a class='nav-link nav-essential' href='/#lectures'>資料</a><a class='nav-link nav-essential' href='/#faq'>FAQ</a><a class='nav-link nav-essential nav-salon' href='/#seven-day-courses'>AIオンラインサロン</a><a class='nav-link nav-essential nav-admin' href='/admin'>管理ページ</a></nav><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' type='button' aria-label='メニューを開く' aria-controls='mobile-nav' aria-expanded='false'><span class='mobile-toggle-icon' aria-hidden='true'><span></span><span></span><span></span></span><span class='mobile-toggle-text'>メニュー</span></button></div><div class='mobile-nav generated-mobile-nav' id='mobile-nav' aria-hidden='true'><div class='mobile-nav-panel mobile-nav-panel--public'><nav class='mobile-public-links' aria-label='公開ページメニュー'><a href='/#top'><span>ホーム</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/ai-app-site/'><span>AIアプリサイト</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#all-works'><span>実績</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#blog' aria-current='page'><span>ブログ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#lectures'><span>資料</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#faq'><span>FAQ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#seven-day-courses'><span>AIオンラインサロン</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a></nav><div class='mobile-nav-admin'><span class='mobile-nav-label'>管理</span><a class='mobile-admin-link' href='/admin'><span class='mobile-admin-link-copy'><strong>管理ページ</strong><small>運営者ログイン</small></span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a></div></div></div></header><script>(function(){var b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav'),x=b?b.querySelector('.mobile-toggle-text'):null,m=window.matchMedia('(min-width: 901px)');function setMobile(o){if(!n||!b)return;if(!o&&(n.contains(document.activeElement)||document.activeElement===b)){var f=m.matches?document.querySelector('.site-logo'):b;if(f)f.focus({preventScroll:true});}n.classList.toggle('open',o);n.setAttribute('aria-hidden',o?'false':'true');b.setAttribute('aria-expanded',o?'true':'false');b.setAttribute('aria-label',o?'メニューを閉じる':'メニューを開く');if(x)x.textContent=o?'閉じる':'メニュー';document.body.classList.toggle('mobile-menu-open',o);}function closeMobile(){setMobile(false);}function closeMobileAtDesktop(e){if(e.matches)closeMobile();}if(b&&n){b.addEventListener('click',function(e){e.stopPropagation();setMobile(!n.classList.contains('open'));});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMobile);});n.addEventListener('click',function(e){if(e.target===n)closeMobile();});}if(m.addEventListener)m.addEventListener('change',closeMobileAtDesktop);else if(m.addListener)m.addListener(closeMobileAtDesktop);document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeMobile();return;}if(e.key!=='Tab'||!n||!n.classList.contains('open'))return;var a=[b].concat(Array.prototype.slice.call(n.querySelectorAll('a[href]'))),f=a[0],l=a[a.length-1];if(e.shiftKey&&document.activeElement===f){e.preventDefault();l.focus();}else if(!e.shiftKey&&document.activeElement===l){e.preventDefault();f.focus();}});})();</script><main id='main-content'><header><h1>ブログ</h1></header><div class='content-wrap'><div class='tr-section'><p>AI相談のブログです。AIエージェント講座・制作・業務改善の現場から、実際に使える視点を残していきます。</p><style>
+<header class='site-header scrolled' id='site-header' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html' aria-label='AIclimb（AI相談）トップへ'><span class='wordmark'><span class='word-ai'>AIclimb</span></span></a><nav class='site-nav' aria-label='メインナビ'><a class='nav-link nav-essential' href='/#top'>ホーム</a><a class='nav-link nav-essential' href='/ai-app-site/'>AIアプリサイト</a><a class='nav-link nav-essential' href='/#all-works'>実績</a><a class='nav-link nav-essential nav-current' href='/#blog' aria-current='page'>ブログ</a><a class='nav-link nav-essential' href='/#lectures'>資料</a><a class='nav-link nav-essential' href='/#faq'>FAQ</a><a class='nav-link nav-essential nav-salon' href='/#seven-day-courses'>AIオンラインサロン</a><a class='nav-link nav-essential nav-admin' href='/admin'>管理ページ</a></nav><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' type='button' aria-label='メニューを開く' aria-controls='mobile-nav' aria-expanded='false'><span class='mobile-toggle-icon' aria-hidden='true'><span></span><span></span><span></span></span><span class='mobile-toggle-text'>メニュー</span></button></div><div class='mobile-nav generated-mobile-nav' id='mobile-nav' aria-hidden='true'><div class='mobile-nav-panel mobile-nav-panel--public'><nav class='mobile-public-links' aria-label='公開ページメニュー'><a href='/#top'><span>ホーム</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/ai-app-site/'><span>AIアプリサイト</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#all-works'><span>実績</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#blog' aria-current='page'><span>ブログ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#lectures'><span>資料</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#faq'><span>FAQ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#seven-day-courses'><span>AIオンラインサロン</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a></nav><div class='mobile-nav-admin'><span class='mobile-nav-label'>管理</span><a class='mobile-admin-link' href='/admin'><span class='mobile-admin-link-copy'><strong>管理ページ</strong><small>運営者ログイン</small></span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a></div></div></div></header><script>(function(){var b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav'),x=b?b.querySelector('.mobile-toggle-text'):null,m=window.matchMedia('(min-width: 901px)');function setMobile(o){if(!n||!b)return;if(!o&&(n.contains(document.activeElement)||document.activeElement===b)){var f=m.matches?document.querySelector('.site-logo'):b;if(f)f.focus({preventScroll:true});}n.classList.toggle('open',o);n.setAttribute('aria-hidden',o?'false':'true');b.setAttribute('aria-expanded',o?'true':'false');b.setAttribute('aria-label',o?'メニューを閉じる':'メニューを開く');if(x)x.textContent=o?'閉じる':'メニュー';document.body.classList.toggle('mobile-menu-open',o);}function closeMobile(){setMobile(false);}function closeMobileAtDesktop(e){if(e.matches)closeMobile();}if(b&&n){b.addEventListener('click',function(e){e.stopPropagation();setMobile(!n.classList.contains('open'));});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMobile);});n.addEventListener('click',function(e){if(e.target===n)closeMobile();});}if(m.addEventListener)m.addEventListener('change',closeMobileAtDesktop);else if(m.addListener)m.addListener(closeMobileAtDesktop);document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeMobile();return;}if(e.key!=='Tab'||!n||!n.classList.contains('open'))return;var a=[b].concat(Array.prototype.slice.call(n.querySelectorAll('a[href]'))),f=a[0],l=a[a.length-1];if(e.shiftKey&&document.activeElement===f){e.preventDefault();l.focus();}else if(!e.shiftKey&&document.activeElement===l){e.preventDefault();f.focus();}});})();</script><main id='main-content'><header><h1>ブログ</h1></header><div class='content-wrap'><div class='tr-section'><p>AI相談のブログです。AIエージェント講座・制作・業務改善の現場から、実際に使える視点を残していきます。</p><style>
 .blog-reel-feature {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(230px, 330px);
@@ -11446,7 +12275,7 @@ header.site-header:hover {
   .blog-reel-feature__media { order: -1; width: min(100%, 300px); }
   .blog-reel-feature { border-radius: 18px; }
 }
-</style><section class='blog-reel-feature' aria-labelledby='blog-featured-reel-title'><div class='blog-reel-feature__copy'><p class='blog-reel-feature__eyebrow'>新着リール</p><h2 id='blog-featured-reel-title'>伝える技術の本質は『相手の次の一歩を軽くすること』──AI相談で実践する100→10→1</h2><p>AIで作れる量が増えても、相手の時間は増えません。100を理解し、10を見せ、最後に次の一歩を一つ残す。その順番を約30秒で。</p><div class='blog-reel-feature__actions'><a href='./2026-08-14-communication-essence-ai-consult.html'>記事を読む</a></div></div><figure class='blog-reel-feature__media'><video controls playsinline preload='metadata' poster='/img/reel-communication-essence-cover-20260814.webp' aria-label='伝える技術の本質は『相手の次の一歩を軽くすること』──AI相談で実践する100→10→1'><source src='/media/reels/2026-08-14-communication-essence.mp4' type='video/mp4'>お使いのブラウザは動画再生に対応していません。<a href='/media/reels/2026-08-14-communication-essence.mp4'>動画ファイルを開く</a></video><figcaption>記事と同じ約30秒リールをここで再生できます。</figcaption></figure></section><div class='tr-grid'><a class='tr-card' href='./2026-08-14-communication-essence-ai-consult.html'><span class='tr-card-media'><img src='/img/blog-communication-essence-hero-20260814.webp' alt='多くの情報カードを整理し、相手が進める一本の道と一枚のカードへまとめる編集の様子を描いた図解' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title'>伝える技術の本質は『相手の次の一歩を軽くすること』──AI相談で実践する100→10→1</div><div class='tr-date'>2026-08-14</div><div class='tr-sum'>AIで文章、画像、資料を増やすのは簡単になりました。だからこそ必要なのは、相手の悩みから始め、余計な情報を削り、次の一歩と一言だけを残す編集です。MITの名講義とAI相談の実践を重ね、大学生にも使える4つの順番で解説します。</div></div></a><a class='tr-card' href='./2026-08-09-ai-experience-3d-reality.html'><span class='tr-card-media'><img src='/img/blog-ai-experience-3d-hero-20260809.png' alt='情報を扱う平面のAI画面と、身体を使って試し経験を積む現実の場を往復する人のイメージ' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title'>経験が10倍になる？AI時代、経験者が再び強くなる理由</div><div class='tr-date'>2026-08-09</div><div class='tr-sum'>AIが調査・計画・制作を高速化する時代に、実際の現場で試し、結果を見て、次の判断へつなげられる人の価値が高まる理由を、「AIは2次元、人間は3次元」という比喩で考えます。</div></div></a><a class='tr-card' href='./2026-08-08-vercel-supabase-d1-r2-boundaries.html'><span class='tr-card-media'><img src='/img/blog-sites-runtime-data-decision-hero-20260810.png' alt='Sites、GitHubとVercel、Supabaseを役割別に選ぶための3つの経路を描いた図解' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title'>サイト公開から本格稼働させるには、データをどこに置くのが正解？──Sites・GitHub＋Vercel＋Supabaseの選び方</div><div class='tr-date'>2026-08-10</div><div class='tr-sum'>仮LPや小さな社内ツールならSites、継続開発や複数PCならGitHub＋Vercel、顧客情報・会計・書類・権限を扱うならGitHub＋Vercel＋Supabase。データ量だけでなく、共有・復旧・バックアップの必要性で選ぶ実務的な基準を整理します。</div></div></a><a class='tr-card' href='./2026-08-06-ai-work-design-future.html'><span class='tr-card-media'><img src='/img/blog-ai-work-design-hero-20260806.webp' alt='AIが生み出した多くの案を、チームが目的、優先順位、責任に分けて一つの方向へ整理する様子' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title'>AI時代にデザインは不要になるのか？ むしろ必要になる「経験」と「仕事をデザインする力」</div><div class='tr-date'>2026-08-06</div><div class='tr-sum'>AIで資料、Webサイト、業務アプリは短時間で形になります。それでも目的、優先順位、最後の判断は自動では決まりません。デザイン職だけでなく、地域事業者、学校、福祉、個人事業主、プロジェクトリーダーにも共通する「仕事そのものを設計する力」を、明日使える3つの役割に分けて解説します。</div></div></a><a class='tr-card' href='./2026-08-01-ai-personal-data-boundary.html'><span class='tr-card-media'><img src='/img/blog-ai-data-boundary-hero-20260801.webp' alt='過剰な全面禁止と管理されたAI活用の間で、データの流れと権限を確認する職員' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title'>「個人情報はAIに一切入力禁止」は正しい？ ChatGPT・Copilot・Codexを止めずに守る7つの境界線</div><div class='tr-date'>2026-08-01</div><div class='tr-sum'>個人情報をAIへ入れた瞬間に一般公開や情報漏えいになるわけではありません。一方で、顧客DB、認証情報、本番環境をAIへ無条件に渡してよいわけでもありません。ChatGPT、Copilot、Codexを製品名で判断せず、データ、契約、保存、接続、権限の境界で安全に使い分ける方法を解説します。</div></div></a><a class='tr-card' href='./2026-07-31-chat-work-codex-usage-guide.html'><span class='tr-card-media'><img src='/img/blog-codex-story-hero-20260731.jpg' alt='朝の事務所で締切時計を見ながらChat・Work・Codexの使い分けを考える地域事業者' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title'>朝8時45分、告知はまだ白紙。Codex「1回5〜45クレジット」をムダにしないAIの使い分け</div><div class='tr-date'>2026-07-31</div><div class='tr-sum'>昼までに地域交流会の告知を完成させたい架空の物語から、Codexの使用量を数字で解説。同じ10万入力＋1万出力でもLuna 4、Terra 10、Sol 20クレジットになる理由と、Chat・Work・Codexの使い分けを紹介します。</div></div></a><a class='tr-card' href='./2026-07-27-codex-remote-ssh-rdp.html'><span class='tr-card-media'><img src='/img/blog-codex-remote-hero-20260727.png' alt='外出先から自宅PCのCodexを安全に動かす方法｜Remote SSH・Remote・RDPの使い分け' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title'>外出先から自宅PCのCodexを安全に動かす方法｜Remote SSH・Remote・RDPの使い分け</div><div class='tr-date'>2026-07-27</div><div class='tr-sum'>外出先のノートPCから自宅の高性能PCにあるCodex開発環境を使うために、Remote SSH・Codex Remote・Windowsリモートデスクトップの違い、設定手順、つながらないときの確認順を公式情報に基づいて整理します。</div></div></a><a class='tr-card' href='./2026-07-25-sites-vs-vercel-safe-migration.html'><span class='tr-card-media'><img src='/img/blog-sites-vs-vercel-hero-20260725.webp' alt='ChatGPT SitesとVercelの公開方法を比べ、GitHubを残した安全な移行経路を選ぶイメージ' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title'>ChatGPT SitesとVercel、どちらを選ぶ？GitHubを残す安全な移行ガイド</div><div class='tr-date'>2026-07-25</div><div class='tr-sum'>ChatGPT SitesとVercelの違いを、料金、GitHub、データベース、引継ぎ、独自ドメインからやさしく比較。Sitesだけで使う手順と、GitHubを原本に残す手順を分けて説明します。</div></div></a><a class='tr-card' href='./2026-07-24-codex-worktree-git-deploy-guide.html'><span class='tr-card-media'><img src='/img/blog-codex-guide-roles-explainer-v2-20260725.webp' alt='Codexで安全に直して公開する：Worktree・Git・PRの役割' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title'>Codexで安全に直して公開する：Worktree・Git・PRの役割</div><div class='tr-date'>2026-07-24</div><div class='tr-sum'>Codexでサイトを直して公開するまでを、作業場所・記録・確認・公開の4段階に分けてやさしく説明します。</div></div></a><a class='tr-card' href='./2026-07-22-ai-site-publishing-stages.html'><span class='tr-card-media'><img src='/img/blog-ai-site-publishing-hero-20260722.png' alt='AIで作ったサイトの公開先としてCodex Sites、VercelとSupabase、Cloudflareを比較するスライド' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title'>AIで作ったサイトはどこにアップする？初心者向け「とりあえず公開・仮稼働・本番稼働」の違い</div><div class='tr-date'>2026-07-22</div><div class='tr-sum'>AIで作ったページをCodex Sites、Vercel＋Supabase、Cloudflareのどこへ公開すべきかを、性能・使いやすさ・将来性と「とりあえず公開・仮稼働・本番稼働」の違いからやさしく整理します。</div></div></a><a class='tr-card' href='./2026-07-14-ai-agent-course-codex-claude-code.html'><span class='tr-card-media'><img src='/img/blog-ai-agent-course-hero-20260714.webp' alt='AIエージェント講座で音声から要望を伝え、人が実行結果を確認して仕事に残す流れ' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title'>AIエージェント講座を彦根で始めました｜Codex・Claude Codeを「答えるAI」から「実行する相棒」へ</div><div class='tr-date'>2026-07-14</div><div class='tr-sum'>彦根・滋賀の地域事業者、学校、福祉施設、個人事業主、若い挑戦者に向けて、CodexとClaude Codeを同じ「AIエージェント」として学び、仕事の分解、依頼、実行、確認、修正、再利用まで身につける新講座を詳しく紹介します。</div></div></a><a class='tr-card' href='./2026-06-29-ai-consult-hikone-practical-ai-course.html'><span class='tr-card-media'><img src='/media/ai-consult-hikone-20260629/ai-consult-hikone-poster.png' alt='AI相談 彦根の実践AI講座：2時間から6時間で、AIを仕事に入れる理由' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title'>AI相談 彦根の実践AI講座：2時間から6時間で、AIを仕事に入れる理由</div><div class='tr-date'>2026-06-29</div><div class='tr-sum'>彦根・滋賀の地域事業者、学校、福祉、個人事業主に向けて、なぜAI講座を行うのか、CodexやAIエージェントの考え方をどう事業に入れるのか、低コストで成果物を残す講座設計を整理します。</div></div></a><a class='tr-card' href='./2026-06-20-business-system-development-priority.html'><span class='tr-card-media'><img src='/img/blog-business-system-priority-section-01-foundation-20260620.jpg' alt='業務システム開発の優先順位：EC・AI活用で先に固めるべき8項目' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title'>業務システム開発の優先順位：EC・AI活用で先に固めるべき8項目</div><div class='tr-date'>2026-06-20</div><div class='tr-sum'>Facebook投稿「私の優先順位」をもとに、ECや業務システム開発でデータ設計、認証、クラウド設計、CI/CD、コスト最適化、IaC、マイクロサービス、Kubernetesをどう並べるべきかを整理しました。</div></div></a><a class='tr-card' href='./2026-06-18-real-engineer-ai-era.html'><span class='tr-card-media'><img src='/img/blog-real-engineer-ai-era-20260618.jpg' alt='AI時代、本物のエンジニアとは？作れる人より説明できる人が残る' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title'>AI時代、本物のエンジニアとは？作れる人より説明できる人が残る</div><div class='tr-date'>2026-06-18</div><div class='tr-sum'>AIにECサイトやアプリを作らせられる時代に、仕事として評価されるのは「なぜそう作ったのか」「どう守るのか」を説明できる力です。</div></div></a><a class='tr-card' href='./2026-06-18-cloud-ai-agent-rag-design.html'><span class='tr-card-media'><img src='/img/blog-rag-daily-agent-20260618.svg' alt='クラウドAIエージェント時代のRAG設計' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title'>クラウドAIエージェント時代のRAG設計</div><div class='tr-date'>2026-06-18</div><div class='tr-sum'>AIに資料を入れるだけではなく、どの情報をどの順番で見てもらうかを設計する。プロから初心者まで、RAGを仕事で使うための考え方を整理する。</div></div></a><a class='tr-card' href='./2026-06-18-ai-agent-output-curation.html'><span class='tr-card-media'><img src='/img/blog-ai-agent-output-section-1-20260618.svg' alt='AI時代、やる気がなくても成果物は増える。だから最後に勝つのは編集できる人' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title'>AI時代、やる気がなくても成果物は増える。だから最後に勝つのは編集できる人</div><div class='tr-date'>2026-06-18</div><div class='tr-sum'>Facebook投稿「AI時代、やる気がなくても成果物は増える」をもとに、AIエージェントが成果物を量産する時代に人間が担う編集、選別、目的設計の価値を整理する。</div></div></a><a class='tr-card' href='./2026-06-17-codex-ai-world.html'><span class='tr-card-media'><img src='/img/blog-codex-ai-world-hero-20260617.png' alt='Codexが開いた、AI活動の最前線' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title'>Codexが開いた、AI活動の最前線</div><div class='tr-date'>2026-06-17</div><div class='tr-sum'>AIハブ初のブログ。Codexを、IDE、Claude Code、画像生成、モバイル音声、プラグイン連携まで含めたAI活動の統合UIとして分析する。</div></div></a></div></div></div></main><footer>AI相談 / 由井 辰美</footer><button class='back-to-top' id='backTop' aria-label='トップへ戻る'>↑</button><script>(function(){var b=document.getElementById('backTop');if(!b)return;window.addEventListener('scroll',function(){b.classList.toggle('show',window.scrollY>400);});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script><script>
+</style><section class='blog-reel-feature' aria-labelledby='blog-featured-reel-title'><div class='blog-reel-feature__copy'><p class='blog-reel-feature__eyebrow'>新着リール</p><h2 id='blog-featured-reel-title'>伝える技術の本質は『相手の次の一歩を軽くすること』──AI相談で実践する100→10→1</h2><p>AIで作れる量が増えても、相手の時間は増えません。100を理解し、10を見せ、最後に次の一歩を一つ残す。その順番を約30秒で。</p><div class='blog-reel-feature__actions'><a href='./2026-08-14-communication-essence-ai-consult.html'>記事を読む</a></div></div><figure class='blog-reel-feature__media'><video controls playsinline preload='metadata' poster='/img/reel-communication-essence-cover-20260814.webp' aria-label='伝える技術の本質は『相手の次の一歩を軽くすること』──AI相談で実践する100→10→1'><source src='/media/reels/2026-08-14-communication-essence.mp4' type='video/mp4'>お使いのブラウザは動画再生に対応していません。<a href='/media/reels/2026-08-14-communication-essence.mp4'>動画ファイルを開く</a></video><figcaption>記事と同じ約30秒リールをここで再生できます。</figcaption></figure></section><div class='tr-grid'><a class='tr-card' href='./2026-07-25-sites-vs-vercel-safe-migration.html'><span class='tr-card-media'><img src='/img/blog-sites-cloudflare-vercel-hero-20260828.webp' alt='ChatGPT Sites、Cloudflare、Vercelの3つの公開先と、共通の原本になるGitHubを比較するイメージ' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title-row'><div class='tr-title'>ChatGPT Sites・クラウドフレア・Vercel比較｜サイト公開の極意はGitHubを残す</div><span class='blog-new-badge'>NEW</span></div><div class='tr-date'>8月28日更新</div><div class='tr-sum'>ChatGPT Sites、Cloudflare、Vercelを2026年の最新仕様で比較。Cloudflare ProとWorkers Paidの違い、Pagesの現在地、料金・DB・独自ドメイン、GitHubを残す安全な移行まで、サイト公開の極意を実務目線で解説します。</div></div></a><a class='tr-card' href='./codex-update-log.html'><span class='tr-card-media'><img src='/img/blog-codex-update-log-hero-20260822.png' alt='毎日のAIニュース10件とCodexの変化だけを選び出す和紙のカードと光のプリズム' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title-row'><div class='tr-title'>今日のAIニュースとcodex</div><span class='blog-new-badge'>NEW</span></div><div class='tr-date'>8月27日更新</div><div class='tr-sum'>AIニュース10件とCodexの新機能を、仕事で使う場面からわかりやすく読む常時更新ページです。</div></div></a><a class='tr-card' href='./2026-08-21-codex-environment-optimizer.html'><span class='tr-card-media'><img src='/img/blog-codex-environment-optimizer-hero-20260821.png' alt='散らかったAI指示環境が整理され、一つの実行経路へ変わる様子' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title-row'><div class='tr-title'>Codexを更新したら、スキルや.mdファイルもアップデートしたほうがいい理由</div></div><div class='tr-date'>2026-08-21</div><div class='tr-sum'>同じ依頼なのにCodexが確認や計画で止まる。その原因は、AIの能力より、AGENTS.md、Skill、設定、scriptsに散らばった指示かもしれません。GPT-5.6を活かすためのAI実行環境の整え方を、my-updateを例に分かりやすく解説します。</div></div></a><a class='tr-card' href='./2026-08-14-communication-essence-ai-consult.html'><span class='tr-card-media'><img src='/img/blog-communication-essence-hero-20260814.webp' alt='多くの情報カードを整理し、相手が進める一本の道と一枚のカードへまとめる編集の様子を描いた図解' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title-row'><div class='tr-title'>伝える技術の本質は『相手の次の一歩を軽くすること』──AI相談で実践する100→10→1</div></div><div class='tr-date'>2026-08-14</div><div class='tr-sum'>AIで文章、画像、資料を増やすのは簡単になりました。だからこそ必要なのは、相手の悩みから始め、余計な情報を削り、次の一歩と一言だけを残す編集です。MITの名講義とAI相談の実践を重ね、大学生にも使える4つの順番で解説します。</div></div></a><a class='tr-card' href='./2026-08-08-vercel-supabase-d1-r2-boundaries.html'><span class='tr-card-media'><img src='/img/blog-sites-runtime-data-decision-hero-20260810.png' alt='Sites、GitHubとVercel、Supabaseを役割別に選ぶための3つの経路を描いた図解' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title-row'><div class='tr-title'>サイト公開から本格稼働させるには、データをどこに置くのが正解？──Sites・GitHub＋Vercel＋Supabaseの選び方</div></div><div class='tr-date'>2026-08-10</div><div class='tr-sum'>仮LPや小さな社内ツールならSites、継続開発や複数PCならGitHub＋Vercel、顧客情報・会計・書類・権限を扱うならGitHub＋Vercel＋Supabase。データ量だけでなく、共有・復旧・バックアップの必要性で選ぶ実務的な基準を整理します。</div></div></a><a class='tr-card' href='./2026-08-09-ai-experience-3d-reality.html'><span class='tr-card-media'><img src='/img/blog-ai-experience-3d-hero-20260809.png' alt='情報を扱う平面のAI画面と、身体を使って試し経験を積む現実の場を往復する人のイメージ' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title-row'><div class='tr-title'>経験が10倍になる？AI時代、経験者が再び強くなる理由</div></div><div class='tr-date'>2026-08-09</div><div class='tr-sum'>AIが調査・計画・制作を高速化する時代に、実際の現場で試し、結果を見て、次の判断へつなげられる人の価値が高まる理由を、「AIは2次元、人間は3次元」という比喩で考えます。</div></div></a><a class='tr-card' href='./2026-08-06-ai-work-design-future.html'><span class='tr-card-media'><img src='/img/blog-ai-work-design-hero-20260806.webp' alt='AIが生み出した多くの案を、チームが目的、優先順位、責任に分けて一つの方向へ整理する様子' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title-row'><div class='tr-title'>AI時代にデザインは不要になるのか？ むしろ必要になる「経験」と「仕事をデザインする力」</div></div><div class='tr-date'>2026-08-06</div><div class='tr-sum'>AIで資料、Webサイト、業務アプリは短時間で形になります。それでも目的、優先順位、最後の判断は自動では決まりません。デザイン職だけでなく、地域事業者、学校、福祉、個人事業主、プロジェクトリーダーにも共通する「仕事そのものを設計する力」を、明日使える3つの役割に分けて解説します。</div></div></a><a class='tr-card' href='./2026-08-01-ai-personal-data-boundary.html'><span class='tr-card-media'><img src='/img/blog-ai-data-boundary-hero-20260801.webp' alt='過剰な全面禁止と管理されたAI活用の間で、データの流れと権限を確認する職員' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title-row'><div class='tr-title'>「個人情報はAIに一切入力禁止」は正しい？ ChatGPT・Copilot・Codexを止めずに守る7つの境界線</div></div><div class='tr-date'>2026-08-01</div><div class='tr-sum'>個人情報をAIへ入れた瞬間に一般公開や情報漏えいになるわけではありません。一方で、顧客DB、認証情報、本番環境をAIへ無条件に渡してよいわけでもありません。ChatGPT、Copilot、Codexを製品名で判断せず、データ、契約、保存、接続、権限の境界で安全に使い分ける方法を解説します。</div></div></a><a class='tr-card' href='./2026-07-31-chat-work-codex-usage-guide.html'><span class='tr-card-media'><img src='/img/blog-codex-story-hero-20260731.jpg' alt='朝の事務所で締切時計を見ながらChat・Work・Codexの使い分けを考える地域事業者' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title-row'><div class='tr-title'>朝8時45分、告知はまだ白紙。Codex「1回5〜45クレジット」をムダにしないAIの使い分け</div></div><div class='tr-date'>2026-07-31</div><div class='tr-sum'>昼までに地域交流会の告知を完成させたい架空の物語から、Codexの使用量を数字で解説。同じ10万入力＋1万出力でもLuna 4、Terra 10、Sol 20クレジットになる理由と、Chat・Work・Codexの使い分けを紹介します。</div></div></a><a class='tr-card' href='./2026-07-27-codex-remote-ssh-rdp.html'><span class='tr-card-media'><img src='/img/blog-codex-remote-hero-20260727.png' alt='外出先から自宅PCのCodexを安全に動かす方法｜Remote SSH・Remote・RDPの使い分け' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title-row'><div class='tr-title'>外出先から自宅PCのCodexを安全に動かす方法｜Remote SSH・Remote・RDPの使い分け</div></div><div class='tr-date'>2026-07-27</div><div class='tr-sum'>外出先のノートPCから自宅の高性能PCにあるCodex開発環境を使うために、Remote SSH・Codex Remote・Windowsリモートデスクトップの違い、設定手順、つながらないときの確認順を公式情報に基づいて整理します。</div></div></a><a class='tr-card' href='./2026-07-24-codex-worktree-git-deploy-guide.html'><span class='tr-card-media'><img src='/img/blog-codex-guide-roles-explainer-v2-20260725.webp' alt='Codexで安全に直して公開する：Worktree・Git・PRの役割' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title-row'><div class='tr-title'>Codexで安全に直して公開する：Worktree・Git・PRの役割</div></div><div class='tr-date'>2026-07-24</div><div class='tr-sum'>Codexでサイトを直して公開するまでを、作業場所・記録・確認・公開の4段階に分けてやさしく説明します。</div></div></a><a class='tr-card' href='./2026-07-22-ai-site-publishing-stages.html'><span class='tr-card-media'><img src='/img/blog-ai-site-publishing-hero-20260722.png' alt='AIで作ったサイトの公開先としてCodex Sites、VercelとSupabase、Cloudflareを比較するスライド' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title-row'><div class='tr-title'>AIで作ったサイトはどこにアップする？初心者向け「とりあえず公開・仮稼働・本番稼働」の違い</div></div><div class='tr-date'>2026-07-22</div><div class='tr-sum'>AIで作ったページをCodex Sites、Vercel＋Supabase、Cloudflareのどこへ公開すべきかを、性能・使いやすさ・将来性と「とりあえず公開・仮稼働・本番稼働」の違いからやさしく整理します。</div></div></a><a class='tr-card' href='./2026-07-14-ai-agent-course-codex-claude-code.html'><span class='tr-card-media'><img src='/img/blog-ai-agent-course-hero-20260714.webp' alt='AIエージェント講座で音声から要望を伝え、人が実行結果を確認して仕事に残す流れ' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title-row'><div class='tr-title'>AIエージェント講座を彦根で始めました｜Codex・Claude Codeを「答えるAI」から「実行する相棒」へ</div></div><div class='tr-date'>2026-07-14</div><div class='tr-sum'>彦根・滋賀の地域事業者、学校、福祉施設、個人事業主、若い挑戦者に向けて、CodexとClaude Codeを同じ「AIエージェント」として学び、仕事の分解、依頼、実行、確認、修正、再利用まで身につける新講座を詳しく紹介します。</div></div></a><a class='tr-card' href='./2026-06-29-ai-consult-hikone-practical-ai-course.html'><span class='tr-card-media'><img src='/media/ai-consult-hikone-20260629/ai-consult-hikone-poster.png' alt='AI相談 彦根の実践AI講座：2時間から6時間で、AIを仕事に入れる理由' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title-row'><div class='tr-title'>AI相談 彦根の実践AI講座：2時間から6時間で、AIを仕事に入れる理由</div></div><div class='tr-date'>2026-06-29</div><div class='tr-sum'>彦根・滋賀の地域事業者、学校、福祉、個人事業主に向けて、なぜAI講座を行うのか、CodexやAIエージェントの考え方をどう事業に入れるのか、低コストで成果物を残す講座設計を整理します。</div></div></a><a class='tr-card' href='./2026-06-20-business-system-development-priority.html'><span class='tr-card-media'><img src='/img/blog-business-system-priority-section-01-foundation-20260620.jpg' alt='業務システム開発の優先順位：EC・AI活用で先に固めるべき8項目' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title-row'><div class='tr-title'>業務システム開発の優先順位：EC・AI活用で先に固めるべき8項目</div></div><div class='tr-date'>2026-06-20</div><div class='tr-sum'>Facebook投稿「私の優先順位」をもとに、ECや業務システム開発でデータ設計、認証、クラウド設計、CI/CD、コスト最適化、IaC、マイクロサービス、Kubernetesをどう並べるべきかを整理しました。</div></div></a><a class='tr-card' href='./2026-06-18-real-engineer-ai-era.html'><span class='tr-card-media'><img src='/img/blog-real-engineer-ai-era-20260618.jpg' alt='AI時代、本物のエンジニアとは？作れる人より説明できる人が残る' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title-row'><div class='tr-title'>AI時代、本物のエンジニアとは？作れる人より説明できる人が残る</div></div><div class='tr-date'>2026-06-18</div><div class='tr-sum'>AIにECサイトやアプリを作らせられる時代に、仕事として評価されるのは「なぜそう作ったのか」「どう守るのか」を説明できる力です。</div></div></a><a class='tr-card' href='./2026-06-18-cloud-ai-agent-rag-design.html'><span class='tr-card-media'><img src='/img/blog-rag-daily-agent-20260618.svg' alt='クラウドAIエージェント時代のRAG設計' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title-row'><div class='tr-title'>クラウドAIエージェント時代のRAG設計</div></div><div class='tr-date'>2026-06-18</div><div class='tr-sum'>AIに資料を入れるだけではなく、どの情報をどの順番で見てもらうかを設計する。プロから初心者まで、RAGを仕事で使うための考え方を整理する。</div></div></a><a class='tr-card' href='./2026-06-18-ai-agent-output-curation.html'><span class='tr-card-media'><img src='/img/blog-ai-agent-output-section-1-20260618.svg' alt='AI時代、やる気がなくても成果物は増える。だから最後に勝つのは編集できる人' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title-row'><div class='tr-title'>AI時代、やる気がなくても成果物は増える。だから最後に勝つのは編集できる人</div></div><div class='tr-date'>2026-06-18</div><div class='tr-sum'>Facebook投稿「AI時代、やる気がなくても成果物は増える」をもとに、AIエージェントが成果物を量産する時代に人間が担う編集、選別、目的設計の価値を整理する。</div></div></a><a class='tr-card' href='./2026-06-17-codex-ai-world.html'><span class='tr-card-media'><img src='/img/blog-codex-ai-world-hero-20260617.png' alt='Codexが開いた、AI活動の最前線' width='1200' height='630' loading='lazy' decoding='async'></span><div class='tr-card-body'><div class='tr-title-row'><div class='tr-title'>Codexが開いた、AI活動の最前線</div></div><div class='tr-date'>2026-06-17</div><div class='tr-sum'>AIハブ初のブログ。Codexを、IDE、Claude Code、画像生成、モバイル音声、プラグイン連携まで含めたAI活動の統合UIとして分析する。</div></div></a></div></div></div></main><footer>AI相談 / 由井 辰美</footer><button class='back-to-top' id='backTop' aria-label='トップへ戻る'>↑</button><script>(function(){var b=document.getElementById('backTop');if(!b)return;window.addEventListener('scroll',function(){b.classList.toggle('show',window.scrollY>400);});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script><script>
 (function(){
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var sel = '.tr-card, .pf-card, .profile-stat, .profile-tech-card, .sns-card, article, .content-toc, .tr-section, .profile-tl-item, .profile-app-card, .profile-biz-card';

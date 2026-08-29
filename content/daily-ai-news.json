@@ -1,13 +1,13 @@
 {
-  "date": "2026-08-29",
+  "date": "2026-08-30",
   "items": [
     {
-      "title": "ソフトバンク、教師の子どもケアを支えるAI「メンタリ」開始",
-      "url": "https://www.softbank.jp/corp/news/press/sbkk/2026/20260827_01/",
-      "source": "ソフトバンク",
-      "published": "2026-08-27",
-      "kid_summary": "子どもの相談内容をAIで整理し、先生のこころのケア対応を支えるサービスが始まりました。",
-      "japan_angle": "学校はアンケート確認の負担を減らし、子どもと向き合う時間を増やせる可能性があります。"
+      "title": "OpenAIとタイ政府、医療・教育AIスタートアップ10社を支援",
+      "url": "https://openai.com/index/supporting-next-generation-ai-startups-thailand/",
+      "source": "OpenAI",
+      "published": "2026-08-28",
+      "kid_summary": "OpenAIとタイ政府が、医療・教育のAI試作品を実用化へ進める8週間の支援を始めました。",
+      "japan_angle": "日本の地域や学校も、行政・大学・企業が組み、試作品を現場で試す支援設計の参考にできます。"
     },
     {
       "title": "KDDI、自動運転バスの通信を複数AIで最適化する実証",
@@ -26,36 +26,44 @@
       "japan_angle": "地域企業も利用回数だけでなく、減らせた作業時間を測る導入方法の参考にできます。"
     },
     {
-      "title": "Osaka Metro、Gemini搭載の「ヒューマノイド駅員」を実証",
-      "url": "https://subway.osakametro.co.jp/news/news_release/20260828_humanoid_jikken.php",
-      "source": "Osaka Metro",
+      "title": "Google、Gemini Notebookの利用上限を5時間ごとに更新",
+      "url": "https://blog.google/innovation-and-ai/products/gemini-notebook/new-flexible-usage-limits/",
+      "source": "Google",
       "published": "2026-08-28",
-      "kid_summary": "Geminiを積んだ人型ロボットが、駅や乗り換え、観光を多言語で案内する実証が始まります。",
+      "kid_summary": "文章の長さや機能ごとに計算量を管理し、利用上限を5時間ごとに戻す仕組みに変わります。",
+      "japan_angle": "学校や会社は、動画やスライド生成を後回しに予約し、日中の調査を続けやすくなります。"
+    },
+    {
+      "title": "Osaka Metro、Gemini搭載の「ヒューマノイド駅員」を実証",
+      "url": "https://newsroom.kddi.com/news/detail/kddi_nr-1132_4683.html",
+      "source": "KDDI",
+      "published": "2026-08-28",
+      "kid_summary": "Geminiを積んだ人型ロボットが、駅や乗り換え、観光を多言語で案内する実証を始めます。",
       "japan_angle": "駅や観光施設は、人手不足時の案内補助と利用者の受け止め方を現場で確かめられます。"
     },
     {
-      "title": "Codex CLI 0.150.1、長い作業の画像整理を改善",
-      "url": "https://github.com/openai/codex/releases/tag/rust-v0.150.1",
-      "source": "OpenAI Codex",
-      "published": "2026-08-27T01:56:54Z",
-      "kid_summary": "Codex CLIが、長い作業で残す画像も容量計算に入れ、必要に応じて古い画像を整理するよう直りました。",
-      "japan_angle": "資料画像が多い制作では、長い作業が容量不足になりにくくなる改善として関係します。"
+      "title": "Anthropic、Claudeが10種類のAI安全上の失敗を改善と報告",
+      "url": "https://www.anthropic.com/research/automated-researchers-mitigate-alignment-failures",
+      "source": "Anthropic",
+      "published": "2026-08-28",
+      "kid_summary": "Claudeが研究と訓練を繰り返し、公開評価で10種類の安全上の失敗を減らしました。",
+      "japan_angle": "学校や会社も、便利さだけでなく、うそ・迎合・個人情報の問題を評価する参考にできます。"
     },
     {
-      "title": "Google、動画生成AI「Gemini Omni 1.1 Flash」を公開",
-      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/build-with-gemini-omni-1-1-flash/",
-      "source": "Google",
-      "published": "2026-08-27",
-      "kid_summary": "Googleが、動画の続きを作り、始点と終点を指定し、4K化できる映像AIを公開しました。",
-      "japan_angle": "地域店や作り手は、商品紹介や講座動画の試作を低解像度で比べてから仕上げられます。"
+      "title": "LINEヤフー、「Agent i」の8つの生活支援AI試作を公開",
+      "url": "https://k-tai.watch.impress.co.jp/docs/news/2136578.html",
+      "source": "ケータイ Watch",
+      "published": "2026-08-28T16:19:00+09:00",
+      "kid_summary": "目覚まし、スクショ整理、短い動画作りなどを助ける8つのAI試作品が公開されました。",
+      "japan_angle": "家庭や小さな店は、写真整理や告知動画など、身近な作業からAI代行を考えられます。"
     },
     {
-      "title": "ChatGPTと批判的思考訓練は学習に別々の効果",
-      "url": "https://openai.com/index/what-students-gain-from-chatgpt-critical-thinking-training/",
+      "title": "OpenAI、Cursorへのモデル提供を11月12日に終了予定",
+      "url": "https://openai.com/index/our-decision-on-cursor-following-its-acquisition-by-spacex/",
       "source": "OpenAI",
-      "published": "2026-08-27",
-      "kid_summary": "1000人超の実験で、ChatGPTは答案の質を高め、思考訓練は独自案を増やしました。",
-      "japan_angle": "学校は完成答案だけでなく、考え方や独自性も評価する課題づくりの参考にできます。"
+      "published": "2026-08-28",
+      "kid_summary": "OpenAIが、CursorへAIモデルを届ける契約を11月12日に終える予定だと発表しました。",
+      "japan_angle": "日本の開発者は、CursorでOpenAIモデルを使う仕事の移行先や継続方法を早めに確認できます。"
     },
     {
       "title": "日本AMD、ロボット向け「Ryzen AI Embedded X100」を披露",
@@ -70,16 +78,8 @@
       "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202608/video-313959.html",
       "source": "政府広報オンライン",
       "published": "2026-08-28",
-      "kid_summary": "高市総理が、チームみらいの安野氏らからAIの使い方について説明を受けました。",
-      "japan_angle": "行政や学校でAIを使う議論に、技術だけでなく使い方を学ぶ視点も関係する動きです。"
-    },
-    {
-      "title": "NVIDIA、AIエージェント向けCPU「Vera」の出荷を拡大",
-      "url": "https://blogs.nvidia.com/blog/vera-cpu-delivery/",
-      "source": "NVIDIA",
-      "published": "2026-08-27",
-      "kid_summary": "NVIDIAが、AIエージェント向けCPU「Vera」の出荷拡大とAWSへの納入を発表しました。",
-      "japan_angle": "日本のAIサービスにも、将来の応答速度や運用費を支えるサーバー選びで関わる動きです。"
+      "kid_summary": "高市総理が、チームみらいの安野氏らからAIの活用方法について説明を受けました。",
+      "japan_angle": "行政や学校でAIを使う議論に、まず使い方を学ぶ視点が加わる出来事です。"
     }
   ]
 }

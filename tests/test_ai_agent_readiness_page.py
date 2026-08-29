@@ -27,7 +27,7 @@ class AiAgentReadinessPageTests(unittest.TestCase):
         cls.site_builder = load_module("site_builder_readiness_under_test", SITE_BUILDER_PATH)
         cls.portal = load_module("portal_readiness_under_test", PORTAL_PATH)
         cls.html = cls.renderer.render_ai_agent_readiness_page(
-            site_url="https://aiclimb.vercel.app",
+            site_url="https://aiclimb.aiclimb.workers.dev",
             nav_html="<header class='site-header'>共通ナビ</header>",
             favicon_html="<link rel='icon' href='/favicon.svg'>",
             shared_header_css=".site-header{position:fixed}",
@@ -144,7 +144,7 @@ class AiAgentReadinessPageTests(unittest.TestCase):
                 (Path(tmp) / "index.html").write_text("home", encoding="utf-8")
                 self.site_builder.build_sitemap_and_robots()
                 sitemap = (Path(tmp) / "sitemap.xml").read_text(encoding="utf-8")
-                self.assertIn("<loc>https://aiclimb.vercel.app/ai-agent-readiness/</loc>", sitemap)
+                self.assertIn("<loc>https://aiclimb.aiclimb.workers.dev/ai-agent-readiness/</loc>", sitemap)
                 self.assertNotIn("/ai-agent-readiness/index.html</loc>", sitemap)
         finally:
             self.site_builder.DIST = original_dist

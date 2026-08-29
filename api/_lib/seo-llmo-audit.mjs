@@ -207,7 +207,7 @@ export async function requestPublicDocument(input, options = {}) {
         headers: {
           accept: options.accept || 'text/html,application/xhtml+xml;q=0.9,text/plain;q=0.7,application/xml;q=0.6,*/*;q=0.1',
           'accept-encoding': 'identity',
-          'user-agent': 'AI-Sodan-SEO-LLMO-Audit/1.0 (+https://aiclimb.vercel.app/seo-llmo-diagnosis/)',
+          'user-agent': 'AI-Sodan-SEO-LLMO-Audit/1.0 (+https://aiclimb.aiclimb.workers.dev/seo-llmo-diagnosis/)',
         },
         lookup: createPinnedLookup(selected),
       }, (response) => {

@@ -20,7 +20,7 @@ class FakeResponse:
     def __init__(self, text: str, *, status_code: int = 200) -> None:
         self.text = text
         self.status_code = status_code
-        self.url = "https://aiclimb.vercel.app/blog/codex-update-log.html"
+        self.url = "https://aiclimb.aiclimb.workers.dev/blog/codex-update-log.html"
         self.headers = {"Content-Type": "text/html; charset=utf-8"}
 
 

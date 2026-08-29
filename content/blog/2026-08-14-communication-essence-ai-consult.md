@@ -168,7 +168,7 @@ AIへ頼むときも同じです。「詳しく書いて」だけでは、情報
 - [MIT OpenCourseWare: How to Speak by Patrick Winston transcript](https://ocw.mit.edu/courses/15-371-innovation-teams-fall-2024/resources/unzc731icuy_transcript/)
 - [MIT CSAIL: Patrick Winston - Some Lecturing Heuristics](https://courses.csail.mit.edu/6.141/spring2010/pub/debates/Talk/phw.html)
 - [W3C WAI: Use Clear and Understandable Content](https://www.w3.org/WAI/WCAG2/supplemental/objectives/o3-clear-content/)
-- [AI相談: 講習から仕事で使うまで](https://aiclimb.vercel.app/)
+- [AI相談: 講習から仕事で使うまで](https://aiclimb.aiclimb.workers.dev/)
 - [AI時代にデザインは不要になるのか？](/blog/2026-08-06-ai-work-design-future.html)
 - [経験が10倍になる？AI時代、経験者が再び強くなる理由](/blog/2026-08-09-ai-experience-3d-reality.html)
 

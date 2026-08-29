@@ -99,7 +99,7 @@ class AiAppSelfbuildOfferTests(unittest.TestCase):
     def test_ai_app_site_is_the_done_for_you_service_page(self) -> None:
         rendered = self.app_site.render_ai_app_site_page(
             "ai-app-site",
-            "https://aiclimb.vercel.app",
+            "https://aiclimb.aiclimb.workers.dev",
             "<nav></nav>",
             "",
             "",

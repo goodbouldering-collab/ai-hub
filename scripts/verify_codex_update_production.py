@@ -17,6 +17,7 @@ ARTICLE_PATH = ROOT / "content" / "blog" / "codex-update-log.md"
 PRODUCTION_URL = "https://aiclimb.aiclimb.workers.dev/blog/codex-update-log.html"
 PRODUCTION_HOST = "aiclimb.aiclimb.workers.dev"
 PRODUCTION_PATH = "/blog/codex-update-log.html"
+PRODUCTION_FINAL_PATHS = {PRODUCTION_PATH, "/blog/codex-update-log"}
 
 
 def read_expected_fingerprint(article_path: Path = ARTICLE_PATH) -> str:
@@ -74,7 +75,7 @@ def wait_for_production(
             if (
                 final.scheme != "https"
                 or (final.hostname or "").lower() != PRODUCTION_HOST
-                or final.path != PRODUCTION_PATH
+                or final.path not in PRODUCTION_FINAL_PATHS
             ):
                 raise ValueError("本番確認の転送先が固定記事ではありません")
             status = int(response.status_code)

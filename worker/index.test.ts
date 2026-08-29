@@ -10,7 +10,7 @@ describe("AIclimb Cloudflare edge", () => {
     const originFetch = vi.fn();
     vi.stubGlobal("fetch", originFetch);
 
-    const response = await exports.default.fetch("https://aiclimb.gb-jp.workers.dev/health");
+    const response = await exports.default.fetch("https://aiclimb.aiclimb.workers.dev/health");
 
     expect(response.status).toBe(200);
     expect(response.headers.get("content-type")).toContain("application/json");
@@ -28,7 +28,7 @@ describe("AIclimb Cloudflare edge", () => {
     vi.stubGlobal("fetch", originFetch);
 
     const response = await exports.default.fetch(
-      new Request("https://aiclimb.gb-jp.workers.dev/admin/blog?draft=1", {
+      new Request("https://aiclimb.aiclimb.workers.dev/admin/blog?draft=1", {
         method: "POST",
         redirect: "manual",
         headers: {
@@ -53,7 +53,7 @@ describe("AIclimb Cloudflare edge", () => {
 
     const response = await exports.default.fetch(
       new Request(
-        "https://aiclimb.gb-jp.workers.dev/media/ai-consult-hikone-20260629/ai-consult-hikone-course.webm",
+        "https://aiclimb.aiclimb.workers.dev/media/ai-consult-hikone-20260629/ai-consult-hikone-course.webm",
         { headers: { range: "bytes=0-10" }, redirect: "manual" },
       ),
     );
@@ -70,7 +70,7 @@ describe("AIclimb Cloudflare edge", () => {
     vi.stubGlobal("fetch", originFetch);
 
     const response = await exports.default.fetch(
-      new Request("https://aiclimb.gb-jp.workers.dev/api/admin/ping?mode=check", {
+      new Request("https://aiclimb.aiclimb.workers.dev/api/admin/ping?mode=check", {
         redirect: "manual",
       }),
     );

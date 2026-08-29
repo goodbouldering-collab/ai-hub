@@ -53,7 +53,7 @@
 |---|---|---|
 | ~~Render Static Site (`ai-hub`)~~ | 撤収済 | Vercel 集約に伴い廃止 |
 | ~~Cloudflare Worker `ai-hub`~~ | 撤収済（2026-05-05） | `wrangler delete --name ai-hub` 実行済。`wrangler.toml` / `cloudflare-pages.yml` も削除済 |
-| Cloudflare Worker `aiclimb` | 並行配信 | 公開静的ファイルだけを配信。管理画面・API・大容量動画は認証情報を中継せずVercel本番へ直接移動。確認URLは `https://aiclimb.gb-jp.workers.dev` |
+| Cloudflare Worker `aiclimb` | 並行配信 | 公開静的ファイルだけを配信。管理画面・API・大容量動画は認証情報を中継せずVercel本番へ直接移動。確認URLは `https://aiclimb.aiclimb.workers.dev` |
 | GitHub Pages (`goodbouldering-collab.github.io/ai-hub/`) | 残置 | 参考用・本番は Vercel |
 
 ## コマンド

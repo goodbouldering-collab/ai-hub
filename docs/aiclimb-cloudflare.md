@@ -14,7 +14,7 @@
 | `/watch`、`/seo-llmo-diagnosis` | Vercelへ直接移動 | 既存の動的APIと同一originで動作させる |
 | 25MiBを超える講習動画 | Vercelへ直接移動 | Workers Static Assetsの1ファイル上限を超えるため |
 
-Cloudflareの確認URLは `https://aiclimb.gb-jp.workers.dev`。SEO canonical、OG URL、決済の戻り先は、独自ドメインを取得するまで `https://aiclimb.vercel.app` を正本とする。
+Cloudflareの確認URLは `https://aiclimb.aiclimb.workers.dev`。SEO canonical、OG URL、決済の戻り先は、独自ドメインを取得するまで `https://aiclimb.vercel.app` を正本とする。
 
 ## 安全性
 

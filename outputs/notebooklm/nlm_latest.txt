@@ -2,6 +2,14 @@
 
 ## AIニュース
 
+### Sony Music and Warner Chappell are suing Anthropic
+Sony Music and Warner Chappell have filed suit against Anthropic in the US District Court for the Northern District of California seeking damages for "tens of thousands" copyrighted works. The compani...
+出典: https://www.theverge.com/ai-artificial-intelligence/986438/sony-music-warner-chappell-anthropic-lawsuit-copyright
+
+### Musicians-turned-detectives are hunting for AI grifters
+As audio-focused generative tools and platforms have gotten more sophisticated, the internet has become increasingly filled with AI-generated music whose melodies and vocals are algorithmically derive...
+出典: https://www.theverge.com/entertainment/985866/h4rris-nihil-young-edm-suno-ai
+
 ### Trump’s EPA wants to let data centers hide their air pollution
 Just as new data centers face growing backlash from neighboring communities, the US Environmental Protection Agency (EPA) is about to make it harder for people to weigh in on any pollution those cente...
 出典: https://www.theverge.com/ai-artificial-intelligence/986176/data-center-pollution-epa-rule-change-air-permit
@@ -10,30 +18,6 @@ Just as new data centers face growing backlash from neighboring communities, the
 On Thursday, a judge ruled that the Pentagon's blacklisting of Anthropic earlier this year was unconstitutional, delivering the AI lab a win in a monthslong rollercoaster of a battle with the Trump ad...
 出典: https://www.theverge.com/ai-artificial-intelligence/985947/anthropic-supply-chain-risk-lawsuit-judge-ruling
 
-### Google’s AI note-taking app now allows you to interact with books
-Google's AI note-taking app, Gemini Notebook, can now pull information from the books you've purchased. The new "Expert Intelligence" feature allows you to bring titles from Google Play Books directly...
-出典: https://www.theverge.com/tech/985567/google-gemini-notebook-expert-sources-books
-
-### Jensen Huang says Nvidia achieved AGI, again — not that it matters
-On Nvidia's earnings call Wednesday, CEO Jensen Huang casually announced the company had "achieved AGI," one of the tech industry's ultimate goals some of its biggest players have spent years chasing....
-出典: https://www.theverge.com/ai-artificial-intelligence/985597/jensen-huang-says-nvidia-achieved-senseless-agi
-
-### OpenAI&#8217;s executive exodus has one big winner
-Today on Decoder, I’m talking to Verge senior AI reporter Hayden Field about some pure Decoder bait: the seemingly-endless org chart changes at OpenAI, and how all of them seem to consolidate power un...
-出典: https://www.theverge.com/podcast/985332/openai-greg-brockman-sam-altman-leader-executive-exodus
-
-### Hugging Face’s new robot is an adorable rollerskating duck
-Hugging Face's Pollen Robotics has launched its second cute AI robot, the Microduck, a one-eyed biped standing just under 10 inches tall. It's available to preorder now for $399 in cream, graphite, la...
-出典: https://www.theverge.com/gadgets/985549/hugging-face-microduck-robot
-
-### Plaud is launching AI earbuds
-Plaud has introduced a new AI wearable that's designed to record, transcribe, and summarize your conversations, only this time it looks like earbuds instead of a pin. The Plaud One Explorer Edition ca...
-出典: https://www.theverge.com/ai-artificial-intelligence/985500/plaud-one-earbuds-ai-recorder-price-availability
-
-### Adobe is adding more AI to Photoshop
-Adobe is rolling out an AI-heavy update for Photoshop that includes a new "optional" interface dedicated to its AI tools. Launching in beta, the "AI Assisted Editor" view will show all of Photoshop's ...
-出典: https://www.theverge.com/tech/985491/adobe-photoshop-ai-assisted-editor-markup
-
 ### Trump blacklisting of "woke" Anthropic deemed illegal by federal judge
 Anthropic refused to support lethal autonomous warfare and mass surveillance.
 出典: https://arstechnica.com/tech-policy/2026/08/trump-blacklisting-of-woke-anthropic-deemed-illegal-by-federal-judge/
@@ -41,34 +25,6 @@ Anthropic refused to support lethal autonomous warfare and mass surveillance.
 ### Meta makes AI glasses slightly less creepy with limit on nonconsensual recording
 Meta fixes AI glasses to stop recording any time users cover up the safety light.
 出典: https://arstechnica.com/tech-policy/2026/08/meta-tweaks-ai-glasses-to-block-some-creepy-recordings-but-privacy-risks-remain/
-
-### Anthropic's new hardware standard lets AI agents control the physical world
-Standardized driver interface aims to let devices talk to AI and each other.
-出典: https://arstechnica.com/ai/2026/08/anthropics-new-hardware-standard-lets-ai-agents-control-the-physical-world/
-
-### Elon Musk’s xAI used child porn to train Grok models, lawsuit says
-xAI accused of training Grok on real and AI-generated child pornography.
-出典: https://arstechnica.com/tech-policy/2026/08/elon-musks-xai-used-child-porn-to-train-grok-models-lawsuit-says/
-
-### Report: Nvidia to acquire AI model repository Hugging Face for $13 billion
-Nvidia is nabbing critical infrastructure for open models as interest grows.
-出典: https://arstechnica.com/ai/2026/08/report-nvidia-to-acquire-ai-model-repository-hugging-face-for-13-billion/
-
-### AI industry says Trump plans to tax chips in the “single dumbest way imaginable”
-Tech industry is perplexed by Trump’s plan to win AI race by taxing data centers.
-出典: https://arstechnica.com/tech-policy/2026/08/ai-industry-says-trump-plans-to-tax-chips-in-the-single-dumbest-way-imaginable/
-
-### Claude, Codex, and Hermes installed unowned code inside corporate networks
-227 install commands were found in corporate docs pointing at code nobody owns.
-出典: https://arstechnica.com/security/2026/08/claude-codex-and-hermes-installed-unowned-code-inside-corporate-networks/
-
-### How much of a problem is AI’s water use?
-AI’s water footprint is growing, but location and cooling technology make a difference.
-出典: https://arstechnica.com/ai/2026/08/how-much-of-a-problem-is-ais-water-use/
-
-### How OpenAI let a mob of LLM agents game a test and ransack Hugging Face
-Without authorization, 1,200 OpenAI agents conspired among themselves to game a test.
-出典: https://arstechnica.com/security/2026/08/how-openai-let-a-mob-of-llm-agents-game-a-test-and-ransack-hugging-face/
 
 
 ## AI公式
@@ -81,20 +37,55 @@ Our decision to wind down our contract providing OpenAI models to Cursor followi
 OpenAI and Thailand’s MHESI launch an eight-week accelerator helping 10 health, wellness, and education startups turn AI prototypes into trusted products.
 出典: https://openai.com/index/supporting-next-generation-ai-startups-thailand
 
-### Better answers, broader thinking: What students gain from ChatGPT and critical-thinking training
-A randomized study of more than 1,000 students examines ChatGPT, critical thinking, originality, and student performance on a real-world university assignment.
-出典: https://openai.com/index/what-students-gain-from-chatgpt-critical-thinking-training
+### 0.151.0
+<h2>New Features</h2> <ul> <li>Added a configurable grace period for discovering tools from optional MCP servers. (<a class="issue-link js-issue-link" href="https://github.com/openai/codex/pull/41199"...
+出典: https://github.com/openai/codex/releases/tag/rust-v0.151.0
 
-### Gemini Omni 1.1 Flash lets you build with more control
 
-出典: https://deepmind.google/blog/gemini-omni-1-1-flash-lets-you-build-with-more-control/
+## AI動画(日本語)
 
-### Piloting the world's first double-blind AI evaluations
-Piloting the world's first double-blind AI evaluations
-出典: https://deepmind.google/blog/piloting-the-worlds-first-double-blind-ai-evaluations/
+### ネット検索しただけで機密情報が漏れる #Shorts
+プロンプトインジェクションの仕組みを、非エンジニア向けに解説します。  ▼本編（フル解説はこちら） Claude Codeの安全な始め方 https://youtu.be/M-z6WJGSonI  ▼AIセキュリティを体系的に学ぶなら「Touch AI」 https://touchai.jp  #Shorts #ClaudeCode #AI #セキュリティ
+出典: https://www.youtube.com/shorts/xrrxichlNEg
+
+### ブログ歴16年のプロがオタクに負ける理由 #Shorts
+SEOのテクニックより強いものがあります。プロが認める「オタクの勝ち」の理由。  ▼本編（フル解説はこちら） ブログ初心者が半年で月5万円稼ぐスケジュール完全講義 https://youtu.be/h9Hej75xgGw  ▼AIセキュリティを体系的に学ぶなら「Touch AI」 https://touchai.jp  #Shorts #ブログ #SEO #ライティング
+出典: https://www.youtube.com/shorts/gi8i9tazkOg
+
+### 創業4年で50兆円、トヨタと同じ時価総額 #Shorts
+Anthropicという会社の規模がおかしい。累計調達5兆円超、企業価値50兆円。  ▼本編（フル解説はこちら） Claude Code完全講義 https://youtu.be/bOyS3vPxrRk  ▼AIセキュリティを体系的に学ぶなら「Touch AI」 https://touchai.jp  #Shorts #Anthropic #Claude #AI
+出典: https://www.youtube.com/shorts/vqkabUudtmI
+
+### GitHubの初期設定、世界に丸見えです #Shorts
+AIで開発するなら最初に必ず確認してください。リポジトリのデフォルトは「公開」です。  ▼本編（フル解説はこちら） Claude Codeの安全な始め方 https://youtu.be/M-z6WJGSonI  ▼AIセキュリティを体系的に学ぶなら「Touch AI」 https://touchai.jp  #Shorts #ClaudeCode #GitHub #AI
+出典: https://www.youtube.com/shorts/y9Zx8hepGjA
+
+### 絶対に作るべきAIスキルTOP3
+
+出典: https://www.youtube.com/shorts/a3rII6QaTKk
+
+### 【最高なAI連携】Claude Code × Obsidianで勝手に賢くなってく”脳”の作り方
+Claude Code × Obsidian（オブシディアン）で「第二の脳」を作る方法を解説！AIとの会話や作成したスキル、仕事の知識をObsidianに自動保存し、Claude Codeが必要なときに活用できる仕組みを実演します。メモ保存スキルやフックによる自動化も紹介！  Obsidianはこちら https://obsidian.md/ja/  KEITOの公式LINEはこちら LINE：h...
+出典: https://www.youtube.com/watch?v=TU8DSyuMto4
+
+### Claude Coworkを完全マスター！
+「Claude Cowork スゴイ活用術」Amazonのリンク：https://link.amazon/B00G9rPVI
+出典: https://www.youtube.com/shorts/OtNfqTbPLRg
+
+### 【早い者勝ち】日本人の皆さんだけが稼げる神副業はこちらです。
+▼動画内で紹介したプレゼントの受け取りは以下の公式LINEから https://liff.line.me/2006805073-rn36NG8b/landing?follow=%40933hyolt&amp;lp=zbSC2L&amp;liff_id=2006805073-rn36NG8b  ▼プレゼントの受け取り方法 ① LINE登録後に送信される配信をタップ ② アンケートに回答（1度登録され...
+出典: https://www.youtube.com/watch?v=43MDem-gvg0
+
+### 【2026年8月版】AI課金おすすめ構成を料金別に紹介！Fable 5とGPT-5.6 Solの使い分けも解説
+🏢【受付中】企業様向けAI活用の相談窓口を設置しています。 「AIで業務効率化できるか一緒に考えてほしい」「AIがわかる人を育てたい」という企業様向けに、研修から業務改善の定着まで伴走支援いたします。 ▼登録はこちら（登録は1分ほど・本目的以外では営業しません） https://forms.gle/sPVYtBkZpeaJ7URS9   ------------------------------...
+出典: https://www.youtube.com/watch?v=izSqPE8mnQo
 
 
 ## AI国内
+
+### OpenAI、Cursorへのモデル提供を11月12日に終了　SpaceXによる買収が理由
+OpenAIは、AIコードエディタ「Cursor」へのモデル提供契約を11月12日に終了すると発表した。SpaceXによるCursor買収を受け、イーロン・マスク氏の過去の契約違反実績から規約順守を確信できないことを理由に挙げている。Cursor側は影響が限定的としつつ協議継続を表明、Anthropicは支援継続を示した。
+出典: https://www.itmedia.co.jp/news/article/2608/30/2000000945/
 
 ### キオクシア5兆円投資、日米中韓の半導体投資競争はどこへゆく
 2026年8月24日～28日に公開された記事の中から、MONOist編集部が厳選した今週のニュースをお届けします。
@@ -132,50 +123,6 @@ AIで成果を出せる人と出せない人の違いは何か。差がつくス
 Googleは、動画の生成や編集に対応するマルチモーダルAI「Gemini Omni 1.1 Flash」を発表した。直前10秒の文脈を参照した最大40秒のシーン延長や、開始・終了フレームの指定生成に対応。360pの高速プレビューから4Kアップスケールまでをカバーし、APIやツール経由で提供する。
 出典: https://www.itmedia.co.jp/aiplus/article/2608/28/2000000878/
 
-### ヒューマノイドを育てるバイト!?　タイミーとジールスが現場データ収集で協業
-ZEALSとタイミーは、ヒューマノイドなどフィジカルAI学習に必要な現場データを収集する、「データ収集スポットワーク」の創出に向けて共創パートナーシップを締結した。
-出典: https://monoist.itmedia.co.jp/mn/articles/2608/28/news061.html
-
-### 「情シスはまだ実力の1割しか発揮していない」　AIリストラ時代のキャリアを考える
-「クビにはならないが、専門性に合う仕事が消滅する」――。過去の技術転換期に起きたことは、AI時代にも起こり得る。ガートナーの亦賀忠明氏にAI時代にIT部門が果たすべき役割と、個人としてのキャリア構築の在り方を聞いた。
-出典: https://www.itmedia.co.jp/enterprise/articles/2608/27/news042.html
-
-### とにかく足りない上級IT人材　需給ギャップの背景を2つの調査から読み解く
-上級IT人材を確保できない企業は多く、人材育成の壁もまた高い――ITRとガートナーの2つの調査からIT人材不足の全体像に迫る。
-出典: https://www.itmedia.co.jp/enterprise/articles/2608/28/news045.html
-
-### 「全従業員がAIを使っているか」はもう成功の物差しじゃない　AI投資、どう評価すべきか？
-従来のITと異なり、AIは使えば使うほどコストが増えます。それでも活用の指標として利用者数や利用率を重視する企業はまだ多くあります。拡大を続けるAI投資の成果を、企業は何によって判断すればよいのでしょうか。新しい投資評価の視点を考察します。
-出典: https://www.itmedia.co.jp/enterprise/articles/2608/28/news029.html
-
-### OpenAI、AIサイバー攻撃への「集団的対応」を訴える公開書簡　Anthropic、Google、Microsoftなど100以上の組織が署名
-OpenAIは、AIを悪用したサイバー攻撃への備えを産業界と政府に訴える公開書簡を発表した。モデルの能力向上によりサイバー攻撃の高度化が懸念される中、現状のセキュリティの不備を指摘し、防御用AIの普及と国際連携を要請。AnthropicやGoogleなど、100以上の企業や団体が署名している。
-出典: https://www.itmedia.co.jp/aiplus/article/2608/28/2000000876/
-
-### 「新幹線料金と同じ」　ラピダス小池社長が明かす、2ナノ半導体“短納期”の勝算
-ラピダスが計画する2ナノメートル級先端半導体の量産化について、小池淳義社長が見解を示した。旺盛なAI需要を背景に「工程は遅れなく進行している」と強調。絶対王者である台湾のTSMCに対する勝ち筋を「圧倒的な短納期」とし「新幹線料金のように高くても早く出す価値が評価される」と説明した。さらにGAFAMを含む米巨大テックでの評価開始や、自前主義を脱したグローバル協業の重要性についても語った。
-出典: https://www.itmedia.co.jp/business/articles/2608/28/news065.html
-
-### OpenAIのAIエージェント、約700体の群れで企業を襲撃　ハッキングの痕跡隠蔽を試みる――事件の裏で何が？
-OpenAIのAIエージェントが、企業をハッキングした事件の詳細が明らかになった。実に700体のエージェント群が連携していたという。事件の裏で何が起きていたのか。
-出典: https://www.itmedia.co.jp/business/articles/2608/28/news067.html
-
-### NVIDIAが開発支援、約30秒で口腔がんの疑い検出する歯科用AI
-大阪大学らが開発したプログラム医療機器「口腔粘膜画像解析システム Mucosight AI」が、製造販売承認を取得した。AIを活用して口腔粘膜疾患の特徴を検出し、歯科医師の受診勧奨判断を支援する。
-出典: https://monoist.itmedia.co.jp/mn/articles/2608/27/news068.html
-
-### ちっちゃな人型ロボが100mトラックをぽてぽて……中国ロボ陸上の“おちびランナー”が話題　「可愛すぎ」「けなげ」
-中国・北京で8月22日から26日（現地時間）まで開催された、人型ロボットの性能を競う「世界人型ロボット運動会」。陸上のウサイン・ボルト選手越えのスピードを発揮するロボなどが注目を集める一方で、100mトラックをぽてぽてと歩くとある小型人型ロボが可愛らしいとSNSの話題をさらっている。
-出典: https://www.itmedia.co.jp/news/article/2608/27/2000000852/
-
-### 中国製AIチップのクラスタで「Opus 4.8並み性能」モデルを提供　話題のステルスモデルの正体は「GLM-5.3-Flash」
-中国Z.aiが「GLM-5.3-Flash」をMITライセンスで公開。「Ox Alpha」として匿名検証していたマルチモーダルモデルで、「Claude Opus 4.8」に迫る性能を安価で提供するとうたう。
-出典: https://www.itmedia.co.jp/aiplus/article/2608/27/2000000840/
-
-### 2035年、AI推論需要の半分は「コード生成」に　推論市場の今と未来
-ABI Researchは、急拡大するAI推論市場の現状を解説した。生成AIの本番利用が広がる中、推論ワークロードは2033年にトレーニングを追い越し、消費電力は2035年に46ギガワットへ拡大すると予測する。
-出典: https://atmarkit.itmedia.co.jp/ait/articles/2608/27/news046.html
-
 
 ## AI業界
 
@@ -190,10 +137,6 @@ ABI Researchは、急拡大するAI推論市場の現状を解説した。生成
 <p><strong><a href="https://anil.recoil.org/notes/rumour-is-the-exploit">Just a rumour of a bug is enough to find a security exploit these days</a></strong></p> Anil Madhavapeddy is a professor of com...
 出典: https://simonwillison.net/2026/Aug/28/just-a-rumour-of-a-bug/
 
-### Breaking Claude Code Opus 5 Auto Mode
-<p><strong><a href="https://embracethered.com/blog/posts/2026/breaking-claude-code-opus-5-and-automode/">Breaking Claude Code Opus 5 Auto Mode</a></strong></p> Anthropic are putting a great deal of fa...
-出典: https://simonwillison.net/2026/Aug/27/breaking-claude-code-opus-5-auto-mode/
-
 
 ## SNS公式
 
@@ -201,21 +144,9 @@ ABI Researchは、急拡大するAI推論市場の現状を解説した。生成
 <div><img alt="" class="attachment-large size-large wp-post-image" height="540" src="https://about.fb.com/wp-content/uploads/2025/05/Investment-and-Instant-Payment-Scams_Header.jpg?fit=960%2C540" styl...
 出典: https://about.fb.com/news/2026/08/wzmacniamy-w-polsce-ochrone-przed-oszustwami/
 
-### Closed-Loop Cooling Explained: The Plumbing Behind Meta’s AI
-<div><img alt="" class="attachment-large size-large wp-post-image" height="501" src="https://about.fb.com/wp-content/uploads/2026/08/TOM_LIQUID-COOLING_Thumbnail.jpg?fit=890%2C501" style="margin-botto...
-出典: https://about.fb.com/news/2026/08/closed-loop-cooling-explained-the-plumbing-behind-metas-ai/
-
 ### You’re invited: Ina Garten launches official YouTube channel & video podcast series
 <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Image_20260827_124027_678.max-600x600.format-webp.webp" />Ina Garten debuts her official YouTube channel and weekly video podc...
 出典: https://blog.youtube/creator-and-artist-stories/ina-garten-official-youtube-channel-happy-hour/
-
-### Super Simple Songs marks 20 years with new music and content
-<img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/SSSVinyl_MarketingAsset_VinylMa.max-600x600.format-webp.webp" />Super Simple Songs marks 20 years of early learning through mu...
-出典: https://blog.youtube/creator-and-artist-stories/super-simple-songs-20th-anniversary-youtube/
-
-### 'Ken Burns in the Classroom' arrives on YouTube
-<img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Ken_2__PC__Stephanie_Berger_3.max-600x600.format-webp.webp" />As students head back to school, Ken Burns and PBS LearningMedia...
-出典: https://blog.youtube/news-and-events/ken-burns-pbs-learningmedia-youtube-courses/
 
 
 ## SNS動向
@@ -224,29 +155,9 @@ ABI Researchは、急拡大するAI推論市場の現状を解説した。生成
 <p>The company&rsquo;s landmark $18 billion payout was only one part of a larger agreement that aims to force other apps to implement similar teen restrictions.</p>
 出典: https://www.socialmediatoday.com/news/how-will-metas-settlement-impact-social-media/829033/
 
-### X offers updated NFL Gametime display
-<p>The platform tweaked the design and renamed its NFL portal ahead of the upcoming season as a way to engage more fans and maximize community interaction.</p>
-出典: https://www.socialmediatoday.com/news/x-offers-updated-nfl-gametime-display/829032/
-
-### YouTube adds Amazon affiliate links
-<p>Creators will be able to tag a curated list of products from the online retailer in their videos and earn commissions from every resulting sale.</p>
-出典: https://www.socialmediatoday.com/news/youtube-adds-amazon-affiliate-links/829031/
-
-### Google adds DMs and travel activity recommendations to Demand Gen ads
-<p>The company released multiple new features, including DM links, real-time travel data for bookings and personalized hotel promotions.</p>
-出典: https://www.socialmediatoday.com/news/google-adds-dms-and-travel-activity-recommendations-to-demand-gen-ads/829030/
-
-### X launches API for business chatbot accounts
-<p>The custom function will let brands build their own automated response agents and offer customers access to answers when they need them.</p>
-出典: https://www.socialmediatoday.com/news/x-launches-api-for-business-chatbot-accounts/829029/
-
 
 ## SNS運用
 
 ### The Buffer Team Shipped 57 New Internal Tools in 5 Days
 72 people at Buffer stopped their regular work and spent the week building. Here's a full recap of everything we built, from customer features to a house-swapping app.
 出典: https://buffer.com/resources/build-week-2026/
-
-### The 11 Best Social Media Analytics + Reporting Tools in 2026
-Here are 11 social media analytics tools that pull all your metrics together, across all your platforms — and help you make sense of all the numbers.
-出典: https://buffer.com/resources/best-social-media-analytics-tools/

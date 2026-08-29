@@ -25,7 +25,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://www.itmedia.co.jp/news/article/ogp/2608/30/2000000945/10004402/2048",
-      "published": "2026-08-29T23:12:23+00:00"
+      "published": "2026-08-29T23:12:23+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "30bbd506823ad274",
@@ -51,7 +53,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://img.youtube.com/vi/xrrxichlNEg/hqdefault.jpg",
-      "published": "2026-08-29T23:00:13+00:00"
+      "published": "2026-08-29T23:00:13+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "7bdea6e409fb41c1",
@@ -77,7 +81,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://img.youtube.com/vi/gi8i9tazkOg/hqdefault.jpg",
-      "published": "2026-08-29T10:00:39+00:00"
+      "published": "2026-08-29T10:00:39+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "30d9c19a1bbfce6f",
@@ -103,7 +109,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://img.youtube.com/vi/a3rII6QaTKk/hqdefault.jpg",
-      "published": "2026-08-29T10:00:11+00:00"
+      "published": "2026-08-29T10:00:11+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "e9c861acb1d433c6",
@@ -129,7 +137,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://img.youtube.com/vi/OtNfqTbPLRg/hqdefault.jpg",
-      "published": "2026-08-29T10:52:26+00:00"
+      "published": "2026-08-29T10:52:26+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "fbbe7599c344a652",
@@ -155,7 +165,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://img.youtube.com/vi/izSqPE8mnQo/hqdefault.jpg",
-      "published": "2026-08-29T09:00:07+00:00"
+      "published": "2026-08-29T09:00:07+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "c55d4790d252952f",
@@ -181,7 +193,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://image.itmedia.co.jp/mn/articles/2608/29/cover_news012.jpg",
-      "published": "2026-08-28T22:00:00+00:00"
+      "published": "2026-08-28T22:00:00+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "8982a7cf3c9fa465",
@@ -207,7 +221,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://img.youtube.com/vi/TU8DSyuMto4/hqdefault.jpg",
-      "published": "2026-08-28T10:00:38+00:00"
+      "published": "2026-08-28T10:00:38+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "85749b30ac8999d7",
@@ -233,7 +249,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://img.youtube.com/vi/43MDem-gvg0/hqdefault.jpg",
-      "published": "2026-08-28T10:00:37+00:00"
+      "published": "2026-08-28T10:00:37+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "b9f7b4b3ee8a071a",
@@ -259,7 +277,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/01/STK269_ANTHROPIC_2_A.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200",
-      "published": "2026-08-29T18:19:53+00:00"
+      "published": "2026-08-29T18:19:53+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     }
   ]
 }

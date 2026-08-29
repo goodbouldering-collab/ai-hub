@@ -1,171 +1,134 @@
 # AIハブ 2026-08-29
 
-> 生成日時: 2026-08-29 03:25:38
-> 新着: 15件 / 継続: 42件 / 合計: 57件
+> 生成日時: 2026-08-29 23:42:37
+> 新着: 13件 / 継続: 21件 / 合計: 34件
 
 ---
 
 ## 🆕 新着 (前回取得以降)
 
-### カテゴリ: AIニュース (3件)
+### カテゴリ: AIニュース (2件)
 
-### [The Verge AI] Trump’s EPA wants to let data centers hide their air pollution
-- URL: https://www.theverge.com/ai-artificial-intelligence/986176/data-center-pollution-epa-rule-change-air-permit
-- 取得: 2026-08-29 03:25:32
-- 公開: 2026-08-28T16:28:40+00:00
-- 原文抜粋: Just as new data centers face growing backlash from neighboring communities, the US Environmental Protection Agency (EPA) is about to make it harder for people to weigh in on any pollution those centers create. The EPA plans to toss out a federal rule requiring public notice and an opportunity to co...
+### [The Verge AI] Sony Music and Warner Chappell are suing Anthropic
+- URL: https://www.theverge.com/ai-artificial-intelligence/986438/sony-music-warner-chappell-anthropic-lawsuit-copyright
+- 取得: 2026-08-29 23:42:30
+- 公開: 2026-08-29T18:19:53+00:00
+- 原文抜粋: Sony Music and Warner Chappell have filed suit against Anthropic in the US District Court for the Northern District of California seeking damages for "tens of thousands" copyrighted works. The companies are asking for up to $150,000 per work, plus up to $25,000 for each instance when identifiable co...
 
-### [Ars Technica AI] Trump blacklisting of "woke" Anthropic deemed illegal by federal judge
-- URL: https://arstechnica.com/tech-policy/2026/08/trump-blacklisting-of-woke-anthropic-deemed-illegal-by-federal-judge/
-- 取得: 2026-08-29 03:25:32
-- 公開: 2026-08-28T18:07:55+00:00
-- 原文抜粋: Anthropic refused to support lethal autonomous warfare and mass surveillance.
+### [The Verge AI] Musicians-turned-detectives are hunting for AI grifters
+- URL: https://www.theverge.com/entertainment/985866/h4rris-nihil-young-edm-suno-ai
+- 取得: 2026-08-29 23:42:30
+- 公開: 2026-08-29T12:00:00+00:00
+- 原文抜粋: As audio-focused generative tools and platforms have gotten more sophisticated, the internet has become increasingly filled with AI-generated music whose melodies and vocals are algorithmically derived from the work of human artists. While some of the people pumping out this kind of content immediat...
 
-### [Ars Technica AI] Meta makes AI glasses slightly less creepy with limit on nonconsensual recording
-- URL: https://arstechnica.com/tech-policy/2026/08/meta-tweaks-ai-glasses-to-block-some-creepy-recordings-but-privacy-risks-remain/
-- 取得: 2026-08-29 03:25:32
-- 公開: 2026-08-28T15:42:24+00:00
-- 原文抜粋: Meta fixes AI glasses to stop recording any time users cover up the safety light.
+### カテゴリ: AI公式 (1件)
 
-### カテゴリ: AI公式 (2件)
+### [OpenAI Codex Releases] 0.151.0
+- URL: https://github.com/openai/codex/releases/tag/rust-v0.151.0
+- 取得: 2026-08-29 23:42:28
+- 公開: 2026-08-29T09:57:02+00:00
+- 原文抜粋: <h2>New Features</h2> <ul> <li>Added a configurable grace period for discovering tools from optional MCP servers. (<a class="issue-link js-issue-link" href="https://github.com/openai/codex/pull/41199">#41199</a>)</li> <li>Extensions can now inspect or replace MCP tool results before they reach the m...
 
-### [OpenAI Blog] Our decision on Cursor following its acquisition by SpaceX
-- URL: https://openai.com/index/our-decision-on-cursor-following-its-acquisition-by-spacex
-- 取得: 2026-08-29 03:25:30
-- 公開: 2026-08-28T06:00:00+00:00
-- 原文抜粋: Our decision to wind down our contract providing OpenAI models to Cursor following its acquisition by SpaceX.
+### カテゴリ: AI動画(日本語) (9件)
 
-### [OpenAI Blog] Supporting Thailand’s next generation of AI startups
-- URL: https://openai.com/index/supporting-next-generation-ai-startups-thailand
-- 取得: 2026-08-29 03:25:30
-- 公開: 2026-08-28T02:00:00+00:00
-- 原文抜粋: OpenAI and Thailand’s MHESI launch an eight-week accelerator helping 10 health, wellness, and education startups turn AI prototypes into trusted products.
+### [ウェブ職TV] ネット検索しただけで機密情報が漏れる #Shorts
+- URL: https://www.youtube.com/shorts/xrrxichlNEg
+- 取得: 2026-08-29 23:42:34
+- 公開: 2026-08-29T23:00:13+00:00
+- 原文抜粋: プロンプトインジェクションの仕組みを、非エンジニア向けに解説します。  ▼本編（フル解説はこちら） Claude Codeの安全な始め方 https://youtu.be/M-z6WJGSonI  ▼AIセキュリティを体系的に学ぶなら「Touch AI」 https://touchai.jp  #Shorts #ClaudeCode #AI #セキュリティ
 
-### カテゴリ: AI国内 (5件)
+### [ウェブ職TV] ブログ歴16年のプロがオタクに負ける理由 #Shorts
+- URL: https://www.youtube.com/shorts/gi8i9tazkOg
+- 取得: 2026-08-29 23:42:34
+- 公開: 2026-08-29T10:00:39+00:00
+- 原文抜粋: SEOのテクニックより強いものがあります。プロが認める「オタクの勝ち」の理由。  ▼本編（フル解説はこちら） ブログ初心者が半年で月5万円稼ぐスケジュール完全講義 https://youtu.be/h9Hej75xgGw  ▼AIセキュリティを体系的に学ぶなら「Touch AI」 https://touchai.jp  #Shorts #ブログ #SEO #ライティング
 
-### [ITmedia AI+] キオクシア5兆円投資、日米中韓の半導体投資競争はどこへゆく
-- URL: https://monoist.itmedia.co.jp/mn/articles/2608/29/news012.html
-- 取得: 2026-08-29 03:25:33
-- 公開: 2026-08-28T22:00:00+00:00
-- 原文抜粋: 2026年8月24日～28日に公開された記事の中から、MONOist編集部が厳選した今週のニュースをお届けします。
+### [ウェブ職TV] 創業4年で50兆円、トヨタと同じ時価総額 #Shorts
+- URL: https://www.youtube.com/shorts/vqkabUudtmI
+- 取得: 2026-08-29 23:42:34
+- 公開: 2026-08-29T03:00:06+00:00
+- 原文抜粋: Anthropicという会社の規模がおかしい。累計調達5兆円超、企業価値50兆円。  ▼本編（フル解説はこちら） Claude Code完全講義 https://youtu.be/bOyS3vPxrRk  ▼AIセキュリティを体系的に学ぶなら「Touch AI」 https://touchai.jp  #Shorts #Anthropic #Claude #AI
 
-### [ITmedia AI+] チームみらい安野氏「高市総理へのAI家庭教師」を実施　総理が音声入力で作成したのは……
-- URL: https://www.itmedia.co.jp/aiplus/article/2608/28/2000000919/
-- 取得: 2026-08-29 03:25:33
-- 公開: 2026-08-28T08:53:41+00:00
-- 原文抜粋: チームみらいの安野貴博党首らは、高市早苗総理大臣にAIについて指導するイベント「高市総理へのAI家庭教師」を首相官邸で実施した。
+### [ウェブ職TV] GitHubの初期設定、世界に丸見えです #Shorts
+- URL: https://www.youtube.com/shorts/y9Zx8hepGjA
+- 取得: 2026-08-29 23:42:34
+- 公開: 2026-08-28T23:00:27+00:00
+- 原文抜粋: AIで開発するなら最初に必ず確認してください。リポジトリのデフォルトは「公開」です。  ▼本編（フル解説はこちら） Claude Codeの安全な始め方 https://youtu.be/M-z6WJGSonI  ▼AIセキュリティを体系的に学ぶなら「Touch AI」 https://touchai.jp  #Shorts #ClaudeCode #GitHub #AI
 
-### [ITmedia AI+] 「国産ヒューマノイド」の作業風景を生配信中、3時間以上経過　「ベルトコンベヤーも自作」　アトム
-- URL: https://www.itmedia.co.jp/aiplus/article/2608/28/2000000912/
-- 取得: 2026-08-29 03:25:33
-- 公開: 2026-08-28T08:11:03+00:00
-- 原文抜粋: アトムが人型ロボットの作業風景を生配信している。ベルトコンベヤーで流れてくる荷物を1つずつ手に取り、ラベルが貼られている面を上に向ける作業を実施中。
+### [KEITO AI&WEB] 絶対に作るべきAIスキルTOP3
+- URL: https://www.youtube.com/shorts/a3rII6QaTKk
+- 取得: 2026-08-29 23:42:35
+- 公開: 2026-08-29T10:00:11+00:00
 
-### [ITmedia AI+] 「半導体はAIが設計、人間は監督に」 次世代EDAへの取り組み
-- URL: https://eetimes.itmedia.co.jp/ee/articles/2608/28/news088.html
-- 取得: 2026-08-29 03:25:33
-- 公開: 2026-08-28T07:00:00+00:00
-- 原文抜粋: キーサイト・テクノロジー（以下、キーサイト）は2026年8月26日、エンジニア向けイベント「KDES」にあわせて、「AI時代の次世代半導体設計」をテーマとしたメディアブリーフィングを開催。AIを活用したEDAや光半導体設計、マルチフィジックス対応シミュレーションといった取り組みを紹介した。
+### [KEITO AI&WEB] 【最高なAI連携】Claude Code × Obsidianで勝手に賢くなってく”脳”の作り方
+- URL: https://www.youtube.com/watch?v=TU8DSyuMto4
+- 取得: 2026-08-29 23:42:35
+- 公開: 2026-08-28T10:00:38+00:00
+- 原文抜粋: Claude Code × Obsidian（オブシディアン）で「第二の脳」を作る方法を解説！AIとの会話や作成したスキル、仕事の知識をObsidianに自動保存し、Claude Codeが必要なときに活用できる仕組みを実演します。メモ保存スキルやフックによる自動化も紹介！  Obsidianはこちら https://obsidian.md/ja/  KEITOの公式LINEはこちら LINE：https://lin.ee/1krnxOu  ★プロセボ｜AIコミュニティ AI活用を実際に操作しながら学ぶワークショップ型AIスクール。 参加申し込みはこちら → https://procevo.b...
 
-### [ITmedia AI+] Hugging Face、あひる型ロボット「Microduck」発表　399ドルで予約開始
-- URL: https://www.itmedia.co.jp/news/article/2608/28/2000000901/
-- 取得: 2026-08-29 03:25:33
-- 公開: 2026-08-28T06:09:08+00:00
-- 原文抜粋: Pollen Roboticsは、二足歩行ロボット「Microduck」を発表し予約受付を開始した。399ドルで25cmの小型設計。強化学習による動作学習に特化し、SDKやシミュレーターをOSSとして公開する。大型機と異なり家庭や教室で安全に試行錯誤できる「行動するAIのためのプラットフォーム」を目指す。
+### [AI部] Claude Coworkを完全マスター！
+- URL: https://www.youtube.com/shorts/OtNfqTbPLRg
+- 取得: 2026-08-29 23:42:35
+- 公開: 2026-08-29T10:52:26+00:00
+- 原文抜粋: 「Claude Cowork スゴイ活用術」Amazonのリンク：https://link.amazon/B00G9rPVI
 
-### カテゴリ: AI業界 (1件)
+### [AI収益化ラボ] 【早い者勝ち】日本人の皆さんだけが稼げる神副業はこちらです。
+- URL: https://www.youtube.com/watch?v=43MDem-gvg0
+- 取得: 2026-08-29 23:42:36
+- 公開: 2026-08-28T10:00:37+00:00
+- 原文抜粋: ▼動画内で紹介したプレゼントの受け取りは以下の公式LINEから https://liff.line.me/2006805073-rn36NG8b/landing?follow=%40933hyolt&amp;lp=zbSC2L&amp;liff_id=2006805073-rn36NG8b  ▼プレゼントの受け取り方法 ① LINE登録後に送信される配信をタップ ② アンケートに回答（1度登録されたメールアドレスでは2度と受け取れません） ③ 特典サイト受け取り ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ 【奥山のX】 最新のAIの使い方・AIで稼ぐ方法を発信中！ フォローをしておくと、最新...
 
-### [Hugging Face Blog] The Open ASR Leaderboard Adds Its First Global South Language
-- URL: https://huggingface.co/blog/open-asr-leaderboard-global-south
-- 取得: 2026-08-29 03:25:32
-- 公開: 2026-08-28T00:00:00+00:00
+### [にゃんたのAI実践] 【2026年8月版】AI課金おすすめ構成を料金別に紹介！Fable 5とGPT-5.6 Solの使い分けも解説
+- URL: https://www.youtube.com/watch?v=izSqPE8mnQo
+- 取得: 2026-08-29 23:42:36
+- 公開: 2026-08-29T09:00:07+00:00
+- 原文抜粋: 🏢【受付中】企業様向けAI活用の相談窓口を設置しています。 「AIで業務効率化できるか一緒に考えてほしい」「AIがわかる人を育てたい」という企業様向けに、研修から業務改善の定着まで伴走支援いたします。 ▼登録はこちら（登録は1分ほど・本目的以外では営業しません） https://forms.gle/sPVYtBkZpeaJ7URS9   --------------------------------------------------------------------------- にゃんた初の書籍が発売中！📚 Amazonのページ ▶︎https://amzn.to/3QMrFnY 『ゼ...
 
-### カテゴリ: AI研究者ブログ (1件)
+### カテゴリ: AI国内 (1件)
 
-### [Simon Willison's Weblog] Just a rumour of a bug is enough to find a security exploit these days
-- URL: https://simonwillison.net/2026/Aug/28/just-a-rumour-of-a-bug/
-- 取得: 2026-08-29 03:25:33
-- 公開: 2026-08-28T22:12:02+00:00
-- 原文抜粋: <p><strong><a href="https://anil.recoil.org/notes/rumour-is-the-exploit">Just a rumour of a bug is enough to find a security exploit these days</a></strong></p> Anil Madhavapeddy is a professor of computer science at Cambridge and a core maintainer of the OCaml compiler. In this somewhat alarming po...
-
-### カテゴリ: SNS公式 (2件)
-
-### [Meta Newsroom] Wzmacniamy w Polsce ochronę przed oszustwami
-- URL: https://about.fb.com/news/2026/08/wzmacniamy-w-polsce-ochrone-przed-oszustwami/
-- 取得: 2026-08-29 03:25:34
-- 公開: 2026-08-28T09:00:19+00:00
-- 原文抜粋: <div><img alt="" class="attachment-large size-large wp-post-image" height="540" src="https://about.fb.com/wp-content/uploads/2025/05/Investment-and-Instant-Payment-Scams_Header.jpg?fit=960%2C540" style="margin-bottom: 15px;" width="960" /></div> <p>Aktywność oszustów rośnie w całym internecie – od p...
-
-### [YouTube Creator Blog] You’re invited: Ina Garten launches official YouTube channel & video podcast series
-- URL: https://blog.youtube/creator-and-artist-stories/ina-garten-official-youtube-channel-happy-hour/
-- 取得: 2026-08-29 03:25:34
-- 公開: 2026-08-28T13:05:00+00:00
-- 原文抜粋: <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Image_20260827_124027_678.max-600x600.format-webp.webp" />Ina Garten debuts her official YouTube channel and weekly video podcast, Happy Hour With Ina Garten, featuring candid conversations on food, culture, and life.
-
-### カテゴリ: SNS運用 (1件)
-
-### [Buffer Blog] The Buffer Team Shipped 57 New Internal Tools in 5 Days
-- URL: https://buffer.com/resources/build-week-2026/
-- 取得: 2026-08-29 03:25:36
-- 公開: 2026-08-28T12:43:05+00:00
-- 原文抜粋: 72 people at Buffer stopped their regular work and spent the week building. Here's a full recap of everything we built, from customer features to a house-swapping app.
+### [ITmedia AI+] OpenAI、Cursorへのモデル提供を11月12日に終了　SpaceXによる買収が理由
+- URL: https://www.itmedia.co.jp/news/article/2608/30/2000000945/
+- 取得: 2026-08-29 23:42:32
+- 公開: 2026-08-29T23:12:23+00:00
+- 原文抜粋: OpenAIは、AIコードエディタ「Cursor」へのモデル提供契約を11月12日に終了すると発表した。SpaceXによるCursor買収を受け、イーロン・マスク氏の過去の契約違反実績から規約順守を確信できないことを理由に挙げている。Cursor側は影響が限定的としつつ協議継続を表明、Anthropicは支援継続を示した。
 
 ---
 
 ## 📚 継続ソース (参照用・一覧のみ)
 
-### AIニュース (14件)
+### AIニュース (4件)
+- [The Verge AI] Trump’s EPA wants to let data centers hide their air pollution — https://www.theverge.com/ai-artificial-intelligence/986176/data-center-pollution-epa-rule-change-air-permit
 - [The Verge AI] Anthropic was illegally blacklisted by the Trump administration, court rules — https://www.theverge.com/ai-artificial-intelligence/985947/anthropic-supply-chain-risk-lawsuit-judge-ruling
-- [The Verge AI] Google’s AI note-taking app now allows you to interact with books — https://www.theverge.com/tech/985567/google-gemini-notebook-expert-sources-books
-- [The Verge AI] Jensen Huang says Nvidia achieved AGI, again — not that it matters — https://www.theverge.com/ai-artificial-intelligence/985597/jensen-huang-says-nvidia-achieved-senseless-agi
-- [The Verge AI] OpenAI&#8217;s executive exodus has one big winner — https://www.theverge.com/podcast/985332/openai-greg-brockman-sam-altman-leader-executive-exodus
-- [The Verge AI] Hugging Face’s new robot is an adorable rollerskating duck — https://www.theverge.com/gadgets/985549/hugging-face-microduck-robot
-- [The Verge AI] Plaud is launching AI earbuds — https://www.theverge.com/ai-artificial-intelligence/985500/plaud-one-earbuds-ai-recorder-price-availability
-- [The Verge AI] Adobe is adding more AI to Photoshop — https://www.theverge.com/tech/985491/adobe-photoshop-ai-assisted-editor-markup
-- [Ars Technica AI] Anthropic's new hardware standard lets AI agents control the physical world — https://arstechnica.com/ai/2026/08/anthropics-new-hardware-standard-lets-ai-agents-control-the-physical-world/
-- [Ars Technica AI] Elon Musk’s xAI used child porn to train Grok models, lawsuit says — https://arstechnica.com/tech-policy/2026/08/elon-musks-xai-used-child-porn-to-train-grok-models-lawsuit-says/
-- [Ars Technica AI] Report: Nvidia to acquire AI model repository Hugging Face for $13 billion — https://arstechnica.com/ai/2026/08/report-nvidia-to-acquire-ai-model-repository-hugging-face-for-13-billion/
-- [Ars Technica AI] AI industry says Trump plans to tax chips in the “single dumbest way imaginable” — https://arstechnica.com/tech-policy/2026/08/ai-industry-says-trump-plans-to-tax-chips-in-the-single-dumbest-way-imaginable/
-- [Ars Technica AI] Claude, Codex, and Hermes installed unowned code inside corporate networks — https://arstechnica.com/security/2026/08/claude-codex-and-hermes-installed-unowned-code-inside-corporate-networks/
-- [Ars Technica AI] How much of a problem is AI’s water use? — https://arstechnica.com/ai/2026/08/how-much-of-a-problem-is-ais-water-use/
-- [Ars Technica AI] How OpenAI let a mob of LLM agents game a test and ransack Hugging Face — https://arstechnica.com/security/2026/08/how-openai-let-a-mob-of-llm-agents-game-a-test-and-ransack-hugging-face/
+- [Ars Technica AI] Trump blacklisting of "woke" Anthropic deemed illegal by federal judge — https://arstechnica.com/tech-policy/2026/08/trump-blacklisting-of-woke-anthropic-deemed-illegal-by-federal-judge/
+- [Ars Technica AI] Meta makes AI glasses slightly less creepy with limit on nonconsensual recording — https://arstechnica.com/tech-policy/2026/08/meta-tweaks-ai-glasses-to-block-some-creepy-recordings-but-privacy-risks-remain/
 
-### AI公式 (3件)
-- [OpenAI Blog] Better answers, broader thinking: What students gain from ChatGPT and critical-thinking training — https://openai.com/index/what-students-gain-from-chatgpt-critical-thinking-training
-- [Google DeepMind] Gemini Omni 1.1 Flash lets you build with more control — https://deepmind.google/blog/gemini-omni-1-1-flash-lets-you-build-with-more-control/
-- [Google DeepMind] Piloting the world's first double-blind AI evaluations — https://deepmind.google/blog/piloting-the-worlds-first-double-blind-ai-evaluations/
+### AI公式 (2件)
+- [OpenAI Blog] Our decision on Cursor following its acquisition by SpaceX — https://openai.com/index/our-decision-on-cursor-following-its-acquisition-by-spacex
+- [OpenAI Blog] Supporting Thailand’s next generation of AI startups — https://openai.com/index/supporting-next-generation-ai-startups-thailand
 
-### AI国内 (15件)
+### AI国内 (9件)
+- [ITmedia AI+] キオクシア5兆円投資、日米中韓の半導体投資競争はどこへゆく — https://monoist.itmedia.co.jp/mn/articles/2608/29/news012.html
+- [ITmedia AI+] チームみらい安野氏「高市総理へのAI家庭教師」を実施　総理が音声入力で作成したのは…… — https://www.itmedia.co.jp/aiplus/article/2608/28/2000000919/
+- [ITmedia AI+] 「国産ヒューマノイド」の作業風景を生配信中、3時間以上経過　「ベルトコンベヤーも自作」　アトム — https://www.itmedia.co.jp/aiplus/article/2608/28/2000000912/
+- [ITmedia AI+] 「半導体はAIが設計、人間は監督に」 次世代EDAへの取り組み — https://eetimes.itmedia.co.jp/ee/articles/2608/28/news088.html
+- [ITmedia AI+] Hugging Face、あひる型ロボット「Microduck」発表　399ドルで予約開始 — https://www.itmedia.co.jp/news/article/2608/28/2000000901/
 - [ITmedia AI+] Anthropic、AIで物理機器を制御する共通規格「MHS」発表　将来オープンソース化へ — https://www.itmedia.co.jp/news/article/2608/28/2000000897/
 - [ITmedia AI+] Google、「Gemini Notebook」に購入済み電子書籍を追加できる「Expert Intelligence」 — https://www.itmedia.co.jp/news/article/2608/28/2000000893/
 - [ITmedia AI+] “AI離れ”こそ重要？　AIで成果を出す人の共通点　「差がつくスキルと思考法」を専門家に聞いた — https://www.itmedia.co.jp/aiplus/article/2608/28/2000000873/
 - [ITmedia AI+] Google、動画生成AI「Gemini Omni 1.1 Flash」公開　10秒分の文脈を参照して最長40秒まで延長 — https://www.itmedia.co.jp/aiplus/article/2608/28/2000000878/
-- [ITmedia AI+] ヒューマノイドを育てるバイト!?　タイミーとジールスが現場データ収集で協業 — https://monoist.itmedia.co.jp/mn/articles/2608/28/news061.html
-- [ITmedia AI+] 「情シスはまだ実力の1割しか発揮していない」　AIリストラ時代のキャリアを考える — https://www.itmedia.co.jp/enterprise/articles/2608/27/news042.html
-- [ITmedia AI+] とにかく足りない上級IT人材　需給ギャップの背景を2つの調査から読み解く — https://www.itmedia.co.jp/enterprise/articles/2608/28/news045.html
-- [ITmedia AI+] 「全従業員がAIを使っているか」はもう成功の物差しじゃない　AI投資、どう評価すべきか？ — https://www.itmedia.co.jp/enterprise/articles/2608/28/news029.html
-- [ITmedia AI+] OpenAI、AIサイバー攻撃への「集団的対応」を訴える公開書簡　Anthropic、Google、Microsoftなど100以上の組織が署名 — https://www.itmedia.co.jp/aiplus/article/2608/28/2000000876/
-- [ITmedia AI+] 「新幹線料金と同じ」　ラピダス小池社長が明かす、2ナノ半導体“短納期”の勝算 — https://www.itmedia.co.jp/business/articles/2608/28/news065.html
-- [ITmedia AI+] OpenAIのAIエージェント、約700体の群れで企業を襲撃　ハッキングの痕跡隠蔽を試みる――事件の裏で何が？ — https://www.itmedia.co.jp/business/articles/2608/28/news067.html
-- [ITmedia AI+] NVIDIAが開発支援、約30秒で口腔がんの疑い検出する歯科用AI — https://monoist.itmedia.co.jp/mn/articles/2608/27/news068.html
-- [ITmedia AI+] ちっちゃな人型ロボが100mトラックをぽてぽて……中国ロボ陸上の“おちびランナー”が話題　「可愛すぎ」「けなげ」 — https://www.itmedia.co.jp/news/article/2608/27/2000000852/
-- [ITmedia AI+] 中国製AIチップのクラスタで「Opus 4.8並み性能」モデルを提供　話題のステルスモデルの正体は「GLM-5.3-Flash」 — https://www.itmedia.co.jp/aiplus/article/2608/27/2000000840/
-- [ITmedia AI+] 2035年、AI推論需要の半分は「コード生成」に　推論市場の今と未来 — https://atmarkit.itmedia.co.jp/ait/articles/2608/27/news046.html
+
+### AI業界 (1件)
+- [Hugging Face Blog] The Open ASR Leaderboard Adds Its First Global South Language — https://huggingface.co/blog/open-asr-leaderboard-global-south
 
 ### AI研究者ブログ (1件)
-- [Simon Willison's Weblog] Breaking Claude Code Opus 5 Auto Mode — https://simonwillison.net/2026/Aug/27/breaking-claude-code-opus-5-auto-mode/
+- [Simon Willison's Weblog] Just a rumour of a bug is enough to find a security exploit these days — https://simonwillison.net/2026/Aug/28/just-a-rumour-of-a-bug/
 
-### SNS公式 (3件)
-- [Meta Newsroom] Closed-Loop Cooling Explained: The Plumbing Behind Meta’s AI — https://about.fb.com/news/2026/08/closed-loop-cooling-explained-the-plumbing-behind-metas-ai/
-- [YouTube Creator Blog] Super Simple Songs marks 20 years with new music and content — https://blog.youtube/creator-and-artist-stories/super-simple-songs-20th-anniversary-youtube/
-- [YouTube Creator Blog] 'Ken Burns in the Classroom' arrives on YouTube — https://blog.youtube/news-and-events/ken-burns-pbs-learningmedia-youtube-courses/
+### SNS公式 (2件)
+- [Meta Newsroom] Wzmacniamy w Polsce ochronę przed oszustwami — https://about.fb.com/news/2026/08/wzmacniamy-w-polsce-ochrone-przed-oszustwami/
+- [YouTube Creator Blog] You’re invited: Ina Garten launches official YouTube channel & video podcast series — https://blog.youtube/creator-and-artist-stories/ina-garten-official-youtube-channel-happy-hour/
 
-### SNS動向 (5件)
+### SNS動向 (1件)
 - [Social Media Today] How will Meta’s settlement impact social media? — https://www.socialmediatoday.com/news/how-will-metas-settlement-impact-social-media/829033/
-- [Social Media Today] X offers updated NFL Gametime display — https://www.socialmediatoday.com/news/x-offers-updated-nfl-gametime-display/829032/
-- [Social Media Today] YouTube adds Amazon affiliate links — https://www.socialmediatoday.com/news/youtube-adds-amazon-affiliate-links/829031/
-- [Social Media Today] Google adds DMs and travel activity recommendations to Demand Gen ads — https://www.socialmediatoday.com/news/google-adds-dms-and-travel-activity-recommendations-to-demand-gen-ads/829030/
-- [Social Media Today] X launches API for business chatbot accounts — https://www.socialmediatoday.com/news/x-launches-api-for-business-chatbot-accounts/829029/
 
 ### SNS運用 (1件)
-- [Buffer Blog] The 11 Best Social Media Analytics + Reporting Tools in 2026 — https://buffer.com/resources/best-social-media-analytics-tools/
+- [Buffer Blog] The Buffer Team Shipped 57 New Internal Tools in 5 Days — https://buffer.com/resources/build-week-2026/

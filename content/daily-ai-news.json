@@ -1,85 +1,85 @@
 {
-  "date": "2026-08-30",
+  "date": "2026-08-31",
   "items": [
     {
-      "title": "OpenAIとタイ政府、医療・教育AIスタートアップ10社を支援",
-      "url": "https://openai.com/index/supporting-next-generation-ai-startups-thailand/",
-      "source": "OpenAI",
-      "published": "2026-08-28",
-      "kid_summary": "OpenAIとタイ政府が、医療・教育のAI試作品を実用化へ進める8週間の支援を始めました。",
-      "japan_angle": "日本の地域や学校も、行政・大学・企業が組み、試作品を現場で試す支援設計の参考にできます。"
+      "title": "OpenAI Codex 0.151.0、MCPと権限管理を改善",
+      "url": "https://github.com/openai/codex/releases/tag/rust-v0.151.0",
+      "source": "OpenAI Codex",
+      "published": "2026-08-29T18:57:02+09:00",
+      "kid_summary": "Codexの安定版が更新され、MCPの待機設定や権限・サンドボックスの不具合が改善されました。",
+      "japan_angle": "学校や地域企業の開発では、外部ツール連携と権限を確認してから更新する判断材料になります。"
     },
     {
-      "title": "KDDI、自動運転バスの通信を複数AIで最適化する実証",
-      "url": "https://newsroom.kddi.com/news/detail/kddi_nr-1126_4672.html",
-      "source": "KDDI",
-      "published": "2026-08-28",
-      "kid_summary": "複数のAIが基地局の設定を整え、自動運転バスの通信を安定させる実証が始まります。",
-      "japan_angle": "地域交通は遠隔監視の負担を減らし、運転手不足の中でも路線を保つ方法を試せます。"
+      "title": "AIが作った架空の病名を医師の44％が診断候補に",
+      "url": "https://www.itmedia.co.jp/news/article/2608/31/2000000865/",
+      "source": "ITmedia NEWS",
+      "published": "2026-08-31T07:00:00+09:00",
+      "kid_summary": "医師41人の実験で、18人がAIの示した存在しない病名を診断候補に加えました。",
+      "japan_angle": "学校や医療研修では、AIの答えを経験者と照合する確認手順の重要性を具体的に学べます。"
     },
     {
-      "title": "キリン、社内AI利用率70〜80％の定着策を公開",
-      "url": "https://ai.watch.impress.co.jp/docs/interview/2134728.html",
-      "source": "AI Watch",
-      "published": "2026-08-28T16:47:00+09:00",
-      "kid_summary": "キリンが、社内のAI利用率70〜80％を支える研修と業務への組み込み方を説明しました。",
-      "japan_angle": "地域企業も利用回数だけでなく、減らせた作業時間を測る導入方法の参考にできます。"
+      "title": "パナソニックHD、AI・ロボティクス研究開発本部を新設",
+      "url": "https://monoist.itmedia.co.jp/mn/articles/2608/31/news057.html",
+      "source": "MONOist",
+      "published": "2026-08-31T06:15:00+09:00",
+      "kid_summary": "AI・ロボット・クラウド・データの人材と技術を集める新組織を10月に設けます。",
+      "japan_angle": "地域企業も、AI担当を孤立させず現場と開発をつなぐ横断チームづくりの参考にできます。"
     },
     {
-      "title": "Google、Gemini Notebookの利用上限を5時間ごとに更新",
-      "url": "https://blog.google/innovation-and-ai/products/gemini-notebook/new-flexible-usage-limits/",
-      "source": "Google",
-      "published": "2026-08-28",
-      "kid_summary": "文章の長さや機能ごとに計算量を管理し、利用上限を5時間ごとに戻す仕組みに変わります。",
-      "japan_angle": "学校や会社は、動画やスライド生成を後回しに予約し、日中の調査を続けやすくなります。"
+      "title": "テキサス州、AI監視カメラへの州資金を停止",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/986541/texas-governor-abbott-flock-cameras",
+      "source": "The Verge",
+      "published": "2026-08-31T00:35:10+09:00",
+      "kid_summary": "車両情報を記録するAIカメラを巡り、テキサス州が州機関の資金支出を止めました。",
+      "japan_angle": "自治体や学校は、防犯AIの導入前に目的・閲覧権限・保存範囲を住民へ示す必要があります。"
     },
     {
-      "title": "Osaka Metro、Gemini搭載の「ヒューマノイド駅員」を実証",
-      "url": "https://newsroom.kddi.com/news/detail/kddi_nr-1132_4683.html",
-      "source": "KDDI",
-      "published": "2026-08-28",
-      "kid_summary": "Geminiを積んだ人型ロボットが、駅や乗り換え、観光を多言語で案内する実証を始めます。",
-      "japan_angle": "駅や観光施設は、人手不足時の案内補助と利用者の受け止め方を現場で確かめられます。"
+      "title": "ソニーとワーナーの音楽出版社、Anthropicを提訴",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/986438/sony-music-warner-chappell-anthropic-lawsuit-copyright",
+      "source": "The Verge",
+      "published": "2026-08-30T03:19:53+09:00",
+      "kid_summary": "両社は、Claudeの開発で多数の楽曲を無断利用したとしてAnthropicを提訴しました。",
+      "japan_angle": "日本の作り手や事業者も、生成AIへ渡す素材の権利と利用規約を確認する契機になります。"
     },
     {
-      "title": "Anthropic、Claudeが10種類のAI安全上の失敗を改善と報告",
-      "url": "https://www.anthropic.com/research/automated-researchers-mitigate-alignment-failures",
-      "source": "Anthropic",
-      "published": "2026-08-28",
-      "kid_summary": "Claudeが研究と訓練を繰り返し、公開評価で10種類の安全上の失敗を減らしました。",
-      "japan_angle": "学校や会社も、便利さだけでなく、うそ・迎合・個人情報の問題を評価する参考にできます。"
+      "title": "Meta、データセンター作業を担うロボットを試験",
+      "url": "https://arstechnica.com/ai/2026/08/inside-metas-push-to-put-robots-to-work-in-data-centers/",
+      "source": "Ars Technica",
+      "published": "2026-08-30T20:03:47+09:00",
+      "kid_summary": "Metaが、ケーブル接続やサーバー再起動などを行うロボットをデータセンターで試しています。",
+      "japan_angle": "日本の製造・設備現場では、人手不足対策に向く作業と人が確認すべき作業を分ける参考になります。"
     },
     {
-      "title": "LINEヤフー、「Agent i」の8つの生活支援AI試作を公開",
-      "url": "https://k-tai.watch.impress.co.jp/docs/news/2136578.html",
-      "source": "ケータイ Watch",
-      "published": "2026-08-28T16:19:00+09:00",
-      "kid_summary": "目覚まし、スクショ整理、短い動画作りなどを助ける8つのAI試作品が公開されました。",
-      "japan_angle": "家庭や小さな店は、写真整理や告知動画など、身近な作業からAI代行を考えられます。"
+      "title": "Tencent、7700億パラメータの「Hy4 Preview」を公開",
+      "url": "https://simonwillison.net/2026/Aug/29/hy4/",
+      "source": "Simon Willison",
+      "published": "2026-08-30T08:53:13+09:00",
+      "kid_summary": "文章向けの公開モデルで、100万トークンの長い文脈と2段階の推論設定を備えます。",
+      "japan_angle": "日本の開発者は、長い資料やコードを扱う用途と必要な計算資源を比べる材料にできます。"
     },
     {
-      "title": "OpenAI、Cursorへのモデル提供を11月12日に終了予定",
-      "url": "https://openai.com/index/our-decision-on-cursor-following-its-acquisition-by-spacex/",
-      "source": "OpenAI",
-      "published": "2026-08-28",
-      "kid_summary": "OpenAIが、CursorへAIモデルを届ける契約を11月12日に終える予定だと発表しました。",
-      "japan_angle": "日本の開発者は、CursorでOpenAIモデルを使う仕事の移行先や継続方法を早めに確認できます。"
+      "title": "Google研究、AIが失敗と成功を記録する「WikiSkill」",
+      "url": "https://the-decoder.com/google-gives-ai-agents-their-own-wiki-so-they-can-learn-from-mistakes-and-successes/",
+      "source": "The Decoder",
+      "published": "2026-08-29",
+      "kid_summary": "AIが作業記録をWikiに残し、次の仕事で使う手順を検証しながら改善する研究です。",
+      "japan_angle": "学校や小さな会社も、AIの失敗と直し方を共有メモへ残す運用の参考にできます。"
     },
     {
-      "title": "日本AMD、ロボット向け「Ryzen AI Embedded X100」を披露",
-      "url": "https://ai.watch.impress.co.jp/docs/news/2136701.html",
-      "source": "AI Watch",
-      "published": "2026-08-29T01:00:00+09:00",
-      "kid_summary": "CPU・GPU・NPUを一体化し、ロボットを低い遅れで動かす組み込み向けAI製品が披露されました。",
-      "japan_angle": "製造や介護の機器開発では、クラウドに頼りすぎず現場でAIを動かす選択肢になります。"
+      "title": "CloudflareとCodexをつなぐ日本語セットアップ解説",
+      "url": "https://www.youtube.com/watch?v=UtchKt8dRgk",
+      "source": "KEITO AI&WEB",
+      "published": "2026-08-30T19:00:12+09:00",
+      "kid_summary": "CloudflareとCodexなどを接続し、サイト制作へ使う手順を日本語動画で実演しています。",
+      "japan_angle": "地域事業者や学び直す人が、無料枠もある環境で公開手順を学ぶ入口になります。"
     },
     {
-      "title": "高市総理、AI家庭教師から活用方法の説明を受ける",
-      "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202608/video-313959.html",
-      "source": "政府広報オンライン",
-      "published": "2026-08-28",
-      "kid_summary": "高市総理が、チームみらいの安野氏らからAIの活用方法について説明を受けました。",
-      "japan_angle": "行政や学校でAIを使う議論に、まず使い方を学ぶ視点が加わる出来事です。"
+      "title": "Web検索に潜むプロンプトインジェクションを日本語解説",
+      "url": "https://www.youtube.com/shorts/xrrxichlNEg",
+      "source": "ウェブ職TV",
+      "published": "2026-08-30T08:00:13+09:00",
+      "kid_summary": "AIがWeb上の指示を誤って信じ、機密情報を扱う危険の仕組みを短い動画で説明しています。",
+      "japan_angle": "学校や会社は、AI検索へ秘密を書かず、外部ページの指示を確認するルール作りに使えます。"
     }
   ]
 }

@@ -31,17 +31,14 @@ class Hero60SecondDiagnosisTests(unittest.TestCase):
             raise AssertionError("Focused hero section was not generated")
         cls.hero_html = hero_match.group(0)
 
-    def test_hero_makes_diagnosis_the_primary_next_step(self):
-        self.assertIn("彦根・滋賀の中小事業者向け", self.hero_html)
-        self.assertIn("AI導入120分で", self.hero_html)
-        self.assertIn("やりたいことが動き出す", self.hero_html)
-        self.assertNotIn("AIエージェントで", self.hero_html)
-        self.assertNotIn("できることを100倍に", self.hero_html)
-        self.assertIn("6%", self.hero_html)
-        self.assertIn("何から始めるか、1分で見える。", self.hero_html)
-        self.assertIn("迷ったら60秒診断をはじめる →", self.hero_html)
+    def test_hero_makes_consultation_the_primary_next_step(self):
+        self.assertIn("AIclimb（エーアイクライム）｜彦根・滋賀のAI相談", self.hero_html)
+        self.assertIn("使えるAI、教えます。", self.hero_html)
+        self.assertIn("講習・導入支援・制作代行", self.hero_html)
+        self.assertIn("困りごとから、最初の一歩を決める。", self.hero_html)
+        self.assertIn("まずは困っている仕事を相談する", self.hero_html)
         self.assertIn(
-            "3問で完了。結果を見てから、予約するか決められます。",
+            "相談後に、講習・実装・伴走のどれから始めるかを決められます。",
             self.hero_html,
         )
         self.assertRegex(
@@ -49,7 +46,7 @@ class Hero60SecondDiagnosisTests(unittest.TestCase):
             re.escape(AI_AGENT_COURSE_URL)
             + r"' target='_blank' rel='noopener'>AIエージェント講習を見る</a>",
         )
-        self.assertNotIn("AI個別相談の日程を選ぶ", self.hero_html)
+        self.assertNotIn("迷ったら60秒診断をはじめる →", self.hero_html)
 
     def test_hero_copy_makes_the_customer_problem_clear(self):
         self.assertIn("<span>AI利用率</span><strong>6%</strong>", self.hero_html)
@@ -74,12 +71,12 @@ class Hero60SecondDiagnosisTests(unittest.TestCase):
             self.hero_html,
         )
 
-    def test_diagnosis_has_accessible_output_and_no_javascript_fallback(self):
+    def test_diagnosis_has_accessible_output_and_consultation_cta(self):
         self.assertIn("aria-labelledby='diagnose-title'", self.index_html)
         self.assertIn("aria-live='polite'", self.index_html)
         self.assertRegex(
             self.hero_html,
-            r"class='focus-btn primary hero-diagnose-button diagnose-open' href='#packages'",
+            r"class='focus-btn primary' href='#contact'>まずは困っている仕事を相談する</a>",
         )
 
     def test_legacy_duplicate_diagnosis_triggers_are_absent(self):

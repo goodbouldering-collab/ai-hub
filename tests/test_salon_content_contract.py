@@ -35,7 +35,7 @@ class SalonContentContractTests(unittest.TestCase):
             "月額2,200円（税込）",
             "毎週火曜21:00",
             "AIオンラインサロン｜近日開始",
-            "正式開始に向けて現在は仮運用中です。登録中の方にはテスト運用へご協力いただいています。Squareで月額決済後、LINEライブトークの参加案内を表示します。",
+            "正式開始に向けて仮運用中です。Square決済後、毎週火曜21時のLINEライブトークへご案内します。",
             "LINEライブ",
             "聞くだけOK",
             "メリット・内容・参加方法を見る",
@@ -69,7 +69,6 @@ class SalonContentContractTests(unittest.TestCase):
             "決済確認後にLINE参加案内を表示",
             "オンラインサロン受講資料を見る",
             "Squareで決済して仮運用に参加",
-            "月額2,200円（税込）・毎月自動更新。決済確認後にLINE参加案内を表示します",
         )
         for text in expected_details:
             with self.subTest(text=text):

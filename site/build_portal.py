@@ -15822,6 +15822,156 @@ FOCUSED_PORTAL_CSS += r"""
 }
 """
 
+FOCUSED_PORTAL_CSS += r"""
+/* ---- 写真を主役にした和文エディトリアル・スキン, 2026-08-30 ---- */
+.editorial-home-skin {
+  --editorial-paper:#fbfaf4;
+  --editorial-ink:#13212d;
+  --editorial-lime:#c7df4a;
+  --editorial-orange:#e86e3d;
+  background:var(--editorial-paper);
+  color:var(--editorial-ink);
+}
+.editorial-home-skin .site-header,
+.editorial-home-skin .site-header.scrolled,
+.editorial-home-skin .site-header:hover {
+  background:rgba(255,254,249,.98) !important;
+  border-bottom:1px solid rgba(19,33,45,.14) !important;
+  box-shadow:none !important;
+}
+.editorial-home-skin .wordmark {
+  color:var(--editorial-ink);
+  font-family:'Noto Serif JP','Yu Mincho','Hiragino Mincho ProN',serif;
+  letter-spacing:.025em;
+}
+.editorial-home-skin .wordmark .word-ai { color:var(--focus-blue) !important; }
+.editorial-home-skin .site-nav a.nav-link,
+.editorial-home-skin .site-nav .menu-toggle { font-weight:800 !important; }
+.editorial-home-skin .focus-hero {
+  background:
+    linear-gradient(96deg,rgba(251,250,244,.985) 0%,rgba(251,250,244,.95) 43%,rgba(251,250,244,.68) 65%,rgba(251,250,244,.18) 100%),
+    url('/img/hero-ai-consult-hikone.png') 66% center/cover no-repeat;
+  background-color:var(--editorial-paper);
+  border-top:1px solid rgba(19,33,45,.14);
+  border-bottom:1px solid rgba(19,33,45,.14);
+}
+.editorial-home-skin .focus-hero::before {
+  background:
+    radial-gradient(circle at 14% 18%,rgba(199,223,74,.19) 0 8%,transparent 8.25%),
+    linear-gradient(120deg,transparent 0 74%,rgba(232,110,61,.12) 74.2% 74.8%,transparent 75%);
+  background-size:auto;
+  mask-image:none;
+}
+.editorial-home-skin .focus-hero::after {
+  width:min(620px,52vw);
+  border-radius:43% 57% 61% 39% / 56% 43% 57% 44%;
+  background:radial-gradient(circle at 35% 35%,rgba(199,223,74,.34),rgba(199,223,74,.08) 42%,transparent 69%);
+  opacity:.56;
+  filter:none;
+}
+.editorial-home-skin .hero-orb { opacity:.32; }
+.editorial-home-skin .hero-orb-one { background:rgba(199,223,74,.24); }
+.editorial-home-skin .hero-orb-two { background:rgba(232,110,61,.17); }
+.editorial-home-skin .focus-kicker {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:#466b24;
+  font:900 12px/1.45 Inter,'Noto Sans JP',sans-serif;
+  letter-spacing:.12em;
+}
+.editorial-home-skin .focus-kicker::before {
+  content:"";
+  width:20px;
+  height:2px;
+  flex:0 0 auto;
+  background:var(--editorial-orange);
+}
+.editorial-home-skin .focus-title {
+  color:var(--editorial-ink);
+  font-family:'Noto Serif JP','Yu Mincho','Hiragino Mincho ProN',serif;
+  font-weight:700;
+  line-height:1.15;
+  letter-spacing:.015em;
+}
+.editorial-home-skin .focus-title strong { color:var(--focus-blue); }
+.editorial-home-skin .focus-title strong::after {
+  bottom:-5px;
+  height:2px;
+  background:linear-gradient(90deg,var(--focus-blue) 0 72%,var(--editorial-lime) 72% 100%);
+  transform:rotate(-.4deg);
+}
+.editorial-home-skin .hero-advantage {
+  margin-top:30px;
+  padding:16px 0;
+  border-top:1px solid rgba(19,33,45,.32);
+  border-bottom:1px solid rgba(19,33,45,.18);
+}
+.editorial-home-skin .hero-advantage-number strong {
+  color:var(--focus-blue);
+  background:none;
+  -webkit-text-fill-color:currentColor;
+  filter:none;
+  font-family:Inter,'Noto Sans JP',sans-serif;
+}
+.editorial-home-skin .hero-advantage-copy small strong {
+  color:#466b24;
+  background:rgba(199,223,74,.22);
+  border-color:rgba(70,107,36,.26);
+  border-radius:0;
+}
+.editorial-home-skin .hero-advantage-pillars li + li::before { color:rgba(232,110,61,.7); }
+.editorial-home-skin .hero-advantage-pillars b { color:var(--editorial-orange); }
+.editorial-home-skin .focus-lead {
+  color:#34424c;
+  font-size:clamp(16px,1.22vw,18px);
+  font-weight:650;
+  line-height:1.9;
+}
+.editorial-home-skin .hero-diagnose-eyebrow { color:#466b24; }
+.editorial-home-skin .focus-btn.primary {
+  background:#1d477f;
+  border-color:#1d477f;
+  box-shadow:none;
+}
+.editorial-home-skin .focus-btn.secondary {
+  color:#1d477f;
+  background:rgba(255,254,249,.78);
+  border-color:rgba(29,71,127,.44);
+}
+.editorial-home-skin .hero-text-link {
+  color:var(--editorial-ink);
+  border-bottom-color:rgba(19,33,45,.35);
+}
+.editorial-home-skin .focus-trust { color:#46545e; }
+.editorial-home-skin .focus-trust li::before { color:var(--editorial-orange); }
+.editorial-home-skin .focus-block,
+.editorial-home-skin .focus-hub {
+  background:var(--editorial-paper);
+  border-top-color:rgba(19,33,45,.14);
+}
+.editorial-home-skin .focus-section-head h2,
+.editorial-home-skin .focus-hub-head h2 {
+  color:var(--editorial-ink);
+  font-family:'Noto Serif JP','Yu Mincho','Hiragino Mincho ProN',serif;
+  font-weight:700;
+  letter-spacing:.04em;
+}
+.editorial-home-skin .focus-section-head small,
+.editorial-home-skin .focus-hub-head small { color:#466b24; }
+@media (max-width:760px) {
+  .editorial-home-skin .focus-hero {
+    background:
+      linear-gradient(180deg,rgba(251,250,244,.97) 0%,rgba(251,250,244,.92) 56%,rgba(251,250,244,.78) 100%),
+      url('/img/hero-ai-consult-hikone.png') 64% center/cover no-repeat;
+  }
+  .editorial-home-skin .focus-hero-shell { grid-template-columns:1fr; }
+  .editorial-home-skin .focus-kicker { gap:6px; letter-spacing:.075em; }
+  .editorial-home-skin .focus-title { letter-spacing:.01em; }
+  .editorial-home-skin .hero-advantage { margin-top:24px; padding:13px 0; }
+}
+"""
+
 
 def _render_header_focused() -> str:
     desktop_navigation = render_desktop_navigation()
@@ -15994,10 +16144,10 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append("<!doctype html><html lang='ja'><head><meta charset='utf-8'>" + FAVICON_HEAD_HTML)
     parts.append("<meta name='viewport' content='width=device-width,initial-scale=1'>")
     parts.append("<meta name='theme-color' content='#F8FBFF'>")
-    # 案A: 和文明朝の大見出し + monospace ラベル用に Google Fonts を読み込む
+    # 和文明朝の大見出し + monospace ラベル用に Google Fonts を読み込む
     parts.append("<link rel='preconnect' href='https://fonts.googleapis.com'>")
     parts.append("<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>")
-    parts.append("<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap'>")
+    parts.append("<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@500;600;700;900&family=JetBrains+Mono:wght@500;700&display=swap'>")
     parts.append("<link rel='stylesheet' href='/design-system/tokens.css?v=20260815'>")
     parts.append(f"<title>{html.escape(title)}</title>")
     parts.append(f"<meta name='description' content='{html.escape(desc, quote=True)}'>")
@@ -16005,7 +16155,7 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append(_build_ogp(title, desc, SITE_URL + "/"))
     parts.append(f"<script type='application/ld+json'>{_build_jsonld_website()}</script>")
     parts.append(f"<style>{PORTAL_CSS}{BLOG_TEASER_CSS}{FOCUSED_PORTAL_CSS}</style>")
-    parts.append("</head><body><a class='skip-link' href='#main-content'>本文へ移動</a>")
+    parts.append("</head><body class='editorial-home-skin'><a class='skip-link' href='#main-content'>本文へ移動</a>")
 
     parts.append(_render_header_focused())
 

@@ -184,7 +184,7 @@ class BlogFreshnessTest(unittest.TestCase):
             meta["title"],
             "今日のAIニュースとcodex",
         )
-        self.assertEqual(meta["image"], "/img/blog-codex-update-log-hero-20260822.png")
+        self.assertEqual(meta["image"], "/img/blog-codex-update-log-hero-20260830.png")
         self.assertTrue(meta["hero_image"])
         self.assertEqual(body.count("<!-- CODEX_UPDATE_CURRENT:BEGIN -->"), 1)
         self.assertEqual(body.count("<!-- CODEX_UPDATE_CURRENT:END -->"), 1)

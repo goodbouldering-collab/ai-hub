@@ -6,8 +6,8 @@ content_series: codex-update-log
 source_period: "August 24–28, 2026"
 source_fingerprint: "560b6e910da6a867d526e0e1477012087225232d3120df1246de90bdbd56a748"
 source_release_tag: "rust-v0.150.0"
-image: "/img/blog-codex-update-log-hero-20260822.png"
-image_alt: "毎日のAIニュース10件とCodexの変化だけを選び出す和紙のカードと光のプリズム"
+image: "/img/blog-codex-update-log-hero-20260830.png"
+image_alt: "巨大な水晶のAI脳を、10個の光るニュースホールドで登り、紙のヤギが見守る和紙の風景"
 hero_image: true
 authorship_note: "※内容は運営者が考え、AIで整えています。"
 summary: "AIニュース10件とCodexの新機能を、仕事で使う場面からわかりやすく読む常時更新ページです。"

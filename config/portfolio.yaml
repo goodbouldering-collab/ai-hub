@@ -104,9 +104,9 @@ portfolio:
   source_project: n-design
 - name: ClimbHero クライミング動画サロン
   slug: climbhero
-  url: https://climbhero.vercel.app
+  url: https://project-02ceb497.pages.dev
   aliases:
-  - https://project-02ceb497.pages.dev
+  - https://climbhero.vercel.app
   status: live
   category: Webサービス
   tech:
@@ -122,8 +122,9 @@ portfolio:
   source_project: climbhero
 - name: 外国人受け入れ事業 育成就労
   slug: business21
-  url: https://business21.vercel.app
+  url: https://business21.aiclimb.workers.dev
   aliases:
+  - https://business21.vercel.app
   - https://business21-kanri.vercel.app
   - https://business21.vercel.app/match
   status: live
@@ -153,8 +154,9 @@ portfolio:
   thumbnail: /img/portfolio/karatto-plus.jpg
 - name: 相続相談 まちの不動産
   slug: trust
-  url: https://trusthikone.vercel.app
+  url: https://trusthikone.aiclimb.workers.dev
   aliases:
+  - https://trusthikone.vercel.app
   - https://trust-nine-tau.vercel.app
   status: live
   category: 企業・地域相談
@@ -292,7 +294,9 @@ portfolio:
   summary: カラッとプラスの生成LP版
 - name: RebuildMatch AIサイト診断
   slug: rebuildmatch
-  url: https://site-shindan.vercel.app
+  url: https://site-shindan.aiclimb.workers.dev
+  aliases:
+  - https://site-shindan.vercel.app
   status: live
   category: AI診断
   tech:
@@ -307,7 +311,9 @@ portfolio:
   source_project: rebuildmatch
 - name: エグゼクティブゴルフ シミュレーター
   slug: profit-hikone
-  url: https://profit-hikone.vercel.app
+  url: https://profit-hikone.aiclimb.workers.dev
+  aliases:
+  - https://profit-hikone.vercel.app
   status: live
   category: 店舗・予約
   tech:
@@ -322,7 +328,9 @@ portfolio:
   source_project: profit-hikone
 - name: 巡波Junpa ねむり蒸し
   slug: junpa
-  url: https://yomogihikone.vercel.app
+  url: https://junpa.aiclimb.workers.dev
+  aliases:
+  - https://yomogihikone.vercel.app
   status: live
   category: サロン・予約
   tech:
@@ -336,7 +344,9 @@ portfolio:
   source_project: yomogihikone
 - name: ハイロックス本郷
   slug: hyrox-hongo
-  url: https://hyrox-zeta.vercel.app
+  url: https://hyrox-hongo.aiclimb.workers.dev
+  aliases:
+  - https://hyrox-zeta.vercel.app
   status: live
   category: スポーツ・アスリート
   tech:
@@ -352,7 +362,9 @@ portfolio:
   source_project: hyrox-hongo
 - name: NOKOSU 相続アルバム
   slug: nokosu
-  url: https://nokosu-ten.vercel.app
+  url: https://nokosu.aiclimb.workers.dev
+  aliases:
+  - https://nokosu-ten.vercel.app
   status: live
   category: 写真・地域サービス
   tech:
@@ -365,8 +377,9 @@ portfolio:
   source_project: nokosu
 - name: 山仁ポータル
   slug: yamani
-  url: https://yamani.vercel.app
+  url: https://yamani.aiclimb.workers.dev
   aliases:
+  - https://yamani.vercel.app
   - https://ymani.vercel.app
   status: live
   category: 企業サイト
@@ -399,7 +412,9 @@ portfolio:
   source_project: climbing-shoe-search
 - name: ファディー彦根 AI健康管理
   slug: fadie
-  url: https://fadie-v2.vercel.app
+  url: https://fadie.aiclimb.workers.dev
+  aliases:
+  - https://fadie-v2.vercel.app
   status: live
   category: 健康管理アプリ
   tech:
@@ -413,7 +428,9 @@ portfolio:
   source_project: fadie-v2
 - name: アンバサダーROI分析
   slug: ambassador-roi
-  url: https://ambassador-ashen.vercel.app
+  url: https://ambassador.aiclimb.workers.dev
+  aliases:
+  - https://ambassador-ashen.vercel.app
   status: live
   category: AI業務ツール
   tech:
@@ -455,7 +472,9 @@ portfolio:
   source: site-published-hook
 - name: Japan Plogging Championship
   slug: japan-plogging-championship
-  url: https://japan-plogging-championship.vercel.app
+  url: https://jpc.aiclimb.workers.dev
+  aliases:
+  - https://japan-plogging-championship.vercel.app
   status: live
   category: イベントサイト
   tech:

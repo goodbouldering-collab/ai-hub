@@ -26,7 +26,7 @@ vercel:
       include: true
       slug: ambassador-roi
       name: アンバサダーROI分析
-      canonical_url: https://ambassador-ashen.vercel.app
+      canonical_url: https://ambassador.aiclimb.workers.dev
       category: AI業務ツール
       tech: [Vercel, JavaScript]
       summary: AI影響力スコアとROI可視化、契約テンプレートでアンバサダー施策を支援
@@ -37,7 +37,7 @@ vercel:
       match_slug: business21-match
       slug: business21
       name: 外国人受け入れ事業 育成就労
-      canonical_url: https://business21.vercel.app
+      canonical_url: https://business21.aiclimb.workers.dev
       category: 企業・支援機関
       tech: [Next.js, Vercel, Supabase]
       summary: 外国人材の受入れ、技能実習、特定技能、育成就労を支援する監理団体サイト
@@ -68,7 +68,7 @@ vercel:
       include: true
       slug: fadie
       name: ファディー彦根 AI健康管理
-      canonical_url: https://fadie-v2.vercel.app
+      canonical_url: https://fadie.aiclimb.workers.dev
       category: 健康管理アプリ
       tech: [Vercel, Gemini]
       summary: 食事・運動・睡眠・体調の記録からAIコーチが助言し、スタッフ支援につなぐアプリ
@@ -78,11 +78,21 @@ vercel:
       include: true
       slug: hyrox-hongo
       name: HYROX スポーツプロ支援
-      canonical_url: https://hyrox-zeta.vercel.app
+      canonical_url: https://hyrox-hongo.aiclimb.workers.dev
       category: 挑戦・メディア
       tech: [Vercel, Static Site]
       summary: 本郷泰司のHYROX挑戦、ブログ、SNS、協賛相談をまとめた公式サイト
       since: 2026-06
+
+    japan-plogging-championship:
+      include: true
+      slug: japan-plogging-championship
+      name: Japan Plogging Championship
+      canonical_url: https://jpc.aiclimb.workers.dev
+      category: イベントサイト
+      tech: [Next.js, Vercel]
+      summary: 参加・競技・企業協賛を一つの流れで案内する大会公式サイト
+      since: 2026-08
 
     minanowa:
       include: true
@@ -110,7 +120,7 @@ vercel:
       include: true
       slug: nokosu
       name: NOKOSU
-      canonical_url: https://nokosu-ten.vercel.app
+      canonical_url: https://nokosu.aiclimb.workers.dev
       category: 写真・地域サービス
       tech: [Vercel]
       summary: 相続や解体で失われる家の記憶を、訪問撮影とアルバム・動画で残す彦根発のサービス
@@ -131,7 +141,7 @@ vercel:
       include: true
       slug: profit-hikone
       name: エグゼクティブゴルフ シミュレーター
-      canonical_url: https://profit-hikone.vercel.app
+      canonical_url: https://profit-hikone.aiclimb.workers.dev
       category: 店舗・予約
       tech: [Vite, Vercel, Square]
       summary: トレーナー予約、事前決済、24時間利用、Golf Plusレッスンをまとめたフィットネスサイト
@@ -141,7 +151,7 @@ vercel:
       include: true
       slug: rebuildmatch
       name: RebuildMatch AIサイト診断
-      canonical_url: https://site-shindan.vercel.app
+      canonical_url: https://site-shindan.aiclimb.workers.dev
       category: AI診断
       tech: [Next.js, Vercel, AI]
       summary: 既存サイトをAI診断し、SEO・MEO・AI検索の改善点と費用、次の支援先を比較
@@ -152,7 +162,7 @@ vercel:
       match_slug: trust
       slug: trust
       name: 相続相談 まちの不動産
-      canonical_url: https://trusthikone.vercel.app
+      canonical_url: https://trusthikone.aiclimb.workers.dev
       category: 企業・地域相談
       tech: [Next.js, Vercel, Supabase]
       summary: 彦根の相続、空き家、土地、家族会議を地域の不動産会社が整理する相談サイト
@@ -162,7 +172,7 @@ vercel:
       include: true
       slug: yamani
       name: 老舗工場ポータル MRP営業管理
-      canonical_url: https://yamani.vercel.app
+      canonical_url: https://yamani.aiclimb.workers.dev
       category: 業務ポータル
       tech: [Vercel, JavaScript]
       summary: 法人見積、再注文、納期相談、SDS・品質資料、社内管理の入口をまとめた取引先向けポータル
@@ -172,7 +182,7 @@ vercel:
       include: true
       slug: junpa
       name: 巡波Junpa ねむり蒸し
-      canonical_url: https://yomogihikone.vercel.app
+      canonical_url: https://junpa.aiclimb.workers.dev
       category: サロン・予約
       tech: [Vercel, Square]
       summary: 彦根の黄土よもぎ蒸し、足裏、二の腕・肩まわりケアを案内する予約制サロンサイト

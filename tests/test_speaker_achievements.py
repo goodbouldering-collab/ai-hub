@@ -34,10 +34,10 @@ class SpeakerAchievementsTest(unittest.TestCase):
         for url in (
             "https://minnanowa.net",
             "https://n-design.work",
-            "https://business21.vercel.app",
+            "https://business21.aiclimb.workers.dev",
             "https://notesthe.com",
             "https://shoes.goodbouldering.com",
-            "https://fadie-v2.vercel.app",
+            "https://fadie.aiclimb.workers.dev",
         ):
             with self.subTest(url=url):
                 self.assertIn(f"href='{url}'", rendered)

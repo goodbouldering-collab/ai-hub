@@ -25,7 +25,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://www.itmedia.co.jp/news/article/ogp/2608/31/2000000950/10004423/2048",
-      "published": "2026-08-30T23:21:28+00:00"
+      "published": "2026-08-30T23:21:28+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "07b0d0d2b5bac46d",
@@ -51,7 +53,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://image.itmedia.co.jp/ait/articles/2608/31/cover_news015.jpg",
-      "published": "2026-08-30T23:00:00+00:00"
+      "published": "2026-08-30T23:00:00+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "cb8a8ce245a85035",
@@ -77,7 +81,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://img.youtube.com/vi/gjTffFCRCFM/hqdefault.jpg",
-      "published": "2026-08-30T23:00:09+00:00"
+      "published": "2026-08-30T23:00:09+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "47f53fb3686ec570",
@@ -103,7 +109,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://img.youtube.com/vi/8Fz5qF-jxDc/hqdefault.jpg",
-      "published": "2026-08-30T10:00:31+00:00"
+      "published": "2026-08-30T10:00:31+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "fd7bb75aa3ca6f2d",
@@ -129,7 +137,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://img.youtube.com/vi/UtchKt8dRgk/hqdefault.jpg",
-      "published": "2026-08-30T10:00:12+00:00"
+      "published": "2026-08-30T10:00:12+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "1967becd0f7adb5c",
@@ -155,7 +165,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://img.youtube.com/vi/HljuT7Q-PEg/hqdefault.jpg",
-      "published": "2026-08-30T10:00:34+00:00"
+      "published": "2026-08-30T10:00:34+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     },
     {
       "hash": "3ffc8ba744a41306",
@@ -181,7 +193,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://static.simonwillison.net/static/2026/pelicans-in-her-piety.webp",
-      "published": "2026-08-30T23:59:47+00:00"
+      "published": "2026-08-30T23:59:47+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "30d9c19a1bbfce6f",
@@ -207,7 +221,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://img.youtube.com/vi/a3rII6QaTKk/hqdefault.jpg",
-      "published": "2026-08-29T10:00:11+00:00"
+      "published": "2026-08-29T10:00:11+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "e9c861acb1d433c6",
@@ -233,7 +249,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://img.youtube.com/vi/OtNfqTbPLRg/hqdefault.jpg",
-      "published": "2026-08-29T10:52:26+00:00"
+      "published": "2026-08-29T10:52:26+00:00",
+      "_is_video": false,
+      "_summary_clean": ""
     },
     {
       "hash": "fbbe7599c344a652",
@@ -259,7 +277,9 @@
         "codex_relevance": 0.0
       },
       "thumbnail": "https://img.youtube.com/vi/izSqPE8mnQo/hqdefault.jpg",
-      "published": "2026-08-29T09:00:07+00:00"
+      "published": "2026-08-29T09:00:07+00:00",
+      "_is_video": true,
+      "_summary_clean": ""
     }
   ]
 }

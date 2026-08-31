@@ -28,6 +28,10 @@ The company is testing robots on tasks that can performed by technicians.
 
 ## AI動画(日本語)
 
+### 「穴場ジャンル教えます」その人ほぼ詐欺 #Shorts
+競合が弱くて稼げるジャンルは存在しません。理由はシンプルです。  ▼本編（フル解説はこちら） ブログ初心者が半年で月5万円稼ぐスケジュール完全講義 https://youtu.be/h9Hej75xgGw  ▼AIセキュリティを体系的に学ぶなら「Touch AI」 https://touchai.jp  #Shorts #ブログ #SEO #副業
+出典: https://www.youtube.com/shorts/pVxrs0owqOI
+
 ### Gitは全人類の必須スキルです #Shorts
 エンジニアだけのものではなくなりました。AI時代にGitが要る理由。  ▼本編（フル解説はこちら） Claude Code完全講義 https://youtu.be/bOyS3vPxrRk  ▼AIセキュリティを体系的に学ぶなら「Touch AI」 https://touchai.jp  #Shorts #Git #ClaudeCode #AI
 出典: https://www.youtube.com/shorts/gjTffFCRCFM
@@ -43,10 +47,6 @@ noteのSEOが強いらしい、に踊らされる人へ。稼げない人の思�
 ### ネット検索しただけで機密情報が漏れる #Shorts
 プロンプトインジェクションの仕組みを、非エンジニア向けに解説します。  ▼本編（フル解説はこちら） Claude Codeの安全な始め方 https://youtu.be/M-z6WJGSonI  ▼AIセキュリティを体系的に学ぶなら「Touch AI」 https://touchai.jp  #Shorts #ClaudeCode #AI #セキュリティ
 出典: https://www.youtube.com/shorts/xrrxichlNEg
-
-### ブログ歴16年のプロがオタクに負ける理由 #Shorts
-SEOのテクニックより強いものがあります。プロが認める「オタクの勝ち」の理由。  ▼本編（フル解説はこちら） ブログ初心者が半年で月5万円稼ぐスケジュール完全講義 https://youtu.be/h9Hej75xgGw  ▼AIセキュリティを体系的に学ぶなら「Touch AI」 https://touchai.jp  #Shorts #ブログ #SEO #ライティング
-出典: https://www.youtube.com/shorts/gi8i9tazkOg
 
 ### CloudflareとClaude Code（Codex）の組合せが最高って話題なので解説（セットアップ方法）
 無料でも使えるCloudflare（クラウドフレア）とClaude CodeやCodexの組み合わせが最高すぎるので解説！セットアップ方法もお伝えします。  Cloudflareは下記 https://www.cloudflare.com/ja-jp/ Cloudflare Wranglerは下記 https://developers.cloudflare.com/workers/wrangler...
@@ -70,6 +70,14 @@ SEOのテクニックより強いものがあります。プロが認める「�
 
 
 ## AI国内
+
+### ビル・ゲイツが語る「AIで開発者はいらなくなる」の先にある話
+AIにコードを書かせる時代が来た。では、開発者は不要になるのか。ビル・ゲイツ氏は、ソフトウェア開発がAIによる大きな変化にさらされる一方、新たな需要も生まれると指摘する。その先にあるのは、開発者の「仕事」そのものの再定義だ。
+出典: https://atmarkit.itmedia.co.jp/ait/articles/2608/31/news039.html
+
+### 「Claude Code」の週次制限枠、9月14日に"25％引き上げ"　実質は現状比17％減に
+Anthropicは、コーディング支援「Claude Code」の週間利用上限を標準比25％増に恒久設定すると発表した。現在は期間限定で50％増が適用されているため、9月14日の切り替え後は現状比で約17％の減少となる。同社は利用状況の可視性や管理性を高める改善も進めているとしている。
+出典: https://www.itmedia.co.jp/aiplus/article/2608/31/2000000951/
 
 ### ソニー・ミュージックパブリッシングとワーナー・チャペル、Anthropicを著作権侵害で提訴
 Sony Music PublishingやWarner Chappell Musicなどの音楽出版社グループは、Anthropicと同社幹部を著作権侵害で提訴した。海賊版サイトからの歌詞取得や無断学習を「史上最大の知財窃盗」と主張し、数十億ドル規模の損害賠償を請求している。Anthropicは全面的に争う姿勢だ。
@@ -117,3 +125,26 @@ OpenAIは、AIコードエディタ「Cursor」へのモデル提供契約を11�
 ### Introducing Hy4 Preview
 <p><strong><a href="https://hy.tencent.ai/research/hy4-preview">Introducing Hy4 Preview</a></strong></p> New open weight text input (no vision)  LLM from Chinese company Tencent today: 770B total para...
 出典: https://simonwillison.net/2026/Aug/29/hy4/
+
+
+## SNS動向
+
+### Instagram growth continues to outpace Facebook in EU
+<figure><div><img src="https://imgproxy.divecdn.com/wvut4Fn_tSDsip2P_UsITnpxrIoh2Olo0VnD5UxOrPo/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9mYl92c19pZ19ldS5wbmc=.webp" /></div><...
+出典: https://www.socialmediatoday.com/news/instagram-growth-continues-to-outpace-facebook-in-eu/829134/
+
+### X offers free API credits for its Grok Bot
+<p>The app is giving users free X API credits so they can try out its latest artificial intelligence-powered tool to gain account performance insights.</p>
+出典: https://www.socialmediatoday.com/news/x-offers-free-api-credits-for-its-grok-bot/829138/
+
+### Pinterest Announces 2026 ‘Pinterest Presents’ Event
+<p>Pinterest will share the latest usage insights, trends and advertising updates at the virtual event.&nbsp;</p>
+出典: https://www.socialmediatoday.com/news/pinterest-announces-2026-pinterest-presents-event/829137/
+
+### Threads experiments with post performance recognition awards
+<p>The platform may soon be awarding virtual gems to its most engaging posts, according to an image posted by an app researcher.</p>
+出典: https://www.socialmediatoday.com/news/threads-experiments-with-post-performance-recognition-awards/829136/
+
+### Meta updates login with Facebook
+<p>The company improved the process with a focus on streamlining returning logins and allowing eligible users to confirm credentials with a single tap.</p>
+出典: https://www.socialmediatoday.com/news/meta-updates-login-with-facebook/829135/

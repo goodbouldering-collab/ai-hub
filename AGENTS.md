@@ -1,5 +1,11 @@
 # AGENTS.md — AIハブ
 
+## Cloudflareデプロイ境界（最優先）
+
+- GitHubからの本番デプロイ先はCloudflareのみ。Vercelへ再接続・deploy・自動deployしない。
+- 正本は `.github/deployment-platform.json`。`partial_migration` の残作業はActionsの警告を解消してから完了扱いにする。
+- 既存Vercelプロジェクトは移管確認用の読取専用。削除、DNS、認証・個人情報の移管は別途承認を得る。
+
 **AIハブ** は「自分のAIをひとつに集める場所」をテーマにした個人ポートフォリオ兼マイページ。
 作品（アプリ集）・講師紹介・受講資料を見せる**フロント面**と、AI/SNS関連情報をRSSから自動収集・要約してNotebookLMに流し込む**バックエンドのパイプライン**を1つのサイトに同居させている。
 
@@ -7,7 +13,7 @@
 
 - プロジェクト名: **AIハブ / AI Hub**（旧称: AI-watch、AI情報収集、cclimb-intel、ai-info）
 - GitHub: `goodbouldering-collab/ai-hub`
-- **本番ホスティング**: 公開静的サイトは **Cloudflare Workers**、管理画面・APIは **Vercel**
+- **本番ホスティング正本**: **Cloudflare Workers**。管理画面・APIのVercel残存部分は移管中として警告し、新規変更・再デプロイはしない
 - **本番URL**: https://aiclimb.aiclimb.workers.dev
 - Vercel Project ID: `prj_e7vh73eF0KZpm8C49esnILvHO98o`
 - GitHub Pages: `https://goodbouldering-collab.github.io/ai-hub/`（参考・残置）

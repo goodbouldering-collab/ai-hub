@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "repository": "goodbouldering-collab/ai-hub",
+  "platform": "cloudflare",
+  "status": "partial_migration",
+  "cloudflare": {
+    "ready": true,
+    "deploymentType": "workers",
+    "exposure": "public",
+    "configPath": "wrangler.jsonc",
+    "workingDirectory": ".",
+    "installCommand": "npm ci && pip install -r requirements.txt",
+    "deployCommand": "python site/build_site.py && npm run cloudflare:check && npm run cloudflare:deploy",
+    "productionUrl": "https://aiclimb.aiclimb.workers.dev",
+    "verificationCommand": "python scripts/verify_codex_update_production.py --attempts 20 --interval 10"
+  },
+  "legacyVercel": {
+    "gitIntegration": "disconnected",
+    "projectRetainedReadOnly": true,
+    "retainedFiles": [
+      "vercel.json"
+    ]
+  },
+  "nextAction": "Move the remaining protected admin and authentication paths to Cloudflare after their secrets and data boundaries are approved."
+}

@@ -66,5 +66,5 @@ jobs:
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Verify Vercel production fingerprint
+      - name: Verify Cloudflare production fingerprint
         run: python scripts/verify_codex_update_production.py

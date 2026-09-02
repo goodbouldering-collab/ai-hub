@@ -23,7 +23,7 @@ on:
         required: false
         type: string
       tech:
-        description: "カンマ区切り。例: Next.js,Vercel,Supabase"
+        description: "カンマ区切り。例: Next.js,Cloudflare,Supabase"
         required: false
         type: string
       summary:
@@ -63,9 +63,8 @@ jobs:
       - name: Test portfolio sync and screenshot rules
         run: python -m unittest tests.test_portfolio_sync tests.test_portfolio_screenshots
 
-      - name: Sync Vercel and optional site-published hook
+      - name: Sync registered production sites without Vercel discovery
         env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           REGISTER_NAME: ${{ github.event.inputs.name || github.event.client_payload.name || '' }}
           REGISTER_URL: ${{ github.event.inputs.url || github.event.client_payload.url || '' }}
           REGISTER_SLUG: ${{ github.event.inputs.slug || github.event.client_payload.slug || '' }}
@@ -73,11 +72,7 @@ jobs:
           REGISTER_TECH: ${{ github.event.inputs.tech || github.event.client_payload.tech || '' }}
           REGISTER_SUMMARY: ${{ github.event.inputs.summary || github.event.client_payload.summary || '' }}
         run: |
-          args=(--write)
-          if [ -z "$VERCEL_TOKEN" ]; then
-            echo "VERCEL_TOKEN未設定: 認証移送は行わず、site-published登録フックだけを実行します"
-            args+=(--no-vercel)
-          fi
+          args=(--write --no-vercel)
           if [ -n "$REGISTER_NAME" ] || [ -n "$REGISTER_URL" ]; then
             args+=(--register-name "$REGISTER_NAME" --register-url "$REGISTER_URL")
             [ -n "$REGISTER_SLUG" ] && args+=(--register-slug "$REGISTER_SLUG")

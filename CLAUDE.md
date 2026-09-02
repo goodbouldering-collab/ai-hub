@@ -1,3 +1,10 @@
+<!-- cloudflare-deployment-boundary:v2 -->
+## Cloudflareデプロイ境界（最優先・2026-09-02）
+
+- 新規・変更の本番デプロイ先はCloudflare Workers / Pagesとし、Vercelへ再接続・deploy・自動deployしない。
+- 正本は`.github/deployment-platform.json`。`cloudflare.targetVerified=true`、登録Target名、Wrangler設定、accountId、作業場所が一致し、`check-cloudflare-deployment.mjs --for-deploy`が通る場合だけ手動deployできる。
+- Vercelに関する後続記述は移管履歴としてのみ読む。Vercel CLI / Action / Secretを使う経路はエラー、`vercel.json`・`.vercel`・`.vercel.app`は移管警告としてCloudflareへ切り替える。Vercel自体の変更・削除はしない。
+
 # CLAUDE.md — AIハブ
 
 **AIハブ** は「自分のAIをひとつに集める場所」をテーマにした個人ポートフォリオ兼マイページ。

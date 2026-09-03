@@ -40,18 +40,16 @@ test("public pages are served from the bound Cloudflare assets", async () => {
   assert.equal(await response.text(), assetHtml);
 });
 
-test("dynamic administration paths redirect directly to the frozen origin", async () => {
+test("dynamic administration paths stay on Cloudflare and pause safely", async () => {
   const response = await worker.fetch(
     new Request("https://aiclimb.aiclimb.workers.dev/admin/login?next=%2Fadmin"),
     env,
   );
 
-  assert.equal(response.status, 307);
-  assert.equal(
-    response.headers.get("location"),
-    "https://aiclimb.vercel.app/admin/login?next=%2Fadmin",
-  );
-  assert.equal(response.headers.get("x-aiclimb-delivery"), "direct-to-frozen-origin");
+  assert.equal(response.status, 503);
+  assert.equal(response.headers.get("location"), null);
+  assert.equal(response.headers.get("x-aiclimb-delivery"), "cloudflare-migration-paused");
+  assert.match(await response.text(), /Cloudflare版へ移行中/);
 });
 
 test("unknown public writes are rejected before reaching assets", async () => {

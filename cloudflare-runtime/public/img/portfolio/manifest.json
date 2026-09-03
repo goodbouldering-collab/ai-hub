@@ -128,7 +128,7 @@
     },
     "japan-plogging-championship": {
       "name": "Japan Plogging Championship",
-      "url": "https://japan-plogging-championship.vercel.app",
+      "url": "https://jpc.aiclimb.workers.dev",
       "path": "/img/portfolio/japan-plogging-championship.jpg",
       "captured_at": "2026-08-31T08:20:55.029539+00:00",
       "sha256": "533407e6651e91421135c399acb7bce5196ccf07f26b9eeedf0fd53f8bee0997",

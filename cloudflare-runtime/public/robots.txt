@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api/
+Disallow: /ops
+Disallow: /watch/
+Sitemap: https://aiclimb.aiclimb.workers.dev/sitemap.xml

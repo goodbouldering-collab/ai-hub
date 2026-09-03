@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Daily cloud AI agent loop</title>
+  <desc id="desc">A cloud AI agent checks important business signals every day.</desc>
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="45%" r="70%">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#eef7ff"/>
+    </radialGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#0f172a" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <text x="88" y="104" font-family="Inter, Arial, sans-serif" font-size="40" font-weight="900" fill="#102033">Cloud agents repeat the important checks</text>
+  <g filter="url(#shadow)">
+    <circle cx="600" cy="350" r="116" fill="#111827"/>
+    <text x="520" y="338" font-family="Inter, Arial, sans-serif" font-size="32" font-weight="900" fill="#ffffff">AI Agent</text>
+    <text x="514" y="381" font-family="Inter, Arial, sans-serif" font-size="18" fill="#cbd5e1">daily autonomous loop</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="172" y="198" width="250" height="94" rx="22" fill="#ffffff" stroke="#d8e2ee" stroke-width="3"/>
+    <text x="214" y="256" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="900" fill="#1d4ed8">Sales</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="778" y="198" width="250" height="94" rx="22" fill="#ffffff" stroke="#d8e2ee" stroke-width="3"/>
+    <text x="820" y="256" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="900" fill="#047857">Inquiries</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="172" y="438" width="250" height="94" rx="22" fill="#ffffff" stroke="#d8e2ee" stroke-width="3"/>
+    <text x="214" y="496" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="900" fill="#c2410c">Reviews</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="778" y="438" width="250" height="94" rx="22" fill="#ffffff" stroke="#d8e2ee" stroke-width="3"/>
+    <text x="820" y="496" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="900" fill="#7c3aed">Competitors</text>
+  </g>
+  <path d="M424 245 C505 222 535 234 566 268" fill="none" stroke="#2563eb" stroke-width="8" stroke-linecap="round"/>
+  <path d="M776 245 C695 222 665 234 634 268" fill="none" stroke="#10b981" stroke-width="8" stroke-linecap="round"/>
+  <path d="M424 485 C505 508 535 496 566 432" fill="none" stroke="#f97316" stroke-width="8" stroke-linecap="round"/>
+  <path d="M776 485 C695 508 665 496 634 432" fill="none" stroke="#7c3aed" stroke-width="8" stroke-linecap="round"/>
+  <rect x="444" y="584" width="312" height="48" rx="24" fill="#10b981"/>
+  <text x="491" y="615" font-family="Inter, Arial, sans-serif" font-size="19" font-weight="900" fill="#ffffff">alert, recommend, draft</text>
+</svg>

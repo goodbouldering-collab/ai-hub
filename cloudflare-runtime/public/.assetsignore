@@ -1,0 +1,3 @@
+# Workers Static Assets are limited to 25 MiB per file.
+# The edge Worker redirects this path to the existing Vercel origin.
+media/ai-consult-hikone-20260629/ai-consult-hikone-course.webm

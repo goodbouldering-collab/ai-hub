@@ -1,0 +1,2831 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f7f9fc">
+<meta name="description" content="AI初心者が、CodexとClaude Codeを使った実装、変更確認、修正、安全な公開までを順番に学べる、彦根のAIコーディング講習。">
+<link rel="canonical" href="https://aiclimb.aiclimb.workers.dev/programming-map.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="AIclimb（AI相談）">
+<meta property="og:title" content="AIコーディング講習｜Codex・Claude Code実践">
+<meta property="og:description" content="CodexやClaude Codeに頼み、変更を確かめ、安全に公開するまでを図解で学ぶ120分のAIコーディング講習。">
+<meta property="og:url" content="https://aiclimb.aiclimb.workers.dev/programming-map.html">
+<meta property="og:image" content="https://aiclimb.aiclimb.workers.dev/img/course-path-coding.webp">
+<meta property="og:image:secure_url" content="https://aiclimb.aiclimb.workers.dev/img/course-path-coding.webp">
+<meta property="og:image:type" content="image/webp">
+<meta property="og:image:width" content="1448">
+<meta property="og:image:height" content="1086">
+<meta property="og:image:alt" content="AIが変更したコードを人が確認し、安全にWebサイトを公開するAIコーディング講習">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AIコーディング講習｜Codex・Claude Code実践">
+<meta name="twitter:description" content="AIに頼む、変更を見る、画面を確かめる、安全に公開する流れを初心者向けに図解します。">
+<meta name="twitter:image" content="https://aiclimb.aiclimb.workers.dev/img/course-path-coding.webp">
+<meta name="twitter:image:alt" content="AIが変更したコードを人が確認し、安全にWebサイトを公開するAIコーディング講習">
+<title>AIコーディング講習｜Codex・Claude Code実践 | AIclimb（AI相談）</title>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "AIコーディング講習｜Codex・Claude Code実践",
+  "description": "AI初心者が、CodexやClaude Codeに頼み、変更を確かめ、安全に公開するまでを図解で学ぶ120分の講習資料。",
+  "url": "https://aiclimb.aiclimb.workers.dev/programming-map.html",
+  "inLanguage": "ja",
+  "timeRequired": "PT120M",
+  "educationalLevel": "初心者向け",
+  "learningResourceType": "講習資料",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://aiclimb.aiclimb.workers.dev/img/course-path-coding.webp",
+    "contentUrl": "https://aiclimb.aiclimb.workers.dev/img/course-path-coding.webp",
+    "caption": "AIが変更したコードを人が確認し、安全にWebサイトを公開するAIコーディング講習",
+    "width": 1448,
+    "height": 1086
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "AIclimb",
+    "alternateName": "AI相談",
+    "url": "https://aiclimb.aiclimb.workers.dev/"
+  }
+}
+</script>
+<style>
+  :root {
+    --ink: #0b1020;
+    --text: #142033;
+    --text-soft: #435169;
+    --muted: #6d778a;
+    --line: rgba(20, 32, 51, .13);
+    --line-strong: rgba(20, 32, 51, .24);
+    --page: #f6f8fb;
+    --paper: rgba(255, 255, 255, .76);
+    --paper-strong: rgba(255, 255, 255, .92);
+    --glass: rgba(255, 255, 255, .62);
+    --glass-dark: rgba(11, 16, 32, .82);
+    --blue: #2357e5;
+    --cyan: #06a7d8;
+    --lime: #92d923;
+    --teal: #0b8f86;
+    --coral: #e65f4f;
+    --violet: #6c5ce7;
+    --mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
+    --grad: linear-gradient(120deg, var(--blue), var(--cyan) 52%, var(--lime));
+    --shadow: 0 18px 54px rgba(11, 16, 32, .10);
+    --shadow-soft: 0 8px 28px rgba(11, 16, 32, .07);
+    --radius: 8px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 148px;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.75;
+    letter-spacing: 0;
+    background:
+      linear-gradient(90deg, rgba(20,32,51,.035) 1px, transparent 1px),
+      linear-gradient(180deg, rgba(20,32,51,.025) 1px, transparent 1px),
+      linear-gradient(120deg, rgba(35,87,229,.08), transparent 32%),
+      linear-gradient(180deg, #fbfcff 0%, #f1f5f9 52%, #f8fafc 100%);
+    background-size: 72px 72px, 72px 72px, auto, auto;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  code {
+    font-family: var(--mono);
+    font-size: .92em;
+    padding: 1px 5px;
+    border-radius: 6px;
+    border: 1px solid rgba(35,87,229,.14);
+    background: rgba(255,255,255,.78);
+  }
+
+  .top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px 16px;
+    background: rgba(255,255,255,.78);
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+  }
+
+  .top-nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    color: var(--text-soft);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  .top-nav a:hover,
+  .top-nav .nav-current {
+    color: var(--blue);
+    border-color: rgba(35,87,229,.22);
+    background: rgba(255,255,255,.9);
+  }
+
+  .course-shell {
+    width: min(1160px, calc(100% - 32px));
+    margin: 0 auto;
+  }
+
+  .glass {
+    border: 1px solid var(--line);
+    background: var(--glass);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(255,255,255,.82);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 10px 17px;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,.84);
+    color: var(--text);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 850;
+    box-shadow: var(--shadow-soft);
+    cursor: pointer;
+    transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+  }
+
+  .btn:hover,
+  .btn:focus-visible {
+    transform: translateY(-2px);
+    border-color: rgba(35,87,229,.34);
+    box-shadow: 0 14px 34px rgba(35,87,229,.13);
+    outline: none;
+  }
+
+  .btn.primary {
+    color: #fff;
+    border-color: transparent;
+    background: var(--grad);
+  }
+
+  .btn.dark {
+    color: #fff;
+    border-color: rgba(255,255,255,.16);
+    background: var(--ink);
+  }
+
+  .hero-band {
+    position: relative;
+    padding: 110px 0 36px;
+    overflow: hidden;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .hero-band::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      linear-gradient(135deg, rgba(255,255,255,.88), rgba(234,244,255,.86) 48%, rgba(238,252,234,.82)),
+      linear-gradient(180deg, transparent, rgba(255,255,255,.72));
+  }
+
+  .hero-band .course-shell {
+    width: min(1440px, calc(100% - 22px));
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.02fr) minmax(360px, .78fr);
+    gap: clamp(24px, 4vw, 52px);
+    align-items: center;
+  }
+
+  .hero-grid > div:first-child {
+    display: block;
+    width: 100%;
+  }
+
+  .hero-grid .hero-lead {
+    max-width: 720px;
+    margin-top: 20px;
+  }
+
+  .hero-grid .value-copy {
+    max-width: 720px;
+    margin-top: 18px;
+  }
+
+  .hero-grid .hero-actions {
+    margin-top: 18px;
+  }
+
+  .kicker,
+  .section-label,
+  .mini-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--blue);
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .10em;
+    text-transform: uppercase;
+  }
+
+  .kicker::before,
+  .section-label::before {
+    content: "";
+    width: 26px;
+    height: 3px;
+    border-radius: 999px;
+    background: var(--grad);
+  }
+
+  h1,
+  h2,
+  h3,
+  p { margin-top: 0; }
+
+  h1 {
+    margin: 18px 0 0;
+    max-width: 850px;
+    color: var(--ink);
+    font-size: clamp(42px, 4.4vw, 62px);
+    line-height: 1.02;
+    letter-spacing: 0;
+  }
+
+  h1 .mobile-line {
+    display: block;
+    white-space: nowrap;
+  }
+
+  .hero-lead {
+    max-width: 760px;
+    margin: 22px 0 0;
+    color: var(--text-soft);
+    font-size: clamp(17px, 2.1vw, 21px);
+    line-height: 1.76;
+    overflow-wrap: anywhere;
+  }
+
+  .value-copy {
+    margin: 22px 0 0;
+    max-width: 760px;
+    padding: 15px 16px;
+    border-radius: var(--radius);
+    color: #fff;
+    background:
+      linear-gradient(120deg, rgba(11,16,32,.94), rgba(23,39,66,.88)),
+      var(--ink);
+    border: 1px solid rgba(255,255,255,.12);
+    box-shadow: 0 18px 44px rgba(11,16,32,.18);
+    overflow-wrap: anywhere;
+  }
+
+  .value-copy b {
+    color: #c8ff5f;
+  }
+
+  .hero-actions,
+  .inline-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 26px 0 0;
+  }
+
+  .hero-visual {
+    position: relative;
+    width: 100%;
+    min-height: 0;
+    border-radius: 18px;
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: auto auto;
+    box-shadow: 0 24px 64px rgba(11,16,32,.14), inset 0 1px 0 rgba(255,255,255,.84);
+  }
+
+  .hero-image {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .hero-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    object-fit: cover;
+    object-position: center 45%;
+    filter: saturate(1.02) contrast(1.03);
+  }
+
+  .hero-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 42%, rgba(11,16,32,.26));
+    pointer-events: none;
+  }
+
+  .visual-caption {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(20,32,51,.10);
+  }
+
+  .visual-caption span {
+    padding: 12px 10px;
+    background: rgba(255,255,255,.76);
+    color: var(--text);
+    font-size: 12px;
+    font-weight: 850;
+    text-align: center;
+  }
+
+  .line-dock {
+    position: absolute;
+    right: 14px;
+    bottom: 64px;
+    width: min(38%, 380px);
+    padding: 12px;
+    border-radius: var(--radius);
+    color: var(--text);
+    background: rgba(255,255,255,.84);
+    border: 1px solid rgba(20,32,51,.14);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    box-shadow: 0 14px 34px rgba(11,16,32,.14), inset 0 1px 0 rgba(255,255,255,.82);
+  }
+
+  .line-dock svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .line-dock path,
+  .line-dock line,
+  .line-dock polyline,
+  .line-dock circle,
+  .line-dock rect {
+    vector-effect: non-scaling-stroke;
+  }
+
+  .draw-line {
+    stroke-dasharray: 10 10;
+    animation: dash 5s linear infinite;
+  }
+
+  @keyframes dash { to { stroke-dashoffset: -80; } }
+
+  .quick-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin: 28px 0 0;
+  }
+
+  .quick-card {
+    min-height: 108px;
+    padding: 15px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: transform .18s ease, border-color .18s ease, background .18s ease;
+  }
+
+  .quick-card:hover,
+  .quick-card:focus-visible {
+    transform: translateY(-3px);
+    border-color: rgba(35,87,229,.34);
+    background: var(--paper-strong);
+    outline: none;
+  }
+
+  .quick-card b {
+    display: block;
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.35;
+  }
+
+  .quick-card span {
+    display: block;
+    margin-top: 7px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.55;
+  }
+
+  .truth-grid {
+    display: grid;
+    grid-template-columns: minmax(0, .92fr) minmax(360px, 1.08fr);
+    gap: 18px;
+    align-items: stretch;
+  }
+
+  .warning-panel,
+  .pyramid-card,
+  .level-card,
+  .explain-card,
+  .compare-card,
+  .power-card {
+    border-radius: var(--radius);
+  }
+
+  .warning-panel {
+    padding: 20px;
+    color: var(--text);
+    background:
+      linear-gradient(135deg, rgba(239,246,255,.98), rgba(240,253,250,.95));
+    border: 1px solid rgba(35,87,229,.18);
+    box-shadow: 0 16px 42px rgba(35,87,229,.08), inset 0 1px 0 rgba(255,255,255,.94);
+  }
+
+  .warning-panel h3,
+  .warning-panel p {
+    margin: 0;
+  }
+
+  .warning-panel h3 {
+    color: var(--ink);
+    font-size: clamp(22px, 2.7vw, 32px);
+    line-height: 1.22;
+  }
+
+  .warning-panel h3::before {
+    content: "";
+    display: inline-block;
+    width: 7px;
+    height: .92em;
+    margin-right: 10px;
+    border-radius: 999px;
+    vertical-align: -.05em;
+    background: linear-gradient(180deg, var(--blue), var(--teal));
+  }
+
+  .warning-panel p {
+    margin-top: 12px;
+    color: var(--text-soft);
+    font-size: 15px;
+  }
+
+  .question-list {
+    display: grid;
+    gap: 8px;
+    margin: 16px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .question-list li {
+    padding: 10px 12px;
+    border-radius: var(--radius);
+    color: var(--ink);
+    background: rgba(255,255,255,.82);
+    border: 1px solid rgba(35,87,229,.10);
+    font-size: 13.5px;
+    font-weight: 780;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+  }
+
+  .plain-note {
+    margin-top: 14px;
+    padding: 13px 14px;
+    border-radius: var(--radius);
+    color: var(--ink);
+    background: #fff7ed;
+    border: 1px solid rgba(230,95,79,.24);
+    font-weight: 850;
+  }
+
+  .pyramid-card {
+    padding: 18px;
+  }
+
+  .pyramid-card h3,
+  .pyramid-card p {
+    margin: 0;
+  }
+
+  .pyramid-card h3 {
+    color: var(--ink);
+    font-size: clamp(22px, 3vw, 34px);
+    line-height: 1.18;
+  }
+
+  .pyramid-card p {
+    margin-top: 8px;
+    color: var(--text-soft);
+    font-size: 14px;
+  }
+
+  .pyramid-steps {
+    display: grid;
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .pyramid-step {
+    display: grid;
+    grid-template-columns: 124px 1fr;
+    gap: 12px;
+    align-items: center;
+    min-height: 58px;
+    padding: 10px 12px;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,.74);
+  }
+
+  .pyramid-step b {
+    color: var(--ink);
+    font-size: 13.5px;
+    line-height: 1.28;
+  }
+
+  .pyramid-step span {
+    color: var(--text-soft);
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  .pyramid-step.level-high {
+    border-color: rgba(230,95,79,.30);
+    background: rgba(255,247,237,.84);
+  }
+
+  .pyramid-scale {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 850;
+  }
+
+  .level-map {
+    display: grid;
+    gap: 14px;
+  }
+
+  .level-card {
+    --level-accent: #64748b;
+    --level-tint: #f1f5f9;
+    position: relative;
+    display: grid;
+    grid-template-columns: 92px minmax(0, .78fr) minmax(300px, 1fr);
+    gap: 18px;
+    align-items: center;
+    padding: 20px 22px;
+    overflow: hidden;
+    border: 1px solid rgba(20,32,51,.12);
+    background: linear-gradient(100deg, var(--level-tint), rgba(255,255,255,.96) 46%);
+    box-shadow: 0 12px 34px rgba(11,16,32,.07), inset 0 1px 0 rgba(255,255,255,.96);
+  }
+
+  .level-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 5px;
+    background: var(--level-accent);
+  }
+
+  .level-num {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 82px;
+    height: 82px;
+    min-height: 82px;
+    border-radius: 50%;
+    color: var(--level-accent);
+    background: rgba(255,255,255,.9);
+    border: 1px solid rgba(20,32,51,.12);
+    box-shadow: 0 10px 24px rgba(11,16,32,.09), inset 0 0 0 5px var(--level-tint);
+    font-weight: 950;
+  }
+
+  .level-num span {
+    display: block;
+    font-family: var(--mono);
+    font-size: 9px;
+    line-height: 1;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+
+  .level-num strong {
+    display: block;
+    margin-top: 3px;
+    font-size: 34px;
+    line-height: .94;
+  }
+
+  .level-main h3 {
+    margin: 0 0 5px;
+    color: var(--ink);
+    font-size: clamp(19px, 2.2vw, 26px);
+    line-height: 1.2;
+  }
+
+  .level-main p,
+  .level-tools,
+  .level-scope {
+    margin: 0;
+    color: var(--text-soft);
+    font-size: 13.5px;
+    line-height: 1.58;
+  }
+
+  .level-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .level-tools li {
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.78);
+    border: 1px solid rgba(20,32,51,.10);
+    font-size: 12px;
+    font-weight: 800;
+    overflow-wrap: anywhere;
+  }
+
+  .level-scope {
+    display: grid;
+    gap: 6px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .level-scope li {
+    padding: 9px 11px;
+    border-radius: 10px;
+    background: rgba(255,255,255,.86);
+    border: 1px solid rgba(20,32,51,.09);
+    font-size: 12.5px;
+    overflow-wrap: anywhere;
+  }
+
+  .level-scope b {
+    color: var(--ink);
+  }
+
+  .level-card.level-0 { --level-accent: #64748b; --level-tint: #f1f5f9; }
+  .level-card.level-1 { --level-accent: #0b8f86; --level-tint: #ecfdf5; }
+  .level-card.level-2 { --level-accent: #c2670a; --level-tint: #fff7ed; }
+  .level-card.level-3 { --level-accent: #2f8f4e; --level-tint: #f0fdf4; }
+  .level-card.level-4 { --level-accent: #2357e5; --level-tint: #eff6ff; }
+  .level-card.level-5 {
+    --level-accent: #5b4fd6;
+    --level-tint: #f5f3ff;
+    border-color: rgba(91,79,214,.22);
+  }
+
+  .explain-grid,
+  .power-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .explain-card,
+  .power-card {
+    min-height: 148px;
+    padding: 18px;
+  }
+
+  .explain-card b,
+  .power-card b {
+    display: block;
+    color: var(--ink);
+    font-size: 17px;
+    line-height: 1.3;
+  }
+
+  .explain-card span,
+  .power-card span {
+    display: block;
+    margin-top: 8px;
+    color: var(--text-soft);
+    font-size: 13.5px;
+    line-height: 1.65;
+  }
+
+  .pro-compare {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .compare-card {
+    padding: 18px;
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,.76);
+  }
+
+  .compare-card.bad {
+    border-color: rgba(230,95,79,.28);
+    background: rgba(255,245,245,.82);
+  }
+
+  .compare-card.good {
+    border-color: rgba(35,87,229,.24);
+    background: rgba(239,246,255,.82);
+  }
+
+  .compare-card h3 {
+    margin: 0 0 10px;
+    color: var(--ink);
+    font-size: 22px;
+  }
+
+  .compare-card ul {
+    display: grid;
+    gap: 7px;
+    margin: 0;
+    padding-left: 1.15em;
+    color: var(--text-soft);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .final-equation {
+    margin-top: 18px;
+    padding: 18px;
+    border-radius: var(--radius);
+    color: #fff;
+    background:
+      linear-gradient(120deg, rgba(11,16,32,.96), rgba(15,54,89,.92)),
+      var(--ink);
+    border: 1px solid rgba(255,255,255,.14);
+  }
+
+  .final-equation b {
+    display: block;
+    color: #facc15;
+    font-size: clamp(22px, 3.2vw, 38px);
+    line-height: 1.22;
+  }
+
+  .final-equation span {
+    display: block;
+    margin-top: 8px;
+    color: #dbeafe;
+    font-size: 14px;
+  }
+
+  .section-band {
+    padding: 58px 0;
+    scroll-margin-top: 146px;
+  }
+
+  .section-band.tint {
+    background: rgba(255,255,255,.44);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .section-head {
+    display: grid;
+    grid-template-columns: minmax(0, .82fr) minmax(220px, .18fr);
+    gap: 24px;
+    align-items: end;
+    margin-bottom: 22px;
+  }
+
+  .section-head h2 {
+    margin: 10px 0 10px;
+    color: var(--ink);
+    font-size: clamp(28px, 4vw, 48px);
+    line-height: 1.12;
+    letter-spacing: 0;
+  }
+
+  .section-head p {
+    max-width: 760px;
+    color: var(--text-soft);
+    font-size: 16px;
+  }
+
+  .pm-section-figure {
+    width: min(100%, 760px);
+    margin: 18px 0 14px;
+    overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid rgba(20,32,51,.12);
+    background: #fffdf8;
+    box-shadow: 0 14px 34px rgba(11,16,32,.09);
+  }
+
+  .pm-section-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    object-position: center;
+    background: #fffdf8;
+  }
+
+  .pm-section-figure figcaption {
+    padding: 10px 13px 11px;
+    border-top: 1px solid rgba(20,32,51,.10);
+    color: var(--text-soft);
+    background: rgba(255,253,248,.96);
+    font-size: 12px;
+    font-weight: 750;
+    line-height: 1.55;
+  }
+
+  .overview-grid {
+    display: grid;
+    grid-template-columns: minmax(0, .98fr) minmax(300px, .62fr);
+    gap: 18px;
+  }
+
+  .system-panel {
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .system-visual {
+    min-height: 320px;
+    padding: 22px;
+    color: var(--text);
+    background:
+      linear-gradient(135deg, rgba(255,255,255,.92), rgba(241,248,255,.84)),
+      var(--paper-strong);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.86);
+  }
+
+  .overview-grid .system-visual {
+    display: none;
+  }
+
+  .system-visual svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .system-visual text {
+    font-family: var(--sans);
+    letter-spacing: 0;
+  }
+
+  .role-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    padding: 14px;
+  }
+
+  .role-card {
+    min-height: 142px;
+    padding: 15px;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,.72);
+  }
+
+  .role-card h3 {
+    margin: 5px 0 6px;
+    color: var(--ink);
+    font-size: 18px;
+  }
+
+  .role-card p {
+    margin: 0;
+    color: var(--text-soft);
+    font-size: 13px;
+    line-height: 1.65;
+  }
+
+  .stage-console {
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .stage-tabs {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: rgba(20,32,51,.10);
+  }
+
+  .stage-tab {
+    min-height: 62px;
+    padding: 11px 8px;
+    border: 0;
+    background: rgba(255,255,255,.72);
+    color: var(--text-soft);
+    font: inherit;
+    font-size: 12px;
+    font-weight: 850;
+    cursor: pointer;
+  }
+
+  .stage-tab[aria-selected="true"] {
+    color: #fff;
+    background: var(--ink);
+  }
+
+  .stage-body {
+    padding: 22px;
+    background: rgba(255,255,255,.70);
+  }
+
+  .stage-panel { display: none; }
+  .stage-panel.active { display: grid; gap: 16px; }
+
+  .stage-panel h3 {
+    margin: 0;
+    color: var(--ink);
+    font-size: clamp(24px, 3vw, 34px);
+    line-height: 1.18;
+  }
+
+  .stage-panel p {
+    margin: 0;
+    color: var(--text-soft);
+  }
+
+  .stage-meta {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .stage-meta div {
+    min-height: 92px;
+    padding: 13px;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,.66);
+  }
+
+  .stage-meta b {
+    display: block;
+    color: var(--blue);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  .stage-meta span {
+    display: block;
+    margin-top: 6px;
+    color: var(--text-soft);
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .progress-card {
+    position: sticky;
+    top: 148px;
+    padding: 18px;
+    border-radius: var(--radius);
+  }
+
+  .progress-title {
+    margin: 0 0 10px;
+    color: var(--ink);
+    font-weight: 900;
+  }
+
+  .progress-meter {
+    height: 10px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(20,32,51,.10);
+  }
+
+  .progress-meter span {
+    display: block;
+    width: 12%;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--grad);
+    transition: width .35s ease;
+  }
+
+  .progress-list {
+    display: grid;
+    gap: 8px;
+    margin-top: 14px;
+  }
+
+  .progress-list a {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 8px 10px;
+    border-radius: var(--radius);
+    color: var(--text-soft);
+    text-decoration: none;
+    font-size: 12.5px;
+    font-weight: 800;
+  }
+
+  .progress-list a.active {
+    color: var(--ink);
+    background: rgba(255,255,255,.78);
+    box-shadow: inset 0 0 0 1px rgba(35,87,229,.18);
+  }
+
+  .split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(250px, .34fr);
+    gap: 18px;
+    align-items: start;
+  }
+
+  .stack-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .stack-card,
+  .loop-card,
+  .official-card,
+  .exercise-card,
+  details {
+    padding: 18px;
+    border-radius: var(--radius);
+  }
+
+  .stack-card h3,
+  .loop-card h3,
+  .official-card h3,
+  .exercise-card h3 {
+    margin: 8px 0 8px;
+    color: var(--ink);
+    font-size: 20px;
+    line-height: 1.25;
+  }
+
+  .stack-card p,
+  .loop-card p,
+  .official-card p,
+  .exercise-card p {
+    margin: 0;
+    color: var(--text-soft);
+    font-size: 13.5px;
+    line-height: 1.65;
+  }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    min-height: 25px;
+    padding: 4px 9px;
+    border-radius: 999px;
+    color: var(--blue);
+    border: 1px solid rgba(35,87,229,.18);
+    background: rgba(255,255,255,.72);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 900;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  .loop-grid,
+  .official-grid,
+  .exercise-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .loop-card.dark {
+    color: #fff;
+    background:
+      linear-gradient(135deg, rgba(11,16,32,.94), rgba(22,42,71,.90)),
+      var(--ink);
+    border-color: rgba(255,255,255,.14);
+  }
+
+  .loop-card.dark h3,
+  .loop-card.dark p {
+    color: #fff;
+  }
+
+  .prompt-box {
+    margin-top: 14px;
+    padding: 14px;
+    border-radius: var(--radius);
+    color: #dbeafe;
+    background: rgba(0,0,0,.22);
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+  }
+
+  .line-image {
+    min-height: 330px;
+    overflow: hidden;
+    border-radius: var(--radius);
+  }
+
+  .line-image img {
+    width: 100%;
+    height: 100%;
+    min-height: 330px;
+    object-fit: cover;
+    display: block;
+    filter: saturate(.96) contrast(1.04);
+  }
+
+  .split-wide {
+    grid-template-columns: 1fr;
+  }
+
+  .split-wide .stack-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  details {
+    background: var(--glass);
+    border: 1px solid var(--line);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+  }
+
+  details + details { margin-top: 10px; }
+
+  summary {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    color: var(--ink);
+    font-weight: 900;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  summary::-webkit-details-marker { display: none; }
+
+  summary::after {
+    content: "+";
+    color: var(--blue);
+    font-family: var(--mono);
+    font-weight: 900;
+  }
+
+  details[open] summary::after { content: "-"; }
+
+  details p,
+  details ul {
+    color: var(--text-soft);
+    font-size: 14px;
+  }
+
+  .official-card {
+    min-height: 190px;
+    text-decoration: none;
+    transition: transform .18s ease, border-color .18s ease, background .18s ease;
+  }
+
+  .official-card:hover,
+  .official-card:focus-visible {
+    transform: translateY(-3px);
+    border-color: rgba(35,87,229,.34);
+    background: var(--paper-strong);
+    outline: none;
+  }
+
+  .official-card .date {
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 900;
+  }
+
+  .check-row {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .check-btn {
+    min-height: 84px;
+    padding: 12px;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,.68);
+    color: var(--text-soft);
+    text-align: left;
+    font: inherit;
+    font-size: 12.5px;
+    font-weight: 850;
+    cursor: pointer;
+  }
+
+  .check-btn.done {
+    color: var(--ink);
+    border-color: rgba(146,217,35,.46);
+    background: rgba(245,255,229,.78);
+  }
+
+  .footer-cta {
+    padding: 60px 0 76px;
+    color: #fff;
+    background:
+      linear-gradient(135deg, rgba(11,16,32,.96), rgba(13,35,60,.94)),
+      var(--ink);
+  }
+
+  .footer-cta h2 {
+    max-width: 880px;
+    margin: 0;
+    font-size: clamp(28px, 4vw, 48px);
+    line-height: 1.16;
+  }
+
+  .footer-cta p {
+    max-width: 760px;
+    margin: 16px 0 0;
+    color: #cbd5e1;
+    font-size: 16px;
+  }
+
+  @media (max-width: 920px) {
+    html { scroll-padding-top: 164px; }
+    .hero-band { padding-top: 92px; }
+    .hero-grid > div:first-child { display: block; }
+    .hero-grid,
+    .truth-grid,
+    .overview-grid,
+    .split,
+    .section-head,
+    .level-card,
+    .pro-compare {
+      grid-template-columns: 1fr;
+    }
+    .quick-grid,
+    .stack-grid,
+    .check-row,
+    .explain-grid,
+    .power-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .split-wide .stack-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .level-card {
+      grid-template-columns: 72px minmax(0, 1fr);
+      gap: 14px;
+      padding: 18px;
+    }
+    .level-num {
+      width: 64px;
+      height: 64px;
+      min-height: 64px;
+      justify-self: start;
+    }
+    .level-num strong { font-size: 28px; }
+    .level-scope { grid-column: 1 / -1; }
+    .progress-card { position: relative; top: auto; }
+  }
+
+  @media (max-width: 640px) {
+    html,
+    body {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+    header,
+    main,
+    footer {
+      max-width: 100vw;
+      overflow-x: hidden;
+    }
+    .course-shell {
+      width: calc(100vw - 22px);
+      max-width: calc(100vw - 22px);
+      min-width: 0;
+    }
+    .hero-band .course-shell {
+      width: calc(100vw - 14px);
+      max-width: calc(100vw - 14px);
+    }
+    .hero-band { padding-top: 78px; }
+    .hero-grid > *,
+    .truth-grid > *,
+    .overview-grid > *,
+    .split > *,
+    .section-head > *,
+    .hero-lead,
+    .value-copy,
+    .hero-actions,
+    .quick-grid,
+    .hero-visual,
+    .stage-console,
+    .progress-card,
+    .level-map,
+    .level-card,
+    .explain-grid,
+    .pro-compare,
+    .power-grid,
+    .footer-cta .hero-actions {
+      max-width: calc(100vw - 22px);
+      min-width: 0;
+    }
+    .value-copy {
+      width: 100%;
+    }
+    .quick-grid,
+    .role-grid,
+    .stage-meta,
+    .stack-grid,
+    .loop-grid,
+    .official-grid,
+    .exercise-grid,
+    .check-row,
+    .explain-grid,
+    .power-grid {
+      grid-template-columns: 1fr;
+    }
+    .split-wide .stack-grid {
+      grid-template-columns: 1fr;
+    }
+    .system-visual { display: none; }
+    .pyramid-step { grid-template-columns: 1fr; }
+    .stage-tabs { grid-template-columns: 1fr; }
+    .line-dock {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      width: min(76%, 280px);
+      margin: 0;
+      padding: 8px;
+    }
+    .hero-image {
+      height: auto;
+      min-height: 0;
+      aspect-ratio: 16 / 9;
+    }
+    .hero-image img {
+      min-height: 0;
+      object-position: center 43%;
+    }
+    .visual-caption { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .visual-caption span {
+      padding: 10px 5px;
+      font-size: 10.5px;
+    }
+    .pm-section-figure {
+      width: 100%;
+      margin-top: 14px;
+      border-radius: 12px;
+    }
+    .pm-section-figure figcaption {
+      padding: 9px 10px 10px;
+      font-size: 11px;
+    }
+    .level-card {
+      grid-template-columns: 62px minmax(0, 1fr);
+      gap: 12px;
+      padding: 16px 14px 16px 17px;
+    }
+    .level-num {
+      width: 56px;
+      height: 56px;
+      min-height: 56px;
+    }
+    .level-num span { font-size: 8px; }
+    .level-num strong { font-size: 24px; }
+    h1 {
+      font-size: clamp(31px, 9vw, 38px);
+      line-height: 1.12;
+      overflow-wrap: normal;
+      word-break: keep-all;
+    }
+    h1 .mobile-line { display: block; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .draw-line { animation: none; }
+    .btn,
+    .quick-card,
+    .official-card {
+      transition: none;
+    }
+  }
+
+  /* AI相談の共通ナビゲーション。スクロール前から講習内を移動できるようにする。 */
+  html { scroll-padding-top: 74px; }
+
+  .top-nav {
+    min-height: 58px;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    gap: 7px;
+    padding: 8px max(12px, calc((100vw - 1160px) / 2));
+    overflow-x: auto;
+    overflow-y: hidden;
+    background: rgba(255,255,255,.92);
+    box-shadow: 0 10px 30px rgba(11,16,32,.08), inset 0 1px 0 rgba(255,255,255,.94);
+    scrollbar-width: thin;
+  }
+
+  .top-nav a {
+    flex: 0 0 auto;
+    min-height: 36px;
+    padding: 0 11px;
+    border-radius: 8px;
+    background: rgba(255,255,255,.68);
+    border-color: rgba(20,32,51,.10);
+    white-space: nowrap;
+  }
+
+  .top-nav .nav-current,
+  .top-nav a:hover,
+  .top-nav a:focus-visible {
+    color: #075e67;
+    border-color: rgba(6,167,216,.26);
+    background: rgba(232,249,252,.94);
+    outline: none;
+  }
+
+  .section-band {
+    scroll-margin-top: 78px;
+  }
+
+  @media (max-width: 720px) {
+    html { scroll-padding-top: 64px; }
+    .top-nav {
+      min-height: 54px;
+      padding: 7px 10px;
+    }
+    .top-nav a {
+      min-height: 34px;
+      font-size: 11.5px;
+    }
+    .hero-band {
+      padding-top: 72px;
+    }
+  }
+
+  /* AI相談の公開画面・管理画面と同じ、読みやすいメニュー背景を使う。 */
+  .top-nav {
+    background: #FFFFFF !important;
+    border-bottom: 1px solid rgba(7,20,38,.18) !important;
+    box-shadow: 0 16px 42px rgba(7,20,38,.13), inset 0 1px 0 rgba(255,255,255,.96) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  .top-nav a {
+    background: #FFFFFF !important;
+    color: #122033 !important;
+    border: 1px solid rgba(7,20,38,.13) !important;
+  }
+
+  .top-nav .nav-current,
+  .top-nav a:hover,
+  .top-nav a:focus-visible {
+    background: #EAF6F8 !important;
+    color: #075E67 !important;
+    border-color: rgba(14,165,198,.32) !important;
+    outline: none !important;
+  }
+</style>
+<style id='pm-chapter-toc-css'>
+/* ---- トップページと同じ公開ヘッダー UI / UX ---- */
+html { scroll-padding-top: 92px !important; }
+[id] { scroll-margin-top: 92px !important; }
+header.site-header,
+header.site-header.scrolled,
+header.site-header:hover {
+  --focus-blue: #4f6fd8;
+  --focus-ink: #172033;
+  position: fixed !important;
+  inset: 0 0 auto 0 !important;
+  z-index: 50 !important;
+  min-height: 74px !important;
+  margin: 0 !important;
+  background: rgba(255,255,255,.97) !important;
+  border: 0 !important;
+  border-bottom: 1px solid rgba(10,23,40,.08) !important;
+  box-shadow: 0 8px 24px rgba(10,23,40,.045) !important;
+  backdrop-filter: blur(18px) saturate(145%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(145%) !important;
+}
+.site-header-inner {
+  width: min(100%, 1400px) !important;
+  max-width: 1400px !important;
+  min-height: 74px !important;
+  margin: 0 auto !important;
+  padding: 10px 18px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+}
+.site-logo {
+  min-width: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  flex: 0 0 auto !important;
+  gap: 4px !important;
+  color: #0a1728 !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+}
+.brand-mark,
+.wordmark .word-en,
+.site-logo-by { display: none !important; }
+.wordmark {
+  display: inline-flex !important;
+  align-items: baseline !important;
+  gap: 5px !important;
+  color: #0a1728 !important;
+  font-size: 23px !important;
+  font-weight: 900 !important;
+  letter-spacing: -.03em !important;
+  line-height: 1 !important;
+}
+.wordmark .word-ai { color: var(--focus-blue) !important; }
+.wordmark .word-hub { color: #0a1728 !important; }
+.site-nav {
+  position: static !important;
+  inset: auto !important;
+  z-index: auto !important;
+  min-width: 0 !important;
+  display: flex !important;
+  flex: 1 1 auto !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  flex-wrap: nowrap !important;
+  gap: 18px !important;
+  margin: 0 !important;
+  padding: 3px !important;
+  overflow: visible !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+.site-nav a.nav-link,
+.site-nav .menu-toggle {
+  min-height: 42px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px !important;
+  padding: 10px 3px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: #0a1728 !important;
+  font: inherit !important;
+  font-size: 14px !important;
+  font-weight: 850 !important;
+  line-height: 1.2 !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  cursor: pointer !important;
+}
+header.site-header .site-nav a.nav-link.nav-essential[href] {
+  min-height: 45px !important;
+  padding: 10px 3px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: var(--focus-ink) !important;
+  box-shadow: none !important;
+}
+header.site-header .site-nav a.nav-link.nav-essential[href]:hover,
+header.site-header .site-nav a.nav-link.nav-essential[href]:focus-visible {
+  background: transparent !important;
+  color: var(--focus-blue) !important;
+}
+.site-nav a.nav-link:hover,
+.site-nav a.nav-link:focus-visible,
+.site-nav .menu-toggle:hover,
+.site-nav .menu-toggle:focus-visible,
+.site-nav .menu-toggle[aria-expanded="true"] {
+  color: #075fc8 !important;
+  background: transparent !important;
+  outline: none !important;
+}
+.site-nav a.nav-current,
+.site-nav a.nav-current:hover,
+.site-nav a.nav-current:focus-visible {
+  color: var(--focus-blue) !important;
+  box-shadow: inset 0 -3px 0 var(--focus-blue) !important;
+}
+header.site-header .site-nav a.nav-link.nav-essential.nav-current[href],
+header.site-header .site-nav a.nav-link.nav-essential.nav-current[href]:hover,
+header.site-header .site-nav a.nav-link.nav-essential.nav-current[href]:focus-visible {
+  color: var(--focus-blue) !important;
+  box-shadow: inset 0 -3px 0 var(--focus-blue) !important;
+}
+.site-nav .menu-wrap { position: relative !important; }
+.site-nav .menu-toggle .chev { transition: transform .2s ease; }
+.site-nav .menu-toggle[aria-expanded="true"] .chev { transform: rotate(180deg); }
+.site-nav .menu-drop {
+  position: absolute !important;
+  top: calc(100% + 10px) !important;
+  right: 0 !important;
+  z-index: 80 !important;
+  min-width: 240px !important;
+  max-height: calc(100vh - 94px) !important;
+  display: none !important;
+  padding: 8px !important;
+  overflow-y: auto !important;
+  background: #fff !important;
+  border: 1px solid rgba(10,23,40,.13) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 22px 52px rgba(10,23,40,.14) !important;
+}
+.site-nav .menu-drop.open { display: block !important; }
+.site-nav .menu-drop-label {
+  display: block !important;
+  padding: 8px 12px 4px !important;
+  color: #526174 !important;
+  font-size: 10px !important;
+  font-weight: 900 !important;
+  letter-spacing: .12em !important;
+  text-transform: uppercase !important;
+}
+.site-nav .menu-drop a {
+  display: block !important;
+  padding: 9px 12px !important;
+  border-radius: 8px !important;
+  color: #0a1728 !important;
+  font-size: 13px !important;
+  font-weight: 750 !important;
+  text-decoration: none !important;
+}
+.site-nav .menu-drop a:hover,
+.site-nav .menu-drop a:focus-visible {
+  color: #075fc8 !important;
+  background: #f2f7fd !important;
+  outline: none !important;
+}
+.site-nav .nav-cta {
+  min-height: 50px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 12px 20px !important;
+  border: 1px solid transparent !important;
+  border-radius: 8px !important;
+  background: var(--focus-blue) !important;
+  background-image: none !important;
+  color: #fff !important;
+  font-size: 13px !important;
+  font-weight: 900 !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  box-shadow: 0 10px 24px rgba(7,95,200,.18) !important;
+}
+.site-nav .nav-cta:hover,
+.site-nav .nav-cta:focus-visible {
+  background: #064895 !important;
+  transform: translateY(-1px) !important;
+  outline: none !important;
+}
+.header-member-login {
+  min-height: 40px !important;
+  display: inline-flex !important;
+  flex: 0 0 auto !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 14px !important;
+  border: 1.5px solid #075fc8 !important;
+  border-radius: 8px !important;
+  background: #fff !important;
+  color: #075fc8 !important;
+  font-size: 13px !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+}
+.header-member-login:hover,
+.header-member-login:focus-visible {
+  background: #075fc8 !important;
+  color: #fff !important;
+  outline: none !important;
+}
+.header-run-action {
+  min-height: 40px !important;
+  display: inline-flex !important;
+  flex: 0 0 auto !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 13px !important;
+  border: 1px solid rgba(10,23,40,.14) !important;
+  border-radius: 8px !important;
+  background: #fff !important;
+  color: #0a1728 !important;
+  font: inherit !important;
+  font-size: 12px !important;
+  font-weight: 900 !important;
+  white-space: nowrap !important;
+  cursor: pointer !important;
+}
+.header-run-action:hover,
+.header-run-action:focus-visible {
+  color: #075fc8 !important;
+  border-color: #075fc8 !important;
+  outline: none !important;
+}
+.run-status:empty { display: none !important; }
+.mobile-toggle,
+.generated-mobile-toggle {
+  position: static !important;
+  inset: auto !important;
+  width: 42px !important;
+  height: 42px !important;
+  display: none !important;
+  flex: 0 0 auto !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: #0a1728 !important;
+  box-shadow: none !important;
+  cursor: pointer !important;
+}
+.mobile-toggle:hover,
+.mobile-toggle:focus-visible,
+.generated-mobile-toggle:hover,
+.generated-mobile-toggle:focus-visible {
+  color: #075fc8 !important;
+  background: transparent !important;
+  outline: none !important;
+}
+.mobile-nav,
+.generated-mobile-nav {
+  position: fixed !important;
+  inset: 74px 0 auto !important;
+  z-index: 70 !important;
+  max-height: calc(100dvh - 74px) !important;
+  display: none !important;
+  padding: 10px max(16px, env(safe-area-inset-left)) calc(18px + env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-right)) !important;
+  overflow-y: auto !important;
+  overscroll-behavior: contain !important;
+  background: rgba(255,255,255,.985) !important;
+  border-top: 1px solid rgba(10,23,40,.10) !important;
+  box-shadow: 0 18px 34px rgba(10,23,40,.12) !important;
+}
+.mobile-nav.open,
+.generated-mobile-nav.open { display: block !important; }
+.mobile-nav-panel--public,
+.mobile-nav-panel {
+  width: min(100%, 640px) !important;
+  margin: 0 auto !important;
+  display: grid !important;
+  gap: 8px !important;
+}
+.mobile-link-grid {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 0 !important;
+}
+.mobile-nav a,
+.mobile-nav .login-btn-mobile,
+.mobile-nav .mobile-main-link {
+  min-height: 42px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  padding: 9px 4px !important;
+  border: 0 !important;
+  border-bottom: 1px solid rgba(10,23,40,.09) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: #0a1728 !important;
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  line-height: 1.3 !important;
+  text-align: left !important;
+  text-decoration: none !important;
+  box-shadow: none !important;
+}
+.mobile-nav .login-btn-mobile {
+  justify-content: center !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  background: #075fc8 !important;
+  color: #fff !important;
+}
+.mobile-nav .mobile-main-link {
+  color: #075fc8 !important;
+  font-weight: 900 !important;
+}
+.mobile-nav a:hover,
+.mobile-nav a:focus-visible {
+  color: #075fc8 !important;
+  background: #f5f9fd !important;
+  outline: none !important;
+}
+.mobile-nav .mobile-nav-label {
+  display: block !important;
+  padding: 8px 4px 2px !important;
+  color: #526174 !important;
+  font-size: 10px !important;
+  font-weight: 900 !important;
+  letter-spacing: .10em !important;
+  line-height: 1.2 !important;
+  text-align: left !important;
+  text-transform: uppercase !important;
+}
+@media (max-width: 900px) {
+  html { scroll-padding-top: 82px !important; }
+  [id] { scroll-margin-top: 82px !important; }
+  header.site-header,
+  header.site-header.scrolled,
+  header.site-header:hover { min-height: 64px !important; }
+  .site-header-inner {
+    min-height: 64px !important;
+    padding: 8px 14px !important;
+    gap: 8px !important;
+  }
+  .site-nav { display: none !important; }
+  .header-run-action,
+  .run-status { display: none !important; }
+  .header-member-login {
+    min-height: 36px !important;
+    margin-left: auto !important;
+    padding: 0 10px !important;
+    font-size: 12px !important;
+  }
+  .mobile-toggle,
+  .generated-mobile-toggle { display: inline-flex !important; }
+  .mobile-nav,
+  .generated-mobile-nav {
+    inset: 64px 0 auto !important;
+    max-height: calc(100dvh - 64px) !important;
+  }
+}
+@media (max-width: 520px) {
+  .wordmark { font-size: 19px !important; }
+  .header-member-login {
+    min-height: 34px !important;
+    padding: 0 9px !important;
+    font-size: 11.5px !important;
+  }
+}
+
+/* Public pages use one conventional drawer. Admin screens keep admin-common.css. */
+@media (max-width: 900px) {
+  body.mobile-menu-open { overflow: hidden !important; }
+  body.mobile-menu-open header.site-header,
+  body.mobile-menu-open header.site-header.scrolled {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    transition: none !important;
+  }
+  .header-member-login { display: none !important; }
+  .mobile-toggle.generated-mobile-toggle {
+    width: auto !important;
+    min-width: 94px !important;
+    height: 44px !important;
+    padding: 0 12px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    border: 1px solid rgba(10,23,40,.22) !important;
+    border-radius: 8px !important;
+    background: #fff !important;
+    color: #0a1728 !important;
+    box-shadow: 0 6px 16px rgba(10,23,40,.08) !important;
+  }
+  .mobile-toggle.generated-mobile-toggle:hover,
+  .mobile-toggle.generated-mobile-toggle:focus-visible,
+  .mobile-toggle.generated-mobile-toggle[aria-expanded="true"] {
+    background: #f1f7ff !important;
+    color: #075fc8 !important;
+    border-color: rgba(7,95,200,.36) !important;
+    outline: none !important;
+  }
+  .generated-mobile-toggle > svg { display: none !important; }
+  .mobile-toggle-icon {
+    width: 22px;
+    height: 18px;
+    display: grid;
+    align-content: space-between;
+  }
+  .mobile-toggle-icon span {
+    width: 22px;
+    height: 2px;
+    display: block;
+    border-radius: 999px;
+    background: currentColor;
+    transition: transform .2s ease, opacity .2s ease;
+    transform-origin: center;
+  }
+  .generated-mobile-toggle[aria-expanded="true"] .mobile-toggle-icon span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  .generated-mobile-toggle[aria-expanded="true"] .mobile-toggle-icon span:nth-child(2) { opacity: 0; }
+  .generated-mobile-toggle[aria-expanded="true"] .mobile-toggle-icon span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+  .mobile-toggle-text { font-size: 13px; font-weight: 900; line-height: 1; }
+  .generated-mobile-nav {
+    position: fixed !important;
+    inset: 64px 0 0 !important;
+    max-height: none !important;
+    padding: 0 !important;
+    display: block !important;
+    overflow: hidden !important;
+    overscroll-behavior: contain !important;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    background: rgba(10,23,40,.38) !important;
+    border-top: 1px solid rgba(10,23,40,.12) !important;
+    box-shadow: none !important;
+    transition: opacity .24s ease, visibility 0s linear .32s;
+  }
+  .generated-mobile-nav.open {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity .24s ease;
+  }
+  .generated-mobile-nav .mobile-nav-panel--public {
+    width: min(88vw, 380px) !important;
+    height: 100%;
+    min-height: 100%;
+    margin: 0 0 0 auto !important;
+    padding: 0 18px calc(28px + env(safe-area-inset-bottom)) !important;
+    display: block !important;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    background: #fff !important;
+    color: #0a1728 !important;
+    box-shadow: -22px 0 52px rgba(10,23,40,.20) !important;
+    transform: translateX(100%);
+    transition: transform .32s cubic-bezier(.22,1,.36,1);
+  }
+  .generated-mobile-nav.open .mobile-nav-panel--public {
+    transform: translateX(0);
+  }
+  .generated-mobile-nav .mobile-public-links { display: grid; }
+  .generated-mobile-nav .mobile-public-links a {
+    min-height: 50px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 14px !important;
+    padding: 12px 4px !important;
+    border: 0 !important;
+    border-bottom: 1px solid rgba(10,23,40,.10) !important;
+    border-radius: 0 !important;
+    background: #fff !important;
+    color: #0a1728 !important;
+    box-shadow: none !important;
+    text-align: left !important;
+    text-decoration: none !important;
+    font-size: 15px !important;
+    font-weight: 800 !important;
+  }
+  .generated-mobile-nav .mobile-public-links a:hover,
+  .generated-mobile-nav .mobile-public-links a:focus-visible {
+    padding-left: 10px !important;
+    background: #f6f9fd !important;
+    color: #075fc8 !important;
+    outline: none !important;
+  }
+  .generated-mobile-nav .mobile-public-link--cta { color: #075fc8 !important; }
+  .generated-mobile-nav .mobile-link-arrow { flex: 0 0 auto; color: #718096; font-size: 22px; font-weight: 500; line-height: 1; }
+  .generated-mobile-nav .mobile-nav-admin {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 2px solid rgba(10,23,40,.13);
+  }
+  .generated-mobile-nav .mobile-nav-admin .mobile-nav-label {
+    display: block !important;
+    padding: 0 2px 8px !important;
+    color: #66758a !important;
+    font-size: 10px !important;
+    font-weight: 900 !important;
+    letter-spacing: .12em !important;
+    text-align: left !important;
+  }
+  .generated-mobile-nav .mobile-nav-admin .mobile-admin-link {
+    min-height: 60px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 14px !important;
+    padding: 10px 14px !important;
+    border: 1px solid rgba(10,23,40,.16) !important;
+    border-radius: 8px !important;
+    background: #f7f9fc !important;
+    color: #0a1728 !important;
+    box-shadow: none !important;
+    text-align: left !important;
+    text-decoration: none !important;
+  }
+  .generated-mobile-nav .mobile-admin-link-copy { display: grid; gap: 2px; }
+  .generated-mobile-nav .mobile-admin-link-copy strong { font-size: 14px; line-height: 1.2; }
+  .generated-mobile-nav .mobile-admin-link-copy small { display: block !important; color: #66758a; font-size: 11px; font-weight: 700; line-height: 1.3; }
+}
+@media (max-width: 900px) and (prefers-reduced-motion: reduce) {
+  .generated-mobile-nav,
+  .generated-mobile-nav .mobile-nav-panel--public {
+    transition: none !important;
+  }
+}
+@media (min-width: 901px) {
+  .generated-mobile-nav,
+  .generated-mobile-nav.open {
+    display: none !important;
+  }
+}
+
+/* Clear Sky Rose shared public-page palette. Structure and sizing stay unchanged. */
+header.site-header,
+header.site-header.scrolled,
+header.site-header:hover {
+  --focus-blue: #4f6fd8;
+  --focus-blue-dark: #3e58b8;
+  --focus-soft: #e9efff;
+  --focus-lilac: #f1eeff;
+  --focus-line: #dce4f2;
+  border-bottom-color: rgba(79,111,216,.10) !important;
+  box-shadow: 0 8px 24px rgba(39,60,104,.06) !important;
+}
+.wordmark .word-ai,
+.site-nav a.nav-link:hover,
+.site-nav a.nav-link:focus-visible,
+.site-nav .menu-toggle:hover,
+.site-nav .menu-toggle:focus-visible,
+.site-nav .menu-toggle[aria-expanded="true"],
+.header-member-login,
+.header-run-action:hover,
+.header-run-action:focus-visible,
+.mobile-nav .mobile-main-link,
+.generated-mobile-nav .mobile-main-link,
+.mobile-nav a:hover,
+.mobile-nav a:focus-visible,
+.generated-mobile-nav a:hover,
+.generated-mobile-nav a:focus-visible {
+  color: var(--focus-blue) !important;
+}
+.site-nav .nav-cta,
+.mobile-nav .login-btn-mobile,
+.generated-mobile-nav .login-btn-mobile,
+.header-member-login:hover,
+.header-member-login:focus-visible {
+  background: var(--focus-blue) !important;
+  border-color: var(--focus-blue) !important;
+}
+.site-nav .nav-cta:hover,
+.site-nav .nav-cta:focus-visible {
+  background: var(--focus-blue-dark) !important;
+}
+.site-nav .menu-drop {
+  border-color: var(--focus-line) !important;
+  box-shadow: 0 14px 34px rgba(39,60,104,.13) !important;
+}
+.site-nav .menu-drop a:hover,
+.site-nav .menu-drop a:focus-visible,
+.mobile-toggle:hover,
+.mobile-toggle:focus-visible,
+.generated-mobile-toggle:hover,
+.generated-mobile-toggle:focus-visible {
+  background: var(--focus-lilac) !important;
+  color: var(--focus-blue) !important;
+}
+html{scroll-padding-top:128px!important;}[id]{scroll-margin-top:128px!important;}.pm-chapter-toc{position:sticky;top:74px;z-index:40;width:100%;max-width:none;min-height:46px;display:flex;flex-wrap:nowrap;align-items:center;gap:18px;margin:0 0 18px;padding:0 max(14px,calc((100vw - 1400px)/2 + 18px));overflow-x:auto;overflow-y:hidden;scrollbar-width:none;scroll-snap-type:x proximity;background:rgba(255,255,255,.97);border:0;border-bottom:1px solid rgba(10,23,40,.10);border-radius:0;box-shadow:0 8px 18px rgba(10,23,40,.04);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);}.pm-chapter-toc::-webkit-scrollbar{display:none;}.pm-chapter-toc .pm-toc-label{flex:0 0 auto;padding:0 4px 0 0;color:#075fc8;font-size:10.5px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;}.pm-chapter-toc a{min-height:46px;display:inline-flex;align-items:center;flex:0 0 auto;padding:2px 0 0;border:0;border-bottom:3px solid transparent;border-radius:0;background:transparent;color:#526174;text-decoration:none;font-size:11.5px;font-weight:800;line-height:1.25;white-space:nowrap;scroll-snap-align:start;transition:color .18s,border-color .18s;}.pm-chapter-toc a:hover,.pm-chapter-toc a:focus-visible{color:#075fc8;border-bottom-color:#075fc8;outline:none;}@media (max-width:900px){html{scroll-padding-top:116px!important;}[id]{scroll-margin-top:116px!important;}.pm-chapter-toc{top:64px;min-height:44px;gap:16px;padding:0 12px;}.pm-chapter-toc a{min-height:44px;font-size:11px;}.pm-chapter-toc .pm-toc-label{font-size:10px;}}</style></head>
+<body>
+
+<header class='site-header scrolled' id='site-header' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='./index.html' aria-label='AIclimb（AI相談）トップへ'><span class='wordmark'><span class='word-ai'>AIclimb</span></span></a><nav class='site-nav' aria-label='メインナビ'><a class='nav-link nav-essential' href='/#top'>ホーム</a><a class='nav-link nav-essential' href='/ai-app-site/'>AIアプリサイト</a><a class='nav-link nav-essential' href='/#all-works'>実績</a><a class='nav-link nav-essential' href='/#blog'>ブログ</a><a class='nav-link nav-essential' href='/#lectures'>資料</a><a class='nav-link nav-essential' href='/#faq'>FAQ</a><a class='nav-link nav-essential nav-salon' href='/#seven-day-courses'>AIオンラインサロン</a><a class='nav-link nav-essential nav-admin' href='/admin'>管理ページ</a></nav><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' type='button' aria-label='メニューを開く' aria-controls='mobile-nav' aria-expanded='false'><span class='mobile-toggle-icon' aria-hidden='true'><span></span><span></span><span></span></span><span class='mobile-toggle-text'>メニュー</span></button></div><div class='mobile-nav generated-mobile-nav' id='mobile-nav' aria-hidden='true'><div class='mobile-nav-panel mobile-nav-panel--public'><nav class='mobile-public-links' aria-label='公開ページメニュー'><a href='/#top'><span>ホーム</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/ai-app-site/'><span>AIアプリサイト</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#all-works'><span>実績</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#blog'><span>ブログ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#lectures'><span>資料</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#faq'><span>FAQ</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a><a href='/#seven-day-courses'><span>AIオンラインサロン</span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a></nav><div class='mobile-nav-admin'><span class='mobile-nav-label'>管理</span><a class='mobile-admin-link' href='/admin'><span class='mobile-admin-link-copy'><strong>管理ページ</strong><small>運営者ログイン</small></span><span class='mobile-link-arrow' aria-hidden='true'>›</span></a></div></div></div></header><script>(function(){var b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav'),x=b?b.querySelector('.mobile-toggle-text'):null,m=window.matchMedia('(min-width: 901px)');function setMobile(o){if(!n||!b)return;if(!o&&(n.contains(document.activeElement)||document.activeElement===b)){var f=m.matches?document.querySelector('.site-logo'):b;if(f)f.focus({preventScroll:true});}n.classList.toggle('open',o);n.setAttribute('aria-hidden',o?'false':'true');b.setAttribute('aria-expanded',o?'true':'false');b.setAttribute('aria-label',o?'メニューを閉じる':'メニューを開く');if(x)x.textContent=o?'閉じる':'メニュー';document.body.classList.toggle('mobile-menu-open',o);}function closeMobile(){setMobile(false);}function closeMobileAtDesktop(e){if(e.matches)closeMobile();}if(b&&n){b.addEventListener('click',function(e){e.stopPropagation();setMobile(!n.classList.contains('open'));});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMobile);});n.addEventListener('click',function(e){if(e.target===n)closeMobile();});}if(m.addEventListener)m.addEventListener('change',closeMobileAtDesktop);else if(m.addListener)m.addListener(closeMobileAtDesktop);document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeMobile();return;}if(e.key!=='Tab'||!n||!n.classList.contains('open'))return;var a=[b].concat(Array.prototype.slice.call(n.querySelectorAll('a[href]'))),f=a[0],l=a[a.length-1];if(e.shiftKey&&document.activeElement===f){e.preventDefault();l.focus();}else if(!e.shiftKey&&document.activeElement===l){e.preventDefault();f.focus();}});})();</script>
+
+<header id="top" class="hero-band">
+  <div class="course-shell">
+    <div class="hero-grid">
+      <div>
+        <span class="kicker">AIコーディング講習 / Codex + Claude Code</span>
+        <h1><span class="mobile-line">AIコーディングを、</span><span class="mobile-line">仕事で使える</span><span class="mobile-line">力へ。</span></h1>
+        <p class="hero-lead">
+          <b>対象:</b> AIに興味はあるけれど、プログラミング用語や公開作業に不安がある人。コードを全部暗記する講習ではありません。CodexやClaude Codeに頼み、AIが変えた内容を確かめ、安全に公開するまでの道順を学びます。
+        </p>
+        <p class="value-copy">
+          <b>ゴール:</b> 「何を作りたいか」をAIに伝え、変更点を見て、画面を確認し、公開してよいか判断できること。CodexやClaude CodeなどのAIエージェントをコーディングの相棒として使い、人が結果を確かめる進め方を学びます。専門用語は、最初に日常の言葉へ置き換えて説明します。
+        </p>
+        <div class="hero-actions" aria-label="主要導線">
+          <a class="btn primary" href="#pm-real-pro">講習資料を最初から読む</a>
+          <a class="btn" href="#pm-level-map">成長レベルを見る</a>
+          <a class="btn dark" href="#sec-line">演習を見る</a>
+        </div>
+      </div>
+      <div class="hero-visual glass" aria-label="AIコーディング講習のビジュアル">
+        <div class="hero-image">
+          <img src="./img/course-path-coding.webp"
+               alt="AIが変更したコードを人が確認し、安全にWebサイトを公開するAIコーディング講習"
+               width="1448" height="1086" fetchpriority="high" decoding="async">
+        </div>
+        <div class="visual-caption">
+          <span>AIに任せる</span>
+          <span>自分で見る</span>
+          <span>仕事に入れる</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="quick-grid" aria-label="この資料を読む順序">
+      <a class="quick-card glass" href="#pm-real-pro"><b>1. 全体像をつかむ</b><span>AIに任せる範囲と、人が確かめる範囲を分けます。</span></a>
+      <a class="quick-card glass" href="#pm-level-map"><b>2. 自分の現在地を知る</b><span>成長レベル、説明する力、道具の役割を確認します。</span></a>
+      <a class="quick-card glass" href="#part-1"><b>3. 小さく作って公開する</b><span>基本の言葉、AIへの頼み方、安全な公開を順に学びます。</span></a>
+      <a class="quick-card glass" href="#sec-cms"><b>4. 仕事と演習へ広げる</b><span>Web・資料・発信・事務へ応用し、4つの演習で定着させます。</span></a>
+    </div>
+  </div>
+</header>
+<nav class='pm-chapter-toc' aria-label='ページ内目次'><span class='pm-toc-label'>AI CODING</span><a href='#top'>全体</a><a href='#pm-real-pro'>00 最初の考え方</a><a href='#pm-level-map'>01 成長レベル</a><a href='#pm-pro-check'>02 説明チェック</a><a href='#pm-modern-ai'>03 道具の役割</a><a href='#part-1'>04 学ぶ5段階</a><a href='#part-2'>05 基本の言葉</a><a href='#part-3'>06 作って確認</a><a href='#part-4'>07 安全に公開</a><a href='#sec-cms'>08 仕事への応用</a><a href='#sec-ccode'>09 公式情報</a><a href='#sec-line'>10 4つの演習</a></nav>
+<main>
+  <section id="pm-real-pro" class="section-band">
+    <div class="course-shell">
+      <div class="section-head">
+        <div>
+          <span class="section-label">00 / 最初の考え方</span>
+          <h2>「AIで作れた」と「仕事で使える」は別です</h2>
+          <figure class="pm-section-figure">
+            <img src="./img/ai-coding-00-work-ready.webp"
+                 alt="AIが作った画面を、人が目的・変更・公開・安全・運用の順に確認する図"
+                 width="1200" height="800" loading="lazy" decoding="async">
+            <figcaption>AIは作る。人は、目的・変更・公開・安全・運用を確かめます。</figcaption>
+          </figure>
+          <p><b>知ること:</b> AIは制作を速くしますが、目的を決めたり、間違いに気づいたり、公開後の責任を取ったりはできません。だから人が確認できる範囲を少しずつ広げます。</p>
+        </div>
+        <a class="btn" href="#pm-level-map">次: 自分の現在地へ</a>
+      </div>
+
+      <div class="truth-grid">
+        <article class="warning-panel">
+          <h3>なぜ確認する力が必要なのか</h3>
+          <p>一度画面が表示されても、利用者が増えたり、設定が変わったりすると問題が出ます。仕事で使う前に、次の4点を説明できるか確認します。</p>
+          <ul class="question-list">
+            <li><b>届け方:</b> URLをつなぐDNS、表示を速くするCDN、攻撃を防ぐWAFなどを、何のために使うか。</li>
+            <li><b>守り方:</b> 本人確認をする「認証」と、その人ができる操作を決める「認可」をどこで行うか。</li>
+            <li><b>直し方:</b> 記録を見る「ログ・監視」、元へ戻す「バックアップ・ロールバック」を用意しているか。</li>
+            <li><b>続け方:</b> 料金、表示速度、利用者が増えた時の対応を、誰がいつ見直すか。</li>
+          </ul>
+          <div class="plain-note"><b>例:</b> 問い合わせフォームなら、送信できるかだけでなく「どこに保存されるか」「誰が見られるか」「届かなかった時にどう気づくか」まで考えます。</div>
+        </article>
+
+        <article class="pyramid-card glass">
+          <h3>仕事で使う前に、5つの範囲を確認する</h3>
+          <p>これは次の「Level 0〜5」とは別の確認表です。どのレベルでも、自分が担当する範囲を説明します。</p>
+          <div class="pyramid-steps" aria-label="仕事で確認する5つの範囲">
+            <div class="pyramid-step"><b>1. 目的</b><span>誰のどんな悩みを、どう良くするか。</span></div>
+            <div class="pyramid-step"><b>2. 変更</b><span>AIがどこを変え、人が何を確認したか。</span></div>
+            <div class="pyramid-step"><b>3. 公開</b><span>どのURLや場所で、誰が使える状態にするか。</span></div>
+            <div class="pyramid-step"><b>4. 安全と復旧</b><span>情報をどう守り、問題が出たらどう戻すか。</span></div>
+            <div class="pyramid-step level-high"><b>5. 運用</b><span>誰が、いつ、料金や改善点を見直すか。</span></div>
+          </div>
+          <div class="pyramid-scale"><span>作る前: 目的を決める</span><span>公開後: 続け方を決める</span></div>
+        </article>
+      </div>
+      <div class="plain-note" style="margin-top:14px;"><b>確認:</b> 今の自分は「頼める・変更を読める・公開できる・運用できる・目的を決められる」のどこまで説明できるか、1つ選んでください。</div>
+    </div>
+  </section>
+
+  <section id="pm-level-map" class="section-band tint">
+    <div class="course-shell">
+      <div class="section-head">
+        <div>
+          <span class="section-label">01 / 成長レベル</span>
+          <h2>エンジニアのレベルは、使うツールではなく任せられる範囲で見る</h2>
+          <figure class="pm-section-figure">
+            <img src="./img/ai-coding-01-level-map.webp"
+                 alt="小さなAI成果物から事業設計まで、任せられる範囲が段階的に広がる図"
+                 width="1200" height="800" loading="lazy" decoding="async">
+            <figcaption>できることを一段ずつ増やし、任せられる範囲を広げます。</figcaption>
+          </figure>
+          <p><b>知ること:</b> 同じAIツールを使っていても、任せられる仕事の広さは違います。目標となるレベル5から、入口のレベル0へ逆順に並べました。まず全体像を見てから、今の自分に近い位置まで下りてください。</p>
+        </div>
+        <a class="btn" href="#pm-pro-check">次: 説明チェックへ</a>
+      </div>
+
+      <div class="level-map" aria-label="エンジニアレベルマップ">
+        <article class="level-card level-5 glass">
+          <div class="level-num"><span>Level</span><strong>5</strong></div>
+          <div class="level-main">
+            <h3>事業と組織を含めて設計する</h3>
+            <p>アーキテクト（全体設計の責任者）として、複数サービス、組織、データ、料金、運用責任まで判断します。</p>
+          </div>
+          <ul class="level-scope">
+            <li><b>任せられる仕事:</b> 事業、組織、複数サービスを含む全体判断</li>
+            <li><b>自分で確認:</b> 優先順位、責任、データ、料金を見直す</li>
+            <li><b>次の一歩:</b> チームを育て、改善を続ける仕組みを作る</li>
+          </ul>
+        </article>
+        <article class="level-card level-4 glass">
+          <div class="level-num"><span>Level</span><strong>4</strong></div>
+          <div class="level-main">
+            <h3>システム全体を任せられる</h3>
+            <p>安全なログイン、アクセス集中への対応、監視、バックアップ、障害対応を含めて設計します。</p>
+          </div>
+          <ul class="level-scope">
+            <li><b>任せられる仕事:</b> 複数の画面、データ、安全性をまとめて設計する</li>
+            <li><b>自分で確認:</b> 利用者増加、障害、料金への備えを見る</li>
+            <li><b>次の一歩:</b> 設計理由を文書にし、チームで共有する</li>
+          </ul>
+        </article>
+        <article class="level-card level-3 glass">
+          <div class="level-num"><span>Level</span><strong>3</strong></div>
+          <div class="level-main">
+            <h3>公開後まで運用する</h3>
+            <p>利用者が使う本番環境へ安全に公開し、サーバー、DB、更新作業、障害時の復旧まで見ます。</p>
+          </div>
+          <ul class="level-scope">
+            <li><b>任せられる仕事:</b> 本番公開と日々の運用を続ける</li>
+            <li><b>自分で確認:</b> 記録、バックアップ、復旧方法を見る</li>
+            <li><b>次の一歩:</b> 監視と権限のルールを整える</li>
+          </ul>
+        </article>
+        <article class="level-card level-2 glass">
+          <div class="level-num"><span>Level</span><strong>2</strong></div>
+          <div class="level-main">
+            <h3>AIの変更を読んで直す</h3>
+            <p>Webページの基本構造を説明し、AIが書いたコードを読み、必要な場所を修正・改善できます。</p>
+          </div>
+          <ul class="level-scope">
+            <li><b>任せられる仕事:</b> AIが書いたコードを読み、必要な場所を直す</li>
+            <li><b>自分で確認:</b> 変更前後、リンク、画面、動作を比べる</li>
+            <li><b>次の一歩:</b> 情報の受け渡しと保存を学ぶ</li>
+          </ul>
+        </article>
+        <article class="level-card level-1 glass">
+          <div class="level-num"><span>Level</span><strong>1</strong></div>
+          <div class="level-main">
+            <h3>既存サービスを組み合わせる</h3>
+            <p>ノーコード（ほとんどコードを書かない制作方法）で、サイト更新や小さな自動化を作ります。</p>
+          </div>
+          <ul class="level-scope">
+            <li><b>任せられる仕事:</b> 既存サービスの設定や小さな自動化</li>
+            <li><b>自分で確認:</b> 保存、通知、公開が正しく動くか試す</li>
+            <li><b>次の一歩:</b> 作業手順と元へ戻す方法を残す</li>
+          </ul>
+        </article>
+        <article class="level-card level-0 glass">
+          <div class="level-num"><span>Level</span><strong>0</strong></div>
+          <div class="level-main">
+            <h3>AIを使って形にする</h3>
+            <p>文章や指示を入力し、AIに画面やコードのたたき台を作ってもらう入口です。まずは小さな成果物から始めます。</p>
+          </div>
+          <ul class="level-scope">
+            <li><b>任せられる仕事:</b> 文章や1画面のたたき台を作る</li>
+            <li><b>自分で確認:</b> 目的と内容が合っているか見る</li>
+            <li><b>次の一歩:</b> 小さな成果物を1つ完成させる</li>
+          </ul>
+        </article>
+      </div>
+      <div class="plain-note" style="margin-top:14px;"><b>例と確認:</b> AIで申込用ページ（LP）のたたき台を作れればレベル0。自分で直せればレベル2。公開後の監視や復旧まで担えればレベル3以上です。今できるレベルと、次に増やしたい1つを決めましょう。</div>
+    </div>
+  </section>
+
+  <section id="pm-pro-check" class="section-band">
+    <div class="course-shell">
+      <div class="section-head">
+        <div>
+          <span class="section-label">02 / 説明チェック</span>
+          <h2>作ったものを、相手が判断できる言葉で説明する</h2>
+          <figure class="pm-section-figure">
+            <img src="./img/ai-coding-02-explain.webp"
+                 alt="事業者と制作者が、選定理由・安全・費用・復旧などを一緒に確認する図"
+                 width="1200" height="800" loading="lazy" decoding="async">
+            <figcaption>相手が判断できるよう、理由・安全・費用・復旧まで説明します。</figcaption>
+          </figure>
+          <p><b>知ること:</b> 技術名をたくさん言えることより、「なぜ必要か」「問題が起きたらどうするか」を利用者や事業者に説明できることが大切です。</p>
+        </div>
+        <a class="btn" href="#pm-modern-ai">次: 道具の役割へ</a>
+      </div>
+
+      <div class="explain-grid" aria-label="仕事で説明する6つの確認項目">
+        <article class="explain-card glass"><b>1. なぜこれを選んだか</b><span>例: VercelはWebサイトを公開しやすい、Supabaseはデータ保存とログイン機能をまとめやすい、というように目的と結びつける。</span></article>
+        <article class="explain-card glass"><b>2. 他の方法と何が違うか</b><span>料金、使いやすさ、得意なこと、将来の乗り換えやすさを比べる。1つのサービスを絶対の正解にしない。</span></article>
+        <article class="explain-card glass"><b>3. 壊れた時にどう戻すか</b><span>ログ（動作の記録）で原因を探し、バックアップから戻すか、ロールバック（前の版へ戻す）を行う。</span></article>
+        <article class="explain-card glass"><b>4. 誰の情報をどう守るか</b><span>認証、認可、権限、秘密情報を確認する。SQLインジェクションは、入力欄からDBを不正操作する攻撃。</span></article>
+        <article class="explain-card glass"><b>5. 毎月いくらかかるか</b><span>初期費用だけでなく、AIやAPIの利用料、サーバー費、保守時間、監視や障害対応も含めて考える。</span></article>
+        <article class="explain-card glass"><b>6. 利用者が増えても動くか</b><span>CDNやキャッシュで表示を軽くし、負荷分散で処理を分ける。負荷試験は、多人数の利用を想定した動作確認。</span></article>
+      </div>
+
+      <div class="pro-compare" style="margin-top:14px;">
+        <article class="compare-card bad">
+          <h3>まだ確認が必要な状態</h3>
+          <ul>
+            <li>「AIが作りました」だけで説明が終わる。</li>
+            <li>変更した場所と理由が分からない。</li>
+            <li>本番のURLや保存先を確認していない。</li>
+            <li>問題が起きた時の戻し方が決まっていない。</li>
+            <li>安全性、毎月の料金、運用担当が決まっていない。</li>
+          </ul>
+        </article>
+        <article class="compare-card good">
+          <h3>仕事で任せられる状態</h3>
+          <ul>
+            <li>誰のどんな悩みを解決するか言える。</li>
+            <li>AIが変えた場所と採用した理由を説明できる。</li>
+            <li>表示、操作、データ、安全性を確認できる。</li>
+            <li>問題を見つける方法と元へ戻す手順がある。</li>
+            <li>公開後の担当、料金、改善方法を決めている。</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="power-grid" style="margin-top:14px;" aria-label="仕事で育てる5つの力">
+        <article class="power-card glass"><b>1. 目的を決める</b><span>誰の何を良くするかを決め、作らなくてよいものも見分ける。</span></article>
+        <article class="power-card glass"><b>2. 作り方を組み立てる</b><span>画面、データ、権限、公開方法をつなぐ。これを設計と呼ぶ。</span></article>
+        <article class="power-card glass"><b>3. データを整える</b><span>何を、どこに、どんな形で保存し、誰が更新するかを決める。</span></article>
+        <article class="power-card glass"><b>4. 使いながら直す</b><span>記録を見て、問題に対応し、利用者の声を次の改善へつなげる。</span></article>
+        <article class="power-card glass"><b>5. 安全を守る</b><span>ログイン、操作できる範囲、秘密情報、攻撃への対策を確認する。</span></article>
+        <article class="power-card glass"><b>AIに任せ、人が決める</b><span>AIは速い制作担当です。採用するか、公開するか、責任を持てるかは人が判断します。</span></article>
+      </div>
+
+      <div class="final-equation">
+        <b>目的 × 確認 × 改善 = 仕事で使える成果</b>
+        <span><b>確認:</b> 作ったものについて、上の6項目を1分ずつ説明できますか。説明できない項目が、次に学ぶ場所です。</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="pm-modern-ai" class="section-band">
+    <div class="course-shell">
+      <div class="section-head">
+        <div>
+          <span class="section-label">03 / 道具の役割</span>
+          <h2>4つの道具を、相談・制作・記録・確認で使い分ける</h2>
+          <figure class="pm-section-figure">
+            <img src="./img/ai-coding-03-tools.webp"
+                 alt="相談、AIコーディング、変更履歴、ブラウザ確認の4つの役割をつなぐ図"
+                 width="1200" height="800" loading="lazy" decoding="async">
+            <figcaption>相談・制作・記録・確認を、役割の違う道具でつなぎます。</figcaption>
+          </figure>
+          <p><b>知ること:</b> AIコーディングとは、AIにコードを書かせるだけではありません。相談する場所、ファイルを変える場所、変更を記録する場所、完成画面を見る場所を分けます。</p>
+        </div>
+        <a class="btn" href="#part-1">次: 学ぶ5段階へ</a>
+      </div>
+
+      <div class="overview-grid">
+        <div class="system-panel glass">
+          <div class="system-visual" aria-label="AIコーディングの作業線画">
+            <svg viewBox="0 0 760 430" fill="none" role="img">
+              <title>相談から公開までのAIコーディング作業図</title>
+              <rect x="22" y="24" width="190" height="92" rx="8" stroke="#8bdcff" stroke-width="2"/>
+              <text x="48" y="58" fill="#142033" font-size="21" font-weight="800">ChatGPT</text>
+              <text x="48" y="88" fill="#435169" font-size="14">目的・整理・依頼文</text>
+              <rect x="286" y="24" width="190" height="92" rx="8" stroke="#c8ff5f" stroke-width="2"/>
+              <text x="326" y="58" fill="#142033" font-size="21" font-weight="800">Codex</text>
+              <text x="322" y="88" fill="#435169" font-size="14">編集・実行・レビュー</text>
+              <rect x="548" y="24" width="190" height="92" rx="8" stroke="#ffb3a8" stroke-width="2"/>
+              <text x="592" y="58" fill="#142033" font-size="21" font-weight="800">Browser</text>
+              <text x="586" y="88" fill="#435169" font-size="14">表示・リンク・操作</text>
+              <path class="draw-line" d="M212 70H286M476 70H548" stroke="#142033" stroke-width="2"/>
+              <rect x="70" y="178" width="620" height="160" rx="8" stroke="#6ea8ff" stroke-opacity=".8" stroke-width="2"/>
+              <path d="M96 214H666M96 252H666M96 290H666" stroke="#142033" stroke-opacity=".12"/>
+              <text x="112" y="230" fill="#142033" font-size="18" font-weight="800">Workspace</text>
+              <text x="112" y="270" fill="#435169" font-size="15">files / terminal / git diff / tests / env</text>
+              <circle cx="600" cy="254" r="52" stroke="#c8ff5f" stroke-width="2"/>
+              <path class="draw-line" d="M560 254H640M600 214V294" stroke="#c8ff5f" stroke-width="2"/>
+              <text x="560" y="368" fill="#435169" font-size="14">小さく頼む → 画面で見る → 差分で選ぶ</text>
+            </svg>
+          </div>
+          <div class="role-grid" aria-label="道具の役割">
+            <div class="role-card"><span class="tag">相談</span><h3>ChatGPT</h3><p>作る目的、文章、AIへの頼み方を整理します。まず「誰の何を良くしたいか」を言葉にする場所です。</p></div>
+            <div class="role-card"><span class="tag">制作</span><h3>Codex</h3><p>指定したフォルダのファイルを編集し、動作確認まで進めるAIです。触ってよい範囲を伝えて使います。</p></div>
+            <div class="role-card"><span class="tag">記録</span><h3>VS Code / Git</h3><p>VS Codeはファイルを見る作業机。Gitは変更前後を記録し、必要なら元へ戻す仕組みです。</p></div>
+            <div class="role-card"><span class="tag">確認</span><h3>ブラウザ</h3><p>実際のページを開き、文字、リンク、フォーム、スマホ表示を利用者の目線で確かめます。</p></div>
+          </div>
+        </div>
+
+        <aside class="progress-card glass" aria-label="現在位置">
+          <p class="progress-title">学習進捗</p>
+          <div class="progress-meter" aria-hidden="true"><span id="courseProgress"></span></div>
+          <nav class="progress-list" aria-label="講習セクション">
+            <a href="#pm-real-pro" data-watch="pm-real-pro">00 <span>最初の考え方</span></a>
+            <a href="#pm-level-map" data-watch="pm-level-map">01 <span>成長レベル</span></a>
+            <a href="#pm-pro-check" data-watch="pm-pro-check">02 <span>説明チェック</span></a>
+            <a href="#pm-modern-ai" data-watch="pm-modern-ai">03 <span>道具の役割</span></a>
+            <a href="#part-1" data-watch="part-1">04 <span>学ぶ5段階</span></a>
+            <a href="#part-2" data-watch="part-2">05 <span>基本の言葉</span></a>
+            <a href="#part-3" data-watch="part-3">06 <span>作って確認</span></a>
+            <a href="#part-4" data-watch="part-4">07 <span>安全に公開</span></a>
+            <a href="#sec-cms" data-watch="sec-cms">08 <span>仕事への応用</span></a>
+            <a href="#sec-ccode" data-watch="sec-ccode">09 <span>公式情報</span></a>
+            <a href="#sec-line" data-watch="sec-line">10 <span>4つの演習</span></a>
+          </nav>
+        </aside>
+      </div>
+      <div class="plain-note" style="margin-top:14px;"><b>例と確認:</b> 「ChatGPTで相談 → Codexで編集 → Gitで変更を見る → ブラウザで確認」の順を、自分の言葉で言えれば次へ進めます。</div>
+    </div>
+  </section>
+
+  <section id="part-1" class="section-band tint">
+    <div class="course-shell">
+      <div class="section-head">
+        <div>
+          <span class="section-label">04 / 学ぶ5段階</span>
+          <h2>入口から応用まで、1段階ずつ進める</h2>
+          <figure class="pm-section-figure">
+            <img src="./img/ai-coding-04-learning-path.webp"
+                 alt="目的を決め、必要な言葉を知り、AIで作り、確認し、仕事へ広げる5段階の図"
+                 width="1200" height="800" loading="lazy" decoding="async">
+            <figcaption>目的を決め、必要な言葉を知り、小さく作り、確かめ、仕事へ広げます。</figcaption>
+          </figure>
+          <p><b>知ること:</b> ここでの5段階は、この資料を学ぶ順番です。前のLevel 0〜5は仕事で任せられる範囲なので、別のものとして見ます。「作業場所を知る → 言葉を知る → 小さく作る → 公開する → 仕事へ広げる」の順に進みます。</p>
+        </div>
+        <a class="btn" href="#part-2">次: 基本の言葉へ</a>
+      </div>
+
+      <div class="stage-console glass">
+        <div class="stage-tabs" role="tablist" aria-label="学習ステージ">
+          <button class="stage-tab" type="button" role="tab" aria-selected="true" data-stage-target="stage-entry">入口</button>
+          <button class="stage-tab" type="button" role="tab" aria-selected="false" data-stage-target="stage-words">語彙</button>
+          <button class="stage-tab" type="button" role="tab" aria-selected="false" data-stage-target="stage-build">制作</button>
+          <button class="stage-tab" type="button" role="tab" aria-selected="false" data-stage-target="stage-ops">公開</button>
+          <button class="stage-tab" type="button" role="tab" aria-selected="false" data-stage-target="stage-apply">応用</button>
+        </div>
+        <div class="stage-body">
+          <article id="stage-entry" class="stage-panel active" role="tabpanel">
+            <span class="mini-label">1. 入口</span>
+            <h3>どこを変える作業か確認する</h3>
+            <p>フォルダ、GitHub、本番URL、管理画面、資料ファイルを区別します。場所を取り違えないことが、安全なAI利用の最初の一歩です。</p>
+            <div class="stage-meta">
+              <div><b>目標</b><span>AIが触る範囲を自分で把握する。</span></div>
+              <div><b>例</b><span><code>git status</code> で変更中のファイルを見る。</span></div>
+              <div><b>確認</b><span>秘密情報や本番DBを最初から触らない。</span></div>
+            </div>
+          </article>
+          <article id="stage-words" class="stage-panel" role="tabpanel">
+            <span class="mini-label">2. 言葉</span>
+            <h3>直したい場所を言葉にする</h3>
+            <p>HTMLは内容の骨組み、CSSは見た目、JavaScriptは動き、APIとDBは情報の受け渡しと保存です。分けて言えると依頼が伝わります。</p>
+            <div class="stage-meta">
+              <div><b>目標</b><span>問題が内容・見た目・動きのどこか言える。</span></div>
+              <div><b>例</b><span>色の変更なら「CSSを確認して」と頼む。</span></div>
+              <div><b>確認</b><span>用語だけでなく実際の画面と結びつける。</span></div>
+            </div>
+          </article>
+          <article id="stage-build" class="stage-panel" role="tabpanel">
+            <span class="mini-label">3. 制作</span>
+            <h3>小さく頼み、見て、直す</h3>
+            <p>1画面、1つのまとまり、1フォームのように作業を分けます。AIには「どこを」「どうする」「何を確認する」を一緒に伝えます。</p>
+            <div class="stage-meta">
+              <div><b>目標</b><span>依頼を小さな作業に分ける。</span></div>
+              <div><b>例</b><span>「申込ボタンの文だけ変える」と頼む。</span></div>
+              <div><b>確認</b><span>大きな一括変更をそのまま採用しない。</span></div>
+            </div>
+          </article>
+          <article id="stage-ops" class="stage-panel" role="tabpanel">
+            <span class="mini-label">4. 公開</span>
+            <h3>公開してからも直せる状態にする</h3>
+            <p>Vercel（Webサイトを公開するサービス）、Git、環境変数、検索で見つけてもらう工夫（SEO）、レビューをつなげます。本番URLを取り違えないことが第一条件です。</p>
+            <div class="stage-meta">
+              <div><b>目標</b><span>公開してよいか自分で判断する。</span></div>
+              <div><b>例</b><span>本番URLをスマホでも開いて確認する。</span></div>
+              <div><b>確認</b><span>pushだけで公開完了と判断しない。</span></div>
+            </div>
+          </article>
+          <article id="stage-apply" class="stage-panel" role="tabpanel">
+            <span class="mini-label">5. 応用</span>
+            <h3>LP、資料、動画、業務画面へ広げる</h3>
+            <p>LP（申込用の紹介ページ）、資料、動画、業務画面も進め方は同じです。目的を整理し、AIに初稿を任せ、人が品質を決めます。</p>
+            <div class="stage-meta">
+              <div><b>目標</b><span>AI制作を日々の仕事につなげる。</span></div>
+              <div><b>例</b><span>講座案内をWeb、SNS、資料へ展開する。</span></div>
+              <div><b>確認</b><span>文章、権利、画像、公開範囲を人が見る。</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+      <div class="plain-note" style="margin-top:14px;"><b>確認:</b> 5つのタブを順に開き、今できる段階を1つ、次に練習する段階を1つ決めてください。</div>
+    </div>
+  </section>
+
+  <section id="part-2" class="section-band">
+    <div class="course-shell">
+      <div class="section-head">
+        <div>
+          <span class="section-label">05 / 基本の言葉</span>
+          <h2>まず「内容・見た目・動き・データ・履歴・設定」を分ける</h2>
+          <figure class="pm-section-figure">
+            <img src="./img/ai-coding-05-components.webp"
+                 alt="1つのWebページを内容、見た目、動き、データ、履歴、設定に分けて考える図"
+                 width="1200" height="800" loading="lazy" decoding="async">
+            <figcaption>Webページは、内容・見た目・動き・データ・履歴・設定に分けて考えます。</figcaption>
+          </figure>
+          <p><b>知ること:</b> コードを全部手書きできなくても大丈夫です。AIが何を変えたか判断するために、6つの役割だけ先に覚えます。</p>
+        </div>
+        <a class="btn" href="#part-3">次: 作って確認へ</a>
+      </div>
+
+      <div class="split split-wide">
+        <div class="stack-grid">
+          <article class="stack-card glass"><span class="tag">内容</span><h3>HTML</h3><p>ページの骨組みです。見出し、文章、リンク、画像、フォームを置きます。例: 「紹介カードを1枚追加する」。</p></article>
+          <article class="stack-card glass"><span class="tag">見た目</span><h3>CSS</h3><p>色、文字サイズ、余白、並び方、スマホ表示を決めます。例: 「ボタンを青くし、指で押しやすくする」。</p></article>
+          <article class="stack-card glass"><span class="tag">動き</span><h3>JavaScript</h3><p>クリック後の表示、検索、保存、フォーム送信などを動かします。例: 「メニューを押すと開く」。</p></article>
+          <article class="stack-card glass"><span class="tag">データ</span><h3>API / DB</h3><p>APIは情報を受け渡す窓口、DB（データベース）は情報を保存する棚です。例: 申込内容を送り、保存する。</p></article>
+          <article class="stack-card glass"><span class="tag">履歴</span><h3>Git</h3><p>いつ、何を変えたか記録する仕組みです。diff（差分）で変更前後を比べ、問題があれば前の版へ戻します。</p></article>
+          <article class="stack-card glass"><span class="tag">設定</span><h3>Markdown / YAML</h3><p>Markdownは見出し付き文章、YAMLは項目を並べる設定形式です。教材やカード一覧を人にもAIにも読みやすくします。</p></article>
+        </div>
+      </div>
+      <div class="plain-note" style="margin-top:14px;"><b>確認:</b> 「文章を変えるならHTML」「色ならCSS」「クリック後の動きならJavaScript」と言い分けられるか試してください。</div>
+    </div>
+  </section>
+
+  <section id="part-3" class="section-band tint">
+    <div class="course-shell">
+      <div class="section-head">
+        <div>
+          <span class="section-label">06 / 作って確認</span>
+          <h2>AIへの依頼は「場所・変更・条件・確認」の4点で伝える</h2>
+          <figure class="pm-section-figure">
+            <img src="./img/ai-coding-06-request-loop.webp"
+                 alt="場所・変更・条件・確認をAIへ伝え、差分と画面を見ながら直す循環の図"
+                 width="1200" height="800" loading="lazy" decoding="async">
+            <figcaption>場所・変更・条件・確認を伝え、差分と画面を見ながら直します。</figcaption>
+          </figure>
+          <p><b>知ること:</b> 「いい感じに直して」では、必要以上の場所が変わることがあります。頼み方と確認方法を先に決めると、初心者でも変更を管理しやすくなります。</p>
+        </div>
+        <a class="btn" href="#part-4">次: 安全な公開へ</a>
+      </div>
+
+      <div class="loop-grid">
+        <article class="loop-card dark glass">
+          <span class="tag">1. 依頼</span>
+          <h3>4点を入れた依頼の例</h3>
+          <p>場所、変更内容、守る条件、最後の確認を、短い文で順に書きます。</p>
+          <div class="prompt-box">場所: このフォルダの講習ページだけを変更してください。
+変更: 基礎の章を、初心者が順に読める文章へ整理してください。
+条件: リンク、ID、共通メニューは変えないでください。
+確認: 変更差分、PCとスマホの表示、主要リンクを確認してください。</div>
+        </article>
+        <article class="loop-card glass"><span class="tag">2. 差分</span><h3>実際に変わった場所を見る</h3><p>AIの報告だけでなく、Gitのdiff（変更前後の比較）を見ます。関係ないファイル、秘密情報、意図しない削除がないか確認します。</p></article>
+        <article class="loop-card glass"><span class="tag">3. 画面</span><h3>利用者と同じように操作する</h3><p>PCとスマホで開き、文字のはみ出し、リンク、メニュー、タブ、フォーム送信を実際に試します。</p></article>
+        <article class="loop-card glass"><span class="tag">4. 見直し</span><h3>公開前に別の目で確認する</h3><p>バグ、表示崩れ、誤情報、著作権、秘密情報を順に探します。独立レビューとは、制作担当とは別の視点で見ることです。</p></article>
+      </div>
+      <div class="plain-note" style="margin-top:14px;"><b>確認:</b> 次の依頼に「場所・変更・条件・確認」の4点が入っていますか。1つでも抜けたら、実行前に書き足します。</div>
+    </div>
+  </section>
+
+  <section id="part-4" class="section-band">
+    <div class="course-shell">
+      <div class="section-head">
+        <div>
+          <span class="section-label">07 / 安全に公開</span>
+          <h2>公開は「本番で見る・秘密を守る・戻し方を持つ」まで</h2>
+          <figure class="pm-section-figure">
+            <img src="./img/ai-coding-07-safe-publish.webp"
+                 alt="手元、確認用、本番の順に進み、秘密を守り問題時に前の版へ戻す図"
+                 width="1200" height="800" loading="lazy" decoding="async">
+            <figcaption>手元から確認用、本番の順に進み、秘密と戻し方を守ります。</figcaption>
+          </figure>
+          <p><b>知ること:</b> push（変更を共有先へ送ること）だけでは公開完了ではありません。本番URLで見て、利用者が使えることを確認して初めて完了です。</p>
+        </div>
+        <a class="btn" href="#sec-cms">次: 仕事への応用へ</a>
+      </div>
+
+      <div class="check-row" aria-label="公開前チェック">
+        <button type="button" class="check-btn">本番URLと、確認用のPreview URLを取り違えていない</button>
+        <button type="button" class="check-btn">ビルド、主要リンク、PC・スマホ表示を確認した</button>
+        <button type="button" class="check-btn">APIキーや、秘密の設定を入れるファイル（.env）を公開していない</button>
+        <button type="button" class="check-btn">問題が出た時の修正・復旧手順を説明できる</button>
+      </div>
+
+      <div class="loop-grid" style="margin-top:14px;">
+        <article class="loop-card glass"><span class="tag">公開</span><h3>Vercelで本番へ届ける</h3><p>ビルドは、公開できる形にファイルをまとめる処理です。Productionは本番、Previewは確認用。環境変数は、公開コードに直接書かない設定値です。</p></article>
+        <article class="loop-card glass"><span class="tag">安全</span><h3>影響の大きい操作は止まって確認する</h3><p>ログイン、DBへの書き込み、決済、管理画面、秘密情報は、確認画面と権限設定を用意します。迷ったまま本番を変えません。</p></article>
+      </div>
+      <div class="plain-note" style="margin-top:14px;"><b>例と確認:</b> 上の4つのボタンを実際に押し、すべて確認済みにできる時だけ「本番公開完了」と伝えます。</div>
+    </div>
+  </section>
+
+  <section id="sec-cms" class="section-band tint">
+    <div class="course-shell">
+      <div class="section-head">
+        <div>
+          <span class="section-label">08 / 仕事への応用</span>
+          <h2>Web、資料、発信、事務作業でも進め方は同じ</h2>
+          <figure class="pm-section-figure">
+            <img src="./img/ai-coding-08-work-applications.webp"
+                 alt="AIと人の共通作業をWeb、資料、発信、事務へ展開する図"
+                 width="1200" height="800" loading="lazy" decoding="async">
+            <figcaption>同じ進め方を、Web・資料・発信・事務へ展開できます。</figcaption>
+          </figure>
+          <p><b>知ること:</b> 「目的を決める → 材料を整理する → AIに初稿を頼む → 人が確認する → 公開後に直す」という流れは、コード以外にも使えます。</p>
+        </div>
+        <a class="btn" href="#sec-ccode">次: 公式情報の見方へ</a>
+      </div>
+
+      <div class="loop-grid">
+        <article class="loop-card glass"><span class="tag">Web</span><h3>申込用ページを作る</h3><p>LPは、講座や商品の申込につなげる1枚の紹介ページ。見出し、よくある質問、CTA（次の行動を促すボタン）、フォームを順に作ります。</p></article>
+        <article class="loop-card glass"><span class="tag">資料</span><h3>受講資料を更新しやすくする</h3><p>Markdown、HTML、スライド、PDFを同じ場所で管理すると、変更履歴が残り、講座ごとの並べ替えや再利用がしやすくなります。</p></article>
+        <article class="loop-card glass"><span class="tag">発信</span><h3>1つの内容を媒体ごとに作り替える</h3><p>講座の実例を、説明図、Web記事、SNS画像、動画台本へ展開します。AIに初稿を頼み、事実、権利、言葉づかいは人が整えます。</p></article>
+        <article class="loop-card glass"><span class="tag">業務</span><h3>日々の事務作業につなぐ</h3><p>フォーム、顧客管理、在庫、記事、問い合わせをつなぎます。CMSは、専門知識がなくてもWeb内容を更新するための管理画面です。</p></article>
+      </div>
+      <div class="plain-note" style="margin-top:14px;"><b>例と確認:</b> 自分の仕事から繰り返し作っているものを1つ選び、「材料・AIに任せる部分・人が確認する部分」を分けて書いてください。</div>
+    </div>
+  </section>
+
+  <section id="sec-ccode" class="section-band">
+    <div class="course-shell">
+      <div class="section-head">
+        <div>
+          <span class="section-label">09 / 公式情報</span>
+          <h2>必要な人だけ、Codexの公式情報を確認する</h2>
+          <figure class="pm-section-figure">
+            <img src="./img/ai-coding-09-official-info.webp"
+                 alt="公式発表、公式資料、更新履歴から必要な情報だけを実践用ノートへ整理する図"
+                 width="1200" height="800" loading="lazy" decoding="async">
+            <figcaption>必要な時だけ、公式発表・公式資料・更新履歴を確認します。</figcaption>
+          </figure>
+          <p>ここからは参考資料です。初心者は読み飛ばして演習へ進めます。詳しく調べたいときは、情報のまとめ記事ではなくOpenAIの公式発表を開きます。</p>
+        </div>
+        <a class="btn" href="#sec-line">演習へ</a>
+      </div>
+
+      <div class="official-grid" aria-label="OpenAI公式Codexリンク">
+        <a class="official-card glass" href="https://openai.com/index/codex-for-every-role-tool-workflow/" target="_blank" rel="noopener">
+          <span class="date">2026-06-02 / OpenAI</span>
+          <h3>Codex for every role, tool, and workflow</h3>
+          <p>職種別の追加機能、Webページ作成、修正箇所へのメモなど、AI開発を仕事全体へ広げる発表です。</p>
+        </a>
+        <a class="official-card glass" href="https://openai.com/index/introducing-the-codex-app/" target="_blank" rel="noopener">
+          <span class="date">2026-02-02 / OpenAI</span>
+          <h3>Introducing the Codex app</h3>
+          <p>複数のAI作業を一覧で管理し、編集画面やクラウドとつなぎ、よく使う手順を再利用するCodexアプリの発表です。</p>
+        </a>
+        <a class="official-card glass" href="https://openai.com/index/introducing-upgrades-to-codex/" target="_blank" rel="noopener">
+          <span class="date">2025-09-15 / OpenAI</span>
+          <h3>Introducing upgrades to Codex</h3>
+          <p>コードの編集画面、GitHub、変更提案の確認をつなぎ、日々の開発で使いやすくした更新です。</p>
+        </a>
+        <a class="official-card glass" href="https://openai.com/index/introducing-codex/" target="_blank" rel="noopener">
+          <span class="date">2025-05-16 / OpenAI</span>
+          <h3>Introducing Codex</h3>
+          <p>クラウド上の分離された安全な作業場所で、機能追加、問題修正、変更案の作成を進めるCodexの最初の発表です。</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="sec-line" class="section-band tint">
+    <div class="course-shell">
+      <div class="section-head">
+        <div>
+          <span class="section-label">10 / 4つの演習</span>
+          <h2>だんだん作れるようになる総合演習</h2>
+          <figure class="pm-section-figure">
+            <img src="./img/ai-coding-10-exercises.webp"
+                 alt="プロフィールページ、受講資料、問い合わせフォーム、公開レビューへ進む4つの演習の図"
+                 width="1200" height="800" loading="lazy" decoding="async">
+            <figcaption>小さな成果物から、公開とレビューまで段階的に練習します。</figcaption>
+          </figure>
+          <p>1回で全部を作るのではなく、4つの演習を小さく積み上げます。演習カードはいつでも見られ、詳しい講習メモだけを下で折りたたんで確認できます。</p>
+        </div>
+        <a class="btn" href="#top">先頭へ戻る</a>
+      </div>
+
+      <div class="exercise-grid">
+        <article class="exercise-card glass"><span class="tag">01</span><h3>自己紹介LP</h3><p>HTML/CSS、画像、リンク、スマホ表示を確認。AIにはセクション追加やデザイン調整を小さく頼みます。</p></article>
+        <article class="exercise-card glass"><span class="tag">02</span><h3>受講資料の再構成</h3><p>Markdown、見出し、要約、線画、タブUIを扱い、文章の流れを保ったまま整理します。</p></article>
+        <article class="exercise-card glass"><span class="tag">03</span><h3>問い合わせフォーム</h3><p>JavaScript、API、入力検証、送信後の表示を学び、秘密情報の扱いを確認します。</p></article>
+        <article class="exercise-card glass"><span class="tag">04</span><h3>公開とレビュー</h3><p>Git、ビルド、Vercel、本番URL、SEO、独立レビューを学び、公開前に止める力を作ります。</p></article>
+      </div>
+
+      <div style="margin-top:18px;">
+        <details open>
+          <summary>講習中の進め方</summary>
+          <p>最初に全体像を投影し、ステージタブで現在地を確認します。その後、基礎語彙を実画面で見せ、最後に各自の題材で小さな依頼文を作ります。</p>
+        </details>
+        <details>
+          <summary>受講後の到達目標</summary>
+          <p>AIに何を作るか説明できる、AIが変えたファイルを差分で見られる、ブラウザで表示と動きを確認できる、公開前に止めるべき点を言える状態を目指します。</p>
+        </details>
+        <details>
+          <summary>次に増やすとよい内容</summary>
+          <p>実際の受講者ワーク、修正前後のスクリーンショット、失敗例の差分、講師のレビュー例、Codexで作った教材の更新履歴を追加すると、受講資料としてさらに強くなります。</p>
+        </details>
+      </div>
+
+      <div class="inline-actions">
+        <a class="btn primary" href="https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/S7GERYVDIPRV76DKXCC3WJWH" target="_blank" rel="noopener">AIコーディング講習を予約する</a>
+        <a class="btn" href="./#packages">受講プランへ戻る</a>
+        <a class="btn" href="./lectures/index.html">受講資料一覧へ</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer-cta">
+  <div class="course-shell">
+    <h2>AIコーディングは、作らせるだけでなく、確認して安全に公開する人の技術です。</h2>
+    <p>この講習は、Codex・Claude Codeへの頼み方、成長レベル、基本の言葉、変更確認、安全な公開までを1本にまとめています。専門用語は日常の言葉に置き換え、実際の画面で確かめながら進みます。</p>
+    <div class="hero-actions">
+      <a class="btn primary" href="#pm-real-pro">最初から読み直す</a>
+      <a class="btn" href="./#packages">受講プランへ戻る</a>
+      <a class="btn" href="./index.html">AIclimbへ戻る</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var tabs = Array.prototype.slice.call(document.querySelectorAll("[data-stage-target]"));
+  var panels = Array.prototype.slice.call(document.querySelectorAll(".stage-panel"));
+  tabs.forEach(function(tab){
+    tab.addEventListener("click", function(){
+      var target = tab.getAttribute("data-stage-target");
+      tabs.forEach(function(t){ t.setAttribute("aria-selected", String(t === tab)); });
+      panels.forEach(function(panel){ panel.classList.toggle("active", panel.id === target); });
+    });
+  });
+
+  var sections = ["pm-real-pro","pm-level-map","pm-pro-check","pm-modern-ai","part-1","part-2","part-3","part-4","sec-cms","sec-ccode","sec-line"];
+  var links = Array.prototype.slice.call(document.querySelectorAll("[data-watch]"));
+  var meter = document.getElementById("courseProgress");
+  function setActive(id){
+    var idx = Math.max(0, sections.indexOf(id));
+    links.forEach(function(link){ link.classList.toggle("active", link.getAttribute("data-watch") === id); });
+    if (meter) meter.style.width = Math.max(12, Math.round(((idx + 1) / sections.length) * 100)) + "%";
+  }
+  if ("IntersectionObserver" in window) {
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) setActive(entry.target.id);
+      });
+    }, { rootMargin: "-35% 0px -55% 0px", threshold: 0.01 });
+    sections.forEach(function(id){
+      var el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+  } else {
+    setActive("pm-real-pro");
+  }
+
+  Array.prototype.slice.call(document.querySelectorAll(".check-btn")).forEach(function(btn){
+    btn.addEventListener("click", function(){
+      btn.classList.toggle("done");
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

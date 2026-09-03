@@ -1,0 +1,8 @@
+{
+  "name": "aiclimb-cloudflare-runtime",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test worker/index.test.mjs asset-manifest.test.mjs"
+  }
+}

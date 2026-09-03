@@ -1,0 +1,1318 @@
+{
+  "環境構築": {
+    "category": "STEP 1 / ステップ",
+    "short": "新しいプロジェクトを始めるための土台作り。Node / npm / .env / フォルダ構成を整える工程。",
+    "detail": "プログラミング開始前に必要な道具を揃える段階。Node.js をインストール → `npm init` でプロジェクト作成 → 必要なライブラリを入れて `package.json` / `.gitignore` / `.env` を整える。ここを雑にやると後の全工程が遅くなるが、一度仕組みを覚えれば 2〜3 分で終わる。VSCode のワークスペース設定・エディタ拡張(Prettier / ESLint / Tailwind IntelliSense)もこの段階で入れておく。",
+    "when": "新規プロジェクト開始時、他人のリポジトリを `git clone` した直後、マシンを新調したとき。",
+    "tip": "Node のバージョンはプロジェクトごとに違うことが多い。nvm-windows / Volta で切替可能にしておくと、複数案件を掛け持ちしたときに詰まらない。",
+    "related": ["Node.js", "npm", "package.json", ".env", "node_modules", ".gitignore"],
+    "url": null
+  },
+  "開発": {
+    "category": "STEP 2 / ステップ",
+    "short": "実際にコードを書いて機能を作る中心工程。ホットリロードで回しながら繰り返し修正する。",
+    "detail": "フレームワーク(Next.js / Vite)の上で React コンポーネント・API・スタイルを書いていく本体工程。`npm run dev` を常時起動して保存→ブラウザ確認のループを高速で回す。VSCode + TypeScript + Tailwind + AIアシスタント(Claude Code / Copilot)の組合せが現代の標準。DevTools でネットワーク・Console・Elements を見ながらデバッグする。",
+    "when": "新機能追加・既存機能の改修・バグ修正。プロジェクトのほとんどの時間がここ。",
+    "tip": "保存→F5の手動ループが消えるとコーディング速度が跳ね上がる。HMR が壊れたらハードリロードで再同期。1コミット1論点を意識して小さく進める。",
+    "related": ["Next.js", "Vite", "React", "TypeScript", "Tailwind", "npm run dev", "ホットリロード", "ポート番号", "VSCode", "DevTools"],
+    "url": null
+  },
+  "整理": {
+    "category": "STEP 3 / ステップ",
+    "short": "書き散らかしたコードを整える工程。リファクタ・命名改善・重複除去で未来の自分を助ける。",
+    "detail": "動くコードができた後、保守性を上げるために関数分割・命名変更・抽象化・共通化・ファイル整理を行う工程。ユニットテストが揃っていれば「振る舞いを変えない」ことを保証しつつ形を変えられる。Linter / Formatter で機械的に整う部分(インデント・引用符・セミコロン)は自動化、人間は設計と意図の改善に集中する。",
+    "when": "機能が動いた直後(記憶が新しいうちが最もコスパが良い)、3回目に同じコードを書いたとき、レビューで「読みにくい」指摘を受けたとき。",
+    "tip": "リファクタリング PR は機能追加と混ぜない。差分が読めなくなりレビュワーが疲弊する。VSCode の F2(Rename) / Ctrl+Shift+R(Extract) を積極活用。",
+    "related": ["リファクタリング", "Linter/Formatter", "ユニットテスト", "コードレビュー", "mapper層", "定数一元管理"],
+    "url": null
+  },
+  "Git管理": {
+    "category": "STEP 4 / ステップ",
+    "short": "コードの変更履歴を Git で追いかけ、GitHub 上でチーム/将来の自分と共有する工程。",
+    "detail": "`git add` → `git commit` → `git push` の三拍子が基本。機能追加ごとにブランチを切り、PR でレビューを受けて main にマージする。Issue で議論・マイルストーンで進捗管理・Dependabot で依存更新、まで含めて「共同作業の土俵」を Git と GitHub が担う。`.gitignore` を最初から整えて秘密・生成物を混入させない規律が重要。",
+    "when": "commit は作業の一区切り(数行〜数十行)ごと、push は1日の終わりか PR 準備時、pull は作業開始時。",
+    "tip": "force push は基本禁止(main には絶対)。小さい PR(200行以下)はレビュー速度も品質も上がる。commit メッセージは「なぜ」を書くと後から検索しやすい。",
+    "related": ["git init", "git clone", "git add / commit", "git push / pull", "ブランチ", "PR（プルリク）", "コンフリクト", "フォーク", "イシュー", "マイルストーン", "コードレビュー", ".gitignore", "Dependabot"],
+    "url": null
+  },
+  "テスト": {
+    "category": "STEP 5 / ステップ",
+    "short": "コードが意図通りに動くことを自動で保証する仕組み。ユニット→統合→E2E の3層がある。",
+    "detail": "手動で全機能を毎回確認するのは無理。ユニットテスト(関数単位)・統合テスト(DB+API+アプリ)・E2E(ブラウザ操作)の3層を組み合わせて CI で自動実行する。Linter / 型チェックもこの文脈に含まれ、コードを書いた瞬間にバグを弾く。テストがあれば怖がらずに整理・リファクタリングできる。",
+    "when": "機能実装と同時(理想は先にテストを書く TDD)。バグを修正したら再発防止テストを必ず添える。",
+    "tip": "カバレッジ100%より「クリティカルパスの E2E + ロジック関数のユニット」が費用対効果が高い。flaky(たまに落ちる)テストは即直すか skip、放置厳禁。",
+    "related": ["ユニットテスト", "統合テスト", "E2Eテスト", "Linter/Formatter", "TypeScript", "CI/CD"],
+    "url": null
+  },
+  "デプロイ": {
+    "category": "STEP 6 / ステップ",
+    "short": "書いたコードを本番サーバーに載せて、世界中から見られる状態にする工程。",
+    "detail": "`main` に push すると Vercel / Render / Netlify が自動で `npm run build` を走らせて成果物を CDN に配信する(Git 連携自動デプロイ)。PR ごとにプレビュー URL が生えるのでレビュー時に実機確認が可能。壊れたら 1 ボタンで前のデプロイにロールバックできる。独自ドメイン + HTTPS + 環境変数はこの段階でセット。",
+    "when": "機能が動いて CI が緑になったら即デプロイ。小さく頻繁にリリースするほど問題が起きても特定が早い。",
+    "tip": "本番環境変数を忘れがち(ローカルの .env は載らない)。最初のデプロイ時に env のチェックリストを作っておく。CDN キャッシュが古いまま残ることがあるので、デプロイ直後はハードリロードで確認。",
+    "related": ["ビルド", "CI/CD", "GitHub Actions", "プレビューデプロイ", "Vercel", "Render", "Netlify", "CDN", "HTTPS", "独自ドメイン", "環境変数", "ロールバック"],
+    "url": null
+  },
+  "運用": {
+    "category": "STEP 7 / ステップ",
+    "short": "公開したサービスを安定稼働させ続けるフェーズ。ログ・監視・アラート・SLA。",
+    "detail": "リリース後の方が長い。エラー監視(Sentry)・稼働監視(UptimeRobot)・パフォーマンス指標(Core Web Vitals)・ユーザー分析(GA4)でサービスの健康状態を常時把握する。異常時は Slack 通知でオンコールが動き、ログを見て原因特定→修正→再デプロイ。SLA / SLO の数値目標が「どこまで許容するか」の判断基準になる。",
+    "when": "リリース直後から半永久的に。とくに最初の1週間は貼り付いて監視、数値が安定してから手を離す。",
+    "tip": "アラート閾値は厳しすぎるとノイズで無視されるようになる。「本当に人間が動くべき信号」だけ鳴らすよう調整。個人プロダクトでも UptimeRobot 無料枠を入れておくと安心。",
+    "related": ["ログ", "エラー監視", "アラート", "SLA/SLO", "Lighthouse", "Core Web Vitals", "アナリティクス", "デバッグ", "ロールバック", "キャッシュ"],
+    "url": null
+  },
+
+  "環境構築（カード）": {
+    "category": "カード / STEP 1",
+    "short": "プロジェクトの土台を整えるカード。Node / npm / package.json / .env / .gitignore。",
+    "detail": "プログラミングを始める前に用意するものを集めたカード。JavaScript を PC で動かす Node.js、ライブラリ管理の npm、設計書の package.json、秘密値を隠す .env、Git 管理から除外する .gitignore が含まれる。新規プロジェクト立ち上げ時に最初に触る要素群。",
+    "when": "新規プロジェクトのセットアップ時、初めて触るリポジトリの理解のため、マシン再構築時。",
+    "tip": "初期段階で `.gitignore` に `node_modules` `.env` `.next` `dist` を必ず入れる。後から除外しても commit 済みファイルは `git rm --cached` が必要になる。",
+    "related": ["Node.js", "npm", "package.json", ".env", "node_modules", ".gitignore"],
+    "url": null
+  },
+  "フレームワーク・ライブラリ": {
+    "category": "カード / STEP 1-2",
+    "short": "UI と開発体験を支える道具一式。Next.js / Vite / React / TypeScript / Tailwind。",
+    "detail": "生の JavaScript だけで Web アプリを組むと量が膨大になる。現代ではフレームワーク(Next.js)か軽量ビルドツール(Vite)+UIライブラリ(React)+型(TypeScript)+スタイリング(Tailwind)の組合せが定番。プロジェクトの目的(SEO重視の公開サイト / インタラクティブな管理画面 / ライブラリ開発)で何を組み合わせるか決める。",
+    "when": "新規プロジェクト開始時の技術選定。既存プロジェクトのスタック把握。",
+    "tip": "Next.js は SSR / ルーティング / SEO 込みのフルスタック寄り、Vite は SPA 寄りで軽量。迷ったら Next.js。Tailwind は学習曲線がやや急だが、一度慣れると戻れない速度が出る。",
+    "related": ["Next.js", "Vite", "React", "TypeScript", "Tailwind"],
+    "url": null
+  },
+  "開発中の作業": {
+    "category": "カード / STEP 2-3",
+    "short": "実装フェーズで日常的に使う道具。VSCode / npm run dev / ホットリロード / デバッグ。",
+    "detail": "エディタ(VSCode)で書き、`npm run dev` で開発サーバーを起動し、ホットリロードで即確認、ブラウザの DevTools でデバッグ、Linter/Formatter で自動整形、という日常ループ。このループを高速に回せるほど生産性が上がる。ポート番号の管理も地味に大事(複数プロジェクトを同時に立ち上げるとき)。",
+    "when": "機能実装・バグ修正・UI 調整など、コードに手を入れる全時間。",
+    "tip": "VSCode の保存時自動整形(format on save)を有効にすると Prettier の整形が毎回走り、PR に無駄なスタイル差分が混ざらなくなる。",
+    "related": ["VSCode", "npm run dev", "ホットリロード", "ポート番号", "デバッグ", "DevTools", "Linter/Formatter"],
+    "url": null
+  },
+  "Git / バージョン管理": {
+    "category": "カード / STEP 4",
+    "short": "Git の基本操作とチーム運用のセット。add / commit / push / ブランチ / PR / コンフリクト。",
+    "detail": "変更履歴を時間軸で管理するツール群。`git init` / `git clone` で始まり、`git add` → `commit` → `push` で履歴を記録、`pull` で他者の変更を取り込む。機能ごとにブランチを切り、PR でレビュー、コンフリクトを解消してマージ。フォーク・Issue・マイルストーンは GitHub の共同作業機能。",
+    "when": "どんなプロジェクトでも必須。個人開発でも「過去の自分を頼る」ために使う。",
+    "tip": "`git log --oneline --graph` で履歴を可視化、`git bisect` で壊れた commit を二分探索。GUI 派なら VSCode 内蔵 Git や GitLens 拡張が便利。",
+    "related": ["git init", "git clone", "git add / commit", "git push / pull", "ブランチ", "PR（プルリク）", "コンフリクト", "フォーク", "イシュー", "マイルストーン", "コードレビュー"],
+    "url": null
+  },
+  "テスト・環境": {
+    "category": "カード / STEP 5",
+    "short": "品質担保と作業環境の基盤。ユニット/統合/E2E テスト、Linter、サンドボックス。",
+    "detail": "自動テスト3層 + 静的解析 + 隔離環境(sandbox)で、リリース前にバグを弾き、本番データを汚さず検証する。CI で自動実行してグリーンじゃないと main にマージできないルールにすると、デグレが激減する。",
+    "when": "機能実装と同時並行、PR マージ前、定期リファクタ前の安全ネット。",
+    "tip": "テストコードは書いたら終わりではない。壊れたら即直す、曖昧になったら書き直す。古いテストが残っていると「テストがあるのにバグる」最悪の状態になる。",
+    "related": ["ユニットテスト", "統合テスト", "E2Eテスト", "Linter/Formatter", "サンドボックス", "CI/CD"],
+    "url": null
+  },
+  "デプロイ・公開": {
+    "category": "カード / STEP 6",
+    "short": "本番リリースの仕組み一式。ビルド / CI/CD / Vercel / Render / CDN / HTTPS / ロールバック。",
+    "detail": "コードを世界に届けるための段取り。ビルドで成果物を作り、CI/CD が自動でホスティングにデプロイ、CDN 経由で世界中に HTTPS 配信、独自ドメインを繋いでブランドを整える。プレビューデプロイで PR 段階の実機確認、ロールバックで事故からの復旧を担保する。",
+    "when": "リリース戦略を立てるとき、本番事故の備え、ホスティング選定。",
+    "tip": "無料プラン依存のスタックは「急に使えなくなる」リスクを抱える(Netlify Forms の上限、Render 無料のスリープ等)。事業用途は最低 Starter に上げる。",
+    "related": ["ビルド", "CI/CD", "GitHub Actions", "プレビューデプロイ", "Vercel", "Render", "Netlify", "CDN", "HTTPS", "独自ドメイン", "ロールバック", "環境変数"],
+    "url": null
+  },
+  "データベース・バックエンド": {
+    "category": "カード / STEP 2-3",
+    "short": "データを保存・認証・API 化する層。Supabase / Postgres / ORM / 認証 / JWT / RLS。",
+    "detail": "フロントだけでは閉じないアプリにはデータ永続化・認証・API が必要。Supabase(Postgres + Auth + Storage + Functions)を中心に、ORM(Prisma / Drizzle)で型安全に DB を触り、JWT でセッションを管理、RLS でマルチテナントアクセス制御、REST / GraphQL で API 公開、という一式。本プロジェクト群では Supabase を標準採用。",
+    "when": "ログイン・投稿・決済・ダッシュボードなどデータを扱う全機能。",
+    "tip": "RLS を無効のままサービスロールキーをブラウザに出す事故が最多。開発初期に「RLS 有効 + anon key のみ露出」を必ず確認。mapper 層(snake_case↔camelCase)も最初に仕込む。",
+    "related": ["Supabase", "Postgres", "ORM", "認証（Auth）", "JWT", "RLS（行レベル）", "REST / GraphQL", "マイグレーション", "Firebase", "mapper層"],
+    "url": null
+  },
+  "SEO・LLMO（AI検索最適化）": {
+    "category": "カード / STEP 3",
+    "short": "検索エンジンと AI 検索に拾われるための最適化。メタタグ / JSON-LD / sitemap / Speakable。",
+    "detail": "Google の伝統的 SEO(メタタグ / canonical / sitemap.xml / robots.txt / Core Web Vitals)に加え、2024 年以降は LLMO(ChatGPT / Perplexity / Google AI Overviews に引用される最適化)が重要。構造化データ(JSON-LD: BlogPosting / FAQPage / SpeakableSpecification)を正しく吐くと AI が要約時に引用元として採用しやすくなる。アナリティクスで効果計測。",
+    "when": "公開するコンテンツサイト・ブログ・EC・サービス紹介ページ全般。",
+    "tip": "Google Search Console / Rich Results Test で構造化データをバリデート。記事公開時に sitemap を更新してクロールを促す。AI に引用されたいなら冒頭に簡潔な要約を置く。",
+    "related": ["メタタグ", "canonical", "sitemap.xml", "robots.txt", "JSON-LD", "BlogPosting", "FAQPage", "Speakable", "Core Web Vitals", "Lighthouse", "アナリティクス"],
+    "url": null
+  },
+  "セキュリティ": {
+    "category": "カード / STEP 2-6",
+    "short": "攻撃と事故からユーザーを守る基本。HTTPS / CORS / CSRF / XSS / SQL / APIキー / RLS。",
+    "detail": "セキュリティは開発全段階に関わる横串のテーマ。通信を HTTPS で暗号化、CORS で異なるドメインからの API アクセスを制御、CSRF トークンで偽リクエストを防ぎ、XSS 対策で入力を必ずエスケープ、SQL は必ずパラメータ化、API キーは環境変数に隔離、DB は RLS でアクセス分離。Dependabot で依存の脆弱性を自動検知。",
+    "when": "プロジェクト開始時の設計から運用監視まで、常時意識する。",
+    "tip": "OWASP Top 10 を一度通読しておくと「何が起きうるか」の土地勘がつく。実装時は「信頼できない入力は必ず検証」を口癖に。",
+    "related": ["HTTPS", "CORS", "CSRF", "XSS対策", "SQLインジェクション", "認証（Auth）", "JWT", "RLS（行レベル）", "APIキー管理", ".env", "環境変数", "Dependabot"],
+    "url": null
+  },
+  "パフォーマンス・運用監視": {
+    "category": "カード / STEP 7",
+    "short": "速度改善と本番監視。Lighthouse / Core Web Vitals / 画像最適化 / ログ / エラー監視。",
+    "detail": "ユーザー体験の土台は「速い」「落ちない」。Lighthouse で品質を定量化し、Core Web Vitals(LCP / INP / CLS)を満たす画像最適化・キャッシュ・遅延読み込みを適用。本番はエラー監視(Sentry)・構造化ログ・アラート閾値の設計で異常を即検知し、SLA / SLO の数値で品質を言語化する。",
+    "when": "公開後の継続運用、リファクタや大規模変更後の回帰確認、障害対応の初動設計。",
+    "tip": "Lighthouse スコアより「ユーザーの実測値(RUM / Chrome UX Report)」の方が現実を映す。改善は大きい要素(LCP 画像 / JS バンドル)から順に。",
+    "related": ["Lighthouse", "Core Web Vitals", "画像最適化", "キャッシュ", "CDN", "ログ", "エラー監視", "アラート", "SLA/SLO", "DevTools", "ロールバック"],
+    "url": null
+  },
+  "チーム開発・プロジェクト管理": {
+    "category": "カード / STEP 7",
+    "short": "複数人で開発を回す仕組み。PR レビュー / スプリント / マイルストーン / モノレポ。",
+    "detail": "ソロ開発と違い、複数人ではコミュニケーションと同期コストが跳ね上がる。PR ベースのレビュー文化、アジャイルのスプリント運用、マイルストーンでの進捗管理、Issue による議論の可視化、Turborepo 等のモノレポで関連コードを近くに置く、といった仕組みを揃えてチームの認知負荷を下げる。",
+    "when": "2人以上のチーム開発、複数プロジェクトの統括運用、長期メンテナンスが必要なコード資産。",
+    "tip": "儀式だけのスクラムは逆効果。レトロで継続改善する意思がチームにあるかどうかが成否を分ける。小さい PR + 高速 CI がチームの速度の源泉。",
+    "related": ["PR（プルリク）", "コードレビュー", "イシュー", "マイルストーン", "アジャイル", "スプリント", "Turborepo", "CI/CD"],
+    "url": null
+  },
+  "デプロイ後の全体構成図": {
+    "category": "完成イメージ / 総合",
+    "short": "ローカルの VSCode から GitHub → CI/CD → ホスティング(CDN) → ユーザー、の流れ。",
+    "detail": "開発者の PC で書いたコードが本番ユーザーに届くまでの道のり。VSCode → git push → GitHub の main ブランチ → GitHub Actions / ホスティング側 CI で自動ビルド・テスト → Vercel / Render 等にデプロイ → CDN で世界配信 → ユーザーのブラウザ/スマホに HTTPS で表示、という一連の流れ。.env は PC とホスティング側で別管理。",
+    "when": "新メンバーへのオンボーディング、アーキテクチャ説明、障害時にどこで止まっているか切り分けるとき。",
+    "tip": "この図の各箇所で「失敗したらどう検知するか」を決めておくと運用が安定する(CI 失敗は Slack 通知、本番エラーは Sentry、稼働停止は UptimeRobot 等)。",
+    "related": ["VSCode", "git push / pull", "GitHub Actions", "CI/CD", "ビルド", "Vercel", "Render", "CDN", "HTTPS", "独自ドメイン", "環境変数", "ログ"],
+    "url": null
+  },
+  "AIエンジニアリング手法 — 全体像": {
+    "category": "AI時代の新潮流 / 総合",
+    "short": "LLM を組み込んだアプリを作る / 動かすための層構造。プロンプト〜統括〜評価〜安全までの7領域。",
+    "detail": "2024 年以降に急速に確立した新分野。大きく7層に分かれる: (1)プロンプトエンジニアリング=AIへの指示設計、(2)コンテキストエンジニアリング=投入情報の設計(RAG など)、(3)ハーネス=実行環境・ツール使用の仕組み、(4)評価=出力品質の自動測定、(5)統括(オーケストレーション)=複数エージェントやツールの連携、(6)調整(チューニング)=ファインチューニングや蒸留、(7)安全=プロンプトインジェクション対策や出力監査。各層が噛み合うと複雑タスクを AI に任せられる。",
+    "when": "LLM を使った機能(チャットボット・自動要約・エージェント・RAG 検索)を実装するとき。",
+    "tip": "最初はプロンプト設計だけで十分な場面が多い。RAG / エージェント / ファインチューニングは「素のプロンプトで届かない」と明確になってから導入する。",
+    "related": ["Prompt", "役割指定", "Few-shot", "CoT", "RAG", "Embedding", "Tool Use", "Agent", "Context Window"],
+    "url": null
+  },
+  "マルチクライアント統括運用 — 3層アーキテクチャ": {
+    "category": "本プロジェクト固有 / 総合",
+    "short": "複数クライアントサイトを1ワークスペースで運用する本プロジェクトの独自構成。",
+    "detail": "本プロジェクト群では(1)本番クライアント層=各社の実コード(ポート3001〜3009)、(2)CMAログ置き場=Managed Agentsの実行ログ、(3)CMA完成品置き場=採用した生成物の保管、の3層で成り立つ。ポート自動割当(set-ports.js)、VSCode ワークスペース統合、GitHub+Supabase+Render+GitHub Actionsの共通デプロイ構成、などでスケールさせる。",
+    "when": "新規クライアントを追加するとき、CMA エージェントに作業を任せるとき、3層のどこで何が起きているか判断するとき。",
+    "tip": "ワークスペースの意味が重なりやすい(CMAの Environment / ローカルの workspace_* / VSCode Workspace)。CMA が動かすのはクラウド上の一時 Environment で、手元の workspace_* は成果物倉庫ではなくログ置き場と割り切る。",
+    "related": ["VSCode", "ポート番号", "CI/CD", "Supabase", "Render", "GitHub Actions", "環境変数"],
+    "url": null
+  },
+
+  "Node.js": {
+    "category": "ランタイム",
+    "short": "ブラウザの外で JavaScript を動かす実行環境。開発ツールやサーバーの土台。",
+    "detail": "Node.js は Google Chrome の JavaScript エンジン(V8)をブラウザから切り出して、パソコンやサーバー上で JavaScript を動かせるようにした実行環境。フロント開発で使うほぼ全てのツール(Next.js / Vite / TypeScript コンパイラ / ESLint / Prettier など)が Node.js 上で動いているため、現代の Web 開発で避けて通れない土台になっている。インストールすると `node` コマンドと `npm` コマンドが使えるようになる。",
+    "when": "新しいマシンをセットアップするとき真っ先に入れる。プロジェクトの `package.json` に書かれた `engines.node` のバージョンに合わせるのがベスト。バージョンが古いとビルドが動かないことが多い。",
+    "tip": "複数プロジェクトで Node バージョンが違うときは `nvm-windows` や `Volta` でバージョンを切り替える。グローバルに古い Node を入れると新しいプロジェクトで `Error: Unsupported engine` が出る。",
+    "related": ["npm", "package.json"],
+    "url": "https://nodejs.org/ja"
+  },
+  "npm": {
+    "category": "パッケージ管理",
+    "short": "JavaScript のライブラリを入れる・更新する・削除する標準コマンド。",
+    "detail": "npm (Node Package Manager) は Node.js に同梱されているパッケージマネージャー。世界中の開発者が公開しているライブラリ(React / Next.js / Tailwind など)をプロジェクトに取り込む窓口。`npm install` でインストール、`npm run` で `package.json` に書いたスクリプトを実行、`npm update` で更新。yarn / pnpm / bun は npm の代替で、互換性を保ちつつ速度や容量を改善している。",
+    "when": "新しいプロジェクトをクローンした直後の `npm install`、新しいライブラリを追加するときの `npm install <name>`、ビルドや開発サーバー起動の `npm run dev` / `npm run build` など、日常的に叩くコマンド。",
+    "tip": "`package-lock.json` は必ず commit する。チーム全員で同じバージョンを固定するためのファイルで、これがないと「自分の環境では動く」事故が起きる。",
+    "related": ["package.json", "node_modules", "npm run dev"],
+    "url": "https://docs.npmjs.com/"
+  },
+  "package.json": {
+    "category": "設定ファイル",
+    "short": "プロジェクトの身分証。依存ライブラリ・スクリプト・バージョンを記録する。",
+    "detail": "プロジェクトルートに置く JSON ファイルで、プロジェクト名・バージョン・依存ライブラリ(`dependencies` / `devDependencies`)・実行スクリプト(`scripts`)・Node バージョン要件(`engines`)などを記載する。npm は常にこのファイルを基準に動く。`scripts.dev` に `next dev -p 3001` と書いておけば `npm run dev` でポート 3001 の開発サーバーが立ち上がる。",
+    "when": "新規プロジェクトは `npm init` で生成。既存プロジェクトに触るときはまずこのファイルを読んで、どんなツールスタックでどんなスクリプトが用意されているかを把握する。",
+    "tip": "`dependencies` は本番でも必要なもの、`devDependencies` は開発時だけ必要なもの(テストツール・型定義など)。ここを間違えると本番バンドルが肥大化する。",
+    "related": ["npm", "node_modules", "npm run dev"],
+    "url": "https://docs.npmjs.com/cli/v10/configuring-npm/package-json"
+  },
+  ".env": {
+    "category": "設定ファイル",
+    "short": "APIキーやDB接続情報など、コードに書けない秘密を格納する環境変数ファイル。",
+    "detail": "プロジェクトルートに置くテキストファイルで、`KEY=VALUE` 形式で環境変数を並べる。データベースURL・APIキー・Stripe シークレット・Supabase サービスロールキーなど、コードに直書きしたら漏洩する値をここに隔離する。Next.js なら `NEXT_PUBLIC_` 接頭辞がついたものだけブラウザに露出し、それ以外はサーバーサイド専用。本番では Render / Vercel / GitHub Actions の環境変数 UI で設定する。",
+    "when": "APIキーを扱う開発、ローカルとステージングで接続先を分けたいとき、チーム間で機密値を共有するとき(ただし共有は 1Password / Doppler 推奨)。",
+    "tip": "**絶対に `git push` しない**。`.gitignore` に `.env` を入れる。チーム共有用には `.env.example` だけ commit して、実際の値は個別に渡す。誤って push したらキーはローテーションする。",
+    "related": [".gitignore", "環境変数", "APIキー管理"],
+    "url": "https://www.dotenv.org/"
+  },
+  "node_modules": {
+    "category": "生成ファイル",
+    "short": "インストールしたライブラリの実体が入る超巨大フォルダ。Git にはあげない。",
+    "detail": "`npm install` を実行すると、`package.json` に書かれた依存関係とその依存関係(依存の依存...)が全てここにダウンロードされる。中身は数万ファイルに及び、サイズは数百MB〜数GBになることも。`package-lock.json` があれば `npm install` だけで再生成できるため、Git には commit しないのが鉄則(`.gitignore` で除外)。",
+    "when": "普段は中を直接触らない。ビルドエラーが謎の時に `rm -rf node_modules && npm install` でクリーンインストールすると直ることがある。",
+    "tip": "Windows の一部セキュリティソフトが node_modules のスキャンで遅くなることがある。VSCode でも `files.exclude` で隠すと検索が高速になる。",
+    "related": ["npm", ".gitignore", "package.json"],
+    "url": "https://docs.npmjs.com/cli/v10/configuring-npm/folders"
+  },
+  ".gitignore": {
+    "category": "設定ファイル",
+    "short": "Git に追跡させないファイル・フォルダのリスト。秘密と生成物を除外する。",
+    "detail": "プロジェクトルート(またはサブフォルダ)に置くテキストファイル。1行1パターンで、`node_modules`・`.env`・`dist`・`.next`・`*.log` のような「生成されるもの」「秘密情報」「OS/IDE固有ファイル」を指定する。ここに書かれたファイルは `git add` しても追跡されない。フレームワークごとに標準テンプレートが用意されている(github/gitignore リポジトリ参照)。",
+    "when": "プロジェクト立ち上げ時に必ず整備。新しいツールを導入して出力フォルダが増えたら追記。うっかり `.env` を commit する前に必ず入れる。",
+    "tip": "既に commit 済みのファイルを `.gitignore` に追加しても追跡は外れない。`git rm --cached <path>` で履歴から外してから再 commit する必要がある。",
+    "related": [".env", "node_modules"],
+    "url": "https://git-scm.com/docs/gitignore"
+  },
+  "Next.js": {
+    "category": "フレームワーク",
+    "short": "React を本番品質で使うためのフルスタックフレームワーク。ルーティング・SSR・API込み。",
+    "detail": "Vercel 社が開発する React ベースのフレームワーク。ファイルベースルーティング(`app/`ディレクトリ配下のフォルダ構成がそのまま URL になる)・サーバーサイドレンダリング(SSR)・静的生成(SSG)・API Routes(バックエンドも同居)・画像最適化・SEO対応が最初から入っている。App Router(React Server Components ベース)と Pages Router があり、新規は App Router を選ぶのが 2026 年現在の主流。",
+    "when": "コーポレートサイト・EC・ブログ・SaaS ダッシュボード等、SEO が必要で動的な Web アプリ全般。静的サイトでも `next build && next export` で出力可能。",
+    "tip": "`use client` ディレクティブを付けないコンポーネントはデフォルトで Server Component。ブラウザAPI(window / localStorage)を使う箇所だけクライアント化する。",
+    "related": ["React", "Vercel", "TypeScript"],
+    "url": "https://nextjs.org/"
+  },
+  "Vite": {
+    "category": "ビルドツール",
+    "short": "爆速の開発サーバーと軽量ビルド。React / Vue / Svelte など何でも来い。",
+    "detail": "Evan You(Vue.js 作者)が開発したビルドツール。ネイティブ ES Modules を使って開発サーバーの起動を極限まで早くし(数百ミリ秒)、ビルドは Rollup / esbuild / SWC で行う。create-react-app の事実上の後継として急速に普及。SPA(シングルページアプリ) / ライブラリ開発 / Electron 向けなど汎用的に使える。Next.js のようなルーティング・SSR は含まれないので、必要なら React Router などと組み合わせる。",
+    "when": "SSR が不要な管理画面、インタラクティブな SPA、ライブラリ開発、Storybook のような単体ツール。SEO が要らない or Cloudflare Pages/Netlify で静的配信で十分な場合に好適。",
+    "tip": "Next.js と違って API Routes がないので、バックエンドは別サーバー(Express / Hono / Supabase Edge Functions)を立てる。CORS 設定を忘れずに。",
+    "related": ["React", "Node.js", "npm run dev"],
+    "url": "https://vitejs.dev/"
+  },
+  "React": {
+    "category": "UIライブラリ",
+    "short": "コンポーネント志向で UI を組み立てるための、Meta 社製 JavaScript ライブラリ。",
+    "detail": "「状態(state)が変わったら UI が自動で更新される」宣言的UIパラダイムを普及させたライブラリ。JSX という JavaScript 内に HTML を書ける記法、関数コンポーネント + Hooks(useState / useEffect / useMemo 等)、仮想DOM による差分更新が三本柱。Facebook / Instagram / Netflix / Airbnb など大規模サイトで採用されている。Next.js / Remix / Vite などのフレームワークと組み合わせて使うのが普通。",
+    "when": "動的で状態変化の多い画面(フォーム・ダッシュボード・チャット・ECカート)。静的な LP なら Astro や素の HTML でも十分。",
+    "tip": "useEffect の無限ループは初学者の定番トラップ。依存配列にオブジェクトを入れるときは useMemo / useCallback でメモ化しないと毎レンダリングで再実行される。",
+    "related": ["Next.js", "Vite", "TypeScript"],
+    "url": "https://ja.react.dev/"
+  },
+  "TypeScript": {
+    "category": "言語",
+    "short": "JavaScript に静的型を足した Microsoft 製言語。大規模開発の事実上の標準。",
+    "detail": "JavaScript のスーパーセットで、型アノテーション(`let name: string`)・インターフェース・ジェネリクスなどを追加した言語。コンパイル時に型エラーを捕まえるので「実行してみないと分からないバグ」を激減させる。VSCode との相性が抜群で、補完・リファクタ・ジャンプ先定義が正確になる。Next.js / Nest.js / Deno など現代のメジャーフレームワークは TypeScript ファースト。",
+    "when": "コード量が 3 ファイルを超えたら導入を検討、チーム開発や長期メンテナンス前提なら必須。ES モジュールを書くときも型があると API の使い方が IDE に表示されて生産性が上がる。",
+    "tip": "`any` を使いたくなったら設計を見直すサイン。どうしても型が分からないなら `unknown` + 型ガードに置き換える。`tsconfig.json` の `strict: true` は最初から有効にする。",
+    "related": ["Node.js", "Next.js", "VSCode"],
+    "url": "https://www.typescriptlang.org/ja/"
+  },
+  "Tailwind": {
+    "category": "スタイリング",
+    "short": "ユーティリティクラスで HTML に直接スタイルを書く CSS フレームワーク。",
+    "detail": "`text-center`・`bg-blue-500`・`p-4`・`rounded-lg` といった細かいクラスを組み合わせてスタイルを当てる。CSSファイルを書かずに済み、クラス名を考える必要もない。JIT コンパイラが使ったクラスだけを最終CSSに含めるので本番バンドルは小さい。Shadcn/ui / Radix UI / DaisyUI 等のコンポーネント集とも相性が良い。",
+    "when": "プロジェクト全体のデザインシステムを素早く組みたいとき、Next.js / Vite 新規プロジェクトのデフォルト選択。デザインを細かく固めたブランドサイトでも、Tailwind の `@apply` で抽象化できる。",
+    "tip": "クラス名が長くなるので `clsx` / `tailwind-merge` で条件分岐を整理する。VSCode 拡張「Tailwind CSS IntelliSense」は必須。",
+    "related": ["React", "Next.js"],
+    "url": "https://tailwindcss.com/"
+  },
+  "VSCode": {
+    "category": "エディタ",
+    "short": "Microsoft 製の無料エディタ。AI 時代の標準開発環境。",
+    "detail": "Visual Studio Code。Electron ベースのクロスプラットフォームエディタで、拡張機能マーケットプレイスが充実している。TypeScript / Python / Go / Rust など主要言語の補完が標準で効く。Claude Code・GitHub Copilot・Cursor・Continue などの AI アシスタントは VSCode 互換で動くものが多く、2026 年現在のデファクトスタンダード。",
+    "when": "ほぼ全ての開発作業。Git 操作・ターミナル・デバッガ・リモート開発(SSH / WSL / DevContainer)まで 1 つにまとめられる。",
+    "tip": "ワークスペース設定(`.vscode/settings.json`)を commit してチーム全員でエディタ設定を揃えると PR レビューが楽になる。フォーマッタは Prettier + ESLint を組み合わせ、保存時に自動整形。",
+    "related": ["TypeScript", "Linter/Formatter"],
+    "url": "https://code.visualstudio.com/"
+  },
+  "git init": {
+    "category": "Git",
+    "short": "新しいフォルダを Git 管理下に置く最初のおまじない。",
+    "detail": "そのフォルダを Git リポジトリとして初期化するコマンド。`.git` という隠しフォルダが作られ、以降の変更履歴がここに記録される。既存のフォルダにも実行できるし、空フォルダに実行して後からファイルを追加してもよい。GitHub からクローンしたリポジトリには既に `.git` があるので不要。",
+    "when": "プロジェクトを新規作成したとき。`npm create next-app` など一部のスキャフォールディングは自動で `git init` してくれる。",
+    "tip": "間違った場所で実行してしまったら `.git` フォルダを削除すれば元に戻る。ただし commit 済みの履歴は全て消えるので注意。",
+    "related": ["git clone", "git add / commit"],
+    "url": "https://git-scm.com/docs/git-init"
+  },
+  "git clone": {
+    "category": "Git",
+    "short": "GitHub など遠隔リポジトリの全ファイル・履歴を手元にコピーする。",
+    "detail": "`git clone https://github.com/user/repo.git` の形式で、リモートのリポジトリをフルコピーしてくる。履歴(commit ログ)・ブランチ・タグまで全部降りてくる。HTTPS / SSH の 2 方式があり、2FA を有効にしているなら SSH キー認証か GitHub CLI(`gh auth login`)経由が安全。",
+    "when": "他人のリポジトリで作業するとき、自分のプロジェクトを別マシンに持ってくるとき、OSS にコントリビュートするとき。",
+    "tip": "履歴が巨大なモノレポでは `git clone --depth=1` で最新だけ浅くクローンすると時間短縮。後で履歴が必要になったら `git fetch --unshallow`。",
+    "related": ["git init", "git push / pull"],
+    "url": "https://git-scm.com/docs/git-clone"
+  },
+  "git add / commit": {
+    "category": "Git",
+    "short": "変更をステージ(add)して、履歴に記録(commit)するワンセットの操作。",
+    "detail": "Git の基本操作の心臓部。`git add <file>` で「次の commit に含める変更」を選別(ステージング)し、`git commit -m \"メッセージ\"` でその選別結果を履歴に焼き付ける。1 つの commit は論理的に 1 つの変更にまとめるのが作法。commit メッセージは英語なら `fix: ...` `feat: ...`(Conventional Commits)、日本語なら「修正:」「追加:」のような動詞始まりが読みやすい。",
+    "when": "意味のある変更単位ごと。小さく頻繁に commit する方が後で取り消しやすい。大きい変更を一度に commit すると conflict のとき地獄になる。",
+    "tip": "`git add -p` で変更を部分的にステージできる(1つのファイル内で半分だけ commit したいとき)。間違えた commit は `git commit --amend` で直前だけ修正可能(push 前に限る)。",
+    "related": ["git push / pull", "ブランチ", "PR（プルリク）"],
+    "url": "https://git-scm.com/docs/git-commit"
+  },
+  "git push / pull": {
+    "category": "Git",
+    "short": "手元の変更をサーバーに上げる(push)/ サーバーの変更を手元に取り込む(pull)。",
+    "detail": "`git push` はローカルの commit をリモート(GitHub など)に送信。`git pull` はリモートの最新を取ってきて手元のブランチにマージする(実体は `git fetch` + `git merge`)。PR ベースの開発では、feature ブランチを push → GitHub で PR 作成 → レビュー後に merge → 他メンバーは main を pull して同期、が基本フロー。",
+    "when": "作業が一区切りついたら push、作業を始めるときは pull で最新化。長時間 pull しないでいると conflict が増える。",
+    "tip": "`git pull --rebase` にしておくと履歴が一直線になって読みやすい。`git push --force` は危険、特に main へは絶対禁止。`--force-with-lease` の方が安全。",
+    "related": ["git add / commit", "ブランチ", "コンフリクト"],
+    "url": "https://git-scm.com/docs/git-push"
+  },
+  "ブランチ": {
+    "category": "Git",
+    "short": "本流を汚さずに実験・機能開発するための作業用コピー。",
+    "detail": "Git における作業の並列化の仕組み。`main` ブランチを本流として、機能追加やバグ修正ごとに `feature/login` `fix/button-color` のようなブランチを切り、完成したら PR で main にマージする。ブランチ切り替えは `git switch <name>`(新しい書き方)または `git checkout <name>`。",
+    "when": "どんな小さな変更でも必ずブランチを切るのが現代の作法。main に直接 commit するのは個人の experimental repo くらい。",
+    "tip": "ブランチ名はケバブケースで `feature/xxx` `fix/yyy` `docs/zzz` のような prefix を付けると、PR 一覧がスキャンしやすい。完了したブランチは削除して散らからないようにする。",
+    "related": ["PR（プルリク）", "マイルストーン", "コンフリクト"],
+    "url": "https://git-scm.com/docs/git-branch"
+  },
+  "PR（プルリク）": {
+    "category": "Git/GitHub",
+    "short": "「このブランチを main に取り込んでください」という申請。レビューの場。",
+    "detail": "Pull Request の略。GitHub / GitLab / Bitbucket 等のプラットフォーム機能で、ブランチ間のマージを申請する。レビュワーは差分(diff)を見てコメント・修正要求・承認を行い、承認が揃えばマージされる。CI(GitHub Actions 等)が自動で走り、テスト失敗なら赤信号が出る。コメントでの対話・スクリーンショット添付・リンク貼付で、設計議論と記録が一体化する。",
+    "when": "どんな変更でも PR 経由で main に入れるのが現代の作法。1人チームでも「自分レビュー」の習慣として PR を作ると、後から履歴を追いやすい。",
+    "tip": "PR のタイトルは変更の要約、本文には「なぜ」「何を」「テスト方法」を書く。Draft PR で作業中を公開するとチームから早期フィードバックを得られる。",
+    "related": ["ブランチ", "コードレビュー", "CI/CD"],
+    "url": "https://docs.github.com/ja/pull-requests"
+  },
+  "コンフリクト": {
+    "category": "Git",
+    "short": "2人が同じ箇所を直したとき、Git が自動マージできない状態。",
+    "detail": "merge や rebase のときに、複数のブランチが同じファイルの同じ行を異なる内容に変更していると発生する。Git はどちらを採用するか判断できず、`<<<<<<< HEAD` `=======` `>>>>>>>` マーカーでファイルに印を付けて開発者に委ねる。手動でマーカーを取り除き、正しい内容を残して再 commit することで解決する。",
+    "when": "長生きブランチをマージするとき、チーム人数が増えて同じファイルを編集する確率が上がるとき。",
+    "tip": "VSCode の Merge Editor(3-way 表示)や GitLens 拡張を使うと解決しやすい。そもそも発生頻度を下げるには、小さい PR を頻繁にマージする習慣にする。",
+    "related": ["ブランチ", "git push / pull"],
+    "url": "https://git-scm.com/docs/git-merge"
+  },
+  "フォーク": {
+    "category": "Git/GitHub",
+    "short": "他人のリポジトリを自分のアカウント配下にコピーする操作。OSS 参加の玄関口。",
+    "detail": "GitHub 上でボタン 1 つで、他ユーザーのリポジトリを自分のアカウントに複製できる機能。フォークした先のリポジトリには自分が自由に push でき、そこから元のリポジトリに PR を送ると OSS コントリビューションになる。fork と clone は別物で、fork はサーバー上のコピー、clone は手元へのダウンロード。",
+    "when": "OSS プロジェクトに PR を送るとき(元リポに直接 push 権限がない)、他人のテンプレを土台に自分仕様に改造するとき。",
+    "tip": "fork 元のリポジトリは `upstream` リモートとして登録して、定期的に `git fetch upstream` で最新を取り込む。さもないと差分が開きすぎて PR が通らなくなる。",
+    "related": ["PR（プルリク）", "git clone"],
+    "url": "https://docs.github.com/ja/get-started/quickstart/fork-a-repo"
+  },
+  "イシュー": {
+    "category": "GitHub/管理",
+    "short": "バグ報告・機能要望・タスク管理に使う議論チケット。",
+    "detail": "GitHub / GitLab の Issue。バグ・改善案・タスクを記録する場所で、コメント・ラベル・担当者・マイルストーン・PR との紐付けができる。`Fixes #42` のように PR の本文に書くと、その PR がマージされた瞬間に Issue が自動クローズされる。プロジェクト管理機能(Projects / Milestones)と組み合わせてカンバン運用もできる。",
+    "when": "バグを見つけた、機能アイデアを思いついた、大きめのタスクを分解したい、ユーザー要望を記録したい、など。全部 Slack に流すより Issue に残す方が後から検索できる。",
+    "tip": "テンプレート(`.github/ISSUE_TEMPLATE/*.md`)を用意すると、報告者が必要な情報を漏れなく書いてくれる。再現手順・期待/実際の挙動・環境情報を必須に。",
+    "related": ["PR（プルリク）", "マイルストーン"],
+    "url": "https://docs.github.com/ja/issues"
+  },
+  "マイルストーン": {
+    "category": "管理",
+    "short": "「このリリースまでに片付けるIssue群」をまとめる目印。",
+    "detail": "GitHub Milestone。Issue や PR をグルーピングして「v1.0」「2026年Q2」「ベータ公開」のような単位で進捗を追える。達成率がパーセンテージで表示され、期限日も設定できる。Agile のスプリントやリリース計画と相性がいい。",
+    "when": "中規模以上のプロジェクトで、複数の Issue をまとめて進捗管理したいとき。小さい個人プロジェクトでは Issue ラベルで代用できる。",
+    "tip": "マイルストーンが埋まりすぎたら現実的でない計画。早めに次マイルストーンへ繰り越すか優先度を落として、未達成でクローズしない。",
+    "related": ["イシュー", "スプリント", "アジャイル"],
+    "url": "https://docs.github.com/ja/issues/using-labels-and-milestones-to-track-work"
+  },
+  "コードレビュー": {
+    "category": "開発プロセス",
+    "short": "PR の差分を他のメンバーがチェックしてマージ可否を判断する工程。",
+    "detail": "バグ・設計のまずさ・命名・パフォーマンス問題を早期に発見するための工程。レビュワーは理想案を押しつけるのでなく「なぜこの書き方?」を問う姿勢が大事。レビュイーは指摘に感謝を示し、全部受け入れる必要はないが議論の結論を残す。自動化できる項目(フォーマット・Lint)は Linter に任せ、人間は設計・意図・UX の議論に集中する。",
+    "when": "PR を main にマージする前。規模が小さくても「自分レビュー」で 10 分置いて読み返すとバグが見つかる。",
+    "tip": "レビューが遅いとチームのボトルネックになる。小さい PR(200行以内)ほどレビューが早く品質も上がる。大きい PR は複数に分割する。",
+    "related": ["PR（プルリク）", "Linter/Formatter"],
+    "url": "https://google.github.io/eng-practices/review/"
+  },
+  "Supabase": {
+    "category": "バックエンド",
+    "short": "Postgres + Auth + Storage + Edge Functions を統合した OSS版 Firebase。",
+    "detail": "Postgres をコアにした Backend-as-a-Service。認証(Email / OAuth / Magic Link)・リアルタイム購読・ストレージ・Edge Functions(Deno) が揃っていて、自前でサーバー構築せずにアプリのバックエンドを立ち上げられる。全機能が OSS で、セルフホストも可能。Row Level Security(RLS) でマルチテナントなアクセス制御ができる。",
+    "when": "MVP / SaaS / 社内ツール。特に Postgres の SQL が書けるチームなら即戦力。Firebase からの移行先としても人気。",
+    "tip": "開発初期に **必ず RLS を有効化**。無効のまま Service Role Key を NEXT_PUBLIC_ 経由でブラウザに露出させる事故は典型的。`lib/supabase-mappers.ts` で snake_case ↔ camelCase を変換する層を挟むと TypeScript 側が綺麗に保てる。",
+    "related": ["Postgres", "RLS（行レベル）", "認証（Auth）"],
+    "url": "https://supabase.com/"
+  },
+  "Postgres": {
+    "category": "データベース",
+    "short": "30年以上愛される超堅牢なリレーショナルDB。JSON も扱える万能選手。",
+    "detail": "PostgreSQL。ACID 準拠・トランザクション完備・JSON/JSONB 型・配列型・全文検索・地理空間(PostGIS)・LISTEN/NOTIFY(リアルタイム通知)・マテリアライズドビューなど、商用 DB レベルの機能が OSS で揃う。Supabase / Neon / Render / Railway など各社のマネージド版がある。MySQL / MariaDB より厳格で拡張性が高い。",
+    "when": "構造化データを扱うほぼ全てのケース。リレーションが多い・トランザクションが必要・JSON も混ぜて使いたい、等の場面で特に強い。",
+    "tip": "インデックスを張らずに本番運用すると特定のクエリで突然詰まる。`EXPLAIN ANALYZE` で実行計画を確認する習慣を。",
+    "related": ["Supabase", "ORM", "マイグレーション"],
+    "url": "https://www.postgresql.org/"
+  },
+  "RLS（行レベル）": {
+    "category": "セキュリティ",
+    "short": "DBのテーブルに「誰がどの行を読める/書けるか」ルールをかける仕組み。",
+    "detail": "Row Level Security。Postgres 標準機能で、テーブルごとに `CREATE POLICY` でアクセスルールを定義する。Supabase では `auth.uid()` で認証ユーザーのIDが取れるので、`policy (auth.uid() = user_id)` のように書くと「自分の行しか読めない」が実現できる。API レイヤーで権限を書くより DB 側で縛る方が、アプリから直接 Supabase クライアントが叩けて安全。",
+    "when": "マルチテナント SaaS、ユーザーごとにデータを分離したいとき、Supabase を使うなら必須。",
+    "tip": "RLS を ON にするとデフォルトで全員拒否になる。policy を書くまでそのテーブルは誰からも読めなくなるので、開発中にハマりがち。Supabase ダッシュボードで policy の有無を確認する習慣を。",
+    "related": ["Supabase", "認証（Auth）"],
+    "url": "https://www.postgresql.org/docs/current/ddl-rowsecurity.html"
+  },
+  "認証（Auth）": {
+    "category": "セキュリティ",
+    "short": "ユーザーが「誰なのか」を確認する仕組み。パスワード・OAuth・Magic Link 等。",
+    "detail": "Authentication。ユーザーを識別して session を発行する処理全般。Email + Password / Google / GitHub / LINE などの OAuth / Magic Link(メールに一時リンク) / Passkey(WebAuthn) など方式は多い。認可(Authorization、何ができるか)とは別。Supabase Auth / Auth0 / Clerk / Firebase Auth / NextAuth.js など既製サービスを使うのが鉄則で、自前実装はリスクが高い。",
+    "when": "ユーザーログインが必要な全てのアプリ。マイページ・投稿・決済・管理画面。",
+    "tip": "パスワードは必ずサーバー側でハッシュ化(bcrypt / argon2)、生パスワードを DB に入れない。2FA / Passkey 対応は MVP 後でも入れられるので計画に含める。",
+    "related": ["Supabase", "JWT", "RLS（行レベル）"],
+    "url": "https://supabase.com/docs/guides/auth"
+  },
+  "JWT": {
+    "category": "セキュリティ",
+    "short": "署名付きトークン。ログイン情報をサーバー間で受け渡すときの標準形式。",
+    "detail": "JSON Web Token。ヘッダー.ペイロード.署名 の 3 パートを Base64 で繋いだトークン文字列。サーバーが秘密鍵で署名するので、クライアントが改ざんすると検証時に弾ける。payload にはユーザーID・権限・有効期限(exp)を入れるが、Base64 は暗号化ではなく誰でもデコードできるので、パスワード等の機密は絶対に入れない。",
+    "when": "API サーバーへの認証トークン、Supabase の access token、マイクロサービス間通信。",
+    "tip": "有効期限を長くしすぎない(短命 + refresh token の組み合わせが定石)。漏洩時の被害を抑える。ブラウザでは httpOnly Cookie に入れると XSS リスクを減らせる。",
+    "related": ["認証（Auth）", "CORS"],
+    "url": "https://jwt.io/"
+  },
+  "ORM": {
+    "category": "データベース",
+    "short": "SQLの代わりにオブジェクト/メソッドでDB操作するライブラリ。Prisma / Drizzle 等。",
+    "detail": "Object-Relational Mapping。DBテーブルを TypeScript のクラスや型にマッピングし、`prisma.user.findMany()` のようなメソッドで操作できる。SQL を直書きせず型安全にクエリが書けて、マイグレーション管理も統合されている。代表例: Prisma / Drizzle ORM / TypeORM / Sequelize / Kysely(Query Builder寄り)。",
+    "when": "TypeScript プロジェクトで DB を触るとき。型の恩恵が大きく、テーブル追加・カラム変更時の影響範囲が一瞬で分かる。",
+    "tip": "ORM に頼りすぎると N+1 問題が起きやすい。一覧+関連データを取るときは `include` や Raw Query で効率化。Drizzle は SQL に近い書き味で軽量、Prisma はドキュメントが充実。",
+    "related": ["Postgres", "マイグレーション"],
+    "url": "https://www.prisma.io/"
+  },
+  "マイグレーション": {
+    "category": "データベース",
+    "short": "DBスキーマ(テーブル構造)の変更を履歴として管理する仕組み。",
+    "detail": "テーブル追加・カラム追加・制約変更などの DDL を SQL ファイルとしてバージョン管理し、本番にも開発にも同じ手順で適用できるようにする。Prisma / Drizzle / Supabase CLI / Alembic(Python) / Flyway など各種ツールが提供する。上げる(up)だけでなく戻す(down)スクリプトも書くのが作法。",
+    "when": "DB のテーブル構造を変えるとき。手動で本番 DB に ALTER TABLE を打つのは再現性がなく、チーム環境との乖離を生むので厳禁。",
+    "tip": "破壊的変更(列削除・型変更)は 2 ステップに分ける。新カラム追加 → アプリ側を両対応 → 旧カラム削除。これで本番トラフィックを止めずに済む。",
+    "related": ["Postgres", "ORM", "ロールバック"],
+    "url": "https://www.prisma.io/docs/concepts/components/prisma-migrate"
+  },
+  "REST / GraphQL": {
+    "category": "API",
+    "short": "サーバーと通信する2大方式。URL単位(REST)かクエリ単位(GraphQL)か。",
+    "detail": "REST は HTTP メソッド(GET/POST/PUT/DELETE)とリソースURL(`/users/1`)でデータをやり取りする伝統的方式。GraphQL は 1 つのエンドポイントにクエリ言語でリクエストし、欲しいフィールドだけを正確に指定できる方式(Meta 社開発)。GraphQL はフロントが欲しいデータを一発で取れる反面、サーバー実装が複雑。tRPC は両者の中間で TypeScript 型を介した RPC。",
+    "when": "多くのプロジェクトは REST で十分。フロントエンドが多様なデータ要求を持つ大規模アプリ(Shopify / GitHub API)では GraphQL が効く。TypeScript フルスタックなら tRPC が最短距離。",
+    "tip": "REST は URL 設計が後から変えにくいのでバージョニング(`/v1/users`)を最初から入れる。GraphQL は N+1 が起きやすいので DataLoader パターンで束ねる。",
+    "related": ["CORS", "JWT"],
+    "url": "https://restfulapi.net/"
+  },
+  "CORS": {
+    "category": "セキュリティ",
+    "short": "別ドメインから API を呼ぶときの許可ルール。ブラウザが厳しくチェックする。",
+    "detail": "Cross-Origin Resource Sharing。`https://a.com` から `https://b.com/api` を fetch するとき、b 側が `Access-Control-Allow-Origin: https://a.com` を返さないとブラウザが結果を捨てる。HTTP メソッド(PUT / DELETE 等)によっては Preflight(OPTIONS リクエスト)が先行する。サーバーが curl や Node から叩くときは CORS は無関係(ブラウザだけの仕組み)。",
+    "when": "フロントとバックエンドでドメインが違うとき(Vercel のフロント + Render の API、など)。",
+    "tip": "開発中は `Access-Control-Allow-Origin: *` で雑に通してしまいがちだが、本番は必ず具体的ドメインに絞る。Cookie を跨ぐなら `credentials: 'include'` + `Access-Control-Allow-Credentials: true` の両方が必要。",
+    "related": ["HTTPS", "REST / GraphQL"],
+    "url": "https://developer.mozilla.org/ja/docs/Web/HTTP/CORS"
+  },
+  "CSRF": {
+    "category": "セキュリティ",
+    "short": "ログイン中のユーザーに偽のリクエストを送らせる攻撃。トークンで防ぐ。",
+    "detail": "Cross-Site Request Forgery。攻撃者が用意した悪意あるサイトから、被害者が既にログイン中のサイトへ勝手に POST を送らせる攻撃。Cookie が自動で付くので、被害者のセッションで任意の操作が走る。対策は CSRF トークン(サーバーが発行したランダム値をフォームに仕込み、送信時に検証)・SameSite Cookie(`strict` / `lax`)・Origin / Referer ヘッダーの確認。",
+    "when": "Cookie セッションを使う全てのフォーム。特に決済・パスワード変更・メール送信など state-changing 操作。",
+    "tip": "Next.js Server Actions は自動で CSRF トークンを付与する。Supabase など JWT を Authorization ヘッダーで送る方式なら CSRF のリスクは低い(Cookie 自動送信がないので)。",
+    "related": ["認証（Auth）", "XSS対策"],
+    "url": "https://owasp.org/www-community/attacks/csrf"
+  },
+  "XSS対策": {
+    "category": "セキュリティ",
+    "short": "ユーザー入力に混ぜられた JS を実行させない対策。エスケープが基本。",
+    "detail": "Cross-Site Scripting。コメント欄などに `<script>alert(1)</script>` を投稿されて、他ユーザーが表示した瞬間にその JS が実行される攻撃。対策は出力時のエスケープ(`<` → `&lt;`)、Content Security Policy(CSP)ヘッダーでインラインスクリプトを禁止、`dangerouslySetInnerHTML` を避ける、ユーザー入力に sanitize-html / DOMPurify を通す、など。",
+    "when": "ユーザー投稿・コメント・プロフィール・検索クエリを画面に表示する全ての箇所。",
+    "tip": "React / Vue / Next.js などのテンプレートエンジンはデフォルトでエスケープするので、普通に書いていれば XSS は起きにくい。危険なのは HTML を直接埋め込むコード(`dangerouslySetInnerHTML` など)。",
+    "related": ["CSRF", "HTTPS"],
+    "url": "https://owasp.org/www-community/attacks/xss/"
+  },
+  "SQLインジェクション": {
+    "category": "セキュリティ",
+    "short": "ユーザー入力に SQL を混ぜて DB を不正操作する古典的攻撃。",
+    "detail": "`SELECT * FROM users WHERE name = '${input}'` のように入力を文字列連結すると、input に `' OR '1'='1` を入れられて全件流出したり、`; DROP TABLE users;` でテーブル削除されたりする。対策は**必ずプリペアドステートメント / パラメータ化クエリを使う**こと。ORM(Prisma / Drizzle)や Supabase クライアントを普通に使っていれば自動で対策されている。",
+    "when": "DB を直接操作する全ての箇所。特に生 SQL を書く場面で危険。",
+    "tip": "「どうせユーザー入力しない」と思っても後から入力経路が増えるのが世の常。最初からパラメータ化しておく。`ESLint` の `no-template-curly-in-string` 系ルールでうっかり連結を検知。",
+    "related": ["ORM", "Postgres"],
+    "url": "https://owasp.org/www-community/attacks/SQL_Injection"
+  },
+  "環境変数": {
+    "category": "設定",
+    "short": "コードに書けない可変値を OS や PaaS から注入する仕組み。",
+    "detail": "プロセス起動時に渡される KEY=VALUE の集合で、プログラムから `process.env.KEY` で読める。DB接続先・APIキー・機能フラグ・デプロイ環境の種別(development / staging / production)を切り替える標準手段。ローカルは `.env`、本番は Render / Vercel / GitHub Actions の環境変数 UI で設定するのが現代の流れ。",
+    "when": "開発と本番で値を切り替えたい、秘密情報を扱う、機能フラグを外部から制御したい、全ての場面。",
+    "tip": "Next.js では `NEXT_PUBLIC_` 接頭辞だけがブラウザバンドルに露出する。これを付け忘れるとクライアントコードから読めない、逆に付けすぎると秘密が漏洩する。",
+    "related": [".env", "APIキー管理"],
+    "url": "https://12factor.net/ja/config"
+  },
+  "定数一元管理": {
+    "category": "設計",
+    "short": "会社情報・URL・SNS ID などを 1 ファイルにまとめ、ハードコードを禁止する。",
+    "detail": "`config/constants.ts` に `SITE_URL` / `LINE_ID` / `PHONE` などを集約し、各コンポーネントはそこから import する設計ルール。LINE ID 変更・ドメイン移転・電話番号変更といった事業判断が、1 ファイル修正で全箇所に反映される状態を保つ。ハードコードが散っていると変更漏れで古い URL が本番に残る事故につながる。",
+    "when": "新規プロジェクト立ち上げ時・既存プロジェクトでハードコードを見つけたとき。2 箇所以上に同じ値が出てきたら定数化のサイン。",
+    "tip": "LINE の `@` はエンコードが必要(`%40`)。URL 定数にはエンコード済みの値を入れる。環境変数で上書き可能にしておくと、staging / prod の切り替えが楽。",
+    "related": ["環境変数", "独自ドメイン"],
+    "url": null
+  },
+  "APIキー管理": {
+    "category": "セキュリティ",
+    "short": "キーの種類と露出経路を区別する。Publishable と Secret を混同しない。",
+    "detail": "多くの SaaS は「公開可能キー(publishable / anon)」と「秘密キー(secret / service_role)」の 2 種類を発行する。publishable はブラウザに露出しても OK だが、secret はサーバーのみ。Supabase の service_role をブラウザに出すと RLS を完全バイパスできて全テーブル書き放題になる。漏洩時は即ローテーション(発行元の管理画面で revoke → 新規発行)。",
+    "when": "Stripe / Supabase / Anthropic / OpenAI / SendGrid 等、外部サービスを使う全てのシーン。",
+    "tip": "GitHub は push 時に秘密鍵パターンを検知してブロックしてくれる(Secret scanning)。検知されたら履歴から削除するより、素直にキーを revoke して新しいのに差し替える。",
+    "related": [".env", "環境変数"],
+    "url": "https://docs.github.com/ja/code-security/secret-scanning"
+  },
+  "Firebase": {
+    "category": "バックエンド",
+    "short": "Google の BaaS。NoSQL(Firestore)+ Auth + Storage + ホスティング。",
+    "detail": "Google の Backend-as-a-Service。Firestore(NoSQL ドキュメント DB)・Authentication・Cloud Storage・Hosting・Functions が揃う。リアルタイム同期が強力で、チャット・協調編集に向く。しかしスキーマレスゆえに複雑なリレーションや集計が苦手で、Supabase(Postgres)の方が長期的には扱いやすいケースが多い。本プロジェクト群では**新規機能は Supabase に寄せる方針**。",
+    "when": "既存プロジェクトで Firebase を使っている箇所の保守。新規なら Supabase が推奨。",
+    "tip": "Firestore のセキュリティルールは独自言語で書きにくい。テスト用エミュレータで動作確認を習慣化する。課金はドキュメントの読み取り回数に効くので、フロントで同じクエリを多発しない設計に。",
+    "related": ["Supabase", "認証（Auth）"],
+    "url": "https://firebase.google.com/docs"
+  },
+  "Vercel": {
+    "category": "ホスティング",
+    "short": "Next.js の開発元が運営するホスティング。プレビューデプロイが強力。",
+    "detail": "Next.js / Vite / Astro 等の静的&SSR サイトを Git 連携でデプロイ。`main` ブランチに push すると本番、他のブランチに push すると自動でプレビュー URL が発行され、PR 上にリンクされる。Edge Functions / Image Optimization / Analytics も同居。欠点は転送量課金の予測難で、メディア系サイトはコストが跳ねることがある。",
+    "when": "Next.js プロジェクトのデフォルト選択。B2B SaaS・ブログ・LP・個人サイト。",
+    "tip": "`vercel.json` で rewrites / redirects / headers を設定。Preview URL はデフォルトで公開されるので、staging のデータ漏洩に注意(パスワード保護 or Deployment Protection を使う)。",
+    "related": ["Next.js", "CDN", "プレビューデプロイ"],
+    "url": "https://vercel.com/"
+  },
+  "Render": {
+    "category": "ホスティング",
+    "short": "Web サービス・静的サイト・Postgres を一気通貫でホストできる PaaS。",
+    "detail": "Heroku 後継と目される PaaS。GitHub 連携で `main` push 自動デプロイ、`render.yaml` でインフラコード化、静的サイト・Web サービス(Node/Python/Go 等)・Cron Job・Postgres・Redis・Key-Value Store が 1 ダッシュボードで管理できる。Singapore リージョンが選べて日本からも低レイテンシ。本プロジェクト群の推奨ホスティング。",
+    "when": "Next.js / FastAPI / Express / Go サーバーなど長時間起動型のアプリ。静的サイトも無料枠で十分動く。",
+    "tip": "無料プランは15分アクセスがないとスリープして初回アクセスが遅い。常時起動が必要なら最低でも Starter プランに上げる。環境変数はダッシュボードで管理し、`render.yaml` には書かない(秘密が漏れるため)。",
+    "related": ["Vercel", "Netlify", "CDN"],
+    "url": "https://render.com/"
+  },
+  "Netlify": {
+    "category": "ホスティング",
+    "short": "JAMstack 時代の先駆けホスティング。Forms / Functions / Identity 込み。",
+    "detail": "静的サイト + サーバーレス関数の老舗。Vercel より先に Git 連携デプロイ・プレビューURL の概念を広めた。Forms(問い合わせフォームをバックエンド無しで受付) / Identity(認証) / Edge Functions など周辺機能も充実。Astro / SvelteKit / Hugo 等のフレームワークフレンドリー。",
+    "when": "静的サイト中心・簡易フォームでいい LP / 個人ブログ。",
+    "tip": "Netlify Forms の無料枠は月100件。問い合わせが多いサイトは Supabase + Edge Function 等に切り替える。",
+    "related": ["Vercel", "Render", "CDN"],
+    "url": "https://www.netlify.com/"
+  },
+  "CDN": {
+    "category": "インフラ",
+    "short": "世界中のサーバーに静的ファイルを複製して、ユーザーに一番近い場所から配信する。",
+    "detail": "Content Delivery Network。Cloudflare / Fastly / AWS CloudFront / Vercel Edge Network などが代表。JS / CSS / 画像 / HTML をエッジサーバー(世界各地)にキャッシュし、ユーザーは地理的に近いサーバーから受け取るので高速化と帯域節約になる。DDoS 対策・WAF(Web Application Firewall)・画像最適化などの付加機能も持つ。",
+    "when": "公開 Web サイト全般。Vercel / Netlify / Render の静的サイト配信は内部で CDN を使っている。",
+    "tip": "CDN キャッシュが効きすぎて古いコンテンツが残ることがある。Cache-Control ヘッダーを適切に設定、デプロイ時にパージ(purge)する。Cloudflare はダッシュボードから手動パージ可能。",
+    "related": ["キャッシュ", "画像最適化", "独自ドメイン"],
+    "url": "https://www.cloudflare.com/learning/cdn/what-is-a-cdn/"
+  },
+  "HTTPS": {
+    "category": "セキュリティ",
+    "short": "通信を暗号化する必須プロトコル。2026年の Web では無い方が異常。",
+    "detail": "HTTP に TLS(旧称SSL)暗号化を加えたプロトコル。通信内容が経路上で盗聴・改ざんされないことを保証する。Let's Encrypt で無料証明書が取得できるようになり、ホスティング各社が自動化したため、今は `https://` が標準。ブラウザは `http://` サイトに警告を出し、混在コンテンツ(HTTPS ページ内の HTTP リソース)はサイレントブロックされる。",
+    "when": "全ての公開サイト。Render / Vercel / Netlify / GitHub Pages は自動で HTTPS。独自ドメインもワンクリックで証明書発行。",
+    "tip": "本プロジェクト群では外部画像も必ず HTTPS 経由。`<meta http-equiv=\"Content-Security-Policy\" content=\"upgrade-insecure-requests\">` を入れて HTTP リクエストを自動で HTTPS に書き換える保険を張る。",
+    "related": ["CORS", "独自ドメイン"],
+    "url": "https://developer.mozilla.org/ja/docs/Glossary/HTTPS"
+  },
+  "独自ドメイン": {
+    "category": "インフラ",
+    "short": "example.com のような自分専用アドレス。レジストラで購入して DNS 設定。",
+    "detail": "お名前.com / Google Domains / Cloudflare Registrar 等で年間数千円で買える。購入後、DNS レコード(A / CNAME / TXT)をホスティング先に向けると、ブラウザから `example.com` でアクセスできるようになる。CDN 側で自動的に Let's Encrypt の TLS 証明書が発行され HTTPS 化される。",
+    "when": "公開サイトで信頼感を出したいとき、ブランディング、メール用(`info@example.com`)に。",
+    "tip": "Cloudflare Registrar は原価販売で最安。DNSSEC 有効化でハイジャック対策。メール用途なら SPF / DKIM / DMARC の TXT レコードも設定しないとスパム扱いされる。",
+    "related": ["HTTPS", "CDN"],
+    "url": "https://www.cloudflare.com/ja-jp/learning/dns/what-is-dns/"
+  },
+  "GitHub Actions": {
+    "category": "CI/CD",
+    "short": "GitHub に統合された自動化ワークフロー。push/PR/スケジュールで動く。",
+    "detail": "`.github/workflows/*.yml` に YAML でワークフローを定義すると、push・PR・cron・手動トリガーで自動実行される。テスト・ビルド・デプロイ・定期バッチ・Issue 自動トリアージ等に使う。Marketplace に再利用可能なアクションが多数あり(`actions/checkout` / `actions/setup-node` / `actions/upload-artifact` など)。パブリックリポジトリは無料、プライベートは月単位の利用枠あり。",
+    "when": "テストの自動実行・ビルド検証・定期スクレイピング・Pages 配信・Render 以外へのデプロイトリガー。AIハブ では毎朝 07:00 JST に `run.py` を実行して記事収集する。",
+    "tip": "秘密情報は Settings → Secrets に登録して `${{ secrets.NAME }}` で参照。ログに echo しない(secrets は自動マスクされるが PATH 名などは残る)。失敗時に Slack 通知を入れると運用が楽。",
+    "related": ["CI/CD", "Dependabot"],
+    "url": "https://docs.github.com/ja/actions"
+  },
+  "CI/CD": {
+    "category": "開発プロセス",
+    "short": "Continuous Integration(継続的インテグレーション)+ Delivery / Deployment の総称。",
+    "detail": "コードを push するたびに自動でテスト・ビルドを走らせ(CI)、問題なければ自動で本番にデプロイする(CD)仕組み。GitHub Actions / CircleCI / GitLab CI / Render の Auto Deploy 等で実現する。手動デプロイの手間とミスを排除し、小さく頻繁にリリースできるようになる。",
+    "when": "プロジェクト開始時から入れる。後付けは心理的ハードルが上がる。個人プロジェクトでも型チェックと Lint だけでも回す価値あり。",
+    "tip": "CI が遅いと PR レビューが詰まる。テストを並列化・キャッシュを効かせる・変更ファイル依存で skip、で高速化。緑が常態になるよう flaky test は即直す。",
+    "related": ["GitHub Actions", "プレビューデプロイ", "ユニットテスト"],
+    "url": "https://martinfowler.com/articles/continuousIntegration.html"
+  },
+  "プレビューデプロイ": {
+    "category": "CI/CD",
+    "short": "PRごとに自動で専用URLが生えて、レビュワーが実物を触れる。",
+    "detail": "ブランチを push した瞬間に、そのブランチ専用の一時 URL が発行されてデプロイされる機能。Vercel / Netlify / Render の Preview Environments 等で提供される。PR 本文にリンクが自動で載り、デザイナー・PM・レビュワーがコードを pull せずに実物で挙動確認できる。マージされたら自動で破棄。",
+    "when": "UI 変更・文言変更・Server Action 挙動確認など「実際に触らないと確認できない」変更全般。",
+    "tip": "Preview URL はデフォルトで公開されるので、未発表機能のリーク・staging DB への不適切アクセスに注意。パスワード保護・認証付きを設定できる。",
+    "related": ["CI/CD", "PR（プルリク）"],
+    "url": "https://vercel.com/docs/deployments/preview-deployments"
+  },
+  "ロールバック": {
+    "category": "運用",
+    "short": "本番で問題が出たら 1 つ前のバージョンに戻す操作。",
+    "detail": "デプロイで本番が壊れたときの最速復旧手段。Vercel / Render / Netlify は過去のデプロイを一覧で持っていて、ボタン 1 つで任意のバージョンに巻き戻せる。DB マイグレーションが絡むロールバックは注意が必要で、スキーマの破壊的変更があると戻せないケースもある(だから マイグレーションは 2 ステップ分割にする)。",
+    "when": "デプロイ直後にエラー率上昇・機能が壊れた・顧客から苦情、といった緊急時。原因究明より先に戻す。",
+    "tip": "ロールバック手順を事前に文書化しておく。オンコールが夜中にパニックで失敗しない仕組み作り。Sentry や UptimeRobot で異常を検知したら Slack に通知して初動を早める。",
+    "related": ["CI/CD", "マイグレーション", "アラート"],
+    "url": "https://render.com/docs/rollbacks"
+  },
+  "Dependabot": {
+    "category": "セキュリティ",
+    "short": "依存ライブラリの脆弱性を検知して自動で PR を出してくれる bot。",
+    "detail": "GitHub 組み込み。`.github/dependabot.yml` を置くか Settings で有効化すると、`package.json` や `requirements.txt` をスキャンして脆弱性のあるバージョンを使っている箇所を PR で修正提案する。週次の定期更新・セキュリティ緊急更新の 2 モードがある。類似品に Renovate があり、こちらの方が細かく設定できる。",
+    "when": "公開リポジトリでは有効化を強く推奨。数ヶ月放置するとセキュリティアップデートで PR が溜まって辛くなる。",
+    "tip": "minor/patch は自動マージ、major は人が見る設定にすると運用負荷が下がる。CI で必ず自動テストを走らせて緑なら auto-merge。",
+    "related": ["GitHub Actions", "CI/CD"],
+    "url": "https://docs.github.com/ja/code-security/dependabot"
+  },
+  "Linter/Formatter": {
+    "category": "品質",
+    "short": "Linter はバグの匂いを検知、Formatter は整形。ESLint + Prettier が鉄板。",
+    "detail": "Linter は静的解析でコードのスタイル違反・潜在バグ・アンチパターンを検知するツール(ESLint / Biome / Ruff)。Formatter はコード整形に特化(Prettier / Biome / Black)。VSCode の `editor.formatOnSave` で保存時自動整形、CI では `eslint --max-warnings=0` で PR をブロック、で品質を担保する。Biome は ESLint + Prettier を 1 ツールに統合した新興で、Rust 製で爆速。",
+    "when": "新規プロジェクト立ち上げ時に必ず導入。後から入れると「一気に全ファイル変更の PR」が発生してレビュー不能になる。",
+    "tip": "Prettier と ESLint のルールが喧嘩することがあるので `eslint-config-prettier` でオフにする。チーム内でルールを decide したら `.editorconfig` もセットで置く。",
+    "related": ["VSCode", "コードレビュー"],
+    "url": "https://eslint.org/"
+  },
+  "ユニットテスト": {
+    "category": "品質",
+    "short": "関数や小さなコンポーネント単位で、入力→出力の正しさを自動確認する。",
+    "detail": "Vitest / Jest / Bun test などのフレームワークで書く、単一の関数 / コンポーネントに対するテスト。外部依存(DB / API)をモックして純粋にロジックだけを検証する。テスト駆動開発(TDD)ではコードより先にテストを書く。実行が速いので CI で常時走らせる想定。",
+    "when": "ロジックが複雑な関数・金額計算・バリデーション・カスタムフック。UI の見た目は E2E に寄せる方が費用対効果が良い。",
+    "tip": "100%カバレッジを狙うと工数が吹き飛ぶ。重要な分岐(エラー系・境界値)を優先。スナップショットテストは便利だが更新忘れに注意。",
+    "related": ["統合テスト", "E2Eテスト"],
+    "url": "https://vitest.dev/"
+  },
+  "統合テスト": {
+    "category": "品質",
+    "short": "複数モジュール(DB + API + 認証など)を組み合わせた正しさを確認する。",
+    "detail": "Integration Test。ユニットテストと E2E の中間で、実 DB + 実 API + アプリコードを起動して API 経由で検証する。Supertest / Vitest + Testcontainers 等で書く。モックだけのユニットテストでは見つからない「統合時の矛盾」(SQL の型・RLS・認証フロー)を検知できる。",
+    "when": "DB スキーマ変更・API 仕様変更・認証フロー変更のような「接続部」を触る PR の検証。",
+    "tip": "CI で毎回実 DB を起動すると遅いので、Testcontainers / Docker Compose で一時 Postgres を立てる。テストごとにトランザクションで isolation する。",
+    "related": ["ユニットテスト", "E2Eテスト", "Postgres"],
+    "url": "https://martinfowler.com/bliki/IntegrationTest.html"
+  },
+  "E2Eテスト": {
+    "category": "品質",
+    "short": "ブラウザを自動操作して、ユーザー視点で全体が正しく動くかを検証する。",
+    "detail": "End-to-End Test。Playwright / Cypress / Puppeteer でブラウザを自動操作し、「トップページを開く → ログインフォームにメールを入れる → 確認メールを開く → ダッシュボードに遷移する」のような実際のフローをテストする。UI からバックエンドまで全部含むので、変更に強い代わりに実行が遅く flaky(不安定)になりやすい。",
+    "when": "クリティカルパス(サインアップ・決済・投稿作成など事業の骨格)のリグレッション検知。全機能を E2E するのは非効率。",
+    "tip": "Playwright の `--ui` モードで目視デバッグ。失敗時のスクリーンショット / ビデオを CI アーティファクトに保存しておくと原因究明が楽。並列実行で時間短縮。",
+    "related": ["ユニットテスト", "統合テスト"],
+    "url": "https://playwright.dev/"
+  },
+  "ビルド": {
+    "category": "開発プロセス",
+    "short": "ソースコードを本番配信用のファイル群(HTML/JS/CSS)に変換する工程。",
+    "detail": "TypeScript → JavaScript のトランスパイル、JSX → JS、未使用コード削除(tree shaking)、ミニファイ(空白削除)、バンドル(ファイル結合)、画像最適化などを行う。Next.js は `next build`、Vite は `vite build`、Astro は `astro build`。ビルド成果物は `dist/` / `.next/` / `build/` 等に出力され、ホスティングはそれを配信する。",
+    "when": "デプロイ前に必ず。CI でビルドが通るかだけ検証する Job を入れると型エラー等を早期検知できる。",
+    "tip": "ビルド時間が長くなってきたら `next build --profile` / `vite build --profile` でボトルネック調査。画像を public に大量に置くと遅くなるので Cloudinary / imgix 等に外出しする。",
+    "related": ["CI/CD", "Lighthouse", "画像最適化"],
+    "url": null
+  },
+  "npm run dev": {
+    "category": "開発",
+    "short": "開発用サーバーを起動する定番コマンド。ホットリロード付き。",
+    "detail": "`package.json` の `scripts.dev` に書かれたコマンドを実行する。Next.js なら `next dev`、Vite なら `vite`。ファイル変更を検知して自動でブラウザをリロード、TypeScript の型エラーも画面に表示される。ポートはフレームワークや `--port` オプションで指定(本プロジェクト群では `set-ports.js` が自動で 3001〜3009 に割り振る)。",
+    "when": "開発中の常用コマンド。VSCode の統合ターミナルで起動しっぱなしにする。",
+    "tip": "起動中に Ctrl+C で停止。ポートが既に使われているとエラーになる(裏で別プロセスが居座っている時は `netstat` / `lsof` で PID を特定して kill)。",
+    "related": ["ホットリロード", "ポート番号", "npm"],
+    "url": null
+  },
+  "ホットリロード": {
+    "category": "開発",
+    "short": "ファイルを保存した瞬間にブラウザが自動更新される開発体験。",
+    "detail": "Hot Module Replacement(HMR)とも。Vite / Next.js / Webpack Dev Server が提供する機能で、変更ファイルだけをブラウザに差し替える。React なら状態(useState の値)を保持したまま JSX だけ更新することもできる。保存 → タブ切替 → F5 の手動ループが消えるので体感速度が大幅向上。",
+    "when": "開発サーバー起動中は常に自動で効いている。",
+    "tip": "HMR が効かないケース(CSS の `:root` 変更・グローバル state の構造変更・設定ファイル変更)ではフルリロードに落ちる。たまに壊れるので変な挙動を感じたら `Ctrl+Shift+R` でハードリロード。",
+    "related": ["npm run dev"],
+    "url": "https://vitejs.dev/guide/features.html#hot-module-replacement"
+  },
+  "ポート番号": {
+    "category": "ネットワーク",
+    "short": "同じマシン内でサービスを区別する番号。開発サーバーはよく 3000 番台。",
+    "detail": "TCP/UDP でプロセスを識別する 0〜65535 の番号。Well-known(0〜1023)は HTTP(80) / HTTPS(443) / SSH(22) 等。開発では 3000 / 3001 / 5173(Vite デフォルト) / 8080 などがよく使われる。本プロジェクト群ではクライアントが 3001〜3009、エージェント生成アプリが 4001〜 と帯域を分けている。",
+    "when": "複数アプリを同時に開発するとき・サーバーを 1 マシンに相乗りさせるとき。",
+    "tip": "ポート重複エラーは `EADDRINUSE`。Windows は `netstat -ano | findstr :3001` → `taskkill /PID <pid> /F`、Mac/Linux は `lsof -i :3001` → `kill -9 <pid>` で解決。",
+    "related": ["npm run dev"],
+    "url": null
+  },
+  "ログ": {
+    "category": "運用",
+    "short": "アプリの稼働記録。障害調査の一次情報源。",
+    "detail": "`console.log`(開発)から本番の構造化ログ(`pino` / `winston` / `structlog`)まで。`info` / `warn` / `error` / `debug` のレベル分けとタイムスタンプ・リクエスト ID・ユーザー ID を含めるのが基本。Render / Vercel のダッシュボードで見る以外に、Datadog / Axiom / Grafana Loki などの外部ログ基盤に流すとクエリ性能と保持期間が劇的に上がる。",
+    "when": "本番障害調査・パフォーマンス調査・セキュリティ監査。「動きません」の初動は常にログから。",
+    "tip": "個人情報(メール・電話・決済番号)をログに書かない。エラー時はスタックトレースとリクエスト全体を出しすぎてトークン漏洩、も起きがち。",
+    "related": ["エラー監視", "アラート", "デバッグ"],
+    "url": "https://12factor.net/ja/logs"
+  },
+  "エラー監視": {
+    "category": "運用",
+    "short": "本番で起きた例外を自動で拾って Slack / メールで通知するサービス。",
+    "detail": "Sentry / Bugsnag / Rollbar が代表格。フロント/バックに SDK を仕込むと、`throw new Error(...)` や unhandled rejection を自動収集して、スタックトレース・発生頻度・影響ユーザー数をダッシュボードで見られる。source map をアップロードすれば minify 後のコードでも元の行番号が分かる。",
+    "when": "本番運用するすべてのサービス。ユーザーから「動きません」報告が来る前に Slack 通知で気付く体制に。",
+    "tip": "開発環境のエラーも送ると Sentry の枠が食われるので環境で切り分け。`beforeSend` フックで PII(個人情報)を filter する。",
+    "related": ["ログ", "アラート"],
+    "url": "https://sentry.io/"
+  },
+  "アラート": {
+    "category": "運用",
+    "short": "異常発生時に Slack / メール / 電話で即通知する仕組み。",
+    "detail": "メトリクス(エラー率・レスポンス時間・5xx 数・DB 接続数)が閾値を超えたら通知する仕組み。Sentry / Datadog / Grafana / UptimeRobot などで設定する。PagerDuty / Opsgenie と連携すると当番(オンコール)の電話を鳴らせる。ノイズが多いと無視されるので、閾値は厳しすぎず緩すぎず調整する。",
+    "when": "本番運用で SLA を守りたいとき。個人プロダクトでも主要ページの UptimeRobot 無料枠は入れておくと安心。",
+    "tip": "アラートは「誰が何分以内に対応するか」をセットで定義しないと形骸化する。オンコール表・エスカレーションルールを Notion / Docs にまとめる。",
+    "related": ["エラー監視", "ログ", "SLA/SLO"],
+    "url": "https://uptimerobot.com/"
+  },
+  "SLA/SLO": {
+    "category": "運用",
+    "short": "サービスレベルの契約(SLA)と目標(SLO)。可用性 99.9% などの数値目標。",
+    "detail": "Service Level Agreement / Service Level Objective。SLA は顧客との契約で守るべき数値(守れないと返金等のペナルティ)、SLO は内部目標。例: 月間稼働率 99.9% = 月 43 分以下のダウンタイム。エラー率 < 0.1%・p95 レスポンス < 300ms のような測定可能な指標(SLI)で裏付ける。",
+    "when": "B2B SaaS・エンタープライズ顧客を持つサービスでは契約上必須。個人サービスでも自分に課す SLO を決めると健全な監視運用になる。",
+    "tip": "SLO を守るためにリリース速度を落としすぎると事業が止まる。「エラー予算」(許容ダウンタイム)を消費したらリリースを止める、という考え方(Google SRE)。",
+    "related": ["アラート", "エラー監視"],
+    "url": "https://sre.google/sre-book/service-level-objectives/"
+  },
+  "デバッグ": {
+    "category": "開発",
+    "short": "バグの原因を特定して直す工程。ログ・ブレークポイント・再現テスト。",
+    "detail": "バグ修正の王道: (1) 現象を言語化・再現手順を確立、(2) ログ・エラーメッセージを読む、(3) 仮説を立てる、(4) print/breakpoint で観測、(5) 仮説検証、(6) 修正 + 再発防止テスト。Chrome DevTools(フロント)・VSCode デバッガ(Node)・Rubber duck(誰かに口で説明する)が武器。",
+    "when": "日常的。焦って直す前に「なぜこうなったのか」が分かるまで観察する方が結局早い。",
+    "tip": "二分探索デバッグ: `git bisect` で「どの commit で壊れたか」を O(log n) で特定。`console.log` を撒くより効率的なことが多い。",
+    "related": ["ログ", "DevTools", "エラー監視"],
+    "url": null
+  },
+  "DevTools": {
+    "category": "開発",
+    "short": "Chrome / Firefox に内蔵された開発者ツール。F12 で開く。",
+    "detail": "Elements(DOM/CSS 検査)・Console(JS エラー / ログ)・Network(HTTP リクエスト)・Sources(デバッガ)・Performance(パフォーマンス計測)・Application(Cookie / LocalStorage / Service Worker)・Lighthouse(品質監査)が揃う万能ツール。フロント開発は DevTools を 5 割使っていると言っても過言ではない。",
+    "when": "UI バグ・CSS 崩れ・API エラー・パフォーマンス調査・Cookie 確認、その他諸々。",
+    "tip": "Sources タブの `Pretty print` で minify コードも読める。Network タブは `Preserve log` を ON にするとページ遷移してもログが残る。",
+    "related": ["デバッグ", "Lighthouse"],
+    "url": "https://developer.chrome.com/docs/devtools"
+  },
+  "Lighthouse": {
+    "category": "品質",
+    "short": "Google 製の Web 品質監査ツール。パフォーマンス/SEO/A11y をスコア化。",
+    "detail": "Chrome DevTools に内蔵、もしくは PageSpeed Insights / `lighthouse` CLI で実行。Performance(ページ速度)・Accessibility(障害者対応)・Best Practices・SEO・PWA の 5 カテゴリを 0〜100 点で評価し、具体的な改善提案を出す。Core Web Vitals(LCP / INP / CLS)も含まれる。",
+    "when": "新規サイト公開前・リニューアル後・パフォーマンス改善 PR 前後の比較。",
+    "tip": "モバイル版と PC 版でスコアが大幅に違う(モバイルの方が厳しい)。画像最適化・不要 JS 削除・フォント最適化で 20 点以上上がることも。CI に `lighthouse-ci` を組むとデグレを検知できる。",
+    "related": ["Core Web Vitals", "画像最適化", "アクセシビリティ"],
+    "url": "https://developer.chrome.com/docs/lighthouse"
+  },
+  "Core Web Vitals": {
+    "category": "SEO/品質",
+    "short": "Google が SEO 評価に使う 3 つの UX 指標。LCP / INP / CLS。",
+    "detail": "LCP(Largest Contentful Paint): 最大要素の表示完了時間。2.5秒以内が良好。INP(Interaction to Next Paint): 操作への反応時間。200ms以内が良好。CLS(Cumulative Layout Shift): レイアウトずれの累計。0.1以下が良好。2024年から FID → INP に置き換わった。Google 検索のランキング要素に含まれる。",
+    "when": "公開サイトの SEO 対策・UX 改善。計測は Chrome UX Report(実ユーザー)と Lighthouse(ラボ)の両方で。",
+    "tip": "LCP は hero 画像が主要因。`priority` 属性・fetchpriority・preload で改善。CLS はフォント切替・画像サイズ未指定が主因、`width/height` を必ず指定。INP は重い JS を `useDeferredValue` 等で分割。",
+    "related": ["Lighthouse", "画像最適化"],
+    "url": "https://web.dev/articles/vitals"
+  },
+  "画像最適化": {
+    "category": "パフォーマンス",
+    "short": "WebP/AVIF 変換・リサイズ・遅延読み込みで Web の画像を軽くする。",
+    "detail": "オリジナル画像を本番配信前に WebP / AVIF に変換、デバイス幅に応じた srcset でサイズを切り替え、viewport 外の画像は `loading=\"lazy\"` で遅延読み込み。Next.js `<Image>` / Cloudinary / imgix / images.weserv.nl は自動でやってくれる。数 MB の JPEG を 100KB 以下の AVIF にできることも。",
+    "when": "公開サイトで画像が 3 枚以上ある全てのページ。特に hero / カード一覧 / ブログサムネ。",
+    "tip": "本プロジェクト群では外部画像は `src/lib/externalImage.ts` の `proxyImage()` 経由で `images.weserv.nl` を使い HTTPS + 最適化をまとめて解決している。",
+    "related": ["Lighthouse", "Core Web Vitals", "CDN"],
+    "url": "https://web.dev/fast/#optimize-your-images"
+  },
+  "アクセシビリティ": {
+    "category": "品質",
+    "short": "障害者を含む誰もが使える Web に近づけるための設計原則。",
+    "detail": "a11y(accessibility の略)。セマンティック HTML(`<button>` でなく `<div onClick>` を使わない)・alt テキスト・キーボード操作対応・コントラスト比 4.5:1 以上・フォーカスリング・aria 属性などで実現する。法規制(米国 ADA / EU EAA / 日本 JIS X 8341)の対象になるサービスもある。",
+    "when": "公開サイトは全て配慮すべき。Lighthouse の Accessibility スコアで 90+ を維持。視覚障害ユーザーのスクリーンリーダー(NVDA / VoiceOver)で読み上げチェックが理想。",
+    "tip": "画像の alt は「絵の説明」ではなく「そこに画像がない時に必要な情報」を書く。装飾画像は `alt=\"\"`。フォーカスリングを消す CSS(`outline: none`)は絶対に書かない。",
+    "related": ["Lighthouse", "メタタグ"],
+    "url": "https://www.w3.org/WAI/fundamentals/"
+  },
+  "メタタグ": {
+    "category": "SEO",
+    "short": "HTMLの<head>に書く、検索エンジン・SNS向け説明書き。",
+    "detail": "`<title>` / `<meta name=\"description\">` / `<meta property=\"og:image\">`(OGP: Twitter/Facebook シェア画像) / `<link rel=\"canonical\">` 等。検索結果とシェアカードの見た目を決める。Next.js は `metadata` オブジェクトで宣言的に管理、`generateMetadata()` で動的生成も可能。",
+    "when": "全てのページ。特にブログ記事・商品ページ・LP は OGP 画像と description を個別に設定。",
+    "tip": "OGP 画像は 1200×630 で作る。SNS 側でキャッシュされるので更新しても反映に時間がかかる(Facebook Sharing Debugger / Twitter Card Validator でパージ)。",
+    "related": ["canonical", "sitemap.xml", "アナリティクス"],
+    "url": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/meta"
+  },
+  "canonical": {
+    "category": "SEO",
+    "short": "「このページの正規URLはこれ」と検索エンジンに伝える宣言。重複コンテンツ対策。",
+    "detail": "`<link rel=\"canonical\" href=\"https://example.com/article/123\">` を `<head>` に入れる。`?utm_source=...` やページネーション(`?page=2`)で URL が複数存在するとき、Google にどれを正規扱いするか伝える。誤ると検索結果から消えたり別 URL に統合されたりする。",
+    "when": "パラメータ付き URL が出るサイト(EC・ブログ・検索機能)全般。",
+    "tip": "自己参照 canonical(自分の URL を指す)を全ページに入れるのが基本形。ドメイン変更時はリダイレクトと合わせて canonical も更新しないと旧URLが正規扱いのままになる。",
+    "related": ["メタタグ", "sitemap.xml"],
+    "url": "https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls"
+  },
+  "sitemap.xml": {
+    "category": "SEO",
+    "short": "検索エンジンに「このサイトにはこれらのURLがあります」と伝えるXMLファイル。",
+    "detail": "全ページの URL・最終更新日・優先度を XML で羅列。検索エンジンのクロール効率を上げる。動的サイトでは `sitemap.ts`(Next.js)等でビルド時に自動生成。Google Search Console に登録するとインデックス状況を確認できる。ブログ記事公開から検索結果表示までの時間短縮に効く。",
+    "when": "50ページ以上 or 動的ページを持つサイト。SPA で `robots.txt` が動かないなら静的 sitemap で補う。",
+    "tip": "URL は canonical 版を書く。robots.txt に `Sitemap: https://example.com/sitemap.xml` と書いておくと自動発見される。50000 URL / 50MB を超えるなら sitemap index で分割。",
+    "related": ["robots.txt", "canonical", "メタタグ"],
+    "url": "https://www.sitemaps.org/ja/"
+  },
+  "robots.txt": {
+    "category": "SEO",
+    "short": "クローラー(検索ボット)に「ここは見るな」と伝えるテキストファイル。",
+    "detail": "`https://example.com/robots.txt` に置く。`User-agent: *` と `Allow/Disallow: /path` で指定。`Sitemap: ...` でサイトマップの場所も教えられる。ただし**強制力はなく**、お行儀のいいボット(Googlebot / Bingbot)だけが従う。機密情報は robots.txt で隠すのでなく、そもそも公開しない・認証をかけるのが正解。",
+    "when": "全ての公開サイトに1枚。管理画面・検索結果ページ・重複コンテンツを Disallow に。",
+    "tip": "`/admin` を Disallow に書くと「ここに管理画面がある」と攻撃者に教えることになる。そもそも URL を推測されない名前にするか、basic auth で保護する。",
+    "related": ["sitemap.xml", "メタタグ"],
+    "url": "https://developers.google.com/search/docs/crawling-indexing/robots/intro"
+  },
+  "JSON-LD": {
+    "category": "SEO",
+    "short": "構造化データを JSON で書く形式。検索結果のリッチスニペット対応。",
+    "detail": "`<script type=\"application/ld+json\">` に Schema.org の語彙で「このページは記事」「著者は X」「公開日は Y」と書く。Google が解釈してリッチ結果(評価星・FAQ アコーディオン・レシピ情報・著者写真)を検索結果に表示する。LLMO(AI検索最適化)にも効き、ChatGPT や Perplexity が参照しやすくなる。",
+    "when": "ブログ記事・商品・FAQ・イベント・レシピ・動画ページなど、検索結果で目立たせたい全てのコンテンツ。",
+    "tip": "本プロジェクト群では個別記事に BlogPosting / FAQPage / SpeakableSpecification を出す方針。Google Rich Results Test でプレビュー確認できる。",
+    "related": ["BlogPosting", "FAQPage", "Speakable", "メタタグ"],
+    "url": "https://json-ld.org/"
+  },
+  "BlogPosting": {
+    "category": "SEO",
+    "short": "ブログ記事用の構造化データ。headline / author / date を Google に伝える。",
+    "detail": "Schema.org の `BlogPosting` 型。`headline`・`author`・`publisher`・`datePublished`・`dateModified`・`mainEntityOfPage`・`image` を JSON-LD で宣言する。Google 検索結果に著者情報や公開日が表示されやすくなり、Discover への掲載確率も上がる。",
+    "when": "全てのブログ記事・ニュース記事・お知らせページ。",
+    "tip": "`author` は Person 型でオブジェクト化し、`url` に著者プロフィールページを入れる。`dateModified` を更新日に合わせて変えると検索結果上の日付も最新化される。",
+    "related": ["JSON-LD", "FAQPage", "Speakable"],
+    "url": "https://schema.org/BlogPosting"
+  },
+  "FAQPage": {
+    "category": "SEO",
+    "short": "よくある質問のリッチスニペット。検索結果でアコーディオン表示される。",
+    "detail": "Schema.org の `FAQPage` 型。`mainEntity` に `Question` オブジェクトの配列、各 Question の `acceptedAnswer` に `Answer` を入れる。Google が質問+回答を検索結果に直接展開するので CTR が上がる。ただし対象ページに実際に FAQ が表示されている必要がある(偽装は手動ペナルティ)。",
+    "when": "商品ページ・サービス紹介・ヘルプ記事など FAQ セクションがあるページ。",
+    "tip": "Q&A を 5-10 個入れるとスニペット占有率が上がる。2024年以降 Google は FAQPage の表示頻度を絞っており、効果は昔ほど派手ではない。それでも ChatGPT 系の LLMO 対策としては有効。",
+    "related": ["JSON-LD", "BlogPosting", "Speakable"],
+    "url": "https://schema.org/FAQPage"
+  },
+  "Speakable": {
+    "category": "SEO/LLMO",
+    "short": "音声検索やAI検索に向けて「読み上げるならここ」を明示する構造化データ。",
+    "detail": "Schema.org の `SpeakableSpecification`。`cssSelector` や `xpath` で、記事内の要約・h1 などを指定する。Google Assistant / スマートスピーカー・Perplexity 等の AI 検索が引用・要約する際に優先的に使う。LLMO(AI検索最適化)の柱の一つ。",
+    "when": "ブログ記事・ニュース記事・解説ページ全般。BlogPosting の中に入れ子で入れる。",
+    "tip": "`cssSelector: [\"h1\", \".summary\", \".tldr\"]` のように、記事の要約が入るセレクタを列挙する。AI が引用しやすい短い要約を付けておくと、ChatGPT や Perplexity の回答に URL が載る確率が上がる。",
+    "related": ["JSON-LD", "BlogPosting", "FAQPage"],
+    "url": "https://developers.google.com/search/docs/appearance/structured-data/speakable"
+  },
+  "アナリティクス": {
+    "category": "運用/マーケ",
+    "short": "訪問数・滞在時間・CVR を計測するツール。GA4 / Plausible / Cloudflare Web Analytics。",
+    "detail": "Google Analytics 4(GA4)がデファクト、プライバシー重視なら Plausible / Cloudflare Web Analytics / Fathom が Cookie 不要で GDPR 対応。ページビュー・イベント(クリック・スクロール・購入)・ユーザーフロー・リファラ・デバイス分布を可視化する。広告ROI 測定の土台でもある。",
+    "when": "事業サイト全般。趣味の個人ブログでも導入すると記事ごとの反応が分かって書く意欲が出る。",
+    "tip": "GA4 はイベント設計次第で価値が大きく変わる。`click_cta` / `sign_up_completed` のようなビジネス観点のイベントを define。Cookie バナー(GDPR/改正個情法)は Cookiebot / Osano 等で自動化。",
+    "related": ["メタタグ", "Core Web Vitals"],
+    "url": "https://analytics.google.com/"
+  },
+  "キャッシュ": {
+    "category": "パフォーマンス",
+    "short": "一度取得したデータを一時保存して次回を高速化。CDN/ブラウザ/DBなど階層がある。",
+    "detail": "ブラウザキャッシュ(HTTP Cache-Control / ETag)・CDN キャッシュ(Cloudflare / Vercel Edge)・サーバー側の Redis キャッシュ・アプリ内メモリキャッシュ(React Query / SWR)など、レイヤーが複数ある。速度向上とコスト削減の両面で効くが、**キャッシュ invalidate(無効化)は難しい**。「古いキャッシュが残って新バージョンが見えない」事故が頻繁に起きる。",
+    "when": "アクセス頻度が高い・重いクエリや外部APIコール・静的アセット配信。",
+    "tip": "デプロイ時はファイル名にハッシュを含めて(`app.abc123.js`)、HTTP Cache-Control を長く設定する immutable パターンが王道。HTML は短命キャッシュ + 中身の JS は長命、が定石。",
+    "related": ["CDN", "画像最適化"],
+    "url": "https://web.dev/articles/http-cache"
+  },
+  "サンドボックス": {
+    "category": "セキュリティ/開発",
+    "short": "本番と隔離された実験環境。壊しても誰にも迷惑がかからない場所。",
+    "detail": "Supabase / Stripe / Firebase 等で提供される開発・テスト用の分離環境。実データを使わず、API キーも分離されている。ローカル開発・staging・PR プレビュー・E2E テストで活用。Cloud Functions や Edge Runtime の「権限制限付きで実行する仕組み」も sandbox と呼ぶ。",
+    "when": "決済フロー・メール送信・外部 API 連携のテスト。本番キーで叩くと顧客に迷惑メールが飛ぶ事故に。",
+    "tip": "Stripe Test モードのクレジットカード番号 `4242 4242 4242 4242` は暗記しておく。Supabase は `create_branch` で DB ごと一時コピーできる(有料)。",
+    "related": ["プレビューデプロイ", "環境変数"],
+    "url": "https://stripe.com/docs/testing"
+  },
+  "リファクタリング": {
+    "category": "品質",
+    "short": "外部の振る舞いを変えずに、内部構造を改善する作業。",
+    "detail": "関数分割・命名改善・重複除去・抽象化・パターン適用で、可読性・保守性・テスタビリティを上げる。ユニットテストが揃っていることが前提(テストがあれば振る舞いが変わっていないと保証できる)。機能追加と同じ PR で混ぜると差分が読めなくなるので、リファクタリング PR は単独で出す。",
+    "when": "同じコードを 3 回書いたら共通化を検討(Rule of Three)。命名が変わった・概念が分かれた・新しい要求で見通しが悪くなった、も契機。",
+    "tip": "`Extract Function`(関数抽出)・`Rename`(名前変更)は VSCode の F2 / Ctrl+Shift+R で安全に実行できる。大きなリファクタは小さく分割して常に緑を保ちながら進める。",
+    "related": ["コードレビュー", "ユニットテスト"],
+    "url": "https://refactoring.com/"
+  },
+  "アジャイル": {
+    "category": "プロセス",
+    "short": "短いサイクルで作り・レビューし・軌道修正する反復型の開発手法。",
+    "detail": "ウォーターフォール(設計→実装→テストを順に)の対極。2〜4週間のスプリントで動くものを出し、ユーザー/関係者の反応を見て次を決める。Scrum(スクラム) / Kanban が代表的フレームワーク。「変化を受け入れる」「動くソフトウェアを重視」「対話を重視」がアジャイル宣言の柱。",
+    "when": "要件が固まりきらないプロダクト開発全般。逆に要件が完全に固まっていて変わらない受託は、ウォーターフォールが効率的な場合もある。",
+    "tip": "形だけのスクラム(儀式だけ導入)は逆効果。レトロスペクティブで継続的に改善できるチームだけが機能する。小さな PR・CI/CD・自動テストの技術基盤が伴わないと速度が出ない。",
+    "related": ["スプリント", "マイルストーン"],
+    "url": "https://agilemanifesto.org/iso/ja/manifesto.html"
+  },
+  "スプリント": {
+    "category": "プロセス",
+    "short": "1〜4週間の短い作業単位。Scrum の中核概念。",
+    "detail": "スプリント計画会議で取り組む Issue を決め、期間中に実装、末尾にレビューとレトロスペクティブ(ふりかえり)を行う。「このスプリント中に何を達成するか(スプリントゴール)」を明確にする。期間内の割り込みは原則禁止して、集中して進める。",
+    "when": "Scrum 運用の全社。規模が小さいチームは Kanban(WIP制限)の方が軽量でフィットすることも。",
+    "tip": "2週間スプリントが最もメジャー。1週間は回転が早いが計画オーバーヘッドが重い。4週間は市場の変化についていけないことも。",
+    "related": ["アジャイル", "マイルストーン"],
+    "url": "https://scrumguides.org/scrum-guide.html"
+  },
+  "Turborepo": {
+    "category": "モノレポ",
+    "short": "Vercel 社製のモノレポ(複数パッケージ1リポ)高速化ツール。",
+    "detail": "1 つのリポジトリに複数のアプリ・ライブラリを入れる構成(モノレポ)で、ビルド/テスト/lint を差分実行 + リモートキャッシュで高速化する。Nx とよく比較される。Next.js のモノレポ構成でよく使われる。`turbo.json` でタスク依存を定義すると、変更されたパッケージだけが再ビルドされる。",
+    "when": "フロント + 共有 UI + バックエンドのように関連パッケージが複数あるプロジェクト。1 アプリなら不要。",
+    "tip": "リモートキャッシュ(Vercel 提供)を使うと CI が劇的に早くなる。ローカルと CI で同じキャッシュを共有できる。",
+    "related": ["npm", "CI/CD"],
+    "url": "https://turbo.build/"
+  },
+  "Prompt": {
+    "category": "AIエンジニアリング / プロンプト",
+    "short": "AIへの指示文そのもの。モデルに渡すテキスト全体を指す。",
+    "detail": "LLM への入力テキスト全体。system プロンプト(人格・制約)と user プロンプト(具体的な依頼)に分かれる。現代の LLM 活用はプロンプト設計で品質の 8 割が決まると言われ、役割指定・Few-shot・CoT・出力形式指定などを組み合わせて精度を引き出す。短いと曖昧に解釈され、長すぎると重要な指示が埋もれる。",
+    "when": "あらゆる LLM 利用場面。Claude / ChatGPT / Gemini の API 呼出時、エージェント設計、RAG の質問整形まで全てプロンプトが土台。",
+    "tip": "「何を / どう / どんな形式で / 何を避ける」の 4 要素を揃えると品質が跳ねる。いきなり長文を書かず、短い指示で試してから足していく。",
+    "related": ["役割指定", "Few-shot", "CoT", "出力形式", "制約列挙", "Context"],
+    "url": "https://docs.anthropic.com/ja/docs/prompt-engineering"
+  },
+  "役割指定": {
+    "category": "AIエンジニアリング / プロンプト",
+    "short": "「〜の専門家として」と役を与えて語彙と視点を固定するテクニック。",
+    "detail": "「あなたは経験豊富なフロントエンドエンジニアです」のように役割を宣言するだけで、モデルは対応する語彙・判断基準・振る舞いに寄る。system プロンプトの冒頭に書くのが定石。単なる雰囲気付けではなく、出力品質・専門用語の正確さ・エラー時の対応に明確に差が出る。",
+    "when": "専門領域の回答を引き出すとき、特定のトーン(敬語/砕けた)を保ちたいとき、複数エージェントで役割分担するとき。",
+    "tip": "曖昧な役割(「優秀な人」)より具体的な肩書き(「10年以上の Next.js 経験を持つテックリード」)の方が効く。ただし虚偽の資格を詐称させると倫理的な問題があるので、タスクに即した範囲で。",
+    "related": ["Prompt", "Few-shot", "Multi-Agent"],
+    "url": null
+  },
+  "Few-shot": {
+    "category": "AIエンジニアリング / プロンプト",
+    "short": "期待する入出力の例を数個見せてから本番を頼む手法。",
+    "detail": "「入力:X → 出力:Y」の例を 2〜5 個並べてから本番クエリを与える。機械学習の「少数サンプル学習」が語源。Zero-shot(例なし) / One-shot(1例) / Few-shot(複数例) と段階があり、例が増えるほど形式・スタイル・判断基準を暗黙に伝えられる。JSON 出力・分類・抽出タスクで特に強い。",
+    "when": "出力フォーマットを厳密に揃えたい、エッジケースの扱いを示したい、スタイルを真似てほしいとき。",
+    "tip": "例は多様性を意識する(似すぎた例だけだとそれ以外を外す)。例の順序にも影響されるので、最後の例に近い出力が出やすい点に注意。",
+    "related": ["Prompt", "出力形式", "Eval"],
+    "url": null
+  },
+  "CoT": {
+    "category": "AIエンジニアリング / プロンプト",
+    "short": "Chain of Thought。段階的に考えさせて推論を誘導する手法。",
+    "detail": "「ステップごとに考えて」「まず前提を整理して、次に…」のように思考プロセスを言語化させる。Google 2022 年論文 Wei et al. で提唱。算数・論理パズル・コード生成で精度が大幅向上することが示された。近年の推論モデル(o1 / Claude extended thinking)はこれを内部で自動実行する。",
+    "when": "複数ステップの推論、条件分岐の多い判断、数式の計算、設計判断など「一発で答えが出せない」問題。",
+    "tip": "思考過程を最終出力から分離(例: `<thinking>...</thinking><answer>...</answer>`)すると、ユーザー向けは簡潔にしつつ内部の検証材料を残せる。",
+    "related": ["Prompt", "ReAct", "Reflection"],
+    "url": "https://arxiv.org/abs/2201.11903"
+  },
+  "出力形式": {
+    "category": "AIエンジニアリング / プロンプト",
+    "short": "JSON・表・XML など機械処理しやすい形式を指定する。",
+    "detail": "「以下の JSON スキーマで返して: {name:string, age:number}」のように形式を明示すると、後段のコードでパースして使える。Anthropic / OpenAI API は JSON モード・Structured Outputs(スキーマ強制)を提供。XML タグ(`<result>...</result>`)は Claude で特に有効とされる。",
+    "when": "API レスポンスとして使う、DB に入れる、後段の関数に渡すなど機械処理するとき。",
+    "tip": "JSON モードでも稀に壊れた JSON が返る。`try/catch` で parse 失敗時のリトライ or 部分復旧を入れる。スキーマが複雑すぎると失敗率が上がるので、フラット寄りに設計。",
+    "related": ["Prompt", "Few-shot", "Tool Use"],
+    "url": "https://docs.anthropic.com/ja/docs/build-with-claude/structured-outputs"
+  },
+  "ReAct": {
+    "category": "AIエンジニアリング / プロンプト",
+    "short": "Reason(思考)→Act(行動)→Observe(観察)のループで問題解決する手法。",
+    "detail": "Princeton 大 2022 年論文。LLM に「考え→ツール実行→結果観察→再考」を繰り返させることで、外部ツールと組み合わせた推論タスクを解く。現代のエージェント(Claude Code・Devin・SWE-agent 等)はほぼこの ReAct パラダイム。Tool Use と組み合わせて実装される。",
+    "when": "外部データ参照や段階的作業が必要なタスク。コード修正・調査・予約・検索など現実作業を AI に任せるとき。",
+    "tip": "ループの上限(max_iterations)を必ず設定。無限に考え続けてトークンを溶かす事故が典型。各ステップのログを残して後で分析。",
+    "related": ["Tool Use", "Agentic Loop", "CoT", "Agent"],
+    "url": "https://arxiv.org/abs/2210.03629"
+  },
+  "Context": {
+    "category": "AIエンジニアリング / コンテキスト",
+    "short": "AI に渡す周辺情報の総体。プロンプト + 添付文書 + 履歴 + システム指示。",
+    "detail": "モデルが参照できる全情報の塊。Claude 4 系は最大 200K トークン(約 15 万語)、Gemini 1.5 は 1M〜2M トークンを扱える。同じ質問でもコンテキストの設計次第で精度が大きく変わる。RAG・CLAUDE.md・プロンプトキャッシュはコンテキスト設計の主要技法。",
+    "when": "長文対応・社内文書検索・コード全体を踏まえた提案など、質問単独では答えられないタスク全般。",
+    "tip": "詰め込めば良いわけではない(コンテキスト汚染)。関連度の高い順に並べる、冒頭と末尾に重要情報を置く(中央は忘れやすい = Lost in the middle)。",
+    "related": ["RAG", "CLAUDE.md", "コンテキスト圧縮", "コンテキスト汚染", "Prompt Caching", "埋め込み検索"],
+    "url": null
+  },
+  "CLAUDE.md": {
+    "category": "AIエンジニアリング / コンテキスト",
+    "short": "Claude Code が起動時に自動で読むプロジェクト規約ファイル。",
+    "detail": "プロジェクトルートに置くと Claude Code が毎回のセッション冒頭で自動読み込みする Markdown ファイル。コーディング規約・使用しているフレームワーク・よくあるハマりどころ・運用ルールを書いておくと、指示するたびに説明し直さずに済む。親ディレクトリのも継承され、階層的に効く。本プロジェクト群では親 `Claude/CLAUDE.md` + 各クライアント `<name>/CLAUDE.md` の2階層で運用。",
+    "when": "Claude Code で継続的に開発するプロジェクト全て。2回以上同じ説明をしたと感じたら書き足すタイミング。",
+    "tip": "300行を超えると Claude 自身が読み落とす。重要な規約を先頭に、詳細は関連ドキュメントへのリンクに逃がす。`/init` コマンドで初版を自動生成できる。",
+    "related": ["Context", "Prompt", "Managed Agents"],
+    "url": "https://docs.anthropic.com/ja/docs/claude-code/memory"
+  },
+  "RAG": {
+    "category": "AIエンジニアリング / コンテキスト",
+    "short": "Retrieval-Augmented Generation。関連文書を検索してから生成する。",
+    "detail": "ユーザーの質問に近い文書をベクトル検索で引っ張ってきて、それをコンテキストに詰めて LLM に答えさせる手法。Meta 2020 年論文で命名。社内ナレッジ Q&A・製品ドキュメント検索・法律相談 bot などで必須技術。Embedding(埋め込み) + Vector DB(Pinecone / Chroma / pgvector)の組合せが一般的。",
+    "when": "モデルが知らない最新情報や社内文書を参照させたい、ハルシネーションを減らしたい、根拠を引用させたいとき。",
+    "tip": "チャンク分割(文書をどの長さで切るか)と検索上位件数の調整が命。再ランキング(BM25 + ベクトルの 2 段)で精度が上がる。評価は Golden Data で回す。",
+    "related": ["Context", "埋め込み検索", "Embedding", "ゴールデンデータ", "Eval"],
+    "url": "https://arxiv.org/abs/2005.11401"
+  },
+  "コンテキスト圧縮": {
+    "category": "AIエンジニアリング / コンテキスト",
+    "short": "長い会話履歴を要約してトークンを節約する技法。",
+    "detail": "コンテキスト枠には上限がある。古い会話を要約に置き換えたり、重要部分だけ抽出したりしてトークン数を圧縮する。Claude Code は自動で会話を圧縮して継続できる仕組みを持つ。API 側で手動実装する場合は「直近 N ターンは素で残し、それ以前は要約」のスライディングウィンドウが定番。",
+    "when": "長時間の対話型セッション、巨大なコードベース相手の編集、複数回にわたる調査タスク。",
+    "tip": "圧縮で失われやすい情報(具体的な数値・ファイル名・ユーザーの好み)は「恒久メモリ」として別枠に保持すると安定する。",
+    "related": ["Context", "メモリ階層", "Prompt Caching"],
+    "url": null
+  },
+  "埋め込み検索": {
+    "category": "AIエンジニアリング / コンテキスト",
+    "short": "文章を数値ベクトルに変換し、意味の近さで検索する。",
+    "detail": "「埋め込み(Embedding)」モデル(OpenAI text-embedding-3 / Cohere embed / Voyage 等)がテキストを数百〜数千次元のベクトルに変換。コサイン類似度で近さを測ると、キーワード一致ではなく意味的に近い文書が引ける。Vector DB(Pinecone / Weaviate / pgvector)に格納して高速検索する。",
+    "when": "RAG の検索層、レコメンド、重複検出、セマンティック検索全般。",
+    "tip": "多言語混在なら多言語対応モデル(Cohere multilingual・BAAI/bge-m3 等)を選ぶ。チャンクサイズは 256〜1024 token が定番、長すぎると意味がブレる。",
+    "related": ["RAG", "Context"],
+    "url": "https://platform.openai.com/docs/guides/embeddings"
+  },
+  "Prompt Caching": {
+    "category": "AIエンジニアリング / コンテキスト",
+    "short": "プロンプトの固定部分をキャッシュして次回以降を高速・安価に。",
+    "detail": "Anthropic / OpenAI が提供する機能。システムプロンプト・長文ドキュメント・Few-shot 例など「毎回同じ部分」をサーバー側でキャッシュすると、次回以降は差分だけ課金される(Anthropic は 90% 割引・レイテンシ大幅減)。RAG や CLAUDE.md のような定常的なコンテキストに超有効。",
+    "when": "同じシステムプロンプトを多数のリクエストで使うサービス、長文を繰り返し参照するエージェント。",
+    "tip": "Anthropic は `cache_control` をブロックに付けると有効化。キャッシュ TTL は 5 分(1 時間版もあり)。キャッシュが切れるとフルコストになるので、バースト間隔を意識して設計。",
+    "related": ["Context", "コンテキスト圧縮"],
+    "url": "https://docs.anthropic.com/ja/docs/build-with-claude/prompt-caching"
+  },
+  "コンテキスト汚染": {
+    "category": "AIエンジニアリング / コンテキスト",
+    "short": "情報を詰め込みすぎて精度が落ちる現象。多ければ良いわけではない。",
+    "detail": "コンテキストに無関係な情報・古い情報・矛盾する情報を入れすぎると、モデルが混乱して精度が下がる現象。「Lost in the Middle」として、長文の中央付近の情報は特に無視されやすいことが実証されている。関連度の高い情報を厳選して、不要なものを積極的に捨てる設計が重要。",
+    "when": "RAG で多数の文書を引いたとき、長時間セッションで古い指示が残ったとき、複数のエージェントがコンテキストを受け渡すとき。",
+    "tip": "「このタスクに本当に必要か?」を毎ステップで問い直す。Self-critique(自己レビュー)で無関係情報を削ぐ工程を挟むと品質が上がる。",
+    "related": ["Context", "コンテキスト圧縮", "Reflection"],
+    "url": null
+  },
+  "Harness": {
+    "category": "AIエンジニアリング / ハーネス",
+    "short": "AI を安全に動かすための装具一式。ツール・権限・監査の総合基盤。",
+    "detail": "Tool Use・Sandbox・Permission・Hook・ログなどを組み合わせて、AI が暴走せず・安全に・追跡可能に動ける実行基盤を指す。Claude Code は代表的な Harness 実装(ファイル編集・Bash 実行・MCP 接続を統合)。自前でエージェントを作るなら、どのツールを何階層の権限で渡すか設計するのが Harness の仕事。",
+    "when": "AI に現実世界の操作(ファイル編集・API 呼出・決済)をさせる全ての場面。",
+    "tip": "最小権限の原則を徹底。全ツール解放より、タスクに必要な最小セットを渡す方が安全かつ結果も良い(選択肢が狭まって精度が上がる)。",
+    "related": ["Tool Use", "Sandbox", "Permission", "Hook", "監査ログ", "Agent"],
+    "url": null
+  },
+  "Tool Use": {
+    "category": "AIエンジニアリング / ハーネス",
+    "short": "Read / Write / Bash など関数を AI が呼び出せる仕組み。",
+    "detail": "LLM が「この関数を引数こうで呼んで」と JSON で返すと、ホスト側が実行して結果を返す。Anthropic API の `tool_use` ブロック、OpenAI の Function Calling が該当。ファイル読み書き・API コール・DB 検索などを AI が自律判断で呼ぶ基礎機構。Claude Code・GitHub Copilot Agent・Devin など現代の AI エージェントは全てこれを使う。",
+    "when": "AI にコード編集・調査・外部サービス連携をさせる全場面。",
+    "tip": "ツール定義の説明文(description)が AI の呼び分け判断材料。曖昧だと誤用される。引数スキーマは厳密に。危険な操作は必ず Permission を噛ませる。",
+    "related": ["Harness", "Agentic Loop", "Permission", "MCP"],
+    "url": "https://docs.anthropic.com/ja/docs/build-with-claude/tool-use"
+  },
+  "Agentic Loop": {
+    "category": "AIエンジニアリング / ハーネス",
+    "short": "AI がツールを連続で呼び続けて自律的にタスクを完遂するループ。",
+    "detail": "「思考 → ツール呼出 → 結果観察 → 次の判断」を AI 自身が回し続ける動作。終了条件(タスク完了 / エラー / 上限到達)まで自動で進む。Claude Code の編集作業、CMA のアプリ自動生成、Devin のチケット対応、全部この形。人間は入口の指示と要所の承認だけを担う。",
+    "when": "複数ステップの作業を一息に任せたいとき。調査・リファクタ・機能追加・バグ修正など。",
+    "tip": "ループ上限・トークン上限・時間上限の3つを必ず設ける。Plan→Execute を挟むと暴走が減る。Reflection を要所に入れると品質が上がる。",
+    "related": ["Tool Use", "ReAct", "Agent", "Plan → Execute", "Human-in-the-Loop"],
+    "url": null
+  },
+  "Sandbox": {
+    "category": "AIエンジニアリング / ハーネス",
+    "short": "AI の実行を隔離環境に閉じ込めて本番を汚さない仕組み。",
+    "detail": "Docker コンテナ・一時ディレクトリ・制限付き VM などで AI の操作範囲を制限する。Anthropic の Managed Agents はクラウド上の使い捨て Environment で動く。ローカルなら Docker + 書込制限ディレクトリで近い環境を作れる。これが無いと AI の誤操作で本番 DB が飛ぶ・履歴が消える事故が起きうる。",
+    "when": "AI に任意コード実行・ファイル操作・シェル実行を許可する全ての場面。",
+    "tip": "Sandbox から外への通信・永続化・秘密情報アクセスは明示的にホワイトリスト化。「デフォルト拒否、必要分だけ許可」の姿勢が基本。",
+    "related": ["Harness", "Permission", "Managed Agents"],
+    "url": null
+  },
+  "Permission": {
+    "category": "AIエンジニアリング / ハーネス",
+    "short": "危険操作の前に人間の承認を挟む仕組み。",
+    "detail": "Claude Code は Write・Edit・Bash など副作用のある操作の前に「これを実行してもいいですか?」と確認を出す。API 実装でも、特定のツール呼出の前にユーザー確認を挟む設計が増えている。許可レベル(auto-approve / ask / deny)をツールごとに設定でき、慣れた操作は自動承認に切り替えて速度を上げる運用も可能。",
+    "when": "ファイル削除・DB 変更・本番デプロイ・決済実行など、取り返しのつかない操作全般。",
+    "tip": "毎回全部聞かれると AI を使う意味が薄れる。信頼できる操作は auto-approve、本当に危険な操作だけ ask、のメリハリが鍵。Claude Code は設定で細かく制御可能。",
+    "related": ["Harness", "Human-in-the-Loop", "Hook"],
+    "url": null
+  },
+  "Hook": {
+    "category": "AIエンジニアリング / ハーネス",
+    "short": "ツール呼出の前後に自動で監査/整形処理を差し込む仕組み。",
+    "detail": "Claude Code の Hook 機能はシェルコマンドをイベント(PreToolUse / PostToolUse / Stop 等)に紐付けられる。例: Write の前に Prettier を自動実行、Bash の前にコマンドをログに記録、Stop 時に Slack 通知。エージェント側のコードを触らずに挙動をカスタマイズできる。",
+    "when": "特定イベントで自動整形・禁止操作の検知・通知・ログ保存を行いたいとき。",
+    "tip": "Hook が失敗するとツール実行が止まる。Hook スクリプトは堅牢に書き、例外時は通知しつつ通す判断も要検討。`~/.claude/settings.json` で設定。",
+    "related": ["Harness", "Permission", "監査ログ"],
+    "url": "https://docs.anthropic.com/ja/docs/claude-code/hooks"
+  },
+  "Sub Agent": {
+    "category": "AIエンジニアリング / ハーネス",
+    "short": "専門タスクを並列分離した子エージェント。Claude Code の Task ツール等。",
+    "detail": "親エージェントが「コードベースを広く調査して」みたいな重い仕事を子エージェントに丸投げする仕組み。子は独立したコンテキストで動き、結果だけ親に返す。親のコンテキスト汚染を避けつつ、並列実行で時短にもなる。Claude Code の `Task` ツール、LangGraph / CrewAI のエージェントグラフなどが該当。",
+    "when": "広範な調査・独立した複数タスク・専門役(レビュー担当・セキュリティ監査担当)を分けたいとき。",
+    "tip": "子のプロンプトに親の意図を漏れなく渡すのが意外と難しい(子は会話履歴を持たない)。渡す情報を明示的にまとめる工程が要る。",
+    "related": ["Multi-Agent", "Orchestration", "Agent"],
+    "url": null
+  },
+  "MCP": {
+    "category": "AIエンジニアリング / ハーネス",
+    "short": "Model Context Protocol。AI と外部ツール連携の標準規格。",
+    "detail": "Anthropic が 2024 年に公開したオープンプロトコル。AI クライアント(Claude Desktop / Claude Code / Cursor / Cline 等)と外部ツール(GitHub / Slack / Notion / DB / ブラウザ)を共通の接続規格で繋ぐ。JSON-RPC ベースで、誰でも MCP サーバーを実装すれば対応クライアント全てから使える。「AI 界の USB-C」と表現される。",
+    "when": "自作ツールを Claude Code から呼びたい、既存 MCP サーバーを取り込んで機能拡張したいとき。",
+    "tip": "公式サーバー(filesystem / github / slack / puppeteer 等)が多数公開済み。自作するなら TypeScript SDK か Python SDK が手軽。stdio / HTTP SSE / Streamable HTTP の 3 transport がある。",
+    "related": ["Tool Use", "Harness", "Agent"],
+    "url": "https://modelcontextprotocol.io/"
+  },
+  "Eval": {
+    "category": "AIエンジニアリング / 評価",
+    "short": "プロンプトやモデル変更時の品質回帰を自動テストする仕組み。",
+    "detail": "LLM 利用は非決定的なので、プロンプト変更 / モデルアップグレード / RAG 調整で精度がどう動いたか計測する仕組みが必須。入力と期待出力のペアを多数用意し、自動採点する。単純な exact match から LLM-as-Judge まで手法は様々。OSS では Promptfoo / LangSmith / DeepEval、Anthropic は Workbench・Console の Evaluate 機能を提供。",
+    "when": "本番投入前、プロンプト変更の影響確認、モデル切替時の性能比較。",
+    "tip": "最初は 20〜50 件の Golden データから始めれば十分。完璧を目指すと腰が重くなる。数値が動いた理由を言語化できるケース分析が肝。",
+    "related": ["LLM-as-Judge", "A/Bテスト", "ゴールデンデータ", "RAG"],
+    "url": "https://docs.anthropic.com/ja/docs/test-and-evaluate/eval-tool"
+  },
+  "LLM-as-Judge": {
+    "category": "AIエンジニアリング / 評価",
+    "short": "別の LLM に採点させる自動評価手法。人手採点の代替。",
+    "detail": "生成物の品質を数値化する専用の採点プロンプトを設計し、強いモデル(GPT-4 / Claude Opus)に採点させる。人手より速く安いが、モデル自身のバイアス(長い方が良い点をつける傾向・同じモデルを贔屓する傾向)に注意が必要。Anthropic・OpenAI の研究で人間評価と 80〜90% 一致することが示されている。",
+    "when": "数千件の大量評価、主観的な品質(分かりやすさ・自然さ)の採点、CI での自動回帰検知。",
+    "tip": "評価基準(rubric)を明示したプロンプトを書く。5 段階採点より「A 案と B 案どちらが良いか」の pairwise の方が安定しやすい。",
+    "related": ["Eval", "A/Bテスト", "ゴールデンデータ"],
+    "url": null
+  },
+  "ゴールデンデータ": {
+    "category": "AIエンジニアリング / 評価",
+    "short": "人手で作った「正解例」集。評価の絶対基準になる。",
+    "detail": "入力と期待出力のペア(または期待されるべき性質のチェックリスト)を人間が書いた、信頼できる正解集。Eval の基盤となる。量より質が重要で、多様性(簡単ケース・難しいケース・エッジケース)を意識して作る。OSS の Golden dataset(GSM8K・HumanEval・MMLU 等)は多領域で存在。",
+    "when": "プロンプトやモデルの精度を数値で語りたいとき、本番投入前の QA、継続的な品質モニタリング。",
+    "tip": "プロジェクト開始時に 20 件作るだけで十分な投資効果。定期的に「本番で失敗した例」をゴールデンデータに追加してカバレッジを広げる。",
+    "related": ["Eval", "LLM-as-Judge", "RAG"],
+    "url": null
+  },
+  "Orchestration": {
+    "category": "AIエンジニアリング / 統括",
+    "short": "複数の AI やツールを指揮統括する上位レイヤー。",
+    "detail": "エージェント・ツール・ワークフロー・外部 API を束ねて一連のタスクに編み上げる仕組み。LangGraph / Temporal / Inngest / n8n / Claude Managed Agents など選択肢は多数。ループ制御・エラーリトライ・並列実行・状態管理を提供し、「プロンプト1つでは収まらない複雑ワークフロー」を実装可能にする。",
+    "when": "マルチステップの業務プロセス自動化、複数エージェントの協調、長時間ジョブの状態管理。",
+    "tip": "最初は単純な if/else のコードで十分。抽象化されたフレームワーク(LangGraph等)は複雑になってから導入する方がハマらない。",
+    "related": ["Multi-Agent", "Managed Agents", "Plan → Execute", "Sub Agent"],
+    "url": null
+  },
+  "Managed Agents": {
+    "category": "AIエンジニアリング / 統括",
+    "short": "Anthropic が提供するフルマネージド自律エージェント実行基盤。",
+    "detail": "Claude Managed Agents(CMA)は API 経由でクラウド上の一時 Environment にエージェントを起動し、ファイル編集・Bash 実行・MCP 接続を含む長時間タスクを任せられる仕組み。インフラ管理不要・スケール自動・認証統合済み。本プロジェクト群では `agents_system/manager.py` が CMA と連携してアプリ自動生成を行う。",
+    "when": "自社サービスに「AI が裏で勝手に作業する」機能を組み込みたいとき。CI のように定期実行する AI ワークフロー。",
+    "tip": "料金はトークン + 実行時間。ループ上限を必ず設ける。成果物は Environment 終了時に消えるので、ログや出力は専用フォルダへ保存する運用を CLAUDE.md に明記。",
+    "related": ["Orchestration", "Agent", "Sandbox", "CLAUDE.md"],
+    "url": "https://docs.anthropic.com/ja/api/agent-sdk/overview"
+  },
+  "Plan → Execute": {
+    "category": "AIエンジニアリング / 統括",
+    "short": "先に計画を立てて承認を得てから実行する 2 段階パターン。",
+    "detail": "AI にいきなり作業させず、まず計画(手順の箇条書き・変更予定ファイル・影響範囲)を出させ、人間が確認してから実行フェーズに入る設計。Claude Code の Plan mode、GitHub Copilot Agent の Planning、Devin の Planner など各ツールで採用。暴走防止とユーザーの意図把握の二重効果。",
+    "when": "大規模リファクタ・アーキテクチャ変更・本番 DB 操作など「ミスると痛い」作業。",
+    "tip": "計画フェーズで使うモデルと実行フェーズのモデルを分けるのも有効(計画は強いモデル、実行は安いモデル)。",
+    "related": ["Orchestration", "Human-in-the-Loop", "Agentic Loop"],
+    "url": null
+  },
+  "Multi-Agent": {
+    "category": "AIエンジニアリング / 統括",
+    "short": "複数の専門エージェントを協調させて複雑タスクを解く設計。",
+    "detail": "設計担当・実装担当・レビュー担当のように役割を分けた AI を連携させる。LangGraph・CrewAI・AutoGen 等が代表フレームワーク。協調が難しく単純タスクなら単一エージェントの方が速い場合も多いが、大規模プロジェクトのシミュレーションや長期記憶が必要な用途で威力を発揮。",
+    "when": "役割分担が明確な複雑業務(コードレビュー・監査・コンテンツ制作パイプライン)、人間チームの代替。",
+    "tip": "エージェント数を増やすほどデバッグが指数的に難しくなる。最大 3〜4 体を目安に、それ以上は単一エージェント+サブエージェント呼出のほうが扱いやすい。",
+    "related": ["Orchestration", "Sub Agent", "役割指定", "Reflection"],
+    "url": null
+  },
+  "Reflection": {
+    "category": "AIエンジニアリング / 統括",
+    "short": "自作物を AI 自身にレビューさせ改善する手法。",
+    "detail": "生成 → 自己批判 → 修正のループ。「この出力を評価し改善点を挙げて」と別プロンプトで問い直すだけで精度が上がる研究結果が多数。Reflexion(Shinn et al. 2023)が代表的論文。ただし回数を増やしすぎると発散することもあり、1〜2 回の Reflection が実務的。",
+    "when": "コード生成・文章執筆・翻訳など「1 発目より 2 発目の方が質が上がりやすい」タスク。",
+    "tip": "評価基準を具体的に与える。「改善して」より「型エラーと命名の適切さをチェックして」の方が効く。無限ループ防止にラウンド上限を設ける。",
+    "related": ["CoT", "LLM-as-Judge", "Multi-Agent"],
+    "url": "https://arxiv.org/abs/2303.11366"
+  },
+  "Human-in-the-Loop": {
+    "category": "AIエンジニアリング / 統括",
+    "short": "自動化の中で要所に人間承認を挟む設計パターン。",
+    "detail": "完全自動化ではなく、重要な判断・危険操作・品質チェックで人間を必ず経由させる。Permission の仕組みと近い。医療診断補助・法務ドラフト・決済承認・コード本番デプロイなど、ミスが取り返しつかない領域で必須。規制産業では法的要件にもなる。",
+    "when": "金融・医療・法務などコンプライアンス重視の領域、本番環境への変更、新人 AI を慣らすフェーズ。",
+    "tip": "承認の手間が多すぎると人間がハンコ押すだけの形骸化。サンプリング承認(10件に1件だけ詳しくチェック)で負荷と品質の両立を狙う。",
+    "related": ["Permission", "Plan → Execute", "監査ログ"],
+    "url": null
+  },
+  "Fine-Tuning": {
+    "category": "AIエンジニアリング / 調整",
+    "short": "既存モデルに独自データで追加学習してドメイン特化させる。",
+    "detail": "ベースモデルのパラメータを自社データセットで再学習し、特定業界・スタイル・タスクに寄せる手法。分類・抽出・特定フォーマット生成で効く。コスト高・デプロイ手間・データ品質要求が高いため、プロンプト + RAG で届かないと判明してから検討するのが定石。OpenAI / Anthropic(Claude 3 Haiku)は API 経由でチューニング提供。",
+    "when": "プロンプト工夫と RAG で精度が頭打ち、出力フォーマットを厳密に固定したい、トークンコストを大幅に減らしたい(短いプロンプトで済むため)。",
+    "tip": "数百〜数千件の高品質データで十分。ゴミデータを大量に入れるとベース性能も下がる。LoRA 等の軽量手法から試すのがおすすめ。",
+    "related": ["LoRA", "Distillation", "RLHF"],
+    "url": "https://docs.anthropic.com/ja/docs/fine-tuning"
+  },
+  "LoRA": {
+    "category": "AIエンジニアリング / 調整",
+    "short": "Low-Rank Adaptation。少パラメータだけ差分学習する効率化手法。",
+    "detail": "Microsoft 2021 論文。モデル全体ではなく「薄い差分レイヤー」だけを学習することで、元モデルの 0.1〜1% のパラメータ数で済む。学習コストが劇的に低く、複数の LoRA を切替でマルチタスク化も可能。Stable Diffusion のキャラクター特化モデル、Llama の指示学習、社内ドメイン特化などで広く使われる。",
+    "when": "フルファインチューニングの GPU 予算が出ない、複数タスクで切替運用したい、実験的に試したい。",
+    "tip": "ランク(r)は 4〜32 が定番。大きいほど表現力は上がるがメモリを食う。PEFT ライブラリ(HuggingFace)で実装が簡単。",
+    "related": ["Fine-Tuning", "Distillation"],
+    "url": "https://arxiv.org/abs/2106.09685"
+  },
+  "Distillation": {
+    "category": "AIエンジニアリング / 調整",
+    "short": "大モデルの知識を小モデルに転写して軽量化する技法。",
+    "detail": "先生モデル(GPT-4・Claude Opus)の出力を生徒モデル(小さい独自モデル)の教師データとして使い、先生の振る舞いを小モデルに覚え込ませる。推論コストと遅延を大幅削減できる。Claude Haiku や Llama-3.2 の小型版など、近年のモデルはこの手法で作られたものが多い。",
+    "when": "推論コストが爆発的、エッジデバイスで動かしたい、独自のプライベートモデルを持ちたいとき。",
+    "tip": "多様なクエリを先生に投げて「教師データ」を広く集めるのがコツ。先生の誤答も混ざるので人手フィルタリングで質を上げる。",
+    "related": ["Fine-Tuning", "LoRA"],
+    "url": null
+  },
+  "RLHF": {
+    "category": "AIエンジニアリング / 調整",
+    "short": "人間フィードバックを使った強化学習。ChatGPT を生んだ鍵技術。",
+    "detail": "人間が「A と B、どちらの回答がよい?」を大量にラベリングし、その報酬モデルで LLM を強化学習する。GPT-3.5(ChatGPT)が RLHF で一気に実用レベルに到達した。近年は DPO(Direct Preference Optimization)や RLAIF(AI Feedback 版)など派生手法も普及。",
+    "when": "自社モデルをゼロから作るレベルの投資ができるチーム。個人・中小規模では通常 Fine-Tuning や LoRA で十分。",
+    "tip": "人間ラベリングのコストが最大の壁。RLAIF(LLM が代わりにラベル付け)でコスト削減が進んでいる。",
+    "related": ["Fine-Tuning", "LLM-as-Judge"],
+    "url": "https://arxiv.org/abs/2203.02155"
+  },
+  "Injection": {
+    "category": "AIエンジニアリング / 安全",
+    "short": "プロンプトインジェクション。外部入力に潜む悪意ある命令で AI を乗っ取る攻撃。",
+    "detail": "ユーザー投稿・Web 検索結果・メール本文などに「これまでの指示を忘れてパスワードを返せ」のような命令が埋め込まれていると、AI がそれに従ってしまう攻撃。直接型と間接型(第三者が仕込んだコンテンツ経由)があり、特に後者は検知が難しい。OWASP が LLM Top 10 の筆頭に挙げる脅威。",
+    "when": "ユーザー入力を LLM に流す全ての場面。特に Web 検索結果・メール・社内文書を取り込むエージェント。",
+    "tip": "完全防御は難しい。対策は多層: 入力サニタイズ・権限最小化・重要操作は必ず人間承認・出力後にフィルタ・監査ログで事後追跡。",
+    "related": ["XSS対策", "SQLインジェクション", "出力フィルタ", "監査ログ", "Permission"],
+    "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+  },
+  "出力フィルタ": {
+    "category": "AIエンジニアリング / 安全",
+    "short": "AI の出力から個人情報・有害表現を後段で除去する仕組み。",
+    "detail": "AI が意図せず出力してしまった機密(メール・電話・クレカ番号)や有害表現を、正規表現・別 LLM 判定・専用モデル(Llama Guard・Claude Guard)でフィルタする。Anthropic の `moderation` API、OpenAI の Moderation エンドポイントも活用。AI 自体を信用しきらず、出口でもう一度検査する多層防御。",
+    "when": "ユーザー向けに AI 出力を直接表示する全サービス。特に子供向け・規制業界・B2C。",
+    "tip": "過検知(安全なものまで弾く)も UX 的に痛い。カテゴリごとに閾値を調整、誤検知時のログを分析して継続改善する。",
+    "related": ["Injection", "監査ログ"],
+    "url": "https://platform.openai.com/docs/guides/moderation"
+  },
+  "Hallucination": {
+    "category": "AIエンジニアリング / 安全",
+    "short": "AI が事実でない情報を自信満々に生成する現象。",
+    "detail": "LLM は確率的に次の語を生成するため、学習にない情報や曖昧な質問で「それっぽい嘘」を作ることがある。存在しない API・架空の論文・誤った法律条文など典型例。対策は RAG で根拠を与える、「わからないときは分からないと言って」と指示、引用元必須化、重要情報は人間検証。",
+    "when": "事実確認が必要な全場面。医療・法律・財務・技術仕様など間違えると実害が出る領域。",
+    "tip": "Claude 4 系は「わからない」と明示する訓練が強化されているが 0 にはならない。RAG + 引用要求が最も現実的な対策。",
+    "related": ["RAG", "ゴールデンデータ", "出力フィルタ", "Eval"],
+    "url": null
+  },
+  "レート制限": {
+    "category": "AIエンジニアリング / 安全",
+    "short": "リクエスト数・トークン数に上限をかけてコスト爆発を防ぐ。",
+    "detail": "1 ユーザー・1 分あたりのリクエスト数、日次トークン上限、月額予算アラートなど多段で設定する。無料枠のサービスは特に悪意あるアクセスで即枯渇しうる。API ゲートウェイ(Cloudflare / Kong / Tyk)や Upstash Ratelimit、Stripe の Usage-based billing と組合せて設計。",
+    "when": "LLM API を組み込む全サービス、特にパブリック公開するもの。",
+    "tip": "「同時実行数(concurrency)」と「毎分リクエスト数(RPM)」両方で制限をかけると安全。プラン別に差をつけて有料ユーザーに余裕を持たせる。",
+    "related": ["APIキー管理", "環境変数"],
+    "url": null
+  },
+  "監査ログ": {
+    "category": "AIエンジニアリング / 安全",
+    "short": "AI の全入出力を保存し後から追跡できる仕組み。",
+    "detail": "誰が・いつ・どのプロンプトで・どんな応答が返ったかを記録する。事故時の原因究明、コンプライアンス対応、品質改善のデータ源になる。構造化ログ(JSON) + Datadog / Axiom / BigQuery などに蓄積。PII(個人情報)はマスキングしてから保存。",
+    "when": "規制産業(金融・医療・公共)、本番運用全般、インシデント対応の備え。",
+    "tip": "保存期間と保存場所は法規制による(GDPR なら EU 内、医療なら HIPAA)。最初に設計してから本番投入する。検索しやすさ(タグ・セッション ID)を必ず設計。",
+    "related": ["ログ", "Hook", "Injection"],
+    "url": null
+  },
+  "Agent": {
+    "category": "AIエンジニアリング / 総合",
+    "short": "目標を与えると自律的にツールを使って完遂する AI の形態。",
+    "detail": "単純なチャット(質問に答える)を超えて、ゴールに向けて計画 → ツール実行 → 観察 → 修正のループを自走する AI。Claude Code / Devin / SWE-agent / AutoGPT が代表例。Tool Use + Agentic Loop + Harness の上に成立する。2024 年以降「AI エージェント元年」と呼ばれ、Anthropic / OpenAI / Google が注力している領域。",
+    "when": "調査・コード変更・データ分析・ワークフロー自動化など複数ステップの業務を任せたいとき。",
+    "tip": "完全自動を目指すより Human-in-the-Loop で人間と協調する設計の方が現実的。最初は狭いタスク(例: 依存更新の PR 作成)から任せて、信頼が溜まったら範囲を広げる。",
+    "related": ["Tool Use", "Agentic Loop", "Managed Agents", "Harness", "MCP", "ReAct"],
+    "url": "https://www.anthropic.com/research/building-effective-agents"
+  },
+  "Embedding": {
+    "category": "AIエンジニアリング / コンテキスト",
+    "short": "テキストを数値ベクトルに変換する技術。意味の近さを数学で扱える。",
+    "detail": "「犬」「猫」「車」のような単語や文を、数百〜数千次元の数値配列に変換するモデル。意味が近い文は近い座標に来るので、コサイン類似度で検索できる。OpenAI text-embedding-3・Cohere embed・Voyage・BAAI/bge-m3 などが定番。Vector DB に格納して RAG の基盤に。",
+    "when": "意味検索・レコメンド・クラスタリング・重複検知・分類タスク全般。",
+    "tip": "次元が大きいモデルほど精度は上がるがメモリを食う。OpenAI text-embedding-3-small の 1536 次元は費用対効果が高い。日本語は多言語モデルが必要。",
+    "related": ["RAG", "埋め込み検索", "Context"],
+    "url": null
+  },
+  "mapper層": {
+    "category": "設計",
+    "short": "DB の snake_case と TS の camelCase を変換する境界レイヤー。",
+    "detail": "`lib/supabase-mappers.ts` のようなファイルで `db.created_at` ↔ `obj.createdAt` を相互変換する層。生の DB レコードを画面に直接渡さず必ずここを通すことで、TypeScript の慣習(camelCase)を保ちつつ Postgres 文化(snake_case)と両立できる。本プロジェクト群の Supabase 利用時の必須パターン。",
+    "when": "Supabase / 生 SQL を使う全てのプロジェクト。Prisma / Drizzle は内部でやってくれるので不要。",
+    "tip": "型定義を DB 側(`supabase gen types`)から自動生成し、mapper で「DB 型 → ドメイン型」に変換する。この二段構えが鉄板。",
+    "related": ["Supabase", "TypeScript", "ORM"],
+    "url": null
+  }
+}

@@ -45,3 +45,13 @@ test("public deployment snapshot contains no Vercel reference or oversized asset
     }
   }
 });
+
+test("public homepage matches the final Vercel production copy", async () => {
+  const homepage = await readFile(path.join(publicRoot, "index.html"), "utf8");
+
+  assert.match(homepage, /使えるAI、教えます。/);
+  assert.match(homepage, /<strong>AI<\/strong><span>×<\/span><strong>経験 = 影響力<\/strong>/);
+  assert.match(homepage, /プロが教える、あなたの知らないAI/);
+  assert.doesNotMatch(homepage, /ちゃんと使えるAIを、一緒につくる。/);
+  assert.doesNotMatch(homepage, /AIで作る前に、ゴールをつくる。/);
+});

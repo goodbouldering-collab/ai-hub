@@ -1,17 +1,21 @@
-# AGENTS.md — AIハブ
+<!-- browser-account-policy:v1 -->
+ブラウザ作業前は、必ず[事業別ブラウザの共通ルール](C:/Project/docs/browser-account-policy.md)を適用する（閲覧・検証・投稿を含む）。
+<!-- /browser-account-policy:v1 -->
+
+# AGENTS.md — AI相談
 
 ## Cloudflareデプロイ境界（最優先）
 
 - GitHubからの本番デプロイ先はCloudflareのみ。Vercelへ再接続・deploy・自動deployしない。
-- 正本は `.github/deployment-platform.json`。`partial_migration` の残作業はActionsの警告を解消してから完了扱いにする。
+- 公開先の唯一の正本は中央台帳 `C:\Project\docs\cloudflare-targets.json`。`.github/deployment-platform.json` はGitHub側の対応表として台帳と照合する。`partial_migration` の残作業はActionsの警告を解消してから完了扱いにする。
 - 既存Vercelプロジェクトは移管確認用の読取専用。削除、DNS、認証・個人情報の移管は別途承認を得る。
 
-**AIハブ** は「自分のAIをひとつに集める場所」をテーマにした個人ポートフォリオ兼マイページ。
+**AI相談** は「自分のAIをひとつに集める場所」をテーマにした個人ポートフォリオ兼マイページ。
 作品（アプリ集）・講師紹介・受講資料を見せる**フロント面**と、AI/SNS関連情報をRSSから自動収集・要約してNotebookLMに流し込む**バックエンドのパイプライン**を1つのサイトに同居させている。
 
 ## リポジトリ名の正規化
 
-- プロジェクト名: **AIハブ / AI Hub**（旧称: AI-watch、AI情報収集、cclimb-intel、ai-info）
+- プロジェクト名: **AI相談**（旧称: AIハブ / AI Hub、 AI-watch、AI情報収集、cclimb-intel、ai-info）
 - GitHub: `goodbouldering-collab/ai-hub`
 - **本番ホスティング正本**: **Cloudflare Workers**。管理画面・APIのVercel残存部分は移管中として警告し、新規変更・再デプロイはしない
 - **本番URL**: https://aiclimb.aiclimb.workers.dev
@@ -19,7 +23,7 @@
 - GitHub Pages: `https://goodbouldering-collab.github.io/ai-hub/`（参考・残置）
 - Supabase: 既存の共有プロジェクト `zrawhzwtppmlxyhngnju` の `ai_watch.*` スキーマ（旧 `public.ai_watch_*` から移管。テーブル名は履歴互換のため維持。なお `zrawhzwtppmlxyhngnju.ai_watch` は Vercel 移行後ほぼ未使用、次回掃除候補）
 
-新規で文言を書くときは「AIハブ」に揃える。過去ログ（`outputs/notebooklm/*`）と Supabase テーブル名は改名しない（NotebookLM 側のソース参照と既存データ互換のため）。
+新規で文言を書くときは「AI相談」に揃える。過去ログ（`outputs/notebooklm/*`）と Supabase テーブル名は改名しない（NotebookLM 側のソース参照と既存データ互換のため）。
 
 ## ディレクトリ
 
@@ -33,7 +37,7 @@
 | `config/portfolio.yaml` | トップに並べる作品カードの定義 |
 | `config/top_buttons.yaml` | トップ上部のクイックリンクボタン |
 | `site/build_site.py` | `outputs/top10.json` から静的 HTML を生成 |
-| `site/dist/` | 生成物（GitHub Pages / Render が公開） |
+| `site/dist/` | サイト生成物。公開用の正本・配置先は中央台帳のworkingDirectoryに従う |
 | `outputs/notebooklm/` | NotebookLM 用 Markdown/TXT（日次） |
 | `outputs/full/` | 週次フル版 TXT |
 | `data/history.db` | SQLite の既取得ログ（差分検出の土台） |
@@ -48,9 +52,9 @@
 
 - **GitHub Actions `daily.yml`**: JST 07:00 に `run.py` を実行し、`outputs/` と `data/history.db` を main に commit back
 - **GitHub Actions `pages.yml`**: `main` への push で `site/build_site.py` を叩いて GitHub Pages に配布（参考・残置）
-- **Cloudflare Workers**（**公開正本**）: `site/dist/` をStatic Assetsとして配信
+- **Cloudflare Workers**（**公開正本**）: 中央台帳のworkingDirectoryにあるStatic Assetsを配信。旧ルートの `site/dist/` やWorker設定から公開元を推測しない
   - 本番 URL: https://aiclimb.aiclimb.workers.dev
-- **Vercel**（**管理画面・API・決済の実行元**）: `main` push で自動デプロイ、PR ごとに Preview URL 自動発行
+- **Vercel**（**管理画面・API・決済の移管元**）: 読取専用。旧 `main` push / PR連携による自動デプロイを起こす操作は禁止
   - 動的処理 URL: https://aiclimb.vercel.app
   - Project ID: `prj_e7vh73eF0KZpm8C49esnILvHO98o`
 - **Supabase**: `ai_watch_articles` テーブルに差分保存（`SUPABASE_URL` / `SUPABASE_SERVICE_ROLE_KEY` が env にあれば書き込む）
@@ -74,7 +78,7 @@ python site/build_site.py     # サイトだけ再ビルド
 uvicorn admin.server:app --port 3010 --reload   # 管理画面
 ```
 
-VSCode で `clients.code-workspace` を開けば「AIハブ起動」タスクで `http://localhost:3010/admin` が立ち上がる。
+VSCode で `clients.code-workspace` を開けば「AI相談起動」タスクで `http://localhost:3010/admin` が立ち上がる。
 
 ## 守るべきルール
 
@@ -87,6 +91,8 @@ VSCode で `clients.code-workspace` を開けば「AIハブ起動」タスクで
 - Supabase テーブル名 `ai_watch_*` は**改名しない**（旧名のまま運用継続）
 
 ## 実績サイト自動同期
+
+以下のフックはCloudflareだけへ反映する経路と中央台帳の検証が確認できた場合に実行する。`portfolio-sync.yml` やcommit backがVercel自動デプロイを起こす間は起動せず、入力資料の準備までに留める。
 
 - 全事業の本番公開完了フックは `.github/workflows/portfolio-sync.yml` へ確認済みURLとサイト情報を渡し、AI相談トップの「すべての実績」へURLとサイト画面付きで同期する。
 - workflowは起動のたびに公開中の全URLを撮影して `site/static/img/portfolio/` へ保存し、カードは保存済みの最新スクリーンショットを使う。外部MShots画像へ戻さない。
@@ -106,7 +112,7 @@ VSCode で `clients.code-workspace` を開けば「AIハブ起動」タスクで
 
 ## 管理画面について
 
-AIハブには**2系統の管理画面**がある:
+AI相談には**2系統の管理画面**がある:
 
 ### 1. ローカル管理画面 (`admin/server.py`)
 
@@ -114,7 +120,7 @@ FastAPI ベースの**ローカル専用** UI。記事収集ジョブの状態�
 ローカルで `uvicorn admin.server:app --port 3010 --reload` で起動 → `http://localhost:3010/admin`。
 運用（記事収集）は GitHub Actions 任せで、ここは手元確認用。
 
-### 2. クラウド管理画面 (`/admin` on Vercel)
+### 2. クラウド管理画面（Vercel移管元の認証構成）
 
 **パスワードログイン付きの Web 管理画面** (Vercel Serverless Functions + 静的 HTML)。
 グッぼる（カラーミー）のグループ追加・AI記事生成・トップページ最上部への記事公開を担う。
@@ -156,7 +162,7 @@ FastAPI ベースの**ローカル専用** UI。記事収集ジョブの状態�
   - カラーミー管理画面 → ショップ作成 → テンプレートで「**1086 を適用**」する手順を必ず実施
 - グループ作成時 display_state は `hidden`、本番反映時に `showing` に切り替える
 
-#### 必要な Vercel 環境変数
+#### 移管元の環境変数名（値の取得・変更・移送は明示承認が必要）
 
 | Env | 役割 |
 |---|---|
@@ -215,3 +221,16 @@ SHOPIFY_STORE_DOMAIN=84c617.myshopify.com
 - 在庫拠点（Location）一覧
 
 **重要**: 本番ストアに直接書き込めるトークンを使うので、`.env` は絶対にコミットしない（`.gitignore` で除外済）。書き込み系（在庫更新等）はAPI実装済だがUI上はまだ読み取りに徹している。書き込み操作を増やす場合は確認モーダルを必ず挟む方針。
+
+<!-- cloudflare-target-contract:v1 -->
+<!-- BEGIN:cloudflare-target-contract -->
+## Cloudflare公開先の確定（再発防止）
+
+- 公開先の正本は `C:\Project\docs\cloudflare-targets.json`。Cloudflareアカウント、`wrangler` 設定、過去のデプロイ、一時フォルダ、worktreeから公開先を推測しない。
+- Cloudflareへ書き込む直前に、台帳の`workingDirectory`へ移動して `powershell -ExecutionPolicy Bypass -File C:\Project\scripts\assert-cloudflare-target.ps1 -ProjectRoot "C:\Project\AI相談" -TargetKey "<target-key>" -ForDeploy` を実行する。Targetが`verified`以外、実行場所不一致、Wrangler名不一致、Vercel deploy経路残存なら停止する。
+- このプロジェクトの確認済みTarget: `default / workers-static-assets / aiclimb`。公開URL: https://aiclimb.aiclimb.workers.dev。`C:\Project\AI相談\cloudflare-runtime` から `-TargetKey 'default'` を指定してガードを通す。。公開面は `cloudflare-runtime/public` のStatic Assetsを優先し、管理/API/運用系だけを選択的にWorker先行にする。
+- `_tmp`、`_worktrees`、`*-worktree`、`*-cloudflare-worktree` は候補・検証用であり、本番の正本ではない。公開ページをWorker経由にする場合は、静的アセットがWorkerより先に返らない設定と回帰テストを必須にする。
+- Vercelは読取専用の移管元。`vercel.json`、`.vercel`、Vercel runtime URLが残れば警告し、Vercel CLI/Action/Secretを使う有効なdeploy経路はエラーで停止する。Vercelへの変更・削除は行わない。
+- 共通の実行・本番完了条件は `C:\Project\docs\execution-first.md`、Vercel変更凍結は `C:\Project\docs\vercel-change-freeze.md` を参照する。凍結に抵触するpushは行わず、確認済みTargetと事業全機能の移管完了を区別する。
+- 本番後は台帳の確認パス（/、/health、/blog/、/blog/2026-08-30-switchbot-ai-mind-clip.html、/admin）を実URLで確認し、期待版・管理/API経路・canonicalを記録する。
+<!-- END:cloudflare-target-contract -->

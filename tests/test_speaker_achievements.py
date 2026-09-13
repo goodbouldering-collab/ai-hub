@@ -21,8 +21,8 @@ class SpeakerAchievementsTest(unittest.TestCase):
     def test_home_instructor_link_opens_the_achievements_section(self):
         rendered = portal._render_focused_main()
 
-        self.assertIn("href='/speaker.html#achievements'", rendered)
-        self.assertIn("講師の実績を見る", rendered)
+        self.assertIn("href='/speaker.html#career'", rendered)
+        self.assertIn("講師のプロフィールを見る", rendered)
 
     def test_speaker_page_links_to_curated_public_achievements(self):
         self.assertTrue(site_builder.build_speaker_page())

@@ -18,29 +18,22 @@ site_builder = load_module("speaker_achievements_site", ROOT / "site" / "build_s
 
 
 class SpeakerAchievementsTest(unittest.TestCase):
-    def test_home_instructor_link_opens_the_achievements_section(self):
+    def test_home_instructor_link_opens_the_career_section(self):
         rendered = portal._render_focused_main()
 
         self.assertIn("href='/speaker.html#career'", rendered)
         self.assertIn("講師のプロフィールを見る", rendered)
 
-    def test_speaker_page_links_to_curated_public_achievements(self):
+    def test_speaker_page_shows_career_without_duplicate_achievements(self):
         self.assertTrue(site_builder.build_speaker_page())
         rendered = (ROOT / "site" / "dist" / "speaker.html").read_text(encoding="utf-8")
 
-        self.assertIn("id='achievements'", rendered)
-        self.assertIn("公開中の実績サイト", rendered)
-        self.assertIn("href='/#all-works'", rendered)
-        for url in (
-            "https://minnanowa.net",
-            "https://n-design.work",
-            "https://business21.aiclimb.workers.dev",
-            "https://notesthe.com",
-            "https://shoes.goodbouldering.com",
-            "https://fadie.aiclimb.workers.dev",
-        ):
-            with self.subTest(url=url):
-                self.assertIn(f"href='{url}'", rendered)
+        self.assertIn('id="career"', rendered)
+        self.assertIn("href='#career'", rendered)
+        self.assertIn("製造業で、現場を変える仕組みづくり", rendered)
+        self.assertNotIn("id='achievements'", rendered)
+        self.assertNotIn("href='#achievements'", rendered)
+        self.assertNotIn("公開中の実績サイト", rendered)
 
 
 if __name__ == "__main__":

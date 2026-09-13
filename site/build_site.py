@@ -4384,11 +4384,11 @@ def _render_speaker_hero(meta: dict) -> str:
         "<li>彦根・滋賀</li><li>9事業で実践</li><li>相談から実装・運用まで</li>"
         "</ul>"
         "<div class='speaker-page-actions'>"
-        "<a href='#achievements'>公開実績を見る</a>"
+        "<a href='#career'>これまでの歩みを見る</a>"
         "<a href='/#packages'>講習・相談コースを見る</a>"
         "</div>"
         "<nav class='speaker-page-nav' aria-label='講師ページ内メニュー'>"
-        "<a href='#achievements'>実績</a><a href='#profile'>プロフィール</a>"
+        "<a href='#profile'>プロフィール</a>"
         "<a href='#career'>これまでの歩み</a>"
         "<a href='#principles'>講習で伝えること</a><a href='#sns'>SNS</a>"
         "</nav>"
@@ -4469,7 +4469,6 @@ def build_speaker_page() -> bool:
     story_html = md.markdown(body, extensions=["extra", "sane_lists"])
     body_html = (
         _render_speaker_hero(meta)
-        + _render_speaker_achievements(meta)
         + "<div class='speaker-page-story'>"
         + story_html
         + "</div>"

@@ -4389,6 +4389,7 @@ def _render_speaker_hero(meta: dict) -> str:
         "</div>"
         "<nav class='speaker-page-nav' aria-label='講師ページ内メニュー'>"
         "<a href='#achievements'>実績</a><a href='#profile'>プロフィール</a>"
+        "<a href='#career'>これまでの歩み</a>"
         "<a href='#principles'>講習で伝えること</a><a href='#sns'>SNS</a>"
         "</nav>"
         "</div>"

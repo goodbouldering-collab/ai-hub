@@ -39,3 +39,5 @@ _tmp/
 bridge/.local/
 bridge/projects.local.json
 bridge/bridge-auth.json
+
+.profile-release/

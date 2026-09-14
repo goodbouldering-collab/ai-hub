@@ -1,0 +1,12 @@
+{
+  "name": "aiclimb-cloudflare-runtime",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "pretest": "node ../scripts/build-cloudflare-admin-assets.mjs",
+    "test": "node --test worker/*.test.mjs asset-manifest.test.mjs"
+  },
+  "dependencies": {
+    "sanitize-html": "^2.17.7"
+  }
+}

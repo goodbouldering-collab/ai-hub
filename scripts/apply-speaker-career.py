@@ -12,7 +12,7 @@ import markdown
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def apply(baseline: Path) -> None:
+def apply(baseline: Path, output: Path | None = None) -> None:
     source = (ROOT / 'content/speaker.md').read_text(encoding='utf-8')
     career = source.split('## これまでの歩み {#career}', 1)[1].split('## 講習で伝える', 1)[0]
     career_html = markdown.markdown('## これまでの歩み {#career}' + career, extensions=['extra', 'sane_lists'])
@@ -29,11 +29,15 @@ def apply(baseline: Path) -> None:
     assert speaker.count(nav) == 1
     speaker = speaker.replace(nav, nav + "<a href='#career'>これまでの歩み</a>")
     old_note = '<blockquote>\n<p>活動の詳しい背景は、このページでは「現場で何を支援するか」に絞って整理しています。</p>\n</blockquote>'
-    assert speaker.count(old_note) == 1, 'Unexpected biography insertion point'
-    speaker = speaker.replace(old_note, career_html)
+    if speaker.count(old_note) == 1:
+        speaker = speaker.replace(old_note, career_html)
+    else:
+        marker = '<section aria-labelledby="principles" class="speaker-principles">'
+        assert speaker.count(marker) == 1, 'Unexpected biography insertion point'
+        speaker = speaker.replace(marker, '<section aria-labelledby="career" class="speaker-profile">' + career_html + '</section>\n' + marker)
     assert 'href=\'#achievements\'' not in speaker
     for name, text in [('index.html', home), ('speaker.html', speaker)]:
-        (ROOT / 'cloudflare-runtime/public' / name).write_text(text, encoding='utf-8')
+        (output or ROOT / 'cloudflare-runtime/public').joinpath(name).write_text(text, encoding='utf-8')
 
 
 if __name__ == '__main__':

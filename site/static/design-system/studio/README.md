@@ -1,9 +1,9 @@
 # AI相談 Studio assets
 
-2026-09-14。トップ、公開記事、管理画面に共通で使うデザイン資産。
+2026-09-16画像更新。トップ、公開記事、管理画面に共通で使うデザイン資産。
 
 - 背景：生成り `#f5f3ed`、面：`#fffefa`、文字：`#172c2a`。
-- 主色：深い青緑 `#205751`、補助：セージ `#dfe5d8`。陶器・紙の質感とアーチを共通モチーフにする。
+- 主色：深い青緑 `#205751`、補助：セージ `#dfe5d8`。画像はAI教室での学びと、人とAIをつなぐ柔らかな光の流れを共通モチーフにする。
 - 派手な色数ではなく、大きな見出し、非対称の丸み、余白、控えめな動きで楽しさを出す。
 - `studio.css` は全ページの共通表示層。`studio.js` は公開記事を含む共通の読了表示、カードの光、画像レイヤーの移動、トップのカルーセル操作を担当。動きを減らす設定では装飾の動きを停止する。
 - 講師本人、実際の会場、実績サイトの写真は維持する。
@@ -14,19 +14,16 @@ OpenAI built-in ImageGenで新規生成。外部APIキー不使用。すべて15
 
 | ファイル | 使用箇所 | 意図 |
 |---|---|---|
-| `images/hero.png` | トップ | 地域の仕事を、学びと仕組みでつなぐ |
-| `images/learn.png` | AIエージェント講習・AI個別講習 | 手を動かして学ぶ |
-| `images/build.png` | AIコーディング講習・AI伴走支援 | 小さく作り、組み合わせる |
-| `images/connect.png` | AIオンラインサロン・AIアプリサイト制作 | 人・地域・活動がつながる |
+| `images/hero.png` | トップ | 講師と受講者がパソコンを囲むAI教室。光が人とAIの可能性をつなぐ |
+| `images/learn.png` | AIエージェント講習・AI個別講習・装飾 | 受講者が講師と画面を確かめ、操作しながら学ぶ |
+| `images/build.png` | AIコーディング講習・AI伴走支援 | 人のアイデアをAIと一緒に形にする実習 |
+| `images/connect.png` | AIオンラインサロン・AIアプリサイト制作・装飾 | 世代の異なる受講者が学び合い、知識が広がる |
 
 ### 制作指示（再生成用）
 
-共通：finished premium website illustration, landscape 3:2. Quietly playful contemporary Japanese creative studio. Warm ivory #f2eee5, deep petrol teal #174744, desaturated sage, tiny terracotta accent, brushed silver. Tactile matte ceramic and folded paper, soft daylight, art-directed product photography. Large simple sculptural forms, refined adult atmosphere. No people, robots, AI brains, circuitry, neon, rainbow, text, letters, logos, or watermarks. Production asset, not a webpage mockup.
+4枚とも、AI教室で人が学ぶ場面を主役にする。映画的な光と奥行き、自然な人物の表情、青緑・真珠色・淡い金色の流れる光で、AIの拡張性と人との融合を表現。架空の受講風景であり、実際の講習写真や講師本人のポートレートではない。
 
-- Hero：A folded-paper path ascends three broad steps through a tall teal arch, connecting a cream notebook-like building, a blank laptop, coffee, and a silver sphere balanced above a curved ribbon. A small abstract Japanese regional town and lake in the distance. Center-right diagonal composition. Metaphor for local people turning ideas into real work with AI.
-- Learn：A cream notebook and blank laptop on a plinth with a pencil and a sweeping teal ribbon arch. A sculptural still life representing an inviting entrance to practical learning.
-- Build：Interlocking folded-paper steps and teal arches, a brushed-silver connecting tube and sphere, and a small terracotta cube. A sculptural still life representing ideas assembled into a working system.
-- Connect：Three small paper houses on a teal platform, connected by a flowing ribbon, with a terracotta disk and silver sphere. A miniature landscape representing people and local activities becoming connected.
+実際に使った4本の完全なプロンプトは `docs/design/ai-classroom-images-20260916-prompts.json`。生成ツールはOpenAI built-in `image_gen`。旧画像はGit履歴に保持。
 
 生成後に主題の編集はしていない。Web側でトリミングのみ指定。コース画像は遅延読み込み。
 

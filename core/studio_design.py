@@ -53,19 +53,19 @@ def decorate_html(text: str, *, home: bool = False, admin: bool = False, login: 
     if home:
         def hero(match):
             tag = match.group(2)
-            for key, value in {"src": f"{PREFIX}/images/hero.png", "alt": "階段とアーチで仕事と街がつながる、紙と陶器のような立体イラスト", "width": "1536", "height": "1024", "fetchpriority": "high"}.items():
+            for key, value in {"src": f"{PREFIX}/images/hero.png", "alt": "AI教室で講師と受講者がパソコンを囲み、光の流れが人とAIの可能性をつなぐイメージ", "width": "1536", "height": "1024", "fetchpriority": "high"}.items():
                 tag = _attribute(tag, key, value)
             return match.group(1) + tag
 
         text, count = re.subn(r'(<figure\b[^>]*id=[\"\']restored-hero-image[\"\'][^>]*>\s*)(<img\b[^>]*>)', hero, text, count=1, flags=re.S)
         assert count == 1, "Expected the owned hero image"
         images = iter([
-            ("learn", "ノートとパソコンを囲むアーチ。学びの入口を表した立体イラスト"),
-            ("learn", "ノートとパソコンを囲むアーチ。学びの入口を表した立体イラスト"),
-            ("build", "階段とパーツを組み合わせて形にする立体イラスト"),
-            ("build", "階段とパーツを組み合わせて形にする立体イラスト"),
-            ("connect", "小さな街をリボンがつなぐ、地域と人のつながりを表した立体イラスト"),
-            ("connect", "小さな街をリボンがつなぐ、地域と人のつながりを表した立体イラスト"),
+            ("learn", "AI教室で受講者が講師と画面を確認し、パソコンを操作しながら学ぶイメージ"),
+            ("learn", "AI教室で受講者が講師と画面を確認し、パソコンを操作しながら学ぶイメージ"),
+            ("build", "AI教室で講師と一緒に制作を進め、人のアイデアが光の流れとともに形になるイメージ"),
+            ("build", "AI教室で講師と一緒に制作を進め、人のアイデアが光の流れとともに形になるイメージ"),
+            ("connect", "AI教室で世代の異なる受講者が学び合い、人とAIの知識が光でつながるイメージ"),
+            ("connect", "AI教室で世代の異なる受講者が学び合い、人とAIの知識が光でつながるイメージ"),
         ])
 
         def course(match):

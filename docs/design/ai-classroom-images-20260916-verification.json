@@ -1,0 +1,193 @@
+{
+  "source_sha": "9731b48a1a0f8ee7a3ded6d11b72ee7280102aa5",
+  "asset_count": 463,
+  "changed_assets": [
+    "design-system/studio/images/build.png",
+    "design-system/studio/images/connect.png",
+    "design-system/studio/images/hero.png",
+    "design-system/studio/images/learn.png",
+    "index.html"
+  ],
+  "image_alt_attributes_updated": 7,
+  "visible_text_layout_links_scripts_unchanged": true,
+  "unchanged_assets": 458,
+  "runtime_modules_unchanged": 15,
+  "generated_images": [
+    {
+      "name": "hero",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "bytes": 2471492,
+      "sha256": "26ab9bbf2c175e01bd078f0c123435c51c2e0440bf41468e4c69978d0befffff"
+    },
+    {
+      "name": "learn",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "bytes": 2364203,
+      "sha256": "624d3d0a38a62d9717c8154b8a2ab4873070fce86530f4de6f5392111b9cce59"
+    },
+    {
+      "name": "build",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "bytes": 2406549,
+      "sha256": "c72fafacb2120ccb40e260ff7780463fc428f3cff91fbbfc5132b26da639d629"
+    },
+    {
+      "name": "connect",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "bytes": 2382527,
+      "sha256": "ffa2150dc6e68e3b155fac423a1c70a6f0cc660af1cdd7e9563c98264a52e4ea"
+    }
+  ],
+  "visual_qa": "Generated images inspected; browser PC/iPhone QA pending business-profile connection",
+  "production_deployed": true,
+  "worker_version": "955d1282-9f75-4a02-856b-ccf92034bbe5",
+  "traffic_percentage": 100,
+  "live_verification": {
+    "mode": "after",
+    "checked_at": "2026-09-15T18:18:43.429Z",
+    "results": [
+      {
+        "path": "/",
+        "status": 200,
+        "url": "https://aiclimb.aiclimb.workers.dev/",
+        "sha256": "deec91c3c7018fe886df9db899c02f210c7847889f3801cfcbcec8385a263132",
+        "matches_release": true,
+        "cache_control": "public, max-age=0, must-revalidate",
+        "image_reference_count": 9,
+        "canonical_valid": true
+      },
+      {
+        "path": "/design-system/studio/images/hero.png",
+        "status": 200,
+        "url": "https://aiclimb.aiclimb.workers.dev/design-system/studio/images/hero.png",
+        "sha256": "26ab9bbf2c175e01bd078f0c123435c51c2e0440bf41468e4c69978d0befffff",
+        "matches_release": true,
+        "cache_control": "public, max-age=0, must-revalidate"
+      },
+      {
+        "path": "/design-system/studio/images/learn.png",
+        "status": 200,
+        "url": "https://aiclimb.aiclimb.workers.dev/design-system/studio/images/learn.png",
+        "sha256": "624d3d0a38a62d9717c8154b8a2ab4873070fce86530f4de6f5392111b9cce59",
+        "matches_release": true,
+        "cache_control": "public, max-age=0, must-revalidate"
+      },
+      {
+        "path": "/design-system/studio/images/build.png",
+        "status": 200,
+        "url": "https://aiclimb.aiclimb.workers.dev/design-system/studio/images/build.png",
+        "sha256": "c72fafacb2120ccb40e260ff7780463fc428f3cff91fbbfc5132b26da639d629",
+        "matches_release": true,
+        "cache_control": "public, max-age=0, must-revalidate"
+      },
+      {
+        "path": "/design-system/studio/images/connect.png",
+        "status": 200,
+        "url": "https://aiclimb.aiclimb.workers.dev/design-system/studio/images/connect.png",
+        "sha256": "ffa2150dc6e68e3b155fac423a1c70a6f0cc660af1cdd7e9563c98264a52e4ea",
+        "matches_release": true,
+        "cache_control": "public, max-age=0, must-revalidate"
+      },
+      {
+        "path": "/design-system/studio/studio.css",
+        "status": 200,
+        "url": "https://aiclimb.aiclimb.workers.dev/design-system/studio/studio.css",
+        "sha256": "914a41d4071235dd10b91c250fa72385eb69279fd677758e785f502ab394c434",
+        "matches_release": true,
+        "cache_control": "public, max-age=0, must-revalidate"
+      },
+      {
+        "path": "/design-system/studio/studio.js",
+        "status": 200,
+        "url": "https://aiclimb.aiclimb.workers.dev/design-system/studio/studio.js",
+        "sha256": "1f1bee424cf3b3e94353b711f3c32525bdccb38efbe1fd4e630305592c5c55b2",
+        "matches_release": true,
+        "cache_control": "public, max-age=0, must-revalidate"
+      },
+      {
+        "path": "/speaker.html",
+        "status": 200,
+        "url": "https://aiclimb.aiclimb.workers.dev/speaker",
+        "sha256": "a31d437de15525da72883846efe6e303099b5b5ec481f30c0ee8ee697f3c4034",
+        "matches_release": true,
+        "cache_control": "public, max-age=0, must-revalidate"
+      },
+      {
+        "path": "/blog/",
+        "status": 200,
+        "url": "https://aiclimb.aiclimb.workers.dev/blog/",
+        "sha256": "11057daad52a46a216ebf73388083b32b7de0b574d14d5d46557ce76ae2f48ef",
+        "matches_release": true,
+        "cache_control": "public, max-age=0, must-revalidate"
+      },
+      {
+        "path": "/blog/2026-08-30-switchbot-ai-mind-clip.html",
+        "status": 200,
+        "url": "https://aiclimb.aiclimb.workers.dev/blog/2026-08-30-switchbot-ai-mind-clip",
+        "sha256": "6ea60d54e5230f3aa5f7161f3a2c6b3e9505fdcc1fbe781efe33e55f9224afae",
+        "matches_release": true,
+        "cache_control": "public, max-age=0, must-revalidate"
+      },
+      {
+        "path": "/lectures/",
+        "status": 200,
+        "url": "https://aiclimb.aiclimb.workers.dev/lectures/",
+        "sha256": "99877b0d1fb62f3e32c5db9aa3640c974d201f20862527ec7348999576859d87",
+        "matches_release": true,
+        "cache_control": "public, max-age=0, must-revalidate"
+      },
+      {
+        "path": "/ai-news/",
+        "status": 200,
+        "url": "https://aiclimb.aiclimb.workers.dev/ai-news/",
+        "sha256": "f0f0eb890e543f51fed4c35f85d9be5f4ac71247b02a5d7fa286538a9a4b22c6",
+        "matches_release": true,
+        "cache_control": "public, max-age=0, must-revalidate"
+      },
+      {
+        "path": "/health",
+        "status": 200,
+        "expected_status": 200,
+        "location": null
+      },
+      {
+        "path": "/admin",
+        "status": 303,
+        "expected_status": 303,
+        "location": "/admin/login?next=%2Fadmin"
+      },
+      {
+        "path": "/api/admin/ping",
+        "status": 401,
+        "expected_status": 401,
+        "location": null
+      },
+      {
+        "path": "/admin/login",
+        "status": 200,
+        "expected_status": 200,
+        "location": null
+      }
+    ],
+    "passed": true
+  },
+  "checks": [
+    "11 studio-glass-motion tests passed",
+    "Cloudflare deployment guard: success",
+    "GitHub Pages workflow: success",
+    "committed rebuild and candidate all assets/runtime hashes match",
+    "compiled Worker bundle unchanged"
+  ]
+}

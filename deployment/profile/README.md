@@ -1,5 +1,13 @@
 # AI相談・プロフィール公開元
 
+## 現在の全ページデザイン公開手順（2026-09-15）
+
+プロフィール生成は入力スナップショットの再現用。現在の公開には続けて `scripts/build-glass-release.py` を実行する。プロフィールだけを再デプロイすると全ページのガラスデザインが戻るため、下記の旧公開手順を単独で使わない。
+
+`deployment/profile/glass-baseline.json` はプロフィール公開後の全463資産のSHAを固定する。新ビルダーがこれとruntimeの完全一致を検査し、`.glass-release` に装飾のみ生成する。`cloudflare-runtime/wrangler-glass-build.jsonc` はdry-run専用のバンドル設定。依存はこのディレクトリのlockfileとnode_modulesを使用。
+
+登録cwdで `wrangler deploy --config wrangler-glass-build.jsonc --dry-run --outdir ../.glass-release/compiled`。生成した `compiled/public-entry.js`（実際の生成名を確認）を、中央ガード通過後に既存の登録設定 `wrangler-profile-release.jsonc`、`--assets ../.glass-release/public --keep-vars` と明示して公開する。デプロイ元HEADは統合済みorigin/mainと一致させ、確定SHAの再生成ハッシュを保存する。
+
 2026-09-15にユーザーが、コミット済み分離フォルダーを正式公開元として登録しデプロイする変更を承認。
 
 - 台帳正本: `C:/Project/docs/cloudflare-targets.json`

@@ -19,13 +19,42 @@ THEME_IDS = ("studio-design", "studio-motion", "studio-editorial")
 PRESENTATION_ASSETS = {
     "design-system/studio/studio.css",
     "design-system/studio/studio.js",
+    "design-system/studio/editorial.css",
 }
-NEW_ASSETS = {"design-system/studio/editorial.css"} | {
-    f"design-system/studio/images/art-{name}.webp"
+NEW_ASSETS = {
+    f"design-system/studio/images/flow-{name}.webp"
     for name in ("hero", "learn", "build", "connect")
 }
 DECORATIONS = ".studio-art-layer, .studio-editorial-decoration"
 CONTROL_SELECTOR = "a,button,input,textarea,select,option,form,details,summary,iframe"
+PHOTO_URL = re.compile(r'/img/speaker(?:[-a-z0-9]*)\.(?:webp|png|jpe?g)', re.I)
+FLOW_CONNECT = "/design-system/studio/images/flow-connect.webp"
+
+
+def without_person_image(value):
+    """Normalize only the removed portrait of a Person, preserving all other data."""
+    if isinstance(value, list):
+        return [without_person_image(item) for item in value]
+    if not isinstance(value, dict):
+        return value
+    result = {key: without_person_image(item) for key, item in value.items()}
+    types = value.get("@type", [])
+    types = [types] if isinstance(types, str) else types
+    if "Person" in types and PHOTO_URL.search(str(value.get("image", ""))):
+        result.pop("image", None)
+    return result
+
+
+def assert_no_personal_images(soup: BeautifulSoup, name: str) -> None:
+    """Retained photo files must never be referenced by rendered pages or metadata."""
+    require(not soup.select(".studio-editorial-person, .studio-editorial-portrait, .studio-art-layer"),
+            f"Removed portrait/decorative frame still rendered: {name}")
+    require(not PHOTO_URL.search(str(soup).replace("\\/", "/")),
+            f"Personal photo still referenced in DOM, CSS, social metadata or script: {name}")
+    for script in soup.select('script[type="application/ld+json"]'):
+        data = json.loads(script.string or script.get_text())
+        require(not PHOTO_URL.search(json.dumps(data, ensure_ascii=False)),
+                f"Personal photo still referenced by JSON-LD: {name}")
 
 
 def require(condition: bool, message: str) -> None:
@@ -104,8 +133,22 @@ def semantics(text: str, name: str) -> dict:
             "#restored-hero-image > img, img.compact-course-visual, .speaker-art > img, #speaker img.speaker-painting")}
     images = [({"owned_image": True} if id(element) in owned_images else dict(element.attrs))
               for element in soup.select("img,source")]
-    scripts = [str(element) for element in soup.find_all("script")]
+    scripts = []
+    for element in soup.find_all("script"):
+        if may_change_images and element.get("type") == "application/ld+json":
+            data = json.loads(element.string or element.get_text())
+            scripts.append({"attributes": dict(element.attrs),
+                            "json": without_person_image(data)})
+        else:
+            scripts.append(str(element))
     styles = [str(element) for element in soup.find_all("style")]
+    if may_change_images:
+        for element in soup.select("head meta"):
+            image_key = element.get("property") or element.get("name") or ""
+            value = element.get("content", "")
+            if image_key in {"og:image", "og:image:secure_url", "twitter:image"} and (
+                    PHOTO_URL.search(value) or value.endswith(FLOW_CONNECT)):
+                element["content"] = "__owned_instructor_image__"
     metadata = [str(element) for element in soup.select("head meta, head title, head link")]
     controls = [{"tag": element.name, **dict(element.attrs)}
                 for element in soup.select(CONTROL_SELECTOR)]
@@ -130,8 +173,12 @@ def check_html(before: str, after: str, name: str, *, runtime: bool = False, **f
     require(decorate_html(after, **flags) == after, f"Decoration is not idempotent: {name}")
     if "<body" in after.lower() and "</head>" in after.lower():
         soup = BeautifulSoup(after, "html.parser")
+        assert_no_personal_images(soup, name)
         for identity in THEME_IDS:
             require(len(soup.select(f"#{identity}")) == 1, f"Missing or duplicated theme tag {identity}: {name}")
+        require(soup.select_one("#studio-editorial").get("href") ==
+                "/design-system/studio/editorial.css?v=20260916-fluid",
+                f"Missing current fluid stylesheet version: {name}")
 
 
 def runtime_assets(path: Path) -> tuple[str, dict]:
@@ -163,16 +210,21 @@ def verify(baseline: Path, release: Path) -> dict:
                 f"Presentation asset differs from its source: {name}")
     for name in ("index.html", "speaker.html"):
         soup = BeautifulSoup(new_files[name].read_text(encoding="utf-8"), "html.parser")
-        portrait_selector = "#speaker img.speaker-painting" if name == "index.html" else ".speaker-art > img"
-        portraits = soup.select(portrait_selector)
-        require(len(portraits) == 1, f"Missing or duplicated instructor portrait: {name}")
-        require(portraits[0].get("src") == "/img/speaker.webp" and
-                bool(portraits[0].get("alt", "").strip()),
-                f"Instructor portrait must use the existing real photograph and meaningful alt: {name}")
+        art_selector = "#speaker img.speaker-painting" if name == "index.html" else ".speaker-art > img"
+        artwork = soup.select(art_selector)
+        require(len(artwork) == 1, f"Missing or duplicated instructor section artwork: {name}")
+        require(artwork[0].get("src") == FLOW_CONNECT and
+                bool(artwork[0].get("alt", "").strip()),
+                f"Instructor section must use fluid artwork with meaningful alt: {name}")
         if name == "index.html":
-            require(len(soup.select("#restored-hero-image img.studio-editorial-portrait")) == 1,
-                    "The hero must contain exactly one separate authentic instructor portrait")
-        for element in soup.select("img.studio-editorial-portrait, #restored-hero-image img, img.compact-course-visual, .speaker-art img, #speaker img.speaker-painting"):
+            hero = soup.select("#restored-hero-image > img")
+            require(len(hero) == 1 and hero[0].get("src") ==
+                    "/design-system/studio/images/flow-hero.webp", "The hero must use the new fluid artwork")
+            courses = [element.get("src") for element in soup.select("img.compact-course-visual")]
+            require(courses == [f"/design-system/studio/images/flow-{kind}.webp"
+                                for kind in ("learn", "learn", "build", "build", "connect", "connect")],
+                    "The six course images must retain their order with the new fluid artwork")
+        for element in soup.select("#restored-hero-image img, img.compact-course-visual, .speaker-art img, #speaker img.speaker-painting"):
             src = element.get("src", "").split("?", 1)[0]
             require(src.startswith("/") and src.lstrip("/") in new_files,
                     f"Missing owned image asset on {name}: {src}")
@@ -206,7 +258,8 @@ def verify(baseline: Path, release: Path) -> dict:
             "public_documents_preserved": html_count, "unchanged_non_html_assets": unchanged_assets,
             "new_assets": sorted(additions), "changed_assets": sorted(changed_assets),
             "admin_documents_preserved": admin_count, "runtime_modules_unchanged": unchanged_runtime,
-            "login_behavior_preserved": True, "decoration_idempotent": True}
+            "login_behavior_preserved": True, "decoration_idempotent": True,
+            "personal_photo_rendering_removed": True}
 
 
 if __name__ == "__main__":

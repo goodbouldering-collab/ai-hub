@@ -1,4 +1,4 @@
-"""Apply AI相談's shared presentation and its owned speaker summary.
+"""Apply AI相談's shared presentation without using the instructor's portrait.
 
 The release and daily-news builders use this layer so a later content rebuild
 retains the design. Runtime decoration is limited to static HTML and login markup.
@@ -17,7 +17,7 @@ ASSETS = ROOT / "site/static/design-system/studio"
 PREFIX = "/design-system/studio"
 LINK = f'<link id="studio-design" rel="stylesheet" href="{PREFIX}/studio.css?v=20260914-glass">'
 SCRIPT = f'<script id="studio-motion" defer src="{PREFIX}/studio.js?v=20260914-glass"></script>'
-EDITORIAL_LINK = f'<link id="studio-editorial" rel="stylesheet" href="{PREFIX}/editorial.css?v=20260916">'
+EDITORIAL_LINK = f'<link id="studio-editorial" rel="stylesheet" href="{PREFIX}/editorial.css?v=20260916-fluid">'
 
 
 def _attribute(tag: str, name: str, value: str) -> str:
@@ -55,25 +55,25 @@ def decorate_html(text: str, *, home: bool = False, admin: bool = False, login: 
     if home:
         def hero(match):
             tag = match.group(2)
-            for key, value in {"src": f"{PREFIX}/images/art-hero.webp", "alt": "人の手、琵琶湖の風景、紙と銀の道を重ね、地域の仕事が広がる可能性を表したコラージュ", "width": "1536", "height": "1024", "fetchpriority": "high"}.items():
+            for key, value in {"src": f"{PREFIX}/images/flow-hero.webp", "alt": "柔らかな光の流れが知識と行動をつなぎ、人の経験をAIで広げる可能性を表すアート", "width": "1536", "height": "1024", "fetchpriority": "high"}.items():
                 tag = _attribute(tag, key, value)
             return match.group(1) + tag
 
         text, count = re.subn(r'(<figure\b[^>]*id=[\"\']restored-hero-image[\"\'][^>]*>\s*)(<img\b[^>]*>)', hero, text, count=1, flags=re.S)
         assert count == 1, "Expected the owned hero image"
         images = iter([
-            ("learn", "人の横顔とノートを重ね、学びの入口を表したアートコラージュ"),
-            ("learn", "人の横顔とノートを重ね、学びの入口を表したアートコラージュ"),
-            ("build", "キーボードと鉛筆を扱う手から、アイデアが形になるアートコラージュ"),
-            ("build", "キーボードと鉛筆を扱う手から、アイデアが形になるアートコラージュ"),
-            ("connect", "人物と湖畔の街を銀の道でつなぐ、地域の学び合いのアートコラージュ"),
-            ("connect", "人物と湖畔の街を銀の道でつなぐ、地域の学び合いのアートコラージュ"),
+            ("learn", "半透明の柔らかな層が開き、学びと理解が広がるアート"),
+            ("learn", "半透明の柔らかな層が開き、学びと理解が広がるアート"),
+            ("build", "光の経路が滑らかにつながり、アイデアが役立つ仕組みになるアート"),
+            ("build", "光の経路が滑らかにつながり、アイデアが役立つ仕組みになるアート"),
+            ("connect", "人の経験とAI、地域の暮らしをつなぐ柔らかな光の流れを表すアート"),
+            ("connect", "人の経験とAI、地域の暮らしをつなぐ柔らかな光の流れを表すアート"),
         ])
 
         def course(match):
             name, alt = next(images)
             tag = match.group()
-            for key, value in {"src": f"{PREFIX}/images/art-{name}.webp", "alt": alt, "width": "1536", "height": "1024", "loading": "lazy", "decoding": "async"}.items():
+            for key, value in {"src": f"{PREFIX}/images/flow-{name}.webp", "alt": alt, "width": "1536", "height": "1024", "loading": "lazy", "decoding": "async"}.items():
                 tag = _attribute(tag, key, value)
             return tag
 
@@ -83,30 +83,43 @@ def decorate_html(text: str, *, home: bool = False, admin: bool = False, login: 
     text = re.sub(r'<span\b[^>]*class=[\"\'][^\"\']*\bstudio-art-layer\b[^\"\']*[\"\'][^>]*>\s*<img\b[^>]*>\s*</span>', '', text)
     text = re.sub(r'<div class="studio-editorial-person">.*?</div>', '', text, flags=re.S)
 
-    def portrait(match):
+    def profile_art(match):
         opening, tag = match.groups()
-        for key, value in {'src': '/img/speaker.webp', 'alt': 'AI相談講師 由井辰美の本人写真', 'width': '1200', 'height': '900', 'loading': 'lazy', 'decoding': 'async'}.items():
+        for key, value in {'src': f'{PREFIX}/images/flow-connect.webp', 'alt': '人の経験とAI、地域の暮らしをつなぐ柔らかな光の流れを表すアート', 'width': '1536', 'height': '1024', 'loading': 'lazy', 'decoding': 'async'}.items():
             tag = _attribute(tag, key, value)
         return opening + tag
 
-    text = re.sub(r'(<(?:div|figure)\b[^>]*class=[\"\'][^\"\']*\b(?:speaker-art|speaker-painting)\b[^\"\']*[\"\'][^>]*>\s*)(<img\b[^>]*>)', portrait, text)
-    text = re.sub(r'()(<img\b[^>]*class=[\"\'][^\"\']*\bspeaker-painting\b[^\"\']*[\"\'][^>]*>)', portrait, text)
+    text = re.sub(r'(<(?:div|figure)\b[^>]*class=[\"\'][^\"\']*\b(?:speaker-art|speaker-painting)\b[^\"\']*[\"\'][^>]*>\s*)(<img\b[^>]*>)', profile_art, text)
+    text = re.sub(r'()(<img\b[^>]*class=[\"\'][^\"\']*\bspeaker-painting\b[^\"\']*[\"\'][^>]*>)', profile_art, text)
 
-    def stack(match):
-        opening, main_image = match.groups()
-        classes = re.search(r'\bclass=[\"\']([^\"\']*)[\"\']', opening)
-        values = classes.group(1).split() if classes else []
-        opening = _attribute(opening, 'class', ' '.join(dict.fromkeys(values + ['studio-art-stack'])))
-        if 'restored-hero-image' in opening:
-            layers = ('<div class="studio-editorial-person">'
-                      '<img class="studio-editorial-portrait" src="/img/speaker.webp" alt="AI相談講師 由井辰美の本人写真" width="1200" height="900" decoding="async">'
-                      '<span class="studio-editorial-decoration" aria-hidden="true">由井 辰美 <small>AI相談 講師</small></span></div>')
-        else:
-            layers = f'<span class="studio-art-layer studio-art-layer--secondary" aria-hidden="true"><img src="{PREFIX}/images/art-build.webp" alt="" width="1536" height="1024" loading="lazy" decoding="async"></span>'
-        return opening + main_image + layers
+    # The abstract art is not a person's photograph. Remove only portrait
+    # metadata; preserve biography and all other structured information.
+    def structured_data(match):
+        value = json.loads(match.group(2))
+        changed = False
+        def visit(node):
+            nonlocal changed
+            if isinstance(node, dict):
+                types = node.get('@type', [])
+                if isinstance(types, str):
+                    types = [types]
+                own_person = ''.join(str(node.get('name', '')).split()) == '由井辰美'
+                own_image = '/img/speaker' in str(node.get('image', ''))
+                if 'Person' in types and (own_person or own_image) and 'image' in node:
+                    del node['image']
+                    changed = True
+                for child in node.values():
+                    visit(child)
+            elif isinstance(node, list):
+                for child in node:
+                    visit(child)
+        visit(value)
+        if not changed:
+            return match.group(0)
+        encoded = json.dumps(value, ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/')
+        return match.group(1) + encoded + match.group(3)
 
-    text = re.sub(r'(<figure\b[^>]*id=[\"\']restored-hero-image[\"\'][^>]*>)(\s*<img\b[^>]*>)', stack, text, count=1)
-    text = re.sub(r'(<div\b[^>]*class=[\"\'][^\"\']*\bspeaker-art\b[^\"\']*[\"\'][^>]*>)(\s*<img\b[^>]*>)', stack, text, count=1)
+    text = re.sub(r'(<script\b[^>]*type=[\"\']application/ld\+json[\"\'][^>]*>)(.*?)(</script>)', structured_data, text, flags=re.S)
     return text
 
 

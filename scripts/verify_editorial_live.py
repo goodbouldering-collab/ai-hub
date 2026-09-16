@@ -12,6 +12,8 @@ from urllib.parse import urljoin, urlsplit
 from bs4 import BeautifulSoup
 import requests
 
+from verify_editorial_release import assert_no_personal_images
+
 
 PRODUCTION_URL = "https://aiclimb.aiclimb.workers.dev"
 PUBLIC_ROUTES = (
@@ -24,9 +26,8 @@ PUBLIC_ROUTES = (
     ("/design-system/studio/editorial.css", "design-system/studio/editorial.css"),
     ("/design-system/studio/studio.css", "design-system/studio/studio.css"),
     ("/design-system/studio/studio.js", "design-system/studio/studio.js"),
-    *((f"/design-system/studio/images/art-{name}.webp", f"design-system/studio/images/art-{name}.webp")
+    *((f"/design-system/studio/images/flow-{name}.webp", f"design-system/studio/images/flow-{name}.webp")
       for name in ("hero", "learn", "build", "connect")),
-    ("/img/speaker.webp", "img/speaker.webp"),
 )
 REDIRECT_STATUSES = {301, 302, 303, 307, 308}
 
@@ -88,7 +89,9 @@ def editorial_tag(soup: BeautifulSoup, base_url: str) -> bool:
     if len(tags) != 1:
         return False
     target = urljoin(base_url + "/", tags[0].get("href", ""))
-    return same_origin(target, base_url) and urlsplit(target).path == "/design-system/studio/editorial.css"
+    parts = urlsplit(target)
+    return (same_origin(target, base_url) and parts.path == "/design-system/studio/editorial.css"
+            and parts.query == "v=20260916-fluid" and not parts.fragment)
 
 
 def verify(release: Path, base_url: str, *, session=None) -> dict:
@@ -128,6 +131,8 @@ def verify(release: Path, base_url: str, *, session=None) -> dict:
                 require(result["matches_release"], "Production bytes differ from the release manifest")
                 if name.endswith(".html"):
                     soup = BeautifulSoup(response.content, "html.parser")
+                    assert_no_personal_images(soup, name)
+                    result["personal_photo_not_rendered"] = True
                     canonicals = soup.select('link[rel="canonical"]')
                     canonical = canonicals[0].get("href", "") if len(canonicals) == 1 else ""
                     canonical_parts = urlsplit(canonical)

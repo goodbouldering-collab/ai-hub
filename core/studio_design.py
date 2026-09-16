@@ -17,6 +17,7 @@ ASSETS = ROOT / "site/static/design-system/studio"
 PREFIX = "/design-system/studio"
 LINK = f'<link id="studio-design" rel="stylesheet" href="{PREFIX}/studio.css?v=20260914-glass">'
 SCRIPT = f'<script id="studio-motion" defer src="{PREFIX}/studio.js?v=20260914-glass"></script>'
+EDITORIAL_LINK = f'<link id="studio-editorial" rel="stylesheet" href="{PREFIX}/editorial.css?v=20260916">'
 
 
 def _attribute(tag: str, name: str, value: str) -> str:
@@ -30,7 +31,7 @@ def _attribute(tag: str, name: str, value: str) -> str:
 def decorate_html(text: str, *, home: bool = False, admin: bool = False, login: bool = False) -> str:
     if not re.search(r"<body\b", text, re.I) or not re.search(r"</head>", text, re.I):
         return text
-    classes = ["studio-theme"]
+    classes = ["studio-theme", "studio-editorial"]
     if home:
         classes.append("studio-home")
     if admin:
@@ -49,50 +50,63 @@ def decorate_html(text: str, *, home: bool = False, admin: bool = False, login: 
     # the shared theme without duplicate scripts or stale browser caches.
     text = re.sub(r'<link\b[^>]*id=[\"\']studio-design[\"\'][^>]*>', '', text)
     text = re.sub(r'<script\b[^>]*id=[\"\']studio-motion[\"\'][^>]*>\s*</script>', '', text)
-    text = re.sub(r'\s*</head>', lambda _: LINK + SCRIPT + "\n</head>", text, count=1, flags=re.I)
+    text = re.sub(r'<link\b[^>]*id=[\"\']studio-editorial[\"\'][^>]*>', '', text)
+    text = re.sub(r'\s*</head>', lambda _: LINK + SCRIPT + EDITORIAL_LINK + "\n</head>", text, count=1, flags=re.I)
     if home:
         def hero(match):
             tag = match.group(2)
-            for key, value in {"src": f"{PREFIX}/images/hero.png", "alt": "AI教室で講師と受講者がパソコンを囲み、光の流れが人とAIの可能性をつなぐイメージ", "width": "1536", "height": "1024", "fetchpriority": "high"}.items():
+            for key, value in {"src": f"{PREFIX}/images/art-hero.webp", "alt": "人の手、琵琶湖の風景、紙と銀の道を重ね、地域の仕事が広がる可能性を表したコラージュ", "width": "1536", "height": "1024", "fetchpriority": "high"}.items():
                 tag = _attribute(tag, key, value)
             return match.group(1) + tag
 
         text, count = re.subn(r'(<figure\b[^>]*id=[\"\']restored-hero-image[\"\'][^>]*>\s*)(<img\b[^>]*>)', hero, text, count=1, flags=re.S)
         assert count == 1, "Expected the owned hero image"
         images = iter([
-            ("learn", "AI教室で受講者が講師と画面を確認し、パソコンを操作しながら学ぶイメージ"),
-            ("learn", "AI教室で受講者が講師と画面を確認し、パソコンを操作しながら学ぶイメージ"),
-            ("build", "AI教室で講師と一緒に制作を進め、人のアイデアが光の流れとともに形になるイメージ"),
-            ("build", "AI教室で講師と一緒に制作を進め、人のアイデアが光の流れとともに形になるイメージ"),
-            ("connect", "AI教室で世代の異なる受講者が学び合い、人とAIの知識が光でつながるイメージ"),
-            ("connect", "AI教室で世代の異なる受講者が学び合い、人とAIの知識が光でつながるイメージ"),
+            ("learn", "人の横顔とノートを重ね、学びの入口を表したアートコラージュ"),
+            ("learn", "人の横顔とノートを重ね、学びの入口を表したアートコラージュ"),
+            ("build", "キーボードと鉛筆を扱う手から、アイデアが形になるアートコラージュ"),
+            ("build", "キーボードと鉛筆を扱う手から、アイデアが形になるアートコラージュ"),
+            ("connect", "人物と湖畔の街を銀の道でつなぐ、地域の学び合いのアートコラージュ"),
+            ("connect", "人物と湖畔の街を銀の道でつなぐ、地域の学び合いのアートコラージュ"),
         ])
 
         def course(match):
             name, alt = next(images)
             tag = match.group()
-            for key, value in {"src": f"{PREFIX}/images/{name}.png", "alt": alt, "width": "1536", "height": "1024", "loading": "lazy", "decoding": "async"}.items():
+            for key, value in {"src": f"{PREFIX}/images/art-{name}.webp", "alt": alt, "width": "1536", "height": "1024", "loading": "lazy", "decoding": "async"}.items():
                 tag = _attribute(tag, key, value)
             return tag
 
         text, count = re.subn(r'<img\b[^>]*class=[\"\'][^\"\']*\bcompact-course-visual\b[^\"\']*[\"\'][^>]*>', course, text)
         assert count == 6, "Expected six course illustrations"
-    # Decorative collage uses the existing authored images and has no controls
-    # or accessible text. It never replaces a portrait or a content image.
+    # Refresh only owned artwork layers, including already-decorated snapshots.
+    text = re.sub(r'<span\b[^>]*class=[\"\'][^\"\']*\bstudio-art-layer\b[^\"\']*[\"\'][^>]*>\s*<img\b[^>]*>\s*</span>', '', text)
+    text = re.sub(r'<div class="studio-editorial-person">.*?</div>', '', text, flags=re.S)
+
+    def portrait(match):
+        opening, tag = match.groups()
+        for key, value in {'src': '/img/speaker.webp', 'alt': 'AI相談講師 由井辰美の本人写真', 'width': '1200', 'height': '900', 'loading': 'lazy', 'decoding': 'async'}.items():
+            tag = _attribute(tag, key, value)
+        return opening + tag
+
+    text = re.sub(r'(<(?:div|figure)\b[^>]*class=[\"\'][^\"\']*\b(?:speaker-art|speaker-painting)\b[^\"\']*[\"\'][^>]*>\s*)(<img\b[^>]*>)', portrait, text)
+    text = re.sub(r'()(<img\b[^>]*class=[\"\'][^\"\']*\bspeaker-painting\b[^\"\']*[\"\'][^>]*>)', portrait, text)
+
     def stack(match):
         opening, main_image = match.groups()
         classes = re.search(r'\bclass=[\"\']([^\"\']*)[\"\']', opening)
         values = classes.group(1).split() if classes else []
         opening = _attribute(opening, 'class', ' '.join(dict.fromkeys(values + ['studio-art-stack'])))
-        layers = ''.join(
-            f'<span class="studio-art-layer studio-art-layer--{kind}" aria-hidden="true"><img src="{PREFIX}/images/{name}.png" alt="" width="1536" height="1024" loading="lazy" decoding="async"></span>'
-            for kind, name in [('secondary', 'connect'), ('detail', 'learn')]
-        )
+        if 'restored-hero-image' in opening:
+            layers = ('<div class="studio-editorial-person">'
+                      '<img class="studio-editorial-portrait" src="/img/speaker.webp" alt="AI相談講師 由井辰美の本人写真" width="1200" height="900" decoding="async">'
+                      '<span class="studio-editorial-decoration" aria-hidden="true">由井 辰美 <small>AI相談 講師</small></span></div>')
+        else:
+            layers = f'<span class="studio-art-layer studio-art-layer--secondary" aria-hidden="true"><img src="{PREFIX}/images/art-build.webp" alt="" width="1536" height="1024" loading="lazy" decoding="async"></span>'
         return opening + main_image + layers
 
-    if 'studio-art-layer--secondary' not in text:
-        text = re.sub(r'(<figure\b[^>]*id=[\"\']restored-hero-image[\"\'][^>]*>)(\s*<img\b[^>]*>)', stack, text, count=1)
-        text = re.sub(r'(<div\b[^>]*class=[\"\'][^\"\']*\bspeaker-art\b[^\"\']*[\"\'][^>]*>)(\s*<img\b[^>]*>)', stack, text, count=1)
+    text = re.sub(r'(<figure\b[^>]*id=[\"\']restored-hero-image[\"\'][^>]*>)(\s*<img\b[^>]*>)', stack, text, count=1)
+    text = re.sub(r'(<div\b[^>]*class=[\"\'][^\"\']*\bspeaker-art\b[^\"\']*[\"\'][^>]*>)(\s*<img\b[^>]*>)', stack, text, count=1)
     return text
 
 

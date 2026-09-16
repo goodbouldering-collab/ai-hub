@@ -1,5 +1,15 @@
 # AI相談 Studio assets
 
+## 現行: Editorial / Human possibilities（2026-09-16）
+
+`editorial.css` を既存共通テーマの後に読み込み、生成りの紙、深い緑、細い罫線、写真のコラージュを共通の表現にする。トップ・講師紹介・公開記事・管理・ログインへ適用。既存の本文、料金、リンク、操作、認証処理は保持する。
+
+現行画像は `images/art-hero.webp`、`art-learn.webp`、`art-build.webp`、`art-connect.webp`。人の手で試す、アイデアを形にする、地域につなぐ可能性を表すアート。新規画像内の人物は架空であり、実際の受講風景ではない。講師の本人写真は既存の `/img/speaker.webp` を別枠で使用し、CSSでモノクロ表示する。
+
+生成原本と完全な制作指示は `docs/design/editorial-originals/` と `docs/design/editorial-20260916-prompts.json`。配信用画像は1536×1024を維持し、SharpのWebP quality 85 / effort 6で形式変換したもの。画像内容の加工はしていない。4枚合計946,926 bytes、ヒーロー263,700 bytes。詳細と検証・公開手順は `docs/design/editorial-20260916.md`。
+
+以下は以前のデザイン資産の制作履歴。
+
 2026-09-16画像更新。トップ、公開記事、管理画面に共通で使うデザイン資産。
 
 - 背景：生成り `#f5f3ed`、面：`#fffefa`、文字：`#172c2a`。

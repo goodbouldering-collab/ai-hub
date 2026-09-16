@@ -42,3 +42,5 @@ bridge/bridge-auth.json
 
 .profile-release/
 .glass-release/
+.editorial-release-*/
+outputs/editorial-preview-*/

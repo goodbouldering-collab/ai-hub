@@ -1,6 +1,14 @@
 # AI相談 Studio assets
 
-## 現行: Editorial / Human possibilities（2026-09-16）
+## 現行: Fluid studio / 人の経験を広げるAI（2026-09-16）
+
+本人写真を使わず、自然光・半透明の素材・ゆるやかな流れを描いたアート4点へ更新。シリコンバレーの海辺のスタジオを思わせる、霧のセージと生成りの色調。`editorial.css?v=20260916-fluid` でトップ・自己紹介・記事・管理・ログインの輪郭と陰影を揃える。
+
+配信画像は `images/flow-hero.webp`、`flow-learn.webp`、`flow-build.webp`、`flow-connect.webp`。1536×1024、合計415,810 bytes。トップのヒーロー・講習カード・講師欄、自己紹介の主画像に使用。写真フレームと重なった装飾を取り除き、本人の `Person.image` 指定も外す。既存写真ファイルと過去制作物は履歴資産として保持するが、本人写真をページに表示しない。
+
+OpenAI built-in ImageGenで新規生成。原本は `docs/design/fluid-originals/`、完全なプロンプトは `docs/design/fluid-20260916-prompts.json`。制作意図・再生成・検証は `docs/design/fluid-20260916.md` を参照。
+
+## 履歴: Editorial / Human possibilities（2026-09-16）
 
 `editorial.css` を既存共通テーマの後に読み込み、生成りの紙、深い緑、細い罫線、写真のコラージュを共通の表現にする。トップ・講師紹介・公開記事・管理・ログインへ適用。既存の本文、料金、リンク、操作、認証処理は保持する。
 

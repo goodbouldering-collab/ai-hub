@@ -477,17 +477,25 @@ def validate_editorial(
     return clean
 
 
-def render_current(period: str, fingerprint: str, editorial: dict[str, Any]) -> str:
+def render_header(updated_on: date) -> str:
+    return (
+        '<section class="codex-update-guide" aria-labelledby="codex-update-guide-title">\n'
+        '<h2 id="codex-update-guide-title">Codex新機能と活用例</h2>\n'
+        '<p class="codex-update-guide__date">更新日：'
+        f'<time datetime="{updated_on.isoformat()}">'
+        f'{updated_on.year}年{updated_on.month}月{updated_on.day}日</time></p>\n'
+        '</section>'
+    )
+
+
+def render_current(
+    period: str, fingerprint: str, editorial: dict[str, Any], *, updated_on: date | None = None
+) -> str:
     lines = [
         f"<!-- source-fingerprint: {fingerprint} -->",
-        editorial["hook"],
-        "",
-        f"**公式情報の確認期間：{period}**",
-        "",
-        "### 今回の要点",
+        render_header(updated_on or parse_period_end(period)),
         "",
     ]
-    lines.extend(f"- {item}" for item in editorial["summary"])
 
     display_features = editorial["features"] + editorial["other_updates"]
     other_updates_start = len(editorial["features"]) + 1
@@ -629,7 +637,7 @@ def update_article(
             updated_body,
             CURRENT_BEGIN,
             CURRENT_END,
-            render_current(period, fingerprint, editorial),
+            render_current(period, fingerprint, editorial, updated_on=today),
         )
 
         if require_archive:

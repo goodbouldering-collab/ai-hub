@@ -26,8 +26,8 @@ PUBLIC_ROUTES = (
     ("/design-system/studio/editorial.css", "design-system/studio/editorial.css"),
     ("/design-system/studio/studio.css", "design-system/studio/studio.css"),
     ("/design-system/studio/studio.js", "design-system/studio/studio.js"),
-    *((f"/design-system/studio/images/flow-{name}.webp", f"design-system/studio/images/flow-{name}.webp")
-      for name in ("hero", "learn", "build", "connect")),
+    *((f"/design-system/studio/images/human-{name}.webp", f"design-system/studio/images/human-{name}.webp")
+      for name in ("hero", "learn", "build", "connect", "practice")),
 )
 REDIRECT_STATUSES = {301, 302, 303, 307, 308}
 
@@ -91,7 +91,7 @@ def editorial_tag(soup: BeautifulSoup, base_url: str) -> bool:
     target = urljoin(base_url + "/", tags[0].get("href", ""))
     parts = urlsplit(target)
     return (same_origin(target, base_url) and parts.path == "/design-system/studio/editorial.css"
-            and parts.query == "v=20260916-fluid" and not parts.fragment)
+            and parts.query == "v=20260918-human-glass" and not parts.fragment)
 
 
 def verify(release: Path, base_url: str, *, session=None) -> dict:

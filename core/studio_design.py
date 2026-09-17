@@ -17,7 +17,7 @@ ASSETS = ROOT / "site/static/design-system/studio"
 PREFIX = "/design-system/studio"
 LINK = f'<link id="studio-design" rel="stylesheet" href="{PREFIX}/studio.css?v=20260914-glass">'
 SCRIPT = f'<script id="studio-motion" defer src="{PREFIX}/studio.js?v=20260914-glass"></script>'
-EDITORIAL_LINK = f'<link id="studio-editorial" rel="stylesheet" href="{PREFIX}/editorial.css?v=20260916-fluid">'
+EDITORIAL_LINK = f'<link id="studio-editorial" rel="stylesheet" href="{PREFIX}/editorial.css?v=20260918-human-glass">'
 
 
 def _attribute(tag: str, name: str, value: str) -> str:
@@ -55,37 +55,66 @@ def decorate_html(text: str, *, home: bool = False, admin: bool = False, login: 
     if home:
         def hero(match):
             tag = match.group(2)
-            for key, value in {"src": f"{PREFIX}/images/flow-hero.webp", "alt": "柔らかな光の流れが知識と行動をつなぎ、人の経験をAIで広げる可能性を表すアート", "width": "1536", "height": "1024", "fetchpriority": "high"}.items():
+            for key, value in {"src": f"{PREFIX}/images/human-hero.webp", "alt": "PCの画面を一緒に確かめ、AIで仕事を改善する相談のイメージ（AI生成）", "width": "1536", "height": "1024", "fetchpriority": "high"}.items():
                 tag = _attribute(tag, key, value)
             return match.group(1) + tag
 
         text, count = re.subn(r'(<figure\b[^>]*id=[\"\']restored-hero-image[\"\'][^>]*>\s*)(<img\b[^>]*>)', hero, text, count=1, flags=re.S)
         assert count == 1, "Expected the owned hero image"
         images = iter([
-            ("learn", "半透明の柔らかな層が開き、学びと理解が広がるアート"),
-            ("learn", "半透明の柔らかな層が開き、学びと理解が広がるアート"),
-            ("build", "光の経路が滑らかにつながり、アイデアが役立つ仕組みになるアート"),
-            ("build", "光の経路が滑らかにつながり、アイデアが役立つ仕組みになるアート"),
-            ("connect", "人の経験とAI、地域の暮らしをつなぐ柔らかな光の流れを表すアート"),
-            ("connect", "人の経験とAI、地域の暮らしをつなぐ柔らかな光の流れを表すアート"),
+            ("learn", "ノートPCでAIへの依頼と結果の確認を学ぶ人たちのイメージ（AI生成）"),
+            ("learn", "ノートPCでAIへの依頼と結果の確認を学ぶ人たちのイメージ（AI生成）"),
+            ("build", "PCでコードとWebアプリの動作を確かめる制作のイメージ（AI生成）"),
+            ("build", "PCでコードとWebアプリの動作を確かめる制作のイメージ（AI生成）"),
+            ("connect", "PCやタブレットを使い、仕事の手順をチームで整理するイメージ（AI生成）"),
+            ("connect", "PCやタブレットを使い、仕事の手順をチームで整理するイメージ（AI生成）"),
         ])
 
         def course(match):
             name, alt = next(images)
             tag = match.group()
-            for key, value in {"src": f"{PREFIX}/images/flow-{name}.webp", "alt": alt, "width": "1536", "height": "1024", "loading": "lazy", "decoding": "async"}.items():
+            for key, value in {"src": f"{PREFIX}/images/human-{name}.webp", "alt": alt, "width": "1536", "height": "1024", "loading": "lazy", "decoding": "async"}.items():
                 tag = _attribute(tag, key, value)
             return tag
 
         text, count = re.subn(r'<img\b[^>]*class=[\"\'][^\"\']*\bcompact-course-visual\b[^\"\']*[\"\'][^>]*>', course, text)
         assert count == 6, "Expected six course illustrations"
+        # The glass body overlaps its own photograph; links keep their DOM order.
+        def course_body(match):
+            opening, content, closing = match.groups()
+            if 'class="studio-course-body"' in content:
+                return match.group(0)
+            image = re.search(r'<img\b[^>]*\bcompact-course-visual\b[^>]*>', content)
+            assert image, "Expected course image before the glass body"
+            end = image.end()
+            return opening + content[:end] + '<div class="studio-course-body">' + content[end:] + '</div>' + closing
+        text = re.sub(r'(<article\b[^>]*\bcompact-course-card\b[^>]*>)(.*?)(</article>)', course_body, text, flags=re.S)
+
+        steps = iter([("practice", "PCと仕事のノートを持ち込むイメージ（AI生成）"),
+                      ("learn", "PCの画面を一緒に確かめながら学ぶイメージ（AI生成）"),
+                      ("build", "作ったアプリと手順をPCで確認して残すイメージ（AI生成）")])
+        def step_image(match):
+            name, alt = next(steps)
+            tag = match.group()
+            for key, value in {"src": f"{PREFIX}/images/human-{name}.webp", "alt": alt,
+                               "width": "1536", "height": "1024", "loading": "lazy", "decoding": "async"}.items():
+                tag = _attribute(tag, key, value)
+            return tag
+        text, count = re.subn(r'<img\b[^>]*class=[\"\'][^\"\']*\bfocus-step-visual\b[^\"\']*[\"\'][^>]*>', step_image, text)
+        assert count == 3, "Expected three work process images"
     # Refresh only owned artwork layers, including already-decorated snapshots.
     text = re.sub(r'<span\b[^>]*class=[\"\'][^\"\']*\bstudio-art-layer\b[^\"\']*[\"\'][^>]*>\s*<img\b[^>]*>\s*</span>', '', text)
     text = re.sub(r'<div class="studio-editorial-person">.*?</div>', '', text, flags=re.S)
+    text = re.sub(r'<span class="studio-scene-layer" aria-hidden="true">\s*<img\b[^>]*>\s*</span>', '', text)
+    if home:
+        layer = (f'<span class="studio-scene-layer" aria-hidden="true"><img src="{PREFIX}/images/human-practice.webp" '
+                 'alt="" width="1536" height="1024" loading="lazy" decoding="async"></span>')
+        text = re.sub(r'(<figure\b[^>]*id=[\"\']restored-hero-image[\"\'][^>]*>\s*<img\b[^>]*>)',
+                      lambda match: match.group(1) + layer, text, count=1, flags=re.S)
 
     def profile_art(match):
         opening, tag = match.groups()
-        for key, value in {'src': f'{PREFIX}/images/flow-connect.webp', 'alt': '人の経験とAI、地域の暮らしをつなぐ柔らかな光の流れを表すアート', 'width': '1536', 'height': '1024', 'loading': 'lazy', 'decoding': 'async'}.items():
+        for key, value in {'src': f'{PREFIX}/images/human-practice.webp', 'alt': 'PCとノートを使い、AIを実際の仕事へ生かす手元のイメージ（AI生成）', 'width': '1536', 'height': '1024', 'loading': 'lazy', 'decoding': 'async'}.items():
             tag = _attribute(tag, key, value)
         return opening + tag
 

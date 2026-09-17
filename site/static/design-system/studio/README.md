@@ -1,6 +1,14 @@
 # AI相談 Studio assets
 
-## 現行: Fluid studio / 人の経験を広げるAI（2026-09-16）
+## 現行: Human work / Layered glass（2026-09-18）
+
+PCを使った相談・学習・制作・協働を、自然光の入るプロダクトスタジオの写実的な写真で表現する。人物は架空の成人。本人写真は使わず、自己紹介にはPCを操作する手元を置く。生成画像の代替テキストでAI生成のイメージであることを示す。
+
+`editorial.css?v=20260918-human-glass` を共通で適用。写真、半透明の本文パネル、小さな作業写真を重ねるトップ、写真へ56px重なる講習カード、写真に重なる自己紹介を構成する。管理・ログインも同じ色とガラス面に統一。本文・料金・リンク・フォーム・認証処理は保持する。
+
+配信画像は `images/human-{hero,learn,build,connect,practice}.webp`。1536×1024、5枚合計622,914 bytes。OpenAI built-in ImageGenで新規生成し、Sharp WebP quality 86 / effort 6で形式変換した。原本は `docs/design/human-glass-originals/`、完全なプロンプトは `docs/design/human-glass-20260918-prompts.json`。配置・検証・再公開手順は `docs/design/human-glass-20260918.md`。
+
+## 履歴: Fluid studio / 人の経験を広げるAI（2026-09-16）
 
 本人写真を使わず、自然光・半透明の素材・ゆるやかな流れを描いたアート4点へ更新。シリコンバレーの海辺のスタジオを思わせる、霧のセージと生成りの色調。`editorial.css?v=20260916-fluid` でトップ・自己紹介・記事・管理・ログインの輪郭と陰影を揃える。
 

@@ -22,13 +22,13 @@ PRESENTATION_ASSETS = {
     "design-system/studio/editorial.css",
 }
 NEW_ASSETS = {
-    f"design-system/studio/images/flow-{name}.webp"
-    for name in ("hero", "learn", "build", "connect")
+    f"design-system/studio/images/human-{name}.webp"
+    for name in ("hero", "learn", "build", "connect", "practice")
 }
-DECORATIONS = ".studio-art-layer, .studio-editorial-decoration"
+DECORATIONS = ".studio-art-layer, .studio-editorial-decoration, .studio-scene-layer"
 CONTROL_SELECTOR = "a,button,input,textarea,select,option,form,details,summary,iframe"
 PHOTO_URL = re.compile(r'/img/speaker(?:[-a-z0-9]*)\.(?:webp|png|jpe?g)', re.I)
-FLOW_CONNECT = "/design-system/studio/images/flow-connect.webp"
+INSTRUCTOR_ART = "/design-system/studio/images/human-practice.webp"
 
 
 def without_person_image(value):
@@ -130,7 +130,7 @@ def semantics(text: str, name: str) -> dict:
     owned_images = set()
     if may_change_images:
         owned_images = {id(element) for element in soup.select(
-            "#restored-hero-image > img, img.compact-course-visual, .speaker-art > img, #speaker img.speaker-painting")}
+            "#restored-hero-image > img, img.compact-course-visual, img.focus-step-visual, .speaker-art > img, #speaker img.speaker-painting")}
     images = [({"owned_image": True} if id(element) in owned_images else dict(element.attrs))
               for element in soup.select("img,source")]
     scripts = []
@@ -147,7 +147,7 @@ def semantics(text: str, name: str) -> dict:
             image_key = element.get("property") or element.get("name") or ""
             value = element.get("content", "")
             if image_key in {"og:image", "og:image:secure_url", "twitter:image"} and (
-                    PHOTO_URL.search(value) or value.endswith(FLOW_CONNECT)):
+                    PHOTO_URL.search(value) or value.endswith(INSTRUCTOR_ART)):
                 element["content"] = "__owned_instructor_image__"
     metadata = [str(element) for element in soup.select("head meta, head title, head link")]
     controls = [{"tag": element.name, **dict(element.attrs)}
@@ -177,8 +177,8 @@ def check_html(before: str, after: str, name: str, *, runtime: bool = False, **f
         for identity in THEME_IDS:
             require(len(soup.select(f"#{identity}")) == 1, f"Missing or duplicated theme tag {identity}: {name}")
         require(soup.select_one("#studio-editorial").get("href") ==
-                "/design-system/studio/editorial.css?v=20260916-fluid",
-                f"Missing current fluid stylesheet version: {name}")
+                "/design-system/studio/editorial.css?v=20260918-human-glass",
+                f"Missing current human glass stylesheet version: {name}")
 
 
 def runtime_assets(path: Path) -> tuple[str, dict]:
@@ -213,18 +213,27 @@ def verify(baseline: Path, release: Path) -> dict:
         art_selector = "#speaker img.speaker-painting" if name == "index.html" else ".speaker-art > img"
         artwork = soup.select(art_selector)
         require(len(artwork) == 1, f"Missing or duplicated instructor section artwork: {name}")
-        require(artwork[0].get("src") == FLOW_CONNECT and
+        require(artwork[0].get("src") == INSTRUCTOR_ART and
                 bool(artwork[0].get("alt", "").strip()),
-                f"Instructor section must use fluid artwork with meaningful alt: {name}")
+                f"Instructor section must use the PC workspace image with meaningful alt: {name}")
         if name == "index.html":
             hero = soup.select("#restored-hero-image > img")
             require(len(hero) == 1 and hero[0].get("src") ==
-                    "/design-system/studio/images/flow-hero.webp", "The hero must use the new fluid artwork")
+                    "/design-system/studio/images/human-hero.webp", "The hero must use the people and PC artwork")
             courses = [element.get("src") for element in soup.select("img.compact-course-visual")]
-            require(courses == [f"/design-system/studio/images/flow-{kind}.webp"
+            require(courses == [f"/design-system/studio/images/human-{kind}.webp"
                                 for kind in ("learn", "learn", "build", "build", "connect", "connect")],
-                    "The six course images must retain their order with the new fluid artwork")
-        for element in soup.select("#restored-hero-image img, img.compact-course-visual, .speaker-art img, #speaker img.speaker-painting"):
+                    "The six course images must retain their order with people and PC artwork")
+            bodies = soup.select(".compact-course-card > .studio-course-body")
+            require(len(bodies) == 6 and all(body.select_one('.compact-course-heading') and body.select_one('.compact-course-tail') for body in bodies),
+                    "Each course must have one readable glass body containing its title and actions")
+            steps = [element.get('src') for element in soup.select('img.focus-step-visual')]
+            require(steps == [f'/design-system/studio/images/human-{kind}.webp' for kind in ('practice', 'learn', 'build')],
+                    'Process imagery must show the real PC workflow')
+            layers = soup.select('#restored-hero-image > .studio-scene-layer')
+            require(len(layers) == 1 and layers[0].get('aria-hidden') == 'true' and not layers[0].select(CONTROL_SELECTOR),
+                    'Expected exactly one non-interactive photo inset')
+        for element in soup.select("#restored-hero-image img, img.compact-course-visual, img.focus-step-visual, .speaker-art img, #speaker img.speaker-painting"):
             src = element.get("src", "").split("?", 1)[0]
             require(src.startswith("/") and src.lstrip("/") in new_files,
                     f"Missing owned image asset on {name}: {src}")

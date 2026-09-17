@@ -19,19 +19,9 @@ action: "使えそうな機能を1つ試す"
 <!-- CODEX_UPDATE_CURRENT:BEGIN -->
 <!-- source-fingerprint: 560b6e910da6a867d526e0e1477012087225232d3120df1246de90bdbd56a748 -->
 <section class="codex-update-guide" aria-labelledby="codex-update-guide-title">
-<div class="codex-update-guide__header">
-<p class="codex-update-guide__eyebrow">今日のAIニュースを読んだら</p>
-<h2 id="codex-update-guide-title" class="codex-update-guide__title">今日のCodex新機能と活用術</h2>
-<p class="codex-update-guide__lead">複数のCodex作業をつないで進めたい時や、長い回答から必要な部分だけ持ち帰りたい時へ。ターミナルでの作業整理と共有がしやすくなりました。</p>
-<p class="codex-update-guide__date"><time datetime="2026-08-28">公式情報の確認期間：August 24–28, 2026</time></p>
-</div>
+<h2 id="codex-update-guide-title">Codex新機能と活用例</h2>
+<p class="codex-update-guide__date">更新日：<time datetime="2026-08-27">2026年8月27日</time></p>
 </section>
-
-### 今回の要点
-
-- 別のCodex作業を参照し、ターミナルから作成やメッセージ送信ができます。
-- 回答全体、コード、引用のどれをコピーするか選べます。
-- 作業名とリンク表示が整い、あとから見返しやすくなりました。
 
 <section class="codex-feature-card update-card" data-update-kind="codex" data-update-index="1" aria-labelledby="codex-feature-1-title">
 <header class="update-card__header">

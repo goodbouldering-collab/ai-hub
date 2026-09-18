@@ -99,6 +99,7 @@ except Exception:
     pass
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from public_navigation import render_desktop_navigation, render_mobile_navigation
 from blog_freshness import blog_date_label, effective_blog_date, is_new_blog
@@ -16026,7 +16027,8 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append(_render_diagnose_modal())
     parts.append(HEADER_JS)
     parts.append("</body></html>")
-    return "".join(parts)
+    from core.instagram_feed import apply_instagram_feed
+    return apply_instagram_feed("".join(parts))
 
     # Legacy sections remain below as reusable source assets, but are intentionally
     # outside the focused homepage composition.

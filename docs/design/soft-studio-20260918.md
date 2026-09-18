@@ -45,6 +45,14 @@ OpenAI built-in ImageGenで13点を個別生成。原本PNGは `soft-studio-orig
 
 `node --test tests/soft-playground.test.mjs tests/studio-glass-motion.test.mjs` は20件成功。独立レビューで小見出しと暗色CTAのフォーカス枠のコントラストを調整した。
 
-PC・iPhone幅の実画面確認後、依頼対象だけをコミットし、PRを既定ブランチへ統合。中央台帳の登録ソースへfast-forwardし、同じコミットから再生成してガードを通す。デプロイは `wrangler-profile-release.jsonc` に明示的なentry/assetパスを指定する。
+依頼対象だけをコミットし、PRを既定ブランチへ統合。中央台帳の登録ソースへfast-forwardし、同じコミットから再生成してガードを通す。デプロイは `wrangler-profile-release.jsonc` に明示的なentry/assetパスを指定する。PC・iPhone幅の実画面確認はHTTPやコードの確認と分けて記録する。
 
 公開後は `scripts/verify_editorial_live.py` で主要ページ、13画像、CSS/JS、管理/APIの28経路を検証。実行結果、統合SHA、Cloudflare version、ブラウザ結果はリリース出力先の記録およびPRコメントに残す。本ファイルは画面確認やデプロイの完了を先取りして表明するものではない。
+
+## 9月19日の公開再開
+
+PR #59作成後、Instagramカルーセル（PR #60）とCloudflareのブログ（PR #61）がmainへ統合された。最新の公開済み `.editorial-release-cloudflare-blog-20260919` を照合して基準に更新し、その485資産を保持したままデザインを適用する。一般ビルドによるニュースの巻き戻しを避け、公開中の9月14日ニュースを維持する。
+
+実画面確認用のアプリ内ブラウザは接続されず、接続中のChromeも別事業のみだった。デスクトップの「AI相談 - Chrome」（Profile 1）を読み取り照合し、接続を依頼。利用できない間は実画面QAを未実施として記録し、利用可能なコード・画像重複・本文保持・公開応答の検証と区別する。ユーザーからコミット・PR・デプロイの再指示を受けて公開工程を再開した。
+
+最終的な完了範囲はリリース記録とPRコメントを参照。新ブログとInstagramのCSS/JSを含め、公開時の検証は31経路に拡張する。

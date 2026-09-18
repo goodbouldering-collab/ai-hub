@@ -138,7 +138,11 @@ def build(baseline: Path, output: Path) -> dict:
     source_paths = [CONTRACT, CONTRACT.with_name("requirements.txt"), Path(__file__).resolve(), source, *image_inputs,
                     ROOT / "site/build_site.py", ROOT / "site/build_portal.py",
                     ROOT / "site/public_navigation.py", ROOT / "site/blog_freshness.py",
-                    ROOT / "core/daily_news.py", ROOT / "core/studio_design.py"]
+                    ROOT / "core/daily_news.py", ROOT / "core/studio_design.py",
+                    ROOT / "core/instagram_feed.py", ROOT / "config/instagram.json",
+                    ROOT / "cloudflare-runtime/wrangler-glass-build.jsonc",
+                    ROOT / "cloudflare-runtime/wrangler-profile-release.jsonc",
+                    ROOT / "deployment/profile/package-lock.json"]
     source_inputs = {p.relative_to(ROOT).as_posix(): digest(p) for p in source_paths}
     dirty = subprocess.check_output(
         ["git", "-c", "core.excludesFile=", "status", "--porcelain", "--", *source_inputs],

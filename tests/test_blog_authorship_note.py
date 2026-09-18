@@ -289,7 +289,11 @@ class ExperienceArticleTitleTest(unittest.TestCase):
         jsonld = json.loads(jsonld_match.group(1))
 
         self.assertEqual(meta["title"], EXPERIENCE_TITLE)
-        self.assertIn(f"<h3>{EXPERIENCE_TITLE}</h3>", portal._render_blog_teaser())
+        # The article can age out of the six newest posts as new blogs are added.
+        card = portal._render_blog_card({
+            **meta, "href": "/blog/2026-08-09-ai-experience-3d-reality.html",
+        })
+        self.assertIn(f"<h3>{EXPERIENCE_TITLE}</h3>", card)
         self.assertIn(f"<h1>{EXPERIENCE_TITLE}</h1>", page)
         self.assertIn(f"<title>{EXPERIENCE_TITLE} | AIclimb（AI相談）</title>", page)
         self.assertIn(f"<meta property='og:title' content='{EXPERIENCE_TITLE}'>", page)

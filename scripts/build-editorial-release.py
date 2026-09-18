@@ -26,8 +26,8 @@ def build(baseline: Path, output: Path) -> dict:
     decorate_public_tree(output / "public")
     decorate_runtime(output / "runtime")
     checks = verify(baseline, output)
-    inputs = [ROOT / "core/studio_design.py", Path(__file__).resolve(),
-              ROOT / "scripts/verify_editorial_release.py", MANIFEST]
+    inputs = [ROOT / "core/studio_design.py", ROOT / "core/soft_studio.py", Path(__file__).resolve(),
+              ROOT / "scripts/verify_editorial_release.py", ROOT / "scripts/verify_editorial_live.py", MANIFEST]
     inputs.extend(path for path in (ROOT / "site/static/design-system/studio").rglob("*")
                   if path.is_file() and path.name != "README.md")
     source_inputs = {path.relative_to(ROOT).as_posix(): hashlib.sha256(path.read_bytes()).hexdigest()

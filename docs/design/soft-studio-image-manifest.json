@@ -1,0 +1,93 @@
+[
+  {
+    "name": "hero",
+    "path": "site\\static\\design-system\\studio\\images\\soft-hero.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 52390
+  },
+  {
+    "name": "agent",
+    "path": "site\\static\\design-system\\studio\\images\\soft-agent.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 53942
+  },
+  {
+    "name": "personal",
+    "path": "site\\static\\design-system\\studio\\images\\soft-personal.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 90540
+  },
+  {
+    "name": "code",
+    "path": "site\\static\\design-system\\studio\\images\\soft-code.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 43664
+  },
+  {
+    "name": "support",
+    "path": "site\\static\\design-system\\studio\\images\\soft-support.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 49934
+  },
+  {
+    "name": "salon",
+    "path": "site\\static\\design-system\\studio\\images\\soft-salon.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 43254
+  },
+  {
+    "name": "site",
+    "path": "site\\static\\design-system\\studio\\images\\soft-site.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 77540
+  },
+  {
+    "name": "mentor",
+    "path": "site\\static\\design-system\\studio\\images\\soft-mentor.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 85766
+  },
+  {
+    "name": "profile",
+    "path": "site\\static\\design-system\\studio\\images\\soft-profile.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 79426
+  },
+  {
+    "name": "prepare",
+    "path": "site\\static\\design-system\\studio\\images\\soft-prepare.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 59980
+  },
+  {
+    "name": "try",
+    "path": "site\\static\\design-system\\studio\\images\\soft-try.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 51546
+  },
+  {
+    "name": "keep",
+    "path": "site\\static\\design-system\\studio\\images\\soft-keep.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 74106
+  },
+  {
+    "name": "login",
+    "path": "site\\static\\design-system\\studio\\images\\soft-login.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 31696
+  }
+]

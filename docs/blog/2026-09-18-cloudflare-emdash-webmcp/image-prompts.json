@@ -1,0 +1,37 @@
+{
+  "generator": "built-in image_gen",
+  "date": "2026-09-18",
+  "illustration_notice": "説明用のAI生成イラスト。実在の施設・人物や製品画面ではありません。",
+  "images": [
+    {
+      "key": "hero",
+      "prompt": "Use case: editorial illustration. Asset type: landscape blog hero image, wide 16:9 aspect ratio. Final article concept: a small community business gains an AI-friendly reception and an AI-assisted editorial desk, returning time to people. Draw a warm neighborhood classroom/storefront contained within a large simple browser-window outline. In the foreground on the left, the business owner warmly talks with a visitor; on the right, clearly inside a separate small workspace, a friendly small ivory and navy geometric AI assistant helps organize a draft article and calendar on a tidy desk. A simple small side reception window has a plug symbol subtly integrated to suggest a tool connection. Focus on the human conversation as the emotional center, the assistant helps in the background. Premium understated Japanese magazine illustration, flat cut-paper forms with fine paper grain and gentle pencil texture. Warm ivory, terracotta orange awning, deep navy contours, sage foliage. Broad clear silhouettes, uncluttered, calm sunny light, optimistic and credible. No readable text, no letters, no logos, no brand mascots, no photorealistic people or real venue, no futuristic city, no neon networks. This is a conceptual illustration, not a software screenshot.",
+      "generated_path": "C:\\Users\\yui\\.codex\\generated_images\\01a0b2b6-5849-77d0-9a02-9aaea2f26189\\exec-c08e807c-9889-456f-abc3-9eaeb09e7846.png",
+      "file": "img/blog-cloudflare-ai-hero-20260918.png"
+    },
+    {
+      "key": "section-01",
+      "prompt": "Use case: editorial illustration. Asset type: landscape blog section illustration, 3:2 aspect ratio. Create a beautiful restrained Japanese editorial illustration explaining a website's two entrances. A small warm neighborhood class/shop represented as a browser-shaped storefront in center; one simple human visitor approaches the readable front window on the left, and a clearly stylized small AI assistant with a simple visible plug-shaped tool approaches a separate small service counter on the right. These are two paths, not one agent taking control of the shop. Flat cut-paper and gentle pencil texture, warm ivory background, terracotta orange accents, deep navy ink, sage touches. Clear sparse composition with large negative space and strong readable silhouettes at mobile size. Only 4–5 large visual elements. No text, no letters, no logos, no brand mascots, no real identifiable place or person, no glowing circuitry, no sci-fi neon. Conceptual illustration, not a product UI screenshot.",
+      "generated_path": "C:\\Users\\yui\\.codex\\generated_images\\01a0b2b6-5849-77d0-9a02-9aaea2f26189\\exec-49022fd4-398f-41dc-9cd4-d6ac014982a1.png",
+      "file": "img/blog-cloudflare-ai-section-01-20260918.png"
+    },
+    {
+      "key": "section-02",
+      "prompt": "Use case: editorial illustration. Asset type: landscape blog section illustration, 3:2 aspect ratio. A simple visual sequence on a warm ivory desk: handwritten-looking note cards with abstract strokes at left, a small friendly geometrical AI assistant assembling a neat article page with image block in center, and a human editor's hand holding a magnifier and checking the draft at right. The human review is clearly the final stage. This illustrates factual notes to AI-assisted blog draft to human review. Premium Japanese magazine illustration, flat cut-paper forms and gentle pencil texture; restrained terracotta orange, deep navy ink, sage green, warm ivory. Minimal, a few large elements, very readable at mobile size. No readable text, no labels, no logos, no brand mascots, no fabricated product UI, no photorealistic people, no sparkles or circuit-board clutter.",
+      "generated_path": "C:\\Users\\yui\\.codex\\generated_images\\01a0b2b6-5849-77d0-9a02-9aaea2f26189\\exec-31894c28-10b6-4a8f-80e4-8c2b164f6b45.png",
+      "file": "img/blog-cloudflare-ai-section-02-20260918.png"
+    },
+    {
+      "key": "section-03",
+      "prompt": "Use case: editorial illustration. Asset type: landscape blog section illustration, 3:2 aspect ratio. An orderly small business work desk viewed isometrically, with a human operator at a central laptop. Three clearly connected large objects surround it: a folder of public information, an article draft page, and a calendar. A small AI assistant sits on the desk. Each connection passes through a simple small gate with a key-shaped marker, communicating explicitly permitted access; a separate private folder remains closed and unconnected. Premium restrained Japanese editorial illustration, flat cut-paper forms and subtle pencil texture, warm ivory ground, terracotta orange, deep navy and small sage accents. Sparse balanced large shapes readable on mobile. No text, no letters, no logos, no screenshots, no photorealism, no neural-network spaghetti, no neon.",
+      "generated_path": "C:\\Users\\yui\\.codex\\generated_images\\01a0b2b6-5849-77d0-9a02-9aaea2f26189\\exec-46dea4e2-db70-443b-b7bf-2be5d6cb1c06.png",
+      "file": "img/blog-cloudflare-ai-section-03-20260918.png"
+    },
+    {
+      "key": "section-04",
+      "prompt": "Use case: editorial illustration. Asset type: landscape blog section illustration, 3:2 aspect ratio. A small business owner seen as simplified hands placing exactly three clean cards on a wooden desk. The cards each have one large simple icon: a calendar, a small bag of class supplies, and a friendly first-time participant. Beside the cards is a small browser-page sheet being checked with a pencil. The visual message is start with three frequently asked questions and verify the information. Calm warm premium Japanese magazine illustration in flat cut-paper with gentle pencil texture, ivory background, terracotta orange, deep navy ink, a little sage. Sparse composition, huge clear icons, readable on phone. No text or numerals, no letters, no logos, no extra cards, no busy background, no photorealistic face.",
+      "generated_path": "C:\\Users\\yui\\.codex\\generated_images\\01a0b2b6-5849-77d0-9a02-9aaea2f26189\\exec-40ce1ade-a3ea-4528-aabc-408e683b6911.png",
+      "file": "img/blog-cloudflare-ai-section-04-20260918.png"
+    }
+  ]
+}

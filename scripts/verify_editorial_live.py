@@ -12,7 +12,9 @@ from urllib.parse import urljoin, urlsplit
 from bs4 import BeautifulSoup
 import requests
 
-from verify_editorial_release import assert_no_personal_images
+from verify_editorial_release import (EDITORIAL_HREF, LEGACY_ART, SOFT_IMAGE_NAMES,
+                                     assert_no_personal_images, assert_playground,
+                                     assert_soft_image_placement)
 
 
 PRODUCTION_URL = "https://aiclimb.aiclimb.workers.dev"
@@ -22,12 +24,17 @@ PUBLIC_ROUTES = (
     ("/ai-news/", "ai-news/index.html"),
     ("/blog/", "blog/index.html"),
     ("/blog/2026-08-30-switchbot-ai-mind-clip.html", "blog/2026-08-30-switchbot-ai-mind-clip.html"),
+    ("/blog/2026-09-18-cloudflare-emdash-webmcp.html", "blog/2026-09-18-cloudflare-emdash-webmcp.html"),
     ("/lectures/2026-04-ai-kihon.html", "lectures/2026-04-ai-kihon.html"),
+    ("/instagram-feed.css", "instagram-feed.css"),
+    ("/instagram-feed.js", "instagram-feed.js"),
     ("/design-system/studio/editorial.css", "design-system/studio/editorial.css"),
     ("/design-system/studio/studio.css", "design-system/studio/studio.css"),
     ("/design-system/studio/studio.js", "design-system/studio/studio.js"),
-    *((f"/design-system/studio/images/human-{name}.webp", f"design-system/studio/images/human-{name}.webp")
-      for name in ("hero", "learn", "build", "connect", "practice")),
+    ("/design-system/studio/soft-playground.css", "design-system/studio/soft-playground.css"),
+    ("/design-system/studio/soft-playground.js", "design-system/studio/soft-playground.js"),
+    *((f"/design-system/studio/images/soft-{name}.webp", f"design-system/studio/images/soft-{name}.webp")
+      for name in SOFT_IMAGE_NAMES),
 )
 REDIRECT_STATUSES = {301, 302, 303, 307, 308}
 
@@ -91,7 +98,7 @@ def editorial_tag(soup: BeautifulSoup, base_url: str) -> bool:
     target = urljoin(base_url + "/", tags[0].get("href", ""))
     parts = urlsplit(target)
     return (same_origin(target, base_url) and parts.path == "/design-system/studio/editorial.css"
-            and parts.query == "v=20260918-human-glass" and not parts.fragment)
+            and parts.query == urlsplit(EDITORIAL_HREF).query and not parts.fragment)
 
 
 def verify(release: Path, base_url: str, *, session=None) -> dict:
@@ -110,6 +117,9 @@ def verify(release: Path, base_url: str, *, session=None) -> dict:
             expected = manifest["assets"].get(name)
             require(expected and digest((release / "public" / name).read_bytes()) == expected,
                     f"Local release asset does not match its manifest: {name}")
+        image_hashes = [manifest["assets"][f"design-system/studio/images/soft-{name}.webp"]
+                        for name in SOFT_IMAGE_NAMES]
+        require(len(set(image_hashes)) == 13, "The 13 design image contents must be distinct")
     except (ValueError, KeyError, OSError, TypeError) as error:
         proof["errors"].append(str(error))
         return proof
@@ -132,6 +142,10 @@ def verify(release: Path, base_url: str, *, session=None) -> dict:
                 if name.endswith(".html"):
                     soup = BeautifulSoup(response.content, "html.parser")
                     assert_no_personal_images(soup, name)
+                    require(not soup.select(".studio-scene-layer"), "Removed hero inset is still present")
+                    require(not LEGACY_ART.search(str(soup).replace("\\/", "/")), "Retired artwork is still referenced")
+                    assert_playground(soup, name, expected=name == "index.html")
+                    assert_soft_image_placement(soup, name)
                     result["personal_photo_not_rendered"] = True
                     canonicals = soup.select('link[rel="canonical"]')
                     canonical = canonicals[0].get("href", "") if len(canonicals) == 1 else ""
@@ -143,6 +157,12 @@ def verify(release: Path, base_url: str, *, session=None) -> dict:
                     require(result["canonical_valid"], "Missing or incorrect production canonical")
                     result["editorial_tag_present"] = editorial_tag(soup, base_url)
                     require(result["editorial_tag_present"], "Editorial stylesheet tag missing or incorrect")
+                    if name == "index.html":
+                        result["playground_after_news"] = True
+                        result["distinct_frame_images"] = 11
+                elif name.endswith((".css", ".js")):
+                    require(not LEGACY_ART.search(response.content.decode("utf-8")),
+                            "Retired artwork is still referenced in the presentation asset")
                 result["passed"] = True
             except (requests.RequestException, ValueError, KeyError, TypeError) as error:
                 result["error"] = str(error)

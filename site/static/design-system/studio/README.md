@@ -1,6 +1,14 @@
 # AI相談 Studio assets
 
-## 現行: Human work / Layered glass（2026-09-18）
+## 現行: Soft AI studio（2026-09-18）
+
+AIを使って案内文・仕事の手順・Webサービスが形になる様子を、細い線と柔らかな紙・陶器のような立体で表現する。生成り、セージ、淡いバター色、少量のアプリコットに統一。アニメや講習写真ではなく、用途が伝わる13点の異なるオブジェクトアートを配置する。
+
+共通テーマは `editorial.css?v=20260918-soft-studio`。トップ・自己紹介・記事・管理・ログインに適用。半透明の本文パネルを少し重ね、丸みと余白、細い線で柔らかく整える。`soft-playground.css/js` と `core/soft_studio.py` は、告知・事務・サイト制作について「手作業／AIと進める」を切り替える体験をトップに追加する。キーボード・タッチ対応、通信・入力収集なし。
+
+配信画像は `images/soft-*.webp`、1536×1024、13点合計793,784 bytes。OpenAI built-in ImageGenで各用途を個別生成し、Sharp WebP quality 86 / effort 6で形式変換。原本は `docs/design/soft-studio-originals/`、全プロンプトは `docs/design/soft-studio-20260918-prompts.json`。詳細は `docs/design/soft-studio-20260918.md`。以前の素材は制作履歴として保持する。
+
+## 履歴: Human work / Layered glass（2026-09-18）
 
 PCを使った相談・学習・制作・協働を、自然光の入るプロダクトスタジオの写実的な写真で表現する。人物は架空の成人。本人写真は使わず、自己紹介にはPCを操作する手元を置く。生成画像の代替テキストでAI生成のイメージであることを示す。
 

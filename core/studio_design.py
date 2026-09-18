@@ -10,6 +10,8 @@ from pathlib import Path
 import re
 import shutil
 
+from core.soft_studio import decorate_soft_playground
+
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -17,7 +19,7 @@ ASSETS = ROOT / "site/static/design-system/studio"
 PREFIX = "/design-system/studio"
 LINK = f'<link id="studio-design" rel="stylesheet" href="{PREFIX}/studio.css?v=20260914-glass">'
 SCRIPT = f'<script id="studio-motion" defer src="{PREFIX}/studio.js?v=20260914-glass"></script>'
-EDITORIAL_LINK = f'<link id="studio-editorial" rel="stylesheet" href="{PREFIX}/editorial.css?v=20260918-human-glass">'
+EDITORIAL_LINK = f'<link id="studio-editorial" rel="stylesheet" href="{PREFIX}/editorial.css?v=20260918-soft-studio">'
 
 
 def _attribute(tag: str, name: str, value: str) -> str:
@@ -55,31 +57,31 @@ def decorate_html(text: str, *, home: bool = False, admin: bool = False, login: 
     if home:
         def hero(match):
             tag = match.group(2)
-            for key, value in {"src": f"{PREFIX}/images/human-hero.webp", "alt": "PCの画面を一緒に確かめ、AIで仕事を改善する相談のイメージ（AI生成）", "width": "1536", "height": "1024", "fetchpriority": "high"}.items():
+            for key, value in {"src": f"{PREFIX}/images/soft-hero.webp", "alt": "散らばった仕事がAIを通して告知・手順・予定へ整う、線と立体のアート", "width": "1536", "height": "1024", "fetchpriority": "high"}.items():
                 tag = _attribute(tag, key, value)
             return match.group(1) + tag
 
         text, count = re.subn(r'(<figure\b[^>]*id=[\"\']restored-hero-image[\"\'][^>]*>\s*)(<img\b[^>]*>)', hero, text, count=1, flags=re.S)
         assert count == 1, "Expected the owned hero image"
         images = iter([
-            ("learn", "ノートPCでAIへの依頼と結果の確認を学ぶ人たちのイメージ（AI生成）"),
-            ("learn", "ノートPCでAIへの依頼と結果の確認を学ぶ人たちのイメージ（AI生成）"),
-            ("build", "PCでコードとWebアプリの動作を確かめる制作のイメージ（AI生成）"),
-            ("build", "PCでコードとWebアプリの動作を確かめる制作のイメージ（AI生成）"),
-            ("connect", "PCやタブレットを使い、仕事の手順をチームで整理するイメージ（AI生成）"),
-            ("connect", "PCやタブレットを使い、仕事の手順をチームで整理するイメージ（AI生成）"),
+            ("agent", "AIへの依頼から、ひとつの仕事が完成するアート"),
+            ("personal", "自分の仕事に合わせてAIの使い方を調整するアート"),
+            ("code", "コードと部品が組み合わさり、使えるアプリになるアート"),
+            ("support", "少しずつ改善を重ね、仕事の仕組みが育つアート"),
+            ("salon", "実践の発見を持ち寄り、学び合うアート"),
+            ("site", "予約・問い合わせ・見積もりが働くWebサイトのアート"),
         ])
 
         def course(match):
             name, alt = next(images)
             tag = match.group()
-            for key, value in {"src": f"{PREFIX}/images/human-{name}.webp", "alt": alt, "width": "1536", "height": "1024", "loading": "lazy", "decoding": "async"}.items():
+            for key, value in {"src": f"{PREFIX}/images/soft-{name}.webp", "alt": alt, "width": "1536", "height": "1024", "loading": "lazy", "decoding": "async"}.items():
                 tag = _attribute(tag, key, value)
             return tag
 
         text, count = re.subn(r'<img\b[^>]*class=[\"\'][^\"\']*\bcompact-course-visual\b[^\"\']*[\"\'][^>]*>', course, text)
         assert count == 6, "Expected six course illustrations"
-        # The glass body overlaps its own photograph; links keep their DOM order.
+        # The soft glass body overlaps its own artwork; links keep their order.
         def course_body(match):
             opening, content, closing = match.groups()
             if 'class="studio-course-body"' in content:
@@ -90,13 +92,13 @@ def decorate_html(text: str, *, home: bool = False, admin: bool = False, login: 
             return opening + content[:end] + '<div class="studio-course-body">' + content[end:] + '</div>' + closing
         text = re.sub(r'(<article\b[^>]*\bcompact-course-card\b[^>]*>)(.*?)(</article>)', course_body, text, flags=re.S)
 
-        steps = iter([("practice", "PCと仕事のノートを持ち込むイメージ（AI生成）"),
-                      ("learn", "PCの画面を一緒に確かめながら学ぶイメージ（AI生成）"),
-                      ("build", "作ったアプリと手順をPCで確認して残すイメージ（AI生成）")])
+        steps = iter([("prepare", "仕事の材料をひとつのフォルダへ集めるアート"),
+                      ("try", "AIと試し、確かめ、修正するアート"),
+                      ("keep", "完成した成果と使える手順を残すアート")])
         def step_image(match):
             name, alt = next(steps)
             tag = match.group()
-            for key, value in {"src": f"{PREFIX}/images/human-{name}.webp", "alt": alt,
+            for key, value in {"src": f"{PREFIX}/images/soft-{name}.webp", "alt": alt,
                                "width": "1536", "height": "1024", "loading": "lazy", "decoding": "async"}.items():
                 tag = _attribute(tag, key, value)
             return tag
@@ -106,15 +108,11 @@ def decorate_html(text: str, *, home: bool = False, admin: bool = False, login: 
     text = re.sub(r'<span\b[^>]*class=[\"\'][^\"\']*\bstudio-art-layer\b[^\"\']*[\"\'][^>]*>\s*<img\b[^>]*>\s*</span>', '', text)
     text = re.sub(r'<div class="studio-editorial-person">.*?</div>', '', text, flags=re.S)
     text = re.sub(r'<span class="studio-scene-layer" aria-hidden="true">\s*<img\b[^>]*>\s*</span>', '', text)
-    if home:
-        layer = (f'<span class="studio-scene-layer" aria-hidden="true"><img src="{PREFIX}/images/human-practice.webp" '
-                 'alt="" width="1536" height="1024" loading="lazy" decoding="async"></span>')
-        text = re.sub(r'(<figure\b[^>]*id=[\"\']restored-hero-image[\"\'][^>]*>\s*<img\b[^>]*>)',
-                      lambda match: match.group(1) + layer, text, count=1, flags=re.S)
-
     def profile_art(match):
         opening, tag = match.groups()
-        for key, value in {'src': f'{PREFIX}/images/human-practice.webp', 'alt': 'PCとノートを使い、AIを実際の仕事へ生かす手元のイメージ（AI生成）', 'width': '1536', 'height': '1024', 'loading': 'lazy', 'decoding': 'async'}.items():
+        image = 'mentor' if home else 'profile'
+        alt = '実践で得た経験が、人の仕事を助ける道具になるアート' if home else '店舗・地域・クライミングの経験がAIの実践へつながるノートのアート'
+        for key, value in {'src': f'{PREFIX}/images/soft-{image}.webp', 'alt': alt, 'width': '1536', 'height': '1024', 'loading': 'lazy', 'decoding': 'async'}.items():
             tag = _attribute(tag, key, value)
         return opening + tag
 
@@ -149,6 +147,8 @@ def decorate_html(text: str, *, home: bool = False, admin: bool = False, login: 
         return match.group(1) + encoded + match.group(3)
 
     text = re.sub(r'(<script\b[^>]*type=[\"\']application/ld\+json[\"\'][^>]*>)(.*?)(</script>)', structured_data, text, flags=re.S)
+    if home:
+        text = decorate_soft_playground(text)
     return text
 
 

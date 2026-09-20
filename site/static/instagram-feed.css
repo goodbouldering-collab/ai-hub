@@ -1,50 +1,10 @@
-.instagram-feed {
-  --ig-ink: #20343b;
-  --ig-muted: #52666c;
-  --ig-line: #d2dfdd;
-  box-sizing: border-box;
-  width: min(1180px, calc(100% - 48px));
-  min-width: 0;
-  margin: 28px auto 40px;
-  padding: 28px;
-  color: var(--ig-ink);
-  background: rgba(249, 252, 251, .94);
-  border: 1px solid var(--ig-line);
-  border-radius: 24px;
-  box-shadow: 0 12px 38px rgba(36, 64, 67, .06);
-  scroll-margin-top: 100px;
-}
-.instagram-feed *, .instagram-feed *::before, .instagram-feed *::after { box-sizing: border-box; }
-.instagram-feed-heading { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-.instagram-eyebrow { margin: 0 0 8px; color: var(--ig-muted); font: 600 11px/1.4 sans-serif; letter-spacing: .16em; }
-.instagram-feed h2 { margin: 0; font-size: clamp(21px, 2.5vw, 28px); line-height: 1.5; letter-spacing: .01em; }
-.instagram-description { margin: 8px 0 0; color: var(--ig-muted); font-size: 14px; line-height: 1.7; }
-.instagram-feed a { color: var(--ig-ink); text-decoration: none; }
-.instagram-profile-link { display: inline-flex; align-items: center; justify-content: center; gap: 16px; min-height: 44px; padding: 9px 16px; border: 1px solid var(--ig-line); border-radius: 999px; background: #fff; font-size: 14px; font-weight: 650; white-space: nowrap; }
-.instagram-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 18px 0 12px; }
-.instagram-toolbar p { margin: 0; color: var(--ig-muted); font-size: 12px; }
-.instagram-controls { display: flex; align-items: center; gap: 10px; }
-.instagram-controls[hidden] { display: none; }
-.instagram-controls span { min-width: 38px; color: var(--ig-muted); font-size: 12px; text-align: center; font-variant-numeric: tabular-nums; }
-.instagram-controls button { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 1px solid var(--ig-line); border-radius: 50%; background: #fff; color: var(--ig-ink); font-size: 21px; cursor: pointer; }
-.instagram-controls button:disabled { opacity: .35; cursor: default; }
-.instagram-track { display: grid; grid-auto-flow: column; grid-auto-columns: 350px; gap: 18px; max-width: 100%; min-width: 0; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding-inline: 0; padding: 3px 2px 14px; scrollbar-width: thin; scrollbar-color: #829d99 #e7efed; }
-.instagram-card { min-width: 0; margin: 0; border: 1px solid var(--ig-line); border-radius: 16px; background: #fff; overflow: hidden; scroll-snap-align: start; }
-.instagram-card-heading { display: flex; align-items: center; gap: 10px; min-height: 55px; padding: 12px 14px; }
-.instagram-card-heading > span { color: var(--ig-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
-.instagram-card h3 { margin: 0; color: var(--ig-ink); font-size: 13px; line-height: 1.5; font-weight: 650; }
-.instagram-frame { display: block; width: 100%; height: 540px; border: 0; background: #fff; }
-.instagram-post-link { display: flex; align-items: center; justify-content: space-between; min-height: 50px; padding: 12px 16px; border-top: 1px solid #e7efed; font-size: 13px; }
-.instagram-feed a:hover, .instagram-controls button:not(:disabled):hover { background: #edf5f2; }
-.instagram-feed :focus-visible { outline: 3px solid #267166; outline-offset: 3px; }
-@media (max-width: 700px) {
-  .instagram-feed { width: calc(100% - 24px); margin: 20px auto 30px; padding: 20px 14px 12px; border-radius: 20px; }
-  .instagram-feed-heading { align-items: flex-start; flex-direction: column; gap: 12px; }
-  .instagram-feed h2 { font-size: 21px; }
-  .instagram-description { font-size: 13px; }
-  .instagram-profile-link { min-height: 44px; padding: 8px 14px; font-size: 13px; }
-  .instagram-toolbar { align-items: center; gap: 6px; }
-  .instagram-toolbar p { max-width: 132px; font-size: 11px; line-height: 1.7; }
-  .instagram-controls { gap: 6px; }
-  .instagram-track { grid-auto-columns: min(326px, 100%); gap: 12px; }
-}
+/* Images only: a compact strip between hero and news. */
+.instagram-feed{width:min(1180px,calc(100% - 48px));margin:18px auto 24px;padding:0;min-width:0}
+.instagram-track{display:flex;gap:10px;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:x proximity;padding:4px;scrollbar-width:thin;scrollbar-color:#b5c1ba transparent}
+.instagram-card{display:block;flex:0 0 128px;width:128px;aspect-ratio:1;overflow:hidden;border-radius:12px;scroll-snap-align:start;background:#f1f2ee;transition:opacity .18s ease}
+.instagram-card img{display:block;width:100%;height:100%;object-fit:cover}
+.instagram-card:hover{opacity:.86}
+.instagram-card:focus-visible,.instagram-track:focus-visible{outline:2px solid #315c50;outline-offset:2px}
+@media(max-width:640px){.instagram-feed{width:calc(100% - 32px);margin:12px auto 18px}.instagram-card{flex-basis:104px;width:104px;border-radius:10px}.instagram-track{gap:8px}}
+@media(prefers-reduced-motion:reduce){.instagram-card{transition:none}}
+#instagram.instagram-feed + #ai-news.ai-news-feature{margin-top:0!important}

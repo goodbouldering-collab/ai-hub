@@ -934,6 +934,11 @@ class CodexUpdateLogUpdaterTest(unittest.TestCase):
                 )
             )
 
+    def test_updater_targets_the_standalone_source(self):
+        updater = _load_updater()
+        self.assertEqual(updater.ARTICLE_PATH, ROOT / "content" / "ai-news" / "codex-update-log.md")
+
+
     def test_scheduled_workflow_is_scoped_to_the_fixed_article(self) -> None:
         workflow = (ROOT / ".github" / "workflows" / "codex-update-log.yml").read_text(
             encoding="utf-8"

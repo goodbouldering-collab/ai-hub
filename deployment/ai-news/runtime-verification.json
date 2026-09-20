@@ -1,0 +1,7 @@
+{
+  "sha256": "baab871b7ffa55b70f49098d155bc7dfaad96cedb0fc5742334b9dbe9f305506",
+  "bytes": 848871,
+  "version": "4f1e68b3-9b5e-459c-9f7e-488fc97098e7",
+  "verified_at": "2026-09-21T08:17:48.206854+09:00",
+  "verification": "Cloudflare API GET multipart Worker body matches compiled published Worker. No runtime changes."
+}

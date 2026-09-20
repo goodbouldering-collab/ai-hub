@@ -18,6 +18,7 @@ REQUIRED_ITEM_FIELDS = (
     "kid_summary",
     "japan_angle",
 )
+DAILY_NEWS_COUNT = 5
 
 
 def _clean_text(value: Any, *, maximum: int) -> str:
@@ -62,8 +63,8 @@ def normalize_daily_ai_news(payload: Any) -> dict[str, Any]:
         raise ValueError("日次ニュースの日付が不正です") from exc
 
     items = payload.get("items")
-    if not isinstance(items, list) or len(items) != 10:
-        raise ValueError("日次ニュースは10件必要です")
+    if not isinstance(items, list) or len(items) != DAILY_NEWS_COUNT:
+        raise ValueError(f"日次ニュースは{DAILY_NEWS_COUNT}件必要です")
 
     clean_items: list[dict[str, Any]] = []
     seen_urls: set[str] = set()
@@ -98,8 +99,8 @@ def render_daily_ai_news(payload: dict) -> str:
         "<section class='daily-ai-news' aria-labelledby='daily-ai-news-title'>",
         "<div class='daily-ai-news__header'>",
         "<p class='daily-ai-news__eyebrow'>毎朝更新・仕事の場面から読む</p>",
-        "<h2 id='daily-ai-news-title'>今日のAIニュース10</h2>",
-        "<p class='daily-ai-news__lead'>専門的なAIニュースを、新しさと影響、日本とのつながりから10件にしぼり、身近な使い道でまとめました。</p>",
+        "<h2 id='daily-ai-news-title'>今日のAIニュース5</h2>",
+        "<p class='daily-ai-news__lead'>専門的なAIニュースを、新しさと影響、日本とのつながりから5件にしぼり、身近な使い道でまとめました。</p>",
         f"<p class='daily-ai-news__date'><time datetime='{clean['date']}'>{date_label}</time> 時点</p>",
         "</div><ol class='daily-ai-news__list'>",
     ]
@@ -107,6 +108,7 @@ def render_daily_ai_news(payload: dict) -> str:
         title = html.escape(item["title"])
         url = html.escape(item["url"], quote=True)
         source = html.escape(item["source"])
+        published = html.escape(item["published"])
         kid_summary = html.escape(item["kid_summary"])
         japan_angle = html.escape(item["japan_angle"])
         parts.extend(
@@ -121,7 +123,7 @@ def render_daily_ai_news(payload: dict) -> str:
                 "<div class='daily-ai-news__copy update-card__body'>",
                 f"<p class='daily-ai-news__summary'>{kid_summary}</p>",
                 f"<p class='daily-ai-news__japan'>{japan_angle}</p>",
-                f"<p class='daily-ai-news__source'>情報元：{source}</p>",
+                f"<p class='daily-ai-news__source'>発表日：{published} ／ 情報元：{source}</p>",
                 "</div></li>",
             ]
         )
@@ -140,3 +142,21 @@ def prepend_daily_ai_news(meta: dict, body_html: str, payload: dict) -> str:
         return body_html
     rendered = render_daily_ai_news(payload)
     return rendered + body_html if rendered else body_html
+
+
+def merge_daily_ai_news_update_meta(meta: dict, payload: dict) -> dict:
+    """Use the daily snapshot date for the generated evergreen page metadata."""
+    merged = dict(meta)
+    if str(meta.get("content_series") or "") != "codex-update-log":
+        return merged
+    try:
+        news_date = date.fromisoformat(normalize_daily_ai_news(payload)["date"])
+    except ValueError:
+        return merged
+    try:
+        current_date = date.fromisoformat(str(meta.get("date_modified") or meta.get("date") or ""))
+    except ValueError:
+        current_date = None
+    if current_date is None or news_date > current_date:
+        merged["date_modified"] = news_date.isoformat()
+    return merged

@@ -1,0 +1,30 @@
+/* The home resource entry uses the existing navy, white and teal palette. */
+main > .ai-news-feature {
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:24px;
+  margin:20px 0;padding:18px 22px;border:1px solid #dbe4e8;border-radius:20px;
+  background:#fff;color:#14243a;box-shadow:0 8px 26px rgba(20,36,58,.04);
+}
+.ai-news-feature .ai-news-feature__eyebrow {margin:0 0 6px;color:#137d78;font-size:13px;font-weight:800;letter-spacing:.06em;}
+.ai-news-feature__heading {display:grid;grid-template-columns:minmax(0,max-content) auto;justify-content:start;align-items:center;gap:12px;}
+.ai-news-feature h2 {margin:0;padding:0;border:0;background:none;color:#14243a;font-size:22px;line-height:1.5;letter-spacing:-.025em;}
+.ai-news-feature time {color:#64748b;font-size:12px;white-space:nowrap;}
+.ai-news-feature ol {list-style:none;margin:0;padding:0;}
+.ai-news-feature li {margin:0;border-bottom:1px solid #e4eaee;}
+.ai-news-feature li a {display:grid;grid-template-columns:25px minmax(0,1fr) 18px;gap:8px;align-items:center;min-height:44px;padding:6px 0;color:#14243a;text-decoration:none;font-size:14px;line-height:1.65;font-weight:650;}
+.ai-news-feature li a > span:first-child {color:#137d78;font-size:12px;font-weight:800;}
+.ai-news-feature li b {font-weight:400;color:#137d78;}
+.ai-news-feature .ai-news-feature__more {display:flex;align-items:center;gap:8px;min-height:44px;margin-top:4px;color:#126b82;text-decoration:none;font-size:16px;font-weight:800;}
+.ai-news-feature__more span {font-size:12px;color:#526279;font-weight:500;}
+.ai-news-feature__more b {margin-left:auto;}
+.ai-news-feature a:hover {text-decoration:underline;text-underline-offset:4px;}
+.ai-news-feature a:focus-visible {outline:3px solid #137d78;outline-offset:4px;border-radius:3px;}
+.daily-ai-news__item {scroll-margin-top:100px;}
+@media(max-width:700px) {
+  main > .ai-news-feature {grid-template-columns:minmax(0,1fr);gap:8px;padding:16px 18px;border-radius:16px;}
+  .ai-news-feature li a {font-size:14px;}
+  .ai-news-feature .ai-news-feature__more {flex-wrap:wrap;gap:8px;}
+}
+@media(max-width:520px) {
+  .ai-news-feature__heading {gap:8px;}
+  .ai-news-feature h2 {font-size:19px;}
+}

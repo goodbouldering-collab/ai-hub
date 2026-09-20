@@ -7,8 +7,8 @@ ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / 'config/instagram.json'
 START = '<!-- BEGIN:INSTAGRAM_FEED -->'
 END = '<!-- END:INSTAGRAM_FEED -->'
-HEAD = ('<link id="instagram-feed-css" rel="stylesheet" href="/instagram-feed.css?v=20260920">'
-        '<script id="instagram-feed-js" defer src="/instagram-feed.js?v=20260920"></script>')
+HEAD = ('<link id="instagram-feed-css" rel="stylesheet" href="/instagram-feed.css?v=20260920-label">'
+        '<script id="instagram-feed-js" defer src="/instagram-feed.js?v=20260920-label"></script>')
 def strip_instagram_feed(text):
     text = re.sub(re.escape(START) + r'.*?' + re.escape(END), '', text, flags=re.S)
     return re.sub(r'<link\b[^>]*\bid="instagram-feed-css"[^>]*>|<script\b[^>]*\bid="instagram-feed-js"[^>]*>\s*</script>', '', text)
@@ -26,6 +26,7 @@ def render_instagram_feed():
             f'<img src="/instagram/{code}.webp" alt="{title}" width="320" height="320" '
             'loading="lazy" decoding="async"></a>')
     return (START + '<section class="instagram-feed" id="instagram" aria-label="Instagramの投稿">'
+        '<h2 class="instagram-title">Instagram</h2>'
         '<div class="instagram-track" id="instagram-track" tabindex="0" role="region" '
         'aria-label="Instagramの投稿画像。左右キーでスクロール">' + ''.join(cards) + '</div></section>' + END)
 def apply_instagram_feed(text):

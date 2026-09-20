@@ -8,3 +8,5 @@
 @media(max-width:640px){.instagram-feed{width:calc(100% - 32px);margin:12px auto 18px}.instagram-card{flex-basis:104px;width:104px;border-radius:10px}.instagram-track{gap:8px}}
 @media(prefers-reduced-motion:reduce){.instagram-card{transition:none}}
 #instagram.instagram-feed + #ai-news.ai-news-feature{margin-top:0!important}
+body.studio-editorial .instagram-feed .instagram-title{display:flex;align-items:center;gap:8px;font-size:12px!important;line-height:1.4;font-weight:600;letter-spacing:.08em;text-transform:none;color:#657269;margin:0 4px 8px;padding:0;background:none;border:0;box-shadow:none}
+body.studio-editorial .instagram-feed .instagram-title::before{content:'';width:6px;height:6px;border-radius:50%;background:#c77b51;flex:none}

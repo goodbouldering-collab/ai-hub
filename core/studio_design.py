@@ -1,4 +1,4 @@
-"""Apply AI相談's shared presentation without using the instructor's portrait.
+"""Apply AI相談's shared presentation and the user-selected original illustration.
 
 The release and daily-news builders use this layer so a later content rebuild
 retains the design. Runtime decoration is limited to static HTML and login markup.
@@ -11,6 +11,7 @@ import re
 import shutil
 
 from core.soft_studio import decorate_soft_playground
+from core.art_direction import decorate_art_direction
 
 
 
@@ -149,7 +150,7 @@ def decorate_html(text: str, *, home: bool = False, admin: bool = False, login: 
     text = re.sub(r'(<script\b[^>]*type=[\"\']application/ld\+json[\"\'][^>]*>)(.*?)(</script>)', structured_data, text, flags=re.S)
     if home:
         text = decorate_soft_playground(text)
-    return text
+    return decorate_art_direction(text)
 
 
 def decorate_public_tree(output: Path) -> list[str]:

@@ -33,3 +33,6 @@ Instagram公式のフレームを横に並べ、左右ボタン、キーボー�
   依存はコミット済み `deployment/profile/package-lock.json` に対応する既存node_modulesを使う。
 - AI相談のChromeショートカットはProfile 1。今回の接続一覧に同プロフィールがないため、
   画面確認はユーザーへCodex内ブラウザの利用可否を照会中。HTTP・構造検証と目視を区別する。
+
+## 2026-09-20 更新
+公式iframeを廃止し、投稿画像のみの小型サムネイルに変更。現行手順は docs/design/cool-line-20260920.md と scripts/build_cool_line_release.py を参照。旧ビルドは当日の履歴用。

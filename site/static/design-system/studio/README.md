@@ -68,3 +68,6 @@ OpenAI built-in ImageGenで新規生成。外部APIキー不使用。すべて15
 ヒーローと講師紹介の主画像に、既存のlearn/connect画像を小さなガラスフレームで重ねる。装飾はaria-hidden、alt空、pointer-events:none。マウス移動で最大6pxの奥行きを付け、タッチ・動き抑制・非表示時には停止する。写真本人や文章・料金・リンクを置き換えない。
 
 検証: `scripts/verify_glass_art.py` は全HTMLの内容と操作、非装飾資産、管理HTML、認証コード、再装飾の冪等性を比較。`node --test tests/studio-glass-motion.test.mjs` は入力方式と動き停止を検査する。
+
+## 2026-09-20 Cool line art
+現行のsoft-*.webp 13点を滑らかな線画中心へ更新。制作記録と原本は docs/design/cool-line-20260920.md を参照。

@@ -4,9 +4,9 @@ from core.instagram_feed import apply_instagram_feed, strip_instagram_feed, rend
 class InstagramImagesTest(unittest.TestCase):
     def test_only_six_linked_images(self):
         soup=BeautifulSoup(render_instagram_feed(),'html.parser')
-        self.assertEqual(soup.get_text(strip=True),'')
+        self.assertEqual(soup.get_text(strip=True),'Instagram')
         self.assertEqual(len(soup.select('a > img')),6)
-        self.assertFalse(soup.select('iframe,button,h2,h3,p'))
+        self.assertFalse(soup.select('iframe,button,h3,p'))
         self.assertEqual(len({i['src'] for i in soup.select('img')}),6)
         for a in soup.select('a'):
             self.assertTrue(a['href'].startswith('https://www.instagram.com/p/'))

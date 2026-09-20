@@ -9,7 +9,7 @@ from build_warm_line_release import digest,hashes
 BASELINE_SHA='5c3b88c703fa9c0588c4492b879724039bb6e5cb'
 BASELINE_MANIFEST='4f797bd8834957305575b7948433724b71edd77fe61b35321cd53136c38f7f03'
 BASELINE_BUNDLE='baab871b7ffa55b70f49098d155bc7dfaad96cedb0fc5742334b9dbe9f305506'
-PHOTO_SHA='552158d4abf8270815a2c43727d942447a82bf625a7e545111578c38dbdd9f0d'
+PHOTO_SHA='35e6083eecd6c86c7e12f5ec460d516d518c1981cadc90c63dd47aaaeaf311f7'
 
 def build(baseline,output):
     assert digest(baseline/'verification.json')==BASELINE_MANIFEST
@@ -34,7 +34,7 @@ def build(baseline,output):
         matches=list(re.finditer(tag_pattern,before))
         assert len(matches)==1,page
         tag=matches[0][0]
-        expected=tag.replace('/img/speaker-anime.png',PORTRAIT).replace('AI相談講師 由井辰美のイラストポートレート','AI相談講師 由井辰美の写真').replace('height="1536"','height="1024"')
+        expected=tag.replace('/img/speaker-anime.png',PORTRAIT).replace('AI相談講師 由井辰美のイラストポートレート','AI相談講師 由井辰美の水彩風ポートレート').replace('height="1536"','height="1254"').replace('width="1024"','width="1254"')
         expected=expected[:-1]+' style="object-fit:cover!important">'
         assert after==before.replace(tag,expected) and after!=before
         assert decorate_art_direction(after)==after

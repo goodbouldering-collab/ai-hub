@@ -21,7 +21,7 @@ import yaml
 
 
 ROOT = Path(__file__).resolve().parents[1]
-ARTICLE_PATH = ROOT / "content" / "blog" / "codex-update-log.md"
+ARTICLE_PATH = ROOT / "content" / "ai-news" / "codex-update-log.md"
 SOURCE_URL = "https://learn.chatgpt.com/docs/whats-new.md"
 CHANGELOG_URL = "https://learn.chatgpt.com/docs/changelog"
 SOURCE_PAGE_URL = "https://learn.chatgpt.com/docs/whats-new"

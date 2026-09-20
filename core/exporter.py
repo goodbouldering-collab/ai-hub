@@ -11,7 +11,7 @@ import os
 from pathlib import Path
 
 from .collector import Article
-from .daily_news import normalize_daily_ai_news, normalize_daily_ai_news_item
+from .daily_news import DAILY_NEWS_COUNT, normalize_daily_ai_news, normalize_daily_ai_news_item
 from .organizer import group_by_category
 from .ranker import japan_attention_score
 
@@ -29,7 +29,7 @@ def export_daily_ai_news_snapshot(
     *,
     today: date | None = None,
 ) -> Path | None:
-    """Atomically publish ten valid candidates, keeping the last good snapshot on failure."""
+    """Atomically publish five valid candidates, keeping the last good snapshot on failure."""
     items: list[dict[str, object]] = []
     seen_urls: set[str] = set()
     ordered_articles = sorted(
@@ -58,7 +58,7 @@ def export_daily_ai_news_snapshot(
             continue
         seen_urls.add(clean_candidate["url"])
         items.append(clean_candidate)
-        if len(items) == 10:
+        if len(items) == DAILY_NEWS_COUNT:
             break
 
     payload = {

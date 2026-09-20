@@ -129,8 +129,8 @@ class DailyNewsSnapshotTests(unittest.TestCase):
     def test_japan_today_does_not_require_an_external_timezone_database(self):
         self.assertIsInstance(_japan_today(), date)
 
-    def test_writes_ten_valid_kid_summaries_and_japan_angles(self):
-        articles = [make_article(index, source=f"Source {index}") for index in range(10)]
+    def test_writes_five_valid_kid_summaries_and_japan_angles(self):
+        articles = [make_article(index, source=f"Source {index}") for index in range(5)]
         summaries = {article.hash: make_summary(index) for index, article in enumerate(articles)}
 
         with tempfile.TemporaryDirectory() as tmp:
@@ -145,7 +145,7 @@ class DailyNewsSnapshotTests(unittest.TestCase):
 
         self.assertEqual(target, result)
         self.assertEqual("2026-08-22", payload["date"])
-        self.assertEqual(10, len(payload["items"]))
+        self.assertEqual(5, len(payload["items"]))
         self.assertEqual("ニュース0をわかりやすく説明します。", payload["items"][0]["kid_summary"])
         self.assertEqual("たとえば、ニュース0を仕事で試す場面です。", payload["items"][0]["japan_angle"])
         self.assertEqual(
@@ -154,7 +154,7 @@ class DailyNewsSnapshotTests(unittest.TestCase):
         )
 
     def test_snapshot_keeps_the_exporters_descending_japan_attention_order(self):
-        articles = [make_article(index, source=f"Source {index}") for index in range(10)]
+        articles = [make_article(index, source=f"Source {index}") for index in range(5)]
         summaries = {
             article.hash: make_summary(index, japan_relevance=index * 10)
             for index, article in enumerate(articles)
@@ -170,7 +170,7 @@ class DailyNewsSnapshotTests(unittest.TestCase):
             )
             payload = json.loads(target.read_text(encoding="utf-8"))
 
-        self.assertEqual("ニュース9", payload["items"][0]["title"])
+        self.assertEqual("ニュース4", payload["items"][0]["title"])
 
     def test_rejects_kid_summary_or_japan_angle_over_ninety_characters(self):
         payload = DailyNewsRenderingTests().make_payload()
@@ -184,7 +184,7 @@ class DailyNewsSnapshotTests(unittest.TestCase):
             normalize_daily_ai_news(payload)
 
     def test_invalid_run_keeps_last_successful_snapshot(self):
-        articles = [make_article(index) for index in range(10)]
+        articles = [make_article(index) for index in range(5)]
         summaries = {article.hash: make_summary(index) for index, article in enumerate(articles)}
         summaries[articles[4].hash]["plain_summary"] = ""
 
@@ -202,7 +202,7 @@ class DailyNewsSnapshotTests(unittest.TestCase):
             self.assertEqual("last-successful-snapshot", target.read_text(encoding="utf-8"))
 
     def test_uses_lower_ranked_valid_candidate_when_one_summary_failed(self):
-        articles = [make_article(index) for index in range(11)]
+        articles = [make_article(index) for index in range(6)]
         summaries = {article.hash: make_summary(index) for index, article in enumerate(articles)}
         summaries[articles[2].hash]["plain_summary"] = ""
 
@@ -217,15 +217,15 @@ class DailyNewsSnapshotTests(unittest.TestCase):
             payload = json.loads(target.read_text(encoding="utf-8"))
 
         self.assertEqual(target, result)
-        self.assertEqual(10, len(payload["items"]))
+        self.assertEqual(5, len(payload["items"]))
         self.assertNotIn("https://example.com/articles/2", [item["url"] for item in payload["items"]])
-        self.assertIn("https://example.com/articles/10", [item["url"] for item in payload["items"]])
+        self.assertIn("https://example.com/articles/5", [item["url"] for item in payload["items"]])
 
 
 class DailyNewsRenderingTests(unittest.TestCase):
     def make_payload(self) -> dict:
         items = []
-        for index in range(10):
+        for index in range(5):
             items.append(
                 {
                     "title": "<script>alert(1)</script>" if index == 0 else f"ニュース{index + 1}",
@@ -238,17 +238,17 @@ class DailyNewsRenderingTests(unittest.TestCase):
             )
         return {"date": "2026-08-22", "items": items}
 
-    def test_renders_exactly_ten_safe_ranked_news_cards(self):
+    def test_renders_exactly_five_safe_ranked_news_cards(self):
         rendered = render_daily_ai_news(self.make_payload())
 
-        self.assertIn("今日のAIニュース10", rendered)
+        self.assertIn("今日のAIニュース5", rendered)
         self.assertIn(
-            "専門的なAIニュースを、新しさと影響、日本とのつながりから10件にしぼり、身近な使い道でまとめました。",
+            "専門的なAIニュースを、新しさと影響、日本とのつながりから5件にしぼり、身近な使い道でまとめました。",
             rendered,
         )
-        self.assertEqual(10, rendered.count("class='daily-ai-news__item update-card'"))
-        self.assertEqual(10, rendered.count("data-update-kind='news'"))
-        self.assertEqual(10, rendered.count("<p class='update-card__eyebrow'>NEWS</p>"))
+        self.assertEqual(5, rendered.count("class='daily-ai-news__item update-card'"))
+        self.assertEqual(5, rendered.count("data-update-kind='news'"))
+        self.assertEqual(5, rendered.count("<p class='update-card__eyebrow'>NEWS</p>"))
         self.assertIn("&lt;script&gt;alert(1)&lt;/script&gt;", rendered)
         self.assertNotIn("<script>alert(1)</script>", rendered)
         self.assertIn("日本では使いどころ1につながります。", rendered)
@@ -258,10 +258,10 @@ class DailyNewsRenderingTests(unittest.TestCase):
     def test_renders_explanation_and_japan_angle_as_separate_story_beats(self):
         rendered = render_daily_ai_news(self.make_payload())
 
-        self.assertEqual(10, rendered.count("class='daily-ai-news__summary'"))
+        self.assertEqual(5, rendered.count("class='daily-ai-news__summary'"))
         self.assertNotIn("<strong>わかりやすく</strong>", rendered)
         self.assertNotIn("<strong>使う場面</strong>", rendered)
-        self.assertEqual(10, rendered.count("class='daily-ai-news__japan'"))
+        self.assertEqual(5, rendered.count("class='daily-ai-news__japan'"))
         self.assertIn(
             "<p class='daily-ai-news__summary'>わかりやすい説明1です。</p>"
             "<p class='daily-ai-news__japan'>日本では使いどころ1につながります。</p>",
@@ -272,7 +272,7 @@ class DailyNewsRenderingTests(unittest.TestCase):
         rendered = render_daily_ai_news(self.make_payload())
 
         self.assertIn("日本とのつながり", rendered)
-        self.assertLess(rendered.index("&lt;script&gt;"), rendered.index(">ニュース10</a>"))
+        self.assertLess(rendered.index("&lt;script&gt;"), rendered.index(">ニュース5</a>"))
 
     def test_invalid_url_fails_closed(self):
         payload = self.make_payload()
@@ -288,7 +288,7 @@ class DailyNewsRenderingTests(unittest.TestCase):
         )
         other = prepend_daily_ai_news({"content_series": "another"}, body, self.make_payload())
 
-        self.assertLess(rendered.index("今日のAIニュース10"), rendered.index("codex-current"))
+        self.assertLess(rendered.index("今日のAIニュース5"), rendered.index("codex-current"))
         self.assertEqual(body, other)
 
 
@@ -330,9 +330,9 @@ class DailyNewsBuildIntegrationTests(unittest.TestCase):
                 builder.DIST = original_dist
                 builder.DAILY_AI_NEWS_JSON = original_snapshot
 
-        self.assertEqual(1, codex_page.count("今日のAIニュース10"))
-        self.assertLess(codex_page.index("今日のAIニュース10"), codex_page.index("Codex本文"))
-        self.assertNotIn("今日のAIニュース10", other_page)
+        self.assertEqual(1, codex_page.count("今日のAIニュース5"))
+        self.assertLess(codex_page.index("今日のAIニュース5"), codex_page.index("Codex本文"))
+        self.assertNotIn("今日のAIニュース5", other_page)
 
 
 class DailyNewsWorkflowTests(unittest.TestCase):

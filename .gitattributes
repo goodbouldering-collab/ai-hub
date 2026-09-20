@@ -1,3 +1,5 @@
 # Immutable production snapshots must retain their recorded SHA256 on Windows.
 deployment/profile/published-worker.mjs -text
 deployment/profile/runtime/** -text
+
+deployment/ai-news/published-worker.mjs -text

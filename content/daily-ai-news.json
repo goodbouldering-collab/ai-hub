@@ -1,85 +1,46 @@
 {
-  "date": "2026-08-31",
+  "date": "2026-09-21",
+  "research_note": "日本時間2026年9月21日朝に直近48時間を調査し、5件に不足したため9月14日から21日までの7日間へ広げました。9月18〜20日の公式発表を選び、公表日と提供・開催日を区別しています。活用の提案は日本の現場向けの編集者の見解です。",
   "items": [
     {
-      "title": "OpenAI Codex 0.151.0、MCPと権限管理を改善",
-      "url": "https://github.com/openai/codex/releases/tag/rust-v0.151.0",
-      "source": "OpenAI Codex",
-      "published": "2026-08-29T18:57:02+09:00",
-      "kid_summary": "Codexの安定版が更新され、MCPの待機設定や権限・サンドボックスの不具合が改善されました。",
-      "japan_angle": "学校や地域企業の開発では、外部ツール連携と権限を確認してから更新する判断材料になります。"
+      "title": "手元の文書とブラウザー作業を支援するAI「Kari」を発表",
+      "url": "https://prtimes.jp/main/html/rd/p/000000003.000190819.html",
+      "source": "GotoAI（公式発表）",
+      "published": "2026-09-20",
+      "kid_summary": "GotoAIが、文書の要約や資料作成、ブラウザー操作を支援する「Kari」を発表し、正式リリース日を9月21日と案内しました。",
+      "japan_angle": "事務作業が重い地域企業では、公開資料一つの要約から試し、人が確認する手順を決める参考になります。"
     },
     {
-      "title": "AIが作った架空の病名を医師の44％が診断候補に",
-      "url": "https://www.itmedia.co.jp/news/article/2608/31/2000000865/",
-      "source": "ITmedia NEWS",
-      "published": "2026-08-31T07:00:00+09:00",
-      "kid_summary": "医師41人の実験で、18人がAIの示した存在しない病名を診断候補に加えました。",
-      "japan_angle": "学校や医療研修では、AIの答えを経験者と照合する確認手順の重要性を具体的に学べます。"
+      "title": "東京都、AI初心者向けに使い方と安全対策の教材を公開",
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/09/2026091814",
+      "source": "東京都デジタルサービス局",
+      "published": "2026-09-18",
+      "kid_summary": "東京都が、文章作成などの使い方と、誤情報や個人情報への注意を学べる初心者向け教材2編を公開しました。",
+      "japan_angle": "地域の学び直し講座では、案内文を作る練習と事実確認を組み合わせ、生活で一つ試すところから始められます。"
     },
     {
-      "title": "パナソニックHD、AI・ロボティクス研究開発本部を新設",
-      "url": "https://monoist.itmedia.co.jp/mn/articles/2608/31/news057.html",
-      "source": "MONOist",
-      "published": "2026-08-31T06:15:00+09:00",
-      "kid_summary": "AI・ロボット・クラウド・データの人材と技術を集める新組織を10月に設けます。",
-      "japan_angle": "地域企業も、AI担当を孤立させず現場と開発をつなぐ横断チームづくりの参考にできます。"
+      "title": "高校の物理授業で、AIのヒントと学習記録を使う実証",
+      "url": "https://prtimes.jp/main/html/rd/p/000000034.000125583.html",
+      "source": "Polaris.AI（公式発表）",
+      "published": "2026-09-18",
+      "kid_summary": "Polaris.AIが公立高校の物理授業で、生徒に段階的なヒントを返し、先生が理解状況を確認するAI実証を報告しました。",
+      "japan_angle": "学校や学習支援では、正答だけでなく考えた過程を残す小さな実習から、先生が確かめる評価方法を検討できます。"
     },
     {
-      "title": "テキサス州、AI監視カメラへの州資金を停止",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/986541/texas-governor-abbott-flock-cameras",
-      "source": "The Verge",
-      "published": "2026-08-31T00:35:10+09:00",
-      "kid_summary": "車両情報を記録するAIカメラを巡り、テキサス州が州機関の資金支出を止めました。",
-      "japan_angle": "自治体や学校は、防犯AIの導入前に目的・閲覧権限・保存範囲を住民へ示す必要があります。"
+      "title": "高齢者との対話をケアの検討へ、ボイスタ！を10月刷新予定",
+      "url": "https://www.nttdata.com/global/ja/news/topics/2026/091800/",
+      "source": "NTTデータ",
+      "published": "2026-09-18",
+      "kid_summary": "NTTデータが、高齢者とAIの会話から関心や思いを整理する「ボイスタ！」の新モデルを10月に提供すると発表しました。",
+      "japan_angle": "福祉施設では、本人の同意と閲覧範囲を確かめ、AIの整理を職員が確認する参考情報として扱う設計が役立ちます。"
     },
     {
-      "title": "ソニーとワーナーの音楽出版社、Anthropicを提訴",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/986438/sony-music-warner-chappell-anthropic-lawsuit-copyright",
-      "source": "The Verge",
-      "published": "2026-08-30T03:19:53+09:00",
-      "kid_summary": "両社は、Claudeの開発で多数の楽曲を無断利用したとしてAnthropicを提訴しました。",
-      "japan_angle": "日本の作り手や事業者も、生成AIへ渡す素材の権利と利用規約を確認する契機になります。"
-    },
-    {
-      "title": "Meta、データセンター作業を担うロボットを試験",
-      "url": "https://arstechnica.com/ai/2026/08/inside-metas-push-to-put-robots-to-work-in-data-centers/",
-      "source": "Ars Technica",
-      "published": "2026-08-30T20:03:47+09:00",
-      "kid_summary": "Metaが、ケーブル接続やサーバー再起動などを行うロボットをデータセンターで試しています。",
-      "japan_angle": "日本の製造・設備現場では、人手不足対策に向く作業と人が確認すべき作業を分ける参考になります。"
-    },
-    {
-      "title": "Tencent、7700億パラメータの「Hy4 Preview」を公開",
-      "url": "https://simonwillison.net/2026/Aug/29/hy4/",
-      "source": "Simon Willison",
-      "published": "2026-08-30T08:53:13+09:00",
-      "kid_summary": "文章向けの公開モデルで、100万トークンの長い文脈と2段階の推論設定を備えます。",
-      "japan_angle": "日本の開発者は、長い資料やコードを扱う用途と必要な計算資源を比べる材料にできます。"
-    },
-    {
-      "title": "Google研究、AIが失敗と成功を記録する「WikiSkill」",
-      "url": "https://the-decoder.com/google-gives-ai-agents-their-own-wiki-so-they-can-learn-from-mistakes-and-successes/",
-      "source": "The Decoder",
-      "published": "2026-08-29",
-      "kid_summary": "AIが作業記録をWikiに残し、次の仕事で使う手順を検証しながら改善する研究です。",
-      "japan_angle": "学校や小さな会社も、AIの失敗と直し方を共有メモへ残す運用の参考にできます。"
-    },
-    {
-      "title": "CloudflareとCodexをつなぐ日本語セットアップ解説",
-      "url": "https://www.youtube.com/watch?v=UtchKt8dRgk",
-      "source": "KEITO AI&WEB",
-      "published": "2026-08-30T19:00:12+09:00",
-      "kid_summary": "CloudflareとCodexなどを接続し、サイト制作へ使う手順を日本語動画で実演しています。",
-      "japan_angle": "地域事業者や学び直す人が、無料枠もある環境で公開手順を学ぶ入口になります。"
-    },
-    {
-      "title": "Web検索に潜むプロンプトインジェクションを日本語解説",
-      "url": "https://www.youtube.com/shorts/xrrxichlNEg",
-      "source": "ウェブ職TV",
-      "published": "2026-08-30T08:00:13+09:00",
-      "kid_summary": "AIがWeb上の指示を誤って信じ、機密情報を扱う危険の仕組みを短い動画で説明しています。",
-      "japan_angle": "学校や会社は、AI検索へ秘密を書かず、外部ページの指示を確認するルール作りに使えます。"
+      "title": "20代が「AIに任せたい仕事」を語る対話の場を開始",
+      "url": "https://prtimes.jp/main/html/rd/p/000000026.000070061.html/",
+      "source": "つむぎ（公式発表）",
+      "published": "2026-09-18",
+      "kid_summary": "つむぎが20代向けの「ヤリガイ場」を開始し、11月19日に「AI時代のやりがい」を話すオンライン座談会を開くと発表しました。",
+      "japan_angle": "地域の若者支援でも、AIに任せたい作業と自分で続けたい仕事を書き出す対話を、学び直しの入口にできます。"
     }
   ]
 }

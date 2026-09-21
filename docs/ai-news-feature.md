@@ -172,3 +172,7 @@ Workerはdeployment/ai-news/published-worker.mjs、現行API取得本文と同�
 最新正常公開は9月20日の人物イラスト版（source bb8b554、version 4f1e68b3）。513資産を本番と照合してシェルとmanifestを更新。詳細はdaily-news-20260921-run.md。
 前述の古いpush停止記録ではなく、今回の明示指示に従いPR・検証・統合・Cloudflare公開まで行う。Vercelチームprojects空とgitIntegration disconnectedを確認済み。
 台帳登録cwdはwork/genspark-profile-edit/cloudflare-runtime。中央設定を変更せず、同一本番bundle deployment/ai-news/published-worker.mjs をscript引数、確定SHAから生成したassetsをassets引数に指定する。Worker/API/認証は変更しない。
+
+## 2026-09-22 日次更新
+
+最新正常公開版 `.daily-news-release-20260921/public`（source6950737、version6060cf6d）を全513資産manifest・本番13資産SHA・更新前再生成差分0で照合。manifestを更新し、再現一致するシェルは維持した。9月22日候補はトップ・独立ページ・サイトマップの3資産のみ変更、他510不変。Codex公式差分なし。登録元で統合済みSHAから `.daily-news-release-20260922/public` を生成し、ガード・同一Worker・本番ハッシュを確認する。詳細はdaily-news-20260922-run.md。次回は今回の公開成功をproduction-summary.jsonと本番で再確認してbaselineにする。

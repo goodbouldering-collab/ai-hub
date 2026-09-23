@@ -1,11 +1,11 @@
 ---
 title: "今日のAIニュース5とCodex"
 date: "2026-08-21"
-date_modified: "2026-09-19"
+date_modified: "2026-09-23"
 content_series: codex-update-log
-source_period: "September 14–18, 2026"
-source_fingerprint: "9af1427bd9891c47f1a24793480e2beb4579e25eaf84b6f5da587710bc40bf7d"
-source_release_tag: "rust-v0.155.1"
+source_period: "September 21–25, 2026"
+source_fingerprint: "24702815cac32ad06270a5d41df1c9deb0538ceacaadd68632abdb9b13432b7e"
+source_release_tag: "rust-v0.156.1"
 image: "/img/blog-codex-update-log-hero-20260830.png"
 image_alt: "巨大な水晶のAI脳を、10個の光るニュースホールドで登り、紙のヤギが見守る和紙の風景"
 hero_image: false
@@ -18,10 +18,10 @@ action: "使えそうな機能を1つ試す"
 ---
 
 <!-- CODEX_UPDATE_CURRENT:BEGIN -->
-<!-- source-fingerprint: 9af1427bd9891c47f1a24793480e2beb4579e25eaf84b6f5da587710bc40bf7d -->
+<!-- source-fingerprint: 24702815cac32ad06270a5d41df1c9deb0538ceacaadd68632abdb9b13432b7e -->
 <section class="codex-update-guide" aria-labelledby="codex-update-guide-title">
 <h2 id="codex-update-guide-title">Codex新機能と活用例</h2>
-<p class="codex-update-guide__date">更新日：<time datetime="2026-09-19">2026年9月19日</time></p>
+<p class="codex-update-guide__date">更新日：<time datetime="2026-09-23">2026年9月23日</time></p>
 </section>
 
 
@@ -30,12 +30,12 @@ action: "使えそうな機能を1つ試す"
 <span class="update-card__rank" aria-hidden="true">1</span>
 <div class="update-card__heading">
 <p class="update-card__eyebrow">CODEX</p>
-<h2 id="codex-feature-1-title" class="codex-feature-title"><span class="visually-hidden">1. </span>一部の接続先で依頼が拒否される不具合を修正</h2>
+<h2 id="codex-feature-1-title" class="codex-feature-title"><span class="visually-hidden">1. </span>作業に合わせてGPT-6 SolとLunaを選ぶ</h2>
 </div></header>
 <div class="update-card__body">
-<p class="update-card__summary">新しいローカルのターミナル会話では、推論の要約表示を初期状態で無効にし、非対応の接続先が依頼を拒否する問題を修正しました。たとえば、地域の申込ページや講座資料を作る依頼が、接続先の非対応機能で止まる場面です。個人情報を含まない短い依頼で動作を確認してから、元の作業へ戻ります。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
-<p class="update-card__context">Codex CLI 0.155.1の修正です。明示的に設定した推論の要約表示は尊重され、すべての接続エラーを直す修正ではありません。</p>
-<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.155.1" target="_blank" rel="noopener">公式情報</a></p>
+<p class="update-card__summary">CodexでGPT-6 SolとLunaの提供が順次始まっています。たとえば、地域の申込ページを直す仕事なら、日常的な開発にはSol Medium、範囲が絞れた反復作業にはLuna Highを試し、結果を確認します。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
+<p class="update-card__context">利用可否はプラン、クライアント、ワークスペース設定によります。料金と利用条件は公式ページで確認してください。</p>
+<p class="update-card__source"><a href="https://learn.chatgpt.com/docs/models" target="_blank" rel="noopener">公式情報</a></p>
 </div></section>
 
 <section class="codex-feature-card update-card" data-update-kind="codex" data-update-index="2" aria-labelledby="codex-feature-2-title">
@@ -43,12 +43,12 @@ action: "使えそうな機能を1つ試す"
 <span class="update-card__rank" aria-hidden="true">2</span>
 <div class="update-card__heading">
 <p class="update-card__eyebrow">CODEX</p>
-<h2 id="codex-feature-2-title" class="codex-feature-title"><span class="visually-hidden">2. </span>古いモデル指定を確認する</h2>
+<h2 id="codex-feature-2-title" class="codex-feature-title"><span class="visually-hidden">2. </span>CLI 0.156.1のモデル選択にSolとLunaを追加</h2>
 </div></header>
 <div class="update-card__body">
-<p class="update-card__summary">GPT-5.5は10月14日にChatGPT・ChatGPT Work・Codexの全プランで提供終了予定です。たとえば、地域の告知や講座資料を作る定期処理に古いモデル指定が残っている場面です。対象設定を一覧にし、切替後の出力を確認します。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
-<p class="update-card__context">OpenAI APIは今回の提供終了の対象外です。利用者の設定をこの記事から変更するものではありません。</p>
-<p class="update-card__source"><a href="https://learn.chatgpt.com/docs/changelog#codex-2026-09-14-gpt-55-retirement" target="_blank" rel="noopener">公式情報</a></p>
+<p class="update-card__summary">Codex CLI 0.156.1でSolとLunaを選べるようになり、利用上限時の切替案内はLunaを推奨します。たとえば、講座資料や小さな業務ツールの修正中なら、表示される選択肢を確認し、切り替えた後も出力や動作を確かめます。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
+<p class="update-card__context">公式の最新安定版は0.156.1です。切替案内は利用枠の追加や上限解除を意味しません。</p>
+<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.156.1" target="_blank" rel="noopener">公式情報</a></p>
 </div></section>
 
 ## 公式情報
@@ -60,6 +60,11 @@ action: "使えそうな機能を1つ試す"
 ## 過去のアップデート要約
 
 <!-- CODEX_UPDATE_ARCHIVE:BEGIN -->
+<!-- source-fingerprint: 9af1427bd9891c47f1a24793480e2beb4579e25eaf84b6f5da587710bc40bf7d -->
+### 2026年9月19日確認：CLIの依頼拒否修正とモデル終了予告
+
+CLI 0.155.1の推論要約表示に関する修正と、10月14日のGPT-5.5提供終了に備えた設定確認を紹介しました。OpenAI APIは終了予告の対象外です。
+
 <!-- source-fingerprint: 1423ac06585e7ab3c3b0a404bd8d6f56cf172c2d282f02e5b2e00dac9ef10842 -->
 ### 2026年9月18日確認：CLIの音声対話・進捗表示・常駐サーバー更新
 

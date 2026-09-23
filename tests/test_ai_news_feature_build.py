@@ -10,6 +10,16 @@ from scripts import build_ai_news_feature as builder
 
 
 class PublishedPresentationTests(unittest.TestCase):
+    def test_rebased_shell_replaces_only_news_style(self):
+        shell = '<html><head><style id="other">keep</style></head><body>keep</body></html>'
+        first = builder.apply_compact_style(shell, 'old rules')
+        second = builder.apply_compact_style(first, 'new rules')
+        self.assertEqual(second.count('ai-news-compact-style'), 1)
+        self.assertNotIn('old rules', second)
+        self.assertIn('<style id="other">keep</style>', second)
+        self.assertIn('<body>keep</body>', second)
+        self.assertEqual(builder.apply_compact_style(second, 'new rules'), second)
+
     def test_preservation_requires_a_baseline(self):
         with self.assertRaisesRegex(ValueError, 'verified asset baseline'):
             builder.build(Path('unused'), preserve_baseline_presentation=True)

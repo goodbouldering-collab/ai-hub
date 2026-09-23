@@ -1,5 +1,13 @@
 # AIニュースとCodexの独立ページ
 
+## 2026-09-23 省スペースUIの日次更新
+
+最新基準は登録元 `.editorial-release-cyber-20260923/public`（main87a036f、version be631579）。513資産manifestと本番13資産SHA、変更前の全資産再現一致を確認してシェルを更新した。旧9月22日以前のシェルで今朝のトップを巻き戻さない。
+
+`site/templates/ai-news/compact.css` はビルド時にトップ・独立ページ内へ一度だけ埋め込む。次回公開版のシェルに埋込み済みでも同じidのstyleを置換し、重複しない。広い画面でニュース2列、800px以下で1列。ニュース/Codexの大見出し書式を共有し、調査範囲はdetailsに保持する。
+
+日次生成は引き続き `--preserve-baseline-presentation` を指定。公開成功後の次回基準は `.daily-news-compact-release-20260923/public`。production-summary.jsonと現行本番を照合してから使う。詳細は `docs/daily-news-20260923-run.md`。
+
 - 公開ページ: https://aiclimb.aiclimb.workers.dev/ai-news/
 - トップ入口: ヒーロー直下の `#ai-news`。最新3件の見出しと「もっと見る」。
 - ブログ一覧には掲載しない。旧 `/blog/codex-update-log`、`.html`、末尾スラッシュは301転送する。

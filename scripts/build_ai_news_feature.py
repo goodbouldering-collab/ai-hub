@@ -32,6 +32,14 @@ def remove_old_cards(text: str) -> str:
     return re.sub(r"<a\b[^>]*href=['\"][^'\"]*\bcodex-update-log(?:\.html)?['\"][^>]*>.*?</a>", "", text, flags=re.S)
 
 
+def apply_compact_style(document: str, css: str) -> str:
+    """Replace our own style when tomorrow's shell includes today's release."""
+    document = re.sub(r"<style\b[^>]*id=['\"]ai-news-compact-style['\"][^>]*>.*?</style>", "", document, flags=re.S)
+    if document.count("</head>") != 1:
+        raise ValueError("Expected one document head for the news style")
+    return document.replace("</head>", f"<style id='ai-news-compact-style'>{css}</style></head>")
+
+
 def render_feature(news: dict, label: str) -> str:
     headlines = "".join(
         f'<li><a href="/ai-news/#news-{rank}"><span aria-hidden="true">0{rank}</span>'
@@ -40,12 +48,12 @@ def render_feature(news: dict, label: str) -> str:
     )
     return (
         '<section id="ai-news" class="ai-news-feature" aria-labelledby="ai-news-feature-title">'
-        '<div class="ai-news-feature__intro"><p class="ai-news-feature__eyebrow">仕事と学びに、毎日ひとつのヒント</p>'
+        '<div class="ai-news-feature__intro">'
         '<div class="ai-news-feature__heading"><h2 id="ai-news-feature-title">今日のAIニュース5とCodex</h2>'
         f'<time datetime="{news["date"]}">{label}</time></div></div>'
         f'<div class="ai-news-feature__reading"><ol>{headlines}</ol>'
         '<a class="ai-news-feature__more" href="/ai-news/">もっと見る'
-        '<span>ニュース5件・Codex活用術</span><b aria-hidden="true">→</b></a></div></section>'
+        '<b aria-hidden="true">→</b></a></div></section>'
     )
 
 
@@ -67,11 +75,14 @@ def build(output: Path, base_assets: Path | None = None, *, preserve_baseline_pr
     note = original_news.get("research_note", "")
     if note:
         marker = "</div><ol class='daily-ai-news__list'>"
-        news_html = news_html.replace(marker, f"<p class='daily-ai-news__lead'>{html.escape(note)}</p>" + marker)
+        news_html = news_html.replace(marker, "<details class='ai-news-research'><summary>調査範囲・出典について</summary>"
+                                      f"<p>{html.escape(note)}</p></details>" + marker)
     codex_html = markdown.markdown(body, extensions=["extra", "sane_lists", "attr_list"])
     codex_html = codex_html.replace("<h2>過去のアップデート要約</h2>", "<h2 id='過去のアップデート要約'>過去のアップデート要約</h2>")
     article = (TEMPLATES / "page.html").read_text(encoding="utf-8")
     article = article.replace("{{NEWS_AND_CODEX}}", news_html + codex_html).replace("{{UPDATE_LABEL}}", label).replace("{{UPDATE_DATE}}", modified)
+    compact_css = (TEMPLATES / "compact.css").read_text(encoding="utf-8")
+    article = apply_compact_style(article, compact_css)
     assert "{{" not in article, "Unfilled article template"
     home = (TEMPLATES / "home.html").read_text(encoding="utf-8")
     if "{{AI_NEWS_FEATURE}}" in home:
@@ -86,6 +97,7 @@ def build(output: Path, base_assets: Path | None = None, *, preserve_baseline_pr
         home = home[:hero.end()] + render_feature(news, label) + home[hero.end():]
         css = (TEMPLATES / "feature.css").read_text(encoding="utf-8")
         home = home.replace("</head>", f"<style id='ai-news-feature-style'>{css}</style></head>")
+    home = apply_compact_style(home, compact_css)
     blog = remove_old_cards((TEMPLATES / "blog.html").read_text(encoding="utf-8"))
     sitemap = (TEMPLATES / "sitemap.xml").read_text(encoding="utf-8")
     sitemap, count = re.subn(r"<url><loc>[^<]*/blog/codex-update-log\.html</loc>.*?</url>", f"<url><loc>{URL}</loc><lastmod>{modified}</lastmod><priority>0.9</priority></url>", sitemap, flags=re.S)

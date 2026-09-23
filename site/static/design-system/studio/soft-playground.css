@@ -99,3 +99,24 @@
 @media (forced-colors: active) {
   #studio-playground .soft-playground__tabs button[aria-selected="true"], #studio-playground .soft-playground__modes input:checked + span { border: 2px solid Highlight; }
 }
+/* Compact work examples: two decisions, no repeated output mockup. */
+#studio-playground {--sp-ink:#263047;--sp-muted:#566178;--sp-line:#d9deea;--sp-paper:#fcfcff;--sp-sage:#e9eef4;--sp-butter:#dcefe9;width:100%;margin:14px auto 30px;padding:22px 26px;border-radius:22px;background:linear-gradient(115deg,#f5f8fbea,#eeeef7dc);backdrop-filter:blur(18px)}
+#studio-playground .soft-playground__intro {margin-bottom:14px}
+#studio-playground h2 {font-size:clamp(21px,2.1vw,28px);line-height:1.5}
+#studio-playground .soft-playground__controls {margin-bottom:14px;gap:8px 18px;align-items:center}
+#studio-playground .soft-playground__modes legend {position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+#studio-playground .soft-playground__panel h3 {font-size:16px;margin:0 0 10px}
+#studio-playground .soft-playground__steps {grid-template-columns:1fr 1fr;gap:12px}
+#studio-playground .soft-playground__steps>div {padding:12px 14px!important;border:1px solid var(--sp-line)!important;border-radius:14px;background:#ffffffa6}
+#studio-playground .soft-playground__steps dt {font-size:12px;color:#456075;margin-bottom:4px}
+#studio-playground .soft-playground__steps dd {margin:0;font-size:14px;line-height:1.65}
+#studio-playground .soft-playground__disclaimer {margin-top:12px;font-size:11px}
+#studio-playground .soft-playground__modes input:checked+span {border-color:#a7c6c5}
+@media(max-width:700px){
+ #studio-playground {width:100%;margin:12px auto 24px;padding:18px 16px}
+ #studio-playground .soft-playground__intro {margin-bottom:12px}
+ #studio-playground .soft-playground__steps {grid-template-columns:1fr;gap:8px}
+ #studio-playground .soft-playground__tabs {width:auto}
+ #studio-playground .soft-playground__tabs button {padding:8px 14px}
+ #studio-playground .soft-playground__controls {gap:8px}
+}

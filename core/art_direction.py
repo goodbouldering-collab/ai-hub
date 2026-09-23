@@ -1,7 +1,7 @@
 """Current art direction: tactile line art and the selected watercolor portrait."""
 import re
 PREFIX='/design-system/studio/images/'
-EDITORIAL_VERSION='20260920-warm-line'
+EDITORIAL_VERSION='20260923-cyber'
 PORTRAIT='/img/speaker-portrait-painting.webp'
 LESSONS={
  '/lectures/assets/covers/2026-04-ai-kihon.png':('lesson-agent','AIへの依頼と成果物の確認を表す講習資料のイラスト'),
@@ -22,7 +22,9 @@ def decorate_art_direction(text):
         tag=match[0]
         src=re.search(r'\bsrc=[\"\']([^\"\']+)',tag)
         if not src:return tag
-        path=src[1]
+        path=src[1].split('?')[0]
+        if path==PREFIX+'soft-hero.webp':
+            tag=attr(tag,'alt','PCで仕事を整える人物と、透明なAI操作パネルを描いたアニメ映画風のイラスト')
         if path in {PREFIX+'soft-mentor.webp',PREFIX+'soft-profile.webp','/img/speaker-anime.png','/img/speaker-portrait-v2.webp'}:
             for k,v in {'src':PORTRAIT,'alt':'AI相談講師 由井辰美の水彩風ポートレート','width':'1254','height':'1254'}.items():tag=attr(tag,k,v)
             style=re.search(r'\bstyle=([\"\'])(.*?)\1',tag,re.S)
@@ -30,5 +32,8 @@ def decorate_art_direction(text):
         elif path in LESSONS:
             name,alt=LESSONS[path]
             for k,v in {'src':PREFIX+name+'.webp','alt':alt,'width':'1536','height':'1024'}.items():tag=attr(tag,k,v)
+        current=re.search(r'\bsrc=[\"\x27]([^\"\x27]+)',tag)[1].split('?')[0]
+        if re.fullmatch(re.escape(PREFIX)+r'(?:soft-(?:hero|agent|personal|code|support|salon|site|prepare|try|keep|login)|lesson-[a-z]+)\.webp',current):
+            tag=attr(tag,'src',current+'?v='+EDITORIAL_VERSION)
         return tag
     return re.sub(r'<img\b[^>]*>',image,text)

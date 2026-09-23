@@ -9,7 +9,7 @@ from html.parser import HTMLParser
 import re
 
 
-STYLE = '<link id="soft-playground-style" rel="stylesheet" href="/design-system/studio/soft-playground.css?v=20260918">'
+STYLE = '<link id="soft-playground-style" rel="stylesheet" href="/design-system/studio/soft-playground.css?v=20260923">'
 SCRIPT = '<script id="soft-playground-script" defer src="/design-system/studio/soft-playground.js?v=20260918"></script>'
 
 SCENARIOS = (
@@ -47,23 +47,14 @@ def _mode_html(item: dict, mode: str) -> str:
     is_ai = mode == "ai"
     heading = "AIと進めるなら" if is_ai else "手作業で進めるなら"
     working = "AIに任せること" if is_ai else "自分で進めること"
-    output = "".join(f"<p>{escape(line)}</p>" for line in item["output"])
     return f'''<div class="soft-playground__example" data-sp-mode="{mode}">
       <h4 class="soft-playground__mode-title">{heading}</h4>
-      <div class="soft-playground__workspace">
-        <dl class="soft-playground__steps">
-          <div><dt><span aria-hidden="true">01</span> 手元にあるもの</dt><dd>{escape(item["input"])}</dd></div>
-          <div class="soft-playground__delegate"><dt><span aria-hidden="true">02</span> {working}</dt><dd>{escape(item[mode])}</dd></div>
-          <div><dt><span aria-hidden="true">03</span> 人が確かめること</dt><dd>{escape(item["check"])}</dd></div>
-        </dl>
-        <div class="soft-playground__output">
-          <p class="soft-playground__output-label">できあがりの例</p>
-          <h5>{escape(item["output_title"])}</h5>
-          <div class="soft-playground__paper">{output}</div>
-          <p class="soft-playground__output-note">仕上げるのは、人の目と判断。</p>
-        </div>
-      </div>
+      <dl class="soft-playground__steps">
+        <div class="soft-playground__delegate"><dt>{working}</dt><dd>{escape(item[mode])}</dd></div>
+        <div><dt>人が確かめること</dt><dd>{escape(item["check"])}</dd></div>
+      </dl>
     </div>'''
+
 
 
 def playground_html() -> str:
@@ -81,16 +72,7 @@ def playground_html() -> str:
     )
     return f'''<section id="studio-playground" class="soft-playground" aria-labelledby="studio-playground-title">
   <header class="soft-playground__intro">
-    <div><p class="soft-playground__eyebrow">小さく試す、仕事の整え方</p>
-      <h2 id="studio-playground-title">AIと、どこから一緒にやろう。</h2>
-      <p class="soft-playground__lead">身近な仕事を選んで、任せることと、確かめることを見てみる。</p>
-    </div>
-    <svg class="soft-playground__doodle" width="124" height="112" viewBox="0 0 124 112" aria-hidden="true" focusable="false" fill="none">
-      <path d="M19 77C7 61 16 26 41 17C67 7 104 24 108 51C113 82 85 103 54 99" fill="#e4e9dd"/>
-      <path d="M35 31Q56 25 80 30L86 78Q62 87 40 79Z" fill="#fffdf5" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-      <path d="M45 44L69 41M47 54L72 51M49 64L60 62M14 89Q34 68 46 91Q54 105 66 94M92 17L96 24M99 12L103 19M98 29L107 28" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-      <circle cx="89" cy="79" r="12" fill="#f0d2bb"/><path d="M84 79L88 83L95 75" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
+    <h2 id="studio-playground-title">AIと、どこから一緒にやろう。</h2>
   </header>
   <div class="soft-playground__controls" data-sp-controls hidden>
     <div class="soft-playground__tabs" role="tablist" aria-label="試してみる仕事">{tabs}</div>
@@ -154,14 +136,24 @@ def _asset(text: str, tag: str, element_id: str, markup: str, closing: str) -> s
 
 
 def decorate_soft_playground(text: str) -> str:
-    """Insert the owned playground after AI news, without reserializing the page."""
+    """Place one compact example directly after the complete diagnosis pair."""
     existing = _section_span(text, "studio-playground")
     if existing:
-        text = text[:existing[0]] + playground_html() + text[existing[1]:]
-    else:
-        news = _section_span(text, "ai-news")
-        if not news:
-            raise ValueError("Soft playground requires the homepage ai-news section")
-        text = text[:news[1]] + "\n" + playground_html() + "\n" + text[news[1]:]
+        text = text[:existing[0]] + text[existing[1]:]
+    # Both diagnosis sections sit in one wrapper. Match its closing div with
+    # a tag-depth scan, so nested panels cannot become the insertion point.
+    anchor = re.search(r'<div\b[^>]*class=["\x27][^"\x27]*\bdiagnosis-guide-row\b[^"\x27]*["\x27][^>]*>', text)
+    if not anchor:
+        raise ValueError("Soft playground requires the homepage diagnosis-guide-row")
+    depth = 1
+    end = None
+    for tag in re.finditer(r'</?div\b[^>]*>', text[anchor.end():]):
+        depth += -1 if tag[0].startswith('</') else 1
+        if depth == 0:
+            end = anchor.end() + tag.end()
+            break
+    if end is None:
+        raise ValueError("Unclosed diagnosis wrapper")
+    text = text[:end].rstrip() + "\n" + playground_html() + text[end:].lstrip("\n")
     text = _asset(text, "link", "soft-playground-style", STYLE, "head")
     return _asset(text, "script", "soft-playground-script", SCRIPT, "body")

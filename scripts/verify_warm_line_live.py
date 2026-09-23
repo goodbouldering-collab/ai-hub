@@ -14,6 +14,7 @@ def verify(release):
     routes=[x for x in PUBLIC_ROUTES if '/images/soft-' not in x[0]]
     names=[f'design-system/studio/images/soft-{n}.webp' for n in NAMES]+[f'design-system/studio/images/{n}.webp' for n,_ in LESSONS.values()]+[PORTRAIT.lstrip('/')]
     routes += [('/'+n,n) for n in names]
+    routes += [('/design-system/studio/soft-playground.css','design-system/studio/soft-playground.css')]
     s=requests.Session();s.trust_env=False;s.headers['User-Agent']='Mozilla/5.0 (compatible; AIConsultReleaseVerifier/1.0)'
     results=[]
     for url,name in routes:
@@ -29,6 +30,12 @@ def verify(release):
             if name=='index.html':
                 assert len(soup.select('#lecture-carousel img[src^="/design-system/studio/images/lesson-"]'))==7
                 assert len(soup.select('#instagram img'))==6 and soup.select_one('#instagram').get_text(strip=True)=='Instagram'
+                if EDITORIAL_VERSION=='20260923-cyber':
+                    assert not soup.select('.readiness-guide__summary,.focus-section-lead,.pf-sum')
+                    assert soup.select_one('.diagnosis-guide-row').find_next_sibling()['id']=='studio-playground'
+                    assert not soup.select('.soft-playground__output')
+                    assert len(soup.select('[data-sp-tab]'))==3
+                    assert all('?v='+EDITORIAL_VERSION in img['src'] for img in soup.select('img[src^="/design-system/studio/images/"]'))
         results.append(response_summary(r,url,redirects)|{'matches_release':True,'passed':True})
     for url,status in [('/health',200),('/admin',303),('/admin/login',200),('/api/admin/ping',401)]:
         r,redirects=fetch(s,PRODUCTION_URL,url,follow=False)

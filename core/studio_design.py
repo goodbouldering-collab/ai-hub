@@ -12,6 +12,7 @@ import shutil
 
 from core.soft_studio import decorate_soft_playground
 from core.art_direction import decorate_art_direction
+from core.compact_home import compact_home
 
 
 
@@ -149,6 +150,7 @@ def decorate_html(text: str, *, home: bool = False, admin: bool = False, login: 
 
     text = re.sub(r'(<script\b[^>]*type=[\"\']application/ld\+json[\"\'][^>]*>)(.*?)(</script>)', structured_data, text, flags=re.S)
     if home:
+        text = compact_home(text)
         text = decorate_soft_playground(text)
     return decorate_art_direction(text)
 

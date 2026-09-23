@@ -144,13 +144,13 @@ function python(program, input) {
   return result;
 }
 
-const fixture = '<!doctype html><html><head><title>AI相談</title></head><body><main><section id="ai-news"><p>既存のお知らせ</p><section><p>nested</p></section></section><section id="existing"><h2>既存の料金</h2><a href="/booking?plan=1&amp;people=2">相談する</a></section></main></body></html>';
+const fixture = '<!doctype html><html><head><title>AI相談</title></head><body><main><section id="ai-news"><p>既存のお知らせ</p><section><p>nested</p></section></section><div class="diagnosis-guide-row"><section><div>実力診断</div></section><section><div>サイト診断</div></section></div><section id="existing"><h2>既存の料金</h2><a href="/booking?plan=1&amp;people=2">相談する</a></section></main></body></html>';
 
-test('decorator preserves existing HTML, inserts after the whole news section, and is idempotent', () => {
+test('decorator preserves existing HTML, inserts after both diagnoses, and is idempotent', () => {
   const result = python('import sys; from core.soft_studio import decorate_soft_playground; once=decorate_soft_playground(sys.stdin.read()); assert decorate_soft_playground(once)==once; sys.stdout.write(once)', fixture);
   assert.equal(result.status, 0, result.stderr);
   const html = result.stdout.replace(/\r\n/g, '\n');
-  assert.match(html, /<section><p>nested<\/p><\/section><\/section>\n<section id="studio-playground"/);
+  assert.match(html, /<div>サイト診断<\/div><\/section><\/div>\n<section id="studio-playground"/);
   assert.equal((html.match(/id="studio-playground"/g) || []).length, 1);
   assert.equal((html.match(/id="soft-playground-style"/g) || []).length, 1);
   assert.equal((html.match(/id="soft-playground-script"/g) || []).length, 1);
@@ -166,7 +166,7 @@ test('decorator preserves existing HTML, inserts after the whole news section, a
 test('decorator fails closed when the homepage insertion anchor is missing', () => {
   const result = python('import sys; from core.soft_studio import decorate_soft_playground; decorate_soft_playground(sys.stdin.read())', '<html><head></head><body><p>既存ページ</p></body></html>');
   assert.notEqual(result.status, 0);
-  assert.match(result.stderr, /requires the homepage ai-news section/);
+  assert.match(result.stderr, /requires the homepage diagnosis-guide-row/);
 });
 
 test('shared theme and playground keep stable tag order across repeated home decoration', () => {

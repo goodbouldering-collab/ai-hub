@@ -1,0 +1,32 @@
+/* Shared, compact navigation. Native links and forms keep their own behavior. */
+.ux-filters{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 22px}
+.ux-filters button,.ux-launcher,.ux-command-close{font:inherit;font-size:14px;font-weight:650;color:#354c63;background:#ffffffd9;border:1px solid #cbd6e4;border-radius:999px;padding:10px 17px;min-height:44px;cursor:pointer}
+.ux-filters button[aria-pressed=true]{color:white;background:#354c63;border-color:#354c63}
+.ux-filters button:hover,.ux-launcher:hover{border-color:#66899b;background:#e6edf6;color:#263b51}
+.ux-launcher{flex-shrink:0;margin-left:auto;padding:8px 15px}
+.compact-course-card[hidden],.ux-task-card[hidden],.ux-task-controls[hidden],.ux-empty[hidden],.ux-command-results a[hidden]{display:none!important}
+.ux-result-status{font-size:12px;color:#59677a;margin:10px 0;min-height:1.5em}
+body.studio-editorial.studio-home #top .focus-hero-shell{padding-top:24px!important;padding-bottom:44px!important}
+body.studio-editorial.studio-home #top .focus-hero-copy{padding:30px!important}
+body.studio-editorial.studio-home #restored-hero-image{min-height:470px!important}
+body.studio-editorial.studio-home .course-menu-unified{align-items:start}
+body.studio-editorial .ux-admin-home{max-width:1120px!important;margin:0 auto!important;padding:120px 28px 40px!important;min-height:85vh}
+.ux-admin-intro{margin:0 0 26px}.ux-admin-intro>p{font-size:12px;letter-spacing:.14em;color:#61758b;margin:0 0 9px}.ux-admin-intro h1{font-size:clamp(27px,4vw,42px);letter-spacing:-.045em;line-height:1.4;margin:0;color:#263047}
+.ux-task-browser{background:linear-gradient(135deg,#ffffffed,#edf2f8dc);border:1px solid #dce3ec;border-radius:26px;padding:26px;box-shadow:0 18px 60px -40px #283d6b50}
+.ux-search-label{display:grid;gap:8px;font-size:13px;color:#52657b;font-weight:650}
+.ux-search-label input{font:inherit;font-size:16px;color:#263047;background:#fff;border:1px solid #bccddd;border-radius:14px;width:100%;min-height:52px;padding:12px 16px;box-sizing:border-box}
+.ux-task-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ux-task-card{display:flex;justify-content:space-between;align-items:center;gap:15px;text-decoration:none!important;padding:18px;border:1px solid #dce3ec;border-radius:17px;background:#fff;color:#263047!important;transition:transform .16s,border-color .16s}
+.ux-task-card strong{font-size:16px;display:block}.ux-task-card small{display:block;margin-top:5px;font-size:13px;color:#627186}.ux-task-card:hover{transform:translateY(-2px);border-color:#819daf}.ux-task-card>span:last-child{color:#557e85}
+.ux-admin-footer{display:flex;justify-content:space-between;gap:18px;margin:22px 4px;font-size:13px}.ux-admin-footer a{color:#51677f;text-decoration:none;padding:10px 0}
+.ux-command-dialog{width:min(560px,calc(100vw - 32px));max-height:80dvh;box-sizing:border-box;padding:24px;border:1px solid #d7e1eb;border-radius:24px;background:#f7f9fd;color:#263047;box-shadow:0 30px 100px #14254245;overflow:auto}
+.ux-command-dialog::backdrop{background:#14203355;backdrop-filter:blur(5px)}
+.ux-command-top{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-bottom:20px}.ux-command-top h2{font-size:21px!important;line-height:1.5;margin:0!important;border:0!important;padding:0!important;background:none!important}.ux-command-top h2::before,.ux-command-top h2::after{display:none!important}.ux-command-close{font-size:12px;padding:8px 13px;white-space:nowrap}
+.ux-command-results{display:grid;gap:5px;margin-top:16px}.ux-command-results a{padding:12px 14px;min-height:44px;box-sizing:border-box;border-radius:12px;background:#fff;color:#354c63;text-decoration:none;line-height:1.5;font-size:14px}.ux-command-results a:hover{background:#e3ecf3}.ux-empty{font-size:14px;color:#607086;line-height:1.7}
+:is(.ux-filters,.ux-task-browser,.ux-command-dialog) :is(button,a,input):focus-visible,.ux-launcher:focus-visible{outline:3px solid #59869c!important;outline-offset:3px!important}
+@media(max-width:1100px){.ux-launcher{font-size:12px;padding:8px 12px}.admin-shared-brand-context{display:none!important}}
+@media(max-width:900px){body.studio-editorial.studio-home #restored-hero-image{min-height:0!important}.ux-launcher{order:1;margin-left:auto}.site-header-inner .mobile-toggle{order:2}.site-header-inner .site-logo{margin-right:0!important}body.studio-editorial .ux-admin-home{padding:100px 18px 28px!important}}
+@media(max-width:520px){.ux-task-grid{grid-template-columns:1fr}.ux-task-browser{padding:18px}.ux-admin-intro{margin-bottom:18px}.ux-filters{gap:6px}.ux-filters button{font-size:13px;padding:9px 13px}.ux-command-dialog{padding:18px}.ux-command-top h2{font-size:18px!important}body.studio-editorial.studio-home #top .focus-hero-copy{padding:22px!important}}
+@media(prefers-reduced-motion:reduce){.ux-task-card{transition:none}.ux-task-card:hover{transform:none}}
+
+[data-ux-admin-hub][hidden],.ux-original-admin[hidden]{display:none!important}

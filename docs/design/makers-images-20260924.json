@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-24",
+  "scope": "18 presentation illustrations; existing identity portrait, editorial photos and portfolio screenshots retain their factual meaning",
+  "generatedSources": {
+    "soft-hero": "3b08787b-c525-49e6-954a-8c4f89d64bbb",
+    "soft-agent": "83a55d6d-8abe-4a6d-b6a3-dab8546340d3",
+    "soft-personal": "ce413229-d0dd-4620-98fc-fedbe36379b5",
+    "soft-code": "7d8266a0-9eb2-4084-8907-4ea4ab785bc5",
+    "soft-support": "a03cfd6b-4c94-4b2a-9fa1-507db6f4ec36",
+    "soft-salon": "f484db21-a606-4395-938d-aa1bc614293f",
+    "soft-site": "1cce2134-5d76-4337-a5dd-8e9cd3ffd868",
+    "soft-prepare": "c8d3df8e-4a4f-43a6-9167-3410f32b8d1c",
+    "soft-try": "451ca618-b092-41be-861d-b42721b1dda2",
+    "soft-keep": "a552622a-9df9-43f0-85ad-48eac4b85a3a",
+    "soft-login": "e03fc7ba-d0d6-4e4a-add0-711b61039f0b",
+    "lesson-agent": "98545456-23b9-4a6c-9056-57b80ee1dd97",
+    "lesson-practice": "f8da51db-14a7-4270-9a15-30911926d52e",
+    "lesson-rag": "99dc3a57-5fc2-46ce-996e-87231cce6139",
+    "lesson-site": "53ae3765-9ab1-4a6d-898f-197fb8c0d1de",
+    "lesson-salon": "1341502d-a9f7-4344-bf38-24728fa9441f",
+    "lesson-climbing": "efc0fc48-c740-49b7-af2c-f06dd9bd35b9",
+    "lesson-coding": "8c930dbf-ece0-4c76-a987-8c7d694440af"
+  },
+  "sharedPrompt": "Create one landscape 3:2 premium editorial artwork for Japanese small-business AI service. Sophisticated animated-film illustration with convincingly tactile near-real materials, smooth delicate line accents, contemporary Japanese indie art sensibility, slightly comic clever surrealism. Objects and the creative work are the heroes. No large faces, no foreground people, at most a tiny background worker, no city skyline, no corporate office, no classroom, no neon cyberpunk, no text/logos. Calm ivory/ink-blue/pale sage with a tiny coral accent. Soft daylight, beautiful pearly glass ribbons visualize AI quietly helping, elegant negative space, inventive adult playful composition, not photoreal stock photograph. ",
+  "tool": "built-in image_gen"
+}

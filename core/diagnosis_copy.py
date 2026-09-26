@@ -1,7 +1,7 @@
 """Short prompts within the existing compact diagnosis card footprint."""
 import re
 
-PROMPTS = {'readiness-guide-title': 'AI使えてますか？', 'seo-llmo-guide-title': 'AIに選ばれるサイトとは'}
+PROMPTS = {'readiness-guide-title': 'AI使えてますか？', 'seo-llmo-guide-title': 'AIに選ばれるサイトって？'}
 STYLE = '''<style id="diagnosis-copy-style">
 body.studio-editorial.studio-home .diagnosis-guide-row .readiness-guide__inner { padding-block:18px!important; }
 .diagnosis-guide-row .offer-role-row { margin-bottom:0!important; }

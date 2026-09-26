@@ -1,0 +1,78 @@
+/* Paper & current: one visual layer, existing journeys and content remain intact. */
+body.studio-paper.studio-theme{--studio-paper:#f5f2e8;--studio-white:#fffcf3;--studio-ink:#263c3d;--studio-teal:#326760;--studio-sage:#e3e7d3;--studio-muted:#5b6863;--studio-line:#d4d6c5;--paper:#f5f2e8;--ink:#263c3d;--muted:#5b6863;--blue:#326760;background:#f5f2e8!important;color:#263c3d!important;font-family:'Hiragino Kaku Gothic ProN','Yu Gothic',Meiryo,sans-serif}
+body.studio-paper::selection{background:#d9b65b;color:#263c3d}
+body.studio-paper :is(.site-header,.topbar),body.studio-paper.studio-admin.admin-page .site-header{background:#f5f2e8f5!important;border-color:#d4d6c5!important;box-shadow:none!important;backdrop-filter:blur(16px)}
+body.studio-paper :is(.site-logo,.word-ai,.wordmark,.nav-link,.generated-mobile-toggle){color:#263c3d!important}
+body.studio-paper .site-logo::before{border-color:#326760!important;border-radius:55% 55% 0 0!important;transform:rotate(-14deg)}
+body.studio-paper .nav-link:hover{background:#e2e6d1!important}
+body.studio-paper :is(.mobile-toggle,.generated-mobile-toggle){background:#263c3d!important;color:#fffdf4!important;border-color:#263c3d!important}
+body.studio-paper :is(.mobile-nav-panel,.mobile-nav,.admin-menu-group-panel){background:#faf7ee!important;color:#263c3d!important;border-color:#b8c5b6!important;box-shadow:0 14px 35px #263c3d18!important}
+body.studio-paper :is(.mobile-public-links a,.mobile-nav a,.admin-menu-group-panel a){color:#263c3d!important;background:#fffdf6!important}
+body.studio-paper :is(a,button,summary,input,textarea,select):focus-visible{outline:3px solid #a16c15!important;outline-offset:4px!important}
+body.studio-paper :is(h1,h2,.focus-title){color:#263c3d!important;font-family:Georgia,'Yu Mincho','Hiragino Mincho ProN',serif;font-weight:600!important;letter-spacing:.005em!important}
+body.studio-paper :is(h3,.compact-course-heading h3){color:#263c3d!important}
+body.studio-paper :is(.focus-btn,.readiness-guide__cta,.offer-action,.compact-course-action,.sticky-cta a:last-child){background:#263c3d!important;color:#fffdf4!important;border:1px solid #263c3d!important;box-shadow:none!important;border-radius:999px!important}
+body.studio-paper :is(.focus-btn.secondary,.sticky-cta a:first-child){background:#fffdf4!important;color:#263c3d!important;border-color:#a9b9a8!important}
+body.studio-paper :is(.focus-btn,.compact-course-action,.offer-action){transition:background .2s ease,transform .2s ease}
+body.studio-paper :is(.focus-btn,.compact-course-action,.offer-action):hover{background:#326760!important;color:#fffdf4!important;transform:translateY(-2px)}
+body.studio-paper .sticky-cta{background:#f5f2e8f5!important;border-color:#d4d6c5!important;box-shadow:0 -5px 24px #263c3d0a!important}
+body.studio-paper .studio-reading-progress{background:#5c9b8e!important}
+body.studio-paper [data-studio-glass]::before{display:none!important}
+/* Keep the same hero copy/illustration order and all existing actions. */
+body.studio-paper.studio-home #top .focus-hero-shell{padding-top:40px!important;padding-bottom:48px!important}
+body.studio-paper.studio-home #top .focus-hero-copy{background:#f5f2e8f5!important;border:0!important;border-radius:0 36% 14% 0!important;box-shadow:none!important;backdrop-filter:none!important;padding:30px 32px 30px 0!important}
+body.studio-paper.studio-home #top .focus-kicker{background:transparent!important;border:0!important;border-bottom:1px solid #b9c7b7!important;border-radius:0!important;padding:0 0 12px!important;letter-spacing:.1em!important;color:#326760!important}
+body.studio-paper.studio-home #top .focus-kicker::before{background:#d5aa50!important;box-shadow:none!important;width:9px;height:9px}
+body.studio-paper.studio-home #top .focus-title{font-size:clamp(34px,3.4vw,49px)!important;line-height:1.5!important}
+body.studio-paper.studio-home #top .focus-title-line{font-family:'Yu Gothic',Meiryo,sans-serif;font-size:.56em!important}
+body.studio-paper.studio-home #top .focus-title-line strong::after{background:#bcc89b80!important;height:8px!important}
+body.studio-paper.studio-home #top .focus-lead{color:#53615b!important}
+body.studio-paper.studio-home #restored-hero-image{min-height:500px!important;border:0!important;background:#f5f2e8!important;border-radius:43% 17% 36% 11% / 19% 28% 17% 31%!important;overflow:hidden!important}
+body.studio-paper.studio-home #restored-hero-image>img{object-fit:cover!important;object-position:center!important}
+body.studio-paper.studio-home #top .focus-trust{color:#53615b!important}
+body.studio-paper.studio-home .focus-section-head small{color:#326760!important;letter-spacing:.18em!important}
+body.studio-paper.studio-home .focus-section-head small::before{background:#d5aa50!important;border:0!important;border-radius:50% 50% 20% 50%!important;transform:rotate(-20deg)}
+body.studio-paper.studio-home .focus-section-head h2,body.studio-paper.studio-home #speaker h2{font-size:clamp(28px,3.1vw,43px)!important}
+body.studio-paper.studio-home main>.ai-news-feature{background:transparent!important;border-color:#b8c5b6!important;border-radius:0!important;box-shadow:none!important;backdrop-filter:none!important}
+body.studio-paper .ai-news-feature :is(a,h2){color:#263c3d!important}
+body.studio-paper .ai-news-feature__headlines a{border-color:#d4d6c5!important}
+body.studio-paper.studio-home .diagnosis-guide-row .offer-panel{background:#e4e9d6!important;border:1px solid #becbb7!important;border-radius:26px 50px 24px 35px!important;box-shadow:none!important}
+body.studio-paper.studio-home .diagnosis-guide-row>section:last-child .offer-panel{background:#e4eee8!important;border-radius:45px 24px 40px 22px!important}
+body.studio-paper .readiness-guide__title{color:#263c3d!important}
+/* Photographs keep their original subject; soft cut-paper frames create the rhythm. */
+body.studio-paper.studio-home .compact-course-card{border-radius:0!important;background:transparent!important}
+body.studio-paper.studio-home .compact-course-visual{border:0!important;border-radius:21% 38% 15% 12% / 18% 25% 13% 19%!important;aspect-ratio:1.5!important;object-fit:cover!important;background:#dce6d5!important}
+body.studio-paper.studio-home .compact-course-card:nth-child(even) .compact-course-visual{border-radius:35% 17% 18% 26% / 24% 13% 23% 17%!important}
+body.studio-paper.studio-home .studio-course-body,body.studio-paper.studio-home .compact-course-card:nth-child(n) .studio-course-body{margin:0!important;padding:26px 10px 24px!important;background:transparent!important;border:0!important;border-bottom:1px solid #bdc9b8!important;border-radius:0!important;box-shadow:none!important;backdrop-filter:none!important}
+body.studio-paper.studio-home .compact-course-grid{gap:34px 32px!important}
+body.studio-paper.studio-home :is(.offer-audience,.offer-role-copy,.compact-course-meta span){background:#e3e7d3!important;color:#385346!important;border:0!important}
+body.studio-paper.studio-home .offer-role-copy{background:#faf6e9ee!important}
+body.studio-paper.studio-home :is(.course-venue-common,.focus-step){background:#efefdf!important;border:1px solid #d4d6c5!important;box-shadow:none!important;border-radius:24px!important}
+body.studio-paper.studio-home .focus-step-visual{border-radius:24px 42px 16px 35px!important}
+body.studio-paper :is(.pf-card,.blog-card,.teaching-card,.tr-card,.lecture-card){background:#faf7ed!important;border-color:#d4d6c5!important;box-shadow:none!important;border-radius:22px!important}
+body.studio-paper :is(.blog-card,.teaching-card,.tr-card,.lecture-card) img{border-radius:35% 20% 30% 16% / 15% 25% 18% 22%!important}
+body.studio-paper.studio-home #speaker .focus-split>div,body.studio-paper.speaker-page .speaker-page-copy{background:#f5f2e8f5!important;border-color:#c9d1be!important;box-shadow:none!important;backdrop-filter:none!important;border-radius:28px 50px 22px 28px!important}
+body.studio-paper :is(.speaker-art,.speaker-painting){border-radius:38% 24% 32% 19% / 19% 30% 21% 23%!important}
+body.studio-paper :is(.speaker-cta,#contact){background:#326760!important;color:#fffdf4!important;border-radius:36px 70px 30px 50px!important}
+body.studio-paper :is(.speaker-cta,#contact) :is(h2,h3,p,a){color:#fffdf4!important}
+body.studio-paper :is(.speaker-cta,#contact) :is(a,button):focus-visible{outline-color:#f0ce7c!important}
+body.studio-paper :is(.speaker-cta,#contact) a{border-color:#f0e9d1!important}
+body.studio-paper footer{background:#e9ecd9!important;color:#43594b!important;border-color:#c3ccb9!important}
+/* All existing dialogs, forms, task links and navigation retain their behavior. */
+body.studio-paper :is(.ux-launcher,.ux-filters button,.ux-command-close){background:#faf7ed!important;color:#263c3d!important;border-color:#bcc9b8!important}
+body.studio-paper .ux-filters button[aria-pressed=true]{background:#326760!important;color:#fffdf4!important;border-color:#326760!important}
+body.studio-paper :is(.ux-command-dialog,.ux-task-browser){background:#f5f2e8!important;color:#263c3d!important;border-color:#bcc9b8!important;box-shadow:0 20px 70px #263c3d18!important}
+body.studio-paper :is(.ux-task-card,.ux-command-results a){background:#fffdf5!important;color:#263c3d!important;border-color:#d4d6c5!important}
+body.studio-paper :is(.ux-task-card,.ux-command-results a):hover{background:#e7ecda!important;border-color:#609087!important}
+body.studio-paper :is(.ux-admin-intro h1,.ux-admin-intro p,.ux-task-card small,.ux-search-label){color:#38574b!important}
+body.studio-paper :is(input:not([type=checkbox]):not([type=radio]),textarea,select){background:#fffdf6!important;color:#263c3d!important;border-color:#a5bba9!important}
+body.studio-paper.studio-admin :is(.panel,.card,.section,.tool-card,.admin-panel){background:#faf7ed!important;border-color:#cbd5c2!important;box-shadow:none!important}
+body.studio-paper.studio-admin :is(.btn.primary,.btn-primary,button[type=submit]){background:#326760!important;color:#fffdf4!important;border-color:#326760!important}
+body.studio-paper.studio-login{background-color:#e5ead9!important;background-image:linear-gradient(90deg,#f5f2e8aa,#f5f2e830),url('/design-system/studio/images/soft-login.webp?v=20260926-paper')!important;background-size:cover!important;background-position:center!important}
+body.studio-paper.studio-login :is(main,.login-card,.card){background:#faf7edf5!important;border:1px solid #c1cfb7!important;box-shadow:none!important;border-radius:34px 54px 26px 42px!important}
+body.studio-paper.studio-login button{background:#326760!important;color:#fffdf4!important}
+@media(max-width:900px){body.studio-paper.studio-home #top .focus-hero-shell{padding-top:24px!important;padding-bottom:32px!important}body.studio-paper.studio-home #restored-hero-image{min-height:0!important;aspect-ratio:1.5!important;border-radius:33% 17% 22% 14% / 16% 23% 18% 25%!important}body.studio-paper.studio-home #top .focus-hero-copy{padding:26px 18px 24px!important;margin-top:0!important;border-radius:0!important}body.studio-paper.studio-home .compact-course-grid{gap:26px!important}body.studio-paper.studio-home .studio-course-body{padding-left:2px!important;padding-right:2px!important}}
+@media(prefers-reduced-motion:reduce){body.studio-paper *,body.studio-paper *::before,body.studio-paper *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}body.studio-paper :is(.focus-btn,.compact-course-action,.offer-action):hover{transform:none!important}}
+@media(forced-colors:active){body.studio-paper :is(a,button,input,textarea,select){forced-color-adjust:auto!important}body.studio-paper :is(button,.focus-btn,.compact-course-action){border:1px solid ButtonText!important}}
+/* Contact actions remain readable on the dark teal closing section. */
+body.studio-paper :is(.speaker-cta,#contact) a{background:#fffdf4!important;color:#263c3d!important;border-color:#fffdf4!important}

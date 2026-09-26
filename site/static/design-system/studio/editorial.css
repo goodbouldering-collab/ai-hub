@@ -101,7 +101,7 @@ body.studio-editorial.studio-admin .blog-overview-card:nth-child(3n) {background
 body.studio-editorial.studio-admin :is(.studio-tabs,.admin-menu,.steps) {background:#f7f7edf0!important;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
 body.studio-editorial.studio-admin :is(input,select,textarea) {background:#fcfcff!important;border-color:#a5b39c!important;border-radius:14px!important;color:var(--studio-ink)!important}
 body.studio-editorial.studio-admin :is(button,.btn) {border-radius:999px!important}
-body.studio-editorial.studio-login {background:linear-gradient(90deg,#f5f6fa55,#f5f6fa16),url('images/soft-login.webp?v=20260926-contextual') center/cover fixed!important}
+body.studio-editorial.studio-login {background:linear-gradient(90deg,#f5f6fa55,#f5f6fa16),url('images/soft-login.webp?v=20260926-paper') center/cover fixed!important}
 body.studio-editorial.studio-login main {margin-right:auto;margin-left:max(6vw,24px);background:#fffef7eb!important;border-color:#fff!important}
 body.studio-editorial :is(footer,.site-footer) {background:transparent!important;border-top-color:var(--studio-line)!important}
 

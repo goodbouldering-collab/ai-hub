@@ -16028,7 +16028,8 @@ def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     parts.append(HEADER_JS)
     parts.append("</body></html>")
     from core.instagram_feed import apply_instagram_feed
-    return apply_instagram_feed("".join(parts))
+    from core.course_menu import apply_course_menu
+    return apply_course_menu(apply_instagram_feed("".join(parts)))
 
     # Legacy sections remain below as reusable source assets, but are intentionally
     # outside the focused homepage composition.

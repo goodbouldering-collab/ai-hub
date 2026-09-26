@@ -54,7 +54,7 @@ class CourseCardRestorationTests(unittest.TestCase):
             card,
         )
         self.assertIn("<span class='offer-audience-label'>受講人数</span>", card)
-        self.assertIn("<strong>個別</strong></span>", card)
+        self.assertIn(f"<strong>{'お一人' if title == 'AI個別相談' else '個別'}</strong></span>", card)
         self.assertIn(
             f"<div class='compact-course-meta'><strong>{price}</strong><span>{duration}</span></div>",
             card,
@@ -63,13 +63,13 @@ class CourseCardRestorationTests(unittest.TestCase):
         self.assertIn("受講された方の感想を見る", card)
 
     def test_restores_both_individual_courses_with_the_shared_card_format(self) -> None:
-        individual = self.card_named("AI個別講習")
+        individual = self.card_named("AI個別相談")
         coding = self.card_named("AIコーディング講習")
 
         self.assertEqual(6, len(self.cards))
         self.assert_individual_course_format(
             individual,
-            title="AI個別講習",
+            title="AI個別相談",
             price="5,500円",
             duration="60分",
         )
@@ -82,7 +82,7 @@ class CourseCardRestorationTests(unittest.TestCase):
         self.assertNotIn("AI自作講習", self.page)
 
     def test_restores_the_previous_course_descriptions_details_and_links(self) -> None:
-        individual = self.card_named("AI個別講習")
+        individual = self.card_named("AI個別相談")
         coding = self.card_named("AIコーディング講習")
 
         self.assertIn(
@@ -98,7 +98,7 @@ class CourseCardRestorationTests(unittest.TestCase):
         ):
             self.assertIn(text, individual)
         self.assertIn(f"href='{INDIVIDUAL_COURSE_URL}'", individual)
-        self.assertIn("個別講習を予約", individual)
+        self.assertIn("個別相談を予約", individual)
         self.assertIn("href='/lectures/2026-04-ai-kangaekata.html'", individual)
 
         self.assertIn(
@@ -132,7 +132,7 @@ class CourseCardRestorationTests(unittest.TestCase):
             if item.get("@type") in ("Course", "Service")
         }
 
-        individual = offers["AI個別講習 60分"]
+        individual = offers["AI個別相談 60分"]
         coding = offers["AIコーディング講習 120分"]
         self.assertEqual("Course", individual["@type"])
         self.assertEqual("PT1H", individual["timeRequired"])
@@ -150,7 +150,7 @@ class CourseCardRestorationTests(unittest.TestCase):
             re.DOTALL,
         )
         self.assertIsNotNone(sticky)
-        self.assertIn("AI個別講習", sticky.group(0))
+        self.assertIn("AI個別相談", sticky.group(0))
         self.assertIn("60分・5,500円", sticky.group(0))
         self.assertIn(f"href='{INDIVIDUAL_COURSE_URL}'", sticky.group(0))
         self.assertNotIn("AIコーディング講習", sticky.group(0))

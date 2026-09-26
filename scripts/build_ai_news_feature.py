@@ -21,6 +21,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+from core.course_menu import apply_course_menu
 from core.daily_news import normalize_daily_ai_news, render_daily_ai_news
 from core.studio_design import decorate_public_tree
 
@@ -97,7 +98,7 @@ def build(output: Path, base_assets: Path | None = None, *, preserve_baseline_pr
         home = home[:hero.end()] + render_feature(news, label) + home[hero.end():]
         css = (TEMPLATES / "feature.css").read_text(encoding="utf-8")
         home = home.replace("</head>", f"<style id='ai-news-feature-style'>{css}</style></head>")
-    home = apply_compact_style(home, compact_css)
+    home = apply_course_menu(apply_compact_style(home, compact_css))
     blog = remove_old_cards((TEMPLATES / "blog.html").read_text(encoding="utf-8"))
     sitemap = (TEMPLATES / "sitemap.xml").read_text(encoding="utf-8")
     sitemap, count = re.subn(r"<url><loc>[^<]*/blog/codex-update-log\.html</loc>.*?</url>", f"<url><loc>{URL}</loc><lastmod>{modified}</lastmod><priority>0.9</priority></url>", sitemap, flags=re.S)

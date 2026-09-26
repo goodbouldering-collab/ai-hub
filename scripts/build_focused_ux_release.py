@@ -11,11 +11,11 @@ def write(p,content):
     if p.exists():p.unlink()
     p.write_text(content,encoding='utf-8',newline='\n')
 def build(baseline,runtime_base,output):
-    assert digest(baseline/'verification.json')=='c80d40b854c55f19ef31d341b262f559ab20de0f8c052f0e35ef1cd8dce30ff3'
+    assert digest(baseline/'verification.json')=='a0545fef6908fe676b3f3c776f834de82adfe31a95a2c2a6eca214c70e9c35f1'
     assert digest(runtime_base/'verification.json')=='f65bab3bedeb84778c3c85a7b626f687a6f9abc69beb7d4045a4b72c37c76433'
     old=json.loads((baseline/'verification.json').read_text(encoding='utf-8'))
     runtime_old=json.loads((runtime_base/'verification.json').read_text(encoding='utf-8'))
-    assert old['source_sha']=='7219a2570c41c62a63f0abd3fb651d58943402bb'
+    assert old['source_sha']=='40d05e1be1cdd7d72465bf2428247c3c5e2cdf4c'
     before_assets=hashes(baseline/'public');before_runtime=hashes(runtime_base/'runtime')
     assert before_assets==old['assets'] and before_runtime==runtime_old['runtime']
     assert digest(runtime_base/'compiled/public-entry.js')=='fbc934d13a936b36487b99378b0b03267d39bed44efd9edbc01fd2837a09c50e'
@@ -56,7 +56,7 @@ def build(baseline,runtime_base,output):
     assert hashes(baseline/'public')==before_assets and hashes(runtime_base/'runtime')==before_runtime
     sources=['scripts/build_focused_ux_release.py','core/focused_ux.py','core/art_direction.py','core/studio_design.py','tests/test_focused_ux.py','cloudflare-runtime/wrangler-profile-release.jsonc','cloudflare-runtime/wrangler-glass-build.jsonc','deployment/profile/package.json','deployment/profile/package-lock.json']+['site/static/'+p for p in owned]
     status=subprocess.check_output(['git','-c','core.excludesFile=','status','--porcelain','--',*sources],cwd=ROOT,text=True).splitlines()
-    result=dict(source_sha=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),source_inputs={p:digest(ROOT/p) for p in sources},source_inputs_clean=not status,source_input_status=status,baseline_version='eb2c252a-82e8-4e10-a9fb-b9a10396c6a8',assets=assets,runtime=runtime,changed_assets=changed,unchanged_assets=len(assets)-len(changed),baseline_unchanged=True,deployed=False)
+    result=dict(source_sha=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),source_inputs={p:digest(ROOT/p) for p in sources},source_inputs_clean=not status,source_input_status=status,baseline_version='287dca8b-a678-4094-bef6-8bd16f921ac4',assets=assets,runtime=runtime,changed_assets=changed,unchanged_assets=len(assets)-len(changed),baseline_unchanged=True,deployed=False)
     (output/'verification.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print(json.dumps({k:result[k] for k in ['source_sha','source_inputs_clean','unchanged_assets']},ensure_ascii=False))
 if __name__=='__main__':

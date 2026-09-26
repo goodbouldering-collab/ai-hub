@@ -58,6 +58,7 @@
  const open=()=>{if(dialog.open||document.querySelector('dialog[open]'))return;previous=document.activeElement;input.value='';filter();dialog.showModal();input.focus();};
  launch.addEventListener('click',open);close.addEventListener('click',()=>dialog.close());input.addEventListener('input',filter);
  input.addEventListener('keydown',event=>{if(event.key==='ArrowDown'){event.preventDefault();links.find(a=>!a.hidden)?.focus();}});
+ dialog.addEventListener('keydown',event=>{if(event.key==='Escape'){event.preventDefault();event.stopPropagation();dialog.close();}});
  dialog.addEventListener('close',()=>{if(previous?.isConnected)previous.focus();});
  document.addEventListener('keydown',event=>{if((event.ctrlKey||event.metaKey)&&!event.altKey&&event.key.toLowerCase()==='k'&&!document.querySelector('dialog[open]')){event.preventDefault();open();}});
 })();

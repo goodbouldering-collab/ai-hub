@@ -31,7 +31,8 @@ test('search dialog filters, handles empty results, and restores focus',()=>{
  const dialog=d.querySelector('dialog'),input=dialog.querySelector('input');assert.equal(dialog.open,true);assert.equal(d.activeElement,input);
  input.value='診断';input.dispatchEvent(new w.Event('input'));assert.equal([...dialog.querySelectorAll('a')].filter(a=>!a.hidden).length,2);
  input.value='存在しない検索語';input.dispatchEvent(new w.Event('input'));assert.equal(dialog.querySelector('.ux-empty').hidden,false);
- dialog.querySelector('button').click();assert.equal(dialog.open,false);assert.equal(d.activeElement,launch);
+ input.dispatchEvent(new w.KeyboardEvent('keydown',{key:'Escape',bubbles:true,cancelable:true}));assert.equal(dialog.open,false);assert.equal(d.activeElement,launch);
+ launch.click();dialog.querySelector('button').click();assert.equal(dialog.open,false);
  w.eval(js);assert.equal(d.querySelectorAll('.ux-launcher').length,1);
 });
 test('admin home reveals tasks while preserving existing editing forms',()=>{

@@ -1,17 +1,17 @@
-"""Current art direction: tactile line art and the selected watercolor portrait."""
+"""Current art direction: minimal photographic workspaces and the selected portrait."""
 import re
 PREFIX='/design-system/studio/images/'
-EDITORIAL_VERSION='20260924-makers'
+EDITORIAL_VERSION='20260926-minimal'
 PORTRAIT='/img/speaker-portrait-painting.webp'
-ART_ALTS={'soft-agent': '花屋の包装や配達の仕事をAIが整理するイラスト', 'soft-personal': 'イラストレーターの制作机とAIによるアイデア整理', 'soft-code': '地域のお店のWebサイトを組み立てる制作机', 'soft-support': '小さな工房の制作から発送までをつなぐAI活用', 'soft-salon': 'つくり手が道具とアイデアを持ち寄る交流', 'soft-site': '小さなパン屋と店舗サイトをつなぐイラスト', 'soft-prepare': '相談する仕事の資料と道具を用意するイラスト', 'soft-try': '商品のデザイン案を比較して確かめるイラスト', 'soft-keep': 'うまくいった制作方法を整理して残すイラスト'}
+ART_ALTS={'soft-hero': '自然光が差す机にノートPCと白い紙の立体を置いた制作スペース', 'soft-agent': '作業の進み具合を整理するノートPCと小さな箱', 'soft-personal': 'アイデアを描くタブレットとペン', 'soft-code': 'シンプルなWebページを映すモニター', 'soft-support': 'ノートPCと小さな建築模型を置いた制作机', 'soft-salon': '制作案を並べたタブレットと丸いテーブル', 'soft-site': '店舗ページを映すタブレットと商品パッケージ', 'soft-prepare': '相談内容を整理するノートとペン', 'soft-try': '制作物を確かめるカメラと白い試作品', 'soft-keep': '仕事の方法を残すノートPCとファイル', 'soft-login': '静かな作業スペースに置いたノートPC', 'lesson-agent': 'AIへの依頼と成果物を比較するノートPC', 'lesson-practice': '一週間の仕事を整理するタブレット', 'lesson-rag': '参照資料を確かめるバインダーとタブレット', 'lesson-site': '予約を整理するタブレットとカード', 'lesson-salon': '制作の進み具合を共有するノートPC', 'lesson-climbing': '岩を思わせるクライミングホールドとカラビナ', 'lesson-coding': 'コードとページの仕上がりを確認するノートPC'}
 LESSONS={
- '/lectures/assets/covers/2026-04-ai-kihon.png':('lesson-agent','AIへの依頼と成果物の確認を表す講習資料のイラスト'),
- '/lectures/assets/covers/2026-04-ai-kangaekata.png':('lesson-practice','毎週の仕事をAIで整える実践資料のイラスト'),
- '/lectures/assets/covers/2026-06-ai-agent-rag-design.png':('lesson-rag','資料を探し根拠を確かめるRAGのイラスト'),
- '/lectures/assets/covers/2026-08-ai-app-site-consult-sheet.png':('lesson-site','店舗の予約と問い合わせを支えるAIサイトのイラスト'),
- '/lectures/assets/covers/2026-07-ai-online-salon-practice.png':('lesson-salon','成果を持ち寄り学び合うオンラインサロンのイラスト'),
- '/lectures/assets/covers/2026-05-climbing-history.png':('lesson-climbing','登山から現代のジムへ続くクライミング史のイラスト'),
- '/img/course-path-coding.webp':('lesson-coding','コードの変更と成果を確かめる実践資料のイラスト'),
+ '/lectures/assets/covers/2026-04-ai-kihon.png':('lesson-agent', 'AIへの依頼と成果物を比較するノートPC'),
+ '/lectures/assets/covers/2026-04-ai-kangaekata.png':('lesson-practice', '一週間の仕事を整理するタブレット'),
+ '/lectures/assets/covers/2026-06-ai-agent-rag-design.png':('lesson-rag', '参照資料を確かめるバインダーとタブレット'),
+ '/lectures/assets/covers/2026-08-ai-app-site-consult-sheet.png':('lesson-site', '予約を整理するタブレットとカード'),
+ '/lectures/assets/covers/2026-07-ai-online-salon-practice.png':('lesson-salon', '制作の進み具合を共有するノートPC'),
+ '/lectures/assets/covers/2026-05-climbing-history.png':('lesson-climbing', '岩を思わせるクライミングホールドとカラビナ'),
+ '/img/course-path-coding.webp':('lesson-coding', 'コードとページの仕上がりを確認するノートPC'),
 }
 def attr(tag,name,value):
     pattern=rf'\b{re.escape(name)}\s*=\s*([\"\']).*?\1'
@@ -25,7 +25,7 @@ def decorate_art_direction(text):
         if not src:return tag
         path=src[1].split('?')[0]
         if path==PREFIX+'soft-hero.webp':
-            tag=attr(tag,'alt','小さな工房の制作机で、AIがアイデアと制作物をつなぐアーティスティックなイラスト')
+            tag=attr(tag,'alt','自然光が差す机にノートPCと白い紙の立体を置いた制作スペース')
         if path in {PREFIX+'soft-mentor.webp',PREFIX+'soft-profile.webp','/img/speaker-anime.png','/img/speaker-portrait-v2.webp'}:
             for k,v in {'src':PORTRAIT,'alt':'AI相談講師 由井辰美の水彩風ポートレート','width':'1254','height':'1254'}.items():tag=attr(tag,k,v)
             style=re.search(r'\bstyle=([\"\'])(.*?)\1',tag,re.S)

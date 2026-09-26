@@ -1,0 +1,96 @@
+{
+  "tool": "image_gen.imagegen",
+  "direction": "Minimal photorealistic creative work banners. One principal work object, at most one supporting object, generous negative space, natural daylight, graphite and warm grey. Distinct subjects, no prominent people, restrained nature.",
+  "assets": [
+    {
+      "asset": "site/static/design-system/studio/images/soft-hero.webp",
+      "generated_image_id": "a5d24004-342d-4c14-a2cf-dfda9fe5ffe5",
+      "description": "自然光が差す机にノートPCと白い紙の立体を置いた制作スペース"
+    },
+    {
+      "asset": "site/static/design-system/studio/images/soft-agent.webp",
+      "generated_image_id": "5c58a1b3-16e7-4908-be70-987185396897",
+      "description": "作業の進み具合を整理するノートPCと小さな箱"
+    },
+    {
+      "asset": "site/static/design-system/studio/images/soft-personal.webp",
+      "generated_image_id": "0964aee9-643f-4ae6-9c10-a6d29d008be3",
+      "description": "アイデアを描くタブレットとペン"
+    },
+    {
+      "asset": "site/static/design-system/studio/images/soft-code.webp",
+      "generated_image_id": "4464e67a-2579-45d7-bbe3-ab5a1db9185d",
+      "description": "シンプルなWebページを映すモニター"
+    },
+    {
+      "asset": "site/static/design-system/studio/images/soft-support.webp",
+      "generated_image_id": "a4ee7960-42d9-4353-bf71-631cd317d6d2",
+      "description": "ノートPCと小さな建築模型を置いた制作机"
+    },
+    {
+      "asset": "site/static/design-system/studio/images/soft-salon.webp",
+      "generated_image_id": "2b9c945d-8a41-478a-a39f-638a185dac34",
+      "description": "制作案を並べたタブレットと丸いテーブル"
+    },
+    {
+      "asset": "site/static/design-system/studio/images/soft-site.webp",
+      "generated_image_id": "6c129c8d-39c8-4f84-a659-1e55f0aaf122",
+      "description": "店舗ページを映すタブレットと商品パッケージ"
+    },
+    {
+      "asset": "site/static/design-system/studio/images/soft-prepare.webp",
+      "generated_image_id": "89b4af55-bd75-4b9c-bfb4-0c311e53a66f",
+      "description": "相談内容を整理するノートとペン"
+    },
+    {
+      "asset": "site/static/design-system/studio/images/soft-try.webp",
+      "generated_image_id": "70c44aa3-07d2-4604-a866-5bcdc3de3554",
+      "description": "制作物を確かめるカメラと白い試作品"
+    },
+    {
+      "asset": "site/static/design-system/studio/images/soft-keep.webp",
+      "generated_image_id": "c03d7374-04d0-427d-978b-e84d2b1f316e",
+      "description": "仕事の方法を残すノートPCとファイル"
+    },
+    {
+      "asset": "site/static/design-system/studio/images/soft-login.webp",
+      "generated_image_id": "6c501e2e-b803-4430-8d4f-5e8b18edbf37",
+      "description": "静かな作業スペースに置いたノートPC"
+    },
+    {
+      "asset": "site/static/design-system/studio/images/lesson-agent.webp",
+      "generated_image_id": "7606e098-1995-460d-bf5d-6f249b8f9180",
+      "description": "AIへの依頼と成果物を比較するノートPC"
+    },
+    {
+      "asset": "site/static/design-system/studio/images/lesson-practice.webp",
+      "generated_image_id": "b549a531-bb31-44fa-a266-5594e80e524c",
+      "description": "一週間の仕事を整理するタブレット"
+    },
+    {
+      "asset": "site/static/design-system/studio/images/lesson-rag.webp",
+      "generated_image_id": "e2cf169b-cf3b-4d67-81b2-043e395ccd87",
+      "description": "参照資料を確かめるバインダーとタブレット"
+    },
+    {
+      "asset": "site/static/design-system/studio/images/lesson-site.webp",
+      "generated_image_id": "d7f9dd82-e057-44b0-a0f1-fed3635c266b",
+      "description": "予約を整理するタブレットとカード"
+    },
+    {
+      "asset": "site/static/design-system/studio/images/lesson-salon.webp",
+      "generated_image_id": "31fbcef8-e229-434b-9264-a36512ca67a2",
+      "description": "制作の進み具合を共有するノートPC"
+    },
+    {
+      "asset": "site/static/design-system/studio/images/lesson-climbing.webp",
+      "generated_image_id": "732b4322-0a74-44c1-a891-d0fbd6bd23fa",
+      "description": "岩を思わせるクライミングホールドとカラビナ"
+    },
+    {
+      "asset": "site/static/design-system/studio/images/lesson-coding.webp",
+      "generated_image_id": "fa0a966a-4d19-4475-9e03-cb59e47b2332",
+      "description": "コードとページの仕上がりを確認するノートPC"
+    }
+  ]
+}

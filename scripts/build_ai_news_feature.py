@@ -37,7 +37,10 @@ def remove_old_cards(text: str) -> str:
 
 def apply_compact_style(document: str, css: str) -> str:
     """Replace our own style when tomorrow's shell includes today's release."""
-    document = re.sub(r"<style\b[^>]*id=['\"]ai-news-compact-style['\"][^>]*>.*?</style>", "", document, flags=re.S)
+    pattern = r"<style\b[^>]*id=['\"]ai-news-compact-style['\"][^>]*>.*?</style>"
+    if re.search(pattern, document, flags=re.S):
+        # Preserve the cascade order of the already-published shell.
+        return re.sub(pattern, lambda _: f"<style id='ai-news-compact-style'>{css}</style>", document, flags=re.S)
     if document.count("</head>") != 1:
         raise ValueError("Expected one document head for the news style")
     return document.replace("</head>", f"<style id='ai-news-compact-style'>{css}</style></head>")

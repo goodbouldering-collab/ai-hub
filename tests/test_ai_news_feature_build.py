@@ -10,6 +10,10 @@ from scripts import build_ai_news_feature as builder
 
 
 class PublishedPresentationTests(unittest.TestCase):
+    def test_preserves_cascade_order_with_later_site_styles(self):
+        shell = "<head><style id='ai-news-compact-style'>old</style><style id='site'>override</style></head>"
+        self.assertEqual(builder.apply_compact_style(shell, 'new'), shell.replace('>old<', '>new<'))
+
     def test_rebased_shell_replaces_only_news_style(self):
         shell = '<html><head><style id="other">keep</style></head><body>keep</body></html>'
         first = builder.apply_compact_style(shell, 'old rules')

@@ -1,5 +1,9 @@
 # AIニュースとCodexの独立ページ
 
+## 2026-09-27 日次の基準更新
+
+直前正常公開版は登録元 `.restored-contextual-release-20260926/public`（SHA689ffabf、version8b85400f）。515資産と本番を照合し、最新の写真・料金・診断文をシェルへ継承。compact CSSの位置を保つ修正後、更新前再生成は全資産バイト一致。詳細は `daily-news-20260927-run.md`。次回は `.daily-news-release-20260927/production-summary.json` の公開結果と現行本番を照合してから基準を更新する。
+
 ## 2026-09-23 省スペースUIの日次更新
 
 最新基準は登録元 `.editorial-release-cyber-20260923/public`（main87a036f、version be631579）。513資産manifestと本番13資産SHA、変更前の全資産再現一致を確認してシェルを更新した。旧9月22日以前のシェルで今朝のトップを巻き戻さない。

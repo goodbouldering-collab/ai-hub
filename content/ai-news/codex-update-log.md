@@ -1,11 +1,11 @@
 ---
 title: "今日のAIニュース5とCodex"
 date: "2026-08-21"
-date_modified: "2026-09-23"
+date_modified: "2026-09-27"
 content_series: codex-update-log
 source_period: "September 21–25, 2026"
-source_fingerprint: "24702815cac32ad06270a5d41df1c9deb0538ceacaadd68632abdb9b13432b7e"
-source_release_tag: "rust-v0.156.1"
+source_fingerprint: "d813b07d3ba890e13aff92fb5cede4a1c8b8d918f4e4b87799e48ea3b45272c3"
+source_release_tag: "rust-v0.157.1"
 image: "/img/blog-codex-update-log-hero-20260830.png"
 image_alt: "巨大な水晶のAI脳を、10個の光るニュースホールドで登り、紙のヤギが見守る和紙の風景"
 hero_image: false
@@ -18,10 +18,10 @@ action: "使えそうな機能を1つ試す"
 ---
 
 <!-- CODEX_UPDATE_CURRENT:BEGIN -->
-<!-- source-fingerprint: 24702815cac32ad06270a5d41df1c9deb0538ceacaadd68632abdb9b13432b7e -->
+<!-- source-fingerprint: d813b07d3ba890e13aff92fb5cede4a1c8b8d918f4e4b87799e48ea3b45272c3 -->
 <section class="codex-update-guide" aria-labelledby="codex-update-guide-title">
 <h2 id="codex-update-guide-title">Codex新機能と活用例</h2>
-<p class="codex-update-guide__date">更新日：<time datetime="2026-09-23">2026年9月23日</time></p>
+<p class="codex-update-guide__date">更新日：<time datetime="2026-09-27">2026年9月27日</time></p>
 </section>
 
 
@@ -43,12 +43,12 @@ action: "使えそうな機能を1つ試す"
 <span class="update-card__rank" aria-hidden="true">2</span>
 <div class="update-card__heading">
 <p class="update-card__eyebrow">CODEX</p>
-<h2 id="codex-feature-2-title" class="codex-feature-title"><span class="visually-hidden">2. </span>CLI 0.156.1のモデル選択にSolとLunaを追加</h2>
+<h2 id="codex-feature-2-title" class="codex-feature-title"><span class="visually-hidden">2. </span>CLI最新版は0.157.1、変更詳細は確認待ち</h2>
 </div></header>
 <div class="update-card__body">
-<p class="update-card__summary">Codex CLI 0.156.1でSolとLunaを選べるようになり、利用上限時の切替案内はLunaを推奨します。たとえば、講座資料や小さな業務ツールの修正中なら、表示される選択肢を確認し、切り替えた後も出力や動作を確かめます。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
-<p class="update-card__context">公式の最新安定版は0.156.1です。切替案内は利用枠の追加や上限解除を意味しません。</p>
-<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.156.1" target="_blank" rel="noopener">公式情報</a></p>
+<p class="update-card__summary">最新安定版は0.157.1ですが、公式本文は変更の要点を特定できなかったと記載しています。たとえば、学校や地域企業の業務ツールを開発するなら、版番号だけで機能改善を判断せず、普段の作業が動くかを確かめます。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
+<p class="update-card__context">9月26日公開の安定版です。このリリース本文から対象端末、料金、追加機能は確認できません。</p>
+<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.157.1" target="_blank" rel="noopener">公式情報</a></p>
 </div></section>
 
 ## 公式情報
@@ -60,6 +60,11 @@ action: "使えそうな機能を1つ試す"
 ## 過去のアップデート要約
 
 <!-- CODEX_UPDATE_ARCHIVE:BEGIN -->
+<!-- source-fingerprint: 24702815cac32ad06270a5d41df1c9deb0538ceacaadd68632abdb9b13432b7e -->
+### 2026年9月23日確認：SolとLunaのモデル選択
+
+週次案内のGPT-6 SolとLuna、およびCLI 0.156.1のモデル選択と利用上限時の切替案内を紹介しました。
+
 <!-- source-fingerprint: 9af1427bd9891c47f1a24793480e2beb4579e25eaf84b6f5da587710bc40bf7d -->
 ### 2026年9月19日確認：CLIの依頼拒否修正とモデル終了予告
 

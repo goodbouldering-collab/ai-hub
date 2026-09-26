@@ -40,6 +40,8 @@ def apply_course_menu(document: str) -> str:
         assert count == 1
     cards[0] = cards[0].replace("<strong>少数</strong>", "<strong>複数人</strong>")
     cards[1] = cards[1].replace("<strong>個別</strong>", "<strong>お一人</strong>")
+    cards[0] = cards[0].replace("受講人数：少数", "受講人数：複数人")
+    cards[1] = cards[1].replace("受講人数：個別", "受講人数：お一人")
     replacement = (
         '<h3 class="course-menu-group-title">講習・個別相談を選ぶ</h3>'
         '<div class="compact-course-grid">' + ''.join(cards[:2]) + '</div>'

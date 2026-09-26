@@ -13,6 +13,7 @@ import shutil
 from core.soft_studio import decorate_soft_playground
 from core.art_direction import decorate_art_direction
 from core.compact_home import compact_home
+from core.focused_ux import decorate_focused_ux, replace_admin_hub, decorate_admin_entry
 
 
 
@@ -152,7 +153,10 @@ def decorate_html(text: str, *, home: bool = False, admin: bool = False, login: 
     if home:
         text = compact_home(text)
         text = decorate_soft_playground(text)
-    return decorate_art_direction(text)
+    text = decorate_art_direction(text)
+    if admin and 'admin-hub-page' in text:
+        return replace_admin_hub(text)
+    return decorate_focused_ux(text, home=home)
 
 
 def decorate_public_tree(output: Path) -> list[str]:
@@ -176,9 +180,11 @@ def decorate_runtime(output: Path) -> list[str]:
     source = assets.read_text(encoding="utf-8")
     prefix, encoded = source.split("export default ", 1)
     entries = json.loads(encoded.strip().removesuffix(";"))
-    for entry in entries.values():
+    for route, entry in entries.items():
         if entry["type"].startswith("text/html"):
             entry["body"] = decorate_html(entry["body"], admin=True)
+            if route == "/admin" and '<div class="container">' in entry["body"]:
+                entry["body"] = decorate_admin_entry(entry["body"])
     assets.write_text(prefix + "export default " + json.dumps(entries, ensure_ascii=False, separators=(",", ":")) + ";\n", encoding="utf-8", newline="\n")
     login = output / "worker/login-page.mjs"
     login.write_text(decorate_html(login.read_text(encoding="utf-8"), admin=True, login=True), encoding="utf-8", newline="\n")

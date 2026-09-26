@@ -1,6 +1,6 @@
 {
-  "release_directory": ".contextual-release-20260926",
-  "verification_sha256": "e048c6517c425e34fae2573b813fca34a3465ad056b38204b63b17c6b5dc4ea9",
-  "source_sha": "4afe4e5704db06a5fea6695eb03c7d8ca41eb666",
-  "worker_sha256": "151527592c77c87b248bd8360b144710a6fa281ccb6ef7e56dd8152ebc9d6628"
+  "release_directory": ".paper-release-20260926",
+  "verification_sha256": "721c4fce84bf2baab549b50aaba8b95555aea819d6c42a36d820bf20d0910375",
+  "source_sha": "c6e9eaa665b9a291e17157072e369bbe46dfe2df",
+  "worker_sha256": "48c49a9591404e51162d1431e1c4a355386990574722256a0ec76362683a9008"
 }

@@ -1,5 +1,6 @@
 """Progressive, presentation-only task navigation for public and admin pages."""
 import re
+from core.hero_copy import apply_hero_copy
 VERSION='20260923-focused'
 ASSETS='/design-system/studio/'
 
@@ -12,6 +13,7 @@ def decorate_focused_ux(text, *, home=False):
     if home:
         # The main headline and existing consultation/menu actions remain.
         text=re.sub(r'<aside\b[^>]*class=[\"\x27][^\"\x27]*\bhero-advantage\b[^\"\x27]*[\"\x27][^>]*>.*?</aside>','',text,flags=re.S)
+        text=apply_hero_copy(text)
     return text
 
 def admin_hub():

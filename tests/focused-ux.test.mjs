@@ -18,13 +18,10 @@ function setup(html,path='/'){
  w.eval(js);return dom;
 }
 const home=readFileSync(release+'/public/index.html','utf8');
-test('all six courses remain available; each purpose shows the correct services',()=>{
+test('all six courses remain available without purpose pills',()=>{
  const d=setup(home).window.document;
- const bar=d.querySelector('[aria-label="コースを目的で絞る"]');assert.ok(bar);
- const visible=()=>[...d.querySelectorAll('.compact-course-card')].filter(c=>!c.hidden);
- assert.equal(visible().length,6);bar.children[2].click();assert.equal(visible().length,1);assert.match(visible()[0].textContent,/伴走/);
- bar.children[3].click();assert.equal(visible().length,1);assert.match(visible()[0].textContent,/制作/);
- bar.children[1].click();assert.equal(visible().length,4);bar.children[0].click();assert.equal(visible().length,6);
+ assert.equal(d.querySelector('[aria-label="コースを目的で絞る"]'),null);
+ assert.equal([...d.querySelectorAll('.compact-course-card')].filter(c=>!c.hidden).length,6);
 });
 test('search dialog filters, handles empty results, and restores focus',()=>{
  const {window:w}=setup(home),d=w.document,launch=d.querySelector('.ux-launcher');assert.ok(launch);launch.focus();launch.click();
@@ -46,8 +43,8 @@ test('admin home reveals tasks while preserving existing editing forms',()=>{
 test('blog editor subroutes do not hide the original editing container',()=>{
  const d=setup(admin,'/admin/blog/editor').window.document;assert.equal(d.querySelector('[data-ux-admin-hub]').hidden,true);assert.equal(d.querySelector('body > .container').hidden,false);
 });
-test('direct links restore filtered courses and malformed hashes are safe',()=>{
- const {window:w}=setup(home),d=w.document;d.querySelector('[aria-label="コースを目的で絞る"]').children[2].click();
+test('direct course links and malformed hashes remain safe',()=>{
+ const {window:w}=setup(home),d=w.document;
  w.location.hash='#ai-app-site';w.dispatchEvent(new w.HashChangeEvent('hashchange'));assert.equal(d.getElementById('ai-app-site').hidden,false);
  w.location.hash='#%';assert.doesNotThrow(()=>w.dispatchEvent(new w.HashChangeEvent('hashchange')));
 });

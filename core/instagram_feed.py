@@ -31,10 +31,10 @@ def render_instagram_feed():
         'aria-label="Instagramの投稿画像。左右キーでスクロール">' + ''.join(cards) + '</div></section>' + END)
 def apply_instagram_feed(text):
     text = strip_instagram_feed(text)
-    anchors = [m.start() for m in re.finditer(r'<section\b[^>]*\bid=[\"\']ai-news[\"\']|<div\b[^>]*\bclass=[\"\']diagnosis-guide-row[\"\']', text)]
-    if not anchors:
-        raise ValueError('Expected homepage news or diagnosis section')
-    position = min(anchors)
+    anchor = re.search(r'</main\s*>', text, re.I)
+    if not anchor:
+        raise ValueError('Expected homepage main closing tag')
+    position = anchor.start()
     text = text[:position] + render_instagram_feed() + text[position:]
     assert text.count('</head>') == 1
     return text.replace('</head>', HEAD + '</head>', 1)

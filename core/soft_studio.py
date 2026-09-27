@@ -157,3 +157,16 @@ def decorate_soft_playground(text: str) -> str:
     text = text[:end].rstrip() + "\n" + playground_html() + text[end:].lstrip("\n")
     text = _asset(text, "link", "soft-playground-style", STYLE, "head")
     return _asset(text, "script", "soft-playground-script", SCRIPT, "body")
+
+
+def remove_soft_playground(text: str) -> str:
+    """Remove the retired homepage example and its dedicated asset tags."""
+    existing = _section_span(text, "studio-playground")
+    if existing:
+        text = text[:existing[0]] + text[existing[1]:]
+    for tag, element_id in (("link", "soft-playground-style"), ("script", "soft-playground-script")):
+        pattern = rf'<{tag}\b[^>]*\bid=(["\x27]){element_id}\1[^>]*>'
+        if tag == "script":
+            pattern += r"\s*</script\s*>"
+        text = re.sub(pattern, "", text, flags=re.I)
+    return text

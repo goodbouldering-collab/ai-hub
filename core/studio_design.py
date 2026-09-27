@@ -10,7 +10,8 @@ from pathlib import Path
 import re
 import shutil
 
-from core.soft_studio import decorate_soft_playground
+from core.soft_studio import remove_soft_playground
+from core.instagram_feed import apply_instagram_feed
 from core.art_direction import decorate_art_direction
 from core.compact_home import compact_home
 from core.focused_ux import decorate_focused_ux, replace_admin_hub, decorate_admin_entry
@@ -152,7 +153,7 @@ def decorate_html(text: str, *, home: bool = False, admin: bool = False, login: 
     text = re.sub(r'(<script\b[^>]*type=[\"\']application/ld\+json[\"\'][^>]*>)(.*?)(</script>)', structured_data, text, flags=re.S)
     if home:
         text = compact_home(text)
-        text = decorate_soft_playground(text)
+        text = apply_instagram_feed(remove_soft_playground(text))
     text = decorate_art_direction(text)
     if admin and 'admin-hub-page' in text:
         return replace_admin_hub(text)

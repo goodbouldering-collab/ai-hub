@@ -42,4 +42,21 @@ def decorate_art_direction(text):
             name=current.rsplit('/',1)[1].removesuffix('.webp')
             if name in ART_ALTS:tag=attr(tag,'alt',ART_ALTS[name])
         return tag
-    return re.sub(r'<img\b[^>]*>',image,text)
+    return restore_home_speaker(re.sub(r'<img\b[^>]*>',image,text))
+
+
+def restore_home_speaker(text):
+    """Restore the archived cafe portrait without cropping away the shop interior."""
+    def restore(match):
+        tag = match[0]
+        if not re.search(r"class=[\"']speaker-painting[\"']", tag):
+            return tag
+        for key, value in {
+            'src': '/img/speaker-portrait-gubboru-cafe-20260719.webp',
+            'alt': '店内のテーブルとAI講習の風景を背景にした講師 由井辰美',
+            'width': '1000', 'height': '1000',
+            'style': 'object-fit:contain!important;aspect-ratio:1/1!important;height:auto!important;max-height:none!important',
+        }.items():
+            tag = attr(tag, key, value)
+        return tag
+    return re.sub(r'<img\b[^>]*>', restore, text)

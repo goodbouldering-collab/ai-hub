@@ -21,6 +21,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+from core.art_direction import restore_home_speaker
 from core.course_menu import apply_course_menu
 from core.soft_studio import remove_soft_playground
 from core.instagram_feed import apply_instagram_feed
@@ -106,7 +107,7 @@ def build(output: Path, base_assets: Path | None = None, *, preserve_baseline_pr
         css = (TEMPLATES / "feature.css").read_text(encoding="utf-8")
         home = home.replace("</head>", f"<style id='ai-news-feature-style'>{css}</style></head>")
     home = apply_diagnosis_copy(apply_hero_copy(apply_course_menu(apply_compact_style(home, compact_css))))
-    home = apply_instagram_feed(remove_soft_playground(home))
+    home = restore_home_speaker(apply_instagram_feed(remove_soft_playground(home)))
     blog = remove_old_cards((TEMPLATES / "blog.html").read_text(encoding="utf-8"))
     sitemap = (TEMPLATES / "sitemap.xml").read_text(encoding="utf-8")
     sitemap, count = re.subn(r"<url><loc>[^<]*/blog/codex-update-log\.html</loc>.*?</url>", f"<url><loc>{URL}</loc><lastmod>{modified}</lastmod><priority>0.9</priority></url>", sitemap, flags=re.S)

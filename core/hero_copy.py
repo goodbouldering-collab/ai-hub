@@ -1,7 +1,7 @@
 """Apply the homepage copy approved in the September 26 browser annotations."""
 import re
 
-TITLE = '彦根発！ちゃんと使えるAI'
+TITLE = '彦根で使えるAIを学ぶ'
 SUBTITLE = '個人事業から業務管理までこなせる'
 BENEFIT = 'あなたの経験がAIで拡張できる'
 CONCERN = 'でも、なんかうまく使えてないかも・・・'

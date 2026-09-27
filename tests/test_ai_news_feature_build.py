@@ -31,7 +31,7 @@ class PublishedPresentationTests(unittest.TestCase):
     def test_preserves_published_css_crlf_and_rejects_tampered_baseline(self):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
-            for name in ('content/daily-ai-news.json', 'content/ai-news/codex-update-log.md'):
+            for name in ('content/daily-ai-news.json', 'content/ai-news/codex-update-log.md', 'site/static/design-system/studio/focused-ux.js'):
                 target = root / name
                 target.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copyfile(builder.ROOT / name, target)

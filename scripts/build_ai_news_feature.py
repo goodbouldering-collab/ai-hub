@@ -113,6 +113,8 @@ def build(output: Path, base_assets: Path | None = None, *, preserve_baseline_pr
     assert count == 1
     results = {"index.html": home, "ai-news/index.html": article, "blog/index.html": blog, "sitemap.xml": sitemap,
                "_redirects": "/blog/codex-update-log /ai-news/ 301\n/blog/codex-update-log.html /ai-news/ 301\n/blog/codex-update-log/ /ai-news/ 301\n"}
+    navigation = 'design-system/studio/focused-ux.js'
+    results[navigation] = (ROOT / 'site/static' / navigation).read_text(encoding='utf-8')
     if base_assets:
         manifest = json.loads((ROOT / "content/ai-news/release-baseline.json").read_text(encoding="utf-8"))["assets"]
         actual = {p.relative_to(base_assets).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest() for p in base_assets.rglob("*") if p.is_file()}

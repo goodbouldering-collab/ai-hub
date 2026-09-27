@@ -7,23 +7,6 @@
  const matches=(text,query)=>normalize(query).split(/\s+/).every(word=>normalize(text).includes(word));
  const make=(tag,cls,text)=>{const el=document.createElement(tag);if(cls)el.className=cls;if(text)el.textContent=text;return el;};
 
- // Keep every course in the HTML; show a smaller choice only after enhancement.
- const courseList=document.querySelector('#course-voices');
- if(courseList){
-  const cards=[...courseList.querySelectorAll('.compact-course-card')];
-  if(cards.length===6){
-   const groups=[['all','すべて'],['learn','学ぶ・試す'],['team','組織で使う'],['build','制作を任せる']];
-   const bar=make('div','ux-filters');bar.setAttribute('role','group');bar.setAttribute('aria-label','コースを目的で絞る');
-   const status=make('p','ux-result-status');status.setAttribute('role','status');
-   const categories=['learn','learn','learn','team','learn','build'];
-   groups.forEach(([id,label])=>{const button=make('button','',label);button.type='button';button.setAttribute('aria-pressed',String(id==='all'));
-    button.addEventListener('click',()=>{bar.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));cards.forEach((card,i)=>{card.hidden=id!=='all'&&categories[i]!==id;});status.textContent=`${label}：${cards.filter(c=>!c.hidden).length}件`;});bar.append(button);
-   });
-   courseList.before(bar);courseList.after(status);
-   // Direct links must never land on a filtered-out course.
-   window.addEventListener('hashchange',()=>{let id;try{id=decodeURIComponent(location.hash.slice(1));}catch{return;}const target=document.getElementById(id);const card=target?.closest('.compact-course-card');if(card?.hidden){bar.querySelector('button').click();target.scrollIntoView({block:'start'});}});
-  }
- }
  const adminHub=document.querySelector('[data-ux-admin-hub]');
  if(adminHub && /^\/admin\/?$/.test(location.pathname)){adminHub.hidden=false;const original=document.querySelector('body > .container');if(original){original.hidden=true;original.classList.add('ux-original-admin');}}
  const taskBrowser=document.querySelector('.ux-task-browser');

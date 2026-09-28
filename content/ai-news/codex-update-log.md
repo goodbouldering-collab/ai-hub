@@ -1,11 +1,11 @@
 ---
 title: "今日のAIニュース5とCodex"
 date: "2026-08-21"
-date_modified: "2026-09-27"
+date_modified: "2026-09-29"
 content_series: codex-update-log
 source_period: "September 21–25, 2026"
-source_fingerprint: "d813b07d3ba890e13aff92fb5cede4a1c8b8d918f4e4b87799e48ea3b45272c3"
-source_release_tag: "rust-v0.157.1"
+source_fingerprint: "d70daea592c6106b3c58aa6556940316d73ac832f9703d4de28ce16b7612e55d"
+source_release_tag: "rust-v0.158.0"
 image: "/img/blog-codex-update-log-hero-20260830.png"
 image_alt: "巨大な水晶のAI脳を、10個の光るニュースホールドで登り、紙のヤギが見守る和紙の風景"
 hero_image: false
@@ -18,10 +18,10 @@ action: "使えそうな機能を1つ試す"
 ---
 
 <!-- CODEX_UPDATE_CURRENT:BEGIN -->
-<!-- source-fingerprint: d813b07d3ba890e13aff92fb5cede4a1c8b8d918f4e4b87799e48ea3b45272c3 -->
+<!-- source-fingerprint: d70daea592c6106b3c58aa6556940316d73ac832f9703d4de28ce16b7612e55d -->
 <section class="codex-update-guide" aria-labelledby="codex-update-guide-title">
 <h2 id="codex-update-guide-title">Codex新機能と活用例</h2>
-<p class="codex-update-guide__date">更新日：<time datetime="2026-09-27">2026年9月27日</time></p>
+<p class="codex-update-guide__date">更新日：<time datetime="2026-09-29">2026年9月29日</time></p>
 </section>
 
 
@@ -30,12 +30,12 @@ action: "使えそうな機能を1つ試す"
 <span class="update-card__rank" aria-hidden="true">1</span>
 <div class="update-card__heading">
 <p class="update-card__eyebrow">CODEX</p>
-<h2 id="codex-feature-1-title" class="codex-feature-title"><span class="visually-hidden">1. </span>作業に合わせてGPT-6 SolとLunaを選ぶ</h2>
+<h2 id="codex-feature-1-title" class="codex-feature-title"><span class="visually-hidden">1. </span>選択した文章を使いやすくコピー</h2>
 </div></header>
 <div class="update-card__body">
-<p class="update-card__summary">CodexでGPT-6 SolとLunaの提供が順次始まっています。たとえば、地域の申込ページを直す仕事なら、日常的な開発にはSol Medium、範囲が絞れた反復作業にはLuna Highを試し、結果を確認します。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
-<p class="update-card__context">利用可否はプラン、クライアント、ワークスペース設定によります。料金と利用条件は公式ページで確認してください。</p>
-<p class="update-card__source"><a href="https://learn.chatgpt.com/docs/models" target="_blank" rel="noopener">公式情報</a></p>
+<p class="update-card__summary">全画面の端末画面で、選択時コピーと右クリック貼り付けを設定でき、会話のコピーではMarkdown書式を保持します。たとえば、講座資料へCodexの説明を移す仕事なら見出しや箇条書きをコピーし、貼り付け先でも読みやすい形になっているか確認します。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
+<p class="update-card__context">CLI 0.158.0の公式リリースに掲載された全画面端末画面の変更です。</p>
+<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.158.0" target="_blank" rel="noopener">公式情報</a></p>
 </div></section>
 
 <section class="codex-feature-card update-card" data-update-kind="codex" data-update-index="2" aria-labelledby="codex-feature-2-title">
@@ -43,12 +43,25 @@ action: "使えそうな機能を1つ試す"
 <span class="update-card__rank" aria-hidden="true">2</span>
 <div class="update-card__heading">
 <p class="update-card__eyebrow">CODEX</p>
-<h2 id="codex-feature-2-title" class="codex-feature-title"><span class="visually-hidden">2. </span>CLI最新版は0.157.1、変更詳細は確認待ち</h2>
+<h2 id="codex-feature-2-title" class="codex-feature-title"><span class="visually-hidden">2. </span>背景が透明な画像を明示して依頼</h2>
 </div></header>
 <div class="update-card__body">
-<p class="update-card__summary">最新安定版は0.157.1ですが、公式本文は変更の要点を特定できなかったと記載しています。たとえば、学校や地域企業の業務ツールを開発するなら、版番号だけで機能改善を判断せず、普段の作業が動くかを確かめます。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
-<p class="update-card__context">9月26日公開の安定版です。このリリース本文から対象端末、料金、追加機能は確認できません。</p>
-<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.157.1" target="_blank" rel="noopener">公式情報</a></p>
+<p class="update-card__summary">画像の生成・編集で透明な背景を明示でき、編集ではファイルとして保存された会話内の画像も扱えるようになりました。たとえば、地域イベントの案内へイラストを重ねたいなら背景を透明にするよう依頼し、案内の文字や背景と重ねた見え方を確かめます。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
+<p class="update-card__context">CLI 0.158.0の変更です。利用中の環境で画像ツールを使えるかは別途確認してください。</p>
+<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.158.0" target="_blank" rel="noopener">公式情報</a></p>
+</div></section>
+
+<section class="codex-feature-card update-card" data-update-kind="codex" data-update-index="3" aria-labelledby="codex-feature-3-title">
+<header class="update-card__header">
+<span class="update-card__rank" aria-hidden="true">3</span>
+<div class="update-card__heading">
+<p class="update-card__eyebrow">CODEX</p>
+<h2 id="codex-feature-3-title" class="codex-feature-title"><span class="visually-hidden">3. </span>Windowsで作業が止まる不具合を修正</h2>
+</div></header>
+<div class="update-card__body">
+<p class="update-card__summary">通常のWindows 10のパス、保存済み認証情報の拒否、大きな権限設定に関係するサンドボックスの失敗を修正しました。たとえば、学校や地域企業のWindowsで業務ツールを直すなら以前止まったファイル操作を小さな検証用フォルダで再確認し、結果を記録します。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
+<p class="update-card__context">CLI 0.158.0の修正対象です。すべてのWindows環境の不具合が解消するという意味ではありません。</p>
+<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.158.0" target="_blank" rel="noopener">公式情報</a></p>
 </div></section>
 
 ## 公式情報
@@ -60,6 +73,11 @@ action: "使えそうな機能を1つ試す"
 ## 過去のアップデート要約
 
 <!-- CODEX_UPDATE_ARCHIVE:BEGIN -->
+<!-- source-fingerprint: d813b07d3ba890e13aff92fb5cede4a1c8b8d918f4e4b87799e48ea3b45272c3 -->
+### 2026年9月27日確認：モデル選択とCLI 0.157.1
+
+GPT-6 SolとLunaの選択を紹介しました。CLI 0.157.1は公式本文で変更の要点が未特定だったため、追加機能を推測せず案内しました。
+
 <!-- source-fingerprint: 24702815cac32ad06270a5d41df1c9deb0538ceacaadd68632abdb9b13432b7e -->
 ### 2026年9月23日確認：SolとLunaのモデル選択
 

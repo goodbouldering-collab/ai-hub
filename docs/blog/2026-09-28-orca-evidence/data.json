@@ -1,0 +1,46 @@
+{
+  "checked_at": "2026-09-28",
+  "operator": {
+    "record_date": "2026-09-27",
+    "version": "1.4.212",
+    "registered_repositories": 33,
+    "recloned_repositories": 0,
+    "new_worktrees": 0,
+    "source": "Operator setup RESULT.md and orca-repos-live.json; local original records retained, aggregate counts only are published",
+    "scope": "Installation and existing Codex connection checked. No concurrent development benchmark. Unregistered root refs mismatch remains outside these metrics.",
+    "RESULT.md_sha256": "601dbd5777756bd93c688685b5acd365fe63bf1f80b186739c269324e6e6ccad",
+    "orca-repos-live.json_sha256": "763b58c6b999a6e2a9e9ad75cca3ffc8c08896ca08d79827cd650f9caad30ed2"
+  },
+  "community": {
+    "author": "trader_tick",
+    "url": "https://www.reddit.com/r/ClaudeCode/comments/1vwjgyv/orca_ade_is_incredible/",
+    "computers": 2,
+    "repositories": 5,
+    "sessions_approx": 15,
+    "sessions_per_repository_range": [
+      2,
+      6
+    ],
+    "scope": "One user's self-report; Docker containers, not a worktree performance benchmark. No allocation of the 15 sessions to individual repositories is known."
+  },
+  "parallel_recipe": {
+    "url": "https://www.onorca.dev/docs/recipes/parallel-agents",
+    "agent_count": 3,
+    "agents": [
+      "Claude Code",
+      "Codex",
+      "Cursor CLI"
+    ],
+    "selected_solutions": 1,
+    "scope": "Official example workflow, not measured speed, success rate, or maximum supported agents."
+  },
+  "design_mode": {
+    "url": "https://www.onorca.dev/docs/browser/design-mode",
+    "base_contexts": [
+      "HTML",
+      "computed CSS",
+      "cropped screenshot"
+    ],
+    "conditional_context": "Source file and line if a development source map is available"
+  }
+}

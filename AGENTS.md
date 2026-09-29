@@ -1,10 +1,16 @@
 # AGENTS.md — AIハブ
 
+<!-- cloudflare-only:2026-09-29 -->
+## 公開基盤はCloudflare（2026-09-29本人指定）
+
+- 全事業の移行完了指定に従い、公開・API・Cron・環境変数の設定は現行Cloudflare台帳と実装を参照する。Vercelの旧手順・CLI・自動同期・プラグインは実行しない。
+- 共通ルールの原本は HOME の `.codex/AGENTS.md`。公開先ガード、Git統合・本番検証、認証・課金・DNS・顧客データの承認境界を維持する。
+<!-- /cloudflare-only:2026-09-29 -->
+
 ## Cloudflareデプロイ境界（最優先）
 
 - GitHubからの本番デプロイ先はCloudflareのみ。Vercelへ再接続・deploy・自動deployしない。
 - 正本は `.github/deployment-platform.json`。`partial_migration` の残作業はActionsの警告を解消してから完了扱いにする。
-- 既存Vercelプロジェクトは移管確認用の読取専用。削除、DNS、認証・個人情報の移管は別途承認を得る。
 
 **AIハブ** は「自分のAIをひとつに集める場所」をテーマにした個人ポートフォリオ兼マイページ。
 作品（アプリ集）・講師紹介・受講資料を見せる**フロント面**と、AI/SNS関連情報をRSSから自動収集・要約してNotebookLMに流し込む**バックエンドのパイプライン**を1つのサイトに同居させている。
@@ -13,11 +19,9 @@
 
 - プロジェクト名: **AIハブ / AI Hub**（旧称: AI-watch、AI情報収集、cclimb-intel、ai-info）
 - GitHub: `goodbouldering-collab/ai-hub`
-- **本番ホスティング正本**: **Cloudflare Workers**。管理画面・APIのVercel残存部分は移管中として警告し、新規変更・再デプロイはしない
+- **本番ホスティング正本**: **Cloudflare Workers**。管理画面・APIは現行Cloudflare実装とTargetを確認する
 - **本番URL**: https://aiclimb.aiclimb.workers.dev
-- Vercel Project ID: `prj_e7vh73eF0KZpm8C49esnILvHO98o`
 - GitHub Pages: `https://goodbouldering-collab.github.io/ai-hub/`（参考・残置）
-- Supabase: 既存の共有プロジェクト `zrawhzwtppmlxyhngnju` の `ai_watch.*` スキーマ（旧 `public.ai_watch_*` から移管。テーブル名は履歴互換のため維持。なお `zrawhzwtppmlxyhngnju.ai_watch` は Vercel 移行後ほぼ未使用、次回掃除候補）
 
 新規で文言を書くときは「AIハブ」に揃える。過去ログ（`outputs/notebooklm/*`）と Supabase テーブル名は改名しない（NotebookLM 側のソース参照と既存データ互換のため）。
 
@@ -44,15 +48,13 @@
 | `content/lectures/*.md` | 受講資料の編集ソース。ビルドで `lectures/<slug>.html` になる |
 | `content/assets/` | 画像・PDF。`./assets/xxx` で参照 |
 
-## デプロイ構成（**Cloudflare公開 + Vercel動的処理**）
+## デプロイ構成（Cloudflare）
 
 - **GitHub Actions `daily.yml`**: JST 07:00 に `run.py` を実行し、`outputs/` と `data/history.db` を main に commit back
 - **GitHub Actions `pages.yml`**: `main` への push で `site/build_site.py` を叩いて GitHub Pages に配布（参考・残置）
 - **Cloudflare Workers**（**公開正本**）: `site/dist/` をStatic Assetsとして配信
   - 本番 URL: https://aiclimb.aiclimb.workers.dev
-- **Vercel**（**管理画面・API・決済の実行元**）: `main` push で自動デプロイ、PR ごとに Preview URL 自動発行
-  - 動的処理 URL: https://aiclimb.vercel.app
-  - Project ID: `prj_e7vh73eF0KZpm8C49esnILvHO98o`
+- 管理URLは現行Cloudflare台帳と実装で確認する。
 - **Supabase**: `ai_watch_articles` テーブルに差分保存（`SUPABASE_URL` / `SUPABASE_SERVICE_ROLE_KEY` が env にあれば書き込む）
 
 ### 撤収済み
@@ -61,7 +63,7 @@
 |---|---|---|
 | ~~Render Static Site (`ai-hub`)~~ | 撤収済 | Vercel 集約に伴い廃止 |
 | ~~Cloudflare Worker `ai-hub`~~ | 撤収済（2026-05-05） | `wrangler delete --name ai-hub` 実行済。`wrangler.toml` / `cloudflare-pages.yml` も削除済 |
-| Cloudflare Worker `aiclimb` | 公開正本 | 公開静的ファイルを配信。管理画面・API・大容量動画は認証情報を中継せずVercelへ直接移動。URLは `https://aiclimb.aiclimb.workers.dev` |
+| Cloudflare Worker `aiclimb` | 公開正本 | 現行Cloudflare実装を公開。旧公開先への転送は使わない。URLは `https://aiclimb.aiclimb.workers.dev` |
 | GitHub Pages (`goodbouldering-collab.github.io/ai-hub/`) | 残置 | 参考用 |
 
 ## コマンド
@@ -90,10 +92,9 @@ VSCode で `clients.code-workspace` を開けば「AIハブ起動」タスクで
 
 - 全事業の本番公開完了フックは `.github/workflows/portfolio-sync.yml` へ確認済みURLとサイト情報を渡し、AI相談トップの「すべての実績」へURLとサイト画面付きで同期する。
 - workflowは起動のたびに公開中の全URLを撮影して `site/static/img/portfolio/` へ保存し、カードは保存済みの最新スクリーンショットを使う。外部MShots画像へ戻さない。
-- 同名・同slug・同URL・同Vercel project IDは既存カードを更新し、旧URLを `aliases` に残す。重複カードは作らない。
+- 同名・同slug・同URL・同Cloudflare targetは既存カードを更新し、旧URLを `aliases` に残す。重複カードは作らない。
 - 管理API、社内資料、契約上非公開など掲載禁止のものだけ `config/portfolio-sync.yaml` に `include: false` と理由を書く。その他の完成・公開サイトは掲載対象とする。
 - サイトを本番公開してURL確認が済んだ時点で、ホスティング先に関係なくworkflow inputsへ `name` / `url` / `slug` / `category` / `tech` / `summary` を渡して実行する。入力なしで終わらせない。
-- 日次処理は台帳・画像出力・重複を再検証する。Vercel全体の自動探索は、管理者がGitHub Actionsへ `VERCEL_TOKEN` を明示設定した場合だけ補助的に動かし、ローカル認証を自動移送しない。
 - 詳しい運用とコマンドは `docs/portfolio-auto-sync.md` を参照する。
 
 ## デザイン更新の共通ルール
@@ -114,13 +115,13 @@ FastAPI ベースの**ローカル専用** UI。記事収集ジョブの状態�
 ローカルで `uvicorn admin.server:app --port 3010 --reload` で起動 → `http://localhost:3010/admin`。
 運用（記事収集）は GitHub Actions 任せで、ここは手元確認用。
 
-### 2. クラウド管理画面 (`/admin` on Vercel)
+### 2. クラウド管理画面 (`/admin`)
 
-**パスワードログイン付きの Web 管理画面** (Vercel Serverless Functions + 静的 HTML)。
+**パスワードログイン付きの Web 管理画面** (実装・公開先は現行Cloudflare台帳に従う)。
 グッぼる（カラーミー）のグループ追加・AI記事生成・トップページ最上部への記事公開を担う。
 
-- URL: https://aiclimb.vercel.app/admin
-- 認証: パスワードのみの管理ログイン (`ADMIN_PASS` を Vercel env)
+- 管理URLは現行Cloudflare台帳と実装で確認する。
+- 認証: パスワードのみの管理ログイン (`ADMIN_PASS` を 現行Cloudflare環境)
 - API:
   - `/api/admin/ping` 接続/環境変数チェック
   - `/api/admin/generate-articles` Codex で複数案生成
@@ -156,7 +157,7 @@ FastAPI ベースの**ローカル専用** UI。記事収集ジョブの状態�
   - カラーミー管理画面 → ショップ作成 → テンプレートで「**1086 を適用**」する手順を必ず実施
 - グループ作成時 display_state は `hidden`、本番反映時に `showing` に切り替える
 
-#### 必要な Vercel 環境変数
+#### 管理機能の環境変数（現行Cloudflare実装と照合）
 
 | Env | 役割 |
 |---|---|

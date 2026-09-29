@@ -472,9 +472,9 @@ portfolio:
   source: site-published-hook
 - name: Japan Plogging Championship
   slug: japan-plogging-championship
-  url: https://japan-plogging-championship.vercel.app
+  url: https://jpc.aiclimb.workers.dev
   aliases:
-  - https://jpc.aiclimb.workers.dev
+  - https://japan-plogging-championship.vercel.app
   status: live
   category: イベントサイト
   tech:

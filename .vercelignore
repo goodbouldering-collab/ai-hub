@@ -1,5 +1,0 @@
-site/dist/
-node_modules/
-.git/
-.vercel/
-site/__pycache__/

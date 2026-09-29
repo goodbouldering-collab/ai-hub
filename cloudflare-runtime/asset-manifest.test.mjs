@@ -46,12 +46,10 @@ test("public deployment snapshot contains no Vercel reference or oversized asset
   }
 });
 
-test("public homepage matches the final Vercel production copy", async () => {
+test("public homepage uses the current Cloudflare canonical and booking link", async () => {
   const homepage = await readFile(path.join(publicRoot, "index.html"), "utf8");
-
-  assert.match(homepage, /使えるAI、教えます。/);
-  assert.match(homepage, /<strong>AI<\/strong><span>×<\/span><strong>経験 = 影響力<\/strong>/);
-  assert.match(homepage, /プロが教える、あなたの知らないAI/);
-  assert.doesNotMatch(homepage, /ちゃんと使えるAIを、一緒につくる。/);
-  assert.doesNotMatch(homepage, /AIで作る前に、ゴールをつくる。/);
+  assert.match(homepage, /<title>AI相談<\/title>/);
+  assert.match(homepage, /rel=["']canonical["'][^>]+https:\/\/aiclimb\.aiclimb\.workers\.dev\//);
+  assert.match(homepage, /https:\/\/book\.squareup\.com\/appointments\//);
+  assert.doesNotMatch(homepage, /https?:\/\/[^\s"'<>]*\.vercel\.app/i);
 });

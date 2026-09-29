@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
-"""Vercel と公開フックから AI相談の実績台帳を同期する。"""
+"""確認済みの公開フックから AI相談の実績台帳を同期する。"""
 
 from __future__ import annotations
 
 import argparse
 import copy
 import html
-import os
 import re
 import sys
 import unicodedata
@@ -22,10 +21,9 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_PORTFOLIO = ROOT / "config" / "portfolio.yaml"
-DEFAULT_CONFIG = ROOT / "config" / "portfolio-sync.yaml"
 PORTFOLIO_HEADER = """# AI相談 — 実績サイト
-# scripts/sync_portfolio.py が Vercel の公開サイトと手動登録フックを統合する正本。
-# 同名・同slug・同URL・同Vercel project IDは1件へ統合し、旧URLは aliases に残す。
+# scripts/sync_portfolio.py が確認済みの公開登録フックを統合する正本。
+# 同名・同slug・同URL・同Cloudflare targetは1件へ統合し、旧URLは aliases に残す。
 # status: live の項目だけが公開トップ「すべての実績」に表示される。
 
 """
@@ -269,82 +267,6 @@ def fetch_page_metadata(session: requests.Session, url: str, timeout: float = 20
         return {"status": 0, "title": "", "description": "", "error": str(exc)}
 
 
-def _vercel_get(session: requests.Session, token: str, path: str, team_id: str) -> dict[str, Any]:
-    response = session.get(
-        f"https://api.vercel.com{path}",
-        params={"teamId": team_id, "limit": 100},
-        headers={"Authorization": f"Bearer {token}"},
-        timeout=30,
-    )
-    response.raise_for_status()
-    return response.json()
-
-
-def vercel_candidates(config: dict[str, Any], token: str, session: requests.Session) -> tuple[list[dict[str, Any]], list[str]]:
-    vercel = config.get("vercel") or {}
-    team_id = str(vercel.get("team_id") or "")
-    if not team_id:
-        raise ValueError("config/portfolio-sync.yaml: vercel.team_id is required")
-    project_rules = vercel.get("projects") or {}
-    patterns = [re.compile(pattern, re.I) for pattern in vercel.get("exclude_name_patterns") or []]
-    default_category = str(vercel.get("default_category") or "Webサイト")
-    default_tech = list(vercel.get("default_tech") or ["Vercel"])
-    projects = _vercel_get(session, token, "/v9/projects", team_id).get("projects") or []
-    candidates: list[dict[str, Any]] = []
-    logs: list[str] = []
-
-    for project in projects:
-        project_name = str(project.get("name") or "").strip()
-        project_id = str(project.get("id") or "").strip()
-        if not project_name or not project_id:
-            continue
-        rule = dict(project_rules.get(project_name) or {})
-        if rule.get("include") is False or (not rule and any(pattern.search(project_name) for pattern in patterns)):
-            logs.append(f"excluded {project_name}: {rule.get('reason') or 'name pattern'}")
-            continue
-
-        domain_data = _vercel_get(session, token, f"/v9/projects/{project_id}/domains", team_id)
-        domains = [
-            str(domain.get("name") or "")
-            for domain in domain_data.get("domains") or []
-            if domain.get("verified") is not False and domain.get("name")
-        ]
-        canonical_url = choose_canonical_url(domains, project_name, str(rule.get("canonical_url") or ""))
-        if not canonical_url:
-            logs.append(f"skipped {project_name}: no verified domain")
-            continue
-
-        metadata: dict[str, Any] = {}
-        if not rule:
-            metadata = fetch_page_metadata(session, canonical_url)
-            if metadata.get("status") != 200 or not metadata.get("title"):
-                logs.append(f"skipped {project_name}: public HTML not confirmed ({metadata.get('status')})")
-                continue
-
-        name = str(rule.get("name") or infer_public_name(str(metadata.get("title") or ""), project_name))
-        summary = str(rule.get("summary") or metadata.get("description") or f"{name}の公開Webサイト")
-        candidate = {
-            "name": name,
-            "slug": str(rule.get("slug") or project_name),
-            "url": canonical_url,
-            "aliases": [domain_url(domain) for domain in domains],
-            "status": "live",
-            "category": str(rule.get("category") or default_category),
-            "tech": list(rule.get("tech") or default_tech),
-            "summary": summary,
-            "since": str(rule.get("since") or datetime.now(timezone.utc).strftime("%Y-%m")),
-            "source": "vercel",
-            "source_id": project_id,
-            "source_project": project_name,
-            "_match_slug": str(rule.get("match_slug") or ""),
-        }
-        candidate["aliases"] = merge_aliases(
-            candidate["aliases"], rule.get("aliases") or [], canonical_url=canonical_url
-        )
-        candidates.append(candidate)
-    return candidates, logs
-
-
 def manual_candidate(args: argparse.Namespace, session: requests.Session) -> dict[str, Any] | None:
     if not args.register_name and not args.register_url:
         return None
@@ -378,9 +300,9 @@ def save_portfolio(path: Path, data: dict[str, Any]) -> None:
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="AI相談の実績サイト台帳を同期")
     parser.add_argument("--portfolio", type=Path, default=DEFAULT_PORTFOLIO)
-    parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
+    parser.add_argument("--config", type=Path, help=argparse.SUPPRESS)
     parser.add_argument("--write", action="store_true", help="portfolio.yamlへ反映。未指定時はdry-run")
-    parser.add_argument("--no-vercel", action="store_true", help="Vercel API同期を止め、手動登録だけ実行")
+    parser.add_argument("--no-vercel", action="store_true", help=argparse.SUPPRESS)
     parser.add_argument("--register-name", default="")
     parser.add_argument("--register-url", default="")
     parser.add_argument("--register-slug", default="")
@@ -393,24 +315,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
 
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
-    config = load_yaml(args.config)
     portfolio = load_yaml(args.portfolio)
     items = list(portfolio.get("portfolio") or [])
     original = copy.deepcopy(items)
     session = requests.Session()
     report: list[str] = []
-
-    if not args.no_vercel:
-        token = os.environ.get("VERCEL_TOKEN", "").strip()
-        if not token:
-            report.append("VERCEL_TOKEN not set: skipped Vercel inventory; site-published hook remains available")
-        else:
-            candidates, logs = vercel_candidates(config, token, session)
-            report.extend(logs)
-            for candidate in candidates:
-                action, item = upsert_item(items, candidate)
-                if action != "unchanged":
-                    report.append(f"{action} {item.get('name')} -> {item.get('url')}")
 
     try:
         registered = manual_candidate(args, session)

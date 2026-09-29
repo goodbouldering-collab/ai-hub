@@ -1,5 +1,7 @@
 import sys
 import unittest
+import tempfile
+from unittest.mock import patch
 from pathlib import Path
 
 import yaml
@@ -41,6 +43,8 @@ LEGACY_PUBLIC_URLS = {
     "yamani": "https://yamani.vercel.app",
 }
 
+from sync_portfolio import main
+
 from sync_portfolio import (  # noqa: E402
     choose_canonical_url,
     deduplicate_items,
@@ -50,13 +54,13 @@ from sync_portfolio import (  # noqa: E402
 
 
 class PortfolioSyncTests(unittest.TestCase):
-    def test_migrated_projects_use_cloudflare_public_urls_in_sync_config(self):
-        config = yaml.safe_load((ROOT / "config" / "portfolio-sync.yaml").read_text(encoding="utf-8"))
-        projects = config["vercel"]["projects"]
-
-        for project_name, (_, expected_url) in CLOUDFLARE_PUBLIC_URLS.items():
-            with self.subTest(project=project_name):
-                self.assertEqual(projects[project_name]["canonical_url"], expected_url)
+    def test_default_sync_never_contacts_retired_inventory(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            portfolio = Path(temporary) / "portfolio.yaml"
+            portfolio.write_text("portfolio: []\n", encoding="utf-8")
+            with patch.dict("os.environ", {"VERCEL_TOKEN": "test-not-a-secret"}), patch("requests.Session.get", side_effect=AssertionError("unexpected external request")):
+                self.assertEqual(main(["--portfolio", str(portfolio)]), 0)
+                self.assertEqual(main(["--portfolio", str(portfolio), "--no-vercel"]), 0)
 
     def test_public_portfolio_uses_cloudflare_urls_and_keeps_previous_urls_as_aliases(self):
         data = yaml.safe_load((ROOT / "config" / "portfolio.yaml").read_text(encoding="utf-8"))

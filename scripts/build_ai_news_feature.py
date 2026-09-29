@@ -107,8 +107,12 @@ def build(output: Path, base_assets: Path | None = None, *, preserve_baseline_pr
         home = home[:hero.end()] + render_feature(news, label) + home[hero.end():]
         css = (TEMPLATES / "feature.css").read_text(encoding="utf-8")
         home = home.replace("</head>", f"<style id='ai-news-feature-style'>{css}</style></head>")
-    home = apply_diagnosis_copy(apply_hero_copy(apply_course_menu(apply_compact_style(home, compact_css))))
-    home = restore_home_speaker(apply_instagram_feed(remove_soft_playground(home)))
+    home = apply_compact_style(home, compact_css)
+    if not preserve_baseline_presentation:
+        # A daily shell is rebased from live HTML. Reapplying unrelated design
+        # migrations can move styles and undo newer home-page changes.
+        home = apply_diagnosis_copy(apply_hero_copy(apply_course_menu(home)))
+        home = restore_home_speaker(apply_instagram_feed(remove_soft_playground(home)))
     blog = remove_old_cards((TEMPLATES / "blog.html").read_text(encoding="utf-8"))
     home = apply_home_updates(home, blog, (TEMPLATES / "home-updates.css").read_text(encoding="utf-8"))
     sitemap = (TEMPLATES / "sitemap.xml").read_text(encoding="utf-8")

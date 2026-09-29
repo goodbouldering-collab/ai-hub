@@ -1,6 +1,7 @@
 """A daily release must not silently publish a pending site redesign."""
 import hashlib
 import json
+import re
 from pathlib import Path
 import shutil
 import tempfile
@@ -43,7 +44,12 @@ class PublishedPresentationTests(unittest.TestCase):
             (base / 'published.css').write_text('/* exact live CSS */', encoding='utf-8')
             hashes = {p.relative_to(base).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest() for p in base.rglob('*') if p.is_file()}
             (root / 'content/ai-news/release-baseline.json').write_text(json.dumps({'assets': hashes}), encoding='utf-8')
-            with patch.object(builder, 'ROOT', root), patch.object(builder.subprocess, 'check_output', return_value='test-sha'), patch.object(builder, 'decorate_public_tree', side_effect=AssertionError('Pending design must not run')):
+            # Daily releases first rebase their shell from the last live page.
+            templates = root / 'templates'
+            shutil.copytree(builder.TEMPLATES, templates)
+            shell = re.sub(r'<section\b[^>]*id=[\'\"]ai-news[\'\"][^>]*>.*?</section>', '{{AI_NEWS_FEATURE}}', home.read_text(encoding='utf-8'), flags=re.S)
+            (templates / 'home.html').write_text(shell, encoding='utf-8')
+            with patch.object(builder, 'ROOT', root), patch.object(builder, 'TEMPLATES', templates), patch.object(builder.subprocess, 'check_output', return_value='test-sha'), patch.object(builder, 'decorate_public_tree', side_effect=AssertionError('Pending design must not run')), patch.object(builder, 'apply_hero_copy', side_effect=AssertionError('Daily updates must preserve live style order')), patch.object(builder, 'apply_instagram_feed', side_effect=AssertionError('Daily updates must preserve live integrations')):
                 output = root / 'release'
                 builder.build(output, base, preserve_baseline_presentation=True)
                 self.assertEqual(home.read_bytes(), (output / 'index.html').read_bytes())

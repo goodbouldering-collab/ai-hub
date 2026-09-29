@@ -20,10 +20,19 @@ def verify(read):
     assert not feature.select(".ai-news-feature__description"), "Intro description must be removed"
     heading = feature.select_one(".ai-news-feature__heading")
     assert heading and heading.select_one("#ai-news-feature-title") and heading.select_one("time"), "Title and update date must share the heading row"
-    assert len(feature.select("li")) == 3
-    for link in feature.select('li a'):
+    assert len(feature.select(".ai-news-feature__reading li")) == 3
+    for link in feature.select('.ai-news-feature__reading li a'):
         assert page.select_one("#" + link["href"].split("#")[1]), "Headline destination missing"
     assert feature.select_one('a.ai-news-feature__more[href="/ai-news/"]')
+    latest = feature.select('.home-updates__blog li a')
+    assert len(latest) == 2, "Home must show two recent blog posts"
+    assert len(home.select('#blog')) == 1 and not home.select('#blog-carousel')
+    expected = sorted(blog.select('a.tr-card'), key=lambda card: card.select_one('.tr-date').get_text(), reverse=True)[:2]
+    for link, card in zip(latest, expected):
+        assert link['href'] == urljoin('/blog/', card['href'])
+        assert link.select_one('span').get_text() == card.select_one('.tr-title').get_text()
+        assert link.select_one('time')['datetime'] == card.select_one('.tr-date').get_text()
+    assert feature.select_one('#blog a[href="/blog/"]')
     assert not home.select('a[href*="/blog/codex-update-log"]')
     assert not blog.select('a[href*="codex-update-log"]')
     assert "/blog/codex-update-log" not in sitemap
@@ -37,7 +46,7 @@ def verify(read):
     assert page.select_one(".blog-update-label").get_text() == feature.select_one("time").get_text()
     assert len(page.select(".content-toc")) == 0
     assert page.select_one("#過去のアップデート要約")
-    return {"hero_adjacent": True, "home_headlines": 3, "news_items": 5, "blog_removed": True, "date_removed": True, "shared_h2_style": True, "description_removed": True, "date_in_heading": True}
+    return {"hero_adjacent": True, "home_headlines": 3, "news_items": 5, "latest_blogs": 2, "duplicate_blog_section_removed": True, "codex_blog_card_removed": True, "date_removed": True, "shared_h2_style": True, "description_removed": True, "date_in_heading": True}
 
 
 if __name__ == "__main__":

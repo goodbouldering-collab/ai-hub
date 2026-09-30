@@ -1,11 +1,11 @@
 ---
 title: "今日のAIニュース5とCodex"
 date: "2026-08-21"
-date_modified: "2026-09-30"
+date_modified: "2026-10-01"
 content_series: codex-update-log
 source_period: "September 21–25, 2026"
-source_fingerprint: "82f032f6297f12fb050e27859c5e5e4f5bdea3e98f475fe31194a43e515a85d7"
-source_release_tag: "rust-v0.159.1"
+source_fingerprint: "31431739c399f849bdc5599a31c4951a4a362a6e248f16cc2fe397a6e142bca6"
+source_release_tag: "rust-v0.159.3"
 image: "/img/blog-codex-update-log-hero-20260830.png"
 image_alt: "巨大な水晶のAI脳を、10個の光るニュースホールドで登り、紙のヤギが見守る和紙の風景"
 hero_image: false
@@ -18,10 +18,10 @@ action: "使えそうな機能を1つ試す"
 ---
 
 <!-- CODEX_UPDATE_CURRENT:BEGIN -->
-<!-- source-fingerprint: 82f032f6297f12fb050e27859c5e5e4f5bdea3e98f475fe31194a43e515a85d7 -->
+<!-- source-fingerprint: 31431739c399f849bdc5599a31c4951a4a362a6e248f16cc2fe397a6e142bca6 -->
 <section class="codex-update-guide" aria-labelledby="codex-update-guide-title">
 <h2 id="codex-update-guide-title">Codex新機能と活用例</h2>
-<p class="codex-update-guide__date">更新日：<time datetime="2026-09-30">2026年9月30日</time></p>
+<p class="codex-update-guide__date">更新日：<time datetime="2026-10-01">2026年10月1日</time></p>
 </section>
 
 
@@ -30,12 +30,12 @@ action: "使えそうな機能を1つ試す"
 <span class="update-card__rank" aria-hidden="true">1</span>
 <div class="update-card__heading">
 <p class="update-card__eyebrow">CODEX</p>
-<h2 id="codex-feature-1-title" class="codex-feature-title"><span class="visually-hidden">1. </span>CLIの既定モデルをGPT-6.1 Solへ更新</h2>
+<h2 id="codex-feature-1-title" class="codex-feature-title"><span class="visually-hidden">1. </span>アカウントの安全設定を促す案内</h2>
 </div></header>
 <div class="update-card__body">
-<p class="update-card__summary">CLI 0.159.1は、同梱カタログとAmazon BedrockのMantle・Runtimeカタログに、GPT-6.1 Solを既定モデルとして追加しました。たとえば、地域企業の業務ツールをCodexで直すなら選ばれているモデルを確認して小さな修正を試し、既存のテストで動作を確かめます。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
-<p class="update-card__context">CLI 0.159.1のカタログ変更です。このリリースだけでは、各アカウントの利用資格・料金・アプリへの提供条件は確定できません。</p>
-<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.159.1" target="_blank" rel="noopener">公式情報</a></p>
+<p class="update-card__summary">CLI 0.159.3では、ChatGPTでサインインした対象のローカルセッションに、アカウントの安全設定を完了するための任意の案内を表示できるようになりました。たとえば、地域企業でCodexを業務に使うなら案内の有無を確かめ、本人がアカウント設定を確認する時間を取ります。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
+<p class="update-card__context">ChatGPTでサインインした対象のローカルセッション向けです。全利用者への表示や、アプリ・料金の変更を示す発表ではありません。</p>
+<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.159.3" target="_blank" rel="noopener">公式情報</a></p>
 </div></section>
 
 ## 公式情報
@@ -47,6 +47,11 @@ action: "使えそうな機能を1つ試す"
 ## 過去のアップデート要約
 
 <!-- CODEX_UPDATE_ARCHIVE:BEGIN -->
+<!-- source-fingerprint: 82f032f6297f12fb050e27859c5e5e4f5bdea3e98f475fe31194a43e515a85d7 -->
+### 2026年9月30日確認：CLI 0.159.1の既定モデルカタログ更新
+
+同梱カタログとAmazon BedrockのMantle・Runtimeカタログへ、GPT-6.1 Solを既定モデルとして追加した変更を紹介しました。
+
 <!-- source-fingerprint: d70daea592c6106b3c58aa6556940316d73ac832f9703d4de28ce16b7612e55d -->
 ### 2026年9月29日確認：CLI 0.158.0の操作・画像・Windows改善
 

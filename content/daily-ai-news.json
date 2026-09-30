@@ -1,46 +1,46 @@
 {
-  "date": "2026-09-30",
-  "research_note": "日本時間9月30日朝に、直近48時間（9月28日朝以降）の公式発表を確認しました。各publishedは出典の発表日で、海外発表は現地表記です。提供開始予定や催事の開催日とは区別しています。5発表元・異なる5件を選び、7日への拡大はしていません。活用の提案は導入効果を保証するものではありません。",
+  "date": "2026-10-01",
+  "research_note": "日本時間2026年10月1日朝に、直近48時間（9月29日朝〜10月1日朝）の公式発表を確認しました。異なる5話題・5URLを選び、同じ発表元は最大2件です。publishedは発表元の掲載日です。提供予定・β版募集・研究用途を提供済みと区別し、各japan_angleは学校・地域企業・暮らしへの活用上の示唆として記載しています。7日間への拡大は行っていません。",
   "items": [
     {
-      "title": "Claude Sonnet 5.5、日常の資料作りを高速化",
-      "url": "https://www.anthropic.com/claude-sonnet-5-5",
-      "source": "Anthropic",
-      "published": "2026-09-28",
-      "kid_summary": "Anthropicは、文章や表、スライド作りを支援するClaude Sonnet 5.5を発表し、前の版より速いと説明しました。",
-      "japan_angle": "学校のお便りや商店の案内文など、短い仕事で試し、内容の正しさと直す手間を比べる材料になります。"
+      "title": "横浜の相乗り送迎にAI、買い物や通院の移動を支援",
+      "url": "https://prtimes.jp/main/html/rd/p/000000059.000060196.html",
+      "source": "SWAT Mobility Japan（公式発表）",
+      "published": "2026-10-01",
+      "kid_summary": "横浜市の一部地域で、予約に合わせて走る相乗り送迎の実証運行が始まり、AIが効率のよい経路づくりを支えます。",
+      "japan_angle": "坂道や狭い道が多い地域で、高齢者の買い物・通院の足を考える具体例になり、電話予約にも対応しています。"
     },
     {
-      "title": "NVIDIA、AIの操作を監視する安全基盤を発表",
-      "url": "https://nvidianews.nvidia.com/news/open-agent-safety-platform",
-      "source": "NVIDIA",
-      "published": "2026-09-28",
-      "kid_summary": "NVIDIAは、AIの動作を記録し、決めた範囲で作業させるためのソフトと監視用の設計を発表しました。",
-      "japan_angle": "地域企業がAIにパソコン操作を任せる際、触ってよい情報や止める条件を先に決める参考になります。"
-    },
-    {
-      "title": "AIで介護記録を支える事業所が受賞",
-      "url": "https://prtimes.jp/main/html/rd/p/000000108.000018462.html",
-      "source": "ウェルモ（公式発表）",
+      "title": "作業を録画して手順書に、ナレッジセンスがβ版利用者を募集",
+      "url": "https://prtimes.jp/main/html/rd/p/000000410.000073671.html",
+      "source": "ナレッジセンス（公式発表）",
       "published": "2026-09-29",
-      "kid_summary": "ウェルモは、音声記録のAI要約とパソコン作業の自動化を使う介護事業所が、働きやすい職場づくりで表彰されたと発表しました。",
-      "japan_angle": "福祉の現場で記録の負担を見直す事例となり、導入時は個人情報の扱いと要約を確認する担当も決めたいところです。"
+      "kid_summary": "PC操作の録画からAIが手順書を作り、確認・編集した手順に沿って操作する新サービスのβ版利用者募集が始まりました。",
+      "japan_angle": "学校や地域企業で繰り返す事務作業を引き継ぐ助けになりそうで、試す際は個人情報が映らない作業から始められます。"
     },
     {
-      "title": "建設の記録から書類を作る「AI番頭」、10月提供へ",
-      "url": "https://prtimes.jp/main/html/rd/p/000000006.000181253.html",
-      "source": "菩提樹（公式発表）",
+      "title": "OpenAIがdotsを発表、継続する仕事をAIが支援",
+      "url": "https://openai.com/index/introducing-dots/",
+      "source": "OpenAI（公式発表）",
       "published": "2026-09-29",
-      "kid_summary": "菩提樹は、LINEでの作業報告などから名簿や請求書を作る建設向けAIサービスを、10月1日に正式提供すると発表しました。",
-      "japan_angle": "小さな工務店でも同じ内容の二重入力を減らす検討材料になり、まず今の記録と必要書類を整理するきっかけになります。"
+      "kid_summary": "専用のクラウド上のコンピューターで動き、依頼した仕事を継続して進めるAIエージェント「dots」が発表されました。",
+      "japan_angle": "地域企業では調査や告知案の準備を任せる使い方が考えられ、公開や送信前に人が内容を確認する分担が大切です。"
     },
     {
-      "title": "大阪商工会議所でAI検索時代の店舗集客を学ぶ",
-      "url": "https://prtimes.jp/main/html/rd/p/000005546.000000136.html",
-      "source": "GMO TECH（公式発表）",
+      "title": "古いExcelマクロの保守を支援、CodeSenseが登場予定",
+      "url": "https://prtimes.jp/main/html/rd/p/000000411.000073671.html",
+      "source": "ナレッジセンス（公式発表）",
+      "published": "2026-09-30",
+      "kid_summary": "複雑な既存コードやVBAを読み解いて改修を支える「CodeSense」が数週間以内の公開を予定し、β版利用者を募集しています。",
+      "japan_angle": "担当者しか直せない地域企業のExcel業務を見直す選択肢になり、業務ルールの整理と修正後の動作確認が要点です。"
+    },
+    {
+      "title": "Microsoftが生物研究AI「Quine」を発表、実験の候補選びを支援",
+      "url": "https://www.microsoft.com/en-us/research/blog/introducing-quine-an-ai-research-system-designed-for-the-complexity-of-biology/",
+      "source": "Microsoft Research（公式発表）",
       "published": "2026-09-29",
-      "kid_summary": "GMO TECHは、12月17日の大阪商工会議所のセミナーで、AI検索やGoogleマップを使う情報発信を解説すると発表しました。",
-      "japan_angle": "地域のお店が営業時間やサービス情報を整え、お客さんに正確に見つけてもらう方法を学ぶ機会になります。"
+      "kid_summary": "生物のデータや論文、研究道具をつなぎ、次に試す実験の候補を考える研究用AI「Quine」が発表されました。",
+      "japan_angle": "学校の探究学習では、AIの予測を実験で確かめる考え方を学べる事例で、診断や治療に使う製品ではありません。"
     }
   ]
 }

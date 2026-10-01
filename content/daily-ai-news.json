@@ -1,46 +1,46 @@
 {
-  "date": "2026-10-01",
-  "research_note": "日本時間2026年10月1日朝に、直近48時間（9月29日朝〜10月1日朝）の公式発表を確認しました。異なる5話題・5URLを選び、同じ発表元は最大2件です。publishedは発表元の掲載日です。提供予定・β版募集・研究用途を提供済みと区別し、各japan_angleは学校・地域企業・暮らしへの活用上の示唆として記載しています。7日間への拡大は行っていません。",
+  "date": "2026-10-02",
+  "research_note": "日本時間2026年10月2日朝に直近48時間（9月30日朝〜10月2日朝）を調査し、公式発表5件を確認しました。publishedは発表元の日付です。Googleは9月30日米国発表、ほかは10月1日発表。公開授業・イベントの開催予定と発表日を区別しています。7日への拡大はありません。日本での活用欄は編集部の提案です。",
   "items": [
     {
-      "title": "横浜の相乗り送迎にAI、買い物や通院の移動を支援",
-      "url": "https://prtimes.jp/main/html/rd/p/000000059.000060196.html",
-      "source": "SWAT Mobility Japan（公式発表）",
+      "title": "瀬戸高校、AI時代に考える力を育てる公開授業を予告",
+      "url": "https://www.pref.okayama.jp/site/255/1058579.html",
+      "source": "岡山県教育委員会",
       "published": "2026-10-01",
-      "kid_summary": "横浜市の一部地域で、予約に合わせて走る相乗り送迎の実証運行が始まり、AIが効率のよい経路づくりを支えます。",
-      "japan_angle": "坂道や狭い道が多い地域で、高齢者の買い物・通院の足を考える具体例になり、電話予約にも対応しています。"
+      "kid_summary": "瀬戸高校は10月29日に数学の公開授業と講演・教員研修を行い、生成AI時代の学びを考えます。",
+      "japan_angle": "学校や地域のAI講座でも、答えを出すだけでなく、理由を自分で説明する課題づくりの参考になります。"
     },
     {
-      "title": "作業を録画して手順書に、ナレッジセンスがβ版利用者を募集",
-      "url": "https://prtimes.jp/main/html/rd/p/000000410.000073671.html",
-      "source": "ナレッジセンス（公式発表）",
-      "published": "2026-09-29",
-      "kid_summary": "PC操作の録画からAIが手順書を作り、確認・編集した手順に沿って操作する新サービスのβ版利用者募集が始まりました。",
-      "japan_angle": "学校や地域企業で繰り返す事務作業を引き継ぐ助けになりそうで、試す際は個人情報が映らない作業から始められます。"
-    },
-    {
-      "title": "OpenAIがdotsを発表、継続する仕事をAIが支援",
-      "url": "https://openai.com/index/introducing-dots/",
-      "source": "OpenAI（公式発表）",
-      "published": "2026-09-29",
-      "kid_summary": "専用のクラウド上のコンピューターで動き、依頼した仕事を継続して進めるAIエージェント「dots」が発表されました。",
-      "japan_angle": "地域企業では調査や告知案の準備を任せる使い方が考えられ、公開や送信前に人が内容を確認する分担が大切です。"
-    },
-    {
-      "title": "古いExcelマクロの保守を支援、CodeSenseが登場予定",
-      "url": "https://prtimes.jp/main/html/rd/p/000000411.000073671.html",
-      "source": "ナレッジセンス（公式発表）",
+      "title": "GoogleがGemini 4 Argonを発表、まず防御側の専門家へ",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
+      "source": "Google",
       "published": "2026-09-30",
-      "kid_summary": "複雑な既存コードやVBAを読み解いて改修を支える「CodeSense」が数週間以内の公開を予定し、β版利用者を募集しています。",
-      "japan_angle": "担当者しか直せない地域企業のExcel業務を見直す選択肢になり、業務ルールの整理と修正後の動作確認が要点です。"
+      "kid_summary": "複雑な仕事を長く進める新AIを発表し、信頼されたサイバー防御の専門家から段階的に提供します。",
+      "japan_angle": "地域企業のシステム保守にも関わる動きですが、一般提供前なので、導入判断は今後の提供条件を確認してからです。"
     },
     {
-      "title": "Microsoftが生物研究AI「Quine」を発表、実験の候補選びを支援",
-      "url": "https://www.microsoft.com/en-us/research/blog/introducing-quine-an-ai-research-system-designed-for-the-complexity-of-biology/",
-      "source": "Microsoft Research（公式発表）",
-      "published": "2026-09-29",
-      "kid_summary": "生物のデータや論文、研究道具をつなぎ、次に試す実験の候補を考える研究用AI「Quine」が発表されました。",
-      "japan_angle": "学校の探究学習では、AIの予測を実験で確かめる考え方を学べる事例で、診断や治療に使う製品ではありません。"
+      "title": "Microsoft、話している途中から文字にする音声AIを発表",
+      "url": "https://microsoft.ai/news/our-first-streaming-transcription-model/",
+      "source": "Microsoft AI",
+      "published": "2026-10-01",
+      "kid_summary": "60言語の音声をリアルタイムで文字にし、話す言語の変化も自動で検出するモデルを発表しました。",
+      "japan_angle": "地域講座の字幕や窓口の会話支援を作る候補になりますが、日本語の精度は現場の音声で確かめたいところです。"
+    },
+    {
+      "title": "Claude Codeに、表示や動きを変えられるmodsが登場",
+      "url": "https://claude.com/blog/claude-code-mods",
+      "source": "Anthropic",
+      "published": "2026-10-01",
+      "kid_summary": "短いTypeScriptのコードで画面や処理を変えられるmodsを、CLIとデスクトップアプリ向けに公開しました。",
+      "japan_angle": "地域企業の開発チームなら、本番操作前の確認を追加する用途が考えられますが、導入は信頼できる配布元に絞ります。"
+    },
+    {
+      "title": "freee技術の日、AnthropicとAWSの特別セッションを発表",
+      "url": "https://corp.freee.co.jp/news/20261001freee_TechDay.html",
+      "source": "freee",
+      "published": "2026-10-01",
+      "kid_summary": "10月3日の技術イベントにAnthropicとAWSが登壇し、安全で信頼できるAI活用について話す予定です。",
+      "japan_angle": "YouTube配信も予定されており、地域企業の担当者がAI導入や運用の考え方を学ぶ機会になります。"
     }
   ]
 }

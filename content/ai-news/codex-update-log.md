@@ -1,11 +1,11 @@
 ---
 title: "今日のAIニュース5とCodex"
 date: "2026-08-21"
-date_modified: "2026-10-01"
+date_modified: "2026-10-02"
 content_series: codex-update-log
 source_period: "September 21–25, 2026"
-source_fingerprint: "31431739c399f849bdc5599a31c4951a4a362a6e248f16cc2fe397a6e142bca6"
-source_release_tag: "rust-v0.159.3"
+source_fingerprint: "9c482524304f328fab53b0d8635ab029b9385dff0bafe6a989108073891ba61c"
+source_release_tag: "rust-v0.160.0"
 image: "/img/blog-codex-update-log-hero-20260830.png"
 image_alt: "巨大な水晶のAI脳を、10個の光るニュースホールドで登り、紙のヤギが見守る和紙の風景"
 hero_image: false
@@ -18,10 +18,10 @@ action: "使えそうな機能を1つ試す"
 ---
 
 <!-- CODEX_UPDATE_CURRENT:BEGIN -->
-<!-- source-fingerprint: 31431739c399f849bdc5599a31c4951a4a362a6e248f16cc2fe397a6e142bca6 -->
+<!-- source-fingerprint: 9c482524304f328fab53b0d8635ab029b9385dff0bafe6a989108073891ba61c -->
 <section class="codex-update-guide" aria-labelledby="codex-update-guide-title">
 <h2 id="codex-update-guide-title">Codex新機能と活用例</h2>
-<p class="codex-update-guide__date">更新日：<time datetime="2026-10-01">2026年10月1日</time></p>
+<p class="codex-update-guide__date">更新日：<time datetime="2026-10-02">2026年10月2日</time></p>
 </section>
 
 
@@ -30,12 +30,38 @@ action: "使えそうな機能を1つ試す"
 <span class="update-card__rank" aria-hidden="true">1</span>
 <div class="update-card__heading">
 <p class="update-card__eyebrow">CODEX</p>
-<h2 id="codex-feature-1-title" class="codex-feature-title"><span class="visually-hidden">1. </span>アカウントの安全設定を促す案内</h2>
+<h2 id="codex-feature-1-title" class="codex-feature-title"><span class="visually-hidden">1. </span>Windowsでの実行と裏側の処理を改善</h2>
 </div></header>
 <div class="update-card__body">
-<p class="update-card__summary">CLI 0.159.3では、ChatGPTでサインインした対象のローカルセッションに、アカウントの安全設定を完了するための任意の案内を表示できるようになりました。たとえば、地域企業でCodexを業務に使うなら案内の有無を確かめ、本人がアカウント設定を確認する時間を取ります。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
-<p class="update-card__context">ChatGPTでサインインした対象のローカルセッション向けです。全利用者への表示や、アプリ・料金の変更を示す発表ではありません。</p>
-<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.159.3" target="_blank" rel="noopener">公式情報</a></p>
+<p class="update-card__summary">WindowsのPowerShell代替処理と長いパスの権限修復を改善し、バックグラウンド処理が不要なコンソール窓を開く問題を修正しました。たとえば、地域企業のWindows PCでサイトを直すなら前に止まった検証を再実行し、結果とエラーの有無を記録します。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
+<p class="update-card__context">Codex CLI 0.160.0のWindows向け修正です。すべての権限エラーの解消を保証するものではありません。</p>
+<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.160.0" target="_blank" rel="noopener">公式情報</a></p>
+</div></section>
+
+<section class="codex-feature-card update-card" data-update-kind="codex" data-update-index="2" aria-labelledby="codex-feature-2-title">
+<header class="update-card__header">
+<span class="update-card__rank" aria-hidden="true">2</span>
+<div class="update-card__heading">
+<p class="update-card__eyebrow">CODEX</p>
+<h2 id="codex-feature-2-title" class="codex-feature-title"><span class="visually-hidden">2. </span>過去のタスクを追加表示</h2>
+</div></header>
+<div class="update-card__body">
+<p class="update-card__summary">エージェントのコマンドセンターに、キーボードでも操作できる「Show more」が加わり、古いタスクをたどれるようになりました。たとえば、学校向け資料を以前の相談から作り直すなら過去のタスクを表示し、前に決めた内容を確認してから作業を進めます。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
+<p class="update-card__context">Codex CLI 0.160.0のエージェントコマンドセンターの更新です。</p>
+<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.160.0" target="_blank" rel="noopener">公式情報</a></p>
+</div></section>
+
+<section class="codex-feature-card update-card" data-update-kind="codex" data-update-index="3" aria-labelledby="codex-feature-3-title">
+<header class="update-card__header">
+<span class="update-card__rank" aria-hidden="true">3</span>
+<div class="update-card__heading">
+<p class="update-card__eyebrow">CODEX</p>
+<h2 id="codex-feature-3-title" class="codex-feature-title"><span class="visually-hidden">3. </span>再接続後の未送信メッセージを再開</h2>
+</div></header>
+<div class="update-card__body">
+<p class="update-card__summary">送信状態が不明なものを解決した後、待機中の未送信メッセージが再開され、重複送信を避けるようになりました。たとえば、移動先で地域イベントの案内を修正するなら通信が切れた後は、依頼が再開されたか会話を確認してから次を送ります。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
+<p class="update-card__context">Codex CLI 0.160.0のターミナル画面における修正です。</p>
+<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.160.0" target="_blank" rel="noopener">公式情報</a></p>
 </div></section>
 
 ## 公式情報
@@ -47,6 +73,11 @@ action: "使えそうな機能を1つ試す"
 ## 過去のアップデート要約
 
 <!-- CODEX_UPDATE_ARCHIVE:BEGIN -->
+<!-- source-fingerprint: 31431739c399f849bdc5599a31c4951a4a362a6e248f16cc2fe397a6e142bca6 -->
+### 2026年10月1日確認：CLI 0.159.3の安全設定案内
+
+ChatGPTでサインインした対象ローカルセッションで、アカウントの安全設定を促す任意の案内が加わったことを紹介しました。
+
 <!-- source-fingerprint: 82f032f6297f12fb050e27859c5e5e4f5bdea3e98f475fe31194a43e515a85d7 -->
 ### 2026年9月30日確認：CLI 0.159.1の既定モデルカタログ更新
 

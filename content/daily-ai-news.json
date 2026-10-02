@@ -1,46 +1,46 @@
 {
-  "date": "2026-10-02",
-  "research_note": "日本時間2026年10月2日朝に直近48時間（9月30日朝〜10月2日朝）を調査し、公式発表5件を確認しました。publishedは発表元の日付です。Googleは9月30日米国発表、ほかは10月1日発表。公開授業・イベントの開催予定と発表日を区別しています。7日への拡大はありません。日本での活用欄は編集部の提案です。",
+  "date": "2026-10-03",
+  "research_note": "日本時間2026年10月3日朝、直近48時間（10月1日朝〜3日朝）の公式発表を調査。5発表元・5話題を選び、7日への拡大は行っていません。publishedは発表日です。発売日・開催予定日と区別し、活用の提案を導入実績として扱っていません。",
   "items": [
     {
-      "title": "瀬戸高校、AI時代に考える力を育てる公開授業を予告",
-      "url": "https://www.pref.okayama.jp/site/255/1058579.html",
-      "source": "岡山県教育委員会",
-      "published": "2026-10-01",
-      "kid_summary": "瀬戸高校は10月29日に数学の公開授業と講演・教員研修を行い、生成AI時代の学びを考えます。",
-      "japan_angle": "学校や地域のAI講座でも、答えを出すだけでなく、理由を自分で説明する課題づくりの参考になります。"
+      "title": "教員の経験を学校で受け継ぐ、AI活用セミナー",
+      "url": "https://prtimes.jp/main/html/rd/p/000000189.000079497.html",
+      "source": "みんがく（公式発表）",
+      "published": "2026-10-02",
+      "kid_summary": "みんがくが、先生の経験や工夫をAIで受け継ぐ無料オンラインセミナーを10月9日に開きます。",
+      "japan_angle": "学校の引き継ぎで伝わりにくい授業や行事のコツを、どう残すか考える機会になります。"
     },
     {
-      "title": "GoogleがGemini 4 Argonを発表、まず防御側の専門家へ",
-      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
-      "source": "Google",
-      "published": "2026-09-30",
-      "kid_summary": "複雑な仕事を長く進める新AIを発表し、信頼されたサイバー防御の専門家から段階的に提供します。",
-      "japan_angle": "地域企業のシステム保守にも関わる動きですが、一般提供前なので、導入判断は今後の提供条件を確認してからです。"
+      "title": "福祉事業所の記録と期限管理を助けるAI",
+      "url": "https://prtimes.jp/main/html/rd/p/000000001.000191994.html",
+      "source": "エー・サポート（公式発表）",
+      "published": "2026-10-02",
+      "kid_summary": "エー・サポートが、記録から支援を提案し期限を知らせる「HAKASE CARE」を10月1日に発売したと発表しました。",
+      "japan_angle": "就労継続支援B型の職員が、記録の見直しや会議の準備を助ける道具として検討できます。"
     },
     {
-      "title": "Microsoft、話している途中から文字にする音声AIを発表",
-      "url": "https://microsoft.ai/news/our-first-streaming-transcription-model/",
-      "source": "Microsoft AI",
+      "title": "リコー、企業で使うAIアプリを共有する場を開設",
+      "url": "https://jp.ricoh.com/release/2026/1001_2",
+      "source": "リコー（公式発表）",
       "published": "2026-10-01",
-      "kid_summary": "60言語の音声をリアルタイムで文字にし、話す言語の変化も自動で検出するモデルを発表しました。",
-      "japan_angle": "地域講座の字幕や窓口の会話支援を作る候補になりますが、日本語の精度は現場の音声で確かめたいところです。"
+      "kid_summary": "リコーがAIアプリ共有サービスを始め、まず約50件を公開し、利用企業が自社向けに直せるようにしました。",
+      "japan_angle": "対象のDify契約がある地域企業なら、既存アプリを手がかりに、同じ事務作業を一から作る手間を減らせそうです。"
     },
     {
-      "title": "Claude Codeに、表示や動きを変えられるmodsが登場",
-      "url": "https://claude.com/blog/claude-code-mods",
-      "source": "Anthropic",
-      "published": "2026-10-01",
-      "kid_summary": "短いTypeScriptのコードで画面や処理を変えられるmodsを、CLIとデスクトップアプリ向けに公開しました。",
-      "japan_angle": "地域企業の開発チームなら、本番操作前の確認を追加する用途が考えられますが、導入は信頼できる配布元に絞ります。"
+      "title": "社内でAI活用を広げる担当者を育てる研修",
+      "url": "https://prtimes.jp/main/html/rd/p/000000045.000114743.html",
+      "source": "x3d（公式発表）",
+      "published": "2026-10-02",
+      "kid_summary": "x3dが、全社員のAI学習から各部門の推進役の育成までを支援するプログラムを10月1日に開始したと発表しました。",
+      "japan_angle": "AIを試すだけで終わる地域企業では、相談できる担当者と日々の仕事への取り入れ方を考える参考になります。"
     },
     {
-      "title": "freee技術の日、AnthropicとAWSの特別セッションを発表",
-      "url": "https://corp.freee.co.jp/news/20261001freee_TechDay.html",
-      "source": "freee",
+      "title": "キヤノン、AIでウェブ記事を印刷しやすく整理",
+      "url": "https://global.canon/ja/news/2026/20261001.html",
+      "source": "キヤノン（公式発表）",
       "published": "2026-10-01",
-      "kid_summary": "10月3日の技術イベントにAnthropicとAWSが登壇し、安全で信頼できるAI活用について話す予定です。",
-      "japan_angle": "YouTube配信も予定されており、地域企業の担当者がAI導入や運用の考え方を学ぶ機会になります。"
+      "kid_summary": "キヤノンが、ウェブページの広告や余白をAIで除いて印刷する機能を、対象のPIXUS向けに提供開始しました。",
+      "japan_angle": "家庭でレシピやニュースを紙に残す際に役立ち、利用前には対応機種・アプリ・登録などの条件を確認できます。"
     }
   ]
 }

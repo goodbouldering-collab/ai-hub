@@ -6,7 +6,7 @@ body.studio-theme.studio-editorial.realistic-home {
   background:#f8f6f1!important; color:#253d44!important;
 }
 body.realistic-home :is(.site-header,.topbar,.sticky-cta) {background:#f8f6f1f2!important;border-color:#deded4!important;box-shadow:none!important}
-body.realistic-home .site-header-inner {max-width:1360px;padding:14px 32px!important}
+body.realistic-home .site-header-inner {max-width:1360px;padding:8px 32px!important}
 body.realistic-home .site-logo::before {border-radius:50%!important;transform:none!important;background:#a85c40!important}
 body.realistic-home :is(.nav-link,.hero-text-link) {color:#365b62!important}
 body.realistic-home :is(.mobile-nav-panel,.mobile-nav) {background:#fffdf9!important;border-color:#deded4!important}
@@ -61,16 +61,16 @@ body.realistic-home .focus-trust {gap:8px 16px!important;margin:17px 0 0!importa
 body.studio-editorial.studio-home.realistic-home main>.ai-news-feature {margin:0 0 30px!important;background:#eeefe8!important;border:0!important;border-radius:10px!important;box-shadow:none!important;padding:22px 26px!important}
 body.realistic-home .home-updates__blog {border-color:#d5dbd4!important}
 body.realistic-home .ai-news-feature :is(h2,a) {color:#365b62!important}
-body.studio-editorial.studio-home.realistic-home .focus-block {padding:58px 0!important;background:transparent!important;border:0!important}
-body.studio-editorial.studio-home.realistic-home #packages {padding-top:35px!important}
-body.realistic-home .focus-section-head {margin-bottom:28px!important}
+body.studio-editorial.studio-home.realistic-home .focus-block {padding:44px 0!important;background:transparent!important;border:0!important}
+body.studio-editorial.studio-home.realistic-home #packages {padding-top:28px!important}
+body.realistic-home .focus-section-head {margin-bottom:22px!important}
 body.realistic-home .focus-section-head small {color:#a55136!important;letter-spacing:.14em!important;font-weight:700!important}
 body.realistic-home .focus-section-head h2 {color:#253d44!important;letter-spacing:-.035em!important;font-size:clamp(26px,3vw,38px)!important;line-height:1.45!important}
 body.studio-editorial.studio-home.realistic-home .compact-course-grid {display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:28px!important;align-items:start!important}
 body.studio-editorial.studio-home.realistic-home .compact-course-card {margin:0!important;padding:0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;overflow:visible!important}
 body.studio-editorial.studio-home.realistic-home .compact-course-card>.offer-role-row {padding:0 0 12px!important;position:static!important}
 body.studio-editorial.studio-home.realistic-home .compact-course-visual {width:100%!important;max-width:100%!important;margin:0!important;height:auto!important;aspect-ratio:1.5!important;object-fit:cover!important;border-radius:8px!important;box-shadow:none!important;transform:none!important;filter:none!important}
-body.studio-editorial.studio-home.realistic-home .studio-course-body {position:relative!important;margin:0!important;padding:20px 0 24px!important;border:0!important;border-bottom:1px solid #d6dcd6!important;border-radius:0!important;background:none!important;box-shadow:none!important;transform:none!important;backdrop-filter:none!important}
+body.studio-editorial.studio-home.realistic-home .studio-course-body {position:relative!important;margin:0!important;padding:16px 0 20px!important;border:0!important;border-bottom:1px solid #d6dcd6!important;border-radius:0!important;background:none!important;box-shadow:none!important;transform:none!important;backdrop-filter:none!important}
 body.studio-editorial.studio-home.realistic-home .compact-course-card:nth-child(n) .studio-course-body {background:transparent!important}
 body.studio-editorial.studio-home.realistic-home .compact-course-heading h3 {color:#253d44!important;font-size:21px!important;line-height:1.5!important}
 body.realistic-home :is(.offer-role-badge,.compact-course-note) {background:#e8eee9!important;color:#3e5d58!important;border:0!important}
@@ -104,15 +104,15 @@ body.realistic-home #contact :is(a,button):focus-visible {outline-color:#fff!imp
   body.studio-editorial.studio-home.realistic-home #speaker .focus-split>div {width:100%!important}
 }
 @media (max-width:580px) {
-  body.realistic-home .site-header-inner {padding:12px 18px!important}
+  body.realistic-home .site-header-inner {padding:6px 18px!important}
   body.studio-editorial.studio-home.realistic-home main {padding:0 18px!important}
   body.studio-editorial.studio-home.realistic-home #top .focus-hero-shell {padding-top:18px!important;gap:20px!important}
   body.studio-editorial.studio-home.realistic-home #restored-hero-image>img {aspect-ratio:1.5!important}
   body.studio-editorial.studio-home.realistic-home #top .focus-title {font-size:30px!important;line-height:1.5!important;margin-bottom:16px!important}
   body.realistic-home .hero-advantage-equation {font-size:17px!important}
   body.studio-editorial.studio-home.realistic-home .compact-course-grid {grid-template-columns:1fr!important;gap:28px!important}
-  body.studio-editorial.studio-home.realistic-home .studio-course-body {padding:17px 0 24px!important}
-  body.studio-editorial.studio-home.realistic-home .focus-block {padding:38px 0!important}
+  body.studio-editorial.studio-home.realistic-home .studio-course-body {padding:16px 0 18px!important}
+  body.studio-editorial.studio-home.realistic-home .focus-block {padding:32px 0!important}
   body.studio-editorial.studio-home.realistic-home main>.ai-news-feature {padding:20px 18px!important;margin-bottom:22px!important}
   body.studio-editorial.studio-home.realistic-home #contact {padding:28px 22px!important}
 }
@@ -122,3 +122,69 @@ body.realistic-home #contact :is(a,button):focus-visible {outline-color:#fff!imp
   body.realistic-home .focus-btn.primary:hover {background:#88422c!important;border-color:#88422c!important}
 }
 @media (prefers-reduced-motion:reduce) {body.realistic-home *,body.realistic-home *::before,body.realistic-home *::after {scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+/* Clear section rhythm and compact navigation; retain the existing content grid. */
+body.studio-home.realistic-home>.container {padding-top:60px!important}
+body.studio-theme.studio-editorial.realistic-home .site-header,
+body.studio-theme.studio-editorial.realistic-home .site-header-inner {min-height:60px!important}
+body.studio-theme.studio-editorial.realistic-home .site-nav {gap:4px!important;padding:0!important}
+body.studio-theme.studio-editorial.realistic-home .site-nav :is(a.nav-link,.menu-toggle) {
+  min-height:44px!important;padding:0 9px!important;line-height:1.3!important;
+}
+body.studio-theme.studio-editorial.realistic-home .mobile-toggle {
+  min-height:44px!important;height:44px!important;box-shadow:none!important;
+}
+body.studio-editorial.studio-home.realistic-home main>.focus-block {
+  border-top:1px solid #cfd8d1!important;scroll-margin-top:76px;
+}
+body.studio-editorial.studio-home.realistic-home main>:is(#lectures,#flow) {
+  background:#eff1eb!important;box-shadow:32px 0 0 #eff1eb,-32px 0 0 #eff1eb!important;
+}
+body.studio-editorial.studio-home.realistic-home .focus-section-head {
+  text-align:left!important;padding-left:16px!important;border-left:3px solid #a55136;
+}
+body.studio-editorial.studio-home.realistic-home .focus-section-head small,
+body.studio-editorial.studio-home.realistic-home #speaker .outcome-num {
+  color:#a55136!important;font-size:11px!important;letter-spacing:.12em!important;
+  font-weight:750!important;margin:0 0 7px!important;
+}
+body.studio-editorial.studio-home.realistic-home .focus-section-head small::before {display:none!important}
+body.studio-editorial.studio-home.realistic-home .focus-section-head h2,
+body.studio-editorial.studio-home.realistic-home #speaker h2 {
+  color:#253d44!important;font-size:clamp(26px,2.65vw,36px)!important;
+  font-weight:750!important;line-height:1.45!important;letter-spacing:-.035em!important;margin-top:0!important;
+}
+body.studio-editorial.studio-home.realistic-home #packages .course-menu-group-title {
+  margin:20px 0 12px!important;font-size:clamp(19px,2vw,23px)!important;
+  color:#365b62!important;line-height:1.45!important;
+}
+body.studio-editorial.studio-home.realistic-home #packages .course-time-note {
+  margin:16px 0 24px!important;padding:16px 20px!important;border-radius:10px!important;
+}
+@media (max-width:900px) {
+  body.studio-home.realistic-home>.container {padding-top:56px!important}
+  body.studio-theme.studio-editorial.realistic-home .site-header,
+  body.studio-theme.studio-editorial.realistic-home .site-header-inner {min-height:56px!important}
+  body.studio-theme.studio-editorial.realistic-home .site-header-inner {padding:6px 22px!important}
+  body.studio-theme.studio-editorial.realistic-home #mobile-nav {
+    top:56px!important;max-height:calc(100dvh - 56px)!important;
+    padding:6px max(18px,env(safe-area-inset-left)) calc(10px + env(safe-area-inset-bottom)) max(18px,env(safe-area-inset-right))!important;
+  }
+  body.studio-theme.studio-editorial.realistic-home #mobile-nav .mobile-nav-panel {gap:4px!important}
+  body.studio-theme.studio-editorial.realistic-home #mobile-nav .mobile-public-links a {
+    min-height:44px!important;padding:9px 4px!important;font-size:14px!important;
+    line-height:1.35!important;border-radius:0!important;background:transparent!important;
+    border-bottom:1px solid #deded4!important;
+  }
+  body.studio-theme.studio-editorial.realistic-home #mobile-nav .mobile-nav-label {padding:5px 4px 3px!important}
+  body.studio-theme.studio-editorial.realistic-home #mobile-nav .mobile-admin-link {min-height:44px!important;padding:8px!important}
+  body.studio-editorial.studio-home.realistic-home main>.focus-block {scroll-margin-top:68px}
+  body.studio-editorial.studio-home.realistic-home main>:is(#lectures,#flow) {box-shadow:22px 0 0 #eff1eb,-22px 0 0 #eff1eb!important}
+}
+@media (max-width:580px) {
+  body.studio-theme.studio-editorial.realistic-home .site-header-inner {padding:6px 18px!important}
+  body.studio-editorial.studio-home.realistic-home main>:is(#lectures,#flow) {box-shadow:18px 0 0 #eff1eb,-18px 0 0 #eff1eb!important}
+  body.studio-editorial.studio-home.realistic-home .focus-section-head {padding-left:12px!important;margin-bottom:20px!important}
+  body.studio-editorial.studio-home.realistic-home #packages .course-menu-group-title {margin-top:18px!important}
+  body.studio-editorial.studio-home.realistic-home #packages .course-time-note {padding:14px 16px!important;margin-bottom:20px!important}
+}

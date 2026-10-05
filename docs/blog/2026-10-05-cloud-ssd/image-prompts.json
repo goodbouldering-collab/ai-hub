@@ -1,0 +1,42 @@
+[
+  {
+    "key": "hardware",
+    "prompt": "Use case: illustration-story. A wide 16:9 editorial illustration for a Japanese personal essay about AI coding. A developer's hands at a desk comparing one tiny unbranded M.2 SSD, a black finned heatsink, a small gray thermal pad and a ruler, while a laptop quietly shows a few abstract code lines. Wry but restrained, tactile cut-paper and fine pencil magazine illustration, warm ivory paper background, charcoal ink, teal and burnt-orange accents, generous negative space, elegant composition with large clear objects. No readable text, no brand logos, no watermark. Illustrative metaphor, not documentary.",
+    "source": "C:\\Users\\yui\\.codex\\generated_images\\01a10a4f-4d89-7a83-be5b-d877a27153f3\\exec-374ed019-efc6-46e8-83f6-aaa49af48520.png",
+    "asset": "site/static/img/blog-cloud-ssd-hardware-20261005.webp",
+    "tool": "built-in imagegen",
+    "encoding": "WebP quality 90; composition unchanged"
+  },
+  {
+    "key": "cloud",
+    "prompt": "Use case: illustration-story. Wide 16:9 elegant cut-paper and fine-pencil magazine illustration on warm ivory. Left: a glowing desktop PC tethered to a wall outlet and small router, with a gently drooping sleep-moon overhead. Right: a hand holding a smartphone, a simple floating cloud with three small code cards, an untethered open airy scene. Show the change from a computer that must stay on to cloud work continuing independently. Charcoal ink, muted teal, burnt orange, spacious composition, no text or brand logos, no robotic mascots, no watermark.",
+    "source": "C:\\Users\\yui\\.codex\\generated_images\\01a10a4f-4d89-7a83-be5b-d877a27153f3\\exec-f57b1fbf-d1f5-41ce-b3d9-49d0c6beeb2f.png",
+    "asset": "site/static/img/blog-cloud-ssd-cloud-20261005.webp",
+    "tool": "built-in imagegen",
+    "encoding": "WebP quality 90; composition unchanged"
+  },
+  {
+    "key": "github",
+    "prompt": "Use case: illustration-story. Wide 16:9 editorial illustration, warm ivory paper, cut-paper shapes with pencil detail, dark charcoal, muted teal and burnt orange. One central tidy folder with a tiny branching version-control symbol contains code sheets, a checklist and small tool shapes. From this single folder two thin arrows lead to a lightweight laptop workspace and a separate cloud workspace. The same tools appear ready in both workspaces. This explains reconstructing a development environment from the same source and setup recipe, not copying an entire physical PC. A few large shapes only, clear negative space, no words, no logos, no watermark.",
+    "source": "C:\\Users\\yui\\.codex\\generated_images\\01a10a4f-4d89-7a83-be5b-d877a27153f3\\exec-8bcd4f14-3c9d-417b-9fc9-81e8f730024b.png",
+    "asset": "site/static/img/blog-cloud-ssd-github-20261005.webp",
+    "tool": "built-in imagegen",
+    "encoding": "WebP quality 90; composition unchanged"
+  },
+  {
+    "key": "resale",
+    "prompt": "Use case: illustration-story. Wide 16:9 whimsical but sophisticated Japanese editorial magazine illustration, ivory textured paper, charcoal pencil, muted teal and burnt orange cut-paper accents. Close view of a tiny unbranded M.2 SSD placed carefully in a small open cardboard shipping box with tissue paper. Nearby a phone displays a simple generic auction listing using abstract shapes only, and an orange curved arrow suggests it is being sold again. Funny quiet anticlimax, a small useful object now departing. No readable text, no logos, no watermark.",
+    "source": "C:\\Users\\yui\\.codex\\generated_images\\01a10a4f-4d89-7a83-be5b-d877a27153f3\\exec-0599d898-df37-4dbf-9379-7559df89c4c6.png",
+    "asset": "site/static/img/blog-cloud-ssd-resale-20261005.webp",
+    "tool": "built-in imagegen",
+    "encoding": "WebP quality 90; composition unchanged"
+  },
+  {
+    "key": "hero",
+    "prompt": "Use case: illustration-story. Hero illustration for a Japanese blog essay titled 'The least automated part was my development environment.' Wide 16:9 editorial cover, generous airy composition, sophisticated warm ivory textured paper with cut-paper shapes and pencil details, charcoal, muted teal and burnt orange. On the left edge, a small messy pile of computer parts: an unbranded M.2 SSD, heatsink and cables; the focal point toward the right is a relaxed hand holding a smartphone sending two small code cards upward into a spacious soft teal cloud. This is the move from tending hardware to assigning work to cloud AI. Quiet wit, not futuristic neon, not a tech advertisement. No text, no logos, no watermark. Keep the outcome inviting, calm and human.",
+    "source": "C:\\Users\\yui\\.codex\\generated_images\\01a10a4f-4d89-7a83-be5b-d877a27153f3\\exec-b16fae74-5a40-4c05-b5c3-01dfd84cc307.png",
+    "asset": "site/static/img/blog-cloud-ssd-hero-20261005.webp",
+    "tool": "built-in imagegen",
+    "encoding": "WebP quality 90; composition unchanged"
+  }
+]

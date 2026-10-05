@@ -1,11 +1,11 @@
 ---
 title: "今日のAIニュース5とCodex"
 date: "2026-08-21"
-date_modified: "2026-10-02"
+date_modified: "2026-10-06"
 content_series: codex-update-log
-source_period: "September 21–25, 2026"
-source_fingerprint: "9c482524304f328fab53b0d8635ab029b9385dff0bafe6a989108073891ba61c"
-source_release_tag: "rust-v0.160.0"
+source_period: "September 28–October 2, 2026"
+source_fingerprint: "0b7454d97b53912cefa1fea64cfd08b04579911a7e88cf742f2b5c0614aa1ac5"
+source_release_tag: "rust-v0.160.1"
 image: "/img/blog-codex-update-log-hero-20260830.png"
 image_alt: "巨大な水晶のAI脳を、10個の光るニュースホールドで登り、紙のヤギが見守る和紙の風景"
 hero_image: false
@@ -18,10 +18,10 @@ action: "使えそうな機能を1つ試す"
 ---
 
 <!-- CODEX_UPDATE_CURRENT:BEGIN -->
-<!-- source-fingerprint: 9c482524304f328fab53b0d8635ab029b9385dff0bafe6a989108073891ba61c -->
+<!-- source-fingerprint: 0b7454d97b53912cefa1fea64cfd08b04579911a7e88cf742f2b5c0614aa1ac5 -->
 <section class="codex-update-guide" aria-labelledby="codex-update-guide-title">
 <h2 id="codex-update-guide-title">Codex新機能と活用例</h2>
-<p class="codex-update-guide__date">更新日：<time datetime="2026-10-02">2026年10月2日</time></p>
+<p class="codex-update-guide__date">更新日：<time datetime="2026-10-06">2026年10月6日</time></p>
 </section>
 
 
@@ -30,12 +30,12 @@ action: "使えそうな機能を1つ試す"
 <span class="update-card__rank" aria-hidden="true">1</span>
 <div class="update-card__heading">
 <p class="update-card__eyebrow">CODEX</p>
-<h2 id="codex-feature-1-title" class="codex-feature-title"><span class="visually-hidden">1. </span>Windowsでの実行と裏側の処理を改善</h2>
+<h2 id="codex-feature-1-title" class="codex-feature-title"><span class="visually-hidden">1. </span>開発の準備をクラウドで使い回す</h2>
 </div></header>
 <div class="update-card__body">
-<p class="update-card__summary">WindowsのPowerShell代替処理と長いパスの権限修復を改善し、バックグラウンド処理が不要なコンソール窓を開く問題を修正しました。たとえば、地域企業のWindows PCでサイトを直すなら前に止まった検証を再実行し、結果とエラーの有無を記録します。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
-<p class="update-card__context">Codex CLI 0.160.0のWindows向け修正です。すべての権限エラーの解消を保証するものではありません。</p>
-<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.160.0" target="_blank" rel="noopener">公式情報</a></p>
+<p class="update-card__summary">Codex Cloudの開発環境を一度準備・公開し、新しいタスクの独立した作業場所で再利用できます。たとえば、地域企業のサイトを繰り返し修正するなら必要な開発環境を準備し、次のタスクでも同じ準備を使えるか確認します。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
+<p class="update-card__context">Codex Cloudの環境を準備・公開して使う機能です。サイトの本番公開とは別の操作です。</p>
+<p class="update-card__source"><a href="https://learn.chatgpt.com/docs/environments/cloud-environments" target="_blank" rel="noopener">公式情報</a></p>
 </div></section>
 
 <section class="codex-feature-card update-card" data-update-kind="codex" data-update-index="2" aria-labelledby="codex-feature-2-title">
@@ -43,12 +43,12 @@ action: "使えそうな機能を1つ試す"
 <span class="update-card__rank" aria-hidden="true">2</span>
 <div class="update-card__heading">
 <p class="update-card__eyebrow">CODEX</p>
-<h2 id="codex-feature-2-title" class="codex-feature-title"><span class="visually-hidden">2. </span>過去のタスクを追加表示</h2>
+<h2 id="codex-feature-2-title" class="codex-feature-title"><span class="visually-hidden">2. </span>パソコン・Web・スマホで作業を継続</h2>
 </div></header>
 <div class="update-card__body">
-<p class="update-card__summary">エージェントのコマンドセンターに、キーボードでも操作できる「Show more」が加わり、古いタスクをたどれるようになりました。たとえば、学校向け資料を以前の相談から作り直すなら過去のタスクを表示し、前に決めた内容を確認してから作業を進めます。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
-<p class="update-card__context">Codex CLI 0.160.0のエージェントコマンドセンターの更新です。</p>
-<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.160.0" target="_blank" rel="noopener">公式情報</a></p>
+<p class="update-card__summary">Work Cloudのローカルコンピューターアクセスを有効にすると、対象タスクを端末間で継続できます。たとえば、学校向け資料の作成を外出先で確認するなら対応するタスクで進捗を確認し、PC内の資料が必要な工程ではPCをオンラインに保ちます。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
+<p class="update-card__context">対象機能の有効化が必要です。PCのローカル資源を使う工程には、そのPCの接続が必要です。</p>
+<p class="update-card__source"><a href="https://learn.chatgpt.com/docs/enterprise/cloud-local-access" target="_blank" rel="noopener">公式情報</a></p>
 </div></section>
 
 <section class="codex-feature-card update-card" data-update-kind="codex" data-update-index="3" aria-labelledby="codex-feature-3-title">
@@ -56,12 +56,25 @@ action: "使えそうな機能を1つ試す"
 <span class="update-card__rank" aria-hidden="true">3</span>
 <div class="update-card__heading">
 <p class="update-card__eyebrow">CODEX</p>
-<h2 id="codex-feature-3-title" class="codex-feature-title"><span class="visually-hidden">3. </span>再接続後の未送信メッセージを再開</h2>
+<h2 id="codex-feature-3-title" class="codex-feature-title"><span class="visually-hidden">3. </span>複雑な制作にGPT-6.1 Solを選ぶ</h2>
 </div></header>
 <div class="update-card__body">
-<p class="update-card__summary">送信状態が不明なものを解決した後、待機中の未送信メッセージが再開され、重複送信を避けるようになりました。たとえば、移動先で地域イベントの案内を修正するなら通信が切れた後は、依頼が再開されたか会話を確認してから次を送ります。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
-<p class="update-card__context">Codex CLI 0.160.0のターミナル画面における修正です。</p>
-<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.160.0" target="_blank" rel="noopener">公式情報</a></p>
+<p class="update-card__summary">公式週次案内に、コーディングや専門的な仕事向けのGPT-6.1 Solが掲載されました。たとえば、地域イベントの申込サイトを整えるならモデル選択画面に表示される場合に選び、申込の条件と完成後の確認項目を伝えます。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
+<p class="update-card__context">利用可否はプラン、クライアント、ワークスペースの設定に依存します。</p>
+<p class="update-card__source"><a href="https://learn.chatgpt.com/docs/models#gpt-61-sol" target="_blank" rel="noopener">公式情報</a></p>
+</div></section>
+
+<section class="codex-feature-card update-card" data-update-kind="codex" data-update-index="4" aria-labelledby="codex-feature-4-title">
+<header class="update-card__header">
+<span class="update-card__rank" aria-hidden="true">4</span>
+<div class="update-card__heading">
+<p class="update-card__eyebrow">CODEX</p>
+<h2 id="codex-feature-4-title" class="codex-feature-title"><span class="visually-hidden">4. </span>Windowsを使う遠隔ツールの起動を修正</h2>
+</div></header>
+<div class="update-card__body">
+<p class="update-card__summary">CLI 0.160.1は、遠隔MCPサーバーの環境変数を明示した際もWindows側の起動に必要な変数を保持する修正です。たとえば、地域企業のWindows PCと遠隔ツールを連携しているなら該当環境を更新後、以前起動に失敗した連携を再確認し、結果を記録します。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
+<p class="update-card__context">CLI 0.160.1の特定の遠隔MCP構成に対する修正で、すべての接続問題を直すものではありません。</p>
+<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.160.1" target="_blank" rel="noopener">公式情報</a></p>
 </div></section>
 
 ## 公式情報
@@ -73,6 +86,11 @@ action: "使えそうな機能を1つ試す"
 ## 過去のアップデート要約
 
 <!-- CODEX_UPDATE_ARCHIVE:BEGIN -->
+<!-- source-fingerprint: 9c482524304f328fab53b0d8635ab029b9385dff0bafe6a989108073891ba61c -->
+### 2026年10月2日確認：CLI 0.160.0の操作とWindows改善
+
+Windowsの実行処理、古いタスクの追加表示、再接続後の未送信メッセージ再開について紹介しました。
+
 <!-- source-fingerprint: 31431739c399f849bdc5599a31c4951a4a362a6e248f16cc2fe397a6e142bca6 -->
 ### 2026年10月1日確認：CLI 0.159.3の安全設定案内
 

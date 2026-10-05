@@ -254,6 +254,17 @@ class FakeResponse:
 
 
 class CodexUpdateLogUpdaterTest(unittest.TestCase):
+    def test_linked_week_heading_is_newer_than_plain_week(self):
+        updater = _load_updater()
+        source = "# What's new\n\n## [DevDay 2026](https://learn.chatgpt.com/docs/whats-new/devday-2026)\n\nOverview\n\n"
+        source += "## [September 28–October 2, 2026](https://learn.chatgpt.com/docs/whats-new/september-28-october-2-2026)\n\n"
+        source += "### Codex Cloud environments\n\nPrepare reusable isolated workspaces for Codex tasks. Read the [official guide](https://learn.chatgpt.com/docs/environments/cloud-environments).\n\n"
+        source += "## September 21–25, 2026\n\n### Codex models\n\nChoose models for everyday coding and repeatable tasks. Read the [official model guide](https://learn.chatgpt.com/docs/models).\n"
+        period, block = updater.extract_latest_digest(source)
+        self.assertEqual(period, "September 28–October 2, 2026")
+        self.assertIn("Codex Cloud environments", block)
+        self.assertNotIn("Codex models", block)
+
     def test_simple_title_precedes_command_and_story_is_merged_into_plain_explanation(self) -> None:
         updater = _load_updater()
         source_block = updater.combine_source_block(SOURCE_CURRENT, CLI_RELEASE_CURRENT)

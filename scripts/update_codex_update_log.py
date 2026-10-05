@@ -117,6 +117,10 @@ def extract_weekly_digests(source_text: str) -> list[tuple[date, str, str]]:
     seen_dates: set[date] = set()
     for index, weekly in enumerate(headings):
         period = weekly.group(1).strip()
+        # The official digest now links dated headings to weekly detail pages.
+        linked_period = re.fullmatch(r"\[([^\]]+)\]\(https://learn\.chatgpt\.com/docs/whats-new/[^\s)]+\)", period)
+        if linked_period:
+            period = linked_period.group(1)
         try:
             period_end = parse_period_end(period)
         except ValueError:

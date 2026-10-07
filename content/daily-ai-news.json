@@ -1,46 +1,46 @@
 {
-  "date": "2026-10-07",
-  "research_note": "日本時間2026年10月7日朝、直近48時間を調査。10月6日付の公式発表4件と信頼できる報道1件を選定し、各本文と掲載日を確認しました。7日への拡大はしていません。発表・発売・協業計画を区別し、地域や暮らしへの関係は活用のヒントとして記載しています。",
+  "date": "2026-10-08",
+  "research_note": "日本時間2026年10月6日朝〜10月8日朝の直近48時間を調査。公式発表5件・5発表元・異なる5URLを選定し、7日への拡大は行っていません。publishedは公式発表日です。Googleは10月6日発表、東京都会議は10月15日予定、GMO掲載開始は9月30日、計算基盤実証の開始は8月と発表日を区別しています。",
   "items": [
     {
-      "title": "写真の顔や位置情報を隠すAIソフトが発売",
-      "url": "https://ai.watch.impress.co.jp/docs/news/2146062.html",
-      "source": "Impress AI Watch（ソースネクスト発表）",
-      "published": "2026-10-06",
-      "kid_summary": "写真の顔や車の番号をAIで見つけて隠し、撮影場所の情報も削除できるソフトが発売されました。",
-      "japan_angle": "学校や地域行事の写真公開で、写り込みを確認・加工する作業の助けになりそうです。"
+      "title": "東京都、学校での生成AI活用を議論へ",
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026100710",
+      "source": "東京都教育庁",
+      "published": "2026-10-07",
+      "kid_summary": "東京都は10月15日の総合教育会議で、AI時代の学びや学校での生成AI活用を議論すると発表しました。",
+      "japan_angle": "先生や地域の教育関係者が、AIに任せる作業と人が教える役割を考える材料になります。"
     },
     {
-      "title": "日赤の調査、災害時のAIは人を支える役割に期待",
-      "url": "https://www.jrc.or.jp/press/2026/1006_056249.html",
-      "source": "日本赤十字社（2026年調べ）",
-      "published": "2026-10-06",
-      "kid_summary": "日本赤十字社の意識調査では、災害支援の10項目すべてで、人を中心にAIが支える形が最も望まれました。",
-      "japan_angle": "地域の防災訓練でも、情報整理をAIに手伝わせ、人が出典と避難案内を確かめる役割分担を考えられます。"
+      "title": "PLaMo翻訳、53言語と会議翻訳に対応",
+      "url": "https://www.preferred.jp/ja/news/pr20261007",
+      "source": "Preferred Networks",
+      "published": "2026-10-07",
+      "kid_summary": "AI翻訳の対応言語が53言語に増え、15言語のオンライン会議を文字に起こして翻訳する機能も正式提供されました。",
+      "japan_angle": "地域企業の海外商談や外国人スタッフとの会議で、言葉の壁を減らす選択肢になります。"
     },
     {
-      "title": "PFUが新スキャナー、紙書類をAIで使えるデータへ",
-      "url": "https://www.pfu.ricoh.com/news/2026/news261006.html",
-      "source": "PFU",
+      "title": "Gemini、身近な文字やスマホ操作を音声で支援",
+      "url": "https://blog.google/intl/ja-jp/company-news/technology/simpleguide/",
+      "source": "Google Japan",
       "published": "2026-10-06",
-      "kid_summary": "PFUが業務用スキャナー4機種の販売を開始し、紙の文字をデータにするAI対応ソフトとの連携も案内しました。",
-      "japan_angle": "地域企業や福祉施設の紙帳票の入力負担を考える材料になり、AI機能の追加費用も確認したいところです。"
+      "kid_summary": "Googleは、カメラや画面を共有して音声の案内を受ける「シンプルガイド」を順次提供し、介護向けガイドも公開しました。",
+      "japan_angle": "高齢の家族のスマホ練習や介護職員の文書下書きに役立つ候補ですが、内容は人が確認します。"
     },
     {
-      "title": "パナソニックとGoogle、AIを使う住宅防犯で協業",
-      "url": "https://prtimes.jp/main/html/rd/p/000006905.000003442.html",
-      "source": "パナソニックグループ",
-      "published": "2026-10-06",
-      "kid_summary": "ドアホンや見守りカメラとGoogle HomeのAIを組み合わせる住宅防犯に向け、協業契約に合意しました。",
-      "japan_angle": "家庭の見守り通知を使いやすくする開発計画で、今ある機器ですぐ使える機能とは分けて見たい話題です。"
+      "title": "Claudeからムームードメインを選んで接続",
+      "url": "https://pepabo.com/news/press/202610071300/",
+      "source": "GMOペパボ",
+      "published": "2026-10-07",
+      "kid_summary": "ムームードメインが9月30日からClaudeの認証済み接続先に掲載されたことを、GMOペパボが発表しました。",
+      "japan_angle": "地域のお店のサイト名を会話で探す手助けになりますが、ドメイン購入の決済は利用者自身が確定します。"
     },
     {
-      "title": "IBMとRed Hat、AI時代のソフトの弱点400件超を修正",
-      "url": "https://newsroom.ibm.com/2026-10-06-ibm-and-red-hat-remediate-more-than-400-previously-unknown-open-source-vulnerabilities",
-      "source": "IBM・Red Hat",
-      "published": "2026-10-06",
-      "kid_summary": "両社はAIを使う開発手法などを組み合わせ、広く使われるJava部品で未知の弱点400件超を発見・修正したと発表しました。",
-      "japan_angle": "地域企業の業務システムでも、作った後に部品の更新や修正を続ける保守の大切さを考えるきっかけになります。"
+      "title": "AIの計算を電力状況に合わせて移す実証",
+      "url": "https://www.softbank.jp/corp/news/press/sbkk/2026/20261007_01/",
+      "source": "MESH-X・ソフトバンクなど12者",
+      "published": "2026-10-07",
+      "kid_summary": "企業と大学の12者が、電力や設備の空きに合わせてAIの計算処理を移す共同実証を8月から始めたと発表しました。",
+      "japan_angle": "地域の電力と計算設備を生かす取り組みで、地域企業が使うAI基盤の将来を考える材料になります。"
     }
   ]
 }

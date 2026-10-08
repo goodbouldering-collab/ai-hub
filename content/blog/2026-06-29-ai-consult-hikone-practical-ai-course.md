@@ -16,12 +16,7 @@ image: /media/ai-consult-hikone-20260629/ai-consult-hikone-poster.png
 .ai-consult-flow span{display:block;padding:12px 14px;border:1px solid rgba(15,23,42,.12);border-radius:8px;background:#fff;font-weight:800;color:#0f172a;}
 </style>
 
-<div class="ai-consult-video">
-<video controls playsinline preload="metadata" poster="/media/ai-consult-hikone-20260629/ai-consult-hikone-poster.png">
-  <source src="/media/ai-consult-hikone-20260629/ai-consult-hikone-course.webm" type="video/webm">
-  <track src="/media/ai-consult-hikone-20260629/ai-consult-hikone-captions.vtt" kind="captions" srclang="ja" label="日本語字幕" default>
-</video>
-</div>
+
 
 AI相談 彦根のAI講座は、AIを「知識として覚える講座」ではありません。忙しい地域事業者、学校、福祉施設、個人事業主が、時間を増やし、発信を整え、ホームページや業務を直し、次の行動に移るための実践講座です。
 
@@ -144,4 +139,11 @@ AI相談 彦根では、5,500円から始められる講座設計にしていま
 
 <div class="ai-consult-note">
   動画・字幕・ナレーション原稿・シーン画像は、トップページ、ブログ、SNS、YouTube用に分けて保存しています。講座案内や投稿素材として再利用できます。
+</div>
+
+<div class="ai-consult-video">
+<video controls playsinline preload="metadata" poster="/media/ai-consult-hikone-20260629/ai-consult-hikone-poster.png">
+  <source src="/media/ai-consult-hikone-20260629/ai-consult-hikone-course.webm" type="video/webm">
+  <track src="/media/ai-consult-hikone-20260629/ai-consult-hikone-captions.vtt" kind="captions" srclang="ja" label="日本語字幕" default>
+</video>
 </div>

@@ -73,7 +73,7 @@ class BlogAuthorshipNoteTest(unittest.TestCase):
 
         self.assertLess(page.index("</header>"), page.index(note))
         self.assertLess(page.index(note), page.index("article-video"))
-        self.assertLess(page.index("article-video"), page.index("<p>Body</p>"))
+        self.assertLess(page.index("<p>Body</p>"), page.index("<figure class='article-video"))
         self.assertIn(
             f"</header><p>{note}</p><div class='content-wrap'>",
             page,
@@ -222,16 +222,16 @@ class BlogAuthorshipNoteTest(unittest.TestCase):
             "Article hero image alt changed: preserve the approved accessible description.",
         )
 
-    def test_rendered_article_keeps_approved_title_note_video_hero_body_order(self) -> None:
+    def test_rendered_article_keeps_title_note_hero_body_video_order(self) -> None:
         page = render_article()
         markers = [
             f"<h1>{FINAL_TITLE}</h1>",
             APPROVED_AUTHORSHIP_NOTE,
-            "class='article-video article-video--portrait'",
             'src="/img/blog-ai-work-design-hero-20260806.webp"',
             "<p>AIで資料も、Webサイトも、業務アプリも、驚くほど早く形になります。",
         ]
 
+        markers.append("class='article-video article-video--portrait'")
         positions = [page.index(marker) for marker in markers]
 
         self.assertEqual(positions, sorted(positions))

@@ -17,15 +17,7 @@ AIでWebページを作れるようになると、次に出てくるのが「こ
 
 でも、最初から全部を理解する必要はありません。大切なのは、**いま作っているものが「見せるページ」なのか、「試しに使ってもらう仕組み」なのか、「お客様の情報を預かる本番サービス」なのか**を分けることです。
 
-まずは約49秒の動画で、結論をつかんでください。
 
-<figure class="publishing-video">
-  <video controls playsinline preload="metadata" poster="/img/blog-ai-site-publishing-hero-20260722.png">
-    <source src="/videos/ai-site-publishing-guide-20260722.mp4" type="video/mp4">
-    お使いのブラウザでは動画を再生できません。
-  </video>
-  <figcaption>7枚の要点版スライドを動画にしました。音を出さなくても内容を追えます。</figcaption>
-</figure>
 
 <div class="publishing-downloads" aria-label="比較資料のダウンロード">
   <a href="/downloads/ai-site-publishing-guide-7slides-20260722.pptx" download>7枚の要点版スライドをダウンロード</a>
@@ -222,3 +214,13 @@ main>header h1{overflow-wrap:anywhere;}
 .publishing-note{margin-top:22px;color:#5f6f82;font-size:.9rem;}
 @media (max-width:640px){.publishing-downloads{grid-template-columns:1fr}.publishing-video video{border-radius:10px}.publishing-cta{padding:18px}}
 </style>
+
+まずは約49秒の動画で、結論をつかんでください。
+
+<figure class="publishing-video">
+  <video controls playsinline preload="metadata" poster="/img/blog-ai-site-publishing-hero-20260722.png">
+    <source src="/videos/ai-site-publishing-guide-20260722.mp4" type="video/mp4">
+    お使いのブラウザでは動画を再生できません。
+  </video>
+  <figcaption>7枚の要点版スライドを動画にしました。音を出さなくても内容を追えます。</figcaption>
+</figure>

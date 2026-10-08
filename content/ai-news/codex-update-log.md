@@ -1,11 +1,11 @@
 ---
 title: "今日のAIニュース5とCodex"
 date: "2026-08-21"
-date_modified: "2026-10-08"
+date_modified: "2026-10-09"
 content_series: codex-update-log
-source_period: "September 28–October 2, 2026"
-source_fingerprint: "2390a1cde67a342a0b38a2a520a9c0eaf148366a7c35f225a0e4f36881fab7e3"
-source_release_tag: "rust-v0.161.0"
+source_period: "October 5–9, 2026"
+source_fingerprint: "c93ec4a5c3cb0f029e33c5e849767099d76fdb3bfc80e08041e1157f1299df45"
+source_release_tag: "rust-v0.162.0"
 image: "/img/blog-codex-update-log-hero-20260830.png"
 image_alt: "巨大な水晶のAI脳を、10個の光るニュースホールドで登り、紙のヤギが見守る和紙の風景"
 hero_image: false
@@ -18,10 +18,10 @@ action: "使えそうな機能を1つ試す"
 ---
 
 <!-- CODEX_UPDATE_CURRENT:BEGIN -->
-<!-- source-fingerprint: 2390a1cde67a342a0b38a2a520a9c0eaf148366a7c35f225a0e4f36881fab7e3 -->
+<!-- source-fingerprint: c93ec4a5c3cb0f029e33c5e849767099d76fdb3bfc80e08041e1157f1299df45 -->
 <section class="codex-update-guide" aria-labelledby="codex-update-guide-title">
 <h2 id="codex-update-guide-title">Codex新機能と活用例</h2>
-<p class="codex-update-guide__date">更新日：<time datetime="2026-10-08">2026年10月8日</time></p>
+<p class="codex-update-guide__date">更新日：<time datetime="2026-10-09">2026年10月9日</time></p>
 </section>
 
 
@@ -30,12 +30,12 @@ action: "使えそうな機能を1つ試す"
 <span class="update-card__rank" aria-hidden="true">1</span>
 <div class="update-card__heading">
 <p class="update-card__eyebrow">CODEX</p>
-<h2 id="codex-feature-1-title" class="codex-feature-title"><span class="visually-hidden">1. </span>音声に使うマイクとスピーカーを選ぶ</h2>
+<h2 id="codex-feature-1-title" class="codex-feature-title"><span class="visually-hidden">1. </span>GPT-6.1 SolをUltrafastで使う</h2>
 </div></header>
 <div class="update-card__body">
-<p class="update-card__summary">音声会話で使うマイク、スピーカー、マイク入力チャンネルを選び、設定を端末に保存できます。たとえば、地域の講座でヘッドセットを使うなら音声機器を選択し、聞き取りやすさを確認してから資料作成を進めます。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
-<p class="update-card__context">Codex CLI 0.161.0の更新です。利用中の環境で動作を確認してください。</p>
-<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.161.0" target="_blank" rel="noopener">公式情報</a></p>
+<p class="update-card__summary">CodexとChatGPT Workで、GPT-6.1 Solの文章生成を速めるUltrafastモードが案内されました。たとえば、地域の講座資料を何度も直すなら対象プランか確認し、速度モードが使える環境で待ち時間と出来上がりを比べます。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
+<p class="update-card__context">Pro $500と対象のEnterprise・Eduプラン向けです。すべての契約で使えるわけではありません。</p>
+<p class="update-card__source"><a href="https://learn.chatgpt.com/docs/whats-new/october-5-9-2026" target="_blank" rel="noopener">公式情報</a></p>
 </div></section>
 
 <section class="codex-feature-card update-card" data-update-kind="codex" data-update-index="2" aria-labelledby="codex-feature-2-title">
@@ -43,12 +43,12 @@ action: "使えそうな機能を1つ試す"
 <span class="update-card__rank" aria-hidden="true">2</span>
 <div class="update-card__heading">
 <p class="update-card__eyebrow">CODEX</p>
-<h2 id="codex-feature-2-title" class="codex-feature-title"><span class="visually-hidden">2. </span>作業再開時に最新の履歴を引き継ぐ</h2>
+<h2 id="codex-feature-2-title" class="codex-feature-title"><span class="visually-hidden">2. </span>別の作業用フォルダを作って変更を分ける</h2>
 </div></header>
 <div class="update-card__body">
-<p class="update-card__summary">再開したチャットに最新の保存済み履歴を含めるよう修正されました。たとえば、途中で中断した学校向け資料の作成を再開するなら直前の指示と進捗が引き継がれているか確かめて、残りの作業を依頼します。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
-<p class="update-card__context">Codex CLI 0.161.0の更新です。利用中の環境で動作を確認してください。</p>
-<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.161.0" target="_blank" rel="noopener">公式情報</a></p>
+<p class="update-card__summary">信頼済みローカルプロジェクトから、管理対象のGit worktreeを作成・一覧表示するツールが加わりました。たとえば、お店のサイト改修と別の修正を並行するならworktree機能が有効か確認して作業場所を分け、元の変更を保ったまま検証します。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
+<p class="update-card__context">CLI 0.162.0でworktree機能が有効な環境が対象です。</p>
+<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.162.0" target="_blank" rel="noopener">公式情報</a></p>
 </div></section>
 
 <section class="codex-feature-card update-card" data-update-kind="codex" data-update-index="3" aria-labelledby="codex-feature-3-title">
@@ -56,12 +56,25 @@ action: "使えそうな機能を1つ試す"
 <span class="update-card__rank" aria-hidden="true">3</span>
 <div class="update-card__heading">
 <p class="update-card__eyebrow">CODEX</p>
-<h2 id="codex-feature-3-title" class="codex-feature-title"><span class="visually-hidden">3. </span>Windowsでの起動と相対パス処理を改善</h2>
+<h2 id="codex-feature-3-title" class="codex-feature-title"><span class="visually-hidden">3. </span>会話の一部分を選んでコピーしやすく</h2>
 </div></header>
 <div class="update-card__body">
-<p class="update-card__summary">Windowsの管理者権限ターミナルでの起動と、サンドボックス内PowerShellの相対パス処理が修正されました。たとえば、地域企業のWindows PCで開発ツールを使うなら該当環境で以前失敗した起動やパス指定を再確認し、結果を記録します。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
-<p class="update-card__context">Codex CLI 0.161.0の更新です。利用中の環境で動作を確認してください。</p>
-<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.161.0" target="_blank" rel="noopener">公式情報</a></p>
+<p class="update-card__summary">会話ブロックの移動とコピー、選択箇所のコピー、マウスホイールのスクロール速度調整が追加されました。たとえば、学校向け資料づくりの結果を共有するなら必要な会話ブロックを選び、コピーした内容を確認して共有用のメモへまとめます。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
+<p class="update-card__context">Codex CLI 0.162.0の更新です。利用中の環境で動作を確認してください。</p>
+<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.162.0" target="_blank" rel="noopener">公式情報</a></p>
+</div></section>
+
+<section class="codex-feature-card update-card" data-update-kind="codex" data-update-index="4" aria-labelledby="codex-feature-4-title">
+<header class="update-card__header">
+<span class="update-card__rank" aria-hidden="true">4</span>
+<div class="update-card__heading">
+<p class="update-card__eyebrow">CODEX</p>
+<h2 id="codex-feature-4-title" class="codex-feature-title"><span class="visually-hidden">4. </span>Windowsのファイル操作と改行保持を修正</h2>
+</div></header>
+<div class="update-card__body">
+<p class="update-card__summary">Windows 10の通常のドライブ文字パスのアクセスが修正され、ファイル更新時の既存CRLF改行も保持されます。たとえば、地域企業のWindows PCで既存ファイルを修正するなら以前失敗したパスでの操作を確かめ、差分に不要な改行変更がないか確認します。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
+<p class="update-card__context">Codex CLI 0.162.0の更新です。利用中の環境で動作を確認してください。</p>
+<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.162.0" target="_blank" rel="noopener">公式情報</a></p>
 </div></section>
 
 ## 公式情報
@@ -73,6 +86,11 @@ action: "使えそうな機能を1つ試す"
 ## 過去のアップデート要約
 
 <!-- CODEX_UPDATE_ARCHIVE:BEGIN -->
+<!-- source-fingerprint: 2390a1cde67a342a0b38a2a520a9c0eaf148366a7c35f225a0e4f36881fab7e3 -->
+### 2026年10月8日確認：音声機器と作業再開の改善
+
+CLI 0.161.0を確認。音声機器の選択、再開時の最新履歴の引継ぎ、Windowsの起動と相対パス処理の修正を紹介しました。
+
 <!-- source-fingerprint: 0b7454d97b53912cefa1fea64cfd08b04579911a7e88cf742f2b5c0614aa1ac5 -->
 ### 2026年10月6日確認：クラウド環境と端末をまたぐ作業
 

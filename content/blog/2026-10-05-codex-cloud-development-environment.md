@@ -1,7 +1,7 @@
 ---
-title: "SSDはいらない、と思った。Codex Cloudを試して、結局2TBを増設する話"
+title: "自動化できていなかったのは、開発環境だった｜Codex CloudとSSDの話"
 date: 2026-10-05
-updated: 2026-10-06
+updated: 2026-10-08
 authorship_note: "※内容は運営者が考え、AIで整えています。"
 role: ブログ / Codex・開発環境
 gen_by: 由井辰美 / AI相談
@@ -11,7 +11,7 @@ status: published
 ---
 
 <figure>
-<img src="/img/blog-cloud-ssd-hero-20261005.webp" alt="PCの部品と、スマホから頼めるクラウドの仕事場" width="1672" height="941" decoding="async">
+<img class="cloud-ssd-hero" src="/img/blog-cloud-ssd-hero-20261005.webp" alt="PCの部品と、スマホから頼めるクラウドの仕事場" width="1672" height="941" decoding="async">
 <figcaption>PCへの依存を減らす。そのつもりが、話には続きがあった。挿絵は説明用のイメージです。</figcaption>
 </figure>
 

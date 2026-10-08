@@ -4,7 +4,9 @@
 
 AI講座・業務改善相談の案内、ブログ、制作実績を提供する。確認済み公開URLは https://aiclimb.aiclimb.workers.dev 。独自ドメイン未設定のため、このURLを使用する。公開先は共通Cloudflare台帳の `work/genspark-profile-edit/cloudflare-runtime`。事業ルートには別作業の差分があるため、一括同期しない。
 
-今回、ブログ冒頭のリール6記事を本文末尾へ移動した。`site/build_site.py` の今後の出力順序も修正。既存公開550ファイルを照合し、対象HTML6件だけを変更、残り544件とWorkerは同一。動画・画像・本文の内容を維持している。
+10月9日版AIニュース5件とCodex公式週次（October 5–9, 2026）・CLI 0.162.0の更新を作成し、ローカル検証済み。公開は下記の基準版から行う予定で、この記録時点では未実施。ニュース・Codex本文、最新シェル、550ファイルのbaseline manifestを更新した。候補の公開差分はトップ・独立ニュース・サイトマップの3ファイル、残り547ファイルとWorkerは同一。指定テスト51件とassets検証成功。記録は `outputs/daily-20261009/`、次はPR統合・確定SHAの再生成・中央ガード・公開と本番確認。
+
+基準となる直前の正常公開版は、ブログ冒頭のリール6記事を本文末尾へ移動した版。`site/build_site.py` の今後の出力順序も修正済みで、動画・画像・本文の内容を維持している。
 
 - 実装: `core/blog_video_order.py`、`scripts/build_blog_reels_last_release.py`、`deployment/blog-reels-last.json`、記事原稿・表示順テスト。
 - 検証: 記事テスト16件、Workerテスト7件成功。全550ファイルのハッシュを検証。

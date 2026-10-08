@@ -1,46 +1,46 @@
 {
-  "date": "2026-10-08",
-  "research_note": "日本時間2026年10月6日朝〜10月8日朝の直近48時間を調査。公式発表5件・5発表元・異なる5URLを選定し、7日への拡大は行っていません。publishedは公式発表日です。Googleは10月6日発表、東京都会議は10月15日予定、GMO掲載開始は9月30日、計算基盤実証の開始は8月と発表日を区別しています。",
+  "date": "2026-10-09",
+  "research_note": "日本時間2026年10月7日朝〜10月9日朝の直近48時間を調査。公式発表5件・5発表元・異なる5URLを選び、7日への拡大は行っていません。publishedは発表ページの日付です。Anthropicは米国表記10月7日、他4件は10月8日。AI insideの会議は10月6日、ボイットの受賞は10月7日、ロボット実験は10月15・16日の予定と区別しています。",
   "items": [
     {
-      "title": "東京都、学校での生成AI活用を議論へ",
-      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026100710",
-      "source": "東京都教育庁",
+      "title": "Claude Haiku 5.5、要約や分類を速く",
+      "url": "https://www.anthropic.com/claude-haiku-5-5",
+      "source": "Anthropic",
       "published": "2026-10-07",
-      "kid_summary": "東京都は10月15日の総合教育会議で、AI時代の学びや学校での生成AI活用を議論すると発表しました。",
-      "japan_angle": "先生や地域の教育関係者が、AIに任せる作業と人が教える役割を考える材料になります。"
+      "kid_summary": "Anthropicは、短い要約や分類など、繰り返しの多い仕事に向けた小型AI「Claude Haiku 5.5」を公開しました。",
+      "japan_angle": "学校の配布文書の要約や地域企業の問い合わせ分類で、費用と速さを比べながら試す候補になります。"
     },
     {
-      "title": "PLaMo翻訳、53言語と会議翻訳に対応",
-      "url": "https://www.preferred.jp/ja/news/pr20261007",
-      "source": "Preferred Networks",
-      "published": "2026-10-07",
-      "kid_summary": "AI翻訳の対応言語が53言語に増え、15言語のオンライン会議を文字に起こして翻訳する機能も正式提供されました。",
-      "japan_angle": "地域企業の海外商談や外国人スタッフとの会議で、言葉の壁を減らす選択肢になります。"
+      "title": "さくら、企業専用の生成AI基盤を提供",
+      "url": "https://cloud.sakura.ad.jp/news/2026/10/08/ai-engine-private-edition-release/",
+      "source": "さくらインターネット",
+      "published": "2026-10-08",
+      "kid_summary": "企業が使う生成AIモデルを専有GPU上で動かし、基盤の構築から運用・監視まで任せられるサービスが始まりました。",
+      "japan_angle": "地域企業が社内向けAIを作る際に、閉域接続や運用負担を含めて検討できる選択肢です。"
     },
     {
-      "title": "Gemini、身近な文字やスマホ操作を音声で支援",
-      "url": "https://blog.google/intl/ja-jp/company-news/technology/simpleguide/",
-      "source": "Google Japan",
-      "published": "2026-10-06",
-      "kid_summary": "Googleは、カメラや画面を共有して音声の案内を受ける「シンプルガイド」を順次提供し、介護向けガイドも公開しました。",
-      "japan_angle": "高齢の家族のスマホ練習や介護職員の文書下書きに役立つ候補ですが、内容は人が確認します。"
+      "title": "DX Suite、書類の読取りから業務実行へ",
+      "url": "https://prtimes.jp/main/html/rd/p/000000231.000024457.html",
+      "source": "AI inside",
+      "published": "2026-10-08",
+      "kid_summary": "AI insideは10月6日の会議で、書類の読取り、業務実行、承認や判断の記録をまとめた新しいDX Suiteを発表しました。",
+      "japan_angle": "地域企業の事務を見直すとき、入力だけでなく確認や承認まで一続きに考える参考になります。"
     },
     {
-      "title": "Claudeからムームードメインを選んで接続",
-      "url": "https://pepabo.com/news/press/202610071300/",
-      "source": "GMOペパボ",
-      "published": "2026-10-07",
-      "kid_summary": "ムームードメインが9月30日からClaudeの認証済み接続先に掲載されたことを、GMOペパボが発表しました。",
-      "japan_angle": "地域のお店のサイト名を会話で探す手助けになりますが、ドメイン購入の決済は利用者自身が確定します。"
+      "title": "声で現場の仕事を支えるVOYT CONNECT",
+      "url": "https://prtimes.jp/main/html/rd/p/000000017.000141407.html",
+      "source": "ボイット",
+      "published": "2026-10-08",
+      "kid_summary": "ボイットは、会話の記録・要約・翻訳や外部システムの操作を声で行う仕組みを紹介し、コンテストの審査員特別賞を受けました。",
+      "japan_angle": "手を離しにくい店舗や福祉の現場で、画面入力を減らす工夫を考える材料になります。"
     },
     {
-      "title": "AIの計算を電力状況に合わせて移す実証",
-      "url": "https://www.softbank.jp/corp/news/press/sbkk/2026/20261007_01/",
-      "source": "MESH-X・ソフトバンクなど12者",
-      "published": "2026-10-07",
-      "kid_summary": "企業と大学の12者が、電力や設備の空きに合わせてAIの計算処理を移す共同実証を8月から始めたと発表しました。",
-      "japan_angle": "地域の電力と計算設備を生かす取り組みで、地域企業が使うAI基盤の将来を考える材料になります。"
+      "title": "街中でAIロボットが飲料を手渡す実験へ",
+      "url": "https://www.tmip.jp/en/report/13934",
+      "source": "TMIP・RLWRLD・三菱地所",
+      "published": "2026-10-08",
+      "kid_summary": "3者は10月15・16日に大手町で、AIロボットが飲料を手渡し、空容器を回収する実証実験を行うと発表しました。",
+      "japan_angle": "地域の店や施設でも、物を渡す・片づける作業を人とロボットで分担する将来像を考えるきっかけになります。"
     }
   ]
 }

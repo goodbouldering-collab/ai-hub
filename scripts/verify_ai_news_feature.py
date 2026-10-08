@@ -24,18 +24,20 @@ def verify(read):
     for link in feature.select('.ai-news-feature__reading li a'):
         assert page.select_one("#" + link["href"].split("#")[1]), "Headline destination missing"
     assert feature.select_one('a.ai-news-feature__more[href="/ai-news/"]')
-    latest = feature.select('.home-updates__blog li a')
+    latest = home.select('#latest-blog li a')
     assert len(latest) == 2, "Home must show two recent blog posts"
     assert len(home.select('#blog')) == 1 and len(home.select('#blog-carousel')) == 1
     assert len(home.select('#blog-carousel .blog-card')) == 7
     assert len(home.select('#latest-blog')) == 1
-    assert home.select_one('#blog').find_next_sibling()['id'] == 'speaker'
+    assert feature.select_one('#blog-carousel')
+    assert home.select_one('#latest-blog').find_next_sibling()['id'] == 'speaker'
+    assert not feature.select('section'), 'Daily refresh must not truncate a nested section'
     expected = sorted(blog.select('a.tr-card'), key=lambda card: card.select_one('.tr-date').get_text(), reverse=True)[:2]
     for link, card in zip(latest, expected):
         assert link['href'] == urljoin('/blog/', card['href'])
         assert link.select_one('span').get_text() == card.select_one('.tr-title').get_text()
         assert link.select_one('time')['datetime'] == card.select_one('.tr-date').get_text()
-    assert feature.select_one('#latest-blog a[href="/blog/"]')
+    assert home.select_one('#latest-blog a[href="/blog/"]')
     assert not home.select('a[href*="/blog/codex-update-log"]')
     assert not blog.select('a[href*="codex-update-log"]')
     assert "/blog/codex-update-log" not in sitemap

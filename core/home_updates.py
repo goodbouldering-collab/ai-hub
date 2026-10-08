@@ -85,24 +85,30 @@ def apply_home_updates(document, blog_index, css):
     previous = re.fullmatch(r'<div class="home-updates__news">(.*?)</div><!-- /home-updates-news -->.*', inner, re.S)
     if previous:
         inner = previous[1]
+    carousel = render_home_blog_list(blog_index)
+    # A div keeps the news section flat for the daily shell replacement.
+    carousel = carousel.replace("<section class='focus-block' id='blog'>", "<div class='home-updates__carousel' id='blog' role='region' aria-label='ブログ'>", 1)
+    carousel = carousel.removesuffix('</section>') + '</div>'
     combined = (
         feature[1] + '<div class="home-updates__news">' + inner + '</div><!-- /home-updates-news -->'
-        '<div id="latest-blog" class="home-updates__blog" role="region" aria-labelledby="home-blog-title">'
-        '<h2 id="home-blog-title">最新ブログ</h2>'
-        '<a class="home-updates__more" href="/blog/">一覧を見る<b aria-hidden="true">→</b></a>'
-        f'<ol>{rows}</ol></div>' + feature[3]
+        + carousel + feature[3]
     )
     document = document[:feature.start()] + combined + document[feature.end():]
-    # The full list keeps the original navigation anchor and position.
-    pattern = r"<section\b[^>]*id=['\"]blog['\"][^>]*>.*?</section>"
-    section = render_home_blog_list(blog_index)
+    latest = (
+        '<section id="latest-blog" class="focus-block home-updates__blog" aria-labelledby="home-blog-title">'
+        '<h2 id="home-blog-title">最新ブログ</h2>'
+        '<a class="home-updates__more" href="/blog/">一覧を見る<b aria-hidden="true">→</b></a>'
+        f'<ol>{rows}</ol></section>'
+    )
+    # Replace either the original carousel section or the already-moved list.
+    pattern = r"<section\b[^>]*id=['\"](?:blog|latest-blog)['\"][^>]*>.*?</section>"
     if re.search(pattern, document, re.S):
-        document = re.sub(pattern, lambda _: section, document, flags=re.S)
+        document = re.sub(pattern, lambda _: latest, document, flags=re.S)
     else:
         speaker = re.search(r"<section\b[^>]*id=['\"]speaker['\"][^>]*>", document)
         if not speaker:
             raise ValueError('Expected speaker section as home blog insertion point')
-        document = document[:speaker.start()] + section + document[speaker.start():]
+        document = document[:speaker.start()] + latest + document[speaker.start():]
     style = f'<style id="home-updates-style">{css}</style>'
     pattern = r'<style\b[^>]*id=[\'"]home-updates-style[\'"][^>]*>.*?</style>'
     if re.search(pattern, document, re.S):

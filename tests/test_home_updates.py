@@ -15,8 +15,15 @@ class HomeUpdatesTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             latest_published_posts(card('one', '2026-09-28') + card('two', '2026-09-18').replace('./two.html', 'https://example.com/two.html'))
 
+    def test_missing_list_is_restored_before_speaker(self):
+        shell = '<head></head><main><section id="ai-news">news</section><section id="speaker">profile</section></main>'
+        result = apply_home_updates(shell, card('newest', '2026-10-08') + card('older', '2026-10-07'), 'css')
+        self.assertLess(result.index("id='blog'"), result.index('id="speaker"'))
+        self.assertIn("id='blog-carousel'", result)
+        self.assertEqual(apply_home_updates(result, card('newest', '2026-10-08') + card('older', '2026-10-07'), 'css'), result)
+
     def test_idempotent_transform_preserves_other_content_and_escapes_titles(self):
-        shell = '<head><style>keep</style></head><main><section id="top">hero</section><section id="ai-news">news</section><section id="speaker">profile</section><section id="blog">large carousel</section></main>'
+        shell = '<head><style>keep</style></head><main><section id="top">hero</section><section id="ai-news">news</section><section id="blog">large carousel</section><section id="speaker">profile</section></main>'
         index = card('newest', '2026-09-28', '&lt;AI&gt; &amp; "news"') + card('older', '2026-09-18')
         result = apply_home_updates(shell, index, 'css')
         self.assertEqual(apply_home_updates(result, index, 'css'), result)
@@ -24,7 +31,11 @@ class HomeUpdatesTests(unittest.TestCase):
         self.assertIn('<section id="top">hero</section>', result)
         self.assertIn('&lt;AI&gt; &amp; &quot;news&quot;', result)
         self.assertNotIn('large carousel', result)
-        self.assertEqual(result.count('id="blog"'), 1)
+        self.assertEqual(result.count('id="latest-blog"'), 1)
+        self.assertEqual(result.count("id='blog'"), 1)
+        self.assertIn("id='blog-carousel'", result)
+        self.assertLess(result.index("id='blog'"), result.index('id="speaker"'))
+        self.assertEqual(result.count("class='blog-card'"), 2)
         self.assertEqual(result.count('id="home-updates-style"'), 1)
 
 

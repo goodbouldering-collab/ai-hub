@@ -4256,6 +4256,32 @@ def render_content_page(
         normalized_lead_quote = lead_quote.replace("\r\n", "\n").replace("\r", "\n")
         safe_lead_quote = html.escape(normalized_lead_quote).replace("\n", "<br>")
         parts.append(f"<blockquote class='article-lead-quote'>{safe_lead_quote}</blockquote>")
+    if kind == "blog" and meta.get("hero_image") and image_url:
+        image_alt = html.escape(str(meta.get("image_alt") or title), quote=True)
+        image_caption = html.escape(str(meta.get("image_caption") or ""))
+        parts.append(
+            "<figure class='article-hero'>"
+            f"<img src='{html.escape(image_url, quote=True)}' alt='{image_alt}' fetchpriority='high' decoding='async'>"
+            + (f"<figcaption>{image_caption}</figcaption>" if image_caption else "")
+            + "</figure>"
+        )
+    if kind == "lecture":
+        parts.append(_render_lecture_overview(title, meta, toc))
+    # TOC: h2 が 3 個以上あれば出す
+    if len(toc) >= 3 and kind != "speaker":
+        toc_id = " id='lecture-toc'" if kind == "lecture" else ""
+        toc_tag = (
+            "ul"
+            if kind == "blog" and str(meta.get("content_series") or "") == "codex-update-log"
+            else "ol"
+        )
+        parts.append(
+            f"<div class='content-toc'{toc_id}><div class='toc-label'>🗂 目次</div><{toc_tag}>"
+        )
+        for slug, text in toc:
+            parts.append(f"<li><a href='#{slug}'>{html.escape(text)}</a></li>")
+        parts.append(f"</{toc_tag}></div>")
+    parts.append(body_html)
     video_url = str(meta.get("video") or "").strip()
     if kind == "blog" and video_url:
         video_poster = str(meta.get("video_poster") or "").strip()
@@ -4286,32 +4312,6 @@ def render_content_page(
         )
         if video_fullscreen_mode:
             parts.append(ARTICLE_VIDEO_FULLSCREEN_JS)
-    if kind == "blog" and meta.get("hero_image") and image_url:
-        image_alt = html.escape(str(meta.get("image_alt") or title), quote=True)
-        image_caption = html.escape(str(meta.get("image_caption") or ""))
-        parts.append(
-            "<figure class='article-hero'>"
-            f"<img src='{html.escape(image_url, quote=True)}' alt='{image_alt}' fetchpriority='high' decoding='async'>"
-            + (f"<figcaption>{image_caption}</figcaption>" if image_caption else "")
-            + "</figure>"
-        )
-    if kind == "lecture":
-        parts.append(_render_lecture_overview(title, meta, toc))
-    # TOC: h2 が 3 個以上あれば出す
-    if len(toc) >= 3 and kind != "speaker":
-        toc_id = " id='lecture-toc'" if kind == "lecture" else ""
-        toc_tag = (
-            "ul"
-            if kind == "blog" and str(meta.get("content_series") or "") == "codex-update-log"
-            else "ol"
-        )
-        parts.append(
-            f"<div class='content-toc'{toc_id}><div class='toc-label'>🗂 目次</div><{toc_tag}>"
-        )
-        for slug, text in toc:
-            parts.append(f"<li><a href='#{slug}'>{html.escape(text)}</a></li>")
-        parts.append(f"</{toc_tag}></div>")
-    parts.append(body_html)
     if kind == "lecture":
         parts.append(_render_lecture_course_nav(lecture_neighbors))
     parts.append("</div>")

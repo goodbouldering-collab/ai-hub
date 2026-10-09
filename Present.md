@@ -4,7 +4,7 @@
 
 AI講座・業務改善相談の案内、ブログ、制作実績を提供する。確認済み公開URLは https://aiclimb.aiclimb.workers.dev 。独自ドメイン未設定のため、このURLを使用する。公開先は共通Cloudflare台帳の `work/genspark-profile-edit/cloudflare-runtime`。事業ルートには別作業の差分があるため、一括同期しない。
 
-今回の管理制作更新: myblog/myreelに沿う制作UIと、同じブラウザで365日共用する暗号化APIキー保存を実装。既存公開Workerへ認証判定を委譲し、既存記事・ニュース・公開資産を保全する。ソースとbundleの管理認証・保存再利用・UI保護・公開asset引継ぎ試験は2件成功、共通API/UIは53件成功。実キー生成と本番の管理者受入は未実施。統合・公開の工程は `tmp/delivery/20261009-my-workflows-saved-key.json`、仕様・再現手順は `deployment/my-workflows/README.md` を参照。
+今回の管理制作更新: 管理画面のmyblog/myreel制作機能とAPIキー保存を公開済み。PR #117/#118を統合し、ローカル検証と本番のトップ・既存記事・ログイン画面への到達確認が成功。本人ログイン後の実キー保存・再訪・生成は未検証。詳細な実行記録は事業内の既存運用記録で継続する。
 直前の作業: 「その資料、毎回添付していませんか？ CodexとWorkers AIで減らせる手間」を公開・本番検証済み。承認稿と説明画像5点を掲載し、トップ・ブログ一覧・サイトマップを更新。具体的な相談案件と個人名は非掲載。
 
 - 公開ソースSHA: `d3cb6fae41734f91e7716e5e1aaed26c793e9645`。PR https://github.com/goodbouldering-collab/ai-hub/pull/115 をmainへ統合。

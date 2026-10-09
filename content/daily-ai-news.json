@@ -1,46 +1,46 @@
 {
-  "date": "2026-10-09",
-  "research_note": "日本時間2026年10月7日朝〜10月9日朝の直近48時間を調査。公式発表5件・5発表元・異なる5URLを選び、7日への拡大は行っていません。publishedは発表ページの日付です。Anthropicは米国表記10月7日、他4件は10月8日。AI insideの会議は10月6日、ボイットの受賞は10月7日、ロボット実験は10月15・16日の予定と区別しています。",
+  "date": "2026-10-10",
+  "research_note": "日本時間2026年10月8日朝〜10月10日朝の直近48時間を調査し、公式発表5件・異なる5URLを選定。7日への拡大なし。publishedは発表ページの日付です。Google日本語版は10月9日掲載、元発表は米国時間10月8日。NotePMは10月8日発表で機能提供は9月6日、dott講座は10月30日の予定、GMOのプロジェクト開始決定は9月24日と区別しています。",
   "items": [
     {
-      "title": "Claude Haiku 5.5、要約や分類を速く",
-      "url": "https://www.anthropic.com/claude-haiku-5-5",
-      "source": "Anthropic",
-      "published": "2026-10-07",
-      "kid_summary": "Anthropicは、短い要約や分類など、繰り返しの多い仕事に向けた小型AI「Claude Haiku 5.5」を公開しました。",
-      "japan_angle": "学校の配布文書の要約や地域企業の問い合わせ分類で、費用と速さを比べながら試す候補になります。"
+      "title": "NTT、開発の遅れをAIで早めに見つける",
+      "url": "https://www.ntt-tx.co.jp/whatsnew/2026/261008.html",
+      "source": "NTTテクノクロス",
+      "published": "2026-10-08",
+      "kid_summary": "NTTテクノクロスは、報告書や議事録をAIで分析し、開発の遅れや品質低下の兆候を示す「PromanAIde」を提供開始しました。",
+      "japan_angle": "地域企業がシステム開発を頼む際、進捗報告から確認すべき課題を早めに見つける支援として検討できます。"
     },
     {
-      "title": "さくら、企業専用の生成AI基盤を提供",
-      "url": "https://cloud.sakura.ad.jp/news/2026/10/08/ai-engine-private-edition-release/",
-      "source": "さくらインターネット",
-      "published": "2026-10-08",
-      "kid_summary": "企業が使う生成AIモデルを専有GPU上で動かし、基盤の構築から運用・監視まで任せられるサービスが始まりました。",
-      "japan_angle": "地域企業が社内向けAIを作る際に、閉域接続や運用負担を含めて検討できる選択肢です。"
+      "title": "Google、仕事をまとめて支えるAIを発表",
+      "url": "https://cloud.google.com/blog/ja/products/ai-machine-learning/welcome-to-gemini-at-work-2026?hl=ja",
+      "source": "Google Cloud",
+      "published": "2026-10-09",
+      "kid_summary": "Googleは、質問への回答から資料や画像の作成、コードの実行まで扱う「Geminiエージェント」を発表しました。",
+      "japan_angle": "地域企業や学校では、メールと資料作成をまたぐ仕事で何を任せられるか、権限や提供条件と合わせて検討できます。"
     },
     {
-      "title": "DX Suite、書類の読取りから業務実行へ",
-      "url": "https://prtimes.jp/main/html/rd/p/000000231.000024457.html",
-      "source": "AI inside",
+      "title": "NotePM、いつものAIから社内資料を検索",
+      "url": "https://prtimes.jp/main/html/rd/p/000000264.000032205.html",
+      "source": "トヨクモ・プロジェクト・モード",
       "published": "2026-10-08",
-      "kid_summary": "AI insideは10月6日の会議で、書類の読取り、業務実行、承認や判断の記録をまとめた新しいDX Suiteを発表しました。",
-      "japan_angle": "地域企業の事務を見直すとき、入力だけでなく確認や承認まで一続きに考える参考になります。"
+      "kid_summary": "NotePMは、外部AIとの会話から社内資料を検索し、議事録などを書き込める連携機能を紹介しました。",
+      "japan_angle": "地域企業や福祉施設で、職員が手順書を探す負担を減らす候補になり、閲覧・書込みの権限も確認できます。"
     },
     {
-      "title": "声で現場の仕事を支えるVOYT CONNECT",
-      "url": "https://prtimes.jp/main/html/rd/p/000000017.000141407.html",
-      "source": "ボイット",
-      "published": "2026-10-08",
-      "kid_summary": "ボイットは、会話の記録・要約・翻訳や外部システムの操作を声で行う仕組みを紹介し、コンテストの審査員特別賞を受けました。",
-      "japan_angle": "手を離しにくい店舗や福祉の現場で、画面入力を減らす工夫を考える材料になります。"
+      "title": "大学教職員向け、AI教育の学び直し講座へ",
+      "url": "https://prtimes.jp/main/html/rd/p/000000002.000192366.html",
+      "source": "dott",
+      "published": "2026-10-09",
+      "kid_summary": "dottは、大学教職員向けにAIの基礎と活用を考える無料オンライン講座を10月30日に開くと発表しました。",
+      "japan_angle": "学校でAIをどう教えるか悩む担当者が、教材や授業の見直しに必要な論点を学ぶ機会になります。"
     },
     {
-      "title": "街中でAIロボットが飲料を手渡す実験へ",
-      "url": "https://www.tmip.jp/en/report/13934",
-      "source": "TMIP・RLWRLD・三菱地所",
-      "published": "2026-10-08",
-      "kid_summary": "3者は10月15・16日に大手町で、AIロボットが飲料を手渡し、空容器を回収する実証実験を行うと発表しました。",
-      "japan_angle": "地域の店や施設でも、物を渡す・片づける作業を人とロボットで分担する将来像を考えるきっかけになります。"
+      "title": "GMOとGoogle Cloud、社内AI活用を共同推進",
+      "url": "https://prtimes.jp/main/html/rd/p/000005578.000000136.html",
+      "source": "GMOインターネットグループ",
+      "published": "2026-10-09",
+      "kid_summary": "GMOはGoogle Cloudと、社内でのAI活用を進め、得られた事例やノウハウを新サービスにつなぐ計画を発表しました。",
+      "japan_angle": "地域企業も、まず自社の繰り返し仕事で試し、使えた手順を蓄積して顧客支援へ広げる進め方を参考にできます。"
     }
   ]
 }

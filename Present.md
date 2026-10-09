@@ -4,8 +4,6 @@
 
 AI講座・業務改善相談の案内、ブログ、制作実績を提供する。確認済み公開URLは https://aiclimb.aiclimb.workers.dev 。独自ドメイン未設定のため、このURLを使用する。公開先は共通Cloudflare台帳の `work/genspark-profile-edit/cloudflare-runtime`。事業ルートには別作業の差分があるため、一括同期しない。
 
-今回の日次更新: 10月10日ニュース5件とCodex CLI 0.162.1を作成し、51テスト・assets検証成功。最新556資産を照合し、候補差分は3ファイルのみ。commit・統合・公開・本番確認を続ける。詳細は [日次記録](docs/daily-news-20261010-run.md)、公開後の結果は `outputs/daily-20261010/production-summary.json`。
-
 今回の管理制作更新: 管理画面のmyblog/myreel制作機能とAPIキー保存を公開済み。PR #117/#118を統合し、ローカル検証と本番のトップ・既存記事・ログイン画面への到達確認が成功。本人ログイン後の実キー保存・再訪・生成は未検証。詳細な実行記録は事業内の既存運用記録で継続する。
 直前の作業: 「その資料、毎回添付していませんか？ CodexとWorkers AIで減らせる手間」を公開・本番検証済み。承認稿と説明画像5点を掲載し、トップ・ブログ一覧・サイトマップを更新。具体的な相談案件と個人名は非掲載。
 
@@ -15,17 +13,17 @@ AI講座・業務改善相談の案内、ブログ、制作実績を提供する
 - 画面: 許可されたCodex内ブラウザで1440px/390px表示、画像・メニュー・トップと一覧からの記事遷移を確認。横はみ出しなし。専用Chrome Profile 1は接続未確認。
 - 公開URL: https://aiclimb.aiclimb.workers.dev/blog/2026-10-09-codex-workers-ai-workflow
 - 記録: [記事公開記録](docs/blog/2026-10-09-codex-workers-ai/README.md)。ルート `tmp/delivery/20261009-codex-workers-ai-blog.json` は公開後の文書更新前に `DELIVERY_VERIFIED`。
-- 残件・次回: 記事公開の残件なし。次回は `.codex-workers-ai-release-20261009/verification.json` を本番と照合してbaselineにする。制作worktreeはプレビュー親PID 47448（2026-10-11 13:08:01 JST終了予定）と検証証拠のため保持。別作業の未コミット差分は保全。
+- 残件・次回: 記事公開の残件なし。ブログ公開時のbaselineは日次版へ継承済み。次回は下記の日次公開版を本番と照合する。制作worktreeはプレビュー親PID 47448（2026-10-11 13:08:01 JST終了予定）と検証証拠のため保持。別作業の未コミット差分は保全。
 
-直前の公開: 10月9日版AIニュース5件とCodex公式週次（October 5–9, 2026）・CLI 0.162.0を公開・本番検証済み。ニュース・Codex本文、最新シェル、550ファイルのbaseline manifestを更新した。公開差分はトップ・独立ニュース・サイトマップの3ファイル、残り547ファイルとWorker・認証・API設定は同一。
+今回の日次公開: **10月10日版AIニュース5件とCodex CLI 0.162.1を公開・本番検証済み**。直近48時間の公式発表5件を採用し、ニュースとCodex本文、最新シェル、556ファイルのbaseline manifestを更新した。公開差分はトップ・独立ニュース・サイトマップの3ファイル、残り553ファイルと公開済み管理機能Worker・認証・API設定は維持。
 
-- 公開ソースSHA: `2d3743e821288e9f26f2403afeadb2d355e28c9d`。PR https://github.com/goodbouldering-collab/ai-hub/pull/113 をmainへ統合。
-- Cloudflare version: `364e48f9-b247-4290-9fb0-9cffa1bbd474`。Wrangler 4.143.1で既存bindingを保持。
-- 検証: 51テスト・assets・中央ForDeploy・live成功。本番23資産のSHA256一致、旧3URLの301、ブログ除外、ヒーロー直下3見出し、未認証APIの401を確認。
-- 画面: 専用Chrome Profile 1の接続は未確認。許可されたCodex内ブラウザでトップ・独立ページを1440px/390pxで確認し、横はみ出しなし、「もっと見る」の遷移成功。
+- 公開ソースSHA: `37d7abe8b1adceb242edb0641d1004eebc189951`。PR https://github.com/goodbouldering-collab/ai-hub/pull/120 をmainへ統合。
+- Cloudflare version: `ad6afa35-b1c3-4e9d-8c7a-93fa8ffbee5c`。Wrangler 4.143.1で既存bindingを保持、100%配信確認。
+- 検証: 指定51テスト＋管理Worker2テスト、assets・中央ForDeploy・live成功。主要18資産のSHA256一致、旧3URLの301、ブログ除外、ヒーロー直下3見出し、未認証API401を確認。
+- 画面: 専用Chrome Profile 1は未接続。許可済みCodex内ブラウザでトップ・独立ページを1440px/390pxで確認、横はみ出しなし、「もっと見る」遷移成功。
 - 公開URL: https://aiclimb.aiclimb.workers.dev/ai-news/ と https://aiclimb.aiclimb.workers.dev/ 。
-- 証拠: `outputs/daily-20261009/production-summary.json`、`.daily-news-release-20261009/verification.json`。ルート `tmp/delivery/daily-ai-news-20261009.json` は文書更新前にDELIVERY_VERIFIED。
-- 日次運用: PCとCodexアプリの既存処理で継続。baselineは上記の最新ブログ公開版を優先。別のGitHub定期ジョブは再開していない。
+- 証拠: `outputs/daily-20261010/production-summary.json`、`.daily-news-release-20261010/verification.json`、[日次記録](docs/daily-news-20261010-run.md)。ルート `tmp/delivery/daily-ai-news-20261010.json` は文書統合前にDELIVERY_VERIFIED。
+- 次回baseline: 登録公開元 `.daily-news-release-20261010/public` を最新本番・manifest・Workerと照合して使用。PCとCodexアプリの既存処理で継続し、別のGitHub定期ジョブは再開しない。今回の未完了は専用Chromeでの確認のみ。既存管理画面の本人ログイン後受入は別作業の残件として維持。
 
 さらに前の公開履歴: ブログ冒頭のリール6記事を本文末尾へ移動した版。`site/build_site.py` の今後の出力順序も修正済みで、動画・画像・本文の内容を維持している。
 

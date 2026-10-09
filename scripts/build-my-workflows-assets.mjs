@@ -3,7 +3,7 @@ const root = new URL('../', import.meta.url);
 const assets = {};
 for (const name of ['blog.html', 'blog.js', 'reel.html', 'reel.js', 'studio-core.js', 'styles.css', 'styles-content.css', 'styles-brand.css', 'content-studio.config.json']) {
   assets['/admin/apps/' + name] = {
-    body: await readFile(new URL('site/static/admin/apps/' + name, root), 'utf8'),
+    body: (await readFile(new URL('site/static/admin/apps/' + name, root), 'utf8')).replace(/\r\n/g, '\n'),
     type: name.endsWith('.html') ? 'text/html; charset=utf-8' : name.endsWith('.css') ? 'text/css; charset=utf-8' : name.endsWith('.json') ? 'application/json; charset=utf-8' : 'text/javascript; charset=utf-8',
   };
 }

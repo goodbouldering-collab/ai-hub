@@ -16,6 +16,40 @@
 .login-card button { border: 0; border-radius: 10px; padding: 12px 16px; font-weight: 800; cursor: pointer; }
 .login-error { min-height: 1.5em; color: #a33b2e; font-size: 12px; }
 .final-prompt { margin-top: 16px; }
+.entry-guide {
+  display: grid;
+  gap: 16px;
+  margin: 0 0 18px;
+  padding: 18px;
+  border: 1px solid #b8d8ca;
+  border-radius: 16px;
+  background: linear-gradient(135deg,#eef9f4 0%,#fffaf0 100%);
+}
+.entry-guide-head { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+.entry-guide-head h3 { margin: 5px 0 4px; font-size: 18px; line-height: 1.5; }
+.entry-guide-head p { max-width: 690px; margin: 0; color: var(--muted); font-size: 12px; line-height: 1.7; }
+.entry-guide-head button { flex: none; border: 0; border-radius: 10px; padding: 11px 14px; font-weight: 800; cursor: pointer; }
+.entry-guide-context { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.entry-guide-context article { padding: 13px 14px; border: 1px solid rgba(23,107,77,.13); border-radius: 12px; background: rgba(255,255,255,.82); }
+.entry-guide-context b { display: block; margin-bottom: 5px; color: var(--green); font-size: 11px; }
+.entry-guide-context p { margin: 0; font-size: 12px; line-height: 1.7; }
+.entry-guide-season strong { display: block; margin-bottom: 3px; color: #6f4a1d; font-size: 13px; }
+.entry-guide-block { display: grid; gap: 8px; }
+.entry-guide-block > b { color: var(--green); font-size: 12px; }
+.entry-guide-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.entry-guide-chips button { max-width: 100%; border: 1px solid #b8d8ca; border-radius: 999px; padding: 8px 11px; background: #fff; color: #234b40; font-size: 11px; font-weight: 800; line-height: 1.4; cursor: pointer; text-align: left; }
+.entry-guide-chips button:hover { border-color: var(--green); background: #f0faf5; }
+.entry-starter-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 10px; }
+.entry-starter-grid button { display: grid; gap: 5px; min-width: 0; padding: 13px; border: 1px solid #cad9d1; border-radius: 12px; background: #fff; color: inherit; cursor: pointer; text-align: left; }
+.entry-starter-grid button:hover,
+.entry-starter-grid button.selected { border-color: var(--green); box-shadow: 0 8px 22px rgba(23,107,77,.12); }
+.entry-starter-grid button.selected { outline: 2px solid rgba(23,107,77,.16); }
+.entry-starter-grid span { color: var(--green); font-size: 11px; font-weight: 900; }
+.entry-starter-grid b { overflow-wrap: anywhere; font-size: 13px; line-height: 1.55; }
+.entry-starter-grid small { color: var(--muted); font-size: 11px; line-height: 1.55; }
+.entry-story-questions { display: grid; gap: 6px; margin: 0; padding: 12px 12px 12px 30px; border-radius: 12px; background: rgba(255,255,255,.75); }
+.entry-story-questions li { font-size: 12px; line-height: 1.6; }
+.entry-guide-note { margin: 0; color: #795124; font-size: 11px; line-height: 1.65; }
 .trend-discovery { margin-top: 18px; padding: 16px; border: 1px solid #cfe1d7; border-radius: 14px; background: #f4faf7; }
 .trend-discovery-head { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
 .trend-discovery-head h3 { margin: 5px 0 4px; font-size: 16px; }
@@ -234,6 +268,12 @@
 }
 
 @media (max-width: 720px) {
+  .entry-guide { padding: 14px; }
+  .entry-guide-head { align-items: stretch; flex-direction: column; }
+  .entry-guide-head button { width: 100%; }
+  .entry-guide-context,.entry-starter-grid { grid-template-columns: 1fr; }
+  .entry-guide-chips { display: grid; }
+  .entry-guide-chips button { width: 100%; border-radius: 10px; }
   .studio-tabs { top: 63px; min-height: 48px; padding: 8px 12px; }
   .studio-tabs button,.studio-tabs a { flex: 1; padding: 8px 5px; font-size: 11px; text-align: center; }
   .api-key-panel { grid-template-columns: 1fr; padding: 16px 12px; }
@@ -257,3 +297,5 @@
 .local-admin-action { display: none !important; }
 html[data-content-studio-mode="local-admin"] .local-admin-action { display: inline-flex !important; }
 html[data-content-studio-mode="local-admin"] select[aria-disabled="true"] { cursor: not-allowed; opacity: .82; }
+html[data-content-studio-embedded="true"] .studio-tabs,
+.studio-tabs[hidden] { display: none; }

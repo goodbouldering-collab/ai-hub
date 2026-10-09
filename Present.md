@@ -4,7 +4,8 @@
 
 AI講座・業務改善相談の案内、ブログ、制作実績を提供する。確認済み公開URLは https://aiclimb.aiclimb.workers.dev 。独自ドメイン未設定のため、このURLを使用する。公開先は共通Cloudflare台帳の `work/genspark-profile-edit/cloudflare-runtime`。事業ルートには別作業の差分があるため、一括同期しない。
 
-今回の作業: 「その資料、毎回添付していませんか？ CodexとWorkers AIで減らせる手間」を公開・本番検証済み。承認稿と説明画像5点を掲載し、トップ・ブログ一覧・サイトマップを更新。具体的な相談案件と個人名は非掲載。
+今回の管理制作更新: myblog/myreelに沿う制作UIと、同じブラウザで365日共用する暗号化APIキー保存を実装。既存公開Workerへ認証判定を委譲し、既存記事・ニュース・公開資産を保全する。ソースとbundleの管理認証・保存再利用・UI保護・公開asset引継ぎ試験は2件成功、共通API/UIは53件成功。実キー生成と本番の管理者受入は未実施。統合・公開の工程は `tmp/delivery/20261009-my-workflows-saved-key.json`、仕様・再現手順は `deployment/my-workflows/README.md` を参照。
+直前の作業: 「その資料、毎回添付していませんか？ CodexとWorkers AIで減らせる手間」を公開・本番検証済み。承認稿と説明画像5点を掲載し、トップ・ブログ一覧・サイトマップを更新。具体的な相談案件と個人名は非掲載。
 
 - 公開ソースSHA: `d3cb6fae41734f91e7716e5e1aaed26c793e9645`。PR https://github.com/goodbouldering-collab/ai-hub/pull/115 をmainへ統合。
 - Cloudflare version: `f816955e-1b06-48f1-8db7-b1621ce3ab59`。Wrangler 4.143.1。登録公開元から新規6資産・既存3資産を反映、547資産とWorkerを保持。
@@ -39,3 +40,12 @@ AI講座・業務改善相談の案内、ブログ、制作実績を提供する
 実画面確認も完了。専用Chrome Profile 1の接続が利用できないため、2026-10-09本人指定の代替手順でCodex内ブラウザを使用。公開6記事のDOMで動画が本文の最後の表示要素となることを確認し、横長・縦長の代表2記事はスクロール後の画面でも確認した。公開閲覧のためサービスログインは不要。
 
 今回のリール移動は公開・検証済み。`work/blog-reels-last-20261009` は検証証拠と別作業のAGENTS.md差分があり、証拠の保全整理まで保持。READMEの旧ホスティング記述だけから公開先を判断せず、共通台帳を参照する。他作業の未コミット差分・未解決事項は既存運用記録で継続管理する。
+
+<!-- browser-continuity-present:2026-10-09 -->
+## 共通ブラウザ運用
+
+- 適用版: `browser-continuity:2026-10-09`。HOME共通原本と [ブラウザ手順](C:/Project/docs/browser-account-policy.md) を参照する。
+- 変更点: Chrome自体のログイン・同期は不要。確認済みの事業用デスクトップショートカットを優先し、Computer Useの一時障害でも許可済みの公開調査・制作・検証は続行する。myblogの制作中の案は、選択待ち指定がなければ推奨案を採用する。
+- 検証・公開状況: HOMEとSkillのローカル反映・Skill構文検証済み。共通設定のGitHub配布は `C:/Project/codex-config/Present.md` を参照。本事業のブラウザ実操作・投稿・本番デプロイは今回実施していない。
+- 残件・次の作業: サービスアカウント確認、未承認の最終投稿内容の公開承認は維持する。次回の依頼で既存ショートカット対応を使い、実際の操作結果と残件を記録する。
+<!-- /browser-continuity-present:2026-10-09 -->

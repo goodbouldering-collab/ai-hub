@@ -4,6 +4,12 @@
 
 AI講座・業務改善相談の案内、ブログ、制作実績を提供する。確認済み公開URLは https://aiclimb.aiclimb.workers.dev 。独自ドメイン未設定のため、このURLを使用する。公開先は共通Cloudflare台帳の `work/genspark-profile-edit/cloudflare-runtime`。事業ルートには別作業の差分があるため、一括同期しない。
 
+今回の作業: 「その資料、毎回添付していませんか？ CodexとWorkers AIで減らせる手間」の公開準備。承認稿・説明画像5点を追加し、トップ・ブログ一覧・サイトマップへ掲載。具体的な相談案件と個人名は非掲載。記事・ホーム21テスト、Worker7テスト、資産差分・SEO・ローカルPC/スマホ表示の検証済み。本番公開はまだ未実施。
+
+- 変更・検証・次工程: [記事公開記録](docs/blog/2026-10-09-codex-workers-ai/README.md)。次にPR統合、登録公開元で再生成、ガード、Cloudflare公開、本番HTTP/画面確認を行う。
+- 基準: .daily-news-release-20261009 の550資産。本番7資産のSHA256一致。新規6資産・既存3資産のみ変更、547資産とWorkerを維持。
+- 残件: 公開結果・版ID・本番確認をこの要約へ更新する。その他の未コミット差分は保全。
+
 10月9日版AIニュース5件とCodex公式週次（October 5–9, 2026）・CLI 0.162.0を公開・本番検証済み。ニュース・Codex本文、最新シェル、550ファイルのbaseline manifestを更新した。公開差分はトップ・独立ニュース・サイトマップの3ファイル、残り547ファイルとWorker・認証・API設定は同一。
 
 - 公開ソースSHA: `2d3743e821288e9f26f2403afeadb2d355e28c9d`。PR https://github.com/goodbouldering-collab/ai-hub/pull/113 をmainへ統合。

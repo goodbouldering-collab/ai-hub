@@ -18,7 +18,7 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT), str(ROOT / 'site')]
 from core.studio_design import decorate_html
-from core.home_updates import latest_published_posts, render_home_blog_list
+from core.home_updates import latest_published_posts, render_home_blog_list, published_posts
 SLUG = '2026-10-09-codex-workers-ai-workflow'
 ORIGIN = 'https://aiclimb.aiclimb.workers.dev'
 CONTRACT = ROOT / 'deployment/cloudflare-blog/codex-workers-ai-20261009.json'
@@ -141,7 +141,7 @@ def build(baseline, output):
             p=Path(file).resolve()
             if p.is_file() and p.is_relative_to(ROOT) and p.relative_to(ROOT).parts[0] in {'core','site','scripts'} and p.suffix=='.py': paths.append(p)
     paths.extend(p for p in (ROOT/'config').glob('*') if p.is_file())
-    paths.extend((ROOT/'content/blog').glob('*.md'))
+    paths.extend(ROOT/'content/blog'/(Path(post['href']).stem+'.md') for post in published_posts(index)[:7] if (ROOT/'content/blog'/(Path(post['href']).stem+'.md')).is_file())
     inputs={p.relative_to(ROOT).as_posix():digest(p) for p in sorted(set(paths))}
     dirty=subprocess.check_output(['git','-c','core.excludesFile=','status','--porcelain','--',*inputs],cwd=ROOT,text=True).splitlines()
     result=dict(source_sha=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),source_inputs=inputs,inputs=list(inputs),source_inputs_clean=not dirty,source_input_status=dirty,assets=after,changed_assets=changed,added_assets=added,preserved_assets=len(before)-3,baseline_unchanged=True,worker_sha256=contract['worker_sha256'],baseline_version=contract['cloudflare_version'],article_checks=dict(h2=4,images=5,authorship_note=True,canonical=True,jsonld=True,index_links=True,sitemap=True),deployed=False)

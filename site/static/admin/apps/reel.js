@@ -1,4 +1,4 @@
-import { $, api, apiBlob, bindApiKeyPanel, configureStudioShell, escapeHtml, loadProfiles, refreshHealth, requireSession, STUDIO_CONFIG, toast } from "./studio-core.js";
+import { $, api, apiBlob, bindApiKeyPanel, configureStudioShell, escapeHtml, handoffToAdmin, loadProfiles, refreshHealth, requireSession, STUDIO_CONFIG, toast } from "./studio-core.js";
 
 const state = {
   profiles: [],
@@ -12,11 +12,34 @@ const state = {
   finalVideoUrl: "",
   finalVideoExtension: "",
   coverBlob: null,
-  coverUrl: ""
+  coverUrl: "",
+  squareBlob: null,
+  squareUrl: "",
+  research: null,
+  narrationFiles: new Map(),
+  rendering: false
 };
 
 const today = () => new Date().toISOString().slice(0, 10);
 const textLines = (value) => String(value || "").split(/\r?\n/).map((item) => item.trim()).filter(Boolean);
+const speechWords = (value) => String(value || "").replace(/[\r\n\p{P}]/gu, "");
+const readingSeconds = (value) => Math.max(3, Math.ceil(([...String(value || "").replace(/\s/g, "")].length / 5 + 1.5) * 10) / 10);
+const durationOf = (frame) => Math.max(readingSeconds(frame.text), Number(frame.duration) || 0);
+const totalSeconds = () => Math.round(state.draft.frames.reduce((sum, frame) => sum + durationOf(frame), 0) * 10) / 10;
+
+function researchInput() {
+  const reviewed = $("#reel-research-reviewed").checked;
+  return {
+    observations: textLines($("#reel-research-urls").value).map((url) => ({ url, checkedAt: reviewed ? new Date().toISOString() : "", video: reviewed, audio: reviewed, caption: reviewed })),
+    keep: $("#reel-research-keep").value.trim(), change: $("#reel-research-change").value.trim(),
+    reason: $("#reel-research-change").value.trim(), webSources: state.research?.webSources || []
+  };
+}
+
+function resetApproval() {
+  for (const id of ["chrome-post-confirm", "reel-visual-qa", "reel-audio-qa", "reel-url-qa", "reel-blog-live-checked"]) $("#" + id).checked = false;
+  if (state.draft?.manifest) delete state.draft.manifest.publication_review;
+}
 const slugify = (value) => String(value || "reel").normalize("NFKC").toLowerCase()
   .replace(/[^a-z0-9ぁ-んァ-ヶ一-龠]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 50) || "reel";
 const isVideoUrl = (value) => /\.(mp4|mov|m4v|webm)(?:[?#].*)?$/i.test(String(value || ""));
@@ -30,9 +53,11 @@ const safeHttpUrl = (value) => {
 function revoke(url) { if (url?.startsWith("blob:")) URL.revokeObjectURL(url); }
 
 function clearGeneratedAssets() {
+  invalidateFinalRender();
   revoke(state.rawVideoUrl);
   revoke(state.finalVideoUrl);
   revoke(state.coverUrl);
+  revoke(state.squareUrl);
   state.rawVideoBlob = null;
   state.rawVideoUrl = "";
   state.finalVideoBlob = null;
@@ -40,23 +65,29 @@ function clearGeneratedAssets() {
   state.finalVideoExtension = "";
   state.coverBlob = null;
   state.coverUrl = "";
+  state.squareBlob = null;
+  state.squareUrl = "";
   $("#raw-video-wrap").hidden = true;
   $("#final-video-wrap").hidden = true;
   $("#download-raw-video").hidden = true;
   $("#download-reel-video").hidden = true;
   $("#download-reel-cover").hidden = true;
+  $("#download-reel-square").hidden = true;
+  $("#reel-cover-preview").hidden = true;
+  resetApproval();
   $("#reel-video-status").textContent = "";
 }
 
 function resetWorkflow({ clearInputs = false } = {}) {
   state.concepts = [];
   state.draft = null;
+  state.narrationFiles.clear();
   clearGeneratedAssets();
   $("#reel-concept-panel").hidden = true;
   $("#reel-approval-panel").hidden = true;
   $("#reel-concepts").innerHTML = "";
   $("#reel-frame-editors").innerHTML = "";
-  $("#reel-preview").innerHTML = `<div class="empty-preview"><b>ここに5場面が表示されます</b><p>ブログ、文章、URL、または承認済み動画・画像から企画を作ってください。</p></div>`;
+  $("#reel-preview").innerHTML = `<div class="empty-preview"><b>ここに場面ごとのプレビューが表示されます</b><p>ブログ、文章、URL、または承認済み動画・画像から企画を作ってください。</p></div>`;
   if (clearInputs) {
     $("#reel-topic").value = "";
     $("#reel-source-text").value = "";
@@ -67,6 +98,9 @@ function resetWorkflow({ clearInputs = false } = {}) {
     $("#reel-scheduled-at").value = "";
     state.localMedia.forEach((item) => revoke(item.url));
     state.localMedia = [];
+    state.research = null;
+    for (const id of ["reel-research-urls", "reel-research-keep", "reel-research-change", "reel-blog-live-url", "reel-blog-video-url", "reel-blog-cover-url"]) $("#" + id).value = "";
+    $("#reel-research-reviewed").checked = false;
     renderFileStatus();
   }
 }
@@ -93,6 +127,9 @@ function payload() {
     sourceText: $("#reel-source-text").value.trim(),
     story: $("#reel-story").value.trim(),
     media: sourceMediaNames(),
+    blogLinked: $("#reel-blog-linked").checked,
+    audioMode: $("#reel-audio-mode").value,
+    research: researchInput(),
     finalPrompt: $("#reel-final-prompt").value.trim(),
     scheduledAt: $("#reel-scheduled-at").value || null
   };
@@ -102,9 +139,9 @@ function validateSources({ forDraft = false } = {}) {
   const input = payload();
   if (!input.topic && !input.sourceText && !input.sourceUrl) return "テーマ、本文、URLのいずれかを入力してください";
   if (!forDraft) return "";
-  if (input.sourceMode === "stills" && (input.media.length < 4 || input.media.length > 5)) return "画像モードは承認済み画像を4〜5枚選んでください";
+  if (input.sourceMode === "stills" && (input.media.length < 1 || input.media.length > 20)) return "画像モードは承認済み画像を1〜20枚選んでください";
   if (input.sourceMode === "video" && input.media.length !== 1) return "動画モードは承認済み動画を1本だけ選んでください";
-  if (input.sourceMode === "generated" && input.media.length > 5) return "生成モードの参考素材は5件以内にしてください";
+  if (input.sourceMode === "generated" && input.media.length) return "生成モードでは画像・動画の選択を外してください";
   return "";
 }
 
@@ -146,6 +183,7 @@ async function makeConcepts() {
   try {
     const result = await api("/api/reel/generate", { method: "POST", body: JSON.stringify({ ...payload(), mode: "concepts" }) });
     state.concepts = result.concepts || [];
+    state.research = result.research || null;
     renderConcepts();
     $("#reel-concept-panel").hidden = false;
     $("#reel-concept-panel").scrollIntoView({ behavior: "smooth", block: "start" });
@@ -156,7 +194,7 @@ async function makeConcepts() {
 function renderConcepts() {
   $("#reel-concepts").innerHTML = state.concepts.map((concept, index) => `
     <article class="choice-card editable-choice reel-concept">
-      <label class="choice-select"><input type="radio" name="reel-concept" value="${index}">企画 ${index + 1} を選ぶ</label>
+      <label class="choice-select"><input type="radio" name="reel-concept" value="${index}" ${index === 0 ? "checked" : ""}>企画 ${index + 1}${index === 0 ? "（推奨）" : ""} を選ぶ</label>
       <label>企画名<input data-concept-field="name" data-index="${index}" value="${escapeHtml(concept.name)}"></label>
       <label>冒頭の一言<textarea data-concept-field="hook" data-index="${index}" rows="2">${escapeHtml(concept.hook)}</textarea></label>
       <label>構成の狙い<textarea data-concept-field="angle" data-index="${index}" rows="3">${escapeHtml(concept.angle)}</textarea></label>
@@ -173,7 +211,7 @@ async function makeDraft() {
   const selectedConcept = structuredClone(state.concepts[Number(selected.value)]);
   const button = $("#make-reel-draft");
   button.disabled = true;
-  button.textContent = "5場面を構成中…";
+  button.textContent = "全文を読み切れる場面を構成中…";
   try {
     const result = await api("/api/reel/generate", {
       method: "POST",
@@ -190,11 +228,10 @@ async function makeDraft() {
 
 function normalizeDraft(draft) {
   const frames = [...(draft?.frames || [])];
-  while (frames.length < 5) frames.push({ index: frames.length + 1, text: "内容を入力", duration: 3, media: "", crop: "全画面" });
   return {
     ...draft,
-    frames: frames.slice(0, 5).map((frame, index) => ({ ...frame, index: index + 1, duration: 3, text: frame.text || "", crop: frame.crop || "全画面" })),
-    cover: { title: draft?.cover?.title || frames[0]?.text || "", media: draft?.cover?.media || frames[0]?.media || "", style: draft?.cover?.style || "" },
+    frames: frames.map((frame, index) => ({ ...frame, index: index + 1, duration: durationOf(frame), text: frame.text || "", narration_text: frame.narration_text ?? frame.text.replace(/\n/g, ""), crop: frame.crop || "全画面", focalX: 50, focalY: 50 })),
+    cover: { ...draft?.cover, title: draft?.cover?.title || "", sourceIndex: 0 },
     cta: draft?.cta || draft?.selectedConcept?.cta || "",
     sourceUrl: draft?.sourceUrl || payload().sourceUrl,
     instagramCaption: draft?.instagramCaption || "",
@@ -218,22 +255,39 @@ function renderDraft() {
   $("#reel-video-prompt").value = draft.videoPrompt;
   $("#instagram-caption").value = draft.instagramCaption;
   $("#threads-caption").value = draft.threadsCaption;
-  $("#reel-frame-editors").innerHTML = `<strong>中央テロップ5つ（各3行以内・各3秒）</strong>${draft.frames.map((frame, index) => `
-    <fieldset><legend>場面 ${index + 1}</legend>
-      <label>表示テキスト<textarea data-frame-field="text" data-index="${index}" rows="3">${escapeHtml(frame.text)}</textarea><small data-line-count="${index}">${textLines(frame.text).length || 1}行</small></label>
-      <label>素材名・URL<input data-frame-field="media" data-index="${index}" value="${escapeHtml(frame.media || "")}"></label>
-      <label>切り抜き・構図<textarea data-frame-field="crop" data-index="${index}" rows="2">${escapeHtml(frame.crop)}</textarea></label>
-    </fieldset>`).join("")}`;
+  $("#reel-story-caption").value = draft.storyCaption || "";
+  $("#reel-shop-comment").value = draft.shopComment || "";
+  $("#reel-blog-review").hidden = !draft.blogLinked;
+  $("#reel-cover-source").innerHTML = draft.frames.map((_, index) => `<option value="${index}">場面 ${index + 1} の素材</option>`).join("");
+  $("#reel-cover-source").value = String(draft.cover.sourceIndex || 0);
+  const observations = draft.research?.observations || [];
+  const complete = observations.length >= 2 && observations.every((item) => item.video && item.audio && item.caption && item.checkedAt);
+  $("#reel-research-status").innerHTML = `<b>${complete ? "過去投稿の確認記録あり（担当者申告）" : "過去投稿の映像・音声・本文の確認が未完了"}</b><p>${escapeHtml(state.research?.note || draft.research?.note || "今回の公式投稿調査を入力してください")}</p>${(draft.research?.webSources || []).map((item) => `<a href="${escapeHtml(safeHttpUrl(item.url))}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.title || item.url)}</a>`).join(" / ")}`;
+  renderFrameEditors();
   $("#reel-approval-list").innerHTML = `<b>公開前チェック</b><ul>${draft.approvalChecklist.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`;
   renderPreview();
+}
+
+function renderFrameEditors() {
+  $("#reel-frame-editors").innerHTML = `<strong>中央の大きな文字（各3行以内・短く収まらなければ場面を追加）</strong>${state.draft.frames.map((frame, index) => `
+    <fieldset><legend>場面 ${index + 1}</legend>
+      <label>表示テキスト<textarea data-frame-field="text" data-index="${index}" rows="3">${escapeHtml(frame.text)}</textarea><small data-line-count="${index}">${textLines(frame.text).length || 1}行</small></label>
+      <label>全文読み上げ台本<textarea data-frame-field="narration_text" data-index="${index}" rows="3">${escapeHtml(frame.narration_text)}</textarea></label>
+      <label>表示秒数（読み上げ速度を上げず自動延長）<input type="number" min="3" step="0.1" data-frame-field="duration" data-index="${index}" value="${durationOf(frame)}"></label>
+      <label>この場面のナレーション音声<input type="file" accept="audio/*" data-narration-index="${index}"><small>${escapeHtml(state.narrationFiles.get(index)?.name || "未選択・音声生成は未実装")}</small></label>
+      <label>素材名・URL<input data-frame-field="media" data-index="${index}" value="${escapeHtml(frame.media || "")}"></label>
+      <label>主役の横位置（0〜100%）<input type="number" min="0" max="100" data-frame-field="focalX" data-index="${index}" value="${frame.focalX ?? 50}"></label>
+      <label>主役の縦位置（0〜100%）<input type="number" min="0" max="100" data-frame-field="focalY" data-index="${index}" value="${frame.focalY ?? 50}"></label>
+      <label>切り抜き・構図<textarea data-frame-field="crop" data-index="${index}" rows="2">${escapeHtml(frame.crop)}</textarea></label>
+    </fieldset>`).join("")}`;
 }
 
 function localOrRemoteSource(index) {
   const mode = $("#reel-source-mode").value;
   if (state.rawVideoUrl) return { url: state.rawVideoUrl, type: "video" };
-  const local = mode === "video" ? state.localMedia[0] : state.localMedia[index] || state.localMedia.at(-1);
+  const frameValue = state.draft?.frames?.[index]?.media;
+  const local = mode === "video" ? state.localMedia.find((item) => item.file.name === frameValue) || state.localMedia[0] : state.localMedia.find((item) => item.file.name === frameValue);
   if (local) return { url: local.url, type: local.type };
-  const frameValue = state.draft?.frames?.[index]?.media || textLines($("#reel-media").value)[mode === "video" ? 0 : index];
   const url = safeHttpUrl(frameValue);
   if (url) return { url, type: isVideoUrl(url) || mode === "video" ? "video" : "image" };
   return { url: "", type: "none" };
@@ -248,23 +302,42 @@ function sourceElement(source) {
 
 function renderPreview() {
   if (!state.draft) return;
+  $("#reel-duration-summary").textContent = `1080 × 1920・${state.draft.frames.length}場面・${totalSeconds()}秒（音声が長い場合は延長）`;
   $("#reel-preview").innerHTML = state.draft.frames.map((frame, index) => {
     const source = localOrRemoteSource(index);
-    return `<article class="reel-phone-frame">${sourceElement(source)}<div class="reel-shade"></div><div class="reel-safe-area"><span>${escapeHtml(state.profile.name)} · ${index + 1}/5</span><strong>${escapeHtml(frame.text).replace(/\n/g, "<br>")}</strong><small>${escapeHtml(state.draft.sourceUrl || "公開前プレビュー")}</small></div></article>`;
+    return `<article class="reel-phone-frame" style="--focal-x:${Math.max(0, Math.min(100, Number(frame.focalX) || 50))}%;--focal-y:${Math.max(0, Math.min(100, Number(frame.focalY) || 50))}%">${sourceElement(source)}<div class="reel-shade"></div><div class="reel-safe-area"><span>${escapeHtml(state.profile.name)} · ${index + 1}/${state.draft.frames.length} · ${durationOf(frame)}秒</span><strong>${escapeHtml(frame.text).replace(/\n/g, "<br>")}</strong><small>${escapeHtml(state.draft.sourceUrl || "公開前プレビュー")}</small></div></article>`;
   }).join("");
 }
 
 function invalidateFinalRender() {
+  resetApproval();
+  if (state.draft?.manifest) {
+    delete state.draft.manifest.final_video;
+    delete state.draft.manifest.cover_image;
+    delete state.draft.manifest.square_qa_image;
+    for (const post of state.draft.manifest.posts || []) for (const media of post.media || []) { media.path = null; media.status = "pending_render"; }
+  }
   if (!state.finalVideoBlob && !state.coverBlob) return;
   revoke(state.finalVideoUrl);
   revoke(state.coverUrl);
+  revoke(state.squareUrl);
   state.finalVideoBlob = null;
   state.finalVideoUrl = "";
   state.coverBlob = null;
   state.coverUrl = "";
+  state.squareBlob = null;
+  state.squareUrl = "";
   $("#final-video-wrap").hidden = true;
   $("#download-reel-video").hidden = true;
   $("#download-reel-cover").hidden = true;
+  $("#download-reel-square").hidden = true;
+  $("#reel-cover-preview").hidden = true;
+  if (state.draft?.manifest) {
+    delete state.draft.manifest.final_video;
+    delete state.draft.manifest.cover_image;
+    for (const post of state.draft.manifest.posts || []) for (const media of post.media || []) { media.path = null; media.status = "pending_render"; }
+    state.draft.audio.bgm.qa = "pending_render_and_listening";
+  }
   $("#reel-video-status").textContent = "編集内容が変わりました。完成動画をもう一度焼き込んでください。";
 }
 
@@ -273,6 +346,10 @@ function updateFrame(event) {
   const index = Number(event.target.dataset.index);
   state.draft.frames[index][event.target.dataset.frameField] = event.target.value;
   if (event.target.dataset.frameField === "text") {
+    state.draft.frames[index].center_text = event.target.value;
+    state.draft.frames[index].narration_text = event.target.value.replace(/\n/g, "");
+    $(`[data-frame-field='narration_text'][data-index='${index}']`).value = state.draft.frames[index].narration_text;
+    state.narrationFiles.delete(index);
     const count = textLines(event.target.value).length || 1;
     const label = $(`[data-line-count='${index}']`);
     label.textContent = `${count}行${count > 3 ? "・3行以内にしてください" : ""}`;
@@ -291,7 +368,10 @@ function syncEditableMeta(event) {
     "reel-final-url": () => { state.draft.sourceUrl = event.target.value.trim(); },
     "reel-video-prompt": () => { state.draft.videoPrompt = event.target.value; },
     "instagram-caption": () => { state.draft.instagramCaption = event.target.value; },
-    "threads-caption": () => { state.draft.threadsCaption = event.target.value; }
+    "threads-caption": () => { state.draft.threadsCaption = event.target.value; },
+    "reel-story-caption": () => { state.draft.storyCaption = event.target.value; },
+    "reel-shop-comment": () => { state.draft.shopComment = event.target.value; },
+    "reel-cover-source": () => { state.draft.cover.sourceIndex = Number(event.target.value); }
   };
   map[event.target.id]?.();
   invalidateFinalRender();
@@ -304,13 +384,22 @@ function syncManifest() {
   const scheduledAt = $("#reel-final-scheduled-at").value || null;
   state.draft.manifest.source_mode = $("#reel-source-mode").value;
   state.draft.manifest.final_prompt = $("#reel-final-prompt").value.trim();
-  state.draft.manifest.frames = state.draft.frames.map((frame) => ({ index: frame.index, duration: 3, text: frame.text, media: frame.media, crop: frame.crop }));
+  state.draft.durationSeconds = totalSeconds();
+  state.draft.manifest.duration_seconds = totalSeconds();
+  state.draft.manifest.frames = state.draft.frames.map((frame) => ({ ...frame, duration: durationOf(frame), center_text: frame.text, narration_match: speechWords(frame.text) === speechWords(frame.narration_text) }));
+  state.draft.manifest.research = { ...state.draft.research, ...researchInput() };
+  state.draft.manifest.audio = state.draft.audio;
+  state.draft.manifest.qa = { visual: $("#reel-visual-qa").checked ? "operator-confirmed" : "pending", listening: $("#reel-audio-qa").checked ? "operator-confirmed" : "pending", url: $("#reel-url-qa").checked ? "operator-confirmed" : "pending" };
+  const embed = state.draft.manifest.blog_embed ||= { required: state.draft.blogLinked, same_mp4: true, same_cover: true };
+  Object.assign(embed, { article_url: $("#reel-blog-live-url").value, video_url: $("#reel-blog-video-url").value, cover_url: $("#reel-blog-cover-url").value, status: $("#reel-blog-live-checked").checked ? "operator-confirmed" : "unverified" });
   state.draft.manifest.cover = { ...state.draft.cover };
   for (const post of state.draft.manifest.posts || []) {
     post.scheduled_at = scheduledAt;
     post.cta = state.draft.cta;
     post.source_refs = state.draft.sourceUrl ? [state.draft.sourceUrl] : [];
-    if (post.platform === "instagram") post.caption = state.draft.instagramCaption;
+    if (post.kind === "reel") post.caption = state.draft.instagramCaption;
+    if (post.kind === "story") { post.caption = state.draft.storyCaption; post.link.url = state.draft.sourceUrl; post.link.status = $("#reel-url-qa").checked ? "operator-confirmed" : "unverified"; }
+    if (post.kind === "shop_comment") post.caption = state.draft.shopComment;
     if (post.platform === "threads") post.caption = state.draft.threadsCaption;
   }
 }
@@ -344,10 +433,10 @@ async function generateVideo() {
     download.href = state.rawVideoUrl;
     download.download = `reel-background-${state.profile.id}-${today()}.mp4`;
     download.hidden = false;
-    status.textContent = "背景動画が完成しました。次に5場面テロップを焼き込んでください。";
+    status.textContent = "背景動画が完成しました。全場面の文字を焼き込むときは、読み切れる尺まで通常速度で繰り返します。";
     invalidateFinalRender();
     renderPreview();
-  } catch (error) { status.textContent = error.message; toast(error.message); }
+  } catch (error) { invalidateFinalRender(); status.textContent = error.message; toast(error.message); }
   finally { button.disabled = false; }
 }
 
@@ -378,23 +467,23 @@ function loadVideo(url) {
 
 async function prepareRenderSources() {
   const unique = new Map();
-  for (let index = 0; index < 5; index += 1) {
+  for (let index = 0; index < state.draft.frames.length; index += 1) {
     const source = localOrRemoteSource(index);
     if (!source.url) throw new Error(`場面${index + 1}の背景素材がありません`);
     if (!unique.has(source.url)) unique.set(source.url, { ...source, element: null });
   }
   for (const item of unique.values()) item.element = item.type === "video" ? await loadVideo(item.url) : await loadImage(item.url);
-  return [...Array(5)].map((_, index) => unique.get(localOrRemoteSource(index).url));
+  return state.draft.frames.map((_, index) => unique.get(localOrRemoteSource(index).url));
 }
 
-function drawCover(ctx, element, type) {
+function drawCover(ctx, element, type, focalX = 50, focalY = 50) {
   const canvas = ctx.canvas;
   const sourceWidth = type === "video" ? element.videoWidth : element.naturalWidth;
   const sourceHeight = type === "video" ? element.videoHeight : element.naturalHeight;
   const scale = Math.max(canvas.width / sourceWidth, canvas.height / sourceHeight);
   const width = sourceWidth * scale;
   const height = sourceHeight * scale;
-  ctx.drawImage(element, (canvas.width - width) / 2, (canvas.height - height) / 2, width, height);
+  ctx.drawImage(element, (canvas.width - width) * Math.max(0, Math.min(100, focalX)) / 100, (canvas.height - height) * Math.max(0, Math.min(100, focalY)) / 100, width, height);
 }
 
 function wrapAtWidth(ctx, value, maxWidth) {
@@ -414,20 +503,10 @@ function wrapAtWidth(ctx, value, maxWidth) {
 }
 
 function fitText(ctx, value) {
-  let fontSize = 86;
-  let wrapped = [];
-  while (fontSize >= 52) {
-    ctx.font = `900 ${fontSize}px "Yu Gothic", "Noto Sans JP", sans-serif`;
-    wrapped = wrapAtWidth(ctx, value, 900);
-    if (wrapped.length <= 3) break;
-    fontSize -= 4;
-  }
-  if (wrapped.length > 3) {
-    wrapped = wrapped.slice(0, 3);
-    let last = wrapped[2];
-    while (last.length && ctx.measureText(`${last}…`).width > 900) last = last.slice(0, -1);
-    wrapped[2] = `${last}…`;
-  }
+  const fontSize = 90;
+  ctx.font = `900 ${fontSize}px "Yu Gothic", "Noto Sans JP", sans-serif`;
+  const wrapped = wrapAtWidth(ctx, value, 860);
+  if (wrapped.length > 3) throw new Error("中央文字が大きな3行に収まりません。文字を短くするか、場面を追加してください。縮小・省略はしません。");
   return { fontSize, lines: wrapped };
 }
 
@@ -450,7 +529,7 @@ function drawTextOverlay(ctx, value) {
 }
 
 function recorderMimeType() {
-  return ["video/mp4;codecs=avc1.42E01E", "video/mp4", "video/webm;codecs=vp9", "video/webm"]
+  return ["video/mp4;codecs=avc1.42E01E,mp4a.40.2", "video/mp4", "video/webm;codecs=vp9,opus", "video/webm"]
     .find((type) => MediaRecorder.isTypeSupported(type)) || "";
 }
 
@@ -458,44 +537,195 @@ async function canvasToBlob(canvas, type = "image/png") {
   return new Promise((resolve, reject) => canvas.toBlob((blob) => blob ? resolve(blob) : reject(new Error("画像を書き出せませんでした")), type));
 }
 
+function sceneTimeline(frames) {
+  let offset = 0;
+  return frames.map((frame) => {
+    const scene = { start: offset, duration: durationOf(frame) };
+    offset += scene.duration;
+    return { ...scene, end: offset };
+  });
+}
+
+async function prepareAudio() {
+  const audio = state.draft.audio;
+  if ($("#reel-audio-mode").value === "silent") {
+    audio.mode = "silent";
+    audio.narration.status = "explicitly-disabled";
+    audio.bgm = { type: "none", qa: "explicit-silence" };
+    return null;
+  }
+  const AudioEngine = window.AudioContext || window.webkitAudioContext;
+  if (!AudioEngine || !window.OfflineAudioContext) throw new Error("音声合成を利用できません。対応ブラウザを使うか、音声なしを明示指定してください。");
+  const decoder = new AudioEngine();
+  const narration = new Map();
+  try {
+    for (let index = 0; index < state.draft.frames.length; index += 1) {
+      const frame = state.draft.frames[index];
+      if (speechWords(frame.text) !== speechWords(frame.narration_text)) throw new Error(`場面${index + 1}の表示文字とナレーション台本が一致しません。改行・句読点以外の単語を変えないでください。`);
+      const file = state.narrationFiles.get(index);
+      if (!file) {
+        if (state.draft.blogLinked) throw new Error(`場面${index + 1}のナレーションがありません。全文を自然に読んだ音声を選択してください。自動音声生成は未対応です。`);
+        continue;
+      }
+      const buffer = await decoder.decodeAudioData(await file.arrayBuffer());
+      if (!buffer.duration || buffer.duration > 180) throw new Error(`場面${index + 1}の音声が長すぎます。場面ごとの音声を選んでください。`);
+      let peak = 0;
+      for (let channel = 0; channel < buffer.numberOfChannels; channel += 1) for (const sample of buffer.getChannelData(channel)) peak = Math.max(peak, Math.abs(sample));
+      if (peak < 0.0001) throw new Error(`場面${index + 1}の音声が無音です。`);
+      narration.set(index, { buffer, peak, name: file.name });
+      frame.duration = Math.max(durationOf(frame), Math.ceil((buffer.duration + .6) * 10) / 10);
+    }
+  } finally { await decoder.close(); }
+  const timeline = sceneTimeline(state.draft.frames);
+  const duration = timeline.at(-1).end;
+  if (duration > 600) throw new Error("ブラウザ書き出しは10分までです。内容を分けて制作してください。文字や音声は省略しません。");
+  const sampleRate = 44100;
+  const offline = new OfflineAudioContext(2, Math.ceil(duration * sampleRate), sampleRate);
+  const music = offline.createBuffer(1, Math.ceil(duration * sampleRate), sampleRate);
+  const samples = music.getChannelData(0);
+  const seedText = `${state.profile.id}|${state.draft.manifest.campaign_key}|${state.draft.frames.map((frame) => frame.text).join("|")}`;
+  const seed = [...seedText].reduce((sum, character) => (Math.imul(sum, 31) + character.codePointAt(0)) >>> 0, 7);
+  const notes = [0, 2, 4, 7, 9, 12];
+  const noteSeconds = .65 + (seed % 15) / 100;
+  let sceneIndex = 0;
+  for (let sample = 0; sample < samples.length; sample += 1) {
+    const time = sample / sampleRate;
+    while (sceneIndex < timeline.length - 1 && time >= timeline[sceneIndex].end) sceneIndex += 1;
+    const scene = timeline[sceneIndex];
+    const voice = narration.get(sceneIndex);
+    // Keep the whole voiced scene below the narration, with a smooth recovery afterward.
+    const recovery = voice ? Math.max(0, Math.min(1, (time - scene.start - voice.buffer.duration - .15) / .35)) : 1;
+    const level = .006 + .019 * recovery;
+    const beat = Math.floor(time / noteSeconds);
+    const note = notes[(seed + beat * 5 + Math.floor(beat / 4)) % notes.length];
+    const frequency = 220 * Math.pow(2, (note + seed % 5) / 12);
+    const phase = time % noteSeconds;
+    const envelope = Math.sin(Math.PI * phase / noteSeconds) ** 2;
+    const fade = Math.min(1, time / .8, (duration - time) / 1.2);
+    samples[sample] = Math.sin(2 * Math.PI * frequency * time) * level * envelope * Math.max(0, fade);
+  }
+  const musicSource = offline.createBufferSource();
+  musicSource.buffer = music;
+  musicSource.connect(offline.destination);
+  musicSource.start(0);
+  for (const [index, voice] of narration) {
+    const source = offline.createBufferSource();
+    source.buffer = voice.buffer;
+    source.playbackRate.value = 1;
+    const gain = offline.createGain();
+    gain.gain.value = .75 / voice.peak;
+    source.connect(gain).connect(offline.destination);
+    source.start(timeline[index].start);
+  }
+  const mixed = await offline.startRendering();
+  audio.mode = "original-bgm";
+  audio.narration = { status: narration.size ? "operator-audio-mixed" : "not_generated", required: state.draft.blogLinked, sceneCount: narration.size, textMatch: true, playbackRate: 1, listeningQa: "pending", files: [...narration].map(([index, voice]) => ({ scene: index + 1, name: voice.name, seconds: voice.buffer.duration })) };
+  audio.bgm = { type: "original-instrumental", source: "browser-synthesis-v1", seed, rights: "波形から自作。第三者の録音素材不使用", normalPeak: .025, narrationPeak: .75, duckedPeak: .006, ducking: narration.size ? "applied-during-every-voiced-scene" : "not-needed-no-narration", qa: "rendered-listening-pending", note: "音量差は合成設定で検査。台本どおりの発話・聞き取りやすさは試聴確認が必要です。" };
+  return mixed;
+}
+
+async function createCoverAssets(sources) {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1080;
+  canvas.height = 1920;
+  const ctx = canvas.getContext("2d");
+  const index = Math.min(sources.length - 1, Number(state.draft.cover.sourceIndex) || 0);
+  const source = sources[index];
+  const frame = state.draft.frames[index];
+  drawCover(ctx, source.element, source.type, frame.focalX, frame.focalY);
+  ctx.fillStyle = "rgba(0,0,0,.25)";
+  ctx.fillRect(0, 0, 1080, 1920);
+  drawTextOverlay(ctx, state.draft.cover.title);
+  ctx.font = '700 46px "Yu Gothic", "Noto Sans JP", sans-serif';
+  ctx.lineWidth = 6;
+  const nameLines = wrapAtWidth(ctx, state.profile.name, 860);
+  if (nameLines.length > 3) throw new Error("カバーの事業名が中央安全領域に収まりません。");
+  nameLines.forEach((line, index) => { ctx.strokeText(line, 540, 630 + index * 58); ctx.fillText(line, 540, 630 + index * 58); });
+  state.coverBlob = await canvasToBlob(canvas);
+  state.coverUrl = URL.createObjectURL(state.coverBlob);
+  const square = document.createElement("canvas");
+  square.width = square.height = 1080;
+  square.getContext("2d").drawImage(canvas, 0, 420, 1080, 1080, 0, 0, 1080, 1080);
+  state.squareBlob = await canvasToBlob(square);
+  state.squareUrl = URL.createObjectURL(state.squareBlob);
+  for (const [id, url, name] of [["download-reel-cover", state.coverUrl, "cover"], ["download-reel-square", state.squareUrl, "cover-square-qa"]]) {
+    $("#" + id).href = url;
+    $("#" + id).download = `reel-${name}-${state.profile.id}-${today()}.png`;
+    $("#" + id).hidden = false;
+  }
+  $("#reel-cover-image").src = state.coverUrl;
+  $("#reel-square-image").src = state.squareUrl;
+  $("#reel-cover-preview").hidden = false;
+  state.draft.cover.squareQa = "image-created-awaiting-visual-review";
+}
+
 async function renderFinalReel() {
+  if (state.rendering) return;
   if (!state.draft) return toast("先にリール下書きを作成してください");
   const invalidFrame = state.draft.frames.findIndex((frame) => !frame.text.trim() || textLines(frame.text).length > 3);
   if (invalidFrame >= 0) return toast(`場面${invalidFrame + 1}の文字を1〜3行にしてください`);
+  if (!state.draft.cover.title.trim()) return toast("カバーの主題を入力してください");
   if (!window.MediaRecorder || !HTMLCanvasElement.prototype.captureStream) return toast("このブラウザは動画書き出しに対応していません。最新版のChromeまたはEdgeを使ってください。");
   const button = $("#render-final-reel");
   const status = $("#reel-video-status");
-  button.disabled = true;
+  const controls = [...document.querySelectorAll(".reel-editor input, .reel-editor textarea, .reel-editor select, .reel-editor button")].map((element) => [element, element.disabled]);
+  controls.forEach(([element]) => { element.disabled = true; });
+  state.rendering = true;
+  invalidateFinalRender();
+  let sources = [], stream, recorder, audioContext;
   status.textContent = "背景素材を読み込んでいます…";
   try {
-    const sources = await prepareRenderSources();
-    for (const source of new Set(sources.filter((item) => item.type === "video"))) await source.element.play();
+    sources = await prepareRenderSources();
+    if (document.fonts?.ready) await document.fonts.ready;
     const canvas = document.createElement("canvas");
     canvas.width = 1080;
     canvas.height = 1920;
     const ctx = canvas.getContext("2d", { alpha: false });
+    for (const frame of state.draft.frames) fitText(ctx, frame.text);
+    fitText(ctx, state.draft.cover.title);
+    status.textContent = "ナレーションと自作BGMを準備しています…";
+    const mixedAudio = await prepareAudio();
+    const timeline = sceneTimeline(state.draft.frames);
+    const duration = timeline.at(-1).end * 1000;
+    if (duration > 600_000) throw new Error("ブラウザ書き出しは10分までです。内容を分けて制作してください。");
+    renderPreview();
+    let audioSource;
     const mimeType = recorderMimeType();
     if (!mimeType) throw new Error("投稿動画のエンコード方式を利用できません");
-    const stream = canvas.captureStream(30);
-    const recorder = new MediaRecorder(stream, { mimeType, videoBitsPerSecond: 10_000_000 });
+    stream = canvas.captureStream(30);
+    if (mixedAudio) {
+      audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      await audioContext.resume();
+      if (audioContext.state !== "running") throw new Error("音声の再生が許可されていません。画面上の書き出しボタンから再実行してください。");
+      const destination = audioContext.createMediaStreamDestination();
+      audioSource = audioContext.createBufferSource();
+      audioSource.buffer = mixedAudio;
+      audioSource.connect(destination);
+      for (const track of destination.stream.getAudioTracks()) stream.addTrack(track);
+    }
+    recorder = new MediaRecorder(stream, { mimeType, videoBitsPerSecond: 10_000_000, audioBitsPerSecond: 192_000 });
     const chunks = [];
     recorder.addEventListener("dataavailable", (event) => { if (event.data.size) chunks.push(event.data); });
     const completed = new Promise((resolve, reject) => {
       recorder.addEventListener("stop", resolve, { once: true });
       recorder.addEventListener("error", () => reject(recorder.error || new Error("動画を書き出せませんでした")), { once: true });
     });
+    for (const source of new Set(sources.filter((item) => item.type === "video"))) await source.element.play();
     recorder.start(1000);
-    const duration = 15_000;
+    const audioStarted = audioContext?.currentTime || 0;
+    audioSource?.start(audioStarted);
     const started = performance.now();
     let lastFrameIndex = -1;
-    await new Promise((resolve) => {
+    await new Promise((resolve, reject) => {
       const draw = (now) => {
-        const elapsed = Math.min(now - started, duration);
-        const frameIndex = Math.min(4, Math.floor(elapsed / 3000));
+        if (document.hidden) return reject(new Error("書き出し中にタブが非表示になりました。場面欠落を避けるため、このタブを表示したまま再実行してください。"));
+        const elapsed = Math.min(audioContext ? (audioContext.currentTime - audioStarted) * 1000 : now - started, duration);
+        const foundIndex = timeline.findIndex((scene) => elapsed < scene.end * 1000);
+        const frameIndex = foundIndex < 0 ? timeline.length - 1 : foundIndex;
         const source = sources[frameIndex];
         ctx.fillStyle = "#1d2a24";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-        drawCover(ctx, source.element, source.type);
+        drawCover(ctx, source.element, source.type, state.draft.frames[frameIndex].focalX, state.draft.frames[frameIndex].focalY);
         const gradient = ctx.createLinearGradient(0, 0, 0, 1920);
         gradient.addColorStop(0, "rgba(0,0,0,.16)");
         gradient.addColorStop(.55, "rgba(0,0,0,.26)");
@@ -504,7 +734,7 @@ async function renderFinalReel() {
         ctx.fillRect(0, 0, 1080, 1920);
         drawTextOverlay(ctx, state.draft.frames[frameIndex].text);
         if (frameIndex !== lastFrameIndex) {
-          status.textContent = `場面 ${frameIndex + 1}/5 を焼き込み中…`;
+          status.textContent = `場面 ${frameIndex + 1}/${timeline.length} を焼き込み中… ${Math.floor(elapsed / 1000)}/${Math.ceil(duration / 1000)}秒`;
           lastFrameIndex = frameIndex;
         }
         if (elapsed >= duration) resolve();
@@ -525,27 +755,28 @@ async function renderFinalReel() {
     download.download = `reel-final-${state.profile.id}-${today()}.${state.finalVideoExtension}`;
     download.hidden = false;
 
-    ctx.fillStyle = "#1d2a24";
-    ctx.fillRect(0, 0, 1080, 1920);
-    drawCover(ctx, sources[0].element, sources[0].type);
-    ctx.fillStyle = "rgba(0,0,0,.3)";
-    ctx.fillRect(0, 0, 1080, 1920);
-    drawTextOverlay(ctx, state.draft.cover.title);
-    state.coverBlob = await canvasToBlob(canvas);
-    revoke(state.coverUrl);
-    state.coverUrl = URL.createObjectURL(state.coverBlob);
-    const coverDownload = $("#download-reel-cover");
-    coverDownload.href = state.coverUrl;
-    coverDownload.download = `reel-cover-${state.profile.id}-${today()}.png`;
-    coverDownload.hidden = false;
+    await createCoverAssets(sources);
     syncManifest();
     state.draft.manifest.final_video = download.download;
-    state.draft.manifest.cover_image = coverDownload.download;
+    state.draft.manifest.cover_image = $("#download-reel-cover").download;
+    state.draft.manifest.square_qa_image = $("#download-reel-square").download;
+    for (const post of state.draft.manifest.posts) for (const media of post.media || []) {
+      media.path = download.download;
+      media.status = state.finalVideoExtension === "mp4" ? "rendered-awaiting-review" : "requires-mp4-conversion";
+    }
     status.textContent = state.finalVideoExtension === "mp4"
-      ? "完成MP4を書き出しました。全5場面の文字・映像・本文を確認してください。"
+      ? `MP4・独立カバー・正方形確認画像を書き出しました（${totalSeconds()}秒）。映像と音声の試聴、投稿セットの最終承認は未完了です。`
       : "テロップ焼き込みは完了しましたがWebM形式です。Instagram投稿前にMP4へ変換してください。";
-  } catch (error) { status.textContent = error.message; toast(error.message); }
-  finally { button.disabled = false; }
+  } catch (error) { invalidateFinalRender(); status.textContent = error.message; toast(error.message); }
+  finally {
+    if (recorder && recorder.state !== "inactive") recorder.stop();
+    for (const track of stream?.getTracks() || []) track.stop();
+    for (const source of new Set(sources.filter((item) => item.type === "video"))) source.element.pause();
+    if (audioContext) await audioContext.close();
+    state.rendering = false;
+    controls.forEach(([element, disabled]) => { element.disabled = disabled; });
+    button.disabled = false;
+  }
 }
 
 function captionsReady() {
@@ -558,16 +789,25 @@ function captionsReady() {
 
 async function prepareChromePost(platform) {
   if (!state.draft) return toast("先にリール投稿プレビューを作成してください");
-  if (!state.finalVideoBlob) return toast("先に5場面テロップを焼き込んだ完成動画を作ってください");
+  if (!state.finalVideoBlob || !state.coverBlob || !state.squareBlob) return toast("先に動画・独立カバー・正方形確認画像を書き出してください");
   if (state.finalVideoExtension !== "mp4") return toast("Instagram投稿用にMP4形式の完成動画が必要です");
   const captionError = captionsReady();
   if (captionError) return toast(captionError);
+  if (state.draft.threadsCaption.length > 500) return toast("Threads本文を500文字以内にしてください");
+  if (!state.draft.storyCaption.trim() || textLines(state.draft.storyCaption).length > 2 || !state.draft.shopComment.trim()) return toast("Storyの1〜2行と店舗コメントを確認してください");
+  const research = researchInput();
+  if (research.observations.length < 2 || !research.observations.every((item) => item.video && item.audio && item.caption) || !research.keep || !research.change) return toast("今回の公式投稿を複数確認し、引き継ぐ表現・今回の調整理由を記録してください");
+  for (const [id, message] of [["reel-visual-qa", "動画とカバー・正方形の画面確認が必要です"], ["reel-audio-qa", "音声または明示指定の無音を実際に確認してください"], ["reel-url-qa", "公式アカウント・正規URLの確認が必要です"]]) if (!$("#" + id).checked) return toast(message);
+  if (state.draft.blogLinked && (!$("#reel-blog-live-checked").checked || !["reel-blog-live-url", "reel-blog-video-url", "reel-blog-cover-url"].every((id) => safeHttpUrl($("#" + id).value).startsWith("https://")))) return toast("同一MP4・カバーを埋め込んだ本番記事と素材URLを確認してください");
   if (!$("#chrome-post-confirm").checked) return toast("投稿先、完成動画、本文、末尾URLの確認にチェックしてください");
   const account = state.draft.postingAccount;
   if (account?.status !== "registered") return toast("判断.mdで投稿先アカウントを確定してください");
   const caption = platform === "instagram" ? state.draft.instagramCaption : state.draft.threadsCaption;
   await navigator.clipboard.writeText(caption);
-  const target = platform === "instagram" ? account.instagram?.url || "https://www.instagram.com/" : account.threads?.url || "https://www.threads.net/";
+  const target = platform === "instagram" ? account.instagram?.url : account.threads?.url;
+  if (!target || !safeHttpUrl(target)) return toast("この媒体の公式アカウントが未登録です");
+  syncManifest();
+  state.draft.manifest.publication_review = { status: "operator-approved-for-manual-posting", checkedAt: new Date().toISOString(), publication: "not_performed", same_mp4_for_threads: true };
   window.open(target, "_blank", "noopener,noreferrer");
   $("#chrome-post-status").textContent = `${platform === "instagram" ? "Instagram" : "Threads"}本文をコピーし、正式アカウントを開きました。完成MP4を選び、最終シェア前で止めて確認してください。`;
 }
@@ -591,9 +831,16 @@ function packageData() {
     input: payload(),
     selectedConcept: state.draft.selectedConcept,
     frames: state.draft.frames,
+    workflow: "myreel",
+    durationSeconds: state.draft.durationSeconds,
+    blogLinked: state.draft.blogLinked,
+    research: state.draft.manifest.research,
+    audio: state.draft.audio,
     cover: state.draft.cover,
     instagramCaption: state.draft.instagramCaption,
     threadsCaption: state.draft.threadsCaption,
+    storyCaption: state.draft.storyCaption,
+    shopComment: state.draft.shopComment,
     sourceUrl: state.draft.sourceUrl,
     cta: state.draft.cta,
     videoPrompt: state.draft.videoPrompt,
@@ -607,9 +854,8 @@ function handoffReelDraft() {
   if (!state.draft) return toast("先にリール投稿プレビューを作成してください");
   try {
     const key = `contentStudioReelDraft:${state.profile.id}`;
-    localStorage.setItem(key, JSON.stringify(packageData()));
+    handoffToAdmin("reel", packageData(), key);
     toast("管理画面へリール下書きを渡しました");
-    window.location.assign(STUDIO_CONFIG.adminUrl);
   } catch (error) {
     toast(`リール下書きを渡せませんでした: ${error.message}`);
   }
@@ -648,16 +894,19 @@ async function saveReelPackage() {
     const root = await window.showDirectoryPicker({ mode: "readwrite", id: `reel-${state.profile.id}` });
     const campaignName = state.draft.manifest.campaign_key || `${state.profile.id}-${today()}-${slugify(payload().topic)}`;
     const directory = await nestedDirectory(root, ["content", "campaigns", campaignName]);
-    await writeFile(directory, "README.md", `# ${payload().topic || state.draft.cover.title}\n\n- 事業: ${state.profile.name}\n- 対象: ${payload().audience}\n- 状態: 投稿前下書き\n- 形式: 1080×1920 / 5場面 / 各3秒\n- 次の作業: 完成MP4確認、正式アカウント確認、明示承認、投稿URL追記\n`);
+    await writeFile(directory, "README.md", `# ${payload().topic || state.draft.cover.title}\n\n- 事業: ${state.profile.name}\n- 対象: ${payload().audience}\n- 状態: ローカル確認用素材。外部投稿・Instagram下書き保存は未実施\n- 形式: 1080×1920 / ${state.draft.frames.length}場面 / ${totalSeconds()}秒。通常速度、全文を表示\n- 音声: ${state.draft.audio.narration.status}。自動ナレーション生成は未対応\n- 次の作業: 動画・独立カバー・正方形・音声確認、正式アカウントと正規URL確認、4点セットの最終承認、公開結果記録\n`);
     await writeFile(directory, "source.md", `# 入力元\n\nURL: ${state.draft.sourceUrl}\n\n## 元テキスト\n\n${payload().sourceText}\n\n## 事業者の言葉\n\n${payload().story}\n`);
     await writeFile(directory, "storyboard.json", JSON.stringify(packageData(), null, 2));
-    await writeFile(directory, "captions.md", `# Instagram\n\n${state.draft.instagramCaption}\n\n# Threads\n\n${state.draft.threadsCaption}\n`);
+    await writeFile(directory, "captions.md", `# Instagram\n\n${state.draft.instagramCaption}\n\n# Story\n\n${state.draft.storyCaption}\n\n公開Reelを共有。下部中央リンク「詳細はこちら」: ${state.draft.sourceUrl}\n\n# 店舗コメント\n\n${state.draft.shopComment}\n\n# Threads（Reelと同一MP4）\n\n${state.draft.threadsCaption}\n`);
     await writeFile(directory, "prompts.md", `# 背景動画\n\n${state.draft.videoPrompt}\n\n# 最終調整\n\n${$("#reel-final-prompt").value.trim()}\n`);
     const assets = await directory.getDirectoryHandle("assets", { create: true });
     for (const item of state.localMedia) await writeFile(assets, item.file.name, item.file);
+    for (const [index, file] of state.narrationFiles) await writeFile(assets, `narration-${index + 1}-${file.name}`, file);
     if (state.rawVideoBlob) await writeFile(assets, "background.mp4", state.rawVideoBlob);
-    if (state.finalVideoBlob) await writeFile(directory, `reel-final.${state.finalVideoExtension}`, state.finalVideoBlob);
-    if (state.coverBlob) await writeFile(directory, "cover.png", state.coverBlob);
+    if (state.finalVideoBlob) await writeFile(directory, state.draft.manifest.final_video || `reel-final.${state.finalVideoExtension}`, state.finalVideoBlob);
+    if (state.coverBlob) await writeFile(directory, state.draft.manifest.cover_image || "cover.png", state.coverBlob);
+    if (state.squareBlob) await writeFile(directory, state.draft.manifest.square_qa_image || "cover-square-qa.png", state.squareBlob);
+    await writeFile(directory, "qa.json", JSON.stringify({ research: state.draft.manifest.research, audio: state.draft.audio, cover: state.draft.cover, sceneText: state.draft.manifest.frames.map((frame) => ({ scene: frame.index, center_text: frame.center_text, narration_text: frame.narration_text, exactMatch: frame.narration_match, duration: frame.duration })), review: state.draft.manifest.qa, publication: "not_performed" }, null, 2));
     toast(`content/campaigns/${campaignName} に保存しました`);
   } catch (error) {
     if (error.name !== "AbortError") toast(`保存できませんでした: ${error.message}`);
@@ -666,7 +915,9 @@ async function saveReelPackage() {
 
 $("#reel-profile").addEventListener("change", () => applyProfile({ reset: true }));
 $("#reel-files").addEventListener("change", onFilesChanged);
-$("#reel-source-mode").addEventListener("change", () => { clearGeneratedAssets(); renderPreview(); });
+$("#reel-source-mode").addEventListener("change", () => resetWorkflow());
+$("#reel-blog-linked").addEventListener("change", () => resetWorkflow());
+$("#reel-audio-mode").addEventListener("change", invalidateFinalRender);
 $("#make-reel-concepts").addEventListener("click", makeConcepts);
 $("#make-reel-draft").addEventListener("click", makeDraft);
 $("#reel-concepts").addEventListener("input", (event) => {
@@ -674,8 +925,27 @@ $("#reel-concepts").addEventListener("input", (event) => {
   state.concepts[Number(event.target.dataset.index)][event.target.dataset.conceptField] = event.target.value;
 });
 $("#reel-frame-editors").addEventListener("input", updateFrame);
-for (const id of ["reel-cover-title", "reel-cta", "reel-final-url", "reel-video-prompt", "instagram-caption", "threads-caption"]) $("#" + id).addEventListener("input", syncEditableMeta);
-$("#reel-final-scheduled-at").addEventListener("input", syncManifest);
+$("#reel-frame-editors").addEventListener("change", (event) => {
+  if (event.target.dataset.narrationIndex === undefined) return;
+  const index = Number(event.target.dataset.narrationIndex);
+  const file = event.target.files?.[0];
+  if (file) state.narrationFiles.set(index, file);
+  else state.narrationFiles.delete(index);
+  event.target.nextElementSibling.textContent = file?.name || "未選択";
+  invalidateFinalRender();
+});
+$("#add-reel-scene").addEventListener("click", () => {
+  if (!state.draft) return;
+  const last = state.draft.frames.at(-1);
+  state.draft.frames.push({ index: state.draft.frames.length + 1, text: "", center_text: "", narration_text: "", duration: 3, media: last?.media || "", crop: "全画面", focalX: 50, focalY: 50 });
+  invalidateFinalRender();
+  renderDraft();
+});
+for (const id of ["reel-cover-title", "reel-cta", "reel-final-url", "reel-video-prompt", "instagram-caption", "threads-caption", "reel-story-caption", "reel-shop-comment", "reel-cover-source"]) $("#" + id).addEventListener("input", syncEditableMeta);
+$("#reel-final-scheduled-at").addEventListener("input", () => { resetApproval(); syncManifest(); });
+for (const id of ["reel-research-urls", "reel-research-reviewed", "reel-research-keep", "reel-research-change", "reel-blog-live-url", "reel-blog-video-url", "reel-blog-cover-url"]) $("#" + id).addEventListener("input", () => { resetApproval(); syncManifest(); });
+$("#reel-research-urls").addEventListener("input", () => { $("#reel-research-reviewed").checked = false; syncManifest(); });
+for (const id of ["reel-visual-qa", "reel-audio-qa", "reel-url-qa", "reel-blog-live-checked", "chrome-post-confirm"]) $("#" + id).addEventListener("change", syncManifest);
 $("#copy-instagram").addEventListener("click", () => copyValue("#instagram-caption", "Instagram本文"));
 $("#copy-threads").addEventListener("click", () => copyValue("#threads-caption", "Threads本文"));
 $("#download-manifest").addEventListener("click", downloadManifest);

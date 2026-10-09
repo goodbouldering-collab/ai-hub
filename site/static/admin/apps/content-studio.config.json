@@ -1,9 +1,11 @@
 {
   "version": 1,
   "siteId": "ai-hub",
-  "apiBase": "https://business-content-app-server.vercel.app",
+  "apiBase": "/api/content-studio",
+  "secureKeyStorage": true,
   "profileId": "ai-hub",
   "localAdmin": true,
-  "adminUrl": "/admin/blog",
-  "publicBase": "/admin/apps"
+  "adminUrl": "/admin/blog/editor",
+  "publicBase": "/admin/apps",
+  "handoffMessageType": "content-studio:handoff"
 }

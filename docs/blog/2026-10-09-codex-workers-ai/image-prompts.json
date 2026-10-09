@@ -1,0 +1,31 @@
+{
+  "tool": "built-in image_gen",
+  "created": "2026-10-09",
+  "prompts": [
+    {
+      "key": "hero",
+      "prompt": "Create a landscape 16:9 editorial explanatory illustration for a Japanese practical AI blog. Warm white background, restrained teal and orange, clear large objects, elegant tactile paper and soft 3D style. No logos, no people, no identifying locations, no small illegible text, no actual app screenshot. A tidy desktop laptop at center, a folder of reference documents flowing toward the laptop on left, on right a simple app panel with a single glowing draft-generation button and a finished document. Communicate fewer repeated file attachments and less copy-paste. No text.",
+      "output": "site/static/img/blog-codex-workers-ai-hero-20261009.webp"
+    },
+    {
+      "key": "folders",
+      "prompt": "Create a landscape 16:9 editorial explanatory illustration for a Japanese practical AI blog. Warm white background, restrained teal and orange, clear large objects, elegant tactile paper and soft 3D style. No logos, no people, no identifying locations, no small illegible text, no actual app screenshot. A single reference folder containing several document sheets and photo thumbnails connected by a clear single line to a project workspace on a laptop. A simple explanatory image about providing a reusable folder of source materials. No text.",
+      "output": "site/static/img/blog-codex-workers-ai-folders-20261009.webp"
+    },
+    {
+      "key": "rules",
+      "prompt": "Create a landscape 16:9 editorial explanatory illustration for a Japanese practical AI blog. Warm white background, restrained teal and orange, clear large objects, elegant tactile paper and soft 3D style. No logos, no people, no identifying locations, no small illegible text, no actual app screenshot. A plain document titled exactly AGENTS.md beside a project folder. Three large simple checklist lines on the document, one magnifying glass and one small shield symbol. Communicate project instructions and checking original sources. Only text AGENTS.md.",
+      "output": "site/static/img/blog-codex-workers-ai-rules-20261009.webp"
+    },
+    {
+      "key": "app",
+      "prompt": "Create a landscape 16:9 editorial explanatory illustration for a Japanese practical AI blog. Warm white background, restrained teal and orange, clear large objects, elegant tactile paper and soft 3D style. No logos, no people, no identifying locations, no small illegible text, no actual app screenshot. A clean conceptual application panel, three input fields represented by short lines at top, one prominent orange button in the center, a draft document preview below with a pencil icon for human review. Subtle cloud outline behind. Communicate generating and reviewing a draft inside one app. No text.",
+      "output": "site/static/img/blog-codex-workers-ai-app-20261009.webp"
+    },
+    {
+      "key": "start",
+      "prompt": "Create a landscape 16:9 editorial explanatory illustration for a Japanese practical AI blog. Warm white background, restrained teal and orange, clear large objects, elegant tactile paper and soft 3D style. No logos, no people, no identifying locations, no small illegible text, no actual app screenshot. A small sequence of three tangible objects from left to right: a folder of past notices, a draft document with a pencil, a compact app window with one orange button. Connected by two subtle arrows. Generous white space. Communicate start with one small repeatable task. No text.",
+      "output": "site/static/img/blog-codex-workers-ai-start-20261009.webp"
+    }
+  ]
+}

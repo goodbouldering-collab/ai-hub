@@ -23,9 +23,16 @@
 - AI相談用Chrome Profile 1は接続されておらず、ネイティブ起動は利用不可。共通手順に従いCodex内ブラウザで公開面を検証。Chromeへのログインは要求していない。
 - 計測準備票を確認。Google側の設定やタグ追加は今回の範囲に含めない。
 
-## 公開準備
+## 公開結果
 
-現在はローカル検証済み。本番反映結果は公開後にここを更新する。
+- [PR #124](https://github.com/goodbouldering-collab/ai-hub/pull/124) はCloudflareチェック2件成功後に統合。公開SHA `40ce7c95f97e9cfec199543615f59cf958d9f186`、PR head `c1c71917c830f1d946b7fccb44d7dff06c98b8c3`。
+- 登録公開元をfast-forwardし、別作業15ファイルの内容と無関係なステージ済みエントリをハッシュ・index比較で保全。Present.mdのJPC公開承認待ち記録もローカルに保持する。
+- 統合SHAから `.editorial-release-20261011-final` を生成。入力はすべてcommit済み、WorkerはGitの確定blobから抽出し、作業中のWorker差分を混入させていない。
+- target default のガード成功後、Wrangler 4.143.1で公開。2026-10-11 00:37 JST、version `3121c0bc-72a6-446f-84bc-28ddb1c2a3a6`、deployment `42993aec-e913-466b-b24c-60c326c46129`、100%配信。
+- [トップ](https://aiclimb.aiclimb.workers.dev/)、[全一覧](https://aiclimb.aiclimb.workers.dev/blog/)、[AIニュース・Codex](https://aiclimb.aiclimb.workers.dev/ai-news/) を検証。本番35資産が生成物と一致し、記事10本は元の内容のまま。/health・/admin・既存記事は200、保護された /api/admin/ping は401、旧Codex記事3経路は301を保持。
+- 本番でもPC1440px、スマートフォン390/360pxの表示・操作を確認。全一覧11画像は末尾までスクロールして読込確認。講習カードの高さは候補版と一致。メニュー開閉、もっと見る、講習詳細の展開に問題なし。
+- `delivery-status.mjs check` は文書更新前に `DELIVERY_VERIFIED`。証拠は登録公開元 `tmp/delivery/20261011-home-editorial-design/` の production-hashes.json / production-feature.txt / production-visual.json / delivery-check.txt。
+- 今後の公開基準は `.editorial-release-20261011-final/public` と verification.json。公開後のPresent.md・本記録のみの更新ではサイトを再デプロイしない。
 
 基準: 登録公開元の .home-blog-text-list-release-20261010/。再生成:
 ```powershell

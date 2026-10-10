@@ -8,5 +8,10 @@
 - 68件の指定・関連テスト、assets、Cloudflare policy、dry-run成功。Jev実差分レビューは低信頼の一般指標で、具体的な欠陥根拠はなし。通常検証と厳密な資産比較を採用。
 - AI相談 - Chrome.lnkのProfile 1を起動（既存タブを先に確認）、PC1440/iPhone390幅、独立ページともっと見る遷移、横はみ出しなしを候補で確認。
 - GitHub hooks空、コミット済みlegacyVercel.gitIntegration=disconnected。既存認証のみ。Vercel・SNS・メール・課金・認証・DNS・別定期ジョブ変更なし。
-- 公開前。次は統合SHAから登録元内でcommit済み入力だけを再生成し、default -ForDeployガード・同一Worker公開・live/ハッシュ/実画面確認。
+- PR #129のチェック2件成功、main統合・公開SHA `0057d83a4220fcfd5a9dd5144c52cf8ca127a1d4`。head `744c5667fd4241287bedda2a602bbadd1007f590`。
+- 登録元のJPCリンク・Present差分を退避・照合し14変更とindexを保持してfast-forward。未公開入力は混入させず、Git archiveをcore.autocrlf=falseで取得した53入力から577資産を再生成。初回archiveのCRLF不一致は公開前に検出して修正。
+- 中央ForDeploy成功、Wrangler4.143.1 --no-bundle --keep-varsで公開。version `171fa478-0163-4d13-bf20-1c7993c111e3`、deployment `10af30b1-1bc9-47f0-bb95-24b6959666c1`、100%。Worker SHA457909aed67dfab7db342855e4527079b168a1ba009aa7a5a7b62de975e9e767・etag/bindings/runtime不変。
+- --live成功、本番33資産SHA一致。HTTP取得2件の一時タイムアウトは対象だけ再試行して解消。独立5件・トップ3見出し・ブログ10件・旧3URL301・中央経路200・未認証管理API401確認。
+- AI相談Profile1 Chromeで本番PC1440/iPhone390、もっと見る遷移、横はみ出しなしを実画面確認。ブログのサイト内検索メニューには独立ニュースへのリンクを保持し、記事カードには含めない。
+- Web工程は公開後文書更新前にDELIVERY_VERIFIED。次回baselineは `.daily-news-release-20261011-final/public` とverification.json/production-summary.json。文書だけの更新ではサイトを再公開しない。
 - 証拠: outputs/daily-20261011/、工程tmp/delivery/daily-ai-news-20261011.json。プレビューhttp://127.0.0.1:4031/、親PID45444、2026-10-13 08:16 JST終了予定。

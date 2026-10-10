@@ -193,3 +193,5 @@ Workerはdeployment/ai-news/published-worker.mjs、現行API取得本文と同�
 ## 2026-10-11 日次の独立導線と最新デザインの維持
 
 直前正常版は登録元 `.editorial-release-20261011-final/public`（577資産）。全manifest、本番14SHA、更新前再生成差分0で照合。シェルとmanifestをこの版へ更新。今回の契約はヒーロー直下のニュース3見出しと `/ai-news/` へのもっと見る、ブログ一覧から独立ニュースを除外。画像付きブログ・講習カードは保持する。`core/editorial_feed.py` と検証・テストもこの契約へ合わせた。公開差分は許可5ファイル内の4資産。詳細は [当日記録](daily-news-20261011-run.md)。次回baselineは当日の公開成功記録を本番と照合して確定する。
+
+公開結果: PR #129/main0057d83a、version171fa478。次回は `.daily-news-release-20261011-final/public` とverification.json/production-summary.jsonを最新本番と再照合する。登録元の未公開差分を混ぜず、確定Git blobを抽出したsource snapshotから再生成。33本番SHA・Chrome Profile1のPC/iPhone確認・DELIVERY_VERIFIED成功。

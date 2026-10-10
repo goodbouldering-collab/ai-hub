@@ -30,6 +30,8 @@ from core.diagnosis_copy import apply_diagnosis_copy
 from core.daily_news import normalize_daily_ai_news, render_daily_ai_news
 from core.studio_design import decorate_public_tree
 from core.home_updates import apply_home_updates
+from core.editorial_feed import apply_blog_feed
+from core.editorial_home import apply_editorial_home
 
 TEMPLATES = ROOT / "site/templates/ai-news"
 URL = "https://aiclimb.aiclimb.workers.dev/ai-news/"
@@ -50,7 +52,9 @@ def apply_compact_style(document: str, css: str) -> str:
     return document.replace("</head>", f"<style id='ai-news-compact-style'>{css}</style></head>")
 
 
-def render_feature(news: dict, label: str) -> str:
+def render_feature(news: dict, label: str, modified: str | None = None) -> str:
+    published = modified or news["date"]
+    date.fromisoformat(published)
     headlines = "".join(
         f'<li><a href="/ai-news/#news-{rank}"><span aria-hidden="true">0{rank}</span>'
         f'<span>{html.escape(item["title"])}</span><b aria-hidden="true">↗</b></a></li>'
@@ -60,7 +64,7 @@ def render_feature(news: dict, label: str) -> str:
         '<section id="ai-news" class="ai-news-feature" aria-labelledby="ai-news-feature-title">'
         '<div class="ai-news-feature__intro">'
         '<div class="ai-news-feature__heading"><h2 id="ai-news-feature-title">今日のAIニュース5とCodex</h2>'
-        f'<time datetime="{news["date"]}">{label}</time></div></div>'
+        f'<time datetime="{published}">{label}</time></div></div>'
         f'<div class="ai-news-feature__reading"><ol>{headlines}</ol>'
         '<a class="ai-news-feature__more" href="/ai-news/">もっと見る'
         '<b aria-hidden="true">→</b></a></div></section>'
@@ -97,14 +101,14 @@ def build(output: Path, base_assets: Path | None = None, *, preserve_baseline_pr
     home = (TEMPLATES / "home.html").read_text(encoding="utf-8")
     if "{{AI_NEWS_FEATURE}}" in home:
         assert home.count("{{AI_NEWS_FEATURE}}") == 1
-        home = home.replace("{{AI_NEWS_FEATURE}}", render_feature(news, label))
+        home = home.replace("{{AI_NEWS_FEATURE}}", render_feature(news, label, modified))
     else:
         home, count = re.subn(r"<section\b[^>]*class=['\"][^'\"]*codex-update-guide[^'\"]*['\"][^>]*>.*?</section>", "", home, flags=re.S)
         assert count == 1, "Expected one old news banner"
         home = remove_old_cards(home)
         hero = re.search(r"<section\b[^>]*id=['\"]top['\"][^>]*>.*?</section>", home, re.S)
         assert hero, "Hero not found"
-        home = home[:hero.end()] + render_feature(news, label) + home[hero.end():]
+        home = home[:hero.end()] + render_feature(news, label, modified) + home[hero.end():]
         css = (TEMPLATES / "feature.css").read_text(encoding="utf-8")
         home = home.replace("</head>", f"<style id='ai-news-feature-style'>{css}</style></head>")
     home = apply_compact_style(home, compact_css)
@@ -115,6 +119,7 @@ def build(output: Path, base_assets: Path | None = None, *, preserve_baseline_pr
         home = restore_home_speaker(apply_instagram_feed(remove_soft_playground(home)))
     blog = remove_old_cards((TEMPLATES / "blog.html").read_text(encoding="utf-8"))
     home = apply_home_updates(home, blog, (TEMPLATES / "home-updates.css").read_text(encoding="utf-8"))
+    blog = apply_blog_feed(blog, modified, (TEMPLATES / "editorial-feed.css").read_text(encoding="utf-8"))
     sitemap = (TEMPLATES / "sitemap.xml").read_text(encoding="utf-8")
     sitemap, count = re.subn(r"<url><loc>[^<]*/blog/codex-update-log\.html</loc>.*?</url>", f"<url><loc>{URL}</loc><lastmod>{modified}</lastmod><priority>0.9</priority></url>", sitemap, flags=re.S)
     assert count == 1
@@ -137,6 +142,9 @@ def build(output: Path, base_assets: Path | None = None, *, preserve_baseline_pr
     # Daily content updates can retain the exact already-published theme.
     # A separate design release still uses the current decorator by default.
     themed = [] if preserve_baseline_presentation else decorate_public_tree(output)
+    if not preserve_baseline_presentation:
+        home_path = output / "index.html"
+        home_path.write_text(apply_editorial_home(home_path.read_text(encoding="utf-8")), encoding="utf-8", newline="\n")
     if preserve_baseline_presentation:
         changed = {p.relative_to(output).as_posix() for p in output.rglob("*") if p.is_file()
                    and hashlib.sha256(p.read_bytes()).hexdigest() != manifest.get(p.relative_to(output).as_posix())}

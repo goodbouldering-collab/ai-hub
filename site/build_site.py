@@ -41,6 +41,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from core.daily_news import load_daily_ai_news, prepend_daily_ai_news
+from core.editorial_feed import apply_blog_feed, public_posts
 from public_navigation import render_desktop_navigation, render_mobile_navigation
 from blog_freshness import blog_date_label, effective_blog_date, is_new_blog
 
@@ -4860,6 +4861,22 @@ def build_lectures() -> int:
     return len(lecture_records)
 
 
+def _editorial_news_date(daily_news: dict) -> str:
+    """Use content publication dates, never the clock of a local rebuild."""
+    dates = []
+    if daily_news.get("date"):
+        dates.append(date.fromisoformat(str(daily_news["date"])))
+    codex_source = ROOT / "content/ai-news/codex-update-log.md"
+    if codex_source.is_file():
+        meta, _ = _parse_frontmatter(codex_source.read_text(encoding="utf-8"))
+        value = meta.get("date_modified") or meta.get("date")
+        if value:
+            dates.append(date.fromisoformat(str(value)))
+    if not dates:
+        raise ValueError("The public news index needs a dated news or Codex source")
+    return max(dates).isoformat()
+
+
 def build_blog() -> int:
     """Build public blog markdown pages from content/blog/*.md."""
     if not BLOG_DIR.exists():
@@ -4868,7 +4885,6 @@ def build_blog() -> int:
     out_dir = DIST / "blog"
     out_dir.mkdir(parents=True, exist_ok=True)
     count = 0
-    items: list[dict] = []
     featured_reel: dict | None = None
     daily_ai_news = load_daily_ai_news(DAILY_AI_NEWS_JSON)
     for f in sorted(BLOG_DIR.glob("*.md"), reverse=True):
@@ -4882,15 +4898,6 @@ def build_blog() -> int:
             render_content_page(title, meta, body_html, nav, page_path=f"blog/{f.stem}.html", kind="blog"),
             encoding="utf-8",
         )
-        items.append({
-            "slug": f.stem,
-            "title": title,
-            "date": str(meta.get("date") or ""),
-            "date_modified": str(meta.get("date_modified") or ""),
-            "summary": str(meta.get("summary") or ""),
-            "image": str(meta.get("image") or ""),
-            "image_alt": str(meta.get("image_alt") or title),
-        })
         if featured_reel is None and bool(meta.get("blog_index_featured_reel")):
             featured_reel = {
                 "slug": f.stem,
@@ -4903,7 +4910,25 @@ def build_blog() -> int:
             }
         count += 1
 
-    items.sort(key=lambda item: effective_blog_date(item) or date.min, reverse=True)
+    # The verified public index is the publication boundary. Local Markdown
+    # includes archived/unpublished work and may differ from the live copy.
+    # Rebuilding its presentation must neither publish that work nor rewrite
+    # the already-approved title, date or summary.
+    published_index = ROOT / "site/templates/ai-news/blog.html"
+    if not published_index.is_file():
+        raise ValueError("The approved public blog index is required")
+    approved = public_posts(published_index.read_text(encoding="utf-8"))
+    items = [{
+        "slug": Path(post["href"]).stem,
+        "title": post["title"],
+        "date": post["date"],
+        "date_label": post["date_label"],
+        "summary": post["summary"],
+        "image": post.get("image", ""),
+        "image_alt": post.get("image_alt", post["title"]),
+    } for post in approved]
+    if featured_reel and featured_reel["slug"] not in {item["slug"] for item in items}:
+        featured_reel = None
 
     if items:
         parts = [
@@ -4953,7 +4978,7 @@ def build_blog() -> int:
             safe_summary = html.escape(item["summary"])
             fresh = is_new_blog(item)
             update_label = html.escape(blog_date_label(item))
-            display_date = update_label if item.get("date_modified") else safe_date
+            display_date = html.escape(item["date_label"]) if item.get("date_label") else (update_label if item.get("date_modified") else safe_date)
             image_path = str(item.get("image") or "").strip()
             image_alt = html.escape(str(item.get("image_alt") or item["title"]), quote=True)
             parts.append(f"<a class='tr-card' href='{safe_href}'>")
@@ -4971,23 +4996,23 @@ def build_blog() -> int:
                 parts.append("<span class='blog-new-badge'>NEW</span>")
             parts.append("</div>")
             if display_date:
-                parts.append(f"<div class='tr-date'>{display_date}</div>")
+                parts.append(f"<div class='tr-date' data-date='{safe_date}'>{display_date}</div>")
             if safe_summary:
                 parts.append(f"<div class='tr-sum'>{safe_summary}</div>")
             parts.append("</div></a>")
         parts.append("</div></div>")
         nav = render_top_nav(path_prefix="../", current_id="blog", include_run=False)
-        (out_dir / "index.html").write_text(
-            render_content_page(
-                "ブログ",
-                {"summary": "AI相談のブログ一覧。Codex、Claude Code、AIエージェント講座、生成AI活用、業務改善の実践記録。"},
-                "".join(parts),
-                nav,
-                page_path="blog/index.html",
-                kind="blog_index",
-            ),
-            encoding="utf-8",
+        index_document = render_content_page(
+            "ブログ",
+            {"summary": "AI相談のブログ一覧。Codex、Claude Code、AIエージェント講座、生成AI活用、業務改善の実践記録。"},
+            "".join(parts),
+            nav,
+            page_path="blog/index.html",
+            kind="blog_index",
         )
+        feed_css = (ROOT / "site/templates/ai-news/editorial-feed.css").read_text(encoding="utf-8")
+        index_document = apply_blog_feed(index_document, _editorial_news_date(daily_ai_news), feed_css)
+        (out_dir / "index.html").write_text(index_document, encoding="utf-8", newline="\n")
     return count
 
 

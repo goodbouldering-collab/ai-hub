@@ -17,25 +17,30 @@ def verify(read):
     hero = home.select_one("main #top")
     feature = home.select_one("main #ai-news")
     assert hero.find_next_sibling() == feature, "News entry must immediately follow the hero"
-    assert not feature.select(".ai-news-feature__description"), "Intro description must be removed"
-    heading = feature.select_one(".ai-news-feature__heading")
-    assert heading and heading.select_one("#ai-news-feature-title") and heading.select_one("time"), "Title and update date must share the heading row"
-    assert len(feature.select(".ai-news-feature__reading li")) == 3
-    for link in feature.select('.ai-news-feature__reading li a'):
-        assert page.select_one("#" + link["href"].split("#")[1]), "Headline destination missing"
-    assert feature.select_one('a.ai-news-feature__more[href="/ai-news/"]')
-    latest = home.select('#blog li a')
-    assert len(latest) == 2, "Home must show two recent blog posts"
+    assert feature.select_one('#editorial-feed-title').get_text() == 'ブログ・Codex情報'
+    rows = feature.select('.editorial-feed__row')
+    assert len(rows) == 3, "Home must show daily AI/Codex and the latest two blogs"
+    assert rows[0]['href'] == '/ai-news/'
+    assert all(row.select_one('img[src][alt]') for row in rows)
     assert len(home.select('#blog')) == 1
-    assert feature.select_one('#blog.home-updates__blog')
-    assert not home.select('#blog-carousel, #latest-blog'), "Only the historical text list belongs on home"
-    assert not feature.select('section'), 'Daily refresh must not truncate a nested section'
-    expected = sorted(blog.select('a.tr-card'), key=lambda card: card.select_one('.tr-date').get_text(), reverse=True)[:2]
-    for link, card in zip(latest, expected):
+    assert feature.select_one('#blog.editorial-feed--home')
+    assert not home.select('#blog-carousel, #latest-blog')
+    assert not feature.select('section'), "Daily refresh must not truncate a nested section"
+    expected = sorted(blog.select('a.tr-card'), key=lambda card: card.select_one('time')['datetime'], reverse=True)[:2]
+    for link, card in zip(rows[1:], expected):
         assert link['href'] == urljoin('/blog/', card['href'])
-        assert link.select_one('span').get_text() == card.select_one('.tr-title').get_text()
-        assert link.select_one('time')['datetime'] == card.select_one('.tr-date').get_text()
-    assert home.select_one('#blog a[href="/blog/"]')
+        assert link.select_one('.tr-title').get_text() == card.select_one('.tr-title').get_text()
+        assert link.select_one('time')['datetime'] == card.select_one('time')['datetime']
+    more = feature.select_one('a.editorial-feed__more[href="/blog/"]')
+    assert more and 'もっと見る' in more.get_text()
+    assert len(blog.select('.editorial-feed__news')) == 1
+    assert all(row.select_one('img[src][alt]') for row in blog.select('.editorial-feed__row'))
+    assert len(blog.select('.editorial-feed__row')) == len(blog.select('a.tr-card')) + 1
+    assert len(home.select('.compact-course-card[data-editorial-course]')) == 6
+    for card in home.select('.compact-course-card'):
+        assert card.select_one('.editorial-course-lead .compact-course-meta strong')
+        assert card.select_one(':scope > .studio-course-body .compact-course-tail')
+    assert not any('/soft-' in img.get('src', '') or '/lesson-' in img.get('src', '') for img in home.select('img'))
     assert not home.select('a[href*="/blog/codex-update-log"]')
     assert not blog.select('a[href*="codex-update-log"]')
     assert "/blog/codex-update-log" not in sitemap
@@ -46,10 +51,16 @@ def verify(read):
     assert page.select_one("#codex-update-guide-title").get_text() == "Codex新機能と活用例"
     assert ".codex-update-guide #codex-update-guide-title," in str(page)
     assert not page.select_one("a[aria-current='page'][href='/#blog']")
-    assert page.select_one(".blog-update-label").get_text() == feature.select_one("time").get_text()
+    from datetime import date
+    updated = date.fromisoformat(rows[0].select_one('time')['datetime'])
+    assert page.select_one(".blog-update-label").get_text() == f"{updated.month}月{updated.day}日更新"
     assert len(page.select(".content-toc")) == 0
     assert page.select_one("#過去のアップデート要約")
-    return {"hero_adjacent": True, "home_headlines": 3, "news_items": 5, "latest_blogs": 2, "home_blog_text_list_restored": True, "codex_blog_card_removed": True, "date_removed": True, "shared_h2_style": True, "description_removed": True, "date_in_heading": True}
+    return {"hero_adjacent": True, "home_entries": 3, "news_items": 5,
+            "latest_blogs": 2, "archive_entries": len(blog.select('.editorial-feed__row')),
+            "all_entries_have_images": True, "compact_courses": 6,
+            "codex_blog_card_removed": True, "article_content_checks": True}
+
 
 
 if __name__ == "__main__":

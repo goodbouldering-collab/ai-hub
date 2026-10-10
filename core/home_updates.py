@@ -1,4 +1,4 @@
-"""Keep the September 30 home text list with current published articles."""
+"""Maintain the approved home feed with current published articles."""
 from datetime import date
 from html import escape
 from html.parser import HTMLParser
@@ -69,41 +69,18 @@ def latest_published_posts(blog_index):
 
 
 def apply_home_updates(document, blog_index, css):
-    posts = latest_published_posts(blog_index)
-    rows = ''.join(
-        f'<li><a href="{post["href"]}" title="{escape(post["title"], quote=True)}">'
-        f'<time datetime="{post["date"]}">{post["date"].replace("-", ".")}</time>'
-        f'<span>{escape(post["title"])}</span><b aria-hidden="true">↗</b></a></li>'
-        for post in posts
-    )
-    feature_pattern = r'(<section\b[^>]*id=[\'"]ai-news[\'"][^>]*>)(.*?)(</section>)'
-    matches = list(re.finditer(feature_pattern, document, re.S))
-    if len(matches) != 1:
-        raise ValueError('Expected one home news entry')
-    feature = matches[0]
-    inner = feature[2]
-    previous = re.fullmatch(r'<div class="home-updates__news">(.*?)</div><!-- /home-updates-news -->.*', inner, re.S)
-    if previous:
-        inner = previous[1]
-    combined = (
-        feature[1] + '<div class="home-updates__news">' + inner + '</div><!-- /home-updates-news -->'
-        '<div id="blog" class="home-updates__blog" role="region" aria-labelledby="home-blog-title">'
-        '<h2 id="home-blog-title">最新ブログ</h2>'
-        '<a class="home-updates__more" href="/blog/">一覧を見る<b aria-hidden="true">→</b></a>'
-        f'<ol>{rows}</ol></div>' + feature[3]
-    )
-    document = document[:feature.start()] + combined + document[feature.end():]
-    # The existing #blog navigation now targets the compact group above.
-    document = re.sub(r'<section\b[^>]*id=[\'"](?:blog|latest-blog)[\'"][^>]*>.*?</section>', '', document, flags=re.S)
+    """Keep the approved image feed and compact menu on daily regeneration."""
+    from core.editorial_feed import apply_home_feed, public_posts
+    from core.editorial_home import apply_editorial_home
+    templates = Path(__file__).resolve().parents[1] / 'site/templates/ai-news'
     style = f'<style id="home-updates-style">{css}</style>'
-    pattern = r'<style\b[^>]*id=[\'"]home-updates-style[\'"][^>]*>.*?</style>'
+    pattern = r'<style\b[^>]*id=[\x27"]home-updates-style[\x27"][^>]*>.*?</style>'
     if re.search(pattern, document, re.S):
         document = re.sub(pattern, lambda _: style, document, flags=re.S)
     else:
-        if document.count('</head>') != 1:
-            raise ValueError('Expected one document head')
         document = document.replace('</head>', style + '</head>')
-    return document
+    document = apply_home_feed(document, public_posts(blog_index), (templates / 'editorial-feed.css').read_text(encoding='utf-8'))
+    return apply_editorial_home(document)
 
 
 def render_home_blog_list(blog_index):

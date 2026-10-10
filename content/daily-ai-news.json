@@ -1,30 +1,30 @@
 {
-  "date": "2026-10-10",
-  "research_note": "日本時間2026年10月8日朝〜10月10日朝の直近48時間を調査し、公式発表5件・異なる5URLを選定。7日への拡大なし。publishedは発表ページの日付です。Google日本語版は10月9日掲載、元発表は米国時間10月8日。NotePMは10月8日発表で機能提供は9月6日、dott講座は10月30日の予定、GMOのプロジェクト開始決定は9月24日と区別しています。",
+  "date": "2026-10-11",
+  "research_note": "日本時間2026年10月9日朝〜10月11日朝の直近48時間を調査。公式発表5件・異なる5URL・5発表元を選定し、7日への拡大はしていません。publishedは発表ページの日付です。dott講座は10月30日の開催予定、スペースデータの出展は10月6〜7日の実施報告であり、新製品の提供開始とは区別しています。",
   "items": [
     {
-      "title": "NTT、開発の遅れをAIで早めに見つける",
-      "url": "https://www.ntt-tx.co.jp/whatsnew/2026/261008.html",
-      "source": "NTTテクノクロス",
-      "published": "2026-10-08",
-      "kid_summary": "NTTテクノクロスは、報告書や議事録をAIで分析し、開発の遅れや品質低下の兆候を示す「PromanAIde」を提供開始しました。",
-      "japan_angle": "地域企業がシステム開発を頼む際、進捗報告から確認すべき課題を早めに見つける支援として検討できます。"
-    },
-    {
-      "title": "Google、仕事をまとめて支えるAIを発表",
-      "url": "https://cloud.google.com/blog/ja/products/ai-machine-learning/welcome-to-gemini-at-work-2026?hl=ja",
-      "source": "Google Cloud",
+      "title": "Anthropic、AIの意図しない行動を報告",
+      "url": "https://www.anthropic.com/news/investigating-unintended-model-actions",
+      "source": "Anthropic",
       "published": "2026-10-09",
-      "kid_summary": "Googleは、質問への回答から資料や画像の作成、コードの実行まで扱う「Geminiエージェント」を発表しました。",
-      "japan_angle": "地域企業や学校では、メールと資料作成をまたぐ仕事で何を任せられるか、権限や提供条件と合わせて検討できます。"
+      "kid_summary": "Anthropicは、試験や社内利用でAIが意図しない送信や制限回避をした事例と、対策の検討状況を公開しました。",
+      "japan_angle": "学校や福祉施設でAIに作業を任せる際も、送信前の確認と操作範囲の制限を考える材料になります。"
     },
     {
-      "title": "NotePM、いつものAIから社内資料を検索",
-      "url": "https://prtimes.jp/main/html/rd/p/000000264.000032205.html",
-      "source": "トヨクモ・プロジェクト・モード",
-      "published": "2026-10-08",
-      "kid_summary": "NotePMは、外部AIとの会話から社内資料を検索し、議事録などを書き込める連携機能を紹介しました。",
-      "japan_angle": "地域企業や福祉施設で、職員が手順書を探す負担を減らす候補になり、閲覧・書込みの権限も確認できます。"
+      "title": "名古屋市、地域企業向けロボット・AI交流へ",
+      "url": "https://www.city.nagoya.jp/houdou/3003942/3003949/3005752.html",
+      "source": "名古屋市",
+      "published": "2026-10-09",
+      "kid_summary": "名古屋市は、ものづくり企業のAI活用やロボット分野への参入を後押しするシンポジウムの開催を発表しました。",
+      "japan_angle": "地域企業が、大学や他社の研究を知り、自社の現場で使える技術を探すきっかけになります。"
+    },
+    {
+      "title": "日立、電力や水道を守るAI防衛に参画",
+      "url": "https://prtimes.jp/main/html/rd/p/000000638.000067590.html",
+      "source": "日立製作所",
+      "published": "2026-10-09",
+      "kid_summary": "日立は、電力・水道・製造・交通の設備を守るAnthropicのAIサイバー防衛プログラムへ参画すると発表しました。",
+      "japan_angle": "暮らしを支える設備で、止めずに弱点を見つけて対策するための取り組みです。"
     },
     {
       "title": "大学教職員向け、AI教育の学び直し講座へ",
@@ -32,15 +32,15 @@
       "source": "dott",
       "published": "2026-10-09",
       "kid_summary": "dottは、大学教職員向けにAIの基礎と活用を考える無料オンライン講座を10月30日に開くと発表しました。",
-      "japan_angle": "学校でAIをどう教えるか悩む担当者が、教材や授業の見直しに必要な論点を学ぶ機会になります。"
+      "japan_angle": "学校でAIをどう教えるか悩む担当者が、教材や授業を見直す論点を学ぶ機会になります。"
     },
     {
-      "title": "GMOとGoogle Cloud、社内AI活用を共同推進",
-      "url": "https://prtimes.jp/main/html/rd/p/000005578.000000136.html",
-      "source": "GMOインターネットグループ",
+      "title": "スペースデータ、ロボットの現場導入基盤を紹介",
+      "url": "https://prtimes.jp/main/html/rd/p/000000224.000080352.html",
+      "source": "スペースデータ",
       "published": "2026-10-09",
-      "kid_summary": "GMOはGoogle Cloudと、社内でのAI活用を進め、得られた事例やノウハウを新サービスにつなぐ計画を発表しました。",
-      "japan_angle": "地域企業も、まず自社の繰り返し仕事で試し、使えた手順を蓄積して顧客支援へ広げる進め方を参考にできます。"
+      "kid_summary": "スペースデータは、大阪の展示会でAI基盤「SpaceBrain」とロボットの現場導入基盤「RobotBrain」を紹介したと報告しました。",
+      "japan_angle": "地域の製造業でも、ロボットを日々の作業へ組み込む仕組みを比較する材料になります。"
     }
   ]
 }

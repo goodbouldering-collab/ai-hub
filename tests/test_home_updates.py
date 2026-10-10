@@ -33,14 +33,14 @@ class HomeUpdatesTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             latest_published_posts(card('one', '2026-09-28') + card('two', '2026-09-18').replace('./two.html', 'https://example.com/two.html'))
 
-    def test_feed_below_hero_combines_news_and_two_current_articles(self):
+    def test_feed_below_independent_news_has_latest_three_articles(self):
         shell = '<head></head><main><section id="top">hero</section>' + news_feature() + '<section id="speaker">profile</section></main>'
         index = card('newest', '2026-10-08') + card('older', '2026-10-07') + card('oldest', '2026-09-30')
         result = apply_home_updates(shell, index, 'css')
         home = BeautifulSoup(result, 'html.parser')
-        self.assertIsNotNone(home.select_one('#ai-news > #blog.editorial-feed'))
+        self.assertIsNotNone(home.select_one('#ai-news + #blog.editorial-feed'))
         self.assertEqual([row['href'] for row in home.select('#blog .editorial-feed__row')],
-                         ['/ai-news/', '/blog/newest.html', '/blog/older.html'])
+                         ['/blog/newest.html', '/blog/older.html', '/blog/oldest.html'])
         self.assertEqual(len(home.select('#blog .editorial-feed__row img')), 3)
         self.assertEqual(home.select_one('#blog .editorial-feed__more')['href'], '/blog/')
         self.assertEqual(len(home.select('#blog .editorial-feed__more')), 1)
@@ -55,10 +55,10 @@ class HomeUpdatesTests(unittest.TestCase):
         refreshed = re.sub(r'<section\b[^>]*id="ai-news"[^>]*>.*?</section>', news_feature('2026-10-11'), first, flags=re.S)
         result = BeautifulSoup(apply_home_updates(refreshed, index, 'css'), 'html.parser')
         self.assertEqual(len(result.select('#blog')), 1)
-        self.assertEqual(len(result.select('#blog .editorial-feed__row')), 3)
-        self.assertEqual(result.select_one('#blog .editorial-feed__news time')['datetime'], '2026-10-11')
+        self.assertEqual(len(result.select('#blog .editorial-feed__row')), 2)
+        self.assertEqual(result.select_one('#ai-news time')['datetime'], '2026-10-11')
         self.assertFalse(result.select('#latest-blog, #blog-carousel'))
-        self.assertEqual(result.select_one('#ai-news').find_next_sibling()['id'], 'packages')
+        self.assertEqual(result.select_one('#ai-news').find_next_sibling()['id'], 'blog')
 
     def test_transform_preserves_other_content_and_escapes_titles(self):
         shell = '<head><style>keep</style></head><main><section id="top">hero</section>' + news_feature() + '<section id="latest-blog">large carousel</section><section id="speaker">profile</section></main>'
@@ -82,7 +82,7 @@ class HomeUpdatesTests(unittest.TestCase):
         self.assertIn('10月10日更新', feature)
         index = card('newest', '2026-10-08') + card('older', '2026-10-07')
         home = BeautifulSoup(apply_home_updates('<head></head>' + feature, index, 'css'), 'html.parser')
-        self.assertEqual(home.select_one('.editorial-feed__news time')['datetime'], '2026-10-10')
+        self.assertEqual(home.select_one('#ai-news time')['datetime'], '2026-10-10')
 
     def test_normal_blog_index_keeps_approved_articles_and_content_dates(self):
         spec = importlib.util.spec_from_file_location('editorial_site_builder', ROOT / 'site/build_site.py')
@@ -105,10 +105,8 @@ class HomeUpdatesTests(unittest.TestCase):
         self.assertEqual(actual, expected)
         self.assertNotIn('unpublished-local.html', index)
         soup = BeautifulSoup(index, 'html.parser')
-        self.assertEqual(len(soup.select('.editorial-feed__row')), len(expected) + 1)
-        self.assertEqual(soup.select_one('.editorial-feed__news')['href'], '/ai-news/')
-        self.assertEqual(soup.select_one('.editorial-feed__news time')['datetime'],
-                         builder._editorial_news_date(builder.load_daily_ai_news(builder.DAILY_AI_NEWS_JSON)))
+        self.assertEqual(len(soup.select('.editorial-feed__row')), len(expected))
+        self.assertFalse(soup.select('.editorial-feed__news, a[href="/ai-news/"]'))
         with TemporaryDirectory() as folder:
             temporary = Path(folder)
             codex = temporary / 'content/ai-news/codex-update-log.md'

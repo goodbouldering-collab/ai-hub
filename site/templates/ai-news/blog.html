@@ -8976,7 +8976,222 @@ section.block::before {
   }
 }
 </style><link id="studio-design" rel="stylesheet" href="/design-system/studio/studio.css?v=20260914-glass"><script id="studio-motion" defer src="/design-system/studio/studio.js?v=20260914-glass"></script><link id="studio-editorial" rel="stylesheet" href="/design-system/studio/editorial.css?v=20260926-contextual"><link id="focused-ux-style" rel="stylesheet" href="/design-system/studio/focused-ux.css?v=20260923-focused"><script id="focused-ux-script" defer src="/design-system/studio/focused-ux.js?v=20260923-focused"></script>
-</head><body class="studio-theme studio-editorial"><div class='container'>
+<style id="editorial-feed-style">/* One readable image-and-copy list shared by the home and public archive. */
+body.studio-theme.studio-editorial.studio-home main > #ai-news.editorial-feed-host {
+  display: block !important;
+  grid-template-columns: none !important;
+  padding: 24px 0 !important;
+  gap: 0 !important;
+}
+.editorial-feed {
+  --editorial-ink: #243747;
+  --editorial-muted: #586876;
+  --editorial-line: #d9e1dd;
+  --editorial-accent: #264e45;
+  color: var(--editorial-ink);
+  min-width: 0;
+  scroll-margin-top: 100px;
+}
+#ai-news .editorial-feed__heading { margin: 0 0 8px; }
+#ai-news .editorial-feed__heading h2 {
+  margin: 0;
+  color: var(--editorial-ink);
+  font-size: clamp(21px, 2.2vw, 26px);
+  font-weight: 750;
+  line-height: 1.5;
+  letter-spacing: .02em;
+}
+.editorial-feed .editorial-feed__list,
+.editorial-feed.editorial-feed__list {
+  display: block !important;
+  list-style: none;
+  width: 100%;
+  max-width: none;
+  margin: 0 !important;
+  padding: 0 !important;
+  gap: 0 !important;
+}
+.editorial-feed .editorial-feed__item {
+  list-style: none;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+}
+.editorial-feed .editorial-feed__row {
+  display: grid !important;
+  grid-template-columns: 160px minmax(0, 1fr) !important;
+  align-items: start;
+  gap: 20px;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 18px 0;
+  border: 0 !important;
+  border-bottom: 1px solid var(--editorial-line) !important;
+  border-radius: 0;
+  background: transparent !important;
+  color: var(--editorial-ink);
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  text-decoration: none;
+  transform: none !important;
+  transition: none !important;
+  opacity: 1 !important;
+}
+.editorial-feed .editorial-feed__row:hover {
+  color: var(--editorial-accent);
+  transform: none !important;
+  box-shadow: none;
+  text-decoration: none;
+}
+.editorial-feed .editorial-feed__row:hover .editorial-feed__title {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+}
+.editorial-feed .editorial-feed__row:focus-visible,
+.editorial-feed .editorial-feed__more:focus-visible {
+  outline: 3px solid #b2543c;
+  outline-offset: 4px;
+}
+.editorial-feed .editorial-feed__media {
+  display: block;
+  width: 160px;
+  height: 106px;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #f1f3ed;
+}
+.editorial-feed .editorial-feed__media img {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  max-height: none;
+  margin: 0 !important;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  object-fit: cover;
+  object-position: center;
+  transform: none;
+}
+.editorial-feed .editorial-feed__body { min-width: 0; padding: 0; }
+.editorial-feed .editorial-feed__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin: 0 0 5px;
+  line-height: 1.45;
+}
+.editorial-feed .editorial-feed__category {
+  color: #974931;
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: .03em;
+}
+.editorial-feed .editorial-feed__date,
+.editorial-feed .editorial-feed__date time {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  color: var(--editorial-muted);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.45;
+  white-space: nowrap;
+}
+.editorial-feed .editorial-feed__title {
+  display: block;
+  margin: 0 0 5px;
+  color: inherit;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.55;
+  letter-spacing: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  -webkit-line-clamp: unset;
+  overflow: visible;
+}
+.editorial-feed .editorial-feed__summary {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  margin: 0;
+  color: var(--editorial-muted);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.7;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.editorial-feed .editorial-feed__actions { display: flex; justify-content: center; margin: 20px 0 0; }
+.editorial-feed .editorial-feed__more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  min-width: 168px;
+  min-height: 46px;
+  padding: 10px 22px;
+  border: 1px solid var(--editorial-accent);
+  border-radius: 999px;
+  background: var(--editorial-accent);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.5;
+  text-decoration: none;
+}
+.editorial-feed .editorial-feed__more:hover { background: #173a32; color: #fff; text-decoration: none; }
+/* The older archive adds reveal classes. Keep this reading surface still. */
+.tr-section:has(> .editorial-feed--archive) {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+@media (max-width: 680px) {
+  body.studio-theme.studio-editorial.studio-home main > #ai-news.editorial-feed-host {
+    padding: 18px 0 !important;
+  }
+  #ai-news .editorial-feed__heading h2 { font-size: 21px; }
+  .editorial-feed .editorial-feed__row {
+    grid-template-columns: 96px minmax(0, 1fr) !important;
+    gap: 12px;
+    padding: 15px 0;
+  }
+  .editorial-feed .editorial-feed__media { width: 96px; height: 80px; border-radius: 9px; }
+  .editorial-feed .editorial-feed__meta { gap: 3px 8px; margin-bottom: 4px; }
+  .editorial-feed .editorial-feed__category { font-size: 10px; }
+  .editorial-feed .editorial-feed__date,
+  .editorial-feed .editorial-feed__date time { font-size: 11px; }
+  .editorial-feed .editorial-feed__title { font-size: 16px; line-height: 1.6; margin-bottom: 4px; }
+  .editorial-feed .editorial-feed__summary { font-size: 12px; line-height: 1.65; }
+  .editorial-feed .editorial-feed__actions { margin-top: 18px; }
+}
+/* Override the older glass-card theme on both reading surfaces. */
+body.studio-editorial .editorial-feed .editorial-feed__row {
+  background:transparent!important; border:0!important; border-bottom:1px solid var(--editorial-line)!important;
+  border-radius:0!important;box-shadow:none!important;backdrop-filter:none!important;
+}
+
+body.studio-theme.studio-editorial #ai-news.editorial-feed-host .editorial-feed__row,
+body.studio-editorial .editorial-feed--archive .editorial-feed__row {
+  grid-template-columns:160px minmax(0,1fr)!important;gap:20px!important;padding:18px 0!important;align-items:start!important;
+}
+.editorial-feed .editorial-feed__row > .editorial-feed__media {grid-column:1!important;grid-row:1!important;}
+.editorial-feed .editorial-feed__row > .editorial-feed__body {grid-column:2!important;grid-row:1!important;}
+@media(max-width:680px) {
+  body.studio-theme.studio-editorial #ai-news.editorial-feed-host .editorial-feed__row,
+  body.studio-editorial .editorial-feed--archive .editorial-feed__row {grid-template-columns:96px minmax(0,1fr)!important;gap:12px!important;padding:15px 0!important;}
+}
+</style></head><body class="studio-theme studio-editorial"><div class='container'>
 <script>
 (function(){
   function reveal(){
@@ -8993,7 +9208,7 @@ section.block::before {
   }
 })();
 </script>
-<header class='site-header scrolled' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span><span class='site-logo-by'>滋賀・彦根</span></a><nav class='site-nav top-nav' aria-label='サイトナビ'><a class='nav-link' href='/'>ホーム</a><a class='nav-link' href='/#courses'>講習</a><a class='nav-link' href='/lectures/index.html'>資料</a><a class='nav-link' href='/blog/index.html'>ブログ</a><a class='nav-link' href='/portfolio.html'>実績</a><a class='nav-link nav-admin' href='/admin'>管理</a></nav><a class='nav-cta' href='/#contact'>相談する</a></div></header><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'><svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button><div class='mobile-nav generated-mobile-nav' id='mobile-nav'><div class='mobile-nav-panel'><div class='mobile-nav-primary'><a class='login-btn-mobile' href='/#contact'>相談する</a><a class='mobile-main-link' href='/'>ホーム</a></div><span class='mobile-nav-label'>公開ページ</span><div class='mobile-link-grid'><a href='/#courses'>講習</a><a href='/lectures/index.html'>資料</a><a href='/blog/index.html'>ブログ</a><a href='/portfolio.html'>実績</a><a class='mobile-admin-link' href='/admin'>管理画面</a></div></div></div><script>(function(){var b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav');if(!b||!n)return;function close(){n.classList.remove('open');b.setAttribute('aria-expanded','false');}b.addEventListener('click',function(e){e.stopPropagation();var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});})();</script><header><h1>ブログ</h1></header><div class='content-wrap'><div class='tr-section'><p>AIハブのブログです。講習・制作・AI活用の現場から、実際に使える視点を残していきます。</p><div class='tr-grid'><a class="tr-card" href="./2026-10-09-codex-workers-ai-workflow.html"><div class="tr-title">その資料、毎回添付していませんか？ CodexとWorkers AIで減らせる手間</div><div class="tr-date">2026-10-09</div><div class="tr-sum">資料の添付、同じ説明、画面をまたぐコピー。Codexのフォルダ追加・AGENTS.mdとCloudflare Workers AIで、繰り返す手間をひとつ減らす使い方を紹介します。</div></a><a class="tr-card" href="./2026-10-05-codex-cloud-development-environment.html"><div class="tr-title">自動化できていなかったのは、開発環境だった｜Codex CloudとSSDの話</div><div class="tr-date">2026-10-05</div><div class="tr-sum">GitHubとCodex Cloudで自由になり、買ったSSDを売ろうとした私が、結局2TBを増設すると決めた理由。並行作業の見渡しやすさと、手元に残す安心の話です。</div></a><a class="tr-card" href="./2026-10-03-codex-remote-collaboration-guide.html"><div class="tr-title">Codexで共同開発するには？リモートデスクトップ・Remote・SSHの違いと設定を図解</div><div class="tr-date">2026-10-03</div><div class="tr-sum">画面を借りるリモートデスクトップ、別端末からAIに指示するCodex Remote、開発用PCへ接続するSSH。高校生にもわかる比較表と設定手順、Windowsの制約、GitHubで2人が安全に作る練習まで解説します。</div></a><a class="tr-card" href="./2026-10-01-codex-decision-model-jev.html"><div class="tr-title">AIの小さな判断を自動化するには？CodexとJevの違いを具体例で解説</div><div class="tr-date">2026-10-01</div><div class="tr-sum">問い合わせの仕分けや記事チェックをAIに任せたい人へ。CodexのAuto-review、LLMで作る判断役、Jevの違いを整理し、Jevを省ける条件と小さく試す手順を具体例で解説します。</div></a><a class='tr-card' href='./2026-09-28-orca-ade-ai-manager.html'><div class='tr-title'>3つのAIを同時に動かし、良い案を選ぶ。Orca ADEのすごさを実例で見る</div><div class='tr-date'>2026-09-28</div><div class='tr-sum'>33プロジェクトを登録した導入記録、約15セッションを使う海外利用者、3つのAIで案を比べる公式手順。Orcaの強みを、実例と4枚のグラフ・図解で読み解きます。</div></a><a class='tr-card' href='./2026-09-18-cloudflare-emdash-webmcp.html'><div class='tr-title'>ホームページに、AIの受付と編集助手がやってくる。Cloudflare・EmDashで変わる小さな事業の発信</div><div class='tr-date'>2026-09-18</div><div class='tr-sum'>告知も問い合わせも、いつも自分。そんな小さな事業のWeb運営を、CloudflareのWebMCP、EmDash、Cloudflare OSがどう変えるのか。架空のお店のストーリーと公式の導入例から、できることと最初の一歩をやさしく解説します。</div></a><a class='tr-card' href='./2026-08-30-switchbot-ai-mind-clip.html'><div class='tr-title'>AIマインドクリップは録音機ではない。忘れたくない毎日を取り戻す『脳みその外付けハードディスク』</div><div class='tr-date'>2026-08-30</div><div class='tr-sum'>SwitchBot AIマインドクリップを使って感じた、録音を終わらせず、会話やひらめきを要約・タスク・文章へ変える使い方。仕事道具としても、日常の「いい話」を思い出す道具としても紹介します。</div></a><a class='tr-card' href='./2026-08-21-codex-environment-optimizer.html'><div class='tr-title'>Codexを更新したら、スキルや.mdファイルもアップデートしたほうがいい理由</div><div class='tr-date'>2026-08-21</div><div class='tr-sum'>同じ依頼なのにCodexが確認や計画で止まる。その原因は、AIの能力より、AGENTS.md、Skill、設定、scriptsに散らばった指示かもしれません。GPT-5.6を活かすためのAI実行環境の整え方を、my-updateを例に分かりやすく解説します。</div></a><a class='tr-card' href='./2026-08-08-vercel-supabase-d1-r2-boundaries.html'><div class='tr-title'>Vercelを減らす前に知っておきたい：Supabase AuthとD1・R2をどう分けるか</div><div class='tr-date'>2026-08-08</div><div class='tr-sum'>Vercelの費用や運用を見直すときに、公開ページ、軽いサイトデータ、ファイル、ログイン、会員・業務データをどう分けるかを解説。Supabase AuthとRLSを残す場面、D1・R2が向く場面、ChatGPT SitesとCloudflare Workersを試す順番を、地域事業者や小規模チーム向けに整理します。</div></a><a class='tr-card' href='./2026-06-17-codex-ai-world.html'><div class='tr-title'>Codexが開いた、AI活動の最前線</div><div class='tr-date'>2026-06-17</div><div class='tr-sum'>AIハブ初のブログ。Codexを、IDE、Claude Code、画像生成、モバイル音声、プラグイン連携まで含めたAI活動の統合UIとして分析する。</div></a></div></div></div><footer>AI相談 / Generated by Claude</footer><button class='back-to-top' id='backTop' aria-label='トップへ戻る'>↑</button><script>(function(){var b=document.getElementById('backTop');if(!b)return;window.addEventListener('scroll',function(){b.classList.toggle('show',window.scrollY>400);});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script><script>
+<header class='site-header scrolled' aria-label='サイトヘッダー'><div class='site-header-inner'><a class='site-logo' href='../index.html'><span class='brand-mark' aria-hidden='true'><span class='brand-a'>AI</span><span class='brand-ha'>相</span></span><span class='wordmark'><span class='word-ai'>AI相談</span><span class='word-hub'>彦根</span><span class='word-en'>AI CONSULT</span></span><span class='site-logo-by'>滋賀・彦根</span></a><nav class='site-nav top-nav' aria-label='サイトナビ'><a class='nav-link' href='/'>ホーム</a><a class='nav-link' href='/#courses'>講習</a><a class='nav-link' href='/lectures/index.html'>資料</a><a class='nav-link' href='/blog/index.html'>ブログ</a><a class='nav-link' href='/portfolio.html'>実績</a><a class='nav-link nav-admin' href='/admin'>管理</a></nav><a class='nav-cta' href='/#contact'>相談する</a></div></header><button class='mobile-toggle generated-mobile-toggle' id='mobile-toggle' aria-label='メニュー' aria-controls='mobile-nav' aria-expanded='false'><svg width='20' height='20' viewBox='0 0 24 24' fill='none' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16' stroke='currentColor' stroke-width='2' stroke-linecap='round'/></svg></button><div class='mobile-nav generated-mobile-nav' id='mobile-nav'><div class='mobile-nav-panel'><div class='mobile-nav-primary'><a class='login-btn-mobile' href='/#contact'>相談する</a><a class='mobile-main-link' href='/'>ホーム</a></div><span class='mobile-nav-label'>公開ページ</span><div class='mobile-link-grid'><a href='/#courses'>講習</a><a href='/lectures/index.html'>資料</a><a href='/blog/index.html'>ブログ</a><a href='/portfolio.html'>実績</a><a class='mobile-admin-link' href='/admin'>管理画面</a></div></div></div><script>(function(){var b=document.getElementById('mobile-toggle'),n=document.getElementById('mobile-nav');if(!b||!n)return;function close(){n.classList.remove('open');b.setAttribute('aria-expanded','false');}b.addEventListener('click',function(e){e.stopPropagation();var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});})();</script><header><h1>ブログ・Codex情報</h1></header><div class='content-wrap'><div class='tr-section'><p>AIハブのブログです。講習・制作・AI活用の現場から、実際に使える視点を残していきます。</p><ol class="tr-grid editorial-feed editorial-feed--archive editorial-feed__list"><li class="editorial-feed__item"><a class="editorial-feed__row editorial-feed__news" href="/ai-news/"><span class="editorial-feed__media"><img src="/design-system/studio/images/editorial-20261011/article-news.webp" alt="新しいAI機能のカードと完成資料を見比べる人" width="480" height="320" loading="lazy" decoding="async"></span><div class="editorial-feed__body"><div class="editorial-feed__meta"><span class="editorial-feed__category">AIニュース・Codex</span><div class="tr-date editorial-feed__date"><time datetime="2026-10-10">2026-10-10</time></div></div><div class="tr-title editorial-feed__title" role="heading" aria-level="2">今日のAIニュース5とCodex情報</div><div class="tr-sum editorial-feed__summary">AIニュース5件とCodexの更新を、仕事に役立つポイントから読む。</div></div></a></li><li class="editorial-feed__item"><a class="editorial-feed__row tr-card" href="./2026-10-09-codex-workers-ai-workflow.html"><span class="editorial-feed__media"><img src="/design-system/studio/images/editorial-20261011/article-workflow.webp" alt="作業場の棚へ資料フォルダを置く人" width="480" height="320" loading="lazy" decoding="async"></span><div class="editorial-feed__body"><div class="editorial-feed__meta"><span class="editorial-feed__category">ブログ</span><div class="tr-date editorial-feed__date"><time datetime="2026-10-09">2026-10-09</time></div></div><div class="tr-title editorial-feed__title" role="heading" aria-level="2">その資料、毎回添付していませんか？ CodexとWorkers AIで減らせる手間</div><div class="tr-sum editorial-feed__summary">資料の添付、同じ説明、画面をまたぐコピー。Codexのフォルダ追加・AGENTS.mdとCloudflare Workers AIで、繰り返す手間をひとつ減らす使い方を紹介します。</div></div></a></li><li class="editorial-feed__item"><a class="editorial-feed__row tr-card" href="./2026-10-05-codex-cloud-development-environment.html"><span class="editorial-feed__media"><img src="/design-system/studio/images/editorial-20261011/article-cloud.webp" alt="PCとクラウド環境・手元のSSDを見比べる人" width="480" height="320" loading="lazy" decoding="async"></span><div class="editorial-feed__body"><div class="editorial-feed__meta"><span class="editorial-feed__category">ブログ</span><div class="tr-date editorial-feed__date"><time datetime="2026-10-05">2026-10-05</time></div></div><div class="tr-title editorial-feed__title" role="heading" aria-level="2">自動化できていなかったのは、開発環境だった｜Codex CloudとSSDの話</div><div class="tr-sum editorial-feed__summary">GitHubとCodex Cloudで自由になり、買ったSSDを売ろうとした私が、結局2TBを増設すると決めた理由。並行作業の見渡しやすさと、手元に残す安心の話です。</div></div></a></li><li class="editorial-feed__item"><a class="editorial-feed__row tr-card" href="./2026-10-03-codex-remote-collaboration-guide.html"><span class="editorial-feed__media"><img src="/design-system/studio/images/editorial-20261011/article-remote.webp" alt="遠隔画面で一緒にアプリを作る二人" width="480" height="320" loading="lazy" decoding="async"></span><div class="editorial-feed__body"><div class="editorial-feed__meta"><span class="editorial-feed__category">ブログ</span><div class="tr-date editorial-feed__date"><time datetime="2026-10-03">2026-10-03</time></div></div><div class="tr-title editorial-feed__title" role="heading" aria-level="2">Codexで共同開発するには？リモートデスクトップ・Remote・SSHの違いと設定を図解</div><div class="tr-sum editorial-feed__summary">画面を借りるリモートデスクトップ、別端末からAIに指示するCodex Remote、開発用PCへ接続するSSH。高校生にもわかる比較表と設定手順、Windowsの制約、GitHubで2人が安全に作る練習まで解説します。</div></div></a></li><li class="editorial-feed__item"><a class="editorial-feed__row tr-card" href="./2026-10-01-codex-decision-model-jev.html"><span class="editorial-feed__media"><img src="/design-system/studio/images/editorial-20261011/article-decision.webp" alt="問い合わせカードを三つのトレーに仕分ける人" width="480" height="320" loading="lazy" decoding="async"></span><div class="editorial-feed__body"><div class="editorial-feed__meta"><span class="editorial-feed__category">ブログ</span><div class="tr-date editorial-feed__date"><time datetime="2026-10-01">2026-10-01</time></div></div><div class="tr-title editorial-feed__title" role="heading" aria-level="2">AIの小さな判断を自動化するには？CodexとJevの違いを具体例で解説</div><div class="tr-sum editorial-feed__summary">問い合わせの仕分けや記事チェックをAIに任せたい人へ。CodexのAuto-review、LLMで作る判断役、Jevの違いを整理し、Jevを省ける条件と小さく試す手順を具体例で解説します。</div></div></a></li><li class="editorial-feed__item"><a class="editorial-feed__row tr-card" href="./2026-09-28-orca-ade-ai-manager.html"><span class="editorial-feed__media"><img src="/design-system/studio/images/editorial-20261011/article-orca.webp" alt="三つのAI提案から一案を選ぶ人" width="480" height="320" loading="lazy" decoding="async"></span><div class="editorial-feed__body"><div class="editorial-feed__meta"><span class="editorial-feed__category">ブログ</span><div class="tr-date editorial-feed__date"><time datetime="2026-09-28">2026-09-28</time></div></div><div class="tr-title editorial-feed__title" role="heading" aria-level="2">3つのAIを同時に動かし、良い案を選ぶ。Orca ADEのすごさを実例で見る</div><div class="tr-sum editorial-feed__summary">33プロジェクトを登録した導入記録、約15セッションを使う海外利用者、3つのAIで案を比べる公式手順。Orcaの強みを、実例と4枚のグラフ・図解で読み解きます。</div></div></a></li><li class="editorial-feed__item"><a class="editorial-feed__row tr-card" href="./2026-09-18-cloudflare-emdash-webmcp.html"><span class="editorial-feed__media"><img src="/design-system/studio/images/editorial-20261011/article-web-assistant.webp" alt="小さなお店の受付とWeb編集を分担する二人" width="480" height="320" loading="lazy" decoding="async"></span><div class="editorial-feed__body"><div class="editorial-feed__meta"><span class="editorial-feed__category">ブログ</span><div class="tr-date editorial-feed__date"><time datetime="2026-09-18">2026-09-18</time></div></div><div class="tr-title editorial-feed__title" role="heading" aria-level="2">ホームページに、AIの受付と編集助手がやってくる。Cloudflare・EmDashで変わる小さな事業の発信</div><div class="tr-sum editorial-feed__summary">告知も問い合わせも、いつも自分。そんな小さな事業のWeb運営を、CloudflareのWebMCP、EmDash、Cloudflare OSがどう変えるのか。架空のお店のストーリーと公式の導入例から、できることと最初の一歩をやさしく解説します。</div></div></a></li><li class="editorial-feed__item"><a class="editorial-feed__row tr-card" href="./2026-08-30-switchbot-ai-mind-clip.html"><span class="editorial-feed__media"><img src="/design-system/studio/images/editorial-20261011/article-mindclip.webp" alt="胸元の録音クリップから会話メモと次の作業を整える二人" width="480" height="320" loading="lazy" decoding="async"></span><div class="editorial-feed__body"><div class="editorial-feed__meta"><span class="editorial-feed__category">ブログ</span><div class="tr-date editorial-feed__date"><time datetime="2026-08-30">2026-08-30</time></div></div><div class="tr-title editorial-feed__title" role="heading" aria-level="2">AIマインドクリップは録音機ではない。忘れたくない毎日を取り戻す『脳みその外付けハードディスク』</div><div class="tr-sum editorial-feed__summary">SwitchBot AIマインドクリップを使って感じた、録音を終わらせず、会話やひらめきを要約・タスク・文章へ変える使い方。仕事道具としても、日常の「いい話」を思い出す道具としても紹介します。</div></div></a></li><li class="editorial-feed__item"><a class="editorial-feed__row tr-card" href="./2026-08-21-codex-environment-optimizer.html"><span class="editorial-feed__media"><img src="/design-system/studio/images/editorial-20261011/article-optimizer.webp" alt="絡まった指示をほどいて作業の流れを整える人" width="480" height="320" loading="lazy" decoding="async"></span><div class="editorial-feed__body"><div class="editorial-feed__meta"><span class="editorial-feed__category">ブログ</span><div class="tr-date editorial-feed__date"><time datetime="2026-08-21">2026-08-21</time></div></div><div class="tr-title editorial-feed__title" role="heading" aria-level="2">Codexを更新したら、スキルや.mdファイルもアップデートしたほうがいい理由</div><div class="tr-sum editorial-feed__summary">同じ依頼なのにCodexが確認や計画で止まる。その原因は、AIの能力より、AGENTS.md、Skill、設定、scriptsに散らばった指示かもしれません。GPT-5.6を活かすためのAI実行環境の整え方を、my-updateを例に分かりやすく解説します。</div></div></a></li><li class="editorial-feed__item"><a class="editorial-feed__row tr-card" href="./2026-08-08-vercel-supabase-d1-r2-boundaries.html"><span class="editorial-feed__media"><img src="/design-system/studio/images/editorial-20261011/article-infrastructure.webp" alt="Web・データ・会員情報を分けて収納する人" width="480" height="320" loading="lazy" decoding="async"></span><div class="editorial-feed__body"><div class="editorial-feed__meta"><span class="editorial-feed__category">ブログ</span><div class="tr-date editorial-feed__date"><time datetime="2026-08-08">2026-08-08</time></div></div><div class="tr-title editorial-feed__title" role="heading" aria-level="2">Vercelを減らす前に知っておきたい：Supabase AuthとD1・R2をどう分けるか</div><div class="tr-sum editorial-feed__summary">Vercelの費用や運用を見直すときに、公開ページ、軽いサイトデータ、ファイル、ログイン、会員・業務データをどう分けるかを解説。Supabase AuthとRLSを残す場面、D1・R2が向く場面、ChatGPT SitesとCloudflare Workersを試す順番を、地域事業者や小規模チーム向けに整理します。</div></div></a></li><li class="editorial-feed__item"><a class="editorial-feed__row tr-card" href="./2026-06-17-codex-ai-world.html"><span class="editorial-feed__media"><img src="/design-system/studio/images/editorial-20261011/article-ai-world.webp" alt="AIの道具を一つの作業場にまとめる二人" width="480" height="320" loading="lazy" decoding="async"></span><div class="editorial-feed__body"><div class="editorial-feed__meta"><span class="editorial-feed__category">ブログ</span><div class="tr-date editorial-feed__date"><time datetime="2026-06-17">2026-06-17</time></div></div><div class="tr-title editorial-feed__title" role="heading" aria-level="2">Codexが開いた、AI活動の最前線</div><div class="tr-sum editorial-feed__summary">AIハブ初のブログ。Codexを、IDE、Claude Code、画像生成、モバイル音声、プラグイン連携まで含めたAI活動の統合UIとして分析する。</div></div></a></li></ol></div></div><footer>AI相談 / Generated by Claude</footer><button class='back-to-top' id='backTop' aria-label='トップへ戻る'>↑</button><script>(function(){var b=document.getElementById('backTop');if(!b)return;window.addEventListener('scroll',function(){b.classList.toggle('show',window.scrollY>400);});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script><script>
 (function(){
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var sel = '.tr-card, .pf-card, .profile-stat, .profile-tech-card, .sns-card, article, .content-toc, .tr-section, .profile-tl-item, .profile-app-card, .profile-biz-card';

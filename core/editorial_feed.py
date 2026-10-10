@@ -205,7 +205,7 @@ def _style(document: str, css: str) -> str:
 
 
 def apply_home_feed(document: str, posts: Iterable[Mapping[str, str]], css: str) -> str:
-    """Show daily AI/Codex news plus the latest two publicly listed articles."""
+    """Keep daily news independent and show the latest publicly listed articles."""
     posts = _normalise_posts(posts)
     if len(posts) < 2:
         raise ValueError('Expected at least two publicly listed blog posts')
@@ -216,21 +216,20 @@ def apply_home_feed(document: str, posts: Iterable[Mapping[str, str]], css: str)
         raise ValueError('Expected one home AI news feature')
     feature = matches[0]
     published = _news_date(feature[0])
-    rows = _row(_news_post(published, config), config, news=True)
-    rows += ''.join(_row(post, config) for post in posts[:2])
+    rows = ''.join(_row(post, config) for post in posts[:3])
     combined = (
-        '<section id="ai-news" class="ai-news-feature editorial-feed-host" aria-labelledby="editorial-feed-title">'
-        f'<div id="blog" class="editorial-feed editorial-feed--home" data-news-date="{published}">'
+        '<section id="blog" class="editorial-feed editorial-feed--home" aria-labelledby="editorial-feed-title">'
         '<div class="editorial-feed__heading">'
-        f'<h2 id="editorial-feed-title">{escape(config["heading"])}</h2>'
+        '<h2 id="editorial-feed-title">ブログ</h2>'
         '</div><ol class="editorial-feed__list">' + rows + '</ol>'
         '<div class="editorial-feed__actions">'
         f'<a class="editorial-feed__more" href="{escape(config["more_href"], quote=True)}">'
-        f'{escape(config["more_label"])}<span aria-hidden="true">→</span></a></div></div></section>'
+        f'{escape(config["more_label"])}<span aria-hidden="true">→</span></a></div></section>'
     )
-    document = document[:feature.start()] + combined + document[feature.end():]
     document = re.sub(r'<section\b[^>]*id=[\x27"](?:blog|latest-blog)[\x27"][^>]*>.*?</section>',
                       '', document, flags=re.S)
+    feature = re.search(r'<section\b[^>]*id=[\x27"]ai-news[\x27"][^>]*>.*?</section>', document, re.S)
+    document = document[:feature.end()] + combined + document[feature.end():]
     return _style(document, css)
 
 
@@ -269,7 +268,7 @@ class _ElementSpans(HTMLParser):
 
 
 def apply_blog_feed(blog_document: str, news_date: str, css: str) -> str:
-    """Restyle the public index and add one daily-news row, retaining its shell."""
+    """Restyle published blog articles without adding the independent news page."""
     posts = public_posts(blog_document)
     if not posts:
         raise ValueError('Expected publicly listed blog posts')
@@ -277,12 +276,11 @@ def apply_blog_feed(blog_document: str, news_date: str, css: str) -> str:
     spans = _ElementSpans(blog_document, 'tr-grid').spans
     if len(spans) != 1:
         raise ValueError('Expected one public blog grid')
-    rows = _row(_news_post(news_date, config), config, news=True, heading_level=2)
-    rows += ''.join(_row(post, config, preserve_href=True, heading_level=2) for post in posts)
+    rows = ''.join(_row(post, config, preserve_href=True, heading_level=2) for post in posts)
     replacement = '<ol class="tr-grid editorial-feed editorial-feed--archive editorial-feed__list">' + rows + '</ol>'
     start, end = spans[0]
     result = blog_document[:start] + replacement + blog_document[end:]
     result = re.sub(r'<title>.*?</title>', '<title>AI相談</title>', result, count=1, flags=re.S)
     result = re.sub(r'<h1>ブログ(?:・Codex情報)?</h1>',
-                    lambda _: f'<h1>{escape(config["heading"])}</h1>', result, count=1)
+                    lambda _: '<h1>ブログ</h1>', result, count=1)
     return _style(result, css)

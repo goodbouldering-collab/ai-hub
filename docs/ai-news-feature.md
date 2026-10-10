@@ -188,3 +188,8 @@ Workerはdeployment/ai-news/published-worker.mjs、現行API取得本文と同�
 ## 2026-09-22 日次更新
 
 最新正常公開版 `.daily-news-release-20260921/public`（source6950737、version6060cf6d）を全513資産manifest・本番13資産SHA・更新前再生成差分0で照合。manifestを更新し、再現一致するシェルは維持した。9月22日候補はトップ・独立ページ・サイトマップの3資産のみ変更、他510不変。Codex公式差分なし。登録元で統合済みSHAから `.daily-news-release-20260922/public` を生成し、ガード・同一Worker・本番ハッシュを確認する。詳細はdaily-news-20260922-run.md。次回は今回の公開成功をproduction-summary.jsonと本番で再確認してbaselineにする。
+
+
+## 2026-10-11 日次の独立導線と最新デザインの維持
+
+直前正常版は登録元 `.editorial-release-20261011-final/public`（577資産）。全manifest、本番14SHA、更新前再生成差分0で照合。シェルとmanifestをこの版へ更新。今回の契約はヒーロー直下のニュース3見出しと `/ai-news/` へのもっと見る、ブログ一覧から独立ニュースを除外。画像付きブログ・講習カードは保持する。`core/editorial_feed.py` と検証・テストもこの契約へ合わせた。公開差分は許可5ファイル内の4資産。詳細は [当日記録](daily-news-20261011-run.md)。次回baselineは当日の公開成功記録を本番と照合して確定する。

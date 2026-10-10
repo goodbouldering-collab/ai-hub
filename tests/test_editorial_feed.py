@@ -52,14 +52,14 @@ class EditorialFeedTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             public_posts(blog_shell(card('bad-date', 'not-a-date')))
 
-    def test_home_has_news_and_latest_two_with_one_more_button(self):
+    def test_home_keeps_news_independent_and_latest_three_blogs(self):
         result = apply_home_feed(home_shell(), self.posts, CSS)
         soup = BeautifulSoup(result, 'html.parser')
-        rows = soup.select('#ai-news #blog .editorial-feed__row')
+        rows = soup.select('#blog .editorial-feed__row')
         self.assertEqual([row['href'] for row in rows],
-                         ['/ai-news/', '/blog/newest.html', '/blog/older.html'])
+                         ['/blog/newest.html', '/blog/older.html', '/blog/oldest.html'])
         self.assertEqual(len(soup.select('#blog img')), 3)
-        self.assertEqual(soup.select_one('#blog .editorial-feed__news time')['datetime'], '2026-10-11')
+        self.assertEqual(soup.select_one('#ai-news time')['datetime'], '2026-10-11')
         self.assertEqual(soup.select_one('#blog .editorial-feed__more')['href'], '/blog/')
         self.assertEqual(soup.select_one('#blog .editorial-feed__more').get_text(strip=True), 'もっと見る→')
         self.assertEqual(len(soup.select('#blog .editorial-feed__more')), 1)
@@ -73,7 +73,7 @@ class EditorialFeedTests(unittest.TestCase):
                        '<section id="ai-news"><time datetime="2026-10-12">更新</time></section>',
                        first, flags=re.S)
         result = BeautifulSoup(apply_home_feed(fresh, self.posts, CSS), 'html.parser')
-        self.assertEqual(result.select_one('.editorial-feed__news time')['datetime'], '2026-10-12')
+        self.assertEqual(result.select_one('#ai-news time')['datetime'], '2026-10-12')
         self.assertEqual(len(result.select('#blog .editorial-feed__row')), 3)
         self.assertEqual(len(result.select('#editorial-feed-style')), 1)
 
@@ -95,10 +95,10 @@ class EditorialFeedTests(unittest.TestCase):
         self.assertEqual(legacy_public_posts(result), before)
         self.assertEqual(apply_blog_feed(result, '2026-10-11', CSS), result)
         soup = BeautifulSoup(result, 'html.parser')
-        self.assertEqual(len(soup.select('.editorial-feed__row')), 4)
-        self.assertEqual(len(soup.select('.editorial-feed__news')), 1)
+        self.assertEqual(len(soup.select('.editorial-feed__row')), 3)
+        self.assertEqual(len(soup.select('.editorial-feed__news')), 0)
         self.assertEqual(len(soup.select('a.tr-card')), 3)
-        self.assertEqual(len(soup.select('.editorial-feed__row img')), 4)
+        self.assertEqual(len(soup.select('.editorial-feed__row img')), 3)
         self.assertNotIn('/codex-update-log.html', result)
         self.assertEqual(soup.title.get_text(), 'AI相談')
         self.assertIn('href="./newest.html"', result)

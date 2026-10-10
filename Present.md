@@ -4,42 +4,22 @@
 
 AI講座・業務改善相談の案内、ブログ、制作実績を提供する。確認済み公開URLは https://aiclimb.aiclimb.workers.dev 。独自ドメイン未設定のため、このURLを使用する。公開先は共通Cloudflare台帳の `work/genspark-profile-edit/cloudflare-runtime`。事業ルートには別作業の差分があるため、一括同期しない。
 
-今回の管理制作更新: 管理画面のmyblog/myreel制作機能とAPIキー保存を公開済み。PR #117/#118を統合し、ローカル検証と本番のトップ・既存記事・ログイン画面への到達確認が成功。本人ログイン後の実キー保存・再訪・生成は未検証。詳細な実行記録は事業内の既存運用記録で継続する。
-直前の作業: 「その資料、毎回添付していませんか？ CodexとWorkers AIで減らせる手間」を公開・本番検証済み。承認稿と説明画像5点を掲載し、トップ・ブログ一覧・サイトマップを更新。具体的な相談案件と個人名は非掲載。
+## 最新の公開状態（2026-10-10）
 
-- 公開ソースSHA: `d3cb6fae41734f91e7716e5e1aaed26c793e9645`。PR https://github.com/goodbouldering-collab/ai-hub/pull/115 をmainへ統合。
-- Cloudflare version: `f816955e-1b06-48f1-8db7-b1621ce3ab59`。Wrangler 4.143.1。登録公開元から新規6資産・既存3資産を反映、547資産とWorkerを保持。
-- 検証: 記事・ホーム21テスト、Worker7テスト、SEO・ニュース構造・中央ForDeploy成功。本番12資産のSHA256一致、health 200・admin 303・未認証API 401。
-- 画面: 許可されたCodex内ブラウザで1440px/390px表示、画像・メニュー・トップと一覧からの記事遷移を確認。横はみ出しなし。専用Chrome Profile 1は接続未確認。
-- 公開URL: https://aiclimb.aiclimb.workers.dev/blog/2026-10-09-codex-workers-ai-workflow
-- 記録: [記事公開記録](docs/blog/2026-10-09-codex-workers-ai/README.md)。ルート `tmp/delivery/20261009-codex-workers-ai-blog.json` は公開後の文書更新前に `DELIVERY_VERIFIED`。
-- 残件・次回: 記事公開の残件なし。ブログ公開時のbaselineは日次版へ継承済み。次回は下記の日次公開版を本番と照合する。制作worktreeはプレビュー親PID 47448（2026-10-11 13:08:01 JST終了予定）と検証証拠のため保持。別作業の未コミット差分は保全。
+- トップのブログを9月30日の「日付＋記事名」の最新2件リストへ復元。10月9日・10月5日の記事を掲載し、記事本文・画像・講習欄は維持した。日次生成にも反映済み。
+- PR #122を統合、公開SHA `458a3485aad3219dcb206626ba1e7523a77c3f80`。Cloudflare version `7dac22b6-8810-45ef-9f95-9756fac79763`、Wrangler 4.143.1、100%配信。
+- 変更はトップ1ファイル、他555ファイルとWorkerは不変。18テスト・公開先ガード・本番16資産の照合が成功。PC 1440px／スマートフォン390pxで表示、メニュー、記事・一覧への遷移を確認した。
+- 公開画面確認にはCodex内ブラウザを使用。実在する「AI相談 - Chrome.lnk」はProfile 1だが接続なし。ネイティブ起動が利用できず、同Profileでの確認は未実施。
+- 次回の公開基準は登録公開元 `.home-blog-text-list-release-20261010/public` と `verification.json`。直前のdaily版は入力証拠として保持し、最新本番と混同しない。
+- 詳細と検証証拠: [ブログ表示復元記録](docs/home-blog-list-restore-20261010.md)。工程は後続の文書更新前に `DELIVERY_VERIFIED`。
 
-今回の日次公開: **10月10日版AIニュース5件とCodex CLI 0.162.1を公開・本番検証済み**。直近48時間の公式発表5件を採用し、ニュースとCodex本文、最新シェル、556ファイルのbaseline manifestを更新した。公開差分はトップ・独立ニュース・サイトマップの3ファイル、残り553ファイルと公開済み管理機能Worker・認証・API設定は維持。
+## 継続する作業と過去の記録
 
-- 公開ソースSHA: `37d7abe8b1adceb242edb0641d1004eebc189951`。PR https://github.com/goodbouldering-collab/ai-hub/pull/120 をmainへ統合。
-- Cloudflare version: `ad6afa35-b1c3-4e9d-8c7a-93fa8ffbee5c`。Wrangler 4.143.1で既存bindingを保持、100%配信確認。
-- 検証: 指定51テスト＋管理Worker2テスト、assets・中央ForDeploy・live成功。主要18資産のSHA256一致、旧3URLの301、ブログ除外、ヒーロー直下3見出し、未認証API401を確認。
-- 画面: 専用Chrome Profile 1は未接続。許可済みCodex内ブラウザでトップ・独立ページを1440px/390pxで確認、横はみ出しなし、「もっと見る」遷移成功。
-- 公開URL: https://aiclimb.aiclimb.workers.dev/ai-news/ と https://aiclimb.aiclimb.workers.dev/ 。
-- 証拠: `outputs/daily-20261010/production-summary.json`、`.daily-news-release-20261010/verification.json`、[日次記録](docs/daily-news-20261010-run.md)。ルート `tmp/delivery/daily-ai-news-20261010.json` は文書統合前にDELIVERY_VERIFIED。
-- 次回baseline: 登録公開元 `.daily-news-release-20261010/public` を最新本番・manifest・Workerと照合して使用。PCとCodexアプリの既存処理で継続し、別のGitHub定期ジョブは再開しない。今回の未完了は専用Chromeでの確認のみ。既存管理画面の本人ログイン後受入は別作業の残件として維持。
-
-さらに前の公開履歴: ブログ冒頭のリール6記事を本文末尾へ移動した版。`site/build_site.py` の今後の出力順序も修正済みで、動画・画像・本文の内容を維持している。
-
-- 実装: `core/blog_video_order.py`、`scripts/build_blog_reels_last_release.py`、`deployment/blog-reels-last.json`、記事原稿・表示順テスト。
-- 検証: 記事テスト16件、Workerテスト7件成功。全550ファイルのハッシュを検証。
-- 共有・公開: PR https://github.com/goodbouldering-collab/ai-hub/pull/111 をmainへ統合し、Cloudflareへ公開済み。
-- 前回公開ソースSHA: `59173c7369e2615af5c912fa9df7c5a4119291c3`。
-- 前回Workerバージョン: `91cb1628-ef35-4673-be08-29dcba4b16bc`。
-- 公開成果物: `work/genspark-profile-edit/.blog-reels-last-20261009/verification.json`。
-- 本番検証: 対象6記事とトップ・ブログ一覧がHTTP 200、配信内容のSHA256が成果物と一致。
-- 代表URL: https://aiclimb.aiclimb.workers.dev/blog/2026-07-22-ai-site-publishing-stages.html
-- 工程証拠: `work/genspark-profile-edit/tmp/delivery/20261009-blog-reels-last.json`。
-
-実画面確認も完了。専用Chrome Profile 1の接続が利用できないため、2026-10-09本人指定の代替手順でCodex内ブラウザを使用。公開6記事のDOMで動画が本文の最後の表示要素となることを確認し、横長・縦長の代表2記事はスクロール後の画面でも確認した。公開閲覧のためサービスログインは不要。
-
-今回のリール移動は公開・検証済み。`work/blog-reels-last-20261009` は検証証拠と別作業のAGENTS.md差分があり、証拠の保全整理まで保持。READMEの旧ホスティング記述だけから公開先を判断せず、共通台帳を参照する。他作業の未コミット差分・未解決事項は既存運用記録で継続管理する。
+- 管理画面のmyblog/myreel制作とAPIキー保存はPR #117/#118で公開済み。本人ログイン後の実キー保存・再訪・生成は未検証のまま保持する。
+- 10月10日版AIニュース5件・Codex CLI 0.162.1は公開済みで、今回も内容を維持。[日次記録](docs/daily-news-20261010-run.md)、`outputs/daily-20261010/production-summary.json` を参照。PCとCodexアプリの既存処理を継続し、別のGitHub定期ジョブは再開しない。
+- 最新記事「その資料、毎回添付していませんか？」はPR #115で公開・検証済み。[記事公開記録](docs/blog/2026-10-09-codex-workers-ai/README.md)へ詳細を集約。記事制作worktreeはプレビュー親PID 47448（10月11日13:08:01 JST終了予定）と証拠のため保持中。
+- 6記事のリール末尾移動はPR #111で公開・実画面確認済み。記録は `work/genspark-profile-edit/tmp/delivery/20261009-blog-reels-last.json`。`work/blog-reels-last-20261009` は証拠と別作業のAGENTS.md差分があるため整理保留。
+- 今回のプレビューは http://127.0.0.1:4026/ 、親PID 21164、10月12日22:48:02 JST終了予定。ルートと登録公開元の別作業差分は保全した。
 
 <!-- browser-continuity-present:2026-10-09 -->
 ## 共通ブラウザ運用

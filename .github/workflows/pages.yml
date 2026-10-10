@@ -1,8 +1,7 @@
 name: Deploy site to GitHub Pages
 
 on:
-  push:
-    branches: [main]
+  # Historical reference only; production is Cloudflare.
   workflow_dispatch:
 
 permissions:

@@ -14,6 +14,7 @@ from core.soft_studio import remove_soft_playground
 from core.instagram_feed import apply_instagram_feed
 from core.art_direction import decorate_art_direction
 from core.compact_home import compact_home
+from core.editorial_home import apply_editorial_home
 from core.focused_ux import decorate_focused_ux, replace_admin_hub, decorate_admin_entry
 
 
@@ -52,6 +53,17 @@ def decorate_html(text: str, *, home: bool = False, admin: bool = False, login: 
         return _attribute(tag, "class", " ".join(dict.fromkeys(values + classes)))
 
     text = re.sub(r"<body\b[^>]*>", body_tag, text, count=1, flags=re.I)
+    if home:
+        # Reinsert these final owned layers once. Keeping their whitespace in
+        # the old position would add blank lines on each normal rebuild.
+        for owned in (
+            r'<link\b[^>]*id=[\"\'](?:studio-design|studio-editorial)[\"\'][^>]*>',
+            r'<script\b[^>]*id=[\"\']studio-motion[\"\'][^>]*>\s*</script>',
+            r'<style\b[^>]*id=[\"\']editorial-home-style[\"\'][^>]*>.*?</style>',
+            r'<link\b[^>]*id=[\"\']focused-ux-style[\"\'][^>]*>',
+            r'<script\b[^>]*id=[\"\']focused-ux-script[\"\'][^>]*>\s*</script>',
+        ):
+            text = re.sub(r'\s*' + owned + r'\s*', '', text, flags=re.S)
     # Replace the owned tags as well as adding them, so dated rebuilds upgrade
     # the shared theme without duplicate scripts or stale browser caches.
     text = re.sub(r'<link\b[^>]*id=[\"\']studio-design[\"\'][^>]*>', '', text)
@@ -157,7 +169,10 @@ def decorate_html(text: str, *, home: bool = False, admin: bool = False, login: 
     text = decorate_art_direction(text)
     if admin and 'admin-hub-page' in text:
         return replace_admin_hub(text)
-    return decorate_focused_ux(text, home=home)
+    text = decorate_focused_ux(text, home=home)
+    # Keep the approved human illustrations and compact course structure after
+    # the older shared decorator refreshes its owned image slots and CSS.
+    return apply_editorial_home(text) if home else text
 
 
 def decorate_public_tree(output: Path) -> list[str]:

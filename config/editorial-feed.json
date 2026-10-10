@@ -1,0 +1,60 @@
+{
+  "heading": "ブログ・Codex情報",
+  "article_label": "ブログ",
+  "more_label": "もっと見る",
+  "more_href": "/blog/",
+  "news": {
+    "href": "/ai-news/",
+    "label": "AIニュース・Codex",
+    "title": "今日のAIニュース5とCodex情報",
+    "summary": "AIニュース5件とCodexの更新を、仕事に役立つポイントから読む。",
+    "image": "/design-system/studio/images/editorial-20261011/article-news.webp",
+    "alt": "新しいAI機能のカードと完成資料を見比べる人"
+  },
+  "fallback": {
+    "image": "/design-system/studio/images/editorial-20261011/article-ai-world.webp",
+    "alt": "AIの道具を一つの作業場にまとめる二人"
+  },
+  "articles": {
+    "2026-10-09-codex-workers-ai-workflow": {
+      "image": "/design-system/studio/images/editorial-20261011/article-workflow.webp",
+      "alt": "作業場の棚へ資料フォルダを置く人"
+    },
+    "2026-10-05-codex-cloud-development-environment": {
+      "image": "/design-system/studio/images/editorial-20261011/article-cloud.webp",
+      "alt": "PCとクラウド環境・手元のSSDを見比べる人"
+    },
+    "2026-10-03-codex-remote-collaboration-guide": {
+      "image": "/design-system/studio/images/editorial-20261011/article-remote.webp",
+      "alt": "遠隔画面で一緒にアプリを作る二人"
+    },
+    "2026-10-01-codex-decision-model-jev": {
+      "image": "/design-system/studio/images/editorial-20261011/article-decision.webp",
+      "alt": "問い合わせカードを三つのトレーに仕分ける人"
+    },
+    "2026-09-28-orca-ade-ai-manager": {
+      "image": "/design-system/studio/images/editorial-20261011/article-orca.webp",
+      "alt": "三つのAI提案から一案を選ぶ人"
+    },
+    "2026-09-18-cloudflare-emdash-webmcp": {
+      "image": "/design-system/studio/images/editorial-20261011/article-web-assistant.webp",
+      "alt": "小さなお店の受付とWeb編集を分担する二人"
+    },
+    "2026-08-30-switchbot-ai-mind-clip": {
+      "image": "/design-system/studio/images/editorial-20261011/article-mindclip.webp",
+      "alt": "胸元の録音クリップから会話メモと次の作業を整える二人"
+    },
+    "2026-08-21-codex-environment-optimizer": {
+      "image": "/design-system/studio/images/editorial-20261011/article-optimizer.webp",
+      "alt": "絡まった指示をほどいて作業の流れを整える人"
+    },
+    "2026-08-08-vercel-supabase-d1-r2-boundaries": {
+      "image": "/design-system/studio/images/editorial-20261011/article-infrastructure.webp",
+      "alt": "Web・データ・会員情報を分けて収納する人"
+    },
+    "2026-06-17-codex-ai-world": {
+      "image": "/design-system/studio/images/editorial-20261011/article-ai-world.webp",
+      "alt": "AIの道具を一つの作業場にまとめる二人"
+    }
+  }
+}

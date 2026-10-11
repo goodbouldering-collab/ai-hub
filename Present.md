@@ -5,6 +5,12 @@
 AI講座・業務改善相談の案内、ブログ、制作実績を提供する。確認済み公開URLは https://aiclimb.aiclimb.workers.dev 。独自ドメイン未設定のため、このURLを使用する。公開先は共通Cloudflare台帳の `work/genspark-profile-edit/cloudflare-runtime`。事業ルートには別作業の差分があるため、一括同期しない。
 
 
+## Supabase補助経路の監査（2026-10-11）
+
+- 現行WorkerのSupabase文字列477件は管理資料465件と状態表示12件。実接続コード・project URL・JWTの埋込みは検出0。旧APIは現行配備のimport外、共有保存・SNS等は接続待ち。
+- 旧Supabaseに収集履歴3件、指令室9表30件が残存。Cloudflareへの永続保存先は未接続。通常のSQLite保存をCloudflare移行完了とは扱わない。
+- 今回はSELECT・ローカルコード照合のみ。本番変更・SNS送信なし。次は登録済みD1/R2保存先の確定とデータ移行。画像6件はグッぼるで集計。詳細・JSON: [補助経路監査](docs/supabase-aux-audit-20261011.md)。
+
 ## 講習メニューのサロンを最後へ（2026-10-11、本番確認済み）
 
 - 講習・相談コースの最後を「AIアプリサイト制作 → AIオンラインサロン」の順へ変更。カード本文・料金・画像・リンクを保持し、日次再生成にも適用する。

@@ -56,3 +56,13 @@ test('missing auth configuration fails closed without a misleading login loop',a
     assert.doesNotMatch(await response.text(),/毎日の運営チェック/);
   }
 });
+
+test('header examples in CSS and scripts cannot swallow the document body',()=>{
+  const html='<html><head><style>/* <header class="site-header"> example */ body{color:black}</style><script>const example=`<header class="site-header">example</header>`;</script></head><body><header class="site-header">old nav</header><main id="archive">Archived articles</main></body></html>';
+  const result=applyShell(html,new URL(origin+'/admin/watch'));
+  assert.match(result,/<\/head><body data-workspace-shell>/);
+  assert.match(result,/id="archive">Archived articles/);
+  assert.match(result,/body\{color:black\}/);
+  assert.doesNotMatch(result,/>old nav</);
+  assert.equal((result.match(/id="workspace-header"/g)||[]).length,1);
+});

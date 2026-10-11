@@ -25,6 +25,6 @@ node --test deployment/admin-workspace/worker.test.mjs deployment/admin-workspac
 npm --prefix cloudflare-runtime test
 ```
 
-公開前の基準は登録元 `.news-below-blog-20261011-final/public` の600ファイル。`flat-release-baseline.json` の全SHAと照合し、確定統合SHAのGit blobから `build_admin_flat_release.mjs` で生成する。公開HTML・画像・記事・SEO・ニュース配置を変更しない。登録元の台帳設定とForDeployガードを使う。
+公開前の基準は登録元 `.diagnosis-above-blog-20261011-final/public` の600ファイル。`flat-release-baseline.json` の全SHAと照合し、確定統合SHAのGit blobから `build_admin_flat_release.mjs` で生成する。公開HTML・画像・記事・SEO・ニュース配置を変更しない。登録元の台帳設定とForDeployガードを使う。
 
 実績・残件の証拠: 登録元 `tmp/delivery/20261011-admin-flat-cloudflare/` と同名JSON。JevにはURL変換コードと合成データのテストだけを送り、原文・秘密値は送らない。正確性6.4→7.7、互換性7.1→8.2。通常テストと画面確認を完了条件とする。

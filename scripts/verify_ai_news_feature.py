@@ -16,7 +16,10 @@ def verify(read):
     sitemap = read("sitemap.xml")
     hero = home.select_one("main #top")
     feature = home.select_one("main #ai-news")
-    assert hero.find_next_sibling() == home.select_one('#blog'), "Blog must immediately follow the hero"
+    diagnoses = home.select_one('#diagnosis-start')
+    assert diagnoses and hero.find_next_sibling() == diagnoses, "Diagnoses must follow the hero"
+    assert diagnoses.find_next_sibling() == home.select_one('#blog'), "Blog must follow the diagnoses"
+    assert [a['href'] for a in diagnoses.select(':scope > a')] == ['/ai-agent-readiness/', '/seo-llmo-diagnosis/']
     assert feature.select_one('#ai-news-feature-title').get_text() == '今日のAIニュース5とCodex'
     headlines = feature.select('ol li a')
     assert len(headlines) == 3
@@ -62,7 +65,7 @@ def verify(read):
     assert page.select_one(".blog-update-label").get_text() == f"{updated.month}月{updated.day}日更新"
     assert len(page.select(".content-toc")) == 0
     assert page.select_one("#過去のアップデート要約")
-    return {"blog_below_hero": True, "news_below_blog": True, "home_entries": 3, "news_items": 5,
+    return {"diagnoses_above_blog": True, "news_below_blog": True, "home_entries": 3, "news_items": 5,
             "latest_blogs": 3, "archive_entries": len(blog.select('.editorial-feed__row')),
             "all_entries_have_images": True, "compact_courses": 6,
             "codex_blog_card_removed": True, "article_content_checks": True}

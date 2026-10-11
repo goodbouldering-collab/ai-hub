@@ -37,13 +37,17 @@ export function applyShell(html, url) {
   if (html.includes('id="workspace-header"')) return html.includes('data-admin-theme')?html:html.replace('</head>',THEME+'</head>');
   // Keep production editor headings/status IDs. Only replace the shared navigation.
   html = html.replace(/<script\b[^>]*src=["'][^"']*admin-menu\.js[^"']*["'][^>]*>[\s\S]*?<\/script>/gi, '');
+  html = html.replace(/<title>[\s\S]*?<\/title>/i,'<title>AI相談</title>').replace(/document\.title\s*=\s*["'][^"']*["']/g,'document.title="AI相談"');
+  // Legacy CSS comments contain literal <header> examples. Keep raw-text blocks
+  // opaque so replacing a real header cannot consume the head or editor body.
+  const raw=[];
+  html=html.replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>|<style\b[^>]*>[\s\S]*?<\/style\s*>|<!--[\s\S]*?-->/gi,block=>{raw.push(block);return '\uE000WORKSPACE'+(raw.length-1)+'\uE001';});
   const oldHeader = /<header\b(?=[^>]*(?:class=["'][^"']*\bsite-header\b|id=["']site-header["']))[^>]*>[\s\S]*?<\/header>/i;
   if (oldHeader.test(html)) html = html.replace(oldHeader, header(url.pathname));
   else html = html.replace(/(<body\b[^>]*>)/i, `$1${header(url.pathname)}`);
   html = html.replace(/<body\b/i, '<body data-workspace-shell');
-  html = html.replace(/<title>[\s\S]*?<\/title>/i,'<title>AI相談</title>').replace(/document\.title\s*=\s*["'][^"']*["']/g,'document.title="AI相談"');
   html = html.replace('id="studio-nav-back" href="/studio"', 'id="studio-nav-back" href="/admin/create"');
   const route=routeAt(url.pathname);
   if(route) html=html.replace('</header>', '</header><div class="workspace-return"><a href="/admin">← 管理ホーム</a><span>'+route.title+'</span></div>');
-  return html.replace('</head>', SHELL_STYLE + THEME + '</head>');
+  return html.replace('</head>', SHELL_STYLE + THEME + '</head>').replace(/\uE000WORKSPACE(\d+)\uE001/g,(_,index)=>raw[Number(index)]);
 }

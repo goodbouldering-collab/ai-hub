@@ -18540,15 +18540,20 @@ function applyShell(html, url) {
   html = html.replace("REEL APP SERVER", "AI\u76F8\u8AC7").replace("\u4E8B\u696D\u5225\u30EA\u30FC\u30EB\u5236\u4F5C", "AI\u76F8\u8AC7 \u30EA\u30FC\u30EB\u5236\u4F5C").replace("\u2699\uFE0F OPS \u2014 AI\u30B9\u30DA\u30B7\u30E3\u30EA\u30B9\u30C8\u7BA1\u7406\u672C\u90E8", "\u904B\u7528\u8A18\u9332\u30FB\u30D7\u30ED\u30F3\u30D7\u30C8");
   if (html.includes('id="workspace-header"')) return html.includes("data-admin-theme") ? html : html.replace("</head>", THEME + "</head>");
   html = html.replace(/<script\b[^>]*src=["'][^"']*admin-menu\.js[^"']*["'][^>]*>[\s\S]*?<\/script>/gi, "");
+  html = html.replace(/<title>[\s\S]*?<\/title>/i, "<title>AI\u76F8\u8AC7</title>").replace(/document\.title\s*=\s*["'][^"']*["']/g, 'document.title="AI\u76F8\u8AC7"');
+  const raw = [];
+  html = html.replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>|<style\b[^>]*>[\s\S]*?<\/style\s*>|<!--[\s\S]*?-->/gi, (block) => {
+    raw.push(block);
+    return "\uE000WORKSPACE" + (raw.length - 1) + "\uE001";
+  });
   const oldHeader = /<header\b(?=[^>]*(?:class=["'][^"']*\bsite-header\b|id=["']site-header["']))[^>]*>[\s\S]*?<\/header>/i;
   if (oldHeader.test(html)) html = html.replace(oldHeader, header(url.pathname));
   else html = html.replace(/(<body\b[^>]*>)/i, `$1${header(url.pathname)}`);
   html = html.replace(/<body\b/i, "<body data-workspace-shell");
-  html = html.replace(/<title>[\s\S]*?<\/title>/i, "<title>AI\u76F8\u8AC7</title>").replace(/document\.title\s*=\s*["'][^"']*["']/g, 'document.title="AI\u76F8\u8AC7"');
   html = html.replace('id="studio-nav-back" href="/studio"', 'id="studio-nav-back" href="/admin/create"');
   const route = routeAt(url.pathname);
   if (route) html = html.replace("</header>", '</header><div class="workspace-return"><a href="/admin">\u2190 \u7BA1\u7406\u30DB\u30FC\u30E0</a><span>' + route.title + "</span></div>");
-  return html.replace("</head>", SHELL_STYLE + THEME + "</head>");
+  return html.replace("</head>", SHELL_STYLE + THEME + "</head>").replace(/\uE000WORKSPACE(\d+)\uE001/g, (_, index) => raw[Number(index)]);
 }
 
 // deployment/admin-workspace/pages.mjs

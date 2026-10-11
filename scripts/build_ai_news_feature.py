@@ -33,7 +33,7 @@ from core.home_updates import apply_home_updates
 from core.editorial_feed import apply_blog_feed
 from core.editorial_home import apply_editorial_home
 from core.search_presence import apply_search_presence, enhance_search_html
-from scripts.build_search_presence_release import assert_metadata_only, DISCOVERY_FILES
+from scripts.build_search_presence_release import assert_search_changes, DISCOVERY_FILES
 
 TEMPLATES = ROOT / "site/templates/ai-news"
 URL = "https://aiclimb.aiclimb.workers.dev/ai-news/"
@@ -167,7 +167,7 @@ def build(output: Path, base_assets: Path | None = None, *, preserve_baseline_pr
         search = {"changed_files": sorted(changed_files), "partial_html_only": True}
     for name in search["changed_files"]:
         if name in before_search:
-            assert_metadata_only(before_search[name], (output / name).read_bytes(), name)
+            assert_search_changes(before_search[name], (output / name).read_bytes(), name)
         elif name not in DISCOVERY_FILES:
             raise ValueError(f"Unexpected search output: {name}")
     if preserve_baseline_presentation:

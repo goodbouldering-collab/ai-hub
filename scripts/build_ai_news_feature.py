@@ -119,6 +119,7 @@ def build(output: Path, base_assets: Path | None = None, *, preserve_baseline_pr
         home = restore_home_speaker(apply_instagram_feed(remove_soft_playground(home)))
     blog = remove_old_cards((TEMPLATES / "blog.html").read_text(encoding="utf-8"))
     home = apply_home_updates(home, blog, (TEMPLATES / "home-updates.css").read_text(encoding="utf-8"))
+    home = apply_diagnosis_copy(home)
     blog = apply_blog_feed(blog, modified, (TEMPLATES / "editorial-feed.css").read_text(encoding="utf-8"))
     sitemap = (TEMPLATES / "sitemap.xml").read_text(encoding="utf-8")
     sitemap, count = re.subn(r"<url><loc>[^<]*/blog/codex-update-log\.html</loc>.*?</url>", f"<url><loc>{URL}</loc><lastmod>{modified}</lastmod><priority>0.9</priority></url>", sitemap, flags=re.S)

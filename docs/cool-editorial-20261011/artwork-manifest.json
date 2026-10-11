@@ -1,0 +1,218 @@
+{
+  "generator": "OpenAI built-in image_gen",
+  "date": "2026-10-11",
+  "encoding": "Pillow WebP quality 84 method 6; original pixels, no crop",
+  "scope": "Fictional conceptual editorial photography, not real clients or staff",
+  "assets": [
+    {
+      "name": "hero",
+      "prompt": "Use case: photorealistic-natural. Create a premium editorial photograph for a Japanese AI consulting website hero, landscape 3:2, 1536x1024. Two fictional Japanese adults, a small business owner in a dark navy overshirt and a female consultant in a charcoal tailored jacket, collaboratively reviewing a real open laptop and a few elegant printed layout sheets at a dark oak work table in a minimal contemporary Japanese studio. The laptop shows a simple website layout without legible text. Candid focused interaction, no exaggerated smiling. Camera at seated eye level, generous space, faces and work grouped within central 70%, image legible at small size. Mature, cool, sophisticated, understated architectural editorial photography. Natural skin texture, realistic anatomy, beautiful directional window light, restrained deep slate, warm stone, brushed aluminum, subtle muted teal accent, film-like tonality. Calm bright enough midtones, crisp details with gentle background blur. One clear action, uncluttered. No cute characters, cartoons, clay, miniature diorama, oversized props, robots, holograms, neon, logos, watermark, text or typography. This is a conceptual fictional scene, not an actual client photograph.",
+      "alt": "相談者と制作者がPCと資料を見ながら話し合うイメージ",
+      "width": 1536,
+      "height": 1024,
+      "source_sha256": "0a049a2f31c3fa8fdc75b2c5ba3f03cdff7f1499a3a3c8d0b4a714c8d3d6dc2b",
+      "sha256": "d3baee4686a26bccb57ec5b0c950644ef42a4e1ee2248b5b435eb3e099de42e1",
+      "bytes": 92044
+    },
+    {
+      "name": "agent",
+      "prompt": "Use case: photorealistic-natural. Premium editorial photography for a Japanese AI consulting website, landscape 3:2 1536x1024. Fictional Japanese adults when people are present. Mature, cool, sophisticated and understated, realistic natural textures and anatomy. Restrained slate, stone, dark oak and brushed aluminum, a subtle muted teal accent. Beautiful directional window light, film-like tonality, clear midtones and quiet shadows. Candid focused activity with natural expressions, no posed corporate stock-photo smiles. One instantly understandable subject/action, uncluttered architectural composition, main subject within central 70% for thumbnail crops. No cartoon, cute character, clay, doll, miniature, exaggerated props, robots, holograms, neon, legible text, typography, logos or watermark. A female ceramics shop owner in a charcoal linen apron photographs a beautiful handmade dark ceramic cup with a smartphone, while a laptop beside her displays the same cup in a minimal shop announcement layout. Real working studio with concrete and wood, one cup in focus, intentional editorial product lighting. No invented interface text.",
+      "alt": "商品をスマートフォンで撮影し、案内にまとめるイメージ",
+      "width": 1536,
+      "height": 1024,
+      "source_sha256": "fa7d5319bea94b3ac1f539369ceec02b8b398b5250afc32a788c0a96d7fbe0e8",
+      "sha256": "15ab22d5a53aa07ce25e119933b2a48484b9a1322eb6eeb39a4b78b6da8ff2a6",
+      "bytes": 127818
+    },
+    {
+      "name": "personal",
+      "prompt": "Use case: photorealistic-natural. Premium editorial photography for a Japanese AI consulting website, landscape 3:2 1536x1024. Fictional Japanese adults when people are present. Mature, cool, sophisticated and understated, realistic natural textures and anatomy. Restrained slate, stone, dark oak and brushed aluminum, a subtle muted teal accent. Beautiful directional window light, film-like tonality, clear midtones and quiet shadows. Candid focused activity with natural expressions, no posed corporate stock-photo smiles. One instantly understandable subject/action, uncluttered architectural composition, main subject within central 70% for thumbnail crops. No cartoon, cute character, clay, doll, miniature, exaggerated props, robots, holograms, neon, legible text, typography, logos or watermark. A thoughtful male advisor and a female local business owner have a one-to-one consultation at a small round stone table, choosing one understated paper planning card from three, a closed laptop beside them. Natural attentive expressions and realistic hands. Side view, airy minimalist studio, medium-wide composition.",
+      "alt": "相談者と講師が取り組む課題を一つ選ぶイメージ",
+      "width": 1536,
+      "height": 1024,
+      "source_sha256": "7dced9c8c33c10832051c23955c95bf7d44fc3349cf0b60eb9e884938034a126",
+      "sha256": "33eb2ccbaf6d9e7d2d2a2891b0c33dfe0cd4a9a2da93dede479f73a012049b8c",
+      "bytes": 120654
+    },
+    {
+      "name": "code",
+      "prompt": "Use case: photorealistic-natural. Premium editorial photography for a Japanese AI consulting website, landscape 3:2 1536x1024. Fictional Japanese adults when people are present. Mature, cool, sophisticated and understated, realistic natural textures and anatomy. Restrained slate, stone, dark oak and brushed aluminum, a subtle muted teal accent. Beautiful directional window light, film-like tonality, clear midtones and quiet shadows. Candid focused activity with natural expressions, no posed corporate stock-photo smiles. One instantly understandable subject/action, uncluttered architectural composition, main subject within central 70% for thumbnail crops. No cartoon, cute character, clay, doll, miniature, exaggerated props, robots, holograms, neon, legible text, typography, logos or watermark. A Japanese developer in dark casual clothing tests a simple booking interface on a smartphone held beside a laptop displaying a matching clean website layout. Over-the-shoulder three-quarter photograph, phone, hands and screen sharp, realistic work studio with daylight. UI shapes only, no legible text.",
+      "alt": "PCとスマートフォンで予約画面を確かめるイメージ",
+      "width": 1536,
+      "height": 1024,
+      "source_sha256": "6e0e1854592f5220ceb6ffb9f9fbac27bb4d9335b6956e7c7b5847b0c0c362b6",
+      "sha256": "c603f279da89aff8f4efea1581228b1b009ee78d6be362cbd1edf6f0615c62e4",
+      "bytes": 89924
+    },
+    {
+      "name": "support",
+      "prompt": "Use case: photorealistic-natural. Premium editorial photography for a Japanese AI consulting website, landscape 3:2 1536x1024. Fictional Japanese adults when people are present. Mature, cool, sophisticated and understated, realistic natural textures and anatomy. Restrained slate, stone, dark oak and brushed aluminum, a subtle muted teal accent. Beautiful directional window light, film-like tonality, clear midtones and quiet shadows. Candid focused activity with natural expressions, no posed corporate stock-photo smiles. One instantly understandable subject/action, uncluttered architectural composition, main subject within central 70% for thumbnail crops. No cartoon, cute character, clay, doll, miniature, exaggerated props, robots, holograms, neon, legible text, typography, logos or watermark. Three fictional adult coworkers, women and men, standing at a restrained real wall planning board in a light concrete creative studio. One person moves a single muted teal task card from a left column to a right column, the others look attentively. Sideways editorial candid framing, three-quarter bodies, quiet confidence, balanced architectural negative space. No readable writing.",
+      "alt": "チームで仕事の手順と進み具合を整えるイメージ",
+      "width": 1536,
+      "height": 1024,
+      "source_sha256": "df59e101b7c9cdedab10a771cfd451b00f006e0eb9977c01dd73aa2b8a39a6e5",
+      "sha256": "02fb4db65512b566a1b7bbb42a47110e495c55bf9cbddcef2fc3c9e10e4ef272",
+      "bytes": 93960
+    },
+    {
+      "name": "salon",
+      "prompt": "Use case: photorealistic-natural. Premium editorial photography for a Japanese AI consulting website, landscape 3:2 1536x1024. Fictional Japanese adults when people are present. Mature, cool, sophisticated and understated, realistic natural textures and anatomy. Restrained slate, stone, dark oak and brushed aluminum, a subtle muted teal accent. Beautiful directional window light, film-like tonality, clear midtones and quiet shadows. Candid focused activity with natural expressions, no posed corporate stock-photo smiles. One instantly understandable subject/action, uncluttered architectural composition, main subject within central 70% for thumbnail crops. No cartoon, cute character, clay, doll, miniature, exaggerated props, robots, holograms, neon, legible text, typography, logos or watermark. A woman seen in elegant three-quarter profile at home joins an online creative learning session on a large laptop displaying two adult participants in a realistic video call and a small website preview. Warm oak table, cool pale plaster wall, single matte desk lamp. Daylight and relaxed but focused posture. Clear screen, minimal screen UI, no readable text.",
+      "alt": "オンラインで作品と工夫を共有するイメージ",
+      "width": 1536,
+      "height": 1024,
+      "source_sha256": "9c1818d1122b33a34a309e1fb6791d5825481ba137734831c81edd53862b3e3c",
+      "sha256": "4d2542019b6c0db3fe79bd99f36147d8da1ceee4d5bcb368fe77c9f8ac702f74",
+      "bytes": 102834
+    },
+    {
+      "name": "site",
+      "prompt": "Use case: photorealistic-natural. Premium editorial photography for a Japanese AI consulting website, landscape 3:2 1536x1024. Fictional Japanese adults when people are present. Mature, cool, sophisticated and understated, realistic natural textures and anatomy. Restrained slate, stone, dark oak and brushed aluminum, a subtle muted teal accent. Beautiful directional window light, film-like tonality, clear midtones and quiet shadows. Candid focused activity with natural expressions, no posed corporate stock-photo smiles. One instantly understandable subject/action, uncluttered architectural composition, main subject within central 70% for thumbnail crops. No cartoon, cute character, clay, doll, miniature, exaggerated props, robots, holograms, neon, legible text, typography, logos or watermark. Close editorial photograph of an adult website designer's hands holding a tablet beside a neatly placed open laptop on a pale stone counter in a tasteful small Japanese cafe. Both screens show the same understated cafe website, food photography and a simple reservation grid, no legible writing. A beautiful ceramic espresso cup anchors the foreground, softly blurred cafe interior, real materials.",
+      "alt": "お店のホームページと予約画面を確認するイメージ",
+      "width": 1536,
+      "height": 1024,
+      "source_sha256": "13bab470b420a55f8da730f74c2f9d9dcbbe971a5d9215f865a9b7a99f4764cc",
+      "sha256": "36eafd2b114573dfca417a35639c569f17f59f0b03022a5cc376a1a8b70bf0c1",
+      "bytes": 123456
+    },
+    {
+      "name": "practice",
+      "prompt": "Use case: photorealistic-natural. Premium editorial photography for a Japanese AI consulting website, landscape 3:2 1536x1024. Fictional Japanese adults when people are present. Mature, cool, sophisticated and understated, realistic natural textures and anatomy. Restrained slate, stone, dark oak and brushed aluminum, a subtle muted teal accent. Beautiful directional window light, film-like tonality, clear midtones and quiet shadows. Candid focused activity with natural expressions, no posed corporate stock-photo smiles. One instantly understandable subject/action, uncluttered architectural composition, main subject within central 70% for thumbnail crops. No cartoon, cute character, clay, doll, miniature, exaggerated props, robots, holograms, neon, legible text, typography, logos or watermark. Top-down editorial still life of a person's hands turning loose rough notes into one orderly weekly plan in an open cream notebook on a slate worktop, pencil, a single muted teal card and a small metal paper clip. Sunlight creates clean diagonal shadows. No laptop, no readable writing; intimate practical productivity scene, beautiful tactile paper.",
+      "alt": "散らばったメモから今日の計画をまとめるイメージ",
+      "width": 1536,
+      "height": 1024,
+      "source_sha256": "00db26f8d1703979b8ab6fac450d9342221119f49e125e440fdc044b7f061d0b",
+      "sha256": "b7c3dce5db8b712ab50c3c2d57c060b5ffd3e30bf28f4236ca5fa53df5cb6bb4",
+      "bytes": 118690
+    },
+    {
+      "name": "rag",
+      "prompt": "Use case: photorealistic-natural. Premium editorial photography for a Japanese AI consulting website, landscape 3:2 1536x1024. Fictional Japanese adults when people are present. Mature, cool, sophisticated and understated, realistic natural textures and anatomy. Restrained slate, stone, dark oak and brushed aluminum, a subtle muted teal accent. Beautiful directional window light, film-like tonality, clear midtones and quiet shadows. Candid focused activity with natural expressions, no posed corporate stock-photo smiles. One instantly understandable subject/action, uncluttered architectural composition, main subject within central 70% for thumbnail crops. No cartoon, cute character, clay, doll, miniature, exaggerated props, robots, holograms, neon, legible text, typography, logos or watermark. A Japanese researcher wearing charcoal stands at a quiet architectural library table, checking one highlighted passage in an open reference book against a tablet. Bookshelves softly out of focus, side-lit textured paper and real hands. Face visible, focused expression. Very few objects, editorial medium shot. No legible text.",
+      "alt": "参考資料とタブレットの情報を照らし合わせるイメージ",
+      "width": 1536,
+      "height": 1024,
+      "source_sha256": "9d4b3b179da78ab0feebe1e06898d963c4d25262279e55ea21312b6fc9314776",
+      "sha256": "1d8058cf2620ef7c986deda448ad13c2ea2b0951692c60f00a85262aba41ee3d",
+      "bytes": 89124
+    },
+    {
+      "name": "climbing",
+      "prompt": "Use case: photorealistic-natural. Premium editorial photography for a Japanese AI consulting website, landscape 3:2 1536x1024. Fictional Japanese adults when people are present. Mature, cool, sophisticated and understated, realistic natural textures and anatomy. Restrained slate, stone, dark oak and brushed aluminum, a subtle muted teal accent. Beautiful directional window light, film-like tonality, clear midtones and quiet shadows. Candid focused activity with natural expressions, no posed corporate stock-photo smiles. One instantly understandable subject/action, uncluttered architectural composition, main subject within central 70% for thumbnail crops. No cartoon, cute character, clay, doll, miniature, exaggerated props, robots, holograms, neon, legible text, typography, logos or watermark. A fictional Japanese adult climbing coach in charcoal athletic clothing studies a small climbing route photo on a tablet beside a real indoor bouldering wall with graphite and subdued sage holds, while a second adult climber gestures toward one hold. Both firmly on ground, no ropes, no acrobatic action. Tactile chalk and plywood, spare composition, beautiful sidelight.",
+      "alt": "クライミングの動きを資料と実際の壁で確認するイメージ",
+      "width": 1536,
+      "height": 1024,
+      "source_sha256": "82562b38802540278d49f16de5522ebe2ba8752f9e561573d046c0c16eb93565",
+      "sha256": "c0c32724bccbf603a9ccd0b0dd372aa2e46e8f3cc64c84ff6bad6c879ff959f3",
+      "bytes": 156794
+    },
+    {
+      "name": "article-news",
+      "prompt": "Use case: photorealistic-natural. Premium editorial photography for a Japanese AI consulting website, landscape 3:2 1536x1024. Fictional Japanese adults when people are present. Mature, cool, sophisticated and understated, realistic natural textures and anatomy. Restrained slate, stone, dark oak and brushed aluminum, a subtle muted teal accent. Beautiful directional window light, film-like tonality, clear midtones and quiet shadows. Candid focused activity with natural expressions, no posed corporate stock-photo smiles. One instantly understandable subject/action, uncluttered architectural composition, main subject within central 70% for thumbnail crops. No cartoon, cute character, clay, doll, miniature, exaggerated props, robots, holograms, neon, legible text, typography, logos or watermark. A mature Japanese woman at a minimal reading desk compares a tablet with a clean news layout and a single printed design proof. Medium close side view, silver tablet and tactile paper in foreground, bright cool natural light and soft stone wall. Quiet curiosity, not a staged portrait.",
+      "alt": "新しい情報と完成資料を見比べるイメージ",
+      "width": 1536,
+      "height": 1024,
+      "source_sha256": "2a986cbfaf960657c7d458cc5010cecfd3db1d8b811537f8405ceacefdfa145f",
+      "sha256": "2907dfd40d3ca1e9303b1b08014724b56c354c44ab5dde65f4f89eca33e68437",
+      "bytes": 94294
+    },
+    {
+      "name": "article-cloud",
+      "prompt": "Use case: photorealistic-natural. Premium editorial photography for a Japanese AI consulting website, landscape 3:2 1536x1024. Fictional Japanese adults when people are present. Mature, cool, sophisticated and understated, realistic natural textures and anatomy. Restrained slate, stone, dark oak and brushed aluminum, a subtle muted teal accent. Beautiful directional window light, film-like tonality, clear midtones and quiet shadows. Candid focused activity with natural expressions, no posed corporate stock-photo smiles. One instantly understandable subject/action, uncluttered architectural composition, main subject within central 70% for thumbnail crops. No cartoon, cute character, clay, doll, miniature, exaggerated props, robots, holograms, neon, legible text, typography, logos or watermark. Product-led editorial still life on a slate desk: compact unbranded brushed aluminum external SSD attached to a slim open laptop, a person's hand rests beside the SSD, the laptop displays a subtle grid of cloud workspaces using abstract rectangles without words. Focus on SSD and laptop, realistic metallic reflections, dark navy background with window light, no floating cloud symbols.",
+      "alt": "PCと外付けSSDで作業環境を整えるイメージ",
+      "width": 1536,
+      "height": 1024,
+      "source_sha256": "ac7c84a08b07503cb667cf081df0422e2c31c379d2249921ed87312ced3eac13",
+      "sha256": "eb1c2e7639d7189aa90505fc0cebcc1c75e9a1910307ceaf16439e219ec2f58b",
+      "bytes": 76298
+    },
+    {
+      "name": "article-workflow",
+      "prompt": "Use case: photorealistic-natural. Premium editorial photography for a Japanese AI consulting website, landscape 3:2 1536x1024. Fictional Japanese adults when people are present. Mature, cool, sophisticated and understated, realistic natural textures and anatomy. Restrained slate, stone, dark oak and brushed aluminum, a subtle muted teal accent. Beautiful directional window light, film-like tonality, clear midtones and quiet shadows. Candid focused activity with natural expressions, no posed corporate stock-photo smiles. One instantly understandable subject/action, uncluttered architectural composition, main subject within central 70% for thumbnail crops. No cartoon, cute character, clay, doll, miniature, exaggerated props, robots, holograms, neon, legible text, typography, logos or watermark. A Japanese creative professional puts one slim charcoal document folder into an open shelf immediately beside a neatly organized workstation. Real adult proportions and real folder size. One laptop and three archival folders, light architectural shelves, soft daylight, wide medium shot conveying shared reusable work materials, no readable labels.",
+      "alt": "繰り返し使う資料を共通の棚へまとめるイメージ",
+      "width": 1536,
+      "height": 1024,
+      "source_sha256": "8c50852dc8702a91e901a89f902357338a557b8bf6d747a9688316419caf8eb3",
+      "sha256": "0821b4cb87caa0a28d421d745d2cfd4635fe4b6148178e697dc605c906b017a5",
+      "bytes": 117094
+    },
+    {
+      "name": "article-remote",
+      "prompt": "Use case: photorealistic-natural. Premium editorial photography for a Japanese AI consulting website, landscape 3:2 1536x1024. Fictional Japanese adults when people are present. Mature, cool, sophisticated and understated, realistic natural textures and anatomy. Restrained slate, stone, dark oak and brushed aluminum, a subtle muted teal accent. Beautiful directional window light, film-like tonality, clear midtones and quiet shadows. Candid focused activity with natural expressions, no posed corporate stock-photo smiles. One instantly understandable subject/action, uncluttered architectural composition, main subject within central 70% for thumbnail crops. No cartoon, cute character, clay, doll, miniature, exaggerated props, robots, holograms, neon, legible text, typography, logos or watermark. Over-the-shoulder photograph of a Japanese developer with a second adult collaborator visible on a realistic desktop video call, both reviewing the same clean application interface. Large monitor plus a small notebook, minimal bright workspace, not a collage, no legible words. Physical desk and natural screen reflections.",
+      "alt": "遠隔の相手と画面を共有して開発するイメージ",
+      "width": 1536,
+      "height": 1024,
+      "source_sha256": "785dc4e62f5db448ab51e31d7d941f48503cf280aab98ebb9bda26a14265a803",
+      "sha256": "ac826f2ac9d5cee31a7de4f3535c4759fe9edb63e859ef9ef5c19f90cf2cce7b",
+      "bytes": 93542
+    },
+    {
+      "name": "article-decision",
+      "prompt": "Use case: photorealistic-natural. Premium editorial photography for a Japanese AI consulting website, landscape 3:2 1536x1024. Fictional Japanese adults when people are present. Mature, cool, sophisticated and understated, realistic natural textures and anatomy. Restrained slate, stone, dark oak and brushed aluminum, a subtle muted teal accent. Beautiful directional window light, film-like tonality, clear midtones and quiet shadows. Candid focused activity with natural expressions, no posed corporate stock-photo smiles. One instantly understandable subject/action, uncluttered architectural composition, main subject within central 70% for thumbnail crops. No cartoon, cute character, clay, doll, miniature, exaggerated props, robots, holograms, neon, legible text, typography, logos or watermark. A close-up of realistic adult hands sorting a small stack of cream inquiry cards into three slim brushed aluminum trays on a charcoal tabletop. One muted teal card is being placed in the center tray. Precise graphic top-down composition, tactile paper, diagonal natural light, no people faces needed, no letters or symbols.",
+      "alt": "問い合わせを三つのトレーへ仕分けるイメージ",
+      "width": 1536,
+      "height": 1024,
+      "source_sha256": "c77d0cfc4386d6332090c2b730ef45d201db633b2444cbfdb51be66f8e0a7642",
+      "sha256": "403d4bb152c0f0832856058a31e7a086194b9f01229438c9fcef4e2257dd65af",
+      "bytes": 183044
+    },
+    {
+      "name": "article-orca",
+      "prompt": "Use case: photorealistic-natural. Premium editorial photography for a Japanese AI consulting website, landscape 3:2 1536x1024. Fictional Japanese adults when people are present. Mature, cool, sophisticated and understated, realistic natural textures and anatomy. Restrained slate, stone, dark oak and brushed aluminum, a subtle muted teal accent. Beautiful directional window light, film-like tonality, clear midtones and quiet shadows. Candid focused activity with natural expressions, no posed corporate stock-photo smiles. One instantly understandable subject/action, uncluttered architectural composition, main subject within central 70% for thumbnail crops. No cartoon, cute character, clay, doll, miniature, exaggerated props, robots, holograms, neon, legible text, typography, logos or watermark. A Japanese woman creative director compares three distinct website design proofs placed in a row on a dark oak wall ledge and points decisively to one. Medium architectural photograph, clear three-option comparison, quiet daylight, charcoal outfit, restrained slate and cream website block layouts without text.",
+      "alt": "三つの提案から一案を選ぶイメージ",
+      "width": 1536,
+      "height": 1024,
+      "source_sha256": "7eefc42188d39c980f5510a1c32d22747c92a9240ae5eec6448062d6bc3905c4",
+      "sha256": "ef4fdb4ce1dbbdc0926b9b4bbbe13f86070aec5ea0caad09d8392953a81eaf6d",
+      "bytes": 147534
+    },
+    {
+      "name": "article-web-assistant",
+      "prompt": "Use case: photorealistic-natural. Premium editorial photography for a Japanese AI consulting website, landscape 3:2 1536x1024. Fictional Japanese adults when people are present. Mature, cool, sophisticated and understated, realistic natural textures and anatomy. Restrained slate, stone, dark oak and brushed aluminum, a subtle muted teal accent. Beautiful directional window light, film-like tonality, clear midtones and quiet shadows. Candid focused activity with natural expressions, no posed corporate stock-photo smiles. One instantly understandable subject/action, uncluttered architectural composition, main subject within central 70% for thumbnail crops. No cartoon, cute character, clay, doll, miniature, exaggerated props, robots, holograms, neon, legible text, typography, logos or watermark. Two Japanese adults working in a beautifully simple small ceramics shop: owner in dark apron handles one customer inquiry on a tablet while a colleague edits the shop website on a laptop nearby. Natural candid collaborative activity, shelf with only three ceramic items in background, cool window light, focus on the shared work.",
+      "alt": "お店の問い合わせ対応とWeb編集を分担するイメージ",
+      "width": 1536,
+      "height": 1024,
+      "source_sha256": "0b3b32208a71d89cabb0ed6fc51788a11f635a10b7a59672d35c71d577157db2",
+      "sha256": "4b7dd709187b0cde7821637359f666f6297a8b0d4e6bb86b2ea52ba31f40a3e7",
+      "bytes": 107006
+    },
+    {
+      "name": "article-mindclip",
+      "prompt": "Use case: photorealistic-natural. Premium editorial photography for a Japanese AI consulting website, landscape 3:2 1536x1024. Fictional Japanese adults when people are present. Mature, cool, sophisticated and understated, realistic natural textures and anatomy. Restrained slate, stone, dark oak and brushed aluminum, a subtle muted teal accent. Beautiful directional window light, film-like tonality, clear midtones and quiet shadows. Candid focused activity with natural expressions, no posed corporate stock-photo smiles. One instantly understandable subject/action, uncluttered architectural composition, main subject within central 70% for thumbnail crops. No cartoon, cute character, clay, doll, miniature, exaggerated props, robots, holograms, neon, legible text, typography, logos or watermark. A quiet conversation between two fictional Japanese adults at a minimalist cafe table. One wears a small unbranded black rectangular audio recorder clipped discreetly on a charcoal shirt; a smartphone on the table shows abstract audio wave and organized note blocks. Medium close shot with recorder and natural listening gestures clear, not an exact branded product depiction.",
+      "alt": "小さな録音端末とスマートフォンで会話を記録するイメージ",
+      "width": 1536,
+      "height": 1024,
+      "source_sha256": "eceb2bbd369ad4412fbf754f499ba41c06b1fd9c3d20e7305934eee7005c2d42",
+      "sha256": "a06f7310539e50c5afae2535bd9be428355499b5c9ebba97bed3c528481c6d87",
+      "bytes": 100632
+    },
+    {
+      "name": "article-optimizer",
+      "prompt": "Use case: photorealistic-natural. Premium editorial photography for a Japanese AI consulting website, landscape 3:2 1536x1024. Fictional Japanese adults when people are present. Mature, cool, sophisticated and understated, realistic natural textures and anatomy. Restrained slate, stone, dark oak and brushed aluminum, a subtle muted teal accent. Beautiful directional window light, film-like tonality, clear midtones and quiet shadows. Candid focused activity with natural expressions, no posed corporate stock-photo smiles. One instantly understandable subject/action, uncluttered architectural composition, main subject within central 70% for thumbnail crops. No cartoon, cute character, clay, doll, miniature, exaggerated props, robots, holograms, neon, legible text, typography, logos or watermark. An adult's hands carefully organize a formerly tangled dark charging cable into a clean loop beside a neat laptop and one open planning notebook on a stone table. Realistic cable management used as a restrained metaphor for cleaning up AI work instructions. Strong top-down editorial geometry, slate and silver, one muted teal pencil, no readable text.",
+      "alt": "作業環境の絡まりをほどいて整理するイメージ",
+      "width": 1536,
+      "height": 1024,
+      "source_sha256": "5202c48b43a091395168aed671bedaf5683aac2ca097fab5eec9050de1a7ce36",
+      "sha256": "baee2b6de3cda7701de9cb15dd263da60b0e95710767db5bb20f8609ac8a5334",
+      "bytes": 195748
+    },
+    {
+      "name": "article-infrastructure",
+      "prompt": "Use case: photorealistic-natural. Premium editorial photography for a Japanese AI consulting website, landscape 3:2 1536x1024. Fictional Japanese adults when people are present. Mature, cool, sophisticated and understated, realistic natural textures and anatomy. Restrained slate, stone, dark oak and brushed aluminum, a subtle muted teal accent. Beautiful directional window light, film-like tonality, clear midtones and quiet shadows. Candid focused activity with natural expressions, no posed corporate stock-photo smiles. One instantly understandable subject/action, uncluttered architectural composition, main subject within central 70% for thumbnail crops. No cartoon, cute character, clay, doll, miniature, exaggerated props, robots, holograms, neon, legible text, typography, logos or watermark. Architectural product still life of three separate storage elements on a minimal dark oak shelf: an open paper document tray, a brushed-metal SSD enclosure, and a slim closed secure lockbox. A person's hand selects the middle enclosure. Real materials, plausible full-size objects, quiet daylight, intentional spacing conveys separate storage roles without diagrams, no labels.",
+      "alt": "資料・ファイル・大切な情報の保管場所を分けるイメージ",
+      "width": 1536,
+      "height": 1024,
+      "source_sha256": "26b34eff710fad08ffb6015f251d4d2c297c07acc64c59d87ce0b61029e3f727",
+      "sha256": "aadecfac1d56ed793dc1623de7de52e5a03df4a16461fcbb47c869d6e1053216",
+      "bytes": 140382
+    },
+    {
+      "name": "article-ai-world",
+      "prompt": "Use case: photorealistic-natural. Premium editorial photography for a Japanese AI consulting website, landscape 3:2 1536x1024. Fictional Japanese adults when people are present. Mature, cool, sophisticated and understated, realistic natural textures and anatomy. Restrained slate, stone, dark oak and brushed aluminum, a subtle muted teal accent. Beautiful directional window light, film-like tonality, clear midtones and quiet shadows. Candid focused activity with natural expressions, no posed corporate stock-photo smiles. One instantly understandable subject/action, uncluttered architectural composition, main subject within central 70% for thumbnail crops. No cartoon, cute character, clay, doll, miniature, exaggerated props, robots, holograms, neon, legible text, typography, logos or watermark. A Japanese woman and male creative professional standing together at one minimal shared workstation with a laptop, a single monitor and a graphics tablet. One shows a finished simple image layout while the other uses a stylus. Realistic creative collaboration, wider architectural composition, dark oak table and pale stone room, no floating icons, no readable words.",
+      "alt": "複数のAIの道具を一つの作業場で使うイメージ",
+      "width": 1536,
+      "height": 1024,
+      "source_sha256": "3fc7d089a09fec998c06220c2d6d34fb5c28af5bcdde357ef24a5a2935d9e835",
+      "sha256": "372697e5bbcd6c05fe97c88157d99b8fbe6fe91154d7fc531e1da619468961a8",
+      "bytes": 108340
+    }
+  ]
+}

@@ -26,7 +26,7 @@ class EditorialHomeTests(unittest.TestCase):
     def test_only_explanatory_artwork_changes(self):
         source = '<head></head><img src="/design-system/studio/images/soft-hero.webp?v=old" alt="old"><img src="/img/speaker.webp" alt="講師"><img src="/img/portfolio/site.jpg" alt="実績">'
         result = replace_home_art(source)
-        self.assertIn('/editorial-20261011/hero.webp', result)
+        self.assertIn('/photo-20261011/hero.webp', result)
         self.assertIn('<img src="/img/speaker.webp" alt="講師">', result)
         self.assertIn('<img src="/img/portfolio/site.jpg" alt="実績">', result)
         self.assertEqual(replace_home_art(result), result)

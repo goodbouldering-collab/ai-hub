@@ -138,6 +138,22 @@ class SearchPresenceTests(unittest.TestCase):
         self.assertEqual(offer["priceSpecification"], {"@type": "PriceSpecification", "minPrice": 99000, "priceCurrency": "JPY"})
         self.assertEqual(html, enhance_search_html(html, "ai-app-site/index.html", self.config))
 
+    def test_unrated_testimonials_stay_visible_without_invalid_review_markup(self):
+        testimonial = {"@type": "Review", "reviewBody": "ゼロから自分で作れました。", "author": {"@type": "Person", "name": "受講者（匿名）"}}
+        rated = {"@type": "Review", "reviewBody": "役立ちました。", "author": {"@type": "Person", "name": "評価済み受講者"}, "reviewRating": {"@type": "Rating", "ratingValue": 4, "bestRating": 5}}
+        courses = [{"@type": "Course", "@id": BASE + "/#unrated-course", "name": "AI講習", "review": [testimonial]},
+                   {"@type": "Service", "@id": BASE + "/#unrated-service", "name": "AI相談", "review": testimonial},
+                   {"@type": "Course", "@id": BASE + "/#mixed-course", "name": "講習2", "review": [testimonial, rated]}]
+        original = page({"@graph": courses}, "/", newline="\r\n").replace('<body>', '<body><blockquote>ゼロから自分で作れました。</blockquote>')
+        updated = enhance_search_html(original, "index.html", self.config)
+        self.assertEqual(original.split('</head>', 1)[1], updated.split('</head>', 1)[1])
+        nodes = {node["@id"]: node for node in graph(updated)}
+        self.assertNotIn("review", nodes[BASE + "/#unrated-course"])
+        self.assertNotIn("review", nodes[BASE + "/#unrated-service"])
+        self.assertEqual(nodes[BASE + "/#mixed-course"]["review"], [rated])
+        self.assertNotIn("aggregateRating", json.dumps(nodes))
+        self.assertEqual(updated, enhance_search_html(updated, "index.html", self.config))
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -52,7 +52,7 @@ class EditorialFeedTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             public_posts(blog_shell(card('bad-date', 'not-a-date')))
 
-    def test_home_keeps_news_independent_and_latest_three_blogs(self):
+    def test_home_puts_news_first_inside_blog_and_keeps_latest_three_articles(self):
         result = apply_home_feed(home_shell(), self.posts, CSS)
         soup = BeautifulSoup(result, 'html.parser')
         rows = soup.select('#blog .editorial-feed__row')
@@ -68,7 +68,7 @@ class EditorialFeedTests(unittest.TestCase):
         self.assertFalse(soup.select('#ai-news section, #latest-blog'))
         self.assertEqual(len(soup.select('#blog')), 1)
         self.assertEqual(soup.select_one('#top').find_next_sibling()['id'], 'blog')
-        self.assertEqual(soup.select_one('#blog').find_next_sibling()['id'], 'ai-news')
+        self.assertIsNotNone(soup.select_one('#blog > .editorial-feed__heading + #ai-news + .editorial-feed__list'))
         original = BeautifulSoup(home_shell(), 'html.parser')
         self.assertEqual(str(soup.select_one('#ai-news')), str(original.select_one('#ai-news')))
 

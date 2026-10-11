@@ -206,7 +206,7 @@ def _style(document: str, css: str) -> str:
 
 
 def apply_home_feed(document: str, posts: Iterable[Mapping[str, str]], css: str) -> str:
-    """Keep daily news independent and show the latest publicly listed articles."""
+    """Put daily news first within the blog, followed by publicly listed articles."""
     posts = _normalise_posts(posts)
     if len(posts) < 2:
         raise ValueError('Expected at least two publicly listed blog posts')
@@ -227,18 +227,26 @@ def apply_home_feed(document: str, posts: Iterable[Mapping[str, str]], css: str)
         f'<a class="editorial-feed__more" href="{escape(config["more_href"], quote=True)}">'
         f'{escape(config["more_label"])}<span aria-hidden="true">→</span></a></div></section>'
     )
-    document = re.sub(r'<section\b[^>]*id=[\x27"](?:blog|latest-blog)[\x27"][^>]*>.*?</section>',
-                      '', document, flags=re.S)
-    feature = re.search(r'<section\b[^>]*id=[\x27"]ai-news[\x27"][^>]*>.*?</section>', document, re.S)
-    document = document[:feature.start()] + combined + document[feature.start():]
-    return _style(document, css)
+    # Remove complete outer sections; news may already be nested in blog.
+    news_html = feature[0]
+    spans = []
+    for element_id in ('blog', 'latest-blog', 'ai-news'):
+        spans.extend(_ElementSpans(document, element_id=element_id).spans)
+    outer = [(a, b) for a, b in spans if not any(c <= a and b <= d and (c, d) != (a, b) for c, d in spans)]
+    insertion = min(a for a, _ in outer)
+    for a, b in sorted(outer, reverse=True):
+        document = document[:a] + document[b:]
+    document = document[:insertion] + combined + news_html + document[insertion:]
+    return integrate_home_news(_style(document, css))
+
 
 
 class _ElementSpans(HTMLParser):
     """Find complete classed elements without reserializing the page shell."""
-    def __init__(self, document: str, class_name: str):
+    def __init__(self, document: str, class_name: str = "", *, element_id: str = ""):
         super().__init__(convert_charrefs=True)
         self.class_name = class_name
+        self.element_id = element_id
         self.lines = [0]
         self.lines.extend(match.end() for match in re.finditer('\n', document))
         self.active_tag = None
@@ -255,7 +263,7 @@ class _ElementSpans(HTMLParser):
         if self.active_tag:
             if tag == self.active_tag:
                 self.depth += 1
-        elif self.class_name in dict(attrs).get('class', '').split():
+        elif (self.element_id and dict(attrs).get('id') == self.element_id) or (self.class_name and self.class_name in dict(attrs).get('class', '').split()):
             self.active_tag = tag
             self.depth = 1
             self.start = self._offset()
@@ -285,3 +293,24 @@ def apply_blog_feed(blog_document: str, news_date: str, css: str) -> str:
     result = re.sub(r'<h1>ブログ(?:・Codex情報)?</h1>',
                     lambda _: '<h1>ブログ</h1>', result, count=1)
     return _style(result, css)
+
+
+def integrate_home_news(document: str) -> str:
+    """Move existing news into the blog without rewriting its stories."""
+    spans = _ElementSpans(document, element_id='ai-news').spans
+    if len(spans) != 1:
+        raise ValueError('Expected one home AI news feature')
+    start, end = spans[0]
+    feature = document[start:end]
+    feature = re.sub(r'<h2(\s+id=[\x27"]ai-news-feature-title[\x27"][^>]*)>(.*?)</h2>',
+                     r'<h3\1>\2</h3>', feature, flags=re.S)
+    document = document[:start] + document[end:]
+    blogs = _ElementSpans(document, element_id='blog').spans
+    if len(blogs) != 1:
+        raise ValueError('Expected one blog section')
+    start, end = blogs[0]
+    headings = _ElementSpans(document[start:end], 'editorial-feed__heading').spans
+    if len(headings) != 1:
+        raise ValueError('Expected one blog heading')
+    insertion = start + headings[0][1]
+    return document[:insertion] + feature + document[insertion:]

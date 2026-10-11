@@ -1,0 +1,53 @@
+{
+  "checked_on": "2026-10-12",
+  "articles": {
+    "https://www.anthropic.com/news/investigating-unintended-model-actions": {
+      "image": "https://www-cdn.anthropic.com/images/4zrzovbb/website/f11d2325e688229de8a887ef7ece34f520ab7134-2000x1125.jpg",
+      "alt": "AnthropicのAIの意図しない行動に関する調査記事の画像",
+      "credit": "記事画像：Anthropic",
+      "kind": "article",
+      "source_url": "https://www.anthropic.com/news/investigating-unintended-model-actions"
+    },
+    "https://www.city.nagoya.jp/houdou/3003942/3003949/3005752.html": {
+      "image": "https://www.techbizexpo.com/2026/ev26-03.jpg",
+      "alt": "ロボット・AIシンポジウム2026名古屋の案内画像",
+      "credit": "関連画像：TECH Biz EXPO 2026公式イベント案内",
+      "kind": "related",
+      "source_url": "https://www.techbizexpo.com/"
+    },
+    "https://prtimes.jp/main/html/rd/p/000000638.000067590.html": {
+      "image": "https://www.hitachi.com/content/dam/hitachi/global/ja_jp/products/digital/cyber/image/thumb-cyber.jpg",
+      "alt": "日立のオペレーショナルレジリエンスサービス HMAX Cyber",
+      "credit": "関連画像：日立HMAX Cyber公式サイト",
+      "kind": "related",
+      "source_url": "https://www.hitachi.com/ja-jp/products/digital/cyber/"
+    },
+    "https://prtimes.jp/main/html/rd/p/000000002.000192366.html": {
+      "image": "https://prcdn.freetls.fastly.net/release_image/192366/2/192366-2-d9230b09b723e4bc98fd17d92037c964-1920x1280.jpg?format=jpeg&auto=webp&fit=bounds&width=480&height=320",
+      "alt": "大学教職員向けAI教育講座の配信元画像",
+      "credit": "記事画像：dott／PR TIMES",
+      "kind": "article",
+      "source_url": "https://prtimes.jp/main/html/rd/p/000000002.000192366.html"
+    },
+    "https://prtimes.jp/main/html/rd/p/000000224.000080352.html": {
+      "image": "https://prcdn.freetls.fastly.net/release_image/80352/224/80352-224-8b1dbd591615995a2e8dc8abf757aacf-1920x1080.jpg?format=jpeg&auto=webp&fit=bounds&width=480&height=320",
+      "alt": "スペースデータのロボット現場導入基盤を紹介する配信元画像",
+      "credit": "記事画像：スペースデータ／PR TIMES",
+      "kind": "article",
+      "source_url": "https://prtimes.jp/main/html/rd/p/000000224.000080352.html"
+    }
+  },
+  "codex": {
+    "image": "https://learn.chatgpt.com/og/docs/codex/cli.png",
+    "alt": "Codex CLIの公式ドキュメント画像",
+    "credit": "関連画像：OpenAI Codex CLI公式ドキュメント",
+    "kind": "related",
+    "source_url": "https://learn.chatgpt.com/docs/codex/cli"
+  },
+  "fallback": {
+    "image": "/design-system/studio/images/photo-20261011/article-news.webp",
+    "alt": "AIニュースのイメージ",
+    "credit": "AI相談の関連イメージ",
+    "kind": "illustration"
+  }
+}

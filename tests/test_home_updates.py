@@ -33,12 +33,12 @@ class HomeUpdatesTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             latest_published_posts(card('one', '2026-09-28') + card('two', '2026-09-18').replace('./two.html', 'https://example.com/two.html'))
 
-    def test_feed_above_independent_news_has_latest_three_articles(self):
+    def test_blog_starts_with_daily_news_then_latest_three_articles(self):
         shell = '<head></head><main><section id="top">hero</section>' + news_feature() + '<section id="speaker">profile</section></main>'
         index = card('newest', '2026-10-08') + card('older', '2026-10-07') + card('oldest', '2026-09-30')
         result = apply_home_updates(shell, index, 'css')
         home = BeautifulSoup(result, 'html.parser')
-        self.assertIsNotNone(home.select_one('#top + #blog.editorial-feed + #ai-news'))
+        self.assertIsNotNone(home.select_one('#top + #blog.editorial-feed > .editorial-feed__heading + #ai-news'))
         self.assertEqual([row['href'] for row in home.select('#blog .editorial-feed__row')],
                          ['/blog/newest.html', '/blog/older.html', '/blog/oldest.html'])
         self.assertEqual(len(home.select('#blog .editorial-feed__row img')), 3)
@@ -58,7 +58,7 @@ class HomeUpdatesTests(unittest.TestCase):
         self.assertEqual(len(result.select('#blog .editorial-feed__row')), 2)
         self.assertEqual(result.select_one('#ai-news time')['datetime'], '2026-10-11')
         self.assertFalse(result.select('#latest-blog, #blog-carousel'))
-        self.assertEqual(result.select_one('#blog').find_next_sibling()['id'], 'ai-news')
+        self.assertIsNotNone(result.select_one('#blog > .editorial-feed__heading + #ai-news + .editorial-feed__list'))
 
     def test_transform_preserves_other_content_and_escapes_titles(self):
         shell = '<head><style>keep</style></head><main><section id="top">hero</section>' + news_feature() + '<section id="latest-blog">large carousel</section><section id="speaker">profile</section></main>'

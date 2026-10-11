@@ -202,3 +202,6 @@ Workerはdeployment/ai-news/published-worker.mjs、現行API取得本文と同�
 基準は登録元 `.glass-hero-release-20261012-final/public`、614資産、公開SHA `6feea567`、version `c875fce2-1fbb-466d-9774-aa020f4ff2d8`。全manifestと本番主要7資産を照合した。シェルとmanifestをこの版へ更新する。
 
 `--preserve-baseline-presentation` では既存の講座・ヒーロー・ブログ・検索メタデータを再装飾しない。ニュース入口をヒーロー直下へ配置し、ニュース本文とサイトマップの当該lastmodだけ更新する。公開差分は指定5ファイル以内を強制する。最新7講座・診断1件・ガラス画像を検証する。候補は3資産変更・611保持、ブログはバイト同一。次回は今回の公開成功記録と最新本番を照合してbaselineを選ぶ。
+
+
+公開結果: PR #164、統合・公開SHA `aabd608d0bddc2f7579b06c975b9c9df12521736`、version `7b1ae6b0-90d6-4ada-a16c-122fe0acf5d8`。53テスト・8本番SHA・PC/iPhone表示・DELIVERY_VERIFIED成功。次回は `.daily-news-release-20261012-verified/public` とverification.json/production-summary.jsonを本番と再照合する。3資産変更・611資産保持。採用しなかった `-final` ディレクトリと混同しない。記録更新だけでは再デプロイしない。

@@ -32,7 +32,7 @@ python -B -X utf8 scripts/build_search_presence_release.py --base-assets <検証
 
 公開ホームページの料金を転記する。個別相談5,500円/60分、エージェント講習5,500円/120分、コーディング講習11,000円/120分。伴走支援は月額88,000円・6ヶ月を説明欄で明記し単発価格にしない。制作は99,000円からの開始価格。準備中のオンラインサロンは追加しない。審査待ちと公開済みを区別する。
 
-説明・対応地域・5サービスを保存し、サービスは審査待ち（画面表示は最大1日）。対応地域は審査待ち表示が消えている。AI個別相談の予約URLを追加し、編集欄を再度開いて同一URLを確認した。予約先は「60分・5,500円・来店/オンライン」の表示を確認済み。Squareの既存店舗ヘッダーはNotエステ彦根だが、個別サービスはAI相談。店舗設定は変更していない。画面証拠は事業ルート `tmp/seo-meo-20261011/gbp-*.jpg`。通常ログイン済みの事業用Chromeを再利用。顧客データ、アカウント識別情報、確認用トークンはこの記録に保存しない。
+説明・対応地域・5サービスを保存し、各サービスの説明・料金を再度開いて照合した。最終確認では説明・地域・サービスの審査待ち表示は消えている。一般ユーザー向けマップ表示への反映と順位変化は未測定。AI個別相談の予約URLを追加し、編集欄を再度開いて同一URLを確認した。予約先は「60分・5,500円・来店/オンライン」の表示を確認済み。Squareの既存店舗ヘッダーはNotエステ彦根だが、個別サービスはAI相談。店舗設定は変更していない。画面証拠は事業ルート `tmp/seo-meo-20261011/gbp-*.jpg`。通常ログイン済みの事業用Chromeを再利用。顧客データ、アカウント識別情報、確認用トークンはこの記録に保存しない。
 
 ## Wikidata・検索施策の判断
 
@@ -48,6 +48,19 @@ Googleの公式説明ではllms.txtは検索順位を上げる特別な設定で
 - [Google検索ドキュメント更新](https://developers.google.com/search/updates)
 - [Wikidata Notability](https://www.wikidata.org/wiki/Wikidata:Notability)
 
+## 本番反映と実検証
+
+- PR #133（検索情報）・#134（不完全なReview指定の除去）・#135（受講資料旧URLの503修正）を検証後に統合。
+- 本番検証基準: SHA `364d7d0ee00d5aa64e8be191e471b807bb653812`、Cloudflare version `1561c92a-22d9-4e35-8cff-4331b94f64d5`。公開先ガード成功後、登録元から `.search-presence-release-20261011-r2-final` を配信。
+- 初回回帰52件、レビュー修正の関連13件、Cloudflare7件、管理Worker4件、設定検査を実行。旧受講資料の公開経路1件以外はWorker優先ルートを保持。
+- 192 HTML本文と画像・CSS・JavaScript・Workerを保持。598資産の厳密なbaselineから600資産を生成し、候補と確定SHAの出力hashがすべて一致。登録元の別作業17差分と既存ステージ内容を保全。
+- 47正規URL、変更53資産、robots/sitemap/llms、旧受講資料URL、管理保護9経路をHTTPで検査。証拠: `live-http-r2.json`。PC1440px・iPhone390pxは既存事業用Chromeで表示確認し、画像欠落と横はみ出しがないことを確認。
+- Googleリッチリザルトテスト（2026-10-11 14:17 JST）で有効5件、重大エラー0件。[検証結果](https://search.google.com/test/rich-results/result?id=b10ZKTRP1AQq81iFZCpegw)。講座3件・地域サービス1件・組織1件。任意項目telephone/priceRangeの警告2件は未確定情報を追加せず保持。
+- 以前の15件の不完全なReview指定は、点数がない既存感想を対象外にした。評価点やaggregateRatingを新たに作っていない。本文の感想は変更しない。
+- 運用記録の最終統合は公開入力6ファイルの同一性で検証し、最新SHA・versionは工程JSONとdeploy証拠に記録する。文書上の検証基準SHAと最新文書統合SHAは区別する。
+
+画面証拠は事業ルート `tmp/seo-meo-20261011/google-rich-results-pass.jpg`、`gbp-description-saved.jpg`、`gbp-services-saved.jpg`、`gbp-booking-saved.jpg`、`live-desktop.jpg`、`live-mobile.jpg`。事業用Chromeの既存セッションを使用した。Search Console所有権確認画面は回答後の再開用に保持する。
+
 ## 残件
 
-Search Console所有権追加の回答後に確認タグを公開し、確認・サイトマップ送信へ進む。Google側の審査・反映と検索順位の変化は未確認。継続監視や新規広告・DNS変更は今回追加していない。
+Search Console所有権追加の回答後に確認タグを公開し、確認・サイトマップ送信へ進む。Google側の一般公開表示への反映と検索順位の変化は未測定。継続監視や新規広告・DNS変更は今回追加していない。

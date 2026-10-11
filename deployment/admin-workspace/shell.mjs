@@ -1,3 +1,5 @@
+import { ROUTES, routeAt, rewriteNavigation } from './routes.mjs';
+import { THEME } from './theme.mjs';
 export const MENU = Object.freeze([
   { href: '/admin', label: 'ホーム', key: 'home' },
   { href: '/admin/create', label: '制作・発信', key: 'create' },
@@ -6,6 +8,8 @@ export const MENU = Object.freeze([
 ]);
 
 function activeKey(path) {
+  const route=routeAt(path); if(route) return route.group;
+  if(path==='/admin/document') return 'materials';
   if (path.startsWith('/admin/materials') || path.startsWith('/ops')) return 'materials';
   if (/^\/admin\/(create|blog|apps|sns-post)/.test(path)) return 'create';
   if (/^\/admin\/(operations|command-center|gubble-sns|chat)/.test(path)) return 'operations';
@@ -28,14 +32,18 @@ body[data-workspace-shell] .topbar{position:static!important;top:auto!important}
 </style>`;
 
 export function applyShell(html, url) {
-  if (html.includes('id="workspace-header"') || url.searchParams.get('embedded') === '1') return html;
+  html=rewriteNavigation(html);
+  html=html.replace('REEL APP SERVER','AI相談').replace('事業別リール制作','AI相談 リール制作').replace('⚙️ OPS — AIスペシャリスト管理本部','運用記録・プロンプト');
+  if (html.includes('id="workspace-header"')) return html.includes('data-admin-theme')?html:html.replace('</head>',THEME+'</head>');
   // Keep production editor headings/status IDs. Only replace the shared navigation.
   html = html.replace(/<script\b[^>]*src=["'][^"']*admin-menu\.js[^"']*["'][^>]*>[\s\S]*?<\/script>/gi, '');
   const oldHeader = /<header\b(?=[^>]*(?:class=["'][^"']*\bsite-header\b|id=["']site-header["']))[^>]*>[\s\S]*?<\/header>/i;
   if (oldHeader.test(html)) html = html.replace(oldHeader, header(url.pathname));
   else html = html.replace(/(<body\b[^>]*>)/i, `$1${header(url.pathname)}`);
   html = html.replace(/<body\b/i, '<body data-workspace-shell');
-  html = html.replace('<title>ブログ App Server</title>', '<title>AI相談</title>').replace('<title>リール App Server</title>', '<title>AI相談</title>');
+  html = html.replace(/<title>[\s\S]*?<\/title>/i,'<title>AI相談</title>').replace(/document\.title\s*=\s*["'][^"']*["']/g,'document.title="AI相談"');
   html = html.replace('id="studio-nav-back" href="/studio"', 'id="studio-nav-back" href="/admin/create"');
-  return html.replace('</head>', SHELL_STYLE + '</head>');
+  const route=routeAt(url.pathname);
+  if(route) html=html.replace('</header>', '</header><div class="workspace-return"><a href="/admin">← 管理ホーム</a><span>'+route.title+'</span></div>');
+  return html.replace('</head>', SHELL_STYLE + THEME + '</head>');
 }

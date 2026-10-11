@@ -1,4 +1,4 @@
-"""Build a metadata-only release from the exact, verified public asset baseline."""
+"""Build a search release with only the explicitly approved business label edit."""
 from __future__ import annotations
 
 import argparse
@@ -72,6 +72,31 @@ def assert_metadata_only(before: bytes, after: bytes, name: str) -> None:
         raise ValueError(f"Inline JavaScript or CSS changed: {name}")
 
 
+def assert_search_changes(before: bytes, after: bytes, name: str) -> bool:
+    """Allow exactly one homepage business-label correction; otherwise strict."""
+    old, new = before.decode("utf-8"), after.decode("utf-8")
+    a, b = HEAD.search(old), HEAD.search(new)
+    if not a or not b or old[a.end():] == new[b.end():]:
+        assert_metadata_only(before, after, name)
+        return False
+    if name != "index.html":
+        raise ValueError(f"Business label edit is limited to the homepage: {name}")
+    old_label = "<div class='footer-nap'><span class='footer-nav-head'>運営</span><p>AI相談（彦根 / クライミングコンサル）</p>"
+    new_label = "<div class='footer-nap'><span class='footer-nav-head'>運営</span><p>AI相談（彦根）</p>"
+    body = old[a.end():]
+    footers = list(re.finditer(r"<footer\b[^>]*>.*?</footer\s*>", body, re.I | re.S))
+    eligible = [m for m in footers if old_label in m.group()
+                and "site-footer" in BeautifulSoup(m.group(), "html.parser").footer.get("class", [])]
+    if len(eligible) != 1 or body.count(old_label) != 1:
+        raise ValueError("Expected exactly one approved legacy business footer")
+    permitted = body.replace(old_label, new_label, 1)
+    if permitted != new[b.end():]:
+        raise ValueError("Body change exceeds the approved business footer label")
+    # The existing metadata/body guard stays unchanged and validates the rest.
+    assert_metadata_only((old[:a.end()] + permitted).encode("utf-8"), after, name)
+    return True
+
+
 def build(base_assets: Path, output: Path, source_sha: str,
           base_worker: Path | None = None) -> dict:
     if not re.fullmatch(r"[0-9a-f]{40}", source_sha):
@@ -104,11 +129,11 @@ def build(base_assets: Path, output: Path, source_sha: str,
         raise ValueError(f"Search release removed assets: {removed}")
     if not set(added) <= DISCOVERY_FILES:
         raise ValueError(f"Unexpected new assets: {added}")
-    html_changes = []
+    html_changes, business_changes = [], []
     for name in changed:
         if name.endswith(".html"):
-            assert_metadata_only((base_assets / name).read_bytes(), (public / name).read_bytes(), name)
-            html_changes.append(name)
+            business_edit = assert_search_changes((base_assets / name).read_bytes(), (public / name).read_bytes(), name)
+            (business_changes if business_edit else html_changes).append(name)
         elif name not in DISCOVERY_FILES:
             raise ValueError(f"Non-search asset changed: {name}")
     actual_changes = set(changed) | set(added)
@@ -128,6 +153,7 @@ def build(base_assets: Path, output: Path, source_sha: str,
         "removed_assets": removed,
         "unchanged_assets": len(before) - len(changed),
         "metadata_only_documents": html_changes,
+        "business_identity_documents": business_changes,
         "discovery_assets": sorted(actual_changes & DISCOVERY_FILES),
         "worker_sha256": digest(worker),
         "worker_unchanged": True,

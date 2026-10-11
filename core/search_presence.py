@@ -1,7 +1,8 @@
 """Keep public search metadata consistent without rebuilding page bodies.
 
 The existing public HTML is the content authority. This final build pass only
-changes head metadata and discovery files; it does not infer business facts,
+changes head metadata, discovery files, and the explicitly approved homepage
+business label; it does not infer business facts,
 create reviews, or refresh article dates. llms files are an optional reading
 guide, not a search-ranking or Google AI inclusion requirement.
 """
@@ -116,13 +117,11 @@ def _entities(config: dict) -> list[dict]:
         {"@type": "ProfessionalService", "@id": base + "#business", "name": business["name"], "url": base,
          "description": business["description"], "email": business["email"], "address": deepcopy(business["address"]),
          "image": urljoin(base, config["default_image"]),
-         "parentOrganization": {"@id": base + "#operator"},
          "areaServed": [{"@type": "Place", "name": area} for area in business["area_served"]]},
         {"@type": "Person", "@id": base + "#yui", "name": person["name"], "jobTitle": person["job_title"],
          "url": urljoin(base, person["path"]), "worksFor": {"@id": base + "#business"}},
         {"@type": "WebSite", "@id": base + "#website", "name": config["site_name"], "url": base,
          "inLanguage": config["language"], "publisher": {"@id": base + "#business"}},
-        {"@type": "Organization", "@id": base + "#operator", "name": business["operator_name"]},
     ]
 
 
@@ -249,9 +248,29 @@ def _graph(path: str, soup: BeautifulSoup, config: dict, canonical: str, title: 
     return {"@context": "https://schema.org", "@graph": result}
 
 
+def _independent_home_business(html: str, path: str) -> str:
+    """Replace only the approved homepage footer label, keeping all other bytes."""
+    if path != "index.html":
+        return html
+    old = "<div class='footer-nap'><span class='footer-nav-head'>運営</span><p>AI相談（彦根 / クライミングコンサル）</p>"
+    new = "<div class='footer-nap'><span class='footer-nav-head'>運営</span><p>AI相談（彦根）</p>"
+    candidates = []
+    for match in re.finditer(r"<footer\b[^>]*>.*?</footer\s*>", html, re.I | re.S):
+        tag = BeautifulSoup(match.group(), "html.parser").find("footer")
+        if tag and "site-footer" in tag.get("class", []) and old in match.group():
+            candidates.append(match)
+    if not candidates:
+        return html
+    if len(candidates) != 1 or candidates[0].group().count(old) != 1:
+        raise ValueError("Expected one legacy homepage business footer")
+    match = candidates[0]
+    return html[:match.start()] + match.group().replace(old, new, 1) + html[match.end():]
+
+
 def enhance_search_html(html: str, relative_path: str, config: dict) -> str:
-    """Enhance one HTML head; suitable for partial daily exports as well."""
+    """Enhance search data plus the approved homepage business identity label."""
     path = relative_path.replace("\\", "/")
+    html = _independent_home_business(html, path)
     match = HEAD.search(html)
     if not match:
         raise ValueError(f"Missing HTML head: {path}")
@@ -355,7 +374,7 @@ def apply_search_presence(public_dir: str | Path, config_path: str | Path) -> di
     write("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n' + ET.tostring(root, encoding="unicode") + "\n")
     write("robots.txt", "User-agent: *\nAllow: /\n" + "".join(f"Disallow: {path}\n" for path in config["robots_disallow"]) + f"Sitemap: {origin}/sitemap.xml\n")
     lines = [f'# {config["site_name"]}', "", "> " + config["llms_intro"], "",
-             f'運営は{config["business"]["operator_name"]}。運営拠点は' + ''.join(config["business"]["address"][key] for key in ("addressRegion", "addressLocality", "streetAddress")) + '。講習の開催場所はトップページの案内で確認できます。', "",
+             f'運営は{config["business"]["name"]}。運営拠点は' + ''.join(config["business"]["address"][key] for key in ("addressRegion", "addressLocality", "streetAddress")) + '。講習の開催場所はトップページの案内で確認できます。', "",
              "内容・料金・受付状況は各公開ページを参照してください。AIオンラインサロンは近日開始・仮運用中です。", ""]
     for section in config["llms_sections"]:
         lines.extend(["## " + section["name"], ""])

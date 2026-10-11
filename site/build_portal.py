@@ -12481,7 +12481,7 @@ def _render_footer(today: str) -> str:
         "</nav>"
         "<div class='footer-nap'>"
         "<span class='footer-nav-head'>運営</span>"
-        "<p>AI相談（彦根 / クライミングコンサル）</p>"
+        "<p>AI相談（彦根）</p>"
         "<p>代表 由井 辰美</p>"
         "<p>〒522-0043<br>滋賀県彦根市小泉町34-8<br>ビバシティ前</p>"
         f"<p><a href='mailto:{OWNER_EMAIL}'>{OWNER_EMAIL}</a></p>"

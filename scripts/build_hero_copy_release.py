@@ -29,11 +29,12 @@ def build(baseline, output, source_sha=None):
     manifest = json.loads((baseline/'verification.json').read_text(encoding='utf-8'))
     assert manifest['source_sha'] == contract['source_sha']
     assert hashes(baseline/'public') == manifest['assets']
-    worker = baseline/'runtime/published-worker.mjs'
-    assert digest(worker) == contract['worker_sha256']
+    assert digest(baseline/'runtime/published-worker.mjs') == contract['worker_sha256']
+    worker = ROOT/'deployment/admin-workspace/published-worker.mjs'
     assert not output.exists()
     shutil.copytree(baseline/'public', output/'public')
-    shutil.copytree(baseline/'runtime', output/'runtime')
+    (output/'runtime').mkdir()
+    shutil.copyfile(worker, output/'runtime/published-worker.mjs')
     before = (baseline/'public/index.html').read_bytes().decode('utf-8')
     heading = r'<h1 class=["\x27]focus-title["\x27]>.*?</h1>'
     replacement = re.search(heading, apply_hero_copy(before), re.S).group()
@@ -50,10 +51,15 @@ def build(baseline, output, source_sha=None):
     changed = [p for p in assets if assets[p] != manifest['assets'][p]]
     assert changed == ['index.html']
     inputs = ['core/__init__.py', 'core/hero_copy.py', 'scripts/build_hero_copy_release.py', 'deployment/hero-copy/baseline.json', 'cloudflare-runtime/wrangler-profile-release.jsonc', 'deployment/admin-workspace/published-worker.mjs']
-    status = subprocess.check_output(['git', '-c', 'core.excludesFile=', 'status', '--porcelain', '--', *inputs], cwd=ROOT, text=True)
+    require_committed_inputs = source_sha is not None
     source_sha = source_sha or subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip()
     assert re.fullmatch('[0-9a-f]{40}', source_sha)
-    result = dict(source_sha=source_sha, source_inputs_clean=not status.strip(), inputs=inputs, source_inputs={p:digest(ROOT/p) for p in inputs}, assets=assets, changed_assets=changed, unchanged_assets=len(assets)-1, worker_sha256=contract['worker_sha256'])
+    source_inputs = {p:digest(ROOT/p) for p in inputs}
+    committed_inputs = {p:hashlib.sha256(subprocess.check_output(['git', 'show', f'{source_sha}:{p}'], cwd=ROOT)).hexdigest() for p in inputs}
+    source_inputs_clean = source_inputs == committed_inputs
+    if require_committed_inputs:
+        assert source_inputs_clean, 'Release inputs must match the committed Git blobs'
+    result = dict(source_sha=source_sha, source_inputs_clean=source_inputs_clean, inputs=inputs, source_inputs=source_inputs, assets=assets, changed_assets=changed, unchanged_assets=len(assets)-1, worker_sha256=digest(worker))
     (output/'verification.json').write_text(json.dumps(result, indent=2)+'\n', encoding='utf-8')
     print(json.dumps({k:result[k] for k in ['source_sha', 'source_inputs_clean', 'changed_assets', 'unchanged_assets', 'worker_sha256']}))
 

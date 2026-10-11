@@ -10,6 +10,6 @@ AIエージェント導入たった6%
 
 ChromeのPC1440pxとスマートフォン390pxで3行表示・横はみ出しなしを確認。Focused UXの既存4件成功。公開先は台帳のdefault/aiclimb。本番統合・公開・最終確認はこれから実施する。
 
-工程記録: 事業ルート `tmp/delivery/20261012-hero-agent-copy.json`、証拠 `tmp/delivery/20261012-hero-agent-copy/`。既存差分を含む登録公開元と事業ルートは保全し、今回分だけを分離して共有する。
+工程記録: 事業ルート `tmp/delivery/20261012-hero-agent-copy.json`、証拠 `tmp/delivery/20261012-hero-agent-copy/`。既存差分を含む登録公開元と事業ルートは保全し、今回分だけを分離して共有する。並行統合されたPR #150の管理機能を保持するため、配備Workerは最新の統合済みソース `deployment/admin-workspace/published-worker.mjs` を使う。旧baselineのWorkerへ戻さない。
 
 プレビュー: http://127.0.0.1:4094/ 。親PID50636、2026-10-14 01:07:24 JST終了予定。

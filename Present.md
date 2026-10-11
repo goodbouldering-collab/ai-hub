@@ -5,12 +5,13 @@
 AI講座・業務改善相談の案内、ブログ、制作実績を提供する。確認済み公開URLは https://aiclimb.aiclimb.workers.dev 。独自ドメイン未設定のため、このURLを使用する。公開先は共通Cloudflare台帳の `work/genspark-profile-edit/cloudflare-runtime`。事業ルートには別作業の差分があるため、一括同期しない。
 
 
-## 管理画面の直下整理（2026-10-11、ローカル検証中）
+## 管理画面の直下整理（2026-10-11、本番確認済み・API移行に残件）
 
 - 管理ホームから全機能へ直接移動。ブログ制作・記事編集・指令室の各画面・資料を /admin/機能名 にそろえ、旧URLは認証後に転送する。本文・フォーム・ボタンまで共通テーマを適用。
 - Cloudflare未配信の各管理画面、運用原文148件・保存時点の活動記録を認証付きWorkerへ移行。資格情報に似た文字列を含む原文1件は配信対象から除外し、原本を保持。
 - 共有保存・同期、SNS投稿、AIチャットのAPI移行と接続は未完了。/admin/migration に稼働中・設定待ち・未検証を分けて表示。秘密設定・DB・DNSを変更していない。
-- 既存公開600資産を保持。Node24.15.0・esbuild0.25.12で生成。ルート・認証・HEAD・旧URL・資料APIのソース/bundleテストとPC/iPhone幅の画面確認を進める。次はPR統合、公開先ガード、確定SHAの配備、本番確認。
+- PR #143を統合し、最新main f36684208334f47e9839da5ff7b7a125413ff874から公開。初回Worker version 0f674cb9-3080-45d6-917d-91ca19aec0ce。既存600資産を保持、管理・制作10件とCloudflare7件のテスト成功。既存AI相談Chromeで33画面をPC1440px/iPhone390px確認し、全画面の共通ヘッダー・横はみ出しなし、旧URL転送・資料検索/原文・収集記事の深部を確認した。
+- Node24.15.0・esbuild0.25.12・Wrangler4.90.0。コミット済み188入力から再生成したWorkerのSHA一致、中央ForDeployガード成功。公開トップ/ブログ/記事/ニュースのhash不変、未ログインの画面303/API401を確認。残件は共有保存・同期等のAPIと実キー保存/生成。最終配備SHA・version・工程検査は登録元 tmp/delivery/20261011-admin-flat-cloudflare.json を参照。
 - 詳細: [管理画面・移行記録](docs/admin-flat-cloudflare-20261011.md)。今回の公開基準は登録元 .diagnosis-above-blog-20261011-final/public。
 
 

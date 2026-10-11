@@ -32,9 +32,12 @@ from core.studio_design import decorate_public_tree
 from core.home_updates import apply_home_updates
 from core.editorial_feed import apply_blog_feed
 from core.editorial_home import apply_editorial_home
+from core.search_presence import apply_search_presence, enhance_search_html
+from scripts.build_search_presence_release import assert_metadata_only, DISCOVERY_FILES
 
 TEMPLATES = ROOT / "site/templates/ai-news"
 URL = "https://aiclimb.aiclimb.workers.dev/ai-news/"
+SEARCH_CONFIG = ROOT / "config/search-presence.json"
 
 
 def remove_old_cards(text: str) -> str:
@@ -146,14 +149,38 @@ def build(output: Path, base_assets: Path | None = None, *, preserve_baseline_pr
     if not preserve_baseline_presentation:
         home_path = output / "index.html"
         home_path.write_text(apply_editorial_home(home_path.read_text(encoding="utf-8")), encoding="utf-8", newline="\n")
+    # Apply search metadata after all presentation decorators, which may carry
+    # old structured data in their frozen shells. A partial build must not
+    # replace the full site's discovery files with a three-page sitemap.
+    before_search = {p.relative_to(output).as_posix(): p.read_bytes()
+                     for p in output.rglob("*.html")}
+    if base_assets:
+        search = apply_search_presence(output, SEARCH_CONFIG)
+    else:
+        config = json.loads(SEARCH_CONFIG.read_text(encoding="utf-8"))
+        changed_files = []
+        for name, original in before_search.items():
+            updated = enhance_search_html(original.decode("utf-8"), name, config).encode("utf-8")
+            if updated != original:
+                (output / name).write_bytes(updated)
+                changed_files.append(name)
+        search = {"changed_files": sorted(changed_files), "partial_html_only": True}
+    for name in search["changed_files"]:
+        if name in before_search:
+            assert_metadata_only(before_search[name], (output / name).read_bytes(), name)
+        elif name not in DISCOVERY_FILES:
+            raise ValueError(f"Unexpected search output: {name}")
     if preserve_baseline_presentation:
         changed = {p.relative_to(output).as_posix() for p in output.rglob("*") if p.is_file()
                    and hashlib.sha256(p.read_bytes()).hexdigest() != manifest.get(p.relative_to(output).as_posix())}
-        assert changed <= set(results), f"Unexpected public changes: {sorted(changed - set(results))}"
+        allowed = set(results) | set(search["changed_files"])
+        assert changed <= allowed, f"Unexpected public changes: {sorted(changed - allowed)}"
     sha = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
     return {"source_sha": sha, "url": URL, "news_date": news["date"], "codex_fingerprint": meta["source_fingerprint"],
             "themed_documents": len(themed),
-            "files": {name: hashlib.sha256((output / name).read_bytes()).hexdigest() for name in results}}
+            "search_presence": search,
+            "files": {name: hashlib.sha256((output / name).read_bytes()).hexdigest()
+                      for name in sorted(set(results) | set(search["changed_files"]))}}
 
 
 if __name__ == "__main__":

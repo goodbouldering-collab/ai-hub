@@ -38,3 +38,5 @@ PR #143を統合後、文書追補を含むmain `f36684208334f47e9839da5ff7b7a12
 登録元の既存ステージ差分をバイト一致で保持。その他の変更ファイル13件をhash照合し、Present.mdは三者マージで保持。最終配備SHA/versionと完了検査は登録元 `tmp/delivery/20261011-admin-flat-cloudflare.json`、HTTP・Chrome・公開元保全の証拠は同名ディレクトリに保存。公開URL: https://aiclimb.aiclimb.workers.dev/admin 。
 
 次は `/admin/migration` の未接続項目について、既存データの移行元・保存先binding・秘密設定の有無を照合し、共有保存/同期APIから進める。原文の除外1件は安全な内容整理後に別途移行する。ローカルプレビューは127.0.0.1:4078、親PID58292、2026-10-13 20:31:37 JST終了予定。隔離worktreeはこのプレビューと検証証拠の保持のため残す。
+
+並行作業PR #145のサロン表示順変更後、最終配備のbaseline契約を `.salon-menu-last-20261011-final/public`（source `6df9fa68d49dbe14311c6e07e29042016efb0f26`）へ更新。管理WorkerのコードとSHAは不変で、後続公開の600資産も保持する。

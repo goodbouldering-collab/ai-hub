@@ -230,7 +230,7 @@ def apply_home_feed(document: str, posts: Iterable[Mapping[str, str]], css: str)
     document = re.sub(r'<section\b[^>]*id=[\x27"](?:blog|latest-blog)[\x27"][^>]*>.*?</section>',
                       '', document, flags=re.S)
     feature = re.search(r'<section\b[^>]*id=[\x27"]ai-news[\x27"][^>]*>.*?</section>', document, re.S)
-    document = document[:feature.end()] + combined + document[feature.end():]
+    document = document[:feature.start()] + combined + document[feature.start():]
     return _style(document, css)
 
 

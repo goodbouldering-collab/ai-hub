@@ -16,7 +16,7 @@ def verify(read):
     sitemap = read("sitemap.xml")
     hero = home.select_one("main #top")
     feature = home.select_one("main #ai-news")
-    assert hero.find_next_sibling() == feature, "News entry must immediately follow the hero"
+    assert hero.find_next_sibling() == home.select_one('#blog'), "Blog must immediately follow the hero"
     assert feature.select_one('#ai-news-feature-title').get_text() == '今日のAIニュース5とCodex'
     headlines = feature.select('ol li a')
     assert len(headlines) == 3
@@ -25,7 +25,7 @@ def verify(read):
         assert link.select('span')[-1].get_text() == page.select_one(f'#news-{rank} h3 a').get_text()
     rows = home.select('#blog .editorial-feed__row')
     assert len(rows) == 3, "Home must retain the latest three blog articles"
-    assert feature.find_next_sibling()['id'] == 'blog'
+    assert home.select_one('#blog').find_next_sibling() == feature, "News must immediately follow the blog"
     assert all(row.select_one('img[src][alt]') for row in rows)
     assert len(home.select('#blog')) == 1
     assert home.select_one('#blog.editorial-feed--home')
@@ -62,7 +62,7 @@ def verify(read):
     assert page.select_one(".blog-update-label").get_text() == f"{updated.month}月{updated.day}日更新"
     assert len(page.select(".content-toc")) == 0
     assert page.select_one("#過去のアップデート要約")
-    return {"hero_adjacent": True, "home_entries": 3, "news_items": 5,
+    return {"blog_below_hero": True, "news_below_blog": True, "home_entries": 3, "news_items": 5,
             "latest_blogs": 3, "archive_entries": len(blog.select('.editorial-feed__row')),
             "all_entries_have_images": True, "compact_courses": 6,
             "codex_blog_card_removed": True, "article_content_checks": True}

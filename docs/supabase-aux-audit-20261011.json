@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "observedDate": "2026-10-11",
+  "business": "AI相談",
+  "scope": "auxiliary scripts, legacy APIs, current registered Worker module",
+  "status": "active_worker_no_supabase_execution_detected_legacy_data_pending",
+  "worker": {
+    "targetKey": "default",
+    "name": "aiclimb",
+    "module": "work/genspark-profile-edit/deployment/admin-workspace/published-worker.mjs",
+    "sha256": "6573af7470b8e4b8fc6a887c47b5fd5dd8c8b82c5aaebfb839428922b4e6fade",
+    "bytes": 4181534,
+    "supabaseStringCount": 477,
+    "documentationStrings": 465,
+    "statusLabelStrings": 12,
+    "serverExecutionStrings": 0,
+    "supabaseProjectUrlLiterals": 0,
+    "jwtLikeLiterals": 0,
+    "externalSupabaseScriptTags": 0,
+    "deployedModuleHashComparison": "parent_audit_pending"
+  },
+  "remaining": [
+    {"name": "ai_watch.articles", "classification": "conditional_local_collector", "sourceRows": 3, "currentDefault": "SQLite", "cloudflareComplete": false, "blocker": "No registered D1 article-history binding or migration/readback"},
+    {"name": "command_center", "classification": "legacy_data_current_api_disconnected", "sourceTables": 9, "sourceRows": 30, "rowsByTable": {"projects": 15, "tasks": 8, "directives": 5, "directive_executions": 2, "relay_nonces": 0, "relay_requests": 0, "relay_state": 0, "trade_plans": 0, "trades": 0}, "cloudflareComplete": false, "blocker": "Current registered Worker has no D1 binding; API is pending"},
+    {"name": "portal.sns_posts", "classification": "legacy_code_only_current_api_disconnected", "sourceTablesFoundAcrossAccessibleProjects": 0, "sourceRows": null, "cloudflareComplete": false},
+    {"name": "api/_lib/storage.ts", "classification": "legacy_code_current_r2_unconnected", "cloudflareComplete": false, "blocker": "ARTICLE_IMAGES and public URL are not registered on current target"}
+  ],
+  "crossBusinessImageObjects": {"bucket": "ai-hub-public", "objects": 6, "prefix": "colorme-groups", "countedUnder": "グッぼる"},
+  "productionWrites": 0,
+  "snsSends": 0,
+  "secretsIncluded": false
+}

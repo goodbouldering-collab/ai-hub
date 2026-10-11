@@ -1,0 +1,50 @@
+{
+  "canonical_origin": "https://aiclimb.aiclimb.workers.dev",
+  "site_name": "AI相談",
+  "language": "ja-JP",
+  "google_site_verification": null,
+  "business": {
+    "name": "AI相談",
+    "operator_name": "クライミングコンサル",
+    "description": "彦根・滋賀の事業者に向けたAI相談、AIエージェント講習、業務改善、Web・AIアプリ制作の実践支援。",
+    "email": "goodbouldering@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "postalCode": "522-0043",
+      "addressRegion": "滋賀県",
+      "addressLocality": "彦根市",
+      "streetAddress": "小泉町34-8",
+      "addressCountry": "JP"
+    },
+    "area_served": ["彦根市", "滋賀県湖東地域", "滋賀県"],
+    "evidence": "公開トップのfooter：運営 AI相談（彦根 / クライミングコンサル）、〒522-0043 滋賀県彦根市小泉町34-8、goodbouldering@gmail.com。開催会場の岡町12とは区別する。"
+  },
+  "person": {
+    "name": "由井 辰美",
+    "job_title": "AI講師",
+    "path": "/speaker",
+    "evidence": "公開トップの講師紹介とfooter、およびspeaker.htmlの講師本文。"
+  },
+  "default_image": "/design-system/studio/images/photo-20261011/hero.webp",
+  "default_image_alt": "相談者と制作者がPCと資料を見ながら話し合うイメージ",
+  "canonical_paths": {
+    "index.html": "/",
+    "blog/index.html": "/blog/",
+    "lectures/index.html": "/lectures/"
+  },
+  "excluded_prefixes": ["admin/", "api/", "ops/", "watch/", "internal/", "design-system/"],
+  "noindex_files": ["speed-monitor.html", "design-system/index.html"],
+  "excluded_files": ["blog/codex-update-log.html"],
+  "robots_disallow": ["/admin", "/api/", "/ops", "/watch/", "/internal/"],
+  "offer_price_semantics": {
+    "monthly_ids": ["/#service-ai-support"],
+    "minimum_price_paths": ["ai-app-site/index.html", "ai-estimate/index.html", "ai-inquiry/index.html", "ai-reservation/index.html", "ai-shift/index.html", "ai-blog/index.html"],
+    "evidence": "公開トップのAI伴走支援は月額88,000円。各AIアプリサービス本文の制作料金は99,000円〜。金額自体は既存Offerから引き継ぐ。"
+  },
+  "llms_intro": "滋賀県彦根市を拠点に、AI相談・講習・業務改善・WebとAIアプリ制作を支援するサイトです。講師は由井辰美。サービス内容、公開受講資料、実践記事を掲載しています。",
+  "llms_sections": [
+    {"name": "相談・講習", "links": [{"path": "/", "label": "AI相談の案内", "description": "講習・相談コース、料金、講師、開催場所、申込先。"}, {"path": "/speaker", "label": "講師紹介", "description": "由井辰美の活動と公開実績。"}, {"path": "/ai-app-site/", "label": "AIアプリサイト", "description": "見積もり・問い合わせ・予約・シフト・ブログなどの業務改善。"}]},
+    {"name": "学ぶ・調べる", "links": [{"path": "/lectures/", "label": "受講資料", "description": "講習資料を目的と読む順番で選ぶ。"}, {"path": "/programming-map", "label": "AIコーディング講習", "description": "Codex・Claude Codeの実践と確認の手順。"}, {"path": "/blog/", "label": "実践ブログ", "description": "AIを仕事で使うための実践記録。"}, {"path": "/ai-news/", "label": "今日のAIニュース5とCodex", "description": "出典付きのAIニュースとCodex更新情報。"}]},
+    {"name": "無料診断", "links": [{"path": "/ai-agent-readiness/", "label": "あなたのAI実力診断", "description": "10問でAI実践力と次の課題を確認。"}, {"path": "/seo-llmo-diagnosis/", "label": "AI対応サイト診断", "description": "公開URLの検索・AI向けの基礎を確認。"}]}
+  ]
+}

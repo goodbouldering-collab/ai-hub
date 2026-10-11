@@ -1,0 +1,43 @@
+{
+  "name": "reel自動投稿講座",
+  "tagline": "素材加工もテロップも、いつもの投稿をAIで。",
+  "description": "Instagramのリールを続けたいのに、編集や投稿に時間がかかる方へ。いつもの作り方を覚えさせたAIをAstraで操作し、シナリオ作成・素材加工・テロップ・投稿まで、一連の手順を実践する講座です。",
+  "duration_minutes": 120,
+  "price_yen": 8800,
+  "price_label": "8,800円（税込）",
+  "audience": "Codexでフォルダ管理ができる方が対象です。AIエージェント講習を受講済みの方は、その続きとして参加できます。",
+  "preparation": "Codex・Astraが使えるWindowsまたはMacのPC、投稿したい写真・動画、普段の投稿例をご用意ください。Instagramのログインと、利用するAI・編集ツールの契約状況も事前に確認します。",
+  "outcome": "自分の素材でリール1本を作り、次回も同じ流れで進められる指示とフォルダを持ち帰ります。",
+  "posting_note": "投稿前に仕上がり・文章・投稿先を確認し、公開までの手順を練習します。必要なツール利用料は受講料に含みません。",
+  "curriculum": [
+    {
+      "minutes": 20,
+      "title": "いつもの投稿をAIに伝える",
+      "detail": "素材・参考投稿・文章の雰囲気をフォルダにまとめ、Astraへの頼み方を整えます。"
+    },
+    {
+      "minutes": 25,
+      "title": "シナリオと構成を作る",
+      "detail": "誰に何を伝えるかを決め、冒頭・本文・次の行動までをAIと組み立てます。"
+    },
+    {
+      "minutes": 45,
+      "title": "素材加工とテロップを任せる",
+      "detail": "素材選び、不要部分のカット、縦動画への編集、テロップ追加を指示し、プレビューを見て直します。"
+    },
+    {
+      "minutes": 30,
+      "title": "Instagram投稿と次回の自動化",
+      "detail": "投稿文・カバー・投稿先を確認し、投稿までの流れと次回用の指示を保存します。"
+    }
+  ],
+  "reference_url": "https://www.youtube.com/watch?v=TK0GVOaUQMA",
+  "image": "/design-system/studio/images/photo-20261011/agent.webp",
+  "image_alt": "商品をスマートフォンで撮影し、案内にまとめるイメージ",
+  "square": {
+    "location_id": "LWJNMP7EAN4GS",
+    "reference_item_id": "TO3XHZT6XP3OM4QBDYMW7TZP",
+    "item_id": "L6TVMLR7LU3BJPGLJTE4A3OP",
+    "booking_url": "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/L6TVMLR7LU3BJPGLJTE4A3OP"
+  }
+}

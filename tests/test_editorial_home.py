@@ -12,8 +12,8 @@ class EditorialHomeTests(unittest.TestCase):
         result = apply_editorial_home(source)
         before, after = [BeautifulSoup(x, 'html.parser') for x in (source, result)]
         old_cards, new_cards = before.select('.compact-course-card'), after.select('.compact-course-card')
-        self.assertEqual(len(old_cards), 6)
-        self.assertEqual(len(new_cards), 6)
+        self.assertEqual(len(old_cards), 7)
+        self.assertEqual(len(new_cards), 7)
         for old, new in zip(old_cards, new_cards):
             self.assertEqual(old.get_text(' ', strip=True), new.get_text(' ', strip=True))
             self.assertEqual([a['href'] for a in old.select('a[href]')], [a['href'] for a in new.select('a[href]')])

@@ -70,8 +70,9 @@ def latest_published_posts(blog_index):
 
 def apply_home_updates(document, blog_index, css):
     """Keep the approved image feed and compact menu on daily regeneration."""
-    from core.editorial_feed import apply_home_feed, public_posts
+    from core.editorial_feed import _ElementSpans, apply_home_feed, public_posts
     from core.editorial_home import apply_editorial_home
+    from core.reel_course import apply_reel_course
     templates = Path(__file__).resolve().parents[1] / 'site/templates/ai-news'
     style = f'<style id="home-updates-style">{css}</style>'
     pattern = r'<style\b[^>]*id=[\x27"]home-updates-style[\x27"][^>]*>.*?</style>'
@@ -80,6 +81,8 @@ def apply_home_updates(document, blog_index, css):
     else:
         document = document.replace('</head>', style + '</head>')
     document = apply_home_feed(document, public_posts(blog_index), (templates / 'editorial-feed.css').read_text(encoding='utf-8'))
+    if _ElementSpans(document, 'compact-course-grid').spans:
+        document = apply_reel_course(document)
     return apply_editorial_home(document)
 
 

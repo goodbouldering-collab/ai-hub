@@ -7,7 +7,7 @@
 ## 検証と公開
 
 - `core/diagnosis_copy.py` の生成に反映し、日次再生成後も位置と案内を保持する。Python24件、Cloudflare7件、既存のニュース公開検査が成功。
-- 直前の公開版 `.news-below-blog-20261011-final` のホームと本番のSHA一致を確認。新しいbuilderは600資産中index.htmlだけを変更し、診断グループと専用CSS以外のバイト、599資産、Workerを保持する。
+- 最初の検証時は `.news-below-blog-20261011-final` と本番のSHA一致を確認。その後、並行PR #140の連絡先更新を統合し、`.ai-business-contact-20261011-final` を新しい基準に採用。公開直前に本番との一致を確認する。新しいbuilderは600資産中index.htmlだけを変更し、診断グループと専用CSS以外のバイト、599資産、Workerを保持する。
 - アプリ内ブラウザ1440px/390pxで横はみ出しなし、順序、2診断へのリンク遷移を確認。既存AI相談Chromeの接続が応答しないため代替を利用。
 - 公開前。PR統合後、登録元 `work/genspark-profile-edit/cloudflare-runtime`、target defaultから中央ForDeployガードを通し、確定SHAの生成物を公開する。
 

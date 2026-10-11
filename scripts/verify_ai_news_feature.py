@@ -24,6 +24,7 @@ def verify(read):
     assert feature.select_one('#ai-news-feature-title').get_text() == '今日のAIニュース5とCodex'
     headlines = feature.select('ol li a')
     assert len(headlines) == 3
+    assert len(feature.select('.news-thumbnail img[src][alt]')) == 3
     for rank, link in enumerate(headlines, 1):
         assert link['href'] == f'/ai-news/#news-{rank}'
         assert link.select('span')[-1].get_text() == page.select_one(f'#news-{rank} h3 a').get_text()
@@ -57,6 +58,7 @@ def verify(read):
     assert "https://aiclimb.aiclimb.workers.dev/ai-news/" in sitemap
     assert page.select_one('link[rel="canonical"]')["href"] == "https://aiclimb.aiclimb.workers.dev/ai-news/"
     assert len(page.select(".daily-ai-news__item")) == 5
+    assert all(card.select_one(":scope > .news-thumbnail img[src][alt]") for card in page.select(".daily-ai-news__item, .codex-feature-card"))
     assert not page.select_one("main > header .speaker-meta")
     assert page.select_one("#codex-update-guide-title").get_text() == "Codex新機能と活用例"
     assert ".codex-update-guide #codex-update-guide-title," in str(page)
@@ -68,7 +70,7 @@ def verify(read):
     assert page.select_one("#過去のアップデート要約")
     return {"diagnoses_in_hero": True, "news_first_in_blog": True, "home_entries": 3, "news_items": 5,
             "latest_blogs": 3, "archive_entries": len(blog.select('.editorial-feed__row')),
-            "all_entries_have_images": True, "compact_courses": 6,
+            "all_entries_have_images": True, "news_and_codex_images": True, "compact_courses": 6,
             "codex_blog_card_removed": True, "article_content_checks": True}
 
 

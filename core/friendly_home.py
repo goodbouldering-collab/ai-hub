@@ -15,3 +15,10 @@ def apply_friendly_home(document):
     if document.count('</head>') != 1:
         raise ValueError('Expected one homepage head')
     return document.replace('</head>', style + '</head>')
+
+
+def apply_public_logo(document):
+    """Keep the shared brand name on the legacy news-page header."""
+    return re.sub(r'<a\b[^>]*class=[\'"][^\'"]*\bsite-logo\b[^\'"]*[\'"][^>]*>.*?</a>',
+                  lambda match: match[0].replace('AIclimb（AI相談）', 'AI相談').replace('AIclimb', 'AI相談'),
+                  document, flags=re.S)

@@ -13,10 +13,13 @@ sys.path.insert(0, str(ROOT))
 from bs4 import BeautifulSoup
 from core.editorial_feed import _ElementSpans, integrate_home_news
 from core.diagnosis_copy import apply_diagnosis_copy
-from core.friendly_home import apply_friendly_home
+from core.friendly_home import apply_friendly_home, apply_public_logo
+from core.news_images import apply_news_images, strip_news_images
 
 INPUTS = ('core/__init__.py', 'core/editorial_feed.py', 'core/diagnosis_copy.py',
-          'core/friendly_home.py', 'site/templates/ai-news/friendly-glass.css',
+          'core/friendly_home.py', 'core/news_images.py', 'config/news-images.json',
+          'content/daily-ai-news.json', 'site/templates/ai-news/news-images.css',
+          'site/templates/ai-news/friendly-glass.css',
           'scripts/build_home_refresh_release.py', 'deployment/home-refresh/baseline.json',
           'deployment/home-refresh/brand-assets.json')
 BRAND_ASSETS = json.loads((ROOT / 'deployment/home-refresh/brand-assets.json').read_text(encoding='utf-8'))
@@ -34,11 +37,11 @@ def hashes(folder):
 
 
 def transform(document):
-    return apply_friendly_home(integrate_home_news(apply_diagnosis_copy(document)))
+    return apply_news_images(apply_friendly_home(integrate_home_news(apply_diagnosis_copy(document))))
 
 
 def verify_home(document, updated):
-    old, new = (BeautifulSoup(html, 'html.parser') for html in (document, updated))
+    old, new = (BeautifulSoup(html, 'html.parser') for html in (document, strip_news_images(updated)))
     # Unchanged copy, destinations, photos and article cards are checked directly.
     for selector in ('.focus-title', '#hero-advantage-title', '.focus-lead', '.hero-diagnose-cta',
                      '.focus-trust', '#blog > .editorial-feed__list'):
@@ -56,6 +59,7 @@ def verify_home(document, updated):
             raise ValueError(f'News content changed: {selector}')
     # Outside the two requested layout regions, compare the actual HTML bytes.
     def shell(html):
+        html = strip_news_images(html)
         html = html.replace("/design-system/studio/images/photo-20261011/hero.webp", "/" + HERO_ASSET)
         for name in ('focus-hero', 'diagnosis-guide-row', 'home-learning-links', 'editorial-feed--home', 'ai-news-feature'):
             for a, b in reversed(_ElementSpans(html, name).spans):
@@ -104,17 +108,22 @@ def build(baseline, output, source_sha):
     (output / 'runtime').mkdir()
     shutil.copyfile(worker, output / 'runtime/published-worker.mjs')
     (output / 'public/index.html').write_bytes(updated.encode('utf-8'))
+    article = (baseline / 'public/ai-news/index.html').read_bytes().decode('utf-8')
+    illustrated = apply_news_images(apply_public_logo(article))
+    if strip_news_images(illustrated) != apply_public_logo(article) or apply_news_images(illustrated) != illustrated:
+        raise ValueError('News text or links changed while adding images')
+    (output / 'public/ai-news/index.html').write_bytes(illustrated.encode('utf-8'))
     for name in STATIC_ASSETS:
         target = output / 'public' / name
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(ROOT / 'site/static' / name, target)
     after = hashes(output / 'public')
     changed = [name for name in before if after.get(name) != before[name]]
-    if set(changed) - {'index.html', *STATIC_ASSETS} or set(after) - set(before) - set(STATIC_ASSETS):
+    if set(changed) - {'index.html', 'ai-news/index.html', *STATIC_ASSETS} or set(after) - set(before) - set(STATIC_ASSETS):
         raise ValueError('Unexpected assets changed')
     if set(before) - set(after):
         raise ValueError('Existing assets were removed')
-    if not all(after.get(name) == before[name] for name in before if name not in {'index.html', *STATIC_ASSETS}):
+    if not all(after.get(name) == before[name] for name in before if name not in {'index.html', 'ai-news/index.html', *STATIC_ASSETS}):
         raise ValueError('Unrelated assets changed')
     if inputs != {p: digest(ROOT / p) for p in INPUTS}:
         raise ValueError('Build inputs changed during generation')

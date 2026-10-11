@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">AI相談</title>
+  <desc id="desc">外へひらく青緑の会話の輪と、次の一歩を照らす杏色の点</desc>
+  <path d="M39 10.5A22 22 0 0 0 9 31c0 6.2 2.5 11.9 6.7 15.9L12 56l11.6-4.2A22 22 0 0 0 53 31" fill="none" stroke="#000000" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="51.5" cy="15" r="5.5" fill="#000000"/>
+</svg>

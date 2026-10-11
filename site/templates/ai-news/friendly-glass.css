@@ -1,0 +1,320 @@
+/* AI相談: morning light, clear teal and a restrained frosted surface.
+   Home only. Content, images, booking links and section order stay in HTML. */
+body.studio-theme.studio-editorial.studio-home {
+  --friendly-ink: #183f41;
+  --friendly-muted: #526968;
+  --friendly-teal: #087e79;
+  --friendly-teal-deep: #086762;
+  --friendly-mint: #e8f8f1;
+  --friendly-paper: #fbfcf8;
+  --friendly-line: #d5e8e1;
+  --friendly-apricot: #f4b06d;
+  --studio-paper: var(--friendly-paper);
+  --studio-white: #fffefa;
+  --studio-ink: var(--friendly-ink);
+  --studio-teal: var(--friendly-teal);
+  --studio-sage: var(--friendly-mint);
+  --studio-muted: var(--friendly-muted);
+  --studio-line: var(--friendly-line);
+  --studio-apricot: var(--friendly-apricot);
+  --studio-accent-ink: #945322;
+  --studio-shadow: 0 16px 36px -28px #1c6b5d38;
+  --focus-ink: var(--friendly-ink);
+  --focus-muted: var(--friendly-muted);
+  --focus-blue: var(--friendly-teal);
+  --focus-lavender: var(--friendly-mint);
+  color: var(--friendly-ink) !important;
+  background: radial-gradient(ellipse 70% 580px at 95% 0, #dff6ed 0, transparent 75%),
+    radial-gradient(ellipse 55% 480px at 0 550px, #fff0d8 0, transparent 75%),
+    var(--friendly-paper) !important;
+}
+body.studio-theme.studio-editorial.studio-home :is(.site-header, .site-header.scrolled, .site-header:hover) {
+  background: #fffefb !important;
+  border-bottom: 1px solid #dbeae4 !important;
+  box-shadow: 0 8px 26px -22px #15554b45 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+body.studio-theme.studio-editorial.studio-home .site-header .site-nav {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+body.studio-theme.studio-editorial.studio-home :is(.nav-link, .mobile-public-links a, .mobile-admin-link) {
+  color: var(--friendly-ink) !important;
+}
+body.studio-theme.studio-editorial.studio-home :is(.mobile-nav, .mobile-nav-panel) {
+  background: #fffefa !important;
+  border-color: var(--friendly-line) !important;
+  box-shadow: 0 18px 36px -28px #15554b38 !important;
+}
+body.studio-theme.studio-editorial.studio-home :is(.mobile-toggle, .generated-mobile-toggle) {
+  color: #fff !important;
+  background: var(--friendly-teal) !important;
+  border: 1px solid var(--friendly-teal) !important;
+  box-shadow: 0 5px 14px -8px #087e7960 !important;
+}
+body.studio-theme.studio-editorial.studio-home :is(.mobile-toggle:hover, .mobile-toggle[aria-expanded="true"]) {
+  background: var(--friendly-teal-deep) !important;
+  color: #fff !important;
+}
+body.studio-theme.studio-editorial.studio-home #top.focus-hero {
+  background: transparent !important;
+}
+body.studio-theme.studio-editorial.studio-home #top.focus-hero::before,
+body.studio-theme.studio-editorial.studio-home #top.focus-hero::after,
+body.studio-theme.studio-editorial.studio-home #top .hero-orb {
+  display: none !important;
+}
+body.studio-theme.studio-editorial.studio-home #top .focus-hero-copy {
+  background: #fffefa !important;
+  border: 1px solid #ffffffed !important;
+  box-shadow: 0 18px 48px -32px #28766740, inset 0 1px 0 #fff !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+body.studio-theme.studio-editorial.studio-home #top .focus-kicker {
+  color: #28695f !important;
+  background: #f3fcf6 !important;
+  border-color: #cee8d9 !important;
+  letter-spacing: .045em !important;
+}
+body.studio-theme.studio-editorial.studio-home #top .focus-kicker::before {
+  background: #e7a15c !important;
+  box-shadow: 0 0 0 4px #fae5c8 !important;
+}
+body.studio-theme.studio-editorial.studio-home #top :is(.focus-title, .focus-title-first) {
+  color: var(--friendly-ink) !important;
+  -webkit-text-fill-color: var(--friendly-ink) !important;
+}
+body.studio-theme.studio-editorial.studio-home #top .focus-title-line strong {
+  color: var(--friendly-teal-deep) !important;
+  -webkit-text-fill-color: var(--friendly-teal-deep) !important;
+}
+body.studio-theme.studio-editorial.studio-home #top .focus-title-line strong::after {
+  height: 5px !important;
+  background: #bce8d5 !important;
+  border-radius: 4px !important;
+  transform: none !important;
+}
+body.studio-theme.studio-editorial.studio-home #top :is(.focus-lead, .hero-advantage-outcome, .hero-diagnose-cta small) {
+  color: var(--friendly-muted) !important;
+}
+body.studio-theme.studio-editorial.studio-home #top :is(.hero-advantage-equation, .hero-diagnose-eyebrow) {
+  color: var(--friendly-ink) !important;
+}
+body.studio-theme.studio-editorial.studio-home #top .focus-trust {
+  gap: 6px 14px !important;
+  color: #446862 !important;
+}
+body.studio-theme.studio-editorial.studio-home #top .focus-trust li::before {
+  color: var(--friendly-teal) !important;
+}
+body.studio-theme.studio-editorial.studio-home :is(.focus-btn.primary, .compact-course-action, .editorial-feed__more),
+body.studio-theme.studio-editorial.studio-home #packages .compact-course-card[data-editorial-course] .compact-course-action {
+  background: var(--friendly-teal) !important;
+  color: #fff !important;
+  border-color: var(--friendly-teal) !important;
+  border-radius: 999px !important;
+  box-shadow: 0 6px 18px -12px #087e7970 !important;
+}
+body.studio-theme.studio-editorial.studio-home :is(.focus-btn.secondary, .hero-text-link) {
+  color: var(--friendly-teal-deep) !important;
+  border-color: #a9cfc2 !important;
+}
+body.studio-theme.studio-editorial.studio-home #top #diagnosis-start {
+  border-top: 1px solid #d5e9df !important;
+  background: transparent !important;
+}
+body.studio-theme.studio-editorial.studio-home #top #diagnosis-start .diagnosis-intro h2 {
+  color: var(--friendly-ink) !important;
+}
+body.studio-theme.studio-editorial.studio-home #top #diagnosis-start .diagnosis-intro p {
+  color: var(--friendly-muted) !important;
+}
+body.studio-theme.studio-editorial.studio-home #top #diagnosis-start .diagnosis-action {
+  background: #e4f7ee !important;
+  border: 1px solid #bbdfcc !important;
+  border-radius: 14px !important;
+  color: #19594e !important;
+  box-shadow: 0 3px 12px -9px #2f775640 !important;
+}
+body.studio-theme.studio-editorial.studio-home #top #diagnosis-start .diagnosis-action--site {
+  background: #fff5e6 !important;
+  border-color: #ebd7b9 !important;
+  color: #705129 !important;
+}
+/* Lift the existing photographic series, never the speaker portrait or screenshots. */
+body.studio-theme.studio-editorial.studio-home img[src*="/photo-20261011/"],
+body.studio-theme.studio-editorial.studio-home #restored-hero-image > img {
+  filter: brightness(1.12) contrast(.90) saturate(.92) !important;
+}
+body.studio-theme.studio-editorial.studio-home #restored-hero-image {
+  background: #e9f4eb !important;
+  border: 1px solid #ffffffd9 !important;
+  box-shadow: 0 18px 44px -32px #3a695248 !important;
+}
+body.studio-theme.studio-editorial.studio-home .focus-block.soft {
+  background: transparent !important;
+}
+body.studio-theme.studio-editorial.studio-home :is(.focus-section-head, .editorial-feed__heading) h2 {
+  color: var(--friendly-ink) !important;
+}
+body.studio-theme.studio-editorial.studio-home :is(.focus-section-head small, .editorial-feed__category) {
+  color: #945322 !important;
+}
+body.studio-theme.studio-editorial.studio-home #blog.editorial-feed {
+  --editorial-ink: var(--friendly-ink);
+  --editorial-muted: var(--friendly-muted);
+  --editorial-line: var(--friendly-line);
+  --editorial-accent: var(--friendly-teal);
+}
+body.studio-theme.studio-editorial.studio-home #blog #ai-news {
+  --editorial-ink: var(--friendly-ink);
+  --editorial-muted: var(--friendly-muted);
+  --editorial-line: var(--friendly-line);
+  --editorial-accent: var(--friendly-teal);
+  background: #f0faf3 !important;
+  border: 1px solid #d3eadd !important;
+  border-radius: 20px !important;
+  box-shadow: inset 0 1px 0 #ffffff !important;
+}
+body.studio-theme.studio-editorial.studio-home #blog #ai-news #ai-news-feature-title {
+  color: var(--friendly-teal-deep) !important;
+}
+body.studio-theme.studio-editorial.studio-home #blog #ai-news .ai-news-feature__reading .ai-news-feature__more {
+  background: transparent !important;
+  color: var(--friendly-teal-deep) !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+body.studio-theme.studio-editorial.studio-home #packages .compact-course-card[data-editorial-course] {
+  background: #fffffff0 !important;
+  border-color: #d8e8dd !important;
+  box-shadow: 0 10px 28px -24px #226e5740 !important;
+}
+body.studio-theme.studio-editorial.studio-home #packages :is(.offer-role-badge, .offer-audience) {
+  color: #286457 !important;
+  background: #e9f7ee !important;
+  border-color: #d1e8d9 !important;
+}
+body.studio-theme.studio-editorial.studio-home #packages .compact-course-meta strong {
+  color: var(--friendly-teal-deep) !important;
+}
+body.studio-theme.studio-editorial.studio-home #packages :is(.course-time-note, .course-venue-common),
+body.studio-theme.studio-editorial.studio-home #faq details {
+  background: #fffefa !important;
+  border-color: var(--friendly-line) !important;
+  box-shadow: none !important;
+}
+body.studio-theme.studio-editorial.studio-home #contact {
+  background: linear-gradient(115deg, #e2f6ed, #f6f9e5) !important;
+  border: 1px solid #cee6d7 !important;
+  box-shadow: none !important;
+}
+body.studio-theme.studio-editorial.studio-home #contact :is(h2, p) {
+  color: var(--friendly-ink) !important;
+}
+body.studio-theme.studio-editorial.studio-home #contact .focus-btn {
+  background: var(--friendly-teal) !important;
+  border-color: var(--friendly-teal) !important;
+  color: #fff !important;
+}
+body.studio-theme.studio-editorial.studio-home .sticky-cta {
+  background: #fffefa !important;
+  border-color: #ffffffed !important;
+  box-shadow: 0 -6px 24px -20px #15554b45 !important;
+}
+body.studio-theme.studio-editorial.studio-home .sticky-cta .sticky-cta-btn--consult {
+  background: #fffefa !important;
+  border-color: #bad9cd !important;
+  color: var(--friendly-teal-deep) !important;
+}
+body.studio-theme.studio-editorial.studio-home .sticky-cta .sticky-cta-btn--agent {
+  background: var(--friendly-teal) !important;
+  border-color: var(--friendly-teal) !important;
+  color: #fff !important;
+}
+body.studio-theme.studio-editorial.studio-home :is(footer, .site-footer) {
+  background: #f1f8ee !important;
+  border-color: var(--friendly-line) !important;
+  color: var(--friendly-muted) !important;
+}
+body.studio-theme.studio-editorial.studio-home .studio-reading-progress {
+  background: linear-gradient(90deg, #3bb895, #f1bd76) !important;
+}
+body.studio-theme.studio-editorial.studio-home :is(a, button, summary, input, select, textarea):focus-visible {
+  outline: 3px solid #08746f !important;
+  outline-offset: 4px !important;
+}
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  body.studio-theme.studio-editorial.studio-home :is(.site-header, .site-header.scrolled, .site-header:hover, .sticky-cta) {
+    background: #fffefbe8 !important;
+    backdrop-filter: blur(14px) saturate(1.06) !important;
+    -webkit-backdrop-filter: blur(14px) saturate(1.06) !important;
+  }
+  body.studio-theme.studio-editorial.studio-home #top .focus-hero-copy {
+    background: linear-gradient(145deg, #fffefbf5, #f6fcf2e8) !important;
+    backdrop-filter: blur(14px) saturate(1.04) !important;
+    -webkit-backdrop-filter: blur(14px) saturate(1.04) !important;
+  }
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  body.studio-theme.studio-editorial.studio-home :is(.focus-btn.primary, .compact-course-action, .editorial-feed__more):hover {
+    background: var(--friendly-teal-deep) !important;
+    color: #fff !important;
+    transform: translateY(-2px) !important;
+  }
+  body.studio-theme.studio-editorial.studio-home #top #diagnosis-start .diagnosis-action:hover {
+    background: #d5f0e1 !important;
+    transform: translateY(-2px) !important;
+  }
+  body.studio-theme.studio-editorial.studio-home #top #diagnosis-start .diagnosis-action--site:hover {
+    background: #ffedd2 !important;
+  }
+}
+@media (prefers-reduced-transparency: reduce) {
+  body.studio-theme.studio-editorial.studio-home :is(.site-header, .site-header.scrolled, .site-header:hover, .sticky-cta),
+  body.studio-theme.studio-editorial.studio-home #top .focus-hero-copy {
+    background: #fffefa !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.studio-theme.studio-editorial.studio-home :is(.focus-btn, .compact-course-action, .editorial-feed__more, .diagnosis-action) {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+@media print {
+  body.studio-theme.studio-editorial.studio-home {
+    background: #fff !important;
+  }
+  body.studio-theme.studio-editorial.studio-home img[src*="/photo-20261011/"],
+  body.studio-theme.studio-editorial.studio-home #restored-hero-image > img {
+    filter: none !important;
+  }
+}
+
+/* Keep the combined reading area compact, with the daily edition first. */
+body.studio-theme.studio-editorial.studio-home main > #blog.editorial-feed--home{box-sizing:border-box;max-width:1160px!important;margin:28px auto 40px!important;padding:0 24px!important}
+body.studio-theme.studio-editorial.studio-home #blog #ai-news{box-sizing:border-box;max-width:none!important;margin:0 0 16px!important;padding:20px 24px 8px!important;display:block!important}
+body.studio-theme.studio-editorial.studio-home #blog #ai-news .ai-news-feature__heading{display:flex;align-items:baseline;justify-content:space-between;gap:8px 24px;flex-wrap:wrap}
+body.studio-theme.studio-editorial.studio-home #blog #ai-news #ai-news-feature-title{font-size:21px!important;line-height:1.5!important;margin:0!important}
+body.studio-theme.studio-editorial.studio-home #blog #ai-news .ai-news-feature__heading time{font-size:12px;white-space:nowrap}
+body.studio-theme.studio-editorial.studio-home #blog #ai-news .ai-news-feature__reading ol{margin-top:8px!important}
+body.studio-theme.studio-editorial.studio-home #blog #ai-news .ai-news-feature__reading li a{min-height:44px!important;padding:12px 0!important;font-size:16px!important}
+body.studio-theme.studio-editorial.studio-home #blog #ai-news .ai-news-feature__more{margin-top:6px!important;min-height:44px!important}
+@media(max-width:600px){
+  body.studio-theme.studio-editorial.studio-home #top .focus-title-first{font-size:26px!important;letter-spacing:-.03em!important}
+  body.studio-theme.studio-editorial.studio-home main > #blog.editorial-feed--home{padding:0 18px!important}
+  body.studio-theme.studio-editorial.studio-home #blog #ai-news{padding:16px 16px 4px!important;border-radius:16px!important}
+  body.studio-theme.studio-editorial.studio-home #blog #ai-news #ai-news-feature-title{font-size:18px!important}
+  body.studio-theme.studio-editorial.studio-home #blog #ai-news .ai-news-feature__reading li a{font-size:14px!important;line-height:1.65!important}
+}
+
+body.studio-theme.studio-editorial.studio-home #restored-hero-image > img[src$="hero-friendly-20261011.webp"]{filter:none!important}
+
+/* A blurred header otherwise becomes the containing block of its fixed menu. */
+body.studio-theme.studio-editorial.studio-home .site-header:has(.mobile-nav.open){background:#fffefa!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}

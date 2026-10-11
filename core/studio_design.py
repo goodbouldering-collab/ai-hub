@@ -187,6 +187,11 @@ def decorate_public_tree(output: Path) -> list[str]:
             changed.append(relative)
     shutil.copytree(ASSETS, output / "design-system/studio", dirs_exist_ok=True,
                     ignore=shutil.ignore_patterns("README.md"))
+    # The shared logo stylesheet references the same vector at every page size.
+    shutil.copytree(ROOT / "site/static/brand", output / "brand", dirs_exist_ok=True)
+    for source in (ROOT / "site/static").iterdir():
+        if source.is_file() and ("favicon" in source.name or source.name.startswith(("apple-touch-icon", "android-chrome-", "site-20260725"))):
+            shutil.copyfile(source, output / source.name)
     return sorted(changed)
 
 

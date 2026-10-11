@@ -28,6 +28,8 @@ from core.instagram_feed import apply_instagram_feed
 from core.hero_copy import apply_hero_copy
 from core.diagnosis_copy import apply_diagnosis_copy
 from core.daily_news import normalize_daily_ai_news, render_daily_ai_news
+from core.news_images import apply_news_images
+from core.friendly_home import apply_public_logo
 from core.studio_design import decorate_public_tree
 from core.home_updates import apply_home_updates
 from core.editorial_feed import apply_blog_feed
@@ -99,7 +101,7 @@ def build(output: Path, base_assets: Path | None = None, *, preserve_baseline_pr
     article = (TEMPLATES / "page.html").read_text(encoding="utf-8")
     article = article.replace("{{NEWS_AND_CODEX}}", news_html + codex_html).replace("{{UPDATE_LABEL}}", label).replace("{{UPDATE_DATE}}", modified)
     compact_css = (TEMPLATES / "compact.css").read_text(encoding="utf-8")
-    article = apply_compact_style(article, compact_css)
+    article = apply_news_images(apply_public_logo(apply_compact_style(article, compact_css)), news)
     assert "{{" not in article, "Unfilled article template"
     home = (TEMPLATES / "home.html").read_text(encoding="utf-8")
     if "{{AI_NEWS_FEATURE}}" in home:
@@ -122,7 +124,7 @@ def build(output: Path, base_assets: Path | None = None, *, preserve_baseline_pr
         home = restore_home_speaker(apply_instagram_feed(remove_soft_playground(home)))
     blog = remove_old_cards((TEMPLATES / "blog.html").read_text(encoding="utf-8"))
     home = apply_home_updates(home, blog, (TEMPLATES / "home-updates.css").read_text(encoding="utf-8"))
-    home = apply_diagnosis_copy(home)
+    home = apply_news_images(apply_diagnosis_copy(home), news)
     blog = apply_blog_feed(blog, modified, (TEMPLATES / "editorial-feed.css").read_text(encoding="utf-8"))
     sitemap = (TEMPLATES / "sitemap.xml").read_text(encoding="utf-8")
     sitemap, count = re.subn(r"<url><loc>[^<]*/blog/codex-update-log\.html</loc>.*?</url>", f"<url><loc>{URL}</loc><lastmod>{modified}</lastmod><priority>0.9</priority></url>", sitemap, flags=re.S)
@@ -148,7 +150,7 @@ def build(output: Path, base_assets: Path | None = None, *, preserve_baseline_pr
     themed = [] if preserve_baseline_presentation else decorate_public_tree(output)
     if not preserve_baseline_presentation:
         home_path = output / "index.html"
-        home_path.write_text(apply_editorial_home(home_path.read_text(encoding="utf-8")), encoding="utf-8", newline="\n")
+        home_path.write_text(apply_news_images(apply_editorial_home(home_path.read_text(encoding="utf-8")), news), encoding="utf-8", newline="\n")
     # Apply search metadata after all presentation decorators, which may carry
     # old structured data in their frozen shells. A partial build must not
     # replace the full site's discovery files with a three-page sitemap.

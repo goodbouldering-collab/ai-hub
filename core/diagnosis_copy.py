@@ -2,6 +2,7 @@
 import re
 from bs4 import BeautifulSoup
 from core.editorial_feed import _ElementSpans
+from core.glass_hero import apply_glass_hero
 
 PROMPTS = {'readiness-guide-title': 'あなたのAI実力を試す', 'seo-llmo-guide-title': 'サイトのAI対応を調べる'}
 STYLE = '''<style id="diagnosis-copy-style">
@@ -47,8 +48,8 @@ def apply_diagnosis_copy(document):
         document = document[:start] + replacement + document[start:]
     pattern=r'<style id="diagnosis-copy-style">.*?</style>'
     if re.search(pattern,document,flags=re.S):
-        return re.sub(pattern,lambda _:STYLE,document,flags=re.S)
-    return document.replace('</head>',STYLE+'\n</head>',1)
+        return apply_glass_hero(re.sub(pattern,lambda _:STYLE,document,flags=re.S))
+    return apply_glass_hero(document.replace('</head>',STYLE+'\n</head>',1))
 
 
 def _one(document, class_name):

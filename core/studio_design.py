@@ -78,7 +78,7 @@ def decorate_html(text: str, *, home: bool = False, admin: bool = False, login: 
             return match.group(1) + tag
 
         text, count = re.subn(r'(<figure\b[^>]*id=[\"\']restored-hero-image[\"\'][^>]*>\s*)(<img\b[^>]*>)', hero, text, count=1, flags=re.S)
-        assert count == 1, "Expected the owned hero image"
+        assert count == 1 or 'id="hero-glass-art"' in text, "Expected the owned hero image"
         images = iter([
             ("agent", "AIへの依頼から、ひとつの仕事が完成するアート"),
             ("personal", "自分の仕事に合わせてAIの使い方を調整するアート"),

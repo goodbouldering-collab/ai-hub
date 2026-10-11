@@ -67,6 +67,10 @@ class EditorialFeedTests(unittest.TestCase):
         self.assertEqual(len(soup.select('#blog .editorial-feed__more')), 1)
         self.assertFalse(soup.select('#ai-news section, #latest-blog'))
         self.assertEqual(len(soup.select('#blog')), 1)
+        self.assertEqual(soup.select_one('#top').find_next_sibling()['id'], 'blog')
+        self.assertEqual(soup.select_one('#blog').find_next_sibling()['id'], 'ai-news')
+        original = BeautifulSoup(home_shell(), 'html.parser')
+        self.assertEqual(str(soup.select_one('#ai-news')), str(original.select_one('#ai-news')))
 
     def test_home_is_idempotent_and_daily_regeneration_uses_new_date(self):
         first = apply_home_feed(home_shell(), self.posts, CSS)

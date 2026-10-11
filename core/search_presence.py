@@ -178,6 +178,21 @@ def _clarify_offer_price(node: dict, path: str, config: dict) -> None:
         offer["priceSpecification"] = {"@type": "PriceSpecification", "minPrice": int(number) if number == int(number) else float(number), "priceCurrency": currency}
 
 
+def _omit_unrated_testimonials(node: dict) -> None:
+    """Keep testimonial prose visible without presenting it as a rated review."""
+    if not (_types(node) & {"Course", "Service"}) or "review" not in node:
+        return
+    reviews = node["review"]
+    items = reviews if isinstance(reviews, list) else [reviews]
+    rated = [item for item in items if isinstance(item, dict)
+             and isinstance(item.get("reviewRating"), dict)
+             and item["reviewRating"].get("ratingValue") not in (None, "")]
+    if rated:
+        node["review"] = rated if isinstance(reviews, list) else rated[0]
+    else:
+        node.pop("review")
+
+
 def _graph(path: str, soup: BeautifulSoup, config: dict, canonical: str, title: str, description: str) -> dict:
     base = config["canonical_origin"].rstrip("/") + "/"
     result = _entities(config)
@@ -206,6 +221,7 @@ def _graph(path: str, soup: BeautifulSoup, config: dict, canonical: str, title: 
         elif types & {"Service", "WebApplication"} and path != "index.html":
             node.setdefault("@id", canonical + "#" + ("application" if "WebApplication" in types else "service"))
         _clarify_offer_price(node, path, config)
+        _omit_unrated_testimonials(node)
         result.append(node)
     kind = "ProfilePage" if path == "speaker.html" else "CollectionPage" if path in {"blog/index.html", "lectures/index.html"} else "WebPage"
     page = page or {}

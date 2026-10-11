@@ -1,10 +1,12 @@
 """Refresh homepage artwork and shorten course cards without changing their content."""
 from pathlib import Path
+import json
 import re
 from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
-IMAGE_ROOT = "/design-system/studio/images/editorial-20261011/"
+IMAGE_ROOT = "/design-system/studio/images/photo-20261011/"
+PHOTO_ALT = json.loads((ROOT / "config/photo-art.json").read_text(encoding="utf-8"))
 ART = {
     "soft-hero": ("hero", "相談者と制作者が、資料から案内と予約ページを一緒に作るイラスト"),
     "soft-agent": ("agent", "お店の人が商品写真から案内を作るイラスト"),
@@ -34,9 +36,13 @@ def replace_home_art(document):
         if not src.startswith("/design-system/studio/images/"):
             return match[0]
         key = Path(src).stem
-        if key not in ART:
+        if key in ART:
+            asset = ART[key][0]
+        elif key in PHOTO_ALT and "/editorial-20261011/" in src:
+            asset = key
+        else:
             return match[0]
-        asset, description = ART[key]
+        description = PHOTO_ALT[asset]
         tag["src"] = IMAGE_ROOT + asset + ".webp"
         tag["alt"] = description
         tag["width"], tag["height"] = "1536", "1024"

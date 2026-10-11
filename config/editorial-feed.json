@@ -8,53 +8,53 @@
     "label": "AIニュース・Codex",
     "title": "今日のAIニュース5とCodex情報",
     "summary": "AIニュース5件とCodexの更新を、仕事に役立つポイントから読む。",
-    "image": "/design-system/studio/images/editorial-20261011/article-news.webp",
-    "alt": "新しいAI機能のカードと完成資料を見比べる人"
+    "image": "/design-system/studio/images/photo-20261011/article-news.webp",
+    "alt": "新しい情報と完成資料を見比べるイメージ"
   },
   "fallback": {
-    "image": "/design-system/studio/images/editorial-20261011/article-ai-world.webp",
-    "alt": "AIの道具を一つの作業場にまとめる二人"
+    "image": "/design-system/studio/images/photo-20261011/article-ai-world.webp",
+    "alt": "複数のAIの道具を一つの作業場で使うイメージ"
   },
   "articles": {
     "2026-10-09-codex-workers-ai-workflow": {
-      "image": "/design-system/studio/images/editorial-20261011/article-workflow.webp",
-      "alt": "作業場の棚へ資料フォルダを置く人"
+      "image": "/design-system/studio/images/photo-20261011/article-workflow.webp",
+      "alt": "繰り返し使う資料を共通の棚へまとめるイメージ"
     },
     "2026-10-05-codex-cloud-development-environment": {
-      "image": "/design-system/studio/images/editorial-20261011/article-cloud.webp",
-      "alt": "PCとクラウド環境・手元のSSDを見比べる人"
+      "image": "/design-system/studio/images/photo-20261011/article-cloud.webp",
+      "alt": "PCと外付けSSDで作業環境を整えるイメージ"
     },
     "2026-10-03-codex-remote-collaboration-guide": {
-      "image": "/design-system/studio/images/editorial-20261011/article-remote.webp",
-      "alt": "遠隔画面で一緒にアプリを作る二人"
+      "image": "/design-system/studio/images/photo-20261011/article-remote.webp",
+      "alt": "遠隔の相手と画面を共有して開発するイメージ"
     },
     "2026-10-01-codex-decision-model-jev": {
-      "image": "/design-system/studio/images/editorial-20261011/article-decision.webp",
-      "alt": "問い合わせカードを三つのトレーに仕分ける人"
+      "image": "/design-system/studio/images/photo-20261011/article-decision.webp",
+      "alt": "問い合わせを三つのトレーへ仕分けるイメージ"
     },
     "2026-09-28-orca-ade-ai-manager": {
-      "image": "/design-system/studio/images/editorial-20261011/article-orca.webp",
-      "alt": "三つのAI提案から一案を選ぶ人"
+      "image": "/design-system/studio/images/photo-20261011/article-orca.webp",
+      "alt": "三つの提案から一案を選ぶイメージ"
     },
     "2026-09-18-cloudflare-emdash-webmcp": {
-      "image": "/design-system/studio/images/editorial-20261011/article-web-assistant.webp",
-      "alt": "小さなお店の受付とWeb編集を分担する二人"
+      "image": "/design-system/studio/images/photo-20261011/article-web-assistant.webp",
+      "alt": "お店の問い合わせ対応とWeb編集を分担するイメージ"
     },
     "2026-08-30-switchbot-ai-mind-clip": {
-      "image": "/design-system/studio/images/editorial-20261011/article-mindclip.webp",
-      "alt": "胸元の録音クリップから会話メモと次の作業を整える二人"
+      "image": "/design-system/studio/images/photo-20261011/article-mindclip.webp",
+      "alt": "小さな録音端末とスマートフォンで会話を記録するイメージ"
     },
     "2026-08-21-codex-environment-optimizer": {
-      "image": "/design-system/studio/images/editorial-20261011/article-optimizer.webp",
-      "alt": "絡まった指示をほどいて作業の流れを整える人"
+      "image": "/design-system/studio/images/photo-20261011/article-optimizer.webp",
+      "alt": "作業環境の絡まりをほどいて整理するイメージ"
     },
     "2026-08-08-vercel-supabase-d1-r2-boundaries": {
-      "image": "/design-system/studio/images/editorial-20261011/article-infrastructure.webp",
-      "alt": "Web・データ・会員情報を分けて収納する人"
+      "image": "/design-system/studio/images/photo-20261011/article-infrastructure.webp",
+      "alt": "資料・ファイル・大切な情報の保管場所を分けるイメージ"
     },
     "2026-06-17-codex-ai-world": {
-      "image": "/design-system/studio/images/editorial-20261011/article-ai-world.webp",
-      "alt": "AIの道具を一つの作業場にまとめる二人"
+      "image": "/design-system/studio/images/photo-20261011/article-ai-world.webp",
+      "alt": "複数のAIの道具を一つの作業場で使うイメージ"
     }
   }
 }

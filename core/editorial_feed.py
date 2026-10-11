@@ -161,7 +161,7 @@ def _news_date(feature: str) -> str:
 
 
 def _row(post: Mapping[str, str], config: dict, *, news: bool = False,
-         preserve_href: bool = False, heading_level: int = 3) -> str:
+         preserve_href: bool = False, heading_level: int = 3, include_summary: bool = True) -> str:
     image, alt = ((config['news']['image'], config['news']['alt']) if news else _post_image(post, config))
     href = post['href']
     if preserve_href and not news:
@@ -172,6 +172,7 @@ def _row(post: Mapping[str, str], config: dict, *, news: bool = False,
     title = escape(post['title'])
     category = config['news']['label'] if news else config['article_label']
     date_label = escape(str(post.get('date_label') or post['date']))
+    summary = f'<div class="tr-sum editorial-feed__summary">{escape(post["summary"])}</div>' if include_summary else ""
     return (
         '<li class="editorial-feed__item">'
         f'<a class="{classes}" href="{escape(href, quote=True)}">'
@@ -183,7 +184,7 @@ def _row(post: Mapping[str, str], config: dict, *, news: bool = False,
         f'<span class="editorial-feed__category">{escape(category)}</span>'
         f'<div class="tr-date editorial-feed__date"><time datetime="{post["date"]}">{date_label}</time></div></div>'
         f'<div class="tr-title editorial-feed__title" role="heading" aria-level="{heading_level}">{title}</div>'
-        f'<div class="tr-sum editorial-feed__summary">{escape(post["summary"])}</div>'
+        f'{summary}'
         '</div></a></li>'
     )
 
@@ -216,7 +217,7 @@ def apply_home_feed(document: str, posts: Iterable[Mapping[str, str]], css: str)
         raise ValueError('Expected one home AI news feature')
     feature = matches[0]
     published = _news_date(feature[0])
-    rows = ''.join(_row(post, config) for post in posts[:3])
+    rows = ''.join(_row(post, config, include_summary=False) for post in posts[:3])
     combined = (
         '<section id="blog" class="editorial-feed editorial-feed--home" aria-labelledby="editorial-feed-title">'
         '<div class="editorial-feed__heading">'

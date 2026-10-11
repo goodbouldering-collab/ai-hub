@@ -115,7 +115,7 @@ def _entities(config: dict) -> list[dict]:
     person = config["person"]
     return [
         {"@type": "ProfessionalService", "@id": base + "#business", "name": business["name"], "url": base,
-         "description": business["description"], "email": business["email"], "address": deepcopy(business["address"]),
+         "description": business["description"], "email": business["email"], "telephone": business["telephone"], "address": deepcopy(business["address"]),
          "image": urljoin(base, config["default_image"]),
          "areaServed": [{"@type": "Place", "name": area} for area in business["area_served"]]},
         {"@type": "Person", "@id": base + "#yui", "name": person["name"], "jobTitle": person["job_title"],
@@ -248,29 +248,79 @@ def _graph(path: str, soup: BeautifulSoup, config: dict, canonical: str, title: 
     return {"@context": "https://schema.org", "@graph": result}
 
 
-def _independent_home_business(html: str, path: str) -> str:
-    """Replace only the approved homepage footer label, keeping all other bytes."""
+def _business_telephone(config: dict) -> tuple[str, str]:
+    telephone = config["business"]["telephone"]
+    match = re.fullmatch(r"\+81-(\d{1,4})-(\d{2,4})-(\d{4})", telephone)
+    if not match:
+        raise ValueError("Expected the confirmed Japanese business telephone format")
+    return "0" + "-".join(match.groups()), "tel:" + telephone.replace("-", "")
+
+
+def render_business_contact(config: dict) -> str:
+    """Render the confirmed address and telephone from one public fact source."""
+    business = config["business"]
+    address = business["address"]
+    location = "".join(address[key] for key in ("addressRegion", "addressLocality", "streetAddress"))
+    display, href = _business_telephone(config)
+    return (f'<p>〒{escape(address["postalCode"])}<br>{escape(location)}<br>{escape(business["address_note"])}</p>'
+            f"<p><a href='{escape(href, quote=True)}'>{escape(display)}</a></p>")
+
+
+def _independent_home_business(html: str, path: str, config: dict) -> str:
+    """Change only the approved identity/contact text in one homepage footer."""
     if path != "index.html":
         return html
     old = "<div class='footer-nap'><span class='footer-nav-head'>運営</span><p>AI相談（彦根 / クライミングコンサル）</p>"
     new = "<div class='footer-nap'><span class='footer-nav-head'>運営</span><p>AI相談（彦根）</p>"
+    old_address = "<p>〒522-0043<br>滋賀県彦根市小泉町34-8<br>ビバシティ前</p>"
+    contact = render_business_contact(config)
     candidates = []
     for match in re.finditer(r"<footer\b[^>]*>.*?</footer\s*>", html, re.I | re.S):
         tag = BeautifulSoup(match.group(), "html.parser").find("footer")
-        if tag and "site-footer" in tag.get("class", []) and old in match.group():
-            candidates.append(match)
+        if not tag or "site-footer" not in tag.get("class", []):
+            continue
+        nap_matches = []
+        # Scan opening tags independently: other footer columns may contain
+        # nested divs. The business block itself contains only inline tags/p.
+        for start in re.finditer(r"<div\b[^>]*>", match.group(), re.I | re.S):
+            opening = BeautifulSoup(start.group(), "html.parser").find("div")
+            if opening and "footer-nap" in opening.get("class", []):
+                closing = re.search(r"</div\s*>", match.group()[start.end():], re.I)
+                if not closing:
+                    raise ValueError("Expected one legacy homepage business footer")
+                end = start.end() + closing.end()
+                nap_matches.append((start.start(), end))
+        if len(nap_matches) > 1:
+            raise ValueError("Expected one legacy homepage business footer")
+        if nap_matches:
+            begin, end = nap_matches[0]
+            fragment = match.group()[begin:end]
+            if old in fragment or old_address in fragment or contact in fragment:
+                if len(re.findall(r"<div\b", fragment, re.I)) != 1:
+                    raise ValueError("Expected one legacy homepage business footer")
+                candidates.append((match, begin, end, fragment))
     if not candidates:
         return html
-    if len(candidates) != 1 or candidates[0].group().count(old) != 1:
+    if len(candidates) != 1:
         raise ValueError("Expected one legacy homepage business footer")
-    match = candidates[0]
-    return html[:match.start()] + match.group().replace(old, new, 1) + html[match.end():]
+    match, begin, end, fragment = candidates[0]
+    if fragment.count(old) > 1 or fragment.count(old_address) > 1 or fragment.count(contact) > 1:
+        raise ValueError("Expected one legacy homepage business footer")
+    updated = fragment.replace(old, new, 1)
+    if old_address in fragment:
+        if re.search(r"href\s*=\s*['\"]tel:", fragment, re.I):
+            raise ValueError("Business footer already has a telephone; refusing duplicate contact")
+        updated = updated.replace(old_address, contact, 1)
+    elif contact in fragment and len(re.findall(r"href\s*=\s*['\"]tel:", fragment, re.I)) != 1:
+        raise ValueError("Expected one business telephone link")
+    updated_footer = match.group()[:begin] + updated + match.group()[end:]
+    return html[:match.start()] + updated_footer + html[match.end():]
 
 
 def enhance_search_html(html: str, relative_path: str, config: dict) -> str:
-    """Enhance search data plus the approved homepage business identity label."""
+    """Enhance search data plus the approved homepage business identity/contact."""
     path = relative_path.replace("\\", "/")
-    html = _independent_home_business(html, path)
+    html = _independent_home_business(html, path, config)
     match = HEAD.search(html)
     if not match:
         raise ValueError(f"Missing HTML head: {path}")
@@ -375,6 +425,7 @@ def apply_search_presence(public_dir: str | Path, config_path: str | Path) -> di
     write("robots.txt", "User-agent: *\nAllow: /\n" + "".join(f"Disallow: {path}\n" for path in config["robots_disallow"]) + f"Sitemap: {origin}/sitemap.xml\n")
     lines = [f'# {config["site_name"]}', "", "> " + config["llms_intro"], "",
              f'運営は{config["business"]["name"]}。運営拠点は' + ''.join(config["business"]["address"][key] for key in ("addressRegion", "addressLocality", "streetAddress")) + '。講習の開催場所はトップページの案内で確認できます。', "",
+             f'電話: {_business_telephone(config)[0]}', "",
              "内容・料金・受付状況は各公開ページを参照してください。AIオンラインサロンは近日開始・仮運用中です。", ""]
     for section in config["llms_sections"]:
         lines.extend(["## " + section["name"], ""])

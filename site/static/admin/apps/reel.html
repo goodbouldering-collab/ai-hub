@@ -12,8 +12,21 @@
   <header class="topbar"><div><span class="eyebrow">REEL APP SERVER</span><h1>事業別リール制作</h1></div><div class="server-state" id="server-state">接続確認中</div></header>
   <nav class="studio-tabs" aria-label="制作画面"><a id="studio-nav-blog" href="./blog.html">ブログ</a><a class="active" id="studio-nav-reel" href="./reel.html">リール</a><a id="studio-nav-back" href="/studio">入口</a></nav>
   <section class="api-key-panel" aria-labelledby="api-key-heading">
-    <div><span class="eyebrow">API KEY</span><h2 id="api-key-heading">OpenAI APIキー設定</h2><p id="api-key-help">一度保存すると、次回からブログとリールで共通利用できます。このブラウザに暗号化して365日間保存します。</p></div>
-    <div class="api-key-controls"><label>OpenAI APIキー<input id="api-key-input" type="password" autocomplete="off" spellcheck="false" placeholder="sk-... または sk-proj-..."></label><div class="actions"><button class="secondary" id="clear-api-key" type="button" hidden>削除</button><button class="primary" id="save-api-key" type="button">検証して保存</button></div><span class="api-key-status" id="api-key-status"></span></div>
+    <div class="api-key-intro"><span class="eyebrow">API KEY</span><h2 id="api-key-heading">OpenAI APIキー設定</h2><p>キーを発行して保存すると、ブログ・リールの制作に使えます。</p></div>
+    <div class="api-key-setup">
+      <h3><span class="api-key-step" aria-hidden="true">1</span>キーを発行する</h3>
+      <p>OpenAIにログインし、「Create new secret key」でキーを発行してコピーします。</p>
+      <a class="api-key-issue-link" href="https://platform.openai.com/api-keys" target="_blank" rel="noopener noreferrer"><strong>OpenAIのキー発行画面を開く <span aria-hidden="true">↗</span></strong><span>https://platform.openai.com/api-keys</span></a>
+      <p class="api-key-caption">別タブで開きます。発行後、この画面に戻ってください。すでにキーをお持ちなら、入力・保存へ進めます。</p>
+    </div>
+    <div class="api-key-controls">
+      <h3><span class="api-key-step" aria-hidden="true">2</span>キーを入力して保存する</h3>
+      <label for="api-key-input">OpenAI APIキー</label>
+      <input id="api-key-input" type="password" autocomplete="off" spellcheck="false" placeholder="sk-... または sk-proj-..." aria-describedby="api-key-help api-key-status">
+      <div class="actions"><button class="secondary" id="clear-api-key" type="button" hidden>削除</button><button class="primary" id="save-api-key" type="button">検証して保存</button></div>
+      <span class="api-key-status" id="api-key-status" role="status" aria-live="polite"></span>
+      <p id="api-key-help">保存したキーは、このブラウザのブログ・リールで共通利用できます。暗号化して365日間保存します。</p>
+    </div>
   </section>
   <main class="reel-workspace">
     <section class="reel-editor">

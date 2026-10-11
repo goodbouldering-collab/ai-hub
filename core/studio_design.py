@@ -95,7 +95,8 @@ def decorate_html(text: str, *, home: bool = False, admin: bool = False, login: 
                 tag = _attribute(tag, key, value)
             return tag
 
-        text, count = re.subn(r'<img\b[^>]*class=[\"\'][^\"\']*\bcompact-course-visual\b[^\"\']*[\"\'][^>]*>', course, text)
+        # The reel course owns its image; keep the original six-image sequence.
+        text, count = re.subn(r'<img\b(?![^>]*\bdata-reel-course-visual=)[^>]*class=[\"\'][^\"\']*\bcompact-course-visual\b[^\"\']*[\"\'][^>]*>', course, text)
         assert count == 6, "Expected six course illustrations"
         # The soft glass body overlaps its own artwork; links keep their order.
         def course_body(match):

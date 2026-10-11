@@ -2,6 +2,7 @@
 import re
 
 from core.editorial_feed import _ElementSpans
+from core.reel_course import apply_reel_course
 
 NOTICE = (
     "理解度やご希望の内容によって、必要な時間は変わります。通常は2〜3時間が目安です。"
@@ -42,7 +43,7 @@ def apply_course_menu(document: str) -> str:
     document = document.replace("個別講習を予約", "個別相談を予約")
     document = document.replace(">個別講習<", ">個別相談<")
     if 'id="course-time-note"' in document:
-        return _salon_last(document)
+        return apply_reel_course(_salon_last(document))
     pattern = r"<div class=['\"]compact-course-grid['\"]>(.*?)</article></div>"
     match = re.search(pattern, document, re.S)
     if not match:
@@ -73,4 +74,4 @@ def apply_course_menu(document: str) -> str:
     document = document[:match.start()] + replacement + document[match.end():]
     if '</head>' in document:
         document = document.replace('</head>', f'<style id="course-menu-style">{CSS}</style></head>', 1)
-    return _salon_last(document)
+    return apply_reel_course(_salon_last(document))

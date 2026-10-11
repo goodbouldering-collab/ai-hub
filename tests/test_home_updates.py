@@ -125,8 +125,8 @@ class HomeUpdatesTests(unittest.TestCase):
         result = decorate_html(approved, home=True)
         soup = BeautifulSoup(result, 'html.parser')
         self.assertEqual(len(soup.select('#blog .editorial-feed__row')), 3)
-        self.assertEqual(len(soup.select('.compact-course-card > .editorial-course-lead')), 6)
-        self.assertEqual(len(soup.select('[data-editorial-course="20261011"]')), 6)
+        self.assertEqual(len(soup.select('.compact-course-card > .editorial-course-lead')), 7)
+        self.assertEqual(len(soup.select('[data-editorial-course="20261011"]')), 7)
         self.assertEqual(len(soup.select('#editorial-home-style')), 1)
         for image in soup.select('#restored-hero-image img, .compact-course-visual, .focus-step-visual'):
             self.assertIn('/photo-20261011/', image['src'])

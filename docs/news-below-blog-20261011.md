@@ -14,6 +14,12 @@
 
 ## 公開
 
-現在はローカル検証済み、公開前。登録公開元は `work/genspark-profile-edit/cloudflare-runtime`、target `default`、Worker `aiclimb`。統合SHAの入力だけを新規出力へ再生成し、中央ForDeployガードを通す。
+本番公開・画面確認済み。PR [#138](https://github.com/goodbouldering-collab/ai-hub/pull/138) を統合し、公開SHA `44e290c294797fc645da1bfae14ae5e939c41c60` の7入力をGit blobから抽出して再生成した。登録公開元 `work/genspark-profile-edit/cloudflare-runtime` で中央ForDeployガードを通し、Wrangler4.143.1でWorker `aiclimb` のindex.htmlだけを更新した。Cloudflare version `23a1118f-f132-44f4-84d0-608a3e506c84`。
 
-今回の工程記録: 事業ルート `tmp/delivery/20261011-news-below-blog.json`。証拠: `tmp/news-below-blog/evidence/`。プレビュー http://127.0.0.1:4036/ 、起動時親PID26044、2026-10-13 19:44:35 JST終了予定。
+公開資産は登録元 `.news-below-blog-20261011-final`、入力スナップショットは `.news-below-blog-20261011-source`。直前のPR #137の公開版とホームのSHA一致を確認してから生成・公開した。599資産とWorkerを保持し、登録元の別作業17ファイル・ステージ済み差分も保全した。
+
+本番ホーム、ニュース詳細、ブログ一覧は公開資産とのSHA一致を確認。health200、admin/login200、admin303、認証なしAPI401、旧記事URLから正規URLへの転送も確認した。PC1440pxとスマートフォン390pxの実画面でブログ→ニュース順、横はみ出しなし、ニュース5件とCodexへの遷移、モバイルメニュー開閉を検証。詳細ページや管理APIの変更はない。
+
+今回の工程記録: 事業ルート `tmp/delivery/20261011-news-below-blog.json`。Git/PR/証拠/本番応答検査は `DELIVERY_VERIFIED`。証拠: 登録元 `tmp/delivery/20261011-news-below-blog/` のdeploy.txt、live-feature.txt、live-http.json、live-browser.json、live-desktop.png、live-mobile.png。文書の事後更新は別の文書PRで共有し、公開SHAを変更しない。
+
+プレビュー http://127.0.0.1:4036/ 、起動時親PID26044、2026-10-13 19:44:35 JST終了予定。今回の依頼の残件なし。既存の管理認証やGoogle設定など他作業の未完了事項は、その作業記録を継続する。

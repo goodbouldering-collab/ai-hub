@@ -1,4 +1,4 @@
-"""Build a search release with only the explicitly approved business label edit."""
+"""Build a search release with only the explicitly approved business contact edits."""
 from __future__ import annotations
 
 import argparse
@@ -12,16 +12,16 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from bs4 import BeautifulSoup
-from core.search_presence import apply_search_presence
+from core.search_presence import apply_search_presence, render_business_contact
 
-CONTRACT = ROOT / "deployment/search-presence/release-baseline.json"
+CONTRACT = ROOT / "deployment/search-presence/contact-baseline.json"
 CONFIG = ROOT / "config/search-presence.json"
 DISCOVERY_FILES = frozenset({"robots.txt", "sitemap.xml", "llms.txt", "llms-full.txt"})
 SOURCE_INPUTS = (
     "scripts/build_search_presence_release.py",
     "core/search_presence.py",
     "config/search-presence.json",
-    "deployment/search-presence/release-baseline.json",
+    "deployment/search-presence/contact-baseline.json",
 )
 HEAD = re.compile(r"(<head\b[^>]*>)(.*?)(</head\s*>)", re.I | re.S)
 JSON_LD = re.compile(r"<script\b(?=[^>]*\btype\s*=\s*['\"]application/ld\+json['\"])[^>]*>.*?</script\s*>", re.I | re.S)
@@ -73,26 +73,38 @@ def assert_metadata_only(before: bytes, after: bytes, name: str) -> None:
 
 
 def assert_search_changes(before: bytes, after: bytes, name: str) -> bool:
-    """Allow exactly one homepage business-label correction; otherwise strict."""
+    """Permit only the approved homepage identity, address and phone changes."""
     old, new = before.decode("utf-8"), after.decode("utf-8")
     a, b = HEAD.search(old), HEAD.search(new)
     if not a or not b or old[a.end():] == new[b.end():]:
         assert_metadata_only(before, after, name)
         return False
     if name != "index.html":
-        raise ValueError(f"Business label edit is limited to the homepage: {name}")
+        raise ValueError(f"Business contact edit is limited to the homepage: {name}")
     old_label = "<div class='footer-nap'><span class='footer-nav-head'>運営</span><p>AI相談（彦根 / クライミングコンサル）</p>"
     new_label = "<div class='footer-nap'><span class='footer-nav-head'>運営</span><p>AI相談（彦根）</p>"
+    old_address = "<p>〒522-0043<br>滋賀県彦根市小泉町34-8<br>ビバシティ前</p>"
     body = old[a.end():]
-    footers = list(re.finditer(r"<footer\b[^>]*>.*?</footer\s*>", body, re.I | re.S))
-    eligible = [m for m in footers if old_label in m.group()
-                and "site-footer" in BeautifulSoup(m.group(), "html.parser").footer.get("class", [])]
-    if len(eligible) != 1 or body.count(old_label) != 1:
+    eligible = []
+    for footer in re.finditer(r"<footer\b[^>]*>.*?</footer\s*>", body, re.I | re.S):
+        tag = BeautifulSoup(footer.group(), "html.parser").footer
+        if not tag or "site-footer" not in tag.get("class", []):
+            continue
+        for nap in re.finditer(r"<div\b[^>]*class=['\"]footer-nap['\"][^>]*>.*?</div\s*>", footer.group(), re.I | re.S):
+            if old_label in nap.group() or old_address in nap.group():
+                eligible.append((footer.start() + nap.start(), footer.start() + nap.end(), nap.group()))
+    if len(eligible) != 1 or body.count(old_label) > 1 or body.count(old_address) > 1:
         raise ValueError("Expected exactly one approved legacy business footer")
-    permitted = body.replace(old_label, new_label, 1)
+    start, end, original = eligible[0]
+    replacement = original.replace(old_label, new_label, 1)
+    if old_address in original:
+        if BeautifulSoup(original, "html.parser").select('a[href^="tel:"]'):
+            raise ValueError("Existing telephone conflicts with the approved contact addition")
+        config = json.loads(CONFIG.read_text(encoding="utf-8"))
+        replacement = replacement.replace(old_address, render_business_contact(config), 1)
+    permitted = body[:start] + replacement + body[end:]
     if permitted != new[b.end():]:
-        raise ValueError("Body change exceeds the approved business footer label")
-    # The existing metadata/body guard stays unchanged and validates the rest.
+        raise ValueError("Body change exceeds the approved business footer contact details")
     assert_metadata_only((old[:a.end()] + permitted).encode("utf-8"), after, name)
     return True
 

@@ -103,6 +103,9 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from public_navigation import render_desktop_navigation, render_mobile_navigation
 from blog_freshness import blog_date_label, effective_blog_date, is_new_blog
+from core.search_presence import render_business_contact
+
+SEARCH_PRESENCE_CONFIG = json.loads((ROOT / "config/search-presence.json").read_text(encoding="utf-8"))
 
 BUSINESSES_YAML = ROOT / "config" / "businesses.yaml"
 PROFILE_YAML = ROOT / "config" / "profile.yaml"
@@ -244,6 +247,7 @@ def _build_jsonld_website() -> str:
         "url": SITE_URL,
         "image": OG_IMAGE_URL,
         "email": OWNER_EMAIL,
+        "telephone": SEARCH_PRESENCE_CONFIG["business"]["telephone"],
         "priceRange": "¥¥",
         "founder": {"@id": person_id},
         "areaServed": [
@@ -251,14 +255,7 @@ def _build_jsonld_website() -> str:
             {"@type": "AdministrativeArea", "name": "滋賀県湖東地域"},
             {"@type": "AdministrativeArea", "name": "滋賀県"},
         ],
-        "address": {
-            "@type": "PostalAddress",
-            "postalCode": "522-0043",
-            "addressRegion": "滋賀県",
-            "addressLocality": "彦根市",
-            "streetAddress": "小泉町34-8",
-            "addressCountry": "JP",
-        },
+        "address": dict(SEARCH_PRESENCE_CONFIG["business"]["address"]),
         "description": "滋賀県彦根市を拠点に、地域事業者・学校・福祉施設・個人事業主向けのAI相談、業務改善、講習、Web/業務アプリ制作を行う。AIclimbは、課題を一段ずつ登るように、相談から実装、公開、運用定着まで伴走する実践支援ブランド。",
         "knowsAbout": [
             "AI相談", "AIエージェント講習", "AIオンラインサロン", "ChatGPT", "Claude Code", "Codex", "画像生成", "AI業務改善",
@@ -12483,7 +12480,7 @@ def _render_footer(today: str) -> str:
         "<span class='footer-nav-head'>運営</span>"
         "<p>AI相談（彦根）</p>"
         "<p>代表 由井 辰美</p>"
-        "<p>〒522-0043<br>滋賀県彦根市小泉町34-8<br>ビバシティ前</p>"
+        f"{render_business_contact(SEARCH_PRESENCE_CONFIG)}"
         f"<p><a href='mailto:{OWNER_EMAIL}'>{OWNER_EMAIL}</a></p>"
         "<p class='footer-area'>対応: 彦根・湖東・滋賀県全域 / 出張・オンライン全国</p>"
         "</div>"

@@ -6,7 +6,7 @@ from xml.etree import ElementTree as ET
 
 from bs4 import BeautifulSoup
 
-from core.search_presence import apply_search_presence, enhance_search_html
+from core.search_presence import apply_search_presence, enhance_search_html, render_business_contact
 from scripts.build_search_presence_release import assert_metadata_only, assert_search_changes
 
 
@@ -66,7 +66,9 @@ class SearchPresenceTests(unittest.TestCase):
         self.assertTrue(any(n.get("@type") == "CollectionPage" for n in archive))
         self.assertFalse(any(n.get("@type") == "BlogPosting" for n in archive))
         business = next(n for n in archive if n.get("@type") == "ProfessionalService")
-        for field in ("telephone", "openingHours", "aggregateRating", "review", "sameAs", "founder"):
+        self.assertEqual(business["telephone"], "+81-80-3828-3985")
+        self.assertEqual(business["address"]["streetAddress"], "小泉町34-8 2階")
+        for field in ("openingHours", "aggregateRating", "review", "sameAs", "founder"):
             self.assertNotIn(field, business)
 
     def test_home_removes_false_breadcrumb_and_preserves_course_offer(self):
@@ -103,6 +105,9 @@ class SearchPresenceTests(unittest.TestCase):
                 self.assertNotIn("/watch/", content)
                 self.assertNotIn("/speed-monitor", content)
                 self.assertNotIn("/draft", content)
+                if name == "llms.txt":
+                    self.assertIn("小泉町34-8 2階", content)
+                    self.assertEqual(content.count("電話: 080-3828-3985"), 1)
             self.assertNotIn("Disallow: /design-system/", (root / "robots.txt").read_text())
             self.assertEqual(apply_search_presence(root, CONFIG_PATH)["changed_files"], [])
 
@@ -193,6 +198,59 @@ class SearchPresenceTests(unittest.TestCase):
         doubled = original.replace(label, label + label)
         with self.assertRaisesRegex(ValueError, "one legacy"):
             enhance_search_html(doubled, "index.html", self.config)
+
+    def test_confirmed_business_contact_renders_from_config_and_preserves_crlf(self):
+        address = "<p>〒522-0043<br>滋賀県彦根市小泉町34-8<br>ビバシティ前</p>"
+        email = "<p><a href='mailto:goodbouldering@gmail.com'>メール</a></p>"
+        legacy = "AI相談（彦根 / クライミングコンサル）"
+        footer = ("<footer class='site-footer'><div class='footer-columns'><div>他の案内</div></div>"
+                  "<div class='footer-nap'><span class='footer-nav-head'>運営</span><p>" + legacy + "</p>"
+                  + address + email + "</div></footer>")
+        expected = ("<p>〒522-0043<br>滋賀県彦根市小泉町34-8 2階<br>ビバシティ前</p>"
+                    "<p><a href='tel:+818038283985'>080-3828-3985</a></p>")
+        self.assertEqual(render_business_contact(self.config), expected)
+        original = page(path="/", newline="\r\n").replace('</body>', footer + '\r\n</body>')
+        updated = enhance_search_html(original, "index.html", self.config)
+        expected_body = original.split('</head>', 1)[1].replace(legacy, "AI相談（彦根）").replace(address, expected)
+        self.assertEqual(updated.split('</head>', 1)[1], expected_body)
+        self.assertIn(expected + email, updated)
+        self.assertEqual(updated.count("href='tel:+818038283985'"), 1)
+        self.assertEqual(enhance_search_html(updated, "index.html", self.config), updated)
+        self.assertTrue(assert_search_changes(original.encode(), updated.encode(), "index.html"))
+        self.config["business"]["telephone"] = "+81-90-1234-5678"
+        self.config["business"]["address"]["streetAddress"] = "確認済み住所 <別表記>"
+        custom = render_business_contact(self.config)
+        self.assertIn("href='tel:+819012345678'", custom)
+        self.assertIn("090-1234-5678", custom)
+        self.assertIn("確認済み住所 &lt;別表記&gt;", custom)
+
+    def test_business_contact_only_changes_exact_home_footer_address(self):
+        address = "<p>〒522-0043<br>滋賀県彦根市小泉町34-8<br>ビバシティ前</p>"
+        footer = "<footer class='site-footer'><div class='footer-nap'>" + address + "</div></footer>"
+        outside = "<section>" + address + "</section><footer class='other-footer'><div class='footer-nap'>" + address + "</div></footer>"
+        original = page(path="/").replace('</body>', outside + footer + '</body>')
+        updated = enhance_search_html(original, "index.html", self.config)
+        expected = original.split('</head>', 1)[1].replace(footer, footer.replace(address, render_business_contact(self.config)))
+        self.assertEqual(updated.split('</head>', 1)[1], expected)
+        non_home = page(path="/speaker.html").replace('</body>', footer + '</body>')
+        self.assertEqual(enhance_search_html(non_home, "speaker.html", self.config).split('</head>', 1)[1], non_home.split('</head>', 1)[1])
+        near_match = page(path="/").replace('</body>', footer.replace("34-8", "34-9") + '</body>')
+        self.assertEqual(enhance_search_html(near_match, "index.html", self.config).split('</head>', 1)[1], near_match.split('</head>', 1)[1])
+        with self.assertRaises(ValueError):
+            assert_search_changes(original.encode(), updated.replace("既存の本文", "別の本文").encode(), "index.html")
+
+    def test_business_contact_rejects_duplicate_or_ambiguous_footer(self):
+        address = "<p>〒522-0043<br>滋賀県彦根市小泉町34-8<br>ビバシティ前</p>"
+        nap = "<div class='footer-nap'>" + address + "</div>"
+        for content in (nap + nap, nap.replace(address, address + address),
+                        nap.replace(address, "<div>" + address + "</div>")):
+            source = page(path="/").replace('</body>', "<footer class='site-footer'>" + content + "</footer></body>")
+            with self.assertRaisesRegex(ValueError, "one legacy"):
+                enhance_search_html(source, "index.html", self.config)
+        for contact in (address, render_business_contact(self.config)):
+            source = page(path="/").replace('</body>', "<footer class='site-footer'><div class='footer-nap'>" + contact + "<a href='tel:+81123456789'>別の電話</a></div></footer></body>")
+            with self.assertRaisesRegex(ValueError, "telephone"):
+                enhance_search_html(source, "index.html", self.config)
 
 
 if __name__ == "__main__":

@@ -1,6 +1,8 @@
 """Keep the public course menu, pricing and extension guidance together."""
 import re
 
+from core.editorial_feed import _ElementSpans
+
 NOTICE = (
     "理解度やご希望の内容によって、必要な時間は変わります。通常は2〜3時間が目安です。"
     "当日の予定に余裕がある場合は、ご相談のうえ時間を延長して進められます。"
@@ -18,12 +20,29 @@ body #packages .compact-course-grid>.compact-course-card{grid-column:auto!import
 """
 
 
+def _salon_last(document: str) -> str:
+    """Move the complete salon card last without changing any card contents."""
+    for start, end in reversed(_ElementSpans(document, 'compact-course-grid').spans):
+        grid = document[start:end]
+        spans = _ElementSpans(grid, 'compact-course-card').spans
+        for index, (card_start, card_end) in enumerate(spans):
+            card = grid[card_start:card_end]
+            if re.search(r"\bid=['\"]seven-day-courses['\"]", card.split('>', 1)[0]):
+                if index != len(spans) - 1:
+                    last_end = spans[-1][1]
+                    grid = (grid[:card_start] + grid[card_end:last_end]
+                            + card + grid[last_end:])
+                    document = document[:start] + grid + document[end:]
+                break
+    return document
+
+
 def apply_course_menu(document: str) -> str:
     document = document.replace("AI個別講習", "AI個別相談")
     document = document.replace("個別講習を予約", "個別相談を予約")
     document = document.replace(">個別講習<", ">個別相談<")
     if 'id="course-time-note"' in document:
-        return document
+        return _salon_last(document)
     pattern = r"<div class=['\"]compact-course-grid['\"]>(.*?)</article></div>"
     match = re.search(pattern, document, re.S)
     if not match:
@@ -54,4 +73,4 @@ def apply_course_menu(document: str) -> str:
     document = document[:match.start()] + replacement + document[match.end():]
     if '</head>' in document:
         document = document.replace('</head>', f'<style id="course-menu-style">{CSS}</style></head>', 1)
-    return document
+    return _salon_last(document)

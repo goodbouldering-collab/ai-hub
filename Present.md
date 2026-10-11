@@ -5,13 +5,14 @@
 AI講座・業務改善相談の案内、ブログ、制作実績を提供する。確認済み公開URLは https://aiclimb.aiclimb.workers.dev 。独自ドメイン未設定のため、このURLを使用する。公開先は共通Cloudflare台帳の `work/genspark-profile-edit/cloudflare-runtime`。事業ルートには別作業の差分があるため、一括同期しない。
 
 
-## SEO・MEO整備（2026-10-11、ローカル検証済み）
+## SEO・MEO整備（2026-10-11、本番確認済み・外部設定に残件）
 
-- 公開47ページのJSON-LD・canonical・OG情報を統一。sitemap/robotsと公開情報だけのllms.txt・llms-full.txtを整備。既存本文・料金・画像・管理Workerを変更しない検査を追加。
-- 公開済み598資産を厳密なbaselineとし、統合済みSHAからメタデータだけの公開物を生成する。Python52件・Cloudflare7件・管理Worker4件・設定チェック成功。今回のSEO変更はまだ未公開。
-- 既存Googleビジネス「クライミングコンサル」の事業説明・滋賀県の対応地域・AI5サービスを保存。サービスはGoogle審査待ち。AI個別相談の予約リンクも保存し、再読込で照合済み。既存名称・住所・電話・営業時間・サイトURLは変更しない。
-- Search Consoleは確認タグ取得まで。新しい所有権追加の実行時確認が未回答のため、タグ公開・所有権確認・サイトマップ送信は未実施。Wikidataは同一の項目・必要な独立出典を確認できず、誤ったsameAsや宣伝目的の項目は追加していない。
-- 詳細と再生成手順: [SEO・MEO記録](docs/seo-meo-20261011/README.md)。Googleの検索掲載件数・順位上昇は未測定。
+- 公開47ページのJSON-LD・canonical・OG情報を統一し、sitemap/robotsと公開情報だけのllms.txt・llms-full.txtを公開。本文・画像・既存料金・管理Workerを保持。日次再生成にも同じ整備を適用する。
+- PR #133〜#135を統合し、検証基準SHA `364d7d0ee00d5aa64e8be191e471b807bb653812`、Cloudflare version `1561c92a-22d9-4e35-8cff-4331b94f64d5` を公開。192 HTML本文、既存547資産・Workerの不変、600資産の生成、公開47正規URLを検査。公開受講資料の旧 `.html` URLで発生していた503も修正。
+- Googleの本番リッチリザルトテストで有効5件（講座3・地域サービス1・組織1）、重大エラー0件を確認。点数のない感想15件の不完全なReview指定だけを除去し、本文の感想は保持。任意の電話番号・事業全体の価格帯は未確定のため補わない。
+- 既存Googleビジネス「クライミングコンサル」の説明・滋賀県の対応地域・AI5サービス・AI個別相談の予約リンクを保存し再読込で照合。最終確認で審査待ち表示は消えている。検索・マップへの一般公開反映や順位変化は未測定。
+- Search Consoleは確認タグ取得まで。所有権追加の実行時確認が未回答のため、タグ公開・所有権確認・サイトマップ送信は未実施。Wikidataは同一項目・独立した出典を確認できず、新規項目や誤ったsameAsは追加していない。
+- 現行公開物の基準は登録元 `.search-presence-release-20261011-r2-final`。運用記録だけを統合する際も全公開入力の一致を検査する。最新の公開SHA・version・工程検査は登録元 `tmp/delivery/20261011-seo-meo-entity/` と同名JSONを参照。詳細: [SEO・MEO記録](docs/seo-meo-20261011/README.md)。
 
 ## 最新の公開状態（2026-10-11）
 
@@ -21,7 +22,7 @@ AI講座・業務改善相談の案内、ブログ、制作実績を提供する
 - Python44件・管理Worker4件・Cloudflare7件成功。確定Git blob38入力から再生成し、bundleの再ビルド一致、中央ForDeployガード成功。公開HTML2件変更・画像21件追加・575資産不変。別作業16ファイルと既存ステージ差分を保全。
 - 本番29資産のSHA一致、認証必須7経路、health200・login200を確認。既存AI相談ChromeでPC1440px/iPhone390pxの画像・ブログ・2診断のクリック遷移・モバイルメニューを確認。横はみ出しなし。
 - 管理ホーム・制作・資料検索と本文はローカル仮認証で表示確認。本番の保存済みログイン候補がないため、本人ログイン後の画面確認だけ未完了。工程記録は `DELIVERY_INCOMPLETE`。次は本番 `/admin/login` でログインし、4メニューと資料検索/保存を確認する。認証変更・実キー保存・外部生成・投稿はしていない。
-- 次回の公開基準は登録元 `.cool-editorial-release-20261011-final/public` と `verification.json`。公開Workerは `deployment/admin-workspace/published-worker.mjs`。日次生成は今回の新baselineを確認して使い、旧Workerや未公開JPC差分を混ぜない。
+- 画像刷新時の保存基準は登録元 `.cool-editorial-release-20261011-final/public` と `verification.json`。現行のSEO反映済み基準は上記SEO記録を参照。公開Workerは `deployment/admin-workspace/published-worker.mjs`。日次生成は今回の新baselineを確認して使い、旧Workerや未公開JPC差分を混ぜない。
 - 詳細: [制作・検証・公開記録](docs/cool-editorial-20261011/README.md)。証拠は登録元 `tmp/delivery/20261011-cool-editorial-images/`。プレビュー http://127.0.0.1:4034/、親PID26088、10月13日12:34:17 JST終了予定。管理はローカル仮認証。
 - 10月11日のAIニュース5件・Codex0.162.1記事・講習料金/申込先・実績/本人写真を保持。日次記事の根拠は[日次記録](docs/daily-news-20261011-run.md)、旧画像制作は[履歴](docs/home-editorial-20261011/README.md)。
 

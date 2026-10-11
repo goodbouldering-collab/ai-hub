@@ -1,39 +1,29 @@
-# AI相談の独立事業情報・Search Console整備（2026-10-11）
+# AI相談の独立事業情報・検索設定（2026-10-11）
 
-## 事業情報の根拠
+## 連絡先整備の公開版
 
-本人回答により、AI相談はクライミングコンサルとは独立した別事業として扱う。前回SEO・MEO作業の同一事業という判断は失効した。所在地はNotエステと同じ〒522-0043 滋賀県彦根市小泉町34-8 2階、公開事業電話は本人指定の080-3828-3985。階数は[Notエステ公式アクセス案内](https://notesthe.com/company/access)でも照合した。Notエステの電話番号は流用しない。本人はAI相談の常設表示があり、この拠点で来店対応すると確認している。岡町12の講習会場とは区別する。
+AI相談はクライミングコンサルとは独立した別事業。本人指定の公開電話080-3828-3985、〒522-0043 滋賀県彦根市小泉町34-8 2階を使用する。階数は[Notエステ公式アクセス案内](https://notesthe.com/company/access)とも照合したが、他事業の電話は流用しない。本人はAI相談の常設表示と来店対応を確認している。岡町12の講習会場とは区別する。
 
-正規URLは https://aiclimb.aiclimb.workers.dev/ 。独自ドメインは未設定。管理画面・内部資料・顧客情報は公開検索対象へ含めない。
+正規URL: https://aiclimb.aiclimb.workers.dev/ 。独自ドメイン未設定。PR #137で独立事業情報とGSCタグを公開し、PR #140で電話・階数を統一した。連絡先整備の公開SHAは `9798893e7d62f79684af3178229f33e850b2aa32`、Cloudflare versionは `e193c0f6-3d6c-419a-b50a-62bc460d0cf0`。登録公開元の `.ai-business-contact-20261011-final` がこの公開の600資産、同 `-source` が確定SHAの入力である。後続の配置変更・公開版はその作業記録で照合し、文書更新のために旧版を再配信しない。
 
-## 独立事業への訂正：公開済み
+## 実装・検証・保全
 
-PR #137、SHA `1393e7ee24e8a0f0a7374d18e2faebdd48f6ddb6`、Cloudflare version `047680d8-076f-458c-b899-49d10f044f4d`。登録公開元 `.independent-ai-search-20261011-final` から配信した。47公開HTMLの独立事業JSON-LD・承認済みGSCタグと管理保護9経路はHTTP検証済み。
+- 47公開ページのJSON-LD・canonical・GSCタグ・事業連絡先、robots/sitemap/llmsを整合。親組織の誤った関係を除去し、講師とAI相談の関係、既存料金・記事日付は保持。`config/search-presence.json` を公開事業情報の正本とする。
+- 電話リンクはホーム運営欄のメール前に1行。本文ガードは同欄の指定された住所・電話だけを許可し、日次再生成を含め、その他の本文・画像・CSS・JavaScript・Worker変更を拒否する。
+- 最新ニュース配置版PR #138の600資産を `deployment/search-presence/contact-baseline.json` に固定。今回の変更は47 HTMLの電話/住所schemaとホーム連絡先、llms.txtの48資産。残り552資産・ニュース配置・GSCタグ・robots・sitemap・llms-full・Workerは同一。
+- Python58件、Cloudflare7件、管理Worker4件、構成チェックが成功。旧598資産・異なるWorker・既存出力の拒否も確認。統合済みSHAからの再生成600資産とWorkerは候補に完全一致した。
+- 登録元17差分・ステージ内容・未公開JPC・事業ルートcheckoutを保全。中央公開先ガード後に公開し、初回fetch failedは同一成果物とガード再検査で再試行成功。51資産hash（変更48＋robots/sitemap/llms-full）、47正規URL、電話/階数/独立事業/GSC、旧資料URL転送、管理保護9経路、health・ログイン画面200はHTTP検証成功。既存事業用ChromeのPC1536pxと390×844pxで、公開フッターの2階住所とtel:+818038283985を確認。証拠は `tmp/independent-ai-search-20261011/live-contact-desktop.jpg` と `live-contact-mobile.jpg`。
 
-AI相談のProfessionalServiceから親組織関係とクライミングコンサルのOrganizationノードを除去し、由井辰美とAI相談の関係を維持。llmsの運営元をAI相談、ホームの運営表記を「AI相談（彦根）」へ訂正した。Python55件・Cloudflare7件・管理Worker4件・構成チェック成功。旧r2との差分は47 HTMLとllms.txtの48資産で、本文変更はホームの運営表記1箇所だった。
+検証: `tmp/independent-ai-search-20261011/contact-verify.txt`、`contact-comparison.json`。Git統合・確定生成・公開・HTTPの証拠: `work/genspark-profile-edit/tmp/delivery/20261011-ai-business-contact/`。候補のsource_shaラベルと本番公開SHAを混同しない。前回判断の履歴は[旧SEO記録](../seo-meo-20261011/README.md)、ニュース配置は[公開記録](../news-below-blog-20261011.md)を参照。
 
-## 電話・階数の追補：公開前
+## Google側の結果
 
-`config/search-presence.json` のbusiness.telephoneとaddressを正本とし、JSON-LDの#business、llms、ホーム運営欄へ同じ情報を出力する。電話の表示は080-3828-3985、クリック先はtel:+818038283985、構造化データは+81-80-3828-3985。住所末尾へ2階を追加し、メールの前に電話リンク1行を置く。生成元と日次テンプレートも整合させる。
+Search Consoleは承認済みアカウントで所有権確認に成功。サイトマップ送信は受付済みだが、最終再読込でも一覧には「取得できませんでした」・検出0が残る。20:05 JSTのGSC公開URL検査（sitemap.xml）ではクロール許可・ページ取得・登録許可が成功し、robots・47 URLのXMLも正常。サイトマップ処理は待ち、原因未特定であり、全47 URLの読込・登録成功とは扱わない。トップは既にインデックス登録済み。旧クロールのReview15件の無効警告は残るが、現行HTMLにReviewはない。更新後のトップへインデックス登録を1回リクエストし、優先クロールキュー受付を確認した（gsc-home-reindex-requested.jpg）。再送を連打しない。証拠は `gsc-ownership-confirmed.jpg`、`gsc-sitemap-submitted-pending.jpg`、`gsc-sitemap-live-fetch-success.jpg/.txt`。
 
-本文変更ガードはホームのsite-footer内の単一footer-napだけを対象に、既存の運営名訂正、指定された旧住所の置換と電話1行の追加を許可する。他の本文・画像・JavaScript・CSS・Workerの変更は拒否する。旧住所や電話の重複を許容せず、再処理で電話を増やさない。
+前回クライミングコンサルのGBPへ追加したAI5サービス・説明・対応地域・予約リンクは復元完了。同一事業という旧判断は失効した。AI相談の新GBP（プロフィールID `8474055285715858305`）をITコンサルタントとして作成。名称・カテゴリ・住所・電話・Web・説明・5サービスの料金と説明を保存し、管理画面の再読込で照合した。予約設定は「オーナー確認を行って予約機能を設定しましょう」と表示され、動画確認後の残件になった。5サービスの料金・説明は再読込で照合済み（gbp-ai-services-saved.txt/jpg）。追加属性「実店舗の営業あり」「オンライン予約可」「要予約」も保存・再読込で照合した。営業時間は未確認のため入力をスキップし、管理UIは「営業時間不定で営業している」と表示する。実際の営業時間が確定したら整合させる。写真は未登録。
 
-並行統合されたPR #138のニュース配置を保持するため、SHA `44e290c294797fc645da1bfae14ae5e939c41c60`、version `23a1118f-f132-44f4-84d0-608a3e506c84` の `.news-below-blog-20261011-final` を新baselineにした。600資産・Worker・本番ホームhashを照合済み。`deployment/search-presence/contact-baseline.json` に全hashを固定し、旧598資産の基準は履歴として保持する。
+新GBPはGoogleの動画によるオーナー確認待ちで、確認済み・マップ一般公開済みとは扱わない。本人の現地操作は `tmp/independent-ai-search-20261011/gbp-video-handoff.md` にまとめた。Googleの撮影案内は「1〜2分」「屋外から」「事前録画不可」。撮影開始ボタンの画面まで確認し、記録は開始していない（gbp-ai-video-handoff.jpg）。非公開アカウント識別情報はGitへ保存しない。Wikidataは一致項目と独立した信頼できる出典を確認できず、未作成・sameAs未追加。検索順位の変化は未測定。
 
-候補と検証証拠は `tmp/independent-ai-search-20261011/contact-candidate/`、`contact-verify.txt`、`contact-comparison.json`。候補生成時のsource_shaは作業基点を表す未コミット版ラベルであり、公開SHAではない。公開時は今回の統合SHAのGit blobから再生成し、全600資産とWorkerの候補一致を確認する。Python回帰58件・Cloudflare7件・管理Worker4件・構成チェックが成功。最新baseline比48資産のみ更新し、552資産・Worker・ニュース配置・その他schema・GSCタグ・robots・sitemap・llms-fullを保持。実ポータル生成関数も電話と階数が一致し、旧598資産・異なるWorker・既存出力の拒否を確認した。
+## 残件
 
-## Google側の状態
-
-承認済みアカウントでSearch Consoleの所有権確認に成功した。サイトマップ送信は受付済みだが、一覧は「取得できませんでした」・検出0。20:05 JSTのGSC公開URL検査（sitemap.xml）は「クロール許可はい／ページ取得成功／登録許可はい」を確認。robots・47 URLのXMLも正常で、サイトマップ処理のみ待ち・原因未特定。再送を連打せず、Googleのサイトマップ読込成功やインデックス登録済みとは混同しない。証拠は `tmp/independent-ai-search-20261011/gsc-sitemap-live-fetch-success.jpg` と同名txt。非公開のアカウント識別情報はGitへ保存しない。
-
-クライミングコンサルの既存GBPへ前回追加したAI5サービス・説明・対応地域・予約リンクは、本人承認に従って復元完了。別事業であるAI相談の情報を同じGBPへ戻さない。
-
-AI相談の新規GBPはITコンサルタントとして登録手続きに到達し、Googleから動画による確認を要求されている。常設表示について一度自動承認審査で住所手順が止まったが、本人が「常設表示あり」と確認し、同じ正規UIから再開した。本人による動画確認が終わるまで、所有権確認済み・マップ一般公開済みとは扱わない。営業時間やその他の未確認情報を補わない。
-
-Wikidataは同一項目と独立した信頼できる出典が未確認で、新規作成・sameAs追加をしない。実際のGoogle順位変化は未測定。
-
-## 次の工程と保持する残件
-
-今回分だけを検証・commit・push・PR・必須チェック・統合し、登録元の別作業差分を保全して再生成する。中央台帳の公開先ガード後に公開し、47正規URL、変更資産hash、住所・電話schemaとフッター、GSCタグ、llms、ニュース配置、旧受講資料URL、管理保護経路を確認する。
-
-既存の本番管理ログイン後の画面確認、実キー保存・再訪・生成の未検証状態、未公開JPC差分は今回の検証で解消した扱いにしない。日次ニュース、画像刷新、2診断ボタン、ブログ引用の削除、管理4メニューを保持する。
+本人の動画確認後に予約リンクを設定し、営業時間・実写写真の確定とサイトマップ処理結果を確認する。今回のGoogle画面証拠は `tmp/independent-ai-search-20261011/` に保存。既存の本番管理ログイン後の画面確認、実キー保存・再訪・生成、未公開JPC差分は継続する。画像刷新・2診断・ブログ引用削除・管理4メニュー・最新ニュース配置は保持した。

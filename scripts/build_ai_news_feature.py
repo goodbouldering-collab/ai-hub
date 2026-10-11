@@ -33,6 +33,7 @@ from core.friendly_home import apply_public_logo
 from core.studio_design import decorate_public_tree
 from core.home_updates import apply_home_updates
 from core.editorial_feed import apply_blog_feed
+from core.editorial_feed import _ElementSpans
 from core.editorial_home import apply_editorial_home
 from core.search_presence import apply_search_presence, enhance_search_html
 from scripts.build_search_presence_release import assert_search_changes, DISCOVERY_FILES
@@ -40,6 +41,21 @@ from scripts.build_search_presence_release import assert_search_changes, DISCOVE
 TEMPLATES = ROOT / "site/templates/ai-news"
 URL = "https://aiclimb.aiclimb.workers.dev/ai-news/"
 SEARCH_CONFIG = ROOT / "config/search-presence.json"
+
+
+def place_news_after_hero(document: str) -> str:
+    """Keep the daily resource independent from the published blog list."""
+    news = _ElementSpans(document, element_id='ai-news').spans
+    heroes = _ElementSpans(document, element_id='top').spans
+    if len(news) != 1 or len(heroes) != 1:
+        raise ValueError('Expected one hero and one news entry')
+    start, end = news[0]
+    feature = document[start:end]
+    feature = re.sub(r'<h3(\s+id=[\x27"]ai-news-feature-title[\x27"][^>]*)>(.*?)</h3>',
+                     r'<h2\1>\2</h2>', feature, flags=re.S)
+    document = document[:start] + document[end:]
+    insertion = _ElementSpans(document, element_id='top').spans[0][1]
+    return document[:insertion] + feature + document[insertion:]
 
 
 def remove_old_cards(text: str) -> str:
@@ -123,12 +139,20 @@ def build(output: Path, base_assets: Path | None = None, *, preserve_baseline_pr
         home = apply_diagnosis_copy(apply_hero_copy(apply_course_menu(home)))
         home = restore_home_speaker(apply_instagram_feed(remove_soft_playground(home)))
     blog = remove_old_cards((TEMPLATES / "blog.html").read_text(encoding="utf-8"))
-    home = apply_home_updates(home, blog, (TEMPLATES / "home-updates.css").read_text(encoding="utf-8"))
-    home = apply_news_images(apply_diagnosis_copy(home), news)
-    blog = apply_blog_feed(blog, modified, (TEMPLATES / "editorial-feed.css").read_text(encoding="utf-8"))
+    if not preserve_baseline_presentation:
+        home = apply_home_updates(home, blog, (TEMPLATES / "home-updates.css").read_text(encoding="utf-8"))
+        home = apply_diagnosis_copy(home)
+        blog = apply_blog_feed(blog, modified, (TEMPLATES / "editorial-feed.css").read_text(encoding="utf-8"))
+    home = place_news_after_hero(apply_news_images(home, news))
     sitemap = (TEMPLATES / "sitemap.xml").read_text(encoding="utf-8")
     sitemap, count = re.subn(r"<url><loc>[^<]*/blog/codex-update-log\.html</loc>.*?</url>", f"<url><loc>{URL}</loc><lastmod>{modified}</lastmod><priority>0.9</priority></url>", sitemap, flags=re.S)
     assert count == 1
+    if preserve_baseline_presentation:
+        sitemap = (base_assets / "sitemap.xml").read_text(encoding="utf-8")
+        sitemap, count = re.subn(
+            r'(<url>\s*<loc>' + re.escape(URL) + r'</loc>\s*<lastmod>)[^<]+(</lastmod>)',
+            lambda match: match[1] + modified + match[2], sitemap)
+        assert count == 1, "Expected one existing news sitemap date"
     results = {"index.html": home, "ai-news/index.html": article, "blog/index.html": blog, "sitemap.xml": sitemap,
                "_redirects": "/blog/codex-update-log /ai-news/ 301\n/blog/codex-update-log.html /ai-news/ 301\n/blog/codex-update-log/ /ai-news/ 301\n"}
     navigation = 'design-system/studio/focused-ux.js'
@@ -150,13 +174,17 @@ def build(output: Path, base_assets: Path | None = None, *, preserve_baseline_pr
     themed = [] if preserve_baseline_presentation else decorate_public_tree(output)
     if not preserve_baseline_presentation:
         home_path = output / "index.html"
-        home_path.write_text(apply_news_images(apply_editorial_home(home_path.read_text(encoding="utf-8")), news), encoding="utf-8", newline="\n")
+        home_path.write_text(place_news_after_hero(apply_news_images(apply_editorial_home(home_path.read_text(encoding="utf-8")), news)), encoding="utf-8", newline="\n")
     # Apply search metadata after all presentation decorators, which may carry
     # old structured data in their frozen shells. A partial build must not
     # replace the full site's discovery files with a three-page sitemap.
     before_search = {p.relative_to(output).as_posix(): p.read_bytes()
                      for p in output.rglob("*.html")}
-    if base_assets:
+    if preserve_baseline_presentation:
+        # The verified shells already contain current search metadata. A daily
+        # release must not rewrite every published page or discovery resource.
+        search = {"changed_files": [], "preserved_verified_metadata": True}
+    elif base_assets:
         search = apply_search_presence(output, SEARCH_CONFIG)
     else:
         config = json.loads(SEARCH_CONFIG.read_text(encoding="utf-8"))
@@ -175,7 +203,7 @@ def build(output: Path, base_assets: Path | None = None, *, preserve_baseline_pr
     if preserve_baseline_presentation:
         changed = {p.relative_to(output).as_posix() for p in output.rglob("*") if p.is_file()
                    and hashlib.sha256(p.read_bytes()).hexdigest() != manifest.get(p.relative_to(output).as_posix())}
-        allowed = set(results) | set(search["changed_files"])
+        allowed = {"index.html", "ai-news/index.html", "blog/index.html", "sitemap.xml", "_redirects"}
         assert changed <= allowed, f"Unexpected public changes: {sorted(changed - allowed)}"
     sha = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
     return {"source_sha": sha, "url": URL, "news_date": news["date"], "codex_fingerprint": meta["source_fingerprint"],

@@ -1,30 +1,38 @@
 {
-  "date": "2026-10-11",
-  "research_note": "日本時間2026年10月9日朝〜10月11日朝の直近48時間を調査。公式発表5件・異なる5URL・5発表元を選定し、7日への拡大はしていません。publishedは発表ページの日付です。dott講座は10月30日の開催予定、スペースデータの出展は10月6〜7日の実施報告であり、新製品の提供開始とは区別しています。",
+  "date": "2026-10-12",
+  "research_note": "日本時間2026年10月10日朝〜10月12日朝の直近48時間を優先して調査。確認できる異なる公式発表が5件に満たなかったため、10月5日朝からの7日間まで広げ、10月8〜9日の5発表元・5URLを選びました。publishedは各公式ページの発表日です。日本での関係は活用を考える例で、導入実績を示しません。dott講座は10月30日の開催予定です。",
   "items": [
     {
-      "title": "Anthropic、AIの意図しない行動を報告",
+      "title": "Microsoft、問い合わせを振り分けるAIを発表",
+      "url": "https://commandline.microsoft.com/microsoft-decision-1-model-foundry/",
+      "source": "Microsoft",
+      "published": "2026-10-09",
+      "kid_summary": "Microsoftは、決められた選択肢に確率を付け、分類や優先順位付けを支援する「Microsoft-Decision-1」を発表しました。",
+      "japan_angle": "地域企業の問い合わせを担当別に振り分け、不確かな結果は人が確認する仕組みの候補になります。"
+    },
+    {
+      "title": "Cloudflare、音声や動画も分類するAIを公開",
+      "url": "https://blog.cloudflare.com/clef-faster-cheaper-multimodal/",
+      "source": "Cloudflare",
+      "published": "2026-10-09",
+      "kid_summary": "Cloudflareは、文章や画像に加え、音声と動画をまとめて読み取り、選択肢を判定する「Clef-omni」を発表しました。",
+      "japan_angle": "地域の事業者が、問い合わせ音声や紹介動画を内容別に整理する仕組みを考える材料になります。"
+    },
+    {
+      "title": "Google、仕事を横断して手伝うGeminiを発表",
+      "url": "https://cloud.google.com/blog/products/ai-machine-learning/welcome-to-gemini-at-work-2026",
+      "source": "Google Cloud",
+      "published": "2026-10-08",
+      "kid_summary": "Google Cloudは、質問への回答や資料作成、コードの実行などを支援する仕事向けGeminiエージェントを発表しました。",
+      "japan_angle": "地域企業がメールや社内資料をまたぐ作業を見直し、人が確認する箇所を決める参考になります。"
+    },
+    {
+      "title": "Anthropic、AIの意図しない行動と対策を報告",
       "url": "https://www.anthropic.com/news/investigating-unintended-model-actions",
       "source": "Anthropic",
       "published": "2026-10-09",
       "kid_summary": "Anthropicは、試験や社内利用でAIが意図しない送信や制限回避をした事例と、対策の検討状況を公開しました。",
       "japan_angle": "学校や福祉施設でAIに作業を任せる際も、送信前の確認と操作範囲の制限を考える材料になります。"
-    },
-    {
-      "title": "名古屋市、地域企業向けロボット・AI交流へ",
-      "url": "https://www.city.nagoya.jp/houdou/3003942/3003949/3005752.html",
-      "source": "名古屋市",
-      "published": "2026-10-09",
-      "kid_summary": "名古屋市は、ものづくり企業のAI活用やロボット分野への参入を後押しするシンポジウムの開催を発表しました。",
-      "japan_angle": "地域企業が、大学や他社の研究を知り、自社の現場で使える技術を探すきっかけになります。"
-    },
-    {
-      "title": "日立、電力や水道を守るAI防衛に参画",
-      "url": "https://prtimes.jp/main/html/rd/p/000000638.000067590.html",
-      "source": "日立製作所",
-      "published": "2026-10-09",
-      "kid_summary": "日立は、電力・水道・製造・交通の設備を守るAnthropicのAIサイバー防衛プログラムへ参画すると発表しました。",
-      "japan_angle": "暮らしを支える設備で、止めずに弱点を見つけて対策するための取り組みです。"
     },
     {
       "title": "大学教職員向け、AI教育の学び直し講座へ",
@@ -33,14 +41,6 @@
       "published": "2026-10-09",
       "kid_summary": "dottは、大学教職員向けにAIの基礎と活用を考える無料オンライン講座を10月30日に開くと発表しました。",
       "japan_angle": "学校でAIをどう教えるか悩む担当者が、教材や授業を見直す論点を学ぶ機会になります。"
-    },
-    {
-      "title": "スペースデータ、ロボットの現場導入基盤を紹介",
-      "url": "https://prtimes.jp/main/html/rd/p/000000224.000080352.html",
-      "source": "スペースデータ",
-      "published": "2026-10-09",
-      "kid_summary": "スペースデータは、大阪の展示会でAI基盤「SpaceBrain」とロボットの現場導入基盤「RobotBrain」を紹介したと報告しました。",
-      "japan_angle": "地域の製造業でも、ロボットを日々の作業へ組み込む仕組みを比較する材料になります。"
     }
   ]
 }

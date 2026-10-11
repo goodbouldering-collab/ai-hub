@@ -7,6 +7,8 @@
     "node": ">=20"
   },
   "scripts": {
+    "verify:auxiliary": "node --test tests/auxiliary-d1.test.mjs deployment/admin-workspace/*.test.mjs && python -m unittest tests.test_d1_history && node .github/scripts/check-cloudflare-deployment.mjs && npm run cloudflare:test",
+    "build:auxiliary": "node scripts/build_auxiliary_worker.mjs",
     "bridge": "node bridge/bridge.mjs",
     "bridge:test": "node --test bridge/bridge.test.mjs",
     "test:market-compass": "node scripts/run-market-compass-tests.mjs",

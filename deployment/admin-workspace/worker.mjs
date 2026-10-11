@@ -5,6 +5,7 @@ import { routeAt, canonicalUrl, rewriteNavigation } from './routes.mjs';
 import { assets, documents } from './assets.generated.mjs';
 import { PRIVATE_HEADERS, json, migratedApi, pendingApi, connectionState, escapeHtml, documentHtml } from './migration.mjs';
 import { THEME } from './theme.mjs';
+import { auxiliaryApi } from './auxiliary-api.mjs';
 
 async function authorized(request,env,ctx) {
   const response=await published.fetch(new Request(new URL('/api/admin/ping',request.url),{headers:request.headers}),env,ctx);
@@ -28,6 +29,7 @@ export default {
       if(auth===503) return json({error:'管理画面の認証設定を確認できません。時間をおいて開き直してください。'},503);
       if(auth!==200) return protectedApi?json({error:'管理画面へログインしてください。'},401):new Response(null,{status:303,headers:{...PRIVATE_HEADERS,location:'/admin/login?next='+encodeURIComponent(canonicalUrl(path+url.search,url.origin))}});
       if(protectedApi){
+        const auxiliary=await auxiliaryApi(request,env);if(auxiliary)return auxiliary;
         if(path==='/api/content-studio/api/profiles') return request.method==='GET'?json({ok:true,profiles:[PROFILE]}):new Response(null,{status:405,headers:{...PRIVATE_HEADERS,allow:'GET'}});
         const migrated=migratedApi(request,env);if(migrated)return migrated;
         return json({error:pendingApi(path),migration:'connection-required'},503);

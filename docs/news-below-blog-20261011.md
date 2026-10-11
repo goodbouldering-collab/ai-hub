@@ -6,8 +6,8 @@
 
 ## 検証
 
-- Python32件、Cloudflare7件、既存の `verify_ai_news_feature.py` 成功。
-- 公開済みSEO版の600資産とWorkerをハッシュ検査。`scripts/build_news_layout_release.py` がindex.htmlだけを変更し、599資産・Workerの一致、移動したブログとニュースの内容一致、その他のHTMLのバイト一致、再生成の冪等性を確認する。
+- Python34件、Cloudflare7件、既存の `verify_ai_news_feature.py` 成功。
+- PR #137の独立事業修正版（本番ホームのハッシュ一致を確認）の600資産とWorkerをハッシュ検査。`scripts/build_news_layout_release.py` がindex.htmlだけを変更し、599資産・Workerの一致、移動したブログとニュースの内容一致、その他のHTMLのバイト一致、再生成の冪等性を確認する。
 - アプリ内ブラウザで1440pxと390pxを検証。横はみ出しなし。「もっと見る」からニュース5件とCodex詳細への遷移成功。既存Chromeタブは接続が応答せず、再選択後も同じため代替経路を使用。
 - Jevは自動承認審査により外部への未公開コード送信が拒否されたため未実施。ローカル検証と差分点検を実施した。
 - 作業用Pythonの一時依存は事業ルートtmp/news-layout-deps。既存venvは旧PCのPythonを参照するため使用不可。設定・依存ファイルの変更はしていない。

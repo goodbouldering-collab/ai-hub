@@ -6,4 +6,8 @@
 
 `scripts/build_course_order_release.py` は固定した本番baselineを検証し、index.htmlのカード順だけを変更する。6カードのバイト列集合とカード以外のHTMLが一致し、再適用しても結果が変わらないことを検査する。既存の2＋4カード構成と599資産は保持する。
 
-ローカル検証済み。公開版、PC/iPhone幅の画面・リンク検証、Git・Cloudflareの実績は、今回の工程記録 `tmp/delivery/2026-10-11-salon-menu-last.json` と `tmp/salon-menu-last/` を参照。公開前に並行する管理画面更新の統合・公開状態を照合し、旧Workerを上書きしない。
+本番確認済み。PR #145、初回公開SHA `6df9fa68d49dbe14311c6e07e29042016efb0f26`、Cloudflare version `e9b8d110-fc69-4f58-865b-0089a02e124f`。公開直前の `.admin-flat-20261011-final-r3` を基準に、最新管理Workerを保持した。公開資産は登録元 `.salon-menu-last-20261011-final`。
+
+ホーム生成8件、Cloudflare7件、公開HTML・生成物一致・中央ForDeployガードが成功。登録元の17差分とステージを保全した。本番Chromeの1440px/390pxで末尾配置と横はみ出しなしを確認し、サロン詳細の展開と受講資料へのクリック遷移が成功。トップのSHA一致と、トップ・health・ブログ・既存記事・管理入口・管理API・サロン資料の7経路を検査した。
+
+最新mainとの最終照合・配備SHAは事業ルートと登録元の `tmp/delivery/2026-10-11-salon-menu-last.json`、実行証拠は登録元 `tmp/delivery/2026-10-11-salon-menu-last/` を参照。プレビューは http://127.0.0.1:4041/ 、親PID56564、2026-10-13 20:50:42 JST終了予定。今回の残件なし。

@@ -9,14 +9,14 @@ class DiagnosisButtonTests(unittest.TestCase):
     def test_replaces_complete_group_and_preserves_destination_and_siblings(self):
         result=apply_diagnosis_copy(self.document)
         soup=BeautifulSoup(result,'html.parser')
-        self.assertEqual([a['href'] for a in soup.select('.diagnosis-guide-row > a')],['/ai-agent-readiness/','/seo-llmo-diagnosis/'])
+        self.assertEqual([a['href'] for a in soup.select('.diagnosis-guide-row > a')],['/ai-agent-readiness/'])
         self.assertFalse(soup.select('.diagnosis-guide-row section'))
         self.assertEqual(len(soup.select('.diagnosis-intro p')),1)
         self.assertEqual(soup.select_one('#preserved').get_text(),'Keep me')
         self.assertEqual(apply_diagnosis_copy(result),result)
         self.assertEqual(len(soup.select('#diagnosis-copy-style')),1)
 
-    def test_hero_swap_and_trust_position_survive_daily_regeneration(self):
+    def test_removed_hero_extras_and_trust_position_survive_daily_regeneration(self):
         from core.editorial_feed import apply_home_feed
         from tests.test_home_updates import news_feature
         posts=[dict(href=f'/blog/test-{i}.html',title=f'Article {i}',date=f'2026-10-0{i}') for i in (1,2,3)]
@@ -26,18 +26,19 @@ class DiagnosisButtonTests(unittest.TestCase):
               '<div class="hero-diagnose-cta"><button>Flow</button></div>'
               '<a class="focus-btn secondary" href="/course">Course</a>'
               '<a class="hero-text-link" href="/lectures/">Materials</a></div>'
-              '<ul class="focus-trust"><li>Beginner friendly</li></ul></div></section>')
+              '<ul class="focus-trust"><li>Beginner friendly</li></ul></div>'
+              '<figure id="restored-hero-image"><img src="/hero.webp" alt="Consultation"></figure></section>')
         source='<html><head></head><body><main>'+hero+news_feature()+group+'<section id="preserved">Keep me</section></main></body></html>'
         rendered=apply_diagnosis_copy(apply_home_feed(source,posts,'css'))
         soup=BeautifulSoup(rendered,'html.parser')
         self.assertIsNotNone(soup.select_one('#top .focus-lead + .focus-trust + .focus-actions #diagnosis-start'))
-        self.assertIsNotNone(soup.select_one('#top + .home-learning-links + #blog > .editorial-feed__heading + #ai-news'))
-        self.assertEqual([a['href'] for a in soup.select('.home-learning-links > a')], ['/course', '/lectures/'])
+        self.assertIsNotNone(soup.select_one('#top + #blog > .editorial-feed__heading + #ai-news'))
+        self.assertFalse(soup.select('.home-learning-links, #restored-hero-image, .focus-actions a.secondary, .focus-actions a.hero-text-link'))
         self.assertEqual(len(soup.select('#diagnosis-start')),1)
         self.assertEqual(soup.select_one('#preserved').get_text(),'Keep me')
         refreshed=apply_diagnosis_copy(apply_home_feed(rendered,posts,'css'))
         self.assertEqual(refreshed,rendered)
 
     def test_incomplete_input_fails_without_creating_new_destinations(self):
-        for source in (self.document.replace('/seo-llmo-diagnosis/','/missing/'),self.document+self.document,'<html></html>'):
+        for source in (self.document.replace('/ai-agent-readiness/','/missing/'),self.document+self.document,'<html></html>'):
             with self.assertRaises(ValueError): apply_diagnosis_copy(source)

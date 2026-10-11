@@ -3,6 +3,7 @@ from pathlib import Path
 import argparse
 import hashlib
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -54,7 +55,17 @@ def build(baseline, output, source_sha=None):
     worker = ROOT/'deployment/admin-workspace/published-worker.mjs'
     assert digest(worker) == contract['worker_sha256'], 'Reconcile a newer admin Worker before release'
     assert not output.exists()
-    shutil.copytree(baseline/'public', output/'public')
+    def copy_asset(source, target):
+        # Immutable baseline assets can share disk space; the edited homepage
+        # must have its own file so no write can change the verified baseline.
+        if Path(source) == baseline/'public/index.html':
+            return shutil.copy2(source, target)
+        try:
+            os.link(source, target)
+        except OSError:
+            return shutil.copy2(source, target)
+        return target
+    shutil.copytree(baseline/'public', output/'public', copy_function=copy_asset)
     (output/'runtime').mkdir()
     shutil.copyfile(worker, output/'runtime/published-worker.mjs')
     before = (baseline/'public/index.html').read_bytes().decode('utf-8')

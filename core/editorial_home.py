@@ -88,4 +88,5 @@ def apply_editorial_home(document, css=None):
     document = re.sub(pattern, "", document, flags=re.S)
     if document.count("</head>") != 1:
         raise ValueError("Expected one document head")
-    return document.replace("</head>", style + "</head>")
+    from core.friendly_home import apply_friendly_home
+    return apply_friendly_home(document.replace("</head>", style + "</head>"))

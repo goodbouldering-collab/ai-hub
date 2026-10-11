@@ -26,7 +26,7 @@
     "path": "/speaker",
     "evidence": "公開トップの講師紹介とfooter、およびspeaker.htmlの講師本文。"
   },
-  "default_image": "/design-system/studio/images/photo-20261011/hero.webp",
+  "default_image": "/design-system/studio/images/photo-20261011/hero-friendly-20261011.webp",
   "default_image_alt": "相談者と制作者がPCと資料を見ながら話し合うイメージ",
   "canonical_paths": {
     "index.html": "/",

@@ -564,3 +564,9 @@ body.studio-theme [data-studio-glass]::before {content:'';position:absolute;inse
   body.studio-theme .studio-art-layer {display:none!important}
   body.studio-theme * {backdrop-filter:none!important;-webkit-backdrop-filter:none!important;box-shadow:none!important}
 }
+
+/* ai-sodan-brand:20261011 */
+body.studio-theme .site-logo{color:#183f41!important;gap:10px!important}
+body.studio-theme .site-logo::before{content:""!important;display:inline-block!important;width:36px!important;height:36px!important;min-width:36px!important;flex:0 0 36px!important;border:0!important;border-radius:0!important;box-shadow:none!important;transform:none!important;background:url('/brand/ai-sodan-mark-20261011.svg') center/contain no-repeat!important}
+@media(max-width:600px){body.studio-theme .site-logo::before{width:32px!important;height:32px!important;min-width:32px!important;flex-basis:32px!important}}
+/* /ai-sodan-brand:20261011 */

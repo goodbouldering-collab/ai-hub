@@ -23,7 +23,7 @@ Instagramのリールを続けたいのに、編集や投稿に時間がかか�
 
 - 登録先は、現行AI相談サイトの個別相談リンクと同じ `LWJNMP7EAN4GS`。Square上の店舗表示名はNotエステ彦根だが、既存のAI個別相談・AIコーディング講習が同一店舗の「講習・相談」カテゴリーにあることをAPIで照合した。
 - 担当者と来店（グッぼる）／オンライン（LINE通話）の2区分、税込設定は既存AI個別相談から照合する。新講座だけを作成し、既存サービスを編集しない。
-- 原稿の正本: `config/reel-course.json`。Square登録と公開予約画面での内容・料金・時間・予約枠の確認は完了。サイトはローカル検証済み、統合・公開は未実施。工程記録: 事業ルート `tmp/delivery/20261012-reel-course-square.json`。
+- 原稿の正本: `config/reel-course.json`。Square登録と公開予約画面での内容・料金・時間・予約枠の確認は完了。サイトも統合・Cloudflare公開・本番画面確認済み。工程記録: 事業ルート `tmp/delivery/20261012-reel-course-square.json`。
 - 公開済み資産を基準に講座カードだけ追加し、既存本文・他メニュー・Workerを保全する。準備票は確認済み。新しいGoogle設定・認証設定・定期処理は追加しない。
 
 API仕様: [予約サービスの作成](https://developer.squareup.com/docs/bookings-api/use-the-api)、[カタログ作成](https://developer.squareup.com/reference/square/catalog-api/upsert-catalog-object)。
@@ -35,7 +35,17 @@ API仕様: [予約サービスの作成](https://developer.squareup.com/docs/boo
 - Python3.12のホーム再生成・装飾・導線16件、Node24.15.0のCloudflare7件、既存の公開経路検査が成功。古い装飾の6画像処理から追加講座の画像を除外し、既存メニューの対応を保持。既存テストの講座数と共通テーマの期待値を現行動作へ合わせた。
 - 公開済み612資産からindex.htmlだけを更新する専用ビルドを使用。既存6カード・611資産・管理Workerは不変。PC1536px／390pxで読みやすさ、詳細の展開、横はみ出しなしを確認。
 - ローカルプレビュー: http://127.0.0.1:4097/#reel-course 。親PID26924、保持期限2026-10-14 01:46:53 JST。PC再起動等の場合を除き48時間保持。
-- サイトの統合・本番公開は次工程。工程証拠: `tmp/delivery/20261012-reel-course-square/`。
+- サイトの統合・本番公開・画面確認は完了。工程証拠: `tmp/delivery/20261012-reel-course-square/`。
 
 - 統合前に並行作業PR #155・#156のヒーロー整理を取り込み、`.hero-cleanup-release-20261012-final`と本番の一致を確認して公開基準を更新。削除済みヒーロー要素を戻さない。
 - 空き容量不足で再生成が一度停止したため、今回の未使用一時コピーだけを削除。変更しない資産はハードリンクで再利用し、変更するindex.htmlは独立コピーにして基準資産を保護。再生成とPython19件の検査が成功。
+
+## 本番公開の結果
+
+- 実装PR: https://github.com/goodbouldering-collab/ai-hub/pull/157 。チェック2件成功、必須チェック設定なし。実装head `271c0273669b0ec14155780d3380024d9a7c0250`、初回公開の統合SHA `745c5ddcabcaddf2946f08368e71aa96721286ed`。
+- 登録元の既存ステージ差分を完全一致で保持し、重複するPresent.mdとホームテンプレートは3-wayで既存編集を保持。確定Git blob8入力から再生成し、候補版と612資産のハッシュが一致。中央ForDeployガードとWrangler4.90.0 dry-run成功。
+- 初回Cloudflare version `bec968c2-9572-4c07-95dc-4520958e0c3b`。ホーム1資産だけをアップロードし、611資産と管理Workerを保持。公開URL: https://aiclimb.aiclimb.workers.dev/#reel-course 。初回資産: `.reel-course-release-20261012-first`。
+- トップSHA-256 `6dbb2cd2692a6071b74a71826b012466e3cdcbff6dbb71756147652359071bd3`。主要4公開ページのSHA一致、health200・管理入口303・管理API401を確認。
+- 既存事業Chromeで本番PC1536px／390pxの講座名・料金・時間・対象者、詳細展開、横はみ出しなしを確認。予約ボタンから作成済みSquareサービスへの遷移も成功。Square公開画面では来店／オンラインの両方を確認し、来店の選択可能な予約枠まで検証。顧客予約やInstagramへの投稿は作成していない。
+- 今回の残件なし。運用記録を統合後、同じ資産とWorkerを最終SHAから再生成して照合する。最終の配備SHA・version・工程検査結果は登録元と事業ルートの `tmp/delivery/20261012-reel-course-square.json` を参照。
+- ローカルプレビューが48時間稼働中のため、作業worktreeを保持。既存事業全体の認証・保存API・Google確認の未完了事項はPresent.mdの各項目を継続する。

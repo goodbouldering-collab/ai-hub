@@ -10,7 +10,14 @@ const entries=(await fs.readdir(baseline,{recursive:true,withFileTypes:true})).f
 if(entries.length!==Object.keys(contract.assets).length) throw Error('Baseline file set differs');
 for(const entry of entries){const relative=path.relative(baseline,path.join(entry.parentPath,entry.name)).replaceAll('\\','/');if(hash(await fs.readFile(path.join(baseline,relative)))!==contract.assets[relative]) throw Error('Baseline mismatch: '+relative);}
 await fs.mkdir(output); // Never overwrite prior release evidence.
-await fs.cp(baseline,path.join(output,'public'),{recursive:true});
+// These verified assets are immutable in an admin-only release. Link them on
+// the same volume instead of duplicating large videos; only the Worker changes.
+for(const entry of entries){
+  const source=path.join(entry.parentPath,entry.name);
+  const target=path.join(output,'public',path.relative(baseline,source));
+  await fs.mkdir(path.dirname(target),{recursive:true});
+  await fs.link(source,target);
+}
 await fs.mkdir(path.join(output,'runtime'));
 const worker=await fs.readFile(new URL('deployment/admin-workspace/published-worker.mjs',root));
 await fs.writeFile(path.join(output,'runtime/published-worker.mjs'),worker);

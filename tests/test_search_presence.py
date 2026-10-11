@@ -7,6 +7,7 @@ from xml.etree import ElementTree as ET
 from bs4 import BeautifulSoup
 
 from core.search_presence import apply_search_presence, enhance_search_html
+from scripts.build_search_presence_release import assert_metadata_only, assert_search_changes
 
 
 CONFIG_PATH = Path(__file__).resolve().parents[1] / "config/search-presence.json"
@@ -107,6 +108,7 @@ class SearchPresenceTests(unittest.TestCase):
 
     def test_verification_token_opt_in_and_canonical_rejects_other_sites(self):
         original = page()
+        self.config["google_site_verification"] = None
         self.assertNotIn("google-site-verification", enhance_search_html(original, "blog/example.html", self.config))
         self.config["google_site_verification"] = "PUBLIC-VERIFICATION-ID"
         self.assertIn('content="PUBLIC-VERIFICATION-ID"', enhance_search_html(original, "blog/example.html", self.config))
@@ -153,6 +155,44 @@ class SearchPresenceTests(unittest.TestCase):
         self.assertEqual(nodes[BASE + "/#mixed-course"]["review"], [rated])
         self.assertNotIn("aggregateRating", json.dumps(nodes))
         self.assertEqual(updated, enhance_search_html(updated, "index.html", self.config))
+
+    def test_independent_business_removes_parent_and_sets_approved_verification(self):
+        old_label = "AI相談（彦根 / クライミングコンサル）"
+        footer = "<footer class='site-footer'><div class='footer-nap'><span class='footer-nav-head'>運営</span><p>" + old_label + "</p><p>代表 由井 辰美</p></div></footer>"
+        schema = {"@graph": [{"@type": "ProfessionalService", "@id": BASE + "/#business", "name": "AI相談", "parentOrganization": {"@id": BASE + "/#operator"}},
+                             {"@type": "Organization", "@id": BASE + "/#operator", "name": "クライミングコンサル"}]}
+        original = page(schema, "/", newline="\r\n").replace('</body>', footer + '</body>')
+        updated = enhance_search_html(original, "index.html", self.config)
+        self.assertEqual(original.split('</head>', 1)[1].replace(old_label, "AI相談（彦根）"), updated.split('</head>', 1)[1])
+        nodes = {node["@id"]: node for node in graph(updated)}
+        self.assertNotIn(BASE + "/#operator", nodes)
+        self.assertNotIn("parentOrganization", nodes[BASE + "/#business"])
+        self.assertEqual(nodes[BASE + "/#yui"]["worksFor"], {"@id": BASE + "/#business"})
+        verification = BeautifulSoup(updated, "html.parser").select('meta[name="google-site-verification"]')
+        self.assertEqual(len(verification), 1)
+        self.assertEqual(verification[0]["content"], self.config["google_site_verification"])
+        self.assertTrue(self.config["google_site_verification"])
+        self.assertTrue(assert_search_changes(original.encode(), updated.encode(), "index.html"))
+        with self.assertRaisesRegex(ValueError, "body or trailing"):
+            assert_metadata_only(original.encode(), updated.encode(), "index.html")
+        self.assertEqual(updated, enhance_search_html(updated, "index.html", self.config))
+        self.assertFalse(assert_search_changes(updated.encode(), updated.encode(), "index.html"))
+
+    def test_business_label_guard_rejects_unrelated_body_changes(self):
+        label = "<div class='footer-nap'><span class='footer-nav-head'>運営</span><p>AI相談（彦根 / クライミングコンサル）</p>"
+        original = page(path="/").replace('</body>', "<footer class='site-footer'>" + label + "</div></footer></body>")
+        allowed = original.replace("AI相談（彦根 / クライミングコンサル）", "AI相談（彦根）")
+        for tampered in (allowed.replace("既存の本文", "変更した本文"), allowed.replace("window.flag = true", "window.flag = false")):
+            with self.assertRaisesRegex(ValueError, "exceeds"):
+                assert_search_changes(original.encode(), tampered.encode(), "index.html")
+        with self.assertRaisesRegex(ValueError, "limited to the homepage"):
+            assert_search_changes(original.encode(), allowed.encode(), "speaker.html")
+        outside_footer = original.replace("<footer class='site-footer'>", "<section class='site-footer'>").replace("</footer>", "</section>")
+        with self.assertRaisesRegex(ValueError, "exactly one"):
+            assert_search_changes(outside_footer.encode(), outside_footer.replace("AI相談（彦根 / クライミングコンサル）", "AI相談（彦根）").encode(), "index.html")
+        doubled = original.replace(label, label + label)
+        with self.assertRaisesRegex(ValueError, "one legacy"):
+            enhance_search_html(doubled, "index.html", self.config)
 
 
 if __name__ == "__main__":

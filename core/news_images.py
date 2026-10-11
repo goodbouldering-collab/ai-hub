@@ -45,6 +45,8 @@ def strip_news_images(document):
 
 def apply_news_images(document, news=None):
     """Use exact article URLs, never rank alone, to choose a publisher image."""
+    style_marker = '<!-- news-images-style-position -->'
+    document = re.sub(r'<style id="news-images-style">.*?</style>', style_marker, document, flags=re.S)
     document = strip_news_images(document)
     changed = False
     if 'id="ai-news"' in document or "id='ai-news'" in document:
@@ -76,5 +78,9 @@ def apply_news_images(document, news=None):
         css = (ROOT / 'site/templates/ai-news/news-images.css').read_text(encoding='utf-8')
         if document.count('</head>') != 1:
             raise ValueError('Expected one news document head')
-        document = document.replace('</head>', f'<style id="{STYLE_ID}">{css}</style></head>')
-    return document
+        style = f'<style id="{STYLE_ID}">{css}</style>'
+        if style_marker in document:
+            document = document.replace(style_marker, style)
+        else:
+            document = document.replace('</head>', style + '</head>')
+    return document.replace(style_marker, '')

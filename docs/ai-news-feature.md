@@ -195,3 +195,10 @@ Workerはdeployment/ai-news/published-worker.mjs、現行API取得本文と同�
 直前正常版は登録元 `.editorial-release-20261011-final/public`（577資産）。全manifest、本番14SHA、更新前再生成差分0で照合。シェルとmanifestをこの版へ更新。今回の契約はヒーロー直下のニュース3見出しと `/ai-news/` へのもっと見る、ブログ一覧から独立ニュースを除外。画像付きブログ・講習カードは保持する。`core/editorial_feed.py` と検証・テストもこの契約へ合わせた。公開差分は許可5ファイル内の4資産。詳細は [当日記録](daily-news-20261011-run.md)。次回baselineは当日の公開成功記録を本番と照合して確定する。
 
 公開結果: PR #129/main0057d83a、version171fa478。次回は `.daily-news-release-20261011-final/public` とverification.json/production-summary.jsonを最新本番と再照合する。登録元の未公開差分を混ぜず、確定Git blobを抽出したsource snapshotから再生成。33本番SHA・Chrome Profile1のPC/iPhone確認・DELIVERY_VERIFIED成功。
+
+
+## 2026-10-12 最新正常版と日次の限定生成
+
+基準は登録元 `.glass-hero-release-20261012-final/public`、614資産、公開SHA `6feea567`、version `c875fce2-1fbb-466d-9774-aa020f4ff2d8`。全manifestと本番主要7資産を照合した。シェルとmanifestをこの版へ更新する。
+
+`--preserve-baseline-presentation` では既存の講座・ヒーロー・ブログ・検索メタデータを再装飾しない。ニュース入口をヒーロー直下へ配置し、ニュース本文とサイトマップの当該lastmodだけ更新する。公開差分は指定5ファイル以内を強制する。最新7講座・診断1件・ガラス画像を検証する。候補は3資産変更・611保持、ブログはバイト同一。次回は今回の公開成功記録と最新本番を照合してbaselineを選ぶ。

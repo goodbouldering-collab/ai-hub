@@ -8,6 +8,13 @@ from scripts.build_ai_news_feature import render_feature
 ROOT=Path(__file__).resolve().parents[1]
 
 class NewsImageTests(unittest.TestCase):
+    def test_refresh_preserves_stylesheet_cascade_position(self):
+        news=json.loads((ROOT/'content/daily-ai-news.json').read_text(encoding='utf-8'))
+        source='<head><style id="news-images-style">old</style><style id="later">keep</style></head>'+render_feature(news,'today')
+        result=apply_news_images(source,news)
+        self.assertLess(result.index('id="news-images-style"'),result.index('id="later"'))
+        self.assertEqual(result,apply_news_images(result,news))
+
     def test_all_home_entries_get_their_source_image_without_content_changes(self):
         news=json.loads((ROOT/'content/daily-ai-news.json').read_text(encoding='utf-8'))
         source='<html><head></head><body>'+render_feature(news,'10月11日更新')+'</body></html>'

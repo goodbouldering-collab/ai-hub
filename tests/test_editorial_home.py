@@ -34,7 +34,7 @@ class EditorialHomeTests(unittest.TestCase):
     def test_unrelated_sections_and_scripts_remain_exact(self):
         source = '<head><style>keep</style></head><main><section id="speaker">写真と紹介</section><script>const x = 1;</script></main>'
         result = apply_editorial_home(source, 'rules')
-        self.assertEqual(re.sub(r'<style id="editorial-home-style">.*?</style>', '', result, flags=re.S), source)
+        self.assertEqual(re.sub(r'<style id="(?:editorial-home|friendly-glass)-style">.*?</style>', '', result, flags=re.S), source)
 
     def test_missing_course_price_fails_instead_of_dropping_content(self):
         source = '<head></head><article class="compact-course-card"><img class="compact-course-visual"><div class="studio-course-body"><h3>broken</h3></div></article>'

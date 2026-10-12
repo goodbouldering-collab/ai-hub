@@ -1,0 +1,19 @@
+# AIエージェント講習のヒーロー画像
+
+- 生成: 2026-10-12、内蔵 image_gen（generate、透過なし）。
+- 用途: AI相談のヒーロー全幅。講習と、仕事で使えることへの気づきを表現した生成イメージ。実際の受講者・講師の記録写真ではない。
+- 原本: `original.png`。公開用は `site/static/design-system/studio/images/hero-workshop-{800,1672}.webp`。
+- 公開加工: Sharpによるリサイズ・WebP圧縮のみ。元画像は保持する。
+
+## 最終プロンプト
+
+Use case: illustration-story.
+Asset type: one finished panoramic hero illustration for the Japanese website AI相談, promoting its hands-on AI-agent workshop. Wide landscape aspect ratio 16:9, ideally 2048 by 1152 or wider high-resolution output. This is the artwork itself, not a website mockup.
+Primary request: show a meaningful, recognizable moment during a small AI-agent workshop: a learner discovers that an AI agent can actually complete a piece of their everyday work. The image must communicate "learning together, asking AI to do real work, and an aha moment" at first glance.
+Scene: a bright, welcoming Japanese cafe-like learning studio, pale timber desk, large windows with soft greenery, notebooks and laptops. THREE clearly visible Japanese adults: a friendly instructor and two adult learners, all seated or leaning naturally around one shared table. Not based on identifiable real people.
+Action and narrative: the instructor calmly gestures to a large shared display showing an AI task workflow. One woman at her laptop points to a finished event announcement on her screen with an unmistakable delighted "now I get it!" expression, eyebrows lifted and warm smile, turning toward the instructor. A second adult learner leans in with interested body language and a notebook, engaged rather than posing for a camera. They are learning by doing. Hands and eye lines connect the people and the screen.
+On the shared display, use the large, clean Japanese heading "AIエージェント講習". Below it are exactly three spacious, connected cards with these short labels: "依頼" → "実行" → "確認". A simple request card leads to an AI execution card, then a finished document with a checkmark. The screens feel like a real useful software demonstration, not a sci-fi hologram. No other readable text is needed.
+Style/medium: sophisticated contemporary editorial illustration with dimensional painted forms, beautiful subtle paper texture, soft luminous edges and refined translucent accents. Adult proportions, nuanced natural faces and gestures. Clearly crafted art rather than a photograph; not anime, not manga, not a generic flat corporate vector, not toy-like plastic characters. Detailed enough to reward a large full-width display. Approachable, intelligent and optimistic.
+Composition: expansive horizontal panorama, one coherent scene across the whole canvas, no panels or collage. Place all three people, laptops and the legible shared screen mainly in the CENTER-RIGHT 60 percent. Reserve the left 35 percent as a beautiful lightly detailed bright wall/window area for the site's live text overlay. Important faces and shared screen stay in the central 45–90 percent of width and upper-middle 20–75 percent of height. The long desk and room light continue across the full width so the composition feels immersive, not like a small object isolated on the right. Keep the essential workshop action intact in a tighter mobile crop of the right-center.
+Palette and mood: the site's rich teal #087e79, airy mint, warm ivory #fffefa, natural light oak, restrained apricot sun highlights. Bright daylight, soft realistic shadows, calm confidence with a real spark of discovery.
+Constraints: one image, no frame, no rounded card border, no watermark, no logo, no giant abstract glass rings, no robots, no brains, no floating network particles, no cartoon lightbulb, no exaggerated grins, no camera-facing posed group, no generic business handshake. Keep human anatomy and laptop perspective coherent. This should immediately read as an AI-agent learning workshop and a learner's discovery, not simply people having a meeting.

@@ -1,0 +1,6 @@
+{
+  "release_directory": ".daily-news-release-20261012-verified",
+  "source_sha": "aabd608d0bddc2f7579b06c975b9c9df12521736",
+  "verification_sha256": "d33292c19e00f32143755f5260d40f6aa54d0356ba23f73b6dbdb5afa20dc914",
+  "worker_sha256": "644f3ee74fc80f7bb4e59fd08816a51da64beb901b719f1c13b953e72f87cdd3"
+}

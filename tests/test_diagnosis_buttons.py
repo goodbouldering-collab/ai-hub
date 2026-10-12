@@ -9,9 +9,11 @@ class DiagnosisButtonTests(unittest.TestCase):
     def test_replaces_complete_group_and_preserves_destination_and_siblings(self):
         result=apply_diagnosis_copy(self.document)
         soup=BeautifulSoup(result,'html.parser')
-        self.assertEqual([a['href'] for a in soup.select('.diagnosis-guide-row > a')],['/ai-agent-readiness/'])
+        self.assertEqual([a['href'] for a in soup.select('.diagnosis-guide-row > a')],['/seo-llmo-diagnosis/', '/ai-agent-readiness/'])
         self.assertFalse(soup.select('.diagnosis-guide-row section'))
-        self.assertEqual(len(soup.select('.diagnosis-intro p')),1)
+        self.assertFalse(soup.select('.diagnosis-intro'))
+        self.assertEqual(len(soup.select('.diagnosis-guide-row .diagnose-open')),1)
+        self.assertEqual(len(soup.select('.diagnosis-guide-row svg')),3)
         self.assertEqual(soup.select_one('#preserved').get_text(),'Keep me')
         self.assertEqual(apply_diagnosis_copy(result),result)
         self.assertEqual(len(soup.select('#diagnosis-copy-style')),1)

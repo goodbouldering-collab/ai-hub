@@ -11,12 +11,13 @@ AI講座・業務改善相談の案内、ブログ、制作実績を提供する
 - Python19件・Cloudflare7件・公開経路検査成功。公開候補はindex.htmlのみ変更、615資産と管理Workerが不変。検証ブラウザでPC1440px・390px（ローカルは320pxも）の横はみ出しなし、3入口の動作を確認。PR #168統合、SHA `6d6ab7ce23b8ceb6a7942910799bd31bddfbd481`、Cloudflare version `8c015433-67d8-4056-9786-d3de2786d973` で公開。7資産SHAとhealth・管理認証4経路を確認。今回の残件なし。
 - 最新正常版は登録元 `.hero-three-actions-release-final/public`。最終SHA・versionと工程検査は登録元 `tmp/delivery/20261012-hero-three-actions.json`。記録: [3ボタンの復旧](docs/hero-three-actions-20261012.md)。
 
-## 10月13日の日次AIニュース（ローカル検証済み・公開準備中）
+## 10月13日の日次AIニュース（本番確認済み）
 
 - 直近48時間内の10月12日付公式5件を採用。MicrosoftのStudentSim・Maia 300、AWSのF1映像検索、Googleの運動記録、IBMの開発支援事例。4発表元・5URL、説明は最大71文字。研究・提供予定・事例紹介を区別する。
 - CodexはOctober 5–9, 2026／rust-v0.162.1で差分なし。検証済み取得・fingerprint・update_articleで本文の全バイトと更新日を保持。
 - 最新正常版 `.hero-three-actions-release-final/public`（616資産、source e803e0e8）を本番6資産SHAと全manifestで照合。更新前再生成差分0、候補はトップ・独立ニュース・サイトマップのみ変更し613資産と管理Workerを保持。
-- 指定テストを含む57件、assets、公開経路検査が成功。講習画像・3入口・7講座を維持。次はPR統合、確定SHA再生成、中央ガード、Cloudflare公開、本番・画面検証。
+- PR #170を統合し、公開SHA `34cc1e740acd2b43da5d2507c8b42b0407cea34f`、Cloudflare version `0eef9738-a0b3-45c4-a10b-1210d2b9382b` で公開。57テスト、assets/live、9本番SHA、旧3URLの301、管理API401、既存ChromeのPC1440px／スマホ390pxで表示・もっと見る遷移・横はみ出しなしを確認。DELIVERY_VERIFIED成功。講習画像・3入口・7講座、元のdirty・stagedを保持。今回の残件なし。
+- 次回baselineは `.daily-news-release-20261013-verified/public` とverification.json/production-summary.jsonを最新本番に再照合する。Node24.15.0／Python3.12／Wrangler4.90.0。
 - 詳細: [当日記録](docs/daily-news-20261013-run.md)。前回公開結果は [10月12日記録](docs/daily-news-20261012-run.md)。
 
 ## AIエージェント講習のヒーロー（2026-10-12、本番確認済み）

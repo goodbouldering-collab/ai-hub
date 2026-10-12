@@ -10,14 +10,15 @@ AI講座・業務改善相談の案内、ブログ、制作実績を提供する
 - CodexはOctober 5–9, 2026／rust-v0.162.1のまま。公式取得・fingerprint・update_articleで差分なし、本文と日付を保持。
 - PR #164、統合・公開SHA `aabd608d0bddc2f7579b06c975b9c9df12521736`、Cloudflare version `7b1ae6b0-90d6-4ada-a16c-122fe0acf5d8`。トップ・独立ニュース・サイトマップの3資産を更新、ブログを含む611資産と管理Workerを保持。ニュース入口はヒーロー直下へ配置。
 - 53テスト、assets/live検証、8本番SHA、旧URL3種類の301、health・管理API認証境界、ChromeのPC1440px／スマホ390pxで表示・もっと見る遷移・横はみ出しなしを確認。DELIVERY_VERIFIED成功。既存dirty・stagedを保全。
-- 次回基準は登録元 `.daily-news-release-20261012-verified/public`。最新本番とmanifestを再照合して使う。今回の公開残件なし。詳細: [当日記録](docs/daily-news-20261012-run.md)。
+- ニュース公開時の基準は登録元 `.daily-news-release-20261012-verified/public`。最新正常版は下記の講習ヒーロー公開記録を参照。今回の公開残件なし。詳細: [当日記録](docs/daily-news-20261012-run.md)。
 
-## AIエージェント講習のヒーロー（2026-10-12、公開準備）
+## AIエージェント講習のヒーロー（2026-10-12、本番確認済み）
 
 - 抽象的な光の輪を、講師と2人の受講者がPCを囲んで学ぶ生成イメージ1枚へ変更。「依頼→実行→確認」と、完成した告知に気づく表情で、AIエージェント講習の内容を伝える。実在の受講記録写真ではない。
 - 画面の横幅を広く使用。PCは左側へすりガラスの見出しを重ね、タブレット・スマートフォンは講習場面を先に表示。3行見出し・7講座・診断・10月12日のニュースを保持。過去の補助リンク削除も継続。
 - Python19件・Cloudflare7件、全HTMLの限定差分・再生成検査に成功。PC1440px／820px／390px／320pxで表示・横はみ出しなしを確認。既存Chrome接続が初期化に失敗したため、公開・ローカルの表示確認はChrome DevTools接続の検証ブラウザを利用。
-- 本番公開はこれから。基準は登録元 `.daily-news-release-20261012-verified` の614資産。index.htmlと新画像2サイズだけを変更し、613資産と管理Workerを保持する。Node24.15.0／Python3.12／Wrangler4.90.0。
+- PR #166統合・本番公開済み。初回公開SHA `6149051b8a3818dc8a7875054901a7243d784be8`、version `d8742250-5ba6-4741-98c0-9a2e4ae9ec63`。本番10経路・6資産SHA、本番PC1440px／スマホ390pxの画像・見出し・横はみ出しなし・メニュー開閉・選択フロー・AI実力診断への遷移を確認。613資産と管理Worker、既存dirty・stagedを保持。今回の残件なし。Node24.15.0／Python3.12／Wrangler4.90.0。
+- 最新正常版は登録元 `.workshop-hero-release-20261012-final/public`。記録統合後の確定SHA・version・工程検査は `tmp/delivery/20261012-hero-agent-workshop.json` を参照。
 - 素材・最終プロンプト: [制作記録](assets/hero-workshop-20261012/PROMPT.md)。検証と公開の結果は [講習ヒーロー](docs/workshop-hero-20261012.md)。光の輪の旧版は [過去記録](docs/glass-hero-20261012.md) に保持。
 
 ## 管理画面のサブメニュー（2026-10-12、本番確認済み）

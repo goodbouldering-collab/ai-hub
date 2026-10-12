@@ -20,4 +20,3 @@ Python19件、Cloudflare7件、公開経路検査が成功。検証ブラウザ�
 - 公開結果記録の統合後も全616資産とWorkerが初回公開と一致することを照合する。最終SHA・version・工程検査は登録元 `tmp/delivery/20261012-hero-three-actions.json`。次回の正常版は登録元 `.hero-three-actions-release-final/public`。
 
 確認URL: https://aiclimb.aiclimb.workers.dev/
-

@@ -4,12 +4,12 @@
 
 AI講座・業務改善相談の案内、ブログ、制作実績を提供する。確認済み公開URLは https://aiclimb.aiclimb.workers.dev 。独自ドメイン未設定のため、このURLを使用する。公開先は共通Cloudflare台帳の `work/genspark-profile-edit/cloudflare-runtime`。事業ルートには別作業の差分があるため、一括同期しない。
 
-## ヒーローの3つの入口（2026-10-12、ローカル検証済み）
+## ヒーローの3つの入口（2026-10-12、本番確認済み）
 
 - サイト診断を復旧し、「何からはじめれば？／メニュー選択フロー」「AIに表示されてる？／サイト診断」「ほんとにAI使えてる？／AI実力診断」を、アイコン付きの高さ約50pxのボタンへ統一。説明の重複を除き、日次再生成でも保持する。
 - メニュー選択は既存ダイアログ、サイト診断は `/seo-llmo-diagnosis/`、AI実力診断は `/ai-agent-readiness/` を利用する。講習画像・見出し・ニュース・7講座は保持。
-- Python19件・Cloudflare7件・公開経路検査成功。公開候補はindex.htmlのみ変更、615資産と管理Workerが不変。検証ブラウザでPC表示・390pxの横はみ出しなし、3入口の動作を確認。公開は次工程。
-- 記録: [3ボタンの復旧](docs/hero-three-actions-20261012.md)。
+- Python19件・Cloudflare7件・公開経路検査成功。公開候補はindex.htmlのみ変更、615資産と管理Workerが不変。検証ブラウザでPC1440px・390px（ローカルは320pxも）の横はみ出しなし、3入口の動作を確認。PR #168統合、SHA `6d6ab7ce23b8ceb6a7942910799bd31bddfbd481`、Cloudflare version `8c015433-67d8-4056-9786-d3de2786d973` で公開。7資産SHAとhealth・管理認証4経路を確認。今回の残件なし。
+- 最新正常版は登録元 `.hero-three-actions-release-final/public`。最終SHA・versionと工程検査は登録元 `tmp/delivery/20261012-hero-three-actions.json`。記録: [3ボタンの復旧](docs/hero-three-actions-20261012.md)。
 
 ## 10月12日の日次AIニュース（本番確認済み）
 

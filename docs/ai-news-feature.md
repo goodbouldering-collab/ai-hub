@@ -210,3 +210,5 @@ Workerはdeployment/ai-news/published-worker.mjs、現行API取得本文と同�
 ## 2026-10-13 日次更新の基準
 
 最新正常版は `.hero-three-actions-release-final/public`（616資産、source e803e0e8）。全manifest・本番6SHA・更新前再生成差分0を確認し、最新シェルとmanifestへ更新した。日次候補は3資産変更・613保持。3入口を維持するよう検証を現行公開へ合わせた。次回は公開成功記録と本番を照合し、候補を正常公開版と混同しない。詳細: [当日記録](daily-news-20261013-run.md)。
+
+公開結果: PR #170/main34cc1e74、version 0eef9738-a0b3-45c4-a10b-1210d2b9382b。57 tests、9本番SHA、Chrome PC/iPhone表示、DELIVERY_VERIFIED成功。次回は `.daily-news-release-20261013-verified/public` とverification.json/production-summary.jsonを最新本番に再照合する。今回の残件なし。

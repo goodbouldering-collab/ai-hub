@@ -1,22 +1,22 @@
-"""Add the original glass conversation-loop artwork to the homepage only."""
+"""Add one panoramic AI-agent workshop illustration to the homepage only."""
 from pathlib import Path
 import re
 
 from core.editorial_feed import _ElementSpans
 
 ROOT = Path(__file__).resolve().parents[1]
-IMAGES = ('hero-glass-640.webp', 'hero-glass-1200.webp')
+IMAGES = ('hero-workshop-800.webp', 'hero-workshop-1672.webp')
 START = '<!-- glass-hero:20261012 -->'
 END = '<!-- /glass-hero:20261012 -->'
-FIGURE = (START + '<figure id="hero-glass-art" class="hero-glass-art">'
+FIGURE = (START + '<figure id="hero-glass-art" class="hero-glass-art" data-workshop-hero="20261012">'
           '<div class="hero-glass-surface"><img '
-          'src="/design-system/studio/images/hero-glass-1200.webp" '
-          'srcset="/design-system/studio/images/hero-glass-640.webp 640w, '
-          '/design-system/studio/images/hero-glass-1200.webp 1200w" '
-          'sizes="(max-width: 760px) 360px, 50vw" '
-          'width="1200" height="1200" fetchpriority="high" decoding="async" '
-          'alt="透明な青緑のガラスの輪から光がひらく、対話とAIの可能性を表したアート">'
-          '</div></figure>' + END)
+          'src="/design-system/studio/images/hero-workshop-1672.webp" '
+          'srcset="/design-system/studio/images/hero-workshop-800.webp 800w, '
+          '/design-system/studio/images/hero-workshop-1672.webp 1672w" '
+          'sizes="(max-width: 600px) 133vw, 100vw" '
+          'width="1672" height="941" fetchpriority="high" decoding="async" '
+          'alt="AIエージェント講習のイメージ。講師と受講者がPCを囲み、依頼・実行・確認の流れを学びながら、完成した告知を見て使い方に気づく場面">'
+          '</div><figcaption>AIエージェント講習のイメージ</figcaption></figure>' + END)
 
 
 def apply_glass_hero(document: str) -> str:

@@ -1,46 +1,46 @@
 {
-  "date": "2026-10-12",
-  "research_note": "日本時間2026年10月10日朝〜10月12日朝の直近48時間を優先して調査。確認できる異なる公式発表が5件に満たなかったため、10月5日朝からの7日間まで広げ、10月8〜9日の5発表元・5URLを選びました。publishedは各公式ページの発表日です。日本での関係は活用を考える例で、導入実績を示しません。dott講座は10月30日の開催予定です。",
+  "date": "2026-10-13",
+  "research_note": "日本時間2026年10月11日朝〜10月13日朝の直近48時間を調査し、公式4発表元・異なる5URLを選びました。7日間への拡大はしていません。publishedは各公式ページに表示された発表日です。F1の仕組みは4月導入の事例を10月12日に紹介したもの、Googleの運動記録拡充は今月後半の予定、StudentSimは研究段階です。日本での関係は活用を考える例で、国内導入実績や提供開始を示しません。",
   "items": [
     {
-      "title": "Microsoft、問い合わせを振り分けるAIを発表",
-      "url": "https://commandline.microsoft.com/microsoft-decision-1-model-foundry/",
+      "title": "Microsoft、生徒の反応を再現して学習支援AIを評価",
+      "url": "https://www.microsoft.com/en-us/research/blog/simulating-student-learning-for-better-ai-tutoring/",
       "source": "Microsoft",
-      "published": "2026-10-09",
-      "kid_summary": "Microsoftは、決められた選択肢に確率を付け、分類や優先順位付けを支援する「Microsoft-Decision-1」を発表しました。",
-      "japan_angle": "地域企業の問い合わせを担当別に振り分け、不確かな結果は人が確認する仕組みの候補になります。"
+      "published": "2026-10-12",
+      "kid_summary": "Microsoftは、生徒の学習記録から反応を再現し、学習支援AIの教え方を試す研究「StudentSim」を公開しました。",
+      "japan_angle": "学校がAI教材を選ぶ際、正解を出す力だけでなく、生徒が理解できる説明かを確かめる参考になります。"
     },
     {
-      "title": "Cloudflare、音声や動画も分類するAIを公開",
-      "url": "https://blog.cloudflare.com/clef-faster-cheaper-multimodal/",
-      "source": "Cloudflare",
-      "published": "2026-10-09",
-      "kid_summary": "Cloudflareは、文章や画像に加え、音声と動画をまとめて読み取り、選択肢を判定する「Clef-omni」を発表しました。",
-      "japan_angle": "地域の事業者が、問い合わせ音声や紹介動画を内容別に整理する仕組みを考える材料になります。"
+      "title": "AWS、F1映像を普段の言葉で探す仕組みを紹介",
+      "url": "https://aws.amazon.com/blogs/media/finding-the-perfect-moment-how-formula-1-uses-aws-ai-to-search-archives-in-seconds/",
+      "source": "AWS",
+      "published": "2026-10-12",
+      "kid_summary": "AWSは、F1の映像資料を普段の言葉で検索できる事例を紹介しました。AIが依頼を既存の検索条件に変換します。",
+      "japan_angle": "地域企業や施設でも、講習動画や行事記録を探す手間を減らす設計の参考になります。"
     },
     {
-      "title": "Google、仕事を横断して手伝うGeminiを発表",
-      "url": "https://cloud.google.com/blog/products/ai-machine-learning/welcome-to-gemini-at-work-2026",
-      "source": "Google Cloud",
-      "published": "2026-10-08",
-      "kid_summary": "Google Cloudは、質問への回答や資料作成、コードの実行などを支援する仕事向けGeminiエージェントを発表しました。",
-      "japan_angle": "地域企業がメールや社内資料をまたぐ作業を見直し、人が確認する箇所を決める参考になります。"
+      "title": "Google、運動の自動記録を100種以上に拡大へ",
+      "url": "https://blog.google/products-and-platforms/products/google-health/fitbit-google-health-updates/",
+      "source": "Google",
+      "published": "2026-10-12",
+      "kid_summary": "Googleは、AIが過去の運動などの文脈を使う自動記録を改善し、対象を100種以上へ広げると発表しました。",
+      "japan_angle": "運動を記録し忘れがちな人の習慣づくりを考える材料です。日本での提供条件は利用前の確認が必要です。"
     },
     {
-      "title": "Anthropic、AIの意図しない行動と対策を報告",
-      "url": "https://www.anthropic.com/news/investigating-unintended-model-actions",
-      "source": "Anthropic",
-      "published": "2026-10-09",
-      "kid_summary": "Anthropicは、試験や社内利用でAIが意図しない送信や制限回避をした事例と、対策の検討状況を公開しました。",
-      "japan_angle": "学校や福祉施設でAIに作業を任せる際も、送信前の確認と操作範囲の制限を考える材料になります。"
+      "title": "IBM、銀行のシステム開発をAIで支える試行を報告",
+      "url": "https://mea.newsroom.ibm.com/mashreq-pilots-ibm-bob-to-advance-agentic-ai-for-integration-engineering",
+      "source": "IBM",
+      "published": "2026-10-12",
+      "kid_summary": "IBMは、銀行Mashreqが開発支援AI「IBM Bob」を試し、システム連携の設計や不具合調査に活用していると発表しました。",
+      "japan_angle": "地域企業でも、AIに渡す資料と操作権限を絞り、業務アプリの保守を支援する進め方の参考になります。"
     },
     {
-      "title": "大学教職員向け、AI教育の学び直し講座へ",
-      "url": "https://prtimes.jp/main/html/rd/p/000000002.000192366.html",
-      "source": "dott",
-      "published": "2026-10-09",
-      "kid_summary": "dottは、大学教職員向けにAIの基礎と活用を考える無料オンライン講座を10月30日に開くと発表しました。",
-      "japan_angle": "学校でAIをどう教えるか悩む担当者が、教材や授業を見直す論点を学ぶ機会になります。"
+      "title": "Microsoft、AI処理を省電力化するMaia 300を解説",
+      "url": "https://azure.microsoft.com/en-us/blog/deep-dive-into-azure-maia-300-architecture/",
+      "source": "Microsoft",
+      "published": "2026-10-12",
+      "kid_summary": "Microsoftは、AIの処理に使う自社チップ「Maia 300」の設計を公開し、データ移動を減らして電力効率を高める仕組みを説明しました。",
+      "japan_angle": "地域企業がクラウドAIを選ぶ際、応答速度だけでなく運用費や消費電力も比べる視点につながります。"
     }
   ]
 }

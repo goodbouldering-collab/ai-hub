@@ -1,6 +1,6 @@
 # AI相談の現在地
 
-最終更新: 2026-10-12
+最終更新: 2026-10-13
 
 AI講座・業務改善相談の案内、ブログ、制作実績を提供する。確認済み公開URLは https://aiclimb.aiclimb.workers.dev 。独自ドメイン未設定のため、このURLを使用する。公開先は共通Cloudflare台帳の `work/genspark-profile-edit/cloudflare-runtime`。事業ルートには別作業の差分があるため、一括同期しない。
 
@@ -11,13 +11,13 @@ AI講座・業務改善相談の案内、ブログ、制作実績を提供する
 - Python19件・Cloudflare7件・公開経路検査成功。公開候補はindex.htmlのみ変更、615資産と管理Workerが不変。検証ブラウザでPC1440px・390px（ローカルは320pxも）の横はみ出しなし、3入口の動作を確認。PR #168統合、SHA `6d6ab7ce23b8ceb6a7942910799bd31bddfbd481`、Cloudflare version `8c015433-67d8-4056-9786-d3de2786d973` で公開。7資産SHAとhealth・管理認証4経路を確認。今回の残件なし。
 - 最新正常版は登録元 `.hero-three-actions-release-final/public`。最終SHA・versionと工程検査は登録元 `tmp/delivery/20261012-hero-three-actions.json`。記録: [3ボタンの復旧](docs/hero-three-actions-20261012.md)。
 
-## 10月12日の日次AIニュース（本番確認済み）
+## 10月13日の日次AIニュース（ローカル検証済み・公開準備中）
 
-- 直近48時間を優先し、5件不足のため7日以内へ拡大。10月8〜9日のMicrosoft、Cloudflare、Google Cloud、Anthropic、dottの公式5件を公開。調査範囲・発表日・活用例を区別した。
-- CodexはOctober 5–9, 2026／rust-v0.162.1のまま。公式取得・fingerprint・update_articleで差分なし、本文と日付を保持。
-- PR #164、統合・公開SHA `aabd608d0bddc2f7579b06c975b9c9df12521736`、Cloudflare version `7b1ae6b0-90d6-4ada-a16c-122fe0acf5d8`。トップ・独立ニュース・サイトマップの3資産を更新、ブログを含む611資産と管理Workerを保持。ニュース入口はヒーロー直下へ配置。
-- 53テスト、assets/live検証、8本番SHA、旧URL3種類の301、health・管理API認証境界、ChromeのPC1440px／スマホ390pxで表示・もっと見る遷移・横はみ出しなしを確認。DELIVERY_VERIFIED成功。既存dirty・stagedを保全。
-- ニュース公開時の基準は登録元 `.daily-news-release-20261012-verified/public`。最新正常版は下記の講習ヒーロー公開記録を参照。今回の公開残件なし。詳細: [当日記録](docs/daily-news-20261012-run.md)。
+- 直近48時間内の10月12日付公式5件を採用。MicrosoftのStudentSim・Maia 300、AWSのF1映像検索、Googleの運動記録、IBMの開発支援事例。4発表元・5URL、説明は最大71文字。研究・提供予定・事例紹介を区別する。
+- CodexはOctober 5–9, 2026／rust-v0.162.1で差分なし。検証済み取得・fingerprint・update_articleで本文の全バイトと更新日を保持。
+- 最新正常版 `.hero-three-actions-release-final/public`（616資産、source e803e0e8）を本番6資産SHAと全manifestで照合。更新前再生成差分0、候補はトップ・独立ニュース・サイトマップのみ変更し613資産と管理Workerを保持。
+- 指定テストを含む57件、assets、公開経路検査が成功。講習画像・3入口・7講座を維持。次はPR統合、確定SHA再生成、中央ガード、Cloudflare公開、本番・画面検証。
+- 詳細: [当日記録](docs/daily-news-20261013-run.md)。前回公開結果は [10月12日記録](docs/daily-news-20261012-run.md)。
 
 ## AIエージェント講習のヒーロー（2026-10-12、本番確認済み）
 

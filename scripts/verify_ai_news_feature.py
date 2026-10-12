@@ -22,7 +22,9 @@ def verify(read):
     assert hero.select_one('#hero-glass-art img'), "Preserve the current glass hero"
     assert not home.select('.home-learning-links, #restored-hero-image')
     assert hero.select_one(".focus-lead + .focus-trust + .focus-actions"), "Trust points must follow the lead"
-    assert [a['href'] for a in diagnoses.select(':scope > a')] == ['/ai-agent-readiness/']
+    assert [a['href'] for a in diagnoses.select(':scope > a')] == ['/seo-llmo-diagnosis/', '/ai-agent-readiness/']
+    assert len(diagnoses.select(':scope > .diagnosis-action')) == 3
+    assert diagnoses.select_one('button.diagnose-open[aria-controls="diagnoseModal"]')
     assert feature.select_one('#ai-news-feature-title').get_text() == '今日のAIニュース5とCodex'
     headlines = feature.select('ol li a')
     assert len(headlines) == 3

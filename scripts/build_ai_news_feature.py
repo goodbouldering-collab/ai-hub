@@ -1,4 +1,4 @@
-"""Build the standalone news resource and its hero-adjacent home entry.
+"""Build the combined news resource and its pinned home-blog entry.
 
 The templates preserve the verified public layout during the Cloudflare migration.
 Use --base-assets only with the immutable release manifest; never use dirty public/.
@@ -43,19 +43,10 @@ URL = "https://aiclimb.aiclimb.workers.dev/ai-news/"
 SEARCH_CONFIG = ROOT / "config/search-presence.json"
 
 
-def place_news_after_hero(document: str) -> str:
-    """Keep the daily resource independent from the published blog list."""
-    news = _ElementSpans(document, element_id='ai-news').spans
-    heroes = _ElementSpans(document, element_id='top').spans
-    if len(news) != 1 or len(heroes) != 1:
-        raise ValueError('Expected one hero and one news entry')
-    start, end = news[0]
-    feature = document[start:end]
-    feature = re.sub(r'<h3(\s+id=[\x27"]ai-news-feature-title[\x27"][^>]*)>(.*?)</h3>',
-                     r'<h2\1>\2</h2>', feature, flags=re.S)
-    document = document[:start] + document[end:]
-    insertion = _ElementSpans(document, element_id='top').spans[0][1]
-    return document[:insertion] + feature + document[insertion:]
+def place_news_in_blog(document: str) -> str:
+    """Keep the combined daily feature pinned above the three blog articles."""
+    from core.editorial_feed import integrate_home_news
+    return integrate_home_news(document)
 
 
 def remove_old_cards(text: str) -> str:
@@ -142,8 +133,8 @@ def build(output: Path, base_assets: Path | None = None, *, preserve_baseline_pr
     if not preserve_baseline_presentation:
         home = apply_home_updates(home, blog, (TEMPLATES / "home-updates.css").read_text(encoding="utf-8"))
         home = apply_diagnosis_copy(home)
-        blog = apply_blog_feed(blog, modified, (TEMPLATES / "editorial-feed.css").read_text(encoding="utf-8"))
-    home = place_news_after_hero(apply_news_images(home, news))
+    blog = apply_blog_feed(blog, modified, (TEMPLATES / "editorial-feed.css").read_text(encoding="utf-8"))
+    home = place_news_in_blog(apply_news_images(home, news))
     sitemap = (TEMPLATES / "sitemap.xml").read_text(encoding="utf-8")
     sitemap, count = re.subn(r"<url><loc>[^<]*/blog/codex-update-log\.html</loc>.*?</url>", f"<url><loc>{URL}</loc><lastmod>{modified}</lastmod><priority>0.9</priority></url>", sitemap, flags=re.S)
     assert count == 1
@@ -174,7 +165,7 @@ def build(output: Path, base_assets: Path | None = None, *, preserve_baseline_pr
     themed = [] if preserve_baseline_presentation else decorate_public_tree(output)
     if not preserve_baseline_presentation:
         home_path = output / "index.html"
-        home_path.write_text(place_news_after_hero(apply_news_images(apply_editorial_home(home_path.read_text(encoding="utf-8")), news)), encoding="utf-8", newline="\n")
+        home_path.write_text(place_news_in_blog(apply_news_images(apply_editorial_home(home_path.read_text(encoding="utf-8")), news)), encoding="utf-8", newline="\n")
     # Apply search metadata after all presentation decorators, which may carry
     # old structured data in their frozen shells. A partial build must not
     # replace the full site's discovery files with a three-page sitemap.

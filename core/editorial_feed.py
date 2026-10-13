@@ -277,7 +277,7 @@ class _ElementSpans(HTMLParser):
 
 
 def apply_blog_feed(blog_document: str, news_date: str, css: str) -> str:
-    """Restyle published blog articles without adding the independent news page."""
+    """Pin the combined daily resource before the published blog articles."""
     posts = public_posts(blog_document)
     if not posts:
         raise ValueError('Expected publicly listed blog posts')
@@ -285,7 +285,8 @@ def apply_blog_feed(blog_document: str, news_date: str, css: str) -> str:
     spans = _ElementSpans(blog_document, 'tr-grid').spans
     if len(spans) != 1:
         raise ValueError('Expected one public blog grid')
-    rows = ''.join(_row(post, config, preserve_href=True, heading_level=2) for post in posts)
+    rows = _row(_news_post(news_date, config), config, news=True, heading_level=2)
+    rows += ''.join(_row(post, config, preserve_href=True, heading_level=2) for post in posts)
     replacement = '<ol class="tr-grid editorial-feed editorial-feed--archive editorial-feed__list">' + rows + '</ol>'
     start, end = spans[0]
     result = blog_document[:start] + replacement + blog_document[end:]

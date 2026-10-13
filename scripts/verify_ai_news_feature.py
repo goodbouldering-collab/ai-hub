@@ -18,7 +18,7 @@ def verify(read):
     feature = home.select_one("main #ai-news")
     diagnoses = home.select_one('#diagnosis-start')
     assert diagnoses and hero.select_one("#diagnosis-start") == diagnoses, "Diagnoses must be inside the hero"
-    assert home.select_one("#top + #ai-news"), "News entry must follow the hero"
+    assert home.select_one("#blog > .editorial-feed__heading + #ai-news + .editorial-feed__list"), "Combined news must be the first blog entry"
     assert hero.select_one('#hero-glass-art img'), "Preserve the current glass hero"
     assert not home.select('.home-learning-links, #restored-hero-image')
     assert hero.select_one(".focus-lead + .focus-trust + .focus-actions"), "Trust points must follow the lead"
@@ -34,11 +34,11 @@ def verify(read):
         assert link.select('span')[-1].get_text() == page.select_one(f'#news-{rank} h3 a').get_text()
     rows = home.select('#blog .editorial-feed__row')
     assert len(rows) == 3, "Home must retain the latest three blog articles"
-    assert not home.select('#blog #ai-news'), "News must remain independent of the blog"
+    assert len(home.select("#blog #ai-news")) + len(rows) == 4
     assert all(row.select_one('img[src][alt]') for row in rows)
     assert len(home.select('#blog')) == 1
     assert home.select_one('#blog.editorial-feed--home')
-    assert not home.select('#blog a[href="/ai-news/"]')
+    assert home.select('#blog a[href="/ai-news/"]')
     assert not home.select('#blog-carousel, #latest-blog')
     assert not feature.select('section'), "Daily refresh must not truncate a nested section"
     expected = sorted(blog.select('a.tr-card'), key=lambda card: card.select_one('time')['datetime'], reverse=True)[:3]
@@ -48,9 +48,10 @@ def verify(read):
         assert link.select_one('time')['datetime'] == card.select_one('time')['datetime']
     more = feature.select_one('a.ai-news-feature__more[href="/ai-news/"]')
     assert more and 'もっと見る' in more.get_text()
-    assert not blog.select('.editorial-feed__news, a[href="/ai-news/"]')
+    assert len(blog.select('.editorial-feed__news')) == 1
+    assert blog.select_one(".tr-grid > li:first-child a")["href"] == "/ai-news/"
     assert all(row.select_one('img[src][alt]') for row in blog.select('.editorial-feed__row'))
-    assert len(blog.select('.editorial-feed__row')) == len(blog.select('a.tr-card'))
+    assert len(blog.select('.editorial-feed__row')) == len(blog.select('a.tr-card')) + 1
     assert len(home.select('.compact-course-card[data-editorial-course]')) == 7
     assert home.select_one('#reel-course'), "Preserve the published reel course"
     for card in home.select('.compact-course-card'):
@@ -73,7 +74,7 @@ def verify(read):
     assert page.select_one(".blog-update-label").get_text() == f"{updated.month}月{updated.day}日更新"
     assert len(page.select(".content-toc")) == 0
     assert page.select_one("#過去のアップデート要約")
-    return {"diagnoses_in_hero": True, "news_after_hero": True, "home_entries": 3, "news_items": 5,
+    return {"diagnoses_in_hero": True, "news_pinned_in_blog": True, "home_entries": 4, "news_items": 5,
             "latest_blogs": 3, "archive_entries": len(blog.select('.editorial-feed__row')),
             "all_entries_have_images": True, "news_and_codex_images": True, "compact_courses": 7,
             "codex_blog_card_removed": True, "article_content_checks": True}

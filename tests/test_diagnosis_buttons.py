@@ -34,7 +34,7 @@ class DiagnosisButtonTests(unittest.TestCase):
         rendered=apply_diagnosis_copy(apply_home_feed(source,posts,'css'))
         soup=BeautifulSoup(rendered,'html.parser')
         self.assertIsNotNone(soup.select_one('#top .focus-lead + .focus-trust + .focus-actions #diagnosis-start'))
-        self.assertIsNotNone(soup.select_one('#top + #blog > .editorial-feed__heading + #ai-news'))
+        self.assertIsNotNone(soup.select_one('#top + #blog > .editorial-feed__list > #ai-news'))
         self.assertFalse(soup.select('.home-learning-links, #restored-hero-image, .focus-actions a.secondary, .focus-actions a.hero-text-link'))
         self.assertEqual(len(soup.select('#diagnosis-start')),1)
         self.assertEqual(soup.select_one('#preserved').get_text(),'Keep me')

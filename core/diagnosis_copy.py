@@ -20,6 +20,15 @@ body.studio-editorial.studio-home .diagnosis-guide-row .diagnosis-action--flow:h
 body.studio-editorial.studio-home .diagnosis-guide-row .diagnosis-action:focus-visible{outline:3px solid #528679;outline-offset:3px}
 body.studio-editorial.studio-home #top .focus-trust{margin:10px 0 12px!important;gap:6px 14px}
 @media(prefers-reduced-motion:reduce){.diagnosis-guide-row .diagnosis-action{transition:none!important}}
+/* Keep these action tokens stronger than the existing pastel theme layer. */
+body.studio-theme.studio-editorial.studio-home #top #diagnosis-start.diagnosis-guide-row{gap:10px!important;border-top:0!important;margin-top:8px!important}
+body.studio-theme.studio-editorial.studio-home #top #diagnosis-start.diagnosis-guide-row .diagnosis-action{min-height:76px!important;padding:13px 14px!important;border:2px solid #087e79!important;border-radius:14px!important;background:#087e79!important;color:#fff!important;box-shadow:0 5px 12px #075b5526!important}
+body.studio-theme.studio-editorial.studio-home #top #diagnosis-start.diagnosis-guide-row .diagnosis-action strong{font-size:16px!important;font-weight:800;line-height:1.45!important;color:inherit!important}
+body.studio-theme.studio-editorial.studio-home #top #diagnosis-start.diagnosis-guide-row .diagnosis-action small{font-size:12px!important;color:inherit!important;line-height:1.45!important}
+body.studio-theme.studio-editorial.studio-home #top #diagnosis-start.diagnosis-guide-row .diagnosis-arrow{margin-left:auto;flex:none;font-size:22px;font-weight:700;line-height:1}
+@media(max-width:1000px){body.studio-theme.studio-editorial.studio-home #top #diagnosis-start.diagnosis-guide-row .diagnosis-arrow{display:none}}
+body.studio-theme.studio-editorial.studio-home #top #diagnosis-start.diagnosis-guide-row .diagnosis-action:hover{background:#065f5b!important;border-color:#065f5b!important;color:#fff!important}
+body.studio-theme.studio-editorial.studio-home #top #diagnosis-start.diagnosis-guide-row .diagnosis-action:focus-visible{outline:3px solid #b65c23;outline-offset:4px}
 </style>'''
 
 
@@ -30,7 +39,7 @@ def _icon(paths):
 def _buttons():
     items = [
         ('button', 'type="button" aria-controls="diagnoseModal" aria-haspopup="dialog"',
-         ' diagnosis-action--flow diagnose-open', '何からはじめれば？', 'メニュー選択フロー',
+         ' diagnosis-action--flow diagnose-open', '何からはじめれば？', 'どの講習を選べば？',
          '<path d="M4 5h6v5H4zM14 14h6v5h-6zM7 10v6h7M10 7h7v7"/>'),
         ('a', 'href="/seo-llmo-diagnosis/"', ' diagnosis-action--site',
          PROMPTS['seo-llmo-guide-title'], 'サイト診断',
@@ -42,7 +51,7 @@ def _buttons():
     result = '<div id="diagnosis-start" class="diagnosis-guide-row" role="group" aria-label="自分に合う入口を選ぶ">'
     for tag, attrs, modifier, question, title, icon in items:
         result += (f'<{tag} class="diagnosis-action{modifier}" {attrs}>' + _icon(icon)
-                   + f'<span class="diagnosis-label"><small>{question}</small><strong>{title}</strong></span></{tag}>')
+                   + f'<span class="diagnosis-label"><small>{question}</small><strong>{title}</strong></span><span class="diagnosis-arrow" aria-hidden="true">→</span></{tag}>')
     return result + '</div>'
 
 

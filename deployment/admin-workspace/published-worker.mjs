@@ -18496,6 +18496,13 @@ function rewriteNavigation(text, { studio = false } = {}) {
 
 // deployment/admin-workspace/theme.mjs
 var THEME = `<style data-admin-theme>
+body[data-workspace-shell] .workspace-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px;max-width:1280px;margin:0 auto;padding:16px 28px 0}
+body[data-workspace-shell] :is(.workspace-action,.workspace-return a){display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;max-width:100%;padding:10px 16px;border:1px solid #b6cbd7;border-radius:8px;background:#fff;color:#23586e;font:650 13px/1.5 system-ui,"Yu Gothic",sans-serif;text-decoration:none;text-align:center;overflow-wrap:anywhere}
+body[data-workspace-shell] :is(.workspace-action,.workspace-return a):hover{background:#eaf1f4;border-color:#23586e}
+body[data-workspace-shell] a.workspace-action--primary{background:#23586e;color:#fff;border-color:#23586e}
+body[data-workspace-shell] a.workspace-action--primary:hover{background:#193e4e;color:#fff}
+body[data-workspace-shell] .workspace-return{align-items:center}
+@media(max-width:700px){body[data-workspace-shell] .workspace-actions{padding:12px 16px 0}body[data-workspace-shell] .workspace-action{padding:10px 14px}}
 body[data-workspace-shell]{--bg:#f5f7f9;--bg-base:#f5f7f9;--bg-white:#fff;--surface:#fff;--paper:#fff;--text:#193342;--ink:#193342;--text-soft:#455e6e;--muted:#617784;--line:#dce4e9;--primary:#23586e;--primary-soft:#306d84;--primary-bg:#eaf1f4;--green:#23586e;--pale:#eaf1f4;--accent:#23586e;--shadow-card:0 3px 16px #19334206;--shadow-card-hover:0 5px 20px #1933420d;margin:0!important;padding:0!important;background:#f5f7f9!important;color:#193342!important;font:14px/1.7 system-ui,"Yu Gothic",sans-serif!important;min-width:0}
 body[data-workspace-shell] *{box-sizing:border-box}body[data-workspace-shell] :is(main,.container,.cc-shell,.wrap){min-width:0;max-width:1280px;margin-inline:auto}body[data-workspace-shell] :is(h1,h2,h3,p){overflow-wrap:anywhere}body[data-workspace-shell] :is(h1,h2,h3){letter-spacing:-.025em}body[data-workspace-shell] h1{font-size:clamp(25px,3vw,34px);line-height:1.45}body[data-workspace-shell] h2{font-size:18px;line-height:1.6}
 body[data-workspace-shell] :is(.panel,.card,.cc-card,.cc-panel,.stat,.kpi,.doc,.conn,.settings-panel,.chat-panel){background:#fff!important;color:#193342;border:1px solid #dce4e9!important;border-radius:14px!important;box-shadow:0 3px 16px #19334206!important;backdrop-filter:none!important}
@@ -18614,10 +18621,16 @@ var CSS = `<style>
 @media(prefers-reduced-motion:reduce){.workspace-card{transition:none}}
 </style>`;
 var e = (value) => String(value).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
-var card = (href, title, description, icon, primary = false) => `<a class="workspace-card${primary ? " workspace-card--primary" : ""}" href="${href}"><span class="card-icon" aria-hidden="true">${icon}</span><h2>${title}</h2><p>${description}</p><span class="card-arrow">\u958B\u304F \u2192</span></a>`;
+var card = (href, title, description, icon, primary = false) => `<a class="workspace-action${primary ? " workspace-action--primary" : ""}" href="${href}"><span aria-hidden="true">${icon}</span><span>${title}</span></a>`;
 var list = (items) => `<ul class="workspace-list">${items.map(([href, title, description]) => `<li><a href="${href}"><span><strong>${title}</strong><small>${description}</small></span><span aria-hidden="true">\u2192</span></a></li>`).join("")}</ul>`;
 var section = (title, body) => `<section class="workspace-section"><h2>${title}</h2>${body}</section>`;
-var workspacePage = (path, title, lead, body) => `<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>AI\u76F8\u8AC7</title>${CSS}${SHELL_STYLE}</head><body data-workspace-shell>${header(path)}<main class="admin-workspace"><div class="workspace-intro"><div><span class="workspace-eyebrow">AI\u76F8\u8AC7 / \u7BA1\u7406</span><h1>${title}</h1><p>${lead}</p></div></div>${body}</main></body></html>`;
+var workspacePage = (path, title, lead, body) => {
+  const launcher = body.match(/^<div class="workspace-grid">([\s\S]*?)<\/div>/);
+  const actions = launcher && launcher[1].includes('class="workspace-action');
+  const navigation = actions ? `<nav class="workspace-actions" aria-label="\u4F5C\u696D\u30E1\u30CB\u30E5\u30FC">${launcher[1]}</nav>` : "";
+  const content = actions ? body.slice(launcher[0].length) : body;
+  return `<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>AI\u76F8\u8AC7</title>${CSS}${SHELL_STYLE}</head><body data-workspace-shell>${header(path)}${navigation}<main class="admin-workspace"><div class="workspace-intro"><div><span class="workspace-eyebrow">AI\u76F8\u8AC7 / \u7BA1\u7406</span><h1>${title}</h1><p>${lead}</p></div></div>${content}</main></body></html>`;
+};
 function renderPage(path) {
   if (path === "/admin") return workspacePage(
     path,

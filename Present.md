@@ -1,5 +1,12 @@
 # AI相談の現在地
 
+## 管理メニュー直下のボタン（2026-10-14）
+
+- 管理ホーム・制作発信・運営分析の入口を44pxのボタン列に変更。戻りリンクもボタン化。既存機能と内部資料の検索カードを保持。
+- ローカル修正・検証済み、公開前。管理10件・Cloudflare7件、PCと390px表示を確認。公開結果は登録公開元 tmp/delivery/20261014-admin-menu-buttons.json。
+- 詳細: [変更記録](docs/admin-menu-buttons-20261014.md)。
+
+
 最終更新: 2026-10-14
 
 AI講座・業務改善相談の案内、ブログ、制作実績を提供する。確認済み公開URLは https://aiclimb.aiclimb.workers.dev 。独自ドメイン未設定のため、このURLを使用する。公開先は共通Cloudflare台帳の `work/genspark-profile-edit/cloudflare-runtime`。事業ルートには別作業の差分があるため、一括同期しない。

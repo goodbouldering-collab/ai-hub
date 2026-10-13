@@ -282,3 +282,20 @@ body.studio-home #ai-news a:focus-visible { outline: 3px solid #b2543c; outline-
   body.studio-home #ai-news .ai-news-feature__reading li a { font-size: 16px !important; line-height: 1.6 !important; padding: 15px 0 !important; }
   body.studio-home #ai-news .ai-news-feature__reading .ai-news-feature__more { margin-top: 18px !important; }
 }
+
+/* Daily news uses the ordinary blog row typography without a photo column. */
+body.studio-theme.studio-editorial #blog .editorial-feed__list > #ai-news.editorial-feed__item {
+  display: list-item !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+body.studio-theme.studio-editorial .editorial-feed .editorial-feed__news {
+  grid-template-columns: minmax(0, 1fr) !important;
+}
+body.studio-theme.studio-editorial .editorial-feed .editorial-feed__news > .editorial-feed__body {
+  grid-column: 1 / -1 !important;
+}

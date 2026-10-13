@@ -18,23 +18,19 @@ def verify(read):
     feature = home.select_one("main #ai-news")
     diagnoses = home.select_one('#diagnosis-start')
     assert diagnoses and hero.select_one("#diagnosis-start") == diagnoses, "Diagnoses must be inside the hero"
-    assert home.select_one("#blog > .editorial-feed__heading + #ai-news + .editorial-feed__list"), "Combined news must be the first blog entry"
+    assert home.select_one("#blog > .editorial-feed__heading + .editorial-feed__list > #ai-news"), "Combined news must be the first blog entry"
     assert hero.select_one('#hero-glass-art img'), "Preserve the current glass hero"
     assert not home.select('.home-learning-links, #restored-hero-image')
     assert hero.select_one(".focus-lead + .focus-trust + .focus-actions"), "Trust points must follow the lead"
     assert [a['href'] for a in diagnoses.select(':scope > a')] == ['/seo-llmo-diagnosis/', '/ai-agent-readiness/']
     assert len(diagnoses.select(':scope > .diagnosis-action')) == 3
     assert diagnoses.select_one('button.diagnose-open[aria-controls="diagnoseModal"]')
-    assert feature.select_one('#ai-news-feature-title').get_text() == '今日のAIニュース5とCodex'
-    headlines = feature.select('ol li a')
-    assert len(headlines) == 3
-    assert len(feature.select('.news-thumbnail img[src][alt]')) == 3
-    for rank, link in enumerate(headlines, 1):
-        assert link['href'] == f'/ai-news/#news-{rank}'
-        assert link.select('span')[-1].get_text() == page.select_one(f'#news-{rank} h3 a').get_text()
-    rows = home.select('#blog .editorial-feed__row')
-    assert len(rows) == 3, "Home must retain the latest three blog articles"
-    assert len(home.select("#blog #ai-news")) + len(rows) == 4
+    assert feature.select_one('.tr-title').get_text() == '今日のAIニュース4とCodex'
+    assert feature.select_one('a')['href'] == '/ai-news/'
+    assert not feature.select('img')
+    rows = home.select('#blog .editorial-feed__row:not(.editorial-feed__news)')
+    assert len(rows) == 3, 'Preserve the latest three blog articles'
+    assert len(home.select('#blog .editorial-feed__row')) == 4
     assert all(row.select_one('img[src][alt]') for row in rows)
     assert len(home.select('#blog')) == 1
     assert home.select_one('#blog.editorial-feed--home')
@@ -46,11 +42,9 @@ def verify(read):
         assert link['href'] == urljoin('/blog/', card['href'])
         assert link.select_one('.tr-title').get_text() == card.select_one('.tr-title').get_text()
         assert link.select_one('time')['datetime'] == card.select_one('time')['datetime']
-    more = feature.select_one('a.ai-news-feature__more[href="/ai-news/"]')
-    assert more and 'もっと見る' in more.get_text()
     assert len(blog.select('.editorial-feed__news')) == 1
     assert blog.select_one(".tr-grid > li:first-child a")["href"] == "/ai-news/"
-    assert all(row.select_one('img[src][alt]') for row in blog.select('.editorial-feed__row'))
+    assert all(row.select_one('img[src][alt]') for row in blog.select('.editorial-feed__row:not(.editorial-feed__news)'))
     assert len(blog.select('.editorial-feed__row')) == len(blog.select('a.tr-card')) + 1
     assert len(home.select('.compact-course-card[data-editorial-course]')) == 7
     assert home.select_one('#reel-course'), "Preserve the published reel course"
@@ -63,8 +57,9 @@ def verify(read):
     assert "/blog/codex-update-log" not in sitemap
     assert "https://aiclimb.aiclimb.workers.dev/ai-news/" in sitemap
     assert page.select_one('link[rel="canonical"]')["href"] == "https://aiclimb.aiclimb.workers.dev/ai-news/"
-    assert len(page.select(".daily-ai-news__item")) == 5
-    assert all(card.select_one(":scope > .news-thumbnail img[src][alt]") for card in page.select(".daily-ai-news__item, .codex-feature-card"))
+    assert len(page.select(".daily-ai-news__item")) == 4
+    assert not page.select('main img, .news-thumbnail')
+    assert not blog.select('.editorial-feed__news img')
     assert not page.select_one("main > header .speaker-meta")
     assert page.select_one("#codex-update-guide-title").get_text() == "Codex新機能と活用例"
     assert ".codex-update-guide #codex-update-guide-title," in str(page)
@@ -74,9 +69,9 @@ def verify(read):
     assert page.select_one(".blog-update-label").get_text() == f"{updated.month}月{updated.day}日更新"
     assert len(page.select(".content-toc")) == 0
     assert page.select_one("#過去のアップデート要約")
-    return {"diagnoses_in_hero": True, "news_pinned_in_blog": True, "home_entries": 4, "news_items": 5,
+    return {"diagnoses_in_hero": True, "news_pinned_in_blog": True, "home_entries": 4, "news_items": 4,
             "latest_blogs": 3, "archive_entries": len(blog.select('.editorial-feed__row')),
-            "all_entries_have_images": True, "news_and_codex_images": True, "compact_courses": 7,
+            "ordinary_blog_images_preserved": True, "news_and_codex_images": False, "compact_courses": 7,
             "codex_blog_card_removed": True, "article_content_checks": True}
 
 

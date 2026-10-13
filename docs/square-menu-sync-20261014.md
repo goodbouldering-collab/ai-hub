@@ -18,4 +18,4 @@
 
 Python2件・Cloudflare7件成功。ネストしたJSON-LD価格の更新範囲、別講座の料金保全、再適用の同一性を検証。IAB1440/390px表示と横はみ出しなしを確認。Chromeスクリーンショットは応答せず、Squareの読取とDOM確認にはChromeを利用。
 
-工程: 登録元tmp/delivery/20261014-square-menu-sync.json。公開は進行中。ローカルプレビュー http://127.0.0.1:4015/ 、PID41072、終了予定2026-10-16 03:23:59 JST。プレビュー利用中の作業コピーは保持。
+工程: 登録元tmp/delivery/20261014-square-menu-sync.json。PR #174統合、本番公開済み。公開SHA `5b6760cbad84a3c5d0c4d798289a27c5ef233378`、Cloudflare version `322cc469-90ed-4488-82c4-ec1f44a56554`。Wrangler4.127.1。4公開資産SHA一致、health200/admin303/ping401。本番IAB1440/390pxで表示・予約リンク・横はみ出しなしを確認。ローカルプレビュー http://127.0.0.1:4015/ 、PID41072、終了予定2026-10-16 03:23:59 JST。プレビュー利用中の作業コピーは保持。

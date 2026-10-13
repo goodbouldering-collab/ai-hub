@@ -3,7 +3,7 @@
 ## 管理メニュー直下のボタン（2026-10-14）
 
 - 管理ホーム・制作発信・運営分析の入口を44pxのボタン列に変更。戻りリンクもボタン化。既存機能と内部資料の検索カードを保持。
-- ローカル修正・検証済み、公開前。管理10件・Cloudflare7件、PCと390px表示を確認。公開結果は登録公開元 tmp/delivery/20261014-admin-menu-buttons.json。
+- PR #178統合、本番反映・確認済み。管理10件・Cloudflare7件成功。認証済みChromeでPC1536px・390px、44pxボタン・折り返し・ブログ制作への遷移を確認。初回公開SHA 50c46adc、Cloudflare version 2561b8d5-ead3-429d-8cdd-013aa02f28cb。公開616資産を保持。最新の工程記録は登録公開元 tmp/delivery/20261014-admin-menu-buttons.json。
 - 詳細: [変更記録](docs/admin-menu-buttons-20261014.md)。
 
 

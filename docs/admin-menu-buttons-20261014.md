@@ -8,6 +8,6 @@
 
 検証: 管理・認証10件、Cloudflare7件、公開経路検査成功。IABでローカル管理ホームと制作発信を確認。390pxでボタン44px・折り返し・横はみ出しなし。PCでもヘッダー直下のボタン配置を確認。
 
-公開前の記録。統合SHA・配備ID・本番確認は登録公開元 tmp/delivery/20261014-admin-menu-buttons.json に記録する。
+PR #178統合、本番反映・確認済み。初回公開SHA 50c46adcf883eaab85e934abfda683e02c912d65、Cloudflare version 2561b8d5-ead3-429d-8cdd-013aa02f28cb。認証済みChromeのPC1536px・390pxでヘッダー直下の44pxボタン、折り返し、青緑と白の配色、制作画面への遷移を確認。公開616資産のmanifestと本番3HTMLのSHA一致、管理認証維持を確認。最新SHA・配備ID・工程検査は登録公開元 tmp/delivery/20261014-admin-menu-buttons.json に記録する。
 
 プレビュー: http://127.0.0.1:4099/admin 。親PID48512、終了予定2026-10-16 04:58:59 JST。ローカル専用の架空認証を使用。稼働中のため作業ツリーを保持。

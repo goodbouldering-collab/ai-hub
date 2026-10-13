@@ -289,7 +289,7 @@ def _build_jsonld_website() -> str:
     }
 
     ai_agent_title = "AIエージェント講習 120分"
-    individual_course_title = "AI個別講習 60分"
+    individual_course_title = "AI個別相談 120分"
     ai_coding_title = "AIコーディング講習 120分"
     salon_title = "AIオンラインサロン｜近日開始"
     support_title = "AI伴走支援 いっしょに導入"
@@ -297,7 +297,7 @@ def _build_jsonld_website() -> str:
     # 受講プランを Service + Offer として構造化（_render_packages の items と整合）
     plans = [
         (ai_agent_title, "Codexを使い、仕事を小さく分けて頼む、変更点を確かめる、必要なら直す、次回も使える手順として残すAIエージェント講習。資料、告知、業務改善、Web制作を題材に、人が判断しながら成果物を完成させる型を120分で身につける。", "5500", "5500", "Course"),
-        (individual_course_title, "仕事に合うAIの使い方と、確認・運用の手順を60分で整理する個別講習。", "5500", "5500", "Course"),
+        (individual_course_title, "仕事に合うAIの使い方と、確認・運用の手順を120分で整理する個別相談。", "8800", "8800", "Course"),
         (salon_title, "月額2,200円（税込）。正式開始に向けて現在は仮運用中で、登録中の方にはテスト運用へご協力いただいています。Square決済後にLINE参加案内を表示します。", "2200", "2200", "CommunityService"),
         (support_title, "組織がAIアプリサイトを自作・改善・運用できるまで学ぶ6ヶ月。上の制作サービスで行う課題整理、設計、公開、改善を、組織の担当者がAIと進められる状態を目指す。", MONTHLY_SUPPORT_PRICE_JPY, MONTHLY_SUPPORT_PRICE_JPY, "Service"),
         (ai_coding_title, "Codex導入、Claude Code併用、画像生成、プログラミング基礎、設計、データ、運用、セキュリティを1本で学ぶAIコーディング講習。AIの成果物を判断し、説明し、仕事に入れるための作業設計と確認の型を120分で身につける。", "11000", "11000", "Course"),
@@ -10449,10 +10449,10 @@ HEADER_JS = """
     ];
     var RESULT = {
       start: {
-        badge: 'AI個別講習', title: 'まずは、AIで軽くする仕事を一つ決める',
+        badge: 'AI個別相談', title: 'まずは、AIで軽くする仕事を一つ決める',
         desc: '今の課題を聞き、仕事に合うAIの使い方と確認・運用の手順を一緒に整理します。',
-        bookingMeta: '60分・5,500円',
-        bookingLabel: 'AI個別講習を予約する',
+        bookingMeta: '120分・8,800円',
+        bookingLabel: 'AI個別相談を予約する',
         bookingUrl: '__INDIVIDUAL_COURSE_BOOK_URL__'
       },
       promotion: {
@@ -11504,7 +11504,7 @@ def _render_path_selector() -> str:
             "無料相談、個別相談、AIエージェント講習、伴走支援を、料金と到達点で比べられます。",
             "受講プランを見る",
             "#packages",
-            "相談 / 60分 / 120分",
+            "準備相談20分 / 個別相談120分",
             "次に: 関連資料を確認",
         ),
     ]
@@ -11806,7 +11806,7 @@ def _render_services() -> str:
 
 def _render_courses_packages() -> str:
     """講習・相談プランのカード一覧。"""
-    individual_course_title = "AI個別講習 60分"
+    individual_course_title = "AI個別相談 120分"
     ai_coding_title = "AIコーディング講習 120分"
     free_consult_title = "AI無料相談 入口整理"
     support_title = "AI伴走支援 いっしょに導入"
@@ -11838,10 +11838,10 @@ def _render_courses_packages() -> str:
             "level": "個別",
             "level_id": "intermediate",
             "title": individual_course_title,
-            "price": "5,500円",
-            "duration": "60分 / 個別",
+            "price": "8,800円",
+            "duration": "120分 / 個別",
             "subsidy": False,
-            "desc": "仕事に合うAIの使い方と、確認・運用の手順を60分で整理します。",
+            "desc": "仕事に合うAIの使い方と、確認・運用の手順を120分で整理します。",
             "content": [
                 "時間を取られている仕事から、最初に試す1つを選ぶ",
                 "使うAI、渡してよい情報、人が確認する範囲を整理する",
@@ -11849,7 +11849,7 @@ def _render_courses_packages() -> str:
             ],
             "fit": ["AIが分からない", "事務作業が重い", "社内への導入順を決めたい"],
             "url": INDIVIDUAL_COURSE_BOOK_URL,
-            "cta": "AI個別講習を予約する",
+            "cta": "AI個別相談を予約する",
             "material_url": "/lectures/2026-04-ai-kangaekata.html",
             "material_cta": "15分のAI実践ワークを見る",
         },
@@ -11969,7 +11969,7 @@ def _render_courses_packages() -> str:
     parts.append(
         "<p class='packages-note fade-up d4'>"
         "<strong>AIコーディング講習:</strong> AIが作ったコードの読解、修正、画面確認、安全な公開までを120分11,000円で個別に進めます。"
-        "<br><strong>AI個別講習:</strong> 仕事に合うAIの使い方と、確認・運用の手順を60分5,500円で整理します。"
+        "<br><strong>AI個別相談:</strong> 仕事に合うAIの使い方と、確認・運用の手順を120分8,800円で整理します。"
         "<br><strong>無料相談:</strong> AI無料相談は、講習・伴走のどちらから始めるかを無料で整理する入口です。"
         "<br><strong>伴走支援:</strong> 6ヶ月伴走は既存のSquare予約ページから初回相談を申し込めます。"
         "<br><strong>補助金:</strong> 講習と伴走支援は、滋賀県・彦根市のデジタル化/AI導入系補助金と組み合わせて相談できます。"
@@ -12004,7 +12004,7 @@ COURSE_TESTIMONIALS: tuple[dict, ...] = (
     },
     {
         "key": "ai-consultation",
-        "course_name": "AI個別講習",
+        "course_name": "AI個別相談",
         "anchor_id": "voice-ai-consultation",
         "heading": "その場で悩みがほどけ、明日から使える形になった",
         "testimonials": (
@@ -12215,15 +12215,15 @@ def _render_compact_course_cards() -> str:
         },
         {
             "cat": "個別講習",
-            "title": "AI個別講習",
+            "title": "AI個別相談",
             "audience": "個別",
             "image": "/img/course-path-beginner.webp",
             "image_alt": "相談しながら仕事の課題とAIの使い方を整理する様子",
-            "price": "5,500円",
-            "duration": "60分",
+            "price": "8,800円",
+            "duration": "120分",
             "desc": "仕事に合うAIの使い方と、確認・運用の手順を整理します。",
             "url": INDIVIDUAL_COURSE_BOOK_URL,
-            "cta": "個別講習を予約",
+            "cta": "個別相談を予約",
             "material_url": "/lectures/2026-04-ai-kangaekata.html",
             "material_cta": "15分のAI実践ワークを見る",
             "testimonial_key": "ai-consultation",
@@ -12234,7 +12234,7 @@ def _render_compact_course_cards() -> str:
                 ("安全に使う範囲が分かる", "顧客情報、社内資料、公開前データなど、AIへ渡してよいものと人が確認する部分を整理します。"),
                 ("自分向けの進め方が残る", "講習、伴走、制作、自分で試す方法から、予算と時間に合う次の一手を具体化します。"),
                 ("こんな方におすすめ", "AIが分からない、事務作業が重い、告知が続かない、社内へどう導入するか決められない方に向いています。"),
-                ("参加方法", "予約ページから60分の日時を選び、困っている仕事や使っている資料をそのままお持ちください。対面・オンラインに対応します。"),
+                ("参加方法", "予約ページから120分の日時を選び、困っている仕事や使っている資料をそのままお持ちください。対面・オンラインに対応します。"),
             ],
         },
         {
@@ -12493,8 +12493,8 @@ def _render_footer(today: str) -> str:
 def _render_sticky_cta() -> str:
     """モバイルでスクロール後に現れる、個別講習と基本講習の固定CTA。"""
     return (
-        "<nav class='sticky-cta' id='sticky-cta' aria-label='AI個別講習とAIエージェント講習の固定CTA' aria-hidden='true'>"
-        f"<a class='sticky-cta-btn sticky-cta-btn--consult' href='{INDIVIDUAL_COURSE_BOOK_URL}' target='_blank' rel='noopener'><span>AI個別講習</span><small>60分・5,500円</small></a>"
+        "<nav class='sticky-cta' id='sticky-cta' aria-label='AI個別相談とAIエージェント講習の固定CTA' aria-hidden='true'>"
+        f"<a class='sticky-cta-btn sticky-cta-btn--consult' href='{INDIVIDUAL_COURSE_BOOK_URL}' target='_blank' rel='noopener'><span>AI個別相談</span><small>120分・5,500円</small></a>"
         f"<a class='sticky-cta-btn sticky-cta-btn--agent' href='{AI_AGENT_COURSE_URL}' target='_blank' rel='noopener'><span>AIエージェント講習</span><small>120分・5,500円</small></a>"
         "</nav>"
     )
@@ -12647,7 +12647,7 @@ FAQ_QA = [
     ("LLMO やAI検索に強いサイトにできますか？",
      "できます。地域名、講師の一次経験、料金、対応範囲、実例、FAQ、構造化データを整理し、AIが回答に引用しやすい形で公開します。大量の自動生成ではなく、講習と実例に基づく一次情報を重視します。"),
     ("料金はどれくらいですか？",
-     f"AI無料相談の入口整理は無料、AIエージェント講習120分は5,500円、AI個別講習60分は5,500円、AIコーディング講習120分は11,000円です。AI伴走支援 いっしょに導入は{MONTHLY_SUPPORT_PRICE_LABEL}×6ヶ月が目安です。"),
+     f"AI無料相談の入口整理は無料、AIエージェント講習120分は5,500円、AI個別相談120分は5,500円、AIコーディング講習120分は11,000円です。AI伴走支援 いっしょに導入は{MONTHLY_SUPPORT_PRICE_LABEL}×6ヶ月が目安です。"),
     ("補助金は使えますか？滋賀の事業者でも対象ですか？",
      "講習・伴走パックは「デジタル化・AI導入補助金」や滋賀県・彦根市の補助金の対象になります。補助率は小規模事業者で最大4/5、実質負担が1/3以下になるケースが多いです。申請からツール選定・実装・定着まで一気通貫で支援します。"),
     ("パソコンやスマホが苦手ですが、大丈夫ですか？",
@@ -15986,7 +15986,7 @@ def _render_focused_main() -> str:
 def render_portal(businesses: list[dict], recent_lectures: list[dict]) -> str:
     today = datetime.now().strftime("%Y-%m-%d")
     title = SITE_BROWSER_TITLE
-    desc = "AIclimbは、彦根・滋賀の事業者のためのAI相談・業務改善・伴走支援です。AI個別講習とAIコーディング講習で、相談から実装・公開・運用まで一段ずつ進めます。"
+    desc = "AIclimbは、彦根・滋賀の事業者のためのAI相談・業務改善・伴走支援です。AI個別相談とAIコーディング講習で、相談から実装・公開・運用まで一段ずつ進めます。"
 
     parts: list[str] = []
     parts.append("<!doctype html><html lang='ja'><head><meta charset='utf-8'>" + FAVICON_HEAD_HTML)
@@ -16166,7 +16166,8 @@ def main(dry_run: bool = False) -> int:
     }
     recent_lectures = list(recent_lectures) + [pmap_card]
 
-    html_text = render_portal(businesses, recent_lectures)
+    from core.square_menu import apply_square_menu
+    html_text = apply_square_menu(render_portal(businesses, recent_lectures))
 
     if dry_run:
         print(html_text)

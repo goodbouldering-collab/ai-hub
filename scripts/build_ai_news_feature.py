@@ -23,6 +23,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from core.art_direction import restore_home_speaker
 from core.course_menu import apply_course_menu
+from core.square_menu import apply_square_menu
 from core.soft_studio import remove_soft_playground
 from core.instagram_feed import apply_instagram_feed
 from core.hero_copy import apply_hero_copy
@@ -134,7 +135,7 @@ def build(output: Path, base_assets: Path | None = None, *, preserve_baseline_pr
         home = apply_home_updates(home, blog, (TEMPLATES / "home-updates.css").read_text(encoding="utf-8"))
         home = apply_diagnosis_copy(home)
     blog = apply_blog_feed(blog, modified, (TEMPLATES / "editorial-feed.css").read_text(encoding="utf-8"))
-    home = place_news_in_blog(apply_news_images(home, news))
+    home = apply_square_menu(place_news_in_blog(apply_news_images(home, news)))
     sitemap = (TEMPLATES / "sitemap.xml").read_text(encoding="utf-8")
     sitemap, count = re.subn(r"<url><loc>[^<]*/blog/codex-update-log\.html</loc>.*?</url>", f"<url><loc>{URL}</loc><lastmod>{modified}</lastmod><priority>0.9</priority></url>", sitemap, flags=re.S)
     assert count == 1

@@ -162,13 +162,14 @@ def _news_date(feature: str) -> str:
 
 def _row(post: Mapping[str, str], config: dict, *, news: bool = False,
          preserve_href: bool = False, heading_level: int = 3, include_summary: bool = True) -> str:
-    image, alt = ((config['news']['image'], config['news']['alt']) if news else _post_image(post, config))
+    image, alt = ('', '') if news else _post_image(post, config)
     href = post['href']
     if preserve_href and not news:
         candidate = post.get('source_href', href)
         if re.fullmatch(r'(?:\./|/blog/)[a-z0-9-]+\.html', candidate):
             href = candidate
     classes = 'editorial-feed__row editorial-feed__news' if news else 'editorial-feed__row tr-card'
+    media = (f'<span class="editorial-feed__media"><img src="{escape(image, quote=True)}" alt="{escape(alt, quote=True)}" width="480" height="320" loading="lazy" decoding="async"></span>') if image else ''
     title = escape(post['title'])
     category = config['news']['label'] if news else config['article_label']
     date_label = escape(str(post.get('date_label') or post['date']))
@@ -176,9 +177,7 @@ def _row(post: Mapping[str, str], config: dict, *, news: bool = False,
     return (
         '<li class="editorial-feed__item">'
         f'<a class="{classes}" href="{escape(href, quote=True)}">'
-        '<span class="editorial-feed__media">'
-        f'<img src="{escape(image, quote=True)}" alt="{escape(alt, quote=True)}" '
-        'width="480" height="320" loading="lazy" decoding="async"></span>'
+        f'{media}'
         '<div class="editorial-feed__body">'
         '<div class="editorial-feed__meta">'
         f'<span class="editorial-feed__category">{escape(category)}</span>'
@@ -211,12 +210,11 @@ def apply_home_feed(document: str, posts: Iterable[Mapping[str, str]], css: str)
     if len(posts) < 2:
         raise ValueError('Expected at least two publicly listed blog posts')
     config = _config()
-    pattern = r'<section\b[^>]*id=[\x27"]ai-news[\x27"][^>]*>.*?</section>'
-    matches = list(re.finditer(pattern, document, re.S))
-    if len(matches) != 1:
-        raise ValueError('Expected one home AI news feature')
-    feature = matches[0]
-    published = _news_date(feature[0])
+    spans = _ElementSpans(document, element_id='ai-news').spans
+    if len(spans) != 1:
+        raise ValueError('Expected one home AI news entry')
+    feature_html = document[spans[0][0]:spans[0][1]]
+    published = _news_date(feature_html)
     rows = ''.join(_row(post, config, include_summary=False) for post in posts[:3])
     combined = (
         '<section id="blog" class="editorial-feed editorial-feed--home" aria-labelledby="editorial-feed-title">'
@@ -228,7 +226,7 @@ def apply_home_feed(document: str, posts: Iterable[Mapping[str, str]], css: str)
         f'{escape(config["more_label"])}<span aria-hidden="true">→</span></a></div></section>'
     )
     # Remove complete outer sections; news may already be nested in blog.
-    news_html = feature[0]
+    news_html = feature_html
     spans = []
     for element_id in ('blog', 'latest-blog', 'ai-news'):
         spans.extend(_ElementSpans(document, element_id=element_id).spans)
@@ -297,21 +295,22 @@ def apply_blog_feed(blog_document: str, news_date: str, css: str) -> str:
 
 
 def integrate_home_news(document: str) -> str:
-    """Move existing news into the blog without rewriting its stories."""
+    """Render news as one image-free entry in the existing blog list."""
     spans = _ElementSpans(document, element_id='ai-news').spans
     if len(spans) != 1:
-        raise ValueError('Expected one home AI news feature')
+        raise ValueError('Expected one home AI news entry')
     start, end = spans[0]
-    feature = document[start:end]
-    feature = re.sub(r'<h2(\s+id=[\x27"]ai-news-feature-title[\x27"][^>]*)>(.*?)</h2>',
-                     r'<h3\1>\2</h3>', feature, flags=re.S)
+    published = _news_date(document[start:end])
     document = document[:start] + document[end:]
     blogs = _ElementSpans(document, element_id='blog').spans
     if len(blogs) != 1:
         raise ValueError('Expected one blog section')
     start, end = blogs[0]
-    headings = _ElementSpans(document[start:end], 'editorial-feed__heading').spans
-    if len(headings) != 1:
-        raise ValueError('Expected one blog heading')
-    insertion = start + headings[0][1]
-    return document[:insertion] + feature + document[insertion:]
+    lists = _ElementSpans(document[start:end], 'editorial-feed__list').spans
+    if len(lists) != 1:
+        raise ValueError('Expected one blog list')
+    insertion = document.index('>', start + lists[0][0]) + 1
+    config = _config()
+    row = _row(_news_post(published, config), config, news=True, include_summary=False)
+    row = row.replace('<li ', f'<li id="ai-news" data-news-date="{published}" ', 1)
+    return document[:insertion] + row + document[insertion:]

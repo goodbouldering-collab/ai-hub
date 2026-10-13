@@ -18,7 +18,7 @@ REQUIRED_ITEM_FIELDS = (
     "kid_summary",
     "japan_angle",
 )
-DAILY_NEWS_COUNT = 5
+DAILY_NEWS_COUNT = 4
 
 
 def _clean_text(value: Any, *, maximum: int) -> str:
@@ -87,7 +87,7 @@ def load_daily_ai_news(path: Path) -> dict[str, Any]:
 
 
 def render_daily_ai_news(payload: dict) -> str:
-    """Render ten concise cards. Any invalid item hides the whole block."""
+    """Render four concise cards. Any invalid item hides the whole block."""
     try:
         clean = normalize_daily_ai_news(payload)
     except ValueError:
@@ -99,8 +99,8 @@ def render_daily_ai_news(payload: dict) -> str:
         "<section class='daily-ai-news' aria-labelledby='daily-ai-news-title'>",
         "<div class='daily-ai-news__header'>",
         "<p class='daily-ai-news__eyebrow'>毎朝更新・仕事の場面から読む</p>",
-        "<h2 id='daily-ai-news-title'>今日のAIニュース5</h2>",
-        "<p class='daily-ai-news__lead'>専門的なAIニュースを、新しさと影響、日本とのつながりから5件にしぼり、身近な使い道でまとめました。</p>",
+        "<h2 id='daily-ai-news-title'>今日のAIニュース4</h2>",
+        "<p class='daily-ai-news__lead'>専門的なAIニュースを、新しさと影響、日本とのつながりから4件にしぼり、身近な使い道でまとめました。</p>",
         f"<p class='daily-ai-news__date'><time datetime='{clean['date']}'>{date_label}</time> 時点</p>",
         "</div><ol class='daily-ai-news__list'>",
     ]

@@ -29,12 +29,12 @@ from core.instagram_feed import apply_instagram_feed
 from core.hero_copy import apply_hero_copy
 from core.diagnosis_copy import apply_diagnosis_copy
 from core.daily_news import normalize_daily_ai_news, render_daily_ai_news
-from core.news_images import apply_news_images
+from core.news_images import strip_news_images
 from core.friendly_home import apply_public_logo
 from core.studio_design import decorate_public_tree
 from core.home_updates import apply_home_updates
 from core.editorial_feed import apply_blog_feed
-from core.editorial_feed import _ElementSpans
+from core.editorial_feed import _ElementSpans, _style
 from core.editorial_home import apply_editorial_home
 from core.search_presence import apply_search_presence, enhance_search_html
 from scripts.build_search_presence_release import assert_search_changes, DISCOVERY_FILES
@@ -76,7 +76,7 @@ def render_feature(news: dict, label: str, modified: str | None = None) -> str:
     return (
         '<section id="ai-news" class="ai-news-feature" aria-labelledby="ai-news-feature-title">'
         '<div class="ai-news-feature__intro">'
-        '<div class="ai-news-feature__heading"><h2 id="ai-news-feature-title">今日のAIニュース5とCodex</h2>'
+        '<div class="ai-news-feature__heading"><h2 id="ai-news-feature-title">今日のAIニュース4とCodex</h2>'
         f'<time datetime="{published}">{label}</time></div></div>'
         f'<div class="ai-news-feature__reading"><ol>{headlines}</ol>'
         '<a class="ai-news-feature__more" href="/ai-news/">もっと見る'
@@ -95,7 +95,7 @@ def build(output: Path, base_assets: Path | None = None, *, preserve_baseline_pr
     updated = date.fromisoformat(modified)
     label = f"{updated.month}月{updated.day}日更新"
     news_html = render_daily_ai_news(news)
-    for rank in range(1, 6):
+    for rank in range(1, len(news["items"]) + 1):
         news_html = news_html.replace("<li class='daily-ai-news__item", f"<li id='news-{rank}' class='daily-ai-news__item", 1)
     # The research window belongs to the dated JSON, not the page template.
     original_news = json.loads((ROOT / "content/daily-ai-news.json").read_text(encoding="utf-8"))
@@ -109,7 +109,7 @@ def build(output: Path, base_assets: Path | None = None, *, preserve_baseline_pr
     article = (TEMPLATES / "page.html").read_text(encoding="utf-8")
     article = article.replace("{{NEWS_AND_CODEX}}", news_html + codex_html).replace("{{UPDATE_LABEL}}", label).replace("{{UPDATE_DATE}}", modified)
     compact_css = (TEMPLATES / "compact.css").read_text(encoding="utf-8")
-    article = apply_news_images(apply_public_logo(apply_compact_style(article, compact_css)), news)
+    article = strip_news_images(apply_public_logo(apply_compact_style(article, compact_css)))
     assert "{{" not in article, "Unfilled article template"
     home = (TEMPLATES / "home.html").read_text(encoding="utf-8")
     if "{{AI_NEWS_FEATURE}}" in home:
@@ -135,7 +135,8 @@ def build(output: Path, base_assets: Path | None = None, *, preserve_baseline_pr
         home = apply_home_updates(home, blog, (TEMPLATES / "home-updates.css").read_text(encoding="utf-8"))
         home = apply_diagnosis_copy(home)
     blog = apply_blog_feed(blog, modified, (TEMPLATES / "editorial-feed.css").read_text(encoding="utf-8"))
-    home = apply_square_menu(place_news_in_blog(apply_news_images(home, news)))
+    home = _style(home, (TEMPLATES / "editorial-feed.css").read_text(encoding="utf-8"))
+    home = apply_square_menu(place_news_in_blog(strip_news_images(home)))
     sitemap = (TEMPLATES / "sitemap.xml").read_text(encoding="utf-8")
     sitemap, count = re.subn(r"<url><loc>[^<]*/blog/codex-update-log\.html</loc>.*?</url>", f"<url><loc>{URL}</loc><lastmod>{modified}</lastmod><priority>0.9</priority></url>", sitemap, flags=re.S)
     assert count == 1
@@ -166,7 +167,7 @@ def build(output: Path, base_assets: Path | None = None, *, preserve_baseline_pr
     themed = [] if preserve_baseline_presentation else decorate_public_tree(output)
     if not preserve_baseline_presentation:
         home_path = output / "index.html"
-        home_path.write_text(place_news_in_blog(apply_news_images(apply_editorial_home(home_path.read_text(encoding="utf-8")), news)), encoding="utf-8", newline="\n")
+        home_path.write_text(place_news_in_blog(strip_news_images(apply_editorial_home(home_path.read_text(encoding="utf-8")))), encoding="utf-8", newline="\n")
     # Apply search metadata after all presentation decorators, which may carry
     # old structured data in their frozen shells. A partial build must not
     # replace the full site's discovery files with a three-page sitemap.

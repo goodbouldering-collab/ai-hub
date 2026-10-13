@@ -1,5 +1,5 @@
 ---
-title: "今日のAIニュース5とCodex"
+title: "今日のAIニュース4とCodex"
 date: "2026-08-21"
 date_modified: "2026-10-10"
 content_series: codex-update-log
@@ -11,7 +11,7 @@ image_alt: "巨大な水晶のAI脳を、10個の光るニュースホールド�
 hero_image: false
 show_toc: false
 authorship_note: "※内容は運営者が考え、AIで整えています。"
-summary: "AIニュース5件とCodexの新機能を、仕事で使う場面からわかりやすく読む常時更新ページです。"
+summary: "AIニュース4件とCodexの新機能を、仕事で使う場面からわかりやすく読む常時更新ページです。"
 audience: "AIを仕事、学び、制作に役立てたい人"
 problem: "更新内容を読んでも、何が便利になり、どう使うのか分かりにくい"
 action: "使えそうな機能を1つ試す"

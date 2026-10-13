@@ -57,7 +57,7 @@ class EditorialFeedTests(unittest.TestCase):
         soup = BeautifulSoup(result, 'html.parser')
         rows = soup.select('#blog .editorial-feed__row')
         self.assertEqual([row['href'] for row in rows],
-                         ['/blog/newest.html', '/blog/older.html', '/blog/oldest.html'])
+                         ['/ai-news/', '/blog/newest.html', '/blog/older.html', '/blog/oldest.html'])
         self.assertEqual(len(soup.select('#blog img')), 3)
         self.assertFalse(soup.select('#blog .tr-sum'))
         self.assertNotIn('仕事を少し楽にする実践メモ。', str(soup.select_one('#blog')))
@@ -68,19 +68,19 @@ class EditorialFeedTests(unittest.TestCase):
         self.assertFalse(soup.select('#ai-news section, #latest-blog'))
         self.assertEqual(len(soup.select('#blog')), 1)
         self.assertEqual(soup.select_one('#top').find_next_sibling()['id'], 'blog')
-        self.assertIsNotNone(soup.select_one('#blog > .editorial-feed__heading + #ai-news + .editorial-feed__list'))
-        original = BeautifulSoup(home_shell(), 'html.parser')
-        self.assertEqual(str(soup.select_one('#ai-news')), str(original.select_one('#ai-news')))
+        self.assertIsNotNone(soup.select_one('#blog > .editorial-feed__heading + .editorial-feed__list > #ai-news'))
+        self.assertFalse(soup.select('#ai-news img'))
+        self.assertEqual(soup.select_one('#ai-news .tr-title').get_text(), '今日のAIニュース4とCodex')
 
     def test_home_is_idempotent_and_daily_regeneration_uses_new_date(self):
         first = apply_home_feed(home_shell(), self.posts, CSS)
         self.assertEqual(apply_home_feed(first, self.posts, CSS), first)
-        fresh = re.sub(r'<section id="ai-news".*?</section>',
+        fresh = re.sub(r'<li id="ai-news".*?</li>',
                        '<section id="ai-news"><time datetime="2026-10-12">更新</time></section>',
                        first, flags=re.S)
         result = BeautifulSoup(apply_home_feed(fresh, self.posts, CSS), 'html.parser')
         self.assertEqual(result.select_one('#ai-news time')['datetime'], '2026-10-12')
-        self.assertEqual(len(result.select('#blog .editorial-feed__row')), 3)
+        self.assertEqual(len(result.select('#blog .editorial-feed__row')), 4)
         self.assertEqual(len(result.select('#editorial-feed-style')), 1)
 
     def test_home_preserves_other_sections_and_rejects_missing_inputs(self):
@@ -104,7 +104,7 @@ class EditorialFeedTests(unittest.TestCase):
         self.assertEqual(len(soup.select('.editorial-feed__row')), 4)
         self.assertEqual(len(soup.select('.editorial-feed__news')), 1)
         self.assertEqual(len(soup.select('a.tr-card')), 3)
-        self.assertEqual(len(soup.select('.editorial-feed__row img')), 4)
+        self.assertEqual(len(soup.select('.editorial-feed__row img')), 3)
         self.assertNotIn('/codex-update-log.html', result)
         self.assertEqual(soup.title.get_text(), 'AI相談')
         self.assertIn('href="./newest.html"', result)

@@ -33,14 +33,6 @@
       "published": "2026-10-12",
       "kid_summary": "IBMは、銀行Mashreqが開発支援AI「IBM Bob」を試し、システム連携の設計や不具合調査に活用していると発表しました。",
       "japan_angle": "地域企業でも、AIに渡す資料と操作権限を絞り、業務アプリの保守を支援する進め方の参考になります。"
-    },
-    {
-      "title": "Microsoft、AI処理を省電力化するMaia 300を解説",
-      "url": "https://azure.microsoft.com/en-us/blog/deep-dive-into-azure-maia-300-architecture/",
-      "source": "Microsoft",
-      "published": "2026-10-12",
-      "kid_summary": "Microsoftは、AIの処理に使う自社チップ「Maia 300」の設計を公開し、データ移動を減らして電力効率を高める仕組みを説明しました。",
-      "japan_angle": "地域企業がクラウドAIを選ぶ際、応答速度だけでなく運用費や消費電力も比べる視点につながります。"
     }
   ]
 }

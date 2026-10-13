@@ -2,8 +2,8 @@
 import re
 
 TITLE = '彦根で使えるAIを学ぶ'
-SUBTITLE = 'AIエージェント導入たった6%'
-TAGLINE = '30年振りのビッグチャンス'
+SUBTITLE = 'AIエージェントはまだ6%'
+TAGLINE = '差をつけるなら今'
 BENEFIT = 'あなたの経験がAIで拡張できる'
 CONCERN = 'でも、なんかうまく使えてないかも・・・'
 STYLE = '''<style id="hero-copy-style">
@@ -19,7 +19,7 @@ STYLE = '''<style id="hero-copy-style">
 def apply_hero_copy(document):
     if not re.search(r'class=["\x27]focus-title["\x27]', document):
         return document
-    for class_name, content in [('focus-title-first', TITLE), ('focus-title-line', f'<strong>{SUBTITLE}<br>{TAGLINE}</strong>')]:
+    for class_name, content in [('focus-title-first', TITLE), ('focus-title-line', f'<strong>{SUBTITLE} {TAGLINE}</strong>')]:
         document, count = re.subn(r'(<span class=["\x27]'+class_name+r'["\x27]>).*?</span>', lambda m: m[1]+content+'</span>', document, count=1, flags=re.S)
         assert count == 1, class_name
     paragraph = f'<p id="hero-advantage-title"><span class="hero-advantage-equation"><strong>{BENEFIT}</strong></span><span class="hero-advantage-outcome">{CONCERN}</span></p>'

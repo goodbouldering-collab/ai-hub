@@ -1,0 +1,12 @@
+/* Documentary images retain their real contents within the same paper palette. */
+body.studio-home :is(#speaker,.course-venue-common,.salon-live-figure) img,
+body.studio-home #instagram .instagram-card img{
+  border:6px solid #f8f2e7!important;border-radius:18px 6px 18px 6px!important;
+  box-shadow:3px 4px 0 #e6b96d,7px 8px 0 #d4e9e2!important;box-sizing:border-box;
+}
+body.studio-home #all-works .pf-thumb{
+  padding:8px!important;background:#f8f2e7!important;border:1px solid #c7ded6!important;
+  border-radius:16px 4px 16px 4px!important;box-sizing:border-box;
+}
+body.studio-home #all-works .pf-thumb img{border-radius:9px!important}
+body.studio-home img[src*="/paper-20261014/"]{background:#f8f2e7;object-fit:cover}

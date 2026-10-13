@@ -156,6 +156,9 @@ def build(output: Path, base_assets: Path | None = None, *, preserve_baseline_pr
         assert actual == manifest, "Published asset baseline differs; stop instead of mixing changes"
         assert not output.exists(), "Release output must be a fresh directory"
         shutil.copytree(base_assets, output)
+    if not preserve_baseline_presentation:
+        art_path = Path('design-system/studio/images/paper-20261014')
+        shutil.copytree(ROOT / 'site/static' / art_path, output / art_path, dirs_exist_ok=True)
     for name, value in results.items():
         target = output / name
         target.parent.mkdir(parents=True, exist_ok=True)

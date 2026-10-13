@@ -1,0 +1,50 @@
+{
+  "agent": {
+    "prompt": "Create one polished original website editorial illustration, landscape 3:2 ratio. Distinctive tactile layered paper sculpture photographed in a miniature studio: thick cut ivory cotton paper, deep teal #087e79, forest green, warm amber accents, delicate copper lines, soft directional shadows, subtle handmade edges. Elegant Japanese editorial design, whimsical yet credible for adult business education. One clear central visual story, generous margins, immediately legible as a small thumbnail. No letters, text, numbers, logos, robot faces, stock-office photography, watermarks, collage or multiple panels. An opened origami seed grows into three carefully folded useful paper objects: a storefront announcement, a small calendar, and an organized document. Tiny human paper figures guide the transformation together. Represents learning practical AI from one real task.",
+    "asset": "site/static/design-system/studio/images/paper-20261014/agent.webp",
+    "original": "assets/paper-20261014/originals/agent.png",
+    "optimization": "Sharp: 960x640 WebP quality 83; artwork unchanged"
+  },
+  "personal": {
+    "prompt": "Create one polished original website editorial illustration, landscape 3:2 ratio. Distinctive tactile layered paper sculpture photographed in a miniature studio: thick cut ivory cotton paper, deep teal #087e79, forest green, warm amber accents, delicate copper lines, soft directional shadows, subtle handmade edges. Elegant Japanese editorial design, whimsical yet credible for adult business education. One clear central visual story, generous margins, immediately legible as a small thumbnail. No letters, text, numbers, logos, robot faces, stock-office photography, watermarks, collage or multiple panels. Two abstract human paper silhouettes on opposite sides of a circular table unfold a tangled paper ribbon into one clear amber path toward a small open doorway. Represents personal consultation finding the right next step.",
+    "asset": "site/static/design-system/studio/images/paper-20261014/personal.webp",
+    "original": "assets/paper-20261014/originals/personal.png",
+    "optimization": "Sharp: 960x640 WebP quality 83; artwork unchanged"
+  },
+  "code": {
+    "prompt": "Create one polished original website editorial illustration, landscape 3:2 ratio. Distinctive tactile layered paper sculpture photographed in a miniature studio: thick cut ivory cotton paper, deep teal #087e79, forest green, warm amber accents, delicate copper lines, soft directional shadows, subtle handmade edges. Elegant Japanese editorial design, whimsical yet credible for adult business education. One clear central visual story, generous margins, immediately legible as a small thumbnail. No letters, text, numbers, logos, robot faces, stock-office photography, watermarks, collage or multiple panels. A charming miniature Japanese storefront built from layered paper browser windows, with interlocking teal architectural steps and an amber doorway, a small phone-shaped paper frame beside it. Represents building useful apps and websites.",
+    "asset": "site/static/design-system/studio/images/paper-20261014/code.webp",
+    "original": "assets/paper-20261014/originals/code.png",
+    "optimization": "Sharp: 960x640 WebP quality 83; artwork unchanged"
+  },
+  "support": {
+    "prompt": "Create one polished original website editorial illustration, landscape 3:2 ratio. Distinctive tactile layered paper sculpture photographed in a miniature studio: thick cut ivory cotton paper, deep teal #087e79, forest green, warm amber accents, delicate copper lines, soft directional shadows, subtle handmade edges. Elegant Japanese editorial design, whimsical yet credible for adult business education. One clear central visual story, generous margins, immediately legible as a small thumbnail. No letters, text, numbers, logos, robot faces, stock-office photography, watermarks, collage or multiple panels. A single flowing amber paper ribbon winds through three teal islands of small business work, neatly linking a folded folder, a calendar and a finished box, with tiny paper people working together. Represents sustained team support and reusable workflow.",
+    "asset": "site/static/design-system/studio/images/paper-20261014/support.webp",
+    "original": "assets/paper-20261014/originals/support.png",
+    "optimization": "Sharp: 960x640 WebP quality 83; artwork unchanged"
+  },
+  "salon": {
+    "prompt": "Create one polished original website editorial illustration, landscape 3:2 ratio. Distinctive tactile layered paper sculpture photographed in a miniature studio: thick cut ivory cotton paper, deep teal #087e79, forest green, warm amber accents, delicate copper lines, soft directional shadows, subtle handmade edges. Elegant Japanese editorial design, whimsical yet credible for adult business education. One clear central visual story, generous margins, immediately legible as a small thumbnail. No letters, text, numbers, logos, robot faces, stock-office photography, watermarks, collage or multiple panels. Six small abstract paper people on separate floating folded islands form a welcoming circular constellation, sharing a glowing amber origami star through delicate copper connections. A miniature community of makers learning remotely, warm and human.",
+    "asset": "site/static/design-system/studio/images/paper-20261014/salon.webp",
+    "original": "assets/paper-20261014/originals/salon.png",
+    "optimization": "Sharp: 960x640 WebP quality 83; artwork unchanged"
+  },
+  "practice": {
+    "prompt": "Create one polished original website editorial illustration, landscape 3:2 ratio. Distinctive tactile layered paper sculpture photographed in a miniature studio: thick cut ivory cotton paper, deep teal #087e79, forest green, warm amber accents, delicate copper lines, soft directional shadows, subtle handmade edges. Elegant Japanese editorial design, whimsical yet credible for adult business education. One clear central visual story, generous margins, immediately legible as a small thumbnail. No letters, text, numbers, logos, robot faces, stock-office photography, watermarks, collage or multiple panels. A beautiful open folded-paper notebook becomes a stepping-stone garden: three simple teal steps lead from a small tangled ribbon to a single glowing amber folded check-shaped sculpture. Represents turning scattered ideas into one repeatable small action.",
+    "asset": "site/static/design-system/studio/images/paper-20261014/practice.webp",
+    "original": "assets/paper-20261014/originals/practice.png",
+    "optimization": "Sharp: 960x640 WebP quality 83; artwork unchanged"
+  },
+  "rag": {
+    "prompt": "Create one polished original website editorial illustration, landscape 3:2 ratio. Distinctive tactile layered paper sculpture photographed in a miniature studio: thick cut ivory cotton paper, deep teal #087e79, forest green, warm amber accents, delicate copper lines, soft directional shadows, subtle handmade edges. Elegant Japanese editorial design, whimsical yet credible for adult business education. One clear central visual story, generous margins, immediately legible as a small thumbnail. No letters, text, numbers, logos, robot faces, stock-office photography, watermarks, collage or multiple panels. An elegant miniature circular library of folded ivory documents with teal shelves. One amber paper thread traces a clear route through the layers to a single illuminated source document under a simple paper magnifying-glass ring. Represents finding evidence in knowledge.",
+    "asset": "site/static/design-system/studio/images/paper-20261014/rag.webp",
+    "original": "assets/paper-20261014/originals/rag.png",
+    "optimization": "Sharp: 960x640 WebP quality 83; artwork unchanged"
+  },
+  "climbing": {
+    "prompt": "Create one polished original website editorial illustration, landscape 3:2 ratio. Distinctive tactile layered paper sculpture photographed in a miniature studio: thick cut ivory cotton paper, deep teal #087e79, forest green, warm amber accents, delicate copper lines, soft directional shadows, subtle handmade edges. Elegant Japanese editorial design, whimsical yet credible for adult business education. One clear central visual story, generous margins, immediately legible as a small thumbnail. No letters, text, numbers, logos, robot faces, stock-office photography, watermarks, collage or multiple panels. A graceful tiny paper climber ascending a sculptural layered teal mountain, following a winding amber trail of geometric holds, with open ivory book pages forming the mountain base. Dynamic but calm; represents learning from climbing and practice.",
+    "asset": "site/static/design-system/studio/images/paper-20261014/climbing.webp",
+    "original": "assets/paper-20261014/originals/climbing.png",
+    "optimization": "Sharp: 960x640 WebP quality 83; artwork unchanged"
+  }
+}

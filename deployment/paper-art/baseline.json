@@ -642,5 +642,6 @@
   "unchanged_assets": 613,
   "archive_sha": "e16c4a58d70eb688e3cc7c3a2972e57a691962e1",
   "source_directory": "D:\\Project\\AI\u76f8\u8ac7\\work\\genspark-profile-edit\\.news-four-source-20261014-final",
-  "worker_sha256": "644f3ee74fc80f7bb4e59fd08816a51da64beb901b719f1c13b953e72f87cdd3"
+  "worker_sha256": "3975d3393d9f6f69cb6e62396d84b86b1074de7a7a3bddd5cd3e3ca4357051f1",
+  "worker_source_sha": "50c46adcf883eaab85e934abfda683e02c912d65"
 }

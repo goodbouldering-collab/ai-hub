@@ -28,10 +28,18 @@ const CSS=`<style>
 @media(prefers-reduced-motion:reduce){.workspace-card{transition:none}}
 </style>`;
 const e=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const card=(href,title,description,icon,primary=false)=>`<a class="workspace-card${primary?' workspace-card--primary':''}" href="${href}"><span class="card-icon" aria-hidden="true">${icon}</span><h2>${title}</h2><p>${description}</p><span class="card-arrow">開く →</span></a>`;
+const card=(href,title,description,icon,primary=false)=>`<a class="workspace-action${primary?' workspace-action--primary':''}" href="${href}"><span aria-hidden="true">${icon}</span><span>${title}</span></a>`;
 const list=items=>`<ul class="workspace-list">${items.map(([href,title,description])=>`<li><a href="${href}"><span><strong>${title}</strong><small>${description}</small></span><span aria-hidden="true">→</span></a></li>`).join('')}</ul>`;
 const section=(title,body)=>`<section class="workspace-section"><h2>${title}</h2>${body}</section>`;
-export const workspacePage=(path,title,lead,body)=>`<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>AI相談</title>${CSS}${SHELL_STYLE}</head><body data-workspace-shell>${header(path)}<main class="admin-workspace"><div class="workspace-intro"><div><span class="workspace-eyebrow">AI相談 / 管理</span><h1>${title}</h1><p>${lead}</p></div></div>${body}</main></body></html>`;
+export const workspacePage=(path,title,lead,body)=>{
+  // Move only the landing-page launchers above the introduction. Document cards
+  // and their search metadata stay in the content area.
+  const launcher=body.match(/^<div class="workspace-grid">([\s\S]*?)<\/div>/);
+  const actions=launcher&&launcher[1].includes('class="workspace-action');
+  const navigation=actions?`<nav class="workspace-actions" aria-label="作業メニュー">${launcher[1]}</nav>`:'';
+  const content=actions?body.slice(launcher[0].length):body;
+  return `<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>AI相談</title>${CSS}${SHELL_STYLE}</head><body data-workspace-shell>${header(path)}${navigation}<main class="admin-workspace"><div class="workspace-intro"><div><span class="workspace-eyebrow">AI相談 / 管理</span><h1>${title}</h1><p>${lead}</p></div></div>${content}</main></body></html>`;
+};
 
 export function renderPage(path) {
   if(path==='/admin') return workspacePage(path,'今日の作業を、ここから。','作る・確かめる・資料を探す。必要な仕事から始められます。',

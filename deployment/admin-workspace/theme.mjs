@@ -1,4 +1,11 @@
 export const THEME = `<style data-admin-theme>
+body[data-workspace-shell] .workspace-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px;max-width:1280px;margin:0 auto;padding:16px 28px 0}
+body[data-workspace-shell] :is(.workspace-action,.workspace-return a){display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;max-width:100%;padding:10px 16px;border:1px solid #b6cbd7;border-radius:8px;background:#fff;color:#23586e;font:650 13px/1.5 system-ui,"Yu Gothic",sans-serif;text-decoration:none;text-align:center;overflow-wrap:anywhere}
+body[data-workspace-shell] :is(.workspace-action,.workspace-return a):hover{background:#eaf1f4;border-color:#23586e}
+body[data-workspace-shell] a.workspace-action--primary{background:#23586e;color:#fff;border-color:#23586e}
+body[data-workspace-shell] a.workspace-action--primary:hover{background:#193e4e;color:#fff}
+body[data-workspace-shell] .workspace-return{align-items:center}
+@media(max-width:700px){body[data-workspace-shell] .workspace-actions{padding:12px 16px 0}body[data-workspace-shell] .workspace-action{padding:10px 14px}}
 body[data-workspace-shell]{--bg:#f5f7f9;--bg-base:#f5f7f9;--bg-white:#fff;--surface:#fff;--paper:#fff;--text:#193342;--ink:#193342;--text-soft:#455e6e;--muted:#617784;--line:#dce4e9;--primary:#23586e;--primary-soft:#306d84;--primary-bg:#eaf1f4;--green:#23586e;--pale:#eaf1f4;--accent:#23586e;--shadow-card:0 3px 16px #19334206;--shadow-card-hover:0 5px 20px #1933420d;margin:0!important;padding:0!important;background:#f5f7f9!important;color:#193342!important;font:14px/1.7 system-ui,"Yu Gothic",sans-serif!important;min-width:0}
 body[data-workspace-shell] *{box-sizing:border-box}body[data-workspace-shell] :is(main,.container,.cc-shell,.wrap){min-width:0;max-width:1280px;margin-inline:auto}body[data-workspace-shell] :is(h1,h2,h3,p){overflow-wrap:anywhere}body[data-workspace-shell] :is(h1,h2,h3){letter-spacing:-.025em}body[data-workspace-shell] h1{font-size:clamp(25px,3vw,34px);line-height:1.45}body[data-workspace-shell] h2{font-size:18px;line-height:1.6}
 body[data-workspace-shell] :is(.panel,.card,.cc-card,.cc-panel,.stat,.kpi,.doc,.conn,.settings-panel,.chat-panel){background:#fff!important;color:#193342;border:1px solid #dce4e9!important;border-radius:14px!important;box-shadow:0 3px 16px #19334206!important;backdrop-filter:none!important}

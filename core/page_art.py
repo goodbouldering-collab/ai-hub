@@ -54,9 +54,10 @@ def apply_page_art(document, page):
         if item['key']=='speaker-portrait-painting':
             tag['width'],tag['height']='1000','1000'
             tag['alt']='店内のテーブルとAI講習の風景を背景にした講師 由井辰美'
+            tag['style']='object-fit:contain!important;height:auto!important;min-height:0!important;aspect-ratio:auto 1/1!important;transform:none!important;margin:0!important'
         return str(tag)
     document = re.sub(r'<img\b[^>]*>',image_tag,document,flags=re.S|re.I)
-    style = '<style id="page-paper-art-style">img.page-paper-art{height:auto!important;aspect-ratio:auto 3/2!important;object-fit:contain!important;max-width:100%;background:#f4efe6}img.page-paper-art[src*="speaker-portrait"]{aspect-ratio:auto 1/1!important}video[poster*="paper-20261015"]{object-fit:contain;background:#f4efe6}</style>'
+    style = '<style id="page-paper-art-style">img.page-paper-art{height:auto!important;aspect-ratio:auto 3/2!important;object-fit:contain!important;max-width:100%;background:#f4efe6}html body .speaker-content .speaker-page-visual .speaker-art:has(>img.page-paper-art){height:auto!important;min-height:0!important;aspect-ratio:1/1!important}img.page-paper-art[src*="speaker-portrait"]{aspect-ratio:auto 1/1!important}video[poster*="paper-20261015"]{object-fit:contain;background:#f4efe6}</style>'
     if 'page-paper-art-style' not in document:
         document=document.replace('</head>',style+'</head>')
     return document

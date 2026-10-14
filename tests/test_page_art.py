@@ -24,4 +24,12 @@ class PageArtTests(unittest.TestCase):
     def test_relative_paths(self):
         self.assertEqual(normalize('./img/course-path-coding.webp?v=1','programming-map.html'),'/img/course-path-coding.webp')
 
+    def test_portrait_overrides_legacy_inline_crop_and_stays_idempotent(self):
+        source='<html><head></head><body><div class="speaker-art"><img src="/img/speaker-portrait-painting.webp" style="object-fit:cover!important"></div></body></html>'
+        result=apply_page_art(source,'speaker.html')
+        self.assertNotIn('object-fit:cover',result)
+        self.assertIn('speaker-portrait-gubboru-cafe-20260719.webp',result)
+        self.assertIn('aspect-ratio:1/1!important',result)
+        self.assertEqual(apply_page_art(result,'speaker.html'),result)
+
 if __name__=='__main__': unittest.main()

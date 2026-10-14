@@ -32,6 +32,7 @@ from core.daily_news import normalize_daily_ai_news, render_daily_ai_news
 from core.news_images import strip_news_images
 from core.friendly_home import apply_public_logo
 from core.studio_design import decorate_public_tree
+from core.page_art import apply_page_art_tree
 from core.home_updates import apply_home_updates
 from core.editorial_feed import apply_blog_feed
 from core.editorial_feed import _ElementSpans, _style
@@ -201,6 +202,8 @@ def build(output: Path, base_assets: Path | None = None, *, preserve_baseline_pr
                    and hashlib.sha256(p.read_bytes()).hexdigest() != manifest.get(p.relative_to(output).as_posix())}
         allowed = {"index.html", "ai-news/index.html", "blog/index.html", "sitemap.xml", "_redirects"}
         assert changed <= allowed, f"Unexpected public changes: {sorted(changed - allowed)}"
+    if not preserve_baseline_presentation:
+        apply_page_art_tree(output)
     sha = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
     return {"source_sha": sha, "url": URL, "news_date": news["date"], "codex_fingerprint": meta["source_fingerprint"],
             "themed_documents": len(themed),

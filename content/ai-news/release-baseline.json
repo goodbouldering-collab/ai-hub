@@ -1,5 +1,5 @@
 {
-  "source_sha": "e6e3ad9b75183cd7f56b72e2f0020fe8cee916ea",
+  "source_sha": "d8168fe6f60ae72c7e175dfffcbbeb9ea949337a",
   "assets": {
     ".assetsignore": "ec0958b427cb2b2027325af14449d53893184de7f77e2f2135ae6174446ebf19",
     ".nojekyll": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -224,7 +224,7 @@
     "design-system/studio/images/paper-20261015/blog-decision-model-hero-20261001.webp": "5b4019aded8550eaea3f98d286609cacb8b94cfdb3f102d87c0ee7e1204e1903",
     "design-system/studio/images/paper-20261015/blog-orca-ade-hero-evidence-20260928.webp": "f9bec375e390f1f169a338ff211ad65a20768eb3cb81cbd5e71b8023a2692267",
     "design-system/studio/images/paper-20261015/blog-orca-ade-section-01-evidence-20260928.webp": "61f521e24dfe6fe4344c0cc9fed31ddd346df7fb25cc0fc5cb3708f2417dfc43",
-    "design-system/studio/images/paper-20261015/blog-orca-ade-section-02-evidence-20260928.webp": "99a0703e4e020ccb9aa742fdec968687e941be65777639553a1dae19ca31e11b",
+    "design-system/studio/images/paper-20261015/blog-orca-ade-section-02-evidence-20260928.webp": "e7e9c3887fe4ffc1ac8a2fa4616b2ddce0e8f0fbe798e267cb867704de54a7ec",
     "design-system/studio/images/paper-20261015/blog-orca-ade-section-03-evidence-20260928.webp": "3a1002301097558296c226ad628abd7964787249d270d345f179bb28b19617b4",
     "design-system/studio/images/paper-20261015/blog-orca-ade-section-04-evidence-20260928.webp": "e16cf3bbde01ec3042072d851eadb50535eeb1df7b88d701d7541e819cd89a07",
     "design-system/studio/images/paper-20261015/blog-rag-business-flow-20260618.webp": "70a255da75abe05b8aa5a42bceaab3b1bd0ea1cd145c8ec8ea19bd23e76b3b1a",

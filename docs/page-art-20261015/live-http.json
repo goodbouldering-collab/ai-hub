@@ -1,0 +1,1377 @@
+{
+  "source_sha": "3f2dd3655fcdffacbdb3c12a8613dbbbe9e81e4b",
+  "checked_at": "2026-10-14T21:21:27.354Z",
+  "results": [
+    {
+      "path": "admin",
+      "status": 303,
+      "match": true
+    },
+    {
+      "path": "ai-news/index.html",
+      "status": 200,
+      "sha256": "b352c30a83b68c8281708b2045b101479849c481ab06ee30e33c18574ea84c15",
+      "match": true
+    },
+    {
+      "path": "api/admin/ping",
+      "status": 401,
+      "match": true
+    },
+    {
+      "path": "blog/2026-06-17-codex-ai-world.html",
+      "status": 200,
+      "sha256": "06070e2a9353923e63f5bc3d326c036f6272aea6cf2b8d01ad9222ef2b85b535",
+      "match": true
+    },
+    {
+      "path": "blog/2026-06-18-ai-agent-output-curation.html",
+      "status": 200,
+      "sha256": "d13626f9f5adee6f85b32204e5d1b45ffe9bcf7a62c3740e45f4cb05ee20b9d1",
+      "match": true
+    },
+    {
+      "path": "blog/2026-06-18-cloud-ai-agent-rag-design.html",
+      "status": 200,
+      "sha256": "4a464fa9bf3cd34cd24673d582d9422192e575b3fef0a845e797c502b7e2501c",
+      "match": true
+    },
+    {
+      "path": "blog/2026-06-18-real-engineer-ai-era.html",
+      "status": 200,
+      "sha256": "f62853d48df43a52c895d836d8b53bf8970a892313d9d9cc3d694f20bc876cd1",
+      "match": true
+    },
+    {
+      "path": "blog/2026-06-20-business-system-development-priority.html",
+      "status": 200,
+      "sha256": "40233090e839127ff855d4e7e2e26e9c7919424953a3d9660d71f244a05043a3",
+      "match": true
+    },
+    {
+      "path": "blog/2026-06-29-ai-consult-hikone-practical-ai-course.html",
+      "status": 200,
+      "sha256": "2e023a8f1f909c89cb9351bcc28f3035807778e598e3802bedc9526c6ed14a11",
+      "match": true
+    },
+    {
+      "path": "blog/2026-07-14-ai-agent-course-codex-claude-code.html",
+      "status": 200,
+      "sha256": "606bee05da179f5fa4aa2a51a15eceed49d0954af1ab8a8e407b636270de9c3e",
+      "match": true
+    },
+    {
+      "path": "blog/2026-07-22-ai-site-publishing-stages.html",
+      "status": 200,
+      "sha256": "971f4607ec9fb3a945856b4d7331ca6071471865aca485961c4f53adac4e7153",
+      "match": true
+    },
+    {
+      "path": "blog/2026-07-24-codex-worktree-git-deploy-guide.html",
+      "status": 200,
+      "sha256": "38ae62c6f6089b73757b08c301076a9c32dd920b8b99fb26d1bec11a32e8dbc7",
+      "match": true
+    },
+    {
+      "path": "blog/2026-07-25-sites-vs-vercel-safe-migration.html",
+      "status": 200,
+      "sha256": "021560bca3a00f07806983059de728e64f868d81b06f4b972dcb5a7b8b03ab5a",
+      "match": true
+    },
+    {
+      "path": "blog/2026-07-27-codex-remote-ssh-rdp.html",
+      "status": 200,
+      "sha256": "4d0e0a28f18d2d715dfba53ace3e7b5332cafe175939abe73b2a08ccd35fe3a5",
+      "match": true
+    },
+    {
+      "path": "blog/2026-07-31-chat-work-codex-usage-guide.html",
+      "status": 200,
+      "sha256": "cad01a86fb1b181cfb0d6afc354695c80be7ef2f94f2bdca65c09ae7b428e716",
+      "match": true
+    },
+    {
+      "path": "blog/2026-08-01-ai-personal-data-boundary.html",
+      "status": 200,
+      "sha256": "7d32287f06f35d0b58b0a4382fb8630c4cbe44b3e3ac744baf468fe784b5ff9e",
+      "match": true
+    },
+    {
+      "path": "blog/2026-08-06-ai-work-design-future.html",
+      "status": 200,
+      "sha256": "ad771808d7592a92de73c9ce2da9180ab9f7e7ef0fd3ed962f371b52d4f7be02",
+      "match": true
+    },
+    {
+      "path": "blog/2026-08-08-vercel-supabase-d1-r2-boundaries.html",
+      "status": 200,
+      "sha256": "4e8d031562f2e2dc2080578297c79d17ad606d9367e7b75b7aa85d2f0f44d3dd",
+      "match": true
+    },
+    {
+      "path": "blog/2026-08-09-ai-experience-3d-reality.html",
+      "status": 200,
+      "sha256": "9e8b01b3ac774926609a8c72bc2fa9661319aa22bfec32c645e4f70f1bea9fbb",
+      "match": true
+    },
+    {
+      "path": "blog/2026-08-14-communication-essence-ai-consult.html",
+      "status": 200,
+      "sha256": "cd5cc70756a5f7b6737acb6699cba269af38627deafaeda305247d229ae21cfb",
+      "match": true
+    },
+    {
+      "path": "blog/2026-08-21-codex-environment-optimizer.html",
+      "status": 200,
+      "sha256": "ab0327987a8e96ee14ad969809b95c813c04f012b502c11ea2fadfbdd11f34e8",
+      "match": true
+    },
+    {
+      "path": "blog/2026-08-30-switchbot-ai-mind-clip.html",
+      "status": 200,
+      "sha256": "5caf8809aab31899a57d50fd2ee4de0408531b693d1cbb2fbd7b6ae487ad0a74",
+      "match": true
+    },
+    {
+      "path": "blog/2026-09-18-cloudflare-emdash-webmcp.html",
+      "status": 200,
+      "sha256": "ab3c61cef1380093d261fa951ded1f58b58e0b0e2542a35678b30c160942d2ab",
+      "match": true
+    },
+    {
+      "path": "blog/2026-09-28-orca-ade-ai-manager.html",
+      "status": 200,
+      "sha256": "f9d9c49707b73c8dc3ca98fd6a28ba43f253a2b7280bc7bcb6b067f68d8bb080",
+      "match": true
+    },
+    {
+      "path": "blog/2026-10-01-codex-decision-model-jev.html",
+      "status": 200,
+      "sha256": "e8c92ba14c387bce879e721cec8e24d25f141b057d9e62efc20667e4a9accb6f",
+      "match": true
+    },
+    {
+      "path": "blog/2026-10-03-codex-remote-collaboration-guide.html",
+      "status": 200,
+      "sha256": "31783d4d91c20ae0bd04092c300b7397b38c5c27629ae389fcdc988861127880",
+      "match": true
+    },
+    {
+      "path": "blog/2026-10-05-codex-cloud-development-environment.html",
+      "status": 200,
+      "sha256": "c4910647de3d245a39f8091d55b8072665de885cf050feadf05c3fbd006d2cc8",
+      "match": true
+    },
+    {
+      "path": "blog/2026-10-09-codex-workers-ai-workflow.html",
+      "status": 200,
+      "sha256": "424de1f9c2d3b5cddc68c9e7ca15e4e695cfbab229b030f84594f07d195fb774",
+      "match": true
+    },
+    {
+      "path": "blog/index.html",
+      "status": 200,
+      "sha256": "14e5dd989bb02edae767dc63d092da589e34449696c37c125af7c61e3f9f85b1",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/hero-workshop-1672.webp",
+      "status": 200,
+      "sha256": "4055297455de5a8c4b75c08fc866cbbd4a382a718cb02cd85bad3b29f49f3371",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261014/agent.webp",
+      "status": 200,
+      "sha256": "129293ca8ed4f6bbc53ec3a26ff9c2e0c122bbee3bb65d722080c91297b4288b",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261014/climbing.webp",
+      "status": 200,
+      "sha256": "a1f490644edb47b247d1fc5198e69d597d132810812c155b06fb530fc2c9d92f",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261014/code.webp",
+      "status": 200,
+      "sha256": "8b16feae5a076a920ee93201a489081aa8fd5ec2b501bcd0f62ed40a607f7716",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261014/personal.webp",
+      "status": 200,
+      "sha256": "52aa54b82f05d69183d23ceb27bf1e9251160aaca79d322833cd260813b2e83d",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261014/practice.webp",
+      "status": 200,
+      "sha256": "6a71f86971598910ba8f106d129c5dbd6e5040a0a2e37705be60c6c31dd81586",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261014/rag.webp",
+      "status": 200,
+      "sha256": "c1705ceafea7eca9c202efddd193afcf982387c42829905d48bd10e0701ed2f7",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261014/salon.webp",
+      "status": 200,
+      "sha256": "e3cb24390b7d631dfd8550541f1964037d539417b53b504be09d7db3417726c0",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261014/support.webp",
+      "status": 200,
+      "sha256": "0ce4124d3cd4ca9e574c14764c862f2d89f1076436c25f1ae5a806482093b009",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/ai-coding-00-work-ready.webp",
+      "status": 200,
+      "sha256": "ab04bcdf6b637fe194f78f19e2bc6da8302a231ebade20ff3516b90a5ebae1f7",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/ai-coding-01-level-map.webp",
+      "status": 200,
+      "sha256": "382ae6b342278bd8925ca76068ef2be06e8017a89a3255d33b9b1ccc6c2a1337",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/ai-coding-02-explain.webp",
+      "status": 200,
+      "sha256": "aa1a9cacf08a397118bad03b1c31978daa38617452472fd538df1667787e68a5",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/ai-coding-03-tools.webp",
+      "status": 200,
+      "sha256": "4a64cfbf7527024ecb1085c5cc674af97948118d2895be32c3873a22531d7d9b",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/ai-coding-04-learning-path.webp",
+      "status": 200,
+      "sha256": "40641130e82e051810f66b2768a38acade2870449907317f6b9a318bd8881170",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/ai-coding-05-components.webp",
+      "status": 200,
+      "sha256": "7328f404342853012224b916324c464b7dd276035f1b21eec5d2cb2916bb7634",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/ai-coding-06-request-loop.webp",
+      "status": 200,
+      "sha256": "eec7186a475aad6d36d150234b3e6f4cc8c7a67835ef684def6ea08b42a56d53",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/ai-coding-07-safe-publish.webp",
+      "status": 200,
+      "sha256": "e3716fb7b620aca62e87777c9ba573585f68846df0d7e8cbd09ca0e22615c251",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/ai-coding-08-work-applications.webp",
+      "status": 200,
+      "sha256": "472c0b1859765691ce60b3e5bd30102e101775c7a46e69aadae48f953b74e6ca",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/ai-coding-09-official-info.webp",
+      "status": 200,
+      "sha256": "7383f8e28d30a4c27794625d0e3e754fa55e4634d9a843e7b92ec346c2e34ef1",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/ai-coding-10-exercises.webp",
+      "status": 200,
+      "sha256": "fefe768e8715e76e64a5d4ea021f3cb5e7cedaaa3443d59b1a7bba01539c38f1",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/ai-consult-hikone-scene-01.webp",
+      "status": 200,
+      "sha256": "311c1348ba8845b7796bf0006e9029de5347ad1f6ca3dc44c84f0c349509817f",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/ai-consult-hikone-scene-02.webp",
+      "status": 200,
+      "sha256": "b7ba13f5710ce1c1457d0f6a4496625f1124121fe199b5479f07e8b1589b427d",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/ai-consult-hikone-scene-03.webp",
+      "status": 200,
+      "sha256": "9a5e7045a61ea776802f13eea7142b91ed9d7e2d3fd788f1685ebce7f7849645",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/ai-consult-hikone-scene-04.webp",
+      "status": 200,
+      "sha256": "9c44a2b3e6256cd5e75fe4822a8842c33ceb661f571498346c436834182d76c9",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/ai-consult-hikone-scene-05.webp",
+      "status": 200,
+      "sha256": "39ad3de4b8dd393f3873b08f747d88768ae8375c4ee8a639e873a2f9cfdc36e6",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/ai-consult-hikone-scene-06.webp",
+      "status": 200,
+      "sha256": "7f12939f8e1437b2398e9b8e306c0e66b099249812236cca808ce80810bd3c74",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-ai-agent-course-hero-20260714.webp",
+      "status": 200,
+      "sha256": "07b01936db1ee8b4e56928bfddece0a085bdb7bec7ad50929c3bcb50fbe92d93",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-ai-agent-course-section-1-20260714.webp",
+      "status": 200,
+      "sha256": "bfb9d8f9a3ee09e744a719c9480744e89610036c399a0f220b9c53268efac45a",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-ai-agent-course-section-2-20260714.webp",
+      "status": 200,
+      "sha256": "0d76113b4c2e2b086ed2eb12176cf723467d1506edd3a08353ee13818c9f853d",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-ai-agent-course-section-3-20260714.webp",
+      "status": 200,
+      "sha256": "e094c6fab8b441b9ecb5f6f8925273a506c7bc596543648a57a5e72647ac1a84",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-ai-agent-course-section-4-20260714.webp",
+      "status": 200,
+      "sha256": "ea2bc98164319fc4d9691b50c0417249f469daae13f298dff1fe29d353699340",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-ai-agent-output-section-1-20260618.webp",
+      "status": 200,
+      "sha256": "26f16d0296d24152ae8b3a8462c96f0377565f10d2cf10d75ede2ffcea651dfb",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-ai-agent-output-section-2-20260618.webp",
+      "status": 200,
+      "sha256": "60ad74153b7556e2da48a7e734d7d9a45a55767426048406c8d9a659521faf1e",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-ai-agent-output-section-3-20260618.webp",
+      "status": 200,
+      "sha256": "54db7bfab1a4522b5ba7f6a20a5ad99f81a4a481ce4affc6b7eb70077f461318",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-ai-agent-output-section-4-20260618.webp",
+      "status": 200,
+      "sha256": "bf0dacf08e11f915c6862563a4dc58a79943ee4e8971e06a107b1b2ed6d4fc19",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-ai-agent-output-section-5-20260618.webp",
+      "status": 200,
+      "sha256": "c3191990f0ad655e4630011dd8aa6c224075c45f75f5d0af79269ac48937b755",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-ai-data-boundary-controls-20260801.webp",
+      "status": 200,
+      "sha256": "01227722f32d89ac6c61dfa8146edc3b511a6e78311ee5275126a3f1b0daa110",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-ai-data-boundary-database-20260801.webp",
+      "status": 200,
+      "sha256": "7ccb5e45b4b821a8c3e726bccedf37c2ec35b0162d6a83859b19df4863851c0e",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-ai-data-boundary-flow-20260801.webp",
+      "status": 200,
+      "sha256": "4162662f1e4107d98633457f7a4be6ab372957055c77395ca52211d70f069bd5",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-ai-data-boundary-hero-20260801.webp",
+      "status": 200,
+      "sha256": "a8782b5eb93672dc539b95337894bba1aa6d35832bc439985bccbe78782402a4",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-ai-data-boundary-rule-20260801.webp",
+      "status": 200,
+      "sha256": "e0ccd886b7ef8dac346d6a4349765363f4a4e4eeca693331de799a91f5ff1aa0",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-ai-experience-3d-expert-judgment-20260809.webp",
+      "status": 200,
+      "sha256": "81f6c2c269ea4a649820b229859c20246b4964747d9f52f27e38c21e3d837ed1",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-ai-experience-3d-hero-20260809.webp",
+      "status": 200,
+      "sha256": "1e66eb58b1197b7904f6ca5428a413ab83c47c504c07556e322dd56d70388d47",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-ai-experience-3d-information-and-reality-20260809.webp",
+      "status": 200,
+      "sha256": "95b7b99787bb6f08fdddd56f1043518895517bcc535310bccd0e35467f321656",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-ai-experience-3d-loop-20260809.webp",
+      "status": 200,
+      "sha256": "9345ee184004d68c8d81c6f0717c63ac24c12b6c40cb4db1bd3684b9bff252c8",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-ai-experience-3d-reality-check-20260809.webp",
+      "status": 200,
+      "sha256": "524a4080f5837d97d548d7efbc78ec0e6e2641d5277c2724f57e685b6a7b11b3",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-ai-site-publishing-hero-20260722.webp",
+      "status": 200,
+      "sha256": "00ac645b711b55b11b3d55694b9a71ca99c206c1e8ea1c450e552baf6b161f60",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-ai-site-publishing-section-1-why-20260722.webp",
+      "status": 200,
+      "sha256": "1ff83cc50273f03239dede0e0318ea2fa023e82187c5d210240490eedd20e485",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-ai-site-publishing-section-2-stages-20260722.webp",
+      "status": 200,
+      "sha256": "d7a0d5a35666eb2279785e68622992308ae6e04da282afb9b2c0691f9a0fa958",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-ai-site-publishing-section-3-compare-20260722.webp",
+      "status": 200,
+      "sha256": "4ad46be785869ae404347346ddfd29ccc03513519c0b4e9fb104a14978dd3b30",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-ai-site-publishing-section-4-choice-20260722.webp",
+      "status": 200,
+      "sha256": "bd72e0516ad41954d6e8dc7d4038315656b84515ef1eac14f627c05170164543",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-ai-work-design-experience-20260806.webp",
+      "status": 200,
+      "sha256": "fbd7003681dc8ed4ab7c02d4b537310cef3ae230a07bf72477bebc3a2537d5b6",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-ai-work-design-hero-20260806.webp",
+      "status": 200,
+      "sha256": "e9ecce235d6355dee18afb6353e47795c2eb8d0c2d1fab74ca1ad10bb5588c26",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-ai-work-design-speed-20260806.webp",
+      "status": 200,
+      "sha256": "ed129f76444987c0a0ce35ac4bcc7d58cfa2727752128b566c12c275a04712ea",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-ai-work-design-system-20260806.webp",
+      "status": 200,
+      "sha256": "e1454414b884c0e0af93ca9215c6d9fe368e9522c4d9bc5081a95ce4453e5903",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-ai-work-design-three-lanes-20260806.webp",
+      "status": 200,
+      "sha256": "b1b618f599d057f136c0258e8168ea58ef38b88fea501f10c35b5b292060f5dd",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-business-system-priority-section-01-foundation-20260620.webp",
+      "status": 200,
+      "sha256": "2056f47969a60890558123848130e9d553164c1e2e93bf875ee68782f9e4ca9c",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-business-system-priority-section-02-customers-20260620.webp",
+      "status": 200,
+      "sha256": "3cf0f8a77abfd1bd2cdf6772b57796296afc29ca1de736dcb130ba6e384e824c",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-business-system-priority-section-03-operations-20260620.webp",
+      "status": 200,
+      "sha256": "2722a4a6d34380da9c496b0a01f03c8f6eb1bf27da012d4568c429097aab60aa",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-business-system-priority-section-04-scale-20260620.webp",
+      "status": 200,
+      "sha256": "6f53f8b02a14cf5a996e9b9be1ad2131ec932b86b2732fa4ad11533cb8f0e8e8",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-business-system-priority-section-05-aihub-20260620.webp",
+      "status": 200,
+      "sha256": "b39c1b073079dff6d5d134a9521c32bf2b0e610f1cd7430a45009acf6fde8021",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-cloud-ssd-cloud-20261005.webp",
+      "status": 200,
+      "sha256": "21886de4b061551bda32597b4d212e3eecbff16f414a66f8877ba45d66c68660",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-cloud-ssd-github-20261005.webp",
+      "status": 200,
+      "sha256": "037b5cf9950663c1904f869aa7d71675a0e92d4be2a44fc367a22ab17ec491df",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-cloud-ssd-hardware-20261005.webp",
+      "status": 200,
+      "sha256": "b07aac3a7dc2773069c8d2cae6d1a5b1ad8270231114edbbd07db3a1662f7f9f",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-cloud-ssd-hero-20261005.webp",
+      "status": 200,
+      "sha256": "2d26171d446caad238d904b0371c9ab5a4712eeb8255c402b1441164c07d21d2",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-cloud-ssd-local-20261006.webp",
+      "status": 200,
+      "sha256": "750a05ebad4c624bffb57f6618d4a0a4f35b7430c9f51a3cdc6145bb763ccfcd",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-cloudflare-ai-hero-20260918.webp",
+      "status": 200,
+      "sha256": "8b1c6192c8f3b32a29d144b409a0c1596956218f272818c0b3c8fdb4f8288089",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-cloudflare-ai-section-01-20260918.webp",
+      "status": 200,
+      "sha256": "f9a6a327a75f053c310d5db88ceda9a786efedddcf3ae008d4c497e17f6dff87",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-cloudflare-ai-section-02-20260918.webp",
+      "status": 200,
+      "sha256": "09a426c2519987b0bea091f68dfa42381811130a5aaa557b38b20482a53b7341",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-cloudflare-ai-section-03-20260918.webp",
+      "status": 200,
+      "sha256": "abb8eb961b14a5af1cf1e985011ea0ddc9cbe916ed8b55f7d06f7c31b489c1d7",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-cloudflare-ai-section-04-20260918.webp",
+      "status": 200,
+      "sha256": "490838d5d56e83e438050cde3f7f4708d00b5bb259085f4784d1fa2727888cfa",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-codex-ai-world-artifact-20260617.webp",
+      "status": 200,
+      "sha256": "8787d94390402af457433de9142ddd38bc071bdc96bb908f73e50c3e3f30734b",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-codex-ai-world-compare-20260617.webp",
+      "status": 200,
+      "sha256": "a65ed4ae5aca5ce9d571d98aaa2d13af69b416e28ed88bfa4f2d66175780c75f",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-codex-ai-world-hero-20260617.webp",
+      "status": 200,
+      "sha256": "9f9dd991cc6a39be62635f24761ccfca1ad9bf6e33840aedb3538ea27038f4bd",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-codex-ai-world-mobile-20260617.webp",
+      "status": 200,
+      "sha256": "80259920b7df551963ff0323dc49152470d2e16f0ab94a1e80f12d4e6c31017b",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-codex-environment-optimizer-hero-20260821.webp",
+      "status": 200,
+      "sha256": "b2e64786daccdbe0c4c4b82ce0ffbf03d9c521630825ffcb36f29eadab694a51",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-codex-environment-optimizer-section-01-conflicting-instructions-20260821.webp",
+      "status": 200,
+      "sha256": "8e56292ad350657278b8073d07ce373d6daeea9fa2decce03db7edd337a5aae0",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-codex-environment-optimizer-section-02-execution-environment-20260821.webp",
+      "status": 200,
+      "sha256": "c5def57e5ad09f420c3dc978f90c2f0038db43057461de7e461ea2827d56b28d",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-codex-environment-optimizer-section-03-audit-loop-20260821.webp",
+      "status": 200,
+      "sha256": "f57323d351d9052160393c828c9f6d184b738abcd663fb1a18813fefd3c8c69f",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-codex-environment-optimizer-section-04-local-business-20260821.webp",
+      "status": 200,
+      "sha256": "cfcd20db1b1f9004ef35cca1ffb942b060c221af573c947c4055d0508da93b01",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-codex-guide-flow-explainer-v2-20260725.webp",
+      "status": 200,
+      "sha256": "d25e2c26d609557d7ed15d73ed13deade4e26f1565409a5a8f34e4e0b6ba5ca1",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-codex-guide-local-worktree-explainer-v2-20260725.webp",
+      "status": 200,
+      "sha256": "0f66ad1ad0a2308b94939d2f20ba233f5978561043b58ce96abb03ba92d6751a",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-codex-guide-release-explainer-v2-20260725.webp",
+      "status": 200,
+      "sha256": "d9dcb812af3cb11d08630193bbc99a152bfee211cf6c6048aad693590f3dad62",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-codex-guide-roles-explainer-v2-20260725.webp",
+      "status": 200,
+      "sha256": "0222ef360e5ace68f53aff8db162f36717e61698ea5f0831ec5afa869cd2c952",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-codex-remote-duplication-20260727.webp",
+      "status": 200,
+      "sha256": "e9dc08edda74010169e2bc2d06d888bf21459433de75ceb013d53a3d49f8dc71",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-codex-remote-hero-20260727.webp",
+      "status": 200,
+      "sha256": "925f4799305c533c9bcb3f9c5ea8a71743171109ae4ba3027777bd011f67f8eb",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-codex-remote-ssh-centralize-20260727.webp",
+      "status": 200,
+      "sha256": "b219be23de798d464ad2038374325f062a8e2797b9f22330810901a4b7a1d056",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-codex-remote-three-layer-20260727.webp",
+      "status": 200,
+      "sha256": "edcdd7389a1f3b46f483e4df486850a8efa38253d2c5c2426d84c0a64163ae69",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-codex-remote-troubleshoot-20260727.webp",
+      "status": 200,
+      "sha256": "1ad7234f753d708e329d0c551e76e3579012ca4c02a1a1fa49e017b82d1287e9",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-codex-story-0845-20260731.webp",
+      "status": 200,
+      "sha256": "923186f1816da8110b5cd6de2d34d9e267ce262ed2acfcb39ee0fb3cea0ceb60",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-codex-story-finish-20260731.webp",
+      "status": 200,
+      "sha256": "541fecb244cf92b6054067e4c18d434cc63d0dee96e82312da489bf67f080074",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-codex-story-hero-20260731.webp",
+      "status": 200,
+      "sha256": "96108a1a3e2a4958e397d47432d6f03687e15f47e1c3ec7ebb4dc85c5de08715",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-codex-story-numbers-20260731.webp",
+      "status": 200,
+      "sha256": "02af74396f472dd8c84d9957698bd212642f59e3750b648970b7f7d76939412d",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-codex-story-workflow-20260731.webp",
+      "status": 200,
+      "sha256": "6c3286e5a77871a4b81ba014f1a28b65888369cff3d9f9e7a7c09a0fe26345a8",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-codex-workers-ai-app-20261009.webp",
+      "status": 200,
+      "sha256": "80c7c921ce1d02c2db1da0cdc51d1b5d0d2244953b797d6ab6d19ab3f9130ffc",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-codex-workers-ai-folders-20261009.webp",
+      "status": 200,
+      "sha256": "15a1895b6dc94b577f2784466593638ba347bf91ecc9edbbf5eb13cc3c2924dc",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-codex-workers-ai-hero-20261009.webp",
+      "status": 200,
+      "sha256": "fb3c253c8dcf6644baba194fadb17dcbcbcae71ce6f29d937e61c788d1d2841b",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-codex-workers-ai-rules-20261009.webp",
+      "status": 200,
+      "sha256": "859a114ab11d3d16f4e803ab13635a6a3553140776238b226628db74f61c7d48",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-codex-workers-ai-start-20261009.webp",
+      "status": 200,
+      "sha256": "b7bcd25163e7e761199f49d29f6cdbb36b1a20ed8c8f6af314068419ae852946",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-communication-100-10-1-20260814.webp",
+      "status": 200,
+      "sha256": "39e6255e623826843a630723e98fb526571b850ee5eaee552bd2f5544152f25c",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-communication-ai-consult-flow-20260814.webp",
+      "status": 200,
+      "sha256": "d39373473ce2c1217c46e85dddb55c2e58c2c30d09847fd5f3fdd5543eac58ea",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-communication-essence-hero-20260814.webp",
+      "status": 200,
+      "sha256": "4fc7d790a48b9246fe28eb3b3d17a9a26831f7f5a6d545f5c29854f0d16436c3",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-communication-four-step-sequence-20260814.webp",
+      "status": 200,
+      "sha256": "d690d2a46124bcab7d7ef1d31f3731e841f8c3ce98b527eb7f8e1930103fd10d",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-communication-next-step-20260814.webp",
+      "status": 200,
+      "sha256": "11aea5ae214297e55c7da4071d6330238e20334632a811307593ccaf2ef52cc4",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-decision-model-01-20261001.webp",
+      "status": 200,
+      "sha256": "abb52cdf5e22d6ff95424867d302db2c069fd1a77426dced16e0f4d280dda762",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-decision-model-02-20261001.webp",
+      "status": 200,
+      "sha256": "0b52200b1ff552682a83ea5799643ab302091f0e2e99d20530b771e352de2514",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-decision-model-03-20261001.webp",
+      "status": 200,
+      "sha256": "e97228cd896bf9afdcffc93aa7a661af7cf1c0a141ea264de2a87d463a05aa6d",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-decision-model-04-20261001.webp",
+      "status": 200,
+      "sha256": "c510e0fb4723ed2b5d52e960b48e7885dcf0897cf2e0f87727834268e3f90300",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-decision-model-hero-20261001.webp",
+      "status": 200,
+      "sha256": "5b4019aded8550eaea3f98d286609cacb8b94cfdb3f102d87c0ee7e1204e1903",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-orca-ade-hero-evidence-20260928.webp",
+      "status": 200,
+      "sha256": "f9bec375e390f1f169a338ff211ad65a20768eb3cb81cbd5e71b8023a2692267",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-orca-ade-section-01-evidence-20260928.webp",
+      "status": 200,
+      "sha256": "61f521e24dfe6fe4344c0cc9fed31ddd346df7fb25cc0fc5cb3708f2417dfc43",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-orca-ade-section-02-evidence-20260928.webp",
+      "status": 200,
+      "sha256": "e7e9c3887fe4ffc1ac8a2fa4616b2ddce0e8f0fbe798e267cb867704de54a7ec",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-orca-ade-section-03-evidence-20260928.webp",
+      "status": 200,
+      "sha256": "3a1002301097558296c226ad628abd7964787249d270d345f179bb28b19617b4",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-orca-ade-section-04-evidence-20260928.webp",
+      "status": 200,
+      "sha256": "e16cf3bbde01ec3042072d851eadb50535eeb1df7b88d701d7541e819cd89a07",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-rag-business-flow-20260618.webp",
+      "status": 200,
+      "sha256": "70a255da75abe05b8aa5a42bceaab3b1bd0ea1cd145c8ec8ea19bd23e76b3b1a",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-rag-daily-agent-20260618.webp",
+      "status": 200,
+      "sha256": "715ac2fef29267560bebde538412e39f59a085ae453ba29d03aebe625e235d19",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-rag-human-gate-20260618.webp",
+      "status": 200,
+      "sha256": "aa2019e6e25d54568507cc0dca541d2a45325e38ff7340a714bcb72ba535248c",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-rag-library-agent-20260618.webp",
+      "status": 200,
+      "sha256": "9efa2d9276a67dfa8f3fb02af151ddb39cdf4524bce3801585006565a1e98827",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-rag-search-order-20260618.webp",
+      "status": 200,
+      "sha256": "dc7be752f3f72a4a35e988e47fc0777ed00537e39c9cf3829a37fc8a3076066d",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-real-engineer-ai-era-20260618.webp",
+      "status": 200,
+      "sha256": "8dc97918b223ee16266d3fd94b21d050523725d5d9a4ba7d1829c7cbb26f2683",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-real-engineer-ai-era-section-01-entry-20260618.webp",
+      "status": 200,
+      "sha256": "ac333327dd21f609d286124fe8555505198f4d44d313076648b9ee91c25b594e",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-real-engineer-ai-era-section-02-responsibility-20260618.webp",
+      "status": 200,
+      "sha256": "23d9d3e4e973eb9ecaad676f7654c3bfbaa5499eb00f92d30f0b43cda689b720",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-real-engineer-ai-era-section-03-levels-20260618.webp",
+      "status": 200,
+      "sha256": "734cb3189cd476c218cb2174f2e36c3355d2578228056e14ecacc9e2ab9f8eb9",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-real-engineer-ai-era-section-04-operations-20260618.webp",
+      "status": 200,
+      "sha256": "ff38f24b3cd6b86908b5c71a7473adc945a458c4d0d3a7d447fad2ae210c83a6",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-real-engineer-ai-era-section-05-aihub-20260618.webp",
+      "status": 200,
+      "sha256": "44239362abd43c148508b5c67f0537f694813ca84bbd565c8e5cb0cbcbb59b96",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-remote-guide-desktop-20261003.webp",
+      "status": 200,
+      "sha256": "f3561e4ffb0ae8c8fd5ff56cc6c4163166a23ca3f16af447d03db473867de262",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-remote-guide-hero-20261003.webp",
+      "status": 200,
+      "sha256": "8a26a1827a404f15a9f93dcab62c1c2108512111a2e90c933294e8a7249d04e1",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-remote-guide-remote-20261003.webp",
+      "status": 200,
+      "sha256": "e470c4a2727db69beab4d14c99b35533d6914345c12fcefb2ef7b55ee9178ba6",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-remote-guide-ssh-20261003.webp",
+      "status": 200,
+      "sha256": "14b7896459cd66fd42163ff3ac216add7f66a3b8bb8b6b95b37f0b0192be44a0",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-remote-guide-team-20261003.webp",
+      "status": 200,
+      "sha256": "2a12783926a335d9cee44c3fb0fc0f4a8c29d6605c7861a6a42abcf331d4ac24",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-sites-cloudflare-vercel-hero-20260828.webp",
+      "status": 200,
+      "sha256": "4cdea52a536c034b5c2debdde2e3a95991805cd8a151a059591339099083d213",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-sites-cloudflare-vercel-section-1-compare-20260828.webp",
+      "status": 200,
+      "sha256": "cf3b55b085e81d701f142265a617231c7956c5fcbc30d5bcb05333a7c8bddbc7",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-sites-runtime-climb-core-boundary-20260810.webp",
+      "status": 200,
+      "sha256": "dbf929093b11bb03b869c20754311a5980211da08f4b1a668b6dcd507f1872bc",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-sites-runtime-continuity-backup-20260810.webp",
+      "status": 200,
+      "sha256": "a4faf6b45784e0f01f63fb00d86b0d046c42598bada1f7ad6d95b9307aa3b13a",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-sites-runtime-core-system-20260810.webp",
+      "status": 200,
+      "sha256": "8942f92524a83d0a8de3bfceb9ee42a62ee28f196da9a5c2308114c10bd8deb1",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-sites-runtime-data-decision-hero-20260810.webp",
+      "status": 200,
+      "sha256": "2d9d7ccbf401085fd79d98f973804458072f7c1b21ce6ba6dc38402034d539cc",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-sites-runtime-decision-criteria-20260810.webp",
+      "status": 200,
+      "sha256": "66ef50a3fc699fe6c5f74fabd47c17f86ca05b76a073fc05928bb9630f598c07",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-sites-runtime-safe-pilot-20260810.webp",
+      "status": 200,
+      "sha256": "4950d46d2db88f327fcb983909ba10a7603a1101dcf1df4b93eac3ccdec5af61",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-sites-vs-vercel-section-2-workflow-corrected-20260725.webp",
+      "status": 200,
+      "sha256": "2c80b5e2d83bebe73443173d1856f0ac381ae2c4f59be976f15391f885fe6f33",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-sites-vs-vercel-section-3-assets-20260725.webp",
+      "status": 200,
+      "sha256": "c1cf9fb8885a1b06d225153d054563a5b105b1c94e088b44da31c6d6448b50f9",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-sites-vs-vercel-section-4-domain-20260725.webp",
+      "status": 200,
+      "sha256": "d6fd081533df8c3373782d4df55cc72390c67e89851aa29b8378651fcff2247f",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/blog-sites-vs-vercel-section-5-pilot-20260725.webp",
+      "status": 200,
+      "sha256": "9e193252f69cf420dd46d952b73d7ab70a997fc924cbad0202215301b985edae",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/course-path-coding.webp",
+      "status": 200,
+      "sha256": "b0cf9aed0863c43f81c5990cd21f02492a8887ee917801f56e6a621e3513c883",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/hero-ai-bento-glass.webp",
+      "status": 200,
+      "sha256": "b007ecf02d77984ba37bfbc4ca9f597c6c7fd59f1d481c1b9f7f18d2d938342c",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/hero-ai-consult-hikone.webp",
+      "status": 200,
+      "sha256": "a20f0518ac9f946ef9fb3a1668175ae7f44d89ea761ba9967b9a5d6c900c6cdb",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/hero-ai-hub-studio-cool.webp",
+      "status": 200,
+      "sha256": "36e44959ef7b5bb72710be5df6efd881cc343c4d2ad75a7bf6d63a5a30d5c622",
+      "match": true
+    },
+    {
+      "path": "design-system/studio/images/paper-20261015/hero-ai-lesson-line.webp",
+      "status": 200,
+      "sha256": "a2d10225a3c495669568c486a6735bddc5c942441936c4977a7ed10290714288",
+      "match": true
+    },
+    {
+      "path": "health",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "img/ai-salon-live-talk-guide-20260722.svg",
+      "status": 200,
+      "sha256": "e1b5ebc7722a2117e5a6de78897c181c369cc68489b677fc7912b8209acbdfdd",
+      "match": true
+    },
+    {
+      "path": "img/gubboru-cafe-ai-course-painting.webp",
+      "status": 200,
+      "sha256": "fb4ee16ce8af7cf67530505ab436ef57f9daba977079d1c8fb9456836b1ebc57",
+      "match": true
+    },
+    {
+      "path": "img/portfolio/ad-kotobuki-hikone.jpg",
+      "status": 200,
+      "sha256": "73fd9280e2843ac750c117aa4fa5ed24eb274bed3d361f1df8405ea977d71e46",
+      "match": true
+    },
+    {
+      "path": "img/portfolio/ai-hub.jpg",
+      "status": 200,
+      "sha256": "609a429a43cd515d1d537d6f551b3144ee693019a379d98e0888ee42320ec50c",
+      "match": true
+    },
+    {
+      "path": "img/portfolio/ambassador-planning.jpg",
+      "status": 200,
+      "sha256": "00af1b32ea0ce8011d2f6f665c1d594d43a9a62de2e91a474f33535b985fc156",
+      "match": true
+    },
+    {
+      "path": "img/portfolio/ambassador-roi.jpg",
+      "status": 200,
+      "sha256": "6cc1cd8e634d1ed940781fedccd48f3597aa8cb1c9dc86f1e6416517886ba4e6",
+      "match": true
+    },
+    {
+      "path": "img/portfolio/business21.jpg",
+      "status": 200,
+      "sha256": "7a3ae0141ba2f1c8a5041747f69d687f2ab4052a2670f6310b45d937ac651446",
+      "match": true
+    },
+    {
+      "path": "img/portfolio/climbhero.jpg",
+      "status": 200,
+      "sha256": "b05608d1e868c47b966d179fb3600dbb1772c7e4721b054b6e3ca33bc67599d5",
+      "match": true
+    },
+    {
+      "path": "img/portfolio/climbing-shoe-search.jpg",
+      "status": 200,
+      "sha256": "6fc856115944702b639a1ce0b3bd0259e8d26be438f4a999b47d8f140822c6d8",
+      "match": true
+    },
+    {
+      "path": "img/portfolio/fadie.jpg",
+      "status": 200,
+      "sha256": "a2a90fea9b6c0249f5409d8fe850ab887a790a0553ab9ca321b81ba70f17b58f",
+      "match": true
+    },
+    {
+      "path": "img/portfolio/goodbouldering-youtube.jpg",
+      "status": 200,
+      "sha256": "d7cf1513835429cd9953bc239f06ac3b238d9cb2f9e4a0c3ff371bad35802a10",
+      "match": true
+    },
+    {
+      "path": "img/portfolio/goodbouldering.jpg",
+      "status": 200,
+      "sha256": "9aa40567daea3bb95eeb35994ade13bc822736d5577b444c9c280fa2d910bdea",
+      "match": true
+    },
+    {
+      "path": "img/portfolio/hyrox-hongo.jpg",
+      "status": 200,
+      "sha256": "e77115adbceae124fb9d8ccf0aa251d512d93544392f5b03fb03891ea847e027",
+      "match": true
+    },
+    {
+      "path": "img/portfolio/japan-plogging-championship.jpg",
+      "status": 200,
+      "sha256": "533407e6651e91421135c399acb7bce5196ccf07f26b9eeedf0fd53f8bee0997",
+      "match": true
+    },
+    {
+      "path": "img/portfolio/junpa.jpg",
+      "status": 200,
+      "sha256": "dca415e54e1f1a94d338ef323ff77022050486b5ca1935f801a13ef4f9ed6dc4",
+      "match": true
+    },
+    {
+      "path": "img/portfolio/karatto-plus.jpg",
+      "status": 200,
+      "sha256": "4b7b8ee3e9ea14188d84a75c745bfaa3397e1a602f7c701d8089fdcf9884c399",
+      "match": true
+    },
+    {
+      "path": "img/portfolio/llmo-shindan.jpg",
+      "status": 200,
+      "sha256": "fd9acaeb1f2412cf0820d69ccb9e5c7350a80e6e32862c6f54682218dd8c47b0",
+      "match": true
+    },
+    {
+      "path": "img/portfolio/minanowa.jpg",
+      "status": 200,
+      "sha256": "db481907b8d2ee49c585d8ce4096de9d870ce4c35d48b15b6cb973df98a1d645",
+      "match": true
+    },
+    {
+      "path": "img/portfolio/moglog-fadie.jpg",
+      "status": 200,
+      "sha256": "c3b9d7c9b7f723b89e2d11a23c2e5ebe4804de89f6f20fd0e5d0f2b33ed306b7",
+      "match": true
+    },
+    {
+      "path": "img/portfolio/moksha-chai.jpg",
+      "status": 200,
+      "sha256": "2c99a90c36cb586ce5cd23183d3a398d5509803dc9f12131d43305b58d5cdf77",
+      "match": true
+    },
+    {
+      "path": "img/portfolio/n-design.jpg",
+      "status": 200,
+      "sha256": "c1a2ec045e004da8a54b2f6d6414842ea6b185bde51cebea87f5d18af4facc98",
+      "match": true
+    },
+    {
+      "path": "img/portfolio/nokosu.jpg",
+      "status": 200,
+      "sha256": "3de6e61f211c6a65c6bf213333f4ce870c6c9b9ea416dc69eeada3e39cfc33d0",
+      "match": true
+    },
+    {
+      "path": "img/portfolio/notesthe.jpg",
+      "status": 200,
+      "sha256": "6f146459bcb85ec8951ab61f0027028365e65b00a369813d1a9f11b6375d34f8",
+      "match": true
+    },
+    {
+      "path": "img/portfolio/oyasumi-sekkei-lab.jpg",
+      "status": 200,
+      "sha256": "ef7d1bf03f0be0425ddfb329d2e3af73d6f0cf5fb978bfe96705c2ad13d5e88b",
+      "match": true
+    },
+    {
+      "path": "img/portfolio/plogging-japan.jpg",
+      "status": 200,
+      "sha256": "376b00f1504ec39b99d35a06885423a3f7e236da1681388336a62f06e2205bcc",
+      "match": true
+    },
+    {
+      "path": "img/portfolio/profit-hikone.jpg",
+      "status": 200,
+      "sha256": "7f18f96f546ea2a0dc7038570a54688b911c2be441e346f088e2ba8f2730f843",
+      "match": true
+    },
+    {
+      "path": "img/portfolio/rebuildmatch.jpg",
+      "status": 200,
+      "sha256": "4922f82dfa2107e4703fcbb1cfc8adfcc9bbb67e0e0848aee87fdb4bfca22f40",
+      "match": true
+    },
+    {
+      "path": "img/portfolio/rieru-seikotsu.jpg",
+      "status": 200,
+      "sha256": "b784d05670b3363da7783cd448fdbf04b590e7885427d0f880e192a0a7c5ab98",
+      "match": true
+    },
+    {
+      "path": "img/portfolio/soneki-app.jpg",
+      "status": 200,
+      "sha256": "145294369b3cf81ec17e7bfbd6f7fc602a7e71037fd817ee28661a91fe02faba",
+      "match": true
+    },
+    {
+      "path": "img/portfolio/t3-c.jpg",
+      "status": 200,
+      "sha256": "835d73878e7872dc47c8b6ec62d05446a2c88c8920773059c2932bfb0d6e18aa",
+      "match": true
+    },
+    {
+      "path": "img/portfolio/trust-golf-lab-hikone.jpg",
+      "status": 200,
+      "sha256": "dca8608734d0a5d01237440ff785bf7d8a60a3b559c582ce23a34ddb77a004dc",
+      "match": true
+    },
+    {
+      "path": "img/portfolio/trust.jpg",
+      "status": 200,
+      "sha256": "fc5eee0ee4b002919e27fc43973a63c69d1ae7ac4f6fe586d7c93baa90fa49e8",
+      "match": true
+    },
+    {
+      "path": "img/portfolio/yamani.jpg",
+      "status": 200,
+      "sha256": "2f6436518e016cff2786e40806a234466edaa0b4f090dc888d6a1f1247863477",
+      "match": true
+    },
+    {
+      "path": "img/speaker-portrait-gubboru-cafe-20260719.webp",
+      "status": 200,
+      "sha256": "855f7a01781ced5052d9562268dc65e90830868b9f3f8b8f960f003b9b718834",
+      "match": true
+    },
+    {
+      "path": "index.html",
+      "status": 200,
+      "sha256": "a520d7d05d90526f4c92a569bf7dc4c7f6a7bb44848c704e717cda2145ef5dce",
+      "match": true
+    },
+    {
+      "path": "instagram/DaItAHfAY4N.webp",
+      "status": 200,
+      "sha256": "d377543b01239005dea38e25ee574c6a9e9c3fe61b6b58f92ddd7b97fbcccddb",
+      "match": true
+    },
+    {
+      "path": "instagram/Db0lcfblPUH.webp",
+      "status": 200,
+      "sha256": "18bd10cbb20100b5994487cffb52d5f13ce653106ccd48c50267a7513de29760",
+      "match": true
+    },
+    {
+      "path": "instagram/Db0lW34EvbO.webp",
+      "status": 200,
+      "sha256": "199ed8565e38afaaa263587c21cd93a314cc6a5a889c24e4d33b37ae4b567397",
+      "match": true
+    },
+    {
+      "path": "instagram/Db0QuRYEoDA.webp",
+      "status": 200,
+      "sha256": "febec2f1d2908a7c83a6ce431d92f89cd85755e9f44036c720cd0a17a4ea3a88",
+      "match": true
+    },
+    {
+      "path": "instagram/Dbz9iZdkh6S.webp",
+      "status": 200,
+      "sha256": "4754d8b0c3713bd1e9bbd6f2b5c7376a481844d50ff3ace3edca9b83e3d88ed2",
+      "match": true
+    },
+    {
+      "path": "instagram/DcB0VodkgJ9.webp",
+      "status": 200,
+      "sha256": "f49fe91e4830433c0180156660faced94b08e9ad0da00f1c638e1657f8c8bb12",
+      "match": true
+    },
+    {
+      "path": "lectures/2026-04-ai-kangaekata.html",
+      "status": 200,
+      "sha256": "d828f36e994bb8172ea42da70bf91957f855f532b54b378909c8c2073563f4e1",
+      "match": true
+    },
+    {
+      "path": "lectures/2026-04-ai-kihon.html",
+      "status": 200,
+      "sha256": "3b00f404e5b1632e781b6088bb6b12dc56de671312d686ac885ab5a2f8d5cd23",
+      "match": true
+    },
+    {
+      "path": "lectures/2026-05-claude-code-features.html",
+      "status": 200,
+      "sha256": "71df26ef436f214e1e6a35b3a231c8cc710602f56fc31dccd077feb59204c4b3",
+      "match": true
+    },
+    {
+      "path": "lectures/2026-05-climbing-history.html",
+      "status": 200,
+      "sha256": "65dc96a0393678296e76312f9e55a92180580b143770866034490888601837be",
+      "match": true
+    },
+    {
+      "path": "lectures/2026-06-ai-agent-rag-design.html",
+      "status": 200,
+      "sha256": "7fb7f455c36ede28cffb94bd51f4c262e79b1534815dc528ac7bc27f13251c01",
+      "match": true
+    },
+    {
+      "path": "lectures/2026-06-ai-tsukaikonaseru-hito.html",
+      "status": 200,
+      "sha256": "0ececb7f00357878be64f1b4bc6e1051edfd2e60989b3e5ce46868f78343fd09",
+      "match": true
+    },
+    {
+      "path": "lectures/2026-07-ai-online-salon-practice.html",
+      "status": 200,
+      "sha256": "2fd171c2500147655ecefa7e93ed206f8412c2cda93a3b7a1e5cb66cc5909854",
+      "match": true
+    },
+    {
+      "path": "lectures/2026-08-ai-app-site-consult-sheet.html",
+      "status": 200,
+      "sha256": "5d7214eb408b14ef9ce1c32aabc32c6da326a548e7d2bb89e82ed4cf3db218a4",
+      "match": true
+    },
+    {
+      "path": "lectures/index.html",
+      "status": 200,
+      "sha256": "e76c886f1f2232f4c76b9ab58441058280429f2c259f3d516eca4fad9ed248ed",
+      "match": true
+    },
+    {
+      "path": "programming-map.html",
+      "status": 200,
+      "sha256": "d3d6777ba14d9b2ca991f37d01a9895d4cb30e803a4a899856a91ed1178c71c8",
+      "match": true
+    },
+    {
+      "path": "speaker.html",
+      "status": 200,
+      "sha256": "b51f5f8edf43ececd6a5b29f44cf388812be15ec134527706692e684b1995163",
+      "match": true
+    }
+  ]
+}

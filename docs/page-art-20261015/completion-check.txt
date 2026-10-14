@@ -1,0 +1,1 @@
+DELIVERY_VERIFIED: Git/PR/証拠ファイル/本番応答検査に合格

@@ -19,6 +19,9 @@ STYLE = '''<style id="hero-copy-style">
 def apply_hero_copy(document):
     if not re.search(r'class=["\x27]focus-title["\x27]', document):
         return document
+    document = re.sub(r'(<p\b[^>]*class=["\x27]focus-lead["\x27][^>]*>)(.*?)(</p>)',
+                      lambda m: m[1] + m[2].replace('AI対応サイトの代行制作も可能。', 'AI対応サイトの作成も可能。').replace('AI対応サイトの代行も可能。', 'AI対応サイトの作成も可能。') + m[3],
+                      document, flags=re.S)
     for class_name, content in [('focus-title-first', TITLE), ('focus-title-line', f'<strong>{SUBTITLE} {TAGLINE}</strong>')]:
         document, count = re.subn(r'(<span class=["\x27]'+class_name+r'["\x27]>).*?</span>', lambda m: m[1]+content+'</span>', document, count=1, flags=re.S)
         assert count == 1, class_name

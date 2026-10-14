@@ -14,7 +14,7 @@ class DailyNewsPlacementTests(unittest.TestCase):
         self.assertIsNotNone(soup.select_one('#blog > .editorial-feed__list > #ai-news .tr-title'))
         self.assertIn('今日のAIニュース4とCodex', soup.select_one('#blog').get_text())
         self.assertTrue(soup.select_one('#blog').get_text().endswith('article'))
-        self.assertFalse(soup.select('#ai-news img'))
+        self.assertEqual(len(soup.select('#ai-news img')), 1)
         self.assertEqual(place_news_in_blog(output), output)
 
     def test_missing_or_duplicate_entries_fail_closed(self):

@@ -2,8 +2,8 @@
 過去取得ログを保持し、新着(前回以降に初めて見た記事)を抽出する。
 
 ストレージは 2 系統:
-  - Supabase (推奨・本番 / GitHub Actions): SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY が揃っていれば自動で使う
-  - SQLite (フォールバック): 上記が無ければ従来どおり data/history.db を使う
+  - D1: ARTICLE_STORE=d1 を明示した場合だけ、台帳・正本ガード付きの既存Wranglerログインを使う
+  - SQLite: 既定のローカル履歴 data/history.db。D1障害時には戻さない
 
 呼び出し側(run.py)は従来どおり `ArticleStore(DB)` で生成し、`upsert()` / `close()` を呼ぶだけでよい。
 """
@@ -73,85 +73,21 @@ class _SqliteStore:
         self.conn.close()
 
 
-class _SupabaseStore:
-    """
-    Supabase (ai_watch.articles) に保存する実装。
-    1回 insert を試み、重複(23505)なら既存扱い+last_seen更新、という戦略を取る。
-    """
-
-    def __init__(self):
-        from supabase import create_client  # 遅延 import (未インストール環境でも SQLite 経路は動く)
-
-        url = os.environ["SUPABASE_URL"]
-        key = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
-        self.client = create_client(url, key)
-        # ai_watch スキーマをデフォルトに切り替え
-        self.tbl = self.client.schema("ai_watch").table("articles")
-
-    def upsert(self, articles: list[Article]) -> tuple[list[Article], list[Article]]:
-        if not articles:
-            return [], []
-
-        hashes = [a.hash for a in articles]
-        # 既存ハッシュを一括取得
-        res = self.tbl.select("hash").in_("hash", hashes).execute()
-        existing_hashes = {row["hash"] for row in (res.data or [])}
-
-        now_iso = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
-
-        new_items: list[Article] = []
-        existing_items: list[Article] = []
-        to_insert: list[dict] = []
-
-        for a in articles:
-            if a.hash in existing_hashes:
-                existing_items.append(a)
-            else:
-                new_items.append(a)
-                to_insert.append({
-                    "hash": a.hash,
-                    "source": a.source,
-                    "category": a.category,
-                    "title": a.title,
-                    "url": a.url,
-                    "body": a.body,
-                    "published": a.published,
-                    "first_seen": now_iso,
-                    "last_seen": now_iso,
-                })
-
-        if to_insert:
-            # 念のため upsert(on hash) で競合耐性を持たせる
-            self.tbl.upsert(to_insert, on_conflict="hash").execute()
-
-        if existing_items:
-            self.tbl.update({"last_seen": now_iso}).in_(
-                "hash", [a.hash for a in existing_items]
-            ).execute()
-
-        return new_items, existing_items
-
-    def close(self) -> None:
-        pass
-
-
-def _use_supabase() -> bool:
-    return bool(os.environ.get("SUPABASE_URL")) and bool(os.environ.get("SUPABASE_SERVICE_ROLE_KEY"))
-
-
 class ArticleStore:
-    """既存インタフェース互換のファサード。環境変数で保存先を自動選択。"""
+    """既存インタフェース互換のファサード。保存先を明示選択し、旧Supabase設定では停止。"""
 
     def __init__(self, db_path: Path):
-        if _use_supabase():
-            try:
-                self._inner: _Store = _SupabaseStore()
-                self.backend = "supabase"
-                print(f"  [store] Supabase (ai_watch.articles)")
-                return
-            except Exception as e:
-                print(f"  [store] Supabase 初期化失敗 → SQLite にフォールバック: {e}")
-
+        backend = os.environ.get("ARTICLE_STORE", "sqlite")
+        if backend == "d1":
+            from .d1_history import D1HistoryStore
+            self._inner = D1HistoryStore()
+            self.backend = "d1"
+            print("  [store] Cloudflare D1 (central target guard required)")
+            return
+        if backend != "sqlite":
+            raise RuntimeError("ARTICLE_STORE must be sqlite or d1")
+        if os.environ.get("SUPABASE_URL") or os.environ.get("SUPABASE_SERVICE_ROLE_KEY"):
+            raise RuntimeError("旧Supabase履歴設定を検出しました。D1移行を確認するまで自動切替しません。")
         self._inner = _SqliteStore(db_path)
         self.backend = "sqlite"
         print(f"  [store] SQLite ({db_path})")

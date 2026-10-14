@@ -44,3 +44,6 @@ bridge/bridge-auth.json
 .glass-release/
 .editorial-release-*/
 outputs/editorial-preview-*/
+
+# Local evidence, scoped approvals and encrypted transfer vaults are not source.
+/tmp/

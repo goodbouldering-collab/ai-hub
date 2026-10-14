@@ -6,11 +6,13 @@
 ## 公開基盤
 
 - 正規URL・公開静的サイト: `https://aiclimb.aiclimb.workers.dev`
-- 管理画面・APIの実行元: `https://aiclimb.vercel.app`
-- Cloudflareは公開静的ファイルだけをエッジ配信する。管理画面、API、決済、25MiBを超える講習動画は、ブラウザを既存Vercelへ直接移動させる。
+- 管理画面・APIも同じCloudflare Worker。旧Vercelへの転送・公開は行わない。
+- 公開元は台帳の `work/genspark-profile-edit/cloudflare-runtime`。指令室の共有保存・SNS履歴はD1候補を検証中で、本番は接続待ち。既存管理ログインは保持する。
 - 独自ドメインを取得するまでは `workers.dev` をSEO canonical・OG URL・sitemapの正本とする。
 
 実装・検証・ロールバック手順は [docs/aiclimb-cloudflare.md](docs/aiclimb-cloudflare.md) を参照。
+
+指令室30行・収集履歴3行の残存と今回のD1候補は [補助データの移行記録](docs/2026-10-12-auxiliary-d1.md) を参照。`npm run verify:auxiliary` で局所検証する。収集は従来のSQLiteを既定とし、`ARTICLE_STORE=d1` は台帳・正本・D1切替確認後のみ使う。旧 `scripts/migrate_sqlite_to_supabase.py` は通信前に停止する。
 
 ## 特徴
 

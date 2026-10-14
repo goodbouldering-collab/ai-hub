@@ -5430,6 +5430,10 @@ def build_ai_app_site_pages() -> int:
 
 
 def build_sitemap_and_robots() -> None:
+    # The final public-page pass keeps article and lecture art current after all
+    # legacy renderers have filled their slots. It excludes the homepage.
+    from core.page_art import apply_page_art_tree
+    apply_page_art_tree(DIST)
     """DIST 内の index.html / speaker.html / programming-map.html / speed-monitor.html / lectures/*.html を
     集めて sitemap.xml と robots.txt を生成。"""
     urls: list[tuple[str, str, float]] = []  # (loc, lastmod, priority)

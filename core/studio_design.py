@@ -15,6 +15,7 @@ from core.instagram_feed import apply_instagram_feed
 from core.art_direction import decorate_art_direction
 from core.compact_home import compact_home
 from core.editorial_home import apply_editorial_home
+from core.page_art import apply_page_art
 from core.focused_ux import decorate_focused_ux, replace_admin_hub, decorate_admin_entry
 
 
@@ -183,6 +184,7 @@ def decorate_public_tree(output: Path) -> list[str]:
         original = target.read_text(encoding="utf-8")
         content = original
         updated = decorate_html(content, home=relative == "index.html", admin=relative.startswith("admin/"))
+        updated = apply_page_art(updated, relative)
         if updated != original:
             target.write_text(updated, encoding="utf-8", newline="\n")
             changed.append(relative)

@@ -36,7 +36,8 @@ class PublishedPresentationTests(unittest.TestCase):
                 target = root / name
                 target.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copyfile(builder.ROOT / name, target)
-            with patch.object(builder, 'ROOT', root), patch.object(builder.subprocess, 'check_output', return_value='test-sha'), patch.object(builder, 'decorate_public_tree', return_value=[]):
+            shutil.copytree(builder.ROOT / 'site/static/design-system/studio/images/paper-20261014', root / 'site/static/design-system/studio/images/paper-20261014')
+            with patch.object(builder, 'ROOT', root), patch.object(builder.subprocess, 'check_output', return_value='test-sha'), patch.object(builder, 'decorate_public_tree', return_value=[]), patch.object(builder, 'apply_page_art_tree', return_value=[]):
                 base = root / 'base'
                 builder.build(base)
             home = base / 'index.html'
@@ -48,8 +49,17 @@ class PublishedPresentationTests(unittest.TestCase):
             templates = root / 'templates'
             shutil.copytree(builder.TEMPLATES, templates)
             shell = re.sub(r'<section\b[^>]*id=[\'\"]ai-news[\'\"][^>]*>.*?</section>', '{{AI_NEWS_FEATURE}}', home.read_text(encoding='utf-8'), flags=re.S)
+            if '{{AI_NEWS_FEATURE}}' not in shell:
+                # The approved four-item edition places news inside the blog
+                # list. Rebase the fixture with a temporary feature placeholder;
+                # the builder integrates it back into the same list.
+                from core.editorial_feed import _ElementSpans
+                news_spans = _ElementSpans(shell, element_id='ai-news').spans
+                self.assertEqual(len(news_spans), 1)
+                start, end = news_spans[0]
+                shell = shell[:start] + '{{AI_NEWS_FEATURE}}' + shell[end:]
             (templates / 'home.html').write_text(shell, encoding='utf-8')
-            with patch.object(builder, 'ROOT', root), patch.object(builder, 'TEMPLATES', templates), patch.object(builder.subprocess, 'check_output', return_value='test-sha'), patch.object(builder, 'decorate_public_tree', side_effect=AssertionError('Pending design must not run')), patch.object(builder, 'apply_hero_copy', side_effect=AssertionError('Daily updates must preserve live style order')), patch.object(builder, 'apply_instagram_feed', side_effect=AssertionError('Daily updates must preserve live integrations')):
+            with patch.object(builder, 'ROOT', root), patch.object(builder, 'TEMPLATES', templates), patch.object(builder.subprocess, 'check_output', return_value='test-sha'), patch.object(builder, 'decorate_public_tree', side_effect=AssertionError('Pending design must not run')), patch.object(builder, 'apply_page_art_tree', side_effect=AssertionError('Pending image replacement must not run')), patch.object(builder, 'apply_hero_copy', side_effect=AssertionError('Daily updates must preserve live style order')), patch.object(builder, 'apply_instagram_feed', side_effect=AssertionError('Daily updates must preserve live integrations')):
                 output = root / 'release'
                 builder.build(output, base, preserve_baseline_presentation=True)
                 self.assertEqual(home.read_bytes(), (output / 'index.html').read_bytes())

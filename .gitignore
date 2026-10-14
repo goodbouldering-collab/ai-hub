@@ -44,3 +44,5 @@ bridge/bridge-auth.json
 .glass-release/
 .editorial-release-*/
 outputs/editorial-preview-*/
+assets/paper-20261015/originals/
+tmp/

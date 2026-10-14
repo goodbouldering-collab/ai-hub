@@ -1,0 +1,28 @@
+{
+  "task": "20261015-all-page-images",
+  "commitSha": "ae7a9734f6c90cdf9e309ef48691c1e099d14b10",
+  "mergedSha": "3f2dd3655fcdffacbdb3c12a8613dbbbe9e81e4b",
+  "deployedSha": "3f2dd3655fcdffacbdb3c12a8613dbbbe9e81e4b",
+  "prUrl": "https://github.com/goodbouldering-collab/ai-hub/pull/183",
+  "cloudflareVersion": "638f5228-2725-42a3-bee3-af075eacb6e8",
+  "urls": [
+    {
+      "url": "https://aiclimb.aiclimb.workers.dev/",
+      "contains": "AI対応サイトの作成も可能。"
+    },
+    {
+      "url": "https://aiclimb.aiclimb.workers.dev/blog/2026-10-09-codex-workers-ai-workflow",
+      "contains": "paper-20261015"
+    },
+    {
+      "url": "https://aiclimb.aiclimb.workers.dev/programming-map",
+      "contains": "paper-20261015"
+    }
+  ],
+  "status": "DELIVERY_VERIFIED",
+  "generatedImages": 138,
+  "changedPages": 36,
+  "assetCount": 762,
+  "unchangedAssets": 588,
+  "homepageUnchanged": true
+}

@@ -1,0 +1,15 @@
+{
+  "method": "Codex In-app Browser",
+  "viewports": [
+    1440,
+    390
+  ],
+  "pages": 36,
+  "viewportChecks": 72,
+  "imagePlacements": 312,
+  "failures": [],
+  "mobileMenuOpenedAndClosed": true,
+  "homepageHero": "/design-system/studio/images/hero-workshop-1672.webp",
+  "homepageImages": 62,
+  "notes": "Waited for rendered image elements; checked actual innerWidth on mobile; viewport reset after verification."
+}

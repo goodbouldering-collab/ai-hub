@@ -58,7 +58,7 @@ class EditorialFeedTests(unittest.TestCase):
         rows = soup.select('#blog .editorial-feed__row')
         self.assertEqual([row['href'] for row in rows],
                          ['/ai-news/', '/blog/newest.html', '/blog/older.html', '/blog/oldest.html'])
-        self.assertEqual(len(soup.select('#blog img')), 3)
+        self.assertEqual(len(soup.select('#blog img')), 4)
         self.assertFalse(soup.select('#blog .tr-sum'))
         self.assertNotIn('仕事を少し楽にする実践メモ。', str(soup.select_one('#blog')))
         self.assertEqual(soup.select_one('#ai-news time')['datetime'], '2026-10-11')
@@ -69,7 +69,7 @@ class EditorialFeedTests(unittest.TestCase):
         self.assertEqual(len(soup.select('#blog')), 1)
         self.assertEqual(soup.select_one('#top').find_next_sibling()['id'], 'blog')
         self.assertIsNotNone(soup.select_one('#blog > .editorial-feed__heading + .editorial-feed__list > #ai-news'))
-        self.assertFalse(soup.select('#ai-news img'))
+        self.assertEqual(soup.select_one('#ai-news img')['src'], _config()['news']['image'])
         self.assertEqual(soup.select_one('#ai-news .tr-title').get_text(), '今日のAIニュース4とCodex')
 
     def test_home_is_idempotent_and_daily_regeneration_uses_new_date(self):
@@ -104,7 +104,7 @@ class EditorialFeedTests(unittest.TestCase):
         self.assertEqual(len(soup.select('.editorial-feed__row')), 4)
         self.assertEqual(len(soup.select('.editorial-feed__news')), 1)
         self.assertEqual(len(soup.select('a.tr-card')), 3)
-        self.assertEqual(len(soup.select('.editorial-feed__row img')), 3)
+        self.assertEqual(len(soup.select('.editorial-feed__row img')), 4)
         self.assertNotIn('/codex-update-log.html', result)
         self.assertEqual(soup.title.get_text(), 'AI相談')
         self.assertIn('href="./newest.html"', result)

@@ -162,7 +162,7 @@ def _news_date(feature: str) -> str:
 
 def _row(post: Mapping[str, str], config: dict, *, news: bool = False,
          preserve_href: bool = False, heading_level: int = 3, include_summary: bool = True) -> str:
-    image, alt = ('', '') if news else _post_image(post, config)
+    image, alt = (config['news']['image'], config['news']['alt']) if news else _post_image(post, config)
     href = post['href']
     if preserve_href and not news:
         candidate = post.get('source_href', href)
@@ -295,7 +295,7 @@ def apply_blog_feed(blog_document: str, news_date: str, css: str) -> str:
 
 
 def integrate_home_news(document: str) -> str:
-    """Render news as one image-free entry in the existing blog list."""
+    """Render news with the same image-and-title layout as the blog entries."""
     spans = _ElementSpans(document, element_id='ai-news').spans
     if len(spans) != 1:
         raise ValueError('Expected one home AI news entry')

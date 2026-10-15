@@ -14,20 +14,20 @@ test('retired landing pages resolve to a single function, retaining context',()=
 });
 test('home catalogue lists each current function exactly once',()=>{
   const html=applyShell(renderPage('/admin'),new URL('https://test.example/admin')).match(/<main[\s\S]*?<\/main>/)[0];
-  for(const route of ROUTES){
+  for(const route of ROUTES.filter(r=>!r.archive)){
     assert.equal([...html.matchAll(/href="([^"]+)"/g)].filter(m=>m[1]===route.path).length,1,route.path);
   }
-  assert.doesNotMatch(html,/href="\/admin\/(create|prompts)"/);
+  assert.doesNotMatch(html,/href="\/admin\/(create|prompts|sns-cross-media-dashboard)"/);
 });
 test('creation navigation has one destination each and replaces legacy menus without touching editor',()=>{
   const html='<html><head></head><body><nav class="studio-tabs"><a id="studio-nav-back" href="/admin/blog-editor">Back</a></nav><nav class="blog-page-nav"><a href="/admin/blog">全体</a><a href="/admin/blog/generate">生成</a></nav><textarea id="editor"></textarea><script>initializeEditor()</script></body></html>';
   const result=applyShell(html,new URL('https://test.example/admin/blog-create'));
   assert.doesNotMatch(result,/<nav class="(?:studio-tabs|blog-page-nav)"/);
-  assert.equal((result.match(/aria-label="管理機能"/g)||[]).length,1);
-  const nav=result.match(/<nav[^>]*aria-label="管理機能"[\s\S]*?<\/nav>/)[0];
+  assert.equal((result.match(/aria-label="制作・発信メニュー"/g)||[]).length,1);
+  const nav=result.match(/<nav[^>]*aria-label="制作・発信メニュー"[\s\S]*?<\/nav>/)[0];
   const links=[...nav.matchAll(/href="([^"]+)"/g)].map(m=>m[1]);
   assert.equal(new Set(links).size,links.length);
-  assert.equal(links.length,ROUTES.length);
+  assert.equal(links.length,ROUTES.filter(r=>r.group==='create').length);
   assert.match(result,/id="editor"/);assert.match(result,/initializeEditor/);
 });
 for(const worker of [source,bundle]) test('retired pages remain authenticated and redirect without executing actions',async()=>{
@@ -44,10 +44,11 @@ for(const worker of [source,bundle]) test('retired pages remain authenticated an
   }
 });
 
-test('landing pages show only direct buttons',()=>{
- for(const path of ['/admin','/admin/materials','/admin/operations']) {
-  const html=renderPage(path).split('<body')[1];
-  assert.doesNotMatch(html,/<(?:h[1-6]|p|small|summary|input)\b/);
-  for(const route of ROUTES) assert.equal(html.split('href="'+route.path+'"').length-1,1);
- }
+test('separate pages retain their own contents and no global function grid',()=>{
+ const home=renderPage('/admin'),materials=renderPage('/admin/materials'),operations=renderPage('/admin/operations');
+ assert.match(materials,/id="material-search"/);assert.match(materials,/id="material-list"/);assert.match(materials,/data-material-search/);assert.match(operations,/予定・指示/);assert.match(operations,/相場・取引の管理/);
+ assert.notEqual(home,materials);assert.notEqual(home,operations);
+ for(const page of [home,materials,operations])assert.doesNotMatch(page,/workspace-button-grid/);
+ const result=applyShell('<html><head></head><body><main><textarea id="editor"></textarea></main></body></html>',new URL('https://test.example/admin/blog-create'));
+ assert.match(result,/制作・発信メニュー/);assert.doesNotMatch(result,/href="\/admin\/trade"/);assert.match(result,/id="editor"/);
 });

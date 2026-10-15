@@ -14,20 +14,20 @@ test('retired landing pages resolve to a single function, retaining context',()=
 });
 test('home catalogue lists each current function exactly once',()=>{
   const html=applyShell(renderPage('/admin'),new URL('https://test.example/admin')).match(/<main[\s\S]*?<\/main>/)[0];
-  for(const route of ROUTES.filter(r=>!r.archive)){
+  for(const route of ROUTES){
     assert.equal([...html.matchAll(/href="([^"]+)"/g)].filter(m=>m[1]===route.path).length,1,route.path);
   }
-  assert.doesNotMatch(html,/href="\/admin\/(create|prompts|sns-cross-media-dashboard)"/);
+  assert.doesNotMatch(html,/href="\/admin\/(create|prompts)"/);
 });
 test('creation navigation has one destination each and replaces legacy menus without touching editor',()=>{
   const html='<html><head></head><body><nav class="studio-tabs"><a id="studio-nav-back" href="/admin/blog-editor">Back</a></nav><nav class="blog-page-nav"><a href="/admin/blog">全体</a><a href="/admin/blog/generate">生成</a></nav><textarea id="editor"></textarea><script>initializeEditor()</script></body></html>';
   const result=applyShell(html,new URL('https://test.example/admin/blog-create'));
   assert.doesNotMatch(result,/<nav class="(?:studio-tabs|blog-page-nav)"/);
-  assert.equal((result.match(/aria-label="制作・発信メニュー"/g)||[]).length,1);
-  const nav=result.match(/<nav[^>]*aria-label="制作・発信メニュー"[\s\S]*?<\/nav>/)[0];
+  assert.equal((result.match(/aria-label="管理機能"/g)||[]).length,1);
+  const nav=result.match(/<nav[^>]*aria-label="管理機能"[\s\S]*?<\/nav>/)[0];
   const links=[...nav.matchAll(/href="([^"]+)"/g)].map(m=>m[1]);
   assert.equal(new Set(links).size,links.length);
-  assert.equal(links.length,ROUTES.filter(r=>r.group==='create').length);
+  assert.equal(links.length,ROUTES.length);
   assert.match(result,/id="editor"/);assert.match(result,/initializeEditor/);
 });
 for(const worker of [source,bundle]) test('retired pages remain authenticated and redirect without executing actions',async()=>{
@@ -42,4 +42,12 @@ for(const worker of [source,bundle]) test('retired pages remain authenticated an
     assert.equal(result.status,302);assert.equal(result.headers.get('location'),target);
     assert.equal((await worker.fetch(new Request(origin+old,{method:'POST',headers:{cookie}}),env,ctx)).status,405);
   }
+});
+
+test('landing pages show only direct buttons',()=>{
+ for(const path of ['/admin','/admin/materials','/admin/operations']) {
+  const html=renderPage(path).split('<body')[1];
+  assert.doesNotMatch(html,/<(?:h[1-6]|p|small|summary|input)\b/);
+  for(const route of ROUTES) assert.equal(html.split('href="'+route.path+'"').length-1,1);
+ }
 });

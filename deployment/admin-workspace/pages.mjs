@@ -1,5 +1,5 @@
 import { ROUTES } from './routes.mjs';
-import { header, SHELL_STYLE } from './shell.mjs';
+import { header, allButtons, SHELL_STYLE } from './shell.mjs';
 
 export const DOCUMENTS = Object.freeze([
   {slug:'daily-operation',category:'運営',title:'毎日の運営チェック',description:'予定の確認から公開後の確認まで。',sections:[
@@ -41,13 +41,7 @@ export const workspacePage=(path,title,lead,body)=>{
 };
 
 export function renderPage(path) {
-  if(path==='/admin') return workspacePage(path,'管理メニュー','目的の機能を選んで、そのまま作業を始められます。',
-    ['create','materials','operations'].map(group=>section(({create:'制作・発信',materials:'内部資料',operations:'運営・分析'})[group],list(ROUTES.filter(r=>r.group===group&&!r.archive).map(r=>[r.path,r.title,''])))).join(''));
-  if(path==='/admin/operations') return workspacePage(path,'運営・分析','予定・指示、発信の反応、接続状況を確認します。',
-    section('予定・指示',list(ROUTES.filter(r=>r.kind==='command'&&!['trade','market','screener','security','trade-plan','trade-plans','trades','market-sources'].includes(r.view)).map(r=>[r.path,r.title,''])))+
-    section('分析・相談・接続',list(ROUTES.filter(r=>r.group==='operations'&&r.kind!=='command'&&!r.archive).map(r=>[r.path,r.title,''])))+
-    `<details class="workspace-details"><summary>相場・取引の管理</summary>${list(ROUTES.filter(r=>r.kind==='command'&&['trade','market','screener','security','trade-plan','trade-plans','trades','market-sources'].includes(r.view)).map(r=>[r.path,r.title,'']))}</details>`);
-  if(path==='/admin/materials') return workspacePage(path,'内部資料','運営と制作に必要な手順を、一か所に。',`<label for="material-search" class="workspace-eyebrow">資料を探す</label><input class="workspace-search" id="material-search" type="search" placeholder="例：公開、画像、リール" autocomplete="off"><div class="workspace-grid" id="material-list">${DOCUMENTS.map(doc=>`<a class="workspace-card" data-material-search="${e([doc.title,doc.category,doc.description,...doc.sections.flat()].join(' '))}" href="/admin/materials/${doc.slug}"><span class="workspace-tag">${doc.category} / 手順書</span><h2>${doc.title}</h2><p>${doc.description}</p><span class="card-arrow">読む →</span></a>`).join('')}</div><p class="workspace-empty" id="material-empty" role="status" hidden>一致する資料がありません。別の言葉で検索してください。</p>`+section('関連する資料',list([['/ops','運用記録・プロンプト','保存済みの資料、プロンプト、活動記録'],['/lectures/index.html','受講者向け資料','公開中の講習資料を確認'],['/design-system/','デザインの見本','色・部品・表示ルール']]))+`<script>document.getElementById('material-search').addEventListener('input',event=>{const query=event.target.value.trim().normalize('NFKC').toLocaleLowerCase('ja');let found=0;document.querySelectorAll('[data-material-search]').forEach(card=>{const match=card.dataset.materialSearch.normalize('NFKC').toLocaleLowerCase('ja').includes(query);card.hidden=!match;if(match)found++});document.getElementById('material-empty').hidden=found>0});</script>`);
+  if(['/admin','/admin/operations','/admin/materials'].includes(path)) return '<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>AI相談</title>'+CSS+SHELL_STYLE+'</head><body data-workspace-shell>'+header('/admin')+'<main class="admin-workspace" aria-label="管理機能一覧">'+allButtons('/admin')+'</main></body></html>';
   const doc=DOCUMENTS.find(doc=>path==='/admin/'+doc.slug);
   if(doc) return workspacePage(path,doc.title,doc.description,`<nav class="workspace-subnav" aria-label="資料内ナビ"><a href="/admin/materials">← 内部資料一覧</a><span>更新 2026-10-11</span></nav><article class="workspace-document">${doc.sections.map(([heading,body])=>`<h2>${e(heading)}</h2><p>${e(body)}</p>`).join('')}</article><p><a class="workspace-download" href="/admin/materials/${doc.slug}.md" download>この資料を保存 ↓</a></p>`);
   return null;

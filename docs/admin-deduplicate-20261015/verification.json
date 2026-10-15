@@ -1,0 +1,276 @@
+{
+  "implementationPr": "https://github.com/goodbouldering-collab/ai-hub/pull/185",
+  "deployedSha": "d4c6dae91930f1ccb9d58f263f1416edb8146b40",
+  "cloudflareVersion": "dbae80ea-a9db-4105-bc65-80712b4d7dec",
+  "delivery": "DELIVERY_VERIFIED",
+  "tests": {
+    "admin": 13,
+    "cloudflare": 7,
+    "ci": 2
+  },
+  "unchangedPublicAssets": 762,
+  "http": {
+    "at": "2026-10-15T02:42:48.071Z",
+    "sourceSha": "d4c6dae91930f1ccb9d58f263f1416edb8146b40",
+    "checks": [
+      {
+        "url": "/",
+        "status": 200,
+        "sha256": "a520d7d05d90526f4c92a569bf7dc4c7f6a7bb44848c704e717cda2145ef5dce",
+        "ok": true
+      },
+      {
+        "url": "/blog/",
+        "status": 200,
+        "sha256": "14e5dd989bb02edae767dc63d092da589e34449696c37c125af7c61e3f9f85b1",
+        "ok": true
+      },
+      {
+        "url": "/blog/2026-08-30-switchbot-ai-mind-clip.html",
+        "status": 200,
+        "sha256": "5caf8809aab31899a57d50fd2ee4de0408531b693d1cbb2fbd7b6ae487ad0a74",
+        "ok": true
+      },
+      {
+        "url": "/ai-news/",
+        "status": 200,
+        "sha256": "b352c30a83b68c8281708b2045b101479849c481ab06ee30e33c18574ea84c15",
+        "ok": true
+      },
+      {
+        "url": "/admin/blog-create",
+        "status": 303,
+        "ok": true
+      },
+      {
+        "url": "/admin/reel",
+        "status": 303,
+        "ok": true
+      },
+      {
+        "url": "/admin/blog-articles",
+        "status": 303,
+        "ok": true
+      },
+      {
+        "url": "/admin/blog-editor",
+        "status": 303,
+        "ok": true
+      },
+      {
+        "url": "/admin/blog-publish",
+        "status": 303,
+        "ok": true
+      },
+      {
+        "url": "/admin/blog-status",
+        "status": 303,
+        "ok": true
+      },
+      {
+        "url": "/admin/blog-settings",
+        "status": 303,
+        "ok": true
+      },
+      {
+        "url": "/admin/sns-post",
+        "status": 303,
+        "ok": true
+      },
+      {
+        "url": "/admin/command-center",
+        "status": 303,
+        "ok": true
+      },
+      {
+        "url": "/admin/calendar",
+        "status": 303,
+        "ok": true
+      },
+      {
+        "url": "/admin/tasks",
+        "status": 303,
+        "ok": true
+      },
+      {
+        "url": "/admin/businesses",
+        "status": 303,
+        "ok": true
+      },
+      {
+        "url": "/admin/directives",
+        "status": 303,
+        "ok": true
+      },
+      {
+        "url": "/admin/studio",
+        "status": 303,
+        "ok": true
+      },
+      {
+        "url": "/admin/tools",
+        "status": 303,
+        "ok": true
+      },
+      {
+        "url": "/admin/trade",
+        "status": 303,
+        "ok": true
+      },
+      {
+        "url": "/admin/market",
+        "status": 303,
+        "ok": true
+      },
+      {
+        "url": "/admin/screener",
+        "status": 303,
+        "ok": true
+      },
+      {
+        "url": "/admin/security",
+        "status": 303,
+        "ok": true
+      },
+      {
+        "url": "/admin/trade-plan",
+        "status": 303,
+        "ok": true
+      },
+      {
+        "url": "/admin/trade-plans",
+        "status": 303,
+        "ok": true
+      },
+      {
+        "url": "/admin/trades",
+        "status": 303,
+        "ok": true
+      },
+      {
+        "url": "/admin/market-sources",
+        "status": 303,
+        "ok": true
+      },
+      {
+        "url": "/admin/gubble-sns",
+        "status": 303,
+        "ok": true
+      },
+      {
+        "url": "/admin/sns-cross-media-dashboard",
+        "status": 303,
+        "ok": true
+      },
+      {
+        "url": "/admin/chat",
+        "status": 303,
+        "ok": true
+      },
+      {
+        "url": "/admin/ops",
+        "status": 303,
+        "ok": true
+      },
+      {
+        "url": "/admin/daily-operation",
+        "status": 303,
+        "ok": true
+      },
+      {
+        "url": "/admin/publishing",
+        "status": 303,
+        "ok": true
+      },
+      {
+        "url": "/admin/artwork",
+        "status": 303,
+        "ok": true
+      },
+      {
+        "url": "/admin/watch",
+        "status": 303,
+        "ok": true
+      },
+      {
+        "url": "/admin/migration",
+        "status": 303,
+        "ok": true
+      },
+      {
+        "url": "/admin",
+        "status": 303,
+        "ok": true
+      },
+      {
+        "url": "/admin/create",
+        "status": 303,
+        "ok": true
+      },
+      {
+        "url": "/admin/prompts",
+        "status": 303,
+        "ok": true
+      },
+      {
+        "url": "/ops/prompts",
+        "status": 303,
+        "ok": true
+      },
+      {
+        "url": "/admin/materials",
+        "status": 303,
+        "ok": true
+      },
+      {
+        "url": "/admin/operations",
+        "status": 303,
+        "ok": true
+      },
+      {
+        "url": "/health",
+        "status": 200,
+        "ok": true
+      },
+      {
+        "url": "/admin/login",
+        "status": 200,
+        "ok": true
+      },
+      {
+        "url": "/api/admin/ping",
+        "status": 401,
+        "ok": true
+      }
+    ]
+  },
+  "browser": {
+    "at": "2026-10-15T02:45:06.301714+00:00",
+    "browser": "Existing authenticated Chrome 4, tab 1360710156",
+    "method": "cua_repl tab-scoped CDP viewport and read-only DOM evaluation",
+    "widths": [
+      390,
+      1440
+    ],
+    "pagesPerWidth": 35,
+    "screens": 70,
+    "failures": [],
+    "headerCount": 1,
+    "legacyCreationMenus": 0,
+    "creationPagesPerWidth": 8,
+    "homeCatalogue": {
+      "links": 31,
+      "unique": 31
+    },
+    "redirects": {
+      "/admin/create": "/admin/blog-create",
+      "/admin/prompts": "/admin/ops#sec-prompts"
+    },
+    "generationAndExternalWrites": "Not exercised; existing API key unset and integrations pending",
+    "localPreview": {
+      "url": "http://127.0.0.1:4390/admin",
+      "parentPID": 4392,
+      "expires": "2026-10-17T11:35:47+09:00"
+    }
+  }
+}

@@ -18443,7 +18443,7 @@ var ROUTES = Object.freeze([
   ["reel", "\u30EA\u30FC\u30EB\u5236\u4F5C", "create", "studio", "/admin/apps/reel.html"],
   ...[["articles", "\u8A18\u4E8B\u4E00\u89A7"], ["editor", "\u8A18\u4E8B\u7DE8\u96C6"], ["publish", "\u516C\u958B\u78BA\u8A8D"], ["status", "\u63A5\u7D9A\u72B6\u614B"], ["settings", "\u30D6\u30ED\u30B0\u8A2D\u5B9A"]].map(([view, title]) => ["blog-" + view, title, "create", "blog", "/admin/blog/" + view, view]),
   ["sns-post", "SNS\u6295\u7A3F", "create", "static", "/admin/sns-post"],
-  ["command-center", "\u4E88\u5B9A\u30FB\u6307\u793A", "operations", "command", "/admin/command-center", "dashboard"],
+  ["command-center", "\u4E88\u5B9A\u30FB\u6307\u793A\u306E\u6982\u8981", "operations", "command", "/admin/command-center", "dashboard"],
   ...[["calendar", "\u30AB\u30EC\u30F3\u30C0\u30FC"], ["tasks", "\u30BF\u30B9\u30AF"], ["businesses", "\u4E8B\u696D\u4E00\u89A7"], ["directives", "\u6307\u793A"], ["studio", "Codex\u9023\u643A"], ["tools", "\u691C\u8A3C\u30FB\u79FB\u884C"], ["trade", "\u76F8\u5834\u7F85\u91DD\u76E4"], ["market", "\u5E02\u5834\u5019\u88DC"], ["screener", "\u8CA1\u52D9\u30B9\u30AF\u30EA\u30FC\u30CA\u30FC"], ["security", "\u9298\u67C4\u8A73\u7D30"], ["trade-plan", "\u53D6\u5F15\u30D7\u30E9\u30F3\u4F5C\u6210"], ["trade-plans", "\u767B\u9332\u30D7\u30E9\u30F3"], ["trades", "\u53D6\u5F15\u8A18\u9332"], ["market-sources", "\u30C7\u30FC\u30BF\u53CE\u96C6\u72B6\u6CC1"]].map(([view, title]) => [view, title, "operations", "command", "/admin/command-center/" + view, view]),
   ["gubble-sns", "SNS\u5206\u6790", "operations", "static", "/admin/gubble-sns"],
   ["sns-cross-media-dashboard", "\u65E7\u5A92\u4F53\u30DC\u30FC\u30C9\uFF08\u8A2D\u5B9A\u30FB\u5C65\u6B74\uFF09", "operations", "static", "/admin/sns-cross-media-dashboard"],
@@ -18456,6 +18456,13 @@ var ROUTES = Object.freeze([
   ["migration", "\u79FB\u884C\u30FB\u63A5\u7D9A\u72B6\u6CC1", "operations", "migration", "/admin/migration"]
 ].map(([slug, title, group, kind, legacy, view]) => Object.freeze({ path: "/admin/" + slug, title, group, kind, legacy, view, archive: slug === "sns-cross-media-dashboard" })));
 var routeAt = (path) => ROUTES.find((route) => route.path === path);
+var OPERATION_SECTIONS = Object.freeze([
+  { path: "/admin/operations/schedule", title: "\u4E88\u5B9A\u30FB\u6307\u793A", slugs: ["command-center", "calendar", "tasks", "directives"] },
+  { path: "/admin/operations/business", title: "\u4E8B\u696D\u30FB\u5206\u6790", slugs: ["businesses", "gubble-sns", "chat"] },
+  { path: "/admin/operations/trading", title: "\u76F8\u5834\u30FB\u53D6\u5F15", slugs: ["trade", "market", "screener", "security", "trade-plan", "trade-plans", "trades", "market-sources"] },
+  { path: "/admin/operations/connections", title: "\u9023\u643A\u30FB\u63A5\u7D9A", slugs: ["studio", "tools", "migration"] }
+].map((section2) => Object.freeze({ ...section2, routes: Object.freeze(section2.slugs.map((slug) => routeAt("/admin/" + slug))) })));
+var operationSectionAt = (path) => OPERATION_SECTIONS.find((section2) => section2.path === path || section2.routes.some((route) => route.path === path) || path === "/admin/sns-cross-media-dashboard" && section2.path === "/admin/operations/business");
 var aliases = new Map(ROUTES.filter((r) => r.path !== r.legacy).map((r) => [r.legacy, r.path]));
 for (const path of ["/admin/create", "/admin/blog", "/admin/blog/generate", "/admin/apps/blog"]) aliases.set(path, "/admin/blog-create");
 aliases.set("/admin/apps/reel", "/admin/reel");
@@ -18568,6 +18575,10 @@ function header(path) {
 function creationNavigation(path) {
   return `<nav class="workspace-actions" aria-label="\u5236\u4F5C\u30FB\u767A\u4FE1\u30E1\u30CB\u30E5\u30FC">${ROUTES.filter((r) => r.group === "create").map((r) => `<a class="workspace-action${r.path === path ? " workspace-action--primary" : ""}" href="${r.path}"${r.path === path ? ' aria-current="page"' : ""}>${r.title}</a>`).join("")}</nav>`;
 }
+function operationsNavigation(path) {
+  const current = operationSectionAt(path);
+  return `<nav class="workspace-actions" aria-label="\u904B\u55B6\u30FB\u5206\u6790\u30E1\u30CB\u30E5\u30FC">${OPERATION_SECTIONS.map((section2) => `<a class="workspace-action${current === section2 ? " workspace-action--primary" : ""}" href="${section2.path}"${current === section2 ? ' aria-current="page"' : ""}>${section2.title}</a>`).join("")}</nav>`;
+}
 var SHELL_STYLE = `<style data-workspace-shell-style>
 html{scroll-padding-top:130px}body[data-workspace-shell]{padding-top:0!important}body[data-workspace-shell]>main,body[data-workspace-shell]>.container{padding-top:24px!important}body[data-workspace-shell]>.admin-page-context{display:none!important}
 #workspace-header{position:sticky!important;top:0!important;z-index:1000;display:block;width:100%;max-width:none;margin:0!important;padding:0!important;border:0;border-bottom:1px solid #dce3e8;background:#fff;color:#193542;box-shadow:0 3px 15px #122b3708;font:14px/1.5 system-ui,"Yu Gothic",sans-serif;transform:none;backdrop-filter:none;height:auto!important}
@@ -18600,9 +18611,11 @@ function applyShell(html, url) {
   html = html.replace('id="studio-nav-back" href="/studio"', 'id="studio-nav-back" href="/admin/create"');
   if (route?.group === "create") html = html.replace("</header>", "</header>" + creationNavigation(url.pathname));
   if (route) {
-    const parent = MENU.find((item) => item.key === route.group);
+    const category = operationSectionAt(url.pathname);
+    const parent = category ? { href: category.path, label: category.title } : MENU.find((item) => item.key === route.group);
     if (parent && parent.href !== url.pathname) html = html.replace("</header>", '</header><div class="workspace-return"><a href="' + parent.href + '">\u2190 ' + parent.label + "</a><span>" + route.title + "</span></div>");
   }
+  if (route?.group === "operations") html = html.replace("</header>", "</header>" + operationsNavigation(url.pathname));
   if (url.pathname === "/admin/gubble-sns") html = html.replace("</header>", '</header><details class="workspace-details" style="max-width:1120px;margin:16px auto;padding:0 16px"><summary>\u4EE5\u524D\u306E\u5A92\u4F53\u30DC\u30FC\u30C9\u306B\u4FDD\u5B58\u3057\u305F\u8A2D\u5B9A\u30FB\u5C65\u6B74</summary><p>\u65E7\u30DC\u30FC\u30C9\u306E\u4FDD\u5B58\u5185\u5BB9\u3092\u78BA\u8A8D\u3067\u304D\u307E\u3059\u3002\u901A\u5E38\u306E\u5206\u6790\u306F\u3053\u306E\u753B\u9762\u3092\u4F7F\u3044\u307E\u3059\u3002</p><p><a href="/admin/sns-cross-media-dashboard">\u65E7\u5A92\u4F53\u30DC\u30FC\u30C9\u3092\u958B\u304F</a></p></details>');
   if (url.pathname === "/admin/sns-cross-media-dashboard") html = html.replace("</header>", '</header><p class="workspace-return">\u65E7\u5A92\u4F53\u30DC\u30FC\u30C9\uFF1A\u4FDD\u5B58\u6E08\u307F\u8A2D\u5B9A\u30FB\u5C65\u6B74\u306E\u53C2\u7167\u7528\u3002<a href="/admin/gubble-sns">SNS\u5206\u6790\u3078</a></p>');
   return html.replace("</head>", SHELL_STYLE + THEME + "</head>").replace(/\uE000WORKSPACE(\d+)\uE001/g, (_, index) => raw[Number(index)]);
@@ -18641,17 +18654,14 @@ var section = (title, body) => `<section class="workspace-section"><h2>${title}<
 var workspacePage = (path, title, lead, body) => {
   const launcher = body.match(/^<div class="workspace-grid">([\s\S]*?)<\/div>/);
   const actions = launcher && launcher[1].includes('class="workspace-action');
-  const navigation = actions ? `<nav class="workspace-actions" aria-label="\u4F5C\u696D\u30E1\u30CB\u30E5\u30FC">${launcher[1]}</nav>` : "";
+  const navigation = OPERATION_SECTIONS.some((item) => item.path === path) ? operationsNavigation(path) : actions ? `<nav class="workspace-actions" aria-label="\u4F5C\u696D\u30E1\u30CB\u30E5\u30FC">${launcher[1]}</nav>` : "";
   const content = actions ? body.slice(launcher[0].length) : body;
   return `<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>AI\u76F8\u8AC7</title>${CSS}${SHELL_STYLE}</head><body data-workspace-shell>${header(path)}${navigation}<main class="admin-workspace"><div class="workspace-intro"><div><span class="workspace-eyebrow">AI\u76F8\u8AC7 / \u7BA1\u7406</span><h1>${title}</h1><p>${lead}</p></div></div>${content}</main></body></html>`;
 };
 function renderPage(path) {
-  if (path === "/admin/operations") return workspacePage(
-    path,
-    "\u904B\u55B6\u30FB\u5206\u6790",
-    "\u4E88\u5B9A\u30FB\u6307\u793A\u3001\u767A\u4FE1\u306E\u53CD\u5FDC\u3001\u63A5\u7D9A\u72B6\u6CC1\u3092\u78BA\u8A8D\u3057\u307E\u3059\u3002",
-    section("\u4E88\u5B9A\u30FB\u6307\u793A", list(ROUTES.filter((r) => r.kind === "command" && !["trade", "market", "screener", "security", "trade-plan", "trade-plans", "trades", "market-sources"].includes(r.view)).map((r) => [r.path, r.title, ""]))) + section("\u5206\u6790\u30FB\u76F8\u8AC7\u30FB\u63A5\u7D9A", list(ROUTES.filter((r) => r.group === "operations" && r.kind !== "command" && !r.archive).map((r) => [r.path, r.title, ""]))) + `<details class="workspace-details"><summary>\u76F8\u5834\u30FB\u53D6\u5F15\u306E\u7BA1\u7406</summary>${list(ROUTES.filter((r) => r.kind === "command" && ["trade", "market", "screener", "security", "trade-plan", "trade-plans", "trades", "market-sources"].includes(r.view)).map((r) => [r.path, r.title, ""]))}</details>`
-  );
+  if (path === "/admin/operations") return workspacePage(path, "\u904B\u55B6\u30FB\u5206\u6790", "", list(OPERATION_SECTIONS.map((item) => [item.path, item.title, ""])));
+  const operationSection = OPERATION_SECTIONS.find((item) => item.path === path);
+  if (operationSection) return workspacePage(path, operationSection.title, "", list(operationSection.routes.map((route) => [route.path, route.title, ""])));
   if (path === "/admin/materials") return workspacePage(path, "\u5185\u90E8\u8CC7\u6599", "\u904B\u55B6\u3068\u5236\u4F5C\u306B\u5FC5\u8981\u306A\u624B\u9806\u3092\u3001\u4E00\u304B\u6240\u306B\u3002", `<label for="material-search" class="workspace-search-label">\u8CC7\u6599\u3092\u63A2\u3059</label><input class="workspace-search" id="material-search" type="search" placeholder="\u4F8B\uFF1A\u516C\u958B\u3001\u753B\u50CF\u3001\u30EA\u30FC\u30EB" autocomplete="off"><div class="workspace-grid" id="material-list">${DOCUMENTS.map((doc2) => `<a class="workspace-card" data-material-search="${e([doc2.title, doc2.category, doc2.description, ...doc2.sections.flat()].join(" "))}" href="/admin/materials/${doc2.slug}"><span class="workspace-tag">${doc2.category} / \u624B\u9806\u66F8</span><h2>${doc2.title}</h2><p>${doc2.description}</p><span class="card-arrow">\u8AAD\u3080 \u2192</span></a>`).join("")}</div><p class="workspace-empty" id="material-empty" role="status" hidden>\u4E00\u81F4\u3059\u308B\u8CC7\u6599\u304C\u3042\u308A\u307E\u305B\u3093\u3002\u5225\u306E\u8A00\u8449\u3067\u691C\u7D22\u3057\u3066\u304F\u3060\u3055\u3044\u3002</p>` + section("\u95A2\u9023\u3059\u308B\u8CC7\u6599", list([["/admin/watch", "\u53CE\u96C6\u8A18\u4E8B", "\u53CE\u96C6\u6E08\u307F\u306E\u8A18\u4E8B\u3092\u78BA\u8A8D"], ["/ops", "\u904B\u7528\u8A18\u9332\u30FB\u30D7\u30ED\u30F3\u30D7\u30C8", "\u4FDD\u5B58\u6E08\u307F\u306E\u8CC7\u6599\u3001\u30D7\u30ED\u30F3\u30D7\u30C8\u3001\u6D3B\u52D5\u8A18\u9332"], ["/lectures/index.html", "\u53D7\u8B1B\u8005\u5411\u3051\u8CC7\u6599", "\u516C\u958B\u4E2D\u306E\u8B1B\u7FD2\u8CC7\u6599\u3092\u78BA\u8A8D"], ["/design-system/", "\u30C7\u30B6\u30A4\u30F3\u306E\u898B\u672C", "\u8272\u30FB\u90E8\u54C1\u30FB\u8868\u793A\u30EB\u30FC\u30EB"]])) + `<script>document.getElementById('material-search').addEventListener('input',event=>{const query=event.target.value.trim().normalize('NFKC').toLocaleLowerCase('ja');let found=0;document.querySelectorAll('[data-material-search]').forEach(card=>{const match=card.dataset.materialSearch.normalize('NFKC').toLocaleLowerCase('ja').includes(query);card.hidden=!match;if(match)found++});document.getElementById('material-empty').hidden=found>0});</script>`);
   const doc = DOCUMENTS.find((doc2) => path === "/admin/" + doc2.slug);
   if (doc) return workspacePage(path, doc.title, doc.description, `<nav class="workspace-subnav" aria-label="\u8CC7\u6599\u5185\u30CA\u30D3"><a href="/admin/materials">\u2190 \u5185\u90E8\u8CC7\u6599\u4E00\u89A7</a><span>\u66F4\u65B0 2026-10-11</span></nav><article class="workspace-document">${doc.sections.map(([heading, body]) => `<h2>${e(heading)}</h2><p>${e(body)}</p>`).join("")}</article><p><a class="workspace-download" href="/admin/materials/${doc.slug}.md" download>\u3053\u306E\u8CC7\u6599\u3092\u4FDD\u5B58 \u2193</a></p>`);

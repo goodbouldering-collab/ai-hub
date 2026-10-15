@@ -4,7 +4,7 @@ import source from './worker.mjs';
 import bundle from './published-worker.mjs';
 import { applyShell } from './shell.mjs';
 import { DOCUMENTS } from './pages.mjs';
-import { ROUTES, canonicalUrl } from './routes.mjs';
+import { ROUTES, canonicalUrl, OPERATION_SECTIONS } from './routes.mjs';
 
 // Synthetic local credentials exercise the actual existing login implementation.
 const env={ADMIN_PASS:'test-only-not-a-real-password',ADMIN_SESSION_SECRET:'test-only-session-secret',ADMIN_LOGIN_LIMITER:{limit:async()=>({success:true})},ASSETS:{fetch:async()=>new Response('<html><head></head><body>public fixture</body></html>',{headers:{'content-type':'text/html'}})}};
@@ -12,7 +12,7 @@ const ctx={waitUntil(){}};
 const origin='https://unit.example';
 for(const [name,worker] of [['source',source],['bundle',bundle]]){
   test(`${name}: real login gates all private HTML and downloads`,async()=>{
-    const paths=['/admin','/admin/','/admin/hub.html','/admin/index.html','/admin/create','/admin/operations','/admin/materials',...DOCUMENTS.flatMap(d=>['/admin/materials/'+d.slug,'/admin/materials/'+d.slug+'.md'])];
+    const paths=[...OPERATION_SECTIONS.map(section=>section.path),'/admin','/admin/','/admin/hub.html','/admin/index.html','/admin/create','/admin/operations','/admin/materials',...DOCUMENTS.flatMap(d=>['/admin/materials/'+d.slug,'/admin/materials/'+d.slug+'.md'])];
     for(const path of paths){
       const denied=await worker.fetch(new Request(origin+path),env,ctx);
       assert.equal(denied.status,303,path);assert.match(denied.headers.get('location'),/^\/admin\/login/);
@@ -29,7 +29,7 @@ for(const [name,worker] of [['source',source],['bundle',bundle]]){
       else {assert.match(body,/<title>AI相談<\/title>/);assert.equal((body.match(/id="workspace-header"/g)||[]).length,1);}
       const head=await worker.fetch(new Request(origin+target,{method:'HEAD',headers:{cookie}}),env,ctx);assert.equal(head.status,200);assert.equal(await head.text(),'');
     }
-    for(const [path,method,status] of [['/admin/materials/missing','GET',404],['/admin/materials','POST',405]]){
+    for(const [path,method,status] of [['/admin/operations/missing','GET',404],['/admin/operations/schedule','POST',405],['/admin/materials/missing','GET',404],['/admin/materials','POST',405]]){
       const r=await worker.fetch(new Request(origin+path,{method,headers:{cookie}}),env,ctx);assert.equal(r.status,status);
     }
     const ping=await worker.fetch(new Request(origin+'/api/admin/ping',{headers:{cookie}}),env,ctx);assert.equal((await ping.json()).ok,true);

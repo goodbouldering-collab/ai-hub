@@ -4,7 +4,7 @@ export const ROUTES = Object.freeze([
   ['reel','リール制作','create','studio','/admin/apps/reel.html'],
   ...[['articles','記事一覧'],['editor','記事編集'],['publish','公開確認'],['status','接続状態'],['settings','ブログ設定']].map(([view,title])=>['blog-'+view,title,'create','blog','/admin/blog/'+view,view]),
   ['sns-post','SNS投稿','create','static','/admin/sns-post'],
-  ['command-center','予定・指示','operations','command','/admin/command-center','dashboard'],
+  ['command-center','予定・指示の概要','operations','command','/admin/command-center','dashboard'],
   ...[['calendar','カレンダー'],['tasks','タスク'],['businesses','事業一覧'],['directives','指示'],['studio','Codex連携'],['tools','検証・移行'],['trade','相場羅針盤'],['market','市場候補'],['screener','財務スクリーナー'],['security','銘柄詳細'],['trade-plan','取引プラン作成'],['trade-plans','登録プラン'],['trades','取引記録'],['market-sources','データ収集状況']].map(([view,title])=>[view,title,'operations','command','/admin/command-center/'+view,view]),
   ['gubble-sns','SNS分析','operations','static','/admin/gubble-sns'],
   ['sns-cross-media-dashboard','旧媒体ボード（設定・履歴）','operations','static','/admin/sns-cross-media-dashboard'],
@@ -18,6 +18,13 @@ export const ROUTES = Object.freeze([
 ].map(([slug,title,group,kind,legacy,view])=>Object.freeze({path:'/admin/'+slug,title,group,kind,legacy,view,archive:slug==='sns-cross-media-dashboard'})));
 
 export const routeAt = path => ROUTES.find(route=>route.path===path);
+export const OPERATION_SECTIONS = Object.freeze([
+  {path:'/admin/operations/schedule',title:'予定・指示',slugs:['command-center','calendar','tasks','directives']},
+  {path:'/admin/operations/business',title:'事業・分析',slugs:['businesses','gubble-sns','chat']},
+  {path:'/admin/operations/trading',title:'相場・取引',slugs:['trade','market','screener','security','trade-plan','trade-plans','trades','market-sources']},
+  {path:'/admin/operations/connections',title:'連携・接続',slugs:['studio','tools','migration']},
+].map(section=>Object.freeze({...section,routes:Object.freeze(section.slugs.map(slug=>routeAt('/admin/'+slug)))})));
+export const operationSectionAt = path => OPERATION_SECTIONS.find(section=>section.path===path||section.routes.some(route=>route.path===path)||(path==='/admin/sns-cross-media-dashboard'&&section.path==='/admin/operations/business'));
 const aliases = new Map(ROUTES.filter(r=>r.path!==r.legacy).map(r=>[r.legacy,r.path]));
 for(const path of ['/admin/create','/admin/blog','/admin/blog/generate','/admin/apps/blog']) aliases.set(path,'/admin/blog-create');
 aliases.set('/admin/apps/reel','/admin/reel');

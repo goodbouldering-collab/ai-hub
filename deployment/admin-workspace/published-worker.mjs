@@ -5775,13 +5775,13 @@ var require_root = __commonJS({
 var require_list = __commonJS({
   "../deployment/profile/node_modules/postcss/lib/list.js"(exports, module) {
     "use strict";
-    var list = {
+    var list2 = {
       comma(string) {
-        return list.split(string, [","], true);
+        return list2.split(string, [","], true);
       },
       space(string) {
         let spaces = [" ", "\n", "	"];
-        return list.split(string, spaces);
+        return list2.split(string, spaces);
       },
       split(string, separators, last) {
         if (typeof string !== "string") return [];
@@ -5825,21 +5825,21 @@ var require_list = __commonJS({
         return array;
       }
     };
-    module.exports = list;
-    list.default = list;
+    module.exports = list2;
+    list2.default = list2;
   }
 });
 var require_rule = __commonJS({
   "../deployment/profile/node_modules/postcss/lib/rule.js"(exports, module) {
     "use strict";
     var Container = require_container();
-    var list = require_list();
+    var list2 = require_list();
     var Rule = class extends Container {
       static {
         __name(this, "Rule");
       }
       get selectors() {
-        return list.comma(this.selector);
+        return list2.comma(this.selector);
       }
       set selectors(values) {
         let match = this.selector ? this.selector.match(/,\s*/) : null;
@@ -7891,7 +7891,7 @@ var require_postcss = __commonJS({
     var fromJSON = require_fromJSON();
     var Input = require_input();
     var LazyResult = require_lazy_result();
-    var list = require_list();
+    var list2 = require_list();
     var Node2 = require_node();
     var parse = require_parse();
     var Processor = require_processor();
@@ -7942,7 +7942,7 @@ var require_postcss = __commonJS({
     postcss.stringify = stringify;
     postcss.parse = parse;
     postcss.fromJSON = fromJSON;
-    postcss.list = list;
+    postcss.list = list2;
     postcss.comment = (defaults) => new Comment3(defaults);
     postcss.atRule = (defaults) => new AtRule(defaults);
     postcss.decl = (defaults) => new Declaration(defaults);
@@ -18552,11 +18552,21 @@ var MENU = Object.freeze([
   { href: "/admin/materials", label: "\u5185\u90E8\u8CC7\u6599", key: "materials" },
   { href: "/admin/operations", label: "\u904B\u55B6\u30FB\u5206\u6790", key: "operations" }
 ]);
-function allButtons(path) {
-  return '<nav class="workspace-button-grid" aria-label="\u7BA1\u7406\u6A5F\u80FD">' + ROUTES.map((r) => '<a href="' + r.path + '"' + (r.path === path ? ' aria-current="page"' : "") + ">" + r.title + "</a>").join("") + "</nav>";
+function activeKey(path) {
+  const route = routeAt(path);
+  if (route) return route.group;
+  if (path === "/admin/document") return "materials";
+  if (path.startsWith("/admin/materials") || path.startsWith("/ops")) return "materials";
+  if (/^\/admin\/(create|blog|apps|sns-post)/.test(path)) return "create";
+  if (/^\/admin\/(operations|command-center|gubble-sns|chat)/.test(path)) return "operations";
+  return "home";
 }
 function header(path) {
-  return '<header id="workspace-header"><div class="workspace-button-tools">' + (path === "/admin" ? "" : '<a href="/admin">\u5168\u7BA1\u7406\u6A5F\u80FD</a>') + '<a href="/" target="_blank" rel="noopener">\u516C\u958B\u30B5\u30A4\u30C8</a><a href="/admin/logout">\u30ED\u30B0\u30A2\u30A6\u30C8</a></div>' + (path === "/admin" ? "" : allButtons(path)) + "</header>";
+  const active = activeKey(path);
+  return `<header id="workspace-header"><div class="workspace-bar"><a class="workspace-brand" href="/admin">AI\u76F8\u8AC7<small>\u7BA1\u7406</small></a><nav aria-label="\u7BA1\u7406\u30E1\u30CB\u30E5\u30FC">${MENU.map((item) => `<a href="${item.href}"${active === item.key ? ' aria-current="page"' : ""}>${item.label}</a>`).join("")}</nav><div class="workspace-tools"><a href="/" target="_blank" rel="noopener">\u516C\u958B\u30B5\u30A4\u30C8 \u2197</a><a href="/admin/logout">\u30ED\u30B0\u30A2\u30A6\u30C8</a></div></div></header>`;
+}
+function creationNavigation(path) {
+  return `<nav class="workspace-actions" aria-label="\u5236\u4F5C\u30FB\u767A\u4FE1\u30E1\u30CB\u30E5\u30FC">${ROUTES.filter((r) => r.group === "create").map((r) => `<a class="workspace-action${r.path === path ? " workspace-action--primary" : ""}" href="${r.path}"${r.path === path ? ' aria-current="page"' : ""}>${r.title}</a>`).join("")}</nav>`;
 }
 var SHELL_STYLE = `<style data-workspace-shell-style>
 html{scroll-padding-top:130px}body[data-workspace-shell]{padding-top:0!important}body[data-workspace-shell]>main,body[data-workspace-shell]>.container{padding-top:24px!important}body[data-workspace-shell]>.admin-page-context{display:none!important}
@@ -18566,14 +18576,7 @@ html{scroll-padding-top:130px}body[data-workspace-shell]{padding-top:0!important
 #workspace-header .workspace-tools{display:flex;gap:15px;align-items:center;font-size:12px;white-space:nowrap}#workspace-header a:focus-visible{outline:3px solid #387d99;outline-offset:3px}
 body[data-workspace-shell] .topbar{position:static!important;top:auto!important}body[data-workspace-shell] .studio-tabs{position:static}body[data-workspace-shell] .steps{top:115px}
 @media(max-width:900px){#workspace-header .workspace-bar{display:grid;grid-template-columns:1fr auto;gap:8px 12px;padding:10px 16px}#workspace-header nav{grid-column:1/-1;grid-row:2;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:3px;width:100%}#workspace-header nav a{text-align:center;padding:10px 3px;font-size:13px;white-space:normal}#workspace-header .workspace-brand{font-size:20px}#workspace-header .workspace-tools{gap:12px;font-size:11px}}
-#workspace-header{position:static!important;padding:16px!important}
-#workspace-header .workspace-button-tools{display:flex;flex-wrap:wrap;gap:8px;max-width:1120px;margin:0 auto 12px}
-.workspace-button-grid,#workspace-header nav.workspace-button-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;max-width:1120px;margin:0 auto;width:100%;padding:0}
-.workspace-button-grid a,#workspace-header nav.workspace-button-grid a,#workspace-header .workspace-button-tools a{display:flex;align-items:center;justify-content:center;min-height:48px;padding:12px 14px;border:1px solid #b8cad0;border-radius:9px;background:#fff;color:#193e4e;text-align:center;text-decoration:none;font:600 14px/1.5 system-ui,"Yu Gothic",sans-serif;white-space:normal}
-.workspace-button-grid a:hover,#workspace-header nav.workspace-button-grid a:hover{background:#eaf3f4;border-color:#326b78}
-.workspace-button-grid a[aria-current],#workspace-header nav.workspace-button-grid a[aria-current]{background:#193e4e;color:#fff}
-.workspace-button-grid a:focus-visible{outline:3px solid #387d99;outline-offset:3px}
-@media(max-width:600px){.workspace-button-grid,#workspace-header nav.workspace-button-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}#workspace-header{padding:12px!important}.workspace-button-grid a,#workspace-header nav.workspace-button-grid a{font-size:13px;padding:10px 8px}}
+#workspace-header nav a{border:1px solid #b6cbd7;background:#fff}#workspace-header .workspace-tools a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 12px;border:1px solid #b6cbd7;border-radius:8px;background:#fff}#workspace-header .workspace-tools{gap:8px}
 </style>`;
 function applyShell(html, url) {
   html = rewriteNavigation(html);
@@ -18595,6 +18598,10 @@ function applyShell(html, url) {
   else html = html.replace(/(<body\b[^>]*>)/i, `$1${header(url.pathname)}`);
   html = html.replace(/<body\b/i, "<body data-workspace-shell");
   html = html.replace('id="studio-nav-back" href="/studio"', 'id="studio-nav-back" href="/admin/create"');
+  if (route?.group === "create") html = html.replace("</header>", "</header>" + creationNavigation(url.pathname));
+  if (route) html = html.replace("</header>", '</header><div class="workspace-return"><a href="/admin">\u2190 \u7BA1\u7406\u30DB\u30FC\u30E0</a><span>' + route.title + "</span></div>");
+  if (url.pathname === "/admin/gubble-sns") html = html.replace("</header>", '</header><details class="workspace-details" style="max-width:1120px;margin:16px auto;padding:0 16px"><summary>\u4EE5\u524D\u306E\u5A92\u4F53\u30DC\u30FC\u30C9\u306B\u4FDD\u5B58\u3057\u305F\u8A2D\u5B9A\u30FB\u5C65\u6B74</summary><p>\u65E7\u30DC\u30FC\u30C9\u306E\u4FDD\u5B58\u5185\u5BB9\u3092\u78BA\u8A8D\u3067\u304D\u307E\u3059\u3002\u901A\u5E38\u306E\u5206\u6790\u306F\u3053\u306E\u753B\u9762\u3092\u4F7F\u3044\u307E\u3059\u3002</p><p><a href="/admin/sns-cross-media-dashboard">\u65E7\u5A92\u4F53\u30DC\u30FC\u30C9\u3092\u958B\u304F</a></p></details>');
+  if (url.pathname === "/admin/sns-cross-media-dashboard") html = html.replace("</header>", '</header><p class="workspace-return">\u65E7\u5A92\u4F53\u30DC\u30FC\u30C9\uFF1A\u4FDD\u5B58\u6E08\u307F\u8A2D\u5B9A\u30FB\u5C65\u6B74\u306E\u53C2\u7167\u7528\u3002<a href="/admin/gubble-sns">SNS\u5206\u6790\u3078</a></p>');
   return html.replace("</head>", SHELL_STYLE + THEME + "</head>").replace(/\uE000WORKSPACE(\d+)\uE001/g, (_, index) => raw[Number(index)]);
 }
 
@@ -18622,9 +18629,12 @@ var DOCUMENTS = Object.freeze([
 var CSS = `<style>
 :root{font-family:system-ui,"Yu Gothic",sans-serif;color:#193342;background:#f5f7f9;font-synthesis:none}*{box-sizing:border-box}body{margin:0}a{color:inherit}a:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid #3b819b;outline-offset:4px}.admin-workspace{max-width:1120px;margin:auto;padding:38px 28px 72px!important}.workspace-intro{display:flex;justify-content:space-between;align-items:end;gap:24px;margin:12px 0 30px}.workspace-intro p{margin:9px 0 0;color:#667a87;font-size:14px;line-height:1.7}.workspace-intro h1{margin:0;font-size:clamp(25px,3vw,34px);font-weight:750;letter-spacing:-.04em;line-height:1.45}.workspace-eyebrow{font-size:10px;font-weight:700;letter-spacing:.12em;color:#6e8794;display:block;margin-bottom:10px}.workspace-section{margin-top:32px}.workspace-section h2{font-size:16px;margin:0 0 14px}.workspace-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.workspace-card{display:flex;flex-direction:column;position:relative;min-height:175px;padding:24px;border:1px solid #dae2e8;border-radius:14px;background:#fff;text-decoration:none;transition:border-color .15s,box-shadow .15s}.workspace-card:hover{border-color:#698c9d;box-shadow:0 7px 22px #1a3a4c09}.workspace-card--primary{background:#193e4e;border-color:#193e4e;color:#fff}.workspace-card .card-icon{font-size:21px;line-height:1;margin-bottom:20px}.workspace-card h2,.workspace-card h3{font-size:19px;line-height:1.5;margin:0 0 8px;letter-spacing:-.025em}.workspace-card p{font-size:13px;line-height:1.7;color:#6b7f8b;margin:0 0 18px}.workspace-card--primary p{color:#cedee6}.workspace-card .card-arrow{margin-top:auto;font-size:13px;font-weight:650}.workspace-list{margin:0;padding:0;list-style:none;display:grid;gap:0;border:1px solid #dce4e9;border-radius:12px;background:#fff;overflow:hidden}.workspace-list li+li{border-top:1px solid #e7edf0}.workspace-list a{display:flex;gap:18px;align-items:center;justify-content:space-between;padding:18px 21px;text-decoration:none}.workspace-list a:hover{background:#f5f9fb}.workspace-list strong{font-size:14px}.workspace-list small{display:block;color:#728592;font-size:12px;margin-top:5px}.workspace-details{margin-top:24px;border:1px solid #dce4e9;border-radius:12px;background:#fff}.workspace-details summary{cursor:pointer;padding:18px 21px;font-size:14px;font-weight:650}.workspace-details .workspace-list{border:0;border-radius:0 0 12px 12px}.workspace-details p{padding:0 21px;color:#728592;font-size:12px;line-height:1.7}.workspace-note{font-size:12px;color:#728592;margin:20px 0;line-height:1.7}.workspace-subnav{display:flex;gap:18px;flex-wrap:wrap;margin:26px 0;color:#647d8d;font-size:13px}.workspace-search{display:block;width:100%;max-width:470px;padding:13px 16px;border:1px solid #cbd8e0;border-radius:10px;font:inherit;font-size:14px;background:#fff;margin-bottom:22px}.workspace-tag{font-size:10px;letter-spacing:.07em;color:#6f8794;margin-bottom:14px}.workspace-document{max-width:800px;background:#fff;border:1px solid #dce4e9;border-radius:16px;padding:30px}.workspace-document h2{font-size:18px;margin:28px 0 10px}.workspace-document h2:first-child{margin-top:0}.workspace-document p{font-size:14px;line-height:1.95;color:#455e6e}.workspace-empty{padding:20px;background:#fff;border:1px dashed #bcced8;border-radius:10px;color:#627c8c}a.workspace-download{display:inline-block;padding:12px 16px;border:1px solid #c7d5de;border-radius:8px;text-decoration:none;font-size:13px;background:#fff} [hidden]{display:none!important}
 @media(max-width:700px){.admin-workspace{padding:20px 18px 50px!important}.workspace-intro{display:block;margin:4px 0 24px}.workspace-grid{grid-template-columns:1fr;gap:12px}.workspace-card{min-height:0;padding:20px}.workspace-card .card-icon{margin-bottom:14px}.workspace-card p{margin-bottom:15px}.workspace-document{padding:22px}.workspace-subnav{gap:12px}.workspace-intro h1{font-size:26px}}
+.admin-workspace .workspace-intro{margin:4px 0 20px}.admin-workspace .workspace-intro p,.admin-workspace .workspace-eyebrow{display:none}.admin-workspace .workspace-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;border:0;background:transparent;overflow:visible}.admin-workspace .workspace-list li+li{border:0}.admin-workspace .workspace-list a{height:100%;min-height:48px;justify-content:center;padding:12px 16px;border:1px solid #b6cbd7;border-radius:8px;background:#fff;text-align:center}.admin-workspace .workspace-list small,.admin-workspace .workspace-list a>span:last-child:not(:first-child){display:none}.admin-workspace .workspace-card{min-height:48px;padding:16px;justify-content:center;text-align:center;border-radius:8px}.admin-workspace .workspace-card h2{font-size:15px;margin:0}.admin-workspace .workspace-card :is(p,.workspace-tag,.card-arrow){display:none}.admin-workspace .workspace-grid{grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}.admin-workspace .workspace-details{padding:0 12px 12px}.admin-workspace .workspace-details summary{min-height:44px}.admin-workspace .workspace-search{min-height:44px}@media(max-width:600px){.admin-workspace .workspace-list,.admin-workspace .workspace-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.admin-workspace .workspace-list a{padding:10px 8px}.admin-workspace .workspace-list strong{font-size:13px}}
 @media(prefers-reduced-motion:reduce){.workspace-card{transition:none}}
 </style>`;
 var e = (value) => String(value).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+var list = (items) => `<ul class="workspace-list">${items.map(([href, title, description]) => `<li><a href="${href}"><span><strong>${title}</strong><small>${description}</small></span><span aria-hidden="true">\u2192</span></a></li>`).join("")}</ul>`;
+var section = (title, body) => `<section class="workspace-section"><h2>${title}</h2>${body}</section>`;
 var workspacePage = (path, title, lead, body) => {
   const launcher = body.match(/^<div class="workspace-grid">([\s\S]*?)<\/div>/);
   const actions = launcher && launcher[1].includes('class="workspace-action');
@@ -18633,7 +18643,19 @@ var workspacePage = (path, title, lead, body) => {
   return `<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>AI\u76F8\u8AC7</title>${CSS}${SHELL_STYLE}</head><body data-workspace-shell>${header(path)}${navigation}<main class="admin-workspace"><div class="workspace-intro"><div><span class="workspace-eyebrow">AI\u76F8\u8AC7 / \u7BA1\u7406</span><h1>${title}</h1><p>${lead}</p></div></div>${content}</main></body></html>`;
 };
 function renderPage(path) {
-  if (["/admin", "/admin/operations", "/admin/materials"].includes(path)) return '<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>AI\u76F8\u8AC7</title>' + CSS + SHELL_STYLE + "</head><body data-workspace-shell>" + header("/admin") + '<main class="admin-workspace" aria-label="\u7BA1\u7406\u6A5F\u80FD\u4E00\u89A7">' + allButtons("/admin") + "</main></body></html>";
+  if (path === "/admin") return workspacePage(
+    path,
+    "\u7BA1\u7406\u30E1\u30CB\u30E5\u30FC",
+    "\u76EE\u7684\u306E\u6A5F\u80FD\u3092\u9078\u3093\u3067\u3001\u305D\u306E\u307E\u307E\u4F5C\u696D\u3092\u59CB\u3081\u3089\u308C\u307E\u3059\u3002",
+    ["create", "materials", "operations"].map((group) => section({ create: "\u5236\u4F5C\u30FB\u767A\u4FE1", materials: "\u5185\u90E8\u8CC7\u6599", operations: "\u904B\u55B6\u30FB\u5206\u6790" }[group], list(ROUTES.filter((r) => r.group === group && !r.archive).map((r) => [r.path, r.title, ""])))).join("")
+  );
+  if (path === "/admin/operations") return workspacePage(
+    path,
+    "\u904B\u55B6\u30FB\u5206\u6790",
+    "\u4E88\u5B9A\u30FB\u6307\u793A\u3001\u767A\u4FE1\u306E\u53CD\u5FDC\u3001\u63A5\u7D9A\u72B6\u6CC1\u3092\u78BA\u8A8D\u3057\u307E\u3059\u3002",
+    section("\u4E88\u5B9A\u30FB\u6307\u793A", list(ROUTES.filter((r) => r.kind === "command" && !["trade", "market", "screener", "security", "trade-plan", "trade-plans", "trades", "market-sources"].includes(r.view)).map((r) => [r.path, r.title, ""]))) + section("\u5206\u6790\u30FB\u76F8\u8AC7\u30FB\u63A5\u7D9A", list(ROUTES.filter((r) => r.group === "operations" && r.kind !== "command" && !r.archive).map((r) => [r.path, r.title, ""]))) + `<details class="workspace-details"><summary>\u76F8\u5834\u30FB\u53D6\u5F15\u306E\u7BA1\u7406</summary>${list(ROUTES.filter((r) => r.kind === "command" && ["trade", "market", "screener", "security", "trade-plan", "trade-plans", "trades", "market-sources"].includes(r.view)).map((r) => [r.path, r.title, ""]))}</details>`
+  );
+  if (path === "/admin/materials") return workspacePage(path, "\u5185\u90E8\u8CC7\u6599", "\u904B\u55B6\u3068\u5236\u4F5C\u306B\u5FC5\u8981\u306A\u624B\u9806\u3092\u3001\u4E00\u304B\u6240\u306B\u3002", `<label for="material-search" class="workspace-search-label">\u8CC7\u6599\u3092\u63A2\u3059</label><input class="workspace-search" id="material-search" type="search" placeholder="\u4F8B\uFF1A\u516C\u958B\u3001\u753B\u50CF\u3001\u30EA\u30FC\u30EB" autocomplete="off"><div class="workspace-grid" id="material-list">${DOCUMENTS.map((doc2) => `<a class="workspace-card" data-material-search="${e([doc2.title, doc2.category, doc2.description, ...doc2.sections.flat()].join(" "))}" href="/admin/materials/${doc2.slug}"><span class="workspace-tag">${doc2.category} / \u624B\u9806\u66F8</span><h2>${doc2.title}</h2><p>${doc2.description}</p><span class="card-arrow">\u8AAD\u3080 \u2192</span></a>`).join("")}</div><p class="workspace-empty" id="material-empty" role="status" hidden>\u4E00\u81F4\u3059\u308B\u8CC7\u6599\u304C\u3042\u308A\u307E\u305B\u3093\u3002\u5225\u306E\u8A00\u8449\u3067\u691C\u7D22\u3057\u3066\u304F\u3060\u3055\u3044\u3002</p>` + section("\u95A2\u9023\u3059\u308B\u8CC7\u6599", list([["/ops", "\u904B\u7528\u8A18\u9332\u30FB\u30D7\u30ED\u30F3\u30D7\u30C8", "\u4FDD\u5B58\u6E08\u307F\u306E\u8CC7\u6599\u3001\u30D7\u30ED\u30F3\u30D7\u30C8\u3001\u6D3B\u52D5\u8A18\u9332"], ["/lectures/index.html", "\u53D7\u8B1B\u8005\u5411\u3051\u8CC7\u6599", "\u516C\u958B\u4E2D\u306E\u8B1B\u7FD2\u8CC7\u6599\u3092\u78BA\u8A8D"], ["/design-system/", "\u30C7\u30B6\u30A4\u30F3\u306E\u898B\u672C", "\u8272\u30FB\u90E8\u54C1\u30FB\u8868\u793A\u30EB\u30FC\u30EB"]])) + `<script>document.getElementById('material-search').addEventListener('input',event=>{const query=event.target.value.trim().normalize('NFKC').toLocaleLowerCase('ja');let found=0;document.querySelectorAll('[data-material-search]').forEach(card=>{const match=card.dataset.materialSearch.normalize('NFKC').toLocaleLowerCase('ja').includes(query);card.hidden=!match;if(match)found++});document.getElementById('material-empty').hidden=found>0});</script>`);
   const doc = DOCUMENTS.find((doc2) => path === "/admin/" + doc2.slug);
   if (doc) return workspacePage(path, doc.title, doc.description, `<nav class="workspace-subnav" aria-label="\u8CC7\u6599\u5185\u30CA\u30D3"><a href="/admin/materials">\u2190 \u5185\u90E8\u8CC7\u6599\u4E00\u89A7</a><span>\u66F4\u65B0 2026-10-11</span></nav><article class="workspace-document">${doc.sections.map(([heading, body]) => `<h2>${e(heading)}</h2><p>${e(body)}</p>`).join("")}</article><p><a class="workspace-download" href="/admin/materials/${doc.slug}.md" download>\u3053\u306E\u8CC7\u6599\u3092\u4FDD\u5B58 \u2193</a></p>`);
   return null;

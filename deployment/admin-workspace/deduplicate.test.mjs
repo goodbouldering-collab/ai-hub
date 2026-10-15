@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import source from './worker.mjs';
 import bundle from './published-worker.mjs';
 import { ROUTES, canonicalUrl } from './routes.mjs';
-import { applyShell } from './shell.mjs';
+import { applyShell, creationNavigation, MENU } from './shell.mjs';
 import { renderPage } from './pages.mjs';
 
 test('retired landing pages resolve to a single function, retaining context',()=>{
@@ -12,12 +12,10 @@ test('retired landing pages resolve to a single function, retaining context',()=
   assert.equal(canonicalUrl('/ops/prompts'),'/admin/ops#sec-prompts');
   assert.equal(canonicalUrl('/admin/ops'),'/admin/ops');
 });
-test('home catalogue lists each current function exactly once',()=>{
-  const html=applyShell(renderPage('/admin'),new URL('https://test.example/admin')).match(/<main[\s\S]*?<\/main>/)[0];
-  for(const route of ROUTES.filter(r=>!r.archive)){
-    assert.equal([...html.matchAll(/href="([^"]+)"/g)].filter(m=>m[1]===route.path).length,1,route.path);
-  }
-  assert.doesNotMatch(html,/href="\/admin\/(create|prompts|sns-cross-media-dashboard)"/);
+test('all former home destinations are reachable from the retained pages',()=>{
+ const html=creationNavigation('/admin/blog-create')+applyShell(renderPage('/admin/materials'),new URL('https://test.example/admin/materials'))+renderPage('/admin/operations');
+ for(const route of ROUTES.filter(r=>!r.archive)) assert.ok(html.includes('href="'+route.path+'"'),route.path);
+ assert.equal(renderPage('/admin'),null);assert.ok(MENU.every(item=>item.href!=='/admin'));
 });
 test('creation navigation has one destination each and replaces legacy menus without touching editor',()=>{
   const html='<html><head></head><body><nav class="studio-tabs"><a id="studio-nav-back" href="/admin/blog-editor">Back</a></nav><nav class="blog-page-nav"><a href="/admin/blog">全体</a><a href="/admin/blog/generate">生成</a></nav><textarea id="editor"></textarea><script>initializeEditor()</script></body></html>';
@@ -36,7 +34,7 @@ for(const worker of [source,bundle]) test('retired pages remain authenticated an
   const ctx={waitUntil(){}};
   const login=await worker.fetch(new Request(origin+'/admin/login',{method:'POST',headers:{origin,'content-type':'application/x-www-form-urlencoded'},body:'password=test-only'}),env,ctx);
   const cookie=login.headers.get('set-cookie').split(';')[0];
-  for(const [old,target] of [['/admin/create','/admin/blog-create'],['/admin/prompts','/admin/ops#sec-prompts'],['/ops/prompts','/admin/ops#sec-prompts']]){
+  for(const [old,target] of [['/admin','/admin/blog-create'],['/admin/','/admin/blog-create'],['/admin/hub.html','/admin/blog-create'],['/admin/index.html','/admin/blog-create'],['/admin/create','/admin/blog-create'],['/admin/prompts','/admin/ops#sec-prompts'],['/ops/prompts','/admin/ops#sec-prompts']]){
     assert.equal((await worker.fetch(new Request(origin+old),env,ctx)).status,303);
     const result=await worker.fetch(new Request(origin+old,{headers:{cookie}}),env,ctx);
     assert.equal(result.status,302);assert.equal(result.headers.get('location'),target);
@@ -48,7 +46,7 @@ test('separate pages retain their own contents and no global function grid',()=>
  const home=renderPage('/admin'),materials=renderPage('/admin/materials'),operations=renderPage('/admin/operations');
  assert.match(materials,/id="material-search"/);assert.match(materials,/id="material-list"/);assert.match(materials,/data-material-search/);assert.match(operations,/予定・指示/);assert.match(operations,/相場・取引の管理/);
  assert.notEqual(home,materials);assert.notEqual(home,operations);
- for(const page of [home,materials,operations])assert.doesNotMatch(page,/workspace-button-grid/);
+ for(const page of [materials,operations])assert.doesNotMatch(page,/workspace-button-grid/);
  const result=applyShell('<html><head></head><body><main><textarea id="editor"></textarea></main></body></html>',new URL('https://test.example/admin/blog-create'));
  assert.match(result,/制作・発信メニュー/);assert.doesNotMatch(result,/href="\/admin\/trade"/);assert.match(result,/id="editor"/);
 });

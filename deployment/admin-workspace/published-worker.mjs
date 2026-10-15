@@ -18461,7 +18461,8 @@ for (const path of ["/admin/create", "/admin/blog", "/admin/blog/generate", "/ad
 aliases.set("/admin/apps/reel", "/admin/reel");
 aliases.set("/admin/docs", "/admin/ops");
 for (const path of ["/admin/prompts", "/ops/prompts"]) aliases.set(path, "/admin/ops#sec-prompts");
-for (const path of ["/admin/index.html", "/admin/hub.html", "/admin/index", "/admin/hub"]) aliases.set(path, "/admin");
+aliases.set("/admin", "/admin/blog-create");
+for (const path of ["/admin/index.html", "/admin/hub.html", "/admin/index", "/admin/hub"]) aliases.set(path, "/admin/blog-create");
 for (const route of ROUTES.filter((r) => r.kind === "document")) aliases.set(route.legacy + ".md", route.path + ".md");
 function canonicalUrl(value, base = "https://admin.invalid") {
   let url;
@@ -18547,7 +18548,6 @@ body[data-workspace-shell]>.blog-details>.api-key-panel{margin:0;border:0;border
 
 // deployment/admin-workspace/shell.mjs
 var MENU = Object.freeze([
-  { href: "/admin", label: "\u30DB\u30FC\u30E0", key: "home" },
   { href: "/admin/blog-create", label: "\u5236\u4F5C\u30FB\u767A\u4FE1", key: "create" },
   { href: "/admin/materials", label: "\u5185\u90E8\u8CC7\u6599", key: "materials" },
   { href: "/admin/operations", label: "\u904B\u55B6\u30FB\u5206\u6790", key: "operations" }
@@ -18563,7 +18563,7 @@ function activeKey(path) {
 }
 function header(path) {
   const active = activeKey(path);
-  return `<header id="workspace-header"><div class="workspace-bar"><a class="workspace-brand" href="/admin">AI\u76F8\u8AC7<small>\u7BA1\u7406</small></a><nav aria-label="\u7BA1\u7406\u30E1\u30CB\u30E5\u30FC">${MENU.map((item) => `<a href="${item.href}"${active === item.key ? ' aria-current="page"' : ""}>${item.label}</a>`).join("")}</nav><div class="workspace-tools"><a href="/" target="_blank" rel="noopener">\u516C\u958B\u30B5\u30A4\u30C8 \u2197</a><a href="/admin/logout">\u30ED\u30B0\u30A2\u30A6\u30C8</a></div></div></header>`;
+  return `<header id="workspace-header"><div class="workspace-bar"><a class="workspace-brand" href="/admin/blog-create">AI\u76F8\u8AC7<small>\u7BA1\u7406</small></a><nav aria-label="\u7BA1\u7406\u30E1\u30CB\u30E5\u30FC">${MENU.map((item) => `<a href="${item.href}"${active === item.key ? ' aria-current="page"' : ""}>${item.label}</a>`).join("")}</nav><div class="workspace-tools"><a href="/" target="_blank" rel="noopener">\u516C\u958B\u30B5\u30A4\u30C8 \u2197</a><a href="/admin/logout">\u30ED\u30B0\u30A2\u30A6\u30C8</a></div></div></header>`;
 }
 function creationNavigation(path) {
   return `<nav class="workspace-actions" aria-label="\u5236\u4F5C\u30FB\u767A\u4FE1\u30E1\u30CB\u30E5\u30FC">${ROUTES.filter((r) => r.group === "create").map((r) => `<a class="workspace-action${r.path === path ? " workspace-action--primary" : ""}" href="${r.path}"${r.path === path ? ' aria-current="page"' : ""}>${r.title}</a>`).join("")}</nav>`;
@@ -18575,7 +18575,7 @@ html{scroll-padding-top:130px}body[data-workspace-shell]{padding-top:0!important
 #workspace-header nav{position:static;display:flex;align-items:center;justify-content:center;gap:6px;flex:1;width:auto;height:auto;max-width:none;margin:0;padding:0;overflow:visible;border:0;background:none;box-shadow:none;transform:none;visibility:visible;opacity:1}#workspace-header nav a{display:block;min-height:44px;margin:0;padding:11px 16px;border-radius:8px;border:0;background:none;font-size:14px;font-weight:650;white-space:nowrap}#workspace-header nav a:hover{background:#f0f4f6}#workspace-header nav a[aria-current]{background:#eaf1f4;color:#123e50;box-shadow:inset 0 -2px #2e657c}
 #workspace-header .workspace-tools{display:flex;gap:15px;align-items:center;font-size:12px;white-space:nowrap}#workspace-header a:focus-visible{outline:3px solid #387d99;outline-offset:3px}
 body[data-workspace-shell] .topbar{position:static!important;top:auto!important}body[data-workspace-shell] .studio-tabs{position:static}body[data-workspace-shell] .steps{top:115px}
-@media(max-width:900px){#workspace-header .workspace-bar{display:grid;grid-template-columns:1fr auto;gap:8px 12px;padding:10px 16px}#workspace-header nav{grid-column:1/-1;grid-row:2;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:3px;width:100%}#workspace-header nav a{text-align:center;padding:10px 3px;font-size:13px;white-space:normal}#workspace-header .workspace-brand{font-size:20px}#workspace-header .workspace-tools{gap:12px;font-size:11px}}
+@media(max-width:900px){#workspace-header .workspace-bar{display:grid;grid-template-columns:1fr auto;gap:8px 12px;padding:10px 16px}#workspace-header nav{grid-column:1/-1;grid-row:2;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:3px;width:100%}#workspace-header nav a{text-align:center;padding:10px 3px;font-size:13px;white-space:normal}#workspace-header .workspace-brand{font-size:20px}#workspace-header .workspace-tools{gap:12px;font-size:11px}}
 #workspace-header nav a{border:1px solid #b6cbd7;background:#fff}#workspace-header .workspace-tools a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 12px;border:1px solid #b6cbd7;border-radius:8px;background:#fff}#workspace-header .workspace-tools{gap:8px}
 </style>`;
 function applyShell(html, url) {
@@ -18599,7 +18599,10 @@ function applyShell(html, url) {
   html = html.replace(/<body\b/i, "<body data-workspace-shell");
   html = html.replace('id="studio-nav-back" href="/studio"', 'id="studio-nav-back" href="/admin/create"');
   if (route?.group === "create") html = html.replace("</header>", "</header>" + creationNavigation(url.pathname));
-  if (route) html = html.replace("</header>", '</header><div class="workspace-return"><a href="/admin">\u2190 \u7BA1\u7406\u30DB\u30FC\u30E0</a><span>' + route.title + "</span></div>");
+  if (route) {
+    const parent = MENU.find((item) => item.key === route.group);
+    if (parent && parent.href !== url.pathname) html = html.replace("</header>", '</header><div class="workspace-return"><a href="' + parent.href + '">\u2190 ' + parent.label + "</a><span>" + route.title + "</span></div>");
+  }
   if (url.pathname === "/admin/gubble-sns") html = html.replace("</header>", '</header><details class="workspace-details" style="max-width:1120px;margin:16px auto;padding:0 16px"><summary>\u4EE5\u524D\u306E\u5A92\u4F53\u30DC\u30FC\u30C9\u306B\u4FDD\u5B58\u3057\u305F\u8A2D\u5B9A\u30FB\u5C65\u6B74</summary><p>\u65E7\u30DC\u30FC\u30C9\u306E\u4FDD\u5B58\u5185\u5BB9\u3092\u78BA\u8A8D\u3067\u304D\u307E\u3059\u3002\u901A\u5E38\u306E\u5206\u6790\u306F\u3053\u306E\u753B\u9762\u3092\u4F7F\u3044\u307E\u3059\u3002</p><p><a href="/admin/sns-cross-media-dashboard">\u65E7\u5A92\u4F53\u30DC\u30FC\u30C9\u3092\u958B\u304F</a></p></details>');
   if (url.pathname === "/admin/sns-cross-media-dashboard") html = html.replace("</header>", '</header><p class="workspace-return">\u65E7\u5A92\u4F53\u30DC\u30FC\u30C9\uFF1A\u4FDD\u5B58\u6E08\u307F\u8A2D\u5B9A\u30FB\u5C65\u6B74\u306E\u53C2\u7167\u7528\u3002<a href="/admin/gubble-sns">SNS\u5206\u6790\u3078</a></p>');
   return html.replace("</head>", SHELL_STYLE + THEME + "</head>").replace(/\uE000WORKSPACE(\d+)\uE001/g, (_, index) => raw[Number(index)]);
@@ -18643,19 +18646,13 @@ var workspacePage = (path, title, lead, body) => {
   return `<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>AI\u76F8\u8AC7</title>${CSS}${SHELL_STYLE}</head><body data-workspace-shell>${header(path)}${navigation}<main class="admin-workspace"><div class="workspace-intro"><div><span class="workspace-eyebrow">AI\u76F8\u8AC7 / \u7BA1\u7406</span><h1>${title}</h1><p>${lead}</p></div></div>${content}</main></body></html>`;
 };
 function renderPage(path) {
-  if (path === "/admin") return workspacePage(
-    path,
-    "\u7BA1\u7406\u30E1\u30CB\u30E5\u30FC",
-    "\u76EE\u7684\u306E\u6A5F\u80FD\u3092\u9078\u3093\u3067\u3001\u305D\u306E\u307E\u307E\u4F5C\u696D\u3092\u59CB\u3081\u3089\u308C\u307E\u3059\u3002",
-    ["create", "materials", "operations"].map((group) => section({ create: "\u5236\u4F5C\u30FB\u767A\u4FE1", materials: "\u5185\u90E8\u8CC7\u6599", operations: "\u904B\u55B6\u30FB\u5206\u6790" }[group], list(ROUTES.filter((r) => r.group === group && !r.archive).map((r) => [r.path, r.title, ""])))).join("")
-  );
   if (path === "/admin/operations") return workspacePage(
     path,
     "\u904B\u55B6\u30FB\u5206\u6790",
     "\u4E88\u5B9A\u30FB\u6307\u793A\u3001\u767A\u4FE1\u306E\u53CD\u5FDC\u3001\u63A5\u7D9A\u72B6\u6CC1\u3092\u78BA\u8A8D\u3057\u307E\u3059\u3002",
     section("\u4E88\u5B9A\u30FB\u6307\u793A", list(ROUTES.filter((r) => r.kind === "command" && !["trade", "market", "screener", "security", "trade-plan", "trade-plans", "trades", "market-sources"].includes(r.view)).map((r) => [r.path, r.title, ""]))) + section("\u5206\u6790\u30FB\u76F8\u8AC7\u30FB\u63A5\u7D9A", list(ROUTES.filter((r) => r.group === "operations" && r.kind !== "command" && !r.archive).map((r) => [r.path, r.title, ""]))) + `<details class="workspace-details"><summary>\u76F8\u5834\u30FB\u53D6\u5F15\u306E\u7BA1\u7406</summary>${list(ROUTES.filter((r) => r.kind === "command" && ["trade", "market", "screener", "security", "trade-plan", "trade-plans", "trades", "market-sources"].includes(r.view)).map((r) => [r.path, r.title, ""]))}</details>`
   );
-  if (path === "/admin/materials") return workspacePage(path, "\u5185\u90E8\u8CC7\u6599", "\u904B\u55B6\u3068\u5236\u4F5C\u306B\u5FC5\u8981\u306A\u624B\u9806\u3092\u3001\u4E00\u304B\u6240\u306B\u3002", `<label for="material-search" class="workspace-search-label">\u8CC7\u6599\u3092\u63A2\u3059</label><input class="workspace-search" id="material-search" type="search" placeholder="\u4F8B\uFF1A\u516C\u958B\u3001\u753B\u50CF\u3001\u30EA\u30FC\u30EB" autocomplete="off"><div class="workspace-grid" id="material-list">${DOCUMENTS.map((doc2) => `<a class="workspace-card" data-material-search="${e([doc2.title, doc2.category, doc2.description, ...doc2.sections.flat()].join(" "))}" href="/admin/materials/${doc2.slug}"><span class="workspace-tag">${doc2.category} / \u624B\u9806\u66F8</span><h2>${doc2.title}</h2><p>${doc2.description}</p><span class="card-arrow">\u8AAD\u3080 \u2192</span></a>`).join("")}</div><p class="workspace-empty" id="material-empty" role="status" hidden>\u4E00\u81F4\u3059\u308B\u8CC7\u6599\u304C\u3042\u308A\u307E\u305B\u3093\u3002\u5225\u306E\u8A00\u8449\u3067\u691C\u7D22\u3057\u3066\u304F\u3060\u3055\u3044\u3002</p>` + section("\u95A2\u9023\u3059\u308B\u8CC7\u6599", list([["/ops", "\u904B\u7528\u8A18\u9332\u30FB\u30D7\u30ED\u30F3\u30D7\u30C8", "\u4FDD\u5B58\u6E08\u307F\u306E\u8CC7\u6599\u3001\u30D7\u30ED\u30F3\u30D7\u30C8\u3001\u6D3B\u52D5\u8A18\u9332"], ["/lectures/index.html", "\u53D7\u8B1B\u8005\u5411\u3051\u8CC7\u6599", "\u516C\u958B\u4E2D\u306E\u8B1B\u7FD2\u8CC7\u6599\u3092\u78BA\u8A8D"], ["/design-system/", "\u30C7\u30B6\u30A4\u30F3\u306E\u898B\u672C", "\u8272\u30FB\u90E8\u54C1\u30FB\u8868\u793A\u30EB\u30FC\u30EB"]])) + `<script>document.getElementById('material-search').addEventListener('input',event=>{const query=event.target.value.trim().normalize('NFKC').toLocaleLowerCase('ja');let found=0;document.querySelectorAll('[data-material-search]').forEach(card=>{const match=card.dataset.materialSearch.normalize('NFKC').toLocaleLowerCase('ja').includes(query);card.hidden=!match;if(match)found++});document.getElementById('material-empty').hidden=found>0});</script>`);
+  if (path === "/admin/materials") return workspacePage(path, "\u5185\u90E8\u8CC7\u6599", "\u904B\u55B6\u3068\u5236\u4F5C\u306B\u5FC5\u8981\u306A\u624B\u9806\u3092\u3001\u4E00\u304B\u6240\u306B\u3002", `<label for="material-search" class="workspace-search-label">\u8CC7\u6599\u3092\u63A2\u3059</label><input class="workspace-search" id="material-search" type="search" placeholder="\u4F8B\uFF1A\u516C\u958B\u3001\u753B\u50CF\u3001\u30EA\u30FC\u30EB" autocomplete="off"><div class="workspace-grid" id="material-list">${DOCUMENTS.map((doc2) => `<a class="workspace-card" data-material-search="${e([doc2.title, doc2.category, doc2.description, ...doc2.sections.flat()].join(" "))}" href="/admin/materials/${doc2.slug}"><span class="workspace-tag">${doc2.category} / \u624B\u9806\u66F8</span><h2>${doc2.title}</h2><p>${doc2.description}</p><span class="card-arrow">\u8AAD\u3080 \u2192</span></a>`).join("")}</div><p class="workspace-empty" id="material-empty" role="status" hidden>\u4E00\u81F4\u3059\u308B\u8CC7\u6599\u304C\u3042\u308A\u307E\u305B\u3093\u3002\u5225\u306E\u8A00\u8449\u3067\u691C\u7D22\u3057\u3066\u304F\u3060\u3055\u3044\u3002</p>` + section("\u95A2\u9023\u3059\u308B\u8CC7\u6599", list([["/admin/watch", "\u53CE\u96C6\u8A18\u4E8B", "\u53CE\u96C6\u6E08\u307F\u306E\u8A18\u4E8B\u3092\u78BA\u8A8D"], ["/ops", "\u904B\u7528\u8A18\u9332\u30FB\u30D7\u30ED\u30F3\u30D7\u30C8", "\u4FDD\u5B58\u6E08\u307F\u306E\u8CC7\u6599\u3001\u30D7\u30ED\u30F3\u30D7\u30C8\u3001\u6D3B\u52D5\u8A18\u9332"], ["/lectures/index.html", "\u53D7\u8B1B\u8005\u5411\u3051\u8CC7\u6599", "\u516C\u958B\u4E2D\u306E\u8B1B\u7FD2\u8CC7\u6599\u3092\u78BA\u8A8D"], ["/design-system/", "\u30C7\u30B6\u30A4\u30F3\u306E\u898B\u672C", "\u8272\u30FB\u90E8\u54C1\u30FB\u8868\u793A\u30EB\u30FC\u30EB"]])) + `<script>document.getElementById('material-search').addEventListener('input',event=>{const query=event.target.value.trim().normalize('NFKC').toLocaleLowerCase('ja');let found=0;document.querySelectorAll('[data-material-search]').forEach(card=>{const match=card.dataset.materialSearch.normalize('NFKC').toLocaleLowerCase('ja').includes(query);card.hidden=!match;if(match)found++});document.getElementById('material-empty').hidden=found>0});</script>`);
   const doc = DOCUMENTS.find((doc2) => path === "/admin/" + doc2.slug);
   if (doc) return workspacePage(path, doc.title, doc.description, `<nav class="workspace-subnav" aria-label="\u8CC7\u6599\u5185\u30CA\u30D3"><a href="/admin/materials">\u2190 \u5185\u90E8\u8CC7\u6599\u4E00\u89A7</a><span>\u66F4\u65B0 2026-10-11</span></nav><article class="workspace-document">${doc.sections.map(([heading, body]) => `<h2>${e(heading)}</h2><p>${e(body)}</p>`).join("")}</article><p><a class="workspace-download" href="/admin/materials/${doc.slug}.md" download>\u3053\u306E\u8CC7\u6599\u3092\u4FDD\u5B58 \u2193</a></p>`);
   return null;
@@ -19244,7 +19241,7 @@ var worker_default2 = {
     }
     if (privatePage && !login) {
       if (response.status === 200 && response.headers.get("content-type")?.includes("text/html")) return pageResponse(await response.text(), request);
-      if (response.status === 503 || response.status === 404) return pageResponse(workspacePage(path, "\u30DA\u30FC\u30B8\u304C\u898B\u3064\u304B\u308A\u307E\u305B\u3093", "\u7BA1\u7406\u30DB\u30FC\u30E0\u304B\u3089\u76EE\u7684\u306E\u6A5F\u80FD\u3092\u9078\u3093\u3067\u304F\u3060\u3055\u3044\u3002", '<a href="/admin">\u7BA1\u7406\u30DB\u30FC\u30E0\u3078</a>'), request, 404);
+      if (response.status === 503 || response.status === 404) return pageResponse(workspacePage(path, "\u30DA\u30FC\u30B8\u304C\u898B\u3064\u304B\u308A\u307E\u305B\u3093", "\u4E0A\u90E8\u306E\u30DC\u30BF\u30F3\u304B\u3089\u76EE\u7684\u306E\u6A5F\u80FD\u3092\u9078\u3093\u3067\u304F\u3060\u3055\u3044\u3002", '<a href="/admin/blog-create">\u5236\u4F5C\u30FB\u767A\u4FE1\u3078</a>'), request, 404);
       if (response.status === 200 && path.endsWith("content-studio.config.json")) {
         if (request.method === "HEAD") return response;
         const config = await response.json();

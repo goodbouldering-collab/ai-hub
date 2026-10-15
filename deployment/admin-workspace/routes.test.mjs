@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import source from './worker.mjs';
 import bundle from './published-worker.mjs';
-import { ROUTES, canonicalUrl, rewriteNavigation } from './routes.mjs';
+import { ROUTES, canonicalUrl, rewriteNavigation, operationSectionAt } from './routes.mjs';
 const origin='https://fixture.example';
 const env={ADMIN_PASS:'local-fixture',ADMIN_SESSION_SECRET:'local-fixture-only-32-characters-secret',ADMIN_LOGIN_LIMITER:{limit:async()=>({success:true})},ASSETS:{fetch:async()=>new Response('<html><head><title>Watch</title></head><body><main>fixture</main></body></html>',{headers:{'content-type':'text/html'}})}};
 const ctx={waitUntil(){}};
@@ -16,6 +16,14 @@ for(const [name,worker] of [['source',source],['bundle',bundle]]){
       const r=await worker.fetch(new Request(origin+route.path,{headers:{cookie}}),env,ctx);assert.equal(r.status,200,route.path);
       assert.match(r.headers.get('cache-control'),/private, no-store/);
       const html=await r.text();
+      if(route.group==='operations') assert.match(html,/aria-label="運営・分析メニュー"/,route.path);
+      if(route.kind==='command'){
+        const section=operationSectionAt(route.path);
+        const nav=html.match(/<nav class="cc-local-nav"[\s\S]*?<\/nav>/)[0];
+        for(const item of ROUTES.filter(item=>item.group==='operations'&&!item.archive)) assert.equal(nav.includes('href="'+item.path+'"'),section.routes.includes(item),route.path+' '+item.path);
+        assert.doesNotMatch(html,/<details class="cc-market-nav"/);
+        assert.match(html,/id="cc-content"/);
+      }
       assert.match(html,/<title>AI相談<\/title>/,route.path);
       assert.match(html,/data-admin-theme/,route.path);
       assert.equal((html.match(/id="workspace-header"/g)||[]).length,1,route.path);

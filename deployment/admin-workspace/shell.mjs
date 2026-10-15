@@ -53,6 +53,12 @@ export function applyShell(html, url) {
   const raw=[];
   html=html.replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>|<style\b[^>]*>[\s\S]*?<\/style\s*>|<!--[\s\S]*?-->/gi,block=>{raw.push(block);return '\uE000WORKSPACE'+(raw.length-1)+'\uE001';});
   const route=routeAt(url.pathname);
+  if(route?.kind==='command') {
+    const section=operationSectionAt(url.pathname);
+    html=html.replace(/<details\b[^>]*class=["']cc-market-nav["'][^>]*>[\s\S]*?<\/details>/gi,'');
+    html=html.replace(/<nav\b[^>]*class=["']cc-local-nav["'][^>]*>[\s\S]*?<\/nav>/gi,
+      `<nav class="cc-local-nav" aria-label="${section.title}の機能">${section.routes.map(item=>`<a href="${item.path}"${item.view?' data-view-link="'+item.view+'"':''}${item.path===url.pathname?' aria-current="page"':''}>${item.title}</a>`).join('')}</nav>`);
+  }
   if(route?.group==='create') {
     html=html.replace(/<nav\b[^>]*class=["'][^"']*\b(?:studio-tabs|blog-page-nav)\b[^"']*["'][^>]*>[\s\S]*?<\/nav>/gi,'');
   }

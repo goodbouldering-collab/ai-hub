@@ -1,4 +1,4 @@
-import { OPERATION_SECTIONS } from './routes.mjs';
+import { OPERATION_SECTIONS, operationSectionAt } from './routes.mjs';
 import { header, SHELL_STYLE, operationsNavigation } from './shell.mjs';
 
 export const DOCUMENTS = Object.freeze([
@@ -36,7 +36,7 @@ export const workspacePage=(path,title,lead,body)=>{
   // and their search metadata stay in the content area.
   const launcher=body.match(/^<div class="workspace-grid">([\s\S]*?)<\/div>/);
   const actions=launcher&&launcher[1].includes('class="workspace-action');
-  const navigation=OPERATION_SECTIONS.some(item=>item.path===path)?operationsNavigation(path):actions?`<nav class="workspace-actions" aria-label="作業メニュー">${launcher[1]}</nav>`:'';
+  const navigation=operationSectionAt(path)?operationsNavigation(path):actions?`<nav class="workspace-actions" aria-label="作業メニュー">${launcher[1]}</nav>`:'';
   const content=actions?body.slice(launcher[0].length):body;
   return `<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>AI相談</title>${CSS}${SHELL_STYLE}</head><body data-workspace-shell>${header(path)}${navigation}<main class="admin-workspace"><div class="workspace-intro"><div><span class="workspace-eyebrow">AI相談 / 管理</span><h1>${title}</h1><p>${lead}</p></div></div>${content}</main></body></html>`;
 };

@@ -18601,6 +18601,14 @@ function applyShell(html, url) {
     return "\uE000WORKSPACE" + (raw.length - 1) + "\uE001";
   });
   const route = routeAt(url.pathname);
+  if (route?.kind === "command") {
+    const section2 = operationSectionAt(url.pathname);
+    html = html.replace(/<details\b[^>]*class=["']cc-market-nav["'][^>]*>[\s\S]*?<\/details>/gi, "");
+    html = html.replace(
+      /<nav\b[^>]*class=["']cc-local-nav["'][^>]*>[\s\S]*?<\/nav>/gi,
+      `<nav class="cc-local-nav" aria-label="${section2.title}\u306E\u6A5F\u80FD">${section2.routes.map((item) => `<a href="${item.path}"${item.view ? ' data-view-link="' + item.view + '"' : ""}${item.path === url.pathname ? ' aria-current="page"' : ""}>${item.title}</a>`).join("")}</nav>`
+    );
+  }
   if (route?.group === "create") {
     html = html.replace(/<nav\b[^>]*class=["'][^"']*\b(?:studio-tabs|blog-page-nav)\b[^"']*["'][^>]*>[\s\S]*?<\/nav>/gi, "");
   }
@@ -18654,7 +18662,7 @@ var section = (title, body) => `<section class="workspace-section"><h2>${title}<
 var workspacePage = (path, title, lead, body) => {
   const launcher = body.match(/^<div class="workspace-grid">([\s\S]*?)<\/div>/);
   const actions = launcher && launcher[1].includes('class="workspace-action');
-  const navigation = OPERATION_SECTIONS.some((item) => item.path === path) ? operationsNavigation(path) : actions ? `<nav class="workspace-actions" aria-label="\u4F5C\u696D\u30E1\u30CB\u30E5\u30FC">${launcher[1]}</nav>` : "";
+  const navigation = operationSectionAt(path) ? operationsNavigation(path) : actions ? `<nav class="workspace-actions" aria-label="\u4F5C\u696D\u30E1\u30CB\u30E5\u30FC">${launcher[1]}</nav>` : "";
   const content = actions ? body.slice(launcher[0].length) : body;
   return `<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>AI\u76F8\u8AC7</title>${CSS}${SHELL_STYLE}</head><body data-workspace-shell>${header(path)}${navigation}<main class="admin-workspace"><div class="workspace-intro"><div><span class="workspace-eyebrow">AI\u76F8\u8AC7 / \u7BA1\u7406</span><h1>${title}</h1><p>${lead}</p></div></div>${content}</main></body></html>`;
 };

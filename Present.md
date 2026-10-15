@@ -1,9 +1,11 @@
 # AI相談の現在地
 
-## 10月16日のCodex更新（ローカル検証済み）
+## 10月16日のCodex更新（本番確認済み・ニュースは仕様確認待ち）
 
-- CLI 0.163.0の設定検索・追加指示・キー操作・Windows修正を反映。日次ニュースは4件/5件の仕様衝突により10月13日版を維持し、10月16日候補を別保存。
-- 47テスト・assets・現行live成功。公開4資産のみ変更、758資産・管理Worker保持。共有・公開は未実施。詳細: [更新記録](docs/daily-news-20261016-run.md)。
+- CLI 0.163.0の設定検索・追加指示・キー操作・Windows修正を公開。PR #192、統合・公開SHA `4bb2b282aadad29a964ae6a7851b5580c449d4a5`、version `62dacca2-3600-4eec-9045-fc26ad8d961b`。
+- 47テスト、assets/live、9配信ハッシュ、旧3URL301、管理API401、Codex分のDELIVERY_VERIFIED成功。アプリ内ブラウザでPC1440px／iPhone390pxのトップ入口・詳細・メニュー・横はみ出しなしを確認。事業用Chromeでの確認は未実施。
+- 日次ニュースは現行4件・ブログ掲載と定期5件・独立の衝突により10月13日版を保持。10月16日候補5件は未公開。次はニュース件数・掲載位置を確定し、定期依頼と実装を揃える。詳細: [更新記録](docs/daily-news-20261016-run.md)。
+- 次回baselineは登録公開元 `.codex-update-release-20261016/public` とverification.json/production-summary.jsonを最新本番に照合。762資産中4変更・758不変、管理Worker/認証/API不変。Node24.15.0・Python3.12・Wrangler4.90.0。
 
 
 ## 運営・分析を用途別に分割（2026-10-15）

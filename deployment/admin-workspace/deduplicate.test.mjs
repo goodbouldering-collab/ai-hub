@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import source from './worker.mjs';
 import bundle from './published-worker.mjs';
-import { ROUTES, canonicalUrl } from './routes.mjs';
+import { ROUTES, canonicalUrl, OPERATION_SECTIONS, operationSectionAt } from './routes.mjs';
 import { applyShell, creationNavigation, MENU } from './shell.mjs';
 import { renderPage } from './pages.mjs';
 
@@ -13,7 +13,7 @@ test('retired landing pages resolve to a single function, retaining context',()=
   assert.equal(canonicalUrl('/admin/ops'),'/admin/ops');
 });
 test('all former home destinations are reachable from the retained pages',()=>{
- const html=creationNavigation('/admin/blog-create')+applyShell(renderPage('/admin/materials'),new URL('https://test.example/admin/materials'))+renderPage('/admin/operations');
+ const html=creationNavigation('/admin/blog-create')+applyShell(renderPage('/admin/materials'),new URL('https://test.example/admin/materials'))+OPERATION_SECTIONS.map(section=>renderPage(section.path)).join('');
  for(const route of ROUTES.filter(r=>!r.archive)) assert.ok(html.includes('href="'+route.path+'"'),route.path);
  assert.equal(renderPage('/admin'),null);assert.ok(MENU.every(item=>item.href!=='/admin'));
 });
@@ -44,9 +44,29 @@ for(const worker of [source,bundle]) test('retired pages remain authenticated an
 
 test('separate pages retain their own contents and no global function grid',()=>{
  const home=renderPage('/admin'),materials=renderPage('/admin/materials'),operations=renderPage('/admin/operations');
- assert.match(materials,/id="material-search"/);assert.match(materials,/id="material-list"/);assert.match(materials,/data-material-search/);assert.match(operations,/予定・指示/);assert.match(operations,/相場・取引の管理/);
+ assert.match(materials,/id="material-search"/);assert.match(materials,/id="material-list"/);assert.match(materials,/data-material-search/);assert.match(operations,/予定・指示/);assert.match(operations,/相場・取引/);
  assert.notEqual(home,materials);assert.notEqual(home,operations);
  for(const page of [materials,operations])assert.doesNotMatch(page,/workspace-button-grid/);
  const result=applyShell('<html><head></head><body><main><textarea id="editor"></textarea></main></body></html>',new URL('https://test.example/admin/blog-create'));
  assert.match(result,/制作・発信メニュー/);assert.doesNotMatch(result,/href="\/admin\/trade"/);assert.match(result,/id="editor"/);
+});
+
+test('operations partition all 18 destinations and return to their category',()=>{
+ const expected=ROUTES.filter(route=>route.group==='operations'&&!route.archive).map(route=>route.path).sort();
+ const actual=OPERATION_SECTIONS.flatMap(section=>section.routes.map(route=>route.path));
+ assert.equal(expected.length,18);assert.equal(new Set(actual).size,18);assert.deepEqual([...actual].sort(),expected);
+ const landing=renderPage('/admin/operations');
+ for(const section of OPERATION_SECTIONS){
+  assert.ok(landing.includes('href="'+section.path+'"'));
+  const html=renderPage(section.path);
+  for(const route of ROUTES.filter(route=>route.group==='operations'&&!route.archive)){
+   assert.equal(html.includes('href="'+route.path+'"'),section.routes.includes(route),section.path+' '+route.path);
+  }
+  for(const route of section.routes){
+   assert.equal(operationSectionAt(route.path),section);
+   const leaf=applyShell('<html><head></head><body><main id="existing-content">keep</main></body></html>',new URL('https://test.example'+route.path));
+   assert.ok(leaf.includes('← '+section.title));assert.match(leaf,/id="existing-content"/);
+  }
+ }
+ for(const path of actual) assert.ok(!landing.includes('href="'+path+'"'),path);
 });

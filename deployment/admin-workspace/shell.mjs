@@ -1,4 +1,4 @@
-import { ROUTES, routeAt, rewriteNavigation } from './routes.mjs';
+import { ROUTES, routeAt, rewriteNavigation, OPERATION_SECTIONS, operationSectionAt } from './routes.mjs';
 import { THEME } from './theme.mjs';
 export const MENU = Object.freeze([
   { href: '/admin/blog-create', label: '制作・発信', key: 'create' },
@@ -25,6 +25,11 @@ export function creationNavigation(path) {
   return `<nav class="workspace-actions" aria-label="制作・発信メニュー">${ROUTES.filter(r=>r.group==='create').map(r=>`<a class="workspace-action${r.path===path?' workspace-action--primary':''}" href="${r.path}"${r.path===path?' aria-current="page"':''}>${r.title}</a>`).join('')}</nav>`;
 }
 
+export function operationsNavigation(path) {
+  const current=operationSectionAt(path);
+  return `<nav class="workspace-actions" aria-label="運営・分析メニュー">${OPERATION_SECTIONS.map(section=>`<a class="workspace-action${current===section?' workspace-action--primary':''}" href="${section.path}"${current===section?' aria-current="page"':''}>${section.title}</a>`).join('')}</nav>`;
+}
+
 export const SHELL_STYLE = `<style data-workspace-shell-style>
 html{scroll-padding-top:130px}body[data-workspace-shell]{padding-top:0!important}body[data-workspace-shell]>main,body[data-workspace-shell]>.container{padding-top:24px!important}body[data-workspace-shell]>.admin-page-context{display:none!important}
 #workspace-header{position:sticky!important;top:0!important;z-index:1000;display:block;width:100%;max-width:none;margin:0!important;padding:0!important;border:0;border-bottom:1px solid #dce3e8;background:#fff;color:#193542;box-shadow:0 3px 15px #122b3708;font:14px/1.5 system-ui,"Yu Gothic",sans-serif;transform:none;backdrop-filter:none;height:auto!important}
@@ -48,6 +53,12 @@ export function applyShell(html, url) {
   const raw=[];
   html=html.replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>|<style\b[^>]*>[\s\S]*?<\/style\s*>|<!--[\s\S]*?-->/gi,block=>{raw.push(block);return '\uE000WORKSPACE'+(raw.length-1)+'\uE001';});
   const route=routeAt(url.pathname);
+  if(route?.kind==='command') {
+    const section=operationSectionAt(url.pathname);
+    html=html.replace(/<details\b[^>]*class=["']cc-market-nav["'][^>]*>[\s\S]*?<\/details>/gi,'');
+    html=html.replace(/<nav\b[^>]*class=["']cc-local-nav["'][^>]*>[\s\S]*?<\/nav>/gi,
+      `<nav class="cc-local-nav" aria-label="${section.title}の機能">${section.routes.map(item=>`<a href="${item.path}"${item.view?' data-view-link="'+item.view+'"':''}${item.path===url.pathname?' aria-current="page"':''}>${item.title}</a>`).join('')}</nav>`);
+  }
   if(route?.group==='create') {
     html=html.replace(/<nav\b[^>]*class=["'][^"']*\b(?:studio-tabs|blog-page-nav)\b[^"']*["'][^>]*>[\s\S]*?<\/nav>/gi,'');
   }
@@ -57,7 +68,8 @@ export function applyShell(html, url) {
   html = html.replace(/<body\b/i, '<body data-workspace-shell');
   html = html.replace('id="studio-nav-back" href="/studio"', 'id="studio-nav-back" href="/admin/create"');
   if(route?.group==='create') html=html.replace('</header>','</header>'+creationNavigation(url.pathname));
-  if(route) {const parent=MENU.find(item=>item.key===route.group);if(parent && parent.href!==url.pathname) html=html.replace('</header>', '</header><div class="workspace-return"><a href="'+parent.href+'">← '+parent.label+'</a><span>'+route.title+'</span></div>');}
+  if(route) {const category=operationSectionAt(url.pathname);const parent=category?{href:category.path,label:category.title}:MENU.find(item=>item.key===route.group);if(parent && parent.href!==url.pathname) html=html.replace('</header>', '</header><div class="workspace-return"><a href="'+parent.href+'">← '+parent.label+'</a><span>'+route.title+'</span></div>');}
+  if(route?.group==='operations') html=html.replace('</header>','</header>'+operationsNavigation(url.pathname));
   if(url.pathname==='/admin/gubble-sns') html=html.replace('</header>','</header><details class="workspace-details" style="max-width:1120px;margin:16px auto;padding:0 16px"><summary>以前の媒体ボードに保存した設定・履歴</summary><p>旧ボードの保存内容を確認できます。通常の分析はこの画面を使います。</p><p><a href="/admin/sns-cross-media-dashboard">旧媒体ボードを開く</a></p></details>');
   if(url.pathname==='/admin/sns-cross-media-dashboard') html=html.replace('</header>','</header><p class="workspace-return">旧媒体ボード：保存済み設定・履歴の参照用。<a href="/admin/gubble-sns">SNS分析へ</a></p>');
   return html.replace('</head>', SHELL_STYLE + THEME + '</head>').replace(/\uE000WORKSPACE(\d+)\uE001/g,(_,index)=>raw[Number(index)]);

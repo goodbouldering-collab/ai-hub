@@ -23,7 +23,8 @@ for(const path of ['/admin/create','/admin/blog','/admin/blog/generate','/admin/
 aliases.set('/admin/apps/reel','/admin/reel');
 aliases.set('/admin/docs','/admin/ops');
 for(const path of ['/admin/prompts','/ops/prompts']) aliases.set(path,'/admin/ops#sec-prompts');
-for(const path of ['/admin/index.html','/admin/hub.html','/admin/index','/admin/hub']) aliases.set(path,'/admin');
+aliases.set('/admin','/admin/blog-create');
+for(const path of ['/admin/index.html','/admin/hub.html','/admin/index','/admin/hub']) aliases.set(path,'/admin/blog-create');
 for(const route of ROUTES.filter(r=>r.kind==='document')) aliases.set(route.legacy+'.md',route.path+'.md');
 
 export function canonicalUrl(value, base='https://admin.invalid') {

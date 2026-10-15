@@ -77,7 +77,7 @@ export default {
     }
     if(privatePage&&!login) {
       if(response.status===200&&response.headers.get('content-type')?.includes('text/html')) return pageResponse(await response.text(),request);
-      if(response.status===503||response.status===404) return pageResponse(workspacePage(path,'ページが見つかりません','管理ホームから目的の機能を選んでください。','<a href="/admin">管理ホームへ</a>'),request,404);
+      if(response.status===503||response.status===404) return pageResponse(workspacePage(path,'ページが見つかりません','上部のボタンから目的の機能を選んでください。','<a href="/admin/blog-create">制作・発信へ</a>'),request,404);
       if(response.status===200&&path.endsWith('content-studio.config.json')) {
         if(request.method==='HEAD') return response;
         const config=await response.json();config.adminUrl='/admin/blog-editor';return json(config);

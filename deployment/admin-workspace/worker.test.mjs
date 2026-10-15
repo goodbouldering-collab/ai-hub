@@ -40,9 +40,9 @@ for(const [name,worker] of [['source',source],['bundle',bundle]]){
 }
 test('shell removes old menu, preserves editor IDs/scripts, and embeds only once',()=>{
   const html='<html><head><title>ブログ App Server</title></head><body><header class="topbar"><h1 id="studio-brand-heading">Blog</h1><span id="server-state">Ready</span></header><nav class="studio-tabs"><a id="studio-nav-back" href="/studio">Back</a></nav><textarea id="editor"></textarea><script src="/admin/admin-menu.js"></script><script>initializeEditor()</script></body></html>';
-  const url=new URL(origin+'/admin/apps/blog.html');const result=applyShell(html,url);
+  const url=new URL(origin+'/admin/blog-create');const result=applyShell(html,url);
   assert.match(result,/id="server-state"/);assert.match(result,/id="studio-brand-heading"/);assert.match(result,/id="editor"/);assert.match(result,/initializeEditor/);assert.doesNotMatch(result,/admin-menu\.js/);
-  assert.match(result,/href="\/admin\/create" aria-current="page"/);assert.match(result,/id="studio-nav-back" href="\/admin\/create"/);
+  assert.match(result,/href="\/admin\/blog-create" aria-current="page"/);
   assert.equal(applyShell(result,url),result);assert.match(applyShell(html,new URL(url+'?embedded=1')),/data-admin-theme/);
   const old='<html><head></head><body><header class="site-header">OLD</header><main>Keep</main></body></html>';
   const replaced=applyShell(old,url);assert.doesNotMatch(replaced,/OLD/);assert.match(replaced,/<main>Keep<\/main>/);

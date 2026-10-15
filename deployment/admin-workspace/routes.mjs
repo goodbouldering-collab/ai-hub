@@ -7,22 +7,22 @@ export const ROUTES = Object.freeze([
   ['command-center','予定・指示','operations','command','/admin/command-center','dashboard'],
   ...[['calendar','カレンダー'],['tasks','タスク'],['businesses','事業一覧'],['directives','指示'],['studio','Codex連携'],['tools','検証・移行'],['trade','相場羅針盤'],['market','市場候補'],['screener','財務スクリーナー'],['security','銘柄詳細'],['trade-plan','取引プラン作成'],['trade-plans','登録プラン'],['trades','取引記録'],['market-sources','データ収集状況']].map(([view,title])=>[view,title,'operations','command','/admin/command-center/'+view,view]),
   ['gubble-sns','SNS分析','operations','static','/admin/gubble-sns'],
-  ['sns-cross-media-dashboard','媒体別の分析','operations','static','/admin/sns-cross-media-dashboard'],
+  ['sns-cross-media-dashboard','旧媒体ボード（設定・履歴）','operations','static','/admin/sns-cross-media-dashboard'],
   ['chat','AIに相談','operations','static','/admin/chat'],
   ['ops','運用記録・原文','materials','ops','/ops'],
-  ['prompts','プロンプト集','materials','ops','/ops/prompts'],
-  ['daily-operation','毎日の運営チェック','materials','document','/admin/materials/daily-operation'],
+    ['daily-operation','毎日の運営チェック','materials','document','/admin/materials/daily-operation'],
   ['publishing','ブログ・リール制作の進め方','materials','document','/admin/materials/publishing'],
   ['artwork','画像・資料の使い分け','materials','document','/admin/materials/artwork'],
   ['watch','収集記事','materials','watch','/watch'],
   ['migration','移行・接続状況','operations','migration','/admin/migration'],
-].map(([slug,title,group,kind,legacy,view])=>Object.freeze({path:'/admin/'+slug,title,group,kind,legacy,view})));
+].map(([slug,title,group,kind,legacy,view])=>Object.freeze({path:'/admin/'+slug,title,group,kind,legacy,view,archive:slug==='sns-cross-media-dashboard'})));
 
 export const routeAt = path => ROUTES.find(route=>route.path===path);
 const aliases = new Map(ROUTES.filter(r=>r.path!==r.legacy).map(r=>[r.legacy,r.path]));
-for(const path of ['/admin/blog','/admin/blog/generate','/admin/apps/blog']) aliases.set(path,'/admin/blog-create');
+for(const path of ['/admin/create','/admin/blog','/admin/blog/generate','/admin/apps/blog']) aliases.set(path,'/admin/blog-create');
 aliases.set('/admin/apps/reel','/admin/reel');
 aliases.set('/admin/docs','/admin/ops');
+for(const path of ['/admin/prompts','/ops/prompts']) aliases.set(path,'/admin/ops#sec-prompts');
 for(const path of ['/admin/index.html','/admin/hub.html','/admin/index','/admin/hub']) aliases.set(path,'/admin');
 for(const route of ROUTES.filter(r=>r.kind==='document')) aliases.set(route.legacy+'.md',route.path+'.md');
 
@@ -40,7 +40,8 @@ export function canonicalUrl(value, base='https://admin.invalid') {
     }
   }
   if(!target) return value;
-  return target+url.search+url.hash;
+  const destination=new URL(target,url.origin);
+  return destination.pathname+url.search+(url.hash||destination.hash);
 }
 
 export function rewriteNavigation(text, {studio=false}={}) {

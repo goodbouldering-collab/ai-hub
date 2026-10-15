@@ -1,11 +1,11 @@
 ---
 title: "今日のAIニュース4とCodex"
 date: "2026-08-21"
-date_modified: "2026-10-10"
+date_modified: "2026-10-16"
 content_series: codex-update-log
 source_period: "October 5–9, 2026"
-source_fingerprint: "1b7838fead7502d54cdae13e02c5f89ae7065b1f33a1d86ccddd6b1af05e61ed"
-source_release_tag: "rust-v0.162.1"
+source_fingerprint: "cebcf4fe9afd7f972630da69871a7989b47de4e2cb6dbe2b23b709518c7883e8"
+source_release_tag: "rust-v0.163.0"
 image: "/img/blog-codex-update-log-hero-20260830.png"
 image_alt: "巨大な水晶のAI脳を、10個の光るニュースホールドで登り、紙のヤギが見守る和紙の風景"
 hero_image: false
@@ -18,10 +18,10 @@ action: "使えそうな機能を1つ試す"
 ---
 
 <!-- CODEX_UPDATE_CURRENT:BEGIN -->
-<!-- source-fingerprint: 1b7838fead7502d54cdae13e02c5f89ae7065b1f33a1d86ccddd6b1af05e61ed -->
+<!-- source-fingerprint: cebcf4fe9afd7f972630da69871a7989b47de4e2cb6dbe2b23b709518c7883e8 -->
 <section class="codex-update-guide" aria-labelledby="codex-update-guide-title">
 <h2 id="codex-update-guide-title">Codex新機能と活用例</h2>
-<p class="codex-update-guide__date">更新日：<time datetime="2026-10-10">2026年10月10日</time></p>
+<p class="codex-update-guide__date">更新日：<time datetime="2026-10-16">2026年10月16日</time></p>
 </section>
 
 
@@ -30,12 +30,12 @@ action: "使えそうな機能を1つ試す"
 <span class="update-card__rank" aria-hidden="true">1</span>
 <div class="update-card__heading">
 <p class="update-card__eyebrow">CODEX</p>
-<h2 id="codex-feature-1-title" class="codex-feature-title"><span class="visually-hidden">1. </span>複数行の質問でも画面が落ちにくく</h2>
+<h2 id="codex-feature-1-title" class="codex-feature-title"><span class="visually-hidden">1. </span>設定を検索して変更する<span class="codex-feature-command"><code>/config</code></span></h2>
 </div></header>
 <div class="update-card__body">
-<p class="update-card__summary">非同期の質問が複数行のときに起きる画面クラッシュが修正され、改行とリンク先全体も保持されます。たとえば、講座資料の制作中に確認質問へ答えるなら以前表示が崩れた質問を再確認し、リンク先や改行が正しく読めるか確かめます。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
-<p class="update-card__context">Codex CLI 0.162.1の修正です。利用中の環境で動作を確認してください。</p>
-<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.162.1" target="_blank" rel="noopener">公式情報</a></p>
+<p class="update-card__summary">設定を分類横断で検索でき、すぐ反映できる項目と再起動が必要な項目を見分けられます。たとえば、講座準備で作業環境を整えるなら/configで必要な設定を探し、再起動の表示を確認して変更します。「/config」がOpenAI公式情報に掲載されていることを確認できます。</p>
+<p class="update-card__context">Codex CLI 0.163.0の更新です。利用中の環境で動作を確認してください。</p>
+<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.163.0" target="_blank" rel="noopener">公式情報</a></p>
 </div></section>
 
 <section class="codex-feature-card update-card" data-update-kind="codex" data-update-index="2" aria-labelledby="codex-feature-2-title">
@@ -43,12 +43,38 @@ action: "使えそうな機能を1つ試す"
 <span class="update-card__rank" aria-hidden="true">2</span>
 <div class="update-card__heading">
 <p class="update-card__eyebrow">CODEX</p>
-<h2 id="codex-feature-2-title" class="codex-feature-title"><span class="visually-hidden">2. </span>設定の違いによる起動失敗を修正</h2>
+<h2 id="codex-feature-2-title" class="codex-feature-title"><span class="visually-hidden">2. </span>返答の途中で追加指示を伝える</h2>
 </div></header>
 <div class="update-card__body">
-<p class="update-card__summary">動作中のバックグラウンドサーバーとCLIの既定設定の違いで起動に失敗する問題が修正されました。たとえば、地域企業のPCでCLIを起動し直すなら更新後に普段の起動手順を試し、作業を再開できるか確認します。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
-<p class="update-card__context">Codex CLI 0.162.1の修正です。利用中の環境で動作を確認してください。</p>
-<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.162.1" target="_blank" rel="noopener">公式情報</a></p>
+<p class="update-card__summary">返答中に追加指示を送って、その場で方向を修正できます。中断時は実行中のCode Modeと内部のツール呼び出しも停止します。たとえば、地域イベントの告知案を作成中に条件が変わったら新しい条件を追加で送り、以降の作業へ反映されるか確認します。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
+<p class="update-card__context">Codex CLI 0.163.0の更新です。利用中の環境で動作を確認してください。</p>
+<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.163.0" target="_blank" rel="noopener">公式情報</a></p>
+</div></section>
+
+<section class="codex-feature-card update-card" data-update-kind="codex" data-update-index="3" aria-labelledby="codex-feature-3-title">
+<header class="update-card__header">
+<span class="update-card__rank" aria-hidden="true">3</span>
+<div class="update-card__heading">
+<p class="update-card__eyebrow">CODEX</p>
+<h2 id="codex-feature-3-title" class="codex-feature-title"><span class="visually-hidden">3. </span>ショートカットの起点キーを設定する<span class="codex-feature-command"><code>/keymap</code></span></h2>
+</div></header>
+<div class="update-card__body">
+<p class="update-card__summary">ショートカットの起点キーを設定できます。既定はCtrl+Xで、候補表示は選択か取消まで残り、音声ミュートはF9になります。たとえば、学校のPCで操作を覚えるなら/keymapの設定と候補表示を見ながら、必要な操作を一つずつ試します。「/keymap」がOpenAI公式情報に掲載されていることを確認できます。</p>
+<p class="update-card__context">Codex CLI 0.163.0の更新です。利用中の環境で動作を確認してください。</p>
+<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.163.0" target="_blank" rel="noopener">公式情報</a></p>
+</div></section>
+
+<section class="codex-feature-card update-card" data-update-kind="codex" data-update-index="4" aria-labelledby="codex-feature-4-title">
+<header class="update-card__header">
+<span class="update-card__rank" aria-hidden="true">4</span>
+<div class="update-card__heading">
+<p class="update-card__eyebrow">CODEX</p>
+<h2 id="codex-feature-4-title" class="codex-feature-title"><span class="visually-hidden">4. </span>Windowsの貼り付けを改善する</h2>
+</div></header>
+<div class="update-card__body">
+<p class="update-card__summary">WindowsのCtrl+VとShift+Insertで、画像に加えて文字も貼り付けられるよう修正されました。たとえば、福祉施設の案内文を整えるなら個人情報を含まない例文で、文字の貼り付けと改行を確認します。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
+<p class="update-card__context">Codex CLI 0.163.0の更新です。利用中の環境で動作を確認してください。</p>
+<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.163.0" target="_blank" rel="noopener">公式情報</a></p>
 </div></section>
 
 ## 公式情報
@@ -60,6 +86,11 @@ action: "使えそうな機能を1つ試す"
 ## 過去のアップデート要約
 
 <!-- CODEX_UPDATE_ARCHIVE:BEGIN -->
+<!-- source-fingerprint: 1b7838fead7502d54cdae13e02c5f89ae7065b1f33a1d86ccddd6b1af05e61ed -->
+### 2026年10月10日確認：質問表示と起動の修正
+
+CLI 0.162.1で、複数行の確認質問による画面クラッシュと、バックグラウンドサーバーとの設定差による起動失敗の修正を紹介しました。
+
 <!-- source-fingerprint: c93ec4a5c3cb0f029e33c5e849767099d76fdb3bfc80e08041e1157f1299df45 -->
 ### 2026年10月9日確認：作業の分離とWindowsの改善
 

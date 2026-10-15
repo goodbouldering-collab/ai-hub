@@ -27,7 +27,8 @@ def verify(read):
     assert diagnoses.select_one('button.diagnose-open[aria-controls="diagnoseModal"]')
     assert feature.select_one('.tr-title').get_text() == '今日のAIニュース4とCodex'
     assert feature.select_one('a')['href'] == '/ai-news/'
-    assert not feature.select('img')
+    news_image = feature.select_one('img[src][alt]')
+    assert news_image, 'Preserve the published normal-article news image'
     rows = home.select('#blog .editorial-feed__row:not(.editorial-feed__news)')
     assert len(rows) == 3, 'Preserve the latest three blog articles'
     assert len(home.select('#blog .editorial-feed__row')) == 4
@@ -59,7 +60,8 @@ def verify(read):
     assert page.select_one('link[rel="canonical"]')["href"] == "https://aiclimb.aiclimb.workers.dev/ai-news/"
     assert len(page.select(".daily-ai-news__item")) == 4
     assert not page.select('main img, .news-thumbnail')
-    assert not blog.select('.editorial-feed__news img')
+    archive_image = blog.select_one('.editorial-feed__news img[src][alt]')
+    assert archive_image and archive_image['src'] == news_image['src'], 'Home and archive news images must match'
     assert not page.select_one("main > header .speaker-meta")
     assert page.select_one("#codex-update-guide-title").get_text() == "Codex新機能と活用例"
     assert ".codex-update-guide #codex-update-guide-title," in str(page)
@@ -71,7 +73,7 @@ def verify(read):
     assert page.select_one("#過去のアップデート要約")
     return {"diagnoses_in_hero": True, "news_pinned_in_blog": True, "home_entries": 4, "news_items": 4,
             "latest_blogs": 3, "archive_entries": len(blog.select('.editorial-feed__row')),
-            "ordinary_blog_images_preserved": True, "news_and_codex_images": False, "compact_courses": 7,
+            "ordinary_blog_images_preserved": True, "news_and_codex_images": False, "news_entry_images_preserved": True, "compact_courses": 7,
             "codex_blog_card_removed": True, "article_content_checks": True}
 
 

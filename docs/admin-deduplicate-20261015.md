@@ -19,6 +19,10 @@
 
 公開資産は `content/ai-news/release-baseline.json` の762資産を基準に管理用baselineへ同期し、全ハッシュ照合のうえ無変更で再配備する。変更する実行部分は管理Workerのみ。
 
-ローカル検証済み。公開工程は進行中。通常キー・外部API・保存先の既存未接続課題は継続し、メニュー整理の成功と実生成・実投稿の成功は区別する。
+本番公開・確認済み。PR [#185](https://github.com/goodbouldering-collab/ai-hub/pull/185)、公開SHA `d4c6dae91930f1ccb9d58f263f1416edb8146b40`、Cloudflare version `dbae80ea-a9db-4105-bc65-80712b4d7dec`。管理13件・Cloudflare7件・CI2件、762公開資産の全ハッシュ保持、45 HTTP/認証検査、認証済みChromeの実測390px/1440px・35画面ずつ計70画面に成功。工程検査 `DELIVERY_VERIFIED`。通常キー・外部API・保存先の既存未接続課題は継続し、メニュー整理の成功と実生成・実投稿の成功は区別する。
 
 プレビュー: http://127.0.0.1:4390/admin 。ローカル架空認証。親PID4392、保持期限2026-10-17 11:35:47 JST。PC停止・プロセス異常終了を除く。
+
+公開結果の証拠: [検査概要](admin-deduplicate-20261015/verification.json)。詳細は登録公開元 `tmp/delivery/20261015-admin-deduplicate/`。公開結果の追記は文書だけの変更で、管理Workerと公開資産は変更しない。
+
+Jevへの外部レビュー送信は、送信先と内容の具体的な承認がないため自動承認レビューに拒否された。外部送信を行わずローカル差分レビューと検証で完了。

@@ -16,10 +16,11 @@ for(const [name,worker] of [['source',source],['bundle',bundle]]){
       const r=await worker.fetch(new Request(origin+route.path,{headers:{cookie}}),env,ctx);assert.equal(r.status,200,route.path);
       assert.match(r.headers.get('cache-control'),/private, no-store/);
       const html=await r.text();
+      assert.match(html, /<\/header><nav class="workspace-actions"/, route.path+" menu precedes content");
       if(route.group==='operations') assert.match(html,/aria-label="運営・分析メニュー"/,route.path);
       if(route.kind==='command'){
         const section=operationSectionAt(route.path);
-        const nav=html.match(/<nav class="cc-local-nav"[\s\S]*?<\/nav>/)[0];
+        const nav=html.match(/<nav class="workspace-actions" aria-label="[^"]+の機能"[\s\S]*?<\/nav>/)[0];
         for(const item of ROUTES.filter(item=>item.group==='operations'&&!item.archive)) assert.equal(nav.includes('href="'+item.path+'"'),section.routes.includes(item),route.path+' '+item.path);
         assert.doesNotMatch(html,/<details class="cc-market-nav"/);
         assert.match(html,/id="cc-content"/);

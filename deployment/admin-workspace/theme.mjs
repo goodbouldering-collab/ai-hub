@@ -45,4 +45,7 @@ body[data-workspace-shell]>.blog-details>.api-key-panel{margin:0;border:0;border
 @media(max-width:1280px){body[data-workspace-shell]>.api-key-panel,body[data-workspace-shell]>.blog-details:has(>.api-key-panel){margin-inline:24px}}
 @media(max-width:720px){body[data-workspace-shell]>.api-key-panel,body[data-workspace-shell]>.blog-details:has(>.api-key-panel){margin:16px}body[data-workspace-shell] .api-key-panel{grid-template-columns:minmax(0,1fr);padding:20px;gap:24px}body[data-workspace-shell] .api-key-panel h2{font-size:20px}body[data-workspace-shell] .api-key-controls{padding:24px 0 0;border-left:0;border-top:1px solid #e7edf0}body[data-workspace-shell] .api-key-controls .actions{display:flex}body[data-workspace-shell] .api-key-controls button{flex:1}body[data-workspace-shell]>.blog-details:has(>.api-key-panel)>summary{padding:15px 20px}}
 @media(prefers-reduced-motion:reduce){body[data-workspace-shell] *{scroll-behavior:auto!important;transition:none!important}}
+body[data-workspace-shell]>.workspace-actions{box-sizing:border-box;width:100%;position:static;margin:0 auto}
+body[data-workspace-shell] .steps{position:static!important;top:auto!important}
+body[data-workspace-shell]>.workspace-actions+.workspace-actions{padding-top:8px}
 </style>`;

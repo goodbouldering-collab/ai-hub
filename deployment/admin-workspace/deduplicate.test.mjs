@@ -65,7 +65,7 @@ test('operations partition all 18 destinations and return to their category',()=
   for(const route of section.routes){
    assert.equal(operationSectionAt(route.path),section);
    const leaf=applyShell('<html><head></head><body><main id="existing-content">keep</main></body></html>',new URL('https://test.example'+route.path));
-   assert.ok(leaf.includes('← '+section.title));assert.match(leaf,/id="existing-content"/);
+   assert.ok(leaf.includes('href="'+section.path+'"'));assert.ok(leaf.indexOf('aria-label="'+section.title+'の機能"')<leaf.indexOf('<main'));assert.doesNotMatch(leaf, /class="workspace-return"/);assert.match(leaf,/id="existing-content"/);
   }
  }
  for(const path of actual) assert.ok(!landing.includes('href="'+path+'"'),path);

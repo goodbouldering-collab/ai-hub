@@ -18554,6 +18554,20 @@ body[data-workspace-shell]>.blog-details>.api-key-panel{margin:0;border:0;border
 body[data-workspace-shell]>.workspace-actions{box-sizing:border-box;width:100%;position:static;margin:0 auto}
 body[data-workspace-shell] .steps{position:static!important;top:auto!important}
 body[data-workspace-shell]>.workspace-actions+.workspace-actions{padding-top:8px}
+/* Three visible navigation levels: primary bar, category tabs, page buttons. */
+#workspace-header{background:#193e4e!important;border-bottom-color:#193e4e;color:#fff}
+#workspace-header a,#workspace-header .workspace-brand small{color:#fff}
+#workspace-header nav a,#workspace-header .workspace-tools a{background:transparent;border-color:#65818e;color:#fff}
+#workspace-header nav a:hover,#workspace-header .workspace-tools a:hover{background:#2c5364}
+#workspace-header nav a[aria-current]{background:#fff;color:#193e4e;border-color:#fff;box-shadow:none}
+body[data-workspace-shell]>.workspace-actions{width:calc(100% - 32px);max-width:1224px;margin:16px auto 0;padding:12px;background:#fff;border:1px solid #d5e1e7;border-radius:12px}
+body[data-workspace-shell]>.workspace-actions[aria-label="\u904B\u55B6\u30FB\u5206\u6790\u30E1\u30CB\u30E5\u30FC"]{background:#dfebf1;border-color:#bdcfd9;gap:6px}
+body[data-workspace-shell]>.workspace-actions[aria-label="\u904B\u55B6\u30FB\u5206\u6790\u30E1\u30CB\u30E5\u30FC"] .workspace-action{background:transparent;border-color:transparent;border-radius:7px;color:#294d60;font-size:14px}
+body[data-workspace-shell]>.workspace-actions[aria-label="\u904B\u55B6\u30FB\u5206\u6790\u30E1\u30CB\u30E5\u30FC"] .workspace-action--primary{background:#fff;border-color:#a7bfcc;color:#163e52;box-shadow:inset 0 -3px #347391}
+body[data-workspace-shell]>.workspace-actions:has(+.workspace-actions){border-radius:12px 12px 0 0}
+body[data-workspace-shell]>.workspace-actions+.workspace-actions{margin-top:0;padding:12px 16px;border-top:0;border-radius:0 0 12px 12px;border-left:4px solid #8bafc1}
+body[data-workspace-shell]>.workspace-actions+.workspace-actions .workspace-action{font-size:13px}
+@media(max-width:700px){body[data-workspace-shell]>.workspace-actions{width:calc(100% - 24px);margin-top:12px;padding:10px}body[data-workspace-shell]>.workspace-actions+.workspace-actions{margin-top:0;padding:10px}}
 </style>`;
 
 // deployment/admin-workspace/shell.mjs
@@ -18599,7 +18613,19 @@ html{scroll-padding-top:130px}body[data-workspace-shell]{padding-top:0!important
 body[data-workspace-shell] .topbar{position:static!important;top:auto!important}body[data-workspace-shell] .studio-tabs{position:static}body[data-workspace-shell] .steps{top:115px}
 @media(max-width:900px){#workspace-header .workspace-bar{display:grid;grid-template-columns:1fr auto;gap:8px 12px;padding:10px 16px}#workspace-header nav{grid-column:1/-1;grid-row:2;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:3px;width:100%}#workspace-header nav a{text-align:center;padding:10px 3px;font-size:13px;white-space:normal}#workspace-header .workspace-brand{font-size:20px}#workspace-header .workspace-tools{gap:12px;font-size:11px}}
 #workspace-header nav a{border:1px solid #b6cbd7;background:#fff}#workspace-header .workspace-tools a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 12px;border:1px solid #b6cbd7;border-radius:8px;background:#fff}#workspace-header .workspace-tools{gap:8px}
-</style>`;
+</style><script data-workspace-navigation>
+// Keep drafts and scroll position when selecting the page already open.
+document.addEventListener('click',function(event){
+  if(event.button!==0||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;
+  const link=event.target.closest?.('#workspace-header a,.workspace-actions a');
+  if(!link||link.target||link.hasAttribute('download'))return;
+  const destination=new URL(link.href,location.href);
+  if(destination.origin===location.origin&&destination.pathname===location.pathname&&!destination.hash&&(!destination.search||destination.search===location.search)){
+    event.preventDefault();
+    event.stopImmediatePropagation();
+  }
+},true);
+</script>`;
 function applyShell(html, url) {
   html = rewriteNavigation(html);
   html = html.replace("REEL APP SERVER", "AI\u76F8\u8AC7").replace("\u4E8B\u696D\u5225\u30EA\u30FC\u30EB\u5236\u4F5C", "AI\u76F8\u8AC7 \u30EA\u30FC\u30EB\u5236\u4F5C").replace("\u2699\uFE0F OPS \u2014 AI\u30B9\u30DA\u30B7\u30E3\u30EA\u30B9\u30C8\u7BA1\u7406\u672C\u90E8", "\u904B\u7528\u8A18\u9332\u30FB\u30D7\u30ED\u30F3\u30D7\u30C8");

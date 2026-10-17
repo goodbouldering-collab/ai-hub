@@ -48,7 +48,19 @@ html{scroll-padding-top:130px}body[data-workspace-shell]{padding-top:0!important
 body[data-workspace-shell] .topbar{position:static!important;top:auto!important}body[data-workspace-shell] .studio-tabs{position:static}body[data-workspace-shell] .steps{top:115px}
 @media(max-width:900px){#workspace-header .workspace-bar{display:grid;grid-template-columns:1fr auto;gap:8px 12px;padding:10px 16px}#workspace-header nav{grid-column:1/-1;grid-row:2;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:3px;width:100%}#workspace-header nav a{text-align:center;padding:10px 3px;font-size:13px;white-space:normal}#workspace-header .workspace-brand{font-size:20px}#workspace-header .workspace-tools{gap:12px;font-size:11px}}
 #workspace-header nav a{border:1px solid #b6cbd7;background:#fff}#workspace-header .workspace-tools a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 12px;border:1px solid #b6cbd7;border-radius:8px;background:#fff}#workspace-header .workspace-tools{gap:8px}
-</style>`;
+</style><script data-workspace-navigation>
+// Keep drafts and scroll position when selecting the page already open.
+document.addEventListener('click',function(event){
+  if(event.button!==0||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;
+  const link=event.target.closest?.('#workspace-header a,.workspace-actions a');
+  if(!link||link.target||link.hasAttribute('download'))return;
+  const destination=new URL(link.href,location.href);
+  if(destination.origin===location.origin&&destination.pathname===location.pathname&&!destination.hash&&(!destination.search||destination.search===location.search)){
+    event.preventDefault();
+    event.stopImmediatePropagation();
+  }
+},true);
+</script>`;
 
 export function applyShell(html, url) {
   html=rewriteNavigation(html);

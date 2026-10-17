@@ -48,4 +48,18 @@ body[data-workspace-shell]>.blog-details>.api-key-panel{margin:0;border:0;border
 body[data-workspace-shell]>.workspace-actions{box-sizing:border-box;width:100%;position:static;margin:0 auto}
 body[data-workspace-shell] .steps{position:static!important;top:auto!important}
 body[data-workspace-shell]>.workspace-actions+.workspace-actions{padding-top:8px}
+/* Three visible navigation levels: primary bar, category tabs, page buttons. */
+#workspace-header{background:#193e4e!important;border-bottom-color:#193e4e;color:#fff}
+#workspace-header a,#workspace-header .workspace-brand small{color:#fff}
+#workspace-header nav a,#workspace-header .workspace-tools a{background:transparent;border-color:#65818e;color:#fff}
+#workspace-header nav a:hover,#workspace-header .workspace-tools a:hover{background:#2c5364}
+#workspace-header nav a[aria-current]{background:#fff;color:#193e4e;border-color:#fff;box-shadow:none}
+body[data-workspace-shell]>.workspace-actions{width:calc(100% - 32px);max-width:1224px;margin:16px auto 0;padding:12px;background:#fff;border:1px solid #d5e1e7;border-radius:12px}
+body[data-workspace-shell]>.workspace-actions[aria-label="運営・分析メニュー"]{background:#dfebf1;border-color:#bdcfd9;gap:6px}
+body[data-workspace-shell]>.workspace-actions[aria-label="運営・分析メニュー"] .workspace-action{background:transparent;border-color:transparent;border-radius:7px;color:#294d60;font-size:14px}
+body[data-workspace-shell]>.workspace-actions[aria-label="運営・分析メニュー"] .workspace-action--primary{background:#fff;border-color:#a7bfcc;color:#163e52;box-shadow:inset 0 -3px #347391}
+body[data-workspace-shell]>.workspace-actions:has(+.workspace-actions){border-radius:12px 12px 0 0}
+body[data-workspace-shell]>.workspace-actions+.workspace-actions{margin-top:0;padding:12px 16px;border-top:0;border-radius:0 0 12px 12px;border-left:4px solid #8bafc1}
+body[data-workspace-shell]>.workspace-actions+.workspace-actions .workspace-action{font-size:13px}
+@media(max-width:700px){body[data-workspace-shell]>.workspace-actions{width:calc(100% - 24px);margin-top:12px;padding:10px}body[data-workspace-shell]>.workspace-actions+.workspace-actions{margin-top:0;padding:10px}}
 </style>`;

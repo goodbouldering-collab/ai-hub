@@ -311,6 +311,6 @@ def integrate_home_news(document: str) -> str:
         raise ValueError('Expected one blog list')
     insertion = document.index('>', start + lists[0][0]) + 1
     config = _config()
-    row = _row(_news_post(published, config), config, news=True, include_summary=False)
+    row = _row(_news_post(published, config), config, news=True, include_summary=True)
     row = row.replace('<li ', f'<li id="ai-news" data-news-date="{published}" ', 1)
     return document[:insertion] + row + document[insertion:]

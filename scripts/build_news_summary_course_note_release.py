@@ -21,7 +21,7 @@ def transform(html):
                 assert node.get('timeRequired') in ('PT1H', 'PT2H')
                 node['timeRequired'] = 'PT2H'
         return match[1] + json.dumps(data, ensure_ascii=False) + match[3]
-    return re.sub(r"(<script type=['\"]application/ld\+json['\"]>)(.*?)(</script>)", fix_schema, html, flags=re.S)
+    return re.sub(r"(<script\b[^>]*type=['\"]application/ld\+json['\"][^>]*>)(.*?)(</script>)", fix_schema, html, flags=re.S)
 
 def build(baseline,output,sha):
     contract=json.loads((ROOT/'deployment/news-summary-course-note/baseline.json').read_text(encoding='utf8'))

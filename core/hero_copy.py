@@ -2,8 +2,8 @@
 import re
 
 TITLE = '彦根で使えるAIを学ぶ'
-SUBTITLE = 'AIエージェントはまだ6%'
-TAGLINE = '差をつけるなら今'
+SUBTITLE = 'AIエージェント動いてますか？'
+TAGLINE = '普及率6%の今がチャンス'
 BENEFIT = 'あなたの経験がAIで拡張できる'
 CONCERN = 'でも、なんかうまく使えてないかも・・・'
 STYLE = '''<style id="hero-copy-style">

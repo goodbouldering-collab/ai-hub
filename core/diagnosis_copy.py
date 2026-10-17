@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 from core.editorial_feed import _ElementSpans
 from core.glass_hero import apply_glass_hero
 
-PROMPTS = {'readiness-guide-title': 'ほんとにAI使えてる？', 'seo-llmo-guide-title': 'AIに表示されてる？'}
+PROMPTS = {'readiness-guide-title': '「AI使えてるレベル」がわかる', 'seo-llmo-guide-title': '「URL入力だけ」3秒でわかる'}
 STYLE = '''<style id="diagnosis-copy-style">
 body.studio-theme.studio-editorial.studio-home #top .focus-actions{gap:0!important;margin-top:0!important}
 body.studio-editorial.studio-home .diagnosis-guide-row{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr))!important;gap:6px!important;box-sizing:border-box;max-width:1160px;margin:12px auto!important;padding:0 24px!important;background:none!important;border:0!important}
@@ -39,13 +39,13 @@ def _icon(paths):
 def _buttons():
     items = [
         ('button', 'type="button" aria-controls="diagnoseModal" aria-haspopup="dialog"',
-         ' diagnosis-action--flow diagnose-open', '何からはじめれば？', 'どの講習を選べば？',
+         ' diagnosis-action--flow diagnose-open', '「AI学習」の始め方がわかる', 'どの講習を選べばいい？',
          '<path d="M4 5h6v5H4zM14 14h6v5h-6zM7 10v6h7M10 7h7v7"/>'),
         ('a', 'href="/seo-llmo-diagnosis/"', ' diagnosis-action--site',
-         PROMPTS['seo-llmo-guide-title'], 'サイト診断',
+         PROMPTS['seo-llmo-guide-title'], 'サイトAI表示診断',
          '<rect x="3" y="3" width="18" height="13" rx="2"/><path d="M8 21h8M12 16v5"/><circle cx="11" cy="9" r="3"/><path d="m13 11 3 3"/>'),
         ('a', 'href="/ai-agent-readiness/"', '',
-         PROMPTS['readiness-guide-title'], 'AI実力診断',
+         PROMPTS['readiness-guide-title'], 'あなたのAI実力診断',
          '<path d="M4 20h16M6 16v-4M12 16V8M18 16V4M4 7l5-3 4 1 5-3"/>'),
     ]
     result = '<div id="diagnosis-start" class="diagnosis-guide-row" role="group" aria-label="自分に合う入口を選ぶ">'

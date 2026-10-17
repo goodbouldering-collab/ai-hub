@@ -320,7 +320,7 @@ def _build_jsonld_website() -> str:
             "@id": SITE_URL + "/#course-ai-individual",
             "@type": "Course",
             "testimonial_key": "ai-consultation",
-            "timeRequired": "PT1H",
+            "timeRequired": "PT2H",
             "courseMode": ["onsite", "online"],
             "inLanguage": "ja",
             "teaches": [
@@ -12494,7 +12494,7 @@ def _render_sticky_cta() -> str:
     """モバイルでスクロール後に現れる、個別講習と基本講習の固定CTA。"""
     return (
         "<nav class='sticky-cta' id='sticky-cta' aria-label='AI個別相談とAIエージェント講習の固定CTA' aria-hidden='true'>"
-        f"<a class='sticky-cta-btn sticky-cta-btn--consult' href='{INDIVIDUAL_COURSE_BOOK_URL}' target='_blank' rel='noopener'><span>AI個別相談</span><small>120分・5,500円</small></a>"
+        f"<a class='sticky-cta-btn sticky-cta-btn--consult' href='{INDIVIDUAL_COURSE_BOOK_URL}' target='_blank' rel='noopener'><span>AI個別相談</span><small>120分・8,800円</small></a>"
         f"<a class='sticky-cta-btn sticky-cta-btn--agent' href='{AI_AGENT_COURSE_URL}' target='_blank' rel='noopener'><span>AIエージェント講習</span><small>120分・5,500円</small></a>"
         "</nav>"
     )

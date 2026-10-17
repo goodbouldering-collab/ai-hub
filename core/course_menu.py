@@ -5,11 +5,20 @@ from core.editorial_feed import _ElementSpans
 from core.reel_course import apply_reel_course
 from core.square_menu import apply_square_menu
 
-NOTICE = (
-    "理解度やご希望の内容によって、必要な時間は変わります。通常は2〜3時間が目安です。"
-    "当日の予定に余裕がある場合は、ご相談のうえ時間を延長して進められます。"
-    "表示料金はそれぞれの基本時間の料金です。"
-)
+NOTICE = "内容により2〜3時間が目安。延長は当日の空き状況に応じて相談可。表示料金は基本時間分です。"
+
+def compact_time_note(document: str) -> str:
+    spans = _ElementSpans(document, element_id='course-time-note').spans
+    if len(spans) != 1:
+        raise ValueError('Expected one course time note')
+    start, end = spans[0]
+    note = f'<aside class="course-time-note" id="course-time-note" aria-label="受講時間の目安"><p>{NOTICE}</p></aside>'
+    document = document[:start] + note + document[end:]
+    style = '<style id="compact-course-time-note-style">#packages #course-time-note{margin:12px 0 28px;padding:0 4px;border:0;border-radius:0;background:none;line-height:1.7}#packages #course-time-note p{font-size:13px;color:#52686b}</style>'
+    import re
+    document = re.sub(r'<style id="compact-course-time-note-style">.*?</style>', '', document, flags=re.S)
+    return document.replace('</head>', style + '</head>', 1)
+
 CSS = """
 #packages .course-menu-group-title{margin:28px 0 16px;font-size:clamp(20px,2.5vw,27px);line-height:1.5;color:#263d4a}
 body #packages .compact-course-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:24px!important;align-items:stretch!important;max-width:none!important}
@@ -44,7 +53,7 @@ def apply_course_menu(document: str) -> str:
     document = document.replace("個別講習を予約", "個別相談を予約")
     document = document.replace(">個別講習<", ">個別相談<")
     if 'id="course-time-note"' in document:
-        return apply_square_menu(apply_reel_course(_salon_last(document)))
+        return compact_time_note(apply_square_menu(apply_reel_course(_salon_last(document))))
     pattern = r"<div class=['\"]compact-course-grid['\"]>(.*?)</article></div>"
     match = re.search(pattern, document, re.S)
     if not match:
@@ -75,4 +84,4 @@ def apply_course_menu(document: str) -> str:
     document = document[:match.start()] + replacement + document[match.end():]
     if '</head>' in document:
         document = document.replace('</head>', f'<style id="course-menu-style">{CSS}</style></head>', 1)
-    return apply_square_menu(apply_reel_course(_salon_last(document)))
+    return compact_time_note(apply_square_menu(apply_reel_course(_salon_last(document))))

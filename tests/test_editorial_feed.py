@@ -59,7 +59,8 @@ class EditorialFeedTests(unittest.TestCase):
         self.assertEqual([row['href'] for row in rows],
                          ['/ai-news/', '/blog/newest.html', '/blog/older.html', '/blog/oldest.html'])
         self.assertEqual(len(soup.select('#blog img')), 4)
-        self.assertFalse(soup.select('#blog .tr-sum'))
+        self.assertEqual(len(soup.select('#blog .tr-sum')), 1)
+        self.assertIn('Codex', soup.select_one('#ai-news .tr-sum').get_text())
         self.assertNotIn('仕事を少し楽にする実践メモ。', str(soup.select_one('#blog')))
         self.assertEqual(soup.select_one('#ai-news time')['datetime'], '2026-10-11')
         self.assertEqual(soup.select_one('#blog .editorial-feed__more')['href'], '/blog/')

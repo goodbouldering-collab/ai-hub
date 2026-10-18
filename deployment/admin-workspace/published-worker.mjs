@@ -18439,6 +18439,7 @@ var worker_default = {
 
 // deployment/admin-workspace/routes.mjs
 var ROUTES = Object.freeze([
+  ["material-upload", "\u8CC7\u6599\u30A2\u30C3\u30D7\u30ED\u30FC\u30C9", "materials", "upload", "/admin/material-upload"],
   ["blog-create", "\u30D6\u30ED\u30B0\u5236\u4F5C", "create", "studio", "/admin/apps/blog.html"],
   ["reel", "\u30EA\u30FC\u30EB\u5236\u4F5C", "create", "studio", "/admin/apps/reel.html"],
   ...[["articles", "\u8A18\u4E8B\u4E00\u89A7"], ["editor", "\u8A18\u4E8B\u7DE8\u96C6"], ["publish", "\u516C\u958B\u78BA\u8A8D"], ["status", "\u63A5\u7D9A\u72B6\u614B"], ["settings", "\u30D6\u30ED\u30B0\u8A2D\u5B9A"]].map(([view, title]) => ["blog-" + view, title, "create", "blog", "/admin/blog/" + view, view]),
@@ -18572,9 +18573,17 @@ body[data-workspace-shell]>.workspace-actions+.workspace-actions .workspace-acti
 
 // deployment/admin-workspace/shell.mjs
 var MENU = Object.freeze([
-  { href: "/admin/blog-create", label: "\u5236\u4F5C\u30FB\u767A\u4FE1", key: "create" },
-  { href: "/admin/materials", label: "\u5185\u90E8\u8CC7\u6599", key: "materials" },
-  { href: "/admin/operations", label: "\u904B\u55B6\u30FB\u5206\u6790", key: "operations" }
+  { href: "/admin/blog-create", label: "\u30D6\u30ED\u30B0\u3092\u66F8\u304F" },
+  { href: "/admin/reel", label: "\u30EA\u30FC\u30EB\u3092\u4F5C\u308B" },
+  { href: "/admin/material-upload", label: "\u5185\u90E8\u8CC7\u6599" },
+  { href: "https://squareup.com/dashboard/customers", label: "\u9867\u5BA2\u60C5\u5831" },
+  { href: "https://squareup.com/dashboard/appointments", label: "\u4E88\u7D04\u72B6\u6CC1" },
+  { href: "https://squareup.com/dashboard/items/library", label: "\u30E1\u30CB\u30E5\u30FC\u7DE8\u96C6" },
+  { href: "https://squareup.com/dashboard/online", label: "\u5546\u54C1\u30B5\u30A4\u30C8\u8A2D\u5B9A" },
+  { href: "https://analytics.google.com/", label: "GA4" },
+  { href: "https://search.google.com/search-console?resource_id=https%3A%2F%2Faiclimb.aiclimb.workers.dev%2F", label: "\u30B5\u30C1\u30B3" },
+  { href: "https://business.google.com/locations", label: "\u30DE\u30A4\u30D3\u30B8\u30CD\u30B9" },
+  { href: "/admin/operations", label: "\u305D\u306E\u4ED6" }
 ]);
 function activeKey(path) {
   const route = routeAt(path);
@@ -18587,7 +18596,7 @@ function activeKey(path) {
 }
 function header(path) {
   const active = activeKey(path);
-  return `<header id="workspace-header"><div class="workspace-bar"><a class="workspace-brand" href="/admin/blog-create">AI\u76F8\u8AC7<small>\u7BA1\u7406</small></a><nav aria-label="\u7BA1\u7406\u30E1\u30CB\u30E5\u30FC">${MENU.map((item) => `<a href="${item.href}"${active === item.key ? ' aria-current="page"' : ""}>${item.label}</a>`).join("")}</nav><div class="workspace-tools"><a href="/" target="_blank" rel="noopener">\u516C\u958B\u30B5\u30A4\u30C8 \u2197</a><a href="/admin/logout">\u30ED\u30B0\u30A2\u30A6\u30C8</a></div></div></header>`;
+  return `<header id="workspace-header"><div class="workspace-bar"><a class="workspace-brand" href="/admin/blog-create">AI\u76F8\u8AC7<small>\u7BA1\u7406</small></a><nav aria-label="\u7BA1\u7406\u30E1\u30CB\u30E5\u30FC">${MENU.map((item) => `<a href="${item.href}"${path === item.href ? ' aria-current="page"' : ""}${item.href.startsWith("https:") ? ' target="_blank" rel="noopener noreferrer"' : ""}>${item.label}</a>`).join("")}</nav><div class="workspace-tools"><a href="/" target="_blank" rel="noopener">\u516C\u958B\u30B5\u30A4\u30C8 \u2197</a><a href="/admin/logout">\u30ED\u30B0\u30A2\u30A6\u30C8</a></div></div></header>`;
 }
 function creationNavigation(path) {
   return `<nav class="workspace-actions" aria-label="\u5236\u4F5C\u30FB\u767A\u4FE1\u30E1\u30CB\u30E5\u30FC">${ROUTES.filter((r) => r.group === "create").map((r) => `<a class="workspace-action${r.path === path ? " workspace-action--primary" : ""}" href="${r.path}"${r.path === path ? ' aria-current="page"' : ""}>${r.title}</a>`).join("")}</nav>`;
@@ -18613,6 +18622,7 @@ html{scroll-padding-top:130px}body[data-workspace-shell]{padding-top:0!important
 body[data-workspace-shell] .topbar{position:static!important;top:auto!important}body[data-workspace-shell] .studio-tabs{position:static}body[data-workspace-shell] .steps{top:115px}
 @media(max-width:900px){#workspace-header .workspace-bar{display:grid;grid-template-columns:1fr auto;gap:8px 12px;padding:10px 16px}#workspace-header nav{grid-column:1/-1;grid-row:2;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:3px;width:100%}#workspace-header nav a{text-align:center;padding:10px 3px;font-size:13px;white-space:normal}#workspace-header .workspace-brand{font-size:20px}#workspace-header .workspace-tools{gap:12px;font-size:11px}}
 #workspace-header nav a{border:1px solid #b6cbd7;background:#fff}#workspace-header .workspace-tools a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 12px;border:1px solid #b6cbd7;border-radius:8px;background:#fff}#workspace-header .workspace-tools{gap:8px}
+#workspace-header{position:relative!important}#workspace-header .workspace-bar{display:grid;grid-template-columns:1fr auto;gap:12px}#workspace-header nav{grid-column:1/-1;grid-row:2;display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));width:100%;gap:8px}#workspace-header nav a{text-align:center;white-space:normal;padding:11px 8px}#workspace-header .workspace-tools{grid-column:2;grid-row:1}#workspace-header .workspace-brand{grid-column:1;grid-row:1}@media(max-width:600px){#workspace-header nav{grid-template-columns:repeat(2,minmax(0,1fr))}#workspace-header .workspace-bar{padding:12px}#workspace-header nav a{font-size:13px}}#material-file{max-width:100%}#material-upload button,#more-materials{font:inherit;cursor:pointer;min-height:44px}
 </style><script data-workspace-navigation>
 // Keep drafts and scroll position when selecting the page already open.
 document.addEventListener('click',function(event){
@@ -18654,66 +18664,6 @@ function applyShell(html, url) {
   if (url.pathname === "/admin/sns-cross-media-dashboard") html = html.replace("</header>", '</header><p class="workspace-return">\u65E7\u5A92\u4F53\u30DC\u30FC\u30C9\uFF1A\u4FDD\u5B58\u6E08\u307F\u8A2D\u5B9A\u30FB\u5C65\u6B74\u306E\u53C2\u7167\u7528\u3002<a href="/admin/gubble-sns">SNS\u5206\u6790\u3078</a></p>');
   html = html.replace("</header>", "</header>" + workspaceNavigation(url.pathname));
   return html.replace("</head>", SHELL_STYLE + THEME + "</head>").replace(/\uE000WORKSPACE(\d+)\uE001/g, (_, index) => raw[Number(index)]);
-}
-
-// deployment/admin-workspace/pages.mjs
-var DOCUMENTS = Object.freeze([
-  { slug: "daily-operation", category: "\u904B\u55B6", title: "\u6BCE\u65E5\u306E\u904B\u55B6\u30C1\u30A7\u30C3\u30AF", description: "\u4E88\u5B9A\u306E\u78BA\u8A8D\u304B\u3089\u516C\u958B\u5F8C\u306E\u78BA\u8A8D\u307E\u3067\u3002", sections: [
-    ["\u6700\u521D\u306B\u898B\u308B", "\u5B9F\u884C\u6307\u4EE4\u5BA4\u3067\u4E88\u5B9A\u3068\u6307\u793A\u3092\u78BA\u8A8D\u3057\u3001\u4ECA\u65E5\u9032\u3081\u308B\u4ED5\u4E8B\u3092\u4E00\u3064\u6C7A\u3081\u307E\u3059\u3002\u516C\u958B\u30B5\u30A4\u30C8\u306E\u8B1B\u7FD2\u6848\u5185\u30FB\u30D6\u30ED\u30B0\u30FB\u7533\u8FBC\u30EA\u30F3\u30AF\u306B\u66F4\u65B0\u304C\u5FC5\u8981\u304B\u78BA\u8A8D\u3057\u307E\u3059\u3002"],
-    ["\u5236\u4F5C\u3059\u308B", "\u300C\u5236\u4F5C\u30FB\u767A\u4FE1\u300D\u304B\u3089\u30D6\u30ED\u30B0\u307E\u305F\u306F\u30EA\u30FC\u30EB\u3092\u958B\u304D\u307E\u3059\u3002\u5143\u8CC7\u6599\u3001\u5199\u771F\u3001\u4F1D\u3048\u305F\u3044\u4E8B\u5B9F\u3092\u305D\u308D\u3048\u3001\u5BFE\u8C61\u8005\u3068\u6B21\u306E\u884C\u52D5\u3092\u6C7A\u3081\u3066\u304B\u3089\u4F5C\u308A\u307E\u3059\u3002"],
-    ["\u516C\u958B\u3092\u78BA\u8A8D\u3059\u308B", "\u4E0B\u66F8\u304D\u306E\u5B8C\u6210\u3068\u516C\u958B\u5B8C\u4E86\u306F\u5225\u3067\u3059\u3002\u516C\u958B\u5148\u30FB\u6700\u7D42\u5185\u5BB9\u3092\u78BA\u8A8D\u3057\u3066\u304B\u3089\u53CD\u6620\u3057\u3001\u5B9F\u969B\u306EURL\u3001\u753B\u50CF\u3001\u30EA\u30F3\u30AF\u3092PC\u3068\u30B9\u30DE\u30FC\u30C8\u30D5\u30A9\u30F3\u3067\u78BA\u304B\u3081\u307E\u3059\u3002"],
-    ["\u6B21\u306B\u6B8B\u3059", "\u4F7F\u3063\u305F\u7D20\u6750\u3001\u5B8C\u6210\u539F\u7A3F\u3001\u516C\u958BURL\u3001\u6B8B\u3063\u3066\u3044\u308B\u4F5C\u696D\u3092\u8A18\u9332\u3057\u307E\u3059\u3002\u554F\u3044\u5408\u308F\u305B\u3084\u4E88\u7D04\u306E\u500B\u4EBA\u60C5\u5831\u306F\u767A\u4FE1\u7528\u306E\u539F\u7A3F\u3084\u753B\u50CF\u306B\u6DF7\u305C\u307E\u305B\u3093\u3002"]
-  ] },
-  { slug: "publishing", category: "\u5236\u4F5C", title: "\u30D6\u30ED\u30B0\u30FB\u30EA\u30FC\u30EB\u5236\u4F5C\u306E\u9032\u3081\u65B9", description: "\u7D20\u6750\u3092\u305D\u308D\u3048\u3001\u4E0B\u66F8\u304D\u30FB\u78BA\u8A8D\u30FB\u516C\u958B\u3078\u3002", sections: [
-    ["\u4F1D\u3048\u308B\u3053\u3068\u3092\u4E00\u3064\u306B\u3059\u308B", "\u8AB0\u306E\u3001\u3069\u3093\u306A\u56F0\u308A\u3054\u3068\u3092\u89E3\u6C7A\u3059\u308B\u304B\u3092\u6C7A\u3081\u307E\u3059\u3002\u30BF\u30A4\u30C8\u30EB\u3001\u898B\u51FA\u3057\u3001\u753B\u50CF\u306F\u540C\u3058\u4E3B\u984C\u306B\u305D\u308D\u3048\u307E\u3059\u3002\u8AAD\u307F\u7D42\u3048\u305F\u4EBA\u306B\u3057\u3066\u307B\u3057\u3044\u884C\u52D5\u3092\u4E00\u3064\u9078\u3073\u307E\u3059\u3002"],
-    ["\u30D6\u30ED\u30B0\u3092\u4F5C\u308B", "\u30D6\u30ED\u30B0\u5236\u4F5C\u3067\u5143\u8CC7\u6599\u3068\u30C6\u30FC\u30DE\u3092\u5165\u529B\u3057\u3001\u63D0\u6848\u304B\u3089\u8A18\u4E8B\u3092\u6574\u3048\u307E\u3059\u3002\u56FA\u6709\u540D\u8A5E\u3001\u65E5\u4ED8\u3001\u6570\u5B57\u3001\u51FA\u5178\u3001\u7533\u8FBC\u5148\u3092\u539F\u672C\u3068\u7167\u5408\u3057\u307E\u3059\u3002\u65E2\u5B58\u8A18\u4E8B\u306E\u7DE8\u96C6\u30FB\u516C\u958B\u78BA\u8A8D\u306F\u30D6\u30ED\u30B0\u7BA1\u7406\u304B\u3089\u884C\u3044\u307E\u3059\u3002"],
-    ["\u30EA\u30FC\u30EB\u3092\u4F5C\u308B", "\u7E26\u52D5\u753B\u306E\u5404\u5834\u9762\u306B\u30E1\u30C3\u30BB\u30FC\u30B8\u3092\u4E00\u3064\u7F6E\u304D\u307E\u3059\u3002\u5C0F\u3055\u306A\u753B\u9762\u3067\u6587\u5B57\u3092\u8AAD\u3081\u308B\u304B\u3001\u97F3\u58F0\u3068\u8868\u793A\u6642\u9593\u304C\u5408\u3046\u304B\u3001\u30AB\u30D0\u30FC\u3068\u6295\u7A3F\u6587\u304C\u4E00\u81F4\u3059\u308B\u304B\u3092\u78BA\u8A8D\u3057\u307E\u3059\u3002"],
-    ["\u516C\u958B\u524D\u306E\u78BA\u8A8D", "\u6700\u7D42\u539F\u7A3F\u3068\u6295\u7A3F\u5148\u306E\u4E8B\u696D\u30FB\u30A2\u30AB\u30A6\u30F3\u30C8\u3092\u78BA\u8A8D\u3057\u307E\u3059\u3002SNS\u3078\u306E\u6295\u7A3F\u306F\u3001\u4E0B\u66F8\u304D\u3092\u4F5C\u3063\u305F\u3060\u3051\u3067\u5B9F\u65BD\u6E08\u307F\u3068\u3057\u307E\u305B\u3093\u3002\u9001\u4FE1\u7D50\u679C\u304C\u4E0D\u660E\u306A\u3068\u304D\u306F\u5C65\u6B74\u3092\u78BA\u8A8D\u3057\u3001\u91CD\u8907\u6295\u7A3F\u3092\u9632\u304E\u307E\u3059\u3002"]
-  ] },
-  { slug: "artwork", category: "\u7D20\u6750", title: "\u753B\u50CF\u30FB\u8CC7\u6599\u306E\u4F7F\u3044\u5206\u3051", description: "\u751F\u6210\u753B\u50CF\u3001\u5B9F\u7E3E\u753B\u9762\u3001\u8B1B\u5E2B\u5199\u771F\u3092\u4F7F\u3044\u5206\u3051\u308B\u3002", sections: [
-    ["\u30B5\u30A4\u30C8\u306E\u6848\u5185\u753B\u50CF", "2026\u5E7410\u670811\u65E5\u306E\u6848\u5185\u753B\u50CF\u306F\u3001\u843D\u3061\u7740\u3044\u305F\u5199\u5B9F\u8868\u73FE\u306E\u751F\u6210\u753B\u50CF\u3067\u3059\u3002\u4EBA\u7269\u3084\u5834\u9762\u306F\u67B6\u7A7A\u306E\u30A4\u30E1\u30FC\u30B8\u3067\u3059\u3002\u5B9F\u969B\u306E\u8B1B\u5E2B\u30FB\u9867\u5BA2\u30FB\u652F\u63F4\u5B9F\u7E3E\u306E\u5199\u771F\u3068\u3057\u3066\u6271\u3044\u307E\u305B\u3093\u3002"],
-    ["\u4E8B\u5B9F\u3092\u4F1D\u3048\u308B\u753B\u50CF", "\u8B1B\u5E2B\u7D39\u4ECB\u306B\u306F\u672C\u4EBA\u5199\u771F\u3001\u5236\u4F5C\u5B9F\u7E3E\u306B\u306F\u5B9F\u969B\u306E\u30B5\u30A4\u30C8\u753B\u9762\u3001\u8A18\u4E8B\u306E\u6839\u62E0\u306B\u306F\u78BA\u8A8D\u3067\u304D\u308B\u8CC7\u6599\u3092\u4F7F\u3044\u307E\u3059\u3002\u96F0\u56F2\u6C17\u3092\u305D\u308D\u3048\u308B\u305F\u3081\u306B\u8A3C\u62E0\u753B\u50CF\u3092\u751F\u6210\u753B\u50CF\u3078\u7F6E\u304D\u63DB\u3048\u307E\u305B\u3093\u3002"],
-    ["\u8CC7\u6599\u3092\u6E21\u3059", "\u53D7\u8B1B\u8005\u5411\u3051\u306B\u306F\u516C\u958B\u306E\u53D7\u8B1B\u8CC7\u6599\u3092\u6848\u5185\u3057\u3001\u904B\u55B6\u7528\u306E\u624B\u9806\u30FB\u30E1\u30E2\u306F\u5185\u90E8\u8CC7\u6599\u3067\u6271\u3044\u307E\u3059\u3002\u914D\u5E03\u524D\u306B\u516C\u958B\u7BC4\u56F2\u3068\u500B\u4EBA\u60C5\u5831\u306E\u6709\u7121\u3092\u78BA\u8A8D\u3057\u307E\u3059\u3002"],
-    ["\u7D20\u6750\u3092\u6B8B\u3059", "\u5143\u7D20\u6750\u3068\u914D\u4FE1\u7528\u753B\u50CF\u3092\u5206\u3051\u3001\u63A1\u7528\u3057\u305F\u753B\u50CF\u3068\u751F\u6210\u30D7\u30ED\u30F3\u30D7\u30C8\u3001\u5229\u7528\u5834\u6240\u304C\u5206\u304B\u308B\u3088\u3046\u8A18\u9332\u3057\u307E\u3059\u3002\u753B\u50CF\u3060\u3051\u3092\u898B\u3066\u3001\u4F55\u306E\u8A71\u304B\u4E00\u8A00\u3067\u8AAC\u660E\u3067\u304D\u308B\u3082\u306E\u3092\u9078\u3073\u307E\u3059\u3002"]
-  ] }
-]);
-var CSS = `<style>
-:root{font-family:system-ui,"Yu Gothic",sans-serif;color:#193342;background:#f5f7f9;font-synthesis:none}*{box-sizing:border-box}body{margin:0}a{color:inherit}a:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid #3b819b;outline-offset:4px}.admin-workspace{max-width:1120px;margin:auto;padding:38px 28px 72px!important}.workspace-intro{display:flex;justify-content:space-between;align-items:end;gap:24px;margin:12px 0 30px}.workspace-intro p{margin:9px 0 0;color:#667a87;font-size:14px;line-height:1.7}.workspace-intro h1{margin:0;font-size:clamp(25px,3vw,34px);font-weight:750;letter-spacing:-.04em;line-height:1.45}.workspace-eyebrow{font-size:10px;font-weight:700;letter-spacing:.12em;color:#6e8794;display:block;margin-bottom:10px}.workspace-section{margin-top:32px}.workspace-section h2{font-size:16px;margin:0 0 14px}.workspace-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.workspace-card{display:flex;flex-direction:column;position:relative;min-height:175px;padding:24px;border:1px solid #dae2e8;border-radius:14px;background:#fff;text-decoration:none;transition:border-color .15s,box-shadow .15s}.workspace-card:hover{border-color:#698c9d;box-shadow:0 7px 22px #1a3a4c09}.workspace-card--primary{background:#193e4e;border-color:#193e4e;color:#fff}.workspace-card .card-icon{font-size:21px;line-height:1;margin-bottom:20px}.workspace-card h2,.workspace-card h3{font-size:19px;line-height:1.5;margin:0 0 8px;letter-spacing:-.025em}.workspace-card p{font-size:13px;line-height:1.7;color:#6b7f8b;margin:0 0 18px}.workspace-card--primary p{color:#cedee6}.workspace-card .card-arrow{margin-top:auto;font-size:13px;font-weight:650}.workspace-list{margin:0;padding:0;list-style:none;display:grid;gap:0;border:1px solid #dce4e9;border-radius:12px;background:#fff;overflow:hidden}.workspace-list li+li{border-top:1px solid #e7edf0}.workspace-list a{display:flex;gap:18px;align-items:center;justify-content:space-between;padding:18px 21px;text-decoration:none}.workspace-list a:hover{background:#f5f9fb}.workspace-list strong{font-size:14px}.workspace-list small{display:block;color:#728592;font-size:12px;margin-top:5px}.workspace-details{margin-top:24px;border:1px solid #dce4e9;border-radius:12px;background:#fff}.workspace-details summary{cursor:pointer;padding:18px 21px;font-size:14px;font-weight:650}.workspace-details .workspace-list{border:0;border-radius:0 0 12px 12px}.workspace-details p{padding:0 21px;color:#728592;font-size:12px;line-height:1.7}.workspace-note{font-size:12px;color:#728592;margin:20px 0;line-height:1.7}.workspace-subnav{display:flex;gap:18px;flex-wrap:wrap;margin:26px 0;color:#647d8d;font-size:13px}.workspace-search{display:block;width:100%;max-width:470px;padding:13px 16px;border:1px solid #cbd8e0;border-radius:10px;font:inherit;font-size:14px;background:#fff;margin-bottom:22px}.workspace-tag{font-size:10px;letter-spacing:.07em;color:#6f8794;margin-bottom:14px}.workspace-document{max-width:800px;background:#fff;border:1px solid #dce4e9;border-radius:16px;padding:30px}.workspace-document h2{font-size:18px;margin:28px 0 10px}.workspace-document h2:first-child{margin-top:0}.workspace-document p{font-size:14px;line-height:1.95;color:#455e6e}.workspace-empty{padding:20px;background:#fff;border:1px dashed #bcced8;border-radius:10px;color:#627c8c}a.workspace-download{display:inline-block;padding:12px 16px;border:1px solid #c7d5de;border-radius:8px;text-decoration:none;font-size:13px;background:#fff} [hidden]{display:none!important}
-@media(max-width:700px){.admin-workspace{padding:20px 18px 50px!important}.workspace-intro{display:block;margin:4px 0 24px}.workspace-grid{grid-template-columns:1fr;gap:12px}.workspace-card{min-height:0;padding:20px}.workspace-card .card-icon{margin-bottom:14px}.workspace-card p{margin-bottom:15px}.workspace-document{padding:22px}.workspace-subnav{gap:12px}.workspace-intro h1{font-size:26px}}
-.admin-workspace .workspace-intro{margin:4px 0 20px}.admin-workspace .workspace-intro p,.admin-workspace .workspace-eyebrow{display:none}.admin-workspace .workspace-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;border:0;background:transparent;overflow:visible}.admin-workspace .workspace-list li+li{border:0}.admin-workspace .workspace-list a{height:100%;min-height:48px;justify-content:center;padding:12px 16px;border:1px solid #b6cbd7;border-radius:8px;background:#fff;text-align:center}.admin-workspace .workspace-list small,.admin-workspace .workspace-list a>span:last-child:not(:first-child){display:none}.admin-workspace .workspace-card{min-height:48px;padding:16px;justify-content:center;text-align:center;border-radius:8px}.admin-workspace .workspace-card h2{font-size:15px;margin:0}.admin-workspace .workspace-card :is(p,.workspace-tag,.card-arrow){display:none}.admin-workspace .workspace-grid{grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}.admin-workspace .workspace-details{padding:0 12px 12px}.admin-workspace .workspace-details summary{min-height:44px}.admin-workspace .workspace-search{min-height:44px}@media(max-width:600px){.admin-workspace .workspace-list,.admin-workspace .workspace-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.admin-workspace .workspace-list a{padding:10px 8px}.admin-workspace .workspace-list strong{font-size:13px}}
-@media(prefers-reduced-motion:reduce){.workspace-card{transition:none}}
-</style>`;
-var e = (value) => String(value).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
-var list = (items) => `<ul class="workspace-list">${items.map(([href, title, description]) => `<li><a href="${href}"><span><strong>${title}</strong><small>${description}</small></span><span aria-hidden="true">\u2192</span></a></li>`).join("")}</ul>`;
-var section = (title, body) => `<section class="workspace-section"><h2>${title}</h2>${body}</section>`;
-var workspacePage = (path, title, lead, body) => {
-  const launcher = body.match(/^<div class="workspace-grid">([\s\S]*?)<\/div>/);
-  const actions = launcher && launcher[1].includes('class="workspace-action');
-  const navigation = workspaceNavigation(path) || (actions ? `<nav class="workspace-actions" aria-label="\u4F5C\u696D\u30E1\u30CB\u30E5\u30FC">${launcher[1]}</nav>` : "");
-  const content = actions ? body.slice(launcher[0].length) : body;
-  return `<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>AI\u76F8\u8AC7</title>${CSS}${SHELL_STYLE}</head><body data-workspace-shell>${header(path)}${navigation}<main class="admin-workspace"><div class="workspace-intro"><div><span class="workspace-eyebrow">AI\u76F8\u8AC7 / \u7BA1\u7406</span><h1>${title}</h1><p>${lead}</p></div></div>${content}</main></body></html>`;
-};
-function renderPage(path) {
-  if (path === "/admin/operations") return workspacePage(path, "\u904B\u55B6\u30FB\u5206\u6790", "", "");
-  const operationSection = OPERATION_SECTIONS.find((item) => item.path === path);
-  if (operationSection) return workspacePage(path, operationSection.title, "", "");
-  if (path === "/admin/materials") return workspacePage(path, "\u5185\u90E8\u8CC7\u6599", "\u904B\u55B6\u3068\u5236\u4F5C\u306B\u5FC5\u8981\u306A\u624B\u9806\u3092\u3001\u4E00\u304B\u6240\u306B\u3002", `<label for="material-search" class="workspace-search-label">\u8CC7\u6599\u3092\u63A2\u3059</label><input class="workspace-search" id="material-search" type="search" placeholder="\u4F8B\uFF1A\u516C\u958B\u3001\u753B\u50CF\u3001\u30EA\u30FC\u30EB" autocomplete="off"><div class="workspace-grid" id="material-list">${DOCUMENTS.map((doc2) => `<a class="workspace-card" data-material-search="${e([doc2.title, doc2.category, doc2.description, ...doc2.sections.flat()].join(" "))}" href="/admin/materials/${doc2.slug}"><span class="workspace-tag">${doc2.category} / \u624B\u9806\u66F8</span><h2>${doc2.title}</h2><p>${doc2.description}</p><span class="card-arrow">\u8AAD\u3080 \u2192</span></a>`).join("")}</div><p class="workspace-empty" id="material-empty" role="status" hidden>\u4E00\u81F4\u3059\u308B\u8CC7\u6599\u304C\u3042\u308A\u307E\u305B\u3093\u3002\u5225\u306E\u8A00\u8449\u3067\u691C\u7D22\u3057\u3066\u304F\u3060\u3055\u3044\u3002</p>` + section("\u95A2\u9023\u3059\u308B\u8CC7\u6599", list([["/admin/watch", "\u53CE\u96C6\u8A18\u4E8B", "\u53CE\u96C6\u6E08\u307F\u306E\u8A18\u4E8B\u3092\u78BA\u8A8D"], ["/ops", "\u904B\u7528\u8A18\u9332\u30FB\u30D7\u30ED\u30F3\u30D7\u30C8", "\u4FDD\u5B58\u6E08\u307F\u306E\u8CC7\u6599\u3001\u30D7\u30ED\u30F3\u30D7\u30C8\u3001\u6D3B\u52D5\u8A18\u9332"], ["/lectures/index.html", "\u53D7\u8B1B\u8005\u5411\u3051\u8CC7\u6599", "\u516C\u958B\u4E2D\u306E\u8B1B\u7FD2\u8CC7\u6599\u3092\u78BA\u8A8D"], ["/design-system/", "\u30C7\u30B6\u30A4\u30F3\u306E\u898B\u672C", "\u8272\u30FB\u90E8\u54C1\u30FB\u8868\u793A\u30EB\u30FC\u30EB"]])) + `<script>document.getElementById('material-search').addEventListener('input',event=>{const query=event.target.value.trim().normalize('NFKC').toLocaleLowerCase('ja');let found=0;document.querySelectorAll('[data-material-search]').forEach(card=>{const match=card.dataset.materialSearch.normalize('NFKC').toLocaleLowerCase('ja').includes(query);card.hidden=!match;if(match)found++});document.getElementById('material-empty').hidden=found>0});</script>`);
-  const doc = DOCUMENTS.find((doc2) => path === "/admin/" + doc2.slug);
-  if (doc) return workspacePage(path, doc.title, doc.description, `<nav class="workspace-subnav" aria-label="\u8CC7\u6599\u5185\u30CA\u30D3"><a href="/admin/materials">\u2190 \u5185\u90E8\u8CC7\u6599\u4E00\u89A7</a><span>\u66F4\u65B0 2026-10-11</span></nav><article class="workspace-document">${doc.sections.map(([heading, body]) => `<h2>${e(heading)}</h2><p>${e(body)}</p>`).join("")}</article><p><a class="workspace-download" href="/admin/materials/${doc.slug}.md" download>\u3053\u306E\u8CC7\u6599\u3092\u4FDD\u5B58 \u2193</a></p>`);
-  return null;
-}
-function renderMarkdown(path) {
-  const doc = DOCUMENTS.find((doc2) => path === "/admin/" + doc2.slug + ".md");
-  return doc ? `# ${doc.title}
-
-\u66F4\u65B0: 2026-10-11
-
-${doc.description}
-
-${doc.sections.map(([h, b]) => `## ${h}
-
-${b}`).join("\n\n")}
-` : null;
 }
 
 // deployment/admin-workspace/assets.generated.mjs
@@ -19214,6 +19164,126 @@ function pendingApi(path) {
   return null;
 }
 
+// deployment/admin-workspace/material-upload.mjs
+var MAX = 10 * 1024 * 1024;
+async function materialApi(request, env) {
+  try {
+    const response = await handleMaterialRequest(request, env);
+    return request.method === "HEAD" ? new Response(null, response) : response;
+  } catch {
+    return json10({ error: "\u4FDD\u5B58\u5148\u306B\u63A5\u7D9A\u3067\u304D\u307E\u305B\u3093\u3002\u518D\u9001\u3059\u308B\u524D\u306B\u8CC7\u6599\u4E00\u89A7\u3092\u958B\u304D\u76F4\u3057\u3066\u4FDD\u5B58\u72B6\u6CC1\u3092\u78BA\u8A8D\u3057\u3066\u304F\u3060\u3055\u3044\u3002" }, 503);
+  }
+}
+async function handleMaterialRequest(request, env) {
+  const url = new URL(request.url), store = env.ADMIN_DOCUMENTS;
+  if (!store) return json10({ error: "\u5185\u90E8\u8CC7\u6599\u306E\u975E\u516C\u958B\u30B9\u30C8\u30EC\u30FC\u30B8\u304C\u672A\u63A5\u7D9A\u3067\u3059\u3002\u7BA1\u7406\u8005\u306B\u63A5\u7D9A\u3092\u4F9D\u983C\u3057\u3066\u304F\u3060\u3055\u3044\u3002" }, 503);
+  if (request.method === "POST") {
+    if (request.headers.get("origin") !== url.origin) return json10({ error: "\u540C\u3058\u7BA1\u7406\u753B\u9762\u304B\u3089\u30A2\u30C3\u30D7\u30ED\u30FC\u30C9\u3057\u3066\u304F\u3060\u3055\u3044\u3002" }, 403);
+    if (Number(request.headers.get("content-length")) > MAX + 65536) return json10({ error: "10MB\u4EE5\u4E0B\u306E\u30D5\u30A1\u30A4\u30EB\u3092\u9078\u3093\u3067\u304F\u3060\u3055\u3044\u3002" }, 413);
+    const reader = request.body?.getReader();
+    if (!reader) return json10({ error: "\u30D5\u30A1\u30A4\u30EB\u3092\u9078\u3093\u3067\u304F\u3060\u3055\u3044\u3002" }, 400);
+    let size = 0;
+    const chunks = [];
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      size += value.byteLength;
+      if (size > MAX + 65536) {
+        await reader.cancel();
+        return json10({ error: "10MB\u4EE5\u4E0B\u306E\u30D5\u30A1\u30A4\u30EB\u3092\u9078\u3093\u3067\u304F\u3060\u3055\u3044\u3002" }, 413);
+      }
+      chunks.push(value);
+    }
+    let form;
+    try {
+      form = await new Response(new Blob(chunks), { headers: { "content-type": request.headers.get("content-type") || "" } }).formData();
+    } catch {
+      return json10({ error: "\u30D5\u30A1\u30A4\u30EB\u3092\u9078\u3073\u76F4\u3057\u3066\u304F\u3060\u3055\u3044\u3002" }, 400);
+    }
+    const file = form.get("file");
+    if (!(file instanceof File) || !file.size || file.size > MAX || !/[.](pdf|txt|md|csv|docx|xlsx|pptx|png|jpe?g|webp)$/i.test(file.name)) return json10({ error: "PDF\u30FB\u6587\u66F8\u30FB\u8868\u8A08\u7B97\u30FB\u753B\u50CF\u309210MB\u4EE5\u4E0B\u3067\u9078\u3093\u3067\u304F\u3060\u3055\u3044\u3002" }, 400);
+    const id2 = crypto.randomUUID();
+    const name = file.name.replace(/[\r\n\x00-\x1f/\\]/g, "_").slice(0, 180);
+    await store.put("documents/" + id2, file, { customMetadata: { name }, httpMetadata: { contentType: "application/octet-stream" } });
+    return json10({ id: id2, name }, 201);
+  }
+  if (!["GET", "HEAD"].includes(request.method)) return json10({ error: "\u5BFE\u5FDC\u3057\u3066\u3044\u306A\u3044\u64CD\u4F5C\u3067\u3059\u3002" }, 405);
+  const id = url.searchParams.get("id");
+  if (id) {
+    if (!/^[a-f0-9-]{36}$/.test(id)) return json10({ error: "\u8CC7\u6599\u304C\u898B\u3064\u304B\u308A\u307E\u305B\u3093\u3002" }, 400);
+    const file = await store.get("documents/" + id);
+    if (!file) return json10({ error: "\u8CC7\u6599\u304C\u898B\u3064\u304B\u308A\u307E\u305B\u3093\u3002" }, 404);
+    return new Response(request.method === "HEAD" ? null : file.body, { headers: { ...PRIVATE_HEADERS, "content-type": "application/octet-stream", "content-disposition": "attachment; filename*=UTF-8''" + encodeURIComponent(file.customMetadata?.name || "document") } });
+  }
+  const result = await store.list({ prefix: "documents/", limit: 100, cursor: url.searchParams.get("cursor") || void 0, include: ["customMetadata"] });
+  return json10({ files: result.objects.map((item) => ({ id: item.key.slice(10), name: item.customMetadata?.name || "\u8CC7\u6599", size: item.size })), cursor: result.truncated ? result.cursor : null });
+}
+var uploadPanel = `<section class="workspace-section"><form id="material-upload"><label for="material-file">\u5185\u90E8\u8CC7\u6599\u3092\u30A2\u30C3\u30D7\u30ED\u30FC\u30C9</label><p><input id="material-file" type="file" accept=".pdf,.txt,.md,.csv,.docx,.xlsx,.pptx,.png,.jpg,.jpeg,.webp" required></p><button type="submit" class="workspace-action">\u30A2\u30C3\u30D7\u30ED\u30FC\u30C9</button></form><p id="upload-status" role="status">10MB\u307E\u3067\u3002\u4FDD\u5B58\u3057\u305F\u8CC7\u6599\u306F\u7BA1\u7406\u753B\u9762\u304B\u3089\u306E\u307F\u53D6\u5F97\u3067\u304D\u307E\u3059\u3002</p><ul id="uploaded-materials" class="workspace-list"></ul><button id="more-materials" class="workspace-action" hidden>\u3055\u3089\u306B\u8868\u793A</button></section><script>
+(()=>{const status=document.getElementById('upload-status'),list=document.getElementById('uploaded-materials'),more=document.getElementById('more-materials');let cursor=null;
+async function load(append=false){try{const r=await fetch('/api/admin/material-files'+(append&&cursor?'?cursor='+encodeURIComponent(cursor):''));const data=await r.json();if(!r.ok)throw Error(data.error);if(!append)list.replaceChildren();for(const file of data.files){const li=document.createElement('li'),a=document.createElement('a');a.textContent=file.name;a.href='/api/admin/material-files?id='+encodeURIComponent(file.id);li.append(a);list.append(li);}cursor=data.cursor;more.hidden=!cursor;}catch(error){status.textContent=error.message;}}
+more.onclick=()=>load(true);document.getElementById('material-upload').onsubmit=async event=>{event.preventDefault();const button=event.target.querySelector('button'),file=document.getElementById('material-file').files[0];if(!file||file.size>10485760){status.textContent='10MB\u4EE5\u4E0B\u306E\u30D5\u30A1\u30A4\u30EB\u3092\u9078\u3093\u3067\u304F\u3060\u3055\u3044\u3002';return;}button.disabled=true;status.textContent='\u30A2\u30C3\u30D7\u30ED\u30FC\u30C9\u4E2D\u2026';try{const body=new FormData();body.set('file',file);const r=await fetch('/api/admin/material-files',{method:'POST',body});const data=await r.json();if(!r.ok)throw Error(data.error);status.textContent='\u4FDD\u5B58\u3057\u307E\u3057\u305F\u3002';event.target.reset();await load();}catch(error){status.textContent=error.message;}finally{button.disabled=false;}};load();})();</script>`;
+
+// deployment/admin-workspace/pages.mjs
+var DOCUMENTS = Object.freeze([
+  { slug: "daily-operation", category: "\u904B\u55B6", title: "\u6BCE\u65E5\u306E\u904B\u55B6\u30C1\u30A7\u30C3\u30AF", description: "\u4E88\u5B9A\u306E\u78BA\u8A8D\u304B\u3089\u516C\u958B\u5F8C\u306E\u78BA\u8A8D\u307E\u3067\u3002", sections: [
+    ["\u6700\u521D\u306B\u898B\u308B", "\u5B9F\u884C\u6307\u4EE4\u5BA4\u3067\u4E88\u5B9A\u3068\u6307\u793A\u3092\u78BA\u8A8D\u3057\u3001\u4ECA\u65E5\u9032\u3081\u308B\u4ED5\u4E8B\u3092\u4E00\u3064\u6C7A\u3081\u307E\u3059\u3002\u516C\u958B\u30B5\u30A4\u30C8\u306E\u8B1B\u7FD2\u6848\u5185\u30FB\u30D6\u30ED\u30B0\u30FB\u7533\u8FBC\u30EA\u30F3\u30AF\u306B\u66F4\u65B0\u304C\u5FC5\u8981\u304B\u78BA\u8A8D\u3057\u307E\u3059\u3002"],
+    ["\u5236\u4F5C\u3059\u308B", "\u300C\u5236\u4F5C\u30FB\u767A\u4FE1\u300D\u304B\u3089\u30D6\u30ED\u30B0\u307E\u305F\u306F\u30EA\u30FC\u30EB\u3092\u958B\u304D\u307E\u3059\u3002\u5143\u8CC7\u6599\u3001\u5199\u771F\u3001\u4F1D\u3048\u305F\u3044\u4E8B\u5B9F\u3092\u305D\u308D\u3048\u3001\u5BFE\u8C61\u8005\u3068\u6B21\u306E\u884C\u52D5\u3092\u6C7A\u3081\u3066\u304B\u3089\u4F5C\u308A\u307E\u3059\u3002"],
+    ["\u516C\u958B\u3092\u78BA\u8A8D\u3059\u308B", "\u4E0B\u66F8\u304D\u306E\u5B8C\u6210\u3068\u516C\u958B\u5B8C\u4E86\u306F\u5225\u3067\u3059\u3002\u516C\u958B\u5148\u30FB\u6700\u7D42\u5185\u5BB9\u3092\u78BA\u8A8D\u3057\u3066\u304B\u3089\u53CD\u6620\u3057\u3001\u5B9F\u969B\u306EURL\u3001\u753B\u50CF\u3001\u30EA\u30F3\u30AF\u3092PC\u3068\u30B9\u30DE\u30FC\u30C8\u30D5\u30A9\u30F3\u3067\u78BA\u304B\u3081\u307E\u3059\u3002"],
+    ["\u6B21\u306B\u6B8B\u3059", "\u4F7F\u3063\u305F\u7D20\u6750\u3001\u5B8C\u6210\u539F\u7A3F\u3001\u516C\u958BURL\u3001\u6B8B\u3063\u3066\u3044\u308B\u4F5C\u696D\u3092\u8A18\u9332\u3057\u307E\u3059\u3002\u554F\u3044\u5408\u308F\u305B\u3084\u4E88\u7D04\u306E\u500B\u4EBA\u60C5\u5831\u306F\u767A\u4FE1\u7528\u306E\u539F\u7A3F\u3084\u753B\u50CF\u306B\u6DF7\u305C\u307E\u305B\u3093\u3002"]
+  ] },
+  { slug: "publishing", category: "\u5236\u4F5C", title: "\u30D6\u30ED\u30B0\u30FB\u30EA\u30FC\u30EB\u5236\u4F5C\u306E\u9032\u3081\u65B9", description: "\u7D20\u6750\u3092\u305D\u308D\u3048\u3001\u4E0B\u66F8\u304D\u30FB\u78BA\u8A8D\u30FB\u516C\u958B\u3078\u3002", sections: [
+    ["\u4F1D\u3048\u308B\u3053\u3068\u3092\u4E00\u3064\u306B\u3059\u308B", "\u8AB0\u306E\u3001\u3069\u3093\u306A\u56F0\u308A\u3054\u3068\u3092\u89E3\u6C7A\u3059\u308B\u304B\u3092\u6C7A\u3081\u307E\u3059\u3002\u30BF\u30A4\u30C8\u30EB\u3001\u898B\u51FA\u3057\u3001\u753B\u50CF\u306F\u540C\u3058\u4E3B\u984C\u306B\u305D\u308D\u3048\u307E\u3059\u3002\u8AAD\u307F\u7D42\u3048\u305F\u4EBA\u306B\u3057\u3066\u307B\u3057\u3044\u884C\u52D5\u3092\u4E00\u3064\u9078\u3073\u307E\u3059\u3002"],
+    ["\u30D6\u30ED\u30B0\u3092\u4F5C\u308B", "\u30D6\u30ED\u30B0\u5236\u4F5C\u3067\u5143\u8CC7\u6599\u3068\u30C6\u30FC\u30DE\u3092\u5165\u529B\u3057\u3001\u63D0\u6848\u304B\u3089\u8A18\u4E8B\u3092\u6574\u3048\u307E\u3059\u3002\u56FA\u6709\u540D\u8A5E\u3001\u65E5\u4ED8\u3001\u6570\u5B57\u3001\u51FA\u5178\u3001\u7533\u8FBC\u5148\u3092\u539F\u672C\u3068\u7167\u5408\u3057\u307E\u3059\u3002\u65E2\u5B58\u8A18\u4E8B\u306E\u7DE8\u96C6\u30FB\u516C\u958B\u78BA\u8A8D\u306F\u30D6\u30ED\u30B0\u7BA1\u7406\u304B\u3089\u884C\u3044\u307E\u3059\u3002"],
+    ["\u30EA\u30FC\u30EB\u3092\u4F5C\u308B", "\u7E26\u52D5\u753B\u306E\u5404\u5834\u9762\u306B\u30E1\u30C3\u30BB\u30FC\u30B8\u3092\u4E00\u3064\u7F6E\u304D\u307E\u3059\u3002\u5C0F\u3055\u306A\u753B\u9762\u3067\u6587\u5B57\u3092\u8AAD\u3081\u308B\u304B\u3001\u97F3\u58F0\u3068\u8868\u793A\u6642\u9593\u304C\u5408\u3046\u304B\u3001\u30AB\u30D0\u30FC\u3068\u6295\u7A3F\u6587\u304C\u4E00\u81F4\u3059\u308B\u304B\u3092\u78BA\u8A8D\u3057\u307E\u3059\u3002"],
+    ["\u516C\u958B\u524D\u306E\u78BA\u8A8D", "\u6700\u7D42\u539F\u7A3F\u3068\u6295\u7A3F\u5148\u306E\u4E8B\u696D\u30FB\u30A2\u30AB\u30A6\u30F3\u30C8\u3092\u78BA\u8A8D\u3057\u307E\u3059\u3002SNS\u3078\u306E\u6295\u7A3F\u306F\u3001\u4E0B\u66F8\u304D\u3092\u4F5C\u3063\u305F\u3060\u3051\u3067\u5B9F\u65BD\u6E08\u307F\u3068\u3057\u307E\u305B\u3093\u3002\u9001\u4FE1\u7D50\u679C\u304C\u4E0D\u660E\u306A\u3068\u304D\u306F\u5C65\u6B74\u3092\u78BA\u8A8D\u3057\u3001\u91CD\u8907\u6295\u7A3F\u3092\u9632\u304E\u307E\u3059\u3002"]
+  ] },
+  { slug: "artwork", category: "\u7D20\u6750", title: "\u753B\u50CF\u30FB\u8CC7\u6599\u306E\u4F7F\u3044\u5206\u3051", description: "\u751F\u6210\u753B\u50CF\u3001\u5B9F\u7E3E\u753B\u9762\u3001\u8B1B\u5E2B\u5199\u771F\u3092\u4F7F\u3044\u5206\u3051\u308B\u3002", sections: [
+    ["\u30B5\u30A4\u30C8\u306E\u6848\u5185\u753B\u50CF", "2026\u5E7410\u670811\u65E5\u306E\u6848\u5185\u753B\u50CF\u306F\u3001\u843D\u3061\u7740\u3044\u305F\u5199\u5B9F\u8868\u73FE\u306E\u751F\u6210\u753B\u50CF\u3067\u3059\u3002\u4EBA\u7269\u3084\u5834\u9762\u306F\u67B6\u7A7A\u306E\u30A4\u30E1\u30FC\u30B8\u3067\u3059\u3002\u5B9F\u969B\u306E\u8B1B\u5E2B\u30FB\u9867\u5BA2\u30FB\u652F\u63F4\u5B9F\u7E3E\u306E\u5199\u771F\u3068\u3057\u3066\u6271\u3044\u307E\u305B\u3093\u3002"],
+    ["\u4E8B\u5B9F\u3092\u4F1D\u3048\u308B\u753B\u50CF", "\u8B1B\u5E2B\u7D39\u4ECB\u306B\u306F\u672C\u4EBA\u5199\u771F\u3001\u5236\u4F5C\u5B9F\u7E3E\u306B\u306F\u5B9F\u969B\u306E\u30B5\u30A4\u30C8\u753B\u9762\u3001\u8A18\u4E8B\u306E\u6839\u62E0\u306B\u306F\u78BA\u8A8D\u3067\u304D\u308B\u8CC7\u6599\u3092\u4F7F\u3044\u307E\u3059\u3002\u96F0\u56F2\u6C17\u3092\u305D\u308D\u3048\u308B\u305F\u3081\u306B\u8A3C\u62E0\u753B\u50CF\u3092\u751F\u6210\u753B\u50CF\u3078\u7F6E\u304D\u63DB\u3048\u307E\u305B\u3093\u3002"],
+    ["\u8CC7\u6599\u3092\u6E21\u3059", "\u53D7\u8B1B\u8005\u5411\u3051\u306B\u306F\u516C\u958B\u306E\u53D7\u8B1B\u8CC7\u6599\u3092\u6848\u5185\u3057\u3001\u904B\u55B6\u7528\u306E\u624B\u9806\u30FB\u30E1\u30E2\u306F\u5185\u90E8\u8CC7\u6599\u3067\u6271\u3044\u307E\u3059\u3002\u914D\u5E03\u524D\u306B\u516C\u958B\u7BC4\u56F2\u3068\u500B\u4EBA\u60C5\u5831\u306E\u6709\u7121\u3092\u78BA\u8A8D\u3057\u307E\u3059\u3002"],
+    ["\u7D20\u6750\u3092\u6B8B\u3059", "\u5143\u7D20\u6750\u3068\u914D\u4FE1\u7528\u753B\u50CF\u3092\u5206\u3051\u3001\u63A1\u7528\u3057\u305F\u753B\u50CF\u3068\u751F\u6210\u30D7\u30ED\u30F3\u30D7\u30C8\u3001\u5229\u7528\u5834\u6240\u304C\u5206\u304B\u308B\u3088\u3046\u8A18\u9332\u3057\u307E\u3059\u3002\u753B\u50CF\u3060\u3051\u3092\u898B\u3066\u3001\u4F55\u306E\u8A71\u304B\u4E00\u8A00\u3067\u8AAC\u660E\u3067\u304D\u308B\u3082\u306E\u3092\u9078\u3073\u307E\u3059\u3002"]
+  ] }
+]);
+var CSS = `<style>
+:root{font-family:system-ui,"Yu Gothic",sans-serif;color:#193342;background:#f5f7f9;font-synthesis:none}*{box-sizing:border-box}body{margin:0}a{color:inherit}a:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid #3b819b;outline-offset:4px}.admin-workspace{max-width:1120px;margin:auto;padding:38px 28px 72px!important}.workspace-intro{display:flex;justify-content:space-between;align-items:end;gap:24px;margin:12px 0 30px}.workspace-intro p{margin:9px 0 0;color:#667a87;font-size:14px;line-height:1.7}.workspace-intro h1{margin:0;font-size:clamp(25px,3vw,34px);font-weight:750;letter-spacing:-.04em;line-height:1.45}.workspace-eyebrow{font-size:10px;font-weight:700;letter-spacing:.12em;color:#6e8794;display:block;margin-bottom:10px}.workspace-section{margin-top:32px}.workspace-section h2{font-size:16px;margin:0 0 14px}.workspace-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.workspace-card{display:flex;flex-direction:column;position:relative;min-height:175px;padding:24px;border:1px solid #dae2e8;border-radius:14px;background:#fff;text-decoration:none;transition:border-color .15s,box-shadow .15s}.workspace-card:hover{border-color:#698c9d;box-shadow:0 7px 22px #1a3a4c09}.workspace-card--primary{background:#193e4e;border-color:#193e4e;color:#fff}.workspace-card .card-icon{font-size:21px;line-height:1;margin-bottom:20px}.workspace-card h2,.workspace-card h3{font-size:19px;line-height:1.5;margin:0 0 8px;letter-spacing:-.025em}.workspace-card p{font-size:13px;line-height:1.7;color:#6b7f8b;margin:0 0 18px}.workspace-card--primary p{color:#cedee6}.workspace-card .card-arrow{margin-top:auto;font-size:13px;font-weight:650}.workspace-list{margin:0;padding:0;list-style:none;display:grid;gap:0;border:1px solid #dce4e9;border-radius:12px;background:#fff;overflow:hidden}.workspace-list li+li{border-top:1px solid #e7edf0}.workspace-list a{display:flex;gap:18px;align-items:center;justify-content:space-between;padding:18px 21px;text-decoration:none}.workspace-list a:hover{background:#f5f9fb}.workspace-list strong{font-size:14px}.workspace-list small{display:block;color:#728592;font-size:12px;margin-top:5px}.workspace-details{margin-top:24px;border:1px solid #dce4e9;border-radius:12px;background:#fff}.workspace-details summary{cursor:pointer;padding:18px 21px;font-size:14px;font-weight:650}.workspace-details .workspace-list{border:0;border-radius:0 0 12px 12px}.workspace-details p{padding:0 21px;color:#728592;font-size:12px;line-height:1.7}.workspace-note{font-size:12px;color:#728592;margin:20px 0;line-height:1.7}.workspace-subnav{display:flex;gap:18px;flex-wrap:wrap;margin:26px 0;color:#647d8d;font-size:13px}.workspace-search{display:block;width:100%;max-width:470px;padding:13px 16px;border:1px solid #cbd8e0;border-radius:10px;font:inherit;font-size:14px;background:#fff;margin-bottom:22px}.workspace-tag{font-size:10px;letter-spacing:.07em;color:#6f8794;margin-bottom:14px}.workspace-document{max-width:800px;background:#fff;border:1px solid #dce4e9;border-radius:16px;padding:30px}.workspace-document h2{font-size:18px;margin:28px 0 10px}.workspace-document h2:first-child{margin-top:0}.workspace-document p{font-size:14px;line-height:1.95;color:#455e6e}.workspace-empty{padding:20px;background:#fff;border:1px dashed #bcced8;border-radius:10px;color:#627c8c}a.workspace-download{display:inline-block;padding:12px 16px;border:1px solid #c7d5de;border-radius:8px;text-decoration:none;font-size:13px;background:#fff} [hidden]{display:none!important}
+@media(max-width:700px){.admin-workspace{padding:20px 18px 50px!important}.workspace-intro{display:block;margin:4px 0 24px}.workspace-grid{grid-template-columns:1fr;gap:12px}.workspace-card{min-height:0;padding:20px}.workspace-card .card-icon{margin-bottom:14px}.workspace-card p{margin-bottom:15px}.workspace-document{padding:22px}.workspace-subnav{gap:12px}.workspace-intro h1{font-size:26px}}
+.admin-workspace .workspace-intro{margin:4px 0 20px}.admin-workspace .workspace-intro p,.admin-workspace .workspace-eyebrow{display:none}.admin-workspace .workspace-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;border:0;background:transparent;overflow:visible}.admin-workspace .workspace-list li+li{border:0}.admin-workspace .workspace-list a{height:100%;min-height:48px;justify-content:center;padding:12px 16px;border:1px solid #b6cbd7;border-radius:8px;background:#fff;text-align:center}.admin-workspace .workspace-list small,.admin-workspace .workspace-list a>span:last-child:not(:first-child){display:none}.admin-workspace .workspace-card{min-height:48px;padding:16px;justify-content:center;text-align:center;border-radius:8px}.admin-workspace .workspace-card h2{font-size:15px;margin:0}.admin-workspace .workspace-card :is(p,.workspace-tag,.card-arrow){display:none}.admin-workspace .workspace-grid{grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}.admin-workspace .workspace-details{padding:0 12px 12px}.admin-workspace .workspace-details summary{min-height:44px}.admin-workspace .workspace-search{min-height:44px}@media(max-width:600px){.admin-workspace .workspace-list,.admin-workspace .workspace-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.admin-workspace .workspace-list a{padding:10px 8px}.admin-workspace .workspace-list strong{font-size:13px}}
+@media(prefers-reduced-motion:reduce){.workspace-card{transition:none}}
+</style>`;
+var e = (value) => String(value).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+var list = (items) => `<ul class="workspace-list">${items.map(([href, title, description]) => `<li><a href="${href}"><span><strong>${title}</strong><small>${description}</small></span><span aria-hidden="true">\u2192</span></a></li>`).join("")}</ul>`;
+var section = (title, body) => `<section class="workspace-section"><h2>${title}</h2>${body}</section>`;
+var workspacePage = (path, title, lead, body) => {
+  const launcher = body.match(/^<div class="workspace-grid">([\s\S]*?)<\/div>/);
+  const actions = launcher && launcher[1].includes('class="workspace-action');
+  const navigation = workspaceNavigation(path) || (actions ? `<nav class="workspace-actions" aria-label="\u4F5C\u696D\u30E1\u30CB\u30E5\u30FC">${launcher[1]}</nav>` : "");
+  const content = actions ? body.slice(launcher[0].length) : body;
+  return `<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>AI\u76F8\u8AC7</title>${CSS}${SHELL_STYLE}</head><body data-workspace-shell>${header(path)}${navigation}<main class="admin-workspace"><div class="workspace-intro"><div><span class="workspace-eyebrow">AI\u76F8\u8AC7 / \u7BA1\u7406</span><h1>${title}</h1><p>${lead}</p></div></div>${content}</main></body></html>`;
+};
+function renderPage(path) {
+  if (path === "/admin/material-upload") return workspacePage(path, "\u5185\u90E8\u8CC7\u6599", "", "" + uploadPanel);
+  if (path === "/admin/operations") return workspacePage(path, "\u904B\u55B6\u30FB\u5206\u6790", "", "");
+  const operationSection = OPERATION_SECTIONS.find((item) => item.path === path);
+  if (operationSection) return workspacePage(path, operationSection.title, "", "");
+  if (path === "/admin/materials") return workspacePage(path, "\u5185\u90E8\u8CC7\u6599", "\u904B\u55B6\u3068\u5236\u4F5C\u306B\u5FC5\u8981\u306A\u624B\u9806\u3092\u3001\u4E00\u304B\u6240\u306B\u3002", `<label for="material-search" class="workspace-search-label">\u8CC7\u6599\u3092\u63A2\u3059</label><input class="workspace-search" id="material-search" type="search" placeholder="\u4F8B\uFF1A\u516C\u958B\u3001\u753B\u50CF\u3001\u30EA\u30FC\u30EB" autocomplete="off"><div class="workspace-grid" id="material-list">${DOCUMENTS.map((doc2) => `<a class="workspace-card" data-material-search="${e([doc2.title, doc2.category, doc2.description, ...doc2.sections.flat()].join(" "))}" href="/admin/materials/${doc2.slug}"><span class="workspace-tag">${doc2.category} / \u624B\u9806\u66F8</span><h2>${doc2.title}</h2><p>${doc2.description}</p><span class="card-arrow">\u8AAD\u3080 \u2192</span></a>`).join("")}</div><p class="workspace-empty" id="material-empty" role="status" hidden>\u4E00\u81F4\u3059\u308B\u8CC7\u6599\u304C\u3042\u308A\u307E\u305B\u3093\u3002\u5225\u306E\u8A00\u8449\u3067\u691C\u7D22\u3057\u3066\u304F\u3060\u3055\u3044\u3002</p>` + section("\u95A2\u9023\u3059\u308B\u8CC7\u6599", list([["/admin/watch", "\u53CE\u96C6\u8A18\u4E8B", "\u53CE\u96C6\u6E08\u307F\u306E\u8A18\u4E8B\u3092\u78BA\u8A8D"], ["/ops", "\u904B\u7528\u8A18\u9332\u30FB\u30D7\u30ED\u30F3\u30D7\u30C8", "\u4FDD\u5B58\u6E08\u307F\u306E\u8CC7\u6599\u3001\u30D7\u30ED\u30F3\u30D7\u30C8\u3001\u6D3B\u52D5\u8A18\u9332"], ["/lectures/index.html", "\u53D7\u8B1B\u8005\u5411\u3051\u8CC7\u6599", "\u516C\u958B\u4E2D\u306E\u8B1B\u7FD2\u8CC7\u6599\u3092\u78BA\u8A8D"], ["/design-system/", "\u30C7\u30B6\u30A4\u30F3\u306E\u898B\u672C", "\u8272\u30FB\u90E8\u54C1\u30FB\u8868\u793A\u30EB\u30FC\u30EB"]])) + `<script>document.getElementById('material-search').addEventListener('input',event=>{const query=event.target.value.trim().normalize('NFKC').toLocaleLowerCase('ja');let found=0;document.querySelectorAll('[data-material-search]').forEach(card=>{const match=card.dataset.materialSearch.normalize('NFKC').toLocaleLowerCase('ja').includes(query);card.hidden=!match;if(match)found++});document.getElementById('material-empty').hidden=found>0});</script>`);
+  const doc = DOCUMENTS.find((doc2) => path === "/admin/" + doc2.slug);
+  if (doc) return workspacePage(path, doc.title, doc.description, `<nav class="workspace-subnav" aria-label="\u8CC7\u6599\u5185\u30CA\u30D3"><a href="/admin/materials">\u2190 \u5185\u90E8\u8CC7\u6599\u4E00\u89A7</a><span>\u66F4\u65B0 2026-10-11</span></nav><article class="workspace-document">${doc.sections.map(([heading, body]) => `<h2>${e(heading)}</h2><p>${e(body)}</p>`).join("")}</article><p><a class="workspace-download" href="/admin/materials/${doc.slug}.md" download>\u3053\u306E\u8CC7\u6599\u3092\u4FDD\u5B58 \u2193</a></p>`);
+  return null;
+}
+function renderMarkdown(path) {
+  const doc = DOCUMENTS.find((doc2) => path === "/admin/" + doc2.slug + ".md");
+  return doc ? `# ${doc.title}
+
+\u66F4\u65B0: 2026-10-11
+
+${doc.description}
+
+${doc.sections.map(([h, b]) => `## ${h}
+
+${b}`).join("\n\n")}
+` : null;
+}
+
 // deployment/admin-workspace/worker.mjs
 async function authorized2(request, env, ctx) {
   const response = await worker_default.fetch(new Request(new URL("/api/admin/ping", request.url), { headers: request.headers }), env, ctx);
@@ -19229,13 +19299,14 @@ var worker_default2 = {
     const url = new URL(request.url);
     const path = url.pathname.replace(/\/+$/, "") || "/";
     const login = ["/admin/login", "/admin/logout"].includes(path);
-    const protectedApi = ["/api/ops/doc", "/api/admin/status", "/api/admin/migration", "/api/content-studio/api/profiles"].includes(path) || pendingApi(path);
+    const protectedApi = ["/api/admin/material-files", "/api/ops/doc", "/api/admin/status", "/api/admin/migration", "/api/content-studio/api/profiles"].includes(path) || pendingApi(path);
     const privatePage = path === "/admin" || path.startsWith("/admin/") || path === "/ops" || path.startsWith("/ops/") || path === "/watch" || path.startsWith("/watch/");
     if (privatePage && !login || protectedApi) {
       const auth = await authorized2(request, env, ctx);
       if (auth === 503) return json10({ error: "\u7BA1\u7406\u753B\u9762\u306E\u8A8D\u8A3C\u8A2D\u5B9A\u3092\u78BA\u8A8D\u3067\u304D\u307E\u305B\u3093\u3002\u6642\u9593\u3092\u304A\u3044\u3066\u958B\u304D\u76F4\u3057\u3066\u304F\u3060\u3055\u3044\u3002" }, 503);
       if (auth !== 200) return protectedApi ? json10({ error: "\u7BA1\u7406\u753B\u9762\u3078\u30ED\u30B0\u30A4\u30F3\u3057\u3066\u304F\u3060\u3055\u3044\u3002" }, 401) : new Response(null, { status: 303, headers: { ...PRIVATE_HEADERS, location: "/admin/login?next=" + encodeURIComponent(canonicalUrl(path + url.search, url.origin)) } });
       if (protectedApi) {
+        if (path === "/api/admin/material-files") return materialApi(request, env);
         if (path === "/api/content-studio/api/profiles") return request.method === "GET" ? json10({ ok: true, profiles: [PROFILE] }) : new Response(null, { status: 405, headers: { ...PRIVATE_HEADERS, allow: "GET" } });
         const migrated = migratedApi(request, env);
         if (migrated) return migrated;

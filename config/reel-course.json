@@ -1,13 +1,13 @@
 {
-  "name": "reel自動投稿講座",
-  "tagline": "素材加工もテロップも、いつもの投稿をAIで。",
-  "description": "Instagramのリールを続けたいのに、編集や投稿に時間がかかる方へ。いつもの作り方を覚えさせたAIをAstraで操作し、シナリオ作成・素材加工・テロップ・投稿まで、一連の手順を実践する講座です。",
+  "name": "AI動画制作・投稿自動化講座",
+  "tagline": "動画の生成から投稿まで、自動化する実践編。",
+  "description": "動画をつくって発信したいのに、制作や投稿に時間がかかる方へ。AIでシナリオ作成・動画生成・編集・投稿をつなぎ、繰り返し使える自動化の仕組みをつくる実践講座です。現在、開講に向けて準備中です。",
   "duration_minutes": 120,
   "price_yen": 8800,
   "price_label": "8,800円（税込）",
   "audience": "Codexでフォルダ管理ができる方が対象です。AIエージェント講習を受講済みの方は、その続きとして参加できます。",
   "preparation": "Codex・Astraが使えるWindowsまたはMacのPC、投稿したい写真・動画、普段の投稿例をご用意ください。Instagramのログインと、利用するAI・編集ツールの契約状況も事前に確認します。",
-  "outcome": "自分の素材でリール1本を作り、次回も同じ流れで進められる指示とフォルダを持ち帰ります。",
+  "outcome": "動画の生成から投稿までをつなぎ、次回も使える自動化の指示とフォルダをつくることを目指します。",
   "posting_note": "投稿前に仕上がり・文章・投稿先を確認し、公開までの手順を練習します。必要なツール利用料は受講料に含みません。",
   "curriculum": [
     {
@@ -22,13 +22,13 @@
     },
     {
       "minutes": 45,
-      "title": "素材加工とテロップを任せる",
-      "detail": "素材選び、不要部分のカット、縦動画への編集、テロップ追加を指示し、プレビューを見て直します。"
+      "title": "動画生成・編集を自動化する",
+      "detail": "AIによる動画生成、素材加工、テロップ追加を一連の流れにまとめ、プレビューを確認して調整します。"
     },
     {
       "minutes": 30,
-      "title": "Instagram投稿と次回の自動化",
-      "detail": "投稿文・カバー・投稿先を確認し、投稿までの流れと次回用の指示を保存します。"
+      "title": "投稿までの流れを自動化する",
+      "detail": "投稿文・カバー・投稿先と公開前の確認手順を整え、Instagramなどへの投稿と次回用の指示をつなぎます。"
     }
   ],
   "reference_url": "https://www.youtube.com/watch?v=TK0GVOaUQMA",
@@ -39,5 +39,6 @@
     "reference_item_id": "TO3XHZT6XP3OM4QBDYMW7TZP",
     "item_id": "L6TVMLR7LU3BJPGLJTE4A3OP",
     "booking_url": "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/L6TVMLR7LU3BJPGLJTE4A3OP"
-  }
+  },
+  "status": "preparing"
 }

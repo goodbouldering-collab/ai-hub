@@ -7,6 +7,6 @@
     "test": "node --test worker/*.test.mjs asset-manifest.test.mjs"
   },
   "dependencies": {
-    "sanitize-html": "^2.17.7"
+    "sanitize-html": "^2.18.0"
   }
 }

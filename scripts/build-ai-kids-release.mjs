@@ -5,6 +5,7 @@ import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
 
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
+export const releaseFiles=['ai-kids/index.html','ai-kids/worksheets.html','ai-kids/assets/parent-child-discovery.png','ai-kids/assets/compare-and-create.png'];
 export function hashes(directory){
   const result={};
   function walk(folder){
@@ -24,20 +25,24 @@ export function build({baseline,output,expected,sha}){
   const destination=relative(resolve(baseline),resolve(output));
   assert(destination.startsWith('..') || resolve(output).split(':')[0]!==resolve(baseline).split(':')[0],'Output must be outside baseline');
   assert.deepEqual(hashes(baseline),expected,'Baseline mismatch');
-  assert(!Object.hasOwn(expected,'ai-kids/index.html'),'Reference page already exists');
-  // Read the only new source before creating output, so a missing source cannot leave a partial release.
-  const page=readFileSync(join(root,'site/static/ai-kids/index.html'));
+  // Explicit allowlist: unrelated baseline assets cannot be replaced by source-tree files.
+  const sources=releaseFiles.map(name=>[name,readFileSync(join(root,'site/static',name))]);
   for(const name of Object.keys(expected)){
     const dest=join(output,'public',name);
     mkdirSync(dirname(dest),{recursive:true});
     copyFileSync(join(baseline,name),dest);
   }
-  const target=join(output,'public/ai-kids/index.html');
-  mkdirSync(dirname(target),{recursive:true});
-  writeFileSync(target,page);
+  for(const [name,bytes] of sources){
+    const target=join(output,'public',name);
+    mkdirSync(dirname(target),{recursive:true});
+    writeFileSync(target,bytes);
+  }
   const assets=hashes(join(output,'public'));
-  for(const [name,digest] of Object.entries(expected))assert.equal(assets[name],digest);
-  const result={source_sha:sha,assets,addedAssets:['ai-kids/index.html'],unchangedAssets:Object.keys(expected).length};
+  for(const [name,digest] of Object.entries(expected))if(!releaseFiles.includes(name))assert.equal(assets[name],digest);
+  assert.deepEqual(Object.keys(assets).sort(),[...new Set([...Object.keys(expected),...releaseFiles])].sort());
+  const addedAssets=releaseFiles.filter(name=>!Object.hasOwn(expected,name));
+  const changedAssets=releaseFiles.filter(name=>Object.hasOwn(expected,name)&&assets[name]!==expected[name]);
+  const result={source_sha:sha,assets,addedAssets,changedAssets,unchangedAssets:Object.keys(expected).length-changedAssets.length};
   writeFileSync(join(output,'verification.json'),JSON.stringify(result,null,2));
   return result;
 }
@@ -48,5 +53,5 @@ if(process.argv[1] && resolve(process.argv[1])===fileURLToPath(import.meta.url))
   const worker=readFileSync(join(root,'deployment/admin-workspace/published-worker.mjs'),'utf8').replaceAll('\r\n','\n');
   assert.equal(createHash('sha256').update(worker).digest('hex'),contract.worker_sha256,'Published Worker changed');
   const result=build({baseline:resolve(baseline),output:resolve(output),expected:contract.assets,sha});
-  console.log(JSON.stringify({source_sha:sha,addedAssets:result.addedAssets,unchangedAssets:result.unchangedAssets}));
+  console.log(JSON.stringify({source_sha:sha,addedAssets:result.addedAssets,changedAssets:result.changedAssets,unchangedAssets:result.unchangedAssets}));
 }

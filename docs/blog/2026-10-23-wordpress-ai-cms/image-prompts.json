@@ -1,0 +1,21 @@
+{
+  "mode": "built-in image_gen",
+  "images": [
+    {
+      "file": "wordpress-ai-cms-php.png",
+      "prompt": "Use case: infographic-diagram. Asset type: Japanese small-business educational blog, landscape 16:9. Warm off-white background, sophisticated editorial paper-cut shapes and precise ink lines, restrained dark navy, muted blue and ochre. Legible large Japanese labels, generous whitespace, clean instructional diagram, not a software screenshot. No logos, watermarks, robots, or fake brand interfaces. Primary request: Four simple horizontal layers stacked vertically with exact labels top-to-bottom 「記事」「WordPress」「PHP」「サーバー」. Highlight ONLY the PHP layer in ochre with a modest wrench symbol to explain the PHP engine needs its own repair. Keep all layers intact, no scary hacker imagery. Exact small headline 「直す場所を、確かめる。」. Label each clearly."
+    },
+    {
+      "file": "wordpress-ai-cms-choices.png",
+      "prompt": "Use case: infographic-diagram. Asset type: Japanese small-business educational blog, landscape 16:9. Warm off-white background, sophisticated editorial paper-cut shapes and precise ink lines, restrained dark navy, muted blue and ochre. Legible large Japanese labels, generous whitespace, clean instructional diagram, not a software screenshot. No logos, watermarks, robots, or fake brand interfaces. Primary request: Show two equal entrances labeled 「管理画面」 and 「AIとの会話」 converging with clean arrows into ONE website card labelled 「自分のサイト」. The left entrance uses a simplified editor panel icon; right a simple speech bubble icon. Main meaning both human editing and AI can control the same CMS, never a rivalry. Exact headline 「入口は、ひとつじゃない。」."
+    },
+    {
+      "file": "wordpress-ai-cms-workflow.png",
+      "prompt": "Use case: infographic-diagram. Asset type: Japanese small-business educational blog, landscape 16:9. Warm off-white background, sophisticated editorial paper-cut shapes and precise ink lines, restrained dark navy, muted blue and ochre. Legible large Japanese labels, generous whitespace, clean instructional diagram, not a software screenshot. No logos, watermarks, robots, or fake brand interfaces. Primary request: A clear workflow left-to-right: a small stack of photo plus handwritten memo cards labeled 「素材」, then an editor panel labeled 「下書き」, then a large human approval checkbox labeled 「確認」, finally split into a landscape article card labeled 「ブログ」 and vertical video card labelled 「リール」. Every destination must come AFTER confirmation. Restrained, beautiful clear schematic, no photoreal people. Exact headline 「一つの素材から、二つの発信。」."
+    },
+    {
+      "file": "wordpress-ai-cms-hero.png",
+      "prompt": "Use case: illustration-story. Asset type: hero cover for Japanese blog about migrating from WordPress to a self-controlled website with AI assistance. Landscape 16:9. Warm off-white fine paper texture, editorial paper cut and hand ink, navy, muted blue, ochre. A small friendly studio/workshop facade visually built out of a browser window; a human hand rearranges a few clear modular webpage cards, with a small speech bubble indicating collaboration with AI. One elegant memorable centerpiece, spacious design, no alarm icons, no logos, no robots, no stock-photo person. Large beautiful Japanese headline exactly 「自分のサイトを、AIと育てる。」. Smaller subline exactly 「WordPress移行の、その先へ」. Conceptual illustration, not an actual screenshot. Refined Japanese magazine composition, excellent legibility."
+    }
+  ]
+}

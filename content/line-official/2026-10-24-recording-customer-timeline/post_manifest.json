@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "campaign_id": "2026-10-24-recording-customer-timeline",
+  "business_id": "ai-hub",
+  "content_mode": "latest_content",
+  "account": {
+    "expected_channel_id": null,
+    "expected_display_name": "AI相談",
+    "verification_status": "unverified"
+  },
+  "audience": {
+    "mode": "not_requested",
+    "recipient_count": 0
+  },
+  "approval": {
+    "preview_status": "prepared",
+    "admin_test_status": "not_requested",
+    "broadcast_status": "not_requested"
+  },
+  "message": {
+    "type": "flex",
+    "alt_text": "録音を顧客ごとの記録へ。経験者向け2時間の個別講習",
+    "card_count": 1,
+    "payload_file": "flex-message.json"
+  },
+  "idempotency_key": "ai-hub:2026-10-24-recording-customer-timeline:v1",
+  "delivery_status": "not_sent",
+  "article_url": "https://aiclimb.aiclimb.workers.dev/blog/2026-10-24-recording-customer-timeline",
+  "notes": "文章準備のみ。アカウント未照合・送信未承認。送信バリデーターの失敗は意図した停止条件。"
+}

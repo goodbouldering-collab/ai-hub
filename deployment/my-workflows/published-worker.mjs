@@ -16626,7 +16626,7 @@ async function articleAI(request, env, revise) {
   if (error) return json4({ error: "Invalid AI request body" }, error);
   const required = revise ? ["title", "html", "instruction"] : ["theme"];
   if (!body || required.some((key) => typeof body[key] !== "string" || !body[key].trim())) return json4({ error: "Required text is missing" }, 400);
-  if (!env.ANTHROPIC_API_KEY) return json4({ error: "AI provider is not configured" }, 503);
+  if (!env.OPENAI_API_KEY) return json4({ error: "AI provider is not configured" }, 503);
   const count = Math.min(5, Math.max(1, Math.floor(Number(body.count) || 3)));
   const content = revise ? `\u73FE\u5728\u306E\u30BF\u30A4\u30C8\u30EB: ${body.title.trim()}
 \u73FE\u5728\u306E\u672C\u6587HTML:
@@ -16638,17 +16638,17 @@ ${body.html.trim()}
 
 \u4E0A\u8A18\u30C6\u30FC\u30DE\u3067 ${count} \u6848\u3092 JSON \u914D\u5217 [{title,html,summary}, ...] \u3067\u8FD4\u3057\u3066\u304F\u3060\u3055\u3044\u3002`;
   try {
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
+    const response = await fetch("https://api.openai.com/v1/responses", {
       method: "POST",
       redirect: "manual",
       signal: AbortSignal.timeout(55e3),
-      headers: { "x-api-key": env.ANTHROPIC_API_KEY, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-      body: JSON.stringify({ model: env.AI_HUB_CLAUDE_MODEL || "claude-sonnet-4-6", max_tokens: 4096, system: SYSTEM_PROMPT, messages: [{ role: "user", content }] })
+      headers: { Authorization: `Bearer ${env.OPENAI_API_KEY}`, "content-type": "application/json" },
+      body: JSON.stringify({ model: env.AI_HUB_OPENAI_MODEL || env.OPENAI_MODEL || "gpt-5.6-luna", max_output_tokens: 8192, store: false, instructions: SYSTEM_PROMPT, input: [{ role: "user", content }] })
     });
     if (!response.ok) throw Error();
     const message = await response.json();
-    if (message.stop_reason === "max_tokens" || !Array.isArray(message.content)) throw Error();
-    const text = message.content.filter((block) => block.type === "text").map((block) => block.text).join("\n").trim();
+    if (message.status !== "completed" || !Array.isArray(message.output)) throw Error();
+    const text = message.output.filter((item) => item.type === "message").flatMap((item) => item.content || []).filter((block) => block.type === "output_text").map((block) => block.text).join("\n").trim();
     const start = text.indexOf(revise ? "{" : "[");
     const end = text.lastIndexOf(revise ? "}" : "]");
     if (start < 0 || end < start) throw Error();
@@ -17146,7 +17146,6 @@ async function handleAdminAuth(request, env) {
     const images = imageConfiguration(env);
     return json8({ ok: true, connectionVerified: false, now: (/* @__PURE__ */ new Date()).toISOString(), env: {
       hasColorme: Boolean(env.COLORME_ACCESS_TOKEN),
-      hasAnthropic: Boolean(env.ANTHROPIC_API_KEY),
       hasOpenAI: Boolean(env.OPENAI_API_KEY),
       hasR2: images.storageConfigured,
       imageGenerationConfigured: images.generationConfigured

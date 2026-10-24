@@ -1,3 +1,11 @@
+## Anthropicの実行・認証依存を除去（2026-10-24）
+
+- 記事更新停止の原因だったPython、旧管理API、Cloudflare記事生成を既存OpenAI接続へ統一。SDK依存とキー要求・接続表示を除去。Codexが用意する編集JSONを `--editorial-file` で使うAPI不要経路も追加した。
+- 記事・画像・日次ニュース・Codex0.163の公開版を保持。0.164候補は混入させない。既存の別作業差分・ステージも保全する。
+- GitHubのCodex更新・旧Pagesは停止済み。dailyの既存停止を維持し、Cloudflare guardとportfolio-syncは維持。実行は既存ローカル/heartbeatへ統一する。
+- ローカル回帰・TypeScript・Cloudflare公開経路検査成功。本番反映はこの時点では未実施。OpenAIの実生成は未検証で、キー作成・保存・新規課金は行っていない。
+- 次は今回分のPR統合、登録公開元でWorker限定配備と本番確認。詳細と証拠の入口: [依存除去記録](docs/anthropic-removal-20261024.md)。
+
 ## AI相談キッズ参考ページ・実施キット（2026-10-21）
 
 - 目的：小学生の保護者向けに、親子の観察・創作・確認・発表を通じたAI講習を検討する。

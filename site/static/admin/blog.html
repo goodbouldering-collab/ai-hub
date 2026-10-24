@@ -843,7 +843,6 @@ async function api(path, opts = {}) {
     const flag = (k, ok) => `<span class="badge ${ok?'ok':'err'}">${k}: ${ok?'OK':'未設定'}</span>`;
     $("status-area").innerHTML = [
       flag("Colorme", env.hasColorme),
-      flag("Anthropic", env.hasAnthropic),
       flag("OpenAI", env.hasOpenAI),
       flag("Supabase", env.hasSupabase),
     ].join(" ");

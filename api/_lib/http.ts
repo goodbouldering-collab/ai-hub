@@ -129,7 +129,7 @@ export function withAdmin(
       } else if (e instanceof ValidationError) {
         sendError(res, 400, e.message);
       } else if (typeof e?.status === "number") {
-        // 上流 API エラー (colorme/anthropic/openai) の status を踏襲
+        // 上流 API エラー (colorme/openai) の status を踏襲
         sendError(res, e.status, e.message || "upstream error", e.body);
       } else {
         sendError(res, 500, e?.message || "internal error");

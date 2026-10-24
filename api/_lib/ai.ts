@@ -1,6 +1,6 @@
-import Anthropic from "@anthropic-ai/sdk";
+import { requestAiText } from "./openai-text.js";
 import { ConfigError, ValidationError } from "./http.js";
-import { claudeModel, requireEnv } from "./config.js";
+import { requireEnv } from "./config.js";
 import { sanitizeArticleHtml } from "./sanitize.js";
 
 // Vercel Functions の maxDuration=60s に対し 55s で打ち切る。
@@ -32,22 +32,6 @@ const SYSTEM_PROMPT = `あなたはクライミング/ボルダリング用品�
 
 出力は JSON 配列のみ。前置き・コードフェンス禁止。`;
 
-let _client: Anthropic | null = null;
-function client(): Anthropic {
-  if (_client) return _client;
-  const apiKey = requireEnv("ANTHROPIC_API_KEY");
-  _client = new Anthropic({ apiKey });
-  return _client;
-}
-
-function extractText(message: any): string {
-  return (message.content || [])
-    .filter((b: any) => b.type === "text")
-    .map((b: any) => b.text)
-    .join("\n")
-    .trim();
-}
-
 function extractJson(text: string, kind: "array" | "object"): any {
   const open = kind === "array" ? "[" : "{";
   const close = kind === "array" ? "]" : "}";
@@ -68,9 +52,8 @@ function extractJson(text: string, kind: "array" | "object"): any {
 export async function generateArticleDrafts(theme: string, count = 3): Promise<ArticleDraft[]> {
   const t = timeoutSignal();
   try {
-    const message = await client().messages.create(
+    const message = await requestAiText(
       {
-        model: claudeModel(),
         max_tokens: 4096,
         system: SYSTEM_PROMPT,
         messages: [
@@ -80,9 +63,9 @@ export async function generateArticleDrafts(theme: string, count = 3): Promise<A
           },
         ],
       },
-      { signal: t.signal },
+      t.signal,
     );
-    const parsed = extractJson(extractText(message), "array");
+    const parsed = extractJson(message, "array");
     if (!Array.isArray(parsed)) throw new ValidationError("AI 出力が配列ではありません");
     return parsed.map((p: any) => ({
       title: String(p.title || "").trim(),
@@ -91,7 +74,7 @@ export async function generateArticleDrafts(theme: string, count = 3): Promise<A
     }));
   } catch (e: any) {
     if (e?.name === "AbortError" || /aborted|timeout/i.test(String(e?.message || ""))) {
-      const err: any = new Error("Claude 応答が制限時間を超過しました（55秒）");
+      const err: any = new Error("AI 応答が制限時間を超過しました（55秒）");
       err.status = 504;
       throw err;
     }
@@ -107,9 +90,8 @@ export async function reviseArticle(
 ): Promise<{ title: string; html: string }> {
   const t = timeoutSignal();
   try {
-    const message = await client().messages.create(
+    const message = await requestAiText(
       {
-        model: claudeModel(),
         max_tokens: 4096,
         system: SYSTEM_PROMPT,
         messages: [
@@ -119,16 +101,16 @@ export async function reviseArticle(
           },
         ],
       },
-      { signal: t.signal },
+      t.signal,
     );
-    const obj = extractJson(extractText(message), "object");
+    const obj = extractJson(message, "object");
     return {
       title: String(obj.title || current.title).trim(),
       html: sanitizeArticleHtml(String(obj.html || current.html)),
     };
   } catch (e: any) {
     if (e?.name === "AbortError" || /aborted|timeout/i.test(String(e?.message || ""))) {
-      const err: any = new Error("Claude 応答が制限時間を超過しました（55秒）");
+      const err: any = new Error("AI 応答が制限時間を超過しました（55秒）");
       err.status = 504;
       throw err;
     }
@@ -184,7 +166,7 @@ export async function generateImageBytes(prompt: string): Promise<{
 
 /**
  * 社内ドキュメント参照付きのチャット応答を生成する。
- * context（事業 CLAUDE.md / consul/work 抜粋など）は呼び出し側で組み立てて system に積む。
+ * context（事業 AGENTS.md / consul/work 抜粋など）は呼び出し側で組み立てて system に積む。
  */
 export async function chatWithContext(
   history: { role: "user" | "assistant"; content: string }[],
@@ -200,19 +182,18 @@ export async function chatWithContext(
     "- ファイルや箇所を引用するときは consul-work/<filename> 形式で示す\n\n" +
     "<context>\n" + context + "\n</context>";
   try {
-    const message = await client().messages.create(
+    const message = await requestAiText(
       {
-        model: claudeModel(),
         max_tokens: 1500,
         system: systemPrompt,
         messages: history.map((m) => ({ role: m.role, content: m.content })),
       },
-      { signal: t.signal },
+      t.signal,
     );
-    return extractText(message);
+    return message;
   } catch (e: any) {
     if (e?.name === "AbortError" || /aborted|timeout/i.test(String(e?.message || ""))) {
-      const err: any = new Error("Claude 応答が制限時間を超過しました（55秒）");
+      const err: any = new Error("AI 応答が制限時間を超過しました（55秒）");
       err.status = 504;
       throw err;
     }

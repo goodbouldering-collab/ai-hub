@@ -4,7 +4,7 @@ AIハブ エントリーポイント。
 使い方:
     python run.py                  # 過去24h の新着を収集・要約・NLM直貼り版を出力
     python run.py --hours 72        # 鮮度フィルタを変更
-    python run.py --no-summary      # Claude API をスキップ (原文抜粋のまま)
+    python run.py --no-summary      # OpenAI API をスキップ (原文抜粋のまま)
     python run.py --full            # 全件統合版(--hours 無視)も併せて出力
 """
 from __future__ import annotations
@@ -49,7 +49,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--hours", type=int, default=24, help="何時間以内の記事に絞るか (デフォルト24)")
     parser.add_argument("--full", action="store_true", help="--hours に関係なく全件統合版も出力")
-    parser.add_argument("--no-summary", action="store_true", help="Claude API での要約をスキップ")
+    parser.add_argument("--no-summary", action="store_true", help="OpenAI API での要約をスキップ")
     args = parser.parse_args()
 
     load_dotenv(ROOT / ".env", override=False)
@@ -76,7 +76,7 @@ def main():
         store.close()
     print(f"  新着: {len(new_items)}件 / 継続: {len(existing_items)}件")
 
-    print("\n[3/4] 要約 (Claude API)")
+    print("\n[3/4] 要約 (OpenAI API)")
     if args.no_summary:
         print("  スキップ (--no-summary)")
         summary_map = {}

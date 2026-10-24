@@ -38,7 +38,7 @@ jobs:
 
       - name: Refresh fixed Codex article from official digest
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: python scripts/update_codex_update_log.py
 
       - name: Verify article contract
@@ -55,7 +55,7 @@ jobs:
           git restore --worktree -- site/dist outputs/agents_status.json
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add content/blog/codex-update-log.md
+          git add content/ai-news/codex-update-log.md
           if git diff --staged --quiet; then
             echo "Codex公式情報に変更なし"
             echo "changed=false" >> "$GITHUB_OUTPUT"

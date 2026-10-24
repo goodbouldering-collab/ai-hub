@@ -166,8 +166,7 @@ FastAPI ベースの**ローカル専用** UI。記事収集ジョブの状態�
 | `COLORME_ACCESS_TOKEN` | グッぼる本店操作用 OAuth トークン |
 | `COLORME_PREVIEW_TEMPLATE_ID` | 既定 1086 |
 | `COLORME_LIVE_TEMPLATE_ID` | 既定 1064 |
-| `ANTHROPIC_API_KEY` | 記事案生成 |
-| `OPENAI_API_KEY` | DALL-E 3 画像生成 |
+| `OPENAI_API_KEY` | 記事案・要約・画像生成（既存接続） |
 | `SUPABASE_URL` / `SUPABASE_SERVICE_ROLE_KEY` | 画像アップロード先 |
 | `SUPABASE_BUCKET` | 既定 `ai-hub-public` (public=true で作成済) |
 

@@ -1,5 +1,5 @@
 """
-Claude API で記事を要約し、コンサル観点のコメントを付ける。
+OpenAI API で記事を要約し、コンサル観点のコメントを付ける。
 複数記事を1リクエストでまとめて処理してコスト削減。
 """
 from __future__ import annotations
@@ -7,12 +7,12 @@ import json
 import os
 import textwrap
 
-import anthropic
+from .openai_text import generate_text, DEFAULT_MODEL
 
 from .collector import Article
 
 
-MODEL = "claude-haiku-4-5-20251001"
+MODEL = os.getenv("OPENAI_MODEL") or DEFAULT_MODEL
 BATCH_SIZE = 8
 
 
@@ -64,7 +64,7 @@ def _chunks(lst, n):
         yield lst[i:i + n]
 
 
-def summarize_batch(client: anthropic.Anthropic, articles: list[Article]) -> list[dict]:
+def summarize_batch(api_key: str, articles: list[Article]) -> list[dict]:
     if not articles:
         return []
 
@@ -81,13 +81,7 @@ def summarize_batch(client: anthropic.Anthropic, articles: list[Article]) -> lis
 
     user_text = "以下の記事を要約してください:\n\n" + json.dumps(payload, ensure_ascii=False, indent=2)
 
-    resp = client.messages.create(
-        model=MODEL,
-        max_tokens=4000,
-        system=SYSTEM_PROMPT,
-        messages=[{"role": "user", "content": user_text}],
-    )
-    text = resp.content[0].text.strip()
+    text = generate_text(SYSTEM_PROMPT, user_text, api_key=api_key, model=MODEL)
 
     if text.startswith("```"):
         lines = text.split("\n")
@@ -113,18 +107,17 @@ def summarize_all(articles: list[Article]) -> dict[str, dict]:
     記事ハッシュ -> {"summary": ...} の辞書を返す。
     要約失敗したものは空文字で埋める。
     """
-    api_key = os.getenv("ANTHROPIC_API_KEY")
+    api_key = os.getenv("OPENAI_API_KEY")
     if not api_key:
-        print("[!] ANTHROPIC_API_KEY 未設定。要約をスキップ")
+        print("[!] OPENAI_API_KEY 未設定。要約をスキップ")
         return {a.hash: {"summary": ""} for a in articles}
 
-    client = anthropic.Anthropic(api_key=api_key)
     result: dict[str, dict] = {}
 
     for batch in _chunks(articles, BATCH_SIZE):
         print(f"[+] 要約バッチ {len(batch)}件...")
         try:
-            items = summarize_batch(client, batch)
+            items = summarize_batch(api_key, batch)
         except Exception as e:
             print(f"[!] バッチ要約失敗: {e}")
             items = []

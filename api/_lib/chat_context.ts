@@ -5,7 +5,7 @@
  *  - content/consul-work/*.md と config/businesses.yaml をビルド時 bundle 済み（vercel.json の includeFiles）
  *  - 質問文に含まれるキーワードでファイル名を簡易マッチし、ヒットした上位 N 件を全文で context に積む
  *  - ヒットゼロなら recent 8 件のタイトルと冒頭をサマリとして渡す
- *  - 全体で 12000 文字程度で打ち切る（Claude の system tokens を抑える）
+ *  - 全体で 12000 文字程度で打ち切る（AI の入力長 を抑える）
  *
  * いずれ embedding + ベクタ検索に置き換えたいが、まずは grep ベースで実用範囲を見る。
  */

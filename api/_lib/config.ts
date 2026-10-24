@@ -33,5 +33,5 @@ export function requireEnv(name: string): string {
   return v;
 }
 
-export const claudeModel = (): string =>
-  process.env.AI_HUB_CLAUDE_MODEL || "claude-sonnet-4-6";
+export const openaiModel = (): string =>
+  process.env.AI_HUB_OPENAI_MODEL || process.env.OPENAI_MODEL || "gpt-5.6-luna";

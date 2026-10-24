@@ -1,4 +1,4 @@
-# ジャンル定義。Claude はこの key のいずれかを返すよう指示される。
+# ジャンル定義。AI はこの key のいずれかを返すよう指示される。
 # 新しいジャンルを追加するときは key と label, icon, keywords を書き足すだけ。
 genres:
   - key: generative_ai

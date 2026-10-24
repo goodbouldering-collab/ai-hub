@@ -1,5 +1,5 @@
 /**
- * AI（Claude）が生成した HTML を、カラーミーテンプレに書き込む前に
+ * AIが生成した HTML を、カラーミーテンプレに書き込む前に
  * allowlist 方式で安全化する。
  *
  * 許可タグ: h2, h3, p, ul, ol, li, strong, em, br, a (href のみ)

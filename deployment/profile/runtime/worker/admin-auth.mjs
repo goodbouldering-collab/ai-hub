@@ -148,7 +148,6 @@ export async function handleAdminAuth(request, env) {
     const images = imageConfiguration(env);
     return json({ ok: true, connectionVerified: false, now: new Date().toISOString(), env: {
       hasColorme: Boolean(env.COLORME_ACCESS_TOKEN),
-      hasAnthropic: Boolean(env.ANTHROPIC_API_KEY),
       hasOpenAI: Boolean(env.OPENAI_API_KEY),
       hasR2: images.storageConfigured,
       imageGenerationConfigured: images.generationConfigured,

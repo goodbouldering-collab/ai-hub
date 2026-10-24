@@ -4,7 +4,7 @@
 日本での注目度が同じ記事は、総合スコアで順番を決める。
 
 スコア計算式:
-  final_score = claude_score (0-100)
+  final_score = ai_score (0-100)
               + genre_affinity_bonus (好み学習, 0-40)
               + source_affinity_bonus (好み学習, 0-20)
               + freshness_bonus (0-10)

@@ -14,6 +14,7 @@ import json
 import os
 from pathlib import Path
 import re
+import sys
 from typing import Any, Callable
 from urllib.parse import urlparse
 
@@ -21,12 +22,14 @@ import yaml
 
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 ARTICLE_PATH = ROOT / "content" / "ai-news" / "codex-update-log.md"
 SOURCE_URL = "https://learn.chatgpt.com/docs/whats-new.md"
 CHANGELOG_URL = "https://learn.chatgpt.com/docs/changelog"
 SOURCE_PAGE_URL = "https://learn.chatgpt.com/docs/whats-new"
 CLI_RELEASE_API_URL = "https://api.github.com/repos/openai/codex/releases/latest"
-EDITOR_MODEL = os.getenv("CODEX_BLOG_EDITOR_MODEL", "claude-haiku-4-5-20251001")
+EDITOR_MODEL = os.getenv("CODEX_BLOG_EDITOR_MODEL") or os.getenv("OPENAI_MODEL") or "gpt-5.6-luna"
 MAX_SOURCE_BYTES = 1_000_000
 JAPAN_TIMEZONE = timezone(timedelta(hours=9))
 
@@ -714,7 +717,7 @@ def generate_editorial(
     api_key: str,
     require_archive: bool,
 ) -> dict[str, Any]:
-    import anthropic
+    from core.openai_text import generate_text
 
     payload = {
         "source_period": period,
@@ -766,20 +769,8 @@ def generate_editorial(
             "falseならprevious_archiveを必ずnullにする"
         ),
     }
-    client = anthropic.Anthropic(api_key=api_key)
-    response = client.messages.create(
-        model=EDITOR_MODEL,
-        max_tokens=4500,
-        system=SYSTEM_PROMPT,
-        messages=[
-            {
-                "role": "user",
-                "content": json.dumps(payload, ensure_ascii=False, indent=2),
-            }
-        ],
-    )
-    text_blocks = [block.text for block in response.content if getattr(block, "type", "") == "text"]
-    raw = "\n".join(text_blocks).strip()
+    raw = generate_text(SYSTEM_PROMPT, json.dumps(payload, ensure_ascii=False, indent=2),
+                        api_key=api_key, model=EDITOR_MODEL, max_output_tokens=9000)
     if raw.startswith("```"):
         raw = "\n".join(line for line in raw.splitlines() if not line.startswith("```"))
     try:
@@ -918,6 +909,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--release-file", type=Path)
     parser.add_argument("--release-tag", default="")
     parser.add_argument("--today", type=date.fromisoformat)
+    parser.add_argument("--editorial-file", type=Path, help="既存Codex作業で作成した編集JSONを検証して使用（API不要）")
     args = parser.parse_args(argv)
 
     source_text = args.source_file.read_text(encoding="utf-8") if args.source_file else fetch_source()
@@ -931,11 +923,13 @@ def main(argv: list[str] | None = None) -> int:
         release_tag = ""
     else:
         release_tag, release_source = fetch_latest_cli_release()
-    api_key = os.getenv("ANTHROPIC_API_KEY", "")
+    api_key = os.getenv("OPENAI_API_KEY", "")
 
     def editor(current: str, period: str, block: str, require_archive: bool) -> dict[str, Any]:
+        if args.editorial_file:
+            return json.loads(args.editorial_file.read_text(encoding="utf-8"))
         if not api_key:
-            raise RuntimeError("新しい公式更新がありますが、ANTHROPIC_API_KEYが未設定です")
+            raise RuntimeError("新しい公式更新があります。--editorial-fileで編集JSONを指定するか、既存OPENAI_API_KEYを使用してください")
         return generate_editorial(
             current,
             period,

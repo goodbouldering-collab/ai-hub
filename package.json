@@ -14,7 +14,6 @@
     "cloudflare:check": "npm run cloudflare:test"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.27.0",
     "@supabase/supabase-js": "^2.45.0",
     "gray-matter": "^4.0.3",
     "iconv-lite": "^0.6.3",

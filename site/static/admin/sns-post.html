@@ -345,7 +345,6 @@ async function checkStatus() {
 
     const flag = (k, ok) => `<span class="badge ${ok?'ok':'err'}">${k}: ${ok?'OK':'未設定'}</span>`;
     $("status-area").innerHTML = [
-      flag("Anthropic", env.hasAnthropic),
       flag("Supabase", env.hasSupabase),
       flag("X API", snsCreds.xConfigured || false),
       flag("Threads API", snsCreds.threadsConfigured || false),

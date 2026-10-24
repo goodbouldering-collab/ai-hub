@@ -30,7 +30,7 @@ python -m venv .venv
 pip install -r requirements.txt
 
 # .env に API キー (プロジェクトルートの .env を自動で読みます)
-# ANTHROPIC_API_KEY=sk-ant-api03-...
+# OPENAI_API_KEY=<既存のOpenAIキー>
 ```
 
 ## 手動実行
@@ -38,7 +38,7 @@ pip install -r requirements.txt
 ```bash
 python run.py                 # 日次ダイジェスト (diff モード)
 python run.py --full          # 統合版 (NotebookLM 丸ごと投入用) も生成
-python run.py --no-summary    # Claude API を使わずタイトル＋原文抜粋だけ
+python run.py --no-summary    # OpenAI API を使わずタイトル＋原文抜粋だけ
 python site/build_site.py     # 静的サイトだけ再ビルド (speaker.html / lectures/ 含む)
 ```
 
@@ -92,7 +92,7 @@ RSS 以外(X API, スクレイピング等)を追加したくなったら `core/
 ## GitHub Actions で定期実行
 
 1. このディレクトリを GitHub リポジトリに push
-2. リポジトリの `Settings → Secrets and variables → Actions` で `ANTHROPIC_API_KEY` を登録
+2. リポジトリの `Settings → Secrets and variables → Actions` で `OPENAI_API_KEY` を登録
 3. `.github/workflows/daily.yml` が毎朝 JST 07:00 に自動実行し、生成物を `outputs/` に commit back する
 
 ## NotebookLM への取り込み方

@@ -1,0 +1,62 @@
+{
+  "type": "flex",
+  "altText": "録音を顧客ごとの記録へ。経験者向け2時間の個別講習",
+  "contents": {
+    "type": "bubble",
+    "hero": {
+      "type": "image",
+      "url": "https://aiclimb.aiclimb.workers.dev/img/recording-customer-timeline-hero-20261024.png",
+      "size": "full",
+      "aspectRatio": "3:2",
+      "aspectMode": "cover"
+    },
+    "body": {
+      "type": "box",
+      "layout": "vertical",
+      "spacing": "md",
+      "contents": [
+        {
+          "type": "text",
+          "text": "10時の会話が、10時のお客様の記録に。",
+          "weight": "bold",
+          "size": "lg",
+          "wrap": true
+        },
+        {
+          "type": "text",
+          "text": "予約表を土台に、録音を顧客・施術・商品ごとの記録へ。Codexで作る自分用アプリの活用例を紹介します。",
+          "wrap": true,
+          "size": "sm"
+        },
+        {
+          "type": "text",
+          "text": "2時間の個別講習｜AIエージェント講習の受講経験者、またはCodexを十分に使える方が対象です。",
+          "wrap": true,
+          "size": "sm"
+        },
+        {
+          "type": "text",
+          "text": "希望の方は「個別講習希望」とご返信ください。",
+          "wrap": true,
+          "size": "sm"
+        }
+      ]
+    },
+    "footer": {
+      "type": "box",
+      "layout": "vertical",
+      "contents": [
+        {
+          "type": "button",
+          "style": "primary",
+          "color": "#176F6A",
+          "action": {
+            "type": "uri",
+            "label": "ブログを読む",
+            "uri": "https://aiclimb.aiclimb.workers.dev/blog/2026-10-24-recording-customer-timeline"
+          }
+        }
+      ]
+    }
+  }
+}

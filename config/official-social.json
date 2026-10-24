@@ -1,4 +1,17 @@
 [
-  {"name":"X", "url":"https://x.com/Tappy0688822798", "verified":"2026-10-24"},
-  {"name":"note", "url":"https://note.com/climbingconsul", "verified":"2026-10-24"}
+  {
+    "name": "X",
+    "url": "https://x.com/Tappy0688822798",
+    "verified": "2026-10-24"
+  },
+  {
+    "name": "note",
+    "url": "https://note.com/climbingconsul",
+    "verified": "2026-10-24"
+  },
+  {
+    "name": "Instagram",
+    "verified": "2026-10-25",
+    "url": "https://www.instagram.com/tatsumi.yui/"
+  }
 ]

@@ -1,6 +1,7 @@
 """Add verified social links to a hash-verified release without rebuilding other pages."""
 import hashlib
 import json
+import re
 from pathlib import Path
 import shutil
 import subprocess
@@ -14,6 +15,10 @@ def hashes(root):
     return {p.relative_to(root).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest() for p in root.rglob('*') if p.is_file()}
 
 baseline, output = map(Path, sys.argv[1:3])
+if sys.platform == 'win32':
+    prefix = chr(92) * 2 + '?' + chr(92)
+    baseline = Path(prefix + str(baseline.resolve()))
+    output = Path(prefix + str(output.resolve()))
 manifest = json.loads((baseline / 'verification.json').read_text(encoding='utf-8'))
 before = hashes(baseline / 'public')
 assert before == manifest['assets'], 'Baseline changed'
@@ -23,7 +28,8 @@ index = output / 'public/index.html'
 source = index.read_text(encoding='utf-8')
 marker = "<a class='footer-cta' href='#contact'>AIアプリサイト自作を相談する</a>"
 assert source.count(marker) == 1
-assert 'id=\'official-social\'' not in source
+source, count = re.subn(r"<nav\b[^>]*id=['\"]official-social['\"][^>]*>[\s\S]*?</nav>", '', source)
+assert count <= 1
 source = source.replace(marker, marker + render_official_social(), 1)
 index.write_text(source, encoding='utf-8', newline='')
 after = hashes(output / 'public')

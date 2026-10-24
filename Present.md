@@ -1,3 +1,8 @@
+## Instagram公式プロフィール（2026-10-25）
+
+- tatsumi.yuiをAI相談｜由井辰美へ変更。ロゴと自己紹介を保存・公開画面確認済み。リンク欄はWeb版編集不可のためモバイルでの変更待ち。公式サイトURLは自己紹介に記載。
+- ホームページの公式SNSへInstagramを追加。既存公開資産を保持しindex.htmlのみ変更する。公開実績はtmp/delivery/20261025-instagram-social-link.jsonに記録。
+
 ## 公式SNSの掲載（2026-10-24）
 
 - X（Tappy0688822798）とnote（climbingconsul）のプロフィールをAI相談へ変更し実画面確認済み。登録メール・ハンドルは維持。noteメール認証は本人操作待ち、実投稿は未実施。

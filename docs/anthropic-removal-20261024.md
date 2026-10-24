@@ -20,7 +20,7 @@
 python scripts/update_codex_update_log.py --editorial-file <検証対象の編集JSON>
 ```
 
-APIを使う場合も既存接続だけを使用する。キー作成・保存・権限・課金・SNS投稿をこの変更では行わない。ローカルで既存OpenAIキーは検出しておらず、実生成は未検証。
+APIを使う場合も既存接続だけを使用する。キー作成・保存・権限・課金・SNS投稿をこの変更では行わない。既存の事業共有 `.env.shared` のOpenAIキーを値を出さず検出。Pythonは環境変数、事業内 `.env` / `.env.shared`、同じGit事業の共有設定の順で読み、キーを書き換えない。実課金の生成は未実施。
 
 ## 検証と公開
 
@@ -28,4 +28,6 @@ PythonのResponses形式・失敗時保全・記事契約、4層のCloudflare Wo
 
 公開元は台帳登録済みの `work/genspark-profile-edit/cloudflare-runtime`。最新公開資産 `.wordpress-ai-cms-release-20261023-final/public` をハッシュ照合して保持し、統合SHAのWorkerだけを反映する。新しいCodex記事候補0.164や未公開日次ニュースを混ぜない。
 
-工程証拠: `tmp/delivery/20261024-remove-anthropic.json`、事業ルート `tmp/anthropic-removal-20261024/`。PR・配備ID・本番確認は工程記録で確定する。現時点ではローカル検証段階。
+工程証拠: `tmp/delivery/20261024-remove-anthropic.json`、事業ルート `tmp/anthropic-removal-20261024/`。PR・配備ID・本番確認は工程記録で確定する。PR #209統合・本番反映済み。統合SHA `163dc865d4c415962a283f1c72d7cd63e8e05014`、初回Cloudflare version `da8fde2d-ff81-4601-ab24-81a35619bbd9`。公開776資産不変、4公開HTMLの配信SHA一致、7経路確認。IAB既存認証で接続状態とpingのAnthropic項目消失を確認。GitHubの未使用ANTHROPIC_API_KEYは削除・名前一覧を再確認済み。Cloudflareにはそのsecretは元から存在しない。Python39件・Worker14件・Cloudflare7件・TypeScript・CI2件成功。
+
+事業ルートの分岐済みcheckoutにも提供元変更だけをbackportし、既存未コミット変更を保存した。mainとの100件規模の既存競合は修復していない。現用・公開の正本は統合済み登録公開元を継続使用する。次回の公開資産baselineは `.anthropic-removal-release-20261024-final/public`。本番旧記事APIのサーバーOpenAIキーは未設定であり、新制作画面は既存の利用者保存キー経路を保持。秘密設定や実記事生成を本変更の完了と混同しない。

@@ -15,6 +15,10 @@ def hashes(root):
     return {p.relative_to(root).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest() for p in root.rglob('*') if p.is_file()}
 
 baseline, output = map(Path, sys.argv[1:3])
+if sys.platform == 'win32':
+    prefix = chr(92) * 2 + '?' + chr(92)
+    baseline = Path(prefix + str(baseline.resolve()))
+    output = Path(prefix + str(output.resolve()))
 manifest = json.loads((baseline / 'verification.json').read_text(encoding='utf-8'))
 before = hashes(baseline / 'public')
 assert before == manifest['assets'], 'Baseline changed'
@@ -34,4 +38,3 @@ assert before.keys() == after.keys()
 result = {'source_sha': subprocess.check_output(['git','rev-parse','HEAD'], cwd=ROOT, text=True).strip(), 'assets':after, 'changed':['index.html'], 'baseline_source_sha':manifest['source_sha']}
 (output / 'verification.json').write_text(json.dumps(result, indent=2), encoding='utf-8')
 print(json.dumps({'changed':result['changed'],'assets':len(after),'source_sha':result['source_sha']}))
-

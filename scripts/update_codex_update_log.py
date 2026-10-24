@@ -923,7 +923,8 @@ def main(argv: list[str] | None = None) -> int:
         release_tag = ""
     else:
         release_tag, release_source = fetch_latest_cli_release()
-    api_key = os.getenv("OPENAI_API_KEY", "")
+    from core.openai_text import configured_api_key
+    api_key = configured_api_key(ROOT) if not args.editorial_file else ""
 
     def editor(current: str, period: str, block: str, require_archive: bool) -> dict[str, Any]:
         if args.editorial_file:

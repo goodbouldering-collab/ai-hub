@@ -7,7 +7,7 @@ import json
 import os
 import textwrap
 
-from .openai_text import generate_text, DEFAULT_MODEL
+from .openai_text import generate_text, configured_api_key, DEFAULT_MODEL
 
 from .collector import Article
 
@@ -107,7 +107,7 @@ def summarize_all(articles: list[Article]) -> dict[str, dict]:
     記事ハッシュ -> {"summary": ...} の辞書を返す。
     要約失敗したものは空文字で埋める。
     """
-    api_key = os.getenv("OPENAI_API_KEY")
+    api_key = configured_api_key()
     if not api_key:
         print("[!] OPENAI_API_KEY 未設定。要約をスキップ")
         return {a.hash: {"summary": ""} for a in articles}

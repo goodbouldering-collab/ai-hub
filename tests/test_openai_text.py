@@ -4,10 +4,25 @@ from pathlib import Path
 import tempfile
 from unittest.mock import Mock, patch
 
-from core.openai_text import generate_text
+from core.openai_text import generate_text, configured_api_key
 
 
 class OpenAITextTests(unittest.TestCase):
+    def test_shared_key_is_reused_without_rewriting_files(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / ".git").mkdir()
+            shared = root / ".env.shared"
+            original = "OPENAI_API_KEY=test-only-shared-key\n"
+            shared.write_text(original, encoding="utf-8")
+            worktree = root / "work" / "isolated"
+            worktree.mkdir(parents=True)
+            with patch.dict("os.environ", {}, clear=True):
+                self.assertEqual(configured_api_key(worktree), "test-only-shared-key")
+            with patch.dict("os.environ", {"OPENAI_API_KEY": "test-only-environment"}, clear=True):
+                self.assertEqual(configured_api_key(worktree), "test-only-environment")
+            self.assertEqual(shared.read_text(encoding="utf-8"), original)
+
     def test_responses_request_and_text_after_reasoning(self):
         response = Mock(status_code=200)
         response.json.return_value = {"status": "completed", "output": [

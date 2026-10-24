@@ -1,5 +1,6 @@
 // One registry for the dashboard, canonical URLs, legacy redirects, and view selection.
 export const ROUTES = Object.freeze([
+  ['material-upload','資料アップロード','materials','upload','/admin/material-upload'],
   ['blog-create','ブログ制作','create','studio','/admin/apps/blog.html'],
   ['reel','リール制作','create','studio','/admin/apps/reel.html'],
   ...[['articles','記事一覧'],['editor','記事編集'],['publish','公開確認'],['status','接続状態'],['settings','ブログ設定']].map(([view,title])=>['blog-'+view,title,'create','blog','/admin/blog/'+view,view]),

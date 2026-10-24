@@ -1,5 +1,6 @@
 import { OPERATION_SECTIONS } from './routes.mjs';
 import { header, SHELL_STYLE, workspaceNavigation } from './shell.mjs';
+import { uploadPanel } from './material-upload.mjs';
 
 export const DOCUMENTS = Object.freeze([
   {slug:'daily-operation',category:'運営',title:'毎日の運営チェック',description:'予定の確認から公開後の確認まで。',sections:[
@@ -42,6 +43,7 @@ export const workspacePage=(path,title,lead,body)=>{
 };
 
 export function renderPage(path) {
+  if(path==='/admin/material-upload')return workspacePage(path,'内部資料','',''+uploadPanel);
   if(path==='/admin/operations') return workspacePage(path,'運営・分析','','');
   const operationSection=OPERATION_SECTIONS.find(item=>item.path===path);
   if(operationSection) return workspacePage(path,operationSection.title,'','');

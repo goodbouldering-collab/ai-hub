@@ -12456,6 +12456,7 @@ def _render_live_talk_guide() -> str:
 
 def _render_footer(today: str) -> str:
     """リッチフッター: 屋号+一言 / ナビ / NAP(ローカルSEOの住所明示) / CTA。"""
+    from core.official_social import render_official_social
     year = today[:4]
     return (
         "<footer class='site-footer'>"
@@ -12465,6 +12466,7 @@ def _render_footer(today: str) -> str:
         "<p class='footer-tagline'>滋賀・彦根の中小事業者向けに、AI相談・AIエージェント講習・近日開始で現在仮運用中の月額2,200円AIオンラインサロン・受講資料・Web集客支援を行う"
         "資料センター型の相談サイト。増え続けるAI情報を、仕事で使える次の一手に変えます。</p>"
         "<a class='footer-cta' href='#contact'>AIアプリサイト自作を相談する</a>"
+        f"{render_official_social()}"
         "</div>"
         "<nav class='footer-nav' aria-label='フッターナビ'>"
         "<span class='footer-nav-head'>メニュー</span>"

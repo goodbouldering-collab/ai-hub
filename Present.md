@@ -1,3 +1,9 @@
+## 公式SNSの掲載（2026-10-24）
+
+- X（Tappy0688822798）とnote（climbingconsul）のプロフィールをAI相談へ変更し実画面確認済み。登録メール・ハンドルは維持。noteメール認証は本人操作待ち、実投稿は未実施。
+- ホームページのフッター「AI相談の発信」に確認済みURLを掲載する。正本はconfig/official-social.json。各SNSが整う都度更新する。詳細: docs/official-social-profiles.md。
+- ローカル検証: 既存776資産中index.htmlだけの差分、Python構文検査成功。公開状況は今回のdelivery記録で確認する。
+
 ## Anthropicの実行・認証依存を除去（2026-10-24）
 
 - 記事更新停止の原因だったPython、旧管理API、Cloudflare記事生成を既存OpenAI接続へ統一。SDK依存とキー要求・接続表示を除去。Codexが用意する編集JSONを `--editorial-file` で使うAPI不要経路も追加した。

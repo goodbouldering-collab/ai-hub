@@ -1,11 +1,19 @@
 import { ROUTES, routeAt, rewriteNavigation, OPERATION_SECTIONS, operationSectionAt } from './routes.mjs';
 import { THEME } from './theme.mjs';
 export const MENU = Object.freeze([
-  { href: '/admin/blog-create', label: '制作・発信', key: 'create' },
-  { href: '/admin/materials', label: '内部資料', key: 'materials' },
-  { href: '/admin/operations', label: '運営・分析', key: 'operations' },
+  { href: '/admin/blog-create', label: 'ブログを書く', key: 'create' },
+  { href: '/admin/reel', label: 'リールを作る', key: 'create' },
+  { label: 'GA4' },
+  { label: 'サーチコンソール' },
+  { label: 'マイビジネス' },
+  { label: '内部資料アップロード' },
+  { label: '顧客情報' },
+  { label: '予約状況' },
+  { label: 'メニュー編集' },
+  { label: '商品サイト設定' },
+  { href: '/admin/materials', label: '内部資料を見る', key: 'materials' },
+  { href: '/admin/operations', label: 'その他の管理', key: 'operations' },
 ]);
-
 function activeKey(path) {
   const route=routeAt(path); if(route) return route.group;
   if(path==='/admin/document') return 'materials';
@@ -17,12 +25,12 @@ function activeKey(path) {
 
 export function header(path) {
   const active = activeKey(path);
-  return `<header id="workspace-header"><div class="workspace-bar"><a class="workspace-brand" href="/admin/blog-create">AI相談<small>管理</small></a><nav aria-label="管理メニュー">${MENU.map(item => `<a href="${item.href}"${active === item.key ? ' aria-current="page"' : ''}>${item.label}</a>`).join('')}</nav><div class="workspace-tools"><a href="/" target="_blank" rel="noopener">公開サイト ↗</a><a href="/admin/logout">ログアウト</a></div></div></header>`;
+  return `<header id="workspace-header"><div class="workspace-bar"><a class="workspace-brand" href="/admin/blog-create">AI相談<small>管理</small></a><nav aria-label="管理メニュー">${MENU.map(item => item.href ? `<a href="${item.href}"${path === item.href ? ' aria-current="page"' : ''}>${item.label}</a>` : `<button type="button" disabled>${item.label}<small>準備中</small></button>`).join('')}</nav><div class="workspace-tools"><a href="/" target="_blank" rel="noopener">公開サイト ↗</a><a href="/admin/logout">ログアウト</a></div></div></header>`;
 }
 
 // Generated from the same registry as the home catalogue; no parallel menu definitions.
 export function creationNavigation(path) {
-  return `<nav class="workspace-actions" aria-label="制作・発信メニュー">${ROUTES.filter(r=>r.group==='create').map(r=>`<a class="workspace-action${r.path===path?' workspace-action--primary':''}" href="${r.path}"${r.path===path?' aria-current="page"':''}>${r.title}</a>`).join('')}</nav>`;
+  return `<nav class="workspace-actions" aria-label="制作・発信メニュー">${ROUTES.filter(r=>r.group==='create'&&!MENU.some(item=>item.href===r.path)).map(r=>`<a class="workspace-action${r.path===path?' workspace-action--primary':''}" href="${r.path}"${r.path===path?' aria-current="page"':''}>${r.title}</a>`).join('')}</nav>`;
 }
 
 export function operationsNavigation(path) {
@@ -48,6 +56,7 @@ html{scroll-padding-top:130px}body[data-workspace-shell]{padding-top:0!important
 body[data-workspace-shell] .topbar{position:static!important;top:auto!important}body[data-workspace-shell] .studio-tabs{position:static}body[data-workspace-shell] .steps{top:115px}
 @media(max-width:900px){#workspace-header .workspace-bar{display:grid;grid-template-columns:1fr auto;gap:8px 12px;padding:10px 16px}#workspace-header nav{grid-column:1/-1;grid-row:2;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:3px;width:100%}#workspace-header nav a{text-align:center;padding:10px 3px;font-size:13px;white-space:normal}#workspace-header .workspace-brand{font-size:20px}#workspace-header .workspace-tools{gap:12px;font-size:11px}}
 #workspace-header nav a{border:1px solid #b6cbd7;background:#fff}#workspace-header .workspace-tools a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 12px;border:1px solid #b6cbd7;border-radius:8px;background:#fff}#workspace-header .workspace-tools{gap:8px}
+#workspace-header{position:relative!important}#workspace-header .workspace-bar{display:grid;grid-template-columns:1fr auto;gap:12px}#workspace-header nav{grid-column:1/-1;grid-row:2;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));width:100%;gap:8px}#workspace-header nav a,#workspace-header nav button{text-align:center;white-space:normal;padding:11px 8px;min-height:52px;border:1px solid #b6cbd7;border-radius:8px;font:inherit;font-weight:650}#workspace-header nav button:disabled{background:#f5f7f9;color:#697b85;cursor:not-allowed}#workspace-header nav button small{display:block;font-size:11px;font-weight:400}#workspace-header .workspace-tools{grid-column:2;grid-row:1}@media(max-width:600px){#workspace-header nav{grid-template-columns:repeat(2,minmax(0,1fr))}#workspace-header .workspace-bar{padding:12px}}
 </style><script data-workspace-navigation>
 // Keep drafts and scroll position when selecting the page already open.
 document.addEventListener('click',function(event){

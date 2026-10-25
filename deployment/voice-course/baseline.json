@@ -783,5 +783,6 @@
     "media/ai-experience-3d-20260810/reel.mp4": "f20544e9fcadd2d7349b38619406dde4c0fccdf1e9b2dabc52978aae6959096a",
     "media/reels/2026-08-14-communication-essence.mp4": "980e656fbe0445d6ce6decd59ca212f106615c519e107f71f6732026e119f11e"
   },
-  "worker_sha256": "cf1ce7e4753dfc101b114f917d06a66d8e1ee6957c0bd97d1d5271465c8bc306"
+  "worker_sha256": "72af2ef0414aa2b0109ccb6ecdb842a7496915b2d35b7a9b7e5d37ad38d69193",
+  "worker_line_endings": "CRLF, matching current production multipart module"
 }

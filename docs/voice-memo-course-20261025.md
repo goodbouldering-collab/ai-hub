@@ -23,3 +23,5 @@ core/voice_memo_course.pyをcore/square_menu.pyから呼び、日次生成時の
 52 Python tests、verify_ai_news_feature --assets。IABで834pxブログ、1440px講座、390px講座と詳細開閉を確認。横はみ出しなし。公開予約画面で新しいタイトル・説明・8800円・2時間を確認。
 
 作業証拠は事業ルートoutputs/voice-course-20261025。ローカルプレビュー http://127.0.0.1:4191/、親PID40232、2026-10-29 14:30:20 JSTまで（PC再起動・サーバー異常終了を除く）。公開・Git統合・Cloudflareガード・配信ハッシュ・APIの最終実績はdelivery記録とrelease-result.jsonを参照。
+
+公開WorkerはGitのLFからCRLFへ変換して配信されていた。実コードは一致しており、今回も確定SHAからCRLFへ再現して現在本番とバイト単位で一致させる。LFへ変更して再配信しない。

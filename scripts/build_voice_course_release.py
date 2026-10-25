@@ -27,7 +27,7 @@ def build(baseline, output, sha):
     contract = json.loads((ROOT/'deployment/voice-course/baseline.json').read_text(encoding='utf-8'))
     assert hashes(baseline) == contract['assets'], 'Baseline changed'
     assert not output.exists(), 'Use a new output directory'
-    worker = (ROOT/'deployment/admin-workspace/published-worker.mjs').read_bytes().replace(b'\r\n', b'\n')
+    worker = (ROOT/'deployment/admin-workspace/published-worker.mjs').read_bytes().replace(b'\r\n', b'\n').replace(b'\n', b'\r\n')
     assert digest(worker) == contract['worker_sha256']
     if sha:
         for name in INPUTS:

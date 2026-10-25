@@ -3,9 +3,9 @@ import { THEME } from './theme.mjs';
 export const MENU = Object.freeze([
   { href: '/admin/blog-create', label: 'ブログを書く', key: 'create' },
   { href: '/admin/reel', label: 'リールを作る', key: 'create' },
-  { label: 'GA4' },
-  { label: 'サーチコンソール' },
-  { label: 'マイビジネス' },
+  { href: 'https://analytics.google.com/analytics/web/', label: 'GA4' },
+  { href: 'https://search.google.com/search-console/', label: 'サーチコンソール' },
+  { href: 'https://business.google.com/locations', label: 'マイビジネス' },
   { label: '内部資料アップロード' },
   { label: '顧客情報' },
   { label: '予約状況' },
@@ -25,7 +25,7 @@ function activeKey(path) {
 
 export function header(path) {
   const active = activeKey(path);
-  return `<header id="workspace-header"><div class="workspace-bar"><a class="workspace-brand" href="/admin/blog-create">AI相談<small>管理</small></a><nav aria-label="管理メニュー">${MENU.map(item => item.href ? `<a href="${item.href}"${path === item.href ? ' aria-current="page"' : ''}>${item.label}</a>` : `<button type="button" disabled>${item.label}<small>準備中</small></button>`).join('')}</nav><div class="workspace-tools"><a href="/" target="_blank" rel="noopener">公開サイト ↗</a><a href="/admin/logout">ログアウト</a></div></div></header>`;
+  return `<header id="workspace-header"><div class="workspace-bar"><a class="workspace-brand" href="/admin/blog-create">AI相談<small>管理</small></a><nav aria-label="管理メニュー">${MENU.map(item => item.href ? `<a href="${item.href}"${item.href.startsWith('https:') ? ' target="_blank" rel="noopener noreferrer" title="ログイン後に対象事業を選択"' : ''}${path === item.href ? ' aria-current="page"' : ''}>${item.label}</a>` : `<button type="button" disabled>${item.label}<small>準備中</small></button>`).join('')}</nav><div class="workspace-tools"><a href="/" target="_blank" rel="noopener">公開サイト ↗</a><a href="/admin/logout">ログアウト</a></div></div></header>`;
 }
 
 // Generated from the same registry as the home catalogue; no parallel menu definitions.

@@ -27,4 +27,4 @@ def render_official_social():
         icon = re.sub(r'<title>.*?</title>', '', icon).replace('role="img"', 'aria-hidden="true" focusable="false"')
         name = html.escape(entry['name'])
         links.append(f"<a href='{html.escape(entry['url'], quote=True)}' target='_blank' rel='noopener noreferrer' aria-label='{name}のAI相談（新しいタブで開く）'>{icon}<span>{name}</span></a>")
-    return SOCIAL_CSS + "<nav aria-label='AI相談の公式SNS' id='official-social'><span class='social-caption'>AI相談の発信</span><div class='social-links'>" + ''.join(links) + '</div></nav>'
+    return SOCIAL_CSS + "<nav aria-label='AI相談の公式SNS' id='official-social'><div class='social-links'>" + ''.join(links) + '</div></nav>'

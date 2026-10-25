@@ -12,7 +12,7 @@ SOCIAL_CSS = """<style id='official-social-style'>
 #official-social a:hover{background:#e9f3ee;border-color:#609a89}
 #official-social a:focus-visible{outline:3px solid #267566;outline-offset:3px}
 #official-social svg{width:17px;height:17px;fill:currentColor;flex:none}
-@media(max-width:600px){#official-social{padding:8px 16px;gap:6px;align-items:flex-start;flex-direction:column}#official-social .social-caption{font-size:11px}#official-social .social-links{gap:6px}#official-social a{padding:6px 8px;font-size:11px;gap:4px;flex-direction:column;min-width:44px;min-height:52px}}
+@media(max-width:600px){#official-social{padding:8px 16px;gap:6px;align-items:flex-start;flex-direction:column}#official-social .social-caption{font-size:11px}#official-social .social-links{gap:4px;flex-wrap:nowrap;max-width:100%;overflow-x:auto}#official-social a{padding:6px 4px;font-size:10px;gap:4px;flex-direction:column;min-width:44px;min-height:52px;flex-shrink:0}}
 @media(prefers-reduced-motion:reduce){#official-social a{transition:none}}
 </style>"""
 
@@ -22,7 +22,7 @@ def render_official_social():
     for entry in entries:
         if not entry.get('verified') or not entry['url'].startswith('https://'):
             raise ValueError('Only verified HTTPS profiles may be published')
-        icon_name = {'X':'x', 'note':'note', 'Instagram':'instagram', 'Threads':'threads', 'Facebook':'facebook'}[entry['name']]
+        icon_name = {'X':'x', 'note':'note', 'Instagram':'instagram', 'Threads':'threads', 'Facebook':'facebook', 'YouTube':'youtube'}[entry['name']]
         icon = (Path(__file__).resolve().parents[1] / f'site/static/icons/social/{icon_name}.svg').read_text(encoding='utf-8')
         icon = re.sub(r'<title>.*?</title>', '', icon).replace('role="img"', 'aria-hidden="true" focusable="false"')
         name = html.escape(entry['name'])

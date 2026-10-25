@@ -1,8 +1,8 @@
 """Apply the user-approved homepage copy, including the October 12 heading."""
 import re
 
-TITLE = '彦根で使えるAIを学ぶ'
-SUBTITLE = 'AIエージェント動いてますか？'
+TITLE = '彦根で加速するAIを学ぼう'
+SUBTITLE = '数時間でAIエージェントが動く'
 TAGLINE = '普及率6%｜今が好機'
 BENEFIT = 'あなたの経験がAIで拡張できる'
 CONCERN = 'でも、なんかうまく使えてないかも・・・'

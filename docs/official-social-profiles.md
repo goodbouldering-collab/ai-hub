@@ -19,3 +19,5 @@ Facebookは設定画面で名前AI相談・最終変更日2026年10月25日を�
 残件: noteメール認証、Instagram専用リンク欄のモバイル編集、TikTokの対象アカウント選択。実投稿は未実施。
 
 2026-10-25訂正: 既存@lossismoreの転用を取り消し、名前・説明・リンク・人物写真を復元。元のジムカバーだけ原本待ち。本人の規約同意を受け、独立した新チャンネルAI相談（@aiclimb_hikone、UCpAAT30FDp5WKC3i9DBBGkg）を作成。説明・ロゴ・カバー・公式サイトリンクを公開し再読込確認。公式URL: https://www.youtube.com/@aiclimb_hikone 。ホームページ追加の公開工程はtmp/delivery/20261025-youtube-dedicated.jsonで追跡する。
+
+2026-10-25 TikTok: 本人ログイン後の個人アカウント@yui_tatsumiをAI相談へ変更。ロゴ・表示名・自己紹介を保存し再読込確認。ハンドルと既存動画は維持。専用Webリンク欄はWeb編集画面にないため紹介文に公式URLを記載。公開URL: https://www.tiktok.com/@yui_tatsumi 。7媒体メニューはスマートフォンの余白・文字サイズを調整し44px以上の操作領域を保持。公開工程: tmp/delivery/20261025-tiktok-social.json。

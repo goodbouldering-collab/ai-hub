@@ -1,5 +1,6 @@
 """Apply public Square service facts verified on 2026-10-14."""
 import re
+from core.voice_memo_course import apply_voice_memo_course
 
 def apply_square_menu(document: str) -> str:
     document = document.replace('AI個別講習', 'AI個別相談')
@@ -49,4 +50,4 @@ def apply_square_menu(document: str) -> str:
         visit(data)
         return tag[:start] + json.dumps(data, ensure_ascii=False) + tag[end:] if changed else tag
     document = re.sub(r'<script[^>]*type=[\'"]application/ld\+json[\'"][^>]*>.*?</script>', schema, document, flags=re.S)
-    return document
+    return apply_voice_memo_course(document)

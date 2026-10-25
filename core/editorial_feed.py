@@ -313,4 +313,5 @@ def integrate_home_news(document: str) -> str:
     config = _config()
     row = _row(_news_post(published, config), config, news=True, include_summary=True)
     row = row.replace('<li ', f'<li id="ai-news" data-news-date="{published}" ', 1)
-    return document[:insertion] + row + document[insertion:]
+    from core.home_blog_layout import compact_home_blog
+    return compact_home_blog(document[:insertion] + row + document[insertion:])

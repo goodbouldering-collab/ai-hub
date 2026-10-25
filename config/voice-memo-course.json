@@ -1,0 +1,32 @@
+{
+  "name": "AI音声メモアプリ講座｜録音を仕事の記録に変える",
+  "square_name": "【AI音声メモアプリ講座120分】録音を仕事の記録に変える",
+  "price_yen": 8800,
+  "duration_minutes": 120,
+  "tagline": "話した内容が、次の仕事に使える記録になる。",
+  "description": "録音や文字起こしを取り込み、予約時間と照らして、お客様別に要望・対応・次の約束を整理する。Codexと一緒に、自分のPCで動く小さなアプリを作る個別講座です。",
+  "audience": "AIエージェント講習を1回以上受講した方、またはCodexの基本操作ができる方が対象です。",
+  "benefits": [
+    {"title": "記録の書き直しを減らす", "detail": "接客や相談の会話から、残しておきたい要点を拾う流れを作ります。"},
+    {"title": "次の対応を思い出しやすくする", "detail": "お客様ごとの要望・対応・次の約束を、あとから見返せる形に揃えます。"},
+    {"title": "自分の仕事に合わせて育てる", "detail": "予約表・お客様リスト・商品リストをもとに、必要な項目を自分で決めます。"}
+  ],
+  "curriculum": [
+    {"minutes": 15, "title": "残したい記録を決める", "detail": "接客・商談・相談から一つの用途を選び、完成イメージを整理します。"},
+    {"minutes": 30, "title": "リストと画面を作る", "detail": "匿名の予約表やお客様リストで、取り込み先と表示項目を作ります。"},
+    {"minutes": 45, "title": "音声メモを取り込む", "detail": "録音または文字起こしを使い、時刻・相手・要点を整理する流れを試します。"},
+    {"minutes": 30, "title": "確認して保存・改善する", "detail": "取り違えや聞き間違いを人が確認し、修正して保存する画面を整えます。"}
+  ],
+  "outcomes": ["サンプルの音声メモを取り込み、必要な項目に整理する試作アプリを作る。", "曖昧な相手や時刻をそのまま保存せず、自分で確認・修正する。", "講座後もCodexに改善を頼めるよう、アプリの目的と操作手順を残す。"],
+  "preparation": "WindowsまたはMacのPC、利用中のCodex環境、個人情報を除いた短い録音または文字起こし、見本の予約表をご用意ください。",
+  "scope_note": "120分では一つの用途の試作を目指します。音声の文字起こし方法は利用環境に合わせて選びます。外部システムとの本番連携や追加サービスの費用は受講料に含みません。録音は相手の同意を得て行い、実際の顧客情報は講習に持ち込まないでください。",
+  "image": "/img/recording-customer-timeline-lesson-20261024.png",
+  "image_alt": "音声メモと予約・お客様の記録をつなぐアプリ制作のイメージ",
+  "reference_url": "/blog/2026-10-24-recording-customer-timeline.html",
+  "square": {
+    "item_id": "S7GERYVDIPRV76DKXCC3WJWH",
+    "variation_id": "R4ZXWZBO2YHS3IVRK3JVK6SQ",
+    "location_id": "LWJNMP7EAN4GS",
+    "booking_url": "https://book.squareup.com/appointments/zymaszkc9pdwq2/location/LWJNMP7EAN4GS/services/S7GERYVDIPRV76DKXCC3WJWH"
+  }
+}

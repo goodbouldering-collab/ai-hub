@@ -26,10 +26,11 @@ assert not output.exists(), 'Use a fresh release folder'
 shutil.copytree(baseline / 'public', output / 'public')
 index = output / 'public/index.html'
 source = index.read_text(encoding='utf-8')
-marker = "<a class='footer-cta' href='#contact'>AIアプリサイト自作を相談する</a>"
+marker = "<main id='main-content'>"
 assert source.count(marker) == 1
 source, count = re.subn(r"<nav\b[^>]*id=['\"]official-social['\"][^>]*>[\s\S]*?</nav>", '', source)
 assert count <= 1
+source = re.sub(r"<style id=['\"]official-social-style['\"]>[\s\S]*?</style>", '', source)
 source = source.replace(marker, marker + render_official_social(), 1)
 index.write_text(source, encoding='utf-8', newline='')
 after = hashes(output / 'public')

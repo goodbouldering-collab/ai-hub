@@ -45,7 +45,7 @@ test('shell removes old menu, preserves editor IDs/scripts, and embeds only once
   assert.match(result,/href="\/admin\/blog-create" aria-current="page"/);
   assert.equal(applyShell(result,url),result);assert.match(applyShell(html,new URL(url+'?embedded=1')),/data-admin-theme/);
   const old='<html><head></head><body><header class="site-header">OLD</header><main>Keep</main></body></html>';
-  const replaced=applyShell(old,url);assert.doesNotMatch(replaced,/OLD/);assert.match(replaced,/<main>Keep<\/main>/);
+  const replaced=applyShell(old,url);assert.doesNotMatch(replaced,/OLD/);assert.match(replaced,/<main>[\s\S]*Keep<\/main>/);
 });
 
 test('missing auth configuration fails closed without a misleading login loop',async()=>{

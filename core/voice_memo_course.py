@@ -40,7 +40,7 @@ def render_course(c):
         f'<details class="compact-course-details"><summary>メリット・120分の内容を見る</summary><ul>{rows(c["benefits"])}</ul><p class="compact-course-details-lead">当日の流れ</p><ul>{rows(curriculum)}</ul>'
         f'<p><strong>持ち物</strong>：{escape(c["preparation"])}</p><p>{escape(c["scope_note"])}</p></details>'
         f'<details class="compact-course-details"><summary>受講後にできることを見る</summary><p>以下は講座で目指す到達点です。</p><ul>{outcomes}</ul></details>'
-        f'<a class="offer-action compact-course-action" href="{escape(c["square"]["booking_url"])}" target="_blank" rel="noopener">AI音声メモアプリ講座を予約 →</a>'
+        f'<a class="offer-action compact-course-action" href="{escape(c["square"]["booking_url"])}" target="_blank" rel="noopener">AI音声メモ講座を予約 →</a>'
         f'<p class="compact-course-material-row"><a class="compact-course-material" href="{escape(c["reference_url"])}">ブログで制作例を見る →</a></p></div></div></article>'
     )
 
@@ -59,7 +59,7 @@ def apply_voice_memo_course(document):
         data = json.loads(tag[start:end])
         def visit(value, course=False):
             if isinstance(value, dict):
-                course = course or any(s in str(value.get('name', '')) for s in ('AIコーディング', 'AI音声メモアプリ'))
+                course = course or any(s in str(value.get('name', '')) for s in ('AIコーディング', 'AI音声メモ'))
                 if course and 'name' in value and value.get('@type') in ('Course', 'Service', 'Product', 'Offer'):
                     value['name'] = c['name']
                     if 'description' in value: value['description'] = c['description']
@@ -69,7 +69,7 @@ def apply_voice_memo_course(document):
                         value['coursePrerequisites'] = c['audience']
                         value['timeRequired'] = 'PT2H'
                 if value.get('@type') == 'WebPage' and isinstance(value.get('description'), str):
-                    value['description'] = value['description'].replace('AIコーディング講習', 'AI音声メモアプリ講座')
+                    value['description'] = value['description'].replace('AIコーディング講習', 'AI音声メモ講座')
                 for key, item in list(value.items()):
                     if course and key in ('price', 'lowPrice', 'highPrice'):
                         value[key] = '8800' if isinstance(item, str) else 8800

@@ -25,7 +25,7 @@ test('creation navigation has one destination each and replaces legacy menus wit
   const nav=result.match(/<nav[^>]*aria-label="制作・発信メニュー"[\s\S]*?<\/nav>/)[0];
   const links=[...nav.matchAll(/href="([^"]+)"/g)].map(m=>m[1]);
   assert.equal(new Set(links).size,links.length);
-  assert.equal(links.length,ROUTES.filter(r=>r.group==='create'&&!MENU.some(item=>item.href===r.path)).length);
+  assert.equal(links.length,ROUTES.filter(r=>r.group==='create').length);
   assert.match(result,/id="editor"/);assert.match(result,/initializeEditor/);
 });
 for(const worker of [source,bundle]) test('retired pages remain authenticated and redirect without executing actions',async()=>{

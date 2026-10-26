@@ -1,6 +1,12 @@
 import { ROUTES, routeAt, rewriteNavigation, OPERATION_SECTIONS, operationSectionAt } from './routes.mjs';
 import { THEME } from './theme.mjs';
 export const MENU = Object.freeze([
+  { href: '/admin/blog-create', label: '制作・発信', key: 'create' },
+  { href: '/admin/materials', label: '内部資料', key: 'materials' },
+  { href: '/admin/operations', label: '運営・分析', key: 'operations' },
+]);
+
+const HOME_ACTIONS = Object.freeze([
   { href: '/admin/blog-create', label: 'ブログを書く', key: 'create' },
   { href: '/admin/reel', label: 'リールを作る', key: 'create' },
   { href: 'https://analytics.google.com/analytics/web/', label: 'GA4' },
@@ -25,12 +31,12 @@ function activeKey(path) {
 
 export function header(path) {
   const active = activeKey(path);
-  return `<header id="workspace-header"><div class="workspace-bar"><a class="workspace-brand" href="/admin/blog-create">AI相談<small>管理</small></a><nav aria-label="管理メニュー">${MENU.map(item => item.href ? `<a href="${item.href}"${item.href.startsWith('https:') ? ' target="_blank" rel="noopener noreferrer" title="ログイン後に対象事業を選択"' : ''}${path === item.href ? ' aria-current="page"' : ''}>${item.label}</a>` : `<button type="button" disabled>${item.label}<small>準備中</small></button>`).join('')}</nav><div class="workspace-tools"><a href="/" target="_blank" rel="noopener">公開サイト ↗</a><a href="/admin/logout">ログアウト</a></div></div></header>`;
+  return `<header id="workspace-header"><div class="workspace-bar"><a class="workspace-brand" href="/admin/blog-create">AI相談<small>管理</small></a><nav aria-label="管理メニュー">${MENU.map(item => `<a href="${item.href}"${active === item.key ? ' aria-current="page"' : ''}>${item.label}</a>`).join('')}</nav><div class="workspace-tools"><a href="/" target="_blank" rel="noopener">公開サイト ↗</a><a href="/admin/logout">ログアウト</a></div></div></header>`;
 }
 
 // Generated from the same registry as the home catalogue; no parallel menu definitions.
 export function creationNavigation(path) {
-  return `<nav class="workspace-actions" aria-label="制作・発信メニュー">${ROUTES.filter(r=>r.group==='create'&&!MENU.some(item=>item.href===r.path)).map(r=>`<a class="workspace-action${r.path===path?' workspace-action--primary':''}" href="${r.path}"${r.path===path?' aria-current="page"':''}>${r.title}</a>`).join('')}</nav>`;
+  return `<nav class="workspace-actions" aria-label="制作・発信メニュー">${ROUTES.filter(r=>r.group==='create').map(r=>`<a class="workspace-action${r.path===path?' workspace-action--primary':''}" href="${r.path}"${r.path===path?' aria-current="page"':''}>${r.title}</a>`).join('')}</nav>`;
 }
 
 export function operationsNavigation(path) {
@@ -56,8 +62,7 @@ html{scroll-padding-top:130px}body[data-workspace-shell]{padding-top:0!important
 body[data-workspace-shell] .topbar{position:static!important;top:auto!important}body[data-workspace-shell] .studio-tabs{position:static}body[data-workspace-shell] .steps{top:115px}
 @media(max-width:900px){#workspace-header .workspace-bar{display:grid;grid-template-columns:1fr auto;gap:8px 12px;padding:10px 16px}#workspace-header nav{grid-column:1/-1;grid-row:2;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:3px;width:100%}#workspace-header nav a{text-align:center;padding:10px 3px;font-size:13px;white-space:normal}#workspace-header .workspace-brand{font-size:20px}#workspace-header .workspace-tools{gap:12px;font-size:11px}}
 #workspace-header nav a{border:1px solid #b6cbd7;background:#fff}#workspace-header .workspace-tools a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 12px;border:1px solid #b6cbd7;border-radius:8px;background:#fff}#workspace-header .workspace-tools{gap:8px}
-#workspace-header{position:relative!important}#workspace-header .workspace-bar{display:grid;grid-template-columns:1fr auto;gap:12px}#workspace-header nav{grid-column:1/-1;grid-row:2;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));width:100%;gap:8px}#workspace-header nav a,#workspace-header nav button{text-align:center;white-space:normal;padding:11px 8px;min-height:52px;border:1px solid #b6cbd7;border-radius:8px;font:inherit;font-weight:650}#workspace-header nav button:disabled{background:#f5f7f9;color:#697b85;cursor:not-allowed}#workspace-header nav button small{display:block;font-size:11px;font-weight:400}#workspace-header .workspace-tools{grid-column:2;grid-row:1}@media(max-width:600px){#workspace-header nav{grid-template-columns:repeat(2,minmax(0,1fr))}#workspace-header .workspace-bar{padding:12px}}
-</style><script data-workspace-navigation>
+.admin-home-actions{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px}.admin-home-actions a,.admin-home-actions button{display:inline-flex;align-items:center;min-height:36px;padding:8px 12px;border:1px solid #b6cbd7;border-radius:8px;background:#fff;color:#304d5d;text-decoration:none;font:13px/1.5 system-ui}.admin-home-actions button:disabled{color:#697b85;background:#f5f7f9;cursor:not-allowed}</style><script data-workspace-navigation>
 // Keep drafts and scroll position when selecting the page already open.
 document.addEventListener('click',function(event){
   if(event.button!==0||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;
@@ -70,6 +75,12 @@ document.addEventListener('click',function(event){
   }
 },true);
 </script>`;
+
+
+export function homeActions(path) {
+  if(path!=='/admin/blog-create') return '';
+  return '<section class="admin-home-actions" aria-label="追加の管理機能">'+HOME_ACTIONS.filter(item=>!item.key).map(item=>item.href?'<a href="'+item.href+'" target="_blank" rel="noopener noreferrer" title="ログイン後に対象事業を選択">'+item.label+'</a>':'<button type="button" disabled>'+item.label+'（準備中）</button>').join('')+'</section>';
+}
 
 export function applyShell(html, url) {
   html=rewriteNavigation(html);
@@ -98,5 +109,6 @@ export function applyShell(html, url) {
   if(url.pathname==='/admin/gubble-sns') html=html.replace('</header>','</header><details class="workspace-details" style="max-width:1120px;margin:16px auto;padding:0 16px"><summary>以前の媒体ボードに保存した設定・履歴</summary><p>旧ボードの保存内容を確認できます。通常の分析はこの画面を使います。</p><p><a href="/admin/sns-cross-media-dashboard">旧媒体ボードを開く</a></p></details>');
   if(url.pathname==='/admin/sns-cross-media-dashboard') html=html.replace('</header>','</header><p class="workspace-return">旧媒体ボード：保存済み設定・履歴の参照用。<a href="/admin/gubble-sns">SNS分析へ</a></p>');
   html=html.replace('</header>','</header>'+workspaceNavigation(url.pathname));
+  if(url.pathname==='/admin/blog-create') html=html.replace(/(<main\b[^>]*>)/i, '$1'+homeActions(url.pathname));
   return html.replace('</head>', SHELL_STYLE + THEME + '</head>').replace(/\uE000WORKSPACE(\d+)\uE001/g,(_,index)=>raw[Number(index)]);
 }

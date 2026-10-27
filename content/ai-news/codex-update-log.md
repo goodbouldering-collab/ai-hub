@@ -1,10 +1,10 @@
 ---
 title: "今日のAIニュース4とCodex"
 date: "2026-08-21"
-date_modified: "2026-10-25"
+date_modified: "2026-10-27"
 content_series: codex-update-log
-source_period: "October 5–9, 2026"
-source_fingerprint: "e30d2cd8f8bcf8dcbf1bed2583037218a33b49d674cbe8d1ba461f72a13701b9"
+source_period: "October 26–30, 2026"
+source_fingerprint: "fbc60aff22b56f58423ea8387dd33b9018a4ece6afa577050c7b364238c8915f"
 source_release_tag: "rust-v0.164.0"
 image: "/img/blog-codex-update-log-hero-20260830.png"
 image_alt: "巨大な水晶のAI脳を、10個の光るニュースホールドで登り、紙のヤギが見守る和紙の風景"
@@ -18,10 +18,10 @@ action: "使えそうな機能を1つ試す"
 ---
 
 <!-- CODEX_UPDATE_CURRENT:BEGIN -->
-<!-- source-fingerprint: e30d2cd8f8bcf8dcbf1bed2583037218a33b49d674cbe8d1ba461f72a13701b9 -->
+<!-- source-fingerprint: fbc60aff22b56f58423ea8387dd33b9018a4ece6afa577050c7b364238c8915f -->
 <section class="codex-update-guide" aria-labelledby="codex-update-guide-title">
 <h2 id="codex-update-guide-title">Codex新機能と活用例</h2>
-<p class="codex-update-guide__date">更新日：<time datetime="2026-10-25">2026年10月25日</time></p>
+<p class="codex-update-guide__date">更新日：<time datetime="2026-10-27">2026年10月27日</time></p>
 </section>
 
 
@@ -30,51 +30,12 @@ action: "使えそうな機能を1つ試す"
 <span class="update-card__rank" aria-hidden="true">1</span>
 <div class="update-card__heading">
 <p class="update-card__eyebrow">CODEX</p>
-<h2 id="codex-feature-1-title" class="codex-feature-title"><span class="visually-hidden">1. </span>よく使う依頼文を保存する<span class="codex-feature-command"><code>/presets</code></span></h2>
+<h2 id="codex-feature-1-title" class="codex-feature-title"><span class="visually-hidden">1. </span>写真の確認から操作までつなげる</h2>
 </div></header>
 <div class="update-card__body">
-<p class="update-card__summary">依頼文やスラッシュコマンドを10個の番号付き枠に保存し、キーボードのメニューから呼び出せます。たとえば、地域企業の毎週の報告書を整えるなら繰り返す依頼文を保存し、日付や対象を確認して呼び出します。「/presets」がOpenAI公式情報に掲載されていることを確認できます。</p>
-<p class="update-card__context">Codex CLI 0.164.0の更新です。利用環境と対応条件を確認してください。</p>
-<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.164.0" target="_blank" rel="noopener">公式情報</a></p>
-</div></section>
-
-<section class="codex-feature-card update-card" data-update-kind="codex" data-update-index="2" aria-labelledby="codex-feature-2-title">
-<header class="update-card__header">
-<span class="update-card__rank" aria-hidden="true">2</span>
-<div class="update-card__heading">
-<p class="update-card__eyebrow">CODEX</p>
-<h2 id="codex-feature-2-title" class="codex-feature-title"><span class="visually-hidden">2. </span>モデルや権限をコマンドから指定する<span class="codex-feature-command"><code>/model</code></span><span class="codex-feature-command"><code>/permissions</code></span></h2>
-</div></header>
-<div class="update-card__body">
-<p class="update-card__summary">モデル、推論の強さ、速度、権限プロファイルを、コマンドの引数で直接指定できるようになりました。たとえば、学校で共同作業の環境をそろえるなら利用可能な設定を確認し、作業に必要な権限範囲を選びます。「/model」、「/permissions」がOpenAI公式情報に掲載されていることを確認できます。</p>
-<p class="update-card__context">Codex CLI 0.164.0の更新です。利用環境と対応条件を確認してください。</p>
-<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.164.0" target="_blank" rel="noopener">公式情報</a></p>
-</div></section>
-
-<section class="codex-feature-card update-card" data-update-kind="codex" data-update-index="3" aria-labelledby="codex-feature-3-title">
-<header class="update-card__header">
-<span class="update-card__rank" aria-hidden="true">3</span>
-<div class="update-card__heading">
-<p class="update-card__eyebrow">CODEX</p>
-<h2 id="codex-feature-3-title" class="codex-feature-title"><span class="visually-hidden">3. </span>対応する端末で画像を履歴から見る</h2>
-</div></header>
-<div class="update-card__body">
-<p class="update-card__summary">KittyまたはSixelの画像表示に対応するターミナルでは、全画面の会話履歴から閲覧・生成した画像を確認できます。たとえば、地域イベントの告知画像を見直すなら過去の画像と依頼内容を照らし合わせて修正点を整理します。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
-<p class="update-card__context">Codex CLI 0.164.0の更新です。利用環境と対応条件を確認してください。</p>
-<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.164.0" target="_blank" rel="noopener">公式情報</a></p>
-</div></section>
-
-<section class="codex-feature-card update-card" data-update-kind="codex" data-update-index="4" aria-labelledby="codex-feature-4-title">
-<header class="update-card__header">
-<span class="update-card__rank" aria-hidden="true">4</span>
-<div class="update-card__heading">
-<p class="update-card__eyebrow">CODEX</p>
-<h2 id="codex-feature-4-title" class="codex-feature-title"><span class="visually-hidden">4. </span>保存した設定で作業を再開する</h2>
-</div></header>
-<div class="update-card__body">
-<p class="update-card__summary">圧縮された履歴も再開時に見つけられ、全体の既定値ではなく保存したスレッドの設定が復元されるよう修正されました。たとえば、福祉施設の案内文を翌日に仕上げるなら個人情報を含まない原稿で再開し、設定と作業内容が引き継がれたか確かめます。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
-<p class="update-card__context">Codex CLI 0.164.0の更新です。利用環境と対応条件を確認してください。</p>
-<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.164.0" target="_blank" rel="noopener">公式情報</a></p>
+<p class="update-card__summary">GPT-6.1 TerraがChatGPT WorkとCodexに登場しました。画像の理解と、ブラウザ・デスクトップ・アプリの操作を組み合わせるモデルです。たとえば、地域のお店で商品写真とカタログを照合するなら一致する候補と違いを整理してもらい、担当者が確認して商品情報の修正につなげます。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
+<p class="update-card__context">ChatGPT WorkとCodexのPlus、Pro、Business、Enterprise、Eduプランで提供されています。</p>
+<p class="update-card__source"><a href="https://learn.chatgpt.com/docs/whats-new/october-26-30-2026" target="_blank" rel="noopener">公式情報</a></p>
 </div></section>
 
 ## 公式情報
@@ -86,6 +47,11 @@ action: "使えそうな機能を1つ試す"
 ## 過去のアップデート要約
 
 <!-- CODEX_UPDATE_ARCHIVE:BEGIN -->
+<!-- source-fingerprint: e30d2cd8f8bcf8dcbf1bed2583037218a33b49d674cbe8d1ba461f72a13701b9 -->
+### 2026年10月25日確認：依頼文の保存と設定の引き継ぎ
+
+Codex CLI 0.164.0の依頼文保存、モデル・権限の直接指定、対応ターミナルでの画像表示、再開時の設定復元を紹介しました。
+
 <!-- source-fingerprint: cebcf4fe9afd7f972630da69871a7989b47de4e2cb6dbe2b23b709518c7883e8 -->
 ### 2026年10月16日確認：設定検索と作業中の追加指示
 

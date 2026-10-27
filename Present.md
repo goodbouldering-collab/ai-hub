@@ -1,3 +1,10 @@
+## 10月28日のCodex更新（検証済み・公開工程中）
+
+- OpenAI公式CLI 0.165.0を確認。作業履歴のリポジトリ絞り込みと会話中の推論設定変更を追記し、Terra紹介を保持。編集JSONと既存update_articleで現在欄・過去要約を更新。
+- ニュースは10月13日の4件・ブログ内入口を維持。10月28日分5候補は方針回答待ちのため事業ルートoutputs/daily-20261028へ保存。
+- 直前正常公開版.codex-update-release-20261027/publicの781資産を照合。更新前再生成差分0、許可4資産だけ更新、他777保持。47テスト・現行4件仕様のassets検証成功。
+- 統合・公開結果はdocs/daily-news-20261028-run.md、事業ルートoutputs/daily-20261028/README.md、tmp/delivery/20261028-codex-cli-165.jsonを参照。APIキー・有料API呼出しなし。
+
 ## 10月27日のCodex更新（検証済み・公開工程中）
 
 - OpenAI公式のOctober 26–30週にGPT-6.1 Terraの追加を確認。編集JSONと既存update_articleで現在欄・過去要約を更新。CLI最新安定版は0.164.0のまま。初回公開日・OGPは保持。

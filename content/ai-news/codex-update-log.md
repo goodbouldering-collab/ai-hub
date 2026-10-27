@@ -1,11 +1,11 @@
 ---
 title: "今日のAIニュース4とCodex"
 date: "2026-08-21"
-date_modified: "2026-10-27"
+date_modified: "2026-10-28"
 content_series: codex-update-log
 source_period: "October 26–30, 2026"
-source_fingerprint: "fbc60aff22b56f58423ea8387dd33b9018a4ece6afa577050c7b364238c8915f"
-source_release_tag: "rust-v0.164.0"
+source_fingerprint: "154318c21d94371c60a6ad53a5b406e28bcb897d509da00227c901ae663491b9"
+source_release_tag: "rust-v0.165.0"
 image: "/img/blog-codex-update-log-hero-20260830.png"
 image_alt: "巨大な水晶のAI脳を、10個の光るニュースホールドで登り、紙のヤギが見守る和紙の風景"
 hero_image: false
@@ -18,10 +18,10 @@ action: "使えそうな機能を1つ試す"
 ---
 
 <!-- CODEX_UPDATE_CURRENT:BEGIN -->
-<!-- source-fingerprint: fbc60aff22b56f58423ea8387dd33b9018a4ece6afa577050c7b364238c8915f -->
+<!-- source-fingerprint: 154318c21d94371c60a6ad53a5b406e28bcb897d509da00227c901ae663491b9 -->
 <section class="codex-update-guide" aria-labelledby="codex-update-guide-title">
 <h2 id="codex-update-guide-title">Codex新機能と活用例</h2>
-<p class="codex-update-guide__date">更新日：<time datetime="2026-10-27">2026年10月27日</time></p>
+<p class="codex-update-guide__date">更新日：<time datetime="2026-10-28">2026年10月28日</time></p>
 </section>
 
 
@@ -30,7 +30,33 @@ action: "使えそうな機能を1つ試す"
 <span class="update-card__rank" aria-hidden="true">1</span>
 <div class="update-card__heading">
 <p class="update-card__eyebrow">CODEX</p>
-<h2 id="codex-feature-1-title" class="codex-feature-title"><span class="visually-hidden">1. </span>写真の確認から操作までつなげる</h2>
+<h2 id="codex-feature-1-title" class="codex-feature-title"><span class="visually-hidden">1. </span>仕事ごとの作業履歴を探しやすく</h2>
+</div></header>
+<div class="update-card__body">
+<p class="update-card__summary">Codex CLI 0.165.0では作業履歴をリポジトリで絞り込めるようになり、作業ディレクトリごとのグループ表示も加わりました。たとえば、地域のお店のサイトと学校の資料を別々に作っているなら、仕事に対応する作業履歴を絞り込み、続けたい会話を選びます。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
+<p class="update-card__context">Codex CLI 0.165.0の更新です。アプリ版への同時反映はこの発表だけでは確認できません。</p>
+<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.165.0" target="_blank" rel="noopener">公式情報</a></p>
+</div></section>
+
+<section class="codex-feature-card update-card" data-update-kind="codex" data-update-index="2" aria-labelledby="codex-feature-2-title">
+<header class="update-card__header">
+<span class="update-card__rank" aria-hidden="true">2</span>
+<div class="update-card__heading">
+<p class="update-card__eyebrow">CODEX</p>
+<h2 id="codex-feature-2-title" class="codex-feature-title"><span class="visually-hidden">2. </span>会話の途中で考える深さを調整</h2>
+</div></header>
+<div class="update-card__body">
+<p class="update-card__summary">対応モデルでは、会話の途中で推論の深さを変更する機能が標準で有効になりました。たとえば、学校のお知らせを下書きした後に条件の抜けを見直すなら、同じ会話の中で推論の深さを調整して確認を依頼し、担当者が原稿と照合します。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
+<p class="update-card__context">Codex CLI 0.165.0の対応モデルが対象です。全モデルへの対応や料金変更は発表されていません。</p>
+<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.165.0" target="_blank" rel="noopener">公式情報</a></p>
+</div></section>
+
+<section class="codex-feature-card update-card" data-update-kind="codex" data-update-index="3" aria-labelledby="codex-feature-3-title">
+<header class="update-card__header">
+<span class="update-card__rank" aria-hidden="true">3</span>
+<div class="update-card__heading">
+<p class="update-card__eyebrow">CODEX</p>
+<h2 id="codex-feature-3-title" class="codex-feature-title"><span class="visually-hidden">3. </span>写真の確認から操作までつなげる</h2>
 </div></header>
 <div class="update-card__body">
 <p class="update-card__summary">GPT-6.1 TerraがChatGPT WorkとCodexに登場しました。画像の理解と、ブラウザ・デスクトップ・アプリの操作を組み合わせるモデルです。たとえば、地域のお店で商品写真とカタログを照合するなら一致する候補と違いを整理してもらい、担当者が確認して商品情報の修正につなげます。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
@@ -47,6 +73,11 @@ action: "使えそうな機能を1つ試す"
 ## 過去のアップデート要約
 
 <!-- CODEX_UPDATE_ARCHIVE:BEGIN -->
+<!-- source-fingerprint: fbc60aff22b56f58423ea8387dd33b9018a4ece6afa577050c7b364238c8915f -->
+### 2026年10月27日確認：写真の確認から画面操作へ
+
+GPT-6.1 Terraの画像理解とコンピューター操作、商品写真とカタログを照合する利用例、提供対象プランを紹介しました。
+
 <!-- source-fingerprint: e30d2cd8f8bcf8dcbf1bed2583037218a33b49d674cbe8d1ba461f72a13701b9 -->
 ### 2026年10月25日確認：依頼文の保存と設定の引き継ぎ
 

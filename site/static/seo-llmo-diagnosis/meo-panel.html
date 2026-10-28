@@ -1,0 +1,21 @@
+<section id="meo-panel" class="meo-panel" aria-labelledby="meo-title"><div class="audit-shell">
+  <p class="audit-eyebrow">実店舗の見つかりやすさ</p>
+  <h2 id="meo-title">地域で探すと、お店は何番目？</h2>
+  <p>サイト診断から店舗名・地域・業種を読み取ります。内容を確かめ、Google Mapsの店舗を選んでください。</p>
+  <p class="meo-note">表示するのは<strong>Places検索の参考順位</strong>です。Google検索・Googleマップ上の実際のMEO順位とは異なります。</p>
+  <p id="meo-connection" role="status">店舗検索の接続を確認しています…</p>
+  <form id="meo-form">
+    <div class="meo-fields">
+      <label class="audit-field"><span>店舗名</span><input name="storeName" required maxlength="160" placeholder="例：グッぼる"></label>
+      <label class="audit-field"><span>地域（市区町村まで）</span><input name="area" required maxlength="100" placeholder="例：滋賀県彦根市"></label>
+      <label class="audit-field"><span>探されたい業種・キーワード</span><input name="keyword" required maxlength="100" placeholder="例：ボルダリング"></label>
+    </div>
+    <p id="meo-profile-source" class="meo-note">店舗名・地域・業種を直接入力しても調べられます。</p>
+    <div id="meo-branches" hidden></div>
+    <button id="meo-find" type="submit" class="audit-button audit-button--primary" disabled>Google Mapsの店舗候補を探す</button>
+  </form>
+  <div id="meo-candidates" hidden></div>
+  <p id="meo-status" class="audit-status" role="status" aria-live="polite"></p>
+  <div id="meo-result" hidden aria-live="polite"></div>
+  <p class="meo-note">公開されている店舗名・地域・検索語をGoogleへ送ります。診断結果は継続保存しません。<a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">Google利用規約</a>・<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a></p>
+</div></section>

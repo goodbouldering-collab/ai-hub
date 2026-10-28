@@ -7,6 +7,8 @@
     "node": ">=20"
   },
   "scripts": {
+    "build:meo": "esbuild deployment/meo-diagnosis/worker.mjs --bundle --format=esm --platform=node --alias:iconv-lite=./deployment/meo-diagnosis/encoding.mjs --outfile=deployment/meo-diagnosis/published-worker.mjs",
+    "verify:meo": "node --test tests/meo-places.test.mjs tests/seo-llmo-audit.test.mjs tests/seo-llmo-handler.test.mjs && npm run build:meo",
     "bridge": "node bridge/bridge.mjs",
     "bridge:test": "node --test bridge/bridge.test.mjs",
     "test:market-compass": "node scripts/run-market-compass-tests.mjs",

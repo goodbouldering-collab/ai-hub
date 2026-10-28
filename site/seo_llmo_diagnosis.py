@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import html
 import json
+from pathlib import Path
 
 
 SITE_BROWSER_TITLE = "AI相談｜一歩踏み出す人のAI講習・実践支援【彦根・滋賀】"
@@ -98,6 +99,7 @@ def render_seo_llmo_diagnosis_page(
             "<div class='audit-result-actions'><button id='copy-audit-result' class='audit-button audit-button--primary' type='button'>結果をコピー</button>"
             "<button id='print-audit-result' class='audit-button audit-button--secondary' type='button'>印刷する</button></div>"
             "<p id='audit-copy-status' class='audit-status' role='status'></p></div></div>",
+            (Path(__file__).parent / 'static/seo-llmo-diagnosis/meo-panel.html').read_text(encoding='utf-8'),
             "<div id='audit-categories' class='audit-categories'></div>",
             "<section class='audit-priorities' aria-labelledby='priorities-title'><div class='audit-subhead'><span>まずここから</span><h3 id='priorities-title'>優先して直すこと</h3></div>"
             "<div id='audit-priority-list'></div></section>",

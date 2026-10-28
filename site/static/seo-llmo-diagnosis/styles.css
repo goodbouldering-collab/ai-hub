@@ -13,6 +13,23 @@
   font-family: Inter, "Noto Sans JP", system-ui, sans-serif;
 }
 
+.meo-panel { padding: 40px 0; background: var(--audit-soft); border-top: 1px solid var(--audit-line); }
+.meo-panel .audit-shell { max-width: 760px; }
+.meo-panel h2 { font-size: clamp(24px, 4vw, 32px); margin: 0 0 12px; }
+.meo-panel p { line-height: 1.8; overflow-wrap: anywhere; }
+.meo-note { font-size: 13px; color: #46566d; }
+.meo-fields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.meo-panel [hidden] { display: none !important; }
+.meo-panel a { text-decoration: underline; text-underline-offset: 3px; }
+.meo-candidate-list { display: grid; gap: 12px; }
+.meo-candidate-list article { display: grid; gap: 12px; padding: 16px; border: 1px solid var(--audit-line); background: white; border-radius: 12px; }
+#meo-result { margin-top: 20px; padding: 24px; background: white; border: 2px solid var(--audit-blue); border-radius: 16px; }
+#meo-result h3 { margin: 0; } #meo-result strong { font-size: 56px; color: var(--audit-blue); }
+.meo-attribution { color: #1f1f1f; font: 400 14px/1.5 sans-serif; white-space: normal; }
+.meo-attribution span { white-space: nowrap; }
+#meo-branches select { display: block; width: 100%; padding: 12px; margin: 8px 0 16px; }
+@media(max-width:600px) { .meo-fields { grid-template-columns: 1fr; } .meo-panel .audit-button { width: 100%; white-space: normal; } }
+
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 92px; }
 body { margin: 0; overflow-x: hidden; color: var(--audit-ink); background: #fff; font-family: Inter, "Noto Sans JP", system-ui, sans-serif; }

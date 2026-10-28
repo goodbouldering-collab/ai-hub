@@ -1,3 +1,4 @@
+import { setLocalProfile, resetMeo, meoResultText } from './meo.mjs';
 const root = document.querySelector('main[data-audit-endpoint]');
 const form = document.getElementById('seo-audit-form');
 const status = document.getElementById('audit-form-status');
@@ -62,6 +63,7 @@ function checkMarkup(item) {
 
 function renderReport(report) {
   latestReport = report;
+  setLocalProfile(report.localProfile);
   document.getElementById('audit-score').textContent = report.score;
   document.getElementById('audit-score-ring').style.setProperty('--score', `${report.score * 3.6}deg`);
   document.getElementById('audit-level').textContent = report.level.label;
@@ -96,12 +98,13 @@ function resultText(report) {
     '',
     report.disclaimer,
   ];
-  return lines.join('\n');
+  return lines.join('\n') + meoResultText();
 }
 
 form?.addEventListener('submit', async (event) => {
   event.preventDefault();
   if (!form.reportValidity()) return;
+  resetMeo();
   const data = new FormData(form);
   const payload = {
     url: String(data.get('url') || '').trim(),

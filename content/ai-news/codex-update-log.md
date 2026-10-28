@@ -1,10 +1,10 @@
 ---
 title: "今日のAIニュース4とCodex"
 date: "2026-08-21"
-date_modified: "2026-10-28"
+date_modified: "2026-10-29"
 content_series: codex-update-log
 source_period: "October 26–30, 2026"
-source_fingerprint: "154318c21d94371c60a6ad53a5b406e28bcb897d509da00227c901ae663491b9"
+source_fingerprint: "5246c138017be0a85d6f2bbab9f9a40cb891fa6f432808c2508deec658d858ea"
 source_release_tag: "rust-v0.165.0"
 image: "/img/blog-codex-update-log-hero-20260830.png"
 image_alt: "巨大な水晶のAI脳を、10個の光るニュースホールドで登り、紙のヤギが見守る和紙の風景"
@@ -18,10 +18,10 @@ action: "使えそうな機能を1つ試す"
 ---
 
 <!-- CODEX_UPDATE_CURRENT:BEGIN -->
-<!-- source-fingerprint: 154318c21d94371c60a6ad53a5b406e28bcb897d509da00227c901ae663491b9 -->
+<!-- source-fingerprint: 5246c138017be0a85d6f2bbab9f9a40cb891fa6f432808c2508deec658d858ea -->
 <section class="codex-update-guide" aria-labelledby="codex-update-guide-title">
 <h2 id="codex-update-guide-title">Codex新機能と活用例</h2>
-<p class="codex-update-guide__date">更新日：<time datetime="2026-10-28">2026年10月28日</time></p>
+<p class="codex-update-guide__date">更新日：<time datetime="2026-10-29">2026年10月29日</time></p>
 </section>
 
 
@@ -62,6 +62,21 @@ action: "使えそうな機能を1つ試す"
 <p class="update-card__summary">GPT-6.1 TerraがChatGPT WorkとCodexに登場しました。画像の理解と、ブラウザ・デスクトップ・アプリの操作を組み合わせるモデルです。たとえば、地域のお店で商品写真とカタログを照合するなら一致する候補と違いを整理してもらい、担当者が確認して商品情報の修正につなげます。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
 <p class="update-card__context">ChatGPT WorkとCodexのPlus、Pro、Business、Enterprise、Eduプランで提供されています。</p>
 <p class="update-card__source"><a href="https://learn.chatgpt.com/docs/whats-new/october-26-30-2026" target="_blank" rel="noopener">公式情報</a></p>
+</div></section>
+
+<p class="codex-update-guide__eyebrow">その他の更新</p>
+
+<section class="codex-feature-card update-card" data-update-kind="codex" data-update-index="4" aria-labelledby="codex-feature-4-title">
+<header class="update-card__header">
+<span class="update-card__rank" aria-hidden="true">4</span>
+<div class="update-card__heading">
+<p class="update-card__eyebrow">CODEX · その他</p>
+<h2 id="codex-feature-4-title" class="codex-feature-title"><span class="visually-hidden">4. </span>関連更新：米国ではdotへメッセージを送れるように</h2>
+</div></header>
+<div class="update-card__body">
+<p class="update-card__summary">ChatGPTのdotと、iMessageまたはAndroidのRCSで1対1の会話をする機能が追加されました。たとえば、暮らしの用事を、文字だけでなく写真や音声で伝えたいときに、使い慣れたメッセージからAIへ相談する仕組みの参考になります。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
+<p class="update-card__context">米国のChatGPT Proユーザーへベータ版を順次提供。Codex CLIの新機能ではありません。</p>
+<p class="update-card__source"><a href="https://learn.chatgpt.com/docs/whats-new/dots-october-28-2026" target="_blank" rel="noopener">公式情報</a></p>
 </div></section>
 
 ## 公式情報

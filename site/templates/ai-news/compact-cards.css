@@ -1,0 +1,59 @@
+/* Compact shelves, with the existing warm paper and teal palette. */
+body.studio-home #works-carousel,
+body.studio-home #lecture-carousel {
+  grid-auto-columns: 216px !important;
+  gap: 14px !important;
+  padding: 6px 4px 16px !important;
+}
+body.studio-home #works-carousel > .pf-card,
+body.studio-home #lecture-carousel > .lecture-card {
+  width: auto !important;
+  min-width: 0 !important;
+  border: 1px solid #91aaa3 !important;
+  box-shadow: 0 2px 5px rgb(23 68 59 / 9%) !important;
+  border-radius: 16px !important;
+  overflow: hidden;
+}
+body.studio-home #works-carousel .pf-body,
+body.studio-home #lecture-carousel .lecture-card-body { padding: 12px !important; }
+body.studio-home #works-carousel .pf-name,
+body.studio-home #lecture-carousel .lecture-title { overflow-wrap: anywhere; }
+body.studio-home #lectures { margin-top: 32px !important; }
+
+/* Boundaries stay visible without changing the visual identity or typography. */
+body.studio-home #packages .compact-course-card[data-editorial-course],
+body.studio-home .flow-card,
+body.studio-home .contact-choice,
+body.studio-home .voice-card,
+body.studio-home .explore-card {
+  border: 1px solid #91aaa3 !important;
+  box-shadow: 0 2px 5px rgb(23 68 59 / 7%) !important;
+}
+body.studio-home #blog .editorial-feed__item {
+  border-bottom: 1px solid #a2b7b0 !important;
+}
+body.studio-home #blog .editorial-feed__item:first-child {
+  border-top: 1px solid #a2b7b0 !important;
+}
+body.studio-home #faq details,
+body.studio-home #packages .compact-course-card details {
+  border: 1px solid #a2b7b0 !important;
+  background: #fffdf9 !important;
+}
+body.studio-home #works-carousel > a:hover,
+body.studio-home #lecture-carousel > a:hover {
+  border-color: #087e78 !important;
+  box-shadow: 0 4px 10px rgb(23 68 59 / 14%) !important;
+}
+body.studio-home #works-carousel > a:focus-visible,
+body.studio-home #lecture-carousel > a:focus-visible {
+  outline: 3px solid #087e78;
+  outline-offset: 2px;
+}
+@media (max-width: 600px) {
+  body.studio-home #works-carousel,
+  body.studio-home #lecture-carousel {
+    grid-auto-columns: 176px !important;
+    gap: 12px !important;
+  }
+}

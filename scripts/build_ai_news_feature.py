@@ -37,6 +37,7 @@ from core.home_updates import apply_home_updates
 from core.editorial_feed import apply_blog_feed
 from core.editorial_feed import _ElementSpans, _style
 from core.editorial_home import apply_editorial_home
+from core.compact_cards import apply_compact_cards
 from core.search_presence import apply_search_presence, enhance_search_html
 from scripts.build_search_presence_release import assert_search_changes, DISCOVERY_FILES
 
@@ -172,6 +173,8 @@ def build(output: Path, base_assets: Path | None = None, *, preserve_baseline_pr
     if not preserve_baseline_presentation:
         home_path = output / "index.html"
         home_path.write_text(place_news_in_blog(strip_news_images(apply_editorial_home(home_path.read_text(encoding="utf-8")))), encoding="utf-8", newline="\n")
+    home_path = output / "index.html"
+    home_path.write_bytes(apply_compact_cards(home_path.read_bytes().decode("utf-8")).encode("utf-8"))
     # Apply search metadata after all presentation decorators, which may carry
     # old structured data in their frozen shells. A partial build must not
     # replace the full site's discovery files with a three-page sitemap.

@@ -1,7 +1,7 @@
 /* Compact shelves, with the existing warm paper and teal palette. */
 body.studio-theme.studio-editorial.studio-home #works-carousel,
 body.studio-theme.studio-editorial.studio-home #lecture-carousel {
-  grid-auto-columns: 216px !important;
+  grid-auto-columns: min(281px, calc(100vw - 48px)) !important;
   gap: 14px !important;
   padding: 6px 4px 16px !important;
 }
@@ -57,7 +57,7 @@ body.studio-theme.studio-editorial.studio-home #lecture-carousel > a:focus-visib
 @media (max-width: 600px) {
   body.studio-theme.studio-editorial.studio-home #works-carousel,
   body.studio-theme.studio-editorial.studio-home #lecture-carousel {
-    grid-auto-columns: 176px !important;
+    grid-auto-columns: min(229px, calc(100vw - 48px)) !important;
     gap: 12px !important;
   }
 }

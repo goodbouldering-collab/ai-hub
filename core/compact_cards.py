@@ -7,6 +7,11 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def apply_compact_cards(document):
+    # Frozen homepage shells also feed daily releases. Remove the retired work
+    # here so rebuilding from an older shell cannot put its card back.
+    for start, end in reversed(_ElementSpans(document, 'pf-card').spans):
+        if '/img/portfolio/rieru-seikotsu.jpg' in document[start:end]:
+            document = document[:start] + document[end:]
     spans = _ElementSpans(document, element_id='lectures').spans
     if len(spans) != 1:
         raise ValueError('Expected one learning materials section')

@@ -34,7 +34,13 @@ def build(baseline, output, source_sha):
         def section(doc):
             (a, b), = _ElementSpans(doc, element_id=name).spans
             return doc[a:b]
-        assert section(original) == section(updated), name
+        expected = section(original)
+        if name == 'all-works':
+            for a, b in reversed(_ElementSpans(expected, 'pf-card').spans):
+                if '/img/portfolio/rieru-seikotsu.jpg' in expected[a:b]:
+                    expected = expected[:a] + expected[b:]
+        assert expected == section(updated), name
+    assert '/img/portfolio/rieru-seikotsu.jpg' not in updated
     (_, works_end), = _ElementSpans(updated, element_id='all-works').spans
     (lectures_start, _), = _ElementSpans(updated, element_id='lectures').spans
     assert works_end == lectures_start, 'Materials must immediately follow works'
@@ -49,7 +55,7 @@ def build(baseline, output, source_sha):
     report = dict(source_sha=source_sha, baseline_source_sha=previous['source_sha'], assets=after,
                   changed_assets=changed, unchanged_assets=len(before)-1,
                   worker_sha256=digest(worker), source_inputs_sha256={n:digest(ROOT/n) for n in inputs},
-                  section_contents_unchanged=True, materials_immediately_after_works=True)
+                  section_contents_unchanged_except_retired_work=True, materials_immediately_after_works=True)
     (output / 'verification.json').write_text(json.dumps(report, indent=2), encoding='utf-8')
     print(json.dumps({k:v for k,v in report.items() if k not in ('assets','source_inputs_sha256')}))
 

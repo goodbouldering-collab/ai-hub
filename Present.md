@@ -1,3 +1,7 @@
+## 2026-11-02 Supabase履歴の旧writer閉止（ローカル検証済み）
+
+PR163未統合を確認。現正本に残る自動Supabase選択と旧一括importerを分離修正。SQLiteの既存履歴を維持し、旧設定は通信前に停止。実データ移送・D1有効化・秘密変更なし。履歴・収集・日次ニュース20試験と公開経路検査成功。PR163はOPEN。親担当が認証済みIABの goodboulderings-projects/ai-hub/settings/git でGit未接続を再確認。共有・統合へ進行中。実行中の通常dailyは未調査、過去のSQLite運用記録だけで現在稼働済みとしない。詳細: docs/2026-11-02-retired-history-writer.md。
+
 ## 10月30日の日次確認（Codex CLI 0.166.0・公開前検証）
 
 - 公式最新安定版0.166.0の会話履歴選択・検索と通信診断を編集JSONから反映。Terraとdotの対象条件、初回公開日・OGPを保持。API追加利用なし。

@@ -10,7 +10,45 @@
   color: #183c3e;
   background: #fffefa;
 }
-.home-diagnosis-dialog::backdrop { background: #102d31a8; }
+.home-diagnosis-dialog:modal {
+  width: min(460px, calc(100% - 40px));
+  max-height: calc(100dvh - 40px);
+  padding: 28px 26px 16px;
+  border-color: var(--line);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  background: var(--bg-white);
+  box-shadow: 0 30px 80px rgb(0 0 0 / 40%);
+}
+.home-diagnosis-dialog::backdrop {
+  background: rgb(15 23 42 / 55%);
+  backdrop-filter: blur(6px);
+}
+.home-diagnosis-dialog:modal .home-diagnosis-dialog__bar {
+  padding: 0 38px 0 0;
+  border: 0;
+  font-size: 18px;
+  font-weight: 800;
+}
+.home-diagnosis-dialog:modal .home-diagnosis-dialog__close {
+  position: absolute;
+  top: 7px;
+  right: 9px;
+  min-width: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font-size: 26px;
+  line-height: 1;
+}
+.home-diagnosis-dialog:modal iframe {
+  max-height: calc(100dvh - 160px);
+}
+.home-diagnosis-dialog:modal .home-diagnosis-dialog__fallback {
+  padding: 6px 0 0;
+  font-size: 12px;
+}
 .home-diagnosis-dialog:not([open]) { display: none; }
 .home-diagnosis-dialog[open] { display: block; }
 .home-diagnosis-dialog.is-result {
@@ -72,6 +110,8 @@
     label.textContent = title;
     const close = document.createElement('button');
     close.type = 'button';
+    close.className = 'home-diagnosis-dialog__close';
+    close.setAttribute('aria-label', '閉じる');
     close.textContent = '閉じる';
     close.autofocus = true;
     const retry = document.createElement('button');
@@ -97,6 +137,7 @@
       dialog.classList.remove('is-result');
       frame.style.height = '';
       label.textContent = title;
+      close.textContent = '×';
       retry.hidden = true;
       dialog.showModal();
     }
@@ -106,6 +147,7 @@
       dialog.close();
       dialog.classList.add('is-result');
       label.textContent = title + 'の結果';
+      close.textContent = '閉じる';
       retry.hidden = path !== '/seo-llmo-diagnosis/';
       if (!wasOpen) return;
       dialog.show();
@@ -148,6 +190,22 @@
         body { margin: 0 !important; padding: 0 !important; }
         body > :is(header, footer, .skip-link) { display: none !important; }
         body > main { margin: 0 !important; min-height: 0 !important; padding: 12px 0 !important; }
+        body:not(.home-diagnosis-result) :is(#audit-title, #assessment-heading) {
+          position: absolute !important;
+          clip-path: inset(50%);
+          width: 1px;
+          height: 1px;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+        body:not(.home-diagnosis-result) :is(.audit-shell, .readiness-shell) { width: 100% !important; }
+        body:not(.home-diagnosis-result) :is(.audit-start, .diagnosis-start, .audit-form-card, .assessment-card) {
+          padding: 0 !important;
+          background: transparent !important;
+          border: 0 !important;
+          box-shadow: none !important;
+        }
+        body:not(.home-diagnosis-result) :is(.audit-start__head, .diagnosis-start__heading) { margin-bottom: 12px !important; }
         body.home-diagnosis-result :is(${input}) { display: none !important; }
         body:not(.home-diagnosis-result) #audit-explanations { display: none !important; }
       `;
@@ -166,7 +224,7 @@
         }
       });
       resize = new ResizeObserver(() => {
-        if (dialog.open && dialog.classList.contains('is-result')) {
+        if (dialog.open) {
           frame.style.height = main.scrollHeight + 'px';
         }
       });

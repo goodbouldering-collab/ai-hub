@@ -49,6 +49,22 @@
   padding: 6px 0 0;
   font-size: 12px;
 }
+@media (max-width: 600px) {
+  .home-diagnosis-dialog:modal {
+    width: calc(100% - 24px);
+    padding: 16px 14px 10px;
+  }
+  .home-diagnosis-dialog:modal iframe {
+    max-height: calc(100dvh - 112px);
+  }
+  body.studio-theme.studio-editorial.studio-home #faq details > summary {
+    padding: 13px 14px !important;
+  }
+  body.studio-theme.studio-editorial.studio-home #faq details[open] > p {
+    margin: 0 !important;
+    padding: 0 14px 12px !important;
+  }
+}
 .home-diagnosis-dialog:not([open]) { display: none; }
 .home-diagnosis-dialog[open] { display: block; }
 .home-diagnosis-dialog.is-result {
@@ -187,6 +203,7 @@
       ready = true;
       const style = doc.createElement('style');
       style.textContent = `
+        html, body { min-width: 0 !important; }
         body { margin: 0 !important; padding: 0 !important; }
         body > :is(header, footer, .skip-link) { display: none !important; }
         body > main { margin: 0 !important; min-height: 0 !important; padding: 12px 0 !important; }
@@ -200,12 +217,38 @@
         }
         body:not(.home-diagnosis-result) :is(.audit-shell, .readiness-shell) { width: 100% !important; }
         body:not(.home-diagnosis-result) :is(.audit-start, .diagnosis-start, .audit-form-card, .assessment-card) {
+          min-height: 0 !important;
           padding: 0 !important;
           background: transparent !important;
           border: 0 !important;
           box-shadow: none !important;
         }
-        body:not(.home-diagnosis-result) :is(.audit-start__head, .diagnosis-start__heading) { margin-bottom: 12px !important; }
+        body:not(.home-diagnosis-result) :is(.audit-start__head, .diagnosis-start__heading) { margin-bottom: 8px !important; }
+        body:not(.home-diagnosis-result) #question-fieldset { min-width: 0; }
+        body:not(.home-diagnosis-result) .answer-options { gap: 6px; }
+        body:not(.home-diagnosis-result) .answer-option {
+          min-height: 44px;
+          padding: 6px 8px;
+        }
+        body:not(.home-diagnosis-result) .assessment-navigation {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 8px;
+        }
+        body:not(.home-diagnosis-result) .assessment-navigation .button {
+          min-width: 0;
+          min-height: 44px;
+          padding: 6px 8px;
+        }
+        body:not(.home-diagnosis-result) :is(#run-audit, #next-question):not(:disabled) {
+          background: #087f82 !important;
+          border-color: #087f82 !important;
+          color: #fff !important;
+          box-shadow: none !important;
+        }
+        body:not(.home-diagnosis-result) :is(#run-audit, #next-question):not(:disabled):hover {
+          background: #066367 !important;
+          border-color: #066367 !important;
+        }
         body.home-diagnosis-result :is(${input}) { display: none !important; }
         body:not(.home-diagnosis-result) #audit-explanations { display: none !important; }
       `;

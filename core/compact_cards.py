@@ -7,6 +7,14 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def apply_compact_cards(document):
+    audience = '経営者や事業主向けですが、AIで仕事を変えたい方なら、どなたでも受講できます。'
+    lead = _ElementSpans(document, 'focus-lead').spans
+    if lead:
+        (_, end), = lead
+        start = lead[0][0]
+        if audience not in document[start:end]:
+            insertion = document.rindex('</p>', start, end)
+            document = document[:insertion] + audience + document[insertion:]
     # Frozen homepage shells also feed daily releases. Remove the retired work
     # here so rebuilding from an older shell cannot put its card back.
     for start, end in reversed(_ElementSpans(document, 'pf-card').spans):

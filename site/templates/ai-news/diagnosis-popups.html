@@ -1,0 +1,172 @@
+<!-- diagnosis-popups:start -->
+<style>
+.home-diagnosis-dialog {
+  box-sizing: border-box;
+  width: min(720px, calc(100% - 24px));
+  max-width: 100%;
+  padding: 0;
+  border: 1px solid #bfd3cc;
+  border-radius: 20px;
+  color: #183c3e;
+  background: #fffefa;
+}
+.home-diagnosis-dialog::backdrop { background: #102d31a8; }
+.home-diagnosis-dialog:not([open]) { display: none; }
+.home-diagnosis-dialog[open] { display: block; }
+.home-diagnosis-dialog.is-result {
+  position: static;
+  flex-basis: 100%;
+  width: 100%;
+  max-height: none;
+  margin: 16px 0 0;
+}
+.home-diagnosis-dialog__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 16px;
+  border-bottom: 1px solid #bfd3cc;
+}
+.home-diagnosis-dialog__bar button {
+  min-height: 44px;
+  padding: 6px 12px;
+  color: #183c3e;
+  background: #f0f6f2;
+  border: 1px solid #bfd3cc;
+  border-radius: 8px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.home-diagnosis-dialog iframe {
+  display: block;
+  width: 100%;
+  height: min(620px, calc(100dvh - 110px));
+  border: 0;
+}
+.home-diagnosis-dialog__fallback {
+  display: block;
+  padding: 10px 16px;
+  color: #065f5b;
+}
+</style>
+<script>
+(() => {
+  if (!window.HTMLDialogElement?.prototype.showModal) return;
+  const group = document.getElementById('diagnosis-start');
+  const tools = [
+    { path: '/seo-llmo-diagnosis/', input: '.audit-start', result: '#audit-results', heading: '#audit-result-title' },
+    { path: '/ai-agent-readiness/', input: '.diagnosis-start__heading, #assessment-form', result: '#result-panel', heading: '#result-heading' }
+  ];
+  for (const { path, input, result, heading } of tools) {
+    const link = group.querySelector('a[href="' + path + '"]');
+    if (!link) continue;
+    const title = link.querySelector('strong').textContent;
+    const dialog = document.createElement('dialog');
+    dialog.className = 'home-diagnosis-dialog';
+    dialog.setAttribute('aria-label', title);
+    link.setAttribute('aria-haspopup', 'dialog');
+    const bar = document.createElement('div');
+    bar.className = 'home-diagnosis-dialog__bar';
+    const label = document.createElement('strong');
+    label.textContent = title;
+    const close = document.createElement('button');
+    close.type = 'button';
+    close.textContent = '閉じる';
+    close.autofocus = true;
+    bar.append(label, close);
+    const frame = document.createElement('iframe');
+    frame.title = title;
+    frame.allow = 'clipboard-write';
+    const fallback = document.createElement('a');
+    fallback.className = 'home-diagnosis-dialog__fallback';
+    fallback.href = path;
+    fallback.textContent = '診断ページを開く';
+    dialog.append(bar, frame, fallback);
+    group.after(dialog);
+    let resize;
+    let changes;
+    let ready = false;
+
+    function openInput() {
+      if (dialog.open) dialog.close();
+      dialog.classList.remove('is-result');
+      frame.style.height = '';
+      label.textContent = title;
+      dialog.showModal();
+    }
+
+    function showResult(doc, main) {
+      const wasOpen = dialog.open;
+      dialog.close();
+      dialog.classList.add('is-result');
+      label.textContent = title + 'の結果';
+      if (!wasOpen) return;
+      dialog.show();
+      frame.style.height = main.scrollHeight + 'px';
+      dialog.scrollIntoView({ block: 'start' });
+      doc.querySelector(heading)?.focus({ preventScroll: true });
+    }
+
+    link.addEventListener('click', event => {
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      if (dialog.classList.contains('is-result')) {
+        if (!dialog.open) dialog.show();
+        dialog.scrollIntoView({ block: 'start' });
+        close.focus({ preventScroll: true });
+        return;
+      }
+      if (!ready) frame.src = path;
+      openInput();
+    });
+    close.addEventListener('click', () => {
+      dialog.close();
+      link.focus();
+    });
+    dialog.addEventListener('cancel', event => {
+      event.preventDefault();
+      dialog.close();
+      link.focus();
+    });
+    frame.addEventListener('load', () => {
+      resize?.disconnect();
+      changes?.disconnect();
+      const doc = frame.contentDocument;
+      const main = doc?.querySelector('main');
+      const panel = main?.querySelector(result);
+      if (!panel) return;
+      ready = true;
+      const style = doc.createElement('style');
+      style.textContent = `
+        body { margin: 0 !important; padding: 0 !important; }
+        body > :is(header, footer, .skip-link) { display: none !important; }
+        body > main { margin: 0 !important; min-height: 0 !important; padding: 12px 0 !important; }
+        body.home-diagnosis-result :is(${input}) { display: none !important; }
+      `;
+      doc.head.append(style);
+      doc.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && dialog.matches(':modal')) {
+          dialog.close();
+          link.focus();
+        }
+      });
+      resize = new ResizeObserver(() => {
+        if (dialog.open && dialog.classList.contains('is-result')) {
+          frame.style.height = main.scrollHeight + 'px';
+        }
+      });
+      resize.observe(main);
+      changes = new MutationObserver(() => {
+        const showingResult = !panel.hidden;
+        doc.body.classList.toggle('home-diagnosis-result', showingResult);
+        if (!dialog.open && !showingResult) return;
+        if (showingResult) showResult(doc, main);
+        else openInput();
+      });
+      changes.observe(panel, { attributes: true, attributeFilter: ['hidden'] });
+    });
+  }
+})();
+</script>
+<!-- diagnosis-popups:end -->

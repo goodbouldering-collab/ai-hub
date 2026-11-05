@@ -51,7 +51,8 @@ def build(baseline, output, source_sha):
     after = hashes(output / 'public')
     changed = [n for n in before if before[n] != after[n]]
     assert changed == ['index.html'] and before.keys() == after.keys()
-    inputs = ['core/compact_cards.py', 'core/editorial_feed.py', 'site/templates/ai-news/compact-cards.css', 'scripts/build_compact_cards_release.py']
+    inputs = ['core/compact_cards.py', 'core/editorial_feed.py', 'site/templates/ai-news/compact-cards.css',
+              'site/templates/ai-news/diagnosis-popups.html', 'scripts/build_compact_cards_release.py']
     report = dict(source_sha=source_sha, baseline_source_sha=previous['source_sha'], assets=after,
                   changed_assets=changed, unchanged_assets=len(before)-1,
                   worker_sha256=digest(worker), source_inputs_sha256={n:digest(ROOT/n) for n in inputs},

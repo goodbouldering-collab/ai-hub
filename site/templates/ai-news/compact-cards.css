@@ -66,3 +66,7 @@ body.studio-theme.studio-editorial.studio-home footer.site-footer .footer-brand 
 body.studio-theme.studio-editorial.studio-home section#contact > .focus-contact-inner > a.focus-btn {
   color: #fff !important;
 }
+
+body.studio-theme.studio-editorial.studio-home section#contact > .focus-contact-inner > a.focus-btn {
+  -webkit-text-fill-color: currentColor !important;
+}

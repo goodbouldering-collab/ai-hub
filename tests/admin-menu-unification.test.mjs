@@ -22,7 +22,7 @@ function classList() {
   };
 }
 
-function runSharedMenu(pathname = "/admin/sns-post") {
+function runSharedMenu(pathname = "/admin/apps/blog") {
   const toggleListeners = new Map();
   const panelListeners = new Map();
   const documentListeners = new Map();
@@ -58,7 +58,7 @@ function runSharedMenu(pathname = "/admin/sns-post") {
     contains(element) { return element === drawerFirst || element === drawerLast; },
     closest() { return null; },
   };
-  const mobileGroups = Array.from({ length: 5 }, (_, index) => ({
+  const mobileGroups = Array.from({ length: 1 }, (_, index) => ({
     open: index === 0,
     addEventListener(name, handler) { groupListeners.set(`${index}:${name}`, handler); },
     querySelector() { return { focus() {} }; },
@@ -122,7 +122,7 @@ function runSharedMenu(pathname = "/admin/sns-post") {
   };
 }
 
-test("shared admin menu has no top item and gives mobile every management destination", () => {
+test("shared admin menu exposes only the two AIclimb content generators on mobile", () => {
   const { body, header } = runSharedMenu();
   const mobilePanel = header.innerHTML.match(
     /<div class="mobile-nav-panel mobile-nav-panel--admin">(?<content>[\s\S]*)<\/div>\s*<\/div>$/,
@@ -134,47 +134,31 @@ test("shared admin menu has no top item and gives mobile every management destin
   assert.doesNotMatch(header.innerHTML, /管理トップ|管理ハブ/);
   assert.match(header.innerHTML, /href="\/admin"[^>]*aria-label="管理ホームへ戻る"/);
 
-  for (const href of [
-    "/admin/command-center",
-    "/admin/blog",
-    "/admin/apps/blog",
-    "/admin/apps/reel/",
-    "/admin/sns-post",
-    "/admin/gubble-sns",
-    "/admin/chat",
-  ]) {
+  for (const href of ["/admin/apps/blog", "/admin/apps/reel/"]) {
     assert.match(mobilePanel.groups.content, new RegExp(`href="${href.replaceAll("/", "\\/")}"`));
   }
+  assert.doesNotMatch(mobilePanel.groups.content, /SNS|相場|実行指令室|OPS|ブログ管理/);
 });
 
-test("shared admin menu groups related work by purpose on desktop and mobile", () => {
+test("shared admin menu has one simple AIclimb content group on desktop and mobile", () => {
   const { header } = runSharedMenu("/admin/apps/reel");
   const desktopGroups = header.innerHTML.match(/class="admin-menu-desktop-group/g) ?? [];
   const mobileGroups = header.innerHTML.match(/class="admin-menu-mobile-group/g) ?? [];
 
-  assert.equal(desktopGroups.length, 5, "the fixed row should show five scannable purpose groups");
-  assert.equal(mobileGroups.length, 5, "the drawer should reuse the same five purpose groups");
-
-  for (const [id, label, summary] of [
-    ["operations", "運営", "予定・指示・資料"],
-    ["publishing", "制作・発信", "記事・動画・SNS"],
-    ["insights", "分析・相談", "反応・改善・相談"],
-    ["market", "相場", "調査・計画・記録"],
-    ["utility", "その他", "確認・設定"],
-  ]) {
-    assert.match(header.innerHTML, new RegExp(`data-menu-group="${id}"`));
-    assert.match(header.innerHTML, new RegExp(`>${label}<`));
-    assert.match(header.innerHTML, new RegExp(summary));
-  }
+  assert.equal(desktopGroups.length, 1, "the fixed row should show one focused purpose group");
+  assert.equal(mobileGroups.length, 1, "the drawer should reuse the one focused group");
+  assert.match(header.innerHTML, /data-menu-group="content"/);
+  assert.match(header.innerHTML, />AIclimb制作</);
+  assert.match(header.innerHTML, /ブログ・リール/);
 
   assert.match(
     header.innerHTML,
-    /<details class="admin-menu-mobile-group is-current-group" data-menu-group="publishing" open>/,
-    "the current mobile group should be expanded without exposing every group at once",
+    /<details class="admin-menu-mobile-group is-current-group" data-menu-group="content" open>/,
+    "the content group should be expanded on its child pages",
   );
   assert.match(header.innerHTML, /href="\/admin\/apps\/reel\/"[^>]*aria-current="page"/);
-  assert.match(header.innerHTML, /ブログ管理[\s\S]*記事を編集して公開する/);
-  assert.match(header.innerHTML, /SNS投稿[\s\S]*複数のSNSへ投稿する/);
+  assert.match(header.innerHTML, /ブログ生成[\s\S]*AIclimbのブログを調査から下書きまで作る/);
+  assert.match(header.innerHTML, /リール生成[\s\S]*AIclimbのリールと投稿文を作る/);
 });
 
 test("shared fixed header keeps the public page one click away on desktop and mobile", async () => {
@@ -274,25 +258,12 @@ test("mobile drawer links close shared UI state without cancelling navigation", 
   assert.equal(body.classList.contains("admin-shared-menu-open"), false);
 });
 
-test("nested admin pages show their parent context and a direct way back to the management home", () => {
+test("AIclimb content generators show their context and a direct way back to the management home", () => {
   const cases = [
-    ["/admin/command-center/calendar", "実行指令室 / カレンダー", "/admin/command-center"],
-    ["/admin/command-center/market", "実行指令室 / 市場候補", "/admin/command-center/market"],
-    ["/admin/command-center/screener", "実行指令室 / 財務スクリーナー", "/admin/command-center/screener"],
-    ["/admin/command-center/security", "実行指令室 / 銘柄詳細", "/admin/command-center/security"],
-    ["/admin/command-center/trade-plan", "実行指令室 / 取引プラン作成", "/admin/command-center/trade-plan"],
-    ["/admin/command-center/trade-plans", "実行指令室 / 登録プラン", "/admin/command-center/trade-plans"],
-    ["/admin/command-center/trades", "実行指令室 / 取引記録", "/admin/command-center/trades"],
-    ["/admin/command-center/market-sources", "実行指令室 / データ収集状況", "/admin/command-center/market-sources"],
-    ["/admin/command-center.html", "実行指令室", "/admin/command-center"],
-    ["/admin/blog", "ブログ管理", "/admin/blog"],
-    ["/admin/blog.html", "ブログ管理", "/admin/blog"],
-    ["/admin/blog/generate", "ブログ管理 / AI記事生成", "/admin/blog"],
     ["/admin/apps/blog", "ブログ制作", "/admin/apps/blog"],
     ["/admin/apps/blog.html", "ブログ制作", "/admin/apps/blog"],
     ["/admin/apps/reel", "リール制作", "/admin/apps/reel/"],
     ["/admin/apps/reel.html", "リール制作", "/admin/apps/reel/"],
-    ["/ops/prompts", "OPS / プロンプト", "/ops"],
   ];
 
   for (const [pathname, context, currentHref] of cases) {

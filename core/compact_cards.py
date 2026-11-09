@@ -7,6 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def apply_compact_cards(document):
+    newline = '\r\n' if '\r\n' in document else '\n'
     audience = '経営者や事業主向けですが、AIで仕事を変えたい方なら、どなたでも受講できます。'
     lead = _ElementSpans(document, 'focus-lead').spans
     if lead:
@@ -32,11 +33,11 @@ def apply_compact_cards(document):
     end = works[0][1]
     document = document[:end] + lectures + document[end:]
     document = re.sub(r'<style id="compact-cards-style">.*?</style>', '', document, flags=re.S)
-    css = (ROOT / 'site/templates/ai-news/compact-cards.css').read_text(encoding='utf-8')
+    css = (ROOT / 'site/templates/ai-news/compact-cards.css').read_text(encoding='utf-8').replace('\n', newline)
     if document.count('</head>') != 1:
         raise ValueError('Expected one document head')
     document = document.replace('</head>', '<style id="compact-cards-style">' + css + '</style></head>')
-    popups = (ROOT / 'site/templates/ai-news/diagnosis-popups.html').read_text(encoding='utf-8')
-    document = re.sub(r'<!-- diagnosis-popups:start -->.*?<!-- diagnosis-popups:end -->\n?', '', document, flags=re.S)
+    popups = (ROOT / 'site/templates/ai-news/diagnosis-popups.html').read_text(encoding='utf-8').replace('\n', newline)
+    document = re.sub(r'<!-- diagnosis-popups:start -->.*?<!-- diagnosis-popups:end -->(?:\r?\n)?', '', document, flags=re.S)
     _, end = _ElementSpans(document, element_id='diagnosis-start').spans[0]
     return document[:end] + popups + document[end:]

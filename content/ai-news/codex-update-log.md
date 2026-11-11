@@ -1,11 +1,11 @@
 ---
 title: "今日のAIニュース4とCodex"
 date: "2026-08-21"
-date_modified: "2026-11-07"
+date_modified: "2026-11-12"
 content_series: codex-update-log
 source_period: "October 26–30, 2026"
-source_fingerprint: "a4cfd11d721d0dd271c306a4466d28c1e8a1fc32a6eaa3a2a10ab521bc1d7447"
-source_release_tag: "rust-v0.167.0"
+source_fingerprint: "1904472686fa0686c638cebc1e787a68aa5d4554fcccc4b1cf0d6b4d21024159"
+source_release_tag: "rust-v0.167.1"
 image: "/img/blog-codex-update-log-hero-20260830.png"
 image_alt: "巨大な水晶のAI脳を、10個の光るニュースホールドで登り、紙のヤギが見守る和紙の風景"
 hero_image: false
@@ -18,10 +18,10 @@ action: "使えそうな機能を1つ試す"
 ---
 
 <!-- CODEX_UPDATE_CURRENT:BEGIN -->
-<!-- source-fingerprint: a4cfd11d721d0dd271c306a4466d28c1e8a1fc32a6eaa3a2a10ab521bc1d7447 -->
+<!-- source-fingerprint: 1904472686fa0686c638cebc1e787a68aa5d4554fcccc4b1cf0d6b4d21024159 -->
 <section class="codex-update-guide" aria-labelledby="codex-update-guide-title">
 <h2 id="codex-update-guide-title">Codex新機能と活用例</h2>
-<p class="codex-update-guide__date">更新日：<time datetime="2026-11-07">2026年11月7日</time></p>
+<p class="codex-update-guide__date">更新日：<time datetime="2026-11-12">2026年11月12日</time></p>
 </section>
 
 
@@ -30,38 +30,12 @@ action: "使えそうな機能を1つ試す"
 <span class="update-card__rank" aria-hidden="true">1</span>
 <div class="update-card__heading">
 <p class="update-card__eyebrow">CODEX</p>
-<h2 id="codex-feature-1-title" class="codex-feature-title"><span class="visually-hidden">1. </span>複数の作業から未読の結果を探す<span class="codex-feature-command"><code>codex agents --no-daemon</code></span></h2>
+<h2 id="codex-feature-1-title" class="codex-feature-title"><span class="visually-hidden">1. </span>CLI 0.167.1の公開と変更一覧を確認する</h2>
 </div></header>
 <div class="update-card__body">
-<p class="update-card__summary">エージェントの作業一覧を開くコマンドが加わり、作業一覧と会話選択画面に未読の結果が表示されます。たとえば、地域のお店でサイト修正と案内文づくりを並行するなら、未読の結果から順に見て、担当者が内容を確認します。「codex agents --no-daemon」がOpenAI公式情報に掲載されていることを確認できます。</p>
-<p class="update-card__context">Codex CLI 0.167.0の更新です。アプリ版への同時反映はこの発表だけでは確認できません。</p>
-<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.167.0" target="_blank" rel="noopener">公式情報</a></p>
-</div></section>
-
-<section class="codex-feature-card update-card" data-update-kind="codex" data-update-index="2" aria-labelledby="codex-feature-2-title">
-<header class="update-card__header">
-<span class="update-card__rank" aria-hidden="true">2</span>
-<div class="update-card__heading">
-<p class="update-card__eyebrow">CODEX</p>
-<h2 id="codex-feature-2-title" class="codex-feature-title"><span class="visually-hidden">2. </span>承認する前に変更箇所を確認する</h2>
-</div></header>
-<div class="update-card__body">
-<p class="update-card__summary">承認を求める画面を開いたまま、会話履歴の中で変更の詳細を展開できます。たとえば、学校のお知らせページを書き換えるときに、日付や申込条件が正しいか、差分を確認してから進めます。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
-<p class="update-card__context">Codex CLI 0.167.0の更新です。アプリ版への同時反映はこの発表だけでは確認できません。</p>
-<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.167.0" target="_blank" rel="noopener">公式情報</a></p>
-</div></section>
-
-<section class="codex-feature-card update-card" data-update-kind="codex" data-update-index="3" aria-labelledby="codex-feature-3-title">
-<header class="update-card__header">
-<span class="update-card__rank" aria-hidden="true">3</span>
-<div class="update-card__heading">
-<p class="update-card__eyebrow">CODEX</p>
-<h2 id="codex-feature-3-title" class="codex-feature-title"><span class="visually-hidden">3. </span>提供元を切り替えても会話を見返す</h2>
-</div></header>
-<div class="update-card__body">
-<p class="update-card__summary">モデルの提供元を切り替えても保存済み会話を表示し、再開できない場合は履歴を読み、新しい会話へ引き継ぐ文章を編集できます。たとえば、福祉施設の案内作成を別の設定で続けるなら、前に決めた表現や条件を見直し、引き継ぎ文へまとめます。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
-<p class="update-card__context">Codex CLI 0.167.0の更新です。アプリ版への同時反映はこの発表だけでは確認できません。</p>
-<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.167.0" target="_blank" rel="noopener">公式情報</a></p>
+<p class="update-card__summary">Codex CLI 0.167.1が公開され、0.167.0からの変更一覧へのリンクが案内されています。リリース本文には、個々の新機能や改善効果の説明はありません。たとえば、地域企業でCodex CLIを使っているなら、更新前に担当者と公式の変更一覧を確認し、ふだんの作業への影響を確かめます。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
+<p class="update-card__context">CLIの公開情報です。アプリへの反映時期や、モデル・料金の変更を示す発表ではありません。</p>
+<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.167.1" target="_blank" rel="noopener">公式情報</a></p>
 </div></section>
 
 ## 公式情報
@@ -73,6 +47,11 @@ action: "使えそうな機能を1つ試す"
 ## 過去のアップデート要約
 
 <!-- CODEX_UPDATE_ARCHIVE:BEGIN -->
+<!-- source-fingerprint: a4cfd11d721d0dd271c306a4466d28c1e8a1fc32a6eaa3a2a10ab521bc1d7447 -->
+### CLI 0.167.0：未読結果と承認前の変更確認
+
+未読結果の表示、承認待ちの差分確認、モデル提供元を切り替えた後の会話履歴の維持を紹介しました。
+
 <!-- source-fingerprint: c4fee407d0502fde59804adf4db7e904b63344db69c3f39c83c930439efdfa6d -->
 ### CLI 0.166.0：会話履歴の選択と通信診断
 

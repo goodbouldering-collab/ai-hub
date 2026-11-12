@@ -1,11 +1,11 @@
 ---
 title: "今日のAIニュース4とCodex"
 date: "2026-08-21"
-date_modified: "2026-11-12"
+date_modified: "2026-11-13"
 content_series: codex-update-log
 source_period: "October 26–30, 2026"
-source_fingerprint: "1904472686fa0686c638cebc1e787a68aa5d4554fcccc4b1cf0d6b4d21024159"
-source_release_tag: "rust-v0.167.1"
+source_fingerprint: "2b189ddababdb7e3b21e59bea1754a4fb1bb5def736b6d4fbf2c9ad1ec457fd8"
+source_release_tag: "rust-v0.167.2"
 image: "/img/blog-codex-update-log-hero-20260830.png"
 image_alt: "巨大な水晶のAI脳を、10個の光るニュースホールドで登り、紙のヤギが見守る和紙の風景"
 hero_image: false
@@ -18,10 +18,10 @@ action: "使えそうな機能を1つ試す"
 ---
 
 <!-- CODEX_UPDATE_CURRENT:BEGIN -->
-<!-- source-fingerprint: 1904472686fa0686c638cebc1e787a68aa5d4554fcccc4b1cf0d6b4d21024159 -->
+<!-- source-fingerprint: 2b189ddababdb7e3b21e59bea1754a4fb1bb5def736b6d4fbf2c9ad1ec457fd8 -->
 <section class="codex-update-guide" aria-labelledby="codex-update-guide-title">
 <h2 id="codex-update-guide-title">Codex新機能と活用例</h2>
-<p class="codex-update-guide__date">更新日：<time datetime="2026-11-12">2026年11月12日</time></p>
+<p class="codex-update-guide__date">更新日：<time datetime="2026-11-13">2026年11月13日</time></p>
 </section>
 
 
@@ -30,12 +30,12 @@ action: "使えそうな機能を1つ試す"
 <span class="update-card__rank" aria-hidden="true">1</span>
 <div class="update-card__heading">
 <p class="update-card__eyebrow">CODEX</p>
-<h2 id="codex-feature-1-title" class="codex-feature-title"><span class="visually-hidden">1. </span>CLI 0.167.1の公開と変更一覧を確認する</h2>
+<h2 id="codex-feature-1-title" class="codex-feature-title"><span class="visually-hidden">1. </span>Vertex AIではツール情報を変更分だけ送信</h2>
 </div></header>
 <div class="update-card__body">
-<p class="update-card__summary">Codex CLI 0.167.1が公開され、0.167.0からの変更一覧へのリンクが案内されています。リリース本文には、個々の新機能や改善効果の説明はありません。たとえば、地域企業でCodex CLIを使っているなら、更新前に担当者と公式の変更一覧を確認し、ふだんの作業への影響を確かめます。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
-<p class="update-card__context">CLIの公開情報です。アプリへの反映時期や、モデル・料金の変更を示す発表ではありません。</p>
-<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.167.1" target="_blank" rel="noopener">公式情報</a></p>
+<p class="update-card__summary">Google Cloud Vertex AIでCodex CLIを使う際、ツール情報の更新を変更分だけ送る方式が標準になりました。たとえば、地域企業でVertex AIとCodex CLIを組み合わせているなら、担当者とツール連携の動作を確認し、業務を続けられるか試します。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
+<p class="update-card__context">Codex CLI 0.167.2のVertex AI向け変更です。速度や料金への効果は、この発表では示されていません。</p>
+<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.167.2" target="_blank" rel="noopener">公式情報</a></p>
 </div></section>
 
 ## 公式情報
@@ -47,6 +47,11 @@ action: "使えそうな機能を1つ試す"
 ## 過去のアップデート要約
 
 <!-- CODEX_UPDATE_ARCHIVE:BEGIN -->
+<!-- source-fingerprint: 1904472686fa0686c638cebc1e787a68aa5d4554fcccc4b1cf0d6b4d21024159 -->
+### CLI 0.167.1：公開と変更一覧の案内
+
+安定版0.167.1の公開を確認し、公式の変更一覧を確認する方法を紹介しました。
+
 <!-- source-fingerprint: a4cfd11d721d0dd271c306a4466d28c1e8a1fc32a6eaa3a2a10ab521bc1d7447 -->
 ### CLI 0.167.0：未読結果と承認前の変更確認
 

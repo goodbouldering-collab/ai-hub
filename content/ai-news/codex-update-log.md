@@ -1,11 +1,11 @@
 ---
 title: "今日のAIニュース4とCodex"
 date: "2026-08-21"
-date_modified: "2026-11-13"
+date_modified: "2026-11-15"
 content_series: codex-update-log
 source_period: "October 26–30, 2026"
-source_fingerprint: "2b189ddababdb7e3b21e59bea1754a4fb1bb5def736b6d4fbf2c9ad1ec457fd8"
-source_release_tag: "rust-v0.167.2"
+source_fingerprint: "f0cf1664c99f58c4b6ea713557a3b4ec9963f7e4bb2d7e00e5ad509eb0e4f14b"
+source_release_tag: "rust-v0.169.0"
 image: "/img/blog-codex-update-log-hero-20260830.png"
 image_alt: "巨大な水晶のAI脳を、10個の光るニュースホールドで登り、紙のヤギが見守る和紙の風景"
 hero_image: false
@@ -18,10 +18,10 @@ action: "使えそうな機能を1つ試す"
 ---
 
 <!-- CODEX_UPDATE_CURRENT:BEGIN -->
-<!-- source-fingerprint: 2b189ddababdb7e3b21e59bea1754a4fb1bb5def736b6d4fbf2c9ad1ec457fd8 -->
+<!-- source-fingerprint: f0cf1664c99f58c4b6ea713557a3b4ec9963f7e4bb2d7e00e5ad509eb0e4f14b -->
 <section class="codex-update-guide" aria-labelledby="codex-update-guide-title">
 <h2 id="codex-update-guide-title">Codex新機能と活用例</h2>
-<p class="codex-update-guide__date">更新日：<time datetime="2026-11-13">2026年11月13日</time></p>
+<p class="codex-update-guide__date">更新日：<time datetime="2026-11-15">2026年11月15日</time></p>
 </section>
 
 
@@ -30,12 +30,38 @@ action: "使えそうな機能を1つ試す"
 <span class="update-card__rank" aria-hidden="true">1</span>
 <div class="update-card__heading">
 <p class="update-card__eyebrow">CODEX</p>
-<h2 id="codex-feature-1-title" class="codex-feature-title"><span class="visually-hidden">1. </span>Vertex AIではツール情報を変更分だけ送信</h2>
+<h2 id="codex-feature-1-title" class="codex-feature-title"><span class="visually-hidden">1. </span>前の仕事を名前や依頼文から探す</h2>
 </div></header>
 <div class="update-card__body">
-<p class="update-card__summary">Google Cloud Vertex AIでCodex CLIを使う際、ツール情報の更新を変更分だけ送る方式が標準になりました。たとえば、地域企業でVertex AIとCodex CLIを組み合わせているなら、担当者とツール連携の動作を確認し、業務を続けられるか試します。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
-<p class="update-card__context">Codex CLI 0.167.2のVertex AI向け変更です。速度や料金への効果は、この発表では示されていません。</p>
-<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.167.2" target="_blank" rel="noopener">公式情報</a></p>
+<p class="update-card__summary">エージェントのコマンドセンターで、過去の作業を名前、依頼文のプレビュー、作業フォルダから検索できるようになりました。たとえば、地域企業で先週作った案内文を直すなら、以前の依頼を探し、どこまで仕上げたか確認します。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
+<p class="update-card__context">Codex CLI 0.169.0のコマンドセンターが対象です。</p>
+<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.169.0" target="_blank" rel="noopener">公式情報</a></p>
+</div></section>
+
+<section class="codex-feature-card update-card" data-update-kind="codex" data-update-index="2" aria-labelledby="codex-feature-2-title">
+<header class="update-card__header">
+<span class="update-card__rank" aria-hidden="true">2</span>
+<div class="update-card__heading">
+<p class="update-card__eyebrow">CODEX</p>
+<h2 id="codex-feature-2-title" class="codex-feature-title"><span class="visually-hidden">2. </span>長い作業履歴は折りたたんで読む</h2>
+</div></header>
+<div class="update-card__body">
+<p class="update-card__summary">全画面の履歴表示で、完了した作業の詳細を折りたたみ、回答を見える状態に保てます。ツールの出力も検索できます。たとえば、学校のお知らせページを何度も修正したなら、回答を中心に読み返し、必要なときに作業記録を探します。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
+<p class="update-card__context">Codex CLI 0.169.0の全画面履歴表示が対象です。</p>
+<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.169.0" target="_blank" rel="noopener">公式情報</a></p>
+</div></section>
+
+<section class="codex-feature-card update-card" data-update-kind="codex" data-update-index="3" aria-labelledby="codex-feature-3-title">
+<header class="update-card__header">
+<span class="update-card__rank" aria-hidden="true">3</span>
+<div class="update-card__heading">
+<p class="update-card__eyebrow">CODEX</p>
+<h2 id="codex-feature-3-title" class="codex-feature-title"><span class="visually-hidden">3. </span>別の相談をタブに分けて再開する</h2>
+</div></header>
+<div class="update-card__body">
+<p class="update-card__summary">希望者向けのターミナル作業画面が複数のサイドチャットに対応しました。保存したローカルの相談は再起動後も開き直せます。たとえば、福祉事業所の案内ページを作りながら説明文を相談するなら、相談を分けて見返し、続きから内容を整えます。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
+<p class="update-card__context">Codex CLI 0.169.0の任意有効化するターミナル作業画面が対象です。</p>
+<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.169.0" target="_blank" rel="noopener">公式情報</a></p>
 </div></section>
 
 ## 公式情報
@@ -47,6 +73,11 @@ action: "使えそうな機能を1つ試す"
 ## 過去のアップデート要約
 
 <!-- CODEX_UPDATE_ARCHIVE:BEGIN -->
+<!-- source-fingerprint: 2b189ddababdb7e3b21e59bea1754a4fb1bb5def736b6d4fbf2c9ad1ec457fd8 -->
+### CLI 0.167.2：Vertex AIへツール情報を差分送信
+
+Google Cloud Vertex AIでのツール情報の差分送信が標準になった変更を紹介しました。
+
 <!-- source-fingerprint: 1904472686fa0686c638cebc1e787a68aa5d4554fcccc4b1cf0d6b4d21024159 -->
 ### CLI 0.167.1：公開と変更一覧の案内
 

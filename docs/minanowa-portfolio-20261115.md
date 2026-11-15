@@ -14,3 +14,7 @@ site/templates/ai-news/home.htmlにも同一カード更新を反映し、conten
 
 ## 検証
 Python関連63件、Cloudflare7件、巻戻り防止3件成功。今回資産から既存日次ビルドを再実行し、782件全hash一致を確認。ローカル環境の不足依存をtmp/python-depsに補充、最初の実行失敗を解消済み。公開記録は登録元tmp/delivery/20261115-portfolio-release-preserve-news.json。統合・配備結果と画面証拠は同記録で追跡。
+
+## 3枚ヒーローへの更新（2026-11-15）
+みんなのWA PR102/ceed1398の本番PC画像を既存minanowa画像へ差替え。登録名・URL・slug・techは保持。画像SHA256は3e205377660d96591b96a976502da426105d752691c054f9db898a09d3d369fa。キャッシュキー20261115-scenesを公開カード・日次テンプレ・限定生成関数で統一。
+基準はPR251/525097e6の782資産を検証して保存した.codex-update-release-20261115-portfolio/public。今回公開差分は画像とトップの2件だけ、他780資産およびWorker8fc4f305は不変。既存12試験・巻戻り防止3試験と本番5URL照合成功。今回の工程記録はtmp/delivery/20261115-minanowa-scenes.json。公開実績はその記録で追跡する。

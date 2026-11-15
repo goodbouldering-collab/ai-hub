@@ -399,3 +399,6 @@ AI講座・業務改善相談の案内、ブログ、制作実績を提供する
 
 ## 2026-11-15 みんなのWA実績画像・配備元修復
 既存カードの画像/Cloudflare技術表記を更新。通常配備を検証済み.current-releaseへ統一し、本番ニュースが進んだ場合は停止するガードを追加。関連73試験成功、日次再生成782資産全一致。最新記事と現行管理Workerを保持。統合/配備はtmp/delivery/20261115-portfolio-release-preserve-news.jsonで追跡。詳細: docs/minanowa-portfolio-20261115.md。
+
+## 2026-11-15 みんなのWAの3枚ヒーロー実績画像
+既存minanowaの画像1件をPR102本番の最新PC画像へ更新、キャッシュキー・日次テンプレ・current-release契約を同期。基準PR251の782資産を照合し、公開差分2件・その他780件/Worker保持。15試験・本番主要5URL照合成功。今回の統合/公開結果はtmp/delivery/20261115-minanowa-scenes.jsonを参照。次：配備後の画像hash一致・一覧画面を確認。

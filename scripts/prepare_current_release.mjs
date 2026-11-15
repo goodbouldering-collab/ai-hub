@@ -23,9 +23,9 @@ export function patchPortfolio(html) {
   const cards = html.match(pattern);
   if (cards?.length !== 1) throw Error('Expected exactly one minanowa card');
   const card = cards[0];
-  const updated = card.replace("/img/portfolio/minanowa.jpg'", "/img/portfolio/minanowa.jpg?v=20261115'")
+  const updated = card.replace(/\/img\/portfolio\/minanowa\.jpg(?:\?v=[^']*)?'/, "/img/portfolio/minanowa.jpg?v=20261115-scenes'")
     .replace("<span class='pf-chip'>Vercel</span><span class='pf-chip'>Supabase</span>", "<span class='pf-chip'>Cloudflare Workers</span><span class='pf-chip'>D1</span><span class='pf-chip'>R2</span>");
-  if (!updated.includes('minanowa.jpg?v=20261115') || !updated.includes("<span class='pf-chip'>R2</span>")) throw Error('Unexpected portfolio markup');
+  if (!updated.includes('minanowa.jpg?v=20261115-scenes') || !updated.includes("<span class='pf-chip'>R2</span>")) throw Error('Unexpected portfolio markup');
   return html.replace(card, updated);
 }
 export async function assertLive(contract, request = fetch) {

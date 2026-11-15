@@ -15,8 +15,9 @@ portfolio:
   status: live
   category: コミュニティ
   tech:
-  - Vercel
-  - Supabase
+  - Cloudflare Workers
+  - D1
+  - R2
   summary: 彦根市の異業種交流会。登録・イベント・紹介のプラットフォーム
   since: 2025-03
   thumbnail: /img/portfolio/minanowa.jpg

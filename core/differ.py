@@ -1,9 +1,8 @@
 """
 過去取得ログを保持し、新着(前回以降に初めて見た記事)を抽出する。
 
-ストレージは 2 系統:
-  - Supabase (推奨・本番 / GitHub Actions): SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY が揃っていれば自動で使う
-  - SQLite (フォールバック): 上記が無ければ従来どおり data/history.db を使う
+既定は data/history.db の SQLite。ARTICLE_STORE=d1 を明示した場合は、
+登録済みの Cloudflare D1 へ接続する。旧 Supabase 設定が残る場合は停止する。
 
 呼び出し側(run.py)は従来どおり `ArticleStore(DB)` で生成し、`upsert()` / `close()` を呼ぶだけでよい。
 """
@@ -74,15 +73,22 @@ class _SqliteStore:
 
 
 class ArticleStore:
-    """Local history only. Retired cloud configuration fails before opening any DB."""
+    """Select the history backend explicitly and reject retired credentials first."""
 
     def __init__(self, db_path: Path):
         backend = os.environ.get("ARTICLE_STORE", "sqlite")
-        if backend != "sqlite":
-            raise RuntimeError("ARTICLE_STORE must be sqlite; D1 migration is not yet accepted.")
         if os.environ.get("SUPABASE_URL") or os.environ.get("SUPABASE_SERVICE_ROLE_KEY"):
             raise RuntimeError("Retired Supabase history configuration detected. Confirm history migration before changing the backend.")
-        self._inner: _Store = _SqliteStore(db_path)
+        if backend == "d1":
+            from .d1_history import D1HistoryStore
+
+            self._inner: _Store = D1HistoryStore()
+            self.backend = "d1"
+            print("  [store] Cloudflare D1 (central target guard required)")
+            return
+        if backend != "sqlite":
+            raise RuntimeError("ARTICLE_STORE must be sqlite or d1.")
+        self._inner = _SqliteStore(db_path)
         self.backend = "sqlite"
         print(f"  [store] SQLite ({db_path})")
 

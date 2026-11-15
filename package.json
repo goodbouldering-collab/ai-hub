@@ -7,6 +7,8 @@
     "node": ">=20"
   },
   "scripts": {
+    "build:auxiliary": "node scripts/build_auxiliary_worker.mjs && npm run build:meo",
+    "verify:auxiliary": "npm run build:auxiliary && node --test tests/auxiliary-d1.test.mjs && python -m unittest tests.test_d1_history",
     "build:meo": "esbuild deployment/meo-diagnosis/worker.mjs --bundle --format=esm --platform=node --alias:iconv-lite=./deployment/meo-diagnosis/encoding.mjs --outfile=deployment/meo-diagnosis/published-worker.mjs",
     "verify:meo": "node --test tests/meo-places.test.mjs tests/seo-llmo-audit.test.mjs tests/seo-llmo-handler.test.mjs && npm run build:meo",
     "bridge": "node bridge/bridge.mjs",

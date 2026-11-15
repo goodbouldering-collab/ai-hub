@@ -4535,18 +4535,18 @@ var require_node = __commonJS({
         return this.parent.nodes[index + 1];
       }
       positionBy(opts = {}) {
-        let inputString = "document" in this.source.input ? this.source.input.document : this.source.input.css;
+        let inputString2 = "document" in this.source.input ? this.source.input.document : this.source.input.css;
         let pos = {
           column: this.source.start.column,
           line: this.source.start.line,
-          offset: sourceOffset(inputString, this.source.start)
+          offset: sourceOffset(inputString2, this.source.start)
         };
         if (opts.index) {
           pos = this.positionInside(opts.index);
         } else if (opts.word) {
-          let stringRepresentation = inputString.slice(
-            sourceOffset(inputString, this.source.start),
-            sourceOffset(inputString, this.source.end)
+          let stringRepresentation = inputString2.slice(
+            sourceOffset(inputString2, this.source.start),
+            sourceOffset(inputString2, this.source.end)
           );
           let index = stringRepresentation.indexOf(opts.word);
           if (index !== -1) pos = this.positionInside(index);
@@ -4556,11 +4556,11 @@ var require_node = __commonJS({
       positionInside(index) {
         let column = this.source.start.column;
         let line = this.source.start.line;
-        let inputString = "document" in this.source.input ? this.source.input.document : this.source.input.css;
-        let offset = sourceOffset(inputString, this.source.start);
+        let inputString2 = "document" in this.source.input ? this.source.input.document : this.source.input.css;
+        let offset = sourceOffset(inputString2, this.source.start);
         let end = offset + index;
         for (let i = offset; i < end; i++) {
-          if (inputString[i] === "\n") {
+          if (inputString2[i] === "\n") {
             column = 1;
             line += 1;
           } else {
@@ -4575,11 +4575,11 @@ var require_node = __commonJS({
         return this.parent.nodes[index - 1];
       }
       rangeBy(opts = {}) {
-        let inputString = "document" in this.source.input ? this.source.input.document : this.source.input.css;
+        let inputString2 = "document" in this.source.input ? this.source.input.document : this.source.input.css;
         let start = {
           column: this.source.start.column,
           line: this.source.start.line,
-          offset: sourceOffset(inputString, this.source.start)
+          offset: sourceOffset(inputString2, this.source.start)
         };
         let end = this.source.end ? {
           column: this.source.end.column + 1,
@@ -4591,7 +4591,7 @@ var require_node = __commonJS({
             // Since line/column in this.source.end is inclusive,
             // the `sourceOffset(... , this.source.end)` returns an inclusive offset.
             // So, we add 1 to convert it to exclusive.
-            sourceOffset(inputString, this.source.end) + 1
+            sourceOffset(inputString2, this.source.end) + 1
           )
         } : {
           column: start.column + 1,
@@ -4599,9 +4599,9 @@ var require_node = __commonJS({
           offset: start.offset + 1
         };
         if (opts.word) {
-          let stringRepresentation = inputString.slice(
-            sourceOffset(inputString, this.source.start),
-            sourceOffset(inputString, this.source.end)
+          let stringRepresentation = inputString2.slice(
+            sourceOffset(inputString2, this.source.start),
+            sourceOffset(inputString2, this.source.end)
           );
           let index = stringRepresentation.indexOf(opts.word);
           if (index !== -1) {
@@ -4613,7 +4613,7 @@ var require_node = __commonJS({
             start = {
               column: opts.start.column,
               line: opts.start.line,
-              offset: sourceOffset(inputString, opts.start)
+              offset: sourceOffset(inputString2, opts.start)
             };
           } else if (typeof opts.index === "number") {
             start = this.positionInside(opts.index);
@@ -4622,7 +4622,7 @@ var require_node = __commonJS({
             end = {
               column: opts.end.column,
               line: opts.end.line,
-              offset: sourceOffset(inputString, opts.end)
+              offset: sourceOffset(inputString2, opts.end)
             };
           } else if (typeof opts.endIndex === "number") {
             end = this.positionInside(opts.endIndex);
@@ -8494,7 +8494,7 @@ var require_launder = __commonJS({
         }
         return def;
       };
-      self2.date = function(date, def, now) {
+      self2.date = function(date, def, now2) {
         let components;
         function returnDefault() {
           if (def === void 0) {
@@ -8507,10 +8507,10 @@ var require_launder = __commonJS({
           if (date.match(/\//)) {
             components = date.split("/");
             if (components.length === 2) {
-              return (now || /* @__PURE__ */ new Date()).getFullYear() + "-" + self2.padInteger(components[0], 2) + "-" + self2.padInteger(components[1], 2);
+              return (now2 || /* @__PURE__ */ new Date()).getFullYear() + "-" + self2.padInteger(components[0], 2) + "-" + self2.padInteger(components[1], 2);
             } else if (components.length === 3) {
               if (components[2] < 100) {
-                const d = now || /* @__PURE__ */ new Date();
+                const d = now2 || /* @__PURE__ */ new Date();
                 const nowYear = d.getFullYear() % 100;
                 const nowCentury = d.getFullYear() - nowYear;
                 let theirYear = parseInt(components[2]) + nowCentury;
@@ -8526,7 +8526,7 @@ var require_launder = __commonJS({
           } else if (date.match(/-/)) {
             components = date.split("-");
             if (components.length === 2) {
-              return (now || /* @__PURE__ */ new Date()).getFullYear() + "-" + self2.padInteger(components[0], 2) + "-" + self2.padInteger(components[1], 2);
+              return (now2 || /* @__PURE__ */ new Date()).getFullYear() + "-" + self2.padInteger(components[0], 2) + "-" + self2.padInteger(components[1], 2);
             } else if (components.length === 3) {
               return self2.padInteger(components[0], 4) + "-" + self2.padInteger(components[1], 2) + "-" + self2.padInteger(components[2], 2);
             } else {
@@ -8538,7 +8538,7 @@ var require_launder = __commonJS({
           if (date === null) {
             return returnDefault();
           }
-          date = now || new Date(date);
+          date = now2 || new Date(date);
           if (isNaN(date.getTime())) {
             return returnDefault();
           }
@@ -18570,60 +18570,54 @@ body[data-workspace-shell]>.workspace-actions+.workspace-actions .workspace-acti
 </style>`;
 
 // deployment/admin-workspace/shell.mjs
-const MENU = Object.freeze([
-  { href: '/admin/blog-create', label: '制作・発信', key: 'create' },
-  { href: '/admin/materials', label: '内部資料', key: 'materials' },
-  { href: '/admin/operations', label: '運営・分析', key: 'operations' },
+var MENU = Object.freeze([
+  { href: "/admin/blog-create", label: "\u5236\u4F5C\u30FB\u767A\u4FE1", key: "create" },
+  { href: "/admin/materials", label: "\u5185\u90E8\u8CC7\u6599", key: "materials" },
+  { href: "/admin/operations", label: "\u904B\u55B6\u30FB\u5206\u6790", key: "operations" }
 ]);
-
-const HOME_ACTIONS = Object.freeze([
-  { href: '/admin/blog-create', label: 'ブログを書く', key: 'create' },
-  { href: '/admin/reel', label: 'リールを作る', key: 'create' },
-  { href: 'https://analytics.google.com/analytics/web/', label: 'GA4' },
-  { href: 'https://search.google.com/search-console/', label: 'サーチコンソール' },
-  { href: 'https://business.google.com/locations', label: 'マイビジネス' },
-  { label: '内部資料アップロード' },
-  { label: '顧客情報' },
-  { label: '予約状況' },
-  { label: 'メニュー編集' },
-  { label: '商品サイト設定' },
-  { href: '/admin/materials', label: '内部資料を見る', key: 'materials' },
-  { href: '/admin/operations', label: 'その他の管理', key: 'operations' },
+var HOME_ACTIONS = Object.freeze([
+  { href: "/admin/blog-create", label: "\u30D6\u30ED\u30B0\u3092\u66F8\u304F", key: "create" },
+  { href: "/admin/reel", label: "\u30EA\u30FC\u30EB\u3092\u4F5C\u308B", key: "create" },
+  { href: "https://analytics.google.com/analytics/web/", label: "GA4" },
+  { href: "https://search.google.com/search-console/", label: "\u30B5\u30FC\u30C1\u30B3\u30F3\u30BD\u30FC\u30EB" },
+  { href: "https://business.google.com/locations", label: "\u30DE\u30A4\u30D3\u30B8\u30CD\u30B9" },
+  { label: "\u5185\u90E8\u8CC7\u6599\u30A2\u30C3\u30D7\u30ED\u30FC\u30C9" },
+  { label: "\u9867\u5BA2\u60C5\u5831" },
+  { label: "\u4E88\u7D04\u72B6\u6CC1" },
+  { label: "\u30E1\u30CB\u30E5\u30FC\u7DE8\u96C6" },
+  { label: "\u5546\u54C1\u30B5\u30A4\u30C8\u8A2D\u5B9A" },
+  { href: "/admin/materials", label: "\u5185\u90E8\u8CC7\u6599\u3092\u898B\u308B", key: "materials" },
+  { href: "/admin/operations", label: "\u305D\u306E\u4ED6\u306E\u7BA1\u7406", key: "operations" }
 ]);
 function activeKey(path) {
-  const route=routeAt(path); if(route) return route.group;
-  if(path==='/admin/document') return 'materials';
-  if (path.startsWith('/admin/materials') || path.startsWith('/ops')) return 'materials';
-  if (/^\/admin\/(create|blog|apps|sns-post)/.test(path)) return 'create';
-  if (/^\/admin\/(operations|command-center|gubble-sns|chat)/.test(path)) return 'operations';
-  return 'home';
+  const route = routeAt(path);
+  if (route) return route.group;
+  if (path === "/admin/document") return "materials";
+  if (path.startsWith("/admin/materials") || path.startsWith("/ops")) return "materials";
+  if (/^\/admin\/(create|blog|apps|sns-post)/.test(path)) return "create";
+  if (/^\/admin\/(operations|command-center|gubble-sns|chat)/.test(path)) return "operations";
+  return "home";
 }
-
 function header(path) {
   const active = activeKey(path);
-  return `<header id="workspace-header"><div class="workspace-bar"><a class="workspace-brand" href="/admin/blog-create">AI相談<small>管理</small></a><nav aria-label="管理メニュー">${MENU.map(item => `<a href="${item.href}"${active === item.key ? ' aria-current="page"' : ''}>${item.label}</a>`).join('')}</nav><div class="workspace-tools"><a href="/" target="_blank" rel="noopener">公開サイト ↗</a><a href="/admin/logout">ログアウト</a></div></div></header>`;
+  return `<header id="workspace-header"><div class="workspace-bar"><a class="workspace-brand" href="/admin/blog-create">AI\u76F8\u8AC7<small>\u7BA1\u7406</small></a><nav aria-label="\u7BA1\u7406\u30E1\u30CB\u30E5\u30FC">${MENU.map((item) => `<a href="${item.href}"${active === item.key ? ' aria-current="page"' : ""}>${item.label}</a>`).join("")}</nav><div class="workspace-tools"><a href="/" target="_blank" rel="noopener">\u516C\u958B\u30B5\u30A4\u30C8 \u2197</a><a href="/admin/logout">\u30ED\u30B0\u30A2\u30A6\u30C8</a></div></div></header>`;
 }
-
-// Generated from the same registry as the home catalogue; no parallel menu definitions.
 function creationNavigation(path) {
-  return `<nav class="workspace-actions" aria-label="制作・発信メニュー">${ROUTES.filter(r=>r.group==='create').map(r=>`<a class="workspace-action${r.path===path?' workspace-action--primary':''}" href="${r.path}"${r.path===path?' aria-current="page"':''}>${r.title}</a>`).join('')}</nav>`;
+  return `<nav class="workspace-actions" aria-label="\u5236\u4F5C\u30FB\u767A\u4FE1\u30E1\u30CB\u30E5\u30FC">${ROUTES.filter((r) => r.group === "create").map((r) => `<a class="workspace-action${r.path === path ? " workspace-action--primary" : ""}" href="${r.path}"${r.path === path ? ' aria-current="page"' : ""}>${r.title}</a>`).join("")}</nav>`;
 }
-
 function operationsNavigation(path) {
-  const current=operationSectionAt(path);
-  return `<nav class="workspace-actions" aria-label="運営・分析メニュー">${OPERATION_SECTIONS.map(section=>`<a class="workspace-action${current===section?' workspace-action--primary':''}" href="${section.path}"${current===section?' aria-current="page"':''}>${section.title}</a>`).join('')}</nav>`;
+  const current = operationSectionAt(path);
+  return `<nav class="workspace-actions" aria-label="\u904B\u55B6\u30FB\u5206\u6790\u30E1\u30CB\u30E5\u30FC">${OPERATION_SECTIONS.map((section2) => `<a class="workspace-action${current === section2 ? " workspace-action--primary" : ""}" href="${section2.path}"${current === section2 ? ' aria-current="page"' : ""}>${section2.title}</a>`).join("")}</nav>`;
 }
-
 function workspaceNavigation(path) {
-  const group=activeKey(path);
-  if(group==='create') return creationNavigation(path);
-  const section=operationSectionAt(path);
-  const items=group==='materials'?ROUTES.filter(r=>r.group==='materials'):section?.routes;
-  const buttons=items?`<nav class="workspace-actions" aria-label="${section?section.title+'の機能':'内部資料メニュー'}">${items.map(r=>`<a class="workspace-action${r.path===path?' workspace-action--primary':''}" href="${r.path}"${r.view?' data-view-link="'+r.view+'"':''}${r.path===path?' aria-current="page"':''}>${r.title}</a>`).join('')}</nav>`:'';
-  return (group==='operations'?operationsNavigation(path):'')+buttons;
+  const group = activeKey(path);
+  if (group === "create") return creationNavigation(path);
+  const section2 = operationSectionAt(path);
+  const items = group === "materials" ? ROUTES.filter((r) => r.group === "materials") : section2?.routes;
+  const buttons = items ? `<nav class="workspace-actions" aria-label="${section2 ? section2.title + "\u306E\u6A5F\u80FD" : "\u5185\u90E8\u8CC7\u6599\u30E1\u30CB\u30E5\u30FC"}">${items.map((r) => `<a class="workspace-action${r.path === path ? " workspace-action--primary" : ""}" href="${r.path}"${r.view ? ' data-view-link="' + r.view + '"' : ""}${r.path === path ? ' aria-current="page"' : ""}>${r.title}</a>`).join("")}</nav>` : "";
+  return (group === "operations" ? operationsNavigation(path) : "") + buttons;
 }
-
-const SHELL_STYLE = `<style data-workspace-shell-style>
+var SHELL_STYLE = `<style data-workspace-shell-style>
 html{scroll-padding-top:130px}body[data-workspace-shell]{padding-top:0!important}body[data-workspace-shell]>main,body[data-workspace-shell]>.container{padding-top:24px!important}body[data-workspace-shell]>.admin-page-context{display:none!important}
 #workspace-header{position:sticky!important;top:0!important;z-index:1000;display:block;width:100%;max-width:none;margin:0!important;padding:0!important;border:0;border-bottom:1px solid #dce3e8;background:#fff;color:#193542;box-shadow:0 3px 15px #122b3708;font:14px/1.5 system-ui,"Yu Gothic",sans-serif;transform:none;backdrop-filter:none;height:auto!important}
 #workspace-header *{box-sizing:border-box}#workspace-header .workspace-bar{display:flex;align-items:center;gap:30px;max-width:1280px;margin:auto;padding:12px 28px}#workspace-header a{color:#304d5d;text-decoration:none;box-shadow:none}#workspace-header .workspace-brand{display:flex;align-items:baseline;gap:12px;font-size:23px;font-weight:800;white-space:nowrap}#workspace-header .workspace-brand small{font-size:11px;color:#71808c;font-weight:500}
@@ -18645,42 +18639,39 @@ document.addEventListener('click',function(event){
   }
 },true);
 </script>`;
-
-
 function homeActions(path) {
-  if(path!=='/admin/blog-create') return '';
-  return '<section class="admin-home-actions" aria-label="追加の管理機能">'+HOME_ACTIONS.filter(item=>!item.key).map(item=>item.href?'<a href="'+item.href+'" target="_blank" rel="noopener noreferrer" title="ログイン後に対象事業を選択">'+item.label+'</a>':'<button type="button" disabled>'+item.label+'（準備中）</button>').join('')+'</section>';
+  if (path !== "/admin/blog-create") return "";
+  return '<section class="admin-home-actions" aria-label="\u8FFD\u52A0\u306E\u7BA1\u7406\u6A5F\u80FD">' + HOME_ACTIONS.filter((item) => !item.key).map((item) => item.href ? '<a href="' + item.href + '" target="_blank" rel="noopener noreferrer" title="\u30ED\u30B0\u30A4\u30F3\u5F8C\u306B\u5BFE\u8C61\u4E8B\u696D\u3092\u9078\u629E">' + item.label + "</a>" : '<button type="button" disabled>' + item.label + "\uFF08\u6E96\u5099\u4E2D\uFF09</button>").join("") + "</section>";
 }
-
 function applyShell(html, url) {
-  html=rewriteNavigation(html);
-  html=html.replace('REEL APP SERVER','AI相談').replace('事業別リール制作','AI相談 リール制作').replace('⚙️ OPS — AIスペシャリスト管理本部','運用記録・プロンプト');
-  if (html.includes('id="workspace-header"')) return html.includes('data-admin-theme')?html:html.replace('</head>',THEME+'</head>');
-  // Keep production editor headings/status IDs. Only replace the shared navigation.
-  html = html.replace(/<script\b[^>]*src=["'][^"']*admin-menu\.js[^"']*["'][^>]*>[\s\S]*?<\/script>/gi, '');
-  html = html.replace(/<title>[\s\S]*?<\/title>/i,'<title>AI相談</title>').replace(/document\.title\s*=\s*["'][^"']*["']/g,'document.title="AI相談"');
-  // Legacy CSS comments contain literal <header> examples. Keep raw-text blocks
-  // opaque so replacing a real header cannot consume the head or editor body.
-  const raw=[];
-  html=html.replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>|<style\b[^>]*>[\s\S]*?<\/style\s*>|<!--[\s\S]*?-->/gi,block=>{raw.push(block);return '\uE000WORKSPACE'+(raw.length-1)+'\uE001';});
-  const route=routeAt(url.pathname);
-  if(route?.kind==='command') {
-    html=html.replace(/<details\b[^>]*class=["']cc-market-nav["'][^>]*>[\s\S]*?<\/details>/gi,'');
-    html=html.replace(/<nav\b[^>]*class=["']cc-local-nav["'][^>]*>[\s\S]*?<\/nav>/gi,'');
+  html = rewriteNavigation(html);
+  html = html.replace("REEL APP SERVER", "AI\u76F8\u8AC7").replace("\u4E8B\u696D\u5225\u30EA\u30FC\u30EB\u5236\u4F5C", "AI\u76F8\u8AC7 \u30EA\u30FC\u30EB\u5236\u4F5C").replace("\u2699\uFE0F OPS \u2014 AI\u30B9\u30DA\u30B7\u30E3\u30EA\u30B9\u30C8\u7BA1\u7406\u672C\u90E8", "\u904B\u7528\u8A18\u9332\u30FB\u30D7\u30ED\u30F3\u30D7\u30C8");
+  if (html.includes('id="workspace-header"')) return html.includes("data-admin-theme") ? html : html.replace("</head>", THEME + "</head>");
+  html = html.replace(/<script\b[^>]*src=["'][^"']*admin-menu\.js[^"']*["'][^>]*>[\s\S]*?<\/script>/gi, "");
+  html = html.replace(/<title>[\s\S]*?<\/title>/i, "<title>AI\u76F8\u8AC7</title>").replace(/document\.title\s*=\s*["'][^"']*["']/g, 'document.title="AI\u76F8\u8AC7"');
+  const raw = [];
+  html = html.replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>|<style\b[^>]*>[\s\S]*?<\/style\s*>|<!--[\s\S]*?-->/gi, (block) => {
+    raw.push(block);
+    return "\uE000WORKSPACE" + (raw.length - 1) + "\uE001";
+  });
+  const route = routeAt(url.pathname);
+  if (route?.kind === "command") {
+    html = html.replace(/<details\b[^>]*class=["']cc-market-nav["'][^>]*>[\s\S]*?<\/details>/gi, "");
+    html = html.replace(/<nav\b[^>]*class=["']cc-local-nav["'][^>]*>[\s\S]*?<\/nav>/gi, "");
   }
-  if(route?.group==='create') {
-    html=html.replace(/<nav\b[^>]*class=["'][^"']*\b(?:studio-tabs|blog-page-nav)\b[^"']*["'][^>]*>[\s\S]*?<\/nav>/gi,'');
+  if (route?.group === "create") {
+    html = html.replace(/<nav\b[^>]*class=["'][^"']*\b(?:studio-tabs|blog-page-nav)\b[^"']*["'][^>]*>[\s\S]*?<\/nav>/gi, "");
   }
   const oldHeader = /<header\b(?=[^>]*(?:class=["'][^"']*\bsite-header\b|id=["']site-header["']))[^>]*>[\s\S]*?<\/header>/i;
   if (oldHeader.test(html)) html = html.replace(oldHeader, header(url.pathname));
   else html = html.replace(/(<body\b[^>]*>)/i, `$1${header(url.pathname)}`);
-  html = html.replace(/<body\b/i, '<body data-workspace-shell');
+  html = html.replace(/<body\b/i, "<body data-workspace-shell");
   html = html.replace('id="studio-nav-back" href="/studio"', 'id="studio-nav-back" href="/admin/create"');
-  if(url.pathname==='/admin/gubble-sns') html=html.replace('</header>','</header><details class="workspace-details" style="max-width:1120px;margin:16px auto;padding:0 16px"><summary>以前の媒体ボードに保存した設定・履歴</summary><p>旧ボードの保存内容を確認できます。通常の分析はこの画面を使います。</p><p><a href="/admin/sns-cross-media-dashboard">旧媒体ボードを開く</a></p></details>');
-  if(url.pathname==='/admin/sns-cross-media-dashboard') html=html.replace('</header>','</header><p class="workspace-return">旧媒体ボード：保存済み設定・履歴の参照用。<a href="/admin/gubble-sns">SNS分析へ</a></p>');
-  html=html.replace('</header>','</header>'+workspaceNavigation(url.pathname));
-  if(url.pathname==='/admin/blog-create') html=html.replace(/(<main\b[^>]*>)/i, '$1'+homeActions(url.pathname));
-  return html.replace('</head>', SHELL_STYLE + THEME + '</head>').replace(/\uE000WORKSPACE(\d+)\uE001/g,(_,index)=>raw[Number(index)]);
+  if (url.pathname === "/admin/gubble-sns") html = html.replace("</header>", '</header><details class="workspace-details" style="max-width:1120px;margin:16px auto;padding:0 16px"><summary>\u4EE5\u524D\u306E\u5A92\u4F53\u30DC\u30FC\u30C9\u306B\u4FDD\u5B58\u3057\u305F\u8A2D\u5B9A\u30FB\u5C65\u6B74</summary><p>\u65E7\u30DC\u30FC\u30C9\u306E\u4FDD\u5B58\u5185\u5BB9\u3092\u78BA\u8A8D\u3067\u304D\u307E\u3059\u3002\u901A\u5E38\u306E\u5206\u6790\u306F\u3053\u306E\u753B\u9762\u3092\u4F7F\u3044\u307E\u3059\u3002</p><p><a href="/admin/sns-cross-media-dashboard">\u65E7\u5A92\u4F53\u30DC\u30FC\u30C9\u3092\u958B\u304F</a></p></details>');
+  if (url.pathname === "/admin/sns-cross-media-dashboard") html = html.replace("</header>", '</header><p class="workspace-return">\u65E7\u5A92\u4F53\u30DC\u30FC\u30C9\uFF1A\u4FDD\u5B58\u6E08\u307F\u8A2D\u5B9A\u30FB\u5C65\u6B74\u306E\u53C2\u7167\u7528\u3002<a href="/admin/gubble-sns">SNS\u5206\u6790\u3078</a></p>');
+  html = html.replace("</header>", "</header>" + workspaceNavigation(url.pathname));
+  if (url.pathname === "/admin/blog-create") html = html.replace(/(<main\b[^>]*>)/i, "$1" + homeActions(url.pathname));
+  return html.replace("</head>", SHELL_STYLE + THEME + "</head>").replace(/\uE000WORKSPACE(\d+)\uE001/g, (_, index) => raw[Number(index)]);
 }
 
 // deployment/admin-workspace/pages.mjs
@@ -19241,6 +19232,236 @@ function pendingApi(path) {
   return null;
 }
 
+// deployment/admin-workspace/auxiliary-store.mjs
+var TABLES = Object.freeze({
+  "command_center.projects": "business_id",
+  "command_center.tasks": "id",
+  "command_center.directives": "id",
+  "command_center.directive_executions": "id",
+  "command_center.trades": "id",
+  "command_center.trade_plans": "id",
+  "command_center.relay_state": "id",
+  "command_center.relay_requests": "id",
+  "command_center.relay_nonces": "nonce",
+  "ai_watch.articles": "hash",
+  "portal.sns_posts": "id"
+});
+var Conflict = class extends Error {
+};
+var hasAuxiliaryTable = (object, key) => Object.prototype.hasOwnProperty.call(object, key);
+var now = () => (/* @__PURE__ */ new Date()).toISOString();
+function identity(namespace, row) {
+  if (!hasAuxiliaryTable(TABLES, namespace) || !row || typeof row !== "object" || Array.isArray(row)) throw Error("Invalid auxiliary record");
+  const key = String(row[TABLES[namespace]] ?? "");
+  const owner = namespace.startsWith("command_center.") && !namespace.includes(".relay_") ? row.owner_id : "";
+  if (!key || key.length > 256 || typeof owner !== "string" || owner.length > 120 || namespace.startsWith("command_center.") && !namespace.includes(".relay_") && !owner) throw Error("Invalid auxiliary identity");
+  const payload = JSON.stringify(row);
+  if (new TextEncoder().encode(payload).length > 96 * 1024) throw Error("Auxiliary record too large");
+  return { key, owner, payload };
+}
+function auxiliaryStore(db) {
+  if (!db?.prepare || !db?.batch) throw Error("Auxiliary D1 is not configured");
+  const statement = (sql, ...args) => db.prepare(sql).bind(...args);
+  const check = (result) => {
+    if (result?.success === false) throw Error("Auxiliary D1 operation failed");
+    return result;
+  };
+  return {
+    async raw(namespace) {
+      if (!hasAuxiliaryTable(TABLES, namespace)) throw Error("Invalid auxiliary table");
+      return (check(await statement("SELECT payload, revision FROM auxiliary_records WHERE namespace = ? ORDER BY record_key", namespace).all()).results || []).map((item) => ({ row: JSON.parse(item.payload), revision: item.revision }));
+    },
+    async list(namespace, owner) {
+      if (!hasAuxiliaryTable(TABLES, namespace)) throw Error("Invalid auxiliary table");
+      return (check(await statement("SELECT payload, revision FROM auxiliary_records WHERE namespace = ? AND owner_id = ? ORDER BY record_key", namespace, owner).all()).results || []).map((item) => ({ row: JSON.parse(item.payload), revision: item.revision }));
+    },
+    async get(namespace, key, owner) {
+      if (!hasAuxiliaryTable(TABLES, namespace)) throw Error("Invalid auxiliary table");
+      const item = await statement("SELECT payload, revision FROM auxiliary_records WHERE namespace = ? AND record_key = ? AND owner_id = ?", namespace, key, owner).first();
+      return item ? { row: JSON.parse(item.payload), revision: item.revision } : null;
+    },
+    async insert(namespace, row) {
+      const { key, owner, payload } = identity(namespace, row);
+      const result = check(await statement("INSERT OR IGNORE INTO auxiliary_records(namespace, record_key, owner_id, payload) VALUES (?, ?, ?, ?)", namespace, key, owner, payload).run());
+      if (result.meta?.changes !== 1) throw new Conflict("Record already exists");
+    },
+    async update(namespace, key, owner, change) {
+      const old = await this.get(namespace, key, owner);
+      if (!old) throw new Conflict("Record not found");
+      const row = change(old.row);
+      const next = identity(namespace, row);
+      if (next.key !== key || next.owner !== owner) throw Error("Identity cannot change");
+      const result = check(await statement("UPDATE auxiliary_records SET payload = ?, revision = revision + 1 WHERE namespace = ? AND record_key = ? AND owner_id = ? AND revision = ?", next.payload, namespace, key, owner, old.revision).run());
+      if (result.meta?.changes !== 1) throw new Conflict("Record changed; reload and retry");
+    },
+    async removeClosedTrade(key, owner) {
+      const result = check(await statement("DELETE FROM auxiliary_records WHERE namespace = 'command_center.trades' AND record_key = ? AND owner_id = ? AND json_extract(payload, '$.status') = 'closed'", key, owner).run());
+      if (result.meta?.changes !== 1) throw new Conflict("Closed trade not found");
+    },
+    async executeTrade(input, owner) {
+      const plan = await this.get("command_center.trade_plans", input.id, owner);
+      if (!plan || plan.row.status !== "approved") throw new Conflict("Approved plan not found");
+      const tradeId = crypto.randomUUID(), timestamp = now();
+      const row = { id: tradeId, owner_id: owner, traded_at: input.tradedAt, market: plan.row.market, symbol: plan.row.symbol, direction: plan.row.direction, status: "open", entry_price: input.entryPrice, quantity: input.quantity, risk_amount: input.riskAmount, pnl: 0, memo: "\u76F8\u5834\u7F85\u91DD\u76E4\u306E\u627F\u8A8D\u6E08\u307F\u30D7\u30E9\u30F3\u304B\u3089\u4F5C\u6210", created_at: timestamp, updated_at: timestamp };
+      const results = await db.batch([
+        statement("INSERT INTO auxiliary_records(namespace, record_key, owner_id, payload) SELECT 'command_center.trades', ?, ?, ? FROM auxiliary_records WHERE namespace = 'command_center.trade_plans' AND record_key = ? AND owner_id = ? AND revision = ? AND json_extract(payload, '$.status') = 'approved'", tradeId, owner, JSON.stringify(row), input.id, owner, plan.revision),
+        statement("UPDATE auxiliary_records SET payload = json_set(payload, '$.status', 'executed', '$.trade_id', ?, '$.updated_at', ?), revision = revision + 1 WHERE namespace = 'command_center.trade_plans' AND record_key = ? AND owner_id = ? AND revision = ? AND json_extract(payload, '$.status') = 'approved'", tradeId, timestamp, input.id, owner, plan.revision)
+      ]);
+      results.forEach(check);
+      if (results.some((result) => result.meta?.changes !== 1)) throw new Conflict("Plan changed; reload and retry");
+    },
+    async upsertArticles(articles) {
+      const newHashes = [], existingHashes = [], timestamp = now();
+      for (const article of articles) {
+        const row = { ...article, first_seen: timestamp, last_seen: timestamp };
+        const { key, payload } = identity("ai_watch.articles", row);
+        const result = check(await statement("INSERT OR IGNORE INTO auxiliary_records(namespace, record_key, owner_id, payload) VALUES ('ai_watch.articles', ?, '', ?)", key, payload).run());
+        if (result.meta?.changes === 1) newHashes.push(key);
+        else {
+          check(await statement("UPDATE auxiliary_records SET payload = json_set(payload, '$.last_seen', ?), revision = revision + 1 WHERE namespace = 'ai_watch.articles' AND record_key = ?", timestamp, key).run());
+          existingHashes.push(key);
+        }
+      }
+      return { newHashes, existingHashes };
+    }
+  };
+}
+
+// deployment/admin-workspace/auxiliary-api.mjs
+var HEADERS = { "cache-control": "private, no-store", "x-content-type-options": "nosniff", "x-robots-tag": "noindex, nofollow" };
+var json11 = (value, status = 200) => Response.json(value, { status, headers: HEADERS });
+var auxiliaryPath = (path) => ["/api/admin/command-center/data", "/api/admin/sns-history"].includes(path);
+var fields = {
+  projects: "business_id display_name status status_label production_url hint last_review_date",
+  tasks: "id business_id title reason priority status due_date effort blocker category created_at updated_at",
+  directives: "id business_id mode instruction created_at",
+  directive_executions: "id directive_id owner_id business_id mode instruction status summary result error thread_id version has_changes started_at completed_at updated_at",
+  trades: "id traded_at market symbol direction status entry_price quantity risk_amount pnl memo",
+  trade_plans: "id market symbol name trade_style direction signal_score reference_price quantity stop_price target_price max_loss thesis invalidation source_as_of status trade_id created_at updated_at",
+  sns_posts: "id created_at text image_url x_status x_post_id x_error threads_status threads_post_id threads_error"
+};
+var orders = { projects: "display_name", tasks: "updated_at", directives: "created_at", directive_executions: "updated_at", trades: "traded_at", trade_plans: "created_at", sns_posts: "created_at" };
+var camel = (key) => key.replace(/_([a-z])/g, (_, c) => c.toUpperCase());
+function mapAuxiliaryRow(table, row) {
+  const result = Object.fromEntries(fields[table].split(" ").map((key) => [camel(key), row[key] ?? ""]));
+  if (table === "directives") result.createdAtLabel = new Intl.DateTimeFormat("ja-JP", { month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit", timeZone: "Asia/Tokyo" }).format(new Date(row.created_at));
+  return result;
+}
+async function readAuxiliaryRows(store, table, owner, limit = 200) {
+  return (await store.list(table === "sns_posts" ? "portal.sns_posts" : "command_center." + table, owner)).map((item) => item.row).sort((a, b) => String(b[orders[table]] ?? "").localeCompare(String(a[orders[table]] ?? ""))).slice(0, limit).map((row) => mapAuxiliaryRow(table, row));
+}
+async function dashboard(store, owner) {
+  const names = ["projects", "tasks", "directives", "directive_executions", "trades", "trade_plans"];
+  const values = await Promise.all(names.map((name) => readAuxiliaryRows(store, name, owner)));
+  return { ownerId: owner, projects: values[0], tasks: values[1], directives: values[2], executions: values[3], trades: values[4], tradePlans: values[5], generatedAt: (/* @__PURE__ */ new Date()).toISOString() };
+}
+var Invalid = class extends Error {
+};
+function inputString(body, key, max, required = false) {
+  const value = body[key];
+  if (value == null && !required) return "";
+  if (typeof value !== "string" || value.length > max || required && !value.trim()) throw new Invalid("\u5165\u529B\u5185\u5BB9\u3092\u78BA\u8A8D\u3057\u3066\u304F\u3060\u3055\u3044\u3002");
+  return value.trim();
+}
+function inputNumber(body, key, min = 0, max = Number.MAX_SAFE_INTEGER, fallback = 0) {
+  const value = body[key] == null ? fallback : Number(body[key]);
+  if (!Number.isFinite(value) || value < min || value > max) throw new Invalid("\u6570\u5024\u3092\u78BA\u8A8D\u3057\u3066\u304F\u3060\u3055\u3044\u3002");
+  return value;
+}
+function inputChoice(body, key, allowed) {
+  const value = inputString(body, key, 40, true);
+  if (!allowed.includes(value)) throw new Invalid("\u9078\u629E\u5185\u5BB9\u3092\u78BA\u8A8D\u3057\u3066\u304F\u3060\u3055\u3044\u3002");
+  return value;
+}
+function inputDate(body, key) {
+  const value = inputString(body, key, 10, true);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value) || !Number.isFinite(Date.parse(value)) || new Date(value).toISOString().slice(0, 10) !== value) throw new Invalid("\u65E5\u4ED8\u3092\u78BA\u8A8D\u3057\u3066\u304F\u3060\u3055\u3044\u3002");
+  return value;
+}
+async function readBody2(request) {
+  if (!request.headers.get("content-type")?.toLowerCase().startsWith("application/json")) throw new Invalid("JSON\u304C\u5FC5\u8981\u3067\u3059\u3002");
+  const reader = request.body?.getReader();
+  if (!reader) throw new Invalid("\u5165\u529B\u304C\u3042\u308A\u307E\u305B\u3093\u3002");
+  let size = 0;
+  const chunks = [];
+  try {
+    for (; ; ) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      size += value.byteLength;
+      if (size > 64 * 1024) {
+        await reader.cancel();
+        throw new Invalid("\u5165\u529B\u304C\u5927\u304D\u3059\u304E\u307E\u3059\u3002");
+      }
+      chunks.push(value);
+    }
+  } finally {
+    reader.releaseLock();
+  }
+  const buffer = new Uint8Array(size);
+  let offset = 0;
+  for (const chunk of chunks) {
+    buffer.set(chunk, offset);
+    offset += chunk.length;
+  }
+  let body;
+  try {
+    body = JSON.parse(new TextDecoder("utf-8", { fatal: true }).decode(buffer));
+  } catch {
+    throw new Invalid("JSON\u3092\u78BA\u8A8D\u3057\u3066\u304F\u3060\u3055\u3044\u3002");
+  }
+  if (!body || typeof body !== "object" || Array.isArray(body)) throw new Invalid("JSON\u3092\u78BA\u8A8D\u3057\u3066\u304F\u3060\u3055\u3044\u3002");
+  return body;
+}
+async function act(store, owner, body) {
+  const action = inputString(body, "action", 40, true), timestamp = (/* @__PURE__ */ new Date()).toISOString();
+  const id = () => inputString(body, "id", 120, true);
+  const base = () => ({ id: crypto.randomUUID(), owner_id: owner, created_at: timestamp, updated_at: timestamp });
+  const update = (table, key, changes, allowed) => store.update("command_center." + table, key, owner, (row) => {
+    if (allowed && !allowed.includes(row.status)) throw new Conflict("\u72B6\u614B\u304C\u5909\u66F4\u3055\u308C\u3066\u3044\u307E\u3059\u3002");
+    return { ...row, ...changes, updated_at: timestamp };
+  });
+  if (action === "create_task") await store.insert("command_center.tasks", { ...base(), business_id: inputString(body, "businessId", 80, true), title: inputString(body, "title", 180, true), due_date: inputDate(body, "dueDate"), priority: inputNumber(body, "priority", 1, 5, 2), reason: inputString(body, "reason", 500), status: "planned", effort: "", blocker: "", category: "\u8FFD\u52A0" });
+  else if (action === "update_task") await update("tasks", id(), { status: inputChoice(body, "status", ["today", "planned", "waiting", "done"]) });
+  else if (action === "create_directive") await store.insert("command_center.directives", { ...base(), id: inputString(body, "id", 120) || crypto.randomUUID(), business_id: inputString(body, "businessId", 80, true), mode: inputChoice(body, "mode", ["research", "draft", "implement", "hold"]), instruction: inputString(body, "instruction", 800, true) });
+  else if (action === "record_execution") {
+    const key = id(), row = { id: key, directive_id: inputString(body, "directiveId", 120, true), owner_id: owner, business_id: inputString(body, "businessId", 80, true), mode: inputChoice(body, "mode", ["research", "draft", "implement", "hold"]), instruction: inputString(body, "instruction", 800, true), status: inputChoice(body, "status", ["starting", "running", "waiting_approval", "completed", "failed", "interrupted"]), summary: inputString(body, "summary", 2e3), result: inputString(body, "result", 5e4), error: inputString(body, "error", 2e3), thread_id: inputString(body, "threadId", 200), version: inputNumber(body, "version", 1, 100, 1), has_changes: body.hasChanges === true, started_at: inputString(body, "startedAt", 40) || timestamp, completed_at: inputString(body, "completedAt", 40) || null, updated_at: timestamp };
+    if (await store.get("command_center.directive_executions", key, owner)) await update("directive_executions", key, row);
+    else await store.insert("command_center.directive_executions", row);
+  } else if (action === "create_trade" || action === "create_trade_plan") {
+    const symbol = inputString(body, "symbol", 40, true).toUpperCase();
+    if (!/^[A-Z0-9.\-]{1,40}$/.test(symbol)) throw new Invalid("\u9298\u67C4\u3092\u78BA\u8A8D\u3057\u3066\u304F\u3060\u3055\u3044\u3002");
+    const common = { ...base(), market: inputString(body, "market", 40, true), symbol, direction: inputChoice(body, "direction", ["long", "short"]) };
+    if (action === "create_trade") await store.insert("command_center.trades", { ...common, traded_at: inputDate(body, "tradedAt"), status: "open", entry_price: inputNumber(body, "entryPrice"), quantity: inputNumber(body, "quantity"), risk_amount: inputNumber(body, "riskAmount"), pnl: 0, memo: inputString(body, "memo", 500) });
+    else await store.insert("command_center.trade_plans", { ...common, name: inputString(body, "name", 120), trade_style: inputChoice(body, "tradeStyle", ["cash", "margin"]), signal_score: inputNumber(body, "signalScore", 0, 100), reference_price: inputNumber(body, "referencePrice"), quantity: inputNumber(body, "quantity"), stop_price: inputNumber(body, "stopPrice"), target_price: inputNumber(body, "targetPrice"), max_loss: inputNumber(body, "maxLoss"), thesis: inputString(body, "thesis", 1e3), invalidation: inputString(body, "invalidation", 1e3), source_as_of: inputString(body, "sourceAsOf", 50), status: "draft", trade_id: "" });
+  } else if (action === "approve_trade_plan") await update("trade_plans", id(), { status: "approved" }, ["draft"]);
+  else if (action === "cancel_trade_plan") await update("trade_plans", id(), { status: "cancelled" }, ["draft", "approved"]);
+  else if (action === "execute_trade_plan") await store.executeTrade({ id: id(), tradedAt: inputDate(body, "tradedAt"), entryPrice: inputNumber(body, "entryPrice", Number.MIN_VALUE), quantity: inputNumber(body, "quantity", Number.MIN_VALUE), riskAmount: inputNumber(body, "riskAmount") }, owner);
+  else if (action === "close_trade") await update("trades", id(), { status: "closed", pnl: inputNumber(body, "pnl", -Number.MAX_SAFE_INTEGER) }, ["open"]);
+  else if (action === "delete_trade") await store.removeClosedTrade(id(), owner);
+  else throw new Invalid("\u5BFE\u5FDC\u3057\u3066\u3044\u306A\u3044\u64CD\u4F5C\u3067\u3059\u3002");
+}
+async function auxiliaryApi(request, env) {
+  const path = new URL(request.url).pathname.replace(/\/+$/, "");
+  if (!auxiliaryPath(path)) return null;
+  const allowed = path.endsWith("/sns-history") ? ["GET", "HEAD"] : ["GET", "HEAD", "POST"];
+  if (!allowed.includes(request.method)) return new Response(null, { status: 405, headers: { ...HEADERS, allow: allowed.join(", ") } });
+  if (env.AUXILIARY_BACKEND !== "d1" || !env.AUX_DB) return json11({ error: "\u5171\u6709\u4FDD\u5B58\u5148\u306F\u63A5\u7D9A\u5F85\u3061\u3067\u3059\u3002\u65E2\u5B58\u30C7\u30FC\u30BF\u306F\u5909\u66F4\u3055\u308C\u3066\u3044\u307E\u305B\u3093\u3002" }, 503);
+  if (request.method === "POST") {
+    if (request.headers.get("origin") !== new URL(request.url).origin || request.headers.get("sec-fetch-site") === "cross-site") return json11({ error: "\u7BA1\u7406\u753B\u9762\u304B\u3089\u3084\u308A\u76F4\u3057\u3066\u304F\u3060\u3055\u3044\u3002" }, 403);
+    if (env.AUXILIARY_WRITES !== "enabled") return json11({ error: "\u30C7\u30FC\u30BF\u79FB\u884C\u306E\u78BA\u8A8D\u4E2D\u3067\u3059\u3002\u5165\u529B\u3092\u4FDD\u6301\u3057\u3066\u304A\u5F85\u3061\u304F\u3060\u3055\u3044\u3002" }, 503);
+  }
+  try {
+    const store = auxiliaryStore(env.AUX_DB), owner = env.COMMAND_CENTER_OWNER_ID || "site-owner";
+    if (typeof owner !== "string" || !owner.trim() || owner.length > 120) throw Error("Invalid owner");
+    if (request.method === "POST") await act(store, owner, await readBody2(request));
+    const result = path.endsWith("/sns-history") ? { posts: await readAuxiliaryRows(store, "sns_posts", "", 30) } : await dashboard(store, owner);
+    return request.method === "HEAD" ? new Response(null, { headers: HEADERS }) : json11(result);
+  } catch (error) {
+    return json11({ error: error instanceof Invalid ? error.message : error instanceof Conflict ? "\u30C7\u30FC\u30BF\u304C\u5909\u66F4\u3055\u308C\u3066\u3044\u307E\u3059\u3002\u518D\u8AAD\u8FBC\u3057\u3066\u78BA\u8A8D\u3057\u3066\u304F\u3060\u3055\u3044\u3002" : "\u4FDD\u5B58\u5148\u3092\u78BA\u8A8D\u3067\u304D\u307E\u305B\u3093\u3002\u6642\u9593\u3092\u304A\u3044\u3066\u518D\u8A66\u884C\u3057\u3066\u304F\u3060\u3055\u3044\u3002" }, error instanceof Invalid ? 400 : error instanceof Conflict ? 409 : 503);
+  }
+}
+
 // deployment/admin-workspace/worker.mjs
 async function authorized2(request, env, ctx) {
   const response = await worker_default.fetch(new Request(new URL("/api/admin/ping", request.url), { headers: request.headers }), env, ctx);
@@ -19263,6 +19484,8 @@ var worker_default2 = {
       if (auth === 503) return json10({ error: "\u7BA1\u7406\u753B\u9762\u306E\u8A8D\u8A3C\u8A2D\u5B9A\u3092\u78BA\u8A8D\u3067\u304D\u307E\u305B\u3093\u3002\u6642\u9593\u3092\u304A\u3044\u3066\u958B\u304D\u76F4\u3057\u3066\u304F\u3060\u3055\u3044\u3002" }, 503);
       if (auth !== 200) return protectedApi ? json10({ error: "\u7BA1\u7406\u753B\u9762\u3078\u30ED\u30B0\u30A4\u30F3\u3057\u3066\u304F\u3060\u3055\u3044\u3002" }, 401) : new Response(null, { status: 303, headers: { ...PRIVATE_HEADERS, location: "/admin/login?next=" + encodeURIComponent(canonicalUrl(path + url.search, url.origin)) } });
       if (protectedApi) {
+        const auxiliary = await auxiliaryApi(request, env);
+        if (auxiliary) return auxiliary;
         if (path === "/api/content-studio/api/profiles") return request.method === "GET" ? json10({ ok: true, profiles: [PROFILE] }) : new Response(null, { status: 405, headers: { ...PRIVATE_HEADERS, allow: "GET" } });
         const migrated = migratedApi(request, env);
         if (migrated) return migrated;

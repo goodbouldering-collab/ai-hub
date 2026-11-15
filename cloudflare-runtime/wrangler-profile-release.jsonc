@@ -18,7 +18,7 @@
     }
   ],
   "assets": {
-    "directory": "../.profile-release/public",
+    "directory": "../.current-release/public",
     "binding": "ASSETS",
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "none",
@@ -40,5 +40,9 @@
     "head_sampling_rate": 1
   },
   "no_bundle": true,
-  "find_additional_modules": false
+  "find_additional_modules": false,
+  "build": {
+    "command": "node ../scripts/prepare_current_release.mjs",
+    "cwd": "."
+  }
 }

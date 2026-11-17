@@ -1,10 +1,10 @@
 ---
 title: "今日のAIニュース4とCodex"
 date: "2026-08-21"
-date_modified: "2026-11-15"
+date_modified: "2026-11-18"
 content_series: codex-update-log
-source_period: "October 26–30, 2026"
-source_fingerprint: "f0cf1664c99f58c4b6ea713557a3b4ec9963f7e4bb2d7e00e5ad509eb0e4f14b"
+source_period: "November 17, 2026"
+source_fingerprint: "94741f96baa7f50d30e2755c23f7dc1c8b47c8166b96c80a0cbdf23fac18d78d"
 source_release_tag: "rust-v0.169.0"
 image: "/img/blog-codex-update-log-hero-20260830.png"
 image_alt: "巨大な水晶のAI脳を、10個の光るニュースホールドで登り、紙のヤギが見守る和紙の風景"
@@ -18,10 +18,10 @@ action: "使えそうな機能を1つ試す"
 ---
 
 <!-- CODEX_UPDATE_CURRENT:BEGIN -->
-<!-- source-fingerprint: f0cf1664c99f58c4b6ea713557a3b4ec9963f7e4bb2d7e00e5ad509eb0e4f14b -->
+<!-- source-fingerprint: 94741f96baa7f50d30e2755c23f7dc1c8b47c8166b96c80a0cbdf23fac18d78d -->
 <section class="codex-update-guide" aria-labelledby="codex-update-guide-title">
 <h2 id="codex-update-guide-title">Codex新機能と活用例</h2>
-<p class="codex-update-guide__date">更新日：<time datetime="2026-11-15">2026年11月15日</time></p>
+<p class="codex-update-guide__date">更新日：<time datetime="2026-11-18">2026年11月18日</time></p>
 </section>
 
 
@@ -30,12 +30,12 @@ action: "使えそうな機能を1つ試す"
 <span class="update-card__rank" aria-hidden="true">1</span>
 <div class="update-card__heading">
 <p class="update-card__eyebrow">CODEX</p>
-<h2 id="codex-feature-1-title" class="codex-feature-title"><span class="visually-hidden">1. </span>前の仕事を名前や依頼文から探す</h2>
+<h2 id="codex-feature-1-title" class="codex-feature-title"><span class="visually-hidden">1. </span>複雑なコードの実装とテストにAstra</h2>
 </div></header>
 <div class="update-card__body">
-<p class="update-card__summary">エージェントのコマンドセンターで、過去の作業を名前、依頼文のプレビュー、作業フォルダから検索できるようになりました。たとえば、地域企業で先週作った案内文を直すなら、以前の依頼を探し、どこまで仕上げたか確認します。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
-<p class="update-card__context">Codex CLI 0.169.0のコマンドセンターが対象です。</p>
-<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.169.0" target="_blank" rel="noopener">公式情報</a></p>
+<p class="update-card__summary">GPT-6.2 AstraがCodexに登場しました。複雑なコードの変更を実装し、テストするような難しい作業に向けて案内されています。たとえば、地域企業の予約アプリを改修するなら、受付条件と例外を整理し、変更した部分の動作確認まで依頼します。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
+<p class="update-card__context">GPT-6.2 AstraのCodex向け発表です。実際に選べるモデルは利用中の環境で確認します。</p>
+<p class="update-card__source"><a href="https://learn.chatgpt.com/docs/whats-new/gpt-62-astra-sol" target="_blank" rel="noopener">公式情報</a></p>
 </div></section>
 
 <section class="codex-feature-card update-card" data-update-kind="codex" data-update-index="2" aria-labelledby="codex-feature-2-title">
@@ -43,25 +43,12 @@ action: "使えそうな機能を1つ試す"
 <span class="update-card__rank" aria-hidden="true">2</span>
 <div class="update-card__heading">
 <p class="update-card__eyebrow">CODEX</p>
-<h2 id="codex-feature-2-title" class="codex-feature-title"><span class="visually-hidden">2. </span>長い作業履歴は折りたたんで読む</h2>
+<h2 id="codex-feature-2-title" class="codex-feature-title"><span class="visually-hidden">2. </span>日々のコード作成や文章整理にSol</h2>
 </div></header>
 <div class="update-card__body">
-<p class="update-card__summary">全画面の履歴表示で、完了した作業の詳細を折りたたみ、回答を見える状態に保てます。ツールの出力も検索できます。たとえば、学校のお知らせページを何度も修正したなら、回答を中心に読み返し、必要なときに作業記録を探します。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
-<p class="update-card__context">Codex CLI 0.169.0の全画面履歴表示が対象です。</p>
-<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.169.0" target="_blank" rel="noopener">公式情報</a></p>
-</div></section>
-
-<section class="codex-feature-card update-card" data-update-kind="codex" data-update-index="3" aria-labelledby="codex-feature-3-title">
-<header class="update-card__header">
-<span class="update-card__rank" aria-hidden="true">3</span>
-<div class="update-card__heading">
-<p class="update-card__eyebrow">CODEX</p>
-<h2 id="codex-feature-3-title" class="codex-feature-title"><span class="visually-hidden">3. </span>別の相談をタブに分けて再開する</h2>
-</div></header>
-<div class="update-card__body">
-<p class="update-card__summary">希望者向けのターミナル作業画面が複数のサイドチャットに対応しました。保存したローカルの相談は再起動後も開き直せます。たとえば、福祉事業所の案内ページを作りながら説明文を相談するなら、相談を分けて見返し、続きから内容を整えます。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
-<p class="update-card__context">Codex CLI 0.169.0の任意有効化するターミナル作業画面が対象です。</p>
-<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.169.0" target="_blank" rel="noopener">公式情報</a></p>
+<p class="update-card__summary">GPT-6.2 Solも登場しました。日常的なコード作成、文章作成、複数段階の作業に向けて案内されています。たとえば、学校のお知らせページを更新するなら、文章の整理とページ修正を頼み、掲載前に内容と表示を確かめます。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
+<p class="update-card__context">GPT-6.2 SolのCodex向け発表です。契約や端末ごとの提供条件は、この案内では断定しません。</p>
+<p class="update-card__source"><a href="https://learn.chatgpt.com/docs/whats-new/gpt-62-astra-sol" target="_blank" rel="noopener">公式情報</a></p>
 </div></section>
 
 ## 公式情報
@@ -73,6 +60,11 @@ action: "使えそうな機能を1つ試す"
 ## 過去のアップデート要約
 
 <!-- CODEX_UPDATE_ARCHIVE:BEGIN -->
+<!-- source-fingerprint: f0cf1664c99f58c4b6ea713557a3b4ec9963f7e4bb2d7e00e5ad509eb0e4f14b -->
+### CLI 0.169.0：過去作業の検索と履歴整理
+
+過去の作業を探す検索、履歴の折りたたみ、複数のサイドチャットの保存と再開を紹介しました。
+
 <!-- source-fingerprint: 2b189ddababdb7e3b21e59bea1754a4fb1bb5def736b6d4fbf2c9ad1ec457fd8 -->
 ### CLI 0.167.2：Vertex AIへツール情報を差分送信
 

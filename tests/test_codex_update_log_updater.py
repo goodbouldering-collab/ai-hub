@@ -265,6 +265,62 @@ class CodexUpdateLogUpdaterTest(unittest.TestCase):
         self.assertIn("Codex Cloud environments", block)
         self.assertNotIn("Codex models", block)
 
+    def test_single_date_codex_release_is_newer_than_weekly_digest(self) -> None:
+        updater = _load_updater()
+        for heading in [
+            "November 17, 2026",
+            "[November 17, 2026](https://learn.chatgpt.com/docs/whats-new/gpt-62-astra-sol)",
+        ]:
+            with self.subTest(heading=heading):
+                source = "# What's new\n\n## " + heading + "\n\n"
+                source += "GPT-6.2 Astra and Sol launch in ChatGPT Work, Codex, and the API. "
+                source += "[Read the full update](https://learn.chatgpt.com/docs/whats-new/gpt-62-astra-sol).\n\n"
+                source += SOURCE_CURRENT.split("# What's new", 1)[1]
+                period, block = updater.extract_latest_digest(source)
+                self.assertEqual(period, "November 17, 2026")
+                self.assertEqual(updater.parse_period_end(period), date(2026, 11, 17))
+                self.assertIn("GPT-6.2", block)
+                self.assertNotIn("Shared thread snapshots", block)
+
+    def test_single_date_keeps_invalid_date_and_non_codex_sections_out(self) -> None:
+        updater = _load_updater()
+        with self.assertRaises(ValueError):
+            updater.parse_period_end("February 30, 2026")
+        prefix = "# What's new\n\n## November 18, 2026\n\n"
+        prefix += "Tell your dot how to respond and update your instructions. "
+        prefix += "[Read the guide](https://learn.chatgpt.com/docs/dots/controls) for more details.\n\n"
+        source = prefix + SOURCE_CURRENT[SOURCE_CURRENT.index("## August"): ]
+        self.assertEqual(updater.extract_latest_digest(source)[0], "August 17-21, 2026")
+
+    def test_single_date_update_archives_once_and_rejects_rollback(self) -> None:
+        updater = _load_updater()
+        source = SOURCE_NEXT.replace("August 24-28, 2026", "August 31, 2026")
+        with tempfile.TemporaryDirectory() as temp_dir:
+            article_path = Path(temp_dir) / "codex-update-log.md"
+            article_path.write_text(article_for(SOURCE_CURRENT), encoding="utf-8")
+            previous_fingerprint = updater.digest_fingerprint(updater.extract_latest_digest(SOURCE_CURRENT)[1])
+            changed = updater.update_article(
+                article_path, source, lambda *_: next_editorial(), today=date(2026, 9, 1)
+            )
+            self.assertTrue(changed)
+            updated = article_path.read_bytes()
+            _frontmatter, meta, body = updater._split_article(updated.decode("utf-8"))
+            self.assertEqual(meta["source_period"], "August 31, 2026")
+            self.assertEqual(meta["date"], "2026-08-21")
+            archive = updater._marked_section(body, updater.ARCHIVE_BEGIN, updater.ARCHIVE_END)
+            self.assertEqual(archive.count(previous_fingerprint), 1)
+            self.assertFalse(updater.update_article(
+                article_path, source, lambda *_: self.fail("unchanged source must skip editor"),
+                today=date(2026, 9, 2),
+            ))
+            self.assertEqual(article_path.read_bytes(), updated)
+            with self.assertRaisesRegex(ValueError, "巻き戻し"):
+                updater.update_article(
+                    article_path, SOURCE_CURRENT, lambda *_: self.fail("rollback must skip editor"),
+                    today=date(2026, 9, 2),
+                )
+            self.assertEqual(article_path.read_bytes(), updated)
+
     def test_simple_title_precedes_command_and_story_is_merged_into_plain_explanation(self) -> None:
         updater = _load_updater()
         source_block = updater.combine_source_block(SOURCE_CURRENT, CLI_RELEASE_CURRENT)

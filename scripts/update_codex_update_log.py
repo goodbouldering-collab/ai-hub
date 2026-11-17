@@ -1,4 +1,4 @@
-"""Refresh the fixed Codex update article from OpenAI's official weekly digest.
+"""Refresh the fixed Codex update article from OpenAI's official dated updates.
 
 The updater is intentionally fail-closed: it writes the article only after the
 source, editorial JSON, markers, and cited URLs have all been validated.
@@ -65,6 +65,10 @@ PERIOD_PATTERN = re.compile(
     r"(?:(?P<end_month>" + "|".join(MONTH_NUMBERS) + r")\s+)?"
     r"(?P<end_day>\d{1,2}),\s*(?P<end_year>\d{4})$"
 )
+SINGLE_DATE_PATTERN = re.compile(
+    r"^(?P<month>" + "|".join(MONTH_NUMBERS) + r")\s+"
+    r"(?P<day>\d{1,2}),\s*(?P<year>\d{4})$"
+)
 CLI_TAG_PATTERN = re.compile(r"^rust-v(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)$")
 
 
@@ -78,6 +82,16 @@ def _normalized_lines(text: str) -> str:
 
 
 def parse_period_end(period: str) -> date:
+    single_date = SINGLE_DATE_PATTERN.fullmatch(period.strip())
+    if single_date:
+        try:
+            return date(
+                int(single_date.group("year")),
+                MONTH_NUMBERS[single_date.group("month")],
+                int(single_date.group("day")),
+            )
+        except ValueError as exc:
+            raise ValueError(f"公式ダイジェストの期間日付が不正です: {period}") from exc
     match = PERIOD_PATTERN.fullmatch(period.strip())
     if not match:
         raise ValueError(f"公式ダイジェストの期間表記が不正です: {period}")
@@ -106,7 +120,7 @@ def parse_period_end(period: str) -> date:
 
 
 def extract_weekly_digests(source_text: str) -> list[tuple[date, str, str]]:
-    """Return valid Codex weekly sections, newest first."""
+    """Return valid Codex dated sections, newest first (legacy function name)."""
     heading = re.search(r"(?m)^# What's new\s*$", source_text)
     if not heading:
         raise ValueError("公式ダイジェストの見出しを確認できません")
@@ -120,7 +134,7 @@ def extract_weekly_digests(source_text: str) -> list[tuple[date, str, str]]:
     seen_dates: set[date] = set()
     for index, weekly in enumerate(headings):
         period = weekly.group(1).strip()
-        # The official digest now links dated headings to weekly detail pages.
+        # Official headings may be weekly ranges or single-date release links.
         linked_period = re.fullmatch(r"\[([^\]]+)\]\(https://learn\.chatgpt\.com/docs/whats-new/[^\s)]+\)", period)
         if linked_period:
             period = linked_period.group(1)
@@ -145,7 +159,7 @@ def extract_weekly_digests(source_text: str) -> list[tuple[date, str, str]]:
 
 
 def extract_latest_digest(source_text: str) -> tuple[str, str]:
-    """Return the newest dated weekly section from the official digest."""
+    """Return the newest dated section from the official digest."""
     _period_end, period, block = extract_weekly_digests(source_text)[0]
     return period, block
 

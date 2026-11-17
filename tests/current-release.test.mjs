@@ -3,7 +3,10 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import { assertLive, assertManifest, hash, hashes, patchPortfolio, prepare } from '../scripts/prepare_current_release.mjs';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
+const execute = promisify(execFile);
+import { assertLive, assertManifest, hash, hashes, patchPortfolio, prepare, newsInputs, snapshotCommittedSource } from '../scripts/prepare_current_release.mjs';
 
 test('refuse missing, additional or changed baseline assets', () => {
   for (const actual of [{}, { a: 'x', b: 'y' }, { a: 'y' }]) assert.throws(() => assertManifest(actual, { a: 'x' }));
@@ -48,10 +51,32 @@ async function releaseFixture(t, aiNews = true) {
   }
   const contract = { ...(aiNews ? { aiNews: true } : {}), baselineDirectory: 'baseline', baselineAssets, assets, workerSha256: hash('worker\n'), url: 'https://example.com', livePaths: ['index.html'] };
   await fs.writeFile(path.join(root, 'deployment/current-release.json'), JSON.stringify(contract));
+  if (aiNews) {
+    for (const name of newsInputs) {
+      const target = path.join(root, name);
+      try { await fs.access(target); continue; } catch {}
+      if (path.extname(name)) {
+        await fs.mkdir(path.dirname(target), { recursive: true });
+        await fs.writeFile(target, 'committed input');
+      } else {
+        await fs.mkdir(target, { recursive: true });
+        await fs.writeFile(path.join(target, 'fixture.txt'), 'committed input');
+      }
+    }
+    await fs.writeFile(path.join(root, 'site/templates/ai-news/home.html'), 'committed template');
+    await execute('git', ['init', '-q'], { cwd: root });
+    await execute('git', ['add', '--', ...newsInputs], { cwd: root });
+    await execute('git', ['-c', 'user.name=Release Test', '-c', 'user.email=release-test@example.invalid', 'commit', '-qm', 'test committed source'], { cwd: root });
+    await fs.writeFile(path.join(root, 'site/templates/ai-news/home.html'), 'unrelated dirty template');
+    await fs.writeFile(path.join(root, 'core/untracked.py'), 'must not be included');
+  }
   const run = async (executable, args, options) => {
+    if (executable === 'git' || args[0] === '-c') return execute(executable, args, options);
     assert.equal(executable, process.env.PYTHON_EXECUTABLE || process.env.PYTHON || 'python');
-    assert.equal(options.cwd, root);
-    assert.equal(args[0], path.join(root, 'scripts/build_ai_news_feature.py'));
+    assert.equal(path.basename(options.cwd), 'source');
+    assert.equal(args[0], path.join(options.cwd, 'scripts/build_ai_news_feature.py'));
+    assert.equal(await fs.readFile(path.join(options.cwd, 'site/templates/ai-news/home.html'), 'utf8'), 'committed template');
+    await assert.rejects(fs.access(path.join(options.cwd, 'core/untracked.py')), { code: 'ENOENT' });
     assert.equal(args[1], '--base-assets');
     assert.equal(args[2], baseline);
     assert.equal(args[3], '--output');
@@ -79,8 +104,9 @@ test('daily mode builds from verified baseline, validates all files and is repea
 test('daily mode rejects unexpected generated assets before output or production checks', async t => {
   const fixture = await releaseFixture(t);
   const run = async (...args) => {
-    await fixture.run(...args);
-    await fs.writeFile(path.join(args[1][4], 'unrelated.txt'), 'unverified');
+    const result = await fixture.run(...args);
+    if (args[1].includes('--base-assets')) await fs.writeFile(path.join(args[1][4], 'unrelated.txt'), 'unverified');
+    return result;
   };
   await assert.rejects(prepare(fixture.root, { run, request: () => assert.fail('must validate first') }), /Unverified release assets/);
   await assert.rejects(fs.access(fixture.output), { code: 'ENOENT' });
@@ -102,4 +128,36 @@ test('contracts without aiNews keep the existing portfolio build and do not invo
   const fixture = await releaseFixture(t, false);
   await prepare(fixture.root, { checkLive: false, run: () => assert.fail('portfolio must not run Python') });
   assertManifest(await hashes(fixture.output), fixture.contract.assets);
+});
+
+test('working-tree candidate mode cannot enable the deployment live guard', async () => {
+  await assert.rejects(prepare('unused', { workingTree: true }), /require checkLive=false/);
+});
+
+test('daily mode reads the committed contract instead of dirty release settings', async t => {
+  const fixture = await releaseFixture(t);
+  await fs.writeFile(path.join(fixture.root, 'deployment/current-release.json'), JSON.stringify({ ...fixture.contract, assets: {} }));
+  await prepare(fixture.root, { run: fixture.run, checkLive: false });
+  assertManifest(await hashes(fixture.output), fixture.contract.assets);
+});
+
+test('committed source extraction rejects traversal and symbolic links', async t => {
+  const fixture = await releaseFixture(t);
+  for (const kind of ['traversal', 'symlink']) {
+    const directory = await fs.mkdtemp(path.join(fixture.root, 'unsafe-archive-'));
+    const run = async (executable, args, options) => {
+      if (executable !== 'git') return execute(executable, args, options);
+      await execute(process.env.PYTHON_EXECUTABLE || process.env.PYTHON || 'python', ['-c', `
+import sys, zipfile, stat
+with zipfile.ZipFile(sys.argv[1], 'w') as z:
+    i=zipfile.ZipInfo('../escaped' if sys.argv[2]=='traversal' else 'link')
+    i.create_system=3
+    i.external_attr=((stat.S_IFLNK if sys.argv[2]=='symlink' else stat.S_IFREG) | 0o644) << 16
+    z.writestr(i, 'outside')
+`, args[3], kind], options);
+      return { stdout: '' };
+    };
+    await assert.rejects(snapshotCommittedSource(fixture.root, directory, 'HEAD', run), /Unsafe archive path|Unsupported archive entry/);
+    await assert.rejects(fs.access(path.join(directory, 'escaped')), { code: 'ENOENT' });
+  }
 });

@@ -1,11 +1,11 @@
 ---
 title: "今日のAIニュース4とCodex"
 date: "2026-08-21"
-date_modified: "2026-11-19"
+date_modified: "2026-11-21"
 content_series: codex-update-log
 source_period: "November 17, 2026"
-source_fingerprint: "be8383b60244cfabda2282cc1a7fc42e1f9e0d365d3a5e78ea3da757359ae163"
-source_release_tag: "rust-v0.170.0"
+source_fingerprint: "864ce1f685f6e7f5f3c6ff8baf849659a881d69c7b04afecd3f3873b29ebd48b"
+source_release_tag: "rust-v0.171.0"
 image: "/img/blog-codex-update-log-hero-20260830.png"
 image_alt: "巨大な水晶のAI脳を、10個の光るニュースホールドで登り、紙のヤギが見守る和紙の風景"
 hero_image: false
@@ -18,10 +18,10 @@ action: "使えそうな機能を1つ試す"
 ---
 
 <!-- CODEX_UPDATE_CURRENT:BEGIN -->
-<!-- source-fingerprint: be8383b60244cfabda2282cc1a7fc42e1f9e0d365d3a5e78ea3da757359ae163 -->
+<!-- source-fingerprint: 864ce1f685f6e7f5f3c6ff8baf849659a881d69c7b04afecd3f3873b29ebd48b -->
 <section class="codex-update-guide" aria-labelledby="codex-update-guide-title">
 <h2 id="codex-update-guide-title">Codex新機能と活用例</h2>
-<p class="codex-update-guide__date">更新日：<time datetime="2026-11-19">2026年11月19日</time></p>
+<p class="codex-update-guide__date">更新日：<time datetime="2026-11-21">2026年11月21日</time></p>
 </section>
 
 
@@ -30,12 +30,12 @@ action: "使えそうな機能を1つ試す"
 <span class="update-card__rank" aria-hidden="true">1</span>
 <div class="update-card__heading">
 <p class="update-card__eyebrow">CODEX</p>
-<h2 id="codex-feature-1-title" class="codex-feature-title"><span class="visually-hidden">1. </span>Windowsでの保存と実行環境の修正</h2>
+<h2 id="codex-feature-1-title" class="codex-feature-title"><span class="visually-hidden">1. </span>会話の横で資料と作業記録を確認</h2>
 </div></header>
 <div class="update-card__body">
-<p class="update-card__summary">Windowsでのファイル置換、サンドボックスの権限保持、実行環境の登録復旧が修正されました。たとえば、地域企業の案内ページをWindowsで直すなら、修正内容がファイルへ保存されたか確かめてから公開します。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
-<p class="update-card__context">Codex CLI 0.170.0の公式修正内容です。利用中の環境での動作確認は別に必要です。</p>
-<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.170.0" target="_blank" rel="noopener">公式情報</a></p>
+<p class="update-card__summary">ターミナルの作業画面が標準で有効になり、文書の検索付きプレビュー、画像、子エージェントの会話記録を並べて確認できます。たとえば、学校の教材ページを直すなら、資料の内容と作業記録を見ながら、修正が意図どおりか確かめます。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
+<p class="update-card__context">Codex CLI 0.171.0の公式更新です。ターミナル画面向けの案内で、利用環境での動作確認は別に必要です。</p>
+<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.171.0" target="_blank" rel="noopener">公式情報</a></p>
 </div></section>
 
 <section class="codex-feature-card update-card" data-update-kind="codex" data-update-index="2" aria-labelledby="codex-feature-2-title">
@@ -43,12 +43,12 @@ action: "使えそうな機能を1つ試す"
 <span class="update-card__rank" aria-hidden="true">2</span>
 <div class="update-card__heading">
 <p class="update-card__eyebrow">CODEX</p>
-<h2 id="codex-feature-2-title" class="codex-feature-title"><span class="visually-hidden">2. </span>接続が切れた会話の復帰を改善</h2>
+<h2 id="codex-feature-2-title" class="codex-feature-title"><span class="visually-hidden">2. </span>入力の取り消し・やり直しに対応</h2>
 </div></header>
 <div class="update-card__body">
-<p class="update-card__summary">Cloudの会話で自動再接続が改善され、クライアントの再接続時に進行中の復旧処理が保持されるようになりました。たとえば、学校の教材ページを作る途中で通信が切れたなら、復帰後に作業の続きと保存済みの結果を確認します。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
-<p class="update-card__context">Codex CLI 0.170.0の公式修正内容です。利用中の環境での動作確認は別に必要です。</p>
-<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.170.0" target="_blank" rel="noopener">公式情報</a></p>
+<p class="update-card__summary">Vimモード以外の入力欄で取り消し・やり直しのキーを設定でき、添付ファイルや長い貼り付けも復元できるようになりました。たとえば、地域企業の案内文を長く貼り付けて依頼するなら、誤って消した内容を戻したあと、送る文章と添付が合っているか見直します。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
+<p class="update-card__context">Codex CLI 0.171.0の公式更新です。ターミナル画面向けの案内で、利用環境での動作確認は別に必要です。</p>
+<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.171.0" target="_blank" rel="noopener">公式情報</a></p>
 </div></section>
 
 <section class="codex-feature-card update-card" data-update-kind="codex" data-update-index="3" aria-labelledby="codex-feature-3-title">
@@ -56,12 +56,12 @@ action: "使えそうな機能を1つ試す"
 <span class="update-card__rank" aria-hidden="true">3</span>
 <div class="update-card__heading">
 <p class="update-card__eyebrow">CODEX</p>
-<h2 id="codex-feature-3-title" class="codex-feature-title"><span class="visually-hidden">3. </span>重複するファイル検索結果を整理</h2>
+<h2 id="codex-feature-3-title" class="codex-feature-title"><span class="visually-hidden">3. </span>会話を切り替えても下書きを保持</h2>
 </div></header>
 <div class="update-card__body">
-<p class="update-card__summary">ファイル検索の重複結果が除かれ、空白を含む検索語に対する会話検索の抜粋表示も修正されました。たとえば、福祉事業所の複数の案内文から修正対象を探すなら、似た名前のファイルでも保存場所を確認して取り違えを防ぎます。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
-<p class="update-card__context">Codex CLI 0.170.0の公式修正内容です。利用中の環境での動作確認は別に必要です。</p>
-<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.170.0" target="_blank" rel="noopener">公式情報</a></p>
+<p class="update-card__summary">会話の切り替えや再開時に、下書き・送信待ちの追加依頼・中断した入力を元の会話に保持する修正が入りました。たとえば、福祉事業所の案内文と別の資料を並行して直すなら、作業を切り替えた後も、依頼先の会話と入力内容を確認してから送信します。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
+<p class="update-card__context">Codex CLI 0.171.0の公式更新です。ターミナル画面向けの案内で、利用環境での動作確認は別に必要です。</p>
+<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.171.0" target="_blank" rel="noopener">公式情報</a></p>
 </div></section>
 
 ## 公式情報
@@ -73,6 +73,11 @@ action: "使えそうな機能を1つ試す"
 ## 過去のアップデート要約
 
 <!-- CODEX_UPDATE_ARCHIVE:BEGIN -->
+<!-- source-fingerprint: be8383b60244cfabda2282cc1a7fc42e1f9e0d365d3a5e78ea3da757359ae163 -->
+### CLI 0.170.0：保存・再接続・検索の修正
+
+Windowsのファイル保存と権限保持、Cloud会話の再接続、ファイル検索の重複と抜粋表示の修正を紹介しました。
+
 <!-- source-fingerprint: 94741f96baa7f50d30e2755c23f7dc1c8b47c8166b96c80a0cbdf23fac18d78d -->
 ### GPT-6.2 AstraとSol：仕事に合わせた使い分け
 

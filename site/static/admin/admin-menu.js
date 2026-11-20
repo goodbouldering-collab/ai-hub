@@ -1,83 +1,18 @@
 (() => {
-  const menuGroups = [
-    {
-      id: "operations",
-      label: "運営",
-      summary: "予定・指示・資料",
-      description: "毎日の予定と実行を整える",
-      sections: [{
-        items: [
-          { href: "/admin/command-center", label: "実行指令室", description: "予定・指示・相場・Codexをまとめる" },
-          { href: "/ops", label: "OPS", description: "資料とプロンプトを確認する" },
-        ],
-      }],
-    },
-    {
-      id: "publishing",
-      label: "制作・発信",
-      summary: "記事・動画・SNS",
-      description: "つくる・直す・届ける",
-      sections: [{
-        items: [
-          { href: "/admin/blog", label: "ブログ管理", description: "記事を編集して公開する" },
-          { href: "/admin/apps/blog", label: "ブログ制作", description: "調査から記事の下書きを作る" },
-          { href: "/admin/apps/reel/", label: "リール制作", description: "動画と投稿文を作る" },
-          { href: "/admin/sns-post", label: "SNS投稿", description: "複数のSNSへ投稿する" },
-        ],
-      }],
-    },
-    {
-      id: "insights",
-      label: "分析・相談",
-      summary: "反応・改善・相談",
-      description: "結果を見て次の一手を決める",
-      sections: [{
-        items: [
-          { href: "/admin/gubble-sns", label: "SNS分析", description: "投稿の反応と改善点を見る" },
-          { href: "/admin/chat", label: "AI相談", description: "運用メモや次の行動を相談する" },
-        ],
-      }],
-    },
-    {
-      id: "market",
-      label: "相場",
-      summary: "調査・計画・記録",
-      description: "相場を調べ、判断材料を残す",
-      sections: [
-        {
-          label: "調べる",
-          items: [
-            { href: "/admin/command-center/trade", label: "相場羅針盤", description: "市場・プラン・記録をまとめて見る" },
-            { href: "/admin/command-center/market", label: "市場候補", description: "価格と一次候補を見る" },
-            { href: "/admin/command-center/screener", label: "財務スクリーナー", description: "12項目で日本株を絞る" },
-            { href: "/admin/command-center/security?symbol=6857", label: "銘柄詳細", description: "3年推移と出典を見る" },
-          ],
-        },
-        {
-          label: "計画・記録",
-          items: [
-            { href: "/admin/command-center/trade-plan", label: "取引プラン作成", description: "根拠と中止条件を残す" },
-            { href: "/admin/command-center/trade-plans", label: "登録プラン", description: "保存済みプランを見る" },
-            { href: "/admin/command-center/trades", label: "取引記録", description: "実行記録と損益を見る" },
-            { href: "/admin/command-center/market-sources", label: "データ収集状況", description: "取得元と欠損を確認する" },
-          ],
-        },
+  // AIclimb のコンテンツ制作だけを入口にする。旧SNS・他事業向け機能は残しても、
+  // この固定メニューからは露出させない。
+  const menuGroups = [{
+    id: "content",
+    label: "AIclimb制作",
+    summary: "ブログ・リール",
+    description: "AIclimbのブログとリールを作る",
+    sections: [{
+      items: [
+        { href: "/admin/apps/blog", label: "ブログ生成", description: "AIclimbのブログを調査から下書きまで作る" },
+        { href: "/admin/apps/reel/", label: "リール生成", description: "AIclimbのリールと投稿文を作る" },
       ],
-    },
-    {
-      id: "utility",
-      label: "その他",
-      summary: "確認・設定",
-      description: "表示確認と管理画面の設定",
-      sections: [{
-        items: [
-          { href: "/design-system/", label: "デザインシステム", description: "共通の色・部品・状態を確認する", kind: "reference" },
-          { href: "/", label: "公開ページ", description: "公開中の表示を確認する", kind: "public" },
-          { href: "/admin/logout", label: "ログアウト", description: "管理画面から退出する", kind: "logout" },
-        ],
-      }],
-    },
-  ];
+    }],
+  }];
 
   function canonicalPath(value) {
     const path = String(value).split(/[?#]/, 1)[0].replace(/\/+$/, "") || "/";

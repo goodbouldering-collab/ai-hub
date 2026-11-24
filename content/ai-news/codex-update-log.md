@@ -1,11 +1,11 @@
 ---
 title: "今日のAIニュース4とCodex"
 date: "2026-08-21"
-date_modified: "2026-11-21"
+date_modified: "2026-11-25"
 content_series: codex-update-log
 source_period: "November 17, 2026"
-source_fingerprint: "864ce1f685f6e7f5f3c6ff8baf849659a881d69c7b04afecd3f3873b29ebd48b"
-source_release_tag: "rust-v0.171.0"
+source_fingerprint: "7ef2dd223b3c63d3b3e60ad019719504ad9fc2f841c1bb22b2a68d9d8bcaa87b"
+source_release_tag: "rust-v0.172.0"
 image: "/img/blog-codex-update-log-hero-20260830.png"
 image_alt: "巨大な水晶のAI脳を、10個の光るニュースホールドで登り、紙のヤギが見守る和紙の風景"
 hero_image: false
@@ -18,10 +18,10 @@ action: "使えそうな機能を1つ試す"
 ---
 
 <!-- CODEX_UPDATE_CURRENT:BEGIN -->
-<!-- source-fingerprint: 864ce1f685f6e7f5f3c6ff8baf849659a881d69c7b04afecd3f3873b29ebd48b -->
+<!-- source-fingerprint: 7ef2dd223b3c63d3b3e60ad019719504ad9fc2f841c1bb22b2a68d9d8bcaa87b -->
 <section class="codex-update-guide" aria-labelledby="codex-update-guide-title">
 <h2 id="codex-update-guide-title">Codex新機能と活用例</h2>
-<p class="codex-update-guide__date">更新日：<time datetime="2026-11-21">2026年11月21日</time></p>
+<p class="codex-update-guide__date">更新日：<time datetime="2026-11-25">2026年11月25日</time></p>
 </section>
 
 
@@ -30,12 +30,12 @@ action: "使えそうな機能を1つ試す"
 <span class="update-card__rank" aria-hidden="true">1</span>
 <div class="update-card__heading">
 <p class="update-card__eyebrow">CODEX</p>
-<h2 id="codex-feature-1-title" class="codex-feature-title"><span class="visually-hidden">1. </span>会話の横で資料と作業記録を確認</h2>
+<h2 id="codex-feature-1-title" class="codex-feature-title"><span class="visually-hidden">1. </span>リンクから保存した会話を開く</h2>
 </div></header>
 <div class="update-card__body">
-<p class="update-card__summary">ターミナルの作業画面が標準で有効になり、文書の検索付きプレビュー、画像、子エージェントの会話記録を並べて確認できます。たとえば、学校の教材ページを直すなら、資料の内容と作業記録を見ながら、修正が意図どおりか確かめます。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
-<p class="update-card__context">Codex CLI 0.171.0の公式更新です。ターミナル画面向けの案内で、利用環境での動作確認は別に必要です。</p>
-<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.171.0" target="_blank" rel="noopener">公式情報</a></p>
+<p class="update-card__summary">検索結果や会話記録にあるリンクから、保存した会話や子エージェントの会話をターミナルで開けるようになりました。たとえば、学校の教材ページの修正を再開するなら、前の会話をリンクから開き、決めた内容を確認してから続きを依頼します。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
+<p class="update-card__context">Codex CLI 0.172.0のターミナル画面向けの更新です。利用環境での動作確認は別に必要です。</p>
+<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.172.0" target="_blank" rel="noopener">公式情報</a></p>
 </div></section>
 
 <section class="codex-feature-card update-card" data-update-kind="codex" data-update-index="2" aria-labelledby="codex-feature-2-title">
@@ -43,12 +43,12 @@ action: "使えそうな機能を1つ試す"
 <span class="update-card__rank" aria-hidden="true">2</span>
 <div class="update-card__heading">
 <p class="update-card__eyebrow">CODEX</p>
-<h2 id="codex-feature-2-title" class="codex-feature-title"><span class="visually-hidden">2. </span>入力の取り消し・やり直しに対応</h2>
+<h2 id="codex-feature-2-title" class="codex-feature-title"><span class="visually-hidden">2. </span>Tabキーでコマンドの続きを補完</h2>
 </div></header>
 <div class="update-card__body">
-<p class="update-card__summary">Vimモード以外の入力欄で取り消し・やり直しのキーを設定でき、添付ファイルや長い貼り付けも復元できるようになりました。たとえば、地域企業の案内文を長く貼り付けて依頼するなら、誤って消した内容を戻したあと、送る文章と添付が合っているか見直します。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
-<p class="update-card__context">Codex CLI 0.171.0の公式更新です。ターミナル画面向けの案内で、利用環境での動作確認は別に必要です。</p>
-<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.171.0" target="_blank" rel="noopener">公式情報</a></p>
+<p class="update-card__summary">対応するスラッシュコマンドでは、後ろに続く引数の入力をTabキーで補完できるようになりました。たとえば、地域企業のサイトをターミナルで手入れするなら、対応する操作名の入力を補完し、打ち間違いがないか送信前に確認します。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
+<p class="update-card__context">Codex CLI 0.172.0の対応スラッシュコマンドに限る機能です。すべての入力を補完するものではありません。</p>
+<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.172.0" target="_blank" rel="noopener">公式情報</a></p>
 </div></section>
 
 <section class="codex-feature-card update-card" data-update-kind="codex" data-update-index="3" aria-labelledby="codex-feature-3-title">
@@ -56,12 +56,12 @@ action: "使えそうな機能を1つ試す"
 <span class="update-card__rank" aria-hidden="true">3</span>
 <div class="update-card__heading">
 <p class="update-card__eyebrow">CODEX</p>
-<h2 id="codex-feature-3-title" class="codex-feature-title"><span class="visually-hidden">3. </span>会話を切り替えても下書きを保持</h2>
+<h2 id="codex-feature-3-title" class="codex-feature-title"><span class="visually-hidden">3. </span>長い回答選択肢をページ送りで読む</h2>
 </div></header>
 <div class="update-card__body">
-<p class="update-card__summary">会話の切り替えや再開時に、下書き・送信待ちの追加依頼・中断した入力を元の会話に保持する修正が入りました。たとえば、福祉事業所の案内文と別の資料を並行して直すなら、作業を切り替えた後も、依頼先の会話と入力内容を確認してから送信します。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
-<p class="update-card__context">Codex CLI 0.171.0の公式更新です。ターミナル画面向けの案内で、利用環境での動作確認は別に必要です。</p>
-<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.171.0" target="_blank" rel="noopener">公式情報</a></p>
+<p class="update-card__summary">ターミナルの回答欄より長い選択肢でも、PageUpとPageDownで読み進め、回答を送れるように修正されました。たとえば、福祉事業所の案内ページについて詳しい確認が来たなら、選択肢の末尾まで読んで、意図に合う回答を選びます。この機能の提供内容がOpenAI公式情報に掲載されていることを確認できます。</p>
+<p class="update-card__context">Codex CLI 0.172.0のターミナル画面での修正です。Webサイト側の選択肢を変更する機能ではありません。</p>
+<p class="update-card__source"><a href="https://github.com/openai/codex/releases/tag/rust-v0.172.0" target="_blank" rel="noopener">公式情報</a></p>
 </div></section>
 
 ## 公式情報
@@ -73,6 +73,11 @@ action: "使えそうな機能を1つ試す"
 ## 過去のアップデート要約
 
 <!-- CODEX_UPDATE_ARCHIVE:BEGIN -->
+<!-- source-fingerprint: 864ce1f685f6e7f5f3c6ff8baf849659a881d69c7b04afecd3f3873b29ebd48b -->
+### CLI 0.171.0：資料プレビューと入力の編集
+
+会話の横で資料・画像・子エージェントの記録を確認する機能、入力の取り消し・やり直し、会話切り替え時の下書き保持を紹介しました。
+
 <!-- source-fingerprint: be8383b60244cfabda2282cc1a7fc42e1f9e0d365d3a5e78ea3da757359ae163 -->
 ### CLI 0.170.0：保存・再接続・検索の修正
 

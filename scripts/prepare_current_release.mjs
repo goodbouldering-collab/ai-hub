@@ -49,6 +49,7 @@ export const newsInputs = [
   'core', 'config', 'site/templates/ai-news', 'scripts/build_ai_news_feature.py',
   'scripts/build_search_presence_release.py', 'scripts/verify_ai_news_feature.py',
   'content/daily-ai-news.json', 'content/ai-news', 'site/static/brand/brand.css',
+  'site/static/img/portfolio',
   'site/static/design-system/studio/focused-ux.js',
   'deployment/meo-diagnosis/published-worker.mjs', 'deployment/current-release.json',
 ];
@@ -113,6 +114,20 @@ export async function prepare(root, { checkLive = true, request = fetch, run = e
         path.join(source, 'scripts/build_ai_news_feature.py'),
         '--base-assets', baseline, '--output', generated, '--preserve-baseline-presentation',
       ], { cwd: source, maxBuffer: 10 * 1024 * 1024 });
+      // Only replace portfolio files whose content changed in this release.
+      // Other images stay byte-identical to the verified production baseline.
+      for (const [name, digest] of Object.entries(contract.assets)) {
+        if (/^img\/portfolio\/(?:[a-z0-9-]+\.jpg|manifest\.json)$/.test(name)
+          && digest !== contract.baselineAssets[name]) {
+          const input = path.join(source, 'site/static', name);
+          const target = path.join(generated, name);
+          if (name.endsWith('.json')) {
+            await fs.writeFile(target, (await fs.readFile(input, 'utf8')).replaceAll('\r\n', '\n'));
+          } else {
+            await fs.copyFile(input, target);
+          }
+        }
+      }
       candidate = await hashes(generated);
     } else {
       home = Buffer.from(patchPortfolio(await fs.readFile(path.join(baseline, 'index.html'), 'utf8')));

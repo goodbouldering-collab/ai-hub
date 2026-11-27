@@ -44,11 +44,9 @@ async function releaseFixture(t, aiNews = true) {
   const baselineAssets = await hashes(baseline);
   const home = aiNews ? 'new daily home' : patchPortfolio(await fs.readFile(path.join(baseline, 'index.html'), 'utf8'));
   const assets = { ...baselineAssets, 'index.html': hash(home) };
-  if (!aiNews) {
-    await fs.mkdir(path.join(root, 'site/static/img/portfolio'), { recursive: true });
-    await fs.writeFile(path.join(root, 'site/static/img/portfolio/minanowa.jpg'), 'new photo');
-    assets['img/portfolio/minanowa.jpg'] = hash('new photo');
-  }
+  await fs.mkdir(path.join(root, 'site/static/img/portfolio'), { recursive: true });
+  await fs.writeFile(path.join(root, 'site/static/img/portfolio/minanowa.jpg'), 'new photo');
+  assets['img/portfolio/minanowa.jpg'] = hash('new photo');
   const contract = { ...(aiNews ? { aiNews: true } : {}), baselineDirectory: 'baseline', baselineAssets, assets, workerSha256: hash('worker\n'), url: 'https://example.com', livePaths: ['index.html'] };
   await fs.writeFile(path.join(root, 'deployment/current-release.json'), JSON.stringify(contract));
   if (aiNews) {
@@ -68,6 +66,7 @@ async function releaseFixture(t, aiNews = true) {
     await execute('git', ['add', '--', ...newsInputs], { cwd: root });
     await execute('git', ['-c', 'user.name=Release Test', '-c', 'user.email=release-test@example.invalid', 'commit', '-qm', 'test committed source'], { cwd: root });
     await fs.writeFile(path.join(root, 'site/templates/ai-news/home.html'), 'unrelated dirty template');
+    await fs.writeFile(path.join(root, 'site/static/img/portfolio/minanowa.jpg'), 'unrelated dirty photo');
     await fs.writeFile(path.join(root, 'core/untracked.py'), 'must not be included');
   }
   const run = async (executable, args, options) => {

@@ -320,8 +320,9 @@ portfolio:
   source_project: profit-hikone
 - name: 巡波Junpa ねむり蒸し
   slug: junpa
-  url: https://junpa.aiclimb.workers.dev
+  url: https://junpa-hikone.com/
   aliases:
+  - https://junpa.aiclimb.workers.dev
   - https://yomogihikone.vercel.app
   status: live
   category: サロン・予約

@@ -1,11 +1,11 @@
 """Apply the user-approved homepage copy, including the October 12 heading."""
 import re
 
-TITLE = '彦根で本当のAIを学べる'
+TITLE = '彦根で個別でAIを学べる'
 SUBTITLE = '数時間でAIエージェントが動き出す'
 TAGLINE = '普及率6%｜今が好機'
-BENEFIT = 'あなたの経験がAIで拡張できる'
-CONCERN = 'でも、なんかうまく使えてないかも・・・'
+BENEFIT = 'あなたの経験をAIに落とし込む'
+CONSULTATION = '<a href="#individual-consultation">AI個別相談</a>で、今日の疑問をその場で解決。'
 STYLE = '''<style id="hero-copy-style">
 #top .focus-title .focus-title-first,
 #top .focus-title .focus-title-line,
@@ -30,7 +30,7 @@ def apply_hero_copy(document):
         assert count == 1, class_name
     document = re.sub(r'<span class="hero-opportunity-badge">.*?</span>', '', document, flags=re.S)
     document = re.sub(r'(<figure\b[^>]*id="hero-glass-art"[^>]*>)', lambda m: m[1]+f'<span class="hero-opportunity-badge">{TAGLINE}</span>', document, count=1)
-    paragraph = f'<p id="hero-advantage-title"><span class="hero-advantage-equation"><strong>{BENEFIT}</strong></span><span class="hero-advantage-outcome">{CONCERN}</span></p>'
+    paragraph = f'<p id="hero-advantage-title"><span class="hero-advantage-equation"><strong>{BENEFIT}</strong></span><span class="hero-advantage-outcome">{CONSULTATION}</span></p>'
     document, count = re.subn(r'<p id=["\x27]hero-advantage-title["\x27]>.*?</p>', lambda _: paragraph, document, flags=re.S)
     if not count:
         document = re.sub(r'(<h1 class=["\x27]focus-title["\x27]>.*?</h1>)', lambda m: m[1]+paragraph, document, count=1, flags=re.S)

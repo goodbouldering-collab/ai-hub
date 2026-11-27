@@ -2,11 +2,28 @@ import json
 import re
 import unittest
 from pathlib import Path
+from bs4 import BeautifulSoup
 from core.square_menu import apply_square_menu
 
 ROOT = Path(__file__).resolve().parents[1]
 
 class SquareMenuTests(unittest.TestCase):
+    def test_hero_opens_first_individual_consultation_card(self):
+        template = (ROOT / 'site/templates/ai-news/home.html').read_text(encoding='utf-8')
+        page = BeautifulSoup(apply_square_menu(template), 'html.parser')
+        self.assertEqual(page.select_one('#top h1 .focus-title-first').get_text(), '彦根で個別でAIを学べる')
+        self.assertEqual(page.select_one('#hero-advantage-title strong').get_text(), 'あなたの経験をAIに落とし込む')
+        link = page.select_one('#top a[href="#individual-consultation"]')
+        self.assertEqual(link.get_text(strip=True), 'AI個別相談')
+        self.assertIn('今日の疑問をその場で解決。', link.parent.get_text())
+        cards = page.select('#packages .compact-course-card')
+        self.assertEqual(cards[0]['id'], 'individual-consultation')
+        self.assertEqual(cards[0].select_one('h3').get_text(), 'AI個別相談120分｜AI時代のなんでも相談')
+        self.assertEqual(cards[1].select_one('h3').get_text(), 'AIエージェント講習')
+        self.assertIn('企業支援と事業運営の経験を持つ講師', cards[0].get_text())
+        self.assertIn('8,800円', cards[0].get_text())
+        self.assertTrue(cards[0].select_one('a.compact-course-action')['href'].endswith('/TO3XHZT6XP3OM4QBDYMW7TZP'))
+
     def test_real_home_menu_and_daily_rebuild(self):
         before = (ROOT/'site/templates/ai-news/home.html').read_text(encoding='utf-8')
         after = apply_square_menu(before)

@@ -12221,7 +12221,7 @@ def _render_compact_course_cards() -> str:
             "image_alt": "相談しながら仕事の課題とAIの使い方を整理する様子",
             "price": "8,800円",
             "duration": "120分",
-            "desc": "仕事に合うAIの使い方と、確認・運用の手順を整理します。",
+            "desc": "はじめての一歩から、仕事での応用まで。企業支援と事業運営の経験を持つ講師が、今知りたいAIの使い方と、その先の活用法を個別にお伝えします。",
             "url": INDIVIDUAL_COURSE_BOOK_URL,
             "cta": "個別相談を予約",
             "material_url": "/lectures/2026-04-ai-kangaekata.html",

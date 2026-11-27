@@ -4,12 +4,14 @@ from pathlib import Path
 import re
 import unittest
 
+from bs4 import BeautifulSoup
+
 
 ROOT = Path(__file__).resolve().parents[1]
 PORTAL_PATH = ROOT / "site" / "build_portal.py"
 APP_SITE_PATH = ROOT / "site" / "ai_app_site.py"
 
-CODING_SQUARE_URL = (
+RECORDING_SQUARE_URL = (
     "https://book.squareup.com/appointments/zymaszkc9pdwq2/"
     "location/LWJNMP7EAN4GS/services/S7GERYVDIPRV76DKXCC3WJWH"
 )
@@ -42,31 +44,25 @@ class AiAppSelfbuildOfferTests(unittest.TestCase):
         cls.app_site = load_module("ai_app_selfbuild_page_under_test", APP_SITE_PATH)
         cls.page = cls.portal.render_portal([], [])
 
-    def test_homepage_restores_separate_individual_and_coding_courses(self) -> None:
-        cards = re.findall(
-            r"<article class='compact-course-card[^']*'.*?</article>",
-            self.page,
-            re.DOTALL,
-        )
-        individual_card = next(card for card in cards if INDIVIDUAL_COURSE_URL in card)
-        coding_card = next(card for card in cards if CODING_SQUARE_URL in card)
-
-        self.assertEqual(6, len(cards))
-        self.assertIn("<h3>AI個別講習</h3>", individual_card)
-        self.assertIn("仕事に合うAIの使い方と、確認・運用の手順を整理します。", individual_card)
-        self.assertIn("<h3>AIコーディング講習</h3>", coding_card)
-        self.assertIn("AIが作ったコードを読み、直し、確認して公開する", coding_card)
+    def test_homepage_separates_individual_consultation_and_recording(self) -> None:
+        cards = BeautifulSoup(self.page, "html.parser").select("#packages .compact-course-card")
+        self.assertEqual(7, len(cards))
+        individual = cards[0]
+        self.assertEqual("AI個別相談120分｜AI時代のなんでも相談", individual.h3.get_text())
+        self.assertEqual(INDIVIDUAL_COURSE_URL, individual.select_one("a.compact-course-action")["href"])
+        self.assertIn("今知りたいAIの使い方と、その先の活用法", individual.get_text())
+        recording = next(card for card in cards if card.get("id") == "voice-memo-course")
+        self.assertEqual("AI録音講座｜音声から自動で顧客メモやスケジュール", recording.h3.get_text())
+        self.assertEqual(RECORDING_SQUARE_URL, recording.select_one("a.compact-course-action")["href"])
+        self.assertIn("自分のPCで動く小さなアプリ", recording.get_text())
         self.assertNotIn("AI自作講習", self.page)
 
-    def test_support_card_restores_the_existing_square_booking_url(self) -> None:
-        support_card = next(card for card in re.findall(
-            r"<article class='compact-course-card[^']*'.*?</article>",
-            self.page,
-            re.DOTALL,
-        ) if "<h3>AI伴走支援</h3>" in card)
-
-        self.assertIn(f"href='{SUPPORT_SQUARE_URL}'", support_card)
-        self.assertIn("伴走支援を申し込む", support_card)
+    def test_support_card_keeps_its_existing_square_booking_url(self) -> None:
+        cards = BeautifulSoup(self.page, "html.parser").select("#packages .compact-course-card")
+        support = next(card for card in cards if card.h3.get_text().startswith("AI事業導入相談30分"))
+        action = support.select_one("a.compact-course-action")
+        self.assertEqual(SUPPORT_SQUARE_URL, action["href"])
+        self.assertIn("初回無料・30分の相談を予約", action.get_text())
         self.assertNotIn("/api/stripe/monthly-support", self.page)
 
     def test_structured_data_has_both_restored_offers_and_square_support(self) -> None:
@@ -85,11 +81,11 @@ class AiAppSelfbuildOfferTests(unittest.TestCase):
 
         self.assertEqual(
             INDIVIDUAL_COURSE_URL,
-            offers["AI個別講習 60分"]["offers"]["url"],
+            offers["AI個別相談 120分"]["offers"]["url"],
         )
         self.assertEqual(
-            CODING_SQUARE_URL,
-            offers["AIコーディング講習 120分"]["offers"]["url"],
+            RECORDING_SQUARE_URL,
+            offers["AI録音講座｜音声から自動で顧客メモやスケジュール"]["offers"]["url"],
         )
         self.assertEqual(
             SUPPORT_SQUARE_URL,

@@ -25,7 +25,7 @@ CLOUDFLARE_PUBLIC_URLS = {
     "rebuildmatch": ("rebuildmatch", "https://site-shindan.aiclimb.workers.dev"),
     "trusthikone": ("trust", "https://trusthikone.aiclimb.workers.dev"),
     "yamani": ("yamani", "https://yamani.aiclimb.workers.dev"),
-    "yomogihikone": ("junpa", "https://junpa.aiclimb.workers.dev"),
+    "yomogihikone": ("junpa", "https://junpa-hikone.com/"),
 }
 
 LEGACY_PUBLIC_URLS = {
@@ -67,6 +67,7 @@ class PortfolioSyncTests(unittest.TestCase):
         items = {item["slug"]: item for item in data["portfolio"]}
 
         expected_urls = {slug: url for slug, url in CLOUDFLARE_PUBLIC_URLS.values()}
+        self.assertIn("https://junpa.aiclimb.workers.dev", items["junpa"]["aliases"])
         for slug, expected_url in expected_urls.items():
             with self.subTest(slug=slug):
                 item = items[slug]
